@@ -43,24 +43,22 @@
         </div>
       </div>
 
-      {% if settings.REGION_STORES %}
-        <div class="simple-field c">
-          <div class="form-label">
-            <label for="region">{{ _('Region') }}</label>
-          </div>
-          <div class="form-col">
-            {% if DESKTOP %}<div class="styled select input">{% endif %}
-              <select id="region" name="region">
-                {% for code, region in mkt.regions.REGIONS_CHOICES_SLUG -%}
-                <option value="{{ code }}"{% if code == request.REGION.slug %}
-                        selected{% endif %}>
-                  {{ region.name }}</option>
-                {%- endfor %}
-              </select>
-            {% if DESKTOP %}</div>{% endif %}
-          </div>
+      <div class="simple-field c">
+        <div class="form-label">
+          <label for="region">{{ _('Region') }}</label>
         </div>
-      {% endif %}
+        <div class="form-col">
+          {% if DESKTOP %}<div class="styled select input">{% endif %}
+            <select id="region" name="region">
+              {% for code, region in mkt.regions.REGIONS_CHOICES_SLUG -%}
+              <option value="{{ code }}"{% if code == request.REGION.slug %}
+                      selected{% endif %}>
+                {{ region.name }}</option>
+              {%- endfor %}
+            </select>
+          {% if DESKTOP %}</div>{% endif %}
+        </div>
+      </div>
 
       {% if 'admin_log' in form.fields %}
         <h3>Administration</h3>

@@ -18,8 +18,6 @@ class TestCarrierURLs(TestCase):
     fixtures = ['base/users']
 
     def setUp(self):
-        if not settings.REGION_STORES:
-            raise SkipTest()
         if not settings.USE_CARRIER_URLS:
             raise SkipTest()
         set_carrier(None)

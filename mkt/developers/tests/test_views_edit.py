@@ -504,7 +504,6 @@ class TestEditBasic(TestEdit):
                 'l10n menu not visible for %s' % url)
 
     def test_l10n_not_us_id_url(self):
-        self.skip_if_disabled(settings.REGION_STORES)
         self.webapp.update(default_locale='fr')
         for url in self.get_l10n_urls():
             r = self.client.get('/id' + url, follow=True)
@@ -1012,9 +1011,8 @@ class TestEditDetails(TestEdit):
                     default_locale='en-US',
                     homepage='http://twitter.com/fligtarsmom',
                     privacy_policy="fligtar's mom does <em>not</em> share "
-                                   "your data with third parties.")
-        if settings.REGION_STORES:
-            data['regions'] = [mkt.regions.CA.id]
+                                   "your data with third parties.",
+                    regions=[mkt.regions.CA.id])
         data.update(kw)
         return data
 
@@ -1123,14 +1121,12 @@ class TestEditDetails(TestEdit):
         self.assertFormError(r, 'form', 'homepage', 'Enter a valid URL.')
 
     def test_regions_listed(self):
-        self.skip_if_disabled(settings.REGION_STORES)
         r = self.client.get(self.url)
         eq_(strip_whitespace(pq(r.content)('#regions').text()),
             ', '.join(sorted(unicode(name) for id_, name in
                              mkt.regions.REGIONS_CHOICES_NAME)))
 
     def test_excluded_regions_not_listed(self):
-        self.skip_if_disabled(settings.REGION_STORES)
         AER.objects.create(addon=self.webapp, region=mkt.regions.BR.id)
 
         # This looks at the included regions and prints out the names
@@ -1144,7 +1140,6 @@ class TestEditDetails(TestEdit):
             ', '.join(expected))
 
     def test_excluded_all_regions_not_listed(self):
-        self.skip_if_disabled(settings.REGION_STORES)
         for region in mkt.regions.ALL_REGION_IDS:
             AER.objects.create(addon=self.webapp, region=region)
 
@@ -1152,7 +1147,6 @@ class TestEditDetails(TestEdit):
         eq_(pq(r.content)('#regions .empty').length, 1)
 
     def test_exclude_region(self):
-        self.skip_if_disabled(settings.REGION_STORES)
         regions = list(mkt.regions.REGION_IDS)
         for region_id in regions:
             to_exclude = list(regions)
@@ -1164,7 +1158,6 @@ class TestEditDetails(TestEdit):
             eq_(self.get_excluded_ids(), [region_id])
 
     def test_exclude_future_regions(self):
-        self.skip_if_disabled(settings.REGION_STORES)
         data = self.get_dict(regions=mkt.regions.REGION_IDS,
                              other_regions=False)
         r = self.client.post(self.edit_url, data)
@@ -1173,7 +1166,6 @@ class TestEditDetails(TestEdit):
         eq_(self.get_excluded_ids(), [mkt.regions.WORLDWIDE.id])
 
     def test_include_regions(self):
-        self.skip_if_disabled(settings.REGION_STORES)
         AER.objects.create(addon=self.webapp, region=mkt.regions.BR.id)
 
         data = self.get_dict(regions=mkt.regions.REGION_IDS,
@@ -1184,7 +1176,6 @@ class TestEditDetails(TestEdit):
         eq_(self.get_excluded_ids(), [])
 
     def test_include_future_regions(self):
-        self.skip_if_disabled(settings.REGION_STORES)
         AER.objects.create(addon=self.webapp, region=mkt.regions.WORLDWIDE.id)
 
         data = self.get_dict(regions=mkt.regions.REGION_IDS,
@@ -1195,7 +1186,6 @@ class TestEditDetails(TestEdit):
         eq_(self.get_excluded_ids(), [])
 
     def test_include_all_and_future_regions(self):
-        self.skip_if_disabled(settings.REGION_STORES)
         AER.objects.create(addon=self.webapp, region=mkt.regions.WORLDWIDE.id)
 
         data = self.get_dict(regions=mkt.regions.REGION_IDS,
@@ -1206,8 +1196,6 @@ class TestEditDetails(TestEdit):
         eq_(self.get_excluded_ids(), [])
 
     def test_brazil_games_excluded(self):
-        self.skip_if_disabled(settings.REGION_STORES)
-
         games = Category.objects.create(type=amo.ADDON_WEBAPP, slug='games')
         AddonCategory.objects.create(addon=self.webapp, category=games)
 
@@ -1224,8 +1212,6 @@ class TestEditDetails(TestEdit):
         eq_(self.get_excluded_ids(), [mkt.regions.BR.id])
 
     def test_brazil_games_already_excluded(self):
-        self.skip_if_disabled(settings.REGION_STORES)
-
         AER.objects.create(addon=self.webapp, region=mkt.regions.BR.id)
         games = Category.objects.create(type=amo.ADDON_WEBAPP, slug='games')
         AddonCategory.objects.create(addon=self.webapp, category=games)
@@ -1238,8 +1224,6 @@ class TestEditDetails(TestEdit):
         eq_(self.get_excluded_ids(), [mkt.regions.BR.id])
 
     def test_brazil_games_with_content_rating(self):
-        self.skip_if_disabled(settings.REGION_STORES)
-
         # This game has a government content rating!
         rb = mkt.regions.BR.ratingsbodies[0]
         ContentRating.objects.create(addon=self.webapp,
@@ -1256,8 +1240,6 @@ class TestEditDetails(TestEdit):
         eq_(self.get_excluded_ids(), [])
 
     def test_brazil_games_form_disabled(self):
-        self.skip_if_disabled(settings.REGION_STORES)
-
         games = Category.objects.create(type=amo.ADDON_WEBAPP, slug='games')
         AddonCategory.objects.create(addon=self.webapp, category=games)
 
@@ -1270,8 +1252,6 @@ class TestEditDetails(TestEdit):
         eq_(td.find('.note.disabled-regions').length, 1)
 
     def test_brazil_games_form_enabled_with_content_rating(self):
-        self.skip_if_disabled(settings.REGION_STORES)
-
         rb = mkt.regions.BR.ratingsbodies[0]
         ContentRating.objects.create(addon=self.webapp,
             ratings_body=rb.id, rating=rb.ratings[0].id)
@@ -1288,8 +1268,6 @@ class TestEditDetails(TestEdit):
         eq_(td.find('.note.disabled-regions').length, 0)
 
     def test_brazil_other_cats_form_enabled(self):
-        self.skip_if_disabled(settings.REGION_STORES)
-
         r = self.client.get(self.edit_url, self.get_dict())
         self.assertNoFormErrors(r)
 

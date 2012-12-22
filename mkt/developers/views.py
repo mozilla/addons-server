@@ -658,7 +658,7 @@ def addons_section(request, addon_id, addon, section, editable=False,
             request.POST or None, prefix='files',
             queryset=addon.get_previews())
 
-    elif section == 'details' and settings.REGION_STORES:
+    elif section == 'details':
         region_form = RegionForm(request.POST or None, product=addon)
 
     elif (section == 'admin' and

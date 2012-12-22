@@ -189,7 +189,6 @@ class TestPayStart(PayFlowTest):
         eq_(rp.context['currency'], currency)
 
     def test_locale_sets_currency(self, fetch_prod_im):
-        self.skip_if_disabled(settings.REGION_STORES)
         currency = 'EUR'
         self.user.preapprovaluser.delete()
         payload = self.payload()
@@ -343,7 +342,6 @@ class TestPay(PaymentViewTest):
 
     @fudge.patch('paypal.get_paykey')
     def test_no_preapproval_non_us_locale(self, get_paykey):
-        self.skip_if_disabled(settings.REGION_STORES)
         self.user.preapprovaluser.delete()
         payload = self.payload()
         currency = 'EUR'

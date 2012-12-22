@@ -26,10 +26,6 @@ LOGOUT_URL = '/logout'
 # Let robots tear this place up.
 ENGAGE_ROBOTS = True
 
-# NOTE: If you want to disable this, you have to do it in this file right here
-# since we do a lot of conditional stuff below.
-REGION_STORES = True
-
 # Support carrier URLs that prefix all other URLs, such as /telefonica/.
 # NOTE: To set this to False, you need to do so in this file or copy over
 # the conditional middleware removal below.
@@ -92,14 +88,6 @@ INSTALLED_APPS += (
     'mkt.webapps',
 )
 
-if not REGION_STORES:
-    SUPPORTED_NONLOCALES += (
-        'manifest.webapp',
-        'mozmarket.js',
-        'appcache',
-        'csrf',
-    )
-
 # TODO: I want to get rid of these eventually but it breaks some junk now.
 # MIDDLEWARE_CLASSES.remove('mobility.middleware.DetectMobileMiddleware')
 # MIDDLEWARE_CLASSES.remove('mobility.middleware.XMobileMiddleware')
@@ -114,14 +102,12 @@ if USE_CARRIER_URLS:
 
 MIDDLEWARE_CLASSES.append('mkt.site.middleware.RequestCookiesMiddleware')
 
-if REGION_STORES:
-    MIDDLEWARE_CLASSES.remove('amo.middleware.LocaleAndAppURLMiddleware')
-    MIDDLEWARE_CLASSES += [
-        'mkt.site.middleware.RedirectPrefixedURIMiddleware',
-        'mkt.site.middleware.LocaleMiddleware',
-        'mkt.site.middleware.RegionMiddleware',
-    ]
+MIDDLEWARE_CLASSES.remove('amo.middleware.LocaleAndAppURLMiddleware')
 MIDDLEWARE_CLASSES += [
+    'mkt.site.middleware.RedirectPrefixedURIMiddleware',
+    'mkt.site.middleware.LocaleMiddleware',
+    'mkt.site.middleware.RegionMiddleware',
+
     'mkt.fragments.middleware.VaryOnAJAXMiddleware',
     'mkt.site.middleware.DeviceDetectionMiddleware',
     'mkt.fragments.middleware.HijackRedirectMiddleware',
@@ -137,8 +123,7 @@ MIDDLEWARE_CLASSES += [
 TEMPLATE_DIRS += (path('mkt/templates'), path('mkt/zadmin/templates'))
 TEMPLATE_CONTEXT_PROCESSORS = list(TEMPLATE_CONTEXT_PROCESSORS)
 TEMPLATE_CONTEXT_PROCESSORS.remove('amo.context_processors.global_settings')
-if REGION_STORES:
-    TEMPLATE_CONTEXT_PROCESSORS.remove('amo.context_processors.app')
+TEMPLATE_CONTEXT_PROCESSORS.remove('amo.context_processors.app')
 TEMPLATE_CONTEXT_PROCESSORS += [
     'mkt.site.context_processors.global_settings',
 ]

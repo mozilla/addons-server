@@ -58,7 +58,7 @@ def babel_datetime(t, format='medium'):
 @register.function
 def locale_url(url):
     """Take a URL and give it the locale prefix."""
-    if settings.MARKETPLACE and settings.REGION_STORES:
+    if settings.MARKETPLACE:
         return url
     prefixer = urlresolvers.get_url_prefix()
     script = prefixer.request.META['SCRIPT_NAME']

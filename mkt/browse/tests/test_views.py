@@ -41,8 +41,6 @@ class BrowseBase(amo.tests.ESTestCase):
         return f
 
     def setup_featured(self, num=3):
-        self.skip_if_disabled(settings.REGION_STORES)
-
         # Category featured.
         a = amo.tests.app_factory()
         self.make_featured(app=a, category=self.cat)
@@ -78,7 +76,6 @@ class BrowseBase(amo.tests.ESTestCase):
         # way, pun-wise or code-wise, please don't hesitate to do so.] In the
         # meantime, SkipTest is the rubber band to our elastic problems.)
         raise SkipTest
-        self.skip_if_disabled(settings.REGION_STORES)
 
         # Popular for this category.
         a = amo.tests.app_factory()

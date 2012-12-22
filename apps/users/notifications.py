@@ -160,9 +160,7 @@ NOTIFICATION_GROUPS = {'dev': _('Developer'),
                        'user': _('User Notifications')}
 
 APP_NOTIFICATIONS = [app_reply, app_new_review, app_reviewed,
-                     app_individual_contact, app_surveys]
-if getattr(settings, 'REGION_STORES', False):
-    APP_NOTIFICATIONS.append(app_regions)
+                     app_individual_contact, app_surveys, app_regions]
 APP_NOTIFICATIONS_BY_ID = dict((l.id, l) for l in APP_NOTIFICATIONS)
 APP_NOTIFICATIONS_DEFAULT = [l.id for l in APP_NOTIFICATIONS]
 APP_NOTIFICATIONS_CHOICES = [(l.id, l.label) for l in APP_NOTIFICATIONS]

@@ -77,7 +77,6 @@ class TestRegionForm(amo.tests.WebappTestCase):
         super(TestRegionForm, self).setUp()
         self.request = RequestFactory()
         self.kwargs = {'product': self.app}
-        self.skip_if_disabled(settings.REGION_STORES)
 
     def test_initial_empty(self):
         form = forms.RegionForm(data=None, **self.kwargs)

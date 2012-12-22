@@ -589,7 +589,6 @@ class TestCategoryHandler(BaseOAuth):
         eq_(data['name'], 'Webapp')
 
     def test_get_category_localised(self):
-        self.skip_if_disabled(settings.REGION_STORES)
         res = self.client.get(self.get_url, HTTP_ACCEPT_LANGUAGE='fr')
         data = json.loads(res.content)
         eq_(data['name'], 'Le Webapp')

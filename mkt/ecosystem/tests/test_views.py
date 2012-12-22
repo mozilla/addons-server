@@ -15,7 +15,6 @@ class TestLanding(amo.tests.TestCase):
         self.url = reverse('ecosystem.landing')
 
     def test_legacy_redirect(self):
-        self.skip_if_disabled(settings.REGION_STORES)
         r = self.client.get('/ecosystem/')
         self.assert3xx(r, '/developers/', 301)
 

@@ -15,20 +15,11 @@ from amo.urlresolvers import reverse
 import mkt
 from mkt.site.middleware import DeviceDetectionMiddleware
 
-
-class MiddlewareCase(amo.tests.TestCase):
-    """Temporary until new lang+region detection gets QA'd."""
-
-    def setUp(self):
-        if not settings.REGION_STORES:
-            raise SkipTest
-
-
 _langs = ['de', 'en-US', 'es', 'fr', 'pt-BR', 'pt-PT']
 
 
 @mock.patch.object(settings, 'LANGUAGES', [x.lower() for x in _langs])
-class TestRedirectPrefixedURIMiddleware(MiddlewareCase):
+class TestRedirectPrefixedURIMiddleware(amo.tests.TestCase):
 
     def test_redirect_for_good_application(self):
         for app in amo.APPS:
@@ -107,7 +98,7 @@ class TestRedirectPrefixedURIMiddleware(MiddlewareCase):
 @mock.patch.object(settings, 'LANGUAGES', [x.lower() for x in _langs])
 @mock.patch.object(settings, 'LANGUAGE_URL_MAP',
                    dict([x.lower(), x] for x in _langs))
-class TestLocaleMiddleware(MiddlewareCase):
+class TestLocaleMiddleware(amo.tests.TestCase):
 
     def test_accept_good_locale(self):
         locales = [
@@ -248,7 +239,7 @@ class TestLocaleMiddleware(MiddlewareCase):
 
 @mock.patch.object(settings, 'LANGUAGE_URL_MAP',
                    dict([x.lower(), x] for x in _langs))
-class TestRegionMiddleware(MiddlewareCase):
+class TestRegionMiddleware(amo.tests.TestCase):
 
     def test_lang_set_with_region(self):
         for region in ('worldwide', 'us', 'br'):
@@ -379,7 +370,7 @@ class TestRegionMiddleware(MiddlewareCase):
         eq_(r.cookies['region'].value, 'us')
 
 
-class TestVaryMiddleware(MiddlewareCase):
+class TestVaryMiddleware(amo.tests.TestCase):
 
     def test_no_vary_cookie(self):
         # What is expected to `Vary`.
@@ -513,7 +504,5 @@ class TestLoginRequiredMiddleware(amo.tests.TestCase):
         ])
     )
     def test_proper_redirects_with_region_stores(self):
-        self.skip_if_disabled(settings.REGION_STORES)
-
         r = self.client.get('/')
         self.assert3xx(r, reverse('users.login'))

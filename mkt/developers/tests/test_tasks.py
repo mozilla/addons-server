@@ -519,10 +519,6 @@ class TestFetchIcon(BaseWebAppTest):
 
 class TestRegionEmail(amo.tests.WebappTestCase):
 
-    def setUp(self):
-        super(TestRegionEmail, self).setUp()
-        self.skip_if_disabled(settings.REGION_STORES)
-
     @mock.patch.object(settings, 'SITE_URL', 'http://omg.org/yes')
     def test_email_for_one_new_region(self):
         tasks.region_email([self.app.id], [mkt.regions.CA])

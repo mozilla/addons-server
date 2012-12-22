@@ -307,8 +307,6 @@ class TestWebappSearch(PaidAppMixin, SearchBase):
                            302)
 
     def test_region_exclusions(self):
-        self.skip_if_disabled(settings.REGION_STORES)
-
         AER.objects.create(addon=self.webapp, region=mkt.regions.BR.id)
         for region in mkt.regions.REGIONS_DICT:
             self.check_results({'q': 'Steam', 'region': region},
@@ -316,8 +314,6 @@ class TestWebappSearch(PaidAppMixin, SearchBase):
 
     @mock.patch.object(mkt.regions.BR, 'adolescent', True)
     def test_adolescent_popularity(self):
-        self.skip_if_disabled(settings.REGION_STORES)
-
         # Adolescent regions use global popularity.
 
         # Webapp:   Global: 0, Regional: 0
@@ -401,8 +397,6 @@ class TestSuggestions(TestAjaxSearch):
             'q=app&category=', addons=[self.w2])
 
     def test_region_exclusions(self):
-        self.skip_if_disabled(settings.REGION_STORES)
-
         AER.objects.create(addon=self.w2, region=mkt.regions.BR.id)
 
         self.check_suggestions(self.url,

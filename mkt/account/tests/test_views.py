@@ -221,7 +221,6 @@ class TestAccountSettings(amo.tests.TestCase):
         assert delete_photo_task.delay.called
 
     def test_lang_region_selector(self):
-        self.skip_if_disabled(settings.REGION_STORES)
         r = self.client.get(self.url)
         doc = pq(r.content)
         eq_(r.status_code, 200)
@@ -725,7 +724,6 @@ class TestPurchases(PurchaseBase):
         assert '$1.00' in self.get_pq()('.purchase').eq(0).text()
 
     def test_price_locale(self):
-        self.skip_if_disabled(settings.REGION_STORES)
         purchases = self.get_pq(lang='fr')
         assert u'1,00' in purchases('.purchase').eq(0).text()
 

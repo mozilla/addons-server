@@ -110,12 +110,10 @@ class TestWebapp(amo.tests.TestCase):
         eq_(w.app_slug, 'slug~')
 
     def test_get_url_path(self):
-        self.skip_if_disabled(settings.REGION_STORES)
         webapp = Webapp(app_slug='woo')
         eq_(webapp.get_url_path(), '/app/woo/')
 
     def test_get_stats_url(self):
-        self.skip_if_disabled(settings.REGION_STORES)
         webapp = Webapp(app_slug='woo')
 
         eq_(webapp.get_stats_url(), '/app/woo/statistics/')
@@ -126,7 +124,6 @@ class TestWebapp(amo.tests.TestCase):
         eq_(url, '/app/woo/statistics/installs-day-20120101-20120201.json')
 
     def test_get_inapp_stats_url(self):
-        self.skip_if_disabled(settings.REGION_STORES)
         webapp = Webapp.objects.create(app_slug='woo')
         eq_(webapp.get_stats_inapp_url(action='revenue', inapp='duh'),
             '/app/woo/statistics/inapp/duh/sales/')
@@ -645,8 +642,6 @@ class TestIsVisible(amo.tests.WebappTestCase):
     def setUp(self):
         super(TestIsVisible, self).setUp()
 
-        self.skip_if_disabled(settings.REGION_STORES)
-
         self.regular = UserProfile.objects.get(username='regularuser')
         self.partner = UserProfile.objects.get(username='partner')
         self.dev = self.app.authors.all()[0]
@@ -870,10 +865,6 @@ class TestIsVisible(amo.tests.WebappTestCase):
 
 class TestListedIn(amo.tests.WebappTestCase):
 
-    def setUp(self):
-        super(TestListedIn, self).setUp()
-        self.skip_if_disabled(settings.REGION_STORES)
-
     def test_nowhere(self):
         eq_(self.app.listed_in(), False)
 
@@ -920,10 +911,6 @@ class TestListedIn(amo.tests.WebappTestCase):
 
 
 class TestContentRatingsIn(amo.tests.WebappTestCase):
-
-    def setUp(self):
-        super(TestContentRatingsIn, self).setUp()
-        self.skip_if_disabled(settings.REGION_STORES)
 
     def test_not_in_region(self):
         for region in mkt.regions.ALL_REGIONS:
