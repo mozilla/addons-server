@@ -55,6 +55,7 @@
         data-readonly="{{ settings.READ_ONLY|json }}"
         data-media-url="{{ MEDIA_URL }}"
         data-login-url="{{ url('users.browserid_login') }}"
+        data-persona-url="{{ settings.BROWSERID_JS_URL }}"
         data-collect-timings="{{ url('mkt.timing.record') }}:{{ collect_timings_percent }}"
         data-simulate-nav-pay="{{ settings.SIMULATE_NAV_PAY|json }}"
         data-page-type="{{ pagetype or 'leaf' }}"
@@ -263,7 +264,6 @@
       <script src="{{ static(url('jsi18n'))|urlparams(lang=LANG) }}"></script>
       {# When bug 755694 is solved, expose the shim again. #}
       {# <script src="https://myapps.mozillalabs.com/jsapi/include.js"></script> #}
-      <script async defer src="{{ settings.BROWSERID_JS_URL }}"></script>
       {% if not logged %}
         {# We need RECAPTCHA for only non-authenticated users. #}
         <script type="text/javascript" src="{{ settings.RECAPTCHA_AJAX_URL }}"></script>

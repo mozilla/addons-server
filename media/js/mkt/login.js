@@ -16,28 +16,20 @@ define('login', ['notification'], function(notification) {
             }
         });
         e.preventDefault();
-
     });
-    // Hijack the login form to send us to the right place
+    // Hijack the login form to send us to the right place.
     $('#login form').submit(function(e) {
         e.stopPropagation();
-        var $this = $(this),
-            action = $this.attr('action') + format('?to={0}', window.location.pathname);
-        $this.attr('action', action);
+        var $this = $(this);
+        $this.attr('action', format('{0}?to={1}', [$this.attr('action'), window.location.pathname]));
     });
-    (function() {
-        function logout() {
-            $(".logout").bind('click', function(e) {
-                // NOTE: Real logout operations happen on the action of the Logout
-                // link/button. This just tells Persona to clean up it's data.
-                if (navigator.id) {
-                    navigator.id.logout();
-                }
-            });
+    z.body.on('click', '.logout', function() {
+        // NOTE: Real logout operations happen on the action of the Logout
+        // link/button. This just tells Persona to clean up its data.
+        if (navigator.id) {
+            navigator.id.logout();
         }
-        $(logout);
-        z.page.on('fragmentloaded', logout);
-    })();
+    });
     function gotVerifiedEmail(assertion) {
         if (assertion) {
             $.ajax({
@@ -84,21 +76,11 @@ define('login', ['notification'], function(notification) {
         }
     }
 
-    var personaInterval;
-
-    function waitForPersona() {
-        if (navigator.id) {
-            clearInterval(personaInterval);
-            setupPersona();
-        }
-    }
-
-    function setupPersona() {
-        var email = '';
-        if ($('body').data('user')) {
-            email = $('body').data('user').email;
-        }
-        console.log('detected user ' + email);
+    function init_persona() {
+        $('.browserid').css('cursor', 'pointer');
+        var user = z.body.data('user');
+        var email = user ? user.email : '';
+        console.log('detected user', email);
         navigator.id.watch({
             loggedInUser: email,
             onlogin: function(assert) {
@@ -109,16 +91,11 @@ define('login', ['notification'], function(notification) {
         });
     }
 
-    function initPersona() {
-        // Persona may not be completely initialized at page ready.
-        // This can cause the .watch function to not be set.
-        if (navigator.id) {
-            setupPersona();
-        } else {
-            personaInterval = setTimeout(waitForPersona, 500));
-        }
-    }
-
-    $(document).ready(initPersona);
+    // Load `include.js` from persona.org, and drop login hotness like it's hot.
+    var s = document.createElement('script');
+    s.src = z.body.data('persona-url');
+    document.body.appendChild(s);
+    s.onload = init_persona;
+    $('.browserid').css('cursor', 'wait');
 
 });
