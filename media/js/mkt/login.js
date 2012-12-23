@@ -84,44 +84,41 @@ define('login', ['notification'], function(notification) {
         }
     }
 
-    function init_persona() {
-        // Persona may not be completely initialized at page ready.
-        // This can cause the .watch function to not be set.
-        // If the attribute isn't present, indicate to the user that things aren't
-        // quite ready.
+    var personaInterval;
+
+    function waitForPersona() {
         if (navigator.id) {
-            if ($('body').data('pers-timeout')) {
-                clearInterval($('body').data('pers-timeout'));
-            }
-            if ($('body').data('pers-handle')) {
-                /// there is another handler already installed.
-                return;
-            } else {
-                // call DIBS on persona event handling
-                $('body').data('pers-handle', true);
-            }
-            $('.browserid').css('cursor', 'pointer');
-            var email = '';
-            if ($('body').data('user')) {
-                email = $('body').data('user').email;
-            }
-            console.log('detected user ' + email);
-            navigator.id.watch({
-                loggedInUser: email,
-                onlogin: function(assert) {
-                    gotVerifiedEmail(assert);
-                },
-                onlogout: function() {
-                }
-            })
-        } else {
-            $('.browserid').css('cursor', 'wait');
-            if (!$('body').data('pers-timeout')) {
-                $('body').data('pers-timeout', setInterval(init_persona, 500));
-            }
+            clearInterval(personaInterval);
+            setupPersona();
         }
     }
 
-    $(document).ready(init_persona);
+    function setupPersona() {
+        var email = '';
+        if ($('body').data('user')) {
+            email = $('body').data('user').email;
+        }
+        console.log('detected user ' + email);
+        navigator.id.watch({
+            loggedInUser: email,
+            onlogin: function(assert) {
+                gotVerifiedEmail(assert);
+            },
+            onlogout: function() {
+            }
+        });
+    }
+
+    function initPersona() {
+        // Persona may not be completely initialized at page ready.
+        // This can cause the .watch function to not be set.
+        if (navigator.id) {
+            setupPersona();
+        } else {
+            personaInterval = setTimeout(waitForPersona, 500));
+        }
+    }
+
+    $(document).ready(initPersona);
 
 });
