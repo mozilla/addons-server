@@ -281,8 +281,6 @@ JS = {
         # ui
         'js/mkt/notification.js',
 
-        'js/mkt/offline.js',
-
         # Search suggestions.
         'js/impala/ajaxcache.js',
         'js/impala/suggestions.js',
