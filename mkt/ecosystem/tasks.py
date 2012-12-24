@@ -108,11 +108,6 @@ tutorials = [
         'mdn': 'https://developer.mozilla.org/%(locale)s/docs/Apps/App_templates?raw=1&macros=true'
     },
     {
-        'title': 'Custom Elements',
-        'name': 'custom_elements',
-        'mdn': 'https://developer.mozilla.org/%(locale)s/docs/Apps/Custom_Elements?raw=1&macros=true'
-    },
-    {
         'title': 'Packaged Apps',
         'name': 'packaged_apps',
         'mdn': 'https://developer.mozilla.org/%(locale)s/docs/Apps/Packaged_apps?raw=1&macros=true'
