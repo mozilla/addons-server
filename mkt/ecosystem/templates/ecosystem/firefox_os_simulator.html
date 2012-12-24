@@ -14,6 +14,13 @@
 
       <div id="app-preview">
         <img src="{{ media('img/ecosystem/firefox-os-screenshot.png') }}">
+        <a href="http://www.youtube.com/watch?v=g6oLUmc2iOQ">
+          <img src="{{ media('img/ecosystem/simulator-screenshot.jpg') }}">
+        </a>
+        <a href="http://www.youtube.com/watch?v=g6oLUmc2iOQ"
+           rel="external">
+          {{ _('Watch the Firefox OS Simulator in Action') }}
+        </a>
       </div>
 
       <div id="app-details">
@@ -58,11 +65,11 @@
            class="button">{{ _('Mac OSX') }}</a>
         <a href="https://addons.mozilla.org/firefox/downloads/file/180646/firefox_os_simulator-1.0-fx-linux.xpi"
            class="button">{{ _('Linux') }}</a>
-        <h2>{{ _('Get Support') }}</h2>
+        <h2>{{ _('Additional Resources') }}</h2>
         <ul>
           <li>
             {% trans intro_link='https://hacks.mozilla.org/2012/11/announcing-the-prototype-firefox-os-simulator' %}
-              <a href="{{ intro_link }}">Introduction blog post</a>
+              <a href="{{ intro_link }}">Introductory blog post</a>
             {% endtrans %}
           </li>
           <li>
@@ -71,16 +78,9 @@
             {% endtrans %}
           </li>
           <li>
-            {% trans report_link='https://developer.mozilla.org/en-US/docs/Mozilla/Boot_to_Gecko/Using_the_B2G_desktop_client' %}
-              <a href="{{ report_link }}">
+            {% trans desktop_link='https://developer.mozilla.org/en-US/docs/Mozilla/Boot_to_Gecko/Using_the_B2G_desktop_client' %}
+              <a href="{{ desktop_link }}">
                 Mozilla Developers Network: Using the B2G desktop client
-              </a>
-            {% endtrans %}
-          </li>
-          <li>
-            {% trans report_link='https://developer.mozilla.org/en-US/docs/Mozilla/Boot_to_Gecko/Using_the_B2G_emulators' %}
-              <a href="{{ report_link }}">
-                Mozilla Developers Network: Using the B2G emulators
               </a>
             {% endtrans %}
           </li>
