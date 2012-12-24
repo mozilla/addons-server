@@ -171,17 +171,18 @@
               </a>
             </li>
             <li>
-              <a href="{{ url('ecosystem.installation') }}"
-                 {% if section == 'installation' %}
-                 class="selected"
-                 {% endif -%}>
-                {{ _('Test Installation on Desktop') }}
-              </a>
-            </li>
-            <li>
               <a href="{{ url('submit.app') }}"
                  rel="external">
                 {{ _('Submit an App') -}}
+              </a>
+            </li>
+          </ol>
+          <h2>{{ _('Docs &amp; APIs') }}</h2>
+          <ol>
+            <li>
+              <a href="http://zamboni.readthedocs.org/en/latest/topics/api.html"
+                 rel="external">
+                {{ _('Marketplace API') }}
               </a>
             </li>
           </ol>

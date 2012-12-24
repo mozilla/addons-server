@@ -6,7 +6,6 @@ from . import views
 urlpatterns = patterns('',
     url('^$', views.landing, name='ecosystem.landing'),
     url('^partners$', RedirectView.as_view(url='/developers/#partners')),
-    url('^installation$', views.installation, name='ecosystem.installation'),
     url('^support$', views.support, name='ecosystem.support'),
     url('^docs/app_generator$', views.app_generator_documentation,
         name='ecosystem.app_generator_documentation'),
