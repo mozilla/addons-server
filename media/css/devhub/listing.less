@@ -113,7 +113,8 @@
     }
     > ul > li {
         display: inline-block;
-        &:not(:first-child):before {
+        &:not(:first-child):before,
+        &:not(:last-child):before {
             background-color: @note-gray;
             border-radius: 5em;
             content: "";
