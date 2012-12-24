@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.http import Http404
 from django.shortcuts import get_object_or_404
 
 import commonware.log
@@ -180,6 +181,9 @@ def app_generator_documentation(request):
 
 def apps_documentation(request, page=None):
     """Page template for all reference apps."""
+
+    if page not in ('chrono', 'roller', 'face_value'):
+        raise Http404
 
     third_party_libs = {
         'node': {
