@@ -23,12 +23,14 @@ define('capabilities', [], function() {
         'desktop': false,
         'tablet': false,
         'mobile': safeMatchMedia('(max-width: 600px)'),
+        'firefoxAndroid': (navigator.userAgent.indexOf('Firefox') != -1 && navigator.userAgent.indexOf('Android') != -1),
         'touch': ('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch,
         'nativeScroll': (function() {
             return 'WebkitOverflowScrolling' in document.createElement('div').style;
         })(),
         'performance': !!(window.performance || window.msPerformance || window.webkitPerformance || window.mozPerformance),
-        'navPay': !!navigator.mozPay
+        'navPay': !!navigator.mozPay,
+        'firefoxOS': null  // This is set below.
     };
 
     // We're probably tablet if we have touch and we're larger than mobile.
@@ -53,6 +55,12 @@ define('capabilities', [], function() {
         // If we're on mobile, then we're not on desktop nor tablet.
         capabilities.desktop = capabilities.tablet = false;
     }
+
+    // Detect Firefox OS.
+    // This will be true if the request is from a Firefox OS phone *or*
+    // a desktop B2G build with the correct UA pref, such as this:
+    // https://github.com/mozilla/r2d2b2g/blob/master/prosthesis/defaults/preferences/prefs.js
+    capabilities.firefoxOS = capabilities.gaia && !capabilities.firefoxAndroid;
 
     try {
         if ('localStorage' in window && window.localStorage !== null) {

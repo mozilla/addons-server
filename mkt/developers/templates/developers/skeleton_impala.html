@@ -50,6 +50,7 @@
         data-media-url="{{ MEDIA_URL }}"
         data-login-url="{{ url('users.browserid_login') }}"
         data-persona-url="{{ settings.BROWSERID_JS_URL }}"
+        data-native-persona-url="{{ settings.NATIVE_BROWSERID_JS_URL }}"
         data-collect-timings="{{ url('amo.timing.record') }}:{{ collect_timings_percent }}"
         {% block bodyattrs %}{% endblock %}>
     <section id="site-header">

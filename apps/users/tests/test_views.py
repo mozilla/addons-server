@@ -1,6 +1,7 @@
 import collections
 from datetime import datetime
 import json
+from urlparse import parse_qs
 
 from django.conf import settings
 from django.core import mail
@@ -10,7 +11,7 @@ from django.contrib.auth.tokens import default_token_generator
 from django.forms.models import model_to_dict
 from django.utils.http import int_to_base36
 
-from mock import Mock, patch
+from mock import ANY, Mock, patch
 from nose.tools import eq_
 from nose import SkipTest
 # Unused, but needed so that we can patch jingo.
@@ -743,6 +744,39 @@ class TestPersonaLogin(UserViewBase):
     def test_mmo_source(self):
         profile = self.create_profile()
         eq_(profile.source, amo.LOGIN_SOURCE_MMO_BROWSERID)
+
+    @patch.object(waffle, 'switch_is_active', lambda x: True)
+    @patch.object(settings, 'NATIVE_BROWSERID_VERIFICATION_URL',
+                  'http://my-custom-b2g-verifier.org/verify')
+    @patch.object(settings, 'SITE_URL', 'http://mysite.org')
+    @patch('requests.post')
+    def test_native_persona_login(self, http_request):
+        http_request.return_value = FakeResponse(200, json.dumps(
+                {'status': 'okay',
+                 'email': 'jbalogh@mozilla.com'}))
+        self.client.post(reverse('users.browserid_login'),
+                         data=dict(assertion='fake-assertion',
+                                   audience='fakeamo.org',
+                                   is_native='1'))
+        http_request.assert_called_with(
+                settings.NATIVE_BROWSERID_VERIFICATION_URL,
+                verify=ANY, proxies=ANY, data=ANY, timeout=ANY,
+                headers=ANY)
+        data = parse_qs(http_request.call_args[1]['data'])
+        eq_(data['audience'][0], 'http://mysite.org')
+        eq_(data['issuer'][0], settings.UNVERIFIED_ISSUER)
+        eq_(data['allowUnverified'][0], 'true')
+
+    @patch.object(waffle, 'switch_is_active', lambda x: True)
+    @patch('requests.post')
+    def test_native_persona_login_ignores_garbage(self, http_request):
+        http_request.return_value = FakeResponse(200, json.dumps(
+                {'status': 'okay',
+                 'email': 'jbalogh@mozilla.com'}))
+        self.client.post(reverse('users.browserid_login'),
+                         data=dict(assertion='fake-assertion',
+                                   audience='fakeamo.org',
+                                   is_native='<garbage>'))
 
 
 @patch.object(settings, 'RECAPTCHA_PRIVATE_KEY', '')

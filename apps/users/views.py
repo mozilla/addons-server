@@ -306,22 +306,28 @@ def _clean_next_url(request):
     return request
 
 
-def browserid_authenticate(request, assertion):
+def browserid_authenticate(request, assertion, is_native=False):
     """
     Verify a BrowserID login attempt. If the BrowserID assertion is
     good, but no account exists, create one.
 
     """
-    issuer = None
-    # If this call is for the B2G U-A, then set the appropriate issuer
-    # for potentially unverified emails.
-    if request.POST.get('native'):
-        issuer = getattr(settings, 'UNVERIFIED_ISSUER', None)
-    extra_params = {'issuer': issuer, 'allowUnverified': issuer is not None}
-    log.debug('Verifying Persona assertion: %s, audience: %s, issuer: %s, '
-              'extra_params: %s')
-    result = verify(assertion, get_audience(request),
-                    extra_params=extra_params)
+    url = settings.BROWSERID_VERIFICATION_URL
+    extra_params = None
+    if is_native:
+        # When persona is running native on B2G then we need to
+        # verify assertions with the right service.
+        # We also need to force the appropriate issuer
+        # for potentially unverified emails.
+        url = settings.NATIVE_BROWSERID_VERIFICATION_URL
+        extra_params = {'issuer': settings.UNVERIFIED_ISSUER,
+                        'allowUnverified': 'true'}
+
+    audience = get_audience(request)
+    log.debug('Verifying Persona at %s, audience: %s, '
+              'extra_params: %s' % (url, audience, extra_params))
+    result = verify(assertion, audience,
+                    url=url, extra_params=extra_params)
     if not result:
         return None, _('Persona authentication failure.')
 
@@ -375,10 +381,14 @@ def browserid_login(request):
         if request.user.is_authenticated():
             # If username is different, maybe sign in as new user?
             return http.HttpResponse(status=200)
+        try:
+            is_native = bool(int(request.POST.get('is_native', 0)))
+        except ValueError:
+            is_native = False
         with statsd.timer('auth.browserid.verify'):
             profile, msg = browserid_authenticate(
-                request,
-                assertion=request.POST['assertion'])
+                request, request.POST['assertion'],
+                is_native=is_native)
         if profile is not None:
             auth.login(request, profile.user)
             profile.log_login_attempt(True)

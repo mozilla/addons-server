@@ -29,10 +29,10 @@ define('login', ['notification'], function(notification) {
     function gotVerifiedEmail(assertion) {
         if (assertion) {
             var data = {assertion: assertion};
-            // TODO(Kumar): Change to z.capabilities.b2g.
-            if (z.capabilities.gaia) {
-                data.native = '1';
-            }
+            // When id._shimmed is false we know that Persona is
+            // native on the device. Even though this seems fragile
+            // it is well supported by Persona (for now).
+            data.is_native = navigator.id._shimmed ? 0 : 1;
             $.ajax({
                 url: $('body').data('login-url'),
                 type: 'POST',
@@ -93,7 +93,14 @@ define('login', ['notification'], function(notification) {
 
     // Load `include.js` from persona.org, and drop login hotness like it's hot.
     var s = document.createElement('script');
-    s.src = z.body.data('persona-url');
+    if (z.capabilities.firefoxOS) {
+        // Load the Firefox OS include that knows how to handle native Persona.
+        // Once this functionality lands in the normal include we can stop
+        // doing this special case. See bug 821351.
+        s.src = z.body.data('native-persona-url');
+    } else {
+        s.src = z.body.data('persona-url');
+    }
     document.body.appendChild(s);
     s.onload = init_persona;
     $('.browserid').css('cursor', 'wait');

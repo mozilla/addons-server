@@ -78,8 +78,6 @@ tower==0.3.4
 -e git://github.com/mattbasta/addon-packager.git@576517360b6a9aadbfe77752ca0dbda5b0187474#egg=addon-packager
 -e git://github.com/mozilla/amo-validator.git@7f1195f7d13a9fd64395e52bb8145700601a9030#egg=amo-validator
 -e git://github.com/mozilla/app-validator.git@d791218125062f08538722fb99fe50967ace99a3#egg=app-validator
-# When available, use a version of django-browserid greater than 0.7.1
--e git://github.com/mozilla/django-browserid.git@20fbd861dbf9f0000f0e7763dc4ce4b48c661744#egg=django-browserid
 -e git://github.com/jsocol/commonware.git@27646ecaca40a89024cc581c3ecf5eb0fa87ee11#egg=commonware
 -e git://github.com/jbalogh/django-queryset-transform@a1ba6ae41bd86f5bb9ff66fb56614e0fafe6e022#egg=django-queryset-transform
 -e git://github.com/miracle2k/django-tables.git@546f339308103880c823b2056830fcdc9220edd0#egg=django-tables
@@ -91,6 +89,8 @@ tower==0.3.4
 -e git://github.com/rtilder/pyjwt.git@aa3be513795c1a623dfc61c6c0a688198ea5d303#egg=pyjwt
 -e git://github.com/jbalogh/test-utils.git@ce5136a257cd44a1c663319124a255c1d10a9834#egg=test-utils
 -e git://github.com/fwenzel/django-mozilla-product-details.git@36ef06539d6b34c4f345fd0d3e16937d0db9a752#egg=django-mozilla-product-details
+# TODO(Kumar) switch to main line after https://github.com/mozilla/django-browserid/pull/107
+-e git://github.com/kumar303/django-browserid.git@a5292a04d8e077cd96a8f4358442e7182682f739#egg=django-browserid
 
 ## Forked.
 -e git://github.com/andymckay/django-piston-oauth2.git@6cb1ad61e3f437e7ca080ee00ae7b80de7d010f0#egg=django-piston-oauth2

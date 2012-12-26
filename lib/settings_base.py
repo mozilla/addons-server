@@ -1497,6 +1497,14 @@ WEBTRENDS_PASSWORD = ''
 # Domain to allow cross-frame requests from for privacy policy and TOS.
 BROWSERID_DOMAIN= "login.persona.org"
 
-# Adjust these settings to use a custom verifier.
+# Adjust these settings if you need to use a custom verifier.
 BROWSERID_VERIFICATION_URL = 'https://verifier.login.persona.org/verify'
 BROWSERID_JS_URL = 'https://login.persona.org/include.js'
+
+# The issuer for unverified Persona email addresses.
+# We only trust one issuer to grant us unverified emails.
+UNVERIFIED_ISSUER = 'notoriousb2g.personatest.org'
+
+# This is a B2G (or other native) verifier. Adjust accordingly.
+NATIVE_BROWSERID_VERIFICATION_URL = 'https://%s/verify' % UNVERIFIED_ISSUER
+NATIVE_BROWSERID_JS_URL = 'https://%s/include.js' % UNVERIFIED_ISSUER

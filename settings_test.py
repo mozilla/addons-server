@@ -42,6 +42,13 @@ TMP_PATH = _polite_tmpdir()
 COLLECTIONS_ICON_PATH = _polite_tmpdir()
 PACKAGER_PATH = _polite_tmpdir()
 
+# Remove browserID auth so that it doesn't
+# hit the verify URL.
+AUTHENTICATION_BACKENDS = (
+    'users.backends.AmoUserBackend',
+    'cake.backends.SessionBackend',
+)
+
 # We won't actually send an email.
 SEND_REAL_EMAIL = True
 
