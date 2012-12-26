@@ -233,7 +233,7 @@ class AddonPaymentAccount(amo.models.ModelBase):
         bango_number = res['bango_id']
 
         # TODO(Kumar) check if this bango product is already premium
-        # before trying to create it
+        # before trying to create it. Bug 824751.
         cls._push_bango_premium(
             bango_number, product_uri, float(addon.addonpremium.price.price))
 
