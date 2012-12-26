@@ -323,13 +323,6 @@ def browserid_authenticate(request, assertion):
         users[0].user.backend = 'django_browserid.auth.BrowserIDBackend'
         return (users[0], None)
     username = autocreate_username(email.partition('@')[0])
-    if (settings.REGISTER_USER_LIMIT and
-        UserProfile.objects.count() > settings.REGISTER_USER_LIMIT
-        and not can_override_reg_limit(request)):
-        _m = ('Sorry, no more registrations are allowed. '
-              '<a href="https://developer.mozilla.org/en-US/apps">'
-              'Learn more</a>')
-        return (None, _m)
     source = (amo.LOGIN_SOURCE_MMO_BROWSERID if settings.MARKETPLACE else
               amo.LOGIN_SOURCE_AMO_BROWSERID)
     profile = UserProfile.objects.create(username=username, email=email,
@@ -493,12 +486,6 @@ def _login(request, template=None, data=None, dont_redirect=False):
                 signature='AUTHFAIL',
                 msg='The password was incorrect')
 
-    if (settings.REGISTER_OVERRIDE_TOKEN
-        and request.GET.get('ro') == settings.REGISTER_OVERRIDE_TOKEN):
-        # This allows the browser ID registration to see the token.
-        r.set_cookie('reg_override_token',
-                     value=settings.REGISTER_OVERRIDE_TOKEN,
-                     expires=datetime.utcnow() + timedelta(weeks=1))
     return r
 
 
@@ -577,14 +564,6 @@ def profile(request, user_id):
     return jingo.render(request, 'users/profile.html', data)
 
 
-def can_override_reg_limit(request):
-    """True if user can override the registration limit."""
-    if not settings.REGISTER_OVERRIDE_TOKEN:
-        return False
-    token = request.GET.get('ro', request.COOKIES.get('reg_override_token'))
-    return token == settings.REGISTER_OVERRIDE_TOKEN
-
-
 @anonymous_csrf
 @no_login_required
 def register(request):
@@ -594,15 +573,6 @@ def register(request):
                        loc('Registrations must be through browserid.'))
         form = None
         raise http.Http404()
-
-    elif (settings.REGISTER_USER_LIMIT and
-          UserProfile.objects.count() > settings.REGISTER_USER_LIMIT
-          and not can_override_reg_limit(request)):
-        _m = loc('Sorry, no more registrations are allowed. '
-                 '<a href="https://developer.mozilla.org/en-US/apps">'
-                 'Learn more</a>')
-        messages.error(request, _m, title_safe=True, message_safe=True)
-        form = None
 
     elif request.user.is_authenticated():
         messages.info(request, _('You are already logged in to an account.'))
@@ -667,9 +637,6 @@ def register(request):
         form = forms.UserRegisterForm()
 
     reg_action = reverse('users.register')
-    if request.GET.get('ro'):
-        # Let the registration override token pass through for a POST.
-        reg_action = urlparams(reg_action, ro=request.GET.get('ro'))
     return jingo.render(request, 'users/register.html',
                         {'form': form, 'register_action': reg_action})
 

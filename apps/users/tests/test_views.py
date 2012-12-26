@@ -675,70 +675,6 @@ class TestLogin(UserViewBase):
         profile = UserProfile.objects.get(email=email)
         assert not profile.notes
 
-    @patch.object(settings, 'REGISTER_USER_LIMIT', 1)
-    @patch.object(waffle, 'switch_is_active', lambda x: True)
-    @patch('requests.post')
-    def test_browserid_register_limit(self, http_request):
-        """
-        Account creation via BrowserID respects
-        settings.REGISTER_USER_LIMIT.
-        """
-
-        http_request.return_value = FakeResponse(200, json.dumps(
-                {'status': 'okay',
-                 'email': 'extrauser@example.com'}))
-        old_profile_count = UserProfile.objects.count()
-        res = self.client.post(reverse('users.browserid_login'),
-                               data=dict(assertion='fake-assertion',
-                                         audience='fakeamo.org'))
-        eq_(res.status_code, 401)
-        _m = ('Sorry, no more registrations are allowed. '
-              '<a href="https://developer.mozilla.org/en-US/apps">'
-              'Learn more</a>')
-        eq_(res.content, _m)
-
-        profile_count = UserProfile.objects.count()
-        eq_(profile_count, old_profile_count)
-
-    @patch.object(settings, 'REGISTER_USER_LIMIT', 1)
-    @patch.object(settings, 'REGISTER_OVERRIDE_TOKEN', 'mozilla')
-    @patch.object(waffle, 'switch_is_active', lambda x: True)
-    @patch('requests.post')
-    def test_override_browserid_register_limit(self, http_request):
-        email = 'override-user@example.com'
-        http_request.return_value = FakeResponse(200,
-                                                 json.dumps({'status': 'okay',
-                                                             'email': email}))
-        self.client.cookies['reg_override_token'] = 'mozilla'
-        res = self.client.post(reverse('users.browserid_login'),
-                               data=dict(assertion='fake-assertion',
-                                         audience='fakeamo.org'))
-        eq_(res.status_code, 200)
-        profiles = UserProfile.objects.filter(email=email)
-        eq_(len(profiles), 1)
-        eq_(profiles[0].username, 'override-user')
-
-    @patch.object(settings, 'REGISTER_USER_LIMIT', 1)
-    @patch.object(settings, 'REGISTER_OVERRIDE_TOKEN', 'mozilla')
-    @patch.object(waffle, 'switch_is_active', lambda x: True)
-    @patch('requests.post')
-    def test_override_browserid_register_wrong_token(self, http_request):
-        email = 'override-user@example.com'
-        http_request.return_value = FakeResponse(200,
-                                                 json.dumps({'status': 'okay',
-                                                             'email': email}))
-        self.client.cookies['reg_override_token'] = 'netscape'
-        res = self.client.post(reverse('users.browserid_login'),
-                               data=dict(assertion='fake-assertion',
-                                         audience='fakeamo.org'))
-        eq_(res.status_code, 401)
-
-    @patch.object(settings, 'REGISTER_OVERRIDE_TOKEN', 'letmein')
-    def test_override_token_sets_cookie(self):
-        res = self.client.get(self.url + '?ro=letmein')
-        eq_(res.status_code, 200)
-        eq_(self.client.cookies['reg_override_token'].value, 'letmein')
-
     @patch.object(waffle, 'switch_is_active', lambda x: True)
     @patch('requests.post')
     def test_browserid_login_failure(self, http_request):
@@ -752,37 +688,6 @@ class TestLogin(UserViewBase):
                                          audience='fakeamo.org'))
         eq_(res.status_code, 401)
         assert 'BrowserID authentication failure' in res.content
-
-    @patch.object(settings, 'REGISTER_USER_LIMIT', 100)
-    @patch('django.contrib.auth.views.login')
-    def test_registration_open(self, login):
-        def assert_registration_open(request, extra_context=None, **kwargs):
-            assert not extra_context['registration_closed']
-            return http.HttpResponse(200)
-        login.side_effect = assert_registration_open
-        self.client.get(self.url)
-        assert login.called
-
-    @patch.object(settings, 'REGISTER_USER_LIMIT', 1)
-    @patch('django.contrib.auth.views.login')
-    def test_registration_closed(self, login):
-        def assert_registration_open(request, extra_context=None, **kwargs):
-            assert extra_context['registration_closed']
-            return http.HttpResponse(200)
-        login.side_effect = assert_registration_open
-        self.client.get(self.url)
-        assert login.called
-
-    @patch.object(settings, 'REGISTER_USER_LIMIT', 0)
-    @patch('django.contrib.auth.views.login')
-    def test_registration_open_when_no_limit_set(self, login):
-        def assert_registration_open(request, extra_context=None, **kwargs):
-            assert not extra_context['registration_closed'], (
-                                        'Expected registration to be open')
-            return http.HttpResponse(200)
-        login.side_effect = assert_registration_open
-        self.client.get(self.url)
-        assert login.called
 
     @patch.object(waffle, 'switch_is_active', lambda x: True)
     @patch('requests.post')
@@ -803,11 +708,10 @@ class TestLogin(UserViewBase):
     @patch.object(waffle, 'switch_is_active', lambda x: True)
     @patch('requests.post')
     def create_profile(self, http_request):
-        email = 'override-user@example.com'
+        email = 'user@example.com'
         http_request.return_value = FakeResponse(200,
                                                  json.dumps({'status': 'okay',
                                                              'email': email}))
-        self.client.cookies['reg_override_token'] = 'mozilla'
         self.client.post(reverse('users.browserid_login'),
                          data=dict(assertion='fake-assertion',
                                    audience='fakeamo.org'))
