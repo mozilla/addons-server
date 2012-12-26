@@ -655,7 +655,7 @@ class Webapp(Addon):
                              file.filename))
 
             data = {
-                'name': self.name,
+                'name': manifest['name'],
                 'version': version.version,
                 'size': file.size,
                 'release_notes': version.releasenotes,
