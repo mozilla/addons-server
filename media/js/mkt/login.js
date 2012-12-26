@@ -17,12 +17,6 @@ define('login', ['notification'], function(notification) {
         });
         e.preventDefault();
     });
-    // Hijack the login form to send us to the right place.
-    $('#login form').submit(function(e) {
-        e.stopPropagation();
-        var $this = $(this);
-        $this.attr('action', format('{0}?to={1}', [$this.attr('action'), window.location.pathname]));
-    });
     z.body.on('click', '.logout', function() {
         // NOTE: Real logout operations happen on the action of the Logout
         // link/button. This just tells Persona to clean up its data.

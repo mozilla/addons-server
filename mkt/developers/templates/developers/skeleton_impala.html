@@ -180,44 +180,16 @@
     {% if not logged %}
       <div id="login" class="overlay">
         <section>
-          <div class="new">
-            <h2>{{ _('Please sign in') }}</h2>
-            <p>
-              {% trans url='https://login.persona.org/' %}
-                Just log in or register with your
-                <a href="{{ url }}">Persona</a> account below.
-              {% endtrans %}
-            </p>
-            <footer>
-              <a class="button browserid" href="#">{{ _('Log in / Register') }}</a>
-            </footer>
-          </div>
-          <div class="old">
-            <h2>Additional authorization required</h2>
-            <form method="post" action="{{ get_login_link() }}"
-                  class="form-grid">
-              <div class="simple-field row c">
-                <div class="form-label">
-                  <label for="id_username">Email address</label>
-                </div>
-                <div class="form-col">
-                  <input id="id_username" name="username" maxlength="50" type="email">
-                </div>
-              </div>
-              <div class="simple-field row c password">
-                <div class="form-label">
-                  <label for="id_password">Password</label>
-                </div>
-                <div class="form-col">
-                  <input name="password" id="id_password" type="password">
-                </div>
-              </div>
-              <input type="hidden" name="rememberme" value="1">
-              <footer class="listing-footer">
-                <button id="login-submit" type="submit">Log in</button>
-              </footer>
-            </form>
-          </div>
+          <h2>{{ _('Please sign in') }}</h2>
+          <p>
+            {% trans url='https://login.persona.org/' %}
+              Just log in or register with your
+              <a href="{{ url }}">Persona</a> account below.
+            {% endtrans %}
+          </p>
+          <footer>
+            <a class="button browserid" href="#">{{ _('Log in / Register') }}</a>
+          </footer>
         </section>
       </div>
     {% endif %}
