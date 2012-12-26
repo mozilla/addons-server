@@ -100,7 +100,7 @@ class ANDROID(App):
     id = 61
     short = 'android'
     shortername = 'an'
-    pretty = _(u'Android')
+    pretty = _(u'Firefox for Android')
     browser = True
     types = [ADDON_EXTENSION, ADDON_DICT, ADDON_SEARCH,
              ADDON_LPAPP, ADDON_PERSONA]
