@@ -318,9 +318,9 @@ class BangoPaymentAccountForm(happyforms.Form):
 
     @property
     def happy_errors(self):
-        return '\n'.join(u'<div><span>%u:</span> %u</div>' %
-                             (field.label, field.errors)
-                         for field in self if field.errors)
+        return u'\n'.join(u'<div><span>%s:</span> %s</div>' %
+                          (unicode(field.label), unicode(field.errors))
+                          for field in self if field.errors)
 
 
 class BangoAccountListForm(happyforms.Form):
