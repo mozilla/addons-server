@@ -203,7 +203,7 @@ def edit(request):
                 l = {'user': amouser,
                      'mail1': original_email,
                      'mail2': amouser.email}
-                log.info(u"User (%(user)s) has requested email change from"
+                log.info(u"User (%(user)s) has requested email change from "
                           "(%(mail1)s) to (%(mail2)s)" % l)
                 messages.info(request, _('Email Confirmation Sent'),
                     _(u'An email has been sent to {0} to confirm your new '
@@ -212,15 +212,14 @@ def edit(request):
                        'Until then, you can keep logging in with your '
                        'current email address.').format(amouser.email))
 
-                domain = settings.DOMAIN
-                token, hash = EmailResetCode.create(amouser.id, amouser.email)
-                url = "%s%s" % (settings.SITE_URL,
-                                reverse('users.emailchange', args=[amouser.id,
-                                                                token, hash]))
+                token, hash_ = EmailResetCode.create(amouser.id, amouser.email)
+                url = '%s%s' % (settings.SITE_URL,
+                                reverse('users.emailchange',
+                                        args=[amouser.id, token, hash_]))
                 t = loader.get_template('users/email/emailchange.ltxt')
-                c = {'domain': domain, 'url': url}
+                c = {'domain': settings.DOMAIN, 'url': url}
                 send_mail(_('Please confirm your email address '
-                            'change at %s' % domain),
+                            'change at %s' % settings.DOMAIN),
                     t.render(Context(c)), None, [amouser.email],
                     use_blacklist=False, real_email=True)
 
@@ -300,7 +299,7 @@ def _clean_next_url(request):
 
     domain = gets.get('domain', None)
     if domain in settings.VALID_LOGIN_REDIRECTS.keys():
-        url = "%s%s" % (settings.VALID_LOGIN_REDIRECTS[domain], url)
+        url = settings.VALID_LOGIN_REDIRECTS[domain] + url
 
     gets['to'] = url
     request.GET = gets
@@ -352,6 +351,7 @@ def browserid_authenticate(request, assertion):
 @transaction.commit_on_success
 #@ratelimit(block=True, rate=settings.LOGIN_RATELIMIT_ALL_USERS)
 def browserid_login(request):
+    msg = ''
     if waffle.switch_is_active('browserid-login'):
         if request.user.is_authenticated():
             # If username is different, maybe sign in as new user?
@@ -678,7 +678,7 @@ def register(request):
 def report_abuse(request, user_id):
     user = get_object_or_404(UserProfile, pk=user_id)
     form = AbuseForm(request.POST or None, request=request)
-    if request.method == "POST" and form.is_valid():
+    if request.method == 'POST' and form.is_valid():
         send_abuse_report(request, user, form.cleaned_data['text'])
         messages.success(request, _('User reported.'))
     else:
