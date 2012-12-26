@@ -4,7 +4,6 @@ import colorsys
 import json
 import logging
 import os
-import socket
 import sys
 import traceback
 import urllib2
@@ -417,12 +416,11 @@ def fetch_icon(webapp, **kw):
                 response = _fetch_content(icon_url)
             except Exception, e:
                 log.error(u'[Webapp:%s] Failed to fetch icon for webapp: %s'
-                          % (webapp, e.message))
+                          % (webapp, e))
                 # Set the icon type to empty.
                 webapp.update(icon_type='')
                 return False
 
-            size_error_message = _('Your icon must be less than %s bytes.')
             try:
                 content = get_content_and_check_size(
                     response, settings.MAX_ICON_UPLOAD_SIZE)
