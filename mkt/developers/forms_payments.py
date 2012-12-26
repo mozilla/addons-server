@@ -85,6 +85,12 @@ class PremiumForm(happyforms.Form):
     def _initial_price(self):
         return Price.objects.active().exclude(price='0.00')[0]
 
+    def _make_premium(self):
+        log.info('New AddonPremium object for addon %s' % self.addon.pk)
+        premium = self.addon.premium
+        premium = AddonPremium(addon=self.addon)
+        return premium
+
     def clean_price(self):
         if (self.cleaned_data.get('premium_type') in amo.ADDON_PREMIUMS
             and not self.cleaned_data['price']):
@@ -105,9 +111,7 @@ class PremiumForm(happyforms.Form):
             # Toggle free apps to paid by giving them a premium object.
             premium = self.addon.premium
             if not premium:
-                log.info('[1@%s] New AddonPremium object' % self.addon.pk)
-                premium = AddonPremium()
-                premium.addon = self.addon
+                premium = self._make_premium()
             premium.price = self._initial_price()
             premium.save()
 
@@ -144,6 +148,11 @@ class PremiumForm(happyforms.Form):
 
         elif is_premium:
             # The dev is submitting updates for payment data about a paid app.
+            # This might also happen if she is associating a new paid app
+            # with an existing bank account.
+            premium = self.addon.premium
+            if not premium:
+                premium = self._make_premium()
             self.addon.premium_type = (
                 amo.ADDON_PREMIUM_INAPP if
                 self.cleaned_data.get('allow_inapp') else amo.ADDON_PREMIUM)
@@ -151,16 +160,16 @@ class PremiumForm(happyforms.Form):
             if 'price' in self.cleaned_data:
                 log.debug('[1@%s] Updating app price (%s)' %
                           (self.addon.pk, self.cleaned_data['price']))
-                self.addon.premium.price = self.cleaned_data['price']
+                premium.price = self.cleaned_data['price']
 
             if 'currencies' in self.cleaned_data:
                 log.debug('[1@%s] Updating app currencies (%s)' %
                           (self.addon.pk, self.cleaned_data['currencies']))
-                self.addon.premium.currencies = self.cleaned_data['currencies']
+                premium.currencies = self.cleaned_data['currencies']
 
-            self.addon.premium.save()
+            premium.save()
 
-        log.info('[1@%s] Saving app payment changes.' % self.addon.pk)
+        log.info('Saving app payment changes for addon %s.' % self.addon.pk)
         self.addon.save()
 
 

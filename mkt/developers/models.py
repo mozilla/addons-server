@@ -6,9 +6,10 @@ import commonware.log
 from tower import ugettext_lazy as _lazy
 
 import amo
-from devhub.models import ActivityLog
+from devhub.models import ActivityLog  # used by reviewers.views, etc!
 from lib.crypto import generate_key
 from lib.pay_server import client
+from mkt.purchase import webpay
 from users.models import UserForeignKey
 
 log = commonware.log.getLogger('z.devhub')
@@ -40,6 +41,7 @@ class SolitudeSeller(amo.models.ModelBase):
 class PaymentAccount(amo.models.ModelBase):
     user = UserForeignKey()
     name = models.CharField(max_length=64)
+    solitude_seller = models.ForeignKey(SolitudeSeller)
 
     # These two fields can go away when we're not 1:1 with SolitudeSellers.
     seller_uri = models.CharField(max_length=255, unique=True)
@@ -91,6 +93,7 @@ class PaymentAccount(amo.models.ModelBase):
         client.post_bank_details(data=bank_details_values)
 
         obj = cls.objects.create(user=user, uri=uri,
+                                 solitude_seller=user_seller,
                                  seller_uri=user_seller.resource_uri,
                                  bango_package_id=res['package_id'],
                                  name=form_data['account_name'])
@@ -131,6 +134,7 @@ class PaymentAccount(amo.models.ModelBase):
 class AddonPaymentAccount(amo.models.ModelBase):
     addon = models.OneToOneField(
         'addons.Addon', related_name='app_payment_account')
+    payment_account = models.ForeignKey(PaymentAccount)
     provider = models.CharField(
         max_length=8, choices=[('bango', _lazy('Bango'))])
     account_uri = models.CharField(max_length=255)
@@ -143,6 +147,13 @@ class AddonPaymentAccount(amo.models.ModelBase):
 
     class Meta:
         db_table = 'addon_payment_account'
+
+    @staticmethod
+    def uri_to_pk(uri):
+        """
+        Convert a resource URI to the primary key of the resource.
+        """
+        return uri.rstrip('/').split('/')[-1]
 
     @classmethod
     def create(cls, provider, addon, payment_account):
@@ -158,11 +169,22 @@ class AddonPaymentAccount(amo.models.ModelBase):
 
         """
         secret = generate_key(48)
-        generic_product = client.upsert(
-            method='product',
-            params={'seller': payment_account.seller_uri, 'secret': secret,
-                    'external_id': addon.pk},
-            lookup_by=['external_id'])
+        external_id = webpay.make_ext_id(addon.pk)
+        data = {'seller_uri': payment_account.seller_uri,
+                'external_id': external_id}
+        res = client.get_product(filters=data)
+        if res['meta']['total_count'] > 1:
+            # This probably means that Solitude
+            # ignored one of our filter parameters.
+            log.info('AddonPaymentAccount product result: %s' % res)
+            raise ValueError('Multiple products returned for %s' % data)
+        elif res['meta']['total_count'] == 1:
+            generic_product = res['objects'][0]
+        else:
+            generic_product = client.post_product(data={
+                'seller': payment_account.seller_uri, 'secret': secret,
+                'external_id': external_id
+            })
         product_uri = generic_product['resource_uri']
 
         if provider == 'bango':
@@ -172,6 +194,7 @@ class AddonPaymentAccount(amo.models.ModelBase):
             uri = ''
 
         return cls.objects.create(addon=addon, provider=provider,
+                                  payment_account=payment_account,
                                   set_price=addon.premium.price.price,
                                   account_uri=payment_account.uri,
                                   product_uri=uri)
@@ -182,21 +205,37 @@ class AddonPaymentAccount(amo.models.ModelBase):
             raise NotImplementedError('Currently we only support Bango '
                                       'so the associated account must '
                                       'have a bango_package_id')
-        # Create the Bango product via Solitude.
-        res = client.upsert(
-            method='product_bango',
-            params={'seller_bango': payment_account.uri,
-                    'seller_product': product_uri,
-                    'name': addon.name,
-                    'packageId': payment_account.bango_package_id,
-                    'categoryId': 1,
-                    'secret': secret},
-            lookup_by=['seller_product'])
+        res = None
+        if product_uri:
+            data = {'seller_product': cls.uri_to_pk(product_uri)}
+            query = client.get_product_bango(filters=data)
+            if query['meta']['total_count'] > 1:
+                # This probably meanst that Solitude
+                # ignored one of our filter parameters.
+                log.info('AddonPaymentAccount bango product result: %s' % query)
+                raise ValueError('Multiple products returned for %s' % data)
+            elif query['meta']['total_count'] == 1:
+                # The product already exists in Solitude so use it.
+                res = query['objects'][0]
+
+        if not res:
+            # The product does not exist in Solitude so create it.
+            res = client.post_product_bango(data={
+                'seller_bango': payment_account.uri,
+                'seller_product': product_uri,
+                'name': addon.name,
+                'packageId': payment_account.bango_package_id,
+                'categoryId': 1,
+                'secret': secret
+            })
+
         product_uri = res['resource_uri']
         bango_number = res['bango_id']
 
+        # TODO(Kumar) check if this bango product is already premium
+        # before trying to create it
         cls._push_bango_premium(
-            bango_number, product_uri, float(addon.premium.price.price))
+            bango_number, product_uri, float(addon.addonpremium.price.price))
 
         return product_uri
 

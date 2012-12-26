@@ -16,7 +16,7 @@ from mkt.developers import forms, models
 from mkt.site.fixtures import fixture
 
 
-class TestFreeToPremium(amo.tests.TestCase):
+class TestPremiumForm(amo.tests.TestCase):
     # None of the tests in this TC should initiate Solitude calls.
     fixtures = fixture('webapp_337141')
 
@@ -63,6 +63,27 @@ class TestFreeToPremium(amo.tests.TestCase):
         eq_(self.addon.premium_type, amo.ADDON_FREE)
         eq_(self.addon.status, amo.STATUS_PUBLIC)
 
+    def test_update(self):
+        self.make_premium(self.addon)
+        self.request.POST = {'toggle-paid': 'paid'}
+        price = Price.objects.create(price='9.99')
+        form = forms.PremiumForm(data={'price': price.pk}, **self.kwargs)
+        assert form.is_valid(), form.errors
+        form.save()
+        eq_(self.addon.premium.price.pk, price.pk)
+
+    def test_update_new_with_acct(self):
+        # This was the situation for a new app that was
+        # getting linked to an existing bank account.
+        self.addon.update(premium_type=amo.ADDON_PREMIUM)
+        self.request.POST = {'toggle-paid': 'paid'}
+        data = {'price': self.price.pk}
+        form = forms.PremiumForm(data=data, **self.kwargs)
+        assert form.is_valid(), form.errors
+        form.save()
+        addon = Addon.objects.get(pk=self.addon.pk)
+        assert addon.premium
+
 
 class TestPaidRereview(amo.tests.TestCase):
     fixtures = fixture('webapp_337141') + ['market/prices']
@@ -74,10 +95,13 @@ class TestPaidRereview(amo.tests.TestCase):
         self.price = Price.objects.filter()[0]
         AddonPremium.objects.create(addon=self.addon, price=self.price)
         self.user = UserProfile.objects.get(email='steamcube@mozilla.com')
+        amo.set_user(self.user)
+        seller = models.SolitudeSeller.objects.create(
+            resource_uri='/path/to/sel', user=self.user)
 
         self.account = models.PaymentAccount.objects.create(
             user=self.user, uri='asdf', name='test', inactive=False,
-            bango_package_id=123)
+            solitude_seller=seller, bango_package_id=123)
 
         self.kwargs = {
             'addon': self.addon,
@@ -88,8 +112,9 @@ class TestPaidRereview(amo.tests.TestCase):
     def test_rereview(self, client):
         client.get_product.return_value = {'meta': {'total_count': 0}}
         client.post_product.return_value = {'resource_uri': 'gpuri'}
+        client.get_product_bango.return_value = {'meta': {'total_count': 0}}
         client.post_product_bango.return_value = {
-            'resource_uri': 'bpruri', 'bango': 'bango#'}
+            'resource_uri': 'bpruri', 'bango_id': 123}
 
         form = forms.BangoAccountListForm(
             data={'accounts': self.account.pk}, **self.kwargs)
@@ -105,8 +130,9 @@ class TestPaidRereview(amo.tests.TestCase):
     def test_norereview(self, client):
         client.get_product.return_value = {'meta': {'total_count': 0}}
         client.post_product.return_value = {'resource_uri': 'gpuri'}
+        client.get_product_bango.return_value = {'meta': {'total_count': 0}}
         client.post_product_bango.return_value = {
-            'resource_uri': 'bpruri', 'bango': 'bango#'}
+            'resource_uri': 'bpruri', 'bango_id': 123}
 
         self.addon.update(highest_status=amo.STATUS_PENDING)
         form = forms.BangoAccountListForm(

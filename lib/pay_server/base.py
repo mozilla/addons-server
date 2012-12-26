@@ -99,6 +99,10 @@ class Client(object):
         return config
 
     def call(self, url, method_name, data=None):
+        if data and method_name.lower() == 'get':
+            raise TypeError('You cannot use data in a GET request. '
+                            'Maybe you meant to use filters=...')
+
         data = (json.dumps(data, cls=self.encoder or Encoder)
                 if data else json.dumps({}))
         method = getattr(requests, method_name)
@@ -137,7 +141,7 @@ class Client(object):
 
         """
         lookup_data = dict((k, v) for k, v in params.items() if k in lookup_by)
-        existing = self.__getattr__('get_%s' % method)(data=lookup_data)
+        existing = self.__getattr__('get_%s' % method)(filters=lookup_data)
         if existing['meta']['total_count']:
             return existing['objects'][0]
 
