@@ -210,7 +210,7 @@ class AddonPaymentAccount(amo.models.ModelBase):
             data = {'seller_product': cls.uri_to_pk(product_uri)}
             query = client.get_product_bango(filters=data)
             if query['meta']['total_count'] > 1:
-                # This probably meanst that Solitude
+                # This probably means that Solitude
                 # ignored one of our filter parameters.
                 log.info('AddonPaymentAccount bango product result: %s' % query)
                 raise ValueError('Multiple products returned for %s' % data)
