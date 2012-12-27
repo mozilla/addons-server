@@ -281,6 +281,7 @@ USE_APPCACHE = False
 # These are absolute paths to add to the cache. Wildcards are not allowed here.
 # These paths will be added as-is to the cache section.
 APPCACHE_TO_CACHE = [
+    '/offline/home'
 ]
 
 APPCACHE_NET_PATHS = [
