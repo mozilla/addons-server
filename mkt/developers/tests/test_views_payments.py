@@ -11,9 +11,10 @@ import amo
 import amo.tests
 from addons.models import Addon
 from market.models import Price
+from users.models import UserProfile
 
+from mkt.developers.models import PaymentAccount, SolitudeSeller
 from mkt.inapp_pay.models import InappConfig
-from mkt.site.fixtures import fixture
 
 
 def create_inapp_config(public_key='pub-key', private_key='priv-key',
@@ -227,7 +228,6 @@ class TestInappConfigReset(InappTest):
         eq_(res.status_code, 404)
 
 
-# Testing the payments page.
 class TestPayments(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/users', 'webapps/337141-steamcube',
                 'market/prices']
@@ -235,8 +235,14 @@ class TestPayments(amo.tests.TestCase):
     def setUp(self):
         self.webapp = self.get_webapp()
         self.url = self.webapp.get_dev_url('payments')
-        self.client.login(username='admin@mozilla.com', password='password')
+        self.username = 'admin@mozilla.com'
+        assert self.client.login(username=self.username, password='password')
         self.price = Price.objects.filter()[0]
+        self.patch = mock.patch('mkt.developers.models.client')
+        self.sol = self.patch.start()
+
+    def tearDown(self):
+        self.patch.stop()
 
     def get_webapp(self):
         return Addon.objects.get(pk=337141)
@@ -285,3 +291,28 @@ class TestPayments(amo.tests.TestCase):
         pqr = pq(res.content)
         eq_(pqr('select[name=price] option[selected]').attr('value'),
             str(Price.objects.get(price='0.99').id))
+
+    def test_associate_acct_to_app(self):
+        # Set up Solitude return values.
+        self.sol.get_product.return_value = {'meta': {'total_count': 0}}
+        self.sol.post_product.return_value = {'resource_uri': 'gpuri'}
+        self.sol.get_product_bango.return_value = {'meta': {'total_count': 0}}
+        self.sol.post_product_bango.return_value = {
+            'resource_uri': 'bpruri', 'bango_id': 123}
+
+        # Set up an existing bank account.
+        user = UserProfile.objects.get(email=self.username)
+        amo.set_user(user)
+        seller = SolitudeSeller.objects.create(
+            resource_uri='/path/to/sel', user=user)
+        acct = PaymentAccount.objects.create(
+            user=user, uri='asdf', name='test', inactive=False,
+            solitude_seller=seller, bango_package_id=123)
+
+        # Associate account with app.
+        res = self.client.post(self.url, {'toggle-paid': 'paid',
+                                          'price': self.price.pk,
+                                          'accounts': acct.pk}, follow=True)
+        self.assertNoFormErrors(res)
+        eq_(res.status_code, 200)
+        eq_(self.webapp.app_payment_account.payment_account.pk, acct.pk)

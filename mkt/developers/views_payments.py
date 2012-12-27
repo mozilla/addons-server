@@ -7,7 +7,7 @@ from tower import ugettext as _
 
 import amo
 from amo import messages
-from amo.decorators import json_view, post_required, write
+from amo.decorators import post_required, write
 from lib.pay_server import client
 
 from mkt.constants import DEVICE_LOOKUP
@@ -75,7 +75,7 @@ def payments(request, addon_id, addon, webapp=False):
                 # Update the product's price if we need to.
                 try:
                     apa = models.AddonPaymentAccount.objects.get(addon=addon)
-                    apa.update_price(addon.premium.price.price)
+                    apa.update_price(addon.addonpremium.price.price)
                 except models.AddonPaymentAccount.DoesNotExist:
                     pass
                 except client.Error:

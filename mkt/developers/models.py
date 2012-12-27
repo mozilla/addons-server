@@ -195,7 +195,7 @@ class AddonPaymentAccount(amo.models.ModelBase):
 
         return cls.objects.create(addon=addon, provider=provider,
                                   payment_account=payment_account,
-                                  set_price=addon.premium.price.price,
+                                  set_price=addon.addonpremium.price.price,
                                   account_uri=payment_account.uri,
                                   product_uri=uri)
 
