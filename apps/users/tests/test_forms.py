@@ -526,66 +526,6 @@ class TestUserRegisterForm(UserFormBase):
             err = u'Ensure this value has at most %s characters (it has %s).'
             self.assertFormError(r, 'form', field, err % (length, length + 1))
 
-    @patch.object(settings, 'REGISTER_USER_LIMIT', 1)
-    def test_hit_limit_get(self):
-        res = self.client.get(reverse('users.register'))
-        doc = pq(res.content)
-        eq_(len(doc('.error')), 1)
-
-    @patch.object(settings, 'REGISTER_USER_LIMIT', 1)
-    @patch('captcha.fields.ReCaptchaField.clean')
-    def test_hit_limit_post(self, clean):
-        before = UserProfile.objects.count()
-        clean.return_value = ''
-        res = self.client.get(reverse('users.register'),
-                              self.good_data())
-        doc = pq(res.content)
-        eq_(len(doc('.error')), 1)
-        eq_(UserProfile.objects.count(), before)  # No user was created.
-
-    @patch.object(settings, 'REGISTER_USER_LIMIT', 1)
-    @patch.object(settings, 'REGISTER_OVERRIDE_TOKEN', 'mozilla')
-    @patch('captcha.fields.ReCaptchaField.clean')
-    def test_override_user_limit(self, clean):
-        clean.return_value = ''
-        before = UserProfile.objects.count()
-        self.client.post(reverse('users.register') + '?ro=mozilla',
-                         self.good_data())
-        eq_(UserProfile.objects.count(), before + 1)
-
-    @patch.object(settings, 'REGISTER_USER_LIMIT', 1)
-    @patch.object(settings, 'REGISTER_OVERRIDE_TOKEN', 'mozilla')
-    def test_override_with_wrong_token(self):
-        before = UserProfile.objects.count()
-        res = self.client.post(reverse('users.register') + '?ro=netscape',
-                               self.good_data())
-        doc = pq(res.content)
-        eq_(len(doc('.error')), 1)
-        eq_(UserProfile.objects.count(), before)  # No user was created.
-
-    @patch.object(settings, 'REGISTER_OVERRIDE_TOKEN', 'mozilla')
-    def test_pass_through_reg_override_token(self):
-        res = self.client.get(reverse('users.register') + '?ro=mozilla')
-        doc = pq(res.content)
-        eq_(doc('form.user-input').attr('action'),
-            reverse('users.register') + '?ro=mozilla')
-
-    @patch.object(settings, 'APP_PREVIEW', False)
-    @patch.object(settings, 'REGISTER_USER_LIMIT', 0)
-    @patch('captcha.fields.ReCaptchaField.clean')
-    def test_no_limit_post(self, clean):
-        before = UserProfile.objects.count()
-        clean.return_value = ''
-        self.client.post(reverse('users.register'), self.good_data())
-        eq_(UserProfile.objects.count(), before + 1)
-
-    @patch.object(settings, 'APP_PREVIEW', True)
-    def test_no_register(self):
-        waffle.models.Switch.objects.create(name='browserid-login',
-                                            active=True)
-        res = self.client.post(reverse('users.register'), self.good_data())
-        eq_(res.status_code, 404)
-
 
 class TestBlacklistedUsernameAdminAddForm(UserFormBase):
 

@@ -1426,14 +1426,6 @@ MARKETPLACE = False
 # Name of view to use for homepage. AMO uses this. Marketplace has its own.
 HOME = 'addons.views.home'
 
-# Sets an upper limit on the number of users. If 0, it's ignored. If the
-# number of users meets or exceeds this, they can't register.
-REGISTER_USER_LIMIT = 0
-# Set this token to a string value to enable users to override the
-# registration limit. For example, with a token of 'mozillians' anyone can
-# bypass the limit by adding ?ro=mozillians to the URL.
-REGISTER_OVERRIDE_TOKEN = None
-
 # Default file storage mechanism that holds media.
 DEFAULT_FILE_STORAGE = 'amo.utils.LocalFileStorage'
 

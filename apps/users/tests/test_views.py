@@ -11,7 +11,7 @@ from django.contrib.auth.tokens import default_token_generator
 from django.forms.models import model_to_dict
 from django.utils.http import int_to_base36
 
-from mock import patch
+from mock import Mock, patch
 from nose.tools import eq_
 from nose import SkipTest
 import waffle
@@ -33,6 +33,7 @@ from reviews.models import Review
 from users.models import BlacklistedPassword, UserProfile, UserNotification
 import users.notifications as email
 from users.utils import EmailResetCode, UnsubscribeCode
+from users.views import browserid_authenticate
 
 
 def check_sidebar_links(self, expected):
@@ -113,20 +114,6 @@ class TestAjax(UserViewBase):
         self.client.logout()
         r = self.client.get(reverse('users.ajax'))
         eq_(r.status_code, 401)
-
-    @patch.object(settings, 'MARKETPLACE', True)
-    def test_dev_only_read(self):
-        r = self.client.get(reverse('users.ajax'), {'q': 'fligtar@gmail.com',
-                                                    'dev': 1})
-        eq_(json.loads(r.content)['status'], 1)
-
-    @patch.object(settings, 'MARKETPLACE', True)
-    def test_dev_only(self):
-        up = UserProfile.objects.get(email='fligtar@gmail.com')
-        up.update(read_dev_agreement=None)
-        r = self.client.get(reverse('users.ajax'), {'q': 'fligtar@gmail.com',
-                                                    'dev': 1})
-        eq_(json.loads(r.content)['status'], 0)
 
 
 class TestEdit(UserViewBase):
@@ -712,9 +699,7 @@ class TestLogin(UserViewBase):
         http_request.return_value = FakeResponse(200,
                                                  json.dumps({'status': 'okay',
                                                              'email': email}))
-        self.client.post(reverse('users.browserid_login'),
-                         data=dict(assertion='fake-assertion',
-                                   audience='fakeamo.org'))
+        browserid_authenticate(request=Mock(), assertion='fake-assertion')
         return UserProfile.objects.get(email=email)
 
     def test_amo_source(self):
