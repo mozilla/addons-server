@@ -238,12 +238,12 @@ class TestExtId(TestCase):
 
     def setUp(self):
         from mkt.purchase.webpay import make_ext_id
-        self.id = make_ext_id
+        self.ext_id = make_ext_id
 
     def test_no_domain(self):
         with self.settings(DOMAIN=None):
-            eq_(self.id(123), 'marketplace-dev:123')
+            eq_(self.ext_id(123), 'marketplace-dev:123')
 
     def test_domain(self):
         with self.settings(DOMAIN='marketplace.allizom.org'):
-            eq_(self.id(123), 'marketplace:123')
+            eq_(self.ext_id(123), 'marketplace:123')
