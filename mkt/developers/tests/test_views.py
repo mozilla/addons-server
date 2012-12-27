@@ -398,24 +398,6 @@ class TestMarketplace(MarketplaceMixin, amo.tests.TestCase):
         self.addon = Addon.objects.get(pk=self.addon.pk)
         eq_(self.addon.addonpremium.price, self.price_two)
 
-    def test_set_currency(self):
-        self.setup_premium()
-        res = self.client.post(
-            self.url, data=self.get_data(currencies=['EUR', 'BRL']))
-        eq_(res.status_code, 302)
-        self.addon = Addon.objects.get(pk=self.addon.pk)
-        eq_(self.addon.premium.currencies, ['EUR', 'BRL'])
-
-    def test_set_currency_fail(self):
-        self.setup_premium()
-        res = self.client.post(
-            self.url, data=self.get_data(currencies=['EUR', 'LOL']),
-            follow=True)
-        eq_(res.status_code, 200)
-        self.assertFormError(res, 'form', 'currencies',
-                             [u'Select a valid choice. '
-                               'LOL is not one of the available choices.'])
-
     def test_set_upsell(self):
         self.setup_premium()
         res = self.client.post(self.url, data=self.get_data())

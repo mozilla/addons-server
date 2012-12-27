@@ -35,9 +35,6 @@ class PremiumForm(happyforms.Form):
     price = forms.ModelChoiceField(queryset=Price.objects.active(),
                                    label=_lazy(u'App Price'),
                                    empty_label=None, required=False)
-    currencies = forms.MultipleChoiceField(
-        widget=forms.CheckboxSelectMultiple,
-        required=False, label=_lazy(u'Supported Non-USD Currencies'))
 
     free_platforms = forms.MultipleChoiceField(
         choices=FREE_PLATFORMS, required=False)
@@ -72,10 +69,6 @@ class PremiumForm(happyforms.Form):
             supported = platform in supported_devices
             self.device_data['free-%s' % platform] = supported
             self.device_data['paid-%s' % platform] = supported
-
-        choices = (PriceCurrency.objects.values_list('currency', flat=True)
-                                        .distinct())
-        self.fields['currencies'].choices = [(k, k) for k in choices if k]
 
         if (not self.initial.get('price') and
             len(self.fields['price'].choices) > 1):
@@ -161,11 +154,6 @@ class PremiumForm(happyforms.Form):
                 log.debug('[1@%s] Updating app price (%s)' %
                           (self.addon.pk, self.cleaned_data['price']))
                 premium.price = self.cleaned_data['price']
-
-            if 'currencies' in self.cleaned_data:
-                log.debug('[1@%s] Updating app currencies (%s)' %
-                          (self.addon.pk, self.cleaned_data['currencies']))
-                premium.currencies = self.cleaned_data['currencies']
 
             premium.save()
 
