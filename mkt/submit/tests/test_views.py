@@ -654,21 +654,14 @@ class TestDetails(TestSubmit):
         self.webapp = self.get_webapp()
         self.assert3xx(r, self.get_url('done'))
 
-    def test_no_video_types(self):
-        self._step()
-        res = self.client.get(self.url)
-        doc = pq(res.content)
-        eq_(doc('.screenshot_upload').attr('data-allowed-types'),
-            'image/jpeg|image/png')
-        eq_(doc('#id_icon_upload').attr('data-allowed-types'),
-            'image/jpeg|image/png')
-
-    def test_video_types(self):
+    def test_media_types(self):
         self._step()
         res = self.client.get(self.url)
         doc = pq(res.content)
         eq_(doc('.screenshot_upload').attr('data-allowed-types'),
             'image/jpeg|image/png|video/webm')
+        eq_(doc('#id_icon_upload').attr('data-allowed-types'),
+            'image/jpeg|image/png')
 
     def test_screenshot(self):
         self._step()
@@ -730,16 +723,6 @@ class TestDetails(TestSubmit):
         eq_(r.status_code, 200)
         self.assertFormError(r, 'form_basic', 'name',
                              'This field is required.')
-
-    def test_screenshot_required(self):
-        self._step()
-        data = self.get_dict()
-        for k in data:
-            if k.startswith('files') and k.endswith('upload_hash'):
-                data[k] = ''
-        rp = self.client.post(self.url, data)
-        eq_(rp.context['form_previews'].non_form_errors(),
-            ['You must upload at least one screenshot.'])
 
     def test_screenshot_or_video_required(self):
         self._step()
