@@ -24,6 +24,20 @@ from .models import AddonPaymentAccount, PaymentAccount
 log = commonware.log.getLogger('z.devhub')
 
 
+def _restore_app(app, save=True):
+    """Restore an incomplete app to its former status. The app will be marked
+    as its previuos status or PENDING if it was never reviewed.
+
+    """
+
+    log.info('Changing app from incomplete to previous status: %d' % app.pk)
+    app.status = (app.highest_status if
+                  app.highest_status != amo.STATUS_NULL else
+                  amo.STATUS_PENDING)
+    if save:
+        app.save()
+
+
 class PremiumForm(happyforms.Form):
     """
     The premium details for an addon, which is unfortunately
@@ -128,16 +142,7 @@ class PremiumForm(happyforms.Form):
             self.addon.premium_type = amo.ADDON_FREE
 
             if self.addon.status == amo.STATUS_NULL:
-                # If the app was marked as incomplete because it didn't have a
-                # payment account, mark it as either its highest status, or as
-                # PENDING if it was never reviewed (highest_status == NULL).
-                log.debug('[1@%s] Switching app to free, reverting incomplete '
-                          'status to highest_status (%s) or pending if null.' %
-                          (self.addon.pk, self.addon.highest_status))
-                self.addon.status = (
-                    self.addon.highest_status if
-                    self.addon.highest_status != amo.STATUS_NULL else
-                    amo.STATUS_PENDING)
+                _restore_app(self.addon, save=False)
 
         elif is_premium:
             # The dev is submitting updates for payment data about a paid app.
@@ -368,4 +373,4 @@ class BangoAccountListForm(happyforms.Form):
                 RereviewQueue.flag(
                     self.addon, amo.LOG.REREVIEW_PREMIUM_TYPE_UPGRADE)
 
-            self.addon.update(status=self.addon.highest_status)
+            _restore_app(self.addon)

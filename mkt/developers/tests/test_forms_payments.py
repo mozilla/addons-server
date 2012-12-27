@@ -12,7 +12,7 @@ from editors.models import RereviewQueue
 from market.models import AddonPremium, Price
 from users.models import UserProfile
 
-from mkt.developers import forms, models
+from mkt.developers import forms, forms_payments, models
 from mkt.site.fixtures import fixture
 
 
@@ -159,6 +159,25 @@ class TestPaidRereview(amo.tests.TestCase):
         form.save()
         eq_(self.addon.status, amo.STATUS_PENDING)
         eq_(RereviewQueue.objects.count(), 0)
+
+
+class TestRestoreApp(amo.tests.TestCase):
+    fixtures = fixture('webapp_337141')
+
+    def setUp(self):
+        self.addon = Addon.objects.get(pk=337141)
+        self.addon.status = amo.STATUS_NULL
+
+    def test_to_public(self):
+        self.addon.highest_status = amo.STATUS_PUBLIC
+        forms_payments._restore_app(self.addon)
+        eq_(self.addon.status, amo.STATUS_PUBLIC)
+
+    def test_to_null(self):
+        self.addon.highest_status = amo.STATUS_NULL
+        forms_payments._restore_app(self.addon)
+        # Apps without a highest status default to PENDING.
+        eq_(self.addon.status, amo.STATUS_PENDING)
 
 
 class TestInappConfigForm(amo.tests.TestCase):
