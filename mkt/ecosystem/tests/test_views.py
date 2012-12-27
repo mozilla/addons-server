@@ -59,11 +59,16 @@ class TestDevHub(amo.tests.TestCase):
         eq_(r.status_code, 200)
         self.assertTemplateUsed(r, 'ecosystem/support.html')
 
-    def test_reference_app(self):
+    def test_valid_reference_app(self):
         r = self.client.get(reverse('ecosystem.apps_documentation',
                             args=['face_value']))
         eq_(r.status_code, 200)
         self.assertTemplateUsed(r, 'ecosystem/reference_apps/face_value.html')
+
+    def test_invalid_reference_app(self):
+        r = self.client.get(reverse('ecosystem.apps_documentation',
+                            args=['face_value_invalid']))
+        eq_(r.status_code, 404)
 
 
 class TestMdnDocumentation(amo.tests.TestCase):
