@@ -3,6 +3,8 @@
 {% block splash %}
 {% endblock %}
 
+{% set bodyclass = bodyclass + ' desktop' if bodyclass else 'desktop' %}
+
 {% block site_css %}
   {{ css('mkt/consumer-desktop') }}
 {% endblock %}

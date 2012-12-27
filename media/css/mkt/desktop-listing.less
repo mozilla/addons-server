@@ -4,6 +4,9 @@
     li {
         border: 0;
         position: relative;
+        &.item:hover {
+            background-color: rgba(255,255,255,.25);
+        }
         &.item + li.item {
             &:before,
             &:after {
@@ -71,6 +74,11 @@
     }
     .dot {
         .box-shadow(0 0 1px #fff);
+        cursor: pointer;
+        &.current {
+            .box-shadow(0 -1px 1px fade(#03101a, 35%) inset,
+                        0 0 4px fade(#0091ff, 56%));
+        }
     }
 }
 

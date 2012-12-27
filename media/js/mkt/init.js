@@ -63,9 +63,15 @@ $(document).ready(function() {
     if (document.cookie && z.capabilities.gaia) {
         document.cookie = 'gaia=true;path=/';
     }
+
     // Sets a tablet cookie.
     if (document.cookie && z.capabilities.tablet) {
         document.cookie = 'tablet=true;path=/';
+        if (z.body.hasClass('sony') && !z.body.hasClass('desktop')) {
+            // Reload to get the tablet design.
+            window.location.reload();
+            // TODO: Figure out a smarter way to do this for the real Marketplace.
+        }
     }
 
     stick.basic();

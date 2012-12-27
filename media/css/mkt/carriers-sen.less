@@ -1,0 +1,396 @@
+@import 'lib';
+
+.sony {
+    background-color: #101010;
+    color: #333;
+    &.force-mobile {
+        #site-header section.main,
+        #page section.main,
+        #footer .pad,
+        .grid {
+            max-width: 640px;
+        }
+        .grid .mkt-tile {
+            width: 159px;
+        }
+    }
+    a {
+        color: #019cbd;
+    }
+    .account-links {
+        ul {
+            background: rgb(33,33,33);
+            top: 58px;
+        }
+        li + li {
+            &:before {
+                .gradient(~'left, rgba(23,23,23,0), rgba(23,23,23,.75) 25%, rgba(23,23,23,.75) 75%, rgba(23,23,23,0) 100%');
+            }
+            &:after {
+                .gradient(~'left, rgba(49,49,49,0), rgba(49,49,49,.95) 25%, rgba(49,49,49,.95) 75%, rgba(49,49,49,0) 100%');
+            }
+        }
+        &.active {
+            .settings:after {
+                .gradient(~'bottom, rgba(33,33,33,1) 0%, rgba(43,43,43,0.07) 85%, rgba(252,252,253,0) 100%');
+            }
+        }
+    }
+    #site-header {
+        border-bottom: 1px solid #393939;
+        height: 100px;
+        h1.site {
+            background: url(../../img/mkt/sen/logo.png) 0 50% no-repeat;
+        }
+        #search-q {
+            .gradient-two-color-with-image(#272727, #353535, url(../../img/mkt/icons/search.png), ~'8px 8px', no-repeat);
+            color: #fff;
+            font-weight: 400;
+            &:-moz-placeholder {
+                color: #fff;
+            }
+            &::-moz-placeholder {
+                color: #fff;
+            }
+            &::-webkit-input-placeholder {
+                color: #fff;
+            }
+            &:focus {
+                .gradient-two-color-with-image(#101010, #272727, url(../../img/mkt/icons/search.png), ~'8px 8px', no-repeat);
+                .box-shadow(0 1px 0 rgba(255,255,255,.1),
+                            0 1px 0 rgba(0,0,0,.8) inset,
+                            0 1px 1px rgba(0,0,0,.8) inset);
+            }
+        }
+    }
+    #site-header, .classic-header {
+        .box-shadow(none);
+        background: url(../../img/mkt/sen/header-bg.png);
+        background-size: 64px 103px;
+    }
+    #page, #featured-home {
+        background-color: #101010;
+    }
+    #page {
+        padding-top: 100px;
+    }
+    .incompatible-browser {
+        display: none !important;
+    }
+    /*
+    .incompatible-browser.active {
+        top: 100px;
+    }
+    */
+    .header-button.browserid {
+        line-height: 100px;
+    }
+    #directory-footer {
+        display: none;
+    }
+    #featured-home {
+        border-bottom: 1px solid rgba(255,255,255,.25);
+        padding-top: 1px;
+    }
+    #footer {
+        background: none;
+        border-top-color: #000;
+        p {
+            border-left: 0;
+            color: #666;
+            line-height: 37px;
+            padding: 0;
+        }
+    }
+    #footzilla {
+        background-image: url(../../img/mkt/sen/footer-logo.png);
+        width: 115px;
+    }
+    #footzilla,
+    #footzilla a {
+        height: 32px;
+    }
+    h2, h3, h4 {
+        color: #fff;
+        text-shadow: 0 .5px .5px #000;
+    }
+
+    .container,
+    .listing,
+    .form-grid {
+        background: none;
+    }
+
+    .form-grid {
+        background-color: rgba(0,0,0,.13);
+        border: 1px solid rgba(0,0,0,.14);
+    }
+
+    .feedback-links {
+        border-top: 0;
+    }
+
+    .simple-field label,
+    .simple-field .label {
+        color: #ccc;
+    }
+
+    input[type=text], input[type=password] {
+        background-color: #fff;
+    }
+
+    .grid .mkt-tile {
+        &.category {
+            background-color: rgba(255,255,255,.15);
+            h3 {
+                .light-text-shadow;
+                color: @light-gray;
+                font-size: 14px;
+                font-weight: 400;
+                text-shadow: 0 .5px .5px #000;
+            }
+            &:hover, &:active {
+                background-color: rgba(255,255,255,.05);
+                h3 {
+                    color: #fff;
+                }
+            }
+            &:active {
+                .depressed;
+            }
+        }
+    }
+
+    .categories .icon {
+        &.cat-education {
+            background-image: url(../../img/mkt/sen/glyphs/education.png);
+        }
+        &.cat-games {
+            background-image: url(../../img/mkt/sen/glyphs/games.png);
+        }
+        &.cat-health-fitness {
+            background-image: url(../../img/mkt/sen/glyphs/health-fitness.png);
+        }
+        &.cat-music {
+            background-image: url(../../img/mkt/sen/glyphs/music.png);
+        }
+        &.cat-news-weather {
+            background-image: url(../../img/mkt/sen/glyphs/news-weather.png);
+        }
+        &.cat-photos-media {
+            background-image: url(../../img/mkt/sen/glyphs/photos-media.png);
+        }
+        &.cat-sony {
+            background-image: url(../../img/mkt/sen/glyphs/sony.png);
+            background-position: 50% 43%;
+        }
+        &.cat-utilities {
+            background-image: url(../../img/mkt/sen/glyphs/utilities.png);
+        }
+    }
+
+    &.search {
+        #site-header {
+            border-bottom: 0;
+        }
+        .mkt-tile + .tray,
+        .listing li.item + li.item {
+            &:before {
+                .gradient(~'left, rgba(29,29,32,0), rgba(29,29,32,.15) 25%, rgba(29,29,32,.15) 75%, rgba(29,29,32,0) 100%');
+            }
+            &:after {
+                .gradient(~'left, rgba(235,238,239,0), rgba(255,255,255,.1) 25%, rgba(255,255,255,.1) 75%, rgba(235,238,239,0) 100%');
+            }
+        }
+        .mkt-tile + .tray {
+            border: 0;
+            height: 230px;
+        }
+        .tray .dot {
+            .box-shadow(0 0 1px #333);
+            &.current {
+                .box-shadow(0 0 2px #0091ff);
+            }
+        }
+        .listing {
+            border: 0;
+        }
+    }
+
+    .listing {
+        li {
+            background-size: 100px 100px;
+            &.item {
+                background: rgba(255,255,255,.1);
+                &:hover {
+                    background-color: rgba(255,255,255,.05);
+                }
+            }
+            &.loadmore {
+                background: rgba(255,255,255,.01);
+            }
+        }
+        h3 {
+            text-shadow: 0 .5px .5px #333;
+        }
+        .mkt-tile .author {
+            color: #999;
+            font-weight: 400;
+        }
+        .result .mkt-tile .rating .cnt {
+            top: 2px;
+        }
+    }
+    .bad-app {
+        color: lighten(red, 35%);
+        b[data-href] {
+            color: lighten(red, 45%);
+        }
+    }
+
+    nav .header-button.expand {
+        top: 60px;
+        &:before {
+            background-image: url(../../img/mkt/sen/expand-toggle.png);
+        }
+    }
+    &.search {
+        #page {
+            &:before {
+                background: #101010;
+                border-top: 1px solid #393939;
+                border-bottom: 1px solid rgba(255,255,255,.25);
+                top: 100px;
+            }
+        }
+        /*
+        .incompatible-browser.active {
+            top: 100px;
+        }
+        */
+    }
+    .incompatible .header-button.expand {
+        margin-top: 150px;
+    }
+    #filters #filter-sort a.sel {
+        border-top-color: #189cbb;
+        color: #189cbb;
+        &:before {
+            background: darken(#189cbb, 27%);
+            content: "";
+            display: block;
+            height: 1px;
+            margin-bottom: -1px;
+            width: 100%;
+        }
+    }
+
+    .fatbutton, .infobox ul.c a {
+        .border-radius(2px);
+        .box-shadow(0 1px 0 fadeOut(#fff, 40%), 0 1px 0 #fff inset);
+        background: rgba(255, 255, 255, 0.8);
+        border: 1px solid #ccc;
+        color: #000;
+        display: block;
+        text-shadow: 0 .5px .5px rgba(255,255,255,.5);
+        &:hover {
+            border-color: #aaa;
+        }
+    }
+
+    .button, button {
+        .box-shadow(0 2px #454545, 0 1px 0 rgba(255,255,255,.15) inset, 0 -1px 0 rgba(0,0,0,.15) inset);
+        background: #189cbb;
+        &.delete, &.manage, &.cancel, &.product.error {
+            .gradient-two-color(#e45d56, #de4332);
+            color: #fff;
+            &:hover {
+                .gradient-two-color(darken(#e45d56, 10%), darken(#de4332, 10%));
+            }
+        }
+        &:hover {
+            .box-shadow(0 2px #444, 0 1px 0 rgba(255,255,255,.2) inset, 0 -1px 0 rgba(0,0,0,.2) inset);
+            background: lighten(#189cbb, 5%);
+        }
+        &:active {
+            .box-shadow(inset 0 8px 20px 6px rgba(0,0,0,.1),
+                        inset 0 0 1px 1px rgba(0,0,0,.1),
+                        0 2px #444);
+            background: darken(#189cbb, 5%);
+            color: #ccc;
+        }
+        &[disabled], &.disabled,
+        &.purchasing, &.purchased,
+        &.installing, &.installed {
+            .box-shadow(0 2px #454545, 0 1px 0 rgba(255,255,255,.2) inset, 0 -1px 0 rgba(0,0,0,.2) inset);
+            background: @light-gray;
+        }
+        &.good {
+            color: #fff;
+            .gradient-two-color(darken(#A2E456, 20%), darken(#86DE32, 20%));
+            &:hover {
+                .gradient-two-color(darken(#A2E456, 25%), darken(#86DE32, 25%));
+            }
+        }
+    }
+
+    .loadmore button {
+        .fat-button;
+        color: #333;
+        padding: 0;
+        &:hover {
+            color: #000;
+        }
+    }
+
+    .overlay section {
+        .gradient-two-color(#454545, #292929);
+        border-color: #101010;
+        color: #ddd;
+    }
+
+    &.detail {
+        .button, button {
+            .box-shadow(0 2px #ddd, 0 1px 0 rgba(255,255,255,.15) inset, 0 -1px 0 rgba(0,0,0,.15) inset);
+            &:hover {
+                .box-shadow(0 2px #ccc, 0 1px 0 rgba(255,255,255,.2) inset, 0 -1px 0 rgba(0,0,0,.2) inset);
+            }
+            &:active {
+                .box-shadow(0 2px #ccc,
+                            inset 0 8px 20px 6px rgba(0,0,0,.1),
+                            inset 0 0 1px 1px rgba(0,0,0,.1));
+            }
+            &[disabled], &.disabled,
+            &.purchasing, &.purchased,
+            &.installing, &.installed {
+                .box-shadow(0 2px #ddd, 0 1px 0 rgba(255,255,255,.2) inset, 0 -1px 0 rgba(0,0,0,.2) inset);
+            }
+        }
+        #page {
+            padding: 140px 0 40px;
+            section.main {
+                background-color: #eee;
+            }
+        }
+        h3 {
+            color: @dark-gray;
+        }
+        .author {
+            color: @medium-gray;
+        }
+    }
+
+}
+
+@media @retina {
+    .sony {
+        #site-header #search-q {
+            .gradient-two-color-with-image(#272727, #353535, url(../../img/mkt/icons/search-2x.png), ~'8px 8px', no-repeat);
+            background-size: 12px auto;
+            &:focus {
+                .gradient-two-color-with-image(#101010, #272727, url(../../img/mkt/icons/search-2x.png), ~'8px 8px', no-repeat);
+                background-size: 12px auto;
+            }
+        }
+    }
+}
