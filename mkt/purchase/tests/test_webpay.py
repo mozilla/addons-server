@@ -14,6 +14,7 @@ from nose.tools import eq_, raises
 
 import amo
 from amo.helpers import absolutify
+from amo.tests import TestCase
 from amo.urlresolvers import reverse
 from stats.models import Contribution
 
@@ -45,6 +46,7 @@ class TestPurchase(PurchaseTest):
         return self._req('post', url, **kw)
 
     def test_prepare_pay(self):
+        from mkt.purchase.webpay import make_ext_id
         data = self.post(self.prepare_pay)
         cn = Contribution.objects.get()
         eq_(cn.type, amo.CONTRIB_PENDING)
@@ -56,7 +58,7 @@ class TestPurchase(PurchaseTest):
         eq_(data['aud'], settings.APP_PURCHASE_AUD)
         req = data['request']
         eq_(req['pricePoint'], self.price.pk)
-        eq_(req['id'], 'marketplace:%s' % self.addon.pk)
+        eq_(req['id'], make_ext_id(self.addon.pk))
         eq_(req['name'], unicode(self.addon.name))
         eq_(req['description'], unicode(self.addon.description))
         eq_(req['postbackURL'],
@@ -230,3 +232,18 @@ class TestPostback(PurchaseTest):
     def test_unknown_contrib(self, tasks, parse_from_webpay):
         parse_from_webpay.expects_call().returns(non_existant_pay)
         self.post()
+
+
+class TestExtId(TestCase):
+
+    def setUp(self):
+        from mkt.purchase.webpay import make_ext_id
+        self.id = make_ext_id
+
+    def test_no_domain(self):
+        with self.settings(DOMAIN=None):
+            eq_(self.id(123), 'marketplace-dev:123')
+
+    def test_domain(self):
+        with self.settings(DOMAIN='marketplace.allizom.org'):
+            eq_(self.id(123), 'marketplace:123')

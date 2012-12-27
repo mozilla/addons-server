@@ -36,7 +36,13 @@ def make_ext_id(addon_pk):
     # This namespace is currently necessary because app products
     # are mixed into an application's own in-app products.
     # Maybe we can fix that.
-    return 'marketplace:%s' % addon_pk
+    # Also, we may use various dev/stage servers with the same
+    # Bango test API.
+    domain = getattr(settings, 'DOMAIN', None)
+    if not domain:
+        domain = 'marketplace-dev'
+    ext_id = domain.split('.')[0]
+    return '%s:%s' % (ext_id, addon_pk)
 
 
 def prepare_webpay_pay(data):
