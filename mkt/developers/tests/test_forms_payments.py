@@ -72,6 +72,24 @@ class TestPremiumForm(amo.tests.TestCase):
         form.save()
         eq_(self.addon.premium.price.pk, price.pk)
 
+    def test_update_wo_initial_price(self):
+        """Test that if the app doesn't have an initial price (i.e.: it was
+        marked as paid during submission) that this is handled gracefully.
+
+        """
+
+        self.request.POST = {'toggle-paid': ''}
+
+        # Don't give the app an initial price.
+        AddonPremium.objects.create(addon=self.addon)
+        self.addon.premium_type = amo.ADDON_PREMIUM
+
+        price = Price.objects.create(price='9.99')
+        form = forms.PremiumForm(data={'price': price.pk}, **self.kwargs)
+        assert form.is_valid(), form.errors
+        form.save()
+        eq_(self.addon.premium.price.pk, price.pk)
+
     def test_update_new_with_acct(self):
         # This was the situation for a new app that was
         # getting linked to an existing bank account.

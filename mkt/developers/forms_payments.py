@@ -79,10 +79,11 @@ class PremiumForm(happyforms.Form):
         return Price.objects.active().exclude(price='0.00')[0]
 
     def _make_premium(self):
+        if self.addon.premium:
+            return self.addon.premium
+
         log.info('New AddonPremium object for addon %s' % self.addon.pk)
-        premium = self.addon.premium
-        premium = AddonPremium(addon=self.addon)
-        return premium
+        return AddonPremium(addon=self.addon, price=self._initial_price())
 
     def clean_price(self):
         if (self.cleaned_data.get('premium_type') in amo.ADDON_PREMIUMS
@@ -93,7 +94,7 @@ class PremiumForm(happyforms.Form):
         return self.cleaned_data['price']
 
     def is_toggling(self):
-        return self.request.POST.get('toggle-paid') or False
+        return self.request.POST.get('toggle-paid', False) or False
 
     def save(self):
         toggle = self.is_toggling()
@@ -102,9 +103,8 @@ class PremiumForm(happyforms.Form):
 
         if toggle == 'paid' and self.addon.premium_type == amo.ADDON_FREE:
             # Toggle free apps to paid by giving them a premium object.
-            premium = self.addon.premium
-            if not premium:
-                premium = self._make_premium()
+
+            premium = self._make_premium()
             premium.price = self._initial_price()
             premium.save()
 
@@ -143,9 +143,7 @@ class PremiumForm(happyforms.Form):
             # The dev is submitting updates for payment data about a paid app.
             # This might also happen if she is associating a new paid app
             # with an existing bank account.
-            premium = self.addon.premium
-            if not premium:
-                premium = self._make_premium()
+            premium = self._make_premium()
             self.addon.premium_type = (
                 amo.ADDON_PREMIUM_INAPP if
                 self.cleaned_data.get('allow_inapp') else amo.ADDON_PREMIUM)
