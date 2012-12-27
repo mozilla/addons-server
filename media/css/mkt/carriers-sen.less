@@ -111,10 +111,10 @@
         height: 32px;
     }
 
-    h2, h3, h4 {
+    h1, h2, h3, h4, .no-results {
         color: #fff;
     }
-    h2, .listing h3 {
+    h1, h2, .listing h3 {
         text-shadow: 0 .5px .5px #000;
     }
 
@@ -244,7 +244,7 @@
             top: 2px;
         }
     }
-    .bad-app {
+    &:not(.detail) .bad-app {
         color: lighten(red, 35%);
         b[data-href] {
             color: lighten(red, 45%);
