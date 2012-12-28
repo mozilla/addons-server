@@ -60,7 +60,7 @@ class TestPurchase(PurchaseTest):
         eq_(req['pricePoint'], self.price.pk)
         eq_(req['id'], make_ext_id(self.addon.pk))
         eq_(req['name'], unicode(self.addon.name))
-        eq_(req['description'], unicode(self.addon.description))
+        eq_(req['description'], unicode(self.addon.summary))
         eq_(req['postbackURL'],
             absolutify(reverse('webpay.postback')))
         eq_(req['chargebackURL'],
