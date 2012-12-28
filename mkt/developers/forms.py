@@ -449,9 +449,8 @@ class NewPackagedAppForm(happyforms.Form):
                     'tier': 1}]})
             # Persist the error with this into FileUpload, but do not persist
             # the file contents, which are too large.
-            self.file_upload = FileUpload.objects.create(is_webapp=True,
-                                                         user=self.user,
-                                                         validation=big)
+            self.file_upload = FileUpload.objects.create(
+                is_webapp=True, user=self.user, validation=big)
             # Raise an error so the form is invalid.
             raise forms.ValidationError(msg)
         else:

@@ -15,7 +15,7 @@ from django.views.decorators.csrf import csrf_view_exempt
 
 import commonware.log
 import jingo
-from session_csrf import anonymous_csrf
+from session_csrf import anonymous_csrf, anonymous_csrf_exempt
 from tower import ugettext as _, ugettext_lazy as _lazy
 import waffle
 from waffle.decorators import waffle_switch
@@ -414,6 +414,7 @@ def profile(request, addon_id, addon, webapp=False):
                              profile_form=profile_form))
 
 
+@anonymous_csrf
 def validate_addon(request):
     return jingo.render(request, 'developers/validate_addon.html', {
         'upload_hosted_url':
@@ -423,11 +424,11 @@ def validate_addon(request):
     })
 
 
-@login_required
 @post_required
-def upload(request, addon_slug=None, is_standalone=False):
+def _upload(request, addon_slug=None, is_standalone=False):
+    # If there is no user, default to None (saves the file upload as anon).
     form = NewPackagedAppForm(request.POST, request.FILES,
-                              user=request.amo_user)
+                              user=getattr(request, 'amo_user', None))
     if form.is_valid():
         tasks.validator.delay(form.file_upload.pk)
 
@@ -442,20 +443,27 @@ def upload(request, addon_slug=None, is_standalone=False):
                         form.file_upload.pk, 'json')
 
 
+@login_required
+def upload_new(*args, **kwargs):
+    return _upload(*args, **kwargs)
+
+
+@waffle_switch('allow-packaged-app-uploads')
+@anonymous_csrf
+def standalone_packaged_upload(request):
+    return _upload(request, is_standalone=True)
+
+
+@dev_required
+def upload_for_addon(request, addon_id, addon):
+    return _upload(request, addon_slug=addon.slug)
+
+
 @dev_required
 def refresh_manifest(request, addon_id, addon, webapp=False):
     log.info('Manifest %s refreshed for %s' % (addon.manifest_url, addon))
     _update_manifest(addon_id, True, ())
     return http.HttpResponse(status=204)
-
-
-@login_required
-def upload_manifest(*args, **kwargs):
-    """Wrapper function for `_upload_manifest` so we can keep the
-    standalone validator separate from the manifest upload stuff.
-
-    """
-    return _upload_manifest(*args, **kwargs)
 
 
 @post_required
@@ -487,27 +495,26 @@ def _upload_manifest(request, is_standalone=False):
         return make_validation_result(dict(validation=v, error=error_text))
 
 
+@login_required
+def upload_manifest(*args, **kwargs):
+    """Wrapper function for `_upload_manifest` so we can keep the
+    standalone validator separate from the manifest upload stuff.
+
+    """
+    return _upload_manifest(*args, **kwargs)
+
+
 def standalone_hosted_upload(request):
     return _upload_manifest(request, is_standalone=True)
 
 
-@waffle_switch('allow-packaged-app-uploads')
-def standalone_packaged_upload(request):
-    return upload(request, is_standalone=True)
-
-
 @json_view
+@anonymous_csrf_exempt
 def standalone_upload_detail(request, type_, uuid):
     upload = get_object_or_404(FileUpload.uncached, uuid=uuid)
     url = reverse('mkt.developers.standalone_upload_detail',
                   args=[type_, uuid])
     return upload_validation_context(request, upload, url=url)
-
-
-@post_required
-@dev_required
-def upload_for_addon(request, addon_id, addon):
-    return upload(request, addon_slug=addon.slug)
 
 
 @dev_required

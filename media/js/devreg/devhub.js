@@ -142,7 +142,7 @@ $(document).ready(function() {
                     v.errors), [v.errors]);
 
             $(this).trigger('upload_finished', [false, r, error_message]);
-            $('#validate_app').removeClass('disabled');
+            $validate_button.removeClass('disabled');
         })
         .bind('upload_success', function(e, r) {
             var message = "",
@@ -165,17 +165,21 @@ $(document).ready(function() {
 
         // Add protocol if needed
         $('#validate-error-protocol a').click(_pd(function() {
-            var $webapp_url = $('#upload-webapp-url');
-            $webapp_url.val($(this).text() + $webapp_url.val());
-            $webapp_url.focus().trigger('keyup');
+            $webapp_url.val($(this).text() + $webapp_url.val())
+                       .focus()
+                       .trigger('keyup');
         }));
 
         $validate_form.submit(function() {
-            if ($('#validate_app').hasClass('disabled')) return false;
+            if ($validate_button.hasClass('disabled')) return false;
 
-            $('#validate_app').addClass('disabled');
-            $.post($('#upload-webapp-url').attr('data-upload-url'), {'manifest': $('#upload-webapp-url').val()}, check_webapp_validation);
-            $('#upload-webapp-url').addClass('loading');
+            $validate_button.addClass('disabled');
+            $.post(
+                $webapp_url.attr('data-upload-url'),
+                {'manifest': $('#upload-webapp-url').val()},
+                check_webapp_validation
+            );
+            $webapp_url.addClass('loading');
             return false;
         });
         function check_webapp_validation(results) {
@@ -184,19 +188,12 @@ $(document).ready(function() {
             $('#id_packaged').val('');
             if(results.error) {
                 $upload_field.trigger("upload_finished", [false, results, results.error]);
-            } else if(! results.validation) {
+            } else if(!results.validation) {
                 setTimeout(function(){
                     $.ajax({
                         url: results.url,
                         dataType: 'json',
-                        success: check_webapp_validation,
-                        error: function(xhr, textStatus, errorThrown) {
-                            /*
-                            var errOb = parseErrorsFromJson(xhr.responseText);
-                            $upload_field.trigger("upload_errors", [file, errOb.errors, errOb.json]);
-                            $upload_field.trigger("upload_finished", [file]);
-                            */
-                        }
+                        success: check_webapp_validation
                     });
                 }, 1000);
             } else {

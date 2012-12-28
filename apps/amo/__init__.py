@@ -28,7 +28,7 @@ _locals.user = None
 
 
 def get_user():
-    return _locals.user
+    return getattr(_locals, 'user', None)
 
 
 def set_user(user):

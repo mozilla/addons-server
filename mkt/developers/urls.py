@@ -100,7 +100,7 @@ urlpatterns = decorate(write, patterns('',
     # Redirect to /addons/ at the base.
     url('^submissions$', use_apps(views.dashboard),
         name='mkt.developers.apps'),
-    url('^upload$', views.upload, name='mkt.developers.upload'),
+    url('^upload$', views.upload_new, name='mkt.developers.upload'),
     url('^upload/([^/]+)(?:/([^/]+))?$', views.upload_detail,
         name='mkt.developers.upload_detail'),
     url('^standalone-hosted-upload$', views.standalone_hosted_upload,
@@ -119,7 +119,7 @@ urlpatterns = decorate(write, patterns('',
     url('^ajax/app/%s/' % amo.APP_SLUG, include(ajax_patterns)),
 
     url('^terms$', views.terms, name='mkt.developers.apps.terms'),
-    url(r'^api$', views.api, name='mkt.developers.apps.api'),
+    url('^api$', views.api, name='mkt.developers.apps.api'),
 
     # Developer docs
     url('docs/(?P<doc_name>[-_\w]+)?$',
