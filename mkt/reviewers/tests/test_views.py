@@ -1976,6 +1976,7 @@ class TestGetSigned(BasePackagedAppTest, amo.tests.TestCase):
         eq_(res.status_code, 200)
         file_ = self.app.current_version.all_files[0]
         eq_(res['x-sendfile'], file_.signed_reviewer_file_path)
+        eq_(res['etag'], '"%s"' % file_.hash.split(':')[-1])
 
     def test_not_packaged(self):
         self.app.update(is_packaged=False)

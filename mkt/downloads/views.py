@@ -33,4 +33,5 @@ def download_file(request, file_id, type=None):
         path = file.file_path
 
     log.info('Downloading package: %s from %s' % (webapp.id, path))
-    return HttpResponseSendFile(request, path, content_type='application/zip')
+    return HttpResponseSendFile(request, path, content_type='application/zip',
+                                etag=file.hash.split(':')[-1])

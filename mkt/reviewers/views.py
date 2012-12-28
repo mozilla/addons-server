@@ -869,13 +869,15 @@ def get_updated_expiry():
 @permission_required('Apps', 'Review')
 @addon_view
 def get_signed_packaged(request, addon, version_id):
-    get_object_or_404(addon.versions, pk=version_id)
+    version = get_object_or_404(addon.versions, pk=version_id)
+    file = version.all_files[0]
     path = addon.sign_if_packaged(version_id, reviewer=True)
     if not path:
         raise http.Http404
     log.info('Returning signed package addon: %s, version: %s, path: %s' %
              (addon.pk, version_id, path))
-    return HttpResponseSendFile(request, path, content_type='application/zip')
+    return HttpResponseSendFile(request, path, content_type='application/zip',
+                                etag=file.hash.split(':')[-1])
 
 
 @permission_required('Apps', 'Review')

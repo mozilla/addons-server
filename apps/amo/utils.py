@@ -16,7 +16,6 @@ import unicodedata
 import urllib
 import urlparse
 import uuid
-import datetime
 
 import django.core.mail
 from django import http
@@ -551,13 +550,15 @@ def get_locale_from_lang(lang):
 class HttpResponseSendFile(http.HttpResponse):
 
     def __init__(self, request, path, content=None, status=None,
-                 content_type='application/octet-stream'):
+                 content_type='application/octet-stream', etag=None):
         self.request = request
         self.path = path
         super(HttpResponseSendFile, self).__init__('', status=status,
                                                    content_type=content_type)
         if settings.XSENDFILE:
             self[settings.XSENDFILE_HEADER] = path
+        if etag:
+            self['ETag'] = '"%s"' % etag
 
     def __iter__(self):
         if settings.XSENDFILE:
@@ -988,7 +989,7 @@ def create_es_index_if_missing(index, config=None, aliased=False):
             try:
                 es.add_alias(alias, [index])
             except pyes.ElasticSearchException, exc:
-                 log.info('ES error creating alias: %s' % exc)
+                log.info('ES error creating alias: %s' % exc)
     except pyes.ElasticSearchException, exc:
         log.info('ES error creating index: %s' % exc)
 
