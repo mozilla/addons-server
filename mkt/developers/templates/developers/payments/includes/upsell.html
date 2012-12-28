@@ -1,4 +1,4 @@
-<div class="brform c" id="payments-upsell">
+<div id="payments-upsell">
   {% if form.fields['upsell_of'].queryset.count() %}
     {{ form.upsell_of.errors }}
     {{ form.upsell_of }}
@@ -8,8 +8,8 @@
         version.
       {% endtrans %}
     </p>
+    <button>{{ _('Save Upsell') }}</button>
   {% else %}
-    <label>{{ _('App Upsell') }}</label>
     <div class="extra">
       {% trans %}
         If you have a free app, you can link and promote your premium app
