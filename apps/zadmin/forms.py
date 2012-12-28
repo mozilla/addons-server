@@ -294,14 +294,6 @@ class GenerateErrorForm(happyforms.Form):
         from metlog.config import client_from_dict_config
         new_metlog = client_from_dict_config(settings.METLOG_CONF)
 
-        # The next two variables are captured by the raven client as local variables
-        # which are passed into the sentry server.
-        # They are needed to verify that the active metlog
-        # configuration is not the actual expected metlog
-        # configuration.
-        metlog_conf = settings.METLOG_CONF
-        active_metlog_conf = settings.METLOG._config
-
         if error == 'zerodivisionerror':
             1 / 0
         elif error == 'iorequesterror':
@@ -319,17 +311,37 @@ class GenerateErrorForm(happyforms.Form):
                            'cef.product': 'zamboni',
                            'cef': True}
 
+            settings.METLOG.cef('xx\nx|xx\rx', 5, environ, config,
+                    username='me', ext1='ok=ok', ext2='ok\\ok',
+                    logger_info='settings.METLOG')
             new_metlog.cef('xx\nx|xx\rx', 5, environ, config,
-                    username='me', ext1='ok=ok', ext2='ok\\ok')
+                    username='me', ext1='ok=ok', ext2='ok\\ok',
+                    logger_info='new_metlog')
         elif error == 'metlog_statsd':
-            new_metlog.incr(name=LOGGER_NAME)
+            new_metlog.incr(name="new_metlog:" + LOGGER_NAME)
+            settings.METLOG.incr(name=LOGGER_NAME)
         elif error == 'metlog_json':
             new_metlog.metlog(type="metlog_json",
-                    fields={'foo': 'bar', 'secret': 42})
+                    fields={'foo': 'bar', 'secret': 42,
+                            'logger_type': 'new_metlog'})
+            settings.METLOG.metlog(type="metlog_json",
+                    fields={'foo': 'bar', 'secret': 42,
+                            'logger_type': 'settings.METLOG'})
+
         elif error == 'metlog_sentry':
-            # If this works, we have some kind of import ordering
-            # problem
+            # Try to fire off two messages to verify that we don't
+            # have some kind of transient issue where settings.METLOG
+            # doesn't work
             try:
-                1 / 0
+                2 / 0
             except:
-                new_metlog.raven('metlog_sentry error triggered')
+                new_metlog.raven('new_metlog: metlog_sentry error triggered',
+                            metlog_conf=settings.METLOG_CONF,
+                            active_metlog_conf=settings.METLOG._config,)
+            finally:
+                try:
+                    1 / 0
+                except:
+                    settings.METLOG.raven('metlog_sentry error triggered',
+                            metlog_conf=settings.METLOG_CONF,
+                            active_metlog_conf=settings.METLOG._config,)
