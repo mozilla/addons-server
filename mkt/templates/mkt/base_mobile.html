@@ -1,6 +1,7 @@
 {% set FORCE_MOBILE = 'force-mobile ' if waffle.switch('force-mobile-layout') %}
 {% set logged = request.user.is_authenticated() %}
-{% set titletag = mkt_page_title(pagetitle) if pagetitle else _('Firefox Marketplace') %}
+{% set basetitle = 'Sony Entertainment Network App Store' if CARRIER == 'sony' else _('Firefox Marketplace') %}
+{% set titletag = mkt_page_title(pagetitle) if pagetitle else basetitle %}
 {% set pagetitle = pagetitle or '' %}
 {% set headertitle = headertitle or pagetitle %}
 {% set cache_fragment = cache_fragment or 'cache' %}
