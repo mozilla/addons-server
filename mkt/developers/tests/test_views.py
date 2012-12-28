@@ -11,10 +11,10 @@ from django.core import mail
 from django.core.files.storage import default_storage as storage
 from django.core.files.uploadedfile import SimpleUploadedFile
 
-from nose import SkipTest
 import mock
 import waffle
 from dateutil.parser import parse as parse_dt
+from nose import SkipTest
 from nose.plugins.attrib import attr
 from nose.tools import eq_
 from pyquery import PyQuery as pq
@@ -32,15 +32,17 @@ from devhub.models import UserLog
 from files.models import FileUpload
 from files.tests.test_models import UploadTest as BaseUploadTest
 from market.models import AddonPremium, Price, Refund
+from stats.models import Contribution
+from translations.models import Translation
+from users.models import UserProfile
+from versions.models import Version
+
+import mkt
 from mkt.constants import MAX_PACKAGED_APP_SIZE
 from mkt.developers import tasks
 from mkt.developers.models import ActivityLog
 from mkt.submit.models import AppSubmissionChecklist
 from mkt.webapps.models import Webapp
-from stats.models import Contribution
-from translations.models import Translation
-from users.models import UserProfile
-from versions.models import Version
 
 
 class AppHubTest(amo.tests.TestCase):
@@ -374,6 +376,8 @@ class TestMarketplace(MarketplaceMixin, amo.tests.TestCase):
         data = {
             'price': self.price.pk,
             'upsell_of': self.other_addon.pk,
+            'regions': mkt.regions.REGION_IDS,
+            'other_regions': True,
         }
         data.update(kw)
         return data

@@ -356,33 +356,6 @@ class TestEditBasic(TestEdit):
         eq_(r.context['cat_form'].errors['categories'],
             ['You can have only 2 categories.'])
 
-    def test_exclude_games_in_brazil(self):
-        games = Category.objects.create(type=amo.ADDON_WEBAPP, slug='games')
-
-        r = self.client.post(self.edit_url,
-                             self.get_dict(categories=[games.id]))
-        self.assertNoFormErrors(r)
-        eq_(list(AER.objects.values_list('region', flat=True)),
-            [mkt.regions.BR.id])
-
-    def test_games_already_excluded_in_brazil(self):
-        AER.objects.create(addon=self.webapp, region=mkt.regions.BR.id)
-        games = Category.objects.create(type=amo.ADDON_WEBAPP, slug='games')
-
-        r = self.client.post(self.edit_url,
-                             self.get_dict(categories=[games.id]))
-        self.assertNoFormErrors(r)
-        eq_(list(AER.objects.values_list('region', flat=True)),
-            [mkt.regions.BR.id])
-
-    def test_edit_other_categories_are_not_excluded(self):
-        # Keep the category around for good measure.
-        Category.objects.create(type=amo.ADDON_WEBAPP, slug='games')
-
-        r = self.client.post(self.url, self.get_dict())
-        self.assertNoFormErrors(r)
-        eq_(AER.objects.count(), 0)
-
     def test_devices_listed(self):
         r = self.client.post(self.url, self.get_dict())
         eq_(pq(r.content)('#addon-device-types-edit').text(),
@@ -1011,14 +984,9 @@ class TestEditDetails(TestEdit):
                     default_locale='en-US',
                     homepage='http://twitter.com/fligtarsmom',
                     privacy_policy="fligtar's mom does <em>not</em> share "
-                                   "your data with third parties.",
-                    regions=[mkt.regions.CA.id])
+                                   "your data with third parties.")
         data.update(kw)
         return data
-
-    def get_excluded_ids(self):
-        return sorted(AER.objects.filter(addon=self.webapp)
-                         .values_list('region', flat=True))
 
     def test_form_url(self):
         self.check_form_url('details')
@@ -1120,161 +1088,16 @@ class TestEditDetails(TestEdit):
                              self.get_dict(homepage='xxx'))
         self.assertFormError(r, 'form', 'homepage', 'Enter a valid URL.')
 
-    def test_regions_listed(self):
-        r = self.client.get(self.url)
-        eq_(strip_whitespace(pq(r.content)('#regions').text()),
-            ', '.join(sorted(unicode(name) for id_, name in
-                             mkt.regions.REGIONS_CHOICES_NAME)))
-
-    def test_excluded_regions_not_listed(self):
-        AER.objects.create(addon=self.webapp, region=mkt.regions.BR.id)
-
-        # This looks at the included regions and prints out the names
-        # so we can compare it to what's shown under "Regions".
-        expected = sorted(unicode(name) for id_, name in
-                          mkt.regions.REGIONS_CHOICES_NAME
-                          if id_ != mkt.regions.BR.id)
-
-        r = self.client.get(self.url)
-        eq_(strip_whitespace(pq(r.content)('#regions').text()),
-            ', '.join(expected))
-
-    def test_excluded_all_regions_not_listed(self):
-        for region in mkt.regions.ALL_REGION_IDS:
-            AER.objects.create(addon=self.webapp, region=region)
-
-        r = self.client.get(self.url)
-        eq_(pq(r.content)('#regions .empty').length, 1)
-
-    def test_exclude_region(self):
-        regions = list(mkt.regions.REGION_IDS)
-        for region_id in regions:
-            to_exclude = list(regions)
-            to_exclude.remove(region_id)
-            data = self.get_dict(regions=to_exclude, other_regions=True)
-            r = self.client.post(self.edit_url, data)
-            self.assertNoFormErrors(r)
-
-            eq_(self.get_excluded_ids(), [region_id])
-
-    def test_exclude_future_regions(self):
-        data = self.get_dict(regions=mkt.regions.REGION_IDS,
-                             other_regions=False)
-        r = self.client.post(self.edit_url, data)
-        self.assertNoFormErrors(r)
-
-        eq_(self.get_excluded_ids(), [mkt.regions.WORLDWIDE.id])
-
-    def test_include_regions(self):
-        AER.objects.create(addon=self.webapp, region=mkt.regions.BR.id)
-
-        data = self.get_dict(regions=mkt.regions.REGION_IDS,
-                             other_regions=True)
-        r = self.client.post(self.edit_url, data)
-        self.assertNoFormErrors(r)
-
-        eq_(self.get_excluded_ids(), [])
-
-    def test_include_future_regions(self):
-        AER.objects.create(addon=self.webapp, region=mkt.regions.WORLDWIDE.id)
-
-        data = self.get_dict(regions=mkt.regions.REGION_IDS,
-                             other_regions=True)
-        r = self.client.post(self.edit_url, data)
-        self.assertNoFormErrors(r)
-
-        eq_(self.get_excluded_ids(), [])
-
-    def test_include_all_and_future_regions(self):
-        AER.objects.create(addon=self.webapp, region=mkt.regions.WORLDWIDE.id)
-
-        data = self.get_dict(regions=mkt.regions.REGION_IDS,
-                             other_regions=True)
-        r = self.client.post(self.edit_url, data)
-        self.assertNoFormErrors(r)
-
-        eq_(self.get_excluded_ids(), [])
-
-    def test_brazil_games_excluded(self):
-        games = Category.objects.create(type=amo.ADDON_WEBAPP, slug='games')
-        AddonCategory.objects.create(addon=self.webapp, category=games)
-
-        r = self.client.post(self.edit_url,
-                             self.get_dict(regions=mkt.regions.REGION_IDS,
-                                           other_regions=True))
-
-        # Developers should still be able to save form OK, even
-        # if they pass a bad region. Think of the grandfathered developers.
-        self.assertNoFormErrors(r)
-
-        # No matter what the developer tells us, still exclude Brazilian
-        # games.
-        eq_(self.get_excluded_ids(), [mkt.regions.BR.id])
-
-    def test_brazil_games_already_excluded(self):
+    def test_games_already_excluded_in_brazil(self):
         AER.objects.create(addon=self.webapp, region=mkt.regions.BR.id)
         games = Category.objects.create(type=amo.ADDON_WEBAPP, slug='games')
-        AddonCategory.objects.create(addon=self.webapp, category=games)
 
-        r = self.client.post(self.edit_url,
-                             self.get_dict(regions=mkt.regions.REGION_IDS,
-                                           other_regions=True))
+        r = self.client.post(
+            self.edit_url, self.get_dict(categories=[games.id]))
         self.assertNoFormErrors(r)
-
-        eq_(self.get_excluded_ids(), [mkt.regions.BR.id])
-
-    def test_brazil_games_with_content_rating(self):
-        # This game has a government content rating!
-        rb = mkt.regions.BR.ratingsbodies[0]
-        ContentRating.objects.create(addon=self.webapp,
-            ratings_body=rb.id, rating=rb.ratings[0].id)
-
-        games = Category.objects.create(type=amo.ADDON_WEBAPP, slug='games')
-        AddonCategory.objects.create(addon=self.webapp, category=games)
-
-        r = self.client.post(self.edit_url,
-                             self.get_dict(regions=mkt.regions.REGION_IDS,
-                                           other_regions=True))
-        self.assertNoFormErrors(r)
-
-        eq_(self.get_excluded_ids(), [])
-
-    def test_brazil_games_form_disabled(self):
-        games = Category.objects.create(type=amo.ADDON_WEBAPP, slug='games')
-        AddonCategory.objects.create(addon=self.webapp, category=games)
-
-        r = self.client.get(self.edit_url, self.get_dict())
-        self.assertNoFormErrors(r)
-
-        td = pq(r.content)('#regions')
-        eq_(td.find('div[data-disabled]').attr('data-disabled'),
-            json.dumps([mkt.regions.BR.id]))
-        eq_(td.find('.note.disabled-regions').length, 1)
-
-    def test_brazil_games_form_enabled_with_content_rating(self):
-        rb = mkt.regions.BR.ratingsbodies[0]
-        ContentRating.objects.create(addon=self.webapp,
-            ratings_body=rb.id, rating=rb.ratings[0].id)
-
-        games = Category.objects.create(type=amo.ADDON_WEBAPP, slug='games')
-        AddonCategory.objects.create(addon=self.webapp, category=games)
-
-        r = self.client.get(self.edit_url, self.get_dict())
-        self.assertNoFormErrors(r)
-
-        td = pq(r.content)('#regions')
-        eq_(td.find('div[data-disabled]').attr('data-disabled'),
-            json.dumps([]))
-        eq_(td.find('.note.disabled-regions').length, 0)
-
-    def test_brazil_other_cats_form_enabled(self):
-        r = self.client.get(self.edit_url, self.get_dict())
-        self.assertNoFormErrors(r)
-
-        td = pq(r.content)('#regions')
-        eq_(td.find('div[data-disabled]').attr('data-disabled'),
-            json.dumps([]))
-        eq_(td.find('.note.disabled-regions').length, 0)
+        eq_(list(AER.objects.filter(addon=self.webapp)
+                            .values_list('region', flat=True)),
+            [mkt.regions.BR.id])
 
 
 class TestEditSupport(TestEdit):

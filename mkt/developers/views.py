@@ -51,8 +51,7 @@ from mkt.developers.forms import (AppFormBasic, AppFormDetails, AppFormMedia,
                                   AppFormSupport, AppFormTechnical,
                                   CategoryForm, ImageAssetFormSet,
                                   InappConfigForm, NewPackagedAppForm,
-                                  PreviewFormSet, RegionForm,
-                                  trap_duplicate)
+                                  PreviewFormSet, trap_duplicate)
 from mkt.developers.utils import check_upload
 from mkt.inapp_pay.models import InappConfig
 from mkt.submit.forms import NewWebappVersionForm
@@ -649,7 +648,7 @@ def addons_section(request, addon_id, addon, section, editable=False,
         raise http.Http404()
 
     tags = image_assets = previews = restricted_tags = []
-    cat_form = device_type_form = region_form = None
+    cat_form = device_type_form = None
 
     if section == 'basic':
         tags = addon.tags.not_blacklisted().values_list('tag_text', flat=True)
@@ -664,9 +663,6 @@ def addons_section(request, addon_id, addon, section, editable=False,
         previews = PreviewFormSet(
             request.POST or None, prefix='files',
             queryset=addon.get_previews())
-
-    elif section == 'details':
-        region_form = RegionForm(request.POST or None, product=addon)
 
     elif (section == 'admin' and
           not acl.action_allowed(request, 'Apps', 'Configure') and
@@ -686,11 +682,7 @@ def addons_section(request, addon_id, addon, section, editable=False,
                                    instance=addon, request=request)
             if (form.is_valid()
                 and (not previews or previews.is_valid())
-                and (not region_form or region_form.is_valid())
                 and (not image_assets or image_assets.is_valid())):
-
-                if region_form:
-                    region_form.save()
 
                 addon = form.save(addon)
 
@@ -741,8 +733,7 @@ def addons_section(request, addon_id, addon, section, editable=False,
             'preview_form': previews,
             'image_asset_form': image_assets,
             'valid_slug': valid_slug,
-            'device_type_form': device_type_form,
-            'region_form': region_form}
+            'device_type_form': device_type_form}
 
     return jingo.render(request,
                         'developers/apps/edit/%s.html' % section, data)

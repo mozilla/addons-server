@@ -26,15 +26,14 @@
     {#{{ l10n_menu(addon.default_locale) }}#}
     <h1>{{ title }}</h1>
   </header>
-  {{ disabled_payments_notice() }}
   <section class="primary payments devhub-form" role="main">
     <form action="{{ addon.get_dev_url('payments') }}" method="post">
       {{ csrf() }}
       <input type="hidden" name="toggle-paid" value="" />
 
-      <section id="submit-payment-type" class="island tabbable hasappendix">
+      <section id="submit-payment-type" class="island hasappendix {{ 'tabbable ' if payments_enabled or is_paid }}">
         <div class="free tab {{ 'active' if not is_paid }}">
-          {% if waffle.switch('allow-b2g-paid-submission') %}
+          {% if payments_enabled or is_paid %}
             <h2 id="free-tab-header"><a href="#">{{ _('Free') }}</a></h2>
           {% else %}
             <h2>{{ _('App Compatibility') }}</h2>
@@ -51,31 +50,34 @@
           {% endif %}
         </div>
 
-        <div class="paid tab {{ 'active' if is_paid }}">
-          <h2 id="paid-tab-header">
-            {%- if no_paid -%}
-              <a href="#" class="tooltip disabled"
-                 title="{{ _('Paid mode requires that your app only supports Firefox OS.') }}">
-                 {{- _('Paid/In-app') -}}
-              </a>
-            {%- else -%}
-              <a href="#">{{ _('Paid/In-app') }}</a>
-            {%- endif -%}
-          </h2>
-          <div class="error">{{ form.errors.paid }}</div>
-          {%- for item in form.fields['paid_platforms'].choices -%}
-            {{ button(form, item) }}
-          {%- endfor %}
-          {% if not is_paid %}
-            <div id="paid-tab-save" class="update-payment-type">
-              <button data-type="paid">{{ _('Change to Paid') }}</button>
-              {{ _('Changing to Paid will put your app back into review.') }}
-            </div>
-          {% endif %}
-        </div>
+        {% if payments_enabled or is_paid %}
+          <div class="paid tab {{ 'active' if is_paid }}">
+            <h2 id="paid-tab-header">
+              {%- if no_paid -%}
+                <a href="#" class="tooltip disabled"
+                   title="{{ _('Paid mode requires that your app only supports Firefox OS.') }}">
+                   {{- _('Paid/In-app') -}}
+                </a>
+              {%- else -%}
+                <a href="#">{{ _('Paid/In-app') }}</a>
+              {%- endif -%}
+            </h2>
+            <div class="error">{{ form.errors.paid }}</div>
+            {%- for item in form.fields['paid_platforms'].choices -%}
+              {{ button(form, item) }}
+            {%- endfor %}
+            {% if not is_paid %}
+              <div id="paid-tab-save" class="update-payment-type">
+                <button data-type="paid">{{ _('Change to Paid') }}</button>
+                {{ _('Changing to Paid will put your app back into review.') }}
+              </div>
+            {% endif %}
+          </div>
+        {% endif %}
       </section>
 
       {% if is_paid %}
+        {{ disabled_payments_notice() }}
         {% if is_incomplete %}
           <div class="island warning">
             {% trans %}
@@ -108,6 +110,40 @@
           {% endwith %}
         </section>
       {% endif %}
+
+      <section id="regions" class="island">
+        {{ region_form.non_field_errors() }}
+        {{ region_form.regions.label }}
+        <p class="toggles">
+          <a href="#" class="all">{{ _('Select All') }}</a> &middot;
+          <a href="#" class="none">{{ _('None') }}</a>
+        </p>
+        {{ region_form.regions.errors }}
+        <div class="checkbox-choices"
+             data-disabled="{{ region_form.disabled_regions|json }}">
+          {{ region_form.regions }}
+        </div>
+        {% if region_form.disabled_regions %}
+          <p class="note disabled-regions">
+            <a href="https://developer.mozilla.org/en-US/docs/Apps/Marketplace_Review" target="_blank">
+              {{ _('Learn why some regions are restricted.') }}</a>
+          </p>
+        {% endif %}
+        <div class="other-regions">
+          {{ region_form.other_regions }}
+          {{ region_form.other_regions.label_tag() }}
+          {{ region_form.other_regions.errors }}
+          <div class="hint note">
+            {% trans %}
+              Your app will be displayed in the worldwide Marketplace and
+              in any regional marketplace that is added in the future.
+              You will receive an email notification when a new region
+              is added.
+            {% endtrans %}
+          </div>
+        </div>
+        <button>{{ _('Save Changes') }}</button>
+      </section>
     </form>
   </section>
   {% include 'developers/includes/addons_edit_nav.html' %}

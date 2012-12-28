@@ -9,12 +9,14 @@ from pyquery import PyQuery as pq
 
 import amo
 import amo.tests
-from addons.models import Addon
+from addons.models import Addon, AddonCategory, Category
 from market.models import Price
 from users.models import UserProfile
 
+import mkt
 from mkt.developers.models import PaymentAccount, SolitudeSeller
 from mkt.inapp_pay.models import InappConfig
+from mkt.webapps.models import AddonExcludedRegion as AER, ContentRating
 
 
 def create_inapp_config(public_key='pub-key', private_key='priv-key',
@@ -247,23 +249,36 @@ class TestPayments(amo.tests.TestCase):
     def get_webapp(self):
         return Addon.objects.get(pk=337141)
 
+    def get_region_list(self):
+        return list(AER.objects.values_list('region', flat=True))
+
+    def get_postdata(self, base):
+        extension = {'regions': self.get_region_list(),
+                     'other_regions': 'on'}
+        base.update(extension)
+        return base
+
     def test_free(self):
-        res = self.client.post(self.url, {'toggle-paid': 'free'})
+        res = self.client.post(
+            self.url, self.get_postdata({'toggle-paid': 'free'}))
         self.assert3xx(res, self.url)
         eq_(self.get_webapp().premium_type, amo.ADDON_FREE)
 
     def test_premium_passes(self):
         self.webapp.update(premium_type=amo.ADDON_FREE)
-        res = self.client.post(self.url, {'toggle-paid': 'paid'})
+        res = self.client.post(
+            self.url, self.get_postdata({'toggle-paid': 'paid'}))
         self.assert3xx(res, self.url)
         eq_(self.get_webapp().premium_type, amo.ADDON_PREMIUM)
 
     def test_premium_in_app_passes(self):
         self.webapp.update(premium_type=amo.ADDON_FREE)
-        res = self.client.post(self.url, {'toggle-paid': 'paid'})
+        res = self.client.post(
+            self.url, self.get_postdata({'toggle-paid': 'paid'}))
         self.assert3xx(res, self.url)
-        res = self.client.post(self.url, {'allow_inapp': True,
-                                          'price': self.price.pk})
+        res = self.client.post(
+            self.url, self.get_postdata({'allow_inapp': True,
+                                         'price': self.price.pk}))
         self.assert3xx(res, self.url)
         eq_(self.get_webapp().premium_type, amo.ADDON_PREMIUM_INAPP)
 
@@ -271,8 +286,9 @@ class TestPayments(amo.tests.TestCase):
         self.webapp.update(premium_type=amo.ADDON_PREMIUM,
                            status=amo.STATUS_NULL,
                            highest_status=amo.STATUS_PENDING)
-        res = self.client.post(self.url, {'toggle-paid': 'free',
-                                          'price': self.price.pk})
+        res = self.client.post(
+            self.url, self.get_postdata({'toggle-paid': 'free',
+                                         'price': self.price.pk}))
         self.assert3xx(res, self.url)
         eq_(self.get_webapp().status, amo.STATUS_PENDING)
 
@@ -287,7 +303,8 @@ class TestPayments(amo.tests.TestCase):
         Price.objects.create(price='10.00')  # Make one more tier.
 
         self.webapp.update(premium_type=amo.ADDON_FREE)
-        res = self.client.post(self.url, {'toggle-paid': 'paid'}, follow=True)
+        res = self.client.post(
+            self.url, self.get_postdata({'toggle-paid': 'paid'}), follow=True)
         pqr = pq(res.content)
         eq_(pqr('select[name=price] option[selected]').attr('value'),
             str(Price.objects.get(price='0.99').id))
@@ -310,9 +327,78 @@ class TestPayments(amo.tests.TestCase):
             solitude_seller=seller, bango_package_id=123)
 
         # Associate account with app.
-        res = self.client.post(self.url, {'toggle-paid': 'paid',
-                                          'price': self.price.pk,
-                                          'accounts': acct.pk}, follow=True)
+        res = self.client.post(
+            self.url, self.get_postdata({'toggle-paid': 'paid',
+                                         'price': self.price.pk,
+                                         'accounts': acct.pk}), follow=True)
         self.assertNoFormErrors(res)
         eq_(res.status_code, 200)
         eq_(self.webapp.app_payment_account.payment_account.pk, acct.pk)
+
+
+class TestRegions(amo.tests.TestCase):
+    fixtures = ['base/apps', 'base/users', 'webapps/337141-steamcube']
+
+    def setUp(self):
+        self.webapp = self.get_webapp()
+        self.url = self.webapp.get_dev_url('payments')
+        self.username = 'admin@mozilla.com'
+        assert self.client.login(username=self.username, password='password')
+        self.patch = mock.patch('mkt.developers.models.client')
+        self.sol = self.patch.start()
+
+    def tearDown(self):
+        self.patch.stop()
+
+    def get_webapp(self):
+        return Addon.objects.get(pk=337141)
+
+    def get_dict(self, **kwargs):
+        extension = {'regions': mkt.regions.REGION_IDS,
+                     'other_regions': 'on'}
+        extension.update(kwargs)
+        return extension
+
+    def get_excluded_ids(self):
+        return sorted(AER.objects.filter(addon=self.webapp)
+                                 .values_list('region', flat=True))
+
+    def test_edit_other_categories_are_not_excluded(self):
+        # Keep the category around for good measure.
+        Category.objects.create(type=amo.ADDON_WEBAPP, slug='games')
+
+        r = self.client.post(self.url, self.get_dict())
+        self.assertNoFormErrors(r)
+        eq_(AER.objects.count(), 0)
+
+    def test_brazil_games_form_disabled(self):
+        games = Category.objects.create(type=amo.ADDON_WEBAPP, slug='games')
+        AddonCategory.objects.create(addon=self.webapp, category=games)
+
+        r = self.client.get(self.url, self.get_dict())
+        self.assertNoFormErrors(r)
+
+        td = pq(r.content)('#regions')
+        eq_(td.find('div[data-disabled]').attr('data-disabled'),
+            '[%d]' % mkt.regions.BR.id)
+        eq_(td.find('.note.disabled-regions').length, 1)
+
+    def test_brazil_games_form_enabled_with_content_rating(self):
+        rb = mkt.regions.BR.ratingsbodies[0]
+        ContentRating.objects.create(
+            addon=self.webapp, ratings_body=rb.id, rating=rb.ratings[0].id)
+
+        games = Category.objects.create(type=amo.ADDON_WEBAPP, slug='games')
+        AddonCategory.objects.create(addon=self.webapp, category=games)
+
+        r = self.client.get(self.url)
+        td = pq(r.content)('#regions')
+        eq_(td.find('div[data-disabled]').attr('data-disabled'), '[]')
+        eq_(td.find('.note.disabled-regions').length, 0)
+
+    def test_brazil_other_cats_form_enabled(self):
+        r = self.client.get(self.url)
+
+        td = pq(r.content)('#regions')
+        eq_(td.find('div[data-disabled]').attr('data-disabled'), '[]')
+        eq_(td.find('.note.disabled-regions').length, 0)

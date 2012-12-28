@@ -3,6 +3,7 @@ from django.shortcuts import get_object_or_404, redirect
 
 import commonware
 import jingo
+import waffle
 from tower import ugettext as _
 
 import amo
@@ -33,6 +34,9 @@ def payments(request, addon_id, addon, webapp=False):
         request.POST or None, request=request, addon=addon,
         user=request.amo_user)
 
+    region_form = forms.RegionForm(
+        request.POST or None, product=addon)
+
     upsell_form = forms.UpsellForm(
         request.POST or None, addon=addon, user=request.amo_user)
 
@@ -42,9 +46,12 @@ def payments(request, addon_id, addon, webapp=False):
     if request.method == 'POST':
 
         success = all(form.is_valid() for form in
-                      [premium_form, upsell_form, bango_account_list_form])
+                      [premium_form, region_form, upsell_form,
+                       bango_account_list_form])
 
         if success:
+            region_form.save()
+
             toggling = premium_form.is_toggling()
 
             try:
@@ -102,13 +109,18 @@ def payments(request, addon_id, addon, webapp=False):
         request, 'developers/payments/premium.html',
         {'addon': addon, 'webapp': webapp, 'premium': addon.premium,
          'form': premium_form, 'upsell_form': upsell_form,
+         'region_form': region_form,
          'DEVICE_LOOKUP': DEVICE_LOOKUP,
          'is_paid': addon.premium_type in amo.ADDON_PREMIUMS,
          'no_paid': cannot_be_paid,
          'is_incomplete': addon.status == amo.STATUS_NULL,
          # Bango values
          'bango_account_form': forms.BangoPaymentAccountForm(),
-         'bango_account_list_form': bango_account_list_form, })
+         'bango_account_list_form': bango_account_list_form,
+         # Waffles
+         'payments_enabled':
+             waffle.switch_is_active('allow-b2g-paid-submission') and
+             not waffle.switch_is_active('disabled-payments')})
 
 
 def payments_accounts(request):

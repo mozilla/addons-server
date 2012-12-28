@@ -56,54 +56,6 @@
         </tr>
         <tr>
           <th>
-            {{ tip(_('Regions'),
-                   _('Indicate regional support for your app.')) }}
-            {{ req_if_edit }}
-          </th>
-          <td id="regions">
-            {% if editable %}
-              {{ region_form.non_field_errors() }}
-              {{ region_form.regions.label }}
-              <p class="toggles">
-                <a href="#" class="all">{{ _('Select All') }}</a> &middot;
-                <a href="#" class="none">{{ _('None') }}</a>
-              </p>
-              {{ region_form.regions.errors }}
-              <div class="checkbox-choices"
-                   data-disabled="{{ region_form.disabled_regions|json }}">
-                {{ region_form.regions }}
-              </div>
-              {% if region_form.disabled_regions %}
-                <p class="note disabled-regions">
-                  <a href="https://developer.mozilla.org/en-US/docs/Apps/Marketplace_Review" target="_blank">
-                    {{ _('Learn why some regions are restricted.') }}</a>
-                </p>
-              {% endif %}
-              <div class="other-regions">
-                {{ region_form.other_regions }}
-                {{ region_form.other_regions.label_tag() }}
-                {{ region_form.other_regions.errors }}
-                <div class="hint note">
-                  {% trans %}
-                    Your app will be displayed in the worldwide Marketplace and
-                    in any regional marketplace that is added in the future.
-                    You will receive an email notification when a new region
-                    is added.
-                  {% endtrans %}
-                </div>
-              </div>
-            {% else %}
-              {% set regions = addon.get_regions() %}
-              {% call empty_unless(regions) %}
-                {% for region in regions -%}
-                  {{ region.name }}{% if not loop.last %}, {% endif %}
-                {% endfor %}
-              {% endcall %}
-            {% endif %}
-          </td>
-        </tr>
-        <tr>
-          <th>
             <label data-for="homepage">
               {{ _("Homepage") }}
               {{ tip(None,

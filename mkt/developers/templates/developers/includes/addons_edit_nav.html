@@ -5,14 +5,15 @@
 {% if not waffle.switch('disabled-payments') or addon.is_premium() %}
   {% do urls.append((addon.get_dev_url('payments'),
                      _('Compatibility & Payments'))) %}
-{% endif %}
-{% if not waffle.switch('disabled-payments') %}
   {% if addon.is_webapp() and addon.premium_type in amo.ADDON_INAPPS
         and waffle.switch('in-app-payments') %}
     {% do urls.insert(4,
       (addon.get_dev_url('in_app_config'), _('Manage In-App Payments'))
     ) %}
   {% endif %}
+{% else %}
+  {% do urls.append((addon.get_dev_url('payments'),
+                     _('Manage Compatibility'))) %}
 {% endif %}
 {% if addon.is_packaged %}
   {% do urls.append((addon.get_dev_url('versions'), _('Manage Status &amp; Versions'))) %}
