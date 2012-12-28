@@ -165,3 +165,13 @@ MDN_LAZY_REFRESH = True
 # Pass through the DSN to the Raven client and force signal
 # registration so that exceptions are passed through to sentry
 RAVEN_CONFIG = {'dsn': SENTRY_DSN, 'register_signals': True}
+
+# This is the iss (issuer) for app purchase JWTs.
+# It must match that of the pay server that processes nav.mozPay().
+# In webpay this is the ISSUER setting.
+APP_PURCHASE_KEY = 'marketplace-dev.allizom.org'
+
+# This is the shared secret key for signing app purchase JWTs.
+# It must match that of the pay server that processes nav.mozPay().
+# In webpay this is the SECRET setting.
+APP_PURCHASE_SECRET = private_mkt.APP_PURCHASE_SECRET
