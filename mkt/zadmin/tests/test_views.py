@@ -4,7 +4,6 @@ import json
 
 from django.conf import settings
 from nose.tools import eq_
-from nose import SkipTest
 from pyquery import PyQuery as pq
 
 import amo
@@ -51,7 +50,6 @@ class TestGenerateError(amo.tests.TestCase):
         self.metlog.sender.msgs.clear()
 
     def test_metlog_statsd(self):
-        raise SkipTest("this always passes in test, but not on -dev")
         self.url = reverse('zadmin.generate-error')
         self.client.post(self.url,
                          {'error': 'metlog_statsd'})
@@ -67,7 +65,6 @@ class TestGenerateError(amo.tests.TestCase):
         eq_(msg['fields']['name'], 'z.zadmin')
 
     def test_metlog_json(self):
-        raise SkipTest("this always passes in test, but not on -dev")
         self.url = reverse('zadmin.generate-error')
         self.client.post(self.url,
                          {'error': 'metlog_json'})
@@ -81,7 +78,6 @@ class TestGenerateError(amo.tests.TestCase):
         eq_(msg['fields']['secret'], 42)
 
     def test_metlog_cef(self):
-        raise SkipTest("this always passes in test, but not on -dev")
         self.url = reverse('zadmin.generate-error')
         self.client.post(self.url,
                          {'error': 'metlog_cef'})
@@ -93,7 +89,6 @@ class TestGenerateError(amo.tests.TestCase):
         eq_(msg['logger'], 'zamboni')
 
     def test_metlog_sentry(self):
-        raise SkipTest("this always passes in test, but not on -dev")
         self.url = reverse('zadmin.generate-error')
         self.client.post(self.url,
                          {'error': 'metlog_sentry'})
