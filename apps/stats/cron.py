@@ -83,6 +83,23 @@ def update_webtrends(date=None, urlbases=WEBTRENDS_URLS):
     TaskSet([tasks.update_webtrend.subtask(kwargs={'date': date, 'url': u})
              for u in urls]).apply_async()
 
+GOOGLE_ANALYTICS_METRICS = ('ga:visits',)
+
+@cronjobs.register
+def update_google_analytics(date=None, metrics=GOOGLE_ANALYTICS_METRICS):
+    """
+    Update stats from Google Analytics.
+    """
+    if date:
+        date = datetime.datetime.strptime(date, '%Y-%m-%d').date()
+    else:
+        # Assume that we want to populate yesterday's stats by default.
+        date = datetime.date.today() - datetime.timedelta(days=1)
+    TaskSet([tasks.update_google_analytics.subtask(kwargs={'date': date,
+                                                           'metric': u})
+             for u in metrics]).apply_async()
+
+
 @cronjobs.register
 def addon_total_contributions():
     addons = Addon.objects.values_list('id', flat=True)

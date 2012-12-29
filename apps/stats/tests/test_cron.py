@@ -3,6 +3,7 @@ import datetime
 from django.conf import settings
 from django.core.management import call_command
 
+import httplib2
 import mock
 from nose.tools import eq_
 
@@ -95,6 +96,22 @@ class TestWebtrends(amo.tests.TestCase):
                                    date=datetime.date(2012, 1, 1)).count,
             1581)
 
+
+class TestGoogleAnalytics(amo.tests.TestCase):
+
+    @mock.patch('httplib2.Http')
+    @mock.patch('stats.tasks.get_first_profile_id')
+    @mock.patch('stats.tasks.build')
+    def test_ask_google(self, build, gfpi, http):
+        gfpi.return_value = '1'
+        d = '2012-01-01'
+        get = build('analytics', 'v3', http=http).data().ga().get(
+            metrics='ga:visits', ids='ga:1',
+            start_date=d, end_date=d)
+        get.execute.return_value = {'rows': [[49]]}
+        cron.update_google_analytics(d)
+        eq_(GlobalStat.objects.get(name='google_analytics_ga:visits',
+                                   date=d).count, 49)
 
 class TestTotalContributions(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/appversion', 'base/users',

@@ -1,14 +1,17 @@
 import datetime
-import json
+import httplib2
 
 from django.conf import settings
 from django.db import connection, transaction
 from django.db.models import Sum, Max
 
+
+from apiclient.discovery import build
 import requests
 import commonware.log
 import elasticutils.contrib.django as elasticutils
 from celeryutils import task
+from oauth2client.client import OAuth2Credentials
 
 import amo
 from addons.models import Addon
@@ -82,6 +85,65 @@ def update_webtrend(url, date, **kw):
     log.debug('Committed global stats details: (%s) has (%s) for (%s)'
               % tuple(p))
 
+
+def get_first_profile_id(service):
+    """
+    Code copied from the Google Analytics tutorial docs. Finds the
+    first GA profile in the account and returns it, or None if it
+    can't find one.
+    """
+    accounts = service.management().accounts().list().execute()
+    if accounts.get('items'):
+        firstAccountId = accounts.get('items')[0].get('id')
+        webproperties = service.management().webproperties().list(
+            accountId=firstAccountId).execute()
+        if webproperties.get('items'):
+            firstWebpropertyId = webproperties.get('items')[0].get('id')
+            profiles = service.management().profiles().list(
+                accountId=firstAccountId,
+                webPropertyId=firstWebpropertyId).execute()
+            if profiles.get('items'):
+                return profiles.get('items')[0].get('id')
+
+
+@task
+def update_google_analytics(metric, date, **kw):
+    creds = OAuth2Credentials(
+        *[settings.GOOGLE_ANALYTICS_CREDENTIALS[k] for k in
+          ('access_token', 'client_id', 'client_secret',
+           'refresh_token', 'token_expiry', 'token_uri',
+           'user_agent')])
+    h = httplib2.Http()
+    creds.authorize(h)
+    service = build('analytics', 'v3', http=h)
+    profile_id = get_first_profile_id(service)
+    if profile_id is None:
+        log.critical('Failed to update global stats: could not access a Google'
+                     ' Analytics profile')
+        return
+    datestr = date.strftime('%Y-%m-%d')
+    try:
+        data = service.data().ga().get(ids='ga:' + profile_id,
+                                       start_date=datestr,
+                                       end_date=datestr,
+                                       metrics=metric).execute()
+        p = ['google_analytics_' + metric, data['rows'][0][0], date]
+    except Exception, e:
+        log.critical(
+            'Fetching stats data for %s from Google Analytics failed: %s' %
+            (metric, e))
+        return
+    try:
+        cursor = connection.cursor()
+        cursor.execute('REPLACE INTO global_stats (name, count, date) '
+                       'values (%s, %s, %s)', p)
+        transaction.commit_unless_managed()
+    except Exception, e:
+        log.critical('Failed to update global stats: (%s): %s' % (p, e))
+        return
+
+    log.debug('Committed global stats details: (%s) has (%s) for (%s)'
+              % tuple(p))
 
 @task
 def update_global_totals(job, date, **kw):
