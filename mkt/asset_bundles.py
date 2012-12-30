@@ -35,6 +35,9 @@ CSS = {
         'css/common/forms.less',
         'css/devreg/devhub-forms.less',
 
+        # Tables.
+        'css/mkt/data-grid.less',
+
         # Landing page
         'css/devreg/landing.less',
 
@@ -45,6 +48,7 @@ CSS = {
         'css/devreg/in-app-config.less',
         'css/devreg/payments.less',
         'css/devreg/refunds.less',
+        'css/devreg/transactions.less',
         'css/devreg/status.less',
 
         # Image Uploads (used for "Edit Listing" Images and Submission).
@@ -72,6 +76,7 @@ CSS = {
     'mkt/reviewers': (
         'css/mkt/buttons.less',
         'css/mkt/ratings.less',
+        'css/mkt/data-grid.less',
         'css/mkt/reviewers.less',
         'css/mkt/themes_review.less',
         'css/mkt/paginator.less',

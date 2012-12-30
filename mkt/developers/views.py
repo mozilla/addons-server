@@ -37,6 +37,7 @@ from files.models import File, FileUpload
 from files.utils import parse_addon
 from lib.cef_loggers import inapp_cef
 from market.models import Refund
+from stats.models import Contribution
 from translations.models import delete_translation
 from users.models import UserProfile
 from users.views import _login
@@ -49,7 +50,7 @@ from mkt.developers.forms import (AppFormBasic, AppFormDetails, AppFormMedia,
                                   AppFormSupport, AppFormTechnical,
                                   CategoryForm, ImageAssetFormSet,
                                   NewPackagedAppForm, PreviewFormSet,
-                                  trap_duplicate)
+                                  TransactionFilterForm, trap_duplicate)
 from mkt.developers.forms_payments import InappConfigForm
 from mkt.developers.utils import check_upload
 from mkt.inapp_pay.models import InappConfig
@@ -467,7 +468,8 @@ def refresh_manifest(request, addon_id, addon, webapp=False):
 @json_view
 def _upload_manifest(request, is_standalone=False):
     form = forms.NewManifestForm(request.POST, is_standalone=is_standalone)
-    if not is_standalone and waffle.switch_is_active('webapps-unique-by-domain'):
+    if (not is_standalone and
+        waffle.switch_is_active('webapps-unique-by-domain')):
         # Helpful error if user already submitted the same manifest.
         dup_msg = trap_duplicate(request, request.POST.get('manifest'))
         if dup_msg:
@@ -871,3 +873,39 @@ def blocklist(request, addon):
         messages.info(request, _('App already blocklisted.'))
 
     return redirect(addon.get_dev_url('versions'))
+
+
+@waffle_switch('view-transactions')
+@login_required
+def transactions(request):
+    form, transactions = _get_transactions(request)
+    return jingo.render(
+        request, 'developers/transactions.html',
+        {'form': form,
+         'CONTRIB_TYPES': amo.CONTRIB_TYPES,
+         'count': transactions.count(),
+         'transactions': amo.utils.paginate(request,
+                                            transactions, per_page=50)})
+
+
+def _get_transactions(request):
+    apps = addon_listing(request, webapp=True)[0]
+    transactions = Contribution.objects.filter(addon__in=list(apps))
+
+    form = TransactionFilterForm(request.GET, apps=apps)
+    if form.is_valid():
+        transactions = _filter_transactions(transactions, form.cleaned_data)
+    return form, transactions
+
+
+def _filter_transactions(qs, data):
+    """Handle search filters and queries for transactions."""
+    filter_mapping = {'app': 'addon_id',
+                      'transaction_type': 'type',
+                      'transaction_id': 'transaction_id',
+                      'date_from': 'created__gte',
+                      'date_to': 'created__lte'}
+    for form_field, db_field in filter_mapping.iteritems():
+        if data.get(form_field):
+            qs = qs.filter(**{db_field: data[form_field]})
+    return qs

@@ -8,6 +8,7 @@ from contextlib import contextmanager
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.core.files.uploadedfile import SimpleUploadedFile
+from django.test.client import RequestFactory
 
 import mock
 import waffle
@@ -19,7 +20,7 @@ from pyquery import PyQuery as pq
 import amo
 import amo.tests
 from addons.models import Addon, AddonDeviceType, AddonUpsell, AddonUser
-from amo.tests import assert_no_validation_errors
+from amo.tests import app_factory, assert_no_validation_errors
 from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
 from amo.utils import urlparams
@@ -27,6 +28,7 @@ from browse.tests import test_default_sort, test_listing_sort
 from files.models import FileUpload
 from files.tests.test_models import UploadTest as BaseUploadTest
 from market.models import AddonPremium, Price
+from stats.models import Contribution
 from translations.models import Translation
 from users.models import UserProfile
 from versions.models import Version
@@ -35,6 +37,8 @@ import mkt
 from mkt.constants import MAX_PACKAGED_APP_SIZE
 from mkt.developers import tasks
 from mkt.developers.models import ActivityLog
+from mkt.developers.views import _filter_transactions, _get_transactions
+from mkt.site.fixtures import fixture
 from mkt.submit.models import AppSubmissionChecklist
 from mkt.webapps.models import Webapp
 
@@ -1039,3 +1043,72 @@ class TestTerms(amo.tests.TestCase):
         eq_(doc('#site-notice').length, 0)
         eq_(doc('#dev-agreement').length, 1)
         eq_(doc('#agreement-form').length, 0)
+
+
+class TestTransactionList(amo.tests.TestCase):
+    fixtures = fixture('user_999')
+
+    def setUp(self):
+        """Create and set up apps for some filtering fun."""
+        self.create_switch(name='view-transactions')
+        self.url = reverse('mkt.developers.transactions')
+        self.client.login(username='regular@mozilla.com', password='password')
+
+        self.apps = [app_factory(), app_factory()]
+        self.user = UserProfile.objects.get(id=999)
+        for app in self.apps:
+            AddonUser.objects.create(addon=app, user=self.user)
+
+        # Set up transactions.
+        tx0 = Contribution.objects.create(addon=self.apps[0],
+                                          type=amo.CONTRIB_PURCHASE,
+                                          transaction_id=12345)
+        tx1 = Contribution.objects.create(addon=self.apps[1],
+                                          type=amo.CONTRIB_REFUND,
+                                          transaction_id=67890)
+        tx0.update(created=datetime.date(2011, 12, 25))
+        tx1.update(created=datetime.date(2012, 1, 1))
+        self.txs = [tx0, tx1]
+
+    def test_200(self):
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+
+    def test_own_apps(self):
+        """Only user's transactions are shown."""
+        app_factory()
+        r = RequestFactory().get(self.url)
+        r.user = self.user
+        transactions = _get_transactions(r)[1]
+        self.assertSetEqual([tx.addon for tx in transactions], self.apps)
+
+    def test_filter(self):
+        """For each field in the form, run it through view and check results.
+        """
+        tx0 = self.txs[0]
+        tx1 = self.txs[1]
+
+        self.do_filter(self.txs)
+
+        self.do_filter([tx0], app=tx0.id)
+        self.do_filter([tx1], app=tx1.id)
+
+        self.do_filter([tx0], transaction_type=tx0.type)
+        self.do_filter([tx1], transaction_type=tx1.type)
+
+        self.do_filter([tx0], transaction_id=tx0.transaction_id)
+        self.do_filter([tx1], transaction_id=tx1.transaction_id)
+
+        self.do_filter(self.txs, date_from=datetime.date(2011, 12, 1))
+        self.do_filter([tx1], date_from=datetime.date(2011, 12, 30),
+                       date_to=datetime.date(2012, 2, 1))
+
+    def do_filter(self, expected_txs, **kw):
+        """Checks that filter returns the expected ids
+
+        expected_ids -- list of app ids expected in the result.
+        """
+        qs = _filter_transactions(Contribution.objects.all(), kw)
+
+        self.assertSetEqual(qs.values_list('id', flat=True),
+                            [tx.id for tx in expected_txs])

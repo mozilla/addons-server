@@ -5,7 +5,6 @@ from django.conf import settings
 from django.db import connection, transaction
 from django.db.models import Sum, Max
 
-
 from apiclient.discovery import build
 import requests
 import commonware.log

@@ -132,6 +132,8 @@ urlpatterns = decorate(write, patterns('',
         views.docs, name='mkt.developers.docs'),
 
     url('^statistics/', include(all_apps_stats_patterns)),
+    url('^transactions/', views.transactions,
+        name='mkt.developers.transactions'),
 
     # Bango-specific stuff.
     url('^bango/', include(bango_patterns('bango'))),

@@ -1,4 +1,5 @@
 {% extends 'reviewers/base.html' %}
+{% from 'site/helpers/form_row.html' import form_row %}
 
 {% block breadcrumbs %}
   {{ reviewers_breadcrumbs(queue=tab) }}
@@ -88,26 +89,17 @@
             {% endif %}
 
             <div id="advanced-search" class="c{% if not adv_searching %} hidden{% endif %}">
-              {% macro form_element(search_form, elems) -%}
-                <div class="form-row">
-                  {% for elem in elems %}
-                    {{ search_form[elem].label_tag() }}
-                    <div class="form-elem">{{ search_form[elem] }}</div>
-                  {% endfor %}
-                </div>
-              {%- endmacro %}
-
               <div class="basic-filters">
-                {{ form_element(search_form,
+                {{ form_row(search_form,
                                 ('admin_review', 'has_editor_comment',
                                  'has_info_request', 'waiting_time_days',
                                  'app_type')) }}
               </div>
               <div class="device-type-select">
-                {{ form_element(search_form, ('device_type_ids',)) }}
+                {{ form_row(search_form, ('device_type_ids',)) }}
               </div>
               <div class="premium-type-select">
-                {{ form_element(search_form, ('premium_type_ids',)) }}
+                {{ form_row(search_form, ('premium_type_ids',)) }}
               </div>
             </div>
 

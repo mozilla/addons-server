@@ -14,7 +14,7 @@ from tower import ugettext as _
 
 import amo
 from amo.helpers import absolutify, urlparams
-from amo.models import ModelBase, SearchMixin
+from amo.models import SearchMixin
 from amo.fields import DecimalCharField
 from amo.utils import send_mail, send_mail_jinja
 from zadmin.models import DownloadSource
@@ -430,12 +430,12 @@ class ClientData(models.Model):
         else:
             lang = translation.get_language()
         client_data, c = cls.objects.get_or_create(
-                        download_source=download_source,
-                        device_type=request.POST.get('device_type', ''),
-                        user_agent=request.META.get('HTTP_USER_AGENT', ''),
-                        is_chromeless=request.POST.get('chromeless', False),
-                        language=lang,
-                        region=region)
+            download_source=download_source,
+            device_type=request.POST.get('device_type', ''),
+            user_agent=request.META.get('HTTP_USER_AGENT', ''),
+            is_chromeless=request.POST.get('chromeless', False),
+            language=lang,
+            region=region)
         return client_data
 
     class Meta:
