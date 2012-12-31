@@ -237,8 +237,8 @@ class TestCommon(amo.tests.TestCase):
 
         title_eq('/firefox', 'Firefox', 'Add-ons')
         title_eq('/thunderbird', 'Thunderbird', 'Add-ons')
-        title_eq('/mobile', 'Mobile', 'Mobile Add-ons')
-        title_eq('/android', 'Firefox for Android', 'Android Add-ons')
+        title_eq('/mobile/extensions/', 'Mobile', 'Mobile Add-ons')
+        title_eq('/android/', 'Firefox for Android', 'Android Add-ons')
 
     def test_xenophobia(self):
         r = self.client.get(self.url, follow=True)
