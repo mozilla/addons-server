@@ -62,6 +62,7 @@ def payments(request, addon_id, addon, webapp=False):
                 messages.error(
                     request, _(u'We encountered a problem connecting to the '
                                u'payment server.'))
+                raise  # We want to see these exceptions!
 
             is_now_paid = addon.premium_type in amo.ADDON_PREMIUMS
 
@@ -145,6 +146,7 @@ def payments_accounts_add(request):
             request.amo_user, form.cleaned_data)
     except client.Error as e:
         log.error('Error creating Bango payment account; %s' % e)
+        raise  # We want to see these exceptions!
         return http.HttpResponse(
             _(u'Could not connect to payment server.'), status=400)
     return redirect('mkt.developers.bango.payment_accounts')
