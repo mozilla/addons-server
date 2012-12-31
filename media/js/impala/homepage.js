@@ -41,7 +41,7 @@ function hideHomePromo($context) {
     var KEY = 'amo_home_promo_seen',
         MAX_SEEN = 5,
         visitor = z.Storage('visitor'),
-        times_seen = 5; //parseInt(visitor.get(KEY) || 0, 10);
+        times_seen = parseInt(visitor.get(KEY) || 0, 10);
     if (times_seen >= MAX_SEEN) {
         // If the intro has been seen enough times, skip it.
         $('#starter', $context).closest('.panel').remove();
