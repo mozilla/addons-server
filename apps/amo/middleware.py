@@ -38,11 +38,19 @@ class LocaleAndAppURLMiddleware(object):
     def process_request(self, request):
         # Find locale, app
         prefixer = urlresolvers.Prefixer(request)
-        redirect_type = HttpResponsePermanentRedirect
+        if settings.DEBUG:
+            redirect_type = HttpResponseRedirect
+        else:
+            redirect_type = HttpResponsePermanentRedirect
         urlresolvers.set_url_prefix(prefixer)
         full_path = prefixer.fix(prefixer.shortened_path)
         # In mkt, don't vary headers on User-Agent.
         with_app = not getattr(settings, 'MARKETPLACE', False)
+
+        if (prefixer.app == amo.MOBILE.short and
+                request.path.rstrip('/').endswith('/' + amo.MOBILE.short)):
+            # TODO: Eventually put MOBILE in RETIRED_APPS, but not yet.
+            return redirect_type(request.path.replace('/mobile', '/android'))
 
         if 'lang' in request.GET:
             # Blank out the locale so that we can set a new one.  Remove lang
