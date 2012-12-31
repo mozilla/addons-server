@@ -1,13 +1,13 @@
 {% extends 'mkt/base.html' %}
 
-{% set pagetitle = _('Apps') if request.MOBILE else _('My Apps') %}
+{% set pagetitle = _('My Apps') if DESKTOP else _('Apps') %}
 {% set cache_fragment = 'no' %}
 {% set page_parent = '/' %}
 
 {% block content %}
   <section class="main account full">
     {% include 'account/includes/nav.html' %}
-    {% if not request.MOBILE %}
+    {% if DESKTOP %}
       <h2>{{ pagetitle }}</h2>
     {% endif %}
 

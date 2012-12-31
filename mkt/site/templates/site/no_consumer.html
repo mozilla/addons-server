@@ -3,7 +3,7 @@
 {% set headertitle = _('Firefox Marketplace') %}
 {% set bodyclass = 'home login' %}
 
-{% if request.MOBILE %}
+{% if not DESKTOP %}
   {% set pagetype = 'notice' %}
 {% endif %}
 

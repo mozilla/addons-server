@@ -8,7 +8,7 @@
 {% block content %}
   <section class="main account" id="account-settings">
     {% include 'account/includes/nav.html' %}
-    {% if not request.MOBILE %}
+    {% if DESKTOP %}
       <h2>{{ pagetitle }}</h2>
     {% endif %}
 
@@ -70,7 +70,7 @@
 
       <footer class="form-footer">
         <button type="submit">{{ _('Save Changes') }}</button>
-        {% if request.MOBILE %}
+        {% if not DESKTOP %}
           <div class="extras">
             <a href="{{ url('users.logout') }}" class="sync post logout">
               {{ _('Log out') }}

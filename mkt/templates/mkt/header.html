@@ -1,12 +1,12 @@
 <header id="site-header" class="c{{ ' no-consumer' if not request.can_view_consumer }}">
   <section class="main">
-    {% if not request.MOBILE %}
+    {% if DESKTOP %}
       <h1 class="site"><a href="{{ url('home') }}">Firefox Marketplace</a></h1>
     {% endif %}
     <h1 class="page">{{ headertitle }}</h1>
     <nav role="navigation">
       <a href="{{ url('home') }}" class="header-button icon home left" title="{{ _('Home') }}"></a>
-      {% if request.MOBILE %}
+      {% if not DESKTOP %}
         <a href="{{ url('account.settings') if
                     request.user.is_authenticated() else
                     url('account.feedback') }}"
@@ -35,7 +35,7 @@
       {% endif %}
       <a href="#" id="nav-back" class="header-button icon back left" title="{{ _('Back') }}"><b></b></a>
       <a href="#" class="header-button icon search right" title="{{ _('Search') }}"></a>
-      {% if request.MOBILE %}
+      {% if not DESKTOP %}
         <a href="#" class="header-button cancel right">{{ _('Cancel') }}</a>
         <a href="#" class="header-button filter right">{{ _('Filter') }}</a>
       {% endif %}

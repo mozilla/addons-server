@@ -1,5 +1,5 @@
 {% extends 'mkt/base.html' %}
-{% set mobile = request.MOBILE %}
+{% set mobile = not DESKTOP %}
 
 {% if category %}
   {% set src = 'mkt-category' %}

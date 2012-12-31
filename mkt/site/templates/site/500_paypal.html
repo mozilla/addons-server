@@ -6,7 +6,7 @@
 {% set pagetitle = title %}
 {% block title %}{{ pagetitle }}{% endblock %}
 
-{% if request.MOBILE %}
+{% if not DESKTOP %}
   {% set pagetype = 'notice' %}
 {% endif %}
 

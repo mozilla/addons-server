@@ -2,7 +2,7 @@
 
 {% set pagetitle = _('Search Unavailable') %}
 
-{% if request.MOBILE %}
+{% if not DESKTOP %}
   {% set pagetype = 'notice' %}
 {% endif %}
 

@@ -3,10 +3,14 @@
 {% block splash %}
 {% endblock %}
 
-{% set bodyclass = bodyclass + ' desktop' if bodyclass else 'desktop' %}
+{% set bodyclass = (bodyclass or '') + ' desktop' %}
 
 {% block site_css %}
-  {{ css('mkt/consumer-desktop') }}
+  {% if CARRIER == 'sony' %}
+    {{ css('mkt/consumer-desktop-sen') }}
+  {% else %}
+    {{ css('mkt/consumer-desktop') }}
+  {% endif %}
 {% endblock %}
 
 {% block sitefooter %}

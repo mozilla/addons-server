@@ -21,7 +21,7 @@
       {{ form_field(form.body, label=_('Your review'), hint=True,
                     cc_for=form.body.auto_id,
                     cc_maxlength=form.body.field.max_length, tag='div') }}
-      {% if request.MOBILE %}
+      {% if not DESKTOP %}
         <p class="charlimit">{{ _('Max 150 characters') }}</p>
       {% endif %}
       <p class="form-footer submit-review c">

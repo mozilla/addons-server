@@ -55,7 +55,7 @@
             <h3 class="linefit">{{ _('Education') }}</h3>
           </a>
         </li>
-        {% if not request.MOBILE %}
+        {% if DESKTOP %}
           <li>
             <a class="mkt-tile category" href="{{ url('browse.apps', 'utilities') }}">
               <div class="icon cat-utilities"></div>
@@ -72,6 +72,6 @@
       </ul>
     </section>
   {% else %}
-    {{ category_slider(rand=True, limit=9 if request.MOBILE else 12) }}
+    {{ category_slider(rand=True, limit=12 if DESKTOP else 9) }}
   {% endif %}
 {% endblock %}

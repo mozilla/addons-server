@@ -252,7 +252,7 @@
     }
 
     nav .header-button.expand {
-        top: 60px;
+        top: 61px;
         &:before {
             background-image: url(../../img/mkt/carriers-sen/expand-toggle.png);
         }
@@ -272,8 +272,8 @@
         }
         */
     }
-    .incompatible .header-button.expand {
-        margin-top: 150px;
+    &.incompatible .header-button.expand {
+        margin-top: 36px;
     }
     #filters #filter-sort a.sel {
         border-top-color: #189cbb;
@@ -337,7 +337,8 @@
         }
     }
 
-    .loadmore button {
+    .loadmore button,
+    .button.fat {
         .fat-button;
         color: #333;
         padding: 0;
@@ -387,6 +388,27 @@
         }
     }
 
+    #submit-review {
+        color: @note-gray;
+    }
+    .simple-field.rating {
+        .box-shadow(inset 0 1px 4px rgba(0,0,0,.25),
+                    inset 0 1px 0 fade(@white, 20%),
+                    0 1px 0 fade(@white, 20%));
+    }
+    .friendly .char-count b {
+        color: @medium-gray;
+    }
+}
+
+#review-list .review:nth-of-type(2n),
+#review-list .review:nth-of-type(2n) + .replies .review {
+    background-color: darken(@bg, 10%);
+}
+
+#review-list .review:nth-of-type(2n + 1),
+#review-list .review:nth-of-type(2n + 1) + .replies .review {
+    background-color: darken(@bg, 5%);
 }
 
 @media @retina {

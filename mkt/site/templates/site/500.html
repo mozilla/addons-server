@@ -4,7 +4,7 @@
 
 {% set pagetitle = _('Server Error') %}
 
-{% if request.MOBILE %}
+{% if not DESKTOP %}
   {% set pagetype = 'notice' %}
 {% endif %}
 

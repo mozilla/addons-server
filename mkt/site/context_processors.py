@@ -64,7 +64,7 @@ def global_settings(request):
     is_walled = ('amo.middleware.LoginRequiredMiddleware' in
                  settings.MIDDLEWARE_CLASSES)
 
-    DESKTOP = not (request.MOBILE or request.GAIA or request.TABLET)
+    DESKTOP = request.TABLET or not request.MOBILE
 
     context.update(account_links=account_links,
                    settings=settings,

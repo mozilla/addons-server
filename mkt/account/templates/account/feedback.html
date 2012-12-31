@@ -9,7 +9,7 @@
       {% if request.user.is_authenticated() %}
         {% include 'account/includes/nav.html' %}
       {% endif %}
-      {% if not request.MOBILE %}
+      {% if DESKTOP %}
         <h2>{{ pagetitle }}</h2>
       {% endif %}
 

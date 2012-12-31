@@ -162,6 +162,13 @@ CSS.update({
         'css/mkt/desktop-account.less',
         'css/mkt/desktop-listing.less',
         'css/mkt/desktop-details.less',
+    ),
+})
+
+CSS.update({
+    #'mkt/consumer-sen': (
+    #),
+    'mkt/consumer-desktop-sen': CSS['mkt/consumer-desktop'] + (
         'css/mkt/carriers-sen.less',
     ),
 })
