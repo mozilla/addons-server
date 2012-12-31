@@ -38,7 +38,11 @@
 
     {% block site_css %}
       {{ css('mkt/splash') }}
-      {{ css('mkt/consumer') }}
+      {% if CARRIER == 'sony' %}
+        {{ css('mkt/consumer-sen') }}
+      {% else %}
+        {{ css('mkt/consumer') }}
+      {% endif %}
     {% endblock %}
 
     {% block extrahead %}{% endblock %}

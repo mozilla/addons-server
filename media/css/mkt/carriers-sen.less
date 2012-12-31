@@ -1,51 +1,26 @@
 @import 'lib';
 
-.sony {
+.sony.home,
+.sony #featured-home {
     background-color: #101010;
+}
+
+.sony {
+    background: url(../../img/mkt/grain.png) #EFF1F3;
     color: #333;
-    &.force-mobile {
-        #site-header section.main,
-        #page section.main,
-        #footer .pad,
-        .grid {
-            max-width: 640px;
-        }
-        .grid .mkt-tile {
-            width: 159px;
-        }
-    }
     a {
         color: #019cbd;
     }
-    .account-links {
-        ul {
-            background: rgb(33,33,33);
-            top: 58px;
-        }
-        li + li {
-            &:before {
-                .gradient(~'left, rgba(23,23,23,0), rgba(23,23,23,.75) 25%, rgba(23,23,23,.75) 75%, rgba(23,23,23,0) 100%');
-            }
-            &:after {
-                .gradient(~'left, rgba(49,49,49,0), rgba(49,49,49,.95) 25%, rgba(49,49,49,.95) 75%, rgba(49,49,49,0) 100%');
-            }
-        }
-        &.active {
-            .settings:after {
-                .gradient(~'bottom, rgba(33,33,33,1) 0%, rgba(43,43,43,0.07) 85%, rgba(252,252,253,0) 100%');
-            }
-        }
+    header a {
+        color: #fff;
     }
     #site-header {
-        border-bottom: 1px solid #393939;
-        height: 100px;
-        h1.site {
-            background: url(../../img/mkt/carriers-sen/logo.png) 0 50% no-repeat;
-        }
+        .box-shadow(~'0 -1px 0 rgba(0, 0, 0, 0.15) inset, 0 0 3px 3px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(255, 255, 255, 0.1) inset');
         #search-q {
             .gradient-two-color-with-image(#272727, #353535, url(../../img/mkt/icons/search.png), ~'8px 8px', no-repeat);
             color: #fff;
             font-weight: 400;
+            padding-left: 27px;
             &:-moz-placeholder {
                 color: #fff;
             }
@@ -65,14 +40,14 @@
     }
     #site-header, .classic-header {
         .box-shadow(none);
-        background: url(../../img/mkt/carriers-sen/header-bg.png);
-        background-size: 64px 103px;
+        background: url(../../img/mkt/carriers-sen/header-bg-mobile.png);
+        background-size: 32px 49px;
     }
-    #page, #featured-home {
-        background-color: #101010;
-    }
-    #page {
-        padding-top: 100px;
+    &.home #site-header h1 {
+        background: url(../../img/mkt/carriers-sen/logo-mobile.png) center no-repeat;
+        left: 0;
+        max-width: 100%;
+        width: 100%;
     }
     .incompatible-browser {
         display: none !important;
@@ -82,64 +57,19 @@
         top: 100px;
     }
     */
-    .header-button.browserid {
-        line-height: 100px;
-    }
-    #directory-footer {
-        display: none;
-    }
     #featured-home {
         border-bottom: 1px solid rgba(255,255,255,.25);
         padding-top: 1px;
     }
-    #footer {
-        background: none;
-        border-top-color: #000;
-        p {
-            border-left: 0;
-            color: #666;
-            line-height: 37px;
-            padding: 0;
+
+    .toggles li a, .footer-action .apply {
+        &.sel, &:active {
+            background: #189cbb;
         }
-    }
-    #footzilla {
-        background-image: url(../../img/mkt/carriers-sen/footer-logo.png);
-        width: 115px;
-    }
-    #footzilla,
-    #footzilla a {
-        height: 32px;
-    }
-
-    h1, h2, h3, h4, .no-results {
-        color: #fff;
-    }
-    h1, h2, .listing h3 {
-        text-shadow: 0 .5px .5px #000;
-    }
-
-    .container,
-    .listing,
-    .form-grid {
-        background: none;
-    }
-
-    .form-grid {
-        background-color: rgba(0,0,0,.13);
-        border: 1px solid rgba(0,0,0,.14);
     }
 
     .feedback-links {
         border-top: 0;
-    }
-
-    .simple-field label,
-    .simple-field .label {
-        color: #ccc;
-    }
-
-    input[type=text], input[type=password] {
-        background-color: #fff;
     }
 
     .grid .mkt-tile {
@@ -147,8 +77,8 @@
             background-color: rgba(255,255,255,.15);
             h3 {
                 .light-text-shadow;
+                bottom: 5%;
                 color: @light-gray;
-                font-size: 14px;
                 font-weight: 400;
                 text-shadow: 0 .5px .5px #000;
             }
@@ -233,9 +163,6 @@
                 background: rgba(255,255,255,.01);
             }
         }
-        h3 {
-            text-shadow: 0 .5px .5px #333;
-        }
         .mkt-tile .author {
             color: #999;
             font-weight: 400;
@@ -244,40 +171,15 @@
             top: 2px;
         }
     }
-    &:not(.detail) .bad-app {
-        color: lighten(red, 35%);
-        b[data-href] {
-            color: lighten(red, 45%);
-        }
-    }
 
     nav .header-button.expand {
-        top: 61px;
         &:before {
             background-image: url(../../img/mkt/carriers-sen/expand-toggle.png);
         }
     }
-    &.search {
-        #page {
-            &:before {
-                background: #101010;
-                border-top: 1px solid #393939;
-                border-bottom: 1px solid rgba(255,255,255,.25);
-                top: 100px;
-            }
-        }
-        /*
-        .incompatible-browser.active {
-            top: 100px;
-        }
-        */
-    }
-    &.incompatible .header-button.expand {
-        margin-top: 36px;
-    }
     #filters #filter-sort a.sel {
         border-top-color: #189cbb;
-        color: #189cbb;
+        color: #fff;
         &:before {
             background: darken(#189cbb, 27%);
             content: "";
@@ -290,29 +192,31 @@
 
     .fatbutton, .infobox ul.c a {
         .border-radius(2px);
-        .box-shadow(0 1px 0 fadeOut(#fff, 40%), 0 1px 0 #fff inset);
-        background: rgba(255, 255, 255, 0.8);
-        border: 1px solid #ccc;
-        color: #000;
+        color: #333638;
         display: block;
         text-shadow: 0 .5px .5px rgba(255,255,255,.5);
         &:hover {
+            .gradient-two-color(#fafbfc, darken(#ebeff2, 5%));
             border-color: #aaa;
+        }
+        &:active {
+            .depressed;
+            opacity: .8;
         }
     }
 
     .button, button {
-        .box-shadow(0 2px #454545, 0 1px 0 rgba(255,255,255,.15) inset, 0 -1px 0 rgba(0,0,0,.15) inset);
+        .box-shadow(0 2px lighten(#454545, 60%), 0 1px 0 rgba(255,255,255,.15) inset, 0 -1px 0 rgba(0,0,0,.15) inset);
         background: #189cbb;
+        color: #fff;
         &.delete, &.manage, &.cancel, &.product.error {
             .gradient-two-color(#e45d56, #de4332);
-            color: #fff;
             &:hover {
                 .gradient-two-color(darken(#e45d56, 10%), darken(#de4332, 10%));
             }
         }
         &:hover {
-            .box-shadow(0 2px #444, 0 1px 0 rgba(255,255,255,.2) inset, 0 -1px 0 rgba(0,0,0,.2) inset);
+            .box-shadow(0 2px lighten(#444, 60%), 0 1px 0 rgba(255,255,255,.2) inset, 0 -1px 0 rgba(0,0,0,.2) inset);
             background: lighten(#189cbb, 5%);
         }
         &:active {
@@ -325,14 +229,28 @@
         &[disabled], &.disabled,
         &.purchasing, &.purchased,
         &.installing, &.installed {
-            .box-shadow(0 2px #454545, 0 1px 0 rgba(255,255,255,.2) inset, 0 -1px 0 rgba(0,0,0,.2) inset);
+            .box-shadow(0 2px lighten(#454545, 60%), 0 1px 0 rgba(255,255,255,.2) inset, 0 -1px 0 rgba(0,0,0,.2) inset);
             background: @light-gray;
+            color: @note-gray;
         }
         &.good {
-            color: #fff;
             .gradient-two-color(darken(#A2E456, 20%), darken(#86DE32, 20%));
             &:hover {
                 .gradient-two-color(darken(#A2E456, 25%), darken(#86DE32, 25%));
+            }
+        }
+    }
+
+    .overlay {
+        .button, button {
+            .box-shadow(0 2px #222);
+            &:hover {
+                .box-shadow(0 2px #101010);
+            }
+            &:active {
+                .box-shadow(inset 0 8px 20px 6px rgba(0,0,0,.1),
+                            inset 0 0 1px 1px rgba(0,0,0,.1),
+                            0 2px #101010);
             }
         }
     }
@@ -370,22 +288,6 @@
                 .box-shadow(0 2px #ddd, 0 1px 0 rgba(255,255,255,.2) inset, 0 -1px 0 rgba(0,0,0,.2) inset);
             }
         }
-        #page {
-            padding: 140px 0 40px;
-            section.main {
-                background-color: #eee;
-            }
-        }
-        h3 {
-            color: @dark-gray;
-            text-shadow: 0 .5px .5px #fff;
-        }
-        h4 {
-            text-shadow: none;
-        }
-        .author {
-            color: @medium-gray;
-        }
     }
 
     #submit-review {
@@ -398,6 +300,11 @@
     }
     .friendly .char-count b {
         color: @medium-gray;
+    }
+
+    #site-footer {
+        .box-shadow(none);
+        border-top: 0;
     }
 }
 
@@ -414,10 +321,10 @@
 @media @retina {
     .sony {
         #site-header #search-q {
-            .gradient-two-color-with-image(#272727, #353535, url(../../img/mkt/icons/search-2x.png), ~'8px 8px', no-repeat);
+            .gradient-two-color-with-image(#272727, #353535, url(../../img/mkt/icons/search-2x.png), ~'9px 10px', no-repeat);
             background-size: 12px auto;
             &:focus {
-                .gradient-two-color-with-image(#101010, #272727, url(../../img/mkt/icons/search-2x.png), ~'8px 8px', no-repeat);
+                .gradient-two-color-with-image(#101010, #272727, url(../../img/mkt/icons/search-2x.png), ~'9px 10px', no-repeat);
                 background-size: 12px auto;
             }
         }

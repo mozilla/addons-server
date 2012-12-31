@@ -166,10 +166,14 @@ CSS.update({
 })
 
 CSS.update({
-    #'mkt/consumer-sen': (
-    #),
+    # Mobile.
+    'mkt/consumer-sen': CSS['mkt/consumer'] + (
+        'css/mkt/carriers-sen.less',
+    ),
+    # Desktop.
     'mkt/consumer-desktop-sen': CSS['mkt/consumer-desktop'] + (
         'css/mkt/carriers-sen.less',
+        'css/mkt/desktop-carriers-sen.less',
     ),
 })
 

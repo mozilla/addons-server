@@ -325,11 +325,10 @@
 }
 
 .highlight() {
-    .border-radius(5px);
-    .box-shadow(0 1px 0 fadeOut(@white, 40%),
-                0 1px 0 @white inset);
-    background: rgba(255,255,255,.8);
-    color: @text;
+    .border-radius(4px);
+    .box-shadow(0 1px 1px 0 rgba(255,255,255,.5), 0 1px 1px 0 rgba(0,0,0,.1) inset);
+    .gradient-two-color(#fafbfc, #ebeff2);
+    color: #333638;
     border: 1px solid @light-gray;
     &:active {
         .depressed;
@@ -353,7 +352,7 @@
     padding: 10px;
     text-align: center;
     &:hover {
-        background: rgba(255,255,255,.5);
+        .gradient-two-color(#fafbfc, darken(#ebeff2, 5%));
         border-color: @bg-gray;
         color: @text;
         text-decoration: none;
