@@ -161,7 +161,7 @@ def _app_search(request, category=None, browse=None):
 
     # If we're mobile, leave no witnesses. (i.e.: hide "Applied Filters:
     # Mobile")
-    if request.MOBILE:
+    if request.MOBILE and not request.TABLET:
         del query['device']
 
     pager = amo.utils.paginate(request, qs)

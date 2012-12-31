@@ -18,13 +18,15 @@ def home(request):
     """The home page."""
     if not getattr(request, 'can_view_consumer', True):
         return jingo.render(request, 'home/home_walled.html')
+    MOBILE = request.MOBILE and not request.TABLET
     region = getattr(request, 'REGION', mkt.regions.WORLDWIDE)
     featured = Webapp.featured(region=region, cat=None, mobile=False,
-        limit=6 if request.MOBILE else 12)
+        limit=6 if MOBILE else 12)
+
     featured_cnt = len(featured)
 
     # Show featured apps in multiples of three.
-    if request.MOBILE:
+    if MOBILE:
         if featured_cnt >= 9:
             featured = featured[:9]
         elif featured_cnt >= 6:

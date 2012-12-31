@@ -44,7 +44,7 @@ def detail(request, addon):
     reviewed_filter = dict(user=request.user.id)
     if addon.is_packaged:
         reviewed_filter['version'] = addon.current_version
-    num_reviews = 2 if request.MOBILE else 6
+    num_reviews = 6 if request.TABLET or not request.MOBILE else 2
     ctx = {
         'product': addon,
         'reviews': reviews[:num_reviews],
