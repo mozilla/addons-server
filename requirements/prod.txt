@@ -89,8 +89,8 @@ tower==0.3.4
 -e git://github.com/rtilder/pyjwt.git@aa3be513795c1a623dfc61c6c0a688198ea5d303#egg=pyjwt
 -e git://github.com/jbalogh/test-utils.git@ce5136a257cd44a1c663319124a255c1d10a9834#egg=test-utils
 -e git://github.com/fwenzel/django-mozilla-product-details.git@36ef06539d6b34c4f345fd0d3e16937d0db9a752#egg=django-mozilla-product-details
-# TODO(Kumar) switch to main line after https://github.com/mozilla/django-browserid/pull/107
--e git://github.com/kumar303/django-browserid.git@a5292a04d8e077cd96a8f4358442e7182682f739#egg=django-browserid
+# TODO(Kumar) switch to PyPI release when this change has been deployed.
+-e git://github.com/mozilla/django-browserid.git@a5292a04d8e077cd96a8f4358442e7182682f739#egg=django-browserid
 
 ## Forked.
 -e git://github.com/andymckay/django-piston-oauth2.git@6cb1ad61e3f437e7ca080ee00ae7b80de7d010f0#egg=django-piston-oauth2
