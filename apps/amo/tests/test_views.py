@@ -53,14 +53,11 @@ class Test404(amo.tests.TestCase):
         self.assertTemplateUsed(response, 'amo/404.html')
 
     def test_404_app_links(self):
-        response = self.client.get('/en-US/thunderbird/xxxxxxx')
-        eq_(response.status_code, 404)
-        self.assertTemplateUsed(response, 'amo/404.html')
-        links = pq(response.content)('[role=main] ul li a:not([href^=mailto])')
-        eq_(len(links), 4)
-        for link in links:
-            href = link.attrib['href']
-            assert href.startswith('/en-US/thunderbird'), href
+        res = self.client.get('/en-US/thunderbird/xxxxxxx')
+        eq_(res.status_code, 404)
+        self.assertTemplateUsed(res, 'amo/404.html')
+        links = pq(res.content)('[role=main] ul a[href^="/en-US/thunderbird"]')
+        eq_(links.length, 4)
 
 
 class TestCommon(amo.tests.TestCase):
@@ -74,46 +71,11 @@ class TestCommon(amo.tests.TestCase):
         self.patcher.start().return_value = True
         self.addCleanup(self.patcher.stop)
 
-    def login(self, user):
-        user = UserProfile.objects.get(email='%s@mozilla.com' % user)
-        self.client.login(username=user.email, password='password')
-        return user
-
-    @mock.patch.object(settings, 'READ_ONLY', False)
-    def test_balloons_no_readonly(self):
-        response = self.client.get('/en-US/firefox/')
-        doc = pq(response.content)
-        eq_(doc('#site-notice').length, 0)
-        eq_(doc('#site-nonfx').length, 1)
-        eq_(doc('#site-welcome').length, 1)
-
-    @mock.patch.object(settings, 'READ_ONLY', True)
-    def test_balloons_readonly(self):
-        response = self.client.get('/en-US/firefox/')
-        doc = pq(response.content)
-        eq_(doc('#site-notice').length, 1)
-        eq_(doc('#site-nonfx').length, 1)
-        eq_(doc('#site-welcome').length, 1)
-
-    @mock.patch.object(settings, 'READ_ONLY', False)
-    def test_thunderbird_balloons_no_readonly(self):
-        response = self.client.get('/en-US/thunderbird/')
-        eq_(response.status_code, 200)
-        doc = pq(response.content)
-        eq_(doc('#site-notice').length, 0)
-
-    @mock.patch.object(settings, 'READ_ONLY', True)
-    def test_thunderbird_balloons_readonly(self):
-        response = self.client.get('/en-US/thunderbird/')
-        doc = pq(response.content)
-        eq_(doc('#site-notice').length, 1)
-        eq_(doc('#site-nonfx').length, 0,
-            'This balloon should appear for Firefox only')
-        eq_(doc('#site-welcome').length, 1)
-
-    def test_tools_loggedout(self):
-        r = self.client.get(self.url, follow=True)
-        eq_(pq(r.content)('#aux-nav .tools').length, 0)
+    def login(self, user=None, get=False):
+        email = '%s@mozilla.com' % user
+        self.client.login(username=email, password='password')
+        if get:
+            return UserProfile.objects.get(email=email)
 
     def test_tools_regular_user(self):
         self.login('regular')
@@ -130,7 +92,7 @@ class TestCommon(amo.tests.TestCase):
 
     def test_tools_developer(self):
         # Make them a developer.
-        user = self.login('regular')
+        user = self.login('regular', get=True)
         AddonUser.objects.create(user=user, addon=Addon.objects.all()[0])
 
         group = Group.objects.create(name='Staff', rules='AdminTools:View')
@@ -166,7 +128,7 @@ class TestCommon(amo.tests.TestCase):
 
     def test_tools_developer_and_editor(self):
         # Make them a developer.
-        user = self.login('editor')
+        user = self.login('editor', get=True)
         AddonUser.objects.create(user=user, addon=Addon.objects.all()[0])
 
         r = self.client.get(self.url, follow=True)
@@ -206,7 +168,7 @@ class TestCommon(amo.tests.TestCase):
 
     def test_tools_developer_and_admin(self):
         # Make them a developer.
-        user = self.login('admin')
+        user = self.login('admin', get=True)
         AddonUser.objects.create(user=user, addon=Addon.objects.all()[0])
 
         r = self.client.get(self.url, follow=True)
@@ -228,6 +190,42 @@ class TestCommon(amo.tests.TestCase):
         ]
         check_links(expected, pq(r.content)('#aux-nav .tools a'))
 
+
+class TestOtherStuff(amo.tests.TestCase):
+    # Tests that don't need fixtures but do need redis mocked.
+
+    @mock.patch.object(settings, 'READ_ONLY', False)
+    def test_balloons_no_readonly(self):
+        response = self.client.get('/en-US/firefox/')
+        doc = pq(response.content)
+        eq_(doc('#site-notice').length, 0)
+        eq_(doc('#site-nonfx').length, 1)
+        eq_(doc('#site-welcome').length, 1)
+
+    @mock.patch.object(settings, 'READ_ONLY', True)
+    def test_balloons_readonly(self):
+        response = self.client.get('/en-US/firefox/')
+        doc = pq(response.content)
+        eq_(doc('#site-notice').length, 1)
+        eq_(doc('#site-nonfx').length, 1)
+        eq_(doc('#site-welcome').length, 1)
+
+    @mock.patch.object(settings, 'READ_ONLY', False)
+    def test_thunderbird_balloons_no_readonly(self):
+        response = self.client.get('/en-US/thunderbird/')
+        eq_(response.status_code, 200)
+        doc = pq(response.content)
+        eq_(doc('#site-notice').length, 0)
+
+    @mock.patch.object(settings, 'READ_ONLY', True)
+    def test_thunderbird_balloons_readonly(self):
+        response = self.client.get('/en-US/thunderbird/')
+        doc = pq(response.content)
+        eq_(doc('#site-notice').length, 1)
+        eq_(doc('#site-nonfx').length, 0,
+            'This balloon should appear for Firefox only')
+        eq_(doc('#site-welcome').length, 1)
+
     def test_heading(self):
         def title_eq(url, alt, text):
             response = self.client.get(url, follow=True)
@@ -235,25 +233,21 @@ class TestCommon(amo.tests.TestCase):
             eq_(alt, doc('.site-title img').attr('alt'))
             eq_(text, doc('.site-title').text())
 
-        title_eq('/firefox', 'Firefox', 'Add-ons')
-        title_eq('/thunderbird', 'Thunderbird', 'Add-ons')
+        title_eq('/firefox/', 'Firefox', 'Add-ons')
+        title_eq('/thunderbird/', 'Thunderbird', 'Add-ons')
         title_eq('/mobile/extensions/', 'Mobile', 'Mobile Add-ons')
         title_eq('/android/', 'Firefox for Android', 'Android Add-ons')
 
-    def test_xenophobia(self):
-        r = self.client.get(self.url, follow=True)
-        self.assertNotContains(r, 'show only English (US) add-ons')
-
     def test_login_link(self):
-        r = self.client.get(self.url, follow=True)
+        r = self.client.get(reverse('home'), follow=True)
         doc = PyQuery(r.content)
         next = urllib.urlencode({'to': '/en-US/firefox/'})
         eq_('/en-US/firefox/users/login?%s' % next,
             doc('.account.anonymous a')[1].attrib['href'])
 
-
-class TestOtherStuff(amo.tests.TestCase):
-    # Tests that don't need fixtures but do need redis mocked.
+    def test_tools_loggedout(self):
+        r = self.client.get(reverse('home'), follow=True)
+        eq_(pq(r.content)('#aux-nav .tools').length, 0)
 
     def test_language_selector(self):
         doc = pq(test.Client().get('/en-US/firefox/').content)
