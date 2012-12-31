@@ -1,8 +1,12 @@
 // Replaces rating selectboxes with the rating widget
-$.fn.ratingwidget = function() {
+$.fn.ratingwidget = function(classes) {
     this.each(function(n, el) {
+        if (!classes) {
+            classes = '';
+        }
         var $el = $(el),
-            $widget = $("<span class='ratingwidget stars stars-0'></span>"),
+            allClasses = 'ratingwidget stars stars-0 ' + classes,
+            $widget = $('<span class="' + allClasses + '"></span>'),
             rs = '',
             showStars = function(n) {
                 $widget.removeClass('stars-0 stars-1 stars-2 stars-3 stars-4 stars-5').addClass('stars-' + n);
@@ -19,7 +23,7 @@ $.fn.ratingwidget = function() {
         if ($('option[selected]', $el).length) {
             var temp_rating = $el.val();
             setStars(temp_rating);
-            rating = parseInt(temp_rating);
+            rating = parseInt(temp_rating, 10);
         }
         for (var i=1; i<=5; i++) {
             var checked = rating === i ? ' checked' : '';

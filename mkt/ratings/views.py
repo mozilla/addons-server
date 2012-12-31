@@ -24,6 +24,7 @@ from stats.models import ClientData, Contribution
 from mkt.site import messages
 from mkt.ratings.forms import ReviewForm
 from mkt.webapps.models import Installed
+from mkt.detail.views import detail
 
 
 log = commonware.log.getLogger('mkt.ratings')
@@ -130,6 +131,9 @@ def add(request, addon):
     if addon.has_author(request.user):
         # Don't let app owners review their own apps.
         raise PermissionDenied
+
+    if request.method == 'GET' and (not request.MOBILE or request.TABLET):
+        return detail(request, app_slug=addon.app_slug, add_review=True)
 
     # Get user agent of user submitting review. If there is an install with
     # logged user agent that matches the current user agent, hook up that

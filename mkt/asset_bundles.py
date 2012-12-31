@@ -162,6 +162,7 @@ CSS.update({
         'css/mkt/desktop-account.less',
         'css/mkt/desktop-listing.less',
         'css/mkt/desktop-details.less',
+        'css/mkt/desktop-ratings.less',
     ),
 })
 

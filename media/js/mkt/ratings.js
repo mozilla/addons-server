@@ -11,8 +11,14 @@
         if (!z.capabilities.mobile) {
             initCharCount();
         }
+
+        // Show add review modal on app/app_slug/reviews/add for desktop.
+        if ($('.reviews.add-review').length) {
+            addOrEditYourReview($('#add-first-review'));
+        }
     });
 
+    // Returns the review body text or '' if the supplied element is not found.
     function getBody($body) {
         var body = $body.clone();
         // Get the inner *text* of the review body.
@@ -126,6 +132,7 @@
         }, 500);
     }
 
+    // Edit review on the review listing page.
     function editReview(reviewEl) {
         var overlay = makeOrGetOverlay('edit-review'),
             rating = reviewEl.data('rating'),
@@ -136,9 +143,33 @@
         if (reviewEl.hasClass('reply')) {
             overlay.find('select[name="rating"]').remove();
         } else {
-            overlay.find('select[name="rating"]').ratingwidget();
+            if (z.body.hasClass('desktop')) {
+                overlay.find('select[name="rating"]').ratingwidget('large');
+            } else {
+                overlay.find('select[name="rating"]').ratingwidget();
+            }
             overlay.find(format('.ratingwidget [value="{0}"]', rating)).click();
         }
+        handleReviewOverlay(overlay);
+    }
+
+    // This gets used when you're not editing a review on the review list page.
+    function addOrEditYourReview($senderEl) {
+        var overlay = makeOrGetOverlay('edit-review'),
+            rating = $senderEl.data('rating'),
+            title = gettext('Write a Review'),
+            body = getBody($('#current-review')),
+            action = $senderEl.data('href');
+
+        if (rating > 0) {
+            title = gettext('Edit Your Review');
+        }
+
+        overlay.html(format($('#edit-review-template').html(),
+                            {title: title, action: action, body: body}));
+
+        overlay.find('select[name="rating"]').ratingwidget('large');
+        overlay.find(format('.ratingwidget [value="{0}"]', rating)).click();
         handleReviewOverlay(overlay);
     }
 
@@ -175,7 +206,7 @@
     // Cancel rating button.
     z.page.on('click', '.submit-review .alt', _pd(nav.back));
 
-    z.page.on('click', '.review .actions a', _pd(function(e) {
+    z.page.on('click', '.review .actions a, #add-first-review', _pd(function(e) {
         var $this = $(this),
             action = $this.data('action');
         if (!action) return;
@@ -186,6 +217,9 @@
                 break;
             case 'edit':
                 editReview($review);
+                break;
+            case 'add-or-edit':
+                addOrEditYourReview($this);
                 break;
             case 'report':
                 flagReview($review);
@@ -203,5 +237,4 @@
     z.page.on('click', '.review .view-reply', _pd(function() {
         $(this).closest('.review').next('.replies').find('.reply').toggle();
     }));
-
 })();

@@ -75,9 +75,7 @@ $.fn.exists = function(callback, args) {
 function makeOrGetOverlay(id) {
     var el = document.getElementById(id);
     if (!el) {
-        el = $('<div class="overlay">', {
-            id: id
-        });
+        el = $('<div class="overlay" id="' + id +'">');
         $('body').append(el);
     }
     return $(el);

@@ -30,7 +30,7 @@ addon_all_view = addon_view_factory(qs=Webapp.objects.all)
 
 
 @addon_all_view
-def detail(request, addon):
+def detail(request, addon, add_review=False):
     """Product details page."""
     reviews = Review.objects.valid().filter(addon=addon, is_latest=True)
     # Mature regions show only reviews from within that region.
@@ -40,15 +40,19 @@ def detail(request, addon):
     if addon.is_packaged:
         reviewed_filter['version'] = addon.current_version
     num_reviews = 6 if request.TABLET or not request.MOBILE else 2
+    user_review = reviews.filter(**reviewed_filter)
     ctx = {
         'product': addon,
         'reviews': reviews[:num_reviews],
         'flags': get_flags(request, reviews),
         'has_review': request.user.is_authenticated() and
-                      reviews.filter(**reviewed_filter).exists(),
+                      user_review.exists(),
         'grouped_ratings': GroupedRating.get(addon.id),
-        'details_page': True
+        'details_page': True,
+        'add_review': add_review,
     }
+    if ctx['has_review']:
+        ctx['my_review'] = user_review[0]
     if addon.is_public():
         ctx['abuse_form'] = AbuseForm(request=request)
     return jingo.render(request, 'detail/app.html', ctx)

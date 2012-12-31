@@ -1,7 +1,7 @@
 {% if not can_review %}
   {% set can_review = product.is_persona() and product.is_public() %}
 {% endif %}
-<section class="main reviews c">
+<section class="main reviews c{{ ' add-review' if add_review }}">
   <div id="{% if reviews %}reviews-detail{% else %}reviews{% endif %}">
     {% if reviews %}
       <ul class="c" data-edit-url="{{ product.get_ratings_url('add') }}">
@@ -43,9 +43,22 @@
     {% if can_review %}
       <div class="{{ 'split' if reviews else 'full' }}">
         <a class="fatbutton" id="add-first-review"
-           href="{{ product.get_ratings_url('add') }}">
+          {% if DESKTOP %}
+            href="#"
+            data-href="{{ product.get_ratings_url('add') }}"
+            data-action="add-or-edit"
+            data-rating="{{ my_review.rating if has_review else 0 }}">
+          {% else %}
+            href="{{ product.get_ratings_url('add') }}">
+          {% endif %}
           {{ _('Edit Your Review') if has_review else _('Write a Review') }}</a>
       </div>
+      {# Stores the existing review body to populate the edit review modal. #}
+      {% if DESKTOP and has_review %}
+        <script type="text/template" id="current-review">
+          {{ my_review.body|nl2br }}
+        </script>
+      {% endif %}
     {% endif %}
   </div>
 </section>
