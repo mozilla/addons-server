@@ -76,6 +76,7 @@ def payments(request, addon_id, addon, webapp=False):
                         request, _(u'We encountered a problem connecting to '
                                    u'the payment server.'))
                     success = False
+                    raise  # We want to see all the solitude errors now.
 
             # Test again in case a call to Solitude failed.
             if is_now_paid and success:
@@ -92,6 +93,7 @@ def payments(request, addon_id, addon, webapp=False):
                         request, _(u'We encountered a problem while updating '
                                    u'the payment server.'))
                     success = False
+                    raise  # We want to see all the solitude errors now.
 
         # If everything happened successfully, give the user a pat on the back.
         if success:
