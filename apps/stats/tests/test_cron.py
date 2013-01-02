@@ -98,7 +98,11 @@ class TestWebtrends(amo.tests.TestCase):
 
 
 class TestGoogleAnalytics(amo.tests.TestCase):
-
+    @mock.patch.object(settings, 'GOOGLE_ANALYTICS_CREDENTIALS',
+                       {'access_token': '', 'client_id': '',
+                        'client_secret': '', 'refresh_token': '',
+                        'token_expiry': '', 'token_uri': '',
+                        'user_agent': ''}, create=True)
     @mock.patch('httplib2.Http')
     @mock.patch('stats.tasks.get_first_profile_id')
     @mock.patch('stats.tasks.build')

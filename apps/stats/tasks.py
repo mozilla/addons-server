@@ -108,8 +108,14 @@ def get_first_profile_id(service):
 
 @task
 def update_google_analytics(metric, date, **kw):
+    creds_data = getattr(settings, 'GOOGLE_ANALYTICS_CREDENTIALS', None)
+    if creds_data is None:
+        log.critical('Failed to update global stats: '
+                     'GOOGLE_ANALYTICS_CREDENTIALS not set')
+        return
+
     creds = OAuth2Credentials(
-        *[settings.GOOGLE_ANALYTICS_CREDENTIALS[k] for k in
+        *[creds_data[k] for k in
           ('access_token', 'client_id', 'client_secret',
            'refresh_token', 'token_expiry', 'token_uri',
            'user_agent')])
