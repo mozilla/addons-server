@@ -13,12 +13,15 @@ Paste the printed credentials into the Django settings file.
 import pprint
 import sys
 
+import gflags
 from oauth2client.client import flow_from_clientsecrets, Storage
 from oauth2client.tools import run
 
-if len(sys.argv) != 2:
-    print "usage: auth_google_analytics.py <client secrets filename>"
+if len(sys.argv) < 2:
+    print "usage: auth_google_analytics.py <client secrets filename> [--noauth_local_webserver]"
     sys.exit(1)
+
+gflags.FLAGS(sys.argv)
 
 CLIENT_SECRETS = sys.argv[1]
 
