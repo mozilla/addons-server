@@ -25,7 +25,7 @@
               {% if amo_user.is_app_developer %}
                 <li><a href="{{ url('mkt.developers.apps') }}">{{ _('My Submissions') }}</a></li>
               {% endif %}
-              <li><a href="{{ url('account.feedback') }}">{{ _('Feedback') }}</a></li>
+              <li class="submit-feedback"><a href="{{ url('account.feedback') }}">{{ _('Feedback') }}</a></li>
               <li><a href="{{ url('users.logout') }}" class="sync logout">{{ _('Sign Out') }}</a></li>
             </ul>
           </div>

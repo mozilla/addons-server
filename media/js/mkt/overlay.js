@@ -3,7 +3,7 @@
         e.preventDefault();
         e.stopPropagation();
     });
-    z.body.on('click', '.overlay button.dismiss', _pd(dismiss));
+    z.body.on('click', '.overlay .dismiss', _pd(dismiss));
 
     function dismiss() {
         var $overlay = $('.overlay.show');

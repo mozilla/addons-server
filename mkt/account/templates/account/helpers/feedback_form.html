@@ -1,0 +1,18 @@
+<form class="container form-grid feedback-form" method="post" id="feedback-form" action="{{ url('account.feedback') }}">
+  {{ csrf() }}
+
+  <div class="simple-field c{{ ' error' if form.feedback.errors }}">
+    {{ form.feedback.errors }}
+    {{ form.feedback }}
+  </div>
+
+  {% include 'site/helpers/recaptcha.html' %}
+
+  {{ form.platform }}
+  {{ form.chromeless }}
+  {{ form.from_url }}
+
+  <footer class="form-footer c">
+    <button type="submit">{{ _('Send') }}</button>
+  </footer>
+</form>

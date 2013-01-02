@@ -13,23 +13,8 @@
         <h2>{{ pagetitle }}</h2>
       {% endif %}
 
-      <form class="container form-grid" method="post" id="feedback-form" action="{{ url('account.feedback') }}">
-        {{ csrf() }}
+      {{ feedback_form(form) }}
 
-        <div class="simple-field c{{ ' error' if form.feedback.errors }}">
-          {{ form.feedback.errors }}
-          {{ form.feedback }}
-        </div>
-
-        {% include 'site/helpers/recaptcha.html' %}
-
-        {{ form.platform }}
-        {{ form.chromeless }}
-
-        <footer class="form-footer c">
-          <button type="submit">{{ _('Send') }}</button>
-        </footer>
-      </form>
       <div class="feedback-links c">
         <a href="https://support.mozilla.org/en-US/products/marketplace" class="fatbutton" target="_blank">{{ _('Get Help') }}</a>
         <a href="{{ url('site.privacy') }}" class="fatbutton" rel="external">{{ _('Privacy Policy') }}</a>

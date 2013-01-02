@@ -29,20 +29,13 @@
     display: none;
 }
 
-#site-header, .classic-header {
-    section.main {
-        position: relative;
-    }
+header {
+    position: relative;
     .gradient-two-color(#566773, #3e4e59);
     .box-shadow(~'0 -1px 0 rgba(0,0,0,.15) inset, 0 0 3px 3px rgba(0,0,0,.3), 0 1px 0 rgba(255,255,255,.1) inset');
     height: 50px;
     line-height: 50px;
     width: 100%;
-
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 10;
     h1 {
         .dark-text-shadow;
         color: #fff;
@@ -54,6 +47,18 @@
         left: 30px;
         z-index: 10;
     }
+}
+
+#site-header {
+    section.main {
+        position: relative;
+    }
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+
     nav,
     section.main {
         position: relative;
@@ -138,7 +143,8 @@ body.login[data-page-type=notice] #site-header.no-consumer h1 {
     &.settings:before {
         background-position: 0 0;
     }
-    &.cancel:before {
+    &.cancel:before,
+    &.dismiss:before {
         background-position: 0 -24px;
     }
     &.search:before {

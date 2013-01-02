@@ -93,11 +93,15 @@ class CurrencyForm(happyforms.Form):
 
 class FeedbackForm(happyforms.Form):
     """Site feedback form."""
-    feedback = forms.CharField(required=True, widget=forms.Textarea, label='')
+
+    feedback = forms.CharField(required=True, label='',
+                               widget=forms.Textarea(attrs={'rows': 4}))
     platform = forms.CharField(required=False, widget=forms.HiddenInput,
                                label='')
     chromeless = forms.CharField(required=False, widget=forms.HiddenInput,
                                  label='')
+    from_url = forms.CharField(required=False, widget=forms.HiddenInput,
+                               label='')
 
     recaptcha = captcha.fields.ReCaptchaField(label='')
 

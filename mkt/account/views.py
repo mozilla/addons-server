@@ -232,11 +232,13 @@ def account_feedback(request):
         feedback = form.cleaned_data['feedback']
         platform = form.cleaned_data['platform']
         chromeless = form.cleaned_data['chromeless']
+        from_url = form.cleaned_data['from_url']
         context = {'user': request.amo_user,
                    'user_agent': request.META.get('HTTP_USER_AGENT', ''),
                    'ip_address': request.META.get('REMOTE_ADDR', ''),
                    'feedback': feedback,
                    'platform': platform,
+                   'from_url': from_url,
                    'chromeless': chromeless}
         send_mail_jinja(
             u'Marketplace Feedback', 'account/email/feedback.txt', context,
@@ -244,12 +246,11 @@ def account_feedback(request):
                 'noreply@mozilla.com',
             [settings.MKT_FEEDBACK_EMAIL])
 
-        if request.is_ajax():
-            return http.HttpResponse(
-                json.dumps({'status': 'win'}), content_type='application/json')
+        if from_url == '':
+            from_url = reverse('account.feedback')
 
-        amo.messages.success(request, _('Feedback sent.'))
-        return redirect(reverse('account.feedback'))
+        amo.messages.success(request, _('Feedback sent. Thanks!'))
+        return redirect(from_url)
 
     return jingo.render(request, 'account/feedback.html', {'form': form})
 

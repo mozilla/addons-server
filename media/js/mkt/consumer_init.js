@@ -1,6 +1,6 @@
 // Do this last- initialize the marketplace!
 
-define('marketplace', ['login', 'notification', 'prefetch', 'tracking'], function() {
+define('marketplace', ['login', 'notification', 'prefetch', 'tracking', 'feedback'], function() {
     // Initialize analytics tracking.
     z.page.on('fragmentloaded', function(event, href, popped, state) {
         if (!popped) {

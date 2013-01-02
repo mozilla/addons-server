@@ -11,26 +11,10 @@
     opacity: 0;
     overflow: hidden;
     color: #000;
-    background: rgba(0,0,0,.2);
+    background: rgba(0,0,0,.5);
     pointer-events: none;
     -moz-transition: .5s opacity ease;
     -webkit-transition: .5s opacity ease;
-    .close {
-        display: block;
-        background-color: @text;
-        position: absolute;
-        margin: 0;
-        z-index: 20;
-        top: 5px;
-        right: 5px;
-        .border-radius(5px);
-        color: #fff;
-        padding: 3px 9px;
-        font-weight: bold;
-        &:hover {
-            text-decoration: none;
-        }
-    }
     &.show {
         pointer-events: auto;
         opacity: 1;
@@ -66,6 +50,17 @@
                 margin: 10px 0 0;
                 float: right;
             }
+        }
+    }
+    header .dismiss {
+        width: 50px;
+    }
+    section.bare {
+        .border-radius(0);
+        border: 0;
+        padding: 0;
+        .header-button {
+            display: block;
         }
     }
     form {

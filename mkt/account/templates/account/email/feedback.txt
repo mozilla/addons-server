@@ -13,6 +13,7 @@ User:
   ip address: {{ ip_address }}
   platform: {{ platform }}
   using Marketplace app: {{ chromeless }}
+  submitted from URL: {{ from_url }}
 
 Feedback:
 
