@@ -29,16 +29,21 @@
                 padding-left: 0;
             }
             a {
-                display: block;
-                outline: 0;
-                color: @white;
-                text-shadow: 0 1px 1px rgba(0,0,0,0.6);
-                line-height: 40px;
-                font-size: 14px;
                 border-top: 1px solid transparent; // Preserve spacing.
+                display: block;
+                color: darken(@white, 15%);
+                font-size: 14px;
+                font-weight: 400;
+                line-height: 40px;
+                outline: 0;
+                text-shadow: 0 1px 1px rgba(0,0,0,.6);
+                &:hover {
+                    color: @white;
+                    text-decoration: none;
+                }
                 &.sel {
-                    border-top: 1px solid #00b2ff;
-                    color: #00b2ff;
+                    border-top: 1px solid #3ec3fc;
+                    color: #3ec3fc;
                     text-decoration: none;
                 }
             }

@@ -177,16 +177,19 @@
             background-image: url(../../img/mkt/carriers-sen/expand-toggle.png);
         }
     }
-    #filters #filter-sort a.sel {
-        border-top-color: #189cbb;
-        color: #fff;
-        &:before {
-            background: darken(#189cbb, 27%);
-            content: "";
-            display: block;
-            height: 1px;
-            margin-bottom: -1px;
-            width: 100%;
+    #filters #filter-sort a {
+        text-shadow: 0 1px 1px @black;
+        &.sel {
+            border-top-color: #189cbb;
+            color: #189cbb;
+            &:before {
+                background: darken(#189cbb, 27%);
+                content: "";
+                display: block;
+                height: 1px;
+                margin-bottom: -1px;
+                width: 100%;
+            }
         }
     }
 

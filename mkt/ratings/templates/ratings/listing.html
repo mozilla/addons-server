@@ -17,7 +17,7 @@
     {% if product.can_review(amo_user) %}
     <section class="main" id="review-listing">
       <p id="add-review">
-        <a href="{{ product.get_ratings_url('add') }}" class="button fat">
+        <a href="{{ product.get_ratings_url('add') }}" class="button">
           {{ _('Write a review') if not has_review else _('Edit your review') }}
         </a>
       </p>

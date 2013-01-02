@@ -67,15 +67,15 @@
     }
 }
 .toggles li a, .footer-action .apply {
-    line-height: 40px;
-    border: 1px solid #cdcbcb;
-    display: inline-block;
-    width: 100%;
-    text-align: center;
-    .gradient-two-color(#f7f7f7, @faint-gray);
-    font-weight: 500;
-    color: @text;
     .ellipsis();
+    .gradient-two-color(#f7f7f7, @faint-gray);
+    border: 1px solid #cdcbcb;
+    color: @text;
+    display: inline-block;
+    font-weight: 500;
+    line-height: 40px;
+    text-align: center;
+    width: 100%;
     &.sel, &:active {
         .gradient-two-color(#328ccc, #2475b3);
         color: @white;
