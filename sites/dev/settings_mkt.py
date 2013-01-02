@@ -146,10 +146,21 @@ SIGNED_APPS_SERVER = private_mkt.SIGNED_APPS_SERVER
 SIGNED_APPS_REVIEWER_SERVER_ACTIVE = True
 SIGNED_APPS_REVIEWER_SERVER = private_mkt.SIGNED_APPS_REVIEWER_SERVER
 
-METLOG_CONF['logger'] = 'addons-marketplace-dev'
-METLOG_CONF['plugins']['raven'] = (
-    'metlog_raven.raven_plugin:config_plugin', {'dsn': SENTRY_DSN})
+METLOG_CONF = {
+    'plugins': {'cef': ('metlog_cef.cef_plugin:config_plugin', {}),
+                'raven': (
+                    'metlog_raven.raven_plugin:config_plugin', {'dsn': SENTRY_DSN}),
+        },
+    'sender': {
+        'class': 'metlog.senders.UdpSender',
+        'host': splitstrip(private.METLOG_CONF_SENDER_HOST),
+        'port': private.METLOG_CONF_SENDER_PORT,
+    },
+    'logger': 'addons-marketplace-dev',
+}
 METLOG = client_from_dict_config(METLOG_CONF)
+USE_METLOG_FOR_CEF = True
+USE_METLOG_FOR_TASTYPIE = True
 
 WEBTRENDS_USERNAME = private_mkt.WEBTRENDS_USERNAME
 WEBTRENDS_PASSWORD = private_mkt.WEBTRENDS_PASSWORD
@@ -157,10 +168,7 @@ WEBTRENDS_PASSWORD = private_mkt.WEBTRENDS_PASSWORD
 # Allow /developers/?refresh to refresh all MDN content for Developer Hub.
 MDN_LAZY_REFRESH = True
 
-# Deactivated the SENTRY_CLIENT until a proxy can be made for metlog
-# to defer instantiation until METLOG_CONF has been fully configured
-
-#SENTRY_CLIENT = 'djangoraven.metlog.MetlogDjangoClient'
+SENTRY_CLIENT = 'djangoraven.metlog.MetlogDjangoClient'
 
 # Pass through the DSN to the Raven client and force signal
 # registration so that exceptions are passed through to sentry

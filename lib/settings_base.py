@@ -1183,7 +1183,7 @@ METLOG_CONF = {
 METLOG = client_from_dict_config(METLOG_CONF)
 
 USE_METLOG_FOR_CEF = False
-USE_METLOG_FOR_RAVEN = False
+USE_METLOG_FOR_TASTYPIE = False
 
 CEF_PRODUCT = "amo"
 

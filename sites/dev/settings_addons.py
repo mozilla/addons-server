@@ -80,6 +80,20 @@ AMO_LANGUAGES = AMO_LANGUAGES + ('dbg',)
 LANGUAGES = lazy(lazy_langs, dict)(AMO_LANGUAGES)
 LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in AMO_LANGUAGES])
 
-METLOG_CONF['logger'] = 'addons-dev'
-METLOG_CONF['plugins']['raven'] = ('metlog_raven.raven_plugin:config_plugin', {'dsn': private_addons.SENTRY_DSN})
+METLOG_CONF = {
+    'plugins': {'cef': ('metlog_cef.cef_plugin:config_plugin', {}),
+                'raven': (
+                    'metlog_raven.raven_plugin:config_plugin', {'dsn': private_addons.SENTRY_DSN}),
+        },
+    'sender': {
+        'class': 'metlog.senders.UdpSender',
+        'host': splitstrip(private.METLOG_CONF_SENDER_HOST),
+        'port': private.METLOG_CONF_SENDER_PORT,
+    },
+    'logger': 'addons-dev',
+}
+
 METLOG = client_from_dict_config(METLOG_CONF)
+
+USE_METLOG_FOR_CEF = True
+USE_METLOG_FOR_TASTYPIE = False
