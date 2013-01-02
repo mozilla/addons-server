@@ -4,9 +4,11 @@ This script is for setting up OAuth credentials for Google Analytics.
 
 To use:
 Visit https://code.google.com/apis/console/ and select "API Access".
-If a client ID for a "web application" hasn't been created, add one.
+If a client ID for an "installed application" hasn't been created, add one.
 Click "Download JSON" in the box containing information about that client ID.
-Run this script with the filename of the downloaded JSON.
+Run this script: 'python auth_google_analytics.py --secrets client_secrets.json'
+(If you are running this on a host with no web browser, pass
+--noauth_local_webserver as well.)
 Paste the printed credentials into the Django settings file.
 """
 
@@ -17,13 +19,11 @@ import gflags
 from oauth2client.client import flow_from_clientsecrets, Storage
 from oauth2client.tools import run
 
-if len(sys.argv) < 2:
-    print "usage: auth_google_analytics.py <client secrets filename> [--noauth_local_webserver]"
-    sys.exit(1)
+gflags.DEFINE_string('secrets', None, 'Client secret JSON filename', short_name='f')
 
 gflags.FLAGS(sys.argv)
 
-CLIENT_SECRETS = sys.argv[1]
+CLIENT_SECRETS = gflags.FLAGS.secrets
 
 MISSING_CLIENT_SECRETS_MESSAGE = ("%s is missing or doesn't contain secrets "
                                   "for a web application" % CLIENT_SECRETS)
