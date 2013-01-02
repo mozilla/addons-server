@@ -449,16 +449,31 @@ a[rel="external"] {
 
 a.app-source, .app-generator-detail #download-link {
     .gradient-two-color(#00a33b, #008739);
-    clear: both;
     color: @white;
-    display: block;
     font-size: 18px;
     line-height: 22px;
-    margin: 0 auto;
     width: 200px;
 
     &:visited {
         color: @white;
+    }
+}
+
+.app-generator-detail #download-link {
+    display: block;
+    clear: both;
+    margin: 0 auto;
+}
+
+a.app-source {
+    display: block;
+
+    &:first-child {
+        float: left;
+    }
+
+    &:last-child {
+        float: right;
     }
 }
 
