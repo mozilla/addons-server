@@ -124,4 +124,5 @@ WEBTRENDS_PASSWORD = private_mkt.WEBTRENDS_PASSWORD
 SENTRY_CLIENT = 'djangoraven.metlog.MetlogDjangoClient'
 
 # Remove SEN.
-CARRIER_URLS.remove('sony')
+if 'sony' in CARRIER_URLS:
+    CARRIER_URLS.remove('sony')
