@@ -724,8 +724,8 @@ class Webapp(Addon):
                  platform=Platform.objects.get(id=amo.PLATFORM_ALL.id))
         f.filename = f.generate_filename()
         copy_stored_file(blocklisted_path, f.file_path)
-        log.info('[Webapp:%s] Copied blocklisted app from %s to %s' % (
-            self, blocklisted_path, f.file_path))
+        log.info(u'[Webapp:%s] Copied blocklisted app from %s to %s' % (
+            self.id, blocklisted_path, f.file_path))
         f.size = storage.size(f.file_path)
         f.hash = f.generate_hash(f.file_path)
         f.save()

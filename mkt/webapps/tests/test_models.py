@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import functools
 import json
 import os
@@ -408,8 +409,9 @@ class TestManifest(BaseWebAppTest):
 class TestPackagedModel(amo.tests.TestCase):
 
     def test_create_blocklisted_version(self):
-        app = app_factory(app_slug='test', is_packaged=True,
-                          version_kw={'version': '1.0', 'created': None})
+        app = app_factory(name='Mozillaball ょ', app_slug='test',
+                          is_packaged=True, version_kw={'version': '1.0',
+                                                        'created': None})
         app.create_blocklisted_version()
         app = app.reload()
         v = app.versions.latest()
