@@ -22,7 +22,8 @@ def download_file(request, file_id, type=None):
                                          ignore_disabled=True):
             raise http.Http404()
 
-    if file.status == amo.STATUS_PUBLIC:
+    # We treat blocked files like public files so users get the update.
+    if file.status in [amo.STATUS_PUBLIC, amo.STATUS_BLOCKED]:
         path = webapp.sign_if_packaged(file.version_id)
 
     else:

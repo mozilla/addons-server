@@ -61,3 +61,10 @@ class TestDownload(BasePackagedAppTest):
     def test_not_webapp(self):
         self.app.update(type=amo.ADDON_EXTENSION)
         eq_(self.client.get(self.url).status_code, 404)
+
+    @mock.patch.object(packaged, 'sign', mock_sign)
+    def test_file_blocklisted(self):
+        self.file.update(status=amo.STATUS_BLOCKED)
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        assert 'x-sendfile' in res
