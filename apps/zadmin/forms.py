@@ -291,9 +291,6 @@ class GenerateErrorForm(happyforms.Form):
     def explode(self):
         error = self.cleaned_data.get('error')
 
-        from metlog.config import client_from_dict_config
-        new_metlog = client_from_dict_config(settings.METLOG_CONF)
-
         if error == 'zerodivisionerror':
             1 / 0
         elif error == 'iorequesterror':
@@ -314,38 +311,21 @@ class GenerateErrorForm(happyforms.Form):
             settings.METLOG.cef('xx\nx|xx\rx', 5, environ, config,
                     username='me', ext1='ok=ok', ext2='ok\\ok',
                     logger_info='settings.METLOG')
-            new_metlog.cef('xx\nx|xx\rx', 5, environ, config,
-                    username='me', ext1='ok=ok', ext2='ok\\ok',
-                    logger_info='new_metlog')
         elif error == 'metlog_statsd':
-            new_metlog.incr(name="new_metlog:" + LOGGER_NAME)
             settings.METLOG.incr(name=LOGGER_NAME)
         elif error == 'metlog_json':
-            new_metlog.metlog(type="metlog_json",
-                    fields={'foo': 'bar', 'secret': 42,
-                            'logger_type': 'new_metlog'})
             settings.METLOG.metlog(type="metlog_json",
                     fields={'foo': 'bar', 'secret': 42,
                             'logger_type': 'settings.METLOG'})
 
         elif error == 'metlog_sentry':
             # These are local variables only used
-            # by Sentry's frame hacking magic.  
+            # by Sentry's frame hacking magic.
             # They won't be referenced which may trigger flake8
             # errors.
             metlog_conf = settings.METLOG_CONF  # NOQA
             active_metlog_conf = settings.METLOG._config  # NOQA
-
-            # Try to fire off two messages to verify that we don't
-            # have some kind of transient issue where settings.METLOG
-            # doesn't work
-
             try:
-                2 / 0
+                1 / 0
             except:
-                new_metlog.raven('new_metlog: metlog_sentry error triggered')
-            finally:
-                try:
-                    1 / 0
-                except:
-                    settings.METLOG.raven('metlog_sentry error triggered')
+                settings.METLOG.raven('metlog_sentry error triggered')
