@@ -7,18 +7,19 @@ import waffle
 from tower import ugettext as _, ugettext_lazy as _lazy
 
 import amo
-from addons.forms import AddonFormBasic
-from addons.models import Addon, AddonDeviceType, AddonUpsell
-from apps.users.notifications import app_surveys
+from addons.models import Addon, AddonUpsell, BlacklistedSlug
+from amo.utils import slug_validator
 from apps.users.models import UserNotification
+from apps.users.notifications import app_surveys
 from editors.models import RereviewQueue
 from files.models import FileUpload
 from files.utils import parse_addon
 from market.models import AddonPremium, Price
-from translations.widgets import TransInput, TransTextarea
 from translations.fields import TransField
+from translations.forms import TranslationFormMixin
+from translations.widgets import TransInput, TransTextarea
 
-from mkt.constants import DEVICE_LOOKUP, FREE_PLATFORMS, PAID_PLATFORMS
+from mkt.constants import FREE_PLATFORMS, PAID_PLATFORMS
 from mkt.site.forms import AddonChoiceField, APP_PUBLIC_CHOICES
 
 
@@ -309,11 +310,14 @@ class UpsellForm(happyforms.Form):
         self.addon.update(make_public=self.cleaned_data['make_public'])
 
 
-class AppDetailsBasicForm(AddonFormBasic):
+class AppDetailsBasicForm(TranslationFormMixin, happyforms.ModelForm):
+
+    def __init__(self, *args, **kw):
+        self.request = kw.pop('request')
+        super(AppDetailsBasicForm, self).__init__(*args, **kw)
+
     """Form for "Details" submission step."""
-    name = TransField(max_length=128,
-                      widget=TransInput(attrs={'class': 'name l'}))
-    slug = forms.CharField(max_length=30,
+    app_slug = forms.CharField(max_length=30,
                            widget=forms.TextInput(attrs={'class': 'm'}))
     summary = TransField(max_length=250,
         label=_lazy(u"Brief Summary:"),
@@ -325,10 +329,10 @@ class AppDetailsBasicForm(AddonFormBasic):
         help_text=_lazy(u'This description will appear on the details page.'),
         widget=TransTextarea(attrs={'rows': 4}))
     privacy_policy = TransField(widget=TransTextarea(attrs={'rows': 6}),
-         label=_lazy(u'Privacy Policy:'),
-         help_text=_lazy(u"A privacy policy that explains what "
-                          "data is transmitted from a user's computer and how "
-                          "it is used is required."))
+        label=_lazy(u'Privacy Policy:'),
+        help_text=_lazy(u"A privacy policy that explains what "
+                         "data is transmitted from a user's computer and how "
+                         "it is used is required."))
     homepage = TransField.adapt(forms.URLField)(required=False,
         verify_exists=False, label=_lazy(u'Homepage:'),
         help_text=_lazy(u'If your app has another homepage, enter its address '
@@ -364,8 +368,22 @@ class AppDetailsBasicForm(AddonFormBasic):
 
     class Meta:
         model = Addon
-        fields = ('flash', 'name', 'slug', 'summary', 'tags', 'description',
-                  'privacy_policy', 'homepage', 'support_url', 'support_email')
+        fields = ('app_slug', 'summary', 'description', 'privacy_policy',
+                  'homepage', 'support_url', 'support_email')
+
+    def clean_app_slug(self):
+        slug_field = 'app_slug'
+        target = self.cleaned_data[slug_field]
+        slug_validator(target, lower=False)
+
+        if target != getattr(self.instance, slug_field):
+            if Addon.objects.filter(**{slug_field: target}).exists():
+                raise forms.ValidationError(_('This slug is already in use.'))
+
+            if BlacklistedSlug.blocked(target):
+                raise forms.ValidationError(
+                    _('The slug cannot be %s.' % target))
+        return target
 
     def save(self, *args, **kw):
         uses_flash = self.cleaned_data.get('flash')
@@ -373,4 +391,7 @@ class AppDetailsBasicForm(AddonFormBasic):
         if af is not None:
             af.update(uses_flash=bool(uses_flash))
 
-        return super(AppDetailsBasicForm, self).save(*args, **kw)
+        form = super(AppDetailsBasicForm, self).save(commit=False)
+        form.save()
+
+        return form

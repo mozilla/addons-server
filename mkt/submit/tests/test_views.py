@@ -28,6 +28,7 @@ from translations.models import Translation
 from users.models import UserProfile
 
 import mkt
+from mkt.site.fixtures import fixture
 from mkt.submit.forms import NewWebappVersionForm
 from mkt.submit.models import AppSubmissionChecklist
 from mkt.submit.decorators import read_dev_agreement_required
@@ -35,7 +36,7 @@ from mkt.webapps.models import AddonExcludedRegion as AER, Webapp
 
 
 class TestSubmit(amo.tests.TestCase):
-    fixtures = ['base/users']
+    fixtures = fixture('user_999')
 
     def setUp(self):
         self.user = self.get_user()
@@ -77,7 +78,7 @@ class TestSubmit(amo.tests.TestCase):
 
 
 class TestProceed(TestSubmit):
-    fixtures = ['base/users']
+    fixtures = TestSubmit.fixtures
 
     def setUp(self):
         super(TestProceed, self).setUp()
@@ -98,7 +99,7 @@ class TestProceed(TestSubmit):
 
 
 class TestTerms(TestSubmit):
-    fixtures = ['base/users']
+    fixtures = TestSubmit.fixtures
 
     def setUp(self):
         super(TestTerms, self).setUp()
@@ -164,7 +165,7 @@ class TestTerms(TestSubmit):
 
 
 class TestManifest(TestSubmit):
-    fixtures = ['base/users']
+    fixtures = TestSubmit.fixtures
 
     def setUp(self):
         super(TestManifest, self).setUp()
@@ -216,7 +217,7 @@ class UploadAddon(object):
 
 
 class BaseWebAppTest(BaseUploadTest, UploadAddon, amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/users', 'base/platforms']
+    fixtures = fixture('app_firefox', 'platform_all', 'user_999', 'user_10482')
 
     def setUp(self):
         super(BaseWebAppTest, self).setUp()
@@ -394,8 +395,7 @@ class TestCreateWebAppFromManifest(BaseWebAppTest):
 
 
 class BasePackagedAppTest(BaseUploadTest, UploadAddon, amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/users', 'base/platforms',
-                'webapps/337141-steamcube']
+    fixtures = fixture('webapp_337141', 'user_999')
 
     def setUp(self):
         super(BasePackagedAppTest, self).setUp()
@@ -479,7 +479,7 @@ class TestCreatePackagedApp(BasePackagedAppTest):
 
 
 class TestDetails(TestSubmit):
-    fixtures = ['base/apps', 'base/users', 'webapps/337141-steamcube']
+    fixtures = fixture('webapp_337141', 'user_999', 'user_10482')
 
     def setUp(self):
         super(TestDetails, self).setUp()
@@ -570,8 +570,7 @@ class TestDetails(TestSubmit):
 
     def get_dict(self, **kw):
         data = {
-            'name': 'Test name',
-            'slug': 'testname',
+            'app_slug': 'testname',
             'summary': 'Hello!',
             'description': 'desc',
             'privacy_policy': 'XXX <script>alert("xss")</script>',
@@ -599,7 +598,6 @@ class TestDetails(TestSubmit):
 
         # Build a dictionary of expected results.
         expected_data = {
-            'name': 'Test name',
             'app_slug': 'testname',
             'summary': 'Hello!',
             'description': 'desc',
@@ -711,40 +709,13 @@ class TestDetails(TestSubmit):
         for size in amo.ADDON_ICON_SIZES:
             fn = '%s-%s.png' % (ad.id, size)
             assert os.path.exists(os.path.join(ad.get_icon_dir(), fn)), (
-                    'Expected %s in %s' % (fn, os.listdir(ad.get_icon_dir())))
+                'Expected %s in %s' % (fn, os.listdir(ad.get_icon_dir())))
 
     def _setup_other_webapp(self):
         self._step()
         # Generate another webapp to test name uniqueness.
         app = amo.tests.addon_factory(type=amo.ADDON_WEBAPP, name='Cool App')
         eq_(reverse_name_lookup(app.name, webapp=True), app.id)
-
-    def test_name_unique(self):
-        self._setup_other_webapp()
-        r = self.client.post(self.url, self.get_dict(name='Cool App'))
-        error = 'This name is already in use. Please choose another.'
-        self.assertFormError(r, 'form_basic', 'name', error)
-
-    def test_name_unique_strip(self):
-        # Make sure we can't sneak in a name by adding a space or two.
-        self._setup_other_webapp()
-        r = self.client.post(self.url, self.get_dict(name='  Cool App  '))
-        error = 'This name is already in use. Please choose another.'
-        self.assertFormError(r, 'form_basic', 'name', error)
-
-    def test_name_unique_case(self):
-        # Make sure unique names aren't case sensitive.
-        self._setup_other_webapp()
-        r = self.client.post(self.url, self.get_dict(name='cool app'))
-        error = 'This name is already in use. Please choose another.'
-        self.assertFormError(r, 'form_basic', 'name', error)
-
-    def test_name_required(self):
-        self._step()
-        r = self.client.post(self.url, self.get_dict(name=''))
-        eq_(r.status_code, 200)
-        self.assertFormError(r, 'form_basic', 'name',
-                             'This field is required.')
 
     def test_screenshot_or_video_required(self):
         self._step()
@@ -775,28 +746,21 @@ class TestDetails(TestSubmit):
         eq_(form.find('input[name=files-0-unsaved_image_data]').val(),
             preview_uri)
 
-    def test_name_length(self):
-        self._step()
-        r = self.client.post(self.url, self.get_dict(name='a' * 129))
-        eq_(r.status_code, 200)
-        self.assertFormError(r, 'form_basic', 'name',
-            'Ensure this value has at most 128 characters (it has 129).')
-
     def test_slug_invalid(self):
         self._step()
         # Submit an invalid slug.
-        d = self.get_dict(slug='slug!!! aksl23%%')
+        d = self.get_dict(app_slug='slug!!! aksl23%%')
         r = self.client.post(self.url, d)
         eq_(r.status_code, 200)
-        self.assertFormError(r, 'form_basic', 'slug',
+        self.assertFormError(r, 'form_basic', 'app_slug',
             "Enter a valid 'slug' consisting of letters, numbers, underscores "
             "or hyphens.")
 
     def test_slug_required(self):
         self._step()
-        r = self.client.post(self.url, self.get_dict(slug=''))
+        r = self.client.post(self.url, self.get_dict(app_slug=''))
         eq_(r.status_code, 200)
-        self.assertFormError(r, 'form_basic', 'slug',
+        self.assertFormError(r, 'form_basic', 'app_slug',
                              'This field is required.')
 
     def test_summary_required(self):

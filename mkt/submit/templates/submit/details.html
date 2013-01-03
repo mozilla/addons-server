@@ -36,8 +36,7 @@
                    data-upload-url="{{ icon_upload_url }}">
           </div>
         </div>
-        <div class="houdini{{ ' ready' if not (form_basic.name.errors or
-                                               form_basic.slug.errors) }}">
+        <div class="houdini{{ ' ready' if not form_basic.app_slug.errors }}">
           <div class="before">
             <!-- {{ addon.name }} -->
             <h2 class="output">{{ addon.name }}</h2>
@@ -50,20 +49,19 @@
           </div>
           <div class="after">
             <table>
-              <tr{% if form_basic.name.errors %} class="error"{% endif %}>
+              <tr>
                 <th>
-                  <label for="{{ form_basic.name.auto_id }}">
+                  <label>
                     {{ _('Name') }}
                   </label>
                 </th>
                 <td>
-                  {{ form_basic.name }}
-                  {{ form_basic.name.errors }}
+                  {{ addon.name }}
                 </td>
               </tr>
-              <tr{% if form_basic.slug.errors %} class="error"{% endif %}>
+              <tr{% if form_basic.app_slug.errors %} class="error"{% endif %}>
                 <th>
-                  <label for="{{ form_basic.slug.auto_id }}">
+                  <label for="{{ form_basic.app_slug.auto_id }}">
                     {{ _('App URL') }}
                   </label>
                   {{ tip(None, _('Select a unique URL for your detail page. '
@@ -72,9 +70,9 @@
                 </th>
                 <td>
                   <div class="edit_with_prefix c">
-                    <span>{{ settings.SITE_URL }}/&hellip;/</span>{{ form_basic.slug }}
+                    <span>{{ settings.SITE_URL }}/&hellip;/</span>{{ form_basic.app_slug }}
                   </div>
-                  {{ form_basic.slug.errors }}
+                  {{ form_basic.app_slug.errors }}
                 </td>
               </tr>
             </table>
