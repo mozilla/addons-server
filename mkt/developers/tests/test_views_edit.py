@@ -11,7 +11,6 @@ from nose import SkipTest
 from nose.tools import eq_
 from PIL import Image
 from pyquery import PyQuery as pq
-from tower import strip_whitespace
 from waffle.models import Switch
 
 import amo
@@ -32,6 +31,7 @@ import mkt
 from mkt.constants import APP_IMAGE_SIZES
 from mkt.constants.ratingsbodies import RATINGS_BODIES
 from mkt.developers.models import ActivityLog
+from mkt.site.fixtures import fixture
 from mkt.webapps.models import (AddonExcludedRegion as AER, ContentRating,
                                 ImageAsset)
 
@@ -63,7 +63,8 @@ def get_section_url(addon, section, edit=False):
 
 
 class TestEdit(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/users', 'webapps/337141-steamcube']
+    fixtures = fixture('group_admin', 'user_999', 'user_admin',
+                       'user_admin_group', 'webapp_337141')
 
     def setUp(self):
         self.webapp = self.get_webapp()
@@ -116,7 +117,7 @@ class TestEdit(amo.tests.TestCase):
 
 
 class TestEditListingWebapp(TestEdit):
-    fixtures = TestEdit.fixtures
+    fixtures = fixture('webapp_337141')
 
     @mock.patch.object(settings, 'APP_PREVIEW', False)
     def test_apps_context(self):
@@ -138,7 +139,6 @@ class TestEditBasic(TestEdit):
 
     def setUp(self):
         super(TestEditBasic, self).setUp()
-        Switch.objects.create(name='marketplace', active=True)
         self.cat = Category.objects.create(name='Games', type=amo.ADDON_WEBAPP)
         self.dtype = DEVICE_TYPES.keys()[0]
         AddonCategory.objects.create(addon=self.webapp, category=self.cat)
@@ -151,8 +151,8 @@ class TestEditBasic(TestEdit):
         return Addon.objects.get(id=337141)
 
     def get_dict(self, **kw):
-        result = {'device_types': self.dtype, 'name': 'new name',
-                  'slug': 'test_slug', 'summary': 'new summary',
+        result = {'device_types': self.dtype, 'slug': 'test_slug',
+                  'summary': 'new summary',
                   'manifest_url': self.get_webapp().manifest_url,
                   'categories': [self.cat.id]}
         result.update(**kw)
@@ -169,20 +169,6 @@ class TestEditBasic(TestEdit):
         eq_(r.status_code, 200)
         eq_(pq(r.content)('#slug_edit').remove('a, em').text(),
             u'/\u2026/%s' % self.webapp.app_slug)
-
-    def test_edit_name_required(self):
-        r = self.client.post(self.edit_url, self.get_dict(name=''))
-        self.assertFormError(r, 'form', 'name', 'This field is required.')
-
-    def test_edit_name_required_for_all_whitespace(self):
-        r = self.client.post(self.edit_url, self.get_dict(name='  \t  \n  '))
-        self.assertFormError(r, 'form', 'name', 'This field is required.')
-
-    def test_edit_name_max_length(self):
-        r = self.client.post(self.edit_url, self.get_dict(name='x' * 129))
-        eq_(list(r.context['form'].errors['name']),
-            [('en-us',
-              'Ensure this value has at most 128 characters (it has 129).')])
 
     def test_edit_slug_success(self):
         data = self.get_dict()
@@ -233,8 +219,7 @@ class TestEditBasic(TestEdit):
 
     def test_view_edit_manifest_url_empty(self):
         # Empty manifest should throw an error.
-        url = ''
-        r = self.client.post(self.edit_url, self.get_dict(manifest_url=url))
+        r = self.client.post(self.edit_url, self.get_dict(manifest_url=''))
         form = r.context['form']
         assert 'manifest_url' in form.errors
         assert 'This field is required' in form.errors['manifest_url'][0]
@@ -362,30 +347,12 @@ class TestEditBasic(TestEdit):
             [('en-us',
               'Ensure this value has at most 250 characters (it has 251).')])
 
-    def test_edit(self):
-        old_name = self.webapp.name
-        data = self.get_dict()
-
-        r = self.client.post(self.edit_url, data)
-        eq_(r.status_code, 200)
-        webapp = self.get_webapp()
-
-        eq_(unicode(webapp.name), data['name'])
-        eq_(webapp.name.id, old_name.id)
-        eq_(unicode(webapp.app_slug), data['slug'])
-        eq_(unicode(webapp.summary), data['summary'])
-
     def test_edit_check_description(self):
         # Make sure bug 629779 doesn't return.
         r = self.client.post(self.edit_url, self.get_dict())
         eq_(r.status_code, 200)
 
         eq_(self.get_webapp().description, self.webapp.description)
-
-    def test_edit_slug_invalid(self):
-        r = self.client.post(self.edit_url,
-                             self.get_dict(name='', slug='invalid'))
-        eq_(pq(r.content)('form').attr('action'), self.edit_url)
 
     def test_edit_slug_valid(self):
         old_edit = self.edit_url
@@ -423,7 +390,6 @@ class TestEditBasic(TestEdit):
         eq_(r.status_code, 200)
         webapp = self.get_webapp()
 
-        eq_(unicode(webapp.name), data['name'])
         eq_(unicode(webapp.app_slug), data['slug'])
         eq_(unicode(webapp.summary), data['summary'])
 
@@ -473,6 +439,7 @@ class TestEditBasic(TestEdit):
 
 
 class TestEditMedia(TestEdit):
+    fixtures = fixture('webapp_337141')
 
     def setUp(self):
         super(TestEditMedia, self).setUp()
@@ -501,7 +468,7 @@ class TestEditMedia(TestEdit):
         kw.setdefault('initial_count', 0)
         kw.setdefault('prefix', 'files')
 
-        # Preview formset
+        # Preview formset.
         fs = formset(*list(args) + [self.formset_new_form(**prev_blank)], **kw)
 
         # Image asset formset
@@ -570,14 +537,14 @@ class TestEditMedia(TestEdit):
         self.assertNoFormErrors(r)
         webapp = self.get_webapp()
 
-        # Unfortunate hardcoding of URL
+        # Unfortunate hardcoding of URL.
         url = webapp.get_icon_url(64)
         assert ('addon_icons/%s/%s' % (webapp.id / 1000, webapp.id)) in url, (
             'Unexpected path: %r' % url)
 
         eq_(data['icon_type'], 'image/png')
 
-        # Check that it was actually uploaded
+        # Check that it was actually uploaded.
         dirname = os.path.join(settings.ADDON_ICONS_PATH,
                                '%s' % (webapp.id / 1000))
         dest = os.path.join(dirname, '%s-32.png' % webapp.id)
@@ -612,14 +579,14 @@ class TestEditMedia(TestEdit):
         self.assertNoFormErrors(r)
         webapp = self.get_webapp()
 
-        # Unfortunate hardcoding of URL
+        # Unfortunate hardcoding of URL.
         addon_url = webapp.get_icon_url(64).split('?')[0]
         end = 'addon_icons/%s/%s-64.png' % (webapp.id / 1000, webapp.id)
         assert addon_url.endswith(end), 'Unexpected path: %r' % addon_url
 
         eq_(data['icon_type'], 'image/png')
 
-        # Check that it was actually uploaded
+        # Check that it was actually uploaded.
         dirname = os.path.join(settings.ADDON_ICONS_PATH,
                                '%s' % (webapp.id / 1000))
         dest = os.path.join(dirname, '%s-64.png' % webapp.id)
@@ -941,6 +908,7 @@ class TestEditMedia(TestEdit):
 
 
 class TestEditDetails(TestEdit):
+    fixtures = fixture('webapp_337141')
 
     def setUp(self):
         super(TestEditDetails, self).setUp()
@@ -1028,7 +996,7 @@ class TestEditDetails(TestEdit):
         r = self.client.post(self.edit_url, data)
         self.assertFormError(r, 'form', None, missing(fields))
 
-        # Now we're sending an fr description with the form.
+        # Now we're sending an pt-BR description with the form.
         data['description_pt-BR'] = 'pt-BR description'
         r = self.client.post(self.edit_url, data)
         self.assertNoFormErrors(r)
@@ -1069,6 +1037,7 @@ class TestEditDetails(TestEdit):
 
 
 class TestEditSupport(TestEdit):
+    fixtures = fixture('webapp_337141')
 
     def setUp(self):
         super(TestEditSupport, self).setUp()
@@ -1113,7 +1082,7 @@ class TestEditSupport(TestEdit):
 
 
 class TestEditTechnical(TestEdit):
-    fixtures = TestEdit.fixtures
+    fixtures = fixture('webapp_337141')
 
     def setUp(self):
         super(TestEditTechnical, self).setUp()
@@ -1170,6 +1139,7 @@ class TestEditTechnical(TestEdit):
 
 
 class TestAdmin(TestEdit):
+    fixtures = TestEdit.fixtures
 
     def setUp(self):
         super(TestAdmin, self).setUp()
@@ -1189,6 +1159,7 @@ class TestAdmin(TestEdit):
 
 
 class TestAdminSettings(TestAdmin):
+    fixtures = TestEdit.fixtures
 
     def test_form_url(self):
         self.check_form_url('admin')
@@ -1333,6 +1304,7 @@ class TestAdminSettings(TestAdmin):
 
 
 class TestPromoUpload(TestAdmin):
+    fixtures = TestEdit.fixtures
 
     def post(self, **kw):
         data = {'caption': 'ball so hard that ish cray',

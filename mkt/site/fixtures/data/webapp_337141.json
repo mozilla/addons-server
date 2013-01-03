@@ -57,7 +57,7 @@
             "icon_type": "image/png",
             "annoying": 0,
             "modified": "2011-10-18 16:29:46",
-            "summary": 2425897,
+            "summary": 2425898,
             "nomination_message": null,
             "site_specific": false,
             "charity": null,
@@ -118,6 +118,18 @@
             "modified": "2011-10-18 16:28:57",
             "id": 2425897,
             "localized_string": "Something Something Steamcube!"
+        }
+    },
+    {
+        "pk": 2527086,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string_clean": null,
+            "created": "2011-10-18 16:28:24",
+            "locale": "en-US",
+            "modified": "2011-10-18 16:28:57",
+            "id": 2425898,
+            "localized_string": "Something Something Steamcube Summary!"
         }
     },
     {

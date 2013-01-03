@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-from datetime import datetime
 import json
 import os
+from datetime import datetime
 
 from django import forms
 from django.conf import settings
@@ -18,7 +18,7 @@ from tower import ugettext as _, ugettext_lazy as _lazy, ungettext as ngettext
 import amo
 import addons.forms
 from access import acl
-from addons.forms import clean_name, icons, IconWidgetRenderer, slug_validator
+from addons.forms import icons, IconWidgetRenderer, slug_validator
 from addons.models import (Addon, AddonCategory, AddonUser, BlacklistedSlug,
                            Category, Preview)
 from addons.widgets import CategoriesSelectMultiple
@@ -29,12 +29,12 @@ from lib.video import tasks as vtasks
 from translations.fields import TransField
 from translations.forms import TranslationFormMixin
 from translations.models import Translation
-from translations.widgets import TransInput, TransTextarea
+from translations.widgets import TransTextarea
 
 import mkt
 from mkt.constants import APP_IMAGE_SIZES, MAX_PACKAGED_APP_SIZE
-from mkt.constants.ratingsbodies import (RATINGS_BY_NAME, ALL_RATINGS,
-                                         RATINGS_BODIES)
+from mkt.constants.ratingsbodies import (ALL_RATINGS, RATINGS_BODIES,
+                                         RATINGS_BY_NAME)
 from mkt.site.forms import AddonChoiceField
 from mkt.webapps.models import (AddonExcludedRegion, ContentRating, ImageAsset,
                                 Webapp)
@@ -462,7 +462,6 @@ class NewPackagedAppForm(happyforms.Form):
 
 class AppFormBasic(addons.forms.AddonFormBase):
     """Form to edit basic app info."""
-    name = TransField(max_length=128, widget=TransInput)
     slug = forms.CharField(max_length=30, widget=forms.TextInput)
     manifest_url = forms.URLField(verify_exists=False)
     summary = TransField(widget=TransTextarea(attrs={'rows': 4}),
@@ -470,7 +469,7 @@ class AppFormBasic(addons.forms.AddonFormBase):
 
     class Meta:
         model = Addon
-        fields = ('name', 'slug', 'manifest_url', 'summary')
+        fields = ('slug', 'manifest_url', 'summary')
 
     def __init__(self, *args, **kw):
         # Force the form to use app_slug if this is a webapp. We want to keep
@@ -479,12 +478,6 @@ class AppFormBasic(addons.forms.AddonFormBase):
             kw.setdefault('initial', {})['slug'] = kw['instance'].app_slug
 
         super(AppFormBasic, self).__init__(*args, **kw)
-        # Do not simply append validators, as validators will persist between
-        # instances.
-        validate_name = lambda x: clean_name(x, self.instance)
-        name_validators = list(self.fields['name'].validators)
-        name_validators.append(validate_name)
-        self.fields['name'].validators = name_validators
 
     def _post_clean(self):
         # Switch slug to app_slug in cleaned_data and self._meta.fields so
@@ -552,12 +545,12 @@ class AppFormDetails(addons.forms.AddonFormBase):
 
     def clean(self):
         # Make sure we have the required translations in the new locale.
-        required = 'name', 'summary', 'description'
+        required = ['name', 'summary', 'description']
         data = self.cleaned_data
         if not self.errors and 'default_locale' in self.changed_data:
             fields = dict((k, getattr(self.instance, k + '_id'))
                           for k in required)
-            locale = self.cleaned_data['default_locale']
+            locale = data['default_locale']
             ids = filter(None, fields.values())
             qs = (Translation.objects.filter(locale=locale, id__in=ids,
                                              localized_string__isnull=False)

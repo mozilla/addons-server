@@ -17,15 +17,15 @@
       <tbody>
         <tr>
           <th>
-            <label data-for="name">{{ _('Name') }}</label> {{ req_if_edit }}
+            <label data-for="name">
+              {{ _('Name') }}
+              {{ tip(None,
+                     _('This field can only be edited by updating it in the '
+                       'manifest.')) }}
+            </label>
           </th>
           <td>
-            {% if editable %}
-              {{ form.name }}
-              {{ form.name.errors }}
-            {% else %}
-              {{ addon|all_locales('name') }}
-            {% endif %}
+            {{ addon|all_locales('name') }}
           </td>
         </tr>
         <tr>
