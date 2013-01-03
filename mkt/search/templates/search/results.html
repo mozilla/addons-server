@@ -35,7 +35,8 @@
   <meta name="WT.oss_r" content="{{ pager.paginator.count }}">
 {% endblock %}
 
-{# if applied_filters might be useful later #}
+{% block outer_content %}
+{% endblock %}
 
 {% block content %}
   {{ mkt_breadcrumbs(product, crumbs) }}
@@ -103,6 +104,7 @@
       </form>
     </div>
   </section>
+  {% include 'site/messages/display.html' %}
   <section id="featured" class="main creatured full c">
     {% if featured %}
       <ol class="grid c">
