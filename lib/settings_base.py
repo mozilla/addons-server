@@ -1494,6 +1494,9 @@ MOBILE_USER_AGENTS = ('mozilla.+mobile|android|fennec|iemobile|'
 WEBTRENDS_USERNAME = ''
 WEBTRENDS_PASSWORD = ''
 
+#Credentials for accessing Google Analytics stats.
+GOOGLE_ANALYTICS_CREDENTIALS = {}
+
 # Domain to allow cross-frame requests from for privacy policy and TOS.
 BROWSERID_DOMAIN= "login.persona.org"
 

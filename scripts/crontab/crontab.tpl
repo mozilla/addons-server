@@ -61,6 +61,7 @@ HOME=/tmp
 
 # Once per day, populate yesterdays totals from webtrends
 50 2 * * * %(z_cron)s update_webtrends --settings=settings_local_mkt
+50 2 * * * %(z_cron)s update_google_analytics --settings=settings_local_mkt
 
 #Once per day after 2100 PST (after metrics is done)
 35 21 * * * %(z_cron)s update_addon_download_totals
