@@ -78,8 +78,8 @@ suds==0.3.9
 tower==0.3.4
 
 ## Not on pypi.
--e git://github.com/mozilla/amo-validator.git@0bf2130f6ad0a1fbb36651b23fe80599ff4d09d4#egg=amo-validator
--e git://github.com/mozilla/app-validator.git@794a122179bc9ea948d0d4b3ae42f5a740785e45#egg=app-validator
+-e git://github.com/mozilla/amo-validator.git@1e505e5d39589b500cc3d034e8562acd518a0240#egg=amo-validator
+-e git://github.com/mozilla/app-validator.git@aa36f6f43482c3b9f32603438110596b4b715d95#egg=app-validator
 -e git://github.com/jsocol/commonware.git@27646ecaca40a89024cc581c3ecf5eb0fa87ee11#egg=commonware
 -e git://github.com/jbalogh/django-queryset-transform@a1ba6ae41bd86f5bb9ff66fb56614e0fafe6e022#egg=django-queryset-transform
 -e git://github.com/miracle2k/django-tables.git@546f339308103880c823b2056830fcdc9220edd0#egg=django-tables
