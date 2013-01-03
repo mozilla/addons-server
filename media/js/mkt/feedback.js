@@ -19,7 +19,7 @@ define('feedback', [], function() {
         // Remove errors and empty values.
         form.find('.notification-box').remove();
         form.find('.error').removeClass('error');
-        $('.feedback-form').find('input,textarea').val('');
+        $('.feedback-form').find('textarea').val('');
     }
 
     // Bind up them events.
