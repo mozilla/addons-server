@@ -1,10 +1,6 @@
 import hashlib
-import json
-import os
 
 from django import http
-from django.conf import settings
-from django.core.files.storage import default_storage as storage
 from django.shortcuts import get_object_or_404, redirect
 from django.views.decorators.http import etag
 
@@ -18,9 +14,8 @@ from abuse.models import send_abuse_report
 from access import acl
 from addons.decorators import addon_view_factory
 from amo.decorators import login_required, permission_required
-from amo.helpers import absolutify
 from amo.forms import AbuseForm
-from amo.utils import JSONEncoder, paginate
+from amo.utils import paginate
 from devhub.models import ActivityLog
 from reviews.models import GroupedRating, Review
 from reviews.views import get_flags
@@ -62,43 +57,19 @@ def detail(request, addon):
 def manifest(request, uuid):
     """Returns the "mini" manifest for packaged apps.
 
-    If not a packaged app, returns an empty JSON doc.
+    If not a packaged app, returns a 404.
 
     """
     addon = get_object_or_404(Webapp, guid=uuid, is_packaged=True)
 
     is_reviewer = acl.check_reviewer(request)
     is_dev = addon.has_author(request.amo_user)
-    is_public = addon.status == amo.STATUS_PUBLIC
+    is_avail = addon.status in [amo.STATUS_PUBLIC, amo.STATUS_BLOCKED]
 
     package_etag = hashlib.md5()
 
-    # If webapp is blocklisted, show the blocklisted manifest.
-    if addon.status == amo.STATUS_BLOCKED:
-        # TODO: Consider caching the os.stat call to avoid FS hits.
-        package_name = 'packaged-apps/blocklisted.zip'
-        package_path = os.path.join(settings.MEDIA_ROOT, package_name)
-        package_url = os.path.join(settings.MEDIA_URL, package_name)
-        data = {
-            'name': addon.name,
-            'size': storage.size(package_path),
-            'release_notes':
-                _(u'This app has been blocked for your protection.'),
-            'package_path': absolutify(package_url),
-        }
-
-        # Generate the minifest and add it to the hash.
-        manifest_content = json.dumps(data, cls=JSONEncoder)
-        package_etag.update(manifest_content)
-
-        # We don't need to add the blocklisted checksum here because
-        # we're never going to have multiple blocklisted application
-        # versions.
-
-        log.info('Serving up blocklisted app for addon: %s' % addon)
-
-    elif (not addon.is_packaged or addon.disabled_by_user or
-          not (is_public or is_reviewer or is_dev)):
+    if (not addon.is_packaged or addon.disabled_by_user or
+        not (is_avail or is_reviewer or is_dev)):
         raise http.Http404
 
     else:

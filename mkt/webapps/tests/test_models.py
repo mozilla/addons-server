@@ -7,6 +7,7 @@ import uuid
 import zipfile
 from datetime import datetime, timedelta
 
+from django.conf import settings
 from django.db.models.signals import post_delete, post_save
 
 import mock
@@ -408,6 +409,7 @@ class TestManifest(BaseWebAppTest):
 
 class TestPackagedModel(amo.tests.TestCase):
 
+    @mock.patch.object(settings, 'SITE_URL', 'http://hy.fr')
     def test_create_blocklisted_version(self):
         app = app_factory(name='Mozillaball ょ', app_slug='test',
                           is_packaged=True, version_kw={'version': '1.0',
@@ -424,6 +426,17 @@ class TestPackagedModel(amo.tests.TestCase):
         eq_(app._current_version, v)
         assert 'blocklisted-1.0' in f.filename
         eq_(f.status, amo.STATUS_BLOCKED)
+
+        # Check manifest.
+        url = app.get_manifest_url()
+        res = self.client.get(url)
+        eq_(res['Content-type'], 'application/x-web-app-manifest+json')
+        assert 'etag' in res._headers
+        data = json.loads(res.content)
+        eq_(data['name'], 'Blocked by Mozilla')
+        eq_(data['version'], 'blocklisted-1.0')
+        eq_(data['package_path'], 'http://hy.fr/downloads/file/%s/%s' % (
+            f.id, f.filename))
 
 
 class TestPackagedManifest(BasePackagedAppTest):

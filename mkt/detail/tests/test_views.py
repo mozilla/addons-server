@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import hashlib
 import json
-import os
 import zipfile
 
 from django.conf import settings
@@ -1026,21 +1025,6 @@ class TestPackagedManifest(DetailBase):
         eq_(res.content, self._mocked_json())
         eq_(res['Content-Type'], 'application/x-web-app-manifest+json')
         eq_(res['ETag'], '"%s"' % self.get_digest_from_manifest())
-
-    @mock.patch.object(settings, 'SITE_URL', 'http://hy.fr')
-    def test_blocked_app(self):
-        self.app.update(status=amo.STATUS_BLOCKED)
-        blocked_path = 'packaged-apps/blocklisted.zip'
-        res = self.client.get(self.url)
-        eq_(res['Content-type'], 'application/x-web-app-manifest+json')
-        assert 'etag' in res._headers
-        data = json.loads(res.content)
-        eq_(data['name'], self.app.name)
-        eq_(data['size'],
-            os.stat(os.path.join(settings.MEDIA_ROOT, blocked_path)).st_size)
-        eq_(data['package_path'],
-            os.path.join(settings.SITE_URL, 'media', blocked_path))
-        assert data['release_notes'].startswith(u'This app has been blocked')
 
     @mock.patch.object(settings, 'MIDDLEWARE_CLASSES',
         settings.MIDDLEWARE_CLASSES + type(settings.MIDDLEWARE_CLASSES)([
