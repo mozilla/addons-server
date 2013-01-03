@@ -28,6 +28,11 @@
     (addon.get_stats_url(), _('View Statistics')),
   ) %}
 {% endif %}
+{% if waffle.switch('view-transactions') %}
+  {% do urls.append(
+    (url('mkt.developers.transactions')|urlparams(app=addon.id), _('View Transactions')),
+  ) %}
+{% endif %}
 
 <section class="secondary manage" role="complementary">
   <div class="island" id="edit-addon-nav">

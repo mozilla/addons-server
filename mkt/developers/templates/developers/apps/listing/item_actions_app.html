@@ -71,7 +71,14 @@
   </li>
   {% if waffle.switch('app-stats') %}
     <li>
-      <a class="action-link stats-link" href="{{ addon.get_stats_url() }}">{{ _('View Statistics') }}</a>
+      <a class="action-link" href="{{ addon.get_stats_url() }}">{{ _('View Statistics') }}</a>
+    </li>
+  {% endif %}
+  {% if waffle.switch('view-transactions') %}
+    <li>
+      <a class="action-link" href="{{ url('mkt.developers.transactions')|urlparams(app=addon.id) }}">
+        {{ _('View Transactions') }}
+      </a>
     </li>
   {% endif %}
   {% if not waffle.switch('disabled-payments') and manage_urls|length > 1 %}

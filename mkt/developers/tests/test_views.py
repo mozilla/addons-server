@@ -182,6 +182,7 @@ class TestAppDashboard(AppHubTest):
 
     def test_action_links(self):
         self.create_switch('app-stats')
+        self.create_switch('view-transactions')
         app = self.get_app()
         app.update(public_stats=True, is_packaged=False)
         self.make_mine()
@@ -192,13 +193,15 @@ class TestAppDashboard(AppHubTest):
             ('Compatibility & Payments', app.get_dev_url('payments')),
             ('Manage Status', app.get_dev_url('versions')),
             ('View Listing', app.get_url_path()),
+            ('View Statistics', app.get_stats_url()),
+            ('View Transactions', urlparams(
+                reverse('mkt.developers.transactions'), app=app.id)),
         ]
         amo.tests.check_links(expected, doc('a.action-link'))
-        amo.tests.check_links([('View Statistics', app.get_stats_url())],
-                              doc('a.stats-link'), verify=False)
 
     def test_action_links_packaged(self):
         self.create_switch('app-stats')
+        self.create_switch('view-transactions')
         app = self.get_app()
         app.update(public_stats=True, is_packaged=True)
         self.make_mine()
@@ -210,14 +213,16 @@ class TestAppDashboard(AppHubTest):
             ('Compatibility & Payments', app.get_dev_url('payments')),
             ('Manage Status & Versions', app.get_dev_url('versions')),
             ('View Listing', app.get_url_path()),
+            ('View Statistics', app.get_stats_url()),
+            ('View Transactions', urlparams(
+                reverse('mkt.developers.transactions'), app=app.id)),
         ]
         amo.tests.check_links(expected, doc('a.action-link'))
-        amo.tests.check_links([('View Statistics', app.get_stats_url())],
-                              doc('a.stats-link'), verify=False)
 
     def test_disabled_payments_action_links(self):
         self.create_switch('app-stats')
         self.create_switch('disabled-payments')
+        self.create_switch('view-transactions')
         app = self.get_app()
         app.update(public_stats=True)
         self.make_mine()
@@ -228,6 +233,8 @@ class TestAppDashboard(AppHubTest):
             ('Manage Status', app.get_dev_url('versions')),
             ('View Listing', app.get_url_path()),
             ('View Statistics', app.get_stats_url()),
+            ('View Transactions', urlparams(
+                reverse('mkt.developers.transactions'), app=app.id)),
         ]
         amo.tests.check_links(expected, doc('a.action-link'), verify=False)
 
