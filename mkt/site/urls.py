@@ -1,3 +1,5 @@
+from urlparse import urlparse
+
 from django.conf import settings
 from django.conf.urls import patterns, url
 
@@ -5,10 +7,16 @@ import jingo
 
 from . import views
 
+
 def template_plus_xframe(request, template, **kwargs):
-    r = jingo.render(request, template, kwargs)
-    r['x-frame-options'] = 'allow-from ' + settings.BROWSERID_DOMAIN
-    return r
+    """Tests pending."""
+    res = jingo.render(request, template, kwargs)
+    referrer = request.META.get('HTTP_REFERER')
+    if referrer:
+        referrer = urlparse(referrer).netloc
+        if referrer in settings.LEGAL_XFRAME_ALLOW_FROM:
+            res['x-frame-options'] = 'allow-from %s' % referrer
+    return res
 
 
 urlpatterns = patterns('',

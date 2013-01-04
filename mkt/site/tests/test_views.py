@@ -7,10 +7,13 @@ import mock
 from nose import SkipTest
 from nose.tools import eq_
 from pyquery import PyQuery as pq
+from test_utils import RequestFactory
 
 import amo
 import amo.tests
 from amo.urlresolvers import reverse
+
+from mkt.site.urls import template_plus_xframe
 from mkt.webapps.models import Webapp
 
 
@@ -250,3 +253,28 @@ class TestFooter(amo.tests.TestCase):
         doc = pq(r.content)('#lang-form')
         eq_(doc('input[type=hidden][name=x]').attr('value'), 'xxx')
         eq_(doc('input[type=hidden][name=y]').attr('value'), 'yyy')
+
+
+class TestXLegalFrame(amo.tests.TestCase):
+
+    def setUp(self):
+        self.request = RequestFactory()
+        self.request.groups = ()
+        self.request.user = mock.Mock()
+        self.request.MOBILE = self.request.TABLET = self.request.GAIA = True
+        self.request.is_ajax = mock.Mock()
+        self.request.META = {'HTTP_USER_AGENT': ''}
+
+    @mock.patch.object(settings, 'LEGAL_XFRAME_ALLOW_FROM', ['omg.org'])
+    def test_allow(self):
+        self.request.META['HTTP_REFERER'] = 'http://omg.org/yes'
+        res = template_plus_xframe(self.request, 'site/privacy-policy.html')
+        eq_(res['x-frame-options'], 'allow-from omg.org')
+
+    @mock.patch.object(settings, 'LEGAL_XFRAME_ALLOW_FROM', ['omg.org'])
+    def test_deny(self):
+        for referrer in ('', 'http://omg.xxx/yes', '!#*@ YOU, @#($!#$(&%*#^'):
+            self.request.META['HTTP_REFERER'] = referrer
+            res = template_plus_xframe(self.request, 'site/privacy-policy.html')
+            assert 'x-frame-options' not in res, (
+                'Unexpected headers for referrer %r: %s' % (referrer, res._headers))

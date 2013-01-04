@@ -1501,7 +1501,7 @@ GOOGLE_ANALYTICS_CREDENTIALS = {}
 GOOGLE_ANALYTICS_DOMAIN = None
 
 # Domain to allow cross-frame requests from for privacy policy and TOS.
-BROWSERID_DOMAIN= "login.persona.org"
+BROWSERID_DOMAIN = 'login.persona.org'
 
 # Adjust these settings if you need to use a custom verifier.
 BROWSERID_VERIFICATION_URL = 'https://verifier.login.persona.org/verify'
@@ -1514,3 +1514,10 @@ UNVERIFIED_ISSUER = 'notoriousb2g.personatest.org'
 # This is a B2G (or other native) verifier. Adjust accordingly.
 NATIVE_BROWSERID_VERIFICATION_URL = 'https://%s/verify' % UNVERIFIED_ISSUER
 NATIVE_BROWSERID_JS_URL = 'https://%s/include.js' % UNVERIFIED_ISSUER
+
+# These domains get `x-frame-options: allow-from` for Privacy Policy / TOS.
+LEGAL_XFRAME_ALLOW_FROM = [
+    BROWSERID_DOMAIN,
+    UNVERIFIED_ISSUER,
+    'fxos.login.persona.org',
+]
