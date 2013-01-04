@@ -1,9 +1,12 @@
-<script type="text/template" id="edit-review-template">
+{# This now handles "new review", "edit review", "new reply", "edit reply". #}
+<script type="text/template" id="review-template">
   <section{% if DESKTOP %} class="bare"{% endif %}>
     {% if DESKTOP %}
       <header>
         <h1>{title}</h1>
-        <a href="#" class="header-button icon right dismiss">{{ _('Cancel') }}</a>
+        <a href="#" class="header-button icon right dismiss">
+          {{ _('Cancel') }}
+        </a>
       </header>
     {% endif %}
     <form class="friendly" method="post" action="{action}">
@@ -31,11 +34,11 @@
       </p>
       <footer class="form-footer c">
         {% if DESKTOP %}
-          <button type="submit">{{ _('Submit review') }}</button>
+          <button type="submit">{{ _('Submit') }}</button>
           <div class="char-count" data-maxlength="150" data-for="id_body"></div>
         {% else %}
           <button type="submit" class="fat">
-            {{ _('Submit review') }}
+            {{ _('Submit') }}
           </button>
           <button class="button cancel fat">
             {{ _('Cancel') }}

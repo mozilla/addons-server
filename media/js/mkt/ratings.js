@@ -1,5 +1,8 @@
 (function() {
 
+    // Review/reply template.
+    var reviewTemplate = getTemplate($('#review-template'));
+
     z.page.on('fragmentloaded', function() {
         flagOverlay = makeOrGetOverlay('flag-review');
 
@@ -138,8 +141,8 @@
             rating = reviewEl.data('rating'),
             action = reviewEl.closest('[data-edit-url]').data('edit-url'),
             body = getBody(reviewEl.find('.body'));
-        overlay.html(format($('#edit-review-template').html(),
-                            {title: gettext('Edit Review'), action: action, body: body}));
+        overlay.html(reviewTemplate({title: gettext('Edit Review'),
+                                     action: action, body: body}));
         if (reviewEl.hasClass('reply')) {
             overlay.find('select[name="rating"]').remove();
         } else {
@@ -165,19 +168,29 @@
             title = gettext('Edit Your Review');
         }
 
-        overlay.html(format($('#edit-review-template').html(),
-                            {title: title, action: action, body: body}));
+        overlay.html(reviewTemplate({title: title, action: action,
+                                     body: body}));
 
         overlay.find('select[name="rating"]').ratingwidget('large');
         overlay.find(format('.ratingwidget [value="{0}"]', rating)).click();
         handleReviewOverlay(overlay);
     }
 
-    function replyReview(reviewEl, action) {
-        var overlay = makeOrGetOverlay('reply-review');
-        overlay.html(format($('#reply-review-template').html(),
-                            {action: action}));
+    function replyReview(reviewEl, action, isNewReview) {
+        var overlay = makeOrGetOverlay('edit-review'),
+            title = gettext('Reply Review'),
+            body = '';
+
+        if (!isNewReview) {
+            title = gettext('Edit Reply');
+            body = getBody(reviewEl.find('.body'));
+        }
+
+        overlay.html(reviewTemplate({title: title, action: action,
+                                     body: body}));
+        overlay.addClass('reply');
         handleReviewOverlay(overlay);
+
         z.page.on('fragmentloaded', function() {
             var newReview = '#' + reviewEl.attr('id');
             // Replies are hidden by default, so show this one.
@@ -185,14 +198,6 @@
             // Jump to new review.
             window.location = newReview;
         });
-    }
-
-    function editReply(reviewEl, action) {
-        var overlay = makeOrGetOverlay('edit-reply-review'),
-            body = getBody(reviewEl.find('.body'));
-        overlay.html(format($('#edit-reply-review-template').html(),
-                            {action: action, body: body}));
-        handleReviewOverlay(overlay);
     }
 
     // Toggle rating breakdown (on listing page only, not detail page).
@@ -225,10 +230,10 @@
                 flagReview($review);
                 break;
             case 'reply':
-                replyReview($review, $this.attr('href'));
+                replyReview($review, $this.attr('href'), true);
                 break;
             case 'edit-reply':
-                editReply($review, $this.attr('href'));
+                replyReview($review, $this.attr('href'));
                 break;
         }
     }));
