@@ -138,25 +138,6 @@
         </div>
       {% endif %}
 
-      {% if action_allowed('Apps', 'Configure') and versions and addon.current_version.all_files[0].status != amo.STATUS_BLOCKED %}
-        <h2>{{ _('Blocklist App') }}</h2>
-        <div class="island">
-          <form method="post" action="{{ addon.get_dev_url('blocklist') }}">
-            <p>
-            {% trans %}
-              Blocklisting an app will upgrade the users to a special version
-              which will make the app unusable on their Firefox OS devices.
-              This will also remove this app from public pages until a new
-              version is submitted and approved. These changes cannot be
-              undone. Please proceed with caution.
-            {% endtrans %}
-            </p>
-            {{ csrf() }}
-            <input type="submit" value="{{ _('Blocklist') }}">
-          </form>
-        </div>
-      {% endif %}
-
       <h2>{{ _('Upload New Version') }}</h2>
       <div class="island">
         <form method="post" id="create-addon" class="item">
@@ -184,6 +165,26 @@
           </div>
         </form>
       </div>
+
+      {% if action_allowed('Apps', 'Configure') and versions and addon.current_version.all_files[0].status != amo.STATUS_BLOCKED %}
+        <h2>{{ _('Blocklist App') }}</h2>
+        <div class="island">
+          <form method="post" action="{{ addon.get_dev_url('blocklist') }}">
+            <p>
+            {% trans %}
+              Blocklisting an app will upgrade the users to a special version
+              which will make the app unusable on their Firefox OS devices.
+              This will also remove this app from public pages until a new
+              version is submitted and approved. These changes cannot be
+              undone. Please proceed with caution.
+            {% endtrans %}
+            </p>
+            {{ csrf() }}
+            <input type="submit" value="{{ _('Blocklist') }}">
+          </form>
+        </div>
+      {% endif %}
+
     {% endif %}
 
   </section>
