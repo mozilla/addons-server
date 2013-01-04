@@ -26,6 +26,7 @@ from devhub.views import _get_items
 from lib.pay_server import client
 from market.models import PreApprovalUser
 from mkt.account.forms import CurrencyForm
+from mkt.fragments.decorators import bust_fragments_on_post
 from mkt.fragments.utils import bust_fragments
 from mkt.site import messages
 from users.models import UserProfile
@@ -225,6 +226,7 @@ def account_settings(request):
                         {'form': form, 'amouser': amo_user})
 
 
+@bust_fragments_on_post('/account/feedback')
 @anonymous_csrf
 def account_feedback(request):
     form = forms.FeedbackForm(request.POST or None, request=request)
