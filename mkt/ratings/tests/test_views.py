@@ -58,6 +58,7 @@ class TestCreate(ReviewTest):
     def setUp(self):
         super(TestCreate, self).setUp()
         self.add = self.webapp.get_ratings_url('add')
+        self.add_mobile = self.add + '?mobile=true'
         self.user = self.regular
         self.log_in_regular()
         self.detail = self.webapp.get_detail_url()
@@ -70,10 +71,16 @@ class TestCreate(ReviewTest):
         self.assertEqual(r.status_code, 403)
 
     def test_add_logged(self):
-        r = self.client.get(self.add)
+        r = self.client.get(self.add_mobile)
         eq_(r.status_code, 200)
+
         self.assertTemplateUsed(r, 'ratings/add.html')
         assert pq(r.content)('title').text().startswith('Edit Your Review')
+
+        # Desktop add review.
+        r = self.client.get(self.add + '?mobile=false')
+        eq_(r.status_code, 200)
+        self.assertTemplateUsed(r, 'detail/app.html')
 
     def test_add_admin(self):
         self.log_in_admin()
@@ -87,11 +94,11 @@ class TestCreate(ReviewTest):
 
     def test_no_body(self):
         for body in ('', ' \t \n '):
-            r = self.client.post(self.add, {'body': body})
+            r = self.client.post(self.add_mobile, {'body': body})
             self.assertFormError(r, 'form', 'body', 'This field is required.')
 
     def test_no_rating(self):
-        r = self.client.post(self.add, {'body': 'no rating'})
+        r = self.client.post(self.add_mobile, {'body': 'no rating'})
         self.assertFormError(r, 'form', 'rating', 'This field is required.')
 
     def test_body_has_url(self):
@@ -180,18 +187,18 @@ class TestCreate(ReviewTest):
 
     def test_review_edit_review_initial(self):
         # Existing review? Then edit that review.
-        r = self.client.get(self.add)
+        r = self.client.get(self.add_mobile)
         eq_(pq(r.content)('textarea[name=body]').html(), 'I \u042f so hard.')
 
         # A reply is not a review.
         self.reply.user = self.user
         self.reply.save()
-        r = self.client.get(self.add)
+        r = self.client.get(self.add_mobile)
         eq_(pq(r.content)('textarea[name=body]').html(), 'I \u042f so hard.')
 
         # No review? Then do a new review.
         self.review.delete()
-        r = self.client.get(self.add)
+        r = self.client.get(self.add_mobile)
         eq_(pq(r.content)('textarea[name=body]').html(), None)
 
     def test_packaged_app_review_next_version(self):
@@ -410,20 +417,20 @@ class TestCreate(ReviewTest):
 
     def test_support_link(self):
         # Test no link if no support url or contribution.
-        r = self.client.get(self.add)
+        r = self.client.get(self.add_mobile)
         eq_(pq(r.content)('.support-link').length, 0)
 
         # Test support email if no support url.
         self.webapp.support_email = {'en-US': 'test@test.com'}
         self.webapp.save()
-        r = self.client.get(self.add)
+        r = self.client.get(self.add_mobile)
         doc = pq(r.content)('.support-link')
         eq_(doc.length, 1)
 
         # Test link to support url if support url.
         self.webapp.support_url = {'en-US': 'test'}
         self.webapp.save()
-        r = self.client.get(self.add)
+        r = self.client.get(self.add_mobile)
         doc = pq(r.content)('.support-link a')
         eq_(doc.length, 1)
         eq_(doc.attr('href'), 'test')
@@ -431,7 +438,7 @@ class TestCreate(ReviewTest):
         # Test link to support flow if contribution.
         c = Contribution.objects.create(addon=self.webapp, user=self.user,
                                         type=amo.CONTRIB_PURCHASE)
-        r = self.client.get(self.add)
+        r = self.client.get(self.add_mobile)
         doc = pq(r.content)('.support-link a')
         eq_(doc.length, 1)
         eq_(doc.attr('href'), reverse('support', args=[c.id]))
