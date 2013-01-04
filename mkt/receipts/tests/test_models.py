@@ -117,7 +117,7 @@ class TestReceipt(amo.tests.TestCase):
         receipt = encode.call_args[0][0]
         eq_(receipt['product']['type'], flavour)
         eq_(receipt['verify'],
-            absolutify(reverse('receipt.verify', args=[ins.addon.app_slug])))
+            absolutify(reverse('receipt.verify', args=[ins.addon.guid])))
         return receipt
 
     def test_receipt_data_developer(self):

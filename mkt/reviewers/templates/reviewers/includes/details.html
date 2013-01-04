@@ -25,7 +25,7 @@
       {% if product.is_premium() %}
         &middot;
         <span id="receipt-check-result"
-              data-url="{{ url('receipt.check', product.app_slug) }}"></span>
+              data-url="{{ url('receipt.check', product.guid) }}"></span>
       {% endif %}
     </dd>
     <dt>{{ _('Updated') }}</dt>
