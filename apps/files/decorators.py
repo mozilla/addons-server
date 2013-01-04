@@ -14,7 +14,6 @@ from access import acl
 from files.helpers import DiffHelper, FileViewer
 from files.models import File
 
-
 log = commonware.log.getLogger('z.addons')
 
 

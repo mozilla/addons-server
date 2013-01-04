@@ -69,6 +69,7 @@ class FileViewer(object):
 
     def __init__(self, file_obj, is_webapp=False):
         self.file = file_obj
+        self.addon = self.file.version.addon
         self.is_webapp = is_webapp
         self.src = file_obj.file_path
         self.dest = os.path.join(settings.TMP_PATH, 'file_viewer',
@@ -356,6 +357,7 @@ class DiffHelper(object):
     def __init__(self, left, right, is_webapp=False):
         self.left = FileViewer(left, is_webapp=is_webapp)
         self.right = FileViewer(right, is_webapp=is_webapp)
+        self.addon = self.left.addon
         self.key = None
 
         self.is_webapp = is_webapp
