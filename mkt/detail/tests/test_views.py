@@ -815,11 +815,11 @@ class TestReportAbuse(DetailBase):
                                  password='password')
 
     def test_recaptcha_shown_for_anonymous(self):
-        eq_(self.get_pq()('#recap-container').length, 1)
+        eq_(self.get_pq()('#abuse #recap-container').length, 1)
 
     def test_no_recaptcha_for_authenticated(self):
         self.log_in()
-        eq_(self.get_pq()('#recap-container').length, 0)
+        eq_(self.get_pq()('#abuse #recap-container').length, 0)
 
     @mock.patch('captcha.fields.ReCaptchaField.clean', new=mock.Mock)
     def test_abuse_anonymous(self):
