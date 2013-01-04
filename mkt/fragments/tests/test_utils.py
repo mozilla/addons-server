@@ -42,3 +42,12 @@ class TestBustFragmentCache(BustFragmentCacheCase):
         bust_fragments(self.resp, '/foo/{1}/{asdf}', 'first', 'second',
                        asdf='kw')
         self.assert_header_set('["/foo/second/kw"]')
+
+
+    def test_formatted_prefix_unicode(self):
+        """
+        Formatting unicode args works properly.
+        """
+        bust_fragments(self.resp, '/foo/{1}/{asdf}', 'first', 'second',
+                       asdf=u'\u2603')
+        self.assert_header_set(u'["/foo/second/\\u2603"]')

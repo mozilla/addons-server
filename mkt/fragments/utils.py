@@ -1,5 +1,6 @@
 import json
 import types
+from django.utils.encoding import smart_unicode
 
 
 def bust_fragments(response, prefix, *args, **kwargs):
@@ -24,8 +25,7 @@ def bust_fragments(response, prefix, *args, **kwargs):
         # If the prefix needs no formatting, bail out.
         if '{' not in prefix or '}' not in prefix:
             return prefix
-
-        return prefix.format(*args, **kwargs)
+        return smart_unicode(prefix).format(*args, **kwargs)
 
     if args or kwargs:
         # Reformat each of the prefixes accordingly.

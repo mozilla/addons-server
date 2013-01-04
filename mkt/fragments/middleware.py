@@ -1,5 +1,6 @@
 import copy
 import json
+import urllib
 
 from django.core.urlresolvers import resolve
 from django.utils.cache import patch_vary_headers
@@ -32,7 +33,7 @@ class HijackRedirectMiddleware(object):
             # Pass back the URI so we can pushState it.
             req.FRAGMENT_URI = location
 
-            view = resolve(view_url)
+            view = resolve(urllib.unquote(view_url).decode('utf-8'))
             response = view.func(req, *view.args, **view.kwargs)
 
             response['X-URI'] = location
