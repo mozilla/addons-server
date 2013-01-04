@@ -37,7 +37,7 @@
         if (!_giveUp) {
             _giveUp = window.setTimeout(function() {
                 _abortCheck = true;
-                $def.reject(product, 'MKT_INSTALL_ERROR');
+                $def.reject(null, product, 'MKT_INSTALL_ERROR');
             }, 60000);
         }
         $.get(contribStatusURL)
@@ -49,7 +49,7 @@
                 }
             })
             .fail(function() {
-                $def.reject(product, 'MKT_SERVER_ERROR');
+                $def.reject(null, product, 'MKT_SERVER_ERROR');
             });
     }
 
@@ -80,14 +80,14 @@
             waitForPayment($def, product, webpayJWT, contribStatusURL);
         }
         request.onerror = function() {
-            $def.reject(product, 'MKT_CANCELLED');
+            $def.reject(null, product, 'MKT_CANCELLED');
         }
     }
 
     function beginPurchase(prod) {
         if (!prod) return;
         if ($def && $def.state() == 'pending') {
-            $def.reject(product, 'collision');
+            $def.reject(null, product, 'collision');
             return;
         }
         $def = $.Deferred();
@@ -97,7 +97,7 @@
         if (z.capabilities.navPay || simulateNavPay) {
             $.post(product.prepareNavPay, {})
                 .fail(function() {
-                    $def.reject(product, 'MKT_SERVER_ERROR');
+                    $def.reject(null, product, 'MKT_SERVER_ERROR');
                 })
                 .done(function(result) {
                     callNavPay($def, product, result.webpayJWT, result.contribStatusURL);
@@ -213,7 +213,7 @@
 
     function cancelPurchase(e) {
         if (e && e.preventDefault) e.preventDefault();
-        $def.reject(product, 'cancelled');
+        $def.reject(null, product, 'cancelled');
         $(window).unbind('.payments');
         overlay.unbind('.payments');
         overlay.removeClass('show');
