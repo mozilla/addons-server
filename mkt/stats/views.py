@@ -251,7 +251,8 @@ def _my_apps(request):
         return filtered
 
     addon_users = (request.amo_user.addonuser_set
-                          .filter(addon__type=amo.ADDON_WEBAPP))
+                          .filter(addon__type=amo.ADDON_WEBAPP)
+                          .exclude(addon__status=amo.STATUS_DELETED))
     for addon_user in addon_users:
         if check_stats_permission(request, addon_user.addon, no_raise=True):
             filtered.append(addon_user.addon)

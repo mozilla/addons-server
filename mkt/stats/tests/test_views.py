@@ -210,6 +210,10 @@ class TestMyApps(StatsTest):
     def test_some(self):
         eq_(views._my_apps(self.req), [self.public_app])
 
+    def test_deleted(self):
+        self.public_app.update(status=amo.STATUS_DELETED)
+        eq_(views._my_apps(self.req), [])
+
 
 class TestInstalled(amo.tests.ESTestCase):
     es = True
