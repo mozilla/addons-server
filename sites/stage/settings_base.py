@@ -208,3 +208,5 @@ def lazy_langs():
 
 LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in AMO_LANGUAGES])
 LANGUAGES = lazy(lazy_langs, dict)()
+
+GOOGLE_ANALYTICS_CREDENTIALS = private.GOOGLE_ANALYTICS_CREDENTIALS
