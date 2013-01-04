@@ -13,8 +13,8 @@ def refund_info(context, product, contributions, show_link):
 
 @register.inclusion_tag('account/helpers/feedback_form.html')
 @jinja2.contextfunction
-def feedback_form(context, form=None):
-    if not form:
-        form = forms.FeedbackForm(None, request=context['request'])
+def feedback_form(context, fform=None):
+    if not fform:
+        fform = forms.FeedbackForm(None, request=context['request'])
 
     return new_context(**locals())
