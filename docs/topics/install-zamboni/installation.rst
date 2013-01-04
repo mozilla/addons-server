@@ -124,14 +124,17 @@ Getting Packages
 
 Now we're ready to go, so create an environment for zamboni::
 
-    mkvirtualenv --no-site-packages zamboni
+    mkvirtualenv --python=python2.6 --no-site-packages zamboni
 
-That creates a clean environment named zamboni.  You can get out of the
-environment by restarting your shell or calling ``deactivate``.
+That creates a clean environment named zamboni using Python 2.6. You can get
+out of the environment by restarting your shell or calling ``deactivate``.
 
 To get back into the zamboni environment later, type::
 
     workon zamboni  # requires virtualenvwrapper
+
+.. note:: Zamboni requires at least Python 2.6.1, production is using
+          Python 2.6.6. Python 2.7 is not supported.
 
 .. note:: If you want to use a different Python binary, pass the path to
           mkvirtualenv with ``--python``::
