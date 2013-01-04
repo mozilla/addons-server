@@ -386,6 +386,9 @@ CANNED_RESPONSE_CHOICES = {
     CANNED_RESPONSE_PERSONA: _('Persona'),
 }
 
+# For use in urls.
+ADDON_ID = r"""(?P<addon_id>[^/<>"']+)"""
+ADDON_UUID = r'(?P<uuid>[\w]{8}-[\w]{4}-[\w]{4}-[\w]{4}-[\w]{12})'
 APP_SLUG = r"""(?P<app_slug>[^/<>"']+)"""
 
 # Reviewer Incentive Scores.

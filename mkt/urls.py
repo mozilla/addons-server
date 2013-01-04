@@ -25,9 +25,6 @@ handler403 = 'mkt.site.views.handler403'
 handler404 = 'mkt.site.views.handler404'
 handler500 = 'mkt.site.views.handler500'
 
-ADDON_ID = r"""(?P<addon_id>[^/<>"']+)"""
-ADDON_UUID = r'(?P<uuid>[\w]{8}-[\w]{4}-[\w]{4}-[\w]{4}-[\w]{12})'
-
 
 urlpatterns = patterns('',
     # Home.
@@ -35,7 +32,7 @@ urlpatterns = patterns('',
 
     # App Detail pages.
     ('^app/%s/' % amo.APP_SLUG, include('mkt.detail.urls')),
-    url('^app/%s/manifest.webapp$' % ADDON_UUID, mini_manifest,
+    url('^app/%s/manifest.webapp$' % amo.ADDON_UUID, mini_manifest,
         name='detail.manifest'),
 
     # Browse pages.
@@ -49,8 +46,8 @@ urlpatterns = patterns('',
     ('^files/', include('mkt.files.urls')),
 
     # Theme detail pages.
-    ('^theme/%s/reviews/' % ADDON_ID, include(theme_review_patterns)),
-    ('^theme/%s/' % ADDON_ID, include('mkt.themes.urls')),
+    ('^theme/%s/reviews/' % amo.ADDON_ID, include(theme_review_patterns)),
+    ('^theme/%s/' % amo.ADDON_ID, include('mkt.themes.urls')),
 
     # Theme browse pages.
     ('^themes/', include(theme_patterns)),

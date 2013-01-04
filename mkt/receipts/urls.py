@@ -17,10 +17,10 @@ app_receipt_patterns = patterns('',
 )
 
 receipt_patterns = patterns('',
-    url(r'^verify/%s$' % amo.APP_SLUG, views.verify,
+    url(r'^verify/%s$' % amo.ADDON_UUID, views.verify,
         name='receipt.verify'),
     url(r'^issue/%s$' % amo.APP_SLUG, views.issue,
         name='receipt.issue'),
-    url(r'^check/%s$' % amo.APP_SLUG, views.check,
+    url(r'^check/%s$' % amo.ADDON_UUID, views.check,
         name='receipt.check'),
 )

@@ -1,5 +1,6 @@
 from django import http
 from django.core.exceptions import PermissionDenied
+from django.shortcuts import get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
 
 import commonware.log
@@ -10,6 +11,7 @@ import waffle
 
 from access import acl
 from addons.decorators import addon_view_factory
+from addons.models import Addon
 import amo
 import amo.log
 from amo.decorators import login_required
@@ -30,7 +32,6 @@ from users.models import UserProfile
 from zadmin.models import DownloadSource
 
 from .utils import create_receipt
-
 
 log = commonware.log.getLogger('z.receipts')
 addon_view = addon_view_factory(qs=Webapp.objects.valid)
@@ -143,9 +144,11 @@ def record(request, addon):
 
 
 @csrf_exempt
-@addon_all_view
 @post_required
-def verify(request, addon):
+def verify(request, uuid):
+    # Because this will be called at any point in the future,
+    # use guid in the URL.
+    addon = get_object_or_404(Addon, guid=uuid)
     receipt = request.read()
     verify = Verify(receipt, request)
     output = verify(check_purchase=False)
@@ -166,7 +169,6 @@ def verify(request, addon):
 
     return http.HttpResponse(verify.invalid(),
                              verify.get_headers(verify.invalid()))
-
 
 @addon_all_view
 @json_view
@@ -194,10 +196,12 @@ def issue(request, addon):
     return {'addon': addon.pk, 'receipt': receipt, 'error': error}
 
 
-@addon_all_view
 @json_view
 @reviewer_required
-def check(request, addon):
+def check(request, uuid):
+    # Because this will be called at any point in the future,
+    # use guid in the URL.
+    addon = get_object_or_404(Addon, guid=uuid)
     qs = (AppLog.objects.order_by('-created')
                 .filter(addon=addon,
                         activity_log__action=amo.LOG.RECEIPT_CHECKED.id))

@@ -1,5 +1,6 @@
 # -*- coding: utf8 -*-
 import json
+import uuid
 
 from django.conf import settings
 
@@ -13,13 +14,14 @@ import amo.tests
 from amo.urlresolvers import reverse
 from devhub.models import AppLog
 from mkt.constants import apps
+from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
 from users.models import UserProfile
 from zadmin.models import DownloadSource
 
 
 class TestReissue(amo.tests.TestCase):
-    fixtures = ['base/users', 'webapps/337141-steamcube']
+    fixtures = fixture('webapp_337141')
 
     def setUp(self):
         self.webapp = Webapp.objects.get(pk=337141)
@@ -56,7 +58,8 @@ class TestReissue(amo.tests.TestCase):
 @mock.patch.object(settings, 'WEBAPPS_RECEIPT_KEY',
                    amo.tests.AMOPaths.sample_key())
 class TestInstall(amo.tests.TestCase):
-    fixtures = ['base/users']
+    fixtures = fixture('user_999', 'user_editor', 'user_editor_group',
+                       'group_editor')
 
     def setUp(self):
         self.addon = amo.tests.app_factory(manifest_url='http://cbc.ca/man')
@@ -218,13 +221,14 @@ class TestInstall(amo.tests.TestCase):
 
 
 class TestReceiptVerify(amo.tests.TestCase):
-    fixtures = ['base/users']
+    fixtures = fixture('user_999', 'user_editor', 'user_editor_group',
+                       'group_editor')
 
     def setUp(self):
         super(TestReceiptVerify, self).setUp()
-        self.app = Webapp.objects.create(app_slug='foo')
+        self.app = Webapp.objects.create(app_slug='foo', guid=uuid.uuid4())
         self.url = reverse('receipt.verify',
-                           args=[self.app.app_slug])
+                           args=[self.app.guid])
         self.log = AppLog.objects.filter(addon=self.app)
         self.reviewer = UserProfile.objects.get(pk=5497308)
 
@@ -293,7 +297,8 @@ class TestReceiptVerify(amo.tests.TestCase):
 
 
 class TestReceiptIssue(amo.tests.TestCase):
-    fixtures = ['base/users', 'webapps/337141-steamcube']
+    fixtures = fixture('user_999', 'user_editor', 'user_editor_group',
+                       'group_editor', 'webapp_337141')
 
     def setUp(self):
         super(TestReceiptIssue, self).setUp()
@@ -354,14 +359,15 @@ class TestReceiptIssue(amo.tests.TestCase):
 
 
 class TestReceiptCheck(amo.tests.TestCase):
-    fixtures = ['base/users', 'webapps/337141-steamcube']
+    fixtures = fixture('user_999', 'user_editor', 'user_editor_group',
+                       'group_editor', 'webapp_337141')
 
     def setUp(self):
         super(TestReceiptCheck, self).setUp()
         self.app = Webapp.objects.get(pk=337141)
         self.app.update(status=amo.STATUS_PENDING)
         self.url = reverse('receipt.check',
-                           args=[self.app.app_slug])
+                           args=[self.app.guid])
         self.reviewer = UserProfile.objects.get(pk=5497308)
         self.user = UserProfile.objects.get(pk=999)
 
