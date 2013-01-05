@@ -276,9 +276,9 @@ class TestVersionPackaged(amo.tests.WebappTestCase):
         eq_(doc('#version-list a.delete-version').length, 2)
         # Check download url.
         eq_(doc('#version-list a.button.download').eq(0).attr('href'),
-            self.app.versions.all()[0].all_files[0].get_url_path('devhub'))
+            self.app.versions.all()[0].all_files[0].get_url_path(''))
         eq_(doc('#version-list a.button.download').eq(1).attr('href'),
-            self.app.versions.all()[1].all_files[0].get_url_path('devhub'))
+            self.app.versions.all()[1].all_files[0].get_url_path(''))
 
     def test_delete_version(self):
         version = self.app.versions.latest()

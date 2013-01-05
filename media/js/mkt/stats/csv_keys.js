@@ -107,7 +107,17 @@ var csv_keys = {
         'cb-btn-updated'        : gettext('Browse Listing Updated Sort'),
         'cb-dl-updated'         : gettext('Browse Listing Updated Sort'),
         'cb-btn-hotness'        : gettext('Browse Listing Up and Coming Sort'),
-        'cb-dl-hotness'         : gettext('Browse Listing Up and Coming Sort')
+        'cb-dl-hotness'         : gettext('Browse Listing Up and Coming Sort'),
+
+        'mkt-browse'            : gettext('Marketplace Browse Page'),
+        'mkt-browse-featured'   : gettext('Marketplace Browse Page, Featured'),
+        'mkt-category'          : gettext('Marketplace Category Page'),
+        'mkt-category-featured' : gettext('Marketplace Category Page, Featured'),
+        'mkt-detail'            : gettext('Marketplace Detail Page'),
+        'mkt-detail-upsell'     : gettext('Marketplace Detail Page, Upsell'),
+        'mkt-home'              : gettext('Marketplace Home Page'),
+        'mkt-search'            : gettext('Marketplace Search Results'),
+        'mkt-search-featured'   : gettext('Marketplace Search Results, Featured')
     },
     contributions: {
         'count': gettext('Number of Contributions'),

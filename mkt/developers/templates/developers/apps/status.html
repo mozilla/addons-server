@@ -128,7 +128,7 @@
                 <small>Submitted <span title="{{ version.created|isotime }}">{{ version.created|datetime }}</span></small>
                 {% if version.all_files[0].status != amo.STATUS_BLOCKED %}
                   <div class="buttons">
-                    <a href="{{ version.all_files[0].get_url_path('devhub') }}" class="button download">{{ _('Download') }}</a>
+                    <a href="{{ version.all_files[0].get_url_path('') }}" class="button download">{{ _('Download') }}</a>
                     <a href="#" class="button bad delete-button delete-version" data-version="{{ version.id }}">{{ _('Delete') }}</a>
                   </div>
                 {% endif %}
