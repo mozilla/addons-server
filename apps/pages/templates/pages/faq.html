@@ -54,13 +54,13 @@
                 applications. {% endtrans %}</li>
             <li>{% trans app_name=request.APP.pretty,
                    browse_url=url('browse.themes') %}
-                <strong><a href="{{ browse_url }}">Themes</a></strong> change
+                <strong><a href="{{ browse_url }}">Full Themes</a></strong> change
                 the entire appearance of {{ app_name }}, usually including
                 icons, colors, dialogs, and other visual styles.
                 {% endtrans %}</li>
             <li>{% trans app_name=request.APP.pretty,
                    browse_url=url('browse.personas') %}
-                <strong><a href="{{ browse_url }}">Personas</a></strong> are
+                <strong><a href="{{ browse_url }}">Themes</a></strong> are
                 lightweight themes that use background images to customize
                 your {{ app_name }} toolbars.{% endtrans %}</li>
             <li>{% trans app_name=request.APP.pretty,
@@ -91,7 +91,7 @@
         button provided. Add-ons can be managed, disabled, or uninstalled from
         the Add-ons Manager in {{ app_name }}. For more detailed instructions,
         read <a href="{{ extension_url }}">this article on extensions</a> or
-        <a href="{{ theme_url }}">this one for themes and Personas</a>. If you
+        <a href="{{ theme_url }}">this one for Themes and Full Themes</a>. If you
         have difficulty installing add-ons, see
         <a href="{{ troubleshooting_url }}">Troubleshooting Extensions and
         Themes</a>.{% endtrans %}</dd>

@@ -13,10 +13,10 @@ class TestRedirects(amo.tests.TestCase):
                 'addons/persona', 'base/global-stats']
 
     def test_persona_category(self):
-        """`/personas/film and tv` should go to /personas/film-and-tv"""
+        """`/personas/film and tv` should go to /themes/film-and-tv"""
         r = self.client.get('/personas/film and tv', follow=True)
         assert r.redirect_chain[-1][0].endswith(
-                '/en-US/firefox/personas/film-and-tv')
+                '/en-US/firefox/themes/film-and-tv')
 
     def test_top_tags(self):
         """`/top-tags/?` should 301 to `/tags/top`."""
@@ -68,12 +68,12 @@ class TestRedirects(amo.tests.TestCase):
                        status_code=301)
 
         response = self.client.get('/browse/type:2', follow=True)
-        self.assert3xx(response, '/en-US/firefox/themes/',
+        self.assert3xx(response, '/en-US/firefox/full-themes/',
                        status_code=301)
 
         # Drop the category.
         response = self.client.get('/browse/type:2/cat:all', follow=True)
-        self.assert3xx(response, '/en-US/firefox/themes/',
+        self.assert3xx(response, '/en-US/firefox/full-themes/',
                        status_code=301)
 
     def test_accept_language(self):

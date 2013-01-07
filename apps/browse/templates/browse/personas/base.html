@@ -3,7 +3,7 @@
 
 {% set name = category.name if category else filter.title %}
 {# L10n: {0} is a category name. Ex: "Sports" #}
-{% set title = _('Personas') if is_homepage else _('{0} Personas')|f(name) %}
+{% set title = _('Themes') if is_homepage else _('{0} Themes')|f(name) %}
 {% set url_base = url('browse.personas', category.slug) %}
 
 {% block title %}{{ page_title(title) }}{% endblock %}
@@ -18,7 +18,7 @@
 
 {% macro persona_categories(is_firefox) %}
 <div class="secondary" role="complementary">
-  {{ secondary_categories(_('Personas'), 'browse.personas', categories, filter) }}
+  {{ secondary_categories(_('Themes'), 'browse.personas', categories, filter) }}
   {% if is_firefox and waffle.flag('submit-personas') %}
     <div class="submit-theme">
       <h3>{{ _('Create Your Own Theme') }}</h3>

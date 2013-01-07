@@ -543,7 +543,7 @@ section#featured-addons {
     border-bottom: 0;
     border-top: 1px solid #cdd4de;
 }
-.featured-personas li {
+.featured-themes li {
     border-bottom-color: #666;
 }
 #sub li:last-child {
@@ -551,7 +551,7 @@ section#featured-addons {
 }
 
 #sub .featured li,
-.featured-personas li h6,
+.featured-themes li h6,
 #more-ways li {
     font-size: 13px;
 }
@@ -573,27 +573,27 @@ section#featured-addons {
 }
 
 .featured .featured-addons a.addon-title,
-.featured .featured-personas span.addon-title {
+.featured .featured-themes span.addon-title {
     display: block;
     background: rgba(255,255,255,0.35) url("../../img/zamboni/discovery_pane/arrow-right.png") 95% 50% no-repeat;
     color: #333;
     overflow: hidden;
 }
-.featured .featured-personas span.addon-title {
+.featured .featured-themes span.addon-title {
     pointer-events: none;
 }
 
 .featured .featured-addons a.addon-title,
-.featured .featured-personas span.addon-title b {
+.featured .featured-themes span.addon-title b {
     padding: 0.5em 30px 0.5em 10px;
 }
 
-.featured .featured-personas span.addon-title b {
+.featured .featured-themes span.addon-title b {
     display: block;
     font-weight: normal;
 }
 
-.featured .featured-personas span.addon-title {
+.featured .featured-themes span.addon-title {
     background-color: rgba(255,255,255,0.65);
     border-top: 1px solid rgba(255,255,255,0.35);
     text-decoration: none;
@@ -605,9 +605,9 @@ section#featured-addons {
 .featured .featured-addons a.addon-title:hover,
 .featured .featured-addons a.addon-title:focus,
 .featured .featured-addons a.addon-title:active,
-.featured .featured-personas a:hover span.addon-title,
-.featured .featured-personas a:focus span.addon-title,
-.featured .featured-personas a:active span.addon-title {
+.featured .featured-themes a:hover span.addon-title,
+.featured .featured-themes a:focus span.addon-title,
+.featured .featured-themes a:active span.addon-title {
     background-color: rgba(255,255,255,0.65);
     background-position: 96% 50%;
     -moz-transition-property: background-color, background-position;
@@ -616,14 +616,14 @@ section#featured-addons {
     color: #083681;
 }
 
-.featured .featured-personas a:hover span.addon-title,
-.featured .featured-personas a:focus span.addon-title,
-.featured .featured-personas a:active span.addon-title {
+.featured .featured-themes a:hover span.addon-title,
+.featured .featured-themes a:focus span.addon-title,
+.featured .featured-themes a:active span.addon-title {
     background-color: rgba(255,255,255,0.8);
 }
 
 #sub .featured li:last-child a,
-#sub .featured-personas:last-child a span.addon-title,
+#sub .featured-themes:last-child a span.addon-title,
 #promo-video-addons .show.last a,
 #promo-video-addons .show.last a span.addon-title {
     border-radius: 0 0 8px 8px;
@@ -818,7 +818,7 @@ section#featured-addons {
     }
 
     #sub #up-and-coming,
-    #sub #featured-personas,
+    #sub #featured-themes,
     #sub #more-ways {
         float: left;
         margin-right: 1%;

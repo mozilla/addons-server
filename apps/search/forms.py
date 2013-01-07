@@ -77,7 +77,7 @@ def get_search_groups(app):
                  ('collections', _('all collections')), ]
 
     if amo.ADDON_PERSONA in app.types:
-        top_level += (('personas', _('all personas')),)
+        top_level += (('themes', _('all themes')),)
 
     return top_level[:1] + sub + top_level[1:], top_level
 
@@ -85,7 +85,7 @@ def get_search_groups(app):
 SEARCH_CHOICES = (
     ('all', _lazy(u'search for add-ons')),
     ('collections', _lazy(u'search for collections')),
-    ('personas', _lazy(u'search for personas')),
+    ('themes', _lazy(u'search for themes')),
     ('apps', _lazy(u'search for apps')))
 
 

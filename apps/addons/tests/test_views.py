@@ -125,7 +125,7 @@ class TestHomepageFeatures(amo.tests.TestCase):
             '#popular-extensions': browse_extensions + '?sort=users',
             '#featured-extensions': browse_extensions + '?sort=featured',
             '#upandcoming': browse_extensions + '?sort=hotness',
-            '#featured-personas': browse_personas,
+            '#featured-themes': browse_personas,
             '#featured-collections': browse_collections + '?sort=featured',
         }
         for id_, url in sections.iteritems():

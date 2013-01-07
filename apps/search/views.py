@@ -238,7 +238,7 @@ def _personas(request):
     pager = amo.utils.paginate(request, results, per_page=search_opts['limit'])
     categories, filter, _, _ = browse.views.personas_listing(request)
     c = dict(pager=pager, form=form, categories=categories, query=query,
-             filter=filter, search_placeholder='personas')
+             filter=filter, search_placeholder='themes')
     return jingo.render(request, 'search/personas.html', c)
 
 
@@ -459,7 +459,7 @@ def ajax_search_suggestions(request):
         else:
             cats = cats.filter(Q(application=request.APP.id) |
                                Q(type=amo.ADDON_SEARCH))
-            if cat == 'personas':
+            if cat == 'themes':
                 cats = cats.filter(type=amo.ADDON_PERSONA)
             else:
                 cats = cats.exclude(type__in=[amo.ADDON_PERSONA,
@@ -480,7 +480,7 @@ def ajax_search_suggestions(request):
 
         suggestions = {
             'all': AddonSuggestionsAjax,
-            'personas': PersonaSuggestionsAjax,
+            'themes': PersonaSuggestionsAjax,
             'apps': WebappSuggestionsAjax,
         }.get(cat, AddonSuggestionsAjax)
 
@@ -613,7 +613,7 @@ def search(request, tag_name=None, template=None):
 
     if category == 'collections':
         return _collections(request)
-    elif category == 'personas' or query.get('atype') == amo.ADDON_PERSONA:
+    elif category == 'themes' or query.get('atype') == amo.ADDON_PERSONA:
         return _personas(request)
 
     sort, extra_sort = split_choices(form.sort_choices, 'created')

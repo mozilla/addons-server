@@ -158,12 +158,12 @@ ADDON_WEBAPP = 11  # Calling this ADDON_* is gross but we've gotta ship code.
 ADDON_TYPE = {
     ADDON_ANY: _(u'Any'),
     ADDON_EXTENSION: _(u'Extension'),
-    ADDON_THEME: _(u'Theme'),
+    ADDON_THEME: _(u'Full Theme'),
     ADDON_DICT: _(u'Dictionary'),
     ADDON_SEARCH: _(u'Search Engine'),
     ADDON_PLUGIN: _(u'Plugin'),
     ADDON_LPAPP: _(u'Language Pack (Application)'),
-    ADDON_PERSONA: _(u'Persona'),
+    ADDON_PERSONA: _(u'Theme'),
     ADDON_WEBAPP: _(u'App'),
 }
 
@@ -171,12 +171,12 @@ ADDON_TYPE = {
 ADDON_TYPES = {
     ADDON_ANY: _(u'Any'),
     ADDON_EXTENSION: _(u'Extensions'),
-    ADDON_THEME: _(u'Themes'),
+    ADDON_THEME: _(u'Full Themes'),
     ADDON_DICT: _(u'Dictionaries'),
     ADDON_SEARCH: _(u'Search Tools'),
     ADDON_PLUGIN: _(u'Plugins'),
     ADDON_LPAPP: _(u'Language Packs (Application)'),
-    ADDON_PERSONA: _(u'Personas'),
+    ADDON_PERSONA: _(u'Themes'),
     ADDON_WEBAPP: _(u'Apps'),
 }
 

@@ -1643,6 +1643,7 @@ form .error .note.error {
 .category-landing .addons-column ul, .category-landing .info-message {
     border: 1px solid #E0EFFD;
     -moz-border-radius: 5px;
+    border-radius: 5px;
     padding: 0;
     margin: 0;
 }
@@ -1657,12 +1658,34 @@ form .error .note.error {
     margin-bottom: 0;
 }
 
-.category-landing .info-message h3 {
+.category-landing .info-message h3,
+.category-landing .info-message-link big {
     margin: 0;
     color: #444;
 }
 .category-landing .info-message .view-all a {
     font-weight: bold;
+}
+
+.category-landing .info-message-link {
+    padding: 0;
+}
+.category-landing .info-message-link big {
+    display: block;
+    font: italic 1.385em/1.111em Georgia, serif;
+    margin-bottom: .5em;
+}
+.category-landing .info-message-link span {
+    color: #666;
+}
+.category-landing .info-message-link a:hover span {
+    color: #333;
+}
+.category-landing .info-message-link .view-all {
+    display: block;
+    margin-top: 0;
+    padding: 1em;
+    text-decoration: none;
 }
 
 .category-landing .addons-column ul.personas {
@@ -1751,7 +1774,9 @@ form .error .note.error {
 }
 
 .category-landing .view-all a:link,
-.category-landing .view-all a:visited {
+.category-landing .view-all a:visited,
+.info-message-link .view-all:link b,
+.info-message-link .view-all:visited b {
     font-size: 1em;
     color: #3d6db5;
     padding-right: 10px;
@@ -1759,14 +1784,17 @@ form .error .note.error {
 }
 
 .html-rtl.category-landing .view-all a:link,
-.html-rtl.category-landing .view-all a:visited {
-    padding-right: 0;
-    padding-left: 10px;
+.html-rtl.category-landing .view-all a:visited,
+.html-rtl .info-message-link .view-all:link b,
+.html-rtl .info-message-link .view-all:visited b {
     background: transparent url(../../img/zamboni/icons/arrow-left-blue.png) 0 55% no-repeat;
+    padding: 0 0 0 10px;
 }
 
 .category-landing .view-all a:hover,
-.category-landing .view-all a:active {
+.category-landing .view-all a:active,
+.info-message-link .view-all:hover b,
+.info-message-link .view-all:active b {
     color: #003595;
 }
 

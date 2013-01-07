@@ -39,7 +39,7 @@
         {% endfor %}
         {% if author_gallery %}
           <li><a href="{{ author_gallery }}" class="more-link">
-            {{ _('See all Personas by this Artist') }}</a></li>
+            {{ _('See all Themes by this Artist') }}</a></li>
         {% endif %}
       </ul>
     </div>
@@ -58,7 +58,7 @@
         {% endfor %}
         {# L10n: {0} is a category name, such as Nature #}
         <li><a href="{{ categories[0].get_url_path() }}">
-          {{ _('See all {0} Personas')|f(categories[0].name) }}</a></li>
+          {{ _('See all {0} Themes')|f(categories[0].name) }}</a></li>
       </ul>
     </div>
     {% endif %}

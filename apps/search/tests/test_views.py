@@ -17,12 +17,10 @@ from amo.helpers import locale_url, numberfmt, urlparams
 from amo.urlresolvers import reverse
 from addons.models import Addon, AddonCategory, AddonUser, Category, Persona
 from search import views
-from search.forms import ESSearchForm
 from search.utils import floor_version
 from search.views import DEFAULT_NUM_PERSONAS, version_sidebar
 from users.models import UserProfile
 from versions.compare import num as vnum, version_int as vint, MAXVERSION
-from versions.models import ApplicationsVersions
 
 
 class TestSearchboxTarget(amo.tests.ESTestCase):
@@ -55,8 +53,8 @@ class TestSearchboxTarget(amo.tests.ESTestCase):
                    'collections')
 
     def test_personas(self):
-        self.check(reverse('browse.personas'), 'search for personas',
-                   'personas')
+        self.check(reverse('browse.personas'), 'search for themes',
+                   'themes')
 
     def test_addons_search(self):
         self.check(reverse('search.search'), 'search for add-ons')
@@ -1126,9 +1124,9 @@ class TestSearchSuggestions(TestAjaxSearch):
         personas = (Addon.objects.reviewed()
                     .filter(type=amo.ADDON_PERSONA, disabled_by_user=False))
         personas, types = list(personas), [amo.ADDON_PERSONA]
-        self.search_addons('q=add&cat=personas', personas, types)
-        self.search_addons('q=persona&cat=personas', personas, types)
-        self.search_addons('q=PERSONA&cat=personas', personas, types)
+        self.search_addons('q=add&cat=themes', personas, types)
+        self.search_addons('q=persona&cat=themes', personas, types)
+        self.search_addons('q=PERSONA&cat=themes', personas, types)
         self.search_addons('q=persona&cat=all', [])
 
     def test_applications(self):

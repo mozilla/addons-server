@@ -581,11 +581,11 @@ class ListTest(TestCase):
         E.g. /list/recommended/theme gets only shows themes
         """
         response = make_call('list/recommended/9/1')
-        self.assertContains(response, """<type id="9">Persona</type>""", 1)
+        self.assertContains(response, """<type id="9">Theme</type>""", 1)
 
     def test_persona_search_15(self):
         response = make_call('list/recommended/9/1', version=1.5)
-        self.assertContains(response, """<type id="9">Persona</type>""", 1)
+        self.assertContains(response, """<type id="9">Theme</type>""", 1)
 
     def test_limits(self):
         """
@@ -636,14 +636,14 @@ class ListTest(TestCase):
         eq_(vals, sorted_vals)
 
     def test_adu_no_personas(self):
-        """Verify that average daily users does not return Persona add-ons."""
+        """Verify that average daily users does not return Themes."""
         response = make_call('list/by_adu')
-        self.assertNotContains(response, """<type id="9">Persona</type>""")
+        self.assertNotContains(response, """<type id="9">Theme</type>""")
 
     def test_featured_no_personas(self):
-        """Verify that featured does not return Persona add-ons."""
+        """Verify that featured does not return Themes."""
         response = make_call('list/featured')
-        self.assertNotContains(response, """<type id="9">Persona</type>""")
+        self.assertNotContains(response, """<type id="9">Theme</type>""")
 
     def test_json(self):
         """Verify that we get some json."""

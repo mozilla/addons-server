@@ -1040,35 +1040,61 @@ class TestSearchToolsFeed(BaseSearchToolsTest):
 class TestLegacyRedirects(amo.tests.TestCase):
     fixtures = ['base/category']
 
-    def test_types(self):
-        def redirects(from_, to):
-            r = self.client.get('/en-US/firefox' + from_)
-            self.assertRedirects(r, '/en-US/firefox' + to, status_code=301,
-                                 msg_prefix="Redirection failed: %s" % to)
+    def redirects(self, from_, to, status_code=301):
+        r = self.client.get('/en-US/firefox' + from_)
+        self.assert3xx(r, '/en-US/firefox' + to, status_code=status_code)
 
-        redirects('/browse/type:1', '/extensions/')
-        redirects('/browse/type:1/', '/extensions/')
-        redirects('/browse/type:1/cat:all', '/extensions/')
-        redirects('/browse/type:1/cat:all/', '/extensions/')
-        redirects('/browse/type:1/cat:72', '/extensions/alerts-updates/')
-        redirects('/browse/type:1/cat:72/', '/extensions/alerts-updates/')
-        redirects('/browse/type:1/cat:72/sort:newest/format:rss',
-                  '/extensions/alerts-updates/format:rss?sort=created')
-        redirects('/browse/type:1/cat:72/sort:weeklydownloads/format:rss',
-                  '/extensions/alerts-updates/format:rss?sort=popular')
+    def test_types(self):
+        self.redirects('/browse/type:1', '/extensions/')
+        self.redirects('/browse/type:1/', '/extensions/')
+        self.redirects('/browse/type:1/cat:all', '/extensions/')
+        self.redirects('/browse/type:1/cat:all/', '/extensions/')
+        self.redirects('/browse/type:1/cat:72', '/extensions/alerts-updates/')
+        self.redirects('/browse/type:1/cat:72/', '/extensions/alerts-updates/')
+        self.redirects('/browse/type:1/cat:72/sort:newest/format:rss',
+                       '/extensions/alerts-updates/format:rss?sort=created')
+        self.redirects('/browse/type:1/cat:72/sort:weeklydownloads/format:rss',
+                       '/extensions/alerts-updates/format:rss?sort=popular')
 
         Category.objects.get(id=72).update(type=amo.ADDON_THEME)
-        redirects('/browse/type:2/cat:72/format:rss',
-                '/themes/alerts-updates/format:rss')
+        self.redirects('/browse/type:2/cat:72/format:rss',
+                       '/full-themes/alerts-updates/format:rss')
 
-        redirects('/browse/type:2', '/themes/')
-        redirects('/browse/type:3', '/language-tools/')
-        redirects('/browse/type:4', '/search-tools/')
-        redirects('/search-engines', '/search-tools/')
-        # redirects('/browse/type:7', '/plugins/')
-        redirects('/recommended', '/extensions/?sort=featured')
-        redirects('/featured', '/extensions/?sort=featured')
-        redirects('/recommended/format:rss', '/featured/format:rss')
+        self.redirects('/browse/type:2', '/full-themes/')
+        self.redirects('/browse/type:3', '/language-tools/')
+        self.redirects('/browse/type:4', '/search-tools/')
+        self.redirects('/search-engines', '/search-tools/')
+        # self.redirects('/browse/type:7', '/plugins/')
+        self.redirects('/recommended', '/extensions/?sort=featured')
+        self.redirects('/featured', '/extensions/?sort=featured')
+        self.redirects('/recommended/format:rss', '/featured/format:rss')
+
+    def test_full_themes(self):
+        # A former Theme category should get redirected to /full-themes/.
+        cat = Category.objects.filter(slug='feeds-news-blogging')
+        cat.update(type=amo.ADDON_THEME)
+        self.redirects('/themes/feeds-news-blogging?sort=rating',
+                       '/full-themes/feeds-news-blogging?sort=rating')
+
+        self.redirects('/themes/feeds-news-blogging/format:rss?sort=users',
+            '/full-themes/feeds-news-blogging/format:rss?sort=users')
+
+        self.redirects('/themes/moreinfo.php', '/full-themes/moreinfo.php')
+
+    def test_personas(self):
+        cat = Category.objects.filter(slug='feeds-news-blogging')
+        cat.update(type=amo.ADDON_PERSONA)
+
+        self.redirects('/personas/', '/themes/')
+
+        # A former Persona category should now live at /themes/.
+        self.redirects('/personas/feeds-news-blogging?sort=rating',
+                       '/themes/feeds-news-blogging?sort=rating')
+
+        # The trailing slash should get stripped, yeah. We're just
+        # testing that we don't redirect to /full-themes/.
+        self.redirects('/themes/feeds-news-blogging/?sort=rating',
+                       '/themes/feeds-news-blogging?sort=rating')
 
 
 class TestCategoriesFeed(amo.tests.TestCase):
@@ -1319,15 +1345,15 @@ class TestMobilePersonas(TestMobile):
     def test_personas_home_title(self):
         r = self.client.get(reverse('browse.personas'))
         doc = pq(r.content)
-        eq_(doc('title').text(), 'Personas :: Add-ons for Firefox')
+        eq_(doc('title').text(), 'Themes :: Add-ons for Firefox')
 
     def test_personas_search(self):
         r = self.client.get(reverse('browse.personas'))
-        eq_(r.context['search_cat'], 'personas')
+        eq_(r.context['search_cat'], 'themes')
         s = pq(r.content)('#search')
         eq_(s.attr('action'), reverse('search.search'))
-        eq_(s.find('input[name=q]').attr('placeholder'), 'search for personas')
-        eq_(s.find('input[name=cat]').val(), 'personas')
+        eq_(s.find('input[name=q]').attr('placeholder'), 'search for themes')
+        eq_(s.find('input[name=cat]').val(), 'themes')
 
     def _create_persona_cat(self):
         category = Category(type=amo.ADDON_PERSONA, slug='xxx',
@@ -1358,9 +1384,9 @@ class TestMobilePersonas(TestMobile):
         r = self.client.get(reverse('browse.personas',
                                     args=[self._create_persona_cat().slug]))
         doc = pq(r.content)
-        eq_(doc('title').text(), 'None Personas :: Add-ons for Firefox')
+        eq_(doc('title').text(), 'None Themes :: Add-ons for Firefox')
 
     def test_personas_sorting_title(self):
         r = self.client.get(reverse('browse.personas') + '?sort=up-and-coming')
         doc = pq(r.content)
-        eq_(doc('title').text(), 'Up & Coming Personas :: Add-ons for Firefox')
+        eq_(doc('title').text(), 'Up & Coming Themes :: Add-ons for Firefox')

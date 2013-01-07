@@ -367,14 +367,14 @@ class TestPane(amo.tests.TestCase):
 
     def test_featured_personas_section(self):
         r = self.client.get(self.url)
-        h2 = pq(r.content)('#featured-personas h2')
-        eq_(h2.text(), 'See all Featured Personas')
+        h2 = pq(r.content)('#featured-themes h2')
+        eq_(h2.text(), 'See all Featured Themes')
         eq_(h2.find('a.all').attr('href'), reverse('browse.personas'))
 
     def test_featured_personas(self):
         addon = Addon.objects.get(id=15679)
         r = self.client.get(self.url)
-        p = pq(r.content)('#featured-personas')
+        p = pq(r.content)('#featured-themes')
         a = p.find('a[data-browsertheme]')
         url = reverse('discovery.addons.detail', args=[15679])
         assert a.attr('href').endswith(url + '?src=discovery-featured'), (

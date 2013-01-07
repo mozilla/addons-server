@@ -85,7 +85,7 @@ class TestCommon(amo.tests.TestCase):
         expected = [
             ('Tools', '#'),
             ('Submit a New Add-on', reverse('devhub.submit.1')),
-            ('Submit a New Persona', reverse('devhub.personas.submit')),
+            ('Submit a New Theme', reverse('devhub.personas.submit')),
             ('Developer Hub', reverse('devhub.index')),
         ]
         check_links(expected, pq(r.content)('#aux-nav .tools a'))
@@ -105,7 +105,7 @@ class TestCommon(amo.tests.TestCase):
             ('Tools', '#'),
             ('Manage My Add-ons', reverse('devhub.addons')),
             ('Submit a New Add-on', reverse('devhub.submit.1')),
-            ('Submit a New Persona', reverse('devhub.personas.submit')),
+            ('Submit a New Theme', reverse('devhub.personas.submit')),
             ('Developer Hub', reverse('devhub.index')),
         ]
         check_links(expected, pq(r.content)('#aux-nav .tools a'))
@@ -120,7 +120,7 @@ class TestCommon(amo.tests.TestCase):
         expected = [
             ('Tools', '#'),
             ('Submit a New Add-on', reverse('devhub.submit.1')),
-            ('Submit a New Persona', reverse('devhub.personas.submit')),
+            ('Submit a New Theme', reverse('devhub.personas.submit')),
             ('Developer Hub', reverse('devhub.index')),
             ('Editor Tools', reverse('editors.home')),
         ]
@@ -140,7 +140,7 @@ class TestCommon(amo.tests.TestCase):
             ('Tools', '#'),
             ('Manage My Add-ons', reverse('devhub.addons')),
             ('Submit a New Add-on', reverse('devhub.submit.1')),
-            ('Submit a New Persona', reverse('devhub.personas.submit')),
+            ('Submit a New Theme', reverse('devhub.personas.submit')),
             ('Developer Hub', reverse('devhub.index')),
             ('Editor Tools', reverse('editors.home')),
         ]
@@ -158,7 +158,7 @@ class TestCommon(amo.tests.TestCase):
         expected = [
             ('Tools', '#'),
             ('Submit a New Add-on', reverse('devhub.submit.1')),
-            ('Submit a New Persona', reverse('devhub.personas.submit')),
+            ('Submit a New Theme', reverse('devhub.personas.submit')),
             ('Developer Hub', reverse('devhub.index')),
             ('Editor Tools', reverse('editors.home')),
             ('Localizer Tools', '/localizers'),
@@ -182,7 +182,7 @@ class TestCommon(amo.tests.TestCase):
             ('Tools', '#'),
             ('Manage My Add-ons', reverse('devhub.addons')),
             ('Submit a New Add-on', reverse('devhub.submit.1')),
-            ('Submit a New Persona', reverse('devhub.personas.submit')),
+            ('Submit a New Theme', reverse('devhub.personas.submit')),
             ('Developer Hub', reverse('devhub.index')),
             ('Editor Tools', reverse('editors.home')),
             ('Localizer Tools', '/localizers'),
@@ -291,12 +291,12 @@ class TestOtherStuff(amo.tests.TestCase):
         doc = pq(self.client.get(reverse('home')).content)
         base_url = reverse('browse.personas')
         expected = [
-            ('Personas', base_url),
+            ('Themes', base_url),
             ('Most Popular', urlparams(base_url, sort='popular')),
             ('Top Rated', urlparams(base_url, sort='rating')),
             ('Newest', urlparams(base_url, sort='created')),
         ]
-        check_links(expected, doc('#site-nav #personas a'))
+        check_links(expected, doc('#site-nav #themes a'))
 
     def test_mobile_link_firefox(self):
         doc = pq(test.Client().get('/firefox', follow=True).content)

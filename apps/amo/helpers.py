@@ -509,7 +509,7 @@ def _site_nav(context):
     # Prevent helpers from generating circular imports.
     from addons.models import Category
     request = context['request']
-    types = amo.ADDON_EXTENSION, amo.ADDON_PERSONA, amo.ADDON_THEME
+    types = amo.ADDON_EXTENSION, amo.ADDON_PERSONA
     qs = Category.objects.filter(application=request.APP.id, weight__gte=0,
                                  type__in=types)
     groups = utils.sorted_groupby(qs, key=attrgetter('type'))
@@ -517,8 +517,7 @@ def _site_nav(context):
                 for key, cs in groups)
     ctx = dict(request=request, amo=amo,
                extensions=cats.get(amo.ADDON_EXTENSION, []),
-               personas=cats.get(amo.ADDON_PERSONA, []),
-               themes=cats.get(amo.ADDON_THEME, []))
+               personas=cats.get(amo.ADDON_PERSONA, []))
     return jinja2.Markup(env.get_template('amo/site_nav.html').render(ctx))
 
 

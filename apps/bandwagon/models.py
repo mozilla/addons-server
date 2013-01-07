@@ -127,7 +127,7 @@ class Collection(CollectionBase, amo.models.ModelBase):
     downvotes = models.PositiveIntegerField(default=0)
     rating = models.FloatField(default=0)
     all_personas = models.BooleanField(default=False,
-        help_text='Does this collection only contain personas?')
+        help_text='Does this collection only contain Themes?')
 
     addons = models.ManyToManyField(Addon, through='CollectionAddon',
                                     related_name='collections')

@@ -35,8 +35,8 @@ $.fn.searchSuggestions = function($results, processCallback, searchType) {
     if (searchType == 'AMO') {
         // Some base elements that we don't want to keep creating on the fly.
         var msg;
-        if (cat == 'personas') {
-            msg = gettext('Search personas for <b>{0}</b>');
+        if (cat == 'themes') {
+            msg = gettext('Search themes for <b>{0}</b>');
         } else if (cat == 'apps') {
             msg = gettext('Search apps for <b>{0}</b>');
         } else {

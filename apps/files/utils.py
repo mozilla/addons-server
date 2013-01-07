@@ -113,7 +113,7 @@ class Extractor(object):
         if declared_type and declared_type in self.TYPES:
             return self.TYPES[declared_type]
 
-        # Look for themes.
+        # Look for full themes.
         if self.path.endswith('.jar') or self.find('internalName'):
             return amo.ADDON_THEME
 

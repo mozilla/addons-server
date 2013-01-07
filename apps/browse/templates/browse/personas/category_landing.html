@@ -18,7 +18,7 @@
 <div class="primary" role="main">
   <header>
     {% if not is_homepage %}
-      {{ breadcrumbs([(url('browse.personas'), _('Personas')), (None, category.name)]) }}
+      {{ breadcrumbs([(url('browse.personas'), _('Themes')), (None, category.name)]) }}
     {% endif %}
     <h2>{{ category.name }}</h2>
   </header>
@@ -33,8 +33,8 @@
           {% endfor %}
           {% endcache %}
         </ul>
-        {{ breadcrumbs([(None, _('Personas'))]) }}
-        <h2>{{ _('Personas') }}</h2>
+        {{ breadcrumbs([(None, _('Themes'))]) }}
+        <h2>{{ _('Themes') }}</h2>
         <p class="intro">
         {% trans url=url('browse.personas')|urlparams(sort=special) %}
           Over 30,000 different designs to personalize your browser! Just move
@@ -47,7 +47,7 @@
     {% set addons = featured[:6] %}
     {% if addons %}
       <div class="personas-featured">
-        <h3>{{ _('Featured Personas') }}</h3>
+        <h3>{{ _('Featured Themes') }}</h3>
         <ul class="persona-list-3col">
           {% cache addons %}
             {% for addon in addons %}
@@ -62,7 +62,7 @@
     <div id="featured-addons" class="featured personas">
       <div class="featured-inner">
         <h3>
-          <a href="{{ sort_link(special) }}">{{ _('Up & Coming Personas') }}</a>
+          <a href="{{ sort_link(special) }}">{{ _('Up & Coming Themes') }}</a>
         </h3>
         <ul class="persona-list-3col">
           {% cache addons %}
@@ -94,12 +94,12 @@
       <p class="view-all"><a href="{{ link }}">{{ more_links[key] }}</a></p>
     </div>
   {% endfor %}
-  <div class="info-message">
-    <h3>{{ _('Looking for Persona ID Sign-in?') }}</h3>
-    <p class="view-all">
-      {{ _('Mozilla Persona is an identity system for the Web.') }}
-      <a href="http://www.mozilla.org/persona/">{{ _('Learn more') }}</a>
-    </p>
+  <div class="info-message info-message-link">
+    <a class="view-all" href="{{ url('browse.themes') }}">
+      <big>{{ _('Looking for Full Themes?') }}</big>
+      <span>{{ _('Full themes are more extensible skins that allow you to change more of the look and feel of the browser.') }}</span>
+      <b>{{ _('Browse') }}</b>
+    </a>
   </div>
 </div>
 {{ persona_categories(request.APP == amo.FIREFOX) }}

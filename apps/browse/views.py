@@ -1,7 +1,9 @@
 import collections
 
 from django import http
-from django.http import HttpResponsePermanentRedirect
+from django.conf import settings
+from django.http import (Http404, HttpResponsePermanentRedirect,
+                         HttpResponseRedirect)
 from django.shortcuts import get_object_or_404, get_list_or_404, redirect
 from django.views.decorators.cache import cache_page
 
@@ -317,18 +319,40 @@ def personas_listing(request, category_slug=None):
                  .exclude(id__in=frozen)
                  .extra(select={'_app': request.APP.id}))
 
-    category = None
+    cat = None
     if category_slug is not None:
-        category = get_list_or_404(Category, slug=category_slug, type=TYPE)[0]
-        base = base.filter(categories__id=category.id)
+        try:
+            cat = Category.objects.filter(slug=category_slug, type=TYPE)[0]
+        except IndexError:
+            # Maybe it's a Full Theme?
+            try:
+                cat = Category.objects.filter(slug=category_slug,
+                    type=amo.ADDON_THEME)[0]
+            except IndexError:
+                raise Http404
+            else:
+                # Hey, it was a Full Theme.
+                url = reverse('browse.themes', args=[cat.slug])
+                if 'sort' in request.GET:
+                    url = amo.utils.urlparams(url, sort=request.GET['sort'])
+                return redirect(url, permanent=not settings.DEBUG)
+
+        base = base.filter(categories__id=cat.id)
 
     filter = PersonasFilter(request, base, key='sort', default='up-and-coming')
-    return categories, filter, base, category
+    return categories, filter, base, cat
 
 
 @mobile_template('browse/personas/{mobile/}')
 def personas(request, category=None, template=None):
-    categories, filter, base, category = personas_listing(request, category)
+    listing = personas_listing(request, category)
+
+    # I guess this was a Full Theme after all.
+    if isinstance(listing,
+                  (HttpResponsePermanentRedirect, HttpResponseRedirect)):
+        return listing
+
+    categories, filter, base, category = listing
 
     # Pass the count from base instead of letting it come from
     # filter.qs.count() since that would join against personas.
@@ -350,9 +374,37 @@ def personas(request, category=None, template=None):
 
     ctx = {'categories': categories, 'category': category, 'addons': addons,
            'filter': filter, 'sorting': filter.field, 'sort_opts': filter.opts,
-           'featured': featured, 'search_cat': 'personas',
+           'featured': featured, 'search_cat': 'themes',
            'is_homepage': category is None and 'sort' not in request.GET}
     return jingo.render(request, template, ctx)
+
+
+def legacy_theme_redirects(request, category=None, category_name=None):
+    url = None
+
+    if category_name is not None:
+        # This format is for the Full Themes RSS feed.
+        url = reverse('browse.themes.rss', args=[category_name])
+    else:
+        if not category or category == 'all':
+            url = reverse('browse.personas')
+        else:
+            try:
+                # Theme?
+                cat = Category.objects.filter(application=request.APP.id,
+                    slug=category, type=amo.ADDON_PERSONA)[0]
+            except IndexError:
+                pass
+            else:
+                # Hey, it was a Theme.
+                url = reverse('browse.personas', args=[cat.slug])
+
+    if url:
+        if 'sort' in request.GET:
+            url = amo.utils.urlparams(url, sort=request.GET['sort'])
+        return redirect(url, permanent=not settings.DEBUG)
+    else:
+        raise Http404
 
 
 @cache_page(60 * 60 * 24 * 365)

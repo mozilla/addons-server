@@ -34,7 +34,7 @@
     {% endif %}
     {% if profile.is_artist %}
       <div class="user-role"><p class="personas">
-        {{ loc('Personas Artist') }}
+        {{ _('Themes Artist') }}
       </p></div>
     {% endif %}
   </aside>
@@ -67,10 +67,8 @@
 
 {% if personas %}
   <div id="my-personas" class="island c">
-    <h2>{{ loc("Personas I've created") }}</h2>
-    {% cache personas %}
-      {{ personas|impala_persona_grid(cols=5, pagesize=15) }}
-    {% endcache %}
+    <h2>{{ _("Themes I've created") }}</h2>
+    {{ personas|impala_persona_grid(cols=5, pagesize=15) }}
   </div>
 {% endif %}
 

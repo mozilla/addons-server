@@ -79,8 +79,8 @@
         'badApp': format(gettext("Not Available for {0}"), z.appName),
         'badPlatform': format(gettext("Not Available for {0}"), z.platformName),
         'experimental': gettext("Experimental"),
-        'personasTooOld': format(gettext("Personas Require Newer Version of {0}"), z.appName),
-        'personasLearnMore': format(gettext("Personas Require {0}"), z.appName)
+        'personasTooOld': format(gettext("Themes Require Newer Version of {0}"), z.appName),
+        'personasLearnMore': format(gettext("Themes Require {0}"), z.appName)
     };
 
     function Button(el) {

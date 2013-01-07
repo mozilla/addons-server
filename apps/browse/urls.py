@@ -6,12 +6,11 @@ from browse.feeds import (ExtensionCategoriesRss, FeaturedRss, SearchToolsRss,
                           ThemeCategoriesRss)
 from . import views
 
+
 impala_patterns = patterns('',
     # TODO: Impalacize these views.
     url('^extensions/(?P<category>[^/]+)/featured$', views.creatured,
         name='i_browse.creatured'),
-    url('^personas/(?P<category>[^ /]+)?$', views.personas,
-        name='i_browse.personas'),
     url('^language-tools/(?P<category>[^/]+)?$', views.language_tools,
         name='i_browse.language-tools'),
     url('^search-tools/(?P<category>[^/]+)?$', views.search_tools,
@@ -31,11 +30,25 @@ urlpatterns = patterns('',
         lambda r: redirect(reverse('browse.extensions') + '?sort=featured',
                            permanent=True)),
 
-    url('^(?:themes|extensions)/moreinfo.php$', views.moreinfo_redirect),
+    url('^themes/moreinfo.php$',
+        lambda r: redirect(r.get_full_path().replace('themes/', 'full-themes/'),
+                           permanent=True)),
 
-    url('^themes/(?P<category>[^/]+)?$', views.themes,
+    url('^(?:extensions|full-themes)/moreinfo.php$', views.moreinfo_redirect),
+
+    # Personas are now Themes.
+    url('^personas/(?P<category>[^ /]+)?$', views.legacy_theme_redirects),
+    # TODO(percona): Rename this to `browse.themes`.
+    url('^themes/(?P<category>[^ /]+)?$', views.personas,
+        name='browse.personas'),
+
+    # Themes are now Full Themes.
+    url('^themes/(?P<category_name>[^/]+)/format:rss$',
+        views.legacy_theme_redirects),
+    # TODO(percona): Rename this to `browse.full-themes`.
+    url('^full-themes/(?P<category>[^/]+)?$', views.themes,
         name='browse.themes'),
-    url('^themes/(?:(?P<category_name>[^/]+)/)?format:rss$',
+    url('^full-themes/(?:(?P<category_name>[^/]+)/)?format:rss$',
         ThemeCategoriesRss(), name='browse.themes.rss'),
 
     url('^extensions/(?:(?P<category>[^/]+)/)?$', views.extensions,
@@ -48,9 +61,6 @@ urlpatterns = patterns('',
 
     url('^extensions/(?:(?P<category_name>[^/]+)/)?format:rss$',
         ExtensionCategoriesRss(), name='browse.extensions.rss'),
-
-    url('^personas/(?P<category>[^ /]+)?$', views.personas,
-        name='browse.personas'),
 
     url('^browse/type:7$',
         lambda r: redirect("https://www.mozilla.org/plugincheck/",

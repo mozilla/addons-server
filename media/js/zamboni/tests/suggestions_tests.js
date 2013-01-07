@@ -197,7 +197,7 @@ test('Default search label', function() {
     }
     check('',         'Search add-ons for {0}');
     check('all',      'Search add-ons for {0}');
-    check('personas', 'Search personas for {0}');
+    check('themes',   'Search themes for {0}');
     check('apps',     'Search apps for {0}');
 });
 
