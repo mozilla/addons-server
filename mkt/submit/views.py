@@ -173,11 +173,22 @@ def details(request, addon_id, addon):
 
         AppSubmissionChecklist.objects.get(addon=addon).update(details=True)
 
-        # The developer doesn't want the app published immediately upon review.
-        addon.update(status=amo.STATUS_PENDING,
-                     make_public=amo.PUBLIC_IMMEDIATELY
-                                 if form_basic.cleaned_data.get('publish')
-                                 else amo.PUBLIC_WAIT)
+        make_public = (amo.PUBLIC_IMMEDIATELY
+                       if form_basic.cleaned_data.get('publish')
+                       else amo.PUBLIC_WAIT)
+
+        # Free apps get pushed for review.
+        if addon.premium_type == amo.ADDON_FREE:
+            # The developer doesn't want the app published immediately upon
+            # review.
+            addon.update(status=amo.STATUS_PENDING,
+                         make_public=make_public)
+        else:
+            # Paid apps get STATUS_NULL until payment information has been
+            # entered.
+            addon.update(status=amo.STATUS_NULL,
+                         highest_status=amo.STATUS_PENDING,
+                         make_public=make_public)
 
         return redirect('submit.app.done', addon.app_slug)
 

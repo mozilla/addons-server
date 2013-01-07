@@ -627,6 +627,24 @@ class TestDetails(TestSubmit):
         self.webapp = self.get_webapp()
         self.assert3xx(r, self.get_url('done'))
 
+        eq_(self.webapp.status, amo.STATUS_PENDING)
+
+    def test_success_paid(self):
+        self._step()
+
+        self.webapp = self.get_webapp()
+        self.webapp.update(premium_type=amo.ADDON_PREMIUM)
+
+        data = self.get_dict()
+        r = self.client.post(self.url, data)
+        self.assertNoFormErrors(r)
+        self.check_dict(data=data)
+        self.webapp = self.get_webapp()
+        self.assert3xx(r, self.get_url('done'))
+
+        eq_(self.webapp.status, amo.STATUS_NULL)
+        eq_(self.webapp.highest_status, amo.STATUS_PENDING)
+
     def test_success_prefill_device_types_if_empty(self):
         """
         The new submission flow asks for device types at step one.

@@ -83,7 +83,7 @@
         // If only free-os or paid-os is selected, show packaged.
         if (($('#id_free_platforms option[value=free-firefoxos]:selected').length &&
              $('#id_free_platforms option:selected').length == 1)   ||
-            $('#id_paid option[value=paid-firefoxos]:selected').length) {
+            $('#id_paid_platforms option[value=paid-firefoxos]:selected').length) {
             $target.eq(1).css('display', 'inline');
         } else {
             $target.eq(1).css('display', 'none');
