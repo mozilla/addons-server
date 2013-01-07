@@ -356,7 +356,6 @@ MIDDLEWARE_CLASSES = (
 
 # Auth
 AUTHENTICATION_BACKENDS = (
-    'django_browserid.auth.BrowserIDBackend',
     'users.backends.AmoUserBackend',
     'cake.backends.SessionBackend',
 )
