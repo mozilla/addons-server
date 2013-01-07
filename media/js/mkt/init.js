@@ -58,15 +58,21 @@ $(document).ready(function() {
         pre_auth: data_user.pre_auth
     });
 
+    var gaiaCookie = $.cookie('gaia');
+
     // Set cookie if user is on B2G.
     // TODO: remove this once we allow purchases on desktop/android.
-    if (document.cookie && z.capabilities.gaia) {
-        document.cookie = 'gaia=true;path=/';
+    if (!gaiaCookie && z.capabilities.gaia) {
+        $.cookie('gaia', 'true', {path: '/'});
+
+        // reload the fragment for updated content.
+        z.page.trigger('refreshfragment');
     }
 
     // Sets a tablet cookie.
-    if (document.cookie && z.capabilities.tablet) {
-        document.cookie = 'tablet=true;path=/';
+    var tabletCookie = $.cookie('tablet');
+    if (!tabletCookie && z.capabilities.tablet) {
+        $.cookie('tablet', 'true', {path: '/'});
         if (z.body.hasClass('sony') && !z.body.hasClass('desktop')) {
             // Reload to get the tablet design.
             window.location.reload();
