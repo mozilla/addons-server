@@ -123,6 +123,26 @@ WEBTRENDS_PASSWORD = private_mkt.WEBTRENDS_PASSWORD
 
 SENTRY_CLIENT = 'djangoraven.metlog.MetlogDjangoClient'
 
+# Pass through the DSN to the Raven client and force signal
+# registration so that exceptions are passed through to sentry
+RAVEN_CONFIG = {'dsn': SENTRY_DSN, 'register_signals': True}
+
 # Remove SEN.
 if 'sony' in CARRIER_URLS:
     CARRIER_URLS.remove('sony')
+
+METLOG_CONF = {
+    'plugins': {'cef': ('metlog_cef.cef_plugin:config_plugin', {}),
+                'raven': (
+                    'metlog_raven.raven_plugin:config_plugin', {'dsn': SENTRY_DSN}),
+        },
+    'sender': {
+        'class': 'metlog.senders.UdpSender',
+        'host': splitstrip(private.METLOG_CONF_SENDER_HOST),
+        'port': private.METLOG_CONF_SENDER_PORT,
+    },
+    'logger': 'addons-marketplace-prod',
+}
+METLOG = client_from_dict_config(METLOG_CONF)
+USE_METLOG_FOR_CEF = True
+USE_METLOG_FOR_TASTYPIE = True
