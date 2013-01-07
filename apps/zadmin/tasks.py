@@ -441,9 +441,8 @@ def fetch_langpacks(path, **kw):
                           'language pack' % (data['version'], xpi))
                 continue
 
-            addon = Addon.from_upload(upload, PLATFORMS)
+            addon, version = Addon.from_upload(upload, PLATFORMS)
             AddonUser(addon=addon, user=owner).save()
-            version = addon.versions.no_cache()[0]
 
             addon.status = amo.STATUS_PUBLIC
             if addon.default_locale.lower() == lang.lower():
