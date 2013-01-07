@@ -56,7 +56,7 @@
       {# Stores the existing review body to populate the edit review modal. #}
       {% if DESKTOP and has_review %}
         <script type="text/template" id="current-review">
-          {{ my_review.body|nl2br }}
+          {{ my_review.body }}
         </script>
       {% endif %}
     {% endif %}
