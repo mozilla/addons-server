@@ -133,6 +133,7 @@ class BlocklistGfx(BlocklistBase, amo.models.ModelBase):
     driver_version = models.CharField(max_length=255, blank=True, null=True)
     driver_version_comparator = models.CharField(max_length=255, blank=True,
                                                  null=True)
+    hardware = models.CharField(max_length=255, blank=True, null=True)
     details = models.OneToOneField(BlocklistDetail, null=True)
 
     class Meta:

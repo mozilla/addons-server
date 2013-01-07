@@ -452,7 +452,8 @@ class BlocklistGfxTest(BlocklistViewTest):
         self.gfx = BlocklistGfx.objects.create(
             guid=amo.FIREFOX.guid, os='os', vendor='vendor', devices='x y z',
             feature='feature', feature_status='status', details=self.details,
-            driver_version='version', driver_version_comparator='compare')
+            driver_version='version', driver_version_comparator='compare',
+            hardware='giant_robot')
 
     def test_no_gfx(self):
         dom = self.dom(self.mobile_url)
@@ -472,6 +473,7 @@ class BlocklistGfxTest(BlocklistViewTest):
         eq_(find('driverVersion'), self.gfx.driver_version)
         eq_(find('driverVersionComparator'),
             self.gfx.driver_version_comparator)
+        eq_(find('hardware'), self.gfx.hardware)
         devices = gfx.getElementsByTagName('devices')[0]
         for device, val in zip(devices.getElementsByTagName('device'),
                                self.gfx.devices.split(' ')):
@@ -486,7 +488,8 @@ class BlocklistGfxTest(BlocklistViewTest):
     def test_no_empty_nodes(self):
         self.gfx.update(os=None, vendor=None, devices=None,
                         feature=None, feature_status=None,
-                        driver_version=None, driver_version_comparator=None)
+                        driver_version=None, driver_version_comparator=None,
+                        hardware=None)
         r = self.client.get(self.fx4_url)
         self.assertNotContains(r, '<os>')
         self.assertNotContains(r, '<vendor>')
@@ -495,6 +498,7 @@ class BlocklistGfxTest(BlocklistViewTest):
         self.assertNotContains(r, '<featureStatus>')
         self.assertNotContains(r, '<driverVersion>')
         self.assertNotContains(r, '<driverVersionComparator>')
+        self.assertNotContains(r, '<hardware>')
 
     def test_block_id(self):
         item = (self.dom(self.fx4_url)

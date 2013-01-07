@@ -89,6 +89,9 @@
       {%- if gfx.driver_version_comparator %}
       <driverVersionComparator>{{ gfx.driver_version_comparator }}</driverVersionComparator>
       {%- endif %}
+      {%- if gfx.hardware %}
+      <hardware>{{ gfx.hardware }}</hardware>
+      {%- endif %}
     </gfxBlacklistEntry>
   {% endfor %}
   </gfxItems>
