@@ -18,13 +18,12 @@ import captcha.fields
 from amo.fields import ColorField
 from amo.urlresolvers import reverse
 from amo.utils import slug_validator, slugify, sorted_groupby, remove_icons
-from addons.models import (Addon, AddonDeviceType, AddonCategory, AddonUser,
-                           BlacklistedSlug, Category, Persona)
+from addons.models import (Addon, AddonCategory, AddonUser, BlacklistedSlug,
+                           Category, Persona)
 from addons.utils import reverse_name_lookup
 from addons.widgets import IconWidgetRenderer, CategoriesSelectMultiple
 from applications.models import Application
 from devhub import tasks as devhub_tasks
-from editors.models import RereviewQueue
 from tags.models import Tag
 from translations.fields import TransField, TransTextarea
 from translations.forms import TranslationFormMixin
@@ -205,44 +204,6 @@ class ApplicationChoiceField(forms.ModelChoiceField):
 
     def label_from_instance(self, obj):
         return obj.id
-
-
-class DeviceTypeForm(forms.Form):
-    device_types = forms.TypedMultipleChoiceField(
-        choices=[(k, v.name) for k, v in amo.DEVICE_TYPES.items()],
-        coerce=int,
-        label=_lazy(u'Which device types does your app work with?'),
-        initial=amo.DEVICE_TYPES.keys(), widget=forms.CheckboxSelectMultiple)
-
-    def __init__(self, *args, **kwargs):
-        self.addon = kwargs.pop('addon')
-        super(DeviceTypeForm, self).__init__(*args, **kwargs)
-        device_types = AddonDeviceType.objects.filter(
-            addon=self.addon).values_list('device_type', flat=True)
-        if device_types:
-            self.initial['device_types'] = device_types
-
-    def save(self, addon):
-        new_types = self.cleaned_data['device_types']
-        old_types = [x.id for x in addon.device_types]
-
-        added_devices = set(new_types) - set(old_types)
-        removed_devices = set(old_types) - set(new_types)
-
-        for d in added_devices:
-            AddonDeviceType(addon=addon, device_type=d).save()
-        for d in removed_devices:
-            AddonDeviceType.objects.filter(
-                addon=addon, device_type=d).delete()
-
-        # Send app to re-review queue if public and new devices are added.
-        if added_devices and self.addon.status == amo.STATUS_PUBLIC:
-            msg = _(u'Device(s) changed: {0}').format(', '.join(
-                [_(u'Added {0}').format(unicode(amo.DEVICE_TYPES[d].name))
-                 for d in added_devices] +
-                [_(u'Removed {0}').format(unicode(amo.DEVICE_TYPES[d].name))
-                 for d in removed_devices]))
-            RereviewQueue.flag(self.addon, amo.LOG.REREVIEW_DEVICES_ADDED, msg)
 
 
 class CategoryForm(forms.Form):

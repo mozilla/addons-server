@@ -356,38 +356,6 @@ class TestEditBasic(TestEdit):
         eq_(r.context['cat_form'].errors['categories'],
             ['You can have only 2 categories.'])
 
-    def test_devices_listed(self):
-        r = self.client.post(self.url, self.get_dict())
-        eq_(pq(r.content)('#addon-device-types-edit').text(),
-            DEVICE_TYPES[self.dtype].name)
-
-    def test_edit_devices_add(self):
-        eq_(RereviewQueue.objects.count(), 0)
-        new = DEVICE_TYPES.keys()[1]
-        data = self.get_dict()
-        data['device_types'] = [self.dtype, new]
-        self.client.post(self.edit_url, data)
-        devicetypes = self.get_webapp().device_types
-        eq_([d.id for d in devicetypes], list(data['device_types']))
-        eq_(RereviewQueue.objects.count(), 1)
-
-    def test_edit_devices_addandremove(self):
-        eq_(RereviewQueue.objects.count(), 0)
-        new = DEVICE_TYPES.keys()[1]
-        data = self.get_dict()
-        data['device_types'] = [new]
-        self.client.post(self.edit_url, data)
-        devicetypes = self.get_webapp().device_types
-        eq_([d.id for d in devicetypes], list(data['device_types']))
-        eq_(RereviewQueue.objects.count(), 1)
-
-    def test_edit_devices_add_required(self):
-        data = self.get_dict()
-        data['device_types'] = []
-        r = self.client.post(self.edit_url, data)
-        self.assertFormError(r, 'device_type_form', 'device_types',
-                             'This field is required.')
-
     def test_edit_summary_max_length(self):
         r = self.client.post(self.edit_url, self.get_dict(summary='x' * 251))
         eq_(list(r.context['form'].errors['summary']),

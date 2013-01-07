@@ -17,6 +17,7 @@ from market.models import AddonPremium, Price, PriceCurrency
 from mkt.constants import FREE_PLATFORMS, PAID_PLATFORMS
 from mkt.inapp_pay.models import InappConfig
 from mkt.site.forms import AddonChoiceField
+from mkt.submit.forms import DeviceTypeForm
 
 from .models import AddonPaymentAccount, PaymentAccount
 
@@ -38,7 +39,7 @@ def _restore_app(app, save=True):
         app.save()
 
 
-class PremiumForm(happyforms.Form):
+class PremiumForm(DeviceTypeForm, happyforms.Form):
     """
     The premium details for an addon, which is unfortunately
     distributed across a few models.
@@ -49,11 +50,6 @@ class PremiumForm(happyforms.Form):
     price = forms.ModelChoiceField(queryset=Price.objects.active(),
                                    label=_lazy(u'App Price'),
                                    empty_label=None, required=False)
-
-    free_platforms = forms.MultipleChoiceField(
-        choices=FREE_PLATFORMS, required=False)
-    paid_platforms = forms.MultipleChoiceField(
-        choices=PAID_PLATFORMS, required=False)
 
     def __init__(self, *args, **kw):
         self.request = kw.pop('request')
@@ -77,12 +73,17 @@ class PremiumForm(happyforms.Form):
         self.device_data = {}
         supported_devices = [amo.REVERSE_DEVICE_LOOKUP[dev.id] for dev in
                              self.addon.device_types]
+        prefix = 'paid' if self.is_paid() else 'free'
+        init_platforms = self.initial['%s_platforms' % prefix] = []
 
-        for platform in [x[0].split('-')[1] for x in
+        for platform in [x[0].split('-', 1)[1] for x in
                          FREE_PLATFORMS + PAID_PLATFORMS]:
             supported = platform in supported_devices
             self.device_data['free-%s' % platform] = supported
             self.device_data['paid-%s' % platform] = supported
+
+            if supported:
+                init_platforms.append('%s-%s' % (prefix, platform))
 
         if (not self.initial.get('price') and
             len(self.fields['price'].choices) > 1):
@@ -99,6 +100,12 @@ class PremiumForm(happyforms.Form):
         log.info('New AddonPremium object for addon %s' % self.addon.pk)
         return AddonPremium(addon=self.addon, price=self._initial_price())
 
+    def is_paid(self):
+        return self.addon.premium_type in amo.ADDON_PREMIUMS
+
+    def is_toggling(self):
+        return self.request.POST.get('toggle-paid', False) or False
+
     def clean_price(self):
         if (self.cleaned_data.get('premium_type') in amo.ADDON_PREMIUMS
             and not self.cleaned_data['price']):
@@ -107,13 +114,10 @@ class PremiumForm(happyforms.Form):
 
         return self.cleaned_data['price']
 
-    def is_toggling(self):
-        return self.request.POST.get('toggle-paid', False) or False
-
     def save(self):
         toggle = self.is_toggling()
         upsell = self.addon.upsold
-        is_premium = self.addon.premium_type in amo.ADDON_PREMIUMS
+        is_premium = self.is_paid()
 
         if toggle == 'paid' and self.addon.premium_type == amo.ADDON_FREE:
             # Toggle free apps to paid by giving them a premium object.
@@ -124,6 +128,8 @@ class PremiumForm(happyforms.Form):
 
             self.addon.premium_type = amo.ADDON_PREMIUM
             self.addon.status = amo.STATUS_NULL
+
+            is_premium = True
 
         elif toggle == 'free' and is_premium:
             # If the app is paid and we're making it free, remove it as an
@@ -144,6 +150,8 @@ class PremiumForm(happyforms.Form):
             if self.addon.status == amo.STATUS_NULL:
                 _restore_app(self.addon, save=False)
 
+            is_premium = False
+
         elif is_premium:
             # The dev is submitting updates for payment data about a paid app.
             # This might also happen if she is associating a new paid app
@@ -159,6 +167,11 @@ class PremiumForm(happyforms.Form):
                 premium.price = self.cleaned_data['price']
 
             premium.save()
+
+        if not toggle:
+            # Save the device compatibility information when we're not
+            # toggling.
+            super(PremiumForm, self).save(self.addon, is_premium)
 
         log.info('Saving app payment changes for addon %s.' % self.addon.pk)
         self.addon.save()

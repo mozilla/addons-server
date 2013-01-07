@@ -24,7 +24,6 @@ import amo.utils
 from access import acl
 from addons import forms as addon_forms
 from addons.decorators import addon_view
-from addons.forms import DeviceTypeForm
 from addons.models import Addon, AddonUser
 from addons.views import BaseFilter
 from amo import messages
@@ -130,7 +129,6 @@ def edit(request, addon_id, addon, webapp=False):
         'tags': addon.tags.not_blacklisted().values_list('tag_text',
                                                          flat=True),
         'previews': addon.get_previews(),
-        'device_type_form': DeviceTypeForm(request.POST or None, addon=addon),
     }
     if acl.action_allowed(request, 'Apps', 'Configure'):
         data['admin_settings_form'] = forms.AdminSettingsForm(instance=addon)
@@ -649,14 +647,13 @@ def addons_section(request, addon_id, addon, section, editable=False,
         raise http.Http404()
 
     tags = image_assets = previews = restricted_tags = []
-    cat_form = device_type_form = None
+    cat_form = None
 
     if section == 'basic':
         tags = addon.tags.not_blacklisted().values_list('tag_text', flat=True)
         cat_form = CategoryForm(request.POST or None, product=addon,
                                 request=request)
         restricted_tags = addon.tags.filter(restricted=True)
-        device_type_form = DeviceTypeForm(request.POST or None, addon=addon)
 
     elif section == 'media':
         image_assets = ImageAssetFormSet(
@@ -712,12 +709,6 @@ def addons_section(request, addon_id, addon, section, editable=False,
                     addon.save()
                 else:
                     editable = True
-            if device_type_form:
-                if device_type_form.is_valid():
-                    device_type_form.save(addon)
-                    addon.save()
-                else:
-                    editable = True
         else:
             form = models[section](instance=addon, request=request)
     else:
@@ -733,8 +724,7 @@ def addons_section(request, addon_id, addon, section, editable=False,
             'cat_form': cat_form,
             'preview_form': previews,
             'image_asset_form': image_assets,
-            'valid_slug': valid_slug,
-            'device_type_form': device_type_form}
+            'valid_slug': valid_slug, }
 
     return jingo.render(request,
                         'developers/apps/edit/%s.html' % section, data)

@@ -5,12 +5,46 @@ import StringIO
 from django import forms
 
 import happyforms
+from tower import ugettext as _
 
-from addons.models import Addon, Category
 import amo
+from addons.models import Addon, AddonDeviceType, Category
+from editors.models import RereviewQueue
 from files.models import FileUpload
 from mkt.developers.forms import NewPackagedAppForm
 from mkt.developers.utils import check_upload
+from mkt.submit.forms import mark_for_rereview
+
+
+class DeviceTypeForm(forms.Form):
+    device_types = forms.TypedMultipleChoiceField(
+        choices=[(k, v.name) for k, v in amo.DEVICE_TYPES.items()],
+        coerce=int,
+        initial=amo.DEVICE_TYPES.keys(), widget=forms.CheckboxSelectMultiple)
+
+    def __init__(self, *args, **kwargs):
+        self.addon = kwargs.pop('addon')
+        super(DeviceTypeForm, self).__init__(*args, **kwargs)
+        device_types = AddonDeviceType.objects.filter(
+            addon=self.addon).values_list('device_type', flat=True)
+        if device_types:
+            self.initial['device_types'] = device_types
+
+    def save(self, addon):
+        new_types = self.cleaned_data['device_types']
+        old_types = [x.id for x in addon.device_types]
+
+        added_devices = set(new_types) - set(old_types)
+        removed_devices = set(old_types) - set(new_types)
+
+        for d in added_devices:
+            addon.addondevicetype_set.create(device_type=d)
+        for d in removed_devices:
+            addon.addondevicetype_set.filter(device_type=d).delete()
+
+        # Send app to re-review queue if public and new devices are added.
+        if added_devices and self.addon.status == amo.STATUS_PUBLIC:
+            mark_for_rereview(self.addon, added_devices, removed_devices)
 
 
 class UploadForm(happyforms.Form):

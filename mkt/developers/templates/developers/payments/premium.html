@@ -9,27 +9,42 @@
   {{ super() }}{% if not can_edit %} no-edit{% endif %}
 {% endblock %}
 
-{%- macro button(form, item) -%}
+{%- macro button(form, item, can_change=True) -%}
+  {% set tag = 'a' if can_change else 'span' %}
   <div class="wrapper">
-    <span href="#" id="{{ item[0] }}" data-value="{{ item[0] }}"
-          class="island unclickable choice{{ ' selected' if form.device_data[item[0]] }}"
-          title="{{ DEVICE_LOOKUP[item[0]] }}">
+    <{{ tag }}
+     {{ {'href': '#',
+         'id': item[0],
+         'class': 'island choice' +
+                  (' selected' if form.device_data[item[0]] else '') +
+                  (' unclickable' if not can_change else ''),
+         'data-value': item[0],
+         'title': DEVICE_LOOKUP[item[0]]
+        }|xmlattr }}>
       <h3>{{ item[1] }}</h3>
-      {# <div class="listing-footer"><input type="checkbox"></div> #}
-    </a>
+      {%- if can_change -%}
+        <div class="listing-footer">
+          <input type="checkbox" {{ 'checked' if form.device_data[item[0]] }}>
+        </div>
+      {%- endif -%}
+    </{{ tag }}>
   </div>
 {%- endmacro %}
 
 {% block content %}
   <header>
     {{ hub_breadcrumbs(addon, items=[(None, title)]) }}
-    {#{{ l10n_menu(addon.default_locale) }}#}
     <h1>{{ title }}</h1>
   </header>
   <section class="primary payments devhub-form" role="main">
     <form action="{{ addon.get_dev_url('payments') }}" method="post">
       {{ csrf() }}
       <input type="hidden" name="toggle-paid" value="" />
+
+      <div class="hidden">
+        {{ form.free_platforms }}
+        {{ form.paid_platforms }}
+      </div>
 
       <section id="submit-payment-type" class="island hasappendix {{ 'tabbable ' if payments_enabled or is_paid }}">
         <div class="free tab {{ 'active' if not is_paid }}">
@@ -40,7 +55,7 @@
           {% endif %}
           <div class="error">{{ form.errors.free }}</div>
           {%- for item in form.fields['free_platforms'].choices -%}
-            {{ button(form, item) }}
+            {{ button(form, item, can_change=not is_paid) }}
           {%- endfor %}
           {% if is_paid %}
             <div id="free-tab-save" class="update-payment-type">
@@ -64,9 +79,9 @@
             </h2>
             <div class="error">{{ form.errors.paid }}</div>
             {%- for item in form.fields['paid_platforms'].choices -%}
-              {{ button(form, item) }}
+              {{ button(form, item, can_change=False) }}
             {%- endfor %}
-            {% if not is_paid %}
+            {% if not is_paid and not no_paid %}
               <div id="paid-tab-save" class="update-payment-type">
                 <button data-type="paid">{{ _('Change to Paid') }}</button>
                 {{ _('Changing to Paid will put your app back into review.') }}
@@ -74,6 +89,9 @@
             {% endif %}
           </div>
         {% endif %}
+        <div id="compat-save-button" class="hidden">
+          <button>{{ _('Save Changes') }}
+        </div>
       </section>
 
       {% if is_paid %}

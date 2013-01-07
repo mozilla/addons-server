@@ -15,39 +15,42 @@ class TestNewWebappForm(amo.tests.TestCase):
     def test_not_free_or_paid(self):
         form = forms.NewWebappForm({})
         assert not form.is_valid()
-        eq_(form.ERRORS['none'], form.errors['free'])
-        eq_(form.ERRORS['none'], form.errors['paid'])
+        eq_(form.ERRORS['none'], form.errors['free_platforms'])
+        eq_(form.ERRORS['none'], form.errors['paid_platforms'])
 
     def test_not_paid(self):
-        form = forms.NewWebappForm({'paid': ['paid-os']})
+        form = forms.NewWebappForm({'paid_platforms': ['paid-firefoxos']})
         assert not form.is_valid()
-        eq_(form.ERRORS['none'], form.errors['free'])
-        eq_(form.ERRORS['none'], form.errors['paid'])
+        eq_(form.ERRORS['none'], form.errors['free_platforms'])
+        eq_(form.ERRORS['none'], form.errors['paid_platforms'])
 
     def test_paid(self):
         self.create_switch('allow-b2g-paid-submission')
-        form = forms.NewWebappForm({'paid': ['paid-os'],
+        form = forms.NewWebappForm({'paid_platforms': ['paid-firefoxos'],
                                     'upload': self.file.uuid})
         assert form.is_valid()
         eq_(form.get_paid(), amo.ADDON_PREMIUM)
 
     def test_free(self):
         self.create_switch('allow-b2g-paid-submission')
-        form = forms.NewWebappForm({'free': ['free-os'],
+        form = forms.NewWebappForm({'free_platforms': ['free-firefoxos'],
                                     'upload': self.file.uuid})
         assert form.is_valid()
         eq_(form.get_paid(), amo.ADDON_FREE)
 
     def test_platform(self):
         self.create_switch('allow-b2g-paid-submission')
-        for data, res in (
-                ({'free': ['free-os']}, [amo.DEVICE_GAIA]),
-                ({'paid': ['paid-os']}, [amo.DEVICE_GAIA]),
-                ({'free': ['free-os', 'free-phone']},
-                 [amo.DEVICE_GAIA, amo.DEVICE_MOBILE]),
-                ({'free': ['free-phone', 'free-tablet']},
-                 [amo.DEVICE_MOBILE, amo.DEVICE_TABLET]),
-            ):
+        mappings = (
+            ({'free_platforms': ['free-firefoxos']}, [amo.DEVICE_GAIA]),
+            ({'paid_platforms': ['paid-firefoxos']}, [amo.DEVICE_GAIA]),
+            ({'free_platforms': ['free-firefoxos',
+                                 'free-android-mobile']},
+             [amo.DEVICE_GAIA, amo.DEVICE_MOBILE]),
+            ({'free_platforms': ['free-android-mobile',
+                                 'free-android-tablet']},
+             [amo.DEVICE_MOBILE, amo.DEVICE_TABLET]),
+        )
+        for data, res in mappings:
             data['upload'] = self.file.uuid
             form = forms.NewWebappForm(data)
             assert form.is_valid(), form.errors
@@ -55,20 +58,20 @@ class TestNewWebappForm(amo.tests.TestCase):
 
     def test_both(self):
         self.create_switch('allow-b2g-paid-submission')
-        form = forms.NewWebappForm({'paid': ['paid-os'],
-                                    'free': ['free-os']})
+        form = forms.NewWebappForm({'paid_platforms': ['paid-firefoxos'],
+                                    'free_platforms': ['free-firefoxos']})
         assert not form.is_valid()
-        eq_(form.ERRORS['both'], form.errors['free'])
-        eq_(form.ERRORS['both'], form.errors['paid'])
+        eq_(form.ERRORS['both'], form.errors['free_platforms'])
+        eq_(form.ERRORS['both'], form.errors['paid_platforms'])
 
     def test_multiple(self):
-        form = forms.NewWebappForm({'free': ['free-os',
-                                             'free-desktop'],
+        form = forms.NewWebappForm({'free_platforms': ['free-firefoxos',
+                                                       'free-desktop'],
                                     'upload': self.file.uuid})
         assert form.is_valid()
 
     def test_not_packaged(self):
-        form = forms.NewWebappForm({'free': ['free-os'],
+        form = forms.NewWebappForm({'free_platforms': ['free-firefoxos'],
                                     'upload': self.file.uuid,
                                     'packaged': True})
         assert form.is_valid(), form.errors
@@ -76,7 +79,7 @@ class TestNewWebappForm(amo.tests.TestCase):
 
     def test_not_packaged_allowed(self):
         self.create_switch('allow-packaged-app-uploads')
-        form = forms.NewWebappForm({'free': ['free-os'],
+        form = forms.NewWebappForm({'free_platforms': ['free-firefoxos'],
                                     'upload': self.file.uuid})
         assert form.is_valid(), form.errors
         assert not form.is_packaged()
@@ -84,16 +87,18 @@ class TestNewWebappForm(amo.tests.TestCase):
     @mock.patch('mkt.submit.forms.parse_addon')
     def test_packaged_allowed(self, parse_addon):
         self.create_switch('allow-packaged-app-uploads')
-        form = forms.NewWebappForm({'free': ['free-os'],
+        form = forms.NewWebappForm({'free_platforms': ['free-firefoxos'],
                                     'upload': self.file.uuid,
                                     'packaged': True})
-        assert form.is_valid()
+        assert form.is_valid(), form.errors
         assert form.is_packaged()
 
+    @mock.patch('mkt.submit.forms.parse_addon',
+                lambda *args: {'version': None})
     def test_packaged_wrong_device(self):
         self.create_switch('allow-packaged-app-uploads')
-        form = forms.NewWebappForm({'free': ['free-desktop'],
+        form = forms.NewWebappForm({'free_platforms': ['free-desktop'],
                                     'upload': self.file.uuid,
                                     'packaged': True})
         assert not form.is_valid(), form.errors
-        eq_(form.ERRORS['packaged'], form.errors['paid'])
+        eq_(form.ERRORS['packaged'], form.errors['paid_platforms'])

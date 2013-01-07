@@ -487,7 +487,8 @@ class TestPackagedManifest(BasePackagedAppTest):
             webapp.get_cached_manifest()
 
     def test_cached_manifest_contents(self):
-        webapp = self.post_addon(data={'packaged': True, 'free': 'free-os'})
+        webapp = self.post_addon(
+            data={'packaged': True, 'free_platforms': 'free-firefoxos'})
         version = webapp.current_version
         file = version.all_files[0]
         manifest = self._get_manifest_json()
@@ -506,7 +507,8 @@ class TestPackagedManifest(BasePackagedAppTest):
 
     @mock.patch.object(packaged, 'sign', mock_sign)
     def test_package_path(self):
-        webapp = self.post_addon(data={'packaged': True, 'free': 'free-os'})
+        webapp = self.post_addon(
+            data={'packaged': True, 'free_platforms': 'free-firefoxos'})
         version = webapp.current_version
         file = version.all_files[0]
         res = self.client.get(file.get_url_path('manifest'))

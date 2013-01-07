@@ -105,8 +105,8 @@ def payments(request, addon_id, addon, webapp=False):
     cannot_be_paid = (
         addon.premium_type == amo.ADDON_FREE and
         any(premium_form.device_data['free-%s' % x] == y for x, y in
-            [('phone', True), ('tablet', True), ('desktop', True),
-             ('os', False)]))
+            [('android-mobile', True), ('android-tablet', True),
+             ('desktop', True), ('firefoxos', False)]))
 
     return jingo.render(
         request, 'developers/payments/premium.html',

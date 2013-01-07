@@ -39,9 +39,13 @@
 
     // Reset selected device buttons and values.
     $('#submit-payment-type h2 a').click(function(e) {
+        if ($(this).hasClass('disabled')) {
+            return;
+        }
+
         $('#submit-payment-type a.choice').removeClass('selected')
                                           .find('input').removeAttr('checked');
-        $('#id_free, #id_paid').val([]);
+        $('#id_free_platforms, #id_paid_platforms').val([]);
     });
 
 
@@ -49,19 +53,19 @@
     $('#submit-payment-type a.choice').on('click',
         _pd(function() {
             var $this = $(this),
-                $input = $('#id_' + this.id.split('-')[0]),
+                free_or_paid = this.id.split('-')[0],
+                $input = $('#id_' + free_or_paid + '_platforms'),
                 old = $input.val() || [],
-                val = $this.data('value');
+                val = $this.data('value'),
+                nowSelected = old.indexOf(val) === -1;
 
-            if (old.indexOf(val) === -1) {
-                $this.addClass('selected');
+            if (nowSelected) {
                 old.push(val);
-                $this.find('input').attr('checked', true);
             } else {
-                $this.removeClass('selected');
                 delete old[old.indexOf(val)];
-                $this.find('input').removeAttr('checked');
             }
+            $this.toggleClass('selected', nowSelected);
+            $this.find('input').attr('checked', nowSelected);
             $input.val(old);
             show_packaged();
         })
@@ -69,15 +73,15 @@
 
     // Show packaged.
     function show_packaged() {
-        if (!$('#id_free, #id_paid').length) {
+        if (!$('#id_free_platforms, #id_paid_platforms').length) {
             return;
         }
         var $target = $('#upload-file hgroup h2');
 
         // If only free-os or paid-os is selected, show packaged.
-        if (($('#id_free option[value=free-os]:selected').length &&
-             $('#id_free option:selected').length == 1)   ||
-            $('#id_paid option[value=paid-os]:selected').length) {
+        if (($('#id_free_platforms option[value=free-firefoxos]:selected').length &&
+             $('#id_free_platforms option:selected').length == 1)   ||
+            $('#id_paid option[value=paid-firefoxos]:selected').length) {
             $target.eq(1).css('display', 'inline');
         } else {
             $target.eq(1).css('display', 'none');

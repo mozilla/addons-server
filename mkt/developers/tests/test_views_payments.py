@@ -9,7 +9,7 @@ from pyquery import PyQuery as pq
 
 import amo
 import amo.tests
-from addons.models import Addon, AddonCategory, Category
+from addons.models import Addon, AddonCategory, AddonDeviceType, Category
 from market.models import Price
 from users.models import UserProfile
 
@@ -236,6 +236,8 @@ class TestPayments(amo.tests.TestCase):
 
     def setUp(self):
         self.webapp = self.get_webapp()
+        AddonDeviceType.objects.create(
+            addon=self.webapp, device_type=amo.DEVICE_GAIA.id)
         self.url = self.webapp.get_dev_url('payments')
         self.username = 'admin@mozilla.com'
         assert self.client.login(username=self.username, password='password')
@@ -254,7 +256,9 @@ class TestPayments(amo.tests.TestCase):
 
     def get_postdata(self, base):
         extension = {'regions': self.get_region_list(),
-                     'other_regions': 'on'}
+                     'other_regions': 'on',
+                     'free_platforms': ['free-%s' % dt.class_name for dt in
+                                        self.webapp.device_types]}
         base.update(extension)
         return base
 
@@ -341,6 +345,8 @@ class TestRegions(amo.tests.TestCase):
 
     def setUp(self):
         self.webapp = self.get_webapp()
+        AddonDeviceType.objects.create(
+            addon=self.webapp, device_type=amo.DEVICE_GAIA.id)
         self.url = self.webapp.get_dev_url('payments')
         self.username = 'admin@mozilla.com'
         assert self.client.login(username=self.username, password='password')
@@ -355,7 +361,9 @@ class TestRegions(amo.tests.TestCase):
 
     def get_dict(self, **kwargs):
         extension = {'regions': mkt.regions.REGION_IDS,
-                     'other_regions': 'on'}
+                     'other_regions': 'on',
+                     'free_platforms': ['free-%s' % dt.class_name for dt in
+                                        self.webapp.device_types]}
         extension.update(kwargs)
         return extension
 

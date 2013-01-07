@@ -107,22 +107,22 @@ h2 .soon {
         display: inline-block;
         padding-left: 15px;
         width: 25%;
-        a, span.unclickable {
+        a.choice, span.unclickable {
             text-decoration: none;
             text-align: center;
             padding: 180px 10px 20px;
             margin-bottom: 0;
             opacity: .9;
-            &[data-value="free-os"], &[data-value="paid-os"] {
+            &[data-value="free-firefoxos"], &[data-value="paid-firefoxos"] {
                 background: url(../../img/developers/firefox_phone.png) no-repeat 50% 25px;
             }
             &[data-value="free-desktop"] {
                 background: url(../../img/developers/firefox_logo.png) no-repeat 50% 25px;
             }
-            &[data-value="free-phone"] {
+            &[data-value="free-android-mobile"] {
                 background: url(../../img/developers/firefox_android_phone.png) no-repeat 50% 25px;
             }
-            &[data-value="free-tablet"] {
+            &[data-value="free-android-tablet"] {
                 background: url(../../img/developers/firefox_android_tablet.png) no-repeat 50% 40px;
             }
             &.selected,
@@ -144,6 +144,9 @@ h2 .soon {
             }
             div {
                 color: #484848;
+            }
+            .listing-footer input {
+                pointer-events: none;
             }
         }
     }

@@ -7,7 +7,7 @@ from test_utils import RequestFactory
 import amo
 import amo.tests
 
-from addons.models import Addon
+from addons.models import Addon, AddonDeviceType
 from editors.models import RereviewQueue
 from market.models import AddonPremium, Price
 from users.models import UserProfile
@@ -22,7 +22,13 @@ class TestPremiumForm(amo.tests.TestCase):
 
     def setUp(self):
         self.request = RequestFactory()
+        self.request.POST = {'toggle-paid': ''}
+
         self.addon = Addon.objects.get(pk=337141)
+        AddonDeviceType.objects.create(
+            addon=self.addon, device_type=amo.DEVICE_GAIA.id)
+        self.platforms = {'free_platforms': ['free-firefoxos']}
+
         self.price = Price.objects.create(price='0.99')
         self.user = UserProfile.objects.get(email='steamcube@mozilla.com')
 
@@ -34,7 +40,7 @@ class TestPremiumForm(amo.tests.TestCase):
 
     def test_free_to_premium(self):
         self.request.POST = {'toggle-paid': 'paid'}
-        form = forms.PremiumForm(data={}, **self.kwargs)
+        form = forms.PremiumForm(data=self.platforms, **self.kwargs)
         assert form.is_valid(), form.errors
         form.save()
         eq_(self.addon.premium_type, amo.ADDON_PREMIUM)
@@ -45,7 +51,7 @@ class TestPremiumForm(amo.tests.TestCase):
         self.addon.update(status=amo.STATUS_PENDING)
 
         self.request.POST = {'toggle-paid': 'paid'}
-        form = forms.PremiumForm(data={}, **self.kwargs)
+        form = forms.PremiumForm(data=self.platforms, **self.kwargs)
         assert form.is_valid(), form.errors
         form.save()
         eq_(RereviewQueue.objects.count(), 0)
@@ -55,8 +61,8 @@ class TestPremiumForm(amo.tests.TestCase):
         self.make_premium(self.addon)
 
         self.request.POST = {'toggle-paid': 'free'}
-        data = {'price': self.price.pk}
-        form = forms.PremiumForm(data=data, **self.kwargs)
+        self.platforms.update(price=self.price.pk)
+        form = forms.PremiumForm(data=self.platforms, **self.kwargs)
         assert form.is_valid(), form.errors
         form.save()
         eq_(RereviewQueue.objects.count(), 0)
@@ -65,9 +71,9 @@ class TestPremiumForm(amo.tests.TestCase):
 
     def test_update(self):
         self.make_premium(self.addon)
-        self.request.POST = {'toggle-paid': 'paid'}
         price = Price.objects.create(price='9.99')
-        form = forms.PremiumForm(data={'price': price.pk}, **self.kwargs)
+        self.platforms.update(price=price.pk)
+        form = forms.PremiumForm(self.platforms, **self.kwargs)
         assert form.is_valid(), form.errors
         form.save()
         eq_(self.addon.premium.price.pk, price.pk)
@@ -78,14 +84,13 @@ class TestPremiumForm(amo.tests.TestCase):
 
         """
 
-        self.request.POST = {'toggle-paid': ''}
-
         # Don't give the app an initial price.
         AddonPremium.objects.create(addon=self.addon)
         self.addon.premium_type = amo.ADDON_PREMIUM
 
         price = Price.objects.create(price='9.99')
-        form = forms.PremiumForm(data={'price': price.pk}, **self.kwargs)
+        self.platforms.update(price=price.pk)
+        form = forms.PremiumForm(self.platforms, **self.kwargs)
         assert form.is_valid(), form.errors
         form.save()
         eq_(self.addon.premium.price.pk, price.pk)
@@ -94,13 +99,23 @@ class TestPremiumForm(amo.tests.TestCase):
         # This was the situation for a new app that was
         # getting linked to an existing bank account.
         self.addon.update(premium_type=amo.ADDON_PREMIUM)
-        self.request.POST = {'toggle-paid': 'paid'}
-        data = {'price': self.price.pk}
-        form = forms.PremiumForm(data=data, **self.kwargs)
+        self.platforms.update(price=self.price.pk)
+        form = forms.PremiumForm(self.platforms, **self.kwargs)
         assert form.is_valid(), form.errors
         form.save()
         addon = Addon.objects.get(pk=self.addon.pk)
         assert addon.premium
+
+    def test_cannot_change_devices_on_toggle(self):
+        self.request.POST = {'toggle-paid': 'paid'}
+        self.platforms = {'paid_platforms': ['paid-firefoxos']}
+        form = forms.PremiumForm(data=self.platforms, **self.kwargs)
+        assert form.is_valid(), form.errors
+        form.save()
+        eq_(self.addon.premium_type, amo.ADDON_PREMIUM)
+        eq_(self.addon.status, amo.STATUS_NULL)
+
+        self.assertSetEqual(self.addon.device_types, form.get_devices())
 
 
 class TestPaidRereview(amo.tests.TestCase):

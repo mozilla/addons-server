@@ -21,7 +21,7 @@ from pyquery import PyQuery as pq
 
 import amo
 import amo.tests
-from addons.models import Addon, AddonUpsell, AddonUser
+from addons.models import Addon, AddonDeviceType, AddonUpsell, AddonUser
 from amo.helpers import babel_datetime, timesince
 from amo.tests import assert_no_validation_errors
 from amo.tests.test_helpers import get_image_path
@@ -383,6 +383,8 @@ class TestMarketplace(MarketplaceMixin, amo.tests.TestCase):
         return data
 
     def test_initial_free(self):
+        AddonDeviceType.objects.create(
+            addon=self.addon, device_type=amo.DEVICE_GAIA.id)
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
         assert 'Change to Paid' in res.content

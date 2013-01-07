@@ -11,9 +11,9 @@ from tastypie import fields
 from tastypie.serializers import Serializer
 from tastypie.resources import ALL_WITH_RELATIONS
 
-from addons.forms import CategoryFormSet, DeviceTypeForm
-from addons.models import AddonUser, Category, Preview
 import amo
+from addons.forms import CategoryFormSet
+from addons.models import AddonUser, Category, Preview
 from amo.decorators import write
 from amo.utils import no_translation
 from constants.applications import DEVICE_TYPES
@@ -21,13 +21,12 @@ from files.models import FileUpload, Platform
 from mkt.api.authentication import (AppOwnerAuthorization, OwnerAuthorization,
                                     MarketplaceAuthentication)
 from mkt.api.base import MarketplaceResource
-from mkt.api.forms import (CategoryForm, NewPackagedForm, UploadForm,
-                           PreviewJSONForm, StatusForm)
+from mkt.api.forms import (CategoryForm, DeviceTypeForm, NewPackagedForm,
+                           UploadForm, PreviewJSONForm, StatusForm)
 from mkt.developers import tasks
-from mkt.developers.forms import NewManifestForm
-from mkt.developers.forms import PreviewForm
-from mkt.webapps.models import Addon
+from mkt.developers.forms import NewManifestForm, PreviewForm
 from mkt.submit.forms import AppDetailsBasicForm
+from mkt.webapps.models import Addon
 
 log = commonware.log.getLogger('z.api')
 

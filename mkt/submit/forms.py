@@ -3,14 +3,15 @@ import datetime
 from django import forms
 
 import happyforms
-from tower import ugettext as _, ugettext_lazy as _lazy
 import waffle
+from tower import ugettext as _, ugettext_lazy as _lazy
 
-from addons.forms import AddonFormBasic
-from addons.models import Addon, AddonUpsell
 import amo
+from addons.forms import AddonFormBasic
+from addons.models import Addon, AddonDeviceType, AddonUpsell
 from apps.users.notifications import app_surveys
 from apps.users.models import UserNotification
+from editors.models import RereviewQueue
 from files.models import FileUpload
 from files.utils import parse_addon
 from market.models import AddonPremium, Price
@@ -18,8 +19,96 @@ from translations.widgets import TransInput, TransTextarea
 from translations.fields import TransField
 
 from mkt.constants import DEVICE_LOOKUP, FREE_PLATFORMS, PAID_PLATFORMS
-from mkt.developers.forms import verify_app_domain
 from mkt.site.forms import AddonChoiceField, APP_PUBLIC_CHOICES
+
+
+def mark_for_rereview(addon, added_devices, removed_devices):
+    msg = _(u'Device(s) changed: {0}').format(', '.join(
+        [_(u'Added {0}').format(unicode(amo.DEVICE_TYPES[d].name))
+         for d in added_devices] +
+        [_(u'Removed {0}').format(unicode(amo.DEVICE_TYPES[d].name))
+         for d in removed_devices]))
+    RereviewQueue.flag(addon, amo.LOG.REREVIEW_DEVICES_ADDED, msg)
+
+class DeviceTypeForm(happyforms.Form):
+    ERRORS = {
+        'both': _lazy(u'Cannot be free and paid.'),
+        'none': _lazy(u'Please select a device.'),
+        'packaged': _lazy(u'Packaged apps are valid for only Firefox OS.'),
+    }
+
+    free_platforms = forms.MultipleChoiceField(
+        choices=FREE_PLATFORMS, required=False)
+    paid_platforms = forms.MultipleChoiceField(
+        choices=PAID_PLATFORMS, required=False)
+
+    def save(self, addon, is_paid):
+        data = self.cleaned_data[
+            'paid_platforms' if is_paid else 'free_platforms']
+
+        new_types = set(self.get_devices(t.split('-', 1)[1] for t in data))
+        old_types = set(amo.DEVICE_TYPES[x.id] for x in addon.device_types)
+
+        added_devices = new_types - old_types
+        removed_devices = old_types - new_types
+        for d in added_devices:
+            AddonDeviceType(addon=addon, device_type=d.id).save()
+        for d in removed_devices:
+            AddonDeviceType.objects.filter(
+                addon=addon, device_type=d.id).delete()
+
+        # Send app to re-review queue if public and new devices are added.
+        if added_devices and addon.status == amo.STATUS_PUBLIC:
+            mark_for_rereview(addon, added_devices, removed_devices)
+
+
+    def _add_error(self, msg):
+        self._errors['free_platforms'] = self._errors['paid_platforms'] = (
+            self.ERRORS[msg])
+
+    def _get_combined(self):
+        devices = (self.cleaned_data.get('free_platforms', []) +
+                   self.cleaned_data.get('paid_platforms', []))
+        return set(d.split('-', 1)[1] for d in devices)
+
+    def clean(self):
+        data = self.cleaned_data
+        paid = data.get('paid_platforms', [])
+        free = data.get('free_platforms', [])
+
+        # Check that they didn't select both.
+        if free and paid:
+            self._add_error('both')
+            return
+
+        # Check that they selected one.
+        if not free and not paid:
+            self._add_error('none')
+            return
+
+        return super(DeviceTypeForm, self).clean()
+
+    def get_devices(self, source=None):
+        """Returns a device based on the requested free or paid."""
+        if source is None:
+            source = self._get_combined()
+
+        platforms = {'firefoxos': amo.DEVICE_GAIA,
+                     'desktop': amo.DEVICE_DESKTOP,
+                     'android-mobile': amo.DEVICE_MOBILE,
+                     'android-tablet': amo.DEVICE_TABLET}
+        return map(platforms.get, source)
+
+    def is_paid(self):
+        return bool(self.cleaned_data.get('paid_platforms', False))
+
+    def get_paid(self):
+        """Returns the premium type. Should not be used if the form is used to
+        modify an existing app.
+
+        """
+
+        return amo.ADDON_PREMIUM if self.is_paid() else amo.ADDON_FREE
 
 
 class DevAgreementForm(happyforms.Form):
@@ -72,6 +161,7 @@ class NewWebappVersionForm(happyforms.Form):
             # Throw an error if this is a dupe.
             # (JS sets manifest as `upload.name`.)
             try:
+                from mkt.developers.forms import verify_app_domain
                 verify_app_domain(data['upload'].name)
             except forms.ValidationError, e:
                 self._errors['upload'] = self.error_class(e.messages)
@@ -87,73 +177,39 @@ class NewWebappVersionForm(happyforms.Form):
         self._is_packaged = kw.pop('is_packaged', False)
         super(NewWebappVersionForm, self).__init__(*args, **kw)
 
+        if not waffle.switch_is_active('allow-b2g-paid-submission'):
+            del self.fields['paid_platforms']
 
-class NewWebappForm(NewWebappVersionForm):
-    ERRORS = {'both': _lazy(u'Cannot be free and paid.'),
-              'none': _lazy(u'Please select a device.'),
-              'packaged': _lazy(u'Packaged apps are valid '
-                                u'for only Firefox OS.')}
 
+class NewWebappForm(DeviceTypeForm, NewWebappVersionForm):
     upload = forms.ModelChoiceField(widget=forms.HiddenInput,
         queryset=FileUpload.objects.filter(valid=True),
-        error_messages={'invalid_choice': _lazy(u'There was an error with your'
-                                                u' upload. Please try'
-                                                u' again.')})
+        error_messages={'invalid_choice': _lazy(
+            u'There was an error with your upload. Please try again.')})
 
     packaged = forms.BooleanField(required=False)
-    free = forms.MultipleChoiceField(choices=FREE_PLATFORMS, required=False)
-    paid = forms.MultipleChoiceField(choices=PAID_PLATFORMS, required=False)
 
     def _add_error(self, msg):
-        self._errors['free'] = self._errors['paid'] = self.ERRORS[msg]
-
-    def _get_combined(self):
-        return set(self.cleaned_data.get('free', []) +
-                   self.cleaned_data.get('paid', []))
+        self._errors['free_platforms'] = self._errors['paid_platforms'] = (
+            self.ERRORS[msg])
 
     def clean(self):
-        data = self.cleaned_data
-
-        # Check that they didn't select both.
-        if data.get('free') and data.get('paid'):
-            self._add_error('both')
+        data = super(NewWebappForm, self).clean()
+        if not data:
             return
 
-        # Check that they selected one.
-        if not data.get('free') and not data.get('paid'):
-            self._add_error('none')
-            self._errors['free'] = self._errors['paid'] = self.ERRORS['none']
+        if self.is_packaged() and 'firefoxos' not in self._get_combined():
+            self._errors['free_platforms'] = self._errors['paid_platforms'] = (
+                self.ERRORS['packaged'])
             return
 
-        if self.is_packaged():
-            if not set(self._get_combined()).issubset(['paid-os', 'free-os']):
-                self._add_error('packaged')
-                return
-
-        return super(NewWebappForm, self).clean()
-
-    def get_devices(self):
-        """Returns a device based on the requested free or paid."""
-        platforms = {'os': amo.DEVICE_GAIA,
-                     'desktop': amo.DEVICE_DESKTOP,
-                     'phone': amo.DEVICE_MOBILE,
-                     'tablet': amo.DEVICE_TABLET}
-        return [platforms[t.split('-', 1)[1]] for t in self._get_combined()]
-
-    def get_paid(self):
-        """Returns the premium type."""
-        if self.cleaned_data.get('paid', False):
-            return amo.ADDON_PREMIUM
-        return amo.ADDON_FREE
+        return data
 
     def is_packaged(self):
         return self._is_packaged or self.cleaned_data.get('packaged', False)
 
     def __init__(self, *args, **kw):
         super(NewWebappForm, self).__init__(*args, **kw)
-        if not waffle.switch_is_active('allow-b2g-paid-submission'):
-            del self.fields['paid']
-
         if not waffle.switch_is_active('allow-packaged-app-uploads'):
             del self.fields['packaged']
 

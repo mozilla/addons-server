@@ -183,9 +183,9 @@ DEVICE_TYPES = {
 
 REVERSE_DEVICE_LOOKUP = {
     DEVICE_DESKTOP.id: 'desktop',
-    DEVICE_MOBILE.id: 'phone',
-    DEVICE_TABLET.id: 'tablet',
-    DEVICE_GAIA.id: 'os',
+    DEVICE_MOBILE.id: 'android-mobile',
+    DEVICE_TABLET.id: 'android-tablet',
+    DEVICE_GAIA.id: 'firefoxos',
 }
 
 

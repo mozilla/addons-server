@@ -39,13 +39,6 @@
       </span>
       {{ form.slug.errors }}
     </div>
-    {% if addon.is_webapp() and waffle.switch('marketplace') %}
-      <div class="addon-submission-field device-types">
-        <p><strong>{{ loc('Device Support:') }}</strong></p>
-        {{ device_form.device_types }}
-        {{ device_form.device_types.errors }}
-      </div>
-    {% endif %}
     <div class="addon-submission-field">
       <label>{{ _('Provide a brief summary:') }}</label>
       {{ form.summary }}

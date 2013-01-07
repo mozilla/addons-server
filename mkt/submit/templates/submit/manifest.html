@@ -32,8 +32,8 @@
       {% else %}
         <h2>{{ _('Device Type') }}</h2>
       {% endif %}
-      <div class="error">{{ form.errors.free }}</div>
-      {%- for item in form.fields['free'].choices -%}
+      <div class="error">{{ form.errors.free_platforms }}</div>
+      {%- for item in form.fields['free_platforms'].choices -%}
         {{ button(form, item) }}
       {%- endfor %}
     </div>
@@ -41,8 +41,8 @@
     {% if waffle.switch('allow-b2g-paid-submission') %}
       <div class="paid tab">
         <h2 id="paid-tab-header"><a href="#">{{ _('Paid') }}</a></h2>
-        <div class="error">{{ form.errors.paid }}</div>
-        {%- for item in form.fields['paid'].choices -%}
+        <div class="error">{{ form.errors.paid_platforms }}</div>
+        {%- for item in form.fields['paid_platforms'].choices -%}
           {{ button(form, item) }}
         {%- endfor %}
       </div>
@@ -101,8 +101,8 @@
       -->
       <div class="hidden">
         {{ form.upload }}
-        {{ form.free }}
-        {{ form.paid }}
+        {{ form.free_platforms }}
+        {{ form.paid_platforms }}
         {{ form.packaged }}
       </div>
       <footer class="listing-footer hidden">

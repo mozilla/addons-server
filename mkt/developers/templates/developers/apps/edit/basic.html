@@ -144,28 +144,6 @@
             {% endif %}
           </td>
         </tr>
-        <tr>
-          <th>
-            {{ tip(_('Device Types'),
-                   _('Indicate support for desktop, mobile, and tablet
-                      devices.')) }}
-            {{ req_if_edit }}
-          </th>
-          <td id="addon-device-types-edit">
-            {% if editable %}
-              {{ device_type_form.device_types.errors }}
-              {{ device_type_form.device_types }}
-            {% else %}
-              {% set device_types = addon.device_types %}
-              {% call empty_unless(device_types) %}
-                {# Jinja doesn't support list comprehensions. Comprehend this. #}
-                {% for device in device_types %}
-                  {{ device.name }}{% if not loop.last %}, {% endif %}
-                {% endfor %}
-              {% endcall %}
-            {% endif %}
-          </td>
-        </tr>
       </tbody>
     </table>
     {% if editable %}

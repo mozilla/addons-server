@@ -26,21 +26,21 @@ APP_PLATFORMS = [
 ]
 
 FREE_PLATFORMS = (
-    ('free-os', _('Firefox OS')),
+    ('free-firefoxos', _('Firefox OS')),
     ('free-desktop', _('Firefox')),
-    ('free-phone', _('Firefox Mobile')),
-    ('free-tablet', _('Firefox Tablet')),
+    ('free-android-mobile', _('Firefox Mobile')),
+    ('free-android-tablet', _('Firefox Tablet')),
 )
 
 PAID_PLATFORMS = (
-    ('paid-os', _('Firefox OS')),
+    ('paid-firefoxos', _('Firefox OS')),
 )
 
 # Extra information about those values for display in the page.
 DEVICE_LOOKUP = {
-    'free-os': _('Fully open mobile ecosystem'),
+    'free-firefoxos': _('Fully open mobile ecosystem'),
     'free-desktop': _('Windows, Mac and Linux'),
-    'free-phone': _('Android smartphones'),
-    'free-tablet': _('Android tablets'),
-    'paid-os': _('Fully open mobile ecosystem'),
+    'free-android-mobile': _('Android smartphones'),
+    'free-android-tablet': _('Android tablets'),
+    'paid-firefoxos': _('Fully open mobile ecosystem'),
 }

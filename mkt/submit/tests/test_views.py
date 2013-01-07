@@ -204,7 +204,7 @@ class UploadAddon(object):
 
     def post(self, expect_errors=False, data=None):
         if data is None:
-            data = {'free': ['free-desktop']}
+            data = {'free_platforms': ['free-desktop']}
         data.update(upload=self.upload.pk)
         r = self.client.post(self.url, data, follow=True)
         eq_(r.status_code, 200)
@@ -257,13 +257,13 @@ class TestCreateWebApp(BaseWebAppTest):
             'Unexpected validation error (verify_app_domain)')
 
     def test_no_upload(self):
-        data = {'free': ['free-desktop']}
+        data = {'free_platforms': ['free-desktop']}
         res = self.client.post(self.url, data, follow=True)
         eq_(res.context['form'].errors,
             {'upload': NewWebappVersionForm.upload_error})
 
     def test_bad_upload(self):
-        data = {'free': ['free-desktop'], 'upload': 'foo'}
+        data = {'free_platforms': ['free-desktop'], 'upload': 'foo'}
         res = self.client.post(self.url, data, follow=True)
         eq_(res.context['form'].errors,
             {'upload': NewWebappVersionForm.upload_error})
@@ -327,18 +327,19 @@ class TestCreateWebApp(BaseWebAppTest):
         eq_(files[0].status, amo.STATUS_PENDING)
 
     def test_set_platform(self):
-        app = self.post_addon({'free': ['free-tablet', 'free-desktop']})
+        app = self.post_addon(
+            {'free_platforms': ['free-android-tablet', 'free-desktop']})
         self.assertSetEqual(app.device_types,
                             [amo.DEVICE_TABLET, amo.DEVICE_DESKTOP])
 
     def test_free(self):
-        app = self.post_addon({'free': ['free-os']})
+        app = self.post_addon({'free_platforms': ['free-firefoxos']})
         self.assertSetEqual(app.device_types, [amo.DEVICE_GAIA])
         eq_(app.premium_type, amo.ADDON_FREE)
 
     def test_premium(self):
         self.create_switch('allow-b2g-paid-submission')
-        app = self.post_addon({'paid': ['paid-os']})
+        app = self.post_addon({'paid_platforms': ['paid-firefoxos']})
         self.assertSetEqual(app.device_types, [amo.DEVICE_GAIA])
         eq_(app.premium_type, amo.ADDON_PREMIUM)
 
@@ -441,7 +442,8 @@ class TestCreatePackagedApp(BasePackagedAppTest):
             reverse('submit.app.details', args=[webapp.app_slug]))
 
     def test_app_from_uploaded_package(self):
-        addon = self.post_addon(data={'packaged': True, 'free': ['free-os']})
+        addon = self.post_addon(
+            data={'packaged': True, 'free_platforms': ['free-firefoxos']})
         eq_(addon.type, amo.ADDON_WEBAPP)
         eq_(addon.current_version.version, '1.0')
         eq_(addon.is_packaged, True)
@@ -456,14 +458,16 @@ class TestCreatePackagedApp(BasePackagedAppTest):
         eq_(Translation.objects.get(id=addon.summary.id, locale='it'),
             u'Azione aperta emozionante di sviluppo di fotoricettore!')
 
-    @mock.patch('mkt.submit.forms.verify_app_domain')
+    @mock.patch('mkt.developers.forms.verify_app_domain')
     def test_packaged_app_not_unique_by_domain(self, _verify):
-        self.post(data={'packaged': True, 'free': ['free-os']})
-        assert not _verify.called, ('`verify_app_domain` should not be called'
-                                    ' for packaged apps.')
+        self.post(
+            data={'packaged': True, 'free_platforms': ['free-firefoxos']})
+        assert not _verify.called, (
+            '`verify_app_domain` should not be called for packaged apps.')
 
     def test_packaged_app_has_ids_file(self):
-        app = self.post_addon(data={'packaged': True, 'free': ['free-os']})
+        app = self.post_addon(
+            data={'packaged': True, 'free_platforms': ['free-firefoxos']})
         file_ = app.versions.latest().files.latest()
         filename = 'META-INF/ids.json'
         zf = zipfile.ZipFile(file_.file_path)
