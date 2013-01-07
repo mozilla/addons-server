@@ -165,6 +165,8 @@ USE_METLOG_FOR_TASTYPIE = True
 WEBTRENDS_USERNAME = private_mkt.WEBTRENDS_USERNAME
 WEBTRENDS_PASSWORD = private_mkt.WEBTRENDS_PASSWORD
 
+GOOGLE_ANALYTICS_DOMAIN = 'marketplace.firefox.com'
+
 # Allow /developers/?refresh to refresh all MDN content for Developer Hub.
 MDN_LAZY_REFRESH = True
 

@@ -109,6 +109,8 @@ SOLITUDE_HOSTS = ('https://payments.allizom.org',)
 WEBTRENDS_USERNAME = private_mkt.WEBTRENDS_USERNAME
 WEBTRENDS_PASSWORD = private_mkt.WEBTRENDS_PASSWORD
 
+GOOGLE_ANALYTICS_DOMAIN = 'marketplace.firefox.com'
+
 if getattr(private_mkt, 'LOAD_TESTING', False):
     # mock the authentication and use django_fakeauth for this
     AUTHENTICATION_BACKENDS = ('django_fakeauth.FakeAuthBackend',)\

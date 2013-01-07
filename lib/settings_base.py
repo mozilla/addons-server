@@ -1497,6 +1497,9 @@ WEBTRENDS_PASSWORD = ''
 #Credentials for accessing Google Analytics stats.
 GOOGLE_ANALYTICS_CREDENTIALS = {}
 
+#Which domain to access GA stats for. If not set, defaults to DOMAIN.
+GOOGLE_ANALYTICS_DOMAIN = None
+
 # Domain to allow cross-frame requests from for privacy policy and TOS.
 BROWSERID_DOMAIN= "login.persona.org"
 

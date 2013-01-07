@@ -86,24 +86,29 @@ def update_webtrend(url, date, **kw):
               % tuple(p))
 
 
-def get_first_profile_id(service):
+def get_profile_id(service, domain):
     """
-    Code copied from the Google Analytics tutorial docs. Finds the
-    first GA profile in the account and returns it, or None if it
-    can't find one.
+    Fetch the profile ID for the given domain.
     """
     accounts = service.management().accounts().list().execute()
-    if accounts.get('items'):
-        firstAccountId = accounts.get('items')[0].get('id')
+    account_ids = [a['id'] for a in accounts.get('items', ())]
+    for account_id in account_ids:
         webproperties = service.management().webproperties().list(
-            accountId=firstAccountId).execute()
-        if webproperties.get('items'):
-            firstWebpropertyId = webproperties.get('items')[0].get('id')
+            accountId=account_id).execute()
+        webproperty_ids = [p['id'] for p in webproperties.get('items', ())]
+        for webproperty_id in webproperty_ids:
             profiles = service.management().profiles().list(
-                accountId=firstAccountId,
-                webPropertyId=firstWebpropertyId).execute()
-            if profiles.get('items'):
-                return profiles.get('items')[0].get('id')
+                accountId=account_id,
+                webPropertyId=webproperty_id).execute()
+            for p in profiles.get('items', ()):
+                # sometimes GA includes "http://", sometimes it doesn't.
+                if '://' in p['websiteUrl']:
+                    name = p['websiteUrl'].partition('://')[-1]
+                else:
+                    name = p['websiteUrl']
+
+                if name == domain:
+                    return p['id']
 
 
 @task
@@ -114,7 +119,7 @@ def update_google_analytics(metric, date, **kw):
                      'GOOGLE_ANALYTICS_CREDENTIALS not set')
         return
 
-    creds = OAuth2Credentials(
+        creds = OAuth2Credentials(
         *[creds_data[k] for k in
           ('access_token', 'client_id', 'client_secret',
            'refresh_token', 'token_expiry', 'token_uri',
@@ -122,10 +127,11 @@ def update_google_analytics(metric, date, **kw):
     h = httplib2.Http()
     creds.authorize(h)
     service = build('analytics', 'v3', http=h)
-    profile_id = get_first_profile_id(service)
+    domain = getattr(settings, 'GOOGLE_ANALYTICS_DOMAIN', None) or settings.DOMAIN
+    profile_id = get_profile_id(service, domain)
     if profile_id is None:
         log.critical('Failed to update global stats: could not access a Google'
-                     ' Analytics profile')
+                     ' Analytics profile for ' + domain)
         return
     datestr = date.strftime('%Y-%m-%d')
     try:
