@@ -9,7 +9,6 @@ from tower import ugettext as _
 
 import amo
 from addons.models import Addon, AddonDeviceType, Category
-from editors.models import RereviewQueue
 from files.models import FileUpload
 from mkt.developers.forms import NewPackagedAppForm
 from mkt.developers.utils import check_upload
