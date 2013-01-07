@@ -9,7 +9,6 @@ from . import views
 
 
 def template_plus_xframe(request, template, **kwargs):
-    """Tests pending."""
     res = jingo.render(request, template, kwargs)
     referrer = request.META.get('HTTP_REFERER')
     if referrer:

@@ -275,6 +275,8 @@ class TestXLegalFrame(amo.tests.TestCase):
     def test_deny(self):
         for referrer in ('', 'http://omg.xxx/yes', '!#*@ YOU, @#($!#$(&%*#^'):
             self.request.META['HTTP_REFERER'] = referrer
-            res = template_plus_xframe(self.request, 'site/privacy-policy.html')
+            res = template_plus_xframe(self.request,
+                                       'site/privacy-policy.html')
             assert 'x-frame-options' not in res, (
-                'Unexpected headers for referrer %r: %s' % (referrer, res._headers))
+                'Unexpected headers for referrer %r: %s' % (referrer,
+                                                            res._headers))
