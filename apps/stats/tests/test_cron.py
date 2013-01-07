@@ -104,10 +104,10 @@ class TestGoogleAnalytics(amo.tests.TestCase):
                         'token_expiry': '', 'token_uri': '',
                         'user_agent': ''}, create=True)
     @mock.patch('httplib2.Http')
-    @mock.patch('stats.tasks.get_first_profile_id')
+    @mock.patch('stats.tasks.get_profile_id')
     @mock.patch('stats.tasks.build')
-    def test_ask_google(self, build, gfpi, http):
-        gfpi.return_value = '1'
+    def test_ask_google(self, build, gpi, http):
+        gpi.return_value = '1'
         d = '2012-01-01'
         get = build('analytics', 'v3', http=http).data().ga().get(
             metrics='ga:visits', ids='ga:1',

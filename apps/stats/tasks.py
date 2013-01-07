@@ -119,7 +119,7 @@ def update_google_analytics(metric, date, **kw):
                      'GOOGLE_ANALYTICS_CREDENTIALS not set')
         return
 
-        creds = OAuth2Credentials(
+    creds = OAuth2Credentials(
         *[creds_data[k] for k in
           ('access_token', 'client_id', 'client_secret',
            'refresh_token', 'token_expiry', 'token_uri',
