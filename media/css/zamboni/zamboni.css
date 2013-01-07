@@ -2972,11 +2972,15 @@ label > .optional {
     outline: 0;
 }
 
+/* Redundant [type=text] selector to override django admin styles
+ * with higher specificity
+ */
 .edit_with_prefix span {
     border-right: 0 none;
     padding: 2px 2px 2px 5px;
 }
-.edit_with_prefix input {
+.edit_with_prefix input, .edit_with_prefix input[type=text] {
+    border: 1px solid #5875a0;
     border-left: 0 none;
 }
 
@@ -2984,6 +2988,7 @@ label > .optional {
     border-left: 0 none;
     padding: 2px 5px 2px 2px;
 }
+
 .edit_with_suffix input {
     border-right: 0 none;
 }
