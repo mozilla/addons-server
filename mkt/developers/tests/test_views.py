@@ -4,16 +4,13 @@ import json
 import os
 import tempfile
 from contextlib import contextmanager
-from decimal import Decimal
 
 from django.conf import settings
-from django.core import mail
 from django.core.files.storage import default_storage as storage
 from django.core.files.uploadedfile import SimpleUploadedFile
 
 import mock
 import waffle
-from dateutil.parser import parse as parse_dt
 from nose import SkipTest
 from nose.plugins.attrib import attr
 from nose.tools import eq_
@@ -22,17 +19,14 @@ from pyquery import PyQuery as pq
 import amo
 import amo.tests
 from addons.models import Addon, AddonDeviceType, AddonUpsell, AddonUser
-from amo.helpers import babel_datetime, timesince
 from amo.tests import assert_no_validation_errors
 from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
 from amo.utils import urlparams
 from browse.tests import test_default_sort, test_listing_sort
-from devhub.models import UserLog
 from files.models import FileUpload
 from files.tests.test_models import UploadTest as BaseUploadTest
-from market.models import AddonPremium, Price, Refund
-from stats.models import Contribution
+from market.models import AddonPremium, Price
 from translations.models import Translation
 from users.models import UserProfile
 from versions.models import Version
@@ -190,7 +184,7 @@ class TestAppDashboard(AppHubTest):
         doc = pq(self.client.get(self.url).content)
         expected = [
             ('Edit Listing', app.get_dev_url()),
-            ('Manage Authors', app.get_dev_url('owner')),
+            ('Manage Team Members', app.get_dev_url('owner')),
             ('Compatibility & Payments', app.get_dev_url('payments')),
             ('Manage Status', app.get_dev_url('versions')),
             ('View Listing', app.get_url_path()),
@@ -208,7 +202,7 @@ class TestAppDashboard(AppHubTest):
         expected = [
             ('Edit Listing', app.get_dev_url()),
             ('Add New Version', app.get_dev_url('versions')),
-            ('Manage Authors', app.get_dev_url('owner')),
+            ('Manage Team Members', app.get_dev_url('owner')),
             ('Compatibility & Payments', app.get_dev_url('payments')),
             ('Manage Status & Versions', app.get_dev_url('versions')),
             ('View Listing', app.get_url_path()),
@@ -226,7 +220,7 @@ class TestAppDashboard(AppHubTest):
         doc = pq(self.client.get(self.url).content)
         expected = [
             ('Edit Listing', app.get_dev_url()),
-            ('Manage Authors', app.get_dev_url('owner')),
+            ('Manage Team Members', app.get_dev_url('owner')),
             ('Manage Status', app.get_dev_url('versions')),
             ('View Listing', app.get_url_path()),
             ('View Statistics', app.get_stats_url()),

@@ -81,7 +81,7 @@
           {{ _('View Privacy Policy') }}</a>
       </dd>
     {% endif %}
-    <dt>{{ _('Authors') }}</dd>
+    <dt>{{ _('Team Members') }}</dd>
     <dd>
       {% for author in product.authors.all() %}
         <a href="{{ url('users.profile', author.username) }}">

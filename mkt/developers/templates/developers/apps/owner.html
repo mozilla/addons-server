@@ -1,6 +1,6 @@
 {% extends 'developers/base_impala.html' %}
 
-{% set title = _('Manage Authors') %}
+{% set title = _('Manage Team Members') %}
 
 {% block title %}
   {{ hub_page_title(title, addon) }}
@@ -24,8 +24,8 @@
     <table>
       <tr>
         <th>
-          <span class="label">{{ _('Authors') }}</span>
-          <a id="what-are-roles" href="#">{{ _('About author roles') }}</a>
+          <span class="label">{{ _('Team Members') }}</span>
+          <a id="what-are-roles" href="#">{{ _('About team member roles') }}</a>
         </th>
         <td>
           {{ user_form.non_form_errors() }}
@@ -69,18 +69,18 @@
 {% include 'developers/includes/addons_edit_nav.html' %}
 
 <div id="author-roles-help" class="popup">
-  <p>{{ _('Apps can have any number of authors with 4 possible roles:') }}</p>
+  <p>{{ _('Apps can have any number of team members with 4 possible roles:') }}</p>
   <ul>
     <li>
       {% trans %}
         <b>Owner:</b> Can manage all aspects of the app's listing, including
-        adding and removing other authors
+        adding and removing other team members
       {% endtrans %}
     </li>
     <li>
       {% trans %}
         <b>Developer:</b> Can manage all aspects of the app's listing, except
-        for adding and removing other authors and managing payments
+        for adding and removing other team members and managing payments
       {% endtrans %}
     </li>
     <li>

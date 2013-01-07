@@ -33,7 +33,7 @@
     </li>
   {% endif %}
   <li>
-    <a class="action-link" href="{{ addon.get_dev_url('owner') }}">{{ _('Manage Authors') }}</a>
+    <a class="action-link" href="{{ addon.get_dev_url('owner') }}">{{ _('Manage Team Members') }}</a>
   </li>
   {% if not waffle.switch('disabled-payments') or addon.is_premium() %}
     <li>

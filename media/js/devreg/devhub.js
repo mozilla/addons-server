@@ -386,7 +386,7 @@ function addonFormSubmit() {
 
 
 $("#user-form-template .email-autocomplete")
-    .attr("placeholder", gettext("Enter a new author's email address"));
+    .attr("placeholder", gettext("Enter a new team member's email address"));
 
 function addManifestRefresh() {
     $('#manifest-url a.button').on('click', _pd(function(e) {

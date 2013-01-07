@@ -58,7 +58,7 @@ class AuthorForm(happyforms.ModelForm):
         user = self.cleaned_data['user']
         if not user.read_dev_agreement:
             raise forms.ValidationError(
-                _('All authors must have read and agreed to the developer '
+                _('All team members must have read and agreed to the developer '
                   'agreement.'))
 
         return user
@@ -92,11 +92,11 @@ class BaseAuthorFormSet(BaseModelFormSet):
             raise forms.ValidationError(_('Must have at least one owner.'))
         if not any(d['listed'] for d in data):
             raise forms.ValidationError(
-                _('At least one author must be listed.'))
+                _('At least one team member must be listed.'))
         users = [d['user'] for d in data]
         if sorted(users) != sorted(set(users)):
             raise forms.ValidationError(
-                _('An author can only be listed once.'))
+                _('A team member can only be listed once.'))
 
 
 AuthorFormSet = modelformset_factory(AddonUser, formset=BaseAuthorFormSet,
