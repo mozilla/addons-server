@@ -110,7 +110,7 @@
       </div>
     </section>
 
-    {% with can_review=can_review, has_review=has_review %}
+    {% with can_review=can_review, has_review=has_review, logged=logged %}
       {% include "detail/includes/ratings.html" %}
     {% endwith %}
 

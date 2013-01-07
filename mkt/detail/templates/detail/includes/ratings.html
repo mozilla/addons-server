@@ -43,7 +43,7 @@
     {% if can_review %}
       <div class="{{ 'split' if reviews else 'full' }}">
         <a class="fatbutton" id="add-first-review"
-          {% if DESKTOP %}
+          {% if DESKTOP and logged %}
             href="#"
             data-href="{{ product.get_ratings_url('add') }}"
             data-action="add-or-edit"
