@@ -132,7 +132,8 @@ def add(request, addon):
         # Don't let app owners review their own apps.
         raise PermissionDenied
 
-    if request.method == 'GET' and (not request.MOBILE or request.TABLET):
+    if (request.user.is_authenticated() and
+            request.method == 'GET' and (not request.MOBILE or request.TABLET)):
         return detail(request, app_slug=addon.app_slug, add_review=True)
 
     # Get user agent of user submitting review. If there is an install with
