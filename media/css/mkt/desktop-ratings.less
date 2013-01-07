@@ -1,25 +1,5 @@
 @import 'lib';
 
-.simple-field.rating {
-    .border-radius(0);
-    .box-shadow(none);
-    background: @faint-gray;
-    padding: 0;
-    position: absolute;
-    top: 57px;
-    width: 383px;
-    left: 26px;
-    > label {
-        font-weight: normal;
-        font-size: 13px;
-        padding: 0 10px;
-    }
-    .ratingwidget {
-        display: inline-block;
-        margin: 0;
-    }
-}
-
 #edit-review {
     form {
         padding: 5px 25px;
@@ -36,6 +16,9 @@
     }
     .form-footer {
         margin-bottom: 15px;
+        .char-count {
+            display: inline-block;
+        }
     }
     &.reply {
         .brform.rating {
@@ -45,26 +28,39 @@
             padding-top: 5px;
         }
     }
-}
-
-.form-footer {
-    .char-count {
-        display: inline-block;
-    }
-}
-
-// Override mobile stars. In our galaxy all stars are mobile no?
-.stars {
-    &.ratingwidget {
-        &.stars-1 label[data-stars="1"], &.stars-2 label[data-stars="1"], &.stars-2 label[data-stars="2"],
-        &.stars-3 label[data-stars="1"], &.stars-3 label[data-stars="2"], &.stars-3 label[data-stars="3"],
-        &.stars-4 label[data-stars="1"], &.stars-4 label[data-stars="2"], &.stars-4 label[data-stars="3"], &.stars-4 label[data-stars="4"],
-        &.stars-5 label[data-stars="1"], &.stars-5 label[data-stars="2"], &.stars-5 label[data-stars="3"], &.stars-5 label[data-stars="4"], &.stars-5 label[data-stars="5"] {
-            background: url(../../img/mkt/stars/sprite_18.png) 100% 100%;
+    // hmm
+    .simple-field.rating {
+        .border-radius(0);
+        .box-shadow(none);
+        background: @faint-gray;
+        padding: 0;
+        position: absolute;
+        top: 57px;
+        width: 383px;
+        left: 26px;
+        > label {
+            font-weight: normal;
+            font-size: 13px;
+            padding: 0 10px;
         }
-        label {
-            height: 18px;
-            width: 18px;
+        .ratingwidget {
+            display: inline-block;
+            margin: 0;
+        }
+    }
+    // Override mobile stars. In our galaxy all stars are mobile no?
+    .stars {
+        &.ratingwidget {
+            &.stars-1 label[data-stars="1"], &.stars-2 label[data-stars="1"], &.stars-2 label[data-stars="2"],
+            &.stars-3 label[data-stars="1"], &.stars-3 label[data-stars="2"], &.stars-3 label[data-stars="3"],
+            &.stars-4 label[data-stars="1"], &.stars-4 label[data-stars="2"], &.stars-4 label[data-stars="3"], &.stars-4 label[data-stars="4"],
+            &.stars-5 label[data-stars="1"], &.stars-5 label[data-stars="2"], &.stars-5 label[data-stars="3"], &.stars-5 label[data-stars="4"], &.stars-5 label[data-stars="5"] {
+                background: url(../../img/mkt/stars/sprite_18.png) 100% 100%;
+            }
+            label {
+                height: 18px;
+                width: 18px;
+            }
         }
     }
 }
