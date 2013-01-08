@@ -2,6 +2,13 @@
 from tower import ugettext_lazy as _
 
 
+# From page 10 of the Mozilla Exporter API docs v1.0.0
+BANGO_OUTPAYMENT_CURRENCIES = [
+    ('USD', _(u'US Dollars')),
+    ('GBP', _(u'Pounds Sterling')),
+    ('EUR', _(u'Euros')),
+]
+
 BANGO_CURRENCIES = [
     ('AUD', _(u'Australian Dollars')),
     ('CAD', _(u'Canadian Dollars')),

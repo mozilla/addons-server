@@ -14,8 +14,8 @@ from editors.models import RereviewQueue
 from lib.pay_server import client
 from market.models import AddonPremium, Price
 
-from mkt.constants import (BANGO_COUNTRIES, BANGO_CURRENCIES, FREE_PLATFORMS,
-                           PAID_PLATFORMS)
+from mkt.constants import (BANGO_COUNTRIES, BANGO_OUTPAYMENT_CURRENCIES,
+                           FREE_PLATFORMS, PAID_PLATFORMS)
 from mkt.inapp_pay.models import InappConfig
 from mkt.site.forms import AddonChoiceField
 from mkt.submit.forms import DeviceTypeForm
@@ -287,7 +287,8 @@ class BangoPaymentAccountForm(happyforms.Form):
     countryIso = forms.ChoiceField(
         choices=BANGO_COUNTRIES, label=_lazy(u'Country'))
     currencyIso = forms.ChoiceField(
-        choices=BANGO_CURRENCIES, label=_lazy(u'Preferred Currency'))
+        choices=BANGO_OUTPAYMENT_CURRENCIES,
+        label=_lazy(u'Preferred Currency'))
 
     vatNumber = forms.CharField(
         max_length=17, required=False, label=_lazy(u'VAT Number'))
