@@ -8,7 +8,6 @@ define('login', ['notification'], function(notification) {
         var $this = $(this);
         $this.addClass('loading-submit');
         requestedLogin = true;
-        init_persona(true);
         navigator.id.request({
             issuer: z.body.data('persona-unverified-issuer'),
             allowUnverified: true,
@@ -71,18 +70,16 @@ define('login', ['notification'], function(notification) {
         }
     }
 
-    function init_persona(init) {
+    function init_persona() {
         $('.browserid').css('cursor', 'pointer');
         var user = z.body.data('user');
         var email = user ? user.email : '';
         console.log('detected user', email);
-        if (init || email) {
-            navigator.id.watch({
-                loggedInUser: email,
-                onlogin: gotVerifiedEmail,
-                onlogout: function() {}
-            });
-        }
+        navigator.id.watch({
+            loggedInUser: email,
+            onlogin: gotVerifiedEmail,
+            onlogout: function() {}
+        });
     }
 
     // Load `include.js` from persona.org, and drop login hotness like it's hot.
