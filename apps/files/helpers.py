@@ -2,9 +2,7 @@ import codecs
 import json
 import mimetypes
 import os
-import shutil
 import stat
-from functools import partial
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
@@ -167,8 +165,8 @@ class FileViewer(object):
         assert self.selected, 'Please select a file'
         if self.selected['size'] > settings.FILE_VIEWER_SIZE_LIMIT:
             # L10n: {0} is the file size limit of the file viewer.
-            msg = _('File size is over the limit of {0}.').format(
-                    filesizeformat(settings.FILE_VIEWER_SIZE_LIMIT))
+            msg = _(u'File size is over the limit of {0}.').format(
+                filesizeformat(settings.FILE_VIEWER_SIZE_LIMIT))
             self.selected['msg'] = msg
             return ''
 
@@ -291,8 +289,8 @@ class FileViewer(object):
         """
         if filename:
             short = os.path.splitext(filename)[1][1:]
-            syntax_map = {'xul': 'xml', 'rdf': 'xml', 'jsm': 'js', 'json': 'js',
-                          'webapp': 'js'}
+            syntax_map = {'xul': 'xml', 'rdf': 'xml', 'jsm': 'js',
+                          'json': 'js', 'webapp': 'js'}
             short = syntax_map.get(short, short)
             if short in ['actionscript3', 'as3', 'bash', 'shell', 'cpp', 'c',
                          'c#', 'c-sharp', 'csharp', 'css', 'diff', 'html',
@@ -329,7 +327,6 @@ class FileViewer(object):
             if not mime and filename == 'manifest.webapp':
                 mime = 'application/x-web-app-manifest+json'
             directory = os.path.isdir(path)
-
 
             res[short] = {
                 'binary': self._is_binary(mime, path),
@@ -465,9 +462,9 @@ class DiffHelper(object):
         return True
 
 
-def copyfileobj(fsrc, fdst, length=64*1024):
+def copyfileobj(fsrc, fdst, length=64 * 1024):
     """copy data from file-like object fsrc to file-like object fdst"""
-    while 1:
+    while True:
         buf = fsrc.read(length)
         if not buf:
             break

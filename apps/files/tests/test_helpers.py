@@ -168,6 +168,16 @@ class TestFileHelper(amo.tests.TestCase):
         eq_(res, '')
         assert self.viewer.selected['msg'].startswith('File size is')
 
+    @patch.object(settings, 'FILE_VIEWER_SIZE_LIMIT', 5)
+    def test_file_size_unicode(self):
+        with self.activate(locale='he'):
+            self.viewer.extract()
+            self.viewer.get_files()
+            self.viewer.select('install.js')
+            res = self.viewer.read_file()
+            eq_(res, '')
+            assert self.viewer.selected['msg'].startswith('File size is')
+
     @patch.object(settings, 'FILE_UNZIP_SIZE_LIMIT', 5)
     def test_contents_size(self):
         self.assertRaises(forms.ValidationError, self.viewer.extract)
