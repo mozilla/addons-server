@@ -45,10 +45,8 @@
                so let's not reverse it just yet. #}
             {{ settings.SITE_URL }}/&hellip;/
             {{ addon.app_slug }}
-            {% if request.can_view_consumer %}
-              <a class="view" href="{{ addon.get_url_path() }}"
-                 target="_blank">{{ _('Open details page') }}</a>
-            {% endif %}
+            <a class="view" href="{{ addon.get_url_path() }}"
+               target="_blank">{{ _('Open details page') }}</a>
           </div>
           <div class="after">
             <table>

@@ -1026,12 +1026,6 @@ class TestPackagedManifest(DetailBase):
         eq_(res['Content-Type'], 'application/x-web-app-manifest+json')
         eq_(res['ETag'], '"%s"' % self.get_digest_from_manifest())
 
-    @mock.patch.object(settings, 'MIDDLEWARE_CLASSES',
-        settings.MIDDLEWARE_CLASSES + type(settings.MIDDLEWARE_CLASSES)([
-            'amo.middleware.NoConsumerMiddleware',
-            'amo.middleware.LoginRequiredMiddleware'
-        ])
-    )
     @mock.patch('mkt.webapps.models.Webapp.get_cached_manifest')
     def test_logged_out(self, _mock):
         _mock.return_value = self._mocked_json()

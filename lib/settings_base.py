@@ -1430,9 +1430,7 @@ HOME = 'addons.views.home'
 DEFAULT_FILE_STORAGE = 'amo.utils.LocalFileStorage'
 
 # Defined in the site, this is to allow settings patch to work for tests.
-NO_LOGIN_REQUIRED_MODULES = ()
 NO_ADDONS_MODULES = ()
-NO_CONSUMER_MODULES = ()
 
 # Where to find ffmpeg and totem if it's not in the PATH.
 FFMPEG_BINARY = 'ffmpeg'

@@ -13,15 +13,14 @@ from django.views.decorators.cache import cache_page
 from django.views.decorators.csrf import csrf_exempt, requires_csrf_token
 from django.views.decorators.http import etag
 
+import jingo
+import jingo_minify
 from django_statsd.clients import statsd
 from django_statsd.views import record as django_statsd_record
-import jingo
 from jingo import render_to_string
-import jingo_minify
-from session_csrf import anonymous_csrf, anonymous_csrf_exempt
 
 from amo.context_processors import get_collect_timings
-from amo.decorators import post_required, no_login_required
+from amo.decorators import post_required
 from amo.helpers import media
 from amo.urlresolvers import reverse
 
@@ -88,7 +87,8 @@ def manifest(request):
     if use_appcache:
         data['appcache_path'] = reverse('django_appcache.manifest')
     if settings.CARRIER_URLS:
-        data['launch_path'] = '/%s/' % (get_carrier() or settings.CARRIER_URLS[0])
+        data['launch_path'] = '/%s/' % (get_carrier() or
+                                        settings.CARRIER_URLS[0])
 
     manifest_content = json.dumps(data)
     manifest_etag = hashlib.md5(manifest_content).hexdigest()
@@ -121,7 +121,6 @@ def record(request):
 # Cache this for an hour so that newly deployed changes are available within
 # an hour. This will be served from the CDN which mimics these headers.
 @cache_page(60 * 60)
-@no_login_required
 def mozmarket_js(request):
     vendor_js = []
     for lib, path in (('receiptverifier',

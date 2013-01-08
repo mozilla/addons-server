@@ -111,13 +111,6 @@ MIDDLEWARE_CLASSES += [
     'mkt.fragments.middleware.VaryOnAJAXMiddleware',
     'mkt.site.middleware.DeviceDetectionMiddleware',
     'mkt.fragments.middleware.HijackRedirectMiddleware',
-
-    # TODO: Remove this when we remove `request.can_view_consumer`.
-    'amo.middleware.DefaultConsumerMiddleware',
-
-    # Put this in your settings_local_mkt if you want the walled garden.
-    #'amo.middleware.NoConsumerMiddleware',
-    #'amo.middleware.LoginRequiredMiddleware',
 ]
 
 TEMPLATE_DIRS += (path('mkt/templates'), path('mkt/zadmin/templates'))
@@ -146,63 +139,6 @@ NO_ADDONS_MODULES = (
     'browse.views.extensions',
     'browse.views.language_tools',
     'browse.views.themes',
-)
-
-# Next level, no consumer for you!
-NO_CONSUMER_MODULES = (
-    'api',
-    'bandwagon.views',
-    'browse.views',
-    'compat.views',
-    'discovery.views',
-    'market.views',
-    'piston',
-    'users.views.edit',
-    'users.views.purchases',
-    'users.views.payments',
-    'sharing.views',
-    'tags.views',
-    'versions.views',
-    'mkt.account.views',
-    'mkt.browse.views',
-    'mkt.detail.views.detail',
-    'mkt.detail.views.detail.abuse',
-    'mkt.detail.views.detail.abuse.recaptcha',
-    'mkt.detail.views.detail.privacy',
-    'mkt.detail.views.app_activity',
-    'mkt.ratings.views',
-    'mkt.payments.views',
-    'mkt.stats.views',
-    'mkt.support.views',
-    'mkt.search.views',
-    'mkt.webapps.views',
-)
-
-# Specific view modules and methods that we don't want to force login on.
-NO_LOGIN_REQUIRED_MODULES = (
-    'csp.views.policy',
-    'csp.views.report',
-    'mkt.account',  # For anon users to use the feedback form.
-    'mkt.detail.views.manifest',
-    'mkt.developers',
-    'mkt.downloads',
-    'mkt.files',
-    'mkt.lookup',
-    'mkt.reviewers',
-    'mkt.submit',
-    'django_appcache.views.manifest',
-    'django.views.i18n.javascript_catalog',
-    'django.contrib.auth.views.password_reset',
-    'django.contrib.auth.views.password_reset_done',
-    'jingo.views.direct_to_template',
-    'zadmin.views',
-    'users.browserid_login',
-    'mkt.ecosystem.views',
-    'mkt.site.views',
-    'mkt.zadmin.views',
-    # in-app views have their own login protection.
-    'mkt.inapp_pay.views',
-    'tastypie.resources.wrapper',
 )
 
 # Extend the bundles.
@@ -290,7 +226,7 @@ APPCACHE_NET_PATHS = [
 
 APPCACHE_FALLBACK_PATHS = {}
 for url in CARRIER_URLS:
-    APPCACHE_FALLBACK_PATHS['/%s' % url] = '/offline/home';
+    APPCACHE_FALLBACK_PATHS['/%s' % url] = '/offline/home'
 
 
 # This callable yields paths relative to MEDIA_ROOT that you want to explicitly

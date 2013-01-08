@@ -20,11 +20,9 @@
 {% else %}
   {% do urls.append((addon.get_dev_url('versions'), _('Manage Status'))) %}
 {% endif %}
-{% if request.can_view_consumer %}
-  {% do urls.append(
-    (addon.get_url_path(), _('View Listing'))
-  ) %}
-{% endif %}
+{% do urls.append(
+  (addon.get_url_path(), _('View Listing'))
+) %}
 {% if waffle.switch('app-stats') %}
   {% do urls.append(
     (addon.get_stats_url(), _('View Statistics')),

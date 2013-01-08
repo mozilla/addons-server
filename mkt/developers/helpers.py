@@ -62,24 +62,16 @@ def hub_breadcrumbs(context, addon=None, items=None, add_default=False):
     **impala**
         Whether to use the impala_breadcrumbs helper. Default is False.
     """
-    can_view = getattr(context['request'], 'can_view_consumer', True)
-    if can_view:
-        crumbs = [(reverse('ecosystem.landing'), _('Developers'))]
-    else:
-        crumbs = [(reverse('mkt.developers.apps'), _('My Submissions'))]
-    if can_view:
-        title = _('My Submissions')
-        link = reverse('mkt.developers.apps')
-    else:
-        title = link = None
+    crumbs = [(reverse('ecosystem.landing'), _('Developers'))]
+    title = _('My Submissions')
+    link = reverse('mkt.developers.apps')
 
     if addon:
-        if can_view:
-            if not addon and not items:
-                # We are at the end of the crumb trail.
-                crumbs.append((None, title))
-            else:
-                crumbs.append((link, title))
+        if not addon and not items:
+            # We are at the end of the crumb trail.
+            crumbs.append((None, title))
+        else:
+            crumbs.append((link, title))
         if items:
             url = addon.get_dev_url()
         else:
@@ -92,7 +84,7 @@ def hub_breadcrumbs(context, addon=None, items=None, add_default=False):
     if len(crumbs) == 1:
         crumbs = []
 
-    return mkt_breadcrumbs(context, items=crumbs, add_default=can_view)
+    return mkt_breadcrumbs(context, items=crumbs)
 
 
 @register.inclusion_tag('developers/versions/add_file_modal.html')

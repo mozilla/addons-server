@@ -4,12 +4,10 @@ from django.conf import settings
 
 import jingo
 
-from amo.decorators import no_login_required
 from devhub.models import ActivityLog
 from users.models import UserProfile
 
 
-@no_login_required
 def credits(request):
 
     developers = (UserProfile.objects

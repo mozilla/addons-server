@@ -19,23 +19,20 @@ class TestHome(BrowseBase):
     def setUp(self):
         super(TestHome, self).setUp()
         self.url = reverse('home')
-        # TODO: Remove log-in bit when we remove `request.can_view_consumer`.
-        assert self.client.login(username='steamcube@mozilla.com',
-                                 password='password')
 
     @mock_es
     def test_no_paypal_js(self):
         self.create_switch('enabled-paypal', active=False)
         resp = self.client.get(self.url)
         assert not settings.PAYPAL_JS_URL in resp.content, (
-                    'When PayPal is disabled, its JS lib should not load')
+            'When PayPal is disabled, its JS lib should not load')
 
     @mock_es
     def test_load_paypal_js(self):
         self.create_switch('enabled-paypal')
         resp = self.client.get(self.url)
         assert settings.PAYPAL_JS_URL in resp.content, (
-                    'When PayPal is enabled, its JS lib should load')
+            'When PayPal is enabled, its JS lib should load')
 
     @mock_es
     def test_page(self):
@@ -116,8 +113,7 @@ class TestHome(BrowseBase):
                   datetime.date(2012, 1, 15),
                   datetime.date(2012, 2, 1)]:
             Webapp.now = staticmethod(lambda: d)
-            eq_(self.get_pks('featured', self.url,  {'region': 'us'}),
-                [a.id])
+            eq_(self.get_pks('featured', self.url,  {'region': 'us'}), [a.id])
 
     @mock_es
     def test_featured_time_included(self):

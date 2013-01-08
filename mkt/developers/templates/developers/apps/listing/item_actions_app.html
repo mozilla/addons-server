@@ -66,11 +66,9 @@
         {{ _('Manage Status &amp; Versions') if addon.is_packaged else _('Manage Status') }}</a>
     </li>
   {% endif %}
-  {% if request.can_view_consumer %}
-    <li>
-      <a class="action-link" href="{{ addon.get_url_path() }}">{{ _('View Listing') }}</a>
-    </li>
-  {% endif %}
+  <li>
+    <a class="action-link" href="{{ addon.get_url_path() }}">{{ _('View Listing') }}</a>
+  </li>
   {% if waffle.switch('app-stats') %}
     <li>
       <a class="action-link stats-link" href="{{ addon.get_stats_url() }}">{{ _('View Statistics') }}</a>

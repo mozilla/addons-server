@@ -1,6 +1,6 @@
-from base64 import encodestring
 import datetime
 import hashlib
+from base64 import encodestring
 from urlparse import urlparse
 
 from django import forms
@@ -12,18 +12,17 @@ from django.utils import encoding
 from mock import patch
 from nose.tools import eq_
 
-from addons.models import Addon, AddonUser
-from access.models import AccessWhitelist
 import amo
 import amo.tests
+from access.models import Group, GroupUser
+from addons.models import Addon, AddonUser
 from amo.signals import _connect, _disconnect
 from bandwagon.models import Collection
 from reviews.models import Review
-from users.models import (UserProfile, get_hexdigest, BlacklistedEmailDomain,
-                          BlacklistedPassword, BlacklistedUsername,
-                          UserEmailField)
+from users.models import (BlacklistedEmailDomain, BlacklistedPassword,
+                          BlacklistedUsername, get_hexdigest, UserEmailField,
+                          UserProfile)
 from users.utils import find_users
-from access.models import GroupUser, Group
 
 
 class TestUserProfile(amo.tests.TestCase):
@@ -220,22 +219,6 @@ class TestUserProfile(amo.tests.TestCase):
         app = Addon.objects.create(name='test', type=amo.ADDON_WEBAPP)
         AddonUser.objects.create(addon=app, user_id=2519)
         eq_(UserProfile.objects.get(id=2519).is_app_developer, True)
-
-    def test_can_view_consumer_as_dev(self):
-        extension = Addon.objects.create(name='test', type=amo.ADDON_EXTENSION)
-        AddonUser.objects.create(addon=extension, user_id=2519)
-        eq_(UserProfile.objects.get(id=2519).can_view_consumer(), False)
-
-        app = Addon.objects.create(name='test', type=amo.ADDON_WEBAPP)
-        AddonUser.objects.create(addon=app, user_id=2519)
-        eq_(UserProfile.objects.get(id=2519).can_view_consumer(), True)
-
-    def test_can_view_consumer_as_whitelisted_fella(self):
-        user = UserProfile.objects.get(id=2519)
-        eq_(user.can_view_consumer(), False)
-
-        AccessWhitelist.objects.create(email=user.email)
-        eq_(user.can_view_consumer(), True)
 
 
 class TestPasswords(amo.tests.TestCase):

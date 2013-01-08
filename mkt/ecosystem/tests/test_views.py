@@ -18,16 +18,6 @@ class TestLanding(amo.tests.TestCase):
         r = self.client.get('/ecosystem/')
         self.assert3xx(r, '/developers/', 301)
 
-    @mock.patch.object(settings, 'MIDDLEWARE_CLASSES',
-        settings.MIDDLEWARE_CLASSES + type(settings.MIDDLEWARE_CLASSES)([
-            'amo.middleware.NoConsumerMiddleware',
-            'amo.middleware.LoginRequiredMiddleware'
-        ])
-    )
-    def test_legacy_redirect_with_walled_garden(self):
-        r = self.client.get('/ecosystem/')
-        self.assert3xx(r, '/developers/', 301)
-
     def test_tutorials_default(self):
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
@@ -36,19 +26,19 @@ class TestLanding(amo.tests.TestCase):
     @mock.patch.object(settings, 'MDN_LAZY_REFRESH', True)
     @mock.patch('mkt.ecosystem.views.refresh_mdn_cache')
     def test_tutorials_refresh(self, mock_):
-        r = self.client.get(self.url)
+        self.client.get(self.url)
         assert not mock_.called
 
-        r = self.client.get(self.url, {'refresh': '1'})
+        self.client.get(self.url, {'refresh': '1'})
         assert mock_.called
 
     @mock.patch.object(settings, 'MDN_LAZY_REFRESH', False)
     @mock.patch('mkt.ecosystem.views.refresh_mdn_cache')
     def test_tutorials_refresh_disabled(self, mock_):
-        r = self.client.get(self.url)
+        self.client.get(self.url)
         assert not mock_.called
 
-        r = self.client.get(self.url, {'refresh': '1'})
+        self.client.get(self.url, {'refresh': '1'})
         assert not mock_.called
 
 

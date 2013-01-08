@@ -228,7 +228,6 @@ class TestMarketButton(amo.tests.TestCase):
         doc = pq(market_tile(self.context, self.webapp))
         cls = doc('button').attr('class')
         assert 'disabled' not in cls, 'Unexpected: %r' % cls
-        print doc('.bad-app').text()
         eq_(doc('.bad-app').length, 0)
 
     def test_cannot_install_packaged(self):

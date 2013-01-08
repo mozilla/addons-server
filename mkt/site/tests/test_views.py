@@ -55,18 +55,12 @@ class Test404(amo.tests.TestCase):
         self._test_404('/xxx')
 
     def test_404_devhub(self):
-        # TODO: Remove log-in bit when we remove `request.can_view_consumer`.
-        assert self.client.login(username='steamcube@mozilla.com',
-                                 password='password')
         self._test_404('/developers/xxx')
 
     def test_404_consumer_legacy(self):
         self._test_404('/xxx')
 
     def test_404_consumer(self):
-        # TODO: Remove log-in bit when we remove `request.can_view_consumer`.
-        assert self.client.login(username='steamcube@mozilla.com',
-                                 password='password')
         self._test_404('/xxx')
 
     def test_404_api(self):
@@ -235,9 +229,6 @@ class TestFooter(amo.tests.TestCase):
     def test_language_selector(self):
         # No footer in current designs.
         raise SkipTest
-        # TODO: Remove log-in bit when we remove `request.can_view_consumer`.
-        assert self.client.login(username='steamcube@mozilla.com',
-                                 password='password')
         r = self.client.get(reverse('home'))
         eq_(r.status_code, 200)
         eq_(pq(r.content)('#lang-form option[selected]').attr('value'),
@@ -246,9 +237,6 @@ class TestFooter(amo.tests.TestCase):
     def test_language_selector_variables(self):
         # No footer in current designs.
         raise SkipTest
-        # TODO: Remove log-in bit when we remove `request.can_view_consumer`.
-        assert self.client.login(username='steamcube@mozilla.com',
-                                 password='password')
         r = self.client.get(reverse('home'), {'x': 'xxx', 'y': 'yyy'})
         doc = pq(r.content)('#lang-form')
         eq_(doc('input[type=hidden][name=x]').attr('value'), 'xxx')

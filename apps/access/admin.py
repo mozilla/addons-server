@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import AccessWhitelist, Group, GroupUser
+from .models import Group, GroupUser
 
 
 class GroupUserInline(admin.TabularInline):
@@ -15,5 +15,4 @@ class GroupAdmin(admin.ModelAdmin):
     inlines = (GroupUserInline,)
 
 
-admin.site.register(AccessWhitelist)
 admin.site.register(Group, GroupAdmin)

@@ -19,7 +19,7 @@ from django_statsd.clients import statsd
 import amo
 import api
 import files.tasks
-from amo.decorators import no_login_required, post_required
+from amo.decorators import post_required
 from amo.utils import log_cef
 from amo.context_processors import get_collect_timings
 from . import monitors
@@ -35,7 +35,6 @@ wmp_re = re.compile(r'^(application/(asx|x-(mplayer2|ms-wmp))|video/x-ms-(asf(-p
 
 
 @never_cache
-@no_login_required
 def monitor(request, format=None):
 
     # For each check, a boolean pass/fail status to show in the template
@@ -47,7 +46,8 @@ def monitor(request, format=None):
     for check in checks:
         with statsd.timer('monitor.%s' % check) as timer:
             status, result = getattr(monitors, check)()
-        status_summary[check] = {'state': not status, # state is a string. If it is empty, that means everything is fine.
+        # state is a string. If it is empty, that means everything is fine.
+        status_summary[check] = {'state': not status,
                                  'status': status}
         results['%s_results' % check] = result
         results['%s_timer' % check] = timer.ms
@@ -67,7 +67,6 @@ def monitor(request, format=None):
                         ctx, status=status_code)
 
 
-@no_login_required
 def robots(request):
     """Generate a robots.txt"""
     _service = (request.META['SERVER_NAME'] == settings.SERVICES_DOMAIN)

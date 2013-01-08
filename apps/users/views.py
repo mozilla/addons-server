@@ -33,8 +33,8 @@ import waffle
 from access.middleware import ACLMiddleware
 import amo
 from amo import messages
-from amo.decorators import (json_view, login_required, no_login_required,
-                            permission_required, write, post_required)
+from amo.decorators import (json_view, login_required, permission_required,
+                            post_required, write)
 from amo.forms import AbuseForm
 from amo.urlresolvers import get_url_prefix, reverse
 from amo.helpers import loc
@@ -102,7 +102,6 @@ def ajax(request):
     return escape_all(data)
 
 
-@no_login_required
 def confirm(request, user_id, token):
     user = get_object_or_404(UserProfile, id=user_id)
 
@@ -121,7 +120,6 @@ def confirm(request, user_id, token):
     return redirect('users.login')
 
 
-@no_login_required
 def confirm_resend(request, user_id):
     user = get_object_or_404(UserProfile, id=user_id)
 
@@ -372,7 +370,6 @@ def browserid_authenticate(request, assertion, is_native=False):
 
 @csrf_exempt
 @post_required
-@no_login_required
 @transaction.commit_on_success
 #@ratelimit(block=True, rate=settings.LOGIN_RATELIMIT_ALL_USERS)
 def browserid_login(request):
@@ -398,7 +395,6 @@ def browserid_login(request):
 
 @anonymous_csrf
 @mobile_template('users/{mobile/}login_modal.html')
-@no_login_required
 #@ratelimit(block=True, rate=settings.LOGIN_RATELIMIT_ALL_USERS)
 def login_modal(request, template=None):
     return _login(request, template=template)
@@ -406,7 +402,6 @@ def login_modal(request, template=None):
 
 @anonymous_csrf
 @mobile_template('users/{mobile/}login.html')
-@no_login_required
 #@ratelimit(block=True, rate=settings.LOGIN_RATELIMIT_ALL_USERS)
 def login(request, template=None):
     if settings.MARKETPLACE:
@@ -417,7 +412,6 @@ def login(request, template=None):
 def _login(request, template=None, data=None, dont_redirect=False):
     data = data or {}
     data['webapp'] = settings.APP_PREVIEW
-    usercount = UserProfile.objects.count()
     # In case we need it later.  See below.
     get_copy = request.GET.copy()
 
@@ -426,7 +420,7 @@ def _login(request, template=None, data=None, dont_redirect=False):
 
     if request.user.is_authenticated():
         return http.HttpResponseRedirect(
-                        request.GET.get('to', settings.LOGIN_REDIRECT_URL))
+            request.GET.get('to', settings.LOGIN_REDIRECT_URL))
 
     limited = getattr(request, 'limited', 'recaptcha_shown' in request.POST)
     user = None
@@ -492,7 +486,7 @@ def _login(request, template=None, data=None, dont_redirect=False):
                       'mail" or "spam". If you need to, you can have us '
                       '<a href="%s">resend the confirmation message</a> '
                       'to your email address mentioned above.') % url
-            messages.error(request, _('Activation Email Sent'),  msg1)
+            messages.error(request, _('Activation Email Sent'), msg1)
             messages.info(request, _('Having Trouble?'), msg2,
                           title_safe=True, message_safe=True)
             data.update({'form': partial_form()})
@@ -602,7 +596,6 @@ def profile(request, user_id):
 
 
 @anonymous_csrf
-@no_login_required
 def register(request):
 
     if settings.APP_PREVIEW and waffle.switch_is_active('browserid-login'):
@@ -692,7 +685,6 @@ def report_abuse(request, user_id):
 
 
 @never_cache
-@no_login_required
 def password_reset_confirm(request, uidb36=None, token=None):
     """
     Pulled from django contrib so that we can add user into the form
@@ -844,11 +836,10 @@ def support_author(request, contribution, wizard):
     form = forms.ContactForm(request.POST or None)
     if request.method == 'POST':
         if form.is_valid():
-            template = jingo.render_to_string(request,
-                                wizard.tpl('emails/support-request.txt'),
-                                context={'contribution': contribution,
-                                         'addon': addon, 'form': form,
-                                         'user': request.amo_user})
+            template = jingo.render_to_string(
+                request, wizard.tpl('emails/support-request.txt'),
+                context={'contribution': contribution, 'addon': addon,
+                         'form': form, 'user': request.amo_user})
             log.info('Support request to dev. by user: %s for addon: %s' %
                      (request.amo_user.pk, addon.pk))
             # L10n: %s is the addon name.
@@ -868,11 +859,11 @@ def support_mozilla(request, contribution, wizard):
     form = forms.ContactForm(request.POST or None)
     if request.method == 'POST':
         if form.is_valid():
-            template = jingo.render_to_string(request,
-                                wizard.tpl('emails/support-request.txt'),
-                                context={'addon': addon, 'form': form,
-                                         'contribution': contribution,
-                                         'user': request.amo_user})
+            template = jingo.render_to_string(
+                request, wizard.tpl('emails/support-request.txt'),
+                context={'addon': addon, 'form': form,
+                         'contribution': contribution,
+                         'user': request.amo_user})
             log.info('Support request to mozilla by user: %s for addon: %s' %
                      (request.amo_user.pk, addon.pk))
             # L10n: %s is the addon name.
@@ -1043,9 +1034,7 @@ def preapproval(request):
         raise
 
     paypal_log.info(u'Got preapproval key for user: %s' % request.amo_user.pk)
-    request.session['setup-preapproval'] = {
-            'key': result['preapprovalKey'],
-            'expiry': data['endDate'],
-            }
+    request.session['setup-preapproval'] = {'key': result['preapprovalKey'],
+                                            'expiry': data['endDate']}
     to = paypal.get_preapproval_url(result['preapprovalKey'])
     return http.HttpResponseRedirect(to)

@@ -21,7 +21,6 @@ import caching.base as caching
 import commonware.log
 from tower import ugettext as _
 
-from access.models import AccessWhitelist
 import amo
 import amo.models
 from access.models import Group, GroupUser
@@ -435,12 +434,6 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
         pre_approval doesn't exist or the key is blank.
         """
         return bool(getattr(self.get_preapproval(), 'paypal_key', ''))
-
-    def can_view_consumer(self):
-        # To view the consumer pages, the user must satisfy either criterion:
-        #   * Have submitted an app.
-        #   * Is a vouched Mozillian or whitelisted fella.
-        return self.is_app_developer or AccessWhitelist.matches(self.email)
 
 
 @dispatch.receiver(models.signals.post_save, sender=UserProfile,

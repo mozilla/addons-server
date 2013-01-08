@@ -292,7 +292,7 @@ def mkt_breadcrumbs(context, product=None, items=None, crumb_size=40,
         Adds the App/Add-on name to the end of the trail.  If items are
         specified then the App/Add-on will be linked.
     **add_default**
-        Prepends trail back to home when True.  Default is False.
+        Prepends trail back to home when True.  Default is True.
     """
     if add_default:
         crumbs = [(reverse('home'), _('Home'))]

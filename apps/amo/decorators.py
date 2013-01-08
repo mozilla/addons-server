@@ -182,19 +182,9 @@ def set_modified_on(f):
                 task_log.info('Delaying setting modified on object: %s, %s' %
                               (obj.__class__.__name__, obj.pk))
                 set_modified_on_object.apply_async(
-                                            args=[obj], kwargs=None,
-                                            countdown=settings.MODIFIED_DELAY)
+                    args=[obj], kwargs=None, countdown=settings.MODIFIED_DELAY)
         return result
     return wrapper
-
-
-def no_login_required(f):
-    """
-    If you are using the LoginRequiredMiddleware mark this view
-    as not needing any sort of login.
-    """
-    f._no_login_required = True
-    return f
 
 
 def allow_cross_site_request(f):

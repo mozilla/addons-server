@@ -11,7 +11,22 @@
   <section id="welcome" class="main primary">
     <div>
       <div class="prose">
-        {% include 'home/walled_prose.html' %}
+        <h1>{{ _('Please Log In') }}</h1>
+        <p>
+          {% trans %}
+            The Firefox Marketplace gives users the opportunity to find, try
+            and buy Apps and content that matters most to them. This means
+            exciting, useful and high-quality Apps relevant to local markets
+            across all categories that users can use to get the most out of
+            their daily lives.
+          {% endtrans %}
+        </p>
+        <div class="still-open">
+          <h1>{{ _('Have an app to submit?') }}</h1>
+          <p>
+            <a href="{{ url('ecosystem.landing') }}" target="_blank">{{ _('Upload your app') }} &raquo;</a>
+          </p>
+        </div>
       </div>
       <p class="proceed">
         <a class="button prominent browserid" href="#">{{ _('Log in / Register') }}</a>

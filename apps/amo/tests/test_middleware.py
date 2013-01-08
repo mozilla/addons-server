@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 import json
 
-from django import http
+from django import http, test
 from django.conf import settings
-from django import test
 
 from commonware.middleware import HidePasswordOnException
 from mock import Mock, patch
@@ -12,11 +11,8 @@ from pyquery import PyQuery as pq
 from test_utils import RequestFactory
 
 import amo.tests
-from amo.decorators import no_login_required
-from amo.middleware import (LazyPjaxMiddleware, LoginRequiredMiddleware,
-                            NoAddonsMiddleware)
+from amo.middleware import LazyPjaxMiddleware, NoAddonsMiddleware
 from amo.urlresolvers import reverse
-from reviews.feeds import ReviewsRss
 from zadmin.models import Config, _config_cache
 
 
@@ -93,7 +89,7 @@ class TestLazyPjaxMiddleware(amo.tests.TestCase):
         request = self.factory.get('/', HTTP_X_PJAX=True)
         if not response:
             assert page_content is not None, (
-                        'Without a response, page_content= cannot be None')
+                'Without a response, page_content= cannot be None')
             response = self.view(request, page_content, title=title)
         return LazyPjaxMiddleware().process_response(request, response)
 
@@ -166,59 +162,6 @@ class TestLazyPjaxMiddleware(amo.tests.TestCase):
                                  content_type='application/json')
         resp = self.process(response=resp)
         eq_(json.loads(resp.content), {'foo': 1})
-
-
-def normal_view(request):
-    return ''
-
-
-@no_login_required
-def allowed_view(request):
-    return normal_view(request)
-
-
-class TestLoginRequiredMiddleware(amo.tests.TestCase):
-
-    def process(self, authenticated, view=None, url='/', lang='en-US',
-                app='firefox'):
-        if not view:
-            view = normal_view
-        request = RequestFactory().get(url, HTTP_X_PJAX=True)
-        request.user = Mock()
-        request.APP = amo.APPS[app]
-        request.LANG = lang
-        request.user.is_authenticated.return_value = authenticated
-        return LoginRequiredMiddleware().process_view(request, view, [], {})
-
-    def test_middleware(self):
-        # Middleware returns None if it doesn't need to redirect the user.
-        assert not self.process(True)
-        eq_(self.process(False).status_code, 302)
-
-    def test_locale(self):
-        eq_(self.process(False)['Location'], '/en-US/firefox/users/login')
-        eq_(self.process(False, lang='fr')['Location'],
-            '/fr/firefox/users/login')
-        eq_(self.process(False, app='thunderbird')['Location'],
-            '/en-US/thunderbird/users/login')
-
-    def test_decorator_allowed(self):
-        assert not self.process(False, allowed_view)
-        assert not self.process(True, allowed_view)
-
-    def test_decorator_normal(self):
-        eq_(self.process(False, normal_view).status_code, 302)
-        assert not self.process(True, normal_view)
-
-    @patch.object(settings, 'NO_LOGIN_REQUIRED_MODULES',
-                  (LoginRequiredMiddleware().get_name(normal_view),))
-    def test_modules(self):
-        assert not self.process(False)
-        assert not self.process(True)
-
-    def test_class(self):
-        eq_(LoginRequiredMiddleware().get_name(ReviewsRss),
-            'reviews.feeds.ReviewsRss')
 
 
 class TestNoAddonsMiddleware(amo.tests.TestCase):

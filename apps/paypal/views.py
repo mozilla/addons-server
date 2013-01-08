@@ -14,7 +14,7 @@ import requests
 import waffle
 
 import amo
-from amo.decorators import no_login_required, post_required, write
+from amo.decorators import post_required, write
 from lib.pay_server import client
 from paypal import paypal_log_cef
 from stats.db import StatsDictField
@@ -25,7 +25,6 @@ paypal_log = commonware.log.getLogger('z.paypal')
 
 @write
 @csrf_exempt
-@no_login_required
 @post_required
 def paypal(request):
     """

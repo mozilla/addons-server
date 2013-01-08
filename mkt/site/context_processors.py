@@ -23,15 +23,12 @@ def global_settings(request):
     if request.user.is_authenticated() and hasattr(request, 'amo_user'):
         amo_user = request.amo_user
         context['is_reviewer'] = acl.check_reviewer(request)
-        if getattr(request, 'can_view_consumer', True):
-            account_links = [
-                # TODO: Coming soon with payments.
-                # {'text': _('Account History'),
-                #  'href': reverse('account.purchases')},
-                {'text': _('Account Settings'),
-                 'href': reverse('account.settings')},
-            ]
-        account_links += [
+        account_links = [
+            # TODO: Coming soon with payments.
+            # {'text': _('Account History'),
+            #  'href': reverse('account.purchases')},
+            {'text': _('Account Settings'),
+             'href': reverse('account.settings')},
             {'text': _('Change Password'),
              'href': 'https://login.persona.org/signin'},
             {'text': _('Log out'), 'href': reverse('users.logout')},
@@ -61,9 +58,6 @@ def global_settings(request):
     else:
         context['amo_user'] = AnonymousUser()
 
-    is_walled = ('amo.middleware.LoginRequiredMiddleware' in
-                 settings.MIDDLEWARE_CLASSES)
-
     DESKTOP = request.TABLET or not request.MOBILE
 
     context.update(account_links=account_links,
@@ -76,6 +70,5 @@ def global_settings(request):
                    ADMIN_MESSAGE=get_config('site_notice'),
                    collect_timings_percent=get_collect_timings(),
                    is_admin=acl.action_allowed(request, 'Addons', 'Edit'),
-                   is_walled=is_walled,
                    DESKTOP=DESKTOP)
     return context

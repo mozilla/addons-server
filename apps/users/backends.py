@@ -5,6 +5,7 @@ from .models import UserProfile
 
 class AmoUserBackend(object):
     supports_anonymous_user = False
+    supports_inactive_user = False
     supports_object_permissions = False
 
     def authenticate(self, username=None, password=None):
@@ -27,6 +28,7 @@ class AmoUserBackend(object):
 class NoAuthForYou(object):
     """An authentication backend for read-only mode."""
     supports_anonymous_user = False
+    supports_inactive_user = False
     supports_object_permissions = False
 
     def authenticate(self, *args, **kw):

@@ -3,7 +3,6 @@ from django.http import HttpRequest
 import mock
 from nose.tools import assert_false, eq_
 
-from access.models import AccessWhitelist
 import amo
 from amo.tests import TestCase
 from amo.urlresolvers import reverse
@@ -20,7 +19,8 @@ def test_match_rules():
     Unit tests for the match_rules method.
     """
 
-    rules = ('*:*',
+    rules = (
+        '*:*',
         'Editors:*,Admin:EditAnyAddon,Admin:flagged,Admin:addons,'
         'Admin:EditAnyCollection',
         'Tests:*,Admin:serverstatus,Admin:users',
@@ -36,12 +36,13 @@ def test_match_rules():
         'Admin:*',
         'Admin:Foo',
         'Admin:Bar',
-        )
+    )
 
     for rule in rules:
         assert match_rules(rule, 'Admin', '%'), "%s != Admin:%%" % rule
 
-    rules = ('Doctors:*',
+    rules = (
+        'Doctors:*',
         'Stats:View',
         'CollectionStats:View',
         'Addons:Review',
@@ -51,7 +52,7 @@ def test_match_rules():
         'Locale.de:Edit',
         'Reviews:Edit',
         'None:None',
-        )
+    )
 
     for rule in rules:
         assert not match_rules(rule, 'Admin', '%'), \
@@ -210,48 +211,3 @@ class TestHasPerm(TestCase):
         self.au.role = amo.AUTHOR_ROLE_SUPPORT
         self.au.save()
         assert check_addon_ownership(self.request, self.addon, support=True)
-
-
-class TestAccessWhitelist(amo.tests.TestCase):
-    fixtures = ['base/users']
-
-    def test_matches(self):
-        def matches(email, expected):
-            return eq_(AccessWhitelist.matches(email), expected)
-
-        emails = [
-            'fligtar@gmail.com',
-            '*@gmail.com',
-            '*@mozilla.*',
-            '*igta*@mozilla.*',
-            'cvan+me@not.legit.biz',
-            'me@gkoberger.net\nme@potch.com\r\nchris@*.com'
-        ]
-        for email in emails:
-            AccessWhitelist.objects.create(email=email)
-
-        matches('', False)
-        matches('omg@org.yes', False)
-        matches('fligtar@gmail.com', True)
-        matches('fligtar@mozilla.com', True)
-        matches('cvan@mozilla', False)
-        matches('cvan@mozilla.com', True)
-        matches('cvan@mozilla.org', True)
-        matches('cvan+me@mozilla.legit.biz', True)
-        matches('cvan+me@not.legit.biz', True)
-        matches('cvan__is__me@not.legit.biz', False)
-        matches('cvan__is__me@not.legit.biz', False)
-        matches('me@gkoberger.net', True)
-        matches('me@potch.com', True)
-        matches('chris@dekkostudios.com', True)
-
-    def test_post_save_with_empty_email(self):
-        with self.assertNumQueries(1):
-            # Exit post-save.
-            AccessWhitelist.objects.create(email='')
-
-    def test_empty(self):
-        for value in ['', ' ']:
-            AccessWhitelist.objects.all().delete()
-            AccessWhitelist.objects.create(email=value)
-            eq_(AccessWhitelist.matches('any@email.com'), False)

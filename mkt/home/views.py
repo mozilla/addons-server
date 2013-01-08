@@ -16,8 +16,6 @@ def _add_mobile_filter(request, qs):
 # TODO: Cache this soooo hard.
 def home(request):
     """The home page."""
-    if not getattr(request, 'can_view_consumer', True):
-        return jingo.render(request, 'home/home_walled.html')
     MOBILE = request.MOBILE and not request.TABLET
     region = getattr(request, 'REGION', mkt.regions.WORLDWIDE)
     featured = Webapp.featured(region=region, cat=None, mobile=False,

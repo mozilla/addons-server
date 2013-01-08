@@ -8,7 +8,7 @@ import urllib
 
 from django.conf import settings
 from django.contrib.sessions.middleware import SessionMiddleware
-from django.core.urlresolvers import is_valid_path, resolve
+from django.core.urlresolvers import is_valid_path
 from django.http import (Http404, HttpResponseRedirect,
                          HttpResponsePermanentRedirect)
 from django.middleware import common
@@ -229,68 +229,6 @@ class ViewMiddleware(object):
         else:
             name = view_func.__name__
         return '%s.%s' % (view_func.__module__, name)
-
-
-class LoginRequiredMiddleware(ViewMiddleware):
-    """
-    If enabled, will force a login on all requests. Unless the view
-    is decorated with the no_login_required decorator, or placed
-    in the NO_LOGIN_REQUIRED_MODULES tuple.
-    """
-
-    def process_view(self, request, view_func, view_args, view_kwargs):
-        name = self.get_name(view_func)
-
-        # If we've encountered a lambda (redirect), then follow it to the view.
-        # And, no, we can't check for `types.LambdaType` because views are also
-        # functions.
-        if view_func.__name__ == '<lambda>':
-            name = resolve(view_func(request)['Location']).func.__module__
-
-        if (request.user.is_authenticated() or
-            getattr(view_func, '_no_login_required', False) or
-            name.startswith(settings.NO_LOGIN_REQUIRED_MODULES)):
-            return
-        if settings.MARKETPLACE:
-            # Redirect to /login if we're not logged in.
-            redirect_url = settings.LOGIN_URL
-            path_info = request.path_info
-            if path_info.lstrip('/') and path_info != settings.LOGIN_URL:
-                redirect_url = urlparams(redirect_url, to=request.path)
-            return HttpResponseRedirect(redirect_url)
-        else:
-            return HttpResponseRedirect('/%s/%s%s' % (request.LANG,
-                                                      request.APP.short,
-                                                      settings.LOGIN_URL))
-
-
-class DefaultConsumerMiddleware(ViewMiddleware):
-    """
-    The only purpose of this middleware is to ensure consumer pages are
-    still visible if `NoConsumerMiddleware` isn't enabled.
-    """
-
-    def process_view(self, request, view_func, view_args, view_kwargs):
-        request.can_view_consumer = True
-
-
-class NoConsumerMiddleware(ViewMiddleware):
-    """
-    Suprisingly similar to the other middleware, except on finding a match
-    it renders a page and has a bigger list of things we don't like.
-    Even more temporary. Maybe even more dragons.
-    """
-
-    def process_view(self, request, view_func, view_args, view_kwargs):
-        request.can_view_consumer = (
-            request.user.is_authenticated() and
-            request.user.get_profile().can_view_consumer()
-        )
-        name = self.get_name(view_func)
-        if (name.startswith(settings.NO_ADDONS_MODULES) or
-            not request.can_view_consumer and
-            name.startswith(settings.NO_CONSUMER_MODULES)):
-            return jingo.render(request, 'site/no_consumer.html')
 
 
 class NoAddonsMiddleware(ViewMiddleware):
