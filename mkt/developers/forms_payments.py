@@ -12,9 +12,10 @@ import paypal
 from addons.models import Addon, AddonUpsell
 from editors.models import RereviewQueue
 from lib.pay_server import client
-from market.models import AddonPremium, Price, PriceCurrency
+from market.models import AddonPremium, Price
 
-from mkt.constants import FREE_PLATFORMS, PAID_PLATFORMS
+from mkt.constants import (BANGO_COUNTRIES, BANGO_CURRENCIES, FREE_PLATFORMS,
+                           PAID_PLATFORMS)
 from mkt.inapp_pay.models import InappConfig
 from mkt.site.forms import AddonChoiceField
 from mkt.submit.forms import DeviceTypeForm
@@ -261,11 +262,6 @@ class InappConfigForm(happyforms.ModelForm):
         fields = ('postback_url', 'chargeback_url', 'is_https')
 
 
-# TODO: Figure out either a.) where to pull these from and implement that
-# or b.) which constants file to move it to.
-# TODO: Add more of these?
-COUNTRIES = ['BRA', 'ESP']
-
 class BangoPaymentAccountForm(happyforms.Form):
 
     bankAccountPayeeName = forms.CharField(
@@ -288,8 +284,10 @@ class BangoPaymentAccountForm(happyforms.Form):
     addressZipCode = forms.CharField(
         max_length=128, label=_lazy(u'Zip/Postal Code'))
     addressPhone = forms.CharField(max_length=20, label=_lazy(u'Phone'))
-    countryIso = forms.ChoiceField(label=_lazy(u'Country'))
-    currencyIso = forms.ChoiceField(label=_lazy(u'Preferred Currency'))
+    countryIso = forms.ChoiceField(
+        choices=BANGO_COUNTRIES, label=_lazy(u'Country'))
+    currencyIso = forms.ChoiceField(
+        choices=BANGO_CURRENCIES, label=_lazy(u'Preferred Currency'))
 
     vatNumber = forms.CharField(
         max_length=17, required=False, label=_lazy(u'VAT Number'))
@@ -309,22 +307,10 @@ class BangoPaymentAccountForm(happyforms.Form):
         label=_lazy(u'Bank State/Province/Region'))
     bankAddressZipCode = forms.CharField(max_length=50,
                                          label=_lazy(u'Bank Zip/Postal Code'))
-    bankAddressIso = forms.ChoiceField(label=_lazy(u'Bank Country'))
+    bankAddressIso = forms.ChoiceField(
+        choices=BANGO_COUNTRIES, label=_lazy(u'Bank Country'))
 
     account_name = forms.CharField(max_length=64, label=_(u'Account Name'))
-
-    def __init__(self, *args, **kwargs):
-        super(BangoPaymentAccountForm, self).__init__(*args, **kwargs)
-
-        currency_choices = (
-            PriceCurrency.objects.values_list('currency', flat=True)
-                                 .distinct())
-        self.fields['currencyIso'].choices = [('USD', 'USD')] + [
-            (k, k) for k in filter(None, currency_choices)]
-
-        country_choices = [(k, k) for k in COUNTRIES]
-        self.fields['bankAddressIso'].choices = country_choices
-        self.fields['countryIso'].choices = country_choices
 
     @property
     def happy_errors(self):
