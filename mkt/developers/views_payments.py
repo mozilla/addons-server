@@ -52,8 +52,6 @@ def payments(request, addon_id, addon, webapp=False):
         if success:
             region_form.save()
 
-            toggling = premium_form.is_toggling()
-
             try:
                 premium_form.save()
             except client.Error as err:

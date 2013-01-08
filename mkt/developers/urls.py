@@ -9,17 +9,19 @@ from mkt.developers.decorators import use_apps
 from mkt.stats.urls import all_apps_stats_patterns
 
 from . import views
+from . import views_payments
 
 
 def bango_patterns(prefix):
     return patterns('',
-        url('^accounts$', views.payments_accounts,
+        url('^accounts$', views_payments.payments_accounts,
             name='mkt.developers.%s.payment_accounts' % prefix),
 
-        url('^accounts/add$', views.payments_accounts_add,
+        url('^accounts/add$', views_payments.payments_accounts_add,
             name='mkt.developers.%s.add_payment_account' % prefix),
 
-        url('^accounts/(?P<id>\d+)/delete$', views.payments_accounts_delete,
+        url('^accounts/(?P<id>\d+)/delete$',
+            views_payments.payments_accounts_delete,
             name='mkt.developers.%s.delete_payment_account' % prefix),
     )
 
@@ -45,8 +47,9 @@ app_detail_patterns = patterns('',
     url('^versions/delete$', views.version_delete,
         name='mkt.developers.apps.versions.delete'),
 
-    url('^payments/$', views.payments, name='mkt.developers.apps.payments'),
-    url('^payments/disable$', views.disable_payments,
+    url('^payments/$', views_payments.payments,
+        name='mkt.developers.apps.payments'),
+    url('^payments/disable$', views_payments.disable_payments,
         name='mkt.developers.apps.payments.disable'),
     # in-app payments.
     url('^in-app-config$', views.in_app_config,

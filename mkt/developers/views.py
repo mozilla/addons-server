@@ -58,8 +58,6 @@ from mkt.webapps.models import Webapp
 
 from . import forms, tasks
 
-from .views_payments import *
-
 log = commonware.log.getLogger('z.devhub')
 
 
