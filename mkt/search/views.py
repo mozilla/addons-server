@@ -148,14 +148,13 @@ def _app_search(request, category=None, browse=None):
     if request.MOBILE:
         qs = qs.filter(uses_flash=False)
 
-    if not request.GAIA:
-        # Only show premium apps on gaia for now.
-        # TODO: remove this once we allow app purchases on desktop/android.
-        qs = qs.filter(premium_type__in=amo.ADDON_FREES)
-
+    if not request.GAIA and (request.MOBILE or request.TABLET):
         # Don't show packaged apps on Firefox for Android.
-        if request.MOBILE or request.TABLET:
-            qs = qs.filter(is_packaged=False)
+        qs = qs.filter(is_packaged=False)
+
+        # Only show premium apps on gaia for now.
+        # TODO: remove this once we allow app purchases on Android.
+        qs = qs.filter(premium_type__in=amo.ADDON_FREES)
 
     qs = _filter_search(qs, dict(query), region=region)
 
