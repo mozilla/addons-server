@@ -1,6 +1,5 @@
 import json
 
-from django.core.exceptions import ObjectDoesNotExist
 from django.db import transaction
 
 from celery_tasktree import TaskTree
