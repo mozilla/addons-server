@@ -155,7 +155,7 @@ class TestSendMail(test.TestCase):
                              recipient_list=[to], fail_silently=False)
         eq_(perm_setting[0], u'an add-on developer replies to my review')
 
-    def test_send_html_mail_jinja():
+    def test_send_html_mail_jinja(self):
         emails = ['omg@org.yes']
         subject = u'Mozilla Add-ons: Thank you for your submission!'
         html_template = 'devhub/email/submission.html'
