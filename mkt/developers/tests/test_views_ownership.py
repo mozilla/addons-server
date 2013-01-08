@@ -99,7 +99,7 @@ class TestEditAuthor(TestOwnership):
         r = self.client.post(self.url, data)
         eq_(r.status_code, 200)
         eq_(r.context['user_form'].non_form_errors(),
-            ['An author can only be listed once.'])
+            ['A team member can only be listed once.'])
 
     def test_success_delete_user(self):
         # Add a new user so we have one to delete.
@@ -152,7 +152,7 @@ class TestEditAuthor(TestOwnership):
         data = self.formset(f.initial, initial_count=1)
         r = self.client.post(self.url, data)
         eq_(r.context['user_form'].non_form_errors(),
-            ['At least one author must be listed.'])
+            ['At least one team member must be listed.'])
 
     def test_must_have_owner(self):
         f = self.client.get(self.url).context['user_form'].initial_forms[0]
