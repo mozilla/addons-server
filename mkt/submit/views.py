@@ -192,9 +192,8 @@ def details(request, addon_id, addon):
 @dev_required
 def done(request, addon_id, addon):
     # No submit step forced on this page, we don't really care.
-    return jingo.render(request, 'submit/done.html', {
-                        'step': 'done', 'addon': addon
-                        })
+    return jingo.render(request, 'submit/done.html',
+                        {'step': 'done', 'addon': addon})
 
 
 @dev_required

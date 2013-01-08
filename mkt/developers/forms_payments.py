@@ -106,6 +106,12 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
     def is_toggling(self):
         return self.request.POST.get('toggle-paid', False) or False
 
+    def clean(self):
+        if not self.is_toggling():
+            return super(PremiumForm, self).clean()
+        else:
+            return self.cleaned_data
+
     def clean_price(self):
         if (self.cleaned_data.get('premium_type') in amo.ADDON_PREMIUMS
             and not self.cleaned_data['price']):

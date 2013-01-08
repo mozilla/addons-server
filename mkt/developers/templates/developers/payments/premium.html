@@ -53,7 +53,7 @@
           {% else %}
             <h2>{{ _('App Compatibility') }}</h2>
           {% endif %}
-          <div class="error">{{ form.errors.free }}</div>
+          <div class="error">{{ form.errors.free_platforms }}</div>
           {%- for item in form.fields['free_platforms'].choices -%}
             {{ button(form, item, can_change=not is_paid) }}
           {%- endfor %}
@@ -61,6 +61,10 @@
             <div id="free-tab-save" class="update-payment-type">
               <button data-type="free">{{ _('Change to Free') }}</button>
               {{ _('Changing to Free will put your app back into review.') }}
+            </div>
+          {% else %}
+            <div id="compat-save-button" class="hidden update-payment-type">
+              <button>{{ _('Save Changes') }}</button>
             </div>
           {% endif %}
         </div>
@@ -77,7 +81,7 @@
                 <a href="#">{{ _('Paid/In-app') }}</a>
               {%- endif -%}
             </h2>
-            <div class="error">{{ form.errors.paid }}</div>
+            <div class="error">{{ form.errors.paid_platforms }}</div>
             {%- for item in form.fields['paid_platforms'].choices -%}
               {{ button(form, item, can_change=False) }}
             {%- endfor %}
@@ -89,9 +93,6 @@
             {% endif %}
           </div>
         {% endif %}
-        <div id="compat-save-button" class="hidden">
-          <button>{{ _('Save Changes') }}
-        </div>
       </section>
 
       {% if is_paid %}

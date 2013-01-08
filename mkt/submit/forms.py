@@ -51,11 +51,11 @@ class DeviceTypeForm(happyforms.Form):
 
         added_devices = new_types - old_types
         removed_devices = old_types - new_types
+
         for d in added_devices:
-            AddonDeviceType(addon=addon, device_type=d.id).save()
+            addon.addondevicetype_set.create(device_type=d.id)
         for d in removed_devices:
-            AddonDeviceType.objects.filter(
-                addon=addon, device_type=d.id).delete()
+            addon.addondevicetype_set.filter(device_type=d.id).delete()
 
         # Send app to re-review queue if public and new devices are added.
         if added_devices and addon.status == amo.STATUS_PUBLIC:

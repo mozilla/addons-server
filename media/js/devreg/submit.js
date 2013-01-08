@@ -37,9 +37,11 @@
         });
     };
 
+    var $compat_save_button = $('#compat-save-button');
+
     // Reset selected device buttons and values.
     $('#submit-payment-type h2 a').click(function(e) {
-        if ($(this).hasClass('disabled')) {
+        if ($(this).hasClass('disabled') || $compat_save_button.length) {
             return;
         }
 
@@ -47,7 +49,6 @@
                                           .find('input').removeAttr('checked');
         $('#id_free_platforms, #id_paid_platforms').val([]);
     });
-
 
     // When a big device button is clicked, update the form.
     $('#submit-payment-type a.choice').on('click',
@@ -67,6 +68,7 @@
             $this.toggleClass('selected', nowSelected);
             $this.find('input').attr('checked', nowSelected);
             $input.val(old);
+            $compat_save_button.removeClass('hidden');
             show_packaged();
         })
     );
