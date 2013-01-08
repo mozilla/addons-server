@@ -334,13 +334,12 @@ class Webapp(Addon):
         amo.log(amo.LOG.MANIFEST_UPDATED, self)
 
     def is_complete(self):
-        """See if the app is complete. If not, return why."""
+        """See if the app is complete. If not, return why. This function does
+        not consider or include payments-related information.
+
+        """
+
         reasons = []
-        if self.needs_paypal():
-            if not self.paypal_id:
-                reasons.append(_('You must set up payments.'))
-            if not self.has_price():
-                reasons.append(_('You must specify a price.'))
 
         if not self.support_email:
             reasons.append(_('You must provide a support email.'))
@@ -352,8 +351,8 @@ class Webapp(Addon):
         if not self.categories.count():
             reasons.append(_('You must provide at least one category.'))
         if not self.previews.count():
-            reasons.append(_('You must upload at least one '
-                             'screenshot or video.'))
+            reasons.append(_('You must upload at least one screenshot or '
+                             'video.'))
 
         return not bool(reasons), reasons
 

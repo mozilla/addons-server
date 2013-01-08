@@ -2,11 +2,21 @@
 <ul>
 {% if addon.is_incomplete() %}
   {% if check_addon_ownership(request, addon, dev=True) %}
+    {% if addon.is_complete()[0] %}
+      {# The app just needs payments information. #}
     <li>
-      <a href="{{ url('submit.app.resume', addon.app_slug) }}" class="tooltip"
-         title="{{ _("Resume the submission process for this app.")}}">
-      {{ _('Resume') }}</a>
+      <a href="{{ addon.get_dev_url('payments') }}" class="tooltip"
+         title="{{ _('Provide payment information for the app.') }}">
+      {{ _('Set Up Payments') }}</a>
     </li>
+    {% else %}
+      {# The app's submission is incomplete. #}
+      <li>
+        <a href="{{ url('submit.app.resume', addon.app_slug) }}" class="tooltip"
+           title="{{ _('Resume the submission process for this app.') }}">
+        {{ _('Resume') }}</a>
+      </li>
+    {% endif %}
   {% endif %}
   {% if check_addon_ownership(request, addon) and addon.can_be_deleted() %}
     <li>

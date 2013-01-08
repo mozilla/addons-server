@@ -624,24 +624,6 @@ class TestIsComplete(amo.tests.TestCase):
         self.webapp.previews.create()
         eq_(self.webapp.is_complete()[0], True)
 
-    def test_paypal(self):
-        self.webapp.update(premium_type=amo.ADDON_PREMIUM)
-        self.fail('payments')
-
-        self.webapp.update(paypal_id='a@a.com')
-        self.fail('price')
-
-    def test_no_price(self):
-        self.webapp.update(premium_type=amo.ADDON_PREMIUM, paypal_id='a@a.com')
-        AddonPremium.objects.create(addon=self.webapp, currencies=['BRL'])
-        self.fail('price')
-
-    def test_price(self):
-        self.webapp.update(premium_type=amo.ADDON_PREMIUM, paypal_id='a@a.com')
-        AddonPremium.objects.create(addon=self.webapp, currencies=['BRL'],
-                                    price=Price.objects.create(price='1'))
-        self.fail('email')
-
 
 class TestAddonExcludedRegion(amo.tests.WebappTestCase):
 
