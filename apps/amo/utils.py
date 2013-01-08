@@ -258,9 +258,9 @@ def send_mail(subject, message, html_message=None, from_email=None,
                     result = text_mail(message_with_unsubscribe, [recipient])
         else:
             if html_message:
-                result = html_mail(message, html_message, from_email)
+                result = html_mail(message, html_message, [recipient])
             else:
-                result = text_mail(message, from_email)
+                result = text_mail(message, [recipient])
     else:
         result = True
 
