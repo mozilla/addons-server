@@ -143,10 +143,10 @@ def paginate(request, queryset, per_page=20, count=None):
     return paginated
 
 
-def send_mail(subject, message, html_message=None, from_email=None,
-              recipient_list=None, fail_silently=False, use_blacklist=True,
-              perm_setting=None, manage_url=None, headers=None, cc=None,
-              real_email=False):
+def send_mail(subject, message, from_email=None, recipient_list=None,
+              fail_silently=False, use_blacklist=True, perm_setting=None,
+              manage_url=None, headers=None, cc=None, real_email=False,
+              html_message=None):
     """
     A wrapper around django.core.mail.EmailMessage.
 
@@ -161,7 +161,6 @@ def send_mail(subject, message, html_message=None, from_email=None,
         raise ValueError('recipient_list should be a list, not a string.')
 
     connection = get_email_backend(real_email)
-
 
     # Check against user notification settings
     if perm_setting:
@@ -193,23 +192,17 @@ def send_mail(subject, message, html_message=None, from_email=None,
     if not headers:
         headers = {}
 
-    def text_mail(message, recipient):
-        try:
-            return EmailMessage(subject, message, from_email, recipient, cc=cc,
-                                connection=connection, headers=headers
-                               ).send(fail_silently=False)
-        except Exception as e:
-            log.error('send_mail failed with error: %s' % e)
-            if not fail_silently:
-                raise
-            return False
+    def send(recipient, message, html_message=None):
+        backend = EmailMultiAlternatives if html_message else EmailMessage
 
-    def html_mail(message, html_message, recipient):
-        try:
-            result = EmailMultiAlternatives(subject, message,
-                from_email, recipient, cc=cc, connection=connection,
-                headers=headers)
+        result = backend(subject, message,
+            from_email, recipient, cc=cc, connection=connection,
+            headers=headers)
+
+        if html_message:
             result.attach_alternative(html_message, 'text/html')
+
+        try:
             result.send(fail_silently=False)
             return result
         except Exception as e:
@@ -252,15 +245,13 @@ def send_mail(subject, message, html_message=None, from_email=None,
                     with no_translation():
                         html_message_with_unsubscribe = html_template.render(
                             Context(context, autoescape=False))
-                        result = html_mail(message_with_unsubscribe,
-                            html_message_with_unsubscribe, [recipient])
+                        result = send([recipient], message_with_unsubscribe,
+                            html_message_with_unsubscribe)
                 else:
-                    result = text_mail(message_with_unsubscribe, [recipient])
+                    result = send([recipient], message_with_unsubscribe)
         else:
-            if html_message:
-                result = html_mail(message, html_message, recipient_list)
-            else:
-                result = text_mail(message, recipient_list)
+            result = send(recipient_list, message=message,
+                          html_message=html_message)
     else:
         result = True
 
@@ -291,7 +282,7 @@ def send_html_mail_jinja(subject, html_template, text_template, context,
     html_template = env.get_template(html_template)
     text_template = env.get_template(text_template)
 
-    msg = send_mail(subject, message=text_template.render(**context),
+    msg = send_mail(subject, text_template.render(**context),
                     html_message=html_template.render(**context), *args,
                     **kwargs)
 
