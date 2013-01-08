@@ -33,20 +33,16 @@ define('login', ['notification'], function(notification) {
             // native on the device. Even though this seems fragile
             // it is well supported by Persona (for now).
             data.is_native = navigator.id._shimmed ? 0 : 1;
-            $.ajax({
-                url: $('body').data('login-url'),
-                type: 'POST',
-                data: data,
-                success: finishLogin,
-                error: function(jqXHR, textStatus, error) {
-                    var err = {msg: jqXHR.responseText};
-                    if (!err.msg) {
-                        err.msg = gettext("BrowserID login failed. Maybe you don't have an account under that email address?") + " " + textStatus + " " + error;
-                    }
-                    z.page.trigger('notify', {msg: $(err.msg).text()});
-                    $.Deferred().reject(err);
+
+            $.post(z.body.data('login-url'), data)
+             .success(finishLogin)
+             .error(function(jqXHR, textStatus, error) {
+                var err = jqXHR.responseText;
+                if (!err) {
+                    err = gettext("Persona login failed. Maybe you don't have an account under that email address?") + " " + textStatus + " " + error;
                 }
-            });
+                z.page.trigger('notify', {msg: err});
+             });
         } else {
             $('.loading-submit').removeClass('loading-submit');
         }
@@ -69,9 +65,7 @@ define('login', ['notification'], function(notification) {
             } else {
                 notification({
                     message: gettext('Successfully signed in. Click here to reload.')
-                }).then(function() {
-                    window.location.reload();
-                });
+                }).then(window.location.reload);
             }
         }
     }
@@ -83,16 +77,14 @@ define('login', ['notification'], function(notification) {
         console.log('detected user', email);
         navigator.id.watch({
             loggedInUser: email,
-            onlogin: function(assert) {
-                gotVerifiedEmail(assert);
-            },
-            onlogout: function() {
-            }
+            onlogin: gotVerifiedEmail,
+            onlogout: function() {}
         });
     }
 
     // Load `include.js` from persona.org, and drop login hotness like it's hot.
     var s = document.createElement('script');
+    s.onload = init_persona;
     if (z.capabilities.firefoxOS) {
         // Load the Firefox OS include that knows how to handle native Persona.
         // Once this functionality lands in the normal include we can stop
@@ -102,7 +94,6 @@ define('login', ['notification'], function(notification) {
         s.src = z.body.data('persona-url');
     }
     document.body.appendChild(s);
-    s.onload = init_persona;
     $('.browserid').css('cursor', 'wait');
 
 });
