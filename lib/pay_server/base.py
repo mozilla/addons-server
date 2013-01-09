@@ -5,6 +5,7 @@ import json
 import logging
 import urllib
 
+from curling.lib import API
 from django_statsd.clients import statsd
 import requests
 
@@ -82,6 +83,7 @@ class Client(object):
 
     def __init__(self, config=None):
         self.config = self.parse(config)
+        self.api = API(config['server'])
         self.encoder = None
         self.filter_encoder = urllib.urlencode
 
