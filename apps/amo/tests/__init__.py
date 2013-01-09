@@ -419,6 +419,9 @@ class TestCase(RedisTest, test_utils.TestCase):
     def days_ago(self, days):
         return days_ago(days)
 
+    def login(self, profile):
+        assert self.client.login(username=profile.email, password='password')
+
 
 class AMOPaths(object):
     """Mixin for getting common AMO Paths."""
