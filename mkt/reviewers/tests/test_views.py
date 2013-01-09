@@ -33,7 +33,7 @@ from lib.crypto.tests import mock_sign
 import mkt.constants.reviewers as rvw
 from mkt.reviewers.models import ThemeLock
 from mkt.reviewers.views import (_do_sort, _filter, _check_if_searching,
-                                 _get_search_form, _get_themes)
+                                 _get_search_form, _get_themes, _queue_to_apps)
 from mkt.site.fixtures import fixture
 from mkt.submit.tests.test_views import BasePackagedAppTest
 from mkt.webapps.models import Webapp
@@ -348,7 +348,7 @@ class TestRereviewQueue(AppReviewerTest, AccessMixin, FlagsMixin):
         eq_(r.status_code, 200)
         links = pq(r.content)('#addon-queue tbody')('tr td:nth-of-type(2) a')
         apps = [rq.addon for rq in
-                RereviewQueue.objects.all().order_by('addon__created')]
+                RereviewQueue.objects.all().order_by('created')]
         expected = [
             (unicode(apps[0].name), self.review_url(apps[0])),
             (unicode(apps[1].name), self.review_url(apps[1])),
@@ -2223,3 +2223,25 @@ class TestQueueSearchSort(AppReviewerTest):
                                    'order': 'asc'})
         sorted_qs = _do_sort(r, qs)
         eq_(list(sorted_qs), [self.apps[0], self.apps[1]])
+
+    def test_queue_to_app_sort(self):
+        """Tests queue object's created sort order."""
+        url = reverse('reviewers.apps.queue_rereview')
+
+        earlier_rrq = RereviewQueue.objects.create(addon=self.apps[0])
+        later_rrq = RereviewQueue.objects.create(addon=self.apps[1])
+        later_rrq.created += datetime.timedelta(days=1)
+        later_rrq.save()
+
+        request = self.rf.get(url, {'sort': 'created'})
+        apps, form = _queue_to_apps(request, RereviewQueue.objects.all())
+
+        # Assert the order that RereviewQueue objects were created is
+        # maintained.
+        eq_([earlier_rrq.addon, later_rrq.addon],
+            [queued_app.app for queued_app in apps])
+
+        request = self.rf.get(url, {'sort': 'created', 'order': 'desc'})
+        apps, form = _queue_to_apps(request, RereviewQueue.objects.all())
+        eq_([later_rrq.addon, earlier_rrq.addon],
+            [queued_app.app for queued_app in apps])

@@ -28,6 +28,7 @@ from addons.tasks import index_addons
 from amo import messages
 from amo.decorators import json_view, permission_required, post_required
 from amo.helpers import absolutify
+from amo.models import manual_order
 from amo.urlresolvers import reverse
 from amo.utils import (escape_all, HttpResponseSendFile, JSONEncoder, paginate,
                        smart_decode)
@@ -330,6 +331,12 @@ def _check_if_searching(search_form):
 def _do_sort(request, qs):
     """Column sorting logic based on request GET parameters."""
     sort, order = clean_sort_param(request)
+
+    if qs.model in [EscalationQueue, RereviewQueue] and sort != 'created':
+        # For some queues, want to use queue's created field, not the app's
+        # created field.
+        sort = 'addon__' + sort
+
     if order == 'asc':
         order_by = sort
     else:
@@ -353,7 +360,6 @@ def queue_apps(request):
                          .exclude(id__in=excluded_ids))
 
     qs, search_form = _get_search_form(request, _do_sort(request, qs))
-
     apps = [QueuedApp(app, app.created) for app in qs]
 
     return _queue(request, apps, 'pending', search_form)
@@ -362,18 +368,20 @@ def queue_apps(request):
 @permission_required('Apps', 'Review')
 def queue_rereview(request):
     excluded_ids = EscalationQueue.uncached.values_list('addon', flat=True)
-    addon_ids = (RereviewQueue.uncached
-                              .filter(addon__type=amo.ADDON_WEBAPP,
-                                      addon__disabled_by_user=False)
-                              .exclude(addon__in=excluded_ids)
-                              .values_list('addon', flat=True))
-    qs = Webapp.objects.filter(id__in=addon_ids)
-
-    qs, search_form = _get_search_form(request, _do_sort(request, qs))
-
-    apps = [QueuedApp(app, app.created) for app in qs]
-
+    rqs = (RereviewQueue.uncached
+                        .filter(addon__type=amo.ADDON_WEBAPP,
+                                addon__disabled_by_user=False)
+                        .exclude(addon__in=excluded_ids))
+    apps, search_form = _queue_to_apps(request, rqs)
     return _queue(request, apps, 'rereview', search_form)
+
+
+@permission_required('Apps', 'ReviewEscalated')
+def queue_escalated(request):
+    eqs = EscalationQueue.uncached.filter(addon__type=amo.ADDON_WEBAPP,
+                                          addon__disabled_by_user=False)
+    apps, search_form = _queue_to_apps(request, eqs)
+    return _queue(request, apps, 'escalated', search_form)
 
 
 @permission_required('Apps', 'Review')
@@ -385,30 +393,15 @@ def queue_updates(request):
                                      version__addon__type=amo.ADDON_WEBAPP,
                                      version__addon__disabled_by_user=False)
                              .values_list('version__addon_id', flat=True))
+
     qs = (Webapp.uncached.exclude(id__in=excluded_ids)
                          .filter(id__in=addon_ids))
-
     qs, search_form = _get_search_form(request, _do_sort(request, qs))
-
-    apps = Webapp.version_and_file_transformer(qs)
 
     apps = [QueuedApp(app, app.all_versions[0].all_files[0].created)
-            for app in qs]
+            for app in Webapp.version_and_file_transformer(qs)]
     apps = sorted(apps, key=lambda a: a.created)
     return _queue(request, apps, 'updates', search_form)
-
-
-@permission_required('Apps', 'ReviewEscalated')
-def queue_escalated(request):
-    addon_ids = (EscalationQueue.uncached.filter(addon__type=amo.ADDON_WEBAPP,
-                                                 addon__disabled_by_user=False)
-                                .values_list('addon', flat=True))
-    qs = Webapp.objects.filter(id__in=addon_ids)
-
-    qs, search_form = _get_search_form(request, _do_sort(request, qs))
-
-    apps = [QueuedApp(app, app.created) for app in qs]
-    return _queue(request, apps, 'escalated', search_form)
 
 
 @permission_required('Apps', 'Review')
@@ -433,6 +426,29 @@ def queue_moderated(request):
     return jingo.render(request, 'reviewers/queue.html',
                         context(reviews_formset=reviews_formset,
                                 tab='moderated', page=page, flags=flags))
+
+
+def _queue_to_apps(request, queue_qs):
+    """Apply sorting and filtering to queue queryset and return apps within
+    that queue in sorted order.
+
+    Args:
+    queue_qs -- queue queryset (e.g. RereviewQueue, EscalationQueue)
+
+    """
+    # Preserve the sort order by storing the properly sorted ids.
+    sorted_app_ids = (_do_sort(request, queue_qs)
+                      .values_list('addon', flat=True))
+
+    # The filter below undoes the sort above.
+    qs, search_form = _get_search_form(
+        request, Webapp.objects.filter(id__in=sorted_app_ids))
+
+    # Put the filtered qs back into the correct sort order.
+    qs = manual_order(qs, sorted_app_ids)
+    apps = [QueuedApp(app, app.created) for app in qs]
+
+    return apps, search_form
 
 
 def _get_search_form(request, qs):
@@ -630,10 +646,9 @@ def themes_queue(request):
 def _get_themes(reviewer, initial=True):
     """Check out themes.
 
-    Keyword arguments:
-    initial -- True if checking out synchronously, False otherwise.
-               Changes whether we return all of reviewer's themes or just
-               newly checked out ones.
+    :param initial: True if checking out synchronously, False otherwise.
+                    Changes whether we return all of reviewer's themes or just
+                    newly checked out ones.
 
     """
     theme_locks = ThemeLock.objects.filter(reviewer=reviewer)
