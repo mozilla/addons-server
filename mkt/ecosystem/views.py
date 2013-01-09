@@ -1,11 +1,15 @@
 from django.conf import settings
 from django.http import Http404
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
 
+import basket
 import commonware.log
 import jingo
+from session_csrf import anonymous_csrf
 from tower import ugettext as _
 
+from amo import messages
+from mkt.developers.forms import DevNewsletterForm
 from mkt.ecosystem.tasks import refresh_mdn_cache
 from mkt.site import messages
 
@@ -25,6 +29,7 @@ def _refresh_mdn(request):
             ' Thanks for all your awesome work! Devs appreciate it!')
 
 
+@anonymous_csrf
 def landing(request):
     """Developer Hub landing page."""
     _refresh_mdn(request)
@@ -51,8 +56,24 @@ def landing(request):
             'path': 'FirefoxMarketplace_box-BR-RC-SD1%20640'
         }
     ]
+
+    form = DevNewsletterForm(request.POST or None)
+
+    if request.method == 'POST' and form.is_valid():
+        data = form.cleaned_data
+
+        try:
+            basket.subscribe(data['email'],
+                             'app-dev',
+                             source_url=settings.SITE_URL)
+            messages.success(request, _('Thank you for subscribing!'))
+            return redirect('ecosystem.landing')
+        except basket.BasketException:
+            messages.error(request, _('We apologize, but an error '
+                 'occurred in our system. Please try again later.'))
+
     return jingo.render(request, 'ecosystem/landing.html',
-           {'videos': videos})
+           {'videos': videos, 'newsletter_form': form})
 
 
 def support(request):
