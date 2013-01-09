@@ -34,9 +34,7 @@ define('notification', ['capabilities'], function(caps) {
 
     var def;
 
-    var eventType = caps.touch ? 'touchstart' : 'click';
-
-    notificationEl.on(eventType, affirm);
+    notificationEl.on('touchstart click', affirm);
 
     function notification(opts) {
 
