@@ -361,7 +361,7 @@ class MarketplaceMixin(object):
         self.addon.update(premium_type=amo.ADDON_PREMIUM)
 
 
-@mock.patch('mkt.developers.forms.PremiumForm.clean',
+@mock.patch('mkt.developers.forms_payments.PremiumForm.clean',
             new=lambda x: x.cleaned_data)
 class TestMarketplace(MarketplaceMixin, amo.tests.TestCase):
     fixtures = ['base/users', 'webapps/337141-steamcube', 'market/prices']

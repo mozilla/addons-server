@@ -14,7 +14,7 @@ from lib.pay_server import client
 from mkt.constants import DEVICE_LOOKUP
 from mkt.developers.decorators import dev_required
 
-from . import forms, models
+from . import forms, forms_payments, models
 
 
 log = commonware.log.getLogger('z.devhub')
@@ -29,17 +29,17 @@ def disable_payments(request, addon_id, addon):
 
 @dev_required(owner_for_post=True, webapp=True)
 def payments(request, addon_id, addon, webapp=False):
-    premium_form = forms.PremiumForm(
+    premium_form = forms_payments.PremiumForm(
         request.POST or None, request=request, addon=addon,
         user=request.amo_user)
 
     region_form = forms.RegionForm(
         request.POST or None, product=addon)
 
-    upsell_form = forms.UpsellForm(
+    upsell_form = forms_payments.UpsellForm(
         request.POST or None, addon=addon, user=request.amo_user)
 
-    bango_account_list_form = forms.BangoAccountListForm(
+    bango_account_list_form = forms_payments.BangoAccountListForm(
         request.POST or None, addon=addon, user=request.amo_user)
 
     if request.method == 'POST':
@@ -115,7 +115,7 @@ def payments(request, addon_id, addon, webapp=False):
          'no_paid': cannot_be_paid,
          'is_incomplete': addon.status == amo.STATUS_NULL,
          # Bango values
-         'bango_account_form': forms.BangoPaymentAccountForm(),
+         'bango_account_form': forms_payments.BangoPaymentAccountForm(),
          'bango_account_list_form': bango_account_list_form,
          # Waffles
          'payments_enabled':
@@ -126,7 +126,7 @@ def payments(request, addon_id, addon, webapp=False):
 @write
 @login_required
 def payments_accounts(request):
-    bango_account_form = forms.BangoAccountListForm(
+    bango_account_form = forms_payments.BangoAccountListForm(
         user=request.amo_user, addon=None)
     return jingo.render(
         request, 'developers/payments/includes/bango_accounts.html',
@@ -137,7 +137,7 @@ def payments_accounts(request):
 @post_required
 @login_required
 def payments_accounts_add(request):
-    form = forms.BangoPaymentAccountForm(request.POST)
+    form = forms_payments.BangoPaymentAccountForm(request.POST)
     if not form.is_valid():
         return http.HttpResponse(form.happy_errors, status=400)
 

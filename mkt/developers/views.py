@@ -48,8 +48,9 @@ from mkt.developers.decorators import dev_required
 from mkt.developers.forms import (AppFormBasic, AppFormDetails, AppFormMedia,
                                   AppFormSupport, AppFormTechnical,
                                   CategoryForm, ImageAssetFormSet,
-                                  InappConfigForm, NewPackagedAppForm,
-                                  PreviewFormSet, trap_duplicate)
+                                  NewPackagedAppForm, PreviewFormSet,
+                                  trap_duplicate)
+from mkt.developers.forms_payments import InappConfigForm
 from mkt.developers.utils import check_upload
 from mkt.inapp_pay.models import InappConfig
 from mkt.submit.forms import NewWebappVersionForm

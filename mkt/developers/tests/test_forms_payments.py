@@ -12,7 +12,7 @@ from editors.models import RereviewQueue
 from market.models import AddonPremium, Price
 from users.models import UserProfile
 
-from mkt.developers import forms, forms_payments, models
+from mkt.developers import forms_payments, models
 from mkt.site.fixtures import fixture
 
 
@@ -40,7 +40,7 @@ class TestPremiumForm(amo.tests.TestCase):
 
     def test_free_to_premium(self):
         self.request.POST = {'toggle-paid': 'paid'}
-        form = forms.PremiumForm(data=self.platforms, **self.kwargs)
+        form = forms_payments.PremiumForm(data=self.platforms, **self.kwargs)
         assert form.is_valid(), form.errors
         form.save()
         eq_(self.addon.premium_type, amo.ADDON_PREMIUM)
@@ -51,7 +51,7 @@ class TestPremiumForm(amo.tests.TestCase):
         self.addon.update(status=amo.STATUS_PENDING)
 
         self.request.POST = {'toggle-paid': 'paid'}
-        form = forms.PremiumForm(data=self.platforms, **self.kwargs)
+        form = forms_payments.PremiumForm(data=self.platforms, **self.kwargs)
         assert form.is_valid(), form.errors
         form.save()
         eq_(RereviewQueue.objects.count(), 0)
@@ -62,7 +62,7 @@ class TestPremiumForm(amo.tests.TestCase):
 
         self.request.POST = {'toggle-paid': 'free'}
         self.platforms.update(price=self.price.pk)
-        form = forms.PremiumForm(data=self.platforms, **self.kwargs)
+        form = forms_payments.PremiumForm(data=self.platforms, **self.kwargs)
         assert form.is_valid(), form.errors
         form.save()
         eq_(RereviewQueue.objects.count(), 0)
@@ -73,7 +73,7 @@ class TestPremiumForm(amo.tests.TestCase):
         self.make_premium(self.addon)
         price = Price.objects.create(price='9.99')
         self.platforms.update(price=price.pk)
-        form = forms.PremiumForm(self.platforms, **self.kwargs)
+        form = forms_payments.PremiumForm(self.platforms, **self.kwargs)
         assert form.is_valid(), form.errors
         form.save()
         eq_(self.addon.premium.price.pk, price.pk)
@@ -90,7 +90,7 @@ class TestPremiumForm(amo.tests.TestCase):
 
         price = Price.objects.create(price='9.99')
         self.platforms.update(price=price.pk)
-        form = forms.PremiumForm(self.platforms, **self.kwargs)
+        form = forms_payments.PremiumForm(self.platforms, **self.kwargs)
         assert form.is_valid(), form.errors
         form.save()
         eq_(self.addon.premium.price.pk, price.pk)
@@ -100,7 +100,7 @@ class TestPremiumForm(amo.tests.TestCase):
         # getting linked to an existing bank account.
         self.addon.update(premium_type=amo.ADDON_PREMIUM)
         self.platforms.update(price=self.price.pk)
-        form = forms.PremiumForm(self.platforms, **self.kwargs)
+        form = forms_payments.PremiumForm(self.platforms, **self.kwargs)
         assert form.is_valid(), form.errors
         form.save()
         addon = Addon.objects.get(pk=self.addon.pk)
@@ -109,7 +109,7 @@ class TestPremiumForm(amo.tests.TestCase):
     def test_cannot_change_devices_on_toggle(self):
         self.request.POST = {'toggle-paid': 'paid'}
         self.platforms = {'paid_platforms': ['paid-firefoxos']}
-        form = forms.PremiumForm(data=self.platforms, **self.kwargs)
+        form = forms_payments.PremiumForm(data=self.platforms, **self.kwargs)
         assert form.is_valid(), form.errors
         form.save()
         eq_(self.addon.premium_type, amo.ADDON_PREMIUM)
@@ -149,14 +149,14 @@ class TestPaidRereview(amo.tests.TestCase):
         client.post_product_bango.return_value = {
             'resource_uri': 'bpruri', 'bango_id': 123}
 
-        form = forms.BangoAccountListForm(
+        form = forms_payments.BangoAccountListForm(
             data={'accounts': self.account.pk}, **self.kwargs)
         assert form.is_valid(), form.errors
         form.save()
         eq_(self.addon.status, amo.STATUS_PUBLIC)
         eq_(RereviewQueue.objects.count(), 1)
 
-        form = forms.BangoAccountListForm(None, **self.kwargs)
+        form = forms_payments.BangoAccountListForm(None, **self.kwargs)
         assert form.fields['accounts'].empty_label == None
 
     @mock.patch('mkt.developers.models.client')
@@ -168,7 +168,7 @@ class TestPaidRereview(amo.tests.TestCase):
             'resource_uri': 'bpruri', 'bango_id': 123}
 
         self.addon.update(highest_status=amo.STATUS_PENDING)
-        form = forms.BangoAccountListForm(
+        form = forms_payments.BangoAccountListForm(
             data={'accounts': self.account.pk}, **self.kwargs)
         assert form.is_valid(), form.errors
         form.save()
@@ -206,7 +206,7 @@ class TestInappConfigForm(amo.tests.TestCase):
                 'chargeback_url': '/c',
                 'is_https': False}
         data.update(params)
-        fm = forms.InappConfigForm(data=data)
+        fm = forms_payments.InappConfigForm(data=data)
         cfg = fm.save(commit=False)
         cfg.addon = self.addon
         cfg.save()

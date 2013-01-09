@@ -2,7 +2,6 @@
 from datetime import datetime
 import json
 import os
-import socket
 
 from django import forms
 from django.conf import settings
@@ -23,7 +22,7 @@ from addons.models import (Addon, AddonCategory, AddonUser, BlacklistedSlug,
                            Category, Preview)
 from addons.widgets import CategoriesSelectMultiple
 from amo import get_user
-from amo.utils import raise_required, remove_icons
+from amo.utils import remove_icons
 from files.models import FileUpload
 from lib.video import tasks as vtasks
 from translations.fields import TransField
@@ -38,7 +37,6 @@ from mkt.constants.ratingsbodies import (RATINGS_BY_NAME, ALL_RATINGS,
 from mkt.webapps.models import (AddonExcludedRegion, ContentRating, ImageAsset,
                                 Webapp)
 
-from .forms_payments import *  # Payment-related forms
 from . import tasks
 
 log = commonware.log.getLogger('mkt.developers')
