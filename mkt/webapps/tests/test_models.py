@@ -16,7 +16,7 @@ from nose import SkipTest
 from nose.tools import eq_, raises
 
 import amo
-from addons.models import (Addon, AddonCategory, AddonDeviceType, AddonPremium,
+from addons.models import (Addon, AddonCategory, AddonDeviceType,
                            BlacklistedSlug, Category, Preview, version_changed)
 from addons.signals import version_changed as version_changed_signal
 from amo.helpers import absolutify
@@ -28,7 +28,6 @@ from files.models import File
 from files.utils import WebAppParser
 from lib.crypto import packaged
 from lib.crypto.tests import mock_sign
-from market.models import Price
 from users.models import UserProfile
 from versions.models import update_status, Version
 
@@ -310,6 +309,10 @@ class TestWebapp(amo.tests.TestCase):
             app.premium_type = pt_old
             for pt_new in ALL:
                 eq_(app.is_premium_type_upgrade(pt_new), False)
+
+    @raises(ValueError)
+    def test_parse_domain(self):
+        Webapp(is_packaged=True).parsed_app_domain
 
 
 class TestWebappVersion(amo.tests.TestCase):

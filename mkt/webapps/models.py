@@ -258,6 +258,8 @@ class Webapp(Addon):
 
     @property
     def parsed_app_domain(self):
+        if self.is_packaged:
+            raise ValueError('Packaged apps do not have a domain')
         return urlparse.urlparse(self.app_domain)
 
     @property
