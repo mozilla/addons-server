@@ -1591,7 +1591,7 @@ class TestAddonFromUpload(UploadTest):
 
     def test_xpi_attributes(self):
         addon = Addon.from_upload(self.get_upload('extension.xpi'),
-                                  [self.platform])
+                                  [self.platform])[0]
         eq_(addon.name, 'xpi name')
         eq_(addon.guid, 'guid@xpi')
         eq_(addon.type, amo.ADDON_EXTENSION)
@@ -1603,27 +1603,27 @@ class TestAddonFromUpload(UploadTest):
 
     def test_manifest_url(self):
         upload = self.get_upload(abspath=self.manifest('mozball.webapp'))
-        addon = Addon.from_upload(upload, [self.platform])
+        addon = Addon.from_upload(upload, [self.platform])[0]
         assert addon.is_webapp()
         eq_(addon.manifest_url, upload.name)
 
     def test_app_domain(self):
         upload = self.get_upload(abspath=self.manifest('mozball.webapp'))
         upload.name = 'http://mozilla.com/my/rad/app.webapp'  # manifest URL
-        addon = Addon.from_upload(upload, [self.platform])
+        addon = Addon.from_upload(upload, [self.platform])[0]
         eq_(addon.app_domain, 'http://mozilla.com')
 
     def test_non_english_app(self):
         upload = self.get_upload(abspath=self.manifest('non-english.webapp'))
         upload.name = 'http://mozilla.com/my/rad/app.webapp'  # manifest URL
-        addon = Addon.from_upload(upload, [self.platform])
+        addon = Addon.from_upload(upload, [self.platform])[0]
         eq_(addon.default_locale, 'it')
         eq_(unicode(addon.name), 'ItalianMozBall')
         eq_(addon.name.locale, 'it')
 
     def test_xpi_version(self):
         addon = Addon.from_upload(self.get_upload('extension.xpi'),
-                                  [self.platform])
+                                  [self.platform])[0]
         v = addon.versions.get()
         eq_(v.version, '0.1')
         eq_(v.files.get().platform_id, self.platform.id)
@@ -1633,14 +1633,14 @@ class TestAddonFromUpload(UploadTest):
         platforms = [Platform.objects.get(pk=amo.PLATFORM_LINUX.id),
                      Platform.objects.get(pk=amo.PLATFORM_MAC.id)]
         addon = Addon.from_upload(self.get_upload('extension.xpi'),
-                                  platforms)
+                                  platforms)[0]
         v = addon.versions.get()
         eq_(sorted([f.platform.id for f in v.all_files]),
             sorted([p.id for p in platforms]))
 
     def test_search_attributes(self):
         addon = Addon.from_upload(self.get_upload('search.xml'),
-                                  [self.platform])
+                                  [self.platform])[0]
         eq_(addon.name, 'search tool')
         eq_(addon.guid, None)
         eq_(addon.type, amo.ADDON_SEARCH)
@@ -1652,7 +1652,7 @@ class TestAddonFromUpload(UploadTest):
 
     def test_search_version(self):
         addon = Addon.from_upload(self.get_upload('search.xml'),
-                                  [self.platform])
+                                  [self.platform])[0]
         v = addon.versions.get()
         eq_(v.version, datetime.now().strftime('%Y%m%d'))
         eq_(v.files.get().platform_id, amo.PLATFORM_ALL.id)
@@ -1660,18 +1660,18 @@ class TestAddonFromUpload(UploadTest):
 
     def test_no_homepage(self):
         addon = Addon.from_upload(self.get_upload('extension-no-homepage.xpi'),
-                                  [self.platform])
+                                  [self.platform])[0]
         eq_(addon.homepage, None)
 
     def test_default_locale(self):
         # Make sure default_locale follows the active translation.
         addon = Addon.from_upload(self.get_upload('search.xml'),
-                                  [self.platform])
+                                  [self.platform])[0]
         eq_(addon.default_locale, 'en-US')
 
         translation.activate('es')
         addon = Addon.from_upload(self.get_upload('search.xml'),
-                                  [self.platform])
+                                  [self.platform])[0]
         eq_(addon.default_locale, 'es')
 
     def test_webapp_default_locale_override(self):
@@ -1682,7 +1682,7 @@ class TestAddonFromUpload(UploadTest):
             tmp.write(json.dumps(mf))
             tmp.flush()
             upload = self.get_upload(abspath=tmp.name)
-        addon = Addon.from_upload(upload, [self.platform])
+        addon = Addon.from_upload(upload, [self.platform])[0]
         eq_(addon.default_locale, 'es')
 
     def test_webapp_default_locale_unsupported(self):
@@ -1693,14 +1693,14 @@ class TestAddonFromUpload(UploadTest):
             tmp.write(json.dumps(mf))
             tmp.flush()
             upload = self.get_upload(abspath=tmp.name)
-        addon = Addon.from_upload(upload, [self.platform])
+        addon = Addon.from_upload(upload, [self.platform])[0]
         eq_(addon.default_locale, 'en-US')
 
     def test_browsing_locale_does_not_override(self):
         translation.activate('gb')
         # Upload app with en-US as default.
         upload = self.get_upload(abspath=self.manifest('mozball.webapp'))
-        addon = Addon.from_upload(upload, [self.platform])
+        addon = Addon.from_upload(upload, [self.platform])[0]
         eq_(addon.default_locale, 'en-US')  # not gb
 
     @raises(forms.ValidationError)

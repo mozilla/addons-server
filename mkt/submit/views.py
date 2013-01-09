@@ -89,7 +89,7 @@ def manifest(request):
         addon = Addon.from_upload(
             form.cleaned_data['upload'],
             [Platform.objects.get(id=amo.PLATFORM_ALL.id)],
-            is_packaged=form.is_packaged())
+            is_packaged=form.is_packaged())[0]
 
         # Set the device type.
         for device in form.get_devices():

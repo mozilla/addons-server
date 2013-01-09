@@ -442,10 +442,10 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                 addon.manifest_url = upload.name
                 addon.app_domain = addon.domain_from_url(addon.manifest_url)
         addon.save()
-        Version.from_upload(upload, addon, platforms)
+        version = Version.from_upload(upload, addon, platforms)
         amo.log(amo.LOG.CREATE_ADDON, addon)
         log.debug('New addon %r from %r' % (addon, upload))
-        return addon
+        return addon, version
 
     def flush_urls(self):
         urls = ['*/addon/%s/' % self.slug,  # Doesn't take care of api
