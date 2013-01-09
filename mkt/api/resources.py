@@ -129,7 +129,7 @@ class AppResource(MarketplaceResource):
 
         # Create app, user and fetch the icon.
         bundle.obj = Addon.from_upload(form.obj, plats,
-                                       is_packaged=form.is_packaged)[0]
+                                       is_packaged=form.is_packaged)
         AddonUser(addon=bundle.obj, user=request.amo_user).save()
 
         self._icons_and_images(bundle.obj)

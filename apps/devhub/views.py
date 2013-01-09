@@ -1579,12 +1579,12 @@ def submit_addon(request, step, webapp=False):
                 p = (list(data.get('desktop_platforms', [])) +
                      list(data.get('mobile_platforms', [])))
 
-            addon, version = Addon.from_upload(data['upload'], p)
+            addon = Addon.from_upload(data['upload'], p)
             if webapp:
                 tasks.fetch_icon.delay(addon)
             AddonUser(addon=addon, user=request.amo_user).save()
             SubmitStep.objects.create(addon=addon, step=3)
-            check_validation_override(request, form, addon, version)
+            check_validation_override(request, form, addon, addon.current_version)
             return redirect(_step_url(3, webapp), addon.slug)
     template = 'upload_webapp.html' if webapp else 'upload.html'
     is_admin = acl.action_allowed(request, 'ReviewerAdminTools', 'View')
