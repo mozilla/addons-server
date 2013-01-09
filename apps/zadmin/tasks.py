@@ -335,6 +335,7 @@ def notify_failed(file_pks, job_pk, data, **kw):
 
 
 @task
+@write
 def fetch_langpacks(path, **kw):
     log.info('[@None] Fetching language pack updates %s' % path)
 
@@ -441,8 +442,9 @@ def fetch_langpacks(path, **kw):
                           'language pack' % (data['version'], xpi))
                 continue
 
-            addon, version = Addon.from_upload(upload, PLATFORMS)
+            addon = Addon.from_upload(upload, PLATFORMS)
             AddonUser(addon=addon, user=owner).save()
+            version = addon.versions.get()
 
             addon.status = amo.STATUS_PUBLIC
             if addon.default_locale.lower() == lang.lower():
@@ -460,7 +462,7 @@ def fetch_langpacks(path, **kw):
         if amo.VERSION_BETA.search(version.version):
             status = amo.STATUS_BETA
 
-        file = version.files.all()[0]
+        file = version.files.get()
         file.update(status=status)
 
         addon.update_version()
