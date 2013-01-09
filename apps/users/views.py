@@ -38,7 +38,7 @@ from amo.decorators import (json_view, login_required, no_login_required,
 from amo.forms import AbuseForm
 from amo.urlresolvers import get_url_prefix, reverse
 from amo.helpers import loc
-from amo.utils import escape_all, log_cef, send_mail, urlparams
+from amo.utils import escape_all, log_cef, send_mail
 from abuse.models import send_abuse_report
 from addons.models import Addon
 from addons.views import BaseFilter
@@ -546,6 +546,10 @@ def logout(request):
 
 
 def profile(request, user_id):
+    # Temporary until we decide we want user profile pages.
+    if settings.MARKETPLACE:
+        raise http.Http404
+
     webapp = settings.APP_PREVIEW
     user = get_object_or_404(UserProfile, id=user_id)
 

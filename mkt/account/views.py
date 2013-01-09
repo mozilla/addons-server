@@ -296,6 +296,9 @@ def delete_photo(request):
 
 @profile_view
 def profile(request, user):
+    # Temporary until we decide we want user profile pages.
+    raise http.Http404
+
     edit_any_user = acl.action_allowed(request, 'Users', 'Edit')
     own_profile = (request.user.is_authenticated() and
                    request.amo_user.id == user.id)
