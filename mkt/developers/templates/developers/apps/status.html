@@ -25,7 +25,7 @@
           {{ _("Your app's listing is disabled and will not appear in the
                 Firefox Marketplace. You may re-enable it at any time below.") }}
         {% elif addon.status == amo.STATUS_NULL %}
-          {% if addon.is_complete() %}
+          {% if addon.is_complete()[0] %}
             {{ status(_('This app is <b>incomplete</b> because it is missing payment information.')) }}
             <a href="{{ addon.get_dev_url('payments') }}">
               {{- _('Set Up Payments') -}}

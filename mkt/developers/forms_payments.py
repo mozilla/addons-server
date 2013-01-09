@@ -75,16 +75,16 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
         supported_devices = [amo.REVERSE_DEVICE_LOOKUP[dev.id] for dev in
                              self.addon.device_types]
         prefix = 'paid' if self.is_paid() else 'free'
-        init_platforms = self.initial['%s_platforms' % prefix] = []
+        self.init_platforms = self.initial['%s_platforms' % prefix] = []
 
-        for platform in [x[0].split('-', 1)[1] for x in
-                         FREE_PLATFORMS + PAID_PLATFORMS]:
+        for platform in set(x[0].split('-', 1)[1] for x in
+                            FREE_PLATFORMS + PAID_PLATFORMS):
             supported = platform in supported_devices
             self.device_data['free-%s' % platform] = supported
             self.device_data['paid-%s' % platform] = supported
 
             if supported:
-                init_platforms.append('%s-%s' % (prefix, platform))
+                self.init_platforms.append('%s-%s' % (prefix, platform))
 
         if (not self.initial.get('price') and
             len(self.fields['price'].choices) > 1):
@@ -108,10 +108,22 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
         return self.request.POST.get('toggle-paid', False) or False
 
     def clean(self):
+        cleaned_data = self.cleaned_data
         if not self.is_toggling():
-            return super(PremiumForm, self).clean()
-        else:
-            return self.cleaned_data
+            cleaned_data = super(PremiumForm, self).clean()
+            if (self._errors['free_platforms'] or
+                self._errors['paid_platforms']):
+                # We want to throw out the user's selections in this case and
+                # not update the <select> element that goes along with this.
+                # I.e.: we don't want to re-populate these big chunky
+                # checkboxes with bad data.
+                # Also, I'm so, so sorry.
+                self.data = dict(self.data)
+                self.data.update(
+                    free_platforms=self.initial.get('free_platforms', []),
+                    paid_platforms=self.initial.get('paid_platforms', []))
+
+        return cleaned_data
 
     def clean_price(self):
         if (self.cleaned_data.get('premium_type') in amo.ADDON_PREMIUMS

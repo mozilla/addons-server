@@ -30,6 +30,7 @@ def mark_for_rereview(addon, added_devices, removed_devices):
          for d in removed_devices]))
     RereviewQueue.flag(addon, amo.LOG.REREVIEW_DEVICES_ADDED, msg)
 
+
 class DeviceTypeForm(happyforms.Form):
     ERRORS = {
         'both': _lazy(u'Cannot be free and paid.'),
@@ -79,12 +80,12 @@ class DeviceTypeForm(happyforms.Form):
         # Check that they didn't select both.
         if free and paid:
             self._add_error('both')
-            return
+            return data
 
         # Check that they selected one.
         if not free and not paid:
             self._add_error('none')
-            return
+            return data
 
         return super(DeviceTypeForm, self).clean()
 
