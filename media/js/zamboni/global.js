@@ -576,3 +576,9 @@ $.fn.exists = function(callback, args){
     }
     return len > 0;
 };
+
+// Bind to the mobile site if a mobile link is clicked.
+$(document).delegate('.mobile-link', 'click', function() {
+    $.cookie('mamo', 'on', {expires:30, path: '/'});
+    window.location.reload();
+});

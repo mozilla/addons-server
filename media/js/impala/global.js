@@ -84,11 +84,6 @@ function listing_grid() {
     return $grid;
 }
 
-// Bind to the mobile site if a mobile link is clicked.
-$(".mobile-link").attr("href", window.location).click(function() {
-    $.cookie("mamo", "on", {expires:30, path: '/'});
-});
-
 
 $(function() {
     "use strict";

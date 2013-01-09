@@ -237,8 +237,9 @@ $(function() {
     $('#review-form').find("select[name='rating']").ratingwidget();
 });
 
-$(".desktop-link").attr("href", window.location).click(function() {
+$(".desktop-link").click(function() {
     $.cookie("mamo", "off", {expires:30, path: '/'});
+    window.location.reload();
 });
 
 $(".moz-menu .tab a").click(_pd(function() {
