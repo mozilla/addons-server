@@ -9,6 +9,7 @@ from pyquery import PyQuery as pq
 
 import amo
 import amo.tests
+from amo.urlresolvers import reverse
 from addons.models import Addon, AddonCategory, AddonDeviceType, Category
 from market.models import Price
 from users.models import UserProfile
@@ -16,6 +17,7 @@ from users.models import UserProfile
 import mkt
 from mkt.developers.models import PaymentAccount, SolitudeSeller
 from mkt.inapp_pay.models import InappConfig
+from mkt.site.fixtures import fixture
 from mkt.webapps.models import AddonExcludedRegion as AER, ContentRating
 
 
@@ -410,3 +412,93 @@ class TestRegions(amo.tests.TestCase):
         td = pq(r.content)('#regions')
         eq_(td.find('div[data-disabled]').attr('data-disabled'), '[]')
         eq_(td.find('.note.disabled-regions').length, 0)
+
+
+class PaymentsBase(amo.tests.TestCase):
+    fixtures = fixture('user_editor', 'user_999')
+
+    def setUp(self):
+        self.user = UserProfile.objects.get(pk=999)
+        self.login(self.user)
+        self.account = self.create()
+
+    def create(self):
+        # If user is defined on SolitudeSeller, why do we also need it on
+        # PaymentAccount?
+        seller = SolitudeSeller.objects.create(user=self.user)
+        return PaymentAccount.objects.create(user=self.user,
+                                             solitude_seller=seller)
+
+
+class TestPaymentAccountsAdd(PaymentsBase):
+    # TODO: this test provides bare coverage and might need to be expanded.
+
+    def setUp(self):
+        super(TestPaymentAccountsAdd, self).setUp()
+        self.url = reverse('mkt.developers.bango.add_payment_account')
+
+    def test_login_required(self):
+        self.client.logout()
+        self.assertLoginRequired(self.client.post(self.url, data={}))
+
+    @mock.patch('mkt.developers.models.client')
+    def test_create(self, client):
+        res = self.client.post(self.url, data={
+            'bankAccountPayeeName': 'name',
+            'companyName': 'company',
+            'vendorName': 'vendor',
+            'financeEmailAddress': 'a@a.com',
+            'adminEmailAddress': 'a@a.com',
+            'address1': 'address 1',
+            'addressCity': 'city',
+            'addressState': 'state',
+            'addressZipCode': 'zip',
+            'addressPhone': '123',
+            'countryIso': 'BRA',
+            'currencyIso': 'EUR',
+            'bankAccountCode': '123',
+            'bankName': 'asd',
+            'bankAddress1': 'address 2',
+            'bankAddressZipCode': '123',
+            'bankAddressIso': 'BRA',
+            'account_name': 'account'
+        })
+        eq_(res.status_code, 302, res.content)
+        eq_(PaymentAccount.objects.count(), 2)
+
+class TestPaymentAccounts(PaymentsBase):
+
+    def setUp(self):
+        super(TestPaymentAccounts, self).setUp()
+        self.url = reverse('mkt.developers.bango.payment_accounts')
+
+    def test_login_required(self):
+        self.client.logout()
+        self.assertLoginRequired(self.client.get(self.url))
+
+    def test_mine(self):
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        eq_(res.context['bango_account_list_form']
+               .fields['accounts'].choices.queryset.get(), self.account)
+
+
+class TestPaymentDelete(PaymentsBase):
+
+    def setUp(self):
+        super(TestPaymentDelete, self).setUp()
+        self.url = reverse('mkt.developers.bango.delete_payment_account',
+                           args=[self.account.pk])
+
+
+    def test_login_required(self):
+        self.client.logout()
+        self.assertLoginRequired(self.client.post(self.url, data={}))
+
+    def test_not_mine(self):
+        self.login(UserProfile.objects.get(pk=5497308))
+        eq_(self.client.post(self.url, data={}).status_code, 404)
+
+    def test_mine(self):
+        eq_(self.client.post(self.url, data={}).status_code, 200)
+        eq_(PaymentAccount.objects.get(pk=self.account.pk).inactive, True)

@@ -8,7 +8,7 @@ from tower import ugettext as _
 
 import amo
 from amo import messages
-from amo.decorators import post_required, write
+from amo.decorators import login_required, post_required, write
 from lib.pay_server import client
 
 from mkt.constants import DEVICE_LOOKUP
@@ -29,7 +29,6 @@ def disable_payments(request, addon_id, addon):
 
 @dev_required(owner_for_post=True, webapp=True)
 def payments(request, addon_id, addon, webapp=False):
-
     premium_form = forms.PremiumForm(
         request.POST or None, request=request, addon=addon,
         user=request.amo_user)
@@ -124,6 +123,8 @@ def payments(request, addon_id, addon, webapp=False):
              not waffle.switch_is_active('disabled-payments')})
 
 
+@write
+@login_required
 def payments_accounts(request):
     bango_account_form = forms.BangoAccountListForm(
         user=request.amo_user, addon=None)
@@ -134,6 +135,7 @@ def payments_accounts(request):
 
 @write
 @post_required
+@login_required
 def payments_accounts_add(request):
     form = forms.BangoPaymentAccountForm(request.POST)
     if not form.is_valid():
@@ -152,6 +154,10 @@ def payments_accounts_add(request):
 
 @write
 @post_required
+@login_required
 def payments_accounts_delete(request, id):
-    get_object_or_404(models.PaymentAccount, pk=id).cancel()
+    account = get_object_or_404(models.PaymentAccount, pk=id,
+                                user=request.user)
+    account.cancel()
+    log.info('Account cancelled: %s' % id)
     return http.HttpResponse('success')
