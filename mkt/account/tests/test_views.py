@@ -553,6 +553,7 @@ class TestProfileSections(amo.tests.TestCase):
     fixtures = ['base/addon_3615', 'base/users', 'webapps/337141-steamcube']
 
     def setUp(self):
+        raise SkipTest
         self.user = self.get_user()
         # Authentication is required for now.
         assert self.client.login(username=self.user.email, password='password')
