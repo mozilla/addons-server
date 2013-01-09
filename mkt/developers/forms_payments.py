@@ -111,8 +111,8 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
         cleaned_data = self.cleaned_data
         if not self.is_toggling():
             cleaned_data = super(PremiumForm, self).clean()
-            if (self._errors['free_platforms'] or
-                self._errors['paid_platforms']):
+            if (self._errors.get('free_platforms') or
+                self._errors.get('paid_platforms')):
                 # We want to throw out the user's selections in this case and
                 # not update the <select> element that goes along with this.
                 # I.e.: we don't want to re-populate these big chunky
