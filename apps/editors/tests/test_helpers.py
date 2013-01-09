@@ -56,7 +56,7 @@ class TestViewPendingQueueTable(amo.tests.TestCase):
     def test_addon_type_id(self):
         row = Mock()
         row.addon_type_id = amo.ADDON_THEME
-        eq_(unicode(self.table.render_addon_type_id(row)), u'Theme')
+        eq_(unicode(self.table.render_addon_type_id(row)), u'Full Theme')
 
     def test_applications(self):
         row = Mock()
