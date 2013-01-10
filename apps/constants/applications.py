@@ -219,4 +219,4 @@ for _app in APPS_ALL.values():
     _versions.append(99)
     _app.exclude_versions = tuple(_versions)
 
-del _app, _type
+del _app, _apps, _type, _versions

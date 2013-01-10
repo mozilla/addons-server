@@ -46,22 +46,22 @@ class DeviceTypeForm(happyforms.Form):
     def save(self, addon, is_paid):
         data = self.cleaned_data[
             'paid_platforms' if is_paid else 'free_platforms']
+        submitted_data = self.get_devices(t.split('-', 1)[1] for t in data)
 
-        new_types = set(self.get_devices(t.split('-', 1)[1] for t in data))
-        old_types = set(amo.DEVICE_TYPES[x.id] for x in addon.device_types)
+        new_types = set(dev.id for dev in submitted_data)
+        old_types = set(amo.DEVICE_TYPES[x.id].id for x in addon.device_types)
 
         added_devices = new_types - old_types
         removed_devices = old_types - new_types
 
         for d in added_devices:
-            addon.addondevicetype_set.create(device_type=d.id)
+            addon.addondevicetype_set.create(device_type=d)
         for d in removed_devices:
-            addon.addondevicetype_set.filter(device_type=d.id).delete()
+            addon.addondevicetype_set.filter(device_type=d).delete()
 
         # Send app to re-review queue if public and new devices are added.
         if added_devices and addon.status == amo.STATUS_PUBLIC:
             mark_for_rereview(addon, added_devices, removed_devices)
-
 
     def _add_error(self, msg):
         self._errors['free_platforms'] = self._errors['paid_platforms'] = (
