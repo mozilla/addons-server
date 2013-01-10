@@ -63,7 +63,7 @@
       <a href="#">{{ _('More&hellip;') }}</a>
       <ul>
         {% if request and request.APP == amo.FIREFOX %}
-          <li class="more-mobile"><a href="{{ locale_url(amo.MOBILE.short) }}">
+          <li class="more-mobile"><a href="{{ locale_url(amo.ANDROID.short) }}">
             {{ _('Add-ons for Mobile') }}</a></li>
         {% endif %}
         <li class="more-lang"><a href="{{ url('browse.language-tools') }}">
