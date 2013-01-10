@@ -187,6 +187,7 @@ exports.payment_setup = function() {
                 var $waiting_overlay;
                 var $old_overlay = $overlay.find('section.add-bango-account');
                 $old_overlay.detach();
+                $form.find('.error').remove();
 
                 $.post(
                     $form.attr('action'), $form.serialize(),
@@ -203,7 +204,6 @@ exports.payment_setup = function() {
                         var parsed_errors = JSON.parse(error_data.responseText);
                         for(var field_error in parsed_errors) {
                             var field = $('#id_' + field_error);
-                            field.siblings('.error').remove();
                             $('<div>').addClass('error')
                                       .insertAfter(field)
                                       .text(parsed_errors[field_error].join('\n'));
