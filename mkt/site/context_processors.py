@@ -55,8 +55,10 @@ def global_settings(request):
         tools_links += footer_links
 
         context['amo_user'] = amo_user
+        logged = True
     else:
         context['amo_user'] = AnonymousUser()
+        logged = False
 
     DESKTOP = request.TABLET or not request.MOBILE
 
@@ -70,5 +72,6 @@ def global_settings(request):
                    ADMIN_MESSAGE=get_config('site_notice'),
                    collect_timings_percent=get_collect_timings(),
                    is_admin=acl.action_allowed(request, 'Addons', 'Edit'),
-                   DESKTOP=DESKTOP)
+                   DESKTOP=DESKTOP,
+                   logged=logged)
     return context

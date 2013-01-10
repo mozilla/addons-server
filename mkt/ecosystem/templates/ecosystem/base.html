@@ -6,26 +6,24 @@
   {{ css('mkt/ecosystem') }}
 {% endblock %}
 
-{% block site_header_title %}{% endblock %}
-
-{% block devhub_categories %}
-  <div id="site-nav" class="devhub-categories">
+{% block site_header_title %}
+  <div id="site-nav">
     <div class="pad">
       <nav class="menu-nav app-nav no-img" role="navigation">
         <ul class="c">
-          <li>
+          <li class="section-design">
             <a href="{{ url('ecosystem.documentation',
                         page='purpose') }}"
                {% if category == 'design' %}class="selected"{% endif %}>
               {{ _('Design') }}
             </a>
           </li>
-          <li>
+          <li class="section-build">
             <a href="{{ url('ecosystem.documentation', page='html5') }}"
                {% if category == 'build' %}class="selected"{% endif %}>
               {{ _('Build') }}</a>
           </li>
-          <li>
+          <li class="section-publish">
             <a href="{{ url('ecosystem.documentation',
                         page='mkt_hosting') }}"
                {% if category == 'publish' %}class="selected"{% endif %}>

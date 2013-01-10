@@ -12,26 +12,7 @@
                     url('account.feedback') }}"
            class="header-button icon settings left" title="{{ _('Settings') }}"></a>
       {% else %}
-        {% if logged %}
-          <div class="account-links">
-            <a href="{{ url('account.settings') }}" class="header-button icon settings sticky" title="{{ _('Settings') }}"></a>
-            <ul>
-              <li>
-                <a href="{{ url('account.settings') }}">
-                  <em>{{ request.amo_user.email }}</em>
-                  {{ _('Edit Account Settings') }}</a>
-              </li>
-              <li><a href="{{ url('account.purchases') }}">{{ _('My Apps') }}</a></li>
-              {% if amo_user.is_app_developer %}
-                <li><a href="{{ url('mkt.developers.apps') }}">{{ _('My Submissions') }}</a></li>
-              {% endif %}
-              <li class="submit-feedback"><a href="{{ url('account.feedback') }}">{{ _('Feedback') }}</a></li>
-              <li><a href="{{ url('users.logout') }}" class="sync logout">{{ _('Sign Out') }}</a></li>
-            </ul>
-          </div>
-        {% else %}
-          <a href="#" class="header-button browserid">{{ _('Sign In') }}</a>
-        {% endif %}
+        {% include 'mkt/account-links.html' %}
       {% endif %}
       <a href="#" id="nav-back" class="header-button icon back left" title="{{ _('Back') }}"><b></b></a>
       <a href="#" class="header-button icon search right" title="{{ _('Search') }}"></a>

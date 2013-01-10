@@ -13,6 +13,7 @@ CSS = {
         'css/devreg/typography.less',
 
         # Header (aux-nav, masthead, site-nav).
+        'css/mkt/desktop-account-links.less',
         'css/devreg/header.less',
 
         # Item rows (used on Dashboard).
@@ -157,6 +158,7 @@ CSS.update({
         'css/mkt/desktop.less',
         'css/mkt/desktop-tile.less',
         'css/mkt/desktop-header.less',
+        'css/mkt/desktop-account-links.less',
         'css/mkt/desktop-filters.less',
         'css/mkt/desktop-forms.less',
         'css/mkt/desktop-account.less',

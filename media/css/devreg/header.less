@@ -1,10 +1,11 @@
 @import 'lib';
 
 #site-header {
-    background: @grain-src @grain;
-    font-family: @open-stack;
+    .box-shadow(~'0 -1px 0 rgba(0,0,0,.5) inset, 0 1px 0 rgba(255,255,255,.1) inset');
+    background: darken(#3f4f5b, 5%) @grain-src;
+    background-size: 100px 100px;
+    height: 80px;
     .upper-header {
-        padding: 0 0 7px;
         position: relative;
         z-index: 1006;
     }
@@ -12,49 +13,25 @@
         position: relative;
         max-width: 960px;
     }
-    /* Log in link loader */
-    a.loading-submit:before {
-        background-image: url(../../img/zamboni/mobile/loading-white.png);
-        background-size: auto 16px;
-        content: "";
-        display: block;
-        height: 16px;
-        margin-right: 5px;
-        margin-top: -7px;
-        position: absolute;
-        top: 50%;
-        left: -14px;
-        width: 16px;
-    }
-}
-
-#aux-nav {
-    float: right;
-    a, .user {
-        color: #fff;
-    }
-    .user {
-        cursor: pointer;
-    }
-    ul ul {
-        z-index: 999;
-        a {
-            color: #666;
-        }
-    }
 }
 
 .developer-hub #site-header {
     h1 {
-        padding: 15px 0;
         a {
             .hidetext;
-            background: url(../../img/ecosystem/logo.png) no-repeat;
+            // TODO: Retinaize.
+            background: url(../../img/ecosystem/logo.png) 0 50% no-repeat;
+            background-size: auto 50px;
             display: block;
-            height: 54px;
+            height: 80px;
             min-width: 300px;
         }
     }
+}
+
+#site-header .upper-header,
+#site-nav .pad {
+    padding: 0;
 }
 
 .menu-nav {
@@ -75,6 +52,7 @@
     }
     > ul {
         margin: 0;
+        padding: 0;
         > li {
             float: left;
             position: relative;
@@ -112,10 +90,6 @@
                         background: lighten(@border-blue, 10%);
                     }
                 }
-                &.two-col {
-                    .columns(2, 8px);
-                    width: 340px;
-                }
             }
         }
         em a:hover {
@@ -134,40 +108,30 @@
     }
 }
 
-.html-rtl {
-    .menu-nav {
-        margin-left: 0;
-        margin-right: 64px;
-    }
-    .menu-nav > ul > li {
-        border-left: 0 !important;
-        border-right: 1px solid #9FA7AF;
-        float: right;
-        left: auto;
-        right: -9px;
-        &:hover:after {
-            left: auto;
-            right: 1px;
-        }
-    }
-}
-
 #site-nav {
-    background: #fff;
+    background: @white;
     border-bottom: 1px solid @border-gray;
-    .pad {
-        padding: 0;
-    }
+    height: 44px;
+    position: relative;
+    z-index: 1;
     .menu-nav > ul {
         > li {
             border-left: 1px dotted @light-gray;
             margin: 10px 0;
+            ul {
+                padding: 5px;
+            }
             > a {
                 color: #484848;
                 display: block;
                 padding: 6px 12px;
                 line-height: 12px;
                 text-transform: uppercase;
+                &.selected {
+                    color: #282828;
+                    font-weight: bold;
+                    text-decoration: none;
+                }
             }
             &:first-child {
                 border: 0;
@@ -177,6 +141,9 @@
                 }
             }
         }
+    }
+    > li {
+        float: left;
     }
 }
 
@@ -269,35 +236,105 @@
     }
 }
 
-@media (max-width: @landscape-max) {
-    #aux-nav > ul > li > a {
-        .ellipsis;
-        max-width: 150px;
+@media (max-width: 1015px) {
+    #site-header .upper-header,
+    #site-nav .pad {
+        padding: 0 2%;
     }
 }
 
-@media (max-width: 860px) {
-    #site-header {
-        h1 {
-            font-size: 42px;
-            small {
-                font-size: 13px;
-                padding: 0 2px;
+#wrap {
+    border-top: 1px solid @white;
+    background: @grain-src #EFF1F3;
+    padding: 80px 0 2em;  // 80px for header
+}
+
+.header-button {
+    color: #fff;
+    float: none;
+    margin-top: -25px;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: 40px;
+    height: 50px;
+    &.icon {
+        text-indent: -1000%;
+    }
+    &.icon:before {
+        background-repeat: no-repeat;
+        content: '';
+        width: 24px;
+        height: 24px;
+        display: block;
+        position: absolute;
+        top: 13px;
+        left: 13px;
+    }
+    &.back,
+    &.home {
+        display: none !important;
+    }
+    &:after {
+        display: none;
+    }
+    &.settings {
+        display: block;
+        &:before {
+            background-image: url(../../img/mkt/icons/settings.png);
+            left: 9px;
+            z-index: 3;
+        }
+    }
+    &.submit {
+        display: block;
+        right: 50px;
+        z-index: 13;  // So the click target over the account links.
+        .hidetext;
+        &:before {
+            background-image: url(../../img/ecosystem/submit.png);
+            left: 9px;
+            z-index: 3;
+        }
+        &:hover:before {
+            background-position: 0 -24px;
+        }
+    }
+    &.browserid {
+        display: block;
+        height: 100%;
+        line-height: 80px;
+        margin: 0;
+        text-align: right;
+        position: absolute;
+        top: 0;
+        width: 60px;
+        &.loading-submit {
+            .webkit-spin;
+            background: url(../../img/mkt/loading-16.png) center no-repeat;
+            .hidetext;
+            &:after {
+                display: none;
             }
         }
     }
 }
 
-@media (max-width: 650px) {
-    #site-header {
-        h1, .menu-nav {
-            padding-left: 2%;
-        }
-        h1 {
-            font-size: 28px;
-        }
-        a:before {
-            display: none;
-        }
+.account-links {
+    top: 0;
+    ul {
+        margin: 0;
+        top: 54px;
+    }
+}
+
+@media @retina {
+   .header-button.submit:before {
+        background-image: url(../../img/ecosystem/submit-2x.png);
+        background-size: 23px auto;
+    }
+   .header-button.settings:before {
+        background-image: url(../../img/mkt/icons/settings-2x.png);
+        background-size: 23px auto;
     }
 }

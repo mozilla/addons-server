@@ -2,7 +2,7 @@
   <div class="pad">
     <nav class="menu-nav app-nav no-img" role="navigation">
       <ul class="c">
-        {% if request.user.is_authenticated() and request.amo_user.is_developer %}
+        {% if request.user.is_authenticated() and request.amo_user.is_app_developer %}
           <li id="submissions" class="top">
             <a href="{{ url('mkt.developers.apps') }}">
               {{ _('My Submissions') }}</a>
@@ -27,16 +27,14 @@
           </li>
         {% endif %}
         <li id="documentation" class="slim">
-          <a href="{{ url('ecosystem.landing') }}">
-            {{ _('Developer Documentation') }}</a>
+          <a href="{{ url('ecosystem.landing') }}">{{ _('Documentation') }}</a>
         </li>
         <li class="slim">
           <a href="{{ url('mkt.developers.validate_addon') }}">
             {{- _('App Validator') }}</a>
         </li>
         <li id="submit-app" class="slim">
-          <a href="{{ url('submit.app') }}">
-            {{ _('Submit a New App') }}</a>
+          <a href="{{ url('submit.app') }}">{{ _('Submit a New App') }}</a>
         </li>
       </ul>
     </nav>

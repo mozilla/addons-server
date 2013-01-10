@@ -67,6 +67,17 @@ $(document).ready(function() {
             });
         };
     }
+
+    // We would use :hover, but we want to hide the menu on fragment load!
+    z.body.on('mouseover', '.account-links', function() {
+        $('.account-links').addClass('active');
+    }).on('mouseout', '.account-links', function() {
+        $('.account-links').removeClass('active');
+    }).on('click', '.account-links a', function() {
+        $('.account-links').removeClass('active');
+    }).on('mouseover', '.header-button.submit', function() {
+        $('.account-links').removeClass('active');
+    });
 });
 
 

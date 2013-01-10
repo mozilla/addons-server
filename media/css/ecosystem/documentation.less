@@ -33,66 +33,6 @@ a[rel="external"] {
     }
 }
 
-#site-nav .menu-nav {
-    float: right;
-    width: 600px;
-}
-
-#site-nav.devhub-categories {
-    background: inherit;
-    border: 0;
-    position: absolute;
-    bottom: -10px;
-    right: 0;
-    z-index: 1;
-
-    ul {
-        float: right;
-        margin: 0 auto;
-        padding: 0;
-
-        li {
-            border-left: 0;
-            margin-right: 3px;
-            padding: 0;
-            width: 170px;
-            z-index: 1;
-
-            > a {
-                background: @grain-src;
-                .border-radius(10px 10px 0 0);
-                display: block;
-                color: @faint-gray;
-                font-size: 18px;
-                font-weight: @heavy;
-                line-height: 25px;
-                overflow: hidden;
-                padding: 5px 10px;
-                text-align: center;
-                text-overflow: ellipsis;
-                text-shadow: @dark-gray 1px 1px 2px;
-                text-transform: none;
-                white-space: nowrap;
-
-                &:hover, &.selected {
-                    background: @bg-light-gray @grain-src;
-                    color: @dark-gray;
-                    text-decoration: none;
-                    text-shadow: @text-indent-white;
-                }
-            }
-        }
-    }
-}
-
-#aux-nav {
-    position: absolute;
-    right: 0;
-    li ul {
-        margin-top: 0;
-    }
-}
-
 #document-navigation {
     background-color: #e0e3e5;
     .border-radius(10px 0 0 10px);
@@ -507,5 +447,27 @@ a.app-source {
         span {
             color: @medium-gray;
         }
+    }
+}
+
+#site-nav {
+    a {
+        background-repeat: no-repeat;
+        background-position: 12px 50%;
+    }
+    .section-design a {
+        background: url(../../img/ecosystem/section-design-icon.png) 0 50% no-repeat;
+        background-size: 15px auto;
+        text-indent: 23px;
+    }
+    .section-build a {
+        background-image: url(../../img/ecosystem/section-build-icon.png);
+        background-size: 12px auto;
+        text-indent: 21px;
+    }
+    .section-publish a {
+        background-image: url(../../img/ecosystem/section-publish-icon.png);
+        background-size: 17px auto;
+        text-indent: 26px;
     }
 }
