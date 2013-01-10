@@ -4,6 +4,8 @@
 // This is the setup payments form.
 exports.payment_setup = function() {
 
+    $('#regions').trigger('editLoaded');
+
     var getOverlay = function(name) {
         $('.overlay').remove();
         var overlay = makeOrGetOverlay(name);
