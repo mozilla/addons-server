@@ -331,12 +331,6 @@ class BangoPaymentAccountForm(happyforms.Form):
 
     account_name = forms.CharField(max_length=64, label=_(u'Account Name'))
 
-    @property
-    def happy_errors(self):
-        return u'\n'.join(u'<div><span>%s:</span> %s</div>' %
-                          (unicode(field.label), unicode(field.errors))
-                          for field in self if field.errors)
-
 
 class BangoAccountListForm(happyforms.Form):
     accounts = forms.ModelChoiceField(
