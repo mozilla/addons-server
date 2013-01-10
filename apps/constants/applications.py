@@ -30,7 +30,8 @@ class FIREFOX(App):
     @classmethod
     def matches_user_agent(cls, user_agent):
         matches = cls.user_agent_string in user_agent
-        if 'Android' in user_agent or 'Mobile' in user_agent:
+        if ('Android' in user_agent or 'Mobile' in user_agent or
+            'Tablet' in user_agent):
             matches = False
         return matches
 
@@ -111,7 +112,9 @@ class ANDROID(App):
     # is by the version number.
     user_agent_re = [re.compile('Fennec/([\d.]+)'),
                      re.compile('Android; Mobile; rv:([\d.]+)'),
-                     re.compile('Mobile; rv:([\d.]+)')]
+                     re.compile('Android; Tablet; rv:([\d.]+)'),
+                     re.compile('Mobile; rv:([\d.]+)'),
+                     re.compile('Tablet; rv:([\d.]+)')]
     platforms = 'mobile'
     latest_version = None
 
