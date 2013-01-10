@@ -9,5 +9,16 @@
     }
     li {
         width: 25%;
+        &.featured {
+            width: 50%;
+            height: 256px;
+            // Here for an override.
+            max-height: 256px;
+            // These are 1px larger to deal with the double-border.
+            .mkt-tile {
+                width: 305px;
+                height: 257px;
+            }
+        }
     }
 }

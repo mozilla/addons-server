@@ -8,6 +8,7 @@
 {% block content %}
   <section id="featured-home" class="featured full">
     <ul class="grid c">
+      {# Set class="featured" on the featured tile <li>. #}
       {% for app in featured -%}
         <li>
           {{- market_tile(app, src='mkt-home') -}}
