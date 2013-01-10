@@ -1,6 +1,7 @@
 {% extends 'developers/base_impala.html' %}
 
-{% set doc_url = 'https://developer.mozilla.org/en-US/docs/Apps/Manifest' %}
+{% set manifest_doc_url = 'https://developer.mozilla.org/en-US/docs/Apps/Manifest' %}
+{% set packaged_doc_url = 'https://developer.mozilla.org/en-US/docs/Apps/Packaged_apps' %}
 
 {% set title = _('Submit an App') %}
 
@@ -116,9 +117,11 @@
     </form>
   </section>
 
-  <p class="learn-mdn"><a href="{{ doc_url }}" target="_blank">
-    {% trans %}Learn more about <b>app manifests</b> on MDN.{% endtrans %}
-    </a>
-  </p>
+  <p class="hosted learn-mdn active"><a href="{{ manifest_doc_url }}" target="_blank">
+    {% trans %}Learn more about <b>app manifests</b> on MDN.{% endtrans -%}
+  </a></p>
+  <p class="packaged learn-mdn"><a href="{{ packaged_doc_url }}" target="_blank">
+    {% trans %}Learn more about <b>packaged apps</b> on MDN.{% endtrans -%}
+  </a></p>
 
 {% endblock %}

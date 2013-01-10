@@ -77,6 +77,7 @@ h2 .soon {
 }
 
 .learn-mdn {
+    display: none;
     a {
         .border-radius(4px);
         background: url(../../img/mkt/logos/dino.png) 10px 50% no-repeat #def;
@@ -91,6 +92,9 @@ h2 .soon {
             color: darken(@link, 10%);
             text-decoration: none;
         }
+    }
+    &.active {
+        display: block;
     }
 }
 

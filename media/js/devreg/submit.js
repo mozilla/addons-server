@@ -82,13 +82,23 @@
 
         // If only free-os or paid-os is selected, show packaged.
         if (($('#id_free_platforms option[value=free-firefoxos]:selected').length &&
-             $('#id_free_platforms option:selected').length == 1)   ||
+             $('#id_free_platforms option:selected').length == 1) ||
             $('#id_paid_platforms option[value=paid-firefoxos]:selected').length) {
             $target.eq(1).css('display', 'inline');
         } else {
             $target.eq(1).css('display', 'none');
         }
     }
+
+    $(document).on('tabs-changed', function(e, tab) {
+        if (tab.id == 'packaged-tab-header') {
+            $('.learn-mdn.active').removeClass('active');
+            $('.learn-mdn.packaged').addClass('active');
+        } else if (tab.id == 'hosted-tab-header') {
+            $('.learn-mdn.active').removeClass('active');
+            $('.learn-mdn.hosted').addClass('active');
+        }
+    });
 
     // On page load, update the big device buttons with the values in the form.
     $('#upload-webapp select').each(function(i, e) {
