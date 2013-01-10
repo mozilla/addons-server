@@ -300,8 +300,7 @@ class TestOtherStuff(amo.tests.TestCase):
 
     def test_mobile_link_firefox(self):
         doc = pq(test.Client().get('/firefox', follow=True).content)
-        eq_(doc('#site-nav #more .more-mobile a').attr('href'),
-            locale_url(amo.MOBILE.short))
+        eq_(doc('#site-nav #more .more-mobile a').length, 1)
 
     def test_mobile_link_nonfirefox(self):
         for app in ('thunderbird', 'mobile'):
