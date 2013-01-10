@@ -92,7 +92,6 @@ def _update_manifest(id, check_hash, failed_fetches):
     except Exception, e:
         msg = u'Failed to get manifest from %s. Error: %s' % (
             webapp.manifest_url, e)
-        _log(webapp, msg, rereview=True, exc_info=True)
         failed_fetches[id] = failed_fetches.get(id, 0) + 1
         if failed_fetches[id] >= 3:
             _log(webapp, msg, rereview=True, exc_info=True)
