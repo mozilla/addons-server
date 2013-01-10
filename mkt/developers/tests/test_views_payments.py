@@ -456,6 +456,7 @@ class TestPaymentAccountsAdd(PaymentsBase):
             'addressPhone': '123',
             'countryIso': 'BRA',
             'currencyIso': 'EUR',
+            'bankAccountNumber': '123',
             'bankAccountCode': '123',
             'bankName': 'asd',
             'bankAddress1': 'address 2',
