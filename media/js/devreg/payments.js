@@ -20,7 +20,11 @@ exports.payment_setup = function() {
         if (this.groupie_parent) {
             $parent = this.groupie_parent;
         } else {
-            $parent = $(this).closest('input[type=hidden] + *').parent();
+            // Traverse up the DOM until you find a node that contains a hidden input.
+            $parent = _.find(
+                $(this).parents(),
+                function(p) {return $(p).has('input[type=hidden]');}
+            );
             this.groupie_parent = $parent;
         }
 
