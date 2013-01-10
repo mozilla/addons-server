@@ -52,12 +52,9 @@ app_detail_patterns = patterns('',
     url('^payments/disable$', views_payments.disable_payments,
         name='mkt.developers.apps.payments.disable'),
     # in-app payments.
-    url('^in-app-config$', views.in_app_config,
+    url('^in-app-config/$', views_payments.in_app_config,
         name='mkt.developers.apps.in_app_config'),
-    url('^in-app-config/(?P<config_id>[^/]+)/reset$',
-        views.reset_in_app_config,
-        name='mkt.developers.apps.reset_in_app_config'),
-    url('^in-app-secret$', views.in_app_secret,
+    url('^in-app-secret/$', views_payments.in_app_secret,
         name='mkt.developers.apps.in_app_secret'),
     # Old stuff.
 

@@ -1,22 +1,17 @@
 from django import forms
-from django.conf import settings
 
 import commonware
 import happyforms
-import waffle
 from tower import ugettext as _, ugettext_lazy as _lazy
 
 import amo
 from amo.utils import raise_required
-import paypal
 from addons.models import Addon, AddonUpsell
 from editors.models import RereviewQueue
-from lib.pay_server import client
 from market.models import AddonPremium, Price
 
 from mkt.constants import (BANGO_COUNTRIES, BANGO_OUTPAYMENT_CURRENCIES,
                            FREE_PLATFORMS, PAID_PLATFORMS)
-from mkt.inapp_pay.models import InappConfig
 from mkt.site.forms import AddonChoiceField
 from mkt.submit.forms import DeviceTypeForm
 
@@ -239,39 +234,6 @@ class UpsellForm(happyforms.Form):
             # We're deleting the upsell.
             log.debug('[1@%s] Deleting the app upsell' % self.addon.pk)
             current_upsell.delete()
-
-
-class InappConfigForm(happyforms.ModelForm):
-
-    def __init__(self, *args, **kwargs):
-        super(InappConfigForm, self).__init__(*args, **kwargs)
-        if settings.INAPP_REQUIRE_HTTPS:
-            self.fields['is_https'].widget.attrs['disabled'] = 'disabled'
-            self.initial['is_https'] = True
-
-    def clean_is_https(self):
-        if settings.INAPP_REQUIRE_HTTPS:
-            return True  # cannot override it with form values
-        else:
-            return self.cleaned_data['is_https']
-
-    def clean_postback_url(self):
-        return self._clean_relative_url(self.cleaned_data['postback_url'])
-
-    def clean_chargeback_url(self):
-        return self._clean_relative_url(self.cleaned_data['chargeback_url'])
-
-    def _clean_relative_url(self, url):
-        url = url.strip()
-        if not url.startswith('/'):
-            raise forms.ValidationError(
-                _('This URL is relative to your app domain so it must start '
-                  'with a slash.'))
-        return url
-
-    class Meta:
-        model = InappConfig
-        fields = ('postback_url', 'chargeback_url', 'is_https')
 
 
 class BangoPaymentAccountForm(happyforms.Form):

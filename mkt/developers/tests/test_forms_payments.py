@@ -193,32 +193,3 @@ class TestRestoreApp(amo.tests.TestCase):
         forms_payments._restore_app(self.addon)
         # Apps without a highest status default to PENDING.
         eq_(self.addon.status, amo.STATUS_PENDING)
-
-
-class TestInappConfigForm(amo.tests.TestCase):
-    fixtures = fixture('webapp_337141')
-
-    def setUp(self):
-        self.addon = Addon.objects.get(pk=337141)
-
-    def submit(self, **params):
-        data = {'postback_url': '/p',
-                'chargeback_url': '/c',
-                'is_https': False}
-        data.update(params)
-        fm = forms_payments.InappConfigForm(data=data)
-        cfg = fm.save(commit=False)
-        cfg.addon = self.addon
-        cfg.save()
-        return cfg
-
-    @mock.patch.object(settings, 'INAPP_REQUIRE_HTTPS', True)
-    def test_cannot_override_https(self):
-        cfg = self.submit(is_https=False)
-        # This should be True because you cannot configure https.
-        eq_(cfg.is_https, True)
-
-    @mock.patch.object(settings, 'INAPP_REQUIRE_HTTPS', False)
-    def test_can_override_https(self):
-        cfg = self.submit(is_https=False)
-        eq_(cfg.is_https, False)

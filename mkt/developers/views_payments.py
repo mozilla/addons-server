@@ -5,12 +5,16 @@ from django.shortcuts import get_object_or_404, redirect
 
 import commonware
 import jingo
-import waffle
 from tower import ugettext as _
+import waffle
+from waffle.decorators import waffle_switch
 
+from access import acl
 import amo
 from amo import messages
 from amo.decorators import login_required, post_required, write
+from amo.urlresolvers import reverse
+from lib.crypto import generate_key
 from lib.pay_server import client
 
 from mkt.constants import DEVICE_LOOKUP
@@ -163,3 +167,37 @@ def payments_accounts_delete(request, id):
     account.cancel()
     log.info('Account cancelled: %s' % id)
     return http.HttpResponse('success')
+
+
+@login_required
+@waffle_switch('in-app-payments')
+@dev_required(owner_for_post=True, webapp=True)
+def in_app_config(request, addon_id, addon, webapp=True):
+    account = addon.app_payment_account
+    seller_config = (client.api.generic
+                           .product(account.uri_to_pk(account.product_uri))
+                           .get_object_or_404())
+
+    owner = acl.check_addon_ownership(request, addon)
+    if request.method == 'POST':
+        (client.api.generic
+               .product(seller_config['resource_pk'])
+               .patch(data={'secret':generate_key(48)}))
+        messages.success(request, _('Changes successfully saved.'))
+        return redirect(reverse('mkt.developers.apps.in_app_config',
+                                args=[addon.app_slug]))
+
+    return jingo.render(request, 'developers/payments/in-app-config.html',
+                        {'addon': addon, 'seller_config': seller_config,
+                         'account': account, 'owner': owner})
+
+
+@login_required
+@waffle_switch('in-app-payments')
+@dev_required(webapp=True)
+def in_app_secret(request, addon_id, addon, webapp=True):
+    account = addon.app_payment_account
+    seller_config = (client.api.generic
+                           .product(account.uri_to_pk(account.product_uri))
+                           .get_object_or_404())
+    return http.HttpResponse(seller_config['secret'])

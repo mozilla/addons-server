@@ -10,6 +10,7 @@ import amo.tests
 from amo.tests import formset
 from addons.models import Addon, AddonUser
 from mkt.developers.models import ActivityLog
+from mkt.site.fixtures import fixture
 from users.models import UserProfile
 
 
@@ -219,7 +220,7 @@ class TestEditWebappAuthors(amo.tests.TestCase):
 
 
 class TestDeveloperRoleAccess(amo.tests.TestCase):
-    fixtures = ['base/users', 'webapps/337141-steamcube']
+    fixtures = fixture('user_999', 'webapp_337141')
 
     def setUp(self):
         self.client.login(username='regular@mozilla.com', password='password')
@@ -241,14 +242,9 @@ class TestDeveloperRoleAccess(amo.tests.TestCase):
         eq_(res.status_code, 403)
 
     def test_urls(self):
-        urls = ['owner', 'payments']
+        urls = ['owner']
         for url in urls:
             self._check_it(self.webapp.get_dev_url(url))
-
-        waffle.models.Switch.objects.create(name='in-app-payments',
-                                            active=True)
-        self.webapp.update(premium_type=amo.ADDON_PREMIUM_INAPP)
-        self._check_it(self.webapp.get_dev_url('in_app_config'))
 
     def test_disable(self):
         res = self.client.get(self.webapp.get_dev_url('versions'))

@@ -26,47 +26,19 @@
       </p>
       {{ csrf() }}
       <table>
-        <tr>
-          <th class="label">{{ _('Application Domain') }}</th>
-          <td><span class="inapp-domain-protocol">https://</span>{{ addon.parsed_app_domain.netloc }}</td>
-        </tr>
-        <tr>
-          <th><label for="id_is_https">{{ _("SSL") }} {{ required() }}</label></th>
-          <td>
-            {{ inapp_form.is_https }}
-            {{ inapp_form.is_https.errors }}
-            <span class="is-https hint">{{ inapp_form.is_https.help_text }}</span>
-          </td>
-        </tr>
-        <tr>
-          <th><label for="id_postback_url">{{ _("Postback URL") }} {{ required() }}</label></th>
-          <td>
-            {{ inapp_form.postback_url }}
-            {{ inapp_form.postback_url.errors }}
-            <span class="hint">{{ inapp_form.postback_url.help_text }}</span>
-          </td>
-        </tr>
-        <tr>
-          <th><label for="id_chargeback_url">{{ _("Chargeback URL") }} {{ required() }}</label></th>
-          <td>
-            {{ inapp_form.chargeback_url }}
-            {{ inapp_form.chargeback_url.errors }}
-            <span class="hint">{{ inapp_form.chargeback_url.help_text }}</span>
-          </td>
-        </tr>
         <tr id="in-app-public-key">
           <th class="label">{{ _('Application Key') }}</th>
-          {% if inapp_config %}
-            <td><input type="text" value="{{ inapp_config.public_key }}" readonly></td>
+          {% if seller_config %}
+            <td><input type="text" value="{{ seller_config['external_id'] }}" readonly></td>
           {% else %}
             <td class="not-generated">({{ _('Not yet generated.') }})</td>
           {% endif %}
         </tr>
         <tr id="in-app-private-key">
           <th class="label">{{ _('Application Secret') }}</th>
-          {% if inapp_config %}
+          {% if seller_config %}
             <td>
-              <button data-url="{{ addon.get_dev_url('in_app_secret') }}"
+              <button data-url="{{ url('mkt.developers.apps.in_app_secret', addon.app_slug) }}"
                       class="generator">{{ _('Show secret') }}</button>
               <input type="text" class="secret" type="text" value="" readonly>
             </td>
@@ -76,33 +48,8 @@
         </tr>
       </table>
       <div class="listing-footer">
-        {% if inapp_config %}
-        {% endif %}
-        <button type="submit">{{ _('Save Changes') }}</button>
-      </div>
-    </form>
-  </div>
-  <h2>{{ _('Reset credentials') }}</h2>
-  <div class="devhub-form island">
-    {% if inapp_config %}
-      {% set reset = addon.get_dev_url('reset_in_app_config', [inapp_config.pk]) %}
-    {% else %}
-      {% set reset = '' %}
-    {% endif %}
-    <form method="post" action="{{ reset }}">
-      {{ csrf() }}
-      <p>
-      {% trans %}
-      In case your <b>Application Secret</b>
-      ever gets compromised, you can reset it here to stop all payments.
-      After the reset, your app can no longer make payments with the old credentials.
-      You will be granted a new <b>Application Key</b> and <b>Application Secret</b>
-      that you can use to accept in-app payments with immediately.
-      {% endtrans %}
-      </p>
-      <div class="listing-footer">
-        <button {% if not inapp_config %}disabled{% endif %}
-                type="submit">{{ _('Reset credentials') }}</button>
+        <button {% if not seller_config or not owner %}disabled{% endif %}
+                type="submit">{{ _('Reset secret') }}</button>
       </div>
     </form>
   </div>
