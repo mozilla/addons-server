@@ -55,12 +55,10 @@
 {% if addons.object_list %}
   <div id="my-{{ 'apps' if webapp else 'addons' }}" class="island primary listing c">
     <h2>{{ loc("Apps I've created") if webapp else _("Add-ons I've created") }}</h2>
-    {% cache addons.object_list %}
-      <div class="items">
-        {{ impala_addon_listing_items(addons.object_list, field=sorting, src='userprofile') }}
-      </div>
-      {{ addons|impala_paginator }}
-    {% endcache %}
+    <div class="items">
+      {{ impala_addon_listing_items(addons.object_list, field=sorting, src='userprofile') }}
+    </div>
+    {{ addons|impala_paginator }}
   </div>
 {% endif %}
 
@@ -86,7 +84,6 @@
 {% endif %}
 
 <div class="island primary{{ ' full' if not (own_coll or fav_coll) }}" id="reviews">
-{% cache reviews %}
   <h2>{{ _('My Reviews') }}</h2>
   <div class="items">
     {% if reviews %}
@@ -103,7 +100,6 @@
       </p>
     {% endif %}
   </div>
-{% endcache %}
 </div>
 
 {% endblock %}
