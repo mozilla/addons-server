@@ -73,7 +73,8 @@ def update_manifests(ids, **kw):
         update_manifests.retry(args=(retries.keys(),),
                                kwargs={'check_hash': check_hash,
                                        'retries': retries},
-                               countdown=3600)
+                               countdown=3600,
+                               gmax_retries=4)
     return retries
 
 
