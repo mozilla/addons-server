@@ -22,8 +22,8 @@ exports.payment_setup = function() {
         } else {
             // Traverse up the DOM until you find a node that contains a hidden input.
             $parent = _.find(
-                $(this).parents(),
-                function(p) {return $(p).has('input[type=hidden]');}
+                _.map($(this).parents(), $),
+                function(p) {return p.has('input[type=hidden]').length;}
             );
             this.groupie_parent = $parent;
         }
