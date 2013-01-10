@@ -91,6 +91,7 @@
           <label>{{ bango_account_form.bankName.label }}</label>
           {{ bango_account_form.bankName }}
         </div>
+        
         <div class="field no-border">
           <label>{{ bango_account_form.bankAddress1.label }}</label>
           {{ bango_account_form.bankAddress1 }}
@@ -140,9 +141,9 @@
         </div>
       </div>
       <div class="listing-footer">
-        <button type="submit">
-          {{ _('Register Payment Account') }}
-        </button>
+        <button type="submit">{{ _('Register Payment Account') }}</button>
+        or
+        <a href="#" class="close">{{ _('Cancel') }}</a>
       </div>
     </form>
   </section>
