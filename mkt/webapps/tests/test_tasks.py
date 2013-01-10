@@ -186,7 +186,8 @@ class TestUpdateManifest(amo.tests.TestCase):
             args=([self.addon.pk,],),
             kwargs={'check_hash': True,
                     'retries': {self.addon.pk: 1}},
-            countdown=3600)
+            countdown=3600,
+            gmax_retries=4)
 
     @mock.patch('mkt.webapps.tasks._fetch_manifest')
     @mock.patch('mkt.webapps.tasks.update_manifests.retry')
