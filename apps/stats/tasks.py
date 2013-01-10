@@ -112,7 +112,7 @@ def get_profile_id(service, domain):
 
 
 @task
-def update_google_analytics(metric, date, **kw):
+def update_google_analytics(date, **kw):
     creds_data = getattr(settings, 'GOOGLE_ANALYTICS_CREDENTIALS', None)
     if not creds_data:
         log.critical('Failed to update global stats: '
@@ -138,12 +138,13 @@ def update_google_analytics(metric, date, **kw):
         data = service.data().ga().get(ids='ga:' + profile_id,
                                        start_date=datestr,
                                        end_date=datestr,
-                                       metrics=metric).execute()
-        p = ['google_analytics_' + metric, data['rows'][0][0], date]
+                                       metrics='ga:visits').execute()
+        # Storing this under the webtrends stat name so it goes on the
+        # same graph as the old webtrends data.
+        p = ['webtrends_DailyVisitors', data['rows'][0][0], date]
     except Exception, e:
         log.critical(
-            'Fetching stats data for %s from Google Analytics failed: %s' %
-            (metric, e))
+            'Fetching stats data for %s from Google Analytics failed: %s' % e)
         return
     try:
         cursor = connection.cursor()

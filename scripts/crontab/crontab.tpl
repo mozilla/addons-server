@@ -59,8 +59,7 @@ HOME=/tmp
 45 23 * * * %(django)s dump_apps
 55 23 * * * %(z_cron)s clean_out_addonpremium
 
-# Once per day, populate yesterdays totals from webtrends
-50 2 * * * %(z_cron)s update_webtrends --settings=settings_local_mkt
+# Collect visitor stats from Google Analytics once per day.
 50 2 * * * %(z_cron)s update_google_analytics --settings=settings_local_mkt
 
 #Once per day after 2100 PST (after metrics is done)

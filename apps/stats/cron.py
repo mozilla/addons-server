@@ -63,30 +63,8 @@ def update_global_totals(date=None):
     TaskSet(ts).apply_async()
 
 
-WEBTRENDS_URLS = [
-    'https://ws.webtrends.com/v3/Reporting/profiles/46543/'
-    'reports/VCjJhvO2mL5/?totals=all&period_type=agg&measures=7']
-
 @cronjobs.register
-def update_webtrends(date=None, urlbases=WEBTRENDS_URLS):
-    """
-    Update stats from Webtrends.
-    """
-    if date:
-        date = datetime.datetime.strptime(date, '%Y-%m-%d').date()
-    else:
-        # Assume that we want to populate yesterdays stats by default.
-        date = datetime.date.today() - datetime.timedelta(days=1)
-    datestr = date.strftime('%Ym%md%d')
-    urls = ['%s&start_period=%s&end_period=%s&format=json'
-            % (u, datestr, datestr) for u in urlbases]
-    TaskSet([tasks.update_webtrend.subtask(kwargs={'date': date, 'url': u})
-             for u in urls]).apply_async()
-
-GOOGLE_ANALYTICS_METRICS = ('ga:visits',)
-
-@cronjobs.register
-def update_google_analytics(date=None, metrics=GOOGLE_ANALYTICS_METRICS):
+def update_google_analytics(date=None):
     """
     Update stats from Google Analytics.
     """
@@ -95,9 +73,7 @@ def update_google_analytics(date=None, metrics=GOOGLE_ANALYTICS_METRICS):
     else:
         # Assume that we want to populate yesterday's stats by default.
         date = datetime.date.today() - datetime.timedelta(days=1)
-    TaskSet([tasks.update_google_analytics.subtask(kwargs={'date': date,
-                                                           'metric': u})
-             for u in metrics]).apply_async()
+    tasks.update_google_analytics.delay(date=date)
 
 
 @cronjobs.register

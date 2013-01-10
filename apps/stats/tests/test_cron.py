@@ -75,28 +75,6 @@ class TestGlobalStats(amo.tests.TestCase):
                                    source=amo.LOGIN_SOURCE_MMO_BROWSERID)
         eq_(tasks._get_daily_jobs()['mmo_user_count_new'](), 1)
 
-
-class TestWebtrends(amo.tests.TestCase):
-
-    @mock.patch.object(settings, 'WEBTRENDS_USERNAME', 'username')
-    @mock.patch.object(settings, 'WEBTRENDS_PASSWORD', 'passwd')
-    @mock.patch('requests.get')
-    def test_url(self, get):
-        class FakeResponse:
-            status_code = 200
-            json = {u'data': [{u'measures': {u'DailyVisitors': 1581}}]}
-        get.return_value = FakeResponse()
-        cron.update_webtrends('2012-1-1', ['http://example.com/webtrends'])
-        get.assert_called_with(
-            'http://example.com/webtrends&start_period=2012m01d01'
-            '&end_period=2012m01d01&format=json',
-            auth=('username', 'passwd'))
-
-        eq_(GlobalStat.objects.get(name='webtrends_DailyVisitors',
-                                   date=datetime.date(2012, 1, 1)).count,
-            1581)
-
-
 class TestGoogleAnalytics(amo.tests.TestCase):
     @mock.patch.object(settings, 'GOOGLE_ANALYTICS_CREDENTIALS',
                        {'access_token': '', 'client_id': '',
@@ -114,7 +92,7 @@ class TestGoogleAnalytics(amo.tests.TestCase):
             start_date=d, end_date=d)
         get.execute.return_value = {'rows': [[49]]}
         cron.update_google_analytics(d)
-        eq_(GlobalStat.objects.get(name='google_analytics_ga:visits',
+        eq_(GlobalStat.objects.get(name='webtrends_DailyVisitors',
                                    date=d).count, 49)
 
 class TestTotalContributions(amo.tests.TestCase):
