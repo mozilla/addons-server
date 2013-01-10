@@ -1,3 +1,5 @@
+import json
+
 from django import http
 from django.shortcuts import get_object_or_404, redirect
 
@@ -139,7 +141,7 @@ def payments_accounts(request):
 def payments_accounts_add(request):
     form = forms_payments.BangoPaymentAccountForm(request.POST)
     if not form.is_valid():
-        return http.HttpResponse(form.happy_errors, status=400)
+        return http.HttpResponse(json.dumps(form.errors), status=400)
 
     try:
         models.PaymentAccount.create_bango(

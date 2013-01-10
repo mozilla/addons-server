@@ -278,8 +278,10 @@ class BangoPaymentAccountForm(happyforms.Form):
 
     bankAccountPayeeName = forms.CharField(
         max_length=50, label=_lazy(u'Account Holder Name'))
-    companyName = forms.CharField(max_length=255, label=_lazy(u'Company Name'))
-    vendorName = forms.CharField(max_length=255, label=_lazy(u'Vendor Name'))
+    companyName = forms.CharField(
+        max_length=255, label=_lazy(u'Company Name'))
+    vendorName = forms.CharField(
+        max_length=255, label=_lazy(u'Vendor Name'))
     financeEmailAddress = forms.EmailField(
         required=False, label=_lazy(u'Financial Email'))
     adminEmailAddress = forms.EmailField(
@@ -295,31 +297,35 @@ class BangoPaymentAccountForm(happyforms.Form):
         max_length=64, label=_lazy(u'State/Province/Region'))
     addressZipCode = forms.CharField(
         max_length=128, label=_lazy(u'Zip/Postal Code'))
-    addressPhone = forms.CharField(max_length=20, label=_lazy(u'Phone'))
+    addressPhone = forms.CharField(
+        max_length=20, label=_lazy(u'Phone'))
     countryIso = forms.ChoiceField(
         choices=BANGO_COUNTRIES, label=_lazy(u'Country'))
     currencyIso = forms.ChoiceField(
         choices=BANGO_OUTPAYMENT_CURRENCIES,
-        label=_lazy(u'Preferred Currency'))
+        label=_lazy(u'I prefer to be paid in'))
 
     vatNumber = forms.CharField(
         max_length=17, required=False, label=_lazy(u'VAT Number'))
 
     bankAccountNumber = forms.CharField(
-        max_length=20, required=False, label=_lazy(u'Bank Account Number'))
+        max_length=20, label=_lazy(u'Bank Account Number'),
+        widget=forms.HiddenInput())
     bankAccountCode = forms.CharField(
         max_length=20, label=_lazy(u'Bank Account Code'))
-    bankName = forms.CharField(max_length=50, label=_lazy(u'Bank Name'))
-    bankAddress1 = forms.CharField(max_length=50, label=_lazy(u'Bank Address'))
+    bankName = forms.CharField(
+        max_length=50, label=_lazy(u'Bank Name'))
+    bankAddress1 = forms.CharField(
+        max_length=50, label=_lazy(u'Bank Address'))
     bankAddress2 = forms.CharField(
         max_length=50, required=False, label=_lazy(u'Bank Address 2'))
-    bankAddressCity = forms.CharField(max_length=50, required=False,
-                                      label=_lazy(u'Bank City/Municipality'))
+    bankAddressCity = forms.CharField(
+        max_length=50, required=False, label=_lazy(u'Bank City/Municipality'))
     bankAddressState = forms.CharField(
         max_length=50, required=False,
         label=_lazy(u'Bank State/Province/Region'))
-    bankAddressZipCode = forms.CharField(max_length=50,
-                                         label=_lazy(u'Bank Zip/Postal Code'))
+    bankAddressZipCode = forms.CharField(
+        max_length=50, label=_lazy(u'Bank Zip/Postal Code'))
     bankAddressIso = forms.ChoiceField(
         choices=BANGO_COUNTRIES, label=_lazy(u'Bank Country'))
 
