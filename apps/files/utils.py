@@ -227,18 +227,24 @@ class WebAppParser(object):
             file_ = get_file(fileorpath)
             data = file_.read()
             file_.close()
-        enc_guess = chardet.detect(data)
-        data = strip_bom(data)
+
         try:
-            data = json.loads(data.decode(enc_guess['encoding']))
-        except (ValueError, UnicodeDecodeError), exc:
+            enc_guess = chardet.detect(data)
+            data = strip_bom(data)
+            decoded_data = data.decode(enc_guess['encoding'])
+        except (ValueError, UnicodeDecodeError) as exc:
             msg = 'Error parsing webapp %r (encoding: %r %.2f%% sure): %s: %s'
             log.error(msg % (fileorpath, enc_guess['encoding'],
                              enc_guess['confidence'] * 100.0,
                              exc.__class__.__name__, exc))
             raise forms.ValidationError(
-                            _('Could not parse webapp manifest file.'))
-        return data
+                _('Could not decode the webapp manifest file.'))
+
+        try:
+            return json.loads(decoded_data)
+        except Exception:
+            raise forms.ValidationError(
+                _('The webapp manifest is not valid JSON.'))
 
     def parse(self, fileorpath):
         data = self.get_json_data(fileorpath)
