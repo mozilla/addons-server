@@ -183,7 +183,7 @@
     <div id="newsletter-signup">
       {% if newsletter_form.errors %}
         <div id="footer-email-errors">
-          {{ newsletter_form.non_field_errors()|safe }}
+          {{ newsletter_form.non_field_errors() }}
 
           <ul class="errorlist">
             {{ newsletter_form.email.errors }}
@@ -228,7 +228,7 @@
 
           <div class="form-details">
             <div class="field field-privacy">
-              {{ newsletter_form.privacy|safe }}
+              {{ newsletter_form.privacy }}
               <small>
                 {%- trans privacy_link='https://www.mozilla.org/en-US/privacy-policy' %}
                   I'm okay with Mozilla handling this information as explained in the
