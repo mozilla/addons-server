@@ -46,11 +46,7 @@ body .loading-fragment {
     background-color: rgba(0,0,0,0.5);
     z-index: 11;  // To cover the header.
     em {
-        // Because WebKit can't figure out how to animate PNGs.
-        -webkit-animation-duration: 1.5s;
-        -webkit-animation-name: spin;
-        -webkit-animation-iteration-count: infinite;
-        -webkit-animation-timing-function: linear;
+        .webkit-spin;
         background: url(../../img/zamboni/mobile/loading-white.png) center no-repeat;
         display: inline-block;
         height: 86px;
@@ -70,8 +66,8 @@ body .loading-fragment {
             position: absolute;
             top: 50%;
             left: 50%;
-            z-index: 2;
             width: 86px;
+            z-index: 2;
         }
     }
 }

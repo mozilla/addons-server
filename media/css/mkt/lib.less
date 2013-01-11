@@ -370,3 +370,11 @@
     background-image: -webkit-linear-gradient(top, fade(#000, 0%), fade(#000, 35%) 25%, fade(#000, 35%) 75%, fade(#000, 0%) 100%);
     background-image: linear-gradient(top, fade(#000, 0%), fade(#000, 35%) 25%, fade(#000, 35%) 75%, fade(#000, 0%) 100%);
 }
+
+// Because WebKit can't figure out how to animate PNGs.
+.webkit-spin() {
+    -webkit-animation-duration: 1.5s;
+    -webkit-animation-name: spin;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+}
