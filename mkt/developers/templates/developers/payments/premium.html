@@ -1,5 +1,5 @@
 {% extends 'developers/base_impala.html' %}
-{% from 'developers/includes/macros.html' import required %}
+{% from 'developers/includes/macros.html' import empty_unless, required, some_html_tip, tip %}
 
 {% set title = _('Compatibility & Payments') %}
 {% block title %}{{ hub_page_title(title, addon) }}{% endblock %}
@@ -91,12 +91,21 @@
                 {{ _('Changing to Paid will put your app back into review.') }}
               </div>
             {% endif %}
+            <div class="helpful-links">
+              {% trans payments_url='https://developer.mozilla.org/en-US/docs/Apps/Marketplace_Payments',
+                       receipts_url='https://developer.mozilla.org/en-US/docs/Apps/Validating_a_receipt' %}
+               Learn about <a href="{{ payments_url }}" target="_blank">different payment types</a>.<br />
+               Learn about <a href="{{ receipts_url }}" target="_blank">validating purchase receipts</a>.
+              {% endtrans %}
+            </div>
           </div>
         {% endif %}
       </section>
 
       {% if is_paid %}
+      <div id="paid-island">
         {{ disabled_payments_notice() }}
+        <h2>{{ _('Prices and payment accounts') }}</h2>
         {% if is_incomplete %}
           <div class="island warning">
             {% trans %}
@@ -105,31 +114,70 @@
             {% endtrans %}
           </div>
         {% endif %}
-        <section id="paid-island" class="island payments">
-          <h3>{{ _('Sell your app on the Marketplace') }}</h3>
-          {{ form.price.errors }}
-          {{ form.price }}
-          {{ form.allow_inapp }}
-          {{ form.allow_inapp.label }}
-          {% include 'developers/payments/includes/payment_account.html' %}
-          <p class="note">
-            {% trans payments_url='https://developer.mozilla.org/en-US/docs/Apps/Marketplace_Payments',
-                     receipts_url='https://developer.mozilla.org/en-US/docs/Apps/Validating_a_receipt' %}
-             Learn about <a href="{{ payments_url }}" target="_blank">different payment types</a>.
-             Learn about <a href="{{ receipts_url }}" target="_blank">validating purchase receipts</a>.
-            {% endtrans %}
-          </p>
-          <button>{{ _('Save Changes') }}</button>
-        </section>
+        <section class="island payments">
+          <table>
+            <tbody>
+              <tr>
+                <th><label data-for="price">{{ _('Price') }}</label></th>
+                <td>
+                  {{ form.price.errors }}
+                  {{ form.price }}
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  {{ tip(_('In-App Payments'),
+                         _("Does your app use Mozilla's in-app payments platform?")) }}
+                </th>
+                <td class="allow-inapp">
+                  {{ form.allow_inapp }}
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  {{ tip(_('This is a paid upgrade of'),
+                         _('If you have a free app, you can link and promote '
+                           'your premium app next to the free version here.')) }}
+                </th>
+                <td>
+                  {% if upsell_form.fields['upsell_of'].queryset.count() %}
+                    {{ upsell_form.upsell_of.errors }}
+                    {{ upsell_form.upsell_of }}
+                    <p class="note">
+                      {% trans %}
+                        Linking this app will promote your premium app next to the free
+                        version.
+                      {% endtrans %}
+                    </p>
+                  {% else %}
+                    <div class="extra">
+                      {{- _('No free apps') -}}
+                    </div>
+                  {% endif %}
+                </td>
+              </tr>
+              <tr>
+                <th><label data-for="accounts">{{ _('Payment Account') }}</label>
+                </th>
+                <td>
+                  {{ bango_account_list_form.errors }}
+                  {% include 'developers/payments/includes/bango_accounts.html' %}
+                  <a href="#" class="payment-account-actions" data-action="add">
+                    {{- _('Add or manage payment accounts') -}}
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
 
-        <section id="paid-upsell-island" class="island">
-          <h3>{{ _('This is a paid upgrade of...') }}</h3>
-          {% with form = upsell_form %}
-            {% include 'developers/payments/includes/upsell.html' %}
-          {% endwith %}
+          <div class="listing-footer">
+            <button>{{ _('Save Changes') }}</button>
+          </div>
         </section>
+      </div>
       {% endif %}
 
+      <h2>{{ _('Regions and listings') }}</h2>
       <section id="regions" class="island">
         {{ region_form.non_field_errors() }}
         {{ region_form.regions.label }}
@@ -153,12 +201,12 @@
           {{ region_form.other_regions.label_tag() }}
           {{ region_form.other_regions.errors }}
           <div class="hint note">
-            {% trans %}
+            {%- trans %}
               Your app will be displayed in the worldwide Marketplace and
               in any regional marketplace that is added in the future.
               You will receive an email notification when a new region
               is added.
-            {% endtrans %}
+            {% endtrans -%}
           </div>
         </div>
         <button>{{ _('Save Changes') }}</button>
