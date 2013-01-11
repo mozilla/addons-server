@@ -1,6 +1,5 @@
 from django.conf import settings
 
-import basket
 import mock
 from nose.tools import eq_
 from pyquery import PyQuery as pq
@@ -41,33 +40,6 @@ class TestLanding(amo.tests.TestCase):
 
         self.client.get(self.url, {'refresh': '1'})
         assert not mock_.called
-
-    @mock.patch('basket.subscribe')
-    def test_newsletter_form_valid(self, subscribe_mock):
-        d = {'email': 'a@b.cd', 'privacy': True}
-        r = self.client.post(self.url, d)
-        self.assert3xx(r, reverse('ecosystem.landing'))
-        assert subscribe_mock.called
-
-    @mock.patch('basket.subscribe')
-    def test_newsletter_form_invalid(self, subscribe_mock):
-        d = {'email': '', 'privacy': True}
-        r = self.client.post(self.url, d)
-        eq_(r.status_code, 200)
-        self.assertFormError(r, 'newsletter_form', 'email',
-                             [u'Please enter a valid email address.'])
-        assert not subscribe_mock.called
-
-    @mock.patch('basket.subscribe')
-    def test_newsletter_form_exception(self, subscribe_mock):
-        subscribe_mock.side_effect = basket.BasketException
-        d = {'email': 'a@b.cd', 'privacy': True}
-        r = self.client.post(self.url, d)
-        eq_(r.status_code, 200)
-        eq_(pq(r.content)('.notification-box.error h2').text(),
-                          'We apologize, but an error occurred in our '
-                          'system. Please try again later.')
-        assert subscribe_mock.called
 
 
 class TestDevHub(amo.tests.TestCase):
