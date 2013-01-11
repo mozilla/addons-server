@@ -19,11 +19,24 @@
     #reviews-detail {
         padding: 20px;
         ul {
-            margin: 0 -5px;
+            margin: 0 -20px;
+            position: relative;
             .review {
                 float: left;
                 width: 50%;
-                padding: 0 5px;
+                padding: 0 20px;
+            }
+            &:before {
+                content: '';
+                display: block;
+                position: absolute;
+                top: 0;
+                right: 50%;
+                width: 0;
+                bottom: 20px;
+                border-left: 1px solid rgba(255,255,255,.5);
+                border-right: 1px solid rgba(3,16,26,.13);
+
             }
         }
     }
