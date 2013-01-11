@@ -44,6 +44,14 @@
       </div>
     </div>
 
+    <div class="info-message info-message-link">
+      <a class="view-all" href="{{ url('browse.themes') }}">
+        <big>{{ _('Looking for Full Themes?') }}</big>
+        <span>{{ _('Full themes are more extensible skins that allow you to change more of the look and feel of the browser.') }}</span>
+        <b>{{ _('Browse') }}</b>
+      </a>
+    </div>
+
     {% set addons = featured[:6] %}
     {% if addons %}
       <div class="personas-featured">
@@ -94,13 +102,6 @@
       <p class="view-all"><a href="{{ link }}">{{ more_links[key] }}</a></p>
     </div>
   {% endfor %}
-  <div class="info-message info-message-link">
-    <a class="view-all" href="{{ url('browse.themes') }}">
-      <big>{{ _('Looking for Full Themes?') }}</big>
-      <span>{{ _('Full themes are more extensible skins that allow you to change more of the look and feel of the browser.') }}</span>
-      <b>{{ _('Browse') }}</b>
-    </a>
-  </div>
 </div>
 {{ persona_categories(request.APP == amo.FIREFOX) }}
 {% endblock content %}
