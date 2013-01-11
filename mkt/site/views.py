@@ -65,7 +65,6 @@ def csrf_failure(request, reason=''):
 
 def manifest(request):
     ctx = RequestContext(request)
-    use_appcache = 'skip_appcache' not in request.GET
     data = {
         'name': getattr(settings, 'WEBAPP_MANIFEST_NAME',
                         'Firefox Marketplace'),
@@ -84,7 +83,7 @@ def manifest(request):
         'locales': {},
         'default_locale': 'en-US'
     }
-    if use_appcache:
+    if settings.USE_APPCACHE:
         data['appcache_path'] = reverse('django_appcache.manifest')
     if settings.CARRIER_URLS:
         data['launch_path'] = '/%s/' % (get_carrier() or
