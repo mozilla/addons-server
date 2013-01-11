@@ -34,6 +34,7 @@ import mkt.constants.reviewers as rvw
 from mkt.reviewers.models import ThemeLock
 from mkt.reviewers.views import (_do_sort, _filter, _check_if_searching,
                                  _get_search_form, _get_themes)
+from mkt.site.fixtures import fixture
 from mkt.submit.tests.test_views import BasePackagedAppTest
 from mkt.webapps.models import Webapp
 import reviews
@@ -1950,6 +1951,8 @@ class TestThemeReviewQueue(amo.tests.TestCase):
 
 
 class TestGetSigned(BasePackagedAppTest, amo.tests.TestCase):
+    fixtures = fixture('webapp_337141', 'user_999', 'user_editor',
+                       'user_editor_group', 'group_editor')
 
     def setUp(self):
         super(TestGetSigned, self).setUp()
