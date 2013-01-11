@@ -1507,7 +1507,7 @@ BROWSERID_JS_URL = 'https://login.persona.org/include.js'
 
 # The issuer for unverified Persona email addresses.
 # We only trust one issuer to grant us unverified emails.
-UNVERIFIED_ISSUER = 'notoriousb2g.personatest.org'
+UNVERIFIED_ISSUER = 'native-persona.org'
 
 # This is a B2G (or other native) verifier. Adjust accordingly.
 NATIVE_BROWSERID_VERIFICATION_URL = 'https://%s/verify' % UNVERIFIED_ISSUER
