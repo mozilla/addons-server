@@ -105,8 +105,8 @@ class TestWebApps(amo.tests.TestCase, amo.tests.AMOPaths):
         with self.assertRaises(forms.ValidationError) as exc:
             WebAppParser().parse(self.webapp(contents='}]'))
         m = exc.exception.messages[0]
-        assert m.startswith('Could not parse webapp manifest'), (
-                                                    'Unexpected: %s' % m)
+        assert m.startswith('The webapp manifest is not valid JSON.'), (
+            'Unexpected: %s' % m)
 
     def test_utf8_bom(self):
         wm = codecs.BOM_UTF8 + json.dumps(self.manifest, encoding='utf8')
