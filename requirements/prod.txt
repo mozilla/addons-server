@@ -2,6 +2,7 @@ amqplib==1.0.2
 anyjson==0.3.3
 argparse==1.2.1
 babel==0.9.6
+basket-client==0.3.0
 bleach==1.1.5
 cef==0.5
 celery==2.5.1
