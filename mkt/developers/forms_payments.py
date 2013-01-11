@@ -45,7 +45,7 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
     allow_inapp = forms.TypedChoiceField(
         coerce=lambda x: True if x == 'Yes' else False,
         choices=((True, 'Yes'), (False, 'No')),
-        widget=forms.RadioSelect)
+        widget=forms.RadioSelect, required=False)
     price = forms.ModelChoiceField(queryset=Price.objects.active(),
                                    label=_lazy(u'App Price'),
                                    empty_label=None, required=False)
