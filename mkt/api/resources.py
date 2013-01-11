@@ -182,7 +182,7 @@ class AppResource(MarketplaceResource):
         data = bundle.data
         obj = self.get_and_check_ownership(request, **kwargs)
 
-        data['slug'] = data.get('slug', obj.app_slug)
+        data['app_slug'] = data.get('app_slug', obj.app_slug)
         data.update(self.formset(data))
         data.update(self.devices(data))
 
@@ -204,7 +204,7 @@ class AppResource(MarketplaceResource):
 
     def dehydrate(self, bundle):
         obj = bundle.obj
-        bundle.data['slug'] = obj.app_slug
+        bundle.data['app_slug'] = obj.app_slug
         bundle.data['premium_type'] = amo.ADDON_PREMIUM_API[obj.premium_type]
         bundle.data['categories'] = [c.pk for c in obj.categories.all()]
         with no_translation():

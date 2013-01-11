@@ -82,7 +82,7 @@ class TestPackagedValidation(amo.tests.AMOPaths, ValidationHandler):
         super(TestPackagedValidation, self).setUp()
         name = 'mozball.zip'
         path = self.packaged_app_path(name)
-        self.file =  base64.b64encode(open(path).read())
+        self.file = base64.b64encode(open(path).read())
         self.data = {'data': self.file, 'name': name,
                      'type': 'application/zip'}
 
@@ -275,11 +275,11 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         eq_(res.status_code, 201)
         content = json.loads(res.content)
         eq_(content['status'], 0)
-        eq_(content['slug'], u'mozillaball')
+        eq_(content['app_slug'], u'mozillaball')
         eq_(content['support_email'], None)
         eq_(self.count(), 1)
 
-        app = Webapp.objects.get(app_slug=content['slug'])
+        app = Webapp.objects.get(app_slug=content['app_slug'])
         eq_(set(app.authors.all()), set([self.user]))
 
     def create_app(self):
@@ -427,6 +427,7 @@ class CreatePackagedHandler(amo.tests.AMOPaths, BaseOAuth):
         return FileUpload.objects.create(user=self.user, path=self.file,
                                          name=self.file, valid=True)
 
+
 @patch.object(settings, 'SITE_URL', 'http://api/')
 class TestPackagedAppCreateHandler(CreatePackagedHandler):
     fixtures = fixture('user_2519', 'platform_all')
@@ -440,7 +441,7 @@ class TestPackagedAppCreateHandler(CreatePackagedHandler):
         eq_(content['status'], 0)
 
         # Note the packaged status is not returned in the result.
-        app = Webapp.objects.get(app_slug=content['slug'])
+        app = Webapp.objects.get(app_slug=content['app_slug'])
         eq_(app.is_packaged, True)
 
 
