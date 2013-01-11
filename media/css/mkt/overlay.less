@@ -20,7 +20,7 @@
         opacity: 1;
         display: block;
     }
-    section {
+    > section {
         .box-shadow(0 2px 2px fadeOut(#000, 50%));
         border: 2px solid @text;
         .border-radius(5px);
@@ -51,17 +51,17 @@
                 float: right;
             }
         }
+        > &.bare {
+            .border-radius(0);
+            border: 0;
+            padding: 0;
+            .header-button {
+                display: block;
+            }
+        }
     }
     header .dismiss {
         width: 50px;
-    }
-    section.bare {
-        .border-radius(0);
-        border: 0;
-        padding: 0;
-        .header-button {
-            display: block;
-        }
     }
     form {
         margin: 0;
@@ -82,7 +82,7 @@
 }
 
 @media (max-width: @4col) {
-    .overlay section {
+    .overlay > section {
         padding: 10px;
         form {
             margin: 0;
