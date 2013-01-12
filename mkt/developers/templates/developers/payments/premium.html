@@ -163,8 +163,8 @@
                 <td>
                   <div id="bango-account-list">
                     {{ bango_account_list_form.errors }}
+                    {% include 'developers/payments/includes/bango_accounts.html' %}
                   </div>
-                  {% include 'developers/payments/includes/bango_accounts.html' %}
                   <a href="#" class="payment-account-actions" data-action="add">
                     {{- _('Add or manage payment accounts') -}}
                   </a>
