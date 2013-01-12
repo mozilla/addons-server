@@ -130,6 +130,7 @@
                          _("Does your app use Mozilla's in-app payments platform?")) }}
                 </th>
                 <td class="allow-inapp">
+                  {{ form.allow_inapp.errors }}
                   {{ form.allow_inapp }}
                 </td>
               </tr>
@@ -160,7 +161,9 @@
                 <th><label data-for="accounts">{{ _('Payment Account') }}</label>
                 </th>
                 <td>
-                  {{ bango_account_list_form.errors }}
+                  <div id="bango-account-list">
+                    {{ bango_account_list_form.errors }}
+                  </div>
                   {% include 'developers/payments/includes/bango_accounts.html' %}
                   <a href="#" class="payment-account-actions" data-action="add">
                     {{- _('Add or manage payment accounts') -}}
