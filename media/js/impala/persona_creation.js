@@ -1,13 +1,3 @@
-$(function() {
-    if (!$('#submit-persona').length) {
-        return;
-    }
-    initCharCount();
-    initLicense();
-    initPreview();
-});
-
-
 z.licenses = {
     'copyr': {
         'id': 7,
@@ -44,6 +34,18 @@ z.licenses = {
         'url': 'http://creativecommons.org/licenses/by/3.0/'
     }
 };
+
+
+$(function() {
+    if (!$('#submit-persona, #addon-edit-license').length) {
+        return;
+    }
+    initLicense();
+    if (!$('#addon-edit-license').length) {
+        initCharCount();
+        initPreview();
+    }
+});
 
 
 function initLicense() {

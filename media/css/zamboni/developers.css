@@ -887,7 +887,7 @@ pre.email_comment {
 }
 
 .developer-hub #content-main,
-.developer-hub #dashboard {
+.developer-hub .dashboard {
     min-height: 30em;
 }
 

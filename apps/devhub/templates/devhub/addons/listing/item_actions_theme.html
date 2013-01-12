@@ -1,0 +1,34 @@
+<h5>{{ _('Actions') }}</h5>
+<ul>
+{% if addon.is_incomplete() %}
+  {% if check_addon_ownership(request, addon) and addon.can_be_deleted() %}
+    <li>
+      <a href="#" class="delete-addon tooltip"
+         title="{{ _('Delete this theme.') }}">{{ _('Delete') }}</a>
+      <div class="modal-delete modal hidden">
+        {% include "devhub/addons/listing/delete_form.html" %}
+      </div>
+    </li>
+  {% endif %}
+{% else %}
+  {% if check_addon_ownership(request, addon, dev=True) %}
+    <li>
+      <a href="{{ addon.get_dev_url() }}" class="tooltip"
+         title="{{ _("Edit details about this theme's listing.") }}">
+        {{ _('Edit Listing') }}</a>
+    </li>
+  {% endif %}
+  <li>
+    <a href="#" class="more-actions">{{ _('More') }}</a>
+    <div class="more-actions-popup popup hidden">
+      {% set view_urls = ((addon.get_url_path(), _('View Add-on Listing')),
+                          (url('devhub.feed', addon.slug), _('View Recent Changes'))) %}
+      <ul>
+        {% for url, title in view_urls %}
+          <li><a href="{{ url }}">{{ title }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </li>
+</ul>
+{% endif %}

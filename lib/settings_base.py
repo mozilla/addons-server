@@ -548,6 +548,7 @@ MINIFY_BUNDLES = {
             'css/zamboni/developers.css',
             'css/zamboni/docs.less',
             'css/impala/developers.less',
+            'css/impala/personas.less',
             'css/devhub/packager.less',
             'css/devhub/listing.less',
             'css/devhub/popups.less',
@@ -809,6 +810,9 @@ MINIFY_BUNDLES = {
             'js/zamboni/devhub.js',
             'js/zamboni/validator.js',
             'js/zamboni/packager.js',
+        ),
+        'zamboni/themes': (
+            'js/impala/persona_creation.js',
         ),
         'zamboni/editors': (
             'js/zamboni/editors.js',

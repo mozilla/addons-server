@@ -185,6 +185,16 @@ class TestDashboard(HubTest):
         eq_(len(doc('.item .item-info')), 5)
         eq_(doc('nav.paginator').length, 1)
 
+    def test_themes(self):
+        """Check themes show on dashboard."""
+        # Create 2 themes.
+        for x in range(2):
+            addon = addon_factory(type=amo.ADDON_PERSONA)
+            AddonUser.objects.create(user=self.user_profile, addon=addon)
+        r = self.client.get(self.url)
+        doc = pq(r.content)
+        eq_(len(doc('.item .item-info')), 2)
+
     def test_show_hide_statistics(self):
         a_pk = self.clone_addon(1)[0]
 

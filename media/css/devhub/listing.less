@@ -82,7 +82,6 @@
     a {
         color: @note-gray;
         &.more-actions {
-            display: block;
             position: relative;
             &:after {
                 border-color: @note-gray transparent transparent;
@@ -111,10 +110,9 @@
     h5:after {
         content: ":";
     }
-    > ul > li {
+    ul > li {
         display: inline-block;
-        &:not(:first-child):before,
-        &:not(:last-child):before {
+        &:not(:first-child):before {
             background-color: @note-gray;
             border-radius: 5em;
             content: "";

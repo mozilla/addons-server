@@ -2,8 +2,7 @@
 
 <form method="post" action="{{ url('devhub.addons.section', valid_slug, 'basic', 'edit') }}"
       id="addon-edit-basic"
-      data-baseurl="{{ url('devhub.%s.edit' % ('apps' if addon.is_webapp() else 'addons'),
-                           valid_slug) }}">
+      data-baseurl="{{ url('devhub.%s.edit' % url_prefix, valid_slug) }}">
   <h3>
     {{ _('Basic Information') }}
     {% if not editable %}
@@ -35,8 +34,13 @@
                 {{ tip('App URL',
                        'Choose a short, unique URL slug for your app.') }}
               {% else %}
-                {{ tip(_("Add-on URL"),
-                   _("Choose a short, unique URL slug for your add-on.")) }}
+                {% if theme %}
+                  {{ tip(_("Theme URL"),
+                     _("Choose a short, unique URL slug for your theme.")) }}
+                {% else %}
+                  {{ tip(_("Add-on URL"),
+                     _("Choose a short, unique URL slug for your add-on.")) }}
+                {% endif %}
               {% endif %}
             </th>
             <td id="slug_edit">
@@ -129,7 +133,7 @@
                       {% endif %}
                     </p>
                   {% else %}
-                    {{ select_cats(amo.MAX_CATEGORIES, form, webapp) }}
+                    {{ select_cats(amo.MAX_CATEGORIES, form, webapp, theme) }}
                   {% endif %}
                 {% endfor %}
               {% else %}

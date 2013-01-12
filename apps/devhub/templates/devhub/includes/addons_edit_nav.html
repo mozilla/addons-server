@@ -1,12 +1,16 @@
-{% set urls = [
-  (addon.get_dev_url(), _('Edit Listing')),
-  (addon.get_dev_url('owner'), _('Manage Authors') if webapp
-                               else _('Manage Authors & License')),
-  (addon.get_dev_url('profile'), _('Manage Developer Profile')),
-  (addon.get_dev_url('payments'), _('Manage Payments')),
-  (addon.get_dev_url('versions'), _('Manage App Status') if webapp
-                                  else _('Manage Status & Versions')),
-] %}
+{% if theme %}
+  {% set urls = [(addon.get_dev_url(), _('Edit Listing'))] %}
+{% else %}
+  {% set urls = [
+    (addon.get_dev_url(), _('Edit Listing')),
+    (addon.get_dev_url('owner'), _('Manage Authors') if webapp
+                                 else _('Manage Authors & License')),
+    (addon.get_dev_url('profile'), _('Manage Developer Profile')),
+    (addon.get_dev_url('payments'), _('Manage Payments')),
+    (addon.get_dev_url('versions'), _('Manage App Status') if webapp
+                                    else _('Manage Status & Versions')),
+  ] %}
+{% endif %}
 {% if addon.is_premium() and waffle.switch('allow-refund') %}
   {% do urls.insert(4, (addon.get_dev_url('refunds'), loc('Manage Refunds'))) %}
 {% endif %}
@@ -30,17 +34,19 @@
         {{ _('View Listing') }}</a></li>
       <li><a href="{{ url('devhub.feed', addon.slug) }}">
         {{ _('View Recent Changes') }}</a></li>
-      <li class="view-stats"><a href="{{ url('stats.overview', addon.slug) }}">
-        {{ _('View Statistics Dashboard') }}</a></li>
-      <li class="compat-reports">
-        <a href="{{ url('compat.reporter_detail', addon.guid) }}">
-          <span>{{ _('Compatibility Reports') }}</span>
-          <b class="failure" title="{{ _('{0} failure reports')|f(addon._compat_counts.failure) }}">
-            {{ addon._compat_counts.failure|numberfmt }}</b>
-          <b class="success" title="{{ _('{0} success reports')|f(addon._compat_counts.success) }}">
-            {{ addon._compat_counts.success|numberfmt }}</b>
-        </a>
-      </li>
+      {% if not theme %}
+        <li class="view-stats"><a href="{{ url('stats.overview', addon.slug) }}">
+          {{ _('View Statistics Dashboard') }}</a></li>
+        <li class="compat-reports">
+          <a href="{{ url('compat.reporter_detail', addon.guid) }}">
+            <span>{{ _('Compatibility Reports') }}</span>
+            <b class="failure" title="{{ _('{0} failure reports')|f(addon._compat_counts.failure) }}">
+              {{ addon._compat_counts.failure|numberfmt }}</b>
+            <b class="success" title="{{ _('{0} success reports')|f(addon._compat_counts.success) }}">
+              {{ addon._compat_counts.success|numberfmt }}</b>
+          </a>
+        </li>
+      {% endif %}
     </ul>
   </div>
 </section>

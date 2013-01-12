@@ -29,7 +29,7 @@ from translations.fields import TransField, TransTextarea
 from translations.forms import TranslationFormMixin
 from translations.models import Translation
 from translations.widgets import TranslationTextInput
-from versions.models import Version
+from versions.models import License, Version
 
 log = commonware.log.getLogger('z.addons')
 
@@ -127,6 +127,11 @@ class AddonFormBasic(AddonFormBase):
             kw.setdefault('initial', {})['slug'] = kw['instance'].app_slug
 
         super(AddonFormBasic, self).__init__(*args, **kw)
+
+        # Theme summary optional.
+        if kw['instance'].is_persona():
+            self.fields['summary'].required = False
+
         self.fields['tags'].initial = ', '.join(self.get_tags(self.instance))
         # Do not simply append validators, as validators will persist between
         # instances.
@@ -583,6 +588,23 @@ class NewPersonaForm(AddonFormBase):
         AddonCategory(addon=addon, category=data['category']).save()
         AddonCategory(addon=addon, category=tb_c).save()
 
+        return addon
+
+
+class ThemeLicenseForm(happyforms.Form):
+    license = forms.TypedChoiceField(choices=amo.PERSONA_LICENSES_IDS,
+        coerce=int, empty_value=None, widget=forms.HiddenInput,
+        error_messages={'required': _lazy(u'A license must be selected.')})
+
+    def clean_license(self):
+        try:
+            return License.objects.get(builtin=self.cleaned_data['license'])
+        except License.DoesNotExist:
+            raise forms.ValidationError(_(u'License does not exist.'))
+
+    def save(self, addon):
+        addon.persona.license = self.cleaned_data['license']
+        addon.persona.save()
         return addon
 
 

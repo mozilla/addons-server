@@ -84,15 +84,19 @@ class AppFilter(BaseFilter):
             ('rating', _lazy(u'Rating')))
 
 
-def addon_listing(request, default='name', webapp=False):
+def addon_listing(request, default='name', webapp=False, theme=False):
     """Set up the queryset and filtering for addon listing for Dashboard."""
     Filter = AppFilter if webapp else AddonFilter
     if webapp:
         qs = Webapp.objects.filter(
             id__in=request.amo_user.addons.filter(type=amo.ADDON_WEBAPP))
         model = Webapp
+    elif theme:
+        qs = request.amo_user.addons.filter(type=amo.ADDON_PERSONA)
+        model = Addon
     else:
-        qs = request.amo_user.addons.exclude(type=amo.ADDON_WEBAPP)
+        qs = request.amo_user.addons.exclude(type__in=[amo.ADDON_WEBAPP,
+                                                       amo.ADDON_PERSONA])
         model = Addon
     filter = Filter(request, qs, 'sort', default, model=model)
     return filter.qs, filter
@@ -119,9 +123,15 @@ def index(request):
 def dashboard(request, webapp=False):
     addons, filter = addon_listing(request, webapp=webapp)
     addons = amo.utils.paginate(request, addons, per_page=10)
+
+    themes, theme_filter = addon_listing(request, theme=True)
+    themes = amo.utils.paginate(request, themes, per_page=10)
+
     blog_posts = _get_posts()
     all_addons = request.amo_user.addons.exclude(type=amo.ADDON_WEBAPP)
     data = dict(addons=addons, sorting=filter.field, filter=filter,
+                themes=themes, theme_sorting=theme_filter.field,
+                theme_filter=theme_filter,
                 items=_get_items(None, all_addons)[:4],
                 sort_opts=filter.opts, rss=_get_rss_feed(request),
                 blog_posts=blog_posts, timestamp=int(time.time()),
@@ -285,12 +295,20 @@ def feed(request, addon_id=None):
     return jingo.render(request, 'devhub/addons/activity.html', data)
 
 
-@dev_required(webapp=True)
-def edit(request, addon_id, addon, webapp=False):
+@dev_required(webapp=True, theme=True)
+def edit(request, addon_id, addon, webapp=False, theme=False):
+    url_prefix = 'addons'
+    if webapp:
+        url_prefix = 'apps'
+    elif theme:
+        url_prefix = 'themes'
+
     data = {
        'page': 'edit',
        'addon': addon,
        'webapp': webapp,
+       'theme': theme,
+       'url_prefix': url_prefix,
        'valid_slug': addon.slug,
        'tags': addon.tags.not_blacklisted().values_list('tag_text', flat=True),
        'previews': addon.previews.all(),
@@ -525,6 +543,7 @@ def acquire_refund_permission(request, addon_id, addon, webapp=False):
         dest = 'market.1'
     return redirect(addon.get_dev_url(dest))
 
+
 @waffle_switch('allow-refund')
 @dev_required(webapp=True)
 def issue_refund(request, addon_id, addon, webapp=False):
@@ -549,8 +568,9 @@ def issue_refund(request, addon_id, addon, webapp=False):
                 for res in results:
                     if res['refundStatus'] == 'ALREADY_REVERSED_OR_REFUNDED':
                         paypal_log.debug(
-                            'Refund attempt for already-refunded paykey: %s, %s'
-                            % (contribution.paykey, res['receiver.email']))
+                            'Refund attempt for already-refunded paykey: %s, '
+                            '%s' % (contribution.paykey,
+                                    res['receiver.email']))
                         messages.error(request,
                                        _('Refund was previously issued; '
                                          'no action taken.'))
@@ -934,7 +954,7 @@ def _compat_result(request, revalidate_url, target_app, target_version,
 @dev_required(allow_editors=True)
 def json_file_validation(request, addon_id, addon, file_id):
     file = get_object_or_404(File, id=file_id)
-    if not file.has_been_validated == True:
+    if not file.has_been_validated:
         if request.method != 'POST':
             return http.HttpResponseNotAllowed(['POST'])
 
@@ -1074,11 +1094,12 @@ def ajax_dependencies(request, addon_id, addon):
     return s(request, excluded_ids=[addon_id]).items
 
 
-@dev_required(webapp=True)
+@dev_required(webapp=True, theme=True)
 def addons_section(request, addon_id, addon, section, editable=False,
-                   webapp=False):
+                   webapp=False, theme=False):
     basic = addon_forms.AppFormBasic if webapp else addon_forms.AddonFormBasic
     models = {'basic': basic,
+              'license': addon_forms.ThemeLicenseForm,
               'media': addon_forms.AddonFormMedia,
               'details': addon_forms.AddonFormDetails,
               'support': addon_forms.AddonFormSupport,
@@ -1111,8 +1132,12 @@ def addons_section(request, addon_id, addon, section, editable=False,
     valid_slug = addon.slug
     if editable:
         if request.method == 'POST':
-            form = models[section](request.POST, request.FILES,
-                                   instance=addon, request=request)
+            if section == 'license':
+                form = models[section](request.POST)
+            else:
+                form = models[section](request.POST, request.FILES,
+                                       instance=addon, request=request)
+
             if form.is_valid() and (not previews or previews.is_valid()):
                 addon = form.save(addon)
 
@@ -1139,12 +1164,23 @@ def addons_section(request, addon_id, addon, section, editable=False,
                 else:
                     editable = True
         else:
-            form = models[section](instance=addon, request=request)
+            if section == 'license':
+                form = models[section]()
+            else:
+                form = models[section](instance=addon, request=request)
     else:
         form = False
 
+    url_prefix = 'addons'
+    if webapp:
+        url_prefix = 'apps'
+    elif theme:
+        url_prefix = 'themes'
+
     data = {'addon': addon,
             'webapp': webapp,
+            'theme': theme,
+            'url_prefix': url_prefix,
             'form': form,
             'editable': editable,
             'tags': tags,
@@ -1159,9 +1195,9 @@ def addons_section(request, addon_id, addon, section, editable=False,
 
 
 @never_cache
-@dev_required
+@dev_required(theme=True)
 @json_view
-def image_status(request, addon_id, addon):
+def image_status(request, addon_id, addon, theme=False):
     # Default icon needs no checking.
     if not addon.icon_type or addon.icon_type.split('/')[0] == 'icon':
         icons = True
@@ -1584,7 +1620,8 @@ def submit_addon(request, step, webapp=False):
                 tasks.fetch_icon.delay(addon)
             AddonUser(addon=addon, user=request.amo_user).save()
             SubmitStep.objects.create(addon=addon, step=3)
-            check_validation_override(request, form, addon, addon.current_version)
+            check_validation_override(request, form, addon,
+                                      addon.current_version)
             return redirect(_step_url(3, webapp), addon.slug)
     template = 'upload_webapp.html' if webapp else 'upload.html'
     is_admin = acl.action_allowed(request, 'ReviewerAdminTools', 'View')

@@ -43,6 +43,16 @@ def marketplace_patterns(prefix):
             name='devhub.%s.market.4' % prefix),
     )
 
+# These will all start with /theme/<theme_slug>/
+theme_detail_patterns = patterns('',
+    url('^$', lambda r,
+        addon_id: redirect('devhub.themes.edit', addon_id,
+                           permanent=True)),
+    url('^edit$', views.edit, name='devhub.themes.edit'),
+    url('^edit_(?P<section>[^/]+)(?:/(?P<editable>[^/]+))?$',
+        views.addons_section, name='devhub.themes.section'),
+)
+
 # These will all start with /app/<app_slug>/
 app_detail_patterns = patterns('',
     url('^edit$', views.edit, name='devhub.apps.edit'),
@@ -233,6 +243,7 @@ urlpatterns = decorate(write, patterns('',
     url('^addon/%s/' % ADDON_ID, include(detail_patterns)),
     url('^app/%s/' % amo.APP_SLUG, include(app_detail_patterns)),
     url('^app/%s/submit/' % ADDON_ID, include(submit_apps_patterns)),
+    url('^theme/%s/' % ADDON_ID, include(theme_detail_patterns)),
 
     url('^ajax/addon/%s/' % ADDON_ID, include(ajax_patterns)),
 
