@@ -9,7 +9,7 @@ define('login', ['notification'], function(notification) {
         $this.addClass('loading-submit');
         requestedLogin = true;
         navigator.id.request({
-            forceIssuer: z.body.data('persona-unverified-issuer'),
+            forceIssuer: z.body.data('persona-unverified-issuer') || null,
             allowUnverified: true,
             termsOfService: '/terms-of-use',
             privacyPolicy: '/privacy-policy',
