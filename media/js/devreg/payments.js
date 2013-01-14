@@ -166,6 +166,11 @@ exports.payment_setup = function() {
                 acc_name += bankname;
             }
 
+            // Enforce 64 char length
+            if (acc_name.length > 64) {
+                acc_name = acc_name.substr(0, 64);
+            }
+
             var account_name_value = $account_name.val();
             var last_acc_name = $account_name.data('last');
             // If the account name is empty or the value is the last one we generated.
