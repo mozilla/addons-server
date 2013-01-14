@@ -54,6 +54,7 @@ mapping = {
     'bank_details': ['bango', 'bank', ['post']],
     'product_bango': ['bango', 'product', ['get', 'post']],
     'make_premium': ['bango', 'premium', ['post']],
+    'make_free': ['bango', 'free', ['post']],
     'update_rating': ['bango', 'rating', ['post']],
 }
 

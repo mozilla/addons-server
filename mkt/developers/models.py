@@ -240,12 +240,23 @@ class AddonPaymentAccount(amo.models.ModelBase):
 
     @classmethod
     def _push_bango_premium(cls, bango_number, product_uri, price):
-        # Make the Bango product premium.
-        client.post_make_premium(
-            data={'bango': bango_number,
-                  'price': price,
-                  'currencyIso': 'USD',
-                  'seller_product_bango': product_uri})
+
+        if price != 0:
+            # Make the Bango product premium.
+            client.post_make_premium(
+                data={'bango': bango_number,
+                      'price': price,
+                      'currencyIso': 'USD',
+                      'seller_product_bango': product_uri})
+        else:
+            pass
+            # Pass for now, in the future, let Solitude know that the app is
+            # going to be free.
+
+            ## Make the Bango product free.
+            #client.post_make_free(
+            #    data={'bango': bango_number,
+            #          'seller_product_bango': product_uri})
 
         # Update the Bango rating.
         client.post_update_rating(
