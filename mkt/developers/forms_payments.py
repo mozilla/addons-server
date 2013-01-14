@@ -175,7 +175,8 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
             premium = self._make_premium()
             self.addon.premium_type = (
                 amo.ADDON_PREMIUM_INAPP if
-                self.cleaned_data.get('allow_inapp') else amo.ADDON_PREMIUM)
+                self.cleaned_data.get('allow_inapp') == 'True' else
+                amo.ADDON_PREMIUM)
 
             if 'price' in self.cleaned_data:
                 log.debug('[1@%s] Updating app price (%s)' %
