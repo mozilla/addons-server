@@ -41,6 +41,11 @@ define('login', ['notification'], function(notification) {
                 if (!err) {
                     err = gettext("Persona login failed. Maybe you don't have an account under that email address?") + " " + textStatus + " " + error;
                 }
+                // Catch-all for XHR errors otherwise we'll trigger 'notify'
+                // with its message as one of the error templates.
+                if (jqXHR.status != 200) {
+                    err = gettext('Persona login failed. A server error was encountered.');
+                }
                 z.page.trigger('notify', {msg: err});
              });
         } else {
