@@ -67,15 +67,22 @@ b[data-href] {
 
 // たぶんちさいです
 @media(min-width: 500px) {
-    #search {
-        float: right;
-        margin: 0 12px 0 0;
+    body.show-search {
+        #search-q {
+            width: 280px;
+        }
     }
-    #search-q {
-        margin-top: 10px;
-    }
-    body[data-page-type='search'] #site-header h1.page {
-        display: inline-block;
-        margin-left: 10px;
+    body:not(.show-search) {
+        #search {
+            float: right;
+            margin: 0 12px 0 0;
+        }
+        #search-q {
+            margin-top: 10px;
+        }
+        body[data-page-type='search'] #site-header h1.page {
+            display: inline-block;
+            margin-left: 10px;
+        }
     }
 }
