@@ -318,7 +318,7 @@ def browserid_authenticate(request, assertion, is_native=False):
         # We also need to force the appropriate issuer
         # for potentially unverified emails.
         url = settings.NATIVE_BROWSERID_VERIFICATION_URL
-        extra_params = {'issuer': settings.UNVERIFIED_ISSUER,
+        extra_params = {'forceIssuer': settings.UNVERIFIED_ISSUER,
                         'allowUnverified': 'true'}
 
     audience = get_audience(request)

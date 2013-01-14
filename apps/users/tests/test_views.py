@@ -765,7 +765,7 @@ class TestPersonaLogin(UserViewBase):
                 headers=ANY)
         data = parse_qs(http_request.call_args[1]['data'])
         eq_(data['audience'][0], 'http://mysite.org')
-        eq_(data['issuer'][0], settings.UNVERIFIED_ISSUER)
+        eq_(data['forceIssuer'][0], settings.UNVERIFIED_ISSUER)
         eq_(data['allowUnverified'][0], 'true')
 
     @patch.object(waffle, 'switch_is_active', lambda x: True)

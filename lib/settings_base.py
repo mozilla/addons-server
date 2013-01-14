@@ -1507,11 +1507,14 @@ BROWSERID_JS_URL = 'https://login.persona.org/include.js'
 
 # The issuer for unverified Persona email addresses.
 # We only trust one issuer to grant us unverified emails.
-UNVERIFIED_ISSUER = 'native-persona.org'
+NATIVE_BROWSERID_DOMAIN = 'native-persona.org'
+UNVERIFIED_ISSUER = 'b2g2pac.personatest.org'
 
 # This is a B2G (or other native) verifier. Adjust accordingly.
-NATIVE_BROWSERID_VERIFICATION_URL = 'https://%s/verify' % UNVERIFIED_ISSUER
-NATIVE_BROWSERID_JS_URL = 'https://%s/include.js' % UNVERIFIED_ISSUER
+NATIVE_BROWSERID_VERIFICATION_URL = ('https://%s/verify'
+                                     % NATIVE_BROWSERID_DOMAIN)
+NATIVE_BROWSERID_JS_URL = ('https://%s/include.js'
+                           % NATIVE_BROWSERID_DOMAIN)
 
 # These domains get `x-frame-options: allow-from` for Privacy Policy / TOS.
 LEGAL_XFRAME_ALLOW_FROM = [
