@@ -166,7 +166,7 @@ def update(ctx):
     create_virtualenv()
     # SVN is down.
     # update_locales()
-    update_products()
+    # update_products()
     compress_assets()
     compress_assets(arg='--settings=settings_local_mkt')
     schematic()
