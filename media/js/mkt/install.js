@@ -1,6 +1,6 @@
 // Hey there! I know how to install apps. Buttons are dumb now.
 
-(function() {
+define('install', ['capabilities', 'payments'], function(caps, payments) {
     z.page.on('click', '.product.launch', launchHandler);
     z.page.on('click', '.button.product:not(.launch):not(.incompatible)', installHandler);
 
@@ -38,7 +38,7 @@
 
     function purchase(product) {
         $(window).trigger('app_purchase_start', product);
-        $.when(z.payments.purchase(product))
+        $.when(payments.purchase(product))
          .done(purchaseSuccess)
          .fail(purchaseError);
     }
@@ -59,9 +59,9 @@
         var data = {};
         var post_data = {
             src: product.src,
-            device_type: z.capabilities.getDeviceType()
+            device_type: caps.getDeviceType()
         };
-        if (z.capabilities.chromeless) {
+        if (caps.chromeless) {
             post_data.chromeless = 1;
         }
 
@@ -103,4 +103,4 @@
             }
         }
     });
-})();
+});

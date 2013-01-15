@@ -1,4 +1,4 @@
-(function() {
+define('payments', ['capabilities'], function(caps) {
 
     var product,
         $def,
@@ -34,7 +34,7 @@
             });
     }
 
-    if (simulateNavPay && !z.capabilities.navPay) {
+    if (simulateNavPay && caps.navPay) {
         navigator.mozPay = function(jwts) {
             var request = {
                 onsuccess: function() {
@@ -74,7 +74,7 @@
         $def = $.Deferred();
         product = prod;
 
-        if (z.capabilities.navPay || simulateNavPay) {
+        if (caps.navPay || simulateNavPay) {
             $.post(product.prepareNavPay, {})
                 .fail(function() {
                     $def.reject(null, product, 'MKT_SERVER_ERROR');
@@ -90,7 +90,7 @@
         return $def.promise();
     }
 
-    z.payments = {
+    return {
         'purchase': beginPurchase
     };
-})();
+});

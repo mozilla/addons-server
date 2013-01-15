@@ -334,11 +334,14 @@ JS = {
         'js/mkt/consumer_init.js',
     ),
     'mkt/reviewers': (
+        'js/lib/amd.js',
         'js/mkt/utils.js',
         'js/mkt/apps.js',
+        'js/mkt/payments.js',
         'js/mkt/install.js',
         'js/mkt/buttons.js',
         'js/mkt/reviewers.js',
+        'js/devreg/reviewers_init.js',
     ),
     'mkt/stats': (
         'js/zamboni/storage.js',

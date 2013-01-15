@@ -1,40 +1,55 @@
 // Do this last- initialize the marketplace!
 
-define('marketplace', ['login', 'notification', 'prefetch', 'tracking', 'feedback'], function() {
+(function() {
 
-    // Initialize analytics tracking.
-    z.page.on('fragmentloaded', function(event, href, popped, state) {
-        if (!popped) {
-            // TODO: Nuke Webtrends once we're exclusively on GA.
-            webtrendsAsyncInit();
+    var modules = [
+        'feedback',
+        'install',
+        'login',
+        'notification',
+        'prefetch',
+        'tracking'
+    ];
 
-            // GA track every fragment loaded page.
-            _gaq.push(['_trackPageview', href]);
-        }
-    });
+    define('marketplace', modules, function() {
 
-    // Check for mobile sizing.
-    if (z.capabilities.mobile && z.body.hasClass('desktop')) {
-        var notification = require('notification');
+        // Initialize analytics tracking.
+        z.page.on('fragmentloaded', function(event, href, popped, state) {
+            if (!popped) {
+                // TODO: Nuke Webtrends once we're exclusively on GA.
+                webtrendsAsyncInit();
 
-        notification({
-            message: gettext('Click here to view the Mobile Marketplace!')
-        }).then(function() {
-            $.cookie('mobile', 'true', {path: '/'});
-            window.location.reload();
-        }).fail(alert);
-    }
-
-    // This lets you refresh within the app by holding down command + R.
-    if (z.capabilities.gaia) {
-        window.addEventListener('keydown', function(e) {
-            if (e.keyCode == 82 && e.metaKey) {
-                window.location.reload();
+                // GA track every fragment loaded page.
+                _gaq.push(['_trackPageview', href]);
             }
         });
-    }
 
-});
-require('marketplace');
+        // Check for mobile sizing.
+        if (z.capabilities.mobile && z.body.hasClass('desktop')) {
+            var notification = require('notification');
 
-$('#splash-overlay').addClass('hide');
+            notification({
+                message: gettext('Click here to view the Mobile Marketplace!')
+            }).then(function() {
+                $.cookie('mobile', 'true', {path: '/'});
+                window.location.reload();
+            }).fail(alert);
+
+        }
+
+        // This lets you refresh within the app by holding down command + R.
+        if (z.capabilities.gaia) {
+            window.addEventListener('keydown', function(e) {
+                if (e.keyCode == 82 && e.metaKey) {
+                    window.location.reload();
+                }
+            });
+        }
+
+    });
+
+    require('marketplace');
+
+    $('#splash-overlay').addClass('hide');
+
+})();
