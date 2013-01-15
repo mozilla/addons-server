@@ -224,10 +224,10 @@ class TestFeaturedApps(amo.tests.TestCase):
         f = FeaturedApp.objects.create(app=self.a1, category=None)
         FeaturedAppRegion.objects.create(featured_app=f, region=1)
         r = self.client.post(reverse('zadmin.set_attrs_ajax'),
-                             data={'app': f.pk, 'region[]': (3, 2)})
+                             data={'app': f.pk, 'region[]': (4, 2)})
         eq_(r.status_code, 200)
         eq_(list(FeaturedApp.objects.get(pk=f.pk).regions.values_list(
-            'region', flat=True)), [2, 3])
+            'region', flat=True)), [2, 4])
 
     def test_no_set_excluded_region(self):
         AddonExcludedRegion.objects.create(addon=self.a1, region=2)

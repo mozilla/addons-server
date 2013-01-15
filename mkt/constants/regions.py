@@ -58,36 +58,12 @@ class US(REGION):
     weight = 1
 
 
-class CA(REGION):
-    id = 3
-    name = _lazy(u'Canada')
-    slug = 'ca'
-    default_currency = 'CAD'
-    mcc = 302
-
-
 class UK(REGION):
     id = 4
     name = _lazy(u'United Kingdom')
     slug = 'uk'
     default_currency = 'GBP'
     mcc = 235
-
-
-class AU(REGION):
-    id = 5
-    name = _lazy(u'Australia')
-    slug = 'au'
-    default_currency = 'AUD'
-    mcc = 505
-
-
-class NZ(REGION):
-    id = 6
-    name = _lazy(u'New Zealand')
-    slug = 'nz'
-    default_currency = 'NZD'
-    mcc = 530
 
 
 class BR(REGION):
