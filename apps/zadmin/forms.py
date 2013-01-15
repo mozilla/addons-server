@@ -329,3 +329,7 @@ class GenerateErrorForm(happyforms.Form):
                 1 / 0
             except:
                 settings.METLOG.raven('metlog_sentry error triggered')
+
+
+class PriceTiersForm(happyforms.Form):
+    prices = forms.FileField()

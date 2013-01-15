@@ -43,13 +43,14 @@ from devhub.models import ActivityLog
 from files.models import Approval, File
 from files.tasks import start_upgrade as start_upgrade_task
 from files.utils import find_jetpacks, JetpackUpgrader
+from market.utils import update_from_csv
 from stats.cron import index_latest_stats
 from stats.search import setup_indexes
 from users.cron import reindex_users
 from users.models import UserProfile
 from versions.compare import version_int as vint
 from versions.models import Version
-from zadmin.forms import GenerateErrorForm, SiteEventForm
+from zadmin.forms import GenerateErrorForm, PriceTiersForm, SiteEventForm
 from zadmin.models import SiteEvent
 
 from . import tasks
@@ -902,3 +903,14 @@ def email_addresses_file(request):
         if e is not None:
             resp.write(e + '\n')
     return resp
+
+
+@admin_required
+def price_tiers(request):
+    output = []
+    form = PriceTiersForm(request.POST or None, request.FILES)
+    if request.method == 'POST' and form.is_valid():
+        output = update_from_csv(form.cleaned_data['prices'])
+
+    return jingo.render(request, 'zadmin/update-prices.html',
+                        {'result': output, 'form': form})
