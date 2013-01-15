@@ -137,6 +137,18 @@ class TestPremiumForm(amo.tests.TestCase):
 
         self.assertSetEqual(self.addon.device_types, form.get_devices())
 
+    def test_cannot_change_devices_for_packaged_app(self):
+        old_devices = [amo.DEVICE_GAIA]
+
+        self.platforms = {'free_platforms': ['free-desktop']}
+        self.addon.update(is_packaged=True)
+        form = forms_payments.PremiumForm(data=self.platforms, **self.kwargs)
+        assert form.is_valid(), form.errors
+        form.save()
+
+        self.assertSetEqual(self.addon.device_types, old_devices)
+        self.assertSetEqual(form.get_devices(), old_devices)
+
 
 class TestPaidRereview(amo.tests.TestCase):
     fixtures = fixture('webapp_337141') + ['market/prices']

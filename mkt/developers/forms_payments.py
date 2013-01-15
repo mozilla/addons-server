@@ -71,8 +71,8 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
         self.device_data = {}
         supported_devices = [amo.REVERSE_DEVICE_LOOKUP[dev.id] for dev in
                              self.addon.device_types]
-        prefix = 'paid' if self.is_paid() else 'free'
-        self.init_platforms = self.initial['%s_platforms' % prefix] = []
+        self.initial.setdefault('free_platforms', [])
+        self.initial.setdefault('paid_platforms', [])
 
         for platform in set(x[0].split('-', 1)[1] for x in
                             FREE_PLATFORMS + PAID_PLATFORMS):
@@ -81,7 +81,8 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
             self.device_data['paid-%s' % platform] = supported
 
             if supported:
-                self.init_platforms.append('%s-%s' % (prefix, platform))
+                self.initial['free_platforms'].append('free-%s' % platform)
+                self.initial['paid_platforms'].append('paid-%s' % platform)
 
         if (not self.initial.get('price') and
             len(self.fields['price'].choices) > 1):
@@ -102,25 +103,50 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
         return self.addon.premium_type in amo.ADDON_PREMIUMS
 
     def is_toggling(self):
-        return self.request.POST.get('toggle-paid', False) or False
+        value = self.request.POST.get('toggle-paid')
+        return value if value in ('free', 'paid') else False
 
     def clean(self):
-        cleaned_data = self.cleaned_data
-        if not self.is_toggling():
-            cleaned_data = super(PremiumForm, self).clean()
+
+        def refresh_data():
+            # We want to throw out the user's selections in this case and
+            # not update the <select> element that goes along with this.
+            # I.e.: we don't want to re-populate these big chunky
+            # checkboxes with bad data.
+            # Also, I'm so, so sorry.
+            self.data = dict(self.data)
+            platforms = dict(
+                free_platforms=self.initial.get('free_platforms', []),
+                paid_platforms=self.initial.get('paid_platforms', []))
+            self.data.update(**platforms)
+            return platforms
+
+        is_toggling = self.is_toggling()
+
+        if self.addon.is_packaged:
+            # Force packaged apps to have their initial data.
+            # IT CANNOT BE CHANGED!
+            # TODO: Remove this when packaged apps land for all WebRT
+            # platforms.
+
+            prefix = (is_toggling or
+                      'paid' if self.is_paid() else 'free')
+            platforms = refresh_data()
+            self.cleaned_data.update(**platforms)
+            del self.cleaned_data[
+                'paid_platforms' if prefix == 'free' else
+                'free_platforms']
+
+            self.cleaned_data = super(PremiumForm, self).clean()
+
+        elif not is_toggling:
+            self.cleaned_data = super(PremiumForm, self).clean()
             if (self._errors.get('free_platforms') or
                 self._errors.get('paid_platforms')):
-                # We want to throw out the user's selections in this case and
-                # not update the <select> element that goes along with this.
-                # I.e.: we don't want to re-populate these big chunky
-                # checkboxes with bad data.
-                # Also, I'm so, so sorry.
-                self.data = dict(self.data)
-                self.data.update(
-                    free_platforms=self.initial.get('free_platforms', []),
-                    paid_platforms=self.initial.get('paid_platforms', []))
 
-        return cleaned_data
+                refresh_data()
+
+        return self.cleaned_data
 
     def clean_price(self):
         if (self.cleaned_data.get('premium_type') in amo.ADDON_PREMIUMS
@@ -185,7 +211,7 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
 
             premium.save()
 
-        if not toggle:
+        if not toggle and not self.addon.is_packaged:
             # Save the device compatibility information when we're not
             # toggling.
             super(PremiumForm, self).save(self.addon, is_premium)

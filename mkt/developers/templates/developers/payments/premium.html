@@ -22,7 +22,7 @@
          'title': DEVICE_LOOKUP[item[0]]
         }|xmlattr }}>
       <h3>{{ item[1] }}</h3>
-      {%- if can_change -%}
+      {%- if can_change and not is_packaged -%}
         <div class="listing-footer">
           <input type="checkbox" {{ 'checked' if form.device_data[item[0]] }}>
         </div>
