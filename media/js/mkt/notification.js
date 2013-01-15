@@ -3,14 +3,8 @@ define('notification', ['capabilities'], function(caps) {
     var notificationEl = $('<div id="notification">');
     z.body.append(notificationEl);
 
+    var def;
     var addedClasses = [];
-
-    function reset() {
-        notificationEl.removeClass(addedClasses.join(' '))
-                      .text('');
-        addedClasses = [];
-        def = $.Deferred();
-    }
 
     function show() {
         notificationEl.addClass('show');
@@ -22,17 +16,13 @@ define('notification', ['capabilities'], function(caps) {
 
     function die() {
         def.reject();
-        def = false;
         hide();
     }
 
     function affirm() {
         def.resolve();
-        def = false;
         hide();
     }
-
-    var def;
 
     notificationEl.on('touchstart click', affirm);
 
@@ -41,10 +31,12 @@ define('notification', ['capabilities'], function(caps) {
         if (def && def.state() === 'pending') {
             def.reject();
         }
+        def = $.Deferred();
+        notificationEl.removeClass(addedClasses.join(' '))
+                      .text('');
+        addedClasses = [];
 
         if (!opts.message) return;
-
-        reset();
 
         if ('classes' in opts) {
             addedClasses = opts.classes.split(/\s+/);
