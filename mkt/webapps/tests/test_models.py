@@ -217,13 +217,13 @@ class TestWebapp(amo.tests.TestCase):
         w1 = Webapp.objects.create()
         w2 = Webapp.objects.create()
 
-        AddonExcludedRegion.objects.create(addon=w1, region=mkt.regions.CA.id)
         AddonExcludedRegion.objects.create(addon=w1, region=mkt.regions.BR.id)
+        AddonExcludedRegion.objects.create(addon=w1, region=mkt.regions.US.id)
         AddonExcludedRegion.objects.create(addon=w2, region=mkt.regions.UK.id)
 
         w1_regions = list(mkt.regions.REGION_IDS)
-        w1_regions.remove(mkt.regions.CA.id)
         w1_regions.remove(mkt.regions.BR.id)
+        w1_regions.remove(mkt.regions.US.id)
 
         w2_regions = list(mkt.regions.REGION_IDS)
         w2_regions.remove(mkt.regions.UK.id)
@@ -242,15 +242,15 @@ class TestWebapp(amo.tests.TestCase):
         w1 = Webapp.objects.create()
         w2 = Webapp.objects.create()
 
-        AddonExcludedRegion.objects.create(addon=w1, region=mkt.regions.CA.id)
         AddonExcludedRegion.objects.create(addon=w1, region=mkt.regions.BR.id)
+        AddonExcludedRegion.objects.create(addon=w1, region=mkt.regions.US.id)
         AddonExcludedRegion.objects.create(addon=w2, region=mkt.regions.UK.id)
 
         all_regions = mkt.regions.REGIONS_CHOICES_ID_DICT.values()
 
         w1_regions = list(all_regions)
-        w1_regions.remove(mkt.regions.CA)
         w1_regions.remove(mkt.regions.BR)
+        w1_regions.remove(mkt.regions.US)
 
         w2_regions = list(all_regions)
         w2_regions.remove(mkt.regions.UK)
@@ -635,25 +635,24 @@ class TestAddonExcludedRegion(amo.tests.WebappTestCase):
         self.excluded = self.app.addonexcludedregion
 
         eq_(list(self.excluded.values_list('id', flat=True)), [])
-        self.er = AddonExcludedRegion.objects.create(addon=self.app,
-                                                     region=mkt.regions.CA.id)
+        self.er = self.app.addonexcludedregion.create(region=mkt.regions.UK.id)
         eq_(list(self.excluded.values_list('id', flat=True)), [self.er.id])
 
     def test_exclude_multiple(self):
         other = AddonExcludedRegion.objects.create(addon=self.app,
-                                                   region=mkt.regions.UK.id)
-        eq_(sorted(self.excluded.values_list('id', flat=True)),
-            sorted([self.er.id, other.id]))
+                                                   region=mkt.regions.BR.id)
+        self.assertSetEqual(list(self.excluded.values_list('id', flat=True)),
+                            [self.er.id, other.id])
 
     def test_remove_excluded(self):
         self.er.delete()
         eq_(list(self.excluded.values_list('id', flat=True)), [])
 
     def test_get_region(self):
-        eq_(self.er.get_region(), mkt.regions.CA)
+        eq_(self.er.get_region(), mkt.regions.UK)
 
     def test_unicode(self):
-        eq_(unicode(self.er), '%s: %s' % (self.app, mkt.regions.CA.slug))
+        eq_(unicode(self.er), '%s: %s' % (self.app, mkt.regions.UK.slug))
 
 
 class TestIsVisible(amo.tests.WebappTestCase):

@@ -521,23 +521,23 @@ class TestRegionEmail(amo.tests.WebappTestCase):
 
     @mock.patch.object(settings, 'SITE_URL', 'http://omg.org/yes')
     def test_email_for_one_new_region(self):
-        tasks.region_email([self.app.id], [mkt.regions.CA])
+        tasks.region_email([self.app.id], [mkt.regions.BR])
         msg = mail.outbox[0]
-        eq_(msg.subject, '%s: Canada region added to the Firefox Marketplace'
-                         % self.app.name)
+        eq_(msg.subject, '%s: Brazil region added to the Firefox Marketplace'
+                          % self.app.name)
         eq_(msg.to, ['steamcube@mozilla.com'])
         dev_url = ('http://omg.org/yes/developers/app/something-something/'
                    'edit#details')
         assert unicode(self.app.name) in msg.body
         assert dev_url in msg.body
         assert ' added a new ' in msg.body
-        assert ' for Canada.' in msg.body
+        assert ' for Brazil.' in msg.body
         assert 'Unsubscribe' in msg.body
 
     @mock.patch.object(settings, 'SITE_URL', 'http://omg.org/yes')
     def test_email_for_two_new_regions(self):
         tasks.region_email([self.app.id],
-                           [mkt.regions.UK, mkt.regions.CA])
+                           [mkt.regions.UK, mkt.regions.BR])
         msg = mail.outbox[0]
         eq_(msg.subject, '%s: New regions added to the Firefox Marketplace'
                          % self.app.name)
@@ -547,18 +547,18 @@ class TestRegionEmail(amo.tests.WebappTestCase):
         assert unicode(self.app.name) in msg.body
         assert dev_url in msg.body
         assert ' added two new ' in msg.body
-        assert ': Canada and United Kingdom.' in msg.body
+        assert ': Brazil and United Kingdom.' in msg.body
         assert 'Unsubscribe' in msg.body
 
     @mock.patch.object(settings, 'SITE_URL', 'http://omg.org/yes')
     def test_email_for_several_new_regions(self):
         tasks.region_email([self.app.id],
-                           [mkt.regions.CA, mkt.regions.UK, mkt.regions.BR])
+                           [mkt.regions.UK, mkt.regions.US, mkt.regions.BR])
         msg = mail.outbox[0]
         eq_(msg.subject, '%s: New regions added to the Firefox Marketplace'
                           % self.app.name)
         assert ' added a few new ' in msg.body
-        assert ': Brazil, Canada, and United Kingdom.' in msg.body
+        assert ': Brazil, United Kingdom, and United States.' in msg.body
 
 
 class TestRegionExclude(amo.tests.WebappTestCase):
@@ -567,7 +567,7 @@ class TestRegionExclude(amo.tests.WebappTestCase):
         tasks.region_exclude([], [])
         eq_(AER.objects.count(), 0)
 
-        tasks.region_exclude([], [mkt.regions.CA])
+        tasks.region_exclude([], [mkt.regions.UK])
         eq_(AER.objects.count(), 0)
 
     def test_exclude_no_regions(self):
@@ -575,13 +575,13 @@ class TestRegionExclude(amo.tests.WebappTestCase):
         eq_(AER.objects.count(), 0)
 
     def test_exclude_one_new_region(self):
-        tasks.region_exclude([self.app.id], [mkt.regions.CA])
+        tasks.region_exclude([self.app.id], [mkt.regions.UK])
         excluded = list(AER.objects.filter(addon=self.app)
                         .values_list('region', flat=True))
-        eq_(excluded, [mkt.regions.CA.id])
+        eq_(excluded, [mkt.regions.UK.id])
 
     def test_exclude_several_new_regions(self):
-        tasks.region_exclude([self.app.id], [mkt.regions.UK, mkt.regions.CA])
+        tasks.region_exclude([self.app.id], [mkt.regions.US, mkt.regions.UK])
         excluded = sorted(AER.objects.filter(addon=self.app)
                           .values_list('region', flat=True))
-        eq_(excluded, sorted([mkt.regions.CA.id, mkt.regions.UK.id]))
+        eq_(excluded, sorted([mkt.regions.US.id, mkt.regions.UK.id]))

@@ -249,10 +249,10 @@ class TestDetail(DetailBase):
         eq_(self.get_pq()('#upsell').length, 0)
         premie = amo.tests.app_factory(manifest_url='http://omg.org/yes')
         AddonExcludedRegion.objects.create(addon=premie,
-                                           region=mkt.regions.CA.id)
+                                           region=mkt.regions.UK.id)
         AddonUpsell.objects.create(free=self.app, premium=premie)
 
-        eq_(self.get_pq(region=mkt.regions.CA.slug)('#upsell').length, 0)
+        eq_(self.get_pq(region=mkt.regions.UK.slug)('#upsell').length, 0)
         eq_(self.get_pq(region=mkt.regions.US.slug)('#upsell').length, 1)
 
     def test_no_summary_no_description(self):
