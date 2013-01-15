@@ -23,7 +23,15 @@ define('marketplace', ['login', 'notification', 'prefetch', 'tracking', 'feedbac
             $.cookie('mobile', 'true', {path: '/'});
             window.location.reload();
         }).fail(alert);
+    }
 
+    // This lets you refresh within the app by holding down command + R.
+    if (z.capabilities.gaia) {
+        window.addEventListener('keydown', function(e) {
+            if (e.keyCode == 82 && e.metaKey) {
+                window.location.reload();
+            }
+        });
     }
 
 });
