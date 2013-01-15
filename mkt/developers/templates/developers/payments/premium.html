@@ -22,7 +22,7 @@
          'title': DEVICE_LOOKUP[item[0]]
         }|xmlattr }}>
       <h3>{{ item[1] }}</h3>
-      {%- if can_change and not is_packaged -%}
+      {%- if can_change -%}
         <div class="listing-footer">
           <input type="checkbox" {{ 'checked' if form.device_data[item[0]] }}>
         </div>
@@ -55,7 +55,7 @@
           {% endif %}
           <div class="error">{{ form.errors.free_platforms }}</div>
           {%- for item in form.fields['free_platforms'].choices -%}
-            {{ button(form, item, can_change=not is_paid) }}
+            {{ button(form, item, can_change=not is_paid and not is_packaged) }}
           {%- endfor %}
           {% if is_paid %}
             <div id="free-tab-save" class="update-payment-type">
