@@ -1,4 +1,4 @@
-define('payments', ['capabilities'], function(caps) {
+define('payments', ['capabilities', 'notification'], function(caps, notification) {
 
     var product,
         $def,
@@ -58,11 +58,17 @@ define('payments', ['capabilities'], function(caps) {
     function callNavPay($def, product, webpayJWT, contribStatusURL) {
         var request = navigator.mozPay([webpayJWT]);
         request.onsuccess = function() {
+            console.log('navigator.mozPay success');
             waitForPayment($def, product, webpayJWT, contribStatusURL);
-        }
+        };
         request.onerror = function() {
+            console.log('navigator.mozPay error:', this.error.name);
+            notification({
+                classes: 'error',
+                message: gettext('Payment failed. Try again later.')
+            }).then(window.location.reload);
             $def.reject(null, product, 'MKT_CANCELLED');
-        }
+        };
     }
 
     function beginPurchase(prod) {
