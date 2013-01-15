@@ -34,7 +34,7 @@ define('payments', ['capabilities'], function(caps) {
             });
     }
 
-    if (simulateNavPay && caps.navPay) {
+    if (simulateNavPay && !caps.navPay) {
         navigator.mozPay = function(jwts) {
             var request = {
                 onsuccess: function() {
