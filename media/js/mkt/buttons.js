@@ -27,19 +27,9 @@
     $(window).bind('app_purchase_start', function(e, product) {
         setButton(getButton(product), gettext('Purchasing'), 'purchasing');
     }).bind('app_purchase_success', function(e, product) {
-        var $button = getButton(product),
-            purchasedMark = '<span class="approval checkmark purchased">';
-        purchasedMark += gettext('Purchased') + '</span>';
+        var $button = getButton(product);
+
         product['isPurchased'] = true;
-
-        // Remove "PayPal pre-approval" badge if it exists.
-        var $aMark = $button.siblings('.checkmark');
-        if ($aMark.length) {
-            $aMark.remove();
-        }
-
-        // Add a "Purchased" badge.
-        $button.data('product', product).after(purchasedMark);
 
         setButton($button, gettext('Purchased'), 'purchased');
     }).bind('app_install_start', function(e, product) {

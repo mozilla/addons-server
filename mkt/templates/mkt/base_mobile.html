@@ -172,8 +172,6 @@
       </footer>
     {% endblock %}
 
-    {% include 'purchase/start.html' %}
-    {% include 'purchase/message.html' %}
     {% include 'ratings/review.html' %}
 
     <script type="text/template" id="noApps">
@@ -255,13 +253,6 @@
         {{ js('mkt/debug') }}
       {% endif %}
 
-    {% endblock %}
-
-    {% block paypal_js %}
-      {% if logged and waffle.switch('enabled-paypal') %}
-        {# We need PayPal for only authenticated users. #}
-        <script async defer src="{{ settings.PAYPAL_JS_URL }}"></script>
-      {% endif %}
     {% endblock %}
 
     {% block js %}{% endblock %}
