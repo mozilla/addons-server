@@ -15,10 +15,8 @@
 
         // Initialize analytics tracking.
         z.page.on('fragmentloaded', function(event, href, popped, state) {
+            // Otherwise we'll track back button hits etc.
             if (!popped) {
-                // TODO: Nuke Webtrends once we're exclusively on GA.
-                webtrendsAsyncInit();
-
                 // GA track every fragment loaded page.
                 _gaq.push(['_trackPageview', href]);
             }

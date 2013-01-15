@@ -106,9 +106,6 @@ VALIDATOR_IAF_URLS = ['https://marketplace.firefox.com',
 
 SOLITUDE_HOSTS = ('https://payments.allizom.org',)
 
-WEBTRENDS_USERNAME = private_mkt.WEBTRENDS_USERNAME
-WEBTRENDS_PASSWORD = private_mkt.WEBTRENDS_PASSWORD
-
 GOOGLE_ANALYTICS_DOMAIN = 'marketplace.firefox.com'
 
 if getattr(private_mkt, 'LOAD_TESTING', False):

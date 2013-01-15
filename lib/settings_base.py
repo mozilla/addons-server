@@ -798,7 +798,6 @@ MINIFY_BUNDLES = {
         ),
         'zamboni/discovery-video': (
             'js/lib/popcorn-1.0.js',
-            'js/webtrends/webtrends-v0.1.js',
             'js/zamboni/discovery_video.js',
             'js/zamboni/discovery_tracking.js',
         ),
@@ -1195,7 +1194,6 @@ CSP_REPORT_ONLY = True
 CSP_ALLOW = ("'self'",)
 CSP_IMG_SRC = ("'self'", STATIC_URL,
                "https://www.google.com",  # Recaptcha comes from google
-               "https://statse.webtrendslive.com",
                "https://www.getpersonas.com",
                "https://s3.amazonaws.com",  # getsatisfaction
               )
@@ -1487,10 +1485,6 @@ ALLOW_SELF_REVIEWS = False
 # (Android has since changed its user agent).
 MOBILE_USER_AGENTS = ('mozilla.+mobile|android|fennec|iemobile|'
                       'iphone|opera (?:mini|mobi)')
-
-#Credentials for accessing WebTrends stats.
-WEBTRENDS_USERNAME = ''
-WEBTRENDS_PASSWORD = ''
 
 #Credentials for accessing Google Analytics stats.
 GOOGLE_ANALYTICS_CREDENTIALS = {}

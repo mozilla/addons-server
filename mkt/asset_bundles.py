@@ -189,7 +189,6 @@ JS = {
         'js/lib/amd.js',
 
         'js/lib/jquery-1.7.1.js',
-        'js/lib/webtrends.js',
         'js/lib/underscore.js',
         'js/zamboni/browser.js',
         'js/amo2009/addons.js',
@@ -265,7 +264,6 @@ JS = {
 
         'js/lib/jquery-1.8.js',
         'js/lib/jquery.cookie.js',
-        'js/lib/webtrends.js',
         'js/lib/underscore.js',
         'js/lib/format.js',
 

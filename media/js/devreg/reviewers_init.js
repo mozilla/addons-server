@@ -6,10 +6,7 @@
         'install'
     ];
 
-    define('reviewers', modules, function() {
-        // TODO: Nuke Webtrends once we're exclusively on GA.
-        webtrendsAsyncInit();
-    });
+    define('reviewers', modules, function() {});
 
     require('reviewers');
 

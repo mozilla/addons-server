@@ -118,9 +118,6 @@ SIGNED_APPS_REVIEWER_SERVER = private_mkt.SIGNED_APPS_REVIEWER_SERVER
 
 CARRIER_URLS = splitstrip(private_mkt.CARRIER_URLS)
 
-WEBTRENDS_USERNAME = private_mkt.WEBTRENDS_USERNAME
-WEBTRENDS_PASSWORD = private_mkt.WEBTRENDS_PASSWORD
-
 SENTRY_CLIENT = 'djangoraven.metlog.MetlogDjangoClient'
 
 # Pass through the DSN to the Raven client and force signal
