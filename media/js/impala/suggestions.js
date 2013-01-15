@@ -167,7 +167,10 @@ $.fn.searchSuggestions = function($results, processCallback, searchType) {
 
     function clearCurrentSuggestions(e) {
         clearInterval(pollVal);
-        dismissHandler();
+        // Delay dismissal to allow for click events to happen on
+        // results. If we call it immediately, results get hidden
+        // before the click events can happen.
+        _.delay(dismissHandler, 250);
         $self.trigger('dismissed');
     }
 
