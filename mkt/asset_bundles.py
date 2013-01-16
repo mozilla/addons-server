@@ -17,7 +17,7 @@ CSS = {
 
         # Item rows (used on Dashboard).
         'css/devreg/listing.less',
-        'css/mkt/paginator.less',
+        'css/mkt/legacy-paginator.less',
 
         # Buttons (used for paginator, "Edit" buttons, Refunds page).
         'css/devreg/buttons.less',
@@ -79,7 +79,7 @@ CSS = {
         'css/mkt/data-grid.less',
         'css/mkt/reviewers.less',
         'css/mkt/themes_review.less',
-        'css/mkt/paginator.less',
+        'css/mkt/legacy-paginator.less',
         'css/mkt/files.less',
     ),
     'mkt/splash': (
@@ -95,13 +95,11 @@ CSS = {
         'css/mkt/forms.less',
         'css/mkt/header.less',
         'css/mkt/navigation.less',
-        'css/mkt/breadcrumbs.less',
         'css/mkt/buttons.less',
         'css/mkt/tile.less',
         'css/mkt/notification.less',
         'css/mkt/detail.less',
         'css/mkt/ratings.less',
-        'css/mkt/device.less',
         'css/mkt/abuse.less',
         'css/mkt/categories.less',
         'css/mkt/menu.less',
@@ -111,14 +109,10 @@ CSS = {
         'css/mkt/search.less',
         'css/mkt/paginator.less',
         'css/mkt/suggestions.less',
-        'css/mkt/support.less',
         'css/mkt/account.less',
-        'css/mkt/account-purchases.less',
         'css/mkt/login.less',
         'css/mkt/purchase.less',
-        'css/devreg/l10n.less',
         'css/mkt/lightbox.less',
-        'css/mkt/browse.less',
         'css/mkt/filters.less',
     ),
     'mkt/offline': (
@@ -143,6 +137,7 @@ CSS = {
         'css/mkt/in-app-payments.less',
     ),
     'mkt/stats': (
+        'css/mkt/legacy-paginator.less',
         'css/mkt/stats.less',
     ),
     'mkt/lookup': (

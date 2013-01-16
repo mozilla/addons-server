@@ -11,11 +11,6 @@
     display: none;
 }
 
-// TODO: Remove these when we take down walled garden and have desktop designs.
-.login.home #top {
-    margin-left: 0;
-}
-
 @media (max-width: @7col) {
     .login.home #top {
         margin: 0 auto;
@@ -264,26 +259,10 @@ body[data-page-type=notice] #site-header h1 {
     }
 }
 
-@drk-hding-start: darken(#394C58, 10%);
-@drk-hding-end: darken(#60747F, 10%);
-
 @media (min-width: 614px) {
     #site-header {
         section.main {
             max-width: 800px;
         }
     }
-    // TODO: Uncomment one the large desktop header is finished.
-    /*
-    .home {
-        #site-header {
-            h1 {
-                background: url(../../img/mkt/logos/mp_aurora_wordmark_400x60.png) no-repeat;
-                width: 400px;
-                height: 60px;
-            }
-        }
-    }
-    */
 }
-
