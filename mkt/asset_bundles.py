@@ -270,7 +270,6 @@ JS = {
         'js/lib/csrf.js',
         'js/zamboni/browser.js',
         'js/mkt/init.js',
-        'js/mkt/browserid.js',
         'js/lib/truncate.js',
         'js/zamboni/truncation.js',
         'js/common/keys.js',
@@ -287,7 +286,6 @@ JS = {
         'js/mkt/buttons.js',
         'js/mkt/search.js',
         'js/mkt/apps.js',
-        'js/mkt/typography.js',
 
         # ui
         'js/mkt/notification.js',

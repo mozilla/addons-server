@@ -238,8 +238,6 @@
     {# js #}
     {% block site_js %}
       <script src="{{ static(url('jsi18n'))|urlparams(lang=LANG) }}"></script>
-      {# When bug 755694 is solved, expose the shim again. #}
-      {# <script src="https://myapps.mozillalabs.com/jsapi/include.js"></script> #}
       {% if not logged %}
         {# We need RECAPTCHA for only non-authenticated users. #}
         <script type="text/javascript" src="{{ settings.RECAPTCHA_AJAX_URL }}"></script>
