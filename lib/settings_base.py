@@ -799,7 +799,6 @@ MINIFY_BUNDLES = {
         'zamboni/discovery-video': (
             'js/lib/popcorn-1.0.js',
             'js/zamboni/discovery_video.js',
-            'js/zamboni/discovery_tracking.js',
         ),
         'zamboni/devhub': (
             'js/lib/truncate.js',
