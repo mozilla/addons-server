@@ -88,7 +88,7 @@
                   <a href="{{ url('mkt.developers.apps.file_validation', product.app_slug, file) }}">{{ _('Validation') }}</a>
                   &middot;
                   <a href="{{ url('mkt.files.list', file) }}">{{ _('Contents') }}</a>
-                  {% if show_diff %}
+                  {% if show_diff and version == product.latest_version %}
                     &middot;
                     <a class="compare" href="{{ url('mkt.files.compare', file, file_compare(file, show_diff)) }}">{{ _('Compare') }}</a>
                   {% endif %}
