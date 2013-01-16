@@ -197,7 +197,7 @@ JS = {
         'js/common/keys.js',
         'js/impala/serializers.js',
         'js/mkt/utils.js',
-        'js/mkt/browserid.js',
+        'js/devreg/browserid.js',
         'js/mkt/login.js',
         'js/mkt/notification.js',
 
@@ -362,7 +362,7 @@ JS = {
         'js/mkt/inapp_payments.js',
         'js/lib/csrf.js',
         'js/impala/serializers.js',
-        'js/mkt/browserid.js',
+        'js/devreg/browserid.js',
         'js/mkt/login.js',
     ),
     'mkt/lookup': (
