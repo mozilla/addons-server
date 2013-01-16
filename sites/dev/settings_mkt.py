@@ -109,8 +109,6 @@ INAPP_IMAGE_PATH = NETAPP_STORAGE + '/inapp-image'
 
 INAPP_KEY_PATHS = private_mkt.INAPP_KEY_PATHS
 
-WEBAPP_MANIFEST_NAME = 'Mozilla Marketplace (Dev)'
-
 SOLITUDE_HOSTS = ('https://payments-dev.allizom.org',)
 
 PAYPAL_LIMIT_PREAPPROVAL = False
