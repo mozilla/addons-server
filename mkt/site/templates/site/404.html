@@ -12,10 +12,8 @@
 
 {% block content %}
   <section class="main primary">
+    <h1>{{ _("We're sorry, but we can't find what you're looking for.") }}</h1>
     <div class="island prose">
-      <h2>
-        {{ _("We're sorry, but we can't find what you're looking for.") }}
-      </h2>
       <p>
         {{ _("The page or file you requested wasn't found on our site. It's
              possible that you clicked a link that's out of date, or typed in
@@ -26,7 +24,8 @@
                  spelling.") }}</li>
         <li>
             {% trans home=url('home') %}
-              Visit the <a class="sync" href="{{ home }}">Firefox Marketplace front page</a>.
+              Visit the <a class="sync" href="{{ home }}">Firefox Marketplace
+              front page</a>.
             {% endtrans %}
         </li>
       </ul>
