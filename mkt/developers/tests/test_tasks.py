@@ -116,6 +116,7 @@ def _uploader(resize_size, final_size):
     assert not os.path.exists(src.name)
 
 
+@mock.patch('mkt.developers.tasks.get_hue', lambda img: 0)
 def test_resize_image_asset():
     img = get_image_path('mozilla.png')
     original_size = (339, 128)
