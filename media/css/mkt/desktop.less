@@ -23,6 +23,63 @@ body {
 
 .categories {
     padding: 50px 0;
+    .grid .mkt-tile h3 {
+        margin-bottom: -6px;
+    }
+    .grid .mkt-tile .icon {
+        background: url(../../img/mkt/glyphs/desktop/sprite.png) no-repeat;
+        height: 96px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin: -58px 0 0 -48px;
+        width: 96px;
+        //&.cat-books-reference {
+        //    background-position: 0 0;
+        //}
+        &.cat-business {
+            background-position: 0 -96px;
+        }
+        &.cat-education {
+            background-position: 0 -192px;
+        }
+        &.cat-entertainment-sports {
+            background-position: 0 -288px;
+        }
+        &.cat-games {
+            background-position: 0 -384px;
+        }
+        &.cat-health-fitness {
+            background-position: 0 -480px;
+        }
+        &.cat-lifestyle {
+            background-position: 0 -576px;
+        }
+        &.cat-music {
+            background-position: 0 -672px;
+        }
+        &.cat-news-weather {
+            background-position: 0 -768px;
+        }
+        &.cat-photos-media {
+            background-position: 0 -864px;
+        }
+        &.cat-productivity {
+            background-position: 0 -960px;
+        }
+        &.cat-shopping {
+            background-position: 0 -1056px;
+        }
+        &.cat-social {
+            background-position: 0 -1152px;
+        }
+        &.cat-travel {
+            background-position: 0 -1248px;
+        }
+        &.cat-utilities {
+             background-position: 0 -1344px;
+        }
+    }
     h2 {
         .light-text-shadow;
         color: @dark-gray;
@@ -58,7 +115,7 @@ body {
 
 #footer {
     background: @white;
-    border-top-color: rgb(183, 183, 183);
+    border-top-color: rgba(183,183,183,.8);
 }
 
 #directory-footer {
@@ -196,5 +253,9 @@ body:not(.force-mobile) .content-rating {
             background-image: url(../../img/mkt/icons/rocket-2x.png);
             background-size: 47px auto;
         }
+    }
+    .categories .grid .mkt-tile .icon {
+        background-image: url(../../img/mkt/glyphs/desktop/sprite-2x.png);
+        background-size: 96px auto;
     }
 }

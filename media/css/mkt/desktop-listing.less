@@ -82,14 +82,15 @@
 
 .grid .mkt-tile {
     &.category {
-        background-color: #d6d9de;
+        background: @grain-src rgba(255,255,255,.4);
+        background-size: 10px 10px;
         h3 {
             .light-text-shadow;
             color: @medium-gray;
             font-weight: 400;
         }
         &:hover, &:active {
-            background-color: rgba(255,255,255,.6);
+            background-color: rgba(255,255,255,.8);
             h3 {
                 color: @dark-gray;
             }
