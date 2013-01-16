@@ -139,7 +139,9 @@ class TestPayments(amo.tests.TestCase):
         extension = {'regions': self.get_region_list(),
                      'other_regions': 'on',
                      'free_platforms': ['free-%s' % dt.class_name for dt in
-                                        self.webapp.device_types]}
+                                        self.webapp.device_types],
+                     'paid_platforms': ['paid-%s' % dt.class_name for dt in
+                                        self.webapp.device_types],}
         base.update(extension)
         return base
 

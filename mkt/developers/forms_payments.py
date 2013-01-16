@@ -128,22 +128,15 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
             # IT CANNOT BE CHANGED!
             # TODO: Remove this when packaged apps land for all WebRT
             # platforms.
-
-            prefix = (is_toggling or
-                      'paid' if self.is_paid() else 'free')
             platforms = refresh_data()
             self.cleaned_data.update(**platforms)
-            del self.cleaned_data[
-                'paid_platforms' if prefix == 'free' else
-                'free_platforms']
-
-            self.cleaned_data = super(PremiumForm, self).clean()
 
         elif not is_toggling:
-            self.cleaned_data = super(PremiumForm, self).clean()
-            if (self._errors.get('free_platforms') or
-                self._errors.get('paid_platforms')):
+            # If a platform wasn't selected, raise an error.
+            if not self.cleaned_data[
+                '%s_platforms' % ('paid' if self.is_paid() else 'free')]:
 
+                self._add_error('none')
                 refresh_data()
 
         return self.cleaned_data

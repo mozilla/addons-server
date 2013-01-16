@@ -27,7 +27,8 @@ class TestPremiumForm(amo.tests.TestCase):
         self.addon = Addon.objects.get(pk=337141)
         AddonDeviceType.objects.create(
             addon=self.addon, device_type=amo.DEVICE_GAIA.id)
-        self.platforms = {'free_platforms': ['free-firefoxos']}
+        self.platforms = {'free_platforms': ['free-firefoxos'],
+                          'paid_platforms': ['paid-firefoxos']}
 
         self.price = Price.objects.create(price='0.99')
         self.user = UserProfile.objects.get(email='steamcube@mozilla.com')
@@ -116,8 +117,8 @@ class TestPremiumForm(amo.tests.TestCase):
         eq_(self.addon.premium.price.pk, price.pk)
 
     def test_update_new_with_acct(self):
-        # This was the situation for a new app that was
-        # getting linked to an existing bank account.
+        # This was the situation for a new app that was getting linked to an
+        # existing bank account.
         self.addon.update(premium_type=amo.ADDON_PREMIUM)
         self.platforms.update(price=self.price.pk)
         form = forms_payments.PremiumForm(self.platforms, **self.kwargs)
@@ -148,6 +149,17 @@ class TestPremiumForm(amo.tests.TestCase):
 
         self.assertSetEqual(self.addon.device_types, old_devices)
         self.assertSetEqual(form.get_devices(), old_devices)
+
+    def test_can_change_devices_for_hosted_app(self):
+        # Specify the free and paid. It shouldn't fail because you can't change
+        # payment types without explicitly specifying that.
+        self.platforms = {'free_platforms': ['free-desktop'],
+                          'paid_platforms': ['paid-firefoxos']}  # Ignored.
+        form = forms_payments.PremiumForm(data=self.platforms, **self.kwargs)
+        assert form.is_valid(), form.errors
+        form.save()
+
+        self.assertSetEqual(self.addon.device_types, [amo.DEVICE_DESKTOP])
 
 
 class TestPaidRereview(amo.tests.TestCase):
