@@ -118,7 +118,7 @@ def prepare_pay(request, addon):
             'memo': contrib_for}
 
     jwt_ = prepare_webpay_pay(data)
-    log.info('Preparing webpay JWT for addon %s: %s' % (addon, jwt_))
+    log.debug('Preparing webpay JWT for addon %s: %s' % (addon, jwt_))
     return {'webpayJWT': jwt_,
             'contribStatusURL': reverse('webpay.pay_status',
                                         args=[addon.app_slug, uuid_])}
