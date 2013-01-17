@@ -1,9 +1,12 @@
+# -*- coding: utf-8 -*-
 from datetime import datetime, timedelta
 import os
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
+from django.core.management import call_command
 
+import mock
 from nose.tools import eq_
 
 import amo
@@ -12,6 +15,7 @@ from addons.models import Addon
 from django.core.management.base import CommandError
 from lib.es.management.commands.reindex import flag_database, unflag_database
 from users.models import UserProfile
+from mkt.site.fixtures import fixture
 from mkt.webapps.cron import clean_old_signed, update_weekly_downloads
 from mkt.webapps.models import Installed, Webapp
 
@@ -94,3 +98,36 @@ class TestCleanup(amo.tests.TestCase):
         storage.open(self.file, 'w')
         clean_old_signed(-60)
         assert not storage.exists(self.file)
+
+
+@mock.patch('lib.crypto.packaged.sign_app')
+class TestSignApps(amo.tests.TestCase):
+    fixtures = fixture('webapp_337141')
+
+    def setUp(self):
+        self.app = Addon.objects.get(id=337141)
+        self.app.update(is_packaged=True)
+        self.app2 = amo.tests.app_factory(
+            name='Mozillaball ょ', app_slug='test',
+            is_packaged=True, version_kw={'version': '1.0',
+                                          'created': None})
+
+    def test_by_webapp(self, sign_mock):
+        v1 = self.app.get_version()
+        call_command('sign_apps', webapps=str(v1.pk))
+        file1 = v1.all_files[0]
+        assert sign_mock.called_with(((file1.file_path,
+                                       file1.signed_file_path),))
+
+    def test_all(self, sign_mock):
+        v1 = self.app.get_version()
+        v2 = self.app2.get_version()
+        call_command('sign_apps')
+        file1 = v1.all_files[0]
+        file2 = v2.all_files[0]
+        sign_mock.assert_has_calls([
+            mock.call(file1.file_path,
+                      file1.signed_file_path, False),
+            mock.call(file2.file_path,
+                      file2.signed_file_path, False)],
+        any_order=True)

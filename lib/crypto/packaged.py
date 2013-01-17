@@ -106,7 +106,7 @@ def _no_sign(src, dest):
 
 
 @task
-def sign(version_id, reviewer=False):
+def sign(version_id, reviewer=False, resign=False, **kw):
     version = Version.objects.get(pk=version_id)
     app = version.addon
     log.info('Signing version: %s of app: %s' % (version_id, app))
@@ -127,7 +127,12 @@ def sign(version_id, reviewer=False):
 
     path = (file_obj.signed_reviewer_file_path if reviewer else
             file_obj.signed_file_path)
-    if storage.exists(path):
+    if resign:
+        try:
+            storage.delete(path)
+        except OSError:
+            pass
+    elif storage.exists(path):
         log.info('Already signed app exists.')
         return path
 

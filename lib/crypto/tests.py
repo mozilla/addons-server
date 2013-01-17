@@ -1,4 +1,4 @@
-# -*- coding: utf8 -*-
+# -*- coding: utf-8 -*-
 import json
 import os
 import shutil
@@ -127,9 +127,17 @@ class TestPackaged(PackagedApp, amo.tests.TestCase):
         [f.delete() for f in self.app.current_version.all_files]
         packaged.sign(self.version.pk)
 
-    def test_already_exists(self):
+    @mock.patch('lib.crypto.packaged.sign_app')
+    def test_already_exists(self, sign_app):
         storage.open(self.file.signed_file_path, 'w')
         assert packaged.sign(self.version.pk)
+        assert not sign_app.called
+
+    @mock.patch('lib.crypto.packaged.sign_app')
+    def test_resign_already_exists(self, sign_app):
+        storage.open(self.file.signed_file_path, 'w')
+        packaged.sign(self.version.pk, resign=True)
+        assert sign_app.called
 
     @raises(ValueError)
     def test_server_active(self):
