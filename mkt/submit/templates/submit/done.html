@@ -27,11 +27,20 @@
         </p>
       {% else %}
         <p>
-          {%- trans -%}
-            Before your app can go live, you need to provide payment
-            information. Once you've added a payment account and price,
-            your app will be submitted for review.
-          {%- endtrans -%}
+          {% if payments %}
+            {%- trans %}
+              Before your app can go live, you need to provide payment
+              information. Once you've added a payment account and price,
+              your app will be submitted for review.
+            {% endtrans -%}
+          {% else %}
+            {%- trans %}
+              We've got your app saved and ready to go! Your app is currently
+              awaiting review, and will show up on listing pages and in search
+              once it is reviewed. Until then, feel free to tweak your app's
+              details and settings.
+            {% endtrans -%}
+          {% endif %}
         </p>
       {% endif %}
       <footer class="listing-footer button-wrapper">
