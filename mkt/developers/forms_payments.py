@@ -267,9 +267,9 @@ class BangoPaymentAccountForm(happyforms.Form):
     vendorName = forms.CharField(
         max_length=255, label=_lazy(u'Vendor Name'))
     financeEmailAddress = forms.EmailField(
-        required=False, label=_lazy(u'Financial Email'))
+        required=True, label=_lazy(u'Financial Email'))
     adminEmailAddress = forms.EmailField(
-        required=False, label=_lazy(u'Administrative Email'))
+        required=True, label=_lazy(u'Administrative Email'))
 
     address1 = forms.CharField(
         max_length=255, label=_lazy(u'Address'))
