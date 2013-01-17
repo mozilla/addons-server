@@ -1,6 +1,6 @@
 {% set in_devhub = request.path.startswith('/developers/') %}
 {% if logged %}
-  {% in in_devhub %}
+  {% if in_devhub %}
     <a href="{{ url('submit.app') }}" class="header-button icon submit">{{ _('Submit a New App') }}</a>
   {% endif %}
   <div class="account-links">
