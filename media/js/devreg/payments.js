@@ -248,6 +248,7 @@ exports.payment_setup = function() {
     $('.payment-account-actions').on('click', _pd(newBangoPaymentAccount));
 
     function handlePaymentOverlay(overlay) {
+        z.body.addClass('overlayed');
         overlay.addClass('show').on('click', '.close', _pd(function() {
             overlay.remove();
         }));

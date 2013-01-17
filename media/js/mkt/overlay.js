@@ -9,6 +9,7 @@
         var $overlay = $('.overlay.show');
         if ($overlay.length) {
             $overlay.removeClass('show');
+            z.body.removeClass('overlayed');
             $(window).trigger('overlay_dismissed');
         }
     }
