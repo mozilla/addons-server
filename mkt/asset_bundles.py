@@ -326,8 +326,6 @@ JS = {
         'js/mkt/consumer_init.js',
     ),
     'mkt/reviewers': (
-        'js/lib/amd.js',
-        'js/mkt/utils.js',
         'js/mkt/apps.js',
         'js/mkt/payments.js',
         'js/mkt/install.js',
