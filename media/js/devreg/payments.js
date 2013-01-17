@@ -197,7 +197,10 @@ exports.payment_setup = function() {
                 $.post(
                     $form.attr('action'), $form.serialize(),
                     function(data) {
+                        // TODO: We should use events and not write specific one-offs.
+                        // We have overlay.js.
                         $('.overlay').remove();
+                        z.body.addClass('overlayed');
                         $('#bango-account-list').html(data);
                         $('#no-payment-providers').addClass('js-hidden');
                     }
@@ -250,6 +253,8 @@ exports.payment_setup = function() {
     function handlePaymentOverlay(overlay) {
         z.body.addClass('overlayed');
         overlay.addClass('show').on('click', '.close', _pd(function() {
+            // TODO: Generalize this with the event listeners in overlay.js.
+            z.body.removeClass('overlayed');
             overlay.remove();
         }));
     }
