@@ -205,7 +205,7 @@ def persona_detail(request, addon, template=None):
             'reviews': Review.objects.valid().filter(addon=addon,
                                                      is_latest=True),
             'get_replies': Review.get_replies,
-            'search_cat': 'personas',
+            'search_cat': 'themes',
             'abuse_form': AbuseForm(request=request),
         })
 
