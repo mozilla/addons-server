@@ -16,45 +16,20 @@ from zadmin.models import DownloadSource
 
 import mkt
 from mkt.developers.models import ActivityLog
+from mkt.site.fixtures import fixture
 from mkt.webapps.models import Installed, Webapp
 
 
 class ReviewTest(amo.tests.TestCase):
-    fixtures = ['base/users', 'webapps/337141-steamcube']
+    fixtures = ['base/users'] + fixture('webapp_337141', 'reviews')
 
     def setUp(self):
-        if not hasattr(self, 'ara_mock'):
-            # This task runs in a post-save signal and is kind of
-            # slow. Only a few tests depend on it -- they are in
-            # SlowTestCreate.
-            self.ara_mock = mock.patch('reviews.tasks.addon_review_aggregates').__enter__()
-        self.check_spam_mock = None
         self.webapp = self.get_webapp()
         self.dev = UserProfile.objects.get(pk=31337)
         self.admin = UserProfile.objects.get(username='admin')
         self.regular = UserProfile.objects.get(username='regularuser')
-        # Fixtures blow chunks.
-        self.review = Review.objects.create(
-            rating=4,
-            body={'ru': 'I \u042f so hard.'},
-            addon=self.webapp,
-            user=self.regular,
-            ip_address='63.245.213.8'
-        )
-        self.reply = Review.objects.create(
-            reply_to=self.review,
-            body='Swag surfing and \u0434\u0430\u0432\u043d.',
-            addon=self.webapp,
-            user=self.dev,
-            ip_address='0.0.0.0',
-        )
-
-
-    def tearDown(self):
-        if self.ara_mock is not None:
-            self.ara_mock.__exit__()
-        if self.check_spam_mock is not None:
-            self.check_spam_mock.__exit__()
+        self.review = Review.objects.get(pk=3)
+        self.reply = Review.objects.get(pk=4)
 
     def get_webapp(self):
         return Webapp.objects.get(id=337141)
@@ -401,18 +376,6 @@ class TestCreate(ReviewTest):
                          HTTP_USER_AGENT='test-agent-2')
         eq_(Review.objects.order_by('-created')[0].client_data, client_data)
 
-
-class SlowTestCreate(ReviewTest):
-    def setUp(self):
-        #Block creation of mock for addon_review_aggregates.
-        self.ara_mock = None
-        super(SlowTestCreate, self).setUp()
-        self.add = self.webapp.get_ratings_url('add')
-        self.add_mobile = self.add + '?mobile=true'
-        self.user = self.regular
-        self.log_in_regular()
-        self.detail = self.webapp.get_detail_url()
-
     def test_review_success_edit(self):
         qs = self.webapp.reviews
         old_cnt = qs.count()
@@ -503,6 +466,32 @@ class SlowTestCreate(ReviewTest):
         eq_(self.get_webapp().total_reviews, 1)
         eq_(Review.objects.valid().filter(is_latest=True)[0].version,
             self.webapp.current_version)
+
+
+class SlowTestCreate(ReviewTest):
+    def setUp(self):
+        #Block creation of mock for addon_review_aggregates.
+        self.ara_mock = None
+        super(SlowTestCreate, self).setUp()
+        self.add = self.webapp.get_ratings_url('add')
+        self.add_mobile = self.add + '?mobile=true'
+        self.user = self.regular
+        self.log_in_regular()
+        self.detail = self.webapp.get_detail_url()
+        self.review = Review.objects.create(
+            rating=4,
+            body={'ru': 'I \u042f so hard.'},
+            addon=self.webapp,
+            user=self.regular,
+            ip_address='63.245.213.8'
+        )
+        self.reply = Review.objects.create(
+            reply_to=self.review,
+            body='Swag surfing and \u0434\u0430\u0432\u043d.',
+            addon=self.webapp,
+            user=self.dev,
+            ip_address='0.0.0.0',
+        )
 
     def test_review_link_plural(self):
         # We have reviews.
