@@ -597,11 +597,14 @@ class TestEscalationQueue(AppReviewerTest, AccessMixin, FlagsMixin):
                      app_factory(name='YYY'),
                      app_factory(name='ZZZ')]
 
-        EscalationQueue.objects.create(addon=self.apps[0])
+        EscalationQueue.objects.create(addon=self.apps[0]).update(
+            created=self.days_ago(5))
+        EscalationQueue.objects.create(addon=self.apps[1]).update(
+            created=self.days_ago(3))
+        EscalationQueue.objects.create(addon=self.apps[2]).update(
+            created=self.days_ago(1))
         self.apps[0].update(created=self.days_ago(5))
-        EscalationQueue.objects.create(addon=self.apps[1])
         self.apps[1].update(created=self.days_ago(3))
-        EscalationQueue.objects.create(addon=self.apps[2])
         self.apps[2].update(created=self.days_ago(1))
 
         self.login_as_senior_reviewer()
