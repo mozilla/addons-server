@@ -641,7 +641,7 @@ class TestAddonExcludedRegion(amo.tests.WebappTestCase):
     def test_exclude_multiple(self):
         other = AddonExcludedRegion.objects.create(addon=self.app,
                                                    region=mkt.regions.BR.id)
-        self.assertSetEqual(list(self.excluded.values_list('id', flat=True)),
+        self.assertSetEqual(self.excluded.values_list('id', flat=True),
                             [self.er.id, other.id])
 
     def test_remove_excluded(self):

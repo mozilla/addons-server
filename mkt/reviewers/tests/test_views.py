@@ -2147,8 +2147,7 @@ class TestQueueSearchSort(AppReviewerTest):
         """
         qs = _filter(Webapp.objects.all(), kw)
 
-        self.assertSetEqual(list(qs.values_list('id', flat=True)),
-                            expected_ids)
+        self.assertSetEqual(qs.values_list('id', flat=True), expected_ids)
 
     def test_no_duplicate_locale(self):
         """

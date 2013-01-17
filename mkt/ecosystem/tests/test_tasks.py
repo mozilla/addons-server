@@ -64,7 +64,8 @@ class TestMdnCacheUpdate(amo.tests.TestCase):
         _update_mdn_items(test_items)
         eq_('test', MdnCache.objects.get(name=test_items[0]['name'],
                                          locale='en-US').name)
-        self.assertSetEqual(list(MdnCache.objects.values_list('locale', flat=True)), locales)
+        self.assertSetEqual(MdnCache.objects.values_list('locale', flat=True),
+                            locales)
 
         with self.assertRaises(MdnCache.DoesNotExist):
             MdnCache.objects.get(name='old', locale='en-US')
