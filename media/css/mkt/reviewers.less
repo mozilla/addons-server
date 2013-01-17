@@ -121,25 +121,27 @@ header {
 
 .site-title {
     display: block;
-    font: bold 48px/1.2 @open-stack;
-    margin: 0 0 7px;
-    text-shadow: 0 1px 1px fadeOut(#fff, 25%);
+    font: bold 36px/38px @open-stack;
+    text-shadow: 0 1px 1px fadeOut(#000, 25%);
     text-transform: uppercase;
+    padding: 15px 0;
+    max-width: 530px;
     a {
-        color: darken(@red, 10%);
+        color: #fff;
         display: block;
         text-decoration: none;
         width: 100%;
         small {
-            color: @medium-gray;
+            color: @light-gray;
             display: block;
             font-size: 12px;
+            line-height: 14px;
             padding: 0 2px;
         }
         &:hover {
-            color: darken(@red, 20%);
+            color: darken(#fff, 10%);
             small {
-                color: @dark-gray;
+                color: darken(@light-gray, 20%);
             }
         }
     }
@@ -154,14 +156,11 @@ header {
 }
 
 #site-header {
-    background: @taupe;
+    background-color: darken(#5b3f4f, 5%);
+    height: 81px;
     .menu-nav {
         padding: 0;
     }
-}
-
-#masthead {
-    padding: 24px 0 0;
 }
 
 .menu-nav {
@@ -173,14 +172,6 @@ header {
         h1, .menu-nav {
             padding: 0 2%;
         }
-    }
-}
-
-.site-title {
-    padding-top: 27px;
-    max-width: 530px;
-    a {
-        font-size: 40px;
     }
 }
 
