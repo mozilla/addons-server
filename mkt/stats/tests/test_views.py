@@ -1,13 +1,11 @@
 import csv
 import datetime
+from decimal import Decimal
 import json
 import random
 
-from django.contrib.auth.models import AnonymousUser
-
 from nose.tools import eq_
 from test_utils import RequestFactory
-import waffle
 
 from access.models import Group, GroupUser
 import amo
@@ -20,7 +18,6 @@ from mkt.inapp_pay.models import InappConfig, InappPayment
 from mkt.webapps.models import Installed
 from mkt.site.fixtures import fixture
 from mkt.stats import search, tasks, views
-from mkt.stats.search import cut
 from mkt.stats.views import (FINANCE_SERIES, get_series_column,
                              get_series_line, pad_missing_stats)
 from stats.models import Contribution
@@ -335,7 +332,7 @@ class TestGetSeriesLine(amo.tests.ESTestCase):
                                      date__range=d_range))
 
         for stat, day in zip(stats, sorted(self.expected_days, reverse=True)):
-            expected_revenue = day * .99 * amo.MKT_CUT
+            expected_revenue = day * .99
             eq_(round(stat['count'], 2), round(expected_revenue, 2))
 
 
@@ -364,7 +361,7 @@ class TestGetSeriesColumn(amo.tests.ESTestCase):
                                             amount=random.randint(0, 10),
                                             currency=expected['currency'],
                                             price_tier=price_tier)
-                expected['count'] += cut(price_tier.price)
+                expected['count'] += Decimal(price_tier.price)
             expected['count'] = int(expected['count'])
         tasks.index_finance_total_by_currency([self.app.pk])
         self.refresh(timesleep=1)

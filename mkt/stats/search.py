@@ -6,7 +6,6 @@ import elasticutils.contrib.django as elasticutils
 
 import amo
 from amo.utils import create_es_index_if_missing
-from mkt import MKT_CUT
 from mkt.inapp_pay.models import InappPayment
 from mkt.webapps.models import Installed
 from stats.models import Contribution
@@ -31,7 +30,7 @@ def get_finance_total(qs, addon, field=None, **kwargs):
     document = {
         'addon': addon,
         'count': sales[0]['sales'] if sales.count() else 0,
-        'revenue': cut(revenue[0]['revenue'] if revenue.count() else 0),
+        'revenue': revenue[0]['revenue'] if revenue.count() else 0,
         'refunds': refunds[0]['refunds'] if refunds.count() else 0,
     }
     if field:
@@ -43,7 +42,7 @@ def get_finance_total(qs, addon, field=None, **kwargs):
         # Non-USD-normalized revenue, calculated from currency's amount rather
         # than price tier.
         if field == 'currency':
-            document['revenue_non_normalized'] = cut(qs.values('addon')
+            document['revenue_non_normalized'] = (qs.values('addon')
                 .filter(q, refund=None, **kwargs)
                 .annotate(revenue=Sum('amount'))
                 [0]['revenue'] if revenue.count() else 0)
@@ -73,7 +72,7 @@ def get_finance_total_inapp(qs, addon, inapp_name='', field=None, **kwargs):
         'addon': addon,
         'inapp': inapp_name,
         'count': sales[0]['sales'] if sales.count() else 0,
-        'revenue': cut(revenue[0]['revenue'] if revenue.count() else 0),
+        'revenue': revenue[0]['revenue'] if revenue.count() else 0,
         'refunds': refunds[0]['refunds'] if refunds.count() else 0,
     }
     if field:
@@ -111,7 +110,7 @@ def get_finance_daily(contribution):
             created__month=date.month,
             created__day=date.day).count() or 0,
         # TODO: non-USD-normalized revenue (daily_by_currency)?
-        'revenue': cut(Contribution.objects.filter(
+        'revenue': Contribution.objects.filter(
             addon__id=addon_id,
             refund=None,
             type=amo.CONTRIB_PURCHASE,
@@ -119,7 +118,7 @@ def get_finance_daily(contribution):
             created__month=date.month,
             created__day=date.day)
             .aggregate(revenue=Sum('price_tier__price'))['revenue']
-            or 0),
+            or 0,
         'refunds': Contribution.objects.filter(
             addon__id=addon_id,
             refund__isnull=False,
@@ -149,7 +148,7 @@ def get_finance_daily_inapp(payment):
             created__month=date.month,
             created__day=date.day).count() or 0,
         # TODO: non-USD-normalized revenue (daily_inapp_by_currency)?
-        'revenue': cut(InappPayment.objects.filter(
+        'revenue': InappPayment.objects.filter(
             config__addon__id=addon_id,
             contribution__refund=None,
             contribution__type=amo.CONTRIB_PURCHASE,
@@ -157,7 +156,7 @@ def get_finance_daily_inapp(payment):
             created__month=date.month,
             created__day=date.day)
             .aggregate(rev=Sum('contribution__price_tier__price'))['rev']
-            or 0),
+            or 0,
         'refunds': InappPayment.objects.filter(
             contribution__addon__id=addon_id,
             contribution__refund__isnull=False,
@@ -214,14 +213,6 @@ def setup_mkt_indexes(index=None, aliased=True):
         }
 
         es.put_mapping(model._meta.db_table, mapping, index)
-
-
-def cut(revenue):
-    """
-    Takes away Marketplace's cut from developers' revenue.
-    """
-    return Decimal(str(round(Decimal(str(revenue)) *
-                   Decimal(str(MKT_CUT)), 2)))
 
 
 def handle_kwargs(q, field, kwargs, join_field=None):

@@ -467,9 +467,6 @@ REVIEWED_SCORES = {
     REVIEWED_REVIEW: 1,
 }
 
-# Percentage of what developers earn after Marketplace's cut.
-MKT_CUT = .70
-
 # Login credential source. We'll also include the site source in that.
 # All the old existing AMO users and anyone before we started tracking this.
 LOGIN_SOURCE_UNKNOWN = 0
