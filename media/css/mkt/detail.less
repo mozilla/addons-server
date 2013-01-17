@@ -129,44 +129,6 @@
     }
 }
 
-.checkmark {
-    display: block;
-    color: @black;
-    font-weight: bold;
-    font-size: 12px;
-    line-height: 20px;
-    &:before {
-        .border-radius(10px);
-        background-color: @green;
-        color: @white;
-        content: "\2714";  /* checkmark */
-        display: inline-block;
-        font-weight: normal;
-        height: 20px;
-        line-height: 18px;
-        margin-right: 7px;
-        position: relative;
-        text-align: center;
-        width: 20px;
-    }
-    &.purchased {
-        &:before {
-            content: "$";
-        }
-    }
-    &.installed {
-        &:before {
-            background: url(../../img/mkt/icons/disk.png) 50% 50% no-repeat;
-            .border-radius(0);
-            content: "\00a0";
-        }
-    }
-}
-
-.listing .purchased {
-    margin-bottom: 10px;
-}
-
 .actions {
     p {
         margin: 0;
@@ -178,40 +140,6 @@
         position: relative;
         z-index: 1;
         width: 100%;
-    }
-    .faked-purchase,
-    .approval {
-        .border-radius(0 0 5px 5px);
-        color: @black;
-        display: block;
-        margin-top: -5px;
-        padding: 15px 15px 10px;
-        position: relative;
-        z-index: 0;
-    }
-    .noApps {
-        text-align: center;
-        margin-top: 10px;
-        a {
-            background: url(../../img/mkt/icons/nightly.png) 5px 0 no-repeat;
-            padding: 0 5px 0 30px;
-        }
-    }
-    .faked-purchase.vitals {
-        .border-radius(0 0 0 0);
-        background: fadeOut(@red, 90%);
-        font-size: 11px;
-        font-weight: 600;
-        float: none;
-        margin-left: 0;
-        text-align: center;
-    }
-    .approval {
-        background: fadeOut(@green, 90%);
-    }
-    .faked-purchase + .approval {
-        margin-top: -10px;
-        padding-top: 10px;
     }
 }
 
@@ -314,16 +242,6 @@
     }
 }
 
-.visual {
-    float: left;
-    max-width: 128px;
-    max-height: 128px;
-    img {
-        max-width: 128px;
-        max-height: 128px;
-    }
-}
-
 .product-details {
     font-size: 14px;
     text-shadow: 0 1px 0 @white;
@@ -343,14 +261,6 @@
             font-weight: normal;
             font-size: 14px;
             margin-top: 7px;
-        }
-        .cats {
-            &:after {
-                color: @note-gray;
-                content: "\00B7";
-                margin-left: 3px;
-                padding-right: 3px;
-            }
         }
         .price {
             text-shadow: 0 1px 0 @black;
@@ -400,10 +310,6 @@
     h3 {
         font-weight: bold;
     }
-}
-
-#preapproval-shortcut {
-    margin: 0;
 }
 
 // Slider next/prev page controls are smaller here.
