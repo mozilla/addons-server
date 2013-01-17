@@ -330,11 +330,14 @@ class TestRereviewQueue(AppReviewerTest, AccessMixin, FlagsMixin):
                      app_factory(name='YYY'),
                      app_factory(name='ZZZ')]
 
-        RereviewQueue.objects.create(addon=self.apps[0])
+        RereviewQueue.objects.create(addon=self.apps[0]).update(
+            created=self.days_ago(5))
+        RereviewQueue.objects.create(addon=self.apps[1]).update(
+            created=self.days_ago(3))
+        RereviewQueue.objects.create(addon=self.apps[2]).update(
+            created=self.days_ago(1))
         self.apps[0].update(created=self.days_ago(5))
-        RereviewQueue.objects.create(addon=self.apps[1])
         self.apps[1].update(created=self.days_ago(3))
-        RereviewQueue.objects.create(addon=self.apps[2])
         self.apps[2].update(created=self.days_ago(1))
 
         self.login_as_editor()
