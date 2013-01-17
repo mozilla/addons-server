@@ -21,7 +21,6 @@ from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
 from addons.models import (Addon, AddonCategory, AddonDeviceType, AddonUser,
                            Category)
-from addons.utils import reverse_name_lookup
 from apps.users.models import UserNotification
 from apps.users.notifications import app_surveys
 from constants.applications import DEVICE_TYPES
@@ -41,9 +40,12 @@ class TestSubmit(amo.tests.TestCase):
     fixtures = fixture('user_999')
 
     def setUp(self):
-        request_finished.disconnect(es.hold.process, dispatch_uid='process_es_tasks_on_finish')
-        self.gia_mock = mock.patch('mkt.developers.tasks.generate_image_assets').__enter__()
-        self.fi_mock = mock.patch('mkt.developers.tasks.fetch_icon').__enter__()
+        request_finished.disconnect(es.hold.process,
+                                    dispatch_uid='process_es_tasks_on_finish')
+        self.gia_mock = mock.patch(
+            'mkt.developers.tasks.generate_image_assets').__enter__()
+        self.fi_mock = mock.patch(
+            'mkt.developers.tasks.fetch_icon').__enter__()
         self.user = self.get_user()
         assert self.client.login(username=self.user.email, password='password')
 
@@ -407,7 +409,8 @@ class BasePackagedAppTest(BaseUploadTest, UploadAddon, amo.tests.TestCase):
     fixtures = fixture('webapp_337141', 'user_999')
 
     def setUp(self):
-        request_finished.disconnect(es.hold.process, dispatch_uid='process_es_tasks_on_finish')
+        request_finished.disconnect(es.hold.process,
+                                    dispatch_uid='process_es_tasks_on_finish')
         super(BasePackagedAppTest, self).setUp()
         self.create_switch(name='allow-packaged-app-uploads')
         self.app = Webapp.objects.get(pk=337141)
@@ -492,8 +495,10 @@ class TestDetails(TestSubmit):
     fixtures = fixture('webapp_337141', 'user_999', 'user_10482')
 
     def setUp(self):
-        self.gia_mock = mock.patch('mkt.developers.tasks.generate_image_assets').__enter__()
-        self.fi_mock = mock.patch('mkt.developers.tasks.fetch_icon').__enter__()
+        self.gia_mock = mock.patch(
+            'mkt.developers.tasks.generate_image_assets').__enter__()
+        self.fi_mock = mock.patch(
+            'mkt.developers.tasks.fetch_icon').__enter__()
         super(TestDetails, self).setUp()
         self.webapp = self.get_webapp()
         self.webapp.update(status=amo.STATUS_NULL)
@@ -727,12 +732,6 @@ class TestDetails(TestSubmit):
             assert os.path.exists(os.path.join(ad.get_icon_dir(), fn)), (
                 'Expected %s in %s' % (fn, os.listdir(ad.get_icon_dir())))
 
-    def _setup_other_webapp(self):
-        self._step()
-        # Generate another webapp to test name uniqueness.
-        app = amo.tests.addon_factory(type=amo.ADDON_WEBAPP, name='Cool App')
-        eq_(reverse_name_lookup(app.name, webapp=True), app.id)
-
     def test_screenshot_or_video_required(self):
         self._step()
         data = self.get_dict()
@@ -761,6 +760,14 @@ class TestDetails(TestSubmit):
             preview_type)
         eq_(form.find('input[name=files-0-unsaved_image_data]').val(),
             preview_uri)
+
+    def test_unique_allowed(self):
+        self._step()
+        r = self.client.post(self.url, self.get_dict(name=self.webapp.name))
+        self.assertNoFormErrors(r)
+        app = Webapp.objects.exclude(app_slug=self.webapp.app_slug)[0]
+        self.assert3xx(r, reverse('submit.app.done', args=[app.app_slug]))
+        eq_(self.get_webapp().status, amo.STATUS_PENDING)
 
     def test_slug_invalid(self):
         self._step()
