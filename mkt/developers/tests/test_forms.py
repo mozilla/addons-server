@@ -112,6 +112,26 @@ class TestRegionForm(amo.tests.WebappTestCase):
         eq_(form.initial['regions'], regions)
         eq_(form.initial['other_regions'], False)
 
+    def test_disable_regions_on_paid(self):
+        eq_(self.app.get_region_ids(), mkt.regions.REGION_IDS)
+
+        self.app.update(premium_type=amo.ADDON_PREMIUM)
+        form = forms.RegionForm(data=None, **self.kwargs)
+        assert form.has_inappropriate_regions()
+        assert not form.is_valid()
+
+        form = forms.RegionForm(
+            data={'regions': mkt.regions.ALL_PAID_REGION_IDS}, **self.kwargs)
+        assert form.has_inappropriate_regions()
+        assert form.is_valid(), form.errors
+        form.save()
+
+        self.assertSetEqual(self.app.get_region_ids(),
+                            mkt.regions.ALL_PAID_REGION_IDS)
+
+        form = forms.RegionForm(data=None, **self.kwargs)
+        assert not form.has_inappropriate_regions()
+
     def test_worldwide_only(self):
         form = forms.RegionForm(data={'other_regions': 'on'}, **self.kwargs)
         eq_(form.is_valid(), True)

@@ -659,6 +659,8 @@ class RegionForm(forms.Form):
         self.product = kw.pop('product', None)
         super(RegionForm, self).__init__(*args, **kw)
 
+        is_paid = self._product_is_paid()
+
         # If we have excluded regions, uncheck those.
         # Otherwise, default to everything checked.
         self.regions_before = self.product.get_region_ids()
@@ -669,15 +671,40 @@ class RegionForm(forms.Form):
 
         self.initial = {
             'regions': self.regions_before,
-            'other_regions': not self.future_exclusions.exists()
+            'other_regions': not self.future_exclusions.exists() and
+                             not is_paid
         }
 
         # Games cannot be listed in Brazil without a content rating.
-        self.disabled_regions = []
+        self.disabled_regions = set()
         games = Webapp.category('games')
-        if (games and self.product.categories.filter(id=games.id).exists()
-            and not self.product.content_ratings_in(mkt.regions.BR)):
-            self.disabled_regions.append(mkt.regions.BR.id)
+        if (games and
+            self.product.categories.filter(id=games.id).exists() and
+            not self.product.content_ratings_in(mkt.regions.BR)):
+
+            self.disabled_regions.add(mkt.regions.BR.id)
+
+        # If the app is paid, disable regions that use payments.
+        if is_paid:
+            self.disabled_regions.add(mkt.regions.WORLDWIDE.id)
+            self.fields['other_regions'].widget.attrs['disabled'] = 'disabled'
+            self.fields['other_regions'].label = _(u'Other regions')
+            for region in mkt.regions.ALL_REGIONS:
+                if not region.has_payments:
+                    self.disabled_regions.add(region.id)
+
+        self.disabled_regions = list(self.disabled_regions)
+
+    def _product_is_paid(self):
+        return self.product.premium_type in amo.ADDON_PREMIUMS
+
+    def has_inappropriate_regions(self):
+        """Returns whether the app is listed in regions that it shouldn't
+        otherwise be registered in."""
+
+        return (self._product_is_paid() and
+                set(self.product.get_region_ids()) -
+                    set(mkt.regions.ALL_PAID_REGION_IDS))
 
     def clean(self):
         data = self.cleaned_data
@@ -690,6 +717,10 @@ class RegionForm(forms.Form):
     def save(self):
         before = set(self.regions_before)
         after = set(map(int, self.cleaned_data['regions']))
+
+        # If the app is paid, disable regions that use payments.
+        if self._product_is_paid():
+            after &= set(mkt.regions.ALL_PAID_REGION_IDS)
 
         # Add new region exclusions.
         to_add = before - after

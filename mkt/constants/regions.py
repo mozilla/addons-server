@@ -41,6 +41,7 @@ class REGION(object):
     mcc = None
     weight = 0
     ratingsbodies = ()
+    has_payments = False
 
 
 class WORLDWIDE(REGION):
@@ -74,6 +75,7 @@ class BR(REGION):
     default_language = 'pt-BR'
     mcc = 724
     ratingsbodies = (ratingsbodies.DJCTQ,)
+    has_payments = True
 
 
 # Create a list of tuples like so (in alphabetical order):
@@ -103,7 +105,9 @@ REGIONS_CHOICES_NAME = ([(WORLDWIDE.id, WORLDWIDE.name)] +
 REGIONS_DICT = dict(REGIONS_CHOICES)
 REGIONS_CHOICES_ID_DICT = dict(REGIONS_CHOICES_ID)
 
-ALL_REGIONS = REGIONS_DICT.values()
+ALL_REGIONS = frozenset(REGIONS_DICT.values())
+ALL_PAID_REGIONS = frozenset(r for r in ALL_REGIONS if r.has_payments)
 
 ALL_REGION_IDS = sorted(REGIONS_CHOICES_ID_DICT.keys())
+ALL_PAID_REGION_IDS = sorted(r.id for r in ALL_PAID_REGIONS)
 REGION_IDS = sorted(REGIONS_CHOICES_ID_DICT.keys()[1:])

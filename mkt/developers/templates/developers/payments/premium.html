@@ -108,10 +108,10 @@
         <h2>{{ _('Prices and payment accounts') }}</h2>
         {% if is_incomplete %}
           <div class="island warning">
-            {% trans %}
+            {%- trans %}
               Your app is currently incomplete. Select a payment account and
               price tier to restore it.
-            {% endtrans %}
+            {% endtrans -%}
           </div>
         {% endif %}
         <section class="island payments">
@@ -164,10 +164,10 @@
                   <div id="bango-account-list">
                     {{ bango_account_list_form.errors }}
                     {% include 'developers/payments/includes/bango_accounts.html' %}
+                    <a href="#" class="payment-account-actions" data-action="add">
+                      {{- _('Add or manage payment accounts') -}}
+                    </a>
                   </div>
-                  <a href="#" class="payment-account-actions" data-action="add">
-                    {{- _('Add or manage payment accounts') -}}
-                  </a>
                 </td>
               </tr>
             </tbody>
@@ -181,6 +181,15 @@
       {% endif %}
 
       <h2>{{ _('Regions and listings') }}</h2>
+      {% if region_form.has_inappropriate_regions() %}
+        <div class="island warning">
+          {% trans %}
+            Your app will no longer be listed in certain regions because those
+            regions do not support payments. We have transferred your region
+            choices. Please review the changes before saving.
+          {% endtrans %}
+        </div>
+      {% endif %}
       <section id="regions" class="island">
         {{ region_form.non_field_errors() }}
         {{ region_form.regions.label }}
