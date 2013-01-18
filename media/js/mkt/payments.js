@@ -62,12 +62,14 @@ define('payments', ['capabilities', 'notification'], function(caps, notification
             waitForPayment($def, product, webpayJWT, contribStatusURL);
         };
         request.onerror = function() {
-            console.log('navigator.mozPay error:', this.error.name);
-            notification({
-                classes: 'error',
-                message: gettext('Payment failed. Try again later.'),
-                timeout: 5000
-            }).then(window.location.reload);
+            if (this.error.name !== 'cancelled') {
+                console.log('navigator.mozPay error:', this.error.name);
+                notification({
+                    classes: 'error',
+                    message: gettext('Payment failed. Try again later.'),
+                    timeout: 5000
+                }).then(window.location.reload);
+            }
             $def.reject(null, product, 'MKT_CANCELLED');
         };
     }
