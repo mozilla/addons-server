@@ -65,7 +65,8 @@ define('payments', ['capabilities', 'notification'], function(caps, notification
             console.log('navigator.mozPay error:', this.error.name);
             notification({
                 classes: 'error',
-                message: gettext('Payment failed. Try again later.')
+                message: gettext('Payment failed. Try again later.'),
+                timeout: 5000
             }).then(window.location.reload);
             $def.reject(null, product, 'MKT_CANCELLED');
         };
