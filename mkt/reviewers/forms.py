@@ -29,7 +29,7 @@ class ReviewAppForm(happyforms.Form):
         coerce=int, label=_lazy(u'Device Type Override:'),
         widget=forms.CheckboxSelectMultiple, required=False)
     notify = forms.BooleanField(
-        required=False, label=_lazy(u'Notify me the next time the manifest is'
+        required=False, label=_lazy(u'Notify me the next time the manifest is '
                                     u'updated. (Subsequent updates will not '
                                     u'generate an email)'))
 
