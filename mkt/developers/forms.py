@@ -856,6 +856,16 @@ class DevAgreementForm(happyforms.Form):
         self.instance.save()
 
 
+class DevNewsletterForm(happyforms.Form):
+    """Devhub newsletter subscription form."""
+    email = forms.EmailField(
+        error_messages={'required':
+                        _lazy(u'Please enter a valid email address.')})
+    privacy = forms.BooleanField(
+        error_messages={'required':
+                        _lazy(u'You must agree to the Privacy Policy.')})
+
+
 class AppFormTechnical(addons.forms.AddonFormBase):
     developer_comments = TransField(widget=TransTextarea, required=False)
     flash = forms.BooleanField(required=False)
