@@ -5,7 +5,7 @@ from nose.tools import eq_
 import amo.tests
 
 from lib.es import context, decorators
-from lib.es.hold import _locals, process, reset, add
+from lib.es.hold import _locals, add, process, reset
 
 
 class ESHold(amo.tests.TestCase):
