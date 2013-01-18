@@ -910,8 +910,43 @@ def performance(request, username=None):
     else:
         user = request.amo_user
 
+    today = datetime.date.today()
+    month_ago = today - datetime.timedelta(days=30)
+    year_ago = today - datetime.timedelta(days=365)
+
     total = ReviewerScore.get_total(user)
-    breakdown = ReviewerScore.get_breakdown(user)
+    totals = ReviewerScore.get_breakdown(user)
+    months = ReviewerScore.get_breakdown_since(user, month_ago)
+    years = ReviewerScore.get_breakdown_since(user, year_ago)
+
+    group = {
+        'addons': [amo.ADDON_EXTENSION, amo.ADDON_DICT, amo.ADDON_SEARCH,
+                   amo.ADDON_LPAPP, amo.ADDON_LPADDON, amo.ADDON_PLUGIN,
+                   amo.ADDON_API],
+        'apps': [amo.ADDON_WEBAPP],
+        'themes': [amo.ADDON_THEME, amo.ADDON_PERSONA],
+    }
+
+    def _sum(iter, types):
+        return sum(s.total for s in iter if s.atype in types)
+
+    breakdown = {
+        'month': {
+            'addons': _sum(months, group['addons']),
+            'apps': _sum(months, group['apps']),
+            'themes': _sum(months, group['themes']),
+        },
+        'year': {
+            'addons': _sum(years, group['addons']),
+            'apps': _sum(years, group['apps']),
+            'themes': _sum(years, group['themes']),
+        },
+        'total': {
+            'addons': _sum(totals, group['addons']),
+            'apps': _sum(totals, group['apps']),
+            'themes': _sum(totals, group['themes']),
+        }
+    }
 
     ctx = context(**{
         'profile': user,

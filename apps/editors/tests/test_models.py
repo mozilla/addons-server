@@ -479,6 +479,16 @@ class TestReviewerScore(amo.tests.TestCase):
         eq_(set([b.atype for b in breakdown]),
             set([amo.ADDON_EXTENSION, amo.ADDON_WEBAPP]))
 
+    def test_get_breakdown_since(self):
+        self._give_points()
+        self._give_points(addon=amo.tests.app_factory())
+        rs = list(ReviewerScore.objects.all())
+        rs[0].update(created=self.days_ago(50))
+        breakdown = ReviewerScore.get_breakdown_since(self.user,
+                                                      self.days_ago(30))
+        eq_(len(breakdown), 1)
+        eq_([b.atype for b in breakdown], [rs[1].addon.type])
+
     def test_get_leaderboards_last(self):
         users = []
         for i in range(6):
