@@ -179,6 +179,69 @@
         </p>
       </div>
     </section>
+
+    <div id="newsletter-signup">
+      {% if newsletter_form.errors %}
+        <div id="footer-email-errors">
+          {{ newsletter_form.non_field_errors() }}
+
+          <ul class="errorlist">
+            {{ newsletter_form.email.errors }}
+            {{ newsletter_form.privacy.errors }}
+          </ul>
+        </div>
+      {% endif %}
+
+      <form {% if newsletter_form.errors %}class="errors"{% endif %}
+            method="post">
+        {{ csrf() }}
+
+        <div class="form-title">
+          <h3>{{ _('Stay in the Loop') }}</h3>
+          <p>
+            {% trans %}
+              Leave us an email address, we'll get you the latest on
+              everything apps!
+            {% endtrans %}
+          </p>
+        </div>
+
+        <div class="form-icons">
+          <p>
+            <img src="{{ media('img/ecosystem/newsletter-phone.png') }}">
+            {{ _('Developer Devices') }}
+          </p>
+          <p>
+            <img src="{{ media('img/ecosystem/newsletter-doc.png') }}">
+            {{ _('Code &amp; Tools') }}
+          </p>
+          <p>
+            <img src="{{ media('img/ecosystem/newsletter-nametag.png') }}">
+            {{ _('Events &amp; Meetups') }}
+          </p>
+        </div>
+
+        <div class="form-data">
+          <div class="field field-email">
+            {{ newsletter_form.email }}
+          </div>
+
+          <div class="form-details">
+            <div class="field field-privacy">
+              {{ newsletter_form.privacy }}
+              <small>
+                {%- trans privacy_link='https://www.mozilla.org/en-US/privacy-policy' %}
+                  I'm okay with Mozilla handling this information as explained in the
+                  <a href="{{ privacy_link }}">Privacy Policy</a>.
+                {% endtrans -%}
+              </small>
+            </div>
+          </div>
+
+          <input type="submit" value="{{ _('Sign me up!') }}" class="button good">
+        </div>
+      </form>
+    </div>
   </div>
 {% endblock %}
 
