@@ -129,6 +129,9 @@
         });
     }
 
+    // Hide screenshot overlay on back button hit.
+    z.page.on('startfragmentload', hideLightbox);
+
     function hideLightbox() {
         pauseVideos();
         $lightbox.removeClass('show');
