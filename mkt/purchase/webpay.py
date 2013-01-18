@@ -9,6 +9,7 @@ from django.conf import settings
 from django.db.transaction import commit_on_success
 from django.views.decorators.csrf import csrf_exempt
 
+import bleach
 import commonware.log
 
 from addons.decorators import (addon_view_factory, can_be_purchased,
@@ -100,13 +101,17 @@ def prepare_pay(request, addon):
                                 price_tier=addon.premium.price,
                                 client_data=ClientData.get_or_create(request))
 
+    # Until atob() supports encoded HTML we are stripping all tags.
+    # See bug 831524
+    app_summary = bleach.clean(unicode(addon.summary), strip=True, tags=[])
+
     acct = addon.app_payment_account.payment_account
     seller_uuid = acct.solitude_seller.uuid
     data = {'amount': str(amount),
             'price_point': addon.premium.price.pk,
             'id': addon.pk,
             'app_name': unicode(addon.name),
-            'app_description': unicode(addon.summary),
+            'app_description': app_summary,
             'postback_url': absolutify(reverse('webpay.postback')),
             'chargeback_url': absolutify(reverse('webpay.chargeback')),
             'seller': addon.pk,

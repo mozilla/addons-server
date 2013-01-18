@@ -110,6 +110,14 @@ class TestPurchase(PurchaseTest):
                                 args=[self.addon.app_slug, '<garbage>']))
         eq_(data['status'], 'incomplete')
 
+    def test_strip_html(self):
+        self.addon.summary = 'Some <a href="http://soso.com">site</a>'
+        self.addon.save()
+        data = self.post(self.prepare_pay)
+        data = jwt.decode(data['webpayJWT'].encode('ascii'), verify=False)
+        req = data['request']
+        eq_(req['description'], 'Some site')
+
 
 class TestPurchaseJWT(PurchaseTest):
 
