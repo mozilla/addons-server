@@ -100,13 +100,14 @@
     </div>
 
     {% if check_addon_ownership(request, addon, dev=True) %}
+      {% set is_disabled = addon.disabled_by_user and addon.status != amo.STATUS_DISABLED %}
       <div class="island c">
-        <h2>{{ _('Delist App') }}</h2>
+        <h2>{{ _('List App') if is_disabled else _('Delist App') }}</h2>
         <p>
-          {% if addon.disabled_by_user and addon.status != amo.STATUS_DISABLED %}
+          {% if is_disabled %}
             {% trans %}
               Your app's listing is disabled and will not appear in the Firefox
-              Marketplace. You may re-enable it at any time.
+              Marketplace. You may re-list it at any time.
             {% endtrans %}
           {% else %}
             {% trans %}
@@ -116,9 +117,9 @@
           {% endif %}
         </p>
         <p class="listing-footer">
-          {% if addon.disabled_by_user and addon.status != amo.STATUS_DISABLED %}
+          {% if is_disabled %}
             <a href="{{ addon.get_dev_url('enable') }}" class="button" id="enable-addon">
-              {{ _('Relist App') }}</a>
+              {{ _('List App') }}</a>
           {% elif not addon.is_disabled %}
             <a href="#" class="button" id="disable-addon">
               {{ _('Delist App') }}</a>
