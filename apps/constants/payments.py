@@ -1,4 +1,6 @@
 from tower import ugettext_lazy as _
+from mkt.constants.bango import BANGO_CURRENCIES_KEYS
+
 
 # Paypal is an awful place that doesn't understand locales.  Instead they have
 # country codes.  This maps our locales to their codes.
@@ -148,4 +150,8 @@ PAYMENT_DETAILS_ERROR = {
     'REVERSALERROR': _('The reversal failed.'),
     'PENDING': _('The payment was received, but not completed '
                  'and is awaiting processing.'),
+}
+
+PROVIDER_CURRENCIES = {
+    'bango': BANGO_CURRENCIES_KEYS
 }

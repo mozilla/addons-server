@@ -10,6 +10,7 @@ import amo
 import amo.models
 from amo.decorators import write
 from amo.utils import get_locale_from_lang, memoize_key
+from constants.payments import PROVIDER_CURRENCIES
 from stats.models import Contribution
 from users.models import UserProfile
 
@@ -98,10 +99,15 @@ class Price(amo.models.ModelBase):
                            if c.tier_id == self.pk])
         return currencies
 
-    def prices(self):
+    def prices(self, provider=None):
         """A list of dicts of all the currencies and prices for this tier."""
-        return [({'currency': o.currency, 'amount': o.price})
-                for c, o in self.currencies()]
+        if provider:
+            currencies = PROVIDER_CURRENCIES.get(provider, [])
+            return [({'currency': o.currency, 'amount': o.price})
+                    for c, o in self.currencies() if o.currency in currencies]
+        else:
+            return [({'currency': o.currency, 'amount': o.price})
+                    for c, o in self.currencies()]
 
 
 class PriceCurrency(amo.models.ModelBase):

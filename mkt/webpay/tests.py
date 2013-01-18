@@ -23,18 +23,35 @@ class TestPrices(BaseOAuth):
         self.get_url = ('api_dispatch_detail',
                         {'resource_name': 'prices', 'pk': self.price.pk})
 
+    def get_currencies(self, data):
+        return [p['currency'] for p in data['prices']]
+
     def test_list_allowed(self):
         self._allowed_verbs(self.list_url, ['get'])
         self._allowed_verbs(self.get_url, ['get'])
 
     def test_list(self):
         res = self.client.get(self.list_url)
-        eq_(json.loads(res.content)['meta']['total_count'], 1)
+        data = json.loads(res.content)
+        eq_(data['meta']['total_count'], 1)
+        self.assertSetEqual(self.get_currencies(data['objects'][0]),
+                            ['USD', 'CAD'])
+
+    @patch('market.models.PROVIDER_CURRENCIES', {'bango': ['USD', 'EUR']})
+    def test_list_filtered(self):
+        res = self.client.get(self.get_url + ({'provider': 'bango'},))
+        data = json.loads(res.content)
+        self.assertSetEqual(self.get_currencies(data['objects'][0]), ['USD'])
 
     def test_prices(self):
         res = self.client.get(self.get_url)
         eq_(res.status_code, 200)
         data = json.loads(res.content)
-        eq_(data['name'], 'tier 1')
-        eq_(len(data['prices']), 2)
-        eq_(data['prices'][1], {'currency': 'CAD', 'amount': '3.00'})
+        self.assertSetEqual(self.get_currencies(data), ['USD', 'CAD'])
+
+    @patch('market.models.PROVIDER_CURRENCIES', {'bango': ['USD', 'EUR']})
+    def test_prices_filtered(self):
+        res = self.client.get(self.get_url + ({'provider': 'bango'},))
+        eq_(res.status_code, 200)
+        data = json.loads(res.content)
+        self.assertSetEqual(self.get_currencies(data), ['USD'])

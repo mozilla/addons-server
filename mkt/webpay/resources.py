@@ -13,3 +13,7 @@ class PriceResource(MarketplaceResource):
         allowed_methods = ['get']
         resource_name = 'prices'
         fields = ['name']
+
+    def dehydrate_prices(self, bundle):
+        return bundle.obj.prices(provider=bundle.request.GET
+                                                .get('provider', None))

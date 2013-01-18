@@ -154,6 +154,11 @@ class TestPrice(amo.tests.TestCase):
         eq_(currencies[0]['currency'], 'USD')
         eq_(currencies[1], {'currency': 'CAD', 'amount': Decimal('3.01')})
 
+    @mock.patch('market.models.PROVIDER_CURRENCIES', {'bango': ['USD', 'EUR']})
+    def test_prices_provider(self):
+        currencies = Price.objects.get(pk=1).prices(provider='bango')
+        eq_(len(currencies), 2)
+
 
 class ContributionMixin(object):
 

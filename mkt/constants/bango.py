@@ -32,6 +32,8 @@ BANGO_CURRENCIES = [
     ('ZAR', _(u'South African Rand')),
 ]
 
+BANGO_CURRENCIES_KEYS = [x[0] for x in BANGO_CURRENCIES]
+
 BANGO_COUNTRIES = [
     ('AFG', _(u'Afghanistan')),
     ('ALA', _(u'Åland Islands')),
