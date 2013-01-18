@@ -200,7 +200,7 @@ exports.payment_setup = function() {
                         // TODO: We should use events and not write specific one-offs.
                         // We have overlay.js.
                         $('.overlay').remove();
-                        z.body.addClass('overlayed');
+                        z.body.removeClass('overlayed');
                         $('#bango-account-list').html(data);
                         $('#no-payment-providers').addClass('js-hidden');
                     }
