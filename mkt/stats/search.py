@@ -1,5 +1,3 @@
-from decimal import Decimal
-
 from django.db.models import Count, Q, Sum
 
 import elasticutils.contrib.django as elasticutils
@@ -84,7 +82,7 @@ def get_finance_total_inapp(qs, addon, inapp_name='', field=None, **kwargs):
         # Non-USD-normalized revenue, calculated from currency's amount rather
         # than price tier.
         if field == 'currency':
-            document['revenue_non_normalized'] = cut(qs.values('config__addon')
+            document['revenue_non_normalized'] = (qs.values('config__addon')
                 .filter(q, contribution__refund=None, **kwargs)
                 .annotate(revenue=Sum('contribution__amount'))
             [0]['revenue'] if revenue.count() else 0)
