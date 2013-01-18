@@ -2,15 +2,12 @@ import datetime
 from decimal import Decimal
 import random
 
-from django.utils import unittest
-
 from nose.tools import eq_
 
 import amo
 import amo.tests
 from market.models import Refund, Price
 from mkt.stats import tasks
-from mkt.stats.search import cut, handle_kwargs
 from mkt.inapp_pay.models import InappConfig, InappPayment
 from stats.models import Contribution
 from users.models import UserProfile
@@ -43,13 +40,13 @@ class TestIndexFinanceTotal(BaseTaskTest):
                 type=amo.CONTRIB_PURCHASE,
                 amount=str(random.randint(0, 10) + .99),
                 price_tier=self.price_tier)
-            self.expected['revenue'] += cut(self.usd_price)
+            self.expected['revenue'] += Decimal(self.usd_price)
 
             # Create 2 refunds.
             if x % 2 == 1:
                 Refund.objects.create(contribution=c,
                                       status=amo.REFUND_APPROVED)
-                self.expected['revenue'] -= cut(self.usd_price)
+                self.expected['revenue'] -= Decimal(self.usd_price)
                 self.expected['count'] -= 1
         self.refresh()
 
@@ -88,12 +85,12 @@ class TestIndexFinanceTotalBySrc(BaseTaskTest):
                     type=amo.CONTRIB_PURCHASE,
                     amount=str(random.randint(0, 10) + .99),
                     price_tier=self.price_tier)
-                self.expected[source]['revenue'] += cut(self.usd_price)
+                self.expected[source]['revenue'] += Decimal(self.usd_price)
 
             # Create refunds.
             Refund.objects.create(contribution=c,
                                   status=amo.REFUND_APPROVED)
-            self.expected[source]['revenue'] -= cut(self.usd_price)
+            self.expected[source]['revenue'] -= Decimal(self.usd_price)
             self.expected[source]['count'] -= 1
         self.refresh()
 
@@ -140,15 +137,16 @@ class TestIndexFinanceTotalByCurrency(BaseTaskTest):
                     currency=currency,
                     amount=amount,
                     price_tier=self.price_tier)
-                self.expected[currency]['revenue'] += cut(self.usd_price)
-                self.expected[currency]['revenue_non_normalized'] += cut(
-                    amount)
+                self.expected[currency]['revenue'] += Decimal(self.usd_price)
+                self.expected[currency]['revenue_non_normalized'] += (
+                    Decimal(amount))
 
             # Create refunds.
             Refund.objects.create(contribution=c,
                                   status=amo.REFUND_APPROVED)
-            self.expected[currency]['revenue'] -= cut(self.usd_price)
-            self.expected[currency]['revenue_non_normalized'] -= cut(amount)
+            self.expected[currency]['revenue'] -= Decimal(self.usd_price)
+            self.expected[currency]['revenue_non_normalized'] -= (
+                Decimal(amount))
             self.expected[currency]['count'] -= 1
         self.refresh()
 
@@ -192,7 +190,7 @@ class TestIndexFinanceDaily(BaseTaskTest):
                 type=amo.CONTRIB_PURCHASE,
                 amount=str(random.randint(0, 10) + .99),
                 price_tier=self.price_tier)
-            self.expected['revenue'] += cut(self.usd_price)
+            self.expected['revenue'] += Decimal(self.usd_price)
             self.ids.append(c.id)
 
             # Create 2 refunds.
@@ -201,7 +199,7 @@ class TestIndexFinanceDaily(BaseTaskTest):
                 c.save()
                 Refund.objects.create(contribution=c,
                                       status=amo.REFUND_APPROVED)
-                self.expected['revenue'] -= cut(self.usd_price)
+                self.expected['revenue'] -= Decimal(self.usd_price)
                 self.expected['count'] -= 1
 
     def test_index(self):
@@ -245,13 +243,13 @@ class TestIndexFinanceTotalInapp(BaseTaskTest):
             InappPayment.objects.create(config=self.inapp, contribution=c,
                                         name=self.inapp_name)
 
-            self.expected_inapp['revenue'] += cut(self.usd_price)
+            self.expected_inapp['revenue'] += Decimal(self.usd_price)
 
             # Create 2 refunds.
             if x % 2 == 1:
                 Refund.objects.create(contribution=c,
                                       status=amo.REFUND_APPROVED)
-                self.expected_inapp['revenue'] -= cut(self.usd_price)
+                self.expected_inapp['revenue'] -= Decimal(self.usd_price)
                 self.expected_inapp['count'] -= 1
         self.refresh()
 
@@ -305,14 +303,16 @@ class TestIndexFinanceTotalInappByCurrency(BaseTaskTest):
                                             name=self.inapp_name)
 
                 expected_inapp_curr = expected_inapp[currency]
-                expected_inapp_curr['revenue'] += cut(self.usd_price)
-                expected_inapp_curr['revenue_non_normalized'] += cut(amount)
+                expected_inapp_curr['revenue'] += Decimal(self.usd_price)
+                expected_inapp_curr['revenue_non_normalized'] += (
+                    Decimal(amount))
 
             # Create refunds.
             Refund.objects.create(contribution=c,
                                   status=amo.REFUND_APPROVED)
-            expected_inapp[currency]['revenue'] -= cut(self.usd_price)
-            expected_inapp[currency]['revenue_non_normalized'] -= cut(amount)
+            expected_inapp[currency]['revenue'] -= Decimal(self.usd_price)
+            expected_inapp[currency]['revenue_non_normalized'] -= (
+                Decimal(amount))
             self.expected[self.inapp_name][currency]['count'] -= 1
 
         self.refresh()
@@ -372,12 +372,13 @@ class TestIndexFinanceTotalInappBySource(BaseTaskTest):
                     price_tier=self.price_tier)
                 InappPayment.objects.create(config=self.inapp, contribution=c,
                                             name=self.inapp_name)
-                self.expected_inapp[source]['revenue'] += cut(self.usd_price)
+                self.expected_inapp[source]['revenue'] += (
+                    Decimal(self.usd_price))
 
             # Create refunds.
             Refund.objects.create(contribution=c,
                                   status=amo.REFUND_APPROVED)
-            self.expected_inapp[source]['revenue'] -= cut(self.usd_price)
+            self.expected_inapp[source]['revenue'] -= Decimal(self.usd_price)
             self.expected_inapp[source]['count'] -= 1
         self.refresh()
 
@@ -424,7 +425,8 @@ class TestIndexFinanceDailyInapp(BaseTaskTest):
             self.c_ids.append(c.id)
             i = InappPayment.objects.create(config=self.inapp, contribution=c,
                                             name=self.inapp_name)
-            self.expected[self.inapp_name]['revenue'] += cut(self.usd_price)
+            self.expected[self.inapp_name]['revenue'] += (
+                Decimal(self.usd_price))
             self.ids.append(i.id)
 
         for x in range(self.expected[self.inapp_name]['refunds']):
@@ -432,7 +434,8 @@ class TestIndexFinanceDailyInapp(BaseTaskTest):
             c.update(uuid=123)
             Refund.objects.create(contribution=c,
                                   status=amo.REFUND_APPROVED)
-            self.expected[self.inapp_name]['revenue'] -= cut(self.usd_price)
+            self.expected[self.inapp_name]['revenue'] -= (
+                Decimal(self.usd_price))
             self.expected[self.inapp_name]['count'] -= 1
 
     def test_index(self):
@@ -493,27 +496,10 @@ class TestAlreadyIndexed(BaseTaskTest):
         self.expected['revenue'] -= Decimal(self.usd_price)
         self.expected['count'] -= 1
 
-        self.expected['revenue'] = cut(self.expected['revenue'])
+        self.expected['revenue'] = self.expected['revenue']
 
     def test_basic(self):
         eq_(tasks.already_indexed(Contribution, self.expected), [])
         tasks.index_finance_daily.delay(self.ids)
         self.refresh(timesleep=1)
         eq_(tasks.already_indexed(Contribution, self.expected) != [], True)
-
-
-class TestCut(unittest.TestCase):
-
-    def test_basic(self):
-        eq_(cut(0), Decimal(str(0)))
-        eq_(cut(1), Decimal(str(.7)))
-        eq_(cut(10), Decimal(str(7)))
-        eq_(cut(33), Decimal(str(23.10)))
-
-    def test_remove_kwargs(self):
-        q = object()
-        field = 'field'
-        join_field = 'join'
-        kwargs = {'field': None}
-        res = handle_kwargs(q, field, kwargs, join_field)
-        self.assertEqual(res.children, [('field__in', ['', None])])
