@@ -77,35 +77,14 @@
     </div>
     {% block stats %}
     {% endblock %}
-    {# Not working yet.
+
+    {# Dev stats will not show a paginated table - just the export links. #}
     {% block csvtable %}
-      <div class="island">
+      <div class="stats-export">
         {% block csvtitle %}{% endblock %}
-        <div class="tabular csv-table">
-          <div class="table-box">
-            <table>
-              <thead>
-              </thead>
-            </table>
-          </div>
-          <footer>
-            <nav class="paginator c" role="navigation">
-              <p class="range">
-              </p>
-              <p class="rel">
-                <a href="#"
-                   class="button prev disabled">
-                  &#x25C2; {{ _('Previous') }}</a>
-                <a href="#"
-                   class="button next">
-                  {{ _('Next') }} &#x25B8;</a>
-              </p>
-            </nav>
-          </footer>
-        </div>
       </div>
     {% endblock %}
-    #}
+
     <div class="hidden">
       <div id="fieldMenuPopup" class="popup">
         <form id="fieldMenu">
