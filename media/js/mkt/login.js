@@ -2,11 +2,23 @@ define('login', ['notification'], function(notification) {
 
     var requestedLogin = false;
 
-    $(window).bind('login', function() {
-        $('#login').addClass('show');
+    $(window).bind('login', function(skipDialog) {
+        if (skipDialog) {
+            startLogin();
+        } else {
+            $('#login').addClass('show');
+        }
     }).on('click', '.browserid', function(e) {
         var $this = $(this);
         $this.addClass('loading-submit');
+        z.win.on('logincancel', function() {
+            $this.removeClass('loading-submit').blur();
+        })
+        startLogin();
+        e.preventDefault();
+    });
+
+    function startLogin() {
         requestedLogin = true;
         navigator.id.request({
             forceIssuer: z.body.data('persona-unverified-issuer') || null,
@@ -14,11 +26,11 @@ define('login', ['notification'], function(notification) {
             termsOfService: '/terms-of-use',
             privacyPolicy: '/privacy-policy',
             oncancel: function() {
-                $this.removeClass('loading-submit').blur();
+                z.win.trigger('logincancel');
             }
         });
-        e.preventDefault();
-    });
+    }
+
     z.body.on('click', '.logout', function() {
         // NOTE: Real logout operations happen on the action of the Logout
         // link/button. This just tells Persona to clean up its data.

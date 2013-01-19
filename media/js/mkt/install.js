@@ -21,7 +21,7 @@ define('install', ['capabilities', 'payments'], function(caps, payments) {
     function startInstall(product) {
         if (z.anonymous && (!z.allowAnonInstalls || product.price)) {
             localStorage.setItem('toInstall', product.manifest_url);
-            $(window).trigger('login');
+            $(window).trigger('login', true);
             return;
         }
         // Show "Install" button if I'm installing from the Reviewer Tools,
@@ -96,7 +96,7 @@ define('install', ['capabilities', 'payments'], function(caps, payments) {
         if (localStorage.getItem('toInstall')) {
             var lsVal = localStorage.getItem('toInstall');
             localStorage.removeItem('toInstall');
-            var product = $(format('.button[data-manifest_url="{0}"]',
+            var product = $(format('.product[data-manifest_url="{0}"]',
                                    lsVal)).data('product');
             if (product) {
                 startInstall(product);
