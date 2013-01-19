@@ -39,7 +39,7 @@ class TestPrices(BaseOAuth):
 
     @patch('market.models.PROVIDER_CURRENCIES', {'bango': ['USD', 'EUR']})
     def test_list_filtered(self):
-        res = self.client.get(self.get_url + ({'provider': 'bango'},))
+        res = self.client.get(self.list_url + ({'provider': 'bango'},))
         data = json.loads(res.content)
         self.assertSetEqual(self.get_currencies(data['objects'][0]), ['USD'])
 
