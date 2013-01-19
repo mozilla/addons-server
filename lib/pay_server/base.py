@@ -97,7 +97,6 @@ class Client(object):
         uri = uri.lstrip('/')
         return self.call('%s/%s' % (self.config['server'], uri), method, data)
 
-
     def _url(self, context, name, pk=None):
         url = '%s/%s/%s/' % (self.config['server'], context, name)
         if pk:

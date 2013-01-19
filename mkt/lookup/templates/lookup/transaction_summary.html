@@ -8,8 +8,8 @@
 
   <section class="island c">
     <h1>
-      {% trans tx_url = url('lookup.transaction_summary', tx_id) %}
-        Transaction Lookup results for <a href="{{ tx_url }}">Transaction {{ tx_id }}</a>
+      {% trans tx_url = url('lookup.transaction_summary', uuid) %}
+        Transaction Lookup results for <a href="{{ tx_url }}">Transaction {{ uuid }}</a>
       {% endtrans %}
     </h1>
 
@@ -17,7 +17,7 @@
       <section id="prose">
         <dl>
           <dt>{{ _('Transaction ID') }}</dt>
-          <dd>{{ tx.id }}</dd>
+          <dd>{{ uuid }}</dd>
           <dt>{{ _('Date') }}</dt>
           <dd>{{ tx.date }}</dd>
           {% if tx.buyer %}
@@ -34,6 +34,15 @@
       </section>
     {% else %}
       {{ no_results() }}
+    {% endif %}
+
+    {% if action_allowed('Transaction', 'Refund') %}
+      <form class="refund-transaction c" method="post"
+            action="{{ url('lookup.transaction_refund', uuid) }}">
+        {{ csrf() }}
+        {{ tx_refund_form }}
+        <button>{{ _('Refund this transaction') }}</button>
+      </form>
     {% endif %}
 
 {% endblock %}
