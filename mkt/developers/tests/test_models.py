@@ -85,15 +85,24 @@ class TestPaymentAccount(amo.tests.TestCase):
 
     def setUp(self):
         self.user = UserProfile.objects.filter()[0]
+        solsel_patcher = patch('mkt.developers.models.SolitudeSeller.create')
+        self.solsel = solsel_patcher.start()
+        self.solsel.return_value = self.seller = (
+            SolitudeSeller.objects.create(
+                resource_uri='selleruri', user=self.user))
+        self.solsel.patcher = solsel_patcher
 
-    @patch('mkt.developers.models.client')
-    @patch('mkt.developers.models.SolitudeSeller.create')
-    def test_create_bango(self, solselc, client):
+        client_patcher = patch('mkt.developers.models.client')
+        self.client = client_patcher.start()
+        self.client.patcher = client_patcher
+
+    def tearDown(self):
+        self.solsel.patcher.stop()
+        self.client.patcher.stop()
+
+    def test_create_bango(self):
         # Return a seller object without hitting Bango.
-        solselc.return_value = SolitudeSeller.objects.create(
-            resource_uri='selluri', user=self.user
-        )
-        client.post_package.return_value = {
+        self.client.post_package.return_value = {
             'resource_uri': 'zipzap',
             'package_id': 123,
         }
@@ -102,25 +111,22 @@ class TestPaymentAccount(amo.tests.TestCase):
             self.user, {'account_name': 'Test Account'})
         eq_(res.name, 'Test Account')
         eq_(res.user, self.user)
-        eq_(res.seller_uri, 'selluri')
+        eq_(res.seller_uri, 'selleruri')
         eq_(res.bango_package_id, 123)
         eq_(res.uri, 'zipzap')
 
-        client.post_package.assert_called_with(
+        self.client.post_package.assert_called_with(
             data={'supportEmailAddress': 'support@example.com',
                   'paypalEmailAddress': 'nobody@example.com',
-                  'seller': 'selluri'})
+                  'seller': 'selleruri'})
 
-        client.post_bank_details.assert_called_with(
+        self.client.post_bank_details.assert_called_with(
             data={'seller_bango': 'zipzap'})
 
     def test_cancel(self):
-        seller = SolitudeSeller.objects.create(
-            resource_uri='sellerres', user=self.user
-        )
         res = PaymentAccount.objects.create(
             name='asdf', user=self.user, uri='foo',
-            solitude_seller=seller)
+            solitude_seller=self.seller)
 
         addon = Addon.objects.get()
         apa = AddonPaymentAccount.objects.create(
@@ -130,6 +136,36 @@ class TestPaymentAccount(amo.tests.TestCase):
         res.cancel()
         assert res.inactive
         assert not AddonPaymentAccount.objects.exists()
+
+    def test_get_details(self):
+        self.client.call_uri.return_value = {
+            'vendorName': 'a', 'some_other_value': 'b'}
+
+        res = PaymentAccount.objects.create(
+            name='asdf', user=self.user, uri='foo',
+            solitude_seller=self.seller)
+
+        deets = res.get_details()
+        eq_(deets['account_name'], res.name)
+        eq_(deets['vendorName'], 'a')
+        assert 'some_other_value' not in deets
+
+        self.client.call_uri.assert_called_with(res.uri)
+
+    def test_update_account_details(self):
+        res = PaymentAccount.objects.create(
+            name='asdf', user=self.user, uri='foo',
+            solitude_seller=self.seller)
+
+        res.update_account_details(
+            account_name='new name',
+            vendorName='new vendor name',
+            something_other_value='not a package key')
+        eq_(res.name, 'new name')
+
+        self.client.call_uri.assert_called_with(
+            url=res.uri, method='patch',
+            data={'vendorName': 'new vendor name'})
 
 
 class TestAddonPaymentAccount(amo.tests.TestCase):

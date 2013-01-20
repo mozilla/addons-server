@@ -14,8 +14,11 @@ from . import views_payments
 
 def bango_patterns(prefix):
     return patterns('',
-        url('^accounts$', views_payments.payments_accounts,
+        url('^accounts$', views_payments.payment_accounts,
             name='mkt.developers.%s.payment_accounts' % prefix),
+
+        url('^accounts/form$', views_payments.payment_accounts_form,
+            name='mkt.developers.%s.payment_accounts_form' % prefix),
 
         url('^accounts/add$', views_payments.payments_accounts_add,
             name='mkt.developers.%s.add_payment_account' % prefix),
@@ -23,6 +26,10 @@ def bango_patterns(prefix):
         url('^accounts/(?P<id>\d+)/delete$',
             views_payments.payments_accounts_delete,
             name='mkt.developers.%s.delete_payment_account' % prefix),
+
+        url('^accounts/(?P<id>\d+)$',
+            views_payments.payments_account,
+            name='mkt.developers.%s.payment_account' % prefix),
     )
 
 

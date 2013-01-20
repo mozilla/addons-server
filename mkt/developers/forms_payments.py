@@ -317,6 +317,26 @@ class BangoPaymentAccountForm(happyforms.Form):
 
     account_name = forms.CharField(max_length=64, label=_(u'Account Name'))
 
+    # These are the fields that Bango uses for bank details. They're read-only
+    # once written.
+    bank_fields = set(['bankAccountPayeeName', 'bankAccountNumber',
+                       'bankAccountCode', 'bankName', 'bankAddress1',
+                       'bankAddressZipCode', 'bankAddressIso'])
+
+    def __init__(self, *args, **kwargs):
+        self.account = kwargs.pop('account', None)
+        super(BangoPaymentAccountForm, self).__init__(*args, **kwargs)
+        if self.account:
+            # We don't need the bank account fields if we're getting
+            # modifications.
+            for field in self.fields:
+                if field in self.bank_fields:
+                    self.fields[field].required = False
+
+    def save(self):
+        # Save the account name, if it was updated.
+        self.account.update_account_details(**self.cleaned_data)
+
 
 class BangoAccountListForm(happyforms.Form):
     accounts = forms.ModelChoiceField(

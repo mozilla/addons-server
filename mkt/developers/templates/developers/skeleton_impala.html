@@ -130,9 +130,6 @@
         <script type="text/javascript" src="{{ settings.RECAPTCHA_AJAX_URL }}"></script>
       {% endif %}
       {{ js('mkt/devreg') }}
-      {% if logged and not waffle.switch('disabled-payments') and waffle.switch('enabled-paypal') %}
-        <script async defer src="{{ settings.PAYPAL_JS_URL }}"></script>
-      {% endif %}
     {% endblock %}
     {% block js %}{% endblock %}
     {% block js_extras %}{% endblock %}

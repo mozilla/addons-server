@@ -1,3 +1,5 @@
+import json
+
 from django.core.exceptions import ObjectDoesNotExist
 
 import mock
@@ -305,10 +307,12 @@ class PaymentsBase(amo.tests.TestCase):
 
     def create(self):
         # If user is defined on SolitudeSeller, why do we also need it on
-        # PaymentAccount?
+        # PaymentAccount? Fewer JOINs.
         seller = SolitudeSeller.objects.create(user=self.user)
         return PaymentAccount.objects.create(user=self.user,
-                                             solitude_seller=seller)
+                                             solitude_seller=seller,
+                                             uri='/bango/package/123',
+                                             name="cvan's cnotes")
 
 
 class TestPaymentAccountsAdd(PaymentsBase):
@@ -348,11 +352,56 @@ class TestPaymentAccountsAdd(PaymentsBase):
         eq_(res.status_code, 302, res.content)
         eq_(PaymentAccount.objects.count(), 2)
 
+
 class TestPaymentAccounts(PaymentsBase):
 
     def setUp(self):
         super(TestPaymentAccounts, self).setUp()
         self.url = reverse('mkt.developers.bango.payment_accounts')
+
+    def test_login_required(self):
+        self.client.logout()
+        self.assertLoginRequired(self.client.get(self.url))
+
+    def test_mine(self):
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        output = json.loads(res.content)
+        eq_(output[0]['id'], self.account.pk)
+
+
+class TestPaymentAccount(PaymentsBase):
+
+    def setUp(self):
+        super(TestPaymentAccount, self).setUp()
+        self.url = reverse('mkt.developers.bango.payment_account',
+                           args=[self.account.pk])
+
+    def test_login_required(self):
+        self.client.logout()
+        self.assertLoginRequired(self.client.get(self.url))
+
+    @mock.patch('mkt.developers.models.client')
+    def test_get(self, client):
+        client.call_uri.return_value = {'vendorName': 'testval'}
+
+        res = self.client.get(self.url)
+        client.call_uri.assert_called_with(self.account.uri)
+
+        eq_(res.status_code, 200)
+        output = json.loads(res.content)
+        eq_(output['account_name'], self.account.name)
+        assert 'vendorName' in output, (
+            'Details from Bango not getting merged in: %s' % output)
+        eq_(output['vendorName'], 'testval')
+
+
+
+class TestPaymentAccountsForm(PaymentsBase):
+
+    def setUp(self):
+        super(TestPaymentAccountsForm, self).setUp()
+        self.url = reverse('mkt.developers.bango.payment_accounts_form')
 
     def test_login_required(self):
         self.client.logout()

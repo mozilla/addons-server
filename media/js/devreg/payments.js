@@ -8,9 +8,15 @@ exports.payment_setup = function() {
 
     var getOverlay = function(name) {
         $('.overlay').remove();
+        z.body.addClass('overlayed');
         var overlay = makeOrGetOverlay(name);
-        overlay.html($('#' + name + '-template').html());
-        handlePaymentOverlay(overlay);
+        overlay.html($('#' + name + '-template').html())
+            .addClass('show')
+            .on('click', '.close', _pd(function() {
+               // TODO: Generalize this with the event listeners in overlay.js.
+               z.body.removeClass('overlayed');
+               overlay.remove();
+            }));
         return overlay;
     };
 
@@ -182,30 +188,32 @@ exports.payment_setup = function() {
         }, 1000) // We don't need this to run very often.
     );
 
-    // Set up account modal.
-    var newBangoPaymentAccount = function(e) {
-        var $overlay = getOverlay('add-bango-account');
+    function refreshAccountForm(data) {
+        var $account_list_form = $('#bango-account-list');
+        $account_list_form.load($account_list_form.data('url'));
+    }
 
+    function setupPaymentAccountOverlay($overlay, onsubmit) {
         function setupBangoForm($overlay) {
             $overlay.on('submit', 'form', _pd(function(e) {
                 var $form = $(this);
                 var $waiting_overlay;
-                var $old_overlay = $overlay.find('section.add-bango-account');
+                var $old_overlay = $overlay.children('section');
                 $old_overlay.detach();
                 $form.find('.error').remove();
 
                 $.post(
                     $form.attr('action'), $form.serialize(),
                     function(data) {
-                        // TODO: We should use events and not write specific one-offs.
-                        // We have overlay.js.
-                        $('.overlay').remove();
-                        z.body.removeClass('overlayed');
-                        $('#bango-account-list').html(data);
-                        $('#no-payment-providers').addClass('js-hidden');
+                        $waiting_overlay.trigger('dismiss');
+                        onsubmit.apply($form, [data]);
                     }
                 ).error(function(error_data) {
                     // If there's an error, revert to the form and reset the buttons.
+
+                    // We're recycling the variable $waiting_overlay to store
+                    // the old overlay. That gets cleaned up, though, when we
+                    // re-call setupBangoForm().
                     $waiting_overlay.empty().append($old_overlay);
 
                     try {
@@ -219,7 +227,8 @@ exports.payment_setup = function() {
                     } catch(err) {
                         // There was a JSON parse error, just stick the error
                         // message on the form.
-                        $old_overlay.find('#bango-account-errors').html(error_data.responseText);
+                        $old_overlay.find('#bango-account-errors')
+                                    .html(error_data.responseText);
                     }
                     setupBangoForm($waiting_overlay);
                 });
@@ -227,37 +236,78 @@ exports.payment_setup = function() {
             }));
         }
         setupBangoForm($overlay);
+    }
+
+    var newBangoPaymentAccount = function(e) {
+        var $overlay = getOverlay('add-bango-account');
+        setupPaymentAccountOverlay(
+            $overlay,
+            function(data) {
+                refreshAccountForm();
+                $('#no-payment-providers').addClass('js-hidden');
+            }
+        );
     };
 
-    function removeAccount(type, typePretty) {
-        var $remove = $('.' + type + '-actions #remove-account');
-        var resp = $.post($remove.data('remove-url'));
-        if (resp.error) {
-            // L10n: first parameter is the name of a payment provider.
-            successNotification(format(gettext('There was an error removing the {0} account.'), typePretty));
-        }
-        var $account = $('#' + type);
-        $account.addClass('deleting');
-        setTimeout(function() {
-            $account.addClass('deleted').remove();
-            // L10n: first parameter is the name of a payment provider.
-            successNotification(format(gettext('{0} account successfully removed from app.'), typePretty));
-            if (!$('.payment-option').length) {
-                $('#no-payment-providers').removeClass('js-hidden');
+    var editBangoPaymentAccount = function(account_url) {
+        var paymentAccountSetup = function() {
+            var $overlay = getOverlay('edit-bango-account');
+            $overlay.find('form').attr('action', account_url);
+            setupPaymentAccountOverlay($overlay, refreshAccountForm);
+        };
+
+        // Start the loading screen while we get the account data.
+        return function(e) {
+            var $waiting_overlay = getOverlay('bango-waiting');
+            $.getJSON(
+                account_url,
+                function(data) {
+                    $waiting_overlay.remove();
+                    paymentAccountSetup();
+                    for(var field in data) {
+                        $('#id_' + field).val(data[field]);
+                    }
+                }
+            );
+        };
+    };
+
+    var paymentAccountTemplate = template($('#account-row-template').html());
+    var paymentAccountList = function(e) {
+        var $overlay = getOverlay('account-list');
+        var $overlay_section = $overlay.children('.account-list').first();
+
+        $.getJSON(
+            $overlay_section.data('accounts-url'),
+            function(data) {
+                $overlay_section.removeClass('loading');
+                var $table = $overlay_section.children('table');
+                for(var acc = 0; acc < data.length; acc++) {
+                    var account = data[acc];
+                    $(paymentAccountTemplate(account)).appendTo($table);
+                }
+
+                $overlay_section.on('click', 'a.delete-account', _pd(function() {
+                    var $tr = $(this).parents('tr').addClass('deleted');
+                    // Delay the TR's removal 1s for the transition to complete.
+                    setTimeout(function() {
+                        $tr.remove();
+                    }, 1000);
+
+                    // Post to the delete URL, then refresh the account form.
+                    $.post($tr.data('delete-url')).then(refreshAccountForm);
+
+                })).on('click', 'a.modify-account', _pd(function() {
+                    // Get the account URL from the table row and pass it to
+                    // the function to handle the Edit overlay.
+                    editBangoPaymentAccount($(this).parents('tr').data('account-url'))();
+                }));
             }
-        }, 500);
-    }
+        );
+    };
 
-    $('.payment-account-actions').on('click', _pd(newBangoPaymentAccount));
-
-    function handlePaymentOverlay(overlay) {
-        z.body.addClass('overlayed');
-        overlay.addClass('show').on('click', '.close', _pd(function() {
-            // TODO: Generalize this with the event listeners in overlay.js.
-            z.body.removeClass('overlayed');
-            overlay.remove();
-        }));
-    }
+    z.body.on('click', '.add-payment-account', _pd(newBangoPaymentAccount));
+    z.body.on('click', '.payment-account-actions', _pd(paymentAccountList));
 };
 
 $('.update-payment-type button').click(function(e) {

@@ -237,3 +237,56 @@ class TestRestoreApp(amo.tests.TestCase):
         forms_payments._restore_app(self.addon)
         # Apps without a highest status default to PENDING.
         eq_(self.addon.status, amo.STATUS_PENDING)
+
+
+class TestBangoAccountForm(amo.tests.TestCase):
+    fixtures = fixture('webapp_337141')
+
+    def setUp(self):
+        form = forms_payments.BangoPaymentAccountForm()
+        self.data = {}
+        for field in form.fields:
+            if 'currency' in field:
+                self.data[field] = 'USD'
+            elif 'Iso' in field:
+                self.data[field] = 'USA'
+            else:
+                self.data[field] = 'foo@bu.gs'  # Good enough.
+
+    def test_bank_required(self):
+        """When there is no account, require bank details."""
+
+        form = forms_payments.BangoPaymentAccountForm(self.data)
+        assert form.is_valid(), form.errors
+
+        del self.data['bankName']
+        form = forms_payments.BangoPaymentAccountForm(self.data)
+        assert not form.is_valid(), form.errors
+
+    def test_bank_not_required(self):
+        """When an account is specified, don't require bank details."""
+
+        account = mock.Mock()
+
+        form = forms_payments.BangoPaymentAccountForm(
+            self.data, account=account)
+        assert form.is_valid(), form.errors
+
+        del self.data['bankName']
+        form = forms_payments.BangoPaymentAccountForm(
+            self.data, account=account)
+        assert form.is_valid(), form.errors  # Still valid, even now.
+
+    def test_on_save(self):
+        """Save should just trigger the account's update function."""
+
+        account = mock.Mock()
+
+        form = forms_payments.BangoPaymentAccountForm(
+            self.data, account=account)
+        assert form.is_valid(), form.errors
+
+        form.cleaned_data = {'mock': 'talk'}
+        form.save()
+
+        account.update_account_details.assert_called_with(mock='talk')

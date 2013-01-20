@@ -5,14 +5,14 @@ from django.shortcuts import get_object_or_404, redirect
 
 import commonware
 import jingo
-from tower import ugettext as _
 import waffle
+from tower import ugettext as _
 from waffle.decorators import waffle_switch
 
-from access import acl
 import amo
+from access import acl
 from amo import messages
-from amo.decorators import login_required, post_required, write
+from amo.decorators import json_view, login_required, post_required, write
 from amo.urlresolvers import reverse
 from lib.crypto import generate_key
 from lib.pay_server import client
@@ -130,13 +130,32 @@ def payments(request, addon_id, addon, webapp=False):
              not waffle.switch_is_active('disabled-payments')})
 
 
-@write
 @login_required
-def payments_accounts(request):
+@json_view
+def payment_accounts(request):
+    accounts = models.PaymentAccount.objects.filter(
+        user=request.amo_user, inactive=False)
+
+    def account(acc):
+        return {
+            'id': acc.pk,
+            'name': unicode(acc),
+            'account-url':
+                reverse('mkt.developers.bango.payment_account', args=[acc.pk]),
+            'delete-url':
+                reverse('mkt.developers.bango.delete_payment_account',
+                        args=[acc.pk])
+        }
+
+    return map(account, accounts)
+
+
+@login_required
+def payment_accounts_form(request):
     bango_account_form = forms_payments.BangoAccountListForm(
         user=request.amo_user, addon=None)
     return jingo.render(
-        request, 'developers/payments/includes/bango_accounts.html',
+        request, 'developers/payments/includes/bango_accounts_form.html',
         {'bango_account_list_form': bango_account_form})
 
 
@@ -156,7 +175,24 @@ def payments_accounts_add(request):
         raise  # We want to see these exceptions!
         return http.HttpResponse(
             _(u'Could not connect to payment server.'), status=400)
-    return redirect('mkt.developers.bango.payment_accounts')
+    return redirect('mkt.developers.bango.payment_accounts_form')
+
+
+@write
+@login_required
+@json_view
+def payments_account(request, id):
+    account = get_object_or_404(models.PaymentAccount, pk=id,
+                                user=request.user)
+    if request.POST:
+        form = forms_payments.BangoPaymentAccountForm(
+            request.POST, account=account)
+        if form.is_valid():
+            form.save()
+        else:
+            return http.HttpResponse(json.dumps(form.errors), status=400)
+
+    return account.get_details()
 
 
 @write

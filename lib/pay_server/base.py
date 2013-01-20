@@ -50,8 +50,8 @@ mapping = {
     'personal_advanced': ['paypal', 'personal-advanced', ['post']],
     'refund': ['paypal', 'refund', ['post']],
     # Bango APIs
-    'package': ['bango', 'package', ['get', 'post']],
-    'bank_details': ['bango', 'bank', ['post']],
+    'package': ['bango', 'package', ['get', 'post', 'patch']],
+    'bank_details': ['bango', 'bank', ['get', 'post']],
     'product_bango': ['bango', 'product', ['get', 'post']],
     'make_premium': ['bango', 'premium', ['post']],
     'make_free': ['bango', 'free', ['post']],
@@ -87,6 +87,16 @@ class Client(object):
         self.api = API(config['server'])
         self.encoder = None
         self.filter_encoder = urllib.urlencode
+
+    def call_uri(self, uri, method='get', data=None):
+        """If you were given a URI by Solitude, pass it here and get that
+        the value back. Since the URLs are relative, they couldn't simply be
+        passed to `call()`. This handles all the prefixing and whatnot.
+
+        """
+        uri = uri.lstrip('/')
+        return self.call('%s/%s' % (self.config['server'], uri), method, data)
+
 
     def _url(self, context, name, pk=None):
         url = '%s/%s/%s/' % (self.config['server'], context, name)

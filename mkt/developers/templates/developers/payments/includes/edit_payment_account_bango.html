@@ -1,10 +1,10 @@
-<script type="text/template" id="add-bango-account-template">
-  <section class="add-bango-account">
+<script type="text/template" id="edit-bango-account-template">
+  <section class="edit-bango-account">
     <header>
       <a class="close" title="{{ _('close') }}">&times;</a>
-      <h2>{{ _('Add Bango Account') }}</h2>
+      <h2>{{ _('Modify Bango Account') }}</h2>
     </header>
-    <form action="{{ url('mkt.developers.bango.add_payment_account') }}" method="post" class="island">
+    <form method="post" class="island">
       {{ csrf() }}
       <div id="bango-account-errors"></div>
       <div>
@@ -12,49 +12,23 @@
           {{ bango_account_form.bankAccountPayeeName.label_tag() }}
           {{ bango_account_form.bankAccountPayeeName }}
         </div>
+        {#
         <div class="field no-border">
           {{ bango_account_form.bankAccountNumber.label_tag() }}
-          <div class="faux-input horiz-strip bank-accounts-strip">
-            <div>
-              {#
-                We use our own custom maxlength because if the user pastes
-                into the form, we do not want to be a dingus.
-              #}
-              <input type="text" class="groupie" value="" data-maxlength="2">
-              <small>{{ _('Bank (2)') }}</small>
-            </div>
-            <div>
-              <input type="text" class="groupie" value="" data-maxlength="4">
-              <small>{{ _('Branch (4)') }}</small>
-            </div>
-            <div>
-              <input type="text" class="groupie" value="" data-maxlength="7">
-              <small>{{ _('Account (7)') }}</small>
-            </div>
-            <div>
-              <input type="text" class="groupie" value="" data-maxlength="2">
-              <small>{{ _('Suffix (2)') }}</small>
-            </div>
-            <div>
-              <a class="tooltip un-groupie-bank-accounts" title="{{ _('My account number is not in this format.') }}">!</a>
-            </div>
-          </div>
           {{ bango_account_form.bankAccountNumber }}
         </div>
         <div class="field">
           {{ bango_account_form.bankAccountCode.label_tag() }}
-          <div class="faux-input">
-            {{ bango_account_form.bankAccountCode }}
-            <small></small>
-          </div>
+          {{ bango_account_form.bankAccountCode }}
         </div>
+        #}
 
         <div class="field">
           {{ bango_account_form.currencyIso.label_tag() }}
           {{ bango_account_form.currencyIso }}
         </div>
         <div class="field">
-          <label data-optional="{{ _('Optional') }}">{{ bango_account_form.vatNumber.label }}</label>
+          {{ bango_account_form.vatNumber.label_tag() }}
           {{ bango_account_form.vatNumber }}
         </div>
 
@@ -87,6 +61,7 @@
           {{ bango_account_form.addressPhone }}
         </div>
 
+        {#
         <div class="field">
           {{ bango_account_form.bankName.label_tag() }}
           {{ bango_account_form.bankName }}
@@ -116,6 +91,7 @@
           {{ bango_account_form.bankAddressIso.label_tag() }}
           {{ bango_account_form.bankAddressIso }}
         </div>
+        #}
 
         <div class="field no-border">
           {{ bango_account_form.companyName.label_tag() }}
@@ -141,7 +117,7 @@
         </div>
       </div>
       <div class="listing-footer">
-        <button type="submit">{{ _('Register Payment Account') }}</button>
+        <button type="submit">{{ _('Update Account') }}</button>
         {# L10n: This 'or' goes between two choices in a dialog. #}
         {{ _('or') }}
         <a href="#" class="close">{{ _('Cancel') }}</a>

@@ -1,0 +1,36 @@
+<script type="text/template" id="account-list-template">
+  <section class="account-list loading"
+           data-accounts-url="{{ url('mkt.developers.bango.payment_accounts') }}">
+    <header>
+      <a class="close" title="{{ _('close') }}">&times;</a>
+      <h2>{{ _('Payment Accounts') }}</h2>
+    </header>
+
+    <table>
+        <tr>
+          <th>{{ _('Account Name') }}</th>
+          <th>{{ _('Modify') }}</th>
+          <th>{{ _('Delete') }}</th>
+        </tr>
+
+        {# Payment accounts get added via JS here. #}
+
+    </table>
+
+    <div class="listing-footer">
+      <a href="#" class="add-payment-account button">
+          {{- _('Add a new payment account') -}}
+      </a>
+    </div>
+  </section>
+</script>
+
+<script type="text/template" id="account-row-template">
+  <tr data-account="{id}"
+      data-delete-url="{delete-url}"
+      data-account-url="{account-url}">
+    <td>{name}</td>
+    <td><a href="#" class="modify-account">{{ _('Modify') }}</a></td>
+    <td><a href="#" class="delete-account">{{ _('Delete') }}</a></td>
+  </tr>
+</script>

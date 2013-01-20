@@ -127,6 +127,23 @@ class PaymentAccount(amo.models.ModelBase):
         # without CancelPackage-ing. Once that support is added, we can write a
         # migration to re-cancel and hard delete the inactive objects.
 
+    def update_account_details(self, **kwargs):
+        self.update(name=kwargs.pop('account_name'))
+        # We can't do client.patch_package, so we do this.
+        client.call_uri(url=self.uri, method='patch',
+                        data=dict((k, v) for k, v in kwargs.items() if
+                                  k in self.BANGO_PACKAGE_VALUES))
+
+    def get_details(self):
+        data = {'account_name': self.name}
+        package_data = client.call_uri(self.uri)
+        data.update((k, v) for k, v in package_data.items() if
+                    k in self.BANGO_PACKAGE_VALUES)
+
+        # TODO(solitude): Someday, we'll want to show existing bank details.
+
+        return data
+
     def __unicode__(self):
         return u'%s - %s' % (self.created.strftime('%m/%y'), self.name)
 

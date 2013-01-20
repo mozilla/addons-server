@@ -231,7 +231,56 @@
         margin: 15px -10px -10px;
     }
 }
-.overlay section.add-bango-account {
+.overlay section.account-list {
+    table {
+        margin: 0;
+        width: 550px;
+        + .listing-footer {
+            margin-top: 15px;
+        }
+        th, td {
+            border-top: 1px dotted @border-taupe;
+            padding: 1em 20px 1em 0;
+            vertical-align: top;
+
+            &:last-child {
+                padding-right: 0;
+            }
+        }
+        tr {
+            .transition(.5s opacity);
+            opacity: 1;
+
+            &:first-child {
+                td, th {
+                    border-top: 0;
+                    padding-top: 0;
+                }
+            }
+            &:last-child {
+                td, th {
+                    padding-bottom: 0;
+                }
+            }
+
+            &.deleted {
+                opacity: 0;
+            }
+        }
+        th {
+            font-weight: bold;
+        }
+        td {
+            color: @medium-gray;
+        }
+    }
+    table, tbody {
+        border-top: 0;
+        border-bottom: 0;
+    }
+}
+.overlay section.add-bango-account,
+.overlay section.edit-bango-account {
     height: 80%;
 
     max-width: 650px;
@@ -254,6 +303,8 @@
         }
     }
 
+}
+.overlay section.add-bango-account {
     .bank-accounts-strip div {
         width: 45px;
 

@@ -3,7 +3,6 @@
         e.preventDefault();
         e.stopPropagation();
     });
-    z.body.on('click', '.overlay .dismiss', _pd(dismiss));
 
     function dismiss() {
         var $overlay = $('.overlay.show');
@@ -20,22 +19,23 @@
     });
 
     // Dismiss overlay when we click outside of it.
-    $(document).on('click', '.overlay', function(e) {
+    z.win.on('click', '.overlay', function(e) {
         if ($(e.target).parent('body').length) {
             dismiss();
         }
-    });
-
-    // Dismiss overlay when we press escape.
-    $(window).on('keydown.overlayDismiss', function(e) {
+    }).on('keydown.overlayDismiss', function(e) {
         if (!fieldFocused(e) && e.which == z.keys.ESCAPE) {
             e.preventDefault();
             dismiss();
         }
-    });
+    }).on('dismiss', '.overlay', dismiss
+    ).on('click', '.overlay .dismiss', _pd(dismiss));
+
 })();
 
 function notify(msg, title) {
+    $('#msg-overlay').remove();
+
     var $overlay= $('<div id="msg-overlay" class="overlay">');
     var $section = $('<section>');
     if (title) {
@@ -43,9 +43,8 @@ function notify(msg, title) {
     }
     $section.append($('<p>').text(msg));
     $section.append($('<button class="dismiss">').text(gettext('OK')));
-    $('#msg-overlay').remove();
     $overlay.append($section);
-    $('body').append($overlay);
+    z.body.append($overlay);
     $overlay.addClass('show');
 }
 

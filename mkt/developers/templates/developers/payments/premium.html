@@ -161,13 +161,13 @@
                 <th><label data-for="accounts">{{ _('Payment Account') }}</label>
                 </th>
                 <td>
-                  <div id="bango-account-list">
+                  <div id="bango-account-list" data-url="{{ url('mkt.developers.bango.payment_accounts_form') }}">
                     {{ bango_account_list_form.errors }}
-                    {% include 'developers/payments/includes/bango_accounts.html' %}
-                    <a href="#" class="payment-account-actions" data-action="add">
-                      {{- _('Add or manage payment accounts') -}}
-                    </a>
+                    {% include 'developers/payments/includes/bango_accounts_form.html' %}
                   </div>
+                  <a href="#" class="payment-account-actions" data-action="add">
+                    {{- _('Add or manage payment accounts') -}}
+                  </a>
                 </td>
               </tr>
             </tbody>
@@ -226,5 +226,7 @@
     </form>
   </section>
   {% include 'developers/includes/addons_edit_nav.html' %}
+  {% include 'developers/payments/includes/account_list.html' %}
   {% include 'developers/payments/includes/add_payment_account_bango.html' %}
+  {% include 'developers/payments/includes/edit_payment_account_bango.html' %}
 {% endblock %}
