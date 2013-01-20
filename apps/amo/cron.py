@@ -264,16 +264,16 @@ def weekly_downloads():
     counts += cursor.fetchall()
 
     cursor.execute("""
-        CREATE TEMPORARY TABLE tmp
+        CREATE TEMPORARY TABLE tmp_wd
         (addon_id INT PRIMARY KEY, count INT)""")
-    cursor.execute('INSERT INTO tmp VALUES %s' %
+    cursor.execute('INSERT INTO tmp_wd VALUES %s' %
                    ','.join(['(%s,%s)'] * len(counts)),
                    list(itertools.chain(*counts)))
 
     cursor.execute("""
-        UPDATE addons INNER JOIN tmp
-            ON addons.id = tmp.addon_id
-        SET weeklydownloads = tmp.count""")
+        UPDATE addons INNER JOIN tmp_wd
+            ON addons.id = tmp_wd.addon_id
+        SET weeklydownloads = tmp_wd.count""")
     transaction.commit_unless_managed()
 
 
@@ -300,18 +300,18 @@ def personas_adu():
     stats = cursor.fetchall()
 
     cursor.execute("""
-                   CREATE TEMPORARY TABLE tmp
+                   CREATE TEMPORARY TABLE tmp_personas
                    (persona_id INT PRIMARY KEY, popularity INT)
                    """)
-    cursor.execute('INSERT INTO tmp VALUES %s' %
+    cursor.execute('INSERT INTO tmp_personas VALUES %s' %
                    ','.join(['(%s,%s)'] * len(stats)),
                    list(itertools.chain(*stats)))
 
     cursor.execute("""
         UPDATE addons
         INNER JOIN personas ON (addons.id = personas.addon_id)
-        INNER JOIN tmp ON (tmp.persona_id = personas.persona_id)
-        SET addons.average_daily_users = tmp.popularity
+        INNER JOIN tmp_personas ON (tmp.persona_id = personas.persona_id)
+        SET addons.average_daily_users = tmp_personas.popularity
         """)
 
     transaction.commit_unless_managed()
