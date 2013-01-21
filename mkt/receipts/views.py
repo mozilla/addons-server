@@ -74,10 +74,12 @@ def _record(request, addon):
             not is_reviewer and not is_dev):
             raise PermissionDenied
 
-        # Log the install.
-        install_type = (apps.INSTALL_TYPE_REVIEWER if is_reviewer
-                        else apps.INSTALL_TYPE_DEVELOPER if is_dev
+        # If you are reviewer, you get a user receipt. Use the reviewer tools
+        # to get a reviewer receipt. App developers still get their special
+        # receipt.
+        install_type = (apps.INSTALL_TYPE_DEVELOPER if is_dev
                         else apps.INSTALL_TYPE_USER)
+        # Log the install.
         installed, c = Installed.objects.safer_get_or_create(addon=addon,
             user=request.amo_user, install_type=install_type)
 
@@ -169,6 +171,7 @@ def verify(request, uuid):
 
     return http.HttpResponse(verify.invalid(),
                              verify.get_headers(verify.invalid()))
+
 
 @addon_all_view
 @json_view

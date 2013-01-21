@@ -88,8 +88,10 @@ class TestInstall(amo.tests.TestCase):
         assert self.client.login(username='editor@mozilla.com',
                                  password='password')
         eq_(self.client.post(self.url).status_code, 200)
+        # Because they aren't using reviewer tools, they'll get a normal
+        # install record and receipt.
         eq_(self.addon.installed.all()[0].install_type,
-            apps.INSTALL_TYPE_REVIEWER)
+            apps.INSTALL_TYPE_USER)
 
     def test_pending_paid_for_developer(self):
         AddonUser.objects.create(addon=self.addon, user=self.user)

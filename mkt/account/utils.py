@@ -51,7 +51,9 @@ def purchase_list(request, user, product_id):
     # Otherwise, we'll show all apps that have a contribution or are free.
     if not product_id:
         product_ids = list(user.installed_set
-                           .filter(install_type=apps.INSTALL_TYPE_USER)
+                           .filter(install_type__in=
+                               [apps.INSTALL_TYPE_USER,
+                                apps.INSTALL_TYPE_DEVELOPER])
                            .exclude(addon__in=ids)
                            .values_list('addon_id', flat=True))
 

@@ -18,13 +18,20 @@ class TestUtils(amo.tests.TestCase):
         self.app = Webapp.objects.get(pk=337141)
         self.req = RequestFactory().get('/')
 
-    def test_user(self):
-        Installed.objects.create(user=self.user, addon=self.app)
-        eq_(list(purchase_list(self.req, self.user, None)[0].object_list),
-            [self.app])
-
-    def test_other(self):
-        for t in [apps.INSTALL_TYPE_DEVELOPER, apps.INSTALL_TYPE_REVIEWER]:
-            Installed.objects.create(user=self.user, addon=self.app,
-                                     install_type=t)
+    def _test(self, type, exists):
+        Installed.objects.create(user=self.user, addon=self.app,
+                                 install_type=type)
+        if exists:
+            eq_(list(purchase_list(self.req, self.user, None)[0].object_list),
+                [self.app])
+        else:
             assert not purchase_list(self.req, self.user, None)[0].object_list
+
+    def test_user(self):
+        self._test(apps.INSTALL_TYPE_USER, True)
+
+    def test_developer(self):
+        self._test(apps.INSTALL_TYPE_DEVELOPER, True)
+
+    def test_reviewer(self):
+        self._test(apps.INSTALL_TYPE_REVIEWER, False)
