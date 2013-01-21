@@ -221,6 +221,7 @@ class TestPostback(PurchaseTest):
         # This verifies that we notify the downstream app
         # using the same exact JWT.
         tasks.purchase_notify.delay.assert_called_with(jwt_encoded, cn.pk)
+        tasks.send_purchase_receipt.delay.assert_called_with(cn.pk)
 
     def test_invalid(self, tasks):
         resp = self.post()

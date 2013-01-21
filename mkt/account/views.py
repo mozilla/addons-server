@@ -191,16 +191,16 @@ def preapproval(request, complete=None, cancel=None):
     return http.HttpResponseRedirect(url)
 
 
-def purchases(request, product_id=None, template=None):
+def purchases(request, uuid=None, template=None):
     """A list of purchases that a user has made through the Marketplace."""
     products, contributions, listing = purchase_list(request,
                                                      request.amo_user,
-                                                     product_id)
+                                                     uuid)
     return jingo.render(request, 'account/purchases.html',
                         {'pager': products,
                          'listing_filter': listing,
                          'contributions': contributions,
-                         'single': bool(product_id),
+                         'single': bool(uuid),
                          'show_link': True})
 
 

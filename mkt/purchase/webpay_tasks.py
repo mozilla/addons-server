@@ -4,6 +4,9 @@ from celeryutils import task
 
 import amo
 from amo.decorators import write
+from amo.helpers import absolutify
+from amo.urlresolvers import reverse
+from amo.utils import send_mail_jinja
 from mkt.inapp_pay.models import InappConfig
 from mkt.inapp_pay.utils import send_pay_notice
 from stats.models import Contribution
@@ -52,3 +55,25 @@ def _notify(signed_notice, contrib_id, notifier_task):
     if not success:
         log.error('webpay notice about contrib %s for app %s at %s failed %s'
                   % (contrib.pk, contrib.addon.pk, url, last_error))
+
+
+@task
+def send_purchase_receipt(contrib_id, **kw):
+    """
+    Sends an email to the purchaser of the app.
+    """
+    contrib = Contribution.objects.get(pk=contrib_id)
+    # TODO: localize when 833049 is done.
+    subject = u'Receipt for %s' % contrib.addon.name
+    data = {'app_name': contrib.addon.name,
+            'date': contrib.created.date(),
+            # TODO: localize this properly.
+            'authors': contrib.addon.authors,
+            'purchases': absolutify(reverse('account.purchases')),
+            'support_url': contrib.addon.support_url,
+            'terms_of_service_url': absolutify(reverse('site.terms')),
+            'transaction_id': contrib.uuid}
+
+    log.info('Sending email about purchase: %s' % contrib_id)
+    send_mail_jinja(subject, 'purchase/receipt.txt', data,
+                    recipient_list=[contrib.user.email])

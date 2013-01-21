@@ -176,6 +176,7 @@ def postback(request):
                    bluevia_transaction_id=data['response']['transactionID'])
 
     tasks.purchase_notify.delay(signed_jwt, contrib.pk)
+    tasks.send_purchase_receipt.delay(contrib.pk)
     return http.HttpResponse(data['response']['transactionID'])
 
 
