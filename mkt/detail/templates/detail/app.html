@@ -191,7 +191,7 @@
       <section class="main actions infobox">
         <div>
           {% if is_dev %}
-            <p><a href="{{ product.get_dev_url() }}" class="button manage" rel="external">{{ _('Manage') }}</a></p>
+            <p><a href="{{ product.get_dev_url() }}" class="button manage" rel="external">{{ _('Edit Listing') }}</a></p>
           {% endif %}
           {% if is_reviewer %}
             <p><a href="{{ url('reviewers.apps.review', product.app_slug) }}"
