@@ -90,12 +90,9 @@ ALLOW_SELF_REVIEWS = True
 # html tests.
 
 
-def custom_show_toolbar(request):
-    return False
-
 DEBUG_TOOLBAR_CONFIG = {
     'INTERCEPT_REDIRECTS': False,
-    'SHOW_TOOLBAR_CALLBACK': custom_show_toolbar,
+    'SHOW_TOOLBAR_CALLBACK': lambda r: False,
     'HIDE_DJANGO_SQL': True,
     'TAG': 'div',
     'ENABLE_STACKTRACES': False,
