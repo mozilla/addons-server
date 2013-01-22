@@ -30,8 +30,9 @@ import amo.models
 from amo.decorators import use_master
 from amo.fields import DecimalCharField
 from amo.helpers import absolutify, shared_url
-from amo.utils import (cache_ns_key, chunked, JSONEncoder, send_mail, slugify,
-                       sorted_groupby, to_language, urlparams, timer)
+from amo.utils import (cache_ns_key, chunked, find_language, JSONEncoder,
+                       send_mail, slugify, sorted_groupby, to_language,
+                       urlparams, timer)
 from amo.urlresolvers import get_outgoing_url, reverse
 from compat.models import CompatReport
 from files.models import File
@@ -1408,6 +1409,64 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     def sign_if_packaged(self, version_pk, reviewer=False):
         raise NotImplementedError('Not available for add-ons.')
 
+    def update_names(self, new_names):
+        """
+        Adds, edits, or removes names to match the passed in new_names dict.
+        Will not remove the translation of the default_locale.
+
+        `new_names` is a dictionary mapping of locales to names.
+
+        Returns a message that can be used in logs showing what names were
+        added or updated.
+
+        Note: This method doesn't save the changes made to the addon object.
+        Don't forget to call save() in your calling method.
+        """
+        updated_locales = {}
+        locales = dict(Translation.objects.filter(id=self.name_id)
+                                          .values_list('locale',
+                                                       'localized_string'))
+        msg_c = []  # For names that were created messaging.
+        msg_d = []  # For deletes.
+        msg_u = []  # For updates.
+
+        # Normalize locales.
+        names = {}
+        for locale, name in new_names.iteritems():
+            loc = find_language(locale)
+            if loc and loc not in names:
+                names[loc] = name
+
+        # Null out names no longer in `names` but exist in the database.
+        for locale in set(locales) - set(names):
+            names[locale] = None
+
+        for locale, name in names.iteritems():
+
+            if locale in locales:
+                # It's either a locale removal or an edit.
+                if not name and locale != self.default_locale.lower():
+                    updated_locales[locale] = None
+                    msg_d.append(u'"%s" (%s).' % (names.get(locale), locale))
+                elif name != locales[locale]:
+                    updated_locales[locale] = names.get(locale)
+                    msg_u.append(u'"%s" -> "%s" (%s).' % (
+                        locales[locale], names.get(locale), locale))
+                else:
+                    pass  # It's a match, keep it.
+            else:
+                updated_locales[locale] = names.get(locale)
+                msg_c.append(u'"%s" (%s).' % (names.get(locale), locale))
+
+        if locales != updated_locales:
+            self.name = updated_locales
+
+        return {
+            'added': ' '.join(msg_c),
+            'deleted': ' '.join(msg_d),
+            'updated': ' '.join(msg_u),
+        }
+
 
 class AddonDeviceType(amo.models.ModelBase):
     addon = models.ForeignKey(Addon)
@@ -1443,6 +1502,7 @@ def update_search_index(sender, instance, **kw):
             tasks.index_addon_held([instance.id])
         else:
             tasks.index_addons([instance.id])
+
 
 @Addon.on_change
 def watch_status(old_attr={}, new_attr={}, instance=None,
@@ -2025,11 +2085,11 @@ class CompatOverrideRange(amo.models.ModelBase):
     min_version = models.CharField(
         max_length=255, default='0',
         help_text=u'If not "0", version is required to exist for the override'
-                   ' to take effect.')
+                  u' to take effect.')
     max_version = models.CharField(
         max_length=255, default='*',
         help_text=u'If not "*", version is required to exist for the override'
-                   ' to take effect.')
+                  u' to take effect.')
     app = models.ForeignKey('applications.Application')
     min_app_version = models.CharField(max_length=255, default='0')
     max_app_version = models.CharField(max_length=255, default='*')

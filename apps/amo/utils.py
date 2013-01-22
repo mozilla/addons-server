@@ -1062,3 +1062,25 @@ def timer(*func, **kwargs):
     if func:
         return decorator(func[0])
     return decorator
+
+
+def find_language(locale):
+    """
+    Return a locale we support, or None.
+    """
+    LANGS = settings.AMO_LANGUAGES + settings.HIDDEN_LANGUAGES
+
+    if locale in LANGS:
+        return locale
+
+    # Check if locale has a short equivalent.
+    loc = settings.SHORTER_LANGUAGES.get(locale)
+    if loc:
+        return loc
+
+    # Check if locale is something like en_US that needs to be converted.
+    locale = to_language(locale)
+    if locale in LANGS:
+        return locale
+
+    return None

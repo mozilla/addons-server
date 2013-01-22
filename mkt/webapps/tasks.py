@@ -12,7 +12,7 @@ import amo
 from amo.decorators import write
 from amo.helpers import absolutify
 from amo.urlresolvers import reverse
-from amo.utils import chunked
+from amo.utils import chunked, find_language
 from editors.models import RereviewQueue
 from files.models import FileUpload
 from mkt.developers.tasks import _fetch_manifest, validator
@@ -38,8 +38,9 @@ def _get_content_hash(content):
 
 def _log(webapp, message, rereview=False, exc_info=False):
     if rereview:
-        message = u'(Re-review) ' + message
-    task_log.info(u'[Webapp:%s] %s' % (webapp, message), exc_info=exc_info)
+        message = u'(Re-review) ' + unicode(message)
+    task_log.info(u'[Webapp:%s] %s' % (webapp, unicode(message)),
+                  exc_info=exc_info)
 
 
 def _open_manifest(webapp, file_):
@@ -145,16 +146,54 @@ def _update_manifest(id, check_hash, failed_fetches):
     new = json.loads(content)
     old = _open_manifest(webapp, file_)
 
-    # New manifest is different and validates, create a new version.
+    # New manifest is different and validates, update version/file.
     try:
         webapp.manifest_updated(content, upload)
     except:
         _log(webapp, u'Failed to create version', exc_info=True)
 
-    # Check for any name changes for re-review.
-    if (old and old.get('name') and old.get('name') != new.get('name')):
-        msg = u'Manifest name changed from "%s" to "%s"' % (
-            old.get('name'), new.get('name'))
+    # Check for any name changes at root and in locales. If any were added or
+    # updated, send to re-review queue.
+    msg = []
+    rereview = False
+
+    if old and old.get('name') != new.get('name'):
+        rereview = True
+        msg.append(u'Manifest name changed from "%s" to "%s".' % (
+            old.get('name'), new.get('name')))
+
+    # Get names in "locales" as {locale: name}.
+    locale_names = dict(
+        [(k, new['locales'][k]['name']) for k in new.get('locales', {})
+         if 'name' in new['locales'][k]])
+    # Add in the default locale name.
+    default_locale = new.get('default_locale')
+    if default_locale and default_locale != webapp.default_locale:
+        default_locale = find_language(default_locale)
+        if default_locale:
+            msg.append(u'Default locale changed from "%s" to "%s".' % (
+                webapp.default_locale, default_locale))
+            webapp.update(default_locale=default_locale)
+        else:
+            pass  # TODO: Error if we don't support it?
+    elif not default_locale:
+        default_locale = webapp.default_locale
+    locale_names[default_locale] = new.get('name')
+
+    # Update names
+    crud = webapp.update_names(locale_names)
+    if crud:
+        webapp.save()
+
+    if crud.get('added'):
+        rereview = True
+        msg.append(u'Locales added: %s' % crud.get('added'))
+    if crud.get('updated'):
+        rereview = True
+        msg.append(u'Locales updated: %s' % crud.get('updated'))
+
+    if rereview:
+        msg = ' '.join(msg)
         _log(webapp, msg, rereview=True)
         RereviewQueue.flag(webapp, amo.LOG.REREVIEW_MANIFEST_CHANGE, msg)
 

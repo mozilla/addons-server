@@ -11,9 +11,9 @@ from django.utils import translation
 import mock
 from nose.tools import eq_, assert_raises, raises
 
-from amo.utils import (cache_ns_key, escape_all, LocalFileStorage,
-                       no_translation, resize_image, rm_local_tmp_dir,
-                       slug_validator, slugify, to_language)
+from amo.utils import (cache_ns_key, escape_all, find_language,
+                       LocalFileStorage, no_translation, resize_image,
+                       rm_local_tmp_dir, slugify, slug_validator, to_language)
 from product_details import product_details
 
 u = u'Ελληνικά'
@@ -44,7 +44,7 @@ def test_slugify():
          ('holy_wars', 'holy_wars'),
          # I don't really care what slugify returns.  Just don't crash.
          (u'x荿', u'x\u837f'),
-         (u'ϧ΃蒬蓣',  u'\u03e7\u84ac\u84e3'),
+         (u'ϧ΃蒬蓣', u'\u03e7\u84ac\u84e3'),
          (u'¿x', u'x'),
     ]
     for val, expected in s:
@@ -80,6 +80,21 @@ def test_to_language():
 
     def check(a, b):
         eq_(to_language(a), b)
+    for a, b in tests:
+        yield check, a, b
+
+
+def test_find_language():
+    tests = (('en-us', 'en-US'),
+             ('en_US', 'en-US'),
+             ('en', 'en-US'),
+             ('cy', 'cy'),  # A hidden language.
+             ('FR', 'fr'),
+             ('es-ES', None),  # We don't go from specific to generic.
+             ('xxx', None))
+
+    def check(a, b):
+        eq_(find_language(a), b)
     for a, b in tests:
         yield check, a, b
 
@@ -227,7 +242,7 @@ def test_escape_all():
         (x, x),
         (y, y),
         (u'x荿', u'x\u837f'),
-        (u'ϧ΃蒬蓣',  u'\u03e7\u0383\u84ac\u84e3'),
+        (u'ϧ΃蒬蓣', u'\u03e7\u0383\u84ac\u84e3'),
         (u'¿x', u'¿x'),
     ]
     for val, expected in s:

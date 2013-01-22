@@ -106,7 +106,7 @@ class TestAddonManager(amo.tests.TestCase):
 
         for addon in exp:
             assert addon.status in amo.UNREVIEWED_STATUSES, (
-                    "unreviewed() must return unreviewed addons.")
+                'unreviewed() must return unreviewed addons.')
 
     def test_valid(self):
         addon = Addon.objects.get(pk=5299)
@@ -405,7 +405,7 @@ class TestAddonModels(amo.tests.TestCase):
         a = Addon.objects.get(pk=6704)
         a.icon_type = None
         assert a.icon_url.endswith('/icons/default-theme.png'), (
-                "No match for %s" % a.icon_url)
+            'No match for %s' % a.icon_url)
         a = Addon.objects.get(pk=3615)
         a.icon_type = None
 
@@ -429,7 +429,7 @@ class TestAddonModels(amo.tests.TestCase):
         a.thumbnail_url.index('/previews/thumbs/20/20397.png?modified=')
         a = Addon.objects.get(pk=5299)
         assert a.thumbnail_url.endswith('/icons/no-preview.png'), (
-                "No match for %s" % a.thumbnail_url)
+            'No match for %s' % a.thumbnail_url)
 
     def test_is_unreviewed(self):
         """Test if add-on is unreviewed or not"""
@@ -1758,6 +1758,87 @@ class TestRemoveLocale(amo.tests.TestCase):
         addon.remove_locale('fr')
         assert not (Translation.objects.filter(localized_string__isnull=False)
                                .values_list('locale', flat=True))
+
+
+class TestUpdateNames(amo.tests.TestCase):
+
+    def setUp(self):
+        self.addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
+        self.addon.name = self.names = {'en-US': 'woo'}
+        self.addon.save()
+
+    def get_name(self, app, locale='en-US'):
+        return Translation.uncached.get(id=app.name_id, locale=locale)
+
+    def check_names(self, names):
+        """`names` in {locale: name} format."""
+        for locale, localized_string in names.iteritems():
+            eq_(self.get_name(self.addon, locale).localized_string,
+                localized_string)
+
+    def test_new_name(self):
+        names = dict(self.names, **{'de': u'frü'})
+        self.addon.update_names(names)
+        self.addon.save()
+        self.check_names(names)
+
+    def test_new_names(self):
+        names = dict(self.names, **{'de': u'frü', 'es': u'eso'})
+        self.addon.update_names(names)
+        self.addon.save()
+        self.check_names(names)
+
+    def test_remove_name_missing(self):
+        names = dict(self.names, **{'de': u'frü', 'es': u'eso'})
+        self.addon.update_names(names)
+        self.addon.save()
+        self.check_names(names)
+        # Now update without de to remove it.
+        del names['de']
+        self.addon.update_names(names)
+        self.addon.save()
+        names['de'] = None
+        self.check_names(names)
+
+    def test_remove_name_with_none(self):
+        names = dict(self.names, **{'de': u'frü', 'es': u'eso'})
+        self.addon.update_names(names)
+        self.addon.save()
+        self.check_names(names)
+        # Now update without de to remove it.
+        names['de'] = None
+        self.addon.update_names(names)
+        self.addon.save()
+        self.check_names(names)
+
+    def test_add_and_remove(self):
+        names = dict(self.names, **{'de': u'frü', 'es': u'eso'})
+        self.addon.update_names(names)
+        self.addon.save()
+        self.check_names(names)
+        # Now add a new locale and remove an existing one.
+        names['de'] = None
+        names['fr'] = u'oui'
+        self.addon.update_names(names)
+        self.addon.save()
+        self.check_names(names)
+
+    def test_default_locale_change(self):
+        names = dict(self.names, **{'de': u'frü', 'es': u'eso'})
+        self.addon.default_locale = 'de'
+        self.addon.update_names(names)
+        self.addon.save()
+        self.check_names(names)
+        addon = self.addon.reload()
+        eq_(addon.default_locale, 'de')
+
+    def test_default_locale_change_remove_old(self):
+        names = dict(self.names, **{'de': u'frü', 'es': u'eso', 'en-US': None})
+        self.addon.default_locale = 'de'
+        self.addon.update_names(names)
+        self.addon.save()
+        self.check_names(names)
+        eq_(self.addon.reload().default_locale, 'de')
 
 
 class TestAddonWatchDisabled(amo.tests.TestCase):

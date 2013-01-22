@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import datetime
 import json
 import os
@@ -11,9 +12,11 @@ from nose.tools import eq_
 
 import amo
 import amo.tests
+from addons.models import Addon
 from editors.models import RereviewQueue
-from files.models import FileUpload
+from files.models import File, FileUpload
 from users.models import UserProfile
+from versions.models import Version
 
 from mkt.developers.models import ActivityLog
 from mkt.webapps.models import Webapp
@@ -21,33 +24,51 @@ from mkt.webapps.tasks import update_manifests
 
 
 original = {
-        "version": "0.1",
-        "name": "MozillaBall",
-        "description": "Exciting Open Web development action!",
-        "icons": {
-            "16": "http://test.com/icon-16.png",
-            "48": "http://test.com/icon-48.png",
-            "128": "http://test.com/icon-128.png"
+    "version": "0.1",
+    "default_locale": "en-US",
+    "name": "MozillaBall",
+    "description": "Exciting Open Web development action!",
+    "icons": {
+        "16": "http://test.com/icon-16.png",
+        "48": "http://test.com/icon-48.png",
+        "128": "http://test.com/icon-128.png"
+    },
+    "installs_allowed_from": [
+        "*",
+    ],
+    "locales": {
+        "de": {
+            "name": "Mozilla Kugel"
         },
-        "installs_allowed_from": [
-            "*",
-        ],
+        "fr": {
+            "description": "Testing name-less locale"
+        }
     }
+}
 
 
 new = {
-        "version": "1.0",
-        "name": "MozillaBall",
-        "description": "Exciting Open Web development action!",
-        "icons": {
-            "16": "http://test.com/icon-16.png",
-            "48": "http://test.com/icon-48.png",
-            "128": "http://test.com/icon-128.png"
+    "version": "1.0",
+    "default_locale": "en-US",
+    "name": "MozillaBall",
+    "description": "Exciting Open Web development action!",
+    "icons": {
+        "16": "http://test.com/icon-16.png",
+        "48": "http://test.com/icon-48.png",
+        "128": "http://test.com/icon-128.png"
+    },
+    "installs_allowed_from": [
+        "*",
+    ],
+    "locales": {
+        "de": {
+            "name": "Mozilla Kugel"
         },
-        "installs_allowed_from": [
-            "*",
-        ],
+        "fr": {
+            "description": "Testing name-less locale"
+        }
     }
+}
 
 
 ohash = ('sha256:'
@@ -62,10 +83,20 @@ class TestUpdateManifest(amo.tests.TestCase):
     def setUp(self):
         UserProfile.objects.get_or_create(id=settings.TASK_USER_ID)
 
-        self.addon = amo.tests.app_factory()
-        self.version = self.addon.versions.latest()
-        self.file = self.version.files.latest()
-        self.file.update(hash=ohash)
+        # Not using app factory since it creates translations with an invalid
+        # locale of "en-us".
+        self.addon = Addon.objects.create(type=amo.ADDON_WEBAPP)
+        self.version = Version.objects.create(addon=self.addon)
+        self.file = File.objects.create(
+            version=self.version, hash=ohash, status=amo.STATUS_PUBLIC,
+            filename='%s-%s' % (self.addon.id, self.version.id))
+
+        self.addon.name = {
+            'en-US': 'MozillaBall',
+            'de': 'Mozilla Kugel',
+        }
+        self.addon.status = amo.STATUS_PUBLIC
+        self.addon.save()
 
         ActivityLog.objects.all().delete()
 
@@ -214,6 +245,99 @@ class TestUpdateManifest(amo.tests.TestCase):
         eq_(RereviewQueue.objects.count(), 1)
         # 2 logs: 1 for manifest update, 1 for re-review trigger.
         eq_(ActivityLog.objects.for_apps(self.addon).count(), 2)
+
+    @mock.patch('mkt.webapps.tasks._open_manifest')
+    def test_manifest_locale_name_add_rereview(self, open_manifest):
+        # Mock original manifest file lookup.
+        open_manifest.return_value = original
+        # Mock new manifest with name change.
+        n = new.copy()
+        n['locales'] = {'es': {'name': 'eso'}}
+        response_mock = mock.Mock()
+        response_mock.read.return_value = json.dumps(n)
+        response_mock.headers = {
+            'Content-Type': 'application/x-web-app-manifest+json'}
+        self.urlopen_mock.return_value = response_mock
+
+        eq_(RereviewQueue.objects.count(), 0)
+        self._run()
+        eq_(RereviewQueue.objects.count(), 1)
+        # 2 logs: 1 for manifest update, 1 for re-review trigger.
+        eq_(ActivityLog.objects.for_apps(self.addon).count(), 2)
+        log = ActivityLog.objects.filter(
+            action=amo.LOG.REREVIEW_MANIFEST_CHANGE.id)[0]
+        eq_(log.details.get('comments'),
+            u'Locales added: "eso" (es).')
+
+    @mock.patch('mkt.webapps.tasks._open_manifest')
+    def test_manifest_locale_name_change_rereview(self, open_manifest):
+        # Mock original manifest file lookup.
+        open_manifest.return_value = original
+        # Mock new manifest with name change.
+        n = new.copy()
+        n['locales'] = {'de': {'name': 'Bippity Bop'}}
+        response_mock = mock.Mock()
+        response_mock.read.return_value = json.dumps(n)
+        response_mock.headers = {
+            'Content-Type': 'application/x-web-app-manifest+json'}
+        self.urlopen_mock.return_value = response_mock
+
+        eq_(RereviewQueue.objects.count(), 0)
+        self._run()
+        eq_(RereviewQueue.objects.count(), 1)
+        # 2 logs: 1 for manifest update, 1 for re-review trigger.
+        eq_(ActivityLog.objects.for_apps(self.addon).count(), 2)
+        log = ActivityLog.objects.filter(
+            action=amo.LOG.REREVIEW_MANIFEST_CHANGE.id)[0]
+        eq_(log.details.get('comments'),
+            u'Locales updated: "Mozilla Kugel" -> "Bippity Bop" (de).')
+
+    @mock.patch('mkt.webapps.tasks._open_manifest')
+    def test_manifest_default_locale_change(self, open_manifest):
+        # Mock original manifest file lookup.
+        open_manifest.return_value = original
+        # Mock new manifest with name change.
+        n = new.copy()
+        n['name'] = u'Mozilla Balón'
+        n['default_locale'] = 'es'
+        n['locales'] = {'en-US': {'name': 'MozillaBall'}}
+        response_mock = mock.Mock()
+        response_mock.read.return_value = json.dumps(n)
+        response_mock.headers = {
+            'Content-Type': 'application/x-web-app-manifest+json'}
+        self.urlopen_mock.return_value = response_mock
+
+        eq_(RereviewQueue.objects.count(), 0)
+        self._run()
+        eq_(RereviewQueue.objects.count(), 1)
+        eq_(self.addon.reload().default_locale, 'es')
+        # 2 logs: 1 for manifest update, 1 for re-review trigger.
+        eq_(ActivityLog.objects.for_apps(self.addon).count(), 2)
+        log = ActivityLog.objects.filter(
+            action=amo.LOG.REREVIEW_MANIFEST_CHANGE.id)[0]
+        eq_(log.details.get('comments'),
+            u'Manifest name changed from "MozillaBall" to "Mozilla Balón". '
+            u'Default locale changed from "en-US" to "es". '
+            u'Locales added: "Mozilla Balón" (es).')
+
+    @mock.patch('mkt.webapps.tasks._open_manifest')
+    def test_manifest_locale_name_removal_no_rereview(self, open_manifest):
+        # Mock original manifest file lookup.
+        open_manifest.return_value = original
+        # Mock new manifest with name change.
+        n = new.copy()
+        del n['locales']['de']
+        response_mock = mock.Mock()
+        response_mock.read.return_value = json.dumps(n)
+        response_mock.headers = {
+            'Content-Type': 'application/x-web-app-manifest+json'}
+        self.urlopen_mock.return_value = response_mock
+
+        eq_(RereviewQueue.objects.count(), 0)
+        self._run()
+        eq_(RereviewQueue.objects.count(), 0)
+        # Log for manifest update.
+        eq_(ActivityLog.objects.for_apps(self.addon).count(), 1)
 
     @mock.patch.object(settings, 'SITE_URL', 'http://test')
     @mock.patch('mkt.webapps.tasks._open_manifest')
