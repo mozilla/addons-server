@@ -2,7 +2,6 @@ from django.conf.urls import include, patterns, url
 
 from lib.misc.urlconf_decorator import decorate
 
-import amo
 from amo.decorators import login_required
 from . import views
 
@@ -30,7 +29,7 @@ settings_patterns = decorate(login_required, patterns('',
 
 purchases_patterns = decorate(login_required, patterns('',
     url('^$', views.purchases, name='account.purchases'),
-    url(r'^%s' % amo.ADDON_UUID, views.purchases,
+    url(r'^(?P<product_id>\d+)', views.purchases,
         name='account.purchases.receipt'),
 ))
 

@@ -36,20 +36,20 @@ class PurchasesFilter(BaseFilter):
             return order_by_translation(qs.filter(id__in=self.uids), 'name')
 
 
-def purchase_list(request, user, uuid):
+def purchase_list(request, user, product_id):
     cs = (Contribution.objects
           .filter(user=user,
                   type__in=[amo.CONTRIB_PURCHASE, amo.CONTRIB_INAPP,
                             amo.CONTRIB_REFUND, amo.CONTRIB_CHARGEBACK])
           .order_by('created'))
-    if uuid:
-        cs = cs.filter(addon__guid=uuid)
+    if product_id:
+        cs = cs.filter(addon__guid=product_id)
 
     ids = list(cs.values_list('addon_id', flat=True))
     product_ids = []
     # If you are asking for a receipt for just one item, show only that.
     # Otherwise, we'll show all apps that have a contribution or are free.
-    if not uuid:
+    if not product_id:
         product_ids = list(user.installed_set
                            .filter(install_type__in=
                                [apps.INSTALL_TYPE_USER,
@@ -67,7 +67,7 @@ def purchase_list(request, user, uuid):
                               ids=[ids, product_ids],
                               uids=unique_ids)
 
-    if uuid and not listing.qs.exists():
+    if product_id and not listing.qs.exists():
         # User has requested a receipt for an app he ain't got.
         raise http.Http404
 
