@@ -1,3 +1,4 @@
+import datetime
 import json
 import os
 
@@ -169,32 +170,28 @@ class TestUpdateManifest(amo.tests.TestCase):
     @mock.patch('mkt.webapps.tasks._fetch_manifest')
     @mock.patch('mkt.webapps.tasks.update_manifests.retry')
     def test_update_manifest(self, retry, fetch):
-        def f(self):
-            return '{}'
-        fetch.side_effect = f
+        fetch.return_value = '{}'
         update_manifests(ids=(self.addon.pk,))
         assert not retry.called
 
     @mock.patch('mkt.webapps.tasks._fetch_manifest')
     @mock.patch('mkt.webapps.tasks.update_manifests.retry')
     def test_manifest_fetch_fail(self, retry, fetch):
-        def die(self):
-            raise RuntimeError()
-        fetch.side_effect = die
+        later = datetime.datetime.now() + datetime.timedelta(seconds=3600)
+        fetch.side_effect = RuntimeError
         update_manifests(ids=(self.addon.pk,))
-        retry.assert_called_with(
-            args=([self.addon.pk,],),
-            kwargs={'check_hash': True,
-                    'retries': {self.addon.pk: 1}},
-            countdown=3600,
-            gmax_retries=4)
+        retry.assert_called()
+        # Not using assert_called_with b/c eta is a datetime.
+        eq_(retry.call_args[1]['args'], ([self.addon.pk],))
+        eq_(retry.call_args[1]['kwargs'], {'check_hash': True,
+                                           'retries': {self.addon.pk: 1}})
+        self.assertCloseToNow(retry.call_args[1]['eta'], later)
+        eq_(retry.call_args[1]['max_retries'], 4)
 
     @mock.patch('mkt.webapps.tasks._fetch_manifest')
     @mock.patch('mkt.webapps.tasks.update_manifests.retry')
     def test_manifest_fetch_3x_fail(self, retry, fetch):
-        def die(self):
-            raise RuntimeError()
-        fetch.side_effect = die
+        fetch.side_effect = RuntimeError
         update_manifests(ids=(self.addon.pk,), retries={self.addon.pk: 2})
         assert not retry.called
         assert RereviewQueue.objects.filter(addon=self.addon).exists()

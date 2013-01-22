@@ -1,7 +1,9 @@
+import datetime
 import hashlib
 import json
 import logging
 
+from celery.exceptions import RetryTaskError
 from celeryutils import task
 
 from django.core.files.storage import default_storage as storage
@@ -59,6 +61,7 @@ def _open_manifest(webapp, file_):
 @task
 @write
 def update_manifests(ids, **kw):
+    retry_secs = 3600
     task_log.info('[%s@%s] Update manifests.' %
                   (len(ids), update_manifests.rate_limit))
     check_hash = kw.pop('check_hash', True)
@@ -70,11 +73,16 @@ def update_manifests(ids, **kw):
     for id in ids:
         _update_manifest(id, check_hash, retries)
     if retries:
-        update_manifests.retry(args=(retries.keys(),),
-                               kwargs={'check_hash': check_hash,
-                                       'retries': retries},
-                               countdown=3600,
-                               gmax_retries=4)
+        try:
+            update_manifests.retry(args=(retries.keys(),),
+                                   kwargs={'check_hash': check_hash,
+                                           'retries': retries},
+                                   eta=datetime.datetime.now() +
+                                       datetime.timedelta(seconds=retry_secs),
+                                   max_retries=4)
+        except RetryTaskError:
+            _log(id, 'Retrying task in %d seconds.' % retry_secs)
+
     return retries
 
 
