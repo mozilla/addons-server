@@ -282,8 +282,7 @@ class TestRefundContribution(ContributionMixin, amo.tests.TestCase):
                         approved=None,
                         declined=None)
         refund = self.do_refund(expected, amo.REFUND_PENDING, reason)
-        assert amo.tests.close_to_now(refund.requested), (
-            'Expected date `requested` to be now. Got %r.' % refund.requested)
+        self.assertCloseToNow(refund.requested)
 
     def test_pending_to_approved(self):
         reason = 'this is bloody bullocks, mate'
@@ -292,8 +291,7 @@ class TestRefundContribution(ContributionMixin, amo.tests.TestCase):
                         approved=None,
                         declined=None)
         refund = self.do_refund(expected, amo.REFUND_PENDING, reason)
-        assert amo.tests.close_to_now(refund.requested), (
-            'Expected date `requested` to be now. Got %r.' % refund.requested)
+        self.assertCloseToNow(refund.requested)
 
         # Change `requested` date to some date in the past.
         requested_date = refund.requested - datetime.timedelta(hours=1)
@@ -307,8 +305,7 @@ class TestRefundContribution(ContributionMixin, amo.tests.TestCase):
         refund = self.do_refund(expected, amo.REFUND_APPROVED)
         eq_(refund.requested, requested_date,
             'Expected date `requested` to remain unchanged.')
-        assert amo.tests.close_to_now(refund.approved), (
-            'Expected date `approved` to be now. Got %r.' % refund.approved)
+        self.assertCloseToNow(refund.approved)
 
     def test_approved_instant(self):
         expected = dict(refund_reason='',
@@ -316,10 +313,8 @@ class TestRefundContribution(ContributionMixin, amo.tests.TestCase):
                         approved__isnull=False,
                         declined=None)
         refund = self.do_refund(expected, amo.REFUND_APPROVED_INSTANT)
-        assert amo.tests.close_to_now(refund.requested), (
-            'Expected date `requested` to be now. Got %r.' % refund.requested)
-        assert amo.tests.close_to_now(refund.approved), (
-            'Expected date `approved` to be now. Got %r.' % refund.approved)
+        self.assertCloseToNow(refund.requested)
+        self.assertCloseToNow(refund.approved)
 
     def test_pending_to_declined(self):
         refund_reason = 'please, bro'
@@ -331,8 +326,7 @@ class TestRefundContribution(ContributionMixin, amo.tests.TestCase):
                         approved=None,
                         declined=None)
         refund = self.do_refund(expected, amo.REFUND_PENDING, refund_reason)
-        assert amo.tests.close_to_now(refund.requested), (
-            'Expected date `requested` to be now. Got %r.' % refund.requested)
+        self.assertCloseToNow(refund.requested)
 
         requested_date = refund.requested - datetime.timedelta(hours=1)
         refund.requested = requested_date
@@ -347,8 +341,7 @@ class TestRefundContribution(ContributionMixin, amo.tests.TestCase):
                                 rejection_reason=rejection_reason)
         eq_(refund.requested, requested_date,
             'Expected date `requested` to remain unchanged.')
-        assert amo.tests.close_to_now(refund.declined), (
-            'Expected date `declined` to be now. Got %r.' % refund.declined)
+        self.assertCloseToNow(refund.declined)
 
 
 class TestRefundManager(amo.tests.TestCase):

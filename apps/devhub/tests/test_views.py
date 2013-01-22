@@ -31,8 +31,8 @@ from addons.models import (Addon, AddonCategory, AddonUpsell, AddonUser,
                            Category, Charity)
 from amo.helpers import (absolutify, babel_datetime, url as url_reverse,
                          timesince)
-from amo.tests import (addon_factory, assert_no_validation_errors,
-                       close_to_now, formset, initial)
+from amo.tests import (addon_factory, assert_no_validation_errors, formset,
+                       initial)
 from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
 from applications.models import Application, AppVersion
@@ -47,15 +47,6 @@ from stats.models import Contribution
 from translations.models import Translation
 from users.models import UserProfile
 from versions.models import ApplicationsVersions, License, Version
-
-
-class MetaTests(amo.tests.TestCase):
-
-    def test_assert_close_to_now(dt):
-        assert close_to_now(datetime.now() - timedelta(seconds=30))
-        assert not close_to_now(datetime.now() + timedelta(days=30))
-        assert not close_to_now(datetime.now() + timedelta(minutes=3))
-        assert not close_to_now(datetime.now() + timedelta(seconds=30))
 
 
 class HubTest(amo.tests.TestCase):
@@ -2195,7 +2186,7 @@ class TestSubmitStep6(TestSubmitBase):
         eq_(r.status_code, 302)
         addon = self.get_addon()
         eq_(addon.status, amo.STATUS_NOMINATED)
-        assert close_to_now(self.get_version().nomination)
+        self.assertCloseToNow(self.get_version().nomination)
         assert_raises(SubmitStep.DoesNotExist, self.get_step)
 
     def test_nomination_date_is_only_set_once(self):
@@ -3312,7 +3303,7 @@ class TestRequestReview(amo.tests.TestCase):
         eq_(self.version.nomination, None)
         self.check(amo.STATUS_LITE, self.public_url,
                    amo.STATUS_LITE_AND_NOMINATED)
-        assert close_to_now(self.get_version().nomination)
+        self.assertCloseToNow(self.get_version().nomination)
 
     def test_purgatory_to_lite(self):
         self.check(amo.STATUS_PURGATORY, self.lite_url, amo.STATUS_UNREVIEWED)
@@ -3321,7 +3312,7 @@ class TestRequestReview(amo.tests.TestCase):
         eq_(self.version.nomination, None)
         self.check(amo.STATUS_PURGATORY, self.public_url,
                    amo.STATUS_NOMINATED)
-        assert close_to_now(self.get_version().nomination)
+        self.assertCloseToNow(self.get_version().nomination)
 
     def test_lite_and_nominated_to_public(self):
         self.addon.update(status=amo.STATUS_LITE_AND_NOMINATED)

@@ -16,8 +16,8 @@ from pyquery import PyQuery as pq
 
 import amo
 import amo.tests
-from amo.tests import (formset, initial, close_to_now, assert_required,
-                       assert_no_validation_errors)
+from amo.tests import (assert_no_validation_errors, assert_required, formset,
+                       initial)
 from access.models import Group, GroupUser
 from addons.models import Addon, CompatOverride, CompatOverrideRange
 from amo.urlresolvers import reverse
@@ -731,7 +731,7 @@ class TestBulkValidationTask(BulkValidationTest):
     def test_validate(self):
         self.start_validation()
         res = ValidationResult.objects.get()
-        assert close_to_now(res.completed)
+        self.assertCloseToNow(res.completed)
         assert_no_validation_errors(res)
         eq_(res.errors, 1)  # package could not be found
         eq_(res.valid, False)
@@ -739,7 +739,7 @@ class TestBulkValidationTask(BulkValidationTest):
         eq_(res.notices, 0)
         v = json.loads(res.validation)
         eq_(v['errors'], 1)
-        assert close_to_now(res.validation_job.completed)
+        self.assertCloseToNow(res.validation_job.completed)
         eq_(res.validation_job.stats['total'], 1)
         eq_(res.validation_job.stats['completed'], 1)
         eq_(res.validation_job.stats['passing'], 0)
@@ -772,7 +772,7 @@ class TestBulkValidationTask(BulkValidationTest):
         err = res.task_error.strip()
         assert err.endswith('RuntimeError: validation error'), (
                                                     'Unexpected: %s' % err)
-        assert close_to_now(res.completed)
+        self.assertCloseToNow(res.completed)
         eq_(res.validation_job.stats['total'], 1)
         eq_(res.validation_job.stats['errors'], 1)
         eq_(res.validation_job.stats['passing'], 0)

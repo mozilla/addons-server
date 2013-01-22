@@ -377,6 +377,20 @@ class TestCase(RedisTest, test_utils.TestCase):
         eq_(set(a), set(b))
         eq_(len(a), len(b))
 
+    def assertCloseToNow(self, dt, now=None):
+        """
+        Make sure the datetime is within a minute from `now`.
+        """
+        if not now:
+            now = datetime.now()
+        dt_ts = time.mktime(dt.timetuple())
+        dt_minute_ts = time.mktime((dt + timedelta(minutes=1)).timetuple())
+        now_ts = time.mktime(now.timetuple())
+
+        assert now_ts >= dt_ts and now_ts < dt_minute_ts, (
+            'Expected datetime to be within a minute of %s. Got %r.' % (now,
+                                                                        dt))
+
     def make_premium(self, addon, currencies=None):
         price = Price.objects.create(price='1.00')
         if currencies:
@@ -473,17 +487,6 @@ class AMOPaths(object):
     def packaged_copy_over(self, dest, name):
         with storage.open(dest, 'wb') as f:
             copyfileobj(open(self.packaged_app_path(name)), f)
-
-
-def close_to_now(dt):
-    """
-    Make sure the datetime is within a minute from `now`.
-    """
-    dt_ts = time.mktime(dt.timetuple())
-    dt_minute_ts = time.mktime((dt + timedelta(minutes=1)).timetuple())
-    now_ts = time.mktime(datetime.now().timetuple())
-
-    return now_ts >= dt_ts and now_ts < dt_minute_ts
 
 
 def assert_no_validation_errors(validation):

@@ -16,7 +16,7 @@ import es.hold
 
 import amo
 import amo.tests
-from amo.tests import close_to_now, formset, initial
+from amo.tests import formset, initial
 from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
 from addons.models import (Addon, AddonCategory, AddonDeviceType, AddonUser,
@@ -140,8 +140,7 @@ class TestTerms(TestSubmit):
     def test_agree(self):
         self.client.post(self.url, {'read_dev_agreement': True})
         dt = self.get_user().read_dev_agreement
-        assert close_to_now(dt), (
-            'Expected date of agreement read to be close to now. Was %s' % dt)
+        self.assertCloseToNow(dt)
         eq_(UserNotification.objects.count(), 0)
 
     def test_agree_and_sign_me_up(self):
@@ -149,8 +148,7 @@ class TestTerms(TestSubmit):
                                     datetime.datetime.now(),
                                     'newsletter': True})
         dt = self.get_user().read_dev_agreement
-        assert close_to_now(dt), (
-            'Expected date of agreement read to be close to now. Was %s' % dt)
+        self.assertCloseToNow(dt)
         eq_(UserNotification.objects.count(), 1)
         notes = UserNotification.objects.filter(user=self.user, enabled=True,
                                                 notification_id=app_surveys.id)
