@@ -310,7 +310,8 @@ def personas_adu():
     cursor.execute("""
         UPDATE addons
         INNER JOIN personas ON (addons.id = personas.addon_id)
-        INNER JOIN tmp_personas ON (tmp.persona_id = personas.persona_id)
+        INNER JOIN tmp_personas 
+            ON (tmp_personas.persona_id = personas.persona_id)
         SET addons.average_daily_users = tmp_personas.popularity
         """)
 
