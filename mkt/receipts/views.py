@@ -63,7 +63,7 @@ def _record(request, addon):
     # Don't generate receipts if we're allowing logged-out install.
     if logged or not allow_anon_install:
         is_dev = request.check_ownership(addon, require_owner=False,
-                                     ignore_disabled=True)
+                                         ignore_disabled=True, admin=False)
         is_reviewer = acl.check_reviewer(request)
         if (not addon.is_webapp() or not addon.is_public() and
             not (is_reviewer or is_dev)):

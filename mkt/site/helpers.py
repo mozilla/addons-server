@@ -104,7 +104,6 @@ def market_button(context, product, receipt_type=None, classes=None):
 
 def product_as_dict(request, product, purchased=None, receipt_type=None,
                     src=''):
-
     # Dev environments might not have authors set.
     author = ''
     author_url = ''
@@ -198,8 +197,7 @@ def market_tile(context, product, link=True, src=''):
                      product.pk in request.amo_user.purchase_ids())
 
         is_dev = product.has_author(request.amo_user)
-        is_reviewer = acl.action_allowed(request, 'Apps', 'Review')
-        receipt_type = 'developer' if is_dev or is_reviewer else None
+        receipt_type = 'developer' if is_dev else None
         product_dict = product_as_dict(request, product, purchased=purchased,
                                        receipt_type=receipt_type, src=src)
         product_dict['prepareNavPay'] = reverse('webpay.prepare_pay',

@@ -279,7 +279,7 @@ class TestMarketButton(amo.tests.TestCase):
         action_allowed.return_value = True
         doc = pq(market_tile(self.context, self.webapp))
         data = json.loads(doc('.mkt-tile').attr('data-product'))
-        issue = urlparams(reverse('receipt.issue',
+        issue = urlparams(reverse('detail.record',
                                   args=[self.webapp.app_slug]), src='foo')
         eq_(data['recordUrl'], issue)
 

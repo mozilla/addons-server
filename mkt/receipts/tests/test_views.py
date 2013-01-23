@@ -93,6 +93,15 @@ class TestInstall(amo.tests.TestCase):
         eq_(self.addon.installed.all()[0].install_type,
             apps.INSTALL_TYPE_USER)
 
+    def test_pending_paid_for_admin(self):
+        self.addon.update(status=amo.STATUS_PENDING,
+                          premium_type=amo.ADDON_PREMIUM)
+        self.grant_permission(self.user, '*:*')
+        eq_(self.client.post(self.url).status_code, 200)
+        # Check ownership ignores admin users.
+        eq_(self.addon.installed.all()[0].install_type,
+            apps.INSTALL_TYPE_USER)
+
     def test_pending_paid_for_developer(self):
         AddonUser.objects.create(addon=self.addon, user=self.user)
         self.addon.update(status=amo.STATUS_PENDING,
