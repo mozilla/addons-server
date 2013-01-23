@@ -3,6 +3,7 @@ from datetime import datetime, timedelta
 from django.core.exceptions import PermissionDenied
 from django.db import connection
 from django.db.models import Sum, Count, Q
+from django.http import Http404
 from django.shortcuts import get_object_or_404, redirect
 
 import jingo
@@ -19,7 +20,9 @@ from apps.access import acl
 from apps.bandwagon.models import Collection
 from devhub.models import ActivityLog
 from elasticutils.contrib.django import S
+from lib.pay_server import client, SolitudeError
 from market.models import AddonPaymentData, Refund
+from mkt.constants.payments import PROVIDERS
 from mkt.account.utils import purchase_list
 from mkt.lookup.forms import TransactionRefundForm, TransactionSearchForm
 from mkt.lookup.tasks import email_buyer_refund
@@ -75,24 +78,43 @@ def user_summary(request, user_id):
 @login_required
 @permission_required('Transaction', 'View')
 def transaction_summary(request, uuid):
+    tx_data = _transaction_summary(uuid)
+    if not tx_data:
+        raise Http404
+
     tx_form = TransactionSearchForm()
     tx_refund_form = TransactionRefundForm()
 
     return jingo.render(request, 'lookup/transaction_summary.html',
-                        {'uuid': uuid, 'tx_form': tx_form,
-                         'tx_refund_form': tx_refund_form,
-                         'tx': _transaction_summary(uuid)})
+                        dict({'uuid': uuid, 'tx_form': tx_form,
+                              'tx_refund_form': tx_refund_form}.items() +
+                             tx_data.items()))
 
 
 def _transaction_summary(uuid):
     """Get transaction details from Solitude API."""
-    # TODO: Get transaction details from Solitude API.
+    contrib = get_object_or_404(Contribution, uuid=uuid)
+    # Get tx.
+    try:
+        transaction = client.lookup_transaction(uuid)
+    except (SolitudeError, ValueError):
+        return
+
+    # Get buyer.
+    buyer = None
+    buyer_uri = transaction.get('buyer')
+    if buyer_uri:
+        buyer = client.get(buyer_uri)
+
     return {
-        'id': '',
-        'date': '',
-        'buyer': None,
-        'seller': None,
-        'amount': 0
+        'tx': transaction,
+        'buyer': buyer,
+        'provider': PROVIDERS[transaction['provider']],
+
+        'contrib': contrib,
+        'type': amo.CONTRIB_TYPES[contrib.type],
+        'is_refund': contrib.has_refund(),
+        'related': contrib.related,
     }
 
 
@@ -101,11 +123,8 @@ def _transaction_summary(uuid):
 @permission_required('Transaction', 'Refund')
 def transaction_refund(request, uuid):
     contrib = get_object_or_404(Contribution, uuid=uuid)
-    try:
-        if contrib.has_refund():
-            raise PermissionDenied
-    except Refund.DoesNotExist:
-        pass
+    if contrib.has_refund():
+        raise PermissionDenied
 
     form = TransactionRefundForm(request.POST)
     if not form.is_valid():

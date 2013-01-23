@@ -23,8 +23,9 @@ from amo.helpers import urlparams
 from amo.tests import addon_factory, app_factory, ESTestCase, TestCase
 from amo.urlresolvers import reverse
 from devhub.models import ActivityLog
+from lib.pay_server import SolitudeError
 from market.models import AddonPaymentData, AddonPremium, Price, Refund
-from mkt.lookup.views import transaction_refund
+from mkt.lookup.views import _transaction_summary, transaction_refund
 from mkt.site.fixtures import fixture
 from mkt.webapps.cron import update_weekly_downloads
 from mkt.webapps.models import Installed, Webapp
@@ -275,19 +276,61 @@ class TestTransactionSummary(TestCase):
 
     def setUp(self):
         self.uuid = 45
+        self.buyer_uuid = 123
+        self.seller_uuid = 456
+        self.related_tx_uuid = 789
+
+        Contribution.objects.create(addon=addon_factory(), uuid=self.uuid)
+
         self.url = reverse('lookup.transaction_summary', args=[self.uuid])
         self.client.login(username='support-staff@mozilla.com',
                           password='password')
 
-    def test_200(self):
+    @mock.patch('mkt.lookup.views.client')
+    def test_200(self, solitude):
+        solitude.lookup_transaction.side_effect = self.lookup_tx_side_effect
+        solitude.get.side_effect = self.get_side_effect
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
 
-    def test_no_perm(self):
+    def test_no_perm_403(self):
         self.client.login(username='regular@mozilla.com',
                           password='password')
         r = self.client.get(self.url)
         eq_(r.status_code, 403)
+
+    @mock.patch('mkt.lookup.views.client')
+    def test_no_transaction_404(self, solitude):
+        solitude.lookup_transaction.side_effect = self.lookup_tx_side_effect
+        r = self.client.get(reverse('lookup.transaction_summary', args=[999]))
+        eq_(r.status_code, 404)
+
+    @mock.patch('mkt.lookup.views.client')
+    def test_transaction_summary(self, solitude):
+        """Mock Solitude API, check client follows the URIs around."""
+        solitude.lookup_transaction.side_effect = self.lookup_tx_side_effect
+        solitude.get.side_effect = self.get_side_effect
+
+        tx_data = _transaction_summary(self.uuid)
+
+        eq_(tx_data['tx'], self.mock_transaction())
+        eq_(tx_data['buyer']['uuid'], self.buyer_uuid)
+
+    def lookup_tx_side_effect(self, *args, **kwargs):
+        if str(args[0]) == str(self.uuid):
+            return self.mock_transaction()
+        raise SolitudeError
+
+    def get_side_effect(self, *args, **kwargs):
+        if args[0] == 'buyer_uri':
+            return {'uuid': self.buyer_uuid}
+
+    def mock_transaction(self):
+        return {
+            'uuid': self.uuid,
+            'buyer': 'buyer_uri',
+            'provider': 0,
+        }
 
 
 class TestTransactionRefund(TestCase):
