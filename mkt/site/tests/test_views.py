@@ -76,6 +76,7 @@ class TestManifest(amo.tests.TestCase):
         self.url = reverse('manifest.webapp')
 
     @mock.patch.object(settings, 'CARRIER_URLS', ['boop'])
+    @mock.patch.object(settings, 'WEBAPP_MANIFEST_NAME', 'Firefox Marketplace')
     def test_manifest(self):
         response = self.client.get(reverse('manifest.webapp'))
         eq_(response.status_code, 200)
