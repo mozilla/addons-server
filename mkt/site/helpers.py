@@ -16,7 +16,6 @@ from amo.urlresolvers import reverse, get_outgoing_url
 from amo.utils import JSONEncoder
 from translations.helpers import truncate
 from versions.compare import version_int as vint
-from mkt.webapps.models import Installed
 
 import mkt
 
@@ -77,10 +76,6 @@ def market_button(context, product, receipt_type=None, classes=None):
         data_attrs = {'manifest_url': product.get_manifest_url(reviewer),
                       'is_packaged': json.dumps(product.is_packaged)}
 
-        if request.amo_user:
-            installed = request.amo_user.installed_set
-            installed = installed.filter(addon=product).exists()
-
         # Handle premium apps.
         if product.is_premium() and product.premium:
             # User has purchased app.
@@ -92,7 +87,7 @@ def market_button(context, product, receipt_type=None, classes=None):
                     request.check_ownership(product, require_author=True)):
                 purchased = True
 
-        if installed or purchased:
+        if purchased:
             label = _('Install')
         else:
             label = product.get_price()
