@@ -129,6 +129,9 @@ table.data-grid thead tr th:nth-child(7) {
 table.data-grid thead tr th:nth-child(8) {
     min-width: 10em;
 }
+table.data-grid tr th {
+    border-top: 1px dotted #DDDDDD;
+}
 table.data-grid tr th a:active,
 table.data-grid tr th a:hover,
 table.data-grid tr th a:visited {
@@ -183,6 +186,16 @@ table.data-grid .locked .addon-locked {
     background-position: 0 -761px;
 }
 
+/* Incentive point breakdown */
+.incentive-points td,
+.incentive-points th {
+    text-align: right;
+}
+.incentive-points tr th:first-child {
+    text-align: left;
+}
+
+
 /* Version notes */
 #popup-notes .version-notes {
     overflow: auto;
@@ -195,7 +208,6 @@ table.data-grid .locked .addon-locked {
 table.data-grid .addon-version-notes a {
     text-decoration: none;
 }
-
 /* editors/queue tabs */
 ul.tabnav {
     list-style-type: none;

@@ -1,5 +1,7 @@
 {% extends "editors/base.html" %}
 
+{% set types = ('addons', 'apps', 'themes') %}
+
 {% block breadcrumbs %}
 {{ editors_breadcrumbs(items=[(None, _('Performance'))]) }}
 {% endblock %}
@@ -63,33 +65,39 @@
     <p>{{ _('No review points awarded yet.') }}</p>
   {% else %}
     <h2>{{ _('All-time Point Breakdown by Type') }}</h2>
-    <table class="data-grid">
+    <table class="data-grid incentive-points">
       <thead>
-        <tr class="listing-header">
-          <th>{{ _('Type') }}</th>
-          <th>{{ _('Points') }}</th>
+        <tr>
+          <th></th>
+          <th>{{ _('Add-ons') }}</th>
+          <th>{{ _('Apps') }}</th>
+          <th>{{ _('Themes') }}</th>
+          <th>{{ _('Total') }}</th>
         </tr>
       </thead>
       <tbody>
-        {% for row in point_breakdown %}
-          <tr>
-            <td><nobr>
-              {% if row.atype %}
-                {{ amo.ADDON_TYPES[row.atype] }}
-              {% else %}
-                {{ _('Admin Awarded') }}
-              {% endif %}
-            </nobr></td>
-            <td class="number">{{ row.total }}</td>
-          </tr>
-        {% endfor %}
-      </tbody>
-      <tfoot>
         <tr>
-          <th>{{ _('Total') }}</th>
-          <th>{{ point_total }}</th>
+          <th>{{ _('Month') }}</th>
+          {% for type in types %}
+            <td>{{ breakdown['month'][type]|numberfmt }}</td>
+          {% endfor %}
+          <td>{{ breakdown['month'].values()|sum|numberfmt }}</td>
         </tr>
-      </tfoot>
+        <tr>
+          <th>{{ _('Year') }}</th>
+          {% for type in types %}
+            <td>{{ breakdown['year'][type]|numberfmt }}</td>
+          {% endfor %}
+          <td>{{ breakdown['year'].values()|sum|numberfmt }}</td>
+        </tr>
+        <tr>
+          <th>{{ _('All-Time') }}</th>
+          {% for type in types %}
+            <td>{{ breakdown['total'][type]|numberfmt }}</td>
+          {% endfor %}
+          <td>{{ breakdown['total'].values()|sum|numberfmt }}</td>
+        </tr>
+      </tbody>
     </table>
   {% endif %}
 

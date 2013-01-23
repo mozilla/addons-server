@@ -919,32 +919,24 @@ def performance(request, username=None):
     months = ReviewerScore.get_breakdown_since(user, month_ago)
     years = ReviewerScore.get_breakdown_since(user, year_ago)
 
-    group = {
-        'addons': [amo.ADDON_EXTENSION, amo.ADDON_DICT, amo.ADDON_SEARCH,
-                   amo.ADDON_LPAPP, amo.ADDON_LPADDON, amo.ADDON_PLUGIN,
-                   amo.ADDON_API],
-        'apps': [amo.ADDON_WEBAPP],
-        'themes': [amo.ADDON_THEME, amo.ADDON_PERSONA],
-    }
-
     def _sum(iter, types):
         return sum(s.total for s in iter if s.atype in types)
 
     breakdown = {
         'month': {
-            'addons': _sum(months, group['addons']),
-            'apps': _sum(months, group['apps']),
-            'themes': _sum(months, group['themes']),
+            'addons': _sum(months, amo.GROUP_TYPE_ADDON),
+            'apps': _sum(months, amo.GROUP_TYPE_WEBAPP),
+            'themes': _sum(months, amo.GROUP_TYPE_THEME),
         },
         'year': {
-            'addons': _sum(years, group['addons']),
-            'apps': _sum(years, group['apps']),
-            'themes': _sum(years, group['themes']),
+            'addons': _sum(years, amo.GROUP_TYPE_ADDON),
+            'apps': _sum(years, amo.GROUP_TYPE_WEBAPP),
+            'themes': _sum(years, amo.GROUP_TYPE_THEME),
         },
         'total': {
-            'addons': _sum(totals, group['addons']),
-            'apps': _sum(totals, group['apps']),
-            'themes': _sum(totals, group['themes']),
+            'addons': _sum(totals, amo.GROUP_TYPE_ADDON),
+            'apps': _sum(totals, amo.GROUP_TYPE_WEBAPP),
+            'themes': _sum(totals, amo.GROUP_TYPE_THEME),
         }
     }
 

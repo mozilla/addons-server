@@ -154,6 +154,12 @@ ADDON_API = 8  # not actually a type but used to identify extensions + themes
 ADDON_PERSONA = 9
 ADDON_WEBAPP = 11  # Calling this ADDON_* is gross but we've gotta ship code.
 
+# Addon type groupings.
+GROUP_TYPE_ADDON = [ADDON_EXTENSION, ADDON_DICT, ADDON_SEARCH, ADDON_LPAPP,
+                    ADDON_LPADDON, ADDON_PLUGIN, ADDON_API]
+GROUP_TYPE_THEME = [ADDON_THEME, ADDON_PERSONA]
+GROUP_TYPE_WEBAPP = [ADDON_WEBAPP]
+
 # Singular
 ADDON_TYPE = {
     ADDON_ANY: _(u'Any'),

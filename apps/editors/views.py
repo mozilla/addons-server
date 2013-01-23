@@ -169,13 +169,41 @@ def performance(request, user_id=False):
 
     monthly_data = _performance_by_month(user.id)
     performance_total = _performance_total(monthly_data)
+
+    # Incentive point breakdown.
+    today = date.today()
+    month_ago = today - timedelta(days=30)
+    year_ago = today - timedelta(days=365)
     point_total = ReviewerScore.get_total(user)
-    point_breakdown = ReviewerScore.get_breakdown(user)
+    totals = ReviewerScore.get_breakdown(user)
+    months = ReviewerScore.get_breakdown_since(user, month_ago)
+    years = ReviewerScore.get_breakdown_since(user, year_ago)
+
+    def _sum(iter, types):
+        return sum(s.total for s in iter if s.atype in types)
+
+    breakdown = {
+        'month': {
+            'addons': _sum(months, amo.GROUP_TYPE_ADDON),
+            'apps': _sum(months, amo.GROUP_TYPE_WEBAPP),
+            'themes': _sum(months, amo.GROUP_TYPE_THEME),
+        },
+        'year': {
+            'addons': _sum(years, amo.GROUP_TYPE_ADDON),
+            'apps': _sum(years, amo.GROUP_TYPE_WEBAPP),
+            'themes': _sum(years, amo.GROUP_TYPE_THEME),
+        },
+        'total': {
+            'addons': _sum(totals, amo.GROUP_TYPE_ADDON),
+            'apps': _sum(totals, amo.GROUP_TYPE_WEBAPP),
+            'themes': _sum(totals, amo.GROUP_TYPE_THEME),
+        }
+    }
 
     data = context(monthly_data=json.dumps(monthly_data),
                    performance_month=performance_total['month'],
                    performance_year=performance_total['year'],
-                   point_breakdown=point_breakdown, point_total=point_total,
+                   breakdown=breakdown, point_total=point_total,
                    editors=editors, current_user=user, is_admin=is_admin,
                    is_user=(request.amo_user.id == user.id))
 
