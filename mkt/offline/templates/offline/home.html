@@ -50,15 +50,15 @@
 
     <script>
       function reload() {
-        if (navigator.onLine && 'from' in localStorage) {
-          window.location = localStorage.from;
+        if (navigator.onLine) {
+          window.location = localStorage.from || '/';
           delete localStorage.from;
         } else {
           window.location.reload();
         }
       }
+      window.onfocus = window.ononline = reload;
       document.getElementById('reload').addEventListener('click', reload, false);
     </script>
   </body>
 </html>
-

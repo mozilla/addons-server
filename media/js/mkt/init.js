@@ -18,7 +18,7 @@ var z = {
     canInstallApps: true,
     allowAnonInstalls: !!$('body').data('allow-anon-installs'),
     enableSearchSuggestions: !!$('body').data('enable-search-suggestions'),
-    confirmBreakNum: 6
+    state: {}
 };
 
 z.prefixUpper = z.prefix[0].toUpperCase() + z.prefix.substr(1);
@@ -86,12 +86,13 @@ $(document).ready(function() {
 
 z.page.on('fragmentloaded', function() {
     z.apps = {};
+    z.state.mozApps = {};
     if (z.capabilities.webApps) {
         // Get list of installed apps and mark as such.
         r = window.navigator.mozApps.getInstalled();
         r.onsuccess = function() {
             _.each(r.result, function(val) {
-                z.apps[val.manifestURL] = val;
+                z.apps[val.manifestURL] = z.state.mozApps[val.manifestURL] = val;
                 $(window).trigger('app_install_success',
                                   [val, {'manifest_url': val.manifestURL}, false]);
             });

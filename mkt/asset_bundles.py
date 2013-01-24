@@ -322,6 +322,8 @@ JS = {
 
         'js/mkt/prefetch.js',
 
+        'js/mkt/consumer_state.js',
+
         # Module initialization.
         'js/mkt/consumer_init.js',
     ),

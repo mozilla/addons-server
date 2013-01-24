@@ -54,7 +54,7 @@
                 $how.show();
             }
         }
-        z.apps[product.manifest_url] = installer;
+        z.apps[product.manifest_url] = z.state.mozApps[product.manifest_url] = installer;
         setButton($button, gettext('Launch'), 'launch install');
     }).bind('app_purchase_error app_install_error', function(e, installer, product, msg) {
         var $button = getButton(product),
