@@ -448,11 +448,17 @@ def _login(request, template=None, data=None, dont_redirect=False):
                     msg='The username was invalid')
             pass
 
-    partial_form = partial(forms.AuthenticationForm, use_recaptcha=limited)
-    r = auth.views.login(request, template_name=template,
-                         redirect_field_name='to',
-                         authentication_form=partial_form,
-                         extra_context=data)
+    # If you're using an account from the marketplace it won't have a password
+    # and you can't log in on AMO
+    if not settings.MARKETPLACE and not user.password:
+        r = False
+        login_status = False
+    else:
+        partial_form = partial(forms.AuthenticationForm, use_recaptcha=limited)
+        r = auth.views.login(request, template_name=template,
+                             redirect_field_name='to',
+                             authentication_form=partial_form,
+                             extra_context=data)
 
     if isinstance(r, http.HttpResponseRedirect):
         # Django's auth.views.login has security checks to prevent someone from
