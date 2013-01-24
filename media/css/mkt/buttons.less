@@ -48,7 +48,7 @@
     // Redish.
     &.delete, &.manage, &.cancel, &.product.error {
         .gradient-two-color(#DA5132, #A91300);
-        &:hover, &:visited:hover {
+        &:hover, &:visited:hover, &:focus, &:visited:focus {
             .box-shadow(0 2px 0 0 rgba(0, 0, 0, .1), 0 -2px 0 0 rgba(0, 0, 0, .2) inset, 0 12px 24px 2px #E64926 inset);
         }
     }
@@ -61,6 +61,9 @@
     &[disabled], &.disabled {
         .gradient-two-color(#BFC7CD, #9CA3AA);
         color: @faint-gray;
+        &:hover, &:visited:hover, &:focus, &:visited:focus {
+            .box-shadow(0 2px 0 0 rgba(0, 0, 0, .1), 0 -2px 0 0 rgba(0, 0, 0, .2) inset, 0 12px 24px 2px #BFC7CD inset);
+        }
     }
     &.installed, &.purchased, &.incompatible {
         pointer-events: auto;
@@ -68,7 +71,7 @@
     // Greenish.
     &.good, &.good:active, &.good:visited:active {
         .gradient-two-color(#81BC2E, #659324);
-        &:hover {
+        &:hover, &:visited:hover, &:focus, &:visited:focus {
             .box-shadow(0 2px 0 0 rgba(0, 0, 0, .1), 0 -2px 0 0 rgba(0, 0, 0, .2) inset, 0 12px 24px 2px #83C822 inset);
         }
     }
