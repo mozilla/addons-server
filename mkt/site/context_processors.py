@@ -20,7 +20,7 @@ def global_settings(request):
 
     tools_title = _('Tools')
 
-    if request.user.is_authenticated() and hasattr(request, 'amo_user'):
+    if request.user.is_authenticated() and getattr(request, 'amo_user', None):
         amo_user = request.amo_user
         context['is_reviewer'] = acl.check_reviewer(request)
         account_links = [
