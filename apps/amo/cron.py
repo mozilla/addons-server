@@ -274,6 +274,7 @@ def weekly_downloads():
         UPDATE addons INNER JOIN tmp_wd
             ON addons.id = tmp_wd.addon_id
         SET weeklydownloads = tmp_wd.count""")
+    cursor.execute("DROP TABLE IF EXISTS tmp_wd")
     transaction.commit_unless_managed()
 
 
@@ -310,9 +311,10 @@ def personas_adu():
     cursor.execute("""
         UPDATE addons
         INNER JOIN personas ON (addons.id = personas.addon_id)
-        INNER JOIN tmp_personas 
+        INNER JOIN tmp_personas
             ON (tmp_personas.persona_id = personas.persona_id)
         SET addons.average_daily_users = tmp_personas.popularity
         """)
 
+    cursor.execute("DROP TABLE IF EXISTS tmp_personas")
     transaction.commit_unless_managed()
