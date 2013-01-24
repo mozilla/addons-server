@@ -153,8 +153,8 @@ def run_validator(file_path, for_appversions=None, test_all_tiers=False,
             return validate(path,
                             for_appversions=for_appversions,
                             format='json',
-                            # When False, this flag says to stop testing after one
-                            # tier fails.
+                            # When False, this flag says to stop testing after
+                            # one tier fails.
                             determined=test_all_tiers,
                             approved_applications=apps,
                             spidermonkey=settings.SPIDERMONKEY,
@@ -255,8 +255,9 @@ def get_preview_sizes(ids, **kw):
             try:
                 log.info('Getting size for preview: %s' % preview.pk)
                 sizes = {
-                    'thumbnail':  Image.open(storage.open(preview.thumbnail_path)).size,
-                    'image':  Image.open(storage.open(preview.image_path)).size,
+                    'thumbnail': Image.open(
+                        storage.open(preview.thumbnail_path)).size,
+                    'image': Image.open(storage.open(preview.image_path)).size,
                 }
                 preview.update(sizes=sizes)
             except Exception, err:
@@ -320,7 +321,7 @@ def failed_validation(*messages):
 
 def _fetch_content(url):
     try:
-        return urllib2.urlopen(url, timeout=5)
+        return urllib2.urlopen(url, timeout=15)
     except urllib2.HTTPError, e:
         raise Exception(_('%s responded with %s (%s).') % (url, e.code, e.msg))
     except urllib2.URLError, e:
