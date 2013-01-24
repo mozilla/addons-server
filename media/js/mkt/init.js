@@ -146,7 +146,7 @@ z.page.on('fragmentloaded', function() {
     }
 
     // Header controls.
-    $('header').on('click', '.header-button', function(e) {
+    $('header').on('click', '.header-button, .search-clear', function(e) {
         var $this = $(this),
             $btns = $('.header-button');
 
@@ -165,6 +165,8 @@ z.page.on('fragmentloaded', function() {
             z.body.removeClass('show-search');
             $('#search-q').blur();
             $btns.blur();
+        } else if ($this.hasClass('search-clear')) {
+            $('#search-q').val('').focus();
         }
 
         z.page.on('fragmentloaded', function() {
