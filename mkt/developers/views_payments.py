@@ -5,6 +5,7 @@ from django.shortcuts import get_object_or_404, redirect
 
 import commonware
 import jingo
+import jinja2
 import waffle
 from tower import ugettext as _
 from waffle.decorators import waffle_switch
@@ -139,7 +140,7 @@ def payment_accounts(request):
     def account(acc):
         return {
             'id': acc.pk,
-            'name': unicode(acc),
+            'name': jinja2.escape(unicode(acc)),
             'account-url':
                 reverse('mkt.developers.bango.payment_account', args=[acc.pk]),
             'delete-url':

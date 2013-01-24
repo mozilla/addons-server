@@ -3,7 +3,7 @@ import json
 from django.core.exceptions import ObjectDoesNotExist
 
 import mock
-from nose.tools import eq_, raises
+from nose.tools import eq_, ok_, raises
 from pyquery import PyQuery as pq
 
 import amo
@@ -368,6 +368,7 @@ class TestPaymentAccounts(PaymentsBase):
         eq_(res.status_code, 200)
         output = json.loads(res.content)
         eq_(output[0]['id'], self.account.pk)
+        ok_('&#39;' in output[0]['name'])  # Was jinja2 escaped.
 
 
 class TestPaymentAccount(PaymentsBase):
