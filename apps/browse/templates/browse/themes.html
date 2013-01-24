@@ -3,10 +3,10 @@
 {% block primary %}
 <section class="primary">
   {% if category %}
-    {{ impala_breadcrumbs([(url('browse.themes'), _('Full Themes')),
+    {{ impala_breadcrumbs([(url('browse.themes'), _('Complete Themes')),
                            (None, title)]) }}
   {% else %}
-    {{ impala_breadcrumbs([(None, _('Full Themes'))]) }}
+    {{ impala_breadcrumbs([(None, _('Complete Themes'))]) }}
   {% endif %}
     <h1>{{ title }}</h1>
     <div id="themes-listing" class="island listing hero c">
