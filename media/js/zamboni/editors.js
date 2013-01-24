@@ -1,4 +1,4 @@
-$(function() {
+(function() {
     if($('.daily-message').length) {
         initDailyMessage();
     }
@@ -49,7 +49,7 @@ $(function() {
         window.location.hash = "id=" + $("#addon, #persona").attr("data-id");
       });
     }
-});
+})();
 
 function initReviewActions() {
     var groups = $('#id_canned_response').find('optgroup');
