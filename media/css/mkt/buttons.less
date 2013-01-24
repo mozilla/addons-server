@@ -1,113 +1,83 @@
 @import 'lib';
 
-a.arrow, .img.arrow {
-    position: relative;
-    &:after {
-        .arrow;
-        content: "";
-        display: block;
-        opacity: .7;
-        position: absolute;
-        top: 15px;
-        right: 10px;
-        height: 18px;
-        width: 18px;
-    }
-    &:hover, &:active {
-        &:after {
-            opacity: 1;
-        }
-    }
+// Move these to 'lib' if needed elsewhere.
+.btn-shadow() {
+    .box-shadow(0 2px 0 0 rgba(0, 0, 0, .1), 0 -2px 0 0 rgba(0, 0, 0, .2) inset);
+}
+.btn-shadow-active() {
+    .box-shadow(0 2px 0 0 rgba(0, 0, 0, .2) inset, 0 12px 24px 6px rgba(0, 0, 0, .2) inset, 0 0 2px 2px rgba(0, 0, 0, .2) inset);
 }
 
-.button, button {
+.button, .button:visited, button {
+    // Blueish.
+    .gradient-two-color(#3C88CC, #276195);
+    .transition(all 0.25s linear 0s);
+    .border-radius(4px);
+    .btn-shadow;
+    background-repeat: repeat-x;
     border: 0;
     color: @white;
     display: inline-block;
-    font: 600 16px/31px @open-stack;
-    height: 32px;
-    background-color: #267cc2;
-    padding: 0 24px;
-    position: relative;
+    font: 400 14px/40px @open-stack;
+    height: 40px;
+    min-width: 100px;
+    white-space: nowrap;
+    padding: 0 20px;
     text-align: center;
     text-decoration: none;
-    text-shadow: 0px 1px 0px rgba(0,0,0,0.25);
-    white-space: nowrap;
-    .border-radius(2px);
-    .box-shadow(0 2px @light-gray);
-    .gradient-two-color(#42a5e1, #267cc2);
-    .transition-property(~'-moz-box-shadow, -webkit-box-shadow, box-shadow, line-height');
-    .transition-duration(~'.2s, .2s, .2s, .2s');
-
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
+    &:hover, &:focus, &:visited, &:visited:focus {
+        // These have a colour associated with them so no need to libify.
+        .box-shadow(0 2px 0 0 rgba(0, 0, 0, .1), 0 -2px 0 0 rgba(0, 0, 0, .2) inset, 0 12px 24px 2px #3089D8 inset);
+        .transition(all 0.25s linear 0s);
+        text-decoration: none;
+    }
+    &:focus, &:visited:focus {
+        outline-color: #484848;
+    }
+    &:active, &:visited:active {
+        .btn-shadow-active;
+        .transition(all 0.25s linear 0s);
+        color: @white;
+        text-decoration: none;
+    }
     &.product, &.theme-install, &.fat {
         height: 48px;
         padding: 0 32px;
     }
-
+    // Redish.
     &.delete, &.manage, &.cancel, &.product.error {
-        .gradient-two-color(#e45d56, #de4332);
-        &:hover {
-            .gradient-two-color(darken(#e45d56, 10%), darken(#de4332, 10%));
+        .gradient-two-color(#DA5132, #A91300);
+        &:hover, &:visited:hover {
+            .box-shadow(0 2px 0 0 rgba(0, 0, 0, .1), 0 -2px 0 0 rgba(0, 0, 0, .2) inset, 0 12px 24px 2px #E64926 inset);
         }
     }
-
-    &.product.error {
-        color: #fff;
-    }
-
-    &:hover {
-        .box-shadow(0 2px #bbb);
-        .gradient-two-color(lighten(#42a5e1, 10%), lighten(#267cc2, 5%));
-        text-decoration: none;
-    }
-
-    &:active {
-        .box-shadow(inset 0 8px 20px 6px rgba(0,0,0,.1),
-                    inset 0 0 1px 1px rgba(0,0,0,.1),
-                    0 2px #aaa);
-    }
-
+    // Grayish.
     &[disabled], &.disabled,
     &.purchasing, &.purchased,
     &.installing, &.installed {
-        color: #919497;
-        text-shadow: 0 1px 0 rgba(255,255,255,.5);
         pointer-events: none;
-        background-color: @light-gray;
-        .gradient-two-color(#ddd, @light-gray);
     }
-
+    &[disabled], &.disabled {
+        .gradient-two-color(#BFC7CD, #9CA3AA);
+        color: @faint-gray;
+    }
     &.installed, &.purchased, &.incompatible {
         pointer-events: auto;
     }
-
-    &.good {
-        .gradient-two-color(darken(#A2E456, 20%), darken(#86DE32, 20%));
+    // Greenish.
+    &.good, &.good:active, &.good:visited:active {
+        .gradient-two-color(#81BC2E, #659324);
         &:hover {
-            .gradient-two-color(darken(#A2E456, 25%), darken(#86DE32, 25%));
+            .box-shadow(0 2px 0 0 rgba(0, 0, 0, .1), 0 -2px 0 0 rgba(0, 0, 0, .2) inset, 0 12px 24px 2px #83C822 inset);
         }
     }
-
+    // Grayish (legacy).
     &.alt {
         .gradient-two-color(#f8f9fb, #ebeff2);
         .box-shadow(none);
         border: 1px solid #c0c1c3;
         color: #3d4246;
-    }
-
-    &.arrow {
-        padding-right: 34px;
-        &:after {
-            .arrow-big;
-            content: "";
-            display: inline-block;
-            height: 19px;
-            opacity: .7;
-            position: relative;
-            width: 18px;
-            top: 3px;
-            left: 14px;
-        }
     }
 }
 

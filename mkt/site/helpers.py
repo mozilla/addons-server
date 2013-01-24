@@ -260,7 +260,7 @@ def market_tile(context, product, link=True, src=''):
         return jinja2.Markup(t.render(c))
 
     elif product.is_persona():
-        classes = ['product', 'mkt-tile', 'arrow']
+        classes = ['product', 'mkt-tile']
         product_dict = product_as_dict_theme(request, product)
         data_attrs = {
             'product': json.dumps(product_dict, cls=JSONEncoder),
