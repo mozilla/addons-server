@@ -92,7 +92,7 @@ class TestDetail(DetailBase):
                                  password='password')
         doc = self.get_pq()
         eq_(json.loads(doc('.mkt-tile').attr('data-product'))['recordUrl'],
-            self.dev_receipt_url())
+            urlparams(self.app.get_detail_url('record'), src='mkt-detail'))
         eq_(doc('.button.product').length, 1)
         eq_(doc('.product.install').length, 1)
         eq_(doc('.manage').length, 0)
@@ -156,7 +156,7 @@ class TestDetail(DetailBase):
                                  password='password')
         doc = self.get_pq()
         eq_(json.loads(doc('.mkt-tile').attr('data-product'))['recordUrl'],
-            self.dev_receipt_url())
+            urlparams(self.app.get_detail_url('record'), src='mkt-detail'))
         eq_(doc('button.product.premium').length, 1)
         eq_(doc('button.product.install.premium').length, 0)
         eq_(doc('.manage').length, 0)
