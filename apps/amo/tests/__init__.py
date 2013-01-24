@@ -381,13 +381,13 @@ class TestCase(RedisTest, test_utils.TestCase):
         """
         Make sure the datetime is within a minute from `now`.
         """
-        dt_ts = time.mktime(dt.timetuple())
-        dt_minute_ts = time.mktime((dt + timedelta(minutes=1)).timetuple())
+        dt_later_ts = time.mktime((dt + timedelta(minutes=1)).timetuple())
+        dt_earlier_ts = time.mktime((dt - timedelta(minutes=1)).timetuple())
         if not now:
             now = datetime.now()
         now_ts = time.mktime(now.timetuple())
 
-        assert now_ts >= dt_ts and now_ts < dt_minute_ts, (
+        assert dt_earlier_ts < now_ts < dt_later_ts, (
             'Expected datetime to be within a minute of %s. Got %r.' % (now,
                                                                         dt))
 
