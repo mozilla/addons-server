@@ -285,5 +285,5 @@ BANGO_COUNTRIES = [
     ('ESH', _(u'Western Sahara')),
     ('YEM', _(u'Yemen')),
     ('ZMB', _(u'Zambia')),
-    ('ZWE', _(u'Zimbabw')),
+    ('ZWE', _(u'Zimbabwe')),
 ]
