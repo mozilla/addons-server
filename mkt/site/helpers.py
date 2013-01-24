@@ -77,9 +77,11 @@ def market_button(context, product, receipt_type=None, classes=None):
         data_attrs = {'manifest_url': product.get_manifest_url(reviewer),
                       'is_packaged': json.dumps(product.is_packaged)}
 
+        installed = None
+
         if request.amo_user:
-            installed = request.amo_user.installed_set
-            installed = installed.filter(addon=product).exists()
+            installed_set = request.amo_user.installed_set
+            installed = installed_set.filter(addon=product).exists()
 
         # Handle premium apps.
         if product.is_premium() and product.premium:
