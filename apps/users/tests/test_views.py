@@ -537,6 +537,21 @@ class TestLogin(UserViewBase):
         text = 'Please enter a correct username and password.'
         assert res.context['form'].errors['__all__'][0].startswith(text)
 
+    def test_login_pwd(self):
+        user = User.objects.get(email='jbalogh@mozilla.com')
+        profile = user.get_profile()
+        profile.source = amo.LOGIN_SOURCE_BROWSERID
+        profile.password = ''
+        profile.save()
+
+        with self.settings(MARKETPLACE=False):
+            # A failed login produces a 200.
+            eq_(self.client.post(self.url, data=self.data).status_code, 200)
+
+        with self.settings(MARKETPLACE=True):
+            # A working login produces a 302.
+            eq_(self.client.post(self.url, data=self.data).status_code, 302)
+
     def test_login_no_recaptcha(self):
         res = self.client.post(self.url, data=self.data)
         eq_(res.status_code, 302)

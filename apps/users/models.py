@@ -307,8 +307,10 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     def check_password(self, raw_password):
         # BrowserID does not store a password.
-        if self.source in amo.LOGIN_SOURCE_BROWSERIDS:
+        if (self.source in amo.LOGIN_SOURCE_BROWSERIDS
+            and settings.MARKETPLACE):
             return True
+
         if '$' not in self.password:
             valid = (get_hexdigest('md5', '', raw_password) == self.password)
             if valid:
