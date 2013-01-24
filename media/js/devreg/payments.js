@@ -323,5 +323,7 @@ $('#submit-payment-type.hasappendix').on('tabs-changed', function(e, tab) {
 })(typeof exports === 'undefined' ? (this.dev_payments = {}) : exports);
 
 $(document).ready(function() {
-    dev_payments.payment_setup();
+    if ($('.payments.devhub-form').length) {
+        dev_payments.payment_setup();
+    }
 });
