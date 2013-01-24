@@ -1078,6 +1078,7 @@ ul.license li.copyr { background-position: 0 -260px; }
     position: relative;
     padding: .5em;
     -moz-border-radius: .25em;
+    border-radius: .25em;
 }
 .persona-small .persona-inner {
     max-width: 206px;
@@ -1152,6 +1153,8 @@ ul.license li.copyr { background-position: 0 -260px; }
 .personas-featured .persona-list-3col {
     border: 1px solid #E0EFFD;
     -moz-border-radius: 5px;
+    border-radius: 5px;
+    padding-top: .5em;
 }
 
 .featured.personas-home {
@@ -1656,6 +1659,7 @@ form .error .note.error {
     padding: 0;
     font-weight: normal;
     margin-bottom: 0;
+    width: 80%;
 }
 
 .category-landing .info-message h3,

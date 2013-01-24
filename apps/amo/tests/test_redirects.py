@@ -68,12 +68,12 @@ class TestRedirects(amo.tests.TestCase):
                        status_code=301)
 
         response = self.client.get('/browse/type:2', follow=True)
-        self.assert3xx(response, '/en-US/firefox/full-themes/',
+        self.assert3xx(response, '/en-US/firefox/complete-themes/',
                        status_code=301)
 
         # Drop the category.
         response = self.client.get('/browse/type:2/cat:all', follow=True)
-        self.assert3xx(response, '/en-US/firefox/full-themes/',
+        self.assert3xx(response, '/en-US/firefox/complete-themes/',
                        status_code=301)
 
     def test_accept_language(self):

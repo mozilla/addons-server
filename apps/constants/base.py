@@ -164,7 +164,7 @@ GROUP_TYPE_WEBAPP = [ADDON_WEBAPP]
 ADDON_TYPE = {
     ADDON_ANY: _(u'Any'),
     ADDON_EXTENSION: _(u'Extension'),
-    ADDON_THEME: _(u'Full Theme'),
+    ADDON_THEME: _(u'Complete Theme'),
     ADDON_DICT: _(u'Dictionary'),
     ADDON_SEARCH: _(u'Search Engine'),
     ADDON_PLUGIN: _(u'Plugin'),
@@ -177,7 +177,7 @@ ADDON_TYPE = {
 ADDON_TYPES = {
     ADDON_ANY: _(u'Any'),
     ADDON_EXTENSION: _(u'Extensions'),
-    ADDON_THEME: _(u'Full Themes'),
+    ADDON_THEME: _(u'Complete Themes'),
     ADDON_DICT: _(u'Dictionaries'),
     ADDON_SEARCH: _(u'Search Tools'),
     ADDON_PLUGIN: _(u'Plugins'),

@@ -30,25 +30,27 @@ urlpatterns = patterns('',
         lambda r: redirect(reverse('browse.extensions') + '?sort=featured',
                            permanent=True)),
 
-    url('^themes/moreinfo.php$',
-        lambda r: redirect(r.get_full_path().replace('themes/', 'full-themes/'),
+    url('^(themes|full-themes)/moreinfo.php$',
+        lambda r: redirect(r.get_full_path().replace('themes/', 'complete-themes/'),
                            permanent=True)),
 
-    url('^(?:extensions|full-themes)/moreinfo.php$', views.moreinfo_redirect),
+    url('^(?:extensions|complete-themes)/moreinfo.php$', views.moreinfo_redirect),
 
     # Personas are now Themes.
-    url('^personas/(?P<category>[^ /]+)?$', views.legacy_theme_redirects),
+    # Full Themes are now Complete Themes.
+    url('^(?P<section>personas|full-themes)/(?P<category>[^ /]+)?$',
+        views.legacy_theme_redirects),
     # TODO(percona): Rename this to `browse.themes`.
     url('^themes/(?P<category>[^ /]+)?$', views.personas,
         name='browse.personas'),
 
-    # Themes are now Full Themes.
+    # Themes are now Complete Themes.
     url('^themes/(?P<category_name>[^/]+)/format:rss$',
         views.legacy_theme_redirects),
-    # TODO(percona): Rename this to `browse.full-themes`.
-    url('^full-themes/(?P<category>[^/]+)?$', views.themes,
+    # TODO(percona): Rename this to `browse.complete-themes`.
+    url('^complete-themes/(?P<category>[^/]+)?$', views.themes,
         name='browse.themes'),
-    url('^full-themes/(?:(?P<category_name>[^/]+)/)?format:rss$',
+    url('^complete-themes/(?:(?P<category_name>[^/]+)/)?format:rss$',
         ThemeCategoriesRss(), name='browse.themes.rss'),
 
     url('^extensions/(?:(?P<category>[^/]+)/)?$', views.extensions,

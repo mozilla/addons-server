@@ -1058,27 +1058,30 @@ class TestLegacyRedirects(amo.tests.TestCase):
 
         Category.objects.get(id=72).update(type=amo.ADDON_THEME)
         self.redirects('/browse/type:2/cat:72/format:rss',
-                       '/full-themes/alerts-updates/format:rss')
+                       '/complete-themes/alerts-updates/format:rss')
 
-        self.redirects('/browse/type:2', '/full-themes/')
+        self.redirects('/browse/type:2', '/complete-themes/')
         self.redirects('/browse/type:3', '/language-tools/')
         self.redirects('/browse/type:4', '/search-tools/')
+        self.redirects('/full-themes/', '/complete-themes/')
         self.redirects('/search-engines', '/search-tools/')
         # self.redirects('/browse/type:7', '/plugins/')
         self.redirects('/recommended', '/extensions/?sort=featured')
         self.redirects('/featured', '/extensions/?sort=featured')
         self.redirects('/recommended/format:rss', '/featured/format:rss')
 
-    def test_full_themes(self):
+    def test_complete_themes(self):
         # A former Theme category should get redirected to /full-themes/.
         cat = Category.objects.filter(slug='feeds-news-blogging')
         cat.update(type=amo.ADDON_THEME)
         self.redirects('/themes/feeds-news-blogging?sort=rating',
-                       '/full-themes/feeds-news-blogging?sort=rating')
+                       '/complete-themes/feeds-news-blogging?sort=rating')
 
         self.redirects('/themes/feeds-news-blogging/format:rss?sort=users',
-            '/full-themes/feeds-news-blogging/format:rss?sort=users')
+            '/complete-themes/feeds-news-blogging/format:rss?sort=users')
 
+        self.redirects('/full-themes/moreinfo.php',
+                       '/complete-themes/moreinfo.php')
         self.redirects('/themes/moreinfo.php', '/full-themes/moreinfo.php')
 
     def test_personas(self):
@@ -1092,7 +1095,7 @@ class TestLegacyRedirects(amo.tests.TestCase):
                        '/themes/feeds-news-blogging?sort=rating')
 
         # The trailing slash should get stripped, yeah. We're just
-        # testing that we don't redirect to /full-themes/.
+        # testing that we don't redirect to /complete-themes/.
         self.redirects('/themes/feeds-news-blogging/?sort=rating',
                        '/themes/feeds-news-blogging?sort=rating')
 

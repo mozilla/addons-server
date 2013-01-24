@@ -769,12 +769,12 @@ section#featured-addons {
     background: transparent url("../../img/zamboni/discovery_pane/bg-moreaddons.jpg") 95% 50% no-repeat;
 }
 
-#more-full-themes {
+#more-complete-themes {
     background: transparent url("../../img/zamboni/discovery_pane/bg-morepersonas.jpg") 70% 50% no-repeat;
 }
 
-#more-full-themes,
-#more-full-themes a {
+#more-complete-themes,
+#more-complete-themes a {
     border-radius: 0 0 8px 8px;
 }
 

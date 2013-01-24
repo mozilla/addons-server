@@ -17,14 +17,15 @@
                     'updated': _('Recently Updated Extensions'),
                     'hotness': _('Up & Coming Extensions')}.get(sorting) %}
   {% elif section == 'themes' %}
-    {% set title = {'featured': _('Featured Full Themes'),
-                    'users': _('Most Popular Full Themes'),
-                    'rating': _('Top-Rated Full Themes'),
-                    'created': _('Newest Full Themes'),
-                    'name': _('Full Themes by Name'),
-                    'popular': _('Full Themes by Weekly Downloads'),
-                    'updated': _('Recently Updated Full Themes'),
-                    'hotness': _('Up & Coming Full Themes')}.get(sorting) %}
+    {# L10n: "Complete" is used as an adjective. "Complete Theme" means a full-featured theme. #}
+    {% set title = {'featured': _('Featured Complete Themes'),
+                    'users': _('Most Popular Complete Themes'),
+                    'rating': _('Top-Rated Complete Themes'),
+                    'created': _('Newest Complete Themes'),
+                    'name': _('Complete Themes by Name'),
+                    'popular': _('Complete Themes by Weekly Downloads'),
+                    'updated': _('Recently Updated Complete Themes'),
+                    'hotness': _('Up & Coming Complete Themes')}.get(sorting) %}
   {% elif section == 'apps' %}
     {% set title = {'featured': _('Featured Apps'),
                     'downloads': _('Apps by Weekly Downloads'),

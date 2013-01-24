@@ -4,7 +4,7 @@ from django import http
 from django.conf import settings
 from django.http import (Http404, HttpResponsePermanentRedirect,
                          HttpResponseRedirect)
-from django.shortcuts import get_object_or_404, get_list_or_404, redirect
+from django.shortcuts import get_object_or_404, redirect
 from django.views.decorators.cache import cache_page
 
 import jingo
@@ -324,14 +324,14 @@ def personas_listing(request, category_slug=None):
         try:
             cat = Category.objects.filter(slug=category_slug, type=TYPE)[0]
         except IndexError:
-            # Maybe it's a Full Theme?
+            # Maybe it's a Complete Theme?
             try:
                 cat = Category.objects.filter(slug=category_slug,
                     type=amo.ADDON_THEME)[0]
             except IndexError:
                 raise Http404
             else:
-                # Hey, it was a Full Theme.
+                # Hey, it was a Complete Theme.
                 url = reverse('browse.themes', args=[cat.slug])
                 if 'sort' in request.GET:
                     url = amo.utils.urlparams(url, sort=request.GET['sort'])
@@ -347,7 +347,7 @@ def personas_listing(request, category_slug=None):
 def personas(request, category=None, template=None):
     listing = personas_listing(request, category)
 
-    # I guess this was a Full Theme after all.
+    # I guess this was a Complete Theme after all.
     if isinstance(listing,
                   (HttpResponsePermanentRedirect, HttpResponseRedirect)):
         return listing
@@ -379,11 +379,18 @@ def personas(request, category=None, template=None):
     return jingo.render(request, template, ctx)
 
 
-def legacy_theme_redirects(request, category=None, category_name=None):
+def legacy_theme_redirects(request, section, category=None,
+                           category_name=None):
     url = None
 
+    if section == 'full-themes':
+        # Full Themes have already been renamed to Complete Themes!
+        url = request.get_full_path().replace('/full-themes',
+                                              '/complete-themes')
+        return redirect(url, permanent=not settings.DEBUG)
+
     if category_name is not None:
-        # This format is for the Full Themes RSS feed.
+        # This format is for the Complete Themes RSS feed.
         url = reverse('browse.themes.rss', args=[category_name])
     else:
         if not category or category == 'all':
