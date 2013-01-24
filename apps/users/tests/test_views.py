@@ -544,13 +544,10 @@ class TestLogin(UserViewBase):
         profile.password = ''
         profile.save()
 
+        self.client.get(self.url)
         with self.settings(MARKETPLACE=False):
             # A failed login produces a 200.
             eq_(self.client.post(self.url, data=self.data).status_code, 200)
-
-        with self.settings(MARKETPLACE=True):
-            # A working login produces a 302.
-            eq_(self.client.post(self.url, data=self.data).status_code, 302)
 
     def test_login_no_recaptcha(self):
         res = self.client.post(self.url, data=self.data)
