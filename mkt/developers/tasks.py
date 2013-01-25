@@ -322,8 +322,8 @@ def get_preview_sizes(ids, **kw):
             try:
                 log.info('Getting size for preview: %s' % preview.pk)
                 sizes = {
-                    'thumbnail':  Image.open(preview.thumbnail_path).size,
-                    'image':  Image.open(preview.image_path).size,
+                    'thumbnail': Image.open(preview.thumbnail_path).size,
+                    'image': Image.open(preview.image_path).size,
                 }
                 preview.update(sizes=sizes)
             except Exception, err:
@@ -332,13 +332,15 @@ def get_preview_sizes(ids, **kw):
 
 
 def _fetch_content(url):
-    try:
-        return urllib2.urlopen(url, timeout=5)
-    except urllib2.HTTPError, e:
-        raise Exception(_('%s responded with %s (%s).') % (url, e.code, e.msg))
-    except urllib2.URLError, e:
-        # Unpack the URLError to try and find a useful message.
-        raise Exception(_('The file could not be retrieved.'))
+    with statsd.timer('developers.tasks.fetch_content'):
+        try:
+            return urllib2.urlopen(url, timeout=30)
+        except urllib2.HTTPError, e:
+            raise Exception(
+                _('%s responded with %s (%s).') % (url, e.code, e.msg))
+        except urllib2.URLError, e:
+            # Unpack the URLError to try and find a useful message.
+            raise Exception(_('The file could not be retrieved.'))
 
 
 class ResponseTooLargeException(Exception):
