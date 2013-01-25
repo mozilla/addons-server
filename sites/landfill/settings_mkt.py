@@ -11,7 +11,7 @@ SERVER_EMAIL = 'zmktlandfill@addons.mozilla.org'
 DOMAIN = "landfill.marketplace.allizom.org"
 SITE_URL = 'https://landfill.marketplace.allizom.org'
 SERVICES_URL = SITE_URL
-STATIC_URL = SITE_URL
+STATIC_URL = SITE_URL + '/'
 LOCAL_MIRROR_URL = '%s_files' % STATIC_URL
 MIRROR_URL = LOCAL_MIRROR_URL
 
