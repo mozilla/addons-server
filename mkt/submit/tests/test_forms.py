@@ -4,6 +4,9 @@ from nose.tools import eq_
 import amo
 import amo.tests
 from files.models import FileUpload
+from users.models import UserProfile
+
+from mkt.site.fixtures import fixture
 from mkt.submit import forms
 
 
@@ -102,3 +105,13 @@ class TestNewWebappForm(amo.tests.TestCase):
                                     'packaged': True})
         assert not form.is_valid(), form.errors
         eq_(form.ERRORS['packaged'], form.errors['paid_platforms'])
+
+
+class TestAppDetailsBasicForm(amo.tests.TestCase):
+    fixtures = fixture('user_999')
+
+    def test_prefill_support_email(self):
+        request = mock.Mock()
+        request.amo_user = UserProfile.objects.get(id=999)
+        form = forms.AppDetailsBasicForm({}, request=request)
+        eq_(form.initial, {'support_email': {'en-us': 'regular@mozilla.com'}})

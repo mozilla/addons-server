@@ -311,12 +311,8 @@ class UpsellForm(happyforms.Form):
 
 
 class AppDetailsBasicForm(TranslationFormMixin, happyforms.ModelForm):
-
-    def __init__(self, *args, **kw):
-        self.request = kw.pop('request')
-        super(AppDetailsBasicForm, self).__init__(*args, **kw)
-
     """Form for "Details" submission step."""
+
     app_slug = forms.CharField(max_length=30,
                            widget=forms.TextInput(attrs={'class': 'm'}))
     summary = TransField(max_length=250,
@@ -370,6 +366,16 @@ class AppDetailsBasicForm(TranslationFormMixin, happyforms.ModelForm):
         model = Addon
         fields = ('app_slug', 'summary', 'description', 'privacy_policy',
                   'homepage', 'support_url', 'support_email')
+
+    def __init__(self, *args, **kw):
+        self.request = kw.pop('request')
+        kw.setdefault('initial', {})
+
+        # Prefill support email.
+        locale = self.base_fields['support_email'].default_locale.lower()
+        kw['initial']['support_email'] = {locale: self.request.amo_user.email}
+
+        super(AppDetailsBasicForm, self).__init__(*args, **kw)
 
     def clean_app_slug(self):
         slug_field = 'app_slug'
