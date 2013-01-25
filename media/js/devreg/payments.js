@@ -9,6 +9,7 @@ define('payments', [], function() {
                .addClass('show')
                .on('click', '.close', _pd(function() {
                    // TODO: Generalize this with the event listeners in overlay.js.
+                   overlay.trigger('overlay_dismissed');
                    z.body.removeClass('overlayed');
                    overlay.remove();
                }));
@@ -51,11 +52,8 @@ define('payments', [], function() {
                     $old_overlay.find('#bango-account-errors')
                                 .html(error_data.responseText);
                 }
-            ).fail(function() {
-                $waiting_overlay.find('h2').text(gettext('Error'));
-                $waiting_overlay.find('p').text(gettext('There was a problem contacting the payment server.'));
             });
-        };
+        }));
     }
 
     function init() {

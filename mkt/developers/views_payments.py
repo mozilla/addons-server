@@ -139,7 +139,7 @@ def payment_accounts(request):
         user=request.amo_user, inactive=False)
 
     def account(acc):
-        return {
+        data = {
             'id': acc.pk,
             'name': jinja2.escape(unicode(acc)),
             'account-url':
@@ -148,6 +148,13 @@ def payment_accounts(request):
                 reverse('mkt.developers.bango.delete_payment_account',
                         args=[acc.pk])
         }
+        data['agreement'] = 'rejected'
+        try:
+            if _agreement(request, acc.pk)['accepted']:
+                data['agreement'] = 'accepted'
+        except KeyError:
+            pass
+        return data
 
     return map(account, accounts)
 
@@ -164,20 +171,21 @@ def payment_accounts_form(request):
 @write
 @post_required
 @login_required
+@json_view
 def payments_accounts_add(request):
     form = forms_payments.BangoPaymentAccountForm(request.POST)
     if not form.is_valid():
         return http.HttpResponse(json.dumps(form.errors), status=400)
 
     try:
-        models.PaymentAccount.create_bango(
+        obj = models.PaymentAccount.create_bango(
             request.amo_user, form.cleaned_data)
     except client.Error as e:
         log.error('Error creating Bango payment account; %s' % e)
         raise  # We want to see these exceptions!
         return http.HttpResponse(
             _(u'Could not connect to payment server.'), status=400)
-    return redirect('mkt.developers.bango.payment_accounts_form')
+    return {'pk': obj.pk}
 
 
 @write
@@ -263,3 +271,23 @@ def get_seller_product(account):
     return (client.api.generic
                   .product(account.uri_to_pk(bango_product['seller_product']))
                   .get_object_or_404())
+
+
+def _agreement(request, id):
+    account = get_object_or_404(models.PaymentAccount, pk=id,
+                                user=request.user)
+    # It's a shame we have to do another get to find this out.
+    package = client.api.bango.package(account.uri).get_object_or_404()
+    if request.method == 'POST':
+        # Set the agreement.
+        return (client.api.bango.sbi.post(
+                data={'seller_bango': package['resource_uri']}))
+    return (client.api.bango.sbi.agreement
+            .get_object(data={'seller_bango': package['resource_uri']}))
+
+
+# TODO: move these into a tastypie API.
+@login_required
+@json_view
+def agreement(request, id):
+    return _agreement(request, id)

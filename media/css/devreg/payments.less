@@ -374,3 +374,45 @@
     background: orangered;
     color: white;
 }
+
+.overlay > .show-agreement {
+    max-width: 650px;
+    min-width: 650px;
+}
+
+.agreement-valid,
+.agreement-text {
+    margin-bottom: 15px;
+}
+
+.agreement-valid time {
+    font-weight: bold;
+}
+
+.agreement-text {
+    max-height: 400px;
+    overflow: auto;
+}
+
+.show-agreement {
+    p {
+        padding-top: 10px;
+    }
+    .listing-footer {
+        padding: 10px 10px 6px;
+    }
+}
+
+.terms-accepted {
+    color: orangered;
+    font-family: monospace;
+    &:before {
+        content: "\2717";
+    }
+    &.accepted {
+        color: green;
+        &:before {
+            content: "\2713";
+        }
+    }
+}

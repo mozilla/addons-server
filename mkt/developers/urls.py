@@ -30,6 +30,9 @@ def bango_patterns(prefix):
         url('^accounts/(?P<id>\d+)$',
             views_payments.payments_account,
             name='mkt.developers.%s.payment_account' % prefix),
+
+        url('^accounts/(?P<id>\d+)/agreement/$', views_payments.agreement,
+            name='mkt.developers.%s.agreement' % prefix)
     )
 
 

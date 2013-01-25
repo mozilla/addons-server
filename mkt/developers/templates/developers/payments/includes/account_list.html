@@ -8,6 +8,7 @@
 
     <table>
         <tr>
+          <th></th>
           <th>{{ _('Account Name') }}</th>
           <th>{{ _('Modify') }}</th>
           <th>{{ _('Delete') }}</th>
@@ -29,6 +30,7 @@
   <tr data-account="{id}"
       data-delete-url="{delete-url}"
       data-account-url="{account-url}">
+    <td><div class="terms-accepted {agreement}"></div></td>
     <td>{name}</td>
     <td><a href="#" class="modify-account">{{ _('Modify') }}</a></td>
     <td><a href="#" class="delete-account">{{ _('Delete') }}</a></td>

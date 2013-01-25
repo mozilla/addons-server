@@ -427,6 +427,37 @@ class TestPaymentAccount(PaymentsBase):
         eq_(output['vendorName'], 'testval')
 
 
+class TestPaymentAgreement(PaymentsBase):
+
+    def setUp(self):
+        super(TestPaymentAgreement, self).setUp()
+        self.url = reverse('mkt.developers.bango.agreement',
+                           args=[self.account.pk])
+
+    def test_anon(self):
+        self.client.logout()
+        self.assertLoginRequired(self.client.get(self.url))
+
+    @mock.patch('mkt.developers.views_payments.client.api')
+    def test_get(self, api):
+        api.bango.sbi.agreement.get_object.return_value = {
+            'text': 'blah', 'valid': '2010-08-31T00:00:00'}
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        data = json.loads(res.content)
+        eq_(data['text'], 'blah')
+
+    @mock.patch('mkt.developers.views_payments.client.api')
+    def test_set(self, api):
+        api.bango.sbi.agreement.post.return_value = {
+            'expires': '2014-08-31T00:00:00',
+            'valid': '2014-08-31T00:00:00'}
+        res = self.client.post(self.url)
+        eq_(res.status_code, 200)
+        data = json.loads(res.content)
+        eq_(data['valid'], '2014-08-31T00:00:00')
+
+
 class TestPaymentAccountsForm(PaymentsBase):
 
     def setUp(self):
