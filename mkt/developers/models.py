@@ -189,6 +189,7 @@ class AddonPaymentAccount(amo.models.ModelBase):
         external_id = webpay.make_ext_id(addon.pk)
         data = {'seller_uri': payment_account.seller_uri,
                 'external_id': external_id}
+        # TODO: convert to curling and clean out a bunch of this code.
         res = client.get_product(filters=data)
         if res['meta']['total_count'] > 1:
             # This probably means that Solitude
@@ -200,7 +201,7 @@ class AddonPaymentAccount(amo.models.ModelBase):
         else:
             generic_product = client.post_product(data={
                 'seller': payment_account.seller_uri, 'secret': secret,
-                'external_id': external_id
+                'external_id': external_id, 'public_id': str(uuid.uuid4())
             })
         product_uri = generic_product['resource_uri']
 

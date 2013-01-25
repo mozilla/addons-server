@@ -1,9 +1,7 @@
 from datetime import datetime, timedelta
 
-import fudge
-from fudge.inspector import arg
 from nose import SkipTest
-from nose.tools import eq_
+from nose.tools import eq_, ok_
 from mock import Mock, patch
 
 import amo
@@ -217,6 +215,22 @@ class TestAddonPaymentAccount(amo.tests.TestCase):
         client.post_update_rating.assert_called_with(
             data={'bango': 'bango#', 'rating': 'UNIVERSAL',
                   'ratingScheme': 'GLOBAL', 'seller_product_bango': 'bpruri'})
+
+    @patch('mkt.developers.models.client')
+    def test_create_new(self, client):
+        client.get_product.return_value = {
+            'objects': [],
+            'meta': {'total_count': 0}
+        }
+        client.get_product_bango.return_value = {
+            'objects': [],
+            'meta': {'total_count': 0}
+        }
+
+        AddonPaymentAccount.create(
+            'bango', addon=self.app, payment_account=self.account)
+        ok_('public_id' in client.post_product.call_args[1]['data'])
+
 
     @patch('mkt.developers.models.client')
     def test_update_price(self, client):
