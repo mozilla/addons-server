@@ -480,6 +480,59 @@ class TestPublicise(amo.tests.TestCase):
         #eq_(len(doc('strong.status-waiting')), 1)
 
 
+class TestStatus(amo.tests.TestCase):
+    fixtures = ['base/users', 'webapps/337141-steamcube']
+
+    def setUp(self):
+        self.webapp = Addon.objects.get(id=337141)
+        self.file = self.webapp.versions.latest().all_files[0]
+        self.file.update(status=amo.STATUS_DISABLED)
+        self.status_url = self.webapp.get_dev_url('versions')
+        self.create_switch('soft_delete')
+        assert self.client.login(username='steamcube@mozilla.com',
+                                 password='password')
+
+    def test_status_when_packaged_public_dev(self):
+        self.webapp.update(is_packaged=True)
+        res = self.client.get(self.status_url)
+        eq_(res.status_code, 200)
+        doc = pq(res.content)
+        eq_(doc('#disable-addon').length, 1)
+        eq_(doc('#delete-addon').length, 1)
+        eq_(doc('#blocklist-app').length, 0)
+
+    def test_status_when_packaged_public_admin(self):
+        assert self.client.login(username='admin@mozilla.com',
+                                 password='password')
+        self.webapp.update(is_packaged=True)
+        res = self.client.get(self.status_url)
+        eq_(res.status_code, 200)
+        doc = pq(res.content)
+        eq_(doc('#disable-addon').length, 1)
+        eq_(doc('#delete-addon').length, 1)
+        eq_(doc('#blocklist-app').length, 1)
+
+    def test_status_when_packaged_rejected_dev(self):
+        self.webapp.update(is_packaged=True, status=amo.STATUS_REJECTED)
+        res = self.client.get(self.status_url)
+        eq_(res.status_code, 200)
+        doc = pq(res.content)
+        eq_(doc('#disable-addon').length, 1)
+        eq_(doc('#delete-addon').length, 1)
+        eq_(doc('#blocklist-app').length, 0)
+
+    def test_status_when_packaged_rejected_admin(self):
+        assert self.client.login(username='admin@mozilla.com',
+                                 password='password')
+        self.webapp.update(is_packaged=True, status=amo.STATUS_REJECTED)
+        res = self.client.get(self.status_url)
+        eq_(res.status_code, 200)
+        doc = pq(res.content)
+        eq_(doc('#disable-addon').length, 1)
+        eq_(doc('#delete-addon').length, 1)
+        eq_(doc('#blocklist-app').length, 0)
+
+
 class TestDelete(amo.tests.TestCase):
     fixtures = ['webapps/337141-steamcube']
 

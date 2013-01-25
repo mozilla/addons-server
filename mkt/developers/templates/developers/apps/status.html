@@ -200,10 +200,10 @@
         </form>
       </div>
 
-      {% if action_allowed('Apps', 'Configure') and versions and addon.current_version.all_files[0].status != amo.STATUS_BLOCKED %}
+      {% if addon.is_packaged and addon.status == amo.STATUS_PUBLIC and action_allowed('Apps', 'Configure') %}
         <h2>{{ _('Blocklist App') }}</h2>
         <div class="island">
-          <form method="post" action="{{ addon.get_dev_url('blocklist') }}">
+          <form method="post" id="blocklist-app" action="{{ addon.get_dev_url('blocklist') }}">
             <p>
             {% trans %}
               Blocklisting an app will upgrade the users to a special version
