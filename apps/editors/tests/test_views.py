@@ -1995,7 +1995,6 @@ class TestReview(ReviewBase):
         assert r.context['show_diff']
         links = pq(r.content)('#review-files .file-info .compare')
         expected = [
-            reverse('files.compare', args=[f1.pk, f1.pk]),
             reverse('files.compare', args=[f2.pk, f1.pk]),
         ]
         check_links(expected, links, verify=False)
