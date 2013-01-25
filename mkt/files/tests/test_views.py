@@ -46,14 +46,17 @@ class FilesBase(object):
         self.version = self.app.versions.latest()
         self.file = self.version.all_files[0]
 
-        self.file_two = File()
-        self.file_two.version = self.version
-        self.file_two.filename = 'webapp.zip'
-        self.file_two.save()
+        self.versions = [self.version,
+                         self.app.versions.create(
+                             version='%s.1' % self.version.version)]
+
+        self.files = [self.file,
+                      File.objects.create(version=self.versions[1],
+                                          filename='webapp.zip')]
 
         self.login_as_editor()
 
-        for file_obj in [self.file, self.file_two]:
+        for file_obj in self.files:
             src = os.path.join(settings.ROOT, packaged_app)
             try:
                 os.makedirs(os.path.dirname(file_obj.file_path))
@@ -251,6 +254,37 @@ class FilesBase(object):
         doc = pq(res.content)
         eq_(doc('#commands td:last').text(), 'Back to app')
 
+    def test_diff_redirect(self):
+        ids = self.files[0].id, self.files[1].id
+
+        res = self.client.post(self.file_url(),
+                               {'left': ids[0], 'right': ids[1]})
+        eq_(res.status_code, 302)
+        self.assert3xx(res, reverse('mkt.files.compare', args=ids))
+
+    def test_browse_redirect(self):
+        ids = self.files[0].id,
+
+        res = self.client.post(self.file_url(), {'left': ids[0]})
+        eq_(res.status_code, 302)
+        self.assert3xx(res, reverse('mkt.files.list', args=ids))
+
+    def test_file_chooser(self):
+        res = self.client.get(self.file_url())
+        doc = pq(res.content)
+
+        left = doc('#id_left')
+        eq_(len(left), 1)
+
+        vers = left('option')
+
+        eq_(len(vers), 3)
+
+        # Only one file per version on Marketplace for the time being.
+        eq_(vers.eq(0).text(), '')
+        eq_(vers.eq(1).text(), self.versions[1].version)
+        eq_(vers.eq(2).text(), self.versions[0].version)
+
 
 class TestFileViewer(FilesBase, amo.tests.WebappTestCase):
     fixtures = ['base/apps', 'base/users', 'webapps/337141-steamcube']
@@ -384,25 +418,33 @@ class TestFileViewer(FilesBase, amo.tests.WebappTestCase):
         eq_(data['status'], False)
         eq_(data['msg'], ['I like cheese.'])
 
+    def test_file_chooser_selection(self):
+        res = self.client.get(self.file_url())
+        doc = pq(res.content)
+
+        eq_(doc('#id_left option[selected]').attr('value'),
+            str(self.files[0].id))
+        eq_(len(doc('#id_right option[value][selected]')), 0)
+
 
 class TestDiffViewer(FilesBase, amo.tests.WebappTestCase):
     fixtures = ['base/apps', 'base/users', 'webapps/337141-steamcube']
 
     def setUp(self):
         super(TestDiffViewer, self).setUp()
-        self.file_viewer = DiffHelper(self.file, self.file_two,
+        self.file_viewer = DiffHelper(self.files[0], self.files[1],
                                       is_webapp=True)
 
     def poll_url(self):
-        return reverse('mkt.files.compare.poll', args=[self.file.pk,
-                                                       self.file_two.pk])
+        return reverse('mkt.files.compare.poll', args=[self.files[0].pk,
+                                                       self.files[1].pk])
 
     def add_file(self, file_obj, name, contents):
         dest = os.path.join(file_obj.dest, name)
         open(dest, 'w').write(contents)
 
     def file_url(self, file=None):
-        args = [self.file.pk, self.file_two.pk]
+        args = [self.files[0].pk, self.files[1].pk]
         if file:
             args.extend(['file', file])
         return reverse('mkt.files.compare', args=args)
@@ -470,3 +512,12 @@ class TestDiffViewer(FilesBase, amo.tests.WebappTestCase):
         doc = pq(res.content)
         eq_(doc('h4:last').text(), 'Deleted files:')
         eq_(len(doc('ul.root')), 2)
+
+    def test_file_chooser_selection(self):
+        res = self.client.get(self.file_url())
+        doc = pq(res.content)
+
+        eq_(doc('#id_left option[selected]').attr('value'),
+            str(self.files[0].id))
+        eq_(doc('#id_right option[selected]').attr('value'),
+            str(self.files[1].id))

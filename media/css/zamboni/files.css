@@ -12,6 +12,20 @@
     text-align: right;
 }
 
+#breadcrumbs-wrapper {
+    padding-top: .5em;
+    clear: both;
+}
+
+#breadcrumbs-wrapper .breadcrumbs {
+    clear: left;
+}
+
+#diff-selector {
+    float: right;
+    margin-bottom: .5em;
+}
+
 #file-viewer div.featured-inner {
     padding: 1em;
 }
@@ -475,4 +489,13 @@ td.gutter, td.code {
 
 #jetpack-version {
     margin: .5em 0;
+}
+
+
+option.status-public {
+    font-weight: bold;
+}
+
+option.status-lite {
+    font-style: italic;
 }

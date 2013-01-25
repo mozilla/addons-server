@@ -18,10 +18,17 @@
   <a href="{{ file_link['url'] }}">{{ addon.name }} {{ version }}</a>
   {% if file.platform.id != amo.PLATFORM_ALL.id %}({{ file.platform }}){% endif %}
 </h3>
-<ol id="top" class="breadcrumbs">
-  <li><a href="{{ file_link['url'] }}">{{ addon.name }}</a></li>
-  <li><a href="{{ url('addons.versions', addon.slug) }}">{{ version }}</a></li>
-</ol>
+<div id="breadcrumbs-wrapper">
+  <form method="POST" id="diff-selector">
+    {{ form.left }}
+    {{ form.right }}
+    <input type="submit" value="{{ _('Go') }}">
+  </form>
+  <ol id="top" class="breadcrumbs">
+    <li><a href="{{ file_link['url'] }}">{{ addon.name }}</a></li>
+    <li><a href="{{ url('addons.versions', addon.slug) }}">{{ version }}</a></li>
+  </ol>
+</div>
 <div id="file-viewer" class="featured">
   <div class="featured-inner">
     <div id="file-viewer-inner">

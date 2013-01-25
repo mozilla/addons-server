@@ -867,4 +867,21 @@ $(document).ready(function() {
         viewer.selected(viewer.nodes.$files.find('a.selected'));
         viewer.compute($('#content-wrapper'));
     }
+
+    var $left = $('#id_left'),
+        $right = $('#id_right');
+
+    $left.find('option:not([value])').attr('disabled', true);
+
+    var $left_options = $left.find('option:not([disabled])'),
+        $right_options = $right.find('option:not([disabled])');
+
+    $right.change(function(event) {
+        var right = $right.val();
+        $left_options.attr('disabled', function() { return this.value == right; });
+    }).change();
+    $left.change(function(event) {
+        var left = $left.val();
+        $right_options.attr('disabled', function() { return this.value == left; });
+    }).change();
 });

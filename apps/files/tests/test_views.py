@@ -20,7 +20,7 @@ from amo.utils import Message
 from amo.urlresolvers import reverse
 from addons.models import Addon
 from files.helpers import FileViewer, DiffHelper
-from files.models import File
+from files.models import File, Platform
 from market.models import AddonPurchase
 from users.models import UserProfile
 
@@ -43,14 +43,25 @@ class FilesBase:
         self.version = self.addon.versions.latest()
         self.file = self.version.all_files[0]
 
-        self.file_two = File()
-        self.file_two.version = self.version
-        self.file_two.filename = 'dictionary-test.xpi'
-        self.file_two.save()
+        p = Platform.objects.filter(id__in=(amo.PLATFORM_WIN.id,
+                                            amo.PLATFORM_LINUX.id,
+                                            amo.PLATFORM_MAC.id))
+
+        self.file.update(platform=p[0])
+
+        self.files = [self.file,
+                      File.objects.create(version=self.version,
+                                          platform=p[1],
+                                          hash='abc123',
+                                          filename='dictionary-test.xpi'),
+                      File.objects.create(version=self.version,
+                                          platform=p[2],
+                                          hash='abc123',
+                                          filename='dictionary-test.xpi')]
 
         self.login_as_editor()
 
-        for file_obj in [self.file, self.file_two]:
+        for file_obj in self.files:
             src = os.path.join(settings.ROOT, dictionary)
             try:
                 os.makedirs(os.path.dirname(file_obj.file_path))
@@ -240,9 +251,60 @@ class FilesBase:
         doc = pq(res.content)
         eq_(doc('#commands td:last').text(), 'Back to addon')
 
+    def test_diff_redirect(self):
+        ids = self.files[0].id, self.files[1].id
+
+        res = self.client.post(self.file_url(),
+                               {'left': ids[0], 'right': ids[1]})
+        eq_(res.status_code, 302)
+        self.assert3xx(res, reverse('files.compare', args=ids))
+
+    def test_browse_redirect(self):
+        ids = self.files[0].id,
+
+        res = self.client.post(self.file_url(), {'left': ids[0]})
+        eq_(res.status_code, 302)
+        self.assert3xx(res, reverse('files.list', args=ids))
+
+    def test_file_chooser(self):
+        res = self.client.get(self.file_url())
+        doc = pq(res.content)
+
+        left = doc('#id_left')
+        eq_(len(left), 1)
+
+        ver = left('optgroup')
+        eq_(len(ver), 1)
+
+        eq_(ver.attr('label'), self.version.version)
+
+        files = ver('option')
+        eq_(len(files), 2)
+
+    def test_file_chooser_coalescing(self):
+        res = self.client.get(self.file_url())
+        doc = pq(res.content)
+
+        files = doc('#id_left > optgroup > option')
+        eq_([f.text for f in files],
+            [str(self.files[0].platform),
+             '%s, %s' % (self.files[1].platform, self.files[2].platform)])
+
+        eq_(files.eq(0).attr('value'), str(self.files[0].id))
+        eq_(files.eq(1).attr('value'), str(self.files[1].id))
+
+    def test_file_chooser_disabled_coalescing(self):
+        self.files[1].update(status=amo.STATUS_DISABLED)
+
+        res = self.client.get(self.file_url())
+        doc = pq(res.content)
+
+        files = doc('#id_left > optgroup > option')
+        eq_(files.eq(1).attr('value'), str(self.files[2].id))
+
 
 class TestFileViewer(FilesBase, amo.tests.TestCase):
-    fixtures = ['base/addon_3615', 'base/users']
+    fixtures = ['base/addon_3615', 'base/platforms', 'base/users']
 
     def poll_url(self):
         return reverse('files.poll', args=[self.file.pk])
@@ -371,24 +433,32 @@ class TestFileViewer(FilesBase, amo.tests.TestCase):
         eq_(data['status'], False)
         eq_(data['msg'], ['I like cheese.'])
 
+    def test_file_chooser_selection(self):
+        res = self.client.get(self.file_url())
+        doc = pq(res.content)
+
+        eq_(doc('#id_left option[selected]').attr('value'),
+            str(self.files[0].id))
+        eq_(len(doc('#id_right option[value][selected]')), 0)
+
 
 class TestDiffViewer(FilesBase, amo.tests.TestCase):
-    fixtures = ['base/addon_3615', 'base/users']
+    fixtures = ['base/addon_3615', 'base/platforms', 'base/users']
 
     def setUp(self):
         super(TestDiffViewer, self).setUp()
-        self.file_viewer = DiffHelper(self.file, self.file_two)
+        self.file_viewer = DiffHelper(self.files[0], self.files[1])
 
     def poll_url(self):
-        return reverse('files.compare.poll', args=[self.file.pk,
-                                                   self.file_two.pk])
+        return reverse('files.compare.poll', args=[self.files[0].pk,
+                                                   self.files[1].pk])
 
     def add_file(self, file_obj, name, contents):
         dest = os.path.join(file_obj.dest, name)
         open(dest, 'w').write(contents)
 
     def file_url(self, file=None):
-        args = [self.file.pk, self.file_two.pk]
+        args = [self.files[0].pk, self.files[1].pk]
         if file:
             args.extend(['file', file])
         return reverse('files.compare', args=args)
@@ -453,6 +523,30 @@ class TestDiffViewer(FilesBase, amo.tests.TestCase):
         doc = pq(res.content)
         eq_(doc('h4:last').text(), 'Deleted files:')
         eq_(len(doc('ul.root')), 2)
+
+    def test_file_chooser_selection(self):
+        res = self.client.get(self.file_url())
+        doc = pq(res.content)
+
+        eq_(doc('#id_left option[selected]').attr('value'),
+            str(self.files[0].id))
+        eq_(doc('#id_right option[selected]').attr('value'),
+            str(self.files[1].id))
+
+    def test_file_chooser_selection_same_hash(self):
+        """
+        In cases where multiple files are coalesced, the file selector may not
+        have an actual entry for certain files. Instead, the entry with the
+        identical hash should be selected.
+        """
+        res = self.client.get(reverse('files.compare', args=(self.files[0].id,
+                                                             self.files[2].id)))
+        doc = pq(res.content)
+
+        eq_(doc('#id_left option[selected]').attr('value'),
+            str(self.files[0].id))
+        eq_(doc('#id_right option[selected]').attr('value'),
+            str(self.files[1].id))
 
 
 class TestBuilderPingback(amo.tests.TestCase):

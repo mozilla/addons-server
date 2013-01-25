@@ -66,7 +66,7 @@
                 <a href="{{ url('devhub.file_validation', addon.slug, file.id) }}">{{ _('Validation') }}</a>
                 &middot;
                 <a href="{{ url('files.list', file.id) }}">{{ _('Contents') }}</a>
-                {% if show_diff %}
+                {% if show_diff and version == addon.latest_version %}
                 &middot;
                 <a class="compare" href="{{ url('files.compare', file.id, file_compare(file, show_diff)) }}">{{ _('Compare') }}</a>
                 {% endif %}
