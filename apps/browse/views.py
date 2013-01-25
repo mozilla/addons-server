@@ -379,15 +379,8 @@ def personas(request, category=None, template=None):
     return jingo.render(request, template, ctx)
 
 
-def legacy_theme_redirects(request, section, category=None,
-                           category_name=None):
+def legacy_theme_redirects(request, category=None, category_name=None):
     url = None
-
-    if section == 'full-themes':
-        # Full Themes have already been renamed to Complete Themes!
-        url = request.get_full_path().replace('/full-themes',
-                                              '/complete-themes')
-        return redirect(url, permanent=not settings.DEBUG)
 
     if category_name is not None:
         # This format is for the Complete Themes RSS feed.
@@ -412,6 +405,13 @@ def legacy_theme_redirects(request, section, category=None,
         return redirect(url, permanent=not settings.DEBUG)
     else:
         raise Http404
+
+
+def legacy_fulltheme_redirects(request, category=None):
+    """Full Themes have already been renamed to Complete Themes!"""
+    url = request.get_full_path().replace('/full-themes',
+                                          '/complete-themes')
+    return redirect(url, permanent=not settings.DEBUG)
 
 
 @cache_page(60 * 60 * 24 * 365)

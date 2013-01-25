@@ -1034,7 +1034,7 @@ class TestSearchToolsFeed(BaseSearchToolsTest):
         doc = pq(r.content)
 
         eq_(doc('rss channel title')[0].text,
-                u'Ivan Krstić :: Search Tools :: Add-ons for Firefox')
+            u'Ivan Krstić :: Search Tools :: Add-ons for Firefox')
 
 
 class TestLegacyRedirects(amo.tests.TestCase):
@@ -1074,15 +1074,12 @@ class TestLegacyRedirects(amo.tests.TestCase):
         # A former Theme category should get redirected to /full-themes/.
         cat = Category.objects.filter(slug='feeds-news-blogging')
         cat.update(type=amo.ADDON_THEME)
+
         self.redirects('/themes/feeds-news-blogging?sort=rating',
                        '/complete-themes/feeds-news-blogging?sort=rating')
 
         self.redirects('/themes/feeds-news-blogging/format:rss?sort=users',
             '/complete-themes/feeds-news-blogging/format:rss?sort=users')
-
-        self.redirects('/full-themes/moreinfo.php',
-                       '/complete-themes/moreinfo.php')
-        self.redirects('/themes/moreinfo.php', '/full-themes/moreinfo.php')
 
     def test_personas(self):
         cat = Category.objects.filter(slug='feeds-news-blogging')

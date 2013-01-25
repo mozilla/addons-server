@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.conf.urls import include, patterns, url
 from django.shortcuts import redirect
 
@@ -30,15 +31,15 @@ urlpatterns = patterns('',
         lambda r: redirect(reverse('browse.extensions') + '?sort=featured',
                            permanent=True)),
 
-    url('^(themes|full-themes)/moreinfo.php$',
-        lambda r: redirect(r.get_full_path().replace('themes/', 'complete-themes/'),
-                           permanent=True)),
+    url('^(?:extensions|complete-themes|full-themes|themes)/moreinfo.php$',
+        views.moreinfo_redirect),
 
-    url('^(?:extensions|complete-themes)/moreinfo.php$', views.moreinfo_redirect),
+    # Full Themes are now Complete Themes.
+    url('^full-themes/(?P<category>[^ /]+)?$',
+        views.legacy_fulltheme_redirects),
 
     # Personas are now Themes.
-    # Full Themes are now Complete Themes.
-    url('^(?P<section>personas|full-themes)/(?P<category>[^ /]+)?$',
+    url('^personas/(?P<category>[^ /]+)?$',
         views.legacy_theme_redirects),
     # TODO(percona): Rename this to `browse.themes`.
     url('^themes/(?P<category>[^ /]+)?$', views.personas,
