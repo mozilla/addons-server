@@ -65,7 +65,7 @@ CACHES = {
             'MAX_POOL_SIZE': '15',
             'BLACKLIST_TIME': 60,
             'SOCKET_TIMEOUT': 10},
-    }, 
+    },
 }
 
 SECRET_KEY = private.SECRET_KEY
@@ -208,5 +208,7 @@ def lazy_langs():
 
 LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in AMO_LANGUAGES])
 LANGUAGES = lazy(lazy_langs, dict)()
+
+ALLOW_SELF_REVIEWS = True
 
 GOOGLE_ANALYTICS_CREDENTIALS = private.GOOGLE_ANALYTICS_CREDENTIALS
