@@ -674,10 +674,11 @@ MINIFY_BUNDLES = {
             'js/impala/site_suggestions.js',
         ),
 
-        # Impala: Things to be loaded at the top of the page
+        # Impala and Legacy: Things to be loaded at the top of the page
         'preload': (
             'js/lib/jquery-1.6.4.js',
-            'js/impala/preloaded.js'
+            'js/impala/preloaded.js',
+            'js/zamboni/analytics.js',
         ),
         # Impala: Things to be loaded at the bottom
         'impala': (

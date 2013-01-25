@@ -37,6 +37,7 @@
     {% if request.user.is_authenticated() %}
       <meta name="csrf" content="{{ csrf_token }}">
     {% endif %}
+    {{ js('preload') }}
   </head>
   <body class="html-{{ DIR }} {{ request.APP.short }} moz-header-slim {% block bodyclass %}{% endblock %}"
         data-app="{{ request.APP.short }}"

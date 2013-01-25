@@ -21,7 +21,7 @@
         $window.bind('buttons_loaded_click', function() {
             $el.trigger('click');
         });
-    })
+    });
     $window.bind('buttons_loaded', function() {
         // Trigger all the clicks
         $window.trigger('buttons_loaded_click');
