@@ -386,6 +386,7 @@ class WebappSuggestionsAjax(SearchSuggestionsAjax):
         self.category = category
         self.gaia = getattr(request, 'GAIA', False)
         self.mobile = getattr(request, 'MOBILE', False)
+        self.tablet = getattr(request, 'TABLET', False)
         SearchSuggestionsAjax.__init__(self, request, excluded_ids)
         if self.mobile:
             self.limit = 3
@@ -394,8 +395,12 @@ class WebappSuggestionsAjax(SearchSuggestionsAjax):
         res = SearchSuggestionsAjax.queryset(self)
         if self.category:
             res = res.filter(category__in=[self.category])
-        if waffle.switch_is_active('disabled-payments') or not self.gaia:
-            res = res.filter(premium_type__in=amo.ADDON_FREES, price=0)
+        if (self.mobile or self.tablet) and not self.gaia:
+            if isinstance(res, S):
+                res = res.filter(~F(premium_type__in=amo.ADDON_PREMIUMS,
+                                    price__gt=0))
+            else:
+                res.exclude(premium_type__in=amo.ADDON_PREMIUMS, price__gt=0)
 
         region = getattr(self.request, 'REGION', mkt.regions.WORLDWIDE)
         if region:

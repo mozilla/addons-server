@@ -163,12 +163,11 @@ class TestWebappSearch(PaidAppMixin, SearchBase):
         assert 'Bad Cats' not in res.content, (
             'Category of unreviewed apps should not show up in facets.')
 
-    def test_hide_paid_apps_when_disabled(self):
-        self.create_switch(name='disabled-payments')
+    def test_hide_paid_apps_on_android(self):
         self.setup_paid()
         self.refresh()
-        rs = self.client.get(self.url)
-        eq_(set(rs.context['pager'].object_list), set(self.free))
+        res = self.client.get(self.url, {'mobile': 'true'})
+        self.assertSetEqual(res.context['pager'].object_list, self.free)
 
     def check_price_filter(self, price, selected, type_=None):
         self.setup_paid(type_=type_)
@@ -569,26 +568,21 @@ class TestFilterGaiaCompat(amo.tests.ESTestCase):
         eq_(query['device'], 'mobile')
 
     @nottest
-    def test_url(self, url, app_is_premium=True, device_is_gaia=False):
+    def test_url(self, url, data, show_paid=False):
         """
         Test a view to make sure that it excludes premium apps from non gaia
         devices.
         """
-        url = urlparams(url, gaia='true' if device_is_gaia else 'false')
-
         self.refresh()
-        r = self.client.get(url, follow=True)
+        r = self.client.get(url, data, follow=True)
         eq_(r.status_code, 200)
 
-        # If the app is premium and the device isn't gaia, assert
-        # that the app doesn't show up in the listing.
-        if app_is_premium and not device_is_gaia:
+        if show_paid:
             assert self.app_name not in r.content, (
-                'Found premium app in non-gaia for %s' % url)
-        elif app_is_premium and device_is_gaia:
-            # Otherwise assert that it does.
+                'Found premium app for %s' % url)
+        else:
             assert self.app_name in r.content, (
-                "Couldn't find premium app in gaia for %s" % url)
+                "Couldn't find premium app for %s" % url)
 
     def _generate(self):
         views = [reverse('browse.apps'),
@@ -596,11 +590,11 @@ class TestFilterGaiaCompat(amo.tests.ESTestCase):
                  reverse('search.search') + '?q=Basta',
                  reverse('search.suggestions') + '?q=Basta&cat=apps']
 
-        for view in views:
-
-            for app_is_premium in (True, False):
-                for device_is_gaia in (False, True):
-                    yield self.test_url, view, app_is_premium, device_is_gaia
+        for url in views:
+            yield self.test_url, url, {'mobile': 'true', 'tablet': 'true'}, False
+            yield self.test_url, url, {'mobile': 'true', 'gaia': 'false'}, False
+            yield self.test_url, url, {'mobile': 'true', 'gaia': 'true'}, True
+            yield self.test_url, url, {}, True
 
     def test_generator(self):
         # This is necessary until we can get test generator methods worked out

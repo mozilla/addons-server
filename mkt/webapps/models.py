@@ -585,7 +585,8 @@ class Webapp(Addon):
                     .values_list('addon', flat=True))
 
     @classmethod
-    def from_search(cls, cat=None, region=None, gaia=False):
+    def from_search(cls, cat=None, region=None, gaia=False,
+                    mobile=False, tablet=False):
         filters = dict(type=amo.ADDON_WEBAPP,
                        status=amo.STATUS_PUBLIC,
                        is_disabled=False)
@@ -599,8 +600,16 @@ class Webapp(Addon):
             if excluded:
                 srch = srch.filter(~F(id__in=excluded))
 
-        if waffle.switch_is_active('disabled-payments'):
-            srch = srch.filter(premium_type__in=amo.ADDON_FREES, price=0)
+        if mobile:
+            srch = srch.filter(uses_flash=False)
+
+        if (mobile or tablet) and not gaia:
+            # Don't show packaged apps on Firefox for Android.
+            srch = srch.filter(is_packaged=False)
+
+            # Only show premium apps on gaia and desktop for now.
+            srch = srch.filter(~F(premium_type__in=amo.ADDON_PREMIUMS,
+                               price__gt=0))
 
         return srch
 

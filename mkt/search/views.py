@@ -1,8 +1,8 @@
 from django.shortcuts import redirect
 
 import jingo
-from tower import ugettext as _
 import waffle
+from tower import ugettext as _
 
 import amo
 import amo.utils
@@ -52,9 +52,7 @@ def _filter_search(qs, query, filters=None, sorting=None,
         qs = qs.query(or_=name_query(query['q'].lower()))
     if 'cat' in show:
         qs = qs.filter(category=query['cat'])
-    if waffle.switch_is_active('disabled-payments'):
-        qs = qs.filter(premium_type__in=amo.ADDON_FREES, price=0)
-    elif 'price' in show:
+    if 'price' in show:
         if query['price'] == 'paid':
             qs = qs.filter(premium_type__in=amo.ADDON_PREMIUMS)
         elif query['price'] == 'free':
@@ -126,8 +124,9 @@ def sort_sidebar(query, form):
             for key, text in form.fields['sort'].choices]
 
 
-def _get_query(region, gaia):
-    return Webapp.from_search(region=region, gaia=gaia).facet('category')
+def _get_query(region, gaia, mobile, tablet):
+    return Webapp.from_search(region=region, gaia=gaia,
+                              mobile=mobile, tablet=tablet).facet('category')
 
 
 def _app_search(request, category=None, browse=None):
@@ -143,18 +142,8 @@ def _app_search(request, category=None, browse=None):
 
     region = getattr(request, 'REGION', mkt.regions.WORLDWIDE)
 
-    qs = _get_query(region, request.GAIA)
-
-    if request.MOBILE:
-        qs = qs.filter(uses_flash=False)
-
-    if not request.GAIA and (request.MOBILE or request.TABLET):
-        # Don't show packaged apps on Firefox for Android.
-        qs = qs.filter(is_packaged=False)
-
-        # Only show premium apps on gaia for now.
-        # TODO: remove this once we allow app purchases on Android.
-        qs = qs.filter(premium_type__in=amo.ADDON_FREES)
+    qs = _get_query(region, gaia=request.GAIA, mobile=request.MOBILE,
+                    tablet=request.TABLET)
 
     qs = _filter_search(qs, dict(query), region=region)
 
