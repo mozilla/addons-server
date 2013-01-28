@@ -391,14 +391,14 @@ class TestCase(RedisTest, test_utils.TestCase):
             'Expected datetime to be within a minute of %s. Got %r.' % (now,
                                                                         dt))
 
-    def make_premium(self, addon, currencies=None):
-        price = Price.objects.create(price='1.00')
+    def make_premium(self, addon, price='1.00', currencies=None):
+        price_obj = Price.objects.create(price=price)
         if currencies:
             for currency in currencies:
                 PriceCurrency.objects.create(currency=currency,
-                                             price='1.00', tier=price)
+                                             price=price, tier=price_obj)
         addon.update(premium_type=amo.ADDON_PREMIUM)
-        AddonPremium.objects.create(addon=addon, price=price)
+        AddonPremium.objects.create(addon=addon, price=price_obj)
 
     def create_sample(self, name=None, db=False, **kw):
         if name is not None:

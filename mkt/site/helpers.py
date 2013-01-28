@@ -152,7 +152,7 @@ def product_as_dict(request, product, purchased=None, receipt_type=None,
             previews.append(preview)
         ret.update({'previews': previews})
 
-    if product.is_premium() and product.premium:
+    if product.needs_payment():
         ret.update({
             'price': product.premium.get_price() or '0',
             'priceLocale': product.premium.get_price_locale(),

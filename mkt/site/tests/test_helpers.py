@@ -77,6 +77,12 @@ class TestMarketButton(amo.tests.TestCase):
         eq_(doc('.bad-app').text(),
             'This app is available for purchase on only Firefox OS.')
 
+    def test_is_premium_no_payment(self):
+        self.make_premium(self.webapp, price='0.00')
+        doc = pq(market_tile(self.context, self.webapp))
+        data = json.loads(doc('.mkt-tile').attr('data-product'))
+        assert 'price' not in data
+
     def test_is_premium_webapp_gaia(self):
         self.context['request'].GAIA = True
         self.make_premium(self.webapp)
