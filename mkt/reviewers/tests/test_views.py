@@ -24,6 +24,7 @@ from addons.models import AddonDeviceType, AddonUser, Persona
 from amo.tests import (app_factory, addon_factory, check_links, days_ago,
                        formset, initial, version_factory)
 from amo.urlresolvers import reverse
+from amo.utils import isotime
 from devhub.models import ActivityLog, AppLog
 from editors.models import (CannedResponse, EscalationQueue, RereviewQueue,
                             ReviewerScore)
@@ -370,6 +371,16 @@ class TestRereviewQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         ]
         check_links(expected, links, verify=False)
 
+    def test_waiting_time(self):
+        """Check objects show queue objects' created."""
+        r = self.client.get(self.url)
+        waiting_times = [wait.attrib['isotime'] for wait in
+                         pq(r.content)('td time')]
+        expected_waiting_times = [
+            isotime(app.rereviewqueue_set.all()[0].created)
+            for app in self.apps]
+        self.assertSetEqual(expected_waiting_times, waiting_times)
+
     def test_action_buttons_public_senior_reviewer(self):
         self.login_as_senior_reviewer()
 
@@ -656,6 +667,16 @@ class TestEscalationQueue(AppReviewerTest, AccessMixin, FlagsMixin,
             (unicode(apps[2].name), self.review_url(apps[2])),
         ]
         check_links(expected, links, verify=False)
+
+    def test_waiting_time(self):
+        """Check objects show queue objects' created."""
+        r = self.client.get(self.url)
+        waiting_times = [wait.attrib['isotime'] for wait in
+                         pq(r.content)('td time')]
+        expected_waiting_times = [
+            isotime(app.escalationqueue_set.all()[0].created)
+            for app in self.apps]
+        self.assertSetEqual(expected_waiting_times, waiting_times)
 
     def test_action_buttons_public(self):
         r = self.client.get(self.review_url(self.apps[0]))
