@@ -129,7 +129,9 @@ class Contribution(amo.models.ModelBase):
     uuid = models.CharField(max_length=255, null=True)
     comment = models.CharField(max_length=255)
     transaction_id = models.CharField(max_length=255, null=True)
-    bluevia_transaction_id = models.CharField(max_length=255, null=True)
+    # The internal solitude transaction id. This shouldn't be exposed,
+    # but used for internal calls between solitude and zamboni.
+    solitude_transaction_id = models.CharField(max_length=255, null=True)
     paykey = models.CharField(max_length=255, null=True)
     post_data = StatsDictField(null=True)
 

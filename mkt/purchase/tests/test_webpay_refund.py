@@ -21,7 +21,7 @@ class SalesTest(object):
         self.user = UserProfile.objects.get(pk=999)
         self.sale = Contribution.objects.create(
                             addon=self.app, amount=Decimal(1),
-                            bluevia_transaction_id='1',
+                            solitude_transaction_id='1',
                             type=amo.CONTRIB_PURCHASE, user=self.user)
 
 
@@ -93,7 +93,7 @@ class TestPostback(SalesTest, amo.tests.TestCase):
 
         refund = refunds[0]
         eq_(refund.amount, -self.sale.amount)
-        eq_(refund.bluevia_transaction_id, None)
+        eq_(refund.solitude_transaction_id, None)
         eq_(refund.related, self.sale)
 
     @mock.patch('mkt.purchase.webpay.parse_from_webpay')

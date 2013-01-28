@@ -173,7 +173,7 @@ def postback(request):
                              contrib_uuid)), None, tb
 
     contrib.update(type=amo.CONTRIB_PURCHASE,
-                   bluevia_transaction_id=data['response']['transactionID'])
+                   solitude_transaction_id=data['response']['transactionID'])
 
     tasks.purchase_notify.delay(signed_jwt, contrib.pk)
     tasks.send_purchase_receipt.delay(contrib.pk)
@@ -188,13 +188,14 @@ def postback(request):
 @commit_on_success
 def prepare_refund(request, addon, uuid):
     """
-    Prepare a BlueVia JWT to pass into navigator.pay()
+    Prepare a JWT to pass into navigator.pay()
     for a specific transaction.
     """
+    #TODO: Let's not use the solitude transaction id if we can help it.
     try:
-        # Looks up the contribution based upon the BlueVia transaction id.
+        # Looks up the contribution based upon the transaction id.
         to_refund = Contribution.objects.get(user=request.amo_user,
-                                             bluevia_transaction_id=uuid,
+                                             solitude_transaction_id=uuid,
                                              addon=addon)
     except Contribution.DoesNotExist:
         log.info('Not found: %s, %s' % (request.amo_user.pk, uuid))
@@ -214,7 +215,7 @@ def prepare_refund(request, addon, uuid):
         log.info('Already refunded: %s' % uuid)
         return http.HttpResponseBadRequest()
 
-    data = {'id': to_refund.bluevia_transaction_id}
+    data = {'id': to_refund.solitude_transaction_id}
     return {'webpayJWT': prepare_webpay_refund(data)}
 
 
@@ -223,9 +224,10 @@ def prepare_refund(request, addon, uuid):
 @post_required
 def chargeback(request):
     """
-    Verify signature from BlueVia and create a refund contribution tied
+    Verify signature from and create a refund contribution tied
     to the original transaction.
     """
+    #TODO: Let's not use the solitude transaction id if we can help it.
     signed_jwt = request.read()
     # Check the JWT we've got is valid.
     try:
@@ -237,7 +239,7 @@ def chargeback(request):
     # Check that we've got a valid uuid.
     # Looks up the contribution based upon the BlueVia transaction id.
     try:
-        original = Contribution.objects.get(bluevia_transaction_id=uuid)
+        original = Contribution.objects.get(solitude_transaction_id=uuid)
     except Contribution.DoesNotExist:
         log.info('Not found: %s' % uuid)
         return http.HttpResponseBadRequest()
