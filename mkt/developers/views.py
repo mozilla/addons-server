@@ -831,5 +831,8 @@ def _filter_transactions(qs, data):
                       'date_to': 'created__lte'}
     for form_field, db_field in filter_mapping.iteritems():
         if data.get(form_field):
-            qs = qs.filter(**{db_field: data[form_field]})
+            try:
+                qs = qs.filter(**{db_field: data[form_field]})
+            except ValueError:
+                continue
     return qs

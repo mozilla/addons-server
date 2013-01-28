@@ -1149,6 +1149,7 @@ class TestTransactionList(amo.tests.TestCase):
         tx1 = self.txs[1]
 
         self.do_filter(self.txs)
+        self.do_filter(self.txs, transaction_type='None', app='oshawott')
 
         self.do_filter([tx0], app=tx0.id)
         self.do_filter([tx1], app=tx1.id)
