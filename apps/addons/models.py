@@ -1463,19 +1463,18 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         for locale, name in names.iteritems():
 
             if locale in locales:
-                # It's either a locale removal or an edit.
-                if not name and locale != self.default_locale.lower():
+                if not name and locale.lower() == self.default_locale.lower():
+                    pass  # We never want to delete the default locale.
+                elif not name:  # A deletion.
                     updated_locales[locale] = None
-                    msg_d.append(u'"%s" (%s).' % (names.get(locale), locale))
+                    msg_d.append(u'"%s" (%s).' % (locales.get(locale), locale))
                 elif name != locales[locale]:
-                    updated_locales[locale] = names.get(locale)
+                    updated_locales[locale] = name
                     msg_u.append(u'"%s" -> "%s" (%s).' % (
-                        locales[locale], names.get(locale), locale))
-                else:
-                    pass  # It's a match, keep it.
+                        locales[locale], name, locale))
             else:
                 updated_locales[locale] = names.get(locale)
-                msg_c.append(u'"%s" (%s).' % (names.get(locale), locale))
+                msg_c.append(u'"%s" (%s).' % (name, locale))
 
         if locales != updated_locales:
             self.name = updated_locales
@@ -1485,6 +1484,20 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             'deleted': ' '.join(msg_d),
             'updated': ' '.join(msg_u),
         }
+
+    def update_default_locale(self, locale):
+        """
+        Updates default_locale if it's different and matches one of our
+        supported locales.
+
+        Returns tuple of (old_locale, new_locale) if updated. Otherwise None.
+        """
+        old_locale = self.default_locale
+        locale = find_language(locale)
+        if locale and locale != old_locale:
+            self.update(default_locale=locale)
+            return old_locale, locale
+        return None
 
 
 class AddonDeviceType(amo.models.ModelBase):

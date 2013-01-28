@@ -12,11 +12,12 @@ import amo
 from amo.decorators import write
 from amo.helpers import absolutify
 from amo.urlresolvers import reverse
-from amo.utils import chunked, find_language
+from amo.utils import chunked
 from editors.models import RereviewQueue
 from files.models import FileUpload
 from mkt.developers.tasks import _fetch_manifest, validator
 from mkt.webapps.models import Webapp
+from mkt.webapps.utils import get_locale_properties
 from users.utils import get_task_user
 
 task_log = logging.getLogger('z.task')
@@ -163,26 +164,17 @@ def _update_manifest(id, check_hash, failed_fetches):
             old.get('name'), new.get('name')))
 
     # Get names in "locales" as {locale: name}.
-    locale_names = dict(
-        [(k, new['locales'][k]['name']) for k in new.get('locales', {})
-         if 'name' in new['locales'][k]])
-    # Add in the default locale name.
-    default_locale = new.get('default_locale')
-    if default_locale and default_locale != webapp.default_locale:
-        default_locale = find_language(default_locale)
-        if default_locale:
-            msg.append(u'Default locale changed from "%s" to "%s".' % (
-                webapp.default_locale, default_locale))
-            webapp.update(default_locale=default_locale)
-        else:
-            pass  # TODO: Error if we don't support it?
-    elif not default_locale:
-        default_locale = webapp.default_locale
-    locale_names[default_locale] = new.get('name')
+    locale_names = get_locale_properties(new, 'name', webapp.default_locale)
+
+    # Check changes to default_locale.
+    locale_changed = webapp.update_default_locale(new.get('default_locale'))
+    if locale_changed:
+        msg.append(u'Default locale changed from "%s" to "%s".'
+                   % locale_changed)
 
     # Update names
     crud = webapp.update_names(locale_names)
-    if crud:
+    if any(crud.values()):
         webapp.save()
 
     if crud.get('added'):

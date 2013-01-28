@@ -21,8 +21,8 @@ import amo.tests
 from abuse.models import AbuseReport
 from access.models import GroupUser
 from addons.models import AddonDeviceType, AddonUser, Persona
-from amo.tests import (AMOPaths, app_factory, addon_factory, check_links,
-                       days_ago, formset, initial, version_factory)
+from amo.tests import (app_factory, addon_factory, check_links, days_ago,
+                       formset, initial, version_factory)
 from amo.urlresolvers import reverse
 from devhub.models import ActivityLog, AppLog
 from editors.models import (CannedResponse, EscalationQueue, RereviewQueue,
@@ -37,6 +37,7 @@ from mkt.reviewers.views import (_do_sort, _filter, _check_if_searching,
 from mkt.site.fixtures import fixture
 from mkt.submit.tests.test_views import BasePackagedAppTest
 from mkt.webapps.models import Webapp
+from mkt.webapps.tests.test_models import PackagedFilesMixin
 import reviews
 from reviews.models import Review, ReviewFlag
 from users.models import UserProfile
@@ -746,7 +747,7 @@ class TestReviewTransaction(amo.tests.test_utils.TransactionTestCase):
         eq_(resp.status_code, 302)
 
 
-class TestReviewApp(AppReviewerTest, AccessMixin, AMOPaths):
+class TestReviewApp(AppReviewerTest, AccessMixin, PackagedFilesMixin):
     fixtures = ['base/platforms', 'base/users', 'webapps/337141-steamcube']
 
     def setUp(self):
@@ -758,6 +759,8 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AMOPaths):
         self.version = self.app.current_version
         self.version.files.all().update(status=amo.STATUS_PENDING)
         self.url = reverse('reviewers.apps.review', args=[self.app.app_slug])
+        self.file = self.version.all_files[0]
+        self.setup_files()
 
     def get_app(self):
         return Webapp.objects.get(id=337141)
@@ -913,13 +916,15 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AMOPaths):
         self._check_email_body(msg)
         self._check_score(amo.REVIEWED_WEBAPP_HOSTED)
 
+    @mock.patch('mkt.webapps.models.Webapp.update_name_from_package_manifest')
     @mock.patch('lib.crypto.packaged.sign')
-    def test_public_signs(self, sign):
+    def test_public_signs(self, sign, update):
         self.get_app().update(is_packaged=True)
         self.post({'action': 'public', 'comments': 'something'})
 
         eq_(self.get_app().status, amo.STATUS_PUBLIC)
         eq_(sign.call_args[0][0], self.get_app().current_version.pk)
+        assert update.called
 
     def test_pending_to_public_no_mozilla_contact(self):
         self.create_switch(name='reviewer-incentive-points')
@@ -962,13 +967,15 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AMOPaths):
         self._check_email_body(msg)
         self._check_score(amo.REVIEWED_WEBAPP_HOSTED)
 
+    @mock.patch('mkt.webapps.models.Webapp.update_name_from_package_manifest')
     @mock.patch('lib.crypto.packaged.sign')
-    def test_public_waiting_signs(self, sign):
+    def test_public_waiting_signs(self, sign, update):
         self.get_app().update(is_packaged=True, make_public=amo.PUBLIC_WAIT)
         self.post({'action': 'public', 'comments': 'something'})
 
         eq_(self.get_app().status, amo.STATUS_PUBLIC_WAITING)
         eq_(sign.call_args[0][0], self.get_app().current_version.pk)
+        assert not update.called
 
     def test_pending_to_reject(self):
         self.create_switch(name='reviewer-incentive-points')

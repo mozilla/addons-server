@@ -2,12 +2,14 @@
 import functools
 import json
 import os
+import shutil
 import unittest
 import uuid
 import zipfile
 from datetime import datetime, timedelta
 
 from django.conf import settings
+from django.core.files.storage import default_storage as storage
 from django.db.models.signals import post_delete, post_save
 
 import mock
@@ -315,6 +317,35 @@ class TestWebapp(amo.tests.TestCase):
         Webapp(is_packaged=True).parsed_app_domain
 
 
+class TestPackagedAppManifestUpdates(amo.tests.TestCase):
+    # Note: More extensive tests for `Addon.update_names` are in the Addon
+    # model tests.
+    fixtures = ['base/platforms']
+
+    def setUp(self):
+        self.webapp = amo.tests.app_factory(is_packaged=True,
+                                            default_locale='en-US')
+        self.webapp.name = {'en-US': 'Packaged App'}
+        self.webapp.save()
+
+    @mock.patch('mkt.webapps.models.Webapp.get_manifest_json')
+    def test_package_manifest_default_name_change(self, get_manifest_json):
+        get_manifest_json.return_value = {'name': 'Yo'}
+        self.trans_eq(self.webapp.name, 'en-US', 'Packaged App')
+        self.webapp.update_name_from_package_manifest()
+        self.webapp = Webapp.objects.get(pk=self.webapp.pk)
+        self.trans_eq(self.webapp.name, 'en-US', 'Yo')
+
+    @mock.patch('mkt.webapps.models.Webapp.get_manifest_json')
+    def test_package_manifest_default_locale_change(self, get_manifest_json):
+        get_manifest_json.return_value = {'name': 'Yo', 'default_locale': 'fr'}
+        eq_(self.webapp.default_locale, 'en-US')
+        self.webapp.update_name_from_package_manifest()
+        eq_(self.webapp.default_locale, 'fr')
+        self.trans_eq(self.webapp.name, 'en-US', None)
+        self.trans_eq(self.webapp.name, 'fr', 'Yo')
+
+
 class TestWebappVersion(amo.tests.TestCase):
     fixtures = ['base/platforms']
 
@@ -408,6 +439,23 @@ class TestManifest(BaseWebAppTest):
         with open(self.manifest, 'r') as mf:
             manifest_json = json.load(mf)
             eq_(webapp.get_manifest_json(), manifest_json)
+
+
+class PackagedFilesMixin(amo.tests.AMOPaths):
+
+    def setUp(self):
+        self.package = self.packaged_app_path('mozball.zip')
+
+    def setup_files(self, filename='mozball.zip'):
+        # This assumes self.file exists.
+        if not storage.exists(self.file.file_path):
+            try:
+                # We don't care if these dirs exist.
+                os.makedirs(os.path.dirname(self.file.file_path))
+            except OSError:
+                pass
+            shutil.copyfile(self.packaged_app_path(filename),
+                            self.file.file_path)
 
 
 class TestPackagedModel(amo.tests.TestCase):

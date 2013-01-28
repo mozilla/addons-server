@@ -41,6 +41,7 @@ import mkt
 from mkt.constants import apps
 from mkt.constants import APP_IMAGE_SIZES
 from mkt.carriers import get_carrier
+from mkt.webapps.utils import get_locale_properties
 
 
 log = commonware.log.getLogger('z.addons')
@@ -735,6 +736,33 @@ class Webapp(Addon):
         self.status = amo.STATUS_BLOCKED
         self._current_version = v
         self.save()
+
+    def update_name_from_package_manifest(self):
+        """
+        Looks at the manifest.webapp inside the current version's file and
+        updates the app's name and translated names.
+
+        Note: Make sure the correct version is in place before calling this.
+        """
+        if not self.is_packaged:
+            return None
+
+        file_ = self.versions.latest().all_files[0]
+        mf = self.get_manifest_json(file_)
+
+        # Get names in "locales" as {locale: name}.
+        locale_names = get_locale_properties(mf, 'name', self.default_locale)
+
+        # Check changes to default_locale.
+        locale_changed = self.update_default_locale(mf.get('default_locale'))
+        if locale_changed:
+            log.info(u'[Webapp:%s] Default locale changed from "%s" to "%s".'
+                     % (self.pk, locale_changed[0], locale_changed[1]))
+
+        # Update names
+        crud = self.update_names(locale_names)
+        if any(crud.values()):
+            self.save()
 
 
 # Pull all translated_fields from Addon over to Webapp.
