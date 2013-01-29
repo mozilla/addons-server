@@ -42,6 +42,7 @@ from versions.models import ApplicationsVersions, Version
 
 import mkt
 from mkt.webapps.models import ContentRating
+from mkt.zadmin.models import FeaturedApp, FeaturedAppRegion
 
 
 def formset(*args, **kw):
@@ -399,6 +400,12 @@ class TestCase(RedisTest, test_utils.TestCase):
                                              price=price, tier=price_obj)
         addon.update(premium_type=amo.ADDON_PREMIUM)
         AddonPremium.objects.create(addon=addon, price=price_obj)
+
+    def make_featured(self, app, category=None, region=mkt.regions.US):
+        f = FeaturedApp.objects.create(app=app, category=category)
+        # Feature in some specific region.
+        FeaturedAppRegion.objects.create(featured_app=f, region=region.id)
+        return f
 
     def create_sample(self, name=None, db=False, **kw):
         if name is not None:

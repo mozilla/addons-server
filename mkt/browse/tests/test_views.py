@@ -1,5 +1,3 @@
-from django.conf import settings
-
 from nose import SkipTest
 from nose.tools import eq_
 from pyquery import PyQuery as pq
@@ -13,7 +11,7 @@ from addons.models import AddonCategory, Category, AddonDeviceType
 
 import mkt
 from mkt.webapps.models import AddonExcludedRegion as AER, Webapp
-from mkt.zadmin.models import FeaturedApp, FeaturedAppRegion
+from mkt.zadmin.models import FeaturedAppRegion
 
 
 class BrowseBase(amo.tests.ESTestCase):
@@ -32,13 +30,6 @@ class BrowseBase(amo.tests.ESTestCase):
         r = self.client.get(url, data or {})
         eq_(r.status_code, 200)
         return sorted(x.id for x in r.context[key])
-
-    def make_featured(self, app, category=None):
-        f = FeaturedApp.objects.create(app=app, category=category)
-        # Feature in the US region.
-        FeaturedAppRegion.objects.create(featured_app=f,
-                                         region=mkt.regions.US.id)
-        return f
 
     def setup_featured(self, num=3):
         # Category featured.
@@ -169,17 +160,6 @@ class TestIndexLanding(BrowseBase):
         raise SkipTest
         self._test_featured_region_exclusions()
 
-    def test_featured_src(self):
-        _, _, featured = self.setup_featured()
-
-        r = self.client.get(self.url)
-        doc = pq(r.content)
-
-        eq_(doc('.featured .mkt-tile').attr('href'),
-            featured.get_detail_url() + '?src=mkt-browse-featured')
-        eq_(doc('.listing .mkt-tile').attr('href'),
-            self.webapp.get_detail_url() + '?src=mkt-browse')
-
     def test_popular(self):
         self._test_popular()
 
@@ -259,14 +239,6 @@ class TestCategoryLanding(BrowseBase):
                                        type=amo.ADDON_WEBAPP)
 
     @mock_es
-    def test_good_cat(self):
-        # TODO(dspasovski): Fix this.
-        raise SkipTest
-        r = self.client.get(self.url)
-        eq_(r.status_code, 200)
-        self.assertTemplateUsed(r, 'browse/landing.html')
-
-    @mock_es
     def test_bad_cat(self):
         r = self.client.get(reverse('browse.apps', args=['xxx']))
         eq_(r.status_code, 404)
@@ -280,35 +252,6 @@ class TestCategoryLanding(BrowseBase):
         r = self.client.get(cat_url)
         eq_(r.status_code, 200)
         eq_(pq(r.content)('.no-results').length, 1)
-
-    def test_featured(self):
-        # TODO(dspasovski): Fix this.
-        a, b, c = self.setup_featured()
-
-        # Check that these apps are featured for this category -
-        # and only in US region.
-        for region in mkt.regions.REGIONS_DICT:
-            eq_(self.get_pks('featured', self.url, {'region': region}),
-                [a.id, b.id] if region == 'us' else [])
-
-        # Check that these apps are not featured for another category.
-        new_cat_url = reverse('browse.apps', args=[self.get_new_cat().slug])
-        eq_(self.get_pks('featured', new_cat_url), [])
-
-    def test_featured_src(self):
-        a, b, _ = self.setup_featured()
-
-        r = self.client.get(self.url)
-        doc = pq(r.content)
-
-        featured_tiles = doc('.featured .mkt-tile')
-        eq_(featured_tiles.eq(0).attr('href'),
-            a.get_detail_url() + '?src=mkt-category-featured')
-        eq_(featured_tiles.eq(1).attr('href'),
-            b.get_detail_url() + '?src=mkt-category-featured')
-
-        eq_(doc('.listing .mkt-tile').attr('href'),
-            self.webapp.get_detail_url() + '?src=mkt-category')
 
     def test_popular(self):
         a = self.setup_popular()
@@ -326,7 +269,6 @@ class TestCategoryLanding(BrowseBase):
         AER.objects.create(addon=self.webapp, region=mkt.regions.BR.id)
 
         for region in mkt.regions.REGIONS_DICT:
-            print region, self.get_pks('popular', self.url, {'region': region})
             eq_(self.get_pks('popular', self.url, {'region': region}),
                 [a.id] if region == 'br' else [self.webapp.id, a.id])
 
@@ -359,15 +301,6 @@ class TestCategorySearch(BrowseBase):
         r = self.client.get(reverse('browse.apps', args=['xxx']),
                             {'sort': 'downloads'})
         eq_(r.status_code, 404)
-
-    def test_non_indexed_cat(self):
-        new_cat = Category.objects.create(name='Slap Tickling', slug='booping',
-                                          type=amo.ADDON_WEBAPP)
-        r = self.client.get(reverse('browse.apps', args=[new_cat.slug]),
-                            {'sort': 'downloads'})
-
-        # If the category has no indexed apps, we redirect to main search page.
-        self.assertRedirects(r, reverse('search.search'))
 
     def test_sidebar(self):
         # TODO(dspasovski): Fix this.
