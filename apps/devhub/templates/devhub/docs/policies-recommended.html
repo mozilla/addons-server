@@ -11,13 +11,19 @@
 
   <p>
   {% trans link_gallery=url('browse.extensions')|urlparams(sort='featured') %}
-  Featured add-ons are top-quality add-ons highlighted in our <a href="{{ link_gallery }}">gallery</a>, Firefox's Add-ons Manager, and across other Mozilla websites. These add-ons showcase the power of Firefox customization and are useful to a wide audience of consumers.
+  Featured add-ons are top-quality extensions and themes highlighted on <a href="{{ link_gallery }}">AMO</a>, Firefox's Add-ons Manager, and across other Mozilla websites. These add-ons showcase the power of Firefox customization and are useful to a wide audience.
   {% endtrans %}
   </p>
 
   <p>
   {% trans %}
-  Featured add-ons are chosen each month by the Featured Add-ons Advisory Board, a small group of add-on developers and fans from the Mozilla community who have volunteered to review and vote on nominations.
+  Featured add-ons are chosen by the Featured Add-ons Advisory Board, a small group of add-on developers and fans from the Mozilla community who have volunteered to review and vote on nominations.
+  {% endtrans %}
+  </p>
+
+  <p>
+  {% trans link_featured=url('browse.extensions')|urlparams(sort='featured'), link_themes=url('browse.themes')|urlparams(sort='featured') %}
+<a href="{{ link_featured }}">Featured extensions</a> are chosen every month, and <a href="{{ link_themes }}">featured complete themes</a> are chosen every quarter.
   {% endtrans %}
   </p>
 
@@ -25,7 +31,7 @@
 
   <p>
   {% trans %}
-  Before nominating your add-on to be featured, please ensure it meets all of the required criteria below:
+  Before nominating an add-on to be featured, please ensure it meets the following criteria:
   {% endtrans %}
   </p>
 
@@ -41,7 +47,7 @@
       </ul>
       <li>{% trans %}The add-on must have excellent user reviews and any problems or support requests must be promptly addressed by the developer.{% endtrans %}</li>
       <li>{% trans %}The add-on must be compatible with the latest release of Firefox and must be compatible with beta versions 4 weeks before their final release.{% endtrans %}</li>
-      <li>{% trans %}<strong>Most importantly</strong>, the add-on must have wide consumer appeal to Firefox's users and be outstanding in nearly every way: user experience, performance, security, and usefulness or entertainment value.{% endtrans %}</li>
+      <li>{% trans %}<strong>Most importantly</strong>, the add-on must have wide consumer appeal to Firefox's users and be outstanding in nearly every way: user experience, performance, security, and usefulness or entertainment value. Featured complete themes must also be visually appealing.{% endtrans %}</li>
   </ol>
 
   <h3>{{ _('Nominating an Add-on') }}</h3>
@@ -55,12 +61,12 @@
     <li>{{ _('the add-on name, URL, and whether you are its developer') }}</li>
     <li>{{ _('an explanation of why the add-on has wide appeal and should be featured') }}</li>
     <li>{{ _('optionally, links to any external reviews or articles mentioning the add-on') }}</li>
-    <li>{{ _('optionally, a video overview/demo/tutorial of the add-on less than 5 minutes long') }}</li>
+    <li>{{ _('optionally, a video overview/demo/tutorial of the add-on not more than 5 minutes long') }}</li>
   </ul>
 
   <p>
   {% trans %}
-  Nominations are reviewed by the Featured Add-ons Advisory Board once a month and you will receive an email regarding the decision and any suggestions for improvement. Common reasons for rejection include lacking wide appeal to consumers, a suboptimal user experience, quality or security issues, and too similar to another featured add-on. Rejected add-ons must wait 3 months before nominating again.
+  Extension nominations are reviewed by the Advisory Board once a month (once every 3 months for complete theme nominations), and you will receive an email regarding the decision and any suggestions for improvement. Common reasons for rejection include lacking wide appeal to consumers, a suboptimal user experience, quality or security issues, incompatibility, and similarity to another featured add-on. Rejected add-ons cannot be re-nominated within 3 months.
   {% endtrans %}
   </p>
 
@@ -75,7 +81,7 @@
   <ul>
     <li>
     {% trans %}
-    Lack of growth &mdash; Add-ons that are featured typically experience a substantial gain in both downloads and active users. If an add-on is not demonstrating growth in any substantial way, that's a good indicator that the add-on may not be that useful to our users.
+    Lack of growth &mdash; Add-ons that are featured typically experience a substantial gain in both downloads and active users. If an add-on is not demonstrating growth in any substantial way, that's a good indicator the add-on may not be very useful to our users.
     {% endtrans %}
     </li>
     <li>
@@ -94,25 +100,36 @@
 
   <p>
   {% trans %}
-  Every six months a new Featured Add-ons Advisory Board is chosen based on applications from the add-ons community. Members must:
+  Every six months a new Advisory Board is chosen based on applications from the add-ons community. Members must:
   {% endtrans %}
   </p>
 
   <ul>
       <li>{{ _('be active members of the add-ons community, whether as a developer, evangelist, or fan') }}</li>
-      <li>{{ _('commit to trying all of the nominations submitted each month and giving their feedback and vote for each add-on') }}</li>
-      <li>{{ _('join a monthly conference call to go through the votes and select the next month\'s featured add-ons') }}</li>
+      <li>{{ _('commit to trying all the nominations submitted, giving their feedback, and casting their votes every month') }}</li>
+      <li>{{ _("join a monthly conference call to go through the votes and select the next month's featured add-ons (featured complete themes will be discussed on every third call)") }}</li>
       <li>{{ _('abstain from voting on add-ons that they have any business or personal affiliations with, as well as direct competitors of any such add-ons') }}</li>
   </ul>
 
   <p>
-  {% trans link_blog='http://blog.mozilla.com/addons', link_twitter='http://www.twitter.com/mozamo' %}
-  Watch the <a href="{{ link_blog }}">Add-ons Blog</a> or <a href="{{ link_twitter }}">Twitter</a> to learn when the next application period opens.
+  {% trans %}
+  Members of the Mozilla Add-ons team may veto any add-on's selection because of security, privacy, compatibility, or any other reason, but in general it is up to the Board to select add-ons to feature.
   {% endtrans %}
   </p>
 
-  <p><em>{{ _('Last updated: July 7, 2011') }}</em></p>
+  <p>
+  {% trans %}
+  This featured policy only applies to the addons.mozilla.org global list of featured add-ons. Add-ons featured in other locations are often pulled from this list, but Mozilla may feature any add-on in other locations without the Board's consent. Additionally, locale-specific features override the global defaults, so if a locale has opted to select its own features, some or all of the global features may not appear in that locale.
+  {% endtrans %}
+  </p>
+
+  <p>
+  {% trans link_blog='http://blog.mozilla.com/addons', link_twitter='http://www.twitter.com/mozamo' %}
+  Follow the <a href="{{ link_blog }}">Add-ons Blog</a> or <a href="{{ link_twitter }}">@mozamo</a> on Twitter to learn when the next application period opens.
+  {% endtrans %}
+  </p>
+
+  <p><em>{{ _('Last updated: January 31, 2013') }}</em></p>
 </div>
 {{ sidebar() }}
 {% endblock %}
-
