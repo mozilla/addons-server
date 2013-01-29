@@ -38,6 +38,7 @@ from files.helpers import copyfileobj
 from files.models import File, Platform
 from lib.es.signals import reset, process
 from market.models import AddonPremium, Price, PriceCurrency
+from translations.models import Translation
 from versions.models import ApplicationsVersions, Version
 
 import mkt
@@ -442,6 +443,11 @@ class TestCase(RedisTest, test_utils.TestCase):
 
     def login(self, profile):
         assert self.client.login(username=profile.email, password='password')
+
+    def trans_eq(self, trans, locale, localized_string):
+        eq_(Translation.objects.get(id=trans.id,
+                                    locale=locale).localized_string,
+            localized_string)
 
 
 class AMOPaths(object):

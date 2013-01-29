@@ -463,12 +463,14 @@ class TestPublicise(amo.tests.TestCase):
         eq_(res.status_code, 302)
         eq_(self.get_webapp().status, amo.STATUS_PUBLIC_WAITING)
 
-    def test_publicise(self):
+    @mock.patch('mkt.webapps.models.Webapp.update_name_from_package_manifest')
+    def test_publicise(self, update):
         res = self.client.post(self.publicise_url)
         eq_(res.status_code, 302)
         eq_(self.get_webapp().status, amo.STATUS_PUBLIC)
         eq_(self.get_webapp().versions.latest().all_files[0].status,
             amo.STATUS_PUBLIC)
+        assert update.called
 
     def test_status(self):
         res = self.client.get(self.status_url)

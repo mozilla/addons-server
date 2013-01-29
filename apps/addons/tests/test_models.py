@@ -1840,6 +1840,12 @@ class TestUpdateNames(amo.tests.TestCase):
         self.check_names(names)
         eq_(self.addon.reload().default_locale, 'de')
 
+    def test_default_locale_removal_not_deleted(self):
+        names = {'en-US': None}
+        self.addon.update_names(names)
+        self.addon.save()
+        self.check_names(self.names)
+
 
 class TestAddonWatchDisabled(amo.tests.TestCase):
 
