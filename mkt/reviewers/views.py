@@ -445,7 +445,7 @@ def _queue_to_apps(request, queue_qs):
         request, Webapp.objects.filter(id__in=sorted_app_ids))
 
     # Put the filtered qs back into the correct sort order.
-    qs = manual_order(qs, sorted_app_ids)
+    qs = manual_order(qs, sorted_app_ids, 'addons.id')
     apps = [QueuedApp(app, app.created) for app in qs]
 
     return apps, search_form

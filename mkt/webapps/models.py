@@ -136,7 +136,7 @@ class Webapp(Addon):
     def version_and_file_transformer(apps):
         """Attach all the versions and files to the apps."""
         if not apps:
-            return
+            return []
 
         ids = set(app.id for app in apps)
         versions = (Version.uncached.filter(addon__in=ids)

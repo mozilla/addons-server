@@ -90,6 +90,14 @@ class AccessMixin(object):
         eq_(self.client.head(self.url).status_code, 302)
 
 
+class SearchMixin(object):
+
+    def test_search_query(self):
+        # Light test to make sure queues can handle search queries.
+        res = self.client.get(self.url, {'text_query': 'test'})
+        eq_(res.status_code, 200)
+
+
 class TestReviewersHome(AppReviewerTest, AccessMixin):
 
     def setUp(self):
@@ -202,7 +210,8 @@ class XSSMixin(object):
         assert '<script>' not in tbody
 
 
-class TestAppQueue(AppReviewerTest, AccessMixin, FlagsMixin, XSSMixin):
+class TestAppQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
+                   XSSMixin):
     fixtures = ['base/users']
 
     def setUp(self):
@@ -322,7 +331,8 @@ class TestAppQueue(AppReviewerTest, AccessMixin, FlagsMixin, XSSMixin):
         eq_(doc('.tabnav li a:eq(4)').text(), u'Moderated Reviews (0)')
 
 
-class TestRereviewQueue(AppReviewerTest, AccessMixin, FlagsMixin):
+class TestRereviewQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
+                        XSSMixin):
     fixtures = ['base/users']
 
     def setUp(self):
@@ -449,7 +459,8 @@ class TestRereviewQueue(AppReviewerTest, AccessMixin, FlagsMixin):
         eq_(RereviewQueue.objects.filter(addon=app).exists(), False)
 
 
-class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin):
+class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
+                      XSSMixin):
     fixtures = ['base/users']
 
     def setUp(self):
@@ -589,7 +600,8 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin):
         eq_(pq(res.content)('.tabnav li a:eq(2)').text(), u'Updates (2)')
 
 
-class TestEscalationQueue(AppReviewerTest, AccessMixin, FlagsMixin):
+class TestEscalationQueue(AppReviewerTest, AccessMixin, FlagsMixin,
+                          SearchMixin, XSSMixin):
     fixtures = ['base/users']
 
     def setUp(self):
