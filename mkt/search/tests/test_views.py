@@ -1,7 +1,5 @@
 import json
 
-from django.conf import settings
-
 import mock
 from nose import SkipTest
 from nose.tools import eq_, nottest
@@ -10,7 +8,8 @@ from test_utils import RequestFactory
 
 import amo
 import amo.tests
-from addons.models import AddonCategory, AddonDeviceType, Category
+from addons.models import AddonDeviceType, Category
+from addons.tasks import index_addon_held
 from amo.urlresolvers import reverse
 from amo.utils import urlparams
 from search.tests.test_views import TestAjaxSearch
@@ -22,6 +21,18 @@ from mkt.search.forms import DEVICE_CHOICES_IDS
 from mkt.search.views import _app_search
 from mkt.webapps.tests.test_views import PaidAppMixin
 from mkt.webapps.models import AddonExcludedRegion as AER, Installed, Webapp
+
+
+class FakeES(object):
+    """Maybe we'll use this in the future to test what gets sent to ES."""
+
+    def __init__(self, **kw):
+        self.expected = kw.pop('expected', None)
+        return super(FakeES, self).__init__(**kw)
+
+    def search(self, query, indexes=None, doc_types=None, **query_params):
+        eq_(self.expected, query)
+        return {'hits': {'hits': [], 'total': 0}, 'took': 0}
 
 
 class SearchBase(amo.tests.ESTestCase):
@@ -64,7 +75,7 @@ class TestWebappSearch(PaidAppMixin, SearchBase):
         self.webapp = Webapp.objects.get(id=337141)
         self.apps = [self.webapp]
         self.cat = Category.objects.create(name='Games', type=amo.ADDON_WEBAPP)
-        AddonCategory.objects.create(addon=self.webapp, category=self.cat)
+        self.webapp.addoncategory_set.create(category=self.cat)
         # Emit post-save signal so the app gets reindexed.
         self.webapp.save()
         self.refresh()
@@ -72,7 +83,7 @@ class TestWebappSearch(PaidAppMixin, SearchBase):
     def _generate(self, num=3):
         for x in xrange(num):
             app = amo.tests.app_factory()
-            AddonCategory.objects.create(addon=app, category=self.cat)
+            app.addoncategory_set.create(category=self.cat)
             self.apps.append(app)
         self.refresh()
 
@@ -143,7 +154,7 @@ class TestWebappSearch(PaidAppMixin, SearchBase):
         # Create an unreviewed app and assign to a category.
         cat = Category.objects.create(name='Bad Cats', type=amo.ADDON_WEBAPP)
         app = amo.tests.app_factory()
-        AddonCategory.objects.create(addon=app, category=cat)
+        app.addoncategory_set.create(category=cat)
         app.update(status=amo.STATUS_PENDING)
         self.refresh()
         # Make sure category isn't listed in the results.
@@ -216,39 +227,6 @@ class TestWebappSearch(PaidAppMixin, SearchBase):
         for x in xrange(1, 4):
             AddonDeviceType.objects.create(addon=self.apps[0],
                                            device_type=x)
-
-    def check_device_filter(self, device, selected):
-        raise SkipTest('See bug 785898')
-        self.setup_devices()
-        self.reindex(Webapp)
-
-        r = self.client.get(self.url, {'device': device})
-        eq_(r.status_code, 200)
-        links = pq(r.content)('#device-facets a')
-        expected = [
-            ('Any Device', self.url),
-            ('Desktop', urlparams(self.url, device='desktop')),
-            ('Mobile', urlparams(self.url, device='mobile')),
-            ('Tablet', urlparams(self.url, device='tablet')),
-        ]
-        amo.tests.check_links(expected, links, selected)
-        return sorted(a.id for a in r.context['pager'].object_list)
-
-    def test_device_all(self):
-        eq_(self.check_device_filter('', 'Any Device'),
-            sorted(a.id for a in self.apps))
-
-    def test_device_desktop(self):
-        eq_(self.check_device_filter('desktop', 'Desktop'),
-            sorted([self.apps[0].id, self.apps[1].id]))
-
-    def test_device_mobile(self):
-        eq_(self.check_device_filter('mobile', 'Mobile'),
-            sorted([self.apps[0].id, self.apps[2].id]))
-
-    def test_device_tablet(self):
-        eq_(self.check_device_filter('tablet', 'Tablet'),
-            sorted([self.apps[0].id, self.apps[3].id]))
 
     def test_results_sort_default(self):
         raise SkipTest('until popularity sort is fixed, bug 785976')
@@ -361,10 +339,11 @@ class TestSuggestions(TestAjaxSearch):
         self.w2 = Webapp.objects.create(status=amo.STATUS_PUBLIC,
             name='awesome app 2')
 
-        AddonCategory.objects.create(category=self.c1, addon=self.w1)
-        AddonCategory.objects.create(category=self.c2, addon=self.w2)
+        self.w1.addoncategory_set.create(category=self.c1)
+        self.w2.addoncategory_set.create(category=self.c2)
 
-        self.reindex(Webapp)
+        index_addon_held([self.w1.id, self.w2.id])
+        self.refresh()
 
     def check_suggestions(self, url, params, addons=()):
         r = self.client.get(url + '?' + params)
@@ -375,26 +354,19 @@ class TestSuggestions(TestAjaxSearch):
 
         data = sorted(data, key=lambda x: x['name'])
         addons = sorted(addons, key=lambda x: x.name)
-
         eq_(len(data), len(addons))
+
         for got, expected in zip(data, addons):
             eq_(got['name'], unicode(expected.name))
             eq_(int(got['id']), expected.id)
 
     def test_webapp_search(self):
-        self.check_suggestions(
-            self.url, 'q=app&category=', addons=[self.w1, self.w2])
+        self.check_suggestions(self.url, 'q=app&category=',
+            addons=[self.w1, self.w2])
         self.check_suggestions(
             self.url, 'q=app&category=%d' % self.c1.id, addons=[self.w1])
         self.check_suggestions(
             self.url, 'q=app&category=%d' % self.c2.id, addons=[self.w2])
-
-    def test_hide_paid_apps_when_disabled(self):
-        self.create_switch(name='disabled-payments')
-        self.w1.update(premium_type=amo.ADDON_PREMIUM)
-        self.refresh()
-        self.check_suggestions(self.url,
-            'q=app&category=', addons=[self.w2])
 
     def test_region_exclusions(self):
         AER.objects.create(addon=self.w2, region=mkt.regions.BR.id)
