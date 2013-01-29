@@ -251,6 +251,8 @@ JS = {
         'js/zamboni/validator.js',
         'js/mkt/overlay.js',
 
+        'js/mkt/user_state.js',
+
         # Module initialization.
         'js/devreg/devreg_init.js',
     ),
@@ -322,7 +324,7 @@ JS = {
 
         'js/mkt/prefetch.js',
 
-        'js/mkt/consumer_state.js',
+        'js/mkt/user_state.js',
 
         # Module initialization.
         'js/mkt/consumer_init.js',

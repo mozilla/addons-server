@@ -10,7 +10,8 @@ var z = {
         if (!z.prefix) return property;
         return '-' + z.prefix + '-' + property;
     },
-    canInstallApps: true
+    canInstallApps: true,
+    state: {mozApps: {}}
 };
 
 var data_user = $('body').data('user');
