@@ -40,8 +40,10 @@ def global_settings(request):
                 tools_links.append({'text': _('My Submissions'),
                                     'href': reverse('mkt.developers.apps')})
         if '/reviewers/' not in request.path and context['is_reviewer']:
-            footer_links.append({'text': _('Reviewer Tools'),
-                                'href': reverse('reviewers.home')})
+            footer_links.append({
+                'text': _('Reviewer Tools'),
+                'href': reverse('reviewers.apps.queue_pending'),
+            })
         if acl.action_allowed(request, 'Localizers', '%'):
             footer_links.append({'text': _('Localizer Tools'),
                                 'href': '/localizers'})
