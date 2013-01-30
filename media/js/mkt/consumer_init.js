@@ -8,6 +8,7 @@
         'login',
         'notification',
         'prefetch',
+        'state',
         'tracking'
     ];
 

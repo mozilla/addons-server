@@ -49,7 +49,7 @@
                     } else {
                         if (z.capabilities.webApps) {
                             // Get list of installed apps.
-                            r = window.navigator.mozApps.getInstalled();
+                            var r = window.navigator.mozApps.getInstalled();
                             r.onsuccess = function() {
                                 _.each(r.result, function(v) {
                                     state.mozApps[v.manifestURL] = v;
@@ -74,7 +74,7 @@
                                 console.log(k, 'has changed from', JSON.stringify(z.state[k]), 'to', JSON.stringify(v));
                                 sideEffects[k].apply();
                             }
-                        })
+                        });
                     });
                 }
 
@@ -89,7 +89,7 @@
                     }, false);
                 });
             }
-        }
+        };
     });
 
 })();
