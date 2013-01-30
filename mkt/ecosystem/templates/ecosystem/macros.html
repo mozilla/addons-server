@@ -192,10 +192,11 @@
   </section>
 {% endmacro -%}
 
-{% macro video_display(video_name, video_path) -%}
+{% macro video_display(video_name, video_path, video_width=509,
+                       video_height=278) -%}
   <div class="{{ video_name }}-content video-item" id="{{ video_name }}">
     <div class="video-control">
-      <video width="509" height="278"
+      <video width="{{ video_width }}" height="{{ video_height }}"
         poster="{{ media('img/ecosystem/poster-%s.jpg' % video_name) }}"
         controls="controls">
         <source src="//videos-cdn.mozilla.net/serv/Marketplace-videos/{{ video_path }}.webm" type="video/webm">
