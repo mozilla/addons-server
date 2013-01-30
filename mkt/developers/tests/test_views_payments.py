@@ -224,6 +224,12 @@ class TestPayments(amo.tests.TestCase):
         eq_(res.status_code, 200)
         eq_(self.webapp.app_payment_account.payment_account.pk, acct.pk)
 
+        # Make sure the product was created with some properties we care about.
+        kw = self.sol.post_product.call_args[1]['data']
+        assert kw['public_id'], kw
+        assert kw['external_id'], kw
+        assert kw['secret'], kw
+
 
 class TestRegions(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/users', 'webapps/337141-steamcube']

@@ -220,7 +220,7 @@ def in_app_config(request, addon_id, addon, webapp=True):
     if request.method == 'POST':
         (client.api.generic
                .product(seller_config['resource_pk'])
-               .patch(data={'secret':generate_key(48)}))
+               .patch(data={'secret': generate_key(48)}))
         messages.success(request, _('Changes successfully saved.'))
         return redirect(reverse('mkt.developers.apps.in_app_config',
                                 args=[addon.app_slug]))
