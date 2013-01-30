@@ -2283,10 +2283,8 @@ class TestQueueSearchSort(AppReviewerTest):
 
         # Assert the order that RereviewQueue objects were created is
         # maintained.
-        eq_([earlier_rrq.addon, later_rrq.addon],
-            [queued_app.app for queued_app in apps])
+        eq_([earlier_rrq.addon, later_rrq.addon], list(apps))
 
         request = self.rf.get(url, {'sort': 'created', 'order': 'desc'})
         apps, form = _queue_to_apps(request, RereviewQueue.objects.all())
-        eq_([later_rrq.addon, earlier_rrq.addon],
-            [queued_app.app for queued_app in apps])
+        eq_([later_rrq.addon, earlier_rrq.addon], list(apps))
