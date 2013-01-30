@@ -201,7 +201,7 @@ class TranslationTestCase(ExtraAppTestCase):
         trans_eq(get_model().name, 'oui', 'fr')
 
     def test_dict_with_hidden_locale(self):
-        with self.settings(HIDDEN_LANGUAGES=['xxx']):
+        with self.settings(HIDDEN_LANGUAGES=('xxx',)):
             o = TranslatedModel.objects.get(id=1)
             o.name = {'en-US': 'active language', 'xxx': 'hidden language',
                       'de': 'another language'}

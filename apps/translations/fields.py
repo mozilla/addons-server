@@ -136,7 +136,6 @@ class TranslationDescriptor(related.ReverseSingleRelatedObjectDescriptor):
         elif getattr(instance, self.field.attname, None) is None:
             super(TranslationDescriptor, self).__set__(instance, None)
 
-
     def translation_from_string(self, instance, lang, string):
         """Create, save, and return a Translation from a string."""
         try:
@@ -165,11 +164,12 @@ class TranslationDescriptor(related.ReverseSingleRelatedObjectDescriptor):
 
         If one of the locales matches lang, that Translation will be returned.
         """
+        from amo.utils import to_language as amo_to_language
+
         rv = None
         for locale, string in dict_.items():
-            loc = locale.lower()
-            if (loc not in settings.LANGUAGES and
-                loc not in settings.HIDDEN_LANGUAGES):
+            loc = amo_to_language(locale)
+            if loc not in settings.AMO_LANGUAGES + settings.HIDDEN_LANGUAGES:
                 continue
             # The Translation is created and saved in here.
             trans = self.translation_from_string(instance, locale, string)

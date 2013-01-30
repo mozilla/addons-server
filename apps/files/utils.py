@@ -265,11 +265,7 @@ class WebAppParser(object):
                 'default_locale': default_locale}
 
     def trans_locale(self, locale):
-        # TODO(Kumar) translate all possible locale differences.
-        # 'en' might be the only one in need of translating.
-        if locale == 'en':
-            locale = 'en-us'
-        return to_language(locale)
+        return to_language(settings.SHORTER_LANGUAGES.get(locale, locale))
 
     def trans_all_locales(self, locale_dict):
         trans = {}

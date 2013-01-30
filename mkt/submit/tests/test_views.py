@@ -353,7 +353,17 @@ class TestCreateWebApp(BaseWebAppTest):
         self.assertSetEqual(app.device_types, [amo.DEVICE_GAIA])
         eq_(app.premium_type, amo.ADDON_PREMIUM)
 
+    def test_short_locale(self):
+        # This manifest has a locale code of "pt" which is in the
+        # SHORTER_LANGUAGES setting and should get converted to "pt-PT".
+        self.manifest = self.manifest_path('short-locale.webapp')
+        self.upload = self.get_upload(abspath=self.manifest)
+        addon = self.post_addon()
+        eq_(addon.default_locale, 'pt-PT')
+
     def test_unsupported_detail_locale(self):
+        # This manifest has a locale code of "en-GB" which is unsupported, so
+        # we default to "en-US".
         self.manifest = self.manifest_path('unsupported-default-locale.webapp')
         self.upload = self.get_upload(abspath=self.manifest)
         addon = self.post_addon()
