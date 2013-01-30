@@ -263,6 +263,7 @@ exports.payment_setup = function() {
                 account_url,
                 function(data) {
                     $waiting_overlay.remove();
+                    z.body.removeClass('overlayed');
                     paymentAccountSetup();
                     for(var field in data) {
                         $('#id_' + field).val(data[field]);
@@ -288,11 +289,7 @@ exports.payment_setup = function() {
                 }
 
                 $overlay_section.on('click', 'a.delete-account', _pd(function() {
-                    var $tr = $(this).parents('tr').addClass('deleted');
-                    // Delay the TR's removal 1s for the transition to complete.
-                    setTimeout(function() {
-                        $tr.remove();
-                    }, 1000);
+                    var $tr = $(this).parents('tr').remove();
 
                     // Post to the delete URL, then refresh the account form.
                     $.post($tr.data('delete-url')).then(refreshAccountForm);
