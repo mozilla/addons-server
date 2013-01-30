@@ -256,9 +256,6 @@ function fragmentFilter(el) {
                 throw "something has gone terribly wrong";
             }
 
-            // scroll to the right spot.
-            $('html, body').scrollTop(opts.scrollTop || 0);
-
             // Reset our lovelies.
             _.extend(z, {
                 body: $(document.body),
@@ -303,6 +300,9 @@ function fragmentFilter(el) {
                 scrollTop: $(document).scrollTop()
             };
             if (!popped) history.pushState(newState, false, href);
+
+            // Scroll to the requested spot.
+            $('html, body').scrollTop(opts.scrollTop || 0);
 
             container.trigger('fragmentloaded', [href, popped, newState]);
         }
