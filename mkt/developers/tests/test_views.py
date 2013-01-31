@@ -1124,10 +1124,12 @@ class TestTransactionList(amo.tests.TestCase):
         # Set up transactions.
         tx0 = Contribution.objects.create(addon=self.apps[0],
                                           type=amo.CONTRIB_PURCHASE,
-                                          transaction_id=12345)
+                                          user=self.user,
+                                          uuid=12345)
         tx1 = Contribution.objects.create(addon=self.apps[1],
                                           type=amo.CONTRIB_REFUND,
-                                          transaction_id=67890)
+                                          user=self.user,
+                                          uuid=67890)
         tx0.update(created=datetime.date(2011, 12, 25))
         tx1.update(created=datetime.date(2012, 1, 1))
         self.txs = [tx0, tx1]
@@ -1159,8 +1161,8 @@ class TestTransactionList(amo.tests.TestCase):
         self.do_filter([tx0], transaction_type=tx0.type)
         self.do_filter([tx1], transaction_type=tx1.type)
 
-        self.do_filter([tx0], transaction_id=tx0.transaction_id)
-        self.do_filter([tx1], transaction_id=tx1.transaction_id)
+        self.do_filter([tx0], transaction_id=tx0.uuid)
+        self.do_filter([tx1], transaction_id=tx1.uuid)
 
         self.do_filter(self.txs, date_from=datetime.date(2011, 12, 1))
         self.do_filter([tx1], date_from=datetime.date(2011, 12, 30),

@@ -19,8 +19,6 @@ app_purchase_patterns = patterns('',
         name='purchase.done'),
     url('^webpay/prepare_pay$', webpay.prepare_pay,
         name='webpay.prepare_pay'),
-    url('^prepare/prepare_refund/(?P<uuid>[^/]+)$', webpay.prepare_refund,
-        name='webpay.prepare_refund'),
     url('^webpay/pay_status/(?P<contrib_uuid>[^/]+)$', webpay.pay_status,
         name='webpay.pay_status'),
 )

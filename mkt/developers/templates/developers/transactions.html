@@ -52,7 +52,7 @@
               <td>{{ transaction.addon.name }}</td>
               <td>{{ transaction.created|datetime }}</td>
               <td>{{ CONTRIB_TYPES[transaction.type] }}</td>
-              <td>{{ transaction.transaction_id }}</td>
+              <td>{{ transaction.uuid }}</td>
               <td>{{ transaction.currency }}</td>
               {% if transaction.amount %}
                 <td class="amount">{{ transaction.amount|numberfmt }}</td>

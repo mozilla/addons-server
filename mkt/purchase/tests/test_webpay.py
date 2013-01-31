@@ -217,7 +217,6 @@ class TestPostback(PurchaseTest):
         eq_(resp.content, '<BlueVia-trans-id>')
         cn = Contribution.objects.get(pk=self.contrib.pk)
         eq_(cn.type, amo.CONTRIB_PURCHASE)
-        eq_(cn.solitude_transaction_id, '<BlueVia-trans-id>')
         # This verifies that we notify the downstream app
         # using the same exact JWT.
         tasks.purchase_notify.delay.assert_called_with(jwt_encoded, cn.pk)

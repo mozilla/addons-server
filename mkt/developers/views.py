@@ -816,7 +816,8 @@ def transactions(request):
 
 def _get_transactions(request):
     apps = addon_listing(request, webapp=True)[0]
-    transactions = Contribution.objects.filter(addon__in=list(apps))
+    transactions = Contribution.objects.filter(addon__in=list(apps),
+                                               type__in=amo.CONTRIB_TYPES)
 
     form = TransactionFilterForm(request.GET, apps=apps)
     if form.is_valid():
@@ -828,7 +829,7 @@ def _filter_transactions(qs, data):
     """Handle search filters and queries for transactions."""
     filter_mapping = {'app': 'addon_id',
                       'transaction_type': 'type',
-                      'transaction_id': 'transaction_id',
+                      'transaction_id': 'uuid',
                       'date_from': 'created__gte',
                       'date_to': 'created__lte'}
     for form_field, db_field in filter_mapping.iteritems():

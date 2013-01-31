@@ -67,21 +67,6 @@ def prepare_webpay_pay(data):
     return sign_webpay_jwt(req)
 
 
-def prepare_webpay_refund(data):
-    issued_at = calendar.timegm(time.gmtime())
-    return sign_webpay_jwt({
-                'iss': settings.APP_PURCHASE_KEY,
-                'typ': 'tu.com/payments/v1/refund',
-                'aud': 'tu.com',
-                'iat': issued_at,
-                'exp': issued_at + 3600,  # expires in 1 hour
-                'request': {
-                    'refund': data['id'],
-                    'reason': 'refund'
-                }
-            })
-
-
 @login_required
 @addon_view
 @can_be_purchased
@@ -118,8 +103,6 @@ def prepare_pay(request, addon):
             'product_data': urlencode({'contrib_uuid': uuid_,
                                        'seller_uuid': seller_uuid,
                                        'addon_id': addon.pk}),
-            'typ': 'tu.com/payments/inapp/v1',
-            'aud': 'tu.com',
             'memo': contrib_for}
 
     jwt_ = prepare_webpay_pay(data)
@@ -153,8 +136,8 @@ def pay_status(request, addon, contrib_uuid):
 @write
 @post_required
 def postback(request):
-    """Verify signature from BlueVia and set contribution to paid."""
-    signed_jwt = request.raw_post_data
+    """Verify signature and set contribution to paid."""
+    signed_jwt = request.read()
     try:
         data = parse_from_webpay(signed_jwt, request.META.get('REMOTE_ADDR'))
     except InvalidSender:
@@ -166,57 +149,18 @@ def postback(request):
         contrib = Contribution.objects.get(uuid=contrib_uuid)
     except Contribution.DoesNotExist:
         etype, val, tb = sys.exc_info()
-        raise LookupError('BlueVia JWT (iss:%s, aud:%s) for trans_id %s '
+        raise LookupError('JWT (iss:%s, aud:%s) for trans_id %s '
                           'links to contrib %s which doesn\'t exist'
                           % (data['iss'], data['aud'],
                              data['response']['transactionID'],
                              contrib_uuid)), None, tb
 
     contrib.update(type=amo.CONTRIB_PURCHASE,
-                   solitude_transaction_id=data['response']['transactionID'])
+                   transaction_id=data['response']['transactionID'])
 
     tasks.purchase_notify.delay(signed_jwt, contrib.pk)
     tasks.send_purchase_receipt.delay(contrib.pk)
     return http.HttpResponse(data['response']['transactionID'])
-
-
-@addon_view
-@post_required
-@login_required
-@json_view
-@write
-@commit_on_success
-def prepare_refund(request, addon, uuid):
-    """
-    Prepare a JWT to pass into navigator.pay()
-    for a specific transaction.
-    """
-    #TODO: Let's not use the solitude transaction id if we can help it.
-    try:
-        # Looks up the contribution based upon the transaction id.
-        to_refund = Contribution.objects.get(user=request.amo_user,
-                                             solitude_transaction_id=uuid,
-                                             addon=addon)
-    except Contribution.DoesNotExist:
-        log.info('Not found: %s, %s' % (request.amo_user.pk, uuid))
-        return http.HttpResponseBadRequest()
-
-    # The refund must be within 30 minutes, give or take and the transaction
-    # must not already be refunded.
-    if to_refund.type != amo.CONTRIB_PURCHASE:
-        log.info('Not a purchase: %s' % uuid)
-        return http.HttpResponseBadRequest()
-
-    if not to_refund.is_instant_refund(period=30 * 60 + 10):
-        log.info('Over 30 minutes ago: %s' % uuid)
-        return http.HttpResponseBadRequest()
-
-    if to_refund.is_refunded():
-        log.info('Already refunded: %s' % uuid)
-        return http.HttpResponseBadRequest()
-
-    data = {'id': to_refund.solitude_transaction_id}
-    return {'webpayJWT': prepare_webpay_refund(data)}
 
 
 @csrf_exempt
@@ -227,29 +171,4 @@ def chargeback(request):
     Verify signature from and create a refund contribution tied
     to the original transaction.
     """
-    #TODO: Let's not use the solitude transaction id if we can help it.
-    signed_jwt = request.read()
-    # Check the JWT we've got is valid.
-    try:
-        data = parse_from_webpay(signed_jwt, request.META.get('REMOTE_ADDR'))
-    except InvalidSender:
-        return http.HttpResponseBadRequest()
-
-    uuid = data['response']['transactionID']
-    # Check that we've got a valid uuid.
-    # Looks up the contribution based upon the BlueVia transaction id.
-    try:
-        original = Contribution.objects.get(solitude_transaction_id=uuid)
-    except Contribution.DoesNotExist:
-        log.info('Not found: %s' % uuid)
-        return http.HttpResponseBadRequest()
-
-    # Create a refund in our end.
-    Contribution.objects.create(addon_id=original.addon_id,
-        amount=-original.amount, currency=original.currency, paykey=None,
-        price_tier_id=original.price_tier_id, related=original,
-        source=request.REQUEST.get('src', ''), source_locale=request.LANG,
-        type=amo.CONTRIB_REFUND, user_id=original.user_id, uuid=get_uuid())
-
-    tasks.chargeback_notify.delay(signed_jwt, original.pk)
-    return http.HttpResponse(uuid)
+    raise NotImplementedError

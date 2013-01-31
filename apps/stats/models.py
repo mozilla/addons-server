@@ -125,13 +125,12 @@ class Contribution(amo.models.ModelBase):
     source = models.CharField(max_length=255, null=True)
     client_data = models.ForeignKey('stats.ClientData', null=True)
     source_locale = models.CharField(max_length=10, null=True)
-
-    uuid = models.CharField(max_length=255, null=True)
+    # This is the external id that you can communicate to the world.
+    uuid = models.CharField(max_length=255, null=True, db_index=True)
     comment = models.CharField(max_length=255)
-    transaction_id = models.CharField(max_length=255, null=True)
-    # The internal solitude transaction id. This shouldn't be exposed,
-    # but used for internal calls between solitude and zamboni.
-    solitude_transaction_id = models.CharField(max_length=255, null=True)
+    # This is the internal transaction id between us and a provider,
+    # for example paypal or solitude.
+    transaction_id = models.CharField(max_length=255, null=True, db_index=True)
     paykey = models.CharField(max_length=255, null=True)
     post_data = StatsDictField(null=True)
 

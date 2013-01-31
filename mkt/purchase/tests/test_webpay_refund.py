@@ -21,45 +21,7 @@ class SalesTest(object):
         self.user = UserProfile.objects.get(pk=999)
         self.sale = Contribution.objects.create(
                             addon=self.app, amount=Decimal(1),
-                            solitude_transaction_id='1',
                             type=amo.CONTRIB_PURCHASE, user=self.user)
-
-
-class TestRefund(SalesTest, amo.tests.TestCase):
-    fixtures = ['webapps/337141-steamcube', 'base/users']
-
-    def setUp(self):
-        super(TestRefund, self).setUp()
-        self.url = reverse('webpay.prepare_refund',
-                           args=[self.app.app_slug, '1'])
-        self.client.login(username='regular@mozilla.com', password='password')
-
-    def test_logged_out(self):
-        self.client.logout()
-        self.assertLoginRequired(self.client.post(self.url))
-
-    def test_wrong_uid(self):
-        url = reverse('webpay.prepare_refund',
-                      args=[self.app.app_slug, '4'])
-        eq_(self.client.post(url).status_code, 400)
-
-    def test_not_mine(self):
-        self.sale.update(user=UserProfile.objects.get(pk=10482))
-        eq_(self.client.post(self.url).status_code, 400)
-
-    def test_not_purchase(self):
-        self.sale.update(type=amo.CONTRIB_REFUND)
-        eq_(self.client.post(self.url).status_code, 400)
-
-    @mock.patch('apps.stats.models.Contribution.is_instant_refund')
-    def test_not_instant(self, is_instant_refund):
-        is_instant_refund.return_value = False
-        eq_(self.client.post(self.url).status_code, 400)
-
-    def test_success(self):
-        res = self.client.post(self.url)
-        eq_(res.status_code, 200)
-        assert 'webpayJWT' in json.loads(res.content)
 
 
 class TestPostback(SalesTest, amo.tests.TestCase):
@@ -67,7 +29,7 @@ class TestPostback(SalesTest, amo.tests.TestCase):
 
     def setUp(self):
         super(TestPostback, self).setUp()
-        self.url = reverse('webpay.chargeback')
+        self.url = reverse('webpay.postback')
 
     @mock.patch('lib.crypto.webpay.verify_webpay_jwt')
     def test_not_valid(self, verify_webpay_jwt):
@@ -93,7 +55,6 @@ class TestPostback(SalesTest, amo.tests.TestCase):
 
         refund = refunds[0]
         eq_(refund.amount, -self.sale.amount)
-        eq_(refund.solitude_transaction_id, None)
         eq_(refund.related, self.sale)
 
     @mock.patch('mkt.purchase.webpay.parse_from_webpay')
