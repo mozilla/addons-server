@@ -17,14 +17,16 @@
 {% block content %}
 <div class="primary" role="main">
   <header>
-    {% if not is_homepage %}
+    {% if is_homepage %}
+      {{ breadcrumbs([(None, _('Themes'))]) }}
+    {% else %}
       {{ breadcrumbs([(url('browse.personas'), _('Themes')), (None, category.name)]) }}
     {% endif %}
     <h2>{{ category.name }}</h2>
   </header>
   {% if is_homepage %}
     <div id="featured-addons" class="featured personas-home">
-      <div class="featured-inner">
+      <div class="featured-inner themes">
         {% set addons = addon_sets[special][:16] %}
         <ul class="personas-slider">
           {% cache addons %}
@@ -33,24 +35,24 @@
           {% endfor %}
           {% endcache %}
         </ul>
-        {{ breadcrumbs([(None, _('Themes'))]) }}
         <h2>{{ _('Themes') }}</h2>
         <p class="intro">
         {% trans url=url('browse.personas')|urlparams(sort=special) %}
-          Over 30,000 different designs to personalize your browser! Just move
-          your mouse over a design to try it on.
+          Over 300,000 different designs to personalize your browser! Move
+          your mouse over a Background Theme to try it on.
           <a href="{{ url }}" class="more-info">Start exploring</a>
         {% endtrans %}</p>
       </div>
-    </div>
-
-    <div class="info-message info-message-link">
-      <a class="view-all" href="{{ url('browse.themes') }}">
-        {# L10n: "Complete" is used as an adjective. "Complete Theme" means a full-featured theme. #}
-        <big>{{ _('Looking for Complete Themes?') }}</big>
-        <span>{{ _('Complete Themes transform the look of your browser with styles for the window frame, buttons, tabs, address bar, and menus.') }}</span>
-        <b>{{ _('Start exploring') }}</b>
-      </a>
+      <div class="featured-inner complete-themes">
+        <h2>{{ _('Want more personalization?') }}</h2>
+        <p class="intro">
+          {# L10n: "Complete" is used as an adjective. "Complete Theme" means a full-featured theme. #}
+          {% trans url=url('browse.themes') %}
+            Complete Themes transform the look of your browser with styles for the window frame, address bar, buttons, tabs, and menus.
+            <a href="{{ url }}" class="more-info">Start exploring</a>
+          {% endtrans %}
+        </p>
+      </div>
     </div>
 
     {% set addons = featured[:6] %}

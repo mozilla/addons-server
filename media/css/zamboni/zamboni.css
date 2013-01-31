@@ -1163,12 +1163,47 @@ ul.license li.copyr { background-position: 0 -260px; }
 
 .personas-home .intro {
     font-size: 1.4em;
-    width: 450px;
+    width: 400px;
 }
 
-#featured-addons.personas-home .featured-inner {
-    background: #fff url(../../img/zamboni/personas/promo-browser.png) no-repeat left bottom;
-    height: 345px;
+#featured-addons.personas-home .featured-inner.themes {
+    -moz-border-radius: 3px 3px 0 0;
+    -webkit-border-radius: 3px 3px 0 0;
+    border-radius: 3px 3px 0 0;
+}
+
+#featured-addons.personas-home .featured-inner.themes {
+    background: #fff url(../../img/zamboni/personas/theme-promo.png) no-repeat -392px 121px;
+    /* TODO(cvan): Retina-ize the right way. If cvan hasn't done this by the time you've read this, bug him. */
+    background-size: 120% auto;
+    height: 320px;
+}
+
+/*
+@media screen and (-webkit-min-device-pixel-ratio: 2), screen and (min--moz-device-pixel-ratio: 2), screen and (min-device-pixel-ratio: 2) {
+    #featured-addons.personas-home .featured-inner.themes {
+        background-image: url(../../img/zamboni/personas/theme-promo.png);
+        background-size: 120% auto;
+    }
+}
+*/
+
+#featured-addons.personas-home .featured-inner.complete-themes {
+    -moz-border-radius: 0 0 3px 3px;
+    -webkit-border-radius: 0 0 3px 3px;
+    border-radius: 0 0 3px 3px;
+    border-top: 0;
+    background: #e5f0fc url(../../img/zamboni/personas/complete-theme-promo.png) no-repeat 367px 0;
+    background-size: 120% auto;
+    height: 140px;
+}
+
+.featured-inner.complete-themes .intro {
+    width: 350px;
+}
+
+.featured-inner.complete-themes a {
+    text-decoration: none;
 }
 
 .personas-home .intro .more-info {
@@ -1178,10 +1213,10 @@ ul.license li.copyr { background-position: 0 -260px; }
 
 #featured-addons .personas-slider {
     float: right;
-    height: 340px; /* 4 personas @ 85px; */
+    height: 255px; /* 3 personas @ 85px; */
     width: 30%;
     overflow: hidden;
-    margin-bottom: 0;
+    margin: 30px 0 0;
 }
 
 /************************************/
@@ -1662,34 +1697,12 @@ form .error .note.error {
     width: 80%;
 }
 
-.category-landing .info-message h3,
-.category-landing .info-message-link big {
+.category-landing .info-message h3 {
     margin: 0;
     color: #444;
 }
 .category-landing .info-message .view-all a {
     font-weight: bold;
-}
-
-.category-landing .info-message-link {
-    padding: 0;
-}
-.category-landing .info-message-link big {
-    display: block;
-    font: italic 1.385em/1.111em Georgia, serif;
-    margin-bottom: .5em;
-}
-.category-landing .info-message-link span {
-    color: #666;
-}
-.category-landing .info-message-link a:hover span {
-    color: #333;
-}
-.category-landing .info-message-link .view-all {
-    display: block;
-    margin-top: 0;
-    padding: 1em;
-    text-decoration: none;
 }
 
 .category-landing .addons-column ul.personas {
@@ -1778,9 +1791,7 @@ form .error .note.error {
 }
 
 .category-landing .view-all a:link,
-.category-landing .view-all a:visited,
-.info-message-link .view-all:link b,
-.info-message-link .view-all:visited b {
+.category-landing .view-all a:visited {
     font-size: 1em;
     color: #3d6db5;
     padding-right: 10px;
@@ -1788,17 +1799,13 @@ form .error .note.error {
 }
 
 .html-rtl.category-landing .view-all a:link,
-.html-rtl.category-landing .view-all a:visited,
-.html-rtl .info-message-link .view-all:link b,
-.html-rtl .info-message-link .view-all:visited b {
+.html-rtl.category-landing .view-all a:visited {
     background: transparent url(../../img/zamboni/icons/arrow-left-blue.png) 0 55% no-repeat;
     padding: 0 0 0 10px;
 }
 
 .category-landing .view-all a:hover,
-.category-landing .view-all a:active,
-.info-message-link .view-all:hover b,
-.info-message-link .view-all:active b {
+.category-landing .view-all a:active {
     color: #003595;
 }
 
@@ -2656,11 +2663,11 @@ td .addon-rating,
 }
 
 .arrow.prev {
-    top: -15px;
+    top: 11px;
 }
 
 .arrow.next {
-    top: 355px;
+    top: 304px;
 }
 
 .arrow:before {
