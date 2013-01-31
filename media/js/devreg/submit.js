@@ -45,7 +45,9 @@
             return;
         }
 
-        nullifySelections();
+        $('#submit-payment-type a.choice').removeClass('selected')
+                                          .find('input').removeAttr('checked');
+        $('#id_free_platforms, #id_paid_platforms').val([]);
     });
 
     // When a big device button is clicked, update the form.
@@ -67,18 +69,12 @@
             $this.find('input').attr('checked', nowSelected);
             $input.val(old);
             $compat_save_button.removeClass('hidden');
-            setTabState();
+            show_packaged();
         })
     );
 
-    function nullifySelections() {
-        $('#submit-payment-type a.choice').removeClass('selected')
-                                          .find('input').removeAttr('checked');
-        $('#id_free_platforms, #id_paid_platforms').val([]);
-    }
-
-    // Toggle packaged/hosted tab state.
-    function setTabState() {
+    // Show packaged.
+    function show_packaged() {
         if (!$('#id_free_platforms, #id_paid_platforms').length) {
             return;
         }
@@ -91,7 +87,6 @@
             $target.eq(1).css('display', 'inline');
         } else {
             $target.eq(1).css('display', 'none');
-            $target.eq(0).find('a').click();
         }
     }
 
@@ -106,17 +101,16 @@
     });
 
     // On page load, update the big device buttons with the values in the form.
-    // This should no longer be needed but in case we decide to bring it back.
-    /*
     $('#upload-webapp select').each(function(i, e) {
         $.each($(e).val() || [], function() {
             $('#submit-payment-type #' + this).addClass('selected');
         });
     });
-    */
 
-    // Deselect all checkboxes once tabs have been setup.
-    $('.tabbable').bind('tabs-setup', nullifySelections);
+    // Hide the packaged tab, if needed, once the tabs have been created.
+    $('.tabbable').bind('tabs-setup', function() {
+        show_packaged();
+    });
 
 })(typeof exports === 'undefined' ? (this.submit_details = {}) : exports);
 
