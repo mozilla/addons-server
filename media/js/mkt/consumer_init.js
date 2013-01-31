@@ -9,7 +9,8 @@
         'notification',
         'prefetch',
         'state',
-        'tracking'
+        'tracking',
+        'webactivities'
     ];
 
     define('marketplace', modules, function() {
@@ -43,6 +44,7 @@
         }
 
         require('state').init();
+        require('webactivities').init();
     });
 
     require('marketplace');

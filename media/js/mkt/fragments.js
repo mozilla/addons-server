@@ -307,7 +307,7 @@ function fragmentFilter(el) {
             container.trigger('fragmentloaded', [href, popped, newState]);
         }
 
-        $(window).on('popstate', function(e) {
+        z.win.on('popstate', function(e) {
             var state = e.originalEvent.state;
             if (state) {
                 navigate(state, true);

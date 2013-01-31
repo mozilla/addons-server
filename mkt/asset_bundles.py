@@ -326,6 +326,8 @@ JS = {
 
         'js/mkt/user_state.js',
 
+        'js/mkt/webactivities.js',
+
         # Module initialization.
         'js/mkt/consumer_init.js',
     ),

@@ -79,9 +79,12 @@ def manifest(request):
             '64': media(ctx, 'img/mkt/logos/64.png'),
             '32': media(ctx, 'img/mkt/logos/32.png'),
         },
-        # TODO: when we have specific locales, add them in here.
-        'locales': {},
-        'default_locale': 'en-US'
+        'activities': {
+            'marketplace-app': {'href': '/'},
+            'marketplace-app-rating': {'href': '/'},
+            'marketplace-category': {'href': '/'},
+            'marketplace-search': {'href': '/'},
+        }
     }
     if settings.USE_APPCACHE:
         data['appcache_path'] = reverse('django_appcache.manifest')

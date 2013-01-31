@@ -14,6 +14,7 @@ z.capabilities = {
     ),
     'fileAPI': !!window.FileReader,
     'performance': !!(window.performance || window.msPerformance || window.webkitPerformance || window.mozPerformance),
+    'webactivities': !!(window.setMessageHandler || window.mozSetMessageHandler)
 };
 
 
