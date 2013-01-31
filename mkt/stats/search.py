@@ -33,7 +33,7 @@ def get_finance_total(qs, addon, field=None, **kwargs):
     }
     if field:
         # Edge case, handle None values.
-        if kwargs_copy[field] == None:
+        if kwargs_copy[field] is None:
             kwargs_copy[field] = ''
         document[field] = kwargs_copy[field]
 
@@ -75,7 +75,7 @@ def get_finance_total_inapp(qs, addon, inapp_name='', field=None, **kwargs):
     }
     if field:
         # Edge case, handle None values.
-        if kwargs_copy[field] == None:
+        if kwargs_copy[field] is None:
             kwargs_copy[field] = ''
         document[field] = kwargs_copy[field]
 
