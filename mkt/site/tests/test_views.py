@@ -83,7 +83,6 @@ class TestManifest(amo.tests.TestCase):
         eq_(response['Content-Type'], 'application/x-web-app-manifest+json')
         content = json.loads(response.content)
         eq_(content['name'], 'Firefox Marketplace')
-        eq_(content['default_locale'], 'en-US')
         url = reverse('manifest.webapp')
         assert 'en-US' not in url and 'firefox' not in url
         eq_(content['launch_path'], '/boop/')
