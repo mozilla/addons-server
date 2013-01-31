@@ -23,7 +23,7 @@ def setup_payment_account(app, user):
     seller = SolitudeSeller.objects.create(user=user, uuid='uid')
     payment = PaymentAccount.objects.create(user=user, solitude_seller=seller)
     return AddonPaymentAccount.objects.create(addon=app,
-        product_uri='//%s/' % app.pk, payment_account=payment, set_price=1)
+        product_uri='/path/to/%s/' % app.pk, payment_account=payment, set_price=1)
 
 
 
@@ -35,11 +35,19 @@ class InappTest(amo.tests.TestCase):
         self.user = UserProfile.objects.get(pk=31337)
         self.other = UserProfile.objects.get(pk=999)
         self.login(self.user)
-        setup_payment_account(self.app, self.user)
+        self.account = setup_payment_account(self.app, self.user)
         self.url = reverse('mkt.developers.apps.in_app_config',
                            args=[self.app.app_slug])
 
     def set_mocks(self, solitude):
+        get = mock.Mock()
+        get.get_object_or_404.return_value = {
+            'seller_product': '/path/to/prod-pk/'
+        }
+        post = mock.Mock()
+        post.return_value = get
+        solitude.api.bango.product = post
+
         get = mock.Mock()
         get.get_object_or_404.return_value = {'resource_pk': 'some-key',
                                               'secret': 'shhh!'}
@@ -95,6 +103,9 @@ class TestInappSecret(InappTest):
         self.set_mocks(solitude)
         resp = self.client.get(self.url)
         eq_(resp.content, 'shhh!')
+        pk = self.account.uri_to_pk(self.account.product_uri)
+        solitude.api.bango.product.assert_called_with(pk)
+        solitude.api.generic.product.assert_called_with('prod-pk')
 
     def test_logged_out(self, solitude):
         self.client.logout()

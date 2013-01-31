@@ -212,12 +212,11 @@ def payments_accounts_delete(request, id):
 @dev_required(owner_for_post=True, webapp=True)
 def in_app_config(request, addon_id, addon, webapp=True):
     account = addon.app_payment_account
-    seller_config = (client.api.generic
-                           .product(account.uri_to_pk(account.product_uri))
-                           .get_object_or_404())
+    seller_config = get_seller_product(account)
 
     owner = acl.check_addon_ownership(request, addon)
     if request.method == 'POST':
+        # Reset the in-app secret for the app.
         (client.api.generic
                .product(seller_config['resource_pk'])
                .patch(data={'secret': generate_key(48)}))
@@ -234,8 +233,20 @@ def in_app_config(request, addon_id, addon, webapp=True):
 @waffle_switch('in-app-payments')
 @dev_required(webapp=True)
 def in_app_secret(request, addon_id, addon, webapp=True):
-    account = addon.app_payment_account
-    seller_config = (client.api.generic
+    seller_config = get_seller_product(addon.app_payment_account)
+    return http.HttpResponse(seller_config['secret'])
+
+
+def get_seller_product(account):
+    """
+    Get the solitude seller_product for a payment account object.
+    """
+    bango_product = (client.api.bango
                            .product(account.uri_to_pk(account.product_uri))
                            .get_object_or_404())
-    return http.HttpResponse(seller_config['secret'])
+    # TODO(Kumar): we can optimize this by storing the seller_product
+    # when we create it in developers/models.py or allowing solitude
+    # to filter on both fields.
+    return (client.api.generic
+                  .product(account.uri_to_pk(bango_product['seller_product']))
+                  .get_object_or_404())
