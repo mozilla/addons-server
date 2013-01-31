@@ -29,7 +29,7 @@ define('capabilities', [], function() {
             return 'WebkitOverflowScrolling' in document.createElement('div').style;
         })(),
         'performance': !!(window.performance || window.msPerformance || window.webkitPerformance || window.mozPerformance),
-        'navPay': !!navigator.mozPay,,
+        'navPay': !!navigator.mozPay,
         'webactivities': !!(window.setMessageHandler || window.mozSetMessageHandler),
         'firefoxOS': null  // This is set below.
     };
