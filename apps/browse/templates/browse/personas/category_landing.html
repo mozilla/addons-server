@@ -27,7 +27,7 @@
   {% if is_homepage %}
     <div id="featured-addons" class="featured personas-home">
       <div class="featured-inner themes">
-        {% set addons = addon_sets[special][:16] %}
+        {% set addons = addon_sets[special][:15] %}
         <ul class="personas-slider">
           {% cache addons %}
           {% for addon in addons %}
