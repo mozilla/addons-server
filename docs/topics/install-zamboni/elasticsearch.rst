@@ -95,6 +95,16 @@ called on the query set::
     a_field=a_str.lower()).values_dict('that_field'))
 
 
+Testing with elasticsearch
+--------------------------
+
+All test cases using ElasticSearch should inherit from `amo.tests.ESTestCase`. All such tests will be skipped by the test runner unless::
+
+    RUN_ES_TESTS = True
+
+This is done as a performance optimization to keep the run time of the test suite down, unless necessary.
+
+
 Common Pitfalls
 ---------------
 
