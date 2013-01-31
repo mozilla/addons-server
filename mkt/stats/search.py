@@ -174,6 +174,7 @@ def get_installed_daily(installed):
         'date': date,
         'addon': addon_id,
         'count': Installed.objects.filter(
+            addon__id=addon_id,
             created__year=date.year,
             created__month=date.month,
             created__day=date.day).count()
