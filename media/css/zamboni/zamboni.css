@@ -1173,7 +1173,7 @@ ul.license li.copyr { background-position: 0 -260px; }
 }
 
 #featured-addons.personas-home .featured-inner.themes {
-    background: #fff url(../../img/zamboni/personas/theme-promo.png) no-repeat -392px 121px;
+    background: #fff url(../../img/zamboni/personas/theme-promo.png) no-repeat -392px 140px;
     /* TODO(cvan): Retina-ize the right way. If cvan hasn't done this by the time you've read this, bug him. */
     background-size: 120% auto;
     height: 320px;
