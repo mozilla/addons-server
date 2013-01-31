@@ -130,7 +130,7 @@ class PaymentAccount(amo.models.ModelBase):
     def update_account_details(self, **kwargs):
         self.update(name=kwargs.pop('account_name'))
         # We can't do client.patch_package, so we do this.
-        client.call_uri(url=self.uri, method='patch',
+        client.call_uri(uri=self.uri, method='patch',
                         data=dict((k, v) for k, v in kwargs.items() if
                                   k in self.BANGO_PACKAGE_VALUES))
 
