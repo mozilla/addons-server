@@ -162,7 +162,7 @@ class TestPaymentAccount(amo.tests.TestCase):
         eq_(res.name, 'new name')
 
         self.client.call_uri.assert_called_with(
-            url=res.uri, method='patch',
+            uri=res.uri, method='patch',
             data={'vendorName': 'new vendor name'})
 
 
