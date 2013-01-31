@@ -187,7 +187,7 @@ class AddonPaymentAccount(amo.models.ModelBase):
         """
         secret = generate_key(48)
         external_id = webpay.make_ext_id(addon.pk)
-        data = {'seller_uri': payment_account.seller_uri,
+        data = {'seller': cls.uri_to_pk(payment_account.seller_uri),
                 'external_id': external_id}
         # TODO: convert to curling and clean out a bunch of this code.
         res = client.get_product(filters=data)
