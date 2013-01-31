@@ -247,9 +247,11 @@ JS = {
         'js/lib/jquery.minicolors.js',
 
         # Specific stuff for making payments nicer.
-        'js/devreg/payments.js',
         'js/zamboni/validator.js',
         'js/mkt/overlay.js',
+        'js/devreg/payments-enroll.js',
+        'js/devreg/payments-manage.js',
+        'js/devreg/payments.js',
 
         'js/mkt/user_state.js',
 
