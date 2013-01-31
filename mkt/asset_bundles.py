@@ -382,3 +382,15 @@ JS = {
         'js/debug/tinytools.js',
     ),
 }
+
+JS_desktop = list(JS['mkt/consumer'])
+if 'js/mkt/consumer_init.js' in JS_desktop:
+    JS_desktop.remove('js/mkt/consumer_init.js')
+JS_desktop = tuple(JS_desktop)
+
+JS.update({
+    'mkt/consumer-desktop': JS_desktop + (
+        # This must be the last JS file defined!
+        'js/mkt/consumer_init.js',
+    ),
+})

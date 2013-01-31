@@ -236,7 +236,9 @@
         {# We need RECAPTCHA for only non-authenticated users. #}
         <script type="text/javascript" src="{{ settings.RECAPTCHA_AJAX_URL }}"></script>
       {% endif %}
-      {{ js('mkt/consumer') }}
+      {% block consumer_js %}
+        {{ js('mkt/consumer') }}
+      {% endblock %}
       {% if settings.REMOTE_JS_DEBUG %}
         <script src="{{ settings.REMOTE_JS_DEBUG }}/nowjs/now.js"></script>
         <script src="{{ media('js/debug/remote_debug.js') }}"></script>

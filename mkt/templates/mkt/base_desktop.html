@@ -13,6 +13,10 @@
   {% endif %}
 {% endblock %}
 
+{% block consumer_js %}
+  {{ js('mkt/consumer-desktop') }}
+{% endblock %}
+
 {% block overlays %}
   {% if logged %}
     <div id="feedback-overlay" class="overlay">
