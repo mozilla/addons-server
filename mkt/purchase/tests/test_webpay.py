@@ -19,7 +19,6 @@ from amo.urlresolvers import reverse
 from stats.models import Contribution
 
 from .test_views import PurchaseTest
-from .samples import non_existant_pay
 
 
 @mock.patch.object(settings, 'SOLITUDE_HOSTS', ['host'])
@@ -184,15 +183,15 @@ class TestPostback(PurchaseTest):
             issued_at = calendar.timegm(time.gmtime())
         if not contrib_uuid:
             contrib_uuid = self.contrib.uuid
-        return {'iss': 'tu.com',
+        return {'iss': 'mozilla',
                 'aud': self.webpay_dev_id,
-                'typ': 'tu.com/payments/inapp/v1',
+                'typ': 'mozilla/payments/inapp/v1',
                 'iat': issued_at,
                 'exp': issued_at + expiry,
                 'request': {
                     'name': 'Some App',
                     'description': 'fantastic app',
-                    'price': '0.99',
+                    'pricePoint': '1',
                     'currencyCode': 'USD',
                     'postbackURL': '/postback',
                     'chargebackURL': '/chargeback',
@@ -217,9 +216,7 @@ class TestPostback(PurchaseTest):
         eq_(resp.content, '<BlueVia-trans-id>')
         cn = Contribution.objects.get(pk=self.contrib.pk)
         eq_(cn.type, amo.CONTRIB_PURCHASE)
-        # This verifies that we notify the downstream app
-        # using the same exact JWT.
-        tasks.purchase_notify.delay.assert_called_with(jwt_encoded, cn.pk)
+        eq_(cn.transaction_id, '<BlueVia-trans-id>')
         tasks.send_purchase_receipt.delay.assert_called_with(cn.pk)
 
     def test_invalid(self, tasks):
@@ -238,7 +235,10 @@ class TestPostback(PurchaseTest):
     @raises(LookupError)
     @fudge.patch('mkt.purchase.webpay.parse_from_webpay')
     def test_unknown_contrib(self, tasks, parse_from_webpay):
-        parse_from_webpay.expects_call().returns(non_existant_pay)
+        example = self.jwt_dict()
+        example['request']['productData'] = 'contrib_uuid=<bogus>'
+
+        parse_from_webpay.expects_call().returns(example)
         self.post()
 
 

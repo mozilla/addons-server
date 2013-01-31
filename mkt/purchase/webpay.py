@@ -46,27 +46,6 @@ def make_ext_id(addon_pk):
     return '%s:%s' % (ext_id, addon_pk)
 
 
-def prepare_webpay_pay(data):
-    issued_at = calendar.timegm(time.gmtime())
-    req = {
-        'iss': settings.APP_PURCHASE_KEY,
-        'typ': settings.APP_PURCHASE_TYP,
-        'aud': settings.APP_PURCHASE_AUD,
-        'iat': issued_at,
-        'exp': issued_at + 3600,  # expires in 1 hour
-        'request': {
-            'name': data['app_name'],
-            'description': data['app_description'],
-            'pricePoint': data['price_point'],
-            'id': make_ext_id(data['id']),
-            'postbackURL': data['postback_url'],
-            'chargebackURL': data['chargeback_url'],
-            'productData': data['product_data']
-        }
-    }
-    return sign_webpay_jwt(req)
-
-
 @login_required
 @addon_view
 @can_be_purchased
@@ -91,21 +70,28 @@ def prepare_pay(request, addon):
     app_summary = bleach.clean(unicode(addon.summary), strip=True, tags=[])
 
     acct = addon.app_payment_account.payment_account
-    seller_uuid = acct.solitude_seller.uuid
-    data = {'amount': str(amount),
-            'price_point': addon.premium.price.pk,
-            'id': addon.pk,
-            'app_name': unicode(addon.name),
-            'app_description': app_summary,
-            'postback_url': absolutify(reverse('webpay.postback')),
-            'chargeback_url': absolutify(reverse('webpay.chargeback')),
-            'seller': addon.pk,
-            'product_data': urlencode({'contrib_uuid': uuid_,
-                                       'seller_uuid': seller_uuid,
-                                       'addon_id': addon.pk}),
-            'memo': contrib_for}
+    seller_uuid =acct.solitude_seller.uuid
+    issued_at = calendar.timegm(time.gmtime())
+    req = {
+        'iss': settings.APP_PURCHASE_KEY,
+        'typ': settings.APP_PURCHASE_TYP,
+        'aud': settings.APP_PURCHASE_AUD,
+        'iat': issued_at,
+        'exp': issued_at + 3600,  # expires in 1 hour
+        'request': {
+            'name': unicode(addon.name),
+            'description': app_summary,
+            'pricePoint': addon.premium.price.pk,
+            'id': make_ext_id(addon.pk),
+            'postbackURL': absolutify(reverse('webpay.postback')),
+            'chargebackURL': absolutify(reverse('webpay.chargeback')),
+            'productData': urlencode({'contrib_uuid': uuid_,
+                                      'seller_uuid': seller_uuid,
+                                      'addon_id': addon.pk}),
+        }
+    }
 
-    jwt_ = prepare_webpay_pay(data)
+    jwt_ = sign_webpay_jwt(req)
     log.debug('Preparing webpay JWT for addon %s: %s' % (addon, jwt_))
     return {'webpayJWT': jwt_,
             'contribStatusURL': reverse('webpay.pay_status',
@@ -155,10 +141,9 @@ def postback(request):
                              data['response']['transactionID'],
                              contrib_uuid)), None, tb
 
-    contrib.update(type=amo.CONTRIB_PURCHASE,
-                   transaction_id=data['response']['transactionID'])
+    contrib.update(transaction_id=data['response']['transactionID'],
+                   type=amo.CONTRIB_PURCHASE)
 
-    tasks.purchase_notify.delay(signed_jwt, contrib.pk)
     tasks.send_purchase_receipt.delay(contrib.pk)
     return http.HttpResponse(data['response']['transactionID'])
 
