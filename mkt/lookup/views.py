@@ -225,7 +225,7 @@ def app_search(request):
                                  or_=_expand_query(q, fields))
                           .values_dict(*fields)[:20])
     for app in qs:
-        app['url'] = reverse('reviewers.apps.review', args=[app['app_slug']])
+        app['url'] = reverse('lookup.app_summary', args=[app['id']])
         # ES returns a list of localized names but database queries do not.
         if type(app['name']) != list:
             app['name'] = [app['name__localized_string']]

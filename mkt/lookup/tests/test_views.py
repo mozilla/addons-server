@@ -300,8 +300,8 @@ class TestAppSearch(ESTestCase, SearchTestMixin):
     def verify_result(self, data):
         eq_(data['results'][0]['name'], self.app.name.localized_string)
         eq_(data['results'][0]['id'], self.app.pk)
-        eq_(data['results'][0]['url'], reverse('reviewers.apps.review',
-                                               args=[self.app.app_slug]))
+        eq_(data['results'][0]['url'], reverse('lookup.app_summary',
+                                               args=[self.app.pk]))
 
     def test_by_name_part(self):
         self.app.name = 'This is Steamcube'
