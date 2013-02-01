@@ -550,6 +550,10 @@
                     width: 520px;
                 }
 
+                .connected {
+                    float: left;
+                }
+
                 .connected li, .devices li {
                     float: left;
                     width: 25%;
@@ -561,10 +565,7 @@
                     }
 
                     span {
-                        color: @dark-gray;
                         display: block;
-                        font-size: 14px;
-                        font-weight: 600;
 
                         &.new {
                             color: #0193ff;
@@ -573,8 +574,24 @@
                     }
                 }
 
+                .connected li a, .devices li span {
+                    color: @dark-gray;
+                    font-size: 14px;
+                    font-weight: 600;
+                }
+
                 .connected li {
                     height: 100px;
+                    position: relative;
+
+                    a {
+                        display: block;
+                        height: 100%;
+                        line-height: 18px;
+                        padding: 15px 5px 5px 80px;
+                        text-align: left;
+                        width: 110px;
+                    }
 
                     &.marketplace {
                         background: url(../../img/ecosystem/connect-mktplace.png) no-repeat;
@@ -584,12 +601,24 @@
                         background: url(../../img/ecosystem/connect-twitter.png) no-repeat;
                     }
 
+                    &.youtube, &.email {
+                        a {
+                            padding-left: 85px;
+                        }
+                    }
+
                     &.youtube {
                         background: url(../../img/ecosystem/connect-youtube.png) no-repeat;
+                        width: 30%;
+
+                        a {
+                            width: 140px;
+                        }
                     }
 
                     &.email {
                         background: url(../../img/ecosystem/connect-email.png) no-repeat 0 15px;
+                        width: 20%;
                     }
                 }
             }

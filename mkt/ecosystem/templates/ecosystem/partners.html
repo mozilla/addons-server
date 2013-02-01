@@ -112,10 +112,20 @@
         <p>{{ _('Stay connected.') }}</p>
         {# These are off-centered since they will eventually have text on the right #}
         <ul class="connected">
-          <li class="marketplace" title="{{ _('Marketplace') }}"></li>
-          <li class="twitter" title="{{ _('Twitter') }}"></li>
-          <li class="youtube" title="{{ _('Youtube') }}"></li>
-          <li class="email" title="{{ _('Email') }}"></li>
+          <li class="marketplace" title="{{ _('Marketplace') }}">
+            <a href="https://blog.mozilla.org/apps">{{ _('The Apps Blog') }}</a>
+          </li>
+          <li class="twitter" title="{{ _('Twitter') }}">
+            <a href="https://twitter.com/FirefoxApps">@FirefoxApps</a>
+          </li>
+          <li class="youtube" title="{{ _('YouTube') }}">
+            <a href="http://www.youtube.com/user/firefoxmarketplace?feature=watch">
+              {{ _('Firefox Marketplace YouTube channel') }}
+            </a>
+          </li>
+          <li class="email" title="{{ _('Email') }}">
+            {{ emaillink('marketplace-partners@mozilla.com', _('Email')) }}
+          </li>
         </ul>
       </div>
     </section>
