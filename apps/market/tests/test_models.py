@@ -8,9 +8,10 @@ from nose.tools import eq_
 
 import amo
 import amo.tests
-from addons.models import Addon
+from addons.models import Addon, AddonUser
 from market.models import (AddonPremium, PreApprovalUser, Price, PriceCurrency,
                            Refund)
+from mkt.constants import apps
 from stats.models import Contribution
 from users.models import UserProfile
 
@@ -226,7 +227,20 @@ class TestContribution(ContributionMixin, amo.tests.TestCase):
         self.create(amo.CONTRIB_REFUND)
         eq_(self.addon.addonpurchase_set.filter(user=other).count(), 1)
 
-    def test_user_installed(self):
+    def set_role(self, role):
+        AddonUser.objects.create(addon=self.addon, user=self.user, role=role)
+        self.create(amo.CONTRIB_PURCHASE)
+        installed = self.user.installed_set.filter(addon=self.addon)
+        eq_(installed.count(), 1)
+        eq_(installed[0].install_type, apps.INSTALL_TYPE_DEVELOPER)
+
+    def test_user_dev(self):
+        self.set_role(amo.AUTHOR_ROLE_DEV)
+
+    def test_user_owner(self):
+        self.set_role(amo.AUTHOR_ROLE_OWNER)
+
+    def test_user_installed_dev(self):
         self.create(amo.CONTRIB_PURCHASE)
         eq_(self.user.installed_set.filter(addon=self.addon).count(), 1)
 

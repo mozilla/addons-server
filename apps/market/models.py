@@ -11,6 +11,7 @@ import amo.models
 from amo.decorators import write
 from amo.utils import get_locale_from_lang, memoize_key
 from constants.payments import PROVIDER_CURRENCIES
+from mkt.constants import apps
 from stats.models import Contribution
 from users.models import UserProfile
 
@@ -173,9 +174,16 @@ def create_addon_purchase(sender, instance, **kw):
         data = {'addon': instance.addon, 'user': instance.user}
         purchase, created = AddonPurchase.objects.safer_get_or_create(**data)
         purchase.update(type=amo.CONTRIB_PURCHASE)
-        from mkt.webapps.models import Installed  # Circular import.
+        from mkt.webapps.models import Installed  # Circular import
+        # Ensure that devs have the correct installed object found
+        # or created.
+        #
+        is_dev = instance.addon.has_author(instance.user,
+                 (amo.AUTHOR_ROLE_OWNER, amo.AUTHOR_ROLE_DEV))
+        install_type = (apps.INSTALL_TYPE_DEVELOPER if is_dev
+                        else apps.INSTALL_TYPE_USER)
         Installed.objects.safer_get_or_create(user=instance.user,
-                                              addon=instance.addon)
+            addon=instance.addon, install_type=install_type)
 
     elif instance.type in [amo.CONTRIB_REFUND, amo.CONTRIB_CHARGEBACK]:
         purchases = AddonPurchase.objects.filter(addon=instance.addon,
