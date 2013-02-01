@@ -465,7 +465,7 @@ class AppFormBasic(addons.forms.AddonFormBase):
     slug = forms.CharField(max_length=30, widget=forms.TextInput)
     manifest_url = forms.URLField(verify_exists=False)
     summary = TransField(widget=TransTextarea(attrs={'rows': 4}),
-                         max_length=250)
+                         max_length=1024)
 
     class Meta:
         model = Addon

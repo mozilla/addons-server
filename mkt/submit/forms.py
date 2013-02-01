@@ -309,7 +309,7 @@ class AppDetailsBasicForm(TranslationFormMixin, happyforms.ModelForm):
 
     app_slug = forms.CharField(max_length=30,
                            widget=forms.TextInput(attrs={'class': 'm'}))
-    summary = TransField(max_length=250,
+    summary = TransField(max_length=1024,
         label=_lazy(u"Brief Summary:"),
         help_text=_lazy(u'This summary will be shown in listings and '
                          'searches.'),

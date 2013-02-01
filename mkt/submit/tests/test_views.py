@@ -814,10 +814,10 @@ class TestDetails(TestSubmit):
 
     def test_summary_length(self):
         self._step()
-        r = self.client.post(self.url, self.get_dict(summary='a' * 251))
+        r = self.client.post(self.url, self.get_dict(summary='a' * 1025))
         eq_(r.status_code, 200)
         self.assertFormError(r, 'form_basic', 'summary',
-            'Ensure this value has at most 250 characters (it has 251).')
+            'Ensure this value has at most 1024 characters (it has 1025).')
 
     def test_description_optional(self):
         self._step()

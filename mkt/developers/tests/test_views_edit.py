@@ -23,7 +23,6 @@ from addons.forms import AddonFormBasic
 from addons.models import (Addon, AddonCategory, AddonDeviceType, AddonUser,
                            Category)
 from constants.applications import DEVICE_TYPES
-from editors.models import RereviewQueue
 from lib.video.tests import files as video_files
 from users.models import UserProfile
 
@@ -342,10 +341,10 @@ class TestEditBasic(TestEdit):
             ['You can have only 2 categories.'])
 
     def test_edit_summary_max_length(self):
-        r = self.client.post(self.edit_url, self.get_dict(summary='x' * 251))
+        r = self.client.post(self.edit_url, self.get_dict(summary='x' * 1025))
         eq_(list(r.context['form'].errors['summary']),
             [('en-us',
-              'Ensure this value has at most 250 characters (it has 251).')])
+              'Ensure this value has at most 1024 characters (it has 1025).')])
 
     def test_edit_check_description(self):
         # Make sure bug 629779 doesn't return.
