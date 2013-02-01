@@ -315,7 +315,6 @@ class TestTransactionSummary(TestCase):
 
         eq_(tx_data['tx'], self.mock_transaction())
         eq_(tx_data['buyer']['uuid'], self.buyer_uuid)
-        eq_(tx_data['seller']['uuid'], self.seller_uuid)
 
     def lookup_tx_side_effect(self, *args, **kwargs):
         if str(args[0]) == str(self.uuid):
@@ -325,16 +324,11 @@ class TestTransactionSummary(TestCase):
     def get_side_effect(self, *args, **kwargs):
         if args[0] == 'buyer_uri':
             return {'uuid': self.buyer_uuid}
-        elif args[0] == 'seller_product_uri':
-            return {'seller': 'seller_uri'}
-        elif args[0] == 'seller_uri':
-            return {'uuid': self.seller_uuid}
 
     def mock_transaction(self):
         return {
             'uuid': self.uuid,
             'buyer': 'buyer_uri',
-            'seller_product': 'seller_product_uri',
             'provider': 0,
         }
 
