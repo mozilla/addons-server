@@ -212,9 +212,13 @@ class TestAddonPaymentAccount(amo.tests.TestCase):
         client.post_make_premium.assert_called_with(
             data={'bango': 'bango#', 'price': float(self.price.price),
                   'currencyIso': 'USD', 'seller_product_bango': 'bpruri'})
-        client.post_update_rating.assert_called_with(
-            data={'bango': 'bango#', 'rating': 'UNIVERSAL',
-                  'ratingScheme': 'GLOBAL', 'seller_product_bango': 'bpruri'})
+
+        eq_(client.post_update_rating.call_args_list[0][1]['data'],
+            {'bango': 'bango#', 'rating': 'UNIVERSAL',
+             'ratingScheme': 'GLOBAL', 'seller_product_bango': 'bpruri'})
+        eq_(client.post_update_rating.call_args_list[1][1]['data'],
+            {'bango': 'bango#', 'rating': 'GENERAL',
+             'ratingScheme': 'USA', 'seller_product_bango': 'bpruri'})
 
     @patch('mkt.developers.models.client')
     def test_create_new(self, client):

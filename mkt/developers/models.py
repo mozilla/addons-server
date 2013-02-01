@@ -275,12 +275,17 @@ class AddonPaymentAccount(amo.models.ModelBase):
             #client.post_make_free(
             #    data={'bango': bango_number,
             #          'seller_product_bango': product_uri})
-
         # Update the Bango rating.
         client.post_update_rating(
             data={'bango': bango_number,
                   'rating': 'UNIVERSAL',
                   'ratingScheme': 'GLOBAL',
+                  'seller_product_bango': product_uri})
+        # Bug 836865.
+        client.post_update_rating(
+            data={'bango': bango_number,
+                  'rating': 'GENERAL',
+                  'ratingScheme': 'USA',
                   'seller_product_bango': product_uri})
 
         return product_uri
