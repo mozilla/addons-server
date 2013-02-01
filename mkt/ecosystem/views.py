@@ -82,6 +82,12 @@ def support(request):
            {'page': 'support', 'category': 'build'})
 
 
+def partners(request):
+    """Landing page for partners."""
+    return jingo.render(request, 'ecosystem/partners.html',
+           {'page': 'partners'})
+
+
 def installation(request):
     """Landing page for installation."""
     return jingo.render(request, 'ecosystem/installation.html',

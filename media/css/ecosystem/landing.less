@@ -2,6 +2,25 @@
 
 @right-width: 528px;
 
+.faded-border {
+    &:before, &:after {
+        .box-shadow(0 0 20px 20px #e9eced);
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 0;
+    }
+
+    &:before {
+        left: 0;
+    }
+
+    &:after {
+        right: 0;
+    }
+}
+
 #landing-page {
     color: @medium-gray;
     font-size: 14px;
@@ -34,6 +53,7 @@
 
     #partnership {
         .box-shadow(0 1px 12px -8px rgba(0,0,0,.5) inset);
+        .faded-border;
         border-bottom: 1px solid #ddd;
         border-top: 1px solid #ddd;
         clear: both;
@@ -43,23 +63,6 @@
         padding: 10px 10px 20px;
         position: relative;
         width: 100%;
-
-        &:before, &:after {
-            .box-shadow(0 0 20px 20px #f1f1f1);
-            content: " ";
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            width: 0;
-        }
-
-        &:before {
-            left: 0;
-        }
-
-        &:after {
-            right: 0;
-        }
 
         .partner-title {
             float: left;
@@ -394,6 +397,7 @@
     .icons {
         list-style-type: none;
         padding: 10px 0 0;
+
         li {
             background-repeat: no-repeat;
             border-bottom: 1px dotted @light-gray;
@@ -413,6 +417,189 @@
 
             &.target {
                 background-image: url(../../img/ecosystem/landing-icon-target.png);
+            }
+        }
+    }
+}
+
+.business-partners {
+    #landing-page {
+        margin: 0 auto;
+        width: 900px;
+
+        h1 {
+            font-size: 40px;
+            margin: 0;
+        }
+
+        h2 {
+            color: @dark-gray;
+            font-size: 22px;
+            line-height: 28px;
+            margin: 20px auto;
+        }
+
+        .header, section {
+            .faded-border;
+            float: left;
+            font-size: 22px;
+            font-weight: 100;
+            margin: 0 auto;
+            text-align: center;
+            width: 870px;
+
+            &:before, &:after {
+                bottom: 0;
+                height: 1px;
+            }
+        }
+
+        .header {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 20px;
+            position: relative;
+            text-align: center;
+
+            h2 {
+                width: 600px;
+            }
+
+            .submit-options {
+                display: inline-block;
+                padding: 20px 0;
+
+                span {
+                    display: inline-block;
+                    float: left;
+                    line-height: 33px;
+                    margin: 0 20px;
+                    text-transform: uppercase;
+                }
+
+                .button {
+                    float: left;
+                    font-size: 18px;
+                    padding: 8px 20px;
+                    max-width: 150px;
+                    min-width: 120px;
+
+                    &.api {
+                        .gradient-two-color(#1fa8c1, #158499);
+                        float: right;
+                    }
+                }
+            }
+        }
+
+        .platform-copy, .screenshot {
+            float: left;
+        }
+
+        .screenshot {
+            margin-top: 10px;
+
+            img {
+                .border-wrapper;
+                display: block;
+                padding: 5px;
+            }
+        }
+
+        .platform-copy {
+            float: right;
+            padding-right: 20px;
+            width: 260px;
+
+            &.right {
+                float: right;
+                font-size: 15px;
+                padding: 80px 0 0;
+                text-align: left;
+                width: 370px;
+
+                img {
+                    display: block;
+                    margin: 0 auto;
+                    width: 166px;
+                }
+
+                p {
+                    color: @dark-gray;
+                    line-height: 20px;
+                }
+            }
+        }
+
+        section {
+            .faded-border;
+            border-bottom: 1px solid #ddd;
+            border-top: 1px solid #f6f6f6;
+            padding: 20px 0 40px;
+            position: relative;
+            text-align: center;
+
+            .content {
+                margin: 0 auto;
+                width: 870px;
+
+                > p {
+                    color: @dark-gray;
+                    font-size: 16px;
+                    line-height: 25px;
+                    margin: 20px auto 40px;
+                    width: 520px;
+                }
+
+                .connected li, .devices li {
+                    float: left;
+                    width: 25%;
+                }
+
+                .devices li {
+                    img {
+                        margin-bottom: 10px;
+                    }
+
+                    span {
+                        color: @dark-gray;
+                        display: block;
+                        font-size: 14px;
+                        font-weight: 600;
+
+                        &.new {
+                            color: #0193ff;
+                            font-weight: 400;
+                        }
+                    }
+                }
+
+                .connected li {
+                    height: 100px;
+
+                    &.marketplace {
+                        background: url(../../img/ecosystem/connect-mktplace.png) no-repeat;
+                    }
+
+                    &.twitter {
+                        background: url(../../img/ecosystem/connect-twitter.png) no-repeat;
+                    }
+
+                    &.youtube {
+                        background: url(../../img/ecosystem/connect-youtube.png) no-repeat;
+                    }
+
+                    &.email {
+                        background: url(../../img/ecosystem/connect-email.png) no-repeat 0 15px;
+                    }
+                }
+            }
+
+            &:last-child {
+                border-bottom: 0;
+            }
+
+            .video-control {
+                margin-top: 40px;
             }
         }
     }
