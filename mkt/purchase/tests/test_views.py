@@ -249,12 +249,6 @@ class TestPurchaseEmbedded(PurchaseTest):
         res = self.client.post(self.purchase_url)
         eq_(res.status_code, 403)
 
-    @mock.patch('addons.models.Addon.has_purchased')
-    def test_not_has_purchased(self, has_purchased):
-        has_purchased.return_value = False
-        res = self.client.post_ajax(self.purchase_url)
-        eq_(res.status_code, 200)
-
     def test_zero(self):
         self.price.update(price=Decimal('0.00'))
         res = self.client.post_ajax(self.purchase_url)
@@ -266,83 +260,6 @@ class TestPurchaseEmbedded(PurchaseTest):
     def make_contribution(self, type=amo.CONTRIB_PENDING):
         return Contribution.objects.create(type=type,
             uuid='123', addon=self.addon, paykey='1234', user=self.user)
-
-    def get_url(self, status):
-        return self.addon.get_purchase_url('done', [status])
-
-    @mock.patch('paypal.check_purchase')
-    def test_check_purchase(self, check_purchase):
-        check_purchase.return_value = 'COMPLETED'
-        self.make_contribution()
-        self.client.get_ajax('%s?uuid=%s' % (self.get_url('complete'), '123'))
-        cons = Contribution.objects.all()
-        eq_(cons.count(), 1)
-        eq_(cons[0].type, amo.CONTRIB_PURCHASE)
-        assert cons[0].uuid
-
-    @mock.patch('mkt.purchase.views.client.pay')
-    @mock.patch('mkt.purchase.views.client.create_seller_for_pay')
-    @mock.patch('mkt.purchase.views.client.post_pay_check')
-    def test_check_solitude(self, post_pay_check, create_seller_for_pay, pay):
-        waffle.models.Flag.objects.create(name='solitude-payments',
-                                          everyone=True)
-        post_pay_check.return_value = {'status': 'COMPLETED'}
-        pay.return_value = {'paykey': 'asd', 'status': 'COMPLETED',
-                            'uuid': 123}
-        self.make_contribution()
-        self.client.get_ajax('%s?uuid=%s' % (self.get_url('complete'), '123'))
-        cons = Contribution.objects.all()
-        eq_(cons.count(), 1)
-        eq_(cons[0].type, amo.CONTRIB_PURCHASE)
-        assert cons[0].uuid
-
-    @mock.patch('paypal.check_purchase')
-    def test_check_purchase_logs(self, check_purchase):
-        check_purchase.return_value = 'COMPLETED'
-        self.make_contribution()
-        self.client.get_ajax('%s?uuid=%s' % (self.get_url('complete'), '123'))
-        eq_(AppLog.objects.filter(addon=self.addon,
-                            activity_log__action=amo.LOG.PURCHASE_ADDON.id,
-                            activity_log__user=self.user).count(), 1)
-
-    @mock.patch('paypal.check_purchase')
-    def test_check_addon_purchase_error(self, check_purchase):
-        raise SkipTest
-
-        check_purchase.return_value = 'ERROR'
-        self.make_contribution()
-        res = self.client.get_ajax('%s?uuid=%s' %
-                                   (self.get_url('complete'), '123'))
-
-        doc = pq(res.content)
-        eq_(doc('#paypal-error').length, 1)
-        eq_(res.context['status'], 'error')
-        eq_(res.context['error'], amo.PAYMENT_DETAILS_ERROR['ERROR'])
-
-    @mock.patch('paypal.check_purchase')
-    def test_check_addon_purchase(self, check_purchase):
-        check_purchase.return_value = 'COMPLETED'
-        self.make_contribution()
-        res = self.client.get_ajax('%s?uuid=%s' %
-                                   (self.get_url('complete'), '123'))
-        eq_(AddonPurchase.objects.filter(addon=self.addon).count(), 1)
-        eq_(res.context['status'], 'complete')
-        eq_(res.context['error'], '')
-
-    def test_check_cancel(self):
-        self.make_contribution()
-        res = self.client.get_ajax('%s?uuid=%s' %
-                                   (self.get_url('cancel'), '123'))
-        eq_(Contribution.objects.filter(type=amo.CONTRIB_PURCHASE).count(), 0)
-        eq_(res.context['status'], 'cancel')
-
-    @mock.patch('paypal.check_purchase')
-    def test_check_wrong_uuid(self, check_purchase):
-        check_purchase.return_value = 'COMPLETED'
-        self.make_contribution()
-        res = self.client.get_ajax('%s?uuid=%s' %
-                                   (self.get_url('complete'), 'foo'))
-        eq_(res.status_code, 404)
 
     @fudge.patch('paypal.get_paykey')
     def test_split(self, get_paykey):
