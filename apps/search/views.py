@@ -428,7 +428,9 @@ def ajax_search(request):
     used elsewhere.
 
     """
-    return BaseAjaxSearch(request).items
+    search_obj = BaseAjaxSearch(request)
+    search_obj.types = amo.ADDON_SEARCH_TYPES
+    return search_obj.items
 
 
 @json_view

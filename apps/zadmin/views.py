@@ -717,7 +717,7 @@ def addon_search(request):
                        .query(name__text=q.lower())
                        .filter(type__in=amo.MARKETPLACE_TYPES if
                                         settings.MARKETPLACE else
-                                        amo.get_admin_search_types())[:100])
+                                        amo.ADDON_ADMIN_SEARCH_TYPES)[:100])
         if len(qs) == 1:
             return redirect('zadmin.addon_manage', qs[0].id)
         ctx['addons'] = qs

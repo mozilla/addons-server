@@ -138,16 +138,3 @@ else:
     COMPAT = {}
     NIGHTLY_VERSION = '17.0'
     DEFAULT_MINVER = '13.0'
-
-
-def get_addon_search_types():
-    types = ADDON_SEARCH_TYPES[:]
-    if not settings.SEARCH_EXCLUDE_PERSONAS:
-        types.append(ADDON_PERSONA)
-    return types
-
-
-def get_admin_search_types():
-    types = get_addon_search_types()
-    types.append(ADDON_PLUGIN)
-    return types

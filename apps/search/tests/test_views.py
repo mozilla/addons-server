@@ -1069,6 +1069,12 @@ class TestGenericAjaxSearch(TestAjaxSearch):
         Persona.objects.create(persona_id=addon.id, addon_id=addon.id)
         self.search_addons('q=%s' % addon.id, [addon])
 
+    def test_ajax_search_webapp_by_id(self):
+        """Webapps should not appear in ajax search results."""
+        addon = Addon.objects.all()[3]
+        addon.update(type=amo.ADDON_WEBAPP)
+        self.search_addons('q=%s' % addon.id, [])
+
     def test_ajax_search_by_name(self):
         self.search_addons('q=add', list(Addon.objects.reviewed()))
 
