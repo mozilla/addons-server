@@ -2,6 +2,14 @@ from datetime import datetime, timedelta
 from decimal import Decimal
 import json
 
+from django.conf import settings
+from django.contrib.auth.models import User
+from django.contrib.messages.storage.fallback import FallbackStorage
+from django.core import mail
+from django.test.client import RequestFactory
+from django.utils.encoding import smart_str
+
+import mock
 from babel import numbers
 from pyquery import PyQuery as pq
 from nose.exc import SkipTest
@@ -15,7 +23,9 @@ from amo.helpers import urlparams
 from amo.tests import addon_factory, app_factory, ESTestCase, TestCase
 from amo.urlresolvers import reverse
 from devhub.models import ActivityLog
+from lib.pay_server import SolitudeError
 from market.models import AddonPaymentData, AddonPremium, Price, Refund
+from mkt.lookup.views import _transaction_summary, transaction_refund
 from mkt.site.fixtures import fixture
 from mkt.webapps.cron import update_weekly_downloads
 from mkt.webapps.models import Installed, Webapp
@@ -244,20 +254,20 @@ class TestTransactionSearch(TestCase):
     fixtures = fixture('user_support_staff', 'user_999')
 
     def setUp(self):
-        self.tx_id = 45
+        self.uuid = 45
         self.url = reverse('lookup.transaction_search')
         self.client.login(username='support-staff@mozilla.com',
                           password='password')
 
     def test_redirect(self):
-        r = self.client.get(self.url, {'q': self.tx_id})
+        r = self.client.get(self.url, {'q': self.uuid})
         self.assert3xx(r, reverse('lookup.transaction_summary',
-                                  args=[self.tx_id]))
+                                  args=[self.uuid]))
 
     def test_no_perm(self):
         self.client.login(username='regular@mozilla.com',
                           password='password')
-        r = self.client.get(self.url, {'q': self.tx_id})
+        r = self.client.get(self.url, {'q': self.uuid})
         eq_(r.status_code, 403)
 
 
@@ -265,20 +275,117 @@ class TestTransactionSummary(TestCase):
     fixtures = fixture('user_support_staff', 'user_999')
 
     def setUp(self):
-        self.tx_id = 45
-        self.url = reverse('lookup.transaction_summary', args=[self.tx_id])
+        self.uuid = 45
+        self.buyer_uuid = 123
+        self.seller_uuid = 456
+        self.related_tx_uuid = 789
+
+        Contribution.objects.create(addon=addon_factory(), uuid=self.uuid)
+
+        self.url = reverse('lookup.transaction_summary', args=[self.uuid])
         self.client.login(username='support-staff@mozilla.com',
                           password='password')
 
-    def test_200(self):
+    @mock.patch('mkt.lookup.views.client')
+    def test_200(self, solitude):
+        solitude.lookup_transaction.side_effect = self.lookup_tx_side_effect
+        solitude.get.side_effect = self.get_side_effect
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
 
-    def test_no_perm(self):
+    def test_no_perm_403(self):
         self.client.login(username='regular@mozilla.com',
                           password='password')
         r = self.client.get(self.url)
         eq_(r.status_code, 403)
+
+    @mock.patch('mkt.lookup.views.client')
+    def test_no_transaction_404(self, solitude):
+        solitude.lookup_transaction.side_effect = self.lookup_tx_side_effect
+        r = self.client.get(reverse('lookup.transaction_summary', args=[999]))
+        eq_(r.status_code, 404)
+
+    @mock.patch('mkt.lookup.views.client')
+    def test_transaction_summary(self, solitude):
+        """Mock Solitude API, check client follows the URIs around."""
+        solitude.lookup_transaction.side_effect = self.lookup_tx_side_effect
+        solitude.get.side_effect = self.get_side_effect
+
+        tx_data = _transaction_summary(self.uuid)
+
+        eq_(tx_data['tx'], self.mock_transaction())
+        eq_(tx_data['buyer']['uuid'], self.buyer_uuid)
+
+    def lookup_tx_side_effect(self, *args, **kwargs):
+        if str(args[0]) == str(self.uuid):
+            return self.mock_transaction()
+        raise SolitudeError
+
+    def get_side_effect(self, *args, **kwargs):
+        if args[0] == 'buyer_uri':
+            return {'uuid': self.buyer_uuid}
+
+    def mock_transaction(self):
+        return {
+            'uuid': self.uuid,
+            'buyer': 'buyer_uri',
+            'provider': 0,
+        }
+
+
+class TestTransactionRefund(TestCase):
+    fixtures = fixture('user_support_staff', 'user_999')
+
+    def setUp(self):
+        self.uuid = 45
+        self.url = reverse('lookup.transaction_refund', args=[self.uuid])
+        self.app = app_factory()
+        self.user = UserProfile.objects.get(username='regularuser')
+        AddonUser.objects.create(addon=self.app, user=self.user)
+
+        self.contrib = Contribution.objects.create(
+            addon=self.app, user=self.user, uuid=self.uuid,
+            type=amo.CONTRIB_PURCHASE)
+
+        self.req = RequestFactory().post(self.url, {'refund_reason': 'text'})
+        self.req.user = User.objects.get(username='support_staff')
+        self.req.amo_user = UserProfile.objects.get(username='support_staff')
+        self.req.groups = self.req.amo_user.groups.all()
+        # Fix Django 1.4 RequestFactory bug with MessageMiddleware.
+        setattr(self.req, 'session', 'session')
+        messages = FallbackStorage(self.req)
+        setattr(self.req, '_messages', messages)
+        self.login(self.req.user)
+
+    def test_mark_transaction_refund(self):
+        transaction_refund(self.req, self.uuid)
+
+        refund = Refund.objects.filter(contribution__addon=self.app)
+        eq_(refund.count(), 1)
+        eq_(refund[0].status, amo.REFUND_PENDING)
+        assert self.req.POST['refund_reason'] in refund[0].refund_reason
+
+    @mock.patch.object(settings, 'SEND_REAL_EMAIL', True)
+    def test_refund_email(self):
+        transaction_refund(self.req, self.uuid)
+        eq_(len(mail.outbox), 1)
+        assert self.app.name.localized_string in smart_str(mail.outbox[0].body)
+
+    def test_redirect(self):
+        resp = self.client.post(self.url, {'refund_reason': 'text'})
+        self.assert3xx(resp, reverse('lookup.transaction_summary',
+                                     args=[self.uuid]))
+
+    def test_already_refunded(self):
+        self.contrib.enqueue_refund(status=amo.REFUND_PENDING,
+                                    refund_reason='front fell off')
+        resp = self.client.post(self.url, {'refund_reason': 'text'})
+        eq_(resp.status_code, 403)
+
+    def test_403(self):
+        self.login(self.user)
+        resp = self.client.post(self.url, {'refund_reason': 'text'})
+        eq_(resp.status_code, 403)
 
 
 class TestAppSearch(ESTestCase, SearchTestMixin):

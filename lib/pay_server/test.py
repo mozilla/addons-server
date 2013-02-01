@@ -68,9 +68,9 @@ class TestUtils(test_utils.TestCase):
     @patch.object(client, 'post_seller')
     def test_create_exists_paypal(self, post_seller, get_seller):
         get_seller.return_value = {
-                'meta': {'total_count': 1},
-                'objects': [{'paypal': {'resource_pk': 1}}]
-            }
+            'meta': {'total_count': 1},
+            'objects': [{'paypal': {'resource_pk': 1}}]
+        }
         eq_(client.create_seller_paypal(self.addon), {'resource_pk': 1})
 
     @patch.object(client, 'get_seller')
@@ -78,9 +78,9 @@ class TestUtils(test_utils.TestCase):
     @patch.object(client, 'post_seller_paypal')
     def test_no_paypal(self, post_seller_paypal, post_seller, get_seller):
         get_seller.return_value = {
-                'meta': {'total_count': 1},
-                'objects': [{'resource_uri': 1, 'paypal': None}]
-            }
+            'meta': {'total_count': 1},
+            'objects': [{'resource_uri': 1, 'paypal': None}]
+        }
         post_seller_paypal.return_value = {'resource_pk': 1}
         eq_(client.create_seller_paypal(self.addon), {'resource_pk': 1})
         assert post_seller_paypal.called
@@ -90,8 +90,8 @@ class TestUtils(test_utils.TestCase):
     @patch.object(client, 'post_seller_paypal')
     def test_nothing(self, post_seller_paypal, post_seller, get_seller):
         get_seller.return_value = {
-                'meta': {'total_count': 0},
-            }
+            'meta': {'total_count': 0},
+        }
         post_seller_paypal.return_value = {'resource_pk': 1}
         eq_(client.create_seller_paypal(self.addon), {'resource_pk': 1})
         assert post_seller_paypal.called
@@ -99,8 +99,8 @@ class TestUtils(test_utils.TestCase):
     @patch.object(client, 'get_seller')
     def test_too_many(self, get_seller):
         get_seller.return_value = {
-                'meta': {'total_count': 2},
-            }
+            'meta': {'total_count': 2},
+        }
         with self.assertRaises(ValueError):
             client.create_seller_paypal(self.addon)
 
@@ -122,6 +122,24 @@ class TestUtils(test_utils.TestCase):
         kwargs = patch_seller_paypal.call_args[1]
         eq_(kwargs['pk'], 1)
         eq_(kwargs['data']['paypal_id'], 'foo')
+
+
+@patch.object(settings, 'SOLITUDE_HOSTS', ('http://localhost'))
+@patch.object(settings, 'DOMAIN', 'testy')
+class TestTransactions(test_utils.TestCase):
+
+    def setUp(self):
+        self.tx_uuid = 45
+
+    @patch('lib.pay_server.client.api')
+    def test_lookup_transaction(self, api):
+        api.generic.transaction.get_object_or_404.side_effect = (
+            self.get_transaction_side_effect)
+        eq_(client.lookup_transaction(self.tx_uuid)['uuid'], self.tx_uuid)
+
+    def get_transaction_side_effect(self, *args, **kwargs):
+        if kwargs['uuid'] == self.tx_uuid:
+            return {'uuid': self.tx_uuid}
 
 
 @patch.object(settings, 'SOLITUDE_HOSTS', ('http://localhost'))

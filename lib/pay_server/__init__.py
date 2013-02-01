@@ -39,6 +39,13 @@ class ZamboniClient(Client):
 
     Error = SolitudeError
 
+    def get(self, url):
+        url = '%s%s' % (self.config['server'], url)
+        return self.call(url, 'get')
+
+    def lookup_transaction(self, tx_uuid):
+        return self.api.generic.transaction.get_object_or_404(uuid=tx_uuid)
+
     def lookup_buyer_paypal(self, buyer):
         res = self.get_buyer(filters={'uuid': buyer})
         count = res['meta']['total_count']

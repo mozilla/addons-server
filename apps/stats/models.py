@@ -372,6 +372,13 @@ class Contribution(amo.models.ModelBase):
         limit = datetime.timedelta(seconds=period)
         return datetime.datetime.now() < (self.created + limit)
 
+    def has_refund(self):
+        from market.models import Refund
+        return Refund.objects.filter(
+            contribution=self, status__in=[amo.REFUND_PENDING,
+                                           amo.REFUND_APPROVED,
+                                           amo.REFUND_APPROVED_INSTANT])
+
     def is_refunded(self):
         """
         If related has been set, then this transaction has been refunded or

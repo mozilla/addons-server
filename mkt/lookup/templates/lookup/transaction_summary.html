@@ -8,32 +8,45 @@
 
   <section class="island c">
     <h1>
-      {% trans tx_url = url('lookup.transaction_summary', tx_id) %}
-        Transaction Lookup results for <a href="{{ tx_url }}">Transaction {{ tx_id }}</a>
+      {% trans tx_url = url('lookup.transaction_summary', uuid) %}
+        Transaction Lookup results for <a href="{{ tx_url }}">Transaction {{ uuid }}</a>
       {% endtrans %}
     </h1>
 
     {% if tx %}
       <section id="prose">
         <dl>
-          <dt>{{ _('Transaction ID') }}</dt>
-          <dd>{{ tx.id }}</dd>
-          <dt>{{ _('Date') }}</dt>
-          <dd>{{ tx.date }}</dd>
-          {% if tx.buyer %}
-            <dt>{{ _('Buyer') }}</dt>
-            <dd>{{ tx.buyer|user_link }}</dd>
+          <dt>{{ _('Transaction ID') }}</dt><dd>{{ uuid }}</dd>
+          <dt>{{ _('Date') }}</dt><dd>{{ tx.created }}</dd>
+          <dt>{{ _('Type') }}</dt><dd>{{ type }}</dd>
+          <dt>{{ _('Buyer') }}</dt>
+          <dd>
+            {{ buyer.uuid }}
+            <div>({{ emaillink(contrib.user.email) }})</div>
+          </dd>
+          <dt>{{ _('Provider') }}</dt><dd>{{ provider }}</dd>
+          <dt>{{ _('Price Tier') }}</dt><dd>{{ contrib.price_tier }}</dd>
+          {% if related %}
+            <dt>{{ _('Related Transaction') }}</dt>
+            <dd>
+              <a href="{{ url('lookup.transaction_summary', related.uuid) }}">
+                {{ related.uuid }}
+              </a>
+            </dd>
           {% endif %}
-          {% if tx.seller %}
-            <dt>{{ _('Seller') }}</dt>
-            <dd>{{ tx.seller|user_link }}</dd>
-          {% endif %}
-          <dt>{{ _('Amount') }}</dt>
-          <dd>{{ tx.amount|numberfmt }}</dd>
         </dl>
       </section>
     {% else %}
       {{ no_results() }}
+    {% endif %}
+
+    {% if action_allowed('Transaction', 'Refund') and not is_refund %}
+      <form class="refund-transaction c" method="post"
+            action="{{ url('lookup.transaction_refund', uuid) }}">
+        {{ csrf() }}
+        {{ tx_refund_form }}
+        <button>{{ _('Refund this transaction') }}</button>
+      </form>
     {% endif %}
 
 {% endblock %}
