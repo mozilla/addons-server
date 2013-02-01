@@ -106,9 +106,20 @@ def _transaction_summary(uuid):
     if buyer_uri:
         buyer = client.get(buyer_uri)
 
+    # Get seller.
+    seller = None
+    seller_product_uri = transaction.get('seller_product')
+    if seller_product_uri:
+        seller_product = client.get(seller_product_uri)
+
+        seller_uri = seller_product.get('seller')
+        if seller_uri:
+            seller = client.get(seller_uri)
+
     return {
         'tx': transaction,
         'buyer': buyer,
+        'seller': seller,
         'provider': PROVIDERS[transaction['provider']],
 
         'contrib': contrib,
