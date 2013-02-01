@@ -1,12 +1,12 @@
 import datetime
 import httplib2
+import itertools
 
 from django.conf import settings
 from django.db import connection, transaction
 from django.db.models import Sum, Max
 
 from apiclient.discovery import build
-import requests
 import commonware.log
 import elasticutils.contrib.django as elasticutils
 from celeryutils import task
@@ -14,7 +14,7 @@ from oauth2client.client import OAuth2Credentials
 
 import amo
 from addons.models import Addon
-from bandwagon.models import Collection, CollectionAddon
+from bandwagon.models import Collection
 from mkt.webapps.models import Installed
 from stats.models import Contribution
 from reviews.models import Review
@@ -47,10 +47,14 @@ def addon_total_contributions(*addons, **kw):
 def update_addons_collections_downloads(data, **kw):
     log.info("[%s] Updating addons+collections download totals." %
                   (len(data)))
-    for var in data:
-        (CollectionAddon.objects.filter(addon=var['addon'],
-                                        collection=var['collection'])
-                                .update(downloads=var['sum']))
+    cursor = connection.cursor()
+    q = ("UPDATE addons_collections SET downloads=%s WHERE addon_id=%s "
+         "AND collection_id=%s;" * len(data))
+    cursor.execute(q,
+                   list(itertools.chain.from_iterable(
+                       [var['sum'], var['addon'], var['collection']]
+                       for var in data)))
+    transaction.commit_unless_managed()
 
 
 @task

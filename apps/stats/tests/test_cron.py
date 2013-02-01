@@ -3,16 +3,16 @@ import datetime
 from django.conf import settings
 from django.core.management import call_command
 
-import httplib2
 import mock
 from nose.tools import eq_
 
 import amo.tests
 from addons.models import Addon
+from bandwagon.models import CollectionAddon, Collection
 from mkt.webapps.models import Installed
 from reviews.models import Review
 from stats.models import (Contribution, DownloadCount, GlobalStat,
-                          UpdateCount)
+                          UpdateCount, AddonCollectionCount)
 from stats import cron, tasks
 from users.models import UserProfile
 
@@ -203,3 +203,24 @@ class TestIndexLatest(amo.tests.ESTestCase):
             cron.index_latest_stats()
             call.assert_called_with('index_stats', addons=None,
                                     date='%s:%s' % (start, finish))
+
+
+class TestUpdateDownloads(amo.tests.TestCase):
+    fixtures = ['base/users', 'base/collections', 'base/addon_3615']
+    def test_addons_collections(self):
+        collection2 = Collection.objects.create(name="collection2")
+        CollectionAddon.objects.create(addon_id=3615, collection=collection2)
+        vals = [(3, datetime.date(2013, 1, 1)),
+                (5, datetime.date(2013, 1, 2)),
+                (7, datetime.date(2013, 1, 3))]
+        for col_id in (80, collection2.pk):
+            for dls, dt in vals:
+                AddonCollectionCount.objects.create(
+                    addon_id=3615, collection_id=col_id,
+                    count=dls, date=dt)
+
+        with self.assertNumQueries(3):
+            cron.update_addons_collections_downloads()
+        eq_(CollectionAddon.objects.get(addon_id=3615,
+                                        collection_id=80).downloads,
+            15)
