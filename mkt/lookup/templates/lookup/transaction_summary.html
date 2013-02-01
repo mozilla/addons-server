@@ -13,15 +13,14 @@
       {% endtrans %}
     </h1>
 
-    {% if tx %}
+    {% if contrib %}
       <section id="prose">
         <dl>
-          <dt>{{ _('Transaction ID') }}</dt><dd>{{ uuid }}</dd>
-          <dt>{{ _('Date') }}</dt><dd>{{ tx.created }}</dd>
+          <dt>{{ _('Transaction ID') }}</dt><dd>{{ contrib.uuid }}</dd>
+          <dt>{{ _('Date') }}</dt><dd>{{ contrib.created }}</dd>
           <dt>{{ _('Type') }}</dt><dd>{{ type }}</dd>
           <dt>{{ _('Buyer') }}</dt>
           <dd>
-            {{ buyer.uuid }}
             <div>({{ emaillink(contrib.user.email) }})</div>
           </dd>
           <dt>{{ _('Provider') }}</dt><dd>{{ provider }}</dd>
@@ -40,7 +39,7 @@
       {{ no_results() }}
     {% endif %}
 
-    {% if action_allowed('Transaction', 'Refund') and not is_refund %}
+    {% if action_allowed('Transaction', 'Refund') and is_refundable %}
       <form class="refund-transaction c" method="post"
             action="{{ url('lookup.transaction_refund', uuid) }}">
         {{ csrf() }}

@@ -6,6 +6,7 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib.messages.storage.fallback import FallbackStorage
 from django.core import mail
+from django.core.exceptions import ObjectDoesNotExist
 from django.test.client import RequestFactory
 from django.utils.encoding import smart_str
 
@@ -24,7 +25,6 @@ from amo.helpers import urlparams
 from amo.tests import addon_factory, app_factory, ESTestCase, TestCase
 from amo.urlresolvers import reverse
 from devhub.models import ActivityLog
-from lib.pay_server import SolitudeError
 from market.models import AddonPaymentData, AddonPremium, Price, Refund
 from mkt.constants.payments import (STATUS_COMPLETED, STATUS_FAILED,
                                     STATUS_PENDING)
@@ -283,10 +283,12 @@ class TestTransactionSummary(TestCase):
         self.buyer_uuid = 123
         self.seller_uuid = 456
         self.related_tx_uuid = 789
+        self.user = UserProfile.objects.get(pk=999)
 
-        Contribution.objects.create(addon=addon_factory(),
-                                    uuid=self.uuid,
-                                    transaction_id=self.transaction_id)
+        self.contrib = Contribution.objects.create(addon=addon_factory(),
+                                                   uuid=self.uuid,
+                                                   user=self.user,
+                                                   transaction_id='some:tr')
 
         self.url = reverse('lookup.transaction_summary', args=[self.uuid])
         self.client.login(username='support-staff@mozilla.com',
@@ -294,8 +296,6 @@ class TestTransactionSummary(TestCase):
 
     @mock.patch('mkt.lookup.views.client')
     def test_200(self, solitude):
-        solitude.lookup_transaction.side_effect = self.lookup_tx_side_effect
-        solitude.get.side_effect = self.get_side_effect
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
 
@@ -307,38 +307,25 @@ class TestTransactionSummary(TestCase):
 
     @mock.patch('mkt.lookup.views.client')
     def test_no_transaction_404(self, solitude):
-        solitude.lookup_transaction.side_effect = self.lookup_tx_side_effect
+        solitude.api.generic.transaction.get_object_or_404.side_effect = ObjectDoesNotExist
         r = self.client.get(reverse('lookup.transaction_summary', args=[999]))
         eq_(r.status_code, 404)
 
     @mock.patch('mkt.lookup.views.client')
     def test_transaction_summary(self, solitude):
-        """Mock Solitude API, check client follows the URIs around."""
-        solitude.lookup_transaction.side_effect = self.lookup_tx_side_effect
-        solitude.get.side_effect = self.get_side_effect
+        data = _transaction_summary(self.uuid)
+        eq_(data['contrib'].pk, self.contrib.pk)
+        eq_(data['is_refundable'], False)
 
-        tx_data = _transaction_summary(self.uuid)
-
-        eq_(tx_data['tx'], self.mock_transaction())
-        eq_(tx_data['buyer']['uuid'], self.buyer_uuid)
-
-    def lookup_tx_side_effect(self, *args, **kwargs):
-        if str(args[0]) == str(self.transaction_id):
-            return self.mock_transaction()
-        raise SolitudeError
-
-    def get_side_effect(self, *args, **kwargs):
-        if args[0] == 'buyer_uri':
-            return {'uuid': self.buyer_uuid}
-
-    def mock_transaction(self):
-        return {
-            'uuid': self.uuid,
-            'buyer': 'buyer_uri',
-            'provider': 0,
-        }
+    @mock.patch('mkt.lookup.views.client')
+    def test_is_refundable(self, solitude):
+        self.contrib.update(type=amo.CONTRIB_PURCHASE)
+        data = _transaction_summary(self.uuid)
+        eq_(data['contrib'].pk, self.contrib.pk)
+        eq_(data['is_refundable'], True)
 
 
+@mock.patch.object(settings, 'TASK_USER_ID', 999)
 class TestTransactionRefund(TestCase):
     fixtures = fixture('user_support_staff', 'user_999')
 
@@ -423,15 +410,17 @@ class TestTransactionRefund(TestCase):
         self.assert3xx(res, reverse('lookup.transaction_summary',
                                      args=[self.uuid]))
 
-    @mock.patch('mkt.lookup.views.client')
-    def test_already_refunded(self, solitude):
-        solitude.api.bango.refund.post.return_value = (
-            {'status': STATUS_PENDING})
+    def test_cant_refund(self):
+        self.contrib.update(type=amo.CONTRIB_PENDING)
+        resp = self.client.post(self.url, {'refund_reason': 'text'})
+        eq_(resp.status_code, 404)
 
+    def test_already_refunded(self):
         self.contrib.enqueue_refund(status=amo.REFUND_PENDING,
                                     refund_reason='front fell off')
         res = self.client.post(self.url, {'refund_reason': 'text'})
-        eq_(res.status_code, 403)
+        self.assert3xx(res, reverse('lookup.transaction_summary',
+                                     args=[self.uuid]))
 
     @mock.patch('mkt.lookup.views.client')
     def test_403_reg_user(self, solitude):

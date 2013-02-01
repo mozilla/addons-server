@@ -97,26 +97,23 @@ def transaction_summary(request, uuid):
 def _transaction_summary(uuid):
     """Get transaction details from Solitude API."""
     contrib = get_object_or_404(Contribution, uuid=uuid)
-    # Get tx.
-    try:
-        transaction = client.lookup_transaction(contrib.transaction_id)
-    except (SolitudeError, ValueError):
-        return
 
-    # Get buyer.
-    buyer = None
-    buyer_uri = transaction.get('buyer')
-    if buyer_uri:
-        buyer = client.get(buyer_uri)
+    # If the transaction is pending, we haven't assigned a transaction
+    # uuid to the form yet.
+    solitude = {}
+    if contrib.transaction_id:
+        # We'll probably be pulling more from this later.
+        solitude = (client.api.generic.transaction
+                    .get_object_or_404(uuid=contrib.transaction_id))
 
     return {
-        'tx': transaction,
-        'buyer': buyer,
-        'provider': PROVIDERS[transaction['provider']],
-
+        # There won't be a provider on pending refunds.
+        'provider': PROVIDERS.get(solitude.get('provider', ''), 'None'),
         'contrib': contrib,
-        'type': amo.CONTRIB_TYPES[contrib.type],
-        'is_refund': contrib.has_refund(),
+        'type': amo.CONTRIB_TYPES.get(contrib.type, _('Incomplete')),
+        # Whitelist what is refundable.
+        'is_refundable': (contrib.type == amo.CONTRIB_PURCHASE
+                          and not contrib.is_refunded()),
         'related': contrib.related,
     }
 
@@ -125,9 +122,11 @@ def _transaction_summary(uuid):
 @login_required
 @permission_required('Transaction', 'Refund')
 def transaction_refund(request, uuid):
-    contrib = get_object_or_404(Contribution, uuid=uuid)
+    contrib = get_object_or_404(Contribution, uuid=uuid,
+                                type=amo.CONTRIB_PURCHASE)
     if contrib.has_refund():
-        raise PermissionDenied
+        messages.error(request, _('A refund has already been processed.'))
+        return redirect(reverse('lookup.transaction_summary', args=[uuid]))
 
     form = TransactionRefundForm(request.POST)
     if not form.is_valid():
