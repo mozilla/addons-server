@@ -659,16 +659,16 @@ class Webapp(Addon):
         if not version:
             data = {}
         else:
-            file = version.all_files[0]
+            file_obj = version.all_files[0]
             manifest = self.get_manifest_json()
             package_path = absolutify(
-                os.path.join(reverse('downloads.file', args=[file.id]),
-                             file.filename))
+                os.path.join(reverse('downloads.file', args=[file_obj.id]),
+                             file_obj.filename))
 
             data = {
                 'name': manifest['name'],
                 'version': version.version,
-                'size': file.size,
+                'size': storage.size(file_obj.signed_file_path),
                 'release_notes': version.releasenotes,
                 'package_path': package_path,
             }

@@ -444,6 +444,7 @@ class BasePackagedAppTest(BaseUploadTest, UploadAddon, amo.tests.TestCase):
 
     def setup_files(self, filename='mozball.zip'):
         # Make sure the source file is there.
+        # Original packaged file.
         if not storage.exists(self.file.file_path):
             try:
                 # We don't care if these dirs exist.
@@ -452,6 +453,15 @@ class BasePackagedAppTest(BaseUploadTest, UploadAddon, amo.tests.TestCase):
                 pass
             shutil.copyfile(self.packaged_app_path(filename),
                             self.file.file_path)
+        # Signed packaged file.
+        if not storage.exists(self.file.signed_file_path):
+            try:
+                # We don't care if these dirs exist.
+                os.makedirs(os.path.dirname(self.file.signed_file_path))
+            except OSError:
+                pass
+            shutil.copyfile(self.packaged_app_path(filename),
+                            self.file.signed_file_path)
 
 
 class TestCreatePackagedApp(BasePackagedAppTest):

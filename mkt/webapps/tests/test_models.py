@@ -599,17 +599,18 @@ class TestPackagedManifest(BasePackagedAppTest):
         webapp = self.post_addon(
             data={'packaged': True, 'free_platforms': 'free-firefoxos'})
         version = webapp.current_version
-        file = version.all_files[0]
+        self.file = version.all_files[0]
+        self.setup_files()
         manifest = self._get_manifest_json()
 
         data = json.loads(webapp.get_cached_manifest())
         eq_(data['name'], webapp.name)
         eq_(data['version'], webapp.current_version.version)
-        eq_(data['size'], file.size)
+        eq_(data['size'], self.file.size)
         eq_(data['release_notes'], version.releasenotes)
         eq_(data['package_path'], absolutify(
-            os.path.join(reverse('downloads.file', args=[file.id]),
-                         file.filename)))
+            os.path.join(reverse('downloads.file', args=[self.file.id]),
+                         self.file.filename)))
         eq_(data['developer'], manifest['developer'])
         eq_(data['icons'], manifest['icons'])
         eq_(data['locales'], manifest['locales'])
