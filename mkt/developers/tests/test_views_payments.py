@@ -401,10 +401,12 @@ class TestPaymentAccount(PaymentsBase):
 
     @mock.patch('mkt.developers.models.client')
     def test_get(self, client):
-        client.call_uri.return_value = {'vendorName': 'testval'}
+        package = mock.Mock()
+        package.get.return_value = {'full': {'vendorName': 'testval'}}
+        client.api.bango.package.return_value = package
 
         res = self.client.get(self.url)
-        client.call_uri.assert_called_with(self.account.uri)
+        client.api.bango.package.assert_called_with('123')
 
         eq_(res.status_code, 200)
         output = json.loads(res.content)
