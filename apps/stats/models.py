@@ -374,10 +374,11 @@ class Contribution(amo.models.ModelBase):
 
     def has_refund(self):
         from market.models import Refund
-        return Refund.objects.filter(
+        return (Refund.objects.filter(
             contribution=self, status__in=[amo.REFUND_PENDING,
                                            amo.REFUND_APPROVED,
                                            amo.REFUND_APPROVED_INSTANT])
+            .exists())
 
     def is_refunded(self):
         """

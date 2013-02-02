@@ -8,6 +8,7 @@ from django.shortcuts import get_object_or_404, redirect
 
 import jingo
 from babel import numbers
+from slumber.exceptions import HttpClientError, HttpServerError
 from tower import ugettext as _
 
 import amo
@@ -22,10 +23,12 @@ from devhub.models import ActivityLog
 from elasticutils.contrib.django import S
 from lib.pay_server import client, SolitudeError
 from market.models import AddonPaymentData, Refund
-from mkt.constants.payments import PROVIDERS
+from mkt.constants.payments import (STATUS_COMPLETED, STATUS_FAILED,
+                                    STATUS_PENDING, PROVIDERS)
 from mkt.account.utils import purchase_list
 from mkt.lookup.forms import TransactionRefundForm, TransactionSearchForm
-from mkt.lookup.tasks import email_buyer_refund
+from mkt.lookup.tasks import (email_buyer_refund_approved,
+                              email_buyer_refund_pending)
 from mkt.site import messages
 from mkt.webapps.models import Installed
 from stats.models import DownloadCount, Contribution
@@ -131,13 +134,35 @@ def transaction_refund(request, uuid):
         messages.error(request, str(form.errors))
         return redirect(reverse('lookup.transaction_summary', args=[uuid]))
 
-    # TODO: Solitude API call to request refund (bug 821906: doRefund()).
-    contrib.enqueue_refund(status=amo.REFUND_PENDING,
-                           refund_reason=form.cleaned_data['refund_reason'])
-    email_buyer_refund(contrib)
-    messages.success(
-        request,
-        _('Refund request for this transaction successfully submitted.'))
+    try:
+        res = client.api.bango.refund.post({'uuid': contrib.transaction_id})
+    except (HttpClientError, HttpServerError):
+        # Either doing something not supposed to or Solitude had an issue.
+        messages.error(
+            request,
+            _('You cannot make a refund request for this transaction.'))
+        return redirect(reverse('lookup.transaction_summary', args=[uuid]))
+
+    if res['status'] == STATUS_PENDING:
+        # Create pending Refund.
+        contrib.enqueue_refund(
+            status=amo.REFUND_PENDING,
+            refund_reason=form.cleaned_data['refund_reason'])
+        email_buyer_refund_pending(contrib)
+        messages.success(
+            request, _('Refund for this transaction now pending.'))
+    elif res['status'] == STATUS_COMPLETED:
+        # Create approved Refund.
+        contrib.enqueue_refund(
+            status=amo.REFUND_APPROVED,
+            refund_reason=form.cleaned_data['refund_reason'])
+        email_buyer_refund_approved(contrib)
+        messages.success(
+            request, _('Refund for this transaction successfully approved.'))
+    elif res['status'] == STATUS_FAILED:
+        # Bango no like.
+        messages.error(
+            request, _('Refund request for this transaction failed.'))
 
     return redirect(reverse('lookup.transaction_summary', args=[uuid]))
 

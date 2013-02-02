@@ -14,6 +14,7 @@ from babel import numbers
 from pyquery import PyQuery as pq
 from nose.exc import SkipTest
 from nose.tools import eq_
+from slumber import exceptions
 
 import amo
 from abuse.models import AbuseReport
@@ -25,6 +26,8 @@ from amo.urlresolvers import reverse
 from devhub.models import ActivityLog
 from lib.pay_server import SolitudeError
 from market.models import AddonPaymentData, AddonPremium, Price, Refund
+from mkt.constants.payments import (STATUS_COMPLETED, STATUS_FAILED,
+                                    STATUS_PENDING)
 from mkt.lookup.views import _transaction_summary, transaction_refund
 from mkt.site.fixtures import fixture
 from mkt.webapps.cron import update_weekly_downloads
@@ -341,6 +344,8 @@ class TestTransactionRefund(TestCase):
 
     def setUp(self):
         self.uuid = 45
+        self.summary_url = reverse('lookup.transaction_summary',
+                                   args=[self.uuid])
         self.url = reverse('lookup.transaction_refund', args=[self.uuid])
         self.app = app_factory()
         self.user = UserProfile.objects.get(username='regularuser')
@@ -360,35 +365,82 @@ class TestTransactionRefund(TestCase):
         setattr(self.req, '_messages', messages)
         self.login(self.req.user)
 
-    def test_mark_transaction_refund(self):
-        transaction_refund(self.req, self.uuid)
+    @mock.patch('mkt.lookup.views.client')
+    def test_refund_success(self, solitude):
+        solitude.api.bango.refund.post.return_value = ({
+            'status': STATUS_PENDING})
 
+        res = transaction_refund(self.req, self.uuid)
         refund = Refund.objects.filter(contribution__addon=self.app)
         eq_(refund.count(), 1)
         eq_(refund[0].status, amo.REFUND_PENDING)
         assert self.req.POST['refund_reason'] in refund[0].refund_reason
+        self.assert3xx(res, self.summary_url)
 
+    @mock.patch('mkt.lookup.views.client')
+    def test_refund_failed(self, solitude):
+        solitude.api.bango.refund.post.return_value = (
+            {'status': STATUS_FAILED})
+        res = transaction_refund(self.req, self.uuid)
+        eq_(self.contrib.has_refund(), False)
+        self.assert3xx(res, self.summary_url)
+
+    @mock.patch('mkt.lookup.views.client')
+    def test_refund_slumber_error(self, solitude):
+        for exception in (exceptions.HttpClientError,
+                          exceptions.HttpServerError):
+            solitude.api.bango.refund.post.side_effect = exception
+            res = transaction_refund(self.req, self.uuid)
+            eq_(self.contrib.has_refund(), False)
+            self.assert3xx(res, self.summary_url)
+
+    @mock.patch('mkt.lookup.views.client')
     @mock.patch.object(settings, 'SEND_REAL_EMAIL', True)
-    def test_refund_email(self):
+    def test_refund_pending_email(self, solitude):
+        solitude.api.bango.refund.post.return_value = (
+            {'status': STATUS_PENDING})
+
         transaction_refund(self.req, self.uuid)
         eq_(len(mail.outbox), 1)
         assert self.app.name.localized_string in smart_str(mail.outbox[0].body)
 
-    def test_redirect(self):
-        resp = self.client.post(self.url, {'refund_reason': 'text'})
-        self.assert3xx(resp, reverse('lookup.transaction_summary',
+    @mock.patch('mkt.lookup.views.client')
+    @mock.patch.object(settings, 'SEND_REAL_EMAIL', True)
+    def test_refund_completed_email(self, solitude):
+        solitude.api.bango.refund.post.return_value = (
+            {'status': STATUS_COMPLETED})
+
+        transaction_refund(self.req, self.uuid)
+        eq_(len(mail.outbox), 1)
+        assert self.app.name.localized_string in smart_str(mail.outbox[0].body)
+
+    @mock.patch('mkt.lookup.views.client')
+    def test_redirect(self, solitude):
+        solitude.api.bango.refund.post.return_value = (
+            {'status': STATUS_PENDING})
+
+        res = self.client.post(self.url, {'refund_reason': 'text'})
+        self.assert3xx(res, reverse('lookup.transaction_summary',
                                      args=[self.uuid]))
 
-    def test_already_refunded(self):
+    @mock.patch('mkt.lookup.views.client')
+    def test_already_refunded(self, solitude):
+        solitude.api.bango.refund.post.return_value = (
+            {'status': STATUS_PENDING})
+
         self.contrib.enqueue_refund(status=amo.REFUND_PENDING,
                                     refund_reason='front fell off')
-        resp = self.client.post(self.url, {'refund_reason': 'text'})
-        eq_(resp.status_code, 403)
+        res = self.client.post(self.url, {'refund_reason': 'text'})
+        eq_(res.status_code, 403)
 
-    def test_403(self):
+    @mock.patch('mkt.lookup.views.client')
+    def test_403_reg_user(self, solitude):
+        solitude.api.bango.refund.post.return_value = (
+            {'status': STATUS_PENDING})
+
         self.login(self.user)
-        resp = self.client.post(self.url, {'refund_reason': 'text'})
-        eq_(resp.status_code, 403)
+        res = self.client.post(self.url, {'refund_reason': 'text'})
+        eq_(res.status_code, 403)
 
 
 class TestAppSearch(ESTestCase, SearchTestMixin):
