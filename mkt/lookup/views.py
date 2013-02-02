@@ -93,7 +93,7 @@ def transaction_summary(request, uuid):
 
 def _transaction_summary(uuid):
     """Get transaction details from Solitude API."""
-    contrib = get_object_or_404(Contribution, uuid=uuid)
+    contrib = get_object_or_404(Contribution, transaction_id=uuid)
     # Get tx.
     try:
         transaction = client.lookup_transaction(uuid)
@@ -122,7 +122,7 @@ def _transaction_summary(uuid):
 @login_required
 @permission_required('Transaction', 'Refund')
 def transaction_refund(request, uuid):
-    contrib = get_object_or_404(Contribution, uuid=uuid)
+    contrib = get_object_or_404(Contribution, transaction_id=uuid)
     if contrib.has_refund():
         raise PermissionDenied
 

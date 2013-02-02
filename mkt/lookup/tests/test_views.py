@@ -280,7 +280,8 @@ class TestTransactionSummary(TestCase):
         self.seller_uuid = 456
         self.related_tx_uuid = 789
 
-        Contribution.objects.create(addon=addon_factory(), uuid=self.uuid)
+        Contribution.objects.create(addon=addon_factory(),
+                                    transaction_id=self.uuid)
 
         self.url = reverse('lookup.transaction_summary', args=[self.uuid])
         self.client.login(username='support-staff@mozilla.com',
@@ -344,7 +345,7 @@ class TestTransactionRefund(TestCase):
         AddonUser.objects.create(addon=self.app, user=self.user)
 
         self.contrib = Contribution.objects.create(
-            addon=self.app, user=self.user, uuid=self.uuid,
+            addon=self.app, user=self.user, transaction_id=self.uuid,
             type=amo.CONTRIB_PURCHASE)
 
         self.req = RequestFactory().post(self.url, {'refund_reason': 'text'})
