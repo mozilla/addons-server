@@ -136,11 +136,13 @@ class TestPaymentAccount(amo.tests.TestCase):
         assert not AddonPaymentAccount.objects.exists()
 
     def test_get_details(self):
-        self.client.call_uri.return_value = {
-            'vendorName': 'a', 'some_other_value': 'b'}
+        package = Mock()
+        package.get.return_value = {'full': {'vendorName': 'a',
+                                             'some_other_value': 'b'}}
+        self.client.api.bango.package.return_value = package
 
         res = PaymentAccount.objects.create(
-            name='asdf', user=self.user, uri='foo',
+            name='asdf', user=self.user, uri='/foo/bar/123',
             solitude_seller=self.seller)
 
         deets = res.get_details()
@@ -148,7 +150,8 @@ class TestPaymentAccount(amo.tests.TestCase):
         eq_(deets['vendorName'], 'a')
         assert 'some_other_value' not in deets
 
-        self.client.call_uri.assert_called_with(res.uri)
+        self.client.api.bango.package.assert_called_with('123')
+        package.get.assert_called_with(data={'full': True})
 
     def test_update_account_details(self):
         res = PaymentAccount.objects.create(

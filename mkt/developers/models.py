@@ -15,6 +15,16 @@ from users.models import UserForeignKey
 log = commonware.log.getLogger('z.devhub')
 
 
+class CurlingHelper(object):
+
+    @staticmethod
+    def uri_to_pk(uri):
+        """
+        Convert a resource URI to the primary key of the resource.
+        """
+        return uri.rstrip('/').split('/')[-1]
+
+
 class SolitudeSeller(amo.models.ModelBase):
     # TODO: When Solitude allows for it, this should be updated to be 1:1 with
     # users.
@@ -38,7 +48,7 @@ class SolitudeSeller(amo.models.ModelBase):
         return obj
 
 
-class PaymentAccount(amo.models.ModelBase):
+class PaymentAccount(CurlingHelper, amo.models.ModelBase):
     user = UserForeignKey()
     name = models.CharField(max_length=64)
     solitude_seller = models.ForeignKey(SolitudeSeller)
@@ -120,8 +130,7 @@ class PaymentAccount(amo.models.ModelBase):
                 acc_ref.addon.update(status=amo.STATUS_NULL)
             acc_ref.delete()
 
-        # TODO(solitude): Once solitude supports CancelPackage, that goes here.
-        # ...also, make it a (celery) task.
+        # TODO(solitude): Make this a celery task.
 
         # We would otherwise have delete(), but we don't want to do that
         # without CancelPackage-ing. Once that support is added, we can write a
@@ -136,8 +145,12 @@ class PaymentAccount(amo.models.ModelBase):
 
     def get_details(self):
         data = {'account_name': self.name}
-        package_data = client.call_uri(self.uri)
-        data.update((k, v) for k, v in package_data.items() if
+        package_data = (client.api
+                              .bango
+                              .package(self.uri_to_pk(self.uri))
+                              .get(data={'full': True}))
+
+        data.update((k, v) for k, v in package_data.get('full').items() if
                     k in self.BANGO_PACKAGE_VALUES)
 
         # TODO(solitude): Someday, we'll want to show existing bank details.
@@ -148,7 +161,7 @@ class PaymentAccount(amo.models.ModelBase):
         return u'%s - %s' % (self.created.strftime('%m/%y'), self.name)
 
 
-class AddonPaymentAccount(amo.models.ModelBase):
+class AddonPaymentAccount(CurlingHelper, amo.models.ModelBase):
     addon = models.OneToOneField(
         'addons.Addon', related_name='app_payment_account')
     payment_account = models.ForeignKey(PaymentAccount)
@@ -164,13 +177,6 @@ class AddonPaymentAccount(amo.models.ModelBase):
 
     class Meta:
         db_table = 'addon_payment_account'
-
-    @staticmethod
-    def uri_to_pk(uri):
-        """
-        Convert a resource URI to the primary key of the resource.
-        """
-        return uri.rstrip('/').split('/')[-1]
 
     @classmethod
     def create(cls, provider, addon, payment_account):

@@ -269,7 +269,10 @@ exports.payment_setup = function() {
                         $('#id_' + field).val(data[field]);
                     }
                 }
-            );
+            ).fail(function() {
+                $waiting_overlay.find('h2').text(gettext('Error'));
+                $waiting_overlay.find('p').text(gettext('There was a problem contacting the payment server.'));
+            });
         };
     };
 

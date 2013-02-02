@@ -8,11 +8,11 @@
       {{ csrf() }}
       <div id="bango-account-errors"></div>
       <div>
+        {#
         <div class="field">
           {{ bango_account_form.bankAccountPayeeName.label_tag() }}
           {{ bango_account_form.bankAccountPayeeName }}
         </div>
-        {#
         <div class="field no-border">
           {{ bango_account_form.bankAccountNumber.label_tag() }}
           {{ bango_account_form.bankAccountNumber }}
