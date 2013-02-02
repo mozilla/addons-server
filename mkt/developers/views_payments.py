@@ -1,6 +1,7 @@
 import json
 
 from django import http
+from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import get_object_or_404, redirect
 
 import commonware
@@ -211,7 +212,19 @@ def payments_accounts_delete(request, id):
 @waffle_switch('in-app-payments')
 @dev_required(owner_for_post=True, webapp=True)
 def in_app_config(request, addon_id, addon, webapp=True):
-    account = addon.app_payment_account
+    inapp = addon.premium_type in amo.ADDON_INAPPS
+    if not inapp:
+        messages.error(request,
+                       _('Your app is not configured for in-app payments.'))
+        return redirect(reverse('mkt.developers.apps.payments',
+                                args=[addon.app_slug]))
+    try:
+        account = addon.app_payment_account
+    except ObjectDoesNotExist:
+        messages.error(request, _('No payment account for this app.'))
+        return redirect(reverse('mkt.developers.apps.payments',
+                                args=[addon.app_slug]))
+
     seller_config = get_seller_product(account)
 
     owner = acl.check_addon_ownership(request, addon)
@@ -225,8 +238,8 @@ def in_app_config(request, addon_id, addon, webapp=True):
                                 args=[addon.app_slug]))
 
     return jingo.render(request, 'developers/payments/in-app-config.html',
-                        {'addon': addon, 'seller_config': seller_config,
-                         'account': account, 'owner': owner})
+                        {'account': account, 'addon': addon, 'inapp': inapp,
+                         'owner': owner, 'seller_config': seller_config})
 
 
 @login_required

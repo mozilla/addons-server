@@ -9,12 +9,14 @@ from pyquery import PyQuery as pq
 import amo
 import amo.tests
 from amo.urlresolvers import reverse
-from addons.models import Addon, AddonCategory, AddonDeviceType, AddonUser, Category
+from addons.models import (Addon, AddonCategory, AddonDeviceType, AddonUser,
+                           Category)
 from market.models import Price
 from users.models import UserProfile
 
 import mkt
-from mkt.developers.models import AddonPaymentAccount, PaymentAccount, SolitudeSeller
+from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
+                                   SolitudeSeller)
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import AddonExcludedRegion as AER, ContentRating
 
@@ -23,8 +25,8 @@ def setup_payment_account(app, user):
     seller = SolitudeSeller.objects.create(user=user, uuid='uid')
     payment = PaymentAccount.objects.create(user=user, solitude_seller=seller)
     return AddonPaymentAccount.objects.create(addon=app,
-        product_uri='/path/to/%s/' % app.pk, payment_account=payment, set_price=1)
-
+        product_uri='/path/to/%s/' % app.pk, payment_account=payment,
+        set_price=1)
 
 
 class InappTest(amo.tests.TestCase):
@@ -32,6 +34,7 @@ class InappTest(amo.tests.TestCase):
     def setUp(self):
         self.create_switch('in-app-payments')
         self.app = Addon.objects.get(pk=337141)
+        self.app.update(premium_type=amo.ADDON_FREE_INAPP)
         self.user = UserProfile.objects.get(pk=31337)
         self.other = UserProfile.objects.get(pk=999)
         self.login(self.user)
@@ -88,6 +91,14 @@ class TestInappConfig(InappTest):
         # Developer can read, but not reset.
         eq_(self.client.get(self.url).status_code, 200)
         eq_(self.client.post(self.url).status_code, 403)
+
+    def test_not_inapp(self, solitude):
+        self.app.update(premium_type=amo.ADDON_PREMIUM)
+        eq_(self.client.get(self.url).status_code, 302)
+
+    def test_no_account(self, solitude):
+        self.app.app_payment_account.delete()
+        eq_(self.client.get(self.url).status_code, 302)
 
 
 @mock.patch('mkt.developers.views_payments.client')
@@ -154,7 +165,7 @@ class TestPayments(amo.tests.TestCase):
                      'free_platforms': ['free-%s' % dt.class_name for dt in
                                         self.webapp.device_types],
                      'paid_platforms': ['paid-%s' % dt.class_name for dt in
-                                        self.webapp.device_types],}
+                         self.webapp.device_types]}
         base.update(extension)
         return base
 
@@ -416,7 +427,6 @@ class TestPaymentAccount(PaymentsBase):
         eq_(output['vendorName'], 'testval')
 
 
-
 class TestPaymentAccountsForm(PaymentsBase):
 
     def setUp(self):
@@ -440,7 +450,6 @@ class TestPaymentDelete(PaymentsBase):
         super(TestPaymentDelete, self).setUp()
         self.url = reverse('mkt.developers.bango.delete_payment_account',
                            args=[self.account.pk])
-
 
     def test_login_required(self):
         self.client.logout()
