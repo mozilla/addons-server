@@ -4,11 +4,10 @@ import jinja2
 from jingo import register, env
 from tower import ugettext as _
 
-from amo.helpers import login_link
-from amo.utils import chunked
 from addons.helpers import new_context
-from cake.urlresolvers import remora_url
-from amo.urlresolvers import reverse
+from amo.helpers import login_link
+from amo.urlresolvers import remora_url, reverse
+from amo.utils import chunked
 
 
 @register.inclusion_tag('bandwagon/collection_listing_items.html')

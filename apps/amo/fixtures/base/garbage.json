@@ -1,14 +1,5 @@
 [
     {
-      "pk": 2,
-      "model": "cake.session",
-      "fields": {
-          "session_id": "17f051c99f083244bf653d5798111216",
-          "expires": 1,
-          "data": "User|a:1:{s:2:\"id\";s:1:\"1\";}"
-      }
-    },
-    {
         "pk": 2567,
         "model": "stats.addonsharecount",
         "fields": {

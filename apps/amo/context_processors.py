@@ -8,10 +8,9 @@ import waffle
 
 import amo
 from amo.helpers import loc
-from amo.urlresolvers import reverse
+from amo.urlresolvers import remora_url, reverse
 from amo.utils import memoize
 from access import acl
-from cake.urlresolvers import remora_url
 from zadmin.models import get_config
 
 

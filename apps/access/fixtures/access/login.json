@@ -16,15 +16,6 @@
     }
   },
   {
-      "pk": 2,
-      "model": "cake.session",
-      "fields": {
-          "session_id": "1234",
-          "expires": 1426308304,
-          "data": "User|a:1:{s:2:\"id\";s:1:\"1\";}"
-      }
-  },
-  {
     "pk": 2,
     "model": "users.userprofile",
     "fields": {
@@ -38,15 +29,6 @@
         "created": "2010-09-08 07:06:05",
         "modified": "2010-09-08 07:06:05"
     }
-  },
-  {
-      "pk": 3,
-      "model": "cake.session",
-      "fields": {
-          "session_id": "4567",
-          "expires": 1426308304,
-          "data": "User|a:1:{s:2:\"id\";s:1:\"2\";}"
-      }
   },
   {
       "pk": 1,

@@ -91,7 +91,6 @@ INSTALLED_APPS += (
 # TODO: I want to get rid of these eventually but it breaks some junk now.
 # MIDDLEWARE_CLASSES.remove('mobility.middleware.DetectMobileMiddleware')
 # MIDDLEWARE_CLASSES.remove('mobility.middleware.XMobileMiddleware')
-# MIDDLEWARE_CLASSES.remove('cake.middleware.CookieCleaningMiddleware')
 MIDDLEWARE_CLASSES = list(MIDDLEWARE_CLASSES)
 if USE_CARRIER_URLS:
     MIDDLEWARE_CLASSES.insert(0,

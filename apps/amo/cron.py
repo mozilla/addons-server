@@ -1,5 +1,4 @@
 import itertools
-import calendar
 from datetime import datetime, timedelta
 from subprocess import Popen, PIPE
 
@@ -13,9 +12,8 @@ import commonware.log
 import amo
 from amo.utils import chunked
 from bandwagon.models import Collection
-from cake.models import Session
 from constants.base import VALID_STATUSES
-from devhub.models import ActivityLog, LegacyAddonLog
+from devhub.models import ActivityLog
 from lib.es.utils import raise_if_reindex_in_progress
 from sharing import SERVICES_LIST, LOCAL_SERVICES_LIST
 from stats.models import AddonShareCount, Contribution
@@ -30,7 +28,6 @@ def gc(test_result=True):
     """Site-wide garbage collections."""
 
     days_ago = lambda days: datetime.today() - timedelta(days=days)
-    one_hour_ago = datetime.today() - timedelta(hours=1)
 
     log.debug('Collecting data to delete')
 
@@ -68,11 +65,6 @@ def gc(test_result=True):
     translation.activate(original_language)
 
     AddonShareCount.objects.exclude(service__in=set(service_names)).delete()
-
-    log.debug('Cleaning up cake sessions.')
-    # cake.Session uses Unix Timestamps
-    two_days_ago = calendar.timegm(days_ago(2).utctimetuple())
-    Session.objects.filter(expires__lt=two_days_ago).delete()
 
     log.debug('Cleaning up test results extraction cache.')
     # lol at check for '/'

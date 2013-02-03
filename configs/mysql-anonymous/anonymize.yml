@@ -23,7 +23,6 @@ database:
         - auth_user_user_permissions
         - auth_user
         - bluevia
-        - cake_sessions
         - client_data
         - django_admin_log
         - django_session

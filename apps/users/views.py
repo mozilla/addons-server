@@ -543,7 +543,7 @@ def logout(request):
         if prefixer:
             next = prefixer.fix(next)
     response = http.HttpResponseRedirect(next)
-    # Fire logged out signal so we can be decoupled from cake.
+    # Fire logged out signal.
     logged_out.send(None, request=request, response=response)
     return response
 

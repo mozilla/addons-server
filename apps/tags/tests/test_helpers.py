@@ -1,6 +1,5 @@
 from django import test
 
-import jingo
 from jingo.tests.test_helpers import render
 from mock import Mock
 from nose.tools import eq_
@@ -34,12 +33,6 @@ class TestHelpers(test.TestCase):
             'request': request,
             'addon': addon,
             'tags': tags}
-
-        # initialize jingo
-        jingo.load_helpers()
-        cake_csrf_token = lambda: ''
-        cake_csrf_token.__name__ = 'cake_csrf_token'
-        jingo.register.function(cake_csrf_token)
 
         # no tags, no list
         s = render('{{ tag_list(addon) }}', ctx)

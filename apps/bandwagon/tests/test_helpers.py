@@ -10,7 +10,6 @@ from amo.urlresolvers import reverse
 from bandwagon.helpers import (user_collection_list, barometer,
                                collection_favorite)
 from bandwagon.models import Collection
-from cake.urlresolvers import remora_url
 from users.models import UserProfile
 
 

@@ -357,7 +357,6 @@ MIDDLEWARE_CLASSES = (
 # Auth
 AUTHENTICATION_BACKENDS = (
     'users.backends.AmoUserBackend',
-    'cake.backends.SessionBackend',
 )
 AUTH_PROFILE_MODULE = 'users.UserProfile'
 
@@ -400,7 +399,6 @@ INSTALLED_APPS = (
     'versions',
     'mkt.webapps',
     'zadmin',
-    'cake',
 
     # Third party apps
     'djcelery',
@@ -987,10 +985,6 @@ LOGOUT_REDIRECT_URL = "/"
 # In the case of duplicates, the process is recursive up to this number
 # of times.
 MAX_GEN_USERNAME_TRIES = 50
-
-# Legacy Settings
-# used by old-style CSRF token
-CAKE_SESSION_TIMEOUT = 8640
 
 # PayPal Settings
 PAYPAL_API_VERSION = '78'

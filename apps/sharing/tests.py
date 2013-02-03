@@ -5,7 +5,6 @@ from django.conf import settings
 from django.contrib.auth.models import User as DjangoUser
 from django.utils import translation, encoding
 
-import jingo
 from mock import Mock, patch
 from nose.tools import eq_
 from pyquery import PyQuery as pq
@@ -30,11 +29,6 @@ class SharingHelpersTestCase(test.TestCase):
         ctx = {'request': request,
                'APP': request.APP,
                'LANG': translation.get_language()}
-
-        # disable cake csrf token
-        cake_csrf_token = lambda: ''
-        cake_csrf_token.__name__ = 'cake_csrf_token'
-        jingo.register.function(cake_csrf_token)
 
         doc = pq(sharing_box(ctx))
         self.assert_(doc.html())
