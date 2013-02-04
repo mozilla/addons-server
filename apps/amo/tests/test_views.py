@@ -17,7 +17,6 @@ import amo.tests
 from access import acl
 from access.models import Group, GroupUser
 from addons.models import Addon, AddonUser
-from amo.helpers import locale_url, urlparams
 from amo.pyquery_wrapper import PyQuery
 from amo.tests import check_links
 from amo.urlresolvers import reverse
@@ -286,17 +285,6 @@ class TestOtherStuff(amo.tests.TestCase):
         doc = pq(test.Client().get('/', follow=True).content)
         eq_(doc('#site-nav #more .more-lang a').attr('href'),
             reverse('browse.language-tools'))
-
-    def test_personas_subnav(self):
-        doc = pq(self.client.get(reverse('home')).content)
-        base_url = reverse('browse.personas')
-        expected = [
-            ('Themes', base_url),
-            ('Most Popular', urlparams(base_url, sort='popular')),
-            ('Top Rated', urlparams(base_url, sort='rating')),
-            ('Newest', urlparams(base_url, sort='created')),
-        ]
-        check_links(expected, doc('#site-nav #themes a'))
 
     def test_mobile_link_firefox(self):
         doc = pq(test.Client().get('/firefox', follow=True).content)
