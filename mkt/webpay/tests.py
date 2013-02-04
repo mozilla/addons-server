@@ -2,12 +2,15 @@ from decimal import Decimal
 import json
 
 from django.conf import settings
+from django.core import mail
 
 from mock import patch
 from nose.tools import eq_
 
 from market.models import Price, PriceCurrency
 from mkt.api.tests.test_oauth import BaseOAuth
+from mkt.site.fixtures import fixture
+from stats.models import Contribution
 
 
 @patch.object(settings, 'SITE_URL', 'http://api/')
@@ -55,3 +58,50 @@ class TestPrices(BaseOAuth):
         eq_(res.status_code, 200)
         data = json.loads(res.content)
         self.assertSetEqual(self.get_currencies(data), ['USD'])
+
+
+@patch.object(settings, 'SITE_URL', 'http://api/')
+class TestNotification(BaseOAuth):
+    fixtures = fixture('webapp_337141', 'user_2519')
+
+    def setUp(self):
+        super(TestNotification, self).setUp(api_name='webpay')
+        self.grant_permission(self.profile, 'Transaction:NotifyFailure')
+        self.contribution = Contribution.objects.create(addon_id=337141,
+                                                        uuid='sample:uuid')
+        self.list_url = ('api_dispatch_list', {'resource_name': 'failure'})
+        self.get_url = ['api_dispatch_detail',
+                        {'resource_name': 'failure',
+                         'pk': self.contribution.pk}]
+
+    def test_list_allowed(self):
+        self._allowed_verbs(self.get_url, ['patch'])
+
+    def test_notify(self):
+        url = 'https://someserver.com'
+        res = self.client.patch(self.get_url,
+                                data=json.dumps({'url': url,  'attempts': 5}))
+        eq_(res.status_code, 202)
+        eq_(len(mail.outbox), 1)
+        msg = mail.outbox[0]
+        assert url in msg.body
+        eq_(msg.recipients(), [u'steamcube@mozilla.com'])
+
+    def test_no_permission(self):
+        self.profile.groups.all().delete()
+        res = self.client.patch(self.get_url, data=json.dumps({}))
+        eq_(res.status_code, 401)
+
+    def test_missing(self):
+        res = self.client.patch(self.get_url, data=json.dumps({}))
+        eq_(res.status_code, 400)
+
+    def test_not_there(self):
+        self.get_url[1]['pk'] += 1
+        res = self.client.patch(self.get_url, data=json.dumps({}))
+        eq_(res.status_code, 404)
+
+    def test_no_uuid(self):
+        self.contribution.update(uuid=None)
+        res = self.client.patch(self.get_url, data=json.dumps({}))
+        eq_(res.status_code, 404)

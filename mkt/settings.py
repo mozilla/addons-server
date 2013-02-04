@@ -86,6 +86,7 @@ INSTALLED_APPS += (
     'mkt.themes',
     'mkt.zadmin',
     'mkt.webapps',
+    'mkt.webpay',
 )
 
 # TODO: I want to get rid of these eventually but it breaks some junk now.

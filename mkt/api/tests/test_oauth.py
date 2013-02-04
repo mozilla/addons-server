@@ -13,6 +13,7 @@ from mock import Mock, patch
 from nose.tools import eq_
 from mkt.api.models import Access, generate
 
+from access.models import Group, GroupUser
 from amo.tests import TestCase
 from amo.helpers import urlparams
 from amo.urlresolvers import reverse
@@ -168,10 +169,18 @@ class TestBaseOAuth(BaseOAuth):
         eq_(res.status_code, 401)
         eq_(json.loads(res.content)['reason'], errors['headers'])
 
-    def test_request_no_groups_for_you(self):
-        admin = User.objects.get(email='admin@mozilla.com')
-        self.access.user = admin
-        self.access.save()
+    def add_group_user(self, user, *names):
+        for name in names:
+            group = Group.objects.get(name=name)
+            GroupUser.objects.create(user=self.profile, group=group)
+
+    def test_request_admin(self):
+        self.add_group_user(self.profile, 'Admins')
         res = self.client.get(self.url)
         eq_(res.status_code, 401)
         eq_(json.loads(res.content)['reason'], errors['roles'])
+
+    def test_request_has_role(self):
+        self.add_group_user(self.profile, 'App Reviewers', 'Support Staff')
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)

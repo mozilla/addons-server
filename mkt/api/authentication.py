@@ -10,6 +10,7 @@ from tastypie import http
 from tastypie.authentication import Authentication
 from tastypie.authorization import Authorization
 
+from access import acl
 from access.middleware import ACLMiddleware
 from mkt.api.models import Access
 
@@ -40,6 +41,18 @@ class AppOwnerAuthorization(OwnerAuthorization):
     def check_owner(self, request, object):
         # If the user on the object and the amo_user match, we are golden.
         return object.authors.filter(user__id=request.amo_user.pk)
+
+
+class PermissionAuthorization(Authorization):
+
+    def __init__(self, app, action, *args, **kw):
+        self.app, self.action = app, action
+
+    def is_authorized(self, request, object=None):
+        if acl.action_allowed(request, self.app, self.action):
+            log.info('Permission autorization failed')
+            return True
+        return False
 
 
 class OAuthError(RuntimeError):
@@ -100,10 +113,11 @@ class MarketplaceAuthentication(Authentication):
                      % request.amo_user.pk)
             return self._error('terms')
 
-        # Do not allow any user with any roles to use the API.
-        # Just in case.
-        if request.amo_user.groups.all():
-            log.info(u'Attempt to use API with roles, user: %s'
+        # But you cannot have one of these roles.
+        denied_roles = set(['Admins'])
+        roles = set(request.amo_user.groups.values_list('name', flat=True))
+        if roles and roles.intersection(denied_roles):
+            log.info(u'Attempt to use API with denied role, user: %s'
                      % request.amo_user.pk)
             return self._error('roles')
 
