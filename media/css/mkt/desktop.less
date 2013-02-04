@@ -157,7 +157,7 @@ body {
         padding: 0 40px;
         width: 25%;
         position: relative;
-        &:after,
+        + .group:after,
         + .group:before {
             content: "";
             display: block;
@@ -166,19 +166,16 @@ body {
             top: 0;
             width: 1px;
         }
-        &:after {
+        + .group:after {
             .gradient(~'top, rgba(185,190,195,0), rgba(185,190,195,.75) 25%, rgba(185,190,195,.75) 75%, rgba(185,190,195,0) 100%');
-            right: 0;
+            left: 0;
         }
         + .group:before {
             .gradient(~'top, rgba(226,228,231,0), rgba(226,228,231,.75) 25%, rgba(226,228,231,.75) 75%, rgba(226,228,231,0) 100%');
-            left: 0;
+            left: 1px;
         }
         &:first-child {
             width: 50%;
-        }
-        &:last-child:after {
-            display: none;
         }
         a {
             display: block;
