@@ -8,7 +8,6 @@
         var $overlay = $('.overlay.show');
         if ($overlay.length) {
             $overlay.removeClass('show');
-            z.body.removeClass('overlayed');
             $overlay.trigger('overlay_dismissed');
         }
     }
@@ -28,8 +27,11 @@
             e.preventDefault();
             dismiss();
         }
-    }).on('dismiss', '.overlay', dismiss
-    ).on('click', '.overlay .dismiss', _pd(dismiss));
+    }).on('dismiss', '.overlay', dismiss)
+      .on('click', '.overlay .dismiss', _pd(dismiss))
+      .on('overlay_dismissed', function() {
+          z.body.removeClass('overlayed');
+      });
 
 })();
 

@@ -146,14 +146,11 @@ def payment_accounts(request):
                 reverse('mkt.developers.bango.payment_account', args=[acc.pk]),
             'delete-url':
                 reverse('mkt.developers.bango.delete_payment_account',
-                        args=[acc.pk])
+                        args=[acc.pk]),
+            'agreement-url':
+                reverse('mkt.developers.bango.agreement', args=[acc.pk]),
+            'agreement': 'accepted' if acc.agreed_tos else 'rejected'
         }
-        data['agreement'] = 'rejected'
-        try:
-            if _agreement(request, acc.pk)['accepted']:
-                data['agreement'] = 'accepted'
-        except KeyError:
-            pass
         return data
 
     return map(account, accounts)
@@ -185,7 +182,10 @@ def payments_accounts_add(request):
         raise  # We want to see these exceptions!
         return http.HttpResponse(
             _(u'Could not connect to payment server.'), status=400)
-    return {'pk': obj.pk}
+    return {
+        'pk': obj.pk,
+        'agreement-url': reverse('mkt.developers.bango.agreement', args=[obj.pk]),
+    }
 
 
 @write
@@ -273,21 +273,18 @@ def get_seller_product(account):
                   .get_object_or_404())
 
 
-def _agreement(request, id):
+# TODO: move these into a tastypie API.
+@login_required
+@json_view
+def agreement(request, id):
     account = get_object_or_404(models.PaymentAccount, pk=id,
                                 user=request.user)
     # It's a shame we have to do another get to find this out.
     package = client.api.bango.package(account.uri).get_object_or_404()
     if request.method == 'POST':
         # Set the agreement.
+        account.update(agreed_tos=True)
         return (client.api.bango.sbi.post(
                 data={'seller_bango': package['resource_uri']}))
     return (client.api.bango.sbi.agreement
             .get_object(data={'seller_bango': package['resource_uri']}))
-
-
-# TODO: move these into a tastypie API.
-@login_required
-@json_view
-def agreement(request, id):
-    return _agreement(request, id)

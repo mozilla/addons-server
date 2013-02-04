@@ -8,10 +8,7 @@ define('payments', [], function() {
         overlay.html($('#' + name + '-template').html())
                .addClass('show')
                .on('click', '.close', _pd(function() {
-                   // TODO: Generalize this with the event listeners in overlay.js.
-                   overlay.trigger('overlay_dismissed');
-                   z.body.removeClass('overlayed');
-                   overlay.remove();
+                   overlay.trigger('overlay_dismissed').remove();
                }));
         return overlay;
     }

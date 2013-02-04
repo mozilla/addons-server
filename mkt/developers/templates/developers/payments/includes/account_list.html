@@ -27,12 +27,14 @@
 </script>
 
 <script type="text/template" id="account-row-template">
-  <tr data-account="{id}"
-      data-delete-url="{delete-url}"
-      data-account-url="{account-url}">
+  <tr class="{agreement}"
+      data-account="{id}"
+      data-account-url="{account-url}"
+      data-agreement-url="{agreement-url}"
+      data-delete-url="{delete-url}">
     <td><div class="terms-accepted {agreement}"></div></td>
     <td>{name}</td>
-    <td><a href="#" class="modify-account">{{ _('Modify') }}</a></td>
+    <td><a href="#" class="modify-account">{{ _('Modify') }}</a> <a href="#" class="accept-tos">{{ _('Accept Terms of Service') }}</a></td>
     <td><a href="#" class="delete-account">{{ _('Delete') }}</a></td>
   </tr>
 </script>

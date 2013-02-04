@@ -404,15 +404,17 @@
 }
 
 .terms-accepted {
-    color: orangered;
     font-family: monospace;
+}
+
+.accepted .terms-accepted {
+    color: green;
     &:before {
-        content: "\2717";
+        content: "\2713";
     }
-    &.accepted {
-        color: green;
-        &:before {
-            content: "\2713";
-        }
-    }
+}
+
+.accepted .accept-tos,
+.rejected .modify-account {
+    display: none;
 }

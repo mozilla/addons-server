@@ -214,7 +214,6 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
 
 
 class UpsellForm(happyforms.Form):
-
     upsell_of = AddonChoiceField(queryset=Addon.objects.none(), required=False,
                                  label=_lazy(u'This is a paid upgrade of'),
                                  empty_label=_lazy(u'Not an upgrade'))
@@ -259,7 +258,6 @@ class UpsellForm(happyforms.Form):
 
 
 class BangoPaymentAccountForm(happyforms.Form):
-
     bankAccountPayeeName = forms.CharField(
         max_length=50, label=_lazy(u'Account Holder Name'))
     companyName = forms.CharField(
@@ -349,8 +347,8 @@ class BangoAccountListForm(happyforms.Form):
 
         super(BangoAccountListForm, self).__init__(*args, **kwargs)
 
-        self.fields['accounts'].queryset = (
-            PaymentAccount.objects.filter(user=user, inactive=False))
+        self.fields['accounts'].queryset = PaymentAccount.objects.filter(
+            user=user, inactive=False, agreed_tos=True)
 
         try:
             current_account = AddonPaymentAccount.objects.get(addon=self.addon)

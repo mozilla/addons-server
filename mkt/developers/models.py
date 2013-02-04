@@ -51,6 +51,7 @@ class SolitudeSeller(amo.models.ModelBase):
 class PaymentAccount(CurlingHelper, amo.models.ModelBase):
     user = UserForeignKey()
     name = models.CharField(max_length=64)
+    agreed_tos = models.BooleanField()
     solitude_seller = models.ForeignKey(SolitudeSeller)
 
     # These two fields can go away when we're not 1:1 with SolitudeSellers.
