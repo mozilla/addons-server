@@ -19,7 +19,6 @@ from django.utils.encoding import smart_str
 import mock
 import path
 from nose.tools import eq_
-import waffle
 
 import amo.tests
 from amo.urlresolvers import reverse
@@ -740,7 +739,8 @@ class TestFileFromUpload(UploadTest):
     def test_file_hash(self):
         upload = self.upload('jetpack')
         f = File.from_upload(upload, self.version, self.platform)
-        eq_(f.hash, upload.hash)
+        assert f.hash.startswith('sha256:')
+        assert len(f.hash) == 64 + 7  # 64 for hash, 7 for 'sha256:'
 
     def test_no_restart_true(self):
         upload = self.upload('jetpack')
@@ -834,18 +834,10 @@ class TestFileFromUpload(UploadTest):
         f = File.from_upload(upload, self.version, self.platform, data)
         eq_(f.status, amo.STATUS_LITE_AND_NOMINATED)
 
-    @mock.patch.object(waffle, 'switch_is_active', lambda x: True)
     def test_file_hash_paranoia(self):
         upload = self.upload('extension')
         f = File.from_upload(upload, self.version, self.platform)
         assert f.hash.startswith('sha256:035ae07b4988711')
-
-    @mock.patch.object(waffle, 'switch_is_active', lambda x: False)
-    def test_file_hash_no_paranoia(self):
-        upload = self.upload('extension')
-        upload.hash = 'oops'
-        f = File.from_upload(upload, self.version, self.platform)
-        assert f.hash.startswith('oops')
 
     def test_strict_compat(self):
         upload = self.upload('strict-compat')
