@@ -22,7 +22,6 @@ from django.utils.encoding import smart_str
 import commonware
 from django_statsd.clients import statsd
 from uuidfield.fields import UUIDField
-import waffle
 
 import amo
 import amo.models
@@ -176,9 +175,7 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         elif (version.addon.status in amo.LITE_STATUSES
               and version.addon.trusted):
             f.status = version.addon.status
-        f.hash = (f.generate_hash(upload.path)
-                  if waffle.switch_is_active('file-hash-paranoia')
-                  else upload.hash)
+        f.hash = f.generate_hash(upload.path)
         if upload.validation:
             validation = json.loads(upload.validation)
             if validation['metadata'].get('requires_chrome'):

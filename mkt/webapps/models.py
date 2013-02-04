@@ -322,9 +322,7 @@ class Webapp(Addon):
         file = version.files.latest()
         file.filename = file.generate_filename(extension='.webapp')
         file.size = storage.size(path)
-        file.hash = (file.generate_hash(path) if
-                     waffle.switch_is_active('file-hash-paranoia') else
-                     upload.hash)
+        file.hash = file.generate_hash(path)
         log.info('Updated file hash to %s' % file.hash)
         file.save()
 
