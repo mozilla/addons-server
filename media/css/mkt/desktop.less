@@ -28,56 +28,57 @@ body {
     }
     .grid .mkt-tile .icon {
         background: url(../../img/mkt/glyphs/desktop/sprite.png) no-repeat;
-        height: 96px;
+        background-size: 86px auto;
+        height: 86px;
         position: absolute;
         top: 50%;
         left: 50%;
-        margin: -58px 0 0 -48px;
-        width: 96px;
+        margin: -50px 0 0 -43px;
+        width: 86px;
         //&.cat-books-reference {
         //    background-position: 0 0;
         //}
         &.cat-business {
-            background-position: 0 -96px;
+            background-position: 0 -86px;
         }
         &.cat-education {
-            background-position: 0 -192px;
+            background-position: 0 -172px;
         }
         &.cat-entertainment-sports {
-            background-position: 0 -288px;
+            background-position: 0 -258px;
         }
         &.cat-games {
-            background-position: 0 -384px;
+            background-position: 0 -344px;
         }
         &.cat-health-fitness {
-            background-position: 0 -480px;
+            background-position: 0 -430px;
         }
         &.cat-lifestyle {
-            background-position: 0 -576px;
+            background-position: 0 -516px;
         }
         &.cat-music {
-            background-position: 0 -672px;
+            background-position: 0 -602px;
         }
         &.cat-news-weather {
-            background-position: 0 -768px;
+            background-position: 0 -688px;
         }
         &.cat-photos-media {
-            background-position: 0 -864px;
+            background-position: 0 -774px;
         }
         &.cat-productivity {
-            background-position: 0 -960px;
+            background-position: 0 -860px;
         }
         &.cat-shopping {
-            background-position: 0 -1056px;
+            background-position: 0 -946px;
         }
         &.cat-social {
-            background-position: 0 -1152px;
+            background-position: 0 -1032px;
         }
         &.cat-travel {
-            background-position: 0 -1248px;
+            background-position: 0 -1118px;
         }
         &.cat-utilities {
-            background-position: 0 -1344px;
+            background-position: 0 -1204px;
         }
     }
     h2 {
@@ -128,29 +129,25 @@ body {
     .box-shadow(0 1px 0 #e6e9eb inset);
     border-top: 1px solid #c7c9cc;
     background: @grain-src rgb(216, 220, 224);
+    font-size: 14px;
+    line-height: 30px;
     .devhub {
         background: url(../../img/mkt/icons/rocket.png) 50px 35px no-repeat;
-        margin: -30px -40px -30px;
-        padding: 30px 40px 30px 112px;
-        h1, b {
-            line-height: 30px;
-        }
+        margin: -30px 0 -30px;
+        padding: 30px 0 30px 114px;
         h1 {
             color: @dark-gray;
             font-size: 22px;
             text-shadow: 0 1px 1px rgba(245,247,250,.75);
         }
         b {
-            font-size: 14px;
-            font-weight: 400;
+            font-weight: 300;
+            color: @link;
         }
         &:hover {
             text-decoration: none;
             h1 {
                 color: @black;
-            }
-            b {
-                color: @link-dark;
             }
         }
     }
@@ -184,7 +181,7 @@ body {
             display: none;
         }
         a {
-            display: block;
+            display: inline-block;
         }
     }
 }
@@ -262,6 +259,5 @@ body:not(.force-mobile) .content-rating {
     }
     .categories .grid .mkt-tile .icon {
         background-image: url(../../img/mkt/glyphs/desktop/sprite-2x.png);
-        background-size: 96px auto;
     }
 }
