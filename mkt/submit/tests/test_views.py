@@ -420,7 +420,6 @@ class BasePackagedAppTest(BaseUploadTest, UploadAddon, amo.tests.TestCase):
         request_finished.disconnect(es.hold.process,
                                     dispatch_uid='process_es_tasks_on_finish')
         super(BasePackagedAppTest, self).setUp()
-        self.create_switch(name='allow-packaged-app-uploads')
         self.app = Webapp.objects.get(pk=337141)
         self.app.update(is_packaged=True)
         self.version = self.app.current_version

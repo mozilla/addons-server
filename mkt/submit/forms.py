@@ -189,7 +189,6 @@ class NewWebappForm(DeviceTypeForm, NewWebappVersionForm):
         queryset=FileUpload.objects.filter(valid=True),
         error_messages={'invalid_choice': _lazy(
             u'There was an error with your upload. Please try again.')})
-
     packaged = forms.BooleanField(required=False)
 
     def _add_error(self, msg):
@@ -210,11 +209,6 @@ class NewWebappForm(DeviceTypeForm, NewWebappVersionForm):
 
     def is_packaged(self):
         return self._is_packaged or self.cleaned_data.get('packaged', False)
-
-    def __init__(self, *args, **kw):
-        super(NewWebappForm, self).__init__(*args, **kw)
-        if not waffle.switch_is_active('allow-packaged-app-uploads'):
-            del self.fields['packaged']
 
 
 class PaypalSetupForm(happyforms.Form):

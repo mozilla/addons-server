@@ -21,7 +21,7 @@ from files.models import FileUpload
 from files.tests.test_models import UploadTest as BaseUploadTest
 from files.utils import WebAppParser
 
-from mkt.developers.views import _upload_manifest, standalone_hosted_upload
+from mkt.developers.views import standalone_hosted_upload
 
 
 class TestWebApps(amo.tests.TestCase, amo.tests.AMOPaths):
@@ -169,7 +169,6 @@ class TestStandaloneValidation(BaseUploadTest):
         return reverse('mkt.developers.upload_detail', args=[uuid])
 
     def test_context(self):
-        self.create_switch('allow-packaged-app-uploads')
         res = self.client.get(reverse('mkt.developers.validate_addon'))
         eq_(res.status_code, 200)
         doc = pq(res.content)
@@ -210,7 +209,6 @@ class TestStandaloneValidation(BaseUploadTest):
         self.detail_view(self.hosted_detail, upload)
 
     def test_packaged_detail(self):
-        self.create_switch('allow-packaged-app-uploads')
         data = open(get_image_path('animated.png'), 'rb')
         self.client.post(self.packaged_upload, {'upload': data})
         upload = FileUpload.objects.get(name='animated.png')

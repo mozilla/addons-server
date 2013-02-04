@@ -372,7 +372,6 @@ def upload_new(*args, **kwargs):
     return _upload(*args, **kwargs)
 
 
-@waffle_switch('allow-packaged-app-uploads')
 @anonymous_csrf
 def standalone_packaged_upload(request):
     return _upload(request, is_standalone=True)

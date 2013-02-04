@@ -5,24 +5,19 @@ import urlparse
 
 from django.conf import settings
 from django.core.cache import cache
-from django.utils.encoding import iri_to_uri
-from django.utils.http import http_date, urlencode
+from django.utils.http import http_date
 
-from mock import Mock, patch
+from mock import patch
 from nose import SkipTest
 from nose.tools import eq_
 from pyquery import PyQuery as pq
-import waffle
 
 import amo
 import amo.tests
-from amo.tests import app_factory
 from amo.utils import Message
 from amo.urlresolvers import reverse
-from addons.models import Addon
 from files.helpers import FileViewer, DiffHelper
 from files.models import File
-from market.models import AddonPurchase
 from mkt.webapps.models import Webapp
 from users.models import UserProfile
 
@@ -38,7 +33,6 @@ class FilesBase(object):
                                  password='password')
 
     def setUp(self):
-        self.create_switch(name='allow-packaged-app-uploads')
         self.app = Webapp.objects.get(pk=337141)
         self.app.update(is_packaged=True, status=amo.WEBAPPS_UNREVIEWED_STATUS)
         self.dev = self.app.authors.all()[0]

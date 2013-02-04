@@ -11,11 +11,9 @@
     <h1>{{ _('Validate an App') }}</h1>
   </header>
 
-  <section id="upload-file" class="island tabbable {% if waffle.switch('allow-packaged-app-uploads') %}spacer{% endif %}">
+  <section id="upload-file" class="island tabbable spacer">
     <div class="hosted tab active">
-      {% if waffle.switch('allow-packaged-app-uploads') %}
-        <h2><a href="#">Hosted</a></h2>
-      {% endif %}
+      <h2><a href="#">Hosted</a></h2>
       <h3>{{ _("Submit your app manifest URL") }}</h3>
       <div class="upload-status">
         <label>
@@ -49,12 +47,10 @@
       </div>
     </div>
 
-    {% if waffle.switch('allow-packaged-app-uploads') %}
     <div class="packaged tab">
-        <h2><a href="#">Packaged</a></h2>
-        <input type="file" id="upload-app" data-upload-url="{{ upload_packaged_url }}" />
+      <h2><a href="#">Packaged</a></h2>
+      <input type="file" id="upload-app" data-upload-url="{{ upload_packaged_url }}" />
     </div>
-    {% endif %}
   </section>
 
   <p class="learn-mdn"><a href="{{ doc_url }}" target="_blank">

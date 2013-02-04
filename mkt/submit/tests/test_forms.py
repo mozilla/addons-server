@@ -75,13 +75,11 @@ class TestNewWebappForm(amo.tests.TestCase):
 
     def test_not_packaged(self):
         form = forms.NewWebappForm({'free_platforms': ['free-firefoxos'],
-                                    'upload': self.file.uuid,
-                                    'packaged': True})
+                                    'upload': self.file.uuid})
         assert form.is_valid(), form.errors
         assert not form.is_packaged()
 
     def test_not_packaged_allowed(self):
-        self.create_switch('allow-packaged-app-uploads')
         form = forms.NewWebappForm({'free_platforms': ['free-firefoxos'],
                                     'upload': self.file.uuid})
         assert form.is_valid(), form.errors
@@ -89,7 +87,6 @@ class TestNewWebappForm(amo.tests.TestCase):
 
     @mock.patch('mkt.submit.forms.parse_addon')
     def test_packaged_allowed(self, parse_addon):
-        self.create_switch('allow-packaged-app-uploads')
         form = forms.NewWebappForm({'free_platforms': ['free-firefoxos'],
                                     'upload': self.file.uuid,
                                     'packaged': True})
@@ -99,7 +96,6 @@ class TestNewWebappForm(amo.tests.TestCase):
     @mock.patch('mkt.submit.forms.parse_addon',
                 lambda *args: {'version': None})
     def test_packaged_wrong_device(self):
-        self.create_switch('allow-packaged-app-uploads')
         form = forms.NewWebappForm({'free_platforms': ['free-desktop'],
                                     'upload': self.file.uuid,
                                     'packaged': True})

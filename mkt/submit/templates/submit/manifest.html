@@ -50,11 +50,9 @@
     {% endif %}
   </section>
 
-  <section id="upload-file" class="island tabbable {% if waffle.switch('allow-packaged-app-uploads') %}spacer{% endif %}">
+  <section id="upload-file" class="island tabbable spacer">
     <div class="hosted tab active">
-      {% if waffle.switch('allow-packaged-app-uploads') %}
-        <h2 id="hosted-tab-header"><a href="#">{{ _('Hosted') }}</a></h2>
-      {% endif %}
+      <h2 id="hosted-tab-header"><a href="#">{{ _('Hosted') }}</a></h2>
       <h3>{{ _("Submit your app manifest URL") }}</h3>
       <div class="upload-status">
         <label>
@@ -88,10 +86,8 @@
     </div>
 
     <div class="packaged tab">
-      {% if waffle.switch('allow-packaged-app-uploads') %}
-        <h2 id="packaged-tab-header"><a href="#">Packaged</a></h2>
-        <input type="file" id="upload-app" data-upload-url="{{ url('mkt.developers.upload') }}" />
-      {% endif %}
+      <h2 id="packaged-tab-header"><a href="#">Packaged</a></h2>
+      <input type="file" id="upload-app" data-upload-url="{{ url('mkt.developers.upload') }}" />
     </div>
 
     <form method="post" id="upload-webapp">
