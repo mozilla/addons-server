@@ -44,7 +44,7 @@
                 }
                 // Undo sidebar-truncation fix in goToTheme if user goes
                 // into free-scrolling mode.
-                if (i == 0) {
+                if (i === 0) {
                     $('.sidebar').removeClass('lineup');
                 }
             }, 250));
@@ -61,7 +61,10 @@
                 }
 
                 var key = String.fromCharCode(e.which).toLowerCase();
-                if (!key in keymap) return;
+
+                if (!(key in keymap)) {
+                    return;
+                }
 
                 var action = keymap[key];
                 if (action && !e.ctrlKey && !e.altKey && !e.metaKey) {
@@ -116,6 +119,10 @@
             }
 
             function switchTheme(i) {
+                if (!themes[currentTheme]) {
+                    return;
+                }
+
                 $(themes[currentTheme].element).removeClass('active');
                 $(themes[i].element).addClass('active');
                 currentTheme = i;
@@ -124,6 +131,12 @@
             function findCurrentTheme() {
                 // Uses location of the window within the page to determine
                 // which theme we're currently looking at.
+
+                // $(window).scroll() fires too early.
+                if (!themes[currentTheme]) {
+                    return 0;
+                }
+
                 var pageTop = $(window).scrollTop();
                 if (pageTop <= themes[currentTheme].top) {
                     for (var i = currentTheme - 1; i >= 0; i--) {
@@ -234,7 +247,7 @@
                 if (isRejecting) {
                     var i = getThemeParent(e.currentTarget);
                     var rejectId = $(this).data('id');
-                    if (rejectId == 0) {
+                    if (rejectId === 0) {
                         themeActions.other_reject_reason(i);
                     } else {
                         themeActions.reject(i, rejectId);
