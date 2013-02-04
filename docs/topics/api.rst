@@ -4,7 +4,7 @@
 Marketplace API
 ======================
 
-This API is for Apps. There is a seperate set of `APIs for Add-ons`_.
+This API is for Apps. There is a separate set of `APIs for Add-ons`_.
 
 .. toctree::
    :maxdepth: 2
