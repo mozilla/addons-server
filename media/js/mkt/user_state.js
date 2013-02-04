@@ -67,7 +67,6 @@
                 }
 
                 function handleState() {
-                    console.log('checking state ...');
                     getState().done(function(state) {
                         _.each(state, function(v, k) {
                             if (!_.isEqual(v, z.state[k])) {
