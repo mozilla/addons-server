@@ -132,7 +132,7 @@ def dashboard(request, webapp=False):
     data = dict(addons=addons, sorting=filter.field, filter=filter,
                 themes=themes, theme_sorting=theme_filter.field,
                 theme_filter=theme_filter,
-                items=_get_items(None, all_addons)[:4],
+                addon_items=_get_items(None, all_addons)[:4],
                 sort_opts=filter.opts, rss=_get_rss_feed(request),
                 blog_posts=blog_posts, timestamp=int(time.time()),
                 webapp=webapp)
@@ -954,7 +954,7 @@ def _compat_result(request, revalidate_url, target_app, target_version,
 @dev_required(allow_editors=True)
 def json_file_validation(request, addon_id, addon, file_id):
     file = get_object_or_404(File, id=file_id)
-    if not file.has_been_validated:
+    if not file.has_been_validated == True:
         if request.method != 'POST':
             return http.HttpResponseNotAllowed(['POST'])
 
@@ -1805,8 +1805,8 @@ def submit_persona(request):
                         dict(form=form))
 
 
-@dev_required
-def submit_persona_done(request, addon_id, addon):
+@dev_required(theme=True)
+def submit_persona_done(request, addon_id, addon, theme):
     if not waffle.flag_is_active(request, 'submit-personas'):
         raise PermissionDenied
     if addon.is_public():
