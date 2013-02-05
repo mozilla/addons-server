@@ -246,8 +246,8 @@ def in_app_config(request, addon_id, addon, webapp=True):
                                 args=[addon.app_slug]))
 
     return jingo.render(request, 'developers/payments/in-app-config.html',
-                        {'account': account, 'addon': addon, 'inapp': inapp,
-                         'owner': owner, 'seller_config': seller_config})
+                        {'addon': addon, 'owner': owner,
+                         'seller_config': seller_config})
 
 
 @login_required
