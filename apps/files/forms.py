@@ -87,6 +87,8 @@ class FileCompareForm(happyforms.Form):
         self.fields['right'].queryset = queryset
 
     def clean(self):
-        if self.cleaned_data.get('right') == self.cleaned_data['left']:
-            raise forms.ValidationError(_('Cannot diff a version against itself'))
+        if (not self.errors and
+            self.cleaned_data.get('right') == self.cleaned_data['left']):
+            raise forms.ValidationError(
+                _('Cannot diff a version against itself'))
         return self.cleaned_data
