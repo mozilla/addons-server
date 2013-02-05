@@ -23,7 +23,8 @@ from mkt.webapps.models import AddonExcludedRegion as AER, ContentRating
 
 def setup_payment_account(app, user):
     seller = SolitudeSeller.objects.create(user=user, uuid='uid')
-    payment = PaymentAccount.objects.create(user=user, solitude_seller=seller)
+    payment = PaymentAccount.objects.create(user=user, solitude_seller=seller,
+                                            agreed_tos=True)
     return AddonPaymentAccount.objects.create(addon=app,
         product_uri='/path/to/%s/' % app.pk, payment_account=payment,
         set_price=1)
@@ -235,7 +236,7 @@ class TestPayments(amo.tests.TestCase):
             resource_uri='/path/to/sel', user=user)
         acct = PaymentAccount.objects.create(
             user=user, uri='asdf', name='test', inactive=False,
-            solitude_seller=seller, bango_package_id=123)
+            solitude_seller=seller, bango_package_id=123, agreed_tos=True)
 
         # Associate account with app.
         res = self.client.post(
@@ -340,7 +341,8 @@ class PaymentsBase(amo.tests.TestCase):
         return PaymentAccount.objects.create(user=self.user,
                                              solitude_seller=seller,
                                              uri='/bango/package/123',
-                                             name="cvan's cnotes")
+                                             name="cvan's cnotes",
+                                             agreed_tos=True)
 
 
 class TestPaymentAccountsAdd(PaymentsBase):
@@ -377,7 +379,9 @@ class TestPaymentAccountsAdd(PaymentsBase):
             'bankAddressIso': 'BRA',
             'account_name': 'account'
         })
-        eq_(res.status_code, 302, res.content)
+        output = json.loads(res.content)
+        ok_('pk' in output)
+        ok_('agreement-url' in output)
         eq_(PaymentAccount.objects.count(), 2)
 
 
@@ -449,7 +453,7 @@ class TestPaymentAgreement(PaymentsBase):
 
     @mock.patch('mkt.developers.views_payments.client.api')
     def test_set(self, api):
-        api.bango.sbi.agreement.post.return_value = {
+        api.bango.sbi.post.return_value = {
             'expires': '2014-08-31T00:00:00',
             'valid': '2014-08-31T00:00:00'}
         res = self.client.post(self.url)
@@ -473,6 +477,13 @@ class TestPaymentAccountsForm(PaymentsBase):
         eq_(res.status_code, 200)
         eq_(res.context['bango_account_list_form']
                .fields['accounts'].choices.queryset.get(), self.account)
+
+    def test_mine_disagreed_tos(self):
+        self.account.update(agreed_tos=False)
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        self.assertSetEqual(res.context['bango_account_list_form']
+                               .fields['accounts'].choices.queryset.all(), [])
 
 
 class TestPaymentDelete(PaymentsBase):

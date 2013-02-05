@@ -178,7 +178,7 @@ class TestPaidRereview(amo.tests.TestCase):
 
         self.account = models.PaymentAccount.objects.create(
             user=self.user, uri='asdf', name='test', inactive=False,
-            solitude_seller=seller, bango_package_id=123)
+            solitude_seller=seller, bango_package_id=123, agreed_tos=True)
 
         self.kwargs = {
             'addon': self.addon,
@@ -202,6 +202,22 @@ class TestPaidRereview(amo.tests.TestCase):
 
         form = forms_payments.BangoAccountListForm(None, **self.kwargs)
         assert form.fields['accounts'].empty_label == None
+
+    @mock.patch('mkt.developers.models.client')
+    def test_disagreed_tos_rereview(self, client):
+        self.account.update(agreed_tos=False)
+        client.get_product.return_value = {'meta': {'total_count': 0}}
+        client.post_product.return_value = {'resource_uri': 'gpuri'}
+        client.get_product_bango.return_value = {'meta': {'total_count': 0}}
+        client.post_product_bango.return_value = {
+            'resource_uri': 'bpruri', 'bango_id': 123}
+
+        form = forms_payments.BangoAccountListForm(
+            data={'accounts': self.account.pk}, **self.kwargs)
+        assert not form.is_valid()
+        eq_(form.errors['accounts'],
+            ['Select a valid choice. That choice is not one of the available '
+             'choices.'])
 
     @mock.patch('mkt.developers.models.client')
     def test_norereview(self, client):
