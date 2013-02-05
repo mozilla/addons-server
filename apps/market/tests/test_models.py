@@ -281,8 +281,9 @@ class TestRefundContribution(ContributionMixin, amo.tests.TestCase):
     def do_refund(self, expected, status, refund_reason=None,
                   rejection_reason=None):
         """Checks that a refund is enqueued and contains the correct values."""
-        self.contribution.enqueue_refund(status, refund_reason,
-                                         rejection_reason)
+        self.contribution.enqueue_refund(status, self.user,
+            refund_reason=refund_reason,
+            rejection_reason=rejection_reason)
         expected.update(contribution=self.contribution, status=status)
         eq_(Refund.objects.count(), 1)
         refund = Refund.objects.filter(**expected)
@@ -369,7 +370,8 @@ class TestRefundManager(amo.tests.TestCase):
             c = Contribution.objects.create(addon=self.addon, user=self.user,
                                             type=amo.CONTRIB_PURCHASE)
             self.expected[status] = Refund.objects.create(contribution=c,
-                                                          status=status)
+                                                          status=status,
+                                                          user=self.user)
 
     def test_all(self):
         eq_(sorted(Refund.objects.values_list('id', flat=True)),
@@ -395,7 +397,8 @@ class TestRefundManager(amo.tests.TestCase):
         other = Addon.objects.create(type=amo.ADDON_WEBAPP)
         c = Contribution.objects.create(addon=other, user=self.user,
                                         type=amo.CONTRIB_PURCHASE)
-        ref = Refund.objects.create(contribution=c, status=amo.REFUND_DECLINED)
+        ref = Refund.objects.create(contribution=c, status=amo.REFUND_DECLINED,
+                                    user=self.user)
 
         declined = Refund.objects.filter(status=amo.REFUND_DECLINED)
         eq_(sorted(r.id for r in declined),

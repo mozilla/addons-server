@@ -26,6 +26,9 @@ class BaseTaskTest(amo.tests.ESTestCase):
         self.inapp_name = 'test'
         self.user = UserProfile.objects.get(username='regularuser')
 
+    def create_refund(self, contribution):
+        Refund.objects.create(contribution=contribution,
+                              status=amo.REFUND_APPROVED, user=self.user)
 
 class TestIndexFinanceTotal(BaseTaskTest):
 
@@ -44,8 +47,7 @@ class TestIndexFinanceTotal(BaseTaskTest):
 
             # Create 2 refunds.
             if x % 2 == 1:
-                Refund.objects.create(contribution=c,
-                                      status=amo.REFUND_APPROVED)
+                self.create_refund(c)
                 self.expected['revenue'] -= Decimal(self.usd_price)
                 self.expected['count'] -= 1
         self.refresh()
@@ -87,9 +89,7 @@ class TestIndexFinanceTotalBySrc(BaseTaskTest):
                     price_tier=self.price_tier)
                 self.expected[source]['revenue'] += Decimal(self.usd_price)
 
-            # Create refunds.
-            Refund.objects.create(contribution=c,
-                                  status=amo.REFUND_APPROVED)
+            self.create_refund(c)
             self.expected[source]['revenue'] -= Decimal(self.usd_price)
             self.expected[source]['count'] -= 1
         self.refresh()
@@ -141,9 +141,7 @@ class TestIndexFinanceTotalByCurrency(BaseTaskTest):
                 self.expected[currency]['revenue_non_normalized'] += (
                     Decimal(amount))
 
-            # Create refunds.
-            Refund.objects.create(contribution=c,
-                                  status=amo.REFUND_APPROVED)
+            self.create_refund(c)
             self.expected[currency]['revenue'] -= Decimal(self.usd_price)
             self.expected[currency]['revenue_non_normalized'] -= (
                 Decimal(amount))
@@ -197,8 +195,7 @@ class TestIndexFinanceDaily(BaseTaskTest):
             if x % 2 == 1:
                 c.uuid = 123
                 c.save()
-                Refund.objects.create(contribution=c,
-                                      status=amo.REFUND_APPROVED)
+                self.create_refund(c)
                 self.expected['revenue'] -= Decimal(self.usd_price)
                 self.expected['count'] -= 1
 
@@ -247,8 +244,7 @@ class TestIndexFinanceTotalInapp(BaseTaskTest):
 
             # Create 2 refunds.
             if x % 2 == 1:
-                Refund.objects.create(contribution=c,
-                                      status=amo.REFUND_APPROVED)
+                self.create_refund(c)
                 self.expected_inapp['revenue'] -= Decimal(self.usd_price)
                 self.expected_inapp['count'] -= 1
         self.refresh()
@@ -307,9 +303,7 @@ class TestIndexFinanceTotalInappByCurrency(BaseTaskTest):
                 expected_inapp_curr['revenue_non_normalized'] += (
                     Decimal(amount))
 
-            # Create refunds.
-            Refund.objects.create(contribution=c,
-                                  status=amo.REFUND_APPROVED)
+            self.create_refund(c)
             expected_inapp[currency]['revenue'] -= Decimal(self.usd_price)
             expected_inapp[currency]['revenue_non_normalized'] -= (
                 Decimal(amount))
@@ -375,9 +369,7 @@ class TestIndexFinanceTotalInappBySource(BaseTaskTest):
                 self.expected_inapp[source]['revenue'] += (
                     Decimal(self.usd_price))
 
-            # Create refunds.
-            Refund.objects.create(contribution=c,
-                                  status=amo.REFUND_APPROVED)
+            self.create_refund(c)
             self.expected_inapp[source]['revenue'] -= Decimal(self.usd_price)
             self.expected_inapp[source]['count'] -= 1
         self.refresh()
@@ -432,8 +424,7 @@ class TestIndexFinanceDailyInapp(BaseTaskTest):
         for x in range(self.expected[self.inapp_name]['refunds']):
             c = Contribution.objects.get(id=self.c_ids[x])
             c.update(uuid=123)
-            Refund.objects.create(contribution=c,
-                                  status=amo.REFUND_APPROVED)
+            self.create_refund(c)
             self.expected[self.inapp_name]['revenue'] -= (
                 Decimal(self.usd_price))
             self.expected[self.inapp_name]['count'] -= 1
@@ -491,8 +482,7 @@ class TestAlreadyIndexed(BaseTaskTest):
             self.expected['revenue'] += Decimal(self.usd_price)
 
         c.update(uuid=123)
-        Refund.objects.create(contribution=c,
-                              status=amo.REFUND_APPROVED)
+        self.create_refund(c)
         self.expected['revenue'] -= Decimal(self.usd_price)
         self.expected['count'] -= 1
 

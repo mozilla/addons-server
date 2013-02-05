@@ -1189,7 +1189,7 @@ class TestIssueRefund(amo.tests.TestCase):
         eq_(len(mail.outbox), 1)
         assert 'approved' in mail.outbox[0].subject
         # There should be one approved refund added.
-        eq_(enqueue_refund.call_args_list[0][0], (amo.REFUND_APPROVED,))
+        eq_(enqueue_refund.call_args_list[0][0][0], amo.REFUND_APPROVED)
 
     @mock.patch('stats.models.Contribution.enqueue_refund')
     @mock.patch('paypal.refund')
@@ -1241,7 +1241,7 @@ class TestIssueRefund(amo.tests.TestCase):
         eq_(len(mail.outbox), 1)
         assert 'declined' in mail.outbox[0].subject
         # There should be one declined refund added.
-        eq_(enqueue_refund.call_args_list[0][0], (amo.REFUND_DECLINED,))
+        eq_(enqueue_refund.call_args_list[0][0][0], amo.REFUND_DECLINED)
 
     @mock.patch('stats.models.Contribution.enqueue_refund')
     @mock.patch('paypal.refund')
@@ -1311,7 +1311,8 @@ class TestRefunds(amo.tests.TestCase):
                                                 user=self.user,
                                                 type=amo.CONTRIB_PURCHASE)
                 r = Refund.objects.create(contribution=c, status=status,
-                                          requested=datetime.now())
+                                          requested=datetime.now(),
+                                          user=self.user)
                 self.expected.setdefault(status, []).append(r)
 
     def test_anonymous(self):

@@ -319,11 +319,12 @@ class Contribution(amo.models.ModelBase):
             del(self.post_data['payer_email'])
             self.save()
 
-    def enqueue_refund(self, status, refund_reason=None,
+    def enqueue_refund(self, status, user, refund_reason=None,
                        rejection_reason=None):
         """Keep track of a contribution's refund status."""
         from market.models import Refund
-        refund, c = Refund.objects.safer_get_or_create(contribution=self)
+        refund, c = Refund.objects.safer_get_or_create(contribution=self,
+                                                       user=user)
         refund.status = status
 
         # Determine which timestamps to update.

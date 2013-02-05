@@ -45,7 +45,7 @@ class TestPendingRefunds(amo.tests.TestCase):
     def create_refund(self, webapp=None):
         webapp = webapp if webapp else self.webapp
         contribution = Contribution.objects.create(addon=webapp)
-        return Refund.objects.create(contribution=contribution)
+        return Refund.objects.create(contribution=contribution, user_id=999)
 
     def setUp(self):
         self.webapp = Addon.objects.get(pk=337141)

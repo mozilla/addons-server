@@ -146,7 +146,8 @@ def transaction_refund(request, uuid):
         # Create pending Refund.
         contrib.enqueue_refund(
             status=amo.REFUND_PENDING,
-            refund_reason=form.cleaned_data['refund_reason'])
+            refund_reason=form.cleaned_data['refund_reason'],
+            user=request.amo_user)
         email_buyer_refund_pending(contrib)
         messages.success(
             request, _('Refund for this transaction now pending.'))
@@ -154,7 +155,8 @@ def transaction_refund(request, uuid):
         # Create approved Refund.
         contrib.enqueue_refund(
             status=amo.REFUND_APPROVED,
-            refund_reason=form.cleaned_data['refund_reason'])
+            refund_reason=form.cleaned_data['refund_reason'],
+            user=request.amo_user)
         email_buyer_refund_approved(contrib)
         messages.success(
             request, _('Refund for this transaction successfully approved.'))

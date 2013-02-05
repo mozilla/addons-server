@@ -576,14 +576,16 @@ def issue_refund(request, addon_id, addon, webapp=False):
                                          'no action taken.'))
                         return redirect(addon.get_dev_url('refunds'))
                 contribution.mail_approved()
-                refund = contribution.enqueue_refund(amo.REFUND_APPROVED)
+                refund = contribution.enqueue_refund(amo.REFUND_APPROVED,
+                                                     request.amo_user)
                 paypal_log.info('Refund %r issued for contribution %r' %
                                 (refund.pk, contribution.pk))
                 messages.success(request, _('Refund issued.'))
         else:
             contribution.mail_declined()
             # TODO: Consider requiring a rejection reason for declined refunds.
-            refund = contribution.enqueue_refund(amo.REFUND_DECLINED)
+            refund = contribution.enqueue_refund(amo.REFUND_DECLINED,
+                                                 request.amo_user)
             paypal_log.info('Refund %r declined for contribution %r' %
                             (refund.pk, contribution.pk))
             messages.success(request, _('Refund declined.'))

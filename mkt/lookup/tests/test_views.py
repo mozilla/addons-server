@@ -120,7 +120,7 @@ class TestAcctSummary(TestCase):
                                               addon=self.steamcube,
                                               currency='USD',
                                               amount='0.99')
-        Refund.objects.create(contribution=contrib)
+        Refund.objects.create(contribution=contrib, user=self.user)
         res = self.summary()
         eq_(res.context['refund_summary']['requested'], 1)
         eq_(res.context['refund_summary']['approved'], 0)
@@ -132,7 +132,8 @@ class TestAcctSummary(TestCase):
                                               currency='USD',
                                               amount='0.99')
         Refund.objects.create(contribution=contrib,
-                              status=amo.REFUND_APPROVED_INSTANT)
+                              status=amo.REFUND_APPROVED_INSTANT,
+                              user=self.user)
         res = self.summary()
         eq_(res.context['refund_summary']['requested'], 1)
         eq_(res.context['refund_summary']['approved'], 1)
@@ -417,7 +418,8 @@ class TestTransactionRefund(TestCase):
 
     def test_already_refunded(self):
         self.contrib.enqueue_refund(status=amo.REFUND_PENDING,
-                                    refund_reason='front fell off')
+                                    refund_reason='front fell off',
+                                    user=self.user)
         res = self.client.post(self.url, {'refund_reason': 'text'})
         self.assert3xx(res, reverse('lookup.transaction_summary',
                                      args=[self.uuid]))
@@ -426,7 +428,6 @@ class TestTransactionRefund(TestCase):
     def test_403_reg_user(self, solitude):
         solitude.api.bango.refund.post.return_value = (
             {'status': STATUS_PENDING})
-
         self.login(self.user)
         res = self.client.post(self.url, {'refund_reason': 'text'})
         eq_(res.status_code, 403)
@@ -759,7 +760,8 @@ class TestAppSummaryRefunds(AppSummaryTest):
     def refund(self, refunds):
         for contrib, status in refunds:
             Refund.objects.create(contribution=contrib,
-                                  status=status)
+                                  status=status,
+                                  user=self.user)
 
     def test_requested(self):
         self.refund(((self.contrib1, amo.REFUND_APPROVED),

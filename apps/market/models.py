@@ -307,6 +307,7 @@ class Refund(amo.models.ModelBase):
     requested = models.DateTimeField(null=True, db_index=True)
     approved = models.DateTimeField(null=True, db_index=True)
     declined = models.DateTimeField(null=True, db_index=True)
+    user = models.ForeignKey('users.UserProfile')
 
     objects = RefundManager()
 
@@ -337,7 +338,7 @@ class Refund(amo.models.ModelBase):
         # Hardcoded statuses for simplicity, but they are:
         # amo.REFUND_PENDING, amo.REFUND_APPROVED, amo.REFUND_APPROVED_INSTANT
         sql = '''
-            SELECT COUNT(DISTINCT user_id) AS num
+            SELECT COUNT(DISTINCT sc.user_id) AS num
             FROM refunds
             LEFT JOIN stats_contributions AS sc
                 ON refunds.contribution_id = sc.id

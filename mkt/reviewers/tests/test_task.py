@@ -141,7 +141,8 @@ class TestRefundsEscalationTask(amo.tests.TestCase):
     def _refund(self, user=None, created=None):
         contribution = Contribution.objects.create(addon=self.app,
                                                    user=user or self.user1)
-        ref = Refund.objects.create(contribution=contribution)
+        ref = Refund.objects.create(contribution=contribution,
+                                    user=user or self.user1)
         if created:
             ref.update(created=created)
             # Needed because these tests can run in the same second and the
