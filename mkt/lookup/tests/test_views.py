@@ -276,12 +276,14 @@ class TestTransactionSummary(TestCase):
 
     def setUp(self):
         self.uuid = 45
+        self.transaction_id = 999
         self.buyer_uuid = 123
         self.seller_uuid = 456
         self.related_tx_uuid = 789
 
         Contribution.objects.create(addon=addon_factory(),
-                                    transaction_id=self.uuid)
+                                    uuid=self.uuid,
+                                    transaction_id=self.transaction_id)
 
         self.url = reverse('lookup.transaction_summary', args=[self.uuid])
         self.client.login(username='support-staff@mozilla.com',
@@ -318,7 +320,7 @@ class TestTransactionSummary(TestCase):
         eq_(tx_data['buyer']['uuid'], self.buyer_uuid)
 
     def lookup_tx_side_effect(self, *args, **kwargs):
-        if str(args[0]) == str(self.uuid):
+        if str(args[0]) == str(self.transaction_id):
             return self.mock_transaction()
         raise SolitudeError
 
@@ -345,7 +347,7 @@ class TestTransactionRefund(TestCase):
         AddonUser.objects.create(addon=self.app, user=self.user)
 
         self.contrib = Contribution.objects.create(
-            addon=self.app, user=self.user, transaction_id=self.uuid,
+            addon=self.app, user=self.user, uuid=self.uuid,
             type=amo.CONTRIB_PURCHASE)
 
         self.req = RequestFactory().post(self.url, {'refund_reason': 'text'})
