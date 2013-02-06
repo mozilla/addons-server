@@ -556,7 +556,8 @@ class TestCategoryHandler(BaseOAuth):
     def setUp(self):
         super(TestCategoryHandler, self).setUp()
         self.cat = Category.objects.create(name='Webapp',
-                                           type=amo.ADDON_WEBAPP)
+                                           type=amo.ADDON_WEBAPP,
+                                           slug='thewebapp')
         self.cat.name = {'fr': 'Le Webapp'}
         self.cat.save()
         self.other = Category.objects.create(name='other',
@@ -583,6 +584,7 @@ class TestCategoryHandler(BaseOAuth):
         data = json.loads(res.content)
         eq_(data['meta']['total_count'], 1)
         eq_(data['objects'][0]['name'], 'Webapp')
+        eq_(data['objects'][0]['slug'], 'thewebapp')
 
     def test_get_category(self):
         res = self.client.get(self.get_url)

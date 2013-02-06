@@ -271,7 +271,7 @@ class CategoryResource(MarketplaceResource):
                                            weight__gte=0)
         list_allowed_methods = ['get']
         allowed_methods = ['get']
-        fields = ['name', 'id']
+        fields = ['name', 'id', 'slug']
         always_return_data = True
         resource_name = 'category'
         serializer = Serializer(formats=['json'])
