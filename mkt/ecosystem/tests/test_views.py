@@ -82,6 +82,11 @@ class TestDevHub(amo.tests.TestCase):
         eq_(r.status_code, 200)
         self.assertTemplateUsed(r, 'ecosystem/partners.html')
 
+    def test_dev_phone(self):
+        r = self.client.get(reverse('ecosystem.dev_phone'))
+        eq_(r.status_code, 200)
+        self.assertTemplateUsed(r, 'ecosystem/dev_phone.html')
+
     def test_valid_reference_app(self):
         r = self.client.get(reverse('ecosystem.apps_documentation',
                             args=['face_value']))

@@ -1,0 +1,73 @@
+{% extends 'ecosystem/base.html' %}
+
+{% block bodyclass %}landing developer-hub dev-phone{% endblock %}
+
+{% block devhub_categories %}{% endblock %}
+
+{% block content %}
+  <div id="landing-page">
+    <div class="header">
+      <h1>{{ _('Firefox OS') }}</h1>
+      <h2>
+        {% trans %}
+          Developer Preview Phone
+        {% endtrans %}
+      </h2>
+    </div>
+    <section class="intro">
+      <div class="content-wrapper">
+        <div class="content half keon">
+          <h2>{{ _('Bringing the Open Web to mobile devices.') }}</h2>
+          <p>
+            {%- trans %}
+              Firefox OS is a new mobile operating system built entirely
+              using open web standards. In Firefox OS, HTML5 apps can do
+              &quot;phone things&quot; &ndash; they can make the phone vibrate,
+              make a phone call or send a text message.
+            {% endtrans -%}
+          </p>
+        </div>
+        <div class="content half keon">
+          <p>{{ _('Keon') }}</p>
+        </div>
+      </div>
+    </section>
+    <section>
+      <div class="phone-options">
+        <p class="have-phone">
+          {%- trans devhub_url=url('ecosystem.landing') %}
+            <em>I have</em> a developer preview phone
+            <a href="{{ devhub_url }}" class="button">Get started</a>
+          {% endtrans -%}
+        </p>
+        <p class="want-phone">
+          {%- trans order_url='http://www.geeksphone.com' %}
+            <em>I want</em> a developer preview phone
+            <a href="{{ order_url }}" class="button">Order one</a>
+            <span>through Geeksphone</span>
+          {% endtrans -%}
+        </p>
+      </div>
+    </section>
+    <section>
+      <div class="content-wrapper">
+        <div class="content half peak">
+          <p>{{ _('Peak') }}</p>
+        </div>
+        <div class="content half peak">
+          <h2>{{ _('The power of the web to mobile.') }}</h2>
+          <p>
+            {%- trans %}
+              We believe that developers will help bring the power of
+              the web to mobile and so we have worked with Geeksphone
+              and Telefonica to create a device just for you. With a
+              Firefox OS developer preview phone you will be able to
+              create and test your apps on actual hardware, rather
+              than just in the simulator.
+            {% endtrans -%}
+          </p>
+        </div>
+      </div>
+    </section>
+  </div>
+{% endblock %}

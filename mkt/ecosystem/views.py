@@ -94,6 +94,12 @@ def installation(request):
            {'page': 'installation', 'category': 'publish'})
 
 
+def dev_phone(request):
+    """Landing page for the developer phone."""
+    return jingo.render(request, 'ecosystem/dev_phone.html',
+           {'page': 'dev_phone'})
+
+
 def documentation(request, page=None):
     """Page template for all content that is extracted from MDN's API."""
     _refresh_mdn(request)

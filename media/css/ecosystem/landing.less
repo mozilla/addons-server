@@ -422,11 +422,15 @@
     }
 }
 
-.business-partners {
+.business-partners, .dev-phone {
     #landing-page {
         margin: 0 auto;
         width: 900px;
+    }
+}
 
+.business-partners {
+    #landing-page {
         h1 {
             font-size: 40px;
             margin: 0;
@@ -629,6 +633,153 @@
 
             .video-control {
                 margin-top: 40px;
+            }
+        }
+    }
+}
+
+.dev-phone {
+    #landing-page {
+        text-align: center;
+
+        .header {
+            h1 {
+                .hidetext;
+                background: url(../../img/ecosystem/ff-os-wordmark.png) no-repeat;
+                height: 39px;
+                margin: 20px auto;
+                width: 192px;
+            }
+
+            h2 {
+                font-size: 32px;
+                line-height: 38px;
+                margin-bottom: 30px;
+            }
+        }
+
+        section {
+            .faded-border;
+            border-bottom: 1px solid #ddd;
+            border-top: 1px solid #fff;
+            float: left;
+            position: relative;
+            width: 870px;
+
+            &:last-child {
+                border-bottom: 0;
+            }
+
+            &.intro {
+                border-top: 0;
+            }
+
+            .content-wrapper {
+                margin: 0 auto;
+                width: 800px;
+            }
+
+            .content {
+                text-align: left;
+
+                &.half {
+                    float: left;
+                    margin: 10px auto 0;
+                    padding: 20px 20px 0;
+
+                    &.keon:first-child {
+                        width: 420px;
+                    }
+
+                    &.peak {
+                        margin-top: 40px;
+                        padding-right: 50px;
+                    }
+
+                    &.keon:last-child {
+                        width: 300px;
+                    }
+
+                    &.peak:first-child {
+                        margin-left: 70px;
+                        width: 210px;
+                    }
+
+                    &.peak:last-child {
+                        width: 330px;
+                    }
+
+                    &.keon:last-child {
+                        background: url(../../img/ecosystem/phone-hand.png) no-repeat;
+                        height: 196px;
+                        width: 300px;
+
+                        p {
+                            font-weight: bold;
+                            padding-left: 130px;
+                        }
+                    }
+
+                    &.peak:first-child {
+                        background: url(../../img/ecosystem/phone-peak.png) no-repeat;
+                        height: 252px;
+
+                        p {
+                            font-weight: bold;
+                            padding-top: 215px;
+                            text-align: center;
+                        }
+                    }
+                }
+
+                h2 {
+                    font-size: 20px;
+                    line-height: 25px;
+                    padding-top: 20px;
+                }
+            }
+
+            .phone-options {
+                font-size: 16px;
+                line-height: 22px;
+                margin: 10px auto;
+                width: 540px;
+
+                .have-phone, .want-phone {
+                    float: left;
+                    padding: 160px 10px 10px;
+                    width: 250px;
+                }
+
+                .have-phone {
+                    background: url(../../img/ecosystem/have-phone.png) no-repeat 50% 10px;
+                }
+
+                .want-phone {
+                    background: url(../../img/ecosystem/want-phone.png) no-repeat 50% 10px;
+                }
+
+                em {
+                    clear: both;
+                    color: #e97421;
+                    display: block;
+                    font-style: italic;
+                    font-weight: bold;
+                }
+
+                span {
+                    display: block;
+                    font-size: 13px;
+                    font-style: italic;
+                    font-weight: 100;
+                    margin-top: 10px;
+                }
+
+                .button {
+                    font-size: 14px;
+                    margin-top: 20px;
+                    padding: 15px 25px;
+                }
             }
         }
     }
