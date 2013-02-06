@@ -52,7 +52,7 @@ def validator(upload_id, **kw):
         return
 
     try:
-        validation_result = run_validator(upload.path)
+        validation_result = run_validator(upload.path, url=kw.get('url'))
         if upload.validation:
             # If there's any preliminary validation result, merge it with the
             # actual validation result.
@@ -518,7 +518,7 @@ def fetch_manifest(url, upload_pk=None, **kw):
 
     upload.add_file([content], url, len(content), is_webapp=True)
     # Send the upload to the validator.
-    validator(upload.pk)
+    validator(upload.pk, url=url)
 
 
 @task
