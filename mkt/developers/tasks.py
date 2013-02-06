@@ -95,11 +95,11 @@ def file_validator(file_id, **kw):
         return
     # Unlike upload validation, let the validator raise an exception if there
     # is one.
-    result = run_validator(file.file_path)
+    result = run_validator(file.file_path, url=file.version.addon.manifest_url)
     return FileValidation.from_json(file, result)
 
 
-def run_validator(file_path):
+def run_validator(file_path, url=None):
     """A pre-configured wrapper around the app validator."""
 
     with statsd.timer('mkt.developers.validator'):
@@ -116,7 +116,8 @@ def run_validator(file_path):
             log.info(u'Running `validate_app` for path: %s' % (file_path))
             with statsd.timer('mkt.developers.validate_app'):
                 return validate_app(storage.open(file_path).read(),
-                    market_urls=settings.VALIDATOR_IAF_URLS)
+                    market_urls=settings.VALIDATOR_IAF_URLS,
+                    url=url)
 
 
 @task
