@@ -50,4 +50,5 @@ urlpatterns = (
 
     url(r'''^performance/(?P<username>[^/<>"']+)?$''', views.performance,
         name='reviewers.performance'),
+    url(r'^leaderboard/$', views.leaderboard, name='reviewers.leaderboard'),
 )

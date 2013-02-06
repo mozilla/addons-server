@@ -145,7 +145,7 @@ def reviewers_score_bar(context):
 
     return new_context(dict(
         request=context.get('request'),
-        amo=amo,
+        amo=amo, settings=settings,
         points=ReviewerScore.get_recent(user),
         total=ReviewerScore.get_total(user),
         **ReviewerScore.get_leaderboards(user)))

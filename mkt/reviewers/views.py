@@ -952,3 +952,11 @@ def performance(request, username=None):
     })
 
     return jingo.render(request, 'reviewers/performance.html', ctx)
+
+
+@permission_required('Apps', 'Review')
+def leaderboard(request):
+
+    return jingo.render(request, 'reviewers/leaderboard.html', context(**{
+        'scores': ReviewerScore.all_users_by_score(),
+    }))

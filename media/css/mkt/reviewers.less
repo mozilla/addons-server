@@ -1082,6 +1082,9 @@ span.currently_viewing_warning {
     td.number {
         text-align: right;
     }
+    p.total {
+        margin-bottom: 10px;
+    }
 }
 
 .html-rtl #reviewers-score-bar {
@@ -1104,6 +1107,19 @@ span.currently_viewing_warning {
         &:after {
             content: ")";
         }
+    }
+}
+
+#leaderboard {
+    td.name {
+        width: 70%;
+    }
+    th.rank {
+        color: @orange;
+    }
+    td.level {
+        color: @medium-gray;
+        white-space: nowrap;
     }
 }
 
@@ -1378,3 +1394,4 @@ iframe#manifest-contents {
         overflow-y: hidden;
     }
 }
+

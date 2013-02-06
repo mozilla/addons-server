@@ -475,6 +475,15 @@ REVIEWED_SCORES = {
     REVIEWED_REVIEW: 1,
 }
 
+REVIEWED_LEVELS = [
+    {'name': _('Level 1'), 'points': 2160},
+    {'name': _('Level 2'), 'points': 4320},
+    {'name': _('Level 3'), 'points': 8700},
+    {'name': _('Level 4'), 'points': 21000},
+    {'name': _('Level 5'), 'points': 45000},
+    {'name': _('Level 6'), 'points': 96000},
+]
+
 # Login credential source. We'll also include the site source in that.
 # All the old existing AMO users and anyone before we started tracking this.
 LOGIN_SOURCE_UNKNOWN = 0

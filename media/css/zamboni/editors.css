@@ -966,6 +966,10 @@ h2.addon {
   box-sizing: border-box;
 }
 
+#reviewers-score-bar p.total {
+    margin-botton: 10px;
+}
+
 #reviewers-score-bar ul li {
     float: left;
     width: 32%;
@@ -984,10 +988,15 @@ h2.addon {
     font-weight: bold;
 }
 
-#reviewers-score-bar td.number {
+#reviewers-score-bar .number,
+#leaderboard .number {
     text-align: right;
 }
 
-.html-trl #reviewers-score-bar td.number {
+.html-trl #reviewers-score-bar .number,
+.html-trl #leaderboard .number {
     text-align: left;
+}
+#leaderboard .name {
+    width: 70%;
 }

@@ -36,4 +36,5 @@ urlpatterns = (
     url(r'^motd/save$', views.save_motd, name='editors.save_motd'),
     url(r'^abuse-reports/%s$' % ADDON_ID, views.abuse_reports,
         name='editors.abuse_reports'),
+    url(r'^leaderboard/$', views.leaderboard, name='editors.leaderboard'),
 )

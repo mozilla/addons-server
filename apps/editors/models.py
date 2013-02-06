@@ -541,6 +541,29 @@ class ReviewerScore(amo.models.ModelBase):
         return val
 
     @classmethod
+    def _leaderboard_query(cls, since=False):
+        """
+        Returns common SQL to leaderboard calls.
+        """
+        sql = """
+            SELECT `u`.`id`, `u`.`display_name`, SUM(`rs`.`score`) AS `total`
+            FROM `reviewer_scores` AS `rs`
+            JOIN `users` AS `u` ON `rs`.`user_id`=`u`.`id`
+            WHERE `rs`.`user_id` NOT IN (
+                SELECT DISTINCT `user_id`
+                FROM `groups_users` AS `gu`
+                JOIN `groups` ON `gu`.`group_id`=`groups`.`id`
+                WHERE `groups`.`name` in ('Staff', 'Admins'))
+        """
+        if since:
+            sql += '  AND `rs`.`created` >= %s '
+        sql += """
+            GROUP BY `u`.`id`, `u`.`display_name`
+            ORDER BY `total` DESC
+        """
+        return sql
+
+    @classmethod
     def get_leaderboards(cls, user, days=7):
         """Returns leaderboards with ranking for the past given days.
 
@@ -567,18 +590,7 @@ class ReviewerScore(amo.models.ModelBase):
         leader_top = []
         leader_near = []
 
-        sql = """
-            SELECT `u`.`id`, `u`.`display_name`, SUM(`rs`.`score`) AS `total`
-            FROM `reviewer_scores` AS `rs`
-            JOIN `users` AS `u` ON `rs`.`user_id`=`u`.`id`
-            WHERE `rs`.`created` >= %s AND `rs`.`user_id` NOT IN (
-                SELECT DISTINCT `user_id`
-                FROM `groups_users` AS `gu`
-                JOIN `groups` ON `gu`.`group_id`=`groups`.`id`
-                WHERE `groups`.`name` in ('Staff', 'Admins'))
-            GROUP BY `u`.`id`, `u`.`display_name`
-            ORDER BY `total` DESC
-        """
+        sql = cls._leaderboard_query(since=True)
         scores = []
 
         cursor = connection.cursor()
@@ -618,6 +630,41 @@ class ReviewerScore(amo.models.ModelBase):
         }
         cache.set(key, val, 0)
         return val
+
+    @classmethod
+    def all_users_by_score(cls):
+        """
+        Returns reviewers ordered by highest total points first.
+        """
+        sql = cls._leaderboard_query()
+        scores = []
+        prev = None
+
+        cursor = connection.cursor()
+        cursor.execute(sql)
+
+        for row in cursor.fetchall():
+            user_id, name, total = row
+            user_level = len(amo.REVIEWED_LEVELS) - 1
+            for i, level in enumerate(amo.REVIEWED_LEVELS):
+                if total < level['points']:
+                    user_level = i
+                    break
+
+            # Only show level if it changes.
+            level = amo.REVIEWED_LEVELS[user_level]['name']
+            if prev == level:
+                level = ''
+            prev = level
+
+            scores.append({
+                'user_id': user_id,
+                'name': name,
+                'total': int(total),
+                'level': level,
+            })
+
+        return scores
 
 
 class EscalationQueue(amo.models.ModelBase):

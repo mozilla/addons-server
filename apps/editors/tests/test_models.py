@@ -505,6 +505,22 @@ class TestReviewerScore(amo.tests.TestCase):
         eq_(len(leaders['leader_top']), 3)
         eq_(len(leaders['leader_near']), 2)
 
+    def test_all_users_by_score(self):
+        user2 = UserProfile.objects.get(email='regular@mozilla.com')
+        self._give_points()
+        self._give_points(status=amo.STATUS_LITE)
+        self._give_points(user=user2, status=amo.STATUS_NOMINATED)
+        users = ReviewerScore.all_users_by_score()
+        eq_(len(users), 2)
+        # First user.
+        eq_(users[0]['total'], 180)
+        eq_(users[0]['user_id'], self.user.id)
+        eq_(users[0]['level'], amo.REVIEWED_LEVELS[0]['name'])
+        # Second user.
+        eq_(users[1]['total'], 120)
+        eq_(users[1]['user_id'], user2.id)
+        eq_(users[1]['level'], '')
+
     def test_caching(self):
         self._give_points()
 

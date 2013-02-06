@@ -682,3 +682,10 @@ def abuse_reports(request, addon):
     reports = amo.utils.paginate(request, reports)
     return jingo.render(request, 'editors/abuse_reports.html',
                         dict(addon=addon, reports=reports, total=total))
+
+
+@reviewer_required
+def leaderboard(request):
+    return jingo.render(request, 'editors/leaderboard.html', context(**{
+        'scores': ReviewerScore.all_users_by_score(),
+    }))
