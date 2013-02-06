@@ -194,8 +194,10 @@ class TestEditBasic(TestEdit):
         eq_(webapp.app_slug, self.webapp.app_slug)
 
     @mock.patch('devhub.tasks.urllib2.urlopen')
-    def test_view_manifest_url_default(self, mock_urlopen):
+    @mock.patch('devhub.tasks.validator')
+    def test_view_manifest_url_default(self, mock_urlopen, validator):
         mock_urlopen.return_value = response_mock
+        validator.return_value = '{}'
 
         # Should be able to see manifest URL listed.
         r = self.client.get(self.url)
@@ -224,8 +226,10 @@ class TestEditBasic(TestEdit):
         assert 'This field is required' in form.errors['manifest_url'][0]
 
     @mock.patch('devhub.tasks.urllib2.urlopen')
-    def test_view_admin_edit_manifest_url(self, mock_urlopen):
+    @mock.patch('devhub.tasks.validator')
+    def test_view_admin_edit_manifest_url(self, mock_urlopen, validator):
         mock_urlopen.return_value = response_mock
+        validator.return_value = '{}'
 
         self.client.login(username='admin@mozilla.com', password='password')
         # Should be able to see manifest URL listed.
@@ -269,8 +273,11 @@ class TestEditBasic(TestEdit):
             'Manifest URL should not have been changed!')
 
     @mock.patch('devhub.tasks.urllib2.urlopen')
-    def test_view_manifest_changed_same_domain_diff_path(self, mock_urlopen):
+    @mock.patch('devhub.tasks.validator')
+    def test_view_manifest_changed_same_domain_diff_path(self, mock_urlopen,
+                                                         validator):
         mock_urlopen.return_value = response_mock
+        validator.return_value = ''
         Switch.objects.create(name='webapps-unique-by-domain', active=True)
         self.client.login(username='admin@mozilla.com', password='password')
         # POST with the new manifest URL for same domain but w/ different path.

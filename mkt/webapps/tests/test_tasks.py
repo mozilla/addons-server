@@ -118,6 +118,16 @@ class TestUpdateManifest(amo.tests.TestCase):
             'Content-Type': 'application/x-web-app-manifest+json'}
         self.urlopen_mock.return_value = self.response_mock
 
+        p = mock.patch('mkt.webapps.tasks.validator')
+        validator = p.start()
+        validator.return_value = {}
+        self.patches = [p]
+
+    def tearDown(self):
+        super(TestUpdateManifest, self).tearDown()
+        for p in self.patches:
+            p.stop()
+
     @mock.patch('mkt.webapps.tasks._get_content_hash')
     def _run(self, _get_content_hash, **kw):
         # Will run the task and will act depending upon how you've set hash.
