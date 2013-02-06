@@ -50,7 +50,7 @@ class PermissionAuthorization(Authorization):
 
     def is_authorized(self, request, object=None):
         if acl.action_allowed(request, self.app, self.action):
-            log.info('Permission autorization failed')
+            log.info('Permission authorization failed')
             return True
         return False
 
@@ -114,9 +114,9 @@ class MarketplaceAuthentication(Authentication):
             return self._error('terms')
 
         # But you cannot have one of these roles.
-        denied_roles = set(['Admins'])
+        denied_groups = set(['Admins'])
         roles = set(request.amo_user.groups.values_list('name', flat=True))
-        if roles and roles.intersection(denied_roles):
+        if roles and roles.intersection(denied_groups):
             log.info(u'Attempt to use API with denied role, user: %s'
                      % request.amo_user.pk)
             return self._error('roles')
