@@ -341,13 +341,12 @@ class TestCase(RedisTest, test_utils.TestCase):
                 "Response didn't redirect as expected: Response"
                 " code was %d (expected %d)" %
                     (response.status_code, status_code))
-
             url = response['Location']
-            scheme, netloc, path, query, fragment = urlsplit(url)
 
+        scheme, netloc, path, query, fragment = urlsplit(url)
         e_scheme, e_netloc, e_path, e_query, e_fragment = urlsplit(
                                                               expected_url)
-        if not (e_scheme or e_netloc):
+        if (scheme and not e_scheme) and (netloc and not e_netloc):
             expected_url = urlunsplit(('http', 'testserver', e_path, e_query,
                                        e_fragment))
 
