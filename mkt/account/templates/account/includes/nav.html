@@ -1,7 +1,7 @@
 {% set urls = [
   (url('account.settings'), _('Account'),
    request.path == url('account.settings')),
-  (url('account.purchases'), _('My Apps') if DESKTOP else _('Apps'),
+  (url('account.purchases'), _('My Apps'),
    request.path == url('account.purchases')),
   (url('account.feedback'), _('Feedback'),
    request.path == url('account.feedback')),
