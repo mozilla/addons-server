@@ -1,25 +1,24 @@
-from tastypie.serializers import Serializer
+from tastypie.authentication import Authentication
+from tastypie.authorization import ReadOnlyAuthorization
 
 import amo
 from amo.helpers import absolutify
 
 import mkt
-from mkt.api.base import MarketplaceResource
+from mkt.api.resources import AppResource
 from mkt.search.views import _get_query, _filter_search
 from mkt.search.forms import ApiSearchForm
-from mkt.webapps.models import Webapp
 
 
-class SearchResource(MarketplaceResource):
+class SearchResource(AppResource):
 
-    class Meta:
-        available_methods = []
-        list_available_methods = ['get', 'post']
-        fields = ['id', 'name', 'description', 'premium_type', 'slug',
-                  'summary']
-        object_class = Webapp
+    class Meta(AppResource.Meta):
         resource_name = 'search'
-        serializer = Serializer(formats=['json'])
+        allowed_methods = []
+        detail_allowed_methods = []
+        list_allowed_methods = ['get']
+        authorization = ReadOnlyAuthorization()
+        authentication = Authentication()
 
     def get_resource_uri(self, bundle):
         # At this time we don't have an API to the Webapp details.
@@ -49,6 +48,7 @@ class SearchResource(MarketplaceResource):
         return bundle.obj.app_slug
 
     def dehydrate(self, bundle):
+        bundle = super(SearchResource, self).dehydrate(bundle)
         for size in amo.ADDON_ICON_SIZES:
             bundle.data['icon_url_%s' % size] = bundle.obj.get_icon_url(size)
         bundle.data['absolute_url'] = absolutify(bundle.obj.get_detail_url())
