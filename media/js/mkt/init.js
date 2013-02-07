@@ -17,7 +17,6 @@ var z = {
     },
     canInstallApps: true,
     allowAnonInstalls: !!$('body').data('allow-anon-installs'),
-    enableSearchSuggestions: !!$('body').data('enable-search-suggestions'),
     state: {}
 };
 

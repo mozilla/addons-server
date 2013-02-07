@@ -1,14 +1,8 @@
 // Init site search suggestions and populate the suggestions container.
 (function() {
     // MKT search init.
-    // Disable suggestions on Gaia for now.
-    var suggestions;
-    if (!z.capabilities.gaia || z.enableSearchSuggestions) {
-        suggestions = $('#search #search-q').searchSuggestions(
+    var suggestions = $('#search #search-q').searchSuggestions(
             $('#site-search-suggestions'), processResults, 'MKT');
-
-        suggestions.on('dismissed', abortRequest);
-    }
 
     var current_search = null;
     var previous_request = null;
