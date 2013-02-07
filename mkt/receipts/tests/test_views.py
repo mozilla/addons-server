@@ -287,6 +287,7 @@ class TestReceiptVerify(amo.tests.TestCase):
         verify.return_value = self.get_mock(user=self.reviewer, status='ok')
         self.reviewer.delete()
         res = self.client.post(self.url)
+        eq_(res['Access-Control-Allow-Origin'], '*')
         eq_(json.loads(res.content)['status'], 'invalid')
 
     @mock.patch('mkt.receipts.views.Verify')
@@ -303,6 +304,7 @@ class TestReceiptVerify(amo.tests.TestCase):
         AddonUser.objects.create(addon=self.app, user=developer)
         verify.return_value = self.get_mock(user=developer, status='ok')
         res = self.client.post(self.url)
+        eq_(res['Access-Control-Allow-Origin'], '*')
         eq_(self.log.count(), 1)
         eq_(res.status_code, 200)
 

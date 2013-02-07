@@ -26,7 +26,7 @@ from lib.cef_loggers import receipt_cef
 import mkt
 from mkt.constants import apps
 from mkt.webapps.models import Installed, Webapp
-from services.verify import Verify
+from services.verify import Verify, get_headers
 from stats.models import ClientData
 from users.models import UserProfile
 from zadmin.models import DownloadSource
@@ -154,6 +154,13 @@ def verify(request, uuid):
     verify = Verify(receipt, request)
     output = verify(check_purchase=False)
 
+    # Ensure CORS headers are set.
+    def response(data):
+        response = http.HttpResponse(data)
+        for header, value in get_headers(len(output)):
+            response[header] = value
+        return response
+
     # Only reviewers or the developers can use this which is different
     # from the standard receipt verification. The user is contained in the
     # receipt.
@@ -166,10 +173,9 @@ def verify(request, uuid):
         if user and (acl.action_allowed_user(user, 'Apps', 'Review')
             or addon.has_author(user)):
             amo.log(amo.LOG.RECEIPT_CHECKED, addon, user=user)
-            return http.HttpResponse(output, verify.get_headers(len(output)))
+            return response(output)
 
-    return http.HttpResponse(verify.invalid(),
-                             verify.get_headers(verify.invalid()))
+    return response(verify.invalid())
 
 
 @addon_all_view
