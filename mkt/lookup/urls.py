@@ -36,6 +36,6 @@ urlpatterns = patterns('',
     url(r'^app_search\.json$', views.app_search,
         name='lookup.app_search'),
     (r'^app/(?P<addon_id>[^/]+)/', include(app_patterns)),
-    (r'^transaction/(?P<uuid>[^/]+)/', include(transaction_patterns)),
+    (r'^transaction/(?P<tx_uuid>[^/]+)/', include(transaction_patterns)),
     (r'^user/(?P<user_id>[^/]+)/', include(user_patterns)),
 )

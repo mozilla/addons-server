@@ -27,7 +27,6 @@
           <dd>
             <a href="{{ app.get_detail_url() }}">{{ app.name }}</a>
           </dd>
-          <dt>{{ _('Provider') }}</dt><dd>{{ provider }}</dd>
           <dt>{{ _('Price Tier') }}</dt><dd>{{ contrib.price_tier }}</dd>
           {% if related %}
             <dt>{{ _('Related Transaction') }}</dt>
@@ -43,13 +42,19 @@
       {{ no_results() }}
     {% endif %}
 
-    {% if action_allowed('Transaction', 'Refund') and is_refundable %}
-      <form class="refund-transaction c" method="post"
-            action="{{ url('lookup.transaction_refund', uuid) }}">
-        {{ csrf() }}
-        {{ tx_refund_form }}
-        <button>{{ _('Refund this transaction') }}</button>
-      </form>
-    {% endif %}
+    <div class="refund-transaction c">
+      <dl>
+        <dt>{{ _('Refund Status') }}</dt>
+        <dd>{{ refund_status or _('Unrequested') }}</dd>
+      </dl>
+      {% if action_allowed('Transaction', 'Refund') and is_refundable %}
+        <form method="post"
+              action="{{ url('lookup.transaction_refund', uuid) }}">
+          {{ csrf() }}
+          {{ tx_refund_form }}
+          <button>{{ _('Refund this transaction') }}</button>
+        </form>
+      {% endif %}
+    </div>
 
 {% endblock %}
