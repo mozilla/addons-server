@@ -1194,6 +1194,7 @@ CSP_IMG_SRC = ("'self'", STATIC_URL,
                "https://www.google.com",  # Recaptcha comes from google
                "https://www.getpersonas.com",
                "https://s3.amazonaws.com",  # getsatisfaction
+               "https://ssl.google-analytics.com",
               )
 CSP_SCRIPT_SRC = ("'self'", STATIC_URL,
                   "https://www.google.com",  # Recaptcha
@@ -1208,8 +1209,9 @@ CSP_STYLE_SRC = ("'self'", STATIC_URL,
                 )
 CSP_OBJECT_SRC = ("'none'",)
 CSP_MEDIA_SRC = ("'none'",)
-CSP_FRAME_SRC = ("https://s3.amazonaws.com",  # getsatisfaction
+CSP_FRAME_SRC = ("https://s3.amazonaws.com",
                  "https://getsatisfaction.com",  # getsatisfaction
+                 "https://ssl.google-analytics.com",
                 )
 CSP_FONT_SRC = ("'self'", "fonts.mozilla.org", "www.mozilla.org",)
 # self is needed for paypal which sends x-frame-options:allow when needed.
