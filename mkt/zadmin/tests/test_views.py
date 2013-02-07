@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import date, timedelta
 
 import json
 
@@ -8,12 +8,14 @@ from pyquery import PyQuery as pq
 
 import amo
 import amo.tests
-from addons.models import Addon, AddonCategory, Category
+import mkt
+from addons.models import Addon, AddonCategory, AddonDeviceType, Category
 from amo.utils import urlparams
 from amo.urlresolvers import reverse
 from editors.models import RereviewQueue
 from users.models import UserProfile
 
+from mkt.carriers import get_carrier
 from mkt.webapps.models import AddonExcludedRegion, Webapp
 from mkt.zadmin.models import (FeaturedApp, FeaturedAppCarrier,
                                FeaturedAppRegion)
@@ -287,6 +289,162 @@ class TestFeaturedApps(amo.tests.TestCase):
                                    'enddate': ''})
         eq_(r.status_code, 200)
         eq_(FeaturedApp.objects.get(pk=f.pk).end_date, None)
+
+
+class TestFeaturedAppQueryset(amo.tests.TestCase):
+
+    def setUp(self):
+        self.c1 = Category.objects.create(name='awesome',
+                                          type=amo.ADDON_WEBAPP)
+        self.c2 = Category.objects.create(name='groovy', type=amo.ADDON_WEBAPP)
+
+        self.a1 = Webapp.objects.create(status=amo.STATUS_PUBLIC,
+                                        name='awesome app 1',
+                                        type=amo.ADDON_WEBAPP)
+        self.a2 = Webapp.objects.create(status=amo.STATUS_PUBLIC,
+                                        name='awesome app 2',
+                                        type=amo.ADDON_WEBAPP)
+        self.g1 = Webapp.objects.create(status=amo.STATUS_PUBLIC,
+                                        name='groovy app 1',
+                                        type=amo.ADDON_WEBAPP)
+        self.s1 = Webapp.objects.create(status=amo.STATUS_PUBLIC,
+                                        name='splendid app 1',
+                                        type=amo.ADDON_WEBAPP)
+
+        AddonCategory.objects.create(category=self.c1, addon=self.a1)
+        AddonCategory.objects.create(category=self.c1, addon=self.a2)
+        AddonCategory.objects.create(category=self.c2, addon=self.g1)
+        AddonCategory.objects.create(category=self.c1, addon=self.s1)
+        AddonCategory.objects.create(category=self.c2, addon=self.s1)
+
+        yesterday = date.today() - timedelta(days=1)
+        tomorrow = date.today() + timedelta(days=1)
+
+        MOBILE = amo.DEVICE_MOBILE.id
+        GAIA = amo.DEVICE_GAIA.id
+        DESKTOP = amo.DEVICE_DESKTOP.id
+        TABLET = amo.DEVICE_TABLET.id
+
+        self.f1 = FeaturedApp.objects.create(app=self.a1, category=self.c1,
+                                             start_date=yesterday,
+                                             end_date=tomorrow)
+        self.f2 = FeaturedApp.objects.create(app=self.a1, category=self.c2)
+        self.far1 = FeaturedAppRegion.objects.create(featured_app=self.f1,
+                                                     region=mkt.regions.US.id)
+        self.far2 = FeaturedAppRegion.objects.create(featured_app=self.f2)
+        self.fac1 = FeaturedAppCarrier.objects.create(featured_app=self.f1,
+                                                      carrier='telerizon')
+        self.fac2 = FeaturedAppCarrier.objects.create(featured_app=self.f2,
+                                                      carrier='cingulizon')
+        self.aodt1 = AddonDeviceType.objects.create(addon=self.a1,
+                                                    device_type=MOBILE)
+        self.aodt2 = AddonDeviceType.objects.create(addon=self.a1,
+                                                    device_type=GAIA)
+        self.aodt3 = AddonDeviceType.objects.create(addon=self.a2,
+                                                    device_type=DESKTOP)
+        self.aodt3 = AddonDeviceType.objects.create(addon=self.a2,
+                                                    device_type=TABLET)
+
+    def _is_overlap(self, x, y):
+        """
+        Asserts whether there are any items in `y` that do not exist in `x`.
+        Useful for testing whether items in y were filtered from x by a
+        custom manager mesthod.
+        """
+        temp = set(y)  # Don't create the set more than once.
+        return all(item in temp for item in x)
+
+    def assertQuerySetEqual(self, qs1, qs2):
+        "Assertion to check the equality of two querysets"
+        return self.assertSetEqual(qs1.values_list('id', flat=True),
+                                   qs2.values_list('id', flat=True))
+
+    def test_queryset_for_category(self):
+        self.assertQuerySetEqual(FeaturedApp.objects.for_category(self.c1),
+                                 FeaturedApp.objects.filter(category=self.c1))
+
+    def test_queryset_worldwide(self):
+        worldwide = mkt.regions.WORLDWIDE.id
+        self.assertQuerySetEqual(
+            FeaturedApp.objects.worldwide(),
+            FeaturedApp.objects.filter(regions__region=worldwide)
+        )
+
+    def test_queryset_for_region(self):
+        self.assertQuerySetEqual(
+            FeaturedApp.objects.for_region(mkt.regions.US),
+            FeaturedApp.objects.filter(regions__region=mkt.regions.US.id)
+        )
+
+    def test_queryset_for_carrier(self):
+        carrier = 'telerizon'
+        self.assertQuerySetEqual(
+            FeaturedApp.objects.for_carrier(carrier),
+            FeaturedApp.objects.filter(carriers__carrier=carrier)
+        )
+
+    def test_queryset_mobile(self):
+        self.assertQuerySetEqual(
+            FeaturedApp.objects.mobile(),
+            FeaturedApp.objects.filter(
+                app__addondevicetype__device_type=amo.DEVICE_MOBILE.id)
+        )
+
+    def test_queryset_gaia(self):
+        self.assertQuerySetEqual(
+            FeaturedApp.objects.gaia(),
+            FeaturedApp.objects.filter(
+                app__addondevicetype__device_type=amo.DEVICE_GAIA.id)
+        )
+
+    def test_queryset_tablet(self):
+        self.assertQuerySetEqual(
+            FeaturedApp.objects.tablet(),
+            FeaturedApp.objects.filter(
+                app__addondevicetype__device_type=amo.DEVICE_TABLET.id)
+        )
+
+    def test_queryset_active_date(self):
+        now = date.today()
+        start_date = (FeaturedApp.objects.filter(start_date__lte=now) |
+                      FeaturedApp.objects.filter(start_date__isnull=True))
+        end_date = (FeaturedApp.objects.filter(end_date__gte=now) |
+                    FeaturedApp.objects.filter(end_date__isnull=True))
+        self.assertQuerySetEqual(FeaturedApp.objects.active_date(),
+                                 (start_date | end_date))
+
+    def test_queryset_active(self):
+        self.assertQuerySetEqual(FeaturedApp.objects.active(),
+                                 FeaturedApp.objects.active_date().public())
+
+    def test_queryset_featured(self):
+        carrier = get_carrier()
+        assert self._is_overlap(
+            FeaturedApp.objects.for_category(self.c1),
+            FeaturedApp.objects.featured(cat=self.c1)
+        ), 'Unexpected items in category %s' % self.c1
+        assert self._is_overlap(
+            FeaturedApp.objects.for_carrier(carrier),
+            FeaturedApp.objects.featured()
+        ), 'Unexpected items for carrier %s' % carrier
+        assert self._is_overlap(
+            FeaturedApp.objects.gaia(),
+            FeaturedApp.objects.featured(gaia=True)
+        ), 'Unexpected items in Gaia'
+        assert self._is_overlap(
+            FeaturedApp.objects.mobile(),
+            FeaturedApp.objects.featured(mobile=True)
+        ), 'Unexpected items in mobile'
+        assert self._is_overlap(
+            FeaturedApp.objects.tablet(),
+            FeaturedApp.objects.featured(tablet=True)
+        ), 'Unexpected items in tablet'
+        assert self._is_overlap(
+            FeaturedApp.objects.active(),
+            FeaturedApp.objects.featured()
+        ), 'Inactive items in featured queryset'
+        limited = FeaturedApp.objects.featured(limit=1).count()
+        assert eq_(limited, 1), '%s items returned, only 1 expected' % limited
 
 
 class TestAddonSearch(amo.tests.ESTestCase):

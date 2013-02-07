@@ -15,7 +15,6 @@ from django.dispatch import receiver
 from django.utils.http import urlquote
 
 import commonware.log
-import waffle
 from elasticutils.contrib.django import F, S
 from tower import ugettext as _
 
@@ -36,11 +35,11 @@ from files.models import File, nfd_str, Platform
 from files.utils import parse_addon, WebAppParser
 from lib.crypto import packaged
 from versions.models import Version
+from mkt.zadmin.models import FeaturedApp
 
 import mkt
 from mkt.constants import apps
 from mkt.constants import APP_IMAGE_SIZES
-from mkt.carriers import get_carrier
 from mkt.webapps.utils import get_locale_properties
 
 
@@ -526,61 +525,7 @@ class Webapp(Addon):
     @classmethod
     def featured(cls, cat=None, region=None, limit=6, mobile=False,
                  gaia=False):
-        FeaturedApp = models.get_model('zadmin', 'FeaturedApp')
-        qs = (FeaturedApp.objects
-              .filter(app__status=amo.STATUS_PUBLIC,
-                      app__disabled_by_user=False)
-              .order_by('-app__weekly_downloads'))
-        qs = (qs.filter(start_date__lte=cls.now())
-              | qs.filter(start_date__isnull=True))
-        qs = (qs.filter(end_date__gte=cls.now())
-              | qs.filter(end_date__isnull=True))
-
-        if waffle.switch_is_active('disabled-payments') or not gaia:
-            qs = qs.filter(app__premium_type__in=amo.ADDON_FREES)
-
-        if isinstance(cat, list):
-            qs = qs.filter(category__in=cat)
-        else:
-            qs = qs.filter(category=cat.id if cat else None)
-
-        locale_qs = FeaturedApp.objects.none()
-        worldwide_qs = FeaturedApp.objects.none()
-
-        carrier = get_carrier()
-        if carrier:
-            qs = qs.filter(carriers__carrier=carrier)
-
-        if gaia:
-            qs = qs.filter(
-                app__addondevicetype__device_type=amo.DEVICE_GAIA.id)
-        elif mobile:
-            qs = qs.filter(
-                app__addondevicetype__device_type=amo.DEVICE_MOBILE.id)
-
-        if region:
-            excluded = cls.get_excluded_in(region)
-            locale_qs = (qs.filter(regions__region=region.id)
-                         .exclude(app__id__in=excluded))
-
-            # Fill the empty spots with Worldwide-featured apps.
-            if limit:
-                empty_spots = limit - locale_qs.count()
-                if empty_spots > 0 and region != mkt.regions.WORLDWIDE:
-                    ww = mkt.regions.WORLDWIDE.id
-                    worldwide_qs = (qs.filter(regions__region=ww)
-                                    .exclude(id__in=[x.id for x in locale_qs])
-                                    .exclude(app__id__in=excluded))[:limit]
-
-        if limit:
-            locale_qs = locale_qs[:limit]
-
-        if worldwide_qs:
-            combined = ([fa.app for fa in locale_qs] +
-                        [fa.app for fa in worldwide_qs])
-            return list(set(combined))[:limit]
-
-        return [fa.app for fa in locale_qs]
+        return FeaturedApp.objects.featured(cat, region, limit, mobile, gaia)
 
     @classmethod
     def get_excluded_in(cls, region):
