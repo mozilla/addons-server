@@ -301,34 +301,6 @@ class TestCreate(ReviewTest):
         r = self.client.get(self.add)
         eq_(r.status_code, 200)
 
-    def test_support_link(self):
-        # Test no link if no support url or contribution.
-        r = self.client.get(self.add_mobile)
-        eq_(pq(r.content)('.support-link').length, 0)
-
-        # Test support email if no support url.
-        self.webapp.support_email = {'en-US': 'test@test.com'}
-        self.webapp.save()
-        r = self.client.get(self.add_mobile)
-        doc = pq(r.content)('.support-link')
-        eq_(doc.length, 1)
-
-        # Test link to support url if support url.
-        self.webapp.support_url = {'en-US': 'test'}
-        self.webapp.save()
-        r = self.client.get(self.add_mobile)
-        doc = pq(r.content)('.support-link a')
-        eq_(doc.length, 1)
-        eq_(doc.attr('href'), 'test')
-
-        # Test link to support flow if contribution.
-        c = Contribution.objects.create(addon=self.webapp, user=self.user,
-                                        type=amo.CONTRIB_PURCHASE)
-        r = self.client.get(self.add_mobile)
-        doc = pq(r.content)('.support-link a')
-        eq_(doc.length, 1)
-        eq_(doc.attr('href'), reverse('support', args=[c.id]))
-
     def test_not_rated(self):
         # We don't have any reviews, and I'm not allowed to submit a review.
         Review.objects.all().delete()
