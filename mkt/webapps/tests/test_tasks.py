@@ -349,31 +349,6 @@ class TestUpdateManifest(amo.tests.TestCase):
         # Log for manifest update.
         eq_(ActivityLog.objects.for_apps(self.addon).count(), 1)
 
-    @mock.patch.object(settings, 'SITE_URL', 'http://test')
-    @mock.patch('mkt.webapps.tasks._open_manifest')
-    def test_validation_error_logs(self, open_manifest):
-        # Mock original manifest file lookup.
-        open_manifest.return_value = original
-        # Mock new manifest with name change.
-        n = new.copy()
-        n['locales'] = 'en-US'
-        response_mock = mock.Mock()
-        response_mock.read.return_value = json.dumps(n)
-        response_mock.headers = {
-            'Content-Type': 'application/x-web-app-manifest+json'}
-        self.urlopen_mock.return_value = response_mock
-
-        eq_(RereviewQueue.objects.count(), 0)
-        self._run()
-        eq_(RereviewQueue.objects.count(), 1)
-        assert 'http://test/developers/upload' in ''.join(
-            [a._details for a in ActivityLog.objects.for_apps(self.addon)])
-        eq_(ActivityLog.objects.for_apps(self.addon).count(), 1)
-
-        # Test we don't add app to re-review queue twice.
-        self._run()
-        eq_(RereviewQueue.objects.count(), 1)
-
     @mock.patch('mkt.webapps.tasks._open_manifest')
     def test_force_rereview(self, open_manifest):
         # Mock original manifest file lookup.
