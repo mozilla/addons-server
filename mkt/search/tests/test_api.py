@@ -61,7 +61,7 @@ class TestApi(BaseOAuth, ESTestCase):
         objs = json.loads(res.content)['objects']
         eq_(len(objs), 1)
 
-    def test_dehdryate(self):
+    def test_dehydrate(self):
         self.create()
         res = self.client.get(self.list_url + ({'cat': self.category.pk},))
         eq_(res.status_code, 200)
