@@ -1529,3 +1529,6 @@ LANGPACK_DOWNLOAD_BASE = 'https://ftp.mozilla.org/pub/mozilla.org/'
 LANGPACK_LIST_BASE = 'ftp://ftp.mozilla.org/pub/mozilla.org/'
 LANGPACK_PATH_DEFAULT = '%s/releases/%s/win32/xpi/'
 LANGPACK_MAX_SIZE = 5 * 1024 * 1024  # 5MB should be more than enough
+
+# Basket subscription url for newsletter signups
+BASKET_URL='https://basket.mozilla.com'
