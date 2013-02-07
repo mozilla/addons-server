@@ -225,8 +225,8 @@ class Contribution(amo.models.ModelBase):
                    _(u'%s payment reversal' % self.addon.name),
                    {'name': self.addon.name, 'amount': amt})
 
-    def record_failed_refund(self, e):
-        self.enqueue_refund(amo.REFUND_FAILED,
+    def record_failed_refund(self, e, user):
+        self.enqueue_refund(amo.REFUND_FAILED, user,
                             rejection_reason=str(e))
         self._switch_locale()
         self._mail('users/support/emails/refund-failed.txt',

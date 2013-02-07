@@ -134,7 +134,7 @@ def refund_reason(request, contribution, wizard):
                 paypal_log.error('Paypal error with refund', exc_info=True)
                 messages.error(request, _('There was an error with your '
                                           'instant refund.'))
-                contribution.record_failed_refund(e)
+                contribution.record_failed_refund(e, request.amo_user)
                 return redirect('account.purchases')
         else:
             # TODO(solitude): remove this.
@@ -144,7 +144,7 @@ def refund_reason(request, contribution, wizard):
                 paypal_log.error('Paypal error with refund', exc_info=True)
                 messages.error(request, _('There was an error with your '
                                           'instant refund.'))
-                contribution.record_failed_refund(e)
+                contribution.record_failed_refund(e, request.amo_user)
                 return redirect('account.purchases')
 
         refund = contribution.enqueue_refund(amo.REFUND_APPROVED_INSTANT)

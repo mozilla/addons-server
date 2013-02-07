@@ -42,8 +42,9 @@ class TestContributionModel(amo.tests.TestCase):
     fixtures = ['stats/test_models.json']
 
     def setUp(self):
+        user = UserProfile.objects.create(username='t@t.com')
         self.con = Contribution.objects.get(pk=1)
-        self.con.update(type=amo.CONTRIB_PURCHASE)
+        self.con.update(type=amo.CONTRIB_PURCHASE, user=user)
 
     def test_related_protected(self):
         user = UserProfile.objects.create(username='foo@bar.com')
@@ -174,7 +175,7 @@ class TestEmail(amo.tests.TestCase):
     def test_failed_email(self):
         cont = self.make_contribution('10', 'en-US', amo.CONTRIB_PURCHASE)
         msg = 'oh no'
-        cont.record_failed_refund(msg)
+        cont.record_failed_refund(msg, self.user)
         eq_(Refund.objects.count(), 1)
         rf = Refund.objects.get(contribution=cont)
         eq_(rf.status, amo.REFUND_FAILED)
