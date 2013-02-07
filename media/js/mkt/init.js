@@ -16,7 +16,6 @@ var z = {
         return '-' + z.prefix + '-' + property;
     },
     canInstallApps: true,
-    allowAnonInstalls: !!$('body').data('allow-anon-installs'),
     state: {}
 };
 

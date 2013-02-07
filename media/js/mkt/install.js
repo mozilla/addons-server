@@ -19,9 +19,9 @@ define('install', ['capabilities', 'payments'], function(caps, payments) {
     }
 
     function startInstall(product) {
-        if (z.anonymous && (!z.allowAnonInstalls || product.price)) {
+        if (product.price) {
             localStorage.setItem('toInstall', product.manifest_url);
-            $(window).trigger('login', true);
+            z.win.trigger('login', true);
             return;
         }
         // Show "Install" button if I'm installing from the Reviewer Tools,
