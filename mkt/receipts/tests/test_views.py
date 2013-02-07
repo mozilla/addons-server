@@ -140,7 +140,7 @@ class TestInstall(amo.tests.TestCase):
     def test_record_logged_out(self):
         self.client.logout()
         res = self.client.post(self.url)
-        eq_(res.status_code, 302)
+        eq_(res.status_code, 200)
 
     @mock.patch('mkt.receipts.views.receipt_cef.log')
     def test_log_metrics(self, cef):

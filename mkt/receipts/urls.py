@@ -9,11 +9,7 @@ from . import views
 # that you put a redirect in.
 app_receipt_patterns = patterns('',
     url('^reissue$', views.reissue, name='purchase.reissue'),
-    url('^record$',
-        (views.record_anon
-         if waffle.switch_is_active('anonymous-free-installs')
-         else views.record),
-        name='detail.record'),
+    url('^record$', views.record_anon, name='detail.record'),
 )
 
 receipt_patterns = patterns('',

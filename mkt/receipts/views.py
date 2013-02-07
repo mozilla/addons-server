@@ -52,16 +52,15 @@ def _record(request, addon):
     # TODO(andym): simplify this.
     logged = request.user.is_authenticated()
     premium = addon.is_premium()
-    allow_anon_install = waffle.switch_is_active('anonymous-free-installs')
 
     # Require login for premium.
-    if not logged and (premium or not allow_anon_install):
+    if not logged and premium:
         return http.HttpResponseRedirect(reverse('users.login'))
 
     ctx = {'addon': addon.pk}
 
     # Don't generate receipts if we're allowing logged-out install.
-    if logged or not allow_anon_install:
+    if logged:
         is_dev = request.check_ownership(addon, require_owner=False,
                                          ignore_disabled=True, admin=False)
         is_reviewer = acl.check_reviewer(request)
