@@ -256,15 +256,17 @@ class FilesBase:
 
         res = self.client.post(self.file_url(),
                                {'left': ids[0], 'right': ids[1]})
-        eq_(res.status_code, 302)
         self.assert3xx(res, reverse('files.compare', args=ids))
 
     def test_browse_redirect(self):
         ids = self.files[0].id,
 
         res = self.client.post(self.file_url(), {'left': ids[0]})
-        eq_(res.status_code, 302)
         self.assert3xx(res, reverse('files.list', args=ids))
+
+    def test_invalid_redirect(self):
+        res = self.client.post(self.file_url(), {})
+        self.assert3xx(res, self.file_url())
 
     def test_file_chooser(self):
         res = self.client.get(self.file_url())
