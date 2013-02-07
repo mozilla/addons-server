@@ -19,7 +19,7 @@ define('install', ['capabilities', 'payments'], function(caps, payments) {
     }
 
     function startInstall(product) {
-        if (product.price) {
+        if (z.anonymous && product.price) {
             localStorage.setItem('toInstall', product.manifest_url);
             z.win.trigger('login', true);
             return;
