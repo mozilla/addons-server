@@ -209,7 +209,8 @@ class TestRequestSupport(PurchaseBase):
         res = self.client.post(self.get_support_url('reason'), {}, follow=True)
         eq_(res.status_code, 200)
         eq_(len(pq(res.content)('.notification-box')), 1)
-        record.assert_called_once_with(err[0])
+        eq_(record.call_args[0][0], err[0])
+        eq_(record.call_args[0][1].pk, self.user.pk)
 
     @mock.patch('stats.models.Contribution.enqueue_refund')
     @mock.patch('stats.models.Contribution.is_instant_refund')
