@@ -51,6 +51,11 @@
     }
 }
 
+.html-rtl #site-header #search-q {
+    background-position: 0 50%;
+    padding: 5px 15px 5px 50px;
+}
+
 .search-clear {
     .hidetext;
     position: absolute;
@@ -61,9 +66,15 @@
     right: -50px;
 }
 
-.html-rtl #site-header #search-q {
-    background-position: 0 50%;
-    padding: 5px 15px 5px 50px;
+@media @retina {
+    .search-clear {
+        background-image: url(../../img/mkt/icons/clear-2x.png);
+        background-size: 11px auto;
+    }
+}
+
+input:invalid + .search-clear {
+    display: none;
 }
 
 b[data-href] {
@@ -72,13 +83,6 @@ b[data-href] {
     font-weight: 600;
     &:hover {
         text-decoration: underline;
-    }
-}
-
-@media @retina {
-    .search-clear {
-        background-image: url(../../img/mkt/icons/clear-2x.png);
-        background-size: 11px auto;
     }
 }
 
