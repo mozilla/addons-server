@@ -68,9 +68,12 @@ def landing(request):
                              source_url=settings.SITE_URL)
             messages.success(request, _('Thank you for subscribing!'))
             return redirect('ecosystem.landing')
-        except basket.BasketException:
-            messages.error(request, _('We apologize, but an error '
-                 'occurred in our system. Please try again later.'))
+        except basket.BasketException as e:
+            log.error(
+                'Basket exception in ecosystem newsletter: %s' % e)
+            messages.error(
+                request, _('We apologize, but an error occurred in our '
+                           'system. Please try again later.'))
 
     return jingo.render(request, 'ecosystem/landing.html',
            {'videos': videos, 'newsletter_form': form})
