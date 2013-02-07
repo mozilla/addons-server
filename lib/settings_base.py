@@ -1195,13 +1195,14 @@ CSP_IMG_SRC = ("'self'", STATIC_URL,
                "https://www.getpersonas.com",
                "https://s3.amazonaws.com",  # getsatisfaction
                "https://ssl.google-analytics.com",
+               "http://www.google-analytics.com",
               )
 CSP_SCRIPT_SRC = ("'self'", STATIC_URL,
                   "https://www.google.com",  # Recaptcha
                   "https://login.persona.org",
+                  "https://native-persona.org",
                   "https://www.paypalobjects.com",
-                  "http://raw.github.com",
-                  "https://raw.github.com",
+                  "http://www.google-analytics.com",
                   )
 CSP_STYLE_SRC = ("'self'", STATIC_URL,
                  "http://raw.github.com",
@@ -1212,6 +1213,8 @@ CSP_MEDIA_SRC = ("'none'",)
 CSP_FRAME_SRC = ("https://s3.amazonaws.com",
                  "https://getsatisfaction.com",  # getsatisfaction
                  "https://ssl.google-analytics.com",
+                 "https://login.persona.org",
+                 "https://native-persona.org",
                 )
 CSP_FONT_SRC = ("'self'", "fonts.mozilla.org", "www.mozilla.org",)
 # self is needed for paypal which sends x-frame-options:allow when needed.
