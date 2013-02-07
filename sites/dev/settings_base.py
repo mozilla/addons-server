@@ -104,8 +104,6 @@ RECAPTCHA_PUBLIC_KEY = private.RECAPTCHA_PUBLIC_KEY
 RECAPTCHA_PRIVATE_KEY = private.RECAPTCHA_PRIVATE_KEY
 RECAPTCHA_URL = ('https://www.google.com/recaptcha/api/challenge?k=%s' % RECAPTCHA_PUBLIC_KEY)
 
-CSP_FRAME_SRC = ("'self'", "https://sandbox.paypal.com",)
-
 TMP_PATH = os.path.join(NETAPP_STORAGE, 'tmp')
 PACKAGER_PATH = os.path.join(TMP_PATH, 'packager')
 

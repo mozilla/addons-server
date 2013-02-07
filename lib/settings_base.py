@@ -1202,6 +1202,7 @@ CSP_SCRIPT_SRC = ("'self'", STATIC_URL,
                   "https://login.persona.org",
                   "https://native-persona.org",
                   "https://www.paypalobjects.com",
+                  "https://ssl.google-analytics.com",
                   "http://www.google-analytics.com",
                   )
 CSP_STYLE_SRC = ("'self'", STATIC_URL,
