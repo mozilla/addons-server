@@ -78,8 +78,6 @@ PAYPAL_CHAINS = (
     (30, private_mkt.PAYPAL_CHAINS_EMAIL),
 )
 
-CSP_FRAME_SRC = ("'self'", "https://sandbox.paypal.com",)
-
 TMP_PATH = os.path.join(NETAPP_STORAGE, 'tmp')
 PACKAGER_PATH = os.path.join(TMP_PATH, 'packager')
 
