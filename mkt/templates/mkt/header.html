@@ -5,7 +5,6 @@
     {% endif %}
     <h1 class="page">{{ headertitle }}</h1>
     <nav role="navigation">
-      <a href="{{ url('home') }}" class="header-button icon home left" title="{{ _('Home') }}"></a>
       {% if not DESKTOP %}
         <a href="{{ url('account.settings') if
                     request.user.is_authenticated() else
