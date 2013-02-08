@@ -25,7 +25,7 @@
         {% set search_form = SimpleSearchForm(data) %}
         <form method="GET" id="search" action="{{ url('search.search') }}">
           <label for="search-q">{{ _('Search') }}</label>
-          <input id="search-q" type="search" name="q" autocomplete="off" title="" required
+          <input id="search-q" type="search" name="q" autocomplete="off" title="" required formnovalidate
                  placeholder="{{ category.name if category else _('Search') }}"
                  data-placeholder-default="{{ _('Search') }}"
                  {% if search_form.q.value() %}value="{{ search_form.q.value() }}"{% endif %}>
