@@ -188,6 +188,7 @@ class TestDashboard(HubTest):
     def test_themes(self):
         """Check themes show on dashboard."""
         # Create 2 themes.
+        self.create_flag(name='submit-personas')
         for x in range(2):
             addon = addon_factory(type=amo.ADDON_PERSONA)
             AddonUser.objects.create(user=self.user_profile, addon=addon)
