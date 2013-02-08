@@ -49,6 +49,9 @@ define('payments', [], function() {
                     $old_overlay.find('#bango-account-errors')
                                 .html(error_data.responseText);
                 }
+
+                // Re-initialize the form submit binding.
+                setupPaymentAccountOverlay($waiting_overlay, onsubmit);
             });
         }));
     }
