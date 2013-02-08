@@ -61,7 +61,7 @@
            class="button prominent">{{ _('Submit a New Add-on') }}</a>
        {% endif %}
     </p>
-    {% if not webapp %}
+    {% if waffle.flag('submit-personas') %}
       <p class="submit-theme cta">
         <a href="{{ url('devhub.personas.submit') }}"
            class="button prominent">{{ _('Submit a New Theme') }}</a>
@@ -111,19 +111,22 @@
     </div>
   </section>
 
-  {# L10n: {0} is an integer. #}
-  <section class="dashboard primary theme-dashboard">
-    {% set cnt = themes.paginator.count %}
-    <h2 class="theme-count">
-      {{ ngettext('<b>{0}</b> theme', '<b>{0}</b> themes', cnt)|f(cnt|numberfmt)|safe }}
-    </h2>
-    <div class="listing island hero c">
-      {{ impala_addon_listing_header(request.get_full_path(), search_filter=theme_filter) }}
-      <div class="items">
-        {{ dev_addon_listing_items(themes.object_list) }}
+  {% if waffle.flag('submit-personas') and themes %}
+    {# L10n: {0} is an integer. #}
+    <section class="dashboard primary theme-dashboard">
+      {% set cnt = themes.paginator.count %}
+      <h2 class="theme-count">
+        {{ ngettext('<b>{0}</b> theme', '<b>{0}</b> themes', cnt)|f(cnt|numberfmt)|safe }}
+      </h2>
+      <div class="listing island hero c">
+        {{ impala_addon_listing_header(request.get_full_path(), search_filter=theme_filter) }}
+        <div class="items">
+          {{ dev_addon_listing_items(themes.object_list) }}
+        </div>
+        {{ themes|impala_paginator }}
       </div>
-      {{ themes|impala_paginator }}
-    </div>
-  </section>
+    </section>
+  {% endif %}
+
 {% endif %}
 {% endblock %}
