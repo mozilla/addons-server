@@ -322,3 +322,35 @@ class AddonPaymentAccount(CurlingHelper, amo.models.ModelBase):
             pass
 
         super(AddonPaymentAccount, self).delete()
+
+
+class UserInappKey(CurlingHelper, amo.models.ModelBase):
+    solitude_seller = models.ForeignKey(SolitudeSeller)
+    seller_product_pk = models.IntegerField(unique=True)
+
+    def secret(self):
+        return self._product().get()['secret']
+
+    def public_id(self):
+        return self._product().get()['public_id']
+
+    def reset(self):
+        self._product().patch(data={'secret': generate_key(48)})
+
+    @classmethod
+    def create(cls, user):
+        sel = SolitudeSeller.create(user)
+        prod = client.post_product(data={
+            'seller': sel.resource_uri, 'secret': generate_key(48),
+            'external_id': str(uuid.uuid4()), 'public_id': str(uuid.uuid4())
+        })
+        log.info('User %s created an in-app payments dev key product=%s '
+                 'with %s' % (user, prod['resource_pk'], sel))
+        return cls.objects.create(solitude_seller=sel,
+                                  seller_product_pk=prod['resource_pk'])
+
+    def _product(self):
+        return client.api.generic.product(self.seller_product_pk)
+
+    class Meta:
+        db_table = 'user_inapp_keys'

@@ -3,6 +3,7 @@ import json
 from django.core.exceptions import ObjectDoesNotExist
 
 import mock
+from mock import ANY
 from nose.tools import eq_, ok_, raises
 from pyquery import PyQuery as pq
 
@@ -16,7 +17,7 @@ from users.models import UserProfile
 
 import mkt
 from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
-                                   SolitudeSeller)
+                                   SolitudeSeller, UserInappKey)
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import AddonExcludedRegion as AER, ContentRating
 
@@ -134,6 +135,89 @@ class TestInappSecret(InappTest):
                                  role=amo.AUTHOR_ROLE_DEV)
         resp = self.client.get(self.url)
         eq_(resp.content, 'shhh!')
+
+
+class InappKeysTest(InappTest):
+    fixtures = fixture('webapp_337141', 'user_999')
+
+    def setUp(self):
+        super(InappKeysTest, self).setUp()
+        self.create_switch('in-app-sandbox')
+        self.url = reverse('mkt.developers.apps.in_app_keys')
+        self.seller_uri = '/seller/1/'
+        self.product_pk = 2
+
+    def setup_solitude(self, solitude):
+        solitude.post_seller.return_value = {'resource_uri': self.seller_uri}
+        solitude.post_product.return_value = {'resource_pk': self.product_pk}
+
+
+@mock.patch('mkt.developers.models.client')
+class TestInappKeys(InappKeysTest):
+
+    def test_logged_out(self, solitude):
+        self.client.logout()
+        self.assertLoginRequired(self.client.get(self.url))
+
+    def test_no_key(self, solitude):
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        eq_(res.context['key'], None)
+
+    def test_key_generation(self, solitude):
+        self.setup_solitude(solitude)
+        res = self.client.post(self.url)
+
+        assert res['Location'].endswith(self.url), res
+        assert solitude.post_seller.called, 'solitude seller not created'
+        assert solitude.post_product.called, 'seller product not created'
+        key = UserInappKey.objects.get()
+        eq_(key.solitude_seller.resource_uri, self.seller_uri)
+        eq_(key.seller_product_pk, self.product_pk)
+
+    def test_reset(self, solitude):
+        self.setup_solitude(solitude)
+        key = UserInappKey.create(self.user)
+        product = mock.Mock()
+        solitude.api.generic.product.return_value = product
+
+        self.client.post(self.url)
+        product.patch.assert_called_with(data={'secret': ANY})
+        solitude.api.generic.product.assert_called_with(key.seller_product_pk)
+
+
+@mock.patch('mkt.developers.models.client')
+class TestInappKeySecret(InappKeysTest):
+
+    def setUp(self):
+        super(TestInappKeySecret, self).setUp()
+
+    def setup_objects(self, solitude):
+        self.setup_solitude(solitude)
+        key = UserInappKey.create(self.user)
+        self.url = reverse('mkt.developers.apps.in_app_key_secret',
+                           args=[key.pk])
+
+    def test_logged_out(self, solitude):
+        self.setup_objects(solitude)
+        self.client.logout()
+        self.assertLoginRequired(self.client.get(self.url))
+
+    def test_different(self, solitude):
+        self.setup_objects(solitude)
+        self.login(self.other)
+        eq_(self.client.get(self.url).status_code, 403)
+
+    def test_secret(self, solitude):
+        self.setup_objects(solitude)
+        secret = 'not telling'
+        product = mock.Mock()
+        product.get.return_value = {'secret': secret}
+        solitude.api.generic.product.return_value = product
+
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        eq_(res.content, secret)
 
 
 class TestPayments(amo.tests.TestCase):

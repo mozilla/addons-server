@@ -122,8 +122,13 @@ urlpatterns = decorate(write, patterns('',
         views.standalone_upload_detail,
         name='mkt.developers.standalone_upload_detail'),
 
+    # Standalone tools.
     url('^upload-manifest$', views.upload_manifest,
         name='mkt.developers.upload_manifest'),
+    url('^in-app-keys/$', views_payments.in_app_keys,
+        name='mkt.developers.apps.in_app_keys'),
+    url('^in-app-key-secret/([^/]+)$', views_payments.in_app_key_secret,
+        name='mkt.developers.apps.in_app_key_secret'),
 
     # URLs for a single app.
     url('^app/%s/' % amo.APP_SLUG, include(app_detail_patterns)),

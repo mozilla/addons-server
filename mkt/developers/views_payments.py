@@ -217,6 +217,42 @@ def payments_accounts_delete(request, id):
 
 
 @login_required
+@waffle_switch('in-app-sandbox')
+def in_app_keys(request):
+    keys = (models.UserInappKey.uncached
+            .filter(solitude_seller__user=request.amo_user))
+    # TODO(Kumar) support multiple test keys. For now there's only one.
+    if keys.count():
+        key = keys.get()
+    else:
+        key = None
+    if request.method == 'POST':
+        if key:
+            key.reset()
+            messages.success(request, _('Secret was reset successfully.'))
+        else:
+            key = models.UserInappKey.create(request.amo_user)
+            messages.success(request,
+                             _('Key and secret were created successfully.'))
+        return redirect(reverse('mkt.developers.apps.in_app_keys'))
+
+    return jingo.render(request, 'developers/payments/in-app-keys.html',
+                        {'key': key})
+
+
+@login_required
+@waffle_switch('in-app-sandbox')
+def in_app_key_secret(request, pk):
+    key = (models.UserInappKey.uncached
+           .filter(solitude_seller__user=request.amo_user, pk=pk))
+    if not key.count():
+        # Either the record does not exist or it's not owned by the
+        # logged in user.
+        return http.HttpResponseForbidden()
+    return http.HttpResponse(key.get().secret())
+
+
+@login_required
 @waffle_switch('in-app-payments')
 @dev_required(owner_for_post=True, webapp=True)
 def in_app_config(request, addon_id, addon, webapp=True):
