@@ -72,13 +72,21 @@ $.fn.exists = function(callback, args) {
     return !!len;
 };
 
-function makeOrGetOverlay(id) {
-    var el = document.getElementById(id);
-    if (!el) {
-        el = $('<div class="overlay" id="' + id +'">');
+function makeOrGetOverlay(opts) {
+    var classes = 'overlay',
+        id = opts;
+    if (_.isObject(opts)) {
+        if ('class' in opts) {
+            classes += ' ' + opts.class;
+        }
+        id = opts.id;
+    }
+    var el = $('#' + id);
+    if (!el.length) {
+        el = $('<div class="' + classes + '" id="' + id +'">');
         $('body').append(el);
     }
-    return $(el);
+    return el;
 }
 
 function getTemplate($el) {

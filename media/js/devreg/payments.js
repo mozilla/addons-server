@@ -1,11 +1,15 @@
 define('payments', [], function() {
     'use strict';
 
-    function getOverlay(name) {
+    function getOverlay(opts) {
+        var id = opts;
+        if (_.isObject(opts)) {
+            id = opts.id;
+        }
         $('.overlay').remove();
         z.body.addClass('overlayed');
-        var overlay = makeOrGetOverlay(name);
-        overlay.html($('#' + name + '-template').html())
+        var overlay = makeOrGetOverlay(opts);
+        overlay.html($('#' + id + '-template').html())
                .addClass('show')
                .on('click', '.close', _pd(function() {
                    overlay.trigger('overlay_dismissed').remove();

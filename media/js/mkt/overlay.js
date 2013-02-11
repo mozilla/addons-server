@@ -18,7 +18,7 @@
     });
 
     // Dismiss overlay when we click outside of it.
-    z.win.on('click', '.overlay', function(e) {
+    z.win.on('click', '.overlay:not(.undismissable)', function(e) {
         if ($(e.target).parent('body').length) {
             dismiss();
         }

@@ -7,7 +7,10 @@ define('payments-manage', ['payments'], function(payments) {
     }
 
     function newBangoPaymentAccount(e) {
-        var $overlay = payments.getOverlay('add-bango-account');
+        var $overlay = payments.getOverlay({
+            'id': 'add-bango-account',
+            'class': 'undismissable'
+        });
         payments.setupPaymentAccountOverlay($overlay, showAgreement);
     }
 
