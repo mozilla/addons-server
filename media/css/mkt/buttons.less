@@ -54,6 +54,13 @@
         &:focus, &:visited:focus {
             .btn-shadow-active;
         }
+        // Chrome prefers this explicitly.
+        &:active, &:visited:active {
+            .btn-shadow-active;
+            .transition(all 0.25s linear 0s);
+            color: @white;
+            text-decoration: none;
+        }
     }
     // Grayish.
     &[disabled], &.disabled,
@@ -70,6 +77,13 @@
         &:focus, &:visited:focus {
             .btn-shadow-active;
         }
+        // Chrome prefers this explicitly.
+        &:active, &:visited:active {
+            .btn-shadow-active;
+            .transition(all 0.25s linear 0s);
+            color: @white;
+            text-decoration: none;
+        }
     }
     &.installed, &.purchased, &.incompatible {
         pointer-events: auto;
@@ -82,6 +96,13 @@
         }
         &:focus, &:visited:focus {
             .btn-shadow-active;
+        }
+        // Chrome prefers this explicitly.
+        &:active, &:visited:active {
+            .btn-shadow-active;
+            .transition(all 0.25s linear 0s);
+            color: @white;
+            text-decoration: none;
         }
     }
     // Grayish (legacy).
