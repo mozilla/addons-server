@@ -8,6 +8,7 @@ from django.conf import settings
 import fudge
 import jwt
 import mock
+from mock import ANY
 from moz_inapp_pay.exc import RequestExpired
 from moz_inapp_pay.verify import verify_claims, verify_keys
 from nose.tools import eq_, raises
@@ -176,7 +177,7 @@ class TestPostback(PurchaseTest):
         if not req:
             req = self.jwt()
         return self.client.post(reverse('webpay.postback'),
-                                data=req, content_type='text/plain')
+                                data={'notice': req})
 
     def jwt_dict(self, expiry=3600, issued_at=None, contrib_uuid=None):
         if not issued_at:
@@ -198,7 +199,7 @@ class TestPostback(PurchaseTest):
                     'productData': 'contrib_uuid=%s' % contrib_uuid
                 },
                 'response': {
-                    'transactionID': '<BlueVia-trans-id>'
+                    'transactionID': '<webpay-trans-id>'
                 }}
 
     def jwt(self, req=None, **kw):
@@ -206,17 +207,18 @@ class TestPostback(PurchaseTest):
             req = self.jwt_dict(**kw)
         return jwt.encode(req, self.webpay_dev_secret)
 
-    @fudge.patch('lib.crypto.webpay.jwt.decode')
-    def test_valid(self, tasks, decode):
+    @mock.patch('lib.crypto.webpay.jwt.decode')
+    def test_valid(self, decode, tasks):
         jwt_dict = self.jwt_dict()
         jwt_encoded = self.jwt(req=jwt_dict)
-        decode.expects_call().returns(jwt_dict)
+        decode.return_value = jwt_dict
         resp = self.post(req=jwt_encoded)
+        decode.assert_called_with(jwt_encoded, ANY)
         eq_(resp.status_code, 200)
-        eq_(resp.content, '<BlueVia-trans-id>')
+        eq_(resp.content, '<webpay-trans-id>')
         cn = Contribution.objects.get(pk=self.contrib.pk)
         eq_(cn.type, amo.CONTRIB_PURCHASE)
-        eq_(cn.transaction_id, '<BlueVia-trans-id>')
+        eq_(cn.transaction_id, '<webpay-trans-id>')
         tasks.send_purchase_receipt.delay.assert_called_with(cn.pk)
 
     def test_invalid(self, tasks):
@@ -224,6 +226,10 @@ class TestPostback(PurchaseTest):
         eq_(resp.status_code, 400)
         cn = Contribution.objects.get(pk=self.contrib.pk)
         eq_(cn.type, amo.CONTRIB_PENDING)
+
+    def test_empty_notice(self, tasks):
+        resp = self.client.post(reverse('webpay.postback'), data={})
+        eq_(resp.status_code, 400)
 
     @raises(RequestExpired)
     @fudge.patch('lib.crypto.webpay.jwt.decode')

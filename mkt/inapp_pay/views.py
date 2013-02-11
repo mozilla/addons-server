@@ -16,7 +16,6 @@ from django.shortcuts import get_object_or_404
 import amo
 from amo.decorators import login_required, post_required, write
 from amo.urlresolvers import reverse
-from lib.cef_loggers import inapp_cef
 from lib.pay_server import client
 from market.models import Price
 import paypal
@@ -241,11 +240,6 @@ def pay_status(request, config_pk, status):
                 Contribution.DoesNotExist), exc:
             log.error('PayPal returned invalid uuid %r from in-app payment'
                       % uuid_, exc_info=True)
-            inapp_cef.log(request, cfg.addon, 'inapp_pay_status',
-                          'PayPal or someone sent invalid uuid %r for '
-                          'in-app pay config %r; exception: %s: %s'
-                          % (uuid_, cfg.pk, exc.__class__.__name__, exc),
-                          severity=4)
             return render_error(request, exc)
         payment = InappPayment.objects.get(config=cfg, contribution=cnt)
         if status == 'complete':

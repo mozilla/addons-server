@@ -10,7 +10,6 @@ from tower import ugettext_lazy as _lazy
 import amo
 from amo.models import BlobField
 from lib.crypto import generate_key
-from lib.cef_loggers import inapp_cef
 
 
 class TooManyKeyGenAttempts(Exception):
@@ -201,12 +200,6 @@ class InappPayLog(amo.models.ModelBase):
     @classmethod
     def log(cls, request, action_name, user=None, config=None, exc_class=None,
             app_public_key=None):
-        if action_name == 'EXCEPTION':
-            app = config.addon if config else 'unknown'
-            inapp_cef.log(request, app, 'inapp_pay_error',
-                          'Encountered exception during in-app '
-                          'payment flow: %s' % (exc_class or 'unknown'),
-                          severity=4)
         cls.objects.create(session_key=request.session.session_key,
                            user=user,
                            action=cls._actions[action_name],

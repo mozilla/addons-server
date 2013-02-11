@@ -6,7 +6,6 @@ import urlparse
 
 from django import http
 from django.conf import settings
-from django.db.transaction import commit_on_success
 from django.views.decorators.csrf import csrf_exempt
 
 import bleach
@@ -18,8 +17,9 @@ import amo
 from amo.decorators import json_view, login_required, post_required, write
 from amo.helpers import absolutify
 from amo.urlresolvers import reverse
-from lib.crypto.webpay import (get_uuid, InvalidSender, parse_from_webpay,
-                                sign_webpay_jwt)
+from lib.cef_loggers import app_pay_cef
+from lib.crypto.webpay import (InvalidSender, parse_from_webpay,
+                               sign_webpay_jwt)
 from mkt.webapps.models import Webapp
 from stats.models import ClientData, Contribution
 
@@ -70,7 +70,7 @@ def prepare_pay(request, addon):
     app_summary = bleach.clean(unicode(addon.summary), strip=True, tags=[])
 
     acct = addon.app_payment_account.payment_account
-    seller_uuid =acct.solitude_seller.uuid
+    seller_uuid = acct.solitude_seller.uuid
     issued_at = calendar.timegm(time.gmtime())
     req = {
         'iss': settings.APP_PURCHASE_KEY,
@@ -123,10 +123,13 @@ def pay_status(request, addon, contrib_uuid):
 @post_required
 def postback(request):
     """Verify signature and set contribution to paid."""
-    signed_jwt = request.read()
+    signed_jwt = request.POST.get('notice', '')
     try:
         data = parse_from_webpay(signed_jwt, request.META.get('REMOTE_ADDR'))
-    except InvalidSender:
+    except InvalidSender, exc:
+        app_pay_cef.log(request, 'Unknown app', 'invalid_postback',
+                        'Ignoring invalid JWT %r: %s' % (signed_jwt, exc),
+                        severity=4)
         return http.HttpResponseBadRequest()
 
     pd = urlparse.parse_qs(data['request']['productData'])

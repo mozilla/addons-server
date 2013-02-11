@@ -93,11 +93,14 @@ class ReceiptCEFLogger(CEFLogger):
 receipt_cef = ReceiptCEFLogger()
 
 
-class InappCEFLogger(CEFLogger):
-    sig_prefix = 'INAPP_PAY'
-    cs2label = 'InappPayment'
-    msg_prefix = 'InappPayment'
+class AppPayCEFLogger(CEFLogger):
+    """
+    Anything to do with app payments.
+    """
+    sig_prefix = 'APP_PAY'
+    cs2label = 'AppPayment'
+    msg_prefix = 'AppPayment'
     default_severity = 5
 
 
-inapp_cef = InappCEFLogger()
+app_pay_cef = AppPayCEFLogger()
