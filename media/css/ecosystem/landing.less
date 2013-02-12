@@ -32,8 +32,9 @@
 
     h1 {
         color: @dark-gray;
-        font-size: 55px;
+        font-size: 37px;
         font-weight: 100;
+        line-height: 47px;
         margin: 20px 0;
         text-align: center;
         text-shadow: #fff 0 1px 1px;
@@ -46,15 +47,20 @@
         text-align: center;
     }
 
-    .button-wrapper {
-        padding: 20px 10px;
+    .link-wrapper {
+        padding: 20px 40px;
         width: 288px;
+
+        a {
+            font-size: 14px;
+            font-style: italic;
+        }
     }
 
     #partnership {
-        .box-shadow(0 1px 12px -8px rgba(0,0,0,.5) inset);
+        .box-shadow(0 1px 6px -8px rgba(0,0,0,.5) inset);
         .faded-border;
-        border-bottom: 1px solid #ddd;
+        border-bottom: 1px solid @white;
         border-top: 1px solid #ddd;
         clear: both;
         float: left;
@@ -66,16 +72,16 @@
 
         .partner-title {
             float: left;
-            margin-right: 10px;
-            padding-top: 30px;
+            margin: 0 0 0 40px;
+            padding-top: 10px;
             position: relative;
             width: 220px;
             z-index: 1;
 
             h2 {
                 color: #000;
-                font-size: 23px;
-                line-height: 27px;
+                font-size: 22px;
+                line-height: 26px;
             }
 
             p {
@@ -84,12 +90,10 @@
         }
 
         .partner-logos {
-            background: url(../../img/ecosystem/border.png) repeat-y top right;
             display: block;
             float: left;
-            margin-top: 5px;
+            margin: 5px 20px 0;
             padding-right: 10px;
-            text-align: center;
             width: 535px;
 
             ul {
@@ -111,40 +115,36 @@
 
             h3, p {
                 clear: both;
-                text-align: center;
             }
 
             h3 {
-                padding: 10px 0 0;
-                font-size: 14px;
-            }
-
-            p {
+                font-size: 16px;
                 font-style: italic;
-                margin: 0;
-
-                &.partner-email {
-                    a {
-                        display: inline-block;
-                        white-space: nowrap;
-                    }
-                }
+                line-height: 30px;
+                padding: 20px 0 0 20px;
             }
         }
 
         .submit-app {
             float: left;
-            margin: 0 auto;
+            margin: 0 auto 60px;
             padding: 10px 5px 5px 15px;
-            text-align: center;
-            width: 100px;
+            width: 210px;
 
-            a {
-                background: url(../../img/ecosystem/submit-app-mktplace.png) no-repeat 50% 0;
-                display: block;
-                font-size: 18px;
-                line-height: 22px;
-                padding-top: 65px;
+            .app-logo {
+                clear: both;
+                float: left;
+                height: 153px;
+                text-align: center;
+
+                a.button {
+                    .gradient-two-color(#367dbc, #276093);
+                    clear: both;
+                    color: @white;
+                    display: block;
+                    font-size: 17px;
+                    line-height: 21px;
+                }
             }
         }
     }
@@ -247,7 +247,7 @@
     }
 
     &.initial-steps {
-        background: #fff url(../../img/ecosystem/landing-steps.png) no-repeat 14px 38%;
+        background: #fff url(../../img/ecosystem/landing-steps.png) no-repeat -10px 38%;
         margin-bottom: 40px;
         padding-top: 0;
     }
@@ -267,8 +267,7 @@
         width: 320px;
 
         h2 {
-            margin-top: 10px;
-            text-align: center;
+            margin: 10px 40px;
 
             &:before {
                 padding-right: 8px;
@@ -294,7 +293,6 @@
             margin: 0 auto;
             overflow: hidden;
             padding: 0 5px 10px 5px;
-            text-align: center;
             text-overflow: ellipsis;
             width: 235px;
         }

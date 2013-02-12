@@ -61,6 +61,7 @@
             <h1 class="logo"><a href="{{ url('ecosystem.landing') }}">
               {{ _('Firefox Marketplace Developers') }}</a></h1>
           {% endblock %}
+          {% block account_links %}{% endblock %}
           {% include 'mkt/account-links.html' %}
         </div>
         {% block site_header_title %}

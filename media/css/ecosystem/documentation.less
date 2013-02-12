@@ -27,9 +27,42 @@ a[rel="external"] {
     width: 960px;
 }
 
+#wrap {
+    padding-top: 30px;
+}
+
 #site-header {
     .logo {
         width: 400px;
+    }
+
+    .header-button.icon.browserid {
+        display: none;
+    }
+}
+
+.header-button.browserid {
+    position: relative;
+    width: auto;
+}
+
+.devhub-links {
+    position: absolute;
+    right: 0;
+    text-align: right;
+    top: 30px;
+    width: 630px;
+    z-index: 13;
+
+    &.logged {
+        right: 45px;
+    }
+
+    a {
+        color: @white;
+        font-size: 13px;
+        line-height: 20px;
+        padding: 5px 7px;
     }
 }
 
@@ -447,27 +480,5 @@ a.app-source {
         span {
             color: @medium-gray;
         }
-    }
-}
-
-#site-nav {
-    a {
-        background-repeat: no-repeat;
-        background-position: 12px 50%;
-    }
-    .section-design a {
-        background: url(../../img/ecosystem/section-design-icon.png) 0 50% no-repeat;
-        background-size: 15px auto;
-        text-indent: 23px;
-    }
-    .section-build a {
-        background-image: url(../../img/ecosystem/section-build-icon.png);
-        background-size: 12px auto;
-        text-indent: 21px;
-    }
-    .section-publish a {
-        background-image: url(../../img/ecosystem/section-publish-icon.png);
-        background-size: 17px auto;
-        text-indent: 26px;
     }
 }
