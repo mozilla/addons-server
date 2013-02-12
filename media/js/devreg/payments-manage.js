@@ -23,7 +23,7 @@ define('payments-manage', ['payments'], function(payments) {
                 var $form = $(this);
 
                 // Assume the POST below was a success, and close the modal.
-                $overlay.detach().trigger('overlay_dismissed');
+                $overlay.trigger('overlay_dismissed').detach();
                 onsubmit.apply($form, data);
 
                 // If the POST failed, we show an error message.
