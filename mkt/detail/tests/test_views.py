@@ -803,27 +803,6 @@ class TestAppAbuse(DetailBase):
 
     def setUp(self):
         super(TestAppAbuse, self).setUp()
-        self.user = UserProfile.objects.get(username='regularuser')
-        self.url = reverse('users.abuse', args=[self.user.username])
-        self.data = {'tuber': '', 'sprout': 'potato', 'text': 'test'}
-
-    def test_success(self):
-        res = self.client.post(self.url, self.data)
-        self.assert3xx(res, self.url)
-        eq_(self.user.abuse_reports.count(), 1)
-
-    def test_error(self):
-        self.data['text'] = ''
-        res = self.client.post(self.url, self.data)
-        eq_(res.status_code, 200)
-        eq_(self.user.abuse_reports.count(), 0)
-
-
-class TestAppAbuse(DetailBase):
-    fixtures = fixture('webapp_337141', 'user_999')
-
-    def setUp(self):
-        super(TestAppAbuse, self).setUp()
         self.data = {'tuber': '', 'sprout': 'potato', 'text': 'spammy'}
         self.abuse_url = self.app.get_detail_url('abuse')
 
@@ -831,7 +810,8 @@ class TestAppAbuse(DetailBase):
         patcher.start()
         self.addCleanup(patcher.stop)
 
-    def test_success_authenticated(self):
+    @mock.patch('amo.tasks.find_abuse_escalations')
+    def test_success_authenticated(self, find_abuse_escalations_mock):
         assert self.client.login(username='regular@mozilla.com',
                                  password='password')
         res = self.client.post(self.abuse_url, self.data)
@@ -844,7 +824,10 @@ class TestAppAbuse(DetailBase):
         eq_(report.message, 'spammy')
         eq_(report.reporter.email, 'regular@mozilla.com')
 
-    def test_success_anonymous(self):
+        find_abuse_escalations_mock.delay.assert_called_with(self.app.id)
+
+    @mock.patch('amo.tasks.find_abuse_escalations')
+    def test_success_anonymous(self, find_abuse_escalations_mock):
         res = self.client.post(self.abuse_url, self.data)
         self.assert3xx(res, self.url)
 
@@ -854,6 +837,8 @@ class TestAppAbuse(DetailBase):
         report = self.app.abuse_reports.all()[0]
         eq_(report.message, 'spammy')
         eq_(report.reporter, None)
+
+        find_abuse_escalations_mock.delay.assert_called_with(self.app.id)
 
     def test_error(self):
         self.data['text'] = ''
