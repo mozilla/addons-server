@@ -17,7 +17,6 @@ from abuse.models import send_abuse_report
 from access import acl
 from amo.decorators import (login_required, permission_required, post_required,
                             write)
-from amo.forms import AbuseForm
 from amo.helpers import absolutify
 from amo.urlresolvers import reverse
 from amo.utils import paginate, send_mail_jinja
@@ -28,6 +27,7 @@ from mkt.account.forms import CurrencyForm
 from mkt.fragments.decorators import bust_fragments_on_post
 from mkt.fragments.utils import bust_fragments
 from mkt.site import messages
+from mkt.site.forms import AbuseForm
 from users.models import UserProfile
 from users.tasks import delete_photo as delete_photo_task
 from users.views import logout

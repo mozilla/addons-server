@@ -1,9 +1,5 @@
 @import 'lib';
 
-.recaptcha-container {
-    position: relative;
-}
-
 #abuse {
     padding: 0 15px;
     form, form .simple-field {
@@ -12,101 +8,7 @@
     form label[for=id_text] {
         display: none;
     }
-    #recap-container {
-        margin-top: 15px;
-    }
-    #recap-label {
-        display: block;
-        font-weight: normal;
-        margin-bottom: 15px;
-    }
     .form-footer button {
         margin-bottom: 15px;
     }
-}
-
-#recap-container {
-    .border-radius(5px);
-    border: 1px solid @border-blue;
-    background: @white;
-    margin-bottom: 10px;
-    position: relative;
-    padding: 10px;
-    color: @text;
-    p, label {
-        font-weight: 300;
-        font-size: 14px;
-        line-height: 20px;
-    }
-    label:first-child {
-        font-weight: bold;
-        a {
-            font-weight: 300;
-        }
-    }
-    a {
-        text-decoration: underline;
-    }
-}
-
-#recaptcha_table {
-    color: @text;
-    tr {
-        td {
-            background: #fff;
-        }
-        &:nth-child(4) {
-            td {
-                display: none;
-            }
-            td:first-child {
-                display: table-cell;
-                width: 290px;
-            }
-        }
-        &:nth-child(5), &:nth-child(6) {
-            td {
-                display: none;
-            }
-        }
-    }
-    // This will be fun if we have to resize later!
-    .recaptcha_image_cell {
-        #recaptcha_image, img {
-            width: 278px !important;
-        }
-    }
-    .recaptcha_input_area {
-        width: auto !important;
-    }
-    .recaptcha_input_area #recaptcha_response_field {
-        border: 1px solid @note-gray !important;
-        width: 225px !important;
-        position: static !important;
-        height: 30px;
-        font-size: 16px;
-    }
-    .recaptcha_input_area_text span {
-        font-size: 12px;
-    }
-}
-
-#recaptcha_div {
-    position: relative;
-    #recaptcha_table {
-        width: 275px !important;
-    }
-}
-
-#abuse #recaptcha_area, #abuse #recaptcha_table {
-    width: auto !important;
-}
-
-#recaptcha_help {
-    float: right;
-    font-size: 11px;
-}
-
-#recaptcha_widget_div {
-    display: none !important;
 }

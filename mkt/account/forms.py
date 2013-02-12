@@ -1,11 +1,10 @@
 import re
 
 from django import forms
-from django.conf import settings
 
-import captcha.fields
 import commonware.log
 import happyforms
+from mkt.site.forms import PotatoCaptchaForm
 from tower import ugettext_lazy as _lazy
 
 import amo
@@ -91,7 +90,7 @@ class CurrencyForm(happyforms.Form):
                                               for k in choices if k]
 
 
-class FeedbackForm(happyforms.Form):
+class FeedbackForm(PotatoCaptchaForm):
     """Site feedback form."""
 
     feedback = forms.CharField(required=True, label='',
@@ -102,16 +101,3 @@ class FeedbackForm(happyforms.Form):
                                  label='')
     from_url = forms.CharField(required=False, widget=forms.HiddenInput,
                                label='')
-
-    recaptcha = captcha.fields.ReCaptchaField(label='')
-
-    def __init__(self, *args, **kwargs):
-        self.request = kwargs.pop('request')
-        self.has_recaptcha = True
-
-        super(FeedbackForm, self).__init__(*args, **kwargs)
-
-        if (not self.request.user.is_anonymous() or
-            not settings.RECAPTCHA_PRIVATE_KEY):
-            del self.fields['recaptcha']
-            self.has_recaptcha = False

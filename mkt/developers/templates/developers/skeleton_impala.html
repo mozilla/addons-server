@@ -126,9 +126,6 @@
     {# js #}
     {% block site_js %}
       <script src="{{ static(url('jsi18n'))|urlparams(lang=LANG) }}"></script>
-      {% if not logged %}
-        <script type="text/javascript" src="{{ settings.RECAPTCHA_AJAX_URL }}"></script>
-      {% endif %}
       {{ js('mkt/devreg') }}
     {% endblock %}
     {% block js %}{% endblock %}

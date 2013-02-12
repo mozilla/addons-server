@@ -18,6 +18,7 @@
 {% endblock %}
 
 {% block overlays %}
+  {# TODO: Load this as an XHR in the overlay so we can get an anonymous CSRF. #}
   {% if logged %}
     <div id="feedback-overlay" class="overlay">
       <section class="bare">

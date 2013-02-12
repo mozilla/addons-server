@@ -283,7 +283,7 @@ JS = {
         'js/impala/serializers.js',
         'js/mkt/fragments.js',
         'js/mkt/navigation.js',
-        'js/mkt/recaptcha.js',
+        'js/mkt/potatocaptcha.js',
         'js/mkt/overlay.js',
         'js/mkt/login.js',
         'js/mkt/install.js',

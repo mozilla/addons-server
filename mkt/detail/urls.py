@@ -10,8 +10,6 @@ from . import views
 urlpatterns = patterns('',
     url('^$', views.detail, name='detail'),
     url('^abuse$', views.abuse, name='detail.abuse'),
-    url('^abuse/recaptcha$', views.abuse_recaptcha,
-        name='detail.abuse.recaptcha'),
     url('^privacy$', views.privacy, name='detail.privacy'),
 
     # Merge app purchase / receipt patterns.

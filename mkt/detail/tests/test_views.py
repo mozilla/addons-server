@@ -17,7 +17,6 @@ import waffle
 
 import amo
 import amo.tests
-from abuse.models import AbuseReport
 from access.models import GroupUser
 from addons.models import AddonCategory, AddonUpsell, AddonUser, Category
 from amo.helpers import external_url, urlparams
@@ -28,6 +27,7 @@ from users.models import UserProfile
 from versions.models import Version
 
 import mkt
+from mkt.site.fixtures import fixture
 from mkt.webapps.models import AddonExcludedRegion, Webapp
 
 
@@ -798,58 +798,69 @@ class TestPrivacy(amo.tests.TestCase):
         eq_(get_clean(doc('ol li:first')), '<li>papparapara2</li>')
 
 
-@mock.patch.object(settings, 'RECAPTCHA_PRIVATE_KEY', 'something')
-class TestReportAbuse(DetailBase):
-    fixtures = ['base/users', 'webapps/337141-steamcube']
+class TestAppAbuse(DetailBase):
+    fixtures = fixture('webapp_337141', 'user_999')
 
     def setUp(self):
-        super(TestReportAbuse, self).setUp()
-        self.url = self.app.get_detail_url('abuse')
+        super(TestAppAbuse, self).setUp()
+        self.user = UserProfile.objects.get(username='regularuser')
+        self.url = reverse('users.abuse', args=[self.user.username])
+        self.data = {'tuber': '', 'sprout': 'potato', 'text': 'test'}
 
-        patcher = mock.patch.object(settings, 'TASK_USER_ID', 4043307)
+    def test_success(self):
+        res = self.client.post(self.url, self.data)
+        self.assert3xx(res, self.url)
+        eq_(self.user.abuse_reports.count(), 1)
+
+    def test_error(self):
+        self.data['text'] = ''
+        res = self.client.post(self.url, self.data)
+        eq_(res.status_code, 200)
+        eq_(self.user.abuse_reports.count(), 0)
+
+
+class TestAppAbuse(DetailBase):
+    fixtures = fixture('webapp_337141', 'user_999')
+
+    def setUp(self):
+        super(TestAppAbuse, self).setUp()
+        self.data = {'tuber': '', 'sprout': 'potato', 'text': 'spammy'}
+        self.abuse_url = self.app.get_detail_url('abuse')
+
+        patcher = mock.patch.object(settings, 'TASK_USER_ID', 999)
         patcher.start()
         self.addCleanup(patcher.stop)
 
-    def log_in(self):
+    def test_success_authenticated(self):
         assert self.client.login(username='regular@mozilla.com',
                                  password='password')
+        res = self.client.post(self.abuse_url, self.data)
+        self.assert3xx(res, self.url)
 
-    def test_recaptcha_shown_for_anonymous(self):
-        eq_(self.get_pq()('#abuse #recap-container').length, 1)
-
-    def test_no_recaptcha_for_authenticated(self):
-        self.log_in()
-        eq_(self.get_pq()('#abuse #recap-container').length, 0)
-
-    @mock.patch('captcha.fields.ReCaptchaField.clean', new=mock.Mock)
-    def test_abuse_anonymous(self):
-        self.client.post(self.url, {'text': 'spammy'})
         eq_(len(mail.outbox), 1)
         assert 'spammy' in mail.outbox[0].body
-        report = AbuseReport.objects.get(addon=337141)
-        eq_(report.message, 'spammy')
-        eq_(report.reporter, None)
 
-    def test_abuse_anonymous_fails(self):
-        r = self.client.post(self.url, {'text': 'spammy'})
-        assert 'recaptcha' in r.context['abuse_form'].errors
-
-    def test_abuse_authenticated(self):
-        self.log_in()
-        self.client.post(self.url, {'text': 'spammy'})
-        eq_(len(mail.outbox), 1)
-        assert 'spammy' in mail.outbox[0].body
-        report = AbuseReport.objects.get(addon=337141)
+        report = self.app.abuse_reports.all()[0]
         eq_(report.message, 'spammy')
         eq_(report.reporter.email, 'regular@mozilla.com')
 
-    def test_abuse_name(self):
-        self.app.name = 'Bmrk.ru Социальные закладки'
-        self.app.save()
-        self.log_in()
-        self.client.post(self.url, {'text': 'spammy'})
+    def test_success_anonymous(self):
+        res = self.client.post(self.abuse_url, self.data)
+        self.assert3xx(res, self.url)
+
+        eq_(len(mail.outbox), 1)
         assert 'spammy' in mail.outbox[0].body
-        assert AbuseReport.objects.get(addon=self.app)
+
+        report = self.app.abuse_reports.all()[0]
+        eq_(report.message, 'spammy')
+        eq_(report.reporter, None)
+
+    def test_error(self):
+        self.data['text'] = ''
+        res = self.client.post(self.url, self.data)
+        eq_(res.status_code, 200)
+        eq_(len(mail.outbox), 0)
+        eq_(self.app.abuse_reports.count(), 0)
 
 
 class TestActivity(amo.tests.TestCase):

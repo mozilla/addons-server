@@ -14,13 +14,13 @@ from abuse.models import send_abuse_report
 from access import acl
 from addons.decorators import addon_view_factory
 from amo.decorators import login_required, permission_required
-from amo.forms import AbuseForm
 from amo.utils import paginate
 from devhub.models import ActivityLog
 from reviews.models import GroupedRating, Review
 from reviews.views import get_flags
 
 from mkt.site import messages
+from mkt.site.forms import AbuseForm
 from mkt.webapps.models import Webapp
 
 log = commonware.log.getLogger('z.detail')
@@ -119,19 +119,6 @@ def abuse(request, addon):
         return redirect(addon.get_url_path())
     else:
         return jingo.render(request, 'detail/abuse.html',
-                            {'product': addon, 'abuse_form': form})
-
-
-@anonymous_csrf_exempt
-@addon_view
-def abuse_recaptcha(request, addon):
-    form = AbuseForm(request.POST or None, request=request)
-    if request.method == 'POST' and form.is_valid():
-        send_abuse_report(request, addon, form.cleaned_data['text'])
-        messages.success(request, _('Abuse reported.'))
-        return redirect(addon.get_url_path())
-    else:
-        return jingo.render(request, 'detail/abuse_recaptcha.html',
                             {'product': addon, 'abuse_form': form})
 
 

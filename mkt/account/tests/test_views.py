@@ -12,20 +12,21 @@ from nose.tools import eq_
 from pyquery import PyQuery as pq
 import waffle
 
-from abuse.models import AbuseReport
 from access.models import Group, GroupUser
 import amo
 import amo.tests
 from amo.urlresolvers import reverse
 from addons.models import AddonPremium, AddonUser
 from market.models import PreApprovalUser, Price, PriceCurrency
-from mkt.developers.models import ActivityLog
 import paypal
 from reviews.models import Review
 from stats.models import Contribution
 from users.models import UserNotification, UserProfile
 from versions.models import Version
 import users.notifications as email
+
+from mkt.developers.models import ActivityLog
+from mkt.site.fixtures import fixture
 from mkt.webapps.models import Installed, Webapp
 
 
@@ -833,50 +834,38 @@ class TestPurchases(PurchaseBase):
             "Unexpected 'Request Support' link")
 
 
-class TestAbuse(amo.tests.TestCase):
-    fixtures = ['base/users']
+class TestUserAbuse(amo.tests.TestCase):
+    fixtures = fixture('user_999')
 
     def setUp(self):
-        self.user = UserProfile.objects.get(email='regular@mozilla.com')
+        self.user = UserProfile.objects.get(username='regularuser')
         self.url = reverse('users.abuse', args=[self.user.username])
+        self.data = {'tuber': '', 'sprout': 'potato', 'text': 'test'}
 
-    def test_add(self):
-        self.client.login(username='editor@mozilla.com', password='password')
-        res = self.client.post(self.url, data={'text': 'test'})
-        eq_(res.status_code, 302)
-        eq_(AbuseReport.objects.filter(user=self.user).count(), 1)
+    def test_success(self):
+        self.client.post(self.url, self.data)
+        eq_(self.user.abuse_reports.count(), 1)
 
-    @mock.patch.object(settings, 'RECAPTCHA_PRIVATE_KEY', 'something')
-    def test_no_recaptcha(self):
-        res = self.client.post(self.url, data={'text': 'test'})
-        eq_(res.status_code, 200)
-        self.assertFormError(res, 'abuse_form', 'recaptcha',
-                             'This field is required.')
-
-    @mock.patch.object(settings, 'RECAPTCHA_PRIVATE_KEY', 'something')
-    @mock.patch('captcha.fields.ReCaptchaField.clean')
-    def test_recaptcha(self, clean):
-        clean.return_value = ''
-        res = self.client.post(self.url, data={'text': 'test', 'recaptcha': '',
-                                               'recaptcha_shown': ''})
-        self.assert3xx(res, reverse('users.profile',
-                       args=[self.user.username]))
-        eq_(AbuseReport.objects.filter(user=self.user).count(), 1)
+    def test_error(self):
+        self.data['text'] = ''
+        self.client.post(self.url, self.data)
+        eq_(self.user.abuse_reports.count(), 0)
 
 
 class TestFeedback(amo.tests.TestCase):
-    fixtures = ['base/users']
+    fixtures = fixture('user_999')
 
     def setUp(self):
+        self.user = UserProfile.objects.get(username='regularuser')
         self.url = reverse('account.feedback')
-        self.user = UserProfile.objects.get(email='regular@mozilla.com')
+        self.data = {'tuber': '', 'sprout': 'potato', 'feedback': 'hawt'}
 
     def do_login(self):
-        self.client.login(username='regular@mozilla.com', password='password')
+        self.client.login(username=self.user.email, password='password')
 
-    def test_feedback(self):
+    def test_success_authenticated(self):
         self.do_login()
-        res = self.client.post(self.url, data={'feedback': 'hawt'},
+        res = self.client.post(self.url, self.data,
                                HTTP_USER_AGENT='test-agent')
         eq_(res.status_code, 302)
         eq_(len(mail.outbox), 1)
@@ -889,10 +878,8 @@ class TestFeedback(amo.tests.TestCase):
         assert 'test-agent' in msg.body
         assert '127.0.0.1' in msg.body
 
-    @mock.patch('django.conf.settings.RECAPTCHA_PRIVATE_KEY', '')
-    def test_feedback_anon(self):
-        """Check that anonymous feedback send OK emails."""
-        res = self.client.post(self.url, data={'feedback': 'hawt'},
+    def test_success_anonymous(self):
+        res = self.client.post(self.url, self.data,
                                HTTP_USER_AGENT='test-agent')
         eq_(res.status_code, 302)
         eq_(len(mail.outbox), 1)
@@ -902,30 +889,20 @@ class TestFeedback(amo.tests.TestCase):
         assert 'Anonymous' in msg.body
         assert '127.0.0.1' in msg.body
 
-    @mock.patch('django.conf.settings.RECAPTCHA_PRIVATE_KEY', 'something')
-    def test_feedback_anon_recaptcha(self):
-        """Check that anonymous feedback requires a captcha"""
-        res = self.client.post(self.url, data={'feedback': 'hawt'},
-                               HTTP_USER_AGENT='test-agent')
-        assert 'recaptcha' in res.context['form'].errors
-
-    def test_feedback_empty(self):
-        res = self.client.post(self.url, data={'feedback': ''})
+    def test_error(self):
+        self.data['feedback'] = ''
+        res = self.client.post(self.url, data=self.data)
         eq_(res.status_code, 200)
         eq_(len(mail.outbox), 0)
-        self.assertFormError(res, 'form', 'feedback',
-                             [u'This field is required.'])
 
-    def test_feedback_page_user(self):
+    def test_page_authenticated(self):
         self.do_login()
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
         doc = pq(res.content)
-        assert doc('.toggles')
-        eq_(doc('.header-button.settings').attr('href'),
-            reverse('account.settings'))
+        eq_(doc('.toggles').length, 1)
 
-    def test_feedback_page_anon(self):
+    def test_page_anonymous(self):
         """Check that anonymous users get the correct feedback page."""
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
@@ -934,5 +911,5 @@ class TestFeedback(amo.tests.TestCase):
         res = self.client.get(self.url, {'mobile': 'true'})
         eq_(res.status_code, 200)
         doc = pq(res.content)
-        assert not doc('.toggles')
+        eq_(doc('.toggles').length, 0)
         eq_(doc('.header-button.settings').attr('href'), self.url)

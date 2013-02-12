@@ -7,6 +7,7 @@
         'install',
         'login',
         'notification',
+        'potatocaptcha',
         'prefetch',
         'state',
         'tracking',
