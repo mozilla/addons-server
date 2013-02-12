@@ -144,11 +144,13 @@ def postback(request):
                              data['response']['transactionID'],
                              contrib_uuid)), None, tb
 
-    contrib.update(transaction_id=data['response']['transactionID'],
-                   type=amo.CONTRIB_PURCHASE)
+    trans_id = data['response']['transactionID']
+    log.info('webpay postback: fulfilling purchase for contrib %s with '
+             'transaction %s' % (contrib, trans_id))
+    contrib.update(transaction_id=trans_id, type=amo.CONTRIB_PURCHASE)
 
     tasks.send_purchase_receipt.delay(contrib.pk)
-    return http.HttpResponse(data['response']['transactionID'])
+    return http.HttpResponse(trans_id)
 
 
 @csrf_exempt
