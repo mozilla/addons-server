@@ -4,7 +4,7 @@ define('feedback', [], function() {
 
     var overlay = $('#feedback-overlay');
 
-    // Don't go to /account/feedback, show the overlay.
+    // Don't go to /feedback, show the overlay.
     $('.submit-feedback').on('click', _pd(function(e) {
         e.stopPropagation();
         overlay.addClass('show');

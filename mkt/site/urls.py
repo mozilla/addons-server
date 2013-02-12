@@ -5,6 +5,7 @@ from django.conf.urls import patterns, url
 
 import jingo
 
+from mkt.account.views import feedback
 from . import views
 
 
@@ -27,4 +28,5 @@ urlpatterns = patterns('',
     url('^robots.txt$', views.robots, name='robots.txt'),
     url('^manifest.webapp$', views.manifest, name='manifest.webapp'),
     url('^timing/record$', views.record, name='mkt.timing.record'),
+    url('^feedback$', feedback, name='site.feedback'),
 )

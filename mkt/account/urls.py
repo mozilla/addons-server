@@ -1,4 +1,5 @@
 from django.conf.urls import include, patterns, url
+from django.shortcuts import redirect
 
 from lib.misc.urlconf_decorator import decorate
 
@@ -24,7 +25,7 @@ settings_patterns = decorate(login_required, patterns('',
     url('^$', views.account_settings, name='account.settings'),
     ('^/', include(settings_patterns)),
 )) + patterns('',
-    url('^/feedback$', views.account_feedback, name='account.feedback'),
+    url('^/feedback$', lambda r: redirect('site.feedback', permanent=True)),
 )
 
 purchases_patterns = decorate(login_required, patterns('',

@@ -20,7 +20,7 @@
       {% if in_devhub %}
         <li><a href="{{ url('home') }}">{{ _('Return to the Marketplace') }}</a></li>
       {% else %}
-        <li class="submit-feedback"><a href="{{ url('account.feedback') }}">{{ _('Feedback') }}</a></li>
+        <li class="submit-feedback"><a href="{{ url('site.feedback') }}">{{ _('Feedback') }}</a></li>
       {% endif %}
       <li><a href="{{ url('users.logout') }}" class="sync logout">{{ _('Sign Out') }}</a></li>
     </ul>

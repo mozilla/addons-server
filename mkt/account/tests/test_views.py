@@ -857,7 +857,7 @@ class TestFeedback(amo.tests.TestCase):
 
     def setUp(self):
         self.user = UserProfile.objects.get(username='regularuser')
-        self.url = reverse('account.feedback')
+        self.url = reverse('site.feedback')
         self.data = {'tuber': '', 'sprout': 'potato', 'feedback': 'hawt'}
 
     def do_login(self):

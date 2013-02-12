@@ -225,9 +225,9 @@ def account_settings(request):
                         {'form': form, 'amouser': amo_user})
 
 
-@bust_fragments_on_post('/account/feedback')
+@bust_fragments_on_post('/feedback')
 @anonymous_csrf
-def account_feedback(request):
+def feedback(request):
     form = forms.FeedbackForm(request.POST or None, request=request)
     if request.method == 'POST' and form.is_valid():
         feedback = form.cleaned_data['feedback']
@@ -248,7 +248,7 @@ def account_feedback(request):
             [settings.MKT_FEEDBACK_EMAIL])
 
         if from_url == '':
-            from_url = reverse('account.feedback')
+            from_url = reverse('site.feedback')
 
         amo.messages.success(request, _('Feedback sent. Thanks!'))
         return redirect(from_url)
