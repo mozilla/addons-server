@@ -549,18 +549,56 @@ def motd(request):
     return jingo.render(request, 'reviewers/motd.html', data)
 
 
+# TODO: Move these to the validator when they live there someday.
+PRIVILEGED_PERMISSIONS = set([
+    'tcp-socket', 'contacts', 'device-storage:pictures',
+    'device-storage:videos', 'device-storage:music', 'device-storage:sdcard',
+    'browser', 'systemXHR', 'audio-channel-notification',
+    'audio-channel-alarm'])
+CERTIFIED_PERMISSIONS = set([
+    'camera', 'tcp-socket', 'network-events', 'contacts',
+    'device-storage:apps', 'device-storage:pictures',
+    'device-storage:videos', 'device-storage:music', 'device-storage:sdcard',
+    'sms', 'telephony', 'browser', 'bluetooth', 'mobileconnection', 'power',
+    'settings', 'permissions', 'attention', 'webapps-manage',
+    'backgroundservice', 'networkstats-manage', 'wifi-manage', 'systemXHR',
+    'voicemail', 'deprecated-hwvideo', 'idle', 'time', 'embed-apps',
+    'background-sensors', 'cellbroadcast', 'audio-channel-notification',
+    'audio-channel-alarm', 'audio-channel-telephony', 'audio-channel-ringer',
+    'audio-channel-publicnotification', 'open-remote-window'])
+
+def _get_permissions(manifest):
+    if 'permissions' not in manifest:
+        return {}
+
+    permissions = {}
+    for perm in manifest['permissions'].keys():
+        pval = permissions[perm] = {'type': 'web'}
+        if perm in PRIVILEGED_PERMISSIONS:
+            pval['type'] = 'priv'
+        elif perm in CERTIFIED_PERMISSIONS:
+            pval['type'] = 'cert'
+
+        pval['description'] = manifest['permissions'][perm].get('description')
+
+    return permissions
+
+
 @permission_required('Apps', 'Review')
 @addon_view
 @json_view
 def app_view_manifest(request, addon):
+    manifest = {}
+    success = False
+    headers = ''
     if addon.is_packaged:
         version = addon.versions.latest()
-        content = json.dumps(json.loads(_mini_manifest(addon, version.id)),
-                             indent=4)
-        return escape_all({'content': content, 'headers': '', 'success': True})
+        manifest = json.loads(_mini_manifest(addon, version.id))
+        content = json.dumps(manifest, indent=4)
+        success = True
 
     else:  # Show the hosted manifest_url.
-        content, headers, success = u'', {}, False
+        content, headers = u'', {}
         if addon.manifest_url:
             try:
                 req = requests.get(addon.manifest_url, verify=False)
@@ -568,16 +606,21 @@ def app_view_manifest(request, addon):
                 success = True
             except Exception:
                 content = u''.join(traceback.format_exception(*sys.exc_info()))
+            else:
+                success = True
 
             try:
                 # Reindent the JSON.
-                content = json.dumps(json.loads(content), indent=4)
+                manifest = json.loads(content)
+                content = json.dumps(manifest, indent=4)
             except:
                 # If it's not valid JSON, just return the content as is.
                 pass
-        return escape_all({'content': smart_decode(content),
-                           'headers': headers,
-                           'success': success})
+
+    return escape_all({'content': smart_decode(content),
+                       'headers': headers,
+                       'success': success,
+                       'permissions': _get_permissions(manifest)})
 
 
 @permission_required('Apps', 'Review')

@@ -1290,7 +1290,8 @@ class TestReviewApp(AppReviewerTest, AccessMixin, PackagedFilesMixin):
             'content': 'the manifest contents &lt;script&gt;',
             'headers': {'content-type':
                         'application/x-web-app-manifest+json &lt;script&gt;'},
-            'success': True
+            'success': True,
+            'permissions': {}
         }
 
         r = self.client.get(reverse('reviewers.apps.review.manifest',
@@ -1309,7 +1310,8 @@ class TestReviewApp(AppReviewerTest, AccessMixin, PackagedFilesMixin):
                                     args=[self.app.app_slug]))
         eq_(r.status_code, 200)
         eq_(json.loads(r.content), {'content': u'كك some foreign ish',
-                                    'headers': {}, 'success': True})
+                                    'headers': {}, 'success': True,
+                                    'permissions': {}})
 
     @mock.patch('mkt.reviewers.views.requests.get')
     def test_manifest_json_encoding(self, mock_get):
@@ -1336,7 +1338,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin, PackagedFilesMixin):
                                     args=[self.app.app_slug]))
         eq_(r.status_code, 200)
         eq_(json.loads(r.content), {'content': u'', 'headers': {},
-                                    'success': True})
+                                    'success': True, 'permissions': {}})
 
     @mock.patch('mkt.reviewers.views.requests.get')
     def test_manifest_json_traceback_in_response(self, mock_get):
@@ -1365,6 +1367,27 @@ class TestReviewApp(AppReviewerTest, AccessMixin, PackagedFilesMixin):
                                       args=[self.app.app_slug]))
         eq_(res.status_code, 200)
         assert mock_.called
+
+    @mock.patch('mkt.reviewers.views.requests.get')
+    def test_manifest_json_perms(self, mock_get):
+        m = mock.Mock()
+        m.content = """
+        {"permissions":
+            {"foo": {"description": "foo"},
+             "camera": {"description": "<script>"}
+            }
+        }
+        """
+        m.headers = {'content-type':
+                     'application/x-web-app-manifest+json <script>'}
+        mock_get.return_value = m
+
+        r = self.client.get(reverse('reviewers.apps.review.manifest',
+                                    args=[self.app.app_slug]))
+        eq_(r.status_code, 200)
+        eq_(json.loads(r.content)['permissions'],
+            {'foo': {'description': 'foo', 'type': 'web'},
+             'camera': {'description': '&lt;script&gt;', 'type': 'cert'}})
 
     def test_abuse(self):
         AbuseReport.objects.create(addon=self.app, message='!@#$')
