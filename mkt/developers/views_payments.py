@@ -231,7 +231,7 @@ def in_app_keys(request):
             key.reset()
             messages.success(request, _('Secret was reset successfully.'))
         else:
-            key = models.UserInappKey.create(request.amo_user)
+            models.UserInappKey.create(request.amo_user)
             messages.success(request,
                              _('Key and secret were created successfully.'))
         return redirect(reverse('mkt.developers.apps.in_app_keys'))
