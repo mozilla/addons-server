@@ -106,7 +106,9 @@ def _update_manifest(id, check_hash, failed_fetches):
         failed_fetches[id] = failed_fetches.get(id, 0) + 1
         if failed_fetches[id] >= 3:
             _log(webapp, msg, rereview=True, exc_info=True)
-            RereviewQueue.flag(webapp, amo.LOG.REREVIEW_MANIFEST_CHANGE, msg)
+            if webapp.status == amo.STATUS_PUBLIC:
+                RereviewQueue.flag(webapp, amo.LOG.REREVIEW_MANIFEST_CHANGE,
+                                   msg)
             del failed_fetches[id]
         else:
             _log(webapp, msg, rereview=False, exc_info=True)
@@ -137,7 +139,9 @@ def _update_manifest(id, check_hash, failed_fetches):
                     msg += u'* %s\n' % m['message']
             msg += u'\nValidation Result:\n%s' % v8n_url
             _log(webapp, msg, rereview=True)
-            RereviewQueue.flag(webapp, amo.LOG.REREVIEW_MANIFEST_CHANGE, msg)
+            if webapp.status == amo.STATUS_PUBLIC:
+                RereviewQueue.flag(webapp, amo.LOG.REREVIEW_MANIFEST_CHANGE,
+                                   msg)
             return
     else:
         _log(webapp,
@@ -187,7 +191,8 @@ def _update_manifest(id, check_hash, failed_fetches):
     if rereview:
         msg = ' '.join(msg)
         _log(webapp, msg, rereview=True)
-        RereviewQueue.flag(webapp, amo.LOG.REREVIEW_MANIFEST_CHANGE, msg)
+        if webapp.status == amo.STATUS_PUBLIC:
+            RereviewQueue.flag(webapp, amo.LOG.REREVIEW_MANIFEST_CHANGE, msg)
 
 
 @task
