@@ -655,7 +655,8 @@ class ReviewerScore(amo.models.ModelBase):
             level = amo.REVIEWED_LEVELS[user_level]['name']
             if prev == level:
                 level = ''
-            prev = level
+            else:
+                prev = level
 
             scores.append({
                 'user_id': user_id,
