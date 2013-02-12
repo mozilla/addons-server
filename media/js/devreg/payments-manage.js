@@ -96,7 +96,7 @@ define('payments-manage', ['payments'], function(payments) {
                 // the function to handle the Edit overlay.
                 editBangoPaymentAccount($(this).parents('tr').data('account-url'))();
             })).on('click', '.accept-tos', _pd(function() {
-                showAgreement($(this).parents('tr').data());
+                showAgreement({'agreement-url': $(this).parents('tr').data('agreement-url')});
             }));
         });
     }
