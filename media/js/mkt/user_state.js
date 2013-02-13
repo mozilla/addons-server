@@ -1,11 +1,12 @@
 (function() {
 
     define('state', [], function() {
+        var locale_list = z.body.data('locales').split(',');
         var sideEffects = {
             'language': function() {
                 // Upon refocus, if `navigator.language` has changed, then let's
                 // refresh the page to reset our cookies and get new localized content.
-                if (navigator.language.toLowerCase() in z.body.data('locales')) {
+                if (_.contains(locale_list, navigator.language.toLowerCase())) {
                     // TODO: If lang in querystring, then remove.
                     // TODO: Prompt with confirmation before reload.
                     window.location.reload();

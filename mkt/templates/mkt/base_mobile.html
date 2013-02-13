@@ -64,7 +64,7 @@
         data-collect-timings="{{ url('mkt.timing.record') }}:{{ collect_timings_percent }}"
         data-simulate-nav-pay="{{ settings.SIMULATE_NAV_PAY|json }}"
         data-page-type="{{ pagetype or 'leaf' }}"
-        data-locales="{{ settings.LANGUAGE_URL_MAP|json }}"
+        data-locales="{{ ','.join(settings.LANGUAGE_URL_MAP.keys()) }}"
         {% if not logged %}data-recaptcha="{{ settings.RECAPTCHA_PUBLIC_KEY }}"{% endif %}
         {% block bodyattrs %}{% endblock %}>
 
