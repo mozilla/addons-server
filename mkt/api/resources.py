@@ -5,10 +5,11 @@ from django.db import transaction
 from celery_tasktree import TaskTree
 import commonware.log
 from tastypie import fields, http
-from tastypie.authorization import Authorization
+from tastypie.authorization import Authorization, ReadOnlyAuthorization
+from tastypie.constants import ALL
 from tastypie.exceptions import ImmediateHttpResponse
-from tastypie.resources import ALL_WITH_RELATIONS
 from tastypie.serializers import Serializer
+from tastypie.resources import ALL_WITH_RELATIONS
 
 import amo
 from addons.forms import CategoryFormSet
@@ -17,6 +18,7 @@ from amo.decorators import write
 from amo.utils import no_translation
 from constants.applications import DEVICE_TYPES
 from files.models import FileUpload, Platform
+from reviews.models import Review
 from mkt.api.authentication import (AppOwnerAuthorization,
                                     OptionalAuthentication,
                                     OwnerAuthorization,
@@ -338,3 +340,56 @@ class PreviewResource(MarketplaceResource):
         if 'file' in bundle.data:
             del bundle.data['file']
         return bundle
+
+
+def collect_replies(bundle):
+    return Review.objects.filter(reply_to=bundle.obj.pk)
+
+
+class RatingResource(MarketplaceResource):
+
+    app = fields.ToOneField(AppResource, 'addon', readonly=True)
+    replies = fields.ToManyField('self', collect_replies,
+                                 readonly=True, full=True, null=True)
+
+    class Meta:
+        # Unfortunately, the model class name for ratings is "Review".
+        queryset = Review.objects.valid()
+        resource_name = 'rating'
+        allowed_methods = ['get']
+        # TODO figure out authentication/authorization soon.
+        authentication = MarketplaceAuthentication()
+        authorization = ReadOnlyAuthorization()
+        fields = ['app', 'user', 'replies', 'rating', 'title',
+                  'body', 'editorreview']
+
+        filtering = {
+            'app': ('exact',),
+            'user': ('exact',),
+            'pk': ('exact',),
+            'is_latest': ('exact',),
+            'created': ALL,
+        }
+
+        ordering = ['created']
+
+    def get_object_list(self, request):
+        qs = MarketplaceResource.get_object_list(self, request)
+        # Mature regions show only reviews from within that region.
+        if not request.REGION.adolescent:
+            qs = qs.filter(client_data__region=request.REGION.id)
+        return qs
+
+    def alter_list_data_to_serialize(self, request, data):
+        if 'app' in request.GET:
+            addon = Addon.objects.get(pk=request.GET['app'])
+            data['meta']['average'] = addon.average_rating
+            data['meta']['slug'] = addon.app_slug
+
+            filters = dict(addon=addon, user=request.user)
+            if addon.is_packaged:
+                filters['version'] = addon.current_version
+            existing_review = Review.objects.valid().filter(**filters).exists()
+            data['user'] = {'can_rate': not addon.has_author(request.user),
+                            'has_rated': existing_review}
+        return data
