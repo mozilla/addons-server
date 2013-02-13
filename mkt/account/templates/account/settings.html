@@ -12,24 +12,22 @@
       <h2>{{ pagetitle }}</h2>
     {% endif %}
 
-    <form class="container form-grid" enctype="multipart/form-data" method="post">
+    <form class="container form-grid" method="post">
       {{ csrf() }}
 
-      <div class="simple-field c">
-        <div class="form-label label">
-          {{ _('Email') }}
+      {% if amouser %}
+        <div class="simple-field c">
+          <div class="form-label label">{{ _('Email') }}</div>
+          <div class="form-col">
+            <input type="text" id="email" readonly value="{{ amouser.email }}">
+          </div>
         </div>
-        <div class="form-col">
-          <input type="text" id="email" readonly value="{{ amouser.email }}">
-        </div>
-      </div>
 
-      {{ grid_field(form.display_name) }}
+        {{ grid_field(form.display_name) }}
+      {% endif %}
 
       <div class="simple-field c">
-        <div class="form-label">
-          <label for="language">{{ _('Language') }}</label>
-        </div>
+        <div class="form-label"><label for="language">{{ _('Language') }}</label></div>
         <div class="form-col">
           {% if DESKTOP %}<div class="styled select input">{% endif %}
             <select id="language" name="lang" dir="ltr">
@@ -44,9 +42,7 @@
       </div>
 
       <div class="simple-field c">
-        <div class="form-label">
-          <label for="region">{{ _('Region') }}</label>
-        </div>
+        <div class="form-label"><label for="region">{{ _('Region') }}</label></div>
         <div class="form-col">
           {% if DESKTOP %}<div class="styled select input">{% endif %}
             <select id="region" name="region">
@@ -60,29 +56,45 @@
         </div>
       </div>
 
-      {% if 'admin_log' in form.fields %}
-        <h3>Administration</h3>
-        {{ grid_field(form.admin_log) }}
-        {{ grid_field(form.notes) }}
-        {{ grid_field(form.anonymize) }}
-        {{ grid_field(form.restricted) }}
-      {% endif %}
-
-      <footer class="form-footer">
-        <button disabled type="submit">{{ _('Save Changes') }}</button>
-        {% if not DESKTOP %}
-          <div class="extras">
-            <a href="{{ url('users.logout') }}" class="sync post logout">
-              {{ _('Log out') }}
-            </a>
-          </div>
+      {% if logged %}
+        {% if 'admin_log' in form.fields %}
+          <h3>Administration</h3>
+          {{ grid_field(form.admin_log) }}
+          {{ grid_field(form.notes) }}
+          {{ grid_field(form.anonymize) }}
+          {{ grid_field(form.restricted) }}
         {% endif %}
-        {# TODO: This will have to come back for desktop. #}
-        {# if 'admin_log' in form.fields %}
-          <a href="{{ url('admin:users_userprofile_delete', amouser.id) }}"
-             class="delete">Delete Account</a>
-        {% endif #}
-      </footer>
+
+        <footer class="form-footer c">
+          <button disabled type="submit">{{ _('Save Changes') }}</button>
+          {# TODO: This will have to come back for desktop. #}
+          {# if 'admin_log' in form.fields %}
+            <a href="{{ url('admin:users_userprofile_delete', amouser.id) }}"
+               class="delete">Delete Account</a>
+          {% endif #}
+        </footer>
+      {% else %}
+        <footer class="form-footer c">
+          <button disabled type="submit">{{ _('Save Changes') }}</button>
+        </footer>
+      {% endif %}
     </form>
+
+    {% if not DESKTOP %}
+      <div class="several-buttons c">
+        {% if logged %}
+          {% if is_reviewer %}
+            <p><a href="{{ url('reviewers.apps.queue_pending') }}" class="manage fatbutton">
+              {{ _('Reviewer Tools') }}</a></p>
+            <p><a href="{{ request.get_full_path()|urlparams(mobile='false', tablet='false') }}" class="manage fatbutton sync">
+              {{ _('View Full Site') }}</a></p>
+          {% endif %}
+          <a href="{{ url('users.logout') }}" class="sync fatbutton logout">{{ _('Sign out') }}</a>
+        {% else %}
+          <a class="full fatbutton browserid" href="#">{{ _('Sign in / Sign up') }}</a>
+        {% endif %}
+      </div>
+    {% endif %}
+
   </section>
 {% endblock %}

@@ -4,21 +4,18 @@
 {% set page_parent = '/' %}
 
 {% block content %}
-    <section class="main account">
+  <section class="main account">
+    {% include 'account/includes/nav.html' %}
+    {% if DESKTOP %}
+      <h2>{{ pagetitle }}</h2>
+    {% endif %}
 
-      {% if request.user.is_authenticated() %}
-        {% include 'account/includes/nav.html' %}
-      {% endif %}
-      {% if DESKTOP %}
-        <h2>{{ pagetitle }}</h2>
-      {% endif %}
+    {{ feedback_form(form) }}
 
-      {{ feedback_form(form) }}
-
-      <div class="feedback-links c">
-        <a href="https://support.mozilla.org/en-US/products/marketplace" class="fatbutton" target="_blank">{{ _('Get Help') }}</a>
-        <a href="{{ url('site.privacy') }}" class="fatbutton">{{ _('Privacy Policy') }}</a>
-        <a href="{{ url('site.terms') }}" class="fatbutton">{{ _('Terms of Use') }}</a>
-      </div>
-    </section>
+    <div class="several-buttons c">
+      <a href="https://support.mozilla.org/en-US/products/marketplace" class="fatbutton"{% if not DESKTOP %} target="_blank"{% endif %}>{{ _('Get Help') }}</a>
+      <a href="{{ url('site.privacy') }}" class="fatbutton">{{ _('Privacy Policy') }}</a>
+      <a href="{{ url('site.terms') }}" class="fatbutton">{{ _('Terms of Use') }}</a>
+    </div>
+  </section>
 {% endblock %}

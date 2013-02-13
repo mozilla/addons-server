@@ -22,17 +22,18 @@ settings_patterns = patterns('',
 
 # Require authentication.
 settings_patterns = decorate(login_required, patterns('',
-    url('^$', views.account_settings, name='account.settings'),
     ('^/', include(settings_patterns)),
 )) + patterns('',
+    url('^$', views.account_settings, name='account.settings'),
     url('^/feedback$', lambda r: redirect('site.feedback', permanent=True)),
 )
 
 purchases_patterns = decorate(login_required, patterns('',
-    url('^$', views.purchases, name='account.purchases'),
     url(r'^(?P<product_id>\d+)', views.purchases,
         name='account.purchases.receipt'),
-))
+)) + patterns('',
+    url('^$', views.purchases, name='account.purchases'),
+)
 
 users_patterns = patterns('',
     # Keeping the same URL pattern since admin pages already know about this.

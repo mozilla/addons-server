@@ -183,16 +183,14 @@ body {
     }
 }
 
-.force-mobile {
-    #site-header section.main {
-        max-width: @desktop-hdr;
-    }
-    #page section.main {
-        max-width: @desktop-content;
-    }
-    #site-footer {
-        max-width: @desktop-ftr;
-    }
+#site-header section.main {
+    max-width: @desktop-hdr;
+}
+#page section.main {
+    max-width: @desktop-content;
+}
+#site-footer {
+    max-width: @desktop-ftr;
 }
 
 .container,
@@ -231,8 +229,7 @@ body[data-page-type="alpha"] {
 
 // detail
 // At desktop width, let's float the content ratings.
-// TODO: Remove non-force-mobile selector when desktop lands.
-body:not(.force-mobile) .content-rating {
+.desktop .content-rating {
     float: left;
     padding: 0 5px 0 0;
     width: 50%;

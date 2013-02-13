@@ -1,4 +1,3 @@
-{% set FORCE_MOBILE = 'force-mobile ' if waffle.switch('force-mobile-layout') %}
 {% set basetitle = 'Sony Entertainment Network App Store' if CARRIER == 'sony' else _('Firefox Marketplace') %}
 {% set titletag = mkt_page_title(pagetitle) if pagetitle else basetitle %}
 {% set pagetitle = pagetitle or '' %}
@@ -133,41 +132,7 @@
       </div>
     </div>
 
-    {% block sitefooter %}
-      <footer id="site-footer" class="{{ 'authenticated' if logged else 'anonymous' }} c{{ ' reviewer' if is_reviewer }}">
-        <div class="account {{ 'authenticated' if logged else 'anonymous' }}">
-          {% if logged %}
-            {% trans user=request.amo_user.email %}
-              Signed in as <b>{{ user }}</b>
-            {% endtrans %}
-            <a href="{{ url('users.logout') }}" class="sync logout">
-              ({{ _('Log Out') }})</a>
-          {% else %}
-            <a class="button browserid" href="#">{{ _('Log in / Register') }}</a>
-          {% endif %}
-        </div>
-        <nav class="footer-links c" role="navigation">
-          <p>
-            {% if logged %}
-              {% for link in tools_links -%}
-                <a href="{{ link.href }}" class="sync" rel="external">{{ link.text }}</a>
-              {%- endfor %}
-              {# TODO: Coming soon with payments. #}
-              {#<a href="{{ url('account.purchases') }}">{{ _('Account History') }}</a>#}
-              <a href="{{ url('account.settings') }}">{{ _('Account Settings') }}</a>
-            {% else %}
-              <a href="{{ url('ecosystem.landing') }}" rel="external">
-                {{ _('Developer Hub') }}
-              </a>
-            {% endif %}
-          </p>
-          <p>
-            <a href="{{ url('site.privacy') }}">{{ _('Privacy Policy') }}</a>
-            <a href="{{ url('site.terms') }}">{{ _('Terms of Use') }}</a>
-          </p>
-        </nav>
-      </footer>
-    {% endblock %}
+    {% block sitefooter %}{% endblock %}
 
     {% include 'ratings/review.html' %}
 
@@ -182,7 +147,7 @@
             {% endtrans %}
           </p>
           <footer>
-            <a class="button browserid" href="#">{{ _('Log in / Register') }}</a>
+            <a class="button browserid" href="#">{{ _('Sign in / Sign up') }}</a>
           </footer>
         </section>
       </div>

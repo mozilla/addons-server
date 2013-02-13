@@ -42,14 +42,14 @@
     {% endif %}
     {% if can_review %}
       <div class="{{ 'split' if reviews else 'full' }}">
-        <a class="fatbutton" id="add-first-review"
-          {% if DESKTOP and logged %}
+        <a class="fatbutton{{ ' browserid' if not logged }}" id="add-first-review"
+          {% if DESKTOP %}
             href="#"
             data-href="{{ product.get_ratings_url('add') }}"
             data-action="add-or-edit"
             data-rating="{{ my_review.rating if has_review else 0 }}">
           {% else %}
-            href="{{ product.get_ratings_url('add') }}">
+            href="{{ product.get_ratings_url('add') if logged else '#' }}">
           {% endif %}
           {{ _('Edit Your Review') if has_review else _('Write a Review') }}</a>
       </div>

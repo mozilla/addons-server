@@ -193,6 +193,8 @@ def preapproval(request, complete=None, cancel=None):
 
 def purchases(request, product_id=None, template=None):
     """A list of purchases that a user has made through the Marketplace."""
+    if not request.user.is_authenticated():
+        return jingo.render(request, 'account/purchases.html')
     products, contributions, listing = purchase_list(request,
                                                      request.amo_user,
                                                      product_id)
@@ -205,24 +207,33 @@ def purchases(request, product_id=None, template=None):
 
 
 @write
+@anonymous_csrf
 def account_settings(request):
+    ctx = {}
+
     # Don't use `request.amo_user` because it's too cached.
-    amo_user = request.amo_user.user.get_profile()
-    form = forms.UserEditForm(request.POST or None, instance=amo_user)
-    if request.method == 'POST':
-        if form.is_valid():
-            form.save()
-            messages.success(request, _('Profile Updated'))
-            amo.log(amo.LOG.USER_EDITED)
-            response = redirect('account.settings')
-            # TODO: Detect when we're changing the user's locale and region
-            # and bust on '/', bust on '/settings' for everything else.
-            bust_fragments(response, '/')
-            return response
-        else:
-            messages.form_errors(request)
-    return jingo.render(request, 'account/settings.html',
-                        {'form': form, 'amouser': amo_user})
+    user = request.user
+    if user.is_authenticated():
+        amo_user = user.get_profile()
+        form = forms.UserEditForm(request.POST or None, instance=amo_user)
+        if request.method == 'POST':
+            if form.is_valid():
+                form.save()
+                messages.success(request, _('Settings Updated.'))
+                amo.log(amo.LOG.USER_EDITED)
+                response = redirect('account.settings')
+                # TODO: Detect when we're changing the user's locale and region
+                # and bust on '/', bust on '/settings' for everything else.
+                bust_fragments(response, '/')
+                return response
+            else:
+                messages.form_errors(request)
+        ctx = {'form': form, 'amouser': amo_user}
+    else:
+        if request.method == 'POST':
+            messages.success(request, _('Settings Updated.'))
+
+    return jingo.render(request, 'account/settings.html', ctx)
 
 
 @bust_fragments_on_post('/feedback')

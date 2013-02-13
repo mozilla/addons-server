@@ -1,29 +1,23 @@
 @import 'lib';
 
-#login section {
-    text-align: center;
-    footer {
-        text-align: center;
-    }
-}
-
-.notification-box.error {
-    background-color: @white;
-}
-
-// This less file is out of date and requires inversion. We have to stop
-// doing things for .force-mobile like the block below.
-.login #site-footer {
-    display: none;
+// Centre logo on login page. Haxxx.
+body.login[data-page-type=notice] #site-header h1 {
+    left: 70px;
 }
 
 @media (max-width: @4col) {
-    .login {
-        #page {
-            margin: 0;
+    .login section {
+        text-align: center;
+        footer {
+            text-align: center;
         }
-        #site-footer > div {
-            width: 100%;
+        .proceed {
+            margin-top: 20px;
         }
     }
+}
+
+.notice {
+    color: @medium-gray;
+    margin: 30px 0 20px;
 }

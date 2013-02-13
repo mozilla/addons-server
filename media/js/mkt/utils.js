@@ -149,9 +149,3 @@ $(document).ajaxSuccess(function(event, xhr, ajaxSettings) {
         $(this).attr('target', '_blank');
     }
 });
-
-
-// If any field changes, submit the form.
-$('form.go').change(function() {
-    this.submit();
-});

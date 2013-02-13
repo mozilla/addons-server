@@ -31,7 +31,7 @@ def global_settings(request):
              'href': reverse('account.settings')},
             {'text': _('Change Password'),
              'href': 'https://login.persona.org/signin'},
-            {'text': _('Log out'), 'href': reverse('users.logout')},
+            {'text': _('Sign out'), 'href': reverse('users.logout')},
         ]
         if '/developers/' not in request.path:
             tools_links.append({'text': _('Developer Hub'),

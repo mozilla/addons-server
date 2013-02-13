@@ -6,9 +6,7 @@
     <h1 class="page">{{ headertitle }}</h1>
     <nav role="navigation">
       {% if not DESKTOP %}
-        <a href="{{ url('account.settings') if
-                    request.user.is_authenticated() else
-                    url('site.feedback') }}"
+        <a href="{{ url('account.settings') }}"
            class="header-button icon settings left" title="{{ _('Settings') }}"></a>
       {% else %}
         {% include 'mkt/account-links.html' %}

@@ -11,19 +11,25 @@
       <h2>{{ pagetitle }}</h2>
     {% endif %}
 
-    {% if pager.object_list %}
-      <ol class="container listing" start="{{ pager.start_index() }}">
-      {% for product in pager.object_list %}
-        <li class="item c">{{ market_tile(product) }}</li>
-      {% endfor %}
-      {% if pager.has_other_pages() %}
-        <li class="loadmore" data-sel=".listing">
-          {{ pager|more_button }}
-        </li>
+    {% if logged %}
+      {% if pager.object_list %}
+        <ol class="container listing" start="{{ pager.start_index() }}">
+        {% for product in pager.object_list %}
+          <li class="item c">{{ market_tile(product) }}</li>
+        {% endfor %}
+        {% if pager.has_other_pages() %}
+          <li class="loadmore" data-sel=".listing">
+            {{ pager|more_button }}
+          </li>
+        {% endif %}
+        </ol>
+      {% else %}
+        {{ no_results() }}
       {% endif %}
-      </ol>
     {% else %}
-      {{ no_results() }}
+      <p class="notice">{{ _('You must be signed in to view your apps.') }}</p>
+      <a class="button full browserid" href="#">{{ _('Sign in / Sign up') }}</a>
     {% endif %}
+
   </section>
 {% endblock %}
