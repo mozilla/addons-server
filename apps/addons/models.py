@@ -1090,15 +1090,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         return not (self.is_premium() and self.premium and
                     self.premium.has_price())
 
-    def needs_payment(self):
-        """
-        If the addon is premium and has a price greater than zero. Primarily
-        of use in the payment flow to determine if we need payment. An app can
-        be premium, but not require any payment.
-        """
-        return (self.premium_type in amo.ADDON_PREMIUMS and
-                self.premium and self.premium.get_price())
-
     def needs_paypal(self):
         return (self.premium_type not in
                 (amo.ADDON_FREE, amo.ADDON_OTHER_INAPP))

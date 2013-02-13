@@ -449,10 +449,15 @@ class Webapp(Addon):
         return visible
 
     def has_price(self):
-        return bool(self.is_premium() and self.premium and self.premium.price)
+        """
+        If the app is premium and has a price greater than zero. Primarily
+        of use in the payment flow to determine if we need payment. An app can
+        be premium, but not require any payment.
+        """
+        return self.is_premium() and self.premium and self.premium.has_price()
 
     def get_price(self):
-        if self.is_premium() and self.premium:
+        if self.has_price():
             return self.premium.get_price_locale()
         return _(u'Free')
 

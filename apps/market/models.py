@@ -210,7 +210,7 @@ class AddonPremium(amo.models.ModelBase):
         return u'Premium %s: %s' % (self.addon, self.price)
 
     def has_price(self):
-        return self.price is not None
+        return self.price is not None and self.price.price != '0.00'
 
     def get_price(self):
         return self.price.get_price()

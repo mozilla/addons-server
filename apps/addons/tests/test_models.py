@@ -1983,14 +1983,6 @@ class TestMarketplace(amo.tests.TestCase):
         self.addon.update(premium_type=amo.ADDON_FREE_INAPP)
         assert not self.addon.is_premium()
 
-    def test_is_premium_payment(self):
-        self.addon.update(premium_type=amo.ADDON_PREMIUM)
-        price = Price.objects.create(price='0.00')
-        AddonPremium.objects.create(addon=self.addon, price=price)
-        assert self.addon.is_premium()
-        assert not self.addon.is_free()
-        assert not self.addon.needs_payment()
-
     def test_is_free(self):
         assert self.addon.is_free()
         self.addon.update(premium_type=amo.ADDON_PREMIUM)
@@ -2012,6 +2004,11 @@ class TestMarketplace(amo.tests.TestCase):
         price = Price.objects.create(price='1.00')
         self.addon.premium.update(price=price)
         assert self.addon.premium.has_price()
+
+        price.price = '0.00'
+        price.save()
+        self.addon.premium.update(price=price)
+        assert not self.addon.premium.has_price()
 
     def test_does_not_need_paypal(self):
         self.addon.update(premium_type=amo.ADDON_FREE)
