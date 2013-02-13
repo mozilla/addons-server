@@ -124,6 +124,7 @@ urlpatterns = patterns('',
 
     url('^api/', include('mkt.api.urls')),
     url('^api/', include('mkt.webpay.urls')),
+    url('^api/', include('mkt.monolith.urls')),
 
     url('^appcache/', include('django_appcache.urls')),
 

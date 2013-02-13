@@ -11,7 +11,6 @@ from django.test.client import Client, FakePayload
 import oauth2 as oauth
 from mock import Mock, patch
 from nose.tools import eq_
-from tastypie.exceptions import ImmediateHttpResponse
 from test_utils import RequestFactory
 
 from access.models import Group, GroupUser
@@ -71,11 +70,12 @@ class OAuthClient(Client):
                      HTTP_AUTHORIZATION=self.header('GET', url),
                      **kw)
 
-    def delete(self, url):
+    def delete(self, url, **kwargs):
         url = self.get_absolute_url(url)
         return super(OAuthClient, self).delete(url,
                         HTTP_HOST='api',
-                        HTTP_AUTHORIZATION=self.header('DELETE', url))
+                        HTTP_AUTHORIZATION=self.header('DELETE', url),
+                        **kwargs)
 
     def post(self, url, data=''):
         url = self.get_absolute_url(url)
@@ -140,7 +140,7 @@ class BaseOAuth(TestCase):
 @patch.object(settings, 'SITE_URL', 'http://api/')
 class TestBaseOAuth(BaseOAuth):
     # Note: these tests are using the validation api to test authentication
-    # using oquth. Ideally those tests would be done seperately.
+    # using OAuth. Ideally those tests would be done seperately.
 
     def setUp(self):
         super(TestBaseOAuth, self).setUp()
