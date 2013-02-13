@@ -52,8 +52,9 @@ class TestWebApps(amo.tests.TestCase, amo.tests.AMOPaths):
         eq_(wp['guid'], None)
         eq_(wp['type'], amo.ADDON_WEBAPP)
         eq_(wp['summary']['en-US'], u'Exciting Open Web development action!')
+        # UTF-8 byte string decoded to unicode.
         eq_(wp['summary']['es'],
-            u'\u9686Acci\u8d38n abierta emocionante del desarrollo del Web!')
+            u'\xa1Acci\xf3n abierta emocionante del desarrollo del Web!')
         eq_(wp['summary']['it'],
             u'Azione aperta emozionante di sviluppo di fotoricettore!')
         eq_(wp['version'], '1.0')
@@ -110,18 +111,6 @@ class TestWebApps(amo.tests.TestCase, amo.tests.AMOPaths):
 
     def test_utf8_bom(self):
         wm = codecs.BOM_UTF8 + json.dumps(self.manifest, encoding='utf8')
-        wp = WebAppParser().parse(self.webapp(contents=wm))
-        eq_(wp['version'], '1.0')
-
-    def test_utf16_bom(self):
-        data = json.dumps(self.manifest, encoding='utf8')
-        wm = data.decode('utf8').encode('utf16')  # BOM added automatically
-        wp = WebAppParser().parse(self.webapp(contents=wm))
-        eq_(wp['version'], '1.0')
-
-    def test_utf32_bom(self):
-        data = json.dumps(self.manifest, encoding='utf8')
-        wm = data.decode('utf8').encode('utf32')  # BOM added automatically
         wp = WebAppParser().parse(self.webapp(contents=wm))
         eq_(wp['version'], '1.0')
 

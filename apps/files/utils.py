@@ -22,7 +22,6 @@ from django.utils.http import urlencode
 from django.utils.translation import trans_real as translation
 from django.core.files.storage import default_storage as storage
 
-import chardet
 import rdflib
 from tower import ugettext as _
 
@@ -229,14 +228,12 @@ class WebAppParser(object):
             file_.close()
 
         try:
-            enc_guess = chardet.detect(data)
             data = strip_bom(data)
-            decoded_data = data.decode(enc_guess['encoding'])
+            # Marketplace only supports UTF-8 encoded manifests.
+            decoded_data = data.decode('utf-8')
         except (ValueError, UnicodeDecodeError) as exc:
-            msg = 'Error parsing webapp %r (encoding: %r %.2f%% sure): %s: %s'
-            log.error(msg % (fileorpath, enc_guess['encoding'],
-                             enc_guess['confidence'] * 100.0,
-                             exc.__class__.__name__, exc))
+            msg = 'Error parsing webapp %r (encoding: utf-8): %s: %s'
+            log.error(msg % (fileorpath, exc.__class__.__name__, exc))
             raise forms.ValidationError(
                 _('Could not decode the webapp manifest file.'))
 
