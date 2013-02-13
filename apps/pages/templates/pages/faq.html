@@ -273,16 +273,6 @@
     <dt>{{ _('What is the My Favorites collection?') }}</dt>
     <dd>{{ _('Favorite add-ons are add-ons that you have bookmarked to easily get back to later. You can add an add-on to your favorites collection by clicking "Add to favorites" on its details page.') }}</dd>
 
-    <dt>{{ _('What is the Add-on Collector?') }}</dt>
-    <dd>{% trans collector_url=remora_url('pages/collector'),
-           collector_faq=remora_url('pages/collector_faq') %}
-        The <a href="{{ collector_url }}">Add-on Collector</a> is an add-on
-        that helps you stay connected to your watched collections and manage
-        the add-ons in your own collections. It can also automatically publish
-        to a collection. <a href="{{ collector_url }}">Learn more</a> or visit
-        the <a href="{{ collector_faq }}">Collector FAQ</a>.
-        {% endtrans %}</dd>
-
 </dl>
 
 {% if APP == amo.FIREFOX or APP == amo.MOBILE or APP == amo.SEAMONKEY %}
@@ -320,17 +310,6 @@
         Mobile</a> and add or modify functionality just like desktop add-ons.
         You can find add-ons that work with Firefox for Mobile in our
         <a href="{{ gallery_url }}">gallery</a>.{% endtrans %}</dd>
-
-    {# See 623412#4
-    <dt>{{ _('Can I install add-ons on my mobile device from my desktop?') }}</dt>
-    <dd>{% trans collector_url=url('addons.detail', 11950),
-           gallery_url=locale_url('mobile') %}
-        Yes! Just head over to the <a href="{{ gallery_url }}">mobile gallery</a>
-        on your desktop and use the Add to Mobile buttons. Then install the
-        <a href="{{ collector_url }}">Add-on Collector</a> on your mobile device and
-        it will sync the add-ons you've selected to your mobile device.
-        {% endtrans %}</dd>
-    #}
 
 </dl>
 

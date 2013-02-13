@@ -65,7 +65,7 @@
       {% elif c.description %}
         <p>{{ c.description }}</p>
       {% elif c.type == amo.COLLECTION_MOBILE %}
-        <p>{{ _('Add-ons synced to my Mobile Firefox using the Add-on Collector') }}</p>
+        <p>{{ _('Add-ons synced to my Mobile Firefox') }}</p>
       {% endif %}
       {% if c.type == amo.COLLECTION_FAVORITES and c.owned_by(amo_user) %}
         <ul id="collection-favorites-opts">

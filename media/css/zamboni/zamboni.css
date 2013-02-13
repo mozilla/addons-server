@@ -3333,15 +3333,6 @@ a.outlink:hover {
 }
 
 
-
-#addon-collector-logo {
-    float: right;
-}
-.html-rtl #addon-collector-logo {
-    float: left;
-}
-
-
 /* Widgets! they're just fancy <a> tags donchaknow */
 .collection_widgets {
     margin-top: .5em;

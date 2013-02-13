@@ -126,14 +126,10 @@ def collection_listing(request, base=None):
                                   sort='followers'), permanent=True)
     filter = get_filter(request, base)
     collections = paginate(request, filter.qs)
-    try:
-        addon_collector = Addon.objects.get(id=11950)
-    except Addon.DoesNotExist:
-        addon_collector = None
     return render(request, 'bandwagon/impala/collection_listing.html',
                   dict(collections=collections, src='co-hc-sidebar',
                        dl_src='co-dp-sidebar', filter=filter, sort=sort,
-                       sorting=filter.field, addon_collector=addon_collector))
+                       sorting=filter.field))
 
 
 def get_votes(request, collections):
