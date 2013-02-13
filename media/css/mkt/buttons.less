@@ -7,6 +7,15 @@
 .btn-shadow-active() {
     .box-shadow(0 2px 0 0 rgba(0, 0, 0, .2) inset, 0 12px 24px 6px rgba(0, 0, 0, .2) inset, 0 0 2px 2px rgba(0, 0, 0, .2) inset);
 }
+.blue-hover() {
+    // These have a colour associated with them so no need to libify.
+    .box-shadow(0 2px 0 0 rgba(0, 0, 0, .1), 0 -2px 0 0 rgba(0, 0, 0, .2) inset, 0 12px 24px 2px #3089D8 inset);
+    .transition(all 0.25s linear 0s);
+}
+.fatten() {
+    height: 48px;
+    padding: 0 32px;
+}
 
 .button, .button:visited, button {
     // Blueish.
@@ -25,84 +34,68 @@
     padding: 0 20px;
     text-align: center;
     text-decoration: none;
-    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
-    &:hover, &:focus, &:visited, &:visited:focus {
-        // These have a colour associated with them so no need to libify.
-        .box-shadow(0 2px 0 0 rgba(0, 0, 0, .1), 0 -2px 0 0 rgba(0, 0, 0, .2) inset, 0 12px 24px 2px #3089D8 inset);
-        .transition(all 0.25s linear 0s);
+    text-shadow: 0 1px 0 rgba(0, 0, 0, .25);
+    &:hover, &:focus {
+        .blue-hover;
         text-decoration: none;
     }
-    &:focus, &:visited:focus {
+    &:focus {
         outline-color: #484848;
     }
-    &:active, &:visited:active {
+    &:active {
         .btn-shadow-active;
         .transition(all 0.25s linear 0s);
         color: @white;
         text-decoration: none;
     }
-    &.product, &.theme-install, &.fat {
-        height: 48px;
-        padding: 0 32px;
+    &.fat {
+        .fatten;
     }
     // Redish.
-    &.delete, &.manage, &.cancel, &.product.error {
+    &.cancel {
         .gradient-two-color(#DA5132, #A91300);
-        &:hover, &:visited:hover {
+        &:hover, &:focus {
             .box-shadow(0 2px 0 0 rgba(0, 0, 0, .1), 0 -2px 0 0 rgba(0, 0, 0, .2) inset, 0 12px 24px 2px #E64926 inset);
         }
-        &:focus, &:visited:focus {
+        &:active {
             .btn-shadow-active;
         }
-        // Chrome prefers this explicitly.
-        &:active, &:visited:active {
+    }
+    // Greenish.
+    &.good {
+        .gradient-two-color(#81BC2E, #659324);
+        &:hover, &:focus {
+            .box-shadow(0 2px 0 0 rgba(0, 0, 0, .1), 0 -2px 0 0 rgba(0, 0, 0, .2) inset, 0 12px 24px 2px #83C822 inset);
+        }
+        &:active {
             .btn-shadow-active;
-            .transition(all 0.25s linear 0s);
-            color: @white;
-            text-decoration: none;
+        }
+    }
+}
+.button {
+    &.theme-install {
+        .fatten;
+    }
+    // Redish.
+    &.manage {
+        .gradient-two-color(#DA5132, #A91300);
+        &:hover, &:focus {
+            .box-shadow(0 2px 0 0 rgba(0, 0, 0, .1), 0 -2px 0 0 rgba(0, 0, 0, .2) inset, 0 12px 24px 2px #E64926 inset);
+        }
+        &:active {
+            .btn-shadow-active;
         }
     }
     // Grayish.
-    &[disabled], &.disabled,
-    &.purchasing, &.purchased,
-    &.installing, &.installed {
-        pointer-events: none;
-    }
-    &[disabled], &.disabled {
+    &.disabled {
         .gradient-two-color(#BFC7CD, #9CA3AA);
         color: @faint-gray;
-        &:hover, &:visited:hover {
+        pointer-events: none;
+        &:hover, &:focus {
             .box-shadow(0 2px 0 0 rgba(0, 0, 0, .1), 0 -2px 0 0 rgba(0, 0, 0, .2) inset, 0 12px 24px 2px #BFC7CD inset);
         }
-        &:focus, &:visited:focus {
+        &:active {
             .btn-shadow-active;
-        }
-        // Chrome prefers this explicitly.
-        &:active, &:visited:active {
-            .btn-shadow-active;
-            .transition(all 0.25s linear 0s);
-            color: @white;
-            text-decoration: none;
-        }
-    }
-    &.installed, &.purchased, &.incompatible {
-        pointer-events: auto;
-    }
-    // Greenish.
-    &.good, &.good:active, &.good:visited:active {
-        .gradient-two-color(#81BC2E, #659324);
-        &:hover, &:visited:hover {
-            .box-shadow(0 2px 0 0 rgba(0, 0, 0, .1), 0 -2px 0 0 rgba(0, 0, 0, .2) inset, 0 12px 24px 2px #83C822 inset);
-        }
-        &:focus, &:visited:focus {
-            .btn-shadow-active;
-        }
-        // Chrome prefers this explicitly.
-        &:active, &:visited:active {
-            .btn-shadow-active;
-            .transition(all 0.25s linear 0s);
-            color: @white;
-            text-decoration: none;
         }
     }
     // Grayish (legacy).
@@ -113,16 +106,48 @@
         color: #3d4246;
     }
 }
-
-.button {
-    .spin {
-        .webkit-spin;
-        background: url(../../img/mkt/loading-16.png) no-repeat center center;
-        display: inline-block;
-        height: 16px;
-        margin: 3px 0;
-        width: 16px;
+button {
+    &.product {
+        .fatten;
+        // Redish.
+        &.error {
+            .gradient-two-color(#DA5132, #A91300);
+            &:hover, &:focus {
+                .box-shadow(0 2px 0 0 rgba(0, 0, 0, .1), 0 -2px 0 0 rgba(0, 0, 0, .2) inset, 0 12px 24px 2px #E64926 inset);
+            }
+            &:active {
+                .btn-shadow-active;
+            }
+        }
     }
+    // Grayish.
+    &[disabled] {
+        .gradient-two-color(#BFC7CD, #9CA3AA);
+        color: @faint-gray;
+        &:hover, &:focus {
+            .box-shadow(0 2px 0 0 rgba(0, 0, 0, .1), 0 -2px 0 0 rgba(0, 0, 0, .2) inset, 0 12px 24px 2px #BFC7CD inset);
+        }
+        &:active {
+            .btn-shadow-active;
+        }
+    }
+    &[disabled], &.disabled,
+    &.purchasing, &.purchased,
+    &.installing, &.installed {
+        pointer-events: none;
+    }
+    &.installed, &.purchased, &.incompatible {
+        pointer-events: auto;
+    }
+}
+
+.button .spin {
+    .webkit-spin;
+    background: url(../../img/mkt/loading-16.png) no-repeat center center;
+    display: inline-block;
+    height: 16px;
+    margin: 3px 0;
+    width: 16px;
 }
 
 @media (max-width: @4col) {
