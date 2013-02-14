@@ -195,12 +195,11 @@ class TestWebapp(amo.tests.TestCase):
     def test_has_price(self):
         webapp = Webapp(premium_type=amo.ADDON_PREMIUM)
         webapp._premium = mock.Mock()
+        webapp._premium.price = None
+        webapp._premium.has_price.return_value = True
         eq_(webapp.has_price(), True)
 
-    def test_has_no_price(self):
-        webapp = Webapp(premium_type=amo.ADDON_PREMIUM)
-        webapp._premium = mock.Mock()
-        webapp._premium.price = None
+        webapp._premium.has_price.return_value = False
         eq_(webapp.has_price(), False)
 
     def test_has_no_premium(self):

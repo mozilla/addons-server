@@ -454,7 +454,8 @@ class Webapp(Addon):
         of use in the payment flow to determine if we need payment. An app can
         be premium, but not require any payment.
         """
-        return self.is_premium() and self.premium and self.premium.has_price()
+        return bool(self.is_premium() and self.premium and
+                    self.premium.has_price())
 
     def get_price(self):
         if self.has_price():

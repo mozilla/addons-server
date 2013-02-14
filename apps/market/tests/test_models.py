@@ -24,23 +24,30 @@ class TestPremium(amo.tests.TestCase):
         self.addon = Addon.objects.get(pk=3615)
 
     def test_is_complete(self):
-        ap = AddonPremium.objects.create(addon=self.addon)
+        ap = AddonPremium(addon=self.addon)
         assert not ap.is_complete()
         ap.price = self.tier_one
         assert not ap.is_complete()
         ap.addon.paypal_id = 'asd'
         assert ap.is_complete()
 
+    def test_has_price(self):
+        ap = AddonPremium(addon=self.addon, price=self.tier_one)
+        eq_(ap.has_price(), True)
+
+        self.tier_one.update(price=Decimal('0.00'))
+        eq_(ap.has_price(), False)
+
     @mock.patch('paypal.should_ignore_paypal', lambda: False)
     def test_has_permissions_token(self):
-        ap = AddonPremium.objects.create(addon=self.addon)
+        ap = AddonPremium(addon=self.addon)
         assert not ap.has_permissions_token()
         ap.paypal_permissions_token = 'asd'
         assert ap.has_permissions_token()
 
     @mock.patch('paypal.should_ignore_paypal', lambda: True)
     def test_has_permissions_token_ignore(self):
-        ap = AddonPremium.objects.create(addon=self.addon)
+        ap = AddonPremium(addon=self.addon)
         assert ap.has_permissions_token()
         ap.paypal_permissions_token = 'asd'
         assert ap.has_permissions_token()
@@ -48,7 +55,7 @@ class TestPremium(amo.tests.TestCase):
     @mock.patch('paypal.should_ignore_paypal', lambda: False)
     @mock.patch('paypal.check_permission')
     def test_has_valid_permissions_token(self, check_permission):
-        ap = AddonPremium.objects.create(addon=self.addon)
+        ap = AddonPremium(addon=self.addon)
         assert not ap.has_valid_permissions_token()
         check_permission.return_value = True
         ap.paypal_permissions_token = 'some_token'
@@ -56,20 +63,20 @@ class TestPremium(amo.tests.TestCase):
 
     @mock.patch('paypal.should_ignore_paypal', lambda: True)
     def test_has_valid_permissions_token_ignore(self):
-        ap = AddonPremium.objects.create(addon=self.addon)
+        ap = AddonPremium(addon=self.addon)
         assert ap.has_valid_permissions_token()
         ap.paypal_permissions_token = 'asd'
         assert ap.has_valid_permissions_token()
 
     def test_currencies(self):
-        ap = AddonPremium.objects.create(addon=self.addon, price=self.tier_one)
+        ap = AddonPremium(addon=self.addon, price=self.tier_one)
         assert self.tier_one.currencies()
         eq_(len(ap.supported_currencies()), 1)
         eq_(ap.supported_currencies()[0][0], 'USD')
 
     def test_add_currency(self):
-        ap = AddonPremium.objects.create(addon=self.addon, price=self.tier_one)
-        ap.update(currencies=['USD', 'CAD'])
+        ap = AddonPremium(addon=self.addon, price=self.tier_one,
+                          currencies=['USD', 'CAD'])
         eq_(len(ap.supported_currencies()), 2)
         eq_(ap.supported_currencies()[1][0], 'CAD')
 
