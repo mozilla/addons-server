@@ -52,6 +52,7 @@
         data-persona-url="{{ settings.BROWSERID_JS_URL }}"
         data-native-persona-url="{{ settings.NATIVE_BROWSERID_JS_URL }}"
         data-collect-timings="{{ url('amo.timing.record') }}:{{ collect_timings_percent }}"
+        data-locales="{{ ','.join(settings.LANGUAGE_URL_MAP.keys()) }}"
         {% block bodyattrs %}{% endblock %}>
     <section id="site-header">
       {% block site_header %}
