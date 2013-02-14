@@ -1,13 +1,28 @@
 /*
- *  DJANGO Admin styles
- *
- *  This is a hacked-up version of Django's base.css.  Since we're merging the
- *  admin with AMO, we don't need all the base styling that this provided.
- *  Sometimes things still look funny, so there's an "AMO Override" section on
- *  the bottom.
- */
+    DJANGO Admin styles
+    Note: This is Django 1.4.3's base.css without customizations.
+*/
+
+body {
+    margin: 0;
+    padding: 0;
+    font-size: 12px;
+    font-family: "Lucida Grande","DejaVu Sans","Bitstream Vera Sans",Verdana,Arial,sans-serif;
+    color: #333;
+    background: #fff;
+}
 
 /* LINKS */
+
+a:link, a:visited {
+    color: #5b80b2;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #036;
+}
+
 a img {
     border: none;
 }
@@ -18,9 +33,61 @@ a.section:link, a.section:visited {
 }
 
 /* GLOBAL DEFAULTS */
+
+p, ol, ul, dl {
+    margin: .2em 0 .8em 0;
+}
+
+p {
+    padding: 0;
+    line-height: 140%;
+}
+
+h1,h2,h3,h4,h5 {
+    font-weight: bold;
+}
+
+h1 {
+    font-size: 18px;
+    color: #666;
+    padding: 0 6px 0 0;
+    margin: 0 0 .2em 0;
+}
+
+h2 {
+    font-size: 16px;
+    margin: 1em 0 .5em 0;
+}
+
 h2.subhead {
     font-weight: normal;
     margin-top: 0;
+}
+
+h3 {
+    font-size: 14px;
+    margin: .8em 0 .3em 0;
+    color: #666;
+    font-weight: bold;
+}
+
+h4 {
+    font-size: 12px;
+    margin: 1em 0 .8em 0;
+    padding-bottom: 3px;
+}
+
+h5 {
+    font-size: 10px;
+    margin: 1.5em 0 .5em 0;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+ul li {
+    list-style-type: square;
+    padding: 1px 0;
 }
 
 ul.plainlist {
@@ -31,10 +98,69 @@ ul.plainlist li {
     list-style-type: none;
 }
 
+li ul {
+    margin-bottom: 0;
+}
+
+li, dt, dd {
+    font-size: 11px;
+    line-height: 14px;
+}
+
+dt {
+    font-weight: bold;
+    margin-top: 4px;
+}
+
+dd {
+    margin-left: 0;
+}
+
+form {
+    margin: 0;
+    padding: 0;
+}
+
+fieldset {
+    margin: 0;
+    padding: 0;
+}
+
+blockquote {
+    font-size: 11px;
+    color: #777;
+    margin-left: 2px;
+    padding-left: 10px;
+    border-left: 5px solid #ddd;
+}
+
+code, pre {
+    font-family: "Bitstream Vera Sans Mono", Monaco, "Courier New", Courier, monospace;
+    background: inherit;
+    color: #666;
+    font-size: 11px;
+}
+
 pre.literal-block {
     margin: 10px;
     background: #eee;
     padding: 6px 8px;
+}
+
+code strong {
+    color: #930;
+}
+
+hr {
+    clear: both;
+    color: #eee;
+    background-color: #eee;
+    height: 1px;
+    border: none;
+    margin: 0;
+    padding: 0;
+    font-size: 1px;
+    line-height: 1px;
 }
 
 /* TEXT STYLES & MODIFIERS */
@@ -62,6 +188,10 @@ p.mini {
 .help, p.help {
     font-size: 10px !important;
     color: #999;
+}
+
+img.help-tooltip {
+    cursor: help;
 }
 
 p img, h1 img, h2 img, h3 img, h4 img, td img {
@@ -112,7 +242,6 @@ p img, h1 img, h2 img, h3 img, h4 img, td img {
 table {
     border-collapse: collapse;
     border-color: #ccc;
-    margin-bottom: 0;
 }
 
 td, th {
@@ -181,25 +310,84 @@ tr.alt {
 
 /* SORTABLE TABLES */
 
+thead th {
+    padding: 2px 5px;
+    line-height: normal;
+}
+
 thead th a:link, thead th a:visited {
     color: #666;
+}
+
+thead th.sorted {
+    background: #c5c5c5 url(../img/admin/nav-bg-selected.gif) top left repeat-x;
+}
+
+table thead th .text span {
+    padding: 2px 5px;
+    display:block;
+}
+
+table thead th .text a {
     display: block;
+    cursor: pointer;
+    padding: 2px 5px;
 }
 
-table thead th.sorted {
-    background-position: bottom left !important;
+table thead th.sortable:hover {
+    background: white url(../img/admin/nav-bg-reverse.gif) 0 -5px repeat-x;
 }
 
-table thead th.sorted a {
-    padding-right: 13px;
+thead th.sorted a.sortremove {
+    visibility: hidden;
 }
 
-table thead th.ascending a {
-    background: url(../img/admin/arrow-down.gif) right .4em no-repeat;
+table thead th.sorted:hover a.sortremove {
+    visibility: visible;
 }
 
-table thead th.descending a {
-    background: url(../img/admin/arrow-up.gif) right .4em no-repeat;
+table thead th.sorted .sortoptions {
+    display: block;
+    padding: 4px 5px 0 5px;
+    float: right;
+    text-align: right;
+}
+
+table thead th.sorted .sortpriority {
+    font-size: .8em;
+    min-width: 12px;
+    text-align: center;
+    vertical-align: top;
+}
+
+table thead th.sorted .sortoptions a {
+    width: 14px;
+    height: 12px;
+    display: inline-block;
+}
+
+table thead th.sorted .sortoptions a.sortremove {
+    background: url(../img/admin/sorting-icons.gif) -4px -5px no-repeat;
+}
+
+table thead th.sorted .sortoptions a.sortremove:hover {
+    background: url(../img/admin/sorting-icons.gif) -4px -27px no-repeat;
+}
+
+table thead th.sorted .sortoptions a.ascending {
+    background: url(../img/admin/sorting-icons.gif) -5px -50px no-repeat;
+}
+
+table thead th.sorted .sortoptions a.ascending:hover {
+    background: url(../img/admin/sorting-icons.gif) -5px -72px no-repeat;
+}
+
+table thead th.sorted .sortoptions a.descending {
+    background: url(../img/admin/sorting-icons.gif) -5px -94px no-repeat;
+}
+
+table thead th.sorted .sortoptions a.descending:hover {
+    background: url(../img/admin/sorting-icons.gif) -5px -115px no-repeat;
 }
 
 /* ORDERABLE TABLES */
@@ -220,11 +408,7 @@ table.orderable-initalized .order-cell, body>tr>td.order-cell {
 
 /* FORM DEFAULTS */
 
-form {
-    margin-bottom: 0;
-}
-
-input, textarea, select {
+input, textarea, select, .form-row p {
     margin: 2px 0;
     padding: 2px 3px;
     vertical-align: middle;
@@ -245,7 +429,7 @@ input[type=text], input[type=password], textarea, select, .vTextField {
 
 .button, input[type=submit], input[type=button], .submit-row input {
     background: white url(../img/admin/nav-bg.gif) bottom repeat-x;
-    padding: 3px;
+    padding: 3px 5px;
     color: black;
     border: 1px solid #bbb;
     border-color: #ddd #aaa #aaa #ddd;
@@ -254,6 +438,12 @@ input[type=text], input[type=password], textarea, select, .vTextField {
 .button:active, input[type=submit]:active, input[type=button]:active {
     background-image: url(../img/admin/nav-bg-reverse.gif);
     background-position: top;
+}
+
+.button[disabled], input[type=submit][disabled], input[type=button][disabled] {
+    background-image: url(../img/admin/nav-bg.gif);
+    background-position: bottom;
+    opacity: 0.4;
 }
 
 .button.default, input[type=submit].default, .submit-row input.default {
@@ -268,6 +458,13 @@ input[type=text], input[type=password], textarea, select, .vTextField {
     background-image: url(../img/admin/default-bg-reverse.gif);
     background-position: top;
 }
+
+.button[disabled].default, input[type=submit][disabled].default, input[type=button][disabled].default {
+    background-image: url(../img/admin/default-bg.gif);
+    background-position: bottom;
+    opacity: 0.4;
+}
+
 
 /* MODULES */
 
@@ -325,6 +522,14 @@ ul.messagelist li {
     background: #ffc url(../img/admin/icon_success.gif) 5px .3em no-repeat;
 }
 
+ul.messagelist li.warning{
+    background-image: url(../img/admin/icon_alert.gif);
+}
+
+ul.messagelist li.error{
+    background-image: url(../img/admin/icon_error.gif);
+}
+
 .errornote {
     font-size: 12px !important;
     display: block;
@@ -350,6 +555,11 @@ ul.errorlist {
     background: red url(../img/admin/icon_alert.gif) 5px .3em no-repeat;
 }
 
+.errorlist li a {
+    color: white;
+    text-decoration: underline;
+}
+
 td ul.errorlist {
     margin: 0 !important;
     padding: 0 !important;
@@ -363,7 +573,7 @@ td ul.errorlist li {
     background: #ffc;
 }
 
-.errors input, .errors select {
+.errors input, .errors select, .errors textarea {
     border: 1px solid red;
 }
 
@@ -566,6 +776,22 @@ table#change-history tbody th {
     width: 500px;
 }
 
+/* HEADER */
+
+#header {
+    background: #417690;
+    color: #ffc;
+    overflow: hidden;
+}
+
+#header a:link, #header a:visited {
+    color: white;
+}
+
+#header a:hover {
+    text-decoration: underline;
+}
+
 #branding h1 {
     padding: 0 10px;
     font-size: 18px;
@@ -608,32 +834,40 @@ table#change-history tbody th {
     color: #666;
 }
 
-
-
-/* AMO Override */
-#content #changelist .actions {
-    padding: 3px 0;
+/* AMO Override. Everything below isn't part of Django's base.css */
+ul li {
+    list-style-type: none;
 }
-
-.object-tools li:hover,
-.object-tools li {
+#navbar > ul {
+    margin: 0;
+}
+#navbar li.top:hover,
+#navbar li.top.selected {
     background: none;
 }
-
-#content .object-tools li a {
-    background: #999;
-    -moz-border-radius: 8px;
-    height: 17px;
-    padding: 0 8px;
-    font-size: 11px;
+#result_list thead th:first-child {
+    min-width: 200px;
 }
-
-#content .object-tools li a.addlink {
-    background: url("../img/admin/tooltag-add.gif") no-repeat scroll right bottom #999999;
-    padding-right: 24px;
+#result_list thead th:nth-child(2) {
+    max-width: 500px;
 }
-
-.button, input[type=submit], input[type=button], .submit-row input {
-    -moz-border-radius: 0;
+#result_list td:nth-child(2) {
+    max-width: 500px;
+    word-wrap: break-word;
+}
+#result_list thead th:last-child {
+    min-width: 200px;
+}
+a.button:link, a.button:visited, button, input[type="submit"], input[type="button"] {
+    line-height: 22px;
+    background: none;
+    color: #000;
     text-shadow: none;
+}
+button, input[type="submit"], input[type="button"] {
+    padding: 5px 10px;
+    vertical-align: middle;
+}
+.fm-control {
+    padding-top: 8px;
 }
