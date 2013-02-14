@@ -161,7 +161,6 @@ z.page.on('fragmentloaded', function() {
             $btns.blur();
             $('#search-q').focus();
         } else if ($this.hasClass('cancel')) {
-            z.body.removeClass('show-search');
             $('#search-q').blur();
             $btns.blur();
         } else if ($this.hasClass('search-clear')) {

@@ -1,3 +1,5 @@
+@import 'lib';
+
 // when to show what header buttons where.
 // not certain if this is how we'll do this yet.
 body {
@@ -21,6 +23,9 @@ body {
             float: left;
             margin-left: -7px;
         }
+        .suggestions #search {
+            margin-left: 12px;
+        }
     }
     &[data-page-type='leaf'], &[data-page-type='alpha'] {
         .header-button {
@@ -35,6 +40,34 @@ body {
                 display: block;
             }
         }
+        #search {
+            display: block;
+        }
+        &.show-search {
+            #search,
+            #search-q {
+                left: 40px;
+                width: 145px;
+            }
+            #site-header .wordmark {
+                opacity: 0;
+                top: -20px;
+                .transition(~'top .5s, opacity .5s');
+                z-index: 5;
+            }
+            #site-header #search {
+                top: 0;
+                .transition(~'top .5s, opacity .5s');
+                opacity: 1;
+                z-index: 10;
+            }
+            .suggestions {
+                #search,
+                #search-q {
+                    width: 135px;
+                }    
+            }
+        }
     }
     // Simple single pages with a home icon.
     &[data-page-type='notice'] {
@@ -45,23 +78,9 @@ body {
         }
     }
     &.show-search {
-        #site-header h1 {
-            display: none;
-        }
         #search,
         #search-q {
             width: 177px;
-        }
-        #search {
-            display: block;
-        }
-        .header-button {
-            &.right, &.settings {
-                display: none;
-            }
-            &.cancel {
-                display: block;
-            }
         }
     }
 }

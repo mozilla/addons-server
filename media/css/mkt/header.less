@@ -58,22 +58,58 @@ header {
     section.main {
         position: relative;
     }
+
+    .wordmark {
+        position: relative;
+        top: 0;
+    }
+
 }
 
 .home, .offline {
     #site-header {
         h1 {
-            background: url(../../img/mkt/logos/mp_aurora_wordmark_small.png) no-repeat;
-            text-indent: -99999px;
-            width: 200px;
             height: 30px;
-            left: 60px;
-            top: 10px;
+            left: 10px;
             overflow: hidden;
+            text-indent: -99999px;
+            top: 10px;
+            width: 200px;
+        }
+        .page:before,
+        .wordmark {
+            background: url(../../img/mkt/logos/mp_aurora_wordmark_small.png) no-repeat;
+            display: block;
+            float: left;
+            height: 30px;
+        }
+        .page:before {
+            background-position: 0 0;
+            content: '';
+            width: 32px;
+        }
+        .wordmark {
+            background-position: 100% 0;
+            left: 8px;
+            position: relative;
+            width: 168px;
         }
     }
 }
 
+.home #search {
+    opacity: 0;
+    top: 50px;
+}
+
+@media (min-width: 532px) {
+    .home {
+         #search {
+            opacity: 1;
+            top: 0;
+        }
+    }
+}
 // Adjusts more header title space next to the 'home' icon.
 body[data-page-type=notice] #site-header h1 {
     left: 40px;
@@ -114,6 +150,7 @@ body[data-page-type=notice] #site-header h1 {
     }
 
     &.cancel {
+        display: none;
         width: 60px;
     }
 

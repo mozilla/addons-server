@@ -3,16 +3,15 @@
     {% if DESKTOP %}
       <h1 class="site"><a class="sync" href="{{ url('home') }}">Firefox Marketplace</a></h1>
     {% endif %}
-    <h1 class="page">{{ headertitle }}</h1>
+    <h1 class="page"><span class="wordmark">{{ headertitle }}</span></h1>
     <nav role="navigation">
       {% if not DESKTOP %}
         <a href="{{ url('account.settings') }}"
-           class="header-button icon settings left" title="{{ _('Settings') }}"></a>
+           class="header-button icon settings right" title="{{ _('Settings') }}"></a>
       {% else %}
         {% include 'mkt/account-links.html' %}
       {% endif %}
       <a href="#" id="nav-back" class="header-button icon back left" title="{{ _('Back') }}"><b></b></a>
-      <a href="#" class="header-button icon search right" title="{{ _('Search') }}"></a>
       {% if not DESKTOP %}
         <a href="#" class="header-button cancel right">{{ _('Cancel') }}</a>
         <a href="#" class="header-button filter right">{{ _('Filter') }}</a>

@@ -80,9 +80,10 @@ $.fn.searchSuggestions = function($results, processCallback, searchType) {
         $results.removeClass('visible sel');
         if (searchType == 'MKT') {
             $('#site-header').removeClass('suggestions');
-            if (z.capabilities.mobile) {
+            if (z.capabilities.mobile && $('body.home').length === 0) {
                 z.body.removeClass('show-search');
             }
+
         }
     }
 

@@ -60,8 +60,18 @@ var nav = (function() {
 
         // Are we home? clear any history.
         if (state.type == 'root') {
+            // Transition in the search for mobile after a scroll
+            if (z.capabilities.mobile) {
+                z.win.on('scroll', _.throttle(function(event) {
+                    // Only add class on '.body.home' in case we've already
+                    // navigated away by this point.
+                    if (z.body.is('.home')) {
+                        z.body.addClass('show-search');
+                    }
+                    $(this).unbind(event);
+                }, 100));
+            }
             stack = [state];
-
             // Also clear any search queries living in the search box.
             // Bug 790009
             $('#search-q').val('');
@@ -119,8 +129,13 @@ var nav = (function() {
     function setTitle() {
         // Something something title joke.
         var $h1 = $('#site-header h1.page');
+        var $wordMark = $h1.find('.wordmark');
         var title = $('#page').data('context').headertitle || '';
-        $h1.text(title);
+        if ($wordMark.length) {
+            $wordMark.text(title);
+        } else {
+            $h1.text(title);
+        }
     }
 
     function setCSRF() {
