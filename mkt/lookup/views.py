@@ -1,11 +1,11 @@
 from datetime import datetime, timedelta
 
-from django.core.exceptions import PermissionDenied
 from django.db import connection
 from django.db.models import Sum, Count, Q
 from django.http import Http404
 from django.shortcuts import get_object_or_404, redirect
 
+import commonware.log
 import jingo
 from babel import numbers
 from slumber.exceptions import HttpClientError, HttpServerError
@@ -21,7 +21,7 @@ from apps.access import acl
 from apps.bandwagon.models import Collection
 from devhub.models import ActivityLog
 from elasticutils.contrib.django import S
-from lib.pay_server import client, SolitudeError
+from lib.pay_server import client
 from market.models import AddonPaymentData, Refund
 from mkt.constants.payments import (STATUS_COMPLETED, STATUS_FAILED,
                                     STATUS_PENDING, PROVIDERS)
@@ -33,6 +33,8 @@ from mkt.site import messages
 from mkt.webapps.models import Installed
 from stats.models import DownloadCount, Contribution
 from users.models import UserProfile
+
+log = commonware.log.getLogger('z.lookup')
 
 
 @login_required
@@ -137,6 +139,7 @@ def transaction_refund(request, uuid):
         res = client.api.bango.refund.post({'uuid': contrib.transaction_id})
     except (HttpClientError, HttpServerError):
         # Either doing something not supposed to or Solitude had an issue.
+        log.exception('Refund error: %s' % uuid)
         messages.error(
             request,
             _('You cannot make a refund request for this transaction.'))
@@ -148,6 +151,7 @@ def transaction_refund(request, uuid):
             status=amo.REFUND_PENDING,
             refund_reason=form.cleaned_data['refund_reason'],
             user=request.amo_user)
+        log.info('Refund pending: %s' % uuid)
         email_buyer_refund_pending(contrib)
         messages.success(
             request, _('Refund for this transaction now pending.'))
@@ -157,11 +161,13 @@ def transaction_refund(request, uuid):
             status=amo.REFUND_APPROVED,
             refund_reason=form.cleaned_data['refund_reason'],
             user=request.amo_user)
+        log.info('Refund approved: %s' % uuid)
         email_buyer_refund_approved(contrib)
         messages.success(
             request, _('Refund for this transaction successfully approved.'))
     elif res['status'] == STATUS_FAILED:
         # Bango no like.
+        log.error('Refund failed: %s' % uuid)
         messages.error(
             request, _('Refund request for this transaction failed.'))
 
