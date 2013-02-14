@@ -1,229 +1,29 @@
 @import 'lib';
 
-#login {
-    section {
+#login section {
+    text-align: center;
+    footer {
         text-align: center;
-        footer {
-            text-align: center;
-        }
     }
 }
 
-.still-open a {
-    display: block;
-    font-weight: bold;
-}
-
-.login {
-    .notification-box {
-        margin-bottom: 24px;
-    }
-    .prose {
-        overflow: hidden;
-    }
-    #welcome {
-        min-height: 210px;
-        position: relative;
-        &:before {
-            background: url(../../img/mkt/crate.png) 100% 0 no-repeat;
-            .background-size(auto 60%);
-            content: "";
-            display: block;
-            float: right;
-            height: 233px;
-            position: absolute;
-            top: 50px;
-            width: 100%;
-        }
-        > div {
-            position: relative;
-            width: 40%;
-            z-index: 1;
-            .proceed {
-            }
-            .forgot {
-                margin: 5px 0 0;
-                a {
-                    font-size: 11px;
-                }
-            }
-        }
-    }
-    #access-devhub,
-    #access-devhub + div {
-        margin: 15px 0;
-    }
-    #access-devhub {
-        float: left;
-        text-align: left;
-        b {
-            display: block;
-            margin-bottom: 5px;
-        }
-        + div {
-            float: right;
-        }
-    }
-    #site-footer ul {
-        float: right;
-        list-style: none;
-        margin: 0 0 5px;
-        padding: 0;
-        li {
-            display: inline-block;
-            + li {
-                margin-left: 10px;
-                &:before {
-                    color: @medium-gray;
-                    content: "\00b7";
-                    float: left;
-                    margin-right: 10px;
-                }
-            }
-        }
-    }
-    .go {
-        clear: both;
-    }
-    #site-footer > div {
-        margin: 0 auto;
-        &:after {
-            content: "";
-            display: block;
-            clear: both;
-        }
-    }
-}
-#page .login #welcome {
-    padding: 25px 0;
-}
 .notification-box.error {
     background-color: @white;
 }
 
-#walled .form-footer .extras {
-    text-align: center;
-}
-
 // This less file is out of date and requires inversion. We have to stop
 // doing things for .force-mobile like the block below.
-.force-mobile.login {
-    #welcome {
-        &:before {
-            content: none;
-        }
-        > div {
-            width: 100%;
-        }
-    }
-    #site-footer {
-        display: none;
-    }
-}
-
-@media (max-width: @10col) {
-    .login #welcome:before {
-        .background-size(auto 80%);
-        background-position: 62% 90%;
-    }
-}
-
-@media (max-width: @7col) {
-    // On mobile do not show link to submit an app.
-    .still-open {
-        display: none;
-    }
-    #login {
-        &.old {
-            section {
-                .max-width(6);
-                max-height: 150px;
-                overflow-y: hidden;
-                h2 {
-                    font-size: 14px;
-                    font-weight: bold;
-                }
-                .password {
-                    .max-width(4);
-                }
-                .simple-field.row {
-                    position: relative;
-                    z-index: 10;
-                }
-                .listing-footer {
-                    z-index: 5;
-                    background-image: none;
-                }
-                input {
-                    .width(3);
-                }
-            }
-        }
-    }
+.login #site-footer {
+    display: none;
 }
 
 @media (max-width: @4col) {
-    #login {
-        &.old {
-            section {
-                .max-width(4);
-                max-height: 206px;
-                overflow-y: hidden;
-                h2 {
-                    font-size: 14px;
-                    font-weight: bold;
-                }
-                .password {
-                    .max-width(2);
-                }
-                .simple-field.row {
-                    position: relative;
-                    z-index: 10;
-                }
-                .listing-footer {
-                    z-index: 5;
-                    background-image: none;
-                    margin-top: -35px;
-                }
-            }
-        }
-    }
     .login {
         #page {
             margin: 0;
         }
-        #welcome {
-            min-height: 230px;
-            padding: 0 15px;
-            &:before {
-                content: none;
-            }
-            > div {
-                width: auto;
-            }
-            .proceed {
-                padding-top: 10px;
-                text-align: center;
-            }
-        }
-        #site-footer {
-            text-align: center;
-            > div {
-                width: 100%;
-            }
-        }
-        #access-devhub,
-        #access-devhub + div,
-        #site-footer ul {
-            float: none;
-        }
-        #access-devhub {
-            text-align: center;
-            padding: 0 10px 15px;
-            a {
-                display: block;
-                padding: 5px;
-            }
+        #site-footer > div {
+            width: 100%;
         }
     }
 }
