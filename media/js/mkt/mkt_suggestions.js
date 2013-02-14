@@ -48,7 +48,9 @@
                     settings['$results'].addClass('visible')
                                         .trigger('resultsUpdated', [items]);
                     $('#site-header').addClass('suggestions');
-                    z.body.addClass('show-search');
+                    if (z.capabilities.mobile) {
+                        z.body.addClass('show-search');
+                    }
                 }
             }
         });
