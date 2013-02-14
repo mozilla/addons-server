@@ -212,7 +212,6 @@ class TestDashboard(HubTest):
         assert 'Statistics' not in links, ('Unexpected: %r' % links)
 
     def test_public_addon(self):
-        waffle.models.Switch.objects.create(name='marketplace', active=True)
         addon = Addon.objects.get(id=self.clone_addon(1)[0])
         eq_(addon.status, amo.STATUS_PUBLIC)
         doc = pq(self.client.get(self.url).content)
@@ -220,7 +219,6 @@ class TestDashboard(HubTest):
         eq_(item.find('h3 a').attr('href'), addon.get_dev_url())
         assert item.find('p.downloads'), 'Expected weekly downloads'
         assert item.find('p.users'), 'Expected ADU'
-        assert item.find('.price'), 'Expected price'
         assert item.find('.item-details'), 'Expected item details'
         assert not item.find('p.incomplete'), (
             'Unexpected message about incomplete add-on')

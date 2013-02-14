@@ -1966,52 +1966,26 @@ class TestLanguagePack(TestLanguagePack):
 class TestMarketplace(amo.tests.TestCase):
 
     def setUp(self):
-        self.addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
+        self.addon = Addon(type=amo.ADDON_EXTENSION)
 
     def test_is_premium(self):
         assert not self.addon.is_premium()
-        self.addon.update(premium_type=amo.ADDON_PREMIUM)
+        self.addon.premium_type = amo.ADDON_PREMIUM
         assert self.addon.is_premium()
 
     def test_is_premium_inapp(self):
         assert not self.addon.is_premium()
-        self.addon.update(premium_type=amo.ADDON_PREMIUM_INAPP)
+        self.addon.premium_type = amo.ADDON_PREMIUM_INAPP
         assert self.addon.is_premium()
 
     def test_is_premium_free(self):
         assert not self.addon.is_premium()
-        self.addon.update(premium_type=amo.ADDON_FREE_INAPP)
+        self.addon.premium_type = amo.ADDON_FREE_INAPP
         assert not self.addon.is_premium()
 
-    def test_has_price(self):
-        self.addon.update(premium_type=amo.ADDON_PREMIUM)
-        AddonPremium.objects.create(addon=self.addon, price=None)
-        assert not self.addon.premium.has_price()
-        price = Price.objects.create(price='1.00')
-        self.addon.premium.update(price=price)
-        assert self.addon.premium.has_price()
-
-        price.price = '0.00'
-        price.save()
-        self.addon.premium.update(price=price)
-        assert not self.addon.premium.has_price()
-
-    def test_does_not_need_paypal(self):
-        self.addon.update(premium_type=amo.ADDON_FREE)
-        assert not self.addon.needs_paypal()
-
-    def test_other_payments(self):
-        self.addon.update(premium_type=amo.ADDON_OTHER_INAPP)
-        assert not self.addon.needs_paypal()
-
-    def test_needs_paypal(self):
-        for status in [amo.ADDON_PREMIUM, amo.ADDON_PREMIUM_INAPP,
-                       amo.ADDON_FREE_INAPP]:
-            self.addon.update(premium_type=status)
-            assert self.addon.needs_paypal()
-
     def test_can_be_premium_upsell(self):
-        self.addon.update(premium_type=amo.ADDON_PREMIUM)
+        self.addon.premium_type = amo.ADDON_PREMIUM
+        self.addon.save()
         free = Addon.objects.create(type=amo.ADDON_EXTENSION)
 
         AddonUpsell.objects.create(free=free, premium=self.addon)
@@ -2019,16 +1993,16 @@ class TestMarketplace(amo.tests.TestCase):
 
     def test_can_be_premium_status(self):
         for status in amo.STATUS_CHOICES.keys():
-            self.addon.update(status=status)
+            self.addon.status = status
             if status in amo.PREMIUM_STATUSES:
                 assert self.addon.can_become_premium()
             else:
                 assert not self.addon.can_become_premium()
 
     def test_webapp_can_become_premium(self):
-        self.addon.update(type=amo.ADDON_WEBAPP)
+        self.addon.type = amo.ADDON_WEBAPP
         for status in amo.STATUS_CHOICES.keys():
-            self.addon.update(status=status)
+            self.addon.status = status
             assert self.addon.can_become_premium(), status
 
     def test_can_be_premium_type(self):
@@ -2044,16 +2018,17 @@ class TestMarketplace(amo.tests.TestCase):
         assert not self.addon.can_be_purchased()
 
     def test_can_still_not_be_purchased(self):
-        self.addon.update(premium_type=amo.ADDON_PREMIUM)
+        self.addon.premium_type = amo.ADDON_PREMIUM
         assert not self.addon.can_be_purchased()
 
     def test_can_be_purchased(self):
         for status in amo.REVIEWED_STATUSES:
-            self.addon.update(premium_type=amo.ADDON_PREMIUM,
-                              status=status)
+            self.addon.premium_type = amo.ADDON_PREMIUM
+            self.addon.status = status
             assert self.addon.can_be_purchased()
 
     def test_transformer(self):
+        self.addon.save()
         other = Addon.objects.create(type=amo.ADDON_EXTENSION)
         price = Price.objects.create(price='1.00')
 
@@ -2064,6 +2039,7 @@ class TestMarketplace(amo.tests.TestCase):
         assert not getattr(Addon.objects.get(pk=other.pk), 'premium')
 
     def test_price_transformer(self):
+        self.addon.save()
         price = Price.objects.create(price='1.00')
         price.pricecurrency_set.create(currency='BRL', price='1.01')
         self.addon.update(premium_type=amo.ADDON_PREMIUM)
