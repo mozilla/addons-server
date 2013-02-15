@@ -444,7 +444,7 @@ class TestFeaturedAppQueryset(amo.tests.TestCase):
             FeaturedApp.objects.featured()
         ), 'Inactive items in featured queryset'
         limited = FeaturedApp.objects.featured(limit=1).count()
-        assert eq_(limited, 1), '%s items returned, only 1 expected' % limited
+        eq_(limited, 1, '%s items returned, only 1 expected' % limited)
 
 
 class TestAddonSearch(amo.tests.ESTestCase):

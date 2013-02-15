@@ -525,7 +525,8 @@ class Webapp(Addon):
     @classmethod
     def featured(cls, cat=None, region=None, limit=6, mobile=False,
                  gaia=False):
-        return FeaturedApp.objects.featured(cat, region, limit, mobile, gaia)
+        qs = FeaturedApp.objects.featured(cat, region, limit, mobile, gaia)
+        return [w.app for w in qs]
 
     @classmethod
     def get_excluded_in(cls, region):
