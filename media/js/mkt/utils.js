@@ -141,20 +141,17 @@ function successNotification(msg) {
 }
 
 
-$('html').ajaxSuccess(function(event, xhr, ajaxSettings) {
+$(document).ajaxSuccess(function(event, xhr, ajaxSettings) {
     z.win.trigger('resize'); // Redraw what needs to be redrawn.
+}).on('click', 'a.external, a[rel=external]', function() {
+    // If we're inside the Marketplace app, open external links in the Browser.
+    if (z.capabilities.chromeless) {
+        $(this).attr('target', '_blank');
+    }
 });
 
 
 // If any field changes, submit the form.
 $('form.go').change(function() {
     this.submit();
-});
-
-
-// If we're inside the Marketplace app, open external links in the Browser.
-$(document).on('click', 'a.external, a[rel=external]', function() {
-    if (z.capabilities.chromeless) {
-        $(this).attr('target', '_blank');
-    }
 });
