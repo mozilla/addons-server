@@ -168,7 +168,20 @@ class TestVersion(amo.tests.TestCase):
     def test_version_delete(self):
         version = Version.objects.get(pk=81551)
         version.delete()
-        assert Addon.uncached.get(pk=3615)
+
+        addon = Addon.uncached.get(pk=3615)
+        assert not Version.objects.filter(addon=addon).exists()
+        assert not Version.with_deleted.filter(addon=addon).exists()
+
+    @mock.patch('versions.models.settings.MARKETPLACE', True)
+    def test_version_delete_marketplace(self):
+        version = Version.objects.get(pk=81551)
+        version.delete()
+        addon = Addon.uncached.get(pk=3615)
+        assert addon
+
+        assert not Version.objects.filter(addon=addon).exists()
+        assert Version.with_deleted.filter(addon=addon).exists()
 
     def test_version_delete_files(self):
         version = Version.objects.get(pk=81551)
@@ -179,6 +192,7 @@ class TestVersion(amo.tests.TestCase):
     def test_version_delete_logs(self):
         user = UserProfile.objects.get(pk=55021)
         amo.set_user(user)
+        # The transform don't know bout my users.
         version = Version.objects.get(pk=81551)
         eq_(ActivityLog.objects.count(), 0)
         version.delete()
@@ -187,6 +201,8 @@ class TestVersion(amo.tests.TestCase):
     def test_version_is_allowed_upload(self):
         version = Version.objects.get(pk=81551)
         version.files.all().delete()
+        # The transform don't know bout my deletions.
+        version = Version.objects.get(pk=81551)
         assert version.is_allowed_upload()
 
     def test_version_is_not_allowed_upload(self):
@@ -197,9 +213,11 @@ class TestVersion(amo.tests.TestCase):
                          amo.PLATFORM_BSD.id]:
             file = File(platform_id=platform, version=version)
             file.save()
+        version = Version.objects.get(pk=81551)
         assert version.is_allowed_upload()
         file = File(platform_id=amo.PLATFORM_MAC.id, version=version)
         file.save()
+        # The transform don't know bout my new files.
         version = Version.uncached.get(pk=81551)
         assert not version.is_allowed_upload()
 
@@ -211,6 +229,8 @@ class TestVersion(amo.tests.TestCase):
                          amo.PLATFORM_MAC.id]:
             file = File(platform_id=platform, version=version)
             file.save()
+        # The transform don't know bout my new files.
+        version = Version.objects.get(pk=81551)
         assert not version.is_allowed_upload()
 
     def test_version_is_allowed_upload_search(self):
@@ -218,6 +238,8 @@ class TestVersion(amo.tests.TestCase):
         version.addon.type = amo.ADDON_SEARCH
         version.addon.save()
         version.files.all()[0].delete()
+        # The transform don't know bout my deletions.
+        version = Version.objects.get(pk=81551)
         assert version.is_allowed_upload()
 
     def test_version_is_not_allowed_upload_search(self):

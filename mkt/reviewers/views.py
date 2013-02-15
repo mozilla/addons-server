@@ -236,10 +236,10 @@ def _review(request, addon):
     # We only allow the user to check/uncheck files for "pending"
     allow_unchecking_files = form.helper.review_type == "pending"
 
-    versions = (Version.objects.filter(addon=addon)
-                               .order_by('-created')
-                               .transform(Version.transformer_activity)
-                               .transform(Version.transformer))
+    versions = (Version.with_deleted.filter(addon=addon)
+                                    .order_by('-created')
+                                    .transform(Version.transformer_activity)
+                                    .transform(Version.transformer))
 
     product_attrs = {
         'product': json.dumps(

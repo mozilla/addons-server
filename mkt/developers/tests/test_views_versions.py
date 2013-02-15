@@ -283,6 +283,7 @@ class TestVersionPackaged(amo.tests.WebappTestCase):
     def test_delete_version(self):
         version = self.app.versions.latest()
         version.update(version='<script>alert("xss")</script>')
+
         res = self.client.get(self.url)
         assert not '<script>alert(' in res.content
         assert '&lt;script&gt;alert(' in res.content
@@ -297,6 +298,15 @@ class TestVersionPackaged(amo.tests.WebappTestCase):
         # Check xss in success flash message.
         assert not '<script>alert(' in res.content
         assert '&lt;script&gt;alert(' in res.content
+
+        # Test that the soft deletion works pretty well.
+        eq_(self.app.versions.count(), 0)
+        # We can't use `.reload()` :(
+        version = Version.with_deleted.filter(addon=self.app)
+        eq_(version.count(), 1)
+        # Test that the status of the "deleted" version is STATUS_DELETED.
+        eq_(str(version[0].status[0]),
+            str(amo.STATUS_CHOICES[amo.STATUS_DELETED]))
 
     def test_anonymous_delete_redirects(self):
         self.client.logout()
