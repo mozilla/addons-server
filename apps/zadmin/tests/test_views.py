@@ -1989,6 +1989,12 @@ class TestEmailDevs(amo.tests.TestCase):
         self.assertNoFormErrors(res)
         eq_(len(mail.outbox), 1)
 
+    def test_only_extensions(self):
+        self.addon.update(type=amo.ADDON_EXTENSION)
+        res = self.post(recipients='all_extensions')
+        self.assertNoFormErrors(res)
+        eq_(len(mail.outbox), 1)        
+
     def test_ignore_deleted_always(self):
         self.addon.update(status=amo.STATUS_DELETED)
         for name, label in DevMailerForm._choices:

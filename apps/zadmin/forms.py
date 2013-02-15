@@ -37,7 +37,8 @@ class DevMailerForm(happyforms.Form):
                 ('payments',
                  'Developers of non-deleted apps (not add-ons) with payments'),
                 ('desktop_apps',
-                 'Developers of non-deleted apps supported on desktop')]
+                 'Developers of non-deleted apps supported on desktop'),
+                ('all_extensions', 'All extension developers')]
     recipients = forms.ChoiceField(choices=_choices, required=True)
     subject = forms.CharField(widget=forms.TextInput(attrs=dict(size='100')),
                               required=True)
