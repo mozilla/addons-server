@@ -29,7 +29,7 @@
         }
 
         // set up key bindings
-        $(window).bind('keydown.lightboxDismiss', function(e) {
+        z.win.bind('keydown.lightboxDismiss', function(e) {
             switch (e.which) {
                 case z.keys.ESCAPE:
                     e.preventDefault();
@@ -99,7 +99,7 @@
     }
 
     // we need to adjust the scroll distances on resize.
-    $(window).on('resize', _.debounce(resize, 200));
+    z.win.on('resize', _.debounce(resize, 200));
 
     function resize() {
         if (!slider) return;
@@ -139,8 +139,7 @@
         setTimeout(function() {
             $lightbox.hide();
         }, 500);
-        $(window).unbind('keydown.lightboxDismiss');
+        z.win.unbind('keydown.lightboxDismiss');
     }
 
 })();
-

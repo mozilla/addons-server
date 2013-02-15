@@ -142,7 +142,7 @@ function successNotification(msg) {
 
 
 $('html').ajaxSuccess(function(event, xhr, ajaxSettings) {
-    $(window).trigger('resize'); // Redraw what needs to be redrawn.
+    z.win.trigger('resize'); // Redraw what needs to be redrawn.
 });
 
 

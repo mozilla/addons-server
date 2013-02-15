@@ -2,7 +2,7 @@ define('login', ['notification'], function(notification) {
 
     var requestedLogin = false;
 
-    $(window).bind('login', function(skipDialog) {
+    z.doc.bind('login', function(skipDialog) {
         if (skipDialog) {
             startLogin();
         } else {
@@ -11,7 +11,7 @@ define('login', ['notification'], function(notification) {
     }).on('click', '.browserid', function(e) {
         var $this = $(this);
         $this.addClass('loading-submit');
-        z.win.on('logincancel', function() {
+        z.doc.on('logincancel', function() {
             $this.removeClass('loading-submit').blur();
         })
         startLogin();
@@ -26,7 +26,7 @@ define('login', ['notification'], function(notification) {
             termsOfService: '/terms-of-use',
             privacyPolicy: '/privacy-policy',
             oncancel: function() {
-                z.win.trigger('logincancel');
+                z.doc.trigger('logincancel');
             }
         });
     }

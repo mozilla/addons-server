@@ -36,7 +36,7 @@
                 return themesList[i];
             }
 
-            $(window).scroll(_.throttle(function() {
+            z.doc.scroll(_.throttle(function() {
                 updateMetrics();
                 var i = findCurrentTheme();
                 if (i >= 0 && i != currentTheme) {
@@ -49,7 +49,7 @@
                 }
             }, 250));
 
-            $(document).keyup(function(e) {
+            z.doc.keyup(function(e) {
                 if (!$(queue).hasClass('shortcuts')) return;
 
                 // Ignore key-bindings when textarea focused.
@@ -137,7 +137,7 @@
                     return 0;
                 }
 
-                var pageTop = $(window).scrollTop();
+                var pageTop = z.win.scrollTop();
                 if (pageTop <= themes[currentTheme].top) {
                     for (var i = currentTheme - 1; i >= 0; i--) {
                         if (themes[i].top < pageTop) {

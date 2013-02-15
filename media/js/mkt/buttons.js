@@ -24,7 +24,7 @@
         }
     }
 
-    $(window).bind('app_purchase_start', function(e, product) {
+    z.doc.bind('app_purchase_start', function(e, product) {
         setButton(getButton(product), gettext('Purchasing'), 'purchasing');
     }).bind('app_purchase_success', function(e, product) {
         var $button = getButton(product);

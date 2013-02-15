@@ -33,11 +33,11 @@
             type: 'pie'
        }]
     };
-    
+
     $.fn.topChart = function(cfg) {
         $(this).each(function() {
             var $self   = $(this),
-                $win    = $(window),
+                $doc    = z.doc,
                 $chart  = $self.find('.piechart'),
                 hChart,
                 $table  = $self.find('table'),
@@ -48,7 +48,7 @@
                 };
 
             // reload the data when the view's range is modified.
-            $win.bind('changeview', function(e, newView) {
+            $doc.bind('changeview', function(e, newView) {
                 // we only want to respond to changes in range.
                 if (!newView.range) return;
                 $self.addClass('loading');

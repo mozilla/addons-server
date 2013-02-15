@@ -46,7 +46,7 @@
     });
 
     // set controls when `changeview` is detected.
-    $(window).bind('changeview', function(e, newState) {
+    z.doc.bind('changeview', function(e, newState) {
         if (!newState) return;
         function populateCustomRange() {
             var nRange = normalizeRange(newState.range),

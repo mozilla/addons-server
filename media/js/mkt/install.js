@@ -21,7 +21,7 @@ define('install', ['capabilities', 'payments'], function(caps, payments) {
     function startInstall(product) {
         if (z.anonymous && product.price) {
             localStorage.setItem('toInstall', product.manifest_url);
-            z.win.trigger('login', true);
+            z.doc.trigger('login', true);
             return;
         }
         // Show "Install" button if I'm installing from the Reviewer Tools,
@@ -37,7 +37,7 @@ define('install', ['capabilities', 'payments'], function(caps, payments) {
     }
 
     function purchase(product) {
-        $(window).trigger('app_purchase_start', product);
+        z.doc.trigger('app_purchase_start', product);
         $.when(payments.purchase(product))
          .done(purchaseSuccess)
          .fail(purchaseError);
@@ -45,14 +45,14 @@ define('install', ['capabilities', 'payments'], function(caps, payments) {
 
     function purchaseSuccess(product, receipt) {
         // Firefox doesn't successfully fetch the manifest unless I do this.
-        $(window).trigger('app_purchase_success', [product]);
+        z.doc.trigger('app_purchase_success', [product]);
         setTimeout(function() {
             install(product);
         }, 0);
     }
 
     function purchaseError(product, msg) {
-        $(window).trigger('app_purchase_error', [product, msg]);
+        z.doc.trigger('app_purchase_error', [product, msg]);
     }
 
     function install(product, receipt) {
@@ -65,7 +65,7 @@ define('install', ['capabilities', 'payments'], function(caps, payments) {
             post_data.chromeless = 1;
         }
 
-        $(window).trigger('app_install_start', product);
+        z.doc.trigger('app_install_start', product);
         $.post(product.recordUrl, post_data).success(function(response) {
             if (response.error) {
                 $('#pay-error').show().find('div').text(response.error);
@@ -85,11 +85,11 @@ define('install', ['capabilities', 'payments'], function(caps, payments) {
     }
 
     function installSuccess(installer, product) {
-        $(window).trigger('app_install_success', [installer, product, true]);
+        z.doc.trigger('app_install_success', [installer, product, true]);
     }
 
     function installError(installer, product, msg) {
-        $(window).trigger('app_install_error', [installer, product, msg]);
+        z.doc.trigger('app_install_error', [installer, product, msg]);
     }
 
     $(function() {

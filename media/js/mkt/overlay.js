@@ -18,7 +18,7 @@
     });
 
     // Dismiss overlay when we click outside of it.
-    z.win.on('click', '.overlay:not(.undismissable)', function(e) {
+    z.doc.on('click', '.overlay:not(.undismissable)', function(e) {
         if ($(e.target).parent('body').length) {
             dismiss();
         }
@@ -50,7 +50,7 @@ function notify(msg, title) {
     $overlay.addClass('show');
 }
 
-z.win.on('notify', function(e, o) {
+z.doc.on('notify', function(e, o) {
     if (!o.msg) return;
     notify(o.msg, o.title);
 });

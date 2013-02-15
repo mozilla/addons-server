@@ -135,7 +135,7 @@ var nav = (function() {
         // Something something back joke.
         if (stack.length > 1) {
             stack.shift();
-            $(window).trigger('loadfragment', stack[0].path);
+            z.doc.trigger('loadfragment', stack[0].path);
         } else {
             console.log('attempted nav.back at root!');
         }

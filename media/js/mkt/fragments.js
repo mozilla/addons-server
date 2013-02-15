@@ -176,7 +176,7 @@ function fragmentFilter(el) {
                     handleOffline();
                     return;
                 }
-                $(window).trigger('notify', {
+                z.doc.trigger('notify', {
                     title: gettext('Error'),
                     msg: gettext('There was an error loading the requested page.')});
             }).always(endLoading);
@@ -307,7 +307,7 @@ function fragmentFilter(el) {
             container.trigger('fragmentloaded', [href, popped, newState]);
         }
 
-        z.win.on('popstate', function(e) {
+        z.doc.on('popstate', function(e) {
             var state = e.originalEvent.state;
             if (state) {
                 navigate(state, true);
@@ -320,9 +320,7 @@ function fragmentFilter(el) {
                 delete fragmentCache[path];
             }
             navigate({path: path});
-        });
-
-        $(window).on('updatecache', function() {
+        }).on('updatecache', function() {
             console.log('event');
             updateCache();
         });

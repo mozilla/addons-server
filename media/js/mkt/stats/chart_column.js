@@ -1,6 +1,6 @@
 (function () {
     // 'use strict';
-    var $win = $(window),
+    var $doc = z.doc,
         $chart = $('#head-chart'),
         baseConfig = {
             chart: {
@@ -62,12 +62,12 @@
         if (chart && chart.destroy) chart.destroy();
     }
 
-    $win.bind('changeview', function() {
+    $doc.bind('changeview', function() {
         $chart.parent().removeClass('nodata');
         $chart.addClass('loading');
     });
 
-    $win.bind('dataready', function(e, obj) {
+    $doc.bind('dataready', function(e, obj) {
         var view = obj.view,
             metric = view.metric,
             data = obj.data,

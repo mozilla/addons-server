@@ -145,7 +145,7 @@ z.StatsManager = (function() {
         $.when(getDataRange(currentView), getSiteEvents(currentView))
          .then(function(data, events) {
             setTimeout(function() {
-                $(window).trigger('dataready', {
+                z.doc.trigger('dataready', {
                     'view'  : currentView,
                     'fields': getAvailableFields(currentView),
                     'data'  : data,
@@ -154,7 +154,7 @@ z.StatsManager = (function() {
             }, 0);
         });
     }
-    $(window).bind('changeview', processView);
+    z.doc.bind('changeview', processView);
 
 
     // Retrieves a list of site-wide events that may impact statistics data.

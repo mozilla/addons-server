@@ -1,5 +1,6 @@
 var z = {
     win: $(window),
+    doc: $(document),
     body: $(document.body),
     page: $('#page'),
     prefix: (function() {

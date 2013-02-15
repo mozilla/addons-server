@@ -1,6 +1,6 @@
 (function () {
     // "use strict";
-    var $win = $(window),
+    var $doc = z.doc,
         $chart = $('#head-chart'),
         $btnZoom = $('#chart-zoomout'),
         baseConfig = {
@@ -105,13 +105,13 @@
         if (chart && chart.destroy) chart.destroy();
     }
 
-    $win.bind('changeview', function() {
+    $doc.bind('changeview', function() {
         $chart.parent().removeClass('nodata');
         $chart.addClass('loading');
         $btnZoom.addClass('inactive').click(_pd);
     });
 
-    $win.bind('dataready', function(e, obj) {
+    $doc.bind('dataready', function(e, obj) {
         var view    = obj.view,
             metric  = view.metric,
             group   = view.group,
@@ -443,7 +443,7 @@
 
         chartRange = chart.xAxis[0].getExtremes();
 
-        $win.bind('zoomout', function() {
+        $doc.bind('zoomout', function() {
             chart.xAxis[0].setExtremes(chartRange.min, chartRange.max);
             $btnZoom.addClass('inactive').click(_pd);
         });

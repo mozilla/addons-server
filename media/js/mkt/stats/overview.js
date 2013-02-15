@@ -4,12 +4,10 @@ $(function() {
     // set up topcharts (defined in topchart.js)
     $('.toplist').topChart();
 
-    $(window).bind("changeview", function(e, view) {
+    z.doc.bind("changeview", function(e, view) {
         $('.two-up').addClass('loading');
-    });
-    // Save some requests by waiting until the graph data is ready.
-    $(window).bind("dataready", function(e, data) {
-        // return;
+    }).bind("dataready", function(e, data) {
+        // Save some requests by waiting until the graph data is ready.
         var view    = _.extend({}, data.view, {group: 'all'}),
             range   = normalizeRange(view.range);
 

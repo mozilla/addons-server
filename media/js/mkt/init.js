@@ -1,5 +1,6 @@
 var z = {
     win: $(window),
+    doc: $(document),
     body: $(document.body),
     page: $('#container'),
     context: $('#page').data('context'),
@@ -27,7 +28,7 @@ z.prefixUpper = z.prefix[0].toUpperCase() + z.prefix.substr(1);
     });
 
     function trigger() {
-        $(window).trigger('saferesize');
+        z.doc.trigger('saferesize');
     }
     window.addEventListener('resize', _.debounce(trigger, 200), false);
 })();
@@ -91,8 +92,8 @@ z.page.on('fragmentloaded', function() {
         r.onsuccess = function() {
             _.each(r.result, function(val) {
                 z.apps[val.manifestURL] = z.state.mozApps[val.manifestURL] = val;
-                $(window).trigger('app_install_success',
-                                  [val, {'manifest_url': val.manifestURL}, false]);
+                z.doc.trigger('app_install_success',
+                              [val, {'manifest_url': val.manifestURL}, false]);
             });
         };
     }
@@ -108,7 +109,7 @@ z.page.on('fragmentloaded', function() {
         $outer.animate({scrollTop: $outer.height()}, 1000);
     }));
 
-    $(window).bind('overlay_dismissed', function() {
+    z.doc.bind('overlay_dismissed', function() {
        $nav.removeClass('active');
     });
 

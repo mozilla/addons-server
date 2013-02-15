@@ -3,7 +3,7 @@
 // e.g. http://outgoing.mozilla.org/v1/b2d58f443178ce1de2ef80bb57dcc80211232c8b/http%3A//wvtc.net/
 // ...will display as http://wvtc.net/
 //
-$(window).bind('fragmentloaded', function mungeLinks() {
+z.doc.bind('fragmentloaded', function mungeLinks() {
     $('a[href^="http://outgoing.mozilla.org"]').each(function(e) {
         var $a = $(this),
             outgoing = $a.attr('href'),
