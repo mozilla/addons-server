@@ -152,53 +152,39 @@
 }
 
 .transition(@property) {
-    -moz-transition: @property;
     -webkit-transition: @property;
     transition: @property;
 }
 
 .transition-property(@property) {
-    -moz-transition-property: @property;
     -webkit-transition-property: @property;
     transition-property: @property;
 }
 
 .transition-duration(@duration:2s) {
-    -moz-transition-duration: @duration;
     -webkit-transition-duration: @duration;
     transition-duration: @duration;
 }
 
 .transition-delay(@delay:1s) {
-    -moz-transition-delay: @delay;
     -webkit-transition-delay: @delay;
     transition-delay: @delay;
 }
 
 .background-size(@size) {
-    -moz-background-size: @size;
-    -wekbkit-background-size: @size;
     background-size: @size;
 }
 .background-size(@size, @size2) {
-    -moz-background-size: @size, @size2;
-    -wekbkit-background-size: @size, @size2;
     background-size: @size, @size2;
 }
 
 .box-shadow(@shadow) {
-    -webkit-box-shadow: @shadow;
-    -moz-box-shadow: @shadow;
     box-shadow: @shadow;
 }
 .box-shadow(@shadow, @shadow2) {
-    -webkit-box-shadow: @shadow, @shadow2;
-    -moz-box-shadow: @shadow, @shadow2;
     box-shadow: @shadow, @shadow2;
 }
 .box-shadow(@shadow, @shadow2, @shadow3) {
-    -webkit-box-shadow: @shadow, @shadow2, @shadow3;
-    -moz-box-shadow: @shadow, @shadow2, @shadow3;
     box-shadow: @shadow, @shadow2, @shadow3;
 }
 
@@ -212,7 +198,6 @@
 }
 
 .border-box() {
-    -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
@@ -233,15 +218,12 @@
 .animation(@animation) {
     -webkit-animation: @animation;
     -moz-animation: @animation;
-    -ms-animation: @animation;
     animation: @animation;
 }
 
 .gradient(@gradient) {
     background-image: -webkit-gradient(@gradient);
     background-image: -webkit-linear-gradient(@gradient);
-    background-image:    -moz-linear-gradient(@gradient);
-    background-image:     -ms-linear-gradient(@gradient);
     background-image:         linear-gradient(@gradient);
 }
 
@@ -249,8 +231,6 @@
     background-color: @color2;
     background-image: -webkit-gradient(linear, left bottom, left top, from(@color1), to(@color2));
     background-image: -webkit-linear-gradient(@color1, @color2);
-    background-image:    -moz-linear-gradient(@color1, @color2);
-    background-image:     -ms-linear-gradient(@color1, @color2);
     background-image:         linear-gradient(@color1, @color2);
 }
 
@@ -258,8 +238,6 @@
     background: @color2;
     background: @image, -webkit-gradient(linear, left bottom, left top, from(@color1), to(@color2));
     background: @image, -webkit-linear-gradient(@color1, @color2);
-    background: @image, -moz-linear-gradient(@color1, @color2);
-    background: @image, -ms-linear-gradient(@color1, @color2);
     background: @image, linear-gradient(@color1, @color2);
 }
 
@@ -267,8 +245,6 @@
     background: @color2;
     background: @image @position @repeat, -webkit-gradient(linear, left bottom, left top, from(@color1), to(@color2));
     background: @image @position @repeat, -webkit-linear-gradient(@color1, @color2);
-    background: @image @position @repeat, -moz-linear-gradient(@color1, @color2);
-    background: @image @position @repeat, -ms-linear-gradient(@color1, @color2);
     background: @image @position @repeat, linear-gradient(@color1, @color2);
 }
 
@@ -277,8 +253,6 @@
     background-color: @color2;
     background-image: -webkit-gradient(linear, left center, right center, from(@color1), to(@color2));
     background-image: -webkit-linear-gradient(to right, @color1, @color2);
-    background-image:    -moz-linear-gradient(to right, @color1, @color2);
-    background-image:     -ms-linear-gradient(to right, @color1, @color2);
     background-image:         linear-gradient(to right, @color1, @color2);
 }
 
@@ -325,7 +299,7 @@
 }
 
 .appearance-none() {
-    appearance: none;
+    // appearance: none; // This isn't even a proposed descriptor.
     -moz-appearance: none;
     -webkit-appearance: none;
 }
@@ -349,13 +323,11 @@
 }
 
 .header-hover() {
-    background-image: -moz-linear-gradient(top, fade(#000, 0%), fade(#000, 25%) 25%, fade(#000, 25%) 75%, fade(#000, 0%) 100%);
     background-image: -webkit-linear-gradient(top, fade(#000, 0%), fade(#000, 25%) 25%, fade(#000, 25%) 75%, fade(#000, 0%) 100%);
     background-image: linear-gradient(top, fade(#000, 0%), fade(#000, 25%) 25%, fade(#000, 25%) 75%, fade(#000, 0%) 100%);
 }
 
 .header-active() {
-    background-image: -moz-linear-gradient(top, fade(#000, 0%), fade(#000, 35%) 25%, fade(#000, 35%) 75%, fade(#000, 0%) 100%);
     background-image: -webkit-linear-gradient(top, fade(#000, 0%), fade(#000, 35%) 25%, fade(#000, 35%) 75%, fade(#000, 0%) 100%);
     background-image: linear-gradient(top, fade(#000, 0%), fade(#000, 35%) 25%, fade(#000, 35%) 75%, fade(#000, 0%) 100%);
 }
