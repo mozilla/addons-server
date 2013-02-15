@@ -290,7 +290,7 @@ $(document).ready(function() {
 
     truncateFields();
 
-    $('.addon-edit-cancel').live('click', _pd(function() {
+    $('.addon-edit-cancel').on('click', _pd(function() {
         var $this = $(this),
             parent_div = $this.closest('.edit-addon-section');
         parent_div.load($this.attr('href'), function() {
@@ -910,8 +910,8 @@ function initCatFields(delegate) {
             $("input", $main).attr("checked", false).attr("disabled", false);
         };
         checkMainDefault();
-        $("input", $main).live("change", checkMain);
-        $("input", $misc).live("change", checkOther);
+        $('input', $main).on('change', checkMain);
+        $('input', $misc).on('change', checkOther);
     });
 }
 
