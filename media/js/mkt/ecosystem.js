@@ -8,6 +8,7 @@
     var appGeneratorPreviews = $('.app-generator-preview');
     var appGeneratorDetail = $('.app-generator-detail');
     var appGeneratorItems = appGeneratorDetail.find('> li');
+    var sideNav = $('#document-navigation');
 
     // Video functions taken from https://github.com/mozilla/bedrock/blob/master/media/js/marketplace/partners.js
     var getNewObject = function(vidObject)
@@ -78,5 +79,12 @@
 
         appGeneratorItems.removeClass('on');
         appGeneratorDetail.find('#' + self.data('generator')).addClass('on');
+    });
+
+    // Navigation toggle for Dev Hub sidebar
+    sideNav.on('click', '.nav-title', function() {
+        var self = $(this);
+
+        self.parent().toggleClass('active');
     });
 })();

@@ -1,117 +1,9 @@
 {% macro navigation(section) -%}
-  <section id="document-navigation">
+  <nav id="document-navigation">
     <ul>
-      <li>
-        {% if category == 'build' %}
-          <h2>{{ _('Getting Started') }}</h2>
-          <ol>
-            <li>
-              <a href="{{ url('ecosystem.documentation', page='html5') }}"
-                {% if section == 'html5' %}class="selected"{% endif %}>
-                {{ _('Web app Foundations') }}
-              </a>
-            </li>
-            <li>
-              <a href="{{ url('ecosystem.documentation',
-                 page='firefox_os') }}"
-                 {% if section == 'firefox_os' %}class="selected"{% endif %}>
-                {{ _('Firefox OS') }}
-              </a>
-            </li>
-          </ol>
-          <h2>{{ _('Reference Apps') }}</h2>
-          <ol>
-            <li>
-              <a href="{{ url('ecosystem.apps_documentation',
-                 page='chrono') }}"
-                 {% if section == 'chrono' %}class="selected"{% endif %}>
-                {{ _('Chrono') }}
-              </a>
-            </li>
-            <li>
-              <a href="{{ url('ecosystem.apps_documentation',
-                 page='face_value') }}"
-                 {% if section == 'face_value' %}class="selected"{% endif %}>
-                {{ _('Face Value') }}
-              </a>
-            </li>
-            <li>
-              <a href="{{ url('ecosystem.apps_documentation',
-                 page='roller') }}"
-                 {% if section == 'roller' %}class="selected"{% endif %}>
-                {{ _('Roller') }}
-              </a>
-            </li>
-          </ol>
-          <h2>{{ _('Tools &amp; Downloads') }}</h2>
-          <ol>
-            <li>
-              <a href="{{ url('ecosystem.app_generator_documentation') }}"
-                 {% if section == 'app_generator' -%}
-                 class="selected"
-                 {% endif -%}>
-                {{ _('App Generator') -}}
-              </a>
-            </li>
-            <li>
-              <a href="{{ url('mkt.developers.validate_addon') }}"
-                 rel="external">
-                {{ _('App Validator') -}}
-              </a>
-            </li>
-            <li>
-              <a href="{{ url('ecosystem.firefox_os_simulator') }}"
-                 {% if section == 'firefox_os_simulator' -%}
-                 class="selected"
-                 {% endif -%}>
-                {{ _('Firefox OS Simulator') -}}
-              </a>
-            </li>
-            <li>
-              <a href="{{ url('ecosystem.documentation', page='devtools') }}"
-                 {% if section == 'devtools' %}class="selected"{% endif %}>
-                {{ _('Dev Tools') -}}
-              </a>
-            </li>
-            <li>
-              <a href="{{ url('ecosystem.support') }}"
-                 {% if section == 'support' %}class="selected"{% endif %}>
-                {{ _('Support') -}}
-              </a>
-            </li>
-          </ol>
-          <h2>{{ _('Docs &amp; APIs') }}</h2>
-          <ol>
-            <li>
-              <a href="{{ url('ecosystem.documentation', page='manifests') }}"
-                 {% if section == 'manifests' %}class="selected"{% endif %}>
-                {{ _('Manifests') }}
-              </a>
-            </li>
-            <li>
-              <a href="{{ url('ecosystem.documentation', page='manifest_faq') }}"
-                 {% if section == 'manifest_faq' %}class="selected"{% endif %}>
-                {{ _('Manifest FAQ') }}
-              </a>
-            </li>
-            <li>
-              <a href="{{ url('ecosystem.documentation', page='templates') }}"
-                 {% if section == 'templates' %}class="selected"{% endif %}>
-                {{ _('Using App Templates') }}
-              </a>
-            </li>
-            <li>
-              <a href="{{ url('ecosystem.documentation',
-                 page='using_firefox_os_simulator') }}"
-                 {% if section == 'using_firefox_os_simulator' -%}
-                 class="selected"
-                 {% endif -%}>
-                {{ _('Using Firefox OS Simulator') -}}
-              </a>
-            </li>
-          </ol>
-        {% elif category == 'design' %}
-          <h2>{{ _('Design') }}</h2>
+      <li class="has-children">
+        <div class="section{{ ' active' if category == 'design' }}">
+          <h2 class="title nav-title">{{ _('Design') }}</h2>
           <ol>
             <li>
               <a href="{{ url('ecosystem.documentation',
@@ -141,8 +33,132 @@
                 {{ _('References') }}</a>
             </li>
           </ol>
-        {% else %}
-          <h2>{{ _('Publish') }}</h2>
+        </div>
+        <div class="section{{ ' active' if category == 'build' }}">
+          <h2 class="title nav-title">{{ _('Build') }}</h2>
+          <ol>
+            <li>
+              <a href="{{ url('ecosystem.documentation', page='html5') }}"
+                {% if section == 'html5' %}class="selected"{% endif %}>
+                {{ _('Web app Foundations') }}
+              </a>
+            </li>
+            <li>
+              <a href="{{ url('ecosystem.documentation',
+                 page='firefox_os') }}"
+                 {% if section == 'firefox_os' %}class="selected"{% endif %}>
+                {{ _('Firefox OS') }}
+              </a>
+            </li>
+            <li class="has-children{{ ' active' if section in ('chrono',
+                                                               'face_value',
+                                                               'roller') }}">
+              <h2 class="subtitle nav-title">{{ _('Reference Apps') }}</h2>
+              <ol>
+                <li>
+                  <a href="{{ url('ecosystem.apps_documentation',
+                     page='chrono') }}"
+                     {% if section == 'chrono' %}class="selected"{% endif %}>
+                    {{ _('Chrono') }}
+                  </a>
+                </li>
+                <li>
+                  <a href="{{ url('ecosystem.apps_documentation',
+                     page='face_value') }}"
+                     {% if section == 'face_value' %}class="selected"{% endif %}>
+                    {{ _('Face Value') }}
+                  </a>
+                </li>
+                <li>
+                  <a href="{{ url('ecosystem.apps_documentation',
+                     page='roller') }}"
+                     {% if section == 'roller' %}class="selected"{% endif %}>
+                    {{ _('Roller') }}
+                  </a>
+                </li>
+              </ol>
+            </li>
+            <li class="has-children{{ ' active' if section in ('app_generator',
+                                                               'firefox_os_simulator',
+                                                               'devtools',
+                                                               'support') }}">
+              <h2 class="subtitle nav-title">{{ _('Tools &amp; Downloads') }}</h2>
+              <ol>
+                <li>
+                  <a href="{{ url('ecosystem.app_generator_documentation') }}"
+                     {% if section == 'app_generator' -%}
+                     class="selected"
+                     {% endif -%}>
+                    {{ _('App Generator') -}}
+                  </a>
+                </li>
+                <li>
+                  <a href="{{ url('mkt.developers.validate_addon') }}"
+                     rel="external">
+                    {{ _('App Validator') -}}
+                  </a>
+                </li>
+                <li>
+                  <a href="{{ url('ecosystem.firefox_os_simulator') }}"
+                     {% if section == 'firefox_os_simulator' -%}
+                     class="selected"
+                     {% endif -%}>
+                    {{ _('Firefox OS Simulator') -}}
+                  </a>
+                </li>
+                <li>
+                  <a href="{{ url('ecosystem.documentation', page='devtools') }}"
+                     {% if section == 'devtools' %}class="selected"{% endif %}>
+                    {{ _('Dev Tools') -}}
+                  </a>
+                </li>
+                <li>
+                  <a href="{{ url('ecosystem.support') }}"
+                     {% if section == 'support' %}class="selected"{% endif %}>
+                    {{ _('Support') -}}
+                  </a>
+                </li>
+              </ol>
+            </li>
+            <li class="has-children{{ ' active' if section in ('manifests',
+                                                               'manifest_faq',
+                                                               'templates',
+                                                               'using_firefox_os_simulator') }}">
+              <h2 class="subtitle nav-title">{{ _('Docs &amp; APIs') }}</h2>
+              <ol>
+                <li>
+                  <a href="{{ url('ecosystem.documentation', page='manifests') }}"
+                     {% if section == 'manifests' %}class="selected"{% endif %}>
+                    {{ _('Manifests') }}
+                  </a>
+                </li>
+                <li>
+                  <a href="{{ url('ecosystem.documentation', page='manifest_faq') }}"
+                     {% if section == 'manifest_faq' %}class="selected"{% endif %}>
+                    {{ _('Manifest FAQ') }}
+                  </a>
+                </li>
+                <li>
+                  <a href="{{ url('ecosystem.documentation', page='templates') }}"
+                     {% if section == 'templates' %}class="selected"{% endif %}>
+                    {{ _('Using App Templates') }}
+                  </a>
+                </li>
+                <li>
+                  <a href="{{ url('ecosystem.documentation',
+                     page='using_firefox_os_simulator') }}"
+                     {% if section == 'using_firefox_os_simulator' -%}
+                     class="selected"
+                     {% endif -%}>
+                    {{ _('Using Firefox OS Simulator') -}}
+                  </a>
+                </li>
+              </ol>
+            </li>
+          </ol>
+        </div>
+        <div class="section{{ ' active' if category == 'publish' }}">
+          <h2 class="title nav-title">{{ _('Publish') }}</h2>
           <ol>
             <li>
               <a href="{{ url('ecosystem.documentation',
@@ -173,23 +189,25 @@
             <li>
               <a href="{{ url('submit.app') }}"
                  rel="external">
-                {{ _('Submit an App') -}}
+                {{ _('Submit an App') }}
               </a>
             </li>
-          </ol>
-          <h2>{{ _('Docs &amp; APIs') }}</h2>
-          <ol>
-            <li>
-              <a href="http://zamboni.readthedocs.org/en/latest/topics/api.html"
-                 rel="external">
-                {{ _('Marketplace API') }}
-              </a>
+            <li class="has-children">
+              <h2 class="subtitle nav-title">{{ _('Docs &amp; APIs') }}</h2>
+              <ol>
+                <li>
+                  <a href="http://zamboni.readthedocs.org/en/latest/topics/api.html"
+                     rel="external">
+                    {{ _('Marketplace API') }}
+                  </a>
+                </li>
+              </ol>
             </li>
           </ol>
-        {% endif %}
+        </div>
       </li>
     </ul>
-  </section>
+  </nav>
 {% endmacro -%}
 
 {% macro video_display(video_name, video_path, video_width=509,
