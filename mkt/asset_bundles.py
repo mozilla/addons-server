@@ -184,7 +184,7 @@ JS = {
         # tiny module loader
         'js/lib/amd.js',
 
-        'js/lib/jquery-1.7.1.js',
+        'js/lib/jquery-1.9.1.js',
         'js/lib/underscore.js',
         'js/zamboni/browser.js',
         'js/amo2009/addons.js',
@@ -261,7 +261,7 @@ JS = {
         # tiny module loader
         'js/lib/amd.js',
 
-        'js/lib/jquery-1.8.js',
+        'js/lib/jquery-1.9.1.js',
         'js/lib/jquery.cookie.js',
         'js/lib/underscore.js',
         'js/lib/format.js',
@@ -364,7 +364,7 @@ JS = {
         'js/mkt/themes.js',
     ),
     'mkt/in-app-payments': (
-        'js/lib/jquery-1.7.1.js',
+        'js/lib/jquery-1.9.1.js',
         'js/mkt/inapp_payments.js',
         'js/lib/csrf.js',
         'js/impala/serializers.js',
@@ -380,6 +380,7 @@ JS = {
         'js/mkt/ecosystem.js',
     ),
     'mkt/debug': (
+        'js/lib/jquery-migrate-1.1.0.js',
         'js/debug/tinytools.js',
     ),
 }
