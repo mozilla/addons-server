@@ -21,14 +21,13 @@
           {{ bango_account_form.bankAccountCode.label_tag() }}
           {{ bango_account_form.bankAccountCode }}
         </div>
-        #}
-
         <div class="field">
           {{ bango_account_form.currencyIso.label_tag() }}
           {{ bango_account_form.currencyIso }}
         </div>
+        #}
         <div class="field">
-          {{ bango_account_form.vatNumber.label_tag() }}
+          <label data-optional="{{ _('Optional') }}">{{ bango_account_form.vatNumber.label }}</label>
           {{ bango_account_form.vatNumber }}
         </div>
 
@@ -107,8 +106,8 @@
           {{ bango_account_form.financeEmailAddress }}
         </div>
         <div class="field">
-          {{ bango_account_form.adminEmailAddress.label_tag() }}
-          {{ bango_account_form.adminEmailAddress }}
+          {{ bango_account_form.supportEmailAddress.label_tag() }}
+          {{ bango_account_form.supportEmailAddress }}
         </div>
 
         <div class="field">

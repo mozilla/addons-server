@@ -448,6 +448,7 @@ class TestPaymentAccountsAdd(PaymentsBase):
             'vendorName': 'vendor',
             'financeEmailAddress': 'a@a.com',
             'adminEmailAddress': 'a@a.com',
+            'supportEmailAddress': 'a@a.com',
             'address1': 'address 1',
             'addressCity': 'city',
             'addressState': 'state',

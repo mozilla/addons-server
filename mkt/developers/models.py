@@ -65,7 +65,7 @@ class PaymentAccount(CurlingHelper, amo.models.ModelBase):
         'adminEmailAddress', 'supportEmailAddress', 'financeEmailAddress',
         'paypalEmailAddress', 'vendorName', 'companyName', 'address1',
         'addressCity', 'addressState', 'addressZipCode', 'addressPhone',
-        'countryIso', 'currencyIso', )
+        'countryIso', 'currencyIso', 'vatNumber')
     BANGO_BANK_DETAILS_VALUES = (
         'seller_bango', 'bankAccountPayeeName', 'bankAccountNumber',
         'bankAccountCode', 'bankName', 'bankAddress1', 'bankAddressZipCode',
@@ -86,8 +86,7 @@ class PaymentAccount(CurlingHelper, amo.models.ModelBase):
         # Get the data together for the package creation.
         package_values = dict((k, v) for k, v in form_data.items() if
                               k in cls.BANGO_PACKAGE_VALUES)
-        # TODO: Fill these with better values?
-        package_values.setdefault('supportEmailAddress', 'support@example.com')
+        # Dummy value since we don't really use this.
         package_values.setdefault('paypalEmailAddress', 'nobody@example.com')
         package_values['seller'] = user_seller.resource_uri
 

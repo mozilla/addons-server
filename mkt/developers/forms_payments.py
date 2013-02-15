@@ -270,6 +270,9 @@ class BangoPaymentAccountForm(happyforms.Form):
     adminEmailAddress = forms.EmailField(
         required=True, label=_lazy(u'Administrative Email'),
         max_length=100)
+    supportEmailAddress = forms.EmailField(
+        required=True, label=_lazy(u'Support Email'),
+        max_length=100)
 
     address1 = forms.CharField(
         max_length=255, label=_lazy(u'Address'))
@@ -317,9 +320,10 @@ class BangoPaymentAccountForm(happyforms.Form):
 
     # These are the fields that Bango uses for bank details. They're read-only
     # once written.
-    bank_fields = set(['bankAccountPayeeName', 'bankAccountNumber',
-                       'bankAccountCode', 'bankName', 'bankAddress1',
-                       'bankAddressZipCode', 'bankAddressIso'])
+    read_only_fields = set(['bankAccountPayeeName', 'bankAccountNumber',
+                            'bankAccountCode', 'bankName', 'bankAddress1',
+                            'bankAddressZipCode', 'bankAddressIso',
+                            'adminEmailAddress', 'currencyIso'])
 
     def __init__(self, *args, **kwargs):
         self.account = kwargs.pop('account', None)
@@ -328,7 +332,7 @@ class BangoPaymentAccountForm(happyforms.Form):
             # We don't need the bank account fields if we're getting
             # modifications.
             for field in self.fields:
-                if field in self.bank_fields:
+                if field in self.read_only_fields:
                     self.fields[field].required = False
 
     def save(self):
