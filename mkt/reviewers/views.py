@@ -6,9 +6,10 @@ import traceback
 
 from django import http
 from django.conf import settings
-from django.forms.formsets import formset_factory
+from django.core.cache import cache
 from django.db import transaction
 from django.db.models import Count, Q
+from django.forms.formsets import formset_factory
 from django.shortcuts import get_object_or_404, redirect
 from django.utils import translation
 from django.utils.datastructures import MultiValueDictKeyError
@@ -567,6 +568,7 @@ CERTIFIED_PERMISSIONS = set([
     'audio-channel-alarm', 'audio-channel-telephony', 'audio-channel-ringer',
     'audio-channel-publicnotification', 'open-remote-window'])
 
+
 def _get_permissions(manifest):
     if 'permissions' not in manifest:
         return {}
@@ -1003,3 +1005,29 @@ def leaderboard(request):
     return jingo.render(request, 'reviewers/leaderboard.html', context(**{
         'scores': ReviewerScore.all_users_by_score(),
     }))
+
+
+@permission_required('Apps', 'Review')
+@json_view
+def apps_reviewing(request):
+    ids = []
+    key = '%s:myapps:%s' % (settings.CACHE_PREFIX, request.amo_user.id)
+    my_apps = cache.get(key)
+    if my_apps:
+        for id in my_apps.split(','):
+            valid = cache.get('%s:review_viewing:%s' % (settings.CACHE_PREFIX,
+                                                        id))
+            if valid and valid == request.amo_user.id:
+                ids.append(id)
+
+    apps = []
+    for app in Webapp.objects.filter(id__in=ids):
+        apps.append({
+            'app': app,
+            'app_attrs': json.dumps(
+                product_as_dict(request, app, False, 'reviewer'),
+                cls=JSONEncoder),
+        })
+
+    return jingo.render(request, 'reviewers/apps_reviewing.html', context(**{
+        'apps': apps}))

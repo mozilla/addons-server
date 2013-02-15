@@ -29,6 +29,8 @@ urlpatterns = (
     url(r'^apps/motd$', views.motd, name='reviewers.apps.motd'),
     url(r'^queue_viewing$', queue_viewing, name='editors.queue_viewing'),
     url(r'^review_viewing$', review_viewing, name='editors.review_viewing'),
+    url(r'^apps/reviewing$', views.apps_reviewing,
+        name='reviewers.apps_reviewing'),
 
     url('^themes/queue/$', views.themes_queue,
         name='reviewers.themes.queue_themes'),

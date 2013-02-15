@@ -2311,3 +2311,47 @@ class TestQueueSearchSort(AppReviewerTest):
         request = self.rf.get(url, {'sort': 'created', 'order': 'desc'})
         apps, form = _queue_to_apps(request, RereviewQueue.objects.all())
         eq_([later_rrq.addon, earlier_rrq.addon], list(apps))
+
+
+class TestAppsReviewing(AppReviewerTest, AccessMixin):
+
+    def setUp(self):
+        self.login_as_editor()
+        super(TestAppsReviewing, self).setUp()
+        self.url = reverse('reviewers.apps_reviewing')
+        self.apps = [app_factory(name='Antelope',
+                                 status=amo.STATUS_PENDING),
+                     app_factory(name='Bear',
+                                 status=amo.STATUS_PENDING),
+                     app_factory(name='Cougar',
+                                 status=amo.STATUS_PENDING)]
+
+    def _view_app(self, app_id):
+        self.client.post(reverse('editors.review_viewing'), {
+            'addon_id': app_id})
+
+    def test_no_apps_reviewing(self):
+        res = self.client.get(self.url)
+        eq_(len(res.context['apps']), 0)
+
+    def test_apps_reviewing(self):
+        self._view_app(self.apps[0].id)
+        res = self.client.get(self.url)
+        eq_(len(res.context['apps']), 1)
+
+    def test_multiple_reviewers_no_cross_streams(self):
+        self._view_app(self.apps[0].id)
+        self._view_app(self.apps[1].id)
+        res = self.client.get(self.url)
+        eq_(len(res.context['apps']), 2)
+
+        # Now view an app as another user and verify app.
+        self.client.login(username='admin@mozilla.com', password='password')
+        self._view_app(self.apps[2].id)
+        res = self.client.get(self.url)
+        eq_(len(res.context['apps']), 1)
+
+        # Check original user again to make sure app list didn't increment.
+        self.login_as_editor()
+        res = self.client.get(self.url)
+        eq_(len(res.context['apps']), 2)
