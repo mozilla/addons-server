@@ -35,7 +35,7 @@
   {% endif %}
 
   {% if not choice %}
-    {{ field.as_widget(attrs=attrs) }}
+    {{ field.as_widget(attrs=attrs) if attrs else field.as_widget() }}
   {% endif %}
 
   {% if hint %}

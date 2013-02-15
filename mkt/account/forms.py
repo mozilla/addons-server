@@ -18,7 +18,7 @@ admin_re = re.compile('(?=.*\d)(?=.*[a-zA-Z])')
 
 class UserEditForm(happyforms.ModelForm):
     display_name = forms.CharField(label=_lazy(u'Display Name'), max_length=50,
-        required=False,
+        required=True,
         help_text=_lazy(u'This will be publicly displayed next to your '
                          'ratings, collections, and other contributions.'))
 

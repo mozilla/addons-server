@@ -18,7 +18,7 @@
         {% if DESKTOP %}
           <label for="id_rating">{{ _('Rate:') }}</label>
         {% endif %}
-        <select name="rating" id="id_rating">
+        <select name="rating" id="id_rating" required>
           <option value="1">{{ _('1') }}</option>
           <option value="2">{{ _('2') }}</option>
           <option value="3">{{ _('3') }}</option>
@@ -27,17 +27,17 @@
         </select>
       </p>
       <p class="brform simple-field c">
-        <textarea id="id_body" rows="2" cols="40" name="body">{body}</textarea>
+        <textarea id="id_body" rows="2" cols="40" name="body" required>{body}</textarea>
         {% if not DESKTOP %}
           <div class="char-count" data-maxlength="150" data-for="id_body"></div>
         {% endif %}
       </p>
       <footer class="form-footer c">
         {% if DESKTOP %}
-          <button type="submit">{{ _('Submit') }}</button>
+          <button disabled type="submit">{{ _('Submit') }}</button>
           <div class="char-count" data-maxlength="150" data-for="id_body"></div>
         {% else %}
-          <button type="submit" class="fat">
+          <button disabled type="submit" class="fat">
             {{ _('Submit') }}
           </button>
           <button class="button cancel fat">

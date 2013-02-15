@@ -69,7 +69,7 @@
       {% endif %}
 
       <footer class="form-footer">
-        <button type="submit">{{ _('Save Changes') }}</button>
+        <button disabled type="submit">{{ _('Save Changes') }}</button>
         {% if not DESKTOP %}
           <div class="extras">
             <a href="{{ url('users.logout') }}" class="sync post logout">

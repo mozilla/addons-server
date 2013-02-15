@@ -301,7 +301,6 @@ JS = {
         'js/mkt/paginator.js',
 
         # Account settings.
-        'js/mkt/account.js',
         'js/mkt/feedback.js',
 
         # Homepage.
@@ -327,6 +326,7 @@ JS = {
         'js/mkt/user_state.js',
 
         'js/mkt/webactivities.js',
+        'js/mkt/forms.js',
 
         # Module initialization.
         'js/mkt/consumer_init.js',

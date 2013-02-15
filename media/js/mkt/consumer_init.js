@@ -3,8 +3,8 @@
 (function() {
 
     var modules = [
-        'account',
         'feedback',
+        'forms',
         'install',
         'login',
         'notification',

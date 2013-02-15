@@ -327,7 +327,11 @@ def mkt_breadcrumbs(context, product=None, items=None, crumb_size=40,
 @register.function
 def form_field(field, label=None, tag='div', req=None, opt=False, hint=False,
                tooltip=False, some_html=False, cc_startswith=None, cc_for=None,
-               cc_maxlength=None, grid=False, cls=None, **attrs):
+               cc_maxlength=None, grid=False, cls=None):
+    attrs = {}
+    # Add a `required` attribute so we can do form validation.
+    if field.field.required:
+        attrs['required'] = ''
     c = dict(field=field, label=label or field.label, tag=tag, req=req,
              opt=opt, hint=hint, tooltip=tooltip, some_html=some_html,
              cc_startswith=cc_startswith, cc_for=cc_for,
@@ -338,10 +342,9 @@ def form_field(field, label=None, tag='div', req=None, opt=False, hint=False,
 
 @register.function
 def grid_field(field, label=None, tag='div', req=None, opt=False, hint=False,
-               some_html=False, cc_startswith=None, cc_maxlength=None,
-               **attrs):
+               some_html=False, cc_startswith=None, cc_maxlength=None):
     return form_field(field, label, tag, req, opt, hint, some_html,
-                      cc_startswith, cc_maxlength, grid=True, attrs=attrs)
+                      cc_startswith, cc_maxlength, grid=True)
 
 
 @register.filter

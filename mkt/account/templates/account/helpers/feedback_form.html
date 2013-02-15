@@ -1,10 +1,7 @@
 <form class="container form-grid feedback-form" method="post" id="feedback-form" action="{{ url('site.feedback') }}">
   {{ csrf() }}
 
-  <div class="simple-field c{{ ' error' if fform.feedback.errors }}">
-    {{ fform.feedback.errors }}
-    {{ fform.feedback }}
-  </div>
+  {{ form_field(fform.feedback, req=False) }}
 
   {% with form = fform %}
     {% include 'site/helpers/potato-recaptcha.html' %}
@@ -15,6 +12,6 @@
   {{ fform.from_url }}
 
   <footer class="form-footer c">
-    <button type="submit">{{ _('Send') }}</button>
+    <button disabled type="submit">{{ _('Send') }}</button>
   </footer>
 </form>
