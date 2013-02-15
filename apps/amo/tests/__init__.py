@@ -392,6 +392,13 @@ class TestCase(RedisTest, test_utils.TestCase):
             'Expected datetime to be within a minute of %s. Got %r.' % (now,
                                                                         dt))
 
+    def assertQuerySetEqual(self, qs1, qs2):
+        """
+        Assertion to check the equality of two querysets
+        """
+        return self.assertSetEqual(qs1.values_list('id', flat=True),
+                                   qs2.values_list('id', flat=True))
+
     def make_premium(self, addon, price='1.00', currencies=None):
         price_obj = Price.objects.create(price=price)
         if currencies:

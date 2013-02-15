@@ -354,11 +354,6 @@ class TestFeaturedAppQueryset(amo.tests.TestCase):
         temp = set(y)  # Don't create the set more than once.
         return all(item in temp for item in x)
 
-    def assertQuerySetEqual(self, qs1, qs2):
-        "Assertion to check the equality of two querysets"
-        return self.assertSetEqual(qs1.values_list('id', flat=True),
-                                   qs2.values_list('id', flat=True))
-
     def test_queryset_for_category(self):
         self.assertQuerySetEqual(FeaturedApp.objects.for_category(self.c1),
                                  FeaturedApp.objects.filter(category=self.c1))
