@@ -6,42 +6,6 @@
     opacity: 0;
 }
 
-.friendly {
-    p, ul, label {
-        font-size: 16px;
-        line-height: 22px;
-        &.intro {
-            margin-top: 0;
-        }
-    }
-    .req,
-    .errorlist {
-        font-size: 14px;
-        line-height: 18px;
-    }
-    .char-count, .html-support, .errorlist {
-        margin: 5px 0;
-    }
-    .char-count {
-        float: right;
-        b {
-            color: @dark-gray;
-        }
-    }
-    .error .char-count b,
-    .char-count.error b {
-        color: @maroon;
-    }
-    input, textarea {
-        color: @note-gray;
-        font-size: 16px;
-        max-height: 160px;
-        &:focus {
-            color: @medium-gray;
-        }
-    }
-}
-
 button, input, select, textarea {
     font: 100% @open-stack;
     margin: 0;
@@ -83,7 +47,7 @@ input[placeholder] {
     }
 }
 
-input[type=text], input[type=password], input[type=email], input[type=search], select, textarea, .input {
+input[type=text], input[type=email], input[type=search], select, textarea, .input {
     .box-shadow(~'0 1px 0 rgba(255,255,255,.6),'
                 ~'0 1px 1px rgba(0,0,0,.1) inset,'
                 ~'0 1px 0 #fff inset');

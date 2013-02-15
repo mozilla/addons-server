@@ -91,7 +91,6 @@ CSS = {
         'css/mkt/typography.less',
         'css/mkt/site.less',
         'css/mkt/banners.less',
-        'css/common/forms.less',
         'css/mkt/forms.less',
         'css/mkt/header.less',
         'css/mkt/navigation.less',
