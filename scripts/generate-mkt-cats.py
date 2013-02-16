@@ -12,6 +12,7 @@ def run():
 
     cats = {
         'books-reference': 'Books & Reference',
+        'business': 'Business',
         'education': 'Education',
         'entertainment-sports': 'Entertainment & Sports',
         'games': 'Games',
@@ -21,7 +22,10 @@ def run():
         'news-weather': 'News & Weather',
         'photos-media': 'Photos & Media',
         'productivity': 'Productivity',
-        'shopping': 'Shopping'
+        'shopping': 'Shopping',
+        'social': 'Social',
+        'travel': 'Travel',
+        'utilities': 'Utilities'
     }
     for slug, name in cats.iteritems():
         cat, created = Category.objects.get_or_create(type=amo.ADDON_WEBAPP,
@@ -35,5 +39,7 @@ def run():
         except IndexError:
             pass
         else:
-            AddonCategory.objects.get_or_create(category=cat, addon=w)
-            print 'Added "%s" to "%s" category' % (w.name, name)
+            ac, created = AddonCategory.objects.get_or_create(category=cat,
+                                                              addon=w)
+            if created:
+                print 'Added "%s" to "%s" category' % (w.name, name)
