@@ -674,6 +674,8 @@ def email_devs(request):
                 addon__addondevicetype__device_type=amo.DEVICE_DESKTOP.id))
         elif data['recipients'] == 'sdk':
             qs = qs.exclude(addon__versions__files__jetpack_version=None)
+        elif data['recipients'] == 'all_extensions':
+            qs = qs.filter(addon__type=amo.ADDON_EXTENSION)
         else:
             raise NotImplementedError('If you want to support emailing other '
                                       'types of developers, do it here!')
