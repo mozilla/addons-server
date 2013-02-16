@@ -17,11 +17,15 @@
       <section id="prose">
         <dl>
           <dt>{{ _('Transaction ID') }}</dt><dd>{{ contrib.uuid }}</dd>
-          <dt>{{ _('Date') }}</dt><dd>{{ contrib.created }}</dd>
+          <dt>{{ _('Date') }}</dt><dd>{{ contrib.created|datetime('%B %e, %Y %H:%M:%S') }}</dd>
           <dt>{{ _('Type') }}</dt><dd>{{ type }}</dd>
           <dt>{{ _('Buyer') }}</dt>
           <dd>
-            <div>({{ emaillink(contrib.user.email) }})</div>
+            <div>{{ emaillink(contrib.user.email) }}</div>
+          </dd>
+          <dt>{{ _('App') }}</dt>
+          <dd>
+            <a href="{{ app.get_detail_url() }}">{{ app.name }}</a>
           </dd>
           <dt>{{ _('Provider') }}</dt><dd>{{ provider }}</dd>
           <dt>{{ _('Price Tier') }}</dt><dd>{{ contrib.price_tier }}</dd>

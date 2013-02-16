@@ -111,6 +111,7 @@ def _transaction_summary(uuid):
     return {
         # There won't be a provider on pending refunds.
         'provider': PROVIDERS.get(solitude.get('provider', ''), 'None'),
+        'app': contrib.addon,
         'contrib': contrib,
         'type': amo.CONTRIB_TYPES.get(contrib.type, _('Incomplete')),
         # Whitelist what is refundable.
