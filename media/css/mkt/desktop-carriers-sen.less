@@ -40,15 +40,15 @@
         }
         li + li {
             &:before {
-                .gradient(~'left, rgba(23,23,23,0), rgba(23,23,23,.75) 25%, rgba(23,23,23,.75) 75%, rgba(23,23,23,0) 100%');
+                .gradientLeft(~'rgba(23,23,23,0), rgba(23,23,23,.75) 25%, rgba(23,23,23,.75) 75%, rgba(23,23,23,0) 100%');
             }
             &:after {
-                .gradient(~'left, rgba(49,49,49,0), rgba(49,49,49,.95) 25%, rgba(49,49,49,.95) 75%, rgba(49,49,49,0) 100%');
+                .gradientLeft(~'rgba(49,49,49,0), rgba(49,49,49,.95) 25%, rgba(49,49,49,.95) 75%, rgba(49,49,49,0) 100%');
             }
         }
         &.active {
             .settings:after {
-                .gradient(~'bottom, rgba(33,33,33,1) 0%, rgba(43,43,43,0.07) 85%, rgba(252,252,253,0) 100%');
+                .gradientTop(~'bottom, rgba(252,252,253,0) 100%, rgba(43,43,43,0.07) 85%, rgba(33,33,33,1) 0%');
             }
         }
     }
@@ -130,10 +130,10 @@
         .mkt-tile + .tray,
         .listing li.item + li.item {
             &:before {
-                .gradient(~'left, rgba(29,29,32,0), rgba(29,29,32,.15) 25%, rgba(29,29,32,.15) 75%, rgba(29,29,32,0) 100%');
+                .gradientLeft(~'rgba(29,29,32,0), rgba(29,29,32,.15) 25%, rgba(29,29,32,.15) 75%, rgba(29,29,32,0) 100%');
             }
             &:after {
-                .gradient(~'left, rgba(235,238,239,0), rgba(255,255,255,.1) 25%, rgba(255,255,255,.1) 75%, rgba(235,238,239,0) 100%');
+                .gradientLeft(~'rgba(235,238,239,0), rgba(255,255,255,.1) 25%, rgba(255,255,255,.1) 75%, rgba(235,238,239,0) 100%');
             }
         }
         .mkt-tile + .tray {

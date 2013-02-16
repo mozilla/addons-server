@@ -221,10 +221,14 @@
     animation: @animation;
 }
 
-.gradient(@gradient) {
-    background-image: -webkit-gradient(@gradient);
-    background-image: -webkit-linear-gradient(@gradient);
-    background-image:         linear-gradient(@gradient);
+.gradientLeft(@gradient) {
+    background-image: -webkit-linear-gradient(left, @gradient);
+    background-image:         linear-gradient(to right, @gradient);
+}
+
+.gradientTop(@gradient) {
+    background-image: -webkit-linear-gradient(top, @gradient);
+    background-image:         linear-gradient(to bottom, @gradient);
 }
 
 .gradient-two-color(@color1, @color2) {
