@@ -286,10 +286,9 @@ class TestTransactionSummary(TestCase):
         self.related_tx_uuid = 789
         self.user = UserProfile.objects.get(pk=999)
 
-        self.contrib = Contribution.objects.create(addon=addon_factory(),
-                                                   uuid=self.uuid,
-                                                   user=self.user,
-                                                   transaction_id='some:tr')
+        self.contrib = Contribution.objects.create(
+            addon=addon_factory(type=amo.ADDON_WEBAPP), uuid=self.uuid,
+            user=self.user, transaction_id='some:tr')
 
         self.url = reverse('lookup.transaction_summary', args=[self.uuid])
         self.client.login(username='support-staff@mozilla.com',

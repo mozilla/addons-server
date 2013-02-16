@@ -114,8 +114,7 @@ class TestPaymentAccount(amo.tests.TestCase):
         eq_(res.uri, 'zipzap')
 
         self.client.post_package.assert_called_with(
-            data={'supportEmailAddress': 'support@example.com',
-                  'paypalEmailAddress': 'nobody@example.com',
+            data={'paypalEmailAddress': 'nobody@example.com',
                   'seller': 'selleruri'})
 
         self.client.post_bank_details.assert_called_with(
