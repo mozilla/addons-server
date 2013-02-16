@@ -1,3 +1,4 @@
+from datetime import datetime
 import json
 
 from django import http
@@ -6,6 +7,7 @@ from django.shortcuts import get_object_or_404, redirect
 
 import commonware
 import jingo
+from jingo import helpers
 import jinja2
 import waffle
 from tower import ugettext as _
@@ -322,5 +324,8 @@ def agreement(request, id):
         account.update(agreed_tos=True)
         return (client.api.bango.sbi.post(
                 data={'seller_bango': package['resource_uri']}))
-    return (client.api.bango.sbi.agreement
+    res = (client.api.bango.sbi.agreement
             .get_object(data={'seller_bango': package['resource_uri']}))
+    res['valid'] = helpers.datetime(
+            datetime.strptime(res['valid'], '%Y-%m-%dT%H:%M:%S'))
+    return res
