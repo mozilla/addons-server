@@ -439,9 +439,9 @@ class TestCase(RedisTest, test_utils.TestCase):
         if not setting:
             raise SkipTest('Skipping since setting is disabled')
 
-    def grant_permission(self, user_obj, rules):
+    def grant_permission(self, user_obj, rules, name='Test Group'):
         """Creates group with rule, and adds user to group."""
-        group = Group.objects.create(name='Test Group', rules=rules)
+        group = Group.objects.create(name=name, rules=rules)
         GroupUser.objects.create(group=group, user=user_obj)
 
     def days_ago(self, days):

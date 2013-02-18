@@ -753,9 +753,10 @@ def api(request):
     except Access.DoesNotExist:
         access = None
 
-    roles = request.amo_user.groups.all()
+    roles = request.amo_user.groups.filter(name='Admins').exists()
     if roles:
-        messages.error(request, _('Users with roles cannot use the API.'))
+        messages.error(request,
+                       _('Users with the admin role cannot use the API.'))
 
     elif not request.amo_user.read_dev_agreement:
         messages.error(request, _('You must accept the terms of service.'))
