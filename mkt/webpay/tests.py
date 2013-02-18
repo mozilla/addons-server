@@ -9,6 +9,7 @@ from nose.tools import eq_
 
 from market.models import Price, PriceCurrency
 from mkt.api.tests.test_oauth import BaseOAuth
+from mkt.constants import regions
 from mkt.site.fixtures import fixture
 from stats.models import Contribution
 
@@ -16,15 +17,20 @@ from stats.models import Contribution
 @patch.object(settings, 'SITE_URL', 'http://api/')
 class TestPrices(BaseOAuth):
 
+    def make_currency(self, amount, tier, currency):
+        return PriceCurrency.objects.create(price=Decimal(amount),
+                                            tier=tier, currency=currency)
+
     def setUp(self):
         super(TestPrices, self).setUp(api_name='webpay')
         self.price = Price.objects.create(name='tier 1', price=Decimal(1))
-        self.currency = PriceCurrency.objects.create(price=Decimal(3),
-                                                     tier_id=self.price.pk,
-                                                     currency='CAD')
+        self.currency = self.make_currency(3, self.price, 'CAD')
         self.list_url = ('api_dispatch_list', {'resource_name': 'prices'})
         self.get_url = ('api_dispatch_detail',
                         {'resource_name': 'prices', 'pk': self.price.pk})
+
+        # If regions change, this will blow up.
+        assert regions.BR.default_currency == 'BRL'
 
     def get_currencies(self, data):
         return [p['currency'] for p in data['prices']]
@@ -71,6 +77,44 @@ class TestPrices(BaseOAuth):
         eq_(res.status_code, 500)
         eq_(res['Access-Control-Allow-Origin'], '*')
         eq_(res['Access-Control-Allow-Methods'], 'GET, OPTIONS')
+
+    def test_locale(self):
+        self.make_currency(5, self.price, 'BRL')
+        res = self.client.get(self.get_url, HTTP_ACCEPT_LANGUAGE='pt-BR')
+        eq_(res.status_code, 200)
+        data = json.loads(res.content)
+        eq_(data['localized']['region'], 'Brasil')
+        eq_(data['localized']['locale'], 'R$5,00')
+
+    def test_locale_list(self):
+        # Check that for each price tier a different localisation is
+        # returned.
+        self.make_currency(2, self.price, 'BRL')
+        price_two = Price.objects.create(name='tier 2', price=Decimal(1))
+        self.make_currency(12, price_two, 'BRL')
+
+        res = self.client.get(self.list_url, HTTP_ACCEPT_LANGUAGE='pt-BR')
+        eq_(res.status_code, 200)
+        data = json.loads(res.content)
+        eq_(data['objects'][0]['localized']['locale'], 'R$2,00')
+        eq_(data['objects'][1]['localized']['locale'], 'R$12,00')
+
+    def test_no_locale(self):
+        # This results in a region of BR and a currency of BRL. But there
+        # isn't a price tier for that currency. So we don't know what to show.
+        res = self.client.get(self.get_url, HTTP_ACCEPT_LANGUAGE='pt-BR')
+        eq_(res.status_code, 200)
+        data = json.loads(res.content)
+        eq_(data['localized'], {})
+
+    def test_no_region(self):
+        # Because the this results in a lang of fr,
+        # but a region of worldwide. The currency for that region is USD.
+        res = self.client.get(self.get_url, HTTP_ACCEPT_LANGUAGE='fr')
+        eq_(res.status_code, 200)
+        data = json.loads(res.content)
+        eq_(data['localized']['region'], 'Monde entier')
+        eq_(data['localized']['locale'], u'1,00\xa0$US')
 
 
 @patch.object(settings, 'SITE_URL', 'http://api/')
