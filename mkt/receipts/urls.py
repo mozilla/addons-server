@@ -1,7 +1,5 @@
 from django.conf.urls import patterns, url
 
-import waffle
-
 import amo
 from . import views
 
