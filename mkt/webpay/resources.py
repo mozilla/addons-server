@@ -1,6 +1,5 @@
 from tastypie import fields
 
-import amo
 from amo.helpers import absolutify, urlparams
 from amo.urlresolvers import reverse
 from amo.utils import send_mail_jinja
