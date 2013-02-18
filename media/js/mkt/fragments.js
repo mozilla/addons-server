@@ -307,12 +307,13 @@ function fragmentFilter(el) {
             container.trigger('fragmentloaded', [href, popped, newState]);
         }
 
-        z.doc.on('popstate', function(e) {
+        z.win.on('popstate', function(e) {
             var state = e.originalEvent.state;
             if (state) {
                 navigate(state, true);
             }
-        }).on('loadfragment', function(e, href) {
+        });
+        z.doc.on('loadfragment', function(e, href) {
             if (href) navigate({path: href});
         }).on('refreshfragment', function(e) {
             var path = window.location.pathname + window.location.search + window.location.hash;
