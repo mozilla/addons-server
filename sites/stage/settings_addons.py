@@ -6,8 +6,6 @@ from settings_base import *
 
 import private_addons
 
-ALLOWED_HOSTS = ['addons.allizom.org']
-
 SERVER_EMAIL = 'zstage@addons.mozilla.org'
 
 DOMAIN = "addons.allizom.org"
