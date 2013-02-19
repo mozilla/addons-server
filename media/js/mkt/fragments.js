@@ -42,7 +42,7 @@ function fragmentFilter(el) {
             // Not GET or POST? Not interested.
         });
 
-        z.page.ajaxSuccess(function(e, xhr, response) {
+        z.doc.ajaxSuccess(function(e, xhr, response) {
             // Do we have an instruction to clear a part of the fragment cache?
             var bust_flag = xhr.getResponseHeader('x-frag-bust');
             if (bust_flag) {
