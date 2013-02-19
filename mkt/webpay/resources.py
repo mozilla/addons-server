@@ -3,14 +3,15 @@ from tastypie import fields
 from amo.helpers import absolutify, urlparams
 from amo.urlresolvers import reverse
 from amo.utils import send_mail_jinja
-from mkt.api.authentication import PermissionAuthorization, MarketplaceAuthentication
-from mkt.api.base import MarketplaceResource
+from mkt.api.authentication import (PermissionAuthorization,
+                                    MarketplaceAuthentication)
+from mkt.api.base import CORSResource, MarketplaceResource
 from mkt.webpay.forms import FailureForm
 from market.models import Price
 from stats.models import Contribution
 
 
-class PriceResource(MarketplaceResource):
+class PriceResource(CORSResource):
     prices = fields.ListField(attribute='prices', readonly=True)
 
     class Meta:

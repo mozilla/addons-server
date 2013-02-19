@@ -59,6 +59,19 @@ class TestPrices(BaseOAuth):
         data = json.loads(res.content)
         self.assertSetEqual(self.get_currencies(data), ['USD'])
 
+    def test_has_cors(self):
+        res = self.client.get(self.get_url)
+        eq_(res['Access-Control-Allow-Origin'], '*')
+        eq_(res['Access-Control-Allow-Methods'], 'GET, OPTIONS')
+
+    @patch('mkt.webpay.resources.PriceResource.dehydrate_prices')
+    def test_other_cors(self, prices):
+        prices.side_effect = ValueError
+        res = self.client.get(self.get_url)
+        eq_(res.status_code, 500)
+        eq_(res['Access-Control-Allow-Origin'], '*')
+        eq_(res['Access-Control-Allow-Methods'], 'GET, OPTIONS')
+
 
 @patch.object(settings, 'SITE_URL', 'http://api/')
 class TestNotification(BaseOAuth):

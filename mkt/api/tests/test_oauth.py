@@ -11,14 +11,18 @@ from django.test.client import Client, FakePayload
 import oauth2 as oauth
 from mock import Mock, patch
 from nose.tools import eq_
-from mkt.api.models import Access, generate
+from tastypie.exceptions import ImmediateHttpResponse
+from test_utils import RequestFactory
 
 from access.models import Group, GroupUser
 from amo.tests import TestCase
 from amo.helpers import urlparams
 from amo.urlresolvers import reverse
 from files.models import FileUpload
+
 from mkt.api.authentication import errors
+from mkt.api.base import CORSResource
+from mkt.api.models import Access, generate
 
 
 def get_absolute_url(url, api_name='apps'):
@@ -184,3 +188,21 @@ class TestBaseOAuth(BaseOAuth):
         self.add_group_user(self.profile, 'App Reviewers', 'Support Staff')
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
+
+
+class Resource(CORSResource):
+
+    class Meta:
+        list_allowed_method = ['get']
+
+
+@patch.object(settings, 'SITE_URL', 'http://api/')
+class TestCORS(BaseOAuth):
+
+    def setUp(self):
+        self.resource = Resource()
+
+    def test_cors(self):
+        req = RequestFactory().get('/')
+        self.resource.method_check(req, allowed=['get'])
+        eq_(req.CORS, ['get'])

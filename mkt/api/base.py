@@ -1,6 +1,7 @@
 import json
 
 from django.core.exceptions import ObjectDoesNotExist
+from django.http import HttpResponse
 
 from tastypie import http
 from tastypie.bundle import Bundle
@@ -90,3 +91,17 @@ class MarketplaceResource(ModelResource):
                   request.META['REQUEST_METHOD'], request.path, name))
         return (super(MarketplaceResource, self)
                 .dispatch(request_type, request, **kwargs))
+
+
+class CORSResource(MarketplaceResource):
+
+    def method_check(self, request, allowed=None):
+        """
+        This is the first entry point from dispatch and a place to check CORS.
+
+        It will set a value on the request for the middleware to pick up on
+        the response and add in the headers, so that any immediate http
+        responses (which are usually errors) get the headers.
+        """
+        request.CORS = allowed
+        return super(CORSResource, self).method_check(request, allowed=allowed)

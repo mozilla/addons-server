@@ -10,6 +10,8 @@ Marketplace.
 Pay Tiers
 ==========
 
+.. note:: Accessible via CORS_.
+
 To get a list of pay tiers from the Marketplace::
 
         GET /api/webpay/prices/
@@ -59,3 +61,5 @@ Example::
          ]}
 
 The result is the same as above, but in this example GBP is removed.
+
+.. _CORS: https://developer.mozilla.org/en-US/docs/HTTP/Access_control_CORS
