@@ -183,11 +183,11 @@ class Fx4Collection(CollectionPromo):
 
 
 class StPatricksPersonas(CollectionPromo):
-    slug = 'St. Pat Personas'
+    slug = 'St. Pat Themes'
     pk = 666627
     id = 'st-patricks'
     cls = 'promo'
-    title = _(u'St. Patrick&rsquo;s Day Personas')
+    title = _(u'St. Patrick&rsquo;s Day Themes')
     subtitle = _(u'Decorate your browser to celebrate '
                  'St. Patrick&rsquo;s Day.')
 
