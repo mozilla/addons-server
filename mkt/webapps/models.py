@@ -523,7 +523,7 @@ class Webapp(Addon):
         return datetime.date.today()
 
     @classmethod
-    def featured(cls, cat=None, region=None, limit=6, mobile=False,
+    def featured(cls, cat=None, region=None, limit=9, mobile=False,
                  gaia=False):
         qs = FeaturedApp.objects.featured(cat, region, limit, mobile, gaia)
         return [w.app for w in qs]

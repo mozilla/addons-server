@@ -19,7 +19,7 @@ def home(request):
     MOBILE = request.MOBILE and not request.TABLET
     region = getattr(request, 'REGION', mkt.regions.WORLDWIDE)
     featured = Webapp.featured(region=region, cat=None, mobile=False,
-        limit=6 if MOBILE else 12)
+        limit=9 if MOBILE else 12)
 
     featured_cnt = len(featured)
 
