@@ -117,6 +117,7 @@ class ApiSearchForm(forms.Form):
     sort = forms.ChoiceField(required=False, choices=LISTING_SORT_CHOICES)
     cat = forms.TypedChoiceField(required=False, coerce=int, empty_value=None,
                                  choices=[])
+    device = forms.ChoiceField(required=False, choices=DEVICE_CHOICES)
 
     def __init__(self, *args, **kw):
         super(ApiSearchForm, self).__init__(*args, **kw)

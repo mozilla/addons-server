@@ -2,10 +2,11 @@ import json
 
 from nose.tools import eq_
 
-from addons.models import AddonCategory, Category
 import amo
+from addons.models import AddonCategory, AddonDeviceType, Category
 from amo.tests import ESTestCase
 from mkt.api.tests.test_oauth import BaseOAuth, OAuthClient
+from mkt.search.forms import DEVICE_CHOICES_IDS
 from mkt.webapps.models import Webapp
 
 
@@ -72,6 +73,16 @@ class TestApi(BaseOAuth, ESTestCase):
 
     def test_q(self):
         res = self.client.get(self.list_url + ({'q': 'something'},))
+        eq_(res.status_code, 200)
+        obj = json.loads(res.content)['objects'][0]
+        eq_(obj['app_slug'], self.webapp.app_slug)
+
+    def test_device(self):
+        AddonDeviceType.objects.create(
+            addon=self.webapp, device_type=DEVICE_CHOICES_IDS['desktop'])
+        self.webapp.save()
+        self.refresh()
+        res = self.client.get(self.list_url + ({'device': 'desktop'},))
         eq_(res.status_code, 200)
         obj = json.loads(res.content)['objects'][0]
         eq_(obj['app_slug'], self.webapp.app_slug)
