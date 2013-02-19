@@ -32,10 +32,10 @@ table tr:nth-child(odd) {
 
 /* Django does weird things to align forms and the transbox looks off.  This
  * makes it look ok.
- */
 .trans {
     float: left;
 }
+*/
 
 /* Override the Django body.login background. */
 html body.login {
@@ -160,6 +160,10 @@ a.headerlink:hover {
     display: table;
 }
 
+#content.colM, #content.flex {
+    display: block;
+}
+
 section {
     display: table-cell;
 }
@@ -172,3 +176,12 @@ aside {
     padding-left: 3em;
     display: table-cell;
 }
+
+fieldset.module {
+    border: 0;
+}
+
+.form-row {
+    margin: 12px 0;
+}
+
