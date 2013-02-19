@@ -3,7 +3,9 @@
 import logging
 import os
 
-from lib.settings_base import CACHE_PREFIX, KNOWN_PROXIES, LOGGING, AMO_LANGUAGES, lazy, lazy_langs
+from lib.settings_base import CACHE_PREFIX, KNOWN_PROXIES, LOGGING
+
+from .. import splitstrip
 import private_base as private
 
 ENGAGE_ROBOTS = False
@@ -18,9 +20,6 @@ SESSION_COOKIE_SECURE = True
 REDIRECT_SECRET_KEY = private.REDIRECT_SECRET_KEY
 
 ADMINS = ()
-
-SENTRY_DSN = private.SENTRY_DSN
-
 
 DATABASES = {
     'default': {
@@ -43,6 +42,12 @@ DATABASES = {
     },
 }
 
+DATABASE_POOL_ARGS = {
+    'max_overflow': 10,
+    'pool_size':5,
+    'recycle': 30
+}
+
 SERVICES_DATABASE = {
     'NAME': private.SERVICES_DATABASE_NAME,
     'USER': private.SERVICES_DATABASE_USER,
@@ -56,15 +61,12 @@ SPHINX_PORT = private.SPHINX_PORT
 
 CACHES = {
     'default': {
+        'BACKEND': 'caching.backends.memcached.CacheClass',
 #        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
-        'BACKEND': 'memcachepool.cache.UMemcacheCache',
-        'LOCATION': private.CACHES_DEFAULT_LOCATION,
+#        'BACKEND': 'memcachepool.cache.UMemcacheCache',
+        'LOCATION': splitstrip(private.CACHES_DEFAULT_LOCATION),
         'TIMEOUT': 500,
         'KEY_PREFIX': CACHE_PREFIX,
-        'OPTIONS': {
-            'MAX_POOL_SIZE': '15',
-            'BLACKLIST_TIME': 60,
-            'SOCKET_TIMEOUT': 10},
     },
 }
 
@@ -82,11 +84,10 @@ CELERY_IGNORE_RESULT = True
 CELERY_DISABLE_RATE_LIMITS = True
 CELERYD_PREFETCH_MULTIPLIER = 1
 
-NETAPP_BASE = private.NETAPP_STORAGE_ROOT
-NETAPP_STORAGE = NETAPP_BASE + '/shared_storage'
-MIRROR_STAGE_PATH = NETAPP_BASE + '/public-staging'
-GUARDED_ADDONS_PATH = NETAPP_BASE + '/guarded-addons'
-WATERMARKED_ADDONS_PATH = NETAPP_BASE + '/watermarked-addons'
+NETAPP_STORAGE = private.NETAPP_STORAGE_ROOT + '/shared_storage'
+MIRROR_STAGE_PATH = private.NETAPP_STORAGE_ROOT + '/public-staging'
+GUARDED_ADDONS_PATH = private.NETAPP_STORAGE_ROOT + '/guarded-addons'
+WATERMARKED_ADDONS_PATH = private.NETAPP_STORAGE_ROOT + '/watermarked-addons'
 UPLOADS_PATH = NETAPP_STORAGE + '/uploads'
 USERPICS_PATH = UPLOADS_PATH + '/userpics'
 ADDON_ICONS_PATH = UPLOADS_PATH + '/addon_icons'
@@ -95,9 +96,10 @@ IMAGEASSETS_PATH = UPLOADS_PATH + '/imageassets'
 IMAGEASSET_FULL_PATH = IMAGEASSETS_PATH + '/%s/%d.%s'
 PERSONAS_PATH = UPLOADS_PATH + '/personas'
 PREVIEWS_PATH = UPLOADS_PATH + '/previews'
+SIGNED_APPS_PATH = NETAPP_STORAGE + '/signed_apps'
+SIGNED_APPS_REVIEWER_PATH = NETAPP_STORAGE + '/signed_apps_reviewer'
 PREVIEW_THUMBNAIL_PATH = PREVIEWS_PATH + '/thumbs/%s/%d.png'
-PREVIEW_FULL_PATH = PREVIEWS_PATH + '/full/%s/%d.png'
-ADDONS_PATH = NETAPP_BASE + '/files'
+PREVIEW_FULL_PATH = PREVIEWS_PATH + '/full/%s/%d.%s'
 
 HERA = []
 LOGGING['loggers'].update({
@@ -107,10 +109,9 @@ LOGGING['loggers'].update({
     'z.pool': { 'level': logging.ERROR },
 })
 
-
 REDIS_BACKEND = private.REDIS_BACKENDS_CACHE
 REDIS_BACKENDS = {
-    'cache': REDIS_BACKEND,
+    'cache': private.REDIS_BACKENDS_CACHE,
     'cache_slave': private.REDIS_BACKENDS_CACHE_SLAVE,
     'master': private.REDIS_BACKENDS_MASTER,
     'slave': private.REDIS_BACKENDS_SLAVE,
@@ -124,6 +125,7 @@ RECAPTCHA_URL = ('https://www.google.com/recaptcha/api/challenge?k=%s' % RECAPTC
 TMP_PATH = os.path.join(NETAPP_STORAGE, 'tmp')
 PACKAGER_PATH = os.path.join(TMP_PATH, 'packager')
 
+ADDONS_PATH = private.NETAPP_STORAGE_ROOT + '/files'
 
 SPHINX_CATALOG_PATH = TMP_PATH + '/data/sphinx'
 SPHINX_LOG_PATH = TMP_PATH + '/log/searchd'
@@ -139,25 +141,28 @@ csp = 'csp.middleware.CSPMiddleware'
 
 RESPONSYS_ID = private.RESPONSYS_ID
 
-CRONJOB_LOCK_PREFIX = 'addons-stage'
+CRONJOB_LOCK_PREFIX = 'marketplace-stage'
 
-BUILDER_ROOT_URL = 'https://builder-addons.allizom.org'
 BUILDER_SECRET_KEY = private.BUILDER_SECRET_KEY
-BUILDER_VERSIONS_URL = BUILDER_ROOT_URL + "/repackage/sdk-versions/"
+BUILDER_VERSIONS_URL = "https://builder-addons.allizom.org/repackage/sdk-versions/"
 
-ES_HOSTS = private.ES_HOSTS
-ES_INDEXES = {'default': 'addons_stage',
-              'update_counts': 'addons_stage_stats',
-              'download_counts': 'addons_stage_stats'}
 
-BUILDER_UPGRADE_URL = BUILDER_ROOT_URL + "/repackage/rebuild/"
+ES_HOSTS = splitstrip(private.ES_HOSTS)
+ES_INDEXES = {'default': 'marketplace_stage',
+              'update_counts': 'marketplace_stage_stats',
+              'download_counts': 'marketplace_stage_stats'}
+
+BUILDER_UPGRADE_URL = "https://builder-addons.allizom.org/repackage/rebuild/"
 
 STATSD_HOST = private.STATSD_HOST
 STATSD_PORT = private.STATSD_PORT
+STATSD_PREFIX = private.STATSD_PREFIX
 
 GRAPHITE_HOST = private.GRAPHITE_HOST
 GRAPHITE_PORT = private.GRAPHITE_PORT
+GRAPHITE_PREFIX = private.GRAPHITE_PREFIX
 
+CEF_PRODUCT = STATSD_PREFIX
 
 ES_TIMEOUT = 60
 
@@ -193,20 +198,11 @@ UGLIFY_BIN = 'uglifyjs'
 
 CELERYD_TASK_SOFT_TIME_LIMIT = 240
 
-AMO_LANGUAGES = AMO_LANGUAGES + ('dbg',)
+LESS_PREPROCESS = True
 
-# :-(
-def lazy_langs():
-    from product_details import product_details
-    if not product_details.languages:
-        return {}
-    return dict([(i.lower(), product_details.languages[i]['native'])
-                 for i in AMO_LANGUAGES])
+XSENDFILE_HEADER  = 'X-Accel-Redirect'
 
+GEOIP_NOOP = 0
 
-LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in AMO_LANGUAGES])
-LANGUAGES = lazy(lazy_langs, dict)()
 
 ALLOW_SELF_REVIEWS = True
-
-GOOGLE_ANALYTICS_CREDENTIALS = private.GOOGLE_ANALYTICS_CREDENTIALS

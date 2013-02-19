@@ -20,15 +20,15 @@ CSP_IMG_SRC = CSP_IMG_SRC + (CSP_STATIC_URL,)
 CSP_SCRIPT_SRC = CSP_SCRIPT_SRC + (CSP_STATIC_URL,)
 CSP_STYLE_SRC = CSP_STYLE_SRC + (CSP_STATIC_URL,)
 
+ADDON_ICON_URL = "%s/%s/%s/images/addon_icon/%%d-%%d.png?modified=%%s" % (STATIC_URL, LANGUAGE_CODE, DEFAULT_APP)
 ADDON_ICON_URL = STATIC_URL + 'img/uploads/addon_icons/%s/%s-%s.png?modified=%s'
 PREVIEW_THUMBNAIL_URL = (STATIC_URL +
         'img/uploads/previews/thumbs/%s/%d.png?modified=%d')
 PREVIEW_FULL_URL = (STATIC_URL +
-        'img/uploads/previews/full/%s/%d.png?modified=%d')
+        'img/uploads/previews/full/%s/%d.%s?modified=%d')
 # paths for uploaded extensions
 FILES_URL = STATIC_URL + "%s/%s/downloads/file/%d/%s?src=%s"
 
-PREVIEW_FULL_PATH = PREVIEWS_PATH + '/full/%s/%d.%s'
 SESSION_COOKIE_DOMAIN = ".%s" % DOMAIN
 
 # paths for uploaded extensions
@@ -42,18 +42,21 @@ ADDON_ICON_BASE_URL = MEDIA_URL + 'img/icons/'
 
 CACHE_PREFIX = 'stage.mkt.%s' % CACHE_PREFIX
 CACHE_MIDDLEWARE_KEY_PREFIX = CACHE_PREFIX
+INAPP_IMAGE_URL = STATIC_URL + 'inapp-image'
 
 STATSD_PREFIX = 'addons-marketplace-stage'
-GRAPHITE_PREFIX = STATSD_PREFIX
-CEF_PRODUCT = STATSD_PREFIX
 
-PYLIBMC_MIN_COMPRESS_LEN = 150 * 1024
+CACHES['default']['KEY_PREFIX'] = CACHE_PREFIX
+
 
 LOG_LEVEL = logging.DEBUG
+# The django statsd client to use, see django-statsd for more.
+STATSD_CLIENT = 'django_statsd.clients.moz_metlog'
 
 SYSLOG_TAG = "http_app_addons_marketplacestage"
 SYSLOG_TAG2 = "http_app_addons_marketplacestage_timer"
 SYSLOG_CSP = "http_app_addons_marketplacestage_csp"
+STATSD_PREFIX = 'marketplace-stage'
 
 ## Celery
 BROKER_HOST = private_mkt.BROKER_HOST
@@ -65,46 +68,59 @@ CELERY_IGNORE_RESULT = True
 CELERY_DISABLE_RATE_LIMITS = True
 CELERYD_PREFETCH_MULTIPLIER = 1
 
+# sandbox
+PAYPAL_PAY_URL = 'https://svcs.sandbox.paypal.com/AdaptivePayments/'
+PAYPAL_FLOW_URL = 'https://www.sandbox.paypal.com/webapps/adaptivepayment/flow/pay'
+PAYPAL_API_URL = 'https://api-3t.sandbox.paypal.com/nvp'
+PAYPAL_EMAIL = private_mkt.PAYPAL_EMAIL
 PAYPAL_APP_ID = private_mkt.PAYPAL_APP_ID
+PAYPAL_PERMISSIONS_URL = 'https://svcs.sandbox.paypal.com/Permissions/'
+PAYPAL_CGI_URL = 'https://www.sandbox.paypal.com/cgi-bin/webscr'
 PAYPAL_EMBEDDED_AUTH = {
     'USER': private_mkt.PAYPAL_EMBEDDED_AUTH_USER,
     'PASSWORD': private_mkt.PAYPAL_EMBEDDED_AUTH_PASSWORD,
     'SIGNATURE': private_mkt.PAYPAL_EMBEDDED_AUTH_SIGNATURE,
 }
 
-PAYPAL_CGI_AUTH = PAYPAL_EMBEDDED_AUTH
+PAYPAL_CGI_AUTH = { 'USER': private_mkt.PAYPAL_CGI_AUTH_USER,
+                    'PASSWORD': private_mkt.PAYPAL_CGI_AUTH_PASSWORD,
+                    'SIGNATURE': private_mkt.PAYPAL_CGI_AUTH_SIGNATURE,
+}
 
 PAYPAL_CHAINS = (
     (30, private_mkt.PAYPAL_CHAINS_EMAIL),
 )
 
-TMP_PATH = os.path.join(NETAPP_STORAGE, 'tmp')
-PACKAGER_PATH = os.path.join(TMP_PATH, 'packager')
-
-PERF_THRESHOLD = 20
+PAYPAL_LIMIT_PREAPPROVAL = False
 
 WEBAPPS_RECEIPT_KEY = private_mkt.WEBAPPS_RECEIPT_KEY
 WEBAPPS_RECEIPT_URL = private_mkt.WEBAPPS_RECEIPT_URL
-
-CLEANCSS_BIN = 'cleancss'
-UGLIFY_BIN = 'uglifyjs'
 
 APP_PREVIEW = True
 
 WEBAPPS_UNIQUE_BY_DOMAIN = True
 
-WAFFLE_SUFFIX = WAFFLE_TABLE_SUFFIX = 'mkt'
+#Bug 744268
+INAPP_VERBOSE_ERRORS = True
+
+INAPP_REQUIRE_HTTPS = False
 
 SENTRY_DSN = private_mkt.SENTRY_DSN
 
+#Bug 747548
 METRICS_SERVER = 'https://data.mozilla.com/'
-VALIDATOR_IAF_URLS = ['https://marketplace.firefox.com',
-                      'https://marketplace.allizom.org',
-                      'https://marketplace-dev.allizom.org']
 
 SOLITUDE_HOSTS = ('https://payments.allizom.org',)
+WEBAPPS_PUBLIC_KEY_DIRECTORY = NETAPP_STORAGE + '/public_keys'
+INAPP_IMAGE_PATH = NETAPP_STORAGE + '/inapp-image'
+
+INAPP_KEY_PATHS = private_mkt.INAPP_KEY_PATHS
 
 GOOGLE_ANALYTICS_DOMAIN = 'marketplace.firefox.com'
+VALIDATOR_IAF_URLS = ['https://marketplace.firefox.com',
+                      'https://marketplace.allizom.org',
+                      'https://marketplace-dev.allizom.org',
+                      'https://marketplace-altdev.allizom.org']
 
 if getattr(private_mkt, 'LOAD_TESTING', False):
     # mock the authentication and use django_fakeauth for this
@@ -118,10 +134,28 @@ if getattr(private_mkt, 'LOAD_TESTING', False):
     # we are also creating access tokens for OAuth, here are the keys and
     # secrets used for them
     API_SALT = getattr(private_mkt, 'API_SALT', FAKEAUTH_TOKEN)
+AMO_LANGUAGES = AMO_LANGUAGES + ('dbg',)
+LANGUAGES = lazy(lazy_langs, dict)(AMO_LANGUAGES)
+LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in AMO_LANGUAGES])
 
+BLUEVIA_SECRET = private_mkt.BLUEVIA_SECRET
 
-# Payment settings.
-APP_PURCHASE_KEY = DOMAIN
-APP_PURCHASE_AUD = DOMAIN
-# This must match private.SECRET in webpay settings.
-APP_PURCHASE_SECRET = private_mkt.APP_PURCHASE_SECRET
+#Bug 748403
+SIGNING_SERVER = private_mkt.SIGNING_SERVER
+SIGNING_SERVER_ACTIVE = True
+
+METLOG_CONF = {
+    'plugins': {'cef': ('metlog_cef.cef_plugin:config_plugin', {}),
+                'raven': (
+                    'metlog_raven.raven_plugin:config_plugin', {'dsn': SENTRY_DSN}),
+        },
+    'sender': {
+        'class': 'metlog.senders.UdpSender',
+        'host': splitstrip(private.METLOG_CONF_SENDER_HOST),
+        'port': private.METLOG_CONF_SENDER_PORT,
+    },
+    'logger': 'addons-marketplace-altdev',
+}
+METLOG = client_from_dict_config(METLOG_CONF)
+USE_METLOG_FOR_CEF = True
+USE_METLOG_FOR_TASTYPIE = True
