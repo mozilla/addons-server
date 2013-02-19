@@ -1,6 +1,5 @@
 import json
 
-import mock
 from nose.tools import eq_
 
 from addons.models import AddonCategory, Category
@@ -71,12 +70,8 @@ class TestApi(BaseOAuth, ESTestCase):
         eq_(obj['absolute_url'], self.webapp.get_absolute_url())
         eq_(obj['resource_uri'], None)
 
-    @mock.patch('mkt.search.api._filter_search')
-    def test_others_ignored(self, _filter_search):
-        _filter_search.return_value = []
-        res = self.client.get(self.list_url +
-                              ({'q': 'foo', 'sort': 'rating'},))
+    def test_q(self):
+        res = self.client.get(self.list_url + ({'q': 'something'},))
         eq_(res.status_code, 200)
-        args = _filter_search.call_args[0][1]
-        assert 'sort' in args
-        assert 'q' not in args
+        obj = json.loads(res.content)['objects'][0]
+        eq_(obj['app_slug'], self.webapp.app_slug)

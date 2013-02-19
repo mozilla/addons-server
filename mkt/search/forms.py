@@ -31,7 +31,6 @@ DEVICE_CHOICES = [
     ('tablet', _lazy(u'Tablet')),
 ]
 
-# TODO: Forgo the `DeviceType` model in favor of constants (see bug 727235).
 DEVICE_CHOICES_IDS = {
     'desktop': amo.DEVICE_DESKTOP.id,
     'mobile': amo.DEVICE_MOBILE.id,
@@ -114,6 +113,7 @@ class AppListForm(AppSearchForm):
 class ApiSearchForm(forms.Form):
     # Like App search form, but just filtering on categories for now
     # and bit more strict about the filtering.
+    q = forms.CharField(required=False)
     sort = forms.ChoiceField(required=False, choices=LISTING_SORT_CHOICES)
     cat = forms.TypedChoiceField(required=False, coerce=int, empty_value=None,
                                  choices=[])
