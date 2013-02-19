@@ -43,8 +43,8 @@ jQuery.fn.tooltip = function(tip_el) {
 
         $title.attr('data-oldtitle', title).attr('title', '');
 
-        var tw  = $tip.outerWidth() / 2,
-            th  = $tip.outerHeight(),
+        var tw  = $tip.outerWidth(false) / 2,
+            th  = $tip.outerHeight(false),
             toX = pos.left + $tgt.innerWidth() / 2 - tw - 1,
             toY = pos.top - $tgt.innerHeight() - th - 2;
 
