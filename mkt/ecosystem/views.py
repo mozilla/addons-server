@@ -103,6 +103,30 @@ def dev_phone(request):
            {'page': 'dev_phone'})
 
 
+def design_concept(request):
+    """Design - Concept: A great app page."""
+    return jingo.render(request, 'ecosystem/design_concept.html',
+           {'page': 'design_concept', 'category': 'design'})
+
+
+def design_fundamentals(request):
+    """Design - Design Fundamentals page."""
+    return jingo.render(request, 'ecosystem/design_fundamentals.html',
+           {'page': 'design_fundamentals', 'category': 'design'})
+
+
+def design_ui(request):
+    """Design - UI Guidelines page."""
+    return jingo.render(request, 'ecosystem/design_ui.html',
+           {'page': 'design_ui', 'category': 'design'})
+
+
+def design_patterns(request):
+    """Design - Responsive Navigation Patterns page."""
+    return jingo.render(request, 'ecosystem/design_patterns.html',
+           {'page': 'design_patterns', 'category': 'design'})
+
+
 def documentation(request, page=None):
     """Page template for all content that is extracted from MDN's API."""
     _refresh_mdn(request)
@@ -123,9 +147,6 @@ def documentation(request, page=None):
     if page in ('html5', 'manifests', 'manifest_faq', 'firefox_os',
                 'devtools', 'templates', 'using_firefox_os_simulator'):
         category = 'build'
-    elif page in ('principles', 'purpose', 'patterns', 'references',
-                  'custom_elements'):
-        category = 'design'
     else:
         category = 'publish'
 

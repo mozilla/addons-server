@@ -1,0 +1,262 @@
+{% extends 'ecosystem/base.html' %}
+{% from "ecosystem/macros.html" import navigation with context %}
+
+{% block title %}
+  {{ hub_page_title(_('Responsive Navigation Patterns')) }}
+{% endblock %}
+
+{% block extrahead %}
+  {{ css('mkt/ecosystem') }}
+{% endblock %}
+
+{% block content %}
+  <div class="doc-wrapper">
+    {{ navigation('design_patterns') }}
+
+    <article>
+      <h1>{{ _('Responsive Navigation Patterns') }}</h1>
+      <p>
+        {%- trans %}
+          Need some help designing your app's navigation? These patterns
+          are a great place to start.
+        {% endtrans -%}
+      </p>
+      <p>
+        {%- trans %}
+          The following responsive navigation patterns present several ways
+          to handle navigation on large and small screens. Top and left
+          navigation menus are common on larger screens, but are often not
+          the optimal way to present information on small screens because of
+          the reduced screen real estate. Therefore, it is necessary to
+          consider the presentation of content and ease of navigation for
+          all screen sizes.
+        {% endtrans -%}
+      </p>
+      <p>
+        <em>
+          {%- trans %}
+            Note: HTML/CSS for the corresponding patterns will be available
+            soon.
+          {% endtrans -%}
+        </em>
+      </p>
+      <h3>{{ _('Pattern 1: Top toggle menu') }}</h3>
+      <p>
+        {%- trans %}
+          In this pattern, as the screen width is reduced, the top navigation
+          items rearrange until there is not enough space. At that point,
+          some items move from the top navigation to a drop-down menu. In the
+          smallest screen, all navigation items live in a toggle menu, and
+          the user has to tap to expand the toggle menu.
+        {% endtrans -%}
+      </p>
+      <p>
+        {%- trans %}
+          You could rank the item priorities to ensure the most important
+          items always appear in the top navigation.
+        {% endtrans -%}
+      </p>
+      <h3>{{ _('Pros:') }}</h3>
+      <ul>
+        <li>
+          {%- trans %}
+            <strong>one button in header</strong> maximizes space for content
+            on a small screen
+          {% endtrans -%}
+        </li>
+        <li>
+          {%- trans %}
+            <strong>important items stay visible</strong>in most screen sizes
+            and you decide the item priorities
+          {% endtrans -%}
+        </li>
+        <li>
+          {%- trans %}
+            <strong>legibility of navigation items is maintained</strong> with
+            adequate spacing, by automatically hiding items that don't fit
+          {% endtrans -%}
+        </li>
+      </ul>
+      <h3>{{ _('Cons:') }}</h3>
+      <ul>
+        <li>
+          {%- trans %}
+            <strong>navigation items might be less discoverable</strong>
+            because some items are hidden in the drop-down or toggle menu
+          {% endtrans -%}
+        </li>
+        <li>
+          {%- trans %}
+            <strong>users may not notice the button</strong> contains a
+            navigation menu in the smallest screen size
+          {% endtrans -%}
+        </li>
+        <li>
+          {%- trans %}
+            <strong>one more step</strong> is needed to access the hidden
+            navigation items
+          {% endtrans -%}
+        </li>
+      </ul>
+      <p>
+        <img alt="{{ _('Pattern 1') }}"
+             src="{{ media('img/ecosystem/design_patterns-pattern1.gif') }}">
+      </p>
+      <p>
+        <img alt="{{ _('Pattern 2') }}"
+             src="{{ media('img/ecosystem/design_patterns-pattern2.gif') }}">
+      </p>
+      <p>
+        <img alt="{{ _('Pattern 3') }}"
+             src="{{ media('img/ecosystem/design_patterns-pattern3.gif') }}">
+      </p>
+      <p>
+        <img alt="{{ _('Pattern 4') }}"
+             src="{{ media('img/ecosystem/design_patterns-pattern4.gif') }}">
+      </p>
+      <h3>{{ _('Pattern 2: Expandable bottom menu') }}</h3>
+      <p>
+        {%- trans %}
+          Similar to the first pattern, the top navigation items rearrange
+          for smaller widths until there is not enough space. At that point,
+          some items move from the top navigation to a drop-down menu. You
+          could rank the item priorities to ensure the most important items
+          always appear in the top navigation.
+        {% endtrans -%}
+      </p>
+      <p>
+        {%- trans %}
+          In the smallest screen, several items stay on the bottom of the
+          screen, and the rest of the items are hidden. The user can flip
+          the menu open and select from the rest of the navigation items.
+          You could select the items that remain on the bottom.
+        {% endtrans -%}
+      </p>
+      <h3>{{ _('Pros:') }}</h3>
+      <ul>
+        <li>
+          {%- trans %}
+            <strong>expandable menu is easy to discover</strong>
+          {% endtrans -%}
+        </li>
+        <li>
+          {%- trans %}
+            <strong>important items are always visible</strong> and you
+            decide the item priorities
+          {% endtrans -%}
+        </li>
+        <li>
+          {%- trans %}
+            <strong>legibility of navigation items is maintained</strong>
+            with adequate spacing, by automatically hiding items that don't
+            fit
+          {% endtrans -%}
+        </li>
+      </ul>
+      <h3>{{ _('Cons:') }}</h3>
+      <ul>
+        <li>
+          {%- trans %}
+            <strong>one more step</strong> is needed to access the
+            navigation items that are hidden
+          {% endtrans -%}
+        </li>
+        <li>
+          {%- trans %}
+            <strong>navigation items might be less discoverable</strong>
+            because some items are hidden
+          {% endtrans -%}
+        </li>
+        <li>
+          {%- trans %}
+            <strong>less space for content</strong> in the smallest screen
+            size
+          {% endtrans -%}
+        </li>
+      </ul>
+      <p>
+        <img alt="{{ _('Pattern 1') }}"
+             src="{{ media('img/ecosystem/design_patterns-pattern5.gif') }}">
+      </p>
+      <p>
+        <img alt="{{ _('Pattern 2') }}"
+             src="{{ media('img/ecosystem/design_patterns-pattern6.gif') }}">
+      </p>
+      <p>
+        <img alt="{{ _('Pattern 3') }}"
+             src="{{ media('img/ecosystem/design_patterns-pattern7.gif') }}">
+      </p>
+      <p>
+        <img alt="{{ _('Pattern 4') }}"
+             src="{{ media('img/ecosystem/design_patterns-pattern8.gif') }}">
+      </p>
+      <h3>{{ _('Pattern 3: Left hidden menu') }}</h3>
+      <p>
+        {%- trans %}
+          The main navigation is always on the left except in the smallest
+          screen size, where the navigation menu is hidden in a button by
+          default. In the smallest screen, when the user taps the button, the
+          navigation menu slides into view and displays the navigation items.
+        {% endtrans -%}
+      </p>
+      <h3>{{ _('Pros:') }}</h3>
+      <ul>
+        <li>
+          {%- trans %}
+            <strong>potentially displays more navigation items</strong> in a
+            left navigation compared to a top navigation
+          {% endtrans -%}
+        </li>
+        <li>
+          {%- trans %}
+            <strong>most items are always visible</strong> except in the
+            smallest screen size
+          {% endtrans -%}
+        </li>
+        <li>
+          {%- trans %}
+            <strong>one button in header</strong> maximizes space for content
+            on a small screen
+          {% endtrans -%}
+        </li>
+      </ul>
+      <h3>{{ _('Cons:') }}</h3>
+      <ul>
+        <li>
+          {%- trans %}
+            <strong>navigation items might be less discoverable</strong>
+            because some items are hidden in the drop-down or toggle menu
+          {% endtrans -%}
+        </li>
+        <li>
+          {%- trans %}
+            <strong>users may not notice the button</strong> contains a
+            navigation menu in the smallest screen size
+          {% endtrans -%}
+        </li>
+        <li>
+          {%- trans %}
+            <strong>one more step</strong> is needed to access the navigation
+            items that are hidden
+          {% endtrans -%}
+        </li>
+      </ul>
+      <p>
+        <img alt="{{ _('Pattern 1') }}"
+             src="{{ media('img/ecosystem/design_patterns-pattern9.gif') }}">
+      </p>
+      <p>
+        <img alt="{{ _('Pattern 2') }}"
+             src="{{ media('img/ecosystem/design_patterns-pattern10.gif') }}">
+      </p>
+      <p>
+        <img alt="{{ _('Pattern 3') }}"
+             src="{{ media('img/ecosystem/design_patterns-pattern11.gif') }}">
+      </p>
+      <p>
+        <img alt="{{ _('Pattern 4') }}"
+             src="{{ media('img/ecosystem/design_patterns-pattern12.gif') }}">
+      </p>
+    </article>
+  </div>
+{% endblock %}

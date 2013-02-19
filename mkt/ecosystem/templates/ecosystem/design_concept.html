@@ -1,0 +1,101 @@
+{% extends 'ecosystem/base.html' %}
+{% from "ecosystem/macros.html" import navigation with context %}
+
+{% block title %}
+  {{ hub_page_title(_('Concept: A great app')) }}
+{% endblock %}
+
+{% block extrahead %}
+  {{ css('mkt/ecosystem') }}
+{% endblock %}
+
+{% block content %}
+  <div class="doc-wrapper">
+    {{ navigation('design_concept') }}
+
+    <article>
+      <h1>{{ _('Concept: A great app') }}</h1>
+      <h2>{{ _('What is the purpose of your app?') }}</h2>
+      <p>
+        {%- trans %}
+          If you already have a list of tasks, an idea for your app and the
+          type of user you are targeting, it's time to create a goal
+          statement: Define your app's purpose and the most important user
+          in one sentence. This is your main use case.
+        {% endtrans -%}
+      </p>
+      <p>
+        {%- trans %}
+          Example: A wish list creation tool for people who never do impulse
+          shopping.
+        {% endtrans -%}
+      </p>
+
+      <h2>{{ _('Focus on one main use case') }}</h2>
+      <p>
+        {%- trans %}
+          It is possible that you cannot include all the tasks on your list
+          in your goal statement. That is ok, because you should focus on
+          one main use cases, which is how most people will use your
+          application. Awesome apps do one thing well.
+        {% endtrans -%}
+      </p>
+
+      <h2>{{ _('How will people use your app?') }}</h2>
+      <p>
+        {%- trans %}
+          By now, you've identified your main use case, target users, and key
+          features. Your main scenario should also consider the user
+          environment in which your app is used. For example, a young mom
+          with her baby at daycare might use your app to note a nice
+          stroller (potential multi-tasking, pausing and continuing the task
+          later). A different user might plan her next laptop purchase at
+          home, in an armchair, without interruptions.
+        {% endtrans -%}
+      </p>
+
+      <h2>{{ _('Concentrate on a few key features') }}</h2>
+      <p>
+        {%- trans %}
+          Look at your task list again. Filter your list through the goal
+          statement. If the tasks do not align with your goal statement,
+          exclude them in your app.
+        {% endtrans -%}
+      </p>
+      <p>
+        {%- trans %}
+          Describe each core task as a feature and then ask yourself, is
+          this feature essential? Or is it nice-to-have but not required by
+          the target user to complete the defined task? Be honest with
+          yourself. If you end up with a short list of features, you are on
+          the right track.
+        {% endtrans -%}
+      </p>
+      <p>
+        {%- trans %}
+          Remember, the best apps usually do one thing well. Apps often fail
+          not because they have too little features, but too many.
+        {% endtrans -%}
+      </p>
+
+      <h2>{{ _('Your app in its most basic form') }}</h2>
+      <p>
+        {%- trans %}
+          Once you have a few key moments, you can translate those steps into
+          screens. You can sketch out the user flow, that is, what do your
+          users go from one screen to another to complete a task.
+        {% endtrans -%}
+      </p>
+      <p>
+        {%- trans %}
+          Think about the information a user wants to see and record.
+          Consider which user interface (UI) elements correspond to the
+          information above. Put things that your users need most often in
+          the most prominent places in the screens. Even just writing out
+          the sequence of moments helps define a wireframe model of your app
+          and its features.
+        {% endtrans -%}
+      </p>
+    </article>
+  </div>
+{% endblock %}

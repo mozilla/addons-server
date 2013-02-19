@@ -78,26 +78,6 @@ tutorials = [
         'mdn': 'https://developer.mozilla.org/%(locale)s/docs/Apps/Tutorials/General/Publishing_the_app?raw=1&macros=true'
     },
     {
-        'title': 'Design Principles',
-        'name': 'principles',
-        'mdn': 'https://developer.mozilla.org/%(locale)s/docs/Apps/Design_Guidelines/Design_Principles?raw=1&macros=true'
-    },
-    {
-        'title': "Your App's Elevator Pitch",
-        'name': 'purpose',
-        'mdn': 'https://developer.mozilla.org/%(locale)s/docs/Apps/Design_Guidelines/Your_apps_elevator_pitch?raw=1&macros=true'
-    },
-    {
-        'title': 'Design Patterns',
-        'name': 'patterns',
-        'mdn': 'https://developer.mozilla.org/%(locale)s/docs/Apps/Design_Guidelines/Intro_to_responsive_design?raw=1&macros=true'
-    },
-    {
-        'title': 'References',
-        'name': 'references',
-        'mdn': 'https://developer.mozilla.org/%(locale)s/docs/Apps/Design_Guidelines/References?raw=1&macros=true'
-    },
-    {
         'title': 'Dev Tools',
         'name': 'devtools',
         'mdn': 'https://developer.mozilla.org/%(locale)s/docs/Apps/marketplace/App_developer_tools?raw=1&macros=true'

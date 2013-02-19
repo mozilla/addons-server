@@ -1,0 +1,67 @@
+{% extends 'ecosystem/base.html' %}
+{% from "ecosystem/macros.html" import navigation with context %}
+
+{% block title %}
+  {{ hub_page_title(_('UI Guidelines')) }}
+{% endblock %}
+
+{% block extrahead %}
+  {{ css('mkt/ecosystem') }}
+{% endblock %}
+
+{% block content %}
+  <div class="doc-wrapper">
+    {{ navigation('design_ui') }}
+
+    <article>
+      <h1>{{ _('UI Guidelines') }}</h1>
+      <p>
+        {%- trans %}
+          There's no &quot;right way&quot; to design a user interface, but
+          there are plenty of ways to make your app less fun and easy to
+          use. With this in mind, the following sections can help avoid
+          making some of the most common UI mistakes, setting you on the
+          path to making an app that is a joy to use no matter what
+          platform it's running on.
+        {% endtrans -%}
+      </p>
+      <h2>
+        <a href="//developer.mozilla.org/docs/Web_Development/Mobile/Responsive_design"
+           rel="external">
+          {{ _('Intro to Responsive Design') }}
+        </a>
+      </h2>
+      <p>
+        {%- trans %}
+          One app, multiple screens. How do you make a UI that looks and
+          works as great on a smartphone as it does on the desktop? Learn
+          how to design and build UIs that change to fit your user's screen.
+        {% endtrans -%}
+      </p>
+      <h2>
+        <a href="{{ url('ecosystem.design_patterns') }}">
+          {{ _('Responsive Navigation Patterns') }}
+        </a>
+      </h2>
+      <p>
+        {%- trans %}
+          One app, multiple screens. How do you make a UI that looks and
+          works as great on a smartphone as it does on the desktop? Learn
+          how to design and build UIs that change to fit your user's screen.
+        {% endtrans -%}
+      </p>
+      <h2>
+        <a href="//developer.mozilla.org/en-US/docs/Apps/UI-Guidelines"
+           rel="external">
+          {{ _('UI Guidelines for Firefox OS') }}
+        </a>
+      </h2>
+      <p>
+        {%- trans %}
+          Want to make your app look and feel like it's a Firefox OS native?
+          These guidelines will show you how.
+        {% endtrans -%}
+      </p>
+    </article>
+  </div>
+{% endblock %}

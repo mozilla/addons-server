@@ -6,31 +6,50 @@
           <h2 class="title nav-title">{{ _('Design') }}</h2>
           <ol>
             <li>
-              <a href="{{ url('ecosystem.documentation',
-                 page='purpose') }}"
-                 {% if section == 'purpose' %}class="selected"{% endif %}>
-                {{ _("Your App's Elevator Pitch") }}
+              <a href="{{ url('ecosystem.design_concept') }}"
+                 {% if section == 'design_concept' %}
+                 class="selected"
+                 {% endif %}>
+                {{ _('Concept: A great app') }}
               </a>
             </li>
             <li>
-              <a href="{{ url('ecosystem.documentation',
-                 page='principles') }}"
-                 {% if section == 'principles' %}class="selected"{% endif %}>
-                {{ _('Design Principles') }}
+              <a href="{{ url('ecosystem.design_fundamentals') }}"
+                 {% if section == 'design_fundamentals' %}
+                 class="selected"
+                 {% endif %}>
+                {{ _('Design Fundamentals') }}
               </a>
             </li>
-            <li>
-              <a href="{{ url('ecosystem.documentation',
-                 page='patterns') }}"
-                 {% if section == 'patterns' %}class="selected"{% endif %}>
-                {{ _('Design Patterns') }}
-              </a>
-            </li>
-            <li>
-              <a href="{{ url('ecosystem.documentation',
-                 page='references') }}"
-                 {% if section == 'references' %}class="selected"{% endif %}>
-                {{ _('References') }}</a>
+            <li class="has-children{{ ' active' if section in ('design_ui',
+                                                               'design_patterns') }}">
+              <h2 class="subtitle nav-title">
+                <a href="{{ url('ecosystem.design_ui') }}">
+                  {{ _('UI Guidelines') }}
+                </a>
+              </h2>
+              <ol>
+                <li>
+                  <a href="//developer.mozilla.org/docs/Web_Development/Mobile/Responsive_design"
+                     rel="external">
+                    {{ _('Intro to Responsive Design') }}
+                  </a>
+                </li>
+                <li>
+                  <a href="{{ url('ecosystem.design_patterns') }}"
+                     {% if section == 'design_patterns' %}
+                     class="selected"
+                     {% endif %}>
+                    {{ _('Responsive Navigation Patterns') }}
+                  </a>
+                </li>
+                <li>
+                  <a href="//developer.mozilla.org/en-US/docs/Apps/UI-Guidelines"
+                     rel="external">
+                    {{ _('UI Guidelines for Firefox OS') }}
+                  </a>
+                </li>
+              </ol>
             </li>
           </ol>
         </div>

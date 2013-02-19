@@ -98,6 +98,26 @@ class TestDevHub(amo.tests.TestCase):
                             args=['face_value_invalid']))
         eq_(r.status_code, 404)
 
+    def test_design_concept(self):
+        r = self.client.get(reverse('ecosystem.design_concept'))
+        eq_(r.status_code, 200)
+        self.assertTemplateUsed(r, 'ecosystem/design_concept.html')
+
+    def test_design_fundamentals(self):
+        r = self.client.get(reverse('ecosystem.design_fundamentals'))
+        eq_(r.status_code, 200)
+        self.assertTemplateUsed(r, 'ecosystem/design_fundamentals.html')
+
+    def test_design_ui_guidelines(self):
+        r = self.client.get(reverse('ecosystem.design_ui'))
+        eq_(r.status_code, 200)
+        self.assertTemplateUsed(r, 'ecosystem/design_ui.html')
+
+    def test_design_patterns(self):
+        r = self.client.get(reverse('ecosystem.design_patterns'))
+        eq_(r.status_code, 200)
+        self.assertTemplateUsed(r, 'ecosystem/design_patterns.html')
+
 
 class TestMdnDocumentation(amo.tests.TestCase):
     fixtures = ['ecosystem/mdncache-item']
@@ -133,9 +153,9 @@ class TestMdnDocumentation(amo.tests.TestCase):
 
     def test_mdn_content_content(self):
         a = MdnCache.objects.filter(name='html5', locale='en-US')[0]
-        a.content = '<strong>pizza</strong>'
+        a.content = '<strong>DRAFT</strong>'
         a.save()
 
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
-        eq_(pq(r.content)('strong').text(), 'pizza')
+        eq_(pq(r.content)('strong').text(), 'DRAFT')

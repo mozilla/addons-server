@@ -22,10 +22,6 @@ a[rel="external"]:after, a.external:after {
     padding: 0 16px 0 4px;
 }
 
-a[rel="external"] {
-    white-space: nowrap;
-}
-
 .doc-wrapper, .upper-header {
     margin: 0 auto;
     width: 960px;
@@ -119,6 +115,10 @@ a[rel="external"] {
 
         li.has-children h2.subtitle {
             cursor: pointer;
+
+            > a {
+                padding: 0;
+            }
 
             &:hover {
                 .nav-arrow;
