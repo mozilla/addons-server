@@ -4,6 +4,8 @@ from settings_base import *
 
 import private_addons
 
+ALLOWED_HOSTS = ['addons.mozilla.org']
+
 SERVER_EMAIL = 'zprod@addons.mozilla.org'
 SECRET_KEY = private_addons.SECRET_KEY
 
