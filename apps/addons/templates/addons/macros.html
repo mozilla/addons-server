@@ -47,7 +47,7 @@
 {% endmacro %}
 
 {% macro price(addon) %}
-  {% if waffle.switch('marketplace') %}
+  {% if waffle.switch('marketplace') and addon.is_webapp() %}
     <span class="vital price {% if addon.is_premium() %}premium{% endif %}">
       {% if addon.has_price() %}
         {{ addon.premium.get_price_locale() }}
