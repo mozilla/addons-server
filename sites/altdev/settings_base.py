@@ -209,15 +209,5 @@ XSENDFILE_HEADER  = 'X-Accel-Redirect'
 
 GEOIP_NOOP = 0
 
-METLOG_CONF = {
-    'plugins': {'cef': ('metlog_cef.cef_plugin:config_plugin', {})},
-    'sender': {
-        'class': 'metlog.senders.UdpSender',
-        'host': splitstrip(private.METLOG_CONF_SENDER_HOST),
-        'port': private.METLOG_CONF_SENDER_PORT,
-    },
-}
-
-USE_METLOG_FOR_CEF = True
 
 ALLOW_SELF_REVIEWS = True
