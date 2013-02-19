@@ -6,6 +6,13 @@ from settings_base import *
 
 import private_mkt
 
+DOMAIN = 'marketplace.allizom.org'
+
+ALLOWED_HOSTS = [
+    'marketplace-cdn.allizom.org',
+    DOMAIN
+]
+
 SERVER_EMAIL = 'zmarketplacestage@addons.mozilla.org'
 
 DOMAIN = "marketplace.allizom.org"

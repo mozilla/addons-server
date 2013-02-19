@@ -6,9 +6,15 @@ from settings_base import *
 
 import private_mkt
 
+DOMAIN = 'marketplace-dev.allizom.org'
+
+ALLOWED_HOSTS = [
+    'marketplace-dev-cdn.allizom.org',
+    DOMAIN
+]
+
 SERVER_EMAIL = 'zmarketplacedev@addons.mozilla.org'
 
-DOMAIN = "marketplace-dev.allizom.org"
 SITE_URL = 'https://marketplace-dev.allizom.org'
 SERVICES_URL = SITE_URL
 STATIC_URL = 'https://marketplace-dev-cdn.allizom.org/'

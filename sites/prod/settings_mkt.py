@@ -5,6 +5,17 @@ from settings_base import *
 from .. import splitstrip
 import private_mkt
 
+DOMAIN = 'marketplace.firefox.com'
+
+ALLOWED_HOSTS = [
+    'marketplace.mozilla.org',
+    'marketplace-static.addons.mozilla.net',
+    'telefonica.marketplace.mozilla.org',
+    'marketplace.cdn.mozilla.net',
+    'receiptcheck.marketplace.firefox.com',
+    DOMAIN
+]
+
 SERVER_EMAIL = 'zmarketplaceprod@addons.mozilla.org'
 SECRET_KEY = private_mkt.SECRET_KEY
 

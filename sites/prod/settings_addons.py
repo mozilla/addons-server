@@ -4,10 +4,22 @@ from settings_base import *
 
 import private_addons
 
+DOMAIN = 'addons.mozilla.org'
+
+ALLOWED_HOSTS = [
+    'services.addons.mozilla.org',
+    'addons.cdn.mozilla.net',
+    'addons-cdn.mozilla.net',
+    'addons.update.mozilla.org',
+    'static.addons.mozilla.net',
+    'm.addons.mozilla.org',
+    'pfs.mozilla.org',
+    DOMAIN
+]
+
 SERVER_EMAIL = 'zprod@addons.mozilla.org'
 SECRET_KEY = private_addons.SECRET_KEY
 
-DOMAIN = "addons.mozilla.org"
 SITE_URL = 'https://addons.mozilla.org'
 LOCAL_MIRROR_URL = '%s/_files' % SITE_URL
 SERVICES_URL = 'https://services.addons.mozilla.org'
