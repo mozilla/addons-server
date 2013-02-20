@@ -54,7 +54,7 @@ class OAuthClient(Client):
 
         parsed = urlparse.urlparse(url)
         args = dict(urlparse.parse_qs(parsed.query))
-        if data:
+        if data and isinstance(data, dict):
             args.update(data)
 
         req = oauth2.Request.from_consumer_and_token(self.access,
