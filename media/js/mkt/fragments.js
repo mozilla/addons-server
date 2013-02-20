@@ -27,7 +27,11 @@ function fragmentFilter(el) {
                                    'html': '<em></em>'})
                         .prependTo($('body'));
 
-        // Hijack <form> submission
+        z.doc.on('reloadonnext', function() {
+            reloadOnNext = true;
+        });
+
+        // Hijack <form> submission.
         z.body.on('submit', 'form', function(e) {
             if (reloadOnNext) return;
             var form = $(this);

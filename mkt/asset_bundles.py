@@ -284,6 +284,7 @@ JS = {
         'js/mkt/paginator.js',
 
         # Account settings.
+        'js/mkt/account.js',
         'js/mkt/feedback.js',
 
         # Homepage.

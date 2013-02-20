@@ -33,7 +33,7 @@
             <select id="language" name="lang" dir="ltr">
               {% for code, name in LANGUAGES|dictsort -%}
                 <option value="{{ code }}"{% if code == request.LANG|lower %}
-                                             selected{% endif %}>
+                                             selected data-default{% endif %}>
                 {{ name }}</option>
               {%- endfor %}
             </select>
@@ -48,7 +48,7 @@
             <select id="region" name="region">
               {% for code, region in mkt.regions.REGIONS_CHOICES_SLUG -%}
               <option value="{{ code }}"{% if code == request.REGION.slug %}
-                      selected{% endif %}>
+                      selected data-default{% endif %}>
                 {{ region.name }}</option>
               {%- endfor %}
             </select>
