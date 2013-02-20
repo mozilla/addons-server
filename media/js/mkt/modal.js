@@ -53,7 +53,7 @@ $.fn.modal = function(click_target, o) {
         var toX = ($(window).width() - $modal.outerWidth()) / 2,
             toY = $(window).scrollTop() + forcedOffset;
         $modal.css({
-            'left': toX,
+            'left': toX + 'px',
             'top': toY + 'px',
             'right': 'inherit',
             'bottom': 'inherit',
@@ -67,9 +67,9 @@ $.fn.modal = function(click_target, o) {
         $modal.hide();
         $modal.unbind();
         $modal.undelegate();
-        $(document.body).unbind('click newmodal', $modal.hider);
-        $(window).unbind('keydown.lightboxDismiss');
-        $(window).bind('resize', p.onresize);
+        z.body.unbind('click newmodal', $modal.hider);
+        z.win.unbind('keydown.lightboxDismiss')
+             .bind('resize', p.onresize);
         $('.modal-overlay').remove();
         return $modal;
     };
