@@ -166,18 +166,6 @@ CSS.update({
     ),
 })
 
-CSS.update({
-    # Mobile.
-    'mkt/consumer-sen': CSS['mkt/consumer'] + (
-        'css/mkt/carriers-sen.less',
-    ),
-    # Desktop.
-    'mkt/consumer-desktop-sen': CSS['mkt/consumer-desktop'] + (
-        'css/mkt/carriers-sen.less',
-        'css/mkt/desktop-carriers-sen.less',
-    ),
-})
-
 JS = {
     'mkt/devreg': (
         # tiny module loader

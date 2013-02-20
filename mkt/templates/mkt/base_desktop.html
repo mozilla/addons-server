@@ -6,11 +6,7 @@
 {% set bodyclass = (bodyclass or '') + ' desktop' %}
 
 {% block site_css %}
-  {% if CARRIER == 'sony' %}
-    {{ css('mkt/consumer-desktop-sen') }}
-  {% else %}
-    {{ css('mkt/consumer-desktop') }}
-  {% endif %}
+  {{ css('mkt/consumer-desktop') }}
 {% endblock %}
 
 {% block consumer_js %}

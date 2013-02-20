@@ -35,7 +35,7 @@ USE_CARRIER_URLS = True
 # When a URL is prefixed with one of these values, the value will be
 # available in mkt.carriers.get_carrier() and will be hidden from all other
 # url resolvers.
-CARRIER_URLS = ['telefonica', 'sony']
+CARRIER_URLS = ['telefonica']
 
 MKT_FEEDBACK_EMAIL = 'apps-feedback@mozilla.com'
 MKT_REVIEWERS_EMAIL = 'app-reviews@mozilla.org'
