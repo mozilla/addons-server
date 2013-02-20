@@ -21,6 +21,9 @@ described below:
   find the ids of the categories.
 * `device` (optional): Filters by supported device. One of 'desktop',
   'mobile', 'tablet', or 'gaia'.
+* `premium_types` (optional): Filters by whether the app is free or
+  premium or has in-app purchasing. Any of 'free', 'free-inapp',
+  'premium', 'premium-inapp', or 'other'.
 * `sort` (optional): The field to sort by. One of 'downloads', 'rating',
   'price', 'created'. Sorts by relevance by default.
 

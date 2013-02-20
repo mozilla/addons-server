@@ -86,3 +86,25 @@ class TestApi(BaseOAuth, ESTestCase):
         eq_(res.status_code, 200)
         obj = json.loads(res.content)['objects'][0]
         eq_(obj['app_slug'], self.webapp.app_slug)
+
+    def test_premium_types(self):
+        res = self.client.get(self.list_url + (
+            {'premium_types': 'free'},))
+        eq_(res.status_code, 200)
+        obj = json.loads(res.content)['objects'][0]
+        eq_(obj['app_slug'], self.webapp.app_slug)
+
+    def test_premium_types_empty(self):
+        res = self.client.get(self.list_url + (
+            {'premium_types': 'premium'},))
+        eq_(res.status_code, 200)
+        objs = json.loads(res.content)['objects']
+        eq_(len(objs), 0)
+
+    def test_multiple_premium_types(self):
+        res = self.client.get(self.list_url + (
+            {'premium_types': 'free'},
+            {'premium_types': 'premium'}))
+        eq_(res.status_code, 200)
+        obj = json.loads(res.content)['objects'][0]
+        eq_(obj['app_slug'], self.webapp.app_slug)

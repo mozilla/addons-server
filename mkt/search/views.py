@@ -1,7 +1,6 @@
 from django.shortcuts import redirect
 
 import jingo
-import waffle
 from tower import ugettext as _
 
 import amo
@@ -27,7 +26,7 @@ class FacetLink(object):
         self.null_urlparams['page'] = None
 
 
-DEFAULT_FILTERS = ['cat', 'price', 'device', 'sort']
+DEFAULT_FILTERS = ['cat', 'device', 'premium_types', 'price', 'sort']
 DEFAULT_SORTING = {
     'popularity': '-popularity',
     # TODO: Should popularity replace downloads?
@@ -59,6 +58,9 @@ def _filter_search(qs, query, filters=None, sorting=None,
             qs = qs.filter(premium_type__in=amo.ADDON_FREES, price=0)
     if 'device' in show:
         qs = qs.filter(device=forms.DEVICE_CHOICES_IDS[query['device']])
+    if 'premium_types' in show:
+        if query.get('premium_types'):
+            qs = qs.filter(premium_type__in=query.get('premium_types'))
     if 'sort' in show:
         sort_by = None
         if query['sort'] in sorting:

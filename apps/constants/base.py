@@ -260,7 +260,12 @@ ADDON_PREMIUM_TYPES = {
 # Non-locale versions for the API.
 ADDON_PREMIUM_API = {
     ADDON_FREE: 'free',
+    ADDON_PREMIUM: 'premium',
+    ADDON_PREMIUM_INAPP: 'premium-inapp',
+    ADDON_FREE_INAPP: 'free-inapp',
+    ADDON_OTHER_INAPP: 'other',
 }
+ADDON_PREMIUM_API_LOOKUP = dict((v, k) for k, v in ADDON_PREMIUM_API.items())
 
 # Apps that require some sort of payment prior to installing.
 ADDON_PREMIUMS = (ADDON_PREMIUM, ADDON_PREMIUM_INAPP)

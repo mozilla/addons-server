@@ -118,9 +118,22 @@ class ApiSearchForm(forms.Form):
     cat = forms.TypedChoiceField(required=False, coerce=int, empty_value=None,
                                  choices=[])
     device = forms.ChoiceField(required=False, choices=DEVICE_CHOICES)
+    premium_types = forms.MultipleChoiceField(
+        required=False,
+        choices=[(p, p) for p in amo.ADDON_PREMIUM_API.values()])
 
     def __init__(self, *args, **kw):
         super(ApiSearchForm, self).__init__(*args, **kw)
         CATS = (Category.objects.filter(type=amo.ADDON_WEBAPP, weight__gte=0)
                          .values_list('id', flat=True))
         self.fields['cat'].choices = [(pk, pk) for pk in CATS]
+
+    def clean_premium_types(self):
+        pt_ids = []
+        for pt in self.cleaned_data.get('premium_types'):
+            pt_id = amo.ADDON_PREMIUM_API_LOOKUP.get(pt)
+            if pt_id is not None:
+                pt_ids.append(pt_id)
+        if pt_ids:
+            return pt_ids
+        return []
