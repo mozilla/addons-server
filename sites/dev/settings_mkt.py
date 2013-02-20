@@ -172,14 +172,9 @@ SENTRY_CLIENT = 'djangoraven.metlog.MetlogDjangoClient'
 # registration so that exceptions are passed through to sentry
 RAVEN_CONFIG = {'dsn': SENTRY_DSN, 'register_signals': True}
 
-# This is the iss (issuer) for app purchase JWTs.
-# It must match that of the pay server that processes nav.mozPay().
-# In webpay this is the ISSUER setting.
+# See mkt/settings.py for more info.
 APP_PURCHASE_KEY = DOMAIN
-
-# This is the shared secret key for signing app purchase JWTs.
-# It must match that of the pay server that processes nav.mozPay().
-# In webpay this is the SECRET setting.
+APP_PURCHASE_AUD = DOMAIN
 APP_PURCHASE_SECRET = private_mkt.APP_PURCHASE_SECRET
 
 # We upgraded to jQuery 1.9.1. Run this command to include jquery-migrate in the JS
