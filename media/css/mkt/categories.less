@@ -1,58 +1,68 @@
-body:not(.desktop) .categories {
+@import 'lib';
+
+.categories {
     h2 {
         display: none;
     }
-    .icon {
-        background: url(../../img/mkt/glyphs/rocket.png) 50% 35% no-repeat;
-        &:after {
-            top: auto;
-            right: 5px;
-            bottom: 5px;
-        }
-        &.cat-books-reference {
-            background-image: url(../../img/mkt/glyphs/books-reference.png);
-        }
+    .grid .mkt-tile .icon {
+        background: url(../../img/mkt/glyphs/categories.png) no-repeat;
+        background-size: 86px auto;
+        height: 86px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin: -50px 0 0 -43px;
+        width: 86px;
+     // &.cat-books-reference {
+     //     background-position: 0 0;
+     // }
         &.cat-business {
-            background-image: url(../../img/mkt/glyphs/business.png);
+            background-position: 0 -86px;
         }
         &.cat-education {
-            background-image: url(../../img/mkt/glyphs/education.png);
+            background-position: 0 -172px;
         }
         &.cat-entertainment-sports {
-            background-image: url(../../img/mkt/glyphs/entertainment-sports.png);
+            background-position: 0 -258px;
         }
         &.cat-games {
-            background-image: url(../../img/mkt/glyphs/games.png);
+            background-position: 0 -344px;
         }
         &.cat-health-fitness {
-            background-image: url(../../img/mkt/glyphs/health-fitness.png);
+            background-position: 0 -430px;
         }
         &.cat-lifestyle {
-            background-image: url(../../img/mkt/glyphs/lifestyle.png);
+            background-position: 0 -516px;
         }
         &.cat-music {
-            background-image: url(../../img/mkt/glyphs/music.png);
+            background-position: 0 -602px;
         }
         &.cat-news-weather {
-            background-image: url(../../img/mkt/glyphs/news-weather.png);
+            background-position: 0 -688px;
         }
         &.cat-photos-media {
-            background-image: url(../../img/mkt/glyphs/photos-media.png);
+            background-position: 0 -774px;
         }
         &.cat-productivity {
-            background-image: url(../../img/mkt/glyphs/productivity.png);
+            background-position: 0 -860px;
         }
         &.cat-shopping {
-            background-image: url(../../img/mkt/glyphs/shopping.png);
+            background-position: 0 -946px;
         }
         &.cat-social {
-            background-image: url(../../img/mkt/glyphs/social.png);
+            background-position: 0 -1032px;
         }
         &.cat-travel {
-            background-image: url(../../img/mkt/glyphs/travel.png);
+            background-position: 0 -1118px;
         }
         &.cat-utilities {
-            background-image: url(../../img/mkt/glyphs/utilities.png);
+            background-position: 0 -1204px;
         }
+    }
+}
+
+@media @retina {
+    .categories .grid .mkt-tile .icon {
+        background-image: url(../../img/mkt/glyphs/categories-2x.png);
     }
 }
