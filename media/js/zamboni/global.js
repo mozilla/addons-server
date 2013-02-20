@@ -169,10 +169,10 @@ $.fn.popup = function(click_target, o) {
         $popup.detach().appendTo("body");
         var pt  = $(el),
             pos = pt.offset(),
-            tw  = pt.outerWidth() / 2,
-            th  = pt.outerHeight(),
-            pm  = pos.left + tw > $("body").outerWidth() / 2,
-            os  = pm ? $popup.outerWidth() - 84 : 63,
+            tw  = pt.outerWidth(false) / 2,
+            th  = pt.outerHeight(false),
+            pm  = pos.left + tw > $("body").outerWidth(false) / 2,
+            os  = pm ? $popup.outerWidth(false) - 84 : 63,
             toX = pos.left + (offset.x || tw) - os,
             toY = pos.top + (offset.y || th) + 4;
         $popup.removeClass("left");
@@ -301,7 +301,7 @@ $.fn.modal = function(click_target, o) {
         offset = offset || $modal.o.offset;
 
         $modal.detach().appendTo("body");
-        var toX = ($(window).width() - $modal.outerWidth()) / 2,
+        var toX = ($(window).width() - $modal.outerWidth(false)) / 2,
             toY = $(window).scrollTop() + 26; //distance from top of the window
         $modal.css({
             'left': toX,

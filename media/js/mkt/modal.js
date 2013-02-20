@@ -50,8 +50,8 @@ $.fn.modal = function(click_target, o) {
         offset = offset || $modal.o.offset;
 
         $modal.detach().appendTo("body");
-        var toX = ($(window).width() - $modal.outerWidth()) / 2,
-            toY = $(window).scrollTop() + forcedOffset;
+        var toX = (z.win.width() - $modal.outerWidth(false)) / 2,
+            toY = z.win.scrollTop() + forcedOffset;
         $modal.css({
             'left': toX + 'px',
             'top': toY + 'px',
@@ -138,7 +138,7 @@ $.fn.modal = function(click_target, o) {
             $modal.show();
         }, 0);
 
-        $(window).bind('resize', p.onresize)
+        z.win.bind('resize', p.onresize)
         .bind('keydown.lightboxDismiss', function(e) {
             if (e.which == 27) {
                 $modal.hideMe();
