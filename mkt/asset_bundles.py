@@ -137,6 +137,7 @@ CSS = {
     ),
     'mkt/stats': (
         'css/mkt/legacy-paginator.less',
+        'css/mkt/jquery-ui/jquery-ui-1.10.1.custom.css',
         'css/mkt/stats.less',
     ),
     'mkt/lookup': (
@@ -188,21 +189,15 @@ JS = {
         'js/mkt/login.js',
         'js/mkt/notification.js',
 
-        # jQuery UI.
-        'js/lib/jquery-ui/jquery.ui.core.js',
-        'js/lib/jquery-ui/jquery.ui.position.js',
-        'js/lib/jquery-ui/jquery.ui.widget.js',
-        'js/lib/jquery-ui/jquery.ui.mouse.js',
-        'js/lib/jquery-ui/jquery.ui.autocomplete.js',
-        'js/lib/jquery-ui/jquery.ui.datepicker.js',
-        'js/lib/jquery-ui/jquery.ui.sortable.js',
-
         'js/lib/truncate.js',
         'js/zamboni/truncation.js',
         'js/zamboni/helpers.js',
         'js/zamboni/global.js',
         'js/zamboni/l10n.js',
         'js/zamboni/debouncer.js',
+
+        # jQuery UI
+        'js/lib/jquery-ui/jquery-ui-1.10.1.custom.js',
 
         # Users.
         'js/zamboni/users.js',
@@ -330,7 +325,6 @@ JS = {
     'mkt/stats': (
         'js/zamboni/storage.js',
         'js/mkt/modal.js',
-        'js/lib/jquery-datepicker.js',
         'js/lib/highcharts.src.js',
         'js/mkt/stats/csv_keys.js',
         'js/mkt/stats/helpers.js',
