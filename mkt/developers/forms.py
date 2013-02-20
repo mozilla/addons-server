@@ -269,6 +269,7 @@ class ImageAssetForm(happyforms.Form):
                 self.instance.update(filetype='image/png')
                 tasks.resize_imageasset.delay(
                     upload_path, self.instance.image_path, self.size,
+                    instance=self.instance.pk,
                     set_modified_on=[self.instance])
 
     def clean(self):

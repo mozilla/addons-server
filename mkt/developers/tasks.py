@@ -170,12 +170,20 @@ def resize_imageasset(src, full_dst, size, **kw):
 
     log.info('[1@None] Resizing image asset: %s' % full_dst)
     try:
+        hue = 0
         with storage.open(src, 'rb') as fp:
             im = Image.open(fp)
             im = im.convert('RGBA')
             im = im.resize(size)
+
         with storage.open(full_dst, 'wb') as fp:
             im.save(fp, 'png')
+
+        # If we pass in the image asset instance ID, get the hue of the new
+        # asset and update the asset instance.
+        instance_id = kw.pop('instance', None)
+        if instance_id is not None:
+            ImageAsset.objects.get(pk=instance_id).update(hue=get_hue(im))
         return True
     except Exception, e:
         log.error('Error saving image asset: %s' % e)

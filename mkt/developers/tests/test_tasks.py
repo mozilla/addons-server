@@ -116,8 +116,13 @@ def _uploader(resize_size, final_size):
     assert not os.path.exists(src.name)
 
 
-@mock.patch('mkt.developers.tasks.get_hue', lambda img: 0)
-def test_resize_image_asset():
+@mock.patch('mkt.developers.tasks.get_hue', lambda img: 123)
+@mock.patch('mkt.developers.tasks.ImageAsset')
+def test_resize_image_asset(ia):
+    _instance = mock.Mock()
+    ia.objects.get.return_value = _instance
+
+
     img = get_image_path('mozilla.png')
     original_size = (339, 128)
 
@@ -128,10 +133,15 @@ def test_resize_image_asset():
     dest = tempfile.NamedTemporaryFile(mode='r+w+b', suffix='.png')
     # Make it resize to some arbitrary size that's larger on both sides than
     # the source image. This is where the behavior differs from resize_image.
-    tasks.resize_imageasset(img, dest.name, (500, 500), locally=True)
+    tasks.resize_imageasset(img, dest.name, (500, 500), instance='foo',
+                            locally=True)
     with storage.open(dest.name) as fp:
         dest_image = Image.open(fp)
         eq_(dest_image.size, (500, 500))
+
+    # Assert that the asset's instance gets updated with the new hue.
+    ia.objects.get.assert_called_with(pk='foo')
+    _instance.update.assert_called_with(hue=123)
 
 
 class TestValidator(amo.tests.TestCase):
