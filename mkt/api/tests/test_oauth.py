@@ -8,7 +8,7 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from django.test.client import Client, FakePayload
 
-import oauth2 as oauth
+import oauth2
 from mock import Mock, patch
 from nose.tools import eq_
 from test_utils import RequestFactory
@@ -40,7 +40,7 @@ class OAuthClient(Client):
     but even more. And it can magically sign requests.
     TODO (andym): this could be cleaned up and split out, it's useful.
     """
-    signature_method = oauth.SignatureMethod_HMAC_SHA1()
+    signature_method = oauth2.SignatureMethod_HMAC_SHA1()
 
     def __init__(self, access, api_name='apps'):
         super(OAuthClient, self).__init__(self)
@@ -48,14 +48,16 @@ class OAuthClient(Client):
         self.get_absolute_url = partial(get_absolute_url,
                                         api_name=api_name)
 
-    def header(self, method, url):
+    def header(self, method, url, data=None, **kw):
         if not self.access:
             return None
 
         parsed = urlparse.urlparse(url)
         args = dict(urlparse.parse_qs(parsed.query))
+        if data:
+            args.update(data)
 
-        req = oauth.Request.from_consumer_and_token(self.access,
+        req = oauth2.Request.from_consumer_and_token(self.access,
             token=None, http_method=method,
             http_url=urlparse.urlunparse(parsed._replace(query='')),
             parameters=args)
@@ -67,29 +69,29 @@ class OAuthClient(Client):
         url = self.get_absolute_url(url)
         return super(OAuthClient, self).get(url,
                      HTTP_HOST='api',
-                     HTTP_AUTHORIZATION=self.header('GET', url),
+                     HTTP_AUTHORIZATION=self.header('GET', url, **kw),
                      **kw)
 
-    def delete(self, url, **kwargs):
+    def delete(self, url, **kw):
         url = self.get_absolute_url(url)
         return super(OAuthClient, self).delete(url,
                         HTTP_HOST='api',
-                        HTTP_AUTHORIZATION=self.header('DELETE', url),
-                        **kwargs)
+                        HTTP_AUTHORIZATION=self.header('DELETE', url, **kw),
+                        **kw)
 
     def post(self, url, data=''):
         url = self.get_absolute_url(url)
         return super(OAuthClient, self).post(url, data=data,
                         content_type='application/json',
                         HTTP_HOST='api',
-                        HTTP_AUTHORIZATION=self.header('POST', url))
+                        HTTP_AUTHORIZATION=self.header('POST', url, data=data))
 
     def put(self, url, data=''):
         url = self.get_absolute_url(url)
         return super(OAuthClient, self).put(url, data=data,
                         content_type='application/json',
                         HTTP_HOST='api',
-                        HTTP_AUTHORIZATION=self.header('PUT', url))
+                        HTTP_AUTHORIZATION=self.header('PUT', url, data=data))
 
     def patch(self, url, data=''):
         url = self.get_absolute_url(url)
@@ -101,7 +103,7 @@ class OAuthClient(Client):
             'REQUEST_METHOD': 'PATCH',
             'wsgi.input': FakePayload(data),
             'HTTP_HOST': 'api',
-            'HTTP_AUTHORIZATION': self.header('PATCH', url)
+            'HTTP_AUTHORIZATION': self.header('PATCH', url, data=data)
         }
         response = self.request(**r)
         return response
@@ -188,6 +190,9 @@ class TestBaseOAuth(BaseOAuth):
         self.add_group_user(self.profile, 'App Reviewers', 'Support Staff')
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
+
+    def test_request_querystring(self):
+        eq_(self.client.get(self.url, data={'foo': 'bar'}).status_code, 200)
 
 
 class Resource(CORSResource):
