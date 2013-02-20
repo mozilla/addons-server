@@ -53,8 +53,14 @@
           {% endtrans %}
         </p>
         <div class="link-wrapper last">
-          <a href="{{ url('ecosystem.documentation', page='mkt_hosting') }}">
-            {{ _('Publish your App') }}
+          <a href="{{ url('ecosystem.publish_deploy') }}">
+            {{ _('Deploying your app') }}
+          </a>
+          <a href="{{ url('ecosystem.publish_hosted') }}">
+            {{ _('Hosted Apps') }}
+          </a>
+          <a href="{{ url('ecosystem.publish_packaged') }}">
+            {{ _('Packaged Apps') }}
           </a>
         </div>
       </div>

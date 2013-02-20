@@ -118,6 +118,26 @@ class TestDevHub(amo.tests.TestCase):
         eq_(r.status_code, 200)
         self.assertTemplateUsed(r, 'ecosystem/design_patterns.html')
 
+    def test_publish_review(self):
+        r = self.client.get(reverse('ecosystem.publish_review'))
+        eq_(r.status_code, 200)
+        self.assertTemplateUsed(r, 'ecosystem/publish_review.html')
+
+    def test_publish_deploy(self):
+        r = self.client.get(reverse('ecosystem.publish_deploy'))
+        eq_(r.status_code, 200)
+        self.assertTemplateUsed(r, 'ecosystem/publish_deploy.html')
+
+    def test_publish_hosted(self):
+        r = self.client.get(reverse('ecosystem.publish_hosted'))
+        eq_(r.status_code, 200)
+        self.assertTemplateUsed(r, 'ecosystem/publish_hosted.html')
+
+    def test_publish_packaged(self):
+        r = self.client.get(reverse('ecosystem.publish_packaged'))
+        eq_(r.status_code, 200)
+        self.assertTemplateUsed(r, 'ecosystem/publish_packaged.html')
+
 
 class TestMdnDocumentation(amo.tests.TestCase):
     fixtures = ['ecosystem/mdncache-item']

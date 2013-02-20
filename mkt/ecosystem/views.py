@@ -127,6 +127,87 @@ def design_patterns(request):
            {'page': 'design_patterns', 'category': 'design'})
 
 
+def publish_review(request):
+    """Publish - Marketplace Review Criteria page."""
+    return jingo.render(request, 'ecosystem/publish_review.html',
+           {'page': 'publish_review', 'category': 'publish'})
+
+
+def publish_deploy(request):
+    """Publish - Deploying your app page."""
+    return jingo.render(request, 'ecosystem/publish_deploy.html',
+           {'page': 'publish_deploy', 'category': 'publish'})
+
+
+def publish_hosted(request):
+    """Publish - Hosted apps page."""
+    return jingo.render(request, 'ecosystem/publish_hosted.html',
+           {'page': 'publish_hosted', 'category': 'publish'})
+
+
+def publish_packaged(request):
+    """Publish - Packaged apps page."""
+    html_sample = u'''
+<html>
+<body>
+  <p>Packaged app installation page</p>
+  <script>
+    // This URL must be a full url.
+    var manifestUrl = 'http://<strong><server-ip></strong>/package.manifest';
+    var req = navigator.mozApps.installPackage(manifestUrl);
+    req.onsuccess = function() {
+      alert(this.result.origin);
+    };
+    req.onerror = function() {
+      alert(this.error.name);
+    };
+  </script>
+</body>
+</html>
+'''
+    mini_manifest_a_sample = u'''
+{
+    "name": "My App",
+    "package_path": "http://<server-ip>/package.zip",
+    "version": "1.0"
+}
+'''
+    mini_manifest_b_sample = u'''
+{
+    "name": "My app",
+    "package_path": "http://thisdomaindoesnotexist.org/myapp.zip",
+    "version": "1.0",
+    "size": 172496,
+    "release_notes": "First release",
+    "developer": {
+        "name": "Developer Name",
+        "url": "http://thisdomaindoesnotexist.org/"
+    },
+    "locales": {
+        "fr_FR": {
+            "name": "Mon application"
+        },
+        "se_SE": {
+            "name": "Min balla app"
+        }
+    },
+    "icons": {
+        "16": "/icons/16.png",
+        "32": "/icons/32.png",
+        "256": "/icons/256.png"
+    }
+}
+'''
+    d = {
+        'page': 'publish_packaged',
+        'category': 'publish',
+        'html_sample': html_sample,
+        'mini_manifest_a_sample': mini_manifest_a_sample,
+        'mini_manifest_b_sample': mini_manifest_b_sample
+    }
+    return jingo.render(request, 'ecosystem/publish_packaged.html', d)
+
+
 def documentation(request, page=None):
     """Page template for all content that is extracted from MDN's API."""
     _refresh_mdn(request)
@@ -144,17 +225,11 @@ def documentation(request, page=None):
     except MdnCache.DoesNotExist:
         data = get_object_or_404(MdnCache, name=page, locale='en-US')
 
-    if page in ('html5', 'manifests', 'manifest_faq', 'firefox_os',
-                'devtools', 'templates', 'using_firefox_os_simulator'):
-        category = 'build'
-    else:
-        category = 'publish'
-
     ctx = {
         'page': page,
         'title': data.title,
         'content': data.content,
-        'category': category
+        'category': 'build'
     }
 
     return jingo.render(request, 'ecosystem/documentation.html', ctx)

@@ -68,16 +68,6 @@ tutorials = [
         'mdn': 'https://developer.mozilla.org/%(locale)s/docs/Mozilla/Boot_to_Gecko?raw=1&macros=true'
     },
     {
-        'title': 'Marketplace Submission',
-        'name': 'mkt_submission',
-        'mdn': 'https://developer.mozilla.org/%(locale)s/docs/Apps/Submitting_an_app?raw=1&macros=true'
-    },
-    {
-        'title': 'Hosting',
-        'name': 'mkt_hosting',
-        'mdn': 'https://developer.mozilla.org/%(locale)s/docs/Apps/Tutorials/General/Publishing_the_app?raw=1&macros=true'
-    },
-    {
         'title': 'Dev Tools',
         'name': 'devtools',
         'mdn': 'https://developer.mozilla.org/%(locale)s/docs/Apps/marketplace/App_developer_tools?raw=1&macros=true'
@@ -86,11 +76,6 @@ tutorials = [
         'title': 'App Templates',
         'name': 'templates',
         'mdn': 'https://developer.mozilla.org/%(locale)s/docs/Apps/App_templates?raw=1&macros=true'
-    },
-    {
-        'title': 'Packaged Apps',
-        'name': 'packaged_apps',
-        'mdn': 'https://developer.mozilla.org/%(locale)s/docs/Apps/Packaged_apps?raw=1&macros=true'
     },
     {
         'title': 'Using Firefox OS Simulator',

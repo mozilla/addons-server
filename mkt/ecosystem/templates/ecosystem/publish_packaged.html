@@ -1,0 +1,369 @@
+{% extends 'ecosystem/base.html' %}
+{% from "ecosystem/macros.html" import navigation with context %}
+
+{% block title %}
+  {{ hub_page_title(_('Packaged Apps')) }}
+{% endblock %}
+
+{% block extrahead %}
+  {{ css('mkt/ecosystem') }}
+{% endblock %}
+
+{% block content %}
+  <div class="doc-wrapper">
+    {{ navigation('publish_packaged') }}
+
+    <article>
+      <h1>{{ _('Packaged Apps') }}</h1>
+      <p>
+        {%- trans url='//developer.mozilla.org/docs/Apps/Manifest' %}
+          A <strong>packaged app</strong> is an Open Web App that has all of
+          its resources (HTML, CSS, JavaScript, app manifest, and so on)
+          contained in a zip file, instead of having its resources on a Web
+          server. A packaged app is simply a zip file with the
+          <a href="{{ url }}">app manifest</a> in its root directory. The
+          manifest must be named <code>manifest.webapp</code>.
+        {% endtrans -%}
+      </p>
+      <p>
+        {%- trans %}
+          <strong>Note:</strong> Currently (January 2013) the Firefox
+          Marketplace supports packaged apps only for Firefox OS apps.
+        {% endtrans -%}
+      </p>
+      <h2>{{ _('Purpose of packaged apps') }}</h2>
+      <p>
+        {%- trans %}
+          The purpose of a packaged app is to have a workable way to provide
+          apps that have access to sensitive APIs on devices. The app must
+          be verified by the store where the app is distributed (such as the
+          Firefox OS Marketplace). The store reviews the app and if it is
+          found acceptable, the store cryptographically signs the app's zip
+          file with its private key. This gives users of the app more
+          assurance that the app has been carefully reviewed for
+          potential security, privacy, and capability issues.
+        {% endtrans -%}
+      </p>
+      <h2>{{ _('Types of packaged apps') }}</h2>
+      <p>
+        {%- trans url_csp='//developer.mozilla.org/docs/Security/CSP/Introducing_Content_Security_Policy',
+                  url_security='https://wiki.mozilla.org/Apps/Security',
+                  url_default_csp='https://wiki.mozilla.org/Apps/Security#Default_CSP_policy',
+                  url_bug='https://bugzilla.mozilla.org/show_bug.cgi?id=768029' %}
+          There are three types of packaged apps:
+          <dl>
+            <dt>Privileged app</dt>
+            <dd>
+              A privileged app has been approved by the Firefox OS
+              Marketplace using a special process. It is meant to provide
+              more safety for users when an app wants access to certain
+              sensitive APIs on a device. It is equivalent to a native
+              app on a platform like iOS or Android. A privileged app
+              has the following characteristics:
+              <ul>
+                <li>
+                  Approved by an app store after code review or equivalent.
+                </li>
+                <li>App's resources are signed by the app store.</li>
+                <li>
+                  Allowed to use certain sensitive Web APIs that untrusted
+                  content cannot have access to.
+                </li>
+                <li>
+                  Enforces a <a href="{{ url_csp }}">Content Security
+                  Policy</a> (CSP). A privileged app uses this CSP:
+                  <pre>
+                    "default-src *; script-src 'self'; object-src 'none'; style-src 'self' 'unsafe-inline'"
+                  </pre>
+                </li>
+                <li>
+                  Implements other requirements related to security. See
+                  <a href="{{ url_security }}">Security</a> for more
+                  information.
+                </li>
+              </ul>
+            </dd>
+            <dt>Certified app</dt>
+            <dd>
+              A certified app is intended for a critical system function like
+              the default dialer or the system settings app on a smartphone.
+              This type of app would be used for critical functions on a
+              Firefox OS phone. It is not intended for third party apps, so
+              most app developers can disregard this type of app. A certified
+              app is a packaged app that is similar to a privileged app,
+              except that all device permissions are implicit, meaning they
+              do not require explicit user approval. A certified app must be
+              approved for a device by the OEM or carrier in order to have
+              this implicit approval to use critical APIs. The following is
+              the CSP for a certified app, which is slightly different from
+              the CSP for a privileged app:
+              <pre>
+                "default-src *; script-src 'self'; object-src 'none'; style-src 'self'"
+              </pre>
+              This has the effect of slightly looser rules for inline CSP for
+              privileged apps when compared to certified apps. If you want
+              more of the reasoning behind this, see
+              <a href="{{ url_default_csp }}">Default CSP policy</a> and
+              <a href="{{ url_bug }}">Bug 768029</a>.</dd>
+            <dt>Plain packaged app</dt>
+            <dd>
+              You can also make a regular app that is simply packaged in a
+              zip file. The Marketplace signs it, but does not perform the
+              special authentication process used for privileged or certified
+              apps. This plain packaged app cannot use certain sensitive Web
+              APIs. It is not subject to the CSPs described for privileged
+              and certified apps.
+            </dd>
+          </dl>
+        {% endtrans -%}
+      </p>
+      <h2>{{ _('Differences from hosted apps') }}</h2>
+      <p>
+        {%- trans url='//developer.mozilla.org/docs/Security/CSP/Introducing_Content_Security_Policy' %}
+          Packaged apps have the same capabilites as normal website-style
+          Open Web Apps (&quot;hosted&quot; apps), but packaged apps have a
+          few differences:
+          <ul>
+            <li>
+              They have no Internet origin. The one-app-per-origin policy
+              that governs hosted apps does not apply to packaged apps.
+            </li>
+            <li>
+              They use a special protocol internal to the zip file:
+              <code>app://&lt;uuid&gt;</code>. Example: When you load the
+              content <code>/index.html</code> in a packaged app, you are
+              actually loading something like the following (the UUID will
+              be different):
+              <pre>app://550e8400-e29b-41d4-a716-446655440000/index.html</pre>
+            </li>
+            <li>
+              The manifest file must be named <code>manifest.webapp</code>.
+            </li>
+            <li>
+              Their resources are accessed from the zip file, which is stored
+              on the device where the app is installed.
+            </li>
+            <li>
+              They are installed with a different <code>mozApps</code> API
+              function: <code>installPackage()</code>.
+            </li>
+            <li>
+              They enforce a specific <a href="{{ url }}">CSP</a> for all
+              application content (a hosted app could also use a CSP, but it
+              is not required).
+            </li>
+            <li>
+              They can embed remote content in iframes, but that content will
+              not have access to privileged APIs nor will it have the default
+              CSP applied to it.
+            </li>
+            <li>
+              They have an update process for getting new versions of the app
+              to users. Hosted apps do not need this process.
+            </li>
+          </ul>
+        {% endtrans -%}
+      </p>
+      <p>
+        {%- trans %}
+          The packaged app can still do things like access a database on a
+          Web server, like a regular hosted app.
+        {% endtrans -%}
+      </p>
+      <h2>{{ _('Using sensitive Web APIs') }}</h2>
+      <p>
+        {%- trans url='//developer.mozilla.org/docs/Apps/Manifest' %}
+          There are Web APIs that could be used maliciously, so access to
+          them must be controlled. For every sensitive API you want your
+          app to access, you must add an entry to the
+          <code>permissions</code> field in the <a href="{{ url }}">app's
+          manifest</a>.
+        {% endtrans -%}
+      </p>
+      <p>
+        {%- trans url='//developer.mozilla.org/docs/Apps/App_permissions' %}
+          Some sensitive APIs can be accessed by normal hosted apps, but
+          other APIs require that you use a packaged app (privileged or
+          certified). See <a href="{{ url }}">App permissions</a> for a
+          table that describes the requirements.
+        {% endtrans -%}
+      </p>
+      <h2>{{ _('Packaged apps and the Firefox Marketplace') }}</h2>
+      <p>
+        {%- trans %}
+          The Firefox Marketplace handles packaged apps differently from
+          hosted apps. When you submit your packaged app, its zip file is
+          stored on the Marketplace servers, and the Marketplace generates a
+          new manifest called the "mini-manifest" that is based on the app
+          manifest in your packaged app's zip file. When a user installs
+          your app, the mini-manifest is passed to the
+          <code>installPackage()</code> function to install the app. The
+          mini-manifest exists for installation and update purposes and is
+          not used when your app runs.
+        {% endtrans -%}
+      </p>
+      <h2>{{ _('Testing packaged app installation') }}</h2>
+      <p>
+        {%- trans %}
+          If you want to locally test the installation of your packaged app,
+          here is one way to do it. Use the steps below to install a
+          packaged app on a phone using a Web server that is on your local
+          network. It can be a Web server that is running on your development
+          computer. This will also give you an idea of how packaged app
+          installation works.
+        {% endtrans -%}
+      </p>
+      <h3>{{ _('Requirements') }}</h3>
+      <ul>
+        <li>
+          {%- trans %}
+            The Web server must be on the same network as the phone, and it
+            must be able to serve requests from the local network.
+          {% endtrans -%}
+        </li>
+        <li>
+          {%- trans %}
+            The phone must be running Firefox OS and must be on Wi-Fi.
+          {% endtrans -%}
+        </li>
+        <li>
+          {%- trans %}
+            Modify the file paths used in the following example code to
+            match your server.
+          {% endtrans -%}
+        </li>
+        <li>
+          {%- trans %}
+            Get your server's IP address and use it in place of
+            <strong><code>&lt;server-ip&gt;</code></strong> in the examples
+            below. If the server uses a non-standard port, use that also.
+            Example IP address with a non-standard port:
+            <pre>10.10.12.1:8080</pre>
+          {% endtrans -%}
+        </li>
+      </ul>
+      <h3>{{ _('Steps') }}</h3>
+      <ol>
+        <li>
+          {%- trans %}
+            Have your packaged app's zip file available and give it the
+            name <code>package.zip</code>. This file contains all the app's
+            resource files, including the manifest.
+          {% endtrans -%}
+        </li>
+        <li>
+          {%- trans url='#mini-manifest-fields' %}
+            Create a file called <code>package.manifest</code> and give it
+            the contents below. This is a mini-manifest used for packaged app
+            installation purposes. It is not the main manifest of your app
+            that is inside the zip file. See
+            <a href="{{ url }}">Mini-manifest fields</a> if you want more
+            information about mini-manifests.
+            <pre>{{ mini_manifest_a_sample }}</pre>
+          {% endtrans -%}
+        </li>
+        <li>
+          {%- trans %}
+            Create a file named <code>install.html</code> with the following
+            contents. This contains the JavaScript that calls the packaged
+            app (<code>installPackage()</code>) and callbacks for success
+            and failure notification.
+            <pre>{{ html_sample }}</pre>
+          {% endtrans -%}
+        </li>
+        <li>
+          {%- trans %}
+            Copy <code>package.zip</code>, <code>package.manifest</code>, and
+            <code>install.html</code> into the Web server's document root
+            folder.
+          {% endtrans -%}
+        </li>
+        <li>
+          {%- trans %}
+            Use the browser on the phone to open
+            <code>http://<strong>&lt;server-ip&gt;</strong>/install.html</code>
+            and confirm the prompt to install the app. The script will give an
+            indication of installation success or failure.
+          {% endtrans -%}
+        </li>
+      </ol>
+      <p>
+        {%- trans url='//developer.mozilla.org/docs/Apps/Manifest#type' %}
+          <strong>Note:</strong> If you want to test certified app APIs
+          (described above), turn on "developer mode" on the device you want
+          to install the app on (Firefox OS) and make sure to specify the
+          correct <a href="{{ url }}"><code>type</code></a> in your
+          <code>manifest.webapp</code> file.
+        {% endtrans -%}
+      </p>
+      <h2 id="mini-manifest-fields">{{ _('Mini-manifest fields') }}</h2>
+      <p>
+        {%- trans %}
+          Here is an example of a mini-manifest:
+          <pre>{{ mini_manifest_b_sample }}</pre>
+        {% endtrans -%}
+      </p>
+      <p>
+        {%- trans url='//developer.mozilla.org/docs/Apps/Manifest' %}
+          When the Firefox OS Marketplace generates a mini-manifest for your
+          app, it pulls information from your app's manifest for some of the
+          fields. You can find documentation for these fields at
+          <a href="{{ url }}">App manifest</a>. The fields unique the the
+          mini-manifest are <code>package_path</code>,
+          <code>release_notes</code>, and <code>size</code>.
+          The <code>name</code>, <code>version</code>,
+          <code>developer</code>, and <code>locales</code> fields in your
+          app manifest must be exactly the same as in your mini-manifest.
+        {% endtrans -%}
+      </p>
+      <p>
+        {%- trans %}
+          Here is information on the mini-manifest that relates to using it
+          locally for your own testing:
+        {% endtrans -%}
+        {%- trans %}
+          <dl>
+            <dt><code>name</code></dt>
+            <dd>
+              (required) The app's name. Maximum length is 128 characters.
+            </dd>
+            <dt><code>package_path</code></dt>
+            <dd>
+              (required) A full URL where the app's zip file can be found.
+            </dd>
+            <dt><code>version</code></dt>
+            <dd>The version of the app.</dd>
+            <dt><code>size</code></dt>
+            <dd>
+              The size of the app's zip file in bytes. This is not necessary
+              for local testing, but provide it to get a progressbar during
+              installation.
+            </dd>
+            <dt><code>release_notes</code></dt>
+            <dd>
+              Information about this release of the app. On the Marketplace
+              this information comes from a Web page that is part of the
+              submission process.
+            </dd>
+            <dt><code>developer</code></dt>
+            <dd>
+              Information about the developer, contains the <code>name</code>
+              and <code>url</code> fields.
+            </dd>
+            <dt><code>locales</code></dt>
+            <dd>Localization information.</dd>
+            <dt><code>icons</code></dt>
+            <dd>Icons for use by the app.</dd>
+          </dl>
+        {% endtrans -%}
+      </p>
+      <h2>{{ _('Updating packaged apps') }}</h2>
+      <p>
+        {%- trans url='//developer.mozilla.org/docs/Apps/Updating_apps' %}
+          For information on updating apps, see
+          <a href="{{ url }}">Updating apps</a>.
+        {% endtrans -%}
+      </p>
+    </article>
+  </div>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'ecosystem/base.html' %}
+{% from "ecosystem/macros.html" import navigation with context %}
+
+{% block title %}
+  {{ hub_page_title(_('Deploying your app')) }}
+{% endblock %}
+
+{% block extrahead %}
+  {{ css('mkt/ecosystem') }}
+{% endblock %}
+
+{% block content %}
+  <div class="doc-wrapper">
+    {{ navigation('publish_deploy') }}
+
+    <article>
+      <h1>{{ _('Deploying your app') }}</h1>
+      <p>
+        {%- trans %}
+          One your app is finished, you need to deploy it. If you're
+          publishing through the Firefox Marketplace you have some options
+          on how to deploy your app.
+        {% endtrans -%}
+      </p>
+      <h2>
+        <a href="{{ url('ecosystem.publish_hosted') }}">
+          {{ _('Hosted Apps') }}
+        </a>
+      </h2>
+      <p>
+        {%- trans %}
+          You can host your app on a publicly accessible Web server, just
+          like any other website.
+        {% endtrans -%}
+      </p>
+      <h2>
+        <a href="{{ url('ecosystem.publish_packaged') }}">
+          {{ _('Packaged Apps') }}
+        </a>
+      </h2>
+      <p>
+        {%- trans %}
+          You can package your app as a zip file, instead of hosting it on a
+          web server.
+        {% endtrans -%}
+      </p>
+    </article>
+  </div>
+{% endblock %}
