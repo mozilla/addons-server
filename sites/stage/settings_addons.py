@@ -7,14 +7,6 @@ from settings_base import *
 import private_addons
 
 DOMAIN = 'addons.allizom.org'
-
-ALLOWED_HOSTS = [
-    'addons-stage-cdn.allizom.org',
-    'm.addons.allizom.org',
-    'pfs.mozilla.org',
-    DOMAIN
-]
-
 SERVER_EMAIL = 'zstage@addons.mozilla.org'
 
 SITE_URL = 'https://addons.allizom.org'

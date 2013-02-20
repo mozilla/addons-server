@@ -6,17 +6,6 @@ import private_addons
 
 DOMAIN = 'addons.mozilla.org'
 
-ALLOWED_HOSTS = [
-    'services.addons.mozilla.org',
-    'addons.cdn.mozilla.net',
-    'addons-cdn.mozilla.net',
-    'addons.update.mozilla.org',
-    'static.addons.mozilla.net',
-    'm.addons.mozilla.org',
-    'pfs.mozilla.org',
-    DOMAIN
-]
-
 SERVER_EMAIL = 'zprod@addons.mozilla.org'
 SECRET_KEY = private_addons.SECRET_KEY
 

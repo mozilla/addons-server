@@ -8,6 +8,13 @@ import socket
 from django.utils.functional import lazy
 from metlog.config import client_from_dict_config
 
+ALLOWED_HOSTS = [
+    '.allizom.org',
+    '.mozilla.org',
+    '.mozilla.com',
+    '.mozilla.net',
+]
+
 WAFFLE_TABLE_SUFFIX = 'amo'
 LOG_TABLE_SUFFIX = ''
 EVENT_TABLE_SUFFIX = ''

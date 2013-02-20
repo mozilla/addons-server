@@ -7,15 +7,6 @@ from settings_base import *
 import private_addons
 
 DOMAIN = 'addons-dev.allizom.org'
-
-ALLOWED_HOSTS = [
-    'addons-dev.allizom.org',
-    'm.addons-dev.allizom.org',
-    'addons-dev-cdn.allizom.org',
-    'pfs.mozilla.org',
-    DOMAIN
-]
-
 SERVER_EMAIL = 'zdev@addons.mozilla.org'
 
 SITE_URL = 'https://addons-dev.allizom.org'
