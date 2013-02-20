@@ -4,8 +4,6 @@
 Access Control Lists
 ====================
 
-.. automodule:: access
-
 
 ACL versus Django Permissions
 -----------------------------

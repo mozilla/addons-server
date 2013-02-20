@@ -11,6 +11,7 @@ This API is for Apps. There is a separate set of `APIs for Add-ons`_.
 
    api/submission.rst
    api/payment.rst
+   api/search.rst
    api/misc.rst
 
 Authentication
