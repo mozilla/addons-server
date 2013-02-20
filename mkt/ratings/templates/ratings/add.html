@@ -17,10 +17,11 @@
     <form method="post">
       {{ csrf() }}
       {{ form_field(form.rating, label=_('How would you rate this?'),
-                    tag='div', cls='rating') }}
+                    tag='div', cls='rating', validate=True) }}
       {{ form_field(form.body, label=_('Your review'), hint=True,
                     cc_for=form.body.auto_id,
-                    cc_maxlength=form.body.field.max_length, tag='div') }}
+                    cc_maxlength=form.body.field.max_length, tag='div',
+                    validate=True) }}
       {% if not DESKTOP %}
         <p class="charlimit">{{ _('Max 150 characters') }}</p>
       {% endif %}

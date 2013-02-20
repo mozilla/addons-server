@@ -1,7 +1,7 @@
 <form class="container form-grid feedback-form" method="post" id="feedback-form" action="{{ url('site.feedback') }}">
   {{ csrf() }}
 
-  {{ form_field(fform.feedback, req=False) }}
+  {{ form_field(fform.feedback, req=False, validate=True) }}
 
   {% with form = fform %}
     {% include 'site/helpers/potato-recaptcha.html' %}

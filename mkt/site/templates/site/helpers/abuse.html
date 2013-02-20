@@ -1,5 +1,5 @@
 {{ csrf() }}
-{{ form_field(abuse_form.text, req=False, label=None, tag='p') }}
+{{ form_field(abuse_form.text, req=False, label=None, tag='p', validate=True) }}
 {% with form = abuse_form %}
   {% include 'site/helpers/potato-recaptcha.html' %}
 {% endwith %}
