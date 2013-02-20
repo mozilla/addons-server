@@ -72,11 +72,6 @@ $(document).ready(function() {
     var tabletCookie = $.cookie('tablet');
     if (!tabletCookie && z.capabilities.tablet) {
         $.cookie('tablet', 'true', {path: '/'});
-        if (z.body.hasClass('sony') && !z.body.hasClass('desktop')) {
-            // Reload to get the tablet design.
-            window.location.reload();
-            // TODO: Figure out a smarter way to do this for the real Marketplace.
-        }
     }
 
     stick.basic();

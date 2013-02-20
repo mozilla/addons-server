@@ -135,10 +135,6 @@ SENTRY_CLIENT = 'djangoraven.metlog.MetlogDjangoClient'
 # registration so that exceptions are passed through to sentry
 RAVEN_CONFIG = {'dsn': SENTRY_DSN, 'register_signals': True}
 
-# Remove SEN.
-if 'sony' in CARRIER_URLS:
-    CARRIER_URLS.remove('sony')
-
 METLOG_CONF = {
     'plugins': {'cef': ('metlog_cef.cef_plugin:config_plugin', {}),
                 'raven': (
