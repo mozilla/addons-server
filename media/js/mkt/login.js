@@ -6,7 +6,7 @@ define('login', ['notification'], function(notification) {
         if (skipDialog) {
             startLogin();
         } else {
-            $('#login').addClass('show');
+            $('.overlay.login').addClass('show');
         }
     }).on('click', '.browserid', function(e) {
         var $this = $(this);

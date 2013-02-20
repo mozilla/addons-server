@@ -129,7 +129,7 @@ $(document).ready(function() {
     // Anonymous users can view the Developer Agreement page,
     // and then we prompt for log in.
     if (z.anonymous && $('#submit-terms').length) {
-        var $login = $('#login');
+        var $login = $('.overlay.login');
         $login.addClass('show');
         $('#submit-terms form').on('click', 'button', _pd(function() {
             $login.addClass('show');
