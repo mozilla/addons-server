@@ -123,6 +123,7 @@ body {
             width: 50%;
         }
         a {
+            .ellipsis;
             display: block;
         }
     }
@@ -192,6 +193,30 @@ body[data-page-type="alpha"] {
         margin-top: 0;
         padding: 0 0 15px 5px;
     }
+}
+
+#directory-footer .group a.region {
+    background-position: 0 5px;
+    background-repeat: no-repeat;
+    background-size: 20px auto;
+    overflow: visible;
+    padding-left: 30px;
+    text-overflow: normal;
+    &.region-worldwide {
+        padding-left: 0;
+    }
+}
+
+.region-br {
+    background-image: url(../../img/mkt/icons/regions/br.png);
+}
+
+.region-uk {
+    background-image: url(../../img/mkt/icons/regions/uk.png);
+}
+
+.region-us {
+    background-image: url(../../img/mkt/icons/regions/us.png);
 }
 
 @media @retina {
