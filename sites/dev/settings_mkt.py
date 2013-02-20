@@ -175,7 +175,7 @@ RAVEN_CONFIG = {'dsn': SENTRY_DSN, 'register_signals': True}
 # This is the iss (issuer) for app purchase JWTs.
 # It must match that of the pay server that processes nav.mozPay().
 # In webpay this is the ISSUER setting.
-APP_PURCHASE_KEY = 'marketplace-dev.allizom.org'
+APP_PURCHASE_KEY = DOMAIN
 
 # This is the shared secret key for signing app purchase JWTs.
 # It must match that of the pay server that processes nav.mozPay().
