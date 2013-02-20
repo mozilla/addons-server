@@ -696,6 +696,8 @@ class AddonFilterTest(TestCase):
         platform, _ = Platform.objects.get_or_create(pk=amo.PLATFORM_WIN.id)
         file = self.addon1.current_version.files.all()[0]
         file.update(platform=platform)
+        # Transformers don't know 'bout my files.
+        self.addons[0] = Addon.objects.get(pk=self.addons[0].pk)
         addons = addon_filter(
             **self._defaults(platform=amo.PLATFORM_LINUX.shortname))
         eq_(addons, [self.addon2])
