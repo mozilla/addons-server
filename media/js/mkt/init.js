@@ -82,6 +82,10 @@ $(document).ready(function() {
     stick.basic();
 });
 
+// stub gettext for when servers are bad at things
+function gettext(s) {
+    return s;
+}
 
 z.page.on('fragmentloaded', function() {
     z.apps = {};
