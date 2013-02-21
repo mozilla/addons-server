@@ -98,7 +98,11 @@ function getTemplate($el) {
 }
 
 // Initializes character counters for textareas.
-function initCharCount() {
+function initCharCount(parent) {
+    /*
+    parent - An optional parameter that allows the effects of this function to
+             be limited to a single node rather than the whole document.
+    */
     var countChars = function(el, cc) {
         var $el = $(el),
             val = $el.val(),
@@ -113,7 +117,8 @@ function initCharCount() {
             cc_parent.removeClass('error');
         }
     };
-    $('.char-count').each(function() {
+    $('.char-count', parent).each(function() {
+        var $this = $(this)
         var $cc = $(this),
             $form = $(this).closest('form'),
             $el;

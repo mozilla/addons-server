@@ -2,10 +2,9 @@
 
     // Review/reply template.
     var reviewTemplate = getTemplate($('#review-template'));
+    var reviewWithReply;
 
     z.page.on('fragmentloaded', function() {
-        flagOverlay = makeOrGetOverlay('flag-review');
-
         // Hijack <select> with stars.
         $('select[name="rating"]').ratingwidget();
 
@@ -18,6 +17,12 @@
         // Show add review modal on app/app_slug/reviews/add for desktop.
         if ($('.reviews.add-review').length) {
             addOrEditYourReview($('#add-first-review'));
+        }
+
+        if (reviewWithReply && reviewWithReply.length) {
+            var review = $('#' + reviewWithReply.attr('id'));
+            review.siblings('.reply').show();
+            $('html, body').scrollTo(review);
         }
     });
 
@@ -41,16 +46,17 @@
         // Remove character counter on review field on mobile for now
         // (770661).
         if (!z.capabilities.mobile) {
-            initCharCount();
+            initCharCount(overlay);
         }
 
         function validate() {
-            var $error = overlay.find('.req-error'),
-                $comment = overlay.find('textarea'),
-                msg = $comment.val().strip(),
-                $parent = $comment.closest('.simple-field'),
-                $cc = overlay.find('.char-count'),
-                valid = !$cc.hasClass('error') && msg;
+            var $error = overlay.find('.req-error');
+            var $comment = overlay.find('textarea');
+            var msg = $comment.val().strip();
+            var $parent = $comment.closest('.simple-field');
+            var $cc = overlay.find('.char-count');
+            var valid = !$cc.hasClass('error') && msg;
+
             if (valid) {
                 $parent.removeClass('error');
                 $error.remove();
@@ -76,6 +82,7 @@
                 e.preventDefault();
                 return false;
             }
+            overlay.removeClass('show');
             // Form submission is handled by POST hijacking.
         }).on('click', '.cancel', _pd(function() {
             overlay.removeClass('show');
@@ -92,15 +99,11 @@
                 actionEl = reviewEl.find('.actions .flag');
             overlay.removeClass('show');
             actionEl.text(gettext('Sending report...'));
-            $.ajax({
-                type: 'POST',
-                url: reviewEl.data('flag-url'),
-                data: {flag: flag},
-                success: function() {
-                    actionEl.replaceWith(gettext('Flagged for review'));
-                },
-                error: function(){ },
-                dataType: 'json'
+            $.post(
+                reviewEl.data('flag-url'),
+                {flag: flag}
+            ).done(function() {
+                actionEl.replaceWith(gettext('Flagged for review'));
             });
         }));
     }
@@ -110,15 +113,17 @@
         $.post(action);
         setTimeout(function() {
             reviewEl.addClass('deleted');
-            // Change edit review button to submit review button.
-            $('#add-edit-review').text(gettext('Write a Review'));
-            $('#add-review').children().text(gettext('Write a Review'));
             if (reviewEl.hasClass('reply')) {
-                var $parent = reviewEl.prev('.review');
+                var $parent = reviewEl.closest('.replies').prev('.review');
                 // If this was a reply, remove the "1 reply" link.
                 $parent.find('.view-reply').remove();
-                // Show "Reply" and "Delete" icons.
-                $parent.find('li.hidden').removeClass('hidden');
+                $parent.find('ul.actions li.reply').removeClass('hidden');
+
+                reviewEl.parent().remove();
+            } else {
+                // Change edit review button to submit review button.
+                $('#add-edit-review').text(gettext('Write a Review'));
+                $('#add-review').children().text(gettext('Write a Review'));
             }
             $('.notification.box').remove();
 
@@ -190,26 +195,17 @@
                                      body: body}));
         overlay.addClass('reply');
         handleReviewOverlay(overlay);
-
-        z.page.on('fragmentloaded', function() {
-            var newReview = '#' + reviewEl.attr('id');
-            // Replies are hidden by default, so show this one.
-            $(newReview).siblings('.reply').show();
-            // Jump to new review.
-            window.location = newReview;
-        });
     }
 
     // Toggle rating breakdown (on listing page only, not detail page).
     z.page.on('click', '.average-rating-listing', _pd(function() {
         $('.grouped-ratings').toggle();
-    }));
-    z.page.on('click', '.grouped-ratings-listing', _pd(function() {
+    })).on('click', '.grouped-ratings-listing', _pd(function() {
         $('.grouped-ratings').hide();
     }));
 
     // Cancel rating button.
-    z.page.on('click', '.submit-review .alt', _pd(nav.back));
+    z.page.on('click', '.submit-review .cancel', _pd(nav.back));
 
     z.page.on('click', '.review .actions a, #add-first-review[data-href]', _pd(function(e) {
         var $this = $(this),
