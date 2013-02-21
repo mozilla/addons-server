@@ -22,14 +22,16 @@
         {% set search_form = SimpleSearchForm(data) %}
         <form novalidate method="GET" id="search" action="{{ url('search.search') }}">
           <label for="search-q">{{ _('Search') }}</label>
-          <input id="search-q" type="search" name="q" autocomplete="off" title="" required
-                 placeholder="{{ category.name if category else _('Search') }}"
-                 data-placeholder-default="{{ _('Search') }}"
-                 {% if search_form.q.value() %}value="{{ search_form.q.value() }}"{% endif %}>
-          {% if search_form.cat.value() %}
-            {{ search_form.cat }}
-          {% endif %}
-          <a href="#" class="search-clear" title="{{ _('Clear') }}">{{ _('Clear') }}</a>
+          <div class="fancy">
+            <input id="search-q" type="search" name="q" autocomplete="off" title="" required
+                   placeholder="{{ category.name if category else _('Search') }}"
+                   data-placeholder-default="{{ _('Search') }}"
+                   {% if search_form.q.value() %}value="{{ search_form.q.value() }}"{% endif %}>
+            {% if search_form.cat.value() %}
+              {{ search_form.cat }}
+            {% endif %}
+            <a href="#" class="search-clear" title="{{ _('Clear') }}">{{ _('Clear') }}</a>
+          </div>
         </form>
       {% endblock %}
     </nav>

@@ -23,8 +23,13 @@ body {
             float: left;
             margin-left: -7px;
         }
-        .suggestions #search {
-            margin-left: 12px;
+        .suggestions {
+            #search {
+                margin-left: 12px;
+            }
+            #search, #search-q {
+                width: 185px;
+            }
         }
     }
     &[data-page-type='leaf'], &[data-page-type='alpha'] {
@@ -35,6 +40,13 @@ body {
         }
     }
     &[data-page-type='root'] {
+        .fancy {
+            opacity: 0;
+            top: 40px;
+            left: 40px;
+            position: relative;
+            visibility: hidden;
+        }
         .header-button {
             &.search, &.settings {
                 display: block;
@@ -42,12 +54,21 @@ body {
         }
         #search {
             display: block;
+            overflow: hidden;
+            width: 253px;
         }
         &.show-search {
-            #search,
             #search-q {
                 left: 40px;
                 width: 145px;
+            }
+            .suggestions {
+                #search {
+                    width: 243px;
+                }
+                #search-q {
+                    width: 135px;
+                }
             }
             #site-header .wordmark {
                 opacity: 0;
@@ -55,17 +76,16 @@ body {
                 .transition(~'top .5s, opacity .5s');
                 z-index: 5;
             }
-            #site-header #search {
-                top: 0;
-                .transition(~'top .5s, opacity .5s');
+            #site-header .fancy {
                 opacity: 1;
+                top: 0;
+                .transition(~'top .5s, opacity .5s, visibility .5s');
+                visibility: visible;
                 z-index: 10;
-            }
-            .suggestions {
-                #search,
-                #search-q {
-                    width: 135px;
-                }    
+                .search-clear {
+                    right: 57px;
+                    top: 10px;
+                }
             }
         }
     }
@@ -77,16 +97,15 @@ body {
             }
         }
     }
-    &.show-search {
-        #search,
-        #search-q {
-            width: 177px;
-        }
-    }
 }
 
 @media (min-width: 532px) {
     body[data-page-type='root'] {
+         .fancy {
+            opacity: 1;
+            top: 0;
+            visibility: visible;
+        }
         #search {
             display: block;
         }
