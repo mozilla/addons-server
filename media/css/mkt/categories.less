@@ -4,6 +4,15 @@
     h2 {
         display: none;
     }
+
+    .grid li {
+        border-left: 1px solid #e5e5e5;
+        border-bottom: 1px solid #e5e5e5;
+        &:nth-child(3n) {
+            border-right: 1px solid #e5e5e5;
+        }
+    }
+
     .grid .mkt-tile .icon {
         background: url(../../img/mkt/glyphs/categories.png) no-repeat;
         background-size: 86px auto;
