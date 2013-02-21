@@ -172,7 +172,7 @@ class TestRegionForm(amo.tests.WebappTestCase):
 
         # Developers should still be able to save form OK, even
         # if they pass a bad region. Think of the grandfathered developers.
-        assert form.is_valid()
+        assert form.is_valid(), form.errors
         form.save()
 
         # No matter what the developer tells us, still exclude Brazilian

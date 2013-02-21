@@ -4,12 +4,8 @@ import uuid
 
 from django import http
 from django.conf import settings
-from django.db.models import Q
-from django.shortcuts import get_object_or_404
-from django.views.decorators.csrf import csrf_exempt
 
 import commonware.log
-import jingo
 from tower import ugettext as _
 import waffle
 
