@@ -32,6 +32,8 @@
 
         return {
             init: function() {
+                // TODO: Re-enable this once I figure out bug 843831.
+                return;
                 function getState(init) {
                     var $def = $.Deferred();
 
