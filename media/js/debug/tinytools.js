@@ -1,5 +1,5 @@
 (function() {
-    document.body.innerHTML += '<style>#tinytools{-moz-box-sizing:border-box;background:#eee;position:absolute;bottom:0;left:0;width:100%;padding:4px}#tinytools *{margin:0;padding:0}#tinytools pre{overflow:auto;max-height:200px}#tinytools input{font-family:monospace;font-size:13px;-moz-box-sizing:border-box;width:100%;margin-top:4px}#tinytools .out{padding-left:2ch;color:blue}#tinytools .error{color:red}</style><div id="tinytools"><pre id="log"></pre><input type="text"></div>';
+    document.body.innerHTML += '<style>#tinytools{-moz-box-sizing:border-box;background:#eee;position:fixed;bottom:0;left:0;width:100%;padding:4px}#tinytools *{margin:0;padding:0}#tinytools pre{overflow:auto;max-height:200px}#tinytools input{font-family:monospace;font-size:13px;-moz-box-sizing:border-box;width:100%;margin-top:4px}#tinytools .out{padding-left:2ch;color:blue}#tinytools .error{color:red}</style><div id="tinytools"><pre id="log"></pre><input type="text"></div>';
 
     var tt = document.querySelector('#tinytools');
     var repl = tt.querySelector('input');
@@ -17,17 +17,16 @@
         try {
             old.log.apply(window, arguments);
         } catch(e) {
-            old.log.call(old, arguments[0]);
+            old.log(arguments);
         }
     };
     window.console.error = function() {
         append(arguments, 'error');
         try {
-            old.log.apply(window, arguments);
+            old.error.apply(window, arguments);
         } catch(e) {
-            old.error.call(old, arguments[0]);
+            old.error(arguments);
         }
-        old.error.apply(window, arguments);
     };
     window.console.clear = function() {
         logEl.innerHTML = '';
