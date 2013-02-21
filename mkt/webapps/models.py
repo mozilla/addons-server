@@ -479,7 +479,7 @@ class Webapp(Addon):
             all_ids = mkt.regions.REGION_IDS
         excluded = list(self.addonexcludedregion
                             .values_list('region', flat=True))
-        return list(set(all_ids) - set(excluded))
+        return sorted(list(set(all_ids) - set(excluded)))
 
     def get_regions(self):
         """
