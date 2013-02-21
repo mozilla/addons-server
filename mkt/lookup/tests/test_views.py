@@ -884,7 +884,7 @@ class TestPurchases(amo.tests.TestCase):
         self.client.login(username=self.reviewer.email, password='password')
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
-        eq_(len(pq(res.content)('p.no-results')), 1)
+        eq_(len(pq(res.content)('p.notice').length, 1)
 
     def test_purchase_shows_up(self):
         Contribution.objects.create(user=self.user, addon=self.app,
