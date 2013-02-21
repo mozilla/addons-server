@@ -24,7 +24,7 @@
         {% endif %}
         </ol>
       {% else %}
-        {{ no_results() }}
+        <p class="notice">{{ _('You have no apps.') }}</p>
       {% endif %}
     {% else %}
       <p class="notice">{{ _('You must be signed in to view your apps.') }}</p>
