@@ -11,7 +11,7 @@ certifi==0.0.8
 chardet==1.0.1
 cssutils==0.9.7b3
 curling==0.1.9
-Django==1.4.4
+Django==1.4.5
 dj-database-url==0.2.1
 django_appcache==1.4
 django-cache-machine==0.6
