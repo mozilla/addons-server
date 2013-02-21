@@ -26,10 +26,14 @@
         <p class="charlimit">{{ _('Max 150 characters') }}</p>
       {% endif %}
       <p class="form-footer submit-review c">
-        <a href="#" class="button fat alt cancel">{{ _('Cancel') }}</a>
-        <button disabled type="submit" class="fat">
-          {{ _('Submit review') }}
-        </button>
+        <div class="two-up">
+          <a href="#" class="button fat alt class">{{ _('Cancel') }}</a>
+        </div>
+        <div class="two-up">
+          <button disabled type="submit" class="fat">
+            {{- _('Submit review') -}}
+          </button>
+        </div>
       </p>
     </form>
   </section>
