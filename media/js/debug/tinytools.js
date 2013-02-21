@@ -15,18 +15,14 @@
     window.console.log = function() {
         append(arguments, 'log');
         try {
-            old.log.apply(window, arguments);
-        } catch(e) {
-            old.log(arguments);
-        }
+            old.log.apply(window.console, arguments);
+        } catch(e) {}
     };
     window.console.error = function() {
         append(arguments, 'error');
         try {
-            old.error.apply(window, arguments);
-        } catch(e) {
-            old.error(arguments);
-        }
+            old.error.apply(window.console, arguments);
+        } catch(e) {}
     };
     window.console.clear = function() {
         logEl.innerHTML = '';
