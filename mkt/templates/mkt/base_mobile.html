@@ -130,7 +130,9 @@
 
     {% block sitefooter %}{% endblock %}
 
-    {% include 'ratings/review.html' %}
+    {% if not ((request.is_ajax() or FORCE_FRAGMENT) and not SKIP_FRAGMENT) %}
+      {% include 'ratings/review.html' %}
+    {% endif %}
 
     {% if not logged %}
       <div id="login" class="overlay">
