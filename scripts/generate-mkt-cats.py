@@ -43,3 +43,4 @@ def run():
                                                               addon=w)
             if created:
                 print 'Added "%s" to "%s" category' % (w.name, name)
+                w.save()
