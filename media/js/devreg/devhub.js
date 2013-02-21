@@ -389,16 +389,17 @@ $("#user-form-template .email-autocomplete")
     .attr("placeholder", gettext("Enter a new team member's email address"));
 
 function addManifestRefresh() {
-    $('#manifest-url a.button').on('click', _pd(function(e) {
-    $('#manifest-url th.label span.hint').remove();
-        var p = $.ajax({url: $(e.target).data("url"),
-                        type: 'POST'});
-        p.then(function() {
-            var refreshed = gettext('Refreshed');
-            $('#manifest-url th.label').append('<span class="hint">'
-                                               + refreshed + '</span>');
-        });
-    }));
+    z.page.on('click', '#manifest-url a.button', _pd(function(e) {
+        $('#manifest-url th.label span.hint').remove();
+            var p = $.ajax({url: $(e.target).data("url"),
+                            type: 'POST'});
+            p.then(function() {
+                var refreshed = gettext('Refreshed');
+                $('#manifest-url th.label').append('<span class="hint">'
+                                                   + refreshed + '</span>');
+            });
+        })
+    );
 }
 
 function initEditAddon() {
