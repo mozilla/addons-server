@@ -391,15 +391,13 @@ $("#user-form-template .email-autocomplete")
 function addManifestRefresh() {
     z.page.on('click', '#manifest-url a.button', _pd(function(e) {
         $('#manifest-url th.label span.hint').remove();
-            var p = $.ajax({url: $(e.target).data("url"),
-                            type: 'POST'});
-            p.then(function() {
-                var refreshed = gettext('Refreshed');
-                $('#manifest-url th.label').append('<span class="hint">'
-                                                   + refreshed + '</span>');
-            });
+        $.post(
+            $(e.target).data("url")
+        ).then(function() {
+            var refreshed = gettext('Refreshed');
+            $('#manifest-url th.label').append('<span class="hint">' + refreshed + '</span>');
         });
-    );
+    });
 }
 
 function initEditAddon() {
