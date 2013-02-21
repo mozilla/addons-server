@@ -79,6 +79,16 @@ class BR(REGION):
     has_payments = True
 
 
+class SPAIN(REGION):
+    id = 8
+    name = _lazy(u'Spain')
+    slug = 'spain'
+    default_currency = 'EUR'
+    default_language = 'es'
+    mcc = 214
+    has_payments = True
+
+
 # Create a list of tuples like so (in alphabetical order):
 #
 #     [('worldwide', <class 'mkt.constants.regions.WORLDWIDE'>),
