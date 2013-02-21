@@ -290,7 +290,7 @@ $(document).ready(function() {
 
     truncateFields();
 
-    $('.addon-edit-cancel').on('click', _pd(function() {
+    z.page.on('click', '.addon-edit-cancel', _pd(function() {
         var $this = $(this),
             parent_div = $this.closest('.edit-addon-section');
         parent_div.load($this.attr('href'), function() {
