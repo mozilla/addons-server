@@ -398,7 +398,7 @@ function addManifestRefresh() {
                 $('#manifest-url th.label').append('<span class="hint">'
                                                    + refreshed + '</span>');
             });
-        })
+        });
     );
 }
 
