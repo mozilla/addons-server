@@ -174,8 +174,8 @@ def redis():
 
 # The signer check actually asks the signing server to sign something. Do this
 # once per nagios check, once per web head might be a bit much. The memoize
-# slows it down a bit, by caching the result for five minutes.
-@memoize('monitors-signer', time=300)
+# slows it down a bit, by caching the result for 15 seconds.
+@memoize('monitors-signer', time=15)
 def signer():
     destination = getattr(settings, 'SIGNING_SERVER', None)
     if not destination:
