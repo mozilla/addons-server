@@ -11,8 +11,10 @@ z.page.on('click', '.loadmore button', function(e) {
     var selector = swapEl.attr('data-sel');
     // Fetch the new content.
     $.get(url, function(d) {
+        var node = document.createElement('div');
+        node.innerHTML = d;
         // Swap the container with the new content.
-        swapEl.replaceWith($(d).find(selector).html());
+        swapEl.replaceWith($(node).find(selector).html());
         z.page.trigger('fragmentloaded');
         z.page.trigger('updatecache');
     });
