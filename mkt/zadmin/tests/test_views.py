@@ -15,7 +15,6 @@ from amo.urlresolvers import reverse
 from editors.models import RereviewQueue
 from users.models import UserProfile
 
-from mkt.carriers import get_carrier
 from mkt.webapps.models import AddonExcludedRegion, Webapp
 from mkt.zadmin.models import (FeaturedApp, FeaturedAppCarrier,
                                FeaturedAppRegion)
@@ -329,9 +328,11 @@ class TestFeaturedAppQueryset(amo.tests.TestCase):
                                              start_date=yesterday,
                                              end_date=tomorrow)
         self.f2 = FeaturedApp.objects.create(app=self.a1, category=self.c2)
+        self.f3 = FeaturedApp.objects.create(app=self.s1, category=self.c1)
         self.far1 = FeaturedAppRegion.objects.create(featured_app=self.f1,
                                                      region=mkt.regions.US.id)
-        self.far2 = FeaturedAppRegion.objects.create(featured_app=self.f2)
+        self.far2 = FeaturedAppRegion.objects.create(featured_app=self.f1)
+        self.far3 = FeaturedAppRegion.objects.create(featured_app=self.f3)
         self.fac1 = FeaturedAppCarrier.objects.create(featured_app=self.f1,
                                                       carrier='telerizon')
         self.fac2 = FeaturedAppCarrier.objects.create(featured_app=self.f2,
@@ -413,33 +414,50 @@ class TestFeaturedAppQueryset(amo.tests.TestCase):
                                  FeaturedApp.objects.active_date().public())
 
     def test_queryset_featured(self):
-        carrier = get_carrier()
+        carrier = 'telerizon'
+        either_cat = [self.c1, self.c2]
         assert self._is_overlap(
             FeaturedApp.objects.for_category(self.c1),
             FeaturedApp.objects.featured(cat=self.c1)
         ), 'Unexpected items in category %s' % self.c1
         assert self._is_overlap(
             FeaturedApp.objects.for_carrier(carrier),
-            FeaturedApp.objects.featured()
+            FeaturedApp.objects.featured(cat=either_cat)
         ), 'Unexpected items for carrier %s' % carrier
         assert self._is_overlap(
             FeaturedApp.objects.gaia(),
-            FeaturedApp.objects.featured(gaia=True)
+            FeaturedApp.objects.featured(gaia=True, cat=either_cat)
         ), 'Unexpected items in Gaia'
         assert self._is_overlap(
             FeaturedApp.objects.mobile(),
-            FeaturedApp.objects.featured(mobile=True)
+            FeaturedApp.objects.featured(mobile=True, cat=either_cat)
         ), 'Unexpected items in mobile'
         assert self._is_overlap(
             FeaturedApp.objects.tablet(),
-            FeaturedApp.objects.featured(tablet=True)
+            FeaturedApp.objects.featured(tablet=True, cat=either_cat)
         ), 'Unexpected items in tablet'
         assert self._is_overlap(
             FeaturedApp.objects.active(),
-            FeaturedApp.objects.featured()
+            FeaturedApp.objects.featured(cat=either_cat)
         ), 'Inactive items in featured queryset'
-        limited = FeaturedApp.objects.featured(limit=1).count()
+
+    def test_queryset_featured_limit(self):
+        # Does limit appropriately restrict the number of results?
+        limited = FeaturedApp.objects.featured(cat=self.c1, limit=1).count()
         eq_(limited, 1, '%s items returned, only 1 expected' % limited)
+
+        # Does limit fill empty spots with worldwide-featured apps if the
+        # number of apps for the specified region are less than the limit?
+        # Regression test for Bug #842312
+        cat_limited = FeaturedApp.objects.featured(region=mkt.regions.US,
+                                                   cat=self.c1, limit=2)
+        acceptable_regions = [mkt.regions.US.id, mkt.regions.WORLDWIDE.id]
+        eq_(cat_limited.count(), 2,
+            'Queryset smaller than `limit` when `region` is specified')
+        for app in cat_limited:
+            app_regions = (r.region for r in app.regions.all())
+            acceptable = (r in acceptable_regions for r in app_regions)
+            assert any(acceptable), 'App not featured in US or Worldwide'
 
 
 class TestAddonSearch(amo.tests.ESTestCase):
