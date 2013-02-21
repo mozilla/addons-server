@@ -175,6 +175,7 @@ RAVEN_CONFIG = {'dsn': SENTRY_DSN, 'register_signals': True}
 # See mkt/settings.py for more info.
 APP_PURCHASE_KEY = DOMAIN
 APP_PURCHASE_AUD = DOMAIN
+APP_PURCHASE_TYP = 'mozilla-dev/payments/pay/v1'
 APP_PURCHASE_SECRET = private_mkt.APP_PURCHASE_SECRET
 
 # We upgraded to jQuery 1.9.1. Run this command to include jquery-migrate in the JS

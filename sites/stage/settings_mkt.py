@@ -164,4 +164,5 @@ USE_METLOG_FOR_TASTYPIE = True
 # See mkt/settings.py for more info.
 APP_PURCHASE_KEY = DOMAIN
 APP_PURCHASE_AUD = DOMAIN
+APP_PURCHASE_TYP = 'mozilla-stage/payments/pay/v1'
 APP_PURCHASE_SECRET = private_mkt.APP_PURCHASE_SECRET

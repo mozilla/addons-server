@@ -82,3 +82,9 @@ WEBAPPS_RECEIPT_KEY = os.path.join(ROOT, 'mkt/webapps/tests/sample.key')
 # If you want to allow self-reviews for add-ons/apps, then enable this.
 # In production we do not want to allow this.
 ALLOW_SELF_REVIEWS = True
+
+# For Marketplace payments.
+APP_PURCHASE_KEY = 'localhost'
+APP_PURCHASE_AUD = 'localhost'
+APP_PURCHASE_TYP = 'mozilla-local/payments/pay/v1'
+APP_PURCHASE_SECRET = 'This secret must match your webpay SECRET'
