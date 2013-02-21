@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 import hashlib
-import os
-import shutil
 
 from datetime import datetime, timedelta
 from django.conf import settings
@@ -174,7 +172,8 @@ class TestVersion(amo.tests.TestCase):
         assert not Version.with_deleted.filter(addon=addon).exists()
 
     @mock.patch('versions.models.settings.MARKETPLACE', True)
-    def test_version_delete_marketplace(self):
+    @mock.patch('versions.models.storage')
+    def test_version_delete_marketplace(self, storage_mock):
         version = Version.objects.get(pk=81551)
         version.delete()
         addon = Addon.uncached.get(pk=3615)
@@ -182,6 +181,21 @@ class TestVersion(amo.tests.TestCase):
 
         assert not Version.objects.filter(addon=addon).exists()
         assert Version.with_deleted.filter(addon=addon).exists()
+
+        assert not storage_mock.delete.called
+
+    @mock.patch('versions.models.settings.MARKETPLACE', True)
+    @mock.patch('versions.models.storage')
+    def test_packaged_version_delete_marketplace(self, storage_mock):
+        addon = Addon.uncached.get(pk=3615)
+        addon.update(is_packaged=True)
+        version = Version.objects.get(pk=81551)
+        version.delete()
+
+        assert not Version.objects.filter(addon=addon).exists()
+        assert Version.with_deleted.filter(addon=addon).exists()
+
+        assert storage_mock.delete.called
 
     def test_version_delete_files(self):
         version = Version.objects.get(pk=81551)
@@ -828,16 +842,16 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             uploaded_hash = hashlib.md5(f.read()).hexdigest()
         version = Version.from_upload(self.upload, self.addon, platforms)
         assert not storage.exists(self.upload.path), (
-                "Expected original upload to move but it still exists.")
+            "Expected original upload to move but it still exists.")
         files = version.all_files
         eq_(len(files), 2)
         eq_(sorted([f.platform.id for f in files]),
             sorted([p.id for p in platforms]))
         eq_(sorted([f.filename for f in files]),
             [u'delicious_bookmarks-0.1-fx-%s.xpi' % (
-                        amo.PLATFORM_LINUX.shortname),
+                amo.PLATFORM_LINUX.shortname),
              u'delicious_bookmarks-0.1-fx-%s.xpi' % (
-                        amo.PLATFORM_MAC.shortname)])
+                 amo.PLATFORM_MAC.shortname)])
         for file in files:
             with storage.open(file.file_path) as f:
                 eq_(uploaded_hash,

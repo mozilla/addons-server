@@ -188,6 +188,14 @@ class Version(amo.models.ModelBase):
         amo.log(amo.LOG.DELETE_VERSION, self.addon, str(self.version))
         if settings.MARKETPLACE:
             self.update(deleted=True)
+            if self.addon.is_packaged:
+                f = self.all_files[0]
+                # Unlink signed packages if packaged app.
+                storage.delete(f.signed_file_path)
+                log.info(u'Unlinked file: %s' % f.signed_file_path)
+                storage.delete(f.signed_reviewer_file_path)
+                log.info(u'Unlinked file: %s' % f.signed_reviewer_file_path)
+
         else:
             super(Version, self).delete()
 
@@ -422,6 +430,7 @@ class Version(amo.models.ModelBase):
         if not self.files.filter(status=amo.STATUS_BETA).exists():
             qs = File.objects.filter(version__addon=self.addon_id,
                                      version__lt=self.id,
+                                     version__deleted=False,
                                      status__in=[amo.STATUS_UNREVIEWED,
                                                  amo.STATUS_PENDING])
             # Use File.update so signals are triggered.
