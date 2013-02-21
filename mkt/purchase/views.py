@@ -17,7 +17,6 @@ from addons.decorators import (addon_view_factory, can_be_purchased,
 from lib.pay_server import client
 from market.forms import PriceCurrencyForm
 from market.models import AddonPurchase
-from mkt.account.views import preapproval as user_preapproval
 from mkt.webapps.models import Webapp
 import paypal
 from stats.models import ClientData, Contribution
@@ -194,5 +193,7 @@ def purchase(request, addon):
 @login_required
 @addon_view
 def preapproval(request, addon):
+    # This should be deleted, but for the moment lets fix import loop.
+    from mkt.account.views import preapproval as user_preapproval
     return user_preapproval(request, complete=addon.get_detail_url(),
                             cancel=addon.get_detail_url())
