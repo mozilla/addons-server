@@ -1,0 +1,66 @@
+{% extends 'ecosystem/base.html' %}
+{% from "ecosystem/macros.html" import navigation with context %}
+
+{% block title %}
+  {{ hub_page_title(_('Firefox Developer Tools')) }}
+{% endblock %}
+
+{% block extrahead %}
+  {{ css('mkt/ecosystem') }}
+{% endblock %}
+
+{% block content %}
+  <div class="doc-wrapper">
+    {{ navigation('build_dev_tools') }}
+
+    <article>
+      <h1>{{ _('Firefox Developer Tools') }}</h1>
+      <p>
+        {%- trans %}
+          Firefox now ships with a default set of developer tools built
+          from the ground up to ensure a great development experience that
+          is both snappy and efficient. Below are a few of the tools you'll
+          find useful as you develop apps for mobile versions of the Firefox
+          browser and Firefox OS.
+        {% endtrans -%}
+      </p>
+      <h3>{{ _('Page Inspector') }}</h3>
+      <p>
+        {%- trans %}
+          Select DOM elements in your app's web page for inspection or live
+          modification of their styles, attributes, and structure.
+        {% endtrans -%}
+      </p>
+      <h3>{{ _('Responsive Mode') }}</h3>
+      <p>
+        {%- trans %}
+          View your web app in different screen dimensions commonly found on
+          devices today, or enter your own user-defined dimensions to test.
+          You can also change screen orientation to better understand how
+          your device will respond.
+        {% endtrans -%}
+      </p>
+      <h3>{{ _('Style Editor') }}</h3>
+      <p>
+        {%- trans %}
+          Edit your styles in real-time in a dedicated CSS style editor.
+          Features include: toggling on/off styles, rules, and pseudo
+          selectors, creation of new style sheets that are applied instantly
+          to the page you're editing, and the ability to save any of your
+          CSS style changes to a local file.
+        {% endtrans -%}
+      </p>
+      <p>
+        {%- trans url='https://addons.mozilla.org/en-US/firefox/addon/firebug' %}
+          For other features not currently included in Firefox's built-in
+          developer tools, please download the <a href="{{ url }}">Firebug
+          add-on</a>.
+        {% endtrans -%}
+      </p>
+      <h2>{{ _('See also') }}</h2>
+      <p>
+        <a href="{{ url('ecosystem.build_tools') }}">{{ _('Tools') }}</a>
+      </p>
+    </article>
+  </div>
+{% endblock %}

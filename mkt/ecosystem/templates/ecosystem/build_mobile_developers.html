@@ -1,0 +1,209 @@
+{% extends 'ecosystem/base.html' %}
+{% from "ecosystem/macros.html" import navigation with context %}
+
+{% block title %}
+  {{ hub_page_title(_('For Current Mobile Developers')) }}
+{% endblock %}
+
+{% block extrahead %}
+  {{ css('mkt/ecosystem') }}
+{% endblock %}
+
+{% block content %}
+  <div class="doc-wrapper">
+    {{ navigation('build_mobile_developers') }}
+
+    <article>
+      <h1>{{ _('For Current Mobile Developers') }}</h1>
+      <h2>{{ _('Advantages') }}</h2>
+      <p>
+        {%- trans %}
+          For mobile application developers, the Open Web Apps project
+          offers these advantages:
+        {% endtrans -%}
+      </p>
+      <ul>
+        <li>
+          {%- trans %}
+            <strong>Simplicity</strong>: Develop on a single technology
+            stack (HTML5/CSS/JavaScript) and deliver across all platforms,
+            from smartphones to tablets to desktops.
+          {% endtrans -%}
+        </li>
+        <li>
+          {%- trans %}
+            <strong>Standards</strong>: The technology stack is defined by
+            standards bodies (W3C and Ecma) that operate in the open, rather
+            than by particular technology or platform vendors.
+          {% endtrans -%}
+        </li>
+        <li>
+          {%- trans %}
+            <strong>Freedom</strong>: You're not locked in to a
+            vendor-controlled ecosystem. You can distribute your app through
+            the Firefox OS Marketplace, your own website, or any other store
+            based on Mozilla's open app store technology.
+          {% endtrans -%}
+        </li>
+        <li>
+          {%- trans %}
+            <strong>Reach</strong>: You have the potential to reach Firefox's
+            450 million desktop users, as well as users of other desktop
+            browsers and mobile users.
+          {% endtrans -%}
+        </li>
+      </ul>
+      <h2>{{ _('Steps to developing a Web app') }}</h2>
+      <dl>
+        <dt>{{ _('1. Develop your app using open Web technologies.') }}</dt>
+        <dd>
+          {%- trans url_learn='//developer.mozilla.org/learn',
+                    url_mobile='http://www.lukew.com/ff/entry.asp?933' %}
+            You probably already know at least a bit about HTML, CSS, and
+            JavaScript. The <a href="{{ url_learn }}">Learn</a> section of
+            this website has resources to help you ramp up even more. As a
+            mobile app developer, you already have a
+            <a rel="external" href="{{ url_mobile }}">Mobile First</a>
+            approach to Web design.
+          {% endtrans -%}
+        </dd>
+        <dt>
+          {%- trans url='//developer.mozilla.org/docs/Apps/Manifest' %}
+            2. Add an <a href="{{ url }}">app manifest</a>.
+          {% endtrans -%}
+        </dt>
+        <dd>
+          {%- trans %}
+            All that inherently separates a Web app from a normal website is
+            a single, JSON-format text file.
+          {% endtrans -%}
+        </dd>
+        <dt>
+          {%- trans %}
+            3. Publish the app, either on your own site or in an app store
+            (or both).
+          {% endtrans -%}
+        </dt>
+        <dd>
+          {%- trans url='//developer.mozilla.org/docs/JavaScript_API' %}
+            Publishing it yourself requires <a href="{{ url }}">adding some
+            code to your site to manage installing and updating the app</a>
+            in users' browsers.
+          {% endtrans -%}
+        </dd>
+      </dl>
+      <h2>{{ _('Optional features') }}</h2>
+      <p>
+        {%- trans url='//developer.mozilla.org/docs/Apps/Apps_architecture#Web_runtime' %}
+          <em>Philosophically</em>, the idea of an installable Open Web app
+          is much more than simply adding a manifest to your site. Web
+          standards technologies can be viewed as a full-blown application
+          platform that happens to use a browser engine for rendering user
+          interfaces and interpreting code, and happens to use Web protocols
+          for communicating with a server. Mozilla offers
+          &quot;<a href="{{ url }}">Web runtime</a>&quot; executables for
+          various platforms so that apps can run in their own window, without
+          a browser window frame.
+        {% endtrans -%}
+      </p>
+      <p>
+        {%- trans %}
+          To &quot;appify&quot; a website, there are many
+          application-specific questions to consider:
+        {% endtrans -%}
+      </p>
+      <ul>
+        <li>{{ _('Should my app work when not connected to the Web?') }}</li>
+        <li>
+          {%- trans %}
+            How does my app use data, and how does it need to be stored?
+          {% endtrans -%}
+        </li>
+        <li>
+          {%- trans url_workers='//developer.mozilla.org/docs/Using_web_workers',
+                    url_sockets='//developer.mozilla.org/docs/WebSockets' %}
+            Can my app's performance benefit from advanced platform features
+            like <a href="{{ url_workers }}">Web Workers</a> or
+            <a href="{{ url_sockets }}">WebSockets</a>?
+          {% endtrans -%}
+        </li>
+        <li>{{ _('And many more') }}</li>
+      </ul>
+      <p>
+        {%- trans %}
+          If you want to take full advantage of the capabilities of
+          installable apps, there is plenty that you can do. For example:
+        {% endtrans -%}
+      </p>
+      <ul>
+        <li>
+          {%- trans url='//developer.mozilla.org/docs/Web_Development/Responsive_Web_design' %}
+            Use <a href="{{ url }}">responsive Web design</a> to look good
+            and work well on all devices.
+          {% endtrans -%}
+        </li>
+        <li>{{ _('Charge money for apps.') }}</li>
+        <li>
+          {%- trans url='//developer.mozilla.org/docs/Apps/Identity_integration' %}
+            Provide a way to <a href="{{ url }}">identify users</a>.
+          {% endtrans -%}
+        </li>
+        <li>
+          {%- trans url='//developer.mozilla.org/docs/Apps/Using_apps_offline' %}
+            <a href="{{ url }}">Enable offline caching</a> so the app can be
+            used when the device is not on the Internet.
+          {% endtrans -%}
+        </li>
+        <li>
+          {%- trans url_idx='//developer.mozilla.org/docs/IndexedDB',
+                    url_storage='//developer.mozilla.org/docs/DOM/Storage' %}
+            Store data locally using either
+            <a href="{{ url_idx }}">IndexedDB</a> or
+            <a href="{{ url_storage }}">localStorage</a>.
+          {% endtrans -%}
+        </li>
+        <li>
+          {%- trans url='//developer.mozilla.org/docs/Apps/Platform-specific_details' %}
+            <a href="{{ url }}">Launch the app</a> natively (with an icon on
+            the desktop or the home screen).
+          {% endtrans -%}
+        </li>
+        <li>
+          {%- trans url_geo='//developer.mozilla.org/docs/Using_geolocation',
+                    url_motion='//developer.mozilla.org/docs/DOM/Orientation_and_motion_data_explained' %}
+            Use device APIs to interact with hardware, such as
+            <a href="{{ url_geo }}">geolocation</a> and
+            <a href="{{ url_motion }}">orientation</a>.
+          {% endtrans -%}
+        </li>
+        <li>
+          {%- trans %}
+            Give users a way to give you feedback. Mozilla's user research
+            shows that users want to give feedback to app developers, and
+            want to know that there is a human receiving it. They want to
+            make suggestions and get help with problems. They may stop using
+            an app if they have a problem and there is no way to get help
+            with it.
+          {% endtrans -%}
+        </li>
+      </ul>
+      <h2>{{ _('Useful technologies') }}</h2>
+      <p>
+        {%- trans url='//developer.mozilla.org/docs/Apps/For_Web_developers#Useful_technologies' %}
+          See <a href="{{ url }}">Useful technologies</a>.
+        {% endtrans -%}
+      </p>
+      <h2>{{ _('See also') }}</h2>
+      <ul>
+        <li>
+          <a href="http://smus.com/mobile-web-app-tech-stack">
+            {{- _('A mobile Web application stack') }}</a>
+        </li>
+        <li>
+          <a href="//developer.mozilla.org/docs/Apps/Apps_for_Android">
+            {{- _('Open Web Apps for Android') }}</a>
+        </li>
+      </ul>
+    </article>
+  </div>
+{% endblock %}

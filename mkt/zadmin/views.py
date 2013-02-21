@@ -17,8 +17,6 @@ from amo.utils import chunked
 from zadmin.decorators import admin_required
 
 import mkt
-from mkt.ecosystem.tasks import refresh_mdn_cache, tutorials
-from mkt.ecosystem.models import MdnCache
 from mkt.webapps.models import Webapp
 from mkt.webapps.tasks import update_manifests
 from mkt.zadmin.models import (FeaturedApp, FeaturedAppCarrier,
@@ -32,22 +30,6 @@ from mkt.zadmin.models import (FeaturedApp, FeaturedAppCarrier,
                           ('FeaturedApps', '%')])
 def featured_apps_admin(request):
     return jingo.render(request, 'zadmin/featuredapp.html')
-
-
-@admin_required
-def ecosystem(request):
-    if request.method == 'POST':
-        refresh_mdn_cache()
-        amo.messages.success(request, 'Refreshed MDN ecosystem pages.')
-        return redirect(request.path)
-
-    pages = MdnCache.objects.all()
-    ctx = {
-        'pages': pages,
-        'tutorials': tutorials
-    }
-
-    return jingo.render(request, 'zadmin/ecosystem.html', ctx)
 
 
 @any_permission_required([('Admin', '%'),

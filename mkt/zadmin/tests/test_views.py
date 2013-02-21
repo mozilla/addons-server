@@ -20,20 +20,6 @@ from mkt.zadmin.models import (FeaturedApp, FeaturedAppCarrier,
                                FeaturedAppRegion)
 
 
-class TestEcosystem(amo.tests.TestCase):
-    fixtures = ['base/users']
-
-    def setUp(self):
-        self.url = reverse('mkt.zadmin.ecosystem')
-
-    def test_staff_access(self):
-        user = UserProfile.objects.get(email='regular@mozilla.com')
-        self.grant_permission(user, 'AdminTools:View')
-        self.client.login(username='regular@mozilla.com', password='password')
-        res = self.client.get(self.url)
-        eq_(res.status_code, 200)
-
-
 class TestGenerateError(amo.tests.TestCase):
     fixtures = ['base/users']
 

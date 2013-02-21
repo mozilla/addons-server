@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.conf import settings
 from django.http import Http404
 from django.shortcuts import get_object_or_404, redirect
@@ -10,30 +11,15 @@ from tower import ugettext as _
 
 from amo import messages
 from mkt.developers.forms import DevNewsletterForm
-from mkt.ecosystem.tasks import refresh_mdn_cache
 from mkt.site import messages
-
-from .models import MdnCache
-from .tasks import locales
 
 
 log = commonware.log.getLogger('z.ecosystem')
 
 
-def _refresh_mdn(request):
-    if settings.MDN_LAZY_REFRESH and 'refresh' in request.GET:
-        # If you can delay this, please teach me. I give up.
-        refresh_mdn_cache()
-        messages.success(request,
-            'Pulling new content from MDN. Please check back in a few minutes.'
-            ' Thanks for all your awesome work! Devs appreciate it!')
-
-
 @anonymous_csrf
 def landing(request):
     """Developer Hub landing page."""
-    _refresh_mdn(request)
-
     videos = [
         {
             'name': 'airbnb',
@@ -153,7 +139,7 @@ def publish_packaged(request):
   <p>Packaged app installation page</p>
   <script>
     // This URL must be a full url.
-    var manifestUrl = 'http://<strong><server-ip></strong>/package.manifest';
+    var manifestUrl = 'http://<server-ip>/package.manifest';
     var req = navigator.mozApps.installPackage(manifestUrl);
     req.onsuccess = function() {
       alert(this.result.origin);
@@ -208,36 +194,182 @@ def publish_packaged(request):
     return jingo.render(request, 'ecosystem/publish_packaged.html', d)
 
 
-def documentation(request, page=None):
-    """Page template for all content that is extracted from MDN's API."""
-    _refresh_mdn(request)
-
-    if not page:
-        page = 'html5'
-
-    locale = 'en-US'
-
-    if request.LANG in locales:
-        locale = request.LANG
-
-    try:
-        data = MdnCache.objects.get(name=page, locale=locale)
-    except MdnCache.DoesNotExist:
-        data = get_object_or_404(MdnCache, name=page, locale='en-US')
-
-    ctx = {
-        'page': page,
-        'title': data.title,
-        'content': data.content,
-        'category': 'build'
+def build_quick(request):
+    """Build - Quick Start page."""
+    manifest_sample = u'''
+{
+    "version": "0.1",
+    "name": "Your App",
+    "description": "Your new awesome Open Web App",
+    "launch_path": "/index.html",
+    "icons": {
+        "16": "/img/icons/mortar-16.png",
+        "48": "/img/icons/mortar-48.png",
+        "128": "/img/icons/mortar-128.png"
+    },
+    "developer": {
+        "name": "Your Name",
+        "url": "http://yourawesomeapp.com"
+    },
+    "installs_allowed_from": ["*"],
+    "locales": {
+        "es": {
+            "description": "Su nueva aplicación impresionante Open Web",
+            "developer": {
+                "url": "http://yourawesomeapp.com"
+            }
+        },
+        "it": {
+            "description": "Il vostro nuovo fantastico Open Web App",
+            "developer": {
+                "url": "http://yourawesomeapp.com"
+            }
+        }
+    },
+    "default_locale": "en",
+    "permissions": {
+        "systemXHR": {}
     }
+}
+'''
+    css_sample = u'''
+/* The following are examples of different CSS media queries */
 
-    return jingo.render(request, 'ecosystem/documentation.html', ctx)
+/* Basic desktop/screen width sniff */
+@media only screen and (min-width : 1224px) {
+  /* styles */
+}
+
+/* Traditional iPhone width */
+@media
+  only screen and (-webkit-min-device-pixel-ratio : 1.5),
+  only screen and (min-device-pixel-ratio : 1.5) {
+  /* styles */
+}
+
+/* Device settings at different orientations */
+@media screen and (orientation:portrait) {
+  /* styles */
+}
+@media screen and (orientation:landscape) {
+  /* styles */
+}
+'''
+    html_sample = u'''
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>My App</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+
+    <!-- Place favicon.ico in the root directory -->
+
+    <link rel="stylesheet" href="css/app.css">
+  </head>
+  <body>
+    <!-- Use this installation button to install locally without going
+         through the marketpace (see app.js) -->
+    <button id="install-btn">Install</button>
+
+    <!-- Write your application here -->
 
 
-def app_generator_documentation(request):
-    """App Generator page."""
 
+    <!-- Using require.js, a module system for javascript, include the
+         js files. This loads "main.js", which in turn can load other
+         files, all handled by require.js:
+         http://requirejs.org/docs/api.html#jsfiles -->
+    <script type="text/javascript" data-main="js/init.js" src="js/lib/require.js"></script>
+  </body>
+</html>
+'''
+    feature_sample = u'''
+// If this device supports the vibrate API...
+if('vibrate' in navigator) {
+    // ... vibrate for a second
+    navigator.vibrate(1000);
+}
+'''
+
+    battery_sample = u'''
+// Create the battery indicator listeners
+(function() {
+  var battery = navigator.battery || navigator.mozBattery || navigator.webkitBattery,
+      indicator, indicatorPercentage;
+
+  if(battery) {
+    indicator = document.getElementById('indicator'),
+    indicatorPercentage = document.getElementById('indicator-percentage');
+
+    // Set listeners for changes
+    battery.addEventListener('chargingchange', updateBattery);
+    battery.addEventListener('levelchange', updateBattery);
+
+    // Update immediately
+    updateBattery();
+  }
+
+  function updateBattery() {
+    // Update percentage width and text
+    var level = (battery.level * 100) + '%';
+    indicatorPercentage.style.width = level;
+    indicatorPercentage.innerHTML = 'Battery: ' + level;
+    // Update charging status
+    indicator.className = battery.charging ? 'charging' : '';
+  }
+})();
+'''
+
+    webrt_sample = u'''
+// New key in the manifest: "permissions"
+// Request access to any number of APIs
+// Here we request permissions to the systemXHR API
+"permissions": {
+    "systemXHR": {}
+}
+'''
+    d = {
+        'page': 'build_quick',
+        'category': 'build',
+        'manifest_sample': manifest_sample,
+        'css_sample': css_sample,
+        'html_sample': html_sample,
+        'feature_sample': feature_sample,
+        'battery_sample': battery_sample,
+        'webrt_sample': webrt_sample
+    }
+    return jingo.render(request, 'ecosystem/build_quick.html', d)
+
+
+def build_intro(request):
+    """Build - Intro to Open Web apps page."""
+    return jingo.render(request, 'ecosystem/build_intro.html',
+           {'page': 'build_intro', 'category': 'build'})
+
+
+def build_reference(request):
+    """Build - Reference apps page."""
+    return jingo.render(request, 'ecosystem/build_reference.html',
+           {'page': 'build_reference', 'category': 'build'})
+
+
+def build_ffos(request):
+    """Build - Firefox OS page."""
+    return jingo.render(request, 'ecosystem/build_ffos.html',
+           {'page': 'build_ffos', 'category': 'build'})
+
+
+def build_manifests(request):
+    """Build - Intro to Manifests page."""
+    return jingo.render(request, 'ecosystem/build_manifests.html',
+           {'page': 'build_manifests', 'category': 'build'})
+
+
+def build_app_generator(request):
+    """Build - App Generator page."""
     app_generators = [
         {
             'css_name': 'app-stub',
@@ -301,14 +433,48 @@ def app_generator_documentation(request):
         }
     ]
 
-    ctx = {
-        'page': 'app_generator',
-        'title': _('App Generator'),
+    d = {
+        'page': 'build_app_generator',
         'category': 'build',
         'app_generators': app_generators
     }
+    return jingo.render(request, 'ecosystem/build_app_generator.html', d)
 
-    return jingo.render(request, 'ecosystem/app_generator.html', ctx)
+
+def build_tools(request):
+    """Build - Tools page."""
+    return jingo.render(request, 'ecosystem/build_tools.html',
+           {'page': 'build_tools', 'category': 'build'})
+
+
+def build_game_apps(request):
+    """Build - Developer Game Apps page."""
+    return jingo.render(request, 'ecosystem/build_game_apps.html',
+           {'page': 'build_game_apps', 'category': 'build'})
+
+
+def build_apps_offline(request):
+    """Build - Apps Offline page."""
+    return jingo.render(request, 'ecosystem/build_apps_offline.html',
+           {'page': 'build_apps_offline', 'category': 'build'})
+
+
+def build_mobile_developers(request):
+    """Build - Mobile Developers page."""
+    return jingo.render(request, 'ecosystem/build_mobile_developers.html',
+           {'page': 'build_mobile_developers', 'category': 'build'})
+
+
+def build_web_developers(request):
+    """Build - Web Developers page."""
+    return jingo.render(request, 'ecosystem/build_web_developers.html',
+           {'page': 'build_web_developers', 'category': 'build'})
+
+
+def build_dev_tools(request):
+    """Build - Developer Tools page."""
+    return jingo.render(request, 'ecosystem/build_dev_tools.html',
+           {'page': 'build_dev_tools', 'category': 'build'})
 
 
 def apps_documentation(request, page=None):

@@ -1,0 +1,119 @@
+{% extends 'ecosystem/base.html' %}
+{% from "ecosystem/macros.html" import navigation with context %}
+
+{% block title %}
+  {{ hub_page_title(_('Using Apps Offline')) }}
+{% endblock %}
+
+{% block extrahead %}
+  {{ css('mkt/ecosystem') }}
+{% endblock %}
+
+{% block content %}
+  <div class="doc-wrapper">
+    {{ navigation('build_apps_offline') }}
+
+    <article>
+      <h1>{{ _('Using Apps Offline') }}</h1>
+      <p>
+        {%- trans %}
+          The ability to use apps when not connected to the Internet is
+          especially important for mobile devices, which may wander out of
+          coverage areas. But it also matters for desktop systems, the common
+          example being use on an airplane that lacks WiFi.
+        {% endtrans -%}
+      </p>
+      <p>
+        {%- trans %}
+          Several strategies and technologies can help ensure a good offline
+          experience:
+        {% endtrans -%}
+      </p>
+      <ul>
+        <li>
+          <a href="#application_cache">{{ _('Application cache') }}</a>
+        </li>
+        <li>
+          <a href="#checking_connectivity">
+            {{- _('Checking connectivity') }}</a>
+        </li>
+        <li>
+          <a href="//developer.mozilla.org/docs/DOM/Storage">
+            {{- _('Local storage') }}</a>
+        </li>
+        <li>
+          <a href="//developer.mozilla.org/docs/IndexedDB">
+            {{- _('IndexedDB') }}</a>
+        </li>
+      </ul>
+      <h2 id="application_cache">{{ _('Application cache') }}</h2>
+      <p>
+        {%- trans %}
+          The primary way to make an app work offline is with an application
+          cache, which stores resources for the app on the client system so
+          that they are available even when the Internet is not.
+        {% endtrans -%}
+      </p>
+      <ul>
+        <li>
+          <a href="//developer.mozilla.org/docs/HTML/Using_the_application_cache">
+            {{- _('Using the application cache') }}</a>
+        </li>
+        <li>
+          <a rel="external"
+             href="http://dev.w3.org/html5/spec/offline.html">
+             {{- _('W3C specification for offline Web applications') }}</a>
+        </li>
+      </ul>
+      <h2 id="checking_connectivity">{{ _('Checking connectivity') }}</h2>
+      <p>
+        {%- trans %}
+          A key factor in working well offline is to check whether the device
+          has connectivity and respond appropriately when it doesn't. Even a
+          message to the user that the app won't work offline is better than
+          getting stuck, or getting a generic time-out error.
+        {% endtrans -%}
+      </p>
+      <p>
+        {%- trans url='//developer.mozilla.org/docs/DOM/window.navigator.onLine' %}
+          The simplest way to do this is to check, and listen for changes to,
+          the <a href="{{ url }}"><code>window.navigator.onLine</code></a>
+          property. However, that value is not guaranteed to be accurate.
+        {% endtrans -%}
+      </p>
+      <p>
+        {%- trans url='//developer.mozilla.org/docs/DOM/XMLHttpRequest/Using_XMLHttpRequest' %}
+          If you are using <a href="{{ url }}">XMLHttpRequest</a> to update
+          data dynamically, you can check its response to determine if the
+          network connection has dropped during the use of your app.
+        {% endtrans -%}
+      </p>
+      <p>
+        {%- trans url='//developer.mozilla.org/docs/Online_and_offline_events' %}
+          See also <a href="{{ url }}">Online and offline events</a>.
+        {% endtrans -%}
+      </p>
+      <h2>{{ _('Resources') }}</h2>
+      <ul>
+        <li>
+          <a rel="external"
+             href="http://www.html5rocks.com/en/mobile/workingoffthegrid.html">
+             {{ _('Working off the grid with HTML5 offline') }}</a>
+        </li>
+        <li>
+          <a rel="external"
+             href="http://www.html5rocks.com/en/tutorials/offline/whats-offline">
+            {%- trans %}
+              &quot;Offline&quot;: What does it mean and why do I care?
+            {% endtrans -%}
+          </a>
+        </li>
+        <li>
+          <a rel="external"
+             href="http://diveintohtml5.info/offline.html">
+            {{- _("Dive into HTML5: Let's take this offline") }}</a>
+        </li>
+      </ul>
+    </article>
+  </div>
+{% endblock %}

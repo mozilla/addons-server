@@ -1,0 +1,129 @@
+{% extends 'ecosystem/base.html' %}
+{% from "ecosystem/macros.html" import navigation with context %}
+
+{% block title %}
+  {{ hub_page_title(_('Developing Game Apps')) }}
+{% endblock %}
+
+{% block extrahead %}
+  {{ css('mkt/ecosystem') }}
+{% endblock %}
+
+{% block content %}
+  <div class="doc-wrapper">
+    {{ navigation('build_game_apps') }}
+
+    <article>
+      <h1>{{ _('Developing Game Apps') }}</h1>
+      <p>
+        {%- trans %}
+          These references and guides provide information useful to
+          developers creating game apps using open Web technologies.
+        {% endtrans -%}
+      </p>
+      <h2>{{ _('Guides for game developers') }}</h2>
+      <dl>
+        <dt>
+          <a href="//developer.mozilla.org/docs/Apps/Games/Special_considerations">
+            {{- _('Special considerations for game developers') }}</a>
+        </dt>
+        <dd>
+          {%- trans %}
+            Things you should keep in mind while designing and
+            developing your game as a Web app.
+          {% endtrans -%}
+        </dd>
+      </dl>
+      <h2>{{ _('Resources for game developers') }}</h2>
+      <dl>
+        <dt>
+          <a href="//developer.mozilla.org/docs/Apps/Games/Engines_and_tools">
+            {{ _('Game engines and tools') }}</a>
+        </dt>
+        <dd>
+          {%- trans %}
+            Links to useful libraries, game engines, and utilities that can
+            help you create your game app.
+          {% endtrans -%}
+        </dd>
+      </dl>
+      <p>
+        <a href="//developer.mozilla.org/docs/tag/Games">
+          {{- _('View All...') }}</a>
+      </p>
+      <h2>{{ _('Technology reference documentation') }}</h2>
+      <ul>
+        <li>
+          <a href="//developer.mozilla.org/docs/CSS">{{ _('CSS') }}</a>
+        </li>
+        <li>
+          <a href="//developer.mozilla.org/docs/DOM">{{ _('DOM') }}</a>
+        </li>
+        <li>
+          <a href="//developer.mozilla.org/docs/HTML">{{ _('HTML') }}</a>
+        </li>
+        <li>
+          <a href="//developer.mozilla.org/docs/JavaScript">
+            {{- _('JavaScript') }}</a>
+        </li>
+        <li>
+          <a href="//developer.mozilla.org/docs/WebAPI">{{ _('WebAPI') }}</a>
+        </li>
+        <li>
+          <a href="//developer.mozilla.org/docs/WebGL">{{ _('WebGL') }}</a>
+        </li>
+        <li>
+          <a href="//developer.mozilla.org/docs/SVG">{{ _('SVG') }}</a>
+        </li>
+      </ul>
+      <h2>{{ _('Getting help from the community') }}</h2>
+      <p>
+        {%- trans %}
+          If you still aren't sure how to do what you're trying to get done,
+          feel free to join the conversation!
+        {% endtrans -%}
+      </p>
+      <ul>
+        <li>{{ _('Consult the webapps forum:') }}<ul>
+        <li>
+          <a href="https://lists.mozilla.org/listinfo/dev-webapps">
+            {{- _('as a mailing list') }}</a>
+        </li>
+        <li>
+          <a href="news://news.mozilla.org/mozilla.dev.webapps">
+            {{- _('as a newsgroup') }}</a>
+        </li>
+        <li>
+          <a href="http://groups.google.com/group/mozilla.dev.webapps">
+            {{- _('as a Google Group') }}</a>
+        </li>
+        <li>
+          <a href="http://groups.google.com/group/mozilla.dev.webapps/feeds">
+            {{- _('as a Web feed') }}</a>
+        </li>
+      </ul>
+      <p>
+        {%- trans url='irc://irc.mozilla.org/openwebapps' %}
+          Ask your question on the Open Web Apps IRC channel:
+          <a href="{{ url }}">#openwebapps</a>
+        {% endtrans -%}
+      </p>
+      <h2>{{ _('Tools for app developers') }}</h2>
+      <ul>
+        <li>
+          <a href="//developer.mozilla.org/docs/Mozilla/Firefox_OS/Using_Firefox_OS_Simulator">
+            {{- _('Firefox OS Simulator') }}</a>
+        </li>
+        <li>
+          <a href="//developer.mozilla.org/docs/Apps/App_developer_tools">
+            {{- _('App developer tools') }}</a>
+        </li>
+      </ul>
+      <p>
+        <a rel="external"
+           href="http://www.catb.org/~esr/faqs/smart-questions.html">
+          {{- _("Don't forget about the <em>netiquette</em>...</a>") }}</a>
+      </p>
+    </article>
+  </div>
+{% endblock %}

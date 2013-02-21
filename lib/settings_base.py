@@ -1223,6 +1223,7 @@ CSP_FRAME_SRC = ("https://s3.amazonaws.com",
                  "https://ssl.google-analytics.com",
                  "https://login.persona.org",
                  "https://native-persona.org",
+                 "https://www.youtube.com",
                 )
 CSP_FONT_SRC = ("'self'", "fonts.mozilla.org", "www.mozilla.org",)
 # self is needed for paypal which sends x-frame-options:allow when needed.

@@ -1,0 +1,123 @@
+{% extends 'ecosystem/base.html' %}
+{% from "ecosystem/macros.html" import navigation with context %}
+
+{% block title %}
+  {{ hub_page_title(_('Intro to Firefox OS')) }}
+{% endblock %}
+
+{% block extrahead %}
+  {{ css('mkt/ecosystem') }}
+{% endblock %}
+
+{% block content %}
+  <div class="doc-wrapper">
+    {{ navigation('build_ffos') }}
+
+    <article>
+      <h1>{{ _('Intro to Firefox OS') }}</h1>
+      <p>
+        {%- trans url_html='//developer.mozilla.org/docs/HTML',
+                  url_js='//developer.mozilla.org/docs/JavaScript' %}
+          Firefox OS is a new mobile operating system developed by Mozilla's
+          Boot to Gecko (B2G) project. It uses a Linux kernel and boots into
+          a Gecko-based runtime engine, which lets users run applications
+          developed entirely using <a href="{{ url_html }}">HTML</a>,
+          <a href="{{ url_js }}">JavaScript</a>, and other open web
+          application APIs.
+        {% endtrans -%}
+      </p>
+      <p>
+        {%- trans %}
+          Firefox OS is currently under heavy development; we are constantly
+          working on ways to make it easier for you to use and hack on Gaia
+          and create apps. However, you need knowledge about systems in order
+          to do things like build the entire Firefox OS stack, or flash a
+          phone with a build of Firefox OS. Linked below are guides meant for
+          Web developers interested in running and making changes to Gaia or
+          developing apps to run on Firefox OS devices.
+        {% endtrans -%}
+      </p>
+      <h2>{{ _('Documentation about Firefox OS') }}</h2>
+      <h3>
+        <a href="//developer.mozilla.org/docs/Mozilla/Firefox_OS/Introduction">
+          Introduction to Firefox OS
+        </a>
+      </h3>
+      <p>
+        {%- trans %}
+          Introductory information about what Firefox OS is and how it works.
+        {% endtrans -%}
+      </p>
+      <h3>
+        <a href="//developer.mozilla.org/docs/Mozilla/Firefox_OS/Apps">
+          Writing apps for Firefox OS
+        </a>
+      </h3>
+      <p>{{ _('Documentation about creating Firefox OS applications.') }}</p>
+      <h3>
+        <a href="//developer.mozilla.org/docs/Mozilla/Firefox_OS/Platform">
+          The Firefox OS platform
+        </a>
+      </h3>
+      <p>
+        {%- trans %}
+          Documentation about the Firefox OS platform, including Gonk, Gaia,
+          and everything in between. This includes documentation for
+          building and installing the platform onto devices, as well as
+          building the simulator and emulators.
+        {% endtrans -%}
+      </p>
+      <h3>
+        <a href="//developer.mozilla.org/docs/Mozilla/Firefox_OS/Security">
+          Security
+        </a>
+      </h3>
+      <p>
+        {%- trans %}
+          Documentation about security in Firefox OS; this includes topics
+          about security devices from every perspective: for app developers,
+          device integrators, and so forth.
+        {% endtrans -%}
+      </p>
+      <h3>
+        <a href="//developer.mozilla.org/docs/Mozilla/Firefox_OS/Performance">
+          Performance
+        </a>
+      </h3>
+      <p>{{ _('Articles about optimizing Firefox OS applications.') }}</p>
+      <h3>
+        <a href="//developer.mozilla.org/docs/Mozilla/Firefox_OS/Troubleshooting">
+          Troubleshooting
+        </a>
+      </h3>
+      <p>{{ _('A guide to resolving common problems with Firefox OS.') }}</p>
+      <h3>
+        <a href="//developer.mozilla.org/docs/Mozilla/Firefox_OS/Debugging">
+          Debugging on Firefox OS
+        </a>
+      </h3>
+      <p>
+        {%- trans %}
+          A guide to debugging both your mobile apps and Firefox OS itself.
+        {% endtrans -%}
+      </p>
+      <h3>
+        <a href="//developer.mozilla.org/docs/Mozilla/Firefox_OS/Boot_to_Gecko_developer_phone_guide">
+          Firefox OS developer phone guide
+        </a>
+      </h3>
+      <p>
+        {%- trans %}
+          A guide to the Firefox OS developer phones Mozilla provides to some
+          developers. This guide also applies if someone installed Firefox
+          OS on your phone for you.
+        {% endtrans -%}
+      </p>
+      <p>
+        <a href="//developer.mozilla.org/docs/tag/B2G">
+          {{- _('View all...') -}}
+        </a>
+      </p>
+    </article>
+  </div>
+{% endblock %}

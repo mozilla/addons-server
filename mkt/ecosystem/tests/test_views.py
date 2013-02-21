@@ -7,7 +7,6 @@ from pyquery import PyQuery as pq
 
 import amo.tests
 from amo.urlresolvers import reverse
-from mkt.ecosystem.models import MdnCache
 
 
 class TestLanding(amo.tests.TestCase):
@@ -23,24 +22,6 @@ class TestLanding(amo.tests.TestCase):
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         self.assertTemplateUsed(r, 'ecosystem/landing.html')
-
-    @mock.patch.object(settings, 'MDN_LAZY_REFRESH', True)
-    @mock.patch('mkt.ecosystem.views.refresh_mdn_cache')
-    def test_tutorials_refresh(self, mock_):
-        self.client.get(self.url)
-        assert not mock_.called
-
-        self.client.get(self.url, {'refresh': '1'})
-        assert mock_.called
-
-    @mock.patch.object(settings, 'MDN_LAZY_REFRESH', False)
-    @mock.patch('mkt.ecosystem.views.refresh_mdn_cache')
-    def test_tutorials_refresh_disabled(self, mock_):
-        self.client.get(self.url)
-        assert not mock_.called
-
-        self.client.get(self.url, {'refresh': '1'})
-        assert not mock_.called
 
     @mock.patch('basket.subscribe')
     def test_newsletter_form_valid(self, subscribe_mock):
@@ -138,44 +119,62 @@ class TestDevHub(amo.tests.TestCase):
         eq_(r.status_code, 200)
         self.assertTemplateUsed(r, 'ecosystem/publish_packaged.html')
 
-
-class TestMdnDocumentation(amo.tests.TestCase):
-    fixtures = ['ecosystem/mdncache-item']
-
-    def setUp(self):
-        self.url = reverse('ecosystem.documentation')
-
-    def test_mdn_content_default(self):
-        r = self.client.get(self.url)
+    def test_build_quick(self):
+        r = self.client.get(reverse('ecosystem.build_quick'))
         eq_(r.status_code, 200)
-        self.assertTemplateUsed(r, 'ecosystem/documentation.html')
+        self.assertTemplateUsed(r, 'ecosystem/build_quick.html')
 
-    def test_mdn_content_design(self):
-        r = self.client.get(reverse('ecosystem.documentation',
-                            args=['principles']))
+    def test_build_intro(self):
+        r = self.client.get(reverse('ecosystem.build_intro'))
         eq_(r.status_code, 200)
-        self.assertTemplateUsed(r, 'ecosystem/documentation.html')
+        self.assertTemplateUsed(r, 'ecosystem/build_intro.html')
 
-    def test_mdn_content_explicit(self):
-        r = self.client.get(self.url + 'old')
+    def test_build_reference(self):
+        r = self.client.get(reverse('ecosystem.build_reference'))
         eq_(r.status_code, 200)
-        self.assertTemplateUsed(r, 'ecosystem/documentation.html')
+        self.assertTemplateUsed(r, 'ecosystem/build_reference.html')
 
-    def test_mdn_content_unknown(self):
-        r = self.client.get(self.url + 'pizza')
-        eq_(r.status_code, 404)
-        self.assertTemplateUsed(r, 'site/404.html')
-
-    def test_mdn_article_with_missing_locale(self):
-        r = self.client.get(self.url, HTTP_ACCEPT_LANGUAGE='pt-BR')
+    def test_build_ffos(self):
+        r = self.client.get(reverse('ecosystem.build_ffos'))
         eq_(r.status_code, 200)
-        eq_(pq(r.content)('html').attr('lang'), 'pt-BR')
+        self.assertTemplateUsed(r, 'ecosystem/build_ffos.html')
 
-    def test_mdn_content_content(self):
-        a = MdnCache.objects.filter(name='html5', locale='en-US')[0]
-        a.content = '<strong>DRAFT</strong>'
-        a.save()
-
-        r = self.client.get(self.url)
+    def test_build_manifests(self):
+        r = self.client.get(reverse('ecosystem.build_manifests'))
         eq_(r.status_code, 200)
-        eq_(pq(r.content)('strong').text(), 'DRAFT')
+        self.assertTemplateUsed(r, 'ecosystem/build_manifests.html')
+
+    def test_build_app_generator(self):
+        r = self.client.get(reverse('ecosystem.build_app_generator'))
+        eq_(r.status_code, 200)
+        self.assertTemplateUsed(r, 'ecosystem/build_app_generator.html')
+
+    def test_build_apps_offline(self):
+        r = self.client.get(reverse('ecosystem.build_apps_offline'))
+        eq_(r.status_code, 200)
+        self.assertTemplateUsed(r, 'ecosystem/build_apps_offline.html')
+
+    def test_build_game_apps(self):
+        r = self.client.get(reverse('ecosystem.build_game_apps'))
+        eq_(r.status_code, 200)
+        self.assertTemplateUsed(r, 'ecosystem/build_game_apps.html')
+
+    def test_build_mobile_developers(self):
+        r = self.client.get(reverse('ecosystem.build_mobile_developers'))
+        eq_(r.status_code, 200)
+        self.assertTemplateUsed(r, 'ecosystem/build_mobile_developers.html')
+
+    def test_build_tools(self):
+        r = self.client.get(reverse('ecosystem.build_tools'))
+        eq_(r.status_code, 200)
+        self.assertTemplateUsed(r, 'ecosystem/build_tools.html')
+
+    def test_build_web_developers(self):
+        r = self.client.get(reverse('ecosystem.build_web_developers'))
+        eq_(r.status_code, 200)
+        self.assertTemplateUsed(r, 'ecosystem/build_web_developers.html')
+
+    def test_build_dev_tools(self):
+        r = self.client.get(reverse('ecosystem.build_dev_tools'))
+        eq_(r.status_code, 200)
+        self.assertTemplateUsed(r, 'ecosystem/build_dev_tools.html')

@@ -1,0 +1,239 @@
+{% extends 'ecosystem/base.html' %}
+{% from "ecosystem/macros.html" import navigation with context %}
+
+{% block title %}
+  {{ hub_page_title(_('Intro to Open Web apps')) }}
+{% endblock %}
+
+{% block extrahead %}
+  {{ css('mkt/ecosystem') }}
+{% endblock %}
+
+{% block content %}
+  <div class="doc-wrapper">
+    {{ navigation('build_intro') }}
+
+    <article>
+      <h1>{{ _('Intro to Open Web apps') }}</h1>
+      <img alt="{{ _('Multi devices') }}"
+           src="{{ media('img/ecosystem/multidevices.png') }}">
+      <h2>{{ _('The Web is the platform') }}</h2>
+      <p>
+        {%- trans %}
+          Open Web Apps are a great opportunity for those who need to
+          develop applications that work on the largest number of
+          devices, and for those who cannot afford to develop an app for
+          every vendor platform (such as Android, iOS, and
+          &quot;classical&quot; desktop web browsers). The difference
+          between an app and a website is that you can install an app and
+          more thoroughly integrate it into your device. It’s not a bookmark
+          &mdash; it’s part of a system. Open Web Apps hold that great
+          promise. They are an opportunity that we should not miss,
+          otherwise the Web might become fragmented once more.
+        {% endtrans -%}
+      </p>
+      <p>
+        {%- trans %}
+          With this in mind it should be clear that Open Web Apps (OWA in
+          short) are intended to be standardized and to become part of
+          &quot;the Web&quot;. If successful, OWA should eventually work on
+          all browsers, operating systems and devices.
+        {% endtrans -%}
+      </p>
+      <p>
+        {%- trans url_canvas='https://developers.facebook.com/docs/guides/canvas',
+                  url_chrome='http://www.google.com/intl/en/chrome/webstore/apps.html' %}
+          At Mozilla we are working hard to create this apps platform that
+          is backed entirely by the open Web. It’s not intended to be a
+          &quot;Mozilla platform&quot; or a &quot;Firefox platform&quot;.
+          <strong>The Web is the platform</strong>. We’re creating a set of
+          open APIs and implementations to show how portable apps can exist
+          on the Web without vendor lock-in. Other groups like Facebook and
+          Google Chrome are also working on apps platforms backed by the
+          Web. <a href="{{ url_canvas }}">Facebook apps</a> are meant to hook
+          into Facebook and <a href="{{ url_chrome }}">Chrome apps</a> are
+          designed for Chrome OS devices and Google servers. Chrome apps are
+          the most similar to Open Web Apps. We continue to collaborate with
+          the Google Chrome team as app standards evolve and we definitely
+          share a lot of the same vision. There is tremendous potential for
+          all Web based app platforms to converge and we invite all vendors
+          to help us build the right Open Web App APIs.
+        {% endtrans -%}
+      </p>
+      <p>
+        {%- trans %}
+          Even though currently you must have a Mozilla Firefox-based engine
+          (&quot;Web runtime&quot;) to use Open Web Apps, it is not intended
+          that this always will be the case. Many parts of the Open Web Apps
+          project are still being worked out and it isn't possible to
+          implement everything in all browsers at once. Although many parts
+          of Open Web Apps are already standardized, many other parts are
+          still in flux. It is intended and hoped that Open Web Apps will be
+          a standard capability that is available in all major browsers.
+        {% endtrans -%}
+      </p>
+      <p>
+        {%- trans %}
+          Therefore, when you read the MDN pages that deal with Open Web
+          Apps, please keep in mind that even though much of the information
+          is specific to Firefox right now, it will hopefully enable you to
+          develop Open Web Apps for all browsers in the future.
+        {% endtrans -%}
+      </p>
+      <h2>{{ _('Web standards') }}</h2>
+      <p>
+        {%- trans %}
+          OWA technology is not a single piece, it is an umbrella that groups
+          many different technologies and some of them are very young. At the
+          moment, parts of OWA are standardized (HTML5, CSS, JavaScript,
+          IndexedDB, etc.). Other parts are not yet standardized and the
+          Mozilla implementation is thus specific to Firefox or to some other
+          Mozilla technology. As the Mozilla mission is to share and to
+          empower everyone, this situation is only temporary. That's why in
+          the OWA docs we will try to clearly identify the parts of OWA that
+          are not yet standardized.
+        {% endtrans -%}
+      </p>
+      <p>
+        {%- trans %}
+          Please also note that there may be some OWA-related proposals and
+          potential standards that are not used by Mozilla.
+        {% endtrans -%}
+      </p>
+      <h3>{{ _('Intended eventual standards') }}</h3>
+      <p>
+        {%- trans url_manifest='//developer.mozilla.org/docs/Apps/Manifest',
+                  url_js_api='//developer.mozilla.org/docs/Apps/Apps_JavaScript_API',
+                  url_web_apis='https://wiki.mozilla.org/WebAPI',
+                  url_mobile='http://arewemobileyet.com',
+                  url_persona='//developer.mozilla.org/docs/Persona',
+                  url_payment='https://wiki.mozilla.org/WebAPI/WebPayment',
+                  url_receipt='https://wiki.mozilla.org/Apps/WebApplicationReceipt' %}
+          So here are the parts not standardized yet across the different
+          Web platforms and that still are Firefox-only for the moment:
+          <ul>
+            <li>
+              <a href="{{ url_manifest }}">OWA manifest</a> for defining an
+              app
+            </li>
+            <li>
+              <a href="{{ url_js_api }}">The Complete OWA API</a> for
+              working with apps
+            </li>
+            <li>
+              <a href="{{ url_web_apis }}">Web APIs</a> to access things like
+              phone, geolocation, etc. Also see
+              <a href="{{ url_mobile }}">arewemobileyet.com</a> for a status
+              report.
+            </li>
+            <li>
+              <a href="{{ url_persona }}">Identity (Persona)</a> to work with
+              user data
+            </li>
+            <li>
+              <a href="{{ url_payment }}">WebPayment API</a> to facilitate
+              in-app payments and app purchases from any Marketplace
+            </li>
+            <li>
+              <a href="{{ url_receipt }}">OWA Receipts</a> to verify paid apps
+              on any device and sell apps from any Marketplace
+            </li>
+          </ul>
+        {% endtrans -%}
+      </p>
+      <h3>{{ _('Marketplace') }}</h3>
+      <h4>{{ _('Buy Once, Run Everywhere') }}</h4>
+      <p>
+        {%- trans url_nytimes='http://bits.blogs.nytimes.com/2012/09/07/a-firefox-smartphone-for-the-poor',
+                  url_mkt='https://marketplace.firefox.com',
+                  url_receipt='https://wiki.mozilla.org/Apps/WebApplicationReceipt' %}
+          From the ground up Mozilla has been building an apps system that
+          lets users buy an app once and run it on all of their HTML5
+          devices. Very soon Mozilla will <a href="{{ url_nytimes }}">launch
+          the first Firefox OS phone</a> but that will be just one device on
+          which to run your apps. When you purchase an app through the
+          <a href="{{ url_mkt }}">Firefox Marketplace</a>, the system
+          installs a receipt on your device. The
+          <a href="{{ url_receipt }}">receipt</a> is a JSON Web Token with
+          metadata that links to the Marketplace’s public key and its
+          verification service URL. When an app starts up it can verify the
+          receipt but the receipt on the device <em>is not tied</em> to the
+          Firefox Marketplace. The receipt is just a cryptographically
+          verifiable proof of purchase. Anyone can sell open Web apps if they
+          follow the receipt specs. <strong>When you buy an app, it is
+          intended to be portable across any device that supports the Open
+          Web Apps system.</strong>
+        {% endtrans -%}
+      </p>
+      <p>
+        {%- trans url_features='http://www.mozilla.org/en-US/firefox/mobile/features',
+                  url_nightly='http://nightly.mozilla.org',
+                  url_shim='https://apps.persona.org/include.js' %}
+          Mozilla is building the infrastructure needed to run Open Web Apps
+          on any HTML5 device. <a href="{{ url_features }}">Firefox for
+          Android</a> will let you install and run apps (you can try it
+          today on the <a href="{{ url_nightly }}">nightly</a> build).
+          Installed app icons go to your home screen just like regular
+          Android apps. You can also install and run Web apps on your
+          Windows, Mac, or Linux desktop using Firefox (this currently works
+          in the <a href="{{ url_nightly }}">nightly</a> build). Currently
+          some version of Firefox is required, but it is intended that the
+          Open Web Apps system will eventually be supported by all major
+          browsers as a set of standards. From day one Mozilla has included
+          all major HTML5 compliant browsers in its proof of concepts; you
+          can take a look at this hosted JavaScript
+          <a href="{{ url_shim }}">shim</a> for ideas on how to support the
+          apps platform on a non-Firefox browser.
+        {% endtrans -%}
+      </p>
+      <p>
+        {%- trans url_aitc='http://docs.services.mozilla.com/aitc',
+                  url_api='https://wiki.mozilla.org/WebAPI' %}
+          In the future the Open Web Apps system will support
+          <a href="{{ url_aitc }}">syncing your installed apps</a> across
+          devices. Since receipts are portable you could just sync them
+          yourself if you wanted to. In case it’s not obvious, you can always
+          run a free open Web app in any browser because it is no different
+          than a website. It might, however, use new
+          <a href="{{ url_api }}">mobile specific web APIs</a> which are not
+          implemented on all platforms.
+        {% endtrans -%}
+      </p>
+      <h3>{{ _('WebPayment API') }}</h3>
+      <h4>{{ _('Commerce For Apps') }}</h4>
+      <p>
+        {%- trans url_payment='https://wiki.mozilla.org/WebAPI/WebPayment' %}
+          Part of the success of mobile app platforms like iOS and Android is
+          that they make it very easy to try out new business models through
+          mobile payments. Those models are still evolving but commerce is no
+          doubt something that, at the moment, is awkward on the desktop Web
+          and more natural on mobile. Specifically, it’s very convenient to
+          charge something to your phone bill when you’re already accessing
+          it from your phone anyway. With the launch of Firefox OS, the apps
+          ecosystem will support app purchases and in-app payments through
+          the <a href="{{ url_payment }}">WebPayment API</a>. Supporting
+          commerce is crucial for the growth of an apps platform.
+          <strong>The use of the proposed payment API is completely
+          <em>optional</em></strong>. Mozilla won’t prevent any app from
+          using its own in-app payment system.
+        {% endtrans -%}
+      </p>
+      <h2>{{ _('See also') }}</h2>
+      <ul>
+        <li>
+          {%- trans url='https://blog.mozilla.org/webdev/2012/09/14/apps-the-web-is-the-platform' %}
+            <a href="{{ url }}">Apps: The Web Is The Platform</a>, by
+            Kumar McMillan (the blog post from which lots of the content of
+            this article is borrowed)
+          {% endtrans -%}
+        </li>
+        <li>
+          {%- trans url='https://plus.google.com/113127438179392830442/posts/fR3iiuN4kEF' %}
+            <a href="{{ url }}">See the Web platform succeed for
+            applications</a>, by Paul Irish
+          {% endtrans -%}
+        </li>
+      </ul>
+    </article>
+  </div>
+{% endblock %}

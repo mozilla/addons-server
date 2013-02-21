@@ -13,35 +13,35 @@
       <div class="panel">
         <h2 class="section-design">{{ _('Design') }}</h2>
         <p>
-          {% trans %}
+          {%- trans %}
             Learn how to design Web Apps that provide a user experience
             optimized for Firefox OS &amp; Mobile
-          {% endtrans %}
+          {% endtrans -%}
         </p>
         <div class="link-wrapper first">
           <a href="{{ url('ecosystem.design_concept') }}">
-            {{ _('Concept: A great app') }}
-          </a>
+            {{- _('Concept: A great app') }}</a>
           <a href="{{ url('ecosystem.design_fundamentals') }}">
-            {{ _('Design Fundamentals') }}
-          </a>
+            {{- _('Design Fundamentals') }}</a>
           <a href="{{ url('ecosystem.design_ui') }}">
-            {{ _('UI Guidelines') }}
-          </a>
+            {{- _('UI Guidelines') }}</a>
         </div>
       </div>
       <div class="panel">
         <h2 class="section-build">{{ _('Build') }}</h2>
         <p>
-          {% trans %}
+          {%- trans %}
             All the tools, docs and references you'll need for
             development and testing of your App
-          {% endtrans %}
+          {% endtrans -%}
         </p>
         <div class="link-wrapper">
-          <a href="{{ url('ecosystem.documentation', page='html5') }}">
-            {{ _('Foundations of an HTML5 Web app') }}
-          </a>
+          <a href="{{ url('ecosystem.build_quick') }}">
+            {{- _('Quick Start') }}</a>
+          <a href="{{ url('ecosystem.firefox_os_simulator') }}">
+            {{- _('Firefox OS Simulator') }}</a>
+          <a href="{{ url('ecosystem.build_reference') }}">
+            {{- _('Reference Apps') }}</a>
         </div>
       </div>
       <div class="panel">
@@ -54,14 +54,11 @@
         </p>
         <div class="link-wrapper last">
           <a href="{{ url('ecosystem.publish_deploy') }}">
-            {{ _('Deploying your app') }}
-          </a>
+            {{- _('Deploying your app') }}</a>
           <a href="{{ url('ecosystem.publish_hosted') }}">
-            {{ _('Hosted Apps') }}
-          </a>
+            {{- _('Hosted Apps') }}</a>
           <a href="{{ url('ecosystem.publish_packaged') }}">
-            {{ _('Packaged Apps') }}
-          </a>
+            {{- _('Packaged Apps') }}</a>
         </div>
       </div>
     </section>
@@ -81,8 +78,7 @@
       <div class="partner-title">
         <h2>
           <a href="{{ url('ecosystem.partners') }}">
-            {{ _('Join the community') }}
-          </a>
+            {{- _('Join the community') }}</a>
         </h2>
         <p>{{ _("Look who's already here") }}</p>
       </div>
@@ -100,11 +96,11 @@
           </ul>
         </a>
         <h3>
-          {% trans partner_url=url('ecosystem.partners') %}
+          {%- trans partner_url=url('ecosystem.partners') %}
             Are you a Web Company, Third-Party Service, or OEM looking to partner
             with Mozilla? <a href="{{ partner_url }}">Check out our Partners page
             for more info</a>
-          {% endtrans %}
+          {% endtrans -%}
         </h3>
       </div>
     </section>
@@ -113,20 +109,20 @@
       <div class="platform-copy">
         <h2>{{ _('The Mozilla Apps platform') }}</h2>
         <p>
-          {% trans %}
+          {%- trans %}
             Building Apps for the Web provides developers with full control
             over content, functionality and how Apps are distributed,
             including access to hundreds of millions of Firefox users
             through the Firefox Marketplace.
-          {% endtrans %}
+          {% endtrans -%}
         </p>
         <p>
-          {% trans %}
+          {%- trans %}
             Using open Web standards and Mozilla-designed APIs, great app
             experiences can be delivered across multiple platforms,
             devices and operating systems &mdash; closing the gap between Web
             and native apps for the first time.
-          {% endtrans %}
+          {% endtrans -%}
         </p>
       </div>
 
@@ -152,42 +148,42 @@
       <div class="platform-copy right">
         <h2>{{ _('Firefox Marketplace') }}</h2>
         <p>
-          {% trans %}
+          {%- trans %}
             The Firefox Marketplace gives users the opportunity to find,
             try and buy Apps and content that matters most to them. This
             means exciting, useful and high-quality Apps relevant to
             local markets across all categories that users can use to
             get the most out of their daily lives.
-          {% endtrans %}
+          {% endtrans -%}
         </p>
         <p>
-          {% trans %}
+          {%- trans %}
             Mozilla's global reach extends to hundreds of millions of
             Firefox users worldwide. Through intelligent Marketplace
             curation and effective use of Mozilla’s marketing channels,
             Mozilla can help developers can get their App into the hands
             of their target users around the world.
-          {% endtrans %}
+          {% endtrans -%}
         </p>
         <p>
-          {% trans %}
+          {%- trans %}
             Before the public launch later this year, Mozilla will be
             opening the Marketplace for user testing. Take advantage of
             this by being one of the first App developers to build a user
             base. Submit your App to:
-          {% endtrans %}
+          {% endtrans -%}
 
           <ul class="icons">
             <li class="testing">
-              {% trans %}
+              {%- trans %}
                 Test your App with a committed group of early adopters.
-              {% endtrans %}
+              {% endtrans -%}
             </li>
             <li class="early">
-              {{ _('Build an early fan base and gain popularity.') }}
+              {{- _('Build an early fan base and gain popularity.') -}}
             </li>
             <li class="target">
-              {{ _('Target tech savvy consumers with your App.') }}
+              {{- _('Target tech savvy consumers with your App.') -}}
             </li>
           </ul>
         </p>
@@ -213,11 +209,11 @@
         <div class="form-title">
           <h3>{{ _('Firefox Apps &amp; Hacks') }}</h3>
           <p>
-            {% trans dev_phone_url=url('ecosystem.dev_phone') %}
+            {%- trans dev_phone_url=url('ecosystem.dev_phone') %}
               Sign up for our monthly newsletter about Firefox OS,
               Marketplace and the Open Web apps ecosystem.
               <a href="{{ dev_phone_url }}">Check out the developer phone preview</a>
-            {% endtrans %}
+            {% endtrans -%}
           </p>
         </div>
 
@@ -228,7 +224,7 @@
           </p>
           <p>
             <img src="{{ media('img/ecosystem/newsletter-doc.png') }}">
-            {{ _('Code &amp; Tools') }}
+            {{- _('Code &amp; Tools') }}
           </p>
           <p>
             <img src="{{ media('img/ecosystem/newsletter-nametag.png') }}">

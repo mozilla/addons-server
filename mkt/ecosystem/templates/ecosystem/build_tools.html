@@ -1,0 +1,74 @@
+{% extends 'ecosystem/base.html' %}
+{% from "ecosystem/macros.html" import navigation with context %}
+
+{% block title %}
+  {{ hub_page_title(_('Tools')) }}
+{% endblock %}
+
+{% block extrahead %}
+  {{ css('mkt/ecosystem') }}
+{% endblock %}
+
+{% block content %}
+  <div class="doc-wrapper">
+    {{ navigation('build_tools') }}
+
+    <article>
+      <h1>{{ _('Tools') }}</h1>
+      <p>
+        {%- trans %}
+          What do you use to build Open Web Apps? The answer is
+          &quot;anything you would normally use to build for the web.&quot;
+          The following is a list of tools and resources to help you get
+          started making Open Web Apps. They can be easily integrated into
+          your existing web development workflow, if you have one, or you can
+          build a new workflow around them.
+        {% endtrans -%}
+      </p>
+      <h2>
+        <a href="{{ url('ecosystem.build_app_generator') }}">
+          {{- _('App Generator') }}</a>
+      </h2>
+      <p>
+        {%- trans %}
+          To help you start writing web apps quickly, we provide a few
+          templates which has a lot already set up. Each template is a static
+          web project with tools to help build and deploy.
+        {% endtrans -%}
+      </p>
+      <h2>
+        <a href="{{ url('mkt.developers.validate_addon') }}">
+          {{- _('App Validator') }}</a>
+      </h2>
+      <p>
+        {%- trans %}
+          Is your app ready for the Firefox Marketplace? The App validator
+          will check your manifest and show you any errors it may have, or
+          warnings you should consider.
+        {% endtrans -%}
+      </p>
+      <h2>
+        <a href="{{ url('ecosystem.firefox_os_simulator') }}">
+          {{- _('Firefox OS Simulator') }}</a>
+      </h2>
+      <p>
+        {%- trans %}
+          You have a Firefox OS app but you don't have a Firefox OS phone to
+          test it on? The Firefox OS simulator will let you run your app in
+          the browser, so you can test early and often.
+        {% endtrans -%}
+      </p>
+      <h2>
+        <a href="{{ url('ecosystem.build_dev_tools') }}">
+          {{- _('Firefox Developer Tools') }}</a>
+      </h2>
+      <p>
+        {%- trans %}
+          Firefox now ships with a default set of developer tools built from
+          the ground up to ensure a great development experience that is
+          both snappy and efficient.
+        {% endtrans -%}
+      </p>
+    </article>
+  </div>
+{% endblock %}

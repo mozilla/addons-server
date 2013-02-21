@@ -4,7 +4,6 @@ from . import views
 
 urlpatterns = patterns(
     '',
-    url('^ecosystem$', views.ecosystem, name='mkt.zadmin.ecosystem'),
     # Featured apps selector.
     url('^apps/featured$', views.featured_apps_admin,
         name='zadmin.featured_apps'),

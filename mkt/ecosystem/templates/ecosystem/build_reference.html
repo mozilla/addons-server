@@ -1,0 +1,65 @@
+{% extends 'ecosystem/base.html' %}
+{% from "ecosystem/macros.html" import navigation with context %}
+
+{% block title %}
+  {{ hub_page_title(_('Reference Apps')) }}
+{% endblock %}
+
+{% block extrahead %}
+  {{ css('mkt/ecosystem') }}
+{% endblock %}
+
+{% block content %}
+  <div class="doc-wrapper">
+    {{ navigation('build_reference') }}
+
+    <article>
+      <h1>{{ _('Reference Apps') }}</h1>
+      <p>
+        {%- trans %}
+          What can you do with an Open Web App? What can't you do? Here
+          you'll find some examples of the kind of Open Web Apps that are
+          possible. Use them for inspiration, as example code, or as a
+          jumping off point for your new app.
+        {% endtrans -%}
+      </p>
+      <h2>
+        <a href="{{ url('ecosystem.apps_documentation', page='chrono') }}">
+          {{- _('Chrono') -}}
+        </a>
+      </h2>
+      <p>
+        {%- trans %}
+          Chrono is a simple chronometer with lap counter, built to highlight
+          various aspects of the Firefox OS development process.
+        {% endtrans -%}
+      </p>
+      <h2>
+        <a href="{{ url('ecosystem.apps_documentation', page='face_value') }}">
+          {{- _('Face Value') -}}
+        </a>
+      </h2>
+      <p>
+        {%- trans %}
+          Face Value is a currency conversion app that does things
+          differently: instead of converting arbitrary amounts it shows you
+          the actual denominations in the country you're visiting. It lets
+          you think in your home currency even with a foreign currency in
+          your pocket.
+        {% endtrans -%}
+      </p>
+      <h2>
+        <a href="{{ url('ecosystem.apps_documentation', page='roller') }}">
+          {{- _('Roller') -}}
+        </a>
+      </h2>
+      <p>
+        {%- trans %}
+          Roller is a micro blog app that allows you to post text, upload
+          an image or paste a link that has an image extension such as
+          jpg, gif, png or jpeg.
+        {% endtrans -%}
+      </p>
+    </article>
+  </div>
+{% endblock %}

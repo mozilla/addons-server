@@ -34,18 +34,16 @@
           <h2>{{ _('Design') }}</h2>
           <ol>
             <li>
-              <a href="{{ url('ecosystem.documentation',
-                 page='principles') }}"
-                 title="{{ _('Design Principles') }}">
-                {{ _('Design Principles') }}
-              </a>
+              <a href="{{ url('ecosystem.design_concept') }}">
+                {{- _('Concept: A great app') }}</a>
             </li>
             <li>
-              <a href="{{ url('ecosystem.documentation',
-                 page='patterns') }}"
-                 title="{{ _('Design Patterns') }}">
-                {{ _('Design Patterns') }}
-              </a>
+              <a href="{{ url('ecosystem.design_fundamentals') }}">
+                {{- _('Design Fundamentals') }}</a>
+            </li>
+            <li>
+              <a href="{{ url('ecosystem.design_ui') }}">
+                {{- _('UI Guidelines') }}</a>
             </li>
           </ol>
         </li>
@@ -53,22 +51,16 @@
           <h2>{{ _('Build') }}</h2>
           <ol>
             <li>
-              <a href="{{ url('ecosystem.documentation', page='html5') }}"
-                 title="{{ _('HTML5') }}">
-                {{ _('HTML5') }}
-              </a>
+              <a href="{{ url('ecosystem.build_quick') }}">
+                {{- _('Quick Start') }}</a>
             </li>
             <li>
-              <a href="{{ url('ecosystem.documentation', page='devtools') }}"
-                 title="{{ _('Dev Tools') }}">
-                {{ _('Dev Tools') }}
-              </a>
+              <a href="{{ url('ecosystem.firefox_os_simulator') }}">
+                {{- _('Firefox OS Simulator') }}</a>
             </li>
             <li>
-              <a href="{{ url('ecosystem.documentation', page='templates') }}"
-                 title="{{ _('App Templates') }}">
-                {{ _('App Templates') }}
-              </a>
+              <a href="{{ url('ecosystem.build_reference') }}">
+                {{- _('Reference Apps') }}</a>
             </li>
           </ol>
         </li>
@@ -76,18 +68,16 @@
           <h2>{{ _('Publish') }}</h2>
           <ol>
             <li>
-              <a href="{{ url('ecosystem.documentation',
-                 page='mkt_hosting') }}"
-                 title="{{ _('Hosting') }}">
-                {{ _('Hosting') }}
-              </a>
+              <a href="{{ url('ecosystem.publish_deploy') }}">
+                {{- _('Deploying your app') }}</a>
             </li>
             <li>
-              <a href="{{ url('ecosystem.documentation',
-                 page='mkt_submission') }}"
-                 title="{{ _('Marketplace Submission') }}">
-                {{ _('Marketplace Submission') }}
-              </a>
+              <a href="{{ url('ecosystem.publish_hosted') }}">
+                {{- _('Hosted Apps') }}</a>
+            </li>
+            <li>
+              <a href="{{ url('ecosystem.publish_packaged') }}">
+                {{- _('Packaged Apps') }}</a>
             </li>
           </ol>
         </li>

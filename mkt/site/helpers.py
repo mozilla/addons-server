@@ -377,7 +377,6 @@ def admin_site_links():
         'tools': [
             ('View request environment', reverse('amo.env')),
             ('Manage elasticsearch', reverse('zadmin.elastic')),
-            ('Manage EcoSystem', reverse('mkt.zadmin.ecosystem')),
             ('Purge data from memcache', reverse('zadmin.memcache')),
             ('Purge pages from zeus', reverse('zadmin.hera')),
             ('Create a new OAuth Consumer',
