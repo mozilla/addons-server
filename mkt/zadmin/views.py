@@ -59,7 +59,9 @@ def featured_apps_ajax(request):
     else:
         cat = None
     apps_regions_carriers = []
-    for app in FeaturedApp.uncached.filter(category__id=cat):
+    for app in FeaturedApp.objects.filter(category__id=cat):
+        if not Webapp.objects.filter(pk=app.app_id).exists:
+            continue
         regions = app.regions.values_list('region', flat=True)
         excluded_regions = app.app.addonexcludedregion.values_list('region',
                                                                    flat=True)

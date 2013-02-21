@@ -180,7 +180,8 @@ class FeaturedAppManager(amo.models.ManagerBase):
                 raise orig
 
     def get_query_set(self):
-        return FeaturedAppQuerySet(self.model)
+        return FeaturedAppQuerySet(self.model).exclude(
+            app__status=amo.STATUS_DELETED)
 
 
 class FeaturedApp(amo.models.ModelBase):

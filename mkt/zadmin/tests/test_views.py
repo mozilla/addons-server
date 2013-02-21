@@ -2,9 +2,13 @@ from datetime import date, timedelta
 
 import json
 
+from mock import patch
+
 from django.conf import settings
 from nose.tools import eq_
 from pyquery import PyQuery as pq
+
+import waffle
 
 import amo
 import amo.tests
@@ -444,6 +448,11 @@ class TestFeaturedAppQueryset(amo.tests.TestCase):
             app_regions = (r.region for r in app.regions.all())
             acceptable = (r in acceptable_regions for r in app_regions)
             assert any(acceptable), 'App not featured in US or Worldwide'
+
+    @patch.object(waffle, 'switch_is_active', lambda x: True)
+    def test_soft_deleted_app(self):
+        self.a1.delete()
+        eq_(list(FeaturedApp.objects.all()), [self.f3])
 
 
 class TestAddonSearch(amo.tests.ESTestCase):
