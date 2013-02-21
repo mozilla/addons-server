@@ -38,7 +38,7 @@ class TestPreviewForm(amo.tests.TestCase):
         form = forms.PreviewForm({'caption': 'test', 'upload_hash': name,
                                   'position': 1})
         shutil.copyfile(get_image_path(name), os.path.join(self.dest, name))
-        assert form.is_valid()
+        assert form.is_valid(), form.errors
         form.save(self.addon)
         assert update_mock.called
 
@@ -48,7 +48,7 @@ class TestPreviewForm(amo.tests.TestCase):
                                   'position': 1})
         with storage.open(os.path.join(self.dest, name), 'wb') as f:
             copyfileobj(open(get_image_path(name)), f)
-        assert form.is_valid()
+        assert form.is_valid(), form.errors
         form.save(self.addon)
         eq_(self.addon.previews.all()[0].sizes,
             {u'image': [250, 297], u'thumbnail': [180, 214]})
@@ -56,7 +56,7 @@ class TestPreviewForm(amo.tests.TestCase):
     def check_file_type(self, type_):
         form = forms.PreviewForm({'caption': 'test', 'upload_hash': type_,
                                   'position': 1})
-        assert form.is_valid()
+        assert form.is_valid(), form.errors
         form.save(self.addon)
         return self.addon.previews.all()[0].filetype
 
@@ -134,13 +134,13 @@ class TestRegionForm(amo.tests.WebappTestCase):
 
     def test_worldwide_only(self):
         form = forms.RegionForm(data={'other_regions': 'on'}, **self.kwargs)
-        eq_(form.is_valid(), True)
+        assert form.is_valid(), form.errors
         form.save()
         eq_(self.app.get_region_ids(True), [mkt.regions.WORLDWIDE.id])
 
     def test_no_regions(self):
         form = forms.RegionForm(data={}, **self.kwargs)
-        eq_(form.is_valid(), False)
+        assert not form.is_valid()
         eq_(form.errors,
             {'__all__': ['You must select at least one region or '
                          '"Other and new regions."']})
@@ -212,7 +212,7 @@ class TestRegionForm(amo.tests.WebappTestCase):
 
         form = forms.RegionForm(data={'regions': mkt.regions.REGION_IDS,
                                       'other_regions': 'on'}, **self.kwargs)
-        eq_(form.is_valid(), True)
+        assert form.is_valid(), form.errors
         form.save()
 
         eq_(self.app.get_region_ids(True), mkt.regions.ALL_REGION_IDS)
@@ -220,7 +220,7 @@ class TestRegionForm(amo.tests.WebappTestCase):
     def test_exclude_worldwide(self):
         form = forms.RegionForm(data={'regions': mkt.regions.REGION_IDS,
                                       'other_regions': False}, **self.kwargs)
-        eq_(form.is_valid(), True)
+        assert form.is_valid(), form.errors
         form.save()
         eq_(self.app.get_region_ids(True), mkt.regions.REGION_IDS)
 
@@ -229,7 +229,7 @@ class TestRegionForm(amo.tests.WebappTestCase):
 
         form = forms.RegionForm(data={'regions': mkt.regions.REGION_IDS,
                                       'other_regions': True}, **self.kwargs)
-        eq_(form.is_valid(), True)
+        assert form.is_valid(), form.errors
         form.save()
         eq_(self.app.get_region_ids(True), mkt.regions.ALL_REGION_IDS)
 
@@ -238,7 +238,7 @@ class TestRegionForm(amo.tests.WebappTestCase):
 
         form = forms.RegionForm(data={'regions': mkt.regions.REGION_IDS,
                                       'other_regions': True}, **self.kwargs)
-        eq_(form.is_valid(), True)
+        assert form.is_valid(), form.errors
         form.save()
         eq_(self.app.get_region_ids(True), mkt.regions.ALL_REGION_IDS)
 
@@ -286,18 +286,18 @@ class TestPackagedAppForm(amo.tests.AMOPaths, amo.tests.WebappTestCase):
 
     def test_not_there(self):
         form = forms.NewPackagedAppForm({}, {})
-        eq_(form.is_valid(), False)
+        assert not form.is_valid()
         eq_(form.errors['upload'], [u'This field is required.'])
         eq_(form.file_upload, None)
 
     def test_right_size(self):
         form = forms.NewPackagedAppForm({}, self.files)
-        eq_(form.is_valid(), True)
+        assert form.is_valid(), form.errors
         assert form.file_upload
 
     def test_too_big(self):
         form = forms.NewPackagedAppForm({}, self.files, max_size=5)
-        eq_(form.is_valid(), False)
+        assert not form.is_valid()
         validation = json.loads(form.file_upload.validation)
         assert 'messages' in validation, 'No messages in validation.'
         eq_(validation['messages'][0]['message'],
@@ -326,7 +326,7 @@ class TestTransactionFilterForm(amo.tests.TestCase):
     def test_basic(self):
         """Test the form doesn't crap out."""
         form = forms.TransactionFilterForm(self.data, apps=self.apps)
-        eq_(form.is_valid(), True)
+        assert form.is_valid(), form.errors
 
     def test_app_choices(self):
         """Test app choices."""
