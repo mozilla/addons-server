@@ -156,7 +156,7 @@ var nav = (function() {
         }
     }
 
-    $('#nav-back').on('click', _pd(back));
+    z.page.on('click', '.back', _pd(back));
 
     return {
         stack: function() {

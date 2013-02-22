@@ -176,9 +176,6 @@
         $('.grouped-ratings').hide();
     }));
 
-    // Cancel rating button.
-    z.page.on('click', '.submit-review .cancel', _pd(nav.back));
-
     z.page.on('click', '.review .actions a, #add-first-review[data-href]', _pd(function(e) {
         var $this = $(this),
             action = $this.data('action');
