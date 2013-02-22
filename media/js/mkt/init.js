@@ -77,9 +77,8 @@ $(document).ready(function() {
     stick.basic();
 });
 
-// stub gettext for when servers are bad at things
-function gettext(s) {
-    return s;
+if (window.screen.lockOrientation) {
+    window.screen.lockOrientation("portrait");
 }
 
 z.page.on('fragmentloaded', function() {

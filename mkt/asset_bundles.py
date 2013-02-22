@@ -174,6 +174,7 @@ JS = {
 
         'js/lib/jquery-1.9.1.js',
         'js/lib/underscore.js',
+        'js/mkt/gettext.js',
         'js/zamboni/browser.js',
         'js/amo2009/addons.js',
         'js/mkt/tracking.js',
@@ -254,6 +255,7 @@ JS = {
         'js/mkt/tracking.js',
         'js/mkt/utils.js',
         'js/lib/csrf.js',
+        'js/mkt/gettext.js',
         'js/zamboni/browser.js',
         'js/mkt/init.js',
         'js/lib/truncate.js',
