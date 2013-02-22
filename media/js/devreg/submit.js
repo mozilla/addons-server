@@ -67,7 +67,7 @@
                 delete old[old.indexOf(val)];
             }
             $this.toggleClass('selected', nowSelected);
-            $this.find('input').attr('checked', nowSelected);
+            $this.find('input').prop('checked', nowSelected);
             $input.val(old);
             $compat_save_button.removeClass('hidden');
             setTabState();
