@@ -279,7 +279,7 @@ class AddonPaymentAccount(CurlingHelper, amo.models.ModelBase):
 
         if self.provider == 'bango':
             # Get the Bango number for this product.
-            res = client.get_product_bango(data=self.product_uri)
+            res = client.api.bango.product.get_object(data=self.product_uri)
             bango_number = res['bango']
 
             AddonPaymentAccount._push_bango_premium(
@@ -315,7 +315,7 @@ class UserInappKey(CurlingHelper, amo.models.ModelBase):
     @classmethod
     def create(cls, user):
         sel = SolitudeSeller.create(user)
-        prod = client.api.generic.product.post_product(data={
+        prod = client.api.generic.product.post(data={
             'seller': sel.resource_uri, 'secret': generate_key(48),
             'external_id': str(uuid.uuid4()), 'public_id': str(uuid.uuid4())
         })

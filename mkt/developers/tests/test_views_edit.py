@@ -23,6 +23,7 @@ from addons.forms import AddonFormBasic
 from addons.models import (Addon, AddonCategory, AddonDeviceType, AddonUser,
                            Category)
 from constants.applications import DEVICE_TYPES
+from devhub.models import ActivityLog
 from lib.video.tests import files as video_files
 from users.models import UserProfile
 

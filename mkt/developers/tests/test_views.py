@@ -25,6 +25,7 @@ from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
 from amo.utils import urlparams
 from browse.tests import test_default_sort, test_listing_sort
+from devhub.models import ActivityLog
 from files.models import FileUpload
 from files.tests.test_models import UploadTest as BaseUploadTest
 from market.models import AddonPremium, Price
@@ -36,7 +37,6 @@ from versions.models import Version
 import mkt
 from mkt.constants import MAX_PACKAGED_APP_SIZE
 from mkt.developers import tasks
-from mkt.developers.models import ActivityLog
 from mkt.developers.views import _filter_transactions, _get_transactions
 from mkt.site.fixtures import fixture
 from mkt.submit.models import AppSubmissionChecklist

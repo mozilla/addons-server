@@ -9,6 +9,7 @@ import amo
 import amo.tests
 from amo.tests import formset
 from addons.models import Addon, AddonUser
+from devhub.models import ActivityLog
 from mkt.developers.models import ActivityLog
 from mkt.site.fixtures import fixture
 from users.models import UserProfile

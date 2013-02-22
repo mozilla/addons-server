@@ -17,6 +17,7 @@ import amo
 import amo.tests
 from amo.urlresolvers import reverse
 from addons.models import AddonPremium, AddonUser
+from devhub.models import ActivityLog
 from market.models import PreApprovalUser, Price, PriceCurrency
 import paypal
 from reviews.models import Review
@@ -25,7 +26,6 @@ from users.models import UserNotification, UserProfile
 from versions.models import Version
 import users.notifications as email
 
-from mkt.developers.models import ActivityLog
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Installed, Webapp
 

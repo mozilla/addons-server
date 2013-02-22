@@ -2,20 +2,17 @@ import mock
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
-from django.db import models
 
 import amo
-from amo.models import ManagerBase
 import amo.tests
 from access.models import Group, GroupUser
-from amo.urlresolvers import reverse
+from devhub.models import ActivityLog
 from reviews.models import Review, ReviewFlag
-from stats.models import ClientData, Contribution
+from stats.models import ClientData
 from users.models import UserProfile
 from zadmin.models import DownloadSource
 
 import mkt
-from mkt.developers.models import ActivityLog
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Installed, Webapp
 

@@ -103,7 +103,7 @@ class TestPaymentAccount(amo.tests.TestCase):
 
     def test_create_bango(self):
         # Return a seller object without hitting Bango.
-        self.client.post_package.return_value = {
+        self.client.api.bango.package.post.return_value = {
             'resource_uri': 'zipzap',
             'package_id': 123,
         }
@@ -116,11 +116,11 @@ class TestPaymentAccount(amo.tests.TestCase):
         eq_(res.bango_package_id, 123)
         eq_(res.uri, 'zipzap')
 
-        self.client.post_package.assert_called_with(
+        self.client.api.bango.package.post.assert_called_with(
             data={'paypalEmailAddress': 'nobody@example.com',
                   'seller': 'selleruri'})
 
-        self.client.post_bank_details.assert_called_with(
+        self.client.api.bango.bank.post.assert_called_with(
             data={'seller_bango': 'zipzap'})
 
     def test_cancel(self):
@@ -199,10 +199,8 @@ class TestAddonPaymentAccount(amo.tests.TestCase):
         client.api.generic.product.get_object.return_value = {
             'resource_uri': 'gpuri'}
 
-        client.get_product_bango.return_value = {
-            'meta': {'total_count': 1},
-            'objects': [{'resource_uri': 'bpruri', 'bango_id': 'bango#',
-                         'seller': 'selluri'}]
+        client.api.bango.product.get_object.return_value = {
+            'resource_uri': 'bpruri', 'bango_id': 'bango#', 'seller': 'selluri'
         }
 
         apa = AddonPaymentAccount.create(
@@ -213,30 +211,31 @@ class TestAddonPaymentAccount(amo.tests.TestCase):
         eq_(apa.account_uri, 'acuri')
         eq_(apa.product_uri, 'bpruri')
 
-        client.post_make_premium.assert_called_with(
+        client.api.bango.premium.post.assert_called_with(
             data={'bango': 'bango#', 'price': float(self.price.price),
                   'currencyIso': 'USD', 'seller_product_bango': 'bpruri'})
 
-        eq_(client.post_update_rating.call_args_list[0][1]['data'],
+        eq_(client.api.bango.rating.post.call_args_list[0][1]['data'],
             {'bango': 'bango#', 'rating': 'UNIVERSAL',
              'ratingScheme': 'GLOBAL', 'seller_product_bango': 'bpruri'})
-        eq_(client.post_update_rating.call_args_list[1][1]['data'],
+        eq_(client.api.bango.rating.post.call_args_list[1][1]['data'],
             {'bango': 'bango#', 'rating': 'GENERAL',
              'ratingScheme': 'USA', 'seller_product_bango': 'bpruri'})
 
     @patch('mkt.developers.models.client')
     def test_create_new(self, client):
-        client.api.generic.product.get_object.side_effect = ObjectDoesNotExist
-        client.api.generic.product.post.return_value = {'resource_uri': ''}
+        client.api.bango.product.get_object.side_effect = ObjectDoesNotExist
+        client.api.bango.product.post.return_value = {
+                'resource_uri': '', 'bango_id': 1}
         AddonPaymentAccount.create(
             'bango', addon=self.app, payment_account=self.account)
-        ok_('public_id' in
-            client.api.generic.product.post.call_args[1]['data'])
+        ok_('packageId' in
+            client.api.bango.product.post.call_args[1]['data'])
 
     @patch('mkt.developers.models.client')
     def test_update_price(self, client):
         new_price = 123456
-        client.get_product_bango.return_value = {'bango': 'bango#'}
+        client.api.bango.product.get_object.return_value = {'bango': 'bango#'}
 
         payment_account = PaymentAccount.objects.create(
             user=self.user, name='paname', uri='/path/to/object',
@@ -250,10 +249,10 @@ class TestAddonPaymentAccount(amo.tests.TestCase):
         apa.update_price(new_price)
         eq_(apa.set_price, new_price)
 
-        client.post_make_premium.assert_called_with(
+        client.api.bango.premium.post.assert_called_with(
             data={'bango': 'bango#', 'price': new_price,
                   'currencyIso': 'USD', 'seller_product_bango': 'bpruri'})
-        client.post_update_rating.assert_called_with(
+        client.api.bango.rating.post.assert_called_with(
             data={'bango': 'bango#', 'rating': 'GENERAL',
                   'ratingScheme': 'USA', 'seller_product_bango': 'bpruri'})
 
