@@ -202,8 +202,10 @@ class TestAppDashboard(AppHubTest):
     def test_action_links_packaged(self):
         self.create_switch('app-stats')
         self.create_switch('view-transactions')
+        self.create_switch('in-app-payments')
         app = self.get_app()
-        app.update(public_stats=True, is_packaged=True)
+        app.update(public_stats=True, is_packaged=True,
+                   premium_type=amo.ADDON_PREMIUM_INAPP)
         self.make_mine()
         doc = pq(self.client.get(self.url).content)
         expected = [
@@ -216,6 +218,7 @@ class TestAppDashboard(AppHubTest):
             ('Statistics', app.get_stats_url()),
             ('Transactions', urlparams(
                 reverse('mkt.developers.transactions'), app=app.id)),
+            ('Manage In-App Payments', app.get_dev_url('in_app_config')),
         ]
         amo.tests.check_links(expected, doc('a.action-link'))
 
@@ -224,7 +227,7 @@ class TestAppDashboard(AppHubTest):
         self.create_switch('disabled-payments')
         self.create_switch('view-transactions')
         app = self.get_app()
-        app.update(public_stats=True)
+        app.update(public_stats=True, premium_type=amo.ADDON_PREMIUM_INAPP)
         self.make_mine()
         doc = pq(self.client.get(self.url).content)
         expected = [
@@ -237,32 +240,6 @@ class TestAppDashboard(AppHubTest):
                 reverse('mkt.developers.transactions'), app=app.id)),
         ]
         amo.tests.check_links(expected, doc('a.action-link'), verify=False)
-
-    def test_action_links_with_payments(self):
-        self.create_switch('in-app-payments')
-        app = self.get_app()
-        for status in [amo.ADDON_PREMIUM_INAPP, amo.ADDON_FREE_INAPP]:
-            app.update(premium_type=status)
-            self.make_mine()
-            doc = pq(self.client.get(self.url).content)
-            expected = [
-                ('Manage Status', app.get_dev_url('versions')),
-                ('Manage In-App Payments', app.get_dev_url('in_app_config')),
-            ]
-            amo.tests.check_links(expected, doc('.more-actions-popup a'))
-
-    def test_disabled_payments_action_links_with_payments(self):
-        self.create_switch('in-app-payments')
-        self.create_switch('disabled-payments')
-        app = self.get_app()
-        for status in [amo.ADDON_PREMIUM_INAPP, amo.ADDON_FREE_INAPP]:
-            app.update(premium_type=status)
-            self.make_mine()
-            doc = pq(self.client.get(self.url).content)
-            status_link = doc('.status-link')
-            eq_(status_link.length, 1)
-            eq_(status_link.attr('href'), app.get_dev_url('versions'))
-            eq_(doc('.more-actions-popup').length, 0)
 
 
 class TestAppDashboardSorting(AppHubTest):
