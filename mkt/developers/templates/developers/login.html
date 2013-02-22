@@ -1,7 +1,7 @@
 {% extends 'mkt/base.html' %}
 
 {% set headertitle = _('Firefox Marketplace') %}
-{% set bodyclass = 'home login' %}
+{% set bodyclass = 'login' %}
 
 {% block content %}
   <section id="welcome" class="{{ 'centre ' if not DESKTOP }}main primary">
@@ -9,7 +9,7 @@
       <h1>{{ _('Sign in') }}</h1>
       <p>{{ _('You must sign in to proceed.') }}</p>
       <p class="proceed">
-        <a class="button full prominent browserid" href="#">{{ _('Sign in / Sign up') }}</a>
+        <a class="button prominent browserid" href="#">{{ _('Sign in / Sign up') }}</a>
       </p>
     </div>
   </section>
