@@ -26,15 +26,17 @@
     }
 }
 
+// This is stupid. Fix this.
+
 #search,
 #search-q,
 body[data-page-type='search'] #search,
-body[data-page-type='search'] #search-q {
+body[data-page-type='search'] .suggestions #search {
     width: 175px;
 }
 
-body[data-page-type='search'] #search {
-    margin-right: 12px;
+body[data-page-type='root'] #search {
+    width: 275px;
 }
 
 #page {
@@ -59,11 +61,11 @@ body[data-page-type='search'] #search {
 #search {
     display: block;
     position: absolute;
-    right: 50px;
+    right: 57px;
 }
 
 .logged #search {
-    right: 35px;
+    right: 47px;
 }
 
 #site-header, .classic-header {
@@ -143,7 +145,7 @@ body, .home {
 #site-search-suggestions {
     .box-shadow(0 0 1px);
     height: auto;
-    margin: -24px 68px 0 0;
+    margin: -24px 57px 0 0;
     position: static;
     float: right;
     width: 230px;
@@ -181,16 +183,13 @@ body, .home {
 
 // Undoing search stuff from navigation.less - forgive my sins.
 
-#site-search-suggestions {
-    margin-right: 62px;
-}
-
 body.logged #site-search-suggestions {
     margin-right: 47px;
 }
 
 body[data-page-type="root"] {
     #search {
+        padding-right: 0;
         overflow: visible;
     }
     .fancy {
