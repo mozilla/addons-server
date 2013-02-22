@@ -328,7 +328,7 @@ function initUploadControls() {
 }
 
 function initPlatformChooser() {
-    $('input.platform').on('change', function(e) {
+    $('input.platform').live('change', function(e) {
         var form = $(this).parents('form'),
             platform = false,
             parent = form,
@@ -386,7 +386,7 @@ $(document).ready(function() {
 
     initCompatibility();
 
-    $('.addon-edit-cancel').on('click', function(){
+    $('.addon-edit-cancel').live('click', function(){
         parent_div = $(this).closest('.edit-addon-section');
         parent_div.load($(this).attr('href'), function() {
             hideSameSizedIcons();
@@ -991,8 +991,8 @@ function initCatFields(delegate) {
             $("input", $main).attr("checked", false).attr("disabled", false);
         };
         checkMainDefault();
-        $('input', $main).on('change', checkMain);
-        $('input', $misc).on('change', checkOther);
+        $('input', $main).live('change', checkMain);
+        $('input', $misc).live('change', checkOther);
     });
 }
 
