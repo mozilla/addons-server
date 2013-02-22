@@ -86,6 +86,9 @@
           {% if is_reviewer %}
             <p><a href="{{ url('reviewers.apps.queue_pending') }}" class="manage fatbutton sync">
               {{ _('Reviewer Tools') }}</a></p>
+            {% if action_allowed('AccountLookup', '%') %}
+              <p><a href="{{ url('lookup.home') }}" class="manage fatbutton sync">{{ _('Lookup Tool') }}</a></p>
+            {% endif %}
             <p><a href="{{ request.get_full_path()|urlparams(mobile='false', tablet='false') }}" class="manage fatbutton sync">
               {{ _('View Full Site') }}</a></p>
           {% endif %}
