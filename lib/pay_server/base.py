@@ -112,6 +112,7 @@ class Client(object):
         return config
 
     def call(self, url, method_name, data=None):
+        log.info('Deprecated, please use curling: %s, %s' % (url, method_name))
         if data and method_name.lower() == 'get':
             raise TypeError('You cannot use data in a GET request. '
                             'Maybe you meant to use filters=...')

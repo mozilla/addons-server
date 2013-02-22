@@ -4,14 +4,17 @@ from nose import SkipTest
 from nose.tools import eq_, ok_
 from mock import Mock, patch
 
+from django.core.exceptions import ObjectDoesNotExist
+
 import amo
 import amo.tests
 from addons.models import Addon
 from market.models import AddonPremium, Price
 from users.models import UserProfile
 
-from mkt.developers.models import (ActivityLog, AddonPaymentAccount,
-                                   PaymentAccount, SolitudeSeller)
+from devhub.models import ActivityLog
+from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
+                                   SolitudeSeller)
 from mkt.site.fixtures import fixture
 
 
@@ -126,7 +129,7 @@ class TestPaymentAccount(amo.tests.TestCase):
             solitude_seller=self.seller)
 
         addon = Addon.objects.get()
-        apa = AddonPaymentAccount.objects.create(
+        AddonPaymentAccount.objects.create(
             addon=addon, provider='bango', account_uri='foo',
             payment_account=res, product_uri='bpruri', set_price=12345)
 
@@ -193,10 +196,9 @@ class TestAddonPaymentAccount(amo.tests.TestCase):
     @patch('mkt.developers.models.generate_key', Mock(return_value='poop'))
     @patch('mkt.developers.models.client')
     def test_create(self, client):
-        client.get_product.return_value = {
-             'objects': [{'resource_uri': 'gpuri'}],
-             'meta': {'total_count': 1}
-        }
+        client.api.generic.product.get_object.return_value = {
+            'resource_uri': 'gpuri'}
+
         client.get_product_bango.return_value = {
             'meta': {'total_count': 1},
             'objects': [{'resource_uri': 'bpruri', 'bango_id': 'bango#',
@@ -224,19 +226,12 @@ class TestAddonPaymentAccount(amo.tests.TestCase):
 
     @patch('mkt.developers.models.client')
     def test_create_new(self, client):
-        client.get_product.return_value = {
-            'objects': [],
-            'meta': {'total_count': 0}
-        }
-        client.get_product_bango.return_value = {
-            'objects': [],
-            'meta': {'total_count': 0}
-        }
-
+        client.api.generic.product.get_object.side_effect = ObjectDoesNotExist
+        client.api.generic.product.post.return_value = {'resource_uri': ''}
         AddonPaymentAccount.create(
             'bango', addon=self.app, payment_account=self.account)
-        ok_('public_id' in client.post_product.call_args[1]['data'])
-
+        ok_('public_id' in
+            client.api.generic.product.post.call_args[1]['data'])
 
     @patch('mkt.developers.models.client')
     def test_update_price(self, client):

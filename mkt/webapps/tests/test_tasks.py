@@ -13,12 +13,12 @@ from nose.tools import eq_
 import amo
 import amo.tests
 from addons.models import Addon
+from devhub.models import ActivityLog
 from editors.models import RereviewQueue
 from files.models import File, FileUpload
 from users.models import UserProfile
 from versions.models import Version
 
-from mkt.developers.models import ActivityLog
 from mkt.webapps.models import Webapp
 from mkt.webapps.tasks import update_manifests
 

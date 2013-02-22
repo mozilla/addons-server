@@ -148,8 +148,10 @@ class InappKeysTest(InappTest):
         self.product_pk = 2
 
     def setup_solitude(self, solitude):
-        solitude.post_seller.return_value = {'resource_uri': self.seller_uri}
-        solitude.post_product.return_value = {'resource_pk': self.product_pk}
+        solitude.api.generic.seller.post.return_value = {
+            'resource_uri': self.seller_uri}
+        solitude.api.generic.product.post.return_value = {
+            'resource_pk': self.product_pk}
 
 
 @mock.patch('mkt.developers.models.client')
@@ -168,9 +170,9 @@ class TestInappKeys(InappKeysTest):
         self.setup_solitude(solitude)
         res = self.client.post(self.url)
 
-        assert res['Location'].endswith(self.url), res
-        assert solitude.post_seller.called, 'solitude seller not created'
-        assert solitude.post_product.called, 'seller product not created'
+        ok_(res['Location'].endswith(self.url), res)
+        ok_(solitude.api.generic.seller.post.called)
+        ok_(solitude.api.generic.product.post.called)
         key = UserInappKey.objects.get()
         eq_(key.solitude_seller.resource_uri, self.seller_uri)
         eq_(key.seller_product_pk, self.product_pk)
@@ -307,10 +309,11 @@ class TestPayments(amo.tests.TestCase):
 
     def test_associate_acct_to_app(self):
         # Set up Solitude return values.
-        self.sol.get_product.return_value = {'meta': {'total_count': 0}}
-        self.sol.post_product.return_value = {'resource_uri': 'gpuri'}
-        self.sol.get_product_bango.return_value = {'meta': {'total_count': 0}}
-        self.sol.post_product_bango.return_value = {
+        api = self.sol.api  # Set up Solitude return values.
+        api.generic.product.get_object.side_effect = ObjectDoesNotExist
+        api.generic.product.post.return_value = {'resource_uri': 'gpuri'}
+        api.bango.product.get_object.side_effect = ObjectDoesNotExist
+        api.bango.product.post.return_value = {
             'resource_uri': 'bpruri', 'bango_id': 123}
 
         # Set up an existing bank account.
@@ -331,11 +334,8 @@ class TestPayments(amo.tests.TestCase):
         eq_(res.status_code, 200)
         eq_(self.webapp.app_payment_account.payment_account.pk, acct.pk)
 
-        # Make sure the product was created with some properties we care about.
-        kw = self.sol.post_product.call_args[1]['data']
-        assert kw['public_id'], kw
-        assert kw['external_id'], kw
-        assert kw['secret'], kw
+        kw = api.bango.product.post.call_args[1]['data']
+        ok_(kw['secret'], kw)
 
 
 class TestRegions(amo.tests.TestCase):

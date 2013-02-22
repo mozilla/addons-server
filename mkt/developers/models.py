@@ -1,12 +1,12 @@
 import uuid
 
+from django.core.exceptions import ObjectDoesNotExist
 from django.db import models
 
 import commonware.log
 from tower import ugettext_lazy as _lazy
 
 import amo
-from devhub.models import ActivityLog  # used by reviewers.views, etc!
 from lib.crypto import generate_key
 from lib.pay_server import client
 from mkt.purchase import webpay
@@ -38,8 +38,7 @@ class SolitudeSeller(amo.models.ModelBase):
     @classmethod
     def create(cls, user):
         uuid_ = str(uuid.uuid4())
-        # TODO(solitude): This could probably be made asynchronous.
-        res = client.post_seller(data={'uuid': uuid_})
+        res = client.api.generic.seller.post(data={'uuid': uuid_})
         uri = res['resource_uri']
         obj = cls.objects.create(user=user, uuid=uuid_, resource_uri=uri)
 
@@ -91,7 +90,7 @@ class PaymentAccount(CurlingHelper, amo.models.ModelBase):
         package_values['seller'] = user_seller.resource_uri
 
         log.info('[User:%s] Creating Bango package' % user)
-        res = client.post_package(data=package_values)
+        res = client.api.bango.package.post(data=package_values)
         uri = res['resource_uri']
 
         # Get the data together for the bank details creation.
@@ -100,7 +99,7 @@ class PaymentAccount(CurlingHelper, amo.models.ModelBase):
         bank_details_values['seller_bango'] = uri
 
         log.info('[User:%s] Creating Bango bank details' % user)
-        client.post_bank_details(data=bank_details_values)
+        client.api.bango.bank.post(data=bank_details_values)
 
         obj = cls.objects.create(user=user, uri=uri,
                                  solitude_seller=user_seller,
@@ -195,20 +194,14 @@ class AddonPaymentAccount(CurlingHelper, amo.models.ModelBase):
         external_id = webpay.make_ext_id(addon.pk)
         data = {'seller': cls.uri_to_pk(payment_account.seller_uri),
                 'external_id': external_id}
-        # TODO: convert to curling and clean out a bunch of this code.
-        res = client.get_product(filters=data)
-        if res['meta']['total_count'] > 1:
-            # This probably means that Solitude
-            # ignored one of our filter parameters.
-            log.info('AddonPaymentAccount product result: %s' % res)
-            raise ValueError('Multiple products returned for %s' % data)
-        elif res['meta']['total_count'] == 1:
-            generic_product = res['objects'][0]
-        else:
-            generic_product = client.post_product(data={
+        try:
+            generic_product = client.api.generic.product.get_object(**data)
+        except ObjectDoesNotExist:
+            generic_product = client.api.generic.product.post(data={
                 'seller': payment_account.seller_uri, 'secret': secret,
                 'external_id': external_id, 'public_id': str(uuid.uuid4())
             })
+
         product_uri = generic_product['resource_uri']
 
         if provider == 'bango':
@@ -232,26 +225,18 @@ class AddonPaymentAccount(CurlingHelper, amo.models.ModelBase):
         res = None
         if product_uri:
             data = {'seller_product': cls.uri_to_pk(product_uri)}
-            query = client.get_product_bango(filters=data)
-            if query['meta']['total_count'] > 1:
-                # This probably means that Solitude
-                # ignored one of our filter parameters.
-                log.info('AddonPaymentAccount bango product result: %s' % query)
-                raise ValueError('Multiple products returned for %s' % data)
-            elif query['meta']['total_count'] == 1:
-                # The product already exists in Solitude so use it.
-                res = query['objects'][0]
-
-        if not res:
-            # The product does not exist in Solitude so create it.
-            res = client.post_product_bango(data={
-                'seller_bango': payment_account.uri,
-                'seller_product': product_uri,
-                'name': addon.name,
-                'packageId': payment_account.bango_package_id,
-                'categoryId': 1,
-                'secret': secret
-            })
+            try:
+                res = client.api.bango.product.get_object(**data)
+            except ObjectDoesNotExist:
+                # The product does not exist in Solitude so create it.
+                res = client.api.bango.product.post(data={
+                    'seller_bango': payment_account.uri,
+                    'seller_product': product_uri,
+                    'name': addon.name.localized_string,
+                    'packageId': payment_account.bango_package_id,
+                    'categoryId': 1,
+                    'secret': secret
+                })
 
         product_uri = res['resource_uri']
         bango_number = res['bango_id']
@@ -264,31 +249,22 @@ class AddonPaymentAccount(CurlingHelper, amo.models.ModelBase):
 
     @classmethod
     def _push_bango_premium(cls, bango_number, product_uri, price):
-
         if price != 0:
             # Make the Bango product premium.
-            client.post_make_premium(
+            client.api.bango.premium.post(
                 data={'bango': bango_number,
                       'price': price,
                       'currencyIso': 'USD',
                       'seller_product_bango': product_uri})
-        else:
-            pass
-            # Pass for now, in the future, let Solitude know that the app is
-            # going to be free.
 
-            ## Make the Bango product free.
-            #client.post_make_free(
-            #    data={'bango': bango_number,
-            #          'seller_product_bango': product_uri})
         # Update the Bango rating.
-        client.post_update_rating(
+        client.api.bango.rating.post(
             data={'bango': bango_number,
                   'rating': 'UNIVERSAL',
                   'ratingScheme': 'GLOBAL',
                   'seller_product_bango': product_uri})
         # Bug 836865.
-        client.post_update_rating(
+        client.api.bango.rating.post(
             data={'bango': bango_number,
                   'rating': 'GENERAL',
                   'ratingScheme': 'USA',
@@ -339,7 +315,7 @@ class UserInappKey(CurlingHelper, amo.models.ModelBase):
     @classmethod
     def create(cls, user):
         sel = SolitudeSeller.create(user)
-        prod = client.post_product(data={
+        prod = client.api.generic.product.post_product(data={
             'seller': sel.resource_uri, 'secret': generate_key(48),
             'external_id': str(uuid.uuid4()), 'public_id': str(uuid.uuid4())
         })

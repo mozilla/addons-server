@@ -33,6 +33,7 @@ from amo.models import manual_order
 from amo.urlresolvers import reverse
 from amo.utils import (escape_all, HttpResponseSendFile, JSONEncoder, paginate,
                        smart_decode)
+from devhub.models import ActivityLog
 from editors.forms import MOTDForm
 from editors.models import (EditorSubscription, EscalationQueue, RereviewQueue,
                             ReviewerScore)
@@ -46,7 +47,6 @@ from users.models import UserProfile
 from zadmin.models import get_config, set_config
 
 import mkt.constants.reviewers as rvw
-from mkt.developers.models import ActivityLog
 from mkt.reviewers.utils import clean_sort_param
 from mkt.site.helpers import product_as_dict
 from mkt.webapps.models import Webapp
@@ -452,7 +452,7 @@ def _queue_to_apps(request, queue_qs):
 
     # Put the filtered qs back into the correct sort order.
     qs = manual_order(qs, sorted_app_ids, 'addons.id')
-    apps = [QueuedApp(app, app.created) for app in qs]
+    [QueuedApp(app, app.created) for app in qs]
 
     return qs, search_form
 
