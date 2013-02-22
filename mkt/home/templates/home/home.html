@@ -16,5 +16,9 @@
       {% endfor %}
     </ul>
   </section>
-  {{ category_slider(rand=True, limit=12 if DESKTOP else 9) }}
+  {% if DESKTOP %}
+    {{ category_slider(rand=True, limit=12) }}
+  {% else %}
+    {{ category_slider() }}
+  {% endif %}
 {% endblock %}
