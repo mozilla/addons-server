@@ -2,15 +2,14 @@
 
 // Move these to 'lib' if needed elsewhere.
 .btn-shadow() {
-    .box-shadow(0 2px 0 0 rgba(0, 0, 0, .1), 0 -2px 0 0 rgba(0, 0, 0, .2) inset);
+    .box-shadow(0 1px 0 0 rgba(51, 51, 51, .5), 0 -2px 0 0 rgba(255, 255, 255, .1) inset);
+}
+.alt-btn-shadow() {
+    .box-shadow(0 1px 0 0 rgba(51, 51, 51, .5), 0 -1px 0 0 rgba(255, 255, 255, .5) inset);
 }
 .btn-shadow-active() {
     .box-shadow(0 2px 0 0 rgba(0, 0, 0, .2) inset, 0 12px 24px 6px rgba(0, 0, 0, .2) inset, 0 0 2px 2px rgba(0, 0, 0, .2) inset);
-}
-.blue-hover() {
-    // These have a colour associated with them so no need to libify.
-    .box-shadow(0 2px 0 0 rgba(0, 0, 0, .1), 0 -2px 0 0 rgba(0, 0, 0, .2) inset, 0 12px 24px 2px #3089D8 inset);
-    .transition(all 0.25s linear 0s);
+    border: 1px none;
 }
 .fatten() {
     height: 48px;
@@ -19,80 +18,43 @@
 
 .button, .button:visited, button {
     // Blueish.
-    .gradient-two-color(#3C88CC, #276195);
-    .transition(all 0.25s linear 0s);
-    .border-radius(4px);
+    .gradient-two-color(#4cb1ff, #1793e5);
+    .border-radius(3px);
     .btn-shadow;
     background-repeat: repeat-x;
-    border: 0;
+    border: 1px solid #1793e5;
     color: @white;
     display: inline-block;
-    font: 400 14px/40px @open-stack;
-    height: 40px;
+    font: 400 14px/48px @open-stack;
+    height: 48px;
     min-width: 100px;
     white-space: nowrap;
     padding: 0 20px;
     text-align: center;
     text-decoration: none;
-    text-shadow: 0 1px 0 rgba(0, 0, 0, .25);
     &:hover, &:focus {
-        .blue-hover;
+        .gradient-two-color(darken(#4cb1ff, 10%), darken(#1793e5, 10%));
         text-decoration: none;
-    }
-    &:focus {
-        outline-color: #484848;
     }
     &:active {
         .btn-shadow-active;
-        .transition(all 0.25s linear 0s);
-        color: @white;
-        text-decoration: none;
-    }
-    &.fat {
-        .fatten;
-    }
-    // Redish.
-    &.cancel {
-        .gradient-two-color(#DA5132, #A91300);
-        &:hover, &:focus {
-            .box-shadow(0 2px 0 0 rgba(0, 0, 0, .1), 0 -2px 0 0 rgba(0, 0, 0, .2) inset, 0 12px 24px 2px #E64926 inset);
-        }
-        &:active {
-            .btn-shadow-active;
-        }
-    }
-    // Greenish.
-    &.good {
-        .gradient-two-color(#81BC2E, #659324);
-        &:hover, &:focus {
-            .box-shadow(0 2px 0 0 rgba(0, 0, 0, .1), 0 -2px 0 0 rgba(0, 0, 0, .2) inset, 0 12px 24px 2px #83C822 inset);
-        }
-        &:active {
-            .btn-shadow-active;
-        }
     }
 }
 .button {
-    &.theme-install {
-        .fatten;
+    // Grayish.
+    &.disabled {
+        .gradient-two-color(#e7e7e7, #fafbfc);
+        .box-shadow(none);
+        color: #a7a7a7;
+        pointer-events: none;
+        border: 1px solid #b7b7b7;
     }
     // Redish.
     &.manage {
         .gradient-two-color(#DA5132, #A91300);
+        border: 0;
         &:hover, &:focus {
             .box-shadow(0 2px 0 0 rgba(0, 0, 0, .1), 0 -2px 0 0 rgba(0, 0, 0, .2) inset, 0 12px 24px 2px #E64926 inset);
-        }
-        &:active {
-            .btn-shadow-active;
-        }
-    }
-    // Grayish.
-    &.disabled {
-        .gradient-two-color(#BFC7CD, #9CA3AA);
-        color: @faint-gray;
-        pointer-events: none;
-        &:hover, &:focus {
-            .box-shadow(0 2px 0 0 rgba(0, 0, 0, .1), 0 -2px 0 0 rgba(0, 0, 0, .2) inset, 0 12px 24px 2px #BFC7CD inset);
         }
         &:active {
             .btn-shadow-active;
@@ -100,36 +62,27 @@
     }
     // Grayish (legacy).
     &.alt {
-        .gradient-two-color(#f8f9fb, #ebeff2);
-        .box-shadow(none);
-        border: 1px solid #c0c1c3;
-        color: #3d4246;
+        .gradient-two-color(#fff, #e7e7e7);
+        .alt-btn-shadow;
+        border: 1px solid #b7b7b7;
+        color: #5f5f5f;
+        &:hover, &:focus {
+            .gradient-two-color(darken(#fff, 10%), darken(#e7e7e7, 10%));
+        }
+        &:active {
+            .btn-shadow-active;
+        }
     }
 }
 button {
     &.product {
         .fatten;
-        // Redish.
-        &.error {
-            .gradient-two-color(#DA5132, #A91300);
-            &:hover, &:focus {
-                .box-shadow(0 2px 0 0 rgba(0, 0, 0, .1), 0 -2px 0 0 rgba(0, 0, 0, .2) inset, 0 12px 24px 2px #E64926 inset);
-            }
-            &:active {
-                .btn-shadow-active;
-            }
-        }
     }
     // Grayish.
     &[disabled] {
-        .gradient-two-color(#BFC7CD, #9CA3AA);
-        color: @faint-gray;
-        &:hover, &:focus {
-            .box-shadow(0 2px 0 0 rgba(0, 0, 0, .1), 0 -2px 0 0 rgba(0, 0, 0, .2) inset, 0 12px 24px 2px #BFC7CD inset);
-        }
-        &:active {
-            .btn-shadow-active;
-        }
+        .gradient-two-color(#e7e7e7, #fafbfc);
+        color: #a7a7a7;
+        border: 1px solid #b7b7b7;
     }
     &[disabled], &.disabled,
     &.purchasing, &.purchased,
