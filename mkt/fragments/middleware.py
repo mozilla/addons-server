@@ -28,6 +28,7 @@ class HijackRedirectMiddleware(object):
 
             req = copy.copy(request)
             req.method = 'GET'
+            req.path = view_url
             # We want only the fragment response.
             req.META['HTTP_X_REQUESTED_WITH'] = 'XMLHttpRequest'
             # Pass back the URI so we can pushState it.
