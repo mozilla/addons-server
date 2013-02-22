@@ -1,4 +1,4 @@
-{% set in_devhub = request.path.startswith('/developers/') %}
+{% set in_devhub = request.path.startswith(('/developers/', '/reviewers/')) %}
 {% if logged %}
   <div class="account-links">
     <a href="{{ url('account.settings') }}" class="header-button icon settings sticky" title="{{ _('Settings') }}"></a>
