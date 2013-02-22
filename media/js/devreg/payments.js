@@ -45,7 +45,15 @@ define('payments', [], function() {
                         var field = $('#id_' + field_error);
                         $('<div>').addClass('error')
                                   .insertAfter(field)
-                                  .text(parsed_errors[field_error].join('\n'));
+                                  .text(parsed_errors[field_error]);
+                    }
+                    // If the error occurred on an unknown field,
+                    // stick the error at the top. Maybe with more detail.
+                    if (parsed_errors.__all__ !== null) {
+                        var target = $old_overlay.find('#bango-account-errors');
+                        $('<div>').addClass('error')
+                                  .insertAfter(target)
+                                  .text(parsed_errors.__all__);
                     }
                 } catch(err) {
                     // There was a JSON parse error, just stick the error

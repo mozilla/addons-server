@@ -6,6 +6,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import get_object_or_404, redirect
 
 import commonware
+from curling.lib import HttpClientError, HttpServerError
 import jingo
 from jingo import helpers
 import jinja2
@@ -179,9 +180,11 @@ def payments_accounts_add(request):
     try:
         obj = models.PaymentAccount.create_bango(
             request.amo_user, form.cleaned_data)
-    except client.Error as e:
+    except HttpClientError as e:
+        log.error('Client error create Bango account; %s' % e)
+        return http.HttpResponse(json.dumps(e.content), status=400)
+    except HttpServerError as e:
         log.error('Error creating Bango payment account; %s' % e)
-        raise  # We want to see these exceptions!
         return http.HttpResponse(
             _(u'Could not connect to payment server.'), status=400)
     return {
