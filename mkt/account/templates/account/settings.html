@@ -84,7 +84,7 @@
       <div class="several-buttons c">
         {% if logged %}
           {% if is_reviewer %}
-            <p><a href="{{ url('reviewers.apps.queue_pending') }}" class="manage fatbutton">
+            <p><a href="{{ url('reviewers.apps.queue_pending') }}" class="manage fatbutton sync">
               {{ _('Reviewer Tools') }}</a></p>
             <p><a href="{{ request.get_full_path()|urlparams(mobile='false', tablet='false') }}" class="manage fatbutton sync">
               {{ _('View Full Site') }}</a></p>
