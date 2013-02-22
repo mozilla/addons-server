@@ -156,7 +156,7 @@ var nav = (function() {
         }
     }
 
-    z.page.on('click', '.back', _pd(back));
+    z.doc.on('click', '.back', _pd(back));
 
     return {
         stack: function() {
