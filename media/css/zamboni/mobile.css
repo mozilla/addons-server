@@ -1216,6 +1216,7 @@ button:active,
     right: 0;
 }
 
+#screenshots,
 .carousel {
     position: relative;
     padding: 14px 40px;
@@ -1224,6 +1225,13 @@ button:active,
     background-color: #fff;
     border-bottom: 2px solid #dcedfd;
     margin-bottom: 20px;
+}
+
+#screenshots .carousel {
+    border: 0;
+    overflow: visible;
+    padding: 0;
+    position: static;
 }
 
 .carousel ul {
