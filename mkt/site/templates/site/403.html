@@ -4,10 +4,6 @@
 
 {% set pagetitle = _('Not Allowed') %}
 
-{% if not DESKTOP %}
-  {% set pagetype = 'notice' %}
-{% endif %}
-
 {% block content %}
   <section class="main primary">
       <h1>{{ _('Oops! Not allowed.') }}</h1>

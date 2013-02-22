@@ -3,10 +3,6 @@
 {% set headertitle = _('Firefox Marketplace') %}
 {% set bodyclass = 'home login' %}
 
-{% if not DESKTOP %}
-  {% set pagetype = 'notice' %}
-{% endif %}
-
 {% block content %}
   <section id="welcome" class="{{ 'centre ' if not DESKTOP }}main primary">
     <div>

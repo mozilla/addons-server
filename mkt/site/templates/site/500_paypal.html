@@ -6,10 +6,6 @@
 {% set pagetitle = title %}
 {% block title %}{{ pagetitle }}{% endblock %}
 
-{% if not DESKTOP %}
-  {% set pagetype = 'notice' %}
-{% endif %}
-
 {# TODO(apps): Finalize copy. #}
 
 {% block content %}
