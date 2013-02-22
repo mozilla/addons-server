@@ -178,8 +178,6 @@ JS = {
         'js/amo2009/addons.js',
         'js/mkt/tracking.js',
         'js/devreg/init.js',  # This one excludes buttons initialization, etc.
-        'js/devreg/tooltip.js',
-        'js/mkt/modal.js',
         'js/mkt/capabilities.js',
         'js/lib/format.js',
         'js/lib/jquery.cookie.js',
@@ -194,6 +192,7 @@ JS = {
         'js/lib/truncate.js',
         'js/zamboni/truncation.js',
         'js/zamboni/helpers.js',
+        'js/zamboni/global.js',
         'js/zamboni/l10n.js',
         'js/zamboni/debouncer.js',
 

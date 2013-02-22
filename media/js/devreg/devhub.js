@@ -266,6 +266,17 @@ $(document).ready(function() {
 $(document).ready(function() {
     $.ajaxSetup({cache: false});
 
+    $('.more-actions-popup').each(function() {
+      var el = $(this);
+      el.popup(el.closest('li').find('.more-actions'), {
+        width: 'inherit',
+        offset: {x: 15},
+        callback: function(obj) {
+            return {pointTo: $(obj.click_target)};
+        }
+      });
+    });
+
     $('.modal-delete').each(function() {
         var el = $(this);
         el.modal(el.closest('li').find('.delete-addon'), {
@@ -930,14 +941,7 @@ function initLicenseFields() {
 
 function initAuthorFields() {
     // Add the help line after the blank author row.
-    $('#what-are-roles').on('click', _pd(function() {
-        var overlay = makeOrGetOverlay({});
-        overlay.html($('#author-roles-help-template').html())
-               .addClass('show');
-        overlay.on('click', '.close', _pd(function() {
-            overlay.trigger('overlay_dismissed')
-        }));
-    }))
+    $('#author-roles-help').popup('#what-are-roles', {pointTo: $('#what-are-roles') });
 
     if (z.noEdit) return;
 
