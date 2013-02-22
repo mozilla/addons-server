@@ -49,44 +49,14 @@
             initCharCount(overlay);
         }
 
-        function validate() {
-            var $error = overlay.find('.req-error');
-            var $comment = overlay.find('textarea');
-            var msg = $comment.val().strip();
-            var $parent = $comment.closest('.simple-field');
-            var $cc = overlay.find('.char-count');
-            var valid = !$cc.hasClass('error') && msg;
-
-            if (valid) {
-                $parent.removeClass('error');
-                $error.remove();
-                overlay.off('submit.disable', 'form');
-            } else {
-                if (!$parent.hasClass('error')) {
-                    $parent.addClass('error');
-                }
-                if (!msg && !$error.length) {
-                    $(format('<div class="error req-error">{0}</div>',
-                             gettext('This field is required.'))).insertBefore($cc);
-                }
-                overlay.on('submit.disable', 'form', false);
-            }
-            return valid;
-        }
-
         overlay.addClass('show');
 
         overlay.on('submit', 'form', function(e) {
-            // Trigger validation.
-            if (!validate(e)) {
-                e.preventDefault();
-                return false;
-            }
             overlay.removeClass('show');
             // Form submission is handled by POST hijacking.
         }).on('click', '.cancel', _pd(function() {
             overlay.removeClass('show');
-        })).on('change.comment keyup.comment', 'textarea', _.throttle(validate, 250));
+        }));
     }
 
     function flagReview(reviewEl) {

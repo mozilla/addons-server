@@ -110,8 +110,8 @@ function initCharCount(parent) {
             left = max - val.length,
             cc_parent = cc.parent();
         // L10n: {0} is the number of characters left.
-        cc.html(format(ngettext('<b>{0}</b> character left.',
-                                '<b>{0}</b> characters left.', left), [left]))
+        cc.html(format(ngettext('{0} character left.',
+                                '{0} characters left.', left), [left]))
           .toggleClass('error', left < 0);
         if(left >= 0 && cc_parent.hasClass('error')) {
             cc_parent.removeClass('error');
