@@ -179,15 +179,23 @@ body, .home {
     }
 }
 
-.logged #site-search-suggestions {
-    margin-right: 53px;
+// Undoing search stuff from navigation.less - forgive my sins.
+
+#site-search-suggestions {
+    margin-right: 62px;
 }
 
-body[data-page-type="root"] .fancy {
-    top: 30px;
+body.logged #site-search-suggestions {
+    margin-right: 47px;
 }
-#site-header #search-q {
-    right: 46px;
+
+body[data-page-type="root"] {
+    #search {
+        overflow: visible;
+    }
+    .fancy {
+        position: static;
+    }
 }
 
 @media @retina {
