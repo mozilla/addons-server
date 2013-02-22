@@ -45,7 +45,7 @@
         <a class="fatbutton{{ ' browserid' if not logged }}" id="add-first-review"
           {% if DESKTOP %}
             href="#"
-            data-href="{{ product.get_ratings_url('add') }}"
+            {% if logged %}data-href="{{ product.get_ratings_url('add') }}"{% endif %}
             data-action="add-or-edit"
             data-rating="{{ my_review.rating if has_review else 0 }}">
           {% else %}
