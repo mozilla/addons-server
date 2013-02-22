@@ -10,13 +10,11 @@ from jingo_minify import helpers as jingo_minify_helpers
 from tower import ugettext as _
 
 import amo
-from access import acl
 from amo.helpers import urlparams
 from amo.urlresolvers import reverse, get_outgoing_url
 from amo.utils import JSONEncoder
 from translations.helpers import truncate
 from versions.compare import version_int as vint
-from mkt.webapps.models import Installed
 
 import mkt
 
