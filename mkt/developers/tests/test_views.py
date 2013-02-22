@@ -193,8 +193,8 @@ class TestAppDashboard(AppHubTest):
             ('Compatibility & Payments', app.get_dev_url('payments')),
             ('Manage Status', app.get_dev_url('versions')),
             ('View Listing', app.get_url_path()),
-            ('Statistics', app.get_stats_url()),
-            ('Transactions', urlparams(
+            ('View Statistics', app.get_stats_url()),
+            ('View Transactions', urlparams(
                 reverse('mkt.developers.transactions'), app=app.id)),
         ]
         amo.tests.check_links(expected, doc('a.action-link'))
@@ -215,8 +215,8 @@ class TestAppDashboard(AppHubTest):
             ('Compatibility & Payments', app.get_dev_url('payments')),
             ('Manage Status & Versions', app.get_dev_url('versions')),
             ('View Listing', app.get_url_path()),
-            ('Statistics', app.get_stats_url()),
-            ('Transactions', urlparams(
+            ('View Statistics', app.get_stats_url()),
+            ('View Transactions', urlparams(
                 reverse('mkt.developers.transactions'), app=app.id)),
             ('Manage In-App Payments', app.get_dev_url('in_app_config')),
         ]
@@ -235,8 +235,8 @@ class TestAppDashboard(AppHubTest):
             ('Manage Team Members', app.get_dev_url('owner')),
             ('Manage Status', app.get_dev_url('versions')),
             ('View Listing', app.get_url_path()),
-            ('Statistics', app.get_stats_url()),
-            ('Transactions', urlparams(
+            ('View Statistics', app.get_stats_url()),
+            ('View Transactions', urlparams(
                 reverse('mkt.developers.transactions'), app=app.id)),
         ]
         amo.tests.check_links(expected, doc('a.action-link'), verify=False)
