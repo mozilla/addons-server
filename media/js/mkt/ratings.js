@@ -4,13 +4,15 @@
     var reviewTemplate = getTemplate($('#review-template'));
     var reviewWithReply;
 
+    var alwaysUseCharCounter = true;
+
     z.page.on('fragmentloaded', function() {
         // Hijack <select> with stars.
         $('select[name="rating"]').ratingwidget();
 
         // Remove character counter on review field on mobile for now
         // (770661).
-        if (!z.capabilities.mobile) {
+        if (alwaysUseCharCounter || !z.capabilities.mobile) {
             initCharCount();
         }
 
@@ -45,7 +47,7 @@
 
         // Remove character counter on review field on mobile for now
         // (770661).
-        if (!z.capabilities.mobile) {
+        if (alwaysUseCharCounter || !z.capabilities.mobile) {
             initCharCount(overlay);
         }
 
