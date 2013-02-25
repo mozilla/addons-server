@@ -65,43 +65,65 @@
 
     <section id="partnership">
       <div class="submit-app">
-        <h2>{{ _('Already built an app?') }}</h2>
         <div class="app-logo">
           <a href="{{ url('submit.app') }}" class="mkt-logo">
             <img src="{{ media('img/ecosystem/submit-app-mktplace.png') }}">
           </a>
+        </div>
+        <div class="app-button">
+          <h2>{{ _('Do you have an app ready for liftoff?') }}</h2>
           <a href="{{ url('submit.app') }}" class="button">
-            {{ _('Submit it to the Marketplace') }}
+            {{ _('Submit your app to the Marketplace') }}
           </a>
         </div>
       </div>
-      <div class="partner-title">
-        <h2>
+      <div class="partner-content">
+        <div class="partner-logos">
           <a href="{{ url('ecosystem.partners') }}">
-            {{- _('Join the community') }}</a>
-        </h2>
-        <p>{{ _("Look who's already here") }}</p>
-      </div>
-      <div class="partner-logos">
-        <a href="{{ url('ecosystem.partners') }}">
-          <ul>
-            <li><img src="{{ media('img/ecosystem/partner-facebook.png') }}"></li>
-            <li><img src="{{ media('img/ecosystem/partner-twitter.png') }}"></li>
-            <li><img src="{{ media('img/ecosystem/partner-cuttherope.png') }}"></li>
-            <li><img src="{{ media('img/ecosystem/partner-evernote.png') }}"></li>
-            <li><img src="{{ media('img/ecosystem/partner-box.png') }}"></li>
-            <li><img src="{{ media('img/ecosystem/partner-ea.png') }}"></li>
-            <li><img src="{{ media('img/ecosystem/partner-soundcloud.png') }}"></li>
-            <li><img src="{{ media('img/ecosystem/partner-lanyrd.png') }}"></li>
-          </ul>
-        </a>
-        <h3>
-          {%- trans partner_url=url('ecosystem.partners') %}
-            Are you a Web Company, Third-Party Service, or OEM looking to partner
-            with Mozilla? <a href="{{ partner_url }}">Check out our Partners page
-            for more info</a>
-          {% endtrans -%}
-        </h3>
+            <ul>
+              <li>
+                <img src="{{ media('img/ecosystem/partner-facebook.png') }}">
+              </li>
+              <li>
+                <img src="{{ media('img/ecosystem/partner-twitter.png') }}">
+              </li>
+              <li>
+                <img src="{{ media('img/ecosystem/partner-cuttherope.png') }}">
+              </li>
+              <li>
+                <img src="{{ media('img/ecosystem/partner-evernote.png') }}">
+              </li>
+              <li>
+                <img src="{{ media('img/ecosystem/partner-box.png') }}">
+              </li>
+              <li>
+                <img src="{{ media('img/ecosystem/partner-ea.png') }}">
+              </li>
+              <li>
+                <img src="{{ media('img/ecosystem/partner-soundcloud.png') }}">
+              </li>
+              <li>
+                <img src="{{ media('img/ecosystem/partner-lanyrd.png') }}">
+              </li>
+            </ul>
+          </a>
+        </div>
+        <div class="partner-text">
+          <div class="partner-title">
+            <h2>
+              <a href="{{ url('ecosystem.partners') }}">
+                {{- _('Join the community') }}</a>
+            </h2>
+            <p>{{ _("Look who's already here") }}</p>
+          </div>
+          <h3>
+            {%- trans partner_url=url('ecosystem.partners') %}
+              Are you a Web Company, Third-Party Service, or OEM looking to partner
+              with Mozilla? <a href="{{ partner_url }}">Check out our Partners page
+              for more info</a>
+            {% endtrans -%}
+          </h3>
+        </div>
       </div>
     </section>
 
