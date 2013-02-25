@@ -9,17 +9,14 @@ from django.contrib.auth.models import User
 from django.test.client import Client, FakePayload
 
 import oauth2
-from mock import Mock, patch
+from mock import patch
 from nose.tools import eq_
 from test_utils import RequestFactory
 
-from access.models import Group, GroupUser
 from amo.tests import TestCase
 from amo.helpers import urlparams
 from amo.urlresolvers import reverse
-from files.models import FileUpload
 
-from mkt.api.authentication import errors
 from mkt.api.base import CORSResource
 from mkt.api.models import Access, generate
 from mkt.site.fixtures import fixture
@@ -139,62 +136,6 @@ class BaseOAuth(TestCase):
 
     def get_error(self, response):
         return json.loads(response.content)['error_message']
-
-
-@patch.object(settings, 'SITE_URL', 'http://api/')
-class TestBaseOAuth(BaseOAuth):
-    # Note: these tests are using the validation api to test authentication
-    # using OAuth. Ideally those tests would be done seperately.
-
-    def setUp(self):
-        super(TestBaseOAuth, self).setUp()
-        FileUpload.objects.create(uuid='123',
-                user=self.access.user.get_profile())
-        self.url = ('api_dispatch_detail',
-                    {'resource_name': 'validation',
-                     'pk': '123'})
-
-    def test_no_auth(self):
-        client = Client()
-        url = get_absolute_url(self.url)
-        eq_(client.get(url).status_code, 401)
-
-    def test_accepted(self):
-        eq_(self.client.get(self.url).status_code, 200)
-
-    def test_no_agreement(self):
-        self.user.get_profile().update(read_dev_agreement=None)
-        res = self.client.get(self.url)
-        eq_(res.status_code, 401)
-        eq_(json.loads(res.content)['reason'], errors['terms'])
-
-    def test_request_token_fake(self):
-        c = Mock()
-        c.key = self.access.key
-        c.secret = 'mom'
-        self.client = OAuthClient(c)
-        res = self.client.get(self.url)
-        eq_(res.status_code, 401)
-        eq_(json.loads(res.content)['reason'], errors['headers'])
-
-    def add_group_user(self, user, *names):
-        for name in names:
-            group = Group.objects.get(name=name)
-            GroupUser.objects.create(user=self.profile, group=group)
-
-    def test_request_admin(self):
-        self.add_group_user(self.profile, 'Admins')
-        res = self.client.get(self.url)
-        eq_(res.status_code, 401)
-        eq_(json.loads(res.content)['reason'], errors['roles'])
-
-    def test_request_has_role(self):
-        self.add_group_user(self.profile, 'App Reviewers', 'Support Staff')
-        res = self.client.get(self.url)
-        eq_(res.status_code, 200)
-
-    def test_request_querystring(self):
-        eq_(self.client.get(self.url, data={'foo': 'bar'}).status_code, 200)
 
 
 class Resource(CORSResource):

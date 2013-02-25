@@ -80,13 +80,15 @@ class MarketplaceAuthentication(Authentication):
         return http.HttpUnauthorized(content=json.dumps({'reason':
                                                          errors[reason]}))
 
+    def _header(self, request):
+        return request.META.get('HTTP_AUTHORIZATION', None)
+
     def is_authenticated(self, request, **kwargs):
+        auth_header_value = self._header(request)
         oauth_server, oauth_request = initialize_oauth_server_request(request)
 
         try:
-            auth_header_value = request.META.get('HTTP_AUTHORIZATION')
             key = get_oauth_consumer_key_from_header(auth_header_value)
-
             if not key:
                 return None
 
@@ -122,6 +124,23 @@ class MarketplaceAuthentication(Authentication):
             return self._error('roles')
 
         return True
+
+
+class OptionalAuthentication(MarketplaceAuthentication):
+    """
+    Like MarketplaceAuthentication, but doesn't require there to be
+    authentication headers. If no headers are provided, just continue
+    as an anonymous user.
+    """
+
+    def is_authenticated(self, request, **kw):
+        auth_header_value = self._header(request)
+        if not auth_header_value:
+            request.user = AnonymousUser()
+            return True
+
+        return (super(OptionalAuthentication, self)
+                .is_authenticated(request, **kw))
 
 
 def initialize_oauth_server_request(request):
