@@ -279,7 +279,7 @@ def build_quick(request):
 
 
     <!-- Using require.js, a module system for javascript, include the
-         js files. This loads "main.js", which in turn can load other
+         js files. This loads "init.js", which in turn can load other
          files, all handled by require.js:
          http://requirejs.org/docs/api.html#jsfiles -->
     <script type="text/javascript" data-main="js/init.js" src="js/lib/require.js"></script>
