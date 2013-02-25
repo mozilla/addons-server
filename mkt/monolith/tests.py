@@ -119,16 +119,14 @@ class TestMonolithResource(BaseOAuth):
         for id_, date in enumerate((self.last_week, self.yesterday, self.now)):
             record_stat('app.install', self.request, recorded=date, value=id_)
 
+        eq_(MonolithRecord.objects.count(), 3)
         records = MonolithRecord.objects.all()
-        eq_(len(records), 3)
 
         res = self.client.delete(self.list_url,
                                  data={'id__gte': records[0].id,
                                        'id__lte': records[1].id})
         eq_(res.status_code, 204)
-
-        records = MonolithRecord.objects.all()
-        eq_(len(records), 1)
+        eq_(MonolithRecord.objects.count(), 1)
 
     def test_deletion_by_id(self):
         record_stat('app.install', self.request, recorded=self.now, value=1)
@@ -138,6 +136,27 @@ class TestMonolithResource(BaseOAuth):
         url = list(self.get_url)
         url[1]['pk'] = records[0].id
         res = self.client.delete(url)
+
+        eq_(res.status_code, 204)
+        eq_(MonolithRecord.objects.count(), 0)
+
+    def test_deletion_by_date(self):
+        for date in (self.last_week, self.yesterday, self.now):
+            record_stat('app.install', self.request, recorded=date, value=1)
+            record_stat('foo.bar', self.request, recorded=date, value=1)
+
+        res = self.client.delete(self.list_url, data={
+            'recorded__gte': self.last_week.isoformat(),
+            'recorded__lte': self.now.isoformat(),
+            'key': 'app.install'})
+
+        eq_(res.status_code, 204)
+        eq_(MonolithRecord.objects.count(), 3)
+
+        res = self.client.delete(self.list_url, data={
+            'recorded__gte': self.last_week.isoformat(),
+            'recorded__lte': self.now.isoformat(),
+            'key': 'foo.bar'})
 
         eq_(res.status_code, 204)
         eq_(MonolithRecord.objects.count(), 0)
