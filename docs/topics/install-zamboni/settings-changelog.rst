@@ -2,6 +2,11 @@ Settings Changelog
 ==================
 
 
+2012-02-25
+----------
+* Removed ``MDN_LAZY_REFRESH`` setting.
+
+
 2012-11-14
 ----------
 
