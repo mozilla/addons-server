@@ -52,25 +52,19 @@
           {% endtrans -%}
           <ul>
             <li>
-              <code>{{ _('http://example.com') }}</code>
+              <code>'http://example.com</code>
             </li>
             <li>
-              {%- trans %}
-                <code>http://example.com:8080</code> (different port)
-              {% endtrans -%}
+              <code>http://example.com:8080</code> {{ _('(different port)') }}
             </li>
             <li>
-              {%- trans %}
-                <code>https://example.com</code> (different protocol)
-              {% endtrans -%}
+              <code>https://example.com</code> {{ _('(different protocol)') }}
             </li>
             <li>
-              <code>{{ _('http://www.example.com') }}</code>
+              <code>http://www.example.com</code>
             </li>
             <li>
-              {%- trans %}
-                <code>http://myapp.example.com</code> (subdomain)
-              {% endtrans -%}
+              <code>http://myapp.example.com</code> {{ _('(subdomain)') }}
             </li>
           </ul>
         </dd>
@@ -78,10 +72,10 @@
           {{ _('The following URLs are the same origin:') }}
           <ul>
             <li>
-              <code>{{ _('http://Example.com:80') }}</code>
+              <code>http://Example.com:80</code>
             </li>
             <li>
-              <code>{{ _('http://example.com') }}</code>
+              <code>http://example.com</code>
             </li>
           </ul>
         </dd>
@@ -91,10 +85,10 @@
           {{ _('The following URLs are the same origin:') }}
           <ul>
             <li>
-              <code>{{ _('http://example.com/drawingApp') }}</code>
+              <code>http://example.com/drawingApp</code>
             </li>
             <li>
-              <code>{{ _('http://example.com/notesApp') }}</code>
+              <code>http://example.com/notesApp</code>
             </li>
           </ul>
         </dd>
@@ -154,6 +148,7 @@
           {% endtrans -%}
         </dd>
         <dd>
+          {# L10n: Do not localize text in <code></code> #}
           {%- trans url='//developer.mozilla.org/docs/Apps/Adding_a_subdomain' %}
             We recommend that you use a separate subdomain for each of your
             apps. For example, <code>spreadsheet.mycoolapps.com</code> for
@@ -208,6 +203,7 @@
           {% endtrans -%}
         </dd>
         <dt>
+          {# L10n: Do not localize text in <code></code> #}
           {%- trans %}
             Why does my Web server have to use the proper HTTP
             <code>Content-Type</code> header when serving my app manifest?

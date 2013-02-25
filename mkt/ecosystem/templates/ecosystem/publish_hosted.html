@@ -18,17 +18,21 @@
       <p>
         {%- trans %}
           Once you have finished your app, you need to do the following:
-          <ul>
-            <li>
+        {% endtrans -%}
+        <ul>
+          <li>
+            {%- trans %}
               Deploy the app &mdash; Arrange for web hosting and get the app
               up and running on the web server.
-            </li>
-            <li>
+            {% endtrans -%}
+          </li>
+          <li>
+            {%- trans %}
               Publish the app &mdash; Make the app available for end users
               to install.
-            </li>
-          </ul>
-        {% endtrans -%}
+            {% endtrans -%}
+          </li>
+        </ul>
       </p>
       <h2>{{ _('Deploying the app') }}</h2>
       <p>
@@ -39,6 +43,7 @@
       </p>
       <h3>{{ _('GitHub') }}</h3>
       <p>
+        {# L10n: Do not localize text in <code></code> #}
         {%- trans url_github='http://pages.github.com',
                   url_mdn='//developer.mozilla.org/docs/Apps/Manifest#Serving_from_GitHub' %}
           If the Web app is purely static (HTML/CSS/JavaScript, but no

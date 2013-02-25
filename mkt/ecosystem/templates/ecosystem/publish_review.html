@@ -91,6 +91,7 @@
           {% endtrans -%}
         </li>
         <li>
+          {# L10n: Do not localize text in <code></code> #}
           {%- trans %}
             The app manifest must be served a <code>Content-Type</code>
             header of <code>application/x-web-app-manifest+json</code>.
@@ -243,22 +244,26 @@
           {% endtrans -%}
         </li>
         <li>
-          {%- trans url='https://github.com/mozilla-b2g/gaia/issues/2557' %}
+          {%- trans %}
             The app must implement its own method of navigation and not rely
             on browser chrome or a hardware back button, which will not be
             present on every device.
-            <ul>
-              <li>
-                For example, if the reviewer navigates somewhere within the
-                app and isn't able to navigate back. It does not mean an app
-                must implement a button bar common to native apps.
-              </li>
-              <li>
-                Note: a Gaia &quot;wrapper&quot; for legacy web content is in
-                progress: <a href="{{ url }}">{{ url }}</a>
-              </li>
-            </ul>
           {% endtrans -%}
+          <ul>
+            <li>
+              {%- trans %}
+                For example, if the reviewer navigates somewhere within the
+                app and isn't able to navigate back. It does not mean an
+                app must implement a button bar common to native apps.
+              {% endtrans -%}
+            </li>
+            <li>
+              {%- trans url='https://github.com/mozilla-b2g/gaia/issues/2557' %}
+                Note: a Gaia &quot;wrapper&quot; for legacy web content is
+                in progress: <a href="{{ url }}">{{ url }}</a>
+              {% endtrans -%}
+            </li>
+          </ul>
         </li>
         <li>
           {%- trans %}
@@ -280,28 +285,33 @@
           from the app review team to communicate what's going on and get
           the problem resolved. Specific examples of situations where
           blocklisting is warranted include:
-          <ul>
-            <li>Phishing</li>
-            <li>Spamming</li>
-            <li>
+        {% endtrans -%}
+        <ul>
+          <li>{{ _('Phishing') }}</li>
+          <li>{{ _('Spamming') }}</li>
+          <li>
+            {%- trans %}
               Changing content from Puppy Pictures v1.0 to Hardcore Porn
               v1.0 (without updating the content rating, when this
               feature is implemented)
-            </li>
-            <li>
+            {% endtrans -%}
+          </li>
+          <li>
+            {%- trans %}
               Severe misbehavior of app for a large percentage of users
               &mdash; degrading phone performance, causing reboots,
               causing user data loss, etc. where users can't tell that
               it's because of the app and where it isn't solved by
               rebooting the device.
-            </li>
-            <li>
+            {% endtrans -%}
+          </li>
+          <li>
+            {%- trans %}
               An app being used for attacks on the network, such as a
               distributed denial of service (DDOS)
-            </li>
-            <li>(insert movie plot risk here)</li>
-          </ul>
-        {% endtrans -%}
+            {% endtrans -%}
+          </li>
+        </ul>
       </p>
     </article>
   </div>
