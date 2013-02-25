@@ -208,6 +208,7 @@ class AppResource(MarketplaceResource):
         with no_translation():
             bundle.data['device_types'] = [str(n.name).lower()
                                            for n in obj.device_types]
+        bundle.data['app_type'] = obj.app_type
         return bundle
 
     def get_object_list(self, request):

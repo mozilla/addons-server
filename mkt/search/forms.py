@@ -120,7 +120,10 @@ class ApiSearchForm(forms.Form):
     device = forms.ChoiceField(required=False, choices=DEVICE_CHOICES)
     premium_types = forms.MultipleChoiceField(
         required=False,
-        choices=[(p, p) for p in amo.ADDON_PREMIUM_API.values()])
+        choices=tuple((p, p) for p in amo.ADDON_PREMIUM_API.values()))
+    app_type = forms.ChoiceField(
+        required=False,
+        choices=tuple((t, t) for t in amo.ADDON_WEBAPP_TYPES.values()))
 
     def __init__(self, *args, **kw):
         super(ApiSearchForm, self).__init__(*args, **kw)
@@ -137,3 +140,9 @@ class ApiSearchForm(forms.Form):
         if pt_ids:
             return pt_ids
         return []
+
+    def clean_app_type(self):
+        app_type = amo.ADDON_WEBAPP_TYPES_LOOKUP.get(
+            self.cleaned_data.get('app_type'))
+        if app_type:
+            return app_type

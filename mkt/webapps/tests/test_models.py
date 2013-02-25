@@ -373,6 +373,12 @@ class TestWebapp(amo.tests.TestCase):
                 [a.id for a in Webapp.featured(cat=None, region=region)],
                 expected)
 
+    def test_app_type_hosted(self):
+        eq_(Webapp().app_type, 'hosted')
+
+    def test_app_type_packaged(self):
+        eq_(Webapp(is_packaged=True).app_type, 'packaged')
+
 
 class TestPackagedAppManifestUpdates(amo.tests.TestCase):
     # Note: More extensive tests for `Addon.update_names` are in the Addon

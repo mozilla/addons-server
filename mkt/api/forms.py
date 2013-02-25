@@ -5,7 +5,6 @@ import StringIO
 from django import forms
 
 import happyforms
-from tower import ugettext as _
 
 import amo
 from addons.models import Addon, AddonDeviceType, Category

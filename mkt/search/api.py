@@ -33,7 +33,7 @@ class SearchResource(AppResource):
         region = getattr(request, 'REGION', mkt.regions.WORLDWIDE)
         qs = _get_query(region, gaia=request.GAIA,
                         mobile=request.MOBILE, tablet=request.TABLET)
-        qs = _filter_search(qs, form.cleaned_data, region=region)
+        qs = _filter_search(request, qs, form.cleaned_data, region=region)
         res = amo.utils.paginate(request, qs)
 
         # Rehydrate the results as per tastypie.

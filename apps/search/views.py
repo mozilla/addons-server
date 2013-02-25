@@ -12,7 +12,6 @@ import commonware.log
 import jingo
 from mobility.decorators import mobile_template
 from tower import ugettext as _
-import waffle
 
 import amo
 import bandwagon.views

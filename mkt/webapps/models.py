@@ -723,6 +723,13 @@ class Webapp(Addon):
         if any(crud.values()):
             self.save()
 
+    @property
+    def app_type(self):
+        # Returns string of 'hosted' or 'packaged'. Used in the API.
+        key = (amo.ADDON_WEBAPP_PACKAGED if self.is_packaged else
+               amo.ADDON_WEBAPP_HOSTED)
+        return amo.ADDON_WEBAPP_TYPES[key]
+
 
 # Pull all translated_fields from Addon over to Webapp.
 Webapp._meta.translated_fields = Addon._meta.translated_fields

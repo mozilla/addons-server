@@ -5,6 +5,7 @@ from tower import ugettext as _
 
 import amo
 import amo.utils
+from access import acl
 from amo.decorators import json_view
 from apps.addons.models import Category
 from apps.search.views import name_query, WebappSuggestionsAjax
@@ -39,7 +40,7 @@ DEFAULT_SORTING = {
 }
 
 
-def _filter_search(qs, query, filters=None, sorting=None,
+def _filter_search(request, qs, query, filters=None, sorting=None,
                    sorting_default='-popularity', region=None):
     """Filter an ES queryset based on a list of filters."""
     # Intersection of the form fields present and the filters we want to apply.
@@ -61,6 +62,8 @@ def _filter_search(qs, query, filters=None, sorting=None,
     if 'premium_types' in show:
         if query.get('premium_types'):
             qs = qs.filter(premium_type__in=query.get('premium_types'))
+    if 'app_type' in query and acl.action_allowed(request, 'Apps', 'Review'):
+        qs = qs.filter(app_type=query['app_type'])
     if 'sort' in show:
         sort_by = None
         if query['sort'] in sorting:
@@ -147,7 +150,7 @@ def _app_search(request, category=None, browse=None):
     qs = _get_query(region, gaia=request.GAIA, mobile=request.MOBILE,
                     tablet=request.TABLET)
 
-    qs = _filter_search(qs, dict(query), region=region)
+    qs = _filter_search(request, qs, dict(query), region=region)
 
     # If we're mobile, leave no witnesses. (i.e.: hide "Applied Filters:
     # Mobile")

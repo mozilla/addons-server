@@ -1490,6 +1490,11 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             return old_locale, locale
         return None
 
+    @property
+    def app_type(self):
+        # Not implemented for non-webapps.
+        return ''
+
 
 class AddonDeviceType(amo.models.ModelBase):
     addon = models.ForeignKey(Addon)

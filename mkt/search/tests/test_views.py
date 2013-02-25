@@ -535,7 +535,7 @@ class TestFilterGaiaCompat(amo.tests.ESTestCase):
         request.TABLET = False
 
         _app_search(request)
-        qs, query = _filter_search_mock.call_args[0]
+        req, qs, query = _filter_search_mock.call_args[0]
         eq_(list(qs), [self.webapp])
         eq_(query['device'], 'gaia')
 
@@ -549,7 +549,7 @@ class TestFilterGaiaCompat(amo.tests.ESTestCase):
         request.TABLET = False
 
         _app_search(request)
-        qs, query = _filter_search_mock.call_args[0]
+        req, qs, query = _filter_search_mock.call_args[0]
         eq_(list(qs), [])
         eq_(query['device'], None)
 
@@ -563,7 +563,7 @@ class TestFilterGaiaCompat(amo.tests.ESTestCase):
         request.TABLET = False
 
         _app_search(request)
-        qs, query = _filter_search_mock.call_args[0]
+        req, qs, query = _filter_search_mock.call_args[0]
         eq_(list(qs), [])
         eq_(query['device'], 'mobile')
 

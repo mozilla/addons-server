@@ -1,7 +1,6 @@
 import json
 
 from django.core.exceptions import ObjectDoesNotExist
-from django.http import HttpResponse
 
 from tastypie import http
 from tastypie.bundle import Bundle

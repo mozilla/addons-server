@@ -7,11 +7,12 @@ from addons.models import AddonCategory, AddonDeviceType, Category
 from amo.tests import ESTestCase
 from mkt.api.tests.test_oauth import BaseOAuth, OAuthClient
 from mkt.search.forms import DEVICE_CHOICES_IDS
+from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
 
 
 class TestApi(BaseOAuth, ESTestCase):
-    fixtures = ['webapps/337141-steamcube']
+    fixtures = fixture('webapp_337141')
 
     def setUp(self):
         self.client = OAuthClient(None)
@@ -105,6 +106,22 @@ class TestApi(BaseOAuth, ESTestCase):
         res = self.client.get(self.list_url + (
             {'premium_types': 'free'},
             {'premium_types': 'premium'}))
+        eq_(res.status_code, 200)
+        obj = json.loads(res.content)['objects'][0]
+        eq_(obj['app_slug'], self.webapp.app_slug)
+
+    def test_app_type_hosted(self):
+        res = self.client.get(self.list_url + ({'app_type': 'hosted'},))
+        eq_(res.status_code, 200)
+        obj = json.loads(res.content)['objects'][0]
+        eq_(obj['app_slug'], self.webapp.app_slug)
+
+    def test_app_type_packaged(self):
+        self.webapp.update(is_packaged=True)
+        self.webapp.save()
+        self.refresh()
+
+        res = self.client.get(self.list_url + ({'app_type': 'packaged'},))
         eq_(res.status_code, 200)
         obj = json.loads(res.content)['objects'][0]
         eq_(obj['app_slug'], self.webapp.app_slug)

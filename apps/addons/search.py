@@ -28,7 +28,7 @@ def extract(addon):
     attrs = ('id', 'slug', 'app_slug', 'created', 'last_updated',
              'weekly_downloads', 'bayesian_rating', 'average_daily_users',
              'status', 'type', 'hotness', 'is_disabled', 'premium_type',
-             'uses_flash', 'is_packaged')
+             'uses_flash')
     d = dict(zip(attrs, attrgetter(*attrs)(addon)))
     # Coerce the Translation into a string.
     d['name_sort'] = unicode(addon.name).lower()
@@ -56,7 +56,7 @@ def extract(addon):
             min_, max_ = 0, version_int('9999')
         d['appversion'][app.id] = dict(min=min_, max=max_)
     try:
-        d['has_version'] = addon._current_version != None
+        d['has_version'] = addon._current_version is not None
     except ObjectDoesNotExist:
         d['has_version'] = None
     d['app'] = [app.id for app in addon.compatible_apps.keys()]
@@ -83,6 +83,9 @@ def extract(addon):
             else:
                 d['popularity_%s' % region] = len(installed_ids)
             d['_boost'] += cnt * 10
+        d['app_type'] = (amo.ADDON_WEBAPP_PACKAGED if addon.is_packaged else
+                         amo.ADDON_WEBAPP_HOSTED)
+
     else:
         # Boost by the number of users on a logarithmic scale. The maximum
         # boost (11,000,000 users for adblock) is about 5x.
