@@ -116,7 +116,16 @@ First, we need to install node, npm and LESS::
 
     brew install node
     curl http://npmjs.org/install.sh | sh
-    npm install less
+
+Install all of zamboni's dependencies locally::
+
+    cd zamboni
+    npm install
+
+Make the local scripts available on your path if you don't already have this in
+your profile::
+
+    export PATH="./node_modules/.bin/:${PATH}"
 
 If you type ``lessc``, it should say "lessc: no input files."
 
