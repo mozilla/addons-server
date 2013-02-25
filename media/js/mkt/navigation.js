@@ -156,7 +156,7 @@ var nav = (function() {
         }
     }
 
-    z.doc.on('click', '.back', _pd(back));
+    z.doc.on('click', '.back:not(.dismiss)', _pd(back));
 
     return {
         stack: function() {
