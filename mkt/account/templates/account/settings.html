@@ -84,19 +84,19 @@
       <div class="several-buttons c">
         {% if logged %}
           {% if is_reviewer %}
-            <p><a href="{{ url('reviewers.apps.queue_pending') }}" class="manage fatbutton sync" target="_blank">
+            <p><a href="{{ url('reviewers.apps.queue_pending') }}" class="manage button sync" target="_blank">
               {{ _('Reviewer Tools') }}</a></p>
           {% endif %}
           {% if action_allowed('AccountLookup', '%') %}
-            <p><a href="{{ url('lookup.home') }}" class="manage fatbutton sync" target="_blank">{{ _('Lookup Tool') }}</a></p>
+            <p><a href="{{ url('lookup.home') }}" class="manage button sync" target="_blank">{{ _('Lookup Tool') }}</a></p>
           {% endif %}
           {% if is_reviewer %}
-            <p><a href="{{ request.get_full_path()|urlparams(mobile='false', tablet='false') }}" class="manage fatbutton sync">
+            <p><a href="{{ request.get_full_path()|urlparams(mobile='false', tablet='false') }}" class="manage button sync">
               {{ _('View Full Site') }}</a></p>
           {% endif %}
-          <a href="{{ url('users.logout') }}" class="sync fatbutton logout">{{ _('Sign out') }}</a>
+          <a href="{{ url('users.logout') }}" class="sync button alt logout">{{ _('Sign out') }}</a>
         {% else %}
-          <a class="full fatbutton browserid" href="#">{{ _('Sign in / Sign up') }}</a>
+          <a class="full button alt browserid" href="#">{{ _('Sign in / Sign up') }}</a>
         {% endif %}
       </div>
     {% endif %}

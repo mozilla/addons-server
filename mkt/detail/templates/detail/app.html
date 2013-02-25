@@ -120,32 +120,32 @@
           {% if product.support_email %}
             <li class="support-email">
               {{ emaillink(product.support_email.localized_string,
-                           _('Support Email')) }}
+                           _('Support Email'), klass='button alt') }}
             </li>
           {% endif %}
           {% if product.support_url %}
             <li class="support-url">
-              <a rel="external" {{ product.support_url|external_href }}>
+              <a class="button alt" rel="external" {{ product.support_url|external_href }}>
                 {{ _('Support Site') }}</a>
             </li>
           {% endif %}
           {% if product.homepage %}
             <li class="homepage">
-              <a rel="external" {{ product.homepage|external_href }}>{{ _('Homepage') }}</a>
+              <a class="button alt" rel="external" {{ product.homepage|external_href }}>{{ _('Homepage') }}</a>
             </li>
           {% endif %}
           {% if product.is_public() or is_reviewer %}
             {% if product.privacy_policy %}
-              <li><a href="{{ product.get_detail_url('privacy') }}">
+              <li><a class="button alt" href="{{ product.get_detail_url('privacy') }}">
                 {{ _('Privacy Policy') }}</a></li>
             {% endif %}
             {% if waffle.switch('app-stats') and product.public_stats %}
-              <li><a rel="external" href="{{ url('mkt.stats.overview', product.app_slug) }}">
+              <li><a class="button alt" rel="external" href="{{ url('mkt.stats.overview', product.app_slug) }}">
                 {{ _('Statistics') }}</a></li>
             {% endif %}
           {% endif %}
           {% if abuse_form %}
-            <li><a href="{{ product.get_detail_url('abuse') }}">
+            <li><a class="button alt" href="{{ product.get_detail_url('abuse') }}">
               {{ _('Report Abuse') }}</a></li>
           {% endif %}
         </ul>
@@ -155,7 +155,7 @@
           {% if upsell %}
             {% set prm = upsell.premium_addon %}
             {% if prm and prm.listed_in(region=request.REGION) %}
-              <a id="upsell" class="fatbutton"
+              <a id="upsell" class="button alt"
                  href="{{ prm.get_url_path()|urlparams(src='mkt-detail-upsell') }}">
                  <span class="avail">{{ _('Premium version available') }}</span>
                  <img class="icon" src="{{ prm.get_icon_url(16) }}">

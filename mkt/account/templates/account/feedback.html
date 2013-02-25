@@ -13,9 +13,9 @@
     {{ feedback_form(form) }}
 
     <div class="several-buttons c">
-      <a href="https://support.mozilla.org/en-US/products/marketplace" class="fatbutton"{% if not DESKTOP %} target="_blank"{% endif %}>{{ _('Get Help') }}</a>
-      <a href="{{ url('site.privacy') }}" class="fatbutton">{{ _('Privacy Policy') }}</a>
-      <a href="{{ url('site.terms') }}" class="fatbutton">{{ _('Terms of Use') }}</a>
+      <a href="https://support.mozilla.org/en-US/products/marketplace" class="button alt"{% if not DESKTOP %} target="_blank"{% endif %}>{{ _('Get Help') }}</a>
+      <a href="{{ url('site.privacy') }}" class="button alt">{{ _('Privacy Policy') }}</a>
+      <a href="{{ url('site.terms') }}" class="button alt">{{ _('Terms of Use') }}</a>
     </div>
   </section>
 {% endblock %}

@@ -287,10 +287,6 @@
                 inset 0 0 1px 1px rgba(0,0,0,.1));
 }
 
-.header-dark-gradient() {
-    .gradient-two-color(rgba(176,186,192,.33), rgba(187,195,199,.33));
-}
-
 .highlight() {
     .border-radius(4px);
     .box-shadow(0 1px 1px 0 rgba(255,255,255,.5), 0 1px 1px 0 rgba(0,0,0,.1) inset);
@@ -302,28 +298,14 @@
     }
 }
 
+.header-dark-gradient() {
+    .gradient-two-color(rgba(176,186,192,.33), rgba(187,195,199,.33));
+}
+
 .appearance-none() {
     // appearance: none; // This isn't even a proposed descriptor.
     -moz-appearance: none;
     -webkit-appearance: none;
-}
-
-// Fat buttons for mobile (used for Support links, etc.)
-.fat-button() {
-    .highlight;
-    color: lighten(@text, 10%);
-    display: block;
-    .light-text-shadow;
-    font-size: 14px;
-    font-weight: 600;
-    padding: 10px;
-    text-align: center;
-    &:hover {
-        .gradient-two-color(#fafbfc, darken(#ebeff2, 5%));
-        border-color: @bg-gray;
-        color: @text;
-        text-decoration: none;
-    }
 }
 
 .header-hover() {

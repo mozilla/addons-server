@@ -18,7 +18,7 @@
         {% endif %}
       </ul>
       <div class="{{ 'split' if can_review else 'full' }}">
-        <a class="fatbutton average-rating" href="{{ product.get_ratings_url() }}">
+        <a class="button alt average-rating" href="{{ product.get_ratings_url() }}">
           <span>
             {% trans cnt=product.total_reviews, num=product.total_reviews|numberfmt %}
               {{ num }} review
@@ -42,7 +42,7 @@
     {% endif %}
     {% if can_review %}
       <div class="{{ 'split' if reviews else 'full' }}">
-        <a class="fatbutton{{ ' browserid' if not logged }}" id="add-first-review"
+        <a class="button alt{{ ' browserid' if not logged }}" id="add-first-review"
           {% if DESKTOP %}
             href="#"
             {% if logged %}data-href="{{ product.get_ratings_url('add') }}"{% endif %}
