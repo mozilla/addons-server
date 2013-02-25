@@ -53,8 +53,7 @@
 
         a {
             display: block;
-            font-size: 14px;
-            font-style: italic;
+            font-size: 15px;
             line-height: 25px;
         }
     }
@@ -62,23 +61,27 @@
     #partnership {
         .box-shadow(0 1px 6px -8px rgba(0,0,0,.5) inset);
         .faded-border;
-        border-bottom: 1px solid @white;
+        border-bottom: 1px solid #ddd;
         border-top: 1px solid #ddd;
+        box-shadow: inset @light-gray 0 1px 5px;
         clear: both;
         float: left;
         margin: 10px 0 20px;
         max-width: 940px;
-        padding: 10px 10px 20px;
+        padding: 10px 10px 0 10px;
         position: relative;
         width: 100%;
 
+        .partner-content {
+            float: left;
+            padding-left: 20px;
+            width: 428px;
+        }
+
         .partner-title {
             float: left;
-            margin: 0 0 0 40px;
-            padding-top: 10px;
+            padding: 10px 10px 0;
             position: relative;
-            width: 220px;
-            z-index: 1;
 
             h2 {
                 color: #000;
@@ -87,22 +90,38 @@
             }
 
             p {
+                color: #aaa;
+                font-size: 15px;
                 font-style: italic;
             }
         }
 
-        .partner-logos {
-            display: block;
+        .partner-text {
             float: left;
-            margin: 5px 20px 0;
+            width: 220px;
+
+            h3 {
+                font-size: 15px;
+                line-height: 19px;
+                padding: 0 10px;
+            }
+        }
+
+        .partner-logos {
+            float: left;
             padding-right: 10px;
-            width: 535px;
+            width: 198px;
+
+            > a {
+                display: block;
+                float: left;
+                width: 190px;
+            }
 
             ul {
                 display: block;
                 margin: 10px auto;
                 padding: 0;
-                width: 510px;
 
                 li {
                     float: left;
@@ -128,25 +147,37 @@
         }
 
         .submit-app {
+            border-right: 1px solid @light-gray;
             float: left;
-            margin: 0 auto 60px;
+            margin: 0 auto 10px;
             padding: 10px 5px 5px 15px;
-            width: 210px;
+            width: 470px;
 
-            .app-logo {
-                clear: both;
+            .app-button {
                 float: left;
-                height: 153px;
                 text-align: center;
+                width: 260px;
+
+                h2 {
+                    font-size: 25px;
+                    margin-bottom: 30px;
+                }
 
                 a.button {
                     .gradient-two-color(#367dbc, #276093);
                     clear: both;
                     color: @white;
                     display: block;
-                    font-size: 17px;
-                    line-height: 21px;
+                    font-size: 18px;
+                    line-height: 22px;
+                    margin: 0 auto;
+                    width: 200px;
                 }
+            }
+
+            .app-logo {
+                float: left;
+                margin-right: 30px;
             }
         }
     }
