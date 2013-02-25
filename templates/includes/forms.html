@@ -12,21 +12,23 @@
 
 {% macro pretty_field(field, label=None, tooltip=None, tag='li', req=None,
                       opt=False, choice=None, class='row') %}
-  {% if tag %}
-    <{{ tag }} class="{{ class }}{{ ' error' if field.errors }}">
-  {% endif %}
   {% if choice == None %}
     {% set choice = field|is_choice_field %}
   {% endif %}
+  {% if req == None %}
+    {% set req = field.field.required %}
+  {% endif %}
+  {% set attrs = {'required': ''} if req else {} %}
+
+  {% if tag %}
+    <{{ tag }} class="{{ class }}{{ ' error' if field.errors }}">
+  {% endif %}
     <label class="{{ class }}{{ ' choice' if choice }}" for="{{ field.auto_id }}">
       {% if choice %}
-        {{ field.as_widget() -}}
+        {{ field.as_widget(attrs=attrs) -}}
       {% endif %}
       {{- label or field.label }}
 
-      {% if req == None %}
-        {% set req = field.field.required %}
-      {% endif %}
       {% if req %}
         {{ required() -}}
       {% endif %}
@@ -41,7 +43,7 @@
       {% endif %}
     </label>
     {% if not choice %}
-      {{ field.as_widget() }}
+      {{ field.as_widget(attrs=attrs) }}
     {% endif %}
     {{ field.errors }}
   {% if tag %}

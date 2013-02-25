@@ -518,10 +518,13 @@ class NewPersonaForm(AddonFormBase):
                                        type=amo.ADDON_PERSONA, weight__gte=0)
         cats = sorted(cats, key=lambda x: x.name)
         self.fields['category'].choices = [(c.id, c.name) for c in cats]
-        self.fields['header'].widget.attrs['data-upload-url'] = reverse(
-            'devhub.personas.upload_persona', args=['persona_header'])
-        self.fields['footer'].widget.attrs['data-upload-url'] = reverse(
-            'devhub.personas.upload_persona', args=['persona_footer'])
+
+        for field in ('header', 'footer'):
+            self.fields[field].widget.attrs = {
+                'data-upload-url': reverse('devhub.personas.upload_persona',
+                                           args=['persona_%s' % field]),
+                'data-allowed-types': 'image/jpeg|image/png'
+            }
 
     def clean_name(self):
         return clean_name(self.cleaned_data['name'])

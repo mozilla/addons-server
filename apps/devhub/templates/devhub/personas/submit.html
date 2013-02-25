@@ -14,7 +14,7 @@
                          (None, _('Create'))]) }}
   <h1>{{ title }}</h1>
   <div class="island hero prettyform" id="submit-persona">
-    <form action="" method="post">
+    <form method="post">
       {{ csrf() }}
       {{ form.unsaved_data }}
       <fieldset>
@@ -29,15 +29,15 @@
               {{ ngettext('Comma-separated, minimum of {0} character.',
                           'Comma-separated, minimum of {0} characters.',
                           amo.MIN_TAG_LENGTH)|f(amo.MIN_TAG_LENGTH) }}
-              {{ _('Example: pop, hen, yum.  Limit 20.') }}
+              {{ _('Example: dark, cinema, noir. Limit 20.') }}
             </span>
           </li>
           <li class="row c">
             {{ pretty_field(form.summary, label=_('Describe your Theme.'),
-                            tooltip=_("A short explanation of your add-on's
+                            tooltip=_("A short explanation of your theme's
                                       basic functionality that is displayed in
                                       search and browse listings, as well as at
-                                      the top of your add-on's details page."),
+                                      the top of your theme's details page."),
                             tag=None, opt=True) }}
             <div class="note">
               {{ some_html_tip() }}
@@ -204,7 +204,7 @@
           </div>
         </div>
       </fieldset>
-      <p><button>{{ _('Submit Theme') }}</button></p>
+      <p><button class="button prominent" disabled type="submit">{{ _('Submit Theme') }}</button></p>
     </form>
   </div>
 </section>

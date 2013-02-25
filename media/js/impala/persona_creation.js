@@ -40,6 +40,19 @@ $(function() {
     if (!$('#submit-persona, #addon-edit-license').length) {
         return;
     }
+
+    function checkValid(form) {
+        if (form) {
+            $(form).find('button[type=submit]').attr('disabled', !form.checkValidity());
+        }
+    }
+    $(document).delegate('input, select, textarea', 'change keyup paste', function(e) {
+        checkValid(e.target.form);
+    });
+    $('form').each(function() {
+        checkValid(this);
+    });
+
     initLicense();
     if (!$('#addon-edit-license').length) {
         initCharCount();
@@ -100,7 +113,6 @@ function initLicense() {
 
 
 function initPreview() {
-
     function hex2rgb(hex) {
         var hex = parseInt(((hex.indexOf('#') > -1) ? hex.substring(1) : hex), 16);
         return {
@@ -184,7 +196,7 @@ function initPreview() {
         var accentcolor = $d.find('#id_accentcolor').attr('data-rgb'),
             textcolor = $d.find('#id_textcolor').val();
         $preview.find('.title, .author').css({
-            'background-color': format('rgba({0}, 0.7)', accentcolor),
+            'background-color': format('rgba({0}, .7)', accentcolor),
             'color': textcolor
         });
     }
@@ -204,7 +216,7 @@ function initPreview() {
     }});
 
     $('#id_name').bind('change keyup paste blur', _.throttle(function() {
-        $('#persona-preview-name').text($(this).val() || gettext("Your Persona's Name"));
+        $('#persona-preview-name').text($(this).val() || gettext("Your Theme's Name"));
     }, 250)).trigger('change');
     $('#submit-persona').submit(function() {
         postUnsaved(POST);

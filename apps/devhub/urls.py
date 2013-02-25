@@ -243,18 +243,18 @@ urlpatterns = decorate(write, patterns('',
     url('^addon/%s/' % ADDON_ID, include(detail_patterns)),
     url('^app/%s/' % amo.APP_SLUG, include(app_detail_patterns)),
     url('^app/%s/submit/' % ADDON_ID, include(submit_apps_patterns)),
-    url('^theme/%s/' % ADDON_ID, include(theme_detail_patterns)),
 
     url('^ajax/addon/%s/' % ADDON_ID, include(ajax_patterns)),
 
-    # Personas submission.
-    url('^persona/submit$', views.submit_persona,
+    # Themes submission.
+    url('^theme/submit$', views.submit_persona,
         name='devhub.personas.submit'),
-    url('^persona/%s/submit/done$' % ADDON_ID, views.submit_persona_done,
+    url('^theme/%s/submit/done$' % ADDON_ID, views.submit_persona_done,
         name='devhub.personas.submit.done'),
-    url('^persona/submit/upload/'
+    url('^theme/submit/upload/'
         '(?P<upload_type>persona_header|persona_footer)$',
         views.ajax_upload_image, name='devhub.personas.upload_persona'),
+    url('^theme/%s/' % ADDON_ID, include(theme_detail_patterns)),
 
     # Add-on SDK page
     url('builder$', views.builder, name='devhub.builder'),
