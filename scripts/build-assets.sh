@@ -31,6 +31,10 @@ if [ ! -d "$VENDOR" ]; then
     git clone --recursive git://github.com/mozilla/zamboni-lib.git $VENDOR
 fi
 
+# Install node deps locally.
+npm install
+export PATH="./node_modules/.bin/:${PATH}"
+
 cat > settings_local.py <<SETTINGS
 from ${SETTINGS} import *
 UGLIFY_BIN = 'uglifyjs'
