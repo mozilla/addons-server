@@ -1,8 +1,4 @@
 (function() {
-    z.body.on('touchmove', '.overlay', function(e){
-        e.preventDefault();
-        e.stopPropagation();
-    });
 
     function dismiss() {
         var $overlay = $('.overlay.show');

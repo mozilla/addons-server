@@ -150,11 +150,12 @@ z.page.on('fragmentloaded', function() {
 
         if ($this.hasClass('dismiss')) {
             // Dismiss looks like back but actually just dismisses an overlay.
-            $('#filters').removeClass('show');
+            $('#filters').trigger('overlay_dismissed');
         } else if ($this.hasClass('filter')) {
             // `getVars()` defaults to use location.search.
             initSelectedFilter();
             $('#filters').addClass('show');
+            z.body.addClass('overlayed');
         } else if ($this.hasClass('search')) {
             z.body.addClass('show-search');
             $btns.blur();
