@@ -1,0 +1,12 @@
+[
+    {
+        "pk": 50057,
+        "model": "access.group",
+        "fields": {
+            "rules": "AccountLookup:View,Apps:Configure,Transaction:View,Transaction:Refund",
+            "modified": "2012-01-27 13:32:08",
+            "name": "Support Staff",
+            "created": "2012-01-27 12:41:00"
+        }
+    }
+]

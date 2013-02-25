@@ -22,6 +22,7 @@ from files.models import FileUpload
 from mkt.api.authentication import errors
 from mkt.api.base import CORSResource
 from mkt.api.models import Access, generate
+from mkt.site.fixtures import fixture
 
 
 def get_absolute_url(url, api_name='apps'):
@@ -110,7 +111,8 @@ class OAuthClient(Client):
 
 
 class BaseOAuth(TestCase):
-    fixtures = ['base/user_2519', 'base/users']
+    fixtures = fixture('user_2519', 'group_admin', 'group_editor',
+                       'group_support')
 
     def setUp(self, api_name='apps'):
         self.user = User.objects.get(pk=2519)
@@ -133,7 +135,7 @@ class BaseOAuth(TestCase):
                 continue
             res = getattr(self.client, verb)(url)
             assert res.status_code in (401, 405), (
-                   '%s: %s not 401 or 405' % (verb.upper(), res.status_code))
+                '%s: %s not 401 or 405' % (verb.upper(), res.status_code))
 
     def get_error(self, response):
         return json.loads(response.content)['error_message']
