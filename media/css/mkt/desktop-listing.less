@@ -38,7 +38,7 @@
         }
         .author {
             color: @text;
-            text-shadow: 0 0;
+            /*text-shadow: 0 0;*/
         }
     }
 }
@@ -82,7 +82,8 @@
 .grid .mkt-tile {
     &.category {
         background: @grain-src rgba(255,255,255,.3);
-        background-size: 10px 10px;
+        // EVIL- kills page perf. Don't do this.
+        /*background-size: 10px 10px;*/
         h3 {
             .light-text-shadow;
             color: @medium-gray;

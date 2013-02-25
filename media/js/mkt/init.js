@@ -174,23 +174,4 @@ z.page.on('fragmentloaded', function() {
         e.preventDefault();
     });
 
-    // If we ever use the drop-down menu for mobile...
-    // z.body.on('click', '.overlay.dropdown.show', function() {
-    //     $('.account-links').removeClass('active');
-    // }).on('click', '.account-links', function() {
-    //     $('<div class="overlay dropdown show">').appendTo(z.body);
-    //     $('.account-links').toggleClass('active');
-    // });
-
-    // We would use :hover, but we want to hide the menu on fragment load!
-    z.body.on('mouseover', '.account-links', function() {
-        $('.account-links').addClass('active');
-    }).on('mouseout', '.account-links', function() {
-        $('.account-links').removeClass('active');
-    }).on('click', '.account-links a', function() {
-        $('.account-links').removeClass('active');
-    }).on('fragmentloaded', function() {
-        $('.account-links.active').removeClass('active');
-    });
-
 });

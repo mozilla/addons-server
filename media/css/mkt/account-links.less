@@ -1,23 +1,21 @@
 @import 'lib';
 
 .account-links {
+    text-align: left;
     cursor: pointer;
-    float: right;
     position: absolute;
-    right: 0;
-    height: 100%;
-    width: 39px;
+    right: 13px;
+    text-align: left;
+    top: 46px;
     z-index: 12;
+    white-space: nowrap;
     ul {
         background: rgb(43,54,63);
         border-radius: 3px 0 3px 3px;
+        list-style-type: none;
         line-height: 15px;
-        opacity: 0;
         padding: 6px 4px;
-        position: absolute;
-        top: 48px;
-        right: 0;
-        visibility: hidden;
+        margin: 0;
     }
     li {
         position: relative;
@@ -59,30 +57,5 @@
     }
     a:hover em {
         color: @light-gray;
-    }
-    &.inactive {
-        display: none;
-    }
-    &.active {
-        width: 210px;
-        ul {
-            opacity: 1;
-            visibility: visible;
-        }
-        .settings {
-            &:after {
-                .gradientTop(~'rgba(252,252,253,0) 0%, rgba(43,54,63,0.07) 15%, rgba(43,54,63,1) 100%');
-                content: "";
-                display: block;
-                height: 39px;
-                position: relative;
-                float: right;
-                width: 40px;
-                z-index: 2;
-            }
-            &:before {
-                background-position: 0 -24px;
-            }
-        }
     }
 }

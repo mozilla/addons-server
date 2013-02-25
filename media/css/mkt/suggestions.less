@@ -7,24 +7,16 @@
     height: 100%;
     opacity: 0;
     position: fixed;
-    right: -10px;
-    bottom: 0;
     left: 0;
+    top: 55px;
     visibility: hidden;
     z-index: 4;
     width: 100%;
+    background: @bg @grain-src;
     &.visible {
         opacity: 1;
-        bottom: 5px;
+        top: 50px;
         visibility: visible;
-    }
-    .wrap {
-        background: @bg @grain-src;
-        position: absolute;
-        top: 55px;
-        right: 0;
-        left: 0;
-        height: 100%;
     }
     ul {
         list-style: none;
@@ -66,5 +58,46 @@
         background: transparent;
         border-color: @faint-gray transparent transparent transparent;
         color: @link;
+    }
+}
+
+@media (min-width: 1024px) {
+    #site-search-suggestions,
+    #site-search-suggestions .wrap,
+    #site-search-suggestions ul,
+    #site-search-suggestions li:only-child a {
+        border-radius: 3px;
+    }
+
+    #site-search-suggestions {
+        box-shadow: 0 0 1px;
+        height: auto;
+        width: 230px;
+        z-index: 11;
+        left: auto;
+        a {
+            font-size: 12px;
+            line-height: 30px;
+            span {
+                .ellipsis;
+                width: 220px;
+            }
+        }
+        &.visible {
+            opacity: 1;
+            top: 55px;
+            visibility: visible;
+        }
+
+        li:first-child a {
+            border-radius: 3px 3px 0 0;
+        }
+        li:last-child a {
+            border-radius: 0 0 3px 3px;
+            border-bottom: 0;
+        }
+        li:only-child a {
+            border-bottom: 0;
+        }
     }
 }

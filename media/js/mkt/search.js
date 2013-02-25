@@ -56,10 +56,8 @@
     // If we're on desktop, show graphical results - unless specified by user.
     var expandListings;
 
-    var $expandToggle = $('#site-header .expand');
-
     // Toggle app listing graphical/compact view.
-    $expandToggle.click(_pd(function(e) {
+    z.body.on('click', '.expand-toggle', _pd(function(e) {
         expandListings = !expandListings;
         setTrays(expandListings);
     }));
@@ -88,7 +86,7 @@
 
     function setTrays(expanded) {
         $('ol.listing').toggleClass('expanded', expanded);
-        $expandToggle.toggleClass('active', expanded);
+        $('.expand-toggle').toggleClass('active', expanded);
         localStorage.setItem('expand-listings', expanded);
         if (expanded) {
             z.page.trigger('populatetray');

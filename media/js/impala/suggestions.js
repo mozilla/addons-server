@@ -83,7 +83,6 @@ $.fn.searchSuggestions = function($results, processCallback, searchType) {
             if (z.capabilities.mobile && $('body.home').length === 0) {
                 z.body.removeClass('show-search');
             }
-
         }
     }
 

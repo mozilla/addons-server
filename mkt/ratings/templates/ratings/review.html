@@ -2,9 +2,9 @@
 <script type="text/template" id="review-template">
   <section{% if DESKTOP %} class="bare"{% endif %}>
     {% if DESKTOP %}
-      <header>
-        <h1>{title}</h1>
-        <a href="#" class="header-button icon right dismiss">
+      <header class="header">
+        <h1 class="title">{title}</h1>
+        <a href="#" class="header-button icon cancel dismiss">
           {{ _('Cancel') }}
         </a>
       </header>

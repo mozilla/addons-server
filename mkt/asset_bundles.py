@@ -90,6 +90,7 @@ CSS = {
         'css/mkt/banners.less',
         'css/mkt/forms.less',
         'css/mkt/header.less',
+        'css/mkt/account-links.less',
         'css/mkt/buttons.less',
         'css/mkt/tile.less',
         'css/mkt/notification.less',
@@ -155,8 +156,6 @@ CSS.update({
         # TODO: Split components into individual, appropriate stylesheets.
         'css/mkt/desktop.less',
         'css/mkt/desktop-tile.less',
-        'css/mkt/desktop-header.less',
-        'css/mkt/desktop-account-links.less',
         'css/mkt/desktop-filters.less',
         'css/mkt/desktop-forms.less',
         'css/mkt/desktop-account.less',
@@ -253,6 +252,7 @@ JS = {
         'js/mkt/buttons.js',
         'js/mkt/search.js',
         'js/mkt/apps.js',
+        'js/mkt/header.js',
 
         # ui
         'js/mkt/notification.js',

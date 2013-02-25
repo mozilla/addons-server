@@ -128,7 +128,7 @@
 // Image replacement.
 .hidetext() {
     overflow: hidden;
-    text-indent: 100%;
+    text-indent: 101%;
     white-space: nowrap;
 }
 
@@ -196,4 +196,57 @@
     -webkit-animation-name: spin;
     -webkit-animation-iteration-count: infinite;
     -webkit-animation-timing-function: linear;
+}
+
+// Flex Box (trim me!)
+
+.flex() {
+    display: -ms-box;
+    display: -moz-box;
+    display: -webkit-box;
+    display: flex;
+    display: -ms-flex;
+    display: -moz-flex;
+    display: -webkit-flex;
+}
+
+.flex-stack() {
+    flex-direction: column;
+    -ms-flex-direction: column;
+    -moz-flex-direction: column;
+    -webkit-flex-direction: column;
+    -ms-box-orient: vertical;
+    -moz-box-orient: vertical;
+    -webkit-box-orient: vertical;
+}
+
+.flex-line() {
+    flex-direction: row;
+    -ms-flex-direction: row;
+    -moz-flex-direction: row;
+    -webkit-flex-direction: row;
+    -ms-box-orient: horizontal;
+    -moz-box-orient: horizontal;
+    -webkit-box-orient: horizontal;
+}
+
+.flex-center() {
+    -ms-box-align: center;
+    -moz-box-align: center;
+    -webkit-box-align: center;
+    align-self: center;
+    -ms-align-self: center;
+    -moz-align-self: center;
+    -webkit-align-self: center;
+}
+
+
+.flex(@flex) {
+    -ms-box-flex: @flex;
+    -moz-box-flex: @flex;
+    -webkit-box-flex: @flex;
+    flex: @flex;
+    -ms-flex: @flex;
+    -moz-flex: @flex;
+    -webkit-flex: @flex;
 }

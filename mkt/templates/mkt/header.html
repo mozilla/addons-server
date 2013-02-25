@@ -1,42 +1,34 @@
-<header id="site-header" class="c">
-  <section class="main">
-    {% if DESKTOP %}
-      <h1 class="site"><a class="sync" href="{{ url('home') }}">Firefox Marketplace</a></h1>
-    {% endif %}
-    <h1 class="page"><span class="wordmark">{{ headertitle }}</span></h1>
-    <nav role="navigation">
-      {% if not DESKTOP %}
-        <a href="{{ url('account.settings') }}"
-           class="header-button icon settings right" title="{{ _('Settings') }}"></a>
-      {% else %}
-        {% include 'mkt/account-links.html' %}
+{% set data = {'cat': category.id} if category else request.GET %}
+{% set search_form = SimpleSearchForm(data) %}
+
+<header id="site-header" class="header site-header">
+  <nav role="navigation">
+    <a href="#" id="nav-back" class="header-button icon back" title="{{ _('Back') }}"><b>{{ _('Back') }}</b></a>
+    <h1 class="site"><a class="sync" href="{{ url('home') }}"><span class="wordmark">Firefox Marketplace</span></a></h1>
+    <h1 class="title">{{ headertitle }}</h1>
+    <form novalidate method="GET" id="search" class="search" action="{{ url('search.search') }}">
+      <label for="search-q">{{ _('Search') }}</label>
+      <div id="site-search-suggestions" data-cat="apps" data-src="{{ url('search.suggestions') }}"></div>
+      <input id="search-q" class="query-input" type="search" name="q" title="" required
+             autocomplete="off"
+             placeholder="{{ category.name if category else _('Search') }}"
+             data-placeholder-default="{{ _('Search') }}"
+             {% if search_form.q.value() %}value="{{ search_form.q.value() }}"{% endif %}>
+      {% if search_form.cat.value() %}
+        {{ search_form.cat }}
       {% endif %}
-      <a href="#" id="nav-back" class="header-button icon back left" title="{{ _('Back') }}"><b></b></a>
-      {% if not DESKTOP %}
-        <a href="#" class="header-button cancel right">{{ _('Cancel') }}</a>
-        <a href="#" class="header-button filter right">{{ _('Filter') }}</a>
-      {% endif %}
-      <a href="#" class="header-button icon expand right" title="{{ _('Expand') }}"></a>
-      {% block search %}
-        {% set data = {'cat': category.id} if category else request.GET %}
-        {% set search_form = SimpleSearchForm(data) %}
-        <form novalidate method="GET" id="search" action="{{ url('search.search') }}">
-          <label for="search-q">{{ _('Search') }}</label>
-          <div class="fancy">
-            <input id="search-q" type="search" name="q" autocomplete="off" title="" required
-                   placeholder="{{ category.name if category else _('Search') }}"
-                   data-placeholder-default="{{ _('Search') }}"
-                   {% if search_form.q.value() %}value="{{ search_form.q.value() }}"{% endif %}>
-            {% if search_form.cat.value() %}
-              {{ search_form.cat }}
-            {% endif %}
-            <a href="#" class="search-clear" title="{{ _('Clear') }}">{{ _('Clear') }}</a>
-          </div>
-        </form>
-      {% endblock %}
-    </nav>
-    <div id="site-search-suggestions" data-cat="apps" data-src="{{ url('search.suggestions') }}"></div>
-  </section>
+      <a href="#" class="search-clear" title="{{ _('Clear') }}">{{ _('Clear') }}</a>
+    </form>
+    <span class="flex-span"></span>
+    <a href="#" class="expand-toggle" title="{{ _('Expand') }}"></a>
+    <a href="#" class="header-button filter">{{ _('Filter') }}</a>
+    <div class="act-tray">
+      <a href="{{ url('account.settings') }}"
+         class="header-button icon settings" title="{{ _('Settings') }}"></a>
+      {% include 'mkt/account-links.html' %}
+    </div>
+    <a href="#" class="header-button browserid">{{ _('Sign In') }}</a>
+  </nav>
 </header>
 
 <div class="overlay nav-overlay"></div>

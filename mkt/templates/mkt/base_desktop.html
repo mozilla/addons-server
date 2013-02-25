@@ -18,9 +18,9 @@
   {% if logged %}
     <div id="feedback-overlay" class="overlay">
       <section class="bare">
-        <header>
-          <h1>{{ _('Feedback') }}</h1>
-          <a href="#" class="header-button icon right dismiss">{{ _('Cancel') }}</a>
+        <header class="header">
+          <h1 class="title">{{ _('Feedback') }}</h1>
+          <a href="#" class="header-button icon cancel dismiss">{{ _('Cancel') }}</a>
         </header>
         {{ feedback_form() }}
       </section>

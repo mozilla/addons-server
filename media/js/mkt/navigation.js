@@ -128,7 +128,7 @@ var nav = (function() {
 
     function setTitle() {
         // Something something title joke.
-        var $h1 = $('#site-header h1.page');
+        var $h1 = $('#site-header h1.title');
         var $wordMark = $h1.find('.wordmark');
         var title = $('#page').data('context').headertitle || '';
         if ($wordMark.length) {
@@ -156,7 +156,7 @@ var nav = (function() {
         }
     }
 
-    z.doc.on('click', '.back:not(.dismiss)', _pd(back));
+    z.doc.on('click', '.site-header .back', _pd(back));
 
     return {
         stack: function() {

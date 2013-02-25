@@ -1,7 +1,6 @@
 {% set in_devhub = request.path.startswith(('/developers/', '/reviewers/')) %}
 {% if logged %}
   <div class="account-links">
-    <a href="{{ url('account.settings') }}" class="header-button icon settings sticky" title="{{ _('Settings') }}"></a>
     <ul>
       <li>
         <a href="{{ url('account.settings') }}">
@@ -22,6 +21,4 @@
       <li><a href="{{ url('users.logout') }}" class="sync logout">{{ _('Sign Out') }}</a></li>
     </ul>
   </div>
-{% else %}
-  <a href="#" class="header-button icon browserid">{{ _('Sign In') }}</a>
 {% endif %}

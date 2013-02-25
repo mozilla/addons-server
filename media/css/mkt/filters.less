@@ -27,11 +27,15 @@
             display: block;
             color: @white;
             text-align: left;
-            position: absolute;
-            width: 100%;
         }
     }
+    .expand-toggle {
+        display: none;
+    }
 
+    .header-button.back {
+        width: 20px;
+    }
     .header-button.back::after {
         right: auto;
         left: 20px;
@@ -105,3 +109,14 @@
         }
     }
 }
+
+@media (min-width: 1024px) {
+    .expand-toggle {
+        display: block;
+        position: absolute;
+        width: 56px;
+        top: -5px;
+        right: 0;
+    }
+}
+

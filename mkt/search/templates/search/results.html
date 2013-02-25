@@ -42,9 +42,9 @@
   {{ mkt_breadcrumbs(product, crumbs) }}
   <section id="filters" class="main{{ ' overlay' if mobile }}{{ ' alt' if show_paid }}">
     {% if mobile %}
-      <header>
+      <header class="header">
         <a href="#" class="header-button icon back left dismiss"><b></b></a>
-        <h1>{{ _('Filter') }}</h1>
+        <h1 class="title">{{ _('Filter') }}</h1>
       </header>
     {% endif %}
 
@@ -102,6 +102,7 @@
           {% endif %}
         </div>
       </form>
+      <a href="#" class="expand-toggle" title="{{ _('Expand') }}"></a>
     </div>
   </section>
   {% include 'site/messages/display.html' %}
