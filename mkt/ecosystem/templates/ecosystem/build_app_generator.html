@@ -59,7 +59,7 @@
       <p>{{ _('What you get:') }}</p>
       <ul>
         <li>{{ _('A minimal and well-formed HTML structure') }}</li>
-        <li>{{ _('Prebuilt <code>manifest.webapp</code>') }}</li>
+        <li>{{ _('Prebuilt') }} <code>manifest.webapp</code></li>
         <li>
           {%- trans %}
             JavaScript libraries for interacting with the Marketplace
@@ -100,9 +100,11 @@
         {% endtrans -%}
       </p>
       <pre>{{ _('npm install -g volo') }}</pre>
+      {# L10n: Do not localize text in <code></code> #}
       <p>{{ _('Now you can just use the <code>create</code> command:') }}</p>
       <pre>{{ _('volo create myproject mozilla/mortar-app-stub') }}</pre>
       <p>
+        {# L10n: Do not localize text in <code></code> #}
         {%- trans %}
           When future templates are available, you can use the same
           <code>create</code> command with different template URLs.
@@ -110,6 +112,7 @@
       </p>
       <h2>{{ _('What Now?') }}</h2>
       <p>
+        {# L10n: Do not localize text in <code></code> #}
         {%- trans %}
           All your HTML, CSS, and JavaScript are under the <code>www</code>
           directory, so start coding! You'll see a bunch of stuff in there,
@@ -117,6 +120,7 @@
         {% endtrans -%}
       </p>
       <p>
+        {# L10n: Do not localize text in <code></code> #}
         {%- trans url_require='http://requirejs.org',
                   url_zepto='http://zeptojs.com',
                   url_payments='//developer.mozilla.org/docs/Apps/In-app_payments',
@@ -135,6 +139,7 @@
       <p>{{ _("Below that, you'll see the line:") }}</p>
       <pre>{{ _('define(function(require) {') }}</pre>
       <p>
+        {# L10n: Do not localize text in <code></code> #}
         {%- trans url='http://requirejs.org/docs/api.html' %}
           That defines the main module for your app, and you should start
           coding within the function. You can use <code>require</code> to
@@ -144,6 +149,7 @@
         {% endtrans -%}
       </p>
       <p>
+        {# L10n: Do not localize text in <code></code> #}
         {%- trans %}
           <strong>Note</strong>: By default, modules are loaded from
           <code>www/js/lib</code>. If you want to load something from
@@ -153,6 +159,7 @@
         {% endtrans -%}
       </p>
       <p>
+        {# L10n: Do not localize text in <code></code> #}
         {%- trans %}
           You can edit CSS in <code>www/css/app.css</code>. Typically you
           should <code>@import</code> additional CSS files at the top of
@@ -175,6 +182,7 @@
         {% endtrans -%}
       </pre>
       <p>
+        {# L10n: Do not localize text in <code></code> #}
         {%- trans %}
           All of these must be run at the root of your project. There are a
           few other commands and you can view the full list by simply typing
@@ -182,6 +190,7 @@
         {% endtrans -%}
       </p>
       <p>
+        {# L10n: Do not localize text in <code></code> #}
         {%- trans %}
           <strong>Note:</strong> volo itself only has a few built-in
           commands. The app template provides the <code>serve</code>,

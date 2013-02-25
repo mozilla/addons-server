@@ -67,12 +67,12 @@
           installed from, and much more (Only the name and description are
           required). The simple manifest included within the app template
           looks like:
-          <pre>
-            <code>
-              {{ manifest_sample }}
-            </code>
-          </pre>
         {% endtrans -%}
+        <pre>
+          <code>
+            {{ manifest_sample }}
+          </code>
+        </pre>
 
         {{ youtube('dgAUgHQOm8M') }}
       </p>
@@ -92,12 +92,12 @@
           OS can be installed on a variety of devices which use different
           screen resolutions. <a href="{{ url }}">CSS media queries</a>
           provide a means to adapt layout to device:
-          <pre>
-            <code>
-              {{ css_sample }}
-            </code>
-          </pre>
         {% endtrans -%}
+        <pre>
+          <code>
+            {{ css_sample }}
+          </code>
+        </pre>
       </p>
       <p>
         {%- trans url='http://twitter.github.com/bootstrap' %}
@@ -118,14 +118,15 @@
           to jQuery) and a utility to install your app on the Firefox OS
           Simulator. This quick start guide fits you with mortar's most
           basic layout template:
-          <pre>
-            <code>
-              {{ html_sample }}
-            </code>
-          </pre>
         {% endtrans -%}
+        <pre>
+          <code>
+            {{ html_sample }}
+          </code>
+        </pre>
       </p>
       <p>
+        {# L10n: Do not localize text in <code></code> #}
         {%- trans %}
           Feel free to modify the structure set forth by mortar &mdash; the
           snippet above should get you going. Note that all JavaScript code
@@ -142,24 +143,28 @@
           A list of device support and status is available on the
           <a href="{{ url }}">WebAPI</a> page. Of course JavaScript
           feature detection is still the best practice:
-          <pre>
-            <code>
-              {{ feature_sample }}
-            </code>
-          </pre>
-          <p>
+        {% endtrans -%}
+        <pre>
+          <code>
+            {{ feature_sample }}
+          </code>
+        </pre>
+        <p>
+          {# L10n: Do not localize text in <code></code> #}
+          {%- trans %}
             In this very basic app template we'll modify the display style
             of a <code>DIV</code> based on changes in the device's battery
             state:
-            <pre>
-              <code>
-                {{ battery_sample }}
-              </code>
-            </pre>
-          </p>
-        {% endtrans -%}
+          {% endtrans -%}
+          <pre>
+            <code>
+              {{ battery_sample }}
+            </code>
+          </pre>
+        </p>
       </p>
       <p>
+        {# L10n: Do not localize text in <code></code> #}
         {%- trans url='https://developer.mozilla.org/en-US/docs/DOM/window.navigator.battery' %}
           In the code sample above, once you confirm that the
           <a href="{{ url }}">Battery API</a> is supported, you can add event
@@ -175,19 +180,21 @@
       </p>
       <h2>{{ _('WebRT APIs (Permissions-based APIs)') }}</h2>
       <p>
+        {# L10n: Do not localize text in <code></code> #}
         {%- trans url='https://wiki.mozilla.org/WebAPI' %}
           There are a number of WebAPIs which are available but require
           permissions for that specific feature to be enabled. Apps may
           register permission requests within the
           <code>manifest.webapp</code> file:
-          <pre>
-            <code>
-              {{ webrt_sample }}
-            </code>
-          </pre>
         {% endtrans -%}
+        <pre>
+          <code>
+            {{ webrt_sample }}
+          </code>
+        </pre>
       </p>
       <p>
+        {# L10n: Do not localize text in <code></code> #}
         {%- trans %}
           Once you've installed your app on Firefox OS Simulator, open the
           <code>Settings</code> app, select <code>App Permissions</code>,
@@ -196,7 +203,7 @@
           within the Firefox OS Simulator.
         {% endtrans -%}
       </p>
-      <h2>{{ _('Tools & Testing') }}</h2>
+      <h2>{{ _('Tools &amp; Testing') }}</h2>
       <p>
         {%- trans %}
           Testing is incredibly important when supporting mobile devices.

@@ -91,16 +91,20 @@
           People often spend only a minute or two deciding whether to
           continue or abandon an app. Some of the factors you may want
           to consider include:
-          <ul>
-            <li>
+        {% endtrans -%}
+        <ul>
+          <li>
+            {%- trans %}
               provide a quick introduction to your app (and provide an
               easy way to end it anytime)
-            </li>
-            <li>instant access to features and suggestions</li>
-            <li>minimize initial user input</li>
-            <li>express the most important information in a concise way</li>
-          </ul>
-        {% endtrans -%}
+            {% endtrans -%}
+          </li>
+          <li>{{ _('instant access to features and suggestions') }}</li>
+          <li>{{ _('minimize initial user input') }}</li>
+          <li>
+            {{ _('express the most important information in a concise way') }}
+          </li>
+        </ul>
       </p>
       <h2>{{ _('Present action choices if possible') }}</h2>
       <p>
