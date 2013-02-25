@@ -183,7 +183,7 @@ class Fx4Collection(CollectionPromo):
 
 
 class StPatricksPersonas(CollectionPromo):
-    slug = 'St. Pat Themes'
+    slug = 'St. Pat Personas'
     pk = 666627
     id = 'st-patricks'
     cls = 'promo'
