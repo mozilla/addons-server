@@ -280,7 +280,7 @@ class TestMarketButton(amo.tests.TestCase):
         eq_(json.loads(data['currencies'])['USD'], '$1.00')
         eq_(json.loads(data['currencies'])['CAD'], 'CA$1.00')
 
-    @mock.patch('mkt.site.helpers.acl.action_allowed')
+    @mock.patch('access.acl.action_allowed')
     def test_reviewers(self, action_allowed):
         action_allowed.return_value = True
         doc = pq(market_tile(self.context, self.webapp))

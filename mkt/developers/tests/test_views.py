@@ -194,7 +194,7 @@ class TestAppDashboard(AppHubTest):
             ('Manage Status', app.get_dev_url('versions')),
             ('View Listing', app.get_url_path()),
             ('Statistics', app.get_stats_url()),
-            ('View Transactions', urlparams(
+            ('Transactions', urlparams(
                 reverse('mkt.developers.transactions'), app=app.id)),
         ]
         amo.tests.check_links(expected, doc('a.action-link'))
@@ -213,11 +213,11 @@ class TestAppDashboard(AppHubTest):
             ('Add New Version', app.get_dev_url('versions')),
             ('Manage Team Members', app.get_dev_url('owner')),
             ('Compatibility & Payments', app.get_dev_url('payments')),
-            ('Manage Status & Versions', app.get_dev_url('versions')),
             ('View Listing', app.get_url_path()),
             ('Statistics', app.get_stats_url()),
-            ('View Transactions', urlparams(
+            ('Transactions', urlparams(
                 reverse('mkt.developers.transactions'), app=app.id)),
+            ('Manage Status & Versions', app.get_dev_url('versions')),
             ('Manage In-App Payments', app.get_dev_url('in_app_config')),
         ]
         amo.tests.check_links(expected, doc('a.action-link'))
@@ -233,10 +233,11 @@ class TestAppDashboard(AppHubTest):
         expected = [
             ('Edit Listing', app.get_dev_url()),
             ('Manage Team Members', app.get_dev_url('owner')),
+            ('Compatibility & Payments', app.get_dev_url('payments')),
             ('Manage Status', app.get_dev_url('versions')),
             ('View Listing', app.get_url_path()),
             ('Statistics', app.get_stats_url()),
-            ('View Transactions', urlparams(
+            ('Transactions', urlparams(
                 reverse('mkt.developers.transactions'), app=app.id)),
         ]
         amo.tests.check_links(expected, doc('a.action-link'), verify=False)

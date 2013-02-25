@@ -52,7 +52,8 @@
     </li>
   {% endif %}
 
-  {% set manage_urls = [(addon.get_dev_url('versions'), _('Manage Status'))] %}
+  {% set manage_urls = [(addon.get_dev_url('versions'),
+                         _('Manage Status &amp; Versions') if addon.is_packaged else _('Manage Status'))] %}
   {% if addon.is_webapp() and addon.premium_type in amo.ADDON_INAPPS
         and waffle.switch('in-app-payments') %}
     {% do manage_urls.insert(1,
@@ -61,24 +62,22 @@
   {% endif %}
 
   {% if waffle.switch('disabled-payments') or manage_urls|length == 1 %}
-    <li>
-      <a class="action-link status-link" href="{{ addon.get_dev_url('versions') }}">
-        {{ _('Manage Status &amp; Versions') if addon.is_packaged else _('Manage Status') }}</a>
-    </li>
+    {% for url, title in manage_urls %}
+      <li><a class="action-link status-link" href="{{ url }}">{{ title }}</a></li>
+    {% endfor %}
   {% endif %}
   <li>
     <a class="action-link" href="{{ addon.get_url_path() }}">{{ _('View Listing') }}</a>
   </li>
   {% if waffle.switch('app-stats') %}
     <li>
-      <a class="action-link" href="{{ addon.get_stats_url() }}">{{ _('View Statistics') }}</a>
+      <a class="action-link" href="{{ addon.get_stats_url() }}">{{ _('Statistics') }}</a>
     </li>
   {% endif %}
   {% if waffle.switch('view-transactions') %}
     <li>
       <a class="action-link" href="{{ url('mkt.developers.transactions')|urlparams(app=addon.id) }}">
-        {{ _('View Transactions') }}
-      </a>
+        {{ _('Transactions') }}</a>
     </li>
   {% endif %}
   {% if not waffle.switch('disabled-payments') and manage_urls|length > 1 %}
@@ -87,7 +86,7 @@
       <div class="more-actions-popup popup hidden">
         <ul>
           {% for url, title in manage_urls %}
-            <li><a href="{{ url }}">{{ title }}</a></li>
+            <li><a class="action-link" href="{{ url }}">{{ title }}</a></li>
           {% endfor %}
         </ul>
       </div>
