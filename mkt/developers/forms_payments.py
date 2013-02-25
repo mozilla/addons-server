@@ -316,7 +316,7 @@ class BangoPaymentAccountForm(happyforms.Form):
     bankAddressIso = forms.ChoiceField(
         choices=BANGO_COUNTRIES, label=_lazy(u'Bank Country'))
 
-    account_name = forms.CharField(max_length=64, label=_(u'Account Name'))
+    account_name = forms.CharField(max_length=64, label=_lazy(u'Account Name'))
 
     # These are the fields that Bango uses for bank details. They're read-only
     # once written.
