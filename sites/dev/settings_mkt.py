@@ -163,9 +163,6 @@ USE_METLOG_FOR_TASTYPIE = True
 
 GOOGLE_ANALYTICS_DOMAIN = 'marketplace.firefox.com'
 
-# Allow /developers/?refresh to refresh all MDN content for Developer Hub.
-MDN_LAZY_REFRESH = True
-
 SENTRY_CLIENT = 'djangoraven.metlog.MetlogDjangoClient'
 
 # Pass through the DSN to the Raven client and force signal
