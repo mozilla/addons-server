@@ -9,6 +9,8 @@ from django.conf import settings
 from celeryutils import task
 import commonware.log
 
+from mkt.monolith import record_stat
+
 log = commonware.log.getLogger('z.metrics')
 
 
@@ -33,6 +35,7 @@ def send_request(action, request, data):
     data['user-agent'] = request.META.get('HTTP_USER_AGENT')
     data['locale'] = request.LANG
     data['src'] = request.GET.get('src', '')
+    record_stat(action, request, **data)
     send(action, data)
 
 
