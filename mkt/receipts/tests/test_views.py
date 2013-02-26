@@ -157,7 +157,8 @@ class TestInstall(amo.tests.TestCase):
         eq_(res.status_code, 200)
         eq_(send_request.call_args[0][0], 'install')
         eq_(send_request.call_args[0][2], {'app-domain': u'http://cbc.ca',
-                                           'app-id': self.addon.pk})
+                                           'app-id': self.addon.pk,
+                                           'anonymous': False})
 
     @mock.patch('mkt.receipts.views.send_request')
     @mock.patch('mkt.receipts.views.receipt_cef.log')
@@ -169,7 +170,9 @@ class TestInstall(amo.tests.TestCase):
         eq_(res.status_code, 200)
         eq_(send_request.call_args[0][0], 'install')
         eq_(send_request.call_args[0][2], {
-            'app-domain': u'http://test.com', 'app-id': self.addon.pk})
+            'app-domain': u'http://test.com',
+            'app-id': self.addon.pk,
+            'anonymous': False})
 
     @mock.patch('mkt.receipts.views.receipt_cef.log')
     def test_cef_logs(self, cef):
