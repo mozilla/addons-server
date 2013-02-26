@@ -14,7 +14,8 @@ from mkt.api.models import Access
 
 
 @transaction.commit_on_success
-def create_user(email, salt, group_name=None, delete_user=False):
+def create_user(email, salt, group_name=None, delete_user=False,
+                permissions=None):
     """Create an user if he doesn't exist already, assign him to a group and
     create a token for him.
 
@@ -52,6 +53,12 @@ def create_user(email, salt, group_name=None, delete_user=False):
         secret = hashlib.md5(salt + email + 'secret').hexdigest()
         consumer = Access(key=key, secret=secret, user=profile.user)
         consumer.save()
+
+    if permissions is not None:
+        for permission in permissions:
+            group, _ = Group.objects.get_or_create(name=permission,
+                                                   rules=permission)
+            GroupUser.objects.get_or_create(group=group, user=profile)
 
 
 class Command(BaseCommand):
