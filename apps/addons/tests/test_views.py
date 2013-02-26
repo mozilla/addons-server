@@ -1078,28 +1078,19 @@ class TestPersonaDetailPage(TestPersonas, amo.tests.TestCase):
         r = self.client.get(self.url)
         assert pq(r.content)('h4.author').text().startswith('by regularuser')
 
-
-# TODO(andym): delete once personas migration is live.
-class TestPrePersonaDetailPage(TestPersonaDetailPage):
-
-    def setUp(self):
-        self.addon = Addon.objects.get(id=15663)
-        self.persona = self.addon.persona
-        self.url = self.addon.get_url_path()
-        (waffle.models.Switch.objects
-               .create(name='personas-migration-completed', active=False))
-        self.create_addon_user(self.addon)
-
-    def _test_by(self):
+    # TODO(andym): delete once personas migration is live.
+    def _test_legacy_by(self):
+        waffle.models.Switch.objects.filter(
+            name='personas-migration-completed').update(active=False)
         r = self.client.get(self.url)
         eq_(pq(r.content)('h4.author').text(), 'by My Persona')
 
-    def test_by(self):
-        self._test_by()
+    def test_legacy_by(self):
+        self._test_legacy_by()
 
     @amo.tests.mobile_test
-    def test_mobile_by(self):
-        self._test_by()
+    def test_legacy_mobile_by(self):
+        self._test_legacy_by()
 
 
 class TestStatus(amo.tests.TestCase):
