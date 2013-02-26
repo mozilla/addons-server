@@ -73,6 +73,29 @@ table.data-grid {
     ul {
         margin: 0;
     }
+    &.four-col {
+        th:first-child {
+            width: 60%;
+        }
+        th:nth-child(2) {
+            width: 100px;
+        }
+        th:nth-child(3) {
+            width: 120px;
+        }
+        th:last-child {
+            width: 120px;
+        }
+        td:last-child {
+            text-align: center;
+        }
+        button.product {
+            height: 24px;
+            line-height: 23px;
+            font-size: 13px;
+            vertical-align: middle;
+        }
+    }
 }
 
 @media (min-width: @tablet-min) {
@@ -146,5 +169,35 @@ table.data-grid {
             font-weight: 400;
             vertical-align: middle;
         }
+    }
+}
+
+@media (max-width: @mobile-max) {
+    .data-grid {
+        &.two-col {
+            th, td {
+                text-align: left;
+            }
+            th:last-child {
+                width: 30%;
+            }
+            th:last-child, td:last-child {
+                padding-left: 6px;
+            }
+            td:last-child {
+                text-align: center;
+                vertical-align: middle;
+            }
+            button.product {
+                height: 24px;
+                line-height: 23px;
+            }
+        }
+    }
+    // No mobile man is an island.
+    .island {
+        padding: 0;
+        border: 0;
+        .border-radius(0);
     }
 }

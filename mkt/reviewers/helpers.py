@@ -88,11 +88,13 @@ def queue_tabnav(context):
                  _('Escalations ({0})',
                    counts['escalated']).format(counts['escalated']))
             )
-        rv.append(
+        rv.extend([
             ('apps', 'moderated', 'queue_moderated',
              _('Moderated Reviews ({0})',
                counts['moderated']).format(counts['moderated'])),
-        )
+            #TODO: Add real count from memcached.
+            ('apps', '', 'apps_reviewing', _('Reviewing (2)'))
+        ])
     else:
         rv = []
 

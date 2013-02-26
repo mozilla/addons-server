@@ -2318,7 +2318,7 @@ class TestAppsReviewing(AppReviewerTest, AccessMixin):
     def setUp(self):
         self.login_as_editor()
         super(TestAppsReviewing, self).setUp()
-        self.url = reverse('reviewers.apps_reviewing')
+        self.url = reverse('reviewers.apps.apps_reviewing')
         self.apps = [app_factory(name='Antelope',
                                  status=amo.STATUS_PENDING),
                      app_factory(name='Bear',

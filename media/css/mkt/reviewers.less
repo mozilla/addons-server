@@ -1172,6 +1172,11 @@ iframe#manifest-contents {
     min-height: 250px;
 }
 
+// Addresses issue with drop-downs menus vs. active queue tab.
+#site-nav {
+    z-index: 10;
+}
+
 @media (max-width: @landscape-max) {
     #id_text_query {
         display: block;
