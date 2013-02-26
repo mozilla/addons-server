@@ -1,5 +1,5 @@
 {% if pager.has_next() %}
-  <button data-more-url="{{ pager.url|urlparams(page=pager.next_page_number()) }}">
+  <button class="alt" data-more-url="{{ pager.url|urlparams(page=pager.next_page_number()) }}">
     {{ _('More') }}
   </button>
 {% endif %}
