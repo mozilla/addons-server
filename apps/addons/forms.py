@@ -551,15 +551,18 @@ class NewPersonaForm(AddonFormBase):
             footer = data['footer_hash']
             header = os.path.join(settings.TMP_PATH, 'persona_header', header)
             footer = os.path.join(settings.TMP_PATH, 'persona_footer', footer)
-            dst = os.path.join(settings.PERSONAS_PATH, str(addon.id))
-            save_persona_image(src=header, dst=dst, img_basename='header.jpg')
-            save_persona_image(src=footer, dst=dst, img_basename='footer.jpg')
-            create_persona_preview_image(src=header, dst=dst,
-                                         img_basename='preview.jpg',
-                                         set_modified_on=[addon])
+            dst_root = os.path.join(settings.PERSONAS_PATH, str(addon.id))
+
+            save_persona_image.delay(src=header,
+                full_dst=os.path.join(dst_root, 'header.png'))
+            save_persona_image.delay(src=footer,
+                full_dst=os.path.join(dst_root, 'footer.png'))
+            create_persona_preview_image.delay(src=header,
+                full_dst=os.path.join(dst_root, 'preview.png'),
+                set_modified_on=[addon])
         except IOError:
             addon.delete()
-            raise IOError
+            raise
 
         # Save user info.
         user = self.request.amo_user
@@ -569,8 +572,8 @@ class NewPersonaForm(AddonFormBase):
         p = Persona()
         p.persona_id = 0
         p.addon = addon
-        p.header = 'header'
-        p.footer = 'footer'
+        p.header = 'header.png'
+        p.footer = 'footer.png'
         if data['accentcolor']:
             p.accentcolor = data['accentcolor'].lstrip('#')
         if data['textcolor']:
@@ -586,11 +589,13 @@ class NewPersonaForm(AddonFormBase):
             Tag(tag_text=t).save_tag(addon)
 
         # Save categories.
+        AddonCategory(addon=addon, category=data['category']).save()
+
         tb_c, created = Category.objects.get_or_create(
             application_id=amo.THUNDERBIRD.id,
             name__id=data['category'].name.id, type=amo.ADDON_PERSONA)
-        AddonCategory(addon=addon, category=data['category']).save()
-        AddonCategory(addon=addon, category=tb_c).save()
+        if tb_c.id != data['category'].id:
+            AddonCategory(addon=addon, category=tb_c).save()
 
         return addon
 

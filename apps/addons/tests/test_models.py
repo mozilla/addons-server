@@ -1409,23 +1409,23 @@ class TestPersonaModel(amo.tests.TestCase):
     def setUp(self):
         self.addon = Addon.objects.get(id=15663)
         self.persona = self.addon.persona
-        self.persona.header = 'header.jpg'
-        self.persona.footer = 'footer.jpg'
+        self.persona.header = 'header.png'
+        self.persona.footer = 'footer.png'
         self.persona.save()
 
     def test_image_urls(self):
         self.persona.persona_id = 0
         self.persona.save()
         p = lambda x: '/15663/' + x
-        assert self.persona.thumb_url.endswith(p('thumb.jpg')), (
+        assert self.persona.thumb_url.endswith(p('thumb.png')), (
             self.persona.thumb_url)
-        assert self.persona.icon_url.endswith(p('icon.jpg')), (
+        assert self.persona.icon_url.endswith(p('icon.png')), (
             self.persona.icon_url)
-        assert self.persona.preview_url.endswith(p('preview.jpg')), (
+        assert self.persona.preview_url.endswith(p('preview.png')), (
             self.persona.preview_url)
-        assert self.persona.header_url.endswith(p('header.jpg')), (
+        assert self.persona.header_url.endswith(p('header.png')), (
             self.persona.header_url)
-        assert self.persona.footer_url.endswith(p('footer.jpg')), (
+        assert self.persona.footer_url.endswith(p('footer.png')), (
             self.persona.footer_url)
 
     def test_old_image_urls(self):

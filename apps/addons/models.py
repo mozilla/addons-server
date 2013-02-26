@@ -1646,7 +1646,7 @@ class Persona(caching.CachingMixin, models.Model):
     def preview_url(self):
         """URL to Persona's big, 680px, preview."""
         if self.is_new():
-            return self._image_url('preview.jpg')
+            return self._image_url('preview.png')
         else:
             return self._image_url('preview_large.jpg')
 

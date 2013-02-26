@@ -181,44 +181,37 @@ def delete_persona_image(dst, **kw):
 
 @task
 @set_modified_on
-def create_persona_preview_image(src, dst, img_basename, **kw):
+def create_persona_preview_image(src, full_dst, **kw):
     """Creates a 680x100 thumbnail used for the Persona preview."""
-    log.info('[1@None] Resizing persona image: %s' % dst)
-    try:
-        preview, full = amo.PERSONA_IMAGE_SIZES['header']
-        new_w, new_h = preview
-        orig_w, orig_h = full
-        with storage.open(src) as fp:
-            i = Image.open(fp)
-            # Crop image from the right.
-            i = i.crop((orig_w - (new_w * 2), 0, orig_w, orig_h))
-            i = i.resize(preview, Image.ANTIALIAS)
-            i.load()
-            with storage.open(os.path.join(dst, img_basename), 'wb') as fp:
-                i.save(fp)
-        return True
-    except Exception, e:
-        log.error('Error saving persona image: %s' % e)
+    log.info('[1@None] Resizing persona image: %s' % full_dst)
+    preview, full = amo.PERSONA_IMAGE_SIZES['header']
+    new_w, new_h = preview
+    orig_w, orig_h = full
+    with storage.open(src) as fp:
+        i = Image.open(fp)
+        # Crop image from the right.
+        i = i.crop((orig_w - (new_w * 2), 0, orig_w, orig_h))
+        i = i.resize(preview, Image.ANTIALIAS)
+        i.load()
+        with storage.open(full_dst, 'wb') as fp:
+            i.save(fp, 'png')
+    return True
 
 
 @task
 @set_modified_on
-def save_persona_image(src, dst, img_basename, **kw):
-    """Creates a JPG of a Persona header/footer image."""
-    log.info('[1@None] Saving persona image: %s' % dst)
+def save_persona_image(src, full_dst, **kw):
+    """Creates a PNG of a Persona header/footer image."""
+    log.info('[1@None] Saving persona image: %s' % full_dst)
     img = ImageCheck(storage.open(src))
     if not img.is_image():
         log.error('Not an image: %s' % src, exc_info=True)
         return
-
-    try:
-        with storage.open(src) as fp:
-            i = Image.open(fp)
-            with storage.open(os.path.join(dst, img_basename), 'wb') as fp:
-                i.save(fp)
-        return True
-    except Exception, e:
-        log.error('Error saving persona image: %s' % e)
+    with storage.open(src, 'rb') as fp:
+        i = Image.open(fp)
+        with storage.open(full_dst, 'wb') as fp:
+            i.save(fp, 'png')
+    return True
 
 
 @task

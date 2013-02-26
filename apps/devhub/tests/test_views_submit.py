@@ -22,30 +22,33 @@ from versions.models import License
 
 
 class TestSubmitPersona(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/addon_5579', 'base/platforms', 'base/users']
+    # TODO(future employee): Make this a form test and move it to `test_forms`.
+    fixtures = ['base/apps', 'base/platforms', 'base/users']
 
     def setUp(self):
         super(TestSubmitPersona, self).setUp()
         self.client.login(username='regular@mozilla.com', password='password')
-        self.category = self.create_category()
+        self.populate()
         self.url = reverse('devhub.personas.submit')
         self.patcher = patch.object(waffle, 'flag_is_active')
         self.patcher.start()
         self.addCleanup(self.patcher.stop)
 
-    def create_category(self):
-        Category.objects.create(application_id=amo.THUNDERBIRD.id,
-                                type=amo.ADDON_PERSONA)
-        return Category.objects.create(application_id=amo.FIREFOX.id,
-                                       type=amo.ADDON_PERSONA)
+    def populate(self):
+        self.cats = []
+        for app in (amo.FIREFOX, amo.THUNDERBIRD):
+            c = Category.objects.create(application_id=app.id, name='xxx',
+                                        type=amo.ADDON_PERSONA)
+            self.cats.append(c.id)
+        License.objects.create(id=amo.LICENSE_CC_BY.id)
 
     def get_dict(self, **kw):
-        License.objects.create(id=amo.LICENSE_CC_BY.id)
-        data = dict(name='new name', category=self.category.id,
+        data = dict(name='new name', category=self.cats[0],
                     accentcolor='#003366', textcolor='#C0FFEE',
                     summary='new summary',
                     tags='tag1, tag2, tag3',
-                    license=amo.LICENSE_CC_BY.id)
+                    license=amo.LICENSE_CC_BY.id,
+                    agreed=True)
         data.update(**kw)
         return data
 
@@ -187,8 +190,8 @@ class TestSubmitPersona(amo.tests.TestCase):
         # Test for correct Addon and Persona values.
         eq_(unicode(addon.name), data['name'])
 
-        eq_(sorted(addon.categories.values_list('id', flat=True)),
-            sorted(Category.objects.values_list('id', flat=True)))
+        self.assertSetEqual(addon.categories.values_list('id', flat=True),
+                            self.cats)
 
         tags = ', '.join(sorted(addon.tags.values_list('tag_text', flat=True)))
         eq_(tags, data['tags'])
@@ -210,19 +213,19 @@ class TestSubmitPersona(amo.tests.TestCase):
         # Test for header, footer, and preview images.
         dst = os.path.join(settings.PERSONAS_PATH, str(addon.id))
 
-        img = os.path.join(dst, 'header.jpg')
-        eq_(persona.header, 'header')
+        img = os.path.join(dst, 'header.png')
+        eq_(persona.header, 'header.png')
         eq_(storage.exists(img), True)
         eq_(Image.open(storage.open(img)).size, (3000, 200))
         eq_(amo.PERSONA_IMAGE_SIZES['header'][1], (3000, 200))
 
-        img = os.path.join(dst, 'footer.jpg')
-        eq_(persona.footer, 'footer')
+        img = os.path.join(dst, 'footer.png')
+        eq_(persona.footer, 'footer.png')
         eq_(storage.exists(img), True)
         eq_(Image.open(storage.open(img)).size, (3000, 100))
         eq_(amo.PERSONA_IMAGE_SIZES['footer'][1], (3000, 100))
 
-        img = os.path.join(dst, 'preview.jpg')
+        img = os.path.join(dst, 'preview.png')
         eq_(storage.exists(img), True)
         eq_(Image.open(storage.open(img)).size, (680, 100))
         eq_(amo.PERSONA_IMAGE_SIZES['header'][0], (680, 100))
