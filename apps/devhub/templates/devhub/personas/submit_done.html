@@ -9,23 +9,23 @@
   <div class="prose">
     <p>
     {% trans %}
-      Your Persona has been submitted to the Review queue.
+      Your Theme has been submitted to the Review queue.
     {% endtrans %}
     </p>
-    {# TODO(cvan): The following is a lie. Personas cannot be installed before being reviewed - yet. #}
+    {# TODO(cvan): The following is a lie. Themes cannot be installed before being reviewed - yet. #}
     <p>
       {# TODO(cvan)(fligtar): Finalize copy. #}
-      You'll receive an email once your Persona has been reviewed by an editor.
+      You'll receive an email once your Theme has been reviewed by an editor.
     </p>
     <h2>{{ _('Next steps:') }}</h2>
     <ul class="done-next-steps">
-      {# TODO(cvan): This should lead to the Persona Edit page. #}
+      {# TODO(cvan): This should lead to the Theme Edit page. #}
       {% set edit_url = url('devhub.addons.edit', addon.slug) %}
-      <li>{{ _('Provide more details about your Persona by <a href="{0}">editing its listing</a>.')|f(edit_url)|safe }}</li>
+      <li>{{ _('Provide more details about your Theme by <a href="{0}">editing its listing</a>.')|f(edit_url)|safe }}</li>
       {% set profile_url = addon.get_dev_url('profile') %}
-      <li>{{ _('Tell your users why you created this Persona in your <a href="{0}">Developer Profile</a>.')|f(profile_url)|safe }}</li>
+      <li>{{ _('Tell your users why you created this Theme in your <a href="{0}">Developer Profile</a>.')|f(profile_url)|safe }}</li>
       {% set feed_url = url('devhub.feed', addon.slug) %}
-      <li>{{ _('View and subscribe to your Persona\'s <a href="{0}">activity feed</a> to stay updated on reviews, collections, and more.')|f(feed_url)|safe }}</li>
+      <li>{{ _('View and subscribe to your Theme\'s <a href="{0}">activity feed</a> to stay updated on reviews, collections, and more.')|f(feed_url)|safe }}</li>
       <li>{{ _('View approximate review queue <a href="{0}">wait times</a>.')|f('https://forums.addons.mozilla.org/viewforum.php?f=21')|safe }}</li>
     </ul>
   </div>

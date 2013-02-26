@@ -504,6 +504,7 @@ class NewPersonaForm(AddonFormBase):
     footer_hash = forms.CharField(widget=forms.HiddenInput)
     accentcolor = ColorField(required=False)
     textcolor = ColorField(required=False)
+    agreed = forms.BooleanField()
     # This lets us POST the data URIs of the unsaved previews so we can still
     # show them if there were form errors. It's really clever.
     unsaved_data = forms.CharField(required=False, widget=forms.HiddenInput)
@@ -533,39 +534,38 @@ class NewPersonaForm(AddonFormBase):
         return clean_tags(self.request, self.cleaned_data['tags'])
 
     def save(self, commit=False):
-        from .tasks import create_persona_preview_image, save_persona_image
-        # We ignore `commit`, since we need it to be `False` so we can save
-        # the ManyToMany fields on our own.
-        addon = super(NewPersonaForm, self).save(commit=False)
-        addon.status = amo.STATUS_UNREVIEWED
-        addon.type = amo.ADDON_PERSONA
-        addon.save()
+        from addons.tasks import (create_persona_preview_image,
+                                  save_persona_image)
+        data = self.cleaned_data
+        # TODO: Ask for slug.
+        addon = Addon.objects.create(name=data['name'],
+            description=data.get('summary'),
+            status=amo.STATUS_PENDING, type=amo.ADDON_PERSONA)
         addon._current_version = Version.objects.create(addon=addon,
                                                         version='0')
         addon.save()
-        amo.log(amo.LOG.CREATE_ADDON, addon)
-        log.debug('New persona %r uploaded' % addon)
-
-        data = self.cleaned_data
-
-        header = data['header_hash']
-        footer = data['footer_hash']
-
-        header = os.path.join(settings.TMP_PATH, 'persona_header', header)
-        footer = os.path.join(settings.TMP_PATH, 'persona_footer', footer)
-        dst = os.path.join(settings.PERSONAS_PATH, str(addon.id))
 
         # Save header, footer, and preview images.
-        save_persona_image(src=header, dst=dst, img_basename='header.jpg')
-        save_persona_image(src=footer, dst=dst, img_basename='footer.jpg')
-        create_persona_preview_image(src=header, dst=dst,
-                                     img_basename='preview.jpg',
-                                     set_modified_on=[addon])
+        try:
+            header = data['header_hash']
+            footer = data['footer_hash']
+            header = os.path.join(settings.TMP_PATH, 'persona_header', header)
+            footer = os.path.join(settings.TMP_PATH, 'persona_footer', footer)
+            dst = os.path.join(settings.PERSONAS_PATH, str(addon.id))
+            save_persona_image(src=header, dst=dst, img_basename='header.jpg')
+            save_persona_image(src=footer, dst=dst, img_basename='footer.jpg')
+            create_persona_preview_image(src=header, dst=dst,
+                                         img_basename='preview.jpg',
+                                         set_modified_on=[addon])
+        except IOError:
+            addon.delete()
+            raise IOError
 
         # Save user info.
         user = self.request.amo_user
         AddonUser(addon=addon, user=user).save()
 
+        # Create Persona instance.
         p = Persona()
         p.persona_id = 0
         p.addon = addon
@@ -586,8 +586,9 @@ class NewPersonaForm(AddonFormBase):
             Tag(tag_text=t).save_tag(addon)
 
         # Save categories.
-        tb_c = Category.objects.get(application=amo.THUNDERBIRD.id,
-                                    name__id=data['category'].name_id)
+        tb_c, created = Category.objects.get_or_create(
+            application_id=amo.THUNDERBIRD.id,
+            name__id=data['category'].name.id, type=amo.ADDON_PERSONA)
         AddonCategory(addon=addon, category=data['category']).save()
         AddonCategory(addon=addon, category=tb_c).save()
 

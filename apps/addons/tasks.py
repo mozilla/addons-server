@@ -205,7 +205,6 @@ def create_persona_preview_image(src, dst, img_basename, **kw):
 @set_modified_on
 def save_persona_image(src, dst, img_basename, **kw):
     """Creates a JPG of a Persona header/footer image."""
-
     log.info('[1@None] Saving persona image: %s' % dst)
     img = ImageCheck(storage.open(src))
     if not img.is_image():

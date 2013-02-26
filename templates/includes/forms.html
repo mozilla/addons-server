@@ -11,14 +11,14 @@
 {%- endmacro %}
 
 {% macro pretty_field(field, label=None, tooltip=None, tag='li', req=None,
-                      opt=False, choice=None, class='row') %}
+                      opt=False, choice=None, class='row', validate=False) %}
   {% if choice == None %}
     {% set choice = field|is_choice_field %}
   {% endif %}
   {% if req == None %}
     {% set req = field.field.required %}
   {% endif %}
-  {% set attrs = {'required': ''} if req else {} %}
+  {% set attrs = {'required': ''} if req and validate else {} %}
 
   {% if tag %}
     <{{ tag }} class="{{ class }}{{ ' error' if field.errors }}">
