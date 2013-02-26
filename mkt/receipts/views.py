@@ -7,7 +7,6 @@ import commonware.log
 import jingo
 from session_csrf import anonymous_csrf_exempt
 from tower import ugettext as _
-import waffle
 
 from access import acl
 from addons.decorators import addon_view_factory
