@@ -96,7 +96,7 @@ class TestAddonView(amo.tests.TestCase):
 class TestPremiumDecorators(amo.tests.TestCase):
 
     def setUp(self):
-        self.addon = mock.Mock()
+        self.addon = mock.Mock(pk=1)
         self.func = mock.Mock()
         self.func.return_value = True
         self.func.__name__ = 'mock_function'
@@ -112,7 +112,7 @@ class TestPremiumDecorators(amo.tests.TestCase):
     def test_can_become_premium(self):
         self.addon.can_become_premium.return_value = True
         view = dec.can_become_premium(self.func)
-        eq_(view(self.request, self.addon, self.addon.pk, self.addon), True)
+        eq_(view(self.request, self.addon.pk, self.addon), True)
 
     def test_has_purchased(self):
         view = dec.has_purchased(self.func)
