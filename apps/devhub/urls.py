@@ -247,7 +247,7 @@ urlpatterns = decorate(write, patterns('',
     url('^ajax/addon/%s/' % ADDON_ID, include(ajax_patterns)),
 
     # Themes submission.
-    url('^theme/submit$', views.submit_persona,
+    url('^theme/submit/?$', views.submit_persona,
         name='devhub.personas.submit'),
     url('^theme/%s/submit/done$' % ADDON_ID, views.submit_persona_done,
         name='devhub.personas.submit.done'),
