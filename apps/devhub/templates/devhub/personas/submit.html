@@ -204,7 +204,13 @@
           </div>
         </div>
       </fieldset>
-      <p><button class="button prominent" disabled type="submit">{{ _('Submit Theme') }}</button></p>
+      <p class="legal"><label><input type="checkbox" required>
+        {% trans tos_url='https://wiki.mozilla.org/Marketplace/Reviewers/Themes/TOS',
+                 guidelines_url='https://wiki.mozilla.org/Marketplace/Reviewers/Themes/Guidelines' %}
+          By submitting your Theme, you agree to the <a href="{{ tos_url }}" target="_blank">Themes Terms of Service</a>. Your Theme is subject to approval according to the standards established in the <a href="{{ guidelines_url }}" target="_blank">Review Guidelines</a>.
+        {% endtrans %}
+      </label></p>
+      <p class="listing-footer"><button class="button prominent" disabled type="submit">{{ _('Submit Theme') }}</button></p>
     </form>
   </div>
 </section>
