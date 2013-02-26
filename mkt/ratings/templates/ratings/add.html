@@ -22,9 +22,6 @@
                     cc_for=form.body.auto_id,
                     cc_maxlength=form.body.field.max_length, tag='div',
                     validate=True) }}
-      {% if not DESKTOP %}
-        <p class="charlimit">{{ _('Max 150 characters') }}</p>
-      {% endif %}
       <p class="form-footer submit-review c">
         <div class="two-up">
           <a href="#" class="button fat alt back cancel">{{ _('Cancel') }}</a>
