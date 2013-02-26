@@ -179,11 +179,10 @@ def persona_detail(request, addon, template=None):
 
     # this persona's categories
     categories = addon.categories.filter(application=request.APP.id)
+    category_personas = None
     if categories:
         qs = Addon.objects.public().filter(categories=categories[0])
         category_personas = _category_personas(qs, limit=6)
-    else:
-        category_personas = None
 
     data = {
         'addon': addon,
@@ -192,9 +191,19 @@ def persona_detail(request, addon, template=None):
         'author_personas': persona.authors_other_addons(request.APP)[:3],
         'category_personas': category_personas,
     }
-    if not persona.is_new():
-        # Remora uses persona.author despite there being a display_username.
-        data['author_gallery'] = settings.PERSONAS_USER_ROOT % persona.author
+
+    author = None
+    if persona.is_new():
+        try:
+            author = addon.authors.all()[0]
+        except IndexError:
+            pass
+        else:
+            author = author.get_url_path(src='addon-detail')
+    else:
+        author = settings.PERSONAS_USER_ROOT % persona.author
+    data['author_gallery'] = author
+
     if not request.MOBILE:
         # tags
         dev_tags, user_tags = addon.tags_partitioned_by_developer

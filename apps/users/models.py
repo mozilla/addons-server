@@ -148,12 +148,10 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
     def is_anonymous(self):
         return False
 
-    def get_url_path(self):
-        if settings.MARKETPLACE:
-            return reverse('users.profile', args=[self.username or self.id])
-        else:
-            # AMO isn't ready for this.
-            return reverse('users.profile', args=[self.id])
+    def get_url_path(self, src=None):
+        # TODO: Let users be looked up by slug.
+        from amo.utils import urlparams
+        return urlparams(reverse('users.profile', args=[self.id]), src=src)
 
     def flush_urls(self):
         urls = ['*/user/%d/' % self.id,

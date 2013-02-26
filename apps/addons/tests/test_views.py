@@ -1048,7 +1048,9 @@ class TestPersonaDetailPage(TestPersonas, amo.tests.TestCase):
         self.persona.persona_id = 0
         self.persona.save()
         r = self.client.get(self.url)
-        eq_(pq(r.content)('#more-artist .more-link').length, 0)
+        profile = UserProfile.objects.get(id=999).get_url_path()
+        eq_(pq(r.content)('#more-artist .more-link').attr('href'),
+            profile + '?src=addon-detail')
 
     def test_other_personas(self):
         """Ensure listed personas by the same author show up."""
@@ -1482,7 +1484,9 @@ class TestMobileDetails(TestPersonas, TestMobile):
         self.persona.persona.persona_id = 0
         self.persona.persona.save()
         r = self.client.get(self.persona_url, follow=True)
-        eq_(pq(r.content)('#more-artist .more-link').length, 0)
+        profile = UserProfile.objects.get(id=999).get_url_path()
+        eq_(pq(r.content)('#more-artist .more-link').attr('href'),
+            profile + '?src=addon-detail')
 
     def test_persona_mobile_url(self):
         r = self.client.get('/en-US/mobile/addon/15679/')
