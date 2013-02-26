@@ -35,15 +35,12 @@ class TestSubmitPersona(amo.tests.TestCase):
         self.addCleanup(self.patcher.stop)
 
     def populate(self):
-        self.cats = []
-        for app in (amo.FIREFOX, amo.THUNDERBIRD):
-            c = Category.objects.create(application_id=app.id, name='xxx',
-                                        type=amo.ADDON_PERSONA)
-            self.cats.append(c.id)
+        self.cat = Category.objects.create(application_id=amo.FIREFOX.id,
+                                           type=amo.ADDON_PERSONA)
         License.objects.create(id=amo.LICENSE_CC_BY.id)
 
     def get_dict(self, **kw):
-        data = dict(name='new name', category=self.cats[0],
+        data = dict(name='new name', category=self.cat,
                     accentcolor='#003366', textcolor='#C0FFEE',
                     summary='new summary',
                     tags='tag1, tag2, tag3',
@@ -191,7 +188,7 @@ class TestSubmitPersona(amo.tests.TestCase):
         eq_(unicode(addon.name), data['name'])
 
         self.assertSetEqual(addon.categories.values_list('id', flat=True),
-                            self.cats)
+                            [self.cat])
 
         tags = ', '.join(sorted(addon.tags.values_list('tag_text', flat=True)))
         eq_(tags, data['tags'])

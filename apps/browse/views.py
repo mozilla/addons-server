@@ -143,7 +143,7 @@ def language_tools(request, category=None):
 def themes(request, category=None):
     TYPE = amo.ADDON_THEME
     if category is not None:
-        q = Category.objects.filter(application=request.APP.id, type=TYPE)
+        q = Category.objects.filter(type=TYPE)
         category = get_object_or_404(q, slug=category)
 
     addons, filter = addon_listing(request, [TYPE], default='users',
@@ -309,8 +309,7 @@ class PersonasFilter(BaseFilter):
 def personas_listing(request, category_slug=None):
     # Common pieces using by browse and search.
     TYPE = amo.ADDON_PERSONA
-    q = Category.objects.filter(application=request.APP.id,
-                                type=TYPE)
+    q = Category.objects.filter(type=TYPE)
     categories = order_by_translation(q, 'name')
 
     frozen = list(FrozenAddon.objects.values_list('addon', flat=True))
@@ -391,8 +390,8 @@ def legacy_theme_redirects(request, category=None, category_name=None):
         else:
             try:
                 # Theme?
-                cat = Category.objects.filter(application=request.APP.id,
-                    slug=category, type=amo.ADDON_PERSONA)[0]
+                cat = Category.objects.filter(slug=category,
+                                              type=amo.ADDON_PERSONA)[0]
             except IndexError:
                 pass
             else:

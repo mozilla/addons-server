@@ -485,7 +485,7 @@ def _side_nav(context, addon_type, cat):
     from addons.models import Category, AddonType
     request = context['request']
     qs = Category.objects.filter(weight__gte=0)
-    if addon_type != amo.ADDON_WEBAPP:
+    if addon_type not in (amo.ADDON_PERSONA, amo.ADDON_WEBAPP):
         qs = qs.filter(application=request.APP.id)
     sort_key = attrgetter('weight', 'name')
     categories = sorted(qs.filter(type=addon_type), key=sort_key)
@@ -509,15 +509,16 @@ def _site_nav(context):
     # Prevent helpers from generating circular imports.
     from addons.models import Category
     request = context['request']
-    types = amo.ADDON_EXTENSION, amo.ADDON_PERSONA
-    qs = Category.objects.filter(application=request.APP.id, weight__gte=0,
-                                 type__in=types)
-    groups = utils.sorted_groupby(qs, key=attrgetter('type'))
-    cats = dict((key, sorted(cs, key=attrgetter('weight', 'name')))
-                for key, cs in groups)
+
+    sorted_cats = lambda qs: sorted(qs, key=attrgetter('weight', 'name'))
+
+    extensions = Category.objects.filter(application=request.APP.id,
+        weight__gte=0, type=amo.ADDON_EXTENSION)
+    personas = Category.objects.filter(weight__gte=0, type=amo.ADDON_PERSONA)
+
     ctx = dict(request=request, amo=amo,
-               extensions=cats.get(amo.ADDON_EXTENSION, []),
-               personas=cats.get(amo.ADDON_PERSONA, []))
+               extensions=sorted_cats(extensions),
+               personas=sorted_cats(personas))
     return jinja2.Markup(env.get_template('amo/site_nav.html').render(ctx))
 
 

@@ -489,7 +489,7 @@ class AbuseForm(happyforms.Form):
 
 class NewPersonaForm(AddonFormBase):
     name = forms.CharField(max_length=50)
-    category = forms.ModelChoiceField(queryset=Category.objects.all(),
+    category = forms.ModelChoiceField(queryset=Category.objects.none(),
                                       widget=forms.widgets.RadioSelect)
     summary = forms.CharField(widget=forms.Textarea(attrs={'rows': 4}),
                               max_length=250, required=False)
@@ -515,8 +515,7 @@ class NewPersonaForm(AddonFormBase):
 
     def __init__(self, *args, **kwargs):
         super(NewPersonaForm, self).__init__(*args, **kwargs)
-        cats = Category.objects.filter(application=amo.FIREFOX.id,
-                                       type=amo.ADDON_PERSONA, weight__gte=0)
+        cats = Category.objects.filter(type=amo.ADDON_PERSONA, weight__gte=0)
         cats = sorted(cats, key=lambda x: x.name)
         self.fields['category'].choices = [(c.id, c.name) for c in cats]
 
@@ -590,12 +589,6 @@ class NewPersonaForm(AddonFormBase):
 
         # Save categories.
         AddonCategory(addon=addon, category=data['category']).save()
-
-        tb_c, created = Category.objects.get_or_create(
-            application_id=amo.THUNDERBIRD.id,
-            name__id=data['category'].name.id, type=amo.ADDON_PERSONA)
-        if tb_c.id != data['category'].id:
-            AddonCategory(addon=addon, category=tb_c).save()
 
         return addon
 
