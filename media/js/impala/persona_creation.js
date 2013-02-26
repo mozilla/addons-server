@@ -201,7 +201,8 @@ function initPreview() {
         });
     }
 
-    $('input[type=color]').change(function() {
+    var $color = $('#submit-persona input[type=color]');
+    $color.change(function() {
         var $this = $(this),
             val = $this.val();
         if (val.indexOf('#') === 0) {
@@ -210,10 +211,18 @@ function initPreview() {
         }
         updatePersona();
     }).trigger('change');
-    $('#submit-persona input[type="color"]').miniColors({change: function() {
-        $('input[type=color]').trigger('change');
-        updatePersona();
-    }});
+
+    // Check for native `input[type=color]` support (i.e., WebKit).
+    if ($color[0].type === 'color') {
+        $('.miniColors-trigger').hide();
+    } else {
+        $color.miniColors({
+            change: function() {
+                $color.trigger('change');
+                updatePersona();
+            }
+        });
+    }
 
     $('#id_name').bind('change keyup paste blur', _.throttle(function() {
         $('#persona-preview-name').text($(this).val() || gettext("Your Theme's Name"));
