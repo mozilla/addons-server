@@ -496,7 +496,7 @@ function bind_viewer(nodes) {
                 change[0].css(change[1]);
             });
 
-            if (resize && !($.browser.mozilla || $.browser.webkit)) {
+            if (resize) {
                 /* Opera does not handle max-height:100% properly in
                  * this case, and I won't place any bets on IE. */
                 var $wrapper = $('#files-wrapper');
