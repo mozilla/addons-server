@@ -21,12 +21,13 @@ from jinja2.filters import do_dictsort
 import caching.base as caching
 import commonware.log
 import json_field
-from tower import ugettext_lazy as _
 import waffle
+from tower import ugettext_lazy as _
 
 from addons.utils import get_featured_ids, get_creatured_ids
 
 import amo.models
+import mkt.constants
 from amo.decorators import use_master
 from amo.fields import DecimalCharField
 from amo.helpers import absolutify, shared_url
@@ -1834,6 +1835,12 @@ class Category(amo.models.ModelBase):
     misc = models.BooleanField(default=False)
 
     addons = models.ManyToManyField(Addon, through='AddonCategory')
+
+    # Used for operator shelves and magic categories.
+    carrier = models.PositiveIntegerField(
+        choices=mkt.constants.CARRIER_IDS, null=True)
+    region = models.PositiveIntegerField(
+        choices=mkt.constants.REGIONS_CHOICES_ID, null=True)
 
     class Meta:
         db_table = 'categories'

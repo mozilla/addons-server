@@ -9,6 +9,7 @@ from addons.models import Category
 
 import amo
 import mkt
+import mkt.regions
 from mkt.carriers import get_carrier
 
 

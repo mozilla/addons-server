@@ -99,9 +99,9 @@ class SPAIN(REGION):
 DEFINED = sorted(inspect.getmembers(sys.modules[__name__], inspect.isclass),
                  key=lambda x: getattr(x, 'slug', None))
 REGIONS_CHOICES = (
-    [('worldwide', WORLDWIDE)]
-    + sorted([(v.slug, v) for k, v in DEFINED if v.id and v.weight > -1],
-             key=lambda x: x[1].weight, reverse=True)
+    [('worldwide', WORLDWIDE)] +
+    sorted([(v.slug, v) for k, v in DEFINED if v.id and v.weight > -1],
+           key=lambda x: x[1].weight, reverse=True)
 )
 
 BY_SLUG = sorted([v for k, v in DEFINED if v.id and v.weight > -1],

@@ -1,2 +1,2 @@
-from mkt.constants import platforms, ratingsbodies, regions
+from mkt.constants import platforms, ratingsbodies
 from mkt.constants.submit import *

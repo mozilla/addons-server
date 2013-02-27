@@ -107,8 +107,8 @@ MIDDLEWARE_CLASSES.remove('amo.middleware.LocaleAndAppURLMiddleware')
 MIDDLEWARE_CLASSES += [
     'mkt.site.middleware.RedirectPrefixedURIMiddleware',
     'mkt.site.middleware.LocaleMiddleware',
-    'mkt.site.middleware.RegionMiddleware',
 
+    'mkt.regions.middleware.RegionMiddleware',
     'mkt.fragments.middleware.VaryOnAJAXMiddleware',
     'mkt.site.middleware.DeviceDetectionMiddleware',
     'mkt.fragments.middleware.HijackRedirectMiddleware',
