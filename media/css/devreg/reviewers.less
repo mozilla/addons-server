@@ -1298,6 +1298,7 @@ iframe#manifest-contents {
     }
 }
 
+@mobileborder: #d7d2c3;
 @media (max-width: @mobile-max) {
     .mobile-queue-search, .mobile-paginator {
         display: block;
@@ -1343,7 +1344,13 @@ iframe#manifest-contents {
                     top: 4px;
                 }
             }
+            & > ul li:not(.open):hover > ul, &.open > ul {
+                display: none;
+            }
         }
+    }
+    .mobile-queue-search {
+        display: block;
     }
     #queue-search {
         padding: 0;
@@ -1366,18 +1373,15 @@ iframe#manifest-contents {
             top: 8px;
             span {
                 bottom: 9px;
-                font-size: 16px;
                 position: relative;
             }
         }
         .toggle-queue-search {
             bottom: 64px;
             float: right;
-            font-size: 16px;
             line-height: 6px;
             margin-right: 3px;
             position: relative;
-
         }
     }
     .island #queue-search {
@@ -1474,6 +1478,40 @@ iframe#manifest-contents {
         max-width: 100%;
         overflow-x: auto;
         overflow-y: hidden;
+    .tabnav {
+        li {
+            position: relative;
+        }
+        &+ .island {
+            .border-box;
+            max-width: 100%;
+            overflow-x: auto;
+            overflow-y: hidden;
+        }
+    }
+    html {
+        font-size: 10px;
+    }
+    #page form[role="dialog"][data-type="action"] {
+        z-index: 1007;
+        button {
+            position: static;
+        }
+    }
+    .tabnav-sprite {
+        bottom: 6px;
+        display: block;
+        position: absolute;
+        right: 6px;
+        &:before {
+            /* Triangle bottom-right. */
+            border-bottom: 10px solid @medium-gray;
+            border-left: 10px solid transparent;
+            content: '';
+            display: block;
+            height: 0;
+            width: 0;
+        }
     }
     // No mobile man is an island.
     .island {

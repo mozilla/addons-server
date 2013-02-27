@@ -6,7 +6,6 @@
 {% endblock %}
 
 {% block content %}
-
   {% if waffle.switch('reviewer-incentive-points') %}
   <section id="reviewers-score-bar" class="island full c">
     {{ reviewers_score_bar() }}
@@ -17,10 +16,24 @@
     {% include "reviewers/includes/queue_search.html" %}
   </div>
 
+  <form id="queue-tab-overlay" role="dialog" data-type="action">
+    <header>{{ _('Queues') }}</header>
+    <menu>
+      {% for prefix, this, loc, text in queue_tabnav() %}
+        <button data-url="{{ url('reviewers.%s.%s' % (prefix, loc)) }}">
+          {{ text }}
+        </button>
+      {% endfor %}
+      <button data-url="#cancel">Cancel</button>
+    </menu>
+  </form>
+
   <ul class="tabnav">
     {% for prefix, this, loc, text in queue_tabnav() %}
       <li class="{% if tab == this %}selected{% endif %}">
-        <a href="{{ url('reviewers.%s.%s' % (prefix, loc)) }}">{{ text }}</a></li>
+        <a href="{{ url('reviewers.%s.%s' % (prefix, loc)) }}">{{ text }}</a>
+        <div class="tabnav-sprite hidden"></div>
+      </li>
     {% endfor %}
   </ul>
 

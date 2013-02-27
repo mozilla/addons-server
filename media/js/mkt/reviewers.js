@@ -10,15 +10,6 @@
         z.body.addClass('desktop');
     }
 
-    // Touch-friendly drop-downs for auxillary nav.
-    $('.menu-nav > ul > li > a').click(function(e) {
-        var $this = $(this);
-        if ($this.siblings('ul').length) {
-            e.preventDefault();
-            $this.closest('li').toggleClass('open');
-        }
-    });
-
     var $viewManifest = $('#view-manifest'),
         $manifest = $('#manifest-contents');
     if (!$viewManifest.length) {

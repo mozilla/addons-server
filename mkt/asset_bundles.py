@@ -144,6 +144,10 @@ CSS = {
     'mkt/themes': (
         'css/devreg/themes.less',
     ),
+    'mkt/gaia': (
+        # Gaia building blocks.
+        'css/gaia/action_menu.css',
+    )
 }
 
 # Bundle extensions (e.g., desktop).

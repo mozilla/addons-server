@@ -43,6 +43,23 @@
         initQueue();
     }
 
+    var $queueTabOverlay = $('#queue-tab-overlay');
+    $('.tabnav li, a.queues').click(_pd(function() {
+        if (z.capabilities.mobile) {
+            $queueTabOverlay.show();
+        }
+    }));
+
+    $('button', $queueTabOverlay).click(_pd(function() {
+        // Turn buttons into links on queue tab overlay.
+        var button = $(this);
+        if (button.is(':last-child')) {
+            $queueTabOverlay.hide();
+        } else {
+            window.location = button.data('url');
+        }
+    }));
+
     // Show add-on ID when icon is clicked
     if ($("#addon[data-id], #persona[data-id]").length) {
       $("#addon .icon").click(function() {
