@@ -43,7 +43,7 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
 
     # This does a nice Yes/No field like the mockup calls for.
     allow_inapp = forms.ChoiceField(
-        choices=((True, 'Yes'), (False, 'No')),
+        choices=((True, _lazy(u'Yes')), (False, _lazy(u'No'))),
         widget=forms.RadioSelect, required=False)
     price = forms.ModelChoiceField(queryset=Price.objects.active(),
                                    label=_lazy(u'App Price'),
