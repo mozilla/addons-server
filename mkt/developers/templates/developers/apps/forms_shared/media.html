@@ -111,7 +111,7 @@
                          height="{{ form.size[1] }}" width="{{ form.size[0] }}">
                   </div>
                   <div class="edit-media-details">
-                    {{ tip(form.name, form.description) }}<br />
+                    {{ tip(form.name ~ '', form.description) }}<br />
                     {# L10n: The size of the image asset #}
                     {{ _('{0}x{1}px')|f(*form.size) }}
                     {{ required() if form.required }}
