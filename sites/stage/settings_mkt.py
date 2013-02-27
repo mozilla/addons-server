@@ -134,7 +134,7 @@ if getattr(private_mkt, 'LOAD_TESTING', False):
 
     # we are also creating access tokens for OAuth, here are the keys and
     # secrets used for them
-    API_SALT = getattr(private_mkt, 'API_SALT', FAKEAUTH_TOKEN)
+    API_PASSWORD = getattr(private_mkt, 'API_PASSWORD', FAKEAUTH_TOKEN)
 AMO_LANGUAGES = AMO_LANGUAGES + ('dbg',)
 LANGUAGES = lazy(lazy_langs, dict)(AMO_LANGUAGES)
 LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in AMO_LANGUAGES])
@@ -166,3 +166,5 @@ APP_PURCHASE_KEY = DOMAIN
 APP_PURCHASE_AUD = DOMAIN
 APP_PURCHASE_TYP = 'mozilla-stage/payments/pay/v1'
 APP_PURCHASE_SECRET = private_mkt.APP_PURCHASE_SECRET
+
+MONOLITH_PASSWORD = private_mkt.MONOLITH_PASSWORD

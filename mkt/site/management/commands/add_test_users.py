@@ -14,14 +14,14 @@ from mkt.api.models import Access
 
 
 @transaction.commit_on_success
-def create_user(email, salt, group_name=None, delete_user=False,
+def create_user(email, password, group_name=None, delete_user=False,
                 permissions=None):
     """Create an user if he doesn't exist already, assign him to a group and
     create a token for him.
 
     On token creation, we generate the token key and the token secret. Each of
-    them are generated in a predictible way: sha512(salt + email + 'key') or
-    sha512(salt + email + 'secret').
+    them are generated in a predictible way: sha512(password + email + 'key') or
+    sha512(password + email + 'secret').
     """
     if delete_user:
         users = User.objects.filter(email=email)
@@ -49,8 +49,8 @@ def create_user(email, salt, group_name=None, delete_user=False,
     # We also want to grant these users access, so let's create tokens for
     # them.
     if not Access.objects.filter(user=profile.user).exists():
-        key = hashlib.sha512(salt + email + 'key').hexdigest()
-        secret = hashlib.sha512(salt + email + 'secret').hexdigest()
+        key = hashlib.sha512(password + email + 'key').hexdigest()
+        secret = hashlib.sha512(password + email + 'secret').hexdigest()
         consumer = Access(key=key, secret=secret, user=profile.user)
         consumer.save()
 
@@ -73,7 +73,7 @@ class Command(BaseCommand):
                     help='Clear the users before recreating them'),)
 
     def handle(self, *args, **kw):
-        options = {'salt': settings.API_SALT}
+        options = {'password': settings.API_PASSWORD}
 
         if kw['clear']:
             options['delete_user'] = True

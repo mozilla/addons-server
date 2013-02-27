@@ -19,5 +19,5 @@ class Command(BaseCommand):
     def handle(self, *args, **kw):
         create_user('monolith@mozilla.com',
                     delete_user=kw['overwrite'],
-                    salt=settings.MONOLITH_SALT,
+                    password=settings.MONOLITH_PASSWORD,
                     permissions=('Monolith:API', ))
