@@ -1,0 +1,253 @@
+{% extends 'ecosystem/base.html' %}
+{% from "ecosystem/macros.html" import navigation with context %}
+
+{% block title %}
+  {{ hub_page_title(_('Marketplace Submission')) }}
+{% endblock %}
+
+{% block extrahead %}
+  {{ css('mkt/ecosystem') }}
+{% endblock %}
+
+{% block content %}
+  <div class="doc-wrapper">
+    {{ navigation('publish_submit') }}
+
+    <article>
+      <h1>{{ _('Marketplace Submission') }}</h1>
+      <p>
+        {%- trans %}
+          The Firefox OS Marketplace provides infrastructure for developers
+          to offer apps to end users.
+        {% endtrans -%}
+      </p>
+      <p>
+        {%- trans url='//developer.mozilla.org/apps' %}
+          The Firefox OS Marketplace site does not currently work when
+          accessed from iPhones. To be notified when iPhone support is added,
+          please <a href="{{ url }}">sign up for the Open Web Apps
+          Developer Newsletter</a>.
+        {% endtrans -%}
+      </p>
+      <h2>{{ _('What you need') }}</h2>
+      <p>{{ _('Before submitting your app, you need the following:') }}</p>
+      <ul>
+        <li>
+          {%- trans url='//developer.mozilla.org/docs/Apps/Manifest' %}
+            A manifest file for your app. See
+            <a href="{{ url }}">App Manifest</a> for information.
+          {% endtrans -%}
+        </li>
+        <li>
+          {%- trans url='//developer.mozilla.org/docs/Apps/Tutorials/General/Publishing_the_app' %}
+            Web hosting for the app (the Firefox OS Marketplace does not host
+            apps). See <a href="{{ url }}">Publishing the app</a> for more
+            information.
+          {% endtrans -%}
+        </li>
+        <li>
+          {%- trans url='//developer.mozilla.org/docs/Apps/Marketplace_review_criteria' %}
+            Read and understand the
+            <a href="{{ url }}">Marketplace review criteria</a>.
+          {% endtrans -%}
+        </li>
+      </ul>
+      <h2>{{ _('Quick start') }}</h2>
+      <p>
+        {%- trans url=url('submit.app') %}
+          Are you ready to submit your app right now? <a class="button"
+          href="{{ url }}">Submit an app</a>
+        {% endtrans -%}
+      </p>
+      <p>{{ _('If you need more help, follow the steps below.') }}</p>
+      <p>
+        <a href="http://s.vid.ly/embeded.html?autoplay=false"
+           rel="external">
+          http://vid.ly/8k2n4w</a>
+      </p>
+      <h2>{{ _('Steps') }}</h2>
+      <p>
+        {%- trans %}
+          Submitting an app to the Firefox OS Marketplace involves the
+          following high-level steps:
+        {% endtrans -%}
+      </p>
+      <ol>
+        <li>{{ _('Log in to the Firefox OS Marketplace site.') }}</li>
+        <li>{{ _('Enter information about the app.') }}</li>
+        <li>
+          {%- trans %}
+            Optionally, set pricing, payment, and refund options.
+          {% endtrans -%}
+        </li>
+      </ol>
+      <h3>{{ _('Log in to the Firefox Marketplace site') }}</h3>
+      <ol>
+        <li>
+          {%- trans %}
+            In a Web browser, visit the Firefox Marketplace site.
+          {% endtrans -%}
+        </li>
+        <li>
+          {%- trans %}
+            At the bottom of the page, click <strong>Developer Hub</strong>.
+          {% endtrans -%}
+        </li>
+        <li>
+          {%- trans %}
+            Click the <strong>Login/Register</strong> link at the top of the
+            page. A login window opens.
+          {% endtrans -%}
+        </li>
+        <li>{{ _('Login with Mozilla Persona:') }}
+          <ul>
+            <li>
+              {%- trans %}
+                If you've previously used Persona, select the email address
+                for the identity you want to use, and click <strong>sign
+                in</strong>.
+              {% endtrans -%}
+            </li>
+            <li>
+              {%- trans url='//support.mozilla.org/kb/what-is-persona-and-how-does-it-work' %}
+                If you haven't used Persona, or you want to use a different
+                email address, you need to <a href="{{ url }}">create an
+                account</a>.
+              {% endtrans -%}
+            </li>
+          </ul>
+          <p>
+            {%- trans %}
+              The Persona window closes, and you are logged in to the
+              Marketplace Developer Hub.
+            {% endtrans -%}
+          </p>
+        </li>
+      </ol>
+      <h3>{{ _('Enter information about the app') }}</h3>
+      <ol>
+        <li>{{ _('Click the <strong>Submit An App</strong> button.') }}</li>
+        <li>
+          {%- trans %}
+            Review the Developer Agreement and click <strong>Agree and
+            Continue</strong>.
+          {% endtrans -%}
+        </li>
+        <li>
+          {%- trans %}
+            Choose whether your app will be <strong>Free</strong> or
+            <strong>Paid</strong>.
+          {% endtrans -%}
+        </li>
+        <li>
+          {%- trans %}
+            Select the devices which your app is compatible with.
+          {% endtrans -%}
+        </li>
+        <li>{{ _('Provide the location of your app') }}
+          <ol>
+            <li>
+              {%- trans url='//developer.mozilla.org/docs/Apps/Manifest' %}
+                If your app is a web app, enter the location on your server
+                of the <a href="{{ url }}">app manifest</a> for your app
+                (this must be a full URL), and click
+                <strong>Validate</strong>.
+              {% endtrans -%}
+              <ul>
+                <li>
+                  {%- trans %}
+                    If the app manifest validates, click
+                    <strong>Continue</strong>.
+                  {% endtrans -%}
+                </li>
+                <li>
+                  {%- trans %}
+                    If there are validation errors, correct them and
+                    revalidate the manifest.
+                  {% endtrans -%}
+                </li>
+              </ul>
+            </li>
+            <li>
+              {%- trans %}
+                If your app is a packaged app, click the
+                <strong>Packaged</strong> tab and select the ZIP file that
+                you wish to upload.
+              {% endtrans -%}
+              <ul>
+                <li>
+                  {%- trans %}
+                    The package will upload automatically. If your app
+                    validates, click <strong>Continue</strong>.
+                  {% endtrans -%}
+                </li>
+                <li>
+                  {%- trans %}
+                    If there are validation errors, correct them and
+                    re-upload your package.
+                  {% endtrans -%}
+                </li>
+              </ul>
+            </li>
+          </ol>
+        </li>
+        <li>
+          {%- trans %}
+            Add the required details for your app's detail page, and any
+            other details you want to add, and click
+            <strong>Continue</strong>. Note that the required fields are the
+            <strong>brief summary</strong>, <strong>categories</strong>,
+            <strong>privacy policy</strong>, <strong>device types</strong>,
+            and a <strong>screenshot</strong>. But a homepage, support site,
+            and support email are highly recommended. The multi-line text
+            fields support HTML, so you can structure and link the text.
+          {% endtrans -%}
+        </li>
+      </ol>
+      <p>
+        {%- trans url='#after-submitting' %}
+          If you are charging money for your app or for items within your
+          app, continue to the next section. If you are distributing your
+          app for free, skip to <a href="{{ url }}">After you submit the
+          app</a>.
+        {% endtrans -%}
+      </p>
+      <h3>{{ _('Set pricing, payment, and refund options') }}</h3>
+      <div>
+        {%- trans %}
+          <strong>Note:</strong> The Firefox OS Marketplace does not
+          currently support paid apps or in-app payments. We hope to enable
+          this feature for testing late in the first quarter of 2013.
+        {% endtrans -%}
+      </div>
+      <h2 id="after-submitting">{{ _('After you submit the app') }}</h2>
+      <p>
+        {%- trans %}
+          Before your app is made available to the public, it goes through a
+          review process to ensure that it is of high quality and not
+          malicious. The following documents describe the review criteria
+          and process:
+        {% endtrans -%}
+      </p>
+      <div>
+        {%- trans %}
+          <strong>Note:</strong> Apps submitted to the Firefox OS Marketplace
+          are in 'Review Pending' state. They will be reviewed prior to the
+          consumer beta of the Firefox OS Marketplace (expected Q4 2012).
+        {% endtrans -%}
+      </div>
+      <ul>
+        <li>{{ _('Submissions') }}</li>
+        <li>{{ _('Review process') }}</li>
+      </ul>
+      <p>
+        {%- trans %}
+          You can use the <strong>Manage Status</strong> page for your app
+          to view its status in the review process, and to <strong>Disable
+          App</strong> (hides it from users) or <strong>Delete App</strong>
+          (removes it from the Firefox OS Marketplace).
+        {% endtrans -%}
+      </p>
+    </article>
+  </div>
+{% endblock %}

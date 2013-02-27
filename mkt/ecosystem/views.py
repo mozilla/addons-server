@@ -131,6 +131,12 @@ def publish_hosted(request):
            {'page': 'publish_hosted', 'category': 'publish'})
 
 
+def publish_submit(request):
+    """Publish - Marketplace submission page."""
+    return jingo.render(request, 'ecosystem/publish_submit.html',
+           {'page': 'publish_submit', 'category': 'publish'})
+
+
 def publish_packaged(request):
     """Publish - Packaged apps page."""
     html_sample = u'''

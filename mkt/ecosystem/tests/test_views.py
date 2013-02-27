@@ -119,6 +119,11 @@ class TestDevHub(amo.tests.TestCase):
         eq_(r.status_code, 200)
         self.assertTemplateUsed(r, 'ecosystem/publish_packaged.html')
 
+    def test_publish_submit(self):
+        r = self.client.get(reverse('ecosystem.publish_submit'))
+        eq_(r.status_code, 200)
+        self.assertTemplateUsed(r, 'ecosystem/publish_submit.html')
+
     def test_build_quick(self):
         r = self.client.get(reverse('ecosystem.build_quick'))
         eq_(r.status_code, 200)

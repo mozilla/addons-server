@@ -183,7 +183,10 @@
           <h2 class="title nav-title">{{ _('Publish') }}</h2>
           <ol>
             <li>
-              <a href="{{ url('submit.app') }}">
+              <a href="{{ url('ecosystem.publish_submit') }}"
+                 {% if section == 'publish_submit' -%}
+                 class="selected"
+                 {% endif -%}>
                 {{- _('Marketplace Submission') }}</a>
             </li>
             <li>
