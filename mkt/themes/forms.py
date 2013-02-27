@@ -77,12 +77,15 @@ class NewThemeForm(AddonFormBase):
             footer = data['footer_hash']
             header = os.path.join(settings.TMP_PATH, 'persona_header', header)
             footer = os.path.join(settings.TMP_PATH, 'persona_footer', footer)
-            dst = os.path.join(settings.PERSONAS_PATH, str(addon.id))
-            save_persona_image(src=header, dst=dst, img_basename='header.jpg')
-            save_persona_image(src=footer, dst=dst, img_basename='footer.jpg')
-            create_persona_preview_image(src=header, dst=dst,
-                                         img_basename='preview.jpg',
-                                         set_modified_on=[addon])
+            dst_root = os.path.join(settings.PERSONAS_PATH, str(addon.id))
+
+            save_persona_image.delay(src=header,
+                full_dst=os.path.join(dst_root, 'header.png'))
+            save_persona_image.delay(src=footer,
+                full_dst=os.path.join(dst_root, 'footer.png'))
+            create_persona_preview_image.delay(src=header,
+                full_dst=os.path.join(dst_root, 'preview.png'),
+                set_modified_on=[addon])
         except IOError:
             addon.delete()
             raise IOError
