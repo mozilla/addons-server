@@ -17,8 +17,7 @@ def run():
         else:
             print 'Move addon from Thunderbird "%s" to Firefox "%s"' % (
                 fx_cat.slug, tb_cat.slug)
-            AddonCategory.objects.filter(category=tb_cat).update(
-                category=fx_cat)
+            AddonCategory.objects.filter(category=tb_cat).delete()
             # Get rid of `application_id` for Thunderbird category.
             tb_cat.update(application_id=amo.FIREFOX.id)
 
