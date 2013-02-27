@@ -13,7 +13,7 @@
 
   <section id="upload-file" class="island tabbable spacer">
     <div class="hosted tab active">
-      <h2><a href="#">Hosted</a></h2>
+      <h2><a href="#">{{ _('Hosted') }}</a></h2>
       <h3>{{ _("Submit your app manifest URL") }}</h3>
       <div class="upload-status">
         <label>
@@ -40,15 +40,17 @@
           </span>
         </div>
         <div class="hint">
-          {{ _('Manifest URLs must start with a protocol (for example, '
-               '<code>http://</code> or <code>https://</code>) and '
-                 'typically use the <code>.webapp</code> extension.')|safe }}
+          {% trans %}
+            Manifest URLs must start with a protocol (for example,
+            <code>http://</code> or <code>https://</code>) and typically
+            use the <code>.webapp</code> extension.
+          {% endtrans %}
         </div>
       </div>
     </div>
 
     <div class="packaged tab">
-      <h2><a href="#">Packaged</a></h2>
+      <h2><a href="#">{{ _('Packaged') }}</a></h2>
       <input type="file" id="upload-app" data-upload-url="{{ upload_packaged_url }}" />
     </div>
   </section>
