@@ -4,7 +4,7 @@
     &:hover,
     &:active {
         background: @faint-gray;
-        .box-shadow(none);
+        box-shadow: none;
     }
     &:active {
         .depressed;
@@ -53,7 +53,7 @@
         position: relative;
         text-decoration: none;
         &:hover {
-            .box-shadow(0 1px 2px fadeOut(@black, 50%));
+            box-shadow: 0 1px 2px fadeOut(@black, 50%);
             background: @faint-gray;
             .author {
                 color: @medium-gray;
@@ -61,9 +61,9 @@
         }
         &:active {
             background: @light-gray;
-            .box-shadow(inset 0 2px 0 0 rgba(0,0,0,.2),
+            box-shadow: inset 0 2px 0 0 rgba(0,0,0,.2),
                         inset 0 12px 24px 6px rgba(0,0,0,.2),
-                        inset 0 0 2px 2px rgba(0,0,0,.2));
+                        inset 0 0 2px 2px rgba(0,0,0,.2);
         }
         .img.icon {
             background-position: 50% 50%;

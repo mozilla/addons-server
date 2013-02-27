@@ -1,8 +1,8 @@
 @import 'lib';
 
 .button, button, input[type=submit], .button-mdn {
-    .border-radius(6px);
-    .box-shadow(0 1px rgba(0, 0, 0, 0.1), 0 -2px rgba(0, 0, 0, 0.1) inset);
+    border-radius: 6px;
+    box-shadow: 0 1px rgba(0,0,0,.1), 0 -2px rgba(0,0,0,.1) inset;
     .gradient-two-color(#3c88cc, #276195, #3c88cc);
     border: 0;
     color: #fff;
@@ -19,7 +19,7 @@ button, .button {
     &.prominent {
         padding: 8px 16px 12px;
         font-size: 16px;
-        .box-shadow(0 3px rgba(0, 0, 0, 0.1), 0 -4px rgba(0, 0, 0, 0.1) inset);
+        box-shadow: 0 3px rgba(0,0,0,.1), 0 -4px rgba(0,0,0,.1) inset;
     }
     &.good {
         .gradient-two-color(@button-green-light, @button-green-dark,
@@ -192,39 +192,39 @@ button, .button, .button-mdn {
     &:active,
     &.selected {
         text-decoration: none;
-        .box-shadow(0 1px rgba(0, 0, 0, 0.1),
+        box-shadow: 0 1px rgba(0, 0, 0, 0.1),
                     0 -2px rgba(0, 0, 0, 0.1) inset,
-                    0 0 100px rgba(255, 255, 255, 0.2) inset);
+                    0 0 100px rgba(255, 255, 255, 0.2) inset;
     }
     &:active,
     &.selected {
-        .box-shadow(0 0px rgba(0, 0, 0, 0.1),
+        box-shadow: 0 0px rgba(0, 0, 0, 0.1),
                     0 -2px rgba(0, 0, 0, 0.1) inset,
-                    0 0 100px rgba(255, 255, 255, 0.2) inset);
+                    0 0 100px rgba(255, 255, 255, 0.2) inset;
     }
     &.prominent {
         &:hover,
         &:focus,
         &:active,
         &.selected {
-            .box-shadow(0 3px rgba(0, 0, 0, 0.1),
+            box-shadow: 0 3px rgba(0, 0, 0, 0.1),
                         0 -4px rgba(0, 0, 0, 0.1) inset,
-                        0 0 100px rgba(255, 255, 255, 0.2) inset);
+                        0 0 100px rgba(255, 255, 255, 0.2) inset;
         }
         &:active,
         &.selected {
-            .box-shadow(0 1px rgba(0, 0, 0, 0.1),
+            box-shadow: 0 1px rgba(0, 0, 0, 0.1),
                         0 -4px rgba(0, 0, 0, 0.1) inset,
-                        0 0 100px rgba(255, 255, 255, 0.2) inset);
+                        0 0 100px rgba(255, 255, 255, 0.2) inset;
         }
     }
     &:active,
     &.selected,
     &.prominent:active,
     &.prominent.selected {
-        .box-shadow(inset 0 2px 0 0 fadeOut(#000,80%),
+        box-shadow: inset 0 2px 0 0 fadeOut(#000,80%),
                     inset 0 12px 24px 6px fadeOut(#000,80%),
-                    inset 0 0 2px 2px fadeOut(#000,80%));
+                    inset 0 0 2px 2px fadeOut(#000,80%);
     }
 }
 
@@ -291,7 +291,7 @@ button[disabled],
     background: #c1c5ca;
     .gradient-two-color(#d1d4d7, #c1c5ca);
     color: #919497;
-    .box-shadow(0 3px rgba(0, 0, 0, 0.05), 0 -4px rgba(0, 0, 0, 0.05) inset);
+    box-shadow: 0 3px rgba(0, 0, 0, 0.05), 0 -4px rgba(0, 0, 0, 0.05) inset;
     text-shadow: 0 1px 0 rgba(255,255,255,.5);
 }
 button[disabled],

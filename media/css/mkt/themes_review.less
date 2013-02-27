@@ -21,7 +21,7 @@
     .border-box;
     .box {
         border: 1px solid @border-blue;
-        .border-radius(5px);
+        border-radius: 5px;
         margin-bottom: 15px;
         padding: 0 13px 13px;
         h2 {
@@ -120,7 +120,7 @@
 }
 
 .theme {
-    .border-radius(5px);
+    border-radius: 5px;
     background: #fff;
     border: 1px solid @border-blue;
     margin-bottom: 25px;
@@ -152,7 +152,7 @@
         height: 100px;
     }
     .status {
-        .border-radius(0 3px 0 3px);
+        border-radius: 0 3px 0 3px;
         display: none;
         position: absolute;
         right: 0;
@@ -234,15 +234,15 @@
     }
 }
 .theme.active {
-    .box-shadow(0 0 4px 4px @shadow-blue);
     .gradient-two-color(@faded-blue, white);
     border-color: @border-blue;
+    box-shadow: 0 0 4px 4px @shadow-blue;
 }
 
 .rq-dropdown {
     background: #fff;
     border: 1px solid @border-blue;
-    .box-shadow(0 1px 4px rgba(0, 0, 0, .5));
+    box-shadow: 0 1px 4px rgba(0, 0, 0, .5);
     display: none;
     float: right;
     margin-top: 7px;
@@ -252,8 +252,8 @@
     z-index: 1;
     &:before {
         background: #fff;
-        .box-shadow(1px 1px 0 rgba(255, 255, 255, .5) inset,
-                    -1px -1px 0 @border-blue);
+        box-shadow: 1px 1px 0 rgba(255, 255, 255, .5) inset,
+                    -1px -1px 0 @border-blue;
         content: "";
         height: 14px;
         position: absolute;

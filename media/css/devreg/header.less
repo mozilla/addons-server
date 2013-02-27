@@ -1,7 +1,7 @@
 @import 'lib';
 
 #site-header {
-    .box-shadow(~'0 -1px 0 rgba(0,0,0,.5) inset, 0 1px 0 rgba(255,255,255,.1) inset');
+    box-shadow: 0 -1px 0 rgba(0,0,0,.5) inset, 0 1px 0 rgba(255,255,255,.1) inset;
     background: darken(#3f4f5b, 5%) @grain-src;
     background-size: 100px 100px;
     height: 80px;
@@ -47,7 +47,7 @@
             display: none;
         }
         > a {
-            .border-radius(3px);
+            border-radius: 3px;
         }
     }
     > ul {
@@ -60,7 +60,7 @@
                 position: relative;
                 z-index: 2;
                 border-style: solid;
-                .border-radius(3px 3px 0 0);
+                border-radius: 3px 3px 0 0;
                 border-color: transparent;
                 border-width: 1px 1px 0;
             }
@@ -77,9 +77,9 @@
                 display: none;
                 background: #fff;
                 border: 1px solid @light-gray;
-                .border-radius(3px);
-                .box-shadow(0 -2px 0 fadeOut(@taupe, 80%) inset,
-                            0 0 1px rgba(0, 0, 0, 0.1));
+                border-radius: 3px;
+                box-shadow: 0 -2px 0 fadeOut(@taupe, 80%) inset,
+                            0 0 1px rgba(0, 0, 0, 0.1);
                 a {
                     text-decoration: none;
                     display: block;
@@ -153,7 +153,7 @@
             margin-left: 1px;
             z-index: 3;
             > a, .user {
-                .border-radius(0);
+                border-radius: 0;
                 display: block;
                 line-height: 32px;
                 height: 32px;

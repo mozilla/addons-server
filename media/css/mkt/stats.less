@@ -347,8 +347,8 @@ table.stats-aggregate tbody span.change.minus {
     padding: 0;
     width: 100%;
     overflow: hidden;
-    .border-radius(8px);
     border: 2px solid @light-gray;
+    border-radius: 8px;
 }
 #head-chart {
     position: relative;
@@ -400,8 +400,6 @@ table.stats-aggregate tbody span.change.minus {
     line-height: 2em;
     color: #fff;
     opacity: .75;
-    -moz-border-radius: 0 0 .75em .75em;
-    -webkit-border-radius: 0 0 .75em .75em;
     border-radius: 0 0 .75em .75em;
 }
 
@@ -508,11 +506,11 @@ table.stats-aggregate tbody span.change.minus {
 .modal {
     background-color: @white;
     border: 3px solid @medium-gray;
-    .border-radius(8px);
+    border-radius: 8px;
     padding: 8px;
     .close {
-        background: url("../../img/impala/banner-close.png") no-repeat scroll 0 0 transparent;
-        border-radius: 4px 4px 4px 4px;
+        background: url(../../img/impala/banner-close.png) no-repeat;
+        border-radius: 4px;
         cursor: pointer;
         height: 25px;
         margin: 0;

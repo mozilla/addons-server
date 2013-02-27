@@ -31,7 +31,7 @@
 header {
     position: relative;
     .gradient-two-color(#566773, #3e4e59);
-    .box-shadow(~'0 -1px 0 rgba(0,0,0,.15) inset, 0 0 3px 3px rgba(0,0,0,.3), 0 1px 0 rgba(255,255,255,.1) inset');
+    box-shadow: 0 -1px 0 rgba(0,0,0,.15) inset, 0 0 3px 3px rgba(0,0,0,.3), 0 1px 0 rgba(255,255,255,.1) inset;
     height: 50px;
     line-height: 50px;
     width: 100%;
@@ -225,8 +225,8 @@ body[data-page-type=notice] #site-header h1 {
         float: right;
     }
     .sub-nav {
-        .border-radius(15px);
-        .box-shadow(0 1px 0 @barely-gray);
+        border-radius: 15px;
+        box-shadow: 0 1px 0 @barely-gray;
         list-style: none;
         margin: 0;
         padding: 0;
@@ -250,14 +250,14 @@ body[data-page-type=notice] #site-header h1 {
                     text-shadow: 0 1px 0 rgba(255,255,255,.8);
                 }
                 &:active {
-                    .box-shadow(0 1px 2px rgba(0,0,0,.1) inset);
+                    box-shadow: 0 1px 2px rgba(0,0,0,.1) inset;
                     background: @faint-gray;
                     border-color: @note-gray;
                 }
             }
             &.selected {
                 a, a:hover {
-                    .box-shadow(0 1px 0 rgba(0,0,0,.2) inset);
+                    box-shadow: 0 1px 0 rgba(0,0,0,.2) inset;
                     .gradient-two-color(@medium-gray, fadeOut(@medium-gray, 75%));
                     border-color: @medium-gray;
                     color: @white;
@@ -265,14 +265,14 @@ body[data-page-type=notice] #site-header h1 {
                 }
             }
             &:first-child a {
-                .border-radius(15px 0 0 15px);
+                border-radius: 15px 0 0 15px;
             }
             &:last-child a {
-                .border-radius(0 15px 15px 0);
+                border-radius: 0 15px 15px 0;
                 border-right: 1px solid @note-gray;
             }
             &:only-child a {
-                .border-radius(15px);
+                border-radius: 15px;
             }
         }
     }
@@ -290,10 +290,10 @@ body[data-page-type=notice] #site-header h1 {
 }
 
 #search-q {
-    .border-radius(3px);
-    .box-shadow(0 1px 0 rgba(255,255,255,.1),
+    border-radius: 3px;
+    box-shadow: 0 1px 0 rgba(255,255,255,.1),
                 0 1px 0 rgba(0,0,0,.5) inset,
-                0 1px 1px rgba(0,0,0,.5) inset);
+                0 1px 1px rgba(0,0,0,.5) inset;
     .gradient-two-color-with-image(#21292f, #2a353c, url(../../img/mkt/icons/magnifier.png), ~'8px 8px', no-repeat);
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -307,8 +307,8 @@ body[data-page-type=notice] #site-header h1 {
     z-index: 2;
     width: 93px;
     &:focus {
-        .box-shadow(0 1px 1px rgba(0, 0, 0, 0.06) inset,
-                    0 0 8px rgba(80, 160, 220, 0.6));
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.06) inset,
+                    0 0 8px rgba(80, 160, 220, 0.6);
         color: @white;
     }
     &:-moz-placeholder {

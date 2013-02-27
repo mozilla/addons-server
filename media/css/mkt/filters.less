@@ -42,11 +42,11 @@
     margin: 0;
     list-style-type: none;
     font-size: 14px;
-    .border-radius(3px);
+    border-radius: 3px;
     li {
+        box-shadow: 0 1px 0 0 #f2f4f5;
         float: left;
         width: 33%;
-        .box-shadow(0 1px 0 0 #f2f4f5);
         height: 35px;
         a {
             &:hover {
@@ -54,10 +54,10 @@
             }
         }
         &:first-child, &:first-child a, &:nth-child(3n+1), &:nth-child(3n+1) a {
-            .border-radius(3px 0 0 3px);
+            border-radius: 3px 0 0 3px;
         }
         &:last-child, &:last-child a, &:nth-child(3n), &:nth-child(3n) a {
-            .border-radius(0 3px 3px 0);
+            border-radius: 0 3px 3px 0;
         }
     }
 }
@@ -78,10 +78,10 @@
     width: 100%;
     &.sel, &:active {
         .gradient-two-color(#328ccc, #2475b3);
-        color: @white;
         border-color: #235f8c;
+        box-shadow: 0 0 3px 1px rgba(0,0,0,0.3) inset;
+        color: @white;
         font-weight: 600;
-        .box-shadow(0 0 3px 1px rgba(0,0,0,0.3) inset);
         text-shadow: rgba(0,0,0,0.5) 0 1px 1px;
     }
 }
@@ -99,7 +99,7 @@
         font-size: 14px;
         width: auto;
         padding: 0 15px;
-        .border-radius(3px);
+        border-radius: 3px;
         &:hover {
             text-decoration: none;
         }

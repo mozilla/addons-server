@@ -4,7 +4,7 @@
 
 .faded-border {
     &:before, &:after {
-        .box-shadow(0 0 20px 20px #e9eced);
+        box-shadow: 0 0 20px 20px #e9eced;
         content: '';
         position: absolute;
         top: 0;
@@ -59,7 +59,6 @@
     }
 
     #partnership {
-        .box-shadow(0 1px 6px -8px rgba(0,0,0,.5) inset);
         .faded-border;
         border-bottom: 1px solid #ddd;
         border-top: 1px solid #ddd;
@@ -128,7 +127,7 @@
                     margin: 5px 8px;
 
                     img {
-                        .border-radius(5px);
+                        border-radius: 5px;
                         border: 1px solid #fff;
                     }
                 }

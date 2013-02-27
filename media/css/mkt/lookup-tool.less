@@ -32,7 +32,7 @@ h1 {
         margin: 0 10px 0 0;
         height: 25px;
         width: 500px;
-        .border-radius(5px);
+        border-radius: 5px;
         border: 1px solid @border-lookup;
         font-size: 12px;
         padding: 0 4px;
@@ -52,8 +52,8 @@ h1 {
         background: @white;
         z-index: 5;
         border: 1px solid @border-lookup;
-        .border-radius(0 0 5px 5px);
-        .box-shadow(0 2px 2px #ddd);
+        border-radius: 0 0 5px 5px;
+        box-shadow: 0 2px 2px #ddd;
         border-top: 0;
         li {
             line-height: 20px;
@@ -61,9 +61,9 @@ h1 {
                 background-color: #eee;
             }
             &:last-child {
-                .border-radius(0 0 5px 5px);
+                border-radius: 0 0 5px 5px;
                 a {
-                    .border-radius(0 0 5px 5px);
+                    border-radius: 0 0 5px 5px;
                 }
             }
             a {
@@ -83,7 +83,7 @@ h1 {
                 padding: 0 5px;
                 margin: 0 5px 0 0;
                 font-size: 11px;
-                .border-radius(5px);
+                border-radius: 5px;
                 border: 1px solid @light-gray;
             }
             .email {
@@ -108,7 +108,7 @@ h1 {
 
 .avatar {
     border: 5px solid @white;
-    .box-shadow(1px 1px 3px #B2C8E0);
+    box-shadow: 1px 1px 3px #B2C8E0;
 }
 #avatar, #prose, #payment-info {
     float: left;
@@ -151,15 +151,15 @@ h1 {
         }
         .vitals.contributions {
             margin-top: 10px;
-            .border-radius(5px);
-            .box-shadow(0 1px 1px rgba(0,0,0,0.4));
+            border-radius: 5px;
+            box-shadow: 0 1px 1px rgba(0,0,0,0.4);
             li {
                 padding: 5px;
                 &:first-child {
-                    .border-radius(5px 5px 0 0);
+                    border-radius: 5px 5px 0 0;
                 }
                 &:last-child {
-                    .border-radius(0 0 5px 5px);
+                    border-radius: 0 0 5px 5px;
                 }
                 &:nth-child(2n) {
                     background-color: lighten(@link, 47%);
@@ -206,8 +206,8 @@ h1 {
     .pretty-list div {
         margin: 2px 0;
         padding: 4px 5px 6px;
-        .border-radius(5px);
-        .box-shadow(0 0 2px 0 rgba(0, 0, 0, 0.4) inset);
+        border-radius: 5px;
+        box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.4) inset;
     }
     .info-box {
         p {
@@ -226,11 +226,11 @@ h1 {
         word-wrap: break-word;
         &:first-child {
             border-top: 1px solid @light-gray;
-            .border-radius(5px 5px 0 0);
+            border-radius: 5px 5px 0 0;
         }
         &:last-child {
             border-bottom: 1px solid @light-gray;
-            .border-radius(0 0 5px 5px);
+            border-radius: 0 0 5px 5px;
         }
         &:nth-child(2n) {
             background-color: #eee;
