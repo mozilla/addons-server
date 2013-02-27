@@ -1024,6 +1024,17 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                 return 10 - days_ago.days
         return 0
 
+    def has_flag(self, flag_name):
+        """Lookup boolean flag.
+
+        False if flag isn't set or doesn't exist.
+        """
+        try:
+            flag = getattr(self.flag, flag_name, False)
+        except Flag.DoesNotExist:
+            flag = False
+        return flag
+
     def is_persona(self):
         return self.type == amo.ADDON_PERSONA
 
@@ -1886,6 +1897,18 @@ class Feature(amo.models.ModelBase):
     def __unicode__(self):
         app = amo.APP_IDS[self.application.id].pretty
         return '%s (%s: %s)' % (self.addon.name, app, self.locale)
+
+
+class Flag(amo.models.ModelBase):
+    addon = models.OneToOneField(Addon)
+    adult_content = models.BooleanField(default=False, db_index=True)
+    child_content = models.BooleanField(default=False, db_index=True)
+
+    class Meta:
+        db_table = 'flags'
+
+    def __unicode__(self):
+        return u"%s flags" % self.addon.name
 
 
 class Preview(amo.models.ModelBase):
