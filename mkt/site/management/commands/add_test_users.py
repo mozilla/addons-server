@@ -20,8 +20,8 @@ def create_user(email, salt, group_name=None, delete_user=False,
     create a token for him.
 
     On token creation, we generate the token key and the token secret. Each of
-    them are generated in a predictible way: md5(salt + email + 'key') or
-    md5(salt + email + 'secret').
+    them are generated in a predictible way: sha512(salt + email + 'key') or
+    sha512(salt + email + 'secret').
     """
     if delete_user:
         users = User.objects.filter(email=email)
@@ -49,8 +49,8 @@ def create_user(email, salt, group_name=None, delete_user=False,
     # We also want to grant these users access, so let's create tokens for
     # them.
     if not Access.objects.filter(user=profile.user).exists():
-        key = hashlib.md5(salt + email + 'key').hexdigest()
-        secret = hashlib.md5(salt + email + 'secret').hexdigest()
+        key = hashlib.sha512(salt + email + 'key').hexdigest()
+        secret = hashlib.sha512(salt + email + 'secret').hexdigest()
         consumer = Access(key=key, secret=secret, user=profile.user)
         consumer.save()
 
