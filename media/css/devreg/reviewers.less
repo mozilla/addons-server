@@ -1299,6 +1299,33 @@ iframe#manifest-contents {
 }
 
 @media (max-width: @mobile-max) {
+    #site-nav {
+        border: 0px;
+        .pad {
+            height: 100%;
+            padding: 0;
+        }
+        nav.menu-nav {
+            height: 100%;
+            ul {
+                height: 100%;
+            }
+            li {
+                height: 100%;
+                &.selected {
+                    background: rgb(62, 52, 62);
+                    a {
+                        color: @white;
+                    }
+                }
+                a {
+                    font-size: 16px;
+                    position: relative;
+                    top: 4px;
+                }
+            }
+        }
+    }
     #reviewers-score-bar {
         display: none;
     }

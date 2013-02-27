@@ -23,9 +23,9 @@
     <div class="pad">
       <nav class="menu-nav app-nav no-img" role="navigation">
         <ul class="c">
-          <li>
-            <a href="#" class="controller menutrigger">{{ _('Queues') }}</a>
-            <ul class="menucontent" data-title="{{ _('Queues') }}">
+          <li{% if 'queue' in request.path %} class="selected"{% endif %}>
+            <a href="#" class="controller">{{ _('Queues') }}</a>
+            <ul>
               {% for prefix, this, loc, text in queue_tabnav() %}
                 <li>
                   <a href="{{ url('reviewers.%s.%s' % (prefix, loc)) }}">{{ text }}</a>
@@ -33,7 +33,7 @@
               {% endfor %}
             </ul>
           </li>
-          <li>
+          <li{% if 'logs' in request.path %} class="selected"{% endif %}>
             <a href="#" class="controller">{{ _('Logs') }}</a>
             <ul>
               {% for loc, text in logs_tabnav() %}
