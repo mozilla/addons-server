@@ -1,0 +1,31 @@
+{% from 'site/helpers/form_row.html' import form_row %}
+
+{% if search_form %}
+  <div id="queue-search">
+    <form class="c">
+      <label for="{{ search_form.text_query.auto_id }}">{{ search_form.text_query.label }}</label>
+      {{ search_form.text_query }}
+      <button class="button" type="submit"><span>{{ _('Search') }}</button>
+      <a class="toggle-queue-search" href="#">{{ _('Advanced Search') }}</a>
+      {% if searching %}
+        (<a id="clear-queue-search" href="{{ url('reviewers.apps.queue_%s' % tab) }}">{{ _('Clear Search') }}</a>)
+      {% endif %}
+
+      <div class="advanced-search c{% if not adv_searching %} hidden{% endif %}">
+        <div class="basic-filters">
+          {{ form_row(search_form,
+                          ('admin_review', 'has_editor_comment',
+                           'has_info_request', 'waiting_time_days',
+                           'app_type')) }}
+        </div>
+        <div class="device-type-select">
+          {{ form_row(search_form, ('device_type_ids',)) }}
+        </div>
+        <div class="premium-type-select">
+          {{ form_row(search_form, ('premium_type_ids',)) }}
+        </div>
+      </div>
+
+    </form>
+  </div>
+{% endif %}

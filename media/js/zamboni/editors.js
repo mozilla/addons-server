@@ -296,15 +296,9 @@ function initQueue() {
 
 
 function initQueueSearch(doc) {
-    $('#toggle-queue-search', doc).click(function(e) {
-        e.preventDefault();
-        $(e.target).blur();
-        if ($('#advanced-search:visible', doc).length) {
-            $('#advanced-search', doc).slideUp();
-        } else {
-            $('#advanced-search', doc).slideDown();
-        }
-    });
+    $('.toggle-queue-search').click(_pd(function(e) {
+        $('.advanced-search').slideToggle();
+    }));
 
     $('#id_application_id', doc).change(function(e) {
         var maxVer = $('#id_max_version', doc),
