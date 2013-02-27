@@ -489,7 +489,7 @@ class AbuseForm(happyforms.Form):
 
 class NewPersonaForm(AddonFormBase):
     name = forms.CharField(max_length=50)
-    category = forms.ModelChoiceField(queryset=Category.objects.none(),
+    category = forms.ModelChoiceField(queryset=Category.objects.all(),
                                       widget=forms.widgets.RadioSelect)
     summary = forms.CharField(widget=forms.Textarea(attrs={'rows': 4}),
                               max_length=250, required=False)
