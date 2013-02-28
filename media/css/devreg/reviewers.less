@@ -1298,6 +1298,10 @@ iframe#manifest-contents {
     }
 }
 
+#queue-tab-overlay, .mobile-queue-search, .tabnav-sprite, .mobile-paginator {
+    display: none;
+}
+
 @mobileborder: #d7d2c3;
 @media (max-width: @mobile-max) {
     .mobile-queue-search, .mobile-paginator {
@@ -1349,9 +1353,6 @@ iframe#manifest-contents {
             }
         }
     }
-    .mobile-queue-search {
-        display: block;
-    }
     #queue-search {
         padding: 0;
         margin: 26px 0 6px;
@@ -1366,15 +1367,8 @@ iframe#manifest-contents {
         }
         .button {
             height: 36px;
-            margin-top: 0px;
             max-width: 22%;
-            min-width: 0%;
             margin-right: 0;
-            top: 8px;
-            span {
-                bottom: 9px;
-                position: relative;
-            }
         }
         .toggle-queue-search {
             bottom: 64px;
@@ -1564,7 +1558,7 @@ iframe#manifest-contents {
         td {
             padding: 13px 0;
             &.app-name {
-                max-width: 140px;
+                max-width: 144px;
             }
             &.flags {
                 min-width: 42px;
@@ -1690,6 +1684,26 @@ iframe#manifest-contents {
         }
         .android-mobile {
             left: -2px;
+        }
+    }
+    .mobile-paginator nav.paginator {
+        border-top: 0;
+        margin-bottom: 13px;
+        .rel {
+            margin-bottom: 6px;
+            a.button {
+                height: 36px;
+                span {
+                    bottom: 0;
+                }
+            }
+            a.jump {
+                padding: 0px 10px;
+            }
+        }
+        .num {
+            position: relative;
+            top: 8px;
         }
     }
 }

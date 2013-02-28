@@ -244,7 +244,8 @@
           {{ _('There are currently no items of this type to review.') }}
         </div>
       {% else %}
-        {{ pager|impala_paginator }}
+        <div class="impala-paginator">{{ pager|impala_paginator }}</div>
+        <div class="mobile-paginator">{{ pager|mobile_impala_paginator }}</div>
       {% endif %}
 
     {% endif %}

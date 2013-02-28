@@ -142,6 +142,13 @@ def mobile_paginator(pager):
     return jinja2.Markup(t.render(pager=pager))
 
 
+@register.filter
+def mobile_impala_paginator(pager):
+    # Impala-style paginator that is easier to mobilefy.
+    t = env.get_template('amo/mobile/impala_paginator.html')
+    return jinja2.Markup(t.render(pager=pager))
+
+
 @register.function
 def is_mobile(app):
     return app == amo.MOBILE
