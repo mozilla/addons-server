@@ -1,6 +1,6 @@
 from optparse import make_option
 import os
-from os.path import join
+from os.path import join, exists
 import shutil
 
 from django.core.management.base import BaseCommand
@@ -19,6 +19,12 @@ class Command(BaseCommand):
                     help='Directory of AMO static files.'))
 
     def handle(self, *args, **options):
+        if 'personas_dir' not in options:
+            print "Needs --personas-dir."
+            return
+        if 'addons_dir' not in options:
+            print "Needs --addons-dir."
+            return
         mapping = dict(Persona.objects.values_list('pk', 'addon_id'))
         for first in os.listdir(options['personas_dir']):
             if not first.isdigit():
@@ -30,22 +36,7 @@ class Command(BaseCommand):
                     persona = join(third_path, persona_id)
                     target = join(options['amo_dir'],
                                   str(mapping[int(persona_id)]))
+                    if exists(target):
+                        continue
                     print "%s --> %s" % (persona, target)
                     shutil.copytree(persona, target)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
