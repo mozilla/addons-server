@@ -2,7 +2,6 @@
 
 import amo
 from addons.models import AddonCategory, Category
-from applications.models import Application
 
 
 def run():
@@ -19,9 +18,7 @@ def run():
             print 'Move addon from Thunderbird "%s" to Firefox "%s"' % (
                 fx_cat.slug, tb_cat.slug)
             AddonCategory.objects.filter(category=tb_cat).delete()
-            # Get rid of `application_id` for Thunderbird category.
-            tb_cat.update(
-                application=Application.objects.get(id=amo.FIREFOX.id))
+    tb_cats.delete()
 
     # TODO: Eventually get rid of `application_id` for all Firefox categories.
     #fx_cats.update(application=None)
