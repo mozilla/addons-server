@@ -185,3 +185,32 @@ fieldset.module {
     margin: 12px 0;
 }
 
+/* Fix yes/no images for Firefox or fix the django image path (hah!). */
+#changelist-form #result_list td img[alt=False]:after,
+#changelist-form #result_list td img[alt=True]:after {
+    background: #fff url(../../img/admin/icon-no.gif) no-repeat center center;
+    content: "";
+    position: absolute;
+    float: right;
+    width: 31px;
+    height: 18px;
+    margin-left: -26px;
+}
+#changelist-form #result_list .row1 td img[alt=False]:after,
+#changelist-form #result_list .row1 td img[alt=True]:after {
+    background-color: #D9EFF6;
+}
+#changelist-form #result_list td img[alt=True]:after {
+    background-image: url(../../img/admin/icon-yes.gif);
+    width: 35px;
+}
+#changelist-form #result_list td img[alt=True],
+#changelist-form #result_list td img[alt=False] {
+    background: url(../../img/admin/icon-no.gif) no-repeat center center;
+    /* Webkit hack...if the icon width is less than the broken image icon. */
+    width: 15px;
+    height: 18px;
+}
+#changelist-form #result_list td img[alt=True] {
+    background: url(../../img/admin/icon-yes.gif) no-repeat center center;
+}
