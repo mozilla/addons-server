@@ -36,11 +36,11 @@ class TestSubmitPersona(amo.tests.TestCase):
 
     def populate(self):
         self.cat = Category.objects.create(application_id=amo.FIREFOX.id,
-                                           type=amo.ADDON_PERSONA)
+                                           type=amo.ADDON_PERSONA, name='xxxx')
         License.objects.create(id=amo.LICENSE_CC_BY.id)
 
     def get_dict(self, **kw):
-        data = dict(name='new name', category=self.cat,
+        data = dict(name='new name', category=self.cat.id,
                     accentcolor='#003366', textcolor='#C0FFEE',
                     summary='new summary',
                     tags='tag1, tag2, tag3',
@@ -51,21 +51,11 @@ class TestSubmitPersona(amo.tests.TestCase):
 
     def test_submit_name_unique(self):
         """Make sure name is unique."""
-        r = self.client.post(self.url, self.get_dict(name='Cooliris'))
-        self.assertFormError(r, 'form', 'name',
-            'This name is already in use. Please choose another.')
-
-    def test_submit_name_unique_strip(self):
-        """Make sure we can't sneak in a name by adding a space or two."""
-        r = self.client.post(self.url, self.get_dict(name='  Cooliris  '))
-        self.assertFormError(r, 'form', 'name',
-            'This name is already in use. Please choose another.')
-
-    def test_submit_name_unique_case(self):
-        """Make sure unique names aren't case sensitive."""
-        r = self.client.post(self.url, self.get_dict(name='cooliris'))
-        self.assertFormError(r, 'form', 'name',
-            'This name is already in use. Please choose another.')
+        Addon.objects.create(type=amo.ADDON_EXTENSION, name='Cooliris')
+        for name in ('Cooliris', '  Cooliris  ', 'cooliris'):
+            r = self.client.post(self.url, self.get_dict(name=name))
+            self.assertFormError(r, 'form', 'name',
+                'This name is already in use. Please choose another.')
 
     def test_submit_name_required(self):
         """Make sure name is required."""
@@ -188,7 +178,7 @@ class TestSubmitPersona(amo.tests.TestCase):
         eq_(unicode(addon.name), data['name'])
 
         self.assertSetEqual(addon.categories.values_list('id', flat=True),
-                            [self.cat])
+                            [self.cat.id])
 
         tags = ', '.join(sorted(addon.tags.values_list('tag_text', flat=True)))
         eq_(tags, data['tags'])
