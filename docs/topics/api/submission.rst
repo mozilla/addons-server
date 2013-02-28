@@ -177,7 +177,7 @@ This will return a list of all the apps the user is allowed to access::
 Get
 ===
 
-.. note:: Requires authentication.
+.. note:: Requires authentication if the app is not public.
 
 To get an individual app, use the `resource_uri` from the list::
 
