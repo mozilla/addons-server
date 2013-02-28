@@ -1,5 +1,7 @@
 @import 'lib';
 
+@inset-blue: rgba(152, 178, 201, 0.3);
+
 .zoombox {
     position: relative;
     overflow: hidden;
@@ -152,17 +154,17 @@
         height: 100px;
     }
     .status {
-        border-radius: 0 3px 0 3px;
+        background: #258;
+        border-radius: 0 3px;
+        color: #fff;
         display: none;
+        padding: 7px 14px;
         position: absolute;
         right: 0;
         top: 0;
-        padding: 7px 14px;
-        background: @blue;
-        color: #fff;
-    }
-    .status.reviewed {
-        display: block;
+        &.reviewed {
+            display: block;
+        }
     }
     .meta {
         display: block;
