@@ -101,25 +101,9 @@
 }
 
 @arrow-src: url(../../img/mkt/arrows/plain.png);
-.arrow() {
-    background: @arrow-src no-repeat;
-}
-
-@arrow-big-src: url(../../img/mkt/arrows/plain-lrg-go.png);
-.arrow-big() {
-    background: @arrow-big-src no-repeat;
-}
 
 .light-text-shadow() {
     text-shadow: 0 1px 0 rgba(255,255,255,.5);
-}
-
-.medium-text-shadow() {
-    text-shadow: .5px .5px 0 @text;
-}
-
-.dark-text-shadow() {
-    text-shadow: 0 1px 0 @black;
 }
 
 .transform(@tform) {
@@ -156,13 +140,6 @@
     transition-delay: @delay;
 }
 
-.background-size(@size) {
-    background-size: @size;
-}
-.background-size(@size, @size2) {
-    background-size: @size, @size2;
-}
-
 .text-columns(@count, @gap: 1em) {
     column-count: @count;
     -moz-column-count: @count;
@@ -170,11 +147,6 @@
     column-gap: @gap;
     -moz-column-gap: @gap;
     -webkit-column-gap: @gap;
-}
-
-.border-box() {
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
 }
 
 .ellipsis() {
@@ -227,54 +199,10 @@
     background: @image @position @repeat, linear-gradient(@color1, @color2);
 }
 
-.h-gradient-two-color(@color1, @color2) {
-    // The background-color fallback is bad for opacity gradients.
-    background-color: @color2;
-    background-image: -webkit-gradient(linear, left center, right center, from(@color1), to(@color2));
-    background-image: -webkit-linear-gradient(to right, @color1, @color2);
-    background-image:         linear-gradient(to right, @color1, @color2);
-}
-
-// Vertical sprite
-.vsprite(@url, @pos, @spacing, @offset:0) {
-    background: ~'url(@{url}) no-repeat';
-    background-position: 0 (@spacing * @pos * -1 + @offset) + 0px;
-}
-.vsprite-pos(@pos, @spacing, @offset:0) {
-    background-position: 0 (@spacing * @pos * -1 + @offset) + 0px;
-}
-.vsprite-pos-right(@pos, @spacing, @offset:0) {
-    background-position: right (@spacing * @pos * -1 + @offset) + 0px;
-}
-
-// Horizontal sprite
-.hsprite(@url, @pos, @spacing, @offset:0) {
-    background: ~'url(@{url}) no-repeat';
-    background-position: (@spacing * @pos * -1 + @offset) + 0px 0;
-}
-.hsprite-pos(@pos, @spacing, @offset:0) {
-    background-position: (@spacing * @pos * -1 + @offset) + 0px 0;
-}
-
 // Depressed button/link styles
 .depressed() {
     box-shadow: inset 0 8px 20px 6px rgba(0,0,0,.1),
                 inset 0 0 1px 1px rgba(0,0,0,.1);
-}
-
-.highlight() {
-    .gradient-two-color(#fafbfc, #ebeff2);
-    border-radius: 4px;
-    box-shadow: 0 1px 1px 0 rgba(255,255,255,.5), 0 1px 1px 0 rgba(0,0,0,.1) inset;
-    color: #333638;
-    border: 1px solid @light-gray;
-    &:active {
-        .depressed;
-    }
-}
-
-.header-dark-gradient() {
-    .gradient-two-color(rgba(176,186,192,.33), rgba(187,195,199,.33));
 }
 
 .appearance-none() {
