@@ -20,16 +20,22 @@
 @border-blue: #C9DDF2;
 @border-taupe: darken(@taupe, 10%);
 @border-gray: #ddd;
+@gray: #888;
 @inset-blue: rgba(152, 178, 201, 0.3);
 @border-black: fadeOut(#000, 80%);
+@faint-blue: #ECF5FE;
+@text: #424f5a;
 @faded-blue: fadeOut(@border-blue, 90%);
 @faded-taupe: fadeOut(@taupe, 90%);
 @green: #093;
 @light-green: #4b0;
 @tab-stripe: #f7f5f3;
 @tab-taupe: #efede8;
+@bg: #eff1f3;
 
-@grain-src: url(../../img/mkt/grain.png);
+// Legacy variables from consumer pages
+@4col: 600px;
+
 
 // Colors from EcoSystem
 @grain: #394C58;
@@ -60,6 +66,11 @@
 
 
 // Mixins
+@grain-src: url(../../img/mkt/grain.png);
+.grain() {
+    background-image: @grain-src;
+}
+
 .transform(@tform) {
     -webkit-transform: @tform;
     -moz-transform: @tform;
@@ -118,12 +129,14 @@
     white-space: nowrap;
 }
 
-.gradient(@gradient) {
-    background-image: -webkit-gradient(@gradient);
-    background-image: -webkit-linear-gradient(@gradient);
-    background-image:    -moz-linear-gradient(@gradient);
-    background-image:     -ms-linear-gradient(@gradient);
-    background-image:         linear-gradient(@gradient);
+.gradientLeft(@gradient) {
+    background-image: -webkit-linear-gradient(left, @gradient);
+    background-image:         linear-gradient(to right, @gradient);
+}
+
+.gradientTop(@gradient) {
+    background-image: -webkit-linear-gradient(top, @gradient);
+    background-image:         linear-gradient(to bottom, @gradient);
 }
 
 .gradient-two-color(@color1, @color2) {

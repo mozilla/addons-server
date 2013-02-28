@@ -13,31 +13,30 @@ CSS = {
         'css/devreg/typography.less',
 
         # Header (aux-nav, masthead, site-nav).
-        'css/mkt/desktop-account-links.less',
+        'css/devreg/desktop-account-links.less',
         'css/devreg/header.less',
 
         # Item rows (used on Dashboard).
         'css/devreg/listing.less',
-        'css/mkt/legacy-paginator.less',
+        'css/devreg/legacy-paginator.less',
 
         # Buttons (used for paginator, "Edit" buttons, Refunds page).
         'css/devreg/buttons.less',
 
         # Popups, Modals, Tooltips.
-        'css/mkt/overlay.less',
-        'css/devreg/devhub-popups.less',
-        'css/mkt/device.less',
+        'css/devreg/overlay.less',
+        'css/devreg/popups.less',
+        'css/devreg/device.less',
         'css/devreg/tooltips.less',
 
         # L10n menu ("Localize for ...").
         'css/devreg/l10n.less',
 
         # Forms (used for tables on "Manage ..." pages).
-        'css/common/forms.less',
-        'css/devreg/devhub-forms.less',
+        'css/devreg/forms.less',
 
         # Tables.
-        'css/mkt/data-grid.less',
+        'css/devreg/data-grid.less',
 
         # Landing page
         'css/devreg/landing.less',
@@ -54,7 +53,7 @@ CSS = {
 
         # Image Uploads (used for "Edit Listing" Images and Submission).
         'css/devreg/media.less',
-        'css/common/invisible-upload.less',
+        'css/devreg/invisible-upload.less',
 
         # Submission.
         'css/devreg/submit-progress.less',
@@ -64,24 +63,21 @@ CSS = {
         'css/devreg/validation.less',
         'css/devreg/submit.less',
         'css/devreg/tabs.less',
-        'css/impala/personas.less',
-        'css/impala/colorpicker.less',
 
         # Developer Log In / Registration.
         'css/devreg/login.less',
-        'css/mkt/login.less',
 
         # Footer.
         'css/devreg/footer.less',
     ),
     'mkt/reviewers': (
-        'css/mkt/buttons.less',
-        'css/mkt/ratings.less',
-        'css/mkt/data-grid.less',
-        'css/mkt/reviewers.less',
-        'css/mkt/themes_review.less',
-        'css/mkt/legacy-paginator.less',
-        'css/mkt/files.less',
+        'css/devreg/consumer-buttons.less',
+        'css/devreg/ratings.less',
+        'css/devreg/data-grid.less',
+        'css/devreg/reviewers.less',
+        'css/devreg/themes_review.less',
+        'css/devreg/legacy-paginator.less',
+        'css/devreg/files.less',
         'css/devreg/menupicker.less',
     ),
     'mkt/splash': (
@@ -122,30 +118,30 @@ CSS = {
         'css/mkt/offline.less',
     ),
     'mkt/ecosystem': (
-        'css/mkt/reset.less',
-        'css/mkt/typography.less',
-        'css/mkt/login.less',
-        'css/mkt/forms.less',
+        'css/devreg/reset.less',
+        'css/devreg/consumer-typography.less',
+        'css/devreg/login.less',
+        'css/devreg/forms.less',
         'css/ecosystem/landing.less',
         'css/ecosystem/documentation.less',
     ),
     'mkt/in-app-payments': (
-        'css/mkt/reset.less',
-        'css/mkt/typography.less',
-        'css/mkt/buttons.less',
-        'css/mkt/in-app-payments.less',
+        'css/devreg/reset.less',
+        'css/devreg/consumer-typography.less',
+        'css/devreg/buttons.less',
+        'css/devreg/in-app-payments.less',
     ),
     'mkt/stats': (
-        'css/mkt/legacy-paginator.less',
-        'css/mkt/jquery-ui/jquery-ui-1.10.1.custom.css',
-        'css/mkt/stats.less',
+        'css/devreg/legacy-paginator.less',
+        'css/devreg/jquery-ui/jquery-ui-1.10.1.custom.css',
+        'css/devreg/stats.less',
     ),
     'mkt/lookup': (
-        'css/mkt/lookup-tool.less',
-        'css/mkt/activity.less',
+        'css/devreg/lookup-tool.less',
+        'css/devreg/activity.less',
     ),
     'mkt/themes': (
-        'css/mkt/themes.less',
+        'css/devreg/themes.less',
     ),
 }
 
@@ -153,7 +149,6 @@ CSS = {
 CSS.update({
     'mkt/consumer-desktop': CSS['mkt/consumer'] + (
         # TODO: Split components into individual, appropriate stylesheets.
-        'css/devreg/footer.less',
         'css/mkt/desktop.less',
         'css/mkt/desktop-tile.less',
         'css/mkt/desktop-header.less',

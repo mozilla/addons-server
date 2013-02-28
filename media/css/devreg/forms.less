@@ -1,5 +1,59 @@
 @import 'lib';
 
+.edit_with_prefix {
+    .border-box;
+    background: @faint-gray;
+    border: 1px solid @light-gray;
+    border-radius: 5px;
+    color: @medium-gray;
+    padding: 0;
+    width: 400px;
+    span, input {
+        .border-box;
+    }
+    span {
+        border-right: 0 none;
+        display: block;
+        float: left;
+        line-height: 1.2;
+        max-width: 215px;
+        overflow: hidden;
+        padding: 5px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    input[type=text] {
+        border: 0;
+        border-radius: 0 5px 5px 0;
+        box-shadow: none;
+        float: right;
+        width: 170px !important;
+    }
+}
+
+.error .edit_with_prefix {
+    border-color: @red;
+}
+
+.simple-field {
+    .hint {
+        color: @gray;
+        display: block;
+        font-size: 11px;
+        margin-top: 4px;
+    }
+}
+.hint-inline {
+    color: @gray;
+    font-weight: normal;
+    font-size: 11px;
+    padding-left: 5px;
+}
+label .hint-inline:only-child {
+    font-size: 12px;
+    padding: 0;
+}
+
 input[type=text], input[type=password], select, textarea, #agreement-container {
     .border-box;
     border-radius: 5px;

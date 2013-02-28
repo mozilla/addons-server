@@ -1,0 +1,99 @@
+@import 'lib';
+
+@font-face {
+    font-family: 'OpenSansWeb';
+    src: url('fonts/OpenSans-Light-webfont.eot');
+    src: url('fonts/OpenSans-Light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/OpenSans-Light-webfont.woff') format('woff'),
+         url('fonts/OpenSans-Light-webfont.ttf') format('truetype'),
+         url('fonts/OpenSans-Light-webfont.svg#OpenSansLight') format('svg');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'OpenSansWeb';
+    src: url('fonts/OpenSans-Regular-webfont.eot');
+    src: url('fonts/OpenSans-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/OpenSans-Regular-webfont.woff') format('woff'),
+         url('fonts/OpenSans-Regular-webfont.ttf') format('truetype'),
+         url('fonts/OpenSans-Regular-webfont.svg#OpenSansRegular') format('svg');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'OpenSansWeb';
+    src: url('fonts/OpenSans-Semibold-webfont.eot');
+    src: url('fonts/OpenSans-Semibold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/OpenSans-Semibold-webfont.woff') format('woff'),
+         url('fonts/OpenSans-Semibold-webfont.ttf') format('truetype'),
+         url('fonts/OpenSans-Semibold-webfont.svg#OpenSansSemibold') format('svg');
+    font-weight: 600;
+    font-style: normal;
+}
+
+body {
+    font-family: @open-stack;
+    font-size: 13px;
+}
+
+body, h1, h2, h3, h4 {
+    font-weight: 400;
+}
+
+h1 {
+    font-size: 24px;
+    line-height: 26px;
+}
+
+h2 {
+    color: @dark-gray;
+    font-size: 26px;
+    line-height: 120%;
+    text-shadow: .5px .5px @white;
+}
+
+h3 {
+    font-size: 24px;
+}
+
+.listing h3 {
+    font-size: 18px;
+}
+
+h4 {
+    color: @dark-gray;
+    font-size: 16px;
+}
+
+b, strong {
+    font-weight: 600;
+}
+
+address {
+    color: @medium-gray;
+    font-style: normal;
+}
+
+.policy-statement {
+    line-height: 1.4;
+    padding: 5px;
+}
+
+dl {
+    margin: 0;
+}
+
+dt {
+    font-weight: bold;
+}
+
+dd {
+    color: @dark-gray;
+    margin: 0 0 10px;
+}
+
+.lineclamp.author {
+    overflow: hidden;
+}
