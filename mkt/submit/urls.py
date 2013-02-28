@@ -1,4 +1,5 @@
 from django.conf.urls import include, patterns, url
+from django.shortcuts import redirect
 
 from lib.misc.urlconf_decorator import decorate
 
@@ -27,10 +28,16 @@ urlpatterns = decorate(write, patterns('',
     url('^theme/%s$' % ADDON_ID, views.submit_theme_done,
         name='submit.theme.done'),
 
+    # Legacy redirects for app submission.
+    ('^app', lambda r: redirect('submit.app')),
+    # ^ So we can avoid an additional redirect below.
+    ('^app/.*', lambda r: redirect(r.path.replace('/developers/app',
+                                                  '/developers', 1))),
+    ('^manifest$', lambda r: redirect('submit.app', permanent=True)),
+
     # App submission.
-    url('^app$', views.submit, name='submit.app'),
-    url('^app/proceed$', views.proceed, name='submit.app.proceed'),
-    url('^app/terms$', views.terms, name='submit.app.terms'),
-    url('^app/manifest$', views.manifest, name='submit.app.manifest'),
-    ('^app/', include(submit_apps_patterns)),
+    url('^$', views.submit, name='submit.app'),
+    url('^terms$', views.terms, name='submit.app.terms'),
+
+    ('', include(submit_apps_patterns)),
 ))

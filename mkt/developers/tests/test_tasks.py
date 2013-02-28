@@ -445,7 +445,7 @@ class TestFetchIcon(BaseWebAppTest):
 
     def webapp_from_path(self, path):
         self.upload = self.get_upload(abspath=path)
-        self.url = reverse('submit.app.manifest')
+        self.url = reverse('submit.app')
         assert self.client.login(username='regular@mozilla.com',
                                  password='password')
         return self.post_addon()

@@ -52,7 +52,7 @@
         <a href="{{ addon.get_dev_url('edit') }}" class="button prominent">
           {{- _('Manage My App') }}</a>
         {%- if not payments -%}
-          <a href="{{ url('submit.app.manifest') }}" class="button prominent">
+          <a href="{{ url('submit.app') }}" class="button prominent">
             {{- _('Submit Another App') }}</a>
         {%- endif -%}
       </footer>

@@ -89,7 +89,6 @@ class TestSubmit(amo.tests.TestCase):
 
 
 class TestProceed(TestSubmit):
-    fixtures = TestSubmit.fixtures
 
     def setUp(self):
         super(TestProceed, self).setUp()
@@ -110,7 +109,6 @@ class TestProceed(TestSubmit):
 
 
 class TestTerms(TestSubmit):
-    fixtures = TestSubmit.fixtures
 
     def setUp(self):
         super(TestTerms, self).setUp()
@@ -174,18 +172,18 @@ class TestTerms(TestSubmit):
 
 
 class TestManifest(TestSubmit):
-    fixtures = TestSubmit.fixtures
 
     def setUp(self):
         super(TestManifest, self).setUp()
         self.user.update(read_dev_agreement=None)
-        self.url = reverse('submit.app.manifest')
+        self.url = reverse('submit.app')
 
     def _step(self):
         self.user.update(read_dev_agreement=datetime.datetime.now())
 
     def test_anonymous(self):
-        self._test_anonymous()
+        r = self.client.get(self.url, follow=True)
+        eq_(r.context['step'], 'terms')
 
     def test_cannot_skip_prior_step(self):
         r = self.client.get(self.url, follow=True)
@@ -197,7 +195,34 @@ class TestManifest(TestSubmit):
         self._step()
         # So jump me to the Manifest step.
         r = self.client.get(reverse('submit.app'), follow=True)
-        self.assert3xx(r, reverse('submit.app.manifest'))
+        eq_(r.context['step'], 'manifest')
+
+    def test_legacy_redirects(self):
+        def check():
+            for before, status in redirects:
+                r = self.client.get(before, follow=True)
+                self.assert3xx(r, dest, status)
+
+        # I haven't read the dev agreement.
+        redirects = (
+            ('/developers/submit/', 302),
+            ('/developers/submit/app', 302),
+            ('/developers/submit/app/terms', 302),
+            ('/developers/submit/app/manifest', 302),
+        )
+        dest = '/developers/submit/terms'
+        check()
+
+        # I have read the dev agreement.
+        self._step()
+        redirects = (
+            ('/developers/submit/app', 302),
+            ('/developers/submit/app/terms', 302),
+            ('/developers/submit/app/manifest', 302),
+            ('/developers/submit/manifest', 301),
+        )
+        dest = '/developers/submit/'
+        check()
 
     def test_page(self):
         self._step()
@@ -234,12 +259,9 @@ class BaseWebAppTest(BaseUploadTest, UploadAddon, amo.tests.TestCase):
         self.manifest_url = 'http://allizom.org/mozball.webapp'
         self.upload = self.get_upload(abspath=self.manifest)
         self.upload.update(name=self.manifest_url, is_webapp=True)
-        self.url = reverse('submit.app.manifest')
+        self.url = reverse('submit.app')
         assert self.client.login(username='regular@mozilla.com',
                                  password='password')
-        # Complete first step.
-        self.client.post(reverse('submit.app.terms'),
-                         {'read_dev_agreement': True})
 
     def post_addon(self, data=None):
         eq_(Addon.objects.count(), 0)
@@ -429,12 +451,9 @@ class BasePackagedAppTest(BaseUploadTest, UploadAddon, amo.tests.TestCase):
         self.package = self.packaged_app_path('mozball.zip')
         self.upload = self.get_upload(abspath=self.package)
         self.upload.update(name='mozball.zip', is_webapp=True)
-        self.url = reverse('submit.app.manifest')
+        self.url = reverse('submit.app')
         assert self.client.login(username='regular@mozilla.com',
                                  password='password')
-        # Complete first step.
-        self.client.post(reverse('submit.app.terms'),
-                         {'read_dev_agreement': True})
 
     def post_addon(self, data=None):
         eq_(Addon.objects.count(), 1)
