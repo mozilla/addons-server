@@ -1478,6 +1478,7 @@ iframe#manifest-contents {
         max-width: 100%;
         overflow-x: auto;
         overflow-y: hidden;
+    }
     .tabnav {
         li {
             position: relative;
@@ -1553,10 +1554,21 @@ iframe#manifest-contents {
         border-bottom: 1px solid #A5BFCE;
         h3 {
             float: none;
+        }
+    }
     #addon-queue {
         th {
             font-size: 13px;
             padding: 13px 0;
+        }
+        td {
+            padding: 13px 0;
+            &.app-name {
+                max-width: 140px;
+            }
+            &.flags {
+                min-width: 42px;
+            }
         }
         .payments {
             display: none;
@@ -1654,6 +1666,30 @@ iframe#manifest-contents {
         .skip {
             border-top: 0;
             clear: both;
+        }
+    }
+    .device-list {
+        bottom: 10px;
+        position: relative;
+        width: 80px;
+        ul {
+            position: relative;
+        }
+        li {
+            position: absolute;
+        }
+        .desktop {
+            left: -37px;
+        }
+        .android-tablet {
+            left: -27px;
+            top: 10px;
+        }
+        .firefoxos {
+            left: 18px;
+        }
+        .android-mobile {
+            left: -2px;
         }
     }
 }
