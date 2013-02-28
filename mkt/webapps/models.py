@@ -303,7 +303,12 @@ class Webapp(Addon):
         file_ = file_obj or self.get_latest_file()
         if not file_:
             return
-        return WebAppParser().get_json_data(file_.file_path)
+        if self.status == amo.STATUS_REJECTED:
+            file_path = file_.guarded_file_path
+        else:
+            file_path = file_.file_path
+
+        return WebAppParser().get_json_data(file_path)
 
     def share_url(self):
         return reverse('apps.share', args=[self.app_slug])
