@@ -106,7 +106,7 @@ class AppResource(MarketplaceResource):
         list_allowed_methods = ['get', 'post']
         allowed_methods = ['get', 'put']
         always_return_data = True
-        authentication = MarketplaceAuthentication()
+        authentication = OptionalAuthentication()
         authorization = AppOwnerAuthorization()
         resource_name = 'app'
         serializer = Serializer(formats=['json'])
@@ -142,7 +142,7 @@ class AppResource(MarketplaceResource):
         pipeline.apply_async()
 
     def obj_get(self, request=None, **kwargs):
-        obj = self.get_and_check_ownership(request, **kwargs)
+        obj = self.get_and_check_ownership(request, allow_anon=True, **kwargs)
         log.info('App retreived: %s' % obj.pk)
         return obj
 
@@ -160,13 +160,17 @@ class AppResource(MarketplaceResource):
                 'form-MAX_NUM_FORMS': '',
                 'form-0-categories': cats}
 
-    def get_and_check_ownership(self, request, **kwargs):
+    def get_and_check_ownership(self, request, allow_anon=False, **kwargs):
         try:
             # Use queryset, not get_object_list to ensure a distinction
             # between a 404 and a 403.
             obj = self._meta.queryset.get(**kwargs)
         except Addon.DoesNotExist:
             raise ImmediateHttpResponse(response=http.HttpNotFound())
+
+        # If it's public, just return it.
+        if allow_anon and obj.is_public():
+            return obj
 
         # Now do the final check to see if you are allowed to see it and
         # return a 403 if you can't.
