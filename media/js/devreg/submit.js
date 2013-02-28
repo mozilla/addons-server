@@ -81,21 +81,34 @@
         $('#id_free_platforms, #id_paid_platforms').val([]);
     }
 
+    // Best function name ever?
+    function allTabsDeselected() {
+        var freeTabs = $('#id_free_platforms option:selected').length;
+        var paidTabs = $('#id_paid_platforms option:selected').length;
+
+        return freeTabs === 0 && paidTabs === 0;
+    }
+
+    // Condition to show packaged tab...ugly but works.
+    function showPackagedTab() {
+        return ($('#id_free_platforms option[value=free-firefoxos]:selected').length &&
+               $('#id_free_platforms option:selected').length == 1) ||
+               $('#id_paid_platforms option[value=paid-firefoxos]:selected').length ||
+               allTabsDeselected();
+    }
+
     // Toggle packaged/hosted tab state.
     function setTabState() {
         if (!$('#id_free_platforms, #id_paid_platforms').length) {
             return;
         }
-        var $target = $('#upload-file hgroup h2');
 
         // If only free-os or paid-os is selected, show packaged.
-        if (($('#id_free_platforms option[value=free-firefoxos]:selected').length &&
-             $('#id_free_platforms option:selected').length == 1) ||
-            $('#id_paid_platforms option[value=paid-firefoxos]:selected').length) {
-            $target.eq(1).css('display', 'inline');
+        if (showPackagedTab()) {
+            $('#packaged-tab-header').css('display', 'inline');
         } else {
-            $target.eq(1).css('display', 'none');
-            $target.eq(0).find('a').click();
+            $('#packaged-tab-header').hide();
+            $('#hosted-tab-header').find('a').click();
         }
     }
 
