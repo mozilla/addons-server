@@ -1631,7 +1631,7 @@ class Persona(caching.CachingMixin, models.Model):
     def thumb_url(self):
         """URL to Persona's thumbnail preview."""
         if self.is_new():
-            return self._image_url('thumb.jpg')
+            return self._image_url('preview.png')
         else:
             return self._image_url('preview.jpg')
 
@@ -1639,7 +1639,7 @@ class Persona(caching.CachingMixin, models.Model):
     def icon_url(self):
         """URL to personas square preview."""
         if self.is_new():
-            return self._image_url('icon.jpg')
+            return self._image_url('icon.png')
         else:
             return self._image_url('preview_small.jpg')
 

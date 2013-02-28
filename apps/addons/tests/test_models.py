@@ -1417,7 +1417,7 @@ class TestPersonaModel(amo.tests.TestCase):
         self.persona.persona_id = 0
         self.persona.save()
         p = lambda x: '/15663/' + x
-        assert self.persona.thumb_url.endswith(p('thumb.png')), (
+        assert self.persona.thumb_url.endswith(p('preview.png')), (
             self.persona.thumb_url)
         assert self.persona.icon_url.endswith(p('icon.png')), (
             self.persona.icon_url)
@@ -1436,9 +1436,9 @@ class TestPersonaModel(amo.tests.TestCase):
             self.persona.icon_url)
         assert self.persona.preview_url.endswith(p('preview_large.jpg')), (
             self.persona.preview_url)
-        assert self.persona.header_url.endswith(p('header.jpg')), (
+        assert self.persona.header_url.endswith(p('header.png')), (
             self.persona.header_url)
-        assert self.persona.footer_url.endswith(p('footer.jpg')), (
+        assert self.persona.footer_url.endswith(p('footer.png')), (
             self.persona.footer_url)
 
     def test_update_url(self):
