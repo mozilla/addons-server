@@ -9,6 +9,17 @@ import amo.tests
 from amo.urlresolvers import reverse
 
 
+VIEW_PAGES = (
+    'build_app_generator', 'build_apps_offline', 'build_dev_tools',
+    'build_ffos', 'build_game_apps', 'build_intro', 'build_manifests',
+    'build_mobile_developers', 'build_quick', 'build_reference',
+    'build_tools', 'build_web_developers', 'design_concept',
+    'design_fundamentals', 'design_patterns', 'design_ui', 'dev_phone',
+    'partners', 'publish_deploy', 'publish_hosted', 'publish_packaged',
+    'publish_review', 'publish_submit', 'support',
+)
+
+
 class TestLanding(amo.tests.TestCase):
 
     def setUp(self):
@@ -53,20 +64,11 @@ class TestLanding(amo.tests.TestCase):
 
 class TestDevHub(amo.tests.TestCase):
 
-    def test_support(self):
-        r = self.client.get(reverse('ecosystem.support'))
-        eq_(r.status_code, 200)
-        self.assertTemplateUsed(r, 'ecosystem/support.html')
-
-    def test_partners(self):
-        r = self.client.get(reverse('ecosystem.partners'))
-        eq_(r.status_code, 200)
-        self.assertTemplateUsed(r, 'ecosystem/partners.html')
-
-    def test_dev_phone(self):
-        r = self.client.get(reverse('ecosystem.dev_phone'))
-        eq_(r.status_code, 200)
-        self.assertTemplateUsed(r, 'ecosystem/dev_phone.html')
+    def test_content_pages(self):
+        for page in VIEW_PAGES:
+            r = self.client.get(reverse('ecosystem.%s' % page))
+            eq_(r.status_code, 200)
+            self.assertTemplateUsed(r, 'ecosystem/%s.html' % page)
 
     def test_valid_reference_app(self):
         r = self.client.get(reverse('ecosystem.apps_documentation',
@@ -78,108 +80,3 @@ class TestDevHub(amo.tests.TestCase):
         r = self.client.get(reverse('ecosystem.apps_documentation',
                             args=['face_value_invalid']))
         eq_(r.status_code, 404)
-
-    def test_design_concept(self):
-        r = self.client.get(reverse('ecosystem.design_concept'))
-        eq_(r.status_code, 200)
-        self.assertTemplateUsed(r, 'ecosystem/design_concept.html')
-
-    def test_design_fundamentals(self):
-        r = self.client.get(reverse('ecosystem.design_fundamentals'))
-        eq_(r.status_code, 200)
-        self.assertTemplateUsed(r, 'ecosystem/design_fundamentals.html')
-
-    def test_design_ui_guidelines(self):
-        r = self.client.get(reverse('ecosystem.design_ui'))
-        eq_(r.status_code, 200)
-        self.assertTemplateUsed(r, 'ecosystem/design_ui.html')
-
-    def test_design_patterns(self):
-        r = self.client.get(reverse('ecosystem.design_patterns'))
-        eq_(r.status_code, 200)
-        self.assertTemplateUsed(r, 'ecosystem/design_patterns.html')
-
-    def test_publish_review(self):
-        r = self.client.get(reverse('ecosystem.publish_review'))
-        eq_(r.status_code, 200)
-        self.assertTemplateUsed(r, 'ecosystem/publish_review.html')
-
-    def test_publish_deploy(self):
-        r = self.client.get(reverse('ecosystem.publish_deploy'))
-        eq_(r.status_code, 200)
-        self.assertTemplateUsed(r, 'ecosystem/publish_deploy.html')
-
-    def test_publish_hosted(self):
-        r = self.client.get(reverse('ecosystem.publish_hosted'))
-        eq_(r.status_code, 200)
-        self.assertTemplateUsed(r, 'ecosystem/publish_hosted.html')
-
-    def test_publish_packaged(self):
-        r = self.client.get(reverse('ecosystem.publish_packaged'))
-        eq_(r.status_code, 200)
-        self.assertTemplateUsed(r, 'ecosystem/publish_packaged.html')
-
-    def test_publish_submit(self):
-        r = self.client.get(reverse('ecosystem.publish_submit'))
-        eq_(r.status_code, 200)
-        self.assertTemplateUsed(r, 'ecosystem/publish_submit.html')
-
-    def test_build_quick(self):
-        r = self.client.get(reverse('ecosystem.build_quick'))
-        eq_(r.status_code, 200)
-        self.assertTemplateUsed(r, 'ecosystem/build_quick.html')
-
-    def test_build_intro(self):
-        r = self.client.get(reverse('ecosystem.build_intro'))
-        eq_(r.status_code, 200)
-        self.assertTemplateUsed(r, 'ecosystem/build_intro.html')
-
-    def test_build_reference(self):
-        r = self.client.get(reverse('ecosystem.build_reference'))
-        eq_(r.status_code, 200)
-        self.assertTemplateUsed(r, 'ecosystem/build_reference.html')
-
-    def test_build_ffos(self):
-        r = self.client.get(reverse('ecosystem.build_ffos'))
-        eq_(r.status_code, 200)
-        self.assertTemplateUsed(r, 'ecosystem/build_ffos.html')
-
-    def test_build_manifests(self):
-        r = self.client.get(reverse('ecosystem.build_manifests'))
-        eq_(r.status_code, 200)
-        self.assertTemplateUsed(r, 'ecosystem/build_manifests.html')
-
-    def test_build_app_generator(self):
-        r = self.client.get(reverse('ecosystem.build_app_generator'))
-        eq_(r.status_code, 200)
-        self.assertTemplateUsed(r, 'ecosystem/build_app_generator.html')
-
-    def test_build_apps_offline(self):
-        r = self.client.get(reverse('ecosystem.build_apps_offline'))
-        eq_(r.status_code, 200)
-        self.assertTemplateUsed(r, 'ecosystem/build_apps_offline.html')
-
-    def test_build_game_apps(self):
-        r = self.client.get(reverse('ecosystem.build_game_apps'))
-        eq_(r.status_code, 200)
-        self.assertTemplateUsed(r, 'ecosystem/build_game_apps.html')
-
-    def test_build_mobile_developers(self):
-        r = self.client.get(reverse('ecosystem.build_mobile_developers'))
-        eq_(r.status_code, 200)
-        self.assertTemplateUsed(r, 'ecosystem/build_mobile_developers.html')
-
-    def test_build_tools(self):
-        r = self.client.get(reverse('ecosystem.build_tools'))
-        eq_(r.status_code, 200)
-        self.assertTemplateUsed(r, 'ecosystem/build_tools.html')
-
-    def test_build_web_developers(self):
-        r = self.client.get(reverse('ecosystem.build_web_developers'))
-        eq_(r.status_code, 200)
-        self.assertTemplateUsed(r, 'ecosystem/build_web_developers.html')
-
-    def test_build_dev_tools(self):
-        r = self.client.get(reverse('ecosystem.build_dev_tools'))
-        eq_(r.status_code, 200)
-        self.assertTemplateUsed(r, 'ecosystem/build_dev_tools.html')
