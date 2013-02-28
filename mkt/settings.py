@@ -143,9 +143,9 @@ NO_ADDONS_MODULES = (
     'browse.views.themes',
 )
 
-# Extend the bundles.
-MINIFY_BUNDLES['css'].update(asset_bundles.CSS)
-MINIFY_BUNDLES['js'].update(asset_bundles.JS)
+# Define the bundles.
+MINIFY_BUNDLES['css'] = asset_bundles.CSS
+MINIFY_BUNDLES['js'] = asset_bundles.JS
 
 CELERY_ROUTES.update({
     # Devhub.
