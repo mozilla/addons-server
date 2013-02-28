@@ -47,9 +47,6 @@
 
     {% block extrahead %}{% endblock %}
 
-    {% block debug %}
-      {% include "mobile/head_debug.html" %}
-    {% endblock %}
     {% if logged %}
       <meta name="csrf" content="{{ csrf_token }}">
     {% endif %}
