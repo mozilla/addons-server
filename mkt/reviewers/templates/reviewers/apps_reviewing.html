@@ -9,7 +9,7 @@
 {% block content %}
 
 <header class="c">
-  <h1>{{ pagetitle }}</h1>
+  <h1 class="menutrigger">{{ pagetitle }}</h1>
 </header>
 
 <section class="island">
@@ -67,9 +67,9 @@
             <th>{{ _('Flags') }}</th>
           </tr>
         </thead>
-        <tbody>
-          {% for app in apps %}
-            {% set this_app = app.app %}
+        {% for app in apps %}
+          {% set this_app = app.app %}
+          <tbody>
             <tr data-addon="{{ app.id }}" class="addon-row" id="addon-{{ app.id }}">
               <td class="app-name">{{ app.app.name }}</td>
               <td class="flags">{# Flags #}
@@ -98,8 +98,8 @@
                 </div>
               </td>
             </tr>
-          {% endfor %}
-        </tbody>
+          </tbody>
+        {% endfor %}
       </table>
     {% endif %}
   {% endif %}

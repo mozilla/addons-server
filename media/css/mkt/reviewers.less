@@ -1391,6 +1391,14 @@ iframe#manifest-contents {
             }
         }
     }
+    #page h1 {
+        background: #d7d2c4;
+        color: #686868;
+        line-height: 38px;
+        margin: 0;
+        padding: 0 8px;
+        border-radius: 3px 3px 0 0;
+    }
     .review-actions .action_nav li {
         display: block;
     }
@@ -1399,6 +1407,16 @@ iframe#manifest-contents {
         max-width: 100%;
         overflow-x: auto;
         overflow-y: hidden;
+    }
+    // No mobile man is an island.
+    .island {
+        padding: 0;
+        border: 0;
+        .border-radius(0);
+    }
+    .island > p {
+        padding: 5px 6px;
+        line-height: 22px;
     }
 }
 

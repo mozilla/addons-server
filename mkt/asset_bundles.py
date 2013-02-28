@@ -82,6 +82,7 @@ CSS = {
         'css/mkt/themes_review.less',
         'css/mkt/legacy-paginator.less',
         'css/mkt/files.less',
+        'css/devreg/menupicker.less',
     ),
     'mkt/splash': (
         'css/mkt/splash.less',
@@ -322,6 +323,7 @@ JS = {
         'js/mkt/install.js',
         'js/mkt/buttons.js',
         'js/mkt/reviewers.js',
+        'js/devreg/menupicker.js',
         'js/devreg/reviewers_init.js',
     ),
     'mkt/stats': (

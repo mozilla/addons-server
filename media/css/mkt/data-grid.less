@@ -175,14 +175,21 @@ table.data-grid {
 @media (max-width: @mobile-max) {
     .data-grid {
         &.two-col {
+            tbody tr:last-child td {
+                border-bottom: 1px solid #999;
+            }
+            tbody:last-child tr:last-child td {
+                border: 0;
+            }
+            th {
+                font-weight: bold;
+            }
             th, td {
                 text-align: left;
+                padding: 5px 6px;
             }
             th:last-child {
                 width: 30%;
-            }
-            th:last-child, td:last-child {
-                padding-left: 6px;
             }
             td:last-child {
                 text-align: center;
@@ -192,12 +199,9 @@ table.data-grid {
                 height: 24px;
                 line-height: 23px;
             }
+            .sprite-reviewer {
+                top: 0;
+            }
         }
-    }
-    // No mobile man is an island.
-    .island {
-        padding: 0;
-        border: 0;
-        .border-radius(0);
     }
 }

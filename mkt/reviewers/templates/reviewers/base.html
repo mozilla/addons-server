@@ -24,8 +24,8 @@
       <nav class="menu-nav app-nav no-img" role="navigation">
         <ul class="c">
           <li>
-            <a href="#" class="controller">{{ _('Queues') }}</a>
-            <ul>
+            <a href="#" class="controller menutrigger">{{ _('Queues') }}</a>
+            <ul class="menucontent" data-title="{{ _('Queues') }}">
               {% for prefix, this, loc, text in queue_tabnav() %}
                 <li>
                   <a href="{{ url('reviewers.%s.%s' % (prefix, loc)) }}">{{ text }}</a>

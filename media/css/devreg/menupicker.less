@@ -1,0 +1,72 @@
+@import '../devreg/lib';
+
+#menupicker {
+    position: absolute;
+    display: none;
+    // Paper covers rock.
+    z-index: 1010;
+    background: rgba(0,0,0,.7);
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    * {
+        .border-box;
+    }
+    .menucontent {
+        position: absolute;
+        bottom: 70px;
+        padding: 10px 25px;
+        overflow-y: auto;
+        max-height: 338px;
+        li {
+            width: 270px;
+            margin-bottom: 10px;
+            a {
+                display: block;
+                background-color: #4e4e4e;
+                line-height: 38px;
+                color: #fff;
+                border: 1px solid #2f2e2f;
+                padding: 0 15px;
+                font-weight: bold;
+                border-radius: 2px;
+                &:active {
+                    background-color: #0ac;
+                    color: #333;
+                }
+            }
+        }
+    }
+    h1 {
+        color: #fff;
+        line-height: 38px;
+        border-bottom: 1px solid #6f6f6f;
+        padding: 33px 30px 0;
+        box-shadow: 0 1px 1px #242424;
+        font-weight: bold;
+        font-size: 13px;
+    }
+    footer {
+        position: absolute;
+        bottom: 0;
+        border-top: 1px solid #2d2d2d;
+        padding: 14px;
+        width: 100%;
+        a {
+            border-radius: 2px;
+            display: block;
+            line-height: 40px;
+            font-size: 14px;
+            font-weight: 600;
+            text-align: center;
+            color: #333;
+            .gradient-two-color(#fbfbfb, #ccc);
+        }
+    }
+}
+
+// When the body is overlayed it shouldn't stretch. Giggity.
+.pickerized {
+    overflow: hidden;
+}
