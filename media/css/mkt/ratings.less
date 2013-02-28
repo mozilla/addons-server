@@ -192,6 +192,14 @@ section.replies .review.reply {
             float: left;
         }
     }
+    .two-up {
+        &:nth-child(2n+1) {
+            padding: 0 5px 0 0;
+        }
+        &:nth-child(2n) {
+            padding: 0 0 0 5px;
+        }
+    }
 }
 // 180x18, 120x12, 90x9, 332x32
 .stars {
