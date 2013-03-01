@@ -9,3 +9,7 @@ REFUND_STATUSES = {
     COMPLETED: _('Completed'),
     FAILED: _('Failed'),
 }
+
+# SellerProduct access types.
+ACCESS_PURCHASE = 1
+ACCESS_SIMULATE = 2
