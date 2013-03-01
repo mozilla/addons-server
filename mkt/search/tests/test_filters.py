@@ -68,3 +68,19 @@ class TestSearchFilters(BaseOAuth):
     def test_app_type(self):
         qs = self._filter(self.req, {'app_type': 'hosted'})
         eq_(qs['filter']['term'], {'app_type': 1})
+
+    def _status_check(self, query, expected=amo.STATUS_PUBLIC):
+        qs = self._filter(self.req, query)
+        ok_({'term': {'status': expected}} in qs['query']['bool']['must'],
+            'Unexpected status. Expected: %s.' % expected)
+
+    def test_status(self):
+        # Test all that should end up being public.
+        # Note: Status permission can't be checked here b/c the acl check
+        # happens in the view, not the _filter_search call.
+        self._status_check({})
+        self._status_check({'status': 'public'})
+        self._status_check({'status': 'rejected'})
+        # Test a bad value.
+        qs = self._filter(self.req, {'status': 'vindaloo'})
+        ok_(u'Select a valid choice' in qs['status'][0])

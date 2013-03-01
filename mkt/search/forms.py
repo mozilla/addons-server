@@ -7,6 +7,11 @@ from addons.models import Category
 import amo
 
 
+STATUS_CHOICES = []
+for status in amo.WEBAPPS_UNLISTED_STATUSES + (amo.STATUS_PUBLIC,):
+    s = amo.STATUS_CHOICES_API[status]
+    STATUS_CHOICES.append((s, s))
+
 SORT_CHOICES = [
     (None, _lazy(u'Relevance')),
     ('popularity', _lazy(u'Popularity')),
@@ -114,6 +119,7 @@ class ApiSearchForm(forms.Form):
     # Like App search form, but just filtering on categories for now
     # and bit more strict about the filtering.
     q = forms.CharField(required=False)
+    status = forms.ChoiceField(required=False, choices=STATUS_CHOICES)
     sort = forms.ChoiceField(required=False, choices=LISTING_SORT_CHOICES)
     cat = forms.TypedChoiceField(required=False, coerce=int, empty_value=None,
                                  choices=[])
@@ -130,6 +136,10 @@ class ApiSearchForm(forms.Form):
         CATS = (Category.objects.filter(type=amo.ADDON_WEBAPP, weight__gte=0)
                          .values_list('id', flat=True))
         self.fields['cat'].choices = [(pk, pk) for pk in CATS]
+
+    def clean_status(self):
+        status = self.cleaned_data['status']
+        return amo.STATUS_CHOICES_API_LOOKUP.get(status, amo.STATUS_PUBLIC)
 
     def clean_premium_types(self):
         pt_ids = []

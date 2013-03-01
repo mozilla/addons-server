@@ -5,7 +5,6 @@ from tower import ugettext as _
 
 import amo
 import amo.utils
-from access import acl
 from amo.decorators import json_view
 from apps.addons.models import Category
 from apps.search.views import name_query, WebappSuggestionsAjax
@@ -129,9 +128,9 @@ def sort_sidebar(query, form):
             for key, text in form.fields['sort'].choices]
 
 
-def _get_query(region, gaia, mobile, tablet):
-    return Webapp.from_search(region=region, gaia=gaia,
-                              mobile=mobile, tablet=tablet).facet('category')
+def _get_query(region, gaia, mobile, tablet, status=amo.STATUS_PUBLIC):
+    return Webapp.from_search(region=region, gaia=gaia, mobile=mobile,
+                              tablet=tablet, status=status).facet('category')
 
 
 def _app_search(request, category=None, browse=None):

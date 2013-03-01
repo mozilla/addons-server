@@ -1,10 +1,14 @@
-from tastypie.authentication import Authentication
+import json
+
+from tastypie import http
 from tastypie.authorization import ReadOnlyAuthorization
 
 import amo
+from access import acl
 from amo.helpers import absolutify
 
 import mkt
+from mkt.api.authentication import OptionalAuthentication
 from mkt.api.resources import AppResource
 from mkt.search.views import _get_query, _filter_search
 from mkt.search.forms import ApiSearchForm
@@ -18,7 +22,7 @@ class SearchResource(AppResource):
         detail_allowed_methods = []
         list_allowed_methods = ['get']
         authorization = ReadOnlyAuthorization()
-        authentication = Authentication()
+        authentication = OptionalAuthentication()
 
     def get_resource_uri(self, bundle):
         # At this time we don't have an API to the Webapp details.
@@ -29,10 +33,20 @@ class SearchResource(AppResource):
         if not form.is_valid():
             raise self.form_errors(form)
 
+        # Pluck out status first since it forms part of the base query, but
+        # only for privileged users.
+        status = form.cleaned_data['status']
+        if status != amo.STATUS_PUBLIC and not (
+            acl.action_allowed(request, 'Apps', 'Review') or
+            acl.action_allowed(request, 'Admin', '%')):
+            return http.HttpUnauthorized(
+                content=json.dumps(
+                    {'reason': 'Unauthorized to filter by status.'}))
+
         # Search specific processing of the results.
         region = getattr(request, 'REGION', mkt.regions.WORLDWIDE)
-        qs = _get_query(region, gaia=request.GAIA,
-                        mobile=request.MOBILE, tablet=request.TABLET)
+        qs = _get_query(region, gaia=request.GAIA, mobile=request.MOBILE,
+                        tablet=request.TABLET, status=status)
         qs = _filter_search(request, qs, form.cleaned_data, region=region)
         res = amo.utils.paginate(request, qs)
 

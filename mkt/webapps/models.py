@@ -540,11 +540,9 @@ class Webapp(Addon):
                     .values_list('addon', flat=True))
 
     @classmethod
-    def from_search(cls, cat=None, region=None, gaia=False,
-                    mobile=False, tablet=False):
-        filters = dict(type=amo.ADDON_WEBAPP,
-                       status=amo.STATUS_PUBLIC,
-                       is_disabled=False)
+    def from_search(cls, cat=None, region=None, gaia=False, mobile=False,
+                    tablet=False, status=amo.STATUS_PUBLIC):
+        filters = dict(type=amo.ADDON_WEBAPP, status=status, is_disabled=False)
 
         if cat:
             filters.update(category=cat.id)

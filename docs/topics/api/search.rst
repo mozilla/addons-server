@@ -32,6 +32,8 @@ described below:
 The following parameters requires an OAuth token by a user with App
 Reviewer privileges:
 
+* `status` (optional): Filters by app status. Default is 'public'. One of
+  'pending', 'public', 'disabled', 'rejected', 'waiting'.
 
 The API returns a list of the apps sorted by relevance (default) or
 `sort`::
