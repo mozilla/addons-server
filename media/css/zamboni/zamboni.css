@@ -1179,6 +1179,10 @@ ul.license li.copyr { background-position: 0 -260px; }
     height: 320px;
 }
 
+.html-rtl #featured-addons.personas-home .featured-inner.themes {
+    background-position: 260px 140px;
+}
+
 /*
 @media screen and (-webkit-min-device-pixel-ratio: 2), screen and (min--moz-device-pixel-ratio: 2), screen and (min-device-pixel-ratio: 2) {
     #featured-addons.personas-home .featured-inner.themes {
@@ -1198,6 +1202,10 @@ ul.license li.copyr { background-position: 0 -260px; }
     height: 140px;
 }
 
+.html-rtl #featured-addons.personas-home .featured-inner.complete-themes {
+    background-position: -500px 0;
+}
+
 .featured-inner.complete-themes .intro {
     width: 350px;
 }
@@ -1207,12 +1215,20 @@ ul.license li.copyr { background-position: 0 -260px; }
     float: none;
 }
 
+.html-rtl .personas-home .intro .more-info {
+    background-position: 0 -302px;
+}
+
 #featured-addons .personas-slider {
     float: right;
     height: 255px; /* 3 personas @ 85px; */
     width: 30%;
     overflow: hidden;
     margin: 30px 0 0;
+}
+
+.html-rtl #featured-addons .personas-slider {
+    float: left;
 }
 
 /************************************/
@@ -1530,6 +1546,10 @@ form .error .note.error {
 #featured-addons ul {
     width: 96.7%;
     padding-left: 3.3%;
+}
+
+.html-rtl #featured-addons ul {
+    padding-left: 0;
 }
 
 #featured-addons li.addon {
@@ -2654,8 +2674,13 @@ td .addon-rating,
     text-indent: -999px;
     background: white;
     position: absolute;
-    right: 108px;
+    right: 99px;
     overflow: hidden;
+}
+
+.html-rtl .arrow {
+    right: auto;
+    left: 99px;
 }
 
 .arrow.prev {
