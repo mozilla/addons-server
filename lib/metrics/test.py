@@ -32,12 +32,14 @@ class TestMetrics(amo.tests.TestCase):
     def test_some_unicode(self, urlopen):
         send('install', {'name': u'Вагиф Сәмәдоғлу'})
 
-    def test_send_request(self, urlopen):
+    @mock.patch('lib.metrics.record_stat')
+    def test_send_request(self, record_stat, urlopen):
         request = mock.Mock()
         request.GET = {'src': 'foo'}
         request.LANG = 'en'
         request.META = {'HTTP_USER_AGENT': 'py'}
         send_request('install', request, {})
+        assert record_stat.called
         data = json.loads(urlopen.call_args[0][0].data)
         eq_(data['user-agent'], 'py')
         eq_(data['locale'], 'en')
