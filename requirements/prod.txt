@@ -31,7 +31,7 @@ django-radagast==0.3
 django-ratelimit==0.1
 django-recaptcha-mozilla==0.0.1
 django-session-csrf==0.5
-django-statsd-mozilla==0.3.8
+django-statsd-mozilla==0.3.8.6
 django-storages==1.1.4
 django-tastypie==0.9.11
 docutils==0.7
