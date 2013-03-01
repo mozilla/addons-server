@@ -1,6 +1,17 @@
 # A list of our CSS and JS assets for jingo-minify.
 
 CSS = {
+    'zamboni/files': (
+        'css/lib/syntaxhighlighter/shCoreDefault.css',
+        'css/zamboni/files.css',
+    ),
+    'zamboni/admin': (
+        'css/zamboni/admin-django.css',
+        'css/zamboni/admin-mozilla.css',
+        'css/zamboni/admin_features.css',
+        # Datepicker styles and jQuery UI core.
+        'css/zamboni/jquery-ui/custom-1.7.2.css',
+    ),
     'mkt/devreg': (
         # Contains reset, clearfix, etc.
         'css/devreg/base.css',
@@ -71,6 +82,7 @@ CSS = {
         'css/devreg/footer.less',
     ),
     'mkt/reviewers': (
+        'css/zamboni/editors.css',
         'css/devreg/consumer-buttons.less',
         'css/devreg/ratings.less',
         'css/devreg/data-grid.less',
