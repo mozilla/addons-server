@@ -67,7 +67,7 @@ pyquery==0.4
 python-dateutil==1.5
 python-gflags==2.0
 pytz==2010e
-raven==2.0.7.1
+raven==3.1.16
 rdflib==3.0.0
 recaptcha-client==1.0.5
 receipts==0.2.4.1
