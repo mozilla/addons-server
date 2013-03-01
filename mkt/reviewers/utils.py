@@ -1,7 +1,9 @@
+import json
 import urllib
 from datetime import datetime
 
 from django.conf import settings
+from django.core.cache import cache
 from django.utils.datastructures import SortedDict
 
 import commonware.log
@@ -11,9 +13,12 @@ import amo
 from access import acl
 from amo.helpers import absolutify
 from amo.urlresolvers import reverse
-from amo.utils import send_mail_jinja
+from amo.utils import JSONEncoder, send_mail_jinja
 from editors.models import EscalationQueue, RereviewQueue, ReviewerScore
 from files.models import File
+
+from mkt.site.helpers import product_as_dict
+from mkt.webapps.models import Webapp
 
 
 log = commonware.log.getLogger('z.mailer')
@@ -440,3 +445,46 @@ def create_sort_link(pretty_name, sort_field, get_params, sort, order):
 
     return u'<a href="?%s"%s>%s</a>' % (urllib.urlencode(get_params, True),
                                         url_class, pretty_name)
+
+
+class AppsReviewing(object):
+    """
+    Class to manage the list of apps a reviewer is currently reviewing.
+
+    Data is stored in memcache.
+    """
+
+    def __init__(self, request):
+        self.request = request
+        self.user_id = request.amo_user.id
+        self.key = '%s:myapps:%s' % (settings.CACHE_PREFIX, self.user_id)
+
+    def get_apps(self):
+        ids = []
+        my_apps = cache.get(self.key)
+        if my_apps:
+            for id in my_apps.split(','):
+                valid = cache.get(
+                    '%s:review_viewing:%s' % (settings.CACHE_PREFIX, id))
+                if valid and valid == self.user_id:
+                    ids.append(id)
+
+        apps = []
+        for app in Webapp.objects.filter(id__in=ids):
+            apps.append({
+                'app': app,
+                'app_attrs': json.dumps(
+                    product_as_dict(self.request, app, False, 'reviewer'),
+                    cls=JSONEncoder),
+            })
+        return apps
+
+    def add(self, addon_id):
+        my_apps = cache.get(self.key)
+        if my_apps:
+            apps = my_apps.split(',')
+        else:
+            apps = []
+        apps.append(addon_id)
+        cache.set(self.key, ','.join(map(str, set(apps))),
+                  amo.EDITOR_VIEWING_INTERVAL * 2)

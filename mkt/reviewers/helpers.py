@@ -12,8 +12,8 @@ from amo.helpers import impala_breadcrumbs
 from amo.urlresolvers import reverse
 
 from mkt.developers.helpers import mkt_page_title
-from mkt.reviewers.models import AppsReviewing
-from mkt.reviewers.utils import clean_sort_param, create_sort_link
+from mkt.reviewers.utils import (AppsReviewing, clean_sort_param,
+                                 create_sort_link)
 
 
 @register.function

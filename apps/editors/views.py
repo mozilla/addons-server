@@ -37,7 +37,7 @@ from reviews.models import Review, ReviewFlag
 from users.models import UserProfile
 from zadmin.models import get_config, set_config
 
-from mkt.reviewers.models import AppsReviewing
+from mkt.reviewers.utils import AppsReviewing
 
 
 def _view_on_get(request):

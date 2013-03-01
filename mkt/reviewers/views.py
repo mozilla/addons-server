@@ -46,8 +46,7 @@ from users.models import UserProfile
 from zadmin.models import get_config, set_config
 
 import mkt.constants.reviewers as rvw
-from mkt.reviewers.models import AppsReviewing
-from mkt.reviewers.utils import clean_sort_param
+from mkt.reviewers.utils import AppsReviewing, clean_sort_param
 from mkt.site.helpers import product_as_dict
 from mkt.webapps.models import Webapp
 
