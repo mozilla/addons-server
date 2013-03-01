@@ -156,14 +156,14 @@ def publish_packaged(request):
   </script>
 </body>
 </html>
-'''
+'''.strip()
     mini_manifest_a_sample = u'''
 {
     "name": "My App",
     "package_path": "http://<server-ip>/package.zip",
     "version": "1.0"
 }
-'''
+'''.strip()
     mini_manifest_b_sample = u'''
 {
     "name": "My app",
@@ -189,7 +189,7 @@ def publish_packaged(request):
         "256": "/icons/256.png"
     }
 }
-'''
+'''.strip()
     d = {
         'page': 'publish_packaged',
         'category': 'publish',
@@ -237,7 +237,7 @@ def build_quick(request):
         "systemXHR": {}
     }
 }
-'''
+'''.strip()
     css_sample = u'''
 /* The following are examples of different CSS media queries */
 
@@ -260,7 +260,7 @@ def build_quick(request):
 @media screen and (orientation:landscape) {
   /* styles */
 }
-'''
+'''.strip()
     html_sample = u'''
 <!DOCTYPE html>
 <html>
@@ -291,14 +291,14 @@ def build_quick(request):
     <script type="text/javascript" data-main="js/init.js" src="js/lib/require.js"></script>
   </body>
 </html>
-'''
+'''.strip()
     feature_sample = u'''
 // If this device supports the vibrate API...
 if('vibrate' in navigator) {
     // ... vibrate for a second
     navigator.vibrate(1000);
 }
-'''
+'''.strip()
 
     battery_sample = u'''
 // Create the battery indicator listeners
@@ -327,7 +327,7 @@ if('vibrate' in navigator) {
     indicator.className = battery.charging ? 'charging' : '';
   }
 })();
-'''
+'''.strip()
 
     webrt_sample = u'''
 // New key in the manifest: "permissions"
@@ -336,7 +336,7 @@ if('vibrate' in navigator) {
 "permissions": {
     "systemXHR": {}
 }
-'''
+'''.strip()
     d = {
         'page': 'build_quick',
         'category': 'build',
