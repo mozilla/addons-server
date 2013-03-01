@@ -205,9 +205,15 @@ a[rel="external"]:after, a.external:after {
         font-weight: 100;
     }
 
-    h2, h3 {
+    h2 {
         clear: both;
         font-size: 22px;
+        font-weight: 500;
+    }
+
+    h3 {
+        clear: both;
+        font-size: 19px;
         font-weight: 300;
     }
 
@@ -221,6 +227,14 @@ a[rel="external"]:after, a.external:after {
 
     dt {
         font-size: 14px;
+    }
+
+    h2 a, h3 a {
+        border-bottom: 1px solid #ddd;
+        &:hover {
+            border-bottom: 1px solid #484848;
+            text-decoration: none;
+        }
     }
 
     a:visited {
@@ -240,7 +254,7 @@ a[rel="external"]:after, a.external:after {
         color: @dark-gray;
         margin: 0.75em 0;
         overflow: auto;
-        padding: 20px;
+        padding: 15px;
     }
 
     .button {

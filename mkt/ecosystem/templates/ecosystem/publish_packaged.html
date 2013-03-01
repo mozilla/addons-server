@@ -77,9 +77,7 @@
                   Enforces a <a href="{{ url }}">Content Security
                   Policy</a> (CSP). A privileged app uses this CSP:
                 {% endtrans -%}
-                <pre>
-                  "default-src *; script-src 'self'; object-src 'none'; style-src 'self' 'unsafe-inline'"
-                </pre>
+                <pre>"default-src *; script-src 'self'; object-src 'none'; style-src 'self' 'unsafe-inline'"</pre>
               </li>
               <li>
                 {%- trans url='https://wiki.mozilla.org/Apps/Security' %}
@@ -106,10 +104,8 @@
               which is slightly different from the CSP for a privileged
               app:
             {% endtrans -%}
-            <pre>
-              "default-src *; script-src 'self'; object-src 'none'; style-src 'self'"
-            </pre>
-            {%- trans url_default_csp='https://wiki.mozilla.org/Apps/Security#Default_CSP_policy',
+            <pre>"default-src *; script-src 'self'; object-src 'none'; style-src 'self'"</pre>
+            {%- trans url_default_csp='https://wiki.mozilla.org/Apps/CSP',
                       url_bug='https://bugzilla.mozilla.org/show_bug.cgi?id=768029' %}
               This has the effect of slightly looser rules for inline CSP
               for privileged apps when compared to certified apps. If you
