@@ -189,7 +189,7 @@ class TestAppDashboard(AppHubTest):
         doc = pq(self.client.get(self.url).content)
         expected = [
             ('Edit Listing', app.get_dev_url()),
-            ('Manage Team Members', app.get_dev_url('owner')),
+            ('Team Members', app.get_dev_url('owner')),
             ('Compatibility & Payments', app.get_dev_url('payments')),
             ('Manage Status', app.get_dev_url('versions')),
             ('View Listing', app.get_url_path()),
@@ -211,7 +211,7 @@ class TestAppDashboard(AppHubTest):
         expected = [
             ('Edit Listing', app.get_dev_url()),
             ('Add New Version', app.get_dev_url('versions')),
-            ('Manage Team Members', app.get_dev_url('owner')),
+            ('Team Members', app.get_dev_url('owner')),
             ('Compatibility & Payments', app.get_dev_url('payments')),
             ('View Listing', app.get_url_path()),
             ('Statistics', app.get_stats_url()),
@@ -232,7 +232,7 @@ class TestAppDashboard(AppHubTest):
         doc = pq(self.client.get(self.url).content)
         expected = [
             ('Edit Listing', app.get_dev_url()),
-            ('Manage Team Members', app.get_dev_url('owner')),
+            ('Team Members', app.get_dev_url('owner')),
             ('Compatibility & Payments', app.get_dev_url('payments')),
             ('Manage Status', app.get_dev_url('versions')),
             ('View Listing', app.get_url_path()),

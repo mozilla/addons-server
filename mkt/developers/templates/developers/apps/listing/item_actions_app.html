@@ -43,7 +43,7 @@
     </li>
   {% endif %}
   <li>
-    <a class="action-link" href="{{ addon.get_dev_url('owner') }}">{{ _('Manage Team Members') }}</a>
+    <a class="action-link" href="{{ addon.get_dev_url('owner') }}">{{ _('Team Members') }}</a>
   </li>
   {% if not waffle.switch('disabled-payments') or addon.is_premium() %}
     <li>
@@ -52,20 +52,10 @@
     </li>
   {% endif %}
 
-  {% set manage_urls = [(addon.get_dev_url('versions'),
-                         _('Manage Status &amp; Versions') if addon.is_packaged else _('Manage Status'))] %}
-  {% if addon.is_webapp() and addon.premium_type in amo.ADDON_INAPPS
-        and waffle.switch('in-app-payments') %}
-    {% do manage_urls.insert(1,
-      (addon.get_dev_url('in_app_config'), _('Manage In-App Payments'))
-    ) %}
-  {% endif %}
-
-  {% if waffle.switch('disabled-payments') or manage_urls|length == 1 %}
-    {% for url, title in manage_urls %}
-      <li><a class="action-link status-link" href="{{ url }}">{{ title }}</a></li>
-    {% endfor %}
-  {% endif %}
+  <li>
+    <a class="action-link status-link" href="{{ addon.get_dev_url('versions') }}">
+      {{ _('Manage Status &amp; Versions') if addon.is_packaged else _('Manage Status') }}</a>
+  </li>
   <li>
     <a class="action-link" href="{{ addon.get_url_path() }}">{{ _('View Listing') }}</a>
   </li>
@@ -80,16 +70,11 @@
         {{ _('Transactions') }}</a>
     </li>
   {% endif %}
-  {% if not waffle.switch('disabled-payments') and manage_urls|length > 1 %}
+  {% if addon.premium_type in amo.ADDON_INAPPS and waffle.switch('in-app-payments') %}
     <li>
-      <a href="#" class="more-actions">{{ _('More') }}</a>
-      <div class="more-actions-popup popup hidden">
-        <ul>
-          {% for url, title in manage_urls %}
-            <li><a class="action-link" href="{{ url }}">{{ title }}</a></li>
-          {% endfor %}
-        </ul>
-      </div>
+      <a class="action-link" href="{{ addon.get_dev_url('in_app_config') }}">
+        {{ _('Manage In-App Payments') }}
+      </a>
     </li>
   {% endif %}
 </ul>

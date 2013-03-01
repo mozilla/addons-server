@@ -2,4 +2,3 @@
 
 define('developers', ['login', 'notification', 'tracking'], function() {});
 require('developers');
-require('state').init();

@@ -236,3 +236,13 @@ function initPreview() {
         $('input[value="' + k + '"]').siblings('input[type=file]').trigger('upload_success', [{dataURL: v}, k]);
     });
 }
+
+
+function postUnsaved(data) {
+    $('input[name="unsaved_data"]').val(JSON.stringify(data));
+}
+
+
+function loadUnsaved() {
+    return JSON.parse($('input[name="unsaved_data"]').val() || '{}');
+}

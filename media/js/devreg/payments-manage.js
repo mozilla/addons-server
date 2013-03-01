@@ -81,9 +81,16 @@ define('payments-manage', ['payments'], function(payments) {
         $.getJSON($overlay_section.data('accounts-url'), function(data) {
             $overlay_section.removeClass('loading');
             var $table = $overlay_section.children('table');
-            for (var acc = 0; acc < data.length; acc++) {
-                var account = data[acc];
-                $(paymentAccountTemplate(account)).appendTo($table);
+            if (data.length) {
+                for (var acc = 0; acc < data.length; acc++) {
+                    var account = data[acc];
+                    $table.append(paymentAccountTemplate(account));
+                }
+            } else {
+                var $none = $('<div>');
+                $none.text(gettext('You do not currently have any payment accounts.'));
+                $none.insertBefore($table);
+                $table.remove();
             }
 
             $overlay_section.on('click', 'a.delete-account', _pd(function() {

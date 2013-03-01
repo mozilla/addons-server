@@ -151,18 +151,15 @@ $(document).ready(function() {
 
     // Icon previews.
     imageStatus.start(true, false);
-    $('#submit-media').bind('click', function() {
-        imageStatus.cancel();
-    });
+    $('#submit-media').on('click', imageStatus.cancel);
 
-    submit_details.houdini();
-    $('#submit-details').exists(function () {
+    if (document.getElementById('submit-details')) {
         //submit_details.general();
         //submit_details.privacy();
         initCatFields();
         initCharCount();
         initSubmit();
         initTruncateSummary();
-    });
+    }
     submit_details.houdini();
 });

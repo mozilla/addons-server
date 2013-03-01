@@ -68,32 +68,25 @@
 </section>
 {% include 'developers/includes/addons_edit_nav.html' %}
 
-<div id="author-roles-help" class="popup">
+<script type="text/template" id="author-roles-help-template" class="overlay">
+<section id="author-roles-help">
+  <header>
+    <a class="close" title="{{ _('close') }}">&times;</a>
+    <h2>{{ _('About Team Member Roles') }}</h2>
+  </header>
   <p>{{ _('Apps can have any number of team members with 4 possible roles:') }}</p>
-  <ul>
-    <li>
-      {% trans %}
-        <b>Owner:</b> Can manage all aspects of the app's listing, including
-        adding and removing other team members
-      {% endtrans %}
-    </li>
-    <li>
-      {% trans %}
-        <b>Developer:</b> Can manage all aspects of the app's listing, except
-        for adding and removing other team members and managing payments
-      {% endtrans %}
-    </li>
-    <li>
-      {% trans %}
-        <b>Viewer:</b> Can view the app's settings but cannot make any changes
-      {% endtrans %}
-    </li>
-    <li>
-      {% trans %}
-        <b>Support:</b> Can view the app's settings and manage refund requests
-      {% endtrans %}
-    </li>
-  </ul>
-  <p><a href="#" class="cancel close">{{ _('Close') }}</a></p>
-</div>
+  <dl>
+    <dt>{{ _('Owner') }}</dt>
+    <dd>{{ _("Can manage all aspects of the app's listing, including
+        adding and removing other team members") }}</dd>
+    <dt>{{ _('Developer') }}</dt>
+    <dd>{{ _("Can manage all aspects of the app's listing, except
+        for adding and removing other team members and managing payments") }}</dd>
+    <dt>{{ _('Viewer') }}</dt>
+    <dd>{{ _("Can view the app's settings but cannot make any changes") }}</dd>
+    <dt>{{ _('Support') }}</dt>
+    <dd>{{ _("Can view the app's settings and manage refund requests") }}</dd>
+  </dl>
+</section>
+</script>
 {% endblock %}

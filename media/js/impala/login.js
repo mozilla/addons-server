@@ -7,7 +7,7 @@ if ($('.login .browserid').length) {
         $('#id_username').focus();
         $(window).trigger('resize');
     }));
-    if($('form .notification-box, form .errorlist li').exists() || window.location.hash == "#open") {
+    if($('form .notification-box, form .errorlist li').length || window.location.hash == "#open") {
         $('#show-normal-login').trigger('click');
     }
 }
