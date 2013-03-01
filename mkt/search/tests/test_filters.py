@@ -65,18 +65,6 @@ class TestSearchFilters(BaseOAuth):
         qs = self._filter(self.req, {'premium_types': ['free', 'platinum']})
         ok_(u'Select a valid choice' in qs['premium_types'][0])
 
-    def test_app_type_anonymous(self):
-        # For anonymous users this has no effect.
-        qs = self._filter(self.req, {'app_type': 'hosted'})
-        ok_('filter' not in qs)
-
-    def test_app_type_user(self):
-        self.req.user = self.profile
-        qs = self._filter(self.req, {'app_type': 'hosted'})
-        ok_('filter' not in qs)
-
-    def test_app_type_reviewer(self):
-        self._grant('Apps:Review')
-        self.req.user = self.profile
+    def test_app_type(self):
         qs = self._filter(self.req, {'app_type': 'hosted'})
         eq_(qs['filter']['term'], {'app_type': 1})

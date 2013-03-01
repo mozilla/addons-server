@@ -62,7 +62,7 @@ def _filter_search(request, qs, query, filters=None, sorting=None,
     if 'premium_types' in show:
         if query.get('premium_types'):
             qs = qs.filter(premium_type__in=query.get('premium_types'))
-    if 'app_type' in query and acl.action_allowed(request, 'Apps', 'Review'):
+    if 'app_type' in query and query['app_type']:
         qs = qs.filter(app_type=query['app_type'])
     if 'sort' in show:
         sort_by = None

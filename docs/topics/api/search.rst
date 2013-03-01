@@ -24,14 +24,14 @@ described below:
 * `premium_types` (optional): Filters by whether the app is free or
   premium or has in-app purchasing. Any of 'free', 'free-inapp',
   'premium', 'premium-inapp', or 'other'.
+* `app_type` (optional): Filters by type of web app. One of 'hosted' or
+  'packaged'.
 * `sort` (optional): The field to sort by. One of 'downloads', 'rating',
   'price', 'created'. Sorts by relevance by default.
 
 The following parameters requires an OAuth token by a user with App
 Reviewer privileges:
 
-* `app_type` (optional): Filters by type of web app. One of 'hosted', or
-  'packaged'.
 
 The API returns a list of the apps sorted by relevance (default) or
 `sort`::
