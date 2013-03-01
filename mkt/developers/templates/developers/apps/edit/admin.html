@@ -102,6 +102,44 @@
             {% endif %}
           </td>
         </tr>
+        <tr>
+          <th>
+            <label for="child_content">
+              {{ _('Child Content') }}
+              {{ tip(None,
+                     _('When set this denotes this app contains content
+                        for children.')) }}
+            </label>
+          </th>
+          <td>
+            {% if editable and form %}
+              {{ form.child_content }}
+              {{ form.child_content.errors }}
+            {% else %}
+              <input type="checkbox"
+                     disabled{{ ' checked' if addon.has_flag('child_content') }}>
+            {% endif %}
+          </td>
+        </tr>
+        <tr>
+          <th>
+            <label for="child_content">
+              {{ _('Adult Content') }}
+              {{ tip(None,
+                     _('When set this denotes this app contains adult
+                        content')) }}
+            </label>
+          </th>
+          <td>
+            {% if editable and form %}
+              {{ form.adult_content }}
+              {{ form.adult_content.errors }}
+            {% else %}
+              <input type="checkbox"
+                     disabled{{ ' checked' if addon.has_flag('adult_content') }}>
+            {% endif %}
+          </td>
+        </tr>
       </tbody>
     </table>
     {% if editable %}

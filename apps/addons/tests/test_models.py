@@ -27,7 +27,7 @@ from addons.models import (Addon, AddonCategory, AddonDependency,
                            AddonDeviceType, AddonRecommendation, AddonType,
                            AddonUpsell, AddonUser, AppSupport, BlacklistedGuid,
                            Category, Charity, CompatOverride,
-                           CompatOverrideRange, FrozenAddon,
+                           CompatOverrideRange, Flag, FrozenAddon,
                            IncompatibleVersions, Persona, Preview)
 from addons.search import setup_mapping
 from applications.models import Application, AppVersion
@@ -839,6 +839,20 @@ class TestAddonModels(amo.tests.TestCase):
         after = "abc 3&lt;5 def"
 
         eq_(self.newlines_helper(before), after)
+
+    def test_app_flags(self):
+        addon = Addon.objects.get(pk=3615)
+        eq_(addon.has_flag('adult_content'), False)
+        eq_(addon.has_flag('child_content'), False)
+        flag = Flag(addon=addon, adult_content=True,
+                    child_content=False)
+        flag.save()
+        eq_(addon.has_flag('adult_content'), True)
+        eq_(addon.has_flag('child_content'), False)
+
+    def test_unknown_app_flag(self):
+        addon = Addon.objects.get(pk=3615)
+        eq_(addon.has_flag('random-does-not-exist'), False)
 
     def test_app_categories(self):
         addon = lambda: Addon.objects.get(pk=3615)
