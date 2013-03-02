@@ -1,35 +1,6 @@
 # A list of our CSS and JS assets for jingo-minify.
 
 CSS = {
-    'zamboni/css': (
-        'css/legacy/main.css',
-        'css/legacy/main-mozilla.css',
-        'css/legacy/jquery-lightbox.css',
-        'css/legacy/autocomplete.css',
-        'css/zamboni/zamboni.css',
-        'css/global/headerfooter.css',
-        'css/zamboni/tags.css',
-        'css/zamboni/tabs.css',
-        'css/impala/formset.less',
-        'css/impala/suggestions.less',
-        'css/impala/header.less',
-        'css/impala/moz-tab.css',
-        'css/impala/footer.less',
-        'css/impala/faux-zamboni.less',
-        'css/impala/collection-stats.less',
-        'css/zamboni/themes.less',
-    ),
-    'zamboni/files': (
-        'css/lib/syntaxhighlighter/shCoreDefault.css',
-        'css/zamboni/files.css',
-    ),
-    'zamboni/admin': (
-        'css/zamboni/admin-django.css',
-        'css/zamboni/admin-mozilla.css',
-        'css/zamboni/admin_features.css',
-        # Datepicker styles and jQuery UI core.
-        'css/zamboni/jquery-ui/custom-1.7.2.css',
-    ),
     'mkt/devreg': (
         # Contains reset, clearfix, etc.
         'css/devreg/base.css',
