@@ -1,20 +1,20 @@
 import hashlib
 import hmac
 import json
-from urlparse import urljoin
 
 from django.conf import settings
 from django.contrib.auth.models import AnonymousUser, User
 
 import commonware.log
-import oauth2
 from tastypie import http
 from tastypie.authentication import Authentication
 from tastypie.authorization import Authorization
 
 from access.middleware import ACLMiddleware
 from mkt.api.middleware import APIPinningMiddleware
-from mkt.api.models import Access
+
+from mkt.api.models import Access, Token, ACCESS_TOKEN
+from mkt.api.oauth import OAuthServer
 
 log = commonware.log.getLogger('z.api')
 
@@ -75,30 +75,52 @@ class OAuthAuthentication(Authentication):
             raise ValueError('SITE_URL is not specified')
 
         auth_header_value = request.META.get('HTTP_AUTHORIZATION')
-        if not auth_header_value:
+        if (not auth_header_value and
+            'oauth_token' not in request.META['QUERY_STRING']):
+            self.user = AnonymousUser()
             return self._error('headers')
+        auth_header = {'Authorization': auth_header_value}
 
-        oauth_server, oauth_request = initialize_oauth_server_request(request)
-        try:
-            key = get_oauth_consumer_key_from_header(auth_header_value)
-            if not key:
-                return None
-
-            consumer = Access.objects.get(key=key)
-            oauth_server.verify_request(oauth_request, consumer, None)
-            # Set the current user to be the consumer owner.
-            request.user = consumer.user
-
-        except Access.DoesNotExist:
-            log.error(u'Cannot find APIAccess token with that key: %s' % key)
-            request.user = AnonymousUser()
-            return self._error('headers')
-
-        except:
-            log.error(u'Error getting OAuth headers', exc_info=True)
-            request.user = AnonymousUser()
-            return self._error('headers')
-
+        method = getattr(request, 'signed_method', request.method)
+        oauth = OAuthServer()
+        if ('oauth_token' in request.META['QUERY_STRING'] or
+            'oauth_token' in auth_header_value):
+            # This is 3-legged OAuth.
+            try:
+                valid, oauth_request = oauth.verify_request(
+                    request.build_absolute_uri(),
+                    method, headers=auth_header,
+                    require_resource_owner=True)
+            except ValueError:
+                return False
+            if not valid:
+                log.error(u'Cannot find APIAccess token with that key: %s'
+                          % oauth.attempted_key)
+                return self._error('headers')
+            try:
+                request.user = Token.objects.get(
+                    token_type=ACCESS_TOKEN,
+                    key=oauth_request.resource_owner_key).user
+            except Token.DoesNotExist:
+                request.user = AnonymousUser()
+        else:
+            # This is 2-legged OAuth.
+            try:
+                valid, oauth_request = oauth.verify_request(
+                    request.build_absolute_uri(),
+                    method, headers=auth_header,
+                    require_resource_owner=False)
+            except ValueError:
+                return False
+            if not valid:
+                log.error(u'Cannot find APIAccess token with that key: %s'
+                          % oauth.attempted_key)
+                return self._error('headers')
+            try:
+                request.user = Access.objects.get(
+                    key=oauth_request.client_key).user
+            except Access.DoesNotExist:
+                request.user = AnonymousUser()
         ACLMiddleware().process_request(request)
         # We've just become authenticated, time to run the pinning middleware
         # again.
@@ -133,7 +155,8 @@ class OptionalOAuthAuthentication(OAuthAuthentication):
 
     def is_authenticated(self, request, **kw):
         auth_header_value = request.META.get('HTTP_AUTHORIZATION', None)
-        if not auth_header_value:
+        if (not auth_header_value and
+            'oauth_token' not in request.META['QUERY_STRING']):
             request.user = AnonymousUser()
             return True
 
@@ -169,58 +192,3 @@ class SharedSecretAuthentication(Authentication):
         except Exception, e:
             log.info('Bad shared-secret auth data: %s (%s)', auth, e)
             return False
-
-
-def initialize_oauth_server_request(request):
-    """
-    OAuth initialization.
-    """
-
-    # Since 'Authorization' header comes through as 'HTTP_AUTHORIZATION',
-    # convert it back.
-    auth_header = {}
-    if 'HTTP_AUTHORIZATION' in request.META:
-        auth_header = {'Authorization': request.META.get('HTTP_AUTHORIZATION')}
-
-    url = urljoin(settings.SITE_URL, request.path)
-
-    # Note: we are only signing using the QUERY STRING. We are not signing the
-    # body yet. According to the spec we should be including an oauth_body_hash
-    # as per:
-    #
-    # http://oauth.googlecode.com/svn/spec/ext/body_hash/1.0/drafts/1/spec.html
-    #
-    # There is no support in python-oauth2 for this yet. There is an
-    # outstanding pull request for this:
-    #
-    # https://github.com/simplegeo/python-oauth2/pull/110
-    #
-    # Or time to move to a better OAuth implementation.
-    method = getattr(request, 'signed_method', request.method)
-    oauth_request = oauth2.Request.from_request(
-            method, url, headers=auth_header,
-            query_string=request.META['QUERY_STRING'])
-    oauth_server = oauth2.Server(signature_methods={
-        'HMAC-SHA1': oauth2.SignatureMethod_HMAC_SHA1()
-        })
-    return oauth_server, oauth_request
-
-
-def get_oauth_consumer_key_from_header(auth_header_value):
-    key = None
-
-    # Process Auth Header
-    if not auth_header_value:
-        return None
-    # Check that the authorization header is OAuth.
-    if auth_header_value[:6] == 'OAuth ':
-        auth_header = auth_header_value[6:]
-        try:
-            # Get the parameters from the header.
-            header_params = oauth2.Request._split_header(auth_header)
-            if 'oauth_consumer_key' in header_params:
-                key = header_params['oauth_consumer_key']
-        except:
-            raise OAuthError('Unable to parse OAuth parameters from '
-                    'Authorization header.')
-    return key

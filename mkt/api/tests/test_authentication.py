@@ -89,7 +89,7 @@ class TestOAuthAuthentication(TestCase):
         self.auth = authentication.OAuthAuthentication()
         self.profile = UserProfile.objects.get(pk=2519)
         self.profile.update(read_dev_agreement=datetime.today())
-        self.access = Access.objects.create(key='foo', secret=generate(),
+        self.access = Access.objects.create(key='test_oauth_key', secret=generate(),
                                             user=self.profile.user)
 
     def call(self, client=None):
@@ -97,8 +97,8 @@ class TestOAuthAuthentication(TestCase):
         client = client or OAuthClient(self.access)
         url = client.get_absolute_url(url)
         return RequestFactory().get(url,
-                 HTTP_HOST='api',
-                 HTTP_AUTHORIZATION=client.header('GET', url))
+                 HTTP_HOST='testserver',
+                 HTTP_AUTHORIZATION=client.sign('GET', url)[1]['Authorization'])
 
     def test_accepted(self):
         ok_(self.auth.is_authenticated(self.call()))
@@ -132,6 +132,7 @@ class TestOAuthAuthentication(TestCase):
     def test_request_has_role(self):
         self.add_group_user(self.profile, 'App Reviewers')
         ok_(self.auth.is_authenticated(self.call()))
+
 
 
 @patch.object(settings, 'SECRET_KEY', 'gubbish')
@@ -172,6 +173,7 @@ class TestOptionalOAuthAuthentication(TestCase):
         ok_(self.auth.is_authenticated(req))
 
     def test_something(self):
+        # Malformed auth info is rejected.
         req = RequestFactory().get('/', HTTP_AUTHORIZATION='No!')
         ok_(not self.auth.is_authenticated(req))
 
@@ -210,10 +212,12 @@ class TestMultipleAuthentication(TestCase):
         eq_(self.resource.is_authenticated(req), None)
 
     def test_multiple_fails(self):
-        client = OAuthClient(Mock(key='foo', secret='bar'))
-        req = RequestFactory().get('/',
-                HTTP_HOST='api',
-                HTTP_AUTHORIZATION=client.header('GET', 'http://foo/'))
+        client = OAuthClient(Mock(key='test_oauth_key', secret='test_oauth_secret'))
+        req = RequestFactory().get(
+            '/',
+            HTTP_HOST='testserver',
+            HTTP_AUTHORIZATION=client.sign(
+                'GET', 'http://foo/')[1]['Authorization'])
         req.user = AnonymousUser()
         next_auth = Mock()
         self.resource._meta.authentication = (

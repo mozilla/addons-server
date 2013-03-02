@@ -1,0 +1,20 @@
+{% extends 'developers/base_impala.html' %}
+{% set title = _('Authorize Access') %}
+
+{% block title %}{{ hub_page_title(title) }}{% endblock %}
+
+{% block content %}
+  <h1>{{ title }}</h1>
+  <section class="primary">
+    <div class="island">
+    {% trans %}
+      {{app_name}} would like access to your Marketplace account.
+    {% endtrans %}
+    </div>
+    <form method="POST">
+      <input type="hidden" name="oauth_token" value="{{ oauth_token }}">
+      <button name="grant" value="grant">{{ _('Grant') }}</button>
+      <button name="deny" class="cancel" value="deny">{{ _('Deny') }}</button>
+    </form>
+  </section>
+{% endblock %}

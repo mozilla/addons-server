@@ -15,6 +15,7 @@ from mkt.account.urls import (api_patterns as account_api_patterns,
                               users_patterns as mkt_users_patterns)
 from mkt.detail.views import manifest as mini_manifest
 from mkt.developers.views import login
+from mkt.api import oauth
 from mkt.home.urls import home_api_patterns
 from mkt.purchase.urls import webpay_services_patterns
 from mkt.receipts.urls import receipt_api_patterns
@@ -128,6 +129,15 @@ urlpatterns = patterns('',
     # Developer Registration Login.
     url('^login$', login, name='users.login'),
     url('^logout$', logout, name='users.logout'),
+
+    url('^oauth/register/$', oauth.access_request,
+        name='mkt.developers.oauth_access_request'),
+
+    url('^oauth/token/$', oauth.token_request,
+        name='mkt.developers.oauth_token_request'),
+
+    url('^oauth/authorize/$', oauth.authorize,
+        name='mkt.developers.oauth_authorize'),
 
     # Version the API here.
     url('^api/', include(api_patterns)),
