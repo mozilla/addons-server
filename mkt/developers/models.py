@@ -9,6 +9,7 @@ from tower import ugettext_lazy as _lazy
 import amo
 from lib.crypto import generate_key
 from lib.pay_server import client
+from mkt.constants.payments import ACCESS_PURCHASE, ACCESS_SIMULATE
 from mkt.purchase import webpay
 from users.models import UserForeignKey
 
@@ -199,7 +200,8 @@ class AddonPaymentAccount(CurlingHelper, amo.models.ModelBase):
         except ObjectDoesNotExist:
             generic_product = client.api.generic.product.post(data={
                 'seller': payment_account.seller_uri, 'secret': secret,
-                'external_id': external_id, 'public_id': str(uuid.uuid4())
+                'external_id': external_id, 'public_id': str(uuid.uuid4()),
+                'access': ACCESS_PURCHASE,
             })
 
         product_uri = generic_product['resource_uri']
@@ -315,9 +317,11 @@ class UserInappKey(CurlingHelper, amo.models.ModelBase):
     @classmethod
     def create(cls, user):
         sel = SolitudeSeller.create(user)
+        # Create a product key that can only be used for simulated purchases.
         prod = client.api.generic.product.post(data={
             'seller': sel.resource_uri, 'secret': generate_key(48),
-            'external_id': str(uuid.uuid4()), 'public_id': str(uuid.uuid4())
+            'external_id': str(uuid.uuid4()), 'public_id': str(uuid.uuid4()),
+            'access': ACCESS_SIMULATE,
         })
         log.info('User %s created an in-app payments dev key product=%s '
                  'with %s' % (user, prod['resource_pk'], sel))

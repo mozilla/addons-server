@@ -12,6 +12,7 @@ import amo.tests
 from amo.urlresolvers import reverse
 from addons.models import (Addon, AddonCategory, AddonDeviceType, AddonUser,
                            Category)
+from mkt.constants.payments import ACCESS_PURCHASE, ACCESS_SIMULATE
 from market.models import Price
 from users.models import UserProfile
 
@@ -176,6 +177,8 @@ class TestInappKeys(InappKeysTest):
         key = UserInappKey.objects.get()
         eq_(key.solitude_seller.resource_uri, self.seller_uri)
         eq_(key.seller_product_pk, self.product_pk)
+        m = solitude.api.generic.product.post.mock_calls
+        eq_(m[0][2]['data']['access'], ACCESS_SIMULATE)
 
     def test_reset(self, solitude):
         self.setup_solitude(solitude)
@@ -336,6 +339,8 @@ class TestPayments(amo.tests.TestCase):
 
         kw = api.bango.product.post.call_args[1]['data']
         ok_(kw['secret'], kw)
+        kw = api.generic.product.post.call_args[1]['data']
+        eq_(kw['access'], ACCESS_PURCHASE)
 
 
 class TestRegions(amo.tests.TestCase):
