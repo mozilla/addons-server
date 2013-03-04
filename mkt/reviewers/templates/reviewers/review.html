@@ -22,7 +22,18 @@
 
 <div id="scroll_sidebar_parent">
   <div id="scroll_sidebar">
-    <div class="currently_viewing_warning"></div>
+    <ul class="statuslist">
+      <li class="currently_viewing_warning">There is stuff here</li>
+      <li>
+        {{ amo.STATUS_CHOICES[product.status] }}
+        {% if product.in_rereview_queue() %}
+          &middot; <b id="queue-rereview">{{ _('In re-review queue') }}</b>
+        {% endif %}
+        {% if product.in_escalation_queue() %}
+          &middot; <b id="queue-escalation">{{ _('In escalation queue') }}</b>
+        {% endif %}
+      </li>
+    </ul>
     <ul id="actions" class="c">
       <li class="app-install">
         <div class="product"
@@ -53,10 +64,14 @@
 <div id="addon" data-id="{{ product.id }}" data-url="{{ url('editors.review_viewing') }}">
 
 <section class="island">
-  {% include 'reviewers/includes/details.html' %}
+  {% if DESKTOP %}
+    {% include 'reviewers/includes/details.html' %}
+  {% else %}
+    {% include 'reviewers/includes/mobile_details.html' %}
+  {% endif %}
 </section>
 
-  <div id="history" class="island c">
+  <div id="history" class="island alpha c">
     <div id="review-files-header">
       <h3>
         {{ _('App History') }}

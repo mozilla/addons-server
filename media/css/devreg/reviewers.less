@@ -1298,6 +1298,8 @@ iframe#manifest-contents {
     }
 }
 
+@mobileborder: #d7d2c3;
+
 @media (max-width: @mobile-max) {
     #reviewers-score-bar {
         display: none;
@@ -1313,30 +1315,77 @@ iframe#manifest-contents {
     #actions li {
         width: 50%;
         &.app-install {
-            float: none;
-            margin-bottom: 10px;
-            width: 100%;
             .button {
                 display: block;
             }
         }
-        + li {
-            padding-left: 0;
-            + li {
-                padding-left: 5px;
-            }
+        &:first-child {
+            padding-right: 3px;
+        }
+        &:nth-child(2) {
+            padding-left: 3px;
+        }
+        &:last-child {
+            display: none;
+        }
+        &.app-install button.product, .button {
+            padding: 0;
+            top: 0;
+            height: 48px;
+            font-size: 13px;
+            font-weight: normal;
+            border: 0;
         }
     }
-    #page h1 {
+    #page h1.menutrigger {
         background: #d7d2c4;
         color: #686868;
         line-height: 38px;
         margin: 0;
         padding: 0 8px;
         border-radius: 3px 3px 0 0;
+
+    }
+    .statuslist, .island.alpha {
+        border: 1px solid @mobileborder;
+        border-radius: 4px;
+        background: #fff;
+        margin-bottom: 15px;
+    }
+    .statuslist {
+        > li {
+            padding: 0 15px;
+            line-height: 40px;
+            &:first-child {
+                border-bottom: 1px solid @mobileborder;
+            }
+            &:only-child {
+                border-bottom: 0;
+            }
+        }
+        &.padded > li {
+            padding: 15px;
+        }
+    }
+    .review-actions .action_nav li:first-child,
+    .review-actions .action_nav li:last-child,
+    .review-actions .action_nav li {
+        border: 1px solid #2E5186;
+    }
+    .review-actions .action_nav li {
+        border-radius: 0;
+    }
+    .review-actions .action_nav li:first-child {
+        border-radius: 5px 5px 0 0;
+    }
+    .review-actions .action_nav li:last-child {
+        border-radius: 0 0 5px 5px;
     }
     .review-actions .action_nav li {
         display: block;
+    }
+    header .author {
+        margin: -30px 0 20px 50px;
     }
     .tabnav + .island {
         .border-box;
@@ -1349,10 +1398,42 @@ iframe#manifest-contents {
         border: 0;
         border-radius: 0;
         padding: 0;
+        background: transparent;
+        box-shadow: none;
     }
     .island > p {
         padding: 5px 6px;
         line-height: 22px;
+    }
+    #scroll_sidebar_parent li {
+        margin-top: 0;
+    }
+    .expandable {
+        .thumbnail, .expandcontent {
+            max-width: 200px;
+        }
+        .expandcontent {
+            float: left;
+            max-height: 200px;
+            overflow: hidden;
+            &.short {
+                max-height: 48px;
+            }
+            &.expanded {
+                max-height: inherit;
+            }
+        }
+        .showmore {
+            float: right;
+            margin-top: 4px;
+            font-weight: bold;
+        }
+    }
+    #review-files-header {
+        border-bottom: 1px solid #A5BFCE;
+        h3 {
+            float: none;
+        }
     }
 }
 

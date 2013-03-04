@@ -1,0 +1,155 @@
+{% from 'addons/macros.html' import price %}
+{% set previews = product.all_previews %}
+<div id="summary">
+  <ul class="statuslist padded">
+    {# Mobile Image Gallery #}
+    {% if previews %}
+    <li class="expandable c">
+      <ul class="expandcontent">
+        {% for preview in previews %}
+        <li>
+          <a class="screenshot thumbnail" rel="jquery-lightbox"
+            href="{{ preview.image_url }}" title="{{ preview.caption }}">
+            <img src="{{ preview.thumbnail_url }}">
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+      <a href="#" class="showmore">{{ _('more...') }}</a>
+    </li>
+    {% endif %}
+    {# Mobile description section. #}
+    {% if product.developer_comments or product.summary %}
+      <li class="expandable c">
+        <div class="expandcontent short">
+          {% if product.summary %}
+            <p{{ product.summary|locale_html }}>{{ product.summary|nl2br }}</p>
+          {% endif %}
+          {% if product.developer_comments %}
+            <h2>{{ _('Developer Comments') }}</h2>
+            <div class="prose userinput">
+              <p{{ product.developer_comments|locale_html }}>{{
+                product.developer_comments|nl2br }}</p>
+            </div>
+          {% endif %}
+        </div>
+        <a href="#" class="showmore">{{ _('more...') }}</a>
+      </li>
+    {% endif %}
+  </ul>
+
+  <ul class="statuslist">
+    <li class="expandable c">
+      <div class="expandcontent short">
+        <h2>{{ _('Details') }}</h2>
+        <dl>
+          <dt>{{ _('Type') }}</dt>
+          <dd>{{ _('Packaged app') if product.is_packaged else _('Hosted app') }}</dd>
+          <dt>{{ _('Manifest URL') }}</dt>
+          <dd>
+            <a href="#" id="view-manifest" data-manifest="{{ product.manifest_url }}"
+               data-url="{{ url('reviewers.apps.review.manifest', product.app_slug) }}">
+              {{ product.manifest_url }} <b>{{ _('View') }}</b></a>
+          </dd>
+          <dt>{{ _('Default Locale') }}</dt>
+          <dd>{{ product.default_locale }}</dd>
+          <dt>{{ _('Price') }}</dt>
+          <dd>{{ price(product) }}
+            {% if product.is_premium() %}
+              &middot;
+              <span id="receipt-check-result"
+                    data-url="{{ url('receipt.check', product.guid) }}"></span>
+            {% endif %}
+          </dd>
+          <dt>{{ _('Updated') }}</dt>
+          <dd class="addon-updated">
+            <time datetime="{{ product.last_updated|isotime }}">
+              {{ product.last_updated|datetime }}</time>
+          </dd>
+          {% if product.homepage %}
+            <dt>{{ _('Website') }}</dt>
+            <dd>
+              <a href="{{ product.homepage|external_url }}">
+                {{ product.homepage }}</a>
+            </dd>
+          {% endif %}
+          {% if product.compatible_apps[APP] %}
+            <dt>{{ _('Works with') }}</dt>
+            <dd>{{ product.compatible_apps[APP] }}</dd>
+          {% endif %}
+          {% if product.total_reviews %}
+            <dt>{{ _('Rating') }}</dt>
+            <dd>{{ impala_reviews_link(product) }}</dd>
+          {% endif %}
+          <dt>{{ _('Total Downloads') }}</dt>
+          <dd class="meta-stats">
+            <b class="total-downloads">{{ product.total_downloads|numberfmt }}</b>
+            {% if product.public_stats %}
+              <a href="{{ product.get_stats_url() }}">{{ _('View Statistics') }}</a>
+            {% endif %}
+          </dd>
+          <dt>{{ _('Weekly Downloads') }}</dt>
+          <dd class="meta-stats">
+            <b class="weekly-downloads">{{ product.weekly_downloads|numberfmt }}</b>
+          </dd>
+          <dt>{{ _('Abuse Reports') }}</dt>
+          <dd class="abuse-reports">
+            <a href="{{ url('reviewers.apps.review.abuse', product.app_slug) }}">
+              <b>{{ product.abuse_reports.count()|numberfmt }}</b></a>
+          </dd>
+          {% with device_types = product.device_types %}
+            {% if device_types %}
+              <dt>{{ _('Device Types') }}</dt>
+              <dd>
+                {% for device in device_types %}
+                  {{ device.name }}{% if not loop.last %}, {% endif %}
+                {% endfor %}
+              </dd>
+            {% endif %}
+          {% endwith %}
+          {% if product.privacy_policy %}
+            <dt>{{ _('Privacy Policy') }}</dt>
+            <dd>
+              <a href="{{ product.get_detail_url('privacy') }}">
+                {{ _('View Privacy Policy') }}</a>
+            </dd>
+          {% endif %}
+          <dt>{{ _('Team Members') }}</dd>
+          <dd>
+            {% for author in product.authors.all() %}
+              <a href="{{ url('users.profile', author.username) }}">
+                {{ author.name }}</a>{% if not loop.last %}, {% endif %}
+            {% endfor %}
+          </dd>
+          <dt>{{ _('Categories') }}</dt>
+          <dd>
+            {% for category in product.categories.all() %}
+              <a href="{{ category.get_url_path() }}">
+                {{ category.name }}</a>{% if not loop.last %}, {% endif %}
+            {% endfor %}
+          </dd>
+          {% if flags %}
+            <dt>{{ _('Flags') }}</dt>
+            <dd>{{ flags|join(', ') }}</dd>
+          {% endif %}
+        </dl>
+      </div>
+      <a href="#" class="showmore">{{ _('more...') }}</a>
+    </li>
+  </ul>
+
+</div>
+
+{% if reviews is defined %}
+  {{ review_list_box(addon=product, reviews=reviews) }}
+{% endif %}
+
+{% if review_form %}
+  {% if request.user.is_authenticated() %}
+    {{ review_add_box(addon=product) }}
+  {% endif %}
+{% endif %}
+
+{% if abuse_form %}
+  {{ addon_report_abuse(hide=True, addon=product) }}
+{% endif %}

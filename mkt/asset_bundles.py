@@ -301,7 +301,9 @@ JS = {
         'js/zamboni/storage.js',
         'js/zamboni/editors.js',
         'js/mkt/reviewers.js',
+        'js/zamboni/editors.js',
         'js/devreg/menupicker.js',
+        'js/devreg/expandable.js',
         'js/devreg/reviewers_init.js',
     ),
     'mkt/stats': (
