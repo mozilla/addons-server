@@ -151,7 +151,9 @@ $(document).ready(function() {
 
     // Icon previews.
     imageStatus.start(true, false);
-    $('#submit-media').on('click', imageStatus.cancel);
+    $('#submit-media').on('click', function(){
+        imageStatus.cancel();
+    });
 
     if (document.getElementById('submit-details')) {
         //submit_details.general();

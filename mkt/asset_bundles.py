@@ -206,10 +206,12 @@ JS = {
 
         'js/mkt/gettext.js',
         'js/mkt/tracking.js',
+        'js/devreg/init.js',  # This one excludes buttons initialization, etc.
         'js/mkt/modal.js',
         'js/mkt/overlay.js',
         'js/mkt/capabilities.js',
-        'js/devreg/init.js',  # This one excludes buttons initialization, etc.
+        'js/devreg/slugify.js',
+        'js/devreg/formdata.js',
         'js/devreg/tooltip.js',
         'js/devreg/popup.js',
         'js/mkt/login.js',
