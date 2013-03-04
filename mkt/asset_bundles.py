@@ -327,6 +327,7 @@ JS = {
         'js/mkt/payments.js',
         'js/mkt/install.js',
         'js/mkt/buttons.js',
+        'js/zamboni/editors.js',
         'js/mkt/reviewers.js',
         'js/devreg/menupicker.js',
         'js/devreg/reviewers_init.js',
