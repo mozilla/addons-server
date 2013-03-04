@@ -31,20 +31,20 @@
         initReviewActions();
     }
 
-    if($('#monthly.highcharts-container').exists()) {
+    if($('#monthly.highcharts-container').length) {
         initPerformanceStats();
     }
 
-    if($('#scroll_sidebar').exists() && !$('body.mobile, body.tablet').length) {
+    if($('#scroll_sidebar').length && !$('body.mobile, body.tablet').length) {
         initScrollingSidebar();
     }
 
-    if($('#addon-queue').exists()) {
+    if($('#addon-queue').length) {
         initQueue();
     }
 
     // Show add-on ID when icon is clicked
-    if ($("#addon[data-id], #persona[data-id]").exists()) {
+    if ($("#addon[data-id], #persona[data-id]").length) {
       $("#addon .icon").click(function() {
         window.location.hash = "id=" + $("#addon, #persona").attr("data-id");
       });
