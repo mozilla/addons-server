@@ -5,9 +5,10 @@ from django.core.management.base import BaseCommand
 
 from celery.task.sets import TaskSet
 
-import addons.models
+import amo
+from addons.models import Webapp
 from lib.crypto.packaged import sign
-from mkt.webapps.models import Webapp
+
 
 HELP = """\
 Start tasks to re-sign web apps.
@@ -19,6 +20,7 @@ To specify which webapps to sign:
 If omitted, all signed apps will be re-signed.
 """
 
+
 log = logging.getLogger('z.addons')
 
 
@@ -27,12 +29,12 @@ class Command(BaseCommand):
         make_option('--webapps',
                     help='Webapp ids to process. Use commas to separate '
                          'multiple ids.'),
-        )
+    )
 
     help = HELP
 
     def handle(self, *args, **kw):
-        qs = Webapp.objects.filter(is_packaged=True)
+        qs = Webapp.objects.filter(is_packaged=True, status=amo.STATUS_PUBLIC)
         if kw['webapps']:
             pks = [int(a.strip()) for a in kw['webapps'].split(',')]
             qs = qs.filter(pk__in=pks)

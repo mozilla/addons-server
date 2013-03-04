@@ -111,6 +111,10 @@ class TestSignApps(amo.tests.TestCase):
             name='Mozillaball ょ', app_slug='test',
             is_packaged=True, version_kw={'version': '1.0',
                                           'created': None})
+        self.app3 = amo.tests.app_factory(
+            name='Test app 3', app_slug='test3', status=amo.STATUS_REJECTED,
+            is_packaged=True, version_kw={'version': '1.0',
+                                          'created': None})
 
     def test_by_webapp(self, sign_mock):
         v1 = self.app.get_version()
@@ -125,9 +129,10 @@ class TestSignApps(amo.tests.TestCase):
         call_command('sign_apps')
         file1 = v1.all_files[0]
         file2 = v2.all_files[0]
+        eq_(len(sign_mock.mock_calls), 2)
         sign_mock.assert_has_calls([
             mock.call(file1.file_path,
                       file1.signed_file_path, False),
             mock.call(file2.file_path,
                       file2.signed_file_path, False)],
-        any_order=True)
+            any_order=True)
