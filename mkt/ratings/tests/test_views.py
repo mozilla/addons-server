@@ -108,7 +108,8 @@ class TestCreate(ReviewTest):
             ff[0].editorreview = False
             ff[0].save()
 
-    def test_review_edit_review_initial(self):
+    @mock.patch('mkt.ratings.views.record_action')
+    def test_review_edit_review_initial(self, record_action):
         # Existing review? Then edit that review.
         r = self.client.get(self.add_mobile)
         eq_(pq(r.content)('textarea[name=body]').html(), 'I \u042f so hard.')
@@ -123,6 +124,7 @@ class TestCreate(ReviewTest):
         self.review.delete()
         r = self.client.get(self.add_mobile)
         eq_(pq(r.content)('textarea[name=body]').html(), None)
+        assert not record_action.called
 
     def test_review_success_dup(self):
         Review.objects.create(
@@ -162,7 +164,10 @@ class TestCreate(ReviewTest):
         self.client.post(self.add, {'body': 'revision', 'rating': 2})
         eq_(Review.objects.count(), old_cnt - 1)
 
-    def test_can_review_purchased(self):
+    @mock.patch('mkt.ratings.views.record_action')
+    def test_can_review_purchased(self, record_action):
+        Review.objects.all().delete()
+
         self.webapp.addonpurchase_set.create(user=self.user)
         self.webapp.update(premium_type=amo.ADDON_PREMIUM)
         data = {'body': 'x', 'rating': 1}
@@ -170,6 +175,7 @@ class TestCreate(ReviewTest):
         r = self.client.post(self.add, data)
         self.assertRedirects(r, self.webapp.get_ratings_url('list'),
                              status_code=302)
+        assert record_action.called
 
     def test_not_review_purchased(self):
         self.webapp.update(premium_type=amo.ADDON_PREMIUM)
@@ -359,7 +365,8 @@ class TestCreate(ReviewTest):
         eq_(self.get_webapp().total_reviews, 1)
         eq_(Review.objects.all()[0].version, None)
 
-    def test_review_success(self):
+    @mock.patch('mkt.ratings.views.record_action')
+    def test_review_success(self, record_action):
         Review.objects.all().delete()
 
         qs = self.webapp.reviews
@@ -374,8 +381,10 @@ class TestCreate(ReviewTest):
             'Expected ADD_REVIEW entry')
         eq_(self.get_webapp().total_reviews, 1)
         eq_(Review.objects.all()[0].version, None)
+        assert record_action.called
 
-    def test_packaged_app_review_success(self):
+    @mock.patch('mkt.ratings.views.record_action')
+    def test_packaged_app_review_success(self, record_action):
         self.webapp.update(is_packaged=True)
 
         Review.objects.all().delete()
@@ -392,8 +401,10 @@ class TestCreate(ReviewTest):
             'Expected ADD_REVIEW entry')
         eq_(self.get_webapp().total_reviews, 1)
         eq_(Review.objects.all()[0].version, self.webapp.current_version)
+        assert record_action.called
 
-    def test_packaged_app_review_success_edit(self):
+    @mock.patch('mkt.ratings.views.record_action')
+    def test_packaged_app_review_success_edit(self, record_action):
         self.webapp.update(is_packaged=True)
         Review.objects.all().update(version=self.webapp.current_version)
 
@@ -409,6 +420,7 @@ class TestCreate(ReviewTest):
             'Expected EDIT_REVIEW entry')
         eq_(self.get_webapp().total_reviews, 1)
         eq_(Review.objects.all()[0].version, self.webapp.current_version)
+        assert not record_action.called
 
     def test_packaged_app_review_next_version(self):
         self.webapp.update(is_packaged=True)

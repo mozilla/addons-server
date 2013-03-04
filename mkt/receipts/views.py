@@ -19,7 +19,7 @@ from amo.urlresolvers import reverse
 from amo.utils import memoize_get
 from devhub.models import AppLog
 from editors.views import reviewer_required
-from lib.metrics import send_request
+from lib.metrics import record_action
 from lib.crypto.receipt import SigningError
 from lib.cef_loggers import receipt_cef
 import mkt
@@ -118,7 +118,7 @@ def _record(request, addon):
             raise http.Http404
 
     amo.log(amo.LOG.INSTALL_ADDON, addon)
-    send_request('install', request, {
+    record_action('install', request, {
         'app-domain': addon.domain_from_url(addon.origin),
         'app-id': addon.pk,
         'anonymous': request.user.is_anonymous(),

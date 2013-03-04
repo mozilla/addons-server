@@ -14,8 +14,9 @@ from django.utils.http import int_to_base36
 from mock import ANY, Mock, patch
 from nose.tools import eq_
 from nose import SkipTest
+
 # Unused, but needed so that we can patch jingo.
-from waffle import helpers
+from waffle import helpers  # NOQA
 import waffle
 
 import amo
@@ -746,7 +747,10 @@ class TestPersonaLogin(UserViewBase):
         http_request.return_value = FakeResponse(200,
                                                  json.dumps({'status': 'okay',
                                                              'email': email}))
-        browserid_authenticate(request=Mock(), assertion='fake-assertion')
+        request = Mock()
+        request.LANG = 'foo'
+        request.GET = request.META = {}
+        browserid_authenticate(request=request, assertion='fake-assertion')
         return UserProfile.objects.get(email=email)
 
     def test_amo_source(self):
@@ -757,6 +761,11 @@ class TestPersonaLogin(UserViewBase):
     def test_mmo_source(self):
         profile = self.create_profile()
         eq_(profile.source, amo.LOGIN_SOURCE_MMO_BROWSERID)
+
+    @patch('users.views.record_action')
+    def test_user_creation_is_recorded(self, record_action):
+        self.create_profile()
+        assert record_action.called
 
     @patch.object(waffle, 'switch_is_active', lambda x: True)
     @patch.object(settings, 'NATIVE_BROWSERID_VERIFICATION_URL',

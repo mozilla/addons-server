@@ -673,7 +673,8 @@ class TestDetails(TestSubmit):
 
         self.assertSetEqual(addon.device_types, self.device_types)
 
-    def test_success(self):
+    @mock.patch('mkt.submit.views.record_action')
+    def test_success(self, record_action):
         self._step()
         data = self.get_dict()
         r = self.client.post(self.url, data)
@@ -683,6 +684,7 @@ class TestDetails(TestSubmit):
         self.assert3xx(r, self.get_url('done'))
 
         eq_(self.webapp.status, amo.STATUS_PENDING)
+        assert record_action.called
 
     def test_success_paid(self):
         self._step()

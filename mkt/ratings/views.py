@@ -14,6 +14,7 @@ from addons.decorators import addon_view_factory, has_purchased_or_refunded
 from addons.models import Addon
 from amo.decorators import (json_view, login_required, post_required,
                             restricted_content)
+from lib.metrics import record_action
 from mkt.fragments.decorators import bust_fragments_on_post
 
 from reviews.forms import ReviewReplyForm
@@ -222,6 +223,7 @@ def add(request, addon):
                           (review.id, request.user.id))
                 messages.success(request,
                                  _('Your review was successfully added!'))
+                record_action('new-review', request, {'app-id': addon.id})
 
             return redirect(addon.get_ratings_url('list'))
 

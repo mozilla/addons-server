@@ -5,7 +5,6 @@ from django.utils.translation.trans_real import to_language
 
 import commonware.log
 import jingo
-import waffle
 from waffle.decorators import waffle_switch
 
 import amo
@@ -13,6 +12,7 @@ from amo.decorators import login_required
 from amo.urlresolvers import reverse
 from addons.models import Addon, AddonUser
 from files.models import Platform
+from lib.metrics import record_action
 from users.models import UserProfile
 
 import mkt
@@ -196,6 +196,7 @@ def details(request, addon_id, addon):
                 if not region.has_payments:
                     AddonExcludedRegion.objects.get_or_create(
                         addon=addon, region=region.id)
+        record_action('app-submitted', request, {'app-id': addon.pk})
 
         return redirect('submit.app.done', addon.app_slug)
 

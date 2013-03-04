@@ -1,6 +1,5 @@
 import hashlib
 import os
-import shutil
 import tempfile
 import urllib
 import urlparse
@@ -21,7 +20,6 @@ from amo.urlresolvers import reverse
 from addons.models import Addon
 from applications.models import AppVersion
 from files import tasks
-from files.models import File
 from files.helpers import rmtree
 from files.utils import JetpackUpgrader
 
@@ -44,7 +42,7 @@ class TestUpgradeJetpacks(amo.tests.TestCase):
         file_.update(**file_values)
         return file_
 
-    def test_send_request(self):
+    def test_record_action(self):
         file_ = self.file(builder_version='1234500')
         tasks.start_upgrade([file_.id], sdk_version='1.2')
         assert self.urllib2.urlopen.called

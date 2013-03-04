@@ -8,7 +8,7 @@ import mock
 from nose.tools import eq_
 
 import amo.tests
-from lib.metrics import metrics, send, send_request
+from lib.metrics import metrics, send, record_action
 
 
 @mock.patch('lib.metrics.urllib2.urlopen')
@@ -33,12 +33,12 @@ class TestMetrics(amo.tests.TestCase):
         send('install', {'name': u'Вагиф Сәмәдоғлу'})
 
     @mock.patch('lib.metrics.record_stat')
-    def test_send_request(self, record_stat, urlopen):
+    def test_record_action(self, record_stat, urlopen):
         request = mock.Mock()
         request.GET = {'src': 'foo'}
         request.LANG = 'en'
         request.META = {'HTTP_USER_AGENT': 'py'}
-        send_request('install', request, {})
+        record_action('install', request, {})
         assert record_stat.called
         data = json.loads(urlopen.call_args[0][0].data)
         eq_(data['user-agent'], 'py')

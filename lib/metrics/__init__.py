@@ -27,11 +27,20 @@ def send(action, data):
     metrics.delay(uid, action, data)
 
 
-def send_request(action, request, data):
+def record_action(action, request, data=None):
+    """Records the given action by sending it to the metrics servers.
+
+    Currently this is sending the data to the metrics servers and storing this
+    data internally in the monolith temporary table.
+
+    :param action: the action related to this request.
+    :param request: the request that triggered this call.
+    :param data: some optional additional data about this call.
+
     """
-    Passes to send, but pulls what we'd like out of the request
-    before doing so. Use this from Django views.
-    """
+    if data is None:
+        data = {}
+
     data['user-agent'] = request.META.get('HTTP_USER_AGENT')
     data['locale'] = request.LANG
     data['src'] = request.GET.get('src', '')

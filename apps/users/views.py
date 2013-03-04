@@ -52,6 +52,8 @@ from translations.query import order_by_translation
 from users.models import UserNotification
 import users.notifications as notifications
 
+from lib.metrics import record_action
+
 from .models import UserProfile
 from .signals import logged_out
 from . import forms
@@ -374,6 +376,7 @@ def browserid_authenticate(request, assertion, is_native=False):
     log_cef('New Account', 5, request, username=username,
             signature='AUTHNOTICE',
             msg='User created a new account (from Persona)')
+    record_action('new-user', request)
     return profile, None
 
 

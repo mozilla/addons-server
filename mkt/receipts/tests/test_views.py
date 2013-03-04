@@ -150,26 +150,26 @@ class TestInstall(amo.tests.TestCase):
         eq_(logs.count(), 1)
         eq_(logs[0].activity_log.action, amo.LOG.INSTALL_ADDON.id)
 
-    @mock.patch('mkt.receipts.views.send_request')
+    @mock.patch('mkt.receipts.views.record_action')
     @mock.patch('mkt.receipts.views.receipt_cef.log')
-    def test_record_metrics(self, cef, send_request):
+    def test_record_metrics(self, cef, record_action):
         res = self.client.post(self.url)
         eq_(res.status_code, 200)
-        eq_(send_request.call_args[0][0], 'install')
-        eq_(send_request.call_args[0][2], {'app-domain': u'http://cbc.ca',
+        eq_(record_action.call_args[0][0], 'install')
+        eq_(record_action.call_args[0][2], {'app-domain': u'http://cbc.ca',
                                            'app-id': self.addon.pk,
                                            'anonymous': False})
 
-    @mock.patch('mkt.receipts.views.send_request')
+    @mock.patch('mkt.receipts.views.record_action')
     @mock.patch('mkt.receipts.views.receipt_cef.log')
     @mock.patch.object(settings, 'SITE_URL', 'http://test.com')
-    def test_record_metrics_packaged_app(self, cef, send_request):
+    def test_record_metrics_packaged_app(self, cef, record_action):
         # Mimic packaged app.
         self.addon.update(is_packaged=True, manifest_url=None)
         res = self.client.post(self.url)
         eq_(res.status_code, 200)
-        eq_(send_request.call_args[0][0], 'install')
-        eq_(send_request.call_args[0][2], {
+        eq_(record_action.call_args[0][0], 'install')
+        eq_(record_action.call_args[0][2], {
             'app-domain': u'http://test.com',
             'app-id': self.addon.pk,
             'anonymous': False})

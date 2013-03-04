@@ -30,7 +30,7 @@ def get_user_hash(request):
     ua = request.META.get('User-Agent', '')
     session_key = request.session.session_key or ''
 
-    return hashlib.sha1('-'.join((ip, ua, str(session_key)))).hexdigest()
+    return hashlib.sha1('-'.join(map(str, (ip, ua, session_key)))).hexdigest()
 
 
 def record_stat(key, request, recorded=None, **data):
