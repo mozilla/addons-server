@@ -48,15 +48,18 @@ class SearchResource(AppResource):
         qs = _get_query(region, gaia=request.GAIA, mobile=request.MOBILE,
                         tablet=request.TABLET, status=status)
         qs = _filter_search(request, qs, form.cleaned_data, region=region)
-        res = amo.utils.paginate(request, qs)
+        paginator = self._meta.paginator_class(request.GET, qs,
+            resource_uri=self.get_resource_list_uri(),
+            limit=self._meta.limit)
+        page = paginator.page()
 
         # Rehydrate the results as per tastypie.
-        bundles = [self.build_bundle(obj=obj, request=request)
-                   for obj in res.object_list]
-        objs = [self.full_dehydrate(bundle) for bundle in bundles]
+        objs = [self.build_bundle(obj=obj, request=request)
+                for obj in page['objects']]
+        page['objects'] = [self.full_dehydrate(bundle) for bundle in objs]
         # This isn't as quite a full as a full TastyPie meta object,
         # but at least it's namespaced that way and ready to expand.
-        return self.create_response(request, {'objects': objs, 'meta': {}})
+        return self.create_response(request, page)
 
     def dehydrate_slug(self, bundle):
         return bundle.obj.app_slug

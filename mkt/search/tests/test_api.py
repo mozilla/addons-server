@@ -35,7 +35,9 @@ class TestApi(BaseOAuth, ESTestCase):
     def test_meta(self):
         res = self.client.get(self.list_url)
         eq_(res.status_code, 200)
-        eq_(set(json.loads(res.content).keys()), set(['objects', 'meta']))
+        data = json.loads(res.content)
+        eq_(set(data.keys()), set(['objects', 'meta']))
+        eq_(data['meta']['total_count'], 1)
 
     def test_wrong_category(self):
         res = self.client.get(self.list_url + ({'cat': self.category.pk + 1},))
