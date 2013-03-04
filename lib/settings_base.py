@@ -822,8 +822,8 @@ MINIFY_BUNDLES = {
             'js/impala/persona_creation.js',
         ),
         'zamboni/editors': (
-            'js/zamboni/editors.js',
             'js/lib/highcharts.src.js',
+            'js/zamboni/editors.js',
             'js/impala/formset.js',
             'js/lib/jquery.hoverIntent.js',
             'js/lib/jquery.zoomBox.js',
