@@ -77,24 +77,26 @@ class OAuthClient(Client):
                         HTTP_AUTHORIZATION=self.header('DELETE', url, **kw),
                         **kw)
 
-    def post(self, url, data=''):
+    def post(self, url, data='', **kw):
         url = self.get_absolute_url(url)
         return super(OAuthClient, self).post(url, data=data,
                         content_type='application/json',
                         HTTP_HOST='api',
-                        HTTP_AUTHORIZATION=self.header('POST', url, data=data))
+                        HTTP_AUTHORIZATION=self.header('POST', url, data=data),
+                        **kw)
 
-    def put(self, url, data=''):
+    def put(self, url, data='', **kw):
         url = self.get_absolute_url(url)
         return super(OAuthClient, self).put(url, data=data,
                         content_type='application/json',
                         HTTP_HOST='api',
-                        HTTP_AUTHORIZATION=self.header('PUT', url, data=data))
+                        HTTP_AUTHORIZATION=self.header('PUT', url, data=data),
+                        **kw)
 
-    def patch(self, url, data=''):
+    def patch(self, url, data='', **kw):
         url = self.get_absolute_url(url)
         parsed = urlparse.urlparse(url)
-        r = {
+        kw.update({
             'CONTENT_LENGTH': len(data),
             'CONTENT_TYPE': 'application/json',
             'PATH_INFO': urllib.unquote(parsed[2]),
@@ -102,8 +104,8 @@ class OAuthClient(Client):
             'wsgi.input': FakePayload(data),
             'HTTP_HOST': 'api',
             'HTTP_AUTHORIZATION': self.header('PATCH', url, data=data)
-        }
-        response = self.request(**r)
+        })
+        response = self.request(**kw)
         return response
 
 

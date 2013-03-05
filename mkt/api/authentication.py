@@ -168,8 +168,9 @@ def initialize_oauth_server_request(request):
     # https://github.com/simplegeo/python-oauth2/pull/110
     #
     # Or time to move to a better OAuth implementation.
+    method = getattr(request, 'signed_method', request.method)
     oauth_request = oauth2.Request.from_request(
-            request.method, url, headers=auth_header,
+            method, url, headers=auth_header,
             query_string=request.META['QUERY_STRING'])
     oauth_server = oauth2.Server(signature_methods={
         'HMAC-SHA1': oauth2.SignatureMethod_HMAC_SHA1()

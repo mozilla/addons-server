@@ -79,6 +79,12 @@ class MarketplaceResource(ModelResource):
         return obj
 
     def dispatch(self, request_type, request, **kwargs):
+        # OAuth authentication uses the method in the signature. So we need
+        # to store the original method used to sign the request.
+        request.signed_method = request.method
+        if 'HTTP_X_HTTP_METHOD_OVERRIDE' in request.META:
+            request.method = request.META['HTTP_X_HTTP_METHOD_OVERRIDE']
+
         try:
             auth = (oauth2.Request._split_header(
                     request.META.get('HTTP_AUTHORIZATION', '')))

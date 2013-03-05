@@ -360,6 +360,15 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         app = Webapp.objects.get(pk=app.pk)
         eq_(app.privacy_policy, 'wat')
 
+    def test_put_as_post(self):
+        # This is really a test of the HTTP_X_HTTP_METHOD_OVERRIDE header
+        # and that signing works correctly. Do a POST, but ask tastypie to do
+        # a PUT.
+        self.create_app()
+        res = self.client.post(self.get_url, data=json.dumps(self.base_data()),
+                               HTTP_X_HTTP_METHOD_OVERRIDE='PUT')
+        eq_(res.status_code, 202)
+
     def test_put_anon(self):
         app = self.create_app()
         app.update(status=amo.STATUS_PUBLIC)
