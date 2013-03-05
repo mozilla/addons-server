@@ -12,25 +12,13 @@
     </section>
   {% endif %}
 
-  <div class="mobile-queue-search">
+  <div class="mobile-queue-search hidden">
     {% include "reviewers/includes/queue_search.html" %}
   </div>
 
-  <form id="queue-tab-overlay" role="dialog" data-type="action">
-    <header>{{ _('Queues') }}</header>
-    <menu>
-      {% for prefix, this, loc, text in queue_tabnav() %}
-        <button data-url="{{ url('reviewers.%s.%s' % (prefix, loc)) }}">
-          {{ text }}
-        </button>
-      {% endfor %}
-      <button data-url="#cancel">Cancel</button>
-    </menu>
-  </form>
-
   <ul class="tabnav">
     {% for prefix, this, loc, text in queue_tabnav() %}
-      <li{% if tab == this %} class="selected"{% endif %}>
+      <li{% if tab == this %} class="selected trigger-queues"{% endif %}>
         <a href="{{ url('reviewers.%s.%s' % (prefix, loc)) }}">{{ text }}</a>
         <div class="tabnav-sprite hidden"></div>
       </li>
@@ -245,7 +233,7 @@
         </div>
       {% else %}
         <div class="impala-paginator">{{ pager|impala_paginator }}</div>
-        <div class="mobile-paginator">{{ pager|mobile_impala_paginator }}</div>
+        <div class="mobile-paginator hidden">{{ pager|mobile_impala_paginator }}</div>
       {% endif %}
 
     {% endif %}

@@ -43,18 +43,25 @@
         initQueue();
     }
 
+    // Nav action menu overlays for queues and logs.
+    var $logTabOverlay = $('#log-tab-overlay');
     var $queueTabOverlay = $('#queue-tab-overlay');
-    $('.tabnav li, a.queues').click(_pd(function() {
+    $('.trigger-queues').click(_pd(function() {
         if (z.capabilities.mobile) {
             $queueTabOverlay.show();
         }
     }));
-
-    $('button', $queueTabOverlay).click(_pd(function() {
-        // Turn buttons into links on queue tab overlay.
+    $('.trigger-logs').click(_pd(function() {
+        if (z.capabilities.mobile) {
+            $logTabOverlay.show();
+        }
+    }));
+    $('.nav-action-menu button').click(_pd(function() {
+        // Turn buttons into links on nav tab overlays.
         var button = $(this);
         if (button.is(':last-child')) {
             $queueTabOverlay.hide();
+            $logTabOverlay.hide();
         } else {
             window.location = button.data('url');
         }
