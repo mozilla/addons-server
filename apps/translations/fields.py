@@ -5,6 +5,7 @@ from django.db.models.fields import related
 from django.utils import translation as translation_utils
 from django.utils.translation.trans_real import to_language
 
+from .hold import add_translation, make_key, save_translations
 from .models import Translation, PurifiedTranslation, LinkifiedTranslation
 from .widgets import TransInput, TransTextarea
 
@@ -155,7 +156,11 @@ class TranslationDescriptor(related.ReverseSingleRelatedObjectDescriptor):
         except AttributeError:
             # Create a brand new translation.
             translation = self.model.new(string, lang)
-        save_on_signal(instance, translation)
+
+        # A new translation has been created and it might need to be saved.
+        # This adds the translation to the queue of translation that need
+        # to be saved for this instance.
+        add_translation(make_key(instance), translation)
         return translation
 
     def translation_from_dict(self, instance, lang, dict_):
@@ -276,3 +281,13 @@ class LocaleList(dict):
 
     def zip(self):
         return zip(self.locales, self.seq)
+
+
+def save_signal(sender, instance, **kw):
+    """
+    Use this signal on a model to iterate through all the translations added
+    to the hold queue and save them all. Hook this up to the pre_save signal
+    on the model.
+    """
+    if not kw.get('raw'):
+        save_translations(make_key(instance))

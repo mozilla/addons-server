@@ -4,7 +4,7 @@ from django.db import connection, models
 from django.dispatch import receiver
 from django.utils import translation
 
-from translations.fields import TranslatedField
+from translations.fields import save_signal, TranslatedField
 
 import amo
 import amo.models
@@ -109,6 +109,10 @@ class Price(amo.models.ModelBase):
         else:
             return [({'currency': o.currency, 'amount': o.price})
                     for c, o in self.currencies()]
+
+models.signals.pre_save.connect(save_signal, sender=Price,
+                                dispatch_uid='price_translations')
+
 
 
 class PriceCurrency(amo.models.ModelBase):

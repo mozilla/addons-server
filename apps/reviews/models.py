@@ -12,7 +12,7 @@ from tower import ugettext_lazy as _
 import amo.models
 from amo.helpers import shared_url
 from amo.urlresolvers import reverse
-from translations.fields import TranslatedField
+from translations.fields import save_signal, TranslatedField
 from users.models import UserProfile
 
 log = logging.getLogger('z.review')
@@ -115,8 +115,12 @@ class Review(amo.models.ModelBase):
             user_ids[user.id].user = user
 
 
-models.signals.post_save.connect(Review.post_save, sender=Review)
-models.signals.post_delete.connect(Review.post_delete, sender=Review)
+models.signals.post_save.connect(Review.post_save, sender=Review,
+                                 dispatch_uid='review_post_save')
+models.signals.post_delete.connect(Review.post_delete, sender=Review,
+                                   dispatch_uid='review_post_delete')
+models.signals.pre_save.connect(save_signal, sender=Review,
+                                dispatch_uid='review_translations')
 
 
 # TODO: translate old flags.

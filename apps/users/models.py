@@ -25,7 +25,7 @@ import amo
 import amo.models
 from access.models import Group, GroupUser
 from amo.urlresolvers import reverse
-from translations.fields import PurifiedField
+from translations.fields import save_signal, PurifiedField
 from translations.query import order_by_translation
 
 log = commonware.log.getLogger('z.users')
@@ -442,6 +442,9 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
         pre_approval doesn't exist or the key is blank.
         """
         return bool(getattr(self.get_preapproval(), 'paypal_key', ''))
+
+models.signals.pre_save.connect(save_signal, sender=UserProfile,
+                                dispatch_uid='userprofile_translations')
 
 
 @dispatch.receiver(models.signals.post_save, sender=UserProfile,

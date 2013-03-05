@@ -22,8 +22,8 @@ from applications.models import Application, AppVersion
 from files import utils
 from files.models import File, Platform, cleanup_file
 from tower import ugettext as _
-from translations.fields import (TranslatedField, PurifiedField,
-                                 LinkifiedField)
+from translations.fields import (LinkifiedField, PurifiedField, save_signal,
+                                 TranslatedField)
 from users.models import UserProfile
 
 from .compare import version_dict, version_int
@@ -526,6 +526,8 @@ def clear_compatversion_cache_on_delete(sender, instance, **kw):
 
 
 version_uploaded = django.dispatch.Signal()
+models.signals.pre_save.connect(
+    save_signal, sender=Version, dispatch_uid='version_translations')
 models.signals.post_save.connect(
     update_status, sender=Version, dispatch_uid='version_update_status')
 models.signals.post_save.connect(
@@ -576,6 +578,9 @@ class License(amo.models.ModelBase):
 
     def __unicode__(self):
         return unicode(self.name)
+
+models.signals.pre_save.connect(
+    save_signal, sender=License, dispatch_uid='version_translations')
 
 
 class VersionComment(amo.models.ModelBase):

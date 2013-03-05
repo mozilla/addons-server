@@ -17,7 +17,7 @@ from amo.urlresolvers import reverse
 from amo.utils import cache_ns_key, send_mail
 from addons.models import Addon
 from editors.sql_model import RawSQLModel
-from translations.fields import TranslatedField
+from translations.fields import save_signal, TranslatedField
 from users.models import UserProfile
 from versions.models import version_uploaded
 
@@ -40,6 +40,9 @@ class CannedResponse(amo.models.ModelBase):
 
     def __unicode__(self):
         return unicode(self.name)
+
+models.signals.pre_save.connect(save_signal, sender=CannedResponse,
+                                dispatch_uid='cannedresponses_translations')
 
 
 class AddonCannedResponseManager(amo.models.ManagerBase):

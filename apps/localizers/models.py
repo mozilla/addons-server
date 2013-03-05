@@ -3,7 +3,7 @@ from django.db import models
 import caching.base
 
 import amo.models
-from translations.fields import PurifiedField
+from translations.fields import PurifiedField, save_signal
 
 
 class L10nEventlog(caching.base.CachingMixin, models.Model):
@@ -35,3 +35,7 @@ class L10nSettings(amo.models.ModelBase):
 
     class Meta:
         db_table = 'l10n_settings'
+
+
+models.signals.pre_save.connect(save_signal, sender=L10nSettings,
+                                dispatch_uid='l10n_translations')

@@ -23,7 +23,7 @@ from bandwagon.models import Collection
 from mkt.webapps.models import Webapp
 from reviews.models import Review
 from tags.models import Tag
-from translations.fields import TranslatedField
+from translations.fields import save_signal, TranslatedField
 from users.helpers import user_link
 from users.models import UserProfile
 from versions.models import Version
@@ -73,6 +73,9 @@ class HubPromo(amo.models.ModelBase):
 
     def flush_urls(self):
         return ['*/developers*']
+
+models.signals.pre_save.connect(save_signal, sender=HubPromo,
+                                dispatch_uid='hubpromo_translations')
 
 
 class HubEvent(amo.models.ModelBase):

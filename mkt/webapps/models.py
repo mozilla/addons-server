@@ -34,6 +34,7 @@ from constants.applications import DEVICE_TYPES
 from files.models import File, nfd_str, Platform
 from files.utils import parse_addon, WebAppParser
 from lib.crypto import packaged
+from translations.fields import save_signal
 from versions.models import Version
 from mkt.zadmin.models import FeaturedApp
 
@@ -757,6 +758,8 @@ Webapp._meta.translated_fields = Addon._meta.translated_fields
 
 models.signals.post_save.connect(update_search_index, sender=Webapp,
                                  dispatch_uid='mkt.webapps.index')
+models.signals.pre_save.connect(save_signal, sender=Webapp,
+                                dispatch_uid='webapp_translations')
 
 
 @receiver(version_changed, dispatch_uid='update_cached_manifests')

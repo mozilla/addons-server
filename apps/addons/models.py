@@ -41,8 +41,8 @@ from market.models import AddonPremium, Price
 from reviews.models import Review
 import sharing.utils as sharing
 from stats.models import AddonShareCountTotal
-from translations.fields import (TranslatedField, PurifiedField,
-                                 LinkifiedField, Translation)
+from translations.fields import (LinkifiedField, PurifiedField, save_signal,
+                                 TranslatedField, Translation)
 from translations.query import order_by_translation
 from users.models import UserProfile, UserForeignKey
 from users.utils import find_users
@@ -1512,6 +1512,9 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         # Not implemented for non-webapps.
         return ''
 
+dbsignals.pre_save.connect(save_signal, sender=Addon,
+                           dispatch_uid='addon_translations')
+
 
 class AddonDeviceType(amo.models.ModelBase):
     addon = models.ForeignKey(Addon)
@@ -1801,6 +1804,9 @@ class AddonType(amo.models.ModelBase):
             return None
         return reverse('browse.%s' % type)
 
+dbsignals.pre_save.connect(save_signal, sender=AddonType,
+                           dispatch_uid='addontype_translations')
+
 
 class AddonUser(caching.CachingMixin, models.Model):
     addon = models.ForeignKey(Addon)
@@ -1893,6 +1899,9 @@ class Category(amo.models.ModelBase):
                     for addon_id, cs in sorted_groupby(qs, 'addon_id'))
         for addon in addons:
             addon.all_categories = cats.get(addon.id, [])
+
+dbsignals.pre_save.connect(save_signal, sender=Category,
+                           dispatch_uid='category_translations')
 
 
 class CategorySupervisor(amo.models.ModelBase):
@@ -2006,6 +2015,9 @@ class Preview(amo.models.ModelBase):
     @property
     def image_size(self):
         return self.sizes.get('image', []) if self.sizes else []
+
+dbsignals.pre_save.connect(save_signal, sender=Preview,
+                           dispatch_uid='preview_translations')
 
 
 class AppSupport(amo.models.ModelBase):

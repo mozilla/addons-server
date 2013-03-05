@@ -22,7 +22,7 @@ from amo.urlresolvers import reverse
 from addons.models import Addon, AddonRecommendation
 from applications.models import Application
 from stats.models import CollectionShareCountTotal
-from translations.fields import TranslatedField, LinkifiedField
+from translations.fields import LinkifiedField, save_signal, TranslatedField
 from users.models import UserProfile
 from versions import compare
 
@@ -376,9 +376,10 @@ class Collection(CollectionBase, amo.models.ModelBase):
 
 models.signals.post_save.connect(Collection.post_save, sender=Collection,
                                  dispatch_uid='coll.post_save')
+models.signals.pre_save.connect(save_signal, sender=Collection,
+                                dispatch_uid='coll_translations')
 models.signals.post_delete.connect(Collection.post_delete, sender=Collection,
                                    dispatch_uid='coll.post_delete')
-
 
 class CollectionAddon(amo.models.ModelBase):
     addon = models.ForeignKey(Addon)
@@ -403,6 +404,9 @@ class CollectionFeature(amo.models.ModelBase):
 
     class Meta(amo.models.ModelBase.Meta):
         db_table = 'collection_features'
+
+models.signals.pre_save.connect(save_signal, sender=CollectionFeature,
+                                dispatch_uid='collectionfeature_translations')
 
 
 class CollectionPromo(amo.models.ModelBase):
