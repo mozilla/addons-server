@@ -25,4 +25,21 @@
     .button {
         padding: 4px 12px;
     }
+    .learn-more {
+        color: lighten(@link, 5%);
+        font-size: 12px;
+        &:hover {
+            color: darken(@link, 5%);
+        }
+        &:after {
+            content: " \027A4";
+            display: inline-block;
+            margin-left: .5em;
+        }
+    }
+}
+
+.html-rtl .secondary .submit-theme .learn-more:after {
+    .transform(~'rotate(-180deg)');
+    margin: 0 .5em 0 0;
 }

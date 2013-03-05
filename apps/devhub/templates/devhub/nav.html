@@ -62,16 +62,20 @@
       <li>
         <a href="#" class="controller">{{ _('Documentation') }}</a>
         <ul>
-          <li><a href="{{ remora_url('/developers/docs/getting-started') }}">
+          <li><a href="{{ url('devhub.docs', 'getting-started') }}">
             {{ _('Getting Started') }}</a></li>
-          <li><a href="{{ remora_url('/developers/docs/policies') }}">
+          <li><a href="{{ url('devhub.docs', 'policies') }}">
             {{ _('Add-on Policies') }}</a></li>
-          <li><a href="{{ remora_url('/developers/docs/case-studies') }}">
+          <li><a href="{{ url('devhub.docs', 'case-studies') }}">
             {{ _('Case Studies') }}</a></li>
-          <li><a href="{{ remora_url('/developers/docs/how-to') }}">
+          <li><a href="{{ url('devhub.docs', 'how-to') }}">
             {{ _('How-to Library') }}</a></li>
-          <li><a href="{{ remora_url('/developers/docs/reference') }}">
-            {{ _('API & Language Reference') }}</a></li>
+          <li><a href="{{ url('devhub.docs', 'reference') }}">
+            {{ _('API &amp; Language Reference') }}</a></li>
+          {% if waffle.flag('submit-personas') %}
+            <li><a href="{{ url('devhub.docs', 'themes') }}">
+              {{ _('Themes') }}</a></li>
+          {% endif %}
         </ul>
       </li>
       <li>

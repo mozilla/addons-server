@@ -1,0 +1,81 @@
+{% extends 'devhub/base.html' %}
+
+{% set title = title or _('Getting Started') %}
+{% block title %}{{ docs_page_title(_('Getting Started | Themes')) }}{% endblock %}
+
+{% macro sidebar() %}
+  <div class="secondary" role="complementary">
+    <div class="highlight">
+      <h3>{{ _('Create Your Own Theme') }}</h3>
+      <ul class="xoxo">
+        <li>
+         <a href="{{ url('devhub.docs', 'themes', 'tutorial') }}">{{ _('How to create a theme') }}</a>
+        </li>
+        <li>
+          <a href="{{ url('devhub.personas.submit') }}">{{ _('Submit your theme') }}</a>
+        </li>
+        <li>
+          <a href="{{ url('devhub.docs', 'themes', 'faq') }}">{{ _('Frequently Asked Questions') }}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+{% endmacro %}
+
+{% block bodyclass %}developer-hub dev-docs inverse{% endblock %}
+
+{% block content %}
+  {{ docs_breadcrumbs(items=[(None, _('Themes'))]) }}
+
+  <h2>{{ title }}</h2>
+
+  <div class="primary" id="getting-started" role="main">
+    <ol class="numbered auto">
+      <li>
+        <h3>{{ _('What are Background Themes?') }}</h3>
+        <p>
+          {% trans browse_url=url('browse.personas') %}
+            Background themes are easy-to-install, easy-to-use skins that change the look of your Firefox web browser. There are hundreds of thousands community-designed themes to choose from, with more added every day. <a href="{{ browse_url }}">Start looking here for designs that fit your style.</a>
+          {% endtrans %}
+        </p>
+      </li>
+      <li>
+        <h3>{{ _('How do I install a Background Theme?') }}</h3>
+        <p>
+          {% trans %}
+            In just a few seconds, you can install a theme and transform the look of your Firefox web browser. Preview any theme by simply mousing over it; the design appears in your browser header so you can "try it on." When you're ready, just click the green <code>Add to Firefox</code> button. Once a theme is installed, it is saved in the Add-ons Manager, where you can enable or disable them as you wish. Simply go to the <code>Tools</code> &gt; <code>Add-ons</code> menu and click on the <code>Appearance</code> tab.
+          {% endtrans %}
+        </p>
+      </li>
+      <li>
+        <h3>{{ _('How do I undo a Background Theme?') }}</h3>
+        <p>
+          {% trans %}
+            To undo the design you most recently selected, go to <code>Tools</code> &gt; <code>Add-ons</code> in the menu bar and select the <code>Appearance</code> tab. Next to the theme you want to undo, click the <code>Disable</code> button.
+          {% endtrans %}
+        </p>
+      </li>
+      <li>
+        <h3>{{ _('Can I create my own Background Theme design?') }}</h3>
+        <p>
+          {% trans photoshop_url='http://www.adobe.com/photoshop',
+                   gimp_url='http://www.gimp.org/',
+                   acorn_url='http://www.flyingmeat.com/acorn/',
+                   tutorial_url=url('devhub.docs', 'themes', 'tutorial') %}
+            Absolutely! All you need to do is create two graphics files in your favorite graphics editing program (e.g., <a href="{{ photoshop_url }}">Photoshop</a>, <a href="{{ gimp_url }}">GIMP</a>, <a href="{{ acorn_url }}">Acorn). To get started, <a href="{{ tutorial_url }}">read more about how to create a theme</a>.
+          {% endtrans %}
+        </p>
+      </li>
+      <li>
+        <h3>{{ _('Have more questions?') }}</h3>
+        <p>
+          {% trans faq_url='https://www.getpersonas.com/en-US/faq',
+                   forum_url='https://forums.mozilla.org/addons/viewforum.php?f=30' %}
+            See answers to <a href="{{ faq_url }}">frequent questions</a> or visit the <a href="{{ forum_url }}">Themes Forum</a> for more help.
+          {% endtrans %}
+        </p>
+      </li>
+    </ol>
+  </div>
+  {{ sidebar() }}
+{% endblock %}

@@ -171,10 +171,8 @@
     }
 }
 
-#collections-landing {
+#collections-landing, masthead.hero {
     background: no-repeat 98% 10px, 0 100%;
-    background-image: url(../../img/illustrations/logo-collections-220x270.png),
-                      -moz-linear-gradient(#e4f5fb, #fff);
     .background-size(auto 150px, auto);
     border: 1px solid @border-blue;
     .border-radius(5px);
@@ -199,4 +197,26 @@
 
 .html-rtl #collections-landing {
     background-position: 2% 10px, 100% 100%;
+}
+
+#collections-landing {
+    background-image: url(../../img/illustrations/logo-collections-220x270.png),
+                      -moz-linear-gradient(#e4f5fb, #fff);
+    background-image: url(../../img/illustrations/logo-collections-220x270.png),
+                      -webkit-linear-gradient(#e4f5fb, #fff);
+    background-image: url(../../img/illustrations/logo-collections-220x270.png),
+                      linear-gradient(#e4f5fb, #fff);
+}
+
+masthead.submit-theme {
+    background: url(../../img/zamboni/personas/theme-promo.png) no-repeat 100% 65px,
+                -moz-linear-gradient(#e4f5fb, #fff) repeat-x;
+    background: url(../../img/zamboni/personas/theme-promo.png) no-repeat 100% 65px,
+                -webkit-linear-gradient(#e4f5fb, #fff) repeat-x;
+    background: url(../../img/zamboni/personas/theme-promo.png) no-repeat 100% 65px,
+                linear-gradient(#e4f5fb, #fff) repeat-x;
+    background-size: 50% auto, auto auto;
+    p {
+        width: 50%;
+    }
 }

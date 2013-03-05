@@ -12,7 +12,17 @@
 <section class="primary">
   {{ impala_breadcrumbs([(url('browse.personas'), _('Themes')),
                          (None, _('Create'))]) }}
-  <h1>{{ title }}</h1>
+  <masthead class="hero submit-theme">
+    <h1>{{ title }}</h1>
+    <p>
+      {% trans submit_url=url('devhub.personas.submit') %}
+        Background themes let you easily personalize the look of your Firefox.
+        Submit your own design below, or <a href="{{ submit_url }}">learn how
+        to create one</a>!
+      {% endtrans %}
+    </p>
+  </masthead>
+
   <div class="island hero prettyform" id="submit-persona">
     <form method="post">
       {{ csrf() }}

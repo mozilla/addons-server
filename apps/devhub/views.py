@@ -129,7 +129,7 @@ def dashboard(request, webapp=False):
 
     blog_posts = _get_posts()
     all_addons = request.amo_user.addons.exclude(type=amo.ADDON_WEBAPP)
-    data = dict(addons=addons, sorting=filter.field, filter=filter,
+    data = dict(addons=None, sorting=filter.field, filter=filter,
                 themes=themes, theme_sorting=theme_filter.field,
                 theme_filter=theme_filter,
                 addon_items=_get_items(None, all_addons)[:4],
@@ -1884,7 +1884,8 @@ def docs(request, doc_name=None, doc_page=None):
                                  'download-statusbar'],
                 'how-to': ['getting-started', 'extension-development',
                            'thunderbird-mobile', 'theme-development',
-                           'other-addons']}
+                           'other-addons'],
+                'themes': ['faq', 'tutorial']}
 
     if waffle.switch_is_active('marketplace'):
         all_docs['marketplace'] = ['voluntary']
