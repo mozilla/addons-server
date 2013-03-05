@@ -24,6 +24,8 @@ described below:
 * `premium_types` (optional): Filters by whether the app is free or
   premium or has in-app purchasing. Any of 'free', 'free-inapp',
   'premium', 'premium-inapp', or 'other'.
+* `addon_type` (optional): Filters by type of add-on. One of 'app' or
+  'persona'.
 * `app_type` (optional): Filters by type of web app. One of 'hosted' or
   'packaged'.
 * `sort` (optional): The field to sort by. One of 'downloads', 'rating',

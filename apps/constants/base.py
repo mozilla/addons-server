@@ -253,6 +253,15 @@ ADDON_SEARCH_SLUGS = {
     'persona': ADDON_PERSONA,
 }
 
+# Marketplace search API addon types.
+MKT_ADDON_TYPES_API = {
+    ADDON_PERSONA: 'persona',
+    ADDON_WEBAPP: 'app',
+}
+MKT_ADDON_TYPES_API_LOOKUP = dict(
+    (v, k) for k, v in MKT_ADDON_TYPES_API.items())
+
+
 ADDON_FREE = 0
 ADDON_PREMIUM = 1
 ADDON_PREMIUM_INAPP = 2

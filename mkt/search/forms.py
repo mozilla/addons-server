@@ -7,6 +7,8 @@ from addons.models import Category
 import amo
 
 
+ADDON_CHOICES = ((v, v) for k, v in amo.MKT_ADDON_TYPES_API.items())
+
 STATUS_CHOICES = []
 for status in amo.WEBAPPS_UNLISTED_STATUSES + (amo.STATUS_PUBLIC,):
     s = amo.STATUS_CHOICES_API[status]
@@ -119,6 +121,7 @@ class ApiSearchForm(forms.Form):
     # Like App search form, but just filtering on categories for now
     # and bit more strict about the filtering.
     q = forms.CharField(required=False)
+    type = forms.ChoiceField(required=False, choices=ADDON_CHOICES)
     status = forms.ChoiceField(required=False, choices=STATUS_CHOICES)
     sort = forms.ChoiceField(required=False, choices=LISTING_SORT_CHOICES)
     cat = forms.TypedChoiceField(required=False, coerce=int, empty_value=None,
@@ -137,9 +140,13 @@ class ApiSearchForm(forms.Form):
                          .values_list('id', flat=True))
         self.fields['cat'].choices = [(pk, pk) for pk in CATS]
 
+    def clean_type(self):
+        return amo.MKT_ADDON_TYPES_API_LOOKUP.get(self.cleaned_data['type'],
+                                                  amo.ADDON_WEBAPP)
+
     def clean_status(self):
-        status = self.cleaned_data['status']
-        return amo.STATUS_CHOICES_API_LOOKUP.get(status, amo.STATUS_PUBLIC)
+        return amo.STATUS_CHOICES_API_LOOKUP.get(self.cleaned_data['status'],
+                                                 amo.STATUS_PUBLIC)
 
     def clean_premium_types(self):
         pt_ids = []

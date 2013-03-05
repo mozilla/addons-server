@@ -150,6 +150,22 @@ class TestApi(BaseOAuth, ESTestCase):
         eq_(json.loads(res.content)['reason'],
             'Unauthorized to filter by status.')
 
+    def test_addon_type_anon(self):
+        res = self.client.get(self.list_url + ({'type': 'app'},))
+        eq_(res.status_code, 200)
+        obj = json.loads(res.content)['objects'][0]
+        eq_(obj['app_slug'], self.webapp.app_slug)
+
+        res = self.client.get(self.list_url + ({'type': 'vindaloo'},))
+        eq_(res.status_code, 400)
+        error = json.loads(res.content)['error_message']
+        eq_(error.keys(), ['type'])
+
+        res = self.client.get(self.list_url + ({'type': 'persona'},))
+        eq_(res.status_code, 200)
+        objs = json.loads(res.content)['objects']
+        eq_(len(objs), 0)
+
 
 @patch.object(settings, 'SITE_URL', 'http://api/')
 class TestApiReviewer(BaseOAuth, ESTestCase):
@@ -182,3 +198,24 @@ class TestApiReviewer(BaseOAuth, ESTestCase):
         eq_(res.status_code, 200)
         objs = json.loads(res.content)['objects']
         eq_(len(objs), 0)
+
+        res = self.client.get(self.list_url + ({'status': 'vindaloo'},))
+        eq_(res.status_code, 400)
+        error = json.loads(res.content)['error_message']
+        eq_(error.keys(), ['status'])
+
+    def test_addon_type_reviewer(self):
+        res = self.client.get(self.list_url + ({'type': 'app'},))
+        eq_(res.status_code, 200)
+        obj = json.loads(res.content)['objects'][0]
+        eq_(obj['app_slug'], self.webapp.app_slug)
+
+        res = self.client.get(self.list_url + ({'type': 'persona'},))
+        eq_(res.status_code, 200)
+        objs = json.loads(res.content)['objects']
+        eq_(len(objs), 0)
+
+        res = self.client.get(self.list_url + ({'type': 'vindaloo'},))
+        eq_(res.status_code, 400)
+        error = json.loads(res.content)['error_message']
+        eq_(error.keys(), ['type'])

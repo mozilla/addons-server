@@ -128,9 +128,10 @@ def sort_sidebar(query, form):
             for key, text in form.fields['sort'].choices]
 
 
-def _get_query(region, gaia, mobile, tablet, status=amo.STATUS_PUBLIC):
-    return Webapp.from_search(region=region, gaia=gaia, mobile=mobile,
-                              tablet=tablet, status=status).facet('category')
+def _get_query(region, gaia, mobile, tablet, filters=None):
+    return Webapp.from_search(
+        region=region, gaia=gaia, mobile=mobile, tablet=tablet,
+        filter_overrides=filters).facet('category')
 
 
 def _app_search(request, category=None, browse=None):

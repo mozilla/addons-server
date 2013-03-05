@@ -84,3 +84,19 @@ class TestSearchFilters(BaseOAuth):
         # Test a bad value.
         qs = self._filter(self.req, {'status': 'vindaloo'})
         ok_(u'Select a valid choice' in qs['status'][0])
+
+    def _addon_type_check(self, query, expected=amo.ADDON_WEBAPP):
+        qs = self._filter(self.req, query)
+        ok_({'term': {'type': expected}} in qs['query']['bool']['must'],
+            'Unexpected type. Expected: %s.' % expected)
+
+    def test_addon_type(self):
+        # Test all that should end up being ADDON_WEBAPP.
+        # Note: Addon type permission can't be checked here b/c the acl check
+        # happens in the view, not the _filter_search call.
+        self._addon_type_check({})
+        self._addon_type_check({'type': 'app'})
+        self._addon_type_check({'type': 'persona'})
+        # Test a bad value.
+        qs = self._filter(self.req, {'type': 'vindaloo'})
+        ok_(u'Select a valid choice' in qs['type'][0])

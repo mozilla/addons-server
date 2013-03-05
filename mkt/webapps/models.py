@@ -541,8 +541,11 @@ class Webapp(Addon):
 
     @classmethod
     def from_search(cls, cat=None, region=None, gaia=False, mobile=False,
-                    tablet=False, status=amo.STATUS_PUBLIC):
-        filters = dict(type=amo.ADDON_WEBAPP, status=status, is_disabled=False)
+                    tablet=False, filter_overrides=None):
+        filters = dict(type=amo.ADDON_WEBAPP, status=amo.STATUS_PUBLIC,
+                       is_disabled=False)
+        if filter_overrides:
+            filters.update(filter_overrides)
 
         if cat:
             filters.update(category=cat.id)

@@ -2,6 +2,7 @@ import json
 
 from tastypie import http
 from tastypie.authorization import ReadOnlyAuthorization
+from tower import ugettext as _
 
 import amo
 from access import acl
@@ -33,20 +34,30 @@ class SearchResource(AppResource):
         if not form.is_valid():
             raise self.form_errors(form)
 
-        # Pluck out status first since it forms part of the base query, but
-        # only for privileged users.
+        is_admin = acl.action_allowed(request, 'Admin', '%')
+        is_reviewer = acl.action_allowed(request, 'Apps', 'Review')
+
+        # Pluck out status and addon type first since it forms part of the base
+        # query, but only for privileged users.
         status = form.cleaned_data['status']
-        if status != amo.STATUS_PUBLIC and not (
-            acl.action_allowed(request, 'Apps', 'Review') or
-            acl.action_allowed(request, 'Admin', '%')):
-            return http.HttpUnauthorized(
-                content=json.dumps(
-                    {'reason': 'Unauthorized to filter by status.'}))
+        addon_type = form.cleaned_data['type']
+
+        base_filters = {
+            'type': addon_type,
+        }
+
+        if status != amo.STATUS_PUBLIC:
+            if is_admin or is_reviewer:
+                base_filters['status'] = status
+            else:
+                return http.HttpUnauthorized(
+                    content=json.dumps(
+                        {'reason': _('Unauthorized to filter by status.')}))
 
         # Search specific processing of the results.
         region = getattr(request, 'REGION', mkt.regions.WORLDWIDE)
         qs = _get_query(region, gaia=request.GAIA, mobile=request.MOBILE,
-                        tablet=request.TABLET, status=status)
+                        tablet=request.TABLET, filters=base_filters)
         qs = _filter_search(request, qs, form.cleaned_data, region=region)
         paginator = self._meta.paginator_class(request.GET, qs,
             resource_uri=self.get_resource_list_uri(),
