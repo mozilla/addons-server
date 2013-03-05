@@ -38,6 +38,10 @@
 
           {{ big_install_button(addon, show_warning=False) }}
 
+          {% if addon.persona.is_new() and request.check_ownership(addon, require_owner=False) %}
+            <p><a href="{{ addon.get_dev_url() }}" class="button developer prominent">{{ _('Manage') }}</a></p>
+          {% endif %}
+
           <div class="widgets">
             {{ favorites_widget(addon) }}
             {% include 'addons/includes/collection_add_widget.html' %}
