@@ -7,9 +7,9 @@
 
 {% block content %}
   {% if waffle.switch('reviewer-incentive-points') %}
-  <section id="reviewers-score-bar" class="island full c">
-    {{ reviewers_score_bar() }}
-  </section>
+    <section id="reviewers-score-bar" class="island full c">
+      {{ reviewers_score_bar() }}
+    </section>
   {% endif %}
 
   <div class="mobile-queue-search">
@@ -30,7 +30,7 @@
 
   <ul class="tabnav">
     {% for prefix, this, loc, text in queue_tabnav() %}
-      <li class="{% if tab == this %}selected{% endif %}">
+      <li{% if tab == this %} class="selected"{% endif %}>
         <a href="{{ url('reviewers.%s.%s' % (prefix, loc)) }}">{{ text }}</a>
         <div class="tabnav-sprite hidden"></div>
       </li>

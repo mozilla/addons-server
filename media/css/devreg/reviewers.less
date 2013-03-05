@@ -265,16 +265,19 @@ table.data-grid .addon-version-notes a {
     text-align: right;
 }
 
-.tabnav a {
-    border-radius: 5px 5px 0 0;
-    background-color: @taupe;
-    border: 1px solid transparent;
-    border-bottom: 0;
-    font-weight: bold;
-    color: @medium-gray;
-    display: inline-block;
-    padding: 10px 15px 20px;
-    text-decoration: none;
+#page ul.tabnav {
+    padding: 0;
+    a {
+        border-radius: 5px 5px 0 0;
+        background-color: @taupe;
+        border: 1px solid transparent;
+        border-bottom: 0;
+        font-weight: bold;
+        color: @medium-gray;
+        display: inline-block;
+        padding: 10px 15px 20px;
+        text-decoration: none;
+    }
 }
 
 /* Home */
@@ -1203,7 +1206,7 @@ iframe#manifest-contents {
     #wrap {
         padding: 10px 0 0;
     }
-    .tabnav {
+    ul.tabnav {
         li {
             display: none;
             &.selected {
@@ -1473,9 +1476,13 @@ iframe#manifest-contents {
         overflow-x: auto;
         overflow-y: hidden;
     }
-    .tabnav {
+    #page ul.tabnav {
         li {
+            margin: 0 1px;
             position: relative;
+            a {
+                padding: 10px 15px 15px;
+            }
         }
         &+ .island {
             .border-box;
