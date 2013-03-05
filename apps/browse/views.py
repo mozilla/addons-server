@@ -143,7 +143,7 @@ def language_tools(request, category=None):
 def themes(request, category=None):
     TYPE = amo.ADDON_THEME
     if category is not None:
-        q = Category.objects.filter(type=TYPE)
+        q = Category.objects.filter(application=request.APP.id, type=TYPE)
         category = get_object_or_404(q, slug=category)
 
     addons, filter = addon_listing(request, [TYPE], default='users',
