@@ -72,6 +72,7 @@ class ValidationResource(MarketplaceResource):
         log.info('Validation created: %s' % bundle.obj.pk)
         return bundle
 
+    @write
     def obj_get(self, request=None, **kwargs):
         # Until the perms branch lands, this is the only way to lock
         # permissions down on gets, since the object doesn't actually
@@ -143,6 +144,7 @@ class AppResource(MarketplaceResource):
         pipeline.push(tasks.generate_image_assets, args=[bundle_obj])
         pipeline.apply_async()
 
+    @write
     def obj_get(self, request=None, **kwargs):
         obj = self.get_and_check_ownership(request, allow_anon=True, **kwargs)
         log.info('App retreived: %s' % obj.pk)
@@ -254,6 +256,7 @@ class StatusResource(MarketplaceResource):
         bundle.obj = obj
         return bundle
 
+    @write
     def obj_get(self, request=None, **kwargs):
         obj = super(StatusResource, self).obj_get(request=request, **kwargs)
         if not AppOwnerAuthorization().is_authorized(request, object=obj):
