@@ -115,6 +115,12 @@ class TestManifest(amo.tests.TestCase):
         content = json.loads(response.content)
         assert 'appcache_path' not in content, 'Unexpected: `appcache_path`'
 
+    def test_manifest_orientation(self):
+        response = self.client.get(self.url)
+        eq_(response.status_code, 200)
+        content = json.loads(response.content)
+        eq_(content['orientation'], ['portrait-primary'])
+
     def test_manifest_etag(self):
         resp = self.client.get(self.url)
         etag = resp.get('Etag')

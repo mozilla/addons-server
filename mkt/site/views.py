@@ -84,7 +84,8 @@ def manifest(request):
             'marketplace-app-rating': {'href': '/'},
             'marketplace-category': {'href': '/'},
             'marketplace-search': {'href': '/'},
-        }
+        },
+        'orientation': ['portrait-primary']
     }
     if settings.USE_APPCACHE:
         data['appcache_path'] = reverse('django_appcache.manifest')
