@@ -118,7 +118,7 @@ class NewPackagedForm(NewPackagedAppForm):
 
 
 class PreviewArgsForm(happyforms.Form):
-    app = forms.IntegerField()
+    app = forms.IntegerField(required=False)
 
 
 class PreviewJSONForm(happyforms.Form):
