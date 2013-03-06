@@ -689,7 +689,8 @@ class TestPersonaLogin(UserViewBase):
 
     @patch.object(waffle, 'switch_is_active', lambda x: True)
     @patch('requests.post')
-    def test_browserid_no_account(self, http_request):
+    @patch('users.views.record_action')
+    def test_browserid_no_account(self, http_request, record_action):
         """
         BrowserID login for an email address with no account creates a
         new account.
@@ -701,14 +702,17 @@ class TestPersonaLogin(UserViewBase):
         eq_(len(profiles), 1)
         eq_(profiles[0].username, 'newuser')
         eq_(profiles[0].display_name, 'newuser')
+        assert record_action.called
 
     @patch.object(waffle, 'switch_is_active', lambda x: True)
     @patch('requests.post')
-    def test_browserid_no_mark_as_market(self, http_request):
+    @patch('users.views.record_action')
+    def test_browserid_no_mark_as_market(self, http_request, record_action):
         email = 'newuser@example.com'
         self._browserid_login(email, http_request)
         profile = UserProfile.objects.get(email=email)
         assert not profile.notes
+        assert record_action.called
 
     @patch.object(waffle, 'switch_is_active', lambda x: True)
     @patch('requests.post')
@@ -726,7 +730,8 @@ class TestPersonaLogin(UserViewBase):
 
     @patch.object(waffle, 'switch_is_active', lambda x: True)
     @patch('requests.post')
-    def test_browserid_duplicate_username(self, post):
+    @patch('users.views.record_action')
+    def test_browserid_duplicate_username(self, post, record_action):
         email = 'jbalogh@example.com'  # existing
         post.return_value = FakeResponse(200, json.dumps({'status': 'okay',
                                                           'email': email}))
@@ -737,6 +742,7 @@ class TestPersonaLogin(UserViewBase):
         profiles = UserProfile.objects.filter(email=email)
         eq_(profiles[0].username, 'jbalogh2')
         eq_(profiles[0].display_name, 'jbalogh2')
+        assert record_action.called
         # Note: lower level unit tests for this functionality are in
         # TestAutoCreateUsername()
 
@@ -753,18 +759,17 @@ class TestPersonaLogin(UserViewBase):
         browserid_authenticate(request=request, assertion='fake-assertion')
         return UserProfile.objects.get(email=email)
 
-    def test_amo_source(self):
+    @patch('users.views.record_action')
+    def test_amo_source(self, record_action):
         profile = self.create_profile()
         eq_(profile.source, amo.LOGIN_SOURCE_AMO_BROWSERID)
+        assert record_action.called
 
     @patch.object(settings, 'MARKETPLACE', True)
-    def test_mmo_source(self):
+    @patch('users.views.record_action')
+    def test_mmo_source(self, record_action):
         profile = self.create_profile()
         eq_(profile.source, amo.LOGIN_SOURCE_MMO_BROWSERID)
-
-    @patch('users.views.record_action')
-    def test_user_creation_is_recorded(self, record_action):
-        self.create_profile()
         assert record_action.called
 
     @patch.object(waffle, 'switch_is_active', lambda x: True)
