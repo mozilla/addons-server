@@ -82,6 +82,9 @@ ol.numbered {
     }
     li li + li {
         margin-top: 1em;
+        &:last-child {
+            margin-bottom: 1.5em;
+        }
     }
     > li {
         position: relative;
@@ -113,6 +116,9 @@ ol.numbered {
     }
     > h3 {
         margin: 2.5em 0 1em;
+        &:first-child {
+            margin-top: .5em;
+        }
     }
     .numbered h3 {
         color: lighten(#011234, 10%);
@@ -143,10 +149,6 @@ ol.numbered {
         img {
             width: 100%;
         }
-    }
-    .submit-theme {
-        font-size: 1.25em;
-        padding: .25em 1em;
     }
 }
 
@@ -321,5 +323,13 @@ ol.numbered {
         &:before {
             display: none;
         }
+    }
+}
+
+.call-to-submit {
+    text-align: center;
+    a.button {
+        font-size: 1.25em;
+        padding: .25em 1em;
     }
 }

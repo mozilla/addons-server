@@ -15,7 +15,7 @@
   <masthead class="hero submit-theme">
     <h1>{{ title }}</h1>
     <p>
-      {% trans submit_url=url('devhub.personas.submit') %}
+      {% trans submit_url=url('devhub.docs', 'themes') %}
         Background themes let you easily personalize the look of your Firefox.
         Submit your own design below, or <a href="{{ submit_url }}">learn how
         to create one</a>!
@@ -219,7 +219,7 @@
       <p class="legal">
         <label>
           {{ form.agreed.as_widget(attrs={'required': ''}) }}
-          {% trans tos_url='https://wiki.mozilla.org/Marketplace/Reviewers/Themes/TOS',
+          {% trans tos_url='https://marketplace.firefox.com/developers/docs/policies/agreement',
                    guidelines_url='https://wiki.mozilla.org/Marketplace/Reviewers/Themes/Guidelines' %}
             By submitting your Theme, you agree to the <a href="{{ tos_url }}" target="_blank">Themes Terms of Service</a>. Your Theme is subject to approval according to the standards established in the <a href="{{ guidelines_url }}" target="_blank">Review Guidelines</a>.
           {% endtrans %}

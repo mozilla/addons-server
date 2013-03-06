@@ -1,6 +1,6 @@
 {% extends 'devhub/base.html' %}
 
-{% set title = title or _('Getting Started') %}
+{% set title = title or _('How to Create Your Own Background Theme') %}
 {% block title %}{{ docs_page_title(_('Getting Started | Themes')) }}{% endblock %}
 
 {% macro sidebar() %}
@@ -9,7 +9,7 @@
       <h3>{{ _('Create Your Own Theme') }}</h3>
       <ul class="xoxo">
         <li>
-         <a href="{{ url('devhub.docs', 'themes', 'tutorial') }}">{{ _('How to create a theme') }}</a>
+         <a href="{{ url('devhub.docs', 'themes') }}">{{ _('How to create a theme') }}</a>
         </li>
         <li>
           <a href="{{ url('devhub.personas.submit') }}">{{ _('Submit your theme') }}</a>
@@ -29,53 +29,229 @@
 
   <h2>{{ title }}</h2>
 
-  <div class="primary" id="getting-started" role="main">
-    <ol class="numbered auto">
+  <div class="primary auto" id="getting-started" role="main">
+
+    <p>
+      {% trans %}
+        Themes are made up of two graphic image files&mdash;a "header" image and a
+        "footer" image&mdash;which skin the default Firefox UI background.
+      {% endtrans %}
+    </p>
+    <p>
+      {% trans submit_url=url('devhub.personas.submit') %}
+        <a href="{{ submit_url }}">Finished Your Design? You can submit it right now!</a>
+      {% endtrans %}
+    </p>
+
+    <h3 id="creating-header">{{ _('Creating a Theme Header Image') }}</h3>
+    <p>
+      {% trans %}
+        The header image is displayed as the background of the top of the
+        browser window, nestling in behind the toolbars, address bar, search
+        bar and the tab strip. It will be <b>anchored to the top-right
+        corner</b> of the browser window.
+      {% endtrans %}
+    </p>
+    <p class="screenshot"><img src="{{ MEDIA_URL }}img/docs/themes/header-step.jpg"></p>
+    <ul>
+      <li><a href="{{ MEDIA_URL }}img/docs/themes/header.jpg">{{ _('View a sample Theme Header here.') }}</a></li>
+    </ul>
+    <h4>{{ _('Image Requirements') }}</h4>
+    <ul>
       <li>
-        <h3>{{ _('What are Background Themes?') }}</h3>
-        <p>
-          {% trans browse_url=url('browse.personas') %}
-            Background themes are easy-to-install, easy-to-use skins that change the look of your Firefox web browser. There are hundreds of thousands community-designed themes to choose from, with more added every day. <a href="{{ browse_url }}">Start looking here for designs that fit your style.</a>
-          {% endtrans %}
-        </p>
+        {% trans %}
+          Dimensions should be <b>3000px wide &times; 200px high</b>
+        {% endtrans %}
       </li>
       <li>
-        <h3>{{ _('How do I install a Background Theme?') }}</h3>
-        <p>
-          {% trans %}
-            In just a few seconds, you can install a theme and transform the look of your Firefox web browser. Preview any theme by simply mousing over it; the design appears in your browser header so you can "try it on." When you're ready, just click the green <code>Add to Firefox</code> button. Once a theme is installed, it is saved in the Add-ons Manager, where you can enable or disable them as you wish. Simply go to the <code>Tools</code> &gt; <code>Add-ons</code> menu and click on the <code>Appearance</code> tab.
-          {% endtrans %}
-        </p>
+        {% trans %}
+          PNG or JPG file format
+        {% endtrans %}
       </li>
       <li>
-        <h3>{{ _('How do I undo a Background Theme?') }}</h3>
-        <p>
-          {% trans %}
-            To undo the design you most recently selected, go to <code>Tools</code> &gt; <code>Add-ons</code> in the menu bar and select the <code>Appearance</code> tab. Next to the theme you want to undo, click the <code>Disable</code> button.
-          {% endtrans %}
-        </p>
+        {% trans %}
+          Image must be no larger than 300 KB in file size
+        {% endtrans %}
+      </li>
+    </ul>
+    <h4>{{ _('Tips') }}</h4>
+    <ul>
+      <li>
+        {% trans %}
+          Subtle, soft contrast images and gradients work best; highly
+          detailed images will compete with the browser UI.
+        {% endtrans %}
       </li>
       <li>
-        <h3>{{ _('Can I create my own Background Theme design?') }}</h3>
-        <p>
-          {% trans photoshop_url='http://www.adobe.com/photoshop',
-                   gimp_url='http://www.gimp.org/',
-                   acorn_url='http://www.flyingmeat.com/acorn/',
-                   tutorial_url=url('devhub.docs', 'themes', 'tutorial') %}
-            Absolutely! All you need to do is create two graphics files in your favorite graphics editing program (e.g., <a href="{{ photoshop_url }}">Photoshop</a>, <a href="{{ gimp_url }}">GIMP</a>, <a href="{{ acorn_url }}">Acorn). To get started, <a href="{{ tutorial_url }}">read more about how to create a theme</a>.
-          {% endtrans %}
-        </p>
+        {% trans %}
+          Firefox may reveal more of the lower portion of the image if
+          another toolbar or other UI element is added to the top of the
+          window.
+        {% endtrans %}
       </li>
       <li>
-        <h3>{{ _('Have more questions?') }}</h3>
-        <p>
-          {% trans faq_url='https://www.getpersonas.com/en-US/faq',
-                   forum_url='https://forums.mozilla.org/addons/viewforum.php?f=30' %}
-            See answers to <a href="{{ faq_url }}">frequent questions</a> or visit the <a href="{{ forum_url }}">Themes Forum</a> for more help.
-          {% endtrans %}
-        </p>
+        {% trans %}
+          The upper right-hand side of the image should have the most
+          important information&mdash;as a user increases the width of
+          the browser window, the browser reveals more of the left-hand
+          side of the image.
+        {% endtrans %}
+    </ul>
+    <h4>{{ _('Online Image Editor Resources') }}</h4>
+    <ul>
+      <li>
+        {% trans pixlr_url='http://www.pixlr.com' %}
+          <a href="{{ pixlr_url }}">Pixlr</a> &mdash; Pixlr offers
+          professional and easy-to-use tools for creating and editing images
+          within a browser.
+        {% endtrans %}
       </li>
-    </ol>
+      <li>
+        {% trans photoshop_url='http://www.photoshop.com' %}
+          <a href="{{ photoshop_url }}">Photoshop</a> &mdash; Tweak, rotate
+          and touch up photos with Photoshop&reg; Express, a free online
+          photo editor.
+        {% endtrans %}
+      </li>
+    </ul>
+
+    <h3 id="creating-footer">{{ _('Creating a Theme Footer Image') }}</h3>
+    <p>
+      {% trans %}
+        The footer image is displayed as the background of the bottom of the
+        browser window, behind the status and find bars. It will be anchored
+        to the bottom-left corner of the browser window.
+      {% endtrans %}
+    </p>
+    <p class="screenshot"><img src="{{ MEDIA_URL }}img/docs/themes/footer-step.jpg"></p>
+    <ul>
+      <li><a href="{{ MEDIA_URL }}img/docs/themes/footer.jpg">{{ _('View a sample Theme Footer here.') }}</a></li>
+    </ul>
+    <h4>{{ _('Image Requirements') }}</h4>
+    <ul>
+      <li>
+        {% trans %}
+          Dimensions should be <b>3000px wide &times; 100px high</b>
+        {% endtrans %}
+      </li>
+      <li>
+        {% trans %}
+          PNG or JPG file format
+        {% endtrans %}
+      </li>
+      <li>
+        {% trans %}
+          Image must be no larger than 300 KB in file size
+        {% endtrans %}
+      </li>
+    </ul>
+    <h4>{{ _('Tips') }}</h4>
+    <ul>
+      <li>
+        {% trans %}
+          Subtle, soft contrast images and gradients work best; highly
+          detailed images will compete with the browser UI.
+        {% endtrans %}
+      </li>
+      <li>
+        {% trans %}
+          Firefox may reveal more of the upper portion of the image if
+          the find bar is open or if an extension adds more height to the
+          bottom of the window.
+        {% endtrans %}
+      </li>
+      <li>
+        {% trans %}
+          The left-hand side of the image should have the most importan
+          information&mdash;as a user increases the width of the browser
+          window, the browser reveals more of the right-hand side of the image.
+        {% endtrans %}
+    </ul>
+
+    <h3 id="submitting-theme">{{ _('Submitting your Theme Images') }}</h3>
+    <p>
+      {% trans %}
+        To get started submitting your images, go to the Theme Submission page:
+      {% endtrans %}
+    </p>
+    <ol class="itemized">
+      <li>
+        {% trans %}
+          <b>Name your theme</b> &mdash; pick a unique name for your theme.
+          Duplicate names are not allowed, so you may need to try a few times
+          to find a unique name.
+        {% endtrans %}
+      </li>
+      <li>
+        {% trans %}
+          <b>Pick a category and tags</b> &mdash; select a category and enter
+          some tags that best describe your theme. Keep in mind that a reviewer
+          may reject your theme if it is obvious that your category and/or tags
+          are unrelated to your theme.
+        {% endtrans %}
+      </li>
+      <li>
+        {% trans %}
+          <b>Describe your theme</b> &mdash; write a short description of
+          your theme. Keep in mind that a reviewer may reject your theme if
+          your description is not an accurate representation of your theme.
+        {% endtrans %}
+      </li>
+      <li>
+        {% trans cc_url='http://creativecommons.org/licenses/' %}
+          <b>Select a license for your theme</b> &mdash; decide on a
+          copyright license for your work. <a href="{{ cc_url }}">Read more
+          about the types of Creative Common licenses.</a>
+        {% endtrans %}
+        <ul>
+          <li>
+            {% trans %}
+              <b>Important:</b> Please be sure you have the rights to use the
+              image in your theme!
+            {% endtrans %}
+          </li>
+        </ul>
+      </li>
+      <li>
+        {% trans %}
+          <b>Upload your images</b> &mdash; make sure they are under 300 KB in
+          size and JPG or PNG format!
+        {% endtrans %}
+      </li>
+      <li>
+        {% trans %}
+          <b>Select text and tab colors</b> &mdash; you can choose the tab
+          ("background") color and foreground text color that work best with
+          your header image.
+        {% endtrans %}
+      </li>
+      <li>
+        {% trans %}
+          <b>Preview your theme</b> &mdash; you're ready to preview your
+          theme! Simply mouse over the image above the Submit Theme button,
+          and see how it looks instantly.
+        {% endtrans %}
+      </li>
+      <li>
+        {% trans %}
+          <b>Submit your theme</b> &mdash; if everything looks right, click
+          the Submit Theme button and you're done! You can see all the themes
+          you've authored on your profile page.
+        {% endtrans %}
+        <ul>
+          <li>
+            {% trans %}
+              <b>Tip:</b> to ensure that your theme is approved for the
+              gallery, be sure it complies with the content guidelines and
+              terms of service!
+            {% endtrans %}
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <p class="screenshot"><img src="{{ MEDIA_URL }}img/docs/themes/submission-step.jpg"></p>
+
+    <p class="call-to-submit"><a href="{{ url('devhub.personas.submit') }}" class="button prominent">{{ _('Submit Your Theme Now') }}</a></p>
   </div>
   {{ sidebar() }}
 {% endblock %}

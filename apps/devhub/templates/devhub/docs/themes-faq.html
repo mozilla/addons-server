@@ -16,7 +16,6 @@
       <li><a href="#what">{{ _('What Are Background Themes?') }}</a></li>
       <li><a href="#os">{{ _('What kind of computers and operating systems do Background Themes work with?') }}</a></li>
       <li><a href="#difference">{{ _("What's the difference between Background Themes and Complete Themes?") }}</a></li>
-      <li><a href="#opensource">{{ _('Are Background Themes open source?') }}</a></li>
     </ol>
 
     <h3 class="toc" id="toc-installing"><a href="#installing">{{ _('Installing Background Themes') }}</a></h3>
@@ -80,16 +79,6 @@
             Background Themes change just the header and footer areas of your
             browser. You can instantly preview a design and install it in one
             click without needing to restart.
-          {% endtrans %}
-        </p>
-      </li>
-      <li id="opensource">
-        <h3>{{ _('Can I create my own Background Theme design?') }}</h3>
-        <p>
-          {% trans themes_url='http://hg.mozilla.org/labs/personas/personas' %}
-            Yes. The source code for Background Themes is available under the
-            MPL/GPL/LGPL tri-license. <a href="{{ themes_src }}">You can view
-            the source here.</a>
           {% endtrans %}
         </p>
       </li>
@@ -185,17 +174,18 @@
       <li id="create">
         <h3>{{ _('Can I create my own Theme?') }}</h3>
         <p>
-          {% trans %}
+          {% trans tutorial_url=url('devhub.docs', 'themes') %}
             Absolutely! All you need to do is create two graphics files in
             your favorite graphics editing program (e.g., Photoshop). To get
-            started read more about how to create a theme.
+            started <a href="{{ tutorial_url }}">read more about how to
+            create a theme</a>.
           {% endtrans %}
         </p>
       </li>
       <li id="guidelines">
         <h3>{{ _('Are there any content guidelines?') }}</h3>
         <p>
-          {% trans tos_url='https://wiki.mozilla.org/Marketplace/Reviewers/Themes/TOS' %}
+          {% trans tos_url='https://marketplace.firefox.com/developers/docs/policies/agreement' %}
             Yes. We are big fans of creativity, but want to ensure that the
             art displayed in the Themes gallery meets a basic set of
             guidelines. Please review the <a href="{{ tos_url }}">Terms of
@@ -285,7 +275,7 @@
     </ol>
 
     <p>
-      {% trans support_url='http://support.mozilla.com/search?qs=s&q=personas' %}
+      {% trans support_url='http://support.mozilla.com/search?esab=a&q=themes' %}
         Couldn't find the answer you're looking for? Consider visiting the
         <a href="{{ support_url }}">Firefox support</a> website for more help.
       {% endtrans %}

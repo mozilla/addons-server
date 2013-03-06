@@ -1885,7 +1885,7 @@ def docs(request, doc_name=None, doc_page=None):
                 'how-to': ['getting-started', 'extension-development',
                            'thunderbird-mobile', 'theme-development',
                            'other-addons'],
-                'themes': ['faq', 'tutorial']}
+                'themes': ['faq']}
 
     if waffle.switch_is_active('marketplace'):
         all_docs['marketplace'] = ['voluntary']
