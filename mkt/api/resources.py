@@ -25,7 +25,8 @@ from mkt.api.authentication import (AppOwnerAuthorization,
                                     MarketplaceAuthentication)
 from mkt.api.base import MarketplaceResource
 from mkt.api.forms import (CategoryForm, DeviceTypeForm, NewPackagedForm,
-                           PreviewJSONForm, StatusForm, UploadForm)
+                           PreviewArgsForm, PreviewJSONForm, StatusForm,
+                           UploadForm)
 from mkt.developers import tasks
 from mkt.developers.forms import NewManifestForm, PreviewForm
 from mkt.submit.forms import AppDetailsBasicForm
@@ -301,8 +302,13 @@ class PreviewResource(MarketplaceResource):
         filtering = {'addon': ALL_WITH_RELATIONS}
 
     def obj_create(self, bundle, request, **kwargs):
+        # Ensure that people don't pass strings through.
+        args = PreviewArgsForm(request.GET)
+        if not args.is_valid():
+            raise self.form_errors(args)
+
         addon = self.get_object_or_404(Addon,
-                                       pk=request.GET.get('app'),
+                                       pk=args.cleaned_data['app'],
                                        type=amo.ADDON_WEBAPP)
         if not AppOwnerAuthorization().is_authorized(request, object=addon):
             raise ImmediateHttpResponse(response=http.HttpForbidden())

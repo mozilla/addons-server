@@ -672,6 +672,13 @@ class TestPreviewHandler(BaseOAuth, AMOPaths):
         eq_(previews.count(), 1)
         eq_(previews.all()[0].position, 1)
 
+    def test_wrong_url(self):
+        url = list(self.list_url)
+        url[-1]['app'] = 'booyah'
+        res = self.client.post(url, data=json.dumps(self.good))
+        eq_(res.status_code, 400)
+        eq_(self.get_error(res)['app'], [u'Enter a whole number.'])
+
     def test_not_mine(self):
         self.app.authors.clear()
         res = self.client.post(self.list_url, data=json.dumps(self.good))
