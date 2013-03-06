@@ -147,6 +147,8 @@ CSS = {
     'mkt/gaia': (
         # Gaia building blocks.
         'css/gaia/action_menu.css',
+        'css/gaia/switches.css',
+        'css/gaia/value_selector.css',
     )
 }
 

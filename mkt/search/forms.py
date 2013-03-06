@@ -13,8 +13,8 @@ ADDON_CHOICES = [(v, v) for k, v in amo.MKT_ADDON_TYPES_API.items()]
 # to PUBLIC if not specified for consumer pages.
 STATUS_CHOICES = [('any', _lazy(u'Any Status'))]
 for status in amo.WEBAPPS_UNLISTED_STATUSES + (amo.STATUS_PUBLIC,):
-    s = amo.STATUS_CHOICES_API[status]
-    STATUS_CHOICES.append((s, s))
+    STATUS_CHOICES.append((amo.STATUS_CHOICES_API[status],
+                           amo.STATUS_CHOICES[status]))
 
 SORT_CHOICES = [
     (None, _lazy(u'Relevance')),
@@ -33,6 +33,21 @@ PRICE_CHOICES = [
     ('paid', _lazy(u'Paid')),
 ]
 
+APP_TYPE_CHOICES = [
+    ('', _lazy(u'Any App Type')),
+    (amo.ADDON_WEBAPP_HOSTED, _lazy(u'Hosted')),
+    (amo.ADDON_WEBAPP_PACKAGED, _lazy(u'Packaged')),
+]
+
+PREMIUM_CHOICES = [
+    ('', _lazy(u'Any Premium Type')),
+    ('free', _lazy(u'Free')),
+    ('free-inapp', _lazy(u'Free with In-app')),
+    ('premium', _lazy(u'Premium')),
+    ('premium-inapp', _lazy(u'Premium with In-app')),
+    ('other', _lazy(u'Other System for In-App')),
+]
+
 DEVICE_CHOICES = [
     ('', _lazy(u'Any Device')),
     ('desktop', _lazy(u'Desktop')),
@@ -46,10 +61,6 @@ DEVICE_CHOICES_IDS = {
     'tablet': amo.DEVICE_TABLET.id,
     'gaia': amo.DEVICE_GAIA.id,
 }
-
-APP_TYPE_CHOICES = [
-    ('', _lazy(u'Any App Type'))
-] + [(t, t) for t in amo.ADDON_WEBAPP_TYPES.values()]
 
 # "Relevance" doesn't make sense for Category listing pages.
 LISTING_SORT_CHOICES = SORT_CHOICES[1:]
@@ -137,7 +148,7 @@ class ApiSearchForm(forms.Form):
                                label=_lazy(u'Device type'))
     premium_types = forms.MultipleChoiceField(
         required=False, label=_lazy(u'Premium types'),
-        choices=tuple((p, p) for p in amo.ADDON_PREMIUM_API.values()))
+        choices=PREMIUM_CHOICES)
     app_type = forms.ChoiceField(required=False, label=_lazy(u'App type'),
                                  choices=APP_TYPE_CHOICES)
 
@@ -148,7 +159,7 @@ class ApiSearchForm(forms.Form):
     def __init__(self, *args, **kw):
         super(ApiSearchForm, self).__init__(*args, **kw)
         CATS = (Category.objects.filter(type=amo.ADDON_WEBAPP, weight__gte=0)
-                         .values_list('id', flat=True))
+                .values_list('id', flat=True))
         self.fields['cat'].choices = [(pk, pk) for pk in CATS]
 
         self.initial.update({

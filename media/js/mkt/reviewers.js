@@ -12,7 +12,7 @@
 
     var $viewManifest = $('#view-manifest'),
         $manifest = $('#manifest-contents'),
-        $search = $('#queue-search');
+        $search = $('.queue-search');
 
     // Prefetch manifest.
     if ($viewManifest.length) {
@@ -79,10 +79,13 @@
     }
 
     // Reviewer tool search.
+    initAdvancedMobileSearch();
+    initMobileMenus();
+
     var search_results = getTemplate($('#queue-search-template'));
     var search_result_row = getTemplate($('#queue-search-row-template'));
     var no_results = getTemplate($('#queue-search-empty-template'));
-    var $clear = $('#clear-queue-search'),
+    var $clear = $('.clear-queue-search'),
         $appQueue = $('.search-toggle'),
         $searchIsland = $('#search-island');
 
@@ -117,3 +120,93 @@
     }
 
 })();
+
+
+function initMobileMenus() {
+    // Nav action menu overlays for queues and logs.
+    var $logTabOverlay = $('#log-tab-overlay');
+    var $queueTabOverlay = $('#queue-tab-overlay');
+    $('.trigger-queues').click(_pd(function() {
+        if (z.capabilities.mobile) {
+            $queueTabOverlay.show();
+        }
+    }));
+   $('.trigger-logs').click(_pd(function() {
+        if (z.capabilities.mobile) {
+            $logTabOverlay.show();
+        }
+    }));
+    $('.nav-action-menu button').click(_pd(function() {
+        // Turn buttons into links on nav tab overlays.
+        var $button = $(this);
+        if ($button.is(':last-child')) {
+            $queueTabOverlay.hide();
+            $logTabOverlay.hide();
+        } else {
+            window.location = button.data('url');
+        }
+    }));
+}
+
+
+function initAdvancedMobileSearch() {
+    // Value selectors for mobile advanced search.
+    $('.value-select-field').click(function() {
+        $(this).next('div[role="dialog"]').show();
+    });
+    $('div[role="dialog"] .cancel').click(_pd(function() {
+        $(this).closest('div[role="dialog"]').hide();
+    }));
+
+    var $advSearch = $('.advanced-search.desktop');
+    $('.advanced-search li[role="option"] input').change(
+        syncPrettyMobileForm).each(function(i, input) {
+            /* Since Gaia form doesn't use selects, browser does not populate
+               our Gaia form after submitting with GET params. We sync data
+               between the populated hidden desktop advanced search form to our
+               mobile Gaia form. */
+            var $input = $(input);
+            var val = $input.attr('value');
+            if (val) {
+                /* If input checked/selected in the desktop form, check/select
+                   it in our Gaia form. */
+                var nameSelect = '[name="' + $input.attr('name') + '"]';
+                var $inputs = $(nameSelect + ' option[value="' + val + '"]:selected',
+                                $advSearch);
+                $inputs = $inputs.add(
+                    $('input[value="' + val + '"]:checked' + nameSelect,
+                      $advSearch));
+                if ($inputs.length) {
+                    $input.prop('checked', true);
+                }
+            }
+        });
+    syncPrettyMobileForm();
+}
+
+
+function syncPrettyMobileForm() {
+    /* The pretty mobile visible form does not contain actual form elements.
+       Value selector form elements are hidden and contained within overlays.
+       When we check a value our form in the overlay, we sync the pretty
+       representation of the form. */
+
+    // Value selector is the name of the Gaia mobile radio/checkbox form.
+    var $valSelectFields = $('.value-select-field');
+
+    $valSelectFields.each(function(index, valSelectField) {
+        var name = $(valSelectField).data('field');
+        var $checkedInputs = $('li[role="option"] input[name="' + name + '"]:checked');
+
+        var valStrs = [];
+        $checkedInputs.each(function(index, input) {
+            // Build pretty string.
+            valStrs.push($(input).next('span').text());
+        });
+        // Sync new selected value to our span in the pretty form.
+        $('.' + name + '.selected-val span').text(
+            valStrs.join() ||
+            $('li[role="option"]:first-child span',
+              $(valSelectField).next('div[role="dialog"]')).text()) ;
+    });
+}

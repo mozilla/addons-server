@@ -23,8 +23,8 @@
     $('a.show').click(show_comments);
     $('a.hide').click(hide_comments);
 
-    if ($('#queue-search').length) {
-        initQueueSearch($('#queue-search'));
+    if ($('.queue-search').length) {
+        initQueueSearch($('.queue-search'));
     }
 
     if($('#review-actions').length > 0) {
@@ -44,30 +44,6 @@
         initQueue();
     }
 
-    // Nav action menu overlays for queues and logs.
-    var $logTabOverlay = $('#log-tab-overlay');
-    var $queueTabOverlay = $('#queue-tab-overlay');
-    $('.trigger-queues').click(_pd(function() {
-        if (z.capabilities.mobile) {
-            $queueTabOverlay.show();
-        }
-    }));
-    $('.trigger-logs').click(_pd(function() {
-        if (z.capabilities.mobile) {
-            $logTabOverlay.show();
-        }
-    }));
-    $('.nav-action-menu button').click(_pd(function() {
-        // Turn buttons into links on nav tab overlays.
-        var button = $(this);
-        if (button.is(':last-child')) {
-            $queueTabOverlay.hide();
-            $logTabOverlay.hide();
-        } else {
-            window.location = button.data('url');
-        }
-    }));
-
     // Show add-on ID when icon is clicked
     if ($("#addon[data-id], #persona[data-id]").length) {
       $("#addon .icon").click(function() {
@@ -75,6 +51,7 @@
       });
     }
 })();
+
 
 function initReviewActions() {
     var groups = $('#id_canned_response').find('optgroup');
@@ -319,7 +296,6 @@ function initQueue() {
 
 }
 
-
 function initQueueSearch(doc) {
     $('.toggle-queue-search').click(_pd(function(e) {
         $('.advanced-search').slideToggle();
@@ -449,4 +425,5 @@ function initPerformanceStats() {
     }
 
 }
+
 

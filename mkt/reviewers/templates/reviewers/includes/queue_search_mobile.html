@@ -7,7 +7,7 @@
       {{ search_form.q }}
       <button class="button" type="submit"><span>{{ _('Search') }}</button>
       <a class="toggle-queue-search" href="#">{{ _('Advanced Search') }}</a>
-      <span class="clear-queue-search">
+      <span class="clear-queue-search hidden">
         <a href="{{ url('reviewers.apps.queue_%s' % tab) }}">
           {{ _('Clear Search') }}
         </a> |
