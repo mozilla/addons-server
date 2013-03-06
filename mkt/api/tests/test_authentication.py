@@ -145,6 +145,16 @@ class TestMarketplaceAuthentication(TestCase):
         self.add_group_user(self.profile, 'App Reviewers')
         ok_(self.auth.is_authenticated(self.call()))
 
+    def test_session_auth(self):
+        req = RequestFactory().get('/')
+        req.user = self.profile.user
+        ok_(self.auth.is_authenticated(req))
+
+    def test_session_auth_no_post(self):
+        req = RequestFactory().post('/')
+        req.user = self.profile.user
+        assert not self.auth.is_authenticated(req)
+
 
 class TestOptionalAuthentication(TestCase):
 

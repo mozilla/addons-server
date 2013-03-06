@@ -85,15 +85,14 @@ class MarketplaceAuthentication(Authentication):
 
     def is_authenticated(self, request, **kwargs):
         auth_header_value = self._header(request)
+        if request.method == 'GET' and not auth_header_value:
+            # No OAuth login info. Let's allow read-only
+            # access based on session cookie.
+            return not request.user.is_anonymous()
         oauth_server, oauth_request = initialize_oauth_server_request(request)
-
         try:
             key = get_oauth_consumer_key_from_header(auth_header_value)
             if not key:
-                if request.method == 'GET':
-                    # OAuth login was unsuccessful. Let's allow read-only
-                    # access based on session cookie.
-                    return not request.user.is_anonymous()
                 return None
 
             consumer = Access.objects.get(key=key)
