@@ -90,6 +90,10 @@ class MarketplaceAuthentication(Authentication):
         try:
             key = get_oauth_consumer_key_from_header(auth_header_value)
             if not key:
+                if request.method == 'GET':
+                    # OAuth login was unsuccessful. Let's allow read-only
+                    # access based on session cookie.
+                    return not request.user.is_anonymous()
                 return None
 
             consumer = Access.objects.get(key=key)
