@@ -203,5 +203,46 @@ table.data-grid {
                 top: 0;
             }
         }
+        &.one-col {
+            tbody tr {
+                border-radius: 5px;
+                &:first-child {
+                    td:first-child {
+                        border: 1px solid @mobileborder;
+                        border-bottom: 0;
+                        border-radius: 5px 5px 0 0;
+                    }
+                }
+                td {
+                    display: block;
+                    text-align: left;
+                    border: 0;
+                    border-left: 1px solid @mobileborder;
+                    border-right: 1px solid @mobileborder;
+                    padding: 0 15px;
+                    line-height: 21px;
+                    font-size: 12px;
+                    &.name {
+                        border-right: 1px solid @mobileborder;
+                    }
+                    &:first-child {
+                        padding-top: 15px;
+                    }
+                    &:last-child {
+                        padding-top: 5px;
+                        padding-bottom: 15px;
+                        border-bottom: 1px solid @mobileborder;
+                    }
+                }
+                &.comments td {
+                    background-color: #f8f8f8;
+                }
+            }
+            .name {
+                a:first-child {
+                    font-size: 15px;
+                }
+            }
+        }
     }
 }

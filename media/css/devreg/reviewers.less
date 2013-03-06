@@ -1298,8 +1298,6 @@ iframe#manifest-contents {
     }
 }
 
-@mobileborder: #d7d2c3;
-
 @media (max-width: @mobile-max) {
     #reviewers-score-bar {
         display: none;
@@ -1433,6 +1431,23 @@ iframe#manifest-contents {
         border-bottom: 1px solid #A5BFCE;
         h3 {
             float: none;
+        }
+    }
+    #log-filter, #log-listing thead {
+        display: none;
+    }
+    nav.paginator .rel {
+        a {
+            height: 32px;
+            line-height: 32px;
+            vertical-align: middle;
+            &.button {
+                min-width: 0;
+            }
+            &.jump {
+                line-height: 32px;
+                padding: 8px;
+            }
         }
     }
 }

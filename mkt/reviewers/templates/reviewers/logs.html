@@ -9,57 +9,62 @@
   {% include 'reviewers/logs_filter.html' %}
   <h1>{{ _('App Review Log') }}</h1>
 
-  <section class="island">
-    {% if pager.object_list %}
-      <table id="log-listing" class="data-grid items">
-        <thead>
-          <tr class="listing-header">
-            <th>{{ _('Date') }}</th>
-            <th>{{ _('Event') }}</th>
-            <th>{{ _('Reviewer') }}</th>
-            <th>&nbsp;</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for item in pager.object_list %}
-            <tr{% if item.arguments[0] %} data-addonid="{{ item.arguments[0].id }}"{% endif %}>
-              <td>{{ item.created|babel_datetime }}</td>
-              <td>
-                {% if item.arguments.0 %}
-                  {{ item.arguments.0|link }}
-                  {% if item.arguments|count >= 2 %}
-                    {{ item.arguments[1].version }}
-                    <a href="{{ url('reviewers.apps.review', item.arguments[0].app_slug) }}">
-                      {{ ACTION_DICT.get(item.action).short }}
-                    </a>
-                  {% else %}
-                    {{ ACTION_DICT.get(item.action).short }}
-                  {% endif %}
-                {% else %}
-                    {{ _('App has been deleted.') }}
+    <section class="island">
+      {% if pager.object_list %}
+        <table id="log-listing" class="data-grid one-col items">
+          <thead>
+            <tr class="listing-header">
+              <th>{{ _('Date') }}</th>
+              <th>{{ _('Event') }}</th>
+              <th>{{ _('Reviewer') }}</th>
+              <th>&nbsp;</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for item in pager.object_list %}
+              <tr{% if item.arguments[0] %} data-addonid="{{ item.arguments[0].id }}"{% endif %}>
+                {% if DESKTOP %}
+                  <td>{{ item.created|babel_datetime }}</td>
                 {% endif %}
-              </td>
-              <td>{{ item.user.display_name }}</td>
-              <td>
-                <a class="comments show" href="#">{{ _('Show Comments') }}</a>
-                <a class="comments hide" href="#">{{ _('Hide Comments') }}</a>
-              </td>
-            </tr>
-            <tr class="comments hide">
-              <td>&nbsp;</td>
-              <td colspan="4">{{ item.details['comments'] }}</td>
-            </tr>
-            <tr class="hide"><td>{{ item.action }}</td></tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    {% else %}
-      <p class="no-results">{{ _('No reviews found for this period.') }}</p>
-    {% endif %}
+                <td class="name">
+                  {% if item.arguments.0 %}
+                    {{ item.arguments.0|link }}
+                    {% if item.arguments|count >= 2 %}
+                      {{ item.arguments[1].version }}
+                      <a href="{{ url('reviewers.apps.review', item.arguments[0].app_slug) }}">
+                        {{ ACTION_DICT.get(item.action).short }}
+                      </a>
+                    {% else %}
+                      {{ ACTION_DICT.get(item.action).short }}
+                    {% endif %}
+                  {% else %}
+                      {{ _('App has been deleted.') }}
+                  {% endif %}
+                </td>
+                {% if not DESKTOP %}
+                  <td>{{ item.created|babel_datetime }}</td>
+                {% endif %}
+                <td>{{ item.user.display_name }}</td>
+                <td>
+                  <a class="comments show" href="#">{{ _('Show Comments') }}</a>
+                  <a class="comments hide" href="#">{{ _('Hide Comments') }}</a>
+                </td>
+              </tr>
+              <tr class="comments hide">
+                <td>&nbsp;</td>
+                <td colspan="4">{{ item.details['comments'] }}</td>
+              </tr>
+              <tr class="hide"><td>{{ item.action }}</td></tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      {% else %}
+        <p class="no-results">{{ _('No reviews found for this period.') }}</p>
+      {% endif %}
 
-    {% if pager.has_other_pages() %}
-      {{ pager|impala_paginator }}
-    {% endif %}
-  </section>
+      {% if pager.has_other_pages() %}
+        {{ pager|impala_paginator }}
+      {% endif %}
+    </section>
 
 {% endblock %}
