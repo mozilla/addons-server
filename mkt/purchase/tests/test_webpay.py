@@ -19,7 +19,7 @@ from amo.tests import TestCase
 from amo.urlresolvers import reverse
 from stats.models import Contribution
 
-from .test_views import PurchaseTest
+from utils import PurchaseTest
 
 
 @mock.patch.object(settings, 'SOLITUDE_HOSTS', ['host'])

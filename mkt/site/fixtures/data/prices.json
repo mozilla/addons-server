@@ -1,0 +1,55 @@
+[
+  {
+    "pk": 1,
+    "model": "market.price",
+    "fields": {
+      "active": true,
+      "price": "0.99",
+      "modified": "2011-08-10 04:21:42",
+      "created": "2011-08-10 04:21:42"
+    }
+  },
+  {
+    "pk": 2,
+    "model": "market.price",
+    "fields": {
+      "active": false,
+      "price": "1.99",
+      "modified": "2011-08-10 04:21:42",
+      "created": "2011-08-10 04:21:42"
+    }
+  },
+  {
+    "pk": 1,
+    "model": "market.pricecurrency",
+    "fields": {
+      "currency": "EUR",
+      "tier": 1,
+      "price": "5.01",
+      "modified": "2011-08-15 16:14:15",
+      "created": "2011-08-15 16:14:15"
+    }
+  },
+  {
+    "pk": 2,
+    "model": "market.pricecurrency",
+    "fields": {
+      "currency": "CAD",
+      "tier": 1,
+      "price": "3.01",
+      "modified": "2011-08-15 16:14:26",
+      "created": "2011-08-15 16:14:26"
+    }
+  },
+  {
+    "pk": 3,
+    "model": "market.pricecurrency",
+    "fields": {
+      "currency": "BRL",
+      "tier": 2,
+      "price": "1.01",
+      "modified": "2011-08-15 16:15:23",
+      "created": "2011-08-15 16:15:23"
+    }
+  }
+]

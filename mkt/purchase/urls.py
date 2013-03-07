@@ -1,6 +1,6 @@
 from django.conf.urls import include, patterns, url
 
-from . import webpay, views
+from . import webpay
 
 
 # These URLs are attached to /services
@@ -12,9 +12,6 @@ webpay_services_patterns = patterns('',
 
 # These URLs get attached to the app details URLs.
 app_purchase_patterns = patterns('',
-    url('^$', views.purchase, name='purchase'),
-    url('^preapproval$', views.preapproval,
-        name='detail.purchase.preapproval'),
     url('^webpay/prepare_pay$', webpay.prepare_pay,
         name='webpay.prepare_pay'),
     url('^webpay/pay_status/(?P<contrib_uuid>[^/]+)$', webpay.pay_status,

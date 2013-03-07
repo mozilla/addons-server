@@ -9,11 +9,12 @@ from nose.tools import eq_, ok_
 from requests.exceptions import Timeout
 
 import amo
-from mkt.inapp_pay.models import InappConfig
-from mkt.purchase import webpay_tasks as tasks
 from stats.models import Contribution
 
-from .test_views import PurchaseTest
+from mkt.inapp_pay.models import InappConfig
+from mkt.purchase import webpay_tasks as tasks
+
+from utils import PurchaseTest
 
 
 class TestNotify(PurchaseTest):
