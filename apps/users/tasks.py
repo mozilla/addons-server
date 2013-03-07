@@ -2,7 +2,6 @@ from django.conf import settings
 from django.core.files.storage import default_storage as storage
 
 import commonware.log
-import elasticutils.contrib.django as elasticutils
 from celeryutils import task
 from lib.es.utils import index_objects
 

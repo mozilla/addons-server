@@ -533,7 +533,7 @@ class NewPersonaForm(AddonFormBase):
         return clean_tags(self.request, self.cleaned_data['tags'])
 
     def save(self, commit=False):
-        from addons.tasks import (create_persona_preview_image,
+        from addons.tasks import (create_persona_preview_images,
                                   save_persona_image)
         data = self.cleaned_data
         # TODO: Ask for slug.
@@ -556,8 +556,9 @@ class NewPersonaForm(AddonFormBase):
                 full_dst=os.path.join(dst_root, 'header.png'))
             save_persona_image.delay(src=footer,
                 full_dst=os.path.join(dst_root, 'footer.png'))
-            create_persona_preview_image.delay(src=header,
-                full_dst=os.path.join(dst_root, 'preview.png'),
+            create_persona_preview_images.delay(src=header,
+                full_dst=[os.path.join(dst_root, 'preview.png'),
+                          os.path.join(dst_root, 'icon.png')],
                 set_modified_on=[addon])
         except IOError:
             addon.delete()
