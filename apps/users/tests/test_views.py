@@ -37,6 +37,13 @@ from users.utils import EmailResetCode, UnsubscribeCode
 from users.views import browserid_authenticate
 
 
+def fake_request():
+    request = Mock()
+    request.LANG = 'foo'
+    request.GET = request.META = {}
+    return request
+
+
 def check_sidebar_links(self, expected):
     r = self.client.get(self.url)
     eq_(r.status_code, 200)
@@ -667,9 +674,8 @@ class TestPersonaLogin(UserViewBase):
         GroupUser.objects.create(group=admingroup, user=p)
 
     def _browserid_login(self, email, http_request):
-        http_request.return_value = FakeResponse(200,
-                                                 json.dumps({'status': 'okay',
-                                                             'email': email}))
+        http_request.return_value = FakeResponse(
+                200, json.dumps({'status': 'okay', 'email': email}))
         return self.client.post(reverse('users.browserid_login'),
                                 data=dict(assertion='fake-assertion',
                                           audience='fakeamo.org'))
@@ -690,7 +696,7 @@ class TestPersonaLogin(UserViewBase):
     @patch.object(waffle, 'switch_is_active', lambda x: True)
     @patch('requests.post')
     @patch('users.views.record_action')
-    def test_browserid_no_account(self, http_request, record_action):
+    def test_browserid_no_account(self, record_action, http_request):
         """
         BrowserID login for an email address with no account creates a
         new account.
@@ -702,17 +708,15 @@ class TestPersonaLogin(UserViewBase):
         eq_(len(profiles), 1)
         eq_(profiles[0].username, 'newuser')
         eq_(profiles[0].display_name, 'newuser')
-        assert record_action.called
 
     @patch.object(waffle, 'switch_is_active', lambda x: True)
     @patch('requests.post')
     @patch('users.views.record_action')
-    def test_browserid_no_mark_as_market(self, http_request, record_action):
+    def test_browserid_no_mark_as_market(self, record_action, post):
         email = 'newuser@example.com'
-        self._browserid_login(email, http_request)
+        self._browserid_login(email, post)
         profile = UserProfile.objects.get(email=email)
         assert not profile.notes
-        assert record_action.called
 
     @patch.object(waffle, 'switch_is_active', lambda x: True)
     @patch('requests.post')
@@ -731,7 +735,7 @@ class TestPersonaLogin(UserViewBase):
     @patch.object(waffle, 'switch_is_active', lambda x: True)
     @patch('requests.post')
     @patch('users.views.record_action')
-    def test_browserid_duplicate_username(self, post, record_action):
+    def test_browserid_duplicate_username(self, record_action, post):
         email = 'jbalogh@example.com'  # existing
         post.return_value = FakeResponse(200, json.dumps({'status': 'okay',
                                                           'email': email}))
@@ -742,7 +746,6 @@ class TestPersonaLogin(UserViewBase):
         profiles = UserProfile.objects.filter(email=email)
         eq_(profiles[0].username, 'jbalogh2')
         eq_(profiles[0].display_name, 'jbalogh2')
-        assert record_action.called
         # Note: lower level unit tests for this functionality are in
         # TestAutoCreateUsername()
 
@@ -753,9 +756,7 @@ class TestPersonaLogin(UserViewBase):
         http_request.return_value = FakeResponse(200,
                                                  json.dumps({'status': 'okay',
                                                              'email': email}))
-        request = Mock()
-        request.LANG = 'foo'
-        request.GET = request.META = {}
+        request = fake_request()
         browserid_authenticate(request=request, assertion='fake-assertion')
         return UserProfile.objects.get(email=email)
 
