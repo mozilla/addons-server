@@ -70,12 +70,12 @@ function initLicense() {
     function licenseUpdate() {
         var license = '';
         $.each(ccClasses, function(k, val) {
-            v = val[parseInt($('input[name=' + k + ']:checked').val())];
+            v = val[+$('input[name=' + k + ']:checked').val()];
             if (v) {
                 var is_copyr = (v == 'copyr');
                 if (k == 'cc-attrib') {
                     // Hide the other radio buttons when copyright is selected.
-                    $('input[name="cc-noncom"], input[name="cc-noderiv"]').attr('disabled', is_copyr);
+                    $('.noncom').toggleClass('disabled', is_copyr);
                 }
                 if (license != ' copyr') {
                     license += ' ' + v;
@@ -90,7 +90,7 @@ function initLicense() {
         var license_txt = l['name'];
         if (l['url']) {
             license_txt = format('<a href="{0}" target="_blank">{1}</a>',
-                                  l['url'], license_txt);
+                                 l['url'], license_txt);
         }
         var $p = $('#persona-license');
         $p.show();
