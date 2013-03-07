@@ -488,8 +488,10 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
                                        'nomination': self.days_ago(2)})
 
         version_factory(addon=app1, version='1.1', created=self.days_ago(1),
+                        nomination=self.days_ago(1),
                         file_kw={'status': amo.STATUS_PENDING})
         version_factory(addon=app2, version='1.1', created=self.days_ago(1),
+                        nomination=self.days_ago(1),
                         file_kw={'status': amo.STATUS_PENDING})
 
         self.apps = list(Webapp.objects.order_by('id'))
