@@ -1192,13 +1192,6 @@ class TestAddonModels(amo.tests.TestCase):
             a.update(status=s)
             assert a.versions.latest().nomination
 
-    def test_set_nomination_webapp(self):
-        a = Addon.objects.get(id=3615)
-        a.update(type=amo.ADDON_WEBAPP, status=amo.STATUS_NULL)
-        a.versions.latest().update(nomination=None)
-        a.update(status=amo.STATUS_PENDING)
-        assert a.versions.latest().nomination
-
     def test_new_version_inherits_nomination(self):
         a = Addon.objects.get(id=3615)
         ver = 10
@@ -1208,13 +1201,6 @@ class TestAddonModels(amo.tests.TestCase):
             v = Version.objects.create(addon=a, version=str(ver))
             eq_(v.nomination, old_ver.nomination)
             ver += 1
-
-    def test_new_app_version_inherits_nomination(self):
-        a = Addon.objects.get(id=3615)
-        a.update(type=amo.ADDON_WEBAPP, is_packaged=True)
-        old_ver = a.versions.latest()
-        v = Version.objects.create(addon=a, version='1.1')
-        eq_(v.nomination, old_ver.nomination)
 
     def test_beta_version_does_not_inherit_nomination(self):
         a = Addon.objects.get(id=3615)

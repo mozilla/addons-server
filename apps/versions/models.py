@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import datetime
 import os
 
 import django.dispatch
@@ -107,10 +106,6 @@ class Version(amo.models.ModelBase):
         if addon.type in [amo.ADDON_SEARCH, amo.ADDON_WEBAPP]:
             # Search extensions and webapps are always for all platforms.
             platforms = [Platform.objects.get(id=amo.PLATFORM_ALL.id)]
-            # Always set nomination date when version created if app is public
-            # or pending.
-            if addon.status in (amo.STATUS_PUBLIC, amo.STATUS_PENDING):
-                v.update(nomination=datetime.datetime.now())
         else:
             platforms = cls._make_safe_platform_files(platforms)
 
@@ -458,36 +453,14 @@ def inherit_nomination(sender, instance, **kw):
     """
     if kw.get('raw'):
         return
-    if (instance.addon.type == amo.ADDON_WEBAPP and
-        instance.addon.is_packaged and
-        not instance.nomination):
-        if instance.addon.status == amo.STATUS_PENDING:
-            # App isn't yet public, set newly updated version nominations to
-            # last versions'.
-            last_ver = (Version.objects.filter(addon=instance.addon)
-                                       .exclude(nomination=None)
-                                       .order_by('-nomination'))
-            if last_ver.exists():
-                instance.update(nomination=last_ver[0].nomination)
-        elif instance.addon.status == amo.STATUS_PUBLIC:
-            # If public, we want to check file status. If the last version's
-            # file status is not public, we inherit the nomination date.
-            # Otherwise, we inherit we leave it which resets it.
-            last_ver = list(Version.objects.filter(addon=instance.addon)
-                                           .exclude(id=instance.id)
-                                           .order_by('-nomination'))
-            if last_ver:
-                if last_ver[0].all_files[0].status != amo.STATUS_PUBLIC:
-                    instance.update(nomination=last_ver[0].nomination)
-    else:
-        if (instance.nomination is None
-            and instance.addon.status in (amo.STATUS_NOMINATED,
-                                          amo.STATUS_LITE_AND_NOMINATED)
-            and not instance.is_beta):
-            last_ver = (Version.objects.filter(addon=instance.addon)
-                        .exclude(nomination=None).order_by('-nomination'))
-            if last_ver.exists():
-                instance.update(nomination=last_ver[0].nomination)
+    if (instance.nomination is None
+        and instance.addon.status in (amo.STATUS_NOMINATED,
+                                      amo.STATUS_LITE_AND_NOMINATED)
+        and not instance.is_beta):
+        last_ver = (Version.objects.filter(addon=instance.addon)
+                    .exclude(nomination=None).order_by('-nomination'))
+        if last_ver.exists():
+            instance.update(nomination=last_ver[0].nomination)
 
 
 def update_incompatible_versions(sender, instance, **kw):

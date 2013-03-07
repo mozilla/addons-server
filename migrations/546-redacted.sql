@@ -1,0 +1,1 @@
+-- Empty migration because of revert.

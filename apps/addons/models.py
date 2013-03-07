@@ -1560,10 +1560,7 @@ def watch_status(old_attr={}, new_attr={}, instance=None,
     if not new_status:
         return
     addon = instance
-    if addon.type == amo.ADDON_WEBAPP:
-        stati = (amo.STATUS_PENDING,)
-    else:
-        stati = (amo.STATUS_NOMINATED, amo.STATUS_LITE_AND_NOMINATED)
+    stati = (amo.STATUS_NOMINATED, amo.STATUS_LITE_AND_NOMINATED)
     if new_status in stati and old_attr['status'] != new_status:
         try:
             latest = addon.versions.latest()
