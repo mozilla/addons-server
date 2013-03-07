@@ -46,12 +46,14 @@
     }).bind('app_install_success', function(e, installer, product, installedNow) {
         var $button = getButton(product);
         if (installedNow) {
-            var $installed = $('#installed'),
+            var $installed = $('#installed');
+            if ($installed.length) {
                 $how = $installed.find('.' + z.nav.platform);
-            // Supported: Mac, Windows, or Linux.
-            if ($how.length) {
-                $installed.show();
-                $how.show();
+                // Supported: Mac, Windows, or Linux.
+                if ($how.length) {
+                    $installed.show();
+                    $how.show();
+                }
             }
         }
         z.apps[product.manifest_url] = z.state.mozApps[product.manifest_url] = installer;
