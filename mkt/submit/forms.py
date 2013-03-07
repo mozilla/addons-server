@@ -377,8 +377,10 @@ class AppDetailsBasicForm(TranslationFormMixin, happyforms.ModelForm):
         slug_validator(target, lower=False)
 
         if target != getattr(self.instance, slug_field):
-            if Addon.objects.filter(**{slug_field: target}).exists():
-                raise forms.ValidationError(_('This slug is already in use.'))
+            filters = {slug_field: target, 'type': amo.ADDON_WEBAPP}
+            if Addon.objects.filter(**filters).exists():
+                raise forms.ValidationError(
+                    _('This slug is already in use. Please choose another.'))
 
             if BlacklistedSlug.blocked(target):
                 raise forms.ValidationError(

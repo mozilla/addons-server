@@ -16,13 +16,15 @@ log = commonware.log.getLogger('z.redis')
 rnlog = logging.getLogger('z.rn')
 
 
-def reverse_name_lookup(key, webapp=False):
+def reverse_name_lookup(key, webapp=False, type_=None):
     from addons.models import Addon
     addon_type = 'app' if webapp else 'addon'
     qs = Addon.objects.filter(name__localized_string=key).no_cache()
-    if webapp:
-        qs = qs.filter(type=amo.ADDON_WEBAPP)
-    else:
+    if type_ is None and webapp:
+        type_ = amo.ADDON_WEBAPP
+    if type_:
+        qs = qs.filter(type=type_)
+    if not webapp:
         qs = qs.exclude(type=amo.ADDON_WEBAPP)
     values = list(qs.distinct().values_list('id', flat=True))
     if values:
