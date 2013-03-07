@@ -4,7 +4,7 @@ import uuid
 from django.conf import settings
 
 import commonware.log
-from moz_inapp_pay.verify import verify_claims, verify_keys
+from mozpay.verify import verify_claims, verify_keys
 
 import jwt
 

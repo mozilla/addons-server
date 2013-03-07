@@ -9,8 +9,8 @@ import fudge
 import jwt
 import mock
 from mock import ANY
-from moz_inapp_pay.exc import RequestExpired
-from moz_inapp_pay.verify import verify_claims, verify_keys
+from mozpay.exc import RequestExpired
+from mozpay.verify import verify_claims, verify_keys
 from nose.tools import eq_, raises
 
 import amo

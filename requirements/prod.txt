@@ -54,7 +54,7 @@ metlog-raven==0.5
 mimeparse==0.1.3
 mock==1.0.0
 moz-addon-packager==1.0.1
-moz_inapp_pay==1.0.2
+mozpay==2.0.0
 nose==1.2.1
 newrelic==1.5.0.103
 oauth2==1.5.211
