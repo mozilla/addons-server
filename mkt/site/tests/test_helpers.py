@@ -54,8 +54,6 @@ class TestMarketButton(amo.tests.TestCase):
         eq_(data['manifest_url'], self.webapp.manifest_url)
         eq_(data['recordUrl'], urlparams(self.webapp.get_detail_url('record'),
                                          src='foo'))
-        eq_(data['preapprovalUrl'], reverse('detail.purchase.preapproval',
-                                            args=[self.webapp.app_slug]))
         eq_(data['id'], str(self.webapp.pk))
         eq_(data['name'], str(self.webapp.name))
         eq_(data['src'], 'foo')
