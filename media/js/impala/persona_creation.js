@@ -75,7 +75,7 @@ function initLicense() {
                 var is_copyr = (v == 'copyr');
                 if (k == 'cc-attrib') {
                     // Hide the other radio buttons when copyright is selected.
-                    $('.noncom').toggleClass('disabled', is_copyr);
+                    $('.noncc').toggleClass('disabled', is_copyr);
                 }
                 if (license != ' copyr') {
                     license += ' ' + v;
