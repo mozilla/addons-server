@@ -127,8 +127,6 @@ def product_as_dict(request, product, purchased=None, receipt_type=None,
         'categories': [unicode(cat.name) for cat in
                        product.categories.all()],
         'manifest_url': product.get_manifest_url(reviewer),
-        'preapprovalUrl': reverse('detail.purchase.preapproval',
-                                  args=[product.app_slug]),
         'recordUrl': urlparams(url, src=src),
         'author': author,
         'author_url': author_url,
