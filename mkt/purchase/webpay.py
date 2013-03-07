@@ -1,8 +1,10 @@
 import calendar
+import hashlib
 import sys
 import time
 from urllib import urlencode
 import urlparse
+import uuid
 
 from django import http
 from django.conf import settings
@@ -10,6 +12,8 @@ from django.views.decorators.csrf import csrf_exempt
 
 import bleach
 import commonware.log
+from tower import ugettext as _
+import waffle
 
 from addons.decorators import (addon_view_factory, can_be_purchased,
                                has_not_purchased)
@@ -20,14 +24,37 @@ from amo.urlresolvers import reverse
 from lib.cef_loggers import app_pay_cef
 from lib.crypto.webpay import (InvalidSender, parse_from_webpay,
                                sign_webpay_jwt)
+from market.forms import PriceCurrencyForm
 from mkt.webapps.models import Webapp
 from stats.models import ClientData, Contribution
 
 from . import webpay_tasks as tasks
-from .views import start_purchase
 
 log = commonware.log.getLogger('z.purchase')
 addon_view = addon_view_factory(qs=Webapp.objects.valid)
+
+
+def start_purchase(request, addon):
+    log.debug('Starting purchase of addon: %s by user: %s'
+              % (addon.pk, request.amo_user.pk))
+    amount = addon.premium.get_price()
+    uuid_ = hashlib.md5(str(uuid.uuid4())).hexdigest()
+    # L10n: {0} is the addon name.
+    contrib_for = (_(u'Firefox Marketplace purchase of {0}')
+                   .format(addon.name))
+
+    amount, currency = (addon.premium.get_price(),
+                        request.REGION.default_currency)
+
+    # If tier is specified, then let's look it up.
+    if waffle.switch_is_active('currencies'):
+        form = PriceCurrencyForm(data=request.POST, addon=addon)
+        if form.is_valid():
+            tier = form.get_tier()
+            if tier:
+                amount, currency = tier.price, tier.currency
+
+    return amount, currency, uuid_, contrib_for
 
 
 def make_ext_id(addon_pk):
