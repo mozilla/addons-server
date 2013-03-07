@@ -93,6 +93,8 @@ def prepare_pay(request, addon):
 
     jwt_ = sign_webpay_jwt(req)
     log.debug('Preparing webpay JWT for addon %s: %s' % (addon, jwt_))
+    app_pay_cef.log(request, 'Preparing JWT', 'preparing_jwt',
+                    'Preparing JWT for: %s' % (addon.pk), severity=3)
     return {'webpayJWT': jwt_,
             'contribStatusURL': reverse('webpay.pay_status',
                                         args=[addon.app_slug, uuid_])}
@@ -147,6 +149,9 @@ def postback(request):
     trans_id = data['response']['transactionID']
     log.info('webpay postback: fulfilling purchase for contrib %s with '
              'transaction %s' % (contrib, trans_id))
+    app_pay_cef.log(request, 'Purchase complete', 'purchase_complete',
+                    'Purchase complete for: %s' % (contrib.addon.pk),
+                    severity=3)
     contrib.update(transaction_id=trans_id, type=amo.CONTRIB_PURCHASE)
 
     tasks.send_purchase_receipt.delay(contrib.pk)
