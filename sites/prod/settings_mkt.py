@@ -140,3 +140,9 @@ METLOG_CONF = {
 METLOG = client_from_dict_config(METLOG_CONF)
 USE_METLOG_FOR_CEF = True
 USE_METLOG_FOR_TASTYPIE = True
+
+# Payment settings.
+APP_PURCHASE_KEY = DOMAIN
+APP_PURCHASE_AUD = DOMAIN
+# This must match private.SECRET in webpay settings.
+APP_PURCHASE_SECRET = private_mkt.APP_PURCHASE_SECRET
