@@ -121,7 +121,7 @@ def paginate(request, queryset, per_page=20, count=None):
     ``.count()`` on the queryset.  This can be good if the queryset would
     produce an expensive count query.
     """
-    p = (ESPaginator if isinstance(queryset, amo.search.ES)
+    p = (ESPaginator if isinstance(queryset, (amo.search.ES, elasticutils.S))
          else paginator.Paginator)(queryset, per_page)
 
     if count is not None:
