@@ -86,7 +86,7 @@ function initReviewActions() {
         pageload = pageload || false;
         $element.closest('.review-actions').addClass('on');
         $('.review-actions .action_nav ul li').removeClass('on-tab');
-        $element.find('input').attr('checked', true);
+        $element.find('input').prop('checked', true);
 
         $element.addClass('on-tab');
 
@@ -125,7 +125,7 @@ function initReviewActions() {
 
     if($files_input.length == 1 || ! $('#review-actions .review-actions-files').attr('data-uncheckable')) {
         // Add a dummy, disabled input
-        $files_input.attr({'checked': true}).hide();
+        $files_input.prop('checked', true).hide();
         $files_input.after($('<input>', {'type': 'checkbox', 'checked': true, 'disabled': true}));
     }
 
@@ -134,7 +134,7 @@ function initReviewActions() {
             $files_checked = $files_input.filter(':checked'),
             disable_submit = $files_checked.length < 1 && $('.review-actions-files').is(':visible');
 
-        $('.review-actions-save input').attr('disabled', disable_submit);
+        $('.review-actions-save input').prop('disabled', disable_submit);
 
         // If it's not :visible, we can assume it's been replaced with a dummy :disabled input
         $('#review-actions-files-warning').toggle($files_checked.filter(':enabled:visible').length > 1);
