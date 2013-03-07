@@ -152,7 +152,6 @@ def product_as_dict(request, product, purchased=None, receipt_type=None,
         ret.update({
             'price': product.premium.get_price() or '0',
             'priceLocale': product.premium.get_price_locale(),
-            'purchase': product.get_purchase_url(),
         })
         currencies = product.premium.supported_currencies()
         if len(currencies) > 1 and waffle.switch_is_active('currencies'):

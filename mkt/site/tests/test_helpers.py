@@ -67,7 +67,6 @@ class TestMarketButton(amo.tests.TestCase):
         eq_(data['manifest_url'], self.webapp.manifest_url)
         eq_(data['price'], 1.0)
         eq_(data['priceLocale'], '$1.00')
-        eq_(data['purchase'], self.webapp.get_purchase_url())
         eq_(data['isPurchased'], False)
 
         cls = doc('button').attr('class')
