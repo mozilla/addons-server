@@ -1461,7 +1461,14 @@ iframe#manifest-contents {
         .review-flagged {
             margin: 0;
             border: 0;
+            border-bottom: 1px solid @mobileborder;
             padding: 15px;
+            &:nth-child(2n) {
+                background-color: #f8f8f8;
+            }
+            &:only-child, &:last-child {
+                border-bottom: 0;
+            }
         }
         h3 {
             font-weight: bold;

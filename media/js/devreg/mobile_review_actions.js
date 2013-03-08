@@ -20,7 +20,7 @@
             $ul = $this.find('ul');
 
         $ul.hide();
-        $this.append($newbtns);
+        $this.append(newbtns);
 
         $this.find('.keep').click(function() {
             $ul.find('input[value=-1]')[0].checked = true;
