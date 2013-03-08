@@ -119,7 +119,7 @@ SIGNED_APPS_REVIEWER_SERVER = private_mkt.SIGNED_APPS_REVIEWER_SERVER
 
 CARRIER_URLS = splitstrip(private_mkt.CARRIER_URLS)
 
-SENTRY_CLIENT = 'djangoraven.metlog.MetlogDjangoClient'
+#SENTRY_CLIENT = 'djangoraven.metlog.MetlogDjangoClient'
 
 # Pass through the DSN to the Raven client and force signal
 # registration so that exceptions are passed through to sentry
