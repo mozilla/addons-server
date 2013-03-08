@@ -20,11 +20,17 @@
     {% endfor %}
   </ul>
 
+  {% if tab == 'moderated' %}
+    <header class="c">
+      <h1 class="menutrigger">{{ _('Moderated Reviews') }}</h1>
+    </header>
+  {% endif %}
+
   <section class="island">
     {% if tab == 'moderated' %}
       <div id="reviews-flagged">
         <form method="post" class="item">
-          {% if queue_counts[tab] != 0 %}
+          {% if queue_counts[tab] != 0 and DESKTOP %}
             <div class="review-saved">
               <button type="submit">{{ _('Process Reviews') }}</button>
             </div>
@@ -33,23 +39,37 @@
           {{ reviews_formset.management_form }}
           {% for review in reviews_formset.forms %}
             <div class="review-flagged">
-              <div class="review-flagged-actions">
-                {{ review.errors }}
-                <strong>{{ _('Moderation actions:') }}</strong>
-                {{ review.id }}
-                {{ review.action }}
-              </div>
+              {% if DESKTOP %}
+                <div class="review-flagged-actions">
+                  {{ review.errors }}
+                  <strong>{{ _('Moderation actions:') }}</strong>
+                  {{ review.id }}
+                  {{ review.action }}
+                </div>
+              {% endif %}
               <h3>
                 <a href="{{ review.instance.addon.get_url_path() }}">{{ review.instance.addon.name }}</a>
                 {%- if review.instance.title %}: {{ review.instance.title }}{% endif %}
               </h3>
-              <p>
-                {% trans user=review.instance.user|user_link, date=review.instance.created|datetime,
-                         stars=review.instance.rating|stars, locale=review.instance.title.locale %}
-                  by {{ user }} on {{ date }}
-                  {{ stars }} ({{ locale }})
-                {% endtrans %}
-              </p>
+              {% if DESKTOP %}
+                <p>
+                  {% trans user=review.instance.user|user_link, date=review.instance.created|datetime,
+                           stars=review.instance.rating|stars, locale=review.instance.title.locale %}
+                    by {{ user }} on {{ date }}
+                    {{ stars }} ({{ locale }})
+                  {% endtrans %}
+                </p>
+              {% else %}
+                <p>
+                  {% trans user=review.instance.user|user_link,
+                           date=review.instance.created|datetime,
+                           stars=review.instance.rating|stars,
+                           locale=review.instance.title.locale %}
+                    {{ stars }}
+                    by {{ user }} on {{ date }} ({{ locale }})
+                  {% endtrans %}
+                </p>
+              {% endif %}
               <p class="description">{{ review.instance.body|nl2br }}</p>
               <ul class="reviews-flagged-reasons">
                 {% for reason in review.instance.reviewflag_set.all() %}
@@ -65,6 +85,14 @@
                   </li>
                 {% endfor %}
               </ul>
+              {% if not DESKTOP %}
+                <div class="review-flagged-actions hidden">
+                  {{ review.errors }}
+                  <strong>{{ _('Moderation actions:') }}</strong>
+                  {{ review.id }}
+                  {{ review.action }}
+                </div>
+              {% endif %}
             </div>
           {% endfor %}
           {% if queue_counts[tab] == 0 %}

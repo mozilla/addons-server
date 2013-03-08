@@ -1453,6 +1453,73 @@ iframe#manifest-contents {
     #scroll_sidebar {
         display: none;
     }
+    .tabnav {
+        display: none;
+    }
+    #reviews-flagged {
+        background: #fff;
+        .review-flagged {
+            margin: 0;
+            border: 0;
+            padding: 15px;
+        }
+        h3 {
+            font-weight: bold;
+            margin-bottom: 7px;
+        }
+        .stars {
+            float: none;
+            display: block;
+        }
+        .review-flagged-actions {
+            margin: 15px 0 0;
+            padding: 0;
+            border: 0;
+            float: none;
+            width: auto;
+            * {
+                .border-box;
+            }
+            strong {
+                display: block;
+                margin-bottom: 6px;
+            }
+        }
+        .review-saved {
+            border-top: 1px solid @mobileborder;
+            button {
+                width: 100%;
+            }
+        }
+        .skip, .nuke, .keep {
+            border: 1px solid @mobileborder;
+            text-align: center;
+            padding: 15px;
+            box-shadow: inset 0 13px 15px #fff;
+            background: rgba(225, 225, 215, .5);
+            color: rgb(164, 148, 96);
+            &.active {
+                box-shadow: inset 0 0 4px rgba(215, 210, 195, 1);
+                color: rgba(0, 0, 0, .35);
+            }
+        }
+        .keep, .nuke {
+            float: left;
+            width: 50%;
+            border-radius: 5px 0 0 0;
+            overflow: hidden;
+            height: 75px;
+        }
+        .nuke {
+            border-left: 0;
+            border-radius: 0 5px 0 0;
+            line-height: 40px;
+        }
+        .skip {
+            border-top: 0;
+            clear: both;
+        }
+    }
 }
 
 

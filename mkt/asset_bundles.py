@@ -303,6 +303,7 @@ JS = {
         'js/mkt/reviewers.js',
         'js/devreg/menupicker.js',
         'js/devreg/expandable.js',
+        'js/devreg/mobile_review_actions.js',
         'js/devreg/reviewers_init.js',
     ),
     'mkt/stats': (
