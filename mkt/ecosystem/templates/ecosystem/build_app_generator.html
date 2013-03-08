@@ -83,9 +83,7 @@
           href="{{ url }}">this repo</a>:
         {% endtrans -%}
       </p>
-      <pre>
-        git clone git@github.com:mozilla/mortar-app-stub.git myapp
-      </pre>
+      <pre>git clone git@github.com:mozilla/mortar-app-stub.git myapp</pre>
       <p>
         {%- trans url='http://nodejs.org' %}
           Using volo is recommended, however. volo is a tool for automating
@@ -95,10 +93,10 @@
           install volo:
         {% endtrans -%}
       </p>
-      <pre>{{ _('npm install -g volo') }}</pre>
+      <pre>npm install -g volo</pre>
       {# L10n: Do not localize text in <code></code> #}
       <p>{{ _('Now you can just use the <code>create</code> command:') }}</p>
-      <pre>{{ _('volo create myproject mozilla/mortar-app-stub') }}</pre>
+      <pre>volo create myproject mozilla/mortar-app-stub</pre>
       <p>
         {# L10n: Do not localize text in <code></code> #}
         {%- trans %}
@@ -133,7 +131,7 @@
         {% endtrans -%}
       </p>
       <p>{{ _("Below that, you'll see the line:") }}</p>
-      <pre>{{ _('define(function(require) {') }}</pre>
+      <pre>define(function(require) {</pre>
       <p>
         {# L10n: Do not localize text in <code></code> #}
         {%- trans url='http://requirejs.org/docs/api.html' %}
@@ -169,14 +167,11 @@
           Finally, volo provides several helpful commands that you can use:
         {% endtrans -%}
       </p>
-      <pre>
-        {%- trans %}
-          $ volo serve         # Fire up a local development server
-          $ volo add &lt;library&gt; # Add the JavaScript library
-          $ volo build         # Build an optimized version of the app into www-built
-          $ volo ghdeploy      # Deploy the built version to github (need to build first)
-        {% endtrans -%}
-      </pre>
+      <pre>$ volo serve         # {{ _('Fire up a local development server') }}
+$ volo add &lt;library&gt; # {{ _('Add the JavaScript library') }}
+$ volo build         # {{ _('Build an optimized version of the app into www-built') }}
+$ volo ghdeploy      # {{ _('Deploy the built version to github (need to build first)') }}
+</pre>
       <p>
         {# L10n: Do not localize text in <code></code> #}
         {%- trans %}
