@@ -24,7 +24,8 @@
     <div class="pad">
       <nav class="menu-nav app-nav no-img" role="navigation">
         <ul class="c">
-          <li{% if 'queue' in request.path %} class="selected"{% endif %}>
+          <li{% if 'queue' in request.path or url('reviewers.apps.apps_reviewing')
+                in request.path %} class="selected"{% endif %}>
             <a href="#" class="controller trigger-queues">{{ _('Queues') }}</a>
             <ul>
               {% for prefix, this, loc, text in queue_tabnav() %}
