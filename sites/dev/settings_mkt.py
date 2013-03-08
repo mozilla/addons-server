@@ -147,8 +147,8 @@ SIGNED_APPS_REVIEWER_SERVER = private_mkt.SIGNED_APPS_REVIEWER_SERVER
 
 METLOG_CONF = {
     'plugins': {'cef': ('metlog_cef.cef_plugin:config_plugin', {}),
-                'raven': (
-                    'metlog_raven.raven_plugin:config_plugin', {'dsn': SENTRY_DSN}),
+                #'raven': (
+                #    'metlog_raven.raven_plugin:config_plugin', {'dsn': SENTRY_DSN}),
         },
     'sender': {
         'class': 'metlog.senders.UdpSender',
@@ -167,7 +167,7 @@ SENTRY_CLIENT = 'djangoraven.metlog.MetlogDjangoClient'
 
 # Pass through the DSN to the Raven client and force signal
 # registration so that exceptions are passed through to sentry
-RAVEN_CONFIG = {'dsn': SENTRY_DSN, 'register_signals': True}
+#RAVEN_CONFIG = {'dsn': SENTRY_DSN, 'register_signals': True}
 
 # See mkt/settings.py for more info.
 APP_PURCHASE_KEY = DOMAIN
