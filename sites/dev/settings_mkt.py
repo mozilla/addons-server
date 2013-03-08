@@ -159,7 +159,7 @@ METLOG_CONF = {
 }
 METLOG = client_from_dict_config(METLOG_CONF)
 USE_METLOG_FOR_CEF = True
-USE_METLOG_FOR_TASTYPIE = True
+USE_METLOG_FOR_TASTYPIE = False
 
 GOOGLE_ANALYTICS_DOMAIN = 'marketplace.firefox.com'
 
