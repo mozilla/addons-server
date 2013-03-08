@@ -2,7 +2,6 @@ import mock
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
-
 import amo
 import amo.tests
 from access.models import Group, GroupUser
@@ -26,7 +25,6 @@ class ReviewTest(amo.tests.TestCase):
         self.admin = UserProfile.objects.get(username='admin')
         self.regular = UserProfile.objects.get(username='regularuser')
         self.review = Review.objects.get(pk=3)
-        self.reply = Review.objects.get(pk=4)
 
     def get_webapp(self):
         return Webapp.objects.get(id=337141)
@@ -97,7 +95,8 @@ class TestCreate(ReviewTest):
                      'url https://example.com/foo/bar', 'host example.org',
                      'quote example%2eorg', 'IDNA www.xn--ie7ccp.xxx']:
             self.client.post(self.add, {'body': body, 'rating': 2})
-            ff = Review.objects.filter(addon=self.webapp)
+            # Get reviews sans replies.
+            ff = Review.objects.valid().filter(addon=self.webapp)
             rf = ReviewFlag.objects.filter(review=ff[0])
             eq_(ff[0].flag, True)
             eq_(ff[0].editorreview, True)
@@ -111,12 +110,6 @@ class TestCreate(ReviewTest):
     @mock.patch('mkt.ratings.views.record_action')
     def test_review_edit_review_initial(self, record_action):
         # Existing review? Then edit that review.
-        r = self.client.get(self.add_mobile)
-        eq_(pq(r.content)('textarea[name=body]').html(), 'I \u042f so hard.')
-
-        # A reply is not a review.
-        self.reply.user = self.user
-        self.reply.save()
         r = self.client.get(self.add_mobile)
         eq_(pq(r.content)('textarea[name=body]').html(), 'I \u042f so hard.')
 
@@ -143,26 +136,6 @@ class TestCreate(ReviewTest):
         # We're just testing for tracebacks. This should never happen in
         # production; we're handling it because there are reviews like this
         # on staging/dev.
-
-    def test_review_reply_edit(self):
-        self.log_in_dev()
-        old_cnt = Review.objects.filter(reply_to__isnull=False).count()
-        log_count = ActivityLog.objects.count()
-
-        self.client.post(
-            self.webapp.get_ratings_url('reply',
-                                        args=[self.reply.reply_to_id]),
-            {'body': 'revision'})
-        eq_(Review.objects.filter(reply_to__isnull=False).count(), old_cnt)
-        eq_(ActivityLog.objects.count(), log_count + 1,
-            'Expected EDIT_REVIEW entry')
-
-    def test_delete_reply(self):
-        """Test that replies are deleted when reviews are edited."""
-        self.log_in_regular()
-        old_cnt = Review.objects.count()
-        self.client.post(self.add, {'body': 'revision', 'rating': 2})
-        eq_(Review.objects.count(), old_cnt - 1)
 
     @mock.patch('mkt.ratings.views.record_action')
     def test_can_review_purchased(self, record_action):
@@ -466,13 +439,6 @@ class SlowTestCreate(ReviewTest):
             user=self.regular,
             ip_address='63.245.213.8'
         )
-        self.reply = Review.objects.create(
-            reply_to=self.review,
-            body='Swag surfing and \u0434\u0430\u0432\u043d.',
-            addon=self.webapp,
-            user=self.dev,
-            ip_address='0.0.0.0',
-        )
 
     def test_review_link_plural(self):
         # We have reviews.
@@ -497,7 +463,6 @@ class TestListing(ReviewTest):
         self.listing = self.webapp.get_ratings_url('list')
         self.detail = self.webapp.get_detail_url()
         self.review_id = '#review-%s' % self.review.id
-        self.reply_id = '#review-%s' % self.reply.id
 
     def test_items(self):
         r = self.client.get(self.listing)
@@ -506,8 +471,7 @@ class TestListing(ReviewTest):
         eq_(doc('#add-review').length, 1)
 
         reviews = doc('#reviews .review')
-        eq_(Review.objects.count(), 2)
-        eq_(reviews.length, Review.objects.count())
+        eq_(Review.objects.count(), 1)
         eq_(doc('.no-rating').length, 0)
         eq_(doc('.review-heading-profile').length, 0)
 
@@ -516,13 +480,6 @@ class TestListing(ReviewTest):
         eq_(item.hasClass('reply'), False)
         eq_(item.length, 1)
         eq_(item.attr('data-rating'), str(self.review.rating))
-
-        # A reply.
-        item = reviews.filter('#review-%s' % self.reply.id)
-        eq_(item.length, 1)
-        eq_(item.hasClass('reply'), True)
-        eq_(self.reply.rating, None)
-        eq_(item.attr('data-rating'), '')
 
     def test_version_in_byline_packaged(self):
         self.webapp.update(is_packaged=True)
@@ -564,10 +521,6 @@ class TestListing(ReviewTest):
         eq_(self.get_flags(reviews.find(self.review_id + ' .actions')),
             ['delete', 'edit'])
 
-        # A reply.
-        eq_(self.get_flags(reviews.find(self.reply_id + ' .actions')),
-            ['flag'])
-
     def test_actions_as_app_author(self):
         self.log_in_dev()
         r = self.client.get(self.listing)
@@ -580,10 +533,6 @@ class TestListing(ReviewTest):
         # Someone's review.
         eq_(self.get_flags(reviews.find(self.review_id + ' .actions')),
             ['flag'])
-
-        # My developer reply.
-        eq_(self.get_flags(reviews.find(self.reply_id + ' .actions')),
-            ['delete', 'edit'])
 
     def test_actions_as_admin(self):
         self.log_in_admin()
@@ -598,24 +547,14 @@ class TestListing(ReviewTest):
         eq_(self.get_flags(reviews.find(self.review_id + ' .actions')),
             ['delete', 'flag'])
 
-        eq_(self.get_flags(reviews.find(self.reply_id + ' .actions')),
-            ['delete', 'flag'])
-
     def test_actions_as_admin_and_author(self):
         self.log_in_admin()
-
-        # Now I own the reply.
-        self.reply.user = self.admin
-        self.reply.save()
 
         r = self.client.get(self.listing)
         reviews = pq(r.content)('#reviews')
 
         eq_(self.get_flags(reviews.find(self.review_id + ' .actions')),
             ['delete', 'flag'])
-
-        eq_(self.get_flags(reviews.find(self.reply_id + ' .actions')),
-            ['delete', 'edit'])
 
     @mock.patch.object(mkt.regions.US, 'adolescent', False)
     def test_detail_local_reviews_only(self):
@@ -667,8 +606,9 @@ class TestFlag(ReviewTest):
 
     def setUp(self):
         super(TestFlag, self).setUp()
-        self.log_in_regular()
-        self.flag = self.webapp.get_ratings_url('flag', [self.reply.id])
+        # regularuser owns self.review so login as dev to be able to flag.
+        self.log_in_dev()
+        self.flag = self.webapp.get_ratings_url('flag', [self.review.id])
 
     def test_no_login(self):
         self.client.logout()

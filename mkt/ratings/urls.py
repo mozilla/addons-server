@@ -12,7 +12,6 @@ detail_patterns = patterns('',
     url('^flag$', amo_flag, name='ratings.flag'),
     url('^delete$', amo_delete, name='ratings.delete'),
     url('^edit$', views.edit, name='ratings.edit'),
-    url('^reply$', views.reply, name='ratings.reply'),
 )
 
 
@@ -32,7 +31,6 @@ theme_detail_patterns = patterns('',
     url('^flag$', amo_flag, name='ratings.themes.flag'),
     url('^delete$', amo_delete, name='ratings.themes.delete'),
     url('^edit$', views.edit, name='ratings.themes.edit'),
-    url('^reply$', views.reply, name='ratings.themes.reply'),
 )
 
 

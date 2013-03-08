@@ -1,9 +1,7 @@
 (function() {
 
-    // Review/reply template.
+    // Review template.
     var reviewTemplate = getTemplate($('#review-template'));
-    var reviewWithReply;
-
     var alwaysUseCharCounter = true;
 
     z.page.on('fragmentloaded', function() {
@@ -20,19 +18,12 @@
         if ($('.reviews.add-review').length) {
             addOrEditYourReview($('#add-first-review'));
         }
-
-        if (reviewWithReply && reviewWithReply.length) {
-            var review = $('#' + reviewWithReply.attr('id'));
-            review.siblings('.reply').show();
-            $('html, body').scrollTo(review);
-        }
     });
 
     // Returns the review body text or '' if the supplied element is not found.
     function getBody($body) {
         var body = $body.clone();
         // Get the inner *text* of the review body.
-        body.find('.view-reply').remove();
         body.find('br').replaceWith('\n');
         // `.text()` returns the unescaped text content, so re-escape it.
         return body.text().trim()
@@ -85,18 +76,9 @@
         $.post(action);
         setTimeout(function() {
             reviewEl.addClass('deleted');
-            if (reviewEl.hasClass('reply')) {
-                var $parent = reviewEl.closest('.replies').prev('.review');
-                // If this was a reply, remove the "1 reply" link.
-                $parent.find('.view-reply').remove();
-                $parent.find('ul.actions li.reply').removeClass('hidden');
-
-                reviewEl.parent().remove();
-            } else {
-                // Change edit review button to submit review button.
-                $('#add-edit-review').text(gettext('Write a Review'));
-                $('#add-review').children().text(gettext('Write a Review'));
-            }
+            // Change edit review button to submit review button.
+            $('#add-edit-review').text(gettext('Write a Review'));
+            $('#add-review').children().text(gettext('Write a Review'));
             $('.notification.box').remove();
 
             // If already existing Django message, replace message.
@@ -120,16 +102,12 @@
             body = getBody(reviewEl.find('.body'));
         overlay.html(reviewTemplate({title: gettext('Edit Review'),
                                      action: action, body: body}));
-        if (reviewEl.hasClass('reply')) {
-            overlay.find('select[name="rating"]').remove();
+        if (z.body.hasClass('desktop')) {
+            overlay.find('select[name="rating"]').ratingwidget('large');
         } else {
-            if (z.body.hasClass('desktop')) {
-                overlay.find('select[name="rating"]').ratingwidget('large');
-            } else {
-                overlay.find('select[name="rating"]').ratingwidget();
-            }
-            overlay.find(format('.ratingwidget [value="{0}"]', rating)).click();
+            overlay.find('select[name="rating"]').ratingwidget();
         }
+        overlay.find(format('.ratingwidget [value="{0}"]', rating)).click();
         handleReviewOverlay(overlay);
     }
 
@@ -150,22 +128,6 @@
 
         overlay.find('select[name="rating"]').ratingwidget('large');
         overlay.find(format('.ratingwidget [value="{0}"]', rating)).click();
-        handleReviewOverlay(overlay);
-    }
-
-    function replyReview(reviewEl, action, isNewReview) {
-        var overlay = makeOrGetOverlay('edit-review'),
-            title = gettext('Reply Review'),
-            body = '';
-
-        if (!isNewReview) {
-            title = gettext('Edit Reply');
-            body = getBody(reviewEl.find('.body'));
-        }
-
-        overlay.html(reviewTemplate({title: title, action: action,
-                                     body: body}));
-        overlay.addClass('reply');
         handleReviewOverlay(overlay);
     }
 
@@ -194,17 +156,6 @@
             case 'report':
                 flagReview($review);
                 break;
-            case 'reply':
-                replyReview($review, $this.attr('href'), true);
-                break;
-            case 'edit-reply':
-                replyReview($review, $this.attr('href'));
-                break;
         }
-    }));
-
-    // View reply.
-    z.page.on('click', '.review .view-reply', _pd(function() {
-        $(this).closest('.review').next('.replies').find('.reply').toggle();
     }));
 })();

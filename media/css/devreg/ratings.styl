@@ -5,10 +5,6 @@ select[name=rating] {
     display: none;
 }
 
-section.replies .review.reply {
-    display: block;
-}
-
 // Detail page.
 #reviews {
     position: relative;
@@ -154,9 +150,6 @@ section.replies .review.reply {
 
 #review-list .review:nth-of-type(2n + 1) {
     background-color: darken($bg, 5%);
-    + .replies .review {
-        background-color: darken($bg, 5%);
-    }
 }
 
 #submit-review {

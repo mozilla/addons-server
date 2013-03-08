@@ -12,18 +12,6 @@
         }
     },
     {
-        "pk": 540,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string_clean": null,
-            "created": "2013-01-17T12:01:15",
-            "locale": "en-us",
-            "modified": "2013-01-17T12:01:15",
-            "id": 1386,
-            "localized_string": "Swag surfing and \\u0434\\u0430\\u0432\\u043d."
-        }
-    },
-    {
         "pk": 3,
         "model": "reviews.review",
         "fields": {
@@ -42,28 +30,6 @@
             "reply_to": null,
             "is_latest": true,
             "ip_address": "63.245.213.8",
-            "addon": 337141
-        }
-    },
-    {
-        "pk": 4,
-        "model": "reviews.review",
-        "fields": {
-            "body": 1386,
-            "rating": null,
-            "editorreview": false,
-            "previous_count": 0,
-            "created": "2013-01-17T12:01:15",
-            "client_data": null,
-            "title": null,
-            "modified": "2013-01-17T12:01:15",
-            "sandbox": false,
-            "flag": false,
-            "version": null,
-            "user": 31337,
-            "reply_to": 3,
-            "is_latest": true,
-            "ip_address": "0.0.0.0",
             "addon": 337141
         }
     }

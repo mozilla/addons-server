@@ -1,15 +1,12 @@
 {% set perms = review_perms or {} %}
-{% set is_reply = review.reply_to_id is not none %}
-{% set has_reply = review.id in replies %}
 {% if flags %}
   {% set is_flagged = flags[review.id] %}
 {% endif %}
 
-{% if not (is_reply and profile) %}
 <li id="review-{{ review.id }}" data-rating="{{ review.rating }}"
     data-flag-url="{{ product.get_ratings_url('flag', args=[review.id]) }}"
     data-edit-url="{{ product.get_ratings_url('add') }}"
-    class="review{{ ' reply' if is_reply }}{{ ' flagged' if is_flagged }} c">
+    class="review{{ ' flagged' if is_flagged }} c">
   <div class="review-inner">
     {% if profile %}
       <h3 class="review-heading-profile">
@@ -19,9 +16,7 @@
         </a>
       </h3>
     {% endif %}
-    {% if not is_reply %}
-      {{ review.rating|stars(large=True) }}
-    {% endif %}
+    {{ review.rating|stars(large=True) }}
     <span class="byline">
       {# TODO: Re-link user profile pages if desktop implements them. #}
       {% trans user_url=review.user.get_url_path(),
@@ -34,15 +29,9 @@
       {% if (perms.is_admin or perms.is_editor) and review.ip_address != '0.0.0.0' %}
         <span>[{{ review.ip_address }}]</span>
       {% endif %}
-      {% if is_reply %}
-        <b>{{ _('(Developer)') }}</b>
-      {% endif %}
     </span>
     <div class="body">
       {{ review.body|nl2br }}
-      {% if review.id in replies %}
-        <a href="#" class="view-reply">{{ _('1 reply') }}</a>
-      {% endif %}
     </div>
     {% if request.user.is_authenticated() and not details_page %}
       <ul class="actions">
@@ -51,13 +40,8 @@
         {% elif review.user_id != request.user.id %}
           <li><a class="flag post" data-action="report" href="#">{{ _('Report') }}</a></li>
         {% endif %}
-        {% if not is_reply and (perms.is_author or perms.is_admin) %}
-          <li class="reply{{ ' hidden' if has_reply }}"><a class="reply post" data-action="reply"
-            href="{{ product.get_ratings_url('reply', args=[review.id]) }}">{{ _('Reply') }}</a></li>
-        {% endif %}
         {% if review.user_id == request.user.id %}
-          <li><a class="edit{{ ' post' if is_reply }}" data-action="edit{{ '-reply' if is_reply }}"
-            href="{{ product.get_ratings_url('reply', args=[review.reply_to_id]) if is_reply else '#' }}">{{ _('Edit') }}</a></li>
+          <li><a class="edit" data-action="edit" href="#">{{ _('Edit') }}</a></li>
         {% endif %}
         <li{% if not check_review_delete(review) %} class="hidden"{% endif %}><a
           href="{{ product.get_ratings_url('delete', args=[review.id]) }}"
@@ -69,12 +53,3 @@
     {% endif %}
   </div>
 </li>
-{% endif %}
-
-<div class="replies">
-  {% if review.id in replies %}
-    {% with review=replies[review.id] %}
-      {% include 'ratings/rating.html' %}
-    {% endwith %}
-  {% endif %}
-</div>
