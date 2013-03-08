@@ -56,7 +56,7 @@ class TestCommand(amo.tests.TestCase):
     def test_existing(self):
         UserProfile.objects.create(email='foo@bar.com')
         self.cmd.handle(commit='yes')
-        assert 'Ignoring foo@bar.com' in self.cmd.logs
+        assert ' Ignoring existing user: foo@bar.com' in self.cmd.logs
         eq_(UserProfile.objects.count(), 1)
 
     def test_favorites(self):
@@ -72,7 +72,7 @@ class TestCommand(amo.tests.TestCase):
         Persona.objects.create(persona_id=3, addon=addon)
         self.cmd.designers = [[3], [4]]
         self.cmd.handle(commit='yes')
-        assert 'Not found persona 4 for user some_username' in self.cmd.logs
+        assert '  Not found persona 4 for user some_username' in self.cmd.logs
         user = UserProfile.objects.get(email='foo@bar.com')
         eq_([user], list(addon.listed_authors))
 
