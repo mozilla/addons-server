@@ -163,7 +163,7 @@ USE_METLOG_FOR_TASTYPIE = True
 
 GOOGLE_ANALYTICS_DOMAIN = 'marketplace.firefox.com'
 
-SENTRY_CLIENT = 'djangoraven.metlog.MetlogDjangoClient'
+#SENTRY_CLIENT = 'djangoraven.metlog.MetlogDjangoClient'
 
 # Pass through the DSN to the Raven client and force signal
 # registration so that exceptions are passed through to sentry
