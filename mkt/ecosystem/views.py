@@ -492,19 +492,19 @@ def apps_documentation(request, page=None):
     third_party_libs = {
         'node': {
             'link': 'http://nodejs.org/',
-            'title': _('Node.js')
+            'title': 'Node.js'
         },
         'zepto': {
             'link': 'http://zeptojs.com/',
-            'title': _('zepto.js')
+            'title': 'zepto.js'
         },
         'backbone': {
             'link': 'http://backbonejs.org/',
-            'title': _('backbone.js')
+            'title': 'backbone.js'
         },
         'redis': {
             'link': 'http://redis.io',
-            'title': _('redis')
+            'title': 'redis'
         },
         'volo': {
             'link': 'http://volojs.org/',
@@ -523,11 +523,11 @@ def apps_documentation(request, page=None):
     web_api_libs = {
         'localstorage': {
             'link': '//developer.mozilla.org/docs/DOM/Storage#localStorage',
-            'title': _('localStorage')
+            'title': 'localStorage'
         },
         'appcache': {
             'link': '//developer.mozilla.org/docs/HTML/Using_the_application_cache',
-            'title': _('appcache')
+            'title': 'appcache'
         },
         'open_web_apps': {
             'link': '//developer.mozilla.org/docs/Apps/Apps_JavaScript_API',
