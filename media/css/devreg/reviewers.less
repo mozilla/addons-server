@@ -265,16 +265,19 @@ table.data-grid .addon-version-notes a {
     text-align: right;
 }
 
-.tabnav a {
-    border-radius: 5px 5px 0 0;
-    background-color: @taupe;
-    border: 1px solid transparent;
-    border-bottom: 0;
-    font-weight: bold;
-    color: @medium-gray;
-    display: inline-block;
-    padding: 10px 15px 20px;
-    text-decoration: none;
+#page ul.tabnav {
+    padding: 0;
+    a {
+        border-radius: 5px 5px 0 0;
+        background-color: @taupe;
+        border: 1px solid transparent;
+        border-bottom: 0;
+        font-weight: bold;
+        color: @medium-gray;
+        display: inline-block;
+        padding: 10px 15px 20px;
+        text-decoration: none;
+    }
 }
 
 /* Home */
@@ -560,7 +563,7 @@ div.editor-stats-table > div.editor-stats-dark {
         margin: 0 .5em;
     }
 }
-#advanced-search {
+.advanced-search {
     margin-top: 26px;
     &.hidden {
         display: none;
@@ -1203,7 +1206,7 @@ iframe#manifest-contents {
     #wrap {
         padding: 10px 0 0;
     }
-    .tabnav {
+    ul.tabnav {
         li {
             display: none;
             &.selected {
@@ -1298,7 +1301,85 @@ iframe#manifest-contents {
     }
 }
 
+@mobileborder: #d7d2c3;
 @media (max-width: @mobile-max) {
+    .mobile-queue-search, .mobile-paginator {
+        display: block;
+    }
+    .impala-paginator {
+        display: none;
+    }
+    .toggle-queue-search, #queue-search .button span, ul.tabnav a {
+        font-size: 16px;
+    }
+    .button {
+        margin-top: 0px;
+        min-width: 0%;
+        margin-right: 0;
+        top: 8px;
+        span {
+            bottom: 9px;
+            position: relative;
+        }
+    }
+    #site-nav {
+        border: 0px;
+        .pad {
+            height: 100%;
+            padding: 0;
+        }
+        nav.menu-nav {
+            height: 100%;
+            ul {
+                height: 100%;
+            }
+            li {
+                height: 100%;
+                &.selected {
+                    background: rgb(62, 52, 62);
+                    a {
+                        color: @white;
+                    }
+                }
+                a {
+                    font-size: 16px;
+                    position: relative;
+                    top: 4px;
+                }
+            }
+            & > ul li:not(.open):hover > ul, &.open > ul {
+                display: none;
+            }
+        }
+    }
+    #queue-search {
+        padding: 0;
+        margin: 26px 0 6px;
+        label[for="id_text_query"] {
+            display: none;
+        }
+        input#id_text_query {
+            display: inline-block;
+            margin-right: 5px;
+            margin-top: 0;
+            width: 75%;
+        }
+        .button {
+            height: 36px;
+            max-width: 22%;
+            margin-right: 0;
+        }
+        .toggle-queue-search {
+            bottom: 64px;
+            float: right;
+            line-height: 6px;
+            margin-right: 3px;
+            position: relative;
+        }
+    }
+    .island #queue-search {
+        display: none;
+    }
     #reviewers-score-bar {
         display: none;
     }
@@ -1391,6 +1472,45 @@ iframe#manifest-contents {
         overflow-x: auto;
         overflow-y: hidden;
     }
+    #page ul.tabnav {
+        li {
+            margin: 0 1px;
+            position: relative;
+            a {
+                padding: 10px 15px 15px;
+            }
+        }
+        &+ .island {
+            .border-box;
+            max-width: 100%;
+            overflow-x: auto;
+            overflow-y: hidden;
+        }
+    }
+    html {
+        font-size: 10px;
+    }
+    #page form[role="dialog"][data-type="action"] {
+        z-index: 1007;
+        button {
+            position: static;
+        }
+    }
+    .tabnav-sprite {
+        bottom: 6px;
+        display: block;
+        position: absolute;
+        right: 6px;
+        &:before {
+            /* Triangle bottom-right. */
+            border-bottom: 10px solid @medium-gray;
+            border-left: 10px solid transparent;
+            content: '';
+            display: block;
+            height: 0;
+            width: 0;
+        }
+    }
     // No mobile man is an island.
     .island {
         border: 0;
@@ -1433,6 +1553,24 @@ iframe#manifest-contents {
             float: none;
         }
     }
+    #addon-queue {
+        th {
+            font-size: 13px;
+            padding: 13px 0;
+        }
+        td {
+            padding: 13px 0;
+            &.app-name {
+                max-width: 144px;
+            }
+            &.flags {
+                min-width: 42px;
+            }
+        }
+        .payments {
+            display: none;
+        }
+    }
     #log-filter, #log-listing thead {
         display: none;
     }
@@ -1451,9 +1589,6 @@ iframe#manifest-contents {
         }
     }
     #scroll_sidebar {
-        display: none;
-    }
-    .tabnav {
         display: none;
     }
     #reviews-flagged {
@@ -1525,6 +1660,50 @@ iframe#manifest-contents {
         .skip {
             border-top: 0;
             clear: both;
+        }
+    }
+    .device-list {
+        bottom: 10px;
+        position: relative;
+        width: 80px;
+        ul {
+            position: relative;
+        }
+        li {
+            position: absolute;
+        }
+        .desktop {
+            left: -37px;
+        }
+        .android-tablet {
+            left: -27px;
+            top: 10px;
+        }
+        .firefoxos {
+            left: 18px;
+        }
+        .android-mobile {
+            left: -2px;
+        }
+    }
+    .mobile-paginator nav.paginator {
+        border-top: 0;
+        margin-bottom: 13px;
+        .rel {
+            margin-bottom: 6px;
+            a.button {
+                height: 36px;
+                span {
+                    bottom: 0;
+                }
+            }
+            a.jump {
+                padding: 0px 10px;
+            }
+        }
+        .num {
+            position: relative;
+            top: 8px;
         }
     }
 }

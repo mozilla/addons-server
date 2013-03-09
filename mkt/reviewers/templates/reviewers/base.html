@@ -16,6 +16,7 @@
 
 {% block extrahead %}
   {{ css('mkt/reviewers') }}
+  {{ css('mkt/gaia') }}
 {% endblock %}
 
 {% block site_header_title %}
@@ -23,9 +24,10 @@
     <div class="pad">
       <nav class="menu-nav app-nav no-img" role="navigation">
         <ul class="c">
-          <li>
-            <a href="#" class="controller menutrigger">{{ _('Queues') }}</a>
-            <ul class="menucontent" data-title="{{ _('Queues') }}">
+          <li{% if 'queue' in request.path or url('reviewers.apps.apps_reviewing')
+                in request.path %} class="selected"{% endif %}>
+            <a href="#" class="controller trigger-queues">{{ _('Queues') }}</a>
+            <ul>
               {% for prefix, this, loc, text in queue_tabnav() %}
                 <li>
                   <a href="{{ url('reviewers.%s.%s' % (prefix, loc)) }}">{{ text }}</a>
@@ -33,8 +35,8 @@
               {% endfor %}
             </ul>
           </li>
-          <li>
-            <a href="#" class="controller">{{ _('Logs') }}</a>
+          <li{% if 'logs' in request.path %} class="selected"{% endif %}>
+            <a href="#" class="controller logs trigger-logs">{{ _('Logs') }}</a>
             <ul>
               {% for loc, text in logs_tabnav() %}
                 <li><a href="{{ url(loc) }}">{{ text }}</a></li>
@@ -64,4 +66,27 @@
   {% block breadcrumbs %}{% endblock %}
   {% include 'editors/includes/daily-message.html' %}
   {% include 'messages.html' %}
+
+  <form id="queue-tab-overlay" class="hidden" role="dialog" data-type="action">
+    <header>{{ _('Queues') }}</header>
+    <menu class="nav-action-menu">
+      {% for prefix, this, loc, text in queue_tabnav() %}
+        <button data-url="{{ url('reviewers.%s.%s' % (prefix, loc)) }}">
+          {{ text }}
+        </button>
+      {% endfor %}
+      <button data-url="#cancel">Cancel</button>
+    </menu>
+  </form>
+
+  <form id="log-tab-overlay" class="hidden" role="dialog" data-type="action">
+    <header>{{ _('Logs') }}</header>
+    <menu class="nav-action-menu">
+      {% for loc, text in logs_tabnav() %}
+        <button data-url="{{ url(loc) }}">{{ text }}</button>
+      {% endfor %}
+      <button data-url="#cancel">{{ _('Cancel') }}</button>
+    </menu>
+  </form>
+
 {% endblock %}

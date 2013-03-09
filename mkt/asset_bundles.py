@@ -79,7 +79,6 @@ CSS = {
         'css/devreg/themes_review.less',
         'css/devreg/legacy-paginator.less',
         'css/devreg/files.less',
-        'css/devreg/menupicker.less',
     ),
     'mkt/splash': (
         'css/mkt/splash.less',
@@ -144,6 +143,10 @@ CSS = {
     'mkt/themes': (
         'css/devreg/themes.less',
     ),
+    'mkt/gaia': (
+        # Gaia building blocks.
+        'css/gaia/action_menu.css',
+    )
 }
 
 # Bundle extensions (e.g., desktop).
@@ -301,7 +304,6 @@ JS = {
         'js/zamboni/storage.js',
         'js/zamboni/editors.js',
         'js/mkt/reviewers.js',
-        'js/devreg/menupicker.js',
         'js/devreg/expandable.js',
         'js/devreg/mobile_review_actions.js',
         'js/devreg/reviewers_init.js',

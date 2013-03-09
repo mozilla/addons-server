@@ -6,25 +6,24 @@
 {% endblock %}
 
 {% block content %}
+  {% if waffle.switch('reviewer-incentive-points') %}
+    <section id="reviewers-score-bar" class="island full c">
+      {{ reviewers_score_bar() }}
+    </section>
+  {% endif %}
 
-{% if waffle.switch('reviewer-incentive-points') %}
-<section id="reviewers-score-bar" class="island full c">
-  {{ reviewers_score_bar() }}
-</section>
-{% endif %}
+  <div class="mobile-queue-search hidden">
+    {% include "reviewers/includes/queue_search.html" %}
+  </div>
 
   <ul class="tabnav">
     {% for prefix, this, loc, text in queue_tabnav() %}
-      <li class="{% if tab == this %}selected{% endif %}">
-        <a href="{{ url('reviewers.%s.%s' % (prefix, loc)) }}">{{ text }}</a></li>
+      <li{% if tab == this %} class="selected trigger-queues"{% endif %}>
+        <a href="{{ url('reviewers.%s.%s' % (prefix, loc)) }}">{{ text }}</a>
+        <div class="tabnav-sprite hidden"></div>
+      </li>
     {% endfor %}
   </ul>
-
-  {% if tab == 'moderated' %}
-    <header class="c">
-      <h1 class="menutrigger">{{ _('Moderated Reviews') }}</h1>
-    </header>
-  {% endif %}
 
   <section class="island">
     {% if tab == 'moderated' %}
@@ -105,35 +104,7 @@
         </form>
       </div>
     {% else %}
-      {% if search_form %}
-        <div id="queue-search">
-          <form>
-            <label for="{{ search_form.text_query.auto_id }}">{{ search_form.text_query.label }}</label>
-            {{ search_form.text_query }}
-            <button class="button" type="submit">{{ _('Search') }}</button>
-            <a id="toggle-queue-search" href="#">{{ _('Advanced Search') }}</a>
-            {% if searching %}
-              (<a id="clear-queue-search" href="{{ url('reviewers.apps.queue_%s' % tab) }}">{{ _('Clear Search') }}</a>)
-            {% endif %}
-
-            <div id="advanced-search" class="c{% if not adv_searching %} hidden{% endif %}">
-              <div class="basic-filters">
-                {{ form_row(search_form,
-                                ('admin_review', 'has_editor_comment',
-                                 'has_info_request', 'waiting_time_days',
-                                 'app_type')) }}
-              </div>
-              <div class="device-type-select">
-                {{ form_row(search_form, ('device_type_ids',)) }}
-              </div>
-              <div class="premium-type-select">
-                {{ form_row(search_form, ('premium_type_ids',)) }}
-              </div>
-            </div>
-
-          </form>
-        </div>
-      {% endif %}
+      {% include "reviewers/includes/queue_search.html" %}
 
       {% if addons %}
         {# Not super DRY - addresses some review queue mobile issues. #}
@@ -147,7 +118,7 @@
                 <th>{{ _('Flags') }}</th>
                 <th class="waiting-time">{{ sort_link(_('Waiting Time'), 'created')|safe }}</th>
                 <th>{{ _('Devices') }}</th>
-                <th>{{ _('Payments') }}</th>
+                <th class="payments">{{ _('Payments') }}</th>
                 {% if tab == 'escalated' %}
                   <th>{{ sort_link(_('Abuse Reports'), 'num_abuse_reports')|safe }}</th>
                 {% endif %}
@@ -177,7 +148,7 @@
                   </td>
                   <td class="waiting-time">{{ qa.created|timelabel }}</td>
                   <td>{{ device_list(qa.app) }}</td>
-                  <td>{{ amo.ADDON_PREMIUM_TYPES[qa.app.premium_type] }}</td>
+                  <td class="payments">{{ amo.ADDON_PREMIUM_TYPES[qa.app.premium_type] }}</td>
                   {% if tab == 'escalated' %}
                     <td class="abuse-reports">{{ qa.app.abuse_reports.count() }}</td>
                   {% endif %}
@@ -207,7 +178,7 @@
                 <tr data-addon="{{ qa.app.id }}" class="addon-row" id="addon-{{ qa.app.id }}">
                   <td><div class="addon-locked"></div></td>
                   <td class="app-name"><a href="{{ url('reviewers.apps.review', qa.app.app_slug) }}">{{ qa.app.name }}</a></td>
-                  <td>{# Flags #}
+                  <td class="flags">{# Flags #}
                     {% if qa.app.is_packaged %}
                       <div class="sprite-reviewer sprite-reviewer-packaged-app" title="{{ _('Packaged App') }}"></div>
                     {% endif %}
@@ -255,7 +226,8 @@
           {{ _('There are currently no items of this type to review.') }}
         </div>
       {% else %}
-        {{ pager|impala_paginator }}
+        <div class="impala-paginator">{{ pager|impala_paginator }}</div>
+        <div class="mobile-paginator hidden">{{ pager|mobile_impala_paginator }}</div>
       {% endif %}
 
     {% endif %}

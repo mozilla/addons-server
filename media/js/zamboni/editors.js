@@ -43,6 +43,30 @@
         initQueue();
     }
 
+    // Nav action menu overlays for queues and logs.
+    var $logTabOverlay = $('#log-tab-overlay');
+    var $queueTabOverlay = $('#queue-tab-overlay');
+    $('.trigger-queues').click(_pd(function() {
+        if (z.capabilities.mobile) {
+            $queueTabOverlay.show();
+        }
+    }));
+    $('.trigger-logs').click(_pd(function() {
+        if (z.capabilities.mobile) {
+            $logTabOverlay.show();
+        }
+    }));
+    $('.nav-action-menu button').click(_pd(function() {
+        // Turn buttons into links on nav tab overlays.
+        var button = $(this);
+        if (button.is(':last-child')) {
+            $queueTabOverlay.hide();
+            $logTabOverlay.hide();
+        } else {
+            window.location = button.data('url');
+        }
+    }));
+
     // Show add-on ID when icon is clicked
     if ($("#addon[data-id], #persona[data-id]").length) {
       $("#addon .icon").click(function() {
@@ -296,15 +320,9 @@ function initQueue() {
 
 
 function initQueueSearch(doc) {
-    $('#toggle-queue-search', doc).click(function(e) {
-        e.preventDefault();
-        $(e.target).blur();
-        if ($('#advanced-search:visible', doc).length) {
-            $('#advanced-search', doc).slideUp();
-        } else {
-            $('#advanced-search', doc).slideDown();
-        }
-    });
+    $('.toggle-queue-search').click(_pd(function(e) {
+        $('.advanced-search').slideToggle();
+    }));
 
     $('#id_application_id', doc).change(function(e) {
         var maxVer = $('#id_max_version', doc),
