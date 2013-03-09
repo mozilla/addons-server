@@ -362,7 +362,7 @@ def queue_apps(request):
                           .select_related('addon').no_transforms())
 
     qs, search_form = _queue_to_apps(request, qs)
-    apps = [QueuedApp(app, app.current_version.nomination)
+    apps = [QueuedApp(app, app.all_versions[0].nomination)
             for app in Webapp.version_and_file_transformer(qs)]
 
     return _queue(request, apps, 'pending', search_form)
