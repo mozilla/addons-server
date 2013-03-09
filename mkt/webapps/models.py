@@ -752,6 +752,26 @@ def update_cached_manifests(sender, **kw):
         update_cached_manifests.delay(sender.id)
 
 
+@Webapp.on_change
+def watch_status(old_attr={}, new_attr={}, instance=None, sender=None, **kw):
+    """Set nomination date when app is pending review."""
+    new_status = new_attr.get('status')
+    if not new_status:
+        return
+    addon = instance
+    if new_status == amo.STATUS_PENDING and old_attr['status'] != new_status:
+        # We always set nomination date when app switches to PENDING, even if
+        # previously rejected.
+        try:
+            latest = addon.versions.latest()
+            log.debug('[Webapp:%s] Setting nomination date to now.' % addon.id)
+            latest.update(nomination=datetime.datetime.now())
+        except Version.DoesNotExist:
+            log.debug('[Webapp:%s] Missing version, no nomination set.'
+                      % addon.id)
+            pass
+
+
 class ImageAsset(amo.models.ModelBase):
     addon = models.ForeignKey(Addon, related_name='image_assets')
     filetype = models.CharField(max_length=25, default='image/png')

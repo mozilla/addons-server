@@ -333,9 +333,8 @@ def _do_sort(request, qs):
     """Column sorting logic based on request GET parameters."""
     sort, order = clean_sort_param(request)
 
-    if qs.model in [EscalationQueue, RereviewQueue] and sort != 'created':
-        # For some queues, want to use queue's created field, not the app's
-        # created field.
+    if qs.model is not Webapp and sort != 'created':
+        # For when `Webapp` isn't the base model of the queryset.
         sort = 'addon__' + sort
 
     if order == 'asc':
@@ -355,13 +354,16 @@ def _do_sort(request, qs):
 @permission_required('Apps', 'Review')
 def queue_apps(request):
     excluded_ids = EscalationQueue.uncached.values_list('addon', flat=True)
-    qs = (Webapp.uncached.filter(type=amo.ADDON_WEBAPP,
-                                 disabled_by_user=False,
-                                 status=amo.STATUS_PENDING)
-                         .exclude(id__in=excluded_ids))
+    qs = (Version.uncached.filter(addon__type=amo.ADDON_WEBAPP,
+                                  addon__disabled_by_user=False,
+                                  addon__status=amo.STATUS_PENDING)
+                          .exclude(addon__id__in=excluded_ids)
+                          .order_by('nomination', 'created')
+                          .select_related('addon').no_transforms())
 
-    qs, search_form = _get_search_form(request, _do_sort(request, qs))
-    apps = [QueuedApp(app, app.created) for app in qs]
+    qs, search_form = _queue_to_apps(request, qs)
+    apps = [QueuedApp(app, app.current_version.nomination)
+            for app in Webapp.version_and_file_transformer(qs)]
 
     return _queue(request, apps, 'pending', search_form)
 
@@ -403,7 +405,7 @@ def queue_updates(request):
                          .filter(id__in=addon_ids))
     qs, search_form = _get_search_form(request, _do_sort(request, qs))
 
-    apps = [QueuedApp(app, app.all_versions[0].all_files[0].created)
+    apps = [QueuedApp(app, app.all_versions[0].nomination)
             for app in Webapp.version_and_file_transformer(qs)]
     apps = sorted(apps, key=lambda a: a.created)
     return _queue(request, apps, 'updates', search_form)

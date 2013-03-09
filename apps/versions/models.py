@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import datetime
 import os
 
 import django.dispatch
@@ -453,14 +454,32 @@ def inherit_nomination(sender, instance, **kw):
     """
     if kw.get('raw'):
         return
-    if (instance.nomination is None
-        and instance.addon.status in (amo.STATUS_NOMINATED,
-                                      amo.STATUS_LITE_AND_NOMINATED)
-        and not instance.is_beta):
-        last_ver = (Version.objects.filter(addon=instance.addon)
-                    .exclude(nomination=None).order_by('-nomination'))
-        if last_ver.exists():
-            instance.update(nomination=last_ver[0].nomination)
+    addon = instance.addon
+    if (addon.type == amo.ADDON_WEBAPP and addon.is_packaged):
+        # If prior version's file is pending, inherit nomination. Otherwise,
+        # set nomination to now.
+        last_ver = (Version.objects.filter(addon=addon)
+                                   .exclude(pk=instance.pk)
+                                   .order_by('-nomination'))
+        if (last_ver.exists() and
+            last_ver[0].all_files[0].status == amo.STATUS_PENDING):
+            instance.update(nomination=last_ver[0].nomination, _signal=False)
+            log.debug('[Webapp:%s] Inheriting nomination from prior pending '
+                      'version' % addon.id)
+        elif addon.status == amo.STATUS_PUBLIC and not instance.nomination:
+            log.debug('[Webapp:%s] Setting nomination date to now for new '
+                      'version.' % addon.id)
+            instance.update(nomination=datetime.datetime.now(), _signal=False)
+    else:
+        if (instance.nomination is None
+            and addon.status in (amo.STATUS_NOMINATED,
+                                 amo.STATUS_LITE_AND_NOMINATED)
+            and not instance.is_beta):
+            last_ver = (Version.objects.filter(addon=addon)
+                        .exclude(nomination=None).order_by('-nomination'))
+            if last_ver.exists():
+                instance.update(nomination=last_ver[0].nomination,
+                                _signal=False)
 
 
 def update_incompatible_versions(sender, instance, **kw):
@@ -507,25 +526,27 @@ def clear_compatversion_cache_on_delete(sender, instance, **kw):
 
 
 version_uploaded = django.dispatch.Signal()
-models.signals.post_save.connect(update_status, sender=Version,
-                                 dispatch_uid='version_update_status')
-models.signals.post_save.connect(inherit_nomination, sender=Version,
-                                 dispatch_uid='version_inherit_nomination')
-models.signals.post_delete.connect(update_status, sender=Version,
-                                   dispatch_uid='version_update_status')
-models.signals.post_save.connect(update_incompatible_versions, sender=Version,
-                                 dispatch_uid='version_update_incompat')
-models.signals.post_delete.connect(update_incompatible_versions,
-                                   sender=Version,
-                                   dispatch_uid='version_update_incompat')
-models.signals.pre_delete.connect(cleanup_version, sender=Version,
-                                  dispatch_uid='cleanup_version')
-models.signals.post_save.connect(clear_compatversion_cache_on_save,
-                                 sender=Version,
-                                 dispatch_uid='clear_compatversion_cache_save')
-models.signals.post_delete.connect(clear_compatversion_cache_on_delete,
-                                   sender=Version,
-                                   dispatch_uid='clear_compatversion_cache_del')
+models.signals.post_save.connect(
+    update_status, sender=Version, dispatch_uid='version_update_status')
+models.signals.post_save.connect(
+    inherit_nomination, sender=Version,
+    dispatch_uid='version_inherit_nomination')
+models.signals.post_delete.connect(
+    update_status, sender=Version, dispatch_uid='version_update_status')
+models.signals.post_save.connect(
+    update_incompatible_versions, sender=Version,
+    dispatch_uid='version_update_incompat')
+models.signals.post_delete.connect(
+    update_incompatible_versions, sender=Version,
+    dispatch_uid='version_update_incompat')
+models.signals.pre_delete.connect(
+    cleanup_version, sender=Version, dispatch_uid='cleanup_version')
+models.signals.post_save.connect(
+    clear_compatversion_cache_on_save, sender=Version,
+    dispatch_uid='clear_compatversion_cache_save')
+models.signals.post_delete.connect(
+    clear_compatversion_cache_on_delete, sender=Version,
+    dispatch_uid='clear_compatversion_cache_del')
 
 
 class LicenseManager(amo.models.ManagerBase):

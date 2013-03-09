@@ -218,9 +218,11 @@ class TestAppQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
 
     def setUp(self):
         self.apps = [app_factory(name='XXX',
-                                 status=amo.STATUS_PENDING),
+                                 status=amo.STATUS_PENDING,
+                                 version_kw={'nomination': self.days_ago(2)}),
                      app_factory(name='YYY',
-                                 status=amo.STATUS_PENDING),
+                                 status=amo.STATUS_PENDING,
+                                 version_kw={'nomination': self.days_ago(1)}),
                      app_factory(name='ZZZ')]
         self.apps[0].update(created=self.days_ago(2))
         self.apps[1].update(created=self.days_ago(1))
@@ -478,10 +480,12 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
     def setUp(self):
         app1 = app_factory(is_packaged=True, name='XXX',
                            version_kw={'version': '1.0',
-                                       'created': self.days_ago(2)})
+                                       'created': self.days_ago(2),
+                                       'nomination': self.days_ago(2)})
         app2 = app_factory(is_packaged=True, name='YYY',
                            version_kw={'version': '1.0',
-                                       'created': self.days_ago(2)})
+                                       'created': self.days_ago(2),
+                                       'nomination': self.days_ago(2)})
 
         version_factory(addon=app1, version='1.1', created=self.days_ago(1),
                         nomination=self.days_ago(1),
@@ -498,8 +502,8 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         return reverse('reviewers.apps.review', args=[app.app_slug])
 
     def test_template_links(self):
-        self.apps[0].versions.latest().files.update(created=self.days_ago(2))
-        self.apps[1].versions.latest().files.update(created=self.days_ago(1))
+        self.apps[0].versions.latest().update(nomination=self.days_ago(2))
+        self.apps[1].versions.latest().update(nomination=self.days_ago(1))
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         links = pq(r.content)('#addon-queue tbody')('tr td:nth-of-type(2) a')
@@ -594,8 +598,8 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
     def test_order(self):
         self.apps[0].update(created=self.days_ago(10))
         self.apps[1].update(created=self.days_ago(5))
-        self.apps[0].versions.latest().files.update(created=self.days_ago(1))
-        self.apps[1].versions.latest().files.update(created=self.days_ago(4))
+        self.apps[0].versions.latest().update(nomination=self.days_ago(1))
+        self.apps[1].versions.latest().update(nomination=self.days_ago(4))
         res = self.client.get(self.url)
         apps = list(res.context['addons'])
         eq_(apps[0].app, self.apps[1])

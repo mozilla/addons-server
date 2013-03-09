@@ -217,7 +217,7 @@ def mock_es(f):
 
 
 def days_ago(days):
-    return datetime.now() - timedelta(days=days)
+    return datetime.now().replace(microsecond=0) - timedelta(days=days)
 
 
 class TestCase(RedisTest, test_utils.TestCase):
@@ -382,6 +382,8 @@ class TestCase(RedisTest, test_utils.TestCase):
         """
         Make sure the datetime is within a minute from `now`.
         """
+        if not dt:
+            raise AssertionError('Expected datetime, got: %s' % dt)
         dt_later_ts = time.mktime((dt + timedelta(minutes=1)).timetuple())
         dt_earlier_ts = time.mktime((dt - timedelta(minutes=1)).timetuple())
         if not now:
