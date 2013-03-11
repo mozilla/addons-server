@@ -79,7 +79,6 @@ Sphinx==0.6.3
 SQLAlchemy==0.7.5
 statsd==1.0.0
 suds==0.3.9
-tower==0.3.4
 
 ## Not on pypi.
 -e git://github.com/mozilla/amo-validator.git@90ec6884023009575b085a0963d7b52b70da442b#egg=amo-validator
@@ -107,3 +106,4 @@ tower==0.3.4
 -e git://github.com/jbalogh/django-mobility.git@e2b60a1f96e4c4aed736395c01bf707e969d8e83#egg=django-mobility
 -e git://github.com/jbalogh/jingo.git@b4ecca1066bcd1eac87358b4c82902442d4eedc4#egg=jingo
 -e git://github.com/andymccurdy/redis-py.git@79d22358410936358c71c88abbdb2a26e3cedc28#egg=redis-py
+-e git://github.com/clouserw/tower.git@ce2eba049a5146918fa5239d827bdde9e36eadb7#egg=tower-dev
