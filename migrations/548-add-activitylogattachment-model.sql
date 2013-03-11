@@ -2,7 +2,7 @@ CREATE TABLE `log_activity_attachment_mkt` (
     `id` int(11) UNSIGNED AUTO_INCREMENT NOT NULL PRIMARY KEY,
     `created` datetime NOT NULL,
     `modified` datetime NOT NULL,
-    `activity_log_id` int(11) UNSIGNED NOT NULL,
+    `activity_log_id` int(11) NOT NULL,
     `filepath` varchar(255) NOT NULL,
     `description` varchar(255),
     `mimetype` varchar(255)
