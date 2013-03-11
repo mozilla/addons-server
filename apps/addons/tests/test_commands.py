@@ -45,7 +45,7 @@ class TestCommand(amo.tests.TestCase):
         self.cmd = MockCommand()
 
     def test_users(self):
-        self.cmd.handle(commit='yes')
+        self.cmd.handle(commit='yes', users='yes')
         eq_(UserProfile.objects.count(), 1)
         user = UserProfile.objects.get(email='foo@bar.com')
         eq_(user.password, 'algo+base64$salt$pass')
@@ -55,15 +55,17 @@ class TestCommand(amo.tests.TestCase):
 
     def test_existing(self):
         UserProfile.objects.create(email='foo@bar.com')
-        self.cmd.handle(commit='yes')
+        self.cmd.handle(commit='yes', users='yes')
         assert ' Ignoring existing user: foo@bar.com' in self.cmd.logs
         eq_(UserProfile.objects.count(), 1)
 
     def test_favorites(self):
         addon = Addon.objects.create(type=amo.ADDON_PERSONA)
         Persona.objects.create(persona_id=3, addon=addon)
+        UserProfile.objects.create(email='foo@bar.com')
+        self.cmd.handle(commit='yes', users='yes')
         self.cmd.favourites = [[3], [4]]
-        self.cmd.handle(commit='yes')
+        self.cmd.handle(commit='yes', favorites='yes')
         user = UserProfile.objects.get(email='foo@bar.com')
         eq_(user.favorites_collection().addons.count(), 1)
 
@@ -71,17 +73,7 @@ class TestCommand(amo.tests.TestCase):
         addon = Addon.objects.create(type=amo.ADDON_PERSONA)
         Persona.objects.create(persona_id=3, addon=addon)
         self.cmd.designers = [[3], [4]]
-        self.cmd.handle(commit='yes')
-        assert '  Not found persona 4 for user some_username' in self.cmd.logs
+        self.cmd.handle(commit='yes', users='yes')
+        assert ' Skipping unknown persona (4) for user (some_username)' in self.cmd.logs
         user = UserProfile.objects.get(email='foo@bar.com')
         eq_([user], list(addon.listed_authors))
-
-    @mock.patch("addons.tasks.index_addons.subtask", wraps=index_addons.subtask)
-    def test_reindex(self, reindex):
-        addon = Addon.objects.create(type=amo.ADDON_PERSONA,
-                                     status=amo.STATUS_PUBLIC)
-        v1 = Version.objects.create(addon=addon, version='1.0')
-        addon.update(_current_version=v1)
-        Persona.objects.create(persona_id=3, addon=addon)
-        self.cmd.handle(commit='yes')
-        assert reindex.called

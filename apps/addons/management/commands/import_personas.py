@@ -3,7 +3,7 @@ from optparse import make_option
 from time import time
 
 from django.core.management.base import BaseCommand
-from django.db import transaction
+from django.db import IntegrityError, transaction
 
 import MySQLdb as mysql
 
@@ -21,6 +21,8 @@ class Command(BaseCommand):
     `database`: the personas database, eg: personas
     `commit`: if yes, actually commit the transaction, for any other value, it
               aborts the transaction at the end.
+    `users`: migrate user accounts?
+    `favorites`: migrate favorites for users?
     """
     option_list = BaseCommand.option_list + (
         make_option('--host', action='store',
@@ -30,7 +32,13 @@ class Command(BaseCommand):
         make_option('--user', action='store',
                     dest='user', help='The database user'),
         make_option('--commit', action='store',
-                    dest='commit', help='If: yes, then commits the run'),
+                    dest='commit', help='If yes, then commits the run'),
+        make_option('--users', action='store',
+                    dest='users', help='If yes, then migrate users'),
+        make_option('--favorites', action='store',
+                    dest='favorites', help='If yes, then migrate favorites'),
+        make_option('--start', action='store', type="int",
+                    dest='start', help='An optional offset to start at'),
     )
 
     def log(self, msg):
@@ -52,10 +60,22 @@ class Command(BaseCommand):
         self.connection = mysql.connect(**options)
         self.cursor = self.connection.cursor()
 
-    def do_import(self, offset, limit):
-        self.log('Importing users %s to %s' % (offset, offset+limit))
+    def do_import(self, offset, limit, **options):
+        self.log('Processing users %s to %s' % (offset, offset+limit))
         for user in self.get_users(limit, offset):
-            self.handle_user(user)
+            user = dict(zip(['username', 'display_username', 'md5',
+                             'email', 'privs', 'change_code', 'news',
+                             'description'], user))
+
+            for k in ['username', 'description', 'display_username', 'email']:
+                user[k] = (user.get(k) or '').decode('latin1').encode('utf-8')
+
+            user['orig-username'] = user['username']
+
+            if options.get('users') == 'yes':
+                self.handle_user(user)
+            if options.get('favorites') == 'yes':
+                self.handle_favourites(user)
 
     def count_users(self):
         self.cursor.execute('SELECT count(username) from users')
@@ -76,15 +96,38 @@ class Command(BaseCommand):
                             'username = %s', username)
         return self.cursor.fetchall()
 
-    def handle_user(self, user):
-        user = dict(zip(['username', 'display_username', 'md5', 'email',
-                         'privs', 'change_code', 'news', 'description'], user))
-
-        for k in ['username', 'description', 'display_username', 'email']:
-            user[k] = (user.get(k) or '').decode('latin1').encode('utf-8')
+    def handle_favourites(self, user):
+        """This will expect users to already be migrated."""
 
         profile = UserProfile.objects.filter(email=user['email'])
-        user['orig-username'] = user['username']
+        if not profile.exists():
+            self.log("Skipping unknown user (%s)" % user['email'])
+            return
+
+        profile = profile[0]
+        collection = profile.favorites_collection()
+        rows = []
+        for fav in self.get_favourites(user['orig-username']):
+            try:
+                addon = Persona.objects.get(persona_id=fav[0]).addon
+                rows.append(CollectionAddon(addon=addon, collection=collection))
+            except Persona.DoesNotExist:
+                self.log(' Skipping unknown persona (%s) for user (%s)' %
+                         (fav[0], user['username']))
+                continue
+
+        if len(rows):
+            try:
+                CollectionAddon.objects.bulk_create(rows)
+                self.log(' Adding %s favs for user %s' % (len(rows),
+                                                           user['username']))
+            except IntegrityError:
+                self.log(' Failed to import (%s) favorites for user (%s)' %
+                         (len(rows), user['username']))
+
+
+    def handle_user(self, user):
+        profile = UserProfile.objects.filter(email=user['email'])
 
         if profile.exists():
             self.log(' Ignoring existing user: %s' % user['email'])
@@ -105,37 +148,39 @@ class Command(BaseCommand):
             # base64 encoding. Let's add +base64 on to it so we know this in
             # zamboni.
             password = '$'.join([algo + '+base64', salt, password])
-            profile = UserProfile.objects.create(username=user['username'],
-                                                 email=user['email'],
-                                                 bio=user['description'],
-                                                 password=password,
-                                                 notes=note)
-            profile.create_django_user()
-
-        # Now sort out any favourites.
-        for fav in self.get_favourites(user['orig-username']):
             try:
-                addon = Persona.objects.get(persona_id=fav[0]).addon
-            except Persona.DoesNotExist:
-                self.log('  Not found fav. %s for user %s' %
-                         (fav[0], user['username']))
-                continue
-            CollectionAddon.objects.create(addon=addon,
-                    collection=profile.favorites_collection())
-            self.log('  Adding fav. %s for user %s' % (addon, user['username']))
+                profile = UserProfile.objects.create(username=user['username'],
+                                                     email=user['email'],
+                                                     bio=user['description'],
+                                                     password=password,
+                                                     notes=note)
+                profile.create_django_user()
+            except IntegrityError:
+                self.log(' Failed creating new user (%s)' % user['email'])
 
         # Now link up the designers with the profile.
+        rows = []
         for persona_id in self.get_designers(user['orig-username']):
             try:
                 persona = Persona.objects.get(persona_id=persona_id[0])
+                rows.append(AddonUser(addon=persona.addon, user=profile,
+                                      listed=True))
             except Persona.DoesNotExist:
-                self.log('  Not found persona %s for user %s' %
+                self.log(' Skipping unknown persona (%s) for user (%s)' %
                          (persona_id[0], user['username']))
                 continue
-            AddonUser.objects.create(addon=persona.addon, user=profile,
-                                     listed=True)
-            self.log('  Adding PersonAuthor for persona %s for user %s' %
-                     (user['username'], persona))
+        if len(rows):
+            try:
+                AddonUser.objects.bulk_create(rows)
+                self.log(' Adding (%s) as owner of (%s) personas' %
+                         (user['username'], len(rows)))
+            except IntegrityError:
+                # Can mean they already own the personas (eg. you've run this
+                # script before) or a persona doesn't exist in the db.
+                self.log(' Failed adding (%s) as owner of (%s) personas' %
+                         (user['username'], len(rows)))
+
+
 
     @transaction.commit_manually
     def handle(self, *args, **options):
@@ -144,18 +189,25 @@ class Command(BaseCommand):
         self.connect(**options)
 
         self.log("You're running a script to import getpersonas.com to AMO!")
-        self.log("Grab some coffee and settle in.")
 
         try:
             count = self.count_users()
-            self.log('Going to import %s users.' % count)
+            self.log('Found %s users. Grab some coffee and settle in' % count)
+            if options.get('users') == 'yes':
+                self.log("We'll be migrating users and designers.")
 
-            step = 30
-            for offset in range(0, count, step):
+            if options.get('favorites') == 'yes':
+                self.log("We'll be migrating favorites. Users assumed done.")
+
+            step = 100
+            start = options.get('start', 0)
+            self.log("Starting at offset: %s" % start)
+            for offset in range(start, count, step):
                 t_start = time()
-                self.do_import(offset, step)
+                self.do_import(offset, step, **options)
                 self.commit_or_not(options.get('commit'))
-                t_average = 1 / ((time()- t_total_start) / (offset + step))
+                t_average = 1 / ((time() - t_total_start) /
+                                 (offset - start + step))
                 print "> %.2fs for %s accounts. Averaging %.2f accounts/s" % (
                         time() - t_start, step, t_average)
         except:
@@ -164,8 +216,9 @@ class Command(BaseCommand):
             raise
         finally:
             self.commit_or_not(options.get('commit'))
-            if options.get('commit') == 'yes':
-                self.log("Kicking off cron to reindex personas...")
-                cron.reindex_addons(addon_type=amo.ADDON_PERSONA)
+            # Let's not do this programmatically with how this script is acting
+            #if options.get('commit') == 'yes':
+                #self.log("Kicking off cron to reindex personas...")
+                #cron.reindex_addons(addon_type=amo.ADDON_PERSONA)
 
         self.log("Done. Total time: %s seconds" % (time() - t_total_start))
