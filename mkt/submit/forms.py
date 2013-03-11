@@ -380,7 +380,7 @@ class AppDetailsBasicForm(TranslationFormMixin, happyforms.ModelForm):
                 raise forms.ValidationError(
                     _('This slug is already in use. Please choose another.'))
 
-            if BlacklistedSlug.blocked(target):
+            if BlacklistedSlug.blocked(slug):
                 raise forms.ValidationError(
                     _('The slug cannot be "%s". Please choose another.' % slug))
 
