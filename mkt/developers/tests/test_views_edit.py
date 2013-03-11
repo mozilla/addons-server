@@ -187,7 +187,8 @@ class TestEditBasic(TestEdit):
     def test_edit_slug_dupe(self):
         Addon.objects.create(type=amo.ADDON_WEBAPP, app_slug='dupe')
         r = self.client.post(self.edit_url, self.get_dict(slug='dupe'))
-        self.assertFormError(r, 'form', 'slug', 'This slug is already in use.')
+        self.assertFormError(r, 'form', 'slug',
+            'This slug is already in use. Please choose another.')
         webapp = self.get_webapp()
         # Nothing changed.
         eq_(webapp.slug, self.webapp.slug)

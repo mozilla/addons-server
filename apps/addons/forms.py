@@ -49,6 +49,21 @@ def clean_name(name, instance=None):
     return name
 
 
+def clean_slug(slug, instance):
+    slug_validator(slug, lower=False)
+    slug_field = 'app_slug' if instance.is_webapp() else 'slug'
+
+    if slug != getattr(instance, slug_field):
+        if Addon.objects.filter(**{slug_field: slug}).exists():
+            raise forms.ValidationError(
+                _('This slug is already in use. Please choose another.'))
+        if BlacklistedSlug.blocked(slug):
+            raise forms.ValidationError(
+                _('The slug cannot be "%s". Please choose another.' % slug))
+
+    return slug
+
+
 def clean_tags(request, tags):
     target = [slugify(t, spaces=True, lower=True) for t in tags.split(',')]
     target = set(filter(None, target))
@@ -107,6 +122,12 @@ class AddonFormBase(TranslationFormMixin, happyforms.ModelForm):
     class Meta:
         models = Addon
         fields = ('name', 'slug', 'summary', 'tags')
+
+    def clean_slug(self):
+        return clean_slug(self.cleaned_data['slug'], self.instance)
+
+    def clean_tags(self):
+        return clean_tags(self.request, self.cleaned_data['tags'])
 
 
 class AddonFormBasic(AddonFormBase):
@@ -181,23 +202,6 @@ class AddonFormBasic(AddonFormBase):
                 self._meta.fields[slug_idx] = 'slug'
         else:
             super(AddonFormBasic, self)._post_clean()
-
-    def clean_tags(self):
-        return clean_tags(self.request, self.cleaned_data['tags'])
-
-    def clean_slug(self):
-        target = self.cleaned_data['slug']
-        slug_validator(target, lower=False)
-        slug_field = 'app_slug' if self.instance.is_webapp() else 'slug'
-
-        if target != getattr(self.instance, slug_field):
-            if Addon.objects.filter(**{slug_field: target}).exists():
-                raise forms.ValidationError(_('This slug is already in use.'))
-
-            if BlacklistedSlug.blocked(target):
-                raise forms.ValidationError(_('The slug cannot be: %s.'
-                                              % target))
-        return target
 
 
 class AppFormBasic(AddonFormBasic):
@@ -459,8 +463,7 @@ class AddonForm(happyforms.ModelForm):
         exclude = ('status', )
 
     def clean_name(self):
-        name = self.cleaned_data['name']
-        return clean_name(name)
+        return clean_name(self.cleaned_data['name'])
 
     def save(self):
         desc = self.data.get('description')
@@ -489,6 +492,7 @@ class AbuseForm(happyforms.Form):
 
 class NewPersonaForm(AddonFormBase):
     name = forms.CharField(max_length=50)
+    slug = forms.CharField(max_length=30)
     category = forms.ModelChoiceField(queryset=Category.objects.all(),
                                       widget=forms.widgets.RadioSelect)
     summary = forms.CharField(widget=forms.Textarea(attrs={'rows': 4}),
@@ -511,7 +515,7 @@ class NewPersonaForm(AddonFormBase):
 
     class Meta:
         model = Addon
-        fields = ('name', 'summary', 'tags')
+        fields = ('name', 'slug', 'summary', 'tags')
 
     def __init__(self, *args, **kwargs):
         super(NewPersonaForm, self).__init__(*args, **kwargs)
@@ -529,8 +533,8 @@ class NewPersonaForm(AddonFormBase):
     def clean_name(self):
         return clean_name(self.cleaned_data['name'])
 
-    def clean_tags(self):
-        return clean_tags(self.request, self.cleaned_data['tags'])
+    def clean_slug(self):
+        return clean_slug(self.cleaned_data['slug'], self.instance)
 
     def save(self, commit=False):
         from addons.tasks import (create_persona_preview_images,

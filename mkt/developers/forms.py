@@ -508,18 +508,19 @@ class AppFormBasic(addons.forms.AddonFormBase):
             self._meta.fields[slug_idx] = 'slug'
 
     def clean_slug(self):
-        target = self.cleaned_data['slug']
-        slug_validator(target, lower=False)
-        slug_field = 'app_slug' if self.instance.is_webapp() else 'slug'
+        slug = self.cleaned_data['slug']
+        slug_validator(slug, lower=False)
 
-        if target != getattr(self.instance, slug_field):
-            if Addon.objects.filter(**{slug_field: target}).exists():
-                raise forms.ValidationError(_('This slug is already in use.'))
+        if slug != self.instance:
+            if Webapp.objects.filter(app_slug=slug).exists():
+                raise forms.ValidationError(
+                    _('This slug is already in use. Please choose another.'))
 
-            if BlacklistedSlug.blocked(target):
-                raise forms.ValidationError(_('The slug cannot be: %s.'
-                                              % target))
-        return target
+            if BlacklistedSlug.blocked(slug):
+                raise forms.ValidationError(_('The slug cannot be "%s". '
+                                              'Please choose another.' % slug))
+
+        return slug
 
     def clean_manifest_url(self):
         manifest_url = self.cleaned_data['manifest_url']

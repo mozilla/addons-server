@@ -11,7 +11,7 @@
 {%- endmacro %}
 
 {% macro pretty_field(field, label=None, tooltip=None, tag='li', req=None,
-                      opt=False, choice=None, class='row', validate=False) %}
+                      opt=False, choice=None, class='row', before='', validate=False) %}
   {% if choice == None %}
     {% set choice = field|is_choice_field %}
   {% endif %}
@@ -42,6 +42,7 @@
         {{ tip(None, tooltip) }}
       {% endif %}
     </label>
+    {{ before }}
     {% if not choice %}
       {{ field.as_widget(attrs=attrs) }}
     {% endif %}

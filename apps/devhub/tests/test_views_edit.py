@@ -185,7 +185,8 @@ class TestEditBasic(TestEdit):
         data = self.get_dict()
         r = self.client.post(self.basic_edit_url, data)
         eq_(r.status_code, 200)
-        self.assertFormError(r, 'form', 'slug', 'This slug is already in use.')
+        self.assertFormError(r, 'form', 'slug',
+            'This slug is already in use. Please choose another.')
 
     def test_edit_add_tag(self):
         count = ActivityLog.objects.all().count()

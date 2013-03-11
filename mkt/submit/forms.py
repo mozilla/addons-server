@@ -7,7 +7,7 @@ import waffle
 from tower import ugettext as _, ugettext_lazy as _lazy
 
 import amo
-from addons.models import Addon, AddonUpsell, BlacklistedSlug
+from addons.models import Addon, AddonUpsell, BlacklistedSlug, Webapp
 from amo.utils import slug_validator
 from apps.users.models import UserNotification
 from apps.users.notifications import app_surveys
@@ -372,18 +372,19 @@ class AppDetailsBasicForm(TranslationFormMixin, happyforms.ModelForm):
         super(AppDetailsBasicForm, self).__init__(*args, **kw)
 
     def clean_app_slug(self):
-        slug_field = 'app_slug'
-        target = self.cleaned_data[slug_field]
-        slug_validator(target, lower=False)
+        slug = self.cleaned_data['app_slug']
+        slug_validator(slug, lower=False)
 
-        if target != getattr(self.instance, slug_field):
-            if Addon.objects.filter(**{slug_field: target}).exists():
-                raise forms.ValidationError(_('This slug is already in use.'))
+        if slug != self.instance.app_slug:
+            if Webapp.objects.filter(app_slug=slug).exists():
+                raise forms.ValidationError(
+                    _('This slug is already in use. Please choose another.'))
 
             if BlacklistedSlug.blocked(target):
                 raise forms.ValidationError(
-                    _('The slug cannot be %s.' % target))
-        return target
+                    _('The slug cannot be "%s". Please choose another.' % slug))
+
+        return slug
 
     def save(self, *args, **kw):
         uses_flash = self.cleaned_data.get('flash')

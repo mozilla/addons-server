@@ -73,14 +73,16 @@ class FormsTest(amo.tests.TestCase):
         form = forms.AddonFormBasic({'slug': 'submit'}, request=None,
                                     instance=delicious)
         assert not form.is_valid()
-        eq_(form.errors['slug'], [u'The slug cannot be: submit.'])
+        eq_(form.errors['slug'],
+            [u'The slug cannot be "submit". Please choose another.'])
 
     def test_slug_isdigit(self):
         delicious = Addon.objects.get()
         form = forms.AddonFormBasic({'slug': '123'}, request=None,
                                     instance=delicious)
         assert not form.is_valid()
-        eq_(form.errors['slug'], [u'The slug cannot be: 123.'])
+        eq_(form.errors['slug'],
+            [u'The slug cannot be "123". Please choose another.'])
 
 
 class TestTagsForm(amo.tests.TestCase):

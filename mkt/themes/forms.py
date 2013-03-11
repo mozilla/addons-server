@@ -84,7 +84,8 @@ class NewThemeForm(AddonFormBase):
             save_persona_image.delay(src=footer,
                 full_dst=os.path.join(dst_root, 'footer.png'))
             create_persona_preview_images.delay(src=header,
-                full_dst=[os.path.join(dst_root, 'preview.png')],
+                full_dst=[os.path.join(dst_root, 'preview.png',
+                          os.path.join(dst_root, 'icon.png'))],
                 set_modified_on=[addon])
         except IOError:
             addon.delete()
