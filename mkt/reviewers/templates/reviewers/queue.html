@@ -27,180 +27,60 @@
 
   <section class="island">
     {% if tab == 'moderated' %}
-      <div id="reviews-flagged">
-        <form method="post" class="item">
-          {% if queue_counts[tab] != 0 and DESKTOP %}
-            <div class="review-saved">
-              <button type="submit">{{ _('Process Reviews') }}</button>
-            </div>
-          {% endif %}
-          {{ csrf() }}
-          {{ reviews_formset.management_form }}
-          {% for review in reviews_formset.forms %}
-            <div class="review-flagged">
-              {% if DESKTOP %}
-                <div class="review-flagged-actions">
-                  {{ review.errors }}
-                  <strong>{{ _('Moderation actions:') }}</strong>
-                  {{ review.id }}
-                  {{ review.action }}
-                </div>
-              {% endif %}
-              <h3>
-                <a href="{{ review.instance.addon.get_url_path() }}">{{ review.instance.addon.name }}</a>
-                {%- if review.instance.title %}: {{ review.instance.title }}{% endif %}
-              </h3>
-              {% if DESKTOP %}
-                <p>
-                  {% trans user=review.instance.user|user_link, date=review.instance.created|datetime,
-                           stars=review.instance.rating|stars, locale=review.instance.title.locale %}
-                    by {{ user }} on {{ date }}
-                    {{ stars }} ({{ locale }})
-                  {% endtrans %}
-                </p>
-              {% else %}
-                <p>
-                  {% trans user=review.instance.user|user_link,
-                           date=review.instance.created|datetime,
-                           stars=review.instance.rating|stars,
-                           locale=review.instance.title.locale %}
-                    {{ stars }}
-                    by {{ user }} on {{ date }} ({{ locale }})
-                  {% endtrans %}
-                </p>
-              {% endif %}
-              <p class="description">{{ review.instance.body|nl2br }}</p>
-              <ul class="reviews-flagged-reasons">
-                {% for reason in review.instance.reviewflag_set.all() %}
-                  <li>
-                    <div>
-                      {% trans user=reason.user|user_link, date=reason.modified|babel_datetime,
-                               reason=flags[reason.flag] %}
-                      <strong>{{ reason }}</strong>
-                      <span class="light">Flagged by {{ user }} on {{ date }}</span>
-                      {% endtrans %}
-                    </div>
-                    {{ reason.note }}
-                  </li>
-                {% endfor %}
-              </ul>
-              {% if not DESKTOP %}
-                <div class="review-flagged-actions hidden">
-                  {{ review.errors }}
-                  <strong>{{ _('Moderation actions:') }}</strong>
-                  {{ review.id }}
-                  {{ review.action }}
-                </div>
-              {% endif %}
-            </div>
-          {% endfor %}
-          {% if queue_counts[tab] == 0 %}
-            <div class="no-results">{{ _('All reviews have been moderated. Good work!') }}</div>
-          {% else %}
-            <div class="review-saved review-flagged">
-              <button type="submit">{{ _('Process Reviews') }}</button>
-            </div>
-          {% endif %}
-        </form>
-      </div>
+      {% include "reviewers/includes/queue_moderation.html" %}
     {% else %}
       {% include "reviewers/includes/queue_search.html" %}
 
       {% if addons %}
-        {# Not super DRY - addresses some review queue mobile issues. #}
-        {% if DESKTOP %}
-          <table id="addon-queue" class="data-grid items"
-                 data-url="{{ url('editors.queue_viewing') }}">
-            <thead>
-              <tr class="listing-header">
-                <th>&nbsp;</th>
-                <th>{{ sort_link(_('App'), 'name')|safe }}</th>
-                <th>{{ _('Flags') }}</th>
-                <th class="waiting-time">{{ sort_link(_('Waiting Time'), 'created')|safe }}</th>
-                <th>{{ _('Devices') }}</th>
+        <table id="addon-queue" class="data-grid items"
+               data-url="{{ url('editors.queue_viewing') }}">
+          <thead>
+            <tr class="listing-header">
+              <th>&nbsp;</th>
+              <th>{{ sort_link(_('App'), 'name')|safe }}</th>
+              <th>{{ _('Flags') }}</th>
+              <th class="waiting-time">{{ sort_link(_('Waiting Time'), 'created')|safe }}</th>
+              <th>{{ _('Devices') }}</th>
+              {% if DESKTOP %}
                 <th class="payments">{{ _('Payments') }}</th>
                 {% if tab == 'escalated' %}
                   <th>{{ sort_link(_('Abuse Reports'), 'num_abuse_reports')|safe }}</th>
                 {% endif %}
-              </tr>
-            </thead>
-            <tbody>
-              {% for qa in addons %}
-                <tr data-addon="{{ qa.app.id }}" class="addon-row" id="addon-{{ qa.app.id }}">
-                  <td><div class="addon-locked"></div></td>
-                  <td class="app-name"><a href="{{ url('reviewers.apps.review', qa.app.app_slug) }}">{{ qa.app.name }}</a></td>
-                  <td>{# Flags #}
-                    {% if qa.app.is_packaged %}
-                      <div class="sprite-reviewer sprite-reviewer-packaged-app" title="{{ _('Packaged App') }}"></div>
-                    {% endif %}
-                    {% if qa.app.status == amo.STATUS_BLOCKED %}
-                      <div class="sprite-reviewer sprite-reviewer-blocked" title="{{ _('Blocklisted App') }}"></div>
-                    {% endif %}
-                    {% if qa.app.is_premium() %}
-                      <div class="sprite-reviewer sprite-reviewer-premium" title="{{ _('Premium App') }}"></div>
-                    {% endif %}
-                    {% if qa.app.current_version.has_info_request %}
-                      <div class="sprite-reviewer sprite-reviewer-info" title="{{ _('More Information Requested') }}"></div>
-                    {% endif %}
-                    {% if qa.app.current_version.has_editor_comment %}
-                      <div class="sprite-reviewer sprite-reviewer-editor" title="{{ _('Contains Editor Comment') }}"></div>
-                    {% endif %}
-                  </td>
-                  <td class="waiting-time">{{ qa.created|timelabel }}</td>
-                  <td>{{ device_list(qa.app) }}</td>
+              {% endif %}
+            </tr>
+          </thead>
+          <tbody>
+            {% for qa in addons %}
+              <tr data-addon="{{ qa.app.id }}" class="addon-row" id="addon-{{ qa.app.id }}">
+                <td><div class="addon-locked"></div></td>
+                <td class="app-name"><a href="{{ url('reviewers.apps.review', qa.app.app_slug) }}">{{ qa.app.name }}</a></td>
+                <td class="flags">{# Flags #}
+                  {% if qa.app.is_packaged %}
+                    <div class="sprite-reviewer sprite-reviewer-packaged-app" title="{{ _('Packaged App') }}"></div>
+                  {% endif %}
+                  {% if qa.app.status == amo.STATUS_BLOCKED %}
+                    <div class="sprite-reviewer sprite-reviewer-blocked" title="{{ _('Blocklisted App') }}"></div>
+                  {% endif %}
+                  {% if qa.app.is_premium() %}
+                    <div class="sprite-reviewer sprite-reviewer-premium" title="{{ _('Premium App') }}"></div>
+                  {% endif %}
+                  {% if qa.app.current_version.has_info_request %}
+                    <div class="sprite-reviewer sprite-reviewer-info" title="{{ _('More Information Requested') }}"></div>
+                  {% endif %}
+                  {% if qa.app.current_version.has_editor_comment %}
+                    <div class="sprite-reviewer sprite-reviewer-editor" title="{{ _('Contains Editor Comment') }}"></div>
+                  {% endif %}
+                </td>
+                <td class="waiting-time">{{ qa.created|timelabel }}</td>
+                <td>{{ device_list(qa.app) }}</td>
+                {% if DESKTOP %}
                   <td class="payments">{{ amo.ADDON_PREMIUM_TYPES[qa.app.premium_type] }}</td>
                   {% if tab == 'escalated' %}
                     <td class="abuse-reports">{{ qa.app.abuse_reports.count() }}</td>
                   {% endif %}
-                </tr>
-              {% endfor %}
-            </tbody>
-          </table>
-        {% else %}
-          <table id="addon-queue" class="data-grid items"
-                 data-url="{{ url('editors.queue_viewing') }}">
-            <thead>
-              <tr class="listing-header">
-                <th>&nbsp;</th>
-                <th>{{ sort_link(_('App'), 'name')|safe }}</th>
-                <th>{{ _('Flags') }}</th>
-                <th class="waiting-time">{{ sort_link(_('Waiting Time'), 'created')|safe }}</th>
-                <th>{{ _('Devices') }}</th>
+                {% endif %}
               </tr>
-              {% if tab == 'escalated' %}
-                <tr>
-                  <td colspan="5">{{ sort_link(_('Abuse Reports'), 'num_abuse_reports')|safe }}</td>
-                </tr>
-              {% endif %}
-            </thead>
-            <tbody>
-              {% for qa in addons %}
-                <tr data-addon="{{ qa.app.id }}" class="addon-row" id="addon-{{ qa.app.id }}">
-                  <td><div class="addon-locked"></div></td>
-                  <td class="app-name"><a href="{{ url('reviewers.apps.review', qa.app.app_slug) }}">{{ qa.app.name }}</a></td>
-                  <td class="flags">{# Flags #}
-                    {% if qa.app.is_packaged %}
-                      <div class="sprite-reviewer sprite-reviewer-packaged-app" title="{{ _('Packaged App') }}"></div>
-                    {% endif %}
-                    {% if qa.app.status == amo.STATUS_BLOCKED %}
-                      <div class="sprite-reviewer sprite-reviewer-blocked" title="{{ _('Blocklisted App') }}"></div>
-                    {% endif %}
-                    {% if qa.app.is_premium() %}
-                      <div class="sprite-reviewer sprite-reviewer-premium" title="{{ _('Premium App') }}"></div>
-                    {% endif %}
-                    {% if qa.app.current_version.has_info_request %}
-                      <div class="sprite-reviewer sprite-reviewer-info" title="{{ _('More Information Requested') }}"></div>
-                    {% endif %}
-                    {% if qa.app.current_version.has_editor_comment %}
-                      <div class="sprite-reviewer sprite-reviewer-editor" title="{{ _('Contains Editor Comment') }}"></div>
-                    {% endif %}
-                  </td>
-                  <td class="waiting-time">{{ qa.created|timelabel }}</td>
-                  <td>{{ device_list(qa.app) }}</td>
-                  {% if tab == 'escalated' %}
-                    <td class="abuse-reports">{{ qa.app.abuse_reports.count() }}</td>
-                  {% endif %}
-                </tr>
+              {% if not DESKTOP %}
                 <tr class="extra-info">
                   <td colspan="5">
                     <em>
@@ -213,10 +93,10 @@
                     {% endif %}
                   </td>
                 </tr>
-              {% endfor %}
-            </tbody>
-          </table>
-        {% endif %}
+              {% endif %}
+            {% endfor %}
+          </tbody>
+        </table>
       {% else %}
         {{ no_results() }}
       {% endif %}
