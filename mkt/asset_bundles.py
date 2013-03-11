@@ -177,7 +177,7 @@ JS = {
         'js/lib/jquery.cookie.js',
         'js/lib/stick.js',
         'js/lib/csrf.js',
-
+        'js/common/fakefilefield.js',
         'js/mkt/gettext.js',
         'js/mkt/tracking.js',
         'js/devreg/init.js',  # This one excludes buttons initialization, etc.
@@ -306,6 +306,8 @@ JS = {
         'js/mkt/reviewers.js',
         'js/devreg/expandable.js',
         'js/devreg/mobile_review_actions.js',
+        'js/common/fakefilefield.js',
+        'js/common/formsets.js',
         'js/devreg/reviewers_init.js',
     ),
     'mkt/stats': (

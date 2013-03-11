@@ -1,8 +1,10 @@
 import collections
 import datetime
 import json
+import os
 import sys
 import traceback
+import urllib
 
 from django import http
 from django.conf import settings
@@ -32,7 +34,7 @@ from amo.models import manual_order
 from amo.urlresolvers import reverse
 from amo.utils import (escape_all, HttpResponseSendFile, JSONEncoder, paginate,
                        smart_decode)
-from devhub.models import ActivityLog
+from devhub.models import ActivityLog, ActivityLogAttachment
 from editors.forms import MOTDForm
 from editors.models import (EditorSubscription, EscalationQueue, RereviewQueue,
                             ReviewerScore)
@@ -173,13 +175,19 @@ def _review(request, addon):
             request, _('Only senior reviewers can review blocklisted apps.'))
         return redirect(reverse('reviewers.home'))
 
-    form = forms.get_review_form(request.POST or None, request=request,
-                                 addon=addon, version=version)
+    attachment_formset = forms.AttachmentFormSet(data=request.POST or None,
+                                                 files=request.FILES or None,
+                                                 prefix='attachment')
+    form = forms.get_review_form(data=request.POST or None,
+                                 files=request.FILES or None, request=request,
+                                 addon=addon, version=version,
+                                 attachment_formset=attachment_formset)
     queue_type = form.helper.review_type
     redirect_url = reverse('reviewers.apps.queue_%s' % queue_type)
     is_admin = acl.action_allowed(request, 'Addons', 'Edit')
 
-    if request.method == 'POST' and form.is_valid():
+    forms_valid = lambda: form.is_valid() and attachment_formset.is_valid()
+    if request.method == 'POST' and forms_valid():
 
         old_types = set(o.id for o in addon.device_types)
         new_types = set(form.cleaned_data.get('device_override'))
@@ -213,6 +221,7 @@ def _review(request, addon):
         if form.cleaned_data.get('notify'):
             EditorSubscription.objects.get_or_create(user=request.amo_user,
                                                      addon=addon)
+
 
         messages.success(request, _('Review successfully processed.'))
         return redirect(redirect_url)
@@ -259,7 +268,8 @@ def _review(request, addon):
                   status_types=amo.STATUS_CHOICES, show_diff=show_diff,
                   allow_unchecking_files=allow_unchecking_files,
                   actions=actions, actions_minimal=actions_minimal,
-                  tab=queue_type, product_attrs=product_attrs)
+                  tab=queue_type, product_attrs=product_attrs,
+                  attachment_formset=attachment_formset)
 
     return jingo.render(request, 'reviewers/review.html', ctx)
 
@@ -1014,3 +1024,23 @@ def apps_reviewing(request):
 
     return jingo.render(request, 'reviewers/apps_reviewing.html', context(**{
         'apps': AppsReviewing(request).get_apps()}))
+
+
+@permission_required('Apps', 'Review')
+def attachment(request, attachment):
+    """
+    Serve an attachment directly to the user.
+    """
+    try:
+        a = ActivityLogAttachment.objects.get(pk=attachment)
+        full_path = os.path.join(settings.REVIEWER_ATTACHMENT_PATH, a.filepath)
+        fsock = open(full_path, 'r')
+    except (ActivityLogAttachment.DoesNotExist, IOError,):
+        response = http.HttpResponseNotFound()
+    else:
+        filename = urllib.quote(a.filename())
+        response = http.HttpResponse(fsock,
+                                     mimetype='application/force-download')
+        response['Content-Disposition'] = 'attachment; filename=%s' % filename 
+        response['Content-Length'] = os.path.getsize(full_path)
+    return response

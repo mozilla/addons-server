@@ -14,12 +14,21 @@ from .models import ThemeLock
 from .tasks import send_mail
 
 
+class ReviewAppAttachmentForm(happyforms.Form):
+    attachment = forms.FileField(label=_lazy(u'Attachment:'))
+    description = forms.CharField(required=False, label=_lazy(u'Description:'))
+
+
+AttachmentFormSet = forms.formsets.formset_factory(ReviewAppAttachmentForm,
+                                                   extra=1)
+
+
 class ReviewAppForm(happyforms.Form):
 
-    comments = forms.CharField(required=True, widget=forms.Textarea(),
+    comments = forms.CharField(widget=forms.Textarea(),
                                label=_lazy(u'Comments:'))
     canned_response = NonValidatingChoiceField(required=False)
-    action = forms.ChoiceField(required=True, widget=forms.RadioSelect())
+    action = forms.ChoiceField(widget=forms.RadioSelect())
     device_types = forms.CharField(required=False,
                                    label=_lazy(u'Device Types:'))
     browsers = forms.CharField(required=False,
@@ -72,9 +81,11 @@ class ReviewAppForm(happyforms.Form):
         return result
 
 
-def get_review_form(data, request=None, addon=None, version=None):
-    helper = ReviewHelper(request=request, addon=addon, version=version)
-    return ReviewAppForm(data, helper=helper)
+def get_review_form(data, files, request=None, addon=None, version=None,
+                    attachment_formset=None):
+    helper = ReviewHelper(request=request, addon=addon, version=version,
+                          attachment_formset=attachment_formset)
+    return ReviewAppForm(data=data, files=files, helper=helper)
 
 
 class ReviewAppLogForm(ReviewLogForm):

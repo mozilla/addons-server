@@ -70,6 +70,32 @@ $(document).ready(function() {
     }).on('mouseover', '.header-button.submit', function() {
         $('.account-links').removeClass('active');
     });
+
+    // Better <input type="file" />s
+    $('[data-fileinput]').fakeFileField();
+
+    // Create additional forms in the attachment formset
+    var $attachments = $('.review-actions-attachments');
+    if($attachments.length) {
+        $attachments.each(function(index, attachment) {
+
+            var $attachment = $(attachment),
+                $addRowBtn = $attachment.find('.add-row');
+
+            // Init the formset
+            $attachment.formset();
+
+            // Add a new formset row when the button is clicked
+            $addRowBtn.on('click', function(evt) {
+                evt.preventDefault();
+                $attachment.formset('addRow');
+                var $added = $attachment.formset('options')['latestRow'];
+                $added.find('[data-fileinput]').fakeFileField();
+            });
+
+        });
+    }
+
 });
 
 

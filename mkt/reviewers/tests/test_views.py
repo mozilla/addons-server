@@ -3,12 +3,14 @@ import datetime
 import json
 import time
 from itertools import cycle
+from os import path
 
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.core import mail
 from django.core.files.storage import default_storage as storage
 from django.test.client import RequestFactory
+from django.test.utils import override_settings
 
 import mock
 from nose import SkipTest
@@ -25,7 +27,8 @@ from amo.tests import (app_factory, addon_factory, check_links, days_ago,
                        formset, initial, version_factory)
 from amo.urlresolvers import reverse
 from amo.utils import isotime
-from devhub.models import ActivityLog, AppLog
+from devhub.models import ActivityLog, ActivityLogAttachment, AppLog
+from devhub.tests.test_models import ATTACHMENTS_DIR
 from editors.models import (CannedResponse, EscalationQueue, RereviewQueue,
                             ReviewerScore)
 from files.models import File
@@ -43,6 +46,16 @@ import reviews
 from reviews.models import Review, ReviewFlag
 from users.models import UserProfile
 from zadmin.models import get_config, set_config
+
+
+class AttachmentManagementMixin(object):
+    def _attachment_management_form(self, num=1):
+        """
+        Generate and return data for a management form for `num` attachments
+        """
+        return {'attachment-TOTAL_FORMS': num,
+                'attachment-INITIAL_FORMS': 0,
+                'attachment-MAX_NUM_FORMS': 1000}
 
 
 class AppReviewerTest(amo.tests.TestCase):
@@ -741,7 +754,8 @@ class TestEscalationQueue(AppReviewerTest, AccessMixin, FlagsMixin,
         eq_(EscalationQueue.objects.filter(addon=app).exists(), False)
 
 
-class TestReviewTransaction(amo.tests.test_utils.TransactionTestCase):
+class TestReviewTransaction(AttachmentManagementMixin,
+                            amo.tests.test_utils.TransactionTestCase):
     fixtures = ['base/platforms', 'base/users', 'webapps/337141-steamcube']
 
     def get_app(self):
@@ -759,9 +773,11 @@ class TestReviewTransaction(amo.tests.test_utils.TransactionTestCase):
         sign.return_value = None  # Didn't fail.
         self.client.login(username='editor@mozilla.com',
                           password='password')
+        data = {'action': 'public', 'comments': 'something'}
+        data.update(self._attachment_management_form(num=0))
         resp = self.client.post(
             reverse('reviewers.apps.review', args=[self.app.app_slug]),
-            {'action': 'public', 'comments': 'something'})
+            data)
 
         eq_(self.get_app().status, amo.STATUS_PUBLIC)
         eq_(resp.status_code, 302)
@@ -778,15 +794,17 @@ class TestReviewTransaction(amo.tests.test_utils.TransactionTestCase):
         sign.side_effect = packaged.SigningError('Bad things happened.')
         self.client.login(username='editor@mozilla.com',
                           password='password')
+        data = {'action': 'public', 'comments': 'something'}
+        data.update(self._attachment_management_form(num=0))
         resp = self.client.post(
-            reverse('reviewers.apps.review', args=[self.app.app_slug]),
-            {'action': 'public', 'comments': 'something'})
+            reverse('reviewers.apps.review', args=[self.app.app_slug]), data)
 
         eq_(self.get_app().status, amo.STATUS_PENDING)
         eq_(resp.status_code, 302)
 
 
-class TestReviewApp(AppReviewerTest, AccessMixin, PackagedFilesMixin):
+class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
+                    PackagedFilesMixin):
     fixtures = ['base/platforms', 'base/users', 'webapps/337141-steamcube']
 
     def setUp(self):
@@ -844,8 +862,9 @@ class TestReviewApp(AppReviewerTest, AccessMixin, PackagedFilesMixin):
         self.app.update(status=amo.STATUS_BLOCKED)
         self.login_as_senior_reviewer()
         eq_(self.client.get(self.url).status_code, 200)
-        res = self.client.post(self.url, {'action': 'public',
-                                          'comments': 'yo'})
+        data = {'action': 'public', 'comments': 'yo'}
+        data.update(self._attachment_management_form(num=0))
+        res = self.client.post(self.url, data)
         self.assert3xx(res, reverse('reviewers.apps.queue_pending'))
 
     def _check_email(self, msg, subject, with_mozilla_contact=True):
@@ -881,8 +900,10 @@ class TestReviewApp(AppReviewerTest, AccessMixin, PackagedFilesMixin):
         eq_(scores[0].note_key, reviewed_type)
 
     def test_xss(self):
-        self.post({'action': 'comment',
-                   'comments': '<script>alert("xss")</script>'})
+        data = {'action': 'comment',
+                'comments': '<script>alert("xss")</script>'}
+        data.update(self._attachment_management_form(num=0))
+        self.post(data)
         res = self.client.get(self.url)
         assert '<script>alert' not in res.content
         assert '&lt;script&gt;alert' in res.content
@@ -893,13 +914,11 @@ class TestReviewApp(AppReviewerTest, AccessMixin, PackagedFilesMixin):
         AddonDeviceType.objects.create(addon=self.app,
                                        device_type=amo.DEVICE_TABLET.id)
         eq_(self.app.make_public, amo.PUBLIC_IMMEDIATELY)
-        self.post({
-            'action': 'public',
-            'device_types': '',
-            'browsers': '',
-            'comments': 'something',
-            'device_override': [amo.DEVICE_DESKTOP.id],
-        })
+        data = {'action': 'public', 'device_types': '', 'browsers': '',
+                'comments': 'something',
+                'device_override': [amo.DEVICE_DESKTOP.id]}
+        data.update(self._attachment_management_form(num=0))
+        self.post(data)
         app = self.get_app()
         eq_(app.make_public, amo.PUBLIC_WAIT)
         eq_(app.status, amo.STATUS_PUBLIC_WAITING)
@@ -918,13 +937,11 @@ class TestReviewApp(AppReviewerTest, AccessMixin, PackagedFilesMixin):
         AddonDeviceType.objects.create(addon=self.app,
                                        device_type=amo.DEVICE_TABLET.id)
         eq_(self.app.make_public, amo.PUBLIC_IMMEDIATELY)
-        self.post({
-            'action': 'reject',
-            'device_types': '',
-            'browsers': '',
-            'comments': 'something',
-            'device_override': [amo.DEVICE_DESKTOP.id],
-        })
+        data = {'action': 'reject', 'device_types': '', 'browsers': '',
+                'comments': 'something',
+                'device_override': [amo.DEVICE_DESKTOP.id]}
+        data.update(self._attachment_management_form(num=0))
+        self.post(data)
         app = self.get_app()
         eq_(app.make_public, amo.PUBLIC_IMMEDIATELY)
         eq_(app.status, amo.STATUS_REJECTED)
@@ -938,12 +955,10 @@ class TestReviewApp(AppReviewerTest, AccessMixin, PackagedFilesMixin):
 
     def test_pending_to_public(self):
         self.create_switch(name='reviewer-incentive-points')
-        self.post({
-            'action': 'public',
-            'device_types': '',
-            'browsers': '',
-            'comments': 'something',
-        })
+        data = {'action': 'public', 'device_types': '', 'browsers': '',
+                'comments': 'something'}
+        data.update(self._attachment_management_form(num=0))
+        self.post(data)
         app = self.get_app()
         eq_(app.status, amo.STATUS_PUBLIC)
         eq_(app.current_version.files.all()[0].status, amo.STATUS_PUBLIC)
@@ -959,7 +974,9 @@ class TestReviewApp(AppReviewerTest, AccessMixin, PackagedFilesMixin):
     @mock.patch('lib.crypto.packaged.sign')
     def test_public_signs(self, sign, update):
         self.get_app().update(is_packaged=True)
-        self.post({'action': 'public', 'comments': 'something'})
+        data = {'action': 'public', 'comments': 'something'}
+        data.update(self._attachment_management_form(num=0))
+        self.post(data)
 
         eq_(self.get_app().status, amo.STATUS_PUBLIC)
         eq_(sign.call_args[0][0], self.get_app().current_version.pk)
@@ -968,12 +985,10 @@ class TestReviewApp(AppReviewerTest, AccessMixin, PackagedFilesMixin):
     def test_pending_to_public_no_mozilla_contact(self):
         self.create_switch(name='reviewer-incentive-points')
         self.app.update(mozilla_contact='')
-        self.post({
-            'action': 'public',
-            'device_types': '',
-            'browsers': '',
-            'comments': 'something',
-        })
+        data = {'action': 'public', 'device_types': '', 'browsers': '',
+                'comments': 'something'}
+        data.update(self._attachment_management_form(num=0))
+        self.post(data)
         app = self.get_app()
         eq_(app.status, amo.STATUS_PUBLIC)
         eq_(app.current_version.files.all()[0].status, amo.STATUS_PUBLIC)
@@ -988,12 +1003,10 @@ class TestReviewApp(AppReviewerTest, AccessMixin, PackagedFilesMixin):
     def test_pending_to_public_waiting(self):
         self.create_switch(name='reviewer-incentive-points')
         self.get_app().update(make_public=amo.PUBLIC_WAIT)
-        self.post({
-            'action': 'public',
-            'device_types': '',
-            'browsers': '',
-            'comments': 'something',
-        })
+        data = {'action': 'public', 'device_types': '', 'browsers': '',
+                'comments': 'something'}
+        data.update(self._attachment_management_form(num=0))
+        self.post(data)
         app = self.get_app()
         eq_(app.status, amo.STATUS_PUBLIC_WAITING)
         eq_(app.current_version.files.all()[0].status,
@@ -1010,7 +1023,9 @@ class TestReviewApp(AppReviewerTest, AccessMixin, PackagedFilesMixin):
     @mock.patch('lib.crypto.packaged.sign')
     def test_public_waiting_signs(self, sign, update):
         self.get_app().update(is_packaged=True, make_public=amo.PUBLIC_WAIT)
-        self.post({'action': 'public', 'comments': 'something'})
+        data = {'action': 'public', 'comments': 'something'}
+        data.update(self._attachment_management_form(num=0))
+        self.post(data)
 
         eq_(self.get_app().status, amo.STATUS_PUBLIC_WAITING)
         eq_(sign.call_args[0][0], self.get_app().current_version.pk)
@@ -1019,7 +1034,9 @@ class TestReviewApp(AppReviewerTest, AccessMixin, PackagedFilesMixin):
     def test_pending_to_reject(self):
         self.create_switch(name='reviewer-incentive-points')
         files = list(self.version.files.values_list('id', flat=True))
-        self.post({'action': 'reject', 'comments': 'suxor'})
+        data = {'action': 'reject', 'comments': 'suxor'}
+        data.update(self._attachment_management_form(num=0))
+        self.post(data)
         app = self.get_app()
         eq_(app.status, amo.STATUS_REJECTED)
         eq_(File.objects.filter(id__in=files)[0].status, amo.STATUS_DISABLED)
@@ -1036,12 +1053,10 @@ class TestReviewApp(AppReviewerTest, AccessMixin, PackagedFilesMixin):
         self.app.current_version.files.update(status=amo.STATUS_PUBLIC)
         new_version = version_factory(addon=self.app)
         new_version.files.all().update(status=amo.STATUS_PENDING)
-        self.post({
-            'action': 'reject',
-            'device_types': '',
-            'browsers': '',
-            'comments': 'something',
-        })
+        data = {'action': 'reject', 'device_types': '', 'browsers': '',
+                'comments': 'something'}
+        data.update(self._attachment_management_form(num=0))
+        self.post(data)
         app = self.get_app()
         eq_(app.status, amo.STATUS_REJECTED)
         eq_(new_version.files.all()[0].status, amo.STATUS_DISABLED)
@@ -1058,12 +1073,10 @@ class TestReviewApp(AppReviewerTest, AccessMixin, PackagedFilesMixin):
         self.app.current_version.files.update(status=amo.STATUS_PUBLIC)
         new_version = version_factory(addon=self.app)
         new_version.files.all().update(status=amo.STATUS_PENDING)
-        self.post({
-            'action': 'reject',
-            'device_types': '',
-            'browsers': '',
-            'comments': 'something',
-        })
+        data = {'action': 'reject', 'device_types': '', 'browsers': '',
+                'comments': 'something'}
+        data.update(self._attachment_management_form(num=0))
+        self.post(data)
         app = self.get_app()
         eq_(app.status, amo.STATUS_PUBLIC)
         eq_(new_version.files.all()[0].status, amo.STATUS_DISABLED)
@@ -1076,7 +1089,9 @@ class TestReviewApp(AppReviewerTest, AccessMixin, PackagedFilesMixin):
         self._check_score(amo.REVIEWED_WEBAPP_UPDATE)
 
     def test_pending_to_escalation(self):
-        self.post({'action': 'escalate', 'comments': 'soup her man'})
+        data = {'action': 'escalate', 'comments': 'soup her man'}
+        data.update(self._attachment_management_form(num=0))
+        self.post(data)
         eq_(EscalationQueue.objects.count(), 1)
         self._check_log(amo.LOG.ESCALATE_MANUAL)
         # Test 2 emails: 1 to dev, 1 to admin.
@@ -1090,7 +1105,9 @@ class TestReviewApp(AppReviewerTest, AccessMixin, PackagedFilesMixin):
         self.login_as_senior_reviewer()
 
         self.app.update(status=amo.STATUS_PUBLIC)
-        self.post({'action': 'disable', 'comments': 'disabled ur app'})
+        data = {'action': 'disable', 'comments': 'disabled ur app'}
+        data.update(self._attachment_management_form(num=0))
+        self.post(data)
         app = self.get_app()
         eq_(app.status, amo.STATUS_DISABLED)
         eq_(app.current_version.files.all()[0].status, amo.STATUS_DISABLED)
@@ -1100,8 +1117,9 @@ class TestReviewApp(AppReviewerTest, AccessMixin, PackagedFilesMixin):
 
     def test_pending_to_disable(self):
         self.app.update(status=amo.STATUS_PUBLIC)
-        res = self.client.post(self.url, {'action': 'disable',
-                                          'comments': 'disabled ur app'})
+        data = {'action': 'disable', 'comments': 'disabled ur app'}
+        data.update(self._attachment_management_form(num=0))
+        res = self.client.post(self.url, data)
         eq_(res.status_code, 200)
         ok_('action' in res.context['form'].errors)
         eq_(self.get_app().status, amo.STATUS_PUBLIC)
@@ -1110,12 +1128,10 @@ class TestReviewApp(AppReviewerTest, AccessMixin, PackagedFilesMixin):
     def test_escalation_to_public(self):
         EscalationQueue.objects.create(addon=self.app)
         eq_(self.app.status, amo.STATUS_PENDING)
-        self.post({
-            'action': 'public',
-            'device_types': '',
-            'browsers': '',
-            'comments': 'something',
-        }, queue='escalated')
+        data = {'action': 'public', 'device_types': '', 'browsers': '',
+                'comments': 'something'}
+        data.update(self._attachment_management_form(num=0))
+        self.post(data, queue='escalated')
         app = self.get_app()
         eq_(app.status, amo.STATUS_PUBLIC)
         eq_(app.current_version.files.all()[0].status, amo.STATUS_PUBLIC)
@@ -1132,12 +1148,10 @@ class TestReviewApp(AppReviewerTest, AccessMixin, PackagedFilesMixin):
         EscalationQueue.objects.create(addon=self.app)
         eq_(self.app.status, amo.STATUS_PENDING)
         files = list(self.version.files.values_list('id', flat=True))
-        self.post({
-            'action': 'reject',
-            'device_types': '',
-            'browsers': '',
-            'comments': 'something',
-        }, queue='escalated')
+        data = {'action': 'reject', 'device_types': '', 'browsers': '',
+                'comments': 'something'}
+        data.update(self._attachment_management_form(num=0))
+        self.post(data, queue='escalated')
         app = self.get_app()
         eq_(app.status, amo.STATUS_REJECTED)
         eq_(File.objects.filter(id__in=files)[0].status, amo.STATUS_DISABLED)
@@ -1155,8 +1169,9 @@ class TestReviewApp(AppReviewerTest, AccessMixin, PackagedFilesMixin):
 
         EscalationQueue.objects.create(addon=self.app)
         self.app.update(status=amo.STATUS_PUBLIC)
-        self.post({'action': 'disable', 'comments': 'disabled ur app'},
-                  queue='escalated')
+        data = {'action': 'disable', 'comments': 'disabled ur app'}
+        data.update(self._attachment_management_form(num=0))
+        self.post(data, queue='escalated')
         app = self.get_app()
         eq_(app.status, amo.STATUS_DISABLED)
         eq_(app.current_version.files.all()[0].status, amo.STATUS_DISABLED)
@@ -1168,9 +1183,9 @@ class TestReviewApp(AppReviewerTest, AccessMixin, PackagedFilesMixin):
     def test_escalation_to_disable(self):
         EscalationQueue.objects.create(addon=self.app)
         self.app.update(status=amo.STATUS_PUBLIC)
-        res = self.client.post(self.url, {'action': 'disable',
-                                          'comments': 'disabled ur app'},
-                               queue='escalated')
+        data = {'action': 'disable', 'comments': 'disabled ur app'}
+        data.update(self._attachment_management_form(num=0))
+        res = self.client.post(self.url, data, queue='escalated')
         eq_(res.status_code, 200)
         ok_('action' in res.context['form'].errors)
         eq_(self.get_app().status, amo.STATUS_PUBLIC)
@@ -1180,8 +1195,9 @@ class TestReviewApp(AppReviewerTest, AccessMixin, PackagedFilesMixin):
     def test_clear_escalation(self):
         self.app.update(status=amo.STATUS_PUBLIC)
         EscalationQueue.objects.create(addon=self.app)
-        self.post({'action': 'clear_escalation', 'comments': 'all clear'},
-                  queue='escalated')
+        data = {'action': 'clear_escalation', 'comments': 'all clear'}
+        data.update(self._attachment_management_form(num=0))
+        self.post(data, queue='escalated')
         eq_(EscalationQueue.objects.count(), 0)
         self._check_log(amo.LOG.ESCALATION_CLEARED)
         # Ensure we don't send email on clearing escalations.
@@ -1191,12 +1207,10 @@ class TestReviewApp(AppReviewerTest, AccessMixin, PackagedFilesMixin):
         self.create_switch(name='reviewer-incentive-points')
         RereviewQueue.objects.create(addon=self.app)
         self.app.update(status=amo.STATUS_PUBLIC)
-        self.post({
-            'action': 'reject',
-            'device_types': '',
-            'browsers': '',
-            'comments': 'something',
-        }, queue='rereview')
+        data = {'action': 'reject', 'device_types': '', 'browsers': '',
+                'comments': 'something'}
+        data.update(self._attachment_management_form(num=0))
+        self.post(data, queue='rereview')
         eq_(self.get_app().status, amo.STATUS_REJECTED)
         self._check_log(amo.LOG.REJECT_VERSION)
         eq_(RereviewQueue.objects.count(), 0)
@@ -1212,8 +1226,10 @@ class TestReviewApp(AppReviewerTest, AccessMixin, PackagedFilesMixin):
 
         RereviewQueue.objects.create(addon=self.app)
         self.app.update(status=amo.STATUS_PUBLIC)
-        self.post({'action': 'disable', 'comments': 'disabled ur app'},
-                  queue='rereview')
+        data = {'action': 'disable', 'device_types': '', 'browsers': '',
+                'comments': 'something'}
+        data.update(self._attachment_management_form(num=0))
+        self.post(data, queue='rereview')
         eq_(self.get_app().status, amo.STATUS_DISABLED)
         self._check_log(amo.LOG.APP_DISABLED)
         eq_(RereviewQueue.objects.filter(addon=self.app).count(), 0)
@@ -1223,9 +1239,9 @@ class TestReviewApp(AppReviewerTest, AccessMixin, PackagedFilesMixin):
     def test_rereview_to_disable(self):
         RereviewQueue.objects.create(addon=self.app)
         self.app.update(status=amo.STATUS_PUBLIC)
-        res = self.client.post(self.url, {'action': 'disable',
-                                          'comments': 'disabled ur app'},
-                               queue='rereview')
+        data = {'action': 'disable', 'comments': 'disabled ur app'}
+        data.update(self._attachment_management_form(num=0))
+        res = self.client.post(self.url, data, queue='rereview')
         eq_(res.status_code, 200)
         ok_('action' in res.context['form'].errors)
         eq_(self.get_app().status, amo.STATUS_PUBLIC)
@@ -1236,8 +1252,9 @@ class TestReviewApp(AppReviewerTest, AccessMixin, PackagedFilesMixin):
         self.create_switch(name='reviewer-incentive-points')
         self.app.update(status=amo.STATUS_PUBLIC)
         RereviewQueue.objects.create(addon=self.app)
-        self.post({'action': 'clear_rereview', 'comments': 'all clear'},
-                  queue='rereview')
+        data = {'action': 'clear_rereview', 'comments': 'all clear'}
+        data.update(self._attachment_management_form(num=0))
+        self.post(data, queue='rereview')
         eq_(RereviewQueue.objects.count(), 0)
         self._check_log(amo.LOG.REREVIEW_CLEARED)
         # Ensure we don't send email on clearing re-reviews..
@@ -1246,8 +1263,9 @@ class TestReviewApp(AppReviewerTest, AccessMixin, PackagedFilesMixin):
 
     def test_rereview_to_escalation(self):
         RereviewQueue.objects.create(addon=self.app)
-        self.post({'action': 'escalate', 'comments': 'soup her man'},
-                  queue='rereview')
+        data = {'action': 'escalate', 'comments': 'soup her man'}
+        data.update(self._attachment_management_form(num=0))
+        self.post(data, queue='rereview')
         eq_(EscalationQueue.objects.count(), 1)
         self._check_log(amo.LOG.ESCALATE_MANUAL)
         # Test 2 emails: 1 to dev, 1 to admin.
@@ -1259,7 +1277,9 @@ class TestReviewApp(AppReviewerTest, AccessMixin, PackagedFilesMixin):
 
     def test_more_information(self):
         # Test the same for all queues.
-        self.post({'action': 'info', 'comments': 'Knead moor in faux'})
+        data = {'action': 'info', 'comments': 'Knead moor in faux'}
+        data.update(self._attachment_management_form(num=0))
+        self.post(data)
         eq_(self.get_app().status, amo.STATUS_PENDING)
         self._check_log(amo.LOG.REQUEST_INFORMATION)
         vqs = self.get_app().versions.all()
@@ -1271,7 +1291,9 @@ class TestReviewApp(AppReviewerTest, AccessMixin, PackagedFilesMixin):
 
     def test_comment(self):
         # Test the same for all queues.
-        self.post({'action': 'comment', 'comments': 'mmm, nice app'})
+        data = {'action': 'comment', 'comments': 'mmm, nice app'}
+        data.update(self._attachment_management_form(num=0))
+        self.post(data)
         eq_(len(mail.outbox), 0)
         self._check_log(amo.LOG.COMMENT_VERSION)
 
@@ -1403,6 +1425,56 @@ class TestReviewApp(AppReviewerTest, AccessMixin, PackagedFilesMixin):
         eq_(dd.text(), u'1')
         eq_(dd.find('a').attr('href'), reverse('reviewers.apps.review.abuse',
                                                args=[self.app.app_slug]))
+
+    def _attachments(self, num):
+        """ Generate and return data for `num` attachments """
+        data = {}
+        files = ['bacon.jpg', 'bacon.txt']
+        descriptions = ['mmm, bacon', '']
+        for n in range(0, num):
+            i = 0 if n % 2 else 1
+            attachment = open(path.join(settings.REVIEWER_ATTACHMENT_PATH,
+                                        files[i]))
+            data.update({
+                'attachment-%d-attachment' % n: attachment,
+                'attachment-%d-description' % n: descriptions[i]
+            })
+        return data
+
+    def _attachment_post(self, num):
+        """
+        Test that `num` attachment objects are successfully created by the
+        appropriate form submission. Tests this in two ways:
+
+        1) Ensuring that the form is submitted correctly.
+        2) Checking that the appropriate number of objects are created.
+        """
+        old_attachment_count = ActivityLogAttachment.objects.all().count()
+
+        # Assemble form data
+        data = {'action': 'comment',
+                'comments': 'mmm, nice app'}
+        data.update(self._attachment_management_form(num=num))
+        data.update(self._attachments(num))
+
+        # Test successful post
+        self.post(data)
+
+        # Test that the appropriate number of ActivityLogAttachment objects
+        # have been createed
+        new_attachment_count = ActivityLogAttachment.objects.all().count()
+        eq_(new_attachment_count - old_attachment_count, num,
+            'AcitvityLog objects not being created')
+
+    @override_settings(REVIEWER_ATTACHMENT_PATH=ATTACHMENTS_DIR)
+    def test_attachment(self):
+        """ Test addition of 1 attachment """
+        self._attachment_post(1)
+
+    @override_settings(REVIEWER_ATTACHMENT_PATH=ATTACHMENTS_DIR)
+    def test_multiple_attachments(self):
+        """ Test addition of multiple attachments """
+        self._attachment_post(2)
 
 
 class TestCannedResponses(AppReviewerTest):
@@ -2375,3 +2447,48 @@ class TestAppsReviewing(AppReviewerTest, AccessMixin):
         self.login_as_editor()
         res = self.client.get(self.url)
         eq_(len(res.context['apps']), 2)
+
+
+@override_settings(REVIEWER_ATTACHMENT_PATH=ATTACHMENTS_DIR)
+class TestAttachmentDownload(amo.tests.TestCase):
+    fixtures = ['data/user_editor', 'data/user_editor_group',
+                'data/group_editor', 'data/user_999',
+                'webapps/337141-steamcube']
+
+    def _attachment(self, log):
+        return ActivityLogAttachment.objects.create(activity_log=log,
+                                                    filepath='bacon.jpg',
+                                                    mimetype='image/jpeg')
+
+    def _response(self, params={}, **kwargs):
+        url = self.ala.get_absolute_url()
+        return self.client.get(url, params, **kwargs)
+
+    def setUp(self):
+        editor = UserProfile.objects.get(user__pk=5497308)
+        self.app = Webapp.objects.get(pk=337141)
+        self.version = self.app.latest_version
+        self.al = amo.log(amo.LOG.COMMENT_VERSION, self.app,
+                          self.version, user=editor)
+        self.ala = self._attachment(self.al)
+
+    def test_permissions_editor(self):
+        self.client.login(username='editor@mozilla.com', password='password')
+        response = self._response()
+        eq_(response.status_code, 200, 'Editor cannot access attachment')
+
+    def test_permissions_regular(self):
+        self.client.login(username='regular@mozilla.com', password='password')
+        response = self._response()
+        eq_(response.status_code, 403, 'Regular user can access attachment')
+
+    def test_headers(self):
+        self.client.login(username='editor@mozilla.com', password='password')
+        response = self._response()
+        eq_(response._headers['content-type'][1], 'application/force-download',
+            'Attachment not served as application/force-download')
+        eq_(response._headers['content-disposition'][1],
+            'attachment; filename=bacon.jpg',
+            'Attachment not served with correct Content-Disposition header')
+        eq_(response._headers['content-length'][1], '130737',
+            'Attachment not served with correct Content-Length header')

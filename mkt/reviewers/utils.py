@@ -35,13 +35,15 @@ def send_mail(subject, template, context, emails, perm_setting=None, cc=None):
 
 class ReviewBase(object):
 
-    def __init__(self, request, addon, version, review_type):
+    def __init__(self, request, addon, version, review_type,
+                 attachment_formset=None):
         self.request = request
         self.user = self.request.user
         self.addon = addon
         self.version = version
         self.review_type = review_type
         self.files = None
+        self.attachment_formset = attachment_formset
         self.in_pending = self.addon.status == amo.STATUS_PENDING
         self.in_rereview = RereviewQueue.objects.filter(
             addon=self.addon).exists()
@@ -74,7 +76,8 @@ class ReviewBase(object):
             details['files'] = [f.id for f in self.files]
 
         amo.log(action, self.addon, self.version, user=self.user.get_profile(),
-                created=datetime.now(), details=details)
+                created=datetime.now(), details=details,
+                attachments=self.attachment_formset)
 
     def notify_email(self, template, subject):
         """Notify the authors that their app has been reviewed."""
@@ -270,12 +273,14 @@ class ReviewHelper(object):
     process off to the correct handler.
     """
 
-    def __init__(self, request=None, addon=None, version=None):
+    def __init__(self, request=None, addon=None, version=None,
+                 attachment_formset=None):
         self.handler = None
         self.required = {}
         self.addon = addon
         self.version = version
         self.all_files = version and version.files.all()
+        self.attachment_formset = attachment_formset
         self.get_review_type(request, addon, version)
         self.actions = self.get_actions()
 
@@ -290,7 +295,8 @@ class ReviewHelper(object):
         else:
             queue = 'pending'
         self.review_type = queue
-        self.handler = ReviewApp(request, addon, version, queue)
+        self.handler = ReviewApp(request, addon, version, queue,
+                                 attachment_formset=self.attachment_formset)
 
     def get_actions(self):
         public = {

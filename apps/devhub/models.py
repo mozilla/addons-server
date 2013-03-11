@@ -1,11 +1,16 @@
 from copy import copy
 from datetime import datetime
+import imghdr
 import json
+import os.path
 import string
 
 from django.conf import settings
+from django.core.urlresolvers import reverse
 from django.db import models
+from django.utils.safestring import mark_safe
 
+import bleach
 import commonware.log
 import jinja2
 from tower import ugettext as _
@@ -384,6 +389,50 @@ class ActivityLog(amo.models.ModelBase):
 
     def __html__(self):
         return self
+
+
+class ActivityLogAttachment(amo.models.ModelBase):
+    """
+    Model for an attachment to an ActivityLog instance. Used by the Marketplace
+    reviewer tools, where reviewers can attach files to comments made during the
+    review process.
+    """
+    activity_log = models.ForeignKey('ActivityLog')
+    filepath = models.CharField(max_length=255)
+    description = models.CharField(max_length=255, blank=True)
+    mimetype = models.CharField(max_length=255, blank=True)
+
+    class Meta:
+        db_table = 'log_activity_attachment_mkt'
+        ordering = ('id',)
+
+    def get_absolute_url(self):
+        if settings.MARKETPLACE:
+            return reverse('reviewers.apps.review.attachment', args=[self.pk])
+        return None
+
+    def filename(self):
+        """
+        Returns the attachment's file name.
+        """
+        return os.path.basename(self.filepath)
+
+    def display_name(self):
+        """
+        Returns a string describing the attachment suitable for front-end
+        display.
+        """
+        display = self.description if self.description else self.filename()
+        return mark_safe(bleach.clean(display))
+
+    def is_image(self):
+        """
+        Returns a boolean indicating whether the attached file is an image of a
+        format recognizable by the stdlib imghdr module.
+        """
+        filepath = os.path.join(settings.REVIEWER_ATTACHMENT_PATH,
+                                self.filepath)
+        return imghdr.what(filepath) is not None
 
 
 # TODO(davedash): Remove after we finish the import.

@@ -23,6 +23,8 @@ urlpatterns = (
         name='reviewers.apps.review'),
     url(r'^apps/review/%s/manifest$' % amo.APP_SLUG, views.app_view_manifest,
         name='reviewers.apps.review.manifest'),
+    url(r'^apps/review/attachment/(\d+)$', views.attachment,
+        name='reviewers.apps.review.attachment'),
     url(r'^apps/review/%s/abuse$' % amo.APP_SLUG, views.app_abuse,
         name='reviewers.apps.review.abuse'),
     url(r'^apps/logs$', views.logs, name='reviewers.apps.logs'),

@@ -149,7 +149,20 @@
                     <div>By {{ user }} on {{ date }}</div>
                   {% endtrans %}
                   {% if record.details %}
-                    <div class="log-comments">{{ record.details.comments|nl2br }}</div>
+                    <div class="log-group log-comments">{{ record.details.comments|nl2br }}</div>
+                  {% endif %}
+                  {% set attachments = record.activitylogattachment_set.all() %}
+                  {% if attachments %}
+                    <div class="log-group log-attachments">
+                      <strong>Attachments</strong>
+                      <ul>
+                        {% for attachment in attachments %}
+                          <li{% if attachment.is_image() %} class="image"{% endif %}>
+                            <a href="{{ attachment.get_absolute_url() }}">{{ attachment.display_name() }}</a>
+                          </li>
+                        {% endfor %}
+                      </ul>
+                    </div>
                   {% endif %}
                 </td>
               </tr>
@@ -168,13 +181,15 @@
     </table>
   </div>
 
-<form method="POST">
+<form method="POST" enctype="multipart/form-data">
   {{ csrf() }}
+  {{ attachment_formset.management_form }}
   {# form #}
   <div id="review-actions" class="review-actions">
     <div class="action_nav">
       {{ form.action }}
       {{ form.action.errors }}
+      {{ attachment_formset.non_form_errors() }}
     </div>
 
     <div id="review-actions-form">
@@ -210,6 +225,28 @@
         {{ form.browsers }}
         {{ form.device_types.errors }}
         {{ form.browsers.errors }}
+      </div>
+      <div class="review-actions-section review-actions-attachments">
+        <strong>{{ _('Attach a screenshot or log file') }}</strong>
+        {% set attachment_forms = attachment_formset.forms + [attachment_formset.empty_form] %}
+        {% for attachment_form in attachment_forms %}
+          <div class="formset{% if loop.last %} empty hidden{% endif %}">
+            <div class="fileinput" data-fileinput>
+              <div data-fileinput-fake style="display: none;">
+                <input type="text" />
+                <input type="submit" value="{{ _('Browse') }}" />
+                {{ attachment_form.attachment.errors }}
+              </div>
+              {{ attachment_form.attachment }}
+            </div>
+            <label for="{{ attachment_form.description.auto_id }}">
+              {{ attachment_form.description.label }}
+            </label>
+            {{ attachment_form.description }}
+            {{ attachment_form.description.errors }}
+          </div>
+        {% endfor %}
+        <a href="#" class="add-row">{{ _('Attach another file') }}</a>
       </div>
       <div class="review-actions-section review-actions-device-override data-toggle" data-value="public">
         <strong>{{ _('Device Override:') }}</strong>

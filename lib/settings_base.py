@@ -721,6 +721,7 @@ MINIFY_BUNDLES = {
             'js/zamboni/helpers.js',
             'js/zamboni/global.js',
             'js/impala/global.js',
+            'js/common/fileinput.js',
             'js/common/ratingwidget.js',
             'js/lib/jquery-ui/jqModal.js',
             'js/zamboni/l10n.js',
@@ -935,6 +936,7 @@ COLLECTIONS_ICON_PATH = UPLOADS_PATH + '/collection_icons'
 PREVIEWS_PATH = UPLOADS_PATH + '/previews'
 IMAGEASSETS_PATH = UPLOADS_PATH + '/imageassets'
 PERSONAS_PATH = UPLOADS_PATH + '/personas'
+REVIEWER_ATTACHMENT_PATH = UPLOADS_PATH + '/reviewer_attachment'
 USERPICS_PATH = UPLOADS_PATH + '/userpics'
 PACKAGER_PATH = os.path.join(TMP_PATH, 'packager')
 ADDON_ICONS_DEFAULT_PATH = os.path.join(MEDIA_ROOT, 'img/addon-icons')

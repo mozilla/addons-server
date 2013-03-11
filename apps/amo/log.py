@@ -1,5 +1,8 @@
 from inspect import isclass
 
+from django.conf import settings
+from django.core.files.storage import get_storage_class
+
 from celery.datastructures import AttributeDict
 from tower import ugettext_lazy as _
 
@@ -624,8 +627,8 @@ def log(action, *args, **kw):
     """
     from addons.models import Addon
     from amo import get_user, logger_log
-    from devhub.models import (ActivityLog, AddonLog, AppLog, UserLog,
-                               CommentLog, VersionLog)
+    from devhub.models import (ActivityLog, ActivityLogAttachment, AddonLog,
+                               AppLog, CommentLog, UserLog, VersionLog)
     from mkt.webapps.models import Webapp
     from users.models import UserProfile
     from versions.models import Version
@@ -650,6 +653,20 @@ def log(action, *args, **kw):
         al.created = kw['created']
         # Double save necessary since django resets the created date on save.
         al.save()
+
+    if 'attachments' in kw:
+        formset = kw['attachments']
+        storage = get_storage_class()()
+        for form in formset:
+            data = form.cleaned_data
+            if 'attachment' in data:
+                attachment = data['attachment']
+                storage.save('%s/%s' % (settings.REVIEWER_ATTACHMENT_PATH,
+                                        attachment.name), attachment)
+                ActivityLogAttachment(activity_log=al,
+                                      description=data['description'],
+                                      mimetype=attachment.content_type,
+                                      filepath=attachment.name).save()
 
     for arg in args:
         if isinstance(arg, tuple):

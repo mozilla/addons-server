@@ -118,6 +118,7 @@ def path():
           settings.PERSONAS_PATH,
           settings.USERPICS_PATH,
           settings.WATERMARKED_ADDONS_PATH,
+          settings.REVIEWER_ATTACHMENT_PATH,
           dump_apps.Command.JSON_PATH,)
     r = [os.path.join(settings.ROOT, 'locale'),
          # The deploy process will want write access to this.
