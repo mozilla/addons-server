@@ -34,37 +34,19 @@ from versions.models import License, Version
 log = commonware.log.getLogger('z.addons')
 
 
-def clean_name(name, instance=None, type_=None):
+def clean_name(name, instance=None):
     if not instance:
         log.debug('clean_name called without an instance: %s' % name)
     if instance:
-        id = reverse_name_lookup(name, webapp=instance.is_webapp(),
-                                 type_=type_)
+        id = reverse_name_lookup(name, instance.is_webapp())
     else:
-        id = reverse_name_lookup(name, type_=type_)
+        id = reverse_name_lookup(name)
 
     # If we get an id and either there's no instance or the instance.id != id.
     if id and (not instance or id != instance.id):
         raise forms.ValidationError(_('This name is already in use. Please '
                                       'choose another.'))
     return name
-
-
-def clean_slug(slug, instance, type_=None):
-    error_msg = _('This slug is already in use. Please choose another.')
-    slug_validator(slug, lower=False, message=error_msg)
-    slug_field = 'app_slug' if instance.is_webapp() else 'slug'
-
-    if slug != getattr(instance, slug_field):
-        filters = {slug_field: slug}
-        if type_:
-            filters['type'] = type_
-        if Addon.objects.filter(**filters).exists():
-            raise forms.ValidationError(error_msg)
-        if BlacklistedSlug.blocked(slug):
-            raise forms.ValidationError(_('The slug cannot be: %s.' % slug))
-
-    return slug
 
 
 def clean_tags(request, tags):
@@ -125,12 +107,6 @@ class AddonFormBase(TranslationFormMixin, happyforms.ModelForm):
     class Meta:
         models = Addon
         fields = ('name', 'slug', 'summary', 'tags')
-
-    def clean_slug(self):
-        return clean_slug(self.cleaned_data['slug'], self.instance)
-
-    def clean_tags(self):
-        return clean_tags(self.request, self.cleaned_data['tags'])
 
 
 class AddonFormBasic(AddonFormBase):
@@ -205,6 +181,23 @@ class AddonFormBasic(AddonFormBase):
                 self._meta.fields[slug_idx] = 'slug'
         else:
             super(AddonFormBasic, self)._post_clean()
+
+    def clean_tags(self):
+        return clean_tags(self.request, self.cleaned_data['tags'])
+
+    def clean_slug(self):
+        target = self.cleaned_data['slug']
+        slug_validator(target, lower=False)
+        slug_field = 'app_slug' if self.instance.is_webapp() else 'slug'
+
+        if target != getattr(self.instance, slug_field):
+            if Addon.objects.filter(**{slug_field: target}).exists():
+                raise forms.ValidationError(_('This slug is already in use.'))
+
+            if BlacklistedSlug.blocked(target):
+                raise forms.ValidationError(_('The slug cannot be: %s.'
+                                              % target))
+        return target
 
 
 class AppFormBasic(AddonFormBasic):
@@ -466,7 +459,8 @@ class AddonForm(happyforms.ModelForm):
         exclude = ('status', )
 
     def clean_name(self):
-        return clean_name(self.cleaned_data['name'])
+        name = self.cleaned_data['name']
+        return clean_name(name)
 
     def save(self):
         desc = self.data.get('description')
@@ -495,7 +489,6 @@ class AbuseForm(happyforms.Form):
 
 class NewPersonaForm(AddonFormBase):
     name = forms.CharField(max_length=50)
-    slug = forms.CharField(max_length=30)
     category = forms.ModelChoiceField(queryset=Category.objects.all(),
                                       widget=forms.widgets.RadioSelect)
     summary = forms.CharField(widget=forms.Textarea(attrs={'rows': 4}),
@@ -518,7 +511,7 @@ class NewPersonaForm(AddonFormBase):
 
     class Meta:
         model = Addon
-        fields = ('name', 'slug', 'summary', 'tags')
+        fields = ('name', 'summary', 'tags')
 
     def __init__(self, *args, **kwargs):
         super(NewPersonaForm, self).__init__(*args, **kwargs)
@@ -534,11 +527,10 @@ class NewPersonaForm(AddonFormBase):
             }
 
     def clean_name(self):
-        return clean_name(self.cleaned_data['name'], type_=amo.ADDON_PERSONA)
+        return clean_name(self.cleaned_data['name'])
 
-    def clean_slug(self):
-        return clean_slug(self.cleaned_data['slug'], self.instance,
-                          type_=amo.ADDON_PERSONA)
+    def clean_tags(self):
+        return clean_tags(self.request, self.cleaned_data['tags'])
 
     def save(self, commit=False):
         from addons.tasks import (create_persona_preview_images,

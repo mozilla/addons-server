@@ -225,9 +225,7 @@ function initPreview() {
     }
 
     $('#id_name').bind('change keyup paste blur', _.throttle(function() {
-        var val = $(this).val();
-        $('#persona-preview-name').text(val || gettext("Your Theme's Name"));
-        slugify();
+        $('#persona-preview-name').text($(this).val() || gettext("Your Theme's Name"));
     }, 250)).trigger('change');
     $('#submit-persona').submit(function() {
         postUnsaved(POST);

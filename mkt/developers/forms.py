@@ -513,10 +513,8 @@ class AppFormBasic(addons.forms.AddonFormBase):
         slug_field = 'app_slug' if self.instance.is_webapp() else 'slug'
 
         if target != getattr(self.instance, slug_field):
-            filters = {slug_field: target, 'type': amo.ADDON_WEBAPP}
-            if Addon.objects.filter(**filters).exists():
-                raise forms.ValidationError(
-                    _('This slug is already in use. Please choose another.'))
+            if Addon.objects.filter(**{slug_field: target}).exists():
+                raise forms.ValidationError(_('This slug is already in use.'))
 
             if BlacklistedSlug.blocked(target):
                 raise forms.ValidationError(_('The slug cannot be: %s.'

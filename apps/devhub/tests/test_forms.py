@@ -1,28 +1,26 @@
-import json
 import os
-
-from django.conf import settings
-from django.core.files.storage import default_storage as storage
+import shutil
 
 import mock
-from nose import SkipTest
-from nose.tools import eq_
-from PIL import Image
+
+from django.core.files.storage import default_storage as storage
+from django.conf import settings
 
 import amo
 import amo.tests
 from amo.tests.test_helpers import get_image_path
-from amo.urlresolvers import reverse
 import paypal
 from applications.models import AppVersion
-from addons.forms import NewPersonaForm
-from addons.models import Addon, Category, Charity
+from addons.models import Addon, Charity
 from devhub import forms
 from files.helpers import copyfileobj
 from files.models import FileUpload
 from market.models import AddonPremium
 from users.models import UserProfile
-from versions.models import ApplicationsVersions, License
+from versions.models import ApplicationsVersions
+
+from nose.tools import eq_
+from pyquery import PyQuery as pq
 
 
 class TestNewAddonForm(amo.tests.TestCase):
@@ -179,221 +177,3 @@ class TestPremiumForm(amo.tests.TestCase):
         form = self.complete({}, ['paypal_id', 'support_email'])
         assert not form.is_valid()
         eq_(['price'], form.errors.keys())
-
-
-class TestNewPersonaForm(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/user_2519']
-
-    def setUp(self):
-        self.populate()
-        self.request = mock.Mock()
-        self.request.groups = ()
-        self.request.amo_user = mock.Mock()
-        self.request.amo_user.is_authenticated.return_value = True
-
-    def populate(self):
-        self.cat = Category.objects.create(application_id=amo.FIREFOX.id,
-                                           type=amo.ADDON_PERSONA, name='xxxx')
-        License.objects.create(id=amo.LICENSE_CC_BY.id)
-
-    def get_dict(self, **kw):
-        data = {
-            'name': 'new name',
-            'slug': 'new-name',
-            'category': self.cat.id,
-            'accentcolor': '#003366',
-            'textcolor': '#C0FFEE',
-            'summary': 'new summary',
-            'tags': 'tag1, tag2, tag3',
-            'license': amo.LICENSE_CC_BY.id,
-            'agreed': True,
-            'header_hash': 'b4ll1n',
-            'footer_hash': '5w4g'
-        }
-        data.update(**kw)
-        return data
-
-    def post(self, **kw):
-        self.form = NewPersonaForm(self.get_dict(**kw), request=self.request)
-        return self.form
-
-    def test_name_unique(self):
-        # A theme can share the same name as that of an add-on.
-        cool = Addon.objects.create(type=amo.ADDON_EXTENSION, name='Cooliris')
-        for name in ('Cooliris', '  Cooliris  ', 'cooliris'):
-            self.post(name=name)
-            eq_(self.form.is_valid(), True, self.form.errors)
-
-        # A theme, however, cannot share the same name as another theme.
-        cool.update(type=amo.ADDON_PERSONA)
-        for name in ('Cooliris', '  Cooliris  ', 'cooliris'):
-            self.post(name=name)
-            eq_(self.form.is_valid(), False)
-            eq_(self.form.errors,
-                {'name': ['This name is already in use. Please choose another.']})
-
-    def test_name_required(self):
-        self.post(name='')
-        eq_(self.form.is_valid(), False)
-        eq_(self.form.errors, {'name': ['This field is required.']})
-
-    def test_name_length(self):
-        self.post(name='a' * 51)
-        eq_(self.form.is_valid(), False)
-        eq_(self.form.errors, {'name': ['Ensure this value has at most '
-                                        '50 characters (it has 51).']})
-
-    def test_slug_unique(self):
-        # A theme can share the same name as that of an add-on.
-        cool = Addon.objects.create(type=amo.ADDON_EXTENSION, slug='Cooliris')
-        for slug in ('Cooliris', '  cooliris  ', 'cooliris'):
-            self.post(slug=slug)
-            eq_(self.form.is_valid(), True, self.form.errors)
-
-        # A theme, however, cannot share the same name as another theme.
-        cool.update(type=amo.ADDON_PERSONA)
-        for slug in ('Cooliris', '  cooliris  ', 'cooliris'):
-            self.post(slug=slug)
-            eq_(self.form.is_valid(), False)
-            eq_(self.form.errors,
-                {'slug': ['This slug is already in use. Please choose another.']})
-
-    def test_slug_required(self):
-        self.post(slug='')
-        eq_(self.form.is_valid(), False)
-        eq_(self.form.errors, {'slug': ['This field is required.']})
-
-    def test_slug_length(self):
-        self.post(slug='a' * 31)
-        eq_(self.form.is_valid(), False)
-        eq_(self.form.errors, {'slug': ['Ensure this value has at most '
-                                        '30 characters (it has 31).']})
-
-    def test_summary_optional(self):
-        self.post(summary='')
-        eq_(self.form.is_valid(), True, self.form.errors)
-
-    def test_summary_length(self):
-        self.post(summary='a' * 251)
-        eq_(self.form.is_valid(), False)
-        eq_(self.form.errors, {'summary': ['Ensure this value has at most '
-                                           '250 characters (it has 251).']})
-
-    def test_categories_required(self):
-        self.post(category='')
-        eq_(self.form.is_valid(), False)
-        eq_(self.form.errors, {'category': ['This field is required.']})
-
-    def test_license_required(self):
-        self.post(license='')
-        eq_(self.form.is_valid(), False)
-        eq_(self.form.errors, {'license': ['A license must be selected.']})
-
-    def test_header_hash_required(self):
-        self.post(header_hash='')
-        eq_(self.form.is_valid(), False)
-        eq_(self.form.errors, {'header_hash': ['This field is required.']})
-
-    def test_footer_hash_required(self):
-        self.post(footer_hash='')
-        eq_(self.form.is_valid(), False)
-        eq_(self.form.errors, {'footer_hash': ['This field is required.']})
-
-    def test_accentcolor_optional(self):
-        self.post(accentcolor='')
-        eq_(self.form.is_valid(), True, self.form.errors)
-
-    def test_accentcolor_invalid(self):
-        self.post(accentcolor='#BALLIN')
-        eq_(self.form.is_valid(), False)
-        eq_(self.form.errors,
-            {'accentcolor': ['This must be a valid hex color code, '
-                             'such as #000000.']})
-
-    def test_textcolor_optional(self):
-        self.post(textcolor='')
-        eq_(self.form.is_valid(), True, self.form.errors)
-
-    def test_textcolor_invalid(self):
-        self.post(textcolor='#BALLIN')
-        eq_(self.form.is_valid(), False)
-        eq_(self.form.errors,
-            {'textcolor': ['This must be a valid hex color code, '
-                           'such as #000000.']})
-
-    def get_img_urls(self):
-        return (
-            reverse('devhub.personas.upload_persona', args=['persona_header']),
-            reverse('devhub.personas.upload_persona', args=['persona_footer'])
-        )
-
-    def test_img_attrs(self):
-        header_url, footer_url = self.get_img_urls()
-
-        self.post()
-        eq_(self.form.fields['header'].widget.attrs,
-            {'data-allowed-types': 'image/jpeg|image/png',
-             'data-upload-url': header_url})
-        eq_(self.form.fields['footer'].widget.attrs,
-            {'data-allowed-types': 'image/jpeg|image/png',
-             'data-upload-url': footer_url})
-
-    @mock.patch('addons.tasks.create_persona_preview_image.delay')
-    @mock.patch('addons.tasks.save_persona_image.delay')
-    def test_success(self, save_persona_image_mock,
-                     create_persona_preview_image_mock):
-        if not hasattr(Image.core, 'jpeg_encoder'):
-            raise SkipTest
-
-        self.request.amo_user = UserProfile.objects.get(pk=2519)
-
-        data = self.get_dict()
-        header_url, footer_url = self.get_img_urls()
-
-        # Upload header image.
-        img = open(get_image_path('persona-header.jpg'), 'rb')
-        r_ajax = self.client.post(header_url, {'upload_image': img})
-        data.update(header_hash=json.loads(r_ajax.content)['upload_hash'])
-
-        # Upload footer image.
-        img = open(get_image_path('persona-footer.jpg'), 'rb')
-        r_ajax = self.client.post(footer_url, {'upload_image': img})
-        data.update(footer_hash=json.loads(r_ajax.content)['upload_hash'])
-
-        # Populate and save form.
-        self.post()
-        eq_(self.form.is_valid(), True, self.form.errors)
-        self.form.save()
-
-        addon = Addon.objects.filter(type=amo.ADDON_PERSONA).order_by('-id')[0]
-        persona = addon.persona
-
-        # Test for correct Addon and Persona values.
-        eq_(unicode(addon.name), data['name'])
-        self.assertSetEqual(addon.categories.values_list('id', flat=True),
-                            [self.cat.id])
-        self.assertSetEqual(addon.tags.values_list('tag_text', flat=True),
-                            data['tags'].split(', '))
-        eq_(persona.persona_id, 0)
-        eq_(persona.license_id, data['license'])
-        eq_(persona.accentcolor, data['accentcolor'].lstrip('#'))
-        eq_(persona.textcolor, data['textcolor'].lstrip('#'))
-        eq_(persona.author, self.request.amo_user.name)
-        eq_(persona.display_username, self.request.amo_user.username)
-
-        v = addon.versions.all()
-        eq_(len(v), 1)
-        eq_(v[0].version, '0')
-
-        # Test for header, footer, and preview images.
-        dst = os.path.join(settings.PERSONAS_PATH, str(addon.id))
-
-        header_src = os.path.join(settings.TMP_PATH, 'persona_header', u'b4ll1n')
-        footer_src = os.path.join(settings.TMP_PATH, 'persona_footer', u'5w4g')
-
-        eq_(save_persona_image_mock.mock_calls,
-            [mock.call(src=header_src, full_dst=os.path.join(dst, 'header.png')),
-             mock.call(src=footer_src, full_dst=os.path.join(dst, 'footer.png'))])
-
-        create_persona_preview_image_mock.assert_called_with(src=header_src,
-            full_dst=os.path.join(dst, 'preview.png'), set_modified_on=[addon])

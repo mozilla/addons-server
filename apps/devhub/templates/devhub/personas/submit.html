@@ -31,13 +31,6 @@
         <legend>{{ _('Theme Details') }}</legend>
         <ul>
           {{ pretty_field(form.name, label=_('Give your Theme a name.'), validate=True) }}
-          <li class="row">
-            {% set before_slug = ('<span class="url-prefix">%s/addon/</span>' % settings.SITE_URL)|safe %}
-            {{ pretty_field(form.slug, label=_('Supply a pretty URL for your detail page.'), tag=None, before=before_slug, validate=True) }}
-            <span class="note">
-              {{ _('Please use only letters, numbers, underscores, and dashes in your URL.') }}
-            </span>
-          </li>
           {{ pretty_field(form.category, label=_('Select the category that best describes your Theme.'),
                           class='row radios addon-cats', validate=True) }}
           <li class="row">
