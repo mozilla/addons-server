@@ -218,15 +218,9 @@ class TestNewPersonaForm(amo.tests.TestCase):
         return self.form
 
     def test_name_unique(self):
-        # A theme can share the same name as that of an add-on.
-        cool = Addon.objects.create(type=amo.ADDON_EXTENSION, name='Cooliris')
-        for name in ('Cooliris', '  Cooliris  ', 'cooliris'):
-            self.post(name=name)
-            eq_(self.form.is_valid(), True, self.form.errors)
-
-        # A theme, however, cannot share the same name as another theme.
-        cool.update(type=amo.ADDON_PERSONA)
-        for name in ('Cooliris', '  Cooliris  ', 'cooliris'):
+        # A theme cannot share the same name as another theme's.
+        Addon.objects.create(type=amo.ADDON_PERSONA, name='harry-potter')
+        for name in ('Harry-Potter', '  harry-potter  ', 'harry-potter'):
             self.post(name=name)
             eq_(self.form.is_valid(), False)
             eq_(self.form.errors,
@@ -245,7 +239,7 @@ class TestNewPersonaForm(amo.tests.TestCase):
                                         '50 characters (it has 51).']})
 
     def test_slug_unique(self):
-        # A theme cannot share the same name as another theme.
+        # A theme cannot share the same slug as another theme's.
         Addon.objects.create(type=amo.ADDON_PERSONA, slug='harry-potter')
         for slug in ('Harry-Potter', '  harry-potter  ', 'harry-potter'):
             self.post(slug=slug)
