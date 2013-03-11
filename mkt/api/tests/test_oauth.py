@@ -22,11 +22,12 @@ from mkt.api.models import Access, generate
 from mkt.site.fixtures import fixture
 
 
-def get_absolute_url(url, api_name='apps'):
-    # TODO (andym): make this more standard.
+def get_absolute_url(url, api_name='apps', absolute=True):
+    # Gets an absolute url, except where you don't want that.
     url[1]['api_name'] = api_name
-    rev = reverse(url[0], kwargs=url[1])
-    res = 'http://%s%s' % ('api', rev)
+    res = reverse(url[0], kwargs=url[1])
+    if absolute:
+        res = 'http://%s%s' % ('api', res)
     if len(url) > 2:
         res = urlparams(res, **url[2])
     return res

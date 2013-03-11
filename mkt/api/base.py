@@ -14,6 +14,14 @@ from translations.fields import PurifiedField, TranslatedField
 log = commonware.log.getLogger('z.api')
 
 
+def list_url(name):
+    return ('api_dispatch_list', {'resource_name': name})
+
+
+def get_url(name, pk):
+    return ('api_dispatch_detail', {'resource_name': name, 'pk': pk})
+
+
 class MarketplaceResource(ModelResource):
 
     def get_resource_uri(self, bundle_or_obj):
