@@ -479,8 +479,7 @@ def patched_load(self):
 Image.Image.load = patched_load
 
 
-def resize_image(src, dst, size=None, remove_src=True,
-                 locally=False):
+def resize_image(src, dst, size=None, remove_src=True, locally=False):
     """Resizes and image from src, to dst. Returns width and height.
 
     When locally is True, src and dst are assumed to reside

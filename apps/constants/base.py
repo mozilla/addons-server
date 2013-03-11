@@ -310,6 +310,7 @@ ADDON_PREVIEW_SIZES = [(200, 150), (700, 525)]
 PERSONA_IMAGE_SIZES = {
     'header': [(680, 100), (3000, 200)],
     'footer': [None, (3000, 100)],
+    'icon': [None, (32, 32)],
 }
 
 # Accepted image MIME-types

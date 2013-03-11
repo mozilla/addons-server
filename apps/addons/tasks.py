@@ -1,4 +1,3 @@
-import os
 import logging
 
 from django.conf import settings
@@ -10,8 +9,8 @@ from PIL import Image
 
 import amo
 from amo.decorators import set_modified_on, write
-from amo.utils import (attach_trans_dict, cache_ns_key, sorted_groupby,
-                       ImageCheck)
+from amo.utils import (attach_trans_dict, cache_ns_key, resize_image,
+                       sorted_groupby, ImageCheck)
 from lib.es.hold import add
 from lib.es.utils import index_objects
 from market.models import AddonPremium
@@ -181,19 +180,37 @@ def delete_persona_image(dst, **kw):
 
 @task
 @set_modified_on
-def create_persona_preview_image(src, full_dst, **kw):
-    """Creates a 680x100 thumbnail used for the Persona preview."""
-    log.info('[1@None] Resizing persona image: %s' % full_dst)
+def create_persona_preview_images(src, full_dst, **kw):
+    """
+    Creates a 680x100 thumbnail used for the Persona preview and
+    a 32x32 thumbnail used for search suggestions/detail pages.
+    """
+    log.info('[1@None] Resizing persona images: %s' % full_dst)
     preview, full = amo.PERSONA_IMAGE_SIZES['header']
-    new_w, new_h = preview
+    preview_w, preview_h = preview
     orig_w, orig_h = full
     with storage.open(src) as fp:
-        i = Image.open(fp)
+        i_orig = i = Image.open(fp)
+
         # Crop image from the right.
-        i = i.crop((orig_w - (new_w * 2), 0, orig_w, orig_h))
+        i = i.crop((orig_w - (preview_w * 2), 0, orig_w, orig_h))
+
+        # Resize preview.
         i = i.resize(preview, Image.ANTIALIAS)
         i.load()
-        with storage.open(full_dst, 'wb') as fp:
+        with storage.open(full_dst[0], 'wb') as fp:
+            i.save(fp, 'png')
+
+        _, icon_size = amo.PERSONA_IMAGE_SIZES['icon']
+        icon_w, icon_h = icon_size
+
+        # Resize icon.
+        i = i_orig
+        i.load()
+        i = i.crop((orig_w - (preview_h * 2), 0, orig_w, orig_h))
+        i = i.resize(icon_size, Image.ANTIALIAS)
+        i.load()
+        with storage.open(full_dst[1], 'wb') as fp:
             i.save(fp, 'png')
     return True
 

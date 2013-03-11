@@ -61,7 +61,7 @@ class NewThemeForm(AddonFormBase):
         return clean_name(self.cleaned_data['name'])
 
     def save(self, commit=False):
-        from addons.tasks import (create_persona_preview_image,
+        from addons.tasks import (create_persona_preview_images,
                                   save_persona_image)
         data = self.cleaned_data
         addon = Addon.objects.create(id=None, name=data['name'],
@@ -83,8 +83,8 @@ class NewThemeForm(AddonFormBase):
                 full_dst=os.path.join(dst_root, 'header.png'))
             save_persona_image.delay(src=footer,
                 full_dst=os.path.join(dst_root, 'footer.png'))
-            create_persona_preview_image.delay(src=header,
-                full_dst=os.path.join(dst_root, 'preview.png'),
+            create_persona_preview_images.delay(src=header,
+                full_dst=[os.path.join(dst_root, 'preview.png')],
                 set_modified_on=[addon])
         except IOError:
             addon.delete()

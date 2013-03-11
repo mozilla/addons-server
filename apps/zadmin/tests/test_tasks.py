@@ -1,7 +1,4 @@
 # -*- coding: utf-8 -*-
-from cStringIO import StringIO
-import json
-
 from django.conf import settings
 
 import mock
@@ -10,7 +7,6 @@ from nose.tools import eq_
 import amo
 import amo.tests
 from addons.models import Addon
-from amo.urlresolvers import reverse
 from files.utils import make_xpi
 from zadmin import tasks
 
