@@ -15,6 +15,7 @@ from oauth2client.client import OAuth2Credentials
 import amo
 from addons.models import Addon
 from bandwagon.models import Collection
+from mkt.monolith.models import MonolithRecord
 from mkt.webapps.models import Installed
 from stats.models import Contribution
 from reviews.models import Review
@@ -138,6 +139,7 @@ def update_google_analytics(date, **kw):
     log.debug('Committed global stats details: (%s) has (%s) for (%s)'
               % tuple(p))
 
+
 @task
 def update_global_totals(job, date, **kw):
     log.info("Updating global statistics totals (%s) for (%s)" %
@@ -160,6 +162,12 @@ def update_global_totals(job, date, **kw):
         transaction.commit_unless_managed()
     except Exception, e:
         log.critical("Failed to update global stats: (%s): %s" % (p, e))
+
+    try:
+        MonolithRecord(recorded=date, key=job, value=num or 0,
+                       user_hash='none').save()
+    except Exception, e:
+        log.critical("Failed to update the monolith table: (%s): %s" % (p, e))
 
     log.debug("Committed global stats details: (%s) has (%s) for (%s)"
               % tuple(p))

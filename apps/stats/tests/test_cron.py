@@ -10,6 +10,7 @@ import amo.tests
 from addons.models import Addon
 from bandwagon.models import CollectionAddon, Collection
 from mkt.webapps.models import Installed
+from mkt.monolith.models import MonolithRecord
 from reviews.models import Review
 from stats.models import (Contribution, DownloadCount, GlobalStat,
                           UpdateCount, AddonCollectionCount)
@@ -30,6 +31,13 @@ class TestGlobalStats(amo.tests.TestCase):
         tasks.update_global_totals(job, date)
         eq_(len(GlobalStat.objects.no_cache().filter(date=date,
                                                  name=job)), 1)
+
+    def test_user_total_count_updates_monolith(self):
+        date = datetime.date(2013, 3, 11)
+        job = 'user_count_total'
+
+        tasks.update_global_totals(job, date)
+        eq_(MonolithRecord.objects.count(), 1)
 
     def test_marketplace_stats(self):
         res = tasks._get_daily_jobs()
@@ -53,7 +61,6 @@ class TestGlobalStats(amo.tests.TestCase):
         Review.objects.create(addon=addon, user=user)
         eq_(tasks._get_daily_jobs()['apps_review_count_new'](), 1)
 
-
     def test_input(self):
         for x in ['2009-1-1',
                   datetime.datetime(2009, 1, 1),
@@ -75,6 +82,7 @@ class TestGlobalStats(amo.tests.TestCase):
                                    source=amo.LOGIN_SOURCE_MMO_BROWSERID)
         eq_(tasks._get_daily_jobs()['mmo_user_count_new'](), 1)
 
+
 class TestGoogleAnalytics(amo.tests.TestCase):
     @mock.patch.object(settings, 'GOOGLE_ANALYTICS_CREDENTIALS',
                        {'access_token': '', 'client_id': '',
@@ -94,6 +102,7 @@ class TestGoogleAnalytics(amo.tests.TestCase):
         cron.update_google_analytics(d)
         eq_(GlobalStat.objects.get(name='webtrends_DailyVisitors',
                                    date=d).count, 49)
+
 
 class TestTotalContributions(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/appversion', 'base/users',
@@ -207,6 +216,7 @@ class TestIndexLatest(amo.tests.ESTestCase):
 
 class TestUpdateDownloads(amo.tests.TestCase):
     fixtures = ['base/users', 'base/collections', 'base/addon_3615']
+
     def test_addons_collections(self):
         collection2 = Collection.objects.create(name="collection2")
         CollectionAddon.objects.create(addon_id=3615, collection=collection2)
