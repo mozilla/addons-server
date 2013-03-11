@@ -721,7 +721,6 @@ MINIFY_BUNDLES = {
             'js/zamboni/helpers.js',
             'js/zamboni/global.js',
             'js/impala/global.js',
-            'js/common/fileinput.js',
             'js/common/ratingwidget.js',
             'js/lib/jquery-ui/jqModal.js',
             'js/zamboni/l10n.js',
