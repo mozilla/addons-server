@@ -1433,7 +1433,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         descriptions = ['mmm, bacon', '']
         for n in range(0, num):
             i = 0 if n % 2 else 1
-            attachment = open(path.join(settings.REVIEWER_ATTACHMENT_PATH,
+            attachment = open(path.join(settings.REVIEWER_ATTACHMENTS_PATH,
                                         files[i]))
             data.update({
                 'attachment-%d-attachment' % n: attachment,
@@ -1466,12 +1466,12 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         eq_(new_attachment_count - old_attachment_count, num,
             'AcitvityLog objects not being created')
 
-    @override_settings(REVIEWER_ATTACHMENT_PATH=ATTACHMENTS_DIR)
+    @override_settings(REVIEWER_ATTACHMENTS_PATH=ATTACHMENTS_DIR)
     def test_attachment(self):
         """ Test addition of 1 attachment """
         self._attachment_post(1)
 
-    @override_settings(REVIEWER_ATTACHMENT_PATH=ATTACHMENTS_DIR)
+    @override_settings(REVIEWER_ATTACHMENTS_PATH=ATTACHMENTS_DIR)
     def test_multiple_attachments(self):
         """ Test addition of multiple attachments """
         self._attachment_post(2)
@@ -2449,7 +2449,7 @@ class TestAppsReviewing(AppReviewerTest, AccessMixin):
         eq_(len(res.context['apps']), 2)
 
 
-@override_settings(REVIEWER_ATTACHMENT_PATH=ATTACHMENTS_DIR)
+@override_settings(REVIEWER_ATTACHMENTS_PATH=ATTACHMENTS_DIR)
 class TestAttachmentDownload(amo.tests.TestCase):
     fixtures = ['data/user_editor', 'data/user_editor_group',
                 'data/group_editor', 'data/user_999',

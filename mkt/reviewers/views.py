@@ -1033,7 +1033,7 @@ def attachment(request, attachment):
     """
     try:
         a = ActivityLogAttachment.objects.get(pk=attachment)
-        full_path = os.path.join(settings.REVIEWER_ATTACHMENT_PATH, a.filepath)
+        full_path = os.path.join(settings.REVIEWER_ATTACHMENTS_PATH, a.filepath)
         fsock = open(full_path, 'r')
     except (ActivityLogAttachment.DoesNotExist, IOError,):
         response = http.HttpResponseNotFound()

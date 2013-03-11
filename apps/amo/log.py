@@ -661,7 +661,7 @@ def log(action, *args, **kw):
             data = form.cleaned_data
             if 'attachment' in data:
                 attachment = data['attachment']
-                storage.save('%s/%s' % (settings.REVIEWER_ATTACHMENT_PATH,
+                storage.save('%s/%s' % (settings.REVIEWER_ATTACHMENTS_PATH,
                                         attachment.name), attachment)
                 ActivityLogAttachment(activity_log=al,
                                       description=data['description'],

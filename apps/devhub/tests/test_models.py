@@ -322,7 +322,7 @@ class TestBlogPosts(amo.tests.TestCase):
         eq_(bp[0].title, "hi")
 
 
-@override_settings(REVIEWER_ATTACHMENT_PATH=ATTACHMENTS_DIR)
+@override_settings(REVIEWER_ATTACHMENTS_PATH=ATTACHMENTS_DIR)
 class TestActivityLogAttachment(amo.tests.TestCase):
     fixtures = ['base/addon_3615']
 
