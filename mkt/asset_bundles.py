@@ -297,6 +297,12 @@ JS = {
         'js/mkt/consumer_init.js',
     ),
     'mkt/reviewers': (
+        'js/lib/highcharts.src.js',
+        'js/zamboni/editors.js',
+        'js/impala/formset.js',
+        'js/lib/jquery.hoverIntent.js',
+        'js/lib/jquery.zoomBox.js',
+        'js/mkt/themes_review.js',
         'js/mkt/apps.js',
         'js/mkt/payments.js',
         'js/mkt/install.js',
