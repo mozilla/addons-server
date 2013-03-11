@@ -287,6 +287,7 @@ class GenerateErrorForm(happyforms.Form):
                     ['metlog_json', 'Metlog JSON message'],
                     ['metlog_cef', 'Metlog CEF message'],
                     ['metlog_sentry', 'Metlog Sentry message'],
+                    ['amo_cef', 'AMO CEF message'],
                     ))
 
     def explode(self):
@@ -330,6 +331,12 @@ class GenerateErrorForm(happyforms.Form):
                 1 / 0
             except:
                 settings.METLOG.raven('metlog_sentry error triggered')
+        elif error == 'amo_cef':
+            from amo.utils import log_cef
+            env = {'REMOTE_ADDR': '127.0.0.1', 'HTTP_HOST': '127.0.0.1',
+                            'PATH_INFO': '/', 'REQUEST_METHOD': 'GET',
+                            'HTTP_USER_AGENT': 'MySuperBrowser'}
+            log_cef('amo_logcef', 6, env)
 
 
 class PriceTiersForm(happyforms.Form):

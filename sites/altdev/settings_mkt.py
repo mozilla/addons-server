@@ -131,7 +131,12 @@ SIGNING_SERVER = private_mkt.SIGNING_SERVER
 SIGNING_SERVER_ACTIVE = True
 
 METLOG_CONF = {
-    'plugins': {'cef': ('metlog_cef.cef_plugin:config_plugin', {}),
+    'plugins': {'cef': ('metlog_cef.cef_plugin:config_plugin', {
+                        'syslog_facility': 'LOCAL4',
+                        # CEF_PRODUCT is defined in settings_base
+                        'syslog_ident': CEF_PRODUCT,
+                        'syslog_priority': 'INFO'
+                        }),
                 'raven': (
                     'metlog_raven.raven_plugin:config_plugin', {'dsn': SENTRY_DSN}),
         },
