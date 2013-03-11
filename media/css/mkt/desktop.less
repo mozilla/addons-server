@@ -72,7 +72,13 @@ body {
     box-shadow: 0 1px 0 #e6e9eb inset;
     background: @grain-src rgb(216, 220, 224);
     font-size: 14px;
-    line-height: 30px;
+    line-height: 18px;
+    .links a {
+        margin-top: 8px;
+        + a {
+            margin-top: 10px;
+        }
+    }
     .devhub {
         background: url(../../img/mkt/icons/rocket.png) 50px 35px no-repeat;
         margin: -30px 0 -30px;
@@ -80,11 +86,14 @@ body {
         h1 {
             color: @dark-gray;
             font-size: 22px;
+            line-height: 30px;
             text-shadow: 0 1px 1px rgba(245,247,250,.75);
         }
         b {
-            font-weight: 300;
             color: @link;
+            display: block;
+            font-weight: 300;
+            margin-top: 5px;
         }
         &:hover {
             text-decoration: none;
@@ -120,7 +129,6 @@ body {
             width: 50%;
         }
         a {
-            .ellipsis;
             display: block;
         }
     }
@@ -198,11 +206,11 @@ body[data-page-type="alpha"] {
 }
 
 #directory-footer .group a.region {
-    background-position: 0 5px;
     background-repeat: no-repeat;
     background-size: 20px auto;
+    min-height: 20px;
     overflow: visible;
-    padding-left: 30px;
+    padding: 1px 0 0 28px;
     text-overflow: normal;
     &.region-worldwide {
         padding-left: 0;
