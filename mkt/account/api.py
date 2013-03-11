@@ -22,6 +22,10 @@ class AccountResource(MarketplaceResource):
         resource_name = 'account'
 
     def obj_get(self, request=None, **kwargs):
+        if kwargs.get('pk') == 'mine':
+            kwargs['pk'] = request.amo_user.pk
+
+        # TODO: put in acl checks for admins to get other users information.
         obj = super(AccountResource, self).obj_get(request=request, **kwargs)
         if not OwnerAuthorization().is_authorized(request, object=obj):
             raise ImmediateHttpResponse(response=http.HttpForbidden())

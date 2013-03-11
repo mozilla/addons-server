@@ -56,3 +56,9 @@ class TestAccount(BaseOAuth):
 
     def test_other(self):
         eq_(self.client.get(get_url('account', '10482')).status_code, 403)
+
+    def test_own(self):
+        res = self.client.get(get_url('account', 'mine'))
+        eq_(res.status_code, 200)
+        data = json.loads(res.content)
+        eq_(data['display_name'], self.user.display_name)
