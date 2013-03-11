@@ -44,7 +44,6 @@ HOME=/tmp
 40 1 * * * %(z_cron)s update_weekly_downloads
 50 1 * * * %(z_cron)s gc
 45 1 * * * %(z_cron)s mkt_gc --settings=settings_local_mkt
-30 2 * * * %(z_cron)s mail_pending_refunds --settings=settings_local_mkt
 45 2 * * * %(django)s process_addons --task=update_manifests --settings=settings_local_mkt
 30 3 * * * %(django)s cleanup
 30 4 * * * %(z_cron)s cleanup_synced_collections
