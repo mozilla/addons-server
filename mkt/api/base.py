@@ -5,10 +5,9 @@ from django.core.exceptions import ObjectDoesNotExist
 from tastypie import http
 from tastypie.bundle import Bundle
 from tastypie.exceptions import ImmediateHttpResponse
-from tastypie.resources import ModelResource
+from tastypie.resources import Resource, ModelResource
 
 import commonware.log
-import oauth2
 from translations.fields import PurifiedField, TranslatedField
 
 log = commonware.log.getLogger('z.api')
@@ -22,7 +21,47 @@ def get_url(name, pk):
     return ('api_dispatch_detail', {'resource_name': name, 'pk': pk})
 
 
-class MarketplaceResource(ModelResource):
+class Marketplace(object):
+    """
+    A mixin with some general Marketplace stuff.
+    """
+
+    def dispatch(self, request_type, request, **kwargs):
+        # OAuth authentication uses the method in the signature. So we need
+        # to store the original method used to sign the request.
+        request.signed_method = request.method
+        if 'HTTP_X_HTTP_METHOD_OVERRIDE' in request.META:
+            request.method = request.META['HTTP_X_HTTP_METHOD_OVERRIDE']
+
+        return (super(Marketplace, self)
+                .dispatch(request_type, request, **kwargs))
+
+    def form_errors(self, forms):
+        errors = {}
+        if not isinstance(forms, list):
+            forms = [forms]
+        for f in forms:
+            if isinstance(f.errors, list):  # Cope with formsets.
+                for e in f.errors:
+                    errors.update(e)
+                continue
+            errors.update(dict(f.errors.items()))
+
+        response = http.HttpBadRequest(json.dumps({'error_message': errors}),
+                                       content_type='application/json')
+        return ImmediateHttpResponse(response=response)
+
+
+class MarketplaceResource(Marketplace, Resource):
+    """
+    Use this if you would like to expose something that is *not* a Django
+    model as an API.
+    """
+    pass
+
+
+class MarketplaceModelResource(Marketplace, ModelResource):
+    """Use this if you would like to expose a Django model as an API."""
 
     def get_resource_uri(self, bundle_or_obj):
         # Fix until my pull request gets pulled into tastypie.
@@ -49,21 +88,6 @@ class MarketplaceResource(ModelResource):
 
         return True if getattr(field, 'rel') else False
 
-    def form_errors(self, forms):
-        errors = {}
-        if not isinstance(forms, list):
-            forms = [forms]
-        for f in forms:
-            if isinstance(f.errors, list):  # Cope with formsets.
-                for e in f.errors:
-                    errors.update(e)
-                continue
-            errors.update(dict(f.errors.items()))
-
-        response = http.HttpBadRequest(json.dumps({'error_message': errors}),
-                                       content_type='application/json')
-        return ImmediateHttpResponse(response=response)
-
     def get_object_or_404(self, cls, **filters):
         """
         A wrapper around our more familiar get_object_or_404, for when we need
@@ -86,27 +110,11 @@ class MarketplaceResource(ModelResource):
             raise ImmediateHttpResponse(response=http.HttpNotFound())
         return obj
 
-    def dispatch(self, request_type, request, **kwargs):
-        # OAuth authentication uses the method in the signature. So we need
-        # to store the original method used to sign the request.
-        request.signed_method = request.method
-        if 'HTTP_X_HTTP_METHOD_OVERRIDE' in request.META:
-            request.method = request.META['HTTP_X_HTTP_METHOD_OVERRIDE']
 
-        try:
-            auth = (oauth2.Request._split_header(
-                    request.META.get('HTTP_AUTHORIZATION', '')))
-            name = auth.get('oauth_consumer_key', 'none')
-        except (AttributeError, IndexError):
-            # Problems parsing the header.
-            name = 'error'
-        log.debug('%s:%s:%s' % (
-                  request.META['REQUEST_METHOD'], request.path, name))
-        return (super(MarketplaceResource, self)
-                .dispatch(request_type, request, **kwargs))
-
-
-class CORSResource(MarketplaceResource):
+class CORSResource(object):
+    """
+    A mixin to provide CORS support to your API.
+    """
 
     def method_check(self, request, allowed=None):
         """

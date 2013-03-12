@@ -23,7 +23,7 @@ from mkt.api.authentication import (AppOwnerAuthorization,
                                     OptionalAuthentication,
                                     OwnerAuthorization,
                                     MarketplaceAuthentication)
-from mkt.api.base import MarketplaceResource
+from mkt.api.base import MarketplaceModelResource
 from mkt.api.forms import (CategoryForm, DeviceTypeForm, NewPackagedForm,
                            PreviewArgsForm, PreviewJSONForm, StatusForm,
                            UploadForm)
@@ -35,7 +35,7 @@ from reviews.models import Review
 log = commonware.log.getLogger('z.api')
 
 
-class ValidationResource(MarketplaceResource):
+class ValidationResource(MarketplaceModelResource):
 
     class Meta:
         queryset = FileUpload.objects.all()
@@ -98,7 +98,7 @@ class ValidationResource(MarketplaceResource):
         return bundle
 
 
-class AppResource(MarketplaceResource):
+class AppResource(MarketplaceModelResource):
     previews = fields.ToManyField('mkt.api.resources.PreviewResource',
                                   'previews', readonly=True)
 
@@ -226,7 +226,7 @@ class AppResource(MarketplaceResource):
         return self._meta.queryset.filter(authors=request.amo_user)
 
 
-class StatusResource(MarketplaceResource):
+class StatusResource(MarketplaceModelResource):
 
     class Meta:
         queryset = Addon.objects.filter(type=amo.ADDON_WEBAPP)
@@ -275,7 +275,7 @@ class StatusResource(MarketplaceResource):
         return amo.STATUS_CHOICES_API_LOOKUP[int(bundle.data['status'])]
 
 
-class CategoryResource(MarketplaceResource):
+class CategoryResource(MarketplaceModelResource):
 
     class Meta:
         queryset = Category.objects.filter(type=amo.ADDON_WEBAPP,
@@ -288,7 +288,7 @@ class CategoryResource(MarketplaceResource):
         serializer = Serializer(formats=['json'])
 
 
-class PreviewResource(MarketplaceResource):
+class PreviewResource(MarketplaceModelResource):
     image_url = fields.CharField(attribute='image_url', readonly=True)
     thumbnail_url = fields.CharField(attribute='thumbnail_url', readonly=True)
 
@@ -357,7 +357,7 @@ def collect_replies(bundle):
     return Review.objects.filter(reply_to=bundle.obj.pk)
 
 
-class RatingResource(MarketplaceResource):
+class RatingResource(MarketplaceModelResource):
 
     app = fields.ToOneField(AppResource, 'addon', readonly=True)
     replies = fields.ToManyField('self', collect_replies,
@@ -385,7 +385,7 @@ class RatingResource(MarketplaceResource):
         ordering = ['created']
 
     def get_object_list(self, request):
-        qs = MarketplaceResource.get_object_list(self, request)
+        qs = MarketplaceModelResource.get_object_list(self, request)
         # Mature regions show only reviews from within that region.
         if not request.REGION.adolescent:
             qs = qs.filter(client_data__region=request.REGION.id)

@@ -5,13 +5,13 @@ from amo.urlresolvers import reverse
 from amo.utils import send_mail_jinja
 from mkt.api.authentication import (PermissionAuthorization,
                                     MarketplaceAuthentication)
-from mkt.api.base import CORSResource, MarketplaceResource
+from mkt.api.base import CORSResource, MarketplaceModelResource
 from mkt.webpay.forms import FailureForm
 from market.models import Price
 from stats.models import Contribution
 
 
-class PriceResource(CORSResource):
+class PriceResource(CORSResource, MarketplaceModelResource):
     prices = fields.ListField(attribute='prices', readonly=True)
     localized = fields.DictField(attribute='suggested', readonly=True,
                                  blank=True, null=True)
@@ -22,7 +22,6 @@ class PriceResource(CORSResource):
         detail_allowed_methods = ['get']
         resource_name = 'prices'
         fields = ['name', 'suggested']
-
 
     def _get_prices(self, bundle):
         """
@@ -63,7 +62,7 @@ class PriceResource(CORSResource):
         return self._get_prices(bundle)
 
 
-class FailureNotificationResource(MarketplaceResource):
+class FailureNotificationResource(MarketplaceModelResource):
 
     class Meta:
         queryset = Contribution.objects.filter(uuid__isnull=False)

@@ -5,14 +5,14 @@ from django.db import transaction
 
 from mkt.api.authentication import (MarketplaceAuthentication,
                                     PermissionAuthorization)
-from mkt.api.base import MarketplaceResource
+from mkt.api.base import MarketplaceModelResource
 
 from .models import MonolithRecord
 
 logger = logging.getLogger('z.monolith')
 
 
-class MonolithData(MarketplaceResource):
+class MonolithData(MarketplaceModelResource):
 
     class Meta:
         queryset = MonolithRecord.objects.all()

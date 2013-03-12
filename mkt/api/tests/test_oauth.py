@@ -17,7 +17,7 @@ from amo.tests import TestCase
 from amo.helpers import urlparams
 from amo.urlresolvers import reverse
 
-from mkt.api.base import CORSResource
+from mkt.api.base import CORSResource, MarketplaceResource
 from mkt.api.models import Access, generate
 from mkt.site.fixtures import fixture
 
@@ -141,7 +141,7 @@ class BaseOAuth(TestCase):
         return json.loads(response.content)['error_message']
 
 
-class Resource(CORSResource):
+class Resource(CORSResource, MarketplaceResource):
 
     class Meta:
         list_allowed_method = ['get']
