@@ -18,7 +18,7 @@ from amo.decorators import write
 from amo.utils import no_translation
 from constants.applications import DEVICE_TYPES
 from files.models import FileUpload, Platform
-from reviews.models import Review
+from lib.metrics import record_action
 from mkt.api.authentication import (AppOwnerAuthorization,
                                     OptionalAuthentication,
                                     OwnerAuthorization,
@@ -30,6 +30,7 @@ from mkt.api.forms import (CategoryForm, DeviceTypeForm, NewPackagedForm,
 from mkt.developers import tasks
 from mkt.developers.forms import NewManifestForm, PreviewForm
 from mkt.submit.forms import AppDetailsBasicForm
+from reviews.models import Review
 
 log = commonware.log.getLogger('z.api')
 
@@ -135,6 +136,7 @@ class AppResource(MarketplaceResource):
         AddonUser(addon=bundle.obj, user=request.amo_user).save()
 
         self._icons_and_images(bundle.obj)
+        record_action('app-submitted', request, {'app-id': bundle.obj.pk})
 
         log.info('App created: %s' % bundle.obj.pk)
         return bundle

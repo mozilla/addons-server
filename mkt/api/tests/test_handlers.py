@@ -284,7 +284,8 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         eq_(res.status_code, 403)
         eq_(self.count(), 0)
 
-    def test_create(self):
+    @patch('mkt.api.resources.record_action')
+    def test_create(self, record_action):
         obj = self.create()
         res = self.client.post(self.list_url,
                                data=json.dumps({'manifest': obj.uuid}))
@@ -297,6 +298,7 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
 
         app = Webapp.objects.get(app_slug=content['app_slug'])
         eq_(set(app.authors.all()), set([self.user]))
+        assert record_action.called
 
     def create_app(self):
         obj = self.create()
