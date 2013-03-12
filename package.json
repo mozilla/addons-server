@@ -7,7 +7,7 @@
     "npm": ">= 1.1.x"
   },
   "dependencies": {
-    "clean-css": "0.8.x",
+    "clean-css": "0.10.x",
     "less": "1.3.x",
     "uglify-js": "2.2.x"
   }
