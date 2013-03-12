@@ -1,3 +1,26 @@
+from django.middleware.transaction import TransactionMiddleware
+
+
+class APITransactionMiddleware(TransactionMiddleware):
+    """Wrap the transaction middleware so we can use it in the API only."""
+
+    def process_request(self, request):
+        if request.API:
+            return (super(APITransactionMiddleware, self)
+                    .process_request(request))
+
+    def process_exception(self, request, exception):
+        if request.API:
+            return (super(APITransactionMiddleware, self)
+                    .process_exception(request, exception))
+
+    def process_response(self, request, response):
+        if request.API:
+            return (super(APITransactionMiddleware, self)
+                    .process_response(request, response))
+        return response
+
+
 class CORSMiddleware(object):
 
     def process_response(self, request, response):
