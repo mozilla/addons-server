@@ -10,7 +10,6 @@ import amo.tests
 from addons.models import Addon
 from bandwagon.models import CollectionAddon, Collection
 from mkt.webapps.models import Installed
-from mkt.monolith.models import MonolithRecord
 from reviews.models import Review
 from stats.models import (Contribution, DownloadCount, GlobalStat,
                           UpdateCount, AddonCollectionCount)
@@ -32,12 +31,13 @@ class TestGlobalStats(amo.tests.TestCase):
         eq_(len(GlobalStat.objects.no_cache().filter(date=date,
                                                  name=job)), 1)
 
-    def test_user_total_count_updates_monolith(self):
+    @mock.patch('stats.tasks.MonolithRecord')
+    def test_user_total_count_updates_monolith(self, record):
         date = datetime.date(2013, 3, 11)
         job = 'user_count_total'
 
         tasks.update_global_totals(job, date)
-        eq_(MonolithRecord.objects.count(), 1)
+        assert record.called
 
     def test_marketplace_stats(self):
         res = tasks._get_daily_jobs()
