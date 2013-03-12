@@ -540,8 +540,8 @@ class NewPersonaForm(AddonFormBase):
         from addons.tasks import (create_persona_preview_images,
                                   save_persona_image)
         data = self.cleaned_data
-        # TODO: Ask for slug.
         addon = Addon.objects.create(name=data['name'],
+            slug=data.get('slug'),
             description=data.get('summary'),
             status=amo.STATUS_PENDING, type=amo.ADDON_PERSONA)
         addon._current_version = Version.objects.create(addon=addon,

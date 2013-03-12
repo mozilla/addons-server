@@ -199,7 +199,7 @@ class TestNewPersonaForm(amo.tests.TestCase):
     def get_dict(self, **kw):
         data = {
             'name': 'new name',
-            'slug': 'new-name',
+            'slug': 'special-slug',
             'category': self.cat.id,
             'accentcolor': '#003366',
             'textcolor': '#C0FFEE',
@@ -360,6 +360,7 @@ class TestNewPersonaForm(amo.tests.TestCase):
 
         # Test for correct Addon and Persona values.
         eq_(unicode(addon.name), data['name'])
+        eq_(addon.slug, data['slug'])
         self.assertSetEqual(addon.categories.values_list('id', flat=True),
                             [self.cat.id])
         self.assertSetEqual(addon.tags.values_list('tag_text', flat=True),
