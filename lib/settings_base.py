@@ -1515,7 +1515,9 @@ BROWSERID_JS_URL = 'https://login.persona.org/include.js'
 # If UNVERIFIED_ISSUER is set to None, forceIssuer will not
 # be sent to the client or the verifier.
 NATIVE_BROWSERID_DOMAIN = 'native-persona.org'
-UNVERIFIED_ISSUER = 'b2g2pac.personatest.org'
+#UNVERIFIED_ISSUER = 'b2g2pac.personatest.org'
+# Temporarily disabling this to get auto-logins working. See bug 850084.
+UNVERIFIED_ISSUER = None
 
 # This is a B2G (or other native) verifier. Adjust accordingly.
 NATIVE_BROWSERID_VERIFICATION_URL = ('https://%s/verify'
