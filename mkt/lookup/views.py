@@ -143,8 +143,11 @@ def transaction_refund(request, tx_uuid):
 
     form = TransactionRefundForm(request.POST)
     if not form.is_valid():
-        messages.error(request, str(form.errors))
-        return redirect(reverse('lookup.transaction_summary', args=[tx_uuid]))
+        return jingo.render(
+            request, 'lookup/transaction_summary.html',
+            dict({'uuid': tx_uuid, 'tx_refund_form': form,
+                  'tx_form': TransactionSearchForm()}.items() +
+                 _transaction_summary(tx_uuid).items()))
 
     try:
         res = client.api.bango.refund.post({'uuid': contrib.transaction_id})
