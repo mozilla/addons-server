@@ -146,7 +146,12 @@ SIGNING_SERVER = private_mkt.SIGNING_SERVER
 SIGNING_SERVER_ACTIVE = True
 
 METLOG_CONF = {
-    'plugins': {'cef': ('metlog_cef.cef_plugin:config_plugin', {}),
+    'plugins': {'cef': ('metlog_cef.cef_plugin:config_plugin', {
+                        'syslog_facility': 'LOCAL4',
+                        # CEF_PRODUCT is defined in settings_base
+                        'syslog_ident': CEF_PRODUCT,
+                        'syslog_priority': 'INFO'
+                        }),
                 'raven': (
                     'metlog_raven.raven_plugin:config_plugin', {'dsn': SENTRY_DSN}),
         },
@@ -160,6 +165,7 @@ METLOG_CONF = {
 METLOG = client_from_dict_config(METLOG_CONF)
 USE_METLOG_FOR_CEF = True
 USE_METLOG_FOR_TASTYPIE = True
+SENTRY_CLIENT = 'djangoraven.metlog.MetlogDjangoClient'
 
 # See mkt/settings.py for more info.
 APP_PURCHASE_KEY = DOMAIN
