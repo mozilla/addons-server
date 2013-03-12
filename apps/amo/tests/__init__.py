@@ -290,8 +290,7 @@ class TestCase(RedisTest, test_utils.TestCase):
             tpl = response.context
         for ctx in tpl:
             for k, v in ctx.iteritems():
-                if (isinstance(v, forms.BaseForm) or
-                    isinstance(v, forms.formsets.BaseFormSet)):
+                if isinstance(v, (forms.BaseForm, forms.formsets.BaseFormSet)):
                     if isinstance(v, forms.formsets.BaseFormSet):
                         # Concatenate errors from each form in the formset.
                         msg = '\n'.join(f.errors.as_text() for f in v.forms)
@@ -436,11 +435,6 @@ class TestCase(RedisTest, test_utils.TestCase):
         kw.setdefault('everyone', True)
         Flag.objects.create(**kw)
 
-    def skip_if_disabled(self, setting):
-        """Skips a test if a particular setting is disabled."""
-        if not setting:
-            raise SkipTest('Skipping since setting is disabled')
-
     def grant_permission(self, user_obj, rules, name='Test Group'):
         """Creates group with rule, and adds user to group."""
         group = Group.objects.create(name=name, rules=rules)
@@ -450,7 +444,8 @@ class TestCase(RedisTest, test_utils.TestCase):
         return days_ago(days)
 
     def login(self, profile):
-        assert self.client.login(username=profile.email, password='password')
+        assert self.client.login(username=getattr(profile, 'email', profile),
+                                 password='password')
 
     def trans_eq(self, trans, locale, localized_string):
         eq_(Translation.objects.get(id=trans.id,
