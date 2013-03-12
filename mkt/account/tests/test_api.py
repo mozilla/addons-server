@@ -26,7 +26,7 @@ class TestAccount(BaseOAuth):
 
     def test_verbs(self):
         self._allowed_verbs(self.list_url, ())
-        self._allowed_verbs(self.get_url, ('get',))
+        self._allowed_verbs(self.get_url, ('get', 'patch', 'put'))
 
     def test_not_allowed(self):
         eq_(self.anon.get(self.get_url).status_code, 401)
@@ -62,3 +62,32 @@ class TestAccount(BaseOAuth):
         eq_(res.status_code, 200)
         data = json.loads(res.content)
         eq_(data['display_name'], self.user.display_name)
+
+    def test_patch(self):
+        res = self.client.patch(self.get_url,
+                                data=json.dumps({'display_name': 'foo'}))
+        eq_(res.status_code, 202)
+        user = UserProfile.objects.get(pk=self.user.pk)
+        eq_(user.display_name, 'foo')
+
+    def test_put(self):
+        res = self.client.put(self.get_url,
+                              data=json.dumps({'display_name': 'foo'}))
+        eq_(res.status_code, 204)
+        user = UserProfile.objects.get(pk=self.user.pk)
+        eq_(user.display_name, 'foo')
+        eq_(user.username, self.user.username)  # Did not change.
+
+    def test_patch_extra_fields(self):
+        res = self.client.patch(self.get_url,
+                                data=json.dumps({'display_name': 'foo',
+                                                 'username': 'bob'}))
+        eq_(res.status_code, 202)
+        user = UserProfile.objects.get(pk=self.user.pk)
+        eq_(user.display_name, 'foo')  # Got changed successfully.
+        eq_(user.username, self.user.username)  # Did not change.
+
+    def test_patch_other(self):
+        res = self.client.patch(get_url('account', '10482'),
+                                data=json.dumps({'display_name': 'foo'}))
+        eq_(res.status_code, 403)

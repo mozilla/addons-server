@@ -28,6 +28,25 @@ The same information is also accessible at the canoncial `resource_uri`::
 The `/api/account/mine/` URL is provided as a convenience for users who don't
 know their full URL ahead of time.
 
+To update account information::
+
+    PATCH /api/account/mine/
+    {"display_name": "Nicer person"}
+
+Or::
+
+    PUT /api/account/mine/
+    {"display_name": "Nicer person"}
+
+
+Fields that can be updated:
+
+* *display_name*
+
+Fields that are read only:
+
+* *installed*
+
 Categories
 ==========
 

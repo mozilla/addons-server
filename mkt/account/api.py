@@ -15,7 +15,7 @@ class AccountResource(MarketplaceResource):
     class Meta:
         authentication = MarketplaceAuthentication()
         authorization = OwnerAuthorization()
-        detail_allowed_methods = ['get']
+        detail_allowed_methods = ['get', 'patch', 'put']
         fields = ['display_name']
         list_allowed_methods = []
         queryset = UserProfile.objects.filter()
