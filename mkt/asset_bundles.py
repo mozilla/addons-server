@@ -308,7 +308,6 @@ JS = {
         'js/mkt/install.js',
         'js/mkt/buttons.js',
         'js/zamboni/storage.js',
-        'js/zamboni/editors.js',
         'js/mkt/reviewers.js',
         'js/devreg/expandable.js',
         'js/devreg/mobile_review_actions.js',
