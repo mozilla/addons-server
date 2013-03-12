@@ -121,16 +121,20 @@ SIGNED_APPS_REVIEWER_SERVER = private_mkt.SIGNED_APPS_REVIEWER_SERVER
 
 CARRIER_URLS = splitstrip(private_mkt.CARRIER_URLS)
 
-#SENTRY_CLIENT = 'djangoraven.metlog.MetlogDjangoClient'
 
 # Pass through the DSN to the Raven client and force signal
 # registration so that exceptions are passed through to sentry
 #RAVEN_CONFIG = {'dsn': SENTRY_DSN, 'register_signals': True}
 
 METLOG_CONF = {
-    'plugins': {'cef': ('metlog_cef.cef_plugin:config_plugin', {}),
-                #'raven': (
-                #    'metlog_raven.raven_plugin:config_plugin', {'dsn': SENTRY_DSN}),
+    'plugins': {'cef': ('metlog_cef.cef_plugin:config_plugin', {
+                        'syslog_facility': 'LOCAL4',
+                        # CEF_PRODUCT is defined in settings_base
+                        'syslog_ident': CEF_PRODUCT,
+                        'syslog_priority': 'INFO'
+                        }),
+                'raven': (
+                    'metlog_raven.raven_plugin:config_plugin', {'dsn': SENTRY_DSN}),
         },
     'sender': {
         'class': 'metlog.senders.UdpSender',
@@ -141,7 +145,9 @@ METLOG_CONF = {
 }
 METLOG = client_from_dict_config(METLOG_CONF)
 USE_METLOG_FOR_CEF = True
-USE_METLOG_FOR_TASTYPIE = False
+USE_METLOG_FOR_TASTYPIE = True
+
+SENTRY_CLIENT = 'djangoraven.metlog.MetlogDjangoClient'
 
 # Payment settings.
 APP_PURCHASE_KEY = DOMAIN
