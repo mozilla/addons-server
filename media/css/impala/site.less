@@ -71,7 +71,7 @@ a {
 
 .secondary + .primary .island {
     /* Make islands on homepage, category-landing pages, etc. span 100%. */
-    .border-box;
+    .border-box();
     width: 100%;
     &.hero {
         width: 750px;
@@ -113,7 +113,7 @@ header + .island {
 }
 
 .full {
-    .border-box;
+    .border-box();
     float: none;
     margin: auto 0 !important;
     width: 100%;
@@ -294,7 +294,7 @@ header + .island {
     .width-calc(~'100% - -1em', 100%);
     overflow: auto;
     div.col-2, div.col-3 {
-        .border-box;
+        .border-box();
         float: left;
         padding-right: 1em;
     }
