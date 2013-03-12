@@ -19,7 +19,7 @@
 .developer-hub #site-header {
     h1 {
         a {
-            .hidetext;
+            .hidetext();
             // TODO: Retinaize.
             background: url(../../img/ecosystem/logo.png) no-repeat 0 40%;
             display: block;
@@ -287,10 +287,10 @@
         }
     }
     &.submit {
+        .hidetext();
         display: block;
         right: 50px;
         z-index: 13;  // So the click target over the account links.
-        .hidetext;
         &:before {
             background-image: url(../../img/ecosystem/submit.png);
             left: 9px;
@@ -310,9 +310,9 @@
         top: 0;
         width: 60px;
         &.loading-submit {
-            .webkit-spin;
+            .hidetext();
+            .webkit-spin();
             background: url(../../img/mkt/loading-16.png) center no-repeat;
-            .hidetext;
             &:after {
                 display: none;
             }

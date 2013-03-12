@@ -14,7 +14,7 @@
         display: block;
     }
     .info h3 {
-        .ellipsis;
+        .ellipsis();
     }
 }
 
@@ -60,7 +60,7 @@
                 background-color: darken(@grain, 12%);
             }
             &:active {
-                .depressed;
+                .depressed();
             }
             .info {
                 box-shadow: none;
@@ -287,7 +287,7 @@
         }
     }
     &.featured {
-        .grain;
+        .grain();
         .mkt-tile {
             height: 55px;
             img {
@@ -305,7 +305,7 @@
             .rating {
                 color: @note-gray;
                 width: 52px;
-                .ellipsis;
+                .ellipsis();
             }
             h3 {
                 color: @white;

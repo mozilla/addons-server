@@ -18,7 +18,7 @@
 .button, .button:visited, button {
     // Bluish.
     .gradient-two-color(#4cb1ff, #1793e5);
-    .btn-shadow;
+    .btn-shadow();
     background-repeat: repeat-x;
     border: 1px solid #1793e5;
     border-radius: 3px;
@@ -39,7 +39,7 @@
         color: darken(@white, 10%);
     }
     &:active {
-        .btn-shadow-active;
+        .btn-shadow-active();
         border: 1px solid darken(#1793e5, 10%);
     }
 }
@@ -60,14 +60,14 @@
             .gradient-two-color(darken(#DA5132, 10%), darken(#A91300, 10%));
         }
         &:active {
-            .btn-shadow-active;
+            .btn-shadow-active();
             border: 1px solid darken(#A91300, 10%);
         }
     }
     // Grayish (legacy).
     &.alt {
         .gradient-two-color(#fff, #e7e7e7);
-        .alt-btn-shadow;
+        .alt-btn-shadow();
         border: 1px solid #b7b7b7;
         color: #5f5f5f;
         &:hover, &:focus {
@@ -77,14 +77,14 @@
             color: darken(#5f5f5f, 10%);
         }
         &:active {
-            .btn-shadow-active;
+            .btn-shadow-active();
             border: 1px solid darken(#b7b7b7, 10%);
         }
     }
 }
 button {
     &.product {
-        .fatten;
+        .fatten();
     }
     // Grayish.
     &[disabled] {
@@ -103,7 +103,7 @@ button {
 }
 
 .button .spin {
-    .webkit-spin;
+    .webkit-spin();
     background: url(../../img/mkt/loading-16.png) no-repeat center center;
     display: inline-block;
     height: 16px;
