@@ -89,7 +89,7 @@ suds==0.3.9
 -e git://github.com/washort/gelato.models.git@6297036871419651032f7724b6b536c19a228ec6#egg=gelato.models
 -e git://github.com/mozilla/happyforms.git@729612c2a824a7e8283d416d2084bf506c671e24#egg=happyforms
 # Temporary fork.
--e git://github.com/jsocol/jingo-minify.git@d1b668ad7c0423fe8cc639df36d433da5c168cac#egg=jingo-minify
+-e git://github.com/jsocol/jingo-minify.git@54bb1c9ccc2d7c6b7462b6014b2f0ea789b8c045#egg=jingo-minify
 -e git://github.com/mozilla/nuggets.git@96e80a64aa4bfcfef4f43fc3ab6966450ccd7325#egg=nuggets
 -e git://github.com/jbalogh/test-utils.git@ce5136a257cd44a1c663319124a255c1d10a9834#egg=test-utils
 -e git://github.com/fwenzel/django-mozilla-product-details.git@36ef06539d6b34c4f345fd0d3e16937d0db9a752#egg=django-mozilla-product-details
