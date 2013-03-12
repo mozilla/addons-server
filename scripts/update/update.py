@@ -166,6 +166,7 @@ def update(ctx):
     create_virtualenv()
     update_locales()
     update_products()
+    ctx.local('npm install')
     compress_assets()
     compress_assets(arg='--settings=settings_local_mkt')
     schematic()
