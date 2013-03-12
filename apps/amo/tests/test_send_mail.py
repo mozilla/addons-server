@@ -1,6 +1,10 @@
+import mimetypes
+import os.path
+
 from django import test
 from django.conf import settings
 from django.core import mail
+from django.core.files.storage import default_storage as storage
 from django.template import Context as TemplateContext
 from django.utils import translation
 
@@ -9,6 +13,7 @@ from nose.tools import eq_
 
 from amo.models import FakeEmail
 from amo.utils import send_mail, send_html_mail_jinja
+from devhub.tests.test_models import ATTACHMENTS_DIR
 from users.models import UserProfile, UserNotification
 import users.notifications
 
@@ -192,3 +197,11 @@ class TestSendMail(test.TestCase):
         unsubscribe_msg = unicode(users.notifications.individual_contact.label)
         assert unsubscribe_msg in message1
         assert unsubscribe_msg in message2
+
+    def test_send_attachment(self):
+        path = os.path.join(ATTACHMENTS_DIR, 'bacon.txt')
+        attachments = [(os.path.basename(path), storage.open(path),
+                        mimetypes.guess_type(path)[0])]
+        send_mail('test subject', 'test body', from_email='a@example.com',
+                  recipient_list=['b@example.com'], attachments=attachments)
+        eq_(attachments, mail.outbox[0].attachments, 'Attachments not included')

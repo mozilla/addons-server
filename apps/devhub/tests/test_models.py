@@ -1,6 +1,7 @@
 from datetime import datetime, timedelta
 from os import path
 
+from django.conf import settings
 from django.core.urlresolvers import NoReverseMatch
 from django.test.utils import override_settings
 
@@ -362,6 +363,13 @@ class TestActivityLogAttachment(amo.tests.TestCase):
                'incorrect filename.')
         eq_(self.attachment1.filename(), 'bacon.txt', msg)
         eq_(self.attachment2.filename(), 'bacon.jpg', msg)
+
+    def test_full_path_dirname(self):
+        msg = ('ActivityLogAttachment().full_path() returning incorrect path.')
+        FAKE_PATH = '/tmp/attachments/'
+        with self.settings(REVIEWER_ATTACHMENTS_PATH=FAKE_PATH):
+            eq_(self.attachment1.full_path(), FAKE_PATH + 'bacon.txt', msg)
+            eq_(self.attachment2.full_path(), FAKE_PATH + 'bacon.jpg', msg)
 
     def test_display_name(self):
         msg = ('ActivityLogAttachment().display_name() returning '

@@ -3,7 +3,7 @@ import datetime
 import json
 import time
 from itertools import cycle
-from os import path
+import os.path
 
 from django.conf import settings
 from django.contrib.auth.models import User
@@ -1433,12 +1433,19 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         descriptions = ['mmm, bacon', '']
         for n in range(0, num):
             i = 0 if n % 2 else 1
-            attachment = open(path.join(settings.REVIEWER_ATTACHMENTS_PATH,
-                                        files[i]))
+            attachment = open(os.path.join(settings.REVIEWER_ATTACHMENTS_PATH,
+                                           files[i]))
             data.update({
                 'attachment-%d-attachment' % n: attachment,
                 'attachment-%d-description' % n: descriptions[i]
             })
+        return data
+
+    def _attachment_form_data(self, num=1, action='comment'):
+        data = {'action': action,
+                'comments': 'mmm, nice app'}
+        data.update(self._attachment_management_form(num=num))
+        data.update(self._attachments(num))
         return data
 
     def _attachment_post(self, num):
@@ -1450,18 +1457,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         2) Checking that the appropriate number of objects are created.
         """
         old_attachment_count = ActivityLogAttachment.objects.all().count()
-
-        # Assemble form data
-        data = {'action': 'comment',
-                'comments': 'mmm, nice app'}
-        data.update(self._attachment_management_form(num=num))
-        data.update(self._attachments(num))
-
-        # Test successful post
-        self.post(data)
-
-        # Test that the appropriate number of ActivityLogAttachment objects
-        # have been createed
+        self.post(self._attachment_form_data(num=num))
         new_attachment_count = ActivityLogAttachment.objects.all().count()
         eq_(new_attachment_count - old_attachment_count, num,
             'AcitvityLog objects not being created')
@@ -1475,6 +1471,46 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
     def test_multiple_attachments(self):
         """ Test addition of multiple attachments """
         self._attachment_post(2)
+
+    @override_settings(REVIEWER_ATTACHMENTS_PATH=ATTACHMENTS_DIR)
+    def test_attachment_email(self):
+        """
+        Test that a single attachment is included as an attachment in
+        notification emails.
+        """
+        self.post(self._attachment_form_data(num=1, action='escalate'))
+        eq_(len(mail.outbox[0].attachments), 1,
+            'Review attachment not added to email')
+
+    @override_settings(REVIEWER_ATTACHMENTS_PATH=ATTACHMENTS_DIR)
+    def test_attachment_email_multiple(self):
+        """
+        Test that mutliple attachments are included as attachments in
+        notification emails.
+        """
+        self.post(self._attachment_form_data(num=2, action='reject'))
+        eq_(len(mail.outbox[0].attachments), 2,
+            'Review attachments not added to email')
+
+    @override_settings(REVIEWER_ATTACHMENTS_PATH=ATTACHMENTS_DIR)
+    def test_attachment_email_escalate(self):
+        """
+        Test that attachments are included as attachments in an `escalate`
+        review, which uses a different mechanism for notification email sending.
+        """
+        self.post(self._attachment_form_data(num=1, action='escalate'))
+        eq_(len(mail.outbox[0].attachments), 1,
+            'Review attachment not added to email')
+
+    @override_settings(REVIEWER_ATTACHMENTS_PATH=ATTACHMENTS_DIR)
+    def test_attachment_email_requestinfo(self):
+        """
+        Test that attachments are included as attachments in an `info` review,
+        which uses a different mechanism for notification email sending.
+        """
+        self.post(self._attachment_form_data(num=1, action='info'))
+        eq_(len(mail.outbox[0].attachments), 1,
+            'Review attachment not added to email')
 
 
 class TestCannedResponses(AppReviewerTest):

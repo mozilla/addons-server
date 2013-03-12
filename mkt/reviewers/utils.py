@@ -24,13 +24,15 @@ from mkt.webapps.models import Webapp
 log = commonware.log.getLogger('z.mailer')
 
 
-def send_mail(subject, template, context, emails, perm_setting=None, cc=None):
+def send_mail(subject, template, context, emails, perm_setting=None, cc=None,
+              attachments=None):
     # Link to our newfangled "Account Settings" page.
     manage_url = absolutify(reverse('account.settings')) + '#notifications'
     send_mail_jinja(subject, template, context, recipient_list=emails,
                     from_email=settings.NOBODY_EMAIL, use_blacklist=False,
                     perm_setting=perm_setting, manage_url=manage_url,
-                    headers={'Reply-To': settings.MKT_REVIEWERS_EMAIL}, cc=cc)
+                    headers={'Reply-To': settings.MKT_REVIEWERS_EMAIL}, cc=cc,
+                    attachments=attachments)
 
 
 class ReviewBase(object):
@@ -49,6 +51,22 @@ class ReviewBase(object):
             addon=self.addon).exists()
         self.in_escalate = EscalationQueue.objects.filter(
             addon=self.addon).exists()
+
+    def get_attachments(self):
+        """
+        Returns a list of triples suitable to be attached to an email.
+        """
+        try:
+            num = int(self.attachment_formset.data['attachment-TOTAL_FORMS'])
+        except (ValueError, TypeError):
+            return []
+        else:
+            files = []
+            for i in xrange(num):
+                attachment = self.request.FILES['attachment-%d-attachment' % i]
+                files.append((attachment.name, attachment.read(),
+                              attachment.content_type))
+            return files
 
     def set_addon(self, **kw):
         """Alters addon and sets reviewed timestamp on version."""
@@ -95,7 +113,8 @@ class ReviewBase(object):
             data['tested'] = 'Tested with %s' % br
         send_mail(subject % self.addon.name,
                   'reviewers/emails/decisions/%s.txt' % template, data,
-                  emails, perm_setting='app_reviewed', cc=cc_email)
+                  emails, perm_setting='app_reviewed', cc=cc_email,
+                  attachments=self.get_attachments())
 
     def get_context_data(self):
         return {'name': self.addon.name,
@@ -121,14 +140,16 @@ class ReviewBase(object):
         send_mail(u'Submission Update: %s' % self.addon.name,
                   'reviewers/emails/decisions/info.txt',
                   self.get_context_data(), emails,
-                  perm_setting='app_individual_contact', cc=cc_email)
+                  perm_setting='app_individual_contact', cc=cc_email,
+                  attachments=self.get_attachments())
 
     def send_escalate_mail(self):
         self.log_action(amo.LOG.ESCALATE_MANUAL)
         log.info(u'Escalated review requested for %s' % self.addon)
         send_mail(u'Escalated Review Requested: %s' % self.addon.name,
                   'reviewers/emails/super_review.txt',
-                  self.get_context_data(), [settings.MKT_SENIOR_EDITORS_EMAIL])
+                  self.get_context_data(), [settings.MKT_SENIOR_EDITORS_EMAIL],
+                  attachments=self.get_attachments())
 
 
 class ReviewApp(ReviewBase):

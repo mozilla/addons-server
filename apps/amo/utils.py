@@ -146,7 +146,7 @@ def paginate(request, queryset, per_page=20, count=None):
 def send_mail(subject, message, from_email=None, recipient_list=None,
               fail_silently=False, use_blacklist=True, perm_setting=None,
               manage_url=None, headers=None, cc=None, real_email=False,
-              html_message=None):
+              html_message=None, attachments=None):
     """
     A wrapper around django.core.mail.EmailMessage.
 
@@ -192,12 +192,12 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
     if not headers:
         headers = {}
 
-    def send(recipient, message, html_message=None):
+    def send(recipient, message, html_message=None, attachments=None):
         backend = EmailMultiAlternatives if html_message else EmailMessage
 
         result = backend(subject, message,
-            from_email, recipient, cc=cc, connection=connection,
-            headers=headers)
+                         from_email, recipient, cc=cc, connection=connection,
+                         headers=headers, attachments=attachments)
 
         if html_message:
             result.attach_alternative(html_message, 'text/html')
@@ -246,12 +246,14 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
                         html_message_with_unsubscribe = html_template.render(
                             Context(context, autoescape=False))
                         result = send([recipient], message_with_unsubscribe,
-                            html_message_with_unsubscribe)
+                                      html_message_with_unsubscribe,
+                                      attachments=attachments)
                 else:
-                    result = send([recipient], message_with_unsubscribe)
+                    result = send([recipient], message_with_unsubscribe,
+                                  attachments=attachments)
         else:
             result = send(recipient_list, message=message,
-                          html_message=html_message)
+                          html_message=html_message, attachments=attachments)
     else:
         result = True
 

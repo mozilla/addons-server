@@ -417,6 +417,12 @@ class ActivityLogAttachment(amo.models.ModelBase):
         """
         return os.path.basename(self.filepath)
 
+    def full_path(self):
+        """
+        Returns the full filesystem path of the attachment.
+        """
+        return os.path.join(settings.REVIEWER_ATTACHMENTS_PATH, self.filepath)
+
     def display_name(self):
         """
         Returns a string describing the attachment suitable for front-end
@@ -430,9 +436,7 @@ class ActivityLogAttachment(amo.models.ModelBase):
         Returns a boolean indicating whether the attached file is an image of a
         format recognizable by the stdlib imghdr module.
         """
-        filepath = os.path.join(settings.REVIEWER_ATTACHMENTS_PATH,
-                                self.filepath)
-        return imghdr.what(filepath) is not None
+        return imghdr.what(self.full_path()) is not None
 
 
 # TODO(davedash): Remove after we finish the import.
