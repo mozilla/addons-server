@@ -9,6 +9,7 @@
   "dependencies": {
     "clean-css": "0.10.x",
     "less": "1.3.x",
+    "stylus": "0.32.x",
     "uglify-js": "2.2.x"
   }
 }

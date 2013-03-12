@@ -1,0 +1,450 @@
+@import 'lib';
+
+// base class
+
+.mkt-tile {
+    position: relative;
+    overflow: hidden;
+    display: block;
+    color: $text;
+    &:hover {
+        text-decoration: none;
+    }
+    .icon {
+        display: block;
+    }
+    .info h3 {
+        ellipsis();
+    }
+}
+
+.grid, .listing {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    clear: both;
+    width: 100%;
+}
+
+.product-details .mkt-tile .icon.asset-tile,
+.listing .mkt-tile .icon.asset-tile,
+.mkt-tile .icon.featured_tile {
+    display: none;
+}
+
+.creatured .mkt-tile .icon,
+.featured .mkt-tile .icon {
+    display: none;
+    &.asset-tile {
+        display: block;
+    }
+}
+
+@media (max-width: 480px) {
+    .creatured .grid,
+    .creatured .grid li {
+        padding: 0;
+    }
+    .creatured .grid li + li {
+        border-left: 1px solid rgba(0, 0, 0, .4);
+    }
+    .creatured .grid {
+        .mkt-tile {
+            background: $grain-src darken($grain, 15%);
+            height: 55px;
+            padding: 12px 10px;
+            .info, &:hover .info, &:active .info {
+                background: transparent;
+            }
+            &:hover {
+                background-color: darken($grain, 12%);
+            }
+            &:active {
+                depressed();
+            }
+            .info {
+                box-shadow: none;
+                height: auto;
+                padding: 0;
+                position: static;
+            }
+            h3 {
+                color: $white;
+                font-size: 11px;
+                line-height: 16px;
+                margin-bottom: -4px;
+                padding-left: 21px;
+            }
+            .rating {
+                font-size: 11px;
+                margin: 4px 0 0 2px;
+                vertical-align: top;
+            }
+            .rating .cnt,
+            .unrated {
+                display: block;
+                text-indent: -999px;
+            }
+            canvas {
+                display: none;
+            }
+            .icon {
+                &.featured_tile {
+                    background-size: auto 16px;
+                    display: block;
+                    position: absolute;
+                    top: 12px;
+                    left: 11px;
+                    height: 16px;
+                    width: 16px;
+                }
+                &.asset-tile {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+// Listing
+// name + icon + price + rating in a vertical listview.
+// also used as standalone "card" on detail pages.
+
+.product-details,
+.listing .mkt-tile {
+    // TODO: Maybe we don't need this twice. We'll see when we do desktop.
+    gradient-two-color-with-image(#f7f7f7, $barely-gray, $grain-src);
+}
+
+.listing .mkt-tile {
+    min-height: 66px;
+    padding: 20px 10px 20px 88px;
+    h3 {
+        font-size: 20px;
+        font-weight: 400;
+        line-height: 22px;
+        margin: -4px 0 -7px;
+        padding-bottom: 9px;
+    }
+    .icon {
+        float: left;
+        position: absolute;
+        top: 20px;
+        left: 10px;
+    }
+    .author {
+        color: $subtext;
+        font-size: 12px;
+        line-height: 14px;
+        max-height: 28px;
+        margin-bottom: -3px;
+        padding-bottom: 2px;
+    }
+    .button {
+        float: right;
+        height: 24px;
+        line-height: 24px;
+        font-size: 13px;
+        margin: 2px 0 2px 10px;
+        padding: 0;
+        width: 70px;
+    }
+    .rating {
+        clear: both;
+        margin-top: 4px;
+        color: $subtext;
+        display: block;
+        font-size: 11px;
+        .cnt {
+            border-bottom: 1px solid transparent;
+            color: $note-gray;
+            font-weight: 600;
+            padding-bottom: 1px;
+            position: relative;
+            top: 1px;
+        }
+        a {
+            color: $note-gray;
+            text-decoration: none;
+            &:hover .cnt {
+                border-bottom-color: $note-gray;
+                color: $dark-gray;
+            }
+        }
+    }
+    .price {
+        display: none;
+    }
+}
+.listing .result .mkt-tile .rating .cnt {
+    top: 0;
+}
+
+// Grid
+// store graphic, name, price in a floated grid (3 tiles wide at 320).
+
+.grid {
+    margin: 0 auto;
+    max-width: 600px;
+    li {
+        border-left: 1px solid $black-border;
+        border-bottom: 1px solid $black-border;
+        float: left;
+        width: 100%/3;
+        max-height: 141px;
+        &:nth-child(3n) {
+            border-right: 1px solid $black-border;
+        }
+    }
+    .mkt-tile {
+        position: relative;
+        width: 100%;
+        height: 106px;
+        .info {
+            box-shadow: 0 0 1px rgba(0, 0, 0, .25);
+            background: rgba(255, 255, 255, .85);
+            height: 40px;
+            padding: 6px 4px;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            z-index: 2;
+        }
+        canvas {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+        }
+        h3, .vital {
+            font-size: 12px;
+            line-height: 13px;
+            margin: 0;
+            padding: 0;
+        }
+        h3 {
+            margin-bottom: -2px;
+            padding-bottom: 2px;
+        }
+        .price {
+            font-size: 11px;
+            font-weight: bold;
+            color: $link;
+        }
+        .icon {
+            margin: 0 auto;
+            z-index: 1;
+            position: relative;
+        }
+        .price,
+        .rating {
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .rating {
+            margin-left: 2px;
+        }
+        .button,
+        .author,
+        .unrated,
+        .cnt {
+            display: none;
+        }
+        &.category {
+            background-color: #f1f1f1;
+            h3 {
+                padding: 8px;
+                text-align: center;
+                position: absolute;
+                bottom: 10%;
+                width: 100%;
+                z-index: 1;
+            }
+            .icon {
+                width: 100%;
+                height: 100%;
+            }
+        }
+        &:hover, &:active {
+            .info {
+                background: rgba(255, 255, 255, .95);
+            }
+        }
+        &.category {
+            &:hover, &:active {
+                h3 {
+                    color: $darker-text;
+                }
+            }
+        }
+        &:hover .icon {
+            opacity: .8;
+        }
+        &:active .icon,
+        &.category:active h3 {
+            opacity: .4;
+        }
+    }
+    &.featured {
+        grain();
+        .mkt-tile {
+            height: 55px;
+            img {
+                display: none;
+            }
+            .info {
+                background: none;
+                top: 7px;
+                box-shadow: none;
+                padding: 6px 10px;
+            }
+            .vital {
+                font-size: 10px;
+            }
+            .rating {
+                color: $note-gray;
+                width: 52px;
+                ellipsis();
+            }
+            h3 {
+                color: $white;
+            }
+        }
+        li {
+            border-right: 1px solid $black-border;
+            border-bottom: 1px solid $black-border;
+            &:last-child {
+                border-right: 0;
+            }
+        }
+    }
+}
+.listing {
+    > li {
+        border-top: 1px solid $light-gray;
+        &:first-child {
+            border-top: 0;
+        }
+    }
+}
+
+// Previews tray.
+.expanded .mkt-tile + .tray {
+    display: block;
+    height: 232px;
+}
+.mkt-tile + .tray {
+    display: none;
+    gradient-two-color-with-image(rgba(221, 225, 228, .35), rgba(159, 164, 169, .95), $grain-src);
+    height: 0;
+    border-bottom: 1px solid rgba(0, 0, 0, .3);
+    border-top: 1px solid rgba(0, 0, 0, .05);
+    position: relative;
+    .slider {
+        height: 230px;
+        overflow: hidden;
+        user-select: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+    }
+    ul {
+        padding: 15px 0;
+        margin: 0 auto;
+        list-style-type: none;
+        white-space: nowrap;
+        height: 232px;
+    }
+    li {
+        margin-left: 15px;
+        float: left;
+        text-align: center;
+        width: 180px;
+        height: 270px;
+        &:first-child {
+            margin-left: 0;
+        }
+        img {
+            -moz-user-select: none;
+            max-width: 180px;
+            max-height: 215px;
+        }
+    }
+}
+
+.tray {
+    .dots {
+        width: 100%;
+        position: absolute;
+        top: -4px;
+        text-align: center;
+        height: 6px;
+        line-height: 6px;
+    }
+    .dot {
+        gradient-two-color(#667480, #828f99);
+        box-shadow: 0 0 1px rgba(255, 255, 255, .5), 1px 0 2px 2px rgba(0, 0, 0, .21) inset, 0 1px 1px rgba(0, 0, 0, .005);
+        display: inline-block;
+        vertical-align: top;
+        width: 6px;
+        height: 6px;
+        border-radius: 3px;
+        margin: 0 3px;
+        &.current {
+            gradient-two-color(#368dd9, #57a9fa);
+            box-shadow: 0 -1px 1px rgba(#03101a, 65%) inset, 0 0 4px fade-out(#0091ff,0.56);
+        }
+    }
+}
+
+.bad-app {
+    color: $maroon;
+    font-size: 11px;
+    line-height: 12px;
+    margin-top: 4px;
+}
+
+.grid .bad-app {
+    display: none;
+}
+
+@media (max-width: 479px) {
+    // Mobile.
+    .grid {
+        .mkt-tile.category h3 {
+            bottom: 0;
+        }
+        li {
+            // Hide rightmost and leftmost borders on mobile.
+            &:nth-child(3n) {
+                border-right: 0;
+            }
+            &:nth-child(3n + 1) {
+                border-left: 0;
+            }
+        }
+    }
+}
+
+@media (min-width: 614px) {
+    .grid {
+        .mkt-tile {
+            .info {
+                color: #fff;
+                background: rgba(#252a2e,0.85);
+            }
+            &:hover, &:active {
+                .info {
+                    background: rgba(#252a2e,0.95);
+                }
+            }
+        }
+    }
+}
+
+#featured-home {
+    background: #252a2e;
+}
+#page > #featured-home {
+    max-width: 100%;
+}

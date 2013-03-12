@@ -24,6 +24,7 @@ media/external/*
 *-min.js
 *-all.js
 *.less.css
+*.styl.css
 locale
 vendor
 .nose*

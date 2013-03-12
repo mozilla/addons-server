@@ -1,0 +1,77 @@
+@import 'lib';
+
+.categories {
+    h2 {
+        display: none;
+    }
+
+    .grid li {
+        border-left: 1px solid #e5e5e5;
+        border-bottom: 1px solid #e5e5e5;
+        &:nth-child(3n) {
+            border-right: 1px solid #e5e5e5;
+        }
+    }
+
+    .grid .mkt-tile .icon {
+        background: url(../../img/mkt/glyphs/categories.png) no-repeat;
+        background-size: 86px auto;
+        height: 86px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin: -50px 0 0 -43px;
+        width: 86px;
+     // &.cat-books-reference {
+     //     background-position: 0 0;
+     // }
+        &.cat-business {
+            background-position: 0 -86px;
+        }
+        &.cat-education {
+            background-position: 0 -172px;
+        }
+        &.cat-entertainment-sports {
+            background-position: 0 -258px;
+        }
+        &.cat-games {
+            background-position: 0 -344px;
+        }
+        &.cat-health-fitness {
+            background-position: 0 -430px;
+        }
+        &.cat-lifestyle {
+            background-position: 0 -516px;
+        }
+        &.cat-music {
+            background-position: 0 -602px;
+        }
+        &.cat-news-weather {
+            background-position: 0 -688px;
+        }
+        &.cat-photos-media {
+            background-position: 0 -774px;
+        }
+        &.cat-productivity {
+            background-position: 0 -860px;
+        }
+        &.cat-shopping {
+            background-position: 0 -946px;
+        }
+        &.cat-social {
+            background-position: 0 -1032px;
+        }
+        &.cat-travel {
+            background-position: 0 -1118px;
+        }
+        &.cat-utilities {
+            background-position: 0 -1204px;
+        }
+    }
+}
+
+@media $retina {
+    .categories .grid .mkt-tile .icon {
+        background-image: url(../../img/mkt/glyphs/categories-2x.png);
+    }
+}

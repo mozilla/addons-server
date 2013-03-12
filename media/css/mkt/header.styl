@@ -1,0 +1,498 @@
+// styles for the global site header only.
+@import 'lib';
+
+// Oh, I beg your pardon? Is this too many styles for you?
+// Then let's fix that and not create new stylesheets for the header.
+// Oh, were you hoping for a pun? NO. THIS IS NO JOKING MATTER. OMG.
+
+// compensate for fixed header.
+#page {
+    padding-top: 50px;
+}
+
+// if there is a page title we want in the header, give it the id of #top
+#top {
+    display: none;
+}
+
+@media (max-width: 672px) {
+    .login.home #top {
+        margin: 0 auto;
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+#search {
+    color: #fff;
+    display: none;
+}
+
+header {
+    position: relative;
+    gradient-two-color(#566773, #3e4e59);
+    box-shadow: 0 -1px 0 rgba(0, 0, 0, .15) inset, 0 0 3px 3px rgba(0, 0, 0, .3), 0 1px 0 rgba(255, 255, 255, .1) inset;
+    height: 50px;
+    line-height: 50px;
+    width: 100%;
+    h1 {
+        color: #fff;
+        font-size: 18px;
+        font-weight: 300;
+        line-height: 50px;
+        max-width: 200px;
+        position: absolute;
+        left: 30px;
+        text-shadow: 0 1px 0 $black;
+        z-index: 10;
+    }
+}
+
+#site-header {
+    section.main {
+        position: relative;
+    }
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+
+    nav,
+    section.main {
+        position: relative;
+    }
+
+    .wordmark {
+        position: relative;
+        top: 0;
+    }
+
+}
+
+.home, .offline {
+    #site-header {
+        h1 {
+            height: 30px;
+            left: 10px;
+            overflow: hidden;
+            text-indent: -99999px;
+            top: 10px;
+            width: 200px;
+        }
+        .page:before,
+        .wordmark {
+            background: url(../../img/mkt/logos/mp_aurora_wordmark_small.png) no-repeat;
+            display: block;
+            float: left;
+            height: 30px;
+        }
+        .page:before {
+            background-position: 0 0;
+            content: '';
+            width: 32px;
+        }
+        .wordmark {
+            background-position: 100% 0;
+            left: 8px;
+            position: relative;
+            width: 168px;
+        }
+    }
+}
+
+// Adjusts more header title space next to the 'home' icon.
+body[data-page-type=notice] #site-header h1 {
+    left: 40px;
+}
+
+.header-button {
+    width: 50px;
+    height: 50px;
+    color: #fff;
+    position: relative;
+    z-index: 11;
+    text-align: center;
+    outline: 0;
+    &:after {
+        content: '';
+        z-index: 11;
+        position: absolute;
+        height: 34px;
+        width: 2px;
+        background: url(../../img/mkt/divider.png) no-repeat;
+        margin-top: 7px;
+    }
+    &.right {
+        float: right;
+        &:after {
+            left: -1px;
+        }
+    }
+    &.left {
+        float: left;
+        &:after {
+            right: -1px;
+        }
+    }
+
+    &.filter {
+        width: 54px;
+    }
+
+    &.cancel {
+        width: 60px;
+    }
+
+    // icons for header buttons
+    &.icon {
+        text-indent: -1000%;
+    }
+    &.icon:before {
+        content: '';
+        width: 24px;
+        height: 24px;
+        background: url(../../img/mkt/header-icons.png) 0 24px no-repeat;
+        display: block;
+        position: absolute;
+        top: 13px;
+        left: 13px;
+    }
+    &.settings:before {
+        background-position: 0 0;
+    }
+    &.cancel:before,
+    &.dismiss:before {
+        background-position: 0 -24px;
+    }
+    &.search:before {
+        background-position: 0 -48px;
+    }
+    &.back {
+        width: 40px;
+        &:after {
+            right: 19px;
+            top: 0;
+        }
+        &:before {
+            background-position: 0 -72px;
+            width: 12px;
+            left: 4px;
+        }
+        /* Gives us a big click target without being totally insane. */
+        b {
+            display: block;
+            height: 50px;
+            overflow: hidden;
+            width: 20px;
+        }
+        &:hover b {
+            header-hover();
+        }
+        &:active b {
+            header-active();
+       }
+    }
+
+    &.expand {
+        width: 78px;
+        &:after {
+            content: none;
+        }
+    }
+    &.expand:before {
+        width: 54px;
+        height: 24px;
+        background: url(../../img/mkt/expand-toggle.png) no-repeat;
+    }
+    &.expand.active:before {
+        background-position: 0 -24px;
+    }
+}
+
+.nav-overlay.show {
+    background: transparent;
+}
+
+/* Content header (breadcrumbs, heading, subnav) - used on Account Settings, etc. */
+
+#page .account header.c {
+    margin-bottom: 10px;
+    h1 {
+        float: left;
+    }
+    .sub-nav {
+        float: right;
+    }
+    .sub-nav {
+        border-radius: 15px;
+        box-shadow: 0 1px 0 $barely-gray;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        li {
+            background-clip: padding-box;
+            float: left;
+            a {
+                gradient-two-color($white, rgba(238, 238, 238, .8));
+                border: 1px solid $note-gray;
+                border-right: 0;
+                color: $medium-gray;
+                display: inline-block;
+                font-size: 13px;
+                line-height: 15px;
+                padding: 5px 15px;
+                text-decoration: none;
+                text-shadow: 0 1px 0 rgba(255, 255, 255, .8);
+                &:hover {
+                    gradient-two-color($barely-gray, darken($barely-gray, 15%));
+                    color: $dark-gray;
+                    text-shadow: 0 1px 0 rgba(255, 255, 255, .8);
+                }
+                &:active {
+                    box-shadow: 0 1px 2px rgba(0, 0, 0, .1) inset;
+                    background: $faint-gray;
+                    border-color: $note-gray;
+                }
+            }
+            &.selected {
+                a, a:hover {
+                    box-shadow: 0 1px 0 rgba(0, 0, 0, .2) inset;
+                    gradient-two-color($medium-gray, fade-out($medium-gray, 75%));
+                    border-color: $medium-gray;
+                    color: $white;
+                    text-shadow: 0 1px 0 rgba(0, 0, 0, .2);
+                }
+            }
+            &:first-child a {
+                border-radius: 15px 0 0 15px;
+            }
+            &:last-child a {
+                border-radius: 0 15px 15px 0;
+                border-right: 1px solid $note-gray;
+            }
+            &:only-child a {
+                border-radius: 15px;
+            }
+        }
+    }
+}
+
+#search {
+    float: left;
+    margin: 0 0 0 12px;
+    padding: 10px 0;
+    position: relative;
+    label {
+        position: absolute;
+        left: -9999px;
+    }
+}
+
+#search-q {
+    border-radius: 3px;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, .1), 0 1px 0 rgba(0, 0, 0, .5) inset, 0 1px 1px rgba(0, 0, 0, .5) inset;
+    gradient-two-color-with-image(#21292f, #2a353c, url(../../img/mkt/icons/magnifier.png), unquote('8px 8px'), no-repeat);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: 0;
+    color: lighten(#99abb9, 2%);
+    display: block;
+    font: 17px/30px $open-stack;
+    height: 30px;
+    outline: none;
+    padding: 0 30px 0 30px;
+    z-index: 2;
+    width: 93px;
+    &:focus {
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.06) inset, 0 0 8px rgba(80, 160, 220, 0.6);
+        color: $white;
+    }
+    &:-moz-placeholder {
+        color: lighten(#99abb9, 3%);
+    }
+    &::-moz-placeholder {
+        color: lighten(#99abb9, 3%);
+    }
+    &::-webkit-input-placeholder {
+        color: lighten(#99abb9, 3%);
+    }
+}
+
+.html-rtl #site-header #search-q {
+    background-position: 0 50%;
+    padding: 5px 15px 5px 50px;
+}
+
+.search-clear {
+    hidetext();
+    position: absolute;
+    height: 12px;
+    width: 11px;
+    background: url(../../img/mkt/icons/clear.png) no-repeat;
+    top: 20px;
+    right: -50px;
+}
+
+@media $retina {
+    .search-clear {
+        background-image: url(../../img/mkt/icons/clear-2x.png);
+        background-size: 11px auto;
+    }
+}
+
+input:invalid ~ .search-clear {
+    display: none;
+}
+
+@media (min-width: 500px) {
+    body.show-search {
+        #search-q {
+            width: 280px;
+        }
+    }
+    #search {
+        float: right;
+    }
+    body:not(.show-search) {
+        body[data-page-type='search'] #site-header h1.page {
+            display: inline-block;
+            margin-left: 10px;
+        }
+    }
+
+    #site-header {
+        section.main {
+            max-width: 800px;
+        }
+    }
+}
+
+// When to show what header buttons where.
+body {
+    .header-button {
+        display: none;
+    }
+    &[data-page-type='search'] {
+        .header-button {
+            &.back, &.expand, &.filter {
+                display: block;
+            }
+        }
+        #site-header h1.page {
+            display: none;
+        }
+        #search-q {
+            width: 100%;
+        }
+        #search {
+            display: block;
+            width: calc(unquote('100% - 221px'));
+        }
+        #site-header:not(.suggestions) #search {
+            float: left;
+            margin-left: -7px;
+        }
+        .suggestions {
+            #search {
+                margin-left: 12px;
+            }
+            #search {
+                width: calc(unquote('100% - 143px'));
+            }
+        }
+    }
+    &[data-page-type='leaf'], &[data-page-type='alpha'] {
+        .header-button {
+            &.back {
+                display: block;
+            }
+        }
+    }
+    &[data-page-type='root'] {
+        .fancy {
+            opacity: 0;
+            top: 40px;
+            left: 40px;
+            position: relative;
+            visibility: hidden;
+        }
+        .header-button {
+            &.search, &.settings {
+                display: block;
+            }
+        }
+        #search {
+            display: block;
+            overflow: hidden;
+            padding-right: 12px;
+            width: calc(unquote('100% - 62px'));
+        }
+        #search-q {
+            width: calc(unquote('100% - 100px'));
+        }
+        &.show-search {
+            #search-q {
+                left: 40px;
+            }
+            .suggestions {
+                .settings {
+                    display: none;
+                }
+                #search {
+                    width: calc(unquote('100% - 72px'));
+                }
+            }
+            #site-header .wordmark {
+                opacity: 0;
+                top: -20px;
+                transition(unquote('top .5s, opacity .5s'));
+                z-index: 5;
+            }
+            #site-header .fancy {
+                opacity: 1;
+                top: 0;
+                transition(unquote('top .5s, opacity .5s, visibility .5s'));
+                visibility: visible;
+                z-index: 10;
+                .search-clear {
+                    right: 50px;
+                    top: 10px;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 532px) {
+    body[data-page-type='root'] {
+         .fancy {
+            opacity: 1;
+            top: 0;
+            visibility: visible;
+        }
+        #search {
+            width: 212px;
+        }
+        .header-button {
+            &.search {
+                display: none;
+            }
+        }
+    }
+}
+
+// Market header suggestions mode. (Searchatron Terrorize!)
+#site-header.suggestions {
+    nav {
+        .back, .expand, .filter {
+            display: none;
+        }
+        .cancel {
+            display: block;
+        }
+    }
+    h1 .wordmark {
+        display: none;
+    }
+}

@@ -384,3 +384,31 @@ def jquery_migrated():
         files.insert(jquery + 1, 'js/lib/jquery-migrate-1.1.0.js')
         new_JS[bundle] = tuple(files)
     return new_JS
+
+
+def less2stylus():
+    """
+    This will return a dict of the CSS bundles with `.styl` stylesheets
+    instead of `.less` ones.
+
+    Put in your local settings::
+
+        try:
+            MINIFY_BUNDLES['css'].update(asset_bundles.less2stylus())
+        except AttributeError:
+            pass
+
+    """
+    import os
+    ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+    def stylus(fn):
+        fn_styl = fn.replace('.less', '.styl')
+        if os.path.exists(os.path.join(ROOT, 'media', fn_styl)):
+            fn = fn_styl
+        return fn
+
+    new_CSS = dict(CSS)
+    for bundle, files in new_CSS.iteritems():
+        new_CSS[bundle] = tuple(stylus(f) for f in files)
+    return new_CSS
