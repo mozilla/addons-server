@@ -11,7 +11,7 @@ from mkt.api.middleware import (APIPinningMiddleware, APITransactionMiddleware,
                                 CORSMiddleware)
 from mkt.site.middleware import RedirectPrefixedURIMiddleware
 
-fireplace_url = "http://firepla.ce:1234"
+fireplace_url = 'http://firepla.ce:1234'
 
 
 class TestCORS(amo.tests.TestCase):
@@ -39,7 +39,7 @@ class TestCORS(amo.tests.TestCase):
     @mock.patch.object(settings, 'FIREPLACE_URL', fireplace_url)
     def test_from_fireplace(self):
         self.req.CORS = ['get']
-        self.req.META['ORIGIN'] = fireplace_url
+        self.req.META['HTTP_ORIGIN'] = fireplace_url
         res = self.mware.process_response(self.req, HttpResponse())
         eq_(res['Access-Control-Allow-Origin'], fireplace_url)
         eq_(res['Access-Control-Allow-Methods'], 'GET, OPTIONS')
