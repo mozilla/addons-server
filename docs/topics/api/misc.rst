@@ -11,11 +11,11 @@ Account
 
 To get data on the currently logged in user::
 
-    GET /api/account/mine/
+    GET /api/account/settings/mine/
 
 Returns account information::
 
-    {"resource_uri": "/api/apps/account/1/",
+    {"resource_uri": "/api/account/settings/1/",
      "display_name": "Nice person",
      "installed': [
         "/api/apps/3/",
@@ -23,19 +23,19 @@ Returns account information::
 
 The same information is also accessible at the canoncial `resource_uri`::
 
-    GET /api/account/1/
+    GET /api/account/settings/1/
 
 The `/api/account/mine/` URL is provided as a convenience for users who don't
 know their full URL ahead of time.
 
 To update account information::
 
-    PATCH /api/account/mine/
+    PATCH /api/account/settings/mine/
     {"display_name": "Nicer person"}
 
 Or::
 
-    PUT /api/account/mine/
+    PUT /api/account/settings/mine/
     {"display_name": "Nicer person"}
 
 

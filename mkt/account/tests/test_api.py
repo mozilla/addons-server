@@ -18,10 +18,10 @@ class TestAccount(BaseOAuth):
     fixtures = fixture('user_2519', 'user_10482', 'webapp_337141')
 
     def setUp(self):
-        super(TestAccount, self).setUp()
-        self.list_url = list_url('account')
-        self.get_url = get_url('account', '2519')
-        self.anon = OAuthClient(None, api_name='apps')
+        super(TestAccount, self).setUp(api_name='account')
+        self.list_url = list_url('settings')
+        self.get_url = get_url('settings', '2519')
+        self.anon = OAuthClient(None, api_name='account')
         self.user = UserProfile.objects.get(pk=2519)
 
     def test_verbs(self):
@@ -55,10 +55,10 @@ class TestAccount(BaseOAuth):
         eq_(data['installed'], [])
 
     def test_other(self):
-        eq_(self.client.get(get_url('account', '10482')).status_code, 403)
+        eq_(self.client.get(get_url('settings', '10482')).status_code, 403)
 
     def test_own(self):
-        res = self.client.get(get_url('account', 'mine'))
+        res = self.client.get(get_url('settings', 'mine'))
         eq_(res.status_code, 200)
         data = json.loads(res.content)
         eq_(data['display_name'], self.user.display_name)
@@ -88,6 +88,6 @@ class TestAccount(BaseOAuth):
         eq_(user.username, self.user.username)  # Did not change.
 
     def test_patch_other(self):
-        res = self.client.patch(get_url('account', '10482'),
+        res = self.client.patch(get_url('settings', '10482'),
                                 data=json.dumps({'display_name': 'foo'}))
         eq_(res.status_code, 403)

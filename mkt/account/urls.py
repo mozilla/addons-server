@@ -1,11 +1,12 @@
 from django.conf.urls import include, patterns, url
 from django.shortcuts import redirect
 
-from lib.misc.urlconf_decorator import decorate
+from tastypie.api import Api
 
 from amo.decorators import login_required
+from lib.misc.urlconf_decorator import decorate
+from mkt.account.api import AccountResource
 from . import views
-
 
 settings_patterns = patterns('',
     url('delete$', views.delete, name='account.delete'),
@@ -43,4 +44,12 @@ users_patterns = patterns('',
         name='users.profile'),
     url(r'''^(?P<username>[^/<>"']+)/abuse$''', views.abuse,
         name='users.abuse')
+)
+
+# Account API.
+account = Api(api_name='account')
+account.register(AccountResource())
+
+api_patterns = patterns('',
+    url('^', include(account.urls)),
 )

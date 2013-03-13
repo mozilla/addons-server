@@ -9,7 +9,8 @@ import amo
 from apps.users.views import logout
 from apps.users.urls import (detail_patterns as user_detail_patterns,
                              users_patterns as users_users_patterns)
-from mkt.account.urls import (purchases_patterns, settings_patterns,
+from mkt.account.urls import (api_patterns, purchases_patterns,
+                              settings_patterns,
                               users_patterns as mkt_users_patterns)
 from mkt.detail.views import manifest as mini_manifest
 from mkt.developers.views import login
@@ -123,6 +124,7 @@ urlpatterns = patterns('',
     url('^logout$', logout, name='users.logout'),
 
     url('^api/', include('mkt.api.urls')),
+    url('^api/', include(api_patterns)),
     url('^api/', include('mkt.webpay.urls')),
     url('^api/', include('mkt.monolith.urls')),
 

@@ -19,7 +19,7 @@ class AccountResource(MarketplaceModelResource):
         fields = ['display_name']
         list_allowed_methods = []
         queryset = UserProfile.objects.filter()
-        resource_name = 'account'
+        resource_name = 'settings'
 
     def obj_get(self, request=None, **kwargs):
         if kwargs.get('pk') == 'mine':
