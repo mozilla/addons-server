@@ -12,6 +12,7 @@ from django.template.defaultfilters import filesizeformat
 import commonware
 import happyforms
 import waffle
+from product_details import product_details
 from quieter_formset.formset import BaseFormSet, BaseModelFormSet
 from tower import ugettext as _, ugettext_lazy as _lazy, ungettext as ngettext
 
@@ -873,12 +874,23 @@ class DevAgreementForm(happyforms.Form):
 
 class DevNewsletterForm(happyforms.Form):
     """Devhub newsletter subscription form."""
+
     email = forms.EmailField(
         error_messages={'required':
                         _lazy(u'Please enter a valid email address.')})
     privacy = forms.BooleanField(
         error_messages={'required':
                         _lazy(u'You must agree to the Privacy Policy.')})
+    country = forms.ChoiceField(label=_(u'Country'))
+
+    def __init__(self, locale, *args, **kw):
+        regions = product_details.get_regions(locale)
+        regions = sorted(regions.iteritems(), key=lambda x: x[1])
+
+        super(DevNewsletterForm, self).__init__(*args, **kw)
+
+        self.fields['country'].choices = regions
+        self.fields['country'].initial = 'us'
 
 
 class AppFormTechnical(addons.forms.AddonFormBase):
