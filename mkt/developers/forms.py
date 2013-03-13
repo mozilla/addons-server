@@ -881,7 +881,7 @@ class DevNewsletterForm(happyforms.Form):
     privacy = forms.BooleanField(
         error_messages={'required':
                         _lazy(u'You must agree to the Privacy Policy.')})
-    country = forms.ChoiceField(label=_(u'Country'))
+    country = forms.ChoiceField(label=_lazy(u'Country'))
 
     def __init__(self, locale, *args, **kw):
         regions = product_details.get_regions(locale)

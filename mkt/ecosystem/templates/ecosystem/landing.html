@@ -216,7 +216,7 @@
       {% if newsletter_form.errors %}
         <div id="footer-email-errors">
           {{ newsletter_form.non_field_errors() }}
-          {{ newsletter_form['country'].errors  }}
+          {{ newsletter_form['country'].errors }}
 
           <ul class="errorlist">
             {{ newsletter_form.email.errors }}
