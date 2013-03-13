@@ -87,7 +87,7 @@ def global_settings(request):
         if waffle.flag_is_active(request, 'submit-personas'):
             # TODO(cvan)(fligtar): Do we want this here?
             tools_links.append({'text': _('Submit a New Theme'),
-                                'href': reverse('devhub.personas.submit')})
+                                'href': reverse('devhub.themes.submit')})
 
         tools_links.append({'text': _('Developer Hub'),
                             'href': reverse('devhub.index')})

@@ -485,9 +485,12 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             return reverse(view_name % (prefix, action),
                            args=[self.app_slug] + args)
         else:
-            view_name = '%s.%s' if prefix_only else '%s.addons.%s'
-            return reverse(view_name % (prefix, action),
-                           args=[self.slug] + args)
+            type_ = 'themes' if self.type == amo.ADDON_PERSONA else 'addons'
+            if not prefix_only:
+                prefix += '.%s' % type_
+            view_name = '{prefix}.{action}'.format(prefix=prefix,
+                                                   action=action)
+            return reverse(view_name, args=[self.slug] + args)
 
     def get_detail_url(self, action='detail', args=[]):
         if self.is_webapp():
@@ -609,7 +612,10 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     def latest_version(self):
         """Returns the absolutely newest non-beta version. """
         if self.type == amo.ADDON_PERSONA:
-            return
+            try:
+                return self.versions.all()[0]
+            except IndexError:
+                return
         if not self._latest_version:
             try:
                 v = (self.versions.exclude(files__status=amo.STATUS_BETA)
@@ -748,8 +754,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     @property
     def current_version(self):
         "Returns the current_version field or updates it if needed."
-        if self.type == amo.ADDON_PERSONA:
-            return
         try:
             if not self._current_version:
                 self.update_version()

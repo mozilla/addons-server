@@ -12,7 +12,7 @@
          <a href="{{ url('devhub.docs', 'themes') }}">{{ _('How to create a theme') }}</a>
         </li>
         <li>
-          <a href="{{ url('devhub.personas.submit') }}">{{ _('Submit your theme') }}</a>
+          <a href="{{ url('devhub.themes.submit') }}">{{ _('Submit your theme') }}</a>
         </li>
         <li>
           <a href="{{ url('devhub.docs', 'themes', 'faq') }}">{{ _('Frequently Asked Questions') }}</a>
@@ -38,7 +38,7 @@
       {% endtrans %}
     </p>
     <p>
-      {% trans submit_url=url('devhub.personas.submit') %}
+      {% trans submit_url=url('devhub.themes.submit') %}
         <a href="{{ submit_url }}">Finished Your Design? You can submit it right now!</a>
       {% endtrans %}
     </p>
@@ -251,7 +251,7 @@
     </ul>
     <p class="screenshot"><img src="{{ MEDIA_URL }}img/docs/themes/submission-step.jpg"></p>
 
-    <p class="call-to-submit"><a href="{{ url('devhub.personas.submit') }}" class="button prominent">{{ _('Submit Your Theme Now') }}</a></p>
+    <p class="call-to-submit"><a href="{{ url('devhub.themes.submit') }}" class="button prominent">{{ _('Submit Your Theme Now') }}</a></p>
   </div>
   {{ sidebar() }}
 {% endblock %}

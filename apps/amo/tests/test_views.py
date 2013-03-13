@@ -84,7 +84,7 @@ class TestCommon(amo.tests.TestCase):
         expected = [
             ('Tools', '#'),
             ('Submit a New Add-on', reverse('devhub.submit.1')),
-            ('Submit a New Theme', reverse('devhub.personas.submit')),
+            ('Submit a New Theme', reverse('devhub.themes.submit')),
             ('Developer Hub', reverse('devhub.index')),
         ]
         check_links(expected, pq(r.content)('#aux-nav .tools a'))
@@ -104,7 +104,7 @@ class TestCommon(amo.tests.TestCase):
             ('Tools', '#'),
             ('Manage My Add-ons', reverse('devhub.addons')),
             ('Submit a New Add-on', reverse('devhub.submit.1')),
-            ('Submit a New Theme', reverse('devhub.personas.submit')),
+            ('Submit a New Theme', reverse('devhub.themes.submit')),
             ('Developer Hub', reverse('devhub.index')),
         ]
         check_links(expected, pq(r.content)('#aux-nav .tools a'))
@@ -119,7 +119,7 @@ class TestCommon(amo.tests.TestCase):
         expected = [
             ('Tools', '#'),
             ('Submit a New Add-on', reverse('devhub.submit.1')),
-            ('Submit a New Theme', reverse('devhub.personas.submit')),
+            ('Submit a New Theme', reverse('devhub.themes.submit')),
             ('Developer Hub', reverse('devhub.index')),
             ('Editor Tools', reverse('editors.home')),
         ]
@@ -139,7 +139,7 @@ class TestCommon(amo.tests.TestCase):
             ('Tools', '#'),
             ('Manage My Add-ons', reverse('devhub.addons')),
             ('Submit a New Add-on', reverse('devhub.submit.1')),
-            ('Submit a New Theme', reverse('devhub.personas.submit')),
+            ('Submit a New Theme', reverse('devhub.themes.submit')),
             ('Developer Hub', reverse('devhub.index')),
             ('Editor Tools', reverse('editors.home')),
         ]
@@ -157,7 +157,7 @@ class TestCommon(amo.tests.TestCase):
         expected = [
             ('Tools', '#'),
             ('Submit a New Add-on', reverse('devhub.submit.1')),
-            ('Submit a New Theme', reverse('devhub.personas.submit')),
+            ('Submit a New Theme', reverse('devhub.themes.submit')),
             ('Developer Hub', reverse('devhub.index')),
             ('Editor Tools', reverse('editors.home')),
             ('Localizer Tools', '/localizers'),
@@ -181,7 +181,7 @@ class TestCommon(amo.tests.TestCase):
             ('Tools', '#'),
             ('Manage My Add-ons', reverse('devhub.addons')),
             ('Submit a New Add-on', reverse('devhub.submit.1')),
-            ('Submit a New Theme', reverse('devhub.personas.submit')),
+            ('Submit a New Theme', reverse('devhub.themes.submit')),
             ('Developer Hub', reverse('devhub.index')),
             ('Editor Tools', reverse('editors.home')),
             ('Localizer Tools', '/localizers'),

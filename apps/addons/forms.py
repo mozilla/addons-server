@@ -129,6 +129,12 @@ class AddonFormBase(TranslationFormMixin, happyforms.ModelForm):
     def clean_tags(self):
         return clean_tags(self.request, self.cleaned_data['tags'])
 
+    def get_tags(self, addon):
+        if acl.action_allowed(self.request, 'Addons', 'Edit'):
+            return [t.tag_text for t in addon.tags.all()]
+        else:
+            return [t.tag_text for t in addon.tags.filter(restricted=False)]
+
 
 class AddonFormBasic(AddonFormBase):
     name = TransField(max_length=50)
@@ -149,10 +155,6 @@ class AddonFormBasic(AddonFormBase):
 
         super(AddonFormBasic, self).__init__(*args, **kw)
 
-        # Theme summary optional.
-        if kw['instance'].is_persona():
-            self.fields['summary'].required = False
-
         self.fields['tags'].initial = ', '.join(self.get_tags(self.instance))
         # Do not simply append validators, as validators will persist between
         # instances.
@@ -160,12 +162,6 @@ class AddonFormBasic(AddonFormBase):
         name_validators = list(self.fields['name'].validators)
         name_validators.append(validate_name)
         self.fields['name'].validators = name_validators
-
-    def get_tags(self, addon):
-        if acl.action_allowed(self.request, 'Addons', 'Edit'):
-            return [t.tag_text for t in addon.tags.all()]
-        else:
-            return [t.tag_text for t in addon.tags.filter(restricted=False)]
 
     def save(self, addon, commit=False):
         tags_new = self.cleaned_data['tags']
@@ -490,7 +486,29 @@ class AbuseForm(happyforms.Form):
             del self.fields['recaptcha']
 
 
-class NewPersonaForm(AddonFormBase):
+class ThemeFormBase(AddonFormBase):
+
+    def __init__(self, *args, **kwargs):
+        super(ThemeFormBase, self).__init__(*args, **kwargs)
+        cats = Category.objects.filter(type=amo.ADDON_PERSONA, weight__gte=0)
+        cats = sorted(cats, key=lambda x: x.name)
+        self.fields['category'].choices = [(c.id, c.name) for c in cats]
+
+        for field in ('header', 'footer'):
+            self.fields[field].widget.attrs = {
+                'data-upload-url': reverse('devhub.personas.upload_persona',
+                                           args=['persona_%s' % field]),
+                'data-allowed-types': 'image/jpeg|image/png'
+            }
+
+    def clean_name(self):
+        return clean_name(self.cleaned_data['name'])
+
+    def clean_slug(self):
+        return clean_slug(self.cleaned_data['slug'], self.instance)
+
+
+class ThemeForm(ThemeFormBase):
     name = forms.CharField(max_length=50)
     slug = forms.CharField(max_length=30)
     category = forms.ModelChoiceField(queryset=Category.objects.all(),
@@ -516,25 +534,6 @@ class NewPersonaForm(AddonFormBase):
     class Meta:
         model = Addon
         fields = ('name', 'slug', 'summary', 'tags')
-
-    def __init__(self, *args, **kwargs):
-        super(NewPersonaForm, self).__init__(*args, **kwargs)
-        cats = Category.objects.filter(type=amo.ADDON_PERSONA, weight__gte=0)
-        cats = sorted(cats, key=lambda x: x.name)
-        self.fields['category'].choices = [(c.id, c.name) for c in cats]
-
-        for field in ('header', 'footer'):
-            self.fields[field].widget.attrs = {
-                'data-upload-url': reverse('devhub.personas.upload_persona',
-                                           args=['persona_%s' % field]),
-                'data-allowed-types': 'image/jpeg|image/png'
-            }
-
-    def clean_name(self):
-        return clean_name(self.cleaned_data['name'])
-
-    def clean_slug(self):
-        return clean_slug(self.cleaned_data['slug'], self.instance)
 
     def save(self, commit=False):
         from addons.tasks import (create_persona_preview_images,
@@ -596,6 +595,106 @@ class NewPersonaForm(AddonFormBase):
         AddonCategory(addon=addon, category=data['category']).save()
 
         return addon
+
+
+class EditThemeForm(AddonFormBase):
+    name = forms.CharField(max_length=50)
+    slug = forms.CharField(max_length=30)
+    category = forms.ModelChoiceField(queryset=Category.objects.all(),
+                                      widget=forms.widgets.RadioSelect)
+    summary = forms.CharField(widget=forms.Textarea(attrs={'rows': 4}),
+                              max_length=250, required=False)
+    tags = forms.CharField(required=False)
+    accentcolor = ColorField(required=False)
+    textcolor = ColorField(required=False)
+    license = forms.TypedChoiceField(choices=amo.PERSONA_LICENSES_IDS,
+        coerce=int, empty_value=None, widget=forms.HiddenInput,
+        error_messages={'required': _lazy(u'A license must be selected.')})
+
+    class Meta:
+        model = Addon
+        fields = ('name', 'slug', 'summary', 'tags')
+
+    def __init__(self, *args, **kw):
+        self.request = kw.pop('request')
+
+        super(AddonFormBase, self).__init__(*args, **kw)
+
+        addon = self.instance
+        persona = addon.persona
+
+        # Do not simply append validators, as validators will persist between
+        # instances.
+        self.fields['name'].validators = list(self.fields['name'].validators)
+        self.fields['name'].validators.append(lambda x: clean_name(x, addon))
+
+        self.initial['tags'] = ', '.join(self.get_tags(addon))
+        if persona.accentcolor:
+            self.initial['accentcolor'] = '#' + persona.accentcolor
+        if persona.textcolor:
+            self.initial['textcolor'] = '#' + persona.textcolor
+        self.initial['license'] = persona.license_id
+
+        cats = sorted(Category.objects.filter(type=amo.ADDON_PERSONA,
+                                              weight__gte=0),
+                      key=lambda x: x.name)
+        self.fields['category'].choices = [(c.id, c.name) for c in cats]
+        try:
+            self.initial['category'] = addon.categories.values_list(
+                'id', flat=True)[0]
+        except IndexError:
+            pass
+
+    def save(self):
+        addon = self.instance
+        persona = addon.persona
+        data = self.cleaned_data
+
+        # Update Persona-specific data.
+        persona_data = {
+            'license_id': int(data['license']),
+            'accentcolor': data['accentcolor'].lstrip('#'),
+            'textcolor': data['textcolor'].lstrip('#'),
+            'display_username': self.request.amo_user.username
+        }
+        changed = False
+        for k, v in persona_data.iteritems():
+            if v != getattr(persona, k):
+                changed = True
+                setattr(persona, k, v)
+        if changed:
+            persona.save()
+
+        # Update name, slug, and summary.
+        if self.changed_data:
+            amo.log(amo.LOG.EDIT_PROPERTIES, addon)
+
+        # Save the Addon object.
+        super(EditThemeForm, self).save()
+
+        tags_new = data['tags']
+        tags_old = [slugify(t, spaces=True) for t in self.get_tags(addon)]
+
+        # Add new tags.
+        for t in set(tags_new) - set(tags_old):
+            Tag(tag_text=t).save_tag(addon)
+
+        # Remove old tags.
+        for t in set(tags_old) - set(tags_new):
+            Tag(tag_text=t).remove_tag(addon)
+
+        # Update category.
+        try:
+            old_cat = (addon.addoncategory_set
+                       .exclude(category_id=data['category'].id))[0]
+        except IndexError:
+            # This should never happen, but maybe a category got deleted.
+            addon.addoncategory_set.create(category=data['category'])
+        else:
+            old_cat.category = data['category']
+            old_cat.save()
+
+        return data
 
 
 class ThemeLicenseForm(happyforms.Form):

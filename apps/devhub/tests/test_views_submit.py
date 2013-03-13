@@ -18,7 +18,7 @@ class TestSubmitPersona(amo.tests.TestCase):
     def setUp(self):
         assert self.client.login(username='regular@mozilla.com',
                                  password='password')
-        self.url = reverse('devhub.personas.submit')
+        self.url = reverse('devhub.themes.submit')
 
     def get_img_urls(self):
         return (

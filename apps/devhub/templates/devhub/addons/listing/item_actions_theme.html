@@ -1,6 +1,23 @@
 <h5>{{ _('Actions') }}</h5>
 <ul>
-{% if addon.is_incomplete() %}
+  {% if check_addon_ownership(request, addon, dev=True) %}
+    <li>
+      <a href="{{ addon.get_dev_url() }}" class="tooltip"
+         title="{{ _("Edit details about this theme's listing.") }}">
+        {{ _('Edit Listing') }}</a>
+    </li>
+  {% endif %}
+  {% if addon.is_public() %}
+    <li>
+      <a href="{{ addon.get_url_path() }}" class="tooltip"
+         title="{{ _("View this theme's public listing page.") }}">
+        {{ _('View Listing') }}</a>
+      </li>
+  {% endif %}
+  <li>
+    <a href="{{ url('devhub.feed', addon.slug) }}">
+      {{ _('View Recent Changes') }}</a>
+  </li>
   {% if check_addon_ownership(request, addon) and addon.can_be_deleted() %}
     <li>
       <a href="#" class="delete-addon tooltip"
@@ -10,25 +27,4 @@
       </div>
     </li>
   {% endif %}
-{% else %}
-  {% if check_addon_ownership(request, addon, dev=True) %}
-    <li>
-      <a href="{{ addon.get_dev_url() }}" class="tooltip"
-         title="{{ _("Edit details about this theme's listing.") }}">
-        {{ _('Edit Listing') }}</a>
-    </li>
-  {% endif %}
-  <li>
-    <a href="#" class="more-actions">{{ _('More') }}</a>
-    <div class="more-actions-popup popup hidden">
-      {% set view_urls = ((addon.get_url_path(), _('View Add-on Listing')),
-                          (url('devhub.feed', addon.slug), _('View Recent Changes'))) %}
-      <ul>
-        {% for url, title in view_urls %}
-          <li><a href="{{ url }}">{{ title }}</a></li>
-        {% endfor %}
-      </ul>
-    </div>
-  </li>
 </ul>
-{% endif %}

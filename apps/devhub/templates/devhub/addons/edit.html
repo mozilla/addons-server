@@ -29,33 +29,27 @@
     {% include 'devhub/addons/edit/basic.html' %}
   </div>
 
-  {% if theme %}
-    <div class="edit-addon-section" id="edit-addon-license">
-      {% include 'devhub/addons/edit/license.html' %}
-    </div>
-  {% else %}
-    <div class="edit-addon-section" id="edit-addon-media"
-         data-checkurl="{{ url('devhub.ajax.image.status', addon.slug) }}">
-      {% include 'devhub/addons/edit/media.html' %}
-    </div>
+  <div class="edit-addon-section" id="edit-addon-media"
+       data-checkurl="{{ url('devhub.ajax.image.status', addon.slug) }}">
+    {% include 'devhub/addons/edit/media.html' %}
+  </div>
 
-    <div class="edit-addon-section" id="edit-addon-details">
-      {% include 'devhub/addons/edit/details.html' %}
-    </div>
+  <div class="edit-addon-section" id="edit-addon-details">
+    {% include 'devhub/addons/edit/details.html' %}
+  </div>
 
-    <div class="edit-addon-section" id="edit-addon-support">
-      {% include 'devhub/addons/edit/support.html' %}
-    </div>
+  <div class="edit-addon-section" id="edit-addon-support">
+    {% include 'devhub/addons/edit/support.html' %}
+  </div>
 
-    <div class="edit-addon-section" id="edit-addon-technical">
-      {% include 'devhub/addons/edit/technical.html' %}
-    </div>
+  <div class="edit-addon-section" id="edit-addon-technical">
+    {% include 'devhub/addons/edit/technical.html' %}
+  </div>
 
-    {% if admin_form %}
-      <div class="edit-addon-section" id="edit-addon-admin">
-        {% include 'devhub/addons/edit/admin.html' %}
-      </div>
-    {% endif %}
+  {% if admin_form %}
+    <div class="edit-addon-section" id="edit-addon-admin">
+      {% include 'devhub/addons/edit/admin.html' %}
+    </div>
   {% endif %}
 
 </div>

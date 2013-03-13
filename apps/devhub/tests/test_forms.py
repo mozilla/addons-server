@@ -15,12 +15,13 @@ from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
 import paypal
 from applications.models import AppVersion
-from addons.forms import NewPersonaForm
-from addons.models import Addon, Category, Charity
+from addons.forms import EditThemeForm, ThemeForm
+from addons.models import Addon, Category, Charity, Persona
 from devhub import forms
 from files.helpers import copyfileobj
 from files.models import FileUpload
 from market.models import AddonPremium
+from tags.models import Tag
 from users.models import UserProfile
 from versions.models import ApplicationsVersions, License
 
@@ -181,7 +182,7 @@ class TestPremiumForm(amo.tests.TestCase):
         eq_(['price'], form.errors.keys())
 
 
-class TestNewPersonaForm(amo.tests.TestCase):
+class TestThemeForm(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/user_2519']
 
     def setUp(self):
@@ -214,7 +215,7 @@ class TestNewPersonaForm(amo.tests.TestCase):
         return data
 
     def post(self, **kw):
-        self.form = NewPersonaForm(self.get_dict(**kw), request=self.request)
+        self.form = ThemeForm(self.get_dict(**kw), request=self.request)
         return self.form
 
     def test_name_unique(self):
@@ -394,3 +395,91 @@ class TestNewPersonaForm(amo.tests.TestCase):
             full_dst=[os.path.join(dst, 'preview.png'),
                       os.path.join(dst, 'icon.png')],
             set_modified_on=[addon])
+
+
+class TestEditThemeForm(amo.tests.TestCase):
+    fixtures = ['base/apps', 'base/user_2519']
+
+    def setUp(self):
+        self.populate()
+        self.request = mock.Mock()
+        self.request.groups = ()
+        self.request.amo_user = mock.Mock()
+        self.request.amo_user.username = 'swagyismymiddlename'
+        self.request.amo_user.is_authenticated.return_value = True
+
+    def populate(self):
+        self.instance = Addon.objects.create(type=amo.ADDON_PERSONA,
+            status=amo.STATUS_PUBLIC, slug='swag-overload',
+            name='Bands Make Me Dance', summary='tha summary')
+        self.cat = Category.objects.create(
+            type=amo.ADDON_PERSONA, name='xxxx')
+        self.instance.addoncategory_set.create(category=self.cat)
+        self.license = License.objects.create(id=amo.LICENSE_CC_BY.id)
+        Persona.objects.create(persona_id=0, addon_id=self.instance.id,
+            license_id=self.license.id, accentcolor='C0FFEE',
+            textcolor='EFFFFF')
+        Tag(tag_text='sw').save_tag(self.instance)
+        Tag(tag_text='ag').save_tag(self.instance)
+
+    def get_dict(self, **kw):
+        data = {
+            'accentcolor': '#C0FFEE',
+            'category': self.cat.id,
+            'license': self.license.id,
+            'name': self.instance.name.id,
+            'slug': self.instance.slug,
+            'summary': self.instance.summary.id,
+            'tags': 'ag, sw',
+            'textcolor': '#EFFFFF'
+        }
+        data.update(**kw)
+        return data
+
+    def test_initial(self):
+        self.form = EditThemeForm(None, request=self.request,
+                                  instance=self.instance)
+        eq_(self.form.initial, self.get_dict())
+
+    def test_success(self):
+        other_cat = Category.objects.create(type=amo.ADDON_PERSONA)
+        other_license = License.objects.create(id=amo.LICENSE_CC_BY_NC_SA.id)
+        data = {
+            'accentcolor': '#EFF0FF',
+            'category': other_cat.id,
+            'license': other_license.id,
+            'name': 'All Day I Dream About Swag',
+            'slug': 'swag-lifestyle',
+            'summary': 'ADIDAS',
+            'tags': 'ag',
+            'textcolor': '#CACACA'
+        }
+        self.form = EditThemeForm(data, request=self.request,
+                                  instance=self.instance)
+        eq_(self.form.initial, self.get_dict())
+        eq_(self.form.data, data)
+        eq_(self.form.is_valid(), True, self.form.errors)
+        self.form.save()
+
+        self.instance = self.instance.reload()
+        eq_(unicode(self.instance.persona.accentcolor),
+            data['accentcolor'].lstrip('#'))
+        eq_(self.instance.categories.all()[0].id, data['category'])
+        eq_(self.instance.persona.license.id, data['license'])
+        eq_(unicode(self.instance.name), data['name'])
+        eq_(unicode(self.instance.summary), data['summary'])
+        self.assertSetEqual(
+            self.instance.tags.values_list('tag_text', flat=True),
+            [data['tags']])
+        eq_(unicode(self.instance.persona.textcolor),
+            data['textcolor'].lstrip('#'))
+
+    def test_name_unique(self):
+        data = self.get_dict(name='Bands Make You Dance')
+        Addon.objects.create(type=amo.ADDON_PERSONA,
+            status=amo.STATUS_PUBLIC, name=data['name'])
+        self.form = EditThemeForm(data, request=self.request,
+                                  instance=self.instance)
+        eq_(self.form.is_valid(), False)
+        eq_(self.form.errors,
+            {'name': ['This name is already in use. Please choose another.']})

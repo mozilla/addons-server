@@ -1,29 +1,52 @@
-{% set addon_type = amo.ADDON_PERSONA %}
-{% extends "impala/base_side_categories.html" %}
+{% extends "devhub/base_impala.html" %}
 
 {% from "includes/forms.html" import pretty_field, tip %}
 {% from "devhub/includes/macros.html" import some_html_tip %}
 
-{% set title = _('Create a New Theme') %}
+{% set title = _('Edit Listing') %}
 
-{% block title %}{{ page_title(title) }}{% endblock %}
+{% block title %}
+{{ dev_page_title(title, addon) }}
+{% endblock %}
 
-{% block primary %}
-<section class="primary">
-  {{ impala_breadcrumbs([(url('browse.personas'), _('Themes')),
-                         (None, _('Create'))]) }}
-  <masthead class="hero submit-theme">
-    <h1>{{ title }}</h1>
-    <p>
-      {% trans submit_url=url('devhub.docs', 'themes') %}
-        Background themes let you easily personalize the look of your Firefox.
-        Submit your own design below, or <a href="{{ submit_url }}">learn how
-        to create one</a>!
-      {% endtrans %}
-    </p>
-  </masthead>
+{% block content %}
+<section class="primary full">
+  {{ dev_breadcrumbs(addon) }}
 
-  <div class="island hero prettyform" id="submit-persona">
+  <h1>{{ title }}</h1>
+
+  <div class="island swagger theme-info c">
+    <div class="addon-name-and-icon c">
+      <img class="addon-icon" src="{{ addon.icon_url }}">
+      <strong class="addon-name">{{ addon.name }}</strong>
+    </div>
+    <div>
+      {{ persona_preview(addon.persona, linked=False) }}
+      <div class="info">
+        <p>
+          <strong>{{ _('Status:') }}</strong>
+          <span class="{{ status_class(addon) }}"><b>{{ amo.STATUS_CHOICES[addon.status] }}</b></span>
+        </p>
+        {% set position = get_position(addon) %}
+        {% if position %}
+          <p>
+            <strong>{{ _('Queue Position:') }}</strong>
+            {% trans position=position.pos|numberfmt,
+                     total=position.total|numberfmt %}
+              {{ position }} of {{ total }}
+            {% endtrans %}
+          </p>
+        {% endif %}
+        {% if addon.is_public() %}
+          <p><a href="{{ addon.get_url_path() }}">{{ _('View Listing') }}</a></p>
+        {% endif %}
+        <p><a href="{{ url('devhub.feed', addon.slug) }}">
+          {{ _('View Recent Changes') }}</a></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="island prettyform" id="submit-persona">
     <form method="post">
       {{ csrf() }}
       {{ form.unsaved_data }}
@@ -163,36 +186,12 @@
         <legend>{{ _('Theme Design') }}</legend>
         <ul>
           <li id="persona-header" class="row">
-            {{ pretty_field(form.header, label=_('Select a header image for your Theme.'),
-                            tag=None, req=True) }}
-            {{ form.header_hash.as_widget(attrs={'required': ''}) }}
-            {{ form.header_hash.errors }}
-            <ul class="note">
-              <li>{{ _('3000 &times; 200 pixels') }}</li>
-              <li>{{ _('300 KB max') }}</li>
-              <li>{{ _('PNG or JPG') }}</li>
-              <li>{{ _('Aligned to top-right') }}</li>
-            </ul>
-            <ul class="errorlist"></ul>
-            <img class="preview">
-            <a href="#" class="reset">
-              {{ _('Select a different header image') }}</a>
+            <h3>{{ _('Header') }}</h3>
+            <img class="preview loaded" src="{{ addon.persona.header_url }}">
           </li>
           <li id="persona-footer" class="row">
-            {{ pretty_field(form.footer, label=_('Select a footer image for your Theme.'),
-                            tag=None, req=True) }}
-            {{ form.footer_hash.as_widget(attrs={'required': ''}) }}
-            {{ form.footer_hash.errors }}
-            <ul class="note">
-              <li>{{ _('3000 &times; 100 pixels') }}</li>
-              <li>{{ _('300 KB max') }}</li>
-              <li>{{ _('PNG or JPG') }}</li>
-              <li>{{ _('Aligned to bottom-left') }}</li>
-            </ul>
-            <ul class="errorlist"></ul>
-            <img class="preview">
-            <a href="#" class="reset">
-              {{ _('Select a different footer image') }}</a>
+            <h3>{{ _('Footer') }}</h3>
+            <img class="preview loaded" src="{{ addon.persona.footer_url }}">
           </li>
         </ul>
         <h3>{{ _('Select colors for your Theme.') }}</h3>
@@ -208,14 +207,15 @@
       <fieldset id="persona-preview">
         <legend>{{ _('Preview') }}</legend>
         <div class="persona persona-large persona-preview">
-          <div class="persona-viewer" data-browsertheme>
+          <div class="persona-viewer" data-browsertheme="{{ addon.persona.json_data }}"
+               style="background-image:url({{ addon.persona.header_url }})">
             <div class="details">
               <span class="title" id="persona-preview-name">
                 {{ _("Your Theme's Name") }}</span>
               <span class="author">
                 {% set amo_user = request.amo_user %}
                 {% trans user=amo_user.username,
-                         profile_url=amo_user.get_url_path() %}
+                         profile_url=url('users.profile', amo_user.id) %}
                   by <a href="{{ profile_url }}" target="_blank">{{ user }}</a>
                 {% endtrans %}
               </span>
@@ -223,17 +223,15 @@
           </div>
         </div>
       </fieldset>
-      <p class="legal">
-        <label>
-          {{ form.agreed.as_widget(attrs={'required': ''}) }}
-          {% trans tos_url='https://marketplace.firefox.com/developers/docs/policies/agreement',
-                   guidelines_url='https://wiki.mozilla.org/Marketplace/Reviewers/Themes/Guidelines' %}
-            By submitting your Theme, you agree to the <a href="{{ tos_url }}" target="_blank">Themes Terms of Service</a>. Your Theme is subject to approval according to the standards established in the <a href="{{ guidelines_url }}" target="_blank">Review Guidelines</a>.
-          {% endtrans %}
-        </label>
-        {{ form.agreed.errors }}
-      </p>
-      <p class="listing-footer"><button class="button prominent" disabled type="submit">{{ _('Submit Theme') }}</button></p>
+      <div class="listing-footer">
+        <button class="button prominent" disabled type="submit">{{ _('Save Changes') }}</button>
+        {% if check_addon_ownership(request, addon) and addon.can_be_deleted() %}
+          <a href="#" class="button prominent delete-addon">{{ _('Delete Theme') }}</a>
+          <div class="modal-delete modal hidden">
+            {% include 'devhub/addons/listing/delete_form.html' %}
+          </div>
+        {% endif %}
+      </div>
     </form>
   </div>
 </section>

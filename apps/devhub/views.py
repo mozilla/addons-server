@@ -25,7 +25,7 @@ from PIL import Image
 from session_csrf import anonymous_csrf
 from tower import ugettext_lazy as _lazy, ugettext as _
 import waffle
-from waffle.decorators import waffle_switch
+from waffle.decorators import waffle_flag, waffle_switch
 
 from applications.models import Application, AppVersion
 import amo
@@ -295,19 +295,14 @@ def feed(request, addon_id=None):
     return jingo.render(request, 'devhub/addons/activity.html', data)
 
 
-@dev_required(webapp=True, theme=True)
-def edit(request, addon_id, addon, webapp=False, theme=False):
-    url_prefix = 'addons'
-    if webapp:
-        url_prefix = 'apps'
-    elif theme:
-        url_prefix = 'themes'
+@dev_required(webapp=True)
+def edit(request, addon_id, addon, webapp=False):
+    url_prefix = 'apps' if webapp else 'addons'
 
     data = {
        'page': 'edit',
        'addon': addon,
        'webapp': webapp,
-       'theme': theme,
        'url_prefix': url_prefix,
        'valid_slug': addon.slug,
        'tags': addon.tags.not_blacklisted().values_list('tag_text', flat=True),
@@ -319,6 +314,20 @@ def edit(request, addon_id, addon, webapp=False, theme=False):
         data['admin_form'] = forms.AdminForm(instance=addon)
 
     return jingo.render(request, 'devhub/addons/edit.html', data)
+
+
+@dev_required(theme=True)
+@waffle_flag('submit-personas')
+def edit_theme(request, addon_id, addon, theme=False):
+    form = addon_forms.EditThemeForm(data=request.POST or None,
+                                     request=request, instance=addon)
+    if request.method == 'POST' and form.is_valid():
+        form.save()
+        return redirect('devhub.themes.edit', addon.reload().slug)
+    return jingo.render(request, 'devhub/personas/edit.html', {
+        'addon': addon,
+        'form': form
+    })
 
 
 @dev_required(owner_for_post=True, webapp=True)
@@ -1096,12 +1105,11 @@ def ajax_dependencies(request, addon_id, addon):
     return s(request, excluded_ids=[addon_id]).items
 
 
-@dev_required(webapp=True, theme=True)
+@dev_required(webapp=True)
 def addons_section(request, addon_id, addon, section, editable=False,
-                   webapp=False, theme=False):
+                   webapp=False):
     basic = addon_forms.AppFormBasic if webapp else addon_forms.AddonFormBasic
     models = {'basic': basic,
-              'license': addon_forms.ThemeLicenseForm,
               'media': addon_forms.AddonFormMedia,
               'details': addon_forms.AddonFormDetails,
               'support': addon_forms.AddonFormSupport,
@@ -1173,15 +1181,10 @@ def addons_section(request, addon_id, addon, section, editable=False,
     else:
         form = False
 
-    url_prefix = 'addons'
-    if webapp:
-        url_prefix = 'apps'
-    elif theme:
-        url_prefix = 'themes'
+    url_prefix = 'apps' if webapp else 'addons'
 
     data = {'addon': addon,
             'webapp': webapp,
-            'theme': theme,
             'url_prefix': url_prefix,
             'form': form,
             'editable': editable,
@@ -1794,23 +1797,21 @@ def submit_bump(request, addon_id, addon, webapp=False):
 
 
 @login_required
-def submit_persona(request):
-    if not waffle.flag_is_active(request, 'submit-personas'):
-        raise PermissionDenied
-    form = addon_forms.NewPersonaForm(data=request.POST or None,
-                                      files=request.FILES or None,
-                                      request=request)
+@waffle_flag('submit-personas')
+def submit_theme(request):
+    form = addon_forms.ThemeForm(data=request.POST or None,
+                                 files=request.FILES or None,
+                                 request=request)
     if request.method == 'POST' and form.is_valid():
         addon = form.save()
-        return redirect('devhub.personas.submit.done', addon.slug)
+        return redirect('devhub.themes.submit.done', addon.slug)
     return jingo.render(request, 'devhub/personas/submit.html',
                         dict(form=form))
 
 
 @dev_required(theme=True)
-def submit_persona_done(request, addon_id, addon, theme):
-    if not waffle.flag_is_active(request, 'submit-personas'):
-        raise PermissionDenied
+@waffle_flag('submit-personas')
+def submit_theme_done(request, addon_id, addon, theme):
     if addon.is_public():
         return redirect(addon.get_url_path())
     return jingo.render(request, 'devhub/personas/submit_done.html',

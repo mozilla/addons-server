@@ -11,6 +11,7 @@ from tower import ugettext as _, ugettext_lazy as _lazy, ungettext as ngettext
 
 import amo
 from addons.helpers import new_context
+from addons.models import Addon
 from amo.helpers import absolutify, breadcrumbs, page_title
 from amo.urlresolvers import reverse
 from amo.utils import send_mail as amo_send_mail
@@ -319,22 +320,36 @@ def send_mail(template, subject, emails, context, perm_setting=None):
                   use_blacklist=False, perm_setting=perm_setting)
 
 
+@register.function
 def get_position(addon):
-    version = addon.latest_version
+    if addon.is_persona() and addon.is_pending():
+        pending_themes = (Addon.objects
+                          .filter(status=amo.STATUS_PENDING,
+                                  type=amo.ADDON_PERSONA)
+                          .order_by('created').values_list('id', flat=True))
+        for idx, pending in enumerate(pending_themes, start=1):
+            if pending == addon.id:
+                position = idx
+                break
+        total = pending_themes.count()
+        return {'mins': 1 * total, 'pos': position, 'total': total}
 
-    if not version:
-        return False
+    else:
+        version = addon.latest_version
 
-    q = version.current_queue
-    if not q:
-        return False
+        if not version:
+            return False
 
-    mins_query = q.objects.filter(id=addon.id)
-    if mins_query.count() > 0:
-        mins = mins_query[0].waiting_time_min
-        pos = q.objects.having('waiting_time_min >=', mins).count()
-        total = q.objects.count()
-        return dict(mins=mins, pos=pos, total=total)
+        q = version.current_queue
+        if not q:
+            return False
+
+        mins_query = q.objects.filter(id=addon.id)
+        if mins_query.count() > 0:
+            mins = mins_query[0].waiting_time_min
+            pos = q.objects.having('waiting_time_min >=', mins).count()
+            total = q.objects.count()
+            return dict(mins=mins, pos=pos, total=total)
 
     return False
 

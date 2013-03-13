@@ -34,13 +34,8 @@
                 {{ tip('App URL',
                        'Choose a short, unique URL slug for your app.') }}
               {% else %}
-                {% if theme %}
-                  {{ tip(_("Theme URL"),
-                     _("Choose a short, unique URL slug for your theme.")) }}
-                {% else %}
-                  {{ tip(_("Add-on URL"),
-                     _("Choose a short, unique URL slug for your add-on.")) }}
-                {% endif %}
+                {{ tip(_("Add-on URL"),
+                   _("Choose a short, unique URL slug for your add-on.")) }}
               {% endif %}
             </th>
             <td id="slug_edit">
@@ -133,7 +128,7 @@
                       {% endif %}
                     </p>
                   {% else %}
-                    {{ select_cats(amo.MAX_CATEGORIES, form, webapp, theme) }}
+                    {{ select_cats(amo.MAX_CATEGORIES, form, webapp) }}
                   {% endif %}
                 {% endfor %}
               {% else %}

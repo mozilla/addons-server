@@ -43,14 +43,12 @@ def marketplace_patterns(prefix):
             name='devhub.%s.market.4' % prefix),
     )
 
-# These will all start with /theme/<theme_slug>/
+# These will all start with /theme/<slug>/
 theme_detail_patterns = patterns('',
     url('^$', lambda r,
-        addon_id: redirect('devhub.themes.edit', addon_id,
-                           permanent=True)),
-    url('^edit$', views.edit, name='devhub.themes.edit'),
-    url('^edit_(?P<section>[^/]+)(?:/(?P<editable>[^/]+))?$',
-        views.addons_section, name='devhub.themes.section'),
+        addon_id: redirect('devhub.themes.edit', addon_id, permanent=True)),
+    url('^edit$', views.edit_theme, name='devhub.themes.edit'),
+    url('^delete$', views.delete, name='devhub.themes.delete'),
 )
 
 # These will all start with /app/<app_slug>/
@@ -247,10 +245,10 @@ urlpatterns = decorate(write, patterns('',
     url('^ajax/addon/%s/' % ADDON_ID, include(ajax_patterns)),
 
     # Themes submission.
-    url('^theme/submit/?$', views.submit_persona,
-        name='devhub.personas.submit'),
-    url('^theme/%s/submit/done$' % ADDON_ID, views.submit_persona_done,
-        name='devhub.personas.submit.done'),
+    url('^theme/submit/?$', views.submit_theme,
+        name='devhub.themes.submit'),
+    url('^theme/%s/submit/done$' % ADDON_ID, views.submit_theme_done,
+        name='devhub.themes.submit.done'),
     url('^theme/submit/upload/'
         '(?P<upload_type>persona_header|persona_footer)$',
         views.ajax_upload_image, name='devhub.personas.upload_persona'),

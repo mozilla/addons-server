@@ -1,16 +1,15 @@
+{% set title = _('Delete Theme') if addon.is_persona() else _('Delete Add-on') %}
 <form method="post" action="{{ addon.get_dev_url('delete') }}">
   {{ csrf() }}
   <h3>
-    {% if webapp %}
-      {{ loc('Delete App') }}
-    {% else %}
-      {{ _('Delete Add-on') }}
-    {% endif %}
+    {{ title }}
   </h3>
   {% if addon.highest_status or addon.status %}
     <p class="warning">
       {% if webapp %}
         {{ loc('Deleting your app will permanently remove it from the site.') }}
+      {% elif addon.is_persona() %}
+        {{ _('Deleting your theme will permanently remove it from the site.') }}
       {% else %}
         {% trans %}
           Deleting your add-on will permanently remove it from the site and
@@ -30,8 +29,7 @@
   </p>
   <input type="hidden" name="addon_id" class="addon_id" value="{{ addon.id }}">
   <p>
-    <button class="delete-button" type="submit">
-      {{ loc('Delete App') if webapp else _('Delete Add-on') }}</button>
+    <button class="delete-button" type="submit">{{ title }}</button>
     {{ _('or') }} <a href="#" class="close cancel">{{ _('Cancel') }}</a>
   </p>
   <a href="#" class="close">{{ _('Close') }}</a>

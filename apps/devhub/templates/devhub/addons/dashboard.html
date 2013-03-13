@@ -52,13 +52,13 @@
   </div>
 {% else %}
   <section class="secondary devhub-sidebar">
-    <p id="submit-addon" class="cta">
+    <p id="submit-addon" class="submit-cta">
       <a href="{{ url('devhub.submit.1') }}"
          class="button prominent">{{ _('Submit a New Add-on') }}</a>
     </p>
     {% if waffle.flag('submit-personas') %}
-      <p class="submit-theme cta">
-        <a href="{{ url('devhub.personas.submit') }}"
+      <p class="submit-theme submit-cta">
+        <a href="{{ url('devhub.themes.submit') }}"
            class="button prominent">{{ _('Submit a New Theme') }}</a>
       </p>
     {% endif %}

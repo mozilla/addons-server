@@ -60,23 +60,17 @@
   </tr>
 {% endmacro %}
 
-{% macro select_cats(max, form, webapp=False, theme=False) %}
+{% macro select_cats(max, form, webapp=False) %}
   <div class="addon-app-cats">
     <label>
     {% if webapp %}
       {{ loc('Select <b>up to {0}</b> categories for this app:')|f(max)|safe }}
     {% else %}
-      {% if theme %}
-        {{ ngettext('Select <b>up to {0}</b> {1} category for this theme:',
-                    'Select <b>up to {0}</b> {1} categories for this theme:',
-                    max)|f(max, form.app.pretty if form.app else '')|safe }}
-      {% else %}
-        {# L10n: {0} is the maximum number of add-on categories allowed.
-                 {1} is the application name. #}
-        {{ ngettext('Select <b>up to {0}</b> {1} category for this add-on:',
-                    'Select <b>up to {0}</b> {1} categories for this add-on:',
-                    max)|f(max, form.app.pretty if form.app else '')|safe }}
-      {% endif %}
+      {# L10n: {0} is the maximum number of add-on categories allowed.
+               {1} is the application name. #}
+      {{ ngettext('Select <b>up to {0}</b> {1} category for this add-on:',
+                  'Select <b>up to {0}</b> {1} categories for this add-on:',
+                  max)|f(max, form.app.pretty if form.app else '')|safe }}
     {% endif %}
     </label>
     {{ form.application }}

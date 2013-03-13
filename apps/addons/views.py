@@ -178,9 +178,9 @@ def persona_detail(request, addon, template=None):
     persona = addon.persona
 
     # this persona's categories
-    categories = addon.categories.filter(application=request.APP.id)
+    categories = addon.categories.all()
     category_personas = None
-    if categories:
+    if categories.exists():
         qs = Addon.objects.public().filter(categories=categories[0])
         category_personas = _category_personas(qs, limit=6)
 
@@ -188,7 +188,7 @@ def persona_detail(request, addon, template=None):
         'addon': addon,
         'persona': persona,
         'categories': categories,
-        'author_personas': persona.authors_other_addons(request.APP)[:3],
+        'author_personas': persona.authors_other_addons()[:3],
         'category_personas': category_personas,
     }
 
