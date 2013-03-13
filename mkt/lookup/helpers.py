@@ -29,5 +29,6 @@ def user_header(account, title, is_admin=False, page_type=''):
 def app_header(context, app, page_type=''):
     t = env.get_template('lookup/helpers/app_header.html')
     is_admin = acl.action_allowed(context['request'], 'Users', 'Edit')
+    is_reviewer = acl.check_reviewer(context['request'])
     return jinja2.Markup(t.render(app=app, page_type=page_type,
-                                  is_admin=is_admin))
+                                  is_admin=is_admin, is_reviewer=is_reviewer))
