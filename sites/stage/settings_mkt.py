@@ -45,8 +45,6 @@ CACHE_PREFIX = 'stage.mkt.%s' % CACHE_PREFIX
 CACHE_MIDDLEWARE_KEY_PREFIX = CACHE_PREFIX
 INAPP_IMAGE_URL = STATIC_URL + 'inapp-image'
 
-STATSD_PREFIX = 'addons-marketplace-stage'
-
 CACHES['default']['KEY_PREFIX'] = CACHE_PREFIX
 
 

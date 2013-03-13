@@ -51,7 +51,7 @@ SYSLOG_TAG = "http_app_addons_marketplacelandfill"
 SYSLOG_TAG2 = "http_app_addons_marketplacelandfill_timer"
 SYSLOG_CSP = "http_app_addons_marketplacelandfill_csp"
 
-STATSD_PREFIX = 'addons-marketplacelandfill'
+STATSD_PREFIX = 'marketplace-landfill'
 
 ## Celery
 BROKER_HOST = private_mkt.BROKER_HOST

@@ -81,7 +81,7 @@ PAYPAL_CHAINS = (
 
 CRONJOB_LOCK_PREFIX = 'addons'
 
-STATSD_PREFIX = 'addons-marketplace'
+STATSD_PREFIX = 'marketplace'
 
 GRAPHITE_PREFIX = STATSD_PREFIX
 
