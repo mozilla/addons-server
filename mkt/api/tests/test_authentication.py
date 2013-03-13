@@ -4,6 +4,7 @@ import json
 from django.conf import settings
 
 from mock import Mock, patch
+from multidb import this_thread_is_pinned
 from nose.tools import eq_, ok_
 
 from access.models import Group, GroupUser
@@ -115,6 +116,7 @@ class TestMarketplaceAuthentication(TestCase):
 
     def test_accepted(self):
         ok_(self.auth.is_authenticated(self.call()))
+        ok_(this_thread_is_pinned())
 
     def test_no_agreement(self):
         self.profile.update(read_dev_agreement=None)

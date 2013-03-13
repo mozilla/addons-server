@@ -2,7 +2,6 @@ from types import MethodType
 
 from django import http
 from django.conf import settings
-from django.core.urlresolvers import resolve
 from django.http import SimpleCookie, HttpRequest
 from django.utils.cache import patch_vary_headers
 

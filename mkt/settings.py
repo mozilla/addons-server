@@ -116,7 +116,8 @@ MIDDLEWARE_CLASSES += [
     'mkt.site.middleware.DeviceDetectionMiddleware',
     'mkt.fragments.middleware.HijackRedirectMiddleware',
     'mkt.api.middleware.CORSMiddleware',
-    'mkt.api.middleware.APITransactionMiddleware'
+    'mkt.api.middleware.APITransactionMiddleware',
+    'mkt.api.middleware.APIPinningMiddleware'
 ]
 
 TEMPLATE_DIRS += (path('mkt/templates'), path('mkt/zadmin/templates'))

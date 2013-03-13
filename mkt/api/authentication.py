@@ -12,6 +12,7 @@ from tastypie.authorization import Authorization
 
 from access import acl
 from access.middleware import ACLMiddleware
+from mkt.api.middleware import APIPinningMiddleware
 from mkt.api.models import Access
 
 log = commonware.log.getLogger('z.api')
@@ -89,6 +90,7 @@ class MarketplaceAuthentication(Authentication):
             # No OAuth login info. Let's allow read-only
             # access based on session cookie.
             return not request.user.is_anonymous()
+
         oauth_server, oauth_request = initialize_oauth_server_request(request)
         try:
             key = get_oauth_consumer_key_from_header(auth_header_value)
@@ -111,6 +113,12 @@ class MarketplaceAuthentication(Authentication):
             return self._error('headers')
 
         ACLMiddleware().process_request(request)
+        # We've just become authenticated, time to run the pinning middleware
+        # again.
+        #
+        # TODO: I'd like to see the OAuth authentication move to middleware.
+        request.API = True  # We can be pretty sure we are in the API.
+        APIPinningMiddleware().process_request(request)
 
         # Do not allow access without agreeing to the dev agreement.
         if not request.amo_user.read_dev_agreement:

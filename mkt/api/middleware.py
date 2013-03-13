@@ -1,6 +1,9 @@
 from django.conf import settings
 from django.middleware.transaction import TransactionMiddleware
 
+from django_statsd.clients import statsd
+from multidb.pinning import pin_this_thread, unpin_this_thread
+
 
 class APITransactionMiddleware(TransactionMiddleware):
     """Wrap the transaction middleware so we can use it in the API only."""
@@ -20,6 +23,25 @@ class APITransactionMiddleware(TransactionMiddleware):
             return (super(APITransactionMiddleware, self)
                     .process_response(request, response))
         return response
+
+
+class APIPinningMiddleware(object):
+    """
+    Similar to multidb, but we can't rely on cookies. Instead this will
+    examine the request and pin to the master db if the user is authenticated.
+    """
+
+    def process_request(self, request):
+        if not getattr(request, 'API', False):
+            return
+
+        if request.amo_user and not request.amo_user.is_anonymous():
+            statsd.incr('api.db.pinned')
+            pin_this_thread()
+            return
+
+        statsd.incr('api.db.unpinned')
+        unpin_this_thread()
 
 
 class CORSMiddleware(object):

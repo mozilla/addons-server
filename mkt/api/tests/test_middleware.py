@@ -2,11 +2,13 @@ from django.conf import settings
 from django.http import HttpResponse
 
 import mock
+from multidb import this_thread_is_pinned
 from nose.tools import eq_, ok_
 from test_utils import RequestFactory
 
 import amo.tests
-from mkt.api.middleware import APITransactionMiddleware, CORSMiddleware
+from mkt.api.middleware import (APIPinningMiddleware, APITransactionMiddleware,
+                                CORSMiddleware)
 from mkt.site.middleware import RedirectPrefixedURIMiddleware
 
 fireplace_url = "http://firepla.ce:1234"
@@ -74,3 +76,22 @@ class TestTransactionMiddleware(amo.tests.TestCase):
         self.prefix.process_request(req)
         self.transaction.process_request(req)
         ok_(not enter.called)
+
+
+class TestPinningMiddleware(amo.tests.TestCase):
+
+    def setUp(self):
+        self.pin = APIPinningMiddleware()
+        self.req = RequestFactory().get('/')
+        self.req.API = True
+        self.req.amo_user = mock.Mock()
+
+    def test_pinned(self):
+        self.req.amo_user.is_anonymous.return_value = False
+        self.pin.process_request(self.req)
+        ok_(this_thread_is_pinned())
+
+    def test_not_pinned(self):
+        self.req.amo_user.is_anonymous.return_value = True
+        self.pin.process_request(self.req)
+        ok_(not this_thread_is_pinned())
