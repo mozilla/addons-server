@@ -35,7 +35,8 @@
         initPerformanceStats();
     }
 
-    if($('#scroll_sidebar').length && !$('body.mobile, body.tablet').length) {
+    if($('#scroll_sidebar').length && !$('body.mobile, body.tablet').length &&
+       !z.capabilities.mobile) {
         initScrollingSidebar();
     }
 
