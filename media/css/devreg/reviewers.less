@@ -1162,7 +1162,7 @@ iframe#manifest-contents {
     z-index: 10;
 }
 
-@media (max-width: @landscape-max) {
+@media @landscape-max {
     #id_text_query {
         display: block;
         font-size: 18px;
@@ -1348,7 +1348,7 @@ iframe#manifest-contents {
 }
 
 @mobileborder: #d7d2c3;
-@media (max-width: @mobile-max) {
+@media @portrait-max {
     .mobile-queue-search, .mobile-paginator {
         display: block;
     }
@@ -1754,14 +1754,14 @@ iframe#manifest-contents {
     }
 }
 
-@media (max-width: @landscape-max) {
+@media @landscape-max {
     #page ul.tabnav li {
         margin: 0;
     }
 }
 
 
-@media (min-width: @tablet-min) {
+@media (min-width: 768px) {
     .site-title a {
         padding-left: 250px;
         position: relative;
@@ -1825,23 +1825,24 @@ iframe#manifest-contents {
     }
 }
 
-@media (min-width: @tablet-min) and (max-width: 61em) {
+// TODO: Use relative fonts.
+@media (min-width: 768px) and (max-width: 61em) {
     #page .tabnav li {
         margin-right: 0;
         font-size: 12px;
     }
 }
-@media (min-width: @tablet-min) and (max-width: 57em) {
+@media (min-width: 768px) and (max-width: 57em) {
     #page .tabnav li {
         font-size: 11px;
     }
 }
-@media (min-width: @tablet-min) and (max-width: 53em) {
+@media (min-width: 768px) and (max-width: 53em) {
     #page .tabnav li {
         font-size: 10px;
     }
 }
-@media (min-width: @tablet-min) and (max-width: 52em) {
+@media (min-width: 768px) and (max-width: 52em) {
     #page .tabnav li {
         font-size: 9px;
     }

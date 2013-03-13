@@ -34,10 +34,6 @@
 @bg: #eff1f3;
 @mobileborder: #d7d2c3;
 
-// Legacy variables from consumer pages
-@4col: 600px;
-
-
 // Colors from EcoSystem
 @grain: #394C58;
 
@@ -53,18 +49,11 @@
 @mono-stack: Menlo, "Ubuntu Mono", "Andale Mono", monospace;
 
 
-// Retina
+// Media Queries
 @retina: ~'screen and (-webkit-min-device-pixel-ratio: 2), screen and (min--moz-device-pixel-ratio: 2), screen and (min-device-pixel-ratio: 2)';
-
-
-// Fixed Sizes
-@desktop-min: 980px;
-@tablet-min: 768px;
-@tablet-max: 979px;
-@landscape-max: 767px;
-@mobile-max: 480px;
-@mobile-min: 320px;
-
+@landscape-max: ~'(max-width: 767px)';
+@portrait-max: ~'(max-width: 480px)';
+// TODO: Figure out tablet sizes. These are messy (and desktop starts at 1024). Talk to Michael.
 
 // Mixins
 @grain-src: url(../../img/mkt/grain.png);
