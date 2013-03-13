@@ -36,7 +36,6 @@ class TestCORS(amo.tests.TestCase):
         eq_(res['Access-Control-Allow-Methods'], 'GET, POST, OPTIONS')
         eq_(res['Access-Control-Allow-Headers'], 'Content-Type')
 
-
     @mock.patch.object(settings, 'FIREPLACE_URL', fireplace_url)
     def test_from_fireplace(self):
         self.req.CORS = ['get']

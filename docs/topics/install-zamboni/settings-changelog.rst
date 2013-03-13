@@ -1,6 +1,12 @@
 Settings Changelog
 ==================
 
+2012-03-13
+----------
+
+* Added ``FIREPLACE_URL`` setting, for the origin URL of the
+  marketplace frontend.
+
 
 2012-02-25
 ----------
