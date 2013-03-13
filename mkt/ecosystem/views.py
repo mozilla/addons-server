@@ -43,7 +43,7 @@ def landing(request):
         }
     ]
 
-    form = DevNewsletterForm(request.POST or None)
+    form = DevNewsletterForm(request.LANG, request.POST or None)
 
     if request.method == 'POST' and form.is_valid():
         data = form.cleaned_data
