@@ -172,3 +172,6 @@ APP_PURCHASE_TYP = 'mozilla-stage/payments/pay/v1'
 APP_PURCHASE_SECRET = private_mkt.APP_PURCHASE_SECRET
 
 MONOLITH_PASSWORD = private_mkt.MONOLITH_PASSWORD
+
+# This is mainly for Marionette tests.
+WEBAPP_MANIFEST_NAME = 'Marketplace Stage'

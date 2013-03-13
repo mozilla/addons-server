@@ -185,3 +185,6 @@ APP_PURCHASE_SECRET = private_mkt.APP_PURCHASE_SECRET
 MINIFY_BUNDLES['js'].update(asset_bundles.jquery_migrated())
 
 MONOLITH_PASSWORD = private_mkt.MONOLITH_PASSWORD
+
+# This is mainly for Marionette tests.
+WEBAPP_MANIFEST_NAME = 'Marketplace Dev'
