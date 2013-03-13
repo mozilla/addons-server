@@ -5,17 +5,17 @@ class APITransactionMiddleware(TransactionMiddleware):
     """Wrap the transaction middleware so we can use it in the API only."""
 
     def process_request(self, request):
-        if request.API:
+        if getattr(request, 'API', False):
             return (super(APITransactionMiddleware, self)
                     .process_request(request))
 
     def process_exception(self, request, exception):
-        if request.API:
+        if getattr(request, 'API', False):
             return (super(APITransactionMiddleware, self)
                     .process_exception(request, exception))
 
     def process_response(self, request, response):
-        if request.API:
+        if getattr(request, 'API', False):
             return (super(APITransactionMiddleware, self)
                     .process_response(request, response))
         return response
