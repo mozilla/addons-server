@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.middleware.transaction import TransactionMiddleware
 
 
@@ -29,7 +30,12 @@ class CORSMiddleware(object):
         # it. That's because it will often error out with immediate HTTP
         # responses.
         if getattr(request, 'CORS', None):
-            response['Access-Control-Allow-Origin'] = '*'
+            # If this is a request from our hosted frontend, allow cookies.
+            if request.META.get('ORIGIN') == settings.FIREPLACE_URL:
+                response['Access-Control-Allow-Origin'] = settings.FIREPLACE_URL
+                response['Access-Control-Allow-Credentials'] = 'true'
+            else:
+                response['Access-Control-Allow-Origin'] = '*'
             options = [h.upper() for h in request.CORS]
             if not 'OPTIONS' in options:
                 options.append('OPTIONS')

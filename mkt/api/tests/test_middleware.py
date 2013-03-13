@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.http import HttpResponse
 
 import mock
@@ -7,6 +8,8 @@ from test_utils import RequestFactory
 import amo.tests
 from mkt.api.middleware import APITransactionMiddleware, CORSMiddleware
 from mkt.site.middleware import RedirectPrefixedURIMiddleware
+
+fireplace_url = "http://firepla.ce:1234"
 
 
 class TestCORS(amo.tests.TestCase):
@@ -30,6 +33,16 @@ class TestCORS(amo.tests.TestCase):
         res = self.mware.process_response(self.req, HttpResponse())
         eq_(res['Access-Control-Allow-Methods'], 'GET, POST, OPTIONS')
         eq_(res['Access-Control-Allow-Headers'], 'Content-Type')
+
+
+    @mock.patch.object(settings, 'FIREPLACE_URL', fireplace_url)
+    def test_from_fireplace(self):
+        self.req.CORS = ['get']
+        self.req.META['ORIGIN'] = fireplace_url
+        res = self.mware.process_response(self.req, HttpResponse())
+        eq_(res['Access-Control-Allow-Origin'], fireplace_url)
+        eq_(res['Access-Control-Allow-Methods'], 'GET, OPTIONS')
+        eq_(res['Access-Control-Allow-Credentials'], 'true')
 
 
 class TestTransactionMiddleware(amo.tests.TestCase):

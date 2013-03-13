@@ -4,6 +4,9 @@ import os
 from lib.settings_base import *
 from mkt import asset_bundles
 
+# The origin URL for our Fireplace frontend, from which API requests come.
+FIREPLACE_URL = ''
+
 ALLOWED_HOSTS += ['.firefox.com']
 # We'll soon need a `settings_test_mkt` to override this.
 APP_PREVIEW = True
