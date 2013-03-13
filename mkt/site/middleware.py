@@ -75,13 +75,9 @@ class RedirectPrefixedURIMiddleware(object):
 
     Redirect /<region>/ URLs to ?region=<lang> so `RegionMiddleware`
     can then set a cookie.
-
-    If it's calling /api/ which uses none of the above, then mark that on
-    the request.
     """
 
     def process_request(self, request):
-        request.API = False
         request.APP = amo.FIREFOX
 
         path_ = request.get_full_path()
@@ -102,10 +98,6 @@ class RedirectPrefixedURIMiddleware(object):
 
         region, _, rest = path_.lstrip('/').partition('/')
         region = region.lower()
-
-        if region == 'api':
-            # API isn't a region, its a sign that you are using the api.
-            request.API = True
 
         if region in mkt.regions.REGIONS_DICT:
             # Strip /<region> from URL.
