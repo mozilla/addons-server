@@ -1533,8 +1533,8 @@ iframe#manifest-contents {
             overflow-y: hidden;
         }
     }
-    #queue-tab-overlay > menu.nav-action-menu > button {
-        margin-bottom: .75rem;
+    #queue-tab-overlay > menu.nav-action-menu > div button {
+        margin-bottom: 7px;
     }
     html {
         font-size: 10px;
@@ -1821,6 +1821,20 @@ iframe#manifest-contents {
         .fileinput {
             display: inline-block;
             margin-right: 25px;
+        }
+    }
+}
+
+@media (max-width: 480px) and (max-height: 28.75em) {
+    #queue-tab-overlay > menu.nav-action-menu {
+        & > div {
+            max-height: 225px;
+            overflow: auto;
+        }
+        button:not(:last-child) {
+            height: 39px;
+            line-height: 39px;
+            margin-bottom: 5px;
         }
     }
 }

@@ -76,8 +76,8 @@ form[role="dialog"][data-type="object"] > menu {
   bottom: 0;
 }
 
-form[role="dialog"][data-type="action"] > menu > button,
-form[role="dialog"][data-type="object"] > menu > button {
+form[role="dialog"][data-type="action"] > menu button,
+form[role="dialog"][data-type="object"] > menu button {
   width: calc(100% - 3rem);
   height: 4rem;
   -moz-box-sizing: border-box;
@@ -126,8 +126,8 @@ form[role="dialog"][data-type="object"] > menu > button:last-child:before {
 }
 
 /* Press state */
-form[role="dialog"][data-type="action"] > menu > button:active,
-form[role="dialog"][data-type="object"] > menu > button:active {
+form[role="dialog"][data-type="action"] > menu button:active,
+form[role="dialog"][data-type="object"] > menu button:active {
   background-color: #006f86;
   color: #333;
   text-shadow: 0 0.1rem 0 rgba(255, 255, 255, 0.25);
@@ -141,8 +141,8 @@ form[role="dialog"][data-type="object"] > menu > button:last-child:active {
 }
 
 /* Disabled */
-form[role="dialog"][data-type="action"] > menu > button[disabled],
-form[role="dialog"][data-type="object"] > menu > button[disabled] {
+form[role="dialog"][data-type="action"] > menu button[disabled],
+form[role="dialog"][data-type="object"] > menu button[disabled] {
   background: #4d4d4d;
   color: #333;
   text-shadow: none;

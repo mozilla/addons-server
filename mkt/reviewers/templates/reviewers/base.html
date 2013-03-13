@@ -70,11 +70,13 @@
   <form id="queue-tab-overlay" class="hidden" role="dialog" data-type="action">
     <header>{{ _('Queues') }}</header>
     <menu class="nav-action-menu">
-      {% for prefix, this, loc, text in queue_tabnav() %}
-        <button data-url="{{ url('reviewers.%s.%s' % (prefix, loc)) }}">
-          {{ text }}
-        </button>
-      {% endfor %}
+      <div>
+        {% for prefix, this, loc, text in queue_tabnav() %}
+          <button data-url="{{ url('reviewers.%s.%s' % (prefix, loc)) }}">
+            {{ text }}
+          </button>
+        {% endfor %}
+l      </div>
       <button data-url="#cancel">Cancel</button>
     </menu>
   </form>
@@ -82,9 +84,11 @@
   <form id="log-tab-overlay" class="hidden" role="dialog" data-type="action">
     <header>{{ _('Logs') }}</header>
     <menu class="nav-action-menu">
-      {% for loc, text in logs_tabnav() %}
-        <button data-url="{{ url(loc) }}">{{ text }}</button>
-      {% endfor %}
+      <div>
+        {% for loc, text in logs_tabnav() %}
+          <button data-url="{{ url(loc) }}">{{ text }}</button>
+        {% endfor %}
+      </div>
       <button data-url="#cancel">{{ _('Cancel') }}</button>
     </menu>
   </form>
