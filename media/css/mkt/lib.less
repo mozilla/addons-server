@@ -1,27 +1,4 @@
-// Columnar layout system.
-// Adaped from Frameless by Joni Korpi <http://framelessgrid.com/>
-// licensed under CC0 <http://creativecommons.org/publicdomain/zero/1.0/>
-
-@column: 48;    // The column-width of your grid in pixels
-@gutter: 24;    // The gutter-width of your grid in pixels
-@px: 1px;       // Multiply by this to make a number in px.
-
-.width(@cols:1) {
-    width: (@cols * (@column + @gutter) - @gutter) * @px;
-}
-
-.max-width(@cols:1) {
-    max-width: (@cols * (@column + @gutter) - @gutter) * @px;
-}
-
-.min-width(@cols:1) {
-    min-width: (@cols * (@column + @gutter) - @gutter) * @px;
-}
-
-//Magic numbers
-@spacing: @gutter * @px;
-
-//Breakpoints
+// Breakpoints
 @3col: 400px;
 @4col: 600px;
 @7col: 672px;
