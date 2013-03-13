@@ -9,13 +9,15 @@ import amo
 from apps.users.views import logout
 from apps.users.urls import (detail_patterns as user_detail_patterns,
                              users_patterns as users_users_patterns)
-from mkt.account.urls import (api_patterns, purchases_patterns,
-                              settings_patterns,
+from mkt.account.urls import (api_patterns as account_api_patterns,
+                              purchases_patterns, settings_patterns,
                               users_patterns as mkt_users_patterns)
 from mkt.detail.views import manifest as mini_manifest
 from mkt.developers.views import login
 from mkt.purchase.urls import webpay_services_patterns
 from mkt.ratings.urls import theme_review_patterns
+from mkt.reviewers.urls import (api_patterns as reviewer_api_patterns,
+                                url_patterns as reviewer_url_patterns)
 from mkt.stats.urls import app_site_patterns
 from mkt.themes.urls import theme_patterns
 
@@ -92,7 +94,7 @@ urlpatterns = patterns('',
     ('^search/', include('mkt.search.urls')),
 
     # Reviewer tools.
-    ('^reviewers/', include('mkt.reviewers.urls')),
+    ('^reviewers/', include(reviewer_url_patterns)),
 
     # Account lookup.
     ('^lookup/', include('mkt.lookup.urls')),
@@ -124,7 +126,8 @@ urlpatterns = patterns('',
     url('^logout$', logout, name='users.logout'),
 
     url('^api/', include('mkt.api.urls')),
-    url('^api/', include(api_patterns)),
+    url('^api/', include(account_api_patterns)),
+    url('^api/', include(reviewer_api_patterns)),
     url('^api/', include('mkt.webpay.urls')),
     url('^api/', include('mkt.monolith.urls')),
 

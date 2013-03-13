@@ -2,10 +2,11 @@ from django.conf.urls import include, patterns, url
 
 from tastypie.api import Api
 
-from mkt.search.api import SearchResource
 from mkt.api.resources import (AppResource, CategoryResource, PreviewResource,
                                RatingResource, StatusResource,
                                ValidationResource)
+from mkt.search.api import SearchResource
+
 
 api = Api(api_name='apps')
 api.register(ValidationResource())

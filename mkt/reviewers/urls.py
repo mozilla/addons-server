@@ -1,14 +1,17 @@
-from django.conf.urls import include, url
+from django.conf.urls import include, patterns, url
+
+from tastypie.api import Api
 
 import amo
 from apps.editors.views import queue_viewing, review_viewing
 from mkt.receipts.urls import receipt_patterns
-from . import views
+from . import api, views
 
+account = Api(api_name='reviewers')
+account.register(api.ReviewingResource())
 
 # All URLs under /reviewers/.
-urlpatterns = (
-    url(r'^$', views.home, name='reviewers.home'),
+url_patterns = patterns('',
     url(r'^apps/queue/$', views.queue_apps,
         name='reviewers.apps.queue_pending'),
     url(r'^apps/queue/rereview/$', views.queue_rereview,
@@ -55,4 +58,8 @@ urlpatterns = (
     url(r'''^performance/(?P<username>[^/<>"']+)?$''', views.performance,
         name='reviewers.performance'),
     url(r'^leaderboard/$', views.leaderboard, name='reviewers.leaderboard'),
+)
+
+api_patterns = patterns('',
+    url(r'^', include(account.urls)),  # The API.
 )
