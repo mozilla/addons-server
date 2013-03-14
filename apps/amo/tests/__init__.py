@@ -693,6 +693,7 @@ class ESTestCase(TestCase):
     def refresh(cls, index='default', timesleep=0):
         process.send(None)
         cls.es.refresh(settings.ES_INDEXES[index], timesleep=timesleep)
+        cls.es.health(wait_for_status='yellow')
 
     @classmethod
     def reindex(cls, model):
