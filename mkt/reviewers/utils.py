@@ -64,8 +64,9 @@ class ReviewBase(object):
             files = []
             for i in xrange(num):
                 attachment_name = 'attachment-%d-attachment' % i
-                attachment = self.request.FILES.get(attachment_name, None)
+                attachment = self.request.FILES.get(attachment_name)
                 if attachment:
+                    attachment.open()
                     files.append((attachment.name, attachment.read(),
                                   attachment.content_type))
             return files

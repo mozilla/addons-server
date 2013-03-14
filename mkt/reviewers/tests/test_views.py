@@ -1488,6 +1488,8 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         self.post(self._attachment_form_data(num=1, action='escalate'))
         eq_(len(mail.outbox[0].attachments), 1,
             'Review attachment not added to email')
+        for attachment in mail.outbox[0].attachments:
+            self.assertNotEqual(len(attachment), 0, '0-length attachment')
 
     @override_settings(REVIEWER_ATTACHMENTS_PATH=ATTACHMENTS_DIR)
     def test_attachment_email_multiple(self):
