@@ -51,9 +51,11 @@ class CORSMiddleware(object):
         # hook for figuring out if a response should have the CORS headers on
         # it. That's because it will often error out with immediate HTTP
         # responses.
-        if getattr(request, 'CORS', None):
+
+        fireplacey = request.META.get('HTTP_ORIGIN') == settings.FIREPLACE_URL
+        if fireplacey or getattr(request, 'CORS', None):
             # If this is a request from our hosted frontend, allow cookies.
-            if request.META.get('HTTP_ORIGIN') == settings.FIREPLACE_URL:
+            if fireplacey:
                 response['Access-Control-Allow-Origin'] = settings.FIREPLACE_URL
                 response['Access-Control-Allow-Credentials'] = 'true'
             else:
