@@ -561,11 +561,11 @@ class Webapp(Addon):
 
         if (mobile or tablet) and not gaia:
             # Don't show packaged apps on Firefox for Android.
-            srch = srch.filter(is_packaged=False)
+            srch = srch.filter(app_type=amo.ADDON_WEBAPP_HOSTED)
 
             # Only show premium apps on gaia and desktop for now.
             srch = srch.filter(~F(premium_type__in=amo.ADDON_PREMIUMS,
-                               price__gt=0))
+                                  price__gt=0))
 
         return srch
 
