@@ -1,4 +1,6 @@
-{% extends 'mkt/base.html' %}
+{% if not format %}
+  {% extends 'mkt/base.html' %}
+{% endif %}
 
 {% set title = _('Privacy Policy') %}
 {% set pagetitle = title %}
