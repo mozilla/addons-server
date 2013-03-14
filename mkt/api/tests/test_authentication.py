@@ -2,10 +2,12 @@ from datetime import datetime
 import json
 
 from django.conf import settings
+from django.contrib.auth.models import AnonymousUser
 
 from mock import Mock, patch
 from multidb import this_thread_is_pinned
 from nose.tools import eq_, ok_
+from tastypie.exceptions import ImmediateHttpResponse
 
 from access.models import Group, GroupUser
 from addons.models import AddonUser
@@ -15,6 +17,7 @@ from users.models import UserProfile
 
 from mkt.api import authentication
 from mkt.api.authentication import errors
+from mkt.api.base import MarketplaceResource
 from mkt.api.models import Access, generate
 from mkt.api.tests.test_oauth import OAuthClient
 from mkt.site.fixtures import fixture
@@ -95,12 +98,12 @@ class TestPermissionAuthorization(OwnerAuthorization):
 
 
 @patch.object(settings, 'SITE_URL', 'http://api/')
-class TestMarketplaceAuthentication(TestCase):
+class TestOAuthAuthentication(TestCase):
     fixtures = fixture('user_2519', 'group_admin', 'group_editor')
 
     def setUp(self):
         self.api_name = 'foo'
-        self.auth = authentication.MarketplaceAuthentication()
+        self.auth = authentication.OAuthAuthentication()
         self.profile = UserProfile.objects.get(pk=2519)
         self.profile.update(read_dev_agreement=datetime.today())
         self.access = Access.objects.create(key='foo', secret=generate(),
@@ -147,6 +150,14 @@ class TestMarketplaceAuthentication(TestCase):
         self.add_group_user(self.profile, 'App Reviewers')
         ok_(self.auth.is_authenticated(self.call()))
 
+
+class TestSessionAuthentication(TestCase):
+    fixtures = fixture('user_2519')
+
+    def setUp(self):
+        self.auth = authentication.SessionAuthentication()
+        self.profile = UserProfile.objects.get(pk=2519)
+
     def test_session_auth(self):
         req = RequestFactory().get('/')
         req.user = self.profile.user
@@ -158,10 +169,10 @@ class TestMarketplaceAuthentication(TestCase):
         assert not self.auth.is_authenticated(req)
 
 
-class TestOptionalAuthentication(TestCase):
+class TestOptionalOAuthAuthentication(TestCase):
 
     def setUp(self):
-        self.auth = authentication.OptionalAuthentication()
+        self.auth = authentication.OptionalOAuthAuthentication()
 
     def test_none(self):
         req = RequestFactory().get('/')
@@ -170,3 +181,46 @@ class TestOptionalAuthentication(TestCase):
     def test_something(self):
         req = RequestFactory().get('/', HTTP_AUTHORIZATION='No!')
         ok_(not self.auth.is_authenticated(req))
+
+
+@patch.object(settings, 'SITE_URL', 'http://api/')
+class TestMultipleAuthentication(TestCase):
+    fixtures = fixture('user_2519')
+
+    def setUp(self):
+        self.resource = MarketplaceResource()
+        self.profile = UserProfile.objects.get(pk=2519)
+
+    def test_single(self):
+        req = RequestFactory().get('/')
+        req.user = self.profile.user
+        self.resource._meta.authentication = (
+                authentication.SessionAuthentication())
+        eq_(self.resource.is_authenticated(req), None)
+
+    def test_multiple_passes(self):
+        req = RequestFactory().get('/')
+        req.user = AnonymousUser()
+        self.resource._meta.authentication = (
+                authentication.SessionAuthentication(),
+                # Optional auth passes because there are not auth headers.
+                authentication.OptionalOAuthAuthentication())
+
+        eq_(self.resource.is_authenticated(req), None)
+
+    def test_multiple_fails(self):
+        client = OAuthClient(Mock(key='foo', secret='bar'))
+        req = RequestFactory().get('/',
+                HTTP_HOST='api',
+                HTTP_AUTHORIZATION=client.header('GET', 'http://foo/'))
+        req.user = AnonymousUser()
+        next_auth = Mock()
+        self.resource._meta.authentication = (
+                # OAuth fails because there are bogus auth headers.
+                authentication.OAuthAuthentication(),
+                next_auth)
+
+        with self.assertRaises(ImmediateHttpResponse):
+            eq_(self.resource.is_authenticated(req), None)
+        # This never even got called.
+        ok_(not next_auth.is_authenticated.called)

@@ -4,7 +4,7 @@ from amo.helpers import absolutify, urlparams
 from amo.urlresolvers import reverse
 from amo.utils import send_mail_jinja
 from mkt.api.authentication import (PermissionAuthorization,
-                                    MarketplaceAuthentication)
+                                    OAuthAuthentication)
 from mkt.api.base import CORSResource, MarketplaceModelResource
 from mkt.webpay.forms import FailureForm
 from market.models import Price
@@ -68,7 +68,7 @@ class FailureNotificationResource(MarketplaceModelResource):
         queryset = Contribution.objects.filter(uuid__isnull=False)
         allowed_methods = ['patch']
         resource_name = 'failure'
-        authentication = MarketplaceAuthentication()
+        authentication = OAuthAuthentication()
         authorization = PermissionAuthorization('Transaction', 'NotifyFailure')
 
     def obj_update(self, bundle, **kw):

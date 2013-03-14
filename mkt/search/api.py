@@ -9,7 +9,7 @@ from access import acl
 from amo.helpers import absolutify
 
 import mkt
-from mkt.api.authentication import OptionalAuthentication
+from mkt.api.authentication import OptionalOAuthAuthentication
 from mkt.api.resources import AppResource
 from mkt.search.views import _get_query, _filter_search
 from mkt.search.forms import ApiSearchForm
@@ -23,7 +23,7 @@ class SearchResource(AppResource):
         detail_allowed_methods = []
         list_allowed_methods = ['get']
         authorization = ReadOnlyAuthorization()
-        authentication = OptionalAuthentication()
+        authentication = OptionalOAuthAuthentication()
 
     def get_resource_uri(self, bundle):
         # At this time we don't have an API to the Webapp details.

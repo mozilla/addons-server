@@ -2,7 +2,7 @@ from tastypie import fields, http
 from tastypie.exceptions import ImmediateHttpResponse
 
 from amo.urlresolvers import reverse
-from mkt.api.authentication import (MarketplaceAuthentication,
+from mkt.api.authentication import (OAuthAuthentication,
                                     OwnerAuthorization)
 from mkt.api.base import MarketplaceModelResource
 from mkt.constants.apps import INSTALL_TYPE_USER
@@ -13,7 +13,7 @@ class AccountResource(MarketplaceModelResource):
     installed = fields.ListField('installed_list', readonly=True, null=True)
 
     class Meta:
-        authentication = MarketplaceAuthentication()
+        authentication = OAuthAuthentication()
         authorization = OwnerAuthorization()
         detail_allowed_methods = ['get', 'patch', 'put']
         fields = ['display_name']

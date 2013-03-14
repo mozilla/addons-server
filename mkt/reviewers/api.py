@@ -1,6 +1,6 @@
 from amo.urlresolvers import reverse
 
-from mkt.api.authentication import (MarketplaceAuthentication,
+from mkt.api.authentication import (OAuthAuthentication,
                                     PermissionAuthorization)
 from mkt.api.base import MarketplaceResource
 from mkt.reviewers.utils import AppsReviewing
@@ -15,7 +15,7 @@ class Wrapper(object):
 class ReviewingResource(MarketplaceResource):
 
     class Meta:
-        authentication = MarketplaceAuthentication()
+        authentication = OAuthAuthentication()
         authorization = PermissionAuthorization('Apps', 'Review')
         list_allowed_methods = ['get']
         resource_name = 'reviewing'

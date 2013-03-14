@@ -68,7 +68,7 @@ errors = {
 }
 
 
-class MarketplaceAuthentication(Authentication):
+class OAuthAuthentication(Authentication):
     """
     This is based on https://github.com/amrox/django-tastypie-two-legged-oauth
     with permission.
@@ -81,16 +81,8 @@ class MarketplaceAuthentication(Authentication):
         return http.HttpUnauthorized(content=json.dumps({'reason':
                                                          errors[reason]}))
 
-    def _header(self, request):
-        return request.META.get('HTTP_AUTHORIZATION', None)
-
     def is_authenticated(self, request, **kwargs):
-        auth_header_value = self._header(request)
-        if request.method == 'GET' and not auth_header_value:
-            # No OAuth login info. Let's allow read-only
-            # access based on session cookie.
-            return not request.user.is_anonymous()
-
+        auth_header_value = request.META.get('HTTP_AUTHORIZATION', None)
         oauth_server, oauth_request = initialize_oauth_server_request(request)
         try:
             key = get_oauth_consumer_key_from_header(auth_header_value)
@@ -137,21 +129,32 @@ class MarketplaceAuthentication(Authentication):
         return True
 
 
-class OptionalAuthentication(MarketplaceAuthentication):
+class OptionalOAuthAuthentication(OAuthAuthentication):
     """
-    Like MarketplaceAuthentication, but doesn't require there to be
+    Like OAuthAuthentication, but doesn't require there to be
     authentication headers. If no headers are provided, just continue
     as an anonymous user.
     """
 
     def is_authenticated(self, request, **kw):
-        auth_header_value = self._header(request)
+        auth_header_value = request.META.get('HTTP_AUTHORIZATION', None)
         if not auth_header_value:
             request.user = AnonymousUser()
             return True
 
-        return (super(OptionalAuthentication, self)
+        return (super(OptionalOAuthAuthentication, self)
                 .is_authenticated(request, **kw))
+
+
+class SessionAuthentication(Authentication):
+
+    def is_authenticated(self, request, **kwargs):
+        if (request.method == 'GET' and not
+            request.META.get('HTTP_AUTHORIZATION', None)):
+            # No OAuth login info. Let's allow read-only
+            # access based on session cookie.
+            return not request.user.is_anonymous()
+        return False
 
 
 def initialize_oauth_server_request(request):

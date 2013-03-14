@@ -20,9 +20,9 @@ from constants.applications import DEVICE_TYPES
 from files.models import FileUpload, Platform
 from lib.metrics import record_action
 from mkt.api.authentication import (AppOwnerAuthorization,
-                                    OptionalAuthentication,
+                                    OptionalOAuthAuthentication,
                                     OwnerAuthorization,
-                                    MarketplaceAuthentication)
+                                    OAuthAuthentication)
 from mkt.api.base import MarketplaceModelResource
 from mkt.api.forms import (CategoryForm, DeviceTypeForm, NewPackagedForm,
                            PreviewArgsForm, PreviewJSONForm, StatusForm,
@@ -43,7 +43,7 @@ class ValidationResource(MarketplaceModelResource):
         list_allowed_methods = ['post']
         detail_allowed_methods = ['get']
         always_return_data = True
-        authentication = OptionalAuthentication()
+        authentication = OptionalOAuthAuthentication()
         authorization = Authorization()
         resource_name = 'validation'
         serializer = Serializer(formats=['json'])
@@ -111,7 +111,7 @@ class AppResource(MarketplaceModelResource):
         list_allowed_methods = ['get', 'post']
         allowed_methods = ['get', 'put']
         always_return_data = True
-        authentication = OptionalAuthentication()
+        authentication = OptionalOAuthAuthentication()
         authorization = AppOwnerAuthorization()
         resource_name = 'app'
         serializer = Serializer(formats=['json'])
@@ -234,7 +234,7 @@ class StatusResource(MarketplaceModelResource):
         list_allowed_methods = []
         allowed_methods = ['patch', 'get']
         always_return_data = True
-        authentication = MarketplaceAuthentication()
+        authentication = OAuthAuthentication()
         authorization = AppOwnerAuthorization()
         resource_name = 'status'
         serializer = Serializer(formats=['json'])
@@ -298,7 +298,7 @@ class PreviewResource(MarketplaceModelResource):
         allowed_methods = ['get', 'delete']
         always_return_data = True
         fields = ['id', 'filetype']
-        authentication = MarketplaceAuthentication()
+        authentication = OAuthAuthentication()
         authorization = OwnerAuthorization()
         resource_name = 'preview'
         filtering = {'addon': ALL_WITH_RELATIONS}
@@ -369,7 +369,7 @@ class RatingResource(MarketplaceModelResource):
         resource_name = 'rating'
         allowed_methods = ['get']
         # TODO figure out authentication/authorization soon.
-        authentication = MarketplaceAuthentication()
+        authentication = OAuthAuthentication()
         authorization = ReadOnlyAuthorization()
         fields = ['app', 'user', 'replies', 'rating', 'title',
                   'body', 'editorreview']

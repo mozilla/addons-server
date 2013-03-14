@@ -51,6 +51,31 @@ class Marketplace(object):
                                        content_type='application/json')
         return ImmediateHttpResponse(response=response)
 
+    def is_authenticated(self, request):
+        """
+        An override of the tastypie Authentication to accept an iterator
+        of Authentication methods. If so it will go through in order, when one
+        passes, it will use that.
+
+        Any authentication method can still return a HttpResponse to break out
+        of the loop if they desire.
+        """
+        auths = self._meta.authentication
+        if not isinstance(auths, tuple):
+            auths = [self._meta.authentication]
+
+        for auth in auths:
+            auth_result = auth.is_authenticated(request)
+
+            if isinstance(auth_result, http.HttpResponse):
+                raise ImmediateHttpResponse(response=auth_result)
+
+            if auth_result:
+                log.info('Logged in using %s' % auth.__class__.__name__)
+                return
+
+        raise ImmediateHttpResponse(response=http.HttpUnauthorized())
+
 
 class MarketplaceResource(Marketplace, Resource):
     """

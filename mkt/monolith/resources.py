@@ -3,7 +3,7 @@ import json
 
 from django.db import transaction
 
-from mkt.api.authentication import (MarketplaceAuthentication,
+from mkt.api.authentication import (OAuthAuthentication,
                                     PermissionAuthorization)
 from mkt.api.base import MarketplaceModelResource
 
@@ -22,7 +22,7 @@ class MonolithData(MarketplaceModelResource):
                      'key': ['exact'],
                      'id': ['lte', 'gte']}
         authorization = PermissionAuthorization('Monolith', 'API')
-        authentication = MarketplaceAuthentication()
+        authentication = OAuthAuthentication()
 
     @transaction.commit_on_success
     def obj_delete_list(self, request=None, **kwargs):
