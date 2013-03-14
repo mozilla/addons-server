@@ -300,7 +300,8 @@ def _clean_next_url(request):
     return request
 
 
-def browserid_authenticate(request, assertion, is_native=False):
+def browserid_authenticate(request, assertion, is_native=False,
+                           browserid_audience=get_audience):
     """
     Verify a BrowserID login attempt. If the BrowserID assertion is
     good, but no account exists, create one.
@@ -317,7 +318,7 @@ def browserid_authenticate(request, assertion, is_native=False):
         extra_params = {'forceIssuer': settings.UNVERIFIED_ISSUER or False,
                         'allowUnverified': 'true'}
 
-    audience = get_audience(request)
+    audience = browserid_audience(request)
     log.debug('Verifying Persona at %s, audience: %s, '
               'extra_params: %s' % (url, audience, extra_params))
     result = verify(assertion, audience,
@@ -378,7 +379,7 @@ def browserid_authenticate(request, assertion, is_native=False):
 @post_required
 @transaction.commit_on_success
 #@ratelimit(block=True, rate=settings.LOGIN_RATELIMIT_ALL_USERS)
-def browserid_login(request):
+def browserid_login(request, browserid_audience=get_audience):
     msg = ''
     if waffle.switch_is_active('browserid-login'):
         if request.user.is_authenticated():
@@ -391,7 +392,8 @@ def browserid_login(request):
         with statsd.timer('auth.browserid.verify'):
             profile, msg = browserid_authenticate(
                 request, request.POST['assertion'],
-                is_native=is_native)
+                is_native=is_native,
+                browserid_audience=browserid_audience)
         if profile is not None:
             auth.login(request, profile.user)
             profile.log_login_attempt(True)

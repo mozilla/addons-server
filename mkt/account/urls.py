@@ -5,7 +5,7 @@ from tastypie.api import Api
 
 from amo.decorators import login_required
 from lib.misc.urlconf_decorator import decorate
-from mkt.account.api import AccountResource
+from mkt.account.api import AccountResource, LoginResource
 from . import views
 
 settings_patterns = patterns('',
@@ -49,6 +49,7 @@ users_patterns = patterns('',
 # Account API.
 account = Api(api_name='account')
 account.register(AccountResource())
+account.register(LoginResource())
 
 api_patterns = patterns('',
     url('^', include(account.urls)),

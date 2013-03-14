@@ -1,12 +1,17 @@
+from django.conf import settings
+
 from tastypie import fields, http
+from tastypie.authorization import Authorization
 from tastypie.exceptions import ImmediateHttpResponse
 
 from amo.urlresolvers import reverse
 from mkt.api.authentication import (OAuthAuthentication,
                                     OwnerAuthorization)
-from mkt.api.base import MarketplaceModelResource
+from mkt.api.base import (MarketplaceModelResource, MarketplaceResource,
+                          CORSResource)
 from mkt.constants.apps import INSTALL_TYPE_USER
 from users.models import UserProfile
+from users.views import browserid_login
 
 
 class AccountResource(MarketplaceModelResource):
@@ -43,3 +48,28 @@ class AccountResource(MarketplaceModelResource):
                                'resource_name': 'app'})
                for r in res]
         return res
+
+
+class LoginResource(CORSResource, MarketplaceResource):
+    class Meta:
+        resource_name = 'login'
+        always_return_data = True
+        list_allowed_methods = ['post']
+        authorization = Authorization()
+
+    def post_list(self, request, **kwargs):
+        r = browserid_login(
+            request, browserid_audience=lambda r: settings.FIREPLACE_URL)
+        if r.status_code == 200:
+            email = request.user.email
+            name = UserProfile.objects.get(user=request.user).display_name
+            return self.create_response(
+                request,
+                {'error': None,
+                 'settings': {
+                        'display_name': name,
+                        'email': email,
+                        'region': 'internet',
+                        }
+                 })
+        return r

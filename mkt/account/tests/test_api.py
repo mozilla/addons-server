@@ -1,10 +1,13 @@
+import collections
 import json
 
 from mock import patch
 from nose.tools import eq_
+import waffle
 
 from django.conf import settings
 
+from amo.tests import TestCase
 from mkt.api.tests.test_oauth import BaseOAuth, get_absolute_url, OAuthClient
 from mkt.api.base import list_url, get_url
 from mkt.constants.apps import INSTALL_TYPE_REVIEWER
@@ -91,3 +94,36 @@ class TestAccount(BaseOAuth):
         res = self.client.patch(get_url('settings', '10482'),
                                 data=json.dumps({'display_name': 'foo'}))
         eq_(res.status_code, 403)
+
+browserid_url = 'http://firepla.ce:8675/'
+
+
+@patch.object(settings, 'FIREPLACE_URL', browserid_url)
+class TestLoginHandler(TestCase):
+    def setUp(self):
+        super(TestLoginHandler, self).setUp()
+        self.list_url = get_absolute_url(list_url('login'), api_name='account')
+        self.create_switch('browserid-login')
+
+    @patch('requests.post')
+    def test_login_success(self, http_request):
+        FakeResponse = collections.namedtuple('FakeResponse',
+                                              'status_code content')
+        http_request.return_value = FakeResponse(200, json.dumps(
+                {'status': 'okay',
+                 'email': 'cvan@mozilla.com'}))
+        res = self.client.post(self.list_url,
+                               dict(assertion='fake-assertion',
+                                    audience='fakeamo.org'))
+        eq_(res.status_code, 200)
+
+    @patch('requests.post')
+    def test_login_failure(self, http_request):
+        FakeResponse = collections.namedtuple('FakeResponse',
+                                              'status_code content')
+        http_request.return_value = FakeResponse(200, json.dumps(
+                {'status': 'busted'}))
+        res = self.client.post(self.list_url,
+                               dict(assertion='fake-assertion',
+                                    audience='fakeamo.org'))
+        eq_(res.status_code, 401)
