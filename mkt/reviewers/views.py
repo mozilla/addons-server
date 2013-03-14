@@ -287,6 +287,9 @@ def app_review(request, addon):
         transaction.commit()
         return redirect(
             reverse('reviewers.apps.review', args=[addon.app_slug]))
+    except Exception:
+        transaction.rollback()
+        raise
     else:
         transaction.commit()
         # Temp. reindex the addon now it's been committed.
