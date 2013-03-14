@@ -18,6 +18,7 @@ from users.models import UserProfile
 
 import mkt
 from mkt.api.tests.test_oauth import BaseOAuth, OAuthClient
+from mkt.api.base import get_url
 from mkt.constants import APP_IMAGE_SIZES
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import ImageAsset, Webapp
@@ -760,12 +761,13 @@ class TestRatingHandler(BaseOAuth, AMOPaths):
         super(TestRatingHandler, self).setUp()
         self.app = Webapp.objects.get(pk=337141)
         self.user = UserProfile.objects.get(pk=2519)
+        self.collection_url = ('api_dispatch_list',
+                               {'resource_name': 'rating'},
+                               {'app': self.app.pk})
 
     def test_get(self):
         AddonUser.objects.create(user=self.user, addon=self.app)
-        res = self.client.get(('api_dispatch_list',
-                               {'resource_name': 'rating'},
-                               {'app': self.app.pk}))
+        res = self.client.get(self.collection_url)
         data = json.loads(res.content)
         eq_(data['meta']['average'], self.app.average_rating)
         eq_(data['meta']['slug'], self.app.app_slug)
@@ -773,18 +775,14 @@ class TestRatingHandler(BaseOAuth, AMOPaths):
         assert not data['user']['has_rated']
 
     def test_non_owner(self):
-        res = self.client.get(('api_dispatch_list',
-                               {'resource_name': 'rating'},
-                               {'app': self.app.pk}))
+        res = self.client.get(self.collection_url)
         data = json.loads(res.content)
         assert data['user']['can_rate']
         assert not data['user']['has_rated']
 
     def test_already_rated(self):
         Review.objects.create(addon=self.app, user=self.user, body="yes")
-        res = self.client.get(('api_dispatch_list',
-                               {'resource_name': 'rating'},
-                               {'app': self.app.pk}))
+        res = self.client.get(self.collection_url)
         data = json.loads(res.content)
         assert data['user']['can_rate']
         assert data['user']['has_rated']
@@ -794,11 +792,54 @@ class TestRatingHandler(BaseOAuth, AMOPaths):
         Review.objects.create(
             addon=self.app, user=UserProfile.objects.get(pk=31337), body="no",
             reply_to=r1)
-        res = self.client.get(('api_dispatch_list',
-                               {'resource_name': 'rating'},
-                               {'app': self.app.pk}))
+        res = self.client.get(self.collection_url)
         data = json.loads(res.content)
         eq_(data['objects'][0]['replies'][0]['body'], "no")
+
+    def test_delete_app_mine(self):
+        AddonUser.objects.filter(addon=self.app).update(user=self.user)
+        user2 = UserProfile.objects.get(pk=31337)
+        r = Review.objects.create(addon=self.app, user=user2, body="yes")
+        res = self.client.delete(get_url('rating', r.pk))
+        eq_(res.status_code, 204)
+        eq_(Review.objects.count(), 0)
+
+    def test_delete_comment_mine(self):
+        r = Review.objects.create(addon=self.app, user=self.user, body="yes")
+        res = self.client.delete(get_url('rating', r.pk))
+        eq_(res.status_code, 204)
+        eq_(Review.objects.count(), 0)
+
+    def test_delete_addons_admin(self):
+        user2 = UserProfile.objects.get(pk=31337)
+        r = Review.objects.create(addon=self.app, user=user2, body="yes")
+        self.grant_permission(self.user, 'Addons:Edit')
+        res = self.client.delete(get_url('rating', r.pk))
+        eq_(res.status_code, 204)
+        eq_(Review.objects.count(), 0)
+
+    def test_delete_users_admin(self):
+        user2 = UserProfile.objects.get(pk=31337)
+        r = Review.objects.create(addon=self.app, user=user2, body="yes")
+        self.grant_permission(self.user, 'Users:Edit')
+        res = self.client.delete(get_url('rating', r.pk))
+        eq_(res.status_code, 204)
+        eq_(Review.objects.count(), 0)
+
+    def test_delete_not_mine(self):
+        user2 = UserProfile.objects.get(pk=31337)
+        r = Review.objects.create(addon=self.app, user=user2, body="yes")
+        url = ('api_dispatch_detail', {'resource_name': 'rating', 'pk': r.pk})
+        self.app.authors.clear()
+        res = self.client.delete(url)
+        eq_(res.status_code, 403)
+        eq_(Review.objects.count(), 1)
+
+    def test_delete_not_there(self):
+        url = ('api_dispatch_detail',
+               {'resource_name': 'rating', 'pk': 123})
+        res = self.client.delete(url)
+        eq_(res.status_code, 404)
 
 
 class TestFeaturedHomeHandler(BaseOAuth):

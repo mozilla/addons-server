@@ -24,7 +24,9 @@ import mkt
 from mkt.api.authentication import (AppOwnerAuthorization,
                                     OptionalOAuthAuthentication,
                                     OwnerAuthorization,
-                                    OAuthAuthentication)
+                                    OAuthAuthentication,
+                                    PermissionAuthorization,
+                                    SessionAuthentication)
 from mkt.api.base import MarketplaceModelResource
 from mkt.api.forms import (CategoryForm, DeviceTypeForm, NewPackagedForm,
                            PreviewArgsForm, PreviewJSONForm, StatusForm,
@@ -370,10 +372,11 @@ class RatingResource(MarketplaceModelResource):
         # Unfortunately, the model class name for ratings is "Review".
         queryset = Review.objects.valid()
         resource_name = 'rating'
-        allowed_methods = ['get']
+        detail_allowed_methods = ['get', 'delete']
+        list_allowed_methods = ['get']
         # TODO figure out authentication/authorization soon.
-        authentication = OAuthAuthentication()
-        authorization = ReadOnlyAuthorization()
+        authentication = (OAuthAuthentication(), SessionAuthentication())
+        authorization = Authorization()
         fields = ['app', 'user', 'replies', 'rating', 'title',
                   'body', 'editorreview']
 
@@ -393,6 +396,20 @@ class RatingResource(MarketplaceModelResource):
         if not request.REGION.adolescent:
             qs = qs.filter(client_data__region=request.REGION.id)
         return qs
+
+    def obj_delete(self, request, **kwargs):
+        obj = self.get_by_resource_or_404(request, **kwargs)
+        if not (AppOwnerAuthorization().is_authorized(request,
+                                                      object=obj.addon)
+                or OwnerAuthorization().is_authorized(request, object=obj)
+                or PermissionAuthorization('Users', 'Edit'
+                                           ).is_authorized(request)
+                or PermissionAuthorization('Addons', 'Edit'
+                                           ).is_authorized(request)):
+            raise ImmediateHttpResponse(response=http.HttpForbidden())
+
+        log.info('Rating %s deleted from addon %s' % (obj.pk, obj.addon.pk))
+        return super(RatingResource, self).obj_delete(request, **kwargs)
 
     def alter_list_data_to_serialize(self, request, data):
         if 'app' in request.GET:
