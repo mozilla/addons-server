@@ -1,17 +1,16 @@
+import uuid
 from getpass import getpass
 from optparse import make_option
 from time import time
 
 from django.core.management.base import BaseCommand
-from django.db import IntegrityError, transaction
+from django.db import (IntegrityError, connection as django_connection,
+                       transaction)
 
 import MySQLdb as mysql
 
 from addons import cron
-from addons.models import Persona, AddonUser
 import amo
-from bandwagon.models import CollectionAddon
-from users.models import UserProfile
 
 
 class Command(BaseCommand):
@@ -52,16 +51,16 @@ class Command(BaseCommand):
             self.log('Not committing changes, this is a dry run.')
             transaction.rollback()
 
-
     def connect(self, **options):
         options = dict([(k, v) for k, v in options.items() if k in
                         ['host', 'db', 'user'] and v])
         options['passwd'] = getpass('MySQL Password: ')
         self.connection = mysql.connect(**options)
         self.cursor = self.connection.cursor()
+        self.cursor_z = django_connection.cursor()
 
     def do_import(self, offset, limit, **options):
-        self.log('Processing users %s to %s' % (offset, offset+limit))
+        self.log('Processing users %s to %s' % (offset, offset + limit))
         for user in self.get_users(limit, offset):
             user = dict(zip(['username', 'display_username', 'md5',
                              'email', 'privs', 'change_code', 'news',
@@ -81,9 +80,30 @@ class Command(BaseCommand):
         self.cursor.execute('SELECT count(username) from users')
         return self.cursor.fetchone()[0]
 
+    def get_persona_addon_id(self, **kw):
+        column, value = kw.items()[0]
+        self.cursor_z.execute(
+            'SELECT addon_id FROM personas WHERE %s = %%s LIMIT 1' % column,
+            value)
+        try:
+            return self.cursor_z.fetchone()[0]
+        except TypeError:
+            return 0
+
+    def get_user_id(self, **kw):
+        column, value = kw.items()[0]
+        self.cursor_z.execute(
+            'SELECT id FROM users WHERE %s = %%s LIMIT 1' % column, value)
+        try:
+            return self.cursor_z.fetchone()[0]
+        except TypeError:
+            return 0
+
     def get_users(self, limit, offset):
-        self.cursor.execute('SELECT * FROM users ORDER BY username '
-                            'LIMIT %s OFFSET %s' % (limit, offset))
+        self.cursor.execute(
+            'SELECT username, display_username, md5, '
+            'email, description FROM users ORDER BY username '
+            'LIMIT %s OFFSET %s' % (limit, offset))
         return self.cursor.fetchall()
 
     def get_designers(self, author):
@@ -99,47 +119,66 @@ class Command(BaseCommand):
     def handle_favourites(self, user):
         """This will expect users to already be migrated."""
 
-        profile = UserProfile.objects.filter(email=user['email'])
-        if not profile.exists():
+        profile_id = self.get_user_id(email=user['email'])
+        if not profile_id:
             self.log("Skipping unknown user (%s)" % user['email'])
             return
 
-        profile = profile[0]
-        collection = profile.favorites_collection()
+        # Get or create "My Favorites Add-ons" collection.
+        try:
+            self.cursor_z.execute(
+                'SELECT id FROM collections WHERE author_id = %s', profile_id)
+            collection_id = self.cursor_z.fetchone()[0]
+        except TypeError:
+            uuid_ = unicode(uuid.uuid4())
+            self.cursor_z.execute("""
+                INSERT INTO collections (created, modified, uuid, slug,
+                defaultlocale, collection_type, author_id)
+                VALUES (NOW(), NOW(), %s, 'favorites', 'en-US', 4, %s)
+            """, (uuid_, profile_id))
+            collection_id = self.cursor_z.lastrowid
+
         rows = []
         for fav in self.get_favourites(user['orig-username']):
-            try:
-                addon = Persona.objects.get(persona_id=fav[0]).addon
-                rows.append(CollectionAddon(addon=addon, collection=collection))
-            except Persona.DoesNotExist:
-                self.log(' Skipping unknown persona (%s) for user (%s)' %
+            addon_id = self.get_persona_addon_id(persona_id=fav[0])
+            if addon_id:
+                rows.append('(NOW(), NOW(), %s, %s, %s)' %
+                            (addon_id, collection_id, profile_id))
+            else:
+                self.log(' Skipping unknown favorite (%s) for user (%s)' %
                          (fav[0], user['username']))
-                continue
 
-        if len(rows):
+        if rows:
+            values = ', '.join(rows)
             try:
-                CollectionAddon.objects.bulk_create(rows)
-                self.log(' Adding %s favs for user %s' % (len(rows),
-                                                           user['username']))
+                self.cursor_z.create("""
+                    INSERT INTO addons_collections
+                    (created, modified, addon_id, collection_id, user_id)
+                    VALUES %s
+                """ % values)
+                self.log(' Adding %s favs for user %s' %
+                         (len(rows), user['username']))
             except IntegrityError:
                 self.log(' Failed to import (%s) favorites for user (%s)' %
                          (len(rows), user['username']))
 
-
     def handle_user(self, user):
-        profile = UserProfile.objects.filter(email=user['email'])
+        profile_id = self.get_user_id(email=user['email'])
 
-        if profile.exists():
+        if profile_id:
             self.log(' Ignoring existing user: %s' % user['email'])
-            profile = profile[0]
         else:
-            if UserProfile.objects.filter(username=user['username']).exists():
+            orig_username = user['username']
+            if self.get_user_id(username=user['username']):
                 user['username'] = user['username'] + '-' + str(time())
                 self.log(' Username already taken, so making username: %s'
                          % user['username'])
 
             self.log(' Creating user for %s' % user['email'])
             note = 'Imported from personas, username: %s' % user['username']
+            if orig_username != user['username']:
+                note += ' (formerly %s)' % orig_username
+
             algo, salt, password = user['md5'].split('$')
             # The salt is a bytes string. In get personas it is base64
             # encoded. I'd like to decode here so we don't have to do any
@@ -148,30 +187,52 @@ class Command(BaseCommand):
             # base64 encoding. Let's add +base64 on to it so we know this in
             # zamboni.
             password = '$'.join([algo + '+base64', salt, password])
+
+            data = {
+                'username': user['username'],
+                'email': user['email'],
+                'password': password,
+                'notes': note,
+                'bio': user['description']
+            }
+
             try:
-                profile = UserProfile.objects.create(username=user['username'],
-                                                     email=user['email'],
-                                                     bio=user['description'],
-                                                     password=password,
-                                                     notes=note)
-                profile.create_django_user()
+                # Create UserProfile.
+                # TODO: Insert bio=user['description'] (translated field).
+                self.cursor_z.execute("""
+                    INSERT INTO users (created, modified,
+                    username, display_name, password, emailhidden, email,
+                    notes) VALUES (NOW(), NOW(), %(username)s, %(username)s,
+                    %(password)s, 1, %(email)s, %(notes)s)""", data)
+                data['user_id'] = self.cursor_z.lastrowid
+
+                # Create Django User.
+                self.cursor_z.execute("""
+                    INSERT INTO auth_user (id, username, first_name,
+                    last_name, email, password, is_active, is_staff,
+                    is_superuser, date_joined, last_login)
+                    VALUES (%(user_id)s, %(username)s, '', '',
+                    %(email)s, %(password)s, 1, 0, 0, NOW(), NOW())""", data)
             except IntegrityError:
                 self.log(' Failed creating new user (%s)' % user['email'])
+                raise
 
         # Now link up the designers with the profile.
         rows = []
         for persona_id in self.get_designers(user['orig-username']):
-            try:
-                persona = Persona.objects.get(persona_id=persona_id[0])
-                rows.append(AddonUser(addon=persona.addon, user=profile,
-                                      listed=True))
-            except Persona.DoesNotExist:
+            addon_id = self.get_persona_addon_id(persona_id=persona_id[0])
+            if addon_id:
+                rows.append('(%s, %s, 5)' % (addon_id, profile_id))
+            else:
                 self.log(' Skipping unknown persona (%s) for user (%s)' %
                          (persona_id[0], user['username']))
-                continue
-        if len(rows):
+
+        if rows:
+            values = ', '.join(rows)
             try:
-                AddonUser.objects.bulk_create(rows)
+                self.cursor_z.execute("""
+                    INSERT INTO addons_users (addon_id, user_id, role)
+                    VALUES %s""" % values)
                 self.log(' Adding (%s) as owner of (%s) personas' %
                          (user['username'], len(rows)))
             except IntegrityError:
@@ -179,8 +240,6 @@ class Command(BaseCommand):
                 # script before) or a persona doesn't exist in the db.
                 self.log(' Failed adding (%s) as owner of (%s) personas' %
                          (user['username'], len(rows)))
-
-
 
     @transaction.commit_manually
     def handle(self, *args, **options):
@@ -209,7 +268,7 @@ class Command(BaseCommand):
                 t_average = 1 / ((time() - t_total_start) /
                                  (offset - start + step))
                 print "> %.2fs for %s accounts. Averaging %.2f accounts/s" % (
-                        time() - t_start, step, t_average)
+                    time() - t_start, step, t_average)
         except:
             self.log('Error, not committing changes.')
             transaction.rollback()
