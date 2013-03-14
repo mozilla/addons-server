@@ -14,6 +14,7 @@ curling==0.2.1.1
 Django==1.4.5
 dj-database-url==0.2.1
 django_appcache==1.4
+django-browserid==0.8
 django-cache-machine==0.6
 django-celery==2.2.4
 django-cronjobs==0.2.3
@@ -93,8 +94,6 @@ suds==0.3.9
 -e git://github.com/mozilla/nuggets.git@96e80a64aa4bfcfef4f43fc3ab6966450ccd7325#egg=nuggets
 -e git://github.com/jbalogh/test-utils.git@ce5136a257cd44a1c663319124a255c1d10a9834#egg=test-utils
 -e git://github.com/fwenzel/django-mozilla-product-details.git@36ef06539d6b34c4f345fd0d3e16937d0db9a752#egg=django-mozilla-product-details
-# TODO(Kumar) switch to PyPI release when this change has been deployed.
--e git://github.com/mozilla/django-browserid.git@a5292a04d8e077cd96a8f4358442e7182682f739#egg=django-browserid
 
 ## Forked.
 -e git://github.com/andymckay/django-piston-oauth2.git@6cb1ad61e3f437e7ca080ee00ae7b80de7d010f0#egg=django-piston-oauth2
