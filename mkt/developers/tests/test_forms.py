@@ -346,8 +346,8 @@ class TestAppFormBasic(amo.tests.TestCase):
         }
         self.request = mock.Mock()
         self.request.groups = ()
-        self.form = forms.AppFormBasic(self.data, instance=Webapp(app_slug='yolo'),
-                                       request=self.request)
+        self.form = forms.AppFormBasic(self.data,
+            instance=Webapp(app_slug='yolo'), request=self.request)
 
     def test_success(self):
         eq_(self.form.is_valid(), True, self.form.errors)
