@@ -151,7 +151,7 @@ class Command(BaseCommand):
         if rows:
             values = ', '.join(rows)
             try:
-                self.cursor_z.create("""
+                self.cursor_z.execute("""
                     INSERT INTO addons_collections
                     (created, modified, addon_id, collection_id, user_id)
                     VALUES %s
