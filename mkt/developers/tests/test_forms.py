@@ -334,3 +334,27 @@ class TestTransactionFilterForm(amo.tests.TestCase):
         for app in self.apps:
             assertion = (app.id, app.name) in form.fields['app'].choices
             assert assertion, '(%s, %s) not in choices' % (app.id, app.name)
+
+
+class TestAppFormBasic(amo.tests.TestCase):
+
+    def setUp(self):
+        self.data = {
+            'slug': 'yolo',
+            'manifest_url': 'https://omg.org/yes.webapp',
+            'summary': 'You Only Live Once'
+        }
+        self.request = mock.Mock()
+        self.request.groups = ()
+        self.form = forms.AppFormBasic(self.data, instance=Webapp(app_slug='yolo'),
+                                       request=self.request)
+
+    def test_success(self):
+        eq_(self.form.is_valid(), True, self.form.errors)
+        eq_(self.form.errors, {})
+
+    def test_slug_invalid(self):
+        Webapp.objects.create(app_slug='yolo')
+        eq_(self.form.is_valid(), False)
+        eq_(self.form.errors,
+            {'slug': ['This slug is already in use. Please choose another.']})

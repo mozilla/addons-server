@@ -512,7 +512,7 @@ class AppFormBasic(addons.forms.AddonFormBase):
         slug = self.cleaned_data['slug']
         slug_validator(slug, lower=False)
 
-        if slug != self.instance:
+        if slug != self.instance.app_slug:
             if Webapp.objects.filter(app_slug=slug).exists():
                 raise forms.ValidationError(
                     _('This slug is already in use. Please choose another.'))
