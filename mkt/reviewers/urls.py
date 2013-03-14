@@ -12,6 +12,7 @@ account.register(api.ReviewingResource())
 
 # All URLs under /reviewers/.
 url_patterns = patterns('',
+    url(r'^$', views.home, name='reviewers.home'),
     url(r'^apps/queue/$', views.queue_apps,
         name='reviewers.apps.queue_pending'),
     url(r'^apps/queue/rereview/$', views.queue_rereview,
