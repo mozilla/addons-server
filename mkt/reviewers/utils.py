@@ -63,9 +63,11 @@ class ReviewBase(object):
         else:
             files = []
             for i in xrange(num):
-                attachment = self.request.FILES['attachment-%d-attachment' % i]
-                files.append((attachment.name, attachment.read(),
-                              attachment.content_type))
+                attachment_name = 'attachment-%d-attachment' % i
+                attachment = self.request.FILES.get(attachment_name, None)
+                if attachment:
+                    files.append((attachment.name, attachment.read(),
+                                  attachment.content_type))
             return files
 
     def set_addon(self, **kw):

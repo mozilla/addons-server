@@ -53,7 +53,7 @@ class AttachmentManagementMixin(object):
         """
         Generate and return data for a management form for `num` attachments
         """
-        return {'attachment-TOTAL_FORMS': num,
+        return {'attachment-TOTAL_FORMS': max(1, num),
                 'attachment-INITIAL_FORMS': 0,
                 'attachment-MAX_NUM_FORMS': 1000}
 
@@ -1431,14 +1431,16 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         data = {}
         files = ['bacon.jpg', 'bacon.txt']
         descriptions = ['mmm, bacon', '']
-        for n in range(0, num):
-            i = 0 if n % 2 else 1
-            attachment = open(os.path.join(settings.REVIEWER_ATTACHMENTS_PATH,
-                                           files[i]))
-            data.update({
-                'attachment-%d-attachment' % n: attachment,
-                'attachment-%d-description' % n: descriptions[i]
-            })
+        if num > 0:
+            for n in xrange(num):
+                i = 0 if n % 2 else 1
+                path = os.path.join(settings.REVIEWER_ATTACHMENTS_PATH,
+                                    files[i])
+                attachment = open(path)
+                data.update({
+                    'attachment-%d-attachment' % n: attachment,
+                    'attachment-%d-description' % n: descriptions[i]
+                })
         return data
 
     def _attachment_form_data(self, num=1, action='comment'):
@@ -1461,6 +1463,11 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         new_attachment_count = ActivityLogAttachment.objects.all().count()
         eq_(new_attachment_count - old_attachment_count, num,
             'AcitvityLog objects not being created')
+
+    @override_settings(REVIEWER_ATTACHMENTS_PATH=ATTACHMENTS_DIR)
+    def test_no_attachments(self):
+        """ Test addition of no attachment """
+        self.post(self._attachment_form_data(num=0, action='public'))
 
     @override_settings(REVIEWER_ATTACHMENTS_PATH=ATTACHMENTS_DIR)
     def test_attachment(self):
