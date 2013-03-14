@@ -346,15 +346,19 @@ class TestAppFormBasic(amo.tests.TestCase):
         }
         self.request = mock.Mock()
         self.request.groups = ()
+
+    def post(self):
         self.form = forms.AppFormBasic(self.data,
-            instance=Webapp(app_slug='yolo'), request=self.request)
+            instance=Webapp.objects.create(app_slug='yolo'), request=self.request)
 
     def test_success(self):
+        self.post()
         eq_(self.form.is_valid(), True, self.form.errors)
         eq_(self.form.errors, {})
 
     def test_slug_invalid(self):
         Webapp.objects.create(app_slug='yolo')
+        self.post()
         eq_(self.form.is_valid(), False)
         eq_(self.form.errors,
             {'slug': ['This slug is already in use. Please choose another.']})
