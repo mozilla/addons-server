@@ -10,10 +10,11 @@
     top: -95px;
     visibility: hidden;
     z-index: 1;
+
     &.active {
         margin-bottom: 0;
         opacity: 1;
-        top: 50px;
+        top: 0;
         visibility: visible;
     }
     div {
@@ -93,6 +94,12 @@
         &:active {
             header-active();
         }
+    }
+}
+
+@media (max-width: 1023px) {
+    .incompatible-browser.active {
+        top: 50px;
     }
 }
 

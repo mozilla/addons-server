@@ -1,190 +1,196 @@
 // styles for the global site header only.
 @import 'lib';
 
-// Oh, I beg your pardon? Is this too many styles for you?
-// Then let's fix that and not create new stylesheets for the header.
-// Oh, were you hoping for a pun? NO. THIS IS NO JOKING MATTER. OMG.
+// ***************** Wide Mobile (600+ px)
 
-// compensate for fixed header.
-#page {
-    padding-top: 50px;
-}
-
-// if there is a page title we want in the header, give it the id of #top
-#top {
-    display: none;
-}
-
-@media (max-width: 672px) {
-    .login.home #top {
-        margin: 0 auto;
-        width: 100%;
-        max-width: 100%;
-    }
-}
-
-#search {
-    color: #fff;
-    display: none;
-}
-
-header {
-    position: relative;
+// usable on any header
+.header {
     gradient-two-color(#566773, #3e4e59);
     box-shadow: 0 -1px 0 rgba(0, 0, 0, .15) inset, 0 0 3px 3px rgba(0, 0, 0, .3), 0 1px 0 rgba(255, 255, 255, .1) inset;
     height: 50px;
-    line-height: 50px;
+    max-height: 50px;
     width: 100%;
-    h1 {
+    display-flex();
+    > * {
+        flex-center();
+    }
+    .title {
+        flex(1);
         color: #fff;
         font-size: 18px;
         font-weight: 300;
         line-height: 50px;
-        max-width: 200px;
-        position: absolute;
-        left: 30px;
-        text-shadow: 0 1px 0 $black;
         z-index: 10;
+        padding-left: 10px;
     }
 }
 
-#site-header {
-    section.main {
-        position: relative;
-    }
-
+// # for the primary site header *only*. If you need to generalize a style in here, move it.
+.site-header {
+    display: block;
     position: fixed;
-    top: 0;
-    left: 0;
     z-index: 10;
-
-    nav,
-    section.main {
-        position: relative;
+    text-align: center;
+    > * {
+        display: block;
     }
-
-    .wordmark {
+    > nav {
+        height: 50px;
+        display-flex();
         position: relative;
-        top: 0;
-    }
-
-}
-
-.home, .offline {
-    #site-header {
-        h1 {
-            height: 30px;
-            left: 10px;
-            overflow: hidden;
-            text-indent: -99999px;
-            top: 10px;
-            width: 200px;
-        }
-        .page:before,
-        .wordmark {
-            background: url(../../img/mkt/logos/mp_aurora_wordmark_small.png) no-repeat;
+        text-align: left;
+        width: 100%;
+        > * {
+            flex-center();
             display: block;
-            float: left;
-            height: 30px;
-        }
-        .page:before {
-            background-position: 0 0;
-            content: '';
-            width: 32px;
-        }
-        .wordmark {
-            background-position: 100% 0;
-            left: 8px;
-            position: relative;
-            width: 168px;
         }
     }
+    .site {
+        hidetext();
+        width: 200px;
+        height: 30px;
+        margin-left: 10px;
+    }
+    .wordmark {
+        display: block;
+        background: url(../../img/mkt/logos/mp_aurora_wordmark_small.png) no-repeat;
+        height: 30px;
+        width: 200px;
+    }
+    .header-button {
+        display: none;
+    }
+}
+// compensate for fixed header on page el.
+#page {
+    padding-top: 50px;
 }
 
-// Adjusts more header title space next to the 'home' icon.
-body[data-page-type=notice] #site-header h1 {
-    left: 40px;
-}
-
-.header-button {
+.act-tray {
+    position: relative;
     width: 50px;
     height: 50px;
-    color: #fff;
-    position: relative;
-    z-index: 11;
-    text-align: center;
-    outline: 0;
-    &:after {
-        content: '';
-        z-index: 11;
+    .header-button.settings {
         position: absolute;
+        top: 0;
+        left: 0;
+    }
+}
+
+.site-header .search {
+    position: relative;
+    width: 230px;
+    label {
+        display: none;
+    }
+    margin: 0 10px;
+    transition(.3s all);
+}
+#search-q {
+    box-shadow: 0 1px 0 rgba(255, 255, 255, .1), 0 1px 0 rgba(0, 0, 0, .5) inset, 0 1px 1px rgba(0, 0, 0, .5) inset;
+    gradient-two-color-with-image(#21292f, #2a353c, url(../../img/mkt/icons/magnifier.png), unquote('8px 8px'), no-repeat);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: 0;
+    border-radius: 3px;
+    color: lighten(#99abb9, 2%);
+    font: 17px/30px $open-stack;
+    height: 30px;
+    outline: none;
+    padding: 0 30px 0 30px;
+    z-index: 2;
+    width: 100%;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+
+    &:focus {
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.06) inset, 0 0 8px rgba(80, 160, 220, 0.6);
+        color: $white;
+    }
+    &:-moz-placeholder {
+        color: lighten(#99abb9, 3%);
+    }
+    &::-moz-placeholder {
+        color: lighten(#99abb9, 3%);
+    }
+    &::-webkit-input-placeholder {
+        color: lighten(#99abb9, 3%);
+    }
+}
+.search-clear {
+    hidetext();
+    position: absolute;
+    height: 12px;
+    width: 11px;
+    background: url(../../img/mkt/icons/clear.png) no-repeat;
+    top: 10px;
+    right: 10px;
+}
+input:invalid ~ .search-clear {
+    display: none;
+}
+
+
+// Buttons that appear in headers.
+.header-button {
+    display: block;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    color: #fff;
+    text-align: center;
+    &:before {
+        content: '';
+        display: block;
+        z-index: 11;
         height: 34px;
         width: 2px;
         background: url(../../img/mkt/divider.png) no-repeat;
         margin-top: 7px;
-    }
-    &.right {
-        float: right;
-        &:after {
-            left: -1px;
-        }
-    }
-    &.left {
         float: left;
+    }
+
+    // header buttons with icons
+    &.icon {
+        position: relative;
+        hidetext();
         &:after {
-            right: -1px;
+            content: '';
+            background: url(../../img/mkt/header-icons.png) no-repeat;
+            display: block;
         }
     }
-
-    &.filter {
-        width: 54px;
-    }
-
-    &.cancel {
-        width: 60px;
-    }
-
-    // icons for header buttons
-    &.icon {
-        text-indent: -1000%;
-    }
-    &.icon:before {
-        content: '';
+    &.cancel:after {
         width: 24px;
         height: 24px;
-        background: url(../../img/mkt/header-icons.png) 0 24px no-repeat;
-        display: block;
         position: absolute;
-        top: 13px;
+        top: 12px;
         left: 13px;
-    }
-    &.settings:before {
-        background-position: 0 0;
-    }
-    &.cancel:before,
-    &.dismiss:before {
         background-position: 0 -24px;
     }
-    &.search:before {
-        background-position: 0 -48px;
+    &.settings {
+        display: block;
     }
+    &.settings:after {
+        width: 24px;
+        height: 24px;
+        margin: 12px;
+    }
+
+    // Back is complicated.
     &.back {
-        width: 40px;
-        &:after {
-            right: 19px;
-            top: 0;
-        }
+        hidetext();
+        width: 20px;
         &:before {
-            background-position: 0 -72px;
-            width: 12px;
-            left: 4px;
+            float: right;
         }
-        /* Gives us a big click target without being totally insane. */
         b {
+            background: url(../../img/mkt/header-icons.png) 0 -72px no-repeat;
+            width: 12px;
+            height: 24px;
+            content: '';
+            margin: 12px 3px;
             display: block;
-            height: 50px;
-            overflow: hidden;
-            width: 20px;
         }
         &:hover b {
             header-hover();
@@ -194,19 +200,310 @@ body[data-page-type=notice] #site-header h1 {
        }
     }
 
-    &.expand {
-        width: 78px;
-        &:after {
-            content: none;
+    // 'Sign In'
+    &.browserid {
+        display: none;
+        &.loading-submit {
+            hidetext();
+            webkit-spin();
+            background: url(../../img/mkt/loading-16.png) center no-repeat;
+            &:after {
+                display: none;
+            }
         }
     }
-    &.expand:before {
+}
+
+
+// search results tile expand toggle
+.expand-toggle {
+    display: block;
+    width: 64px;
+    height: 50px;
+    line-height: 50px;
+    color: #fff;
+    position: relative;
+    &:after {
+        position: absolute;
+        top: 0;
+        left: 0;
+        content: '';
+        margin-top: 12px;
         width: 54px;
         height: 24px;
+        display: block;
         background: url(../../img/mkt/expand-toggle.png) no-repeat;
     }
-    &.expand.active:before {
+    &.active:after {
         background-position: 0 -24px;
+    }
+}
+
+.account-links, .active .account-links {
+    display: none;
+}
+
+// How does the header look for the various page "types"?
+[data-page-type='root'] {
+    .header .expand-toggle {
+        display: none;
+    }
+}
+
+[data-page-type='search'] {
+    .back, .expand, .filter {
+        display: block;
+    }
+    .site {
+        display: none;
+    }
+    .site-header .title {
+        display: none;
+    }
+    .flex-span {
+        display: block;
+        flex(1);
+    }
+}
+[data-page-type='leaf'] {
+    .header .expand-toggle, .search, .site {
+        display: none;
+    }
+    .back {
+        display: block;
+    }
+}
+
+// ***************** Cursor (Desktop) (>= 1024px)
+
+// This probably shouldn't be media query based.
+@media (min-width: 1024px) {
+    .site-header {
+        box-shadow: 0 -1px 0 rgba(0, 0, 0, .5) inset, 0 1px 0 rgba(255, 255, 255, .1) inset;
+        background: darken(#3f4f5b, 5%) $grain-src;
+        background-size: 100px 100px;
+    }
+
+    .header-button {
+        &:before {
+            content: none;
+        }
+        &.settings {
+            width: 40px;
+            position: relative;
+            &:before {
+                background: none;
+            }
+            &:after {
+                margin: 12px 7px;
+            }
+        }
+    }
+
+    .act-tray {
+        display: block;
+        .settings {
+            display: block;
+        }
+    }
+    .act-tray.active {
+        position: relative;
+        .settings {
+            &:before {
+                gradientTop(unquote('rgba(252, 252, 253, 0) 0%, rgba(43, 54, 63, 0.07) 15%, rgba(43, 54, 63, 1) 100%'));
+                content: "";
+                display: block;
+                position: absolute;
+                height: 39px;
+                width: 40px;
+                left: -3px;
+                z-index: 2;
+            }
+            &:after {
+                position: absolute;
+                z-index: 3;
+                background-position: 0 -24px;
+            }
+        }
+    }
+
+    .site-header {
+        height: 80px;
+        max-height: 80px;
+        position: relative;
+        > nav {
+            height: 80px;
+            max-width: $desktop-hdr;
+            margin: 0 auto;
+        }
+        .site {
+            width: 280px;
+            height: 60px;
+        }
+        .wordmark {
+            background: url(../../img/mkt/logos/mp_aurora_wordmark_large.png) 0 50% no-repeat;
+            background-size: 280px auto;
+            width: 280px;
+            max-width: 280px;
+            height: 60px;
+        }
+        .browserid {
+            display: block;
+        }
+        .act-tray {
+            display: none;
+        }
+    }
+
+    .logged .site-header {
+        .act-tray {
+            display: block;
+        }
+        .browserid {
+            display: none;
+        }
+    }
+
+    .active .account-links {
+        display: block;
+    }
+
+    #page {
+        padding-top: 0px;
+    }
+
+    .search-clear {
+        top: 8px;
+    }
+
+    #search-q {
+        gradient-two-color-with-image(#21292f, #2a353c, url(../../img/mkt/icons/search.png), unquote('8px 8px'), no-repeat);
+        font-size: 12px;
+        font-weight: 300;
+        height: 26px;
+        line-height: 23px;
+        padding: 1px 30px 0 25px;
+        &:-moz-placeholder {
+            color: lighten(#48535d, 25%);
+        }
+        &::-moz-placeholder {
+            color: lighten(#48535d, 25%);
+        }
+        &::-webkit-input-placeholder {
+            color: lighten(#48535d, 25%);
+        }
+    }
+
+    // How does the header look for the various page "types"?
+    [data-page-type='root'] {
+        .site-header .title {
+            text-indent: -9999px;
+        }
+    }
+    [data-page-type='search'] {
+        .back, .filter, .site {
+            display: block;
+        }
+        .back, .site-header .expand-toggle {
+            display: none;
+        }
+        .header-button.filter {
+            display: none;
+        }
+        .flex-span {
+            display: none;
+        }
+        .site-header .title {
+            display: block;
+            text-indent: -9999px;
+        }
+    }
+    [data-page-type='leaf'] {
+        .back, .site, .search {
+            display: block;
+        }
+        .back, .expand-toggle {
+            display: none;
+        }
+        .site-header .title {
+            text-indent: -9999px;
+        }
+    }
+}
+
+
+// ***************** Narrow Mobile (< 600px)
+
+@media (max-width: 540px) {
+    [data-page-type='root'] {
+        .site-header {
+            .site, .wordmark {
+                width: 32px;
+            }
+            .title {
+                display: none;
+            }
+            .search {
+                flex(1);
+                width: auto;
+                margin: 0 10px;
+            }
+        }
+    }
+    [data-page-type='search'] {
+        .site-header.title {
+            text-indent: -9999px;
+        }
+        .flex-span {
+            display: none;
+        }
+        .act-tray {
+            display: none;
+        }
+        .header {
+            .search {
+                flex(1);
+                width: auto;
+                margin: 0 10px;
+            }
+        }
+    }
+    [data-page-type='leaf'] {
+        .act-tray {
+            display: none;
+        }
+    }
+    .site-header.suggestions {
+        nav > *:not(.search) {
+            display: none;
+        }
+        .search {
+            position: relative;
+            width: 100%;
+            left: auto;
+        }
+        .search-clear {
+            display: block;
+        }
+    }
+}
+
+
+@media $retina {
+    .search-clear {
+        background-image: url(../../img/mkt/icons/clear-2x.png);
+        background-size: 11px auto;
+    }
+    .header-button.settings:after {
+        background-image: url(../../img/mkt/icons/settings-2x.png);
+        background-size: 23px auto;
+    }
+}
+$retina-wide= $retina unquote('and (min-width: 1024px)');
+@media $retina-wide {
+    #search-q {
+        gradient-two-color-with-image(#21292f, #2a353c, url(../../img/mkt/icons/search-2x.png), unquote('10px 10px'), no-repeat);
+        background-size: 12px auto, auto;
     }
 }
 
@@ -215,7 +512,6 @@ body[data-page-type=notice] #site-header h1 {
 }
 
 /* Content header (breadcrumbs, heading, subnav) - used on Account Settings, etc. */
-
 #page .account header.c {
     margin-bottom: 10px;
     h1 {
@@ -257,10 +553,10 @@ body[data-page-type=notice] #site-header h1 {
             }
             &.selected {
                 a, a:hover {
-                    box-shadow: 0 1px 0 rgba(0, 0, 0, .2) inset;
-                    gradient-two-color($medium-gray, rgba($medium-gray, .25));
                     border-color: $medium-gray;
+                    box-shadow: 0 1px 0 rgba(0, 0, 0, .2) inset;
                     color: $white;
+                    gradient-two-color($medium-gray, rgba($medium-gray, .25));
                     text-shadow: 0 1px 0 rgba(0, 0, 0, .2);
                 }
             }
@@ -275,224 +571,5 @@ body[data-page-type=notice] #site-header h1 {
                 border-radius: 15px;
             }
         }
-    }
-}
-
-#search {
-    float: left;
-    margin: 0 0 0 12px;
-    padding: 10px 0;
-    position: relative;
-    label {
-        position: absolute;
-        left: -9999px;
-    }
-}
-
-#search-q {
-    border-radius: 3px;
-    box-shadow: 0 1px 0 rgba(255, 255, 255, .1), 0 1px 0 rgba(0, 0, 0, .5) inset, 0 1px 1px rgba(0, 0, 0, .5) inset;
-    gradient-two-color-with-image(#21292f, #2a353c, url(../../img/mkt/icons/magnifier.png), unquote('8px 8px'), no-repeat);
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    border: 0;
-    color: lighten(#99abb9, 2%);
-    display: block;
-    font: 17px/30px $open-stack;
-    height: 30px;
-    outline: none;
-    padding: 0 30px 0 30px;
-    z-index: 2;
-    width: 93px;
-    &:focus {
-        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.06) inset, 0 0 8px rgba(80, 160, 220, 0.6);
-        color: $white;
-    }
-    &:-moz-placeholder {
-        color: lighten(#99abb9, 3%);
-    }
-    &::-moz-placeholder {
-        color: lighten(#99abb9, 3%);
-    }
-    &::-webkit-input-placeholder {
-        color: lighten(#99abb9, 3%);
-    }
-}
-
-.html-rtl #site-header #search-q {
-    background-position: 0 50%;
-    padding: 5px 15px 5px 50px;
-}
-
-.search-clear {
-    hidetext();
-    position: absolute;
-    height: 12px;
-    width: 11px;
-    background: url(../../img/mkt/icons/clear.png) no-repeat;
-    top: 20px;
-    right: -50px;
-}
-
-@media $retina {
-    .search-clear {
-        background-image: url(../../img/mkt/icons/clear-2x.png);
-        background-size: 11px auto;
-    }
-}
-
-input:invalid ~ .search-clear {
-    display: none;
-}
-
-@media (min-width: 500px) {
-    body.show-search {
-        #search-q {
-            width: 280px;
-        }
-    }
-    #search {
-        float: right;
-    }
-    body:not(.show-search) {
-        body[data-page-type='search'] #site-header h1.page {
-            display: inline-block;
-            margin-left: 10px;
-        }
-    }
-
-    #site-header {
-        section.main {
-            max-width: 800px;
-        }
-    }
-}
-
-// When to show what header buttons where.
-body {
-    .header-button {
-        display: none;
-    }
-    &[data-page-type='search'] {
-        .header-button {
-            &.back, &.expand, &.filter {
-                display: block;
-            }
-        }
-        #site-header h1.page {
-            display: none;
-        }
-        #search-q {
-            width: 100%;
-        }
-        #search {
-            display: block;
-            width: calc(unquote('100% - 221px'));
-        }
-        #site-header:not(.suggestions) #search {
-            float: left;
-            margin-left: -7px;
-        }
-        .suggestions {
-            #search {
-                margin-left: 12px;
-            }
-            #search {
-                width: calc(unquote('100% - 143px'));
-            }
-        }
-    }
-    &[data-page-type='leaf'], &[data-page-type='alpha'] {
-        .header-button {
-            &.back {
-                display: block;
-            }
-        }
-    }
-    &[data-page-type='root'] {
-        .fancy {
-            opacity: 0;
-            top: 40px;
-            left: 40px;
-            position: relative;
-            visibility: hidden;
-        }
-        .header-button {
-            &.search, &.settings {
-                display: block;
-            }
-        }
-        #search {
-            display: block;
-            overflow: hidden;
-            padding-right: 12px;
-            width: calc(unquote('100% - 62px'));
-        }
-        #search-q {
-            width: calc(unquote('100% - 100px'));
-        }
-        &.show-search {
-            #search-q {
-                left: 40px;
-            }
-            .suggestions {
-                .settings {
-                    display: none;
-                }
-                #search {
-                    width: calc(unquote('100% - 72px'));
-                }
-            }
-            #site-header .wordmark {
-                opacity: 0;
-                top: -20px;
-                transition(unquote('top .5s, opacity .5s'));
-                z-index: 5;
-            }
-            #site-header .fancy {
-                opacity: 1;
-                top: 0;
-                transition(unquote('top .5s, opacity .5s, visibility .5s'));
-                visibility: visible;
-                z-index: 10;
-                .search-clear {
-                    right: 50px;
-                    top: 10px;
-                }
-            }
-        }
-    }
-}
-
-@media (min-width: 532px) {
-    body[data-page-type='root'] {
-         .fancy {
-            opacity: 1;
-            top: 0;
-            visibility: visible;
-        }
-        #search {
-            width: 212px;
-        }
-        .header-button {
-            &.search {
-                display: none;
-            }
-        }
-    }
-}
-
-// Market header suggestions mode. (Searchatron Terrorize!)
-#site-header.suggestions {
-    nav {
-        .back, .expand, .filter {
-            display: none;
-        }
-        .cancel {
-            display: block;
-        }
-    }
-    h1 .wordmark {
-        display: none;
     }
 }

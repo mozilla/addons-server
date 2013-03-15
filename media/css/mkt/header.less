@@ -10,9 +10,9 @@
     height: 50px;
     max-height: 50px;
     width: 100%;
-    .flex;
+    .display-flex();
     > * {
-        .flex-center;
+        .flex-center();
     }
     .title {
         .flex(1);
@@ -36,12 +36,12 @@
     }
     > nav {
         height: 50px;
+        .display-flex();
         position: relative;
-        width: 100%;
-        .flex;
         text-align: left;
+        width: 100%;
         > * {
-            .flex-center;
+            .flex-center();
             display: block;
         }
     }
@@ -87,9 +87,7 @@
     .transition(.3s all);
 }
 #search-q {
-    box-shadow: 0 1px 0 rgba(255,255,255,.1),
-                0 1px 0 rgba(0,0,0,.5) inset,
-                0 1px 1px rgba(0,0,0,.5) inset;
+    box-shadow: 0 1px 0 rgba(255,255,255,.1), 0 1px 0 rgba(0,0,0,.5) inset, 0 1px 1px rgba(0,0,0,.5) inset;
     .gradient-two-color-with-image(#21292f, #2a353c, url(../../img/mkt/icons/magnifier.png), ~'8px 8px', no-repeat);
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -106,8 +104,7 @@
     box-sizing: border-box;
 
     &:focus {
-        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.06) inset,
-                    0 0 8px rgba(80, 160, 220, 0.6);
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.06) inset, 0 0 8px rgba(80, 160, 220, 0.6);
         color: @white;
     }
     &:-moz-placeholder {
@@ -159,7 +156,7 @@ input:invalid ~ .search-clear {
         .hidetext;
         &:after {
             content: '';
-            background: url(../../img/mkt/header-icons.png) 0 0 no-repeat;
+            background: url(../../img/mkt/header-icons.png) no-repeat;
             display: block;
         }
     }
@@ -557,8 +554,8 @@ input:invalid ~ .search-clear {
             &.selected {
                 a, a:hover {
                     .gradient-two-color(@medium-gray, fadeout(@medium-gray, 75%));
-                    box-shadow: 0 1px 0 rgba(0,0,0,.2) inset;
                     border-color: @medium-gray;
+                    box-shadow: 0 1px 0 rgba(0,0,0,.2) inset;
                     color: @white;
                     text-shadow: 0 1px 0 rgba(0,0,0,.2);
                 }
