@@ -82,7 +82,10 @@ class OAuthAuthentication(Authentication):
                                                          errors[reason]}))
 
     def is_authenticated(self, request, **kwargs):
-        auth_header_value = request.META.get('HTTP_AUTHORIZATION', None)
+        auth_header_value = request.META.get('HTTP_AUTHORIZATION')
+        if not auth_header_value:
+            return self._error('headers')
+
         oauth_server, oauth_request = initialize_oauth_server_request(request)
         try:
             key = get_oauth_consumer_key_from_header(auth_header_value)
