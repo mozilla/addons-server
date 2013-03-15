@@ -41,7 +41,7 @@ USE_CARRIER_URLS = True
 CARRIER_URLS = ['telefonica']
 
 MKT_FEEDBACK_EMAIL = 'apps-feedback@mozilla.com'
-MKT_REVIEWERS_EMAIL = 'app-reviews@mozilla.org'
+MKT_REVIEWERS_EMAIL = 'app-reviewers@mozilla.org'
 MKT_SENIOR_EDITORS_EMAIL = 'amo-admin-reviews@mozilla.org'
 MKT_SUPPORT_EMAIL = 'marketplace-developer-support@mozilla.org'
 MARKETPLACE_EMAIL = 'amo-marketplace@mozilla.org'
