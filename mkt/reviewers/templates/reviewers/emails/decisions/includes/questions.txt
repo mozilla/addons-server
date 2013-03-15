@@ -1,1 +1,1 @@
-If you have any questions about this review, please reply to this email or join #amo-editors on irc.mozilla.org. For general developer support, please contact {{ MKT_SUPPORT_EMAIL }}.
+If you have any questions about this review, please reply to this email or join #app-reviewers on irc.mozilla.org. For general developer support, please contact {{ MKT_SUPPORT_EMAIL }}.
