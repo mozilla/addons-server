@@ -18,6 +18,7 @@ class REGION(object):
 
     slug::
         The text that gets stored in the cookie or in ?region=<slug>.
+        Use the ISO-3166 code please. 
 
     mcc::
         Don't know what an ITU MCC is? They're useful for carrier billing.
