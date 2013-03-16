@@ -850,6 +850,7 @@ MINIFY_BUNDLES = {
             'js/lib/syntaxhighlighter/shBrushSql.js',
             'js/lib/syntaxhighlighter/shBrushVb.js',
             'js/lib/syntaxhighlighter/shBrushXml.js',
+            'js/zamboni/storage.js',
             'js/zamboni/files.js',
         ),
         'zamboni/localizers': (
