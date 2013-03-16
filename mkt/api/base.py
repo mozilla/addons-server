@@ -51,6 +51,12 @@ class Marketplace(object):
                                        content_type='application/json')
         return ImmediateHttpResponse(response=response)
 
+    def _auths(self):
+        auths = self._meta.authentication
+        if not isinstance(auths, (list, tuple)):
+            auths = [self._meta.authentication]
+        return auths
+
     def is_authenticated(self, request):
         """
         An override of the tastypie Authentication to accept an iterator
@@ -60,11 +66,7 @@ class Marketplace(object):
         Any authentication method can still return a HttpResponse to break out
         of the loop if they desire.
         """
-        auths = self._meta.authentication
-        if not isinstance(auths, tuple):
-            auths = [self._meta.authentication]
-
-        for auth in auths:
+        for auth in self._auths():
             auth_result = auth.is_authenticated(request)
 
             if isinstance(auth_result, http.HttpResponse):
@@ -75,6 +77,35 @@ class Marketplace(object):
                 return
 
         raise ImmediateHttpResponse(response=http.HttpUnauthorized())
+
+    def throttle_check(self, request):
+        """
+        Handles checking if the user should be throttled.
+
+        Mostly a hook, this uses class assigned to ``throttle`` from
+        ``Resource._meta``.
+        """
+        identifiers = [a.get_identifier(request) for a in self._auths()]
+
+        # Check to see if they should be throttled.
+        if any(self._meta.throttle.should_be_throttled(identifier)
+               for identifier in identifiers):
+            # Throttle limit exceeded.
+            raise ImmediateHttpResponse(response=http.HttpForbidden())
+
+    def log_throttled_access(self, request):
+        """
+        Handles the recording of the user's access for throttling purposes.
+
+        Mostly a hook, this uses class assigned to ``throttle`` from
+        ``Resource._meta``.
+        """
+        request_method = request.method.lower()
+        identifiers = [a.get_identifier(request) for a in self._auths()]
+        for identifier in identifiers:
+            self._meta.throttle.accessed(identifier,
+                                         url=request.get_full_path(),
+                                         request_method=request_method)
 
 
 class MarketplaceResource(Marketplace, Resource):
