@@ -71,6 +71,9 @@ class StatsTest(amo.tests.ESTestCase):
     def views_gen(self, **kwargs):
         # common set of views
         for series in views.SERIES:
+            if series == 'my_apps':
+                # skip my_apps, as it has different routes
+                continue
             for group in views.SERIES_GROUPS:
                 view = 'mkt.stats.%s_series' % series
                 args = kwargs.copy()
@@ -214,7 +217,8 @@ class TestMyApps(StatsTest):
 
 class TestInstalled(amo.tests.ESTestCase):
     es = True
-    fixtures = fixture('user_999', 'webapp_337141')
+    fixtures = fixture('user_admin', 'group_admin', 'user_admin_group',
+                       'user_999', 'webapp_337141')
 
     def setUp(self):
         self.today = datetime.date.today()
