@@ -97,8 +97,8 @@ class StatsTest(amo.tests.ESTestCase):
 
 class TestStatsPermissions(StatsTest):
     """Tests to make sure all restricted data remains restricted."""
-    mock_es = True  # We're checking only headers, not content.
 
+    @amo.tests.mock_es  # We're checking only headers, not content.
     def _check_it(self, views, status):
         for view, kwargs in views:
             response = self.get_view_response(view, head=True, **kwargs)
