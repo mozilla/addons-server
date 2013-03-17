@@ -217,7 +217,7 @@ class AppResource(MarketplaceModelResource):
         bundle.data['premium_type'] = amo.ADDON_PREMIUM_API[obj.premium_type]
         bundle.data['categories'] = [c.pk for c in obj.categories.all()]
         with no_translation():
-            bundle.data['device_types'] = [str(n.name).lower()
+            bundle.data['device_types'] = [n.api_name
                                            for n in obj.device_types]
         bundle.data['app_type'] = obj.app_type
         return bundle

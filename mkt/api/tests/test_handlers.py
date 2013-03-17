@@ -8,7 +8,7 @@ from django.conf import settings
 from mock import patch
 from nose.tools import eq_
 
-from addons.models import Addon, AddonUser, Category, Preview
+from addons.models import Addon, AddonDeviceType, AddonUser, Category, Preview
 import amo
 from amo.tests import AMOPaths
 from files.models import FileUpload
@@ -321,6 +321,15 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         eq_(res.status_code, 200)
         content = json.loads(res.content)
         eq_(content['status'], 0)
+
+    def test_get_device(self):
+        app = self.create_app()
+        AddonDeviceType.objects.create(addon=app,
+                                       device_type=amo.DEVICE_DESKTOP.id)
+        res = self.client.get(self.get_url)
+        eq_(res.status_code, 200)
+        content = json.loads(res.content)
+        eq_(content['device_types'], [u'desktop'])
 
     def test_not_public(self):
         self.create_app()
