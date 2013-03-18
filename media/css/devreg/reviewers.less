@@ -567,7 +567,7 @@ div.editor-stats-table > div.editor-stats-dark {
     .date_range {
         padding: 1em;
     }
-    label[for="id_text_query"] {
+    label[for="id_q"] {
         margin-right: .5em;
     }
     button {
@@ -626,9 +626,9 @@ div.editor-stats-table > div.editor-stats-dark {
         visibility: hidden;
     }
 }
-#id_text_query {
-    width: 25em;
+#id_q {
     height: 2em;
+    width: 50%;
 }
 
 /* Add-on Review Log */
@@ -1108,6 +1108,23 @@ span.currently_viewing_warning {
     }
 }
 
+#search-queue {
+    .app-name {
+        width: 33%;
+        a {
+            display: inline-block;
+        }
+        span {
+            border: 1px solid @light-gray;
+            border-radius: 5px;
+            display: inline-block;
+            font-size: 11px;
+            margin: 0 5px 0 0;
+            padding: 0 5px;
+        }
+    }
+}
+
 #manifest-headers,
 #manifest-permissions,
 #manifest-contents {
@@ -1163,7 +1180,7 @@ iframe#manifest-contents {
 }
 
 @media @landscape-max {
-    #id_text_query {
+    #id_q {
         display: block;
         font-size: 18px;
         margin-top: .5em;
@@ -1401,10 +1418,10 @@ iframe#manifest-contents {
     #queue-search {
         padding: 0;
         margin: 26px 0 6px;
-        label[for="id_text_query"] {
+        label[for="id_q"] {
             display: none;
         }
-        input#id_text_query {
+        input#id_q {
             display: inline-block;
             margin-right: 5px;
             margin-top: 0;

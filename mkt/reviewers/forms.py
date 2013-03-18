@@ -4,12 +4,13 @@ import happyforms
 from tower import ugettext as _, ugettext_lazy as _lazy
 
 import amo
-from amo.utils import raise_required
+import mkt.constants.reviewers as rvw
 from addons.models import AddonDeviceType, Persona
+from amo.utils import raise_required
 from editors.forms import NonValidatingChoiceField, ReviewLogForm
 from editors.models import CannedResponse
 from mkt.reviewers.utils import ReviewHelper
-import mkt.constants.reviewers as rvw
+
 from .models import ThemeLock
 from .tasks import send_mail
 
@@ -96,36 +97,6 @@ class ReviewAppLogForm(ReviewLogForm):
             # L10n: Descript of what can be searched for.
             'placeholder': _lazy(u'app, reviewer, or comment'),
             'size': 30}
-
-
-class AppQueueSearchForm(happyforms.Form):
-    text_query = forms.CharField(required=False,
-                                 label=_lazy(u'Search by app name or author'
-                                             ' email'))
-    admin_review = forms.BooleanField(required=False,
-                                      label=_lazy(u'Admin Flag'))
-    has_editor_comment = forms.BooleanField(required=False,
-                                            label=_lazy(u'Has Editor Comment'))
-    has_info_request = forms.BooleanField(required=False,
-        label=_lazy(u'Information Requested'))
-    waiting_time_days = forms.TypedChoiceField(required=False, coerce=int,
-        label=_lazy(u'Days Since Submission'),
-        choices=([('', '')] + [(i, i) for i in range(1, 10)] + [(10, '10+')]))
-    device_type_ids = forms.MultipleChoiceField(required=False,
-        widget=forms.CheckboxSelectMultiple,
-        label=_lazy(u'Device Type'),
-        choices=[(d.id, d.name) for d in amo.DEVICE_TYPES.values()])
-    app_type = forms.TypedChoiceField(required=False, coerce=int,
-        label=_lazy(u'App Type'),
-        choices=[('', '')] + rvw.APP_TYPES.items())
-
-    # Changes wording from "I'll use my own system..." to fit context of queue.
-    premium_types = dict(amo.ADDON_PREMIUM_TYPES)
-    premium_types[amo.ADDON_OTHER_INAPP] = _(u'Other system')
-    premium_type_ids = forms.MultipleChoiceField(
-        widget=forms.CheckboxSelectMultiple,
-        required=False, label=_lazy(u'Premium Type'),
-        choices=premium_types.items())
 
 
 class ThemeReviewForm(happyforms.Form):

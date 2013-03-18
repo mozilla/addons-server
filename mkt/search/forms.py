@@ -7,7 +7,7 @@ from addons.models import Category
 import amo
 
 
-ADDON_CHOICES = ((v, v) for k, v in amo.MKT_ADDON_TYPES_API.items())
+ADDON_CHOICES = [(v, v) for k, v in amo.MKT_ADDON_TYPES_API.items()]
 
 STATUS_CHOICES = []
 for status in amo.WEBAPPS_UNLISTED_STATUSES + (amo.STATUS_PUBLIC,):
@@ -32,7 +32,7 @@ PRICE_CHOICES = [
 ]
 
 DEVICE_CHOICES = [
-    (None, _lazy(u'Any Device')),
+    ('', _lazy(u'Any Device')),
     ('desktop', _lazy(u'Desktop')),
     ('mobile', _lazy(u'Mobile')),
     ('tablet', _lazy(u'Tablet')),
@@ -44,6 +44,10 @@ DEVICE_CHOICES_IDS = {
     'tablet': amo.DEVICE_TABLET.id,
     'gaia': amo.DEVICE_GAIA.id,
 }
+
+APP_TYPE_CHOICES = [
+    ('', _lazy(u'Any App Type'))
+] + [(t, t) for t in amo.ADDON_WEBAPP_TYPES.values()]
 
 # "Relevance" doesn't make sense for Category listing pages.
 LISTING_SORT_CHOICES = SORT_CHOICES[1:]
@@ -118,27 +122,38 @@ class AppListForm(AppSearchForm):
 
 
 class ApiSearchForm(forms.Form):
-    # Like App search form, but just filtering on categories for now
-    # and bit more strict about the filtering.
-    q = forms.CharField(required=False)
-    type = forms.ChoiceField(required=False, choices=ADDON_CHOICES)
-    status = forms.ChoiceField(required=False, choices=STATUS_CHOICES)
-    sort = forms.ChoiceField(required=False, choices=LISTING_SORT_CHOICES)
+    q = forms.CharField(required=False,
+                        label=_lazy(u'Search'),
+                        widget=forms.TextInput(attrs={'autocomplete': 'off'}))
+    type = forms.ChoiceField(required=False, choices=ADDON_CHOICES,
+                             label=_lazy(u'Add-on type'))
+    status = forms.ChoiceField(required=False, choices=STATUS_CHOICES,
+                               label=_lazy(u'Status'))
     cat = forms.TypedChoiceField(required=False, coerce=int, empty_value=None,
-                                 choices=[])
-    device = forms.ChoiceField(required=False, choices=DEVICE_CHOICES)
+                                 choices=[], label=_lazy(u'Category'))
+    device = forms.ChoiceField(required=False, choices=DEVICE_CHOICES,
+                               label=_lazy(u'Device type'))
     premium_types = forms.MultipleChoiceField(
-        required=False,
+        required=False, label=_lazy(u'Premium types'),
         choices=tuple((p, p) for p in amo.ADDON_PREMIUM_API.values()))
-    app_type = forms.ChoiceField(
-        required=False,
-        choices=tuple((t, t) for t in amo.ADDON_WEBAPP_TYPES.values()))
+    app_type = forms.ChoiceField(required=False, label=_lazy(u'App type'),
+                                 choices=APP_TYPE_CHOICES)
+
+    sort = forms.ChoiceField(required=False, choices=LISTING_SORT_CHOICES)
+    # TODO: Drop this back to a reasonable value when we do pagination.
+    limit = forms.IntegerField(required=False, widget=forms.HiddenInput())
 
     def __init__(self, *args, **kw):
         super(ApiSearchForm, self).__init__(*args, **kw)
         CATS = (Category.objects.filter(type=amo.ADDON_WEBAPP, weight__gte=0)
                          .values_list('id', flat=True))
         self.fields['cat'].choices = [(pk, pk) for pk in CATS]
+
+        self.initial.update({
+            'type': 'app',
+            'status': 'pending',
+            'limit': 200,
+        })
 
     def clean_type(self):
         return amo.MKT_ADDON_TYPES_API_LOOKUP.get(self.cleaned_data['type'],

@@ -12,7 +12,6 @@ from django.db import transaction
 from django.db.models import Count, Q
 from django.forms.formsets import formset_factory
 from django.shortcuts import get_object_or_404, redirect
-from django.utils import translation
 from django.utils.datastructures import MultiValueDictKeyError
 
 import commonware.log
@@ -49,6 +48,7 @@ from zadmin.models import get_config, set_config
 
 import mkt.constants.reviewers as rvw
 from mkt.reviewers.utils import AppsReviewing, clean_sort_param
+from mkt.search.forms import ApiSearchForm
 from mkt.site.helpers import product_as_dict
 from mkt.webapps.models import Webapp
 
@@ -157,7 +157,9 @@ def _progress():
 
 def context(**kw):
     ctx = dict(motd=get_config('mkt_reviewers_motd'),
-               queue_counts=queue_counts())
+               queue_counts=queue_counts(),
+               search_url=reverse('api_dispatch_list', kwargs={
+                   'api_name': 'apps', 'resource_name': 'search'}))
     ctx.update(kw)
     return ctx
 
@@ -221,7 +223,6 @@ def _review(request, addon):
         if form.cleaned_data.get('notify'):
             EditorSubscription.objects.get_or_create(user=request.amo_user,
                                                      addon=addon)
-
 
         messages.success(request, _('Review successfully processed.'))
         return redirect(redirect_url)
@@ -332,10 +333,10 @@ def _check_if_searching(search_form):
         return searching, adv_searching
 
     for field in search_form:
-        if field.data:
+        if field.data and field.name != 'sort':
             # If filtering, show 'clear search' button.
             searching = True
-            if field.name != 'text_query':
+            if field.name != 'q':
                 # If filtering by adv fields, don't hide the adv field form.
                 adv_searching = True
                 break
@@ -472,51 +473,7 @@ def _queue_to_apps(request, queue_qs):
 
 
 def _get_search_form(request, qs):
-    if request.GET:
-        search_form = forms.AppQueueSearchForm(request.GET)
-        if search_form.is_valid():
-            qs = _filter(qs, search_form.cleaned_data)
-        return qs, search_form
-    else:
-        return qs, forms.AppQueueSearchForm(request.GET)
-
-
-def _filter(qs, data):
-    """Handle search filters and queries for app queues."""
-    # Turn the form filters into ORM queries and narrow the queryset.
-    if data.get('text_query'):
-        # Dynamically compose an OR query that does icontains match on
-        # app name or author username/email, on multiple keywords.
-        qs = qs.filter(reduce(_or_query, data['text_query'].split(), Q()))
-    if data.get('admin_review'):
-        qs = qs.filter(admin_review=data['admin_review'])
-    if data.get('has_editor_comment'):
-        qs = qs.filter(_current_version__has_editor_comment=
-                       data['has_editor_comment'])
-    if data.get('has_info_request'):
-        qs = qs.filter(_current_version__has_info_request=
-                       data['has_info_request'])
-    if data.get('waiting_time_days'):
-        dt = (datetime.datetime.today() -
-              datetime.timedelta(data['waiting_time_days']))
-        qs = qs.filter(created__lte=dt)
-    if data.get('app_type', '') != '':
-        qs = qs.filter(is_packaged=data['app_type'])
-    if data.get('device_type_ids', []):
-        qs = qs.filter(addondevicetype__device_type__in=
-                       data['device_type_ids'])
-    if data.get('premium_type_ids', []):
-        qs = qs.filter(premium_type__in=data['premium_type_ids'])
-    return qs
-
-
-def _or_query(query, text):
-    """Helper function for the reduce statement in _filter."""
-    query |= (Q(name__localized_string__icontains=text,
-                name__locale=translation.get_language()) |
-              Q(authors__username__icontains=text) |
-              Q(authors__email__icontains=text))
-    return query
+    return qs, ApiSearchForm(request.GET or None)
 
 
 @permission_required('Apps', 'Review')
@@ -1044,6 +1001,6 @@ def attachment(request, attachment):
         filename = urllib.quote(a.filename())
         response = http.HttpResponse(fsock,
                                      mimetype='application/force-download')
-        response['Content-Disposition'] = 'attachment; filename=%s' % filename 
+        response['Content-Disposition'] = 'attachment; filename=%s' % filename
         response['Content-Length'] = os.path.getsize(full_path)
     return response

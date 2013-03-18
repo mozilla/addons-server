@@ -11,70 +11,99 @@
     }
 
     var $viewManifest = $('#view-manifest'),
-        $manifest = $('#manifest-contents');
-    if (!$viewManifest.length) {
-        return;
-    }
+        $manifest = $('#manifest-contents'),
+        $search = $('#queue-search');
 
     // Prefetch manifest.
-    $.getJSON($viewManifest.data('url'), function(data) {
-        var manifestContents = data;
+    if ($viewManifest.length) {
+        $.getJSON($viewManifest.data('url'), function(data) {
+            var manifestContents = data;
 
-        // Show manifest.
-        $viewManifest.click(_pd(function() {
-            var $this = $viewManifest,
-                $manifest = $('#manifest-headers, #manifest-contents');
-            if ($manifest.length) {
-                $manifest.toggle();
-            } else {
-                if (!manifestContents.success) {
-                    // If requests couldn't fetch the manifest, let Firefox render it.
-                    $('<iframe>', {'id': 'manifest-contents',
-                                   'src': 'view-source:' + $this.data('manifest')}).insertAfter($this);
+            // Show manifest.
+            $viewManifest.click(_pd(function() {
+                var $this = $viewManifest,
+                    $manifest = $('#manifest-headers, #manifest-contents');
+                if ($manifest.length) {
+                    $manifest.toggle();
                 } else {
-                    var contents = '',
-                        headers = '';
+                    if (!manifestContents.success) {
+                        // If requests couldn't fetch the manifest, let Firefox render it.
+                        $('<iframe>', {'id': 'manifest-contents',
+                                       'src': 'view-source:' + $this.data('manifest')}).insertAfter($this);
+                    } else {
+                        var contents = '',
+                            headers = '';
 
-                    _.each(manifestContents.content.split('\n'), function(v, k) {
-                        if (v) {
-                            contents += format('<li>{0}</li>', v);
-                        }
-                    });
-                    $('<ol>', {'id': 'manifest-contents', 'html': contents}).insertAfter($this);
-
-                    if (manifestContents.headers) {
-                        _.each(manifestContents.headers, function(v, k) {
-                            headers += format('<li><b>{0}:</b> {1}</li>', k, v);
-                        });
-                        $('<ol>', {'id': 'manifest-headers', 'html': headers}).insertAfter($this);
-                    }
-
-                    if (manifestContents.permissions) {
-                        var permissions = format('<h4>{0}</h4><dl>', gettext('Requested Permissions:'));
-                        permissions += _.map(
-                            manifestContents.permissions,
-                            function(details, permission) {
-                                var type;
-                                if (details.type) {
-                                    switch (details.type) {
-                                        case 'cert':
-                                            type = gettext('Certified');
-                                            break;
-                                        case 'priv':
-                                            type = gettext('Privileged');
-                                            break;
-                                        case 'web':
-                                            type = gettext('Unprivileged');
-                                    }
-                                }
-                                return format('<dt>{0}</dt><dd>{1}, {2}</dd>',
-                                              permission, type, details.description || gettext('No reason given'));
+                        _.each(manifestContents.content.split('\n'), function(v, k) {
+                            if (v) {
+                                contents += format('<li>{0}</li>', v);
                             }
-                        ).join('');
-                        $('<div>', {'id': 'manifest-permissions', 'html': permissions}).insertAfter($this);
+                        });
+                        $('<ol>', {'id': 'manifest-contents', 'html': contents}).insertAfter($this);
+
+                        if (manifestContents.headers) {
+                            _.each(manifestContents.headers, function(v, k) {
+                                headers += format('<li><b>{0}:</b> {1}</li>', k, v);
+                            });
+                            $('<ol>', {'id': 'manifest-headers', 'html': headers}).insertAfter($this);
+                        }
+
+                        if (manifestContents.permissions) {
+                            var permissions = format('<h4>{0}</h4><dl>', gettext('Requested Permissions:'));
+                            permissions += _.map(
+                                manifestContents.permissions,
+                                function(details, permission) {
+                                    var type;
+                                    if (details.type) {
+                                        switch (details.type) {
+                                            case 'cert':
+                                                type = gettext('Certified');
+                                                break;
+                                            case 'priv':
+                                                type = gettext('Privileged');
+                                                break;
+                                            case 'web':
+                                                type = gettext('Unprivileged');
+                                        }
+                                    }
+                                    return format('<dt>{0}</dt><dd>{1}, {2}</dd>',
+                                                  permission, type, details.description || gettext('No reason given'));
+                                }
+                            ).join('');
+                            $('<div>', {'id': 'manifest-permissions', 'html': permissions}).insertAfter($this);
+                        }
                     }
                 }
-            }
+            }));
+        });
+    }
+
+    // Reviewer tool search.
+    var search_results = getTemplate($('#queue-search-template'));
+    var search_result_row = getTemplate($('#queue-search-row-template'));
+    var no_results = getTemplate($('#queue-search-empty-template'));
+
+    if ($search.length) {
+        var api_url = $search.data('api-url');
+        var search_island = $('#search-island');
+        $search.on('submit', 'form', _pd(function() {
+            var $form = $(this);
+            $.get(api_url, $form.serialize()).done(function(data) {
+                // Hide app queue.
+                $('.search-toggle').hide();
+                // Show results.
+                if (data.meta.total_count === 0) {
+                    search_island.html(no_results({})).show();
+                } else {
+                    var results = [];
+                    $.each(data.objects, function(i, item) {
+                        results.push(search_result_row(item));
+                    });
+                    search_island.html(
+                        search_results({rows: results.join('')})).show();
+                }
+            });
         }));
-    });
+    }
+
 })();

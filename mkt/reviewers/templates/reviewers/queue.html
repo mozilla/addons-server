@@ -12,11 +12,11 @@
     </section>
   {% endif %}
 
-  <div class="mobile-queue-search hidden">
+  <div class="queue-search">
     {% include "reviewers/includes/queue_search.html" %}
   </div>
 
-  <ul class="tabnav">
+  <ul class="tabnav search-toggle">
     {% for prefix, this, loc, text in queue_tabnav() %}
       <li{% if tab == this %} class="selected trigger-queues"{% endif %}>
         <a href="{{ url('reviewers.%s.%s' % (prefix, loc)) }}">{{ text }}</a>
@@ -25,12 +25,10 @@
     {% endfor %}
   </ul>
 
-  <section class="island">
+  <section id="queue-island" class="island search-toggle">
     {% if tab == 'moderated' %}
       {% include "reviewers/includes/queue_moderation.html" %}
     {% else %}
-      {% include "reviewers/includes/queue_search.html" %}
-
       {% if addons %}
         <table id="addon-queue" class="data-grid items"
                data-url="{{ url('editors.queue_viewing') }}">
@@ -114,8 +112,13 @@
 
   </section>
 
+  {# Populated by dynamic search #}
+  <section id="search-island" class="island hidden"></section>
+
   <p id="helpfulLinks">
     {{ _('Helpful Links:') }}
     <a href="http://wiki.mozilla.org/Update:Editors">{{ _("Editors' Guide") }}</a>
   </p>
+
+  {% include "reviewers/includes/search_results.html" %}
 {% endblock %}

@@ -36,7 +36,7 @@ from lib.crypto import packaged
 from lib.crypto.tests import mock_sign
 import mkt.constants.reviewers as rvw
 from mkt.reviewers.models import ThemeLock
-from mkt.reviewers.views import (_do_sort, _filter, _check_if_searching,
+from mkt.reviewers.views import (_do_sort, _check_if_searching,
                                  _get_search_form, _get_themes, _queue_to_apps)
 from mkt.site.fixtures import fixture
 from mkt.submit.tests.test_views import BasePackagedAppTest
@@ -2310,65 +2310,6 @@ class TestQueueSearchSort(AppReviewerTest):
 
         self.url = reverse('reviewers.apps.queue_pending')
 
-    def test_filter(self):
-        """For each field in the form, run it through view and check results.
-        """
-        both_apps = (self.apps[0].id, self.apps[1].id)
-        app0 = (self.apps[0].id,)
-        app1 = (self.apps[1].id,)
-
-        self.do_filter(app1, text_query='roy')
-        self.do_filter(both_apps, text_query='illa atu')
-        self.do_filter(both_apps, text_query='ill')
-
-        self.do_filter(both_apps, admin_review=False)
-        self.do_filter(app0, admin_review=True)
-
-        self.do_filter(both_apps, has_editor_comment=False)
-        self.do_filter(app1, has_editor_comment=True)
-
-        self.do_filter(both_apps, has_info_request=False)
-        self.do_filter(app1, has_info_request=True)
-
-        self.do_filter(both_apps, waiting_time_days=1)
-        self.do_filter(app1, waiting_time_days=4)
-
-        self.do_filter(app0, app_type=rvw.APP_TYPE_HOSTED)
-        self.do_filter(app1, app_type=rvw.APP_TYPE_PACKAGED)
-
-        self.do_filter(both_apps, device_type_ids=[amo.DEVICE_MOBILE.id,
-                                                   amo.DEVICE_DESKTOP.id])
-        self.do_filter(app0, device_type_ids=[amo.DEVICE_DESKTOP.id])
-        self.do_filter(app1, device_type_ids=[amo.DEVICE_MOBILE.id])
-
-        self.do_filter(both_apps, premium_type_ids=[amo.ADDON_FREE,
-                                                    amo.ADDON_PREMIUM])
-        self.do_filter(app0, premium_type_ids=[amo.ADDON_FREE])
-        self.do_filter(app1, premium_type_ids=[amo.ADDON_PREMIUM])
-
-    def do_filter(self, expected_ids, **kw):
-        """Checks that filter returns the expected ids
-
-        expected_ids -- list of app ids expected in the result.
-        """
-        qs = _filter(Webapp.objects.all(), kw)
-
-        self.assertSetEqual(qs.values_list('id', flat=True), expected_ids)
-
-    def test_no_duplicate_locale(self):
-        """
-        Test that filter results don't return multiple results on app
-        name from different locales.
-        """
-        app = self.apps[0]
-        app.name = {'en-us': 'butter', 'fr': 'butterete', 'de': 'buttern'}
-        app.save()
-        ids = (_filter(Webapp.objects.all(), {'text_query': 'but'})
-               .values_list('id', flat=True))
-
-        eq_(len(ids), 1)
-        assert app.id in ids
-
     def test_check_if_searching(self):
         """
         Test that advanced search form shown when searching fields other
@@ -2377,19 +2318,17 @@ class TestQueueSearchSort(AppReviewerTest):
         qs = Webapp.objects.all()
 
         # Not searching.
-        r = self.rf.get(self.url, {'text_query': '',
-                                   'waiting_time_days': ''})
+        r = self.rf.get(self.url, {'q': '', 'sort': 'asc'})
         qs, search_form = _get_search_form(r, qs)
         eq_(_check_if_searching(search_form), (False, False))
 
         # Regular searching.
-        r = self.rf.get(self.url, {'text_query': 'abcd',
-                                   'waiting_time_days': ''})
+        r = self.rf.get(self.url, {'q': 'abcd', 'sort': 'asc'})
         qs, search_form = _get_search_form(r, qs)
         eq_(_check_if_searching(search_form), (True, False))
 
         # Advanced searching.
-        r = self.rf.get(self.url, {'has_info_request': '1'})
+        r = self.rf.get(self.url, {'q': 'abcd', 'app_type': 'hosted'})
         qs, search_form = _get_search_form(r, qs)
         eq_(_check_if_searching(search_form), (True, True))
 
