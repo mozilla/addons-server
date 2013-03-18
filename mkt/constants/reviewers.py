@@ -27,7 +27,7 @@ REVIEW_ACTIONS = {
 }
 
 THEME_REJECT_REASONS = {
-    0: _('Other rejection reason'),
+    # 0: _('Other rejection reason'),
     1: _('Sexual or pornographic content'),
     2: _('Inappropriate or offensive content'),
     3: _('Violence, war, or weaponry images'),
