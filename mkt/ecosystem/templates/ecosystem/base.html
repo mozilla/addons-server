@@ -8,24 +8,6 @@
 
 {% block site_header_title %}{% endblock %}
 
-{% block account_links %}
-  <div class="devhub-links {{ 'logged' if logged }}">
-    <a href="//developer.mozilla.org/Apps/Reference">
-      {{- _('API Reference') -}}
-    </a>
-    <a href="{{ url('ecosystem.support') }}">{{ _('Support') }}</a>
-    <a href="{{ url('submit.app') }}" class="submit">
-      {{- _('Submit an app') -}}
-    </a>
-    <a href="{{ url('home') }}" class="submit">
-      {{- _('Marketplace') -}}
-    </a>
-    {% if not logged %}
-      <a href="#" class="browserid">{{ _('Sign In') }}</a>
-    {% endif %}
-  </div>
-{% endblock %}
-
 {% block site_nav_footer %}
   <div id="site-map-footer">
     <div class="pad">

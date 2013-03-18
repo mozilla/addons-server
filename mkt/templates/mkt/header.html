@@ -25,7 +25,11 @@
     <div class="act-tray">
       <a href="{{ url('account.settings') }}"
          class="header-button icon settings" title="{{ _('Settings') }}"></a>
-      {% include 'mkt/account-links.html' %}
+      {% if logged %}
+        <div class="account-links">
+          {% include 'mkt/account-links.html' %}
+        </div>
+      {% endif %}
     </div>
     <a href="#" class="header-button browserid">{{ _('Sign In') }}</a>
   </nav>

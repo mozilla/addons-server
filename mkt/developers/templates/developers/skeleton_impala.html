@@ -59,8 +59,25 @@
             <h1 class="logo"><a href="{{ url('ecosystem.landing') }}">
               {{ _('Firefox Marketplace Developers') }}</a></h1>
           {% endblock %}
-          {% block account_links %}{% endblock %}
-          {% include 'mkt/account-links.html' %}
+          <div class="devhub-links{{ ' logged' if logged }}">
+            <a href="//developer.mozilla.org/Apps/Reference">
+              {{- _('API Reference') }}</a>
+            <a href="{{ url('ecosystem.support') }}">{{ _('Support') }}</a>
+            <a href="{{ url('submit.app') }}" class="submit">
+              {{- _('Submit an app') }}</a>
+            <a href="{{ url('home') }}" class="submit">
+              {{- _('Marketplace') }}</a>
+            {% if not logged %}
+              <a href="#" class="browserid">{{ _('Sign In') }}</a>
+            {% endif %}
+          </div>
+          {% if logged %}
+            <div class="account-links">
+              <a href="{{ url('account.settings') }}"
+                 class="header-button icon settings" title="{{ _('Settings') }}"></a>
+              {% include 'mkt/account-links.html' %}
+            </div>
+          {% endif %}
         </div>
         {% block site_header_title %}
           {% include 'developers/nav.html' %}

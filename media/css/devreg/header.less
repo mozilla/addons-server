@@ -323,7 +323,53 @@
     top: 0;
     ul {
         margin: 0;
+        position: absolute;
         top: 54px;
+    }
+}
+
+.doc-wrapper, .upper-header {
+    margin: 0 auto;
+    width: 960px;
+}
+
+#site-header {
+    border-bottom: 5px solid @white;
+    box-shadow: 0 1px 3px -1px rgba(0, 0, 0, 0.6);
+    position: relative;
+    z-index: 4;
+
+    .logo {
+        width: 400px;
+    }
+
+    .header-button.icon.browserid {
+        display: none;
+    }
+}
+
+.header-button.browserid {
+    position: relative;
+    width: auto;
+}
+
+.devhub-links {
+    position: absolute;
+    right: 0;
+    text-align: right;
+    top: 30px;
+    width: 630px;
+    z-index: 6;
+
+    &.logged {
+        right: 40px;
+    }
+
+    a {
+        color: @white;
+        font-size: 13px;
+        line-height: 20px;
+        padding: 5px 7px;
     }
 }
 
