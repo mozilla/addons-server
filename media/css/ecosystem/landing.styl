@@ -1,6 +1,6 @@
 @import './documentation';
 
-@right-width: 528px;
+$right-width = 528px;
 
 .faded-border {
     &:before, &:after {
@@ -22,7 +22,7 @@
 }
 
 #landing-page {
-    color: @medium-gray;
+    color: $medium-gray;
     font-size: 14px;
     font-weight: 400;
     line-height: 18px;
@@ -31,7 +31,7 @@
     width: 960px;
 
     h1 {
-        color: @dark-gray;
+        color: $dark-gray;
         font-size: 37px;
         font-weight: 100;
         line-height: 47px;
@@ -59,10 +59,10 @@
     }
 
     #partnership {
-        .faded-border;
+        faded-border();
         border-bottom: 1px solid #ddd;
         border-top: 1px solid #ddd;
-        box-shadow: inset @light-gray 0 1px 5px;
+        box-shadow: inset $light-gray 0 1px 5px;
         clear: both;
         float: left;
         margin: 10px 0 20px;
@@ -146,7 +146,7 @@
         }
 
         .submit-app {
-            border-right: 1px solid @light-gray;
+            border-right: 1px solid $light-gray;
             float: left;
             margin: 0 auto 10px;
             padding: 10px 5px 5px 15px;
@@ -163,9 +163,9 @@
                 }
 
                 a.button {
-                    .gradient-two-color(#367dbc, #276093);
+                    gradient-two-color(#367dbc, #276093);
                     clear: both;
-                    color: @white;
+                    color: $white;
                     display: block;
                     font-size: 18px;
                     line-height: 22px;
@@ -182,8 +182,8 @@
     }
 
     #newsletter-signup {
-        .border-wrapper;
-        background: @white url(../../img/ecosystem/newsletter-arrow.png) no-repeat 320px 50%;
+        border-wrapper();
+        background: $white url(../../img/ecosystem/newsletter-arrow.png) no-repeat 320px 50%;
         clear: both;
         float: left;
         margin: 20px 0;
@@ -286,7 +286,7 @@
     width: 960px;
 
     &.initial-steps {
-        .border-wrapper;
+        border-wrapper();
     }
 
     &.initial-steps {
@@ -341,12 +341,12 @@
         }
 
         a p {
-            color: @medium-gray;
+            color: $medium-gray;
         }
     }
 
     h2 {
-        color: @dark-gray;
+        color: $dark-gray;
         font-size: 30px;
         margin-bottom: 15px;
     }
@@ -363,7 +363,7 @@
         margin-top: 10px;
 
         img {
-            .border-wrapper;
+            border-wrapper();
             display: block;
             padding: 5px;
         }
@@ -375,7 +375,7 @@
 
         &.right {
             padding: 0;
-            width: @right-width;
+            width: $right-width;
         }
     }
 
@@ -387,7 +387,7 @@
 
     .videos {
         margin: 0 auto;
-        width: @right-width;
+        width: $right-width;
 
         .video-item {
             display: none;
@@ -404,7 +404,7 @@
         }
 
         .video-control {
-            .border-wrapper;
+            border-wrapper();
             margin: 0 auto;
         }
 
@@ -415,7 +415,7 @@
             padding: 0;
 
             li {
-                .border-wrapper;
+                border-wrapper();
                 cursor: pointer;
                 float: left;
                 margin-right: 10px;
@@ -441,7 +441,7 @@
 
         li {
             background-repeat: no-repeat;
-            border-bottom: 1px dotted @light-gray;
+            border-bottom: 1px dotted $light-gray;
             font-size: 15px;
             line-height: 22px;
             min-height: 52px;
@@ -478,7 +478,7 @@
         }
 
         h2, h3 {
-            color: @dark-gray;
+            color: $dark-gray;
             margin: 20px auto;
         }
 
@@ -493,7 +493,7 @@
         }
 
         .header, section {
-            .faded-border;
+            faded-border();
             float: left;
             font-size: 22px;
             font-weight: 100;
@@ -537,7 +537,7 @@
                     min-width: 120px;
 
                     &.api {
-                        .gradient-two-color(#1fa8c1, #158499);
+                        gradient-two-color(#1fa8c1, #158499);
                         float: right;
                     }
                 }
@@ -552,7 +552,7 @@
             margin-top: 10px;
 
             img {
-                .border-wrapper;
+                border-wrapper();
                 display: block;
                 padding: 5px;
             }
@@ -577,14 +577,14 @@
                 }
 
                 p {
-                    color: @dark-gray;
+                    color: $dark-gray;
                     line-height: 20px;
                 }
             }
         }
 
         section {
-            .faded-border;
+            faded-border();
             border-bottom: 1px solid #ddd;
             border-top: 1px solid #f6f6f6;
             padding: 20px 0 40px;
@@ -596,7 +596,7 @@
                 width: 870px;
 
                 > p {
-                    color: @dark-gray;
+                    color: $dark-gray;
                     font-size: 16px;
                     line-height: 25px;
                     margin: 20px auto 40px;
@@ -628,7 +628,7 @@
                 }
 
                 .connected li a, .devices li span {
-                    color: @dark-gray;
+                    color: $dark-gray;
                     font-size: 14px;
                     font-weight: 600;
                 }
@@ -693,7 +693,7 @@
 
         .header {
             h1 {
-                .hidetext();
+                hidetext();
                 background: url(../../img/ecosystem/ff-os-wordmark.png) no-repeat;
                 height: 39px;
                 margin: 20px auto;
@@ -708,7 +708,7 @@
         }
 
         section {
-            .faded-border;
+            faded-border();
             border-bottom: 1px solid #ddd;
             border-top: 1px solid #fff;
             float: left;

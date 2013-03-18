@@ -123,8 +123,8 @@ CSS = {
         'css/devreg/consumer-typography.less',
         'css/devreg/login.less',
         'css/devreg/forms.less',
-        'css/ecosystem/landing.less',
-        'css/ecosystem/documentation.less',
+        'css/ecosystem/landing.styl',
+        'css/ecosystem/documentation.styl',
     ),
     'mkt/in-app-payments': (
         'css/devreg/reset.less',

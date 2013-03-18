@@ -57,6 +57,9 @@ LESS_PREPROCESS = True  # Compile LESS with Node, rather than client-side JS?
 LESS_LIVE_REFRESH = False  # Refresh the CSS on save?
 LESS_BIN = 'lessc'
 
+# Path to stylus (to compile .styl files).
+STYLUS_BIN = 'stylus'
+
 # Path to cleancss (our CSS minifier).
 CLEANCSS_BIN = 'cleancss'
 
