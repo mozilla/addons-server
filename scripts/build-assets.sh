@@ -15,7 +15,7 @@ fi
 SETTINGS=$1
 
 # Delete old artifacts.
-find . -name '*.pyc' -or -name '*.less.css' -or -name '*.styl.css' -or -name '*-min.css'-or -name '*-all.css' -or -name '*-min.js' -or -name '*-all.js' | xargs rm
+find . -name '*.pyc' -or -name '*.less.css' -or -name '*.styl.css' -or -name '*-min.css' -or -name '*-all.css' -or -name '*-min.js' -or -name '*-all.js' | grep -v media/js/lib/ | xargs rm
 
 if [ ! -d "$VENV/bin" ]; then
     echo "No virtualenv found.  Making one..."
