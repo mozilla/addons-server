@@ -52,14 +52,16 @@ DEBUG_PROPAGATE_EXCEPTIONS = True
 # then connect to http://localhost:37767/ to view
 REMOTE_JS_DEBUG = False
 
-# LESS CSS OPTIONS (Debug only)
+# LESS CSS OPTIONS (Debug only).
 LESS_PREPROCESS = True  # Compile LESS with Node, rather than client-side JS?
 LESS_LIVE_REFRESH = False  # Refresh the CSS on save?
 LESS_BIN = 'lessc'
 
-# Path to uglifyjs. When not None, this will be used to minify JavaScript
-# instead of YUI.
-UGLIFY_BIN = None
+# Path to cleancss (our CSS minifier).
+CLEANCSS_BIN = 'cleancss'
+
+# Path to uglifyjs (our JS minifier).
+UGLIFY_BIN = 'uglifyjs'  # Set as None to use YUI instead (at your risk).
 
 ADMINS = (
     # ('Your Name', 'your_email@domain.com'),

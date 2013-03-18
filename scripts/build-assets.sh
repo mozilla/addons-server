@@ -37,6 +37,7 @@ export PATH="./node_modules/.bin/:${PATH}"
 
 cat > settings_local.py <<SETTINGS
 from ${SETTINGS} import *
+CLEANCSS_BIN = 'cleancss'
 UGLIFY_BIN = 'uglifyjs'
 SETTINGS
 
