@@ -1,5 +1,3 @@
-import datetime
-
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
@@ -7,7 +5,6 @@ from amo.tests import app_factory, mock_es
 from amo.urlresolvers import reverse
 
 from mkt.browse.tests.test_views import BrowseBase
-from mkt.webapps.models import Webapp
 
 
 class TestHome(BrowseBase):
@@ -42,27 +39,27 @@ class TestHome(BrowseBase):
     def test_popular_region_exclusions(self):
         self._test_popular_region_exclusions()
 
-    def make_time_limited_feature(self):
+    def make_time_limited_feature(self, start, end):
         a = app_factory()
         fa = self.make_featured(app=a, category=None)
-        fa.start_date = datetime.date(2012, 1, 1)
-        fa.end_date = datetime.date(2012, 2, 1)
+        fa.start_date = start
+        fa.end_date = end
         fa.save()
         return a
 
     @mock_es
     def test_featured_time_excluded(self):
-        a = self.make_time_limited_feature()
-        for d in [datetime.date(2012, 1, 1),
-                  datetime.date(2012, 1, 15),
-                  datetime.date(2012, 2, 1)]:
-            Webapp.now = staticmethod(lambda: d)
-            eq_(self.get_pks('featured', self.url,  {'region': 'us'}), [a.id])
+        # Start boundary.
+        a1 = self.make_time_limited_feature(self.days_ago(10),
+                                            self.days_ago(-1))
+        eq_(self.get_pks('featured', self.url, {'region': 'us'}), [a1.id])
+        # End boundary.
+        a2 = self.make_time_limited_feature(self.days_ago(1),
+                                            self.days_ago(-10))
+        eq_(self.get_pks('featured', self.url, {'region': 'us'}), [a1.id,
+                                                                   a2.id])
 
     @mock_es
     def test_featured_time_included(self):
-        self.make_time_limited_feature()
-        for d in [datetime.date(2011, 12, 15),
-                  datetime.date(2012, 2, 2)]:
-            Webapp.now = staticmethod(lambda: d)
-            eq_(self.get_pks('featured', self.url, {'region': 'us'}), [])
+        self.make_time_limited_feature(self.days_ago(10), self.days_ago(5))
+        eq_(self.get_pks('featured', self.url, {'region': 'us'}), [])
