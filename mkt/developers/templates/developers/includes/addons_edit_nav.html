@@ -23,11 +23,9 @@
 {% do urls.append(
   (addon.get_url_path(), _('View Listing'))
 ) %}
-{% if waffle.switch('app-stats') %}
-  {% do urls.append(
-    (addon.get_stats_url(), _('View Statistics')),
-  ) %}
-{% endif %}
+{% do urls.append(
+  (addon.get_stats_url(), _('View Statistics')),
+) %}
 {% if waffle.switch('view-transactions') %}
   {% do urls.append(
     (url('mkt.developers.transactions')|urlparams(app=addon.id), _('View Transactions')),

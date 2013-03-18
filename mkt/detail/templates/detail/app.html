@@ -139,8 +139,8 @@
               <li><a class="button alt" href="{{ product.get_detail_url('privacy') }}">
                 {{ _('Privacy Policy') }}</a></li>
             {% endif %}
-            {% if waffle.switch('app-stats') and product.public_stats %}
-              <li><a class="button alt" rel="external" href="{{ url('mkt.stats.overview', product.app_slug) }}">
+            {% if product.public_stats %}
+              <li><a class="button alt view-stats" rel="external" href="{{ url('mkt.stats.overview', product.app_slug) }}">
                 {{ _('Statistics') }}</a></li>
             {% endif %}
           {% endif %}

@@ -30,7 +30,6 @@ class StatsTest(amo.tests.ESTestCase):
     def setUp(self):
         super(StatsTest, self).setUp()
         self.user = UserProfile.objects.get(username='regularuser')
-        self.create_switch(name='app-stats')
 
         self.public_app = amo.tests.app_factory(name='public',
             app_slug='pub', type=1, status=4, public_stats=True)

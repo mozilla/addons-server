@@ -119,7 +119,6 @@
         </div>
       </div>
     {% endblock %}
-    {% if waffle.switch('app-stats') %}
     <div id="stats-permissions" class="c">
       {% if addon.public_stats %}
         <p>{{ _('This dashboard is currently <b>public</b>.') }}</p>
@@ -138,7 +137,6 @@
         </p>
       {% endif %}
     </div>
-    {% endif %}
     <div class="hidden">
       <div id="fieldMenuPopup" class="popup">
         <form id="fieldMenu">

@@ -1132,8 +1132,6 @@ class TestEditTechnical(TestEdit):
         self.compare(expected)
 
     def test_public_stats(self):
-        self.create_switch('app-stats')
-
         eq_(self.webapp.public_stats, False)
         assert not self.webapp.public_stats, (
             'Unexpectedly found public stats for app. Says Basta.')

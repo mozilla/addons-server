@@ -59,11 +59,9 @@
   <li>
     <a class="action-link" href="{{ addon.get_url_path() }}">{{ _('View Listing') }}</a>
   </li>
-  {% if waffle.switch('app-stats') %}
-    <li>
-      <a class="action-link" href="{{ addon.get_stats_url() }}">{{ _('Statistics') }}</a>
-    </li>
-  {% endif %}
+  <li>
+    <a class="action-link" href="{{ addon.get_stats_url() }}">{{ _('Statistics') }}</a>
+  </li>
   {% if waffle.switch('view-transactions') %}
     <li>
       <a class="action-link" href="{{ url('mkt.developers.transactions')|urlparams(app=addon.id) }}">

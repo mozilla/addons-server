@@ -9,16 +9,14 @@ from django.core.files.storage import default_storage as storage
 from django.utils.html import strip_tags
 
 import mock
-from nose import SkipTest
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 from tower import strip_whitespace
-import waffle
 
 import amo
 import amo.tests
 from access.models import GroupUser
-from addons.models import AddonCategory, AddonUpsell, AddonUser, Category
+from addons.models import AddonUpsell, AddonUser
 from amo.helpers import external_url, urlparams
 from amo.urlresolvers import reverse
 from devhub.models import ActivityLog
@@ -56,17 +54,6 @@ class TestDetail(DetailBase):
     def test_page(self):
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
-
-    def test_categories(self):
-        # We don't show categories on detail pages
-        raise SkipTest
-        cat = Category.objects.create(name='Lifestyle', slug='lifestyle',
-                                      type=amo.ADDON_WEBAPP)
-        AddonCategory.objects.create(addon=self.app, category=cat)
-        links = self.get_pq()('.cats a')
-        eq_(links.length, 1)
-        eq_(links.attr('href'), cat.get_url_path())
-        eq_(links.text(), cat.name)
 
     def test_free_install_button_for_anon(self):
         doc = self.get_pq()
@@ -314,12 +301,10 @@ class TestDetail(DetailBase):
         eq_(url.find('a').attr('href'), external_url(self.app.support_url))
 
     def test_has_support_both(self):
-        # I don't know what this was meant to test.
-        raise SkipTest
         self.app.support_email = 'gkoberger@mozilla.com'
         self.app.support_url = 'http://omg.org/yes'
         self.app.save()
-        li = self.get_pq()('.support .contact-support')
+        li = self.get_pq()('#support')
         eq_(li.find('.support-email').length, 1)
         eq_(li.find('.support-url').length, 1)
 
@@ -333,31 +318,17 @@ class TestDetail(DetailBase):
         eq_(url.length, 1)
         eq_(url.find('a').attr('href'), external_url(self.app.homepage))
 
-    def test_no_stats_without_waffle(self):
-        # No stats on consumer pages for now.
-        raise SkipTest
-        # TODO: Remove this test when `app-stats` switch gets unleashed.
-        self.app.update(public_stats=True)
-        eq_(self.get_app().public_stats, True)
-        eq_(self.get_pq()('.more-info .view-stats').length, 0)
-
     def test_no_public_stats(self):
-        # No stats on consumer pages for now.
-        raise SkipTest
-        waffle.Switch.objects.create(name='app-stats', active=True)
         eq_(self.app.public_stats, False)
-        eq_(self.get_pq()('.more-info .view-stats').length, 0)
+        eq_(self.get_pq()('#support .view-stats').length, 0)
 
     def test_public_stats(self):
-        # No stats on consumer pages for now.
-        raise SkipTest
-        waffle.Switch.objects.create(name='app-stats', active=True)
         self.app.update(public_stats=True)
         eq_(self.get_app().public_stats, True)
-        p = self.get_pq()('.more-info .view-stats')
+        p = self.get_pq()('#support .view-stats')
         eq_(p.length, 1)
-        eq_(p.find('a').attr('href'),
-            reverse('mkt.stats.overview', args=[self.app.app_slug]))
+        eq_(p.attr('href'), reverse('mkt.stats.overview',
+                                    args=[self.app.app_slug]))
 
     def test_free_no_preapproval(self):
         doc = self.get_pq()

@@ -56,7 +56,6 @@
             {% endif %}
           </td>
         </tr>
-        {% if waffle.switch('app-stats') %}
         <tr>
           <th>
             {{ tip(_("Public Stats?"),
@@ -69,7 +68,6 @@
                      _("No, this app's stats are not publicly viewable.")) }}
           </td>
         </tr>
-        {% endif %}
       </tbody>
     </table>
     {% if editable %}

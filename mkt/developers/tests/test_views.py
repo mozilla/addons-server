@@ -181,7 +181,6 @@ class TestAppDashboard(AppHubTest):
             'Pending Version: 1.24')
 
     def test_action_links(self):
-        self.create_switch('app-stats')
         self.create_switch('view-transactions')
         app = self.get_app()
         app.update(public_stats=True, is_packaged=False)
@@ -200,7 +199,6 @@ class TestAppDashboard(AppHubTest):
         amo.tests.check_links(expected, doc('a.action-link'))
 
     def test_action_links_packaged(self):
-        self.create_switch('app-stats')
         self.create_switch('view-transactions')
         self.create_switch('in-app-payments')
         app = self.get_app()
@@ -223,7 +221,6 @@ class TestAppDashboard(AppHubTest):
         amo.tests.check_links(expected, doc('a.action-link'))
 
     def test_disabled_payments_action_links(self):
-        self.create_switch('app-stats')
         self.create_switch('disabled-payments')
         self.create_switch('view-transactions')
         app = self.get_app()
