@@ -80,7 +80,7 @@ suds==0.3.9
 
 ## Not on pypi.
 -e git://github.com/mozilla/amo-validator.git@90ec6884023009575b085a0963d7b52b70da442b#egg=amo-validator
--e git://github.com/mozilla/app-validator.git@9017bd3e5ed75215bf5fbad57606b0f43e9e0efb#egg=app-validator
+-e git://github.com/mozilla/app-validator.git@bb197d09e3e2465b6f590740405f22e4f4e7fd58#egg=app-validator
 -e git://github.com/jsocol/commonware.git@27646ecaca40a89024cc581c3ecf5eb0fa87ee11#egg=commonware
 -e git://github.com/jbalogh/django-queryset-transform@a1ba6ae41bd86f5bb9ff66fb56614e0fafe6e022#egg=django-queryset-transform
 -e git://github.com/miracle2k/django-tables.git@546f339308103880c823b2056830fcdc9220edd0#egg=django-tables
