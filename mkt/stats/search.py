@@ -189,8 +189,8 @@ def setup_mkt_indexes(index=None, aliased=True):
     """
     es = elasticutils.get_es()
     for model in [Contribution, InappPayment]:
-        index = index or model._get_index()
-        index = create_es_index_if_missing(index, aliased=aliased)
+        index_ = index or model._get_index()
+        index_ = create_es_index_if_missing(index_, aliased=aliased)
 
         mapping = {
             'properties': {
@@ -211,7 +211,7 @@ def setup_mkt_indexes(index=None, aliased=True):
             }
         }
 
-        es.put_mapping(model._meta.db_table, mapping, index)
+        es.put_mapping(model._meta.db_table, mapping, index_)
 
 
 def handle_kwargs(q, field, kwargs, join_field=None):
