@@ -226,7 +226,7 @@
         {{ form.device_types.errors }}
         {{ form.browsers.errors }}
       </div>
-      <div class="review-actions-section review-actions-attachments">
+      <div class="review-actions-section review-actions-attachments hidden">
         <strong>{{ _('Attach a screenshot or log file') }}</strong>
         {% set attachment_forms = attachment_formset.forms + [attachment_formset.empty_form] %}
         {% for attachment_form in attachment_forms %}

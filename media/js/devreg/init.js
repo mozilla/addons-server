@@ -76,7 +76,11 @@ $(document).ready(function() {
 
     // Create additional forms in the attachment formset
     var $attachments = $('.review-actions-attachments');
-    if($attachments.length) {
+
+    // Hide attachments from Gaia; it doesn't like <file type="input" />.
+    if($attachments.length && !z.capabilities.gaia) {
+        $attachments.removeClass('hidden');
+
         $attachments.each(function(index, attachment) {
 
             var $attachment = $(attachment),
