@@ -25,20 +25,20 @@ class FileSelectWidget(widgets.Select):
                                      (b.status == amo.STATUS_DISABLED)))
 
             if label is None:
-                label = ', '.join(str(os.platform) for os in f)
+                label = u', '.join(unicode(os.platform) for os in f)
 
-            output = ['<option value="', jinja2.escape(files[0].id), '" ']
+            output = [u'<option value="', jinja2.escape(files[0].id), u'" ']
             if files[0].status == amo.STATUS_DISABLED:
                 # File viewer can't currently deal with disabled files
-                output.append(' disabled="true"')
+                output.append(u' disabled="true"')
             if selected in files:
-                output.append(' selected="true"')
+                output.append(u' selected="true"')
 
-            status = set('status-%s' % amo.STATUS_CHOICES_API[f.status]
+            status = set(u'status-%s' % amo.STATUS_CHOICES_API[f.status]
                          for f in files)
-            output.extend((' class="', jinja2.escape(' '.join(status)), '"'))
+            output.extend((u' class="', jinja2.escape(' '.join(status)), u'"'))
 
-            output.extend(('>', jinja2.escape(label), '</option>\n'))
+            output.extend((u'>', jinja2.escape(label), u'</option>\n'))
             return output
 
         if selected_choices[0]:
@@ -49,26 +49,25 @@ class FileSelectWidget(widgets.Select):
         file_ids = [int(c[0]) for c in self.choices if c[0]]
 
         output = []
-        output.append('<option></option>')
+        output.append(u'<option></option>')
 
         vers = Version.objects.filter(files__id__in=file_ids).distinct()
         for ver in vers.order_by('-created'):
             hashes = defaultdict(list)
-            for f in (ver.files.select_related('platform')
-                         .filter(id__in=file_ids)):
+            for f in ver.files.filter(id__in=file_ids):
                 hashes[f.hash].append(f)
 
             distinct_files = hashes.values()
             if len(distinct_files) == 1:
                 output.extend(option(distinct_files[0], ver.version))
             elif distinct_files:
-                output.extend(('<optgroup label="',
-                               jinja2.escape(ver.version), '">'))
+                output.extend((u'<optgroup label="',
+                               jinja2.escape(ver.version), u'">'))
                 for f in distinct_files:
                     output.extend(option(f))
-                output.append('</optgroup>')
+                output.append(u'</optgroup>')
 
-        return jinja2.Markup(''.join(output))
+        return jinja2.Markup(u''.join(output))
 
 
 class FileCompareForm(happyforms.Form):

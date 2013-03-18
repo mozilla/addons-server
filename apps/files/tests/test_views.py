@@ -1,3 +1,4 @@
+# coding=utf-8
 import json
 import os
 import shutil
@@ -442,6 +443,21 @@ class TestFileViewer(FilesBase, amo.tests.TestCase):
         eq_(doc('#id_left option[selected]').attr('value'),
             str(self.files[0].id))
         eq_(len(doc('#id_right option[value][selected]')), 0)
+
+    def test_file_chooser_non_ascii_platform(self):
+        with self.activate(locale='zh-CN'):
+            PLATFORM_NAME = u'所有移动平台'
+            f = self.files[0]
+            mobile = Platform.objects.get(id=amo.PLATFORM_ALL_MOBILE.id)
+            f.update(platform=mobile)
+
+            eq_(unicode(f.platform), PLATFORM_NAME)
+
+            res = self.client.get(self.file_url())
+            doc = pq(res.content)
+
+            eq_(doc('#id_left option[value=%d]' % f.id).text(),
+                PLATFORM_NAME)
 
 
 class TestDiffViewer(FilesBase, amo.tests.TestCase):
