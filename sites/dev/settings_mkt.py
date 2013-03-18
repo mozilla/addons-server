@@ -188,3 +188,9 @@ MONOLITH_PASSWORD = private_mkt.MONOLITH_PASSWORD
 
 # This is mainly for Marionette tests.
 WEBAPP_MANIFEST_NAME = 'Marketplace Dev'
+
+# Replace LESS with Stylus.
+try:
+    MINIFY_BUNDLES['css'].update(asset_bundles.less2stylus())
+except AttributeError:
+    pass
