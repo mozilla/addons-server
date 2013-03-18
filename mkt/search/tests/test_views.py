@@ -164,6 +164,7 @@ class TestWebappSearch(PaidAppMixin, SearchBase):
             'Category of unreviewed apps should not show up in facets.')
 
     def test_hide_paid_apps_on_android(self):
+        raise SkipTest  # disable until #789977 gets clarified
         self.setup_paid()
         self.refresh()
         res = self.client.get(self.url, {'mobile': 'true'})
@@ -368,6 +369,7 @@ class TestSuggestions(TestAjaxSearch):
             self.url, 'q=app&category=%d' % self.c2.id, addons=[self.w2])
 
     def test_region_exclusions(self):
+        raise SkipTest  # disable until #789977 gets clarified
         AER.objects.create(addon=self.w2, region=mkt.regions.BR.id)
 
         self.check_suggestions(self.url,
@@ -527,6 +529,7 @@ class TestFilterGaiaCompat(amo.tests.ESTestCase):
 
     @mock.patch('mkt.search.views._filter_search')
     def test_packaged_visible_on_gaia(self, _filter_search_mock):
+        raise SkipTest  # disable until #789977 gets clarified
         self.webapp.update(is_packaged=True)
         self.refresh()
         request = RequestFactory().get(reverse('search.search'))
@@ -541,6 +544,7 @@ class TestFilterGaiaCompat(amo.tests.ESTestCase):
 
     @mock.patch('mkt.search.views._filter_search')
     def test_packaged_visible_on_desktop(self, _filter_search_mock):
+        raise SkipTest  # disable until #789977 gets clarified
         self.webapp.update(is_packaged=True)
         self.refresh()
         request = RequestFactory().get(reverse('search.search'))
@@ -597,6 +601,7 @@ class TestFilterGaiaCompat(amo.tests.ESTestCase):
             yield self.test_url, url, {}, True
 
     def test_generator(self):
+        raise SkipTest  # disable until #789977 gets clarified
         # This is necessary until we can get test generator methods worked out
         # to run properly.
         for test_params in self._generate():
