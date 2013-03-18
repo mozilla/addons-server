@@ -37,7 +37,6 @@ import mkt
 from mkt.constants import apps
 from mkt.submit.tests.test_views import BasePackagedAppTest, BaseWebAppTest
 from mkt.webapps.models import AddonExcludedRegion, Installed, Webapp
-from mkt.zadmin.models import FeaturedApp, FeaturedAppRegion
 
 
 class TestWebapp(amo.tests.TestCase):
@@ -499,31 +498,6 @@ class TestWebappManager(amo.tests.TestCase):
         # And user-disabled.
         w.update(disabled_by_user=True)
         self.listed_eq()
-
-
-class TestDisabledPayments(amo.tests.ESTestCase):
-
-    def setUp(self):
-        self.create_switch(name='disabled-payments')
-        wa = Webapp.objects.create(status=amo.STATUS_PUBLIC,
-                                   premium_type=amo.ADDON_PREMIUM,
-                                   disabled_by_user=False)
-        now = datetime.now()
-        fa = FeaturedApp.objects.create(app=wa,
-                                        start_date=now - timedelta(days=1),
-                                        end_date=now + timedelta(days=1))
-        FeaturedAppRegion.objects.create(featured_app=fa,
-                                         region=mkt.regions.WORLDWIDE.id)
-        self.refresh()
-
-    def test_disable_paid_featured_apps(self):
-        eq_(list(Webapp.featured(region=mkt.regions.WORLDWIDE)), [])
-
-    def test_disable_paid_popular_apps(self):
-        eq_(list(Webapp.popular(region=mkt.regions.WORLDWIDE)), [])
-
-    def test_disable_paid_latest_apps(self):
-        eq_(list(Webapp.latest(region=mkt.regions.WORLDWIDE)), [])
 
 
 class TestManifest(BaseWebAppTest):
