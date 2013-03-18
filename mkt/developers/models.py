@@ -234,7 +234,7 @@ class AddonPaymentAccount(CurlingHelper, amo.models.ModelBase):
                 res = client.api.bango.product.post(data={
                     'seller_bango': payment_account.uri,
                     'seller_product': product_uri,
-                    'name': addon.name.localized_string,
+                    'name': unicode(addon.name),
                     'packageId': payment_account.bango_package_id,
                     'categoryId': 1,
                     'secret': secret
