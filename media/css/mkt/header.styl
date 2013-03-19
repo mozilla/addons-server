@@ -6,7 +6,7 @@
 // usable on any header
 .header {
     gradient-two-color(#566773, #3e4e59);
-    box-shadow: 0 -1px 0 rgba(0, 0, 0, .15) inset, 0 0 3px 3px rgba(0, 0, 0, .3), 0 1px 0 rgba(255, 255, 255, .1) inset;
+    box-shadow: 0 -1px 0 rgba(0,0,0,.15) inset, 0 0 3px 3px rgba(0,0,0,.3), 0 1px 0 rgba(255,255,255,.1) inset;
     height: 50px;
     max-height: 50px;
     width: 100%;
@@ -87,7 +87,7 @@
     transition(.3s all);
 }
 #search-q {
-    box-shadow: 0 1px 0 rgba(255, 255, 255, .1), 0 1px 0 rgba(0, 0, 0, .5) inset, 0 1px 1px rgba(0, 0, 0, .5) inset;
+    box-shadow: 0 1px 0 rgba(255,255,255,.1), 0 1px 0 rgba(0,0,0,.5) inset, 0 1px 1px rgba(0,0,0,.5) inset;
     gradient-two-color-with-image(#21292f, #2a353c, url(../../img/mkt/icons/magnifier.png), unquote('8px 8px'), no-repeat);
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -104,7 +104,7 @@
     box-sizing: border-box;
 
     &:focus {
-        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.06) inset, 0 0 8px rgba(80, 160, 220, 0.6);
+        box-shadow: 0 1px 1px rgba(0,0,0,0.06) inset, 0 0 8px rgba(80, 160, 220, 0.6);
         color: $white;
     }
     &:-moz-placeholder {
@@ -279,7 +279,7 @@ input:invalid ~ .search-clear {
 // This probably shouldn't be media query based.
 @media (min-width: 1024px) {
     .site-header {
-        box-shadow: 0 -1px 0 rgba(0, 0, 0, .5) inset, 0 1px 0 rgba(255, 255, 255, .1) inset;
+        box-shadow: 0 -1px 0 rgba(0,0,0,.5) inset, 0 1px 0 rgba(255,255,255,.1) inset;
         background: darken(#3f4f5b, 5%) $grain-src;
         background-size: 100px 100px;
     }
@@ -539,14 +539,14 @@ $retina-wide= $retina unquote('and (min-width: 1024px)');
                 line-height: 15px;
                 padding: 5px 15px;
                 text-decoration: none;
-                text-shadow: 0 1px 0 rgba(255, 255, 255, .8);
+                text-shadow: 0 1px 0 rgba(255,255,255,.8);
                 &:hover {
                     gradient-two-color($barely-gray, darken($barely-gray, 15%));
                     color: $dark-gray;
-                    text-shadow: 0 1px 0 rgba(255, 255, 255, .8);
+                    text-shadow: 0 1px 0 rgba(255,255,255,.8);
                 }
                 &:active {
-                    box-shadow: 0 1px 2px rgba(0, 0, 0, .1) inset;
+                    box-shadow: 0 1px 2px rgba(0,0,0,.1) inset;
                     background: $faint-gray;
                     border-color: $note-gray;
                 }
@@ -554,10 +554,10 @@ $retina-wide= $retina unquote('and (min-width: 1024px)');
             &.selected {
                 a, a:hover {
                     border-color: $medium-gray;
-                    box-shadow: 0 1px 0 rgba(0, 0, 0, .2) inset;
+                    box-shadow: 0 1px 0 rgba(0,0,0,.2) inset;
                     color: $white;
                     gradient-two-color($medium-gray, rgba($medium-gray, .25));
-                    text-shadow: 0 1px 0 rgba(0, 0, 0, .2);
+                    text-shadow: 0 1px 0 rgba(0,0,0,.2);
                 }
             }
             &:first-child a {

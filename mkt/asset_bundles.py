@@ -6,79 +6,79 @@ CSS = {
         'css/devreg/base.css',
 
         # Base styles (body, breadcrumbs, islands, columns).
-        'css/devreg/base.less',
-        'css/devreg/breadcrumbs.less',
+        'css/devreg/base.styl',
+        'css/devreg/breadcrumbs.styl',
 
         # Typographical styles (font treatments, headings).
-        'css/devreg/typography.less',
+        'css/devreg/typography.styl',
 
         # Header (aux-nav, masthead, site-nav).
-        'css/devreg/desktop-account-links.less',
-        'css/devreg/header.less',
+        'css/devreg/desktop-account-links.styl',
+        'css/devreg/header.styl',
 
         # Item rows (used on Dashboard).
-        'css/devreg/listing.less',
-        'css/devreg/legacy-paginator.less',
+        'css/devreg/listing.styl',
+        'css/devreg/legacy-paginator.styl',
 
         # Buttons (used for paginator, "Edit" buttons, Refunds page).
-        'css/devreg/buttons.less',
+        'css/devreg/buttons.styl',
 
         # Popups, Modals, Tooltips.
-        'css/devreg/overlay.less',
-        'css/devreg/popups.less',
-        'css/devreg/device.less',
-        'css/devreg/tooltips.less',
+        'css/devreg/overlay.styl',
+        'css/devreg/popups.styl',
+        'css/devreg/device.styl',
+        'css/devreg/tooltips.styl',
 
         # L10n menu ("Localize for ...").
-        'css/devreg/l10n.less',
+        'css/devreg/l10n.styl',
 
         # Forms (used for tables on "Manage ..." pages).
-        'css/devreg/forms.less',
+        'css/devreg/forms.styl',
 
         # Tables.
-        'css/devreg/data-grid.less',
+        'css/devreg/data-grid.styl',
 
         # Landing page
-        'css/devreg/landing.less',
+        'css/devreg/landing.styl',
 
         # "Manage ..." pages.
-        'css/devreg/manage.less',
-        'css/devreg/prose.less',
-        'css/devreg/authors.less',
-        'css/devreg/in-app-config.less',
-        'css/devreg/payments.less',
-        'css/devreg/refunds.less',
-        'css/devreg/transactions.less',
-        'css/devreg/status.less',
+        'css/devreg/manage.styl',
+        'css/devreg/prose.styl',
+        'css/devreg/authors.styl',
+        'css/devreg/in-app-config.styl',
+        'css/devreg/payments.styl',
+        'css/devreg/refunds.styl',
+        'css/devreg/transactions.styl',
+        'css/devreg/status.styl',
 
         # Image Uploads (used for "Edit Listing" Images and Submission).
-        'css/devreg/media.less',
-        'css/devreg/invisible-upload.less',
+        'css/devreg/media.styl',
+        'css/devreg/invisible-upload.styl',
 
         # Submission.
-        'css/devreg/submit-progress.less',
-        'css/devreg/submit-terms.less',
-        'css/devreg/submit-manifest.less',
-        'css/devreg/submit-details.less',
-        'css/devreg/validation.less',
-        'css/devreg/submit.less',
-        'css/devreg/tabs.less',
+        'css/devreg/submit-progress.styl',
+        'css/devreg/submit-terms.styl',
+        'css/devreg/submit-manifest.styl',
+        'css/devreg/submit-details.styl',
+        'css/devreg/validation.styl',
+        'css/devreg/submit.styl',
+        'css/devreg/tabs.styl',
 
         # Developer Log In / Registration.
-        'css/devreg/login.less',
+        'css/devreg/login.styl',
 
         # Footer.
-        'css/devreg/footer.less',
+        'css/devreg/footer.styl',
     ),
     'mkt/reviewers': (
         'css/zamboni/editors.css',
-        'css/devreg/consumer-buttons.less',
-        'css/devreg/ratings.less',
-        'css/devreg/data-grid.less',
-        'css/devreg/reviewers.less',
-        'css/devreg/themes_review.less',
-        'css/devreg/legacy-paginator.less',
-        'css/devreg/files.less',
+        'css/devreg/consumer-buttons.styl',
+        'css/devreg/ratings.styl',
+        'css/devreg/data-grid.styl',
+        'css/devreg/reviewers.styl',
+        'css/devreg/themes_review.styl',
+        'css/devreg/legacy-paginator.styl',
+        'css/devreg/files.styl',
     ),
     'mkt/splash': (
         'css/mkt/splash.styl',
@@ -119,30 +119,30 @@ CSS = {
         'css/mkt/offline.styl',
     ),
     'mkt/ecosystem': (
-        'css/devreg/reset.less',
-        'css/devreg/consumer-typography.less',
-        'css/devreg/login.less',
-        'css/devreg/forms.less',
+        'css/devreg/reset.styl',
+        'css/devreg/consumer-typography.styl',
+        'css/devreg/login.styl',
+        'css/devreg/forms.styl',
         'css/ecosystem/landing.styl',
         'css/ecosystem/documentation.styl',
     ),
     'mkt/in-app-payments': (
-        'css/devreg/reset.less',
-        'css/devreg/consumer-typography.less',
-        'css/devreg/buttons.less',
-        'css/devreg/in-app-payments.less',
+        'css/devreg/reset.styl',
+        'css/devreg/consumer-typography.styl',
+        'css/devreg/buttons.styl',
+        'css/devreg/in-app-payments.styl',
     ),
     'mkt/stats': (
-        'css/devreg/legacy-paginator.less',
+        'css/devreg/legacy-paginator.styl',
         'css/devreg/jquery-ui/jquery-ui-1.10.1.custom.css',
-        'css/devreg/stats.less',
+        'css/devreg/stats.styl',
     ),
     'mkt/lookup': (
-        'css/devreg/lookup-tool.less',
-        'css/devreg/activity.less',
+        'css/devreg/lookup-tool.styl',
+        'css/devreg/activity.styl',
     ),
     'mkt/themes': (
-        'css/devreg/themes.less',
+        'css/devreg/themes.styl',
     ),
     'mkt/gaia': (
         # Gaia building blocks.

@@ -1,0 +1,234 @@
+@import 'lib';
+
+.product-details {
+    background: none;
+    font-size: 14px;
+    text-shadow: 0 1px 0 $white;
+    margin-top: 10px;
+    .description {
+        border-bottom: 1px solid rgba(3, 16, 26, .13);
+        padding: 10px 0;
+        text-align: center;
+    }
+    .actions {
+        border-bottom: 1px solid rgba(3, 16, 26, .13);
+        border-top: 1px solid rgba(255,255,255,.5);
+        display: block;
+        float: none;
+        margin-bottom: 0;
+        max-width: none;
+        padding: 15px 0;
+        .button {
+            display: block;
+            padding-top: 8px;
+            margin-bottom: 15px;
+            width: 100%;
+        }
+        .theme-details {
+            p {
+                margin: 0;
+            }
+        }
+    }
+    #more-themes {
+        border-top: 1px solid rgba(255,255,255,.5);
+        margin-top: -10px;  /* Undo the margin-top from .product-details for
+                               borders to meet. */
+    }
+    .vitals {
+        float: left;
+        margin-left: 0;
+        max-width: 320px;
+        &.landing {
+            max-width: 1128px;
+        }
+        h1 {
+            font-size: 32px;
+            font-weight: 100;
+            margin: 0 0 0 -1px;
+        }
+        .authors {
+            font-weight: normal;
+            font-size: 14px;
+            margin-top: 7px;
+        }
+        .cats {
+            display: inline-block;
+            margin: 5px 0;
+            &:after {
+                color: $note-gray;
+                content: "\00B7";
+                margin-left: 3px;
+                padding-right: 3px;
+            }
+        }
+    }
+    p {
+        display: block;
+        font-size: 14px;
+        &.more {
+            background-color: rgb(45, 51, 55);
+            display: inline;
+            float: right;
+            &:hover {
+                background-color: rgba(45, 51, 55, .9);
+            }
+            a {
+                border-radius: 5px;
+                color: #e6edf2;
+                display: block;
+                line-height: 20px;
+                text-align: right;
+                text-shadow: none;
+                padding: 2px 6px;
+            }
+        }
+    }
+    .theme-details {
+        clear: both;
+        .theme {
+            width: 100%;
+            .users {
+                color: #390;
+            }
+        }
+        .theme-small {
+            margin: 0 0 10px 15px;
+            &:first-child {
+                margin-top: 10px;
+            }
+            &:last-child {
+                margin-bottom: 0;
+            }
+            .theme-preview {
+                float: left;
+                height: 67px;
+                width: 200px;
+            }
+            .theme-preview [data-browsertheme] {
+                height: 67px;
+                width: 200px;
+                border-radius: 5px;
+                em {
+                    line-height: 67px;
+                    width: 100px;
+                }
+            }
+            .more {
+                margin-top: 0;
+                a {
+                    padding: 24px 20px;
+                }
+            }
+        }
+        .theme-large {
+            .theme-preview {
+                padding: 8px 0 4px;
+                width: 320px;
+                [data-browsertheme] {
+                    height: 100px;
+                    border-radius: 5px;
+                }
+            }
+        }
+        .theme-preview {
+            border-radius: 5px;
+            position: relative;
+            display: block;
+            line-height: 1;
+            [data-browsertheme] {
+                display: block;
+                background: transparent no-repeat right top;
+                box-shadow: 0 0 4px 1px #000;
+                &:hover {
+                    box-shadow: 0 0 4px 2px #055887;
+                }
+                em {
+                    display: inline-block;
+                    line-height: 100px;
+                    width: 150px;
+                    text-align: center;
+                    font-size: 14px;
+                    font-style: normal;
+                    color: $white;
+                    background-color: rgba(0,0,0,0.5);
+                    border-radius: 5px 0 0 5px;
+                    text-shadow: none;
+                    font-weight: bold;
+                    cursor: pointer;
+                    &.hidden {
+                        display: none;
+                    }
+                    &::-moz-selection {
+                        background: transparent;
+                    }
+                }
+
+            }
+            div {
+                cursor: pointer;
+            }
+        }
+        dt {
+            font-weight: normal;
+        }
+        .updated {
+            float: left;
+            width: 50%;
+        }
+        .daily-users {
+            float: right;
+        }
+        .license-info {
+            h3 {
+                font-size: 14px;
+            }
+            ul {
+                list-style-type: none;
+                padding: 0;
+                margin-top: 4px;
+                li {
+                    float: left;
+                    margin: 0;
+                    font-size: 12px;
+                    // Pirated from the old zamboni.css.
+                    &.icon {
+                        width: 20px;
+                        height: 15px;
+                        background: url("../../img/zamboni/licenses.png") no-repeat;
+                    }
+                    &.cc-attrib { background-position: 0 0; }
+                    &.cc-noderiv { background-position: 0 -65px; }
+                    &.cc-noncom { background-position: 0 -130px; }
+                    &.cc-share { background-position: 0 -195px; }
+                    &.copyr { background-position: 0 -260px; }
+                }
+            }
+        }
+    }
+}
+
+.theme-list {
+    float: left;
+    h3 {
+        font-size: 18px;
+        margin: 10px 0;
+    }
+    .more-link {
+        display: block;
+        clear: both;
+        font-size: 14px;
+    }
+    &.landing {
+        margin-bottom: 20px;
+    }
+    &.four-col-padding {
+        width: 1055px;
+    }
+    &.three-col {
+        width: 635px;
+    }
+    &.two-col {
+        width: 425px;
+    }
+}

@@ -1,0 +1,421 @@
+@import 'lib';
+
+.button-wrapper {
+    text-align: center;
+}
+
+.payment-account-actions {
+    display: block;
+    font-size: 11px;
+    margin-top: 5px;
+}
+
+.helpful-links {
+    padding-top: 10px;
+    line-height: 1.5em;
+}
+
+.payments {
+    .indent {
+        margin-left: 0;
+    }
+    #premium-type {
+        float: left;
+        width: 35%;
+    }
+    .divider {
+        width: 5%;
+    }
+    .premium-detail {
+        border-left: 1px dotted $light-gray;
+        float: right;
+        padding-left: 10px;
+        margin-bottom: 12px;
+        width: 60%;
+    }
+    #payments-price-level {
+        .extra {
+            margin: 13px 0 5px;
+        }
+    }
+    #payments-currencies {
+        ul li label, li {
+            display: inline;
+        }
+        ul li label {
+            font-weight: normal;
+            margin-right: 4px;
+        }
+    }
+    #payments-payment-account {
+        .extra, #payment-label {
+            display: inline;
+        }
+        ul label {
+            font-weight: normal;
+        }
+        p {
+            color: $red;
+            font-style: italic;
+            margin-top: 5px;
+        }
+        #paypal-id-verify, .loading-submit {
+            display: inline;
+        }
+        .check-icon {
+            &:before {
+                border-radius: 8px;
+                color: $white;
+                display: inline-block;
+                font-weight: normal;
+                height: 16px;
+                line-height: 14px;
+                margin: 0 10px 0 2px;
+                position: relative;
+                text-align: center;
+                width: 16px;
+            }
+            &.inactive:before {
+                background-color: $light-gray !important;
+            }
+        }
+        #check-passed:before {
+            background-color: $green;
+            content: "\2714";  /* checkmark */
+        }
+        #check-failed:before {
+            background-color: $red;
+            content: "\00D7";  /* mult symbol */
+            font-weight: bold;
+        }
+        .item-actions {
+            margin: 2px 0 5px;
+            .setup-bounce {
+                display: none;
+            }
+            ul {
+                font-size: 11px;
+                line-height: 13px;
+            }
+            li:hover {
+                cursor: pointer;
+            }
+        }
+    }
+    #payments-upsell {
+        .note {
+            margin-top: 5px;
+        }
+        #upsell-form {
+            display: none;
+        }
+    }
+    .listing-footer {
+        clear: both;
+        margin-top: 1.5em;
+    }
+    .button-wrapper {
+        .button:only-child {
+            margin-bottom: .25em;
+        }
+    }
+    #regions button {
+        margin-top: 14px;
+    }
+}
+
+.devhub-form .learn-more {
+    margin: 10px 0 0;
+}
+
+
+/* overlays */
+.overlay {
+    header .close {
+        color: #888;
+        cursor: pointer;
+        float: right;
+        font-size: 1.5em;
+
+        &:hover {
+            color: #666;
+        }
+    }
+    h2 {
+        text-align: left;
+        font-size: 18px;
+        font-weight: 400;
+    }
+    .brform, input, select {
+        margin-top: 10px;
+        padding: 5px;
+    }
+    form {
+        margin: 0;
+
+        .field {
+            clear: left;
+            padding: 1em 0;
+
+            &.no-border, &:last-child {
+                padding-bottom: 0;
+            }
+
+            + .field {
+                border-top: 1px solid #bbb;
+            }
+            &.no-border + .field {
+                border-top: none;
+            }
+
+            label {
+                display: block;
+                float: left;
+                line-height: 2em;
+                padding-right: 2%;
+                position: relative;
+                text-align: right;
+                width: 30%;
+
+                &[data-optional] {
+                    line-height: 1em;
+
+                    &:after {
+                        content: attr(data-optional);
+                        display: block;
+                        font-size: .8em;
+                        font-weight: normal;
+                    }
+                }
+            }
+
+            input, select, textarea {
+                width: 65%;
+            }
+
+            input,
+            select,
+            textarea,
+            .faux-input {
+                display: block;
+                margin: 0;
+
+                .error {
+                    padding-left: 0;
+                }
+
+                + small {
+                    font-size: .8em;
+                }
+            }
+
+            .faux-input, .error {
+                padding-left: 32%;
+            }
+
+            .horiz-strip > * {
+                display: inline-block;
+            }
+
+            .inline-strip > * {
+                display: inline;
+            }
+
+            .error {
+                font-size: .9em;
+                padding-top: 3.5px; // This was a compromise with cvan.
+            }
+        }
+    }
+    .listing-footer {
+        clear: both;
+        margin: 15px -10px -10px;
+    }
+}
+.overlay section.account-list {
+    table {
+        margin: 0;
+        width: 550px;
+        + .listing-footer {
+            margin-top: 15px;
+        }
+        th, td {
+            border-top: 1px dotted $border-taupe;
+            padding: 1em 20px 1em 0;
+            vertical-align: top;
+
+            &:last-child {
+                padding-right: 0;
+            }
+        }
+        tr {
+            &:first-child {
+                td, th {
+                    border-top: 0;
+                    padding-top: 0;
+                }
+            }
+            &:last-child {
+                td, th {
+                    padding-bottom: 0;
+                }
+            }
+        }
+        th {
+            font-weight: bold;
+        }
+        td {
+            color: $medium-gray;
+        }
+    }
+    table, tbody {
+        border-top: 0;
+        border-bottom: 0;
+    }
+}
+.overlay section.add-bango-account,
+.overlay section.edit-bango-account {
+    height: 80%;
+
+    max-width: 650px;
+    min-width: 650px;
+
+    transform(none);
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+
+    #bango-account-errors {
+        > div {
+            margin: .25em 0;
+        }
+
+        span, ul.errorlist {
+            display: inline-block;
+            vertical-align: top;
+        }
+    }
+
+}
+.overlay section.add-bango-account {
+    .bank-accounts-strip div {
+        width: 45px;
+
+        + div {
+            width: 100px;
+        }
+
+        + div + div {
+            width: 150px;
+        }
+
+        + div + div + div {
+            width: 45px;
+        }
+
+        input,
+        + div input {
+            width: auto;
+        }
+
+        &:last-child {
+            line-height: 40px;
+            vertical-align: top;
+            width: auto;
+        }
+    }
+
+    .un-groupie-bank-accounts {
+        background: #eee;
+        border-radius: 1em;
+        color: #666;
+        cursor: pointer;
+        display: inline-block;
+        font-size: 1.15em;
+        font-weight: bold;
+        height: 25px;
+        line-height: 25px;
+        text-align: center;
+        width: 25px;
+
+        &:hover {
+            background: #2b69a2;
+            color: #fff;
+        }
+    }
+}
+
+#paid-island {
+    .note {
+        margin: 0;
+    }
+
+    .allow-inapp li {
+        display: inline;
+        margin-right: 10px;
+    }
+}
+
+#id_upsell_of {
+    max-width: 400px;
+}
+
+#submit-payment-type {
+    .update-payment-type {
+        padding: 1em;
+    }
+}
+#bango-payment-accounts label {
+    display: none;
+}
+
+.island.warning {
+    background: orangered;
+    color: white;
+}
+
+.overlay > .show-agreement {
+    max-width: 650px;
+    min-width: 650px;
+}
+
+.agreement-valid,
+.agreement-text {
+    margin-bottom: 15px;
+}
+
+.agreement-valid time {
+    font-weight: bold;
+}
+
+.agreement-text {
+    max-height: 300px;
+    white-space: pre-line;
+    overflow: auto;
+}
+
+.show-agreement {
+    p {
+        padding-top: 10px;
+    }
+    .listing-footer {
+        padding: 10px 10px 6px;
+    }
+}
+
+.terms-accepted {
+    font-family: monospace;
+}
+
+.accepted .terms-accepted {
+    color: green;
+    &:before {
+        content: "\2713";
+    }
+}
+
+.accepted .accept-tos,
+.rejected .modify-account {
+    display: none;
+}
