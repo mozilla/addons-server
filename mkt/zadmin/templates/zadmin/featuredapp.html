@@ -20,7 +20,7 @@
 </script>
 {% endblock %}
 
-{% set title = _('Feature Manager') %}
+{% set title = 'Feature Manager' %}
 {% block title %}{{ mkt_page_title(title) }}{% endblock %}
 
 {% block content %}
@@ -28,10 +28,10 @@
 
 <form method="post">
   {{ csrf() }}
-  <h3>{{ _('Featured Apps') }}</h3>
-  <p><a href="{{ url('home') }}" class="button homepage" target="_blank">{{ _('View Homepage') }}</a></p>
+  <h3>Featured Apps</h3>
+  <p><a href="{{ url('home') }}" class="button homepage" target="_blank">View Homepage</a></p>
 
-  {{ _('Section') }}:
+  Section:
   <select id="categories"
           data-src="{{ url('zadmin.featured_categories_ajax') }}">
   </select>
@@ -39,12 +39,12 @@
   </div>
   <div class="hidden">
     <div class="current-webapp js-hidden"></div>
-    <input placeholder="{{ _('Enter the name of the webapp to include') }}"
+    <input placeholder="Enter the name of the webapp to include"
            class="placeholder addon-ac large"
            data-src="{{ url('search.apps_ajax') }}">
     <a class="remove">×</a>
   </div>
 
-  <p><a href="#" id="featured-add">{{ _('Add an app') }}</a></p>
+  <p><a href="#" id="featured-add">Add an app</a></p>
 </form>
 {% endblock %}
