@@ -53,13 +53,8 @@
 {% else %}
   <section class="secondary devhub-sidebar">
     <p id="submit-addon" class="cta">
-      {% if webapp %}
-        <a href="{{ url('devhub.submit_apps.1') }}"
-           class="button prominent">{{ _('Submit a New App') }}</a>
-      {% else %}
-        <a href="{{ url('devhub.submit.1') }}"
-           class="button prominent">{{ _('Submit a New Add-on') }}</a>
-       {% endif %}
+      <a href="{{ url('devhub.submit.1') }}"
+         class="button prominent">{{ _('Submit a New Add-on') }}</a>
     </p>
     {% if waffle.flag('submit-personas') %}
       <p class="submit-theme cta">
@@ -101,15 +96,17 @@
     {% endif %}
   </section>
 
-  <section class="dashboard primary" role="main">
-    <div class="listing island hero c">
-      {{ impala_addon_listing_header(request.get_full_path(), search_filter=filter) }}
-      <div class="items">
-        {{ dev_addon_listing_items(addons.object_list) }}
+  {% if addons %}
+    <section class="dashboard primary" role="main">
+      <div class="listing island hero c">
+        {{ impala_addon_listing_header(request.get_full_path(), search_filter=filter) }}
+        <div class="items">
+          {{ dev_addon_listing_items(addons.object_list) }}
+        </div>
+        {{ addons|impala_paginator }}
       </div>
-      {{ addons|impala_paginator }}
-    </div>
-  </section>
+    </section>
+  {% endif %}
 
   {% if waffle.flag('submit-personas') and themes %}
     {# L10n: {0} is an integer. #}

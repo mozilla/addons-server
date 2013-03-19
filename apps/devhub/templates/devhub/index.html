@@ -19,186 +19,193 @@
 {% block content %}
 <section id="devhub-sidebar" class="secondary devhub-sidebar">
   {% if not recent_addons %}
-  <div class="item">
-    <h3>{{ _('Calling All Add-ons!') }}</h3>
-    <p>
-      {% trans %}
-      There's no better way to distribute your add-on than by hosting it on Mozilla Add-ons.
-      {% endtrans %}
-    </p>
-    <p><a href="{{ url('devhub.submit.1') }}" class="button">{{ _('Submit an Add-on') }}</a></p>
-  </div>
-  {% else %}
-  <p><a href="{{ url('devhub.submit.1') }}" class="button">{{ _('Submit an Add-on') }}</a></p>
-  <div id="my-addons" class="item">
-    <h3>{{ _('My Addons') }}</h3>
-    {% for item in recent_addons %}
-    <div class="addon-item">
-      <div class="addon-details">
-        <p>
-          <a class="addon-name" href="{{ item.addon.get_dev_url('edit') }}">
-            <img class="addon-icon" src="{{ item.addon.icon_url }}">
-            <strong>{{ item.addon.name }}</strong>
-          </a>
-        </p>
-        <p>
-          <strong>{{ _('Status:') }}</strong>
-          <span class="{{ status_class(item.addon) }}"><b>{{ amo.STATUS_CHOICES[item.addon.status] }}</b></span>
-        </p>
-        {% if item.addon.current_version %}
-        <p>
-          <strong>{{ _('Latest Version:') }}</strong>
-          <a href="{{ item.addon.current_version.get_url_path() }}">
-            {{ item.addon.current_version.version }}
-          </a>
-        </p>
-        {% endif %}
-        {% if item.position %}
-        <p>
-          <strong>{{ _('Queue Position:') }}</strong>
-          {% trans position=item.position.pos|numberfmt,
-                   total=item.position.total|numberfmt %}
-            {{ position }} of {{ total }}
-          {% endtrans %}
-        </p>
-        {% endif %}
-        {% if not item.addon.is_incomplete() and not item.addon.is_disabled %}
-          <p class="upload-new-version">
-            <a href="{{ item.addon.get_dev_url('versions') }}#version-upload">
-              {{ _('Upload New Version') }}</a>
-          </p>
-        {% endif %}
-      </div>
+    <div class="item">
+      <h3>{{ _('Calling All Add-ons!') }}</h3>
+      <p>
+        {% trans %}
+        There's no better way to distribute your add-on than by hosting it on Mozilla Add-ons.
+        {% endtrans %}
+      </p>
+      <p><a href="{{ url('devhub.submit.1') }}" class="button">{{ _('Submit an Add-on') }}</a></p>
+      {% if waffle.flag('submit-personas') %}
+        <p><a href="{{ url('devhub.personas.submit') }}" class="button">
+          {{ _('Submit a New Theme') }}</a></p>
+      {% endif %}
     </div>
-    {% endfor %}
-    <p><a id="link-view-all" href="{{ url('devhub.addons') }}">{{ _('View all add-ons ►') }}</a></p>
-  </div>
-  <div id="editor-promo" class="item">
-    <h3>{{ _('AMO Editors') }}</h3>
-    <p>
-      {{ _('Get ahead! Become an AMO Editor today and get your add-ons reviewed faster.') }}
-    </p>
-    <p><a href="https://wiki.mozilla.org/AMO:Editors" class="button">
-      {{ _('Become an Editor') }}</a></p>
-  </div>
+  {% else %}
+    <p><a href="{{ url('devhub.submit.1') }}" class="button">{{ _('Submit an Add-on') }}</a></p>
+    {% if waffle.flag('submit-personas') %}
+      <p><a href="{{ url('devhub.personas.submit') }}" class="button">
+        {{ _('Submit a New Theme') }}</a></p>
+    {% endif %}
+    <div id="my-addons" class="item">
+      <h3>{{ _('My Addons') }}</h3>
+      {% for item in recent_addons %}
+        <div class="addon-item">
+          <div class="addon-details">
+            <p>
+              <a class="addon-name" href="{{ item.addon.get_dev_url('edit') }}">
+                <img class="addon-icon" src="{{ item.addon.icon_url }}">
+                <strong>{{ item.addon.name }}</strong>
+              </a>
+            </p>
+            <p>
+              <strong>{{ _('Status:') }}</strong>
+              <span class="{{ status_class(item.addon) }}"><b>{{ amo.STATUS_CHOICES[item.addon.status] }}</b></span>
+            </p>
+            {% if item.addon.current_version %}
+              <p>
+                <strong>{{ _('Latest Version:') }}</strong>
+                <a href="{{ item.addon.current_version.get_url_path() }}">
+                  {{ item.addon.current_version.version }}
+                </a>
+              </p>
+            {% endif %}
+            {% if item.position %}
+              <p>
+                <strong>{{ _('Queue Position:') }}</strong>
+                {% trans position=item.position.pos|numberfmt,
+                         total=item.position.total|numberfmt %}
+                  {{ position }} of {{ total }}
+                {% endtrans %}
+              </p>
+            {% endif %}
+            {% if not item.addon.is_incomplete() and not item.addon.is_disabled %}
+              <p class="upload-new-version">
+                <a href="{{ item.addon.get_dev_url('versions') }}#version-upload">
+                  {{ _('Upload New Version') }}</a>
+              </p>
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+      <p><a id="link-view-all" href="{{ url('devhub.addons') }}">{{ _('View all add-ons ►') }}</a></p>
+    </div>
+    <div id="editor-promo" class="item">
+      <h3>{{ _('AMO Editors') }}</h3>
+      <p>
+        {{ _('Get ahead! Become an AMO Editor today and get your add-ons reviewed faster.') }}
+      </p>
+      <p><a href="https://wiki.mozilla.org/AMO:Editors" class="button">
+        {{ _('Become an Editor') }}</a></p>
+    </div>
   {% endif %}
   {% include "devhub/includes/blog_posts.html" %}
 </section>
 <section id="homepage" class="primary">
-<div id="devhub-promo" class="fox island">
-  <div class="promo-container">
-    <h2>
-      {{ _('Add-on Builder and SDK:') }}
-      <strong>{{ _('Firefox Add-ons Made Easy') }}</strong>
-    </h2>
-  <p>
-  {% trans %}
-    Add-ons let millions of Firefox users enhance and customize their browsing
-    experience. If you're a Web developer and know HTML, JavaScript and CSS, you
-    already have what it takes to make great add-ons with Add-on Builder
-    and the Add-on SDK. What's more, add-ons built with these tools are
-    restartless by default.
-  {% endtrans %}
-  </p>
-  <p>
-    <a href="{{ url('devhub.builder') }}" class="button prominent add">{{ _('Start Making Add-ons') }}</a>
-  </p>
-  </div>
-</div>
-<div class="cols">
-  <div class="col-2">
-    <div class="island">
-      <h2>{{ _('Learn &amp; Explore') }}</h2>
-      <ul class="listing-list">
-        <li class="devhub-icon-docs">
-          <a href="{{ url('devhub.docs', doc_name='how-to') }}">
-            <div class="icon"></div>
-            <div class="summary">
-              <h3>{{ _('How-to Library') }}</h3>
-              <p class="desc">
-                {% trans %}
-                Get add-on development guidance in a top-notch collection of tutorials, articles, and more.
-                {% endtrans %}
-              </p>
-            </div>
-          </a>
-        </li>
-        <li class="devhub-icon-docs">
-          <a href="{{ url('devhub.docs', doc_name='reference') }}">
-            <div class="icon"></div>
-            <div class="summary">
-              <h3>{{ _('API & Language Reference') }}</h3>
-              <p class="desc">
-                {% trans %}
-                The official documentation on APIs and languages. What you need, when you need it, to create your masterpiece.
-                {% endtrans %}
-              </p>
-            </div>
-          </a>
-        </li>
-        <li class="devhub-icon-docs">
-          <a href="{{ url('devhub.docs', doc_name='case-studies') }}">
-            <div class="icon"></div>
-            <div class="summary">
-              <h3>{{ _('Case Studies') }}</h3>
-              <p class="desc">
-                {% trans %}
-                Start-to-finish success stories. See how add-on developers made magic with Mozilla.
-                {% endtrans %}
-              </p>
-            </div>
-          </a>
-        </li>
-      </ul>
+  <div id="devhub-promo" class="fox island">
+    <div class="promo-container">
+      <h2>
+        {{ _('Add-on Builder and SDK:') }}
+        <strong>{{ _('Firefox Add-ons Made Easy') }}</strong>
+      </h2>
+      <p>
+      {% trans %}
+        Add-ons let millions of Firefox users enhance and customize their browsing
+        experience. If you're a Web developer and know HTML, JavaScript and CSS, you
+        already have what it takes to make great add-ons with Add-on Builder
+        and the Add-on SDK. What's more, add-ons built with these tools are
+        restartless by default.
+      {% endtrans %}
+      </p>
+      <p>
+        <a href="{{ url('devhub.builder') }}" class="button prominent add">{{ _('Start Making Add-ons') }}</a>
+      </p>
     </div>
   </div>
-  <div class="col-2">
-    <div class="island">
-      <h2>{{ _('Create &amp; Connect') }}</h2>
-      <ul class="listing-list">
-        <li class="devhub-icon-discuss">
-          <a href="https://forums.addons.mozilla.org">
-            <div class="icon"></div>
-            <div class="summary">
-              <h3>{{ _('Developer Forums') }}</h3>
-              <p class="desc">
-                {% trans %}
-                Discuss development, brainstorm ideas, and make connections in the world of add-ons.
-                {% endtrans %}
-              </p>
-            </div>
-          </a>
-        </li>
-        <li class="devhub-icon-tools">
-          <a href="{{ url('devhub.package_addon') }}">
-            <div class="icon"></div>
-            <div class="summary">
-              <h3>{{ _('Add-on Packager') }}</h3>
-              <p class="desc">
-                {% trans %}
-                Auto-generate add-on packaging by entering basic info and picking UI parts.  Get working without setup.
-                {% endtrans %}
-              </p>
-            </div>
-          </a>
-        </li>
-        <li class="devhub-icon-tools">
-          <a href="{{ remora_url('developers/addon/validate') }}">
-            <div class="icon"></div>
-            <div class="summary">
-              <h3>{{ _('Add-on Validator') }}</h3>
-              <p class="desc">
-                {% trans %}
-                Check your add-on for common problems and errors.  Open to anyone, not just add-ons hosted here.
-                {% endtrans %}
-              </p>
-            </div>
-          </a>
-        </li>
-      </ul>
+  <div class="cols">
+    <div class="col-2">
+      <div class="island">
+        <h2>{{ _('Learn &amp; Explore') }}</h2>
+        <ul class="listing-list">
+          <li class="devhub-icon-docs">
+            <a href="{{ url('devhub.docs', doc_name='how-to') }}">
+              <div class="icon"></div>
+              <div class="summary">
+                <h3>{{ _('How-to Library') }}</h3>
+                <p class="desc">
+                  {% trans %}
+                  Get add-on development guidance in a top-notch collection of tutorials, articles, and more.
+                  {% endtrans %}
+                </p>
+              </div>
+            </a>
+          </li>
+          <li class="devhub-icon-docs">
+            <a href="{{ url('devhub.docs', doc_name='reference') }}">
+              <div class="icon"></div>
+              <div class="summary">
+                <h3>{{ _('API & Language Reference') }}</h3>
+                <p class="desc">
+                  {% trans %}
+                  The official documentation on APIs and languages. What you need, when you need it, to create your masterpiece.
+                  {% endtrans %}
+                </p>
+              </div>
+            </a>
+          </li>
+          <li class="devhub-icon-docs">
+            <a href="{{ url('devhub.docs', doc_name='case-studies') }}">
+              <div class="icon"></div>
+              <div class="summary">
+                <h3>{{ _('Case Studies') }}</h3>
+                <p class="desc">
+                  {% trans %}
+                  Start-to-finish success stories. See how add-on developers made magic with Mozilla.
+                  {% endtrans %}
+                </p>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-2">
+      <div class="island">
+        <h2>{{ _('Create &amp; Connect') }}</h2>
+        <ul class="listing-list">
+          <li class="devhub-icon-discuss">
+            <a href="https://forums.addons.mozilla.org">
+              <div class="icon"></div>
+              <div class="summary">
+                <h3>{{ _('Developer Forums') }}</h3>
+                <p class="desc">
+                  {% trans %}
+                  Discuss development, brainstorm ideas, and make connections in the world of add-ons.
+                  {% endtrans %}
+                </p>
+              </div>
+            </a>
+          </li>
+          <li class="devhub-icon-tools">
+            <a href="{{ url('devhub.package_addon') }}">
+              <div class="icon"></div>
+              <div class="summary">
+                <h3>{{ _('Add-on Packager') }}</h3>
+                <p class="desc">
+                  {% trans %}
+                  Auto-generate add-on packaging by entering basic info and picking UI parts.  Get working without setup.
+                  {% endtrans %}
+                </p>
+              </div>
+            </a>
+          </li>
+          <li class="devhub-icon-tools">
+            <a href="{{ remora_url('developers/addon/validate') }}">
+              <div class="icon"></div>
+              <div class="summary">
+                <h3>{{ _('Add-on Validator') }}</h3>
+                <p class="desc">
+                  {% trans %}
+                  Check your add-on for common problems and errors.  Open to anyone, not just add-ons hosted here.
+                  {% endtrans %}
+                </p>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
-</div>
-
 </section>
 {% endblock %}
