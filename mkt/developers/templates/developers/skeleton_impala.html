@@ -1,4 +1,5 @@
 {% set logged = request.user.is_authenticated() %}
+{% set in_devhub = request.path.startswith('/developers/') %}
 <!DOCTYPE html>
 <html lang="{{ LANG }}" dir="{{ DIR }}">
   <head>
@@ -59,18 +60,20 @@
             <h1 class="logo"><a href="{{ url('ecosystem.landing') }}">
               {{ _('Firefox Marketplace Developers') }}</a></h1>
           {% endblock %}
-          <div class="devhub-links{{ ' logged' if logged }}">
-            <a href="//developer.mozilla.org/Apps/Reference">
-              {{- _('API Reference') }}</a>
-            <a href="{{ url('ecosystem.support') }}">{{ _('Support') }}</a>
-            <a href="{{ url('submit.app') }}" class="submit">
-              {{- _('Submit an app') }}</a>
-            <a href="{{ url('home') }}" class="submit">
-              {{- _('Marketplace') }}</a>
-            {% if not logged %}
-              <a href="#" class="browserid">{{ _('Sign In') }}</a>
-            {% endif %}
-          </div>
+          {% if in_devhub %}
+            <div class="devhub-links{{ ' logged' if logged }}">
+              <a href="//developer.mozilla.org/Apps/Reference">
+                {{- _('API Reference') }}</a>
+              <a href="{{ url('ecosystem.support') }}">{{ _('Support') }}</a>
+              <a href="{{ url('submit.app') }}" class="submit">
+                {{- _('Submit an app') }}</a>
+              <a href="{{ url('home') }}" class="submit">
+                {{- _('Marketplace') }}</a>
+              {% if not logged %}
+                <a href="#" class="browserid">{{ _('Sign In') }}</a>
+              {% endif %}
+            </div>
+          {% endif %}
           {% if logged %}
             <div class="account-links">
               <a href="{{ url('account.settings') }}"
