@@ -25,11 +25,6 @@ select[name=rating] {
     list-style-type: none;
     padding: 10px 16px;
     position: relative;
-    &.reply {
-        background: url(../../img/mkt/icons/reply.png) 10px 15px no-repeat;
-        display: none;
-        padding-left: 35px;
-    }
     &.deleting {
         background: rgba($red,.4);
     }
@@ -66,11 +61,6 @@ select[name=rating] {
     }
     .body {
         margin: 5px 0 15px;
-    }
-    .view-reply {
-        font-size: 12px;
-        font-weight: 600;
-        padding: 5px 10px;
     }
     ul {
         float: left;
@@ -119,10 +109,6 @@ select[name=rating] {
     .button {
         display: block;
     }
-}
-
-#edit-review.reply .brform.rating {
-    display: none;
 }
 
 // This applies to "reviews list" pages only.

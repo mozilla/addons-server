@@ -5,10 +5,6 @@ select[name=rating] {
     display: none;
 }
 
-section.replies .review.reply {
-    display: block;
-}
-
 // Detail page.
 #reviews {
     position: relative;
@@ -29,11 +25,6 @@ section.replies .review.reply {
     list-style-type: none;
     padding: 10px 16px;
     position: relative;
-    &.reply {
-        background: url(../../img/mkt/icons/reply.png) 10px 15px no-repeat;
-        display: none;
-        padding-left: 35px;
-    }
     &.deleting {
         background: rgba($red, .4);
     }
@@ -70,11 +61,6 @@ section.replies .review.reply {
     }
     .body {
         margin: 5px 0 15px;
-    }
-    .view-reply {
-        font-size: 12px;
-        font-weight: 600;
-        padding: 5px 10px;
     }
     ul {
         float: left;
@@ -125,10 +111,6 @@ section.replies .review.reply {
     }
 }
 
-#edit-review.reply .brform.rating {
-    display: none;
-}
-
 // This applies to "reviews list" pages only.
 // TODO: make proper review tiles. This is an interim solution.
 .reviews-listing {
@@ -154,9 +136,6 @@ section.replies .review.reply {
 
 #review-list .review:nth-of-type(2n + 1) {
     background-color: darken($bg, 5%);
-    + .replies .review {
-        background-color: darken($bg, 5%);
-    }
 }
 
 #submit-review {
