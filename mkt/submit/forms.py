@@ -245,10 +245,10 @@ class UpsellForm(happyforms.Form):
                                     coerce=int,
                                     required=False)
     free = AddonChoiceField(queryset=Addon.objects.none(),
-                            required=False,
-                            empty_label='',
-                            label=_lazy(u'App to upgrade from'),
-                            widget=forms.Select())
+        required=False, empty_label='',
+        # L10n: "App" is a paid version of this app. "from" is this app.
+        label=_lazy(u'App to upgrade from'),
+        widget=forms.Select())
 
     def __init__(self, *args, **kw):
         self.extra = kw.pop('extra')
