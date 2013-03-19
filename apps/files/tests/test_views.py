@@ -444,17 +444,15 @@ class TestFileViewer(FilesBase, amo.tests.TestCase):
             str(self.files[0].id))
         eq_(len(doc('#id_right option[value][selected]')), 0)
 
+    @patch.object(amo.PLATFORM_LINUX, 'name', u'所有移动平台')
     def test_file_chooser_non_ascii_platform(self):
         with self.activate(locale='zh-CN'):
             PLATFORM_NAME = u'所有移动平台'
             f = self.files[0]
-            mobile = Platform.objects.get(id=amo.PLATFORM_ALL_MOBILE.id)
-            f.update(platform=mobile)
-
             eq_(unicode(f.platform), PLATFORM_NAME)
 
             res = self.client.get(self.file_url())
-            doc = pq(res.content)
+            doc = pq(res.content.decode('utf-8'))
 
             eq_(doc('#id_left option[value=%d]' % f.id).text(),
                 PLATFORM_NAME)
