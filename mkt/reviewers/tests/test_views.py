@@ -2088,7 +2088,7 @@ class TestThemeReviewQueue(amo.tests.TestCase):
         # reject (other)
         form_data['form-%s-action' % 3] = str(rvw.ACTION_REJECT)
         form_data['form-%s-comment' % 3] = 'reject'
-        form_data['form-%s-reject_reason' % 3] = '0'
+        form_data['form-%s-reject_reason' % 3] = '1'
 
         # approve
         form_data['form-%s-action' % 4] = str(rvw.ACTION_APPROVE)
