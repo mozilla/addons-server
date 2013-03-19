@@ -305,8 +305,10 @@ class TestAppQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         tds = pq(r.content)('#addon-queue tbody')('tr td:nth-of-type(6)')
-        eq_(tds.eq(0).text(), amo.ADDON_PREMIUM_TYPES[amo.ADDON_PREMIUM])
-        eq_(tds.eq(1).text(), amo.ADDON_PREMIUM_TYPES[amo.ADDON_FREE_INAPP])
+        eq_(tds.eq(0).text(),
+            unicode(amo.ADDON_PREMIUM_TYPES[amo.ADDON_PREMIUM]))
+        eq_(tds.eq(1).text(),
+            unicode(amo.ADDON_PREMIUM_TYPES[amo.ADDON_FREE_INAPP]))
 
     def test_invalid_page(self):
         r = self.client.get(self.url, {'page': 999})
