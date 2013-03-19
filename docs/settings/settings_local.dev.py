@@ -88,3 +88,7 @@ APP_PURCHASE_KEY = 'localhost'
 APP_PURCHASE_AUD = 'localhost'
 APP_PURCHASE_TYP = 'mozilla-local/payments/pay/v1'
 APP_PURCHASE_SECRET = 'This secret must match your webpay SECRET'
+
+# Assuming you did `npm install` (and not `-g`) like you were supposed to,
+# this will be the path to the `stylus` executable.
+STYLUS_BIN = path('node_modules/stylus/bin/stylus')

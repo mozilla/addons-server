@@ -81,6 +81,21 @@ The ``REDIS_BACKEND`` is parsed like ``CACHE_BACKEND`` if you need something
 other than the default settings.
 
 
+----------
+Stylus CSS
+----------
+
+Learn about Stylus at http://learnboost.github.com/stylus/
+
+    cd zamboni
+    npm install
+
+In your ``settings_local.py`` (or ``settings_local_mkt.py``) ensure you are
+pointing to the correct executable for ``stylus``:
+
+    STYLUS_BIN = path('node_modules/stylus/bin/stylus')
+
+
 --------
 LESS CSS
 --------

@@ -385,7 +385,7 @@ Advanced Installation
 ---------------------
 
 In production we use things like memcached, rabbitmq + celery,
-elasticsearch, and LESS.  Learn more about installing these on the
+elasticsearch, LESS, and Stylus.  Learn more about installing these on the
 :doc:`./advanced-installation` page.
 
 .. note::
