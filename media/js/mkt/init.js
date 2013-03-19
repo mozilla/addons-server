@@ -100,10 +100,7 @@ z.page.on('fragmentloaded', function() {
     var $header = $('#site-header'),
         $nav = $header.find('nav ul'),
         $outer = $('html, body');
-    $header.on('click', '.menu-button', _pd(function() {
-        $nav.addClass('active');
-        $('.nav-overlay').addClass('show');
-    })).on('click', '.region', _pd(function() {
+    $header.on('click', '.region', _pd(function() {
         $outer.animate({scrollTop: $outer.height()}, 1000);
     }));
 
