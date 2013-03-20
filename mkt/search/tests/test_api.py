@@ -145,6 +145,11 @@ class TestApi(BaseOAuth, ESTestCase):
         error = json.loads(res.content)['error_message']
         eq_(error.keys(), ['status'])
 
+        res = self.client.get(self.list_url + ({'status': 'any'},))
+        eq_(res.status_code, 401)
+        eq_(json.loads(res.content)['reason'],
+            'Unauthorized to filter by status.')
+
         res = self.client.get(self.list_url + ({'status': 'rejected'},))
         eq_(res.status_code, 401)
         eq_(json.loads(res.content)['reason'],
@@ -198,6 +203,11 @@ class TestApiReviewer(BaseOAuth, ESTestCase):
         eq_(res.status_code, 200)
         objs = json.loads(res.content)['objects']
         eq_(len(objs), 0)
+
+        res = self.client.get(self.list_url + ({'status': 'any'},))
+        eq_(res.status_code, 200)
+        objs = json.loads(res.content)['objects']
+        eq_(obj['app_slug'], self.webapp.app_slug)
 
         res = self.client.get(self.list_url + ({'status': 'vindaloo'},))
         eq_(res.status_code, 400)

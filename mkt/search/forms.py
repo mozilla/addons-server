@@ -9,7 +9,9 @@ import amo
 
 ADDON_CHOICES = [(v, v) for k, v in amo.MKT_ADDON_TYPES_API.items()]
 
-STATUS_CHOICES = []
+# We set 'any' here since we need to default this field
+# to PUBLIC if not specified for consumer pages.
+STATUS_CHOICES = [('any', _lazy(u'Any Status'))]
 for status in amo.WEBAPPS_UNLISTED_STATUSES + (amo.STATUS_PUBLIC,):
     s = amo.STATUS_CHOICES_API[status]
     STATUS_CHOICES.append((s, s))
@@ -160,8 +162,11 @@ class ApiSearchForm(forms.Form):
                                                   amo.ADDON_WEBAPP)
 
     def clean_status(self):
-        return amo.STATUS_CHOICES_API_LOOKUP.get(self.cleaned_data['status'],
-                                                 amo.STATUS_PUBLIC)
+        status = self.cleaned_data['status']
+        if status == 'any':
+            return 'any'
+
+        return amo.STATUS_CHOICES_API_LOOKUP.get(status, amo.STATUS_PUBLIC)
 
     def clean_premium_types(self):
         pt_ids = []

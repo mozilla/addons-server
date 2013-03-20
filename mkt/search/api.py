@@ -46,7 +46,7 @@ class SearchResource(AppResource):
             'type': addon_type,
         }
 
-        if status != amo.STATUS_PUBLIC:
+        if status and (status == 'any' or status != amo.STATUS_PUBLIC):
             if is_admin or is_reviewer:
                 base_filters['status'] = status
             else:

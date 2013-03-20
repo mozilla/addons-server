@@ -544,6 +544,13 @@ class Webapp(Addon):
                     tablet=False, filter_overrides=None):
         filters = dict(type=amo.ADDON_WEBAPP, status=amo.STATUS_PUBLIC,
                        is_disabled=False)
+
+        # Special handling if status is 'any' to remove status filter.
+        if filter_overrides and 'status' in filter_overrides:
+            if filter_overrides['status'] is 'any':
+                del filters['status']
+                del filter_overrides['status']
+
         if filter_overrides:
             filters.update(filter_overrides)
 
