@@ -15,6 +15,7 @@ This API is for Apps. There is a separate set of `APIs for Add-ons`_.
    api/ratings.rst
    api/misc.rst
    api/reviewers.rst
+   api/ratings.rst
 
 Authentication
 ==============

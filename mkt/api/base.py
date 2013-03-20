@@ -1,3 +1,4 @@
+from collections import defaultdict
 import json
 
 from django.core.exceptions import ObjectDoesNotExist
@@ -35,6 +36,35 @@ class Marketplace(object):
 
         return (super(Marketplace, self)
                 .dispatch(request_type, request, **kwargs))
+
+    def non_form_errors(self, error_list):
+        """
+        Raises passed field errors as an immediate HttpBadRequest response.
+        Similar to Marketplace.form_errors, except that it allows you to raise
+        form field errors outside of form validation.
+
+        Accepts a list of two-tuples, consisting of a field name and error
+        message.
+
+        Example usage:
+
+        errors = []
+
+        if 'app' in bundle.data:
+            errors.append(('app', 'Cannot update the app of a rating.'))
+
+        if 'user' in bundle.data:
+            errors.append(('user', 'Cannot update the author of a rating.'))
+
+        if errors:
+            raise self.non_form_errors(errors)
+        """
+        errors = defaultdict(list)
+        for e in error_list:
+            errors[e[0]].append(e[1])
+        response = http.HttpBadRequest(json.dumps({'error_message': errors}),
+                                       content_type='application/json')
+        return ImmediateHttpResponse(response=response)
 
     def form_errors(self, forms):
         errors = {}

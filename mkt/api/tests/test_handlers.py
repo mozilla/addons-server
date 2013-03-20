@@ -18,7 +18,7 @@ from users.models import UserProfile
 
 import mkt
 from mkt.api.tests.test_oauth import BaseOAuth, OAuthClient
-from mkt.api.base import get_url
+from mkt.api.base import get_url, list_url
 from mkt.constants import APP_IMAGE_SIZES
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import ImageAsset, Webapp
@@ -808,14 +808,99 @@ class TestRatingHandler(BaseOAuth, AMOPaths):
         assert data['user']['can_rate']
         assert data['user']['has_rated']
 
-    def test_reply(self):
-        r1 = Review.objects.create(addon=self.app, user=self.user, body="yes")
-        Review.objects.create(
-            addon=self.app, user=UserProfile.objects.get(pk=31337), body="no",
-            reply_to=r1)
-        res = self.client.get(self.collection_url)
-        data = json.loads(res.content)
-        eq_(data['objects'][0]['replies'][0]['body'], "no")
+    def _create(self, data=None):
+        default_data = {
+            'app': self.app.id,
+            'body': 'Rocking the free web.',
+            'rating': 5
+        }
+        if data:
+            default_data.update(data)
+        json_data = json.dumps(default_data)
+        res = self.client.post(list_url('rating'), data=json_data)
+        try:
+            res_data = json.loads(res.content)
+        except ValueError:
+            res_data = res.content
+        return res, res_data
+
+    def test_create(self):
+        res, data = self._create()
+        eq_(201, res.status_code)
+        assert data['resource_uri']
+
+    def test_create_bad_data(self):
+        """
+        Let's run one test to ensure that ReviewForm is doing its data
+        validation duties. We'll rely on the ReviewForm tests to ensure that the
+        specifics are correct.
+        """
+        res, data = self._create({'body': None})
+        eq_(400, res.status_code)
+        assert 'body' in data['error_message']
+
+    def test_create_nonexistant_app(self):
+        res, data = self._create({'app': -1})
+        eq_(400, res.status_code)
+        assert 'app' in data['error_message']
+
+    def test_create_duplicate_rating(self):
+        self._create()
+        res, data = self._create()
+        eq_(409, res.status_code)
+
+    def test_create_own_app(self):
+        AddonUser.objects.create(user=self.user, addon=self.app)
+        res, data = self._create()
+        eq_(403, res.status_code)
+
+    def test_rate_unpurchased_premium(self):
+        self.app.update(premium_type=amo.ADDON_PREMIUM)
+        res, data = self._create()
+        eq_(403, res.status_code)
+
+    def _update(self, updated_data):
+        # Create the original review
+        default_data = {
+            'body': 'Rocking the free web.',
+            'rating': 5
+        }
+        res, res_data = self._create(default_data)
+
+        # Update the review
+        default_data.update(updated_data)
+        review = Review.objects.all()[0]
+        json_data = json.dumps(default_data)
+        res = self.client.put(get_url('rating', review.pk), data=json_data)
+        try:
+            res_data = json.loads(res.content)
+        except ValueError:
+            res_data = res.content
+        return res, res_data
+
+    def test_update(self):
+        new_data = {
+            'body': 'Totally rocking the free web.',
+            'rating': 4
+        }
+        res, data = self._update(new_data)
+        eq_(res.status_code, 202)
+        eq_(data['body'], new_data['body'])
+        eq_(data['rating'], new_data['rating'])
+
+    def test_update_bad_data(self):
+        """
+        Let's run one test to ensure that ReviewForm is doing its data
+        validation duties. We'll rely on the ReviewForm tests to ensure that the
+        specifics are correct.
+        """
+        res, data = self._update({'body': None})
+        eq_(400, res.status_code)
+        assert 'body' in data['error_message']
+
+    def test_update_change_app(self):
+        res, data = self._update({'app': -1})
+        eq_(res.status_code, 400)
 
     def test_delete_app_mine(self):
         AddonUser.objects.filter(addon=self.app).update(user=self.user)
