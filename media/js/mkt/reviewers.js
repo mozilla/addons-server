@@ -82,24 +82,34 @@
     var search_results = getTemplate($('#queue-search-template'));
     var search_result_row = getTemplate($('#queue-search-row-template'));
     var no_results = getTemplate($('#queue-search-empty-template'));
+    var $clear = $('#clear-queue-search'),
+        $appQueue = $('.search-toggle'),
+        $searchIsland = $('#search-island');
+
+    $clear.click(_pd(function() {
+        $appQueue.show();
+        $('#id_q').val('');
+        $clear.hide();
+        $searchIsland.hide();
+    }));
 
     if ($search.length) {
         var api_url = $search.data('api-url');
-        var search_island = $('#search-island');
         $search.on('submit', 'form', _pd(function() {
             var $form = $(this);
             $.get(api_url, $form.serialize()).done(function(data) {
                 // Hide app queue.
-                $('.search-toggle').hide();
+                $appQueue.hide();
+                $clear.show();
                 // Show results.
                 if (data.meta.total_count === 0) {
-                    search_island.html(no_results({})).show();
+                    $searchIsland.html(no_results({})).show();
                 } else {
                     var results = [];
                     $.each(data.objects, function(i, item) {
                         results.push(search_result_row(item));
                     });
-                    search_island.html(
+                    $searchIsland.html(
                         search_results({rows: results.join('')})).show();
                 }
             });
