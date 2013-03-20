@@ -250,7 +250,8 @@ class AddonDetailView(APIView):
     @allow_cross_site_request
     def process_request(self, addon_id):
         try:
-            addon = Addon.objects.id_or_slug(addon_id).get()
+            addon = (Addon.objects.id_or_slug(addon_id)
+                                  .exclude(type=amo.ADDON_WEBAPP).get())
         except Addon.DoesNotExist:
             return self.render_msg('Add-on not found!', ERROR, status=404,
                 mimetype=self.mimetype)
@@ -262,6 +263,9 @@ class AddonDetailView(APIView):
 
     def render_addon(self, addon):
         return self.render('api/addon_detail.xml', {'addon': addon})
+
+    def render_json(self, context):
+        return json.dumps(addon_to_dict(context['addon']), cls=JSONEncoder)
 
 
 def guid_search(request, api_version, guids):

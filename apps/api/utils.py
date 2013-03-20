@@ -33,7 +33,7 @@ def addon_to_dict(addon, disco=False, src='api'):
          'id': addon.id,
          'name': addon.name,
          'guid': addon.guid,
-         'status': addon.status,
+         'status': amo.STATUS_CHOICES_API[addon.status],
          'type': amo.ADDON_SLUGS_UPDATE[addon.type],
          'author': (addon.listed_authors[0].name if
                     addon.listed_authors else ''),

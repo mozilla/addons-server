@@ -14,7 +14,7 @@ from pyquery import PyQuery as pq
 
 import amo
 from addons.models import (Addon, AppSupport, CompatOverride,
-                           CompatOverrideRange, Preview)
+                           CompatOverrideRange, Persona, Preview)
 from amo import helpers
 from amo.tests import addon_factory, ESTestCase, TestCase
 from amo.urlresolvers import reverse
@@ -256,10 +256,7 @@ class APITest(TestCase):
         self.assertContains(response, '<rating>%d</rating>' %
                             int(round(a.average_rating)))
 
-    def test_addon_detail(self):
-        """
-        Test for expected strings in the XML.
-        """
+    def test_addon_detail_xml(self):
         response = self.client.get('/en-US/firefox/api/%.1f/addon/3615' % 1.2)
 
         self.assertContains(response, "<name>Delicious Bookmarks</name>")
@@ -289,6 +286,47 @@ class APITest(TestCase):
         self.assertContains(response,
                 """hash="sha256:3808b13ef8341378b9c8305ca64820095"""
                 '4ee7dcd8dce09fef55f2673458bc31f"')
+
+    def test_addon_detail_json(self):
+        addon = Addon.objects.get(id=3615)
+        response = self.client.get(
+            '/en-US/firefox/api/%.1f/addon/3615?format=json' % 1.2)
+        data = json.loads(response.content)
+        eq_(data['name'], unicode(addon.name))
+        eq_(data['type'], 'extension')
+        eq_(data['guid'], addon.guid)
+        eq_(data['version'], '2.1.072')
+        eq_(data['status'], 'public')
+        eq_(data['author'], u'55021 \u0627\u0644\u062a\u0637\u0628')
+        eq_(data['summary'], unicode(addon.summary))
+        eq_(data['description'],
+            'This extension integrates your browser with Delicious '
+            '(http://delicious.com), the leading social bookmarking '
+            'service on the Web.')
+        eq_(data['icon'],
+            settings.ADDON_ICON_URL % (3, 3615, 32, '') + '1275062517')
+        eq_(data['compatible_apps'],
+            [{'Firefox': {'max': '4.0', 'min': '2.0'}}])
+        eq_(data['eula'], unicode(addon.eula))
+        eq_(data['learnmore'], '/en-US/firefox/addon/a3615/?src=api')
+        assert 'theme' not in data
+
+    def test_app_detail(self):
+        addon = Addon.objects.get(id=3615)
+        addon.update(type=amo.ADDON_WEBAPP)
+        response = self.client.get(
+            '/en-US/firefox/api/%.1f/addon/3615?format=json' % 1.2)
+        eq_(json.loads(response.content)['msg'], 'Add-on not found!')
+
+    def test_theme_detail(self):
+        addon = Addon.objects.get(id=3615)
+        addon.update(type=amo.ADDON_PERSONA)
+        Persona.objects.create(persona_id=3, addon=addon)
+        response = self.client.get(
+            '/en-US/firefox/api/%.1f/addon/3615?format=json' % 1.2)
+        data = json.loads(response.content)
+        eq_(data['id'], 3615)
+        eq_(data['theme']['id'], '3')
 
     def test_addon_license(self):
         """Test for license information in response."""
