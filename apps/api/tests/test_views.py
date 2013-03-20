@@ -131,10 +131,11 @@ class ControlCharacterTest(TestCase):
 
     def test(self):
         a = Addon.objects.get(pk=3615)
-        a.name = "I ove You"
+        char = chr(12)
+        a.name = "I %sove You" % char
         a.save()
         response = make_call('addon/3615')
-        self.assertNotContains(response, '')
+        self.assertNotContains(response, char)
 
 
 class StripHTMLTest(TestCase):
