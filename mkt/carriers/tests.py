@@ -71,3 +71,7 @@ class TestCarrierURLs(TestCase):
         request = self.get('/foostore/')
         ctx = context_processors.carrier_data(request)
         eq_(ctx['CARRIER'], 'foostore')
+
+    def test_root_url(self):
+        request = self.get('/?carrier=foostore')
+        eq_(request.path_info, '/')

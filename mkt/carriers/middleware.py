@@ -48,7 +48,8 @@ class CarrierURLMiddleware(object):
 
         if carrier:
             orig_path = request.path_info
-            request.path_info = orig_path[len('/%s' % carrier):]
+            new_path = orig_path[len(carrier) + 1:] or '/'
+            request.path_info = new_path
 
         set_carrier(carrier)
 
