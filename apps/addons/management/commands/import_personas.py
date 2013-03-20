@@ -1,3 +1,4 @@
+import os
 import uuid
 from getpass import getpass
 from optparse import make_option
@@ -11,6 +12,8 @@ import MySQLdb as mysql
 
 from addons import cron
 import amo
+
+BIOS_TO_IMPORT = os.environ.get('BIOS', 'bios_to_import.py')
 
 
 class Command(BaseCommand):
@@ -198,13 +201,18 @@ class Command(BaseCommand):
 
             try:
                 # Create UserProfile.
-                # TODO: Insert bio=user['description'] (translated field).
                 self.cursor_z.execute("""
                     INSERT INTO users (created, modified,
                     username, display_name, password, emailhidden, email,
                     notes) VALUES (NOW(), NOW(), %(username)s, %(username)s,
                     %(password)s, 1, %(email)s, %(notes)s)""", data)
                 data['user_id'] = self.cursor_z.lastrowid
+
+                # We'll import the bios one day. It's all good.
+                with open(BIOS_TO_IMPORT, 'a') as f:
+                    f.write('u = UserProfile.objects.get(id=%(user_id)s)\n'
+                            'u.bio = """%(bio)s"""\n'
+                            'u.save()\n\n' % data)
 
                 # Create Django User.
                 self.cursor_z.execute("""
