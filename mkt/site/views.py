@@ -23,8 +23,10 @@ from amo.context_processors import get_collect_timings
 from amo.decorators import post_required
 from amo.helpers import media
 from amo.urlresolvers import reverse
+from amo.utils import urlparams
 
 from mkt.carriers import get_carrier
+
 
 log = logging.getLogger('z.mkt.site')
 
@@ -89,9 +91,8 @@ def manifest(request):
     }
     if settings.USE_APPCACHE:
         data['appcache_path'] = reverse('django_appcache.manifest')
-    if settings.CARRIER_URLS:
-        data['launch_path'] = '/%s/' % (get_carrier() or
-                                        settings.CARRIER_URLS[0])
+    if get_carrier():
+        data['launch_path'] = urlparams('/', carrier=get_carrier())
 
     manifest_content = json.dumps(data)
     manifest_etag = hashlib.md5(manifest_content).hexdigest()

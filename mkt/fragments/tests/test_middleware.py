@@ -34,14 +34,6 @@ class TestHijackRedirectMiddleware(amo.tests.TestCase):
         assert 'Location' not in res
         assert res['X-URI']
 
-    def test_post_ajax_carrier(self):
-        url = '/telefonica' + self.url
-        res = self.client.post_ajax(url, {'display_name': 'omg',
-                                          '_hijacked': 'true'})
-        eq_(res.status_code, 200)
-        eq_(json.loads(pq(res.content)('#page').attr('data-context'))['uri'],
-            url)
-
 
 class TestVaryOnAjaxMiddlware(amo.tests.TestCase):
 

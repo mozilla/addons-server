@@ -78,7 +78,9 @@ class TestManifest(amo.tests.TestCase):
 
     @mock.patch.object(settings, 'CARRIER_URLS', ['boop'])
     @mock.patch.object(settings, 'WEBAPP_MANIFEST_NAME', 'Firefox Marketplace')
-    def test_manifest(self):
+    @mock.patch('mkt.site.views.get_carrier')
+    def test_manifest(self, mock_get_carrier):
+        mock_get_carrier.return_value = 'boop'
         response = self.client.get(reverse('manifest.webapp'))
         eq_(response.status_code, 200)
         eq_(response['Content-Type'], 'application/x-web-app-manifest+json')
@@ -86,7 +88,7 @@ class TestManifest(amo.tests.TestCase):
         eq_(content['name'], 'Firefox Marketplace')
         url = reverse('manifest.webapp')
         assert 'en-US' not in url and 'firefox' not in url
-        eq_(content['launch_path'], '/boop/')
+        eq_(content['launch_path'], '/?carrier=boop')
 
     @mock.patch.object(settings, 'CARRIER_URLS', [])
     def test_manifest_no_carrier(self):

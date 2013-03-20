@@ -29,11 +29,6 @@ LOGOUT_URL = '/logout'
 # Let robots tear this place up.
 ENGAGE_ROBOTS = True
 
-# Support carrier URLs that prefix all other URLs, such as /telefonica/.
-# NOTE: To set this to False, you need to do so in this file or copy over
-# the conditional middleware removal below.
-USE_CARRIER_URLS = True
-
 # List of URL prefixes that will be interpretted as custom carrier stores.
 # When a URL is prefixed with one of these values, the value will be
 # available in mkt.carriers.get_carrier() and will be hidden from all other
@@ -97,15 +92,8 @@ INSTALLED_APPS += (
 # MIDDLEWARE_CLASSES.remove('mobility.middleware.DetectMobileMiddleware')
 # MIDDLEWARE_CLASSES.remove('mobility.middleware.XMobileMiddleware')
 MIDDLEWARE_CLASSES = list(MIDDLEWARE_CLASSES)
-if USE_CARRIER_URLS:
-    MIDDLEWARE_CLASSES.insert(0,
-        # This needs to come before CommonMiddleware so that APPEND_SLASH
-        # is handled.
-        'mkt.carriers.middleware.CarrierURLMiddleware',
-    )
-
 MIDDLEWARE_CLASSES.append('mkt.site.middleware.RequestCookiesMiddleware')
-
+MIDDLEWARE_CLASSES.append('mkt.carriers.middleware.CarrierURLMiddleware')
 MIDDLEWARE_CLASSES.remove('amo.middleware.LocaleAndAppURLMiddleware')
 MIDDLEWARE_CLASSES += [
     'mkt.site.middleware.RedirectPrefixedURIMiddleware',
@@ -126,11 +114,8 @@ TEMPLATE_CONTEXT_PROCESSORS.remove('amo.context_processors.global_settings')
 TEMPLATE_CONTEXT_PROCESSORS.remove('amo.context_processors.app')
 TEMPLATE_CONTEXT_PROCESSORS += [
     'mkt.site.context_processors.global_settings',
+    'mkt.carriers.context_processors.carrier_data',
 ]
-if USE_CARRIER_URLS:
-    TEMPLATE_CONTEXT_PROCESSORS.extend([
-        'mkt.carriers.context_processors.carrier_data',
-    ])
 
 # Tests.
 NOSE_ARGS = [

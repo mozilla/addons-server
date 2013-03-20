@@ -1,13 +1,12 @@
 from django.conf import settings
-from django.http import HttpResponsePermanentRedirect
+from django.utils.cache import patch_vary_headers
 
 from amo.urlresolvers import set_url_prefix
 
 from . import set_carrier
-from .carriers import CarrierPrefixer
 
 
-class CarrierURLMiddleware:
+class CarrierURLMiddleware(object):
     """
     Supports psuedo-URL prefixes that define a custom carrier store.
 
@@ -21,20 +20,38 @@ class CarrierURLMiddleware:
     """
 
     def process_request(self, request):
-        carrier = None
+        carrier = stored_carrier = None
         set_url_prefix(None)
         set_carrier(None)
+
+        # If I have a cookie use that carrier.
+        remembered = request.COOKIES.get('carrier')
+        if remembered in settings.CARRIER_URLS:
+            carrier = stored_carrier = remembered
+
+        choice = request.REQUEST.get('carrier')
+        if choice in settings.CARRIER_URLS:
+            carrier = choice
+        elif 'carrier' in request.GET:
+            # We are clearing the carrier.
+            carrier = None
+
+        # Legacy /<carrier>/ (don't break Gaia).
         for name in settings.CARRIER_URLS:
             if request.path.startswith('/%s' % name):
                 carrier = name
                 break
+
+        # Update cookie if value have changed.
+        if carrier != stored_carrier:
+            request.set_cookie('carrier', carrier)
+
         if carrier:
             orig_path = request.path_info
             request.path_info = orig_path[len('/%s' % carrier):]
-            if request.path_info == '' and settings.APPEND_SLASH:
-                # e.g. /telefonica -> /telefonica/
-                # Note that this is an exceptional case. All other slash
-                # appending is handled further down the middleware chain.
-                return HttpResponsePermanentRedirect(orig_path + '/')
-            set_url_prefix(CarrierPrefixer(request, carrier))
+
         set_carrier(carrier)
+
+    def process_response(self, request, response):
+        patch_vary_headers(response, ['Accept-Language', 'Cookie'])
+        return response
