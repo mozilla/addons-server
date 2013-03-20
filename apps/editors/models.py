@@ -553,7 +553,8 @@ class ReviewerScore(amo.models.ModelBase):
                 SELECT DISTINCT `user_id`
                 FROM `groups_users` AS `gu`
                 JOIN `groups` ON `gu`.`group_id`=`groups`.`id`
-                WHERE `groups`.`name` in ('Staff', 'Admins'))
+                WHERE `groups`.`name` in ('Staff', 'Admins',
+                                          'No Reviewer Incentives'))
         """
         if since:
             sql += '  AND `rs`.`created` >= %s '
