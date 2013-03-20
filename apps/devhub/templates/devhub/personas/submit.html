@@ -215,7 +215,7 @@
               <span class="author">
                 {% set amo_user = request.amo_user %}
                 {% trans user=amo_user.username,
-                         profile_url=url('users.profile', amo_user.id) %}
+                         profile_url=amo_user.get_url_path() %}
                   by <a href="{{ profile_url }}" target="_blank">{{ user }}</a>
                 {% endtrans %}
               </span>

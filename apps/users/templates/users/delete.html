@@ -11,7 +11,7 @@
 
     {% if amouser.is_developer %}
       <div class="notification-box info">
-      {% trans link=url('users.profile', amouser.id) %}
+      {% trans link=amouser.get_url_path() %}
         You cannot delete your account if you are listed as an
         <a href="{{ link }}"> author of any add-ons</a>. To delete your
         account, please have another person in your development group delete

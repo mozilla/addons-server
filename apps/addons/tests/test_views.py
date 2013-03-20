@@ -186,7 +186,7 @@ class TestContributeInstalled(amo.tests.TestCase):
         a = pq(r.content)('.num-addons a')
         eq_(a.length, 1)
         author = self.addon.authors.all()[0]
-        eq_(a.attr('href'), reverse('users.profile', args=[author.id]))
+        eq_(a.attr('href'), author.get_url_path())
 
     def test_title(self):
         r = self.client.get(self.url)

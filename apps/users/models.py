@@ -149,9 +149,9 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
         return False
 
     def get_url_path(self, src=None):
-        # TODO: Let users be looked up by slug.
         from amo.utils import urlparams
-        return urlparams(reverse('users.profile', args=[self.id]), src=src)
+        url = reverse('users.profile', args=[self.username or self.id])
+        return urlparams(url, src=src)
 
     def flush_urls(self):
         urls = ['*/user/%d/' % self.id,

@@ -488,20 +488,18 @@ class TestProfileLinks(amo.tests.TestCase):
         return UserProfile.objects.get(username='31337')
 
     def get_url(self):
-        return reverse('users.profile', args=[self.user.username])
+        return self.user.get_url_path()
 
     def log_in(self):
         assert self.client.login(username=self.user.email, password='password')
 
     def test_username(self):
-        r = self.client.get(reverse('users.profile',
-                            args=[self.user.username]))
-        eq_(r.status_code, 200)
+        res = self.client.get(self.get_url())
+        eq_(res.status_code, 200)
 
     def get_profile_links(self, username):
         """Grab profile, return edit links."""
-        url = reverse('users.profile', args=[username])
-        r = self.client.get(url)
+        r = self.client.get(self.get_url())
         eq_(r.status_code, 200)
         return pq(r.content)('#profile-actions a')
 
@@ -558,7 +556,7 @@ class TestProfileSections(amo.tests.TestCase):
         self.user = self.get_user()
         # Authentication is required for now.
         assert self.client.login(username=self.user.email, password='password')
-        self.url = reverse('users.profile', args=[self.user.username])
+        self.url = self.user.get_url_path()
 
     def get_user(self):
         return UserProfile.objects.get(username='31337')

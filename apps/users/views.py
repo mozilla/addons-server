@@ -1,3 +1,4 @@
+import functools
 from datetime import datetime, timedelta
 from functools import partial
 from urlparse import urlparse
@@ -66,6 +67,17 @@ paypal_log = commonware.log.getLogger('z.paypal')
 addon_view = addon_view_factory(qs=Addon.objects.valid)
 
 
+def user_view(f):
+    @functools.wraps(f)
+    def wrapper(request, user_id=None, *args, **kw):
+        """Provides a user object given a user ID or username."""
+        assert user_id, 'Must provide user ID or username'
+        key = 'id' if user_id.isdigit() else 'username'
+        user = get_object_or_404(UserProfile, **{key: user_id})
+        return f(request, user, *args, **kw)
+    return wrapper
+
+
 @login_required(redirect=False)
 @json_view
 def ajax(request):
@@ -104,9 +116,8 @@ def ajax(request):
     return escape_all(data)
 
 
-def confirm(request, user_id, token):
-    user = get_object_or_404(UserProfile, id=user_id)
-
+@user_view
+def confirm(request, user, token):
     if not user.confirmationcode:
         return redirect('users.login')
 
@@ -122,9 +133,8 @@ def confirm(request, user_id, token):
     return redirect('users.login')
 
 
-def confirm_resend(request, user_id):
-    user = get_object_or_404(UserProfile, id=user_id)
-
+@user_view
+def confirm_resend(request, user):
     if not user.confirmationcode:
         return redirect('users.login')
 
@@ -243,25 +253,23 @@ def edit(request):
 @write
 @login_required
 @permission_required('Users', 'Edit')
-def admin_edit(request, user_id):
-    amouser = get_object_or_404(UserProfile, pk=user_id)
-
+@user_view
+def admin_edit(request, user):
     if request.method == 'POST':
         form = forms.AdminUserEditForm(request.POST, request.FILES,
-                                       request=request, instance=amouser)
+                                       request=request, instance=user)
         if form.is_valid():
             form.save()
             messages.success(request, _('Profile Updated'))
             return http.HttpResponseRedirect(reverse('zadmin.index'))
     else:
-        form = forms.AdminUserEditForm(instance=amouser)
+        form = forms.AdminUserEditForm(instance=user)
     return jingo.render(request, 'users/edit.html',
-                        {'form': form, 'amouser': amouser})
+                        {'form': form, 'amouser': user})
 
 
-def emailchange(request, user_id, token, hash):
-    user = get_object_or_404(UserProfile, id=user_id)
-
+@user_view
+def emailchange(request, user, token, hash):
     try:
         _uid, newemail = EmailResetCode.parse(token, hash)
     except ValueError:
@@ -551,13 +559,13 @@ def logout(request):
     return response
 
 
-def profile(request, user_id):
+@user_view
+def profile(request, user):
     # Temporary until we decide we want user profile pages.
     if settings.MARKETPLACE:
         raise http.Http404
 
     webapp = settings.APP_PREVIEW
-    user = get_object_or_404(UserProfile, id=user_id)
 
     # Get user's own and favorite collections, if they allowed that.
     own_coll = fav_coll = []
@@ -684,8 +692,8 @@ def register(request):
 
 
 @anonymous_csrf_exempt
-def report_abuse(request, user_id):
-    user = get_object_or_404(UserProfile, pk=user_id)
+@user_view
+def report_abuse(request, user):
     form = AbuseForm(request.POST or None, request=request)
     if request.method == 'POST' and form.is_valid():
         send_abuse_report(request, user, form.cleaned_data['text'])
@@ -693,7 +701,7 @@ def report_abuse(request, user_id):
     else:
         return jingo.render(request, 'users/report_abuse_full.html',
                             {'profile': user, 'abuse_form': form, })
-    return redirect(reverse('users.profile', args=[user.pk]))
+    return redirect(user.get_url_path())
 
 
 @never_cache

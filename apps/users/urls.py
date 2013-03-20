@@ -1,10 +1,13 @@
-from django.contrib.auth import views as auth_views
 from django.conf.urls import include, patterns, url
+from django.contrib.auth import views as auth_views
 
 from session_csrf import anonymous_csrf
 
 from . import forms, views
 from .models import UserProfile
+
+
+USER_ID = r"""(?P<user_id>[^/<>"']+)"""
 
 
 # We need Django to use our User model.
@@ -67,6 +70,6 @@ users_patterns = patterns('',
 
 urlpatterns = patterns('',
     # URLs for a single user.
-    ('^user/(?P<user_id>\d+)/', include(detail_patterns)),
+    ('^user/%s/' % USER_ID, include(detail_patterns)),
     ('^users/', include(users_patterns)),
 )

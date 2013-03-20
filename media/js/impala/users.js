@@ -1,4 +1,10 @@
 $(function() {
+    // When I click on the avatar, append `#id=<id>` to the URL.
+    $('.user-avatar img').click(_pd(function(e) {
+        window.location.hash = 'id=' + $('.user-avatar').data('user-id');
+        e.stopPropagation();
+    }));
+
     $('#report-user-modal').modal('#report-user-abuse', {delegate: '#page'});
 
     if($('#user_edit').exists()) {

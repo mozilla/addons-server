@@ -220,6 +220,14 @@ class TestUserProfile(amo.tests.TestCase):
         AddonUser.objects.create(addon=app, user_id=2519)
         eq_(UserProfile.objects.get(id=2519).is_app_developer, True)
 
+    def test_get_url_path(self):
+        eq_(UserProfile(username='yolo').get_url_path(),
+            '/en-US/firefox/user/yolo/')
+        eq_(UserProfile(username='yolo', id=1).get_url_path(),
+            '/en-US/firefox/user/yolo/')
+        eq_(UserProfile(id=1).get_url_path(),
+            '/en-US/firefox/user/1/')
+
 
 class TestPasswords(amo.tests.TestCase):
     utf = u'\u0627\u0644\u062a\u0637\u0628'

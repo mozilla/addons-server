@@ -322,7 +322,7 @@ class TestPane(amo.tests.TestCase):
         s = doc('#my-account')
         assert s
         a = s.find('a').eq(0)
-        eq_(a.attr('href'), reverse('users.profile', args=[999]))
+        eq_(a.attr('href'), reverse('users.profile', args=['regularuser']))
         eq_(a.text(), 'My Profile')
 
         a = s.find('a').eq(1)

@@ -344,7 +344,7 @@ def abuse(request, profile):
     if request.method == 'POST' and form.is_valid():
         send_abuse_report(request, profile, form.cleaned_data['text'])
         messages.success(request, _('Abuse reported.'))
-        return redirect(reverse('users.profile', args=[profile.username]))
+        return redirect(profile.get_url_path())
     else:
         return jingo.render(request, 'account/abuse.html',
                             {'abuse_form': form, 'profile': profile})

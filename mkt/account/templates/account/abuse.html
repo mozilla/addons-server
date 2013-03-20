@@ -19,7 +19,7 @@
         {% include 'site/helpers/abuse.html' %}
         <p class="form-footer">
           <button disabled type="submit">{{ _('Send Report') }}</button> {{ _('or') }}
-          <a href="{{ url('users.profile', profile.username) }}">{{ _('Cancel') }}</a>
+          <a href="{{ profile.get_url_path() }}">{{ _('Cancel') }}</a>
         </p>
       </form>
     </div>

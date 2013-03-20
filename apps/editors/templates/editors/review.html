@@ -258,7 +258,7 @@
   <strong>{{ _('Authors') }}</strong>
   <ul>
     {% for author in addon.authors.all() %}
-    <li><a href="{{ url('users.profile', author.id) }}">{{ author.name }}</a></li>
+    <li><a href="{{ author.get_url_path() }}">{{ author.name }}</a></li>
     {% endfor %}
   </ul>
 
