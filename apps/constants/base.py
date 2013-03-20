@@ -231,12 +231,12 @@ ADDON_SLUGS = {
 # These are used in the update API.
 ADDON_SLUGS_UPDATE = {
     ADDON_EXTENSION: 'extension',
-    ADDON_THEME: 'theme',
+    ADDON_THEME: 'complete-theme',
     ADDON_DICT: 'extension',
     ADDON_SEARCH: 'search',
     ADDON_LPAPP: 'item',
     ADDON_LPADDON: 'extension',
-    ADDON_PERSONA: 'persona',
+    ADDON_PERSONA: 'theme',
     ADDON_PLUGIN: 'plugin',
     ADDON_WEBAPP: 'app',
 }

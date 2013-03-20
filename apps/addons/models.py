@@ -1675,11 +1675,11 @@ class Persona(caching.CachingMixin, models.Model):
         return settings.PERSONAS_UPDATE_URL % self.persona_id
 
     @amo.cached_property
-    def json_data(self):
-        """Persona JSON Data for Browser/extension preview."""
+    def theme_data(self):
+        """Theme JSON Data for Browser/extension preview."""
         hexcolor = lambda color: '#%s' % color
         addon = self.addon
-        return json.dumps({
+        return {
             'id': unicode(self.persona_id),  # Personas dislikes ints
             'name': addon.name,
             'accentcolor': hexcolor(self.accentcolor),
@@ -1695,7 +1695,13 @@ class Persona(caching.CachingMixin, models.Model):
             'previewURL': self.thumb_url,
             'iconURL': self.icon_url,
             'updateURL': self.update_url,
-        }, separators=(',', ':'), cls=JSONEncoder)
+        }
+
+    @property
+    def json_data(self):
+        """Persona JSON Data for Browser/extension preview."""
+        return json.dumps(self.theme_data,
+                          separators=(',', ':'), cls=JSONEncoder)
 
     def authors_other_addons(self, app=None):
         """

@@ -226,7 +226,7 @@ def collection_detail_json(request, username, slug):
     d = {'name': c.name,
          'url': c.get_abs_url(),
          'iconUrl': c.icon_url,
-         'addons': addons_dict, }
+         'addons': addons_dict}
     return d
 
 

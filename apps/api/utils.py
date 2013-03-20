@@ -50,6 +50,8 @@ def addon_to_dict(addon, disco=False, src='api'):
          'homepage': addon.homepage,
          'support': addon.support_url,
     }
+    if addon.is_persona():
+        d['theme'] = addon.persona.theme_data
 
     if v:
         d['version'] = v.version

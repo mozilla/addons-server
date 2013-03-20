@@ -14,14 +14,14 @@ from pyquery import PyQuery as pq
 import amo
 import amo.tests
 from access.models import Group, GroupUser
-from addons.models import Addon
+from addons.models import Addon, Persona
 from addons.tests.test_views import TestMobile
 from amo.urlresolvers import reverse
 from amo.utils import urlparams
 from amo.tests.test_helpers import get_uploaded_file
 from bandwagon import forms
-from bandwagon.models import (Collection, CollectionVote, CollectionUser,
-                              CollectionWatcher)
+from bandwagon.models import (Collection, CollectionAddon, CollectionUser,
+                              CollectionVote, CollectionWatcher)
 from bandwagon.views import CollectionFilter
 from browse.tests import TestFeeds
 from devhub.models import ActivityLog
@@ -1064,6 +1064,21 @@ class TestCollectionDetailFeed(amo.tests.TestCase):
     def test_private_collection(self):
         self.collection.update(listed=False)
         eq_(self.client.get(self.feed_url).status_code, 404)
+
+    def test_feed_json(self):
+        theme = amo.tests.addon_factory(type=amo.ADDON_PERSONA)
+        CollectionAddon.objects.create(addon=theme, collection=self.collection)
+        res = self.client.get(self.collection.get_url_path() + 'format:json')
+        data = json.loads(res.content)
+
+        eq_(len(data['addons']), 1)
+        eq_(data['addons'][0]['id'], theme.id)
+
+        eq_(data['addons'][0]['type'], 'theme')
+        eq_(data['addons'][0]['theme']['id'], unicode(theme.persona.persona_id))
+
+        assert data['addons'][0]['theme']['header']
+        assert data['addons'][0]['theme']['footer']
 
 
 class TestMobileCollections(TestMobile):
