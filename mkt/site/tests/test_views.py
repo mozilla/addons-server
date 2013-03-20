@@ -2,6 +2,7 @@ import json
 
 from django.conf import settings
 from django.core.cache import cache
+from django.test.utils import override_settings
 
 import mock
 from nose import SkipTest
@@ -181,12 +182,14 @@ class TestMozmarketJS(amo.tests.TestCase):
 
 class TestRobots(amo.tests.TestCase):
 
-    @mock.patch.object(settings, 'ENGAGE_ROBOTS', True)
+    @override_settings(CARRIER_URLS=['seavanworld'])
+    @override_settings(ENGAGE_ROBOTS=True)
     def test_engage_robots(self):
         rs = self.client.get('/robots.txt')
         self.assertContains(rs, 'Allow: /')
+        self.assertContains(rs, 'Disallow: /seavanworld/')
 
-    @mock.patch.object(settings, 'ENGAGE_ROBOTS', False)
+    @override_settings(ENGAGE_ROBOTS=False)
     def test_do_not_engage_robots(self):
         rs = self.client.get('/robots.txt')
         self.assertContains(rs, 'Disallow: /')

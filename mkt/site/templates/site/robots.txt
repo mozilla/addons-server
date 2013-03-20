@@ -6,4 +6,7 @@ Disallow: /
 Allow: /
 
 Disallow: /downloads/
+{% for carrier in settings.CARRIER_URLS %}
+Disallow: /{{ carrier }}/
+{% endfor %}
 {% endif %}
