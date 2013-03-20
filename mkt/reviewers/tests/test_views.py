@@ -36,8 +36,7 @@ from lib.crypto import packaged
 from lib.crypto.tests import mock_sign
 import mkt.constants.reviewers as rvw
 from mkt.reviewers.models import ThemeLock
-from mkt.reviewers.views import (_do_sort, _check_if_searching,
-                                 _get_search_form, _get_themes, _queue_to_apps)
+from mkt.reviewers.views import _do_sort, _get_themes, _queue_to_apps
 from mkt.site.fixtures import fixture
 from mkt.submit.tests.test_views import BasePackagedAppTest
 from mkt.webapps.models import Webapp
@@ -1507,7 +1506,8 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
     def test_attachment_email_escalate(self):
         """
         Test that attachments are included as attachments in an `escalate`
-        review, which uses a different mechanism for notification email sending.
+        review, which uses a different mechanism for notification email
+        sending.
         """
         self.post(self._attachment_form_data(num=1, action='escalate'))
         eq_(len(mail.outbox[0].attachments), 1,
@@ -2311,28 +2311,6 @@ class TestQueueSearchSort(AppReviewerTest):
             device_type=amo.DEVICE_MOBILE.id)
 
         self.url = reverse('reviewers.apps.queue_pending')
-
-    def test_check_if_searching(self):
-        """
-        Test that advanced search form shown when searching fields other
-        than text_query and that clear search button shown when searching.
-        """
-        qs = Webapp.objects.all()
-
-        # Not searching.
-        r = self.rf.get(self.url, {'q': '', 'sort': 'asc'})
-        qs, search_form = _get_search_form(r, qs)
-        eq_(_check_if_searching(search_form), (False, False))
-
-        # Regular searching.
-        r = self.rf.get(self.url, {'q': 'abcd', 'sort': 'asc'})
-        qs, search_form = _get_search_form(r, qs)
-        eq_(_check_if_searching(search_form), (True, False))
-
-        # Advanced searching.
-        r = self.rf.get(self.url, {'q': 'abcd', 'app_type': 'hosted'})
-        qs, search_form = _get_search_form(r, qs)
-        eq_(_check_if_searching(search_form), (True, True))
 
     def test_do_sort(self):
         """

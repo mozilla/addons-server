@@ -309,38 +309,12 @@ def _queue(request, apps, tab, search_form=None, pager_processor=None):
     per_page = request.GET.get('per_page', QUEUE_PER_PAGE)
     pager = paginate(request, apps, per_page)
 
-    searching, adv_searching = _check_if_searching(search_form)
-
     return jingo.render(request, 'reviewers/queue.html', context(**{
         'addons': pager.object_list,
         'pager': pager,
         'tab': tab,
         'search_form': search_form,
-        'searching': searching,
-        'adv_searching': adv_searching,
     }))
-
-
-def _check_if_searching(search_form):
-    """
-    Presentation logic for showing 'clear search' and the adv. form.
-    Needed to check that the form fields have non-empty value and to say
-    that searching on 'text_query' only should not show adv. form.
-    """
-    searching = False
-    adv_searching = False
-    if not search_form:
-        return searching, adv_searching
-
-    for field in search_form:
-        if field.data and field.name != 'sort':
-            # If filtering, show 'clear search' button.
-            searching = True
-            if field.name != 'q':
-                # If filtering by adv fields, don't hide the adv field form.
-                adv_searching = True
-                break
-    return searching, adv_searching
 
 
 def _do_sort(request, qs):
@@ -993,7 +967,8 @@ def attachment(request, attachment):
     """
     try:
         a = ActivityLogAttachment.objects.get(pk=attachment)
-        full_path = os.path.join(settings.REVIEWER_ATTACHMENTS_PATH, a.filepath)
+        full_path = os.path.join(settings.REVIEWER_ATTACHMENTS_PATH,
+                                 a.filepath)
         fsock = open(full_path, 'r')
     except (ActivityLogAttachment.DoesNotExist, IOError,):
         response = http.HttpResponseNotFound()

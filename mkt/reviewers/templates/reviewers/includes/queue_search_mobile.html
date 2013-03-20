@@ -1,0 +1,75 @@
+{% from 'site/helpers/form_row.html' import form_row %}
+
+{% if search_form %}
+  <div class="queue-search" data-api-url="{{ search_url }}">
+    <form class="c">
+      <label for="{{ search_form.q.auto_id }}">{{ search_form.q.label }}</label>
+      {{ search_form.q }}
+      <button class="button" type="submit"><span>{{ _('Search') }}</button>
+      <a class="toggle-queue-search" href="#">{{ _('Advanced Search') }}</a>
+      <span class="clear-queue-search">
+        <a href="{{ url('reviewers.apps.queue_%s' % tab) }}">
+          {{ _('Clear Search') }}
+        </a> |
+      </span>
+
+      <div class="advanced-search c hidden">
+        <!--Switch/single-checkbox fields-->
+        {# for elem in ('admin_review', 'has_editor_comment',
+                        'has_info_request') %}
+          <div class="form-elem c">
+            {{ search_form[elem].label_tag() }}
+            <label>
+              {{ search_form[elem] }}
+              <span></span>
+            </label>
+          </div>
+          {{ search_form[elem].errors }}
+        {% endfor #}
+
+        <!--Value selector fields.-->
+        {% for field in ('status', 'app_type', 'device', 'premium_types') %}
+          <!--Differentiate radio and checkbox form elements.-->
+          {% set multi = field in ('premium_types',) %}
+
+          <!-- Pretty and visible representation of form. -->
+          <div class="form-elem c value-select-field" data-field="{{ field }}">
+            {{ search_form[field].label_tag() }}
+            <div class="{{ field }} selected-val c {% if multi %} multi-val{% endif %}">
+              <div class="tabnav-sprite"></div>
+              <!-- Defaults to None, until JS updates the pretty value based on
+                  actual form values. -->
+              <span>{{ _('None') }}</span>
+            </div>
+          </div>
+
+          <!-- Respective overlay, contains actual form inputs. -->
+          <div role="dialog" class="{{ field }}-overlay scrollable hidden">
+            <section>
+              <h1>{{ search_form[field].field.label }}</h1>
+              <ul{% if multi %} aria-multiselectable="true"{% endif %} role="listbox">
+                {% for val, pretty_val in search_form[field].field.choices %}
+                  <li role="option">
+                    <label for="{{ field }}-{{ val }}">
+                      <input id="{{ field }}-{{ val }}"
+                             type="{{ 'checkbox' if multi else 'radio' }}"
+                             name="{{ field }}" value="{{ val }}">
+                      <span>
+                        {# Evaluate lazy translation, empty-string-valued
+                           radios can't be selected. #}
+                        {{ pretty_val ~ '' or search_form[field].field.choices[0][1] }}
+                      </span>
+                    </label>
+                  </li>
+                {% endfor %}
+              </ul>
+            </section>
+
+            <menu><button class="cancel full">{{ _('Close') }}</button>
+          </div>
+        {% endfor %}
+      </div>
+      {{ search_form.limit }}
+    </form>
+  </div>
+{% endif %}
