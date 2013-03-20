@@ -1,7 +1,6 @@
 from datetime import datetime, timedelta
 from os import path
 
-from django.conf import settings
 from django.core.urlresolvers import NoReverseMatch
 from django.test.utils import override_settings
 
@@ -30,8 +29,7 @@ class TestActivityLog(amo.tests.TestCase):
     fixtures = ['base/addon_3615']
 
     def setUp(self):
-        u = UserProfile(username='<script src="x.js">')
-        u.save()
+        u = UserProfile.objects.create(username='yolo')
         self.request = Mock()
         self.request.amo_user = self.user = u
         amo.set_user(u)
@@ -165,25 +163,22 @@ class TestActivityLog(amo.tests.TestCase):
         eq_(len(versions[0].all_activity), 1)
         eq_(len(versions[1].all_activity), 1)
 
-    def test_xss_arguments(self):
+    def test_xss_arguments_and_escaping(self):
         addon = Addon.objects.get()
+        addon.name = 'Delicious <script src="x.js">Bookmarks'
+        addon.save()
+        addon = addon.reload()
         au = AddonUser(addon=addon, user=self.user)
         amo.log(amo.LOG.CHANGE_USER_WITH_ROLE, au.user, au.get_role_display(),
                 addon)
         log = ActivityLog.objects.get()
-        eq_(log.to_string(),
-            u'&lt;script src=&#34;x.js&#34;&gt; role changed to Owner for '
-            '<a href="/en-US/firefox/addon/a3615/">Delicious Bookmarks</a>.')
 
-    def test_jinja_escaping(self):
-        addon = Addon.objects.get()
-        au = AddonUser(addon=addon, user=self.user)
-        amo.log(amo.LOG.CHANGE_USER_WITH_ROLE, au.user, au.get_role_display(),
-                addon)
-        log = ActivityLog.objects.get()
+        log_expected = ('yolo role changed to Owner for <a href="/en-US/'
+                        'firefox/addon/a3615/">Delicious &lt;script src='
+                        '&#34;x.js&#34;&gt;Bookmarks</a>.')
+        eq_(log.to_string(), log_expected)
         eq_(jingo.env.from_string('<p>{{ log }}</p>').render(log=log),
-            '<p>&lt;script src=&#34;x.js&#34;&gt; role changed to Owner for <a'
-            ' href="/en-US/firefox/addon/a3615/">Delicious Bookmarks</a>.</p>')
+            '<p>%s</p>' % log_expected)
 
     def test_tag_no_match(self):
         addon = Addon.objects.get()

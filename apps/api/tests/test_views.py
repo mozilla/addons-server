@@ -367,7 +367,7 @@ class APITest(TestCase):
                 "<weekly_downloads>13849</weekly_downloads>",
                 "<daily_users>67075</daily_users>",
                 '<author id="2519"',
-                "%s/en-US/firefox/user/2519/?src=api</link>"
+                "%s/en-US/firefox/user/cfinke/?src=api</link>"
                     % settings.SITE_URL,
                 "<previews>",
                 """<preview position="0">""",
