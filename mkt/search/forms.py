@@ -40,7 +40,6 @@ APP_TYPE_CHOICES = [
 ]
 
 PREMIUM_CHOICES = [
-    ('', _lazy(u'Any Premium Type')),
     ('free', _lazy(u'Free')),
     ('free-inapp', _lazy(u'Free with In-app')),
     ('premium', _lazy(u'Premium')),
@@ -49,7 +48,7 @@ PREMIUM_CHOICES = [
 ]
 
 DEVICE_CHOICES = [
-    ('', _lazy(u'Any Device')),
+    ('', _lazy(u'Any Device Type')),
     ('desktop', _lazy(u'Desktop')),
     ('mobile', _lazy(u'Mobile')),
     ('tablet', _lazy(u'Tablet')),
@@ -135,20 +134,21 @@ class AppListForm(AppSearchForm):
 
 
 class ApiSearchForm(forms.Form):
-    q = forms.CharField(required=False,
-                        label=_lazy(u'Search'),
-                        widget=forms.TextInput(attrs={'autocomplete': 'off'}))
+    q = forms.CharField(
+        required=False, label=_lazy(u'Search'),
+        widget=forms.TextInput(attrs={'autocomplete': 'off',
+                                      'placeholder': _lazy(u'Search')}))
     type = forms.ChoiceField(required=False, choices=ADDON_CHOICES,
                              label=_lazy(u'Add-on type'))
     status = forms.ChoiceField(required=False, choices=STATUS_CHOICES,
                                label=_lazy(u'Status'))
     cat = forms.TypedChoiceField(required=False, coerce=int, empty_value=None,
                                  choices=[], label=_lazy(u'Category'))
-    device = forms.ChoiceField(required=False, choices=DEVICE_CHOICES,
-                               label=_lazy(u'Device type'))
+    device = forms.ChoiceField(
+        required=False, choices=DEVICE_CHOICES, label=_lazy(u'Device type'))
     premium_types = forms.MultipleChoiceField(
-        required=False, label=_lazy(u'Premium types'),
-        choices=PREMIUM_CHOICES)
+        widget=forms.CheckboxSelectMultiple(), required=False,
+        label=_lazy(u'Premium types'), choices=PREMIUM_CHOICES)
     app_type = forms.ChoiceField(required=False, label=_lazy(u'App type'),
                                  choices=APP_TYPE_CHOICES)
 

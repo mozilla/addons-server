@@ -195,18 +195,22 @@ function syncPrettyMobileForm() {
     var $valSelectFields = $('.value-select-field');
 
     $valSelectFields.each(function(index, valSelectField) {
-        var name = $(valSelectField).data('field');
-        var $checkedInputs = $('li[role="option"] input[name="' + name + '"]:checked');
+        var $valSelectField = $(valSelectField);
+        var name = $valSelectField.data('field');
 
         var valStrs = [];
+        var $checkedInputs = $('li[role="option"] input[name="' + name + '"]:checked');
         $checkedInputs.each(function(index, input) {
             // Build pretty string.
-            valStrs.push($(input).next('span').text());
+            valStrs.push($(input).next('span').text().trim());
         });
+
         // Sync new selected value to our span in the pretty form.
+        var firstPrettyVal = $('li[role="option"]:first-child span',
+            $valSelectField.next('div[role="dialog"]')).text();
         $('.' + name + '.selected-val span').text(
-            valStrs.join() ||
-            $('li[role="option"]:first-child span',
-              $(valSelectField).next('div[role="dialog"]')).text()) ;
+            valStrs.length ? valStrs.join() :
+            $('.multi-val', $valSelectField).length ? gettext('Any') :
+                                                      firstPrettyVal);
     });
 }
