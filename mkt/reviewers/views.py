@@ -447,7 +447,10 @@ def _queue_to_apps(request, queue_qs):
 
 
 def _get_search_form(request, qs):
-    return qs, ApiSearchForm(request.GET or None)
+    # Strip mobile and tablet from request.GET.
+    get = dict((k, v) for k, v in request.GET.items()
+               if k not in ['mobile', 'tablet'])
+    return qs, ApiSearchForm(get or None)
 
 
 @permission_required('Apps', 'Review')
