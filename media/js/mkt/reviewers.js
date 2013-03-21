@@ -110,6 +110,7 @@
                 } else {
                     var results = [];
                     $.each(data.objects, function(i, item) {
+                        data.objects[i].name = _.escape(data.objects[i].name);
                         results.push(search_result_row(item));
                     });
                     $searchIsland.html(
