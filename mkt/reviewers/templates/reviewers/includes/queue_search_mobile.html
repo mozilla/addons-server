@@ -31,6 +31,7 @@
         {% for field in ('status', 'app_type', 'device', 'premium_types') %}
           <!--Differentiate radio and checkbox form elements.-->
           {% set multi = field in ('premium_types',) %}
+          {% set default_pretty = search_form[field].field.choices[0][1] %}
 
           <!-- Pretty and visible representation of form. -->
           <div class="form-elem c value-select-field" data-field="{{ field }}">
@@ -57,7 +58,7 @@
                       <span>
                         {# Evaluate lazy translation, empty-string-valued
                            radios can't be selected. #}
-                        {{ pretty_val ~ '' or search_form[field].field.choices[0][1] }}
+                        {{ pretty_val ~ '' or default_pretty }}
                       </span>
                     </label>
                   </li>
@@ -65,7 +66,7 @@
               </ul>
             </section>
 
-            <menu><button class="cancel full">{{ _('Close') }}</button>
+            <menu><button class="cancel full">{{ _('Close') }}</button></menu>
           </div>
         {% endfor %}
       </div>
