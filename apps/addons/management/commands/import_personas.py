@@ -1,4 +1,6 @@
+import htmlentitydefs
 import os
+import re
 import uuid
 from getpass import getpass
 from optparse import make_option
@@ -35,10 +37,6 @@ class Command(BaseCommand):
                     dest='user', help='The database user'),
         make_option('--commit', action='store',
                     dest='commit', help='If yes, then commits the run'),
-        make_option('--users', action='store',
-                    dest='users', help='If yes, then migrate users'),
-        make_option('--favorites', action='store',
-                    dest='favorites', help='If yes, then migrate favorites'),
         make_option('--start', action='store', type="int",
                     dest='start', help='An optional offset to start at'),
     )
@@ -66,18 +64,14 @@ class Command(BaseCommand):
         self.log('Processing users %s to %s' % (offset, offset + limit))
         for user in self.get_users(limit, offset):
             user = dict(zip(['username', 'display_username', 'md5',
-                             'email', 'privs', 'change_code', 'news',
-                             'description'], user))
+                             'email', 'description'], user))
 
             for k in ['username', 'description', 'display_username', 'email']:
                 user[k] = (user.get(k) or '').decode('latin1').encode('utf-8')
 
             user['orig-username'] = user['username']
 
-            if options.get('users') == 'yes':
-                self.handle_user(user)
-            if options.get('favorites') == 'yes':
-                self.handle_favourites(user)
+            self.handle_user(user)
 
     def count_users(self):
         self.cursor.execute('SELECT count(username) from users')
@@ -119,118 +113,79 @@ class Command(BaseCommand):
                             'username = %s', username)
         return self.cursor.fetchall()
 
-    def handle_favourites(self, user):
-        """This will expect users to already be migrated."""
-
-        profile_id = self.get_user_id(email=user['email'])
-        if not profile_id:
-            self.log("Skipping unknown user (%s)" % user['email'])
-            return
-
-        # Get or create "My Favorites Add-ons" collection.
-        try:
-            self.cursor_z.execute(
-                'SELECT id FROM collections WHERE author_id = %s', profile_id)
-            collection_id = self.cursor_z.fetchone()[0]
-        except TypeError:
-            uuid_ = unicode(uuid.uuid4())
-            self.cursor_z.execute("""
-                INSERT INTO collections (created, modified, uuid, slug,
-                defaultlocale, collection_type, author_id)
-                VALUES (NOW(), NOW(), %s, 'favorites', 'en-US', 4, %s)
-            """, (uuid_, profile_id))
-            collection_id = self.cursor_z.lastrowid
-
-        rows = []
-        for fav in self.get_favourites(user['orig-username']):
-            addon_id = self.get_persona_addon_id(persona_id=fav[0])
-            if addon_id:
-                rows.append('(NOW(), NOW(), %s, %s, %s)' %
-                            (addon_id, collection_id, profile_id))
-            else:
-                self.log(' Skipping unknown favorite (%s) for user (%s)' %
-                         (fav[0], user['username']))
-
-        if rows:
-            values = ', '.join(rows)
-            try:
-                self.cursor_z.execute("""
-                    INSERT INTO addons_collections
-                    (created, modified, addon_id, collection_id, user_id)
-                    VALUES %s
-                """ % values)
-                self.log(' Adding %s favs for user %s' %
-                         (len(rows), user['username']))
-            except IntegrityError:
-                self.log(' Failed to import (%s) favorites for user (%s)' %
-                         (len(rows), user['username']))
-
     def handle_user(self, user):
         profile_id = self.get_user_id(email=user['email'])
 
         if profile_id:
             self.log(' Ignoring existing user: %s' % user['email'])
-        else:
-            orig_username = user['username']
-            if self.get_user_id(username=user['username']):
-                user['username'] = user['username'] + '-' + str(time())
-                self.log(' Username already taken, so making username: %s'
-                         % user['username'])
+            return
 
-            self.log(' Creating user for %s' % user['email'])
-            note = 'Imported from personas, username: %s' % user['username']
-            if orig_username != user['username']:
-                note += ' (formerly %s)' % orig_username
+        orig_username = user['username']
+        if self.get_user_id(username=user['username']):
+            user['username'] = user['username'] + '-' + str(time())
+            self.log(' Username already taken, so making username: %s'
+                     % user['username'])
 
-            algo, salt, password = user['md5'].split('$')
-            # The salt is a bytes string. In get personas it is base64
-            # encoded. I'd like to decode here so we don't have to do any
-            # more work, but that means MySQL doesn't like the bytes that
-            # get written to the column. So we'll have to persist that
-            # base64 encoding. Let's add +base64 on to it so we know this in
-            # zamboni.
-            password = '$'.join([algo + '+base64', salt, password])
+        self.log(' Creating user for %s' % user['email'])
+        note = 'Imported from getpersonas, username: %s' % user['username']
+        if orig_username != user['username']:
+            note += ' (formerly %s)' % orig_username
 
-            data = {
-                'username': user['username'],
-                'email': user['email'],
-                'password': password,
-                'notes': note,
-                'bio': user['description']
-            }
+        algo, salt, password = user['md5'].split('$')
+        # The salt is a bytes string. In get personas it is base64
+        # encoded. I'd like to decode here so we don't have to do any
+        # more work, but that means MySQL doesn't like the bytes that
+        # get written to the column. So we'll have to persist that
+        # base64 encoding. Let's add +base64 on to it so we know this in
+        # zamboni.
+        password = '$'.join([algo + '+base64', salt, password])
 
-            try:
-                # Create UserProfile.
-                self.cursor_z.execute("""
-                    INSERT INTO users (created, modified,
-                    username, display_name, password, emailhidden, email,
-                    notes) VALUES (NOW(), NOW(), %(username)s, %(username)s,
-                    %(password)s, 1, %(email)s, %(notes)s)""", data)
-                data['user_id'] = self.cursor_z.lastrowid
+        data = {
+            'username': user['username'],
+            'email': user['email'],
+            'password': password,
+            'notes': note,
+            'bio': user['description']
+        }
+        try:
+            data['bio'] = re.sub('&([^;]+);', lambda m: unichr(htmlentitydefs.name2codepoint[m.group(1)]), data['bio'])
+        except:
+            data['bio'] = ""
 
-                # We'll import the bios one day. It's all good.
+        try:
+            # Create UserProfile.
+            self.cursor_z.execute("""
+                INSERT INTO users (created, modified,
+                username, display_name, password, emailhidden, email,
+                notes) VALUES (NOW(), NOW(), %(username)s, %(username)s,
+                %(password)s, 1, %(email)s, %(notes)s)""", data)
+            data['user_id'] = self.cursor_z.lastrowid
+
+            # We'll import the bios one day. It's all good.
+            if data['bio']:
                 with open(BIOS_TO_IMPORT, 'a') as f:
                     f.write('u = UserProfile.objects.get(id=%(user_id)s)\n'
-                            'u.bio = """%(bio)s"""\n'
-                            'u.save()\n\n' % data)
+                            'if not u.bio:\n'
+                            '  u.bio = """%(bio)s"""\n'
+                            '  u.save()\n'
+                            'time.sleep(1)\n\n' % data)
 
-                # Create Django User.
-                self.cursor_z.execute("""
-                    INSERT INTO auth_user (id, username, first_name,
-                    last_name, email, password, is_active, is_staff,
-                    is_superuser, date_joined, last_login)
-                    VALUES (%(user_id)s, %(username)s, '', '',
-                    %(email)s, %(password)s, 1, 0, 0, NOW(), NOW())""", data)
-            except IntegrityError:
-                self.log(' Failed creating new user (%s)' % user['email'])
-                raise
+            # Create Django User.
+            self.cursor_z.execute("""
+                INSERT INTO auth_user (id, username, first_name,
+                last_name, email, password, is_active, is_staff,
+                is_superuser, date_joined, last_login)
+                VALUES (%(user_id)s, %(username)s, '', '',
+                %(email)s, %(password)s, 1, 0, 0, NOW(), NOW())""", data)
+        except IntegrityError:
+            self.log(' Failed creating new user (%s)' % user['email'])
 
         # Now link up the designers with the profile.
         rows = []
         for persona_id in self.get_designers(user['orig-username']):
             addon_id = self.get_persona_addon_id(persona_id=persona_id[0])
             if addon_id:
-                rows.append('(%s, %s, 5)' % (addon_id, profile_id))
+                rows.append('(%s, %s, 5)' % (addon_id, data['user_id']))
             else:
                 self.log(' Skipping unknown persona (%s) for user (%s)' %
                          (persona_id[0], user['username']))
@@ -246,8 +201,46 @@ class Command(BaseCommand):
             except IntegrityError:
                 # Can mean they already own the personas (eg. you've run this
                 # script before) or a persona doesn't exist in the db.
-                self.log(' Failed adding (%s) as owner of (%s) personas' %
-                         (user['username'], len(rows)))
+                self.log(' Failed adding (%s) as owner of (%s) personas. Rows: %s' %
+                         (user['username'], len(rows), values))
+
+        # Now hook up any favorites
+        try:
+            self.cursor_z.execute(
+                'SELECT id FROM collections WHERE author_id = %s', data['user_id'])
+            collection_id = self.cursor_z.fetchone()[0]
+        except TypeError:
+            uuid_ = unicode(uuid.uuid4())
+            self.cursor_z.execute("""
+                INSERT INTO collections (created, modified, uuid, slug,
+                defaultlocale, collection_type, author_id)
+                VALUES (NOW(), NOW(), %s, 'favorites', 'en-US', 4, %s)
+            """, (uuid_, data['user_id']))
+            collection_id = self.cursor_z.lastrowid
+
+        rows = []
+        for fav in self.get_favourites(user['orig-username']):
+            addon_id = self.get_persona_addon_id(persona_id=fav[0])
+            if addon_id:
+                rows.append('(NOW(), NOW(), %s, %s, %s)' %
+                            (addon_id, collection_id, data['user_id']))
+            else:
+                self.log(' Skipping unknown favorite (%s) for user (%s)' %
+                         (fav[0], user['username']))
+
+        if rows:
+            values = ', '.join(rows)
+            try:
+                self.cursor_z.execute("""
+                    INSERT INTO addons_collections
+                    (created, modified, addon_id, collection_id, user_id)
+                    VALUES %s
+                """ % values)
+                self.log(' Adding %s favs for user %s' %
+                         (len(rows), user['username']))
+            except IntegrityError:
+                self.log(' Failed to import (%s) favorites for user (%s). Rows: %s' %
+                         (len(rows), user['username'], values))
 
     @transaction.commit_manually
     def handle(self, *args, **options):
@@ -260,13 +253,8 @@ class Command(BaseCommand):
         try:
             count = self.count_users()
             self.log('Found %s users. Grab some coffee and settle in' % count)
-            if options.get('users') == 'yes':
-                self.log("We'll be migrating users and designers.")
 
-            if options.get('favorites') == 'yes':
-                self.log("We'll be migrating favorites. Users assumed done.")
-
-            step = 100
+            step = 2500
             start = options.get('start', 0)
             self.log("Starting at offset: %s" % start)
             for offset in range(start, count, step):
