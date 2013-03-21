@@ -35,8 +35,8 @@ PRICE_CHOICES = [
 
 APP_TYPE_CHOICES = [
     ('', _lazy(u'Any App Type')),
-    (amo.ADDON_WEBAPP_HOSTED, _lazy(u'Hosted')),
-    (amo.ADDON_WEBAPP_PACKAGED, _lazy(u'Packaged')),
+    ('hosted', _lazy(u'Hosted')),
+    ('packaged', _lazy(u'Packaged')),
 ]
 
 PREMIUM_CHOICES = [
