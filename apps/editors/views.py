@@ -423,8 +423,13 @@ def queue_moderated(request):
                                         queryset=page.object_list,
                                         request=request)
 
-    if reviews_formset.is_valid():
-        reviews_formset.save()
+    if request.method == 'POST':
+        if reviews_formset.is_valid():
+            reviews_formset.save()
+        else:
+            amo.messages.error(
+                request, ' '.join(e.as_text() or _('An unknown error occurred')
+                                  for e in reviews_formset.errors))
         return redirect(reverse('editors.queue_moderated'))
 
     return jingo.render(request, 'editors/queue.html',
