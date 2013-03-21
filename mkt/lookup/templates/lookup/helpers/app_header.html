@@ -39,6 +39,13 @@
         </a>
       </li>
       {% endif %}
+      {% if is_reviewer %}
+      <li>
+        <a href="{{ url('reviewers.apps.review', app.app_slug) }}">
+          {{ _('Review History') }}
+        </a>
+      </li>
+      {% endif %}
     </ul>
   </nav>
 </section>
