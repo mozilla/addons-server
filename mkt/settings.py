@@ -33,7 +33,7 @@ ENGAGE_ROBOTS = True
 # When a URL is prefixed with one of these values, the value will be
 # available in mkt.carriers.get_carrier() and will be hidden from all other
 # url resolvers.
-CARRIER_URLS = ['telefonica']
+CARRIER_URLS = ['deutsche_telekom', 'telefonica']
 
 MKT_FEEDBACK_EMAIL = 'apps-feedback@mozilla.com'
 MKT_REVIEWERS_EMAIL = 'app-reviewers@mozilla.org'
