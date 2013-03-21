@@ -56,8 +56,22 @@ To find a list of categories available on the marketplace::
 
 Returns the list of categories::
 
-    {"meta": {"limit": 20, "next": null...},
-     "objects": [{"id": 1, "name": "App"...]}
+    {
+    "meta": {
+        "limit": 20,
+        "next": null,
+        "offset": 0,
+        "previous": null,
+        "total_count": 16
+    },
+    "objects": [
+        {
+            "id": "1",
+            "name": "Games",
+            "resource_uri": "/api/apps/category/1/",
+            "slug": "games"
+        },
+        ...
     }
 
 Use the `id` of the category in your app updating.
