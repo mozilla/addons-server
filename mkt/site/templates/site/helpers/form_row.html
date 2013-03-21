@@ -1,9 +1,11 @@
 {% macro form_row(search_form, elems) -%}
-<div class="form-row">
+<div class="form-row c">
   {% for elem in elems %}
-    {{ search_form[elem].label_tag() }}
-    <div class="form-elem">{{ search_form[elem] }}</div>
-    {{ search_form[elem].errors }}
+    <div>
+      {{ search_form[elem].label_tag() }}
+      <div class="form-elem">{{ search_form[elem] }}</div>
+      {{ search_form[elem].errors }}
+    </div>
   {% endfor %}
 </div>
 {%- endmacro %}

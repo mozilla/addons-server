@@ -565,26 +565,37 @@ div.editor-stats-table > div.editor-stats-dark {
 }
 
 .queue-search {
-    padding: 1em;
     margin-bottom: 1em;
-    .clear-queue-search {
-        text-transform: lowercase;
-    }
+    padding: 1em;
+    text-align: center;
     .date_range {
         padding: 1em;
     }
     label[for="id_q"] {
         margin-right: .5em;
     }
-    button {
-        margin: 0 .5em;
+    #id_q {
+        border-radius: 3px 0 0 3px;
+        min-width: 50%;
     }
+    .toggle-queue-search {
+        position: relative;
+        left: 5px;
+    }
+}
+button.search {
+    border-radius: 0 3px 3px 0;
+    height: 30px;
+    line-height: 14px;
+    padding: 0;
+    right: 3px;
+    top: 1px;
 }
 .advanced-search {
     margin-top: 26px;
-    &.hidden {
-        display: none;
-    }
+    min-width: 50%;
+    text-align: left;
+    width: 100%;
     label {
         margin-bottom: .5em;
     }
@@ -592,50 +603,48 @@ div.editor-stats-table > div.editor-stats-dark {
         font-weight: normal;
     }
     .form-elem, .form-row {
-        margin-bottom: 10px;
+        margin-bottom: 13px;
     }
-    .form-row {
-        clear: both;
-    }
-    .basic-filters {
-        float: left;
-        position: relative;
-        top: 3px;
-        width: 350px;
-        select, input {
-            position: relative;
-            bottom: 3px;
-        }
-    }
-    .device-type-select, .premium-type-select {
-        float: left;
+    .form-elems {
+        display: block;
+        margin: 0 auto;
+        width: 640px;
         label {
             display: block;
+            margin: 0 10px 6px 0;
+            min-width: 100px;
+        }
+        .form-row {
+            clear: both;
+            margin: 0 auto;
+            width: 100%;
+            > div {
+                float: left;
+                margin-right: 26px;
+                &:last-child {
+                    margin-right: 0px;
+                }
+            }
         }
     }
-    .device-type-select {
-        width: 200px;
-    }
-    .premium-type-select {
-        width: 250px;
-    }
-    .premium-type-select:after {
-        content: ".";
+    &.desktop > div {
         display: block;
-        clear: both;
-        height: 0;
-        visibility: hidden;
-    }
-    .basic-filters label {
-        display: block;
-        float: left;
-        width: 13em;
+        margin: 0 auto;
     }
 }
-#id_q {
-    height: 2em;
-    width: 50%;
+.queue-search-desktop .clear-queue-search {
+    margin-left: 5px;
 }
+@media (min-width: 481px) and (max-width: 43em) {
+    .advanced-search .form-row {
+        left: 15%;
+        position: relative;
+        > div:nth-child(2) {
+            float: none;
+        }
+    }
+}
+
 
 /* Add-on Review Log */
 #log-listing tr th:nth-child(1) {
@@ -1187,16 +1196,13 @@ iframe#manifest-contents {
 
 @media $landscape-max {
     #id_q {
-        display: block;
         font-size: 18px;
-        margin-top: .5em;
-        width: 100%;
-    }
-    .queue-search button {
-        margin: .5em .5em 0 0;
     }
     html, body {
         background: $bg-gray $grain-src;
+    }
+    #page ul.tabnav li {
+        margin: 0;
     }
     #breadcrumbs,
     #actions + strong,
@@ -1368,6 +1374,19 @@ iframe#manifest-contents {
     .app-name a {
         font-weight: 600;
     }
+    button.button.search {
+        height: 38px;
+        line-height: 48px;
+        margin-right: 0;
+        margin-top: 0;
+        min-width: 0%;
+        padding: 0 2px;
+        top: 5px;
+        span {
+            bottom: 7px;
+            position: relative;
+        }
+    }
 }
 
 $mobileborder = #d7d2c3;
@@ -1382,14 +1401,10 @@ $mobileborder = #d7d2c3;
     ul.tabnav a, .clear-queue-search {
         font-size: 16px;
     }
-    .button {
-        margin-top: 0px;
-        min-width: 0%;
-        margin-right: 0;
-        top: 8px;
+    button.button.search {
+        top: 7px;
         span {
             bottom: 9px;
-            position: relative;
         }
     }
     #site-nav {
@@ -1428,7 +1443,7 @@ $mobileborder = #d7d2c3;
     }
     .queue-search {
         padding: 0;
-        margin: 26px 0 6px;
+        margin: 30px 0 6px;
         label[for="id_q"] {
             display: none;
         }
@@ -1439,18 +1454,22 @@ $mobileborder = #d7d2c3;
             width: 75%;
         }
         .button {
-            height: 36px;
-            max-width: 22%;
             margin-right: 0;
+            right: 8px;
+            top: 7px;
         }
         .toggle-queue-search, .clear-queue-search {
             bottom: 64px;
             float: right;
+            left: 0;
             line-height: 6px;
-            margin-right: 3px;
             position: relative;
         }
+        .toggle-queue-search {
+            margin-right: 10px;
+        }
         .clear-queue-search {
+            margin-right: 3px;
             text-transform: none;
         }
     }
@@ -1869,13 +1888,6 @@ $mobileborder = #d7d2c3;
     }
 }
 
-@media $landscape-max {
-    #page ul.tabnav li {
-        margin: 0;
-    }
-}
-
-
 @media (min-width: 768px) {
     .site-title a {
         padding-left: 250px;
@@ -1883,6 +1895,7 @@ $mobileborder = #d7d2c3;
         left: -250px;
     }
     .data-grid {
+        margin-top: 13px;
         .addon-row a {
             max-width: 600px;
         }
