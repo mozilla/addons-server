@@ -9,15 +9,25 @@
     <tbody>{rows}</tbody>
   </table>
 </script>
+
 <script type="text/template" id="queue-search-row-template">
   <tr class="addon-row">
     <td class="app-name">
-      <span class="app-id">{id}</span>
-      <a href="{{ url('reviewers.apps.review', '__slug__').replace('__slug__', '{app_slug}') }}">{name}</a>
+      <span class="app-id"><%= id %></span>
+      <a href="<%= review_url %>"><%- name %></a>
     </td>
-    <td>{devices}</td>
+    <td>
+      <div class="device-list c">
+        <ul>
+          <% _.each(device_types, function(device) { %>
+            <li class="<%= device %>" title="<%= device %>"><%= device %></li>
+          <% }); %>
+        </ul>
+      </div>
+    </td>
   </tr>
 </script>
+
 <script type="text/template" id="queue-search-empty-template">
   <p class="no-results">{{ _('No results found') }}</p>
 </script>

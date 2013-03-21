@@ -160,14 +160,14 @@ class DEVICE_MOBILE(object):
     id = 2
     name = _(u'Firefox Mobile')
     class_name = 'android-mobile'
-    api_name = 'mobile'
+    api_name = 'android-mobile'
 
 
 class DEVICE_TABLET(object):
     id = 3
     name = _(u'Firefox Tablet')
     class_name = 'android-tablet'
-    api_name = 'tablet'
+    api_name = 'android-tablet'
 
 
 class DEVICE_GAIA(object):

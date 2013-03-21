@@ -52,6 +52,7 @@ DEVICE_CHOICES = [
     ('desktop', _lazy(u'Desktop')),
     ('mobile', _lazy(u'Mobile')),
     ('tablet', _lazy(u'Tablet')),
+    ('gaia', _lazy(u'Gaia')),
 ]
 
 DEVICE_CHOICES_IDS = {

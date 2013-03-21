@@ -1,7 +1,8 @@
 {% from 'site/helpers/form_row.html' import form_row %}
 
 {% if search_form %}
-  <div class="queue-search" data-api-url="{{ search_url }}">
+  <div class="queue-search" data-api-url="{{ search_url }}"
+                            data-review-url="{{ url('reviewers.apps.review', '__slug__') }}">
     <form class="c">
       <label for="{{ search_form.q.auto_id }}">{{ search_form.q.label }}</label>
       {{ search_form.q }}

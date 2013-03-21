@@ -83,8 +83,10 @@
     initMobileMenus();
 
     var search_results = getTemplate($('#queue-search-template'));
-    var search_result_row = getTemplate($('#queue-search-row-template'));
     var no_results = getTemplate($('#queue-search-empty-template'));
+    // An underscore template for more advanced rendering.
+    var search_result_row = _.template($('#queue-search-row-template').html());
+
     var $clear = $('.clear-queue-search'),
         $appQueue = $('.search-toggle'),
         $searchIsland = $('#search-island');
@@ -98,6 +100,7 @@
 
     if ($search.length) {
         var api_url = $search.data('api-url');
+        var review_url = $search.data('review-url');
         $search.on('submit', 'form', _pd(function() {
             var $form = $(this);
             $.get(api_url, $form.serialize()).done(function(data) {
@@ -110,7 +113,7 @@
                 } else {
                     var results = [];
                     $.each(data.objects, function(i, item) {
-                        data.objects[i].name = _.escape(data.objects[i].name);
+                        item.review_url = review_url.replace('__slug__', item.app_slug);
                         results.push(search_result_row(item));
                     });
                     $searchIsland.html(

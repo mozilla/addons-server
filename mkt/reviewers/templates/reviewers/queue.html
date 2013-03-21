@@ -19,7 +19,7 @@
     {% include "reviewers/includes/queue_search_mobile.html" %}
   </div>
 
-  <ul class="tabnav">
+  <ul class="tabnav search-toggle">
     {% for prefix, this, loc, text in queue_tabnav() %}
       <li{% if tab == this %} class="selected trigger-queues"{% endif %}>
         <a href="{{ url('reviewers.%s.%s' % (prefix, loc)) }}">{{ text }}</a>
