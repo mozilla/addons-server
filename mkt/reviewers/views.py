@@ -447,9 +447,9 @@ def _queue_to_apps(request, queue_qs):
 
 
 def _get_search_form(request, qs):
-    # Strip mobile and tablet from request.GET.
-    get = dict((k, v) for k, v in request.GET.items()
-               if k not in ['mobile', 'tablet'])
+    form = ApiSearchForm()
+    fields = [f.name for f in form.visible_fields() + form.hidden_fields()]
+    get = dict((k, v) for k, v in request.GET.items() if k in fields)
     return qs, ApiSearchForm(get or None)
 
 
