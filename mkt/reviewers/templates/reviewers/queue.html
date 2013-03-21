@@ -12,11 +12,14 @@
     </section>
   {% endif %}
 
-  <div class="queue-search">
+  <div class="queue-search-desktop">
     {% include "reviewers/includes/queue_search.html" %}
   </div>
+  <div class="queue-search-mobile hidden">
+    {% include "reviewers/includes/queue_search_mobile.html" %}
+  </div>
 
-  <ul class="tabnav search-toggle">
+  <ul class="tabnav">
     {% for prefix, this, loc, text in queue_tabnav() %}
       <li{% if tab == this %} class="selected trigger-queues"{% endif %}>
         <a href="{{ url('reviewers.%s.%s' % (prefix, loc)) }}">{{ text }}</a>
