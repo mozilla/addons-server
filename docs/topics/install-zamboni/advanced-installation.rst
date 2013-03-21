@@ -85,13 +85,13 @@ other than the default settings.
 Stylus CSS
 ----------
 
-Learn about Stylus at http://learnboost.github.com/stylus/
+Learn about Stylus at http://learnboost.github.com/stylus/ ::
 
     cd zamboni
     npm install
 
 In your ``settings_local.py`` (or ``settings_local_mkt.py``) ensure you are
-pointing to the correct executable for ``stylus``:
+pointing to the correct executable for ``stylus``::
 
     STYLUS_BIN = path('node_modules/stylus/bin/stylus')
 
@@ -156,4 +156,3 @@ Not working?
  * If you're having trouble with npm, check out the README on https://github.com/isaacs/npm
  * If you can't run LESS after installing, make sure it's in your PATH.  You should be
    able to type "lessc", and have "lessc: no input files" returned.
-
