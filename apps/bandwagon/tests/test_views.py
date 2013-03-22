@@ -14,7 +14,7 @@ from pyquery import PyQuery as pq
 import amo
 import amo.tests
 from access.models import Group, GroupUser
-from addons.models import Addon, Persona
+from addons.models import Addon
 from addons.tests.test_views import TestMobile
 from amo.urlresolvers import reverse
 from amo.utils import urlparams
@@ -136,14 +136,8 @@ class TestViews(amo.tests.TestCase):
     def test_collection_directory_redirects_with_login(self):
         self.client.login(username='jbalogh@mozilla.com', password='foo')
 
-        tests = [
-            ('/collections/mine', 301,
-             reverse('collections.user', args=['jbalogh'])),
-            ('/collections/favorites/', 301,
-             reverse('collections.following')),
-        ]
-        for test in tests:
-            self.check_response(*test)
+        self.check_response('/collections/favorites/', 301,
+                            reverse('collections.following'))
 
     def test_unreviewed_addon(self):
         u = UserProfile.objects.get(email='jbalogh@mozilla.com')
@@ -155,6 +149,27 @@ class TestViews(amo.tests.TestCase):
 
         self.client.login(username='jbalogh@mozilla.com', password='foo')
         response = self.client.get(c.get_url_path())
+        eq_(list(response.context['addons'].object_list), [addon])
+
+    def test_mine(self):
+        u = UserProfile.objects.get(email='jbalogh@mozilla.com')
+        addon = addon = Addon.objects.all()[0]
+        c = u.favorites_collection()
+        amo.set_user(u)
+        c.add_addon(addon)
+
+        assert self.client.login(username='jbalogh@mozilla.com',
+                                 password='foo')
+
+        # My Collections.
+        response = self.client.get('/en-US/firefox/collections/mine/')
+        eq_(response.context['author'],
+            UserProfile.objects.get(email='jbalogh@mozilla.com'))
+
+        # My Favorites.
+        response = self.client.get(reverse('collections.detail',
+                                           args=['mine', 'favorites']))
+        eq_(response.status_code, 200)
         eq_(list(response.context['addons'].object_list), [addon])
 
 
@@ -272,11 +287,8 @@ class TestVotes(amo.tests.TestCase):
 
 class TestCRUD(amo.tests.TestCase):
     """Test the collection form."""
-    fixtures = ('base/apps',
-                'base/users',
-                'base/addon_3615',
-                'base/collections',
-               )
+    fixtures = ('base/apps', 'base/users', 'base/addon_3615',
+                'base/collections')
 
     def setUp(self):
         self.client = HappyUnicodeClient()
@@ -285,13 +297,13 @@ class TestCRUD(amo.tests.TestCase):
         # Oh god it's unicode.
         self.slug = u'\u05d0\u05d5\u05e1\u05e3'
         self.data = {
-                'addon': 3615,
-                'addon_comment': 'fff',
-                'name': u'קווים תחתונים ומקפים בלבד',
-                'slug': self.slug,
-                'description': '',
-                'listed': 'True',
-                }
+            'addon': 3615,
+            'addon_comment': 'fff',
+            'name': u'קווים תחתונים ומקפים בלבד',
+            'slug': self.slug,
+            'description': '',
+            'listed': 'True'
+        }
 
     def login_admin(self):
         assert self.client.login(username='admin@mozilla.com',
@@ -346,12 +358,10 @@ class TestCRUD(amo.tests.TestCase):
         If we input addons but fail at filling out the form, don't show
         invisible addons.
         """
-        data = {
-                'addon': 3615,
+        data = {'addon': 3615,
                 'addon_comment': 'fff',
                 'description': '',
-                'listed': 'True',
-                }
+                'listed': 'True'}
 
         r = self.client.post(self.add_url, data, follow=True)
         eq_(pq(r.content)('.errorlist li')[0].text, 'This field is required.')
@@ -540,15 +550,18 @@ class TestCRUD(amo.tests.TestCase):
 
         url = reverse('collections.edit_addons', args=url_args)
         r = self.client.get(url)
-        eq_(r.status_code, 405)  # Passed acl check, but this view needs a POST.
+        eq_(r.status_code, 405)
+        # Passed acl check, but this view needs a POST.
 
         url = reverse('collections.edit_contributors', args=url_args)
         r = self.client.get(url)
-        eq_(r.status_code, 405)  # Passed acl check, but this view needs a POST.
+        eq_(r.status_code, 405)
+        # Passed acl check, but this view needs a POST.
 
         url = reverse('collections.edit_privacy', args=url_args)
         r = self.client.get(url)
-        eq_(r.status_code, 405)  # Passed acl check, but this view needs a POST.
+        eq_(r.status_code, 405)
+        # Passed acl check, but this view needs a POST.
 
         url = reverse('collections.delete', args=url_args)
         r = self.client.get(url)
@@ -1075,7 +1088,8 @@ class TestCollectionDetailFeed(amo.tests.TestCase):
         eq_(data['addons'][0]['id'], theme.id)
 
         eq_(data['addons'][0]['type'], 'theme')
-        eq_(data['addons'][0]['theme']['id'], unicode(theme.persona.persona_id))
+        eq_(data['addons'][0]['theme']['id'],
+            unicode(theme.persona.persona_id))
 
         assert data['addons'][0]['theme']['header']
         assert data['addons'][0]['theme']['footer']

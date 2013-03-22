@@ -32,6 +32,16 @@ from . import forms, tasks
 log = commonware.log.getLogger('z.collections')
 
 
+def allow_mine(f):
+    @functools.wraps(f)
+    def wrapper(request, username, *args, **kw):
+        """If the author is `mine` then show the current user's collection."""
+        if username == 'mine':
+            username = request.amo_user.username
+        return f(request, username, *args, **kw)
+    return wrapper
+
+
 def get_collection(request, username, slug):
     if (slug in SPECIAL_SLUGS.values() and request.user.is_authenticated()
         and request.amo_user.username == username):
@@ -140,6 +150,7 @@ def get_votes(request, collections):
     return dict((v.collection_id, v) for v in q)
 
 
+@allow_mine
 def user_listing(request, username):
     author = get_object_or_404(UserProfile, username=username)
     qs = (Collection.objects.filter(author__username=username)
@@ -173,6 +184,7 @@ class CollectionAddonFilter(BaseFilter):
                     .with_index(addons='downloads_type_idx'))
 
 
+@allow_mine
 def collection_detail(request, username, slug):
     c = get_collection(request, username, slug)
     if not (c.listed or acl.check_collection_ownership(request, c)):
@@ -216,6 +228,7 @@ def collection_detail(request, username, slug):
 
 
 @json_view(has_trans=True)
+@allow_mine
 def collection_detail_json(request, username, slug):
     c = get_collection(request, username, slug)
     if not (c.listed or acl.check_collection_ownership(request, c)):
@@ -590,10 +603,9 @@ def following(request):
 
 
 @login_required
-def mine(request, slug=None):
-    username = request.amo_user.username
+@allow_mine
+def mine(request, username=None, slug=None):
     if slug is None:
-        loc = reverse('collections.user', args=[username])
+        return user_listing(request, username)
     else:
-        loc = reverse('collections.detail', args=[username, slug])
-    return http.HttpResponseRedirect(loc)
+        return collection_detail(request, username, slug)
