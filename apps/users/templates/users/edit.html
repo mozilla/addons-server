@@ -9,9 +9,7 @@
 {% endblock %}
 
 {% block content %}
-{% with webapp=webapp %}
-  {% include 'users/includes/navigation.html' %}
-{% endwith %}
+{% include 'users/includes/navigation.html' %}
 <div id="user_edit" class="primary prettyform grid" role="main">
   <form method="post" action="" class="user-input island"
         enctype="multipart/form-data">
@@ -140,8 +138,6 @@
           {{ form.bio.errors }}
           </div>
         </fieldset> {# /.profile-detail #}
-        {# TODO(apps): Revert this when we have collections for apps. #}
-        {% if not webapp %}
         <fieldset id="profile-misc" class="c">
           <legend>{{ _('Miscellaneous') }}</legend>
           <p class="sub_legend">
@@ -166,35 +162,24 @@
             </li>
           </ul>
         </fieldset>
-        {% endif %}
 
         <fieldset id="acct-notify">
           <legend>{{ _('Notifications') }}</legend>
           <p class="sub_legend">
-            {% if webapp %}
-              {{ loc('From time to time, Mozilla may send you email. Please
-                      select the topics you are interested in.') }}
-            {% else %}
-              {% trans %}
+            {% trans %}
               From time to time, Mozilla may send you email about upcoming
               releases and add-on events. Please select the topics you are
               interested in.
-              {% endtrans %}
-            {% endif %}
+            {% endtrans %}
           </p>
           <div class="user-notifications formfields">
             {{ form.notifications }}
 
             <p class="note">
-              {% if webapp %}
-                {{ loc('Mozilla reserves the right to contact you individually
-                        about specific concerns with your apps.') }}
-              {% else %}
-                {% trans %}
-                  Mozilla reserves the right to contact you individually about
-                  specific concerns with your hosted add-ons.
-                {% endtrans %}
-              {% endif %}
+              {% trans %}
+                Mozilla reserves the right to contact you individually about
+                specific concerns with your hosted add-ons.
+              {% endtrans %}
             </p>
           </div>
         </fieldset>

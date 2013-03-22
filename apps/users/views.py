@@ -1,32 +1,25 @@
 import functools
-from datetime import datetime, timedelta
 from functools import partial
 from urlparse import urlparse
 
 from django import http
 from django.conf import settings
 from django.db import IntegrityError, transaction
-from django.db.models import Q
 from django.shortcuts import get_object_or_404, redirect
 from django.contrib import auth
 from django.contrib.auth.forms import PasswordResetForm
 from django.contrib.auth.tokens import default_token_generator
 from django.template import Context, loader
-from django.utils.datastructures import SortedDict
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
-from django.utils.decorators import method_decorator
-from django.utils.encoding import smart_str
 from django.utils.http import base36_to_int
 
 from django_browserid import get_audience, verify
-from waffle.decorators import waffle_flag, waffle_switch
 
 import commonware.log
 from django_statsd.clients import statsd
 import jingo
-from radagast.wizard import Wizard
-from tower import ugettext as _, ugettext_lazy as _lazy
+from tower import ugettext as _
 from session_csrf import anonymous_csrf, anonymous_csrf_exempt
 from mobility.decorators import mobile_template
 import waffle
@@ -42,14 +35,9 @@ from amo.helpers import loc
 from amo.utils import escape_all, log_cef, send_mail
 from abuse.models import send_abuse_report
 from addons.models import Addon
-from addons.views import BaseFilter
 from addons.decorators import addon_view_factory
 from access import acl
 from bandwagon.models import Collection
-from market.models import PreApprovalUser
-import paypal
-from stats.models import Contribution
-from translations.query import order_by_translation
 from users.models import UserNotification
 import users.notifications as notifications
 
@@ -62,7 +50,6 @@ from .utils import EmailResetCode, UnsubscribeCode, autocreate_username
 import tasks
 
 log = commonware.log.getLogger('z.users')
-paypal_log = commonware.log.getLogger('z.paypal')
 
 addon_view = addon_view_factory(qs=Addon.objects.valid)
 
@@ -190,7 +177,6 @@ def delete_photo(request):
 @write
 @login_required
 def edit(request):
-    webapp = settings.APP_PREVIEW
     # Don't use request.amo_user since it has too much caching.
     amouser = UserProfile.objects.get(pk=request.user.id)
     if request.method == 'POST':
@@ -198,7 +184,7 @@ def edit(request):
         # around in case we need to use it below (to email the user)
         original_email = amouser.email
         form = forms.UserEditForm(request.POST, request.FILES, request=request,
-                                  instance=amouser, webapp=webapp)
+                                  instance=amouser)
         if form.is_valid():
             messages.success(request, _('Profile Updated'))
             if amouser.email != original_email:
@@ -245,9 +231,9 @@ def edit(request):
                                       'you made. Please correct them and '
                                       'resubmit.'))
     else:
-        form = forms.UserEditForm(instance=amouser, webapp=webapp)
+        form = forms.UserEditForm(instance=amouser)
     return jingo.render(request, 'users/edit.html',
-                        {'form': form, 'amouser': amouser, 'webapp': webapp})
+                        {'form': form, 'amouser': amouser, 'webapp': False})
 
 
 @write
@@ -565,7 +551,7 @@ def profile(request, user):
     if settings.MARKETPLACE:
         raise http.Http404
 
-    webapp = settings.APP_PREVIEW
+    webapp = False
 
     # Get user's own and favorite collections, if they allowed that.
     own_coll = fav_coll = []
@@ -608,7 +594,7 @@ def profile(request, user):
     data = {'profile': user, 'own_coll': own_coll, 'reviews': reviews,
             'fav_coll': fav_coll, 'edit_any_user': edit_any_user,
             'addons': addons, 'own_profile': own_profile,
-            'webapp': webapp, 'personas': personas}
+            'personas': personas}
     if not own_profile:
         data['abuse_form'] = AbuseForm(request=request)
 
@@ -774,287 +760,3 @@ def unsubscribe(request, hash=None, token=None, perm_setting=None):
     return jingo.render(request, 'users/unsubscribe.html',
             {'unsubscribed': unsubscribed, 'email': email,
              'perm_settings': perm_settings})
-
-
-class PurchasesFilter(BaseFilter):
-    opts = (('purchased', loc('Purchase Date')),
-            ('price', _lazy(u'Price')),
-            ('name', _lazy(u'Name')))
-
-    def filter(self, field):
-        qs = self.base_queryset
-        if field == 'purchased':
-            return (qs.filter(Q(addonpurchase__user=self.request.amo_user) |
-                              Q(addonpurchase__isnull=True))
-                    .order_by('-addonpurchase__created', 'id'))
-        elif field == 'price':
-            return qs.order_by('addonpremium__price__price', 'id')
-        elif field == 'name':
-            return order_by_translation(qs, 'name')
-
-
-# TODO(cvan): I'll remove this view when it doesn't break every single thing.
-@login_required
-@mobile_template('users/{mobile/}purchases.html')
-@waffle_switch('marketplace')
-def purchases(request, addon_id=None, template=None):
-    """A list of purchases that a user has made through the marketplace."""
-    webapp = settings.APP_PREVIEW
-    cs = (Contribution.objects
-          .filter(user=request.amo_user,
-                  type__in=[amo.CONTRIB_PURCHASE, amo.CONTRIB_REFUND,
-                            amo.CONTRIB_CHARGEBACK])
-          .order_by('created'))
-    if addon_id:
-        cs = cs.filter(addon=addon_id)
-
-    ids = list(cs.values_list('addon_id', flat=True))
-    # If you are asking for a receipt for just one item, only show that.
-    # Otherwise, we'll show all addons that have a contribution or are free.
-    if not addon_id:
-        ids += list(request.amo_user.installed_set
-                    .exclude(addon__in=ids)
-                    .values_list('addon_id', flat=True))
-
-    contributions = {}
-    for c in cs:
-        contributions.setdefault(c.addon_id, []).append(c)
-
-    ids = list(set(ids))
-    addons = Addon.objects.filter(id__in=ids)
-    if webapp:
-        addons = addons.filter(type=amo.ADDON_WEBAPP)
-
-    filter = PurchasesFilter(request, addons, key='sort', default='purchased')
-
-    if addon_id and not filter.qs:
-        # User has requested a receipt for an addon they don't have.
-        raise http.Http404
-
-    addons = amo.utils.paginate(request, filter.qs, count=len(ids))
-    return jingo.render(request, template,
-                        {'addons': addons,
-                         'webapp': webapp,
-                         'filter': filter,
-                         'contributions': contributions,
-                         'single': bool(addon_id)})
-
-
-# Start of the Support wizard all of these are accessed through the
-# SupportWizard below.
-def plain(request, contribution, wizard):
-    # Simple view that just shows a template matching the step.
-    tpl = wizard.tpl('%s.html' % wizard.step)
-    addon = contribution.addon
-    return wizard.render(request, tpl, {'addon': addon,
-                                        'webapp': addon.is_webapp(),
-                                        'contribution': contribution})
-
-
-def support_author(request, contribution, wizard):
-    addon = contribution.addon
-    form = forms.ContactForm(request.POST or None)
-    if request.method == 'POST':
-        if form.is_valid():
-            template = jingo.render_to_string(
-                request, wizard.tpl('emails/support-request.txt'),
-                context={'contribution': contribution, 'addon': addon,
-                         'form': form, 'user': request.amo_user})
-            log.info('Support request to dev. by user: %s for addon: %s' %
-                     (request.amo_user.pk, addon.pk))
-            # L10n: %s is the addon name.
-            send_mail(_(u'New Support Request for %s' % addon.name),
-                      template, request.amo_user.email,
-                      [smart_str(addon.support_email)])
-            return redirect(reverse('users.support',
-                                    args=[contribution.pk, 'author-sent']))
-
-    return wizard.render(request, wizard.tpl('author.html'),
-                         {'addon': addon, 'webapp': addon.is_webapp(),
-                          'form': form})
-
-
-def support_mozilla(request, contribution, wizard):
-    addon = contribution.addon
-    form = forms.ContactForm(request.POST or None)
-    if request.method == 'POST':
-        if form.is_valid():
-            template = jingo.render_to_string(
-                request, wizard.tpl('emails/support-request.txt'),
-                context={'addon': addon, 'form': form,
-                         'contribution': contribution,
-                         'user': request.amo_user})
-            log.info('Support request to mozilla by user: %s for addon: %s' %
-                     (request.amo_user.pk, addon.pk))
-            # L10n: %s is the addon name.
-            send_mail(_(u'New Support Request for %s' % addon.name),
-                      template, request.amo_user.email,
-                      [settings.MARKETPLACE_EMAIL])
-            return redirect(reverse('users.support',
-                                    args=[contribution.pk, 'mozilla-sent']))
-
-    return wizard.render(request, wizard.tpl('mozilla.html'),
-                         {'addon': addon, 'form': form})
-
-
-@waffle_switch('allow-refund')
-def refund_request(request, contribution, wizard):
-    addon = contribution.addon
-    webapp = addon.is_webapp()
-    form = forms.RemoveForm(request.POST or None)
-    if request.method == 'POST' and (webapp or form.is_valid()):
-        return redirect('users.support', contribution.pk, 'reason')
-
-    return wizard.render(request, wizard.tpl('request.html'),
-                         {'addon': addon, 'webapp': webapp,
-                          'form': form, 'contribution': contribution})
-
-
-@waffle_switch('allow-refund')
-def refund_reason(request, contribution, wizard):
-    addon = contribution.addon
-    if not 'request' in wizard.get_progress():
-        return redirect('users.support', contribution.pk, 'request')
-    if contribution.transaction_id is None:
-        messages.error(request,
-                       _('A refund cannot be applied for yet. Please try again'
-                         ' later. If this error persists contact '
-                         'apps-marketplace@mozilla.org.'))
-        paypal_log.info('Refund requested for contribution with no '
-                        'transaction_id: %r' % (contribution.pk,))
-        return redirect('users.purchases')
-
-    if contribution.is_instant_refund():
-        paypal.refund(contribution.paykey)
-        # TODO: Consider requiring a refund reason for instant refunds.
-        refund = contribution.enqueue_refund(amo.REFUND_APPROVED_INSTANT)
-        paypal_log.info('Refund %r issued for contribution %r' %
-                        (refund.pk, contribution.pk))
-        # Note: we have to wait for PayPal to issue an IPN before it's
-        # completely refunded.
-        messages.success(request, _('Refund is being processed.'))
-        return redirect('users.purchases')
-
-    form = forms.ContactForm(request.POST or None)
-    if request.method == 'POST' and form.is_valid():
-        reason = form.cleaned_data['text']
-        template = jingo.render_to_string(request,
-            wizard.tpl('emails/refund-request.txt'),
-            context={'addon': addon,
-                     'form': form,
-                     'user': request.amo_user,
-                     'contribution': contribution,
-                     'refund_url': contribution.get_absolute_refund_url(),
-                     'refund_reason': reason})
-        log.info('Refund request sent by user: %s for addon: %s' %
-                 (request.amo_user.pk, addon.pk))
-        # L10n: %s is the addon name.
-        send_mail(_(u'New Refund Request for %s' % addon.name),
-                  template, settings.NOBODY_EMAIL,
-                  [smart_str(addon.support_email)])
-        # Add this refund request to the queue.
-        contribution.enqueue_refund(amo.REFUND_PENDING, reason)
-        return redirect(reverse('users.support',
-                                args=[contribution.pk, 'refund-sent']))
-
-    return wizard.render(request, wizard.tpl('refund.html'), {'form': form})
-
-
-class SupportWizard(Wizard):
-    title = _lazy('Support')
-    steps = SortedDict((('start', plain),
-                ('site', plain),
-                ('resources', plain),
-                ('mozilla', support_mozilla),
-                ('mozilla-sent', plain),
-                ('author', support_author),
-                ('author-sent', plain),
-                ('request', refund_request),
-                ('reason', refund_reason),
-                ('refund-sent', plain)))
-
-    def tpl(self, x):
-        return 'users/support/%s' % x
-
-    @property
-    def wrapper(self):
-        return self.tpl('{mobile/}wrapper.html')
-
-    @method_decorator(login_required)
-    def dispatch(self, request, contribution_id, step='', *args, **kw):
-        contribution = get_object_or_404(Contribution, pk=contribution_id)
-        if contribution.user.pk != request.amo_user.pk:
-            raise http.Http404
-        args = [contribution] + list(args)
-        return super(SupportWizard, self).dispatch(request, step, *args, **kw)
-
-    def render(self, request, template, context):
-        fmt = {'mobile/': 'mobile/' if request.MOBILE else ''}
-        wrapper = self.wrapper.format(**fmt)
-        context.update(wizard=self)
-        if request.is_ajax():
-            return jingo.render(request, template, context)
-        context['content'] = template
-        return jingo.render(request, wrapper, context)
-
-
-@login_required
-@waffle_flag('allow-pre-auth')
-def payments(request, status=None):
-    # Note this is not post required, because PayPal does not reply with a
-    # POST but a GET, that's a sad face.
-    if status:
-        pre, created = (PreApprovalUser.objects
-                        .safer_get_or_create(user=request.amo_user))
-
-        if status == 'complete':
-            # The user has completed the setup at PayPal and bounced back.
-            if 'setup-preapproval' in request.session:
-                messages.success(request, loc('Pre-approval set up.'))
-                paypal_log.info(u'Preapproval key created for user: %s'
-                                % request.amo_user)
-                data = request.session.get('setup-preapproval', {})
-                pre.update(paypal_key=data.get('key'),
-                           paypal_expiry=data.get('expiry'))
-                del request.session['setup-preapproval']
-
-        elif status == 'cancel':
-            # The user has chosen to cancel out of PayPal. Nothing really
-            # to do here, PayPal just bounces to this page.
-            messages.success(request, loc('Pre-approval changes cancelled.'))
-
-        elif status == 'remove':
-            # The user has an pre approval key set and chooses to remove it
-            if pre.paypal_key:
-                pre.update(paypal_key='')
-                messages.success(request, loc('Pre-approval removed.'))
-                paypal_log.info(u'Preapproval key removed for user: %s'
-                                % request.amo_user)
-
-        context = {'preapproval': pre}
-    else:
-        context = {'preapproval': request.amo_user.get_preapproval()}
-
-    return jingo.render(request, 'users/payments.html', context)
-
-
-@post_required
-@login_required
-@waffle_flag('allow-pre-auth')
-def preapproval(request):
-    today = datetime.today()
-    data = {'startDate': today,
-            'endDate': today + timedelta(days=365 * 2),
-            'pattern': 'users.payments',
-            }
-    try:
-        result = paypal.get_preapproval_key(data)
-    except paypal.PaypalError, e:
-        paypal_log.error(u'Preapproval key: %s' % e, exc_info=True)
-        raise
-
-    paypal_log.info(u'Got preapproval key for user: %s' % request.amo_user.pk)
-    request.session['setup-preapproval'] = {'key': result['preapprovalKey'],
-                                            'expiry': data['endDate']}
-    to = paypal.get_preapproval_url(result['preapprovalKey'])
-    return http.HttpResponseRedirect(to)

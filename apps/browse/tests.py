@@ -846,8 +846,8 @@ class TestSearchToolsPages(BaseSearchToolsTest):
 
         links = doc('#search-tools-sidebar a')
 
-        eq_([a.text.strip() for a in links], [
-             # Search Extensions
+        eq_([a.text.strip() for a in links],
+            [# Search Extensions
              'Most Popular', 'Recently Added',
              # Search Providers
              'Bookmarks'])
@@ -1325,7 +1325,6 @@ class TestMobileHeader(amo.tests.MobileTest, amo.tests.TestCase):
         expected = [
             (UserProfile.objects.get(username='regularuser').welcome_name,
              None),
-            ('My Purchases', reverse('users.purchases')),
             ('Log out', reverse('users.logout')),
         ]
         self._test_auth_nav(expected)

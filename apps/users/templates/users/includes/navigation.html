@@ -1,20 +1,11 @@
 {% set links = [
     (_('My Profile'), amo_user.get_url_path()),
     (_('Account Settings'), url('users.edit')),
+    (_('My Collections'), url('collections.mine'))
 ] %}
-{% if not webapp %}
-  {% do links.append((_('My Collections'), url('collections.mine'))) %}
-  {% if amo_user.favorite_addons %}
-    {% do links.append((_('My Favorites'),
-                        url('collections.mine', 'favorites'))) %}
-  {% endif %}
-{% endif %}
-{% if waffle.switch('marketplace') %}
-  {% do links.append((_('My Purchases'), url('users.purchases'))) %}
-{% endif %}
-
-{% if waffle.flag('allow-pre-auth') %}
-  {% do links.append((loc('Payment Profile'), url('users.payments'))) %}
+{% if amo_user.favorite_addons %}
+  {% do links.append((_('My Favorites'),
+                      url('collections.mine', 'favorites'))) %}
 {% endif %}
 
 <div id="secondary-nav" class="secondary">

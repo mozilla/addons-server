@@ -55,16 +55,6 @@ users_patterns = patterns('',
     url(r'^unsubscribe/(?P<token>[-\w]+={0,3})/(?P<hash>[\w]+)/'
          '(?P<perm_setting>[\w]+)?$', views.unsubscribe,
         name="users.unsubscribe"),
-    url(r'purchases/$', views.purchases, name='users.purchases'),
-    url(r'purchases/(?P<addon_id>\d+)', views.purchases,
-        name='users.purchases.receipt'),
-    url(r'support/(?P<contribution_id>\d+)(?:/(?P<step>[\w-]+))?$',
-        views.SupportWizard.as_view(),
-        name='users.support'),
-    url(r'payments(?:/(?P<status>cancel|complete|remove))?$', views.payments,
-        name='users.payments'),
-    url(r'payments/preapproval$', views.preapproval,
-        name='users.payments.preapproval'),
 )
 
 

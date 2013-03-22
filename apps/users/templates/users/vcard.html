@@ -36,43 +36,22 @@
     </tr>
     <tr>
       <th>
-        {% if webapp %}
-          {{ _('Number of apps developed') }}
-        {% else %}
-          {{ _('Number of add-ons developed') }}
-        {% endif %}
+        {{ _('Number of add-ons developed') }}
       </th>
       <td class="num-addons">
-        {% if webapp %}
-          {% with num=profile.apps_listed|length %}
-            {% if num == 0 %}
-              {{ loc('0 apps') }}
-            {% else %}
-              <a href="{{ '#my-apps' if is_profile else profile.get_url_path() }}">
-                {# TODO(apps): Will use ngettext when these strings are ready to be localized. #}
-                {% if num == 1 %}
-                  {{ loc('{0} app')|f(num) -}}
-                {% else %}
-                  {{ loc('{0} apps')|f(num) -}}
-                {% endif -%}
-              </a>
-            {% endif %}
-          {% endwith %}
-        {% else %}
-          {% with num=profile.addons_listed|length %}
-            {% if num == 0 %}
-               {{ _('{0} add-ons')|f(num) }}
-            {% else %}
-              <a href="{{ '#my-addons' if is_profile else profile.get_url_path() }}">
-                {% trans num=num %}
-                  {{ num }} add-on
-                {% pluralize %}
-                  {{ num }} add-ons
-                {% endtrans -%}
-              </a>
-            {% endif %}
-          {% endwith %}
-        {% endif %}
+        {% with num=profile.addons_listed|length %}
+          {% if num == 0 %}
+             {{ _('{0} add-ons')|f(num) }}
+          {% else %}
+            <a href="{{ '#my-addons' if is_profile else profile.get_url_path() }}">
+              {% trans num=num %}
+                {{ num }} add-on
+              {% pluralize %}
+                {{ num }} add-ons
+              {% endtrans -%}
+            </a>
+          {% endif %}
+        {% endwith %}
       </td>
     </tr>
     <tr>

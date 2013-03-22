@@ -7,7 +7,6 @@ from tower import ugettext as _
 import waffle
 
 import amo
-from amo.helpers import loc
 from amo.urlresolvers import remora_url, reverse
 from amo.utils import memoize
 from access import acl
@@ -73,14 +72,6 @@ def global_settings(request):
                     {'text': _('My Favorites'),
                      'href': reverse('collections.detail',
                                      args=[amo_user.username, 'favorites'])})
-
-        if waffle.switch_is_active('marketplace'):
-            account_links.append({'text': _('My Purchases'),
-                                  'href': reverse('users.purchases')})
-
-        if waffle.flag_is_active(request, 'allow-pre-auth'):
-            account_links.append({'text': loc('Payment Profile'),
-                                  'href': reverse('users.payments')})
 
         account_links.append({
             'text': _('Log out'),

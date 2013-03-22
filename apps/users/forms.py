@@ -254,7 +254,6 @@ class UserEditForm(UserRegisterForm, PasswordMixin):
 
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop('request', None)
-        self.webapp = kwargs.pop('webapp', False)
         super(UserEditForm, self).__init__(*args, **kwargs)
 
         if self.instance:
@@ -265,14 +264,9 @@ class UserEditForm(UserRegisterForm, PasswordMixin):
             default.update(user)
 
             # Add choices to Notification.
-            if self.webapp:
-                choices = email.APP_NOTIFICATIONS_CHOICES
-                if not self.instance.is_developer:
-                    choices = email.APP_NOTIFICATIONS_CHOICES_NOT_DEV
-            else:
-                choices = email.NOTIFICATIONS_CHOICES
-                if not self.instance.is_developer:
-                    choices = email.NOTIFICATIONS_CHOICES_NOT_DEV
+            choices = email.NOTIFICATIONS_CHOICES
+            if not self.instance.is_developer:
+                choices = email.NOTIFICATIONS_CHOICES_NOT_DEV
 
             # Append a "NEW" message to new notification options.
             saved = self.instance.notifications.values_list('notification_id',

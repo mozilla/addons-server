@@ -1,4 +1,4 @@
-{% from "addons/macros.html" import price, refund_info %}
+{% from "addons/macros.html" import price %}
 {% set amo_user = request.amo_user if request.user.is_authenticated() else None %}
 {% for addon in addons %}
   {% if show_refunds %}
@@ -54,9 +54,6 @@
             <span class="vital">
               {{ _('Updated {0}')|f(addon.last_updated|datetime) }}
             <span>
-          {% endif %}
-          {% if contribs %}
-            {{ refund_info(amo, addon, contributions) }}
           {% endif %}
         </div>
       </details>

@@ -29,7 +29,7 @@
          {% if not profile.picture_type %}alt="{{ _('No Photo') }}"{% endif %}>
     {% if profile.is_developer %}
       <div class="user-role"><p>
-        {{ loc('Apps Developer') if webapp else _('Add-ons Developer') }}
+        {{ _('Add-ons Developer') }}
       </p></div>
     {% endif %}
     {% if profile.is_artist %}
@@ -41,7 +41,7 @@
   <section class="primary">
     <h2>{{ _('About me') }}</h2>
     <div class="vcard">
-      {{ profile|user_vcard(is_profile=True, webapp=webapp) }}
+      {{ profile|user_vcard(is_profile=True) }}
     </div>
     <div class="prose">
       {% if profile.bio %}
@@ -53,15 +53,14 @@
 </div>
 
 {% if addons.object_list %}
-  <div id="my-{{ 'apps' if webapp else 'addons' }}" class="island primary listing c">
-    <h2>{{ loc("Apps I've created") if webapp else _("Add-ons I've created") }}</h2>
+  <div id="my-addons" class="island primary listing c">
+    <h2>{{ _("Add-ons I've created") }}</h2>
     <div class="items">
       {{ impala_addon_listing_items(addons.object_list, field=sorting, src='userprofile') }}
     </div>
     {{ addons|impala_paginator }}
   </div>
 {% endif %}
-
 
 {% if personas %}
   <div id="my-personas" class="island c">
@@ -95,9 +94,7 @@
       {% endfor %}
       {{ edit_review_form() }}
     {% else %}
-      <p class="no-reviews no-results">
-        {{ loc('No app reviews yet.') if webapp else _('No add-on reviews yet.') }}
-      </p>
+      <p class="no-reviews no-results">{{ _('No add-on reviews yet.') }}</p>
     {% endif %}
   </div>
 </div>
