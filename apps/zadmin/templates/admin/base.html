@@ -24,7 +24,6 @@ data-default-locale="en-us"
 {% block search_form %}
 {% endblock %}
 
-{% set links = admin_site_links() %}
 {% macro ul(links, section) %}
   <ul>
     {% for title, link in links[section] %}
@@ -32,6 +31,8 @@ data-default-locale="en-us"
     {% endfor %}
   </ul>
 {% endmacro %}
+
+{% set links = mkt_admin_site_links() if settings.MARKETPLACE else admin_site_links() %}
 
 {% block navbar %}
 <div id="navbar">

@@ -353,7 +353,7 @@ def timelabel(context, time):
 
 
 @register.function
-def admin_site_links():
+def mkt_admin_site_links():
     return {
         'addons': [
             ('Search for apps by name or id', reverse('zadmin.addon-search')),
