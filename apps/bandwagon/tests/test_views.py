@@ -172,6 +172,13 @@ class TestViews(amo.tests.TestCase):
         eq_(response.status_code, 200)
         eq_(list(response.context['addons'].object_list), [addon])
 
+    def test_not_mine(self):
+        self.client.logout()
+        r = self.client.get(reverse('collections.user', args=['jbalogh']))
+        eq_(r.context['page'], 'user')
+        assert '#p-mine' not in pq(r.content)('style').text(), (
+            "'Collections I've Made' sidebar link shouldn't be highlighted.")
+
 
 class TestPrivacy(amo.tests.TestCase):
     fixtures = ['users/test_backends']
@@ -1102,34 +1109,6 @@ class TestMobileCollections(TestMobile):
         r = self.client.get(reverse('collections.list'))
         eq_(r.status_code, 200)
         self.assertTemplateUsed(r, 'bandwagon/impala/collection_listing.html')
-
-
-class TestUserListing(amo.tests.TestCase):
-    fixtures = ['base/users']
-
-    def setUp(self):
-        assert self.client.login(username='admin@mozilla.com',
-                                 password='password')
-
-    def test_mine(self):
-        r = self.client.get(reverse('collections.mine'), follow=True)
-        self.assertRedirects(r, reverse('collections.user', args=['admin']))
-        eq_(r.context['page'], 'mine')
-        assert '#p-mine' in pq(r.content)('style').text(), (
-            "'Collections I've Made' sidebar link should be highlighted.")
-
-    def test_not_mine(self):
-        self.client.logout()
-        r = self.client.get(reverse('collections.user', args=['admin']))
-        eq_(r.context['page'], 'user')
-        assert '#p-mine' not in pq(r.content)('style').text(), (
-            "'Collections I've Made' sidebar link shouldn't be highlighted.")
-
-    def test_favorites(self):
-        r = self.client.get(reverse('collections.mine', args=['favorites']),
-                            follow=True)
-        expected = reverse('collections.detail', args=['admin', 'favorites'])
-        self.assertRedirects(r, expected)
 
 
 class TestCollectionForm(amo.tests.TestCase):
