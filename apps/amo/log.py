@@ -599,7 +599,7 @@ class EDIT_REVIEW(_LOG):
 class THEME_REVIEW(_LOG):
     id = 108
     action_class = 'review'
-    format = _(u'{theme} reviewed.')
+    format = _(u'{addon} reviewed.')
 
 
 LOGS = [x for x in vars().values()
