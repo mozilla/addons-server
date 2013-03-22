@@ -23,7 +23,7 @@ class FeaturedAppQuerySet(models.query.QuerySet):
     AttributeError.
     """
 
-    def featured(self, cat=None, region=None, limit=6, mobile=False,
+    def featured(self, cat=None, region=None, limit=9, mobile=False,
                  gaia=False, tablet=False):
         """
         Filters the QuerySet, removing FeaturedApp instances that should
