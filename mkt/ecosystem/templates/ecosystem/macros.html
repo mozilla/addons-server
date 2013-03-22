@@ -286,7 +286,13 @@
 {% endmacro -%}
 
 {% macro youtube(id) -%}
-  <iframe width="509" height="278"
+  <iframe width="685" height="385"
           src="//www.youtube.com/embed/{{ id }}?wmode=transparent"
           frameborder="0" allowfullscreen></iframe>
+  <div class="video-caption">
+    <span>{{ _('Made in partnership with our friends at Treehouse') }}</span>
+    <a href="http://teamtreehouse.com/?cid=1154"
+       class="button">{{ _('Check them out!') }}</a>
+    <hr>
+  </div>
 {% endmacro -%}

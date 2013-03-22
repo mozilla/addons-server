@@ -299,6 +299,58 @@ a[rel="external"]:after, a.external:after {
     .features {
         margin-bottom: 40px;
     }
+
+    .video-caption {
+        background: url(../../img/ecosystem/rocket-treehouse.png) no-repeat;
+        color: $medium-gray;
+        font-size: 18px;
+        font-weight: 100;
+        line-height: 27px;
+        min-height: 60px;
+        padding: 25px 0 0 80px;
+        position: relative;
+
+        span {
+            display: inline-block;
+            width: 415px;
+        }
+
+        .button {
+            float: right;
+            font-size: 17px;
+            line-height: 20px;
+            padding: 8px 15px;
+        }
+
+        hr {
+            border: 0;
+            border-bottom: 1px solid #ddd;
+            display: block;
+            float: left;
+            margin: 20px 150px 0;
+            width: 200px;
+
+            &:before, &:after {
+                box-shadow: 0 0 20px 20px #fff;
+                content: '';
+                position: absolute;
+                bottom: 0;
+                width: 0;
+            }
+
+            &:before {
+                left: 230px;
+            }
+
+            &:after {
+                right: 260px;
+            }
+        }
+    }
+
+    iframe {
+        margin-top: 10px;
+    }
 }
 
 .firefox-simulator > article {
