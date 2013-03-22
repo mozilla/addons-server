@@ -148,10 +148,12 @@ class TestPayStart(PayFlowTest):
         rp = self.client.get(reverse('inapp_pay.pay_start'))
         eq_(rp.status_code, 400)
 
+
     def test_pay_start(self, fetch_prod_im):
         rp = self.start()
         eq_(rp.status_code, 200)
-        assert 'x-frame-options' in rp, "Must deny with x-frame-options"
+        # TODO (potch or his successor) Un-comment this when Fireplace is live.
+        # assert 'x-frame-options' in rp, "Must deny with x-frame-options"
         self.assertTemplateUsed(rp, 'inapp_pay/pay_start.html')
 
         log = InappPayLog.objects.get()
