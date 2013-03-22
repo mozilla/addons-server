@@ -4,6 +4,7 @@ from django.conf import settings
 from django.utils.html import strip_tags
 
 import amo
+from amo.helpers import absolutify
 from amo.urlresolvers import reverse
 from amo.utils import urlparams, epoch
 from addons.models import Category
@@ -35,8 +36,9 @@ def addon_to_dict(addon, disco=False, src='api'):
          'guid': addon.guid,
          'status': amo.STATUS_CHOICES_API[addon.status],
          'type': amo.ADDON_SLUGS_UPDATE[addon.type],
-         'author': (addon.listed_authors[0].name if
-                    addon.listed_authors else ''),
+         'authors': [{'id': a.id, 'name': a.name,
+                      'link': absolutify(a.get_url_path(src=src))}
+                     for a in addon.listed_authors],
          'summary': strip_tags(addon.summary),
          'description': strip_tags(addon.description),
          'icon': addon.icon_url,

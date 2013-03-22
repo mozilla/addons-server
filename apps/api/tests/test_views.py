@@ -16,6 +16,7 @@ import amo
 from addons.models import (Addon, AppSupport, CompatOverride,
                            CompatOverrideRange, Persona, Preview)
 from amo import helpers
+from amo.helpers import absolutify
 from amo.tests import addon_factory, ESTestCase, TestCase
 from amo.urlresolvers import reverse
 from amo.views import handler500
@@ -297,7 +298,9 @@ class APITest(TestCase):
         eq_(data['guid'], addon.guid)
         eq_(data['version'], '2.1.072')
         eq_(data['status'], 'public')
-        eq_(data['author'], u'55021 \u0627\u0644\u062a\u0637\u0628')
+        eq_(data['authors'],
+            [{'id': 55021, 'name': u'55021 \u0627\u0644\u062a\u0637\u0628',
+              'link': absolutify(u'/en-US/firefox/user/55021/?src=api')}])
         eq_(data['summary'], unicode(addon.summary))
         eq_(data['description'],
             'This extension integrates your browser with Delicious '
@@ -342,7 +345,7 @@ class APITest(TestCase):
         eq_(doc('license name').length, 1)
         eq_(doc('license url').length, 1)
         eq_(doc('license name').text(), unicode(license.name))
-        eq_(doc('license url').text(), helpers.absolutify(license.url))
+        eq_(doc('license url').text(), absolutify(license.url))
 
         license.url = ''
         license.save()
@@ -350,7 +353,7 @@ class APITest(TestCase):
         response = self.client.get(api_url)
         doc = pq(response.content)
         license_url = addon.current_version.license_url()
-        eq_(doc('license url').text(), helpers.absolutify(license_url))
+        eq_(doc('license url').text(), absolutify(license_url))
 
         license.delete()
         response = self.client.get(api_url)
