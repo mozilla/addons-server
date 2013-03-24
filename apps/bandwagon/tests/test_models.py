@@ -1,3 +1,4 @@
+import datetime
 import itertools
 import random
 
@@ -28,9 +29,7 @@ def activitylog_count(type):
 
 
 class TestCollections(amo.tests.TestCase):
-    fixtures = ('base/apps', 'base/users', 'base/addon_3615',
-                'base/addon_10423_youtubesearch', 'base/addon_1833_yoono',
-                'base/collections', 'bandwagon/test_models')
+    fixtures = ('base/addon_3615', 'bandwagon/test_models')
 
     def setUp(self):
         self.user = UserProfile.objects.create(username='uhhh', email='uh@hh')
@@ -38,12 +37,11 @@ class TestCollections(amo.tests.TestCase):
         amo.set_user(self.user)
 
     def test_icon_url(self):
-
-        # Has no icon
-        c = Collection.objects.get(pk=512)
+        # Has no icon.
+        c = Collection(pk=512, modified=datetime.datetime.now())
         assert c.icon_url.endswith('img/icons/collection.png')
 
-        c.icontype = "image/png"
+        c.icontype = 'image/png'
         url = c.icon_url.split('?')[0]
         assert url.endswith('0/512.png')
 
@@ -56,7 +54,7 @@ class TestCollections(amo.tests.TestCase):
         assert c.icon_url.endswith('img/icons/heart.png')
 
     def test_is_subscribed(self):
-        c = Collection.objects.get(pk=512)
+        c = Collection(pk=512)
         c.following.create(user=self.user)
         assert c.is_subscribed(self.user)
 
@@ -68,14 +66,12 @@ class TestCollections(amo.tests.TestCase):
     def test_listed(self):
         """Make sure the manager's listed() filter works."""
         listed_count = Collection.objects.listed().count()
-        # make a private collection
-        private = Collection(
+        # Make a private collection.
+        Collection.objects.create(
             name="Hello", uuid="4e2a1acc-39ae-47ec-956f-46e080ac7f69",
             listed=False, author=self.user)
-        private.save()
 
-        listed = Collection.objects.listed()
-        eq_(len(listed), listed_count)
+        eq_(Collection.objects.listed().count(), listed_count)
 
     def test_auto_uuid(self):
         c = Collection.objects.create(author=self.user)
@@ -83,7 +79,7 @@ class TestCollections(amo.tests.TestCase):
         assert isinstance(c.uuid, basestring)
 
     def test_addon_index(self):
-        c = Collection.objects.get(pk=80)
+        c = Collection.objects.get(pk=512)
         c.author = self.user
         eq_(c.addon_index, None)
         ids = c.addons.values_list('id', flat=True)
@@ -111,7 +107,7 @@ class TestCollections(amo.tests.TestCase):
         eq_(get_addons(c), addons)
 
         # Check delete.
-        delete_cnt = len(addons) - 2
+        delete_cnt = len(addons) - 1
         addons = addons[:2]
         c.set_addons(addons)
         eq_(activitylog_count(amo.LOG.REMOVE_FROM_COLLECTION), delete_cnt)
@@ -119,7 +115,7 @@ class TestCollections(amo.tests.TestCase):
         eq_(c.addons.count(), len(addons))
 
     def test_publishable_by(self):
-        c = Collection.objects.create(author=self.other)
+        c = Collection(pk=512, author=self.other)
         CollectionUser(collection=c, user=self.user).save()
         eq_(c.publishable_by(self.user), True)
 
@@ -181,20 +177,15 @@ class TestCollections(amo.tests.TestCase):
         eq_(c.can_view_stats(fake_request), True)
 
         # Developer.
-        user = UserProfile.objects.get(username='regularuser')
-        CollectionUser.objects.create(collection=c, user=user)
+        CollectionUser.objects.create(collection=c, user=self.user)
         fake_request.groups = ()
-        fake_request.amo_user = user
+        fake_request.amo_user = self.user
         eq_(c.can_view_stats(fake_request), True)
 
 
 class TestRecommendations(amo.tests.TestCase):
     fixtures = ['base/addon-recs']
     ids = [5299, 1843, 2464, 7661, 5369]
-
-    def setUp(self):
-        self.user = UserProfile.objects.create(username='uhhh', email='uh@hh')
-        amo.set_user(self.user)
 
     @classmethod
     def expected_recs(self):
@@ -210,8 +201,7 @@ class TestRecommendations(amo.tests.TestCase):
         return [x[0] for x in addons if x[0] not in self.ids]
 
     def test_build_recs(self):
-        recs = RecommendedCollection.build_recs(self.ids)
-        eq_(recs, self.expected_recs())
+        eq_(RecommendedCollection.build_recs(self.ids), self.expected_recs())
 
     @mock.patch('bandwagon.models.AddonRecommendation.scores')
     def test_no_dups(self, scores):
