@@ -42,10 +42,6 @@ function wait(ms) {
 
 
 _.extend(String.prototype, {
-    trim: function(str) {
-        // Trim leading and trailing whitespace (like lstrip + rstrip).
-        return this.replace(/^\s*/, '').replace(/\s*$/, '');
-    },
     strip: function(str) {
         // Strip all whitespace.
         return this.replace(/\s/g, '');
