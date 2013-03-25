@@ -30,6 +30,7 @@ class TestHelpers(test.TestCase):
         eq_(doc('button').text(), u'Remove from Favorites')
 
     def test_barometer(self):
+        self.client.get('/')
         jingo.load_helpers()
         collection = Collection(upvotes=1, slug='mccrackin',
                                 author=UserProfile(username='clouserw'))
@@ -41,7 +42,7 @@ class TestHelpers(test.TestCase):
         }
         c['request'].user.is_authenticated.return_value = False
         doc = pq(barometer(c, collection))
-        eq_(doc('form')[0].action, '/users/login?to=yermom')
+        eq_(doc('form')[0].action, '/en-US/firefox/users/login?to=yermom')
 
         # Mock logged in.
         c['request'].amo_user.votes.filter.return_value = [Mock(vote=1)]
