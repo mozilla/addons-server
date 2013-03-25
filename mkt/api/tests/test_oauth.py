@@ -68,7 +68,8 @@ class OAuthClient(Client):
         url = self.get_absolute_url(url)
         return super(OAuthClient, self).get(
             url, HTTP_HOST='api',
-            HTTP_AUTHORIZATION=self.header('GET', url, **kw), data=data, **kw)
+            HTTP_AUTHORIZATION=self.header('GET', url, data=data, **kw),
+            data=data, **kw)
 
     def delete(self, url, **kw):
         url = self.get_absolute_url(url)
