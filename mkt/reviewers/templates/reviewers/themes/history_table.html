@@ -24,7 +24,11 @@
           </td>
         {% endif %}
         <td>{{ action_dict[details.action] }}</td>
-        <td>{% if details.reject_reason not in ['', None] %}{{ reject_reasons[details.reject_reason][1] }}{% endif %}</td>
+        <td>
+          {% if details.reject_reason not in ('', None) %}
+            {{ reject_reasons[details.reject_reason][1] }}
+          {% endif %}
+        </td>
         <td>{{ details.comment }}</td>
       </tr>
     {% endfor %}

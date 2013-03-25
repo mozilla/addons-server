@@ -1,0 +1,1 @@
+CREATE TABLE log_activity_addon_mkt LIKE log_activity_addon;

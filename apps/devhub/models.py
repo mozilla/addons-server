@@ -31,6 +31,9 @@ from versions.models import Version
 log = commonware.log.getLogger('devhub')
 
 
+table_name = lambda n: n + settings.LOG_TABLE_SUFFIX
+
+
 class RssKey(models.Model):
     key = UUIDField(db_column='rsskey', auto=True, unique=True)
     addon = models.ForeignKey(Addon, null=True, unique=True)
@@ -96,12 +99,10 @@ class AddonLog(amo.models.ModelBase):
     activity_log = models.ForeignKey('ActivityLog')
 
     class Meta:
-        # This table is addons only and not in use by the marketplace.
-        db_table = 'log_activity_addon'
+        # This table is addons only and not in use by the marketplace (except
+        # for Themes).
+        db_table = table_name('log_activity_addon')
         ordering = ('-created',)
-
-
-table_name = lambda n: n + settings.LOG_TABLE_SUFFIX
 
 
 class AppLog(amo.models.ModelBase):
