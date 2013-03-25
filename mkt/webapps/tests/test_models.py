@@ -114,6 +114,10 @@ class TestWebapp(amo.tests.TestCase):
         webapp = Webapp(app_slug='woo')
         eq_(webapp.get_url_path(), '/app/woo/')
 
+    def test_get_api_url(self):
+        webapp = Webapp(app_slug='woo', pk=1)
+        eq_(webapp.get_api_url(), '/api/apps/app/1/')
+
     def test_get_stats_url(self):
         webapp = Webapp(app_slug='woo')
 

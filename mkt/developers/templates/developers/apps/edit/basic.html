@@ -44,8 +44,19 @@
               {{ form.slug.errors }}
             {% else %}
               {{ settings.SITE_URL }}/&hellip;/{{ addon.app_slug if webapp else addon.slug }}
-              <a href="{{ addon.get_url_path() }}">{{ _('View Listing') }}</em>
+              <a class="smaller" href="{{ addon.get_url_path() }}">{{ _('View Listing') }}</a>
             {% endif %}
+          </td>
+        </tr>
+        <tr>
+          <th class="label">
+            {{ tip(_('API URL'),
+                   _('The URL for accessing this app using the '
+                     'Marketplace API')) }}
+          </th>
+          <td>
+            <span>{{ settings.SITE_URL }}{{ addon.get_api_url() }}</span>
+            <a class="smaller" href="http://zamboni.readthedocs.org/en/latest/topics/api.html">{{ _('View API documentation') }}</a>
           </td>
         </tr>
         <tr id="manifest-url">

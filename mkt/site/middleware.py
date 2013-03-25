@@ -161,6 +161,8 @@ class LocaleMiddleware(object):
             request.LANG_COOKIE = ','.join([lang, ov_lang])
 
         request.LANG = lang
+        print '*' * 40
+        print request.LANG
         tower.activate(lang)
 
     def process_response(self, request, response):
