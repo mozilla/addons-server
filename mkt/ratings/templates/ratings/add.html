@@ -24,7 +24,7 @@
                     validate=True) }}
       <p class="form-footer submit-review c">
         <div class="two-up">
-          <a href="#" class="button fat alt back cancel">{{ _('Cancel') }}</a>
+          <a href="{{ product.get_detail_url() }}" class="button fat alt back cancel">{{ _('Cancel') }}</a>
         </div>
         <div class="two-up">
           <button disabled type="submit" class="fat">
