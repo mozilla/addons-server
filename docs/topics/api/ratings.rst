@@ -18,7 +18,8 @@ The API accepts various query string parameters for filtering the results:
 * `app` (required): the ID of the app rated.
 * `user` (optional): the ID of the author of a rating.
 * `pk` (optional): the ID of a particular rating.
-* `is_latest` (optional): Whether this is the latest rating by the rating author.
+* `is_latest` (optional): Whether this is the latest rating by the rating
+  author.
 * `created` (optional): The date of the posting of the rating.
 
 
@@ -26,26 +27,16 @@ The API returns a list of ratings, in order they were posted::
 
         {"meta": {
             "average": 3.4,
-            "slug": "marble-run",
+            "slug": "marble-run"
          },
          "user": {
             "can_rate": true,
-            "has_rated": false,
+            "has_rated": false
          }
          "objects": [{
             "id": 17,
             "app": "/api/apps/app/21",
             "user": 2165,
-            "replies": [{
-                "id": 18,
-                "app": "/api/apps/app/21",
-                "user": 31337,
-                "replies": [...],
-                "rating": 4,
-                "title": "reply title text",
-                "body": "reply body text",
-                "editorreview": false},
-                ...],
             "rating": 3,
             "title": "title text",
             "body": "body text",

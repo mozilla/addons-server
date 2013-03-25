@@ -58,17 +58,16 @@ class LoginResource(CORSResource, MarketplaceResource):
         authorization = Authorization()
 
     def post_list(self, request, **kwargs):
-        r = browserid_login(
+        res = browserid_login(
             request, browserid_audience=lambda r: settings.FIREPLACE_URL)
-        if r.status_code == 200:
-            email = request.user.email
-            name = UserProfile.objects.get(user=request.user).display_name
+        if res.status_code == 200:
             return self.create_response(
                 request,
                 {'error': None,
                  'settings': {
-                        'display_name': name,
-                        'email': email,
+                        'display_name': UserProfile.objects.get(
+                            user=request.user).display_name,
+                        'email': request.user.email,
                         'region': 'internet',
                         }
                  })
