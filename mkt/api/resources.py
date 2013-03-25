@@ -228,6 +228,9 @@ class AppResource(MarketplaceModelResource):
         return bundle
 
     def get_object_list(self, request):
+        if not request.amo_user:
+            log.info('Anonymous listing not allowed')
+            raise ImmediateHttpResponse(response=http.HttpForbidden())
         return self._meta.queryset.filter(authors=request.amo_user)
 
 

@@ -327,6 +327,17 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         content = json.loads(res.content)
         eq_(content['status'], 0)
 
+    def test_list(self):
+        app = self.create_app()
+        res = self.client.get(self.list_url)
+        eq_(res.status_code, 200)
+        content = json.loads(res.content)
+        eq_(content['meta']['total_count'], 1)
+        eq_(content['objects'][0]['id'], str(app.pk))
+
+    def test_list_anon(self):
+        eq_(self.anon.get(self.list_url).status_code, 403)
+
     def test_get_device(self):
         app = self.create_app()
         AddonDeviceType.objects.create(addon=app,
