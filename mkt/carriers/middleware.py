@@ -2,6 +2,7 @@ from django.conf import settings
 from django.utils.cache import patch_vary_headers
 
 from amo.urlresolvers import set_url_prefix
+from mkt.constants.carriers import CARRIER_MAP
 
 from . import set_carrier
 
@@ -27,18 +28,18 @@ class CarrierURLMiddleware(object):
 
         # If I have a cookie use that carrier.
         remembered = request.COOKIES.get('carrier')
-        if remembered in settings.CARRIER_URLS:
+        if remembered in CARRIER_MAP:
             carrier = stored_carrier = remembered
 
         choice = request.REQUEST.get('carrier')
-        if choice in settings.CARRIER_URLS:
+        if choice in CARRIER_MAP:
             carrier = choice
         elif 'carrier' in request.GET:
             # We are clearing the carrier.
             carrier = None
 
         # Legacy /<carrier>/ (don't break Gaia).
-        for name in settings.CARRIER_URLS:
+        for name in CARRIER_MAP:
             if request.path.startswith('/%s' % name):
                 is_legacy = True
                 carrier = name

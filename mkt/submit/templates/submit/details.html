@@ -94,7 +94,7 @@
                     cc_maxlength=form_basic.summary.field.max_length) }}
 
       <div id="addon-categories-edit"
-           data-max-categories="{{ amo.MAX_CATEGORIES }}">
+           data-max-categories="{{ form_cats.max_categories() }}">
         {% if not form_cats.disabled %}
           {{ select_cats_submission(amo.MAX_CATEGORIES, form_cats) }}
         {% endif %}

@@ -113,6 +113,10 @@ class VIMPELCOM(CARRIER):
     slug = 'vimpelcom'
 
 
-CARRIERS = filter(
-    lambda c: isinstance(c, CARRIER) and type(c) is not CARRIER, locals())
+CARRIER_MAP = dict((c.slug, c) for name, c in locals().items() if
+                   type(c) is type and c != CARRIER and issubclass(c, CARRIER))
+CARRIERS = CARRIER_MAP.values()
+
 CARRIER_IDS = frozenset([c.id for c in CARRIERS])
+CARRIER_SLUGS = frozenset([c.slug for c in CARRIERS])
+CARRIER_CHOICES = [(c.id, c) for c in CARRIERS]

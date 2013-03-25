@@ -30,7 +30,8 @@ def _categories(rand=False, limit=None):
     carrier = mkt.carriers.get_carrier_id()
     if carrier:
         categories = categories.extra(
-            where=['carrier = %s OR carrier IS NULL'], params=[carrier])
+            where=['(`categories`.`carrier` = %s OR '
+                   '`categories`.`carrier` IS NULL)'], params=[carrier])
     else:
         categories = categories.filter(carrier__isnull=True)
 

@@ -314,7 +314,7 @@ def get_seller_product(account):
                   .get_object_or_404())
 
 
-# TODO: move these into a tastypie API.
+# TODO(andym): move these into a tastypie API.
 @login_required
 @json_view
 def agreement(request, id):

@@ -14,11 +14,13 @@ import amo
 import amo.tests
 from amo.tests import app_factory
 from amo.tests.test_helpers import get_image_path
-from addons.models import Addon, AddonCategory, Category
+from addons.models import Addon, AddonCategory, Category, CategorySupervisor
 from files.helpers import copyfileobj
+from users.models import UserProfile
 
 import mkt
 from mkt.developers import forms
+from mkt.site.fixtures import fixture
 from mkt.webapps.models import (AddonExcludedRegion as AER, ContentRating,
                                 Webapp)
 
@@ -71,6 +73,67 @@ class TestPreviewForm(amo.tests.TestCase):
         eq_(self.check_file_type('x.foo'), 'image/png')
 
 
+class TestCategoryForm(amo.tests.WebappTestCase):
+    fixtures = fixture('user_999', 'webapp_337141')
+
+    def setUp(self):
+        super(TestCategoryForm, self).setUp()
+        self.user = UserProfile.objects.get(username='regularuser')
+        self.app = Webapp.objects.get(pk=337141)
+        self.request = RequestFactory()
+        self.request.user = self.user
+        self.request.groups = ()
+
+        self.cat = Category.objects.create(type=amo.ADDON_WEBAPP)
+        self.op_cat = Category.objects.create(
+            type=amo.ADDON_WEBAPP, region=1, carrier=2)
+
+    def _make_form(self, data=None):
+        self.form = forms.CategoryForm(
+            data, product=self.app, request=self.request)
+
+    def _cat_count(self):
+        return self.form.fields['categories'].queryset.count()
+
+    def test_has_no_cats(self):
+        self._make_form()
+        eq_(self._cat_count(), 1)
+        eq_(self.form.max_categories(), 2)
+
+    def test_has_users_cats(self):
+        CategorySupervisor.objects.create(
+            user=self.user, category=self.op_cat)
+        self._make_form()
+        eq_(self._cat_count(), 2)
+        eq_(self.form.max_categories(), 3)  # Special cats increase the max.
+
+    def test_save_cats(self):
+        self.op_cat.delete()  # We don't need that one.
+
+        # Create more special categories than we could otherwise save.
+        for i in xrange(10):
+            CategorySupervisor.objects.create(
+                user=self.user,
+                category=Category.objects.create(
+                    type=11, region=1, carrier=2))
+
+        self._make_form({'categories':
+            map(str, Category.objects.filter(type=11)
+                                     .values_list('id', flat=True))})
+        assert self.form.is_valid(), self.form.errors
+        self.form.save()
+        eq_(AddonCategory.objects.filter(addon=self.app).count(),
+            Category.objects.count())
+        eq_(self.form.max_categories(), 12)  # 2 (default) + 10 (above)
+
+    def test_unavailable_special_cats(self):
+        AER.objects.create(addon=self.app, region=1)
+
+        self._make_form()
+        eq_(self._cat_count(), 1)
+        eq_(self.form.max_categories(), 2)
+
+
 class TestRegionForm(amo.tests.WebappTestCase):
     fixtures = ['webapps/337141-steamcube']
 
@@ -85,8 +148,7 @@ class TestRegionForm(amo.tests.WebappTestCase):
         eq_(form.initial['other_regions'], True)
 
     def test_initial_excluded_in_region(self):
-        AER.objects.create(addon=self.app,
-                                           region=mkt.regions.BR.id)
+        AER.objects.create(addon=self.app, region=mkt.regions.BR.id)
 
         regions = list(mkt.regions.REGION_IDS)
         regions.remove(mkt.regions.BR.id)

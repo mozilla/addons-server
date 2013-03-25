@@ -125,7 +125,7 @@
             {{ req_if_edit }}
           </th>
           <td id="addon-categories-edit"
-              data-max-categories="{{ amo.MAX_CATEGORIES }}">
+              data-max-categories="{{ cat_form.max_categories() if cat_form else amo.MAX_CATEGORIES }}">
             {% if editable %}
               {% if cat_form.disabled %}
                 <p>

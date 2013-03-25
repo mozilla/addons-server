@@ -32,12 +32,6 @@ LOGOUT_URL = '/logout'
 # Let robots tear this place up.
 ENGAGE_ROBOTS = True
 
-# List of URL prefixes that will be interpretted as custom carrier stores.
-# When a URL is prefixed with one of these values, the value will be
-# available in mkt.carriers.get_carrier() and will be hidden from all other
-# url resolvers.
-CARRIER_URLS = ['deutsche_telekom', 'telefonica']
-
 MKT_FEEDBACK_EMAIL = 'apps-feedback@mozilla.com'
 MKT_REVIEWERS_EMAIL = 'app-reviewers@mozilla.org'
 MKT_SENIOR_EDITORS_EMAIL = 'app-review-staff@mozilla.com'
@@ -222,8 +216,6 @@ APPCACHE_NET_PATHS = [
 ]
 
 APPCACHE_FALLBACK_PATHS = {}
-for url in CARRIER_URLS:
-    APPCACHE_FALLBACK_PATHS['/%s' % url] = '/offline/home'
 
 
 # This callable yields paths relative to MEDIA_ROOT that you want to explicitly

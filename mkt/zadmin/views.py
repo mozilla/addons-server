@@ -68,7 +68,7 @@ def featured_apps_ajax(request):
     return jingo.render(request, 'zadmin/featured_apps_ajax.html',
                         {'apps_regions_carriers': apps_regions_carriers,
                          'regions': mkt.regions.REGIONS_CHOICES,
-                         'carriers': settings.CARRIER_URLS})
+                         'carriers': mkt.constants.CARRIER_SLUGS})
 
 
 @any_permission_required([('Admin', '%'),

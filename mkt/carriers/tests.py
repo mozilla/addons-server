@@ -11,7 +11,6 @@ from . import get_carrier, set_carrier, context_processors
 from .middleware import CarrierURLMiddleware
 
 
-@mock.patch.object(settings, 'CARRIER_URLS', ['foostore'])
 class TestCarrierURLs(TestCase):
     fixtures = ['base/users']
 
@@ -32,7 +31,7 @@ class TestCarrierURLs(TestCase):
         return request
 
     def test_strip_carrier(self):
-        request = self.get('/foostore/foo')
+        request = self.get('/telefonica/foo')
         eq_(request.path_info, '/foo')
         assert request.set_cookie.called
 
@@ -42,36 +41,36 @@ class TestCarrierURLs(TestCase):
         assert not request.set_cookie.called
 
     def test_set_carrier(self):
-        request = self.get('/?carrier=foostore')
-        eq_(get_carrier(), 'foostore')
+        request = self.get('/?carrier=telefonica')
+        eq_(get_carrier(), 'telefonica')
         assert request.set_cookie.called
 
     def test_set_carrier_url(self):
-        request = self.get('/foostore/')
-        eq_(get_carrier(), 'foostore')
+        request = self.get('/telefonica/')
+        eq_(get_carrier(), 'telefonica')
         assert request.set_cookie.called
 
     def test_set_carrier_none(self):
         request = self.request('/?carrier=')
-        request.COOKIES = {'carrier': 'foostore'}
+        request.COOKIES = {'carrier': 'telefonica'}
         request = self.get('/?carrier=', request)
         eq_(get_carrier(), None)
         assert request.set_cookie.called
 
     def test_set_carrer_to_none_url(self):
-        self.get('/foostore/')
+        self.get('/telefonica/')
         self.get('/not-a-store')
         eq_(get_carrier(), None)
 
     def test_reverse(self):
-        self.get('/foostore/')
+        self.get('/telefonica/')
         eq_(reverse('manifest.webapp'), '/manifest.webapp')
 
     def test_context(self):
-        request = self.get('/foostore/')
+        request = self.get('/telefonica/')
         ctx = context_processors.carrier_data(request)
-        eq_(ctx['CARRIER'], 'foostore')
+        eq_(ctx['CARRIER'], 'telefonica')
 
     def test_root_url(self):
-        request = self.get('/?carrier=foostore')
+        request = self.get('/?carrier=telefonica')
         eq_(request.path_info, '/')

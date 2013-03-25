@@ -1859,7 +1859,7 @@ class Category(amo.models.ModelBase):
 
     # Used for operator shelves and magic categories.
     carrier = models.PositiveIntegerField(
-        choices=mkt.constants.CARRIER_IDS, null=True)
+        choices=mkt.constants.CARRIER_CHOICES, null=True)
     region = models.PositiveIntegerField(
         choices=mkt.constants.REGIONS_CHOICES_ID, null=True)
 
@@ -1892,6 +1892,19 @@ class Category(amo.models.ModelBase):
                     for addon_id, cs in sorted_groupby(qs, 'addon_id'))
         for addon in addons:
             addon.all_categories = cats.get(addon.id, [])
+
+
+class CategorySupervisor(amo.models.ModelBase):
+    category = models.ForeignKey(Category)
+    user = models.ForeignKey(
+        'users.UserProfile', related_name='_categories_supervised')
+
+    class Meta:
+        db_table = 'categories_supervisors'
+        verbose_name_plural = 'Category Supervisors'
+
+    def __unicode__(self):
+        return u'%s manages %s' % (self.user, self.category)
 
 
 class Feature(amo.models.ModelBase):

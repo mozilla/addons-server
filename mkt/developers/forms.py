@@ -21,7 +21,7 @@ import addons.forms
 from access import acl
 from addons.forms import icons, IconWidgetRenderer, slug_validator
 from addons.models import (Addon, AddonCategory, AddonUser, BlacklistedSlug,
-                           Category, Flag, Preview)
+                           Category, CategorySupervisor, Flag, Preview)
 from addons.widgets import CategoriesSelectMultiple
 from amo import get_user
 from amo.utils import remove_icons
@@ -787,7 +787,8 @@ class RegionForm(forms.Form):
 
 class CategoryForm(happyforms.Form):
     categories = forms.ModelMultipleChoiceField(
-        queryset=Category.objects.filter(type=amo.ADDON_WEBAPP),
+        queryset=Category.objects.filter(
+            type=amo.ADDON_WEBAPP, region=None, carrier=None),
         widget=CategoriesSelectMultiple)
 
     def __init__(self, *args, **kw):
@@ -795,8 +796,16 @@ class CategoryForm(happyforms.Form):
         self.product = kw.pop('product', None)
         super(CategoryForm, self).__init__(*args, **kw)
 
+        supervisor_of = self.special_cats()
+        self.special_cats = lambda *args: supervisor_of  # Caching!
+        if supervisor_of.exists():
+            # Update the list of categories with the supervisor categories,
+            # excluding categories which are region-exclusive to regions that
+            # the app is unavailable in.
+            self.fields['categories'].queryset |= supervisor_of
+
         self.cats_before = list(self.product.categories
-                                .values_list('id', flat=True))
+                                            .values_list('id', flat=True))
 
         self.initial['categories'] = self.cats_before
 
@@ -806,14 +815,44 @@ class CategoryForm(happyforms.Form):
             Webapp.featured(cat=self.cats_before)
         )
 
-    def clean_categories(self):
-        categories = self.cleaned_data['categories']
-        total = categories.count()
-        max_cat = amo.MAX_CATEGORIES
+    def special_cats(self):
+        # Get the list of categories that we're a supervisor for.
+        sup_of = (CategorySupervisor.objects.filter(user=self.request.user)
+                                            .values_list('category_id',
+                                                         flat=True))
 
+        if not sup_of:
+            # Don't make any more requests if we don't have any permissions.
+            return Category.objects.none()
+
+        # Get the list of regions that the app is excluded from.
+        exclude_regs = self.product.addonexcludedregion.values_list(
+            'region', flat=True)
+
+        # Find all the supervised categories, excluding categories which are
+        # unavailable for the current app.
+        return (Category.objects.filter(id__in=sup_of)
+                                .exclude(region__in=exclude_regs))
+
+    def max_categories(self):
+        return amo.MAX_CATEGORIES + self.special_cats().count()
+
+    def clean_categories(self):
         if self.disabled:
             raise forms.ValidationError(
                 _('Categories cannot be changed while your app is featured.'))
+
+        categories = self.cleaned_data['categories']
+        set_categories = set(categories.values_list('id', flat=True))
+
+        # Supervisored categories don't count towards the max, so subtract
+        # them out if there are any.
+        supervisor_of = self.special_cats()
+        if supervisor_of.exists():
+            set_categories -= set(supervisor_of.values_list('id', flat=True))
+
+        total = len(set_categories)
+        max_cat = amo.MAX_CATEGORIES
 
         if total > max_cat:
             # L10n: {0} is the number of categories.
