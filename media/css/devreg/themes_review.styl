@@ -73,9 +73,9 @@ button {
         width: 100%;
     }
     button#commit {
-        background: $green;
+        background: $button-green-dark;
         &:hover {
-            background: lighten($green, 5%);
+            background: $button-green-light;
         }
     }
     button#more {
@@ -210,15 +210,15 @@ button {
         button {
             font-size: inherit;
             &.approve {
-                background: $green;
+                background: $button-green-dark;
                 &:hover {
-                    background: lighten($green, 5%);
+                    background: $button-green-light;
                 }
             }
             &.reject, &.duplicate, &.flag {
-                background: $red;
+                background: $button-red-dark;
                 &:hover {
-                    background: lighten($red, 5%);
+                    background: $button-red-light;
                 }
             }
         }

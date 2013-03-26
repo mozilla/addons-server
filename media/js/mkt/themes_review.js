@@ -15,6 +15,8 @@
 
 
 (function($) {
+    var $window = $(window);
+
     $.fn.themeQueue = function() {
         return this.each(function() {
             var queue = this;
@@ -118,7 +120,7 @@
 
                 $(themes[currentTheme].element).removeClass('active');
                 $(themes[i].element).addClass('active');
-                vertAlignSidebar($('.theme.active'));
+                vertAlignSidebar($window, $('.theme.active'));
                 currentTheme = i;
             }
 
@@ -405,9 +407,9 @@
 })(jQuery);
 
 
-function vertAlignSidebar($activeTheme) {
+function vertAlignSidebar($window, $activeTheme) {
     var activeThemeTop = ($activeTheme.offset().top -
-                          $(window).scrollTop());
+                          $window.scrollTop());
     $('.sidebar-fixed').css('top', activeThemeTop + 'px');
 }
 
@@ -419,7 +421,9 @@ $(document).ready(function() {
     $('#commit').click(_pd(function(e) {
         $('#theme-queue-form').submit();
     }));
-    $(window).scroll(function() {
-        vertAlignSidebar($('.theme.active'));
-    });
+
+    var $window = $(window);
+    $window.scroll(_.throttle(function() {
+        vertAlignSidebar($window, $('.theme.active'));
+    }, 100));
 });
