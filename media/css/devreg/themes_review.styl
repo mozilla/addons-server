@@ -2,9 +2,14 @@
 
 $inset-blue = rgba(152, 178, 201, 0.3);
 
+button {
+    border: none;
+    border-radius: 2px;
+}
+
 .zoombox {
-    position: relative;
     overflow: hidden;
+    position: relative;
     img {
         position: absolute;
         right: 0;
@@ -17,14 +22,14 @@ $inset-blue = rgba(152, 178, 201, 0.3);
 .sidebar {
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    position: relative;
     float: right;
     padding-left: 20px;
+    position: relative;
     width: 25%;
     z-index: 0;
     .box {
-        border: 1px solid $border-blue;
-        border-radius: 5px;
+        border: 1px solid $light-gray;
+        border-radius: 2px;
         margin-bottom: 15px;
         padding: 0 13px 13px;
         h2 {
@@ -35,22 +40,16 @@ $inset-blue = rgba(152, 178, 201, 0.3);
     }
     .sidebar-fixed {
         position: fixed;
-        top: 170px;
     }
-    &.lineup {
-        bottom: 210px;
-    }
-    .options {
+    .options, .shortcuts {
         background: #fff;
-        border-color: $border-blue;
+        border-color: $light-gray;
     }
     fieldset {
         margin-top: 7px;
         line-height: 1.5;
     }
     .shortcuts {
-        background: #fff;
-        border-color: $border-blue;
         li {
             margin: 5px 0;
             strong {
@@ -58,12 +57,12 @@ $inset-blue = rgba(152, 178, 201, 0.3);
             }
             span {
                 display: block;
-                margin-left: 13px;
+                margin-left: 20px;
             }
             &:nth-child(2) {
                 border-bottom: 1px dotted $shadow-blue;
-                padding-bottom: 7px;
                 margin: 7px 0;
+                padding-bottom: 7px;
             }
         }
     }
@@ -76,15 +75,15 @@ $inset-blue = rgba(152, 178, 201, 0.3);
     button#commit {
         background: $green;
         &:hover {
-            background: lighten($green, 10%);
+            background: lighten($green, 5%);
         }
     }
     button#more {
         display: none;
     }
     #queue-details {
-        text-align: center;
         font-weight: bold;
+        text-align: center;
     }
 }
 #footer {
@@ -113,7 +112,7 @@ $inset-blue = rgba(152, 178, 201, 0.3);
     }
     &.single {
         .theme {
-            opacity: .25;
+            opacity: .30;
             transition(opacity .4s);
             &:hover, &.active {
                 opacity: 1;
@@ -123,19 +122,15 @@ $inset-blue = rgba(152, 178, 201, 0.3);
 }
 
 .theme {
-    border-radius: 5px;
     background: #fff;
     border: 1px solid $border-blue;
+    border-radius: 3px;
     margin-bottom: 25px;
     padding: 0 13px 13px 13px;
     position: relative;
-    h3 {
-        font-size: 18px;
-        margin-bottom: 10px;
-    }
     .preview, .header, .footer {
         margin: 13px 0;
-        border: 3px solid $border-blue;
+        border: 2px solid $border-blue;
         background: $faded-blue;
     }
     .preview {
@@ -217,13 +212,13 @@ $inset-blue = rgba(152, 178, 201, 0.3);
             &.approve {
                 background: $green;
                 &:hover {
-                    background: lighten($green, 10%);
+                    background: lighten($green, 5%);
                 }
             }
             &.reject, &.duplicate, &.flag {
                 background: $red;
                 &:hover {
-                    background: lighten($red, 10%);
+                    background: lighten($red, 5%);
                 }
             }
         }
@@ -237,19 +232,17 @@ $inset-blue = rgba(152, 178, 201, 0.3);
     }
 }
 .theme.active {
-    gradient-two-color($faded-blue, white);
-    border-color: $border-blue;
-    box-shadow: 0 0 4px 4px $shadow-blue;
+    box-shadow: 0 0 1px 1px $light-gray;
 }
 
 .rq-dropdown {
     background: #fff;
     border: 1px solid $border-blue;
-    box-shadow: 0 1px 4px rgba(0,0,0,.5);
+    box-shadow: 0 1px 2px $light-gray;
     display: none;
     float: right;
     margin-top: 7px;
-    right: 135px;
+    right: 128px;
     padding: 7px;
     position: absolute;
     z-index: 1;
@@ -285,17 +278,19 @@ $inset-blue = rgba(152, 178, 201, 0.3);
         }
         color: $red;
         display: none;
-        font-weight: bold;
         float: left;
+        font-weight: bold;
         margin-top: 6px;
     }
 }
-.flag-dropdown:before {
-    right: 258px;
+.flag-dropdown {
+    &:before {
+        right: 248px;
+    }
 }
 .duplicate-dropdown {
     &:before {
-        right: 130px;
+        right: 123px;
     }
     textarea {
         height: 25px;
@@ -317,8 +312,8 @@ $inset-blue = rgba(152, 178, 201, 0.3);
         }
     }
     li:hover {
-        cursor: pointer;
         background: $inset-blue;
+        cursor: pointer;
     }
 }
 .reject-reason-detail-dropdown {
@@ -330,9 +325,9 @@ $inset-blue = rgba(152, 178, 201, 0.3);
     }
 }
 .moreinfo-dropdown {
-    right: 330px;
+    right: 310px;
     &:before {
-        right: 170px;
+        right: 172px;
     }
     span:first-child {
         margin-bottom: 12px;
@@ -355,7 +350,7 @@ $inset-blue = rgba(152, 178, 201, 0.3);
     width: 100%;
     tr {
         color: $dark-gray;
-        line-height: 26px;
+        line-height: 39px;
     }
     tr:nth-child(even) {
         background: $inset-blue;
@@ -365,5 +360,13 @@ $inset-blue = rgba(152, 178, 201, 0.3);
     }
     th {
         font-weight: bold;
+        &:first-child {
+            width: auto;
+        }
+    }
+    th, td {
+        &:first-child {
+            padding-left: 13px;
+        }
     }
 }

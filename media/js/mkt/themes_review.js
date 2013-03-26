@@ -3,7 +3,7 @@
     $.fn.scrollTo = function(opts) {
         if (!this.length) return this;
         opts = $.extend({
-            duration: 500,
+            duration: 250,
             marginTop: 0,
             complete: undefined
         }, opts || { });
@@ -106,13 +106,6 @@
                 setTimeout(function() {
                     if (i >= 0 && i < themes.length) {
                         $(themes[i].element).scrollTo({ duration: duration, marginTop: 20 });
-                        // Lines up the sidebar with the theme to avoid
-                        // truncation with the footer.
-                        if (i > 0) {
-                            // Don't line up first one because header gets in
-                            // the way.
-                            $('.sidebar').addClass('lineup');
-                        }
                     }
                 }, delay);
                 $('.rq-dropdown').hide();
@@ -125,6 +118,7 @@
 
                 $(themes[currentTheme].element).removeClass('active');
                 $(themes[i].element).addClass('active');
+                vertAlignSidebar($('.theme.active'));
                 currentTheme = i;
             }
 
@@ -411,11 +405,21 @@
 })(jQuery);
 
 
+function vertAlignSidebar($activeTheme) {
+    var activeThemeTop = ($activeTheme.offset().top -
+                          $(window).scrollTop());
+    $('.sidebar-fixed').css('top', activeThemeTop + 'px');
+}
+
+
 $(document).ready(function() {
     $('.zoombox').zoomBox();
     $('.theme-queue').themeQueue();
     $('.sidebar').themeQueueOptions('.theme-queue');
-    $('button#commit').click(_pd(function(e) {
+    $('#commit').click(_pd(function(e) {
         $('#theme-queue-form').submit();
     }));
+    $(window).scroll(function() {
+        vertAlignSidebar($('.theme.active'));
+    });
 });

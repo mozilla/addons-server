@@ -3,7 +3,7 @@
 {% for theme, form in theme_formsets %}
   <div class="theme" data-id="{{ loop.index0 + (initial_count or 0) }}">
     {{ form }}
-    <h3><a href="{{ url('reviewers.themes.single', theme.addon.slug) }}">{{ theme.addon.name }}</a></h3>
+    <h2><a href="{{ url('reviewers.themes.single', theme.addon.slug) }}">{{ theme.addon.name }}</a></h2>
     <div class="status"></div>
     <dl class="meta">
       <dt>{{ _('Artist') }}</dt><dd>{{ theme.author }}</dd>
