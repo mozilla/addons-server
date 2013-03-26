@@ -71,4 +71,4 @@ class LoginResource(CORSResource, MarketplaceResource):
                         'region': 'internet',
                         }
                  })
-        return r
+        return res
