@@ -176,7 +176,12 @@ class AppResource(MarketplaceModelResource):
         try:
             # Use queryset, not get_object_list to ensure a distinction
             # between a 404 and a 403.
-            obj = self._meta.queryset.get(**kwargs)
+            #
+            # For reasons I haven't been able to figure out, accessing the
+            # queryset at this point will get you the locale of the class
+            # when it was initialized, which means that the locale gets
+            # set and results in bug 854505.
+            obj = Addon.objects.filter(type=amo.ADDON_WEBAPP).get(**kwargs)
         except Addon.DoesNotExist:
             raise ImmediateHttpResponse(response=http.HttpNotFound())
 
@@ -231,7 +236,8 @@ class AppResource(MarketplaceModelResource):
         if not request.amo_user:
             log.info('Anonymous listing not allowed')
             raise ImmediateHttpResponse(response=http.HttpForbidden())
-        return self._meta.queryset.filter(authors=request.amo_user)
+        return Addon.objects.filter(type=amo.ADDON_WEBAPP,
+                                    authors=request.amo_user)
 
 
 class StatusResource(MarketplaceModelResource):

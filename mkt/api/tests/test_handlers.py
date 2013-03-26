@@ -11,7 +11,7 @@ from nose.tools import eq_
 import amo
 from addons.models import (Addon, AddonCategory, AddonDeviceType, AddonUser,
                            Category, Preview)
-from amo.tests import AMOPaths
+from amo.tests import app_factory, AMOPaths
 from files.models import FileUpload
 from reviews.models import Review
 from users.models import UserProfile
@@ -546,6 +546,16 @@ class TestListHandler(CreateHandler, AMOPaths):
         eq_(data['meta']['total_count'], 2)
         pks = set([data['objects'][0]['id'], data['objects'][1]['id']])
         eq_(pks, set([str(app.pk) for app in apps]))
+
+    def test_lang(self):
+        app = app_factory(summary={'fr': 'Le blah', 'en-US': 'Blah'})
+        url = get_url('app', app.pk)
+
+        res = self.client.get(url, HTTP_ACCEPT_LANGUAGE='en-US')
+        eq_(json.loads(res.content)['summary'], 'Blah')
+
+        res = self.client.get(url, HTTP_ACCEPT_LANGUAGE='fr')
+        eq_(json.loads(res.content)['summary'], 'Le blah')
 
 
 @patch.object(settings, 'SITE_URL', 'http://api/')
