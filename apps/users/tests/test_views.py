@@ -1,7 +1,7 @@
 import collections
 from datetime import datetime
 import json
-from urlparse import parse_qs
+from urlparse import parse_qs, urlparse
 
 from django.conf import settings
 from django.core import mail
@@ -41,6 +41,9 @@ def fake_request():
     request = Mock()
     request.LANG = 'foo'
     request.GET = request.META = {}
+    # Fake out host/scheme for Persona login.
+    request.get_host.return_value = urlparse(settings.SITE_URL).netloc
+    request.is_secure.return_value = False
     return request
 
 

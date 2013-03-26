@@ -311,7 +311,8 @@ class APITest(TestCase):
         eq_(data['compatible_apps'],
             [{'Firefox': {'max': '4.0', 'min': '2.0'}}])
         eq_(data['eula'], unicode(addon.eula))
-        eq_(data['learnmore'], '/en-US/firefox/addon/a3615/?src=api')
+        eq_(data['learnmore'],
+            absolutify('/en-US/firefox/addon/a3615/?src=api'))
         assert 'theme' not in data
 
     def test_app_detail(self):

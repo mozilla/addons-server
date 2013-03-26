@@ -23,6 +23,7 @@ import amo.tests
 from abuse.models import AbuseReport
 from access.models import GroupUser
 from addons.models import AddonDeviceType, AddonUser, Persona
+from amo.helpers import absolutify
 from amo.tests import (app_factory, addon_factory, check_links, days_ago,
                        formset, initial, version_factory)
 from amo.urlresolvers import reverse
@@ -2226,9 +2227,10 @@ class TestMiniManifestView(BasePackagedAppTest):
         data = json.loads(res.content)
         eq_(data['name'], self.app.name)
         eq_(data['developer']['name'], 'Mozilla Labs')
-        eq_(data['package_path'], reverse('reviewers.signed',
-                                          args=[self.app.app_slug,
-                                                self.version.id]))
+        eq_(data['package_path'],
+            absolutify(reverse('reviewers.signed',
+                               args=[self.app.app_slug,
+                                     self.version.id])))
 
     def test_rejected(self):
         # Rejected sets file.status to DISABLED and moves to a guarded path.
@@ -2240,9 +2242,10 @@ class TestMiniManifestView(BasePackagedAppTest):
         data = json.loads(res.content)
         eq_(data['name'], self.app.name)
         eq_(data['developer']['name'], 'Mozilla Labs')
-        eq_(data['package_path'], reverse('reviewers.signed',
-                                          args=[self.app.app_slug,
-                                                self.version.id]))
+        eq_(data['package_path'],
+            absolutify(reverse('reviewers.signed',
+                       args=[self.app.app_slug,
+                             self.version.id])))
 
 
 class TestReviewersScores(AppReviewerTest, AccessMixin):

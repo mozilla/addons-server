@@ -39,6 +39,7 @@ from nose.tools import eq_
 from piston.models import Consumer
 
 import amo
+from amo.helpers import absolutify
 from amo.tests import TestCase
 from amo.urlresolvers import reverse
 from api.authentication import AMOOAuthAuthentication
@@ -411,7 +412,7 @@ class TestAddon(BaseOAuth):
         content = json.loads(r.content)
         eq_(content['slug'], 'xpi-name')
         eq_(content['resource_uri'],
-            reverse('addons.detail', args=['xpi-name']))
+            absolutify(reverse('addons.detail', args=['xpi-name'])))
 
     def test_delete(self):
         data = self.create_addon()

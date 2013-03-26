@@ -16,6 +16,7 @@ from waffle.models import Switch
 import amo
 import amo.tests
 from access.models import GroupUser, Group
+from amo.helpers import absolutify
 from amo.tests import assert_required, formset, initial
 from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
@@ -167,7 +168,7 @@ class TestEditBasic(TestEdit):
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         eq_(pq(r.content)('#slug_edit').remove('a, em').text(),
-            u'/\u2026/%s' % self.webapp.app_slug)
+            absolutify(u'/\u2026/%s' % self.webapp.app_slug))
 
     def test_edit_slug_success(self):
         data = self.get_dict()

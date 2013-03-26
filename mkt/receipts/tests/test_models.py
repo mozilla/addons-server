@@ -98,7 +98,8 @@ class TestReceipt(amo.tests.TestCase):
         assert receipt['exp'] > (calendar.timegm(time.gmtime()) +
                                  settings.WEBAPPS_RECEIPT_EXPIRY_SECONDS -
                                  TEST_LEEWAY)
-        eq_(receipt['reissue'], self.webapp.get_purchase_url('reissue'))
+        eq_(receipt['reissue'],
+            absolutify(self.webapp.get_purchase_url('reissue')))
 
     def test_receipt_not_reviewer(self):
         ins = self.create_install(self.user, self.webapp)
