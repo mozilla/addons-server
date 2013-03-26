@@ -107,6 +107,14 @@ class Marketplace(object):
                                          url=request.get_full_path(),
                                          request_method=request_method)
 
+    def cached_obj_get_list(self, request=None, **kwargs):
+        """Do not interfere with cache machine caching."""
+        return self.obj_get_list(request=request, **kwargs)
+
+    def cached_obj_get(self, request=None, **kwargs):
+        """Do not interfere with cache machine caching."""
+        return self.obj_get(request, **kwargs)
+
 
 class MarketplaceResource(Marketplace, Resource):
     """
