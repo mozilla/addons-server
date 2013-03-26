@@ -305,7 +305,7 @@ class GenerateErrorForm(happyforms.Form):
                             'HTTP_USER_AGENT': 'MySuperBrowser'}
 
             config = {'cef.version': '0',
-                           'cef.vendor': 'mozilla',
+                           'cef.vendor': 'Mozilla',
                            'cef.device_version': '3',
                            'cef.product': 'zamboni',
                            'cef': True}
