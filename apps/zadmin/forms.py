@@ -336,7 +336,7 @@ class GenerateErrorForm(happyforms.Form):
             env = {'REMOTE_ADDR': '127.0.0.1', 'HTTP_HOST': '127.0.0.1',
                             'PATH_INFO': '/', 'REQUEST_METHOD': 'GET',
                             'HTTP_USER_AGENT': 'MySuperBrowser'}
-            log_cef('amo_logcef', 6, env)
+            log_cef(settings.STATSD_PREFIX, 6, env)
 
 
 class PriceTiersForm(happyforms.Form):
