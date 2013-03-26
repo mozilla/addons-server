@@ -176,7 +176,6 @@ class AppResource(MarketplaceModelResource):
         try:
             # Use queryset, not get_object_list to ensure a distinction
             # between a 404 and a 403.
-            import pdb; pdb.set_trace()
             obj = self._meta.queryset.get(**kwargs)
         except Addon.DoesNotExist:
             raise ImmediateHttpResponse(response=http.HttpNotFound())
