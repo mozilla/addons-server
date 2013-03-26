@@ -21,8 +21,9 @@ import mock
 import pyes.exceptions as pyes
 import test_utils
 from nose.exc import SkipTest
-from nose.tools import eq_, nottest
+from nose.tools import eq_, nottest, ok_
 from redisutils import mock_redis, reset_redis
+from tastypie.exceptions import ImmediateHttpResponse
 from waffle import cache_sample, cache_switch
 from waffle.models import Flag, Sample, Switch
 
@@ -399,6 +400,14 @@ class TestCase(RedisTest, test_utils.TestCase):
         """
         return self.assertSetEqual(qs1.values_list('id', flat=True),
                                    qs2.values_list('id', flat=True))
+
+    @contextmanager
+    def assertImmediate(self, response):
+        try:
+            yield
+        except ImmediateHttpResponse, exc:
+            ok_(isinstance(exc.response, response),
+                'Expected %s, got %s' % (response, exc.response.__class__))
 
     def make_premium(self, addon, price='1.00', currencies=None):
         price_obj = Price.objects.create(price=price)

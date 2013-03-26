@@ -7,6 +7,46 @@ Payments API
 This API is specific to setting up and processing payments for an app in the
 Marketplace.
 
+Installing
+==========
+
+When an app is installed from the Marketplace, call the install API. This will
+record the install. If the app is a paid app, it will return the receipt that
+to be used on install.
+
+.. http:post:: /api/receipt/install/
+
+    Returns a receipt if the app is paid and a receipt should be installed.
+
+    **Request**:
+
+    .. sourcecode:: http
+
+        POST /api/receipt/install/
+
+    :param app: the id of the app being installed.
+
+    **Response** if paid:
+
+    .. sourcecode:: http
+
+        {"receipt": "ey..."}
+
+    :statuscode 201: no error.
+    :statuscode 402: payment required.
+    :statuscode 403: app is not public, install not allowed.
+
+Developers
+~~~~~~~~~~
+
+Developers of the app will get a special developer receipt that is valid for
+24 hours and does not require payment.
+
+Reviewers
+~~~~~~~~~
+
+Reviewers should not use this API.
+
 Pay Tiers
 ==========
 

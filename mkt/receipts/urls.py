@@ -1,7 +1,12 @@
-from django.conf.urls import patterns, url
+from django.conf.urls import include, patterns, url
+
+from tastypie.api import Api
 
 import amo
-from . import views
+from . import api, views
+
+receipt = Api(api_name='receipts')
+receipt.register(api.ReceiptResource())
 
 # Note: this URL is embedded in receipts, if you change the URL, make sure
 # that you put a redirect in.
@@ -17,4 +22,8 @@ receipt_patterns = patterns('',
         name='receipt.issue'),
     url(r'^check/%s$' % amo.ADDON_UUID, views.check,
         name='receipt.check'),
+)
+
+receipt_api_patterns = patterns('',
+    url(r'^', include(receipt.urls)),
 )

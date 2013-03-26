@@ -15,6 +15,7 @@ from mkt.account.urls import (api_patterns as account_api_patterns,
 from mkt.detail.views import manifest as mini_manifest
 from mkt.developers.views import login
 from mkt.purchase.urls import webpay_services_patterns
+from mkt.receipts.urls import receipt_api_patterns
 from mkt.reviewers.urls import (api_patterns as reviewer_api_patterns,
                                 url_patterns as reviewer_url_patterns)
 from mkt.stats.urls import app_site_patterns
@@ -120,6 +121,7 @@ urlpatterns = patterns('',
     url('^api/', include(account_api_patterns)),
     url('^api/', include(reviewer_api_patterns)),
     url('^api/', include('mkt.webpay.urls')),
+    url('^api/', include(receipt_api_patterns)),
     url('^api/', include('mkt.monolith.urls')),
 
     url('^appcache/', include('django_appcache.urls')),
