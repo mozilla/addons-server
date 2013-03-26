@@ -53,8 +53,8 @@ VALIDATE_ADDONS = True
 
 PAYPAL_PERMISSIONS_URL = ''
 
-STATIC_URL = ''
 SITE_URL = ''
+STATIC_URL = 'http://testserver'
 MOBILE_SITE_URL = ''
 MEDIA_URL = '/media/'
 # Reset these URLs to the defaults so your settings_local doesn't clobber them:
