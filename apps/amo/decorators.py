@@ -4,13 +4,12 @@ import json
 from django import http
 from django.conf import settings
 from django.core.exceptions import PermissionDenied
-from django.utils.http import urlquote
 
 import commonware.log
 
 from . import models as context
 from .urlresolvers import reverse
-from .utils import JSONEncoder
+from .utils import JSONEncoder, redirect_for_login
 
 from amo import get_user, set_user
 from users.utils import get_task_user
@@ -33,9 +32,7 @@ def login_required(f=None, redirect=True):
                 return func(request, *args, **kw)
             else:
                 if redirect:
-                    url = reverse('users.login')
-                    path = urlquote(request.get_full_path())
-                    return http.HttpResponseRedirect('%s?to=%s' % (url, path))
+                    return redirect_for_login(request)
                 else:
                     return http.HttpResponse(status=401)
         return wrapper

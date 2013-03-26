@@ -139,6 +139,17 @@ class TestViews(amo.tests.TestCase):
         self.check_response('/collections/favorites/', 301,
                             reverse('collections.following'))
 
+    def test_unlisted_collection_login_redirect(self):
+        user = UserProfile.objects.get(email='jbalogh@mozilla.com')
+
+        urls = (
+            '/en-US/firefox/collections/mine/',
+            '/en-US/firefox/collections/mine/favorites/',
+            user.favorites_collection().get_url_path(),
+        )
+        for url in urls:
+            self.assertLoginRedirects(self.client.get(url), url)
+
     def test_unreviewed_addon(self):
         u = UserProfile.objects.get(email='jbalogh@mozilla.com')
         addon = Addon.objects.all()[0]

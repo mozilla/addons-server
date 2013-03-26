@@ -32,8 +32,9 @@ from django.forms.fields import Field
 from django.http import HttpRequest
 from django.template import Context, loader
 from django.utils import translation
-from django.utils.functional import Promise
 from django.utils.encoding import smart_str, smart_unicode
+from django.utils.functional import Promise
+from django.utils.http import urlquote
 
 import bleach
 from cef import log_cef as _log_cef
@@ -618,6 +619,14 @@ class HttpResponseSendFile(http.HttpResponse):
                         break
                     yield data
             return wrapper()
+
+
+def redirect_for_login(request):
+    # We can't use urlparams here, because it escapes slashes,
+    # which a large number of tests don't expect
+    url = '%s?to=%s' % (reverse('users.login'),
+                        urlquote(request.get_full_path()))
+    return http.HttpResponseRedirect(url)
 
 
 def memoize_key(prefix, *args, **kwargs):

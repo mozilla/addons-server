@@ -17,7 +17,7 @@ import sharing.views
 from amo.decorators import (json_view, login_required, post_required, write,
                             restricted_content)
 from amo.urlresolvers import reverse
-from amo.utils import paginate, urlparams
+from amo.utils import paginate, redirect_for_login, urlparams
 from access import acl
 from addons.models import Addon
 from addons.views import BaseFilter
@@ -37,6 +37,8 @@ def allow_mine(f):
     def wrapper(request, username, *args, **kw):
         """If the author is `mine` then show the current user's collection."""
         if username == 'mine':
+            if not request.amo_user:
+                return redirect_for_login(request)
             username = request.amo_user.username
         return f(request, username, *args, **kw)
     return wrapper
@@ -187,8 +189,11 @@ class CollectionAddonFilter(BaseFilter):
 @allow_mine
 def collection_detail(request, username, slug):
     c = get_collection(request, username, slug)
-    if not (c.listed or acl.check_collection_ownership(request, c)):
-        raise PermissionDenied
+    if not c.listed:
+        if not request.user.is_authenticated():
+            return redirect_for_login(request)
+        if not acl.check_collection_ownership(request, c):
+            raise PermissionDenied
 
     if request.GET.get('format') == 'rss':
         return http.HttpResponsePermanentRedirect(c.feed_url())
