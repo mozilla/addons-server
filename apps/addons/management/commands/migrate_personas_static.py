@@ -22,7 +22,7 @@ class Command(BaseCommand):
         if 'personas_dir' not in options:
             print "Needs --personas-dir."
             return
-        if 'addons_dir' not in options:
+        if 'amo_dir' not in options:
             print "Needs --addons-dir."
             return
         mapping = dict(Persona.objects.values_list('pk', 'addon_id'))
@@ -33,10 +33,15 @@ class Command(BaseCommand):
             for second in os.listdir(second_path):
                 third_path = join(second_path, second)
                 for persona_id in os.listdir(third_path):
-                    persona = join(third_path, persona_id)
-                    target = join(options['amo_dir'],
-                                  str(mapping[int(persona_id)]))
-                    if exists(target):
-                        continue
-                    print "%s --> %s" % (persona, target)
-                    shutil.copytree(persona, target)
+                    try:
+                        persona = join(third_path, persona_id)
+                        target = join(options['amo_dir'],
+                                      str(mapping[int(persona_id)]))
+                        if exists(target):
+                            continue
+                        print "%s --> %s" % (persona, target)
+                        shutil.copytree(persona, target)
+                    except KeyError, e:
+                        print "Skipping unknown persona: Persona is on disk but not in the database: %s" % e
+                    except Exception, e:
+                        print "Unknown error: %s" % e
