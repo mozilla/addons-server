@@ -22,9 +22,11 @@
             var queue = this;
             var currentTheme = 0;
             var cacheQueueHeight;
-            var maxLocks = parseInt($('.theme-queue').data('max-locks'), 10);
-            var moreUrl = $('.theme-queue').data('more-url');
-            var actionConstants = $('#action-constants').data('actions');
+
+            var $queueContext = $('.queue-context');
+            var maxLocks = parseInt($queueContext.data('max-locks'), 10);
+            var moreUrl = $queueContext.data('more-url');
+            var actionConstants = $queueContext.data('actions');
 
             var themesList = $('div.theme', queue);
             var themes = themesList.map(function() {
@@ -169,9 +171,6 @@
 
                 $('button#more').html(gettext('Loading&hellip;'));
                 $.get(moreUrl, function(data) {
-                    // Update total.
-                    $('#total').text(data.count);
-
                     // Insert the themes into the DOM.
                     $('#theme-queue-form').append(data.html);
                     themesList = $('div.theme', queue);
@@ -196,10 +195,12 @@
                         themeCount++;
                     });
 
-                    // Update metadata on Django management form for
-                    // formset.
+                    // Update metadata on Django management form for formset.
                     updateTotalForms('form', 1);
                     $('#id_form-INITIAL_FORMS').val(themeCount.toString());
+
+                    // Update total.
+                    $('#total').text(themeCount);
 
                     goToTheme(i, 250);
                     ajaxLockFlag = 0;

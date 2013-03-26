@@ -7,6 +7,23 @@ button {
     border-radius: 2px;
 }
 
+#page h1 {
+    float: left;
+}
+nav.theme-review {
+    float: left;
+    left: 16px;
+    position: relative;
+    top: 17px;
+    li {
+        float: left;
+        font-size: 16px;
+        + li:after {
+            content: "|";
+        }
+    }
+}
+
 .zoombox {
     overflow: hidden;
     position: relative;
@@ -92,6 +109,7 @@ button {
 }
 
 .theme-queue {
+    clear: both;
     margin-bottom: 350px;
     width: 75%;
     .theme {

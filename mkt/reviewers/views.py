@@ -44,6 +44,7 @@ from reviews.forms import ReviewFlagFormSet
 from reviews.models import Review, ReviewFlag
 from translations.query import order_by_translation
 from users.models import UserProfile
+from zadmin.decorators import admin_required
 from zadmin.models import get_config, set_config
 
 import mkt.constants.reviewers as rvw
@@ -617,31 +618,49 @@ def app_abuse(request, addon):
 @waffle_switch('mkt-themes')
 @reviewer_required('persona')
 def themes_queue(request):
-    themes = _get_themes(request.amo_user, initial=True)
+    # By default, redirect back to the queue after a commit.
+    request.session['theme_redirect_url'] = reverse(
+        'reviewers.themes.queue_themes')
+
+    return _themes_queue(request)
+
+
+@waffle_switch('mkt-themes')
+@admin_required(reviewers=True)
+def themes_queue_flagged(request):
+    # By default, redirect back to the queue after a commit.
+    request.session['theme_redirect_url'] = reverse(
+        'reviewers.themes.queue_flagged')
+
+    return _themes_queue(request, flagged=True)
+
+
+def _themes_queue(request, flagged=False):
+    themes = _get_themes(request.amo_user, initial=True, flagged=flagged)
 
     ThemeReviewFormset = formset_factory(forms.ThemeReviewForm)
     formset = ThemeReviewFormset(
         initial=[{'theme': theme.id} for theme in themes])
 
-    # By default, redirect back to the queue after a commit.
-    request.session['theme_redirect_url'] = reverse('reviewers.themes.'
-                                                    'queue_themes')
+    more_url = reverse('reviewers.themes.more')
+    if flagged:
+        more_url = reverse('reviewers.themes.more_flagged')
 
     return jingo.render(request, 'reviewers/themes/queue.html', context(**{
-        'formset': formset,
-        'theme_formsets': zip(themes, formset),
-        'reject_reasons': rvw.THEME_REJECT_REASONS.items(),
-        'theme_count': len(themes),
-        'max_locks': rvw.THEME_MAX_LOCKS,
-        'more_url': reverse('reviewers.themes.more'),
-        'actions': rvw.REVIEW_ACTIONS,
-        'reviewable': True,
-        'queue_counts': queue_counts(),
         'actions': get_actions_json(),
+        'formset': formset,
+        'flagged': flagged,
+        'max_locks': rvw.THEME_MAX_LOCKS,
+        'more_url': more_url,
+        'queue_counts': queue_counts(),
+        'reject_reasons': rvw.THEME_REJECT_REASONS.items(),
+        'reviewable': True,
+        'theme_formsets': zip(themes, formset),
+        'theme_count': len(themes),
     }))
 
 
-def _get_themes(reviewer, initial=True):
+def _get_themes(reviewer, initial=True, flagged=False):
     """Check out themes.
 
     :param initial: True if checking out synchronously, False otherwise.
@@ -649,7 +668,12 @@ def _get_themes(reviewer, initial=True):
                     newly checked out ones.
 
     """
-    theme_locks = ThemeLock.objects.filter(reviewer=reviewer)
+    status = amo.STATUS_PENDING
+    if flagged:
+        status = amo.STATUS_REVIEW_PENDING
+
+    theme_locks = ThemeLock.objects.filter(reviewer=reviewer,
+                                           theme__addon__status=status)
     theme_locks_count = theme_locks.count()
 
     # Calculate number of themes to check out.
@@ -670,7 +694,7 @@ def _get_themes(reviewer, initial=True):
             wanted_locks = rvw.THEME_INITIAL_LOCKS
 
     themes = list(Persona.objects.no_cache().filter(
-        addon__status=amo.STATUS_PENDING, themelock=None)[:wanted_locks])
+        addon__status=status, themelock=None)[:wanted_locks])
 
     # Set a lock on the checked-out themes
     expiry = get_updated_expiry()
@@ -722,8 +746,14 @@ def themes_commit(request):
 
 
 @json_view
+@admin_required(reviewers=True)
+def themes_more_flagged(request):
+    return themes_more(request, flagged=True)
+
+
+@json_view
 @reviewer_required('persona')
-def themes_more(request):
+def themes_more(request, flagged=False):
     reviewer = request.amo_user
     theme_locks = ThemeLock.objects.filter(reviewer=reviewer)
     theme_locks_count = theme_locks.count()
@@ -736,7 +766,7 @@ def themes_more(request):
                          'review at once. Please commit your outstanding '
                          'reviews.')}
 
-    themes = _get_themes(reviewer, initial=False)
+    themes = _get_themes(reviewer, initial=False, flagged=flagged)
 
     # Create forms, which will need to be manipulated to fit with the currently
     # existing forms.

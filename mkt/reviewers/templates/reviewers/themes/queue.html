@@ -1,6 +1,10 @@
 {% extends "reviewers/base.html" %}
 
-{% set title_text = _('Theme Review Queue') %}
+{% if flagged %}
+  {% set title_text = _('Flagged Themes') %}
+{% else %}
+  {% set title_text = _('Theme Review Queue') %}
+{% endif %}
 
 {% block title %}
   {{ editor_page_title(title_text) }}
@@ -15,8 +19,23 @@
 {{ reviewers_breadcrumbs(queue='themes') }}
 
 <h1>{% block page_header %}{{ title_text }}{% endblock %}</h1>
+<nav class="theme-review"><ul>
+  {% if action_allowed('ReviewerAdminTools', 'View') and not flagged %}
+    <li><a href="{{ url('reviewers.themes.queue_flagged') }}">
+      {{ _('Flagged') }}
+    </a></li>
+  {% endif %}
+  {% if flagged %}
+    <li><a href="{{ url('reviewers.themes.queue_themes') }}">
+      {{ _('Back to Themes Queue') }}
+    </a></li>
+  {% endif %}
+</ul></nav>
 
-<span id="action-constants" data-actions="{{ actions }}"></span>
+<span class="queue-context" data-actions="{{ actions }}"
+      data-flagged="{{ flagged }}" data-max-locks="{{ max_locks }}"
+      data-more-url="{{ more_url }}">
+</span>
 
 <div class="sidebar"><div {% block fixed_sidebar %}class="sidebar-fixed"{% endblock %}>
   {% block queue_options %}
@@ -50,7 +69,9 @@
         <li><strong>A</strong> <span>{{ _('Approve') }}</span></li>
         <li><strong>R</strong> <span>{{ _('Reject') }}</span></li>
         <li><strong>D</strong> <span>{{ _('Duplicate') }}</span></li>
-        <li><strong>F</strong> <span>{{ _('Flag') }}</span></li>
+        {% if not flagged %}
+          <li><strong>F</strong> <span>{{ _('Flag') }}</span></li>
+        {% endif %}
         <li><strong>M</strong> <span>{{ _('Request More Info') }}</span></li>
       </ul>
     </div>
@@ -68,7 +89,7 @@
   {% endif %}
 </div></div>
 
-<div class="theme-queue details single" data-max-locks="{{ max_locks }}" data-more-url="{{ more_url }}">
+<div class="theme-queue details single">
   {% if not theme_count %}
     <strong>{{ _('There are currently no Themes to review.') }}</strong>
   {% endif %}
