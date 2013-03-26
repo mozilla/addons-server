@@ -5,8 +5,6 @@ import urllib
 from django.core.urlresolvers import resolve
 from django.utils.cache import patch_vary_headers
 
-from mkt.carriers import get_carrier
-
 
 class HijackRedirectMiddleware(object):
     """
@@ -19,12 +17,7 @@ class HijackRedirectMiddleware(object):
                 request.POST.get('_hijacked', False) and
                 response.status_code in (301, 302)):
             view_url = location = response['Location']
-            frag_bust = response.get('x-frag-bust', None)
-
-            # TODO: We should remove the need for this.
-            if get_carrier():
-                # Strip carrier from URL.
-                view_url = '/' + '/'.join(location.split('/')[2:])
+            frag_bust = response.get('x-frag-bust')
 
             req = copy.copy(request)
             req.method = 'GET'
@@ -45,9 +38,8 @@ class HijackRedirectMiddleware(object):
                 # with the flag from the old request in the second grossest
                 # possible way.
                 if 'x-frag-bust' in response:
-                    frag_bust = json.dumps(
-                        json.loads(frag_bust) +
-                        json.loads(response['x-frag-bust']))
+                    frag_bust = json.dumps(json.loads(frag_bust) +
+                                           json.loads(response['x-frag-bust']))
 
                 response['x-frag-bust'] = frag_bust
 
