@@ -84,8 +84,6 @@
 
     var search_results = getTemplate($('#queue-search-template'));
     var no_results = getTemplate($('#queue-search-empty-template'));
-    // An underscore template for more advanced rendering.
-    var search_result_row = _.template($('#queue-search-row-template').html());
 
     var $clear = $('.clear-queue-search'),
         $appQueue = $('.search-toggle'),
@@ -99,6 +97,9 @@
     }));
 
     if ($search.length) {
+        // An underscore template for more advanced rendering.
+        var search_result_row = _.template($('#queue-search-row-template').html());
+        
         var api_url = $search.data('api-url');
         var review_url = $search.data('review-url');
         $search.on('submit', 'form', _pd(function() {
