@@ -298,10 +298,12 @@ Persona
 -------
 
 We use `Persona <https://login.persona.org/>`_ to log in and create accounts.
-In order for this to work you need to set ``SITE_URL`` in your local
-settings file based on how you run your dev server. Here is an example::
+In order for this to work you need to set ``SITE_URL`` and ``STATIC_URL`` in 
+your local settings file based on how you run your dev server. Here is an 
+example::
 
     SITE_URL = 'http://localhost:8000'
+    STATIC_URL = SITE_URL
 
 Create an Admin User
 --------------------

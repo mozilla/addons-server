@@ -66,9 +66,6 @@ CELERY_ALWAYS_EAGER = True
 # Disables custom routing in settings.py so that tasks actually run.
 CELERY_ROUTES = {}
 
-# paths for images, not necessary for dev
-STATIC_URL = ''
-
 # Disable timeout code during development because it uses the signal module
 # which can only run in the main thread. Celery uses threads in dev.
 VALIDATOR_TIMEOUT = -1
