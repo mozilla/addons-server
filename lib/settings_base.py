@@ -940,16 +940,15 @@ ADDON_ICONS_PATH = UPLOADS_PATH + '/addon_icons'
 COLLECTIONS_ICON_PATH = UPLOADS_PATH + '/collection_icons'
 PREVIEWS_PATH = UPLOADS_PATH + '/previews'
 IMAGEASSETS_PATH = UPLOADS_PATH + '/imageassets'
-PERSONAS_PATH = UPLOADS_PATH + '/personas'
 REVIEWER_ATTACHMENTS_PATH = UPLOADS_PATH + '/reviewer_attachment'
 USERPICS_PATH = UPLOADS_PATH + '/userpics'
 PACKAGER_PATH = os.path.join(TMP_PATH, 'packager')
 ADDON_ICONS_DEFAULT_PATH = os.path.join(MEDIA_ROOT, 'img/addon-icons')
 CA_CERT_BUNDLE_PATH = os.path.join(ROOT, 'apps/amo/certificates/roots.pem')
 
-PREVIEW_THUMBNAIL_PATH = (PREVIEWS_PATH + '/thumbs/%s/%d.png')
-PREVIEW_FULL_PATH = (PREVIEWS_PATH + '/full/%s/%d.%s')
-IMAGEASSET_FULL_PATH = (IMAGEASSETS_PATH + '/%s/%d.%s')
+PREVIEW_THUMBNAIL_PATH = PREVIEWS_PATH + '/thumbs/%s/%d.png'
+PREVIEW_FULL_PATH = PREVIEWS_PATH + '/full/%s/%d.%s'
+IMAGEASSET_FULL_PATH = IMAGEASSETS_PATH + '/%s/%d.%s'
 
 # URL paths
 # paths for images, e.g. mozcdn.com/amo or '/static'

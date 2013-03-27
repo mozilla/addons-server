@@ -553,7 +553,7 @@ class ThemeForm(ThemeFormBase):
             footer = data['footer_hash']
             header = os.path.join(settings.TMP_PATH, 'persona_header', header)
             footer = os.path.join(settings.TMP_PATH, 'persona_footer', footer)
-            dst_root = os.path.join(settings.PERSONAS_PATH, str(addon.id))
+            dst_root = os.path.join(settings.ADDONS_PATH, str(addon.id))
 
             save_persona_image.delay(src=header,
                 full_dst=os.path.join(dst_root, 'header.png'))

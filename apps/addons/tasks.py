@@ -9,8 +9,8 @@ from PIL import Image
 
 import amo
 from amo.decorators import set_modified_on, write
-from amo.utils import (attach_trans_dict, cache_ns_key, resize_image,
-                       sorted_groupby, ImageCheck)
+from amo.utils import (attach_trans_dict, cache_ns_key, sorted_groupby,
+                       ImageCheck)
 from lib.es.hold import add
 from lib.es.utils import index_objects
 from market.models import AddonPremium
@@ -169,7 +169,7 @@ def unindex_addons(ids, **kw):
 @task
 def delete_persona_image(dst, **kw):
     log.info('[1@None] Deleting persona image: %s.' % dst)
-    if not dst.startswith(settings.PERSONAS_PATH):
+    if not dst.startswith(settings.ADDONS_PATH):
         log.error("Someone tried deleting something they shouldn't: %s" % dst)
         return
     try:

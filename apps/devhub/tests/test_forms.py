@@ -378,7 +378,7 @@ class TestThemeForm(amo.tests.TestCase):
         eq_(v[0].version, '0')
 
         # Test for header, footer, and preview images.
-        dst = os.path.join(settings.PERSONAS_PATH, str(addon.id))
+        dst = os.path.join(settings.ADDONS_PATH, str(addon.id))
 
         header_src = os.path.join(settings.TMP_PATH, 'persona_header',
                                   u'b4ll1n')
