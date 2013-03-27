@@ -26,7 +26,7 @@ from mkt.api.authentication import (AppOwnerAuthorization,
                                     OwnerAuthorization,
                                     OAuthAuthentication,
                                     PermissionAuthorization,
-                                    SessionAuthentication)
+                                    SharedSecretAuthentication)
 from mkt.api.base import MarketplaceModelResource
 from mkt.api.forms import (CategoryForm, DeviceTypeForm, NewPackagedForm,
                            PreviewArgsForm, PreviewJSONForm, StatusForm,
@@ -384,7 +384,7 @@ class RatingResource(MarketplaceModelResource):
         detail_allowed_methods = ['get', 'delete']
         list_allowed_methods = ['get']
         # TODO figure out authentication/authorization soon.
-        authentication = (OAuthAuthentication(), SessionAuthentication())
+        authentication = (OAuthAuthentication(), SharedSecretAuthentication())
         authorization = Authorization()
         fields = ['app', 'user', 'replies', 'rating', 'title',
                   'body', 'editorreview']

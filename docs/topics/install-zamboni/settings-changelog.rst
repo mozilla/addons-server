@@ -1,6 +1,12 @@
 Settings Changelog
 ==================
 
+2012-03-28
+----------
+
+* Added ``FIREPLACE_SECRET_KEY`` setting, used for creating shared
+  secrets for API login from the marketplace frontend.
+
 2012-03-13
 ----------
 

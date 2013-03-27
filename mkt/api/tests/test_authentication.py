@@ -151,17 +151,26 @@ class TestOAuthAuthentication(TestCase):
         ok_(self.auth.is_authenticated(self.call()))
 
 
-class TestSessionAuthentication(TestCase):
+@patch.object(settings, 'FIREPLACE_SECRET_KEY', 'gubbish')
+class TestSharedSecretAuthentication(TestCase):
     fixtures = fixture('user_2519')
 
     def setUp(self):
-        self.auth = authentication.SessionAuthentication()
+        self.auth = authentication.SharedSecretAuthentication()
         self.profile = UserProfile.objects.get(pk=2519)
 
     def test_session_auth(self):
         req = RequestFactory().get('/')
-        req.user = self.profile.user
+        req.COOKIES['user'] = ('cfinke@m.com,56b6f1a3dd735d962c56ce7d8f46e02ec'
+                               '1d4748d2c00c407d75f0969d08bb9c68c31b3371aa8130'
+                               '317815c89e5072e31bb94b4121c5c165f3515838d4d6c6'
+                               '0c4,165d631d3c3045458b4516242dad7ae')
         ok_(self.auth.is_authenticated(req))
+
+    def test_failed_session_auth(self):
+        req = RequestFactory().get('/')
+        req.COOKIES['user'] = 'bogus'
+        ok_(not self.auth.is_authenticated(req))
 
     def test_session_auth_no_post(self):
         req = RequestFactory().post('/')
@@ -184,6 +193,7 @@ class TestOptionalOAuthAuthentication(TestCase):
 
 
 @patch.object(settings, 'SITE_URL', 'http://api/')
+@patch.object(settings, 'FIREPLACE_SECRET_KEY', 'gubbish')
 class TestMultipleAuthentication(TestCase):
     fixtures = fixture('user_2519')
 
@@ -193,16 +203,19 @@ class TestMultipleAuthentication(TestCase):
 
     def test_single(self):
         req = RequestFactory().get('/')
-        req.user = self.profile.user
+        req.COOKIES['user'] = ('cfinke@m.com,56b6f1a3dd735d962c56ce7d8f46e02ec'
+                               '1d4748d2c00c407d75f0969d08bb9c68c31b3371aa8130'
+                               '317815c89e5072e31bb94b4121c5c165f3515838d4d6c6'
+                               '0c4,165d631d3c3045458b4516242dad7ae')
         self.resource._meta.authentication = (
-                authentication.SessionAuthentication())
+                authentication.SharedSecretAuthentication())
         eq_(self.resource.is_authenticated(req), None)
 
     def test_multiple_passes(self):
         req = RequestFactory().get('/')
         req.user = AnonymousUser()
         self.resource._meta.authentication = (
-                authentication.SessionAuthentication(),
+                authentication.SharedSecretAuthentication(),
                 # Optional auth passes because there are not auth headers.
                 authentication.OptionalOAuthAuthentication())
 

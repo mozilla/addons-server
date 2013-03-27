@@ -1,3 +1,6 @@
+import hashlib
+import hmac
+import uuid
 from django.conf import settings
 
 from tastypie import fields, http
@@ -57,6 +60,17 @@ class LoginResource(CORSResource, MarketplaceResource):
         list_allowed_methods = ['post']
         authorization = Authorization()
 
+    def get_token(self, email):
+        unique_id = uuid.uuid4().hex
+
+        consumer_id = hashlib.sha1(
+            email + settings.FIREPLACE_SECRET_KEY).hexdigest()
+
+        hm = hmac.new(
+            unique_id + settings.FIREPLACE_SECRET_KEY,
+            consumer_id, hashlib.sha512)
+        return ','.join((email, hm.hexdigest(), unique_id))
+
     def post_list(self, request, **kwargs):
         res = browserid_login(
             request, browserid_audience=lambda r: settings.FIREPLACE_URL)
@@ -64,6 +78,7 @@ class LoginResource(CORSResource, MarketplaceResource):
             return self.create_response(
                 request,
                 {'error': None,
+                 'token': self.get_token(request.user.email),
                  'settings': {
                         'display_name': UserProfile.objects.get(
                             user=request.user).display_name,

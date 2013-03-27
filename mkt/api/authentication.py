@@ -1,3 +1,5 @@
+import hashlib
+import hmac
 import json
 from urlparse import urljoin
 
@@ -149,15 +151,21 @@ class OptionalOAuthAuthentication(OAuthAuthentication):
                 .is_authenticated(request, **kw))
 
 
-class SessionAuthentication(Authentication):
+class SharedSecretAuthentication(Authentication):
 
     def is_authenticated(self, request, **kwargs):
-        if (request.method == 'GET' and not
-            request.META.get('HTTP_AUTHORIZATION', None)):
-            # No OAuth login info. Let's allow read-only
-            # access based on session cookie.
-            return not request.user.is_anonymous()
-        return False
+        auth = request.COOKIES.get('user')
+        if not auth:
+            return False
+        try:
+            email, hm, unique_id = auth.split(',')
+            consumer_id = hashlib.sha1(
+                email + settings.FIREPLACE_SECRET_KEY).hexdigest()
+            return hmac.new(unique_id + settings.FIREPLACE_SECRET_KEY,
+                            consumer_id, hashlib.sha512).hexdigest() == hm
+        except:
+            log.info('Bad shared-secret auth data: %s', auth)
+            return False
 
 
 def initialize_oauth_server_request(request):

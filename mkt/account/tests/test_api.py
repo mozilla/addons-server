@@ -1,5 +1,6 @@
 import collections
 import json
+import uuid
 
 from mock import patch
 from nose.tools import eq_
@@ -98,6 +99,11 @@ class TestAccount(BaseOAuth):
 browserid_url = 'http://firepla.ce:8675/'
 
 
+class FakeUUID(object):
+    hex = '000000'
+
+
+@patch.object(settings, 'FIREPLACE_SECRET_KEY', 'gubbish')
 @patch.object(settings, 'FIREPLACE_URL', browserid_url)
 class TestLoginHandler(TestCase):
     def setUp(self):
@@ -105,6 +111,7 @@ class TestLoginHandler(TestCase):
         self.list_url = get_absolute_url(list_url('login'), api_name='account')
         self.create_switch('browserid-login')
 
+    @patch.object(uuid, 'uuid4', FakeUUID)
     @patch('requests.post')
     def test_login_success(self, http_request):
         FakeResponse = collections.namedtuple('FakeResponse',
@@ -116,6 +123,11 @@ class TestLoginHandler(TestCase):
                                dict(assertion='fake-assertion',
                                     audience='fakeamo.org'))
         eq_(res.status_code, 200)
+        data = json.loads(res.content)
+        eq_(data['token'],
+            'cvan@mozilla.com,95c9063d9f249aacfe5697fc83192ed6480c01463e2a80b3'
+            '5af5ecaef11754700f4be33818d0e83a0cfc2cab365d60ba53b3c2b9f8f6589d1'
+            'c43e9bbb876eef0,000000')
 
     @patch('requests.post')
     def test_login_failure(self, http_request):
