@@ -90,10 +90,6 @@
           {% if action_allowed('AccountLookup', '%') %}
             <p><a href="{{ url('lookup.home') }}" class="manage button sync" target="_blank">{{ _('Lookup Tool') }}</a></p>
           {% endif %}
-          {% if is_reviewer %}
-            <p><a href="{{ request.get_full_path()|urlparams(mobile='false', tablet='false') }}" class="manage button sync">
-              {{ _('View Full Site') }}</a></p>
-          {% endif %}
           <a href="{{ url('users.logout') }}" class="sync button alt logout">{{ _('Sign out') }}</a>
         {% else %}
           <a class="full button alt browserid" href="#">{{ _('Sign in / Sign up') }}</a>
