@@ -218,7 +218,7 @@ class TestPrivacy(amo.tests.TestCase):
 
     def test_public(self):
         # Make it public, others can see it.
-        eq_(self.client.get(self.url).status_code, 403)
+        self.assertLoginRedirects(self.client.get(self.url), self.url)
         self.c.listed = True
         self.c.save()
         r = self.client.get(self.url)
@@ -229,7 +229,7 @@ class TestPrivacy(amo.tests.TestCase):
     def test_publisher(self):
         self.c.listed = False
         self.c.save()
-        eq_(self.client.get(self.url).status_code, 403)
+        self.assertLoginRedirects(self.client.get(self.url), self.url)
         u = UserProfile.objects.get(email='fligtar@gmail.com')
         CollectionUser.objects.create(collection=self.c, user=u)
         self.client.login(username='fligtar@gmail.com', password='foo')
