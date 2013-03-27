@@ -794,10 +794,10 @@ class TestPersonaLogin(UserViewBase):
                 settings.NATIVE_BROWSERID_VERIFICATION_URL,
                 verify=ANY, proxies=ANY, data=ANY, timeout=ANY,
                 headers=ANY)
-        data = parse_qs(http_request.call_args[1]['data'])
-        eq_(data['audience'][0], 'http://testserver')
-        eq_(data['forceIssuer'][0], settings.UNVERIFIED_ISSUER)
-        eq_(data['allowUnverified'][0], 'true')
+        data = http_request.call_args[1]['data']
+        eq_(data['audience'], 'http://testserver')
+        eq_(data['forceIssuer'], settings.UNVERIFIED_ISSUER)
+        eq_(data['allowUnverified'], 'true')
 
     @patch.object(waffle, 'switch_is_active', lambda x: True)
     @patch.object(settings, 'NATIVE_BROWSERID_VERIFICATION_URL',
@@ -813,9 +813,9 @@ class TestPersonaLogin(UserViewBase):
                          data=dict(assertion='fake-assertion',
                                    audience='fakeamo.org',
                                    is_native='1'))
-        data = parse_qs(http_request.call_args[1]['data'])
-        eq_(data['audience'][0], 'http://testserver')
-        eq_(data['forceIssuer'][0], 'False')
+        data = http_request.call_args[1]['data']
+        eq_(data['audience'], 'http://testserver')
+        eq_(data['forceIssuer'], False)
 
     @patch.object(waffle, 'switch_is_active', lambda x: True)
     @patch('requests.post')

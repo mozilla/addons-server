@@ -1017,7 +1017,7 @@ class TestPersonaDetailPage(TestPersonas, amo.tests.TestCase):
         self.addon = Addon.objects.get(id=15663)
         self.persona = self.addon.persona
         self.url = self.addon.get_url_path()
-        self.create_switch('personas-migration-completed')
+        self.create_switch('personas-migration-completed', db=True)
         self.create_addon_user(self.addon)
 
     def test_persona_images(self):
