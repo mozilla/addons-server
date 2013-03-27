@@ -691,8 +691,8 @@ class EditThemeForm(AddonFormBase):
             old_cat = (addon.addoncategory_set
                        .exclude(category_id=data['category'].id))[0]
         except IndexError:
-            # This should never happen, but maybe a category got deleted.
-            addon.addoncategory_set.create(category=data['category'])
+            # The category has remained unchanged.
+            pass
         else:
             old_cat.category = data['category']
             old_cat.save()

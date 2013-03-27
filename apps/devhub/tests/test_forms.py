@@ -441,10 +441,10 @@ class TestEditThemeForm(amo.tests.TestCase):
                                   instance=self.instance)
         eq_(self.form.initial, self.get_dict())
 
-    def test_success(self):
+    def save_success(self):
         other_cat = Category.objects.create(type=amo.ADDON_PERSONA)
         other_license = License.objects.create(id=amo.LICENSE_CC_BY_NC_SA.id)
-        data = {
+        self.data = {
             'accentcolor': '#EFF0FF',
             'category': other_cat.id,
             'license': other_license.id,
@@ -454,25 +454,32 @@ class TestEditThemeForm(amo.tests.TestCase):
             'tags': 'ag',
             'textcolor': '#CACACA'
         }
-        self.form = EditThemeForm(data, request=self.request,
+        self.form = EditThemeForm(self.data, request=self.request,
                                   instance=self.instance)
         eq_(self.form.initial, self.get_dict())
-        eq_(self.form.data, data)
+        eq_(self.form.data, self.data)
         eq_(self.form.is_valid(), True, self.form.errors)
         self.form.save()
 
+    def test_success(self):
+        self.save_success()
         self.instance = self.instance.reload()
         eq_(unicode(self.instance.persona.accentcolor),
-            data['accentcolor'].lstrip('#'))
-        eq_(self.instance.categories.all()[0].id, data['category'])
-        eq_(self.instance.persona.license.id, data['license'])
-        eq_(unicode(self.instance.name), data['name'])
-        eq_(unicode(self.instance.summary), data['summary'])
+            self.data['accentcolor'].lstrip('#'))
+        eq_(self.instance.categories.all()[0].id, self.data['category'])
+        eq_(self.instance.persona.license.id, self.data['license'])
+        eq_(unicode(self.instance.name), self.data['name'])
+        eq_(unicode(self.instance.summary), self.data['summary'])
         self.assertSetEqual(
             self.instance.tags.values_list('tag_text', flat=True),
-            [data['tags']])
+            [self.data['tags']])
         eq_(unicode(self.instance.persona.textcolor),
-            data['textcolor'].lstrip('#'))
+            self.data['textcolor'].lstrip('#'))
+
+    def test_success_twice(self):
+        """Form should be just fine when POSTing twice."""
+        self.save_success()
+        self.form.save()
 
     def test_name_unique(self):
         data = self.get_dict(name='Bands Make You Dance')
