@@ -4,8 +4,8 @@ from tastypie.api import Api
 
 from mkt.api.resources import (AppResource, CategoryResource,
                                FeaturedHomeResource, PreviewResource,
-                               RatingResource, StatusResource,
-                               ValidationResource)
+                               StatusResource, ValidationResource)
+from mkt.ratings.resources import RatingResource
 from mkt.search.api import SearchResource
 
 
