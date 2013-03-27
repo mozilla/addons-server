@@ -1017,8 +1017,7 @@ class TestPersonaDetailPage(TestPersonas, amo.tests.TestCase):
         self.addon = Addon.objects.get(id=15663)
         self.persona = self.addon.persona
         self.url = self.addon.get_url_path()
-        (waffle.models.Switch.objects
-               .create(name='personas-migration-completed', active=True))
+        self.create_switch('personas-migration-completed')
         self.create_addon_user(self.addon)
 
     def test_persona_images(self):
@@ -1446,8 +1445,7 @@ class TestMobileDetails(TestPersonas, TestMobile):
         self.url = reverse('addons.detail', args=[self.ext.slug])
         self.persona = Addon.objects.get(id=15679)
         self.persona_url = self.persona.get_url_path()
-        (waffle.models.Switch.objects
-               .create(name='personas-migration-completed', active=True))
+        self.create_switch('personas-migration-completed')
         self.create_addon_user(self.persona)
 
     def test_extension(self):
@@ -1512,7 +1510,7 @@ class TestMobileDetails(TestPersonas, TestMobile):
         # Get the url from a real page so it includes the build id.
         client = test.Client()
         doc = pq(client.get('/', follow=True).content)
-        js_url = reverse('addons.buttons.js')
+        js_url = absolutify(reverse('addons.buttons.js'))
         url_with_build = doc('script[src^="%s"]' % js_url).attr('src')
 
         response = client.get(url_with_build, follow=True)

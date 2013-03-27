@@ -779,7 +779,7 @@ class TestPersonaLogin(UserViewBase):
     @patch.object(waffle, 'switch_is_active', lambda x: True)
     @patch.object(settings, 'NATIVE_BROWSERID_VERIFICATION_URL',
                   'http://my-custom-b2g-verifier.org/verify')
-    @patch.object(settings, 'SITE_URL', 'http://mysite.org')
+    @patch.object(settings, 'SITE_URL', 'http://testserver')
     @patch.object(settings, 'UNVERIFIED_ISSUER', 'some-issuer')
     @patch('requests.post')
     def test_native_persona_login(self, http_request):
@@ -795,14 +795,14 @@ class TestPersonaLogin(UserViewBase):
                 verify=ANY, proxies=ANY, data=ANY, timeout=ANY,
                 headers=ANY)
         data = parse_qs(http_request.call_args[1]['data'])
-        eq_(data['audience'][0], 'http://mysite.org')
+        eq_(data['audience'][0], 'http://testserver')
         eq_(data['forceIssuer'][0], settings.UNVERIFIED_ISSUER)
         eq_(data['allowUnverified'][0], 'true')
 
     @patch.object(waffle, 'switch_is_active', lambda x: True)
     @patch.object(settings, 'NATIVE_BROWSERID_VERIFICATION_URL',
                   'http://my-custom-b2g-verifier.org/verify')
-    @patch.object(settings, 'SITE_URL', 'http://mysite.org')
+    @patch.object(settings, 'SITE_URL', 'http://testserver')
     @patch.object(settings, 'UNVERIFIED_ISSUER', None)
     @patch('requests.post')
     def test_native_persona_login_without_issuer(self, http_request):
@@ -814,7 +814,7 @@ class TestPersonaLogin(UserViewBase):
                                    audience='fakeamo.org',
                                    is_native='1'))
         data = parse_qs(http_request.call_args[1]['data'])
-        eq_(data['audience'][0], 'http://mysite.org')
+        eq_(data['audience'][0], 'http://testserver')
         eq_(data['forceIssuer'][0], 'False')
 
     @patch.object(waffle, 'switch_is_active', lambda x: True)
