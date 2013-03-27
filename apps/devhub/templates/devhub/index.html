@@ -28,14 +28,14 @@
       </p>
       <p><a href="{{ url('devhub.submit.1') }}" class="button">{{ _('Submit an Add-on') }}</a></p>
       {% if waffle.flag('submit-personas') %}
-        <p><a href="{{ url('devhub.personas.submit') }}" class="button">
+        <p><a href="{{ url('devhub.themes.submit') }}" class="button">
           {{ _('Submit a New Theme') }}</a></p>
       {% endif %}
     </div>
   {% else %}
     <p><a href="{{ url('devhub.submit.1') }}" class="button">{{ _('Submit an Add-on') }}</a></p>
     {% if waffle.flag('submit-personas') %}
-      <p><a href="{{ url('devhub.personas.submit') }}" class="button">
+      <p><a href="{{ url('devhub.themes.submit') }}" class="button">
         {{ _('Submit a New Theme') }}</a></p>
     {% endif %}
     <div id="my-addons" class="item">
