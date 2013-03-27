@@ -35,6 +35,10 @@ The API returns a list of ratings sorted by date created, descending::
           "previous": null,
           "total_count": 391
       },
+      "info": {
+          "average": 3.4,
+          "slug": "marble-run"
+      },
       "objects": [
           {
               "app": "/api/apps/app/18/",
