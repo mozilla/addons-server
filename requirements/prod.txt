@@ -80,7 +80,7 @@ statsd==1.0.0
 suds==0.3.9
 
 ## Not on pypi.
--e git://github.com/mozilla/amo-validator.git@644f8e1df66fe121a0f5d4359cf11ccc82aef71a#egg=amo-validator
+-e git://github.com/mozilla/amo-validator.git@604a3fad6feee9486392268e3102ddd54ae12626#egg=amo-validator
 -e git://github.com/mozilla/app-validator.git@bb197d09e3e2465b6f590740405f22e4f4e7fd58#egg=app-validator
 -e git://github.com/jsocol/commonware.git@27646ecaca40a89024cc581c3ecf5eb0fa87ee11#egg=commonware
 -e git://github.com/jbalogh/django-queryset-transform@a1ba6ae41bd86f5bb9ff66fb56614e0fafe6e022#egg=django-queryset-transform
