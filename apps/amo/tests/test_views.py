@@ -17,6 +17,7 @@ import amo.tests
 from access import acl
 from access.models import Group, GroupUser
 from addons.models import Addon, AddonUser
+from amo.helpers import absolutify
 from amo.pyquery_wrapper import PyQuery
 from amo.tests import check_links
 from amo.urlresolvers import reverse
@@ -273,7 +274,7 @@ class TestOtherStuff(amo.tests.TestCase):
         # Get the url from a real page so it includes the build id.
         client = test.Client()
         doc = pq(client.get('/', follow=True).content)
-        js_url = reverse('jsi18n')
+        js_url = absolutify(reverse('jsi18n'))
         url_with_build = doc('script[src^="%s"]' % js_url).attr('src')
 
         response = client.get(url_with_build, follow=True)
