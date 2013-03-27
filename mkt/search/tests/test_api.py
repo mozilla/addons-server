@@ -71,14 +71,15 @@ class TestApi(BaseOAuth, ESTestCase):
         eq_(len(objs), 1)
 
     def test_dehydrate(self):
-        self.create()
-        res = self.client.get(self.list_url + ({'cat': self.category.pk},))
-        eq_(res.status_code, 200)
-        obj = json.loads(res.content)['objects'][0]
-        eq_(obj['app_slug'], self.webapp.app_slug)
-        eq_(obj['icon_url_128'], self.webapp.get_icon_url(128))
-        eq_(obj['absolute_url'], self.webapp.get_absolute_url())
-        eq_(obj['resource_uri'], None)
+        with self.settings(SITE_URL=''):
+            self.create()
+            res = self.client.get(self.list_url + ({'cat': self.category.pk},))
+            eq_(res.status_code, 200)
+            obj = json.loads(res.content)['objects'][0]
+            eq_(obj['app_slug'], self.webapp.app_slug)
+            eq_(obj['icon_url_128'], self.webapp.get_icon_url(128))
+            eq_(obj['absolute_url'], self.webapp.get_absolute_url())
+            eq_(obj['resource_uri'], None)
 
     def test_q(self):
         res = self.client.get(self.list_url + ({'q': 'something'},))
