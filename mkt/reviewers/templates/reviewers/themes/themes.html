@@ -31,7 +31,14 @@
     </div>
 
     {% if theme.addon.description %}
-      <div class="desc"><strong>{{ _('Description') }}: </strong>{{ theme.addon.description }}</div>
+      <div class="desc"><strong>{{ _('Description') }}: </strong>
+        {{ theme.addon.description }}
+      </div>
+    {% endif %}
+    {% if flagged %}
+      <div class="desc"><strong>{{ _('Reason for Flagging') }}: </strong>
+        {{ theme.addon.addonlog_set.all()[0].activity_log.details.comment }}
+      </div>
     {% endif %}
 
     {% if reviewable %}
@@ -40,7 +47,9 @@
           <button class="moreinfo">{{ _('Request More Info') }} &#9662;</button>
         </div>
         <div class="group">
-          <button class="flag">{{ _('Flag') }} &#9662;</button>
+          {% if not flagged %}
+            <button class="flag">{{ _('Flag') }} &#9662;</button>
+          {% endif %}
           <button class="duplicate">{{ _('Duplicate') }} &#9662;</button>
           <button class="reject">{{ _('Reject') }} &#9662;</button>
         </div>
@@ -84,12 +93,14 @@
         {{ required_styled() }}
         <button>{{ _('Continue') }}</button>
       </div>
-      <div class="flag-dropdown rq-dropdown">
-        <label>{{ _('Describe your reason for flagging') }}:</label>
-        <textarea></textarea>
-        {{ required_styled() }}
-        <button>{{ _('Continue') }}</button>
-      </div>
+      {% if not flagged %}
+        <div class="flag-dropdown rq-dropdown">
+          <label>{{ _('Describe your reason for flagging') }}:</label>
+          <textarea required></textarea>
+          {{ required_styled() }}
+          <button>{{ _('Continue') }}</button>
+        </div>
+      {% endif %}
     {% endif %}
 
   </div>
