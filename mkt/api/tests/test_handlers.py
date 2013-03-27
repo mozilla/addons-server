@@ -790,8 +790,8 @@ class TestRatingHandler(BaseOAuth, AMOPaths):
         AddonUser.objects.create(user=self.user, addon=self.app)
         res = self.client.get(self.collection_url)
         data = json.loads(res.content)
-        eq_(data['meta']['average'], self.app.average_rating)
-        eq_(data['meta']['slug'], self.app.app_slug)
+        eq_(data['info']['average'], self.app.average_rating)
+        eq_(data['info']['slug'], self.app.app_slug)
         assert not data['user']['can_rate']
         assert not data['user']['has_rated']
 

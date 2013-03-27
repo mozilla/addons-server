@@ -25,7 +25,13 @@ The API accepts various query string parameters for filtering the results:
 
 The API returns a list of ratings, in order they were posted::
 
-        {"meta": {
+        {[
+         "meta": {"limit": 20,
+                  "next": null,
+                  "offset": 0,
+                  "previous": null,
+                  "total_count": 2},
+         "info": {
             "average": 3.4,
             "slug": "marble-run"
          },

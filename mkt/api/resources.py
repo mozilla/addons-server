@@ -423,8 +423,10 @@ class RatingResource(MarketplaceModelResource):
     def alter_list_data_to_serialize(self, request, data):
         if 'app' in request.GET:
             addon = Addon.objects.get(pk=request.GET['app'])
-            data['meta']['average'] = addon.average_rating
-            data['meta']['slug'] = addon.app_slug
+            data['info'] = {
+                'average': addon.average_rating,
+                'slug': addon.app_slug
+                }
 
             filters = dict(addon=addon, user=request.user)
             if addon.is_packaged:
