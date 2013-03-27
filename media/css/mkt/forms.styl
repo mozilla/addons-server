@@ -31,9 +31,15 @@ input::-webkit-input-placeholder {
 
 input:-moz-placeholder {
     color: $gray;
+    text-overflow: ellipsis;  /* Firefox 18 and below */
+}
+
+input::-moz-placeholder {
+    text-overflow: ellipsis;  /* Firefox 19+ */
 }
 
 input[placeholder] {
+    text-overflow: ellipsis;
     // Because bug 673873 is stupidface.
     // Yes, the order matters. Firefox 18 (and below) is clownshoes.
     &:-moz-placeholder:focus {
