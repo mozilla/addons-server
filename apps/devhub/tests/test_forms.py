@@ -427,7 +427,7 @@ class TestEditThemeForm(amo.tests.TestCase):
             'accentcolor': '#C0FFEE',
             'category': self.cat.id,
             'license': self.license.id,
-            'name': self.instance.name.id,
+            'name': unicode(self.instance.name),
             'slug': self.instance.slug,
             'summary': self.instance.summary.id,
             'tags': 'ag, sw',

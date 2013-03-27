@@ -628,6 +628,9 @@ class EditThemeForm(AddonFormBase):
         self.fields['name'].validators = list(self.fields['name'].validators)
         self.fields['name'].validators.append(lambda x: clean_name(x, addon))
 
+        # `name` will be a `TransField` any day now.
+        self.initial['name'] = Translation.objects.get(id=self.initial['name'])
+
         self.initial['tags'] = ', '.join(self.get_tags(addon))
         if persona.accentcolor:
             self.initial['accentcolor'] = '#' + persona.accentcolor
