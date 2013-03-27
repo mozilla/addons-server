@@ -330,8 +330,9 @@ def edit_theme(request, addon_id, addon, theme=False):
     })
 
 
-@dev_required(owner_for_post=True, webapp=True)
-def delete(request, addon_id, addon, webapp=False):
+@dev_required(owner_for_post=True, webapp=True, theme=True)
+@post_required
+def delete(request, addon_id, addon, webapp=False, theme=False):
     # Database deletes only allowed for free or incomplete addons.
     if not addon.can_be_deleted():
         if webapp:
@@ -345,15 +346,17 @@ def delete(request, addon_id, addon, webapp=False):
     if form.is_valid():
         addon.delete('Removed via devhub')
         messages.success(request,
-            loc('App deleted.') if webapp else _('Add-on deleted.'))
+            _('Theme deleted.') if theme else _('Add-on deleted.'))
         return redirect('devhub.%s' % ('apps' if webapp else 'addons'))
     else:
-        if webapp:
-            msg = loc('Password was incorrect. App was not deleted.')
+        if theme:
+            messages.error(request,
+                _('Password was incorrect. Theme was not deleted.'))
+            return redirect(addon.get_dev_url())
         else:
-            msg = _('Password was incorrect.  Add-on was not deleted.')
-        messages.error(request, msg)
-        return redirect(addon.get_dev_url('versions'))
+            messages.error(request,
+                _('Password was incorrect. Add-on was not deleted.'))
+            return redirect(addon.get_dev_url('versions'))
 
 
 @dev_required

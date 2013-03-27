@@ -373,7 +373,7 @@ $(document).ready(function() {
 
     $('.modal-delete').each(function() {
         var el = $(this);
-        el.modal(el.parent().find('.delete-addon'), {
+        el.modal(el.siblings('.delete-addon'), {
             width: 400,
             callback: function(obj) {
                 fixPasswordField(this);

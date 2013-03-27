@@ -24,7 +24,7 @@
     <label>
       {{ _('Enter your password to confirm your decision:') }}
       {# see bug 630126 for why this is called 'password-timestamp' #}
-      <input type="password" name="password-{{ timestamp }}" data-name="password" autocomplete="off">
+      <input type="password" name="password-{{ timestamp }}" data-name="password" autocomplete="off" required>
     </label>
   </p>
   <input type="hidden" name="addon_id" class="addon_id" value="{{ addon.id }}">

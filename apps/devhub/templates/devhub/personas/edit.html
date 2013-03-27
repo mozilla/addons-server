@@ -42,6 +42,12 @@
         {% endif %}
         <p><a href="{{ url('devhub.feed', addon.slug) }}">
           {{ _('View Recent Changes') }}</a></p>
+        {% if check_addon_ownership(request, addon) and addon.can_be_deleted() %}
+          <a href="#" class="button scary delete-addon">{{ _('Delete Theme') }}</a>
+          <div class="modal-delete modal hidden">
+            {% include 'devhub/addons/listing/delete_form.html' %}
+          </div>
+        {% endif %}
       </div>
     </div>
   </div>
@@ -225,12 +231,6 @@
       </fieldset>
       <div class="listing-footer">
         <button class="button prominent" disabled type="submit">{{ _('Save Changes') }}</button>
-        {% if check_addon_ownership(request, addon) and addon.can_be_deleted() %}
-          <a href="#" class="button prominent delete-addon">{{ _('Delete Theme') }}</a>
-          <div class="modal-delete modal hidden">
-            {% include 'devhub/addons/listing/delete_form.html' %}
-          </div>
-        {% endif %}
       </div>
     </form>
   </div>

@@ -1415,22 +1415,28 @@ class TestDelete(amo.tests.TestCase):
     fixtures = ['base/addon_3615']
 
     def setUp(self):
-        self.addon = self.get_addon()
+        self.get_addon = lambda: Addon.objects.filter(id=3615)
         assert self.client.login(username='del@icio.us', password='password')
-        self.url = self.addon.get_dev_url('delete')
-
-    def get_addon(self):
-        return Addon.objects.no_cache().get(id=3615)
+        self.get_url = lambda: self.get_addon()[0].get_dev_url('delete')
 
     def test_post_not(self):
-        r = self.client.post(self.url, follow=True)
+        r = self.client.post(self.get_url(), follow=True)
         eq_(pq(r.content)('.notification-box').text(),
             'Password was incorrect. Add-on was not deleted.')
+        eq_(self.get_addon().exists(), True)
 
     def test_post(self):
-        r = self.client.post(self.url, dict(password='password'), follow=True)
+        r = self.client.post(self.get_url(), {'password': 'password'},
+                             follow=True)
         eq_(pq(r.content)('.notification-box').text(), 'Add-on deleted.')
-        self.assertRaises(Addon.DoesNotExist, self.get_addon)
+        eq_(self.get_addon().exists(), False)
+
+    def test_post_theme(self):
+        Addon.objects.get(id=3615).update(type=amo.ADDON_PERSONA)
+        r = self.client.post(self.get_url(), {'password': 'password'},
+                             follow=True)
+        eq_(pq(r.content)('.notification-box').text(), 'Theme deleted.')
+        eq_(self.get_addon().exists(), False)
 
 
 class TestHome(amo.tests.TestCase):

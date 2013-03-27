@@ -283,7 +283,10 @@ ul.license {
     }
     .info {
         float: left;
-        margin-left: 1.5em;
+        margin: 1em 0 0 1.5em;
+        p {
+            margin: 0 0 .5em;
+        }
     }
     [data-browsertheme] {
         background: #fff;
@@ -302,14 +305,11 @@ ul.license {
         float: left;
         margin: 0;
     }
-    .delete-addon {
-        float: right;
-        font-size: 12px;
-        font-weight: 300;
-        padding: 12px 16px;
-        &:not([disabled]) {
-            background: #e33;
-            color: #fff;
-        }
-    }
+}
+
+.delete-addon {
+    font-size: 12px;
+    font-weight: 300;
+    margin-top: 3px;
+    padding: 8px 16px;
 }

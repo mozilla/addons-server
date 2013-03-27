@@ -5,7 +5,7 @@
 
     function checkValid(form) {
         if (form) {
-            $(form).find('button[type=submit]:not(.delete)').attr('disabled', !form.checkValidity());
+            $(form).find('button[type=submit]').attr('disabled', !form.checkValidity());
         }
     }
 
