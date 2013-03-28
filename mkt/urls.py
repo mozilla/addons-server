@@ -14,6 +14,7 @@ from mkt.account.urls import (api_patterns as account_api_patterns,
                               users_patterns as mkt_users_patterns)
 from mkt.detail.views import manifest as mini_manifest
 from mkt.developers.views import login
+from mkt.home.urls import home_api_patterns
 from mkt.purchase.urls import webpay_services_patterns
 from mkt.receipts.urls import receipt_api_patterns
 from mkt.reviewers.urls import (api_patterns as reviewer_api_patterns,
@@ -117,6 +118,7 @@ urlpatterns = patterns('',
     url('^login$', login, name='users.login'),
     url('^logout$', logout, name='users.logout'),
 
+    url('^api/', include(home_api_patterns)),
     url('^api/', include('mkt.api.urls')),
     url('^api/', include(account_api_patterns)),
     url('^api/', include(reviewer_api_patterns)),

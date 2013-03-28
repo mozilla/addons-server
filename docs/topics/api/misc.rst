@@ -4,6 +4,38 @@
 Miscellaneous API
 ======================
 
+
+Home page
+=========
+
+The home page of the Marketplace which is a list of featured apps and
+categories.
+
+.. http:get:: /api/home/page/
+
+    **Request**:
+
+    .. sourcecode:: http
+
+        GET /api/home/page/
+
+
+    :param dev: the device requesting the homepage, results will be tailored to the device which will be one of: `firefoxos` (Firefox OS), `desktop`, `android` (mobile).
+
+    **Response**:
+
+    .. sourcecode:: http
+
+        {"categories": [
+            {"id": "99",
+             "name": "Lifestyle"...}
+         ],
+         "featured": [{
+            {"app_slug": "cool-app",
+             "name": "Cool app"...}
+         ]
+        }
+
 Account
 =======
 
