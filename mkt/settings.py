@@ -42,7 +42,7 @@ NOBODY_EMAIL = 'Firefox Marketplace <nobody@mozilla.org>'
 DEFAULT_FROM_EMAIL = 'Firefox Marketplace <nobody@mozilla.org>'
 
 # Default app name for our webapp as specified in `manifest.webapp`.
-WEBAPP_MANIFEST_NAME = 'Firefox Marketplace'
+WEBAPP_MANIFEST_NAME = 'Marketplace'
 
 ROOT_URLCONF = 'mkt.urls'
 
