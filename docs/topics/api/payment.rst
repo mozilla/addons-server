@@ -14,7 +14,7 @@ When an app is installed from the Marketplace, call the install API. This will
 record the install. If the app is a paid app, it will return the receipt that
 to be used on install.
 
-.. http:post:: /api/receipt/install/
+.. http:post:: /api/receipts/install/
 
     Returns a receipt if the app is paid and a receipt should be installed.
 
@@ -22,7 +22,7 @@ to be used on install.
 
     .. sourcecode:: http
 
-        POST /api/receipt/install/
+        POST /api/receipts/install/
 
     :param app: the id of the app being installed.
 
