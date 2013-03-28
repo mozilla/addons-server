@@ -106,14 +106,30 @@
             }
         }
 
-        // Hide the other license options when the copyright license is selected.
-        $form.delegate('input[name="cc-attrib"]', 'change', function() {
-            var $noncc = $('.noncc');
-            $noncc.toggleClass('disabled', $(this).data('cc') == 'copyr');
+        var $noncc = $('.noncc'),
+            $list = $('#persona-license-list');
+
+        function toggleCopyr(isCopyr) {
+            $noncc.toggleClass('disabled', isCopyr);
             if ($noncc.find('input[type=radio]:not(:checked)').length == 5) {
                 $('input[name="cc-noncom"][value=1], input[name="cc-noderiv"][value=2]').prop('checked', true);
             }
+        }
+
+        $form.delegate('input[name="cc-attrib"]', 'change', function() {
+            // Toggle the other license options based on whether the copyright license is selected.
+            toggleCopyr($licenseField.val() == 7);
+        }).delegate('#persona-license-list input[type=radio][name=license]', 'change', function() {
+            // Upon selecting license from advanced menu, change it in the Q/A format.
+            $('.noncc.disabled').removeClass('disabled');
+            $('input[name^="cc-"]').prop('checked', false);
+            _.each(licenseClassesById[+$list.find('input[name=license]:checked').val()].split(' '), function(cc) {
+                $('input[type=radio][data-cc="' + cc + '"]').prop('checked', true);
+                toggleCopyr(cc == 'copyr');
+            });
+            licenseUpdate(false);
         });
+
         $('input[data-cc="copyr"]').trigger('change');
 
         // Whenever a radio field changes, update the license.
@@ -121,20 +137,14 @@
         licenseUpdate();
 
         if ($licenseField.val()) {
-            $('input[type=radio][data-cc="' + licenseClassesById[$licenseField.val()] + '"]').prop('checked', true);
+            _.each(licenseClassesById[+$licenseField.val()].split(' '), function(cc) {
+                $('input[type=radio][data-cc="' + cc + '"]').prop('checked', true);
+            });
             licenseUpdate();
         }
 
-        $form.delegate('input[type=radio][name=license]', 'change', function() {
-            // Upon selecting license from advanced menu, change it in the Q/A format.
-            $('.noncc.disabled').removeClass('disabled');
-            $('input[name^="cc-"]').prop('checked', false);
-            $('input[type=radio][data-cc~="' + licenseClassesById[$(this).val()].split(' ') + '"]').prop('checked', true);
-            licenseUpdate(false);
-        });
-
         function updateLicenseList() {
-            $('#persona-license-list input[value="' + $licenseField.val() + '"]').prop('checked', true);
+            $list.find('input[value="' + $licenseField.val() + '"]').prop('checked', true);
         }
 
         $('#persona-license .select-license').click(_pd(function() {
