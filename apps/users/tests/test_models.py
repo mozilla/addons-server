@@ -227,6 +227,8 @@ class TestUserProfile(amo.tests.TestCase):
             '/en-US/firefox/user/yolo/')
         eq_(UserProfile(id=1).get_url_path(),
             '/en-US/firefox/user/1/')
+        eq_(UserProfile(username='<yolo>', id=1).get_url_path(),
+            '/en-US/firefox/user/1/')
 
 
 class TestPasswords(amo.tests.TestCase):

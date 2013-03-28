@@ -149,8 +149,16 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
         return False
 
     def get_url_path(self, src=None):
+        """
+        We use <username> as the slug, unless it contains gross
+        characters - in which case use <id> as the slug.
+        """
         from amo.utils import urlparams
-        url = reverse('users.profile', args=[self.username or self.id])
+        chars = '/<>"\''
+        slug = self.username
+        if any(x in chars for x in self.username):
+            slug = self.id
+        url = reverse('users.profile', args=[slug])
         return urlparams(url, src=src)
 
     def flush_urls(self):
