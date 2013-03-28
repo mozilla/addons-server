@@ -15,9 +15,8 @@
         {% set appicon = 'firefox' if request.APP in (amo.MOBILE, amo.ANDROID) else request.APP.short %}
         <a href="{{ url('home') }}"
           title="{{ _('Return to the {0} Add-ons homepage')|f(request.APP.pretty) }}">
-          <img alt="{{ request.APP.pretty }}" src="{{ media('img/zamboni/app_icons/' + appicon + '.png') }}">
-          {{ _('{0} Add-ons')|f(request.APP.pretty) }}
-        </a>
+          <img src="{{ media('img/zamboni/app_icons/' + appicon + '.png') }}">
+          {{ _('Add-ons') }}</a>
       </h1>
       <h2>{{ _('Easy ways to personalize.') }}</h2>
       <a href="#" id="learnmore">{{ _('Learn More') }}&raquo;</a>
