@@ -156,7 +156,7 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
         from amo.utils import urlparams
         chars = '/<>"\''
         slug = self.username
-        if any(x in chars for x in self.username):
+        if not self.username or any(x in chars for x in self.username):
             slug = self.id
         url = reverse('users.profile', args=[slug])
         return urlparams(url, src=src)
