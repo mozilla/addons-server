@@ -73,7 +73,6 @@ class Test404(amo.tests.TestCase):
 class TestManifest(amo.tests.TestCase):
 
     def setUp(self):
-        super(TestManifest, self).setUp()
         self.url = reverse('manifest.webapp')
 
     @mock.patch('mkt.carriers.carriers.CARRIERS', {'boop': 'boop'})
@@ -140,6 +139,30 @@ class TestManifest(amo.tests.TestCase):
         resp = self.client.get(self.url, HTTP_IF_NONE_MATCH='%s' % etag)
         eq_(resp.content, '')
         eq_(resp.status_code, 304)
+
+
+class TestMinifest(amo.tests.TestCase):
+
+    def setUp(self):
+        self.url = reverse('minifest.webapp')
+
+    @mock.patch.object(settings, 'WEBAPP_MANIFEST_NAME', 'Firefox Marketplace')
+    def test_minifest(self):
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        content = json.loads(res.content)
+        eq_(content['name'], 'Firefox Marketplace')
+        assert 'package_path' in content
+        assert res.get('Etag'), 'Missing ETag'
+
+    def test_minifest_etag(self):
+        res = self.client.get(self.url)
+        etag = res.get('Etag')
+
+        # Trigger a change to the minifest by changing the name.
+        with self.settings(WEBAPP_MANIFEST_NAME='Mozilla Fruitstand'):
+            res = self.client.get(self.url)
+            self.assertNotEqual(etag, res.get('Etag'))
 
 
 class TestMozmarketJS(amo.tests.TestCase):
