@@ -53,6 +53,7 @@ def global_settings(request):
     context = {}
 
     tools_title = _('Tools')
+    is_reviewer = acl.check_reviewer(request)
 
     if request.user.is_authenticated() and hasattr(request, 'amo_user'):
         amo_user = request.amo_user
@@ -92,7 +93,7 @@ def global_settings(request):
         tools_links.append({'text': _('Developer Hub'),
                             'href': reverse('devhub.index')})
 
-        if acl.check_reviewer(request):
+        if is_reviewer:
             tools_links.append({'text': _('Editor Tools'),
                                 'href': reverse('editors.home')})
         if acl.action_allowed(request, 'L10nTools', 'View'):
@@ -112,5 +113,6 @@ def global_settings(request):
                     'tools_links': tools_links,
                     'tools_title': tools_title,
                     'ADMIN_MESSAGE': get_config('site_notice'),
-                    'collect_timings_percent': get_collect_timings()})
+                    'collect_timings_percent': get_collect_timings(),
+                    'is_reviewer': is_reviewer})
     return context
