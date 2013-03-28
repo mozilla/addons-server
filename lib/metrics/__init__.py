@@ -11,7 +11,6 @@ from celeryutils import task
 import commonware.log
 
 from mkt.monolith import record_stat
-from monolith.client import Client as MonolithClient
 
 
 log = commonware.log.getLogger('z.metrics')
@@ -105,6 +104,7 @@ def get_monolith_client():
         statsd = {'statsd.host': getattr(settings, 'STATSD_HOST', 'localhost'),
                   'statsd.port': getattr(settings, 'STATSD_PORT', 8125)}
 
+        from monolith.client import Client as MonolithClient
         _locals.monolith = MonolithClient(server, **statsd)
 
     return _locals.monolith
