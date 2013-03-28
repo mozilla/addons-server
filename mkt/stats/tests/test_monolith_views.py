@@ -114,7 +114,7 @@ class TestStatsPermissions(StatsTest):
         self._check_it(self.private_views_gen(format='json'), 403)
 
     @mock.patch.object(settings, 'MONOLITH_SERVER', 'http://0.0.0.0:0')
-    @mock.patch('lib.metrics.MonolithClient')
+    @mock.patch('monolith.client.Client')
     def test_private_app_stats_group(self, mocked_client):
         # Logged in with stats group.
         group = Group.objects.create(name='Stats', rules='Stats:View')
@@ -125,7 +125,7 @@ class TestStatsPermissions(StatsTest):
         self._check_it(self.private_views_gen(format='json'), 403)
 
     @mock.patch.object(settings, 'MONOLITH_SERVER', 'http://0.0.0.0:0')
-    @mock.patch('lib.metrics.MonolithClient')
+    @mock.patch('monolith.client.Client')
     def test_private_app_contrib_stats_group(self, mocked_client):
         # Logged in with stats and contrib stats group.
         group1 = Group.objects.create(name='Stats', rules='Stats:View')
@@ -144,7 +144,7 @@ class TestStatsPermissions(StatsTest):
         self._check_it(self.private_views_gen(format='json'), 403)
 
     @mock.patch.object(settings, 'MONOLITH_SERVER', 'http://0.0.0.0:0')
-    @mock.patch('lib.metrics.MonolithClient')
+    @mock.patch('monolith.client.Client')
     def test_public_app_no_groups(self, mocked_client):
         # Logged in but no groups
         self.login_as_visitor()
@@ -154,7 +154,7 @@ class TestStatsPermissions(StatsTest):
             app_slug=self.public_app.app_slug, format='json'), 403)
 
     @mock.patch.object(settings, 'MONOLITH_SERVER', 'http://0.0.0.0:0')
-    @mock.patch('lib.metrics.MonolithClient')
+    @mock.patch('monolith.client.Client')
     def test_public_app_stats_group(self, mocked_client):
         # Logged in with stats group.
         group = Group.objects.create(name='Stats', rules='Stats:View')
@@ -167,7 +167,7 @@ class TestStatsPermissions(StatsTest):
             app_slug=self.public_app.app_slug, format='json'), 403)
 
     @mock.patch.object(settings, 'MONOLITH_SERVER', 'http://0.0.0.0:0')
-    @mock.patch('lib.metrics.MonolithClient')
+    @mock.patch('monolith.client.Client')
     def test_public_app_contrib_stats_group(self, mocked_client):
         # Logged in with stats and contrib stats group.
         group1 = Group.objects.create(name='Stats', rules='Stats:View')
@@ -183,7 +183,7 @@ class TestStatsPermissions(StatsTest):
             app_slug=self.public_app.app_slug, format='json'), 200)
 
     @mock.patch.object(settings, 'MONOLITH_SERVER', 'http://0.0.0.0:0')
-    @mock.patch('lib.metrics.MonolithClient')
+    @mock.patch('monolith.client.Client')
     def test_public_app_anonymous(self, mocked_client):
         # Not logged in
         self.client.logout()
@@ -193,14 +193,15 @@ class TestStatsPermissions(StatsTest):
             app_slug=self.public_app.app_slug, format='json'), 403)
 
     @mock.patch.object(settings, 'MONOLITH_SERVER', 'http://0.0.0.0:0')
-    @mock.patch('lib.metrics.MonolithClient')
+    @mock.patch('monolith.client.Client')
     def test_non_public_app_redirect(self, mocked_client):
         # Non-public status redirects to detail page.
         app = amo.tests.app_factory(status=2, public_stats=True)
         response = self.client.get(app.get_stats_url())
         eq_(response.status_code, 302)
 
-    @mock.patch('lib.metrics.MonolithClient')
+    @mock.patch.object(settings, 'MONOLITH_SERVER', 'http://0.0.0.0:0')
+    @mock.patch('monolith.client.Client')
     def test_non_public_app_owner_no_redirect(self, mocked_client):
         # Non-public status, but owner of app, does not redirect to detail
         # page.
