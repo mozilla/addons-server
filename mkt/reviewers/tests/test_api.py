@@ -3,25 +3,22 @@ import json
 from django.conf import settings
 from django.core.cache import cache
 
-from mock import patch
 from nose.tools import eq_
 from test_utils import RequestFactory
 
-from mkt.api.tests.test_oauth import BaseOAuth, get_absolute_url, OAuthClient
+from mkt.api.tests.test_oauth import BaseOAuth, get_absolute_url
 from mkt.api.base import get_url, list_url
 from mkt.reviewers.utils import AppsReviewing
 from mkt.site.fixtures import fixture
 from users.models import UserProfile
 
 
-@patch.object(settings, 'SITE_URL', 'http://api/')
 class TestAccount(BaseOAuth):
     fixtures = fixture('user_2519', 'webapp_337141')
 
     def setUp(self):
         super(TestAccount, self).setUp(api_name='reviewers')
         self.list_url = list_url('reviewing')
-        self.anon = OAuthClient(None, api_name='reviewers')
         self.user = UserProfile.objects.get(pk=2519)
         self.req = RequestFactory().get('/')
         self.req.amo_user = self.user

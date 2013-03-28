@@ -1,7 +1,6 @@
 from decimal import Decimal
 import json
 
-from django.conf import settings
 from django.core import mail
 
 from mock import patch
@@ -14,7 +13,6 @@ from mkt.site.fixtures import fixture
 from stats.models import Contribution
 
 
-@patch.object(settings, 'SITE_URL', 'http://api/')
 class TestPrices(BaseOAuth):
 
     def make_currency(self, amount, tier, currency):
@@ -117,7 +115,6 @@ class TestPrices(BaseOAuth):
         eq_(data['localized']['locale'], u'1,00\xa0$US')
 
 
-@patch.object(settings, 'SITE_URL', 'http://api/')
 class TestNotification(BaseOAuth):
     fixtures = fixture('webapp_337141', 'user_2519')
 
@@ -137,7 +134,7 @@ class TestNotification(BaseOAuth):
     def test_notify(self):
         url = 'https://someserver.com'
         res = self.client.patch(self.get_url,
-                                data=json.dumps({'url': url,  'attempts': 5}))
+                                data=json.dumps({'url': url, 'attempts': 5}))
         eq_(res.status_code, 202)
         eq_(len(mail.outbox), 1)
         msg = mail.outbox[0]

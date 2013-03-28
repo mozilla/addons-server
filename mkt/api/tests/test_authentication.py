@@ -97,7 +97,6 @@ class TestPermissionAuthorization(OwnerAuthorization):
         ok_(not self.auth.is_authorized(self.request(self.profile), self.app))
 
 
-@patch.object(settings, 'SITE_URL', 'http://api/')
 class TestOAuthAuthentication(TestCase):
     fixtures = fixture('user_2519', 'group_admin', 'group_editor')
 
@@ -192,7 +191,6 @@ class TestOptionalOAuthAuthentication(TestCase):
         ok_(not self.auth.is_authenticated(req))
 
 
-@patch.object(settings, 'SITE_URL', 'http://api/')
 @patch.object(settings, 'FIREPLACE_SECRET_KEY', 'gubbish')
 class TestMultipleAuthentication(TestCase):
     fixtures = fixture('user_2519')

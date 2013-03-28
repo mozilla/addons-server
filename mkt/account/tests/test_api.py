@@ -4,12 +4,11 @@ import uuid
 
 from mock import patch
 from nose.tools import eq_
-import waffle
 
 from django.conf import settings
 
 from amo.tests import TestCase
-from mkt.api.tests.test_oauth import BaseOAuth, get_absolute_url, OAuthClient
+from mkt.api.tests.test_oauth import BaseOAuth, get_absolute_url
 from mkt.api.base import list_url, get_url
 from mkt.constants.apps import INSTALL_TYPE_REVIEWER
 from mkt.site.fixtures import fixture
@@ -17,7 +16,6 @@ from mkt.webapps.models import Installed
 from users.models import UserProfile
 
 
-@patch.object(settings, 'SITE_URL', 'http://api/')
 class TestAccount(BaseOAuth):
     fixtures = fixture('user_2519', 'user_10482', 'webapp_337141')
 
@@ -25,7 +23,6 @@ class TestAccount(BaseOAuth):
         super(TestAccount, self).setUp(api_name='account')
         self.list_url = list_url('settings')
         self.get_url = get_url('settings', '2519')
-        self.anon = OAuthClient(None, api_name='account')
         self.user = UserProfile.objects.get(pk=2519)
 
     def test_verbs(self):

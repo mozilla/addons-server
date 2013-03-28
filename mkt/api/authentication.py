@@ -84,6 +84,9 @@ class OAuthAuthentication(Authentication):
                                                          errors[reason]}))
 
     def is_authenticated(self, request, **kwargs):
+        if not settings.SITE_URL:
+            raise ValueError('SITE_URL is not specified')
+
         auth_header_value = request.META.get('HTTP_AUTHORIZATION')
         if not auth_header_value:
             return self._error('headers')

@@ -1,8 +1,5 @@
 import json
 
-from django.conf import settings
-
-from mock import patch
 from nose.tools import eq_
 
 import amo
@@ -17,7 +14,6 @@ from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
 
 
-@patch.object(settings, 'SITE_URL', 'http://api/')
 class TestRatingResource(BaseOAuth, AMOPaths):
     fixtures = fixture('user_2519', 'webapp_337141')
 
@@ -75,8 +71,8 @@ class TestRatingResource(BaseOAuth, AMOPaths):
     def test_create_bad_data(self):
         """
         Let's run one test to ensure that ReviewForm is doing its data
-        validation duties. We'll rely on the ReviewForm tests to ensure that the
-        specifics are correct.
+        validation duties. We'll rely on the ReviewForm tests to ensure that
+        the specifics are correct.
         """
         res, data = self._create({'body': None})
         eq_(400, res.status_code)
@@ -134,8 +130,8 @@ class TestRatingResource(BaseOAuth, AMOPaths):
     def test_update_bad_data(self):
         """
         Let's run one test to ensure that ReviewForm is doing its data
-        validation duties. We'll rely on the ReviewForm tests to ensure that the
-        specifics are correct.
+        validation duties. We'll rely on the ReviewForm tests to ensure that
+        the specifics are correct.
         """
         res, data = self._update({'body': None})
         eq_(400, res.status_code)

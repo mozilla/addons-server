@@ -3,8 +3,6 @@ import json
 import os
 import tempfile
 
-from django.conf import settings
-
 from mock import patch
 from nose.tools import eq_
 
@@ -13,12 +11,11 @@ from addons.models import (Addon, AddonCategory, AddonDeviceType, AddonUser,
                            Category, Preview)
 from amo.tests import app_factory, AMOPaths
 from files.models import FileUpload
-from reviews.models import Review
 from users.models import UserProfile
 
 import mkt
-from mkt.api.tests.test_oauth import BaseOAuth, OAuthClient
-from mkt.api.base import get_url, list_url
+from mkt.api.tests.test_oauth import BaseOAuth
+from mkt.api.base import get_url
 from mkt.constants import APP_IMAGE_SIZES
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import ImageAsset, Webapp
@@ -33,7 +30,6 @@ class ValidationHandler(BaseOAuth):
         self.list_url = ('api_dispatch_list', {'resource_name': 'validation'})
         self.get_url = None
         self.user = UserProfile.objects.get(pk=2519)
-        self.anon = OAuthClient(None, api_name='apps')
 
     def create(self):
         res = self.client.post(self.list_url,
@@ -51,7 +47,6 @@ class ValidationHandler(BaseOAuth):
         return json.loads(response.content)['error_message']
 
 
-@patch.object(settings, 'SITE_URL', 'http://api/')
 class TestAddValidationHandler(ValidationHandler):
 
     def test_verbs(self):
@@ -88,7 +83,6 @@ class TestAddValidationHandler(ValidationHandler):
         eq_(res.status_code, 201)
 
 
-@patch.object(settings, 'SITE_URL', 'http://api/')
 class TestPackagedValidation(amo.tests.AMOPaths, ValidationHandler):
 
     def setUp(self):
@@ -152,7 +146,6 @@ class TestPackagedValidation(amo.tests.AMOPaths, ValidationHandler):
                          [u'File must be base64 encoded.'])
 
 
-@patch.object(settings, 'SITE_URL', 'http://api/')
 class TestGetValidationHandler(ValidationHandler):
 
     def create(self):
@@ -215,7 +208,6 @@ class CreateHandler(BaseOAuth):
         super(CreateHandler, self).setUp()
         self.list_url = ('api_dispatch_list', {'resource_name': 'app'})
         self.user = UserProfile.objects.get(pk=2519)
-        self.anon = OAuthClient(None, api_name='apps')
         self.file = tempfile.NamedTemporaryFile('w', suffix='.webapp').name
         self.manifest_copy_over(self.file, 'mozball-nice-slug.webapp')
         self.categories = []
@@ -235,7 +227,6 @@ def _mock_fetch_content(url):
                              '337141-128.png'))
 
 
-@patch.object(settings, 'SITE_URL', 'http://api/')
 class TestAppCreateHandler(CreateHandler, AMOPaths):
     fixtures = fixture('app_firefox', 'platform_all', 'user_admin',
                        'user_2519',)
@@ -497,7 +488,6 @@ class CreatePackagedHandler(amo.tests.AMOPaths, BaseOAuth):
                                          name=self.file, valid=True)
 
 
-@patch.object(settings, 'SITE_URL', 'http://api/')
 class TestPackagedAppCreateHandler(CreatePackagedHandler):
     fixtures = fixture('user_2519', 'platform_all')
 
@@ -514,7 +504,6 @@ class TestPackagedAppCreateHandler(CreatePackagedHandler):
         eq_(app.is_packaged, True)
 
 
-@patch.object(settings, 'SITE_URL', 'http://api/')
 class TestListHandler(CreateHandler, AMOPaths):
     fixtures = fixture('user_2519', 'user_999', 'platform_all')
 
@@ -558,7 +547,6 @@ class TestListHandler(CreateHandler, AMOPaths):
         eq_(json.loads(res.content)['summary'], 'Le blah')
 
 
-@patch.object(settings, 'SITE_URL', 'http://api/')
 class TestAppStatusHandler(CreateHandler, AMOPaths):
     fixtures = fixture('user_2519', 'platform_all')
 
@@ -646,43 +634,40 @@ class TestCategoryHandler(BaseOAuth):
         self.get_url = ('api_dispatch_detail',
                         {'resource_name': 'category', 'pk': self.cat.pk})
 
-        self.client = OAuthClient(None)
-
     def test_verbs(self):
         self._allowed_verbs(self.list_url, ['get'])
         self._allowed_verbs(self.get_url, ['get'])
 
     def test_weight(self):
         self.cat.update(weight=-1)
-        res = self.client.get(self.list_url)
+        res = self.anon.get(self.list_url)
         data = json.loads(res.content)
         eq_(data['meta']['total_count'], 0)
 
     def test_get_categories(self):
-        res = self.client.get(self.list_url)
+        res = self.anon.get(self.list_url)
         data = json.loads(res.content)
         eq_(data['meta']['total_count'], 1)
         eq_(data['objects'][0]['name'], 'Webapp')
         eq_(data['objects'][0]['slug'], 'thewebapp')
 
     def test_get_category(self):
-        res = self.client.get(self.get_url)
+        res = self.anon.get(self.get_url)
         data = json.loads(res.content)
         eq_(data['name'], 'Webapp')
 
     def test_get_category_localised(self):
-        res = self.client.get(self.get_url, HTTP_ACCEPT_LANGUAGE='fr')
+        res = self.anon.get(self.get_url, HTTP_ACCEPT_LANGUAGE='fr')
         data = json.loads(res.content)
         eq_(data['name'], 'Le Webapp')
 
     def test_get_other_category(self):
-        res = self.client.get(('api_dispatch_detail',
-                              {'resource_name': 'category',
-                               'pk': self.other.pk}))
+        res = self.anon.get(('api_dispatch_detail',
+                             {'resource_name': 'category',
+                              'pk': self.other.pk}))
         eq_(res.status_code, 404)
 
 
-@patch.object(settings, 'SITE_URL', 'http://api/')
 class TestPreviewHandler(BaseOAuth, AMOPaths):
     fixtures = fixture('user_2519', 'webapp_337141')
 
@@ -781,7 +766,6 @@ class TestFeaturedHomeHandler(BaseOAuth):
         resource = 'featured/home'
         self.list_url = ('api_dispatch_list', {'resource_name': resource})
         self.get_url = None
-        self.client = OAuthClient(None)
 
         self.cat = Category.objects.create(name='awesome',
                                            type=amo.ADDON_WEBAPP)
@@ -813,20 +797,20 @@ class TestFeaturedHomeHandler(BaseOAuth):
         self._allowed_verbs(self.list_url, ['get'])
 
     def test_get_featured(self):
-        res = self.client.get(self.list_url)
+        res = self.anon.get(self.list_url)
         data = json.loads(res.content)
         eq_(res.status_code, 200)
         eq_(data['objects'][0]['app_slug'], self.app1.app_slug)
 
     def test_get_featured_region(self):
         # UK region should come up empty, so we backfill with worldwide.
-        res = self.client.get(self.list_url, data=dict(region='uk'))
+        res = self.anon.get(self.list_url, data=dict(region='uk'))
         data = json.loads(res.content)
         eq_(res.status_code, 200)
         eq_(data['objects'][0]['app_slug'], self.app1.app_slug)
 
         # US region should come have 1 plus worldwide.
-        res = self.client.get(self.list_url, data=dict(region='us'))
+        res = self.anon.get(self.list_url, data=dict(region='us'))
         data = json.loads(res.content)
         eq_(res.status_code, 200)
         self.assertSetEqual([o['app_slug'] for o in data['objects']],

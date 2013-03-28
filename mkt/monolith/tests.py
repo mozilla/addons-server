@@ -3,10 +3,8 @@ import datetime
 import json
 import uuid
 
-from mock import patch
 from nose.tools import eq_
 
-from django.conf import settings
 from django.test import client
 
 from amo.tests import TestCase
@@ -64,7 +62,6 @@ class TestModels(TestCase):
             record_stat('app.install', self.request)
 
 
-@patch.object(settings, 'SITE_URL', 'http://api/')
 class TestMonolithResource(BaseOAuth):
     fixtures = fixture('user_2519')
 

@@ -1,10 +1,8 @@
 import json
 from datetime import datetime
 
-from django.conf import settings
 from django.contrib.auth.models import User
 
-from mock import patch
 from nose.tools import eq_
 
 import amo
@@ -173,7 +171,6 @@ class TestApi(BaseOAuth, ESTestCase):
         eq_(len(objs), 0)
 
 
-@patch.object(settings, 'SITE_URL', 'http://api/')
 class TestApiReviewer(BaseOAuth, ESTestCase):
     fixtures = fixture('webapp_337141', 'user_2519')
 

@@ -9,7 +9,6 @@ from django.contrib.auth.models import User
 from django.test.client import Client, FakePayload
 
 import oauth2
-from mock import patch
 from nose.tools import eq_
 from test_utils import RequestFactory
 
@@ -27,7 +26,7 @@ def get_absolute_url(url, api_name='apps', absolute=True):
     url[1]['api_name'] = api_name
     res = reverse(url[0], kwargs=url[1])
     if absolute:
-        res = 'http://%s%s' % ('api', res)
+        res = '%s%s' % (settings.SITE_URL, res)
     if len(url) > 2:
         res = urlparams(res, **url[2])
     return res
@@ -122,6 +121,7 @@ class BaseOAuth(TestCase):
         self.access = Access.objects.create(key='foo', secret=generate(),
                                             user=self.user)
         self.client = OAuthClient(self.access, api_name=api_name)
+        self.anon = OAuthClient(None, api_name=api_name)
 
     def _allowed_verbs(self, url, allowed):
         """
@@ -147,7 +147,6 @@ class Resource(CORSResource, MarketplaceResource):
         list_allowed_method = ['get']
 
 
-@patch.object(settings, 'SITE_URL', 'http://api/')
 class TestCORS(BaseOAuth):
 
     def setUp(self):
