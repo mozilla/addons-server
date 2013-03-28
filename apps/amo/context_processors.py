@@ -53,10 +53,11 @@ def global_settings(request):
     context = {}
 
     tools_title = _('Tools')
-    is_reviewer = acl.check_reviewer(request)
+    is_reviewer = False
 
     if request.user.is_authenticated() and hasattr(request, 'amo_user'):
         amo_user = request.amo_user
+        is_reviewer = acl.check_reviewer(request)
         account_links.append({
             'text': _('My Profile'),
             'href': request.user.get_profile().get_url_path(),
