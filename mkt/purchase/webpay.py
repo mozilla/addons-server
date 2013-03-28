@@ -99,6 +99,9 @@ def prepare_pay(request, addon):
     acct = addon.app_payment_account.payment_account
     seller_uuid = acct.solitude_seller.uuid
     issued_at = calendar.timegm(time.gmtime())
+    icons = {}
+    for size in amo.ADDON_ICON_SIZES:
+        icons[str(size)] = absolutify(addon.get_icon_url(size))
     req = {
         'iss': settings.APP_PURCHASE_KEY,
         'typ': settings.APP_PURCHASE_TYP,
@@ -115,6 +118,7 @@ def prepare_pay(request, addon):
             'productData': urlencode({'contrib_uuid': uuid_,
                                       'seller_uuid': seller_uuid,
                                       'addon_id': addon.pk}),
+            'icons': icons,
         }
     }
 

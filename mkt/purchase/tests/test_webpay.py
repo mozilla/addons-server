@@ -61,10 +61,9 @@ class TestPurchase(PurchaseTest):
         eq_(req['id'], make_ext_id(self.addon.pk))
         eq_(req['name'], unicode(self.addon.name))
         eq_(req['description'], unicode(self.addon.summary))
-        eq_(req['postbackURL'],
-            absolutify(reverse('webpay.postback')))
-        eq_(req['chargebackURL'],
-            absolutify(reverse('webpay.chargeback')))
+        eq_(req['postbackURL'], absolutify(reverse('webpay.postback')))
+        eq_(req['chargebackURL'], absolutify(reverse('webpay.chargeback')))
+        eq_(req['icons']['512'], absolutify(self.addon.get_icon_url(512)))
         pd = urlparse.parse_qs(req['productData'])
         eq_(pd['contrib_uuid'][0], cn.uuid)
         eq_(pd['seller_uuid'][0], self.seller.uuid)
