@@ -23,6 +23,36 @@ Authentication
 Not all APIs require authentication. Each API will note if it needs
 authentication.
 
+Two options for authentication are available: shared-secret and OAuth.
+
+Shared Secret
++++++++++++++
+
+The Marketplace frontend uses a server-supplied token for
+authentication, stored as a cookie. A POST request to
+``/api/account/login`` with an ``assertion`` field containing a
+BrowserID assertion will be responded to with user information and a
+shared secret to use for future requests. Example::
+
+    {
+     'error': None,
+     'token': 'ffoob@example.com,95c9063d9f249aacfe5697fc83192ed6480c01463e2a'
+              '5af5ecaef11754700f4be33818d0e83a0cfc2cab365d60ba53b3c2b9f8f658'
+              'c43e9bbb876eef0,165d631d3c3045458b4516242dad7ae'
+     'settings': {
+         'display_name': 'fred foobar',
+         'email': 'ffoob@example.com',
+         'region': 'appistan'
+     }
+    }
+
+The ``token`` value should be sent with authorized requests as a
+cookie named ``user``.
+
+
+OAuth
++++++
+
 Currently only two legged OAuth authentication is supported. This is focused on
 clients who would like to create multiple apps on the app store from an end
 point.
@@ -32,7 +62,7 @@ should use the development server to test your API. When it's complete, you can
 request a production token.
 
 Development server
-++++++++++++++++++
+~~~~~~~~~~~~~~~~~~
 
 The development server is at https://marketplace-dev.allizom.org.
 
@@ -48,7 +78,7 @@ regularly purged, causing the deletion of apps and tokens.
 3. Generate a new key at: https://marketplace-dev.allizom.org/developers/api
 
 Production server
-+++++++++++++++++
+~~~~~~~~~~~~~~~~~
 
 The production server is at https://marketplace.firefox.com.
 
@@ -62,7 +92,7 @@ The production server is at https://marketplace.firefox.com.
    representative`_.
 
 Using OAuth Tokens
-++++++++++++++++++
+~~~~~~~~~~~~~~~~~~
 
 Once you've got your token, you will need to ensure that the OAuth token is
 sent correctly in each request.
