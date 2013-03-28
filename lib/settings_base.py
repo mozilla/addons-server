@@ -824,9 +824,6 @@ MINIFY_BUNDLES = {
             'js/zamboni/validator.js',
             'js/zamboni/packager.js',
         ),
-        'zamboni/themes': (
-            'js/impala/persona_creation.js',
-        ),
         'zamboni/editors': (
             'js/lib/highcharts.src.js',
             'js/zamboni/editors.js',

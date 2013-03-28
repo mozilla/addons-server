@@ -280,25 +280,3 @@ class TestCategoryForm(amo.tests.TestCase):
         form = forms.CategoryFormSet(addon=addon)
         apps = [f.app for f in form.forms]
         eq_(apps, [amo.FIREFOX])
-
-
-class TestThemeLicenseForm(amo.tests.TestCase):
-    fixtures = ['base/licenses']
-
-    def setUp(self):
-        self.addon = amo.tests.addon_factory(type=amo.ADDON_PERSONA)
-
-    def test_basic(self):
-        license_id = 9
-        form = forms.ThemeLicenseForm({'license': license_id})
-        assert form.is_valid()
-        addon = form.save(self.addon)
-        eq_(addon.persona.license.builtin, license_id)
-
-    def test_license_no_exist(self):
-        form = forms.ThemeLicenseForm({'license': -1})
-        assert not form.is_valid()
-
-    def test_not_int_error(self):
-        form = forms.ThemeLicenseForm({'license': 'gush'})
-        assert not form.is_valid()

@@ -700,22 +700,5 @@ class EditThemeForm(AddonFormBase):
         return data
 
 
-class ThemeLicenseForm(happyforms.Form):
-    license = forms.TypedChoiceField(choices=amo.PERSONA_LICENSES_IDS,
-        coerce=int, empty_value=None, widget=forms.HiddenInput,
-        error_messages={'required': _lazy(u'A license must be selected.')})
-
-    def clean_license(self):
-        try:
-            return License.objects.get(builtin=self.cleaned_data['license'])
-        except License.DoesNotExist:
-            raise forms.ValidationError(_(u'License does not exist.'))
-
-    def save(self, addon):
-        addon.persona.license = self.cleaned_data['license']
-        addon.persona.save()
-        return addon
-
-
 class ContributionForm(happyforms.Form):
     amount = forms.DecimalField(required=True)
