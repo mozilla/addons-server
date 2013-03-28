@@ -21,13 +21,6 @@ submit_apps_patterns = patterns('',
 
 # Decorate all the views as @write so as to bypass cache.
 urlpatterns = decorate(write, patterns('',
-    url('^theme$', views.submit_theme, name='submit.theme'),
-    url('^theme/upload/'
-        '(?P<upload_type>persona_header|persona_footer)$',
-        devhub_views.ajax_upload_image, name='submit.theme.upload'),
-    url('^theme/%s$' % ADDON_ID, views.submit_theme_done,
-        name='submit.theme.done'),
-
     # Legacy redirects for app submission.
     ('^app', lambda r: redirect('submit.app')),
     # ^ So we can avoid an additional redirect below.
