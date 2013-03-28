@@ -40,6 +40,7 @@ STATUS_CHOICES = {
     # Approved, but the developer would like to put it public when they want.
     # The need to go to the marketplace and actualy make it public.
     STATUS_PUBLIC_WAITING: _(u'Approved but waiting'),
+    STATUS_REVIEW_PENDING: _(u'Pending'),
     STATUS_BLOCKED: _(u'Blocked'),
 }
 
