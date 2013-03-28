@@ -3,10 +3,8 @@ from django.shortcuts import redirect
 
 from lib.misc.urlconf_decorator import decorate
 
-from addons.urls import ADDON_ID
 import amo
 from amo.decorators import write
-from devhub import views as devhub_views
 from . import views
 
 

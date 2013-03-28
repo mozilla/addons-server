@@ -323,6 +323,7 @@ def edit_theme(request, addon_id, addon, theme=False):
                                      request=request, instance=addon)
     if request.method == 'POST' and form.is_valid():
         form.save()
+        messages.success(request, _('Changes successfully saved.'))
         return redirect('devhub.themes.edit', addon.reload().slug)
     return jingo.render(request, 'devhub/personas/edit.html', {
         'addon': addon,

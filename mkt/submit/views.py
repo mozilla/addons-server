@@ -5,7 +5,6 @@ from django.utils.translation.trans_real import to_language
 
 import commonware.log
 import jingo
-from waffle.decorators import waffle_switch
 
 import amo
 from amo.decorators import login_required
