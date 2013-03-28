@@ -56,7 +56,7 @@ def send_mail(cleaned_data, theme_lock):
     elif action == rvw.ACTION_FLAG:
         subject = _('Theme submission flagged for review')
         template = 'reviewers/themes/emails/flag_reviewer.html'
-        emails = [settings.SENIOR_EDITORS_EMAIL]
+        emails = [settings.THEMES_EMAIL]
         theme.addon.update(status=amo.STATUS_REVIEW_PENDING)
 
         # Send another email to the user notifying them that their Theme has
@@ -64,7 +64,7 @@ def send_mail(cleaned_data, theme_lock):
         send_mail_jinja(_('A problem with your Theme submission'),
                         'reviewers/themes/emails/flag_user.html', context,
                         recipient_list=emails,
-                        headers={'Reply-To': theme_lock.reviewer.email})
+                        headers={'Reply-To': settings.THEMES_EMAIL})
 
     elif action == rvw.ACTION_MOREINFO:
         subject = _('A question about your Theme submission')
@@ -83,4 +83,4 @@ def send_mail(cleaned_data, theme_lock):
 
     send_mail_jinja(subject, template, context,
                     recipient_list=emails,
-                    headers={'Reply-To': theme_lock.reviewer.email})
+                    headers={'Reply-To': settings.THEMES_EMAIL})
