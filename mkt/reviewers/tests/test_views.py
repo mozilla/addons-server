@@ -1467,22 +1467,32 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
             'AcitvityLog objects not being created')
 
     @override_settings(REVIEWER_ATTACHMENTS_PATH=ATTACHMENTS_DIR)
-    def test_no_attachments(self):
+    @mock.patch('amo.utils.LocalFileStorage.save')
+    def test_no_attachments(self, save_mock):
         """ Test addition of no attachment """
         self.post(self._attachment_form_data(num=0, action='public'))
+        eq_(save_mock.called, False, save_mock.call_args_list)
 
     @override_settings(REVIEWER_ATTACHMENTS_PATH=ATTACHMENTS_DIR)
-    def test_attachment(self):
+    @mock.patch('amo.utils.LocalFileStorage.save')
+    def test_attachment(self, save_mock):
         """ Test addition of 1 attachment """
         self._attachment_post(1)
+        eq_(save_mock.call_args_list,
+            [mock.call(os.path.join(ATTACHMENTS_DIR, 'bacon.txt'), mock.ANY)])
 
     @override_settings(REVIEWER_ATTACHMENTS_PATH=ATTACHMENTS_DIR)
-    def test_multiple_attachments(self):
+    @mock.patch('amo.utils.LocalFileStorage.save')
+    def test_multiple_attachments(self, save_mock):
         """ Test addition of multiple attachments """
         self._attachment_post(2)
+        eq_(save_mock.call_args_list,
+            [mock.call(os.path.join(ATTACHMENTS_DIR, 'bacon.txt'), mock.ANY),
+             mock.call(os.path.join(ATTACHMENTS_DIR, 'bacon.jpg'), mock.ANY)])
 
     @override_settings(REVIEWER_ATTACHMENTS_PATH=ATTACHMENTS_DIR)
-    def test_attachment_email(self):
+    @mock.patch('amo.utils.LocalFileStorage.save')
+    def test_attachment_email(self, save_mock):
         """
         Test that a single attachment is included as an attachment in
         notification emails.
@@ -1492,9 +1502,12 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
             'Review attachment not added to email')
         for attachment in mail.outbox[0].attachments:
             self.assertNotEqual(len(attachment), 0, '0-length attachment')
+        eq_(save_mock.call_args_list,
+            [mock.call(os.path.join(ATTACHMENTS_DIR, 'bacon.txt'), mock.ANY)])
 
     @override_settings(REVIEWER_ATTACHMENTS_PATH=ATTACHMENTS_DIR)
-    def test_attachment_email_multiple(self):
+    @mock.patch('amo.utils.LocalFileStorage.save')
+    def test_attachment_email_multiple(self, save_mock):
         """
         Test that mutliple attachments are included as attachments in
         notification emails.
@@ -1502,9 +1515,13 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         self.post(self._attachment_form_data(num=2, action='reject'))
         eq_(len(mail.outbox[0].attachments), 2,
             'Review attachments not added to email')
+        eq_(save_mock.call_args_list,
+            [mock.call(os.path.join(ATTACHMENTS_DIR, 'bacon.txt'), mock.ANY),
+             mock.call(os.path.join(ATTACHMENTS_DIR, 'bacon.jpg'), mock.ANY)])
 
     @override_settings(REVIEWER_ATTACHMENTS_PATH=ATTACHMENTS_DIR)
-    def test_attachment_email_escalate(self):
+    @mock.patch('amo.utils.LocalFileStorage.save')
+    def test_attachment_email_escalate(self, save_mock):
         """
         Test that attachments are included as attachments in an `escalate`
         review, which uses a different mechanism for notification email
@@ -1513,9 +1530,12 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         self.post(self._attachment_form_data(num=1, action='escalate'))
         eq_(len(mail.outbox[0].attachments), 1,
             'Review attachment not added to email')
+        eq_(save_mock.call_args_list,
+            [mock.call(os.path.join(ATTACHMENTS_DIR, 'bacon.txt'), mock.ANY)])
 
     @override_settings(REVIEWER_ATTACHMENTS_PATH=ATTACHMENTS_DIR)
-    def test_attachment_email_requestinfo(self):
+    @mock.patch('amo.utils.LocalFileStorage.save')
+    def test_attachment_email_requestinfo(self, save_mock):
         """
         Test that attachments are included as attachments in an `info` review,
         which uses a different mechanism for notification email sending.
@@ -1523,6 +1543,8 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         self.post(self._attachment_form_data(num=1, action='info'))
         eq_(len(mail.outbox[0].attachments), 1,
             'Review attachment not added to email')
+        eq_(save_mock.call_args_list,
+            [mock.call(os.path.join(ATTACHMENTS_DIR, 'bacon.txt'), mock.ANY)])
 
 
 class TestCannedResponses(AppReviewerTest):
