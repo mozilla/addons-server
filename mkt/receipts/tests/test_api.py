@@ -82,6 +82,8 @@ class TestAPI(BaseOAuth):
         eq_(logs[0].activity_log.action, amo.LOG.INSTALL_ADDON.id)
 
 
+@mock.patch.object(settings, 'WEBAPPS_RECEIPT_KEY',
+                   amo.tests.AMOPaths.sample_key())
 class TestResource(amo.tests.TestCase):
     fixtures = fixture('user_2519', 'webapp_337141')
 
@@ -162,8 +164,6 @@ class TestResource(amo.tests.TestCase):
         ok_(self.handle(self.profile))
         eq_(self.profile.installed_set.count(), 1)
 
-    @mock.patch.object(settings, 'WEBAPPS_RECEIPT_KEY',
-                       amo.tests.AMOPaths.sample_key())
     @mock.patch('mkt.receipts.api.receipt_cef.log')
     def test_record_receipt(self, cef):
         res = self.handle(self.profile)
