@@ -7,6 +7,7 @@ import commonware.log
 from celery_tasktree import TaskTree
 from tastypie import fields, http
 from tastypie.authorization import Authorization, ReadOnlyAuthorization
+from tastypie.bundle import Bundle
 from tastypie.exceptions import ImmediateHttpResponse
 from tastypie.resources import ALL_WITH_RELATIONS
 from tastypie.serializers import Serializer
@@ -33,6 +34,7 @@ from mkt.developers import tasks
 from mkt.developers.forms import NewManifestForm, PreviewForm
 from mkt.submit.forms import AppDetailsBasicForm
 from mkt.webapps.models import Webapp
+from mkt.webapps.utils import app_to_dict
 
 log = commonware.log.getLogger('z.api')
 
@@ -106,10 +108,10 @@ class AppResource(MarketplaceModelResource):
 
     class Meta:
         queryset = Addon.objects.filter(type=amo.ADDON_WEBAPP)
-        fields = ['id', 'name', 'description', 'device_types',
-                  'homepage', 'privacy_policy',
-                  'status', 'summary', 'support_email', 'support_url',
-                  'categories']
+        fields = ['categories', 'description', 'device_types',
+                  'homepage', 'id', 'name', 'privacy_policy',
+                  'status', 'summary', 'support_email',
+                  'support_url']
         list_allowed_methods = ['get', 'post']
         allowed_methods = ['get', 'put']
         always_return_data = True
@@ -220,13 +222,13 @@ class AppResource(MarketplaceModelResource):
 
     def dehydrate(self, bundle):
         obj = bundle.obj
-        bundle.data['app_slug'] = obj.app_slug
-        bundle.data['premium_type'] = amo.ADDON_PREMIUM_API[obj.premium_type]
-        bundle.data['categories'] = [c.pk for c in obj.categories.all()]
-        with no_translation():
-            bundle.data['device_types'] = [n.api_name
-                                           for n in obj.device_types]
-        bundle.data['app_type'] = obj.app_type
+        user = getattr(bundle.request, 'user', None)
+        bundle.data.update(app_to_dict(obj, user=user))
+        bundle.data['upsell'] = False
+        if obj.upsell:
+            upsell_bundle = Bundle(obj=obj.upsell.premium,
+                                   request=bundle.request)
+            bundle.data['upsell'] = self.full_dehydrate(upsell_bundle).data
         return bundle
 
     def get_object_list(self, request):

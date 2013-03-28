@@ -7,8 +7,8 @@ from mock import patch
 from nose.tools import eq_
 
 import amo
-from addons.models import (Addon, AddonCategory, AddonDeviceType, AddonUser,
-                           Category, Preview)
+from addons.models import (Addon, AddonUpsell, AddonCategory, AddonDeviceType,
+                           AddonUser, Category, Preview)
 from amo.tests import app_factory, AMOPaths
 from files.models import FileUpload
 from users.models import UserProfile
@@ -18,8 +18,9 @@ from mkt.api.tests.test_oauth import BaseOAuth
 from mkt.api.base import get_url
 from mkt.constants import APP_IMAGE_SIZES
 from mkt.site.fixtures import fixture
-from mkt.webapps.models import ImageAsset, Webapp
+from mkt.webapps.models import ContentRating, ImageAsset, Webapp
 from mkt.zadmin.models import FeaturedApp, FeaturedAppRegion
+from reviews.models import Review
 
 
 class ValidationHandler(BaseOAuth):
@@ -229,7 +230,7 @@ def _mock_fetch_content(url):
 
 class TestAppCreateHandler(CreateHandler, AMOPaths):
     fixtures = fixture('app_firefox', 'platform_all', 'user_admin',
-                       'user_2519',)
+                       'user_2519', 'user_999')
 
     def count(self):
         return Addon.objects.count()
@@ -308,8 +309,27 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
     @patch('mkt.developers.tasks._fetch_content', _mock_fetch_content)
     def test_imageassets(self):
         asset_count = ImageAsset.objects.count()
-        self.create_app()
+        app = self.create_app()
         eq_(ImageAsset.objects.count() - len(APP_IMAGE_SIZES), asset_count)
+        res = self.client.get(self.get_url)
+        eq_(res.status_code, 200)
+        data = json.loads(res.content)
+        eq_(len(data['image_assets']), len(APP_IMAGE_SIZES))
+        self.assertSetEqual(data['image_assets'].keys(),
+                            [i['slug'] for i in APP_IMAGE_SIZES])
+        self.assertSetEqual(map(tuple, data['image_assets'].values()),
+                            [(app.get_image_asset_url(i['slug']),
+                              app.get_image_asset_hue(i['slug']))
+                            for i in APP_IMAGE_SIZES])
+
+    def test_upsell(self):
+        app = self.create_app()
+        upsell = app_factory()
+        AddonUpsell.objects.create(free=app, premium=upsell)
+        res = self.client.get(self.get_url)
+        eq_(res.status_code, 200)
+        content = json.loads(res.content)
+        eq_(len(content.get('upsell', {})), len(content))
 
     def test_get(self):
         self.create_app()
@@ -366,6 +386,7 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
     def base_data(self):
         return {'support_email': 'a@a.com',
                 'privacy_policy': 'wat',
+                'homepage': 'http://www.whatever.com',
                 'name': 'mozball',
                 'categories': [c.pk for c in self.categories],
                 'summary': 'wat...',
@@ -401,15 +422,66 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         eq_(set([c.pk for c in app.categories.all()]),
             set([c.pk for c in self.categories]))
 
+    def test_get_content_ratings(self):
+        app = self.create_app()
+        ContentRating.objects.create(addon=app, ratings_body=0, rating=2)
+        res = self.client.get(self.get_url)
+        eq_(res.status_code, 200)
+        data = json.loads(res.content)
+        cr = data.get('content_ratings')
+        self.assertIn('DJCTQ', cr.keys())
+        eq_(cr.get('DJCTQ')['name'], u'12')
+        self.assertIn('description', cr.get('DJCTQ'))
+
     def test_dehydrate(self):
-        self.create_app()
+        app = self.create_app()
         res = self.client.put(self.get_url, data=json.dumps(self.base_data()))
         eq_(res.status_code, 202)
         res = self.client.get(self.get_url)
         eq_(res.status_code, 200)
         data = json.loads(res.content)
-        eq_(set(data['categories']), set([c.pk for c in self.categories]))
+        self.assertSetEqual(data['categories'],
+                            [c.pk for c in self.categories])
+        eq_(data['current_version']['version'], u'1.0')
+        eq_(data['current_version']['release_notes'], None)
+        self.assertSetEqual(data['device_types'],
+                            [n.api_name for n in amo.DEVICE_TYPES.values()])
+        eq_(data['homepage'], u'http://www.whatever.com')
+        eq_(data['is_packaged'], False)
+        eq_(data['listed_authors'][0].get('name'), self.user.display_name)
+        eq_(data['manifest_url'], app.manifest_url)
         eq_(data['premium_type'], 'free')
+        eq_(data['price'], u'Free')
+        eq_(data['public_stats'], False)
+        eq_(data['support_email'], u'a@a.com')
+        eq_(data['ratings'], {'count': 0, 'average': 0.0})
+        eq_(data['user'], {'owns': True})
+
+    def test_previews(self):
+        app = self.create_app()
+        preview_data = {'caption': 'foo',  'filetype': 'image/png',
+                        'thumbtype': 'image/png', 'addon': app}
+        Preview.objects.create(**preview_data)
+        preview_data['caption'] = 'bar'
+        Preview.objects.create(**preview_data)
+        res = self.client.get(self.get_url)
+        eq_(res.status_code, 200)
+        data = json.loads(res.content)
+        previews = data.get('previews')
+        eq_(len(previews), 2)
+        self.assertSetEqual(previews[0].keys(),
+                            ['caption', 'thumb_url', 'full_url'])
+        eq_([pr.get('caption') for pr in previews], ['foo', 'bar'])
+
+    def test_ratings(self):
+        app = self.create_app()
+        rater = UserProfile.objects.get(pk=999)
+        Review.objects.create(addon=app, user=self.user, body='yes', rating=3)
+        Review.objects.create(addon=app, user=rater, body='no', rating=2)
+        res = self.client.get(self.get_url)
+        eq_(res.status_code, 200)
+        data = json.loads(res.content)
+        eq_(data['ratings'], {'count': 2, 'average': 2.5})
 
     def test_put_wrong_category(self):
         self.create_app()
