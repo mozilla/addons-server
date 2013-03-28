@@ -6,6 +6,7 @@ import subprocess
 
 from django.conf import settings
 from django.core.exceptions import PermissionDenied
+from django.core.files.storage import default_storage as storage
 from django.http import (HttpResponse, HttpResponseNotFound,
                          HttpResponseServerError)
 from django.template import RequestContext
@@ -21,7 +22,7 @@ from jingo import render_to_string
 
 from amo.context_processors import get_collect_timings
 from amo.decorators import post_required
-from amo.helpers import media
+from amo.helpers import absolutify, media
 from amo.urlresolvers import reverse
 from amo.utils import urlparams
 
@@ -107,6 +108,12 @@ def manifest(request):
 
 
 def minifest(request):
+    yulelog_fn = 'yulelog_2013.0328.zip'
+    yulelog_path = os.path.join(settings.MEDIA_ROOT, 'packaged-apps',
+                                yulelog_fn)
+    yulelog_url = absolutify('%spackaged-apps/%s' %
+                             (settings.MEDIA_URL, yulelog_fn))
+
     data = {
         'description': 'The Firefox Marketplace',
         'developer': {
@@ -118,8 +125,8 @@ def minifest(request):
         },
         'name': getattr(settings, 'WEBAPP_MANIFEST_NAME',
                 'Firefox Marketplace'),
-        #'size': 0,
-        'package_path': '',  # TODO: Fill in.
+        'size': storage.size(yulelog_path),
+        'package_path': yulelog_url,
         #'release_notes': '',
         'version': '0.0.1',
     }
