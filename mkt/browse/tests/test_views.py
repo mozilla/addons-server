@@ -10,12 +10,13 @@ from amo.utils import urlparams
 from addons.models import AddonCategory, Category, AddonDeviceType
 
 import mkt
+from mkt.site.fixtures import fixture
 from mkt.webapps.models import AddonExcludedRegion as AER, Webapp
 from mkt.zadmin.models import FeaturedAppRegion
 
 
 class BrowseBase(amo.tests.ESTestCase):
-    fixtures = ['webapps/337141-steamcube']
+    fixtures = fixture('webapp_337141')
 
     def setUp(self):
         self.cat = Category.objects.create(name='Lifestyle', slug='lifestyle',
