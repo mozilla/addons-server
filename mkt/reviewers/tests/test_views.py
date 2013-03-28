@@ -2032,7 +2032,8 @@ class ThemeReviewTestMixin(object):
         eq_(ThemeLock.objects.filter(reviewer=reviewer)[0].expiry > earlier,
             True)
 
-    def test_commit(self):
+    @mock.patch('mkt.reviewers.tasks.send_mail_jinja')
+    def test_commit(self, send_mail_jinja_mock):
         for x in range(5):
             addon_factory(type=amo.ADDON_PERSONA, status=self.status)
 
@@ -2084,6 +2085,64 @@ class ThemeReviewTestMixin(object):
         eq_(themes[3].addon.status, amo.STATUS_REJECTED)
         eq_(themes[4].addon.status, amo.STATUS_PUBLIC)
         eq_(ActivityLog.objects.count(), 5)
+
+        expected_calls = [
+            mock.call('A question about your Theme submission',
+                'reviewers/themes/emails/moreinfo.html',
+                {'reason': None,
+                 'comment': u'moreinfo',
+                 'theme': themes[0],
+                 'reviewer_email': u'reviewer0@mozilla.com',
+                 'base_url': 'http://testserver'},
+                headers={'Reply-To': u'reviewer0@mozilla.com'},
+                recipient_list=set([])),
+            mock.call('A problem with your Theme submission',
+                'reviewers/themes/emails/flag_user.html',
+                {'reason': None,
+                 'comment': u'flag',
+                 'theme': themes[1],
+                 'base_url': 'http://testserver'},
+                headers={'Reply-To': u'reviewer0@mozilla.com'},
+                recipient_list=['amo-admin-reviews@mozilla.org']),
+            mock.call('Theme submission flagged for review',
+                'reviewers/themes/emails/flag_reviewer.html',
+                {'reason': None,
+                 'comment': u'flag',
+                 'theme': themes[1],
+                 'base_url': 'http://testserver'},
+                headers={'Reply-To': u'reviewer0@mozilla.com'},
+                recipient_list=['amo-admin-reviews@mozilla.org']),
+            mock.call('A problem with your Theme submission',
+                'reviewers/themes/emails/reject.html',
+                {'reason': None,
+                 'comment': u'duplicate',
+                 'theme': themes[2],
+                 'base_url': 'http://testserver'},
+                headers={'Reply-To': u'reviewer0@mozilla.com'},
+                 recipient_list=set([])),
+            mock.call('A problem with your Theme submission',
+                'reviewers/themes/emails/reject.html',
+                {'reason': mock.ANY,
+                 'comment': u'reject',
+                 'theme': themes[3],
+                 'base_url': 'http://testserver'},
+                headers={'Reply-To': u'reviewer0@mozilla.com'},
+                recipient_list=set([])),
+            mock.call('Thanks for submitting your Theme',
+                'reviewers/themes/emails/approve.html',
+                {'reason': None,
+                 'comment': u'',
+                 'theme': themes[4],
+                 'base_url': 'http://testserver'},
+                headers={'Reply-To': u'reviewer0@mozilla.com'},
+                recipient_list=set([]))
+        ]
+        eq_(send_mail_jinja_mock.call_args_list[0], expected_calls[0])
+        eq_(send_mail_jinja_mock.call_args_list[1], expected_calls[1])
+        eq_(send_mail_jinja_mock.call_args_list[2], expected_calls[2])
+        eq_(send_mail_jinja_mock.call_args_list[3], expected_calls[3])
+        eq_(send_mail_jinja_mock.call_args_list[4], expected_calls[4])
+        eq_(send_mail_jinja_mock.call_args_list[5], expected_calls[5])
 
     def test_user_review_history(self):
         addon_factory(type=amo.ADDON_PERSONA, status=self.status)

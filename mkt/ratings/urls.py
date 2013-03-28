@@ -23,23 +23,3 @@ review_patterns = patterns('',
     url('^format:rss$', RatingsRss(), name='ratings.list.rss'),
     url('^user:(?P<user_id>\d+)$', views.review_list, name='ratings.user'),
 )
-
-
-# These all start with /theme/<addon_id>/reviews/<review_id>/.
-theme_detail_patterns = patterns('',
-    url('^$', views.review_list, name='ratings.themes.detail'),
-    url('^flag$', amo_flag, name='ratings.themes.flag'),
-    url('^delete$', amo_delete, name='ratings.themes.delete'),
-    url('^edit$', views.edit, name='ratings.themes.edit'),
-)
-
-
-# These all start with /theme/<addon_id>/reviews/.
-theme_review_patterns = patterns('',
-    url('^$', views.review_list, name='ratings.themes.list'),
-    url('^add$', views.add, name='ratings.themes.add'),
-    url('^(?P<review_id>\d+)/', include(theme_detail_patterns)),
-    url('^format:rss$', RatingsRss(), name='ratings.themes.list.rss'),
-    url('^user:(?P<user_id>\d+)$', views.review_list,
-        name='ratings.themes.user'),
-)

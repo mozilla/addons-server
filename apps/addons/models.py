@@ -467,7 +467,8 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         # If more=True you get the link to the ajax'd middle chunk of the
         # detail page.
         if settings.MARKETPLACE and self.is_persona():
-            return reverse('themes.detail', args=[self.slug])
+            # TODO: Move Theme Reviewer Tools to AMO so we don't have to hack.
+            return 'https://addons.mozilla.org/firefox/addon/%s/' % self.slug
         view = 'addons.detail_more' if more else 'addons.detail'
         return reverse(view, args=[self.slug], add_prefix=add_prefix)
 
@@ -1880,8 +1881,8 @@ class Category(amo.models.ModelBase):
         except KeyError:
             type = amo.ADDON_SLUGS[amo.ADDON_EXTENSION]
         if settings.MARKETPLACE and self.type == amo.ADDON_PERSONA:
-            #TODO: (davor) this is a temp stub. Return category URL when done.
-            return reverse('themes.browse', args=[self.slug])
+            # TODO: Move Theme Reviewer Tools to AMO so we don't have to hack.
+            return 'https://addons.mozilla.org/firefox/themes/%s' % self.slug
         return reverse('browse.%s' % type, args=[self.slug])
 
     @staticmethod

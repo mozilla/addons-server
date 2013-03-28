@@ -22,7 +22,6 @@ from mkt.developers.decorators import dev_required
 from mkt.developers.forms import AppFormMedia, CategoryForm, PreviewFormSet
 from mkt.submit.forms import AppDetailsBasicForm
 from mkt.submit.models import AppSubmissionChecklist
-from mkt.themes.forms import NewThemeForm
 from mkt.webapps.models import AddonExcludedRegion
 
 from . import forms

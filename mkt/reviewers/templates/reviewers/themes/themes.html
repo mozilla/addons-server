@@ -10,7 +10,7 @@
       <dt>{{ _('Categories') }}</dt>
           <dd>
           {% for category in theme.addon.categories.all() %}
-            <a href="{{ url('themes.browse', category.slug) }}">{{ category.name }}</a>{{ ', ' if not loop.last }}
+            <a href="{{ category.get_url_path() }}">{{ category.name }}</a>{{ ', ' if not loop.last }}
           {% endfor %}
           </dd>
       </dt>

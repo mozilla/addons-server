@@ -141,9 +141,6 @@ CSS = {
         'css/devreg/lookup-tool.styl',
         'css/devreg/activity.styl',
     ),
-    'mkt/themes': (
-        'css/devreg/themes.styl',
-    ),
     'mkt/gaia': (
         # Gaia building blocks.
         'css/gaia/action_menu.css',
@@ -332,12 +329,6 @@ JS = {
         'js/mkt/stats/table.js',
         'js/mkt/stats/chart_column.js',
         'js/mkt/stats/stats.js',
-    ),
-    'mkt/themes': (
-        'js/lib/jquery.hoverIntent.js',
-        'js/zamboni/personas_core.js',
-        'js/zamboni/personas.js',
-        'js/mkt/themes.js',
     ),
     'mkt/in-app-payments': (
         'js/lib/jquery-1.9.1.js',
