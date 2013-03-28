@@ -2138,7 +2138,7 @@ class TestThemeReviewQueue(ThemeReviewTestMixin, amo.tests.TestCase):
         self.assertLoginRedirects(res,
                                   reverse('reviewers.themes.queue_themes'))
 
-        self.client.login(username='regular@mozilla.com', password='password')
+        self.login('regular@mozilla.com')
         self.check_permissions(slug, 403)
 
         self.create_and_become_reviewer()
@@ -2153,13 +2153,11 @@ class TestThemeReviewQueueFlagged(ThemeReviewTestMixin, amo.tests.TestCase):
         self.flagged = True
 
     def test_admin_only(self):
-        self.client.login(username='persona_reviewer@mozilla.com',
-                          password='password')
+        self.login('persona_reviewer@mozilla.com')
         eq_(self.client.get(reverse('reviewers.themes.queue_flagged'))
             .status_code, 403)
 
-        self.client.login(username='admin@mozilla.com',
-                          password='password')
+        self.login('admin@mozilla.com')
         eq_(self.client.get(reverse('reviewers.themes.queue_flagged'))
             .status_code, 200)
 
