@@ -1550,3 +1550,7 @@ BASKET_URL = 'https://basket.mozilla.com'
 
 # This saves us when we upgrade jingo-minify (jsocol/jingo-minify@916b054c).
 JINGO_MINIFY_USE_STATIC = False
+
+# Monolith settings.
+MONOLITH_SERVER = None
+MONOLITH_MAX_DATE_RANGE = 365

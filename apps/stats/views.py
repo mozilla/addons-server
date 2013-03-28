@@ -18,12 +18,14 @@ from django.shortcuts import get_object_or_404
 
 import jingo
 from product_details import product_details
+import waffle
 
 from access import acl
 from addons.decorators import addon_view, addon_view_factory
 from addons.models import Addon
 from bandwagon.models import Collection
 from bandwagon.views import get_collection
+from lib.metrics import get_monolith_client
 from zadmin.models import SiteEvent
 
 import amo
@@ -32,6 +34,7 @@ from amo.urlresolvers import reverse
 from amo.utils import memoize
 
 from .models import CollectionCount, Contribution, DownloadCount, UpdateCount
+
 
 SERIES_GROUPS = ('day', 'week', 'month')
 SERIES_GROUPS_DATE = ('date', 'week', 'month')  # Backwards compat.
@@ -460,26 +463,55 @@ def daterange(start_date, end_date):
     for n in range((end_date - start_date).days):
         yield start_date + timedelta(n)
 
+# Cached lookup of the keys and the SQL.
+# Taken from remora, a mapping of the old values.
+_KEYS = {
+    'addon_downloads_new': 'addons_downloaded',
+    'addon_total_updatepings': 'addons_in_use',
+    'addon_count_new': 'addons_created',
+    'apps_count_new': 'apps_count_new',
+    'apps_count_installed': 'apps_count_installed',
+    'apps_review_count_new': 'apps_review_count_new',
+    'mmo_user_count_new': 'mmo_user_count_new',
+    'mmo_user_count_total': 'mmo_user_count_total',
+    'webtrends_DailyVisitors': 'mmo_total_visitors',
+    'version_count_new': 'addons_updated',
+    'user_count_new': 'users_created',
+    'review_count_new': 'reviews_created',
+    'collection_count_new': 'collections_created',
+}
+
+_CACHED_KEYS = sorted(_KEYS.values())
+
+
+def _monolith_site_query(period, start, end, field):
+    fields = {'mmo_total_visitors': 'visits',
+              'apps_count_installed': 'app_installs',
+              'apps_review_count_new': 'review_count',
+              'mmo_user_count_new': 'new_user_count',
+              'apps_count_new': 'app_count',
+              'mmo_user_count_total': 'total_user_count'}
+
+    # Getting data from the monolith server.
+    client = get_monolith_client()
+
+    if period == 'date':
+        period = 'day'
+
+    def _get_data():
+        for result in client(fields[field], start, end, interval=period):
+            yield {'date': result['date'].strftime('%Y-%m-%d'),
+                   'data': {field: result['count']}}
+
+    return list(_get_data()), _CACHED_KEYS
+
 
 @memoize(prefix='global_stats', time=60 * 60)
-def _site_query(period, start, end):
-    # Cached lookup of the keys and the SQL.
-    # Taken from remora, a mapping of the old values.
-    keys = {
-        'addon_downloads_new': 'addons_downloaded',
-        'addon_total_updatepings': 'addons_in_use',
-        'addon_count_new': 'addons_created',
-        'apps_count_new': 'apps_count_new',
-        'apps_count_installed': 'apps_count_installed',
-        'apps_review_count_new': 'apps_review_count_new',
-        'mmo_user_count_new': 'mmo_user_count_new',
-        'mmo_user_count_total': 'mmo_user_count_total',
-        'webtrends_DailyVisitors': 'mmo_total_visitors',
-        'version_count_new': 'addons_updated',
-        'user_count_new': 'users_created',
-        'review_count_new': 'reviews_created',
-        'collection_count_new': 'collections_created',
-    }
+def _site_query(period, start, end, field=None):
+    if waffle.switch_is_active('monolith-stats'):
+        res = _monolith_site_query(period, start, end, field)
+        return res
+
     cursor = connection.cursor()
     # Let MySQL make this fast. Make sure we prevent SQL injection with the
     # assert.
@@ -492,11 +524,11 @@ def _site_query(period, start, end):
            "AND name IN (%s) "
            "GROUP BY %s(date), name "
            "ORDER BY %s(date) DESC;"
-           % (', '.join(['%s' for key in keys.keys()]), period, period))
-    cursor.execute(sql, [start, end] + keys.keys())
+           % (', '.join(['%s' for key in _KEYS.keys()]), period, period))
+    cursor.execute(sql, [start, end] + _KEYS.keys())
 
     # Process the results into a format that is friendly for render_*.
-    default = dict([(k, 0) for k in keys.values()])
+    default = dict([(k, 0) for k in _CACHED_KEYS])
     result = SortedDict()
     for name, date, count in cursor.fetchall():
         date = date.strftime('%Y-%m-%d')
@@ -504,9 +536,9 @@ def _site_query(period, start, end):
             result[date] = default.copy()
             result[date]['date'] = date
             result[date]['data'] = {}
-        result[date]['data'][keys[name]] = count
+        result[date]['data'][_KEYS[name]] = count
 
-    return result.values(), sorted(keys.values())
+    return result.values(), _CACHED_KEYS
 
 
 def site(request, format, group, start=None, end=None):
@@ -547,7 +579,7 @@ def site_series(request, format, group, start, end, field):
     start, end = get_daterange_or_404(start, end)
     group = 'date' if group == 'day' else group
     series = []
-    full_series, keys = _site_query(group, start, end)
+    full_series, keys = _site_query(group, start, end, field)
     for row in full_series:
         if field in row['data']:
             series.append({
