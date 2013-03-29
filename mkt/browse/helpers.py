@@ -16,6 +16,7 @@ def category_slider(rand=False, limit=None):
         t = env.get_template('browse/helpers/category_slider.html')
         return jinja2.Markup(t.render(categories=_categories(rand, limit)))
 
+    return render()
     return caching.cached(
         render, 'category-slider-apps-%s-%s' % (rand, limit))
 
