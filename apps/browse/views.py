@@ -80,10 +80,13 @@ class ESAddonFilter(ESBaseFilter):
 def addon_listing(request, addon_types, filter_=AddonFilter,
                   default='featured'):
     # Set up the queryset and filtering for themes & extension listing pages.
-    qs = (Addon.objects.listed(request.APP, *amo.REVIEWED_STATUSES)
-          .filter(type__in=addon_types))
-    filter = filter_(request, qs, 'sort', default)
-    return filter.qs, filter
+    if amo.ADDON_PERSONA in addon_types:
+        qs = Addon.objects.public().filter(type=amo.ADDON_PERSONA)
+    else:
+        qs = (Addon.objects.listed(request.APP, *amo.REVIEWED_STATUSES)
+              .filter(type__in=addon_types))
+    filter__ = filter_(request, qs, 'sort', default)
+    return filter__.qs, filter__
 
 
 def _get_locales(addons):

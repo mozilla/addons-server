@@ -45,7 +45,6 @@
     <div id="page">
       {% block header %}
         <header class="mini-header">
-          {% include "mobile/header.html" %}
           <hgroup>
             <h1 class="site-title">
               {% set appicon = 'firefox' if request.APP in (amo.MOBILE, amo.ANDROID) else request.APP.short %}
