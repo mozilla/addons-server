@@ -74,7 +74,7 @@ class TestApi(BaseOAuth, ESTestCase):
             res = self.client.get(self.list_url + ({'cat': self.category.pk},))
             eq_(res.status_code, 200)
             obj = json.loads(res.content)['objects'][0]
-            eq_(obj['app_slug'], self.webapp.app_slug)
+            eq_(obj['slug'], self.webapp.app_slug)
             eq_(obj['icon_url_128'], self.webapp.get_icon_url(128))
             eq_(obj['absolute_url'], self.webapp.get_absolute_url())
             eq_(obj['resource_uri'], None)
@@ -83,7 +83,7 @@ class TestApi(BaseOAuth, ESTestCase):
         res = self.client.get(self.list_url + ({'q': 'something'},))
         eq_(res.status_code, 200)
         obj = json.loads(res.content)['objects'][0]
-        eq_(obj['app_slug'], self.webapp.app_slug)
+        eq_(obj['slug'], self.webapp.app_slug)
 
     def test_device(self):
         AddonDeviceType.objects.create(
@@ -93,14 +93,14 @@ class TestApi(BaseOAuth, ESTestCase):
         res = self.client.get(self.list_url + ({'device': 'desktop'},))
         eq_(res.status_code, 200)
         obj = json.loads(res.content)['objects'][0]
-        eq_(obj['app_slug'], self.webapp.app_slug)
+        eq_(obj['slug'], self.webapp.app_slug)
 
     def test_premium_types(self):
         res = self.client.get(self.list_url + (
             {'premium_types': 'free'},))
         eq_(res.status_code, 200)
         obj = json.loads(res.content)['objects'][0]
-        eq_(obj['app_slug'], self.webapp.app_slug)
+        eq_(obj['slug'], self.webapp.app_slug)
 
     def test_premium_types_empty(self):
         res = self.client.get(self.list_url + (
@@ -115,13 +115,13 @@ class TestApi(BaseOAuth, ESTestCase):
             {'premium_types': 'premium'}))
         eq_(res.status_code, 200)
         obj = json.loads(res.content)['objects'][0]
-        eq_(obj['app_slug'], self.webapp.app_slug)
+        eq_(obj['slug'], self.webapp.app_slug)
 
     def test_app_type_hosted(self):
         res = self.client.get(self.list_url + ({'app_type': 'hosted'},))
         eq_(res.status_code, 200)
         obj = json.loads(res.content)['objects'][0]
-        eq_(obj['app_slug'], self.webapp.app_slug)
+        eq_(obj['slug'], self.webapp.app_slug)
 
     def test_app_type_packaged(self):
         self.webapp.update(is_packaged=True)
@@ -131,13 +131,13 @@ class TestApi(BaseOAuth, ESTestCase):
         res = self.client.get(self.list_url + ({'app_type': 'packaged'},))
         eq_(res.status_code, 200)
         obj = json.loads(res.content)['objects'][0]
-        eq_(obj['app_slug'], self.webapp.app_slug)
+        eq_(obj['slug'], self.webapp.app_slug)
 
     def test_status_anon(self):
         res = self.client.get(self.list_url + ({'status': 'public'},))
         eq_(res.status_code, 200)
         obj = json.loads(res.content)['objects'][0]
-        eq_(obj['app_slug'], self.webapp.app_slug)
+        eq_(obj['slug'], self.webapp.app_slug)
 
         res = self.client.get(self.list_url + ({'status': 'vindaloo'},))
         eq_(res.status_code, 400)
@@ -158,7 +158,7 @@ class TestApi(BaseOAuth, ESTestCase):
         res = self.client.get(self.list_url + ({'type': 'app'},))
         eq_(res.status_code, 200)
         obj = json.loads(res.content)['objects'][0]
-        eq_(obj['app_slug'], self.webapp.app_slug)
+        eq_(obj['slug'], self.webapp.app_slug)
 
         res = self.client.get(self.list_url + ({'type': 'vindaloo'},))
         eq_(res.status_code, 400)
@@ -195,7 +195,7 @@ class TestApiReviewer(BaseOAuth, ESTestCase):
         res = self.client.get(self.list_url + ({'status': 'public'},))
         eq_(res.status_code, 200)
         obj = json.loads(res.content)['objects'][0]
-        eq_(obj['app_slug'], self.webapp.app_slug)
+        eq_(obj['slug'], self.webapp.app_slug)
 
         res = self.client.get(self.list_url + ({'status': 'rejected'},))
         eq_(res.status_code, 200)
@@ -205,7 +205,7 @@ class TestApiReviewer(BaseOAuth, ESTestCase):
         res = self.client.get(self.list_url + ({'status': 'any'},))
         eq_(res.status_code, 200)
         objs = json.loads(res.content)['objects']
-        eq_(obj['app_slug'], self.webapp.app_slug)
+        eq_(obj['slug'], self.webapp.app_slug)
 
         res = self.client.get(self.list_url + ({'status': 'vindaloo'},))
         eq_(res.status_code, 400)
@@ -216,7 +216,7 @@ class TestApiReviewer(BaseOAuth, ESTestCase):
         res = self.client.get(self.list_url + ({'type': 'app'},))
         eq_(res.status_code, 200)
         obj = json.loads(res.content)['objects'][0]
-        eq_(obj['app_slug'], self.webapp.app_slug)
+        eq_(obj['slug'], self.webapp.app_slug)
 
         res = self.client.get(self.list_url + ({'type': 'persona'},))
         eq_(res.status_code, 200)

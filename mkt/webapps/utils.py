@@ -26,7 +26,6 @@ def app_to_dict(app, user=None):
     }
 
     data = {
-        'app_slug': app.app_slug,
         'app_type': app.app_type,
         'categories': list(app.categories.values_list('pk', flat=True)),
         'content_ratings': dict([(cr.get_body().name, {
@@ -51,6 +50,7 @@ def app_to_dict(app, user=None):
         'price': app.get_price(),
         'ratings': {'average': app.average_rating,
                     'count': app.total_reviews},
+        'slug': app.app_slug,
     }
 
     with no_translation():

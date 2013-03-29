@@ -289,11 +289,11 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         eq_(res.status_code, 201)
         content = json.loads(res.content)
         eq_(content['status'], 0)
-        eq_(content['app_slug'], u'mozillaball')
+        eq_(content['slug'], u'mozillaball')
         eq_(content['support_email'], None)
         eq_(self.count(), 1)
 
-        app = Webapp.objects.get(app_slug=content['app_slug'])
+        app = Webapp.objects.get(app_slug=content['slug'])
         eq_(set(app.authors.all()), set([self.user]))
         assert record_action.called
 
@@ -572,7 +572,7 @@ class TestPackagedAppCreateHandler(CreatePackagedHandler):
         eq_(content['status'], 0)
 
         # Note the packaged status is not returned in the result.
-        app = Webapp.objects.get(app_slug=content['app_slug'])
+        app = Webapp.objects.get(app_slug=content['slug'])
         eq_(app.is_packaged, True)
 
 
@@ -872,18 +872,18 @@ class TestFeaturedHomeHandler(BaseOAuth):
         res = self.anon.get(self.list_url)
         data = json.loads(res.content)
         eq_(res.status_code, 200)
-        eq_(data['objects'][0]['app_slug'], self.app1.app_slug)
+        eq_(data['objects'][0]['slug'], self.app1.app_slug)
 
     def test_get_featured_region(self):
         # UK region should come up empty, so we backfill with worldwide.
         res = self.anon.get(self.list_url, data=dict(region='uk'))
         data = json.loads(res.content)
         eq_(res.status_code, 200)
-        eq_(data['objects'][0]['app_slug'], self.app1.app_slug)
+        eq_(data['objects'][0]['slug'], self.app1.app_slug)
 
         # US region should come have 1 plus worldwide.
         res = self.anon.get(self.list_url, data=dict(region='us'))
         data = json.loads(res.content)
         eq_(res.status_code, 200)
-        self.assertSetEqual([o['app_slug'] for o in data['objects']],
+        self.assertSetEqual([o['slug'] for o in data['objects']],
                             ['app-1', 'app-3'])
