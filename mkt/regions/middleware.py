@@ -1,5 +1,3 @@
-from threading import local
-
 from django.conf import settings
 from django.utils.cache import patch_vary_headers
 
@@ -75,7 +73,7 @@ class RegionMiddleware(object):
             request.set_cookie('region', reg)
 
         request.REGION = regions[reg]
-        local().region = reg
+        mkt.regions.set_region(reg)
 
     def process_response(self, request, response):
         patch_vary_headers(response, ['Accept-Language', 'Cookie'])
