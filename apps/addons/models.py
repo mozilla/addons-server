@@ -1860,9 +1860,9 @@ class Category(amo.models.ModelBase):
 
     # Used for operator shelves and magic categories.
     carrier = models.PositiveIntegerField(
-        choices=mkt.constants.CARRIER_CHOICES, null=True)
+        choices=mkt.constants.CARRIER_CHOICES, null=True, blank=True)
     region = models.PositiveIntegerField(
-        choices=mkt.constants.REGIONS_CHOICES_ID, null=True)
+        choices=mkt.constants.REGIONS_CHOICES_ID, null=True, blank=True)
 
     class Meta:
         db_table = 'categories'
