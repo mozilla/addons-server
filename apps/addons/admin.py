@@ -65,6 +65,11 @@ class CategoryAdmin(admin.ModelAdmin):
     exclude = ('count',)
 
 
+class CategorySupervisorAdmin(admin.ModelAdmin):
+    raw_id_fields = ('user',)
+    list_display = ('category', 'user')
+
+
 class FrozenAddonAdmin(admin.ModelAdmin):
     raw_id_fields = ('addon',)
 
@@ -93,5 +98,6 @@ admin.site.register(models.BlacklistedGuid)
 admin.site.register(models.Feature, FeatureAdmin)
 admin.site.register(models.Addon, AddonAdmin)
 admin.site.register(models.Category, CategoryAdmin)
+admin.site.register(models.CategorySupervisor, CategorySupervisorAdmin)
 admin.site.register(models.FrozenAddon, FrozenAddonAdmin)
 admin.site.register(models.CompatOverride, CompatOverrideAdmin)
