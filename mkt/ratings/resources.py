@@ -1,7 +1,10 @@
 import commonware.log
+from django.conf.urls import url
 from tastypie import fields, http
+from tastypie.bundle import Bundle
 from tastypie.authorization import Authorization
 from tastypie.exceptions import ImmediateHttpResponse
+from tastypie.utils import trailing_slash
 
 import amo
 from addons.models import Addon
@@ -16,7 +19,7 @@ from mkt.api.base import MarketplaceModelResource
 from mkt.api.resources import AppResource, UserResource
 from mkt.ratings.forms import ReviewForm
 from mkt.webapps.models import Webapp
-from reviews.models import Review
+from reviews.models import Review, ReviewFlag
 
 log = commonware.log.getLogger('z.api')
 
@@ -25,6 +28,7 @@ class RatingResource(MarketplaceModelResource):
 
     app = fields.ToOneField(AppResource, 'addon', readonly=True)
     user = fields.ToOneField(UserResource, 'user', readonly=True, full=True)
+    report_spam = fields.CharField()
 
     class Meta:
         # Unfortunately, the model class name for ratings is "Review".
@@ -33,7 +37,6 @@ class RatingResource(MarketplaceModelResource):
         list_allowed_methods = ['get', 'post']
         detail_allowed_methods = ['get', 'put', 'delete']
         always_return_data = True
-        # TODO figure out authentication/authorization soon.
         authentication = (OAuthAuthentication(), SharedSecretAuthentication())
         authorization = Authorization()
         fields = ['rating', 'body']
@@ -45,6 +48,13 @@ class RatingResource(MarketplaceModelResource):
         }
 
         ordering = ['created']
+
+    def dehydrate_report_spam(self, bundle):
+        return self._build_reverse_url(
+            'api_post_flag',
+            kwargs={'api_name': self._meta.api_name,
+                    'resource_name': self._meta.resource_name,
+                    'review_id': bundle.obj.pk})
 
     def _review_data(self, request, app, form):
         data = dict(addon_id=app.id, user_id=request.user.id,
@@ -148,3 +158,50 @@ class RatingResource(MarketplaceModelResource):
             data['user'] = {'can_rate': not addon.has_author(request.user),
                             'has_rated': existing_review}
         return data
+
+    def override_urls(self):
+        # Based on 'nested resource' example in tastypie cookbook.
+        return [
+            url(r'^(?P<resource_name>%s)/(?P<review_id>\w[\w/-]*)/flag%s$' %
+                (self._meta.resource_name, trailing_slash()),
+                self.wrap_view('post_flag'), name='api_post_flag')
+            ]
+
+    def post_flag(self, request, **kwargs):
+        return RatingFlagResource().dispatch('list', request,
+                                             review_id=kwargs['review_id'])
+
+
+class RatingFlagResource(MarketplaceModelResource):
+
+    class Meta:
+        queryset = ReviewFlag.objects.all()
+        resource_name = 'rating_flag'
+        list_allowed_methods = ['post']
+        detail_allowed_methods = []
+        authentication = OAuthAuthentication()
+        authorization = Authorization()
+        fields = ['review', 'flag', 'note', 'user']
+
+    def get_resource_uri(self, bundle_or_obj):
+        if isinstance(bundle_or_obj, Bundle):
+            obj = bundle_or_obj.obj
+        else:
+            obj = bundle_or_obj
+
+        return '/api/apps/ratings/%s/flag/%s%s' % (obj.review_id, obj.pk,
+                                                   trailing_slash())
+
+    def post_list(self, request, review_id=None, **kwargs):
+        if ReviewFlag.objects.filter(review_id=review_id,
+                                     user=request.amo_user).exists():
+            return http.HttpConflict()
+        return MarketplaceModelResource.post_list(
+            self, request, review_id=review_id, **kwargs)
+
+    def obj_create(self, bundle, request=None, review_id=None, **kwargs):
+        if 'note' in bundle.data and bundle.data['note'].strip():
+            bundle.data['flag'] = ReviewFlag.OTHER
+        return MarketplaceModelResource.obj_create(
+            self, bundle, request=request, review_id=review_id,
+            user=request.amo_user)

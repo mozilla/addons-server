@@ -5,7 +5,7 @@ from nose.tools import eq_
 import amo
 from addons.models import AddonUser
 from amo.tests import AMOPaths
-from reviews.models import Review
+from reviews.models import Review, ReviewFlag
 from users.models import UserProfile
 
 from mkt.api.base import get_url, list_url
@@ -67,6 +67,7 @@ class TestRatingResource(BaseOAuth, AMOPaths):
         res, data = self._create()
         eq_(201, res.status_code)
         assert data['resource_uri']
+        eq_(data['report_spam'],  data['resource_uri'] + 'flag/')
 
     def test_create_bad_data(self):
         """
@@ -185,3 +186,48 @@ class TestRatingResource(BaseOAuth, AMOPaths):
                {'resource_name': 'rating', 'pk': 123})
         res = self.client.delete(url)
         eq_(res.status_code, 404)
+
+
+class TestReviewFlagResource(BaseOAuth, AMOPaths):
+    fixtures = fixture('user_2519', 'webapp_337141')
+
+    def setUp(self):
+        super(TestReviewFlagResource, self).setUp()
+        self.app = Webapp.objects.get(pk=337141)
+        self.user = UserProfile.objects.get(pk=2519)
+        self.user2 = UserProfile.objects.get(pk=31337)
+        self.rating = Review.objects.create(addon=self.app,
+                                            user=self.user2, body="yes")
+        self.flag_url = ('api_post_flag',
+                         {'resource_name': 'rating',
+                          'review_id': self.rating.pk}, {})
+
+    def test_flag(self):
+        data = json.dumps({'flag': ReviewFlag.SPAM})
+        res = self.client.post(self.flag_url, data=data)
+        eq_(res.status_code, 201)
+        rf = ReviewFlag.objects.get(review=self.rating)
+        eq_(rf.user, self.user)
+        eq_(rf.flag, ReviewFlag.SPAM)
+        eq_(rf.note, '')
+
+    def test_flag_note(self):
+        note = 'do not want'
+        data = json.dumps({'flag': ReviewFlag.SPAM, 'note': note})
+        res = self.client.post(self.flag_url, data=data)
+        eq_(res.status_code, 201)
+        rf = ReviewFlag.objects.get(review=self.rating)
+        eq_(rf.user, self.user)
+        eq_(rf.flag, ReviewFlag.OTHER)
+        eq_(rf.note, note)
+
+    def test_flag_anon(self):
+        res = self.anon.post(self.flag_url)
+        eq_(res.status_code, 401)
+        eq_(ReviewFlag.objects.all().count(), 0)
+
+    def test_flag_conflict(self):
+        data = json.dumps({'flag': ReviewFlag.SPAM})
+        res = self.client.post(self.flag_url, data=data)
+        res = self.client.post(self.flag_url, data=data)
+        eq_(res.status_code, 409)

@@ -45,6 +45,7 @@ The API returns a list of ratings sorted by date created, descending::
               "body": "This app is top notch. Aces in my book!",
               "rating": 5,
               "resource_uri": "/api/apps/rating/19/",
+              "report_spam": "/api/apps/rating/19/flag",
               "user": {
                   "id": "198",
                   "resource_uri": "",
@@ -169,3 +170,18 @@ The following validation is performed on the request:
   - They are the original review author.
   - They are an editor that is not an author of the app.
   - They are in a group with Users:Edit or Addons:Edit privileges
+
+
+Flagging as spam
+================
+
+.. http:post:: /api/apps/rating/<ID>/flag/
+
+    Flag a rating as spam.
+
+    **Request**:
+
+    .. sourcecode:: http
+
+        POST /api/apps/rating/<ID>/flag
+        {'flag': 'review_flag_reason_spam'}
