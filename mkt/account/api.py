@@ -73,7 +73,7 @@ class LoginResource(CORSResource, MarketplaceResource):
 
     def post_list(self, request, **kwargs):
         res = browserid_login(
-            request, browserid_audience=lambda r: settings.FIREPLACE_URL)
+            request, browserid_audience=lambda r: r.GET.get('audience'))
         if res.status_code == 200:
             return self.create_response(
                 request,

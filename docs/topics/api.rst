@@ -30,8 +30,9 @@ Shared Secret
 
 The Marketplace frontend uses a server-supplied token for
 authentication, stored as a cookie. A POST request to
-``/api/account/login`` with an ``assertion`` field containing a
-BrowserID assertion will be responded to with user information and a
+``/api/account/login/`` with an ``assertion`` field containing a
+Persona assertion and an ``audience`` field containing the appropriate
+Persona audience will be responded to with user information and a
 shared secret to use for future requests. Example::
 
     {
