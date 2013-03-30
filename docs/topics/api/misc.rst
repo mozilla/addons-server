@@ -31,7 +31,7 @@ categories.
              "name": "Lifestyle"...}
          ],
          "featured": [{
-            {"app_slug": "cool-app",
+            {"slug": "cool-app",
              "name": "Cool app"...}
          ]
         }

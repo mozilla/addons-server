@@ -44,7 +44,6 @@ The API returns a list of the apps sorted by relevance (default) or
          "objects": [{
             "id": "26",
             "absolute_url": "http://../app/marble-run/",
-            "app_slug": "marble-run",
             "categories": [9, 10],
             "description": "...",
             "device_types": [...],
@@ -52,6 +51,6 @@ The API returns a list of the apps sorted by relevance (default) or
             "name": "Marble Run",
             "premium_type": "free",
             "resource_uri": null,
-            "slug": "marble-run-1"
+            "slug": "marble-run"
          }, ...
         }
