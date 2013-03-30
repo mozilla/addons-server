@@ -6,6 +6,7 @@ from django.http import HttpResponse, HttpResponseServerError
 
 import jingo
 
+from amo.decorators import allow_cross_site_request
 from mkt.account.views import feedback
 from . import views
 
@@ -14,6 +15,10 @@ def template_plus_xframe(request, template, **kwargs):
     format = kwargs.get('format')
     if format in (None, 'html'):
         res = jingo.render(request, template, kwargs)
+
+        # CORSify the the HTML version of these pages.
+        allow_cross_site_request(lambda *args: res)(request)
+
         referrer = request.META.get('HTTP_REFERER')
         if referrer:
             referrer = urlparse(referrer).netloc
