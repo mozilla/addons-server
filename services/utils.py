@@ -66,8 +66,9 @@ version_re = re.compile(r"""(?P<major>\d+)         # major (x in x.y)
                             (?P<alpha>[a|b]?)      # alpha/beta
                             (?P<alpha_ver>\d*)     # alpha/beta version
                             (?P<pre>pre)?          # pre release
-                            (?P<pre_ver>\d)?       # pre release version""",
-                        re.VERBOSE)
+                            (?P<pre_ver>\d)?       # pre release version
+                          """,
+                          re.VERBOSE)
 
 
 def get_mirror(status, id, row):

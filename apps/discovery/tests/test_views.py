@@ -468,7 +468,7 @@ class TestPersonaDetails(amo.tests.TestCase):
     def test_by(self):
         """Test that the `by ... <authors>` section works."""
         r = self.client.get(self.url)
-        assert pq(r.content)('h2.author').text().startswith('by My Persona')
+        assert pq(r.content)('h2.author').text().startswith('by persona_author')
 
 
 class TestDownloadSources(amo.tests.TestCase):

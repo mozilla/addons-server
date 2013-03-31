@@ -1082,7 +1082,7 @@ class TestPersonaDetailPage(TestPersonas, amo.tests.TestCase):
         waffle.models.Switch.objects.filter(
             name='personas-migration-completed').update(active=False)
         r = self.client.get(self.url)
-        eq_(pq(r.content)('h4.author').text(), 'by My Persona')
+        eq_(pq(r.content)('h4.author').text(), 'by persona_author')
 
     def test_legacy_by(self):
         self._test_legacy_by()

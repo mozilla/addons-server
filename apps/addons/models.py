@@ -1646,6 +1646,9 @@ class Persona(caching.CachingMixin, models.Model):
                 'file': filename,
             }
 
+    def _image_path(self, filename):
+        return os.path.join(settings.ADDONS_PATH, str(self.addon.id), filename)
+
     @amo.cached_property
     def thumb_url(self):
         """URL to Persona's thumbnail preview."""
@@ -1661,6 +1664,10 @@ class Persona(caching.CachingMixin, models.Model):
             return self._image_url('icon.png')
         else:
             return self._image_url('preview_small.jpg')
+
+    @amo.cached_property
+    def icon_path(self):
+        return self._image_path('icon.png')
 
     @amo.cached_property
     def preview_url(self):

@@ -29,7 +29,7 @@ from translations.fields import TransField, TransTextarea
 from translations.forms import TranslationFormMixin
 from translations.models import Translation
 from translations.widgets import TranslationTextInput
-from versions.models import License, Version
+from versions.models import Version
 
 log = commonware.log.getLogger('z.addons')
 

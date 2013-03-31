@@ -139,7 +139,7 @@
         "pk": 559,
         "model": "addons.persona",
         "fields": {
-            "display_username": "My Persona",
+            "display_username": "persona_author",
             "popularity": 10,
             "license": null,
             "footer": "BCBG_Persona_footer2.png",
