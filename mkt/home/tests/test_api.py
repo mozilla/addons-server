@@ -15,7 +15,6 @@ class TestAPI(BaseOAuth, BrowseBase):
     def setUp(self):
         super(TestAPI, self).setUp(api_name='home')
         BrowseBase.setUp(self)
-        self.setup_featured()
 
         self.url = list_url('page')
 
@@ -25,10 +24,11 @@ class TestAPI(BaseOAuth, BrowseBase):
         eq_(res['Access-Control-Allow-Methods'], 'GET, OPTIONS')
 
     def test_response(self):
+        cf1, cf2, hf = self.setup_featured()
         res = self.anon.get(self.url)
         content = json.loads(res.content)
         eq_(content['categories'][0]['slug'], u'lifestyle')
-        eq_(content['featured'][0]['id'], u'337147')
+        eq_(content['featured'][0]['id'], u'%s' % hf.id)
 
     def test_lookup(self):
         lookup = HomepageResource().lookup_device
