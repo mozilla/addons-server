@@ -202,6 +202,7 @@ class RatingFlagResource(MarketplaceModelResource):
     def obj_create(self, bundle, request=None, review_id=None, **kwargs):
         if 'note' in bundle.data and bundle.data['note'].strip():
             bundle.data['flag'] = ReviewFlag.OTHER
+        Review.objects.filter(id=review_id).update(editorreview=True)
         return MarketplaceModelResource.obj_create(
             self, bundle, request=request, review_id=review_id,
             user=request.amo_user)
