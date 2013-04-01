@@ -36,6 +36,35 @@ categories.
          ]
         }
 
+Featured apps
+=============
+
+A list of the featured apps on the Marketplace.
+
+.. http:get:: /api/home/featured/
+
+    **Request**
+
+    .. sourcecode:: http
+
+        GET /api/home/featured/
+
+    :param dev: the device requesting the homepage, results will be tailored to the device which will be one of: `firefoxos` (Firefox OS), `desktop`, `android` (mobile).
+    :param category: the id of the category to filter on.
+    :param limit: the number of responses.
+
+    **Response**
+
+    .. sourcecode:: http
+
+        {"meta": {"limit": 20, ...},
+         "objects": [
+            {"app_type": "hosted"...}
+         ]
+        }
+
+Region is inferred from the request.
+
 Account
 =======
 

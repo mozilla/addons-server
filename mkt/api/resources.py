@@ -7,7 +7,7 @@ from django.db.models import Q
 import commonware.log
 from celery_tasktree import TaskTree
 from tastypie import fields, http
-from tastypie.authorization import Authorization, ReadOnlyAuthorization
+from tastypie.authorization import Authorization
 from tastypie.bundle import Bundle
 from tastypie.exceptions import ImmediateHttpResponse
 from tastypie.resources import ALL_WITH_RELATIONS
@@ -22,7 +22,6 @@ from constants.applications import DEVICE_TYPES
 from files.models import FileUpload, Platform
 from lib.metrics import record_action
 
-import mkt
 from mkt.api.authentication import (AppOwnerAuthorization,
                                     OptionalOAuthAuthentication,
                                     OwnerAuthorization,
@@ -36,7 +35,6 @@ from mkt.developers import tasks
 from mkt.developers.forms import NewManifestForm, PreviewForm
 from mkt.regions import get_region_id
 from mkt.submit.forms import AppDetailsBasicForm
-from mkt.webapps.models import Webapp
 from mkt.webapps.utils import app_to_dict
 
 log = commonware.log.getLogger('z.api')
@@ -394,41 +392,3 @@ class UserResource(CORSResource, MarketplaceModelResource):
         queryset = User.objects.all()
         resource_name = 'user'
         fields = ['id', 'username']
-
-
-class FeaturedHomeResource(AppResource):
-
-    class Meta(AppResource.Meta):
-        resource_name = 'featured/home'
-        allowed_methods = []
-        detail_allowed_methods = []
-        list_allowed_methods = ['get']
-        authorization = ReadOnlyAuthorization()
-        authentication = OptionalOAuthAuthentication()
-        slug_lookup = None
-
-    def get_resource_uri(self, bundle):
-        # At this time we don't have an API to the Webapp details.
-        return None
-
-    def get_list(self, request=None, **kwargs):
-        rg = request.GET
-        _get = {
-            'region': mkt.regions.REGIONS_DICT.get(rg.get('region'),
-                                                   mkt.regions.WORLDWIDE),
-            'limit': rg.get('limit', 12),
-            'mobile': rg.get('dev') in ('android', 'fxos'),
-            'tablet': rg.get('dev') != 'desktop' and rg.get('scr') == 'wide',
-            'gaia': rg.get('dev') == 'fxos',
-        }
-
-        qs = Webapp.featured(**_get)
-        paginator = self._meta.paginator_class(
-            request.GET, qs, resource_uri=self.get_resource_list_uri(),
-            limit=self._meta.limit)
-        page = paginator.page()
-        objs = [self.build_bundle(obj=obj, request=request)
-                for obj in page['objects']]
-        page['objects'] = [self.full_dehydrate(bundle) for bundle in objs]
-
-        return self.create_response(request, page)
