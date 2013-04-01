@@ -25,7 +25,7 @@ class Command(BaseCommand):
         if 'amo_dir' not in options:
             print "Needs --addons-dir."
             return
-        mapping = dict(Persona.objects.values_list('pk', 'addon_id'))
+        mapping = dict(Persona.objects.values_list('persona_id', 'addon_id'))
         for first in os.listdir(options['personas_dir']):
             if not first.isdigit():
                 continue
