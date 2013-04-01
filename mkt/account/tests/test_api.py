@@ -93,15 +93,12 @@ class TestAccount(BaseOAuth):
                                 data=json.dumps({'display_name': 'foo'}))
         eq_(res.status_code, 403)
 
-browserid_url = 'http://firepla.ce:8675/'
-
 
 class FakeUUID(object):
     hex = '000000'
 
 
 @patch.object(settings, 'FIREPLACE_SECRET_KEY', 'gubbish')
-@patch.object(settings, 'FIREPLACE_URL', browserid_url)
 class TestLoginHandler(TestCase):
     def setUp(self):
         super(TestLoginHandler, self).setUp()

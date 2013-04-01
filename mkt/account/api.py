@@ -1,8 +1,10 @@
 import hashlib
 import hmac
 import uuid
+
 from django.conf import settings
 
+from django_browserid import get_audience
 from tastypie import fields, http
 from tastypie.authorization import Authorization
 from tastypie.exceptions import ImmediateHttpResponse
@@ -72,8 +74,11 @@ class LoginResource(CORSResource, MarketplaceResource):
         return ','.join((email, hm.hexdigest(), unique_id))
 
     def post_list(self, request, **kwargs):
-        res = browserid_login(
-            request, browserid_audience=lambda r: r.GET.get('audience'))
+        if 'audience' in request.POST:
+            audience = lambda r: r.POST.get('audience')
+        else:
+            audience = get_audience
+        res = browserid_login(request, browserid_audience=audience)
         if res.status_code == 200:
             return self.create_response(
                 request,
