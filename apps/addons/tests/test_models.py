@@ -11,6 +11,7 @@ from django import forms
 from django.contrib.auth.models import AnonymousUser
 from django.conf import settings
 from django.core import mail
+from django.core.exceptions import ValidationError
 from django.db import IntegrityError
 from django.utils import translation
 
@@ -853,6 +854,12 @@ class TestAddonModels(amo.tests.TestCase):
     def test_unknown_app_flag(self):
         addon = Addon.objects.get(pk=3615)
         eq_(addon.has_flag('random-does-not-exist'), False)
+
+    def test_app_numeric_slug(self):
+        cat = Category.objects.get(id=22)
+        cat.slug = 123
+        with self.assertRaises(ValidationError):
+            cat.full_clean()
 
     def test_app_categories(self):
         addon = lambda: Addon.objects.get(pk=3615)

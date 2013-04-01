@@ -1,5 +1,6 @@
 import json
 
+from django.conf.urls.defaults import url
 from django.contrib.auth.models import User
 from django.db import transaction
 
@@ -119,6 +120,7 @@ class AppResource(CORSResource, MarketplaceModelResource):
         authorization = AppOwnerAuthorization()
         resource_name = 'app'
         serializer = Serializer(formats=['json'])
+        slug_lookup = 'app_slug'
 
     @write
     @transaction.commit_on_success
@@ -299,6 +301,7 @@ class CategoryResource(CORSResource, MarketplaceModelResource):
         always_return_data = True
         resource_name = 'category'
         serializer = Serializer(formats=['json'])
+        slug_lookup = 'slug'
 
 
 class PreviewResource(CORSResource, MarketplaceModelResource):
@@ -382,6 +385,7 @@ class FeaturedHomeResource(AppResource):
         list_allowed_methods = ['get']
         authorization = ReadOnlyAuthorization()
         authentication = OptionalOAuthAuthentication()
+        slug_lookup = None
 
     def get_resource_uri(self, bundle):
         # At this time we don't have an API to the Webapp details.

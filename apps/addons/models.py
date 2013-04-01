@@ -11,7 +11,7 @@ from datetime import datetime, timedelta
 
 from django.conf import settings
 from django.core.cache import cache
-from django.core.exceptions import ObjectDoesNotExist
+from django.core.exceptions import ObjectDoesNotExist, ValidationError
 from django.db import models, transaction
 from django.dispatch import receiver
 from django.db.models import Q, Max, signals as dbsignals
@@ -1899,6 +1899,10 @@ class Category(amo.models.ModelBase):
                     for addon_id, cs in sorted_groupby(qs, 'addon_id'))
         for addon in addons:
             addon.all_categories = cats.get(addon.id, [])
+
+    def clean(self):
+        if self.slug.isdigit():
+            raise ValidationError('Slugs cannot be all numbers.')
 
 dbsignals.pre_save.connect(save_signal, sender=Category,
                            dispatch_uid='category_translations')

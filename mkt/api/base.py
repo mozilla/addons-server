@@ -1,6 +1,7 @@
 from collections import defaultdict
 import json
 
+from django.conf.urls.defaults import url
 from django.core.exceptions import ObjectDoesNotExist
 
 from tastypie import http
@@ -213,6 +214,27 @@ class MarketplaceModelResource(Marketplace, ModelResource):
         results that return sub objects data.
         """
         return [self.full_dehydrate(Bundle(obj=o)).data for o in objects]
+
+    def base_urls(self):
+        """
+        If `slug_lookup` is specified on the Meta of a resource, add
+        in an extra resource that allows lookup by that slug field. This
+        assumes that the slug won't be all numbers. If the slug is numeric, it
+        will hit the pk URL pattern and chaos will ensue.
+        """
+        if not getattr(self._meta, 'slug_lookup', None):
+            return super(MarketplaceModelResource, self).base_urls()
+
+        return super(MarketplaceModelResource, self).base_urls()[:3] + [
+            url(r'^(?P<resource_name>%s)/(?P<pk>\d+)/$' %
+                    self._meta.resource_name,
+                self.wrap_view('dispatch_detail'),
+                name='api_dispatch_detail'),
+            url(r"^(?P<resource_name>%s)/(?P<%s>[^/<>\"']+)/$" %
+                    (self._meta.resource_name, self._meta.slug_lookup),
+                self.wrap_view('dispatch_detail'),
+                name='api_dispatch_detail')
+        ]
 
 
 class CORSResource(object):

@@ -24,6 +24,7 @@ class SearchResource(AppResource):
         list_allowed_methods = ['get']
         authorization = ReadOnlyAuthorization()
         authentication = OptionalOAuthAuthentication()
+        slug_lookup = None
 
     def get_resource_uri(self, bundle):
         # At this time we don't have an API to the Webapp details.

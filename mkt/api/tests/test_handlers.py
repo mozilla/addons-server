@@ -343,6 +343,14 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         content = json.loads(res.content)
         eq_(content['status'], 0)
 
+    def test_get_slug(self):
+        app = self.create_app()
+        url = ('api_dispatch_detail',
+               {'resource_name': 'app', 'app_slug': app.app_slug})
+        res = self.client.get(url)
+        content = json.loads(res.content)
+        eq_(content['id'], str(app.pk))
+
     def test_list(self):
         app = self.create_app()
         res = self.client.get(self.list_url)
@@ -713,6 +721,13 @@ class TestCategoryHandler(BaseOAuth):
         res = self.anon.get(self.list_url)
         data = json.loads(res.content)
         eq_(data['meta']['total_count'], 0)
+
+    def test_get_slug(self):
+        url = ('api_dispatch_detail',
+               {'resource_name': 'category', 'slug': self.cat.slug})
+        res = self.client.get(url)
+        data = json.loads(res.content)
+        eq_(data['id'], str(self.cat.pk))
 
     def test_get_categories(self):
         res = self.anon.get(self.list_url)
