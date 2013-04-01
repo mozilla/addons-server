@@ -19,12 +19,14 @@ def get_locale_properties(manifest, property, default_locale=None):
 
 def app_to_dict(app, user=None):
     """Return app data as dict for API."""
+    # Sad circular import issues.
+    from mkt.api.resources import PreviewResource
+
     cv = app.current_version
     version_data = {
         'version': getattr(cv, 'version', None),
         'release_notes': getattr(cv, 'releasenotes', None)
     }
-
     data = {
         'app_type': app.app_type,
         'categories': list(app.categories.values_list('pk', flat=True)),
@@ -42,9 +44,7 @@ def app_to_dict(app, user=None):
         'listed_authors': [{'name': author.name}
                            for author in app.listed_authors],
         'manifest_url': app.manifest_url,
-        'previews': [{'caption': pr.caption, 'full_url': pr.image_url,
-                      'thumb_url': pr.thumbnail_url}
-                     for pr in app.previews.all()],
+        'previews': PreviewResource().dehydrate_objects(app.previews.all()),
         'premium_type': amo.ADDON_PREMIUM_API[app.premium_type],
         'public_stats': app.public_stats,
         'price': app.get_price(),

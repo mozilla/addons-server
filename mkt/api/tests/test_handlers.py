@@ -462,22 +462,6 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         eq_(data['ratings'], {'count': 0, 'average': 0.0})
         eq_(data['user'], {'owns': True})
 
-    def test_previews(self):
-        app = self.create_app()
-        preview_data = {'caption': 'foo', 'filetype': 'image/png',
-                        'thumbtype': 'image/png', 'addon': app}
-        Preview.objects.create(**preview_data)
-        preview_data['caption'] = 'bar'
-        Preview.objects.create(**preview_data)
-        res = self.client.get(self.get_url)
-        eq_(res.status_code, 200)
-        data = json.loads(res.content)
-        previews = data.get('previews')
-        eq_(len(previews), 2)
-        self.assertSetEqual(previews[0].keys(),
-                            ['caption', 'thumb_url', 'full_url'])
-        eq_([pr.get('caption') for pr in previews], ['foo', 'bar'])
-
     def test_ratings(self):
         app = self.create_app()
         rater = UserProfile.objects.get(pk=999)

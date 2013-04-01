@@ -310,7 +310,7 @@ class PreviewResource(CORSResource, MarketplaceModelResource):
         list_allowed_methods = ['post']
         allowed_methods = ['get', 'delete']
         always_return_data = True
-        fields = ['id', 'filetype']
+        fields = ['id', 'filetype', 'caption']
         authentication = OAuthAuthentication()
         authorization = OwnerAuthorization()
         resource_name = 'preview'

@@ -206,6 +206,14 @@ class MarketplaceModelResource(Marketplace, ModelResource):
             raise ImmediateHttpResponse(response=http.HttpNotFound())
         return obj
 
+    def dehydrate_objects(self, objects):
+        """
+        Dehydrates each object using the full_dehydrate and then
+        returns the data for each object. This is useful for compound
+        results that return sub objects data.
+        """
+        return [self.full_dehydrate(Bundle(obj=o)).data for o in objects]
+
 
 class CORSResource(object):
     """

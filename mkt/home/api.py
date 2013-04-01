@@ -1,5 +1,4 @@
 from tastypie.authorization import ReadOnlyAuthorization
-from tastypie.bundle import Bundle
 
 from mkt import regions
 from mkt.api.base import CORSResource, MarketplaceResource
@@ -23,17 +22,14 @@ class HomepageResource(CORSResource, MarketplaceResource):
         region = getattr(request, 'REGION', regions.WORLDWIDE)
         kw = self.lookup_device(request.GET.get('dev', ''))
 
+        cat = CategoryResource()
         featured = Webapp.featured(region=region, cat=None,
                                    limit=9 if kw['mobile'] else 12, **kw)
-        featured = [AppResource().full_dehydrate(Bundle(obj=app)).data
-                    for app in featured]
 
-        cat = CategoryResource()
-        categories = [cat.full_dehydrate(Bundle(obj=c)).data
-                      for c in cat.obj_get_list()]
-
-        return self.create_response(request, {'categories': categories,
-                                              'featured': featured})
+        return self.create_response(request, {
+            'categories': cat.dehydrate_objects(cat.obj_get_list()),
+            'featured': AppResource().dehydrate_objects(featured)
+        })
 
     def lookup_device(self, device):
         return {'mobile': device in ['android', 'firefoxos'],

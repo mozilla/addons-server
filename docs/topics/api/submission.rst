@@ -241,7 +241,8 @@ Returns the screenshot id::
 
         {"position": 1, "thumbnail_url": "/img/uploads/...",
          "image_url": "/img/uploads/...", "filetype": "image/png",
-         "resource_uri": "/api/apps/preview/1/"}
+         "resource_uri": "/api/apps/preview/1/",
+         "caption": "Awesome screenshot"}
 
 Get
 +++
@@ -255,7 +256,8 @@ Returns::
 
         {"addon": "/api/apps/app/1/", "id": 1, "position": 1,
          "thumbnail_url": "/img/uploads/...", "image_url": "/img/uploads/...",
-         "filetype": "image/png", "resource_uri": "/api/apps/preview/1/"}
+         "filetype": "image/png", "resource_uri": "/api/apps/preview/1/"
+         "caption": "Awesome screenshot"}
 
 
 Delete
