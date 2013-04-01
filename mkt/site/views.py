@@ -108,7 +108,7 @@ def manifest(request):
 
 
 def minifest(request):
-    yulelog_fn = 'yulelog_2013.0328.zip'
+    yulelog_fn = 'yulelog_2013.04.01_16.06.21.zip'
     yulelog_path = os.path.join(settings.MEDIA_ROOT, 'packaged-apps',
                                 yulelog_fn)
     yulelog_url = absolutify('%spackaged-apps/%s' %
