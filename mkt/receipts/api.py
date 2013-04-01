@@ -12,7 +12,7 @@ from access.acl import check_ownership
 from lib.cef_loggers import receipt_cef
 from lib.metrics import record_action
 from mkt.api.authentication import OAuthAuthentication
-from mkt.api.base import MarketplaceResource
+from mkt.api.base import CORSResource, MarketplaceResource
 from mkt.constants import apps
 from mkt.receipts.forms import ReceiptForm
 from mkt.receipts.utils import create_receipt
@@ -25,7 +25,7 @@ class HttpPaymentRequired(HttpResponse):
     status_code = 402
 
 
-class ReceiptResource(MarketplaceResource):
+class ReceiptResource(CORSResource, MarketplaceResource):
 
     class Meta:
         always_return_data = True
@@ -83,9 +83,8 @@ class ReceiptResource(MarketplaceResource):
     def record(self, bundle, request, install_type):
         # Generate or re-use an existing install record.
         installed, created = Installed.objects.safer_get_or_create(
-                                addon=bundle.obj,
-                                user=request.user.get_profile(),
-                                install_type=install_type)
+            addon=bundle.obj, user=request.user.get_profile(),
+            install_type=install_type)
 
         # Generate or re-use a recent receipt.
         receipt_cef.log(request, bundle.obj, 'request', 'Receipt requested')

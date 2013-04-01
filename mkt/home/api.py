@@ -2,12 +2,12 @@ from tastypie.authorization import ReadOnlyAuthorization
 from tastypie.bundle import Bundle
 
 from mkt import regions
-from mkt.api.base import MarketplaceResource
+from mkt.api.base import CORSResource, MarketplaceResource
 from mkt.api.resources import AppResource, CategoryResource
 from mkt.webapps.models import Webapp
 
 
-class HomepageResource(MarketplaceResource):
+class HomepageResource(CORSResource, MarketplaceResource):
 
     class Meta(MarketplaceResource):
         resource_name = 'page'

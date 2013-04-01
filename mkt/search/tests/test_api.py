@@ -30,6 +30,11 @@ class TestApi(BaseOAuth, ESTestCase):
     def test_verbs(self):
         self._allowed_verbs(self.list_url, ['get'])
 
+    def test_has_cors(self):
+        res = self.client.get(self.list_url)
+        eq_(res['Access-Control-Allow-Origin'], '*')
+        eq_(res['Access-Control-Allow-Methods'], 'GET, OPTIONS')
+
     def test_meta(self):
         res = self.client.get(self.list_url)
         eq_(res.status_code, 200)

@@ -19,6 +19,11 @@ class TestAPI(BaseOAuth, BrowseBase):
 
         self.url = list_url('page')
 
+    def test_has_cors(self):
+        res = self.anon.get(self.url)
+        eq_(res['Access-Control-Allow-Origin'], '*')
+        eq_(res['Access-Control-Allow-Methods'], 'GET, OPTIONS')
+
     def test_response(self):
         res = self.anon.get(self.url)
         content = json.loads(res.content)

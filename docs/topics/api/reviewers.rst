@@ -11,6 +11,8 @@ Reviewing
 
 .. note:: Requires authentication and permission to review apps.
 
+.. warning:: Not available through CORS.
+
 .. http:get::  /api/reviewers/reviewing/
 
    Returns a list of apps that are being reviewed.

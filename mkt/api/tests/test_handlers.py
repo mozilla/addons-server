@@ -32,6 +32,11 @@ class ValidationHandler(BaseOAuth):
         self.get_url = None
         self.user = UserProfile.objects.get(pk=2519)
 
+    def test_has_cors(self):
+        res = self.client.get(self.list_url)
+        eq_(res['Access-Control-Allow-Origin'], '*')
+        eq_(res['Access-Control-Allow-Methods'], 'POST, OPTIONS')
+
     def create(self):
         res = self.client.post(self.list_url,
                                data=json.dumps({'manifest':
@@ -459,7 +464,7 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
 
     def test_previews(self):
         app = self.create_app()
-        preview_data = {'caption': 'foo',  'filetype': 'image/png',
+        preview_data = {'caption': 'foo', 'filetype': 'image/png',
                         'thumbtype': 'image/png', 'addon': app}
         Preview.objects.create(**preview_data)
         preview_data['caption'] = 'bar'
@@ -638,6 +643,10 @@ class TestAppStatusHandler(CreateHandler, AMOPaths):
     def test_verbs(self):
         self._allowed_verbs(self.list_url, [])
 
+    def test_has_no_cors(self):
+        res = self.client.get(self.list_url)
+        assert 'access-control-allow-origin' not in res
+
     def test_status(self):
         self.create_app()
         res = self.client.get(self.get_url)
@@ -710,6 +719,11 @@ class TestCategoryHandler(BaseOAuth):
         self._allowed_verbs(self.list_url, ['get'])
         self._allowed_verbs(self.get_url, ['get'])
 
+    def test_has_cors(self):
+        res = self.client.get(self.list_url)
+        eq_(res['Access-Control-Allow-Origin'], '*')
+        eq_(res['Access-Control-Allow-Methods'], 'GET, OPTIONS')
+
     def test_weight(self):
         self.cat.update(weight=-1)
         res = self.anon.get(self.list_url)
@@ -753,6 +767,11 @@ class TestPreviewHandler(BaseOAuth, AMOPaths):
                          {'app': self.app.pk})
         self.good = {'file': {'data': self.file, 'type': 'image/jpg'},
                      'position': 1}
+
+    def test_has_cors(self):
+        res = self.client.get(self.list_url)
+        eq_(res['Access-Control-Allow-Origin'], '*')
+        eq_(res['Access-Control-Allow-Methods'], 'POST, OPTIONS')
 
     def test_no_addon(self):
         list_url = ('api_dispatch_list', {'resource_name': 'preview'})
@@ -867,6 +886,11 @@ class TestFeaturedHomeHandler(BaseOAuth):
 
     def test_verbs(self):
         self._allowed_verbs(self.list_url, ['get'])
+
+    def test_has_cors(self):
+        res = self.client.get(self.list_url)
+        eq_(res['Access-Control-Allow-Origin'], '*')
+        eq_(res['Access-Control-Allow-Methods'], 'GET, OPTIONS')
 
     def test_get_featured(self):
         res = self.anon.get(self.list_url)

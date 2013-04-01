@@ -26,7 +26,7 @@ from mkt.api.authentication import (AppOwnerAuthorization,
                                     OptionalOAuthAuthentication,
                                     OwnerAuthorization,
                                     OAuthAuthentication)
-from mkt.api.base import MarketplaceModelResource
+from mkt.api.base import CORSResource, MarketplaceModelResource
 from mkt.api.forms import (CategoryForm, DeviceTypeForm, NewPackagedForm,
                            PreviewArgsForm, PreviewJSONForm, StatusForm,
                            UploadForm)
@@ -39,7 +39,7 @@ from mkt.webapps.utils import app_to_dict
 log = commonware.log.getLogger('z.api')
 
 
-class ValidationResource(MarketplaceModelResource):
+class ValidationResource(CORSResource, MarketplaceModelResource):
 
     class Meta:
         queryset = FileUpload.objects.all()
@@ -102,7 +102,7 @@ class ValidationResource(MarketplaceModelResource):
         return bundle
 
 
-class AppResource(MarketplaceModelResource):
+class AppResource(CORSResource, MarketplaceModelResource):
     previews = fields.ToManyField('mkt.api.resources.PreviewResource',
                                   'previews', readonly=True)
 
@@ -288,7 +288,7 @@ class StatusResource(MarketplaceModelResource):
         return amo.STATUS_CHOICES_API_LOOKUP[int(bundle.data['status'])]
 
 
-class CategoryResource(MarketplaceModelResource):
+class CategoryResource(CORSResource, MarketplaceModelResource):
 
     class Meta:
         queryset = Category.objects.filter(type=amo.ADDON_WEBAPP,
@@ -301,7 +301,7 @@ class CategoryResource(MarketplaceModelResource):
         serializer = Serializer(formats=['json'])
 
 
-class PreviewResource(MarketplaceModelResource):
+class PreviewResource(CORSResource, MarketplaceModelResource):
     image_url = fields.CharField(attribute='image_url', readonly=True)
     thumbnail_url = fields.CharField(attribute='thumbnail_url', readonly=True)
 
@@ -366,7 +366,7 @@ class PreviewResource(MarketplaceModelResource):
         return bundle
 
 
-class UserResource(MarketplaceModelResource):
+class UserResource(CORSResource, MarketplaceModelResource):
     class Meta:
         queryset = User.objects.all()
         resource_name = 'user'
