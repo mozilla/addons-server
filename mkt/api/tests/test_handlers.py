@@ -691,6 +691,17 @@ class TestAppStatusHandler(CreateHandler, AMOPaths):
         eq_(app.__class__.objects.get(pk=app.pk).status, amo.STATUS_PUBLIC)
 
 
+class TestAppDetail(BaseOAuth, AMOPaths):
+    fixtures = fixture('user_2519', 'webapp_337141')
+
+    def test_price(self):
+        self.get_url = ('api_dispatch_detail',
+                        {'resource_name': 'app', 'pk': 337141})
+        res = self.client.get(self.get_url)
+        data = json.loads(res.content)
+        eq_(data['price'], None)
+
+
 class TestCategoryHandler(BaseOAuth):
 
     def setUp(self):
