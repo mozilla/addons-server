@@ -2,10 +2,11 @@ import collections
 import json
 import uuid
 
+from django.conf import settings
+from django.core import mail
+
 from mock import patch
 from nose.tools import eq_
-
-from django.conf import settings
 
 from amo.tests import TestCase
 from mkt.api.tests.test_oauth import BaseOAuth, get_absolute_url
@@ -14,6 +15,14 @@ from mkt.constants.apps import INSTALL_TYPE_REVIEWER
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Installed
 from users.models import UserProfile
+
+
+class TestPotatoCaptcha(object):
+    def _test_bad_api_potato_data(self, response, data=None):
+        if not data:
+            data = json.loads(response.content)
+        eq_(400, response.status_code)
+        assert '__all__' in data['error_message']
 
 
 class TestAccount(BaseOAuth):
@@ -133,3 +142,77 @@ class TestLoginHandler(TestCase):
                                dict(assertion='fake-assertion',
                                     audience='fakeamo.org'))
         eq_(res.status_code, 401)
+
+
+class TestFeedbackHandler(TestPotatoCaptcha, BaseOAuth):
+    def setUp(self):
+        super(TestFeedbackHandler, self).setUp(api_name='account')
+        self.list_url = list_url('feedback')
+        self.user = UserProfile.objects.get(pk=2519)
+        self.default_data = {
+            'chromeless': 'no',
+            'feedback': 'Here is what I really think.',
+            'platform': 'Desktop',
+            'from_url': '/feedback',
+            'sprout': 'potato'
+        }
+        self.headers = {
+            'HTTP_USER_AGENT': 'Fiiia-fox',
+            'REMOTE_ADDR': '48.151.623.42'
+        }
+
+    def _call(self, anonymous=False, data=None):
+        post_data = self.default_data.copy()
+        client = self.anon if anonymous else self.client
+        if data:
+            post_data.update(data)
+        res = client.post(self.list_url, data=json.dumps(post_data),
+                          **self.headers)
+        try:
+            res_data = json.loads(res.content)
+
+        # Pending #855817, some errors will return an empty response body.
+        except ValueError:
+            res_data = res.content
+        return res, res_data
+
+    def _test_success(self, res, data):
+        eq_(201, res.status_code)
+
+        fields = self.default_data.copy()
+        del fields['sprout']
+        for name in fields.keys():
+            eq_(fields[name], data[name])
+
+        eq_(len(mail.outbox), 1)
+        assert self.default_data['feedback'] in mail.outbox[0].body
+        assert self.headers['REMOTE_ADDR'] in mail.outbox[0].body
+
+    def test_send(self):
+        res, data = self._call()
+        self._test_success(res, data)
+        eq_(unicode(self.user), data['user'])
+        eq_(mail.outbox[0].from_email, self.user.email)
+
+    def test_send_anonymous(self):
+        res, data = self._call(anonymous=True)
+        self._test_success(res, data)
+        assert not data['user']
+        eq_(settings.NOBODY_EMAIL, mail.outbox[0].from_email)
+
+    def test_send_potato(self):
+        tuber_res, tuber_data = self._call(data={'tuber': 'potat-toh'},
+                                           anonymous=True)
+        potato_res, potato_data = self._call(data={'sprout': 'potat-toh'},
+                                             anonymous=True)
+        self._test_bad_api_potato_data(tuber_res, tuber_data)
+        self._test_bad_api_potato_data(potato_res, potato_data)
+
+    def test_send_bad_data(self):
+        """
+        One test to ensure that FeedbackForm is doing its validation duties.
+        We'll rely on FeedbackForm tests for the rest.
+        """
+        res, data = self._call(data={'feedback': None})
+        eq_(400, res.status_code)
+        assert 'feedback' in data['error_message']

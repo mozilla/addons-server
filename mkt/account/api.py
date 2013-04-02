@@ -10,13 +10,17 @@ from tastypie.authorization import Authorization
 from tastypie.exceptions import ImmediateHttpResponse
 
 from amo.urlresolvers import reverse
+from amo.utils import send_mail_jinja
 from mkt.api.authentication import (OAuthAuthentication,
+                                    OptionalOAuthAuthentication,
                                     OwnerAuthorization)
-from mkt.api.base import (MarketplaceModelResource, MarketplaceResource,
-                          CORSResource)
+from mkt.api.base import (CORSResource, GenericObject, MarketplaceModelResource,
+                          MarketplaceResource, PotatoCaptchaResource)
 from mkt.constants.apps import INSTALL_TYPE_USER
 from users.models import UserProfile
 from users.views import browserid_login
+
+from .forms import FeedbackForm
 
 
 class AccountResource(MarketplaceModelResource):
@@ -92,3 +96,72 @@ class LoginResource(CORSResource, MarketplaceResource):
                         }
                  })
         return res
+
+
+class FeedbackResource(PotatoCaptchaResource, CORSResource,
+                       MarketplaceResource):
+    feedback = fields.CharField(attribute='feedback')
+    platform = fields.CharField(attribute='platform', null=True)
+    chromeless = fields.CharField(attribute='chromeless', null=True)
+    from_url = fields.CharField(attribute='from_url', null=True)
+    user = fields.CharField(attribute='user', null=True)
+    user_agent = fields.CharField(attribute='user_agent', blank=True)
+    ip_address = fields.CharField(attribute='ip_address', blank=True)
+
+    class Meta:
+        resource_name = 'feedback'
+        always_return_data = True
+        list_allowed_methods = ['post']
+        detail_allowed_methods = []
+        authentication = OptionalOAuthAuthentication()
+        authorization = Authorization()
+        object_class = GenericObject
+        include_resource_uri = False
+
+    def _send_email(self, bundle):
+        """
+        Send feedback email from the valid bundle.
+        """
+        user = bundle.data.get('user')
+        sender = getattr(user, 'email', settings.NOBODY_EMAIL)
+        send_mail_jinja(u'Marketplace Feedback', 'account/email/feedback.txt',
+                        bundle.data, from_email=sender,
+                        recipient_list=[settings.MKT_FEEDBACK_EMAIL])
+
+    def hydrate(self, bundle):
+        """
+        Add the authenticated user to the bundle.
+        """
+        bundle.data.update({
+            'user': bundle.request.amo_user,
+            'user_agent': bundle.request.META.get('HTTP_USER_AGENT', ''),
+            'ip_address': bundle.request.META.get('REMOTE_ADDR', '')
+        })
+        return bundle
+
+    def dehydrate(self, bundle):
+        """
+        Strip the `user_agent` and `ip_address` fields before presenting to the
+        consumer.
+        """
+        del bundle.data['user_agent']
+        del bundle.data['ip_address']
+        return bundle
+
+    def get_resource_uri(self, bundle_or_obj=None):
+        """
+        Noop needed to prevent NotImplementedError.
+        """
+        return ''
+
+    def obj_create(self, bundle, request=None, **kwargs):
+        bundle.obj = self._meta.object_class(**kwargs)
+        bundle = self.full_hydrate(bundle)
+
+        form = FeedbackForm(bundle.data, request=request)
+        if not form.is_valid():
+            raise self.form_errors(form)
+
+        self._send_email(bundle)
+
+        return bundle

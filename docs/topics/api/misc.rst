@@ -107,3 +107,41 @@ Returns the list of categories::
     }
 
 Use the `id` of the category in your app updating.
+
+
+Feedback
+========
+
+.. http:post:: /api/account/feedback/
+
+    Submit feedback to the Marketplace.
+
+    .. note:: Authentication is optional.
+
+    **Request**
+
+    The request body should include a JSON representation of the feedback::
+
+        {
+          "chromeless": "No",
+          "feedback": "Here's what I really think.",
+          "platform": "Desktop",
+          "from_url": "/feedback",
+          "sprout": "potato"
+        }
+
+    This form uses `PotatoCaptcha`, so there must be a field named `sprout` with
+    the value `potato` and cannot be a field named `tuber` with a truthy value.
+
+    **Response**
+
+    Returns 201 on successful submission, with the response body containing a
+    serialization of the feedback data::
+
+        {
+            "chromeless": "No",
+            "feedback": "Here's what I really think.",
+            "from_url": "/feedback",
+            "platform": "Desktop",
+            "user": null,
+        }

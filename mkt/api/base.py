@@ -4,7 +4,7 @@ import json
 from django.conf.urls.defaults import url
 from django.core.exceptions import ObjectDoesNotExist
 
-from tastypie import http
+from tastypie import fields, http
 from tastypie.bundle import Bundle
 from tastypie.exceptions import ImmediateHttpResponse
 from tastypie.resources import Resource, ModelResource
@@ -237,6 +237,19 @@ class MarketplaceModelResource(Marketplace, ModelResource):
         ]
 
 
+class GenericObject(dict):
+    """
+    tastypie-friendly subclass of dict that allows direct attribute assignment
+    of dict items. Best used as `object_class` when not using a `ModelResource`
+    subclass.
+    """
+    def __getattr__(self, name):
+        return self.__getitem__(name)
+
+    def __setattr__(self, name, value):
+        self.__setitem__(name, value)
+
+
 class CORSResource(object):
     """
     A mixin to provide CORS support to your API.
@@ -252,3 +265,21 @@ class CORSResource(object):
         """
         request.CORS = allowed
         return super(CORSResource, self).method_check(request, allowed=allowed)
+
+
+class PotatoCaptchaResource(object):
+    """
+    A mixin adding the fields required by PotatoCaptcha to the resource.
+    """
+    tuber = fields.CharField(attribute='tuber')
+    sprout = fields.CharField(attribute='sprout')
+
+    def alter_detail_data_to_serialize(self, request, data):
+        """
+        Remove `sprout` from bundle data before returning serialized object to
+        the consumer.
+        """
+        sup = super(PotatoCaptchaResource, self)
+        super_bundle = sup.alter_detail_data_to_serialize(request, data)
+        del super_bundle.data['sprout']
+        return super_bundle
