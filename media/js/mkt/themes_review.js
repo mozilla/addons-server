@@ -416,15 +416,18 @@ function vertAlignSidebar($window, $activeTheme) {
 
 
 $(document).ready(function() {
-    $('.zoombox').zoomBox();
-    $('.theme-queue').themeQueue();
-    $('.sidebar').themeQueueOptions('.theme-queue');
-    $('#commit').click(_pd(function(e) {
-        $('#theme-queue-form').submit();
-    }));
+    var $theme_queue = $('.theme-queue');
+    if ($theme_queue.length) {
+        $('.zoombox').zoomBox();
+        $theme_queue.themeQueue();
+        $('.sidebar').themeQueueOptions('.theme-queue');
+        $('#commit').click(_pd(function(e) {
+            $('#theme-queue-form').submit();
+        }));
 
-    var $window = $(window);
-    $window.scroll(_.throttle(function() {
-        vertAlignSidebar($window, $('.theme.active'));
-    }, 100));
+        var $window = $(window);
+        $window.scroll(_.throttle(function() {
+            vertAlignSidebar($window, $('.theme.active'));
+        }, 100));
+    }
 });
