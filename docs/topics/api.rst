@@ -39,8 +39,8 @@ We will also return the version of the API we think you are using::
     X-API-Version: 1
 
 .. note: Before v1 is released, the API was unversioned at `/api/v1/`, because
-of the small number of clients using that URL, we hope all users are able to
-update to `/api/v1/` quickly so we can remove that unversioned URL.
+    of the small number of clients using that URL, we hope all users are able to
+    update to `/api/v1/` quickly so we can remove that unversioned URL.
 
 Authentication
 ==============
@@ -53,28 +53,45 @@ Two options for authentication are available: shared-secret and OAuth.
 Shared Secret
 +++++++++++++
 
-The Marketplace frontend uses a server-supplied token for
-authentication, stored as a cookie. A POST request to
-``/api/v1/account/login/`` with an ``assertion`` field containing a
-Persona assertion and an ``audience`` field containing the appropriate
-Persona audience will be responded to with user information and a
-shared secret to use for future requests. Example::
+The Marketplace frontend uses a server-supplied token for authentication,
+stored as a cookie.
 
-    {
-     'error': None,
-     'token': 'ffoob@example.com,95c9063d9f249aacfe5697fc83192ed6480c01463e2a'
-              '5af5ecaef11754700f4be33818d0e83a0cfc2cab365d60ba53b3c2b9f8f658'
-              'c43e9bbb876eef0,165d631d3c3045458b4516242dad7ae'
-     'settings': {
-         'display_name': 'fred foobar',
-         'email': 'ffoob@example.com',
-         'region': 'appistan'
-     }
-    }
+.. http:post:: /api/v1/account/login/
 
-The ``token`` value should be sent with authorized requests as a
-cookie named ``user``.
+    **Request**
 
+    :param assertion: the Persona assertion.
+    :param audience: the Persona audience.
+
+    Example:
+
+    .. code-block:: json
+
+        {
+            "assertion": "1234",
+            "audience": "some.site.com"
+        }
+
+    **Response**
+
+    :param error: any error that occurred.
+    :param token: a shared secret to be used on later requests. It should be
+        sent with authorized requests as a cookie named ``user``.
+    :param settings: user account settings.
+
+    Example:
+
+    .. code-block:: json
+
+        {
+            "error": null,
+            "token": "ffoob@example.com,95c9063d9f249aacfe5697fc83192e...",
+            "settings": {
+                "display_name": "fred foobar",
+                "email": "ffoob@example.com",
+                "region": "appistan"
+            }
+        }
 
 OAuth
 +++++
@@ -140,9 +157,11 @@ Example headers (new lines added for clarity)::
                        oauth_signature="Nb8..."
 
 If requests are failing and returning a 401 response, then there will likely be
-a reason contained in the response. For example::
+a reason contained in the response. For example:
 
-        {u'reason': u'Terms of service not accepted.'}
+        .. code-block:: json
+
+            {"reason": "Terms of service not accepted."}
 
 Requests
 ========
@@ -157,38 +176,126 @@ If you access the URLs in this document in a browser, then prepend
 Verbs
 +++++
 
-This follows the order of the `django-tastypie`_ REST verbs, a PUT for an
-update and POST for create.
+This follows the order of the `django-tastypie`_ REST verbs.
+
+* ``GET`` gets an individual resource or listing.
+* ``POST`` creates a resource.
+* ``PUT`` replaces a resource, so this alters all the data on an existing
+  resource.
+* ``PATCH`` alters some parts of an existing resource.
+
+A ``GET`` accepts query string parameters for filtering.
+
+A ``POST``, ``PUT`` and ``PATCH`` accept parameters as a JSON document in the
+body of the request.
+
+If you are unable to make the correct kind of request, you send a request using
+any verb with the header ``X-HTTP-METHOD-OVERRIDE`` containing the verb you
+would like to use.
 
 Responses
 =========
 
-For purposes of brevity in the documentation, irrelevant parts of the responses
-will be shown with ellipses (...).
-
-Marketplace will return errors as JSON with the appropriate status code.
+Because the responses can be quite long, rather than show the full result, we
+link to examples of the results.  All responses are in JSON.
 
 Data errors
 +++++++++++
 
 If there is an error in your data, a 400 status code will be returned. There
-can be multiple errors per field. Example::
+can be multiple errors per field. Example:
+
+    .. code-block:: json
 
         {
-          "error_message": {
-            "manifest": ["This field is required."]
-          }
+            "error_message": {
+                "manifest": ["This field is required."]
+            }
         }
 
 Other errors
 ++++++++++++
 
-The appropriate HTTP status code will be returned.
+The appropriate HTTP status code will be returned, with the error in JSON.
 
-Content-type
-++++++++++++
+Listings
+++++++++
 
-All responses are in JSON.
+When an API returns a list of objects, it will generally return a response in
+the same manner every time. There are a few exceptions for specialised API's
+and these are noted.
+
+A listing API will return a two elements, meta and objects. Rather than include
+this output in all the API docs, we will link to these documents or the
+relevant object.
+
+.. _meta-response-label:
+
+Listing response meta
+~~~~~~~~~~~~~~~~~~~~~
+
+This is information about the object listing so that the client can paginate
+through the listing with. For example:
+
+    .. code-block:: json
+
+        {
+            "meta": {
+                "limit": 3,
+                "next": "/api/apps/category/?limit=3&offset=6",
+                "offset": 3,
+                "previous": "/api/apps/category/?limit=3&offset=0",
+                "total_count": 16
+            }
+        }
+
+To support the listing, the following query params can be passed through to any
+listing page.
+
+.. _list-query-params-label:
+
+Listing query params
+~~~~~~~~~~~~~~~~~~~~
+
+* *limit*: the number of records requested.
+* *next*: the URL for the next page in the pagination.
+* *offset*: where in the result set the listing started.
+* *previous*: the URL for the previous page in the pagination.
+* *total_count*: the total number of records.
+
+.. _objects-response-label:
+
+Listing response objects
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+This is a list of the objects returned by the listing. The contents of the
+objects depends upon the listing in question. For example:
+
+    .. code-block:: json
+
+        {
+            "objects": [{
+                "id": "156",
+                "name": "Music",
+                "resource_uri": "/api/apps/category/156/",
+                "slug": "music"
+            }, {
+                "id": "157",
+                "name": "News",
+                "resource_uri": "/api/apps/category/157/",
+                "slug": "news-weather"
+            }, {
+                "id": "158",
+                "name": "Productivity",
+                "resource_uri": "/api/apps/category/158/",
+                "slug": "productivity"
+            }]
+        }
+
+All objects in the database will have at least two fields:
+
+* *id*: the unique id of that object.
+* *resource_uri*: the URL of that object for more detailed information.
 
 Cross Origin
 ============

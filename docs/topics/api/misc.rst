@@ -5,100 +5,84 @@ Miscellaneous API
 ======================
 
 
-Home page
-=========
-
-The home page of the Marketplace which is a list of featured apps and
-categories.
+Home page and featured apps
+===========================
 
 .. http:get:: /api/v1/home/page/
 
+    The home page of the Marketplace which is a list of featured apps and
+    categories.
+
     **Request**:
 
-    .. sourcecode:: http
-
-        GET /api/v1/home/page/
-
-
     :param dev: the device requesting the homepage, results will be tailored to the device which will be one of: `firefoxos` (Firefox OS), `desktop`, `android` (mobile).
+
+    This is not a standard listing page and **does not** accept the standard
+    listing query parameters.
 
     **Response**:
 
-    .. sourcecode:: http
-
-        {"categories": [
-            {"id": "99",
-             "name": "Lifestyle"...}
-         ],
-         "featured": [{
-            {"slug": "cool-app",
-             "name": "Cool app"...}
-         ]
-        }
-
-Featured apps
-=============
-
-A list of the featured apps on the Marketplace.
+    :param categories: A list of :ref:`categories <category-response-label>`.
+    :param featured: A list of :ref:`apps <app-response-label>`.
 
 .. http:get:: /api/v1/home/featured/
 
+    A list of the featured apps on the Marketplace.
+
     **Request**
 
-    .. sourcecode:: http
+    :param dev: The device requesting the homepage, results will be tailored to the device which will be one of: `firefoxos` (Firefox OS), `desktop`, `android` (mobile).
+    :param category: The id or slug of the category to filter on.
 
-        GET /api/v1/home/featured/
+    Plus standard :ref:`list-query-params-label`.
 
-    :param dev: the device requesting the homepage, results will be tailored to the device which will be one of: `firefoxos` (Firefox OS), `desktop`, `android` (mobile).
-    :param category: the id or slug of the category to filter on.
-    :param limit: the number of responses.
+    Region is inferred from the request.
 
     **Response**
 
-    .. sourcecode:: http
+    :param meta: :ref:`meta-response-label`.
+    :param objects: A :ref:`listing <objects-response-label>` of :ref:`apps <app-response-label>`.
 
-        {"meta": {"limit": 20, ...},
-         "objects": [
-            {"app_type": "hosted"...}
-         ]
-        }
-
-Region is inferred from the request.
+    :status 200: successfully completed.
 
 Account
 =======
 
-.. note:: Requires authentication.
+.. http:get:: /api/v1/account/settings/mine/
 
-To get data on the currently logged in user::
+    Returns data on the currently logged in user.
 
-    GET /api/v1/account/settings/mine/
+    .. note:: Requires authentication.
 
-Returns account information::
+    **Response**
 
-    {"resource_uri": "/api/v1/account/settings/1/",
-     "display_name": "Nice person",
-     "installed': [
-        "/api/v1/apps/3/",
-     ]}
+    .. code-block:: json
 
-The same information is also accessible at the canoncial `resource_uri`::
+        {
+            "resource_uri": "/api/v1/account/settings/1/",
+            "display_name": "Nice person",
+            "installed": [
+                "/api/v1/apps/3/"
+            ]
+        }
 
-    GET /api/v1/account/settings/1/
+The same information is also accessible at the canoncial `resource_uri`
+`/api/v1/account/settings/1/`. The `/api/v1/account/mine/` URL is provided as
+a convenience for users who don't know their full URL ahead of time.
 
-The `/api/v1/account/mine/` URL is provided as a convenience for users who don't
-know their full URL ahead of time.
+To update account information:
 
-To update account information::
+.. http:patch:: /api/v1/account/settings/mine/
 
-    PATCH /api/v1/account/settings/mine/
-    {"display_name": "Nicer person"}
+    **Request**
 
-Or::
+    :param display_name: the displayed name for this user.
 
-    PUT /api/v1/account/settings/mine/
-    {"display_name": "Nicer person"}
+    **Response**
 
+    No content is returned in the response.
+
+    :status 201: successfully completed.
 
 Fields that can be updated:
 
@@ -111,31 +95,38 @@ Fields that are read only:
 Categories
 ==========
 
-To find a list of categories available on the marketplace::
+.. http:get:: /api/v1/apps/category/
 
-    GET /api/v1/apps/category/
+    Returns a list of categories available on the marketplace.
 
-Returns the list of categories::
+    **Response**
 
-    {
-    "meta": {
-        "limit": 20,
-        "next": null,
-        "offset": 0,
-        "previous": null,
-        "total_count": 16
-    },
-    "objects": [
+
+    :param meta: :ref:`meta-response-label`.
+    :param objects: A :ref:`listing <objects-response-label>` of :ref:`categories <category-response-label>`.
+    :status 200: successfully completed.
+
+
+.. _category-response-label:
+
+.. http:get:: /api/v1/apps/category/<id>/
+
+    Returns a category.
+
+    **Request**
+
+    Standard :ref:`list-query-params-label`.
+
+    **Response**
+
+    .. code-block:: json
+
         {
             "id": "1",
             "name": "Games",
             "resource_uri": "/api/v1/apps/category/1/",
             "slug": "games"
-        },
-        ...
-    }
-
-Use the `id` of the category in your app updating.
+        }
 
 
 Feedback
@@ -149,14 +140,14 @@ Feedback
 
     **Request**
 
-    The request body should include a JSON representation of the feedback::
+    .. code-block:: json
 
         {
-          "chromeless": "No",
-          "feedback": "Here's what I really think.",
-          "platform": "Desktop",
-          "from_url": "/feedback",
-          "sprout": "potato"
+            "chromeless": "No",
+            "feedback": "Here's what I really think.",
+            "platform": "Desktop",
+            "from_url": "/feedback",
+            "sprout": "potato"
         }
 
     This form uses `PotatoCaptcha`, so there must be a field named `sprout` with
@@ -164,8 +155,7 @@ Feedback
 
     **Response**
 
-    Returns 201 on successful submission, with the response body containing a
-    serialization of the feedback data::
+    .. code-block:: json
 
         {
             "chromeless": "No",
@@ -174,3 +164,5 @@ Feedback
             "platform": "Desktop",
             "user": null,
         }
+
+    :status 201: successfully completed.
