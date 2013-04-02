@@ -83,6 +83,28 @@ class JSONField(forms.Field):
         return value
 
 
+class SluggableModelChoiceField(forms.ModelChoiceField):
+    """
+    A model choice field that can accept either a slug or a pk and adapts
+    itself based on that. Requries: `sluggable_to_field_name` to be set as
+    the field that we will base the slug on.
+    """
+
+    def __init__(self, *args, **kw):
+        if 'sluggable_to_field_name' not in kw:
+            raise ValueError('sluggable_to_field_name is required.')
+        self.sluggable_to_field_name = kw.pop('sluggable_to_field_name')
+        return super(SluggableModelChoiceField, self).__init__(*args, **kw)
+
+    def to_python(self, value):
+        try:
+            if not value.isdigit():
+                self.to_field_name = self.sluggable_to_field_name
+        except AttributeError:
+            pass
+        return super(SluggableModelChoiceField, self).to_python(value)
+
+
 def parse(file_, require_name=False, require_type=None):
     try:
         if not set(['data', 'type']).issubset(set(file_.keys())):

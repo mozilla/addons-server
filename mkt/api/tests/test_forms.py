@@ -1,11 +1,13 @@
 import base64
 
-from nose.tools import eq_
+import mock
+from nose.tools import eq_, ok_
 
 from addons.models import Addon
 import amo
 import amo.tests
-from mkt.api.forms import PreviewJSONForm, StatusForm
+from mkt.api.forms import (PreviewJSONForm, SluggableModelChoiceField,
+                           StatusForm)
 
 
 class TestPreviewForm(amo.tests.TestCase, amo.tests.AMOPaths):
@@ -73,3 +75,26 @@ class TestSubmitForm(amo.tests.TestCase):
             self.addon.status = s
             status = StatusForm(instance=self.addon).fields['status']
             eq_([k for k, v in status.choices], [k])
+
+
+class TestSluggableChoiceField(amo.tests.TestCase):
+
+    def setUp(self):
+        self.fld = SluggableModelChoiceField(mock.Mock(),
+                                             sluggable_to_field_name='foo')
+
+    def test_nope(self):
+        with self.assertRaises(ValueError):
+            SluggableModelChoiceField()
+
+    def test_slug(self):
+        self.fld.to_python(value='asd')
+        ok_(self.fld.to_field_name, 'foo')
+
+    def test_pk(self):
+        self.fld.to_python(value='1')
+        ok_(self.fld.to_field_name is None)
+
+    def test_else(self):
+        self.fld.to_python(value=None)
+        ok_(self.fld.to_field_name is None)

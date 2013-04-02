@@ -50,7 +50,7 @@ A list of the featured apps on the Marketplace.
         GET /api/v1/home/featured/
 
     :param dev: the device requesting the homepage, results will be tailored to the device which will be one of: `firefoxos` (Firefox OS), `desktop`, `android` (mobile).
-    :param category: the id of the category to filter on.
+    :param category: the id or slug of the category to filter on.
     :param limit: the number of responses.
 
     **Response**

@@ -2,16 +2,17 @@ from django import forms
 
 from addons.models import Category
 from mkt import regions
+from mkt.api.forms import SluggableModelChoiceField
 
 
 class Featured(forms.Form):
     CHOICES = ('android', 'desktop', 'firefoxos')
 
-    dev = forms.ChoiceField(choices=[(c, c) for c in CHOICES],
-                               required=False)
+    dev = forms.ChoiceField(choices=[(c, c) for c in CHOICES], required=False)
     limit = forms.IntegerField(max_value=20, min_value=1, required=False)
-    category = forms.ModelChoiceField(queryset=Category.objects.all(),
-                                      required=False)
+    category = SluggableModelChoiceField(queryset=Category.objects.all(),
+                                         sluggable_to_field_name='slug',
+                                         required=False)
     region = forms.ChoiceField(choices=list(regions.REGIONS_DICT.items()),
                                required=False)
 

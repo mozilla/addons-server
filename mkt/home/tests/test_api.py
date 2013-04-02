@@ -18,7 +18,7 @@ from mkt.zadmin.models import FeaturedApp, FeaturedAppRegion
 class TestForm(amo.tests.TestCase):
 
     def lookup(self, region, device):
-        form = Featured({'device': device}, region=region)
+        form = Featured({'dev': device}, region=region)
         ok_(form.is_valid(), form.errors)
         return form.as_featured()
 
@@ -71,7 +71,8 @@ class TestFeaturedHomeHandler(BaseOAuth):
         super(TestFeaturedHomeHandler, self).setUp(api_name='home')
         self.list_url = list_url('featured')
         self.cat = Category.objects.create(name='awesome',
-                                           type=amo.ADDON_WEBAPP)
+                                           type=amo.ADDON_WEBAPP,
+                                           slug='awesome')
 
         # App, no category, worldwide region.
         self.app1 = Webapp.objects.create(status=amo.STATUS_PUBLIC,
@@ -124,10 +125,16 @@ class TestFeaturedHomeHandler(BaseOAuth):
         self.assertSetEqual([o['slug'] for o in data['objects']],
                             ['app-1', 'app-3'])
 
-    def test_get_category(self):
-        res = self.anon.get(self.list_url, data={'category': self.cat.pk})
+    def _get_category(self, data):
+        res = self.anon.get(self.list_url, data=data)
         data = json.loads(res.content)
         eq_(res.status_code, 200)
         eq_(data['meta']['total_count'], 1)
         # App2 is in the category.
         eq_(data['objects'][0]['slug'], self.app2.app_slug)
+
+    def test_get_category(self):
+        self._get_category({'category': self.cat.pk})
+
+    def test_get_slug(self):
+        self._get_category({'category': self.cat.slug})
