@@ -309,12 +309,14 @@ QueuedApp = collections.namedtuple('QueuedApp', 'app created')
 def _queue(request, apps, tab, search_form=None, pager_processor=None):
     per_page = request.GET.get('per_page', QUEUE_PER_PAGE)
     pager = paginate(request, apps, per_page)
+    statuses = dict((k, unicode(v)) for k, v in amo.STATUS_CHOICES.items())
 
     return jingo.render(request, 'reviewers/queue.html', context(**{
         'addons': pager.object_list,
         'pager': pager,
         'tab': tab,
         'search_form': search_form,
+        'statuses': statuses,
     }))
 
 
