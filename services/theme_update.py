@@ -1,6 +1,7 @@
 import base64
 import json
 import os
+import posixpath
 import re
 from time import time
 
@@ -37,7 +38,7 @@ class ThemeUpdate(object):
             self.cursor = self.conn.cursor()
 
     def base64_icon(self, addon_id):
-        path = os.path.join(settings.ADDONS_PATH, str(addon_id), 'icon.png')
+        path = self.image_path('icon.jpg')
         try:
             with open(path, 'r') as f:
                 return base64.b64encode(f.read())
@@ -85,7 +86,7 @@ class ThemeUpdate(object):
         LEFT JOIN translations AS t_desc
             ON t_desc.id=a.summary AND t_desc.locale=%(locale)s
         WHERE p.{primary_key}=%(id)s AND
-            a.addontype_id=%(atype)s
+            a.addontype_id=%(atype)s AND a.status=4 AND a.inactive=0
         """.format(primary_key=self.data['primary_key'])
 
         self.cursor.execute(sql, self.data)
@@ -143,6 +144,19 @@ class ThemeUpdate(object):
             'version': '1.0'
         })
 
+    def image_path(self, filename):
+        row = self.data['row']
+
+        # Special cased for non-AMO-uploaded themes imported from getpersonas.
+        if row['persona_id'] != 0:
+            if filename == 'preview.png':
+                filename = 'preview.jpg'
+            elif filename == 'icon.png':
+                filename = 'preview_small.jpg'
+
+        return os.path.join(settings.ADDONS_PATH, str(row['addon_id']),
+                            filename)
+
     def image_url(self, filename):
         row = self.data['row']
 
@@ -153,8 +167,8 @@ class ThemeUpdate(object):
             elif filename == 'icon.png':
                 filename = 'preview_small.jpg'
 
-        image_url = settings.NEW_PERSONAS_IMAGE_URL % {'id': row['addon_id'],
-                                                       'file': filename}
+        image_url = posixpath.join(settings.LOCAL_MIRROR_URL,
+                                   str(row['addon_id']), filename or '')
         return '%s?%s' % (image_url, row['modified'])
 
     def url(self, url):

@@ -5,6 +5,7 @@ import hmac
 import itertools
 import json
 import os
+import posixpath
 import re
 import time
 from datetime import datetime, timedelta
@@ -1631,23 +1632,16 @@ class Persona(caching.CachingMixin, models.Model):
                 self.update_url]
         return urls
 
-    def _image_url(self, filename, ssl=True):
-        if self.is_new():
-            return settings.NEW_PERSONAS_IMAGE_URL % {'id': self.addon.id,
-                                                      'file': filename}
-        else:
-            # TODO(cvan): Remove when getpersonas.com images go bye-bye.
-            base_url = (settings.PERSONAS_IMAGE_URL_SSL if ssl else
-                        settings.PERSONAS_IMAGE_URL)
-            return base_url % {
-                'units': self.persona_id % 10,
-                'tens': (self.persona_id // 10) % 10,
-                'id': self.persona_id,
-                'file': filename,
-            }
+    def _image_url(self, filename):
+        return self.get_mirror_url(filename)
 
     def _image_path(self, filename):
         return os.path.join(settings.ADDONS_PATH, str(self.addon.id), filename)
+
+    def get_mirror_url(self, filename):
+        host = (settings.PRIVATE_MIRROR_URL if self.addon.is_disabled
+                else settings.LOCAL_MIRROR_URL)
+        return posixpath.join(host, str(self.addon.id), filename or '')
 
     @amo.cached_property
     def thumb_url(self):
@@ -1666,10 +1660,6 @@ class Persona(caching.CachingMixin, models.Model):
             return self._image_url('preview_small.jpg')
 
     @amo.cached_property
-    def icon_path(self):
-        return self._image_path('icon.png')
-
-    @amo.cached_property
     def preview_url(self):
         """URL to Persona's big, 680px, preview."""
         if self.is_new():
@@ -1679,11 +1669,11 @@ class Persona(caching.CachingMixin, models.Model):
 
     @amo.cached_property
     def header_url(self):
-        return self._image_url(self.header, ssl=False)
+        return self._image_url(self.header)
 
     @amo.cached_property
     def footer_url(self):
-        return self._image_url(self.footer, ssl=False)
+        return self._image_url(self.footer)
 
     @amo.cached_property
     def update_url(self):

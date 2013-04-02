@@ -1450,7 +1450,7 @@ class TestPersonaModel(amo.tests.TestCase):
             self.persona.footer_url)
 
     def test_old_image_urls(self):
-        p = lambda x: '/1/3/813/' + x
+        p = lambda x: '/15663/' + x
         assert self.persona.thumb_url.endswith(p('preview.jpg')), (
             self.persona.thumb_url)
         assert self.persona.icon_url.endswith(p('preview_small.jpg')), (

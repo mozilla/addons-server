@@ -65,17 +65,17 @@ class TestThemeUpdate(amo.tests.TestCase):
         'description': 'yolo',
         'detailURL': '/en-US/addon/a15663/',
         'accentcolor': '#8d8d97',
-        'iconURL': '/uploads/themes/15663/preview_small.jpg',
-        'previewURL': '/uploads/themes/15663/preview.jpg',
+        'iconURL': '/15663/preview_small.jpg',
+        'previewURL': '/15663/preview.jpg',
         'textcolor': '#ffffff',
         'id': 15663,
-        'headerURL': '/uploads/themes/15663/BCBG_Persona_header2.png',
+        'headerURL': '/15663/BCBG_Persona_header2.png',
         'dataurl': '',
         'name': 'My Persona',
         'author': 'persona_author',
         'updateURL': '/en-US/update-check/themes/15663',
         'version': '1.0',
-        'footerURL': '/uploads/themes/15663/BCBG_Persona_footer2.png'
+        'footerURL': '/15663/BCBG_Persona_footer2.png'
     }
 
     def check_good(self, data):
