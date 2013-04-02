@@ -1,6 +1,12 @@
 Settings Changelog
 ==================
 
+2012-04-01
+----------
+
+* Removed ``FIREPLACE_SECRET_KEY`` setting since ``SECRET_KEY`` is already
+  used for making user secrets and we need something immediately.
+
 2012-03-28
 ----------
 
