@@ -150,7 +150,7 @@ class TestOAuthAuthentication(TestCase):
         ok_(self.auth.is_authenticated(self.call()))
 
 
-@patch.object(settings, 'FIREPLACE_SECRET_KEY', 'gubbish')
+@patch.object(settings, 'SECRET_KEY', 'gubbish')
 class TestSharedSecretAuthentication(TestCase):
     fixtures = fixture('user_2519')
 
@@ -191,7 +191,7 @@ class TestOptionalOAuthAuthentication(TestCase):
         ok_(not self.auth.is_authenticated(req))
 
 
-@patch.object(settings, 'FIREPLACE_SECRET_KEY', 'gubbish')
+@patch.object(settings, 'SECRET_KEY', 'gubbish')
 class TestMultipleAuthentication(TestCase):
     fixtures = fixture('user_2519')
 

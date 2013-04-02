@@ -66,10 +66,10 @@ class LoginResource(CORSResource, MarketplaceResource):
         unique_id = uuid.uuid4().hex
 
         consumer_id = hashlib.sha1(
-            email + settings.FIREPLACE_SECRET_KEY).hexdigest()
+            email + settings.SECRET_KEY).hexdigest()
 
         hm = hmac.new(
-            unique_id + settings.FIREPLACE_SECRET_KEY,
+            unique_id + settings.SECRET_KEY,
             consumer_id, hashlib.sha512)
         return ','.join((email, hm.hexdigest(), unique_id))
 

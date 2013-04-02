@@ -7,9 +7,6 @@ from mkt import asset_bundles
 # The origin URL for our Fireplace frontend, from which API requests come.
 FIREPLACE_URL = ''
 
-# The key used for generating shared secrets in Fireplace logins.
-FIREPLACE_SECRET_KEY = None
-
 ALLOWED_HOSTS += ['.firefox.com']
 # We'll soon need a `settings_test_mkt` to override this.
 APP_PREVIEW = True

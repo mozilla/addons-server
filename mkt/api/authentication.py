@@ -163,8 +163,8 @@ class SharedSecretAuthentication(Authentication):
         try:
             email, hm, unique_id = auth.split(',')
             consumer_id = hashlib.sha1(
-                email + settings.FIREPLACE_SECRET_KEY).hexdigest()
-            return hmac.new(unique_id + settings.FIREPLACE_SECRET_KEY,
+                email + settings.SECRET_KEY).hexdigest()
+            return hmac.new(unique_id + settings.SECRET_KEY,
                             consumer_id, hashlib.sha512).hexdigest() == hm
         except:
             log.info('Bad shared-secret auth data: %s', auth)

@@ -98,7 +98,7 @@ class FakeUUID(object):
     hex = '000000'
 
 
-@patch.object(settings, 'FIREPLACE_SECRET_KEY', 'gubbish')
+@patch.object(settings, 'SECRET_KEY', 'gubbish')
 class TestLoginHandler(TestCase):
     def setUp(self):
         super(TestLoginHandler, self).setUp()
