@@ -97,6 +97,7 @@ MIDDLEWARE_CLASSES += [
     'mkt.fragments.middleware.VaryOnAJAXMiddleware',
     'mkt.site.middleware.DeviceDetectionMiddleware',
     'mkt.fragments.middleware.HijackRedirectMiddleware',
+    'mkt.api.middleware.APIVersionMiddleware',
     'mkt.api.middleware.CORSMiddleware',
     'mkt.api.middleware.APITransactionMiddleware',
     'mkt.api.middleware.APIPinningMiddleware'

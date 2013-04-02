@@ -8,7 +8,7 @@ from test_utils import RequestFactory
 
 import amo.tests
 from mkt.api.middleware import (APIPinningMiddleware, APITransactionMiddleware,
-                                CORSMiddleware)
+                                APIVersionMiddleware, CORSMiddleware)
 from mkt.site.middleware import RedirectPrefixedURIMiddleware
 
 fireplace_url = 'http://firepla.ce:1234'
@@ -94,3 +94,22 @@ class TestPinningMiddleware(amo.tests.TestCase):
         self.req.amo_user.is_anonymous.return_value = True
         self.pin.process_request(self.req)
         ok_(not this_thread_is_pinned())
+
+
+class TestAPIVersionMiddleware(amo.tests.TestCase):
+
+    def setUp(self):
+        self.dep = APIVersionMiddleware()
+
+    def req(self, url, header):
+        req = RequestFactory().get(url)
+        self.dep.process_request(req)
+        res = self.dep.process_response(req, HttpResponse())
+        return res.get(header, None)
+
+    def test_notice(self):
+        eq_(self.req('/foo/', 'X-API-Status'), None)
+        eq_(self.req('/foo/api/', 'X-API-Status'), None)
+        eq_(self.req('/api/', 'X-API-Status'), 'Deprecated')
+        eq_(self.req('/api/v1/', 'X-API-Status'), None)
+        eq_(self.req('/api/v1/', 'X-API-Version'), '1')

@@ -1,3 +1,5 @@
+import re
+
 from django.conf import settings
 from django.middleware.transaction import TransactionMiddleware
 
@@ -51,12 +53,12 @@ class CORSMiddleware(object):
         # hook for figuring out if a response should have the CORS headers on
         # it. That's because it will often error out with immediate HTTP
         # responses.
-
-        fireplacey = request.META.get('HTTP_ORIGIN') == settings.FIREPLACE_URL
+        fireplace_url = settings.FIREPLACE_URL
+        fireplacey = request.META.get('HTTP_ORIGIN') == fireplace_url
         if fireplacey or getattr(request, 'CORS', None):
             # If this is a request from our hosted frontend, allow cookies.
             if fireplacey:
-                response['Access-Control-Allow-Origin'] = settings.FIREPLACE_URL
+                response['Access-Control-Allow-Origin'] = fireplace_url
                 response['Access-Control-Allow-Credentials'] = 'true'
             else:
                 response['Access-Control-Allow-Origin'] = '*'
@@ -68,4 +70,33 @@ class CORSMiddleware(object):
                 # to be set.
                 response['Access-Control-Allow-Headers'] = 'Content-Type'
             response['Access-Control-Allow-Methods'] = ', '.join(options)
+        return response
+
+v_re = re.compile('^/api/v(?P<version>\d+)/|^/api/')
+
+
+class APIVersionMiddleware(object):
+    """
+    Figures out what version of the API they are on. Maybe adds in a
+    deprecation notice.
+    """
+
+    def process_request(self, request):
+        try:
+            version = v_re.match(request.META['PATH_INFO']).group('version')
+        except AttributeError:
+            # Not in the API.
+            return
+
+        # If you are in the API, but don't have a version, this will be None.
+        request.API_VERSION = version
+
+    def process_response(self, request, response):
+        # Not in the API.
+        if not hasattr(request, 'API_VERSION'):
+            return response
+
+        response['X-API-Version'] = request.API_VERSION
+        if not request.API_VERSION:
+            response['X-API-Status'] = 'Deprecated'
         return response

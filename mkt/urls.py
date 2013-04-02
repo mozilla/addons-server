@@ -28,6 +28,15 @@ handler403 = 'mkt.site.views.handler403'
 handler404 = 'mkt.site.views.handler404'
 handler500 = 'mkt.site.views.handler500'
 
+api_patterns = patterns('',
+    url('', include(home_api_patterns)),
+    url('', include('mkt.api.urls')),
+    url('', include(account_api_patterns)),
+    url('', include(reviewer_api_patterns)),
+    url('', include('mkt.webpay.urls')),
+    url('', include(receipt_api_patterns)),
+    url('', include('mkt.monolith.urls')),
+)
 
 urlpatterns = patterns('',
     # Home.
@@ -118,13 +127,9 @@ urlpatterns = patterns('',
     url('^login$', login, name='users.login'),
     url('^logout$', logout, name='users.logout'),
 
-    url('^api/', include(home_api_patterns)),
-    url('^api/', include('mkt.api.urls')),
-    url('^api/', include(account_api_patterns)),
-    url('^api/', include(reviewer_api_patterns)),
-    url('^api/', include('mkt.webpay.urls')),
-    url('^api/', include(receipt_api_patterns)),
-    url('^api/', include('mkt.monolith.urls')),
+    # Version the API here.
+    url('^api/v1/', include(api_patterns)),
+    url('^api/', include(api_patterns)),
 
     url('^appcache/', include('django_appcache.urls')),
 

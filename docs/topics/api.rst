@@ -17,6 +17,31 @@ This API is for Apps. There is a separate set of `APIs for Add-ons`_.
    api/reviewers.rst
    api/ratings.rst
 
+Versioning
+==========
+
+This API is versioned and we are currently moving towards version 1 of the API.
+The API will be versioned by the URL, so that version 1 APIs will all be at::
+
+    /api/v1/...
+
+If you are not using the most recent version of the API then you will get
+a header in the response::
+
+    X-API-Status: Deprecated
+
+The current policy for how long deprecated APIs will exist has not been
+defined, but it would include time for any clients to upgrade before versions
+are turned off.
+
+We will also return the version of the API we think you are using::
+
+    X-API-Version: 1
+
+.. note: Before v1 is released, the API was unversioned at `/api/`, because of
+the small number of clients using that URL, we hope all users are able to
+update to `/api/v1/` quickly so we can remove that unversioned URL.
+
 Authentication
 ==============
 
@@ -134,7 +159,6 @@ Verbs
 
 This follows the order of the `django-tastypie`_ REST verbs, a PUT for an
 update and POST for create.
-
 
 Responses
 =========
