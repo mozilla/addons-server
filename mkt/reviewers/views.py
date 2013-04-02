@@ -157,10 +157,12 @@ def _progress():
 
 
 def context(**kw):
+    statuses = dict((k, unicode(v)) for k, v in amo.STATUS_CHOICES.items())
     ctx = dict(motd=get_config('mkt_reviewers_motd'),
                queue_counts=queue_counts(),
                search_url=reverse('api_dispatch_list', kwargs={
-                   'api_name': 'apps', 'resource_name': 'search'}))
+                   'api_name': 'apps', 'resource_name': 'search'}),
+               statuses=statuses)
     ctx.update(kw)
     return ctx
 
@@ -309,14 +311,12 @@ QueuedApp = collections.namedtuple('QueuedApp', 'app created')
 def _queue(request, apps, tab, search_form=None, pager_processor=None):
     per_page = request.GET.get('per_page', QUEUE_PER_PAGE)
     pager = paginate(request, apps, per_page)
-    statuses = dict((k, unicode(v)) for k, v in amo.STATUS_CHOICES.items())
 
     return jingo.render(request, 'reviewers/queue.html', context(**{
         'addons': pager.object_list,
         'pager': pager,
         'tab': tab,
         'search_form': search_form,
-        'statuses': statuses,
     }))
 
 
