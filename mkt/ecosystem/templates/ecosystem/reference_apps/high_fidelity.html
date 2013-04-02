@@ -1,0 +1,125 @@
+{% extends 'ecosystem/reference_apps/app.html' %}
+{% from "ecosystem/macros.html" import navigation,
+        third_party_lib, web_api with context %}
+
+{% block title %}
+  {{ hub_page_title() }} | {{ _('High-fidelity') }}
+{% endblock %}
+
+{% block reference_title %}{{ _('High-fidelity') }}{% endblock %}
+
+{% block screenshots %}
+  <img class="current-screenshot"
+       src="{{ media('img/ecosystem/reference-apps/high-fidelity1.jpg') }}">
+  <ul id="screenshots">
+    <li>
+      <img src="{{ media('img/ecosystem/reference-apps/high-fidelity1.jpg') }}"
+           title="{{ _('Podcast Listing') }}"
+           alt="{{ _('Podcast Listing') }}">
+    </li>
+    <li>
+      <img src="{{ media('img/ecosystem/reference-apps/high-fidelity2.jpg') }}"
+           title="{{ _('Top Podcasts') }}"
+           alt="{{ _('Top Podcasts') }}">
+    </li>
+    <li>
+      <img src="{{ media('img/ecosystem/reference-apps/high-fidelity3.jpg') }}"
+           title="{{ _('Search Results') }}"
+           alt="{{ _('Search Results') }}">
+    </li>
+  </ul>
+{% endblock %}
+
+{% block app_description %}
+  <section>
+    {% trans walkthrough_link='https://github.com/mozilla/high-fidelity/blob/master/making-of.md' %}
+      High-fidelity is an offline-capable, entirely HTML5/JS podcasts app.
+      It's chiefly designed for Firefox OS, but support for other platforms
+      and browsers is an eventual design goal. It allows users to subscribe
+      to any podcast and listen to it right from their Firefox OS device!
+      <a href="{{ walkthrough_link }}"
+         class="walkthrough">Read the full developer walkthrough</a>
+    {% endtrans %}
+  </section>
+{% endblock %}
+
+{% block app_web_apis %}
+  <section>
+    <h2>{{ _('Web API Usage') }}</h2>
+    <ul>
+      <li>
+        {{ web_api('localstorage') }}
+        <p>
+          {%- trans %}
+            Used to store settings and basic podcast metadata. Not used for
+            podcast audio files or cover art.
+          {% endtrans %}
+        </p>
+      </li>
+      <li>
+        {{ web_api('indexed_db') }}
+        <p>
+          {% trans %}
+            An asynchronous and fast datastore for maintaining podcast audio
+            and images.
+          {% endtrans %}
+        </p>
+      </li>
+      <li>
+        {{ web_api('systemxhr') }}
+        <p>
+          {% trans %}
+            Allows cross-domain requests on Firefox OS without CORS.
+          {% endtrans %}
+        </p>
+      </li>
+    </ul>
+  </section>
+{% endblock %}
+
+{% block app_third_party %}
+  <section>
+    <h2>{{ _('Third-party Libraries') }}</h2>
+    <ul>
+      <li>
+        {{ third_party_lib('zepto') }}
+        <p>
+          {% trans %}
+            The lightweight jQuery-like library simplifies common tasks such
+            as DOM manipulation.
+          {% endtrans %}
+        </p>
+      </li>
+      <li>
+        {{ third_party_lib('backbone') }}
+        <p>
+          {% trans %}
+            Backbone lets us do data-binding and MVC-style coding, making
+            the app a lot easier to develop.
+          {% endtrans %}
+        </p>
+      </li>
+    </ul>
+  </section>
+{% endblock %}
+
+{% block app_code %}
+  <a href="https://github.com/mozilla/high-fidelity"
+     class="app-source button">{{ _('View Source') }}</a>
+  <a href="https://github.com/mozilla/high-fidelity/archive/master.zip"
+     class="app-source button">{{ _('Download') }}</a>
+{% endblock %}
+
+{% block app_summary %}
+  <div class="summary">
+    <h4>{{ _('Difficulty') }}: <span>{{ _('Advanced') }}</span></h4>
+  </div>
+  <div class="summary">
+    <h4>{{ _('Code Breakdown') }}:</h4>
+    <ol>
+      <li>{{ _('4% HTML/EJS') }}</li>
+      <li>{{ _('6% CSS') }}</li>
+      <li>{{ _('90% JavaScript') }}</li>
+    </ol>
+  </div>
+{% endblock %}

@@ -486,7 +486,7 @@ def build_dev_tools(request):
 def apps_documentation(request, page=None):
     """Page template for all reference apps."""
 
-    if page not in ('chrono', 'roller', 'face_value'):
+    if page not in ('chrono', 'face_value', 'high_fidelity', 'roller'):
         raise Http404
 
     third_party_libs = {
@@ -532,6 +532,14 @@ def apps_documentation(request, page=None):
         'open_web_apps': {
             'link': '//developer.mozilla.org/docs/Apps/Apps_JavaScript_API',
             'title': _('Open Web Apps')
+        },
+        'indexed_db': {
+            'link': '//developer.mozilla.org/en-US/docs/IndexedDB',
+            'title': _('IndexedDB')
+        },
+        'systemxhr': {
+            'link': '//developer.mozilla.org/en-US/docs/DOM/XMLHttpRequest#Non-standard_properties',
+            'title': _('systemXHR')
         }
     }
 
