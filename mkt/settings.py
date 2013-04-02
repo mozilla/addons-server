@@ -310,3 +310,8 @@ APP_PURCHASE_AUD = 'marketplace-dev.allizom.org'
 # It must match that of the pay server that processes nav.mozPay().
 # On B2G this must match a provider in the whitelist.
 APP_PURCHASE_TYP = 'mozilla/payments/pay/v1'
+
+# This is the base filename of the `.zip` containing the packaged app for the
+# consumer-facing pages of the Marketplace (aka Fireplace). Expected path:
+#     /media/packaged-apps/<path>
+PACKAGED_ZIP = 'yulelog_prod_2013.04.01_17.40.15.zip'

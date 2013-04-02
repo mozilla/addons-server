@@ -189,6 +189,9 @@ MONOLITH_PASSWORD = private_mkt.MONOLITH_PASSWORD
 # This is mainly for Marionette tests.
 WEBAPP_MANIFEST_NAME = 'Marketplace Dev'
 
+# Yule Log (our <iframe>'d Marketplace) needs to point to -dev instead of prod.
+PACKAGED_ZIP = 'yulelog_dev_2013.04.01_17.40.15.zip'
+
 # Replace LESS with Stylus.
 try:
     MINIFY_BUNDLES['css'].update(asset_bundles.less2stylus())
