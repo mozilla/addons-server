@@ -1,8 +1,8 @@
 import json
 
-from django.conf.urls.defaults import url
 from django.contrib.auth.models import User
 from django.db import transaction
+from django.db.models import Q
 
 import commonware.log
 from celery_tasktree import TaskTree
@@ -31,8 +31,10 @@ from mkt.api.base import CORSResource, MarketplaceModelResource
 from mkt.api.forms import (CategoryForm, DeviceTypeForm, NewPackagedForm,
                            PreviewArgsForm, PreviewJSONForm, StatusForm,
                            UploadForm)
+from mkt.carriers import get_carrier_id
 from mkt.developers import tasks
 from mkt.developers.forms import NewManifestForm, PreviewForm
+from mkt.regions import get_region_id
 from mkt.submit.forms import AppDetailsBasicForm
 from mkt.webapps.models import Webapp
 from mkt.webapps.utils import app_to_dict
@@ -305,6 +307,21 @@ class CategoryResource(CORSResource, MarketplaceModelResource):
         resource_name = 'category'
         serializer = Serializer(formats=['json'])
         slug_lookup = 'slug'
+
+    def obj_get_list(self, request=None, **kwargs):
+        objs = super(CategoryResource, self).obj_get_list(request, **kwargs)
+
+        # Filter by region or worldwide.
+        objs = objs.filter(Q(region__isnull=True) | Q(region=get_region_id()))
+
+        # Check carrier.
+        carrier = get_carrier_id()
+        carrier_f = Q(carrier__isnull=True)
+        if carrier:
+            carrier_f |= Q(carrier=carrier)
+        objs = objs.filter(carrier_f)
+
+        return objs
 
 
 class PreviewResource(CORSResource, MarketplaceModelResource):

@@ -16,7 +16,7 @@ from users.models import UserProfile
 import mkt
 from mkt.api.tests.test_oauth import BaseOAuth
 from mkt.api.base import get_url
-from mkt.constants import APP_IMAGE_SIZES
+from mkt.constants import APP_IMAGE_SIZES, carriers, regions
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import ContentRating, ImageAsset, Webapp
 from mkt.zadmin.models import FeaturedApp, FeaturedAppRegion
@@ -718,6 +718,16 @@ class TestCategoryHandler(BaseOAuth):
         self.get_url = ('api_dispatch_detail',
                         {'resource_name': 'category', 'pk': self.cat.pk})
 
+    def _make_carrier_cat(self, carrier):
+        return Category.objects.create(
+            name=carrier.name, type=amo.ADDON_WEBAPP, slug=carrier.slug,
+            carrier=carrier.id)
+
+    def _make_region_cat(self, region):
+        return Category.objects.create(
+            name=unicode(region.name), type=amo.ADDON_WEBAPP, slug=region.slug,
+            region=region.id)
+
     def test_verbs(self):
         self._allowed_verbs(self.list_url, ['get'])
         self._allowed_verbs(self.get_url, ['get'])
@@ -746,6 +756,53 @@ class TestCategoryHandler(BaseOAuth):
         eq_(data['meta']['total_count'], 1)
         eq_(data['objects'][0]['name'], 'Webapp')
         eq_(data['objects'][0]['slug'], 'thewebapp')
+
+    def test_get_categories_has_no_carrier_cats(self):
+        # Test that telefonica doesn't show up.
+        self._make_carrier_cat(carriers.TELEFONICA)
+        res = self.anon.get(self.list_url)
+        data = json.loads(res.content)
+        eq_(data['meta']['total_count'], 1)
+        eq_(data['objects'][0]['name'], 'Webapp')
+        eq_(data['objects'][0]['slug'], 'thewebapp')
+
+    def test_get_categories_with_carrier(self):
+        # Test that telefonica does show up when carrier is used.
+        self._make_carrier_cat(carriers.TELEFONICA)
+        res = self.anon.get(self.list_url, data={'carrier': 'telefonica'})
+        data = json.loads(res.content)
+        eq_(data['meta']['total_count'], 2)
+        self.assertSetEqual([c['slug'] for c in data['objects']],
+                            ['thewebapp', 'telefonica'])
+
+    def test_get_categories_has_no_region_cats(self):
+        # Test that a Brazil-only region doesn't show up.
+        self._make_region_cat(regions.BR)
+        res = self.anon.get(self.list_url)
+        data = json.loads(res.content)
+        eq_(data['meta']['total_count'], 1)
+        eq_(data['objects'][0]['name'], 'Webapp')
+        eq_(data['objects'][0]['slug'], 'thewebapp')
+
+    def test_get_categories_with_region(self):
+        # Test that Brazil-only region does show up when region is used.
+        self._make_region_cat(regions.BR)
+        res = self.anon.get(self.list_url, data={'region': 'br'})
+        data = json.loads(res.content)
+        eq_(data['meta']['total_count'], 2)
+        self.assertSetEqual([c['slug'] for c in data['objects']],
+                            ['thewebapp', 'br'])
+
+    def test_get_categories_with_region_and_carrier(self):
+        # Test both carrier and region work together.
+        self._make_carrier_cat(carriers.TELEFONICA)
+        self._make_region_cat(regions.BR)
+        res = self.anon.get(self.list_url, data={'region': 'br',
+                                                 'carrier': 'telefonica'})
+        data = json.loads(res.content)
+        eq_(data['meta']['total_count'], 3)
+        self.assertSetEqual([c['slug'] for c in data['objects']],
+                            ['thewebapp', 'br', 'telefonica'])
 
     def test_get_category(self):
         res = self.anon.get(self.get_url)
