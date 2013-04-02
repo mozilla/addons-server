@@ -726,7 +726,7 @@ def _get_themes(reviewer, initial=True, flagged=False):
 @post_required
 @reviewer_required('persona')
 def themes_commit(request):
-    reviewer = request.amo_user
+    reviewer = UserProfile.objects.get(id=request.amo_user.id)
     ThemeReviewFormset = formset_factory(forms.ThemeReviewForm)
     formset = ThemeReviewFormset(request.POST)
 
@@ -756,7 +756,7 @@ def themes_more_flagged(request):
 @json_view
 @reviewer_required('persona')
 def themes_more(request, flagged=False):
-    reviewer = request.amo_user
+    reviewer = UserProfile.objects.get(id=request.amo_user.id)
     theme_locks = ThemeLock.objects.filter(reviewer=reviewer)
     theme_locks_count = theme_locks.count()
 
@@ -794,7 +794,7 @@ def themes_single(request, slug):
     Like a detail page, manually review a single theme if it is pending
     and isn't locked.
     """
-    reviewer = request.amo_user
+    reviewer = UserProfile.objects.get(id=request.amo_user.id)
     reviewable = True
 
     # Don't review an already reviewed theme.
