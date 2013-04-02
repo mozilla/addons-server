@@ -464,7 +464,7 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         eq_(data['listed_authors'][0].get('name'), self.user.display_name)
         eq_(data['manifest_url'], app.manifest_url)
         eq_(data['premium_type'], 'free')
-        eq_(data['price'], u'Free')
+        eq_(data['price'], None)
         eq_(data['public_stats'], False)
         eq_(data['support_email'], u'a@a.com')
         eq_(data['ratings'], {'count': 0, 'average': 0.0})
