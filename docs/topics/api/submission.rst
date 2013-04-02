@@ -17,14 +17,14 @@ Validate
 
 To validate a hosted app::
 
-        POST /api/apps/validation/
+        POST /api/v1/apps/validation/
         {"manifest": "http://test.app.com/manifest"}
 
 To validate a packaged app, send the appropriate file data in the upload field.
 File data is a dictionary of name, type (content type) and the base 64 encoded
 data. For example::
 
-        POST /api/apps/validation/
+        POST /api/v1/apps/validation/
         {"upload": {"type": "application/foo",
                     "data": "UEsDBAo...gAAAAA=",
                     "name": "mozball.zip"}}
@@ -35,13 +35,13 @@ URL until the validation has been processed.
 
 To query the result::
 
-        GET /api/apps/validation/123/
+        GET /api/v1/apps/validation/123/
 
 This will return the status of the validation. An example of a validation not processed yet::
 
         {"id": "123",
          "processed": false,
-         "resource_uri": "/api/apps/validation/123/",
+         "resource_uri": "/api/v1/apps/validation/123/",
          "valid": false,
          "validation": ""}
 
@@ -49,7 +49,7 @@ Example of a validation processed and good::
 
         {"id": "123",
          "processed": true,
-         "resource_uri": "/api/apps/validation/123/",
+         "resource_uri": "/api/v1/apps/validation/123/",
          "valid": true,
          "validation": ""}
 
@@ -57,7 +57,7 @@ Example of a validation processed but with an error::
 
         {"id": "123",
          "processed": true,
-         "resource_uri": "/api/apps/validation/123/",
+         "resource_uri": "/api/v1/apps/validation/123/",
          "valid": false,
          "validation": {
            "errors": 1, "messages": [{
@@ -76,13 +76,13 @@ To create an app with your validated manifest the body data should contain the
 manifest id from the validate call and other data in JSON::
 
 
-        POST /api/apps/app/
+        POST /api/v1/apps/app/
         {"manifest": "123"}
 
 If you'd like to create a successfully validation packaged app, use upload
 instead of manifest::
 
-        POST /api/apps/app/
+        POST /api/v1/apps/app/
         {"upload": "123"}
 
 If the creation succeeded you'll get a 201 status back. This will return the id
@@ -98,7 +98,7 @@ the data using the manifest and return values so far::
          "name": "MozillaBall",
          "premium_type": "free",
          "privacy_policy": null,
-         "resource_uri": "/api/apps/app/1/",
+         "resource_uri": "/api/v1/apps/app/1/",
          "slug": "mozillaball",
          "status": 0,
          "summary": "Exciting Open Web development action!",
@@ -117,7 +117,7 @@ Update
 
 Put your app to update it. The body contains JSON for the data to be posted::
 
-        PUT /api/apps/app/<app id>/
+        PUT /api/v1/apps/app/<app id>/
 
 These are the fields for the creation and update of an app. These will be
 populated from the manifest if specified in the manifest. Will return a 202
@@ -159,7 +159,7 @@ List
 
 To get a list of the apps you have available::
 
-        GET /api/apps/app/
+        GET /api/v1/apps/app/
 
 This will return a list of all the apps the user is allowed to access::
 
@@ -170,7 +170,7 @@ This will return a list of all the apps the user is allowed to access::
                   "total_count": 2},
          "objects": [
                 {"categories": [1L],
-                 "resource_uri": "/api/apps/app/4/"
+                 "resource_uri": "/api/v1/apps/app/4/"
                  ...]}
         }
 
@@ -181,11 +181,11 @@ Get
 
 To get an individual app, use the `resource_uri` from the list::
 
-        GET /api/apps/app/4/
+        GET /api/v1/apps/app/4/
 
 This will return::
 
-        {"resource_uri": "/api/apps/app/4/",
+        {"resource_uri": "/api/v1/apps/app/4/",
          "slug": "mozillaball",
          "summary": "Exciting Open Web development action!",
          ...}
@@ -197,7 +197,7 @@ Status
 
 To view details of an app, including its review status::
 
-        GET /api/apps/app/<app id>/
+        GET /api/v1/apps/app/<app id>/
 
 Returns the status of the app::
 
@@ -219,7 +219,7 @@ Create
 
 Create a screenshot or video::
 
-        POST /api/apps/preview/?app=<app id>
+        POST /api/v1/apps/preview/?app=<app id>
 
 The body should contain the screenshot or video to be uploaded in the following
 format::
@@ -241,7 +241,7 @@ Returns the screenshot id::
 
         {"position": 1, "thumbnail_url": "/img/uploads/...",
          "image_url": "/img/uploads/...", "filetype": "image/png",
-         "resource_uri": "/api/apps/preview/1/",
+         "resource_uri": "/api/v1/apps/preview/1/",
          "caption": "Awesome screenshot"}
 
 Get
@@ -250,13 +250,13 @@ Get
 Get information about the screenshot or video::
 
 
-        GET /api/apps/preview/<preview id>/
+        GET /api/v1/apps/preview/<preview id>/
 
 Returns::
 
-        {"addon": "/api/apps/app/1/", "id": 1, "position": 1,
+        {"addon": "/api/v1/apps/app/1/", "id": 1, "position": 1,
          "thumbnail_url": "/img/uploads/...", "image_url": "/img/uploads/...",
-         "filetype": "image/png", "resource_uri": "/api/apps/preview/1/"
+         "filetype": "image/png", "resource_uri": "/api/v1/apps/preview/1/"
          "caption": "Awesome screenshot"}
 
 
@@ -265,7 +265,7 @@ Delete
 
 Delete a screenshot of video::
 
-        DELETE /api/apps/preview/<preview id>/
+        DELETE /api/v1/apps/preview/<preview id>/
 
 This will return a 204 if the screenshot has been deleted.
 
@@ -277,7 +277,7 @@ Enabling an App
 Once all the data has been completed and at least one screenshot created, you
 can push the app to the review queue::
 
-        PATCH /api/apps/status/<app id>/
+        PATCH /api/v1/apps/status/<app id>/
         {"status": "pending"}
 
 * `status` (optional): key statuses are
@@ -298,7 +298,7 @@ Valid transitions that users can initiate are:
   the required data is there. If not, you'll get an error containing the
   reason. For example::
 
-        PATCH /api/apps/status/<app id>/
+        PATCH /api/v1/apps/status/<app id>/
         {"status": "pending"}
 
         Status code: 400

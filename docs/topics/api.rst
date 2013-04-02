@@ -38,8 +38,8 @@ We will also return the version of the API we think you are using::
 
     X-API-Version: 1
 
-.. note: Before v1 is released, the API was unversioned at `/api/`, because of
-the small number of clients using that URL, we hope all users are able to
+.. note: Before v1 is released, the API was unversioned at `/api/v1/`, because
+of the small number of clients using that URL, we hope all users are able to
 update to `/api/v1/` quickly so we can remove that unversioned URL.
 
 Authentication
@@ -55,7 +55,7 @@ Shared Secret
 
 The Marketplace frontend uses a server-supplied token for
 authentication, stored as a cookie. A POST request to
-``/api/account/login/`` with an ``assertion`` field containing a
+``/api/v1/account/login/`` with an ``assertion`` field containing a
 Persona assertion and an ``audience`` field containing the appropriate
 Persona audience will be responded to with user information and a
 shared secret to use for future requests. Example::

@@ -14,7 +14,7 @@ When an app is installed from the Marketplace, call the install API. This will
 record the install. If the app is a paid app, it will return the receipt that
 to be used on install.
 
-.. http:post:: /api/receipts/install/
+.. http:post:: /api/v1/receipts/install/
 
     Returns a receipt if the app is paid and a receipt should be installed.
 
@@ -22,7 +22,7 @@ to be used on install.
 
     .. sourcecode:: http
 
-        POST /api/receipts/install/
+        POST /api/v1/receipts/install/
 
     :param app: the id of the app being installed.
 
@@ -54,7 +54,7 @@ Pay Tiers
 
 To get a list of pay tiers from the Marketplace::
 
-        GET /api/webpay/prices/
+        GET /api/v1/webpay/prices/
 
 This returns a list of all the prices::
 
@@ -66,12 +66,12 @@ This returns a list of all the prices::
                         {"amount": "0.69", "currency": "GBP"}
                 ],
                 "localized": {},
-                "resource_uri": "/api/webpay/prices/1/"}, ...
+                "resource_uri": "/api/v1/webpay/prices/1/"}, ...
          ]}
 
 To access just one tier, use the resource URI for that tier, for example::
 
-        GET /api/webpay/prices/1/
+        GET /api/v1/webpay/prices/1/
 
 Returns::
 
@@ -81,7 +81,7 @@ Returns::
                 {"amount": "0.69", "currency": "GBP"}
          ],
          "localized": {},
-         "resource_uri": "/api/webpay/prices/1/"}
+         "resource_uri": "/api/v1/webpay/prices/1/"}
 
 The currencies can be filtered by the payment provider. Not all currencies are
 available to all payment providers.
@@ -91,7 +91,7 @@ supported values: bango
 
 Example::
 
-        GET /api/webpay/prices/?provider=bango
+        GET /api/v1/webpay/prices/?provider=bango
 
         {"meta": {...}
          "objects": [{
@@ -100,7 +100,7 @@ Example::
                         {"amount": "0.99", "currency": "USD"},
                ],
                "localized": {},
-               "resource_uri": "/api/webpay/prices/1/"}, ...
+               "resource_uri": "/api/v1/webpay/prices/1/"}, ...
          ]}
 
 The result is the same as above, but in this example GBP is removed.
@@ -115,7 +115,7 @@ the localized field of the result.
 
 Example::
 
-    GET /api/webpay/prices/?provider=bango
+    GET /api/v1/webpay/prices/?provider=bango
 
 With the HTTP *Accept-Language* header set to *pt-BR*, means that *localized*
 will contain::

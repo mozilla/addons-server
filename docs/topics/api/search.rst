@@ -11,7 +11,7 @@ Search
 
 To get a list of apps from the Marketplace::
 
-    GET /api/apps/search/
+    GET /api/v1/apps/search/
 
 The API accepts various query string parameters to filter or sort by
 described below:

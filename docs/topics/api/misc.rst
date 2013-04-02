@@ -11,13 +11,13 @@ Home page
 The home page of the Marketplace which is a list of featured apps and
 categories.
 
-.. http:get:: /api/home/page/
+.. http:get:: /api/v1/home/page/
 
     **Request**:
 
     .. sourcecode:: http
 
-        GET /api/home/page/
+        GET /api/v1/home/page/
 
 
     :param dev: the device requesting the homepage, results will be tailored to the device which will be one of: `firefoxos` (Firefox OS), `desktop`, `android` (mobile).
@@ -41,13 +41,13 @@ Featured apps
 
 A list of the featured apps on the Marketplace.
 
-.. http:get:: /api/home/featured/
+.. http:get:: /api/v1/home/featured/
 
     **Request**
 
     .. sourcecode:: http
 
-        GET /api/home/featured/
+        GET /api/v1/home/featured/
 
     :param dev: the device requesting the homepage, results will be tailored to the device which will be one of: `firefoxos` (Firefox OS), `desktop`, `android` (mobile).
     :param category: the id of the category to filter on.
@@ -72,31 +72,31 @@ Account
 
 To get data on the currently logged in user::
 
-    GET /api/account/settings/mine/
+    GET /api/v1/account/settings/mine/
 
 Returns account information::
 
-    {"resource_uri": "/api/account/settings/1/",
+    {"resource_uri": "/api/v1/account/settings/1/",
      "display_name": "Nice person",
      "installed': [
-        "/api/apps/3/",
+        "/api/v1/apps/3/",
      ]}
 
 The same information is also accessible at the canoncial `resource_uri`::
 
-    GET /api/account/settings/1/
+    GET /api/v1/account/settings/1/
 
-The `/api/account/mine/` URL is provided as a convenience for users who don't
+The `/api/v1/account/mine/` URL is provided as a convenience for users who don't
 know their full URL ahead of time.
 
 To update account information::
 
-    PATCH /api/account/settings/mine/
+    PATCH /api/v1/account/settings/mine/
     {"display_name": "Nicer person"}
 
 Or::
 
-    PUT /api/account/settings/mine/
+    PUT /api/v1/account/settings/mine/
     {"display_name": "Nicer person"}
 
 
@@ -113,7 +113,7 @@ Categories
 
 To find a list of categories available on the marketplace::
 
-    GET /api/apps/category/
+    GET /api/v1/apps/category/
 
 Returns the list of categories::
 
@@ -129,7 +129,7 @@ Returns the list of categories::
         {
             "id": "1",
             "name": "Games",
-            "resource_uri": "/api/apps/category/1/",
+            "resource_uri": "/api/v1/apps/category/1/",
             "slug": "games"
         },
         ...
@@ -141,7 +141,7 @@ Use the `id` of the category in your app updating.
 Feedback
 ========
 
-.. http:post:: /api/account/feedback/
+.. http:post:: /api/v1/account/feedback/
 
     Submit feedback to the Marketplace.
 

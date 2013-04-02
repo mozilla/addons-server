@@ -13,7 +13,7 @@ Reviewing
 
 .. warning:: Not available through CORS.
 
-.. http:get::  /api/reviewers/reviewing/
+.. http:get::  /api/v1/reviewers/reviewing/
 
    Returns a list of apps that are being reviewed.
 
@@ -21,7 +21,7 @@ Reviewing
 
    .. sourcecode:: http
 
-      GET /api/reviewers/reviewing/
+      GET /api/v1/reviewers/reviewing/
 
    **Response**:
 
@@ -33,7 +33,7 @@ Reviewing
         },
         "objects': [
             {
-                "resource_uri": "/api/apps/app/337141/"
+                "resource_uri": "/api/v1/apps/app/337141/"
             }
         ]
       }

@@ -15,7 +15,7 @@ _`Listing`
 
 To get a list of ratings from the Marketplace::
 
-    GET /api/apps/rating/
+    GET /api/v1/apps/rating/
 
 This endpoints accepts various optional query string parameters to filter the
 results:
@@ -30,7 +30,7 @@ The API returns a list of ratings sorted by date created, descending::
   {
       "meta": {
           "limit": 20,
-          "next": "/api/apps/rating/?limit=20&offset=20",
+          "next": "/api/v1/apps/rating/?limit=20&offset=20",
           "offset": 0,
           "previous": null,
           "total_count": 391
@@ -41,11 +41,11 @@ The API returns a list of ratings sorted by date created, descending::
       },
       "objects": [
           {
-              "app": "/api/apps/app/18/",
+              "app": "/api/v1/apps/app/18/",
               "body": "This app is top notch. Aces in my book!",
               "rating": 5,
-              "resource_uri": "/api/apps/rating/19/",
-              "report_spam": "/api/apps/rating/19/flag",
+              "resource_uri": "/api/v1/apps/rating/19/",
+              "report_spam": "/api/v1/apps/rating/19/flag",
               "user": {
                   "id": "198",
                   "resource_uri": "",
@@ -63,15 +63,15 @@ _`Detail`
 To get a single rating from the Marketplace using its `resource_uri` from the 
 `listing`_::
 
-    GET /api/apps/rating/<ID>/
+    GET /api/v1/apps/rating/<ID>/
 
 The API returns a representation of the requested resource::
 
   {
-      "app": "/api/apps/app/18/",
+      "app": "/api/v1/apps/app/18/",
       "body": "This app is top notch. Aces in my book!",
       "rating": 5,
-      "resource_uri": "/api/apps/rating/19/",
+      "resource_uri": "/api/v1/apps/rating/19/",
       "user": {
           "id": "198",
           "resource_uri": "",
@@ -85,7 +85,7 @@ _`Create`
 
 To create a rating from the Marketplace::
 
-    POST /api/apps/rating/
+    POST /api/v1/apps/rating/
 
 The request body should include a JSON representation of the rating to be 
 created::
@@ -128,7 +128,7 @@ _`Update`
 To update a rating from the Marketplace using its `resource_uri` from the 
 `listing`_::
 
-    PUT /api/apps/rating/<ID>/
+    PUT /api/v1/apps/rating/<ID>/
 
 The request body should include a JSON representation of the rating to be 
 created.::
@@ -155,7 +155,7 @@ _`Delete`
 To delete a rating from the Marketplace using its `resource_uri` from the 
 `listing`_::
 
-    DELETE /api/apps/rating/<ID>/
+    DELETE /api/v1/apps/rating/<ID>/
 
 On success, a 204 is returned.
 
@@ -175,7 +175,7 @@ The following validation is performed on the request:
 Flagging as spam
 ================
 
-.. http:post:: /api/apps/rating/<ID>/flag/
+.. http:post:: /api/v1/apps/rating/<ID>/flag/
 
     Flag a rating as spam.
 
@@ -183,5 +183,5 @@ Flagging as spam
 
     .. sourcecode:: http
 
-        POST /api/apps/rating/<ID>/flag
+        POST /api/v1/apps/rating/<ID>/flag
         {'flag': 'review_flag_reason_spam'}
