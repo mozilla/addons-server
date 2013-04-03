@@ -34,16 +34,17 @@
               </td>
               <td>{{ item.user.display_name }}</td>
               <td>
-                <a class="comments show" href="#">{{ _('Show Comments') }}</a>
-                <a class="comments hide" href="#">{{ _('Hide Comments') }}</a>
+                {% if item.details.comment or item.details.reject_reason %}
+                  <a class="comments show" href="#">{{ _('Show Comments') }}</a>
+                  <a class="comments hide" href="#">{{ _('Hide Comments') }}</a>
+                {% endif %}
               </td>
             </tr>
             <tr class="comments hide">
               <td>&nbsp;</td>
               <td colspan="4">
-                {% if action == 3 %}
-                  {{ item.details.comment }}
-                {% else %}
+                {{ item.details.comment }}
+                {% if item.details.reject_reason %}
                   {{ REJECT_REASONS[item.details.reject_reason] }}
                 {% endif %}
               </td>
