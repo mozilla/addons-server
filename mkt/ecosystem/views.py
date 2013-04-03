@@ -486,7 +486,7 @@ def build_dev_tools(request):
 def apps_documentation(request, page=None):
     """Page template for all reference apps."""
 
-    if page not in ('chrono', 'face_value', 'high_fidelity', 'roller'):
+    if page not in ('chrono', 'face_value', 'podcasts', 'roller'):
         raise Http404
 
     third_party_libs = {
