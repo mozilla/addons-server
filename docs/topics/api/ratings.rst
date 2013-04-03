@@ -10,166 +10,177 @@ apps in Marketplace.
 .. note:: All ratings methods require authentication.
 
 
-_`Listing`
-==========
+_`List`
+=======
 
-To get a list of ratings from the Marketplace::
+.. http:get:: /api/v1/apps/rating/
 
-    GET /api/v1/apps/rating/
+    Get a list of ratings from the Marketplace
 
-This endpoints accepts various optional query string parameters to filter the
-results:
+    **Request**:
 
-* `limit`: the number of results returned per page. Default `20`.
-* `offset`: the number of results to offset by. Default `0`
-* `app`: the ID of the app whose ratings are to be returned.
-* `user`: the ID of the user whose ratings are to be returned.
+    :query app: the ID or slug of the app whose ratings are to be returned.
+    :query user: the ID of the user whose ratings are to be returned.
 
-The API returns a list of ratings sorted by date created, descending::
+    Plus standard :ref:`list-query-params-label`.
 
-  {
-      "meta": {
-          "limit": 20,
-          "next": "/api/v1/apps/rating/?limit=20&offset=20",
-          "offset": 0,
-          "previous": null,
-          "total_count": 391
-      },
-      "info": {
-          "average": 3.4,
-          "slug": "marble-run"
-      },
-      "objects": [
-          {
-              "app": "/api/v1/apps/app/18/",
-              "body": "This app is top notch. Aces in my book!",
-              "rating": 5,
-              "resource_uri": "/api/v1/apps/rating/19/",
-              "report_spam": "/api/v1/apps/rating/19/flag",
-              "user": {
-                  "id": "198",
-                  "resource_uri": "",
-                  "username": "chuck"
-              }
-          },
-          ...
-      ]
-  }
+    **Response**:
+
+    .. code-block:: json
+
+        {
+            "meta": {
+                "limit": 20,
+                "next": "/api/v1/apps/rating/?limit=20&offset=20",
+                "offset": 0,
+                "previous": null,
+                "total_count": 391
+            },
+            "info": {
+                "average": 3.4,
+                "slug": "marble-run"
+            },
+            "objects": [
+                {
+                    "app": "/api/v1/apps/app/18/",
+                    "body": "This app is top notch. Aces in my book!",
+                    "rating": 5,
+                    "resource_uri": "/api/v1/apps/rating/19/",
+                    "report_spam": "/api/v1/apps/rating/19/flag",
+                    "user": {
+                        "id": "198",
+                        "username": "chuck"
+                    }
+                }
+            ]
+        }
+
+    :status 200: success.
+    :status 400: submission error.
 
 
 _`Detail`
 =========
 
-To get a single rating from the Marketplace using its `resource_uri` from the 
-`listing`_::
+.. http:get:: /api/v1/apps/rating/(int:id)/
 
-    GET /api/v1/apps/rating/<ID>/
+    Get a single rating from the Marketplace using its `resource_uri` from the
+    `List`_.
 
-The API returns a representation of the requested resource::
+    **Response**:
 
-  {
-      "app": "/api/v1/apps/app/18/",
-      "body": "This app is top notch. Aces in my book!",
-      "rating": 5,
-      "resource_uri": "/api/v1/apps/rating/19/",
-      "user": {
-          "id": "198",
-          "resource_uri": "",
-          "username": "chuck"
-      }
-  }
+    .. code-block:: json
+
+        {
+          "app": "/api/v1/apps/app/18/",
+          "body": "This app is top notch. Aces in my book!",
+          "rating": 5,
+          "resource_uri": "/api/v1/apps/rating/19/",
+          "user": {
+              "id": "198",
+              "username": "chuck"
+          }
+        }
+
+    :status 200: success.
+    :status 400: submission error.
 
 
 _`Create`
 =========
 
-To create a rating from the Marketplace::
+.. http:post:: /api/v1/apps/rating/
 
-    POST /api/v1/apps/rating/
+    Create a rating.
 
-The request body should include a JSON representation of the rating to be 
-created::
+    **Request**:
 
-  {
-    "app": 18,
-    "body": "This app is top notch. Aces in my book!",
-    "rating": 5
-  }
+    :param app: the ID of the app being reviewed
+    :param body: text of the rating
+    :param rating: an integer between (and inclusive of) 1 and 5, indicating the
+        numeric value of the rating
 
-On success, a 201 is returned.
+    The user making the rating is inferred from the authentication details.
 
-The following fields are required:
+    .. code-block:: json
 
-* `app`: an integer containing the ID of the app being rated.
-* `body`: a string containing the textual content of the rating.
-* `rating`: an integer between (and inclusive of) 1 and 5, indicating the
-  numeric value of the rating.
-
-The user is inferred from the authentication details.
+        {
+            "app": 18,
+            "body": "This app is top notch. Aces in my book!",
+            "rating": 5
+        }
 
 
-Validation
-~~~~~~~~~~
+    **Response**:
 
-The following validation is performed on the request:
+    .. code-block:: json
 
-- Are the values of `app`, `body`, and `rating` valid? If not, a 400 is returned
-  with error messages containing further details.
-- If `app` is a paid app, has the authenticating user purchased it? If not, a
-  403 is returned.
-- Is the authenticating user an author of `app`? If so, a 403 is returned.
-- Has the authenticating user previously rated the app? If so, a 409 is
-  returned. In these cases, `update`_ should be used.
+        {
+            "app": 18,
+            "body": "This app is top notch. Aces in my book!",
+            "rating": 5
+        }
+
+    :status 201: successfully created.
+    :status 400: invalid submission.
+    :status 403: user not allowed to rate app, because the user is an author of
+        the app or because it is a paid app that the user has not purchased.
+    :status 409: the user has previously rated the app, so `Update`_ should be
+        used instead.
 
 
 _`Update`
 =========
 
-To update a rating from the Marketplace using its `resource_uri` from the 
-`listing`_::
+.. http:put:: /api/v1/apps/rating/(int:rating_id)/
 
-    PUT /api/v1/apps/rating/<ID>/
+    Update a rating from the Marketplace using its `resource_uri` from the
+    `List`_.
 
-The request body should include a JSON representation of the rating to be 
-created.::
+    **Request**:
 
-  {
-    "body": "It stopped working. All dueces, now.",
-    "rating": 2
-  }
+    :param body: text of the rating
+    :param rating: an integer between (and inclusive of) 1 and 5, indicating the
+        numeric value of the rating
 
-On success, a 202 is returned.
+    The user making the rating is inferred from the authentication details.
 
-Validation
-~~~~~~~~~~
+    .. code-block:: json
 
-The following validation is performed on the request:
+        {
+            "body": "It stopped working. All dueces, now.",
+            "rating": 2
+        }
 
-- Are the values of `body` and `rating` valid? If not, a 400 is returned with
-  error messages containing further details.
+    **Response**:
+
+    .. code-block:: json
+
+        {
+            "app": 18,
+            "body": "It stopped working. All dueces, now.",
+            "rating": 2
+        }
+
+    :status 202: successfully updated.
+    :status 400: invalid submission.
 
 
 _`Delete`
 =========
 
-To delete a rating from the Marketplace using its `resource_uri` from the 
-`listing`_::
+.. http:delete:: /api/v1/apps/rating/(int:rating_id)/
 
-    DELETE /api/v1/apps/rating/<ID>/
+    Delete a rating from the Marketplace using its `resource_uri` from the
+    `List`_.
 
-On success, a 204 is returned.
+    **Response**:
 
-Validation
-~~~~~~~~~~
-
-The following validation is performed on the request:
-
-- Can the authenticating user delete the rating? If not, a 403 is returned. A
-  user may delete a rating if:
-
-  - They are the original review author.
-  - They are an editor that is not an author of the app.
-  - They are in a group with Users:Edit or Addons:Edit privileges
+    :status 204: successfully deleted.
+    :status 403: the user cannot delete the rating. A user may only delete a
+        rating if they are the original rating author, if they are an editor
+        that is not an author of the app, or if they are in a group with
+        Users:Edit or Addons:Edit privileges.
 
 
 Flagging as spam
