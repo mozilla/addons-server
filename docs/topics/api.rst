@@ -76,7 +76,8 @@ stored as a cookie.
 
     :param error: any error that occurred.
     :param token: a shared secret to be used on later requests. It should be
-        sent with authorized requests as a cookie named ``user``.
+        sent with authorized requests as a query string parameter named
+        ``_user``.
     :param settings: user account settings.
 
     Example:

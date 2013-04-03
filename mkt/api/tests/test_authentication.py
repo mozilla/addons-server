@@ -159,16 +159,15 @@ class TestSharedSecretAuthentication(TestCase):
         self.profile = UserProfile.objects.get(pk=2519)
 
     def test_session_auth(self):
-        req = RequestFactory().get('/')
-        req.COOKIES['user'] = ('cfinke@m.com,56b6f1a3dd735d962c56ce7d8f46e02ec'
-                               '1d4748d2c00c407d75f0969d08bb9c68c31b3371aa8130'
-                               '317815c89e5072e31bb94b4121c5c165f3515838d4d6c6'
-                               '0c4,165d631d3c3045458b4516242dad7ae')
+        req = RequestFactory().get('/?_user=cfinke@m.com,56b6f1a3dd735d962c56'
+                                   'ce7d8f46e02ec1d4748d2c00c407d75f0969d08bb'
+                                   '9c68c31b3371aa8130317815c89e5072e31bb94b4'
+                                   '121c5c165f3515838d4d6c60c4,165d631d3c3045'
+                                   '458b4516242dad7ae')
         ok_(self.auth.is_authenticated(req))
 
     def test_failed_session_auth(self):
-        req = RequestFactory().get('/')
-        req.COOKIES['user'] = 'bogus'
+        req = RequestFactory().get('/?_user=bogus')
         ok_(not self.auth.is_authenticated(req))
 
     def test_session_auth_no_post(self):
@@ -200,11 +199,11 @@ class TestMultipleAuthentication(TestCase):
         self.profile = UserProfile.objects.get(pk=2519)
 
     def test_single(self):
-        req = RequestFactory().get('/')
-        req.COOKIES['user'] = ('cfinke@m.com,56b6f1a3dd735d962c56ce7d8f46e02ec'
-                               '1d4748d2c00c407d75f0969d08bb9c68c31b3371aa8130'
-                               '317815c89e5072e31bb94b4121c5c165f3515838d4d6c6'
-                               '0c4,165d631d3c3045458b4516242dad7ae')
+        req = RequestFactory().get('/?_user=cfinke@m.com,56b6f1a3dd735d962c56'
+                                   'ce7d8f46e02ec1d4748d2c00c407d75f0969d08bb'
+                                   '9c68c31b3371aa8130317815c89e5072e31bb94b4'
+                                   '121c5c165f3515838d4d6c60c4,165d631d3c3045'
+                                   '458b4516242dad7ae')
         self.resource._meta.authentication = (
                 authentication.SharedSecretAuthentication())
         eq_(self.resource.is_authenticated(req), None)

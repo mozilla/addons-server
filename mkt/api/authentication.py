@@ -157,17 +157,17 @@ class OptionalOAuthAuthentication(OAuthAuthentication):
 class SharedSecretAuthentication(Authentication):
 
     def is_authenticated(self, request, **kwargs):
-        auth = request.COOKIES.get('user')
+        auth = request.GET.get('_user')
         if not auth:
             return False
         try:
-            email, hm, unique_id = auth.split(',')
+            email, hm, unique_id = str(auth).split(',')
             consumer_id = hashlib.sha1(
                 email + settings.SECRET_KEY).hexdigest()
             return hmac.new(unique_id + settings.SECRET_KEY,
                             consumer_id, hashlib.sha512).hexdigest() == hm
-        except:
-            log.info('Bad shared-secret auth data: %s', auth)
+        except Exception, e:
+            log.info('Bad shared-secret auth data: %s (%s)', auth, e)
             return False
 
 
