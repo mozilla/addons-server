@@ -9,6 +9,7 @@ import amo
 from apps.users.views import logout
 from apps.users.urls import (detail_patterns as user_detail_patterns,
                              users_patterns as users_users_patterns)
+from mkt.abuse.urls import api_patterns as abuse_api_patterns
 from mkt.account.urls import (api_patterns as account_api_patterns,
                               purchases_patterns, settings_patterns,
                               users_patterns as mkt_users_patterns)
@@ -31,6 +32,7 @@ handler500 = 'mkt.site.views.handler500'
 api_patterns = patterns('',
     url('', include(home_api_patterns)),
     url('', include('mkt.api.urls')),
+    url('', include(abuse_api_patterns)),
     url('', include(account_api_patterns)),
     url('', include(reviewer_api_patterns)),
     url('', include('mkt.webpay.urls')),

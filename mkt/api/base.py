@@ -274,12 +274,17 @@ class PotatoCaptchaResource(object):
     tuber = fields.CharField(attribute='tuber')
     sprout = fields.CharField(attribute='sprout')
 
+    def remove_potato(self, bundle):
+        for field in ['tuber', 'sprout']:
+            if field in bundle.data:
+                del bundle.data[field]
+        return bundle
+
     def alter_detail_data_to_serialize(self, request, data):
         """
         Remove `sprout` from bundle data before returning serialized object to
         the consumer.
         """
         sup = super(PotatoCaptchaResource, self)
-        super_bundle = sup.alter_detail_data_to_serialize(request, data)
-        del super_bundle.data['sprout']
-        return super_bundle
+        bundle = sup.alter_detail_data_to_serialize(request, data)
+        return self.remove_potato(bundle)

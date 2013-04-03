@@ -166,3 +166,95 @@ Feedback
         }
 
     :status 201: successfully completed.
+
+
+Abuse
+=====
+
+
+Abusive apps and users may be reported to Marketplace staff.
+
+    .. note:: Authentication is optional for abuse reports.
+
+
+Report An Abusive App
+---------------------
+
+.. http:post:: /api/abuse/app/
+
+    Report an abusive app to Marketplace staff.
+
+    **Request**
+
+    :param text: a textual description of the abuse
+    :param app: the primary key of the app being reported
+
+    .. code-block:: json
+
+        {
+            "sprout": "potato",
+            "text": "There is a problem with this app.",
+            "app": 2
+        }
+
+    This endpoint uses `PotatoCaptcha`, so there must be a field named `sprout`
+    with the value `potato` and cannot be a field named `tuber` with a truthy 
+    value.
+
+    **Response**
+
+    .. code-block:: json
+
+        {
+            "reporter": null,
+            "text": "There is a problem with this app.",
+            "app": {
+                "id": 2,
+                "name": "cvan's app",
+                "...": "more info"
+            }
+        }
+
+    :status 201: successfully submitted.
+    :status 400: submission error.
+
+
+Report An Abusive User
+----------------------
+
+.. http:post:: /api/abuse/user/
+
+    Report an abusive user to Marketplace staff.
+
+    **Request**
+
+    :param text: a textual description of the abuse
+    :param user: the primary key of the user being reported
+
+    .. code-block:: json
+
+        {
+            "sprout": "potato",
+            "text": "There is a problem with this user",
+            "user": 27
+        } 
+
+    This endpoint uses `PotatoCaptcha`, so there must be a field named `sprout`
+    with the value `potato` and cannot be a field named `tuber` with a truthy 
+    value.
+
+    **Response**
+
+    .. code-block:: json
+
+        {
+            "reporter": null,
+            "text": "There is a problem with this user.",
+            "user": {
+                "id": "27",
+                "username": "cvan"
+            }
+        }
+
+    :status 201: successfully submitted.
+    :status 400: submission error.
