@@ -330,7 +330,8 @@ class APITest(TestCase):
             '/en-US/firefox/api/%.1f/addon/3615?format=json' % 1.2)
         data = json.loads(response.content)
         eq_(data['id'], 3615)
-        eq_(data['theme']['id'], '3')
+        eq_(data['theme']['id'], '3615',
+            '`id` should be `addon_id`, not `persona_id`')
 
     def test_addon_license(self):
         """Test for license information in response."""
