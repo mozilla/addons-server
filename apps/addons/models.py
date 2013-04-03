@@ -27,6 +27,7 @@ from tower import ugettext_lazy as _
 
 from addons.utils import get_featured_ids, get_creatured_ids
 
+import amo
 import amo.models
 import mkt.constants
 from amo.decorators import use_master
@@ -1605,10 +1606,10 @@ class Persona(caching.CachingMixin, models.Model):
     display_username = models.CharField(max_length=32, null=True)
     submit = models.DateTimeField(null=True)
     approve = models.DateTimeField(null=True)
-
     movers = models.FloatField(null=True, db_index=True)
     popularity = models.IntegerField(null=False, default=0, db_index=True)
-    license = models.ForeignKey('versions.License', null=True)
+    license = models.PositiveIntegerField(choices=amo.PERSONA_LICENSES_CHOICES,
+        null=True, blank=True)
 
     objects = caching.CachingManager()
 

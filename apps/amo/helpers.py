@@ -382,13 +382,13 @@ def shuffle(sequence):
 
 @register.function
 def license_link(license):
-    """Link to a code license, incl. icon where applicable."""
+    """Link to a code license, including icon where applicable."""
     if not license:
         return ''
-    if not license.builtin:
+    if not getattr(license, 'builtin', True):
         return _('Custom License')
 
-    t = env.get_template('amo/license_link.html').render({'license': license})
+    t = env.get_template('amo/license_link.html').render(license=license)
     return jinja2.Markup(t)
 
 

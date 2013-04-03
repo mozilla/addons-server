@@ -517,7 +517,7 @@ class ThemeForm(ThemeFormBase):
                               max_length=250, required=False)
     tags = forms.CharField(required=False)
 
-    license = forms.TypedChoiceField(choices=amo.PERSONA_LICENSES_IDS,
+    license = forms.TypedChoiceField(choices=amo.PERSONA_LICENSES_CHOICES,
         coerce=int, empty_value=None, widget=forms.HiddenInput,
         error_messages={'required': _lazy(u'A license must be selected.')})
     header = forms.FileField(required=False)
@@ -582,7 +582,7 @@ class ThemeForm(ThemeFormBase):
             p.accentcolor = data['accentcolor'].lstrip('#')
         if data['textcolor']:
             p.textcolor = data['textcolor'].lstrip('#')
-        p.license_id = data['license']
+        p.license = data['license']
         p.submit = datetime.now()
         p.author = user.name
         p.display_username = user.username
@@ -608,7 +608,7 @@ class EditThemeForm(AddonFormBase):
     tags = forms.CharField(required=False)
     accentcolor = ColorField(required=False)
     textcolor = ColorField(required=False)
-    license = forms.TypedChoiceField(choices=amo.PERSONA_LICENSES_IDS,
+    license = forms.TypedChoiceField(choices=amo.PERSONA_LICENSES_CHOICES,
         coerce=int, empty_value=None, widget=forms.HiddenInput,
         error_messages={'required': _lazy(u'A license must be selected.')})
 
@@ -638,7 +638,7 @@ class EditThemeForm(AddonFormBase):
             self.initial['accentcolor'] = '#' + persona.accentcolor
         if persona.textcolor:
             self.initial['textcolor'] = '#' + persona.textcolor
-        self.initial['license'] = persona.license_id
+        self.initial['license'] = persona.license
 
         cats = sorted(Category.objects.filter(type=amo.ADDON_PERSONA,
                                               weight__gte=0),
@@ -657,7 +657,7 @@ class EditThemeForm(AddonFormBase):
 
         # Update Persona-specific data.
         persona_data = {
-            'license_id': int(data['license']),
+            'license': int(data['license']),
             'accentcolor': data['accentcolor'].lstrip('#'),
             'textcolor': data['textcolor'].lstrip('#'),
             'display_username': self.request.amo_user.username

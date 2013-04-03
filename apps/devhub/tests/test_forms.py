@@ -367,7 +367,7 @@ class TestThemeForm(amo.tests.TestCase):
         self.assertSetEqual(addon.tags.values_list('tag_text', flat=True),
                             data['tags'].split(', '))
         eq_(persona.persona_id, 0)
-        eq_(persona.license_id, data['license'])
+        eq_(persona.license, data['license'])
         eq_(persona.accentcolor, data['accentcolor'].lstrip('#'))
         eq_(persona.textcolor, data['textcolor'].lstrip('#'))
         eq_(persona.author, self.request.amo_user.name)
@@ -415,10 +415,9 @@ class TestEditThemeForm(amo.tests.TestCase):
         self.cat = Category.objects.create(
             type=amo.ADDON_PERSONA, name='xxxx')
         self.instance.addoncategory_set.create(category=self.cat)
-        self.license = License.objects.create(id=amo.LICENSE_CC_BY.id)
+        self.license = amo.LICENSE_CC_BY.id
         Persona.objects.create(persona_id=0, addon_id=self.instance.id,
-            license_id=self.license.id, accentcolor='C0FFEE',
-            textcolor='EFFFFF')
+            license=self.license, accentcolor='C0FFEE', textcolor='EFFFFF')
         Tag(tag_text='sw').save_tag(self.instance)
         Tag(tag_text='ag').save_tag(self.instance)
 
@@ -426,7 +425,7 @@ class TestEditThemeForm(amo.tests.TestCase):
         data = {
             'accentcolor': '#C0FFEE',
             'category': self.cat.id,
-            'license': self.license.id,
+            'license': self.license,
             'name': unicode(self.instance.name),
             'slug': self.instance.slug,
             'summary': self.instance.summary.id,
@@ -443,11 +442,10 @@ class TestEditThemeForm(amo.tests.TestCase):
 
     def save_success(self):
         other_cat = Category.objects.create(type=amo.ADDON_PERSONA)
-        other_license = License.objects.create(id=amo.LICENSE_CC_BY_NC_SA.id)
         self.data = {
             'accentcolor': '#EFF0FF',
             'category': other_cat.id,
-            'license': other_license.id,
+            'license': amo.LICENSE_CC_BY_NC_SA.id,
             'name': 'All Day I Dream About Swag',
             'slug': 'swag-lifestyle',
             'summary': 'ADIDAS',
@@ -467,7 +465,7 @@ class TestEditThemeForm(amo.tests.TestCase):
         eq_(unicode(self.instance.persona.accentcolor),
             self.data['accentcolor'].lstrip('#'))
         eq_(self.instance.categories.all()[0].id, self.data['category'])
-        eq_(self.instance.persona.license.id, self.data['license'])
+        eq_(self.instance.persona.license, self.data['license'])
         eq_(unicode(self.instance.name), self.data['name'])
         eq_(unicode(self.instance.summary), self.data['summary'])
         self.assertSetEqual(

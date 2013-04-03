@@ -28,41 +28,41 @@
 
     var licensesByClass = {
         'copyr': {
-            'id': 7,
+            'id': 1,
             'name': gettext('All Rights Reserved')
         },
         'cc-attrib': {
-            'id': 9,
+            'id': 2,
             'name': gettext('Creative Commons Attribution 3.0'),
             'url': 'http://creativecommons.org/licenses/by/3.0/'
         },
         'cc-attrib cc-noncom': {
-            'id': 10,
+            'id': 3,
             'name': gettext('Creative Commons Attribution-NonCommercial 3.0'),
             'url': 'http://creativecommons.org/licenses/by-nc/3.0/'
         },
         'cc-attrib cc-noncom cc-noderiv': {
-            'id': 11,
+            'id': 4,
             'name': gettext('Creative Commons Attribution-NonCommercial-NoDerivs 3.0'),
             'url': 'http://creativecommons.org/licenses/by/3.0/'
         },
         'cc-attrib cc-noncom cc-share': {
-            'id': 8,
+            'id': 5,
             'name': gettext('Creative Commons Attribution-NonCommercial-Share Alike 3.0'),
             'url': 'http://creativecommons.org/licenses/by-nc-sa/3.0/'
         },
         'cc-attrib cc-noderiv': {
-            'id': 12,
+            'id': 6,
             'name': gettext('Creative Commons Attribution-NoDerivs 3.0'),
             'url': 'http://creativecommons.org/licenses/by-nd/3.0/'
         },
         'cc-attrib cc-share': {
-            'id': 13,
+            'id': 7,
             'name': gettext('Creative Commons Attribution-ShareAlike 3.0'),
             'url': 'http://creativecommons.org/licenses/by/3.0/'
         }
     };
-    // Build an object for lookups by id: {{7: 'copyr'}, {9: 'cc-attrib'}, ...}.
+    // Build an object for lookups by id: {{1: 'copyr'}, {2: 'cc-attrib'}, ...}.
     var licenseClassesById = _.object(_.map(licensesByClass, function(v, k) {
         return [v.id, k];
     }));
@@ -118,7 +118,7 @@
 
         $form.delegate('input[name="cc-attrib"]', 'change', function() {
             // Toggle the other license options based on whether the copyright license is selected.
-            toggleCopyr($licenseField.val() == 7);
+            toggleCopyr(+$licenseField.val() == licensesByClass.copyr.id);
         }).delegate('#persona-license-list input[type=radio][name=license]', 'change', function() {
             // Upon selecting license from advanced menu, change it in the Q/A format.
             $('.noncc.disabled').removeClass('disabled');
@@ -132,7 +132,7 @@
 
         // Default to copyright license.
         if (!$licenseField.val()) {
-            $licenseField.val('7');
+            $licenseField.val(licensesByClass.copyr.id);
         }
         $('input[data-cc="copyr"]').trigger('change');
 
