@@ -539,10 +539,11 @@ class ThemeForm(ThemeFormBase):
         from addons.tasks import (create_persona_preview_images,
                                   save_persona_image)
         data = self.cleaned_data
-        addon = Addon.objects.create(name=data['name'],
-            slug=data.get('slug'),
-            description=data.get('summary'),
+        addon = Addon.objects.create(slug=data.get('slug'),
             status=amo.STATUS_PENDING, type=amo.ADDON_PERSONA)
+        addon.name = {'en-US': data['name']}
+        if data.get('summary'):
+            addon.description = {'en-US': data['summary']}
         addon._current_version = Version.objects.create(addon=addon,
                                                         version='0')
         addon.save()
@@ -628,8 +629,9 @@ class EditThemeForm(AddonFormBase):
         self.fields['name'].validators = list(self.fields['name'].validators)
         self.fields['name'].validators.append(lambda x: clean_name(x, addon))
 
-        # `name` will be a `TransField` any day now.
-        self.initial['name'] = Translation.objects.get(id=self.initial['name'])
+        # TODO: Allow theme artists to localize Name and Summary (bug 855617).
+        self.initial['name'] = Translation.objects.get(locale='en-US',
+                                                       id=self.initial['name'])
 
         self.initial['tags'] = ', '.join(self.get_tags(addon))
         if persona.accentcolor:
