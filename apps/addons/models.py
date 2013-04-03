@@ -1683,7 +1683,11 @@ class Persona(caching.CachingMixin, models.Model):
 
     @amo.cached_property
     def update_url(self):
-        return settings.PERSONAS_UPDATE_URL % self.persona_id
+        locale = settings.LANGUAGE_URL_MAP.get(translation.get_language())
+        return settings.NEW_PERSONAS_UPDATE_URL % {
+            'locale': locale or settings.LANGUAGE_CODE,
+            'id': self.addon.id
+        }
 
     @amo.cached_property
     def theme_data(self):
@@ -1691,14 +1695,15 @@ class Persona(caching.CachingMixin, models.Model):
         hexcolor = lambda color: '#%s' % color
         addon = self.addon
         return {
-            'id': unicode(self.persona_id),  # Personas dislikes ints
-            'name': addon.name,
+            'id': unicode(self.addon.id),  # Personas dislikes ints
+            'name': unicode(addon.name),
             'accentcolor': hexcolor(self.accentcolor),
             'textcolor': hexcolor(self.textcolor),
             'category': (addon.all_categories[0].name if
                          addon.all_categories else ''),
-            'author': self.author,
-            'description': addon.description,
+            # TODO: Change this to be `addons_users.user.display_name`.
+            'author': self.display_username,
+            'description': unicode(addon.description),
             'header': self.header_url,
             'footer': self.footer_url,
             'headerURL': self.header_url,
@@ -1706,6 +1711,8 @@ class Persona(caching.CachingMixin, models.Model):
             'previewURL': self.thumb_url,
             'iconURL': self.icon_url,
             'updateURL': self.update_url,
+            'detailURL': self.addon.get_url_path(),
+            'version': '1.0'
         }
 
     @property

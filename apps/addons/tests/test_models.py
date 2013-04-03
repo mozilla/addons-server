@@ -1465,7 +1465,9 @@ class TestPersonaModel(amo.tests.TestCase):
             self.persona.footer_url)
 
     def test_update_url(self):
-        ok_(self.persona.update_url.endswith(str(self.persona.persona_id)))
+        with self.settings(LANGUAGE_CODE='en-US'):
+            url_ = self.persona.update_url
+            ok_(url_.endswith('/en-US/themes/update-check/15663'), url_)
 
 
 class TestPreviewModel(amo.tests.TestCase):
