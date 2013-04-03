@@ -25,6 +25,8 @@ def send_mail(cleaned_data, theme_lock):
     reason = None
     if reject_reason:
         reason = rvw.THEME_REJECT_REASONS[reject_reason]
+    elif action == rvw.ACTION_DUPLICATE:
+        reason = _('Duplicate Submission')
     comment = cleaned_data['comment']
 
     emails = set(theme.addon.authors.values_list('email', flat=True))
@@ -45,13 +47,11 @@ def send_mail(cleaned_data, theme_lock):
         subject = _('A problem with your Theme submission')
         template = 'reviewers/themes/emails/reject.html'
         theme.addon.update(status=amo.STATUS_REJECTED)
-        reason = (rvw.THEME_REJECT_REASONS[reject_reason])
 
     elif action == rvw.ACTION_DUPLICATE:
         subject = _('A problem with your Theme submission')
         template = 'reviewers/themes/emails/reject.html'
         theme.addon.update(status=amo.STATUS_REJECTED)
-        reason = 'Duplicate'
 
     elif action == rvw.ACTION_FLAG:
         subject = _('Theme submission flagged for review')
