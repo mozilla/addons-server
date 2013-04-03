@@ -169,7 +169,8 @@ class ThemeUpdate(object):
 
         image_url = posixpath.join(settings.LOCAL_MIRROR_URL,
                                    str(row['addon_id']), filename or '')
-        return '%s?%s' % (image_url, row['modified'])
+        modified = int(row['modified']) if row['modified'] else 0
+        return '%s?%s' % (image_url, modified)
 
     def url(self, url):
         return '%s/%s%s' % (

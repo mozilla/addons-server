@@ -1641,7 +1641,13 @@ class Persona(caching.CachingMixin, models.Model):
     def get_mirror_url(self, filename):
         host = (settings.PRIVATE_MIRROR_URL if self.addon.is_disabled
                 else settings.LOCAL_MIRROR_URL)
-        return posixpath.join(host, str(self.addon.id), filename or '')
+        image_url = posixpath.join(host, str(self.addon.id), filename or '')
+        # TODO: Bust the cache on the hash of the image contents or something.
+        if self.addon.modified is not None:
+            modified = int(time.mktime(self.addon.modified.timetuple()))
+        else:
+            modified = 0
+        return '%s?%s' % (image_url, modified)
 
     @amo.cached_property
     def thumb_url(self):

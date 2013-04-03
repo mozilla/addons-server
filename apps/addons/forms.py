@@ -674,6 +674,8 @@ class EditThemeForm(AddonFormBase):
         if self.changed_data:
             amo.log(amo.LOG.EDIT_PROPERTIES, addon)
 
+        self.instance.modified = datetime.now()
+
         # Save the Addon object.
         super(EditThemeForm, self).save()
 

@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
-from contextlib import nested
 import itertools
 import json
 import os
-from datetime import datetime, timedelta
+import time
 import tempfile
+from contextlib import nested
+from datetime import datetime, timedelta
 from urlparse import urlparse
 
 from django import forms
@@ -16,7 +17,7 @@ from django.db import IntegrityError
 from django.utils import translation
 
 from mock import patch, Mock
-from nose.tools import eq_, assert_not_equal, raises
+from nose.tools import eq_, assert_not_equal, ok_, raises
 import waffle
 
 import amo
@@ -1425,7 +1426,7 @@ class TestCategoryModel(amo.tests.TestCase):
 
 
 class TestPersonaModel(amo.tests.TestCase):
-    fixtures = ['addons/persona', 'base/apps']
+    fixtures = ['addons/persona']
 
     def setUp(self):
         self.addon = Addon.objects.get(id=15663)
@@ -1433,37 +1434,38 @@ class TestPersonaModel(amo.tests.TestCase):
         self.persona.header = 'header.png'
         self.persona.footer = 'footer.png'
         self.persona.save()
+        modified = int(time.mktime(self.persona.addon.modified.timetuple()))
+        self.p = lambda fn: '/15663/%s?%s' % (fn, modified)
 
     def test_image_urls(self):
+        # AMO-uploaded themes have `persona_id=0`.
         self.persona.persona_id = 0
         self.persona.save()
-        p = lambda x: '/15663/' + x
-        assert self.persona.thumb_url.endswith(p('preview.png')), (
+        ok_(self.persona.thumb_url.endswith(self.p('preview.png')),
             self.persona.thumb_url)
-        assert self.persona.icon_url.endswith(p('icon.png')), (
+        ok_(self.persona.icon_url.endswith(self.p('icon.png')),
             self.persona.icon_url)
-        assert self.persona.preview_url.endswith(p('preview.png')), (
+        ok_(self.persona.preview_url.endswith(self.p('preview.png')),
             self.persona.preview_url)
-        assert self.persona.header_url.endswith(p('header.png')), (
+        ok_(self.persona.header_url.endswith(self.p('header.png')),
             self.persona.header_url)
-        assert self.persona.footer_url.endswith(p('footer.png')), (
+        ok_(self.persona.footer_url.endswith(self.p('footer.png')),
             self.persona.footer_url)
 
     def test_old_image_urls(self):
-        p = lambda x: '/15663/' + x
-        assert self.persona.thumb_url.endswith(p('preview.jpg')), (
+        ok_(self.persona.thumb_url.endswith(self.p('preview.jpg')),
             self.persona.thumb_url)
-        assert self.persona.icon_url.endswith(p('preview_small.jpg')), (
+        ok_(self.persona.icon_url.endswith(self.p('preview_small.jpg')),
             self.persona.icon_url)
-        assert self.persona.preview_url.endswith(p('preview_large.jpg')), (
+        ok_(self.persona.preview_url.endswith(self.p('preview_large.jpg')),
             self.persona.preview_url)
-        assert self.persona.header_url.endswith(p('header.png')), (
+        ok_(self.persona.header_url.endswith(self.p('header.png')),
             self.persona.header_url)
-        assert self.persona.footer_url.endswith(p('footer.png')), (
+        ok_(self.persona.footer_url.endswith(self.p('footer.png')),
             self.persona.footer_url)
 
     def test_update_url(self):
-        assert self.persona.update_url.endswith(str(self.persona.persona_id))
+        ok_(self.persona.update_url.endswith(str(self.persona.persona_id)))
 
 
 class TestPreviewModel(amo.tests.TestCase):
