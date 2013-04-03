@@ -5,7 +5,9 @@
 {% extends 'developers/skeleton_impala.html' %}
 
 {% if addon %}
-  {% set editable = "no-edit" if not check_addon_ownership(request, addon, dev=True) %}
+  {% set editable = "no-edit"
+     if not check_addon_ownership(request, addon, dev=True) and
+        not action_allowed('Apps', 'Configure') %}
 {% endif %}
 {% block bodyclass %}developer-hub{{ ' apps' if webapp }} gutter {{ editable }}{% endblock %}
 

@@ -115,7 +115,7 @@ def dashboard(request, webapp=False):
     return jingo.render(request, 'developers/apps/dashboard.html', data)
 
 
-@dev_required(webapp=True)
+@dev_required(webapp=True, staff=True)
 def edit(request, addon_id, addon, webapp=False):
     data = {
         'page': 'edit',
@@ -569,11 +569,21 @@ def addons_section(request, addon_id, addon, section, editable=False,
               'technical': AppFormTechnical,
               'admin': forms.AdminSettingsForm}
 
+    is_dev = acl.check_addon_ownership(request, addon, dev=True)
+
     if section not in models:
         raise http.Http404()
 
     tags = image_assets = previews = restricted_tags = []
     cat_form = None
+
+    # Permissions checks.
+    # Only app owners can edit any of the details of their apps.
+    # Users with 'Apps:Configure' can edit the admin settings.
+    if (section != 'admin' and not is_dev) or (section == 'admin' and
+          not acl.action_allowed(request, 'Apps', 'Configure') and
+          not acl.action_allowed(request, 'Apps', 'ViewConfiguration')):
+        raise PermissionDenied
 
     if section == 'basic':
         tags = addon.tags.not_blacklisted().values_list('tag_text', flat=True)
@@ -587,11 +597,6 @@ def addons_section(request, addon_id, addon, section, editable=False,
         previews = PreviewFormSet(
             request.POST or None, prefix='files',
             queryset=addon.get_previews())
-
-    elif (section == 'admin' and
-          not acl.action_allowed(request, 'Apps', 'Configure') and
-          not acl.action_allowed(request, 'Apps', 'ViewConfiguration')):
-        raise PermissionDenied
 
     # Get the slug before the form alters it to the form data.
     valid_slug = addon.app_slug
