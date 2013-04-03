@@ -130,6 +130,10 @@
             licenseUpdate(false);
         });
 
+        // Default to copyright license.
+        if (!$licenseField.val()) {
+            $licenseField.val('7');
+        }
         $('input[data-cc="copyr"]').trigger('change');
 
         // Whenever a radio field changes, update the license.
