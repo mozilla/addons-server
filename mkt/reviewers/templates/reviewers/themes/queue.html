@@ -37,7 +37,14 @@
       data-more-url="{{ more_url }}">
 </span>
 
-<div class="sidebar"><div {% block fixed_sidebar %}class="sidebar-fixed"{% endblock %}>
+<div class="sidebar"><div class="{% if theme_count > 1 %}align fixed
+                                 {% else %}
+                                   {% if theme_count == 1 %}
+                                     align absolute
+                                   {% else %}
+                                     absolute
+                                   {% endif %}
+                                 {% endif %}">
   {% block queue_options %}
     <form class="box options">
       <h2>{{ _('Review Options') }}</h2>

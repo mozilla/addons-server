@@ -408,10 +408,10 @@
 })(jQuery);
 
 
-function vertAlignSidebar($window, $activeTheme) {
-    var activeThemeTop = ($activeTheme.offset().top -
+function vertAlignSidebar($window) {
+    var activeThemeTop = ($('.theme.active').offset().top -
                           $window.scrollTop());
-    $('.sidebar-fixed').css('top', activeThemeTop + 'px');
+    $('.sidebar .align.fixed').css('top', activeThemeTop + 'px');
 }
 
 
@@ -425,9 +425,13 @@ $(document).ready(function() {
             $('#theme-queue-form').submit();
         }));
 
-        var $window = $(window);
-        $window.scroll(_.throttle(function() {
-            vertAlignSidebar($window, $('.theme.active'));
-        }, 100));
+        // Align sidebar with active theme.
+        if ($('.theme.active').length) {
+            var $window = $(window);
+            $window.scroll(_.throttle(function() {
+                vertAlignSidebar($window);
+            }, 100));
+            vertAlignSidebar($window);
+        }
     }
 });
