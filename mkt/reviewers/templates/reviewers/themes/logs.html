@@ -40,7 +40,13 @@
             </tr>
             <tr class="comments hide">
               <td>&nbsp;</td>
-              <td colspan="4">{{ item.details.comment }}</td>
+              <td colspan="4">
+                {% if action == 3 %}
+                  {{ item.details.comment }}
+                {% else %}
+                  {{ REJECT_REASONS[item.details.reject_reason] }}
+                {% endif %}
+              </td>
             </tr>
           {% endfor %}
         </tbody>
