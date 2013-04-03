@@ -80,7 +80,7 @@ class TestApi(BaseOAuth, ESTestCase):
             eq_(res.status_code, 200)
             obj = json.loads(res.content)['objects'][0]
             eq_(obj['slug'], self.webapp.app_slug)
-            eq_(obj['icon_url_128'], self.webapp.get_icon_url(128))
+            eq_(obj['icons']['128'], self.webapp.get_icon_url(128))
             eq_(obj['absolute_url'], self.webapp.get_absolute_url())
             eq_(obj['resource_uri'], None)
 
