@@ -45,8 +45,9 @@ def global_settings(request):
                 'href': reverse('reviewers.apps.queue_pending'),
             })
         if acl.action_allowed(request, 'Localizers', '%'):
-            footer_links.append({'text': _('Localizer Tools'),
-                                'href': '/localizers'})
+            footer_links.append(
+                {'text': _('Localizer Tools'),
+                 'href': 'https://addons.mozilla.org/localizers/'})
         if acl.action_allowed(request, 'AccountLookup', '%'):
             footer_links.append({'text': _('Lookup Tool'),
                                 'href': reverse('lookup.home')})
