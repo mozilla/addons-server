@@ -174,21 +174,21 @@ This will return a list of all the apps the user is allowed to access::
                  ...]}
         }
 
-Get
-===
+.. _app-response-label:
 
-.. note:: Requires authentication if the app is not public.
+.. http:get:: /api/v1/apps/app/<id>/
 
-To get an individual app, use the `resource_uri` from the list::
+    .. note:: Requires authentication if the app is not public.
 
-        GET /api/v1/apps/app/4/
+    **Response**
 
-This will return::
+    .. code-block:: json
 
-        {"resource_uri": "/api/v1/apps/app/4/",
-         "slug": "mozillaball",
-         "summary": "Exciting Open Web development action!",
-         ...}
+        {
+            "resource_uri": "/api/v1/apps/app/4/",
+            "slug": "mozillaball",
+            "summary": "Exciting Open Web development action!"
+        }
 
 Status
 ======
