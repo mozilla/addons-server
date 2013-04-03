@@ -2,7 +2,7 @@
 -- for a license constant.
 alter table personas drop foreign key personas_ibfk_4;
 
-alter table personas change column license license int(11) unsigned null;
+alter table personas change column license_id license int(11) unsigned null;
 
 -- All Rights Reserved
 update personas set license = 1 where license in (7, 1034);
