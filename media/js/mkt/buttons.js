@@ -64,36 +64,10 @@
 
         // TODO: We should remove this eventually.
         console.log('Error code:', msg);
+        errSummary = apps.lookupError(msg);
 
-        switch (msg) {
-            // mozApps error codes, defined in
-            // https://developer.mozilla.org/en-US/docs/Apps/Apps_JavaScript_API/Error_object
-            case 'MKT_CANCELLED':
-            case 'DENIED':
-                msg = 'cancelled';
-                break;
-            case 'MANIFEST_URL_ERROR':
-                errSummary = gettext('The manifest could not be found at the given location.');
-                break;
-            case 'NETWORK_ERROR':
-                errSummary = gettext('App host could not be reached.');
-                break;
-            case 'MANIFEST_PARSE_ERROR':
-                errSummary = gettext('App manifest is unparsable.');
-                break;
-            case 'INVALID_MANIFEST':
-                errSummary = gettext('App manifest is invalid.');
-                break;
-            // Marketplace specific error codes.
-            case 'MKT_SERVER_ERROR':
-                errSummary = gettext('Internal server error.');
-                break;
-            case 'MKT_INSTALL_ERROR':
-                errSummary = gettext('Internal server error on app installation.');
-                break;
-            default:
-                errSummary = gettext('Install failed. Please try again later.');
-                break;
+        if (msg == 'MKT_CANCELLED' || msg == 'DENIED') {
+            msg = 'cancelled';
         }
 
         if (msg && msg != 'cancelled') {

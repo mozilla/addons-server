@@ -76,4 +76,37 @@ exports.install = function(product, opt) {
     return $def.promise();
 };
 
+exports.lookupError = function(msg) {
+    switch (msg) {
+        // mozApps error codes, defined in
+        // https://developer.mozilla.org/en-US/docs/Apps/Apps_JavaScript_API/Error_object
+         case 'MANIFEST_URL_ERROR':
+            msg = gettext('The manifest could not be found at the given location.');
+            break;
+        case 'NETWORK_ERROR':
+            msg = gettext('App host could not be reached.');
+            break;
+        case 'MANIFEST_PARSE_ERROR':
+            msg = gettext('App manifest is unparsable.');
+            break;
+        case 'INVALID_MANIFEST':
+            msg = gettext('App manifest is invalid.');
+            break;
+        case 'REINSTALL_FORBIDDEN':
+            msg = gettext('App is already installed.');
+            break;
+        // Marketplace specific error codes.
+        case 'MKT_SERVER_ERROR':
+            msg = gettext('Internal server error.');
+            break;
+        case 'MKT_INSTALL_ERROR':
+            msg = gettext('Internal server error on app installation.');
+            break;
+        default:
+            msg = gettext('Install failed. Please try again later.');
+            break;
+    }
+    return msg;
+}
+
 })(typeof exports === 'undefined' ? (this.apps = {}) : exports);
