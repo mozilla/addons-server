@@ -24,12 +24,14 @@ from lib.crypto.receipt import SigningError
 from lib.cef_loggers import receipt_cef
 import mkt
 from mkt.constants import apps
+from mkt.receipts.utils import create_test_receipt
 from mkt.webapps.models import Installed, Webapp
-from services.verify import Verify, get_headers
+from services.verify import decode_receipt, Verify, get_headers
 from stats.models import ClientData
 from users.models import UserProfile
 from zadmin.models import DownloadSource
 
+from . import forms
 from .utils import create_receipt
 
 log = commonware.log.getLogger('z.receipts')
@@ -48,7 +50,7 @@ def reissue(request, addon):
 
 
 def _record(request, addon):
-    # TODO(andym): simplify this.
+    # TODO(andym): we have an API now, replace this with that.
     logged = request.user.is_authenticated()
     premium = addon.is_premium()
 
@@ -144,6 +146,14 @@ def record(request, addon):
     return _record(request, addon)
 
 
+# Set the CORS headers on the response by calling get_headers.
+def response(data):
+    response = http.HttpResponse(data)
+    for header, value in get_headers(len(data)):
+        response[header] = value
+    return response
+
+
 @csrf_exempt
 @post_required
 def verify(request, uuid):
@@ -153,13 +163,6 @@ def verify(request, uuid):
     receipt = request.read()
     verify = Verify(receipt, request)
     output = verify(check_purchase=False)
-
-    # Ensure CORS headers are set.
-    def response(data):
-        response = http.HttpResponse(data)
-        for header, value in get_headers(len(output)):
-            response[header] = value
-        return response
 
     # Only reviewers or the developers can use this which is different
     # from the standard receipt verification. The user is contained in the
@@ -214,3 +217,44 @@ def check(request, uuid):
                 .filter(addon=addon,
                         activity_log__action=amo.LOG.RECEIPT_CHECKED.id))
     return {'status': qs.exists()}
+
+
+# These methods are for the test of receipts in the devhub.
+def test_install(request):
+    return jingo.render(request, 'receipts/test_manifest.html',
+                        {'form': forms.TestInstall()})
+
+
+@json_view
+@post_required
+def test_receipt(request):
+    form = forms.TestInstall(request.POST)
+    if form.is_valid():
+        receipt_type = form.cleaned_data['receipt_type']
+
+        if receipt_type == 'none':
+            return {'receipt': '', 'error': ''}
+
+        receipt_cef.log(request, None, 'sign', 'Test receipt signing')
+        receipt = create_test_receipt(receipt_type)
+        return {'receipt': receipt, 'error': ''}
+
+    return {'receipt': '', 'error': form.errors['receipt_type'][0]}
+
+
+def test_details(request):
+    return jingo.render(request, 'receipts/test_details.html')
+
+
+@csrf_exempt
+@json_view
+@post_required
+def test_verify(request, status):
+    try:
+        result = decode_receipt(request.body)
+        # TODO: insert type and url checks here.
+        if result:
+            return {'status': status}
+    except:
+        log.error('Decoding test receipt', exc_info=True)
+        return {'status': 'invalid'}

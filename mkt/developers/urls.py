@@ -6,6 +6,7 @@ from lib.misc.urlconf_decorator import decorate
 import amo
 from amo.decorators import write
 from mkt.developers.decorators import use_apps
+from mkt.receipts.urls import test_patterns
 from mkt.stats.urls import all_apps_stats_patterns
 
 from . import views
@@ -149,4 +150,6 @@ urlpatterns = decorate(write, patterns('',
 
     # Bango-specific stuff.
     url('^bango/', include(bango_patterns('bango'))),
+
+    url('^test/receipts/', include(test_patterns)),
 ))

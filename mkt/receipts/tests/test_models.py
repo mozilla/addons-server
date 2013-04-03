@@ -126,8 +126,7 @@ class TestReceipt(amo.tests.TestCase):
         ins = self.create_install(user, self.webapp)
         receipt = self.for_user(ins, 'developer')
         assert receipt['exp'] > (calendar.timegm(time.gmtime()) +
-                                 settings.WEBAPPS_RECEIPT_EXPIRY_SECONDS -
-                                 TEST_LEEWAY)
+                                 (60 * 60 * 24) - TEST_LEEWAY)
 
     def test_receipt_data_reviewer(self):
         user = UserProfile.objects.get(pk=999)

@@ -214,6 +214,10 @@ JS = {
         'js/devreg/payments-manage.js',
         'js/devreg/payments.js',
 
+        # For testing installs.
+        'js/mkt/apps.js',
+        'js/devreg/test-install.js',
+
         # Module initialization.
         'js/devreg/devreg_init.js',
     ),

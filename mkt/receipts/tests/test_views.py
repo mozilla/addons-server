@@ -1,23 +1,33 @@
 # -*- coding: utf8 -*-
+import calendar
 import json
+import time
 import uuid
 
+from django import forms
 from django.conf import settings
 
 import mock
-from nose.tools import eq_
+from nose.tools import eq_, ok_
 from pyquery import PyQuery as pq
+from test_utils import RequestFactory
 
 from addons.models import AddonUser
 import amo
 import amo.tests
+from amo.helpers import absolutify
 from amo.urlresolvers import reverse
 from devhub.models import AppLog
 from mkt.constants import apps
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
+from mkt.receipts.utils import create_test_receipt
+from mkt.receipts.views import test_verify
+from services.verify import decode_receipt
 from users.models import UserProfile
 from zadmin.models import DownloadSource
+
+from .test_models import TEST_LEEWAY
 
 
 class TestReissue(amo.tests.TestCase):
@@ -406,3 +416,57 @@ class TestReceiptCheck(amo.tests.TestCase):
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
         eq_(json.loads(res.content)['status'], True)
+
+
+class RawRequestFactory(RequestFactory):
+    """A request factory that does not encode the body."""
+
+    def _encode_data(self, data, content_type):
+        return data
+
+
+class TestDevhubReceipts(amo.tests.TestCase):
+
+    def setUp(self):
+        self.issue = reverse('receipt.test.issue')
+
+    def test_install_page(self):
+        eq_(self.client.get(reverse('receipt.test.install')).status_code, 200)
+
+    def test_details_page(self):
+        eq_(self.client.get(reverse('receipt.test.details')).status_code, 200)
+
+    def test_issue_get(self):
+        eq_(self.client.get(self.issue).status_code, 405)
+
+    def test_issue_none(self):
+        data = {'receipt_type': 'none'}
+        res = self.client.post(self.issue, data=data)
+        eq_(json.loads(res.content)['receipt'], '')
+
+    def test_issue_expired(self):
+        data = {'receipt_type': 'expired'}
+        res = self.client.post(self.issue, data=data)
+        data = decode_receipt(json.loads(res.content)['receipt']
+                                  .encode('ascii'))
+        eq_(data['verify'], absolutify(reverse('receipt.test.verify',
+                                       kwargs={'status': 'expired'})))
+        ok_(data['exp'] > (calendar.timegm(time.gmtime()) +
+                           (60 * 60 * 24) - TEST_LEEWAY))
+
+    def test_issue_other(self):
+        data = {'receipt_type': 'foo'}
+        res = self.client.post(self.issue, data=data)
+        eq_(json.loads(res.content)['error'],
+            forms.ChoiceField.default_error_messages['invalid_choice']
+                % {'value': 'foo'})
+
+    def test_verify_fails(self):
+        req = RawRequestFactory().post('/', '')
+        res = test_verify(req, 'expired')
+        eq_(json.loads(res.content)['status'], 'invalid')
+
+    def test_verify(self):
+        req = RawRequestFactory().post('/', create_test_receipt('expired'))
+        res = test_verify(req, 'expired')
+        eq_(json.loads(res.content)['status'], 'expired')

@@ -27,3 +27,15 @@ receipt_patterns = patterns('',
 receipt_api_patterns = patterns('',
     url(r'^', include(receipt.urls)),
 )
+
+test_patterns = patterns('',
+    url('^$', views.test_install,
+        name='receipt.test.install'),
+    url('^issue/$', views.test_receipt,
+        name='receipt.test.issue'),
+    url('^details/$', views.test_details,
+        name='receipt.test.details'),
+    url('^verify/(?P<status>ok|expired|invalid|refunded)/$',
+        views.test_verify,
+        name='receipt.test.verify'),
+)

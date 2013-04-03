@@ -34,8 +34,8 @@ def create_receipt(installed_pk, flavour=None):
             raise ValueError('User %s is not a reviewer or developer' %
                              installed.user.pk)
 
-        if flavour == 'reviewer':
-            expiry = time_ + (60 * 60 * 24)
+        # Developer and reviewer receipts should expire after 24 hours.
+        expiry = time_ + (60 * 60 * 24)
         product['type'] = flavour
         verify = absolutify(reverse('receipt.verify', args=[webapp.guid]))
     else:
@@ -55,6 +55,36 @@ def create_receipt(installed_pk, flavour=None):
         return sign(receipt)
     else:
         # Our old bad code.
+        return jwt.encode(receipt, get_key(), u'RS512')
+
+
+def create_test_receipt(status):
+    time_ = calendar.timegm(time.gmtime())
+    detail = absolutify(reverse('receipt.test.details'))
+    receipt = {
+        'detail': absolutify(detail),
+        'exp': time_ + (60 * 60 * 24),
+        'iat': time_,
+        'iss': settings.SITE_URL,
+        'nbf': time_,
+        'product': {
+            'storedata': urlencode({'id': 0}),
+            'url': detail,
+            'type': 'test'
+        },
+        'reissue': detail,
+        'typ': 'purchase-receipt',
+        'user': {
+            'type': 'directed-identifier',
+            'value': 'none'
+        },
+        'verify': absolutify(reverse('receipt.test.verify',
+                                     kwargs={'status': status}))
+
+    }
+    if settings.SIGNING_SERVER_ACTIVE:
+        return sign(receipt)
+    else:
         return jwt.encode(receipt, get_key(), u'RS512')
 
 
