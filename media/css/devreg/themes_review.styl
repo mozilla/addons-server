@@ -7,7 +7,7 @@ button {
     border-radius: 2px;
 }
 
-h1.float {
+h1.theme-queue-header {
     float: left;
 }
 nav.theme-review {
@@ -96,9 +96,16 @@ nav.theme-review {
         width: 100%;
     }
     button#commit {
-        background: $button-green-dark;
+        background: darken($button-green-dark, 15%);
+        font-weight: bold;
+        position: relative;
         &:hover {
-            background: $button-green-light;
+            background: darken($button-green-light, 15%);
+        }
+        img {
+            left: 30px;
+            position: absolute;
+            top: 17px;
         }
     }
     button#more {

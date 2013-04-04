@@ -18,7 +18,7 @@
 
 {{ reviewers_breadcrumbs(queue='themes') }}
 
-<h1 class="float">{% block page_header %}{{ title_text }}{% endblock %}</h1>
+<h1 class="theme-queue-header">{% block page_header %}{{ title_text }}{% endblock %}</h1>
 <nav class="theme-review"><ul>
   {% if action_allowed('ReviewerAdminTools', 'View') and not flagged %}
     <li><a href="{{ url('reviewers.themes.queue_flagged') }}">
@@ -87,7 +87,10 @@
   <div><a class="button review-history" href="{{ url('reviewers.themes.history') }}">{{ _('Your Review History') }}</a></div>
 
   {% if reviewable %}
-    <button id="commit" type="submit">{{ _('Commit Reviews') }}</button>
+    <button id="commit" type="submit">
+      <img src="{{ media('/img/sprites/mkt-reviewer-icons/page_white_edit.png') }}">
+      {{ _('Commit Reviews') }}
+    </button>
     <button id="more" type="submit">{{ _('Load More') }}</button>
     <div id="queue-details">
        {{ _('{0} out of {1} reviewed').format('<span id="reviewed-count">0</span>'|safe,
