@@ -20,12 +20,11 @@
 
 <h1 class="theme-queue-header">{% block page_header %}{{ title_text }}{% endblock %}</h1>
 <nav class="theme-review"><ul>
-  {% if action_allowed('ReviewerAdminTools', 'View') and not flagged %}
+  {% if action_allowed('ReviewerAdminTools', 'View') and not theme and not flagged %}
     <li><a href="{{ url('reviewers.themes.queue_flagged') }}">
-      {{ _('Flagged') }}
+      {{ _('Flagged Queue') }}
     </a></li>
-  {% endif %}
-  {% if flagged %}
+  {% else %}
     <li><a href="{{ url('reviewers.themes.queue_themes') }}">
       {{ _('Back to Themes Queue') }}
     </a></li>
