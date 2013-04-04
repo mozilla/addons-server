@@ -214,6 +214,12 @@ can be multiple errors per field. Example:
             }
         }
 
+Rate limiting
++++++++++++++
+
+Select API endpoints are rate-limited. When an application exceeds the rate
+limit for a given endpoint, the API will return an HTTP 429 response.
+
 Other errors
 ++++++++++++
 

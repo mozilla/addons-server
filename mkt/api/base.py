@@ -3,6 +3,7 @@ import json
 
 from django.conf.urls.defaults import url
 from django.core.exceptions import ObjectDoesNotExist
+from django.http import HttpResponse
 
 from tastypie import fields, http
 from tastypie.bundle import Bundle
@@ -23,6 +24,10 @@ def list_url(name, **kw):
 def get_url(name, pk, **kw):
     kw.update({'resource_name': name, 'pk': pk})
     return ('api_dispatch_detail', kw)
+
+
+class HttpTooManyRequests(HttpResponse):
+    status_code = 429
 
 
 class Marketplace(object):
@@ -124,7 +129,7 @@ class Marketplace(object):
         if any(self._meta.throttle.should_be_throttled(identifier)
                for identifier in identifiers):
             # Throttle limit exceeded.
-            raise ImmediateHttpResponse(response=http.HttpForbidden())
+            raise ImmediateHttpResponse(response=HttpTooManyRequests())
 
     def log_throttled_access(self, request):
         """
