@@ -2117,7 +2117,7 @@ class ThemeReviewTestMixin(object):
                  'reviewer_email': u'reviewer0@mozilla.com',
                  'base_url': 'http://testserver'},
                 headers={'Reply-To': settings.THEMES_EMAIL},
-                recipient_list=set([])),
+                recipient_list=set([]), cc=settings.THEMES_EMAIL),
             mock.call('A problem with your Theme submission',
                 'reviewers/themes/emails/flag_user.html',
                 {'reason': None,
@@ -2125,7 +2125,7 @@ class ThemeReviewTestMixin(object):
                  'theme': themes[1],
                  'base_url': 'http://testserver'},
                 headers={'Reply-To': settings.THEMES_EMAIL},
-                recipient_list=[settings.THEMES_EMAIL]),
+                recipient_list=set([])),
             mock.call('Theme submission flagged for review',
                 'reviewers/themes/emails/flag_reviewer.html',
                 {'reason': None,
@@ -2133,7 +2133,7 @@ class ThemeReviewTestMixin(object):
                  'theme': themes[1],
                  'base_url': 'http://testserver'},
                 headers={'Reply-To': settings.THEMES_EMAIL},
-                recipient_list=[settings.THEMES_EMAIL]),
+                recipient_list=[settings.THEMES_EMAIL], cc=None),
             mock.call('A problem with your Theme submission',
                 'reviewers/themes/emails/reject.html',
                 {'reason': mock.ANY,
@@ -2141,7 +2141,7 @@ class ThemeReviewTestMixin(object):
                  'theme': themes[2],
                  'base_url': 'http://testserver'},
                 headers={'Reply-To': settings.THEMES_EMAIL},
-                recipient_list=set([])),
+                recipient_list=set([]), cc=settings.THEMES_EMAIL),
             mock.call('A problem with your Theme submission',
                 'reviewers/themes/emails/reject.html',
                 {'reason': mock.ANY,
@@ -2149,7 +2149,7 @@ class ThemeReviewTestMixin(object):
                  'theme': themes[3],
                  'base_url': 'http://testserver'},
                 headers={'Reply-To': settings.THEMES_EMAIL},
-                recipient_list=set([])),
+                recipient_list=set([]), cc=settings.THEMES_EMAIL),
             mock.call('Thanks for submitting your Theme',
                 'reviewers/themes/emails/approve.html',
                 {'reason': None,
@@ -2157,7 +2157,7 @@ class ThemeReviewTestMixin(object):
                  'theme': themes[4],
                  'base_url': 'http://testserver'},
                 headers={'Reply-To': settings.THEMES_EMAIL},
-                recipient_list=set([]))
+                recipient_list=set([]), cc=settings.THEMES_EMAIL)
         ]
         eq_(send_mail_jinja_mock.call_args_list[0], expected_calls[0])
         eq_(send_mail_jinja_mock.call_args_list[1], expected_calls[1])
