@@ -61,8 +61,8 @@
       <div class="tab_panel tab-panel tab-selected" id="addons-edit">
         <form method="post"
               action="{{ url('collections.edit_addons', username, slug) }}">
-        {% include 'bandwagon/includes/addon_selector.html' %}
         {{ csrf() }}
+        {% include 'bandwagon/includes/addon_selector.html' %}
         <div class="listing-footer">
           <input type="submit" value="{{ _('Save Changes') }}">
           {% if owner %}

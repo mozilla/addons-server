@@ -423,8 +423,8 @@ class WebappSuggestionsAjax(SearchSuggestionsAjax):
 @json_view
 def ajax_search(request):
     """This is currently used only to return add-ons for populating a
-    new collection. Personas are included by default, so this can be
-    used elsewhere.
+    new collection. Themes (formerly Personas) are included by default, so
+    this can be used elsewhere.
 
     """
     search_obj = BaseAjaxSearch(request)
