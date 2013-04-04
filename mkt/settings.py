@@ -315,4 +315,4 @@ APP_PURCHASE_TYP = 'mozilla/payments/pay/v1'
 # This is the base filename of the `.zip` containing the packaged app for the
 # consumer-facing pages of the Marketplace (aka Fireplace). Expected path:
 #     /media/packaged-apps/<path>
-PACKAGED_ZIP = 'yulelog_prod_2013.04.01_17.40.15.zip'
+PACKAGED_ZIP = 'yulelog_prod_2013.04.04_16.29.05.zip'
