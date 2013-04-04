@@ -14,32 +14,31 @@ from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.http import base36_to_int
 
-from django_browserid import get_audience, verify
-
 import commonware.log
-from django_statsd.clients import statsd
 import jingo
-from tower import ugettext as _
-from session_csrf import anonymous_csrf, anonymous_csrf_exempt
-from mobility.decorators import mobile_template
 import waffle
+from django_browserid import get_audience, verify
+from django_statsd.clients import statsd
+from mobility.decorators import mobile_template
+from session_csrf import anonymous_csrf, anonymous_csrf_exempt
+from tower import ugettext as _
 
-from access.middleware import ACLMiddleware
 import amo
+import users.notifications as notifications
+from abuse.models import send_abuse_report
+from access.middleware import ACLMiddleware
+from addons.models import Addon
+from addons.decorators import addon_view_factory
 from amo import messages
 from amo.decorators import (json_view, login_required, permission_required,
                             post_required, write)
 from amo.forms import AbuseForm
-from amo.urlresolvers import get_url_prefix, reverse
 from amo.helpers import loc
+from amo.urlresolvers import get_url_prefix, reverse
 from amo.utils import escape_all, log_cef, send_mail
-from abuse.models import send_abuse_report
-from addons.models import Addon
-from addons.decorators import addon_view_factory
 from access import acl
 from bandwagon.models import Collection
 from users.models import UserNotification
-import users.notifications as notifications
 
 from lib.metrics import record_action
 
@@ -56,10 +55,16 @@ addon_view = addon_view_factory(qs=Addon.objects.valid)
 
 def user_view(f):
     @functools.wraps(f)
-    def wrapper(request, user_id=None, *args, **kw):
+    def wrapper(request, user_id, *args, **kw):
         """Provides a user object given a user ID or username."""
-        assert user_id, 'Must provide user ID or username'
-        key = 'id' if user_id.isdigit() else 'username'
+        if user_id.isdigit():
+            key = 'id'
+        else:
+            key = 'username'
+            # If the username is `me` then show the current user's profile.
+            if (user_id == 'me' and request.amo_user and
+                request.amo_user.username):
+                user_id = request.amo_user.username
         user = get_object_or_404(UserProfile, **{key: user_id})
         return f(request, user, *args, **kw)
     return wrapper

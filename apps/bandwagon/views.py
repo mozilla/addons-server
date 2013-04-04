@@ -6,16 +6,16 @@ from django.core.exceptions import PermissionDenied
 from django.db.models import Q
 from django.shortcuts import get_object_or_404, redirect
 
+import caching.base as caching
 import commonware.log
 import jingo
-import caching.base as caching
 from tower import ugettext_lazy as _lazy, ugettext as _
 
 import amo
 from amo import messages
 import sharing.views
-from amo.decorators import (json_view, login_required, post_required, write,
-                            restricted_content)
+from amo.decorators import (allow_mine, json_view, login_required,
+                            post_required, restricted_content, write)
 from amo.urlresolvers import reverse
 from amo.utils import paginate, redirect_for_login, urlparams
 from access import acl
@@ -30,18 +30,6 @@ from .models import (Collection, CollectionAddon, CollectionWatcher,
 from . import forms, tasks
 
 log = commonware.log.getLogger('z.collections')
-
-
-def allow_mine(f):
-    @functools.wraps(f)
-    def wrapper(request, username, *args, **kw):
-        """If the author is `mine` then show the current user's collection."""
-        if username == 'mine':
-            if not request.amo_user:
-                return redirect_for_login(request)
-            username = request.amo_user.username
-        return f(request, username, *args, **kw)
-    return wrapper
 
 
 def get_collection(request, username, slug):
@@ -210,8 +198,7 @@ def collection_detail(request, username, slug):
 
     # The add-on query is not related to the collection, so we need to manually
     # hook them up for invalidation.  Bonus: count invalidation.
-    keys = [addons.object_list.flush_key(),
-            count.flush_key()]
+    keys = [addons.object_list.flush_key(), count.flush_key()]
     caching.invalidator.add_to_flush_list({c.flush_key(): keys})
 
     if c.author_id:
@@ -238,14 +225,13 @@ def collection_detail_json(request, username, slug):
     c = get_collection(request, username, slug)
     if not (c.listed or acl.check_collection_ownership(request, c)):
         raise PermissionDenied
-
-    addons = c.addons.valid()
-    addons_dict = [addon_to_dict(a) for a in addons]
-    d = {'name': c.name,
-         'url': c.get_abs_url(),
-         'iconUrl': c.icon_url,
-         'addons': addons_dict}
-    return d
+    addons_dict = [addon_to_dict(a) for a in c.addons.valid()]
+    return {
+        'name': c.name,
+        'url': c.get_abs_url(),
+        'iconUrl': c.icon_url,
+        'addons': addons_dict
+    }
 
 
 def get_notes(collection, raw=False):
@@ -305,8 +291,8 @@ def collection_message(request, collection, option):
         msg = _("""<a href="%(url)s">View your collection</a> to see the
                    changes.""") % {'url': collection.get_url_path()}
     else:
-        raise ValueError('Incorrect option "%s",'
-                         ' takes only "add" or "update".' % option)
+        raise ValueError('Incorrect option "%s", '
+                         'takes only "add" or "update".' % option)
     messages.success(request, title, msg, message_safe=True)
 
 
@@ -314,12 +300,11 @@ def collection_message(request, collection, option):
 @login_required
 @restricted_content
 def add(request):
-    "Displays/processes a form to create a collection."
+    """Displays/processes a form to create a collection."""
     data = {}
     if request.method == 'POST':
-        form = forms.CollectionForm(
-                request.POST, request.FILES,
-                initial=initial_data_from_request(request))
+        form = forms.CollectionForm(request.POST, request.FILES,
+            initial=initial_data_from_request(request))
         aform = forms.AddonsForm(request.POST)
         if form.is_valid():
             collection = form.save(default_locale=request.LANG)
@@ -347,16 +332,13 @@ def ajax_new(request):
                  'application_id': request.APP.id},
     )
 
-    if request.method == 'POST':
-
-        if form.is_valid():
-            collection = form.save()
-            addon_id = request.REQUEST['addon_id']
-            a = Addon.objects.get(pk=addon_id)
-            collection.add_addon(a)
-            log.info('Created collection %s' % collection.id)
-            return http.HttpResponseRedirect(reverse('collections.ajax_list')
-                                             + '?addon_id=%s' % addon_id)
+    if request.method == 'POST' and form.is_valid():
+        collection = form.save()
+        addon_id = request.REQUEST['addon_id']
+        collection.add_addon(Addon.objects.get(pk=addon_id))
+        log.info('Created collection %s' % collection.id)
+        return http.HttpResponseRedirect(reverse('collections.ajax_list')
+                                         + '?addon_id=%s' % addon_id)
 
     return jingo.render(request, 'bandwagon/ajax_new.html', {'form': form})
 
@@ -377,7 +359,7 @@ def ajax_list(request):
             collection.has_addon = True
 
     return jingo.render(request, 'bandwagon/ajax_list.html',
-                {'collections': collections})
+                        {'collections': collections})
 
 
 @write

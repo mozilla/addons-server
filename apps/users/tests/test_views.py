@@ -1,7 +1,7 @@
 import collections
 from datetime import datetime
 import json
-from urlparse import parse_qs, urlparse
+from urlparse import urlparse
 
 from django.conf import settings
 from django.core import mail
@@ -1092,11 +1092,21 @@ class TestProfileLinks(UserViewBase):
 class TestProfileSections(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/addon_3615',
                 'base/addon_5299_gcal', 'base/collections',
-                'reviews/dev-reply.json']
+                'reviews/dev-reply']
 
     def setUp(self):
         self.user = UserProfile.objects.get(id=10482)
         self.url = reverse('users.profile', args=[self.user.id])
+
+    def test_mine_anonymous(self):
+        res = self.client.get('/user/me/', follow=True)
+        eq_(res.status_code, 404)
+
+    def test_mine_authenticated(self):
+        self.login(self.user)
+        res = self.client.get('/user/me/', follow=True)
+        eq_(res.status_code, 200)
+        eq_(res.context['user'].id, self.user.id)
 
     def test_my_addons(self):
         eq_(pq(self.client.get(self.url).content)('.num-addons a').length, 0)
@@ -1131,10 +1141,9 @@ class TestProfileSections(amo.tests.TestCase):
 
     def test_my_reviews(self):
         r = Review.objects.filter(reply_to=None)[0]
-        r.user_id = self.user.id
-        r.save()
+        r.update(user=self.user)
         cache.clear()
-        eq_(list(self.user.reviews), [r])
+        self.assertSetEqual(self.user.reviews, [r])
 
         r = self.client.get(self.url)
         doc = pq(r.content)('#reviews')
@@ -1147,7 +1156,6 @@ class TestProfileSections(amo.tests.TestCase):
         self.assertTemplateUsed(r, 'reviews/edit_review.html')
 
     def test_my_reviews_delete_link(self):
-
         review = Review.objects.filter(reply_to=None)[0]
         review.user_id = 999
         review.save()
@@ -1222,7 +1230,7 @@ class TestProfileSections(amo.tests.TestCase):
 
         r = self.client.get(self.url)
         self.assertTemplateUsed(r, 'bandwagon/users/collection_list.html')
-        eq_(list(r.context['own_coll']), list(coll))
+        self.assertSetEqual(r.context['own_coll'], coll)
 
         doc = pq(r.content)
         eq_(doc('#reviews.full').length, 0)
@@ -1270,9 +1278,9 @@ class TestProfileSections(amo.tests.TestCase):
         self.assertTemplateNotUsed(r, 'users/report_abuse.html')
 
     def test_with_mkt_reviews(self):
-        # Test marketplace reviews don't break profiles on AMO.
+        # Test Marketplace reviews don't break profiles on AMO.
         app = amo.tests.app_factory(type=amo.ADDON_WEBAPP, app_slug='1abcxyz1')
-        AddonUser.objects.create(addon_id=app.id, user_id=self.user.id)
+        app.addonuser_set.create(user=self.user)
         Review.objects.create(user_id=self.user.id, addon=app, rating=1)
         r = self.client.get(self.url)
         eq_(r.status_code, 200)

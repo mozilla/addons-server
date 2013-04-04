@@ -8,7 +8,6 @@ from django.core.exceptions import PermissionDenied
 import commonware.log
 
 from . import models as context
-from .urlresolvers import reverse
 from .utils import JSONEncoder, redirect_for_login
 
 from amo import get_user, set_user
@@ -210,4 +209,19 @@ def set_task_user(f):
         finally:
             set_user(old_user)
         return result
+    return wrapper
+
+
+def allow_mine(f):
+    @functools.wraps(f)
+    def wrapper(request, username, *args, **kw):
+        """
+        If the author is `mine` then show the current user's collection
+        (or something).
+        """
+        if username == 'mine':
+            if not request.amo_user:
+                return redirect_for_login(request)
+            username = request.amo_user.username
+        return f(request, username, *args, **kw)
     return wrapper
