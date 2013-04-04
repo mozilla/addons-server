@@ -225,7 +225,7 @@
 
             function setReviewed(i, text) {
                 $(nthTheme(i)).addClass('reviewed');
-                $('.status', themes[i].element).addClass('reviewed').text(text);
+                $('.status', themes[i].element).addClass('reviewed').find('span').text(text);
                 $('#reviewed-count').text($('div.theme.reviewed').length);
                 if ($(queue).hasClass('advance')) {
                     goToTheme(i+1, 250);
@@ -235,7 +235,7 @@
                 }
                 if ($('#reviewed-count').text() == $('#total').text() &&
                     themesList.length < maxLocks) {
-                    $('button#more').toggle().click(moreThemes);
+                    $('button#more').show().click(moreThemes);
                 }
             }
 
@@ -253,8 +253,8 @@
             });
 
             var themeActions = {
-                next: function (i) { goToTheme(i+1); },
-                prev: function (i) { goToTheme(i-1); },
+                next: function (i) { goToTheme(i + 1); },
+                prev: function (i) { goToTheme(i - 1); },
 
                 approve: function (i) {
                     $('input.action', nthTheme(i)).val(actionConstants.approve);
@@ -365,6 +365,22 @@
                     };
                     keymap[z.keys.ENTER] = submit;
                     $('.moreinfo-dropdown button').click(_pd(submit));
+                },
+
+                clearReview: function(i) {
+                    $('input.action, input.comment, input.reject-reason',
+                      nthTheme(i)).removeAttr('val');
+                    $(nthTheme(i)).removeClass('reviewed');
+                    $('.status', nthTheme(i)).removeClass('reviewed');
+
+                    $('#reviewed-count').text($('div.theme.reviewed').length);
+                    if ($('#reviewed-count').text() < $('#total').text() &&
+                        themesList.length < maxLocks) {
+                        // Hide More button if fell under max review count.
+                        $('button#more').hide().click(_pd(function() {
+                            return false;
+                        }));
+                    }
                 }
             };
 
@@ -382,6 +398,9 @@
             }))
             .delegate('button.moreinfo', 'click', _pd(function(e) {
                 themeActions.moreinfo(getThemeParent(e.currentTarget));
+            }))
+            .delegate('.clear-review', 'click', _pd(function(e) {
+                themeActions.clearReview(getThemeParent(e.currentTarget));
             }));
         });
     };

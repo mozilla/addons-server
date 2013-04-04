@@ -185,12 +185,20 @@ nav.theme-review {
         border-radius: 0 3px;
         color: #fff;
         display: none;
-        padding: 7px 14px;
+        padding: 7px 14px 7px 24px;
         position: absolute;
         right: 0;
         top: 0;
         &.reviewed {
             display: block;
+        }
+        img {
+            left: 6px;
+            position: absolute;
+            top: 6px;
+            &:hover {
+                cursor: pointer;
+            }
         }
     }
     .meta {
