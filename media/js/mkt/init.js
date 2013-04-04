@@ -61,7 +61,7 @@ $(document).ready(function() {
 
     // Set cookie if user is on B2G.
     // TODO: remove this once we allow purchases on desktop/android.
-    if (!gaiaCookie && z.capabilities.gaia) {
+    if (!gaiaCookie && z.capabilities.firefoxOS) {
         $.cookie('gaia', 'true', {path: '/'});
 
         // reload the fragment for updated content.

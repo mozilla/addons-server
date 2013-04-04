@@ -47,8 +47,8 @@ define('feedback', [], function() {
         }
 
         var platformInput = $form.find('input[name="platform"]');
-        if (z.capabilities.gaia) {
-            platformInput.val('Gaia');
+        if (z.capabilities.firefoxOS) {
+            platformInput.val('Firefox OS');
         } else if (z.nav.os.android) {
             platformInput.val('Firefox for Android');
         } else if (z.capabilities.mobile) {
