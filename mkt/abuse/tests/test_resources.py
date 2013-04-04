@@ -5,15 +5,17 @@ from django.core import mail
 from nose.tools import eq_
 
 from abuse.models import AbuseReport
+from mkt.abuse.resources import AppAbuseResource, UserAbuseResource
 from mkt.account.tests.test_api import TestPotatoCaptcha
 from mkt.api.tests.test_oauth import BaseOAuth
+from mkt.api.tests.test_throttle import ThrottleTests
 from mkt.api.base import list_url
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
 from users.models import UserProfile
 
 
-class BaseTestAbuseResource(TestPotatoCaptcha, BaseOAuth):
+class BaseTestAbuseResource(ThrottleTests, TestPotatoCaptcha, BaseOAuth):
     """
     Setup for AbuseResource tests that require inheritance from TestCase.
     """
@@ -107,6 +109,7 @@ class AbuseResourceTests(object):
 
 
 class TestUserAbuseResource(AbuseResourceTests, BaseTestAbuseResource):
+    resource = UserAbuseResource()
     resource_name = 'user'
 
     def setUp(self):
@@ -126,6 +129,7 @@ class TestUserAbuseResource(AbuseResourceTests, BaseTestAbuseResource):
 
 class TestAppAbuseResource(AbuseResourceTests, BaseTestAbuseResource):
     fixtures = BaseTestAbuseResource.fixtures + fixture('webapp_337141')
+    resource = AppAbuseResource()
     resource_name = 'app'
 
     def setUp(self):

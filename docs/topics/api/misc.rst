@@ -138,6 +138,8 @@ Feedback
 
     .. note:: Authentication is optional.
 
+    .. note:: This endpoint is rate-limited at 30 requests per hour per user.
+
     **Request**
 
     .. code-block:: json
@@ -166,6 +168,7 @@ Feedback
         }
 
     :status 201: successfully completed.
+    :status 429: exceeded rate limit.
 
 
 Abuse
@@ -175,6 +178,8 @@ Abuse
 Abusive apps and users may be reported to Marketplace staff.
 
     .. note:: Authentication is optional for abuse reports.
+
+    .. note:: These endpoints are rate-limited at 30 requests per hour per user.
 
 
 Report An Abusive App
@@ -217,6 +222,7 @@ Report An Abusive App
 
     :status 201: successfully submitted.
     :status 400: submission error.
+    :status 429: exceeded rate limit.
 
 
 Report An Abusive User
@@ -258,3 +264,4 @@ Report An Abusive User
 
     :status 201: successfully submitted.
     :status 400: submission error.
+    :status 429: exceeded rate limit.

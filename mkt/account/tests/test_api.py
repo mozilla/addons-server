@@ -9,8 +9,10 @@ from mock import patch
 from nose.tools import eq_
 
 from amo.tests import TestCase
-from mkt.api.tests.test_oauth import BaseOAuth, get_absolute_url
+from mkt.account.api import FeedbackResource
 from mkt.api.base import list_url, get_url
+from mkt.api.tests.test_oauth import BaseOAuth, get_absolute_url
+from mkt.api.tests.test_throttle import ThrottleTests
 from mkt.constants.apps import INSTALL_TYPE_REVIEWER
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Installed
@@ -144,7 +146,9 @@ class TestLoginHandler(TestCase):
         eq_(res.status_code, 401)
 
 
-class TestFeedbackHandler(TestPotatoCaptcha, BaseOAuth):
+class TestFeedbackHandler(ThrottleTests, TestPotatoCaptcha, BaseOAuth):
+    resource = FeedbackResource()
+
     def setUp(self):
         super(TestFeedbackHandler, self).setUp(api_name='account')
         self.list_url = list_url('feedback')

@@ -1,5 +1,6 @@
 from tastypie import fields
 from tastypie.authorization import Authorization
+from tastypie.throttle import CacheThrottle
 
 from abuse.models import AbuseReport
 from mkt.api.authentication import OptionalOAuthAuthentication
@@ -32,6 +33,7 @@ class BaseAbuseResource(PotatoCaptchaResource, CORSResource,
         rename_field_map = [
             ('text', 'message'),
         ]
+        throttle = CacheThrottle(throttle_at=30)
 
     def obj_create(self, bundle, request=None, **kwargs):
         bundle.obj = self._meta.object_class(**kwargs)

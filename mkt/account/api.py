@@ -8,6 +8,7 @@ from django_browserid import get_audience
 from tastypie import fields, http
 from tastypie.authorization import Authorization
 from tastypie.exceptions import ImmediateHttpResponse
+from tastypie.throttle import CacheThrottle
 
 from amo.urlresolvers import reverse
 from amo.utils import send_mail_jinja
@@ -117,6 +118,7 @@ class FeedbackResource(PotatoCaptchaResource, CORSResource,
         authorization = Authorization()
         object_class = GenericObject
         include_resource_uri = False
+        throttle = CacheThrottle(throttle_at=30)
 
     def _send_email(self, bundle):
         """

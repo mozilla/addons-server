@@ -7,21 +7,30 @@ from mkt.api.base import HttpTooManyRequests, MarketplaceResource
 from mkt.api.tests.test_oauth import BaseOAuth
 
 
-class TestThrottle(BaseOAuth):
+class ThrottleTests(object):
+    """
+    Mixin to add tests that ensure API endpoints are being appropriately
+    throttled.
 
-    def setUp(self):
-        super(TestThrottle, self).setUp()
-        self.resource = MarketplaceResource()
-        self.request = RequestFactory().get('/')
+    Note: subclasses will need to define the resource being tested.
+    """
+    resource = None
+    request = RequestFactory().get('/')
 
-    @patch('tastypie.throttle.BaseThrottle.should_be_throttled')
-    def test_should_throttle(self, should_be_throttled):
-        should_be_throttled.return_value = True
-        with self.assertImmediate(HttpTooManyRequests):
-            self.resource.throttle_check(self.request)
+    def test_should_throttle(self):
+        with patch.object(self, 'resource') as resource:
+            resource._meta.throttle.should_be_throttled.return_value = True
+            with self.assertImmediate(HttpTooManyRequests):
+                self.resource.throttle_check(self.request)
 
     def test_shouldnt_throttle(self):
-        try:
-            self.resource.throttle_check(self.request)
-        except ImmediateHttpResponse:
-            self.fail('Unthrottled request raises ImmediateHttpResponse')
+        with patch.object(self, 'resource') as resource:
+            resource._meta.throttle.should_be_throttled.return_value = False
+            try:
+                self.resource.throttle_check(self.request)
+            except ImmediateHttpResponse:
+                self.fail('Unthrottled request raises ImmediateHttpResponse')
+
+
+class TestThrottle(ThrottleTests, BaseOAuth):
+    resource = MarketplaceResource()
