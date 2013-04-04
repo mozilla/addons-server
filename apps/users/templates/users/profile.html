@@ -27,7 +27,7 @@
   <aside class="secondary user-avatar" data-user-id="{{ profile.id }}">
     <img class="avatar" src="{{ profile.picture_url }}"
          {% if not profile.picture_type %}alt="{{ _('No Photo') }}"{% endif %}>
-    {% if profile.is_developer %}
+    {% if profile.is_addon_developer %}
       <div class="user-role"><p>
         {{ _('Add-ons Developer') }}
       </p></div>

@@ -217,6 +217,11 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
         return self.addonuser_set.exists()
 
     @amo.cached_property
+    def is_addon_developer(self):
+        return self.addonuser_set.exclude(
+            addon__type=amo.ADDON_PERSONA).exists()
+
+    @amo.cached_property
     def is_app_developer(self):
         return self.addonuser_set.filter(addon__type=amo.ADDON_WEBAPP).exists()
 
