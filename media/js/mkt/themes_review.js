@@ -228,14 +228,14 @@
                 $('.status', themes[i].element).addClass('reviewed').find('span').text(text);
                 $('#reviewed-count').text($('div.theme.reviewed').length);
                 if ($(queue).hasClass('advance')) {
-                    goToTheme(i+1, 250);
+                    goToTheme(i + 1, 250);
                 } else {
                     delete keymap[z.keys.ENTER];
                     $('.rq-dropdown').hide();
                 }
                 if ($('#reviewed-count').text() == $('#total').text() &&
                     themesList.length < maxLocks) {
-                    $('button#more').show().click(moreThemes);
+                    // $('button#more').show().click(moreThemes);
                 }
             }
 
@@ -377,9 +377,7 @@
                     if ($('#reviewed-count').text() < $('#total').text() &&
                         themesList.length < maxLocks) {
                         // Hide More button if fell under max review count.
-                        $('button#more').hide().click(_pd(function() {
-                            return false;
-                        }));
+                        $('button#more').hide().unbind('click');
                     }
                 }
             };
