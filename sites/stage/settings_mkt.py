@@ -158,7 +158,7 @@ METLOG_CONF = {
         'host': splitstrip(private.METLOG_CONF_SENDER_HOST),
         'port': private.METLOG_CONF_SENDER_PORT,
     },
-    'logger': 'addons-marketplace-altdev',
+    'logger': 'addons-marketplace-stage',
 }
 METLOG = client_from_dict_config(METLOG_CONF)
 USE_METLOG_FOR_CEF = True
