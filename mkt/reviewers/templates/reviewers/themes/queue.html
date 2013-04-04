@@ -84,7 +84,7 @@
     </div>
   {% endif %}
 
-  <div><a class="button review-history" href="{{ url('reviewers.themes.history') }}">{{ _('Your Review History') }}</a></div>
+  <a class="button" href="{{ url('reviewers.themes.history') }}">{{ _('Your Review History') }}</a>
 
   {% if reviewable %}
     <button id="commit" type="submit">
@@ -97,6 +97,7 @@
                                               '<span id="total">%d</span>'|safe % theme_count) }}
     </div>
   {% endif %}
+  {% block sidebar %}{% endblock %}
 </div></div>
 
 <div class="theme-queue details single">

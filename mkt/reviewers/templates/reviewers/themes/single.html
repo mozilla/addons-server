@@ -16,6 +16,18 @@
 
 {% block history %}{% endblock %}
 
+{% block sidebar %}
+  {% if theme.addon.is_public() %}
+    <a class="button" href="{{ theme.addon.get_url_path() }}">
+      {{ _('View Listing') }}
+    </a>
+  {% else %}
+    <a class="button" href="{{ theme.addon.get_dev_url() }}">
+      {{ _('Edit Listing') }}
+    </a>
+  {% endif %}
+{% endblock %}
+
 {% block review_history %}
   <h2 class="history-header">{{ _('Review History') }}</h2>
   {% include "reviewers/themes/history_table.html" %}

@@ -479,6 +479,9 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         return absolutify(self.get_url_path())
 
     def get_dev_url(self, action='edit', args=None, prefix_only=False):
+        # TODO: Move Theme Reviewer Tools to AMO so we don't have to hack.
+        return 'https://addons.mozilla.org/firefox/themes/%s/edit' % self.slug
+
         # Either link to the "new" Marketplace Developer Hub or the old one.
         args = args or []
         prefix = ('mkt.developers' if getattr(settings, 'MARKETPLACE', False)
