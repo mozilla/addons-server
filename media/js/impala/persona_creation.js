@@ -110,9 +110,12 @@
             $list = $('#persona-license-list');
 
         function toggleCopyr(isCopyr) {
-            $noncc.toggleClass('disabled', isCopyr);
-            if ($noncc.find('input[type=radio]:not(:checked)').length == 5) {
+            if (isCopyr) {
+                $noncc.addClass('disabled');
+                // Choose "No" and "No" for the "commercial" and "derivative" questions.
                 $('input[name="cc-noncom"][value=1], input[name="cc-noderiv"][value=2]').prop('checked', true);
+            } else {
+                $noncc.removeClass('disabled');
             }
         }
 
@@ -130,22 +133,39 @@
             licenseUpdate(false);
         });
 
-        // Default to copyright license.
         if (!$licenseField.val()) {
+            // If there's no license saved (i.e., this is a new submission),
+            // then set the "All Rights Reserved" license as the default.
             $licenseField.val(licensesByClass.copyr.id);
-        }
-        $('input[data-cc="copyr"]').trigger('change');
+            $('input[data-cc="copyr"]').prop('checked', true);
+            toggleCopyr(+$licenseField.val() == licensesByClass.copyr.id);
+        } else {
+            // If there is a license saved...
 
-        // Whenever a radio field changes, update the license.
-        $('input[name^="cc-"]').change(licenseUpdate);
-        licenseUpdate();
-
-        if ($licenseField.val()) {
+            // Check the appropriate radio in the license list.
             _.each(licenseClassesById[+$licenseField.val()].split(' '), function(cc) {
                 $('input[type=radio][data-cc="' + cc + '"]').prop('checked', true);
             });
-            licenseUpdate();
+
+            // Select "Yes" if nothing was selected (this is the implied answer).
+            $('#cc-chooser .radios').each(function() {
+                var $this = $(this);
+                if (!$this.find('input:checked').length) {
+                    $this.find('input[value="0"]').prop('checked', true);
+                }
+            });
         }
+
+        // Based on whether the "All Rights Reserved" license is selected,
+        // show or hide the other options.
+        toggleCopyr(+$licenseField.val() == licensesByClass.copyr.id);
+
+        // Based on the Yes/No combinations, display the correct license with
+        // its cute little icon.
+        licenseUpdate();
+
+        // Whenever a radio field changes, update the license.
+        $('input[name^="cc-"]').change(licenseUpdate);
 
         function updateLicenseList() {
             $list.find('input[value="' + $licenseField.val() + '"]').prop('checked', true);
