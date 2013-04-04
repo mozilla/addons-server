@@ -781,7 +781,8 @@ def themes_more(request, flagged=False):
         'theme_formsets': zip(themes, formset),
         'max_locks': rvw.THEME_MAX_LOCKS,
         'reviewable': True,
-        'initial_count': theme_locks_count
+        'initial_count': theme_locks_count,
+        'reject_reasons': rvw.THEME_REJECT_REASONS.items()
     }).content
 
     return {'html': html,

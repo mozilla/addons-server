@@ -235,12 +235,12 @@
                 }
                 if ($('#reviewed-count').text() == $('#total').text() &&
                     themesList.length < maxLocks) {
-                    // $('button#more').show().click(moreThemes);
+                    $('button#more').show().click(moreThemes);
                 }
             }
 
             var isRejecting = false;
-            $('li.reject_reason').click(function(e) {
+            $(document).delegate('li.reject_reason', 'click', _pd(function(e) {
                 if (isRejecting) {
                     var i = getThemeParent(e.currentTarget);
                     var rejectId = $(this).data('id');
@@ -250,7 +250,7 @@
                         themeActions.reject(i, rejectId);
                     }
                 }
-            });
+            }));
 
             var themeActions = {
                 next: function (i) { goToTheme(i + 1); },
