@@ -28,7 +28,7 @@ class TestWSGIApplication(amo.tests.TestCase):
 
         # From AMO we consume the ID as the `addon_id`.
         for path_info, call_args in urls.iteritems():
-            environ = dict(self.environ, **{'PATH_INFO': path_info})
+            environ = dict(self.environ, PATH_INFO=path_info)
             theme_update.application(environ, self.start_response)
             ThemeUpdate_mock.assert_called_with(*call_args)
 
@@ -36,7 +36,7 @@ class TestWSGIApplication(amo.tests.TestCase):
         # the ID as the `persona_id`.
         self.environ['QUERY_STRING'] = 'src=gp'
         for path_info, call_args in urls.iteritems():
-            environ = dict(self.environ, **{'PATH_INFO': path_info})
+            environ = dict(self.environ, PATH_INFO=path_info)
             theme_update.application(environ, self.start_response)
             call_args[2] = 'src=gp'
             ThemeUpdate_mock.assert_called_with(*call_args)
@@ -52,7 +52,7 @@ class TestWSGIApplication(amo.tests.TestCase):
         ]
 
         for path_info in urls:
-            environ = dict(self.environ, **{'PATH_INFO': path_info})
+            environ = dict(self.environ, PATH_INFO=path_info)
             theme_update.application(environ, self.start_response)
             assert not ThemeUpdate_mock.called
             self.start_response.assert_called_with('404 Not Found', [])
