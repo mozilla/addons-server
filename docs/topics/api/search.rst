@@ -6,6 +6,8 @@ Search API
 
 This API allows search for apps by various properties.
 
+.. _search-api:
+
 Search
 ======
 
@@ -17,8 +19,8 @@ The API accepts various query string parameters to filter or sort by
 described below:
 
 * `q` (optional): The query string to search for.
-* `cat` (optional): The category ID to filter by. Use the category API to
-  find the ids of the categories.
+* `cat` (optional): The category slug or ID to filter by. Use the
+  category API to find the ids of the categories.
 * `device` (optional): Filters by supported device. One of 'desktop',
   'mobile', 'tablet', or 'gaia'.
 * `premium_types` (optional): Filters by whether the app is free or
@@ -52,5 +54,22 @@ The API returns a list of the apps sorted by relevance (default) or
             "premium_type": "free",
             "resource_uri": null,
             "slug": "marble-run"
-         }, ...
+         }, ...]
         }
+
+
+Category Listing With Featured Apps
+===================================
+
+.. http:get::  /api/v1/apps/search/creatured/
+
+    **Request**
+    Accepts the same parameters and returns the same objects as the normal
+    search interface: :ref:`search-api`.  Includes 'creatured' list of
+    apps, listing featured apps for the requested category, if any.
+
+    **Response**:
+    :param meta: :ref:`meta-response-label`.
+    :param objects: A :ref:`listing <objects-response-label>` of :ref:`apps <app-response-label>` satisfying the search parameters.
+    :param creatured: A list of :ref:`apps <app-response-label>` featured for the requested category, if any
+    :status 200: successfully completed..

@@ -8,6 +8,8 @@ from nose.tools import eq_
 import amo
 from addons.models import AddonCategory, AddonDeviceType, Category
 from amo.tests import ESTestCase
+import mkt.regions
+from mkt.api.base import list_url
 from mkt.api.models import Access, generate
 from mkt.api.tests.test_oauth import BaseOAuth, OAuthClient
 from mkt.search.forms import DEVICE_CHOICES_IDS
@@ -250,3 +252,38 @@ class TestApiReviewer(BaseOAuth, ESTestCase):
         eq_(res.status_code, 400)
         error = json.loads(res.content)['error_message']
         eq_(error.keys(), ['type'])
+
+
+class TestCategoriesWithCreatured(BaseOAuth, ESTestCase):
+    fixtures = fixture('webapp_337141', 'user_2519')
+    list_url = list_url('search/with_creatured')
+
+    def test_creatured_plus_category(self):
+        cat = Category.objects.create(type=amo.ADDON_WEBAPP, slug='shiny')
+        app2 = amo.tests.app_factory()
+        AddonCategory.objects.get_or_create(addon=app2, category=cat)
+        AddonCategory.objects.get_or_create(addon_id=337141, category=cat)
+        self.make_featured(app=app2, category=cat,
+                           region=mkt.regions.US)
+
+        self.refresh()
+        res = self.client.get(self.list_url + ({'cat': 'shiny'},))
+        eq_(res.status_code, 200)
+        data = json.loads(res.content)
+        eq_(len(data['objects']), 2)
+        eq_(len(data['creatured']), 1)
+        eq_(int(data['creatured'][0]['id']), app2.pk)
+
+    def test_no_category(self):
+        cat = Category.objects.create(type=amo.ADDON_WEBAPP, slug='shiny')
+        app = amo.tests.app_factory()
+        AddonCategory.objects.get_or_create(addon=app, category=cat)
+        self.make_featured(app=app, category=cat,
+                           region=mkt.regions.US)
+
+        self.refresh()
+        res = self.client.get(self.list_url)
+        eq_(res.status_code, 200)
+        data = json.loads(res.content)
+        eq_(len(data['objects']), 2)
+        eq_(len(data['creatured']), 0)

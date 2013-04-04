@@ -6,6 +6,8 @@ from tower import ugettext_lazy as _lazy
 from addons.models import Category
 import amo
 
+from mkt.api.forms import SluggableModelChoiceField
+
 
 ADDON_CHOICES = [(v, v) for k, v in amo.MKT_ADDON_TYPES_API.items()]
 
@@ -143,8 +145,9 @@ class ApiSearchForm(forms.Form):
                              label=_lazy(u'Add-on type'))
     status = forms.ChoiceField(required=False, choices=STATUS_CHOICES,
                                label=_lazy(u'Status'))
-    cat = forms.TypedChoiceField(required=False, coerce=int, empty_value=None,
-                                 choices=[], label=_lazy(u'Category'))
+    cat = SluggableModelChoiceField(queryset=Category.objects.all(),
+                                    sluggable_to_field_name='slug',
+                                    required=False)
     device = forms.ChoiceField(
         required=False, choices=DEVICE_CHOICES, label=_lazy(u'Device type'))
     premium_types = forms.MultipleChoiceField(
@@ -168,6 +171,10 @@ class ApiSearchForm(forms.Form):
             'status': 'pending',
             'limit': 200,
         })
+
+    def clean_cat(self):
+        if self.cleaned_data['cat']:
+            return self.cleaned_data['cat'].pk
 
     def clean_type(self):
         return amo.MKT_ADDON_TYPES_API_LOOKUP.get(self.cleaned_data['type'],

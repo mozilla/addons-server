@@ -1,11 +1,15 @@
 import json
 
+from django.conf.urls import url
+
 from tastypie import http
 from tastypie.authorization import ReadOnlyAuthorization
+from tastypie.utils import trailing_slash
 from tower import ugettext as _
 
 import amo
 from access import acl
+from addons.models import Category
 from amo.helpers import absolutify
 
 import mkt
@@ -13,6 +17,7 @@ from mkt.api.authentication import OptionalOAuthAuthentication
 from mkt.api.resources import AppResource
 from mkt.search.views import _get_query, _filter_search
 from mkt.search.forms import ApiSearchForm
+from mkt.webapps.models import Webapp
 
 
 class SearchResource(AppResource):
@@ -30,18 +35,21 @@ class SearchResource(AppResource):
         # At this time we don't have an API to the Webapp details.
         return None
 
-    def get_list(self, request=None, **kwargs):
+    def search_form(self, request):
         form = ApiSearchForm(request.GET if request else None)
         if not form.is_valid():
             raise self.form_errors(form)
+        return form.cleaned_data
 
+    def get_list(self, request=None, **kwargs):
+        form_data = self.search_form(request)
         is_admin = acl.action_allowed(request, 'Admin', '%')
         is_reviewer = acl.action_allowed(request, 'Apps', 'Review')
 
         # Pluck out status and addon type first since it forms part of the base
         # query, but only for privileged users.
-        status = form.cleaned_data['status']
-        addon_type = form.cleaned_data['type']
+        status = form_data['status']
+        addon_type = form_data['type']
 
         base_filters = {
             'type': addon_type,
@@ -59,7 +67,7 @@ class SearchResource(AppResource):
         region = getattr(request, 'REGION', mkt.regions.WORLDWIDE)
         qs = _get_query(region, gaia=request.GAIA, mobile=request.MOBILE,
                         tablet=request.TABLET, filters=base_filters)
-        qs = _filter_search(request, qs, form.cleaned_data, region=region)
+        qs = _filter_search(request, qs, form_data, region=region)
         paginator = self._meta.paginator_class(request.GET, qs,
             resource_uri=self.get_resource_list_uri(),
             limit=self._meta.limit)
@@ -71,7 +79,8 @@ class SearchResource(AppResource):
         page['objects'] = [self.full_dehydrate(bundle) for bundle in objs]
         # This isn't as quite a full as a full TastyPie meta object,
         # but at least it's namespaced that way and ready to expand.
-        return self.create_response(request, page)
+        to_be_serialized = self.alter_list_data_to_serialize(request, page)
+        return self.create_response(request, to_be_serialized)
 
     def dehydrate_slug(self, bundle):
         return bundle.obj.app_slug
@@ -88,3 +97,38 @@ class SearchResource(AppResource):
                 if bundle.obj.is_packaged else None)
 
         return bundle
+
+    def override_urls(self):
+        return [
+            url(r'^(?P<resource_name>%s)/with_creatured%s$' %
+                (self._meta.resource_name, trailing_slash()),
+                self.wrap_view('with_creatured'), name='api_with_creatured')
+            ]
+
+    def with_creatured(self, request, **kwargs):
+        return WithCreaturedResource().dispatch('list', request, **kwargs)
+
+
+class WithCreaturedResource(SearchResource):
+
+    class Meta(SearchResource.Meta):
+        authorization = ReadOnlyAuthorization()
+        authentication = OptionalOAuthAuthentication()
+        detail_allowed_methods = []
+        fields = SearchResource.Meta.fields + ['cat']
+        list_allowed_methods = ['get']
+        resource_name = 'search/with_creatured'
+        slug_lookup = None
+
+    def alter_list_data_to_serialize(self, request, data):
+        form_data = self.search_form(request)
+        region = getattr(request, 'REGION', mkt.regions.WORLDWIDE)
+        if not form_data['cat']:
+            data['creatured'] = []
+            return data
+        category = Category.objects.get(pk=form_data['cat'])
+        bundles = [self.build_bundle(obj=obj, request=request)
+                   for obj in Webapp.featured(cat=category,
+                                              region=region)]
+        data['creatured'] = [self.full_dehydrate(bundle) for bundle in bundles]
+        return data
