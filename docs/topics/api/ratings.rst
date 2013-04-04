@@ -186,13 +186,16 @@ _`Delete`
 Flagging as spam
 ================
 
-.. http:post:: /api/v1/apps/rating/<ID>/flag/
+.. http:post:: /api/v1/apps/rating/(int:rating_id)/flag/
 
     Flag a rating as spam.
 
+    .. note:: This requires authentication via OAuth.
+
     **Request**:
 
-    .. sourcecode:: http
+    .. code-block:: json
 
-        POST /api/v1/apps/rating/<ID>/flag
-        {'flag': 'review_flag_reason_spam'}
+        {
+            "flag": "review_flag_reason_spam"
+        }
