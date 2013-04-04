@@ -308,7 +308,7 @@ class Collection(CollectionBase, amo.models.ModelBase):
         for addon, comment in comments.iteritems():
             c = (CollectionAddon.objects.using('default')
                  .filter(collection=self.id, addon=addon))
-            if c:
+            if c.exists():
                 c[0].comments = comment
                 c[0].save(force_update=True)
 
@@ -396,6 +396,10 @@ class CollectionAddon(amo.models.ModelBase):
     class Meta(amo.models.ModelBase.Meta):
         db_table = 'addons_collections'
         unique_together = (('addon', 'collection'),)
+
+
+models.signals.pre_save.connect(save_signal, sender=CollectionAddon,
+                                dispatch_uid='coll_addon_translations')
 
 
 class CollectionFeature(amo.models.ModelBase):
