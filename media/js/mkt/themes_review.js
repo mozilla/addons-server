@@ -286,7 +286,8 @@
                             textArea.blur();
                             themeActions.reject(i, 0);
                         } else {
-                            $('.reject-reason-detail-dropdown .error-required').show();
+                            $('.reject-reason-detail-dropdown .error-required',
+                              nthTheme(i)).show();
                         }
                     };
                     keymap[z.keys.ENTER] = submit;
@@ -318,7 +319,8 @@
                             textArea.blur();
                             setReviewed(i, gettext('Duplicate'));
                         } else {
-                            $('.duplicate-dropdown .error-required').show();
+                            $('.duplicate-dropdown .error-required',
+                              nthTheme(i)).show();
                         }
                     };
                     keymap[z.keys.ENTER] = submit;
@@ -339,7 +341,8 @@
                             textArea.blur();
                             setReviewed(i, gettext('Flagged'));
                         } else {
-                            $('.flag-dropdown .error-required').show();
+                            $('.flag-dropdown .error-required',
+                              nthTheme(i)).show();
                         }
                     };
                     keymap[z.keys.ENTER] = submit;
@@ -360,7 +363,8 @@
                             textArea.blur();
                             setReviewed(i, gettext('Requested Info'));
                         } else {
-                            $('.moreinfo-dropdown .error-required').show();
+                            $('.moreinfo-dropdown .error-required',
+                              nthTheme(i)).show();
                         }
                     };
                     keymap[z.keys.ENTER] = submit;
