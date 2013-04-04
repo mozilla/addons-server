@@ -1,24 +1,12 @@
-import collections
-
 from django import forms
 from django.conf import settings
 from django.forms.util import ErrorDict
 
-from tower import ugettext as _, ugettext_lazy as _lazy
+from tower import ugettext_lazy as _lazy
 
 import amo
 from amo import helpers
-from applications.models import AppVersion
 from search.utils import floor_version
-
-sort_by = (
-    ('', _lazy(u'Keyword Match')),
-    ('updated', _lazy(u'Updated', 'advanced_search_form_updated')),
-    ('newest', _lazy(u'Created', 'advanced_search_form_newest')),
-    ('weeklydownloads', _lazy(u'Downloads')),
-    ('users', _lazy(u'Users')),
-    ('averagerating', _lazy(u'Rating', 'advanced_search_form_rating')),
-)
 
 collection_sort_by = (
     ('weekly', _lazy(u'Most popular this week')),
@@ -26,67 +14,18 @@ collection_sort_by = (
     ('all', _lazy(u'Most popular all time')),
     ('rating', _lazy(u'Highest Rated')),
     ('created', _lazy(u'Newest')),
-)
-es_collection_sort_by = collection_sort_by + (
     ('updated', _lazy(u'Recently Updated')),
     ('name', _lazy(u'Name')),
 )
 
-per_page = (20, 50, )
-
-tuplize = lambda x: divmod(int(x * 10), 10)
-
-# These releases were so minor that we don't want to search for them.
-skip_versions = collections.defaultdict(list)
-skip_versions[amo.FIREFOX] = [tuplize(v) for v in amo.FIREFOX.exclude_versions]
-
-min_version = collections.defaultdict(lambda: (0, 0))
-min_version.update({
-    amo.FIREFOX: tuplize(amo.FIREFOX.min_display_version),
-    amo.THUNDERBIRD: tuplize(amo.THUNDERBIRD.min_display_version),
-    amo.SEAMONKEY: tuplize(amo.SEAMONKEY.min_display_version),
-})
-
-
-def get_app_versions(app):
-    appversions = AppVersion.objects.filter(application=app.id)
-    min_ver, skip = min_version[app], skip_versions[app]
-    versions = [(a.major, a.minor1) for a in appversions]
-    strings = ['%s.%s' % v for v in sorted(set(versions), reverse=True)
-               if v >= min_ver and v not in skip]
-
-    return [('any', _('Any'))] + zip(strings, strings)
-
-
-# Fake categories to slip some add-on types into the search groups.
-_Cat = collections.namedtuple('Cat', 'id name weight type')
-
-
-def get_search_groups(app):
-    sub = []
-
-    types_ = [t for t in (amo.ADDON_DICT, amo.ADDON_SEARCH, amo.ADDON_THEME)
-                if t in app.types]
-
-    for type_ in types_:
-        sub.append(_Cat(0, amo.ADDON_TYPES[type_], 0, type_))
-    sub.extend(helpers.sidebar(app)[0])
-    sub = [('%s,%s' % (a.type, a.id), a.name) for a in
-           sorted(sub, key=lambda x: (x.weight, x.name))]
-    top_level = [('all', _('all add-ons')),
-                 ('collections', _('all collections')), ]
-
-    if amo.ADDON_PERSONA in app.types:
-        top_level += (('themes', _('all themes')),)
-
-    return top_level[:1] + sub + top_level[1:], top_level
-
+PER_PAGE = 20
 
 SEARCH_CHOICES = (
     ('all', _lazy(u'search for add-ons')),
     ('collections', _lazy(u'search for collections')),
     ('themes', _lazy(u'search for themes')),
-    ('apps', _lazy(u'search for apps')))
+    ('apps', _lazy(u'search for apps'))
+)
 
 
 class SimpleSearchForm(forms.Form):
@@ -110,30 +49,20 @@ class SecondarySearchForm(forms.Form):
     q = forms.CharField(widget=forms.HiddenInput, required=False)
     cat = forms.CharField(widget=forms.HiddenInput)
     pp = forms.CharField(widget=forms.HiddenInput, required=False)
-    sort = forms.ChoiceField(label=_lazy(u'Sort By'),
-                             choices=collection_sort_by,
-                             initial='weekly', required=False)
+    sort = forms.ChoiceField(label=_lazy(u'Sort By'), required=False,
+                             choices=collection_sort_by, initial='weekly')
     page = forms.IntegerField(widget=forms.HiddenInput, required=False)
 
-    def __init__(self, *args, **kw):
-        super(SecondarySearchForm, self).__init__(*args, **kw)
-        # This adds the "Name" sort option for ES results.
-        self.fields['sort'].choices = es_collection_sort_by
-
     def clean_pp(self):
-        d = self.cleaned_data['pp']
-
         try:
-            return int(d)
-        except:
-            return per_page[0]
+            return int(self.cleaned_data.get('pp'))
+        except TypeError:
+            return PER_PAGE
 
     def clean(self):
         d = self.cleaned_data
-
         if not d.get('pp'):
-            d['pp'] = per_page[0]
-
+            d['pp'] = PER_PAGE
         return d
 
     def full_clean(self):
