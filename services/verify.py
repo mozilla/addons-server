@@ -187,7 +187,8 @@ def decode_receipt(receipt):
     """
     with statsd.timer('services.decode'):
         if settings.SIGNING_SERVER_ACTIVE:
-            verifier = certs.ReceiptVerifier()
+            verifier = certs.ReceiptVerifier(valid_issuers=
+                                             settings.SIGNING_VALID_ISSUERS)
             try:
                 result = verifier.verify(receipt)
             except ExpiredSignatureError:

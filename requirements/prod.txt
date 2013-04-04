@@ -70,7 +70,7 @@ pytz==2010e
 raven==3.1.16
 rdflib==3.0.0
 recaptcha-client==1.0.5
-receipts==0.2.4.1
+receipts==0.2.6
 requests==0.14.0
 schematic==0.2
 signing_clients==0.1.3

@@ -112,6 +112,7 @@ SOLITUDE_HOSTS = ('https://payments.firefox.com',)
 # Bug 748403
 SIGNING_SERVER = private_mkt.SIGNING_SERVER
 SIGNING_SERVER_ACTIVE = True
+SIGNING_VALID_ISSUERS = ['marketplace.cdn.mozilla.net']
 
 # Bug 793876
 SIGNED_APPS_SERVER_ACTIVE = True

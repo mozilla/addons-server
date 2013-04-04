@@ -1464,6 +1464,8 @@ SIGNING_SERVER_ACTIVE = False
 SIGNING_SERVER = ''
 # And how long we'll give the server to respond.
 SIGNING_SERVER_TIMEOUT = 10
+# The domains that we will accept certificate issuers for receipts.
+SIGNING_VALID_ISSUERS = []
 
 # True when the Django app is running from the test suite.
 IN_TEST_SUITE = False
