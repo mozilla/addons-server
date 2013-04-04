@@ -79,4 +79,12 @@ class SearchResource(AppResource):
     def dehydrate(self, bundle):
         bundle = super(SearchResource, self).dehydrate(bundle)
         bundle.data['absolute_url'] = absolutify(bundle.obj.get_detail_url())
+
+        # Add latest version status for reviewers.
+        # TODO: When this no longer hits the db, use the field in ES.
+        if acl.action_allowed(bundle.request, 'Apps', 'Review'):
+            bundle.data['latest_version_status'] = (
+                bundle.obj.versions.latest().all_files[0].status
+                if bundle.obj.is_packaged else None)
+
         return bundle

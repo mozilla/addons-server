@@ -159,6 +159,15 @@ class TestApi(BaseOAuth, ESTestCase):
         eq_(json.loads(res.content)['reason'],
             'Unauthorized to filter by status.')
 
+    def test_status_value_packaged(self):
+        # When packaged and not a reviewer we exclude latest version status.
+        self.webapp.update(is_packaged=True)
+        res = self.client.get(self.list_url)
+        eq_(res.status_code, 200)
+        obj = json.loads(res.content)['objects'][0]
+        eq_(obj['status'], amo.STATUS_PUBLIC)
+        eq_('latest_version_status' in obj, False)
+
     def test_addon_type_anon(self):
         res = self.client.get(self.list_url + ({'type': 'app'},))
         eq_(res.status_code, 200)
@@ -209,13 +218,22 @@ class TestApiReviewer(BaseOAuth, ESTestCase):
 
         res = self.client.get(self.list_url + ({'status': 'any'},))
         eq_(res.status_code, 200)
-        objs = json.loads(res.content)['objects']
+        obj = json.loads(res.content)['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
 
         res = self.client.get(self.list_url + ({'status': 'vindaloo'},))
         eq_(res.status_code, 400)
         error = json.loads(res.content)['error_message']
         eq_(error.keys(), ['status'])
+
+    def test_status_value_packaged(self):
+        # When packaged we also include the latest version status.
+        self.webapp.update(is_packaged=True)
+        res = self.client.get(self.list_url)
+        eq_(res.status_code, 200)
+        obj = json.loads(res.content)['objects'][0]
+        eq_(obj['status'], amo.STATUS_PUBLIC)
+        eq_(obj['latest_version_status'], amo.STATUS_PUBLIC)
 
     def test_addon_type_reviewer(self):
         res = self.client.get(self.list_url + ({'type': 'app'},))

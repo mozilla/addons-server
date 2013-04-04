@@ -118,6 +118,9 @@
                     $.each(data.objects, function(i, item) {
                         item.review_url = review_url.replace('__slug__', item.app_slug);
                         item.status = statuses[item.status];
+                        if (item.latest_version_status) {
+                            item.status += format(' | {0}', statuses[item.latest_version_status]);
+                        }
                         results.push(search_result_row(item));
                     });
                     $searchIsland.html(
