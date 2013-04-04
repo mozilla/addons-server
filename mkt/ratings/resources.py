@@ -37,7 +37,7 @@ class RatingResource(MarketplaceModelResource):
         list_allowed_methods = ['get', 'post']
         detail_allowed_methods = ['get', 'put', 'delete']
         always_return_data = True
-        authentication = (OAuthAuthentication(), SharedSecretAuthentication())
+        authentication = (SharedSecretAuthentication(), OAuthAuthentication())
         authorization = Authorization()
         fields = ['rating', 'body']
 
