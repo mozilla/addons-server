@@ -703,8 +703,8 @@ function bind_viewer(nodes) {
         viewer.toggle_leaf($(this));
     }));
 
-    $(window).resize(_.debounce(function() { viewer.update_viewport(true); }, 300))
-             .scroll(_.debounce(function() { viewer.update_viewport(false); }, 300));
+    $(window).resize(_.debounce(function() { viewer.update_viewport(true); }, 100))
+             .scroll(_.debounce(function() { viewer.update_viewport(false); }, 100));
 
     $('#toggle-known').change(function () { viewer.toggle_known(this.checked); });
     viewer.toggle_known();
