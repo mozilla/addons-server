@@ -18,7 +18,7 @@
 
 {{ reviewers_breadcrumbs(queue='themes') }}
 
-<h1>{% block page_header %}{{ title_text }}{% endblock %}</h1>
+<h1 class="float">{% block page_header %}{{ title_text }}{% endblock %}</h1>
 <nav class="theme-review"><ul>
   {% if action_allowed('ReviewerAdminTools', 'View') and not flagged %}
     <li><a href="{{ url('reviewers.themes.queue_flagged') }}">
