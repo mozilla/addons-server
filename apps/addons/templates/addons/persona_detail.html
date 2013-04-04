@@ -14,7 +14,7 @@
       {{ addon.name }}
     </span>
   </h2>
-  <h4 class="author">{{ _('by') }} {{ users_list(persona.listed_authors) }}</h4>
+  <h4 class="author">{{ _('by') }} {{ users_list(addon.listed_authors) or persona.display_username }}</h4>
 </hgroup>
 
 <div id="persona" class="primary" role="main" data-id="{{ addon.id }}">
