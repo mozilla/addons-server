@@ -271,6 +271,26 @@ class TestPasswords(amo.tests.TestCase):
                         (encodestring(self.bytes_), hsh))
         assert u.check_password('password') is True
 
+    def test_persona_sha512_base64_maybe_utf8(self):
+        hsh = hashlib.sha512(self.bytes_ + self.utf.encode('utf8')).hexdigest()
+        u = UserProfile(password='sha512+base64$%s$%s' %
+                        (encodestring(self.bytes_), hsh))
+        assert u.check_password(self.utf) is True
+
+    def test_persona_sha512_base64_maybe_latin1(self):
+        passwd = u'fo\xf3'
+        hsh = hashlib.sha512(self.bytes_ + passwd.encode('latin1')).hexdigest()
+        u = UserProfile(password='sha512+base64$%s$%s' %
+                        (encodestring(self.bytes_), hsh))
+        assert u.check_password(passwd) is True
+
+    def test_persona_sha512_base64_maybe_not_latin1(self):
+        passwd = u'fo\xf3'
+        hsh = hashlib.sha512(self.bytes_ + passwd.encode('latin1')).hexdigest()
+        u = UserProfile(password='sha512+base64$%s$%s' %
+                        (encodestring(self.bytes_), hsh))
+        assert u.check_password(self.utf) is False
+
     def test_persona_sha512_md5_base64(self):
         md5 = hashlib.md5('password').hexdigest()
         hsh = hashlib.sha512(self.bytes_ + md5).hexdigest()

@@ -326,7 +326,21 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
             return valid
 
         algo, salt, hsh = self.password.split('$')
-        return hsh == get_hexdigest(algo, salt, raw_password)
+        #Complication due to getpersonas account migration; we don't
+        #know if passwords were utf-8 or latin-1 when hashed. If you
+        #can prove that they are one or the other, you can delete one
+        #of these branches.
+        if '+base64' in algo and isinstance(raw_password, unicode):
+            if hsh == get_hexdigest(algo, salt, raw_password.encode('utf-8')):
+                return True
+            else:
+                try:
+                    return hsh == get_hexdigest(algo, salt,
+                                                raw_password.encode('latin1'))
+                except UnicodeEncodeError:
+                    return False
+        else:
+            return hsh == get_hexdigest(algo, salt, raw_password)
 
     def set_password(self, raw_password, algorithm='sha512'):
         self.password = create_password(algorithm, raw_password)
