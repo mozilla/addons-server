@@ -170,7 +170,9 @@ def context(**kw):
 def _review(request, addon):
     version = addon.latest_version
 
-    if not settings.ALLOW_SELF_REVIEWS and addon.has_author(request.amo_user):
+    if (not settings.ALLOW_SELF_REVIEWS and
+        not acl.action_allowed(request, 'Admin', '%') and
+        addon.has_author(request.amo_user)):
         messages.warning(request, _('Self-reviews are not allowed.'))
         return redirect(reverse('reviewers.home'))
 
@@ -638,7 +640,7 @@ def themes_queue_flagged(request):
 
 
 def _themes_queue(request, flagged=False):
-    themes = _get_themes(request.amo_user, initial=True, flagged=flagged)
+    themes = _get_themes(request, request.amo_user, initial=True, flagged=flagged)
 
     ThemeReviewFormset = formset_factory(forms.ThemeReviewForm)
     formset = ThemeReviewFormset(
@@ -662,7 +664,7 @@ def _themes_queue(request, flagged=False):
     }))
 
 
-def _get_themes(reviewer, initial=True, flagged=False):
+def _get_themes(request, reviewer, initial=True, flagged=False):
     """Check out themes.
 
     :param initial: True if checking out synchronously, False otherwise.
@@ -670,9 +672,7 @@ def _get_themes(reviewer, initial=True, flagged=False):
                     newly checked out ones.
 
     """
-    status = amo.STATUS_PENDING
-    if flagged:
-        status = amo.STATUS_REVIEW_PENDING
+    status = amo.STATUS_REVIEW_PENDING if flagged else amo.STATUS_PENDING
 
     theme_locks = ThemeLock.objects.filter(reviewer=reviewer,
                                            theme__addon__status=status)
@@ -695,26 +695,27 @@ def _get_themes(reviewer, initial=True, flagged=False):
         else:
             wanted_locks = rvw.THEME_INITIAL_LOCKS
 
-    themes = list(Persona.objects.no_cache().filter(
-        addon__status=status, themelock=None)[:wanted_locks])
+    themes = Persona.objects.no_cache().filter(addon__status=status,
+                                               themelock=None)
+    if not settings.ALLOW_SELF_REVIEWS and not acl.action_allowed(request, 'Admin', '%'):
+        themes = themes.exclude(addon__addonuser__user=reviewer)
+    themes = list(themes[:wanted_locks])
 
-    # Set a lock on the checked-out themes
+    # Set a lock on the checked-out themes.
     expiry = get_updated_expiry()
     for theme in themes:
-        ThemeLock.objects.create(theme=theme, reviewer=reviewer,
-                                 expiry=expiry)
+        ThemeLock.objects.create(theme=theme, reviewer=reviewer, expiry=expiry)
 
     # Empty pool? Go look for some expired locks.
     if not themes:
-        expired_locks = (ThemeLock.objects.filter(
-            expiry__lte=datetime.datetime.now())[:rvw.THEME_INITIAL_LOCKS])
+        expired_locks = ThemeLock.objects.filter(
+            expiry__lte=datetime.datetime.now())[:rvw.THEME_INITIAL_LOCKS]
         # Steal expired locks.
         for theme_lock in expired_locks:
             theme_lock.reviewer = reviewer
             theme_lock.expiry = expiry
             theme_lock.save()
-            themes = [theme_lock.theme for theme_lock
-                      in expired_locks]
+            themes = [theme_lock.theme for theme_lock in expired_locks]
 
     if initial:
         return [lock.theme for lock in theme_locks]
@@ -757,8 +758,7 @@ def themes_more_flagged(request):
 @reviewer_required('persona')
 def themes_more(request, flagged=False):
     reviewer = request.user.get_profile()
-    theme_locks = ThemeLock.objects.filter(reviewer=reviewer)
-    theme_locks_count = theme_locks.count()
+    theme_locks_count = ThemeLock.objects.filter(reviewer=reviewer).count()
 
     # Maximum number of locks.
     if theme_locks_count >= rvw.THEME_MAX_LOCKS:
@@ -766,9 +766,10 @@ def themes_more(request, flagged=False):
             'themes': [],
             'message': _('You have reached the maximum number of Themes to '
                          'review at once. Please commit your outstanding '
-                         'reviews.')}
+                         'reviews.')
+        }
 
-    themes = _get_themes(reviewer, initial=False, flagged=flagged)
+    themes = _get_themes(request, reviewer, initial=False, flagged=flagged)
 
     # Create forms, which will need to be manipulated to fit with the currently
     # existing forms.
@@ -800,6 +801,11 @@ def themes_single(request, slug):
     # Don't review an already reviewed theme.
     theme = get_object_or_404(Persona, addon__slug=slug)
     if theme.addon.status != amo.STATUS_PENDING:
+        reviewable = False
+
+    if (not settings.ALLOW_SELF_REVIEWS and
+        not acl.action_allowed(request, 'Admin', '%') and
+        theme.addon.has_author(request.amo_user)):
         reviewable = False
 
     # Don't review a locked theme (that's not locked to self).
@@ -859,8 +865,7 @@ def themes_logs(request):
 
     form = forms.ReviewAppLogForm(data)
 
-    theme_logs = ActivityLog.objects.filter(
-        action=amo.LOG.THEME_REVIEW.id)
+    theme_logs = ActivityLog.objects.filter(action=amo.LOG.THEME_REVIEW.id)
 
     if form.is_valid():
         data = form.cleaned_data

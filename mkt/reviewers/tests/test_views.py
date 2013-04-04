@@ -22,7 +22,7 @@ import amo
 import amo.tests
 from abuse.models import AbuseReport
 from access.models import GroupUser
-from addons.models import AddonDeviceType, AddonUser, Persona
+from addons.models import AddonDeviceType, Persona
 from amo.helpers import absolutify
 from amo.tests import (app_factory, addon_factory, check_links, days_ago,
                        formset, initial, version_factory)
@@ -844,14 +844,14 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         content = pq(self.client.get(self.url).content)
         assert content('#queue-escalation').length
 
-    @mock.patch.object(settings, 'ALLOW_SELF_REVIEWS', False)
     def test_cannot_review_my_app(self):
-        AddonUser.objects.create(
-            addon=self.app, user=UserProfile.objects.get(username='editor'))
-        res = self.client.head(self.url)
-        self.assert3xx(res, reverse('reviewers.home'))
-        res = self.client.post(self.url)
-        self.assert3xx(res, reverse('reviewers.home'))
+        with self.settings(ALLOW_SELF_REVIEWS=False):
+            self.app.addonuser_set.create(
+                user=UserProfile.objects.get(username='editor'))
+            res = self.client.head(self.url)
+            self.assert3xx(res, reverse('reviewers.home'))
+            res = self.client.post(self.url)
+            self.assert3xx(res, reverse('reviewers.home'))
 
     def test_cannot_review_blocklisted_app(self):
         self.app.update(status=amo.STATUS_BLOCKED)
@@ -1979,7 +1979,7 @@ class ThemeReviewTestMixin(object):
 
         for expected in expected_themes:
             reviewer = self.create_and_become_reviewer()
-            eq_(_get_themes(reviewer, initial=False, flagged=self.flagged),
+            eq_(_get_themes(mock.Mock(), reviewer, initial=False, flagged=self.flagged),
                 expected)
             eq_(ThemeLock.objects.filter(reviewer=reviewer).count(),
                 len(expected))
@@ -2002,8 +2002,9 @@ class ThemeReviewTestMixin(object):
 
         reviewer = self.create_and_become_reviewer()
         for expected in expected_themes:
-            eq_(_get_themes(reviewer, initial=False, flagged=self.flagged),
-                expected)
+            actual = _get_themes(mock.Mock(), reviewer, initial=False,
+                                 flagged=self.flagged)
+            eq_(actual, expected)
 
     @mock.patch.object(rvw, 'THEME_INITIAL_LOCKS', 2)
     def test_top_off(self):
@@ -2011,9 +2012,9 @@ class ThemeReviewTestMixin(object):
         for x in range(2):
             addon_factory(type=amo.ADDON_PERSONA, status=self.status)
         reviewer = self.create_and_become_reviewer()
-        _get_themes(reviewer, initial=True, flagged=self.flagged)
+        _get_themes(mock.Mock(), reviewer, initial=True, flagged=self.flagged)
         ThemeLock.objects.filter(reviewer=reviewer)[0].delete()
-        _get_themes(reviewer, initial=True, flagged=self.flagged)
+        _get_themes(mock.Mock(), reviewer, initial=True, flagged=self.flagged)
 
         # Check reviewer checked out the themes.
         eq_(ThemeLock.objects.filter(reviewer=reviewer).count(),
@@ -2028,29 +2029,29 @@ class ThemeReviewTestMixin(object):
         for x in range(2):
             addon_factory(type=amo.ADDON_PERSONA, status=self.status)
         reviewer = self.create_and_become_reviewer()
-        _get_themes(reviewer, initial=True, flagged=self.flagged)
+        _get_themes(mock.Mock(), reviewer, initial=True, flagged=self.flagged)
 
         # Reviewer wants themes, but empty pool.
         reviewer = self.create_and_become_reviewer()
-        _get_themes(reviewer, initial=True, flagged=self.flagged)
+        _get_themes(mock.Mock(), reviewer, initial=True, flagged=self.flagged)
         eq_(ThemeLock.objects.filter(reviewer=reviewer).count(), 0)
 
         # Manually expire a lock and see if it's reassigned.
         expired_theme_lock = ThemeLock.objects.all()[0]
         expired_theme_lock.expiry = datetime.datetime.now()
         expired_theme_lock.save()
-        _get_themes(reviewer, initial=True, flagged=self.flagged)
+        _get_themes(mock.Mock(), reviewer, initial=True, flagged=self.flagged)
         eq_(ThemeLock.objects.filter(reviewer=reviewer).count(), 1)
 
     def test_expiry_update(self):
         """Test expiry is updated when reviewer reloads his queue."""
         addon_factory(type=amo.ADDON_PERSONA, status=self.status)
         reviewer = self.create_and_become_reviewer()
-        _get_themes(reviewer, initial=True, flagged=self.flagged)
+        _get_themes(mock.Mock(), reviewer, initial=True, flagged=self.flagged)
 
         earlier = datetime.datetime.now() - datetime.timedelta(minutes=10)
         ThemeLock.objects.filter(reviewer=reviewer).update(expiry=earlier)
-        _get_themes(reviewer, initial=True, flagged=self.flagged)
+        _get_themes(mock.Mock(), reviewer, initial=True, flagged=self.flagged)
         eq_(ThemeLock.objects.filter(reviewer=reviewer)[0].expiry > earlier,
             True)
 
@@ -2067,10 +2068,9 @@ class ThemeReviewTestMixin(object):
         # Create locks.
         reviewer = self.create_and_become_reviewer()
         for index, theme in enumerate(themes):
-            ThemeLock.objects.create(
-                theme=theme, reviewer=reviewer,
+            ThemeLock.objects.create(theme=theme, reviewer=reviewer,
                 expiry=datetime.datetime.now() +
-                datetime.timedelta(minutes=rvw.THEME_LOCK_EXPIRY))
+                       datetime.timedelta(minutes=rvw.THEME_LOCK_EXPIRY))
             form_data['form-%s-theme' % index] = str(theme.id)
 
         # moreinfo
@@ -2193,17 +2193,39 @@ class ThemeReviewTestMixin(object):
         eq_(doc('tbody tr').length, 3 * 2)  # Double for comment rows.
 
     def test_single_basic(self):
-        addon_factory(type=amo.ADDON_PERSONA, status=self.status)
+        with self.settings(ALLOW_SELF_REVIEWS=True):
+            user = UserProfile.objects.get(
+                email='persona_reviewer@mozilla.com')
+            self.login(user)
+            addon = addon_factory(type=amo.ADDON_PERSONA, status=self.status)
 
-        self.create_and_become_reviewer()
-        res = self.client.get(reverse('reviewers.themes.single',
-                              args=[Persona.objects.all()[0].addon.slug]))
-        eq_(res.status_code, 200)
-        doc = pq(res.content)
-        eq_(doc('.theme').length, 1)
+            res = self.client.get(reverse('reviewers.themes.single',
+                                          args=[addon.slug]))
+            eq_(res.status_code, 200)
+            eq_(res.context['theme'].id, addon.persona.id)
+            eq_(res.context['reviewable'], not self.flagged)
+
+    def test_single_cannot_review_my_app(self):
+        with self.settings(ALLOW_SELF_REVIEWS=False):
+            user = UserProfile.objects.get(
+                email='persona_reviewer@mozilla.com')
+            self.login(user)
+            addon = addon_factory(type=amo.ADDON_PERSONA, status=self.status)
+
+            addon.addonuser_set.create(user=user)
+
+            res = self.client.get(reverse('reviewers.themes.single',
+                                          args=[addon.slug]))
+            eq_(res.status_code, 200)
+            eq_(res.context['theme'].id, addon.persona.id)
+            eq_(res.context['reviewable'], False)
 
 
 class TestThemeReviewQueue(ThemeReviewTestMixin, amo.tests.TestCase):
+
+    def setUp(self):
+        super(TestThemeReviewQueue, self).setUp()
+        self.queue_url = reverse('reviewers.themes.queue_themes')
 
     def check_permissions(self, slug, status_code):
         for url in [reverse('reviewers.themes.queue_themes'),
@@ -2212,18 +2234,40 @@ class TestThemeReviewQueue(ThemeReviewTestMixin, amo.tests.TestCase):
             eq_(self.client.get(url).status_code, status_code)
 
     def test_permissions_reviewer(self):
-        addon_factory(type=amo.ADDON_PERSONA, status=self.status)
-        slug = Persona.objects.all()[0].addon.slug
+        slug = addon_factory(type=amo.ADDON_PERSONA, status=self.status).slug
 
-        res = self.client.get(reverse('reviewers.themes.queue_themes'))
-        self.assertLoginRedirects(res,
-                                  reverse('reviewers.themes.queue_themes'))
+        self.assertLoginRedirects(self.client.get(self.queue_url), self.queue_url)
 
         self.login('regular@mozilla.com')
         self.check_permissions(slug, 403)
 
         self.create_and_become_reviewer()
         self.check_permissions(slug, 200)
+
+    def test_can_review_your_app(self):
+        with self.settings(ALLOW_SELF_REVIEWS=False):
+            user = UserProfile.objects.get(
+                email='persona_reviewer@mozilla.com')
+            self.login(user)
+            addon = addon_factory(type=amo.ADDON_PERSONA, status=self.status)
+
+            res = self.client.get(self.queue_url)
+            eq_(len(res.context['theme_formsets']), 1)
+            # I should be able to review this app. It is not mine.
+            eq_(res.context['theme_formsets'][0][0], addon.persona)
+
+    def test_cannot_review_my_app(self):
+        with self.settings(ALLOW_SELF_REVIEWS=False):
+            user = UserProfile.objects.get(
+                email='persona_reviewer@mozilla.com')
+            self.login(user)
+            addon = addon_factory(type=amo.ADDON_PERSONA, status=self.status)
+
+            addon.addonuser_set.create(user=user)
+
+            res = self.client.get(self.queue_url)
+            # I should not be able to review my own app.
+            eq_(len(res.context['theme_formsets']), 0)
 
 
 class TestThemeReviewQueueFlagged(ThemeReviewTestMixin, amo.tests.TestCase):
@@ -2232,15 +2276,14 @@ class TestThemeReviewQueueFlagged(ThemeReviewTestMixin, amo.tests.TestCase):
         super(TestThemeReviewQueueFlagged, self).setUp()
         self.status = amo.STATUS_REVIEW_PENDING
         self.flagged = True
+        self.queue_url = reverse('reviewers.themes.queue_flagged')
 
     def test_admin_only(self):
         self.login('persona_reviewer@mozilla.com')
-        eq_(self.client.get(reverse('reviewers.themes.queue_flagged'))
-            .status_code, 403)
+        eq_(self.client.get(self.queue_url).status_code, 403)
 
         self.login('admin@mozilla.com')
-        eq_(self.client.get(reverse('reviewers.themes.queue_flagged'))
-            .status_code, 200)
+        eq_(self.client.get(self.queue_url).status_code, 200)
 
 
 class TestGetSigned(BasePackagedAppTest, amo.tests.TestCase):
