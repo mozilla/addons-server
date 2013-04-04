@@ -758,7 +758,7 @@ def themes_more_flagged(request):
 @reviewer_required('persona')
 def themes_more(request, flagged=False):
     reviewer = request.user.get_profile()
-    theme_locks_count = ThemeLock.objects.filter(reviewer=reviewer).count()
+    theme_locks_count = ThemeLock.uncached.filter(reviewer=reviewer).count()
 
     # Maximum number of locks.
     if theme_locks_count >= rvw.THEME_MAX_LOCKS:

@@ -218,14 +218,14 @@
                 f: ['flag', null],
                 m: ['moreinfo', null]
             };
-            keymap[0] = ['other_reject_reason', 0];
+            // keymap[0] = ['other_reject_reason', 0];
             for (var j =1; j <= 9; j++) {
                 keymap[j] = ['reject', j];
             }
 
             function setReviewed(i, text) {
                 $(nthTheme(i)).addClass('reviewed');
-                $('.status', themes[i].element).addClass('reviewed').find('span').text(text);
+                $('.status', nthTheme(i)).addClass('reviewed').find('span').text(text);
                 $('#reviewed-count').text($('div.theme.reviewed').length);
                 if ($(queue).hasClass('advance')) {
                     goToTheme(i + 1, 250);
