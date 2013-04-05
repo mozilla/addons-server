@@ -25,7 +25,7 @@ from users.views import browserid_login
 from .forms import FeedbackForm
 
 
-class AccountResource(MarketplaceModelResource):
+class AccountResource(CORSResource, MarketplaceModelResource):
     installed = fields.ListField('installed_list', readonly=True, null=True)
 
     class Meta:
