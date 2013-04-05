@@ -41,10 +41,11 @@ def sign(receipt):
             response = urllib2.urlopen(request, timeout=timeout)
     except urllib2.HTTPError, error:
         # Will occur when a 3xx or greater code is returned
+        msg = error.read().strip()
         log.error('Posting to receipt signing failed: %s, %s'
-                  % (error.code, error.read().strip()))
+                  % (error.code, msg))
         raise SigningError('Posting to receipt signing failed: %s, %s'
-                           % (error.code, error.read().strip()))
+                           % (error.code, msg))
     except:
         # Will occur when some other error occurs.
         log.error('Posting to receipt signing failed', exc_info=True)
