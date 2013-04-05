@@ -192,12 +192,16 @@ class TestOptionalOAuthAuthentication(TestCase):
         ok_(not self.auth.is_authenticated(req))
 
 
+class MultipleTestResource(MarketplaceResource):
+    pass
+
+
 @patch.object(settings, 'SECRET_KEY', 'gubbish')
 class TestMultipleAuthentication(TestCase):
     fixtures = fixture('user_2519')
 
     def setUp(self):
-        self.resource = MarketplaceResource()
+        self.resource = MultipleTestResource()
         self.profile = UserProfile.objects.get(pk=2519)
 
     def test_single(self):

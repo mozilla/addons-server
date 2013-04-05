@@ -1,5 +1,4 @@
 from tastypie import http
-from tastypie.authentication import Authentication
 from tastypie.authorization import Authorization
 from test_utils import RequestFactory
 
@@ -7,14 +6,16 @@ from amo.tests import TestCase
 from mkt.api.base import MarketplaceResource
 
 
+class EncodingResource(MarketplaceResource):
+
+    class Meta(object):
+        authorization = Authorization()
+
+
 class TestMarketplace(TestCase):
+
     def setUp(self):
-        self.resource = MarketplaceResource()
-
-        # Ensure that we have proper authentication and authorization.
-        self.resource._meta.authentication = Authentication()
-        self.resource._meta.authorization = Authorization()
-
+        self.resource = EncodingResource()
         self.request = RequestFactory().post('/')
 
     def test_form_encoded(self):
