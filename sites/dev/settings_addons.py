@@ -27,7 +27,6 @@ PREVIEW_THUMBNAIL_URL = (STATIC_URL +
 PREVIEW_FULL_URL = (STATIC_URL +
         'img/uploads/previews/full/%s/%d.png?modified=%d')
 NEW_PERSONAS_IMAGE_URL = STATIC_URL + 'img/uploads/themes/%(id)d/%(file)s'
-NEW_PERSONAS_UPDATE_URL = SERVICES_URL + '/%(locale)s/themes/update-check/%(id)d'
 
 # paths for uploaded extensions
 FILES_URL = STATIC_URL + "%s/%s/downloads/file/%d/%s?src=%s"
