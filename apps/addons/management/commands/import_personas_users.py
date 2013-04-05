@@ -12,10 +12,7 @@ from django.db import (IntegrityError, connection as django_connection,
 
 import MySQLdb as mysql
 
-from addons import cron
-import amo
-
-BIOS_TO_IMPORT = os.environ.get('BIOS', 'bios_to_import.py')
+BIOS_TO_IMPORT = os.environ.get('BIOS', 'amo_bios_to_import.py')
 
 
 class Command(BaseCommand):
@@ -99,33 +96,39 @@ class Command(BaseCommand):
         return self.cursor.fetchall()
 
     def handle_user(self, user):
-        self.cursor.execute(
-            'SELECT username, display_username, md5, '
-            'email, description FROM users WHERE username = %s',
-            user['email'])
+        self.cursor.execute('SELECT username, email, description FROM users '
+                            'WHERE email = %s', user['email'])
         try:
             user = self.cursor.fetchone()[0]
         except TypeError:
             print ' Could not find GP user with email: %s' % user['email']
             return
 
-        user = dict(zip(['username', 'display_username', 'md5',
-                         'email', 'description'], user))
+        user = dict(zip(['username', 'email', 'description'], user))
 
-        for k in ['username', 'description', 'display_username', 'email']:
+        for k in ('username', 'description', 'email'):
             user[k] = (user.get(k) or '').decode('latin1').encode('utf-8')
 
-        user['orig-username'] = user['username']
-
         data = {'user_id': self.get_user_id(email=user['email'])}
+
+        try:
+            data['bio'] = re.sub('&([^;]+);', lambda m: unichr(
+                htmlentitydefs.name2codepoint[m.group(1)]), data['description'])
+        except:
+            data['bio'] = ''
+
+        # # We'll import the bios one day. It's all good.
+        # if data['bio']:
+        #     with open(BIOS_TO_IMPORT, 'a') as f:
+        #         f.write('u = UserProfile.objects.get(id=%(user_id)s)\n'
+        #                 'u.bio = (u.bio or '') + """%(bio)s"""\n'
+        #                 'u.save()\n'
+        #                 'time.sleep(1)\n\n' % data)
+
         # TODO: Handle sometime later.
-        # try:
-        #     data['bio'] = re.sub('&([^;]+);', lambda m: unichr(htmlentitydefs.name2codepoint[m.group(1)]), data['bio'])
-        # except:
-        #     data['bio'] = ""
 
         rows = []
-        for persona_id in self.get_designers(user['orig-username']):
+        for persona_id in self.get_designers(user['username']):
             addon_id = self.get_persona_addon_id(persona_id=persona_id[0])
             if addon_id:
                 rows.append('(%s, %s, 5)' % (addon_id, data['user_id']))
@@ -162,7 +165,7 @@ class Command(BaseCommand):
             collection_id = self.cursor_z.lastrowid
 
         rows = []
-        for fav in self.get_favourites(user['orig-username']):
+        for fav in self.get_favourites(user['username']):
             addon_id = self.get_persona_addon_id(persona_id=fav[0])
             if addon_id:
                 rows.append('(NOW(), NOW(), %s, %s, %s)' %
@@ -221,9 +224,5 @@ class Command(BaseCommand):
             raise
         finally:
             self.commit_or_not(options.get('commit'))
-            # Let's not do this programmatically with how this script is acting
-            #if options.get('commit') == 'yes':
-                #self.log("Kicking off cron to reindex personas...")
-                #cron.reindex_addons(addon_type=amo.ADDON_PERSONA)
 
         self.log("Done. Total time: %s seconds" % (time() - t_total_start))
