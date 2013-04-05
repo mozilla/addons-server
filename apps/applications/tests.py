@@ -51,7 +51,7 @@ class TestApplication(amo.tests.TestCase):
 
 
 class TestViews(amo.tests.TestCase):
-    fixtures = ['base/appversion']
+    fixtures = ['base/apps', 'base/appversion']
 
     def test_appversions(self):
         eq_(self.client.get(url('apps.appversions')).status_code, 200)
@@ -61,7 +61,7 @@ class TestViews(amo.tests.TestCase):
 
 
 class TestCommands(amo.tests.TestCase):
-    fixtures = ['applications/all_apps.json', 'base/appversion']
+    fixtures = ['applications/all_apps.json', 'base/apps', 'base/appversion']
 
     def test_dump_apps(self):
         call_command('dump_apps')
