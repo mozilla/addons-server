@@ -4,7 +4,7 @@ import json
 from urlparse import urljoin
 
 from django.conf import settings
-from django.contrib.auth.models import AnonymousUser
+from django.contrib.auth.models import AnonymousUser, User
 
 import commonware.log
 import oauth2
@@ -167,8 +167,17 @@ class SharedSecretAuthentication(Authentication):
                 email + settings.SECRET_KEY).hexdigest()
             matches = hmac.new(unique_id + settings.SECRET_KEY,
                                consumer_id, hashlib.sha512).hexdigest() == hm
-            if not matches:
+            if matches:
+                try:
+                    request.user = User.objects.get(email=email)
+                except User.DoesNotExist:
+                    log.info('Auth token matches absent user (%s)' % email)
+                    return False
+
+                ACLMiddleware().process_request(request)
+            else:
                 log.info('Shared-secret auth token does not match')
+
             return matches
         except Exception, e:
             log.info('Bad shared-secret auth data: %s (%s)', auth, e)

@@ -165,10 +165,12 @@ class TestSharedSecretAuthentication(TestCase):
                                    '121c5c165f3515838d4d6c60c4,165d631d3c3045'
                                    '458b4516242dad7ae')
         ok_(self.auth.is_authenticated(req))
+        eq_(self.profile.user.pk, req.amo_user.pk)
 
     def test_failed_session_auth(self):
         req = RequestFactory().get('/?_user=bogus')
         ok_(not self.auth.is_authenticated(req))
+        assert not getattr(req, 'amo_user', None)
 
     def test_session_auth_no_post(self):
         req = RequestFactory().post('/')
@@ -207,6 +209,7 @@ class TestMultipleAuthentication(TestCase):
         self.resource._meta.authentication = (
                 authentication.SharedSecretAuthentication())
         eq_(self.resource.is_authenticated(req), None)
+        eq_(self.profile.user.pk, req.amo_user.pk)
 
     def test_multiple_passes(self):
         req = RequestFactory().get('/')
