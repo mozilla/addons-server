@@ -226,6 +226,7 @@ def test_install(request):
                         {'form': forms.TestInstall()})
 
 
+@anonymous_csrf_exempt
 @json_view
 @post_required
 def test_receipt(request):
