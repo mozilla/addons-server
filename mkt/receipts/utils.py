@@ -5,6 +5,7 @@ from urllib import urlencode
 from django.conf import settings
 
 import jwt
+from nose.tools import nottest
 
 from access import acl
 from amo.helpers import absolutify
@@ -58,6 +59,7 @@ def create_receipt(installed_pk, flavour=None):
         return jwt.encode(receipt, get_key(), u'RS512')
 
 
+@nottest
 def create_test_receipt(status):
     time_ = calendar.timegm(time.gmtime())
     detail = absolutify(reverse('receipt.test.details'))

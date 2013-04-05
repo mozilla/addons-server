@@ -5,6 +5,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 import commonware.log
 import jingo
+from nose.tools import nottest
 from session_csrf import anonymous_csrf_exempt
 from tower import ugettext as _
 
@@ -249,6 +250,7 @@ def test_details(request):
 @csrf_exempt
 @json_view
 @post_required
+@nottest
 def test_verify(request, status):
     try:
         result = decode_receipt(request.body)

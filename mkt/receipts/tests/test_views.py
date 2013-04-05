@@ -23,7 +23,7 @@ from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
 from mkt.receipts.utils import create_test_receipt
 from mkt.receipts.views import test_verify
-from services.verify import decode_receipt
+from services.verify import decode_receipt, settings as verify_settings
 from users.models import UserProfile
 from zadmin.models import DownloadSource
 
@@ -425,6 +425,11 @@ class RawRequestFactory(RequestFactory):
         return data
 
 
+# Ooof.
+@mock.patch.object(verify_settings, 'WEBAPPS_RECEIPT_KEY',
+                   amo.tests.AMOPaths.sample_key())
+@mock.patch.object(settings, 'WEBAPPS_RECEIPT_KEY',
+                   amo.tests.AMOPaths.sample_key())
 class TestDevhubReceipts(amo.tests.TestCase):
 
     def setUp(self):
