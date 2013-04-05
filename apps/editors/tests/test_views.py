@@ -1348,7 +1348,9 @@ class TestQueueSearch(SearchTest):
             'Select an application first')
         r = self.search(application_id=amo.MOBILE.id)
         doc = pq(r.content)
-        eq_(doc('#id_max_version option').text(), '4.0b2pre 2.0a1pre 1.0')
+        eq_(doc('#id_max_version option').text(),
+            ' '.join([av.version for av in
+                      AppVersion.objects.filter(application=amo.MOBILE.id)]))
 
     def test_application_versions_json(self):
         self.generate_file('Bieber For Mobile')
@@ -1357,10 +1359,9 @@ class TestQueueSearch(SearchTest):
         eq_(r.status_code, 200)
         data = json.loads(r.content)
         eq_(data['choices'],
-            [['', ''],
-             ['4.0b2pre', '4.0b2pre'],
-             ['2.0a1pre', '2.0a1pre'],
-             ['1.0', '1.0']])
+            [[av, av] for av in
+             [u''] + [av.version for av in
+                      AppVersion.objects.filter(application=amo.MOBILE.id)]])
 
     def test_clear_search_visible(self):
         r = self.search(text_query='admin', searching=True)
