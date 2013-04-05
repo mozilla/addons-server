@@ -1072,24 +1072,17 @@ class TestPersonaDetailPage(TestPersonas, amo.tests.TestCase):
         eq_(a.length, 1)
         eq_(a.attr('href'), other.get_url_path())
 
-    def test_by(self):
+    def _test_by(self):
         """Test that the by... bit works."""
         r = self.client.get(self.url)
         assert pq(r.content)('h4.author').text().startswith('by regularuser')
 
-    # TODO(andym): delete once personas migration is live.
-    def _test_legacy_by(self):
-        waffle.models.Switch.objects.filter(
-            name='personas-migration-completed').update(active=False)
-        r = self.client.get(self.url)
-        eq_(pq(r.content)('h4.author').text(), 'by persona_author')
-
-    def test_legacy_by(self):
-        self._test_legacy_by()
+    def test_by(self):
+        self._test_by()
 
     @amo.tests.mobile_test
-    def test_legacy_mobile_by(self):
-        self._test_legacy_by()
+    def test_mobile_by(self):
+        self._test_by()
 
 
 class TestStatus(amo.tests.TestCase):

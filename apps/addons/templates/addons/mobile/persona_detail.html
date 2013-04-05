@@ -8,7 +8,7 @@
 {% endblock %}
 
 {% block page %}
-{% set author = users_list(persona.listed_authors) or persona.display_username %}
+{% set author = users_list(addon.listed_authors) or persona.display_username %}
 
 <div id="persona" class="persona-previewer infobox item">
   {{ mobile_persona_preview(persona) }}
@@ -22,7 +22,9 @@
 
 <details>
   <table>
-    {% include "addons/mobile/persona_detail_table.html" %}
+    {% with author=author %}
+      {% include "addons/mobile/persona_detail_table.html" %}
+    {% endwith %}
   </table>
 </details>
 
