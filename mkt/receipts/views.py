@@ -237,10 +237,10 @@ def test_receipt(request):
             return {'receipt': '', 'error': ''}
 
         receipt_cef.log(request, None, 'sign', 'Test receipt signing')
-        receipt = create_test_receipt(receipt_type)
+        receipt = create_test_receipt(form.root, receipt_type)
         return {'receipt': receipt, 'error': ''}
 
-    return {'receipt': '', 'error': form.errors['receipt_type'][0]}
+    return {'receipt': '', 'error': form.errors}
 
 
 def test_details(request):

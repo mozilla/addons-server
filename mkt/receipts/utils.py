@@ -60,7 +60,7 @@ def create_receipt(installed_pk, flavour=None):
 
 
 @nottest
-def create_test_receipt(status):
+def create_test_receipt(root, status):
     time_ = calendar.timegm(time.gmtime())
     detail = absolutify(reverse('receipt.test.details'))
     receipt = {
@@ -71,7 +71,7 @@ def create_test_receipt(status):
         'nbf': time_,
         'product': {
             'storedata': urlencode({'id': 0}),
-            'url': detail,
+            'url': root,
             'type': 'test'
         },
         'reissue': detail,

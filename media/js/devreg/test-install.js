@@ -18,7 +18,8 @@ define('test-install', ['capabilities'], function(capabilities) {
             post = {
                 src: '',
                 device_type: capabilities.getDeviceType(),
-                receipt_type: $('#id_receipt_type').val()
+                receipt_type: $('#id_receipt_type').val(),
+                manifest_url: $('#manifest-url').val()
             },
             data = {},
             product = {

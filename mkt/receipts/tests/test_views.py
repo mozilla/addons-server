@@ -445,12 +445,17 @@ class TestDevhubReceipts(amo.tests.TestCase):
         eq_(self.client.get(self.issue).status_code, 405)
 
     def test_issue_none(self):
-        data = {'receipt_type': 'none'}
+        data = {'receipt_type': 'none', 'manifest_url': 'http://foo.com/'}
         res = self.client.post(self.issue, data=data)
         eq_(json.loads(res.content)['receipt'], '')
 
+    def test_bad_url(self):
+        data = {'receipt_type': 'none', 'manifest_url': ''}
+        res = self.client.post(self.issue, data=data)
+        ok_(json.loads(res.content)['error'], '')
+
     def test_issue_expired(self):
-        data = {'receipt_type': 'expired'}
+        data = {'receipt_type': 'expired', 'manifest_url': 'http://foo.com/'}
         res = self.client.post(self.issue, data=data)
         data = decode_receipt(json.loads(res.content)['receipt']
                                   .encode('ascii'))
@@ -460,11 +465,9 @@ class TestDevhubReceipts(amo.tests.TestCase):
                            (60 * 60 * 24) - TEST_LEEWAY))
 
     def test_issue_other(self):
-        data = {'receipt_type': 'foo'}
+        data = {'receipt_type': 'foo', 'manifest_url': ''}
         res = self.client.post(self.issue, data=data)
-        eq_(json.loads(res.content)['error'],
-            forms.ChoiceField.default_error_messages['invalid_choice']
-                % {'value': 'foo'})
+        ok_(json.loads(res.content)['error'])
 
     def test_verify_fails(self):
         req = RawRequestFactory().post('/', '')
@@ -472,6 +475,7 @@ class TestDevhubReceipts(amo.tests.TestCase):
         eq_(json.loads(res.content)['status'], 'invalid')
 
     def test_verify(self):
-        req = RawRequestFactory().post('/', create_test_receipt('expired'))
+        req = RawRequestFactory().post('/',
+            create_test_receipt('http://foo', 'expired'))
         res = test_verify(req, 'expired')
         eq_(json.loads(res.content)['status'], 'expired')

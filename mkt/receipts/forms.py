@@ -1,3 +1,5 @@
+from urlparse import urlparse
+
 from django import forms
 
 from tower import ugettext_lazy as _lazy
@@ -19,3 +21,9 @@ class TestInstall(forms.Form):
                     ('refunded', _lazy(u'Refunded test receipt')))
 
     receipt_type = forms.ChoiceField(choices=TYPE_CHOICES)
+    manifest_url = forms.URLField()
+
+    @property
+    def root(self):
+        parsed = urlparse(self.cleaned_data['manifest_url'])
+        return '%s://%s' % (parsed.scheme, parsed.netloc)
