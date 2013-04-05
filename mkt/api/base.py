@@ -7,7 +7,7 @@ from django.http import HttpResponse
 
 from tastypie import fields, http
 from tastypie.bundle import Bundle
-from tastypie.exceptions import ImmediateHttpResponse
+from tastypie.exceptions import ImmediateHttpResponse, UnsupportedFormat
 from tastypie.resources import Resource, ModelResource
 
 import commonware.log
@@ -42,8 +42,16 @@ class Marketplace(object):
         if 'HTTP_X_HTTP_METHOD_OVERRIDE' in request.META:
             request.method = request.META['HTTP_X_HTTP_METHOD_OVERRIDE']
 
-        return (super(Marketplace, self)
-                .dispatch(request_type, request, **kwargs))
+        try:
+            return (super(Marketplace, self)
+                    .dispatch(request_type, request, **kwargs))
+        except UnsupportedFormat:
+            ct = request.META.get('CONTENT_TYPE')
+            if ct:
+                msg = "Unsupported Content-Type header '%s'" % ct
+            else:
+                msg = 'No Content-Type header specified'
+            raise self.non_form_errors(('__all__', msg))
 
     def non_form_errors(self, error_list):
         """
