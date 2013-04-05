@@ -198,3 +198,5 @@ try:
     MINIFY_BUNDLES['css'].update(asset_bundles.less2stylus())
 except AttributeError:
     pass
+
+ALLOW_TASTYPIE_SERVICES = True

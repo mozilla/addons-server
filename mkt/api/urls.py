@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.conf.urls import include, patterns, url
 
 from tastypie.api import Api
@@ -7,6 +8,7 @@ from mkt.api.resources import (AppResource, CategoryResource, PreviewResource,
 from mkt.ratings.resources import RatingResource
 from mkt.search.api import SearchResource, WithCreaturedResource
 
+from tastypie_services.urls import services
 
 api = Api(api_name='apps')
 api.register(ValidationResource())
@@ -18,6 +20,9 @@ api.register(SearchResource())
 api.register(StatusResource())
 api.register(RatingResource())
 
-urlpatterns = patterns('',
-    url(r'^', include(api.urls)),
-)
+
+urls = [url(r'^', include(api.urls)),]
+if settings.ALLOW_TASTYPIE_SERVICES:
+    urls.append(url(r'^', include(services.urls)))
+
+urlpatterns = patterns('', *urls)
