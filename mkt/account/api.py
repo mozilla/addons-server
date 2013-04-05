@@ -10,7 +10,6 @@ from tastypie.authorization import Authorization
 from tastypie.exceptions import ImmediateHttpResponse
 from tastypie.throttle import CacheThrottle
 
-from amo.urlresolvers import reverse
 from amo.utils import send_mail_jinja
 from mkt.api.authentication import (OAuthAuthentication,
                                     OptionalOAuthAuthentication,
@@ -19,7 +18,6 @@ from mkt.api.authentication import (OAuthAuthentication,
 from mkt.api.base import (CORSResource, GenericObject,
                           MarketplaceModelResource, MarketplaceResource,
                           PotatoCaptchaResource)
-from mkt.constants.apps import INSTALL_TYPE_USER
 from users.models import UserProfile
 from users.views import browserid_login
 
@@ -27,7 +25,6 @@ from .forms import FeedbackForm
 
 
 class AccountResource(CORSResource, MarketplaceModelResource):
-    installed = fields.ListField('installed_list', readonly=True, null=True)
 
     class Meta:
         authentication = (SharedSecretAuthentication(), OAuthAuthentication())
@@ -47,19 +44,6 @@ class AccountResource(CORSResource, MarketplaceModelResource):
         if not OwnerAuthorization().is_authorized(request, object=obj):
             raise ImmediateHttpResponse(response=http.HttpForbidden())
         return obj
-
-    def dehydrate_installed(self, bundle):
-        # A list of the installed addons (rather than the installed_set table)
-        #
-        # Warning doing it this way, won't give us pagination. So less keen on
-        # this, perhaps we should cap this number?
-        res = (bundle.obj.installed_set.filter(install_type=INSTALL_TYPE_USER)
-               .values_list('addon_id', flat=True))
-        res = [reverse('api_dispatch_detail',
-                       kwargs={'pk': r, 'api_name': 'apps',
-                               'resource_name': 'app'})
-               for r in res]
-        return res
 
 
 class LoginResource(CORSResource, MarketplaceResource):

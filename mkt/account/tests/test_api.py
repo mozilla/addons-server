@@ -48,23 +48,6 @@ class TestAccount(BaseOAuth):
         eq_(res.status_code, 200, res.content)
         data = json.loads(res.content)
         eq_(data['display_name'], self.user.display_name)
-        eq_(data['installed'], [])
-
-    def test_install(self):
-        ins = Installed.objects.create(user=self.user, addon_id=337141)
-        res = self.client.get(self.get_url)
-        eq_(res.status_code, 200, res.content)
-        data = json.loads(res.content)
-        eq_(data['installed'],
-            [get_absolute_url(get_url('app', ins.addon.pk), absolute=False)])
-
-    def test_install_reviewer(self):
-        Installed.objects.create(user=self.user, addon_id=337141,
-                                 install_type=INSTALL_TYPE_REVIEWER)
-        res = self.client.get(self.get_url)
-        eq_(res.status_code, 200, res.content)
-        data = json.loads(res.content)
-        eq_(data['installed'], [])
 
     def test_other(self):
         eq_(self.client.get(get_url('settings', '10482')).status_code, 403)

@@ -61,9 +61,6 @@ Account
         {
             "resource_uri": "/api/v1/account/settings/1/",
             "display_name": "Nice person",
-            "installed": [
-                "/api/v1/apps/3/"
-            ]
         }
 
 The same information is also accessible at the canoncial `resource_uri`
@@ -87,10 +84,6 @@ To update account information:
 Fields that can be updated:
 
 * *display_name*
-
-Fields that are read only:
-
-* *installed*
 
 Categories
 ==========
@@ -203,7 +196,7 @@ Report An Abusive App
         }
 
     This endpoint uses `PotatoCaptcha`, so there must be a field named `sprout`
-    with the value `potato` and cannot be a field named `tuber` with a truthy 
+    with the value `potato` and cannot be a field named `tuber` with a truthy
     value.
 
     **Response**
@@ -243,10 +236,10 @@ Report An Abusive User
             "sprout": "potato",
             "text": "There is a problem with this user",
             "user": 27
-        } 
+        }
 
     This endpoint uses `PotatoCaptcha`, so there must be a field named `sprout`
-    with the value `potato` and cannot be a field named `tuber` with a truthy 
+    with the value `potato` and cannot be a field named `tuber` with a truthy
     value.
 
     **Response**
