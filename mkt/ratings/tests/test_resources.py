@@ -34,6 +34,18 @@ class TestRatingResource(BaseOAuth, AMOPaths):
         assert not data['user']['can_rate']
         assert not data['user']['has_rated']
 
+    def test_anonymous_get_list(self):
+        res = self.anon.get(list_url('rating'))
+        data = json.loads(res.content)
+        eq_(res.status_code, 200)
+        assert 'user' not in data
+
+    def test_anonymous_get_detail(self):
+        res = self.anon.get(self.collection_url)
+        data = json.loads(res.content)
+        eq_(res.status_code, 200)
+        eq_(data['user'], None)
+
     def test_non_owner(self):
         res = self.client.get(self.collection_url)
         data = json.loads(res.content)
@@ -67,7 +79,7 @@ class TestRatingResource(BaseOAuth, AMOPaths):
         res, data = self._create()
         eq_(201, res.status_code)
         assert data['resource_uri']
-        eq_(data['report_spam'],  data['resource_uri'] + 'flag/')
+        eq_(data['report_spam'], data['resource_uri'] + 'flag/')
 
     def test_create_bad_data(self):
         """

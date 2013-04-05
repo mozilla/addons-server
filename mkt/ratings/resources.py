@@ -1,5 +1,6 @@
-import commonware.log
 from django.conf.urls import url
+
+import commonware.log
 from tastypie import fields, http
 from tastypie.bundle import Bundle
 from tastypie.authorization import Authorization
@@ -14,6 +15,7 @@ from mkt.api.authentication import (AppOwnerAuthorization,
                                     OwnerAuthorization,
                                     OAuthAuthentication,
                                     PermissionAuthorization,
+                                    SelectiveAuthentication,
                                     SharedSecretAuthentication)
 from mkt.api.base import MarketplaceModelResource
 from mkt.api.resources import AppResource, UserResource
@@ -37,7 +39,9 @@ class RatingResource(MarketplaceModelResource):
         list_allowed_methods = ['get', 'post']
         detail_allowed_methods = ['get', 'put', 'delete']
         always_return_data = True
-        authentication = (SharedSecretAuthentication(), OAuthAuthentication())
+        authentication = (SharedSecretAuthentication(),
+                          OAuthAuthentication(),
+                          SelectiveAuthentication('GET'))
         authorization = Authorization()
         fields = ['rating', 'body']
 
@@ -151,12 +155,18 @@ class RatingResource(MarketplaceModelResource):
                 'slug': addon.app_slug
             }
 
-            filters = dict(addon=addon, user=request.user)
+            filters = dict(addon=addon)
             if addon.is_packaged:
                 filters['version'] = addon.current_version
-            existing_review = Review.objects.valid().filter(**filters).exists()
-            data['user'] = {'can_rate': not addon.has_author(request.user),
-                            'has_rated': existing_review}
+
+            if not request.user.is_anonymous():
+                filters['user'] = request.user
+                existing_review = Review.objects.valid().filter(**filters)
+                data['user'] = {'can_rate': not addon.has_author(request.user),
+                                'has_rated': existing_review.exists()}
+            else:
+                data['user'] = None
+
         return data
 
     def override_urls(self):

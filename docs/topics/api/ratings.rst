@@ -7,8 +7,6 @@ Ratings API
 These endpoints allow the retrieval, creation, and modification of ratings on
 apps in Marketplace.
 
-.. note:: All ratings methods require authentication.
-
 
 _`List`
 =======
@@ -16,6 +14,8 @@ _`List`
 .. http:get:: /api/v1/apps/rating/
 
     Get a list of ratings from the Marketplace
+
+    .. note:: Authentication is optional.
 
     **Request**:
 
@@ -67,6 +67,8 @@ _`Detail`
     Get a single rating from the Marketplace using its `resource_uri` from the
     `List`_.
 
+    .. note:: Authentication is optional.
+
     **Response**:
 
     .. code-block:: json
@@ -92,6 +94,8 @@ _`Create`
 .. http:post:: /api/v1/apps/rating/
 
     Create a rating.
+
+    .. note:: Authentication required.
 
     **Request**:
 
@@ -137,6 +141,8 @@ _`Update`
     Update a rating from the Marketplace using its `resource_uri` from the
     `List`_.
 
+    .. note:: Authentication required.
+
     **Request**:
 
     :param body: text of the rating
@@ -173,6 +179,8 @@ _`Delete`
 
     Delete a rating from the Marketplace using its `resource_uri` from the
     `List`_.
+
+    .. note:: Authentication required.
 
     **Response**:
 

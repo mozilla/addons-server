@@ -101,18 +101,19 @@ class Marketplace(object):
         of Authentication methods. If so it will go through in order, when one
         passes, it will use that.
 
-        Any authentication method can still return a HttpResponse to break out
-        of the loop if they desire.
+        If authentication backends return a response (e.g. DigestAuth), it will
+        be squashed. To get around this, raise an ImmediateHttpResponse with the
+        desired response.
         """
         for auth in self._auths():
             auth_result = auth.is_authenticated(request)
 
             if isinstance(auth_result, http.HttpResponse):
-                raise ImmediateHttpResponse(response=auth_result)
+                return False
 
             if auth_result:
                 log.info('Logged in using %s' % auth.__class__.__name__)
-                return
+                return True
 
         raise ImmediateHttpResponse(response=http.HttpUnauthorized())
 
