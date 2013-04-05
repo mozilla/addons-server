@@ -116,7 +116,7 @@
                 } else {
                     var results = [];
                     $.each(data.objects, function(i, item) {
-                        item.review_url = review_url.replace('__slug__', item.app_slug);
+                        item.review_url = review_url.replace('__slug__', item.slug);
                         item.status = statuses[item.status];
                         if (item.latest_version_status) {
                             item.status += format(' | {0}', statuses[item.latest_version_status]);
