@@ -14,7 +14,8 @@ from amo.urlresolvers import reverse
 from amo.utils import send_mail_jinja
 from mkt.api.authentication import (OAuthAuthentication,
                                     OptionalOAuthAuthentication,
-                                    OwnerAuthorization)
+                                    OwnerAuthorization,
+                                    SharedSecretAuthentication)
 from mkt.api.base import (CORSResource, GenericObject, MarketplaceModelResource,
                           MarketplaceResource, PotatoCaptchaResource)
 from mkt.constants.apps import INSTALL_TYPE_USER
@@ -28,7 +29,7 @@ class AccountResource(MarketplaceModelResource):
     installed = fields.ListField('installed_list', readonly=True, null=True)
 
     class Meta:
-        authentication = OAuthAuthentication()
+        authentication = (SharedSecretAuthentication(), OAuthAuthentication())
         authorization = OwnerAuthorization()
         detail_allowed_methods = ['get', 'patch', 'put']
         fields = ['display_name']
