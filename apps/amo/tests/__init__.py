@@ -690,8 +690,9 @@ class ESTestCase(TestCase):
 
     @classmethod
     def tearDownClass(cls):
-        for addon in cls.addons:
-            addon.delete()
+        if hasattr(cls, 'addons'):
+            for addon in cls.addons:
+                addon.delete()
 
     @classmethod
     def setUpIndex(cls):
