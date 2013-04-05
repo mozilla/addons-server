@@ -16,8 +16,9 @@ from mkt.api.authentication import (OAuthAuthentication,
                                     OptionalOAuthAuthentication,
                                     OwnerAuthorization,
                                     SharedSecretAuthentication)
-from mkt.api.base import (CORSResource, GenericObject, MarketplaceModelResource,
-                          MarketplaceResource, PotatoCaptchaResource)
+from mkt.api.base import (CORSResource, GenericObject,
+                          MarketplaceModelResource, MarketplaceResource,
+                          PotatoCaptchaResource)
 from mkt.constants.apps import INSTALL_TYPE_USER
 from users.models import UserProfile
 from users.views import browserid_login
@@ -62,6 +63,7 @@ class AccountResource(CORSResource, MarketplaceModelResource):
 
 
 class LoginResource(CORSResource, MarketplaceResource):
+
     class Meta:
         resource_name = 'login'
         always_return_data = True
@@ -86,17 +88,16 @@ class LoginResource(CORSResource, MarketplaceResource):
             audience = get_audience
         res = browserid_login(request, browserid_audience=audience)
         if res.status_code == 200:
-            return self.create_response(
-                request,
-                {'error': None,
-                 'token': self.get_token(request.user.email),
-                 'settings': {
-                        'display_name': UserProfile.objects.get(
-                            user=request.user).display_name,
-                        'email': request.user.email,
-                        'region': 'internet',
-                        }
-                 })
+            return self.create_response(request, {
+                'error': None,
+                'token': self.get_token(request.user.email),
+                'settings': {
+                    'display_name': (UserProfile.objects
+                                     .get(user=request.user).display_name),
+                    'email': request.user.email,
+                    'region': 'internet',
+                }
+            })
         return res
 
 
