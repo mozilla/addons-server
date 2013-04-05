@@ -149,6 +149,16 @@ CELERY_ROUTES.update({
 ADDON_ICONS_DEFAULT_PATH = os.path.join(MEDIA_ROOT, 'img/hub')
 ADDON_ICONS_DEFAULT_URL = MEDIA_URL + '/img/hub'
 
+# Path to store webpay product icons.
+PRODUCT_ICON_PATH = NETAPP_STORAGE + '/product-icons'
+
+# Base URL where webpay product icons are served from.
+PRODUCT_ICON_URL = MEDIA_URL + '/product-icons'
+
+# Number of days the webpay product icon is valid for.
+# After this period, the icon will be re-fetched from its external URL.
+PRODUCT_ICON_EXPIRY = 5
+
 # Directory path to where product images for in-app payments are stored.
 INAPP_IMAGE_PATH = NETAPP_STORAGE + '/inapp-image'
 
