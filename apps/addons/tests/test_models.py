@@ -1465,13 +1465,49 @@ class TestPersonaModel(amo.tests.TestCase):
             self.persona.footer_url)
 
     def test_update_url(self):
-        with self.settings(LANGUAGE_CODE='en-US'):
+        with self.settings(LANGUAGE_CODE='fr', LANGUAGE_URL_MAP={}):
             url_ = self.persona.update_url
-            ok_(url_.endswith('/en-US/themes/update-check/15663'), url_)
+            ok_(url_.endswith('/fr/themes/update-check/15663'), url_)
+
+    def test_json_data(self):
+        self.persona.addon.all_categories = [Category(name='Yolo Art')]
+
+        VAMO = 'https://vamo/%(locale)s/themes/update-check/%(id)d'
+
+        with self.settings(LANGUAGE_CODE='fr',
+                           LANGUAGE_URL_MAP={},
+                           LOCAL_MIRROR_URL='https://staticsh.it/_files',
+                           NEW_PERSONAS_UPDATE_URL=VAMO,
+                           SITE_URL='https://omgsh.it'):
+            data = self.persona.theme_data
+
+            id_ = str(self.persona.addon.id)
+
+            eq_(data['id'], id_)
+            eq_(data['name'], unicode(self.persona.addon.name))
+            eq_(data['accentcolor'], '#8d8d97')
+            eq_(data['textcolor'], '#ffffff')
+            eq_(data['category'], 'Yolo Art')
+            eq_(data['author'], 'persona_author')
+            eq_(data['description'], unicode(self.addon.description))
+
+            assert data['headerURL'].startswith(
+                '%s/%s/header.png?' % (settings.LOCAL_MIRROR_URL, id_))
+            assert data['footerURL'].startswith(
+                '%s/%s/footer.png?' % (settings.LOCAL_MIRROR_URL, id_))
+            assert data['previewURL'].startswith(
+                '%s/%s/preview.jpg?' % (settings.LOCAL_MIRROR_URL, id_))
+            assert data['iconURL'].startswith(
+                '%s/%s/preview_small.jpg?' % (settings.LOCAL_MIRROR_URL, id_))
+
+            eq_(data['detailURL'],
+                'https://omgsh.it%s' % self.persona.addon.get_url_path())
+            eq_(data['updateURL'],
+                'https://vamo/fr/themes/update-check/' + id_)
+            eq_(data['version'], '1.0')
 
 
 class TestPreviewModel(amo.tests.TestCase):
-
     fixtures = ['base/previews']
 
     def test_as_dict(self):

@@ -124,7 +124,7 @@ class ThemeUpdate(object):
         accent = row.get('accentcolor')
         text = row.get('textcolor')
         return json.dumps({
-            'id': row['addon_id'],
+            'id': str(row['addon_id']),
             'name': row.get('name'),
             'description': row.get('description'),
             # TODO: Change this to be `addons_users.user.username`.
@@ -133,13 +133,15 @@ class ThemeUpdate(object):
             'username': row.get('username'),
             'headerURL': self.image_url(row['header']),
             'footerURL': self.image_url(row['footer']),
-            'detailURL': self.url('/addon/%s/' % row['slug']),
+            'detailURL': self.locale_url(settings.SITE_URL,
+                                         '/addon/%s/' % row['slug']),
             'previewURL': self.image_url('preview.png'),
             'iconURL': self.image_url('icon.png'),
             'dataurl': self.base64_icon(row['addon_id']),
             'accentcolor': '#%s' % accent if accent else None,
             'textcolor': '#%s' % text if text else None,
-            'updateURL': self.url('/update-check/themes/%s' % row['addon_id']),
+            'updateURL': self.locale_url(settings.VAMO_URL,
+                '/update-check/themes/%s' % row['addon_id']),
             # TODO: Change this when we add versions (bug 851881).
             'version': '1.0'
         })
@@ -172,9 +174,8 @@ class ThemeUpdate(object):
         modified = int(row['modified']) if row['modified'] else 0
         return '%s?%s' % (image_url, modified)
 
-    def url(self, url):
-        return '%s/%s%s' % (
-            settings.SITE_URL, self.data.get('locale', 'en-US'), url)
+    def locale_url(self, domain, url):
+        return '%s/%s%s' % (domain, self.data.get('locale', 'en-US'), url)
 
 
 url_re = re.compile('(?P<locale>.+)?/themes/update-check/(?P<id>\d+)$')

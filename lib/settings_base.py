@@ -972,7 +972,9 @@ PERSONAS_IMAGE_URL_SSL = ('https://getpersonas.cdn.mozilla.net/static/'
                           '%(tens)d/%(units)d/%(id)d/%(file)s')
 PERSONAS_USER_ROOT = 'http://www.getpersonas.com/gallery/designer/%s'
 PERSONAS_UPDATE_URL = 'https://www.getpersonas.com/update_check/%d'
-NEW_PERSONAS_UPDATE_URL = SERVICES_URL + '/%(locale)s/themes/update-check/%(id)d'
+VAMO_URL = 'https://versioncheck.addons.mozilla.org'
+NEW_PERSONAS_UPDATE_URL = VAMO_URL + '%(locale)s/themes/update-check/%(id)d'
+
 
 # Outgoing URL bouncer
 REDIRECT_URL = 'http://outgoing.mozilla.org/v1/'

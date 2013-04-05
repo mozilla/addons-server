@@ -1700,7 +1700,7 @@ class Persona(caching.CachingMixin, models.Model):
             'name': unicode(addon.name),
             'accentcolor': hexcolor(self.accentcolor),
             'textcolor': hexcolor(self.textcolor),
-            'category': (addon.all_categories[0].name if
+            'category': (unicode(addon.all_categories[0].name) if
                          addon.all_categories else ''),
             # TODO: Change this to be `addons_users.user.display_name`.
             'author': self.display_username,
@@ -1712,7 +1712,7 @@ class Persona(caching.CachingMixin, models.Model):
             'previewURL': self.thumb_url,
             'iconURL': self.icon_url,
             'updateURL': self.update_url,
-            'detailURL': self.addon.get_url_path(),
+            'detailURL': absolutify(self.addon.get_url_path()),
             'version': '1.0'
         }
 

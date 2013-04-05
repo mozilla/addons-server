@@ -2,6 +2,7 @@
 import json
 from StringIO import StringIO
 
+from django.conf import settings
 from django.db import connection
 
 import mock
@@ -63,17 +64,17 @@ class TestThemeUpdate(amo.tests.TestCase):
     good = {
         'username': 'persona_author',
         'description': 'yolo',
-        'detailURL': '/en-US/addon/a15663/',
+        'detailURL': settings.SITE_URL + '/en-US/addon/a15663/',
         'accentcolor': '#8d8d97',
         'iconURL': '/15663/preview_small.jpg',
         'previewURL': '/15663/preview.jpg',
         'textcolor': '#ffffff',
-        'id': 15663,
+        'id': '15663',
         'headerURL': '/15663/BCBG_Persona_header2.png',
         'dataurl': '',
         'name': 'My Persona',
         'author': 'persona_author',
-        'updateURL': '/en-US/update-check/themes/15663',
+        'updateURL': settings.VAMO_URL + '/en-US/update-check/themes/15663',
         'version': '1.0',
         'footerURL': '/15663/BCBG_Persona_footer2.png'
     }
@@ -82,11 +83,12 @@ class TestThemeUpdate(amo.tests.TestCase):
         for k, v in self.good.iteritems():
             got = data[k]
             if k.endswith('URL'):
-                if k in ('iconURL', 'footerURL', 'headerURL', 'previewURL'):
+                if k in ('detailURL', 'updateURL'):
+                    eq_(got.find('?'), -1,
+                        '"%s" should not contain "?"' % k)
+                else:
                     assert got.find('?') > -1, (
                         '"%s" must contain "?" for modified timestamp' % k)
-                else:
-                    eq_(got.find('?'), -1, '"%s" should not contain "?"' % k)
 
                 # Strip `?<modified>` timestamps.
                 got = got.rsplit('?')[0]
@@ -94,8 +96,7 @@ class TestThemeUpdate(amo.tests.TestCase):
                 assert got.endswith(v), (
                     'Expected "%s" to end with "%s". Got "%s".' % (k, v, got))
             else:
-                eq_(got, v,
-                    'Expected "%s" for "%s". Got "%s".' % (v, k, got))
+                eq_(got, v, 'Expected "%s" for "%s". Got "%s".' % (v, k, got))
 
     def get_update(self, *args):
         update = theme_update.ThemeUpdate(*args)
