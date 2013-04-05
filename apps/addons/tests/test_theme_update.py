@@ -74,7 +74,7 @@ class TestThemeUpdate(amo.tests.TestCase):
         'dataurl': '',
         'name': 'My Persona',
         'author': 'persona_author',
-        'updateURL': settings.VAMO_URL + '/en-US/update-check/themes/15663',
+        'updateURL': settings.VAMO_URL + '/en-US/themes/update-check/15663',
         'version': '1.0',
         'footerURL': '/15663/BCBG_Persona_footer2.png'
     }

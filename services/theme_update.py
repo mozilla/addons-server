@@ -141,7 +141,7 @@ class ThemeUpdate(object):
             'accentcolor': '#%s' % accent if accent else None,
             'textcolor': '#%s' % text if text else None,
             'updateURL': self.locale_url(settings.VAMO_URL,
-                '/update-check/themes/%s' % row['addon_id']),
+                '/themes/update-check/%s' % row['addon_id']),
             # TODO: Change this when we add versions (bug 851881).
             'version': '1.0'
         })
