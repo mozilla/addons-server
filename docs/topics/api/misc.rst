@@ -85,6 +85,22 @@ Fields that can be updated:
 
 * *display_name*
 
+.. http:get:: /api/v1/account/installed/
+
+    Returns a list of the installed apps for the currently logged in user. This
+    ignores any reviewer or developer installed apps.
+
+    .. note:: Requires authentication.
+
+    **Request**
+
+    The standard :ref:`list-query-params-label`.
+
+    **Response**
+
+    :param meta: :ref:`meta-response-label`.
+    :param objects: A :ref:`listing <objects-response-label>` of :ref:`apps <app-response-label>`.
+
 Categories
 ==========
 

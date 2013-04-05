@@ -88,6 +88,44 @@ class TestAccount(BaseOAuth):
         eq_(res.status_code, 403)
 
 
+class TestInstalled(BaseOAuth):
+    fixtures = fixture('user_2519', 'user_10482', 'webapp_337141')
+
+    def setUp(self):
+        super(TestInstalled, self).setUp(api_name='account')
+        self.list_url = list_url('installed')
+        self.user = UserProfile.objects.get(pk=2519)
+
+    def test_verbs(self):
+        self._allowed_verbs(self.list_url, ('get'))
+
+    def test_not_allowed(self):
+        eq_(self.anon.get(self.list_url).status_code, 401)
+
+    def test_installed(self):
+        ins = Installed.objects.create(user=self.user, addon_id=337141)
+        res = self.client.get(self.list_url)
+        eq_(res.status_code, 200, res.content)
+        data = json.loads(res.content)
+        eq_(data['meta']['total_count'], 1)
+        eq_(data['objects'][0]['id'], str(ins.addon.pk))
+
+    def not_there(self):
+        res = self.client.get(self.list_url)
+        eq_(res.status_code, 200, res.content)
+        data = json.loads(res.content)
+        eq_(data['meta']['total_count'], 0)
+
+    def test_installed_other(self):
+        Installed.objects.create(user_id=10482, addon_id=337141)
+        self.not_there()
+
+    def test_installed_reviewer(self):
+        Installed.objects.create(user=self.user, addon_id=337141,
+                                 install_type=INSTALL_TYPE_REVIEWER)
+        self.not_there()
+
+
 class FakeUUID(object):
     hex = '000000'
 

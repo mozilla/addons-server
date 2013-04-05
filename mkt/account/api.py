@@ -18,6 +18,9 @@ from mkt.api.authentication import (OAuthAuthentication,
 from mkt.api.base import (CORSResource, GenericObject,
                           MarketplaceModelResource, MarketplaceResource,
                           PotatoCaptchaResource)
+from mkt.api.resources import AppResource
+from mkt.constants.apps import INSTALL_TYPE_USER
+from mkt.webapps.models import Webapp
 from users.models import UserProfile
 from users.views import browserid_login
 
@@ -44,6 +47,21 @@ class AccountResource(CORSResource, MarketplaceModelResource):
         if not OwnerAuthorization().is_authorized(request, object=obj):
             raise ImmediateHttpResponse(response=http.HttpForbidden())
         return obj
+
+
+class InstalledResource(AppResource):
+
+    class Meta:
+        authentication = (SharedSecretAuthentication(), OAuthAuthentication())
+        authorization = OwnerAuthorization()
+        detail_allowed_methods = []
+        list_allowed_methods = ['get']
+        resource_name = 'installed'
+        slug_lookup = None
+
+    def obj_get_list(self, request=None, **kwargs):
+        return Webapp.objects.filter(installed__user=request.amo_user,
+                                     installed__install_type=INSTALL_TYPE_USER)
 
 
 class LoginResource(CORSResource, MarketplaceResource):
