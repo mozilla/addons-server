@@ -345,7 +345,7 @@ class TestLayout(StatsTest, amo.tests.TestCase):
 
 
 class TestResponses(ESStatsTest):
-    es = True
+    test_es = True
 
     def csv_eq(self, response, expected):
         # Drop the first 4 lines, which contain the header comment.

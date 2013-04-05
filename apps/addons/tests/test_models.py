@@ -1951,7 +1951,7 @@ class TestAddonWatchDisabled(amo.tests.TestCase):
 
 
 class TestSearchSignals(amo.tests.ESTestCase):
-    es = True
+    test_es = True
 
     def setUp(self):
         super(TestSearchSignals, self).setUp()

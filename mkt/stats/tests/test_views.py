@@ -215,7 +215,7 @@ class TestMyApps(StatsTest):
 
 
 class TestInstalled(amo.tests.ESTestCase):
-    es = True
+    test_es = True
     fixtures = fixture('user_admin', 'group_admin', 'user_admin_group',
                        'user_999', 'webapp_337141')
 

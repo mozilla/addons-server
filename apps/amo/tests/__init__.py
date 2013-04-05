@@ -643,7 +643,7 @@ class ESTestCase(TestCase):
     """Base class for tests that require elasticsearch."""
     # ES is slow to set up so this uses class setup/teardown. That happens
     # outside Django transactions so be careful to clean up afterwards.
-    es = True
+    test_es = True
     mock_es = False
     exempt_from_fixture_bundling = True  # ES doesn't support bundling (yet?)
 

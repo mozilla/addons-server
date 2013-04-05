@@ -12,7 +12,7 @@ from addons.models import Addon
 
 class TestESIndexing(amo.tests.ESTestCase):
     mock_es = False
-    es = True
+    test_es = True
 
     # This needs to be in its own class for data isolation.
     def test_indexed_count(self):
@@ -49,7 +49,7 @@ class TestNoESIndexing(amo.tests.TestCase):
 
 
 class TestES(amo.tests.ESTestCase):
-    es = True
+    test_es = True
 
     @classmethod
     def setUpClass(cls):
@@ -360,7 +360,7 @@ class TestES(amo.tests.ESTestCase):
 
 
 class TestPaginator(amo.tests.ESTestCase):
-    es = True
+    test_es = True
 
     @classmethod
     def setUpClass(cls):

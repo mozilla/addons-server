@@ -58,7 +58,7 @@ def test_default_sort(self, sort, key=None, reverse=True, sel_class='opt'):
 
 
 class ExtensionTestCase(amo.tests.ESTestCase):
-    es = True
+    test_es = True
 
     @classmethod
     def setUpClass(cls):
@@ -82,6 +82,7 @@ class TestUpdatedSort(ExtensionTestCase):
 
 
 class TestESExtensions(ExtensionTestCase):
+    test_es = True
 
     def test_landing(self):
         r = self.client.get(self.url)
@@ -132,6 +133,7 @@ class TestESExtensions(ExtensionTestCase):
 
         cat_url = reverse('browse.es.extensions', args=['alerts'])
         r = self.client.get(urlparams(cat_url))
+        eq_(r.status_code, 200)
         addons = r.context['addons'].object_list
         eq_(list(addons), [addon])
 
