@@ -130,8 +130,9 @@ urlpatterns = patterns('',
     url('^logout$', logout, name='users.logout'),
 
     # Version the API here.
-    url('^api/v1/', include(api_patterns)),
     url('^api/', include(api_patterns)),
+    # Must go below to ensure these resolve first.
+    url('^api/v1/', include(api_patterns)),
 
     url('^appcache/', include('django_appcache.urls')),
 
