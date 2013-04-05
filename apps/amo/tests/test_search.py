@@ -182,8 +182,7 @@ class TestES(amo.tests.ESTestCase):
 
     def test_iter(self):
         qs = Addon.search().filter(type=1, is_disabled=False)
-        eq_(len(qs), 4)
-        eq_(len(list(qs)), 4)
+        eq_(len(qs), len(list(qs)))
 
     def test_count(self):
         eq_(Addon.search().count(), 6)
@@ -252,11 +251,8 @@ class TestES(amo.tests.ESTestCase):
         eq_(qs._build_query(), {'fields': ['id', 'name']})
 
     def test_values_result(self):
-        qs = Addon.objects.order_by('id')
-        # The add-on indexer lowercases the name.
-        # The add-on indexer makes a list of names.
-        addons = [(a.id, [a.name]) for a in qs]
-        qs = Addon.search().values('name').order_by('id')
+        addons = [(a.id, a.slug) for a in self.addons]
+        qs = Addon.search().values('slug').order_by('id')
         eq_(list(qs), addons)
 
     def test_values_dict(self):
@@ -268,10 +264,8 @@ class TestES(amo.tests.ESTestCase):
         eq_(qs._build_query(), {})
 
     def test_values_dict_result(self):
-        qs = Addon.objects.order_by('id')
-        # The add-on indexer makes a list of names.
-        addons = [{'id': a.id, 'name': [a.name]} for a in qs]
-        qs = Addon.search().values_dict('name').order_by('id')
+        addons = [{'id': a.id, 'slug': a.slug} for a in self.addons]
+        qs = Addon.search().values_dict('slug').order_by('id')
         eq_(list(qs), list(addons))
 
     def test_empty_values_dict_result(self):
@@ -281,12 +275,11 @@ class TestES(amo.tests.ESTestCase):
             assert key in qs[0].keys(), qs[0].keys()
 
     def test_object_result(self):
-        addons = Addon.objects.all()[:1]
-        qs = Addon.search().filter(id=addons[0].id)[:1]
-        eq_(list(addons), list(qs))
+        qs = Addon.search().filter(id=self.addons[0].id)[:1]
+        eq_(self.addons[:1], list(qs))
 
     def test_object_result_slice(self):
-        addon = Addon.objects.all()[0]
+        addon = self.addons[0]
         qs = Addon.search().filter(id=addon.id)
         eq_(addon, qs[0])
 

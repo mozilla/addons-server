@@ -689,6 +689,11 @@ class ESTestCase(TestCase):
             mkt.stats.search.setup_mkt_indexes()
 
     @classmethod
+    def tearDownClass(cls):
+        for addon in cls.addons:
+            addon.delete()
+
+    @classmethod
     def setUpIndex(cls):
         cls.add_addons()
         cls.refresh()
@@ -711,12 +716,14 @@ class ESTestCase(TestCase):
 
     @classmethod
     def add_addons(cls):
-        addon_factory(name='user-disabled', disabled_by_user=True)
-        addon_factory(name='admin-disabled', status=amo.STATUS_DISABLED)
-        addon_factory(status=amo.STATUS_UNREVIEWED)
-        addon_factory()
-        addon_factory()
-        addon_factory()
+        cls.addons = [
+            addon_factory(name='user-disabled', disabled_by_user=True),
+            addon_factory(name='admin-disabled', status=amo.STATUS_DISABLED),
+            addon_factory(status=amo.STATUS_UNREVIEWED),
+            addon_factory(),
+            addon_factory(),
+            addon_factory(),
+        ]
 
 
 class WebappTestCase(TestCase):
