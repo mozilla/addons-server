@@ -100,7 +100,7 @@ class SearchResource(AppResource):
 
     def override_urls(self):
         return [
-            url(r'^(?P<resource_name>%s)/with_creatured%s$' %
+            url(r'^(?P<resource_name>%s)/creatured%s$' %
                 (self._meta.resource_name, trailing_slash()),
                 self.wrap_view('with_creatured'), name='api_with_creatured')
             ]
@@ -117,7 +117,7 @@ class WithCreaturedResource(SearchResource):
         detail_allowed_methods = []
         fields = SearchResource.Meta.fields + ['cat']
         list_allowed_methods = ['get']
-        resource_name = 'search/with_creatured'
+        resource_name = 'search/creatured'
         slug_lookup = None
 
     def alter_list_data_to_serialize(self, request, data):

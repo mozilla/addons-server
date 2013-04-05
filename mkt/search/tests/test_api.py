@@ -52,7 +52,9 @@ class TestApi(BaseOAuth, ESTestCase):
     def test_wrong_weight(self):
         self.category.update(weight=-1)
         res = self.client.get(self.list_url + ({'cat': self.category.pk},))
-        eq_(res.status_code, 400)
+        eq_(res.status_code, 200)
+        data = json.loads(res.content)
+        eq_(len(data['objects']), 0)
 
     def test_wrong_sort(self):
         res = self.client.get(self.list_url + ({'sort': 'awesomeness'},))
