@@ -29,7 +29,8 @@ def activitylog_count(type):
 
 
 class TestCollections(amo.tests.TestCase):
-    fixtures = ('base/addon_3615', 'bandwagon/test_models')
+    fixtures = ('base/addon_3615', 'bandwagon/test_models',
+                'base/user_4043307')
 
     def setUp(self):
         self.user = UserProfile.objects.create(username='uhhh', email='uh@hh')

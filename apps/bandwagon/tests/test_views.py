@@ -993,9 +993,9 @@ class TestCollectionFeed(TestFeeds):
 
 
 class TestCollectionListing(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/category', 'base/featured',
-                'addons/featured', 'addons/listed', 'base/collections',
-                'bandwagon/featured_collections']
+    fixtures = ['base/apps', 'base/users', 'base/addon_3615', 'base/category',
+                'base/featured', 'addons/featured', 'addons/listed',
+                'base/collections', 'bandwagon/featured_collections']
 
     def setUp(self):
         cache.clear()
