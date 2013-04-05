@@ -258,7 +258,7 @@ class TestApiReviewer(BaseOAuth, ESTestCase):
 
 class TestCategoriesWithCreatured(BaseOAuth, ESTestCase):
     fixtures = fixture('webapp_337141', 'user_2519')
-    list_url = list_url('search/with_creatured')
+    list_url = list_url('search/creatured')
 
     def test_creatured_plus_category(self):
         cat = Category.objects.create(type=amo.ADDON_WEBAPP, slug='shiny')
