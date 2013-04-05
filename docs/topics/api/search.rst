@@ -64,11 +64,13 @@ Category Listing With Featured Apps
 .. http:get::  /api/v1/apps/search/creatured/
 
     **Request**
+
     Accepts the same parameters and returns the same objects as the normal
     search interface: :ref:`search-api`.  Includes 'creatured' list of
     apps, listing featured apps for the requested category, if any.
 
     **Response**:
+
     :param meta: :ref:`meta-response-label`.
     :param objects: A :ref:`listing <objects-response-label>` of :ref:`apps <app-response-label>` satisfying the search parameters.
     :param creatured: A list of :ref:`apps <app-response-label>` featured for the requested category, if any
