@@ -12,11 +12,12 @@ from addons.models import Addon
 from lib.metrics import record_action
 
 from mkt.api.authentication import (AppOwnerAuthorization,
-                                    OwnerAuthorization,
                                     OAuthAuthentication,
+                                    OptionalOAuthAuthentication,
+                                    OwnerAuthorization,
                                     PermissionAuthorization,
-                                    SelectiveAuthentication,
                                     SharedSecretAuthentication)
+from mkt.api.authorization import AnonymousReadOnlyAuthorization
 from mkt.api.base import MarketplaceModelResource
 from mkt.api.resources import AppResource, UserResource
 from mkt.ratings.forms import ReviewForm
@@ -40,9 +41,8 @@ class RatingResource(MarketplaceModelResource):
         detail_allowed_methods = ['get', 'put', 'delete']
         always_return_data = True
         authentication = (SharedSecretAuthentication(),
-                          OAuthAuthentication(),
-                          SelectiveAuthentication('GET'))
-        authorization = Authorization()
+                          OptionalOAuthAuthentication())
+        authorization = AnonymousReadOnlyAuthorization()
         fields = ['rating', 'body']
 
         filtering = {

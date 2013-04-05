@@ -137,22 +137,6 @@ class OAuthAuthentication(Authentication):
         return True
 
 
-class SelectiveAuthentication(Authentication):
-    """
-    Authenticate all requests using verbs passed as positional arguments to the
-    constructor. Example usage:
-
-    class Meta:
-        authentication = SelectiveAuthentication('GET', 'POST')
-    """
-    def __init__(self, *args):
-        self.skip_authentication = args
-        super(SelectiveAuthentication, self).__init__()
-
-    def is_authenticated(self, request, **kwargs):
-        return request.method in self.skip_authentication
-
-
 class OptionalOAuthAuthentication(OAuthAuthentication):
     """
     Like OAuthAuthentication, but doesn't require there to be

@@ -40,6 +40,10 @@ class TestRatingResource(BaseOAuth, AMOPaths):
         eq_(res.status_code, 200)
         assert 'user' not in data
 
+    def test_anonymous_post_list_fails(self):
+        res, data = self._create(anonymous=True)
+        eq_(res.status_code, 401)
+
     def test_anonymous_get_detail(self):
         res = self.anon.get(self.collection_url)
         data = json.loads(res.content)
@@ -59,7 +63,7 @@ class TestRatingResource(BaseOAuth, AMOPaths):
         assert data['user']['can_rate']
         assert data['user']['has_rated']
 
-    def _create(self, data=None):
+    def _create(self, data=None, anonymous=False):
         default_data = {
             'app': self.app.id,
             'body': 'Rocking the free web.',
@@ -68,7 +72,8 @@ class TestRatingResource(BaseOAuth, AMOPaths):
         if data:
             default_data.update(data)
         json_data = json.dumps(default_data)
-        res = self.client.post(list_url('rating'), data=json_data)
+        client = self.anon if anonymous else self.client
+        res = client.post(list_url('rating'), data=json_data)
         try:
             res_data = json.loads(res.content)
         except ValueError:

@@ -237,20 +237,3 @@ class TestMultipleAuthentication(TestCase):
             eq_(self.resource.is_authenticated(req), None)
         # This never even got called.
         ok_(not next_auth.is_authenticated.called)
-
-
-class TestSelectiveAuthentication(TestCase):
-
-    def setUp(self):
-        self.factory = RequestFactory()
-
-    def test_single_verb(self):
-        auth = authentication.SelectiveAuthentication('GET')
-        eq_(auth.is_authenticated(self.factory.get('/')), True)
-        eq_(auth.is_authenticated(self.factory.post('/')), False)
-
-    def test_multiple_verbs(self):
-        auth = authentication.SelectiveAuthentication('GET', 'PUT')
-        eq_(auth.is_authenticated(self.factory.get('/')), True)
-        eq_(auth.is_authenticated(self.factory.put('/')), True)
-        eq_(auth.is_authenticated(self.factory.post('/')), False)
