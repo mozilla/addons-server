@@ -1077,7 +1077,8 @@ class TestGenericAjaxSearch(TestAjaxSearch):
         self.search_addons('q=%s' % addon.id, [])
 
     def test_ajax_search_by_name(self):
-        self.search_addons('q=add', list(Addon.objects.reviewed()))
+        addon = Addon.objects.filter(slug='addon-11')
+        self.search_addons('q=11', addon)
 
     def test_ajax_search_by_bad_name(self):
         self.search_addons('q=some+filthy+bad+word', [])
