@@ -1066,6 +1066,7 @@ class TestGenericAjaxSearch(TestAjaxSearch):
     def test_ajax_search_personas_by_id(self):
         addon = Addon.objects.all()[3]
         addon.update(type=amo.ADDON_PERSONA)
+        addon.update(status=amo.STATUS_LITE)
         Persona.objects.create(persona_id=addon.id, addon_id=addon.id)
         self.search_addons('q=%s' % addon.id, [addon])
 
