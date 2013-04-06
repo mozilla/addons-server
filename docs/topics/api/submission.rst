@@ -15,298 +15,343 @@ Validate
     cannot create apps from those validations. To validate and submit an app
     you must be authenticated for both steps.
 
-To validate a hosted app::
+.. http:post:: /api/vi/apps/validation/
 
-        POST /api/v1/apps/validation/
-        {"manifest": "http://test.app.com/manifest"}
+    **Request**
 
-To validate a packaged app, send the appropriate file data in the upload field.
-File data is a dictionary of name, type (content type) and the base 64 encoded
-data. For example::
+    :param manifest: URL to the manifest.
 
-        POST /api/v1/apps/validation/
+    Example:
+
+    .. code-block:: json
+
+        {"manifest": "http://test.app.com/manifest.webapp"}
+
+    Or for a *packaged app*
+
+    :param upload: a dictionary containing the appropriate file data in the upload field.
+    :param upload type: the content type.
+    :param upload name: the file name.
+    :param upload data: the base 64 encoded data.
+
+    Example:
+
+    .. code-block:: json
+
         {"upload": {"type": "application/foo",
                     "data": "UEsDBAo...gAAAAA=",
                     "name": "mozball.zip"}}
 
-This will return the result of the validation as below. Hosted apps are done
-immediately but packaged apps are queued. Clients will have to poll the results
-URL until the validation has been processed.
+    **Response**
 
-To query the result::
+    Returns a :ref:`validation <validation-response-label>` result.
 
-        GET /api/v1/apps/validation/123/
+    :status 201: successfully created.
 
-This will return the status of the validation. An example of a validation not processed yet::
+.. _validation-response-label:
 
-        {"id": "123",
-         "processed": false,
-         "resource_uri": "/api/v1/apps/validation/123/",
-         "valid": false,
-         "validation": ""}
-
-Example of a validation processed and good::
-
-        {"id": "123",
-         "processed": true,
-         "resource_uri": "/api/v1/apps/validation/123/",
-         "valid": true,
-         "validation": ""}
-
-Example of a validation processed but with an error::
-
-        {"id": "123",
-         "processed": true,
-         "resource_uri": "/api/v1/apps/validation/123/",
-         "valid": false,
-         "validation": {
-           "errors": 1, "messages": [{
-             "tier": 1,
-             "message": "Your manifest must be served with the HTTP header \"Content-Type: application/x-web-app-manifest+json\". We saw \"text/html; charset=utf-8\".",
-             "type": "error"
-           }],
-        }}
-
-Create
-======
-
-.. note:: Requires authentication and a successfully validated manifest.
-
-To create an app with your validated manifest the body data should contain the
-manifest id from the validate call and other data in JSON::
-
-
-        POST /api/v1/apps/app/
-        {"manifest": "123"}
-
-If you'd like to create a successfully validation packaged app, use upload
-instead of manifest::
-
-        POST /api/v1/apps/app/
-        {"upload": "123"}
-
-If the creation succeeded you'll get a 201 status back. This will return the id
-of the app on the marketplace as a slug. The marketplace will complete some of
-the data using the manifest and return values so far::
-
-        {"categories": [],
-         "description": null,
-         "device_types": [],
-         "homepage": null,
-         "id": 1,
-         "manifest": "0a650e5e4c434b5cb60c5495c0d88a89",
-         "name": "MozillaBall",
-         "premium_type": "free",
-         "privacy_policy": null,
-         "resource_uri": "/api/v1/apps/app/1/",
-         "slug": "mozillaball",
-         "status": 0,
-         "summary": "Exciting Open Web development action!",
-         "support_email": null,
-         "support_url": null
-        }
-
-Fields:
-
-* `manifest` (required): the id of the manifest returned from verfication.
-
-Update
-======
-
-.. note:: Requires authentication and a successfully created app.
-
-Put your app to update it. The body contains JSON for the data to be posted::
-
-        PUT /api/v1/apps/app/<app id>/
-
-These are the fields for the creation and update of an app. These will be
-populated from the manifest if specified in the manifest. Will return a 202
-status if the app was successfully updated.
-
-Fields:
-
-* `name` (required): the title of the app. Maximum length 127 characters.
-* `summary` (required): the summary of the app. Maximum length 255 characters.
-* `categories` (required): a list of the categories, at least two of the
-  category ids provided from the category api (see below).
-* `description` (optional): long description. Some HTML supported.
-* `privacy_policy` (required): your privacy policy. Some HTML supported.
-* `homepage` (optional): a URL to your apps homepage.
-* `support_url` (optional): a URL to your support homepage.
-* `support_email` (required): the email address for support.
-* `device_types` (required): a list of the device types at least one of:
-  'desktop', 'mobile', 'tablet', 'firefoxos'. 'mobile' and 'tablet' both refer
-  to Android mobile and tablet. As opposed to Firefox OS.
-* `payment_type` (required): only choice at this time is 'free'.
-
-Example body data::
-
-        {"privacy_policy": "wat",
-         "name": "mozball",
-         "device_types": ["desktop-1"],
-         "summary": "wat...",
-         "support_email": "a@a.com",
-         "categories": [1L, 2L],
-         "previews": []
-         }
-
-Previews will be list of URLs pointing to the screenshot API.
-
-List
-====
-
-.. note:: Requires authentication.
-
-To get a list of the apps you have available::
-
-        GET /api/v1/apps/app/
-
-This will return a list of all the apps the user is allowed to access::
-
-        {"meta": {"limit": 20,
-                  "next": null,
-                  "offset": 0,
-                  "previous": null,
-                  "total_count": 2},
-         "objects": [
-                {"categories": [1L],
-                 "resource_uri": "/api/v1/apps/app/4/"
-                 ...]}
-        }
-
-.. _app-response-label:
-
-.. http:get:: /api/v1/apps/app/<id>/
-
-    .. note:: Requires authentication if the app is not public.
+.. http:get:: /api/vi/apps/validation/(int:id)/
 
     **Response**
+
+    Returns a particular validation.
+
+    :param id: the id of the validation.
+    :param processed: if the validation has been processed. Hosted apps are
+        done immediately but packaged apps are queued. Clients will have to
+        poll the results URL until the validation has been processed.
+    :param valid: if the validation passed.
+    :param validation: the resulting validation messages if it failed.
+    :status 200: successfully completed.
+
+    Example not processed:
 
     .. code-block:: json
 
         {
-            "resource_uri": "/api/v1/apps/app/4/",
-            "slug": "mozillaball",
-            "summary": "Exciting Open Web development action!"
+            "id": "123",
+            "processed": false,
+            "resource_uri": "/api/v1/apps/validation/123/",
+            "valid": false,
+            "validation": ""
         }
 
-Status
-======
+    Example processed and passed:
 
-.. note:: Requires authentication and a successfully created app.
+    .. code-block:: json
 
-To view details of an app, including its review status::
+        {
+            "id": "123",
+            "processed": true,
+            "resource_uri": "/api/v1/apps/validation/123/",
+            "valid": true,
+            "validation": ""
+        }
 
-        GET /api/v1/apps/app/<app id>/
+    Example processed and failed:
 
-Returns the status of the app::
+    .. code-block:: json
 
-        {"slug": "your-test-app",
-         "name": "My cool app",
-         ...}
+        {
+            "id": "123",
+            "processed": true,
+            "resource_uri": "/api/v1/apps/validation/123/",
+            "valid": false,
+            "validation": {
+            "errors": 1, "messages": [{
+                "tier": 1,
+                "message": "Your manifest must be served with the HTTP header \"Content-Type: application/x-web-app-manifest+json\". We saw \"text/html; charset=utf-8\".",
+                "type": "error"
+            }],
+        }
+
+
+App resource
+=================
+
+.. http:get:: /api/v1/apps/app/
+
+    .. note:: Requires authentication.
+
+    Will return a list of your apps.
+
+    **Request**
+
+    The standard :ref:`list-query-params-label`.
+
+    **Response**
+
+    :param meta: :ref:`meta-response-label`.
+    :param objects: A :ref:`listing <objects-response-label>` of :ref:`apps <app-response-label>`.
+
+.. _app-response-label:
+
+.. http:get:: /api/v1/apps/app/(int:id)|(string:slug)/
+
+    .. note:: Does not require authentication if your app is public.
+
+    **Response**
+
+    Example:
+
+    .. code-block:: json
+
+        {
+            "premium_type": "premium",
+            "support_email": "amckay@mozilla.com",
+            "content_ratings": {},
+            "current_version": {
+                "version": "1.0",
+                "release_notes": null
+            },
+            "manifest_url": "http://zrnktefoptje.test-manifest.herokuapp.com/manifest.webapp",
+            "id": "24",
+            "ratings": {
+                "count": 0,
+                "average": 0.0
+            },
+            "app_type": "hosted",
+            "icons": {
+                "128": "/tmp/uploads/addon_icons/0/24-128.png?modified=1362762723",
+                "64": "/tmp/uploads/addon_icons/0/24-64.png?modified=1362762723",
+                "48": "/tmp/uploads/addon_icons/0/24-48.png?modified=1362762723",
+                "16": "/tmp/uploads/addon_icons/0/24-32.png?modified=1362762723"
+            },
+            "support_url": "",
+            "homepage": "",
+            "image_assets": {
+                "featured_tile": [
+                    "http://server.local/img/uploads/imageassets/0/58.png?modified=1362762724",
+                    0
+                ],
+                "mobile_tile": [
+                    "http://server.local/img/uploads/imageassets/0/59.png?modified=1362762724",
+                    0
+                ],
+                "desktop_tile": [
+                    "http://server.local/img/uploads/imageassets/0/60.png?modified=1362762724",
+                    0
+                ]
+            },
+            "public_stats": false,
+            "status": 0,
+            "privacy_policy": "sdfsdf",
+            "is_packaged": false,
+            "description": "sdf",
+            "listed_authors": [
+                {
+                    "name": "amckay"
+                }
+            ],
+            "price": null,
+            "previews": [
+                {
+                    "filetype": "image/png",
+                    "caption": "",
+                    "thumbnail_url": "/tmp/uploads/previews/thumbs/0/37.png?modified=1362762723",
+                    "image_url": "/tmp/uploads/previews/full/0/37.png?modified=1362762723",
+                    "id": "37",
+                    "resource_uri": "/api/v1/apps/preview/37/"
+                }
+            ],
+            "user": {
+                "owns": false
+            },
+            "slug": "test-app-zrnktefoptje",
+            "categories": [
+                3
+            ],
+            "name": "Test App (zrnktefoptje)",
+            "device_types": [
+                "firefoxos"
+            ],
+            "summary": "Test manifest",
+            "upsell": false,
+            "resource_uri": "/api/v1/apps/app/24/"
+        }
+
+.. http:post:: /api/v1/apps/app/
+
+    .. note:: Requires authentication and a successfully validated manifest.
+
+    **Request**
+
+    :param manifest: the id of the validated manifest.
+
+    Or for a *packaged app*
+
+    :param upload: the id of the validated packaged app.
+
+    **Response**
+
+    :param: An :ref:`apps <app-response-label>`.
+    :status code: 201 successfully created.
+
+.. http:put:: /api/v1/apps/app/(int:id)/
+
+    **Request**
+
+    :param required name: the title of the app. Maximum length 127 characters.
+    :param required summary: the summary of the app. Maximum length 255 characters.
+    :param required categories: a list of the categories, at least two of the
+        category ids provided from the category api (see below).
+    :param optional description: long description. Some HTML supported.
+    :param required privacy_policy: your privacy policy. Some HTML supported.
+    :param optional homepage: a URL to your apps homepage.
+    :param optional support_url: a URL to your support homepage.
+    :param required support_email: the email address for support.
+    :param required device_types: a list of the device types at least one of:
+        `desktop`, `mobile`, `tablet`, `firefoxos`. `mobile` and `tablet` both
+        refer to Android mobile and tablet. As opposed to Firefox OS.
+    :param required payment_type: only choice at this time is `free`.
+
+    **Response**
+
+    :status 201: successfully updated.
+
 
 Screenshots or videos
 =====================
 
 .. note:: Requires authentication and a successfully created app.
 
-These can be added as seperate API calls. There are limits in the marketplace
-for what screenshots and videos can be accepted. There is a 5MB limit on file
-uploads through the API (for more use the web interface).
+.. http:post:: /api/v1/apps/preview/?app=(int:app_id)
 
-Create
-++++++
+    **Request**
 
-Create a screenshot or video::
+    :param position: the position of the preview on the app. We show the
+        previews in the order given.
+    :param file: a dictionary containing the appropriate file data in the upload field.
+    :param file type: the content type.
+    :param file name: the file name.
+    :param file data: the base 64 encoded data.
 
-        POST /api/v1/apps/preview/?app=<app id>
+    .. note:: There is currently a restriction of 5MB on file uploads through
+        the API.
 
-The body should contain the screenshot or video to be uploaded in the following
-format::
+    **Response**
 
-        {"position": 1, "file": {"type": "image/jpg", "data": "iVBOR..."}}
+    A :ref:`screenshot <screenshot-response-label>` resource.
 
-Fields:
+    :status 201: successfully completed.
+    :status 400: error processing the form.
 
-* `file`: a dictionary containing two fields:
-  * `type`: the content type
-  * `data`: base64 encoded string of the preview to be added
-* `position`: the position of the preview on the app. We show the previews in
-  order
+.. _screenshot-response-label:
 
-This will return a 201 if the screenshot or video is successfully created. If
-not we'll return the reason for the error.
+.. http:get:: /api/v1/apps/preview/(int:preview_id)/
 
-Returns the screenshot id::
+    **Response**
 
-        {"position": 1, "thumbnail_url": "/img/uploads/...",
-         "image_url": "/img/uploads/...", "filetype": "image/png",
-         "resource_uri": "/api/v1/apps/preview/1/",
-         "caption": "Awesome screenshot"}
+    Example:
 
-Get
-+++
+    .. code-block:: json
 
-Get information about the screenshot or video::
+        {
+            "addon": "/api/v1/apps/app/1/",
+            "id": 1,
+            "position": 1,
+            "thumbnail_url": "/img/uploads/...",
+            "image_url": "/img/uploads/...",
+            "filetype": "image/png",
+            "resource_uri": "/api/v1/apps/preview/1/"
+            "caption": "Awesome screenshot"
+        }
 
+.. http:delete:: /api/v1/apps/preview/(int:preview_id)/
 
-        GET /api/v1/apps/preview/<preview id>/
+    **Response**
 
-Returns::
-
-        {"addon": "/api/v1/apps/app/1/", "id": 1, "position": 1,
-         "thumbnail_url": "/img/uploads/...", "image_url": "/img/uploads/...",
-         "filetype": "image/png", "resource_uri": "/api/v1/apps/preview/1/"
-         "caption": "Awesome screenshot"}
-
-
-Delete
-++++++
-
-Delete a screenshot of video::
-
-        DELETE /api/v1/apps/preview/<preview id>/
-
-This will return a 204 if the screenshot has been deleted.
+    :status 204: successfully deleted.
 
 Enabling an App
 ===============
 
 .. note:: Requires authentication and a successfully created app.
 
-Once all the data has been completed and at least one screenshot created, you
-can push the app to the review queue::
+.. http:patch:: /api/v1/apps/status/(int:app_id)/
 
-        PATCH /api/v1/apps/status/<app id>/
-        {"status": "pending"}
+    **Request**
 
-* `status` (optional): key statuses are
+    :params (optional) status: a status you'd like to move the app too (see
+        below).
+    :params (optional) disabled_by_user: can be `true` or `false`
+
+    **Response**
+
+    :status 200: successfully completed.
+    :status 400: something prevented the transition.
+
+
+Key statuses are:
 
   * `incomplete`: incomplete
   * `pending`: pending
   * `public`: public
   * `waiting`: waiting to be public
 
-* `disabled_by_user` (optional): `True` or `False`.
-
 Valid transitions that users can initiate are:
 
-* *waiting to be public* to *public*: occurs when the app has been reviewed,
-  but not yet been made public.
 * *incomplete* to *pending*: call this once your app has been completed and it
   will be added to the Marketplace review queue. This can only be called if all
   the required data is there. If not, you'll get an error containing the
-  reason. For example::
+  reason. For example:
 
-        PATCH /api/v1/apps/status/<app id>/
-        {"status": "pending"}
+    .. code-block:: json
 
-        Status code: 400
-        {"error_message":
-                {"status": ["You must provide a support email.",
-                            "You must provide at least one device type.",
-                            "You must provide at least one category.",
-                            "You must upload at least one screenshot or video."]}}
+        {
+            "error_message": {
+                "status": [
+                    "You must provide a support email.",
+                    "You must provide at least one device type.",
+                    "You must provide at least one category.",
+                    "You must upload at least one screenshot or video."
+                ]
+            }
+        }
 
+* Once reviewed by the Marketplace review team, the app will be to *public* or
+  *waiting to be public*.
+* *waiting* to *public*: occurs when the app has been reviewed, but not yet
+  been made public.
 * *disabled_by_user*: by changing this value from `True` to `False` you can
   enable or disable an app.

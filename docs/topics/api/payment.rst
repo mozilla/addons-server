@@ -26,13 +26,13 @@ to be used on install.
 
     :param app: the id of the app being installed.
 
-    **Response** if paid:
+    **Response**:
 
-    .. sourcecode:: http
+    .. code-block:: http
 
-        {"receipt": "ey..."}
+        {"receipt": "ey...[truncated]"}
 
-    :statuscode 201: no error.
+    :statuscode 201: successfully completed.
     :statuscode 402: payment required.
     :statuscode 403: app is not public, install not allowed.
 
@@ -52,96 +52,98 @@ Pay Tiers
 
 .. note:: Accessible via CORS_.
 
-To get a list of pay tiers from the Marketplace::
+.. http:get:: /api/v1/webpay/prices/
 
-        GET /api/v1/webpay/prices/
+    Gets a list of pay tiers from the Marketplace.
 
-This returns a list of all the prices::
+    **Request**
 
-        {"meta": {...}
-         "objects": [{
-                "name": "Tier 1",
-                "prices": [
-                        {"amount": "0.99", "currency": "USD"},
-                        {"amount": "0.69", "currency": "GBP"}
-                ],
-                "localized": {},
-                "resource_uri": "/api/v1/webpay/prices/1/"}, ...
-         ]}
+    :param provider: (optional) the payment provider. Current values: *bango*
 
-To access just one tier, use the resource URI for that tier, for example::
+    The standard :ref:`list-query-params-label`.
 
-        GET /api/v1/webpay/prices/1/
+    **Response**
 
-Returns::
+    :param meta: :ref:`meta-response-label`.
+    :param objects: A :ref:`listing <objects-response-label>` of :ref:`apps <pay-tier-response-label>`.
+    :statuscode 200: successfully completed.
 
-        {"name": "Tier 1",
-         "prices": [
-                {"amount": "0.99", "currency": "USD"},
-                {"amount": "0.69", "currency": "GBP"}
-         ],
-         "localized": {},
-         "resource_uri": "/api/v1/webpay/prices/1/"}
+.. _pay-tier-response-label:
 
-The currencies can be filtered by the payment provider. Not all currencies are
-available to all payment providers.
+.. http:get:: /api/v1/webpay/prices/(int:id)/
 
-*provider* a query string parameter containing the provider name. Currently
-supported values: bango
+    **Response**
 
-Example::
+    .. code-block:: json
 
-        GET /api/v1/webpay/prices/?provider=bango
+        {
+            "name": "Tier 1",
+            "prices": [{
+                "amount": "0.99",
+                "currency": "USD"
+            }, {
+                "amount": "0.69",
+                "currency": "GBP"
+            }],
+            "localized": {},
+            "resource_uri": "/api/v1/webpay/prices/1/"
+        }
 
-        {"meta": {...}
-         "objects": [{
-                "name": "Tier 1",
-                "prices": [
-                        {"amount": "0.99", "currency": "USD"},
-               ],
-               "localized": {},
-               "resource_uri": "/api/v1/webpay/prices/1/"}, ...
-         ]}
+    :param localized: see `Localized tier`.
+    :statuscode 200: successfully completed.
 
-The result is the same as above, but in this example GBP is removed.
 
 Localized tier
---------------
+~~~~~~~~~~~~~~
 
 To display a price to your user, it would be nice to know how to display a
 price in the app. The Marketplace does some basic work to calculate the locale
 of a user. Information that would be useful to show to your user is placed in
 the localized field of the result.
 
-Example::
+A request with the HTTP *Accept-Language* header set to *pt-BR*, means that
+*localized* will contain:
 
-    GET /api/v1/webpay/prices/?provider=bango
+    .. code-block:: json
 
-With the HTTP *Accept-Language* header set to *pt-BR*, means that *localized*
-will contain::
-
-    "localized": {"amount": "10.00",
-                  "currency": "BRL",
-                  "locale": "R$10,00",
-                  "region": "Brasil"}
+        {
+            "localized": {
+                "amount": "10.00",
+                "currency": "BRL",
+                "locale": "R$10,00",
+                "region": "Brasil"
+            }
+        }
 
 The exact same request with an *Accept-Language* header set to *en-US*
-returns::
+returns:
 
-    "localized": {"amount": "0.99",
-                  "currency": "USD",
-                  "locale": "$0.99",
-                  "region": "United States"}
+    .. code-block:: json
+
+        {
+            "localized": {
+                "amount": "0.99",
+                "currency": "USD",
+                "locale": "$0.99",
+                "region": "United States"
+            }
+        }
 
 If a suitable currency for the region given in the request cannot be found, the
 result will be empty. It could be that the currency that the Marketplace will
 accept is not the currency of the country. For example, a request with
-*Accept-Language* set to *fr* may result in::
+*Accept-Language* set to *fr* may result in:
 
-    "localized": {"amount": "1.00",
-                  "currency': "USD",
-                  "locale": "1,00\xa0$US",
-                  "region": "Monde entier"}
+    .. code-block:: json
+
+        {
+            "localized": {
+                "amount": "1.00",
+                "currency": "USD",
+                "locale": "1,00\xa0$US",
+                "region": "Monde entier"
+            }
+        }
 
 Please note: these are just examples to demonstrate cases. Actual results will
 vary depending upon data sent and payment methods in the Marketplace.
