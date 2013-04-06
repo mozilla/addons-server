@@ -1024,7 +1024,7 @@ class TestGenericAjaxSearch(TestAjaxSearch):
 
     def search_addons(self, params, addons=[]):
         [a.save() for a in Addon.objects.all()]
-        self.refresh()
+        self.refresh(timesleep=1)
         super(TestGenericAjaxSearch, self).search_addons(
             reverse('search.ajax'), params, addons)
 
@@ -1090,10 +1090,10 @@ class TestSearchSuggestions(TestAjaxSearch):
         amo.tests.addon_factory(name='addon persona', type=amo.ADDON_PERSONA)
         amo.tests.addon_factory(name='addon persona', type=amo.ADDON_PERSONA,
                                 disabled_by_user=True, status=amo.STATUS_NULL)
-        self.refresh()
+        self.refresh(timesleep=1)
 
     def search_addons(self, params, addons=[],
-                          types=views.AddonSuggestionsAjax.types):
+                      types=views.AddonSuggestionsAjax.types):
         super(TestSearchSuggestions, self).search_addons(
             self.url, params, addons, types, src='ss')
 
