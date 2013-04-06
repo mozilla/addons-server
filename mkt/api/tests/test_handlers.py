@@ -463,6 +463,7 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         eq_(data['manifest_url'], app.manifest_url)
         eq_(data['premium_type'], 'free')
         eq_(data['price'], None)
+        eq_(data['price_locale'], None)
         eq_(data['public_stats'], False)
         eq_(data['support_email'], u'a@a.com')
         eq_(data['ratings'], {'count': 0, 'average': 0.0})
@@ -693,9 +694,14 @@ class TestAppDetail(BaseOAuth, AMOPaths):
     fixtures = fixture('user_2519', 'webapp_337141')
 
     def test_price(self):
-        self.get_url = ('api_dispatch_detail',
-                        {'resource_name': 'app', 'pk': 337141})
+        self.get_url = get_url('app', pk=337141)
         res = self.client.get(self.get_url)
+        data = json.loads(res.content)
+        eq_(data['price'], None)
+
+    def test_price_other_region(self):
+        self.get_url = get_url('app', pk=337141)
+        res = self.client.get(self.get_url, {'lang': 'fr'})
         data = json.loads(res.content)
         eq_(data['price'], None)
 

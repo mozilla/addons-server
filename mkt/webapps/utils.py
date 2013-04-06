@@ -48,6 +48,8 @@ def app_to_dict(app, user=None):
         'premium_type': amo.ADDON_PREMIUM_API[app.premium_type],
         'public_stats': app.public_stats,
         'price': app.get_price(),
+        'price_locale': (app.premium.get_price_locale()
+                         if app.premium else None),
         'ratings': {'average': app.average_rating,
                     'count': app.total_reviews},
         'slug': app.app_slug,

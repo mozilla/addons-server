@@ -184,6 +184,7 @@ App resource
                 }
             ],
             "price": null,
+            "price_locale": null,
             "previews": [
                 {
                     "filetype": "image/png",
