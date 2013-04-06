@@ -5,7 +5,8 @@ from tastypie.api import Api
 import amo
 from apps.editors.views import queue_viewing, review_viewing
 from mkt.receipts.urls import receipt_patterns
-from . import api, views
+from . import api, views, views_themes
+
 
 account = Api(api_name='reviewers')
 account.register(api.ReviewingResource())
@@ -38,21 +39,26 @@ url_patterns = patterns('',
     url(r'^apps/reviewing$', views.apps_reviewing,
         name='reviewers.apps.apps_reviewing'),
 
-    url('^themes/queue/$', views.themes_queue,
+    url('^themes/list/$', views_themes.pending_themes,
+        name='reviewers.themes.list'),
+    url('^themes/search/$', views_themes.themes_search,
+        name='reviewers.themes.search'),
+    url('^themes/queue/$', views_themes.themes_queue,
         name='reviewers.themes.queue_themes'),
-    url('^themes/queue/flagged$', views.themes_queue_flagged,
+    url('^themes/queue/flagged$', views_themes.themes_queue_flagged,
         name='reviewers.themes.queue_flagged'),
-    url('^themes/queue/commit$', views.themes_commit,
+    url('^themes/queue/commit$', views_themes.themes_commit,
         name='reviewers.themes.commit'),
-    url('^themes/queue/more$', views.themes_more,
+    url('^themes/queue/more$', views_themes.themes_more,
         name='reviewers.themes.more'),
-    url('^themes/queue/more/flagged$', views.themes_more_flagged,
+    url('^themes/queue/more/flagged$', views_themes.themes_more_flagged,
         name='reviewers.themes.more_flagged'),
-    url('^themes/queue/single/(?P<slug>[^ /]+)$', views.themes_single,
+    url('^themes/queue/single/(?P<slug>[^ /]+)$', views_themes.themes_single,
         name='reviewers.themes.single'),
     url('^themes/history/(?P<username>[^ /]+)?$',
-        views.themes_history, name='reviewers.themes.history'),
-    url(r'^themes/logs$', views.themes_logs, name='reviewers.themes.logs'),
+        views_themes.themes_history, name='reviewers.themes.history'),
+    url(r'^themes/logs$', views_themes.themes_logs,
+        name='reviewers.themes.logs'),
 
     url(r'^receipt/', include(receipt_patterns)),
     url(r'^(?P<addon_id>\d+)/(?P<version_id>\d+)/mini-manifest$',
