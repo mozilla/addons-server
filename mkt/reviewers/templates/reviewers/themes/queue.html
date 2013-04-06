@@ -36,14 +36,10 @@
       data-more-url="{{ more_url }}">
 </span>
 
-<div class="sidebar"><div class="{% if theme_count > 1 %}align fixed
-                                 {% else %}
-                                   {% if theme_count == 1 %}
-                                     align absolute
-                                   {% else %}
-                                     absolute
-                                   {% endif %}
-                                 {% endif %}">
+{% set sidebar_class = "absolute" %}
+{% if theme_count == 1 %}{% set sidebar_class = "align absolute" %}{% endif %}
+{% if theme_count > 1 %}{% set sidebar_class = "align fixed" %}{% endif %}
+<div class="sidebar"><div class="{{ sidebar_class }}">
   {% block queue_options %}
     <form class="box options">
       <h2>{{ _('Review Options') }}</h2>
@@ -84,6 +80,7 @@
   {% endif %}
 
   <a class="button" href="{{ url('reviewers.themes.history') }}">{{ _('Your Review History') }}</a>
+  {% block sidebar %}{% endblock %}
 
   {% if reviewable %}
     <button id="commit" type="submit">
@@ -96,7 +93,6 @@
                                               '<span id="total">%d</span>'|safe % theme_count) }}
     </div>
   {% endif %}
-  {% block sidebar %}{% endblock %}
 </div></div>
 
 <div class="theme-queue details single">
