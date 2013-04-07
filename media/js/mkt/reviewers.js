@@ -1,5 +1,4 @@
 (function() {
-
     if (z.capabilities.mobile) {
         z.body.addClass('mobile');
     }
@@ -10,83 +9,25 @@
         z.body.addClass('desktop');
     }
 
-    var $viewManifest = $('#view-manifest'),
-        $manifest = $('#manifest-contents'),
-        $search = $('.queue-search');
+    initPrefetchManifest();
 
-    // Prefetch manifest.
-    if ($viewManifest.length) {
-        $.getJSON($viewManifest.data('url'), function(data) {
-            var manifestContents = data;
-
-            // Show manifest.
-            $viewManifest.click(_pd(function() {
-                var $this = $viewManifest,
-                    $manifest = $('#manifest-headers, #manifest-contents');
-                if ($manifest.length) {
-                    $manifest.toggle();
-                } else {
-                    if (!manifestContents.success) {
-                        // If requests couldn't fetch the manifest, let Firefox render it.
-                        $('<iframe>', {'id': 'manifest-contents',
-                                       'src': 'view-source:' + $this.data('manifest')}).insertAfter($this);
-                    } else {
-                        var contents = '',
-                            headers = '';
-
-                        _.each(manifestContents.content.split('\n'), function(v, k) {
-                            if (v) {
-                                contents += format('<li>{0}</li>', v);
-                            }
-                        });
-                        $('<ol>', {'id': 'manifest-contents', 'html': contents}).insertAfter($this);
-
-                        if (manifestContents.headers) {
-                            _.each(manifestContents.headers, function(v, k) {
-                                headers += format('<li><b>{0}:</b> {1}</li>', k, v);
-                            });
-                            $('<ol>', {'id': 'manifest-headers', 'html': headers}).insertAfter($this);
-                        }
-
-                        if (manifestContents.permissions) {
-                            var permissions = format('<h4>{0}</h4><dl>', gettext('Requested Permissions:'));
-                            permissions += _.map(
-                                manifestContents.permissions,
-                                function(details, permission) {
-                                    var type;
-                                    if (details.type) {
-                                        switch (details.type) {
-                                            case 'cert':
-                                                type = gettext('Certified');
-                                                break;
-                                            case 'priv':
-                                                type = gettext('Privileged');
-                                                break;
-                                            case 'web':
-                                                type = gettext('Unprivileged');
-                                        }
-                                    }
-                                    return format('<dt>{0}</dt><dd>{1}, {2}</dd>',
-                                                  permission, type, details.description || gettext('No reason given'));
-                                }
-                            ).join('');
-                            $('<div>', {'id': 'manifest-permissions', 'html': permissions}).insertAfter($this);
-                        }
-                    }
-                }
-            }));
-        });
-    }
-
-    // Reviewer tool search.
+     // Reviewer tool search.
     initAdvancedMobileSearch();
     initMobileMenus();
+    initClearSearch();
 
-    var search_results = getTemplate($('#queue-search-template'));
-    var no_results = getTemplate($('#queue-search-empty-template'));
+    if ($('.theme-search').length) {
+        initSearch(true);
+    } else {
+        initSearch();
+    }
+})();
 
+
+function initClearSearch() {
     var $clear = $('.clear-queue-search'),
         $appQueue = $('.search-toggle'),
+        $search = $('.queue-search'),
         $searchIsland = $('#search-island');
 
     $clear.click(_pd(function() {
@@ -95,18 +36,29 @@
         $clear.hide();
         $searchIsland.hide();
     }));
+}
+
+
+function initSearch(isTheme) {
+    var search_results = getTemplate($('#queue-search-template'));
+    var no_results = getTemplate($('#queue-search-empty-template'));
+
+    var $clear = $('.clear-queue-search'),
+        $appQueue = $('.search-toggle'),
+        $search = $('.queue-search'),
+        $searchIsland = $('#search-island');
 
     if ($search.length) {
         // An underscore template for more advanced rendering.
         var search_result_row = _.template($('#queue-search-row-template').html());
 
-        var api_url = $search.data('api-url');
+        var apiUrl = $search.data('api-url');
         var review_url = $search.data('review-url');
         var statuses = $searchIsland.data('statuses');
 
         $search.on('submit', 'form', _pd(function() {
             var $form = $(this);
-            $.get(api_url, $form.serialize()).done(function(data) {
+            $.get(apiUrl, $form.serialize()).done(function(data) {
                 // Hide app queue.
                 $appQueue.hide();
                 $clear.show();
@@ -116,10 +68,12 @@
                 } else {
                     var results = [];
                     $.each(data.objects, function(i, item) {
-                        item.review_url = review_url.replace('__slug__', item.slug);
-                        item.status = statuses[item.status];
-                        if (item.latest_version_status) {
-                            item.status += format(' | {0}', statuses[item.latest_version_status]);
+                        if (isTheme) {
+                            item = buildThemeResultRow(item, review_url,
+                                                       statuses);
+                        } else {
+                            item = buildAppResultRow(item, review_url,
+                                                     statuses);
                         }
                         results.push(search_result_row(item));
                     });
@@ -129,8 +83,29 @@
             });
         }));
     }
+}
 
-})();
+
+function buildAppResultRow(app, review_url, statuses) {
+    app.review_url = review_url.replace('__slug__', app.slug);
+    app.status = statuses[app.status];
+    if (app.latest_version_status) {
+        app.status += format(' | {0}', statuses[app.latest_version_status]);
+    }
+    return app;
+}
+
+
+function buildThemeResultRow(theme, review_url, statuses) {
+    // Add some extra pretty attrs for the template.
+    theme.name = theme.name[0];
+
+    // Rather resolve URLs in backend, infer from slug.
+    theme.review_url = review_url.replace(
+        '__slug__', theme.slug);
+    theme.status = statuses[theme.status];
+    return theme;
+}
 
 
 function initMobileMenus() {
@@ -223,5 +198,83 @@ function syncPrettyMobileForm() {
             valStrs.length ? valStrs.join() :
             $('.multi-val', $valSelectField).length ? gettext('Any') :
                                                       firstPrettyVal);
+    });
+}
+
+
+function initPrefetchManifest() {
+   var $viewManifest = $('#view-manifest'),
+       $manifest = $('#manifest-contents');
+
+    if (!$viewManifest.length) {
+        return;
+    }
+
+    // Prefetch manifest.
+    $.getJSON($viewManifest.data('url'), function(data) {
+        var manifestContents = data;
+
+        // Show manifest.
+        $viewManifest.click(_pd(function() {
+            var $this = $viewManifest,
+                $manifest = $('#manifest-headers, #manifest-contents');
+            if ($manifest.length) {
+                $manifest.toggle();
+            } else {
+                if (!manifestContents.success) {
+                    // If requests couldn't fetch the manifest, let Firefox render it.
+                    $('<iframe>', {'id': 'manifest-contents',
+                                   'src': 'view-source:' + $this.data('manifest')}).insertAfter($this);
+                } else {
+                    var contents = '',
+                        headers = '';
+
+                    _.each(manifestContents.content.split('\n'), function(v, k) {
+                        if (v) {
+                            contents += format('<li>{0}</li>', v);
+                        }
+                    });
+                    $('<ol>', {'id': 'manifest-contents',
+                               'html': contents}).insertAfter($this);
+
+                    if (manifestContents.headers) {
+                        _.each(manifestContents.headers, function(v, k) {
+                            headers += format('<li><b>{0}:</b> {1}</li>', k, v);
+                        });
+                        $('<ol>', {'id': 'manifest-headers',
+                                   'html': headers}).insertAfter($this);
+                    }
+
+                    if (manifestContents.permissions) {
+                        var permissions = format(
+                            '<h4>{0}</h4><dl>', gettext('Requested Permissions:'));
+                        permissions += _.map(
+                            manifestContents.permissions,
+                            function(details, permission) {
+                                var type;
+                                if (details.type) {
+                                    switch (details.type) {
+                                        case 'cert':
+                                            type = gettext('Certified');
+                                            break;
+                                        case 'priv':
+                                            type = gettext('Privileged');
+                                            break;
+                                        case 'web':
+                                            type = gettext('Unprivileged');
+                                    }
+                                }
+                                return format(
+                                    '<dt>{0}</dt><dd>{1}, {2}</dd>',
+                                    permission, type,
+                                    details.description || gettext('No reason given'));
+                            }
+                        ).join('');
+                        $('<div>', {'id': 'manifest-permissions',
+                                    'html': permissions}).insertAfter($this);
+                    }
+                }
+            }
+        }));
     });
 }

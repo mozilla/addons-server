@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
 import datetime
+import json
 
 from django.conf import settings
 from django.contrib.auth.models import User
+from django.test.client import RequestFactory
 
 import mock
 from nose.tools import eq_
@@ -17,7 +19,7 @@ from amo.urlresolvers import reverse
 from devhub.models import ActivityLog
 import mkt.constants.reviewers as rvw
 from mkt.reviewers.models import ThemeLock
-from mkt.reviewers.views_themes import _get_themes
+from mkt.reviewers.views_themes import _get_themes, themes_more
 from mkt.site.fixtures import fixture
 from users.models import UserProfile
 
@@ -48,7 +50,6 @@ class ThemeReviewTestMixin(object):
         self.reviewer_count += 1
         return user
 
-
     def themes_more_helper(self):
         for x in range(rvw.THEME_INITIAL_LOCKS * 2):
             addon_factory(type=amo.ADDON_PERSONA, status=self.status)
@@ -64,7 +65,6 @@ class ThemeReviewTestMixin(object):
         eq_(len(themes), 2)
 
         return req, themes
-
 
     @mock.patch.object(rvw, 'THEME_INITIAL_LOCKS', 2)
     def test_basic_queue(self):
@@ -400,6 +400,13 @@ class TestThemeReviewQueue(ThemeReviewTestMixin, amo.tests.TestCase):
             res = self.client.get(self.queue_url)
             # I should not be able to review my own app.
             eq_(len(res.context['theme_formsets']), 0)
+
+    def test_theme_list(self):
+        self.create_and_become_reviewer()
+        addon_factory(type=amo.ADDON_PERSONA, status=self.status)
+        res = self.client.get(reverse('reviewers.themes.list'))
+        eq_(res.status_code, 200)
+        eq_(pq(res.content)('#addon-queue tbody tr').length, 1)
 
 
 class TestThemeReviewQueueFlagged(ThemeReviewTestMixin, amo.tests.TestCase):

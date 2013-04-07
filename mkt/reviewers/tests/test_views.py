@@ -2156,14 +2156,14 @@ class TestQueueSearchSort(AppReviewerTest):
         later_rrq.save()
 
         request = self.rf.get(url, {'sort': 'created'})
-        apps, form = _queue_to_apps(request, RereviewQueue.objects.all())
+        apps = _queue_to_apps(request, RereviewQueue.objects.all())
 
         # Assert the order that RereviewQueue objects were created is
         # maintained.
         eq_([earlier_rrq.addon, later_rrq.addon], list(apps))
 
         request = self.rf.get(url, {'sort': 'created', 'order': 'desc'})
-        apps, form = _queue_to_apps(request, RereviewQueue.objects.all())
+        apps = _queue_to_apps(request, RereviewQueue.objects.all())
         eq_([later_rrq.addon, earlier_rrq.addon], list(apps))
 
 

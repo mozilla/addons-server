@@ -305,7 +305,7 @@ def app_review(request, addon):
 QueuedApp = collections.namedtuple('QueuedApp', 'app created')
 
 
-def _queue(request, apps, tab, search_form=None, pager_processor=None):
+def _queue(request, apps, tab, pager_processor=None):
     per_page = request.GET.get('per_page', QUEUE_PER_PAGE)
     pager = paginate(request, apps, per_page)
 
@@ -313,7 +313,7 @@ def _queue(request, apps, tab, search_form=None, pager_processor=None):
         'addons': pager.object_list,
         'pager': pager,
         'tab': tab,
-        'search_form': search_form,
+        'search_form': _get_search_form(request),
     }))
 
 
@@ -349,11 +349,11 @@ def queue_apps(request):
                           .order_by('nomination', 'created')
                           .select_related('addon').no_transforms())
 
-    qs, search_form = _queue_to_apps(request, qs)
+    qs = _queue_to_apps(request, qs)
     apps = [QueuedApp(app, app.all_versions[0].nomination)
             for app in Webapp.version_and_file_transformer(qs)]
 
-    return _queue(request, apps, 'pending', search_form)
+    return _queue(request, apps, 'pending')
 
 
 @permission_required('Apps', 'Review')
@@ -363,20 +363,20 @@ def queue_rereview(request):
                         .filter(addon__type=amo.ADDON_WEBAPP,
                                 addon__disabled_by_user=False)
                         .exclude(addon__in=excluded_ids))
-    apps, search_form = _queue_to_apps(request, rqs)
+    apps = _queue_to_apps(request, rqs)
     apps = [QueuedApp(app, app.rereviewqueue_set.all()[0].created)
             for app in apps]
-    return _queue(request, apps, 'rereview', search_form)
+    return _queue(request, apps, 'rereview')
 
 
 @permission_required('Apps', 'ReviewEscalated')
 def queue_escalated(request):
     eqs = EscalationQueue.uncached.filter(addon__type=amo.ADDON_WEBAPP,
                                           addon__disabled_by_user=False)
-    apps, search_form = _queue_to_apps(request, eqs)
+    apps = _queue_to_apps(request, eqs)
     apps = [QueuedApp(app, app.escalationqueue_set.all()[0].created)
             for app in apps]
-    return _queue(request, apps, 'escalated', search_form)
+    return _queue(request, apps, 'escalated')
 
 
 @permission_required('Apps', 'Review')
@@ -389,14 +389,14 @@ def queue_updates(request):
                                      version__addon__disabled_by_user=False)
                              .values_list('version__addon_id', flat=True))
 
-    qs = (Webapp.uncached.exclude(id__in=excluded_ids)
-                         .filter(id__in=addon_ids))
-    qs, search_form = _get_search_form(request, _do_sort(request, qs))
+    qs = _do_sort(
+        request,
+        Webapp.uncached.exclude(id__in=excluded_ids).filter(id__in=addon_ids))
 
     apps = [QueuedApp(app, app.all_versions[0].nomination)
             for app in Webapp.version_and_file_transformer(qs)]
     apps = sorted(apps, key=lambda a: a.created)
-    return _queue(request, apps, 'updates', search_form)
+    return _queue(request, apps, 'updates')
 
 
 @permission_required('Apps', 'Review')
@@ -436,21 +436,19 @@ def _queue_to_apps(request, queue_qs):
                       .values_list('addon', flat=True))
 
     # The filter below undoes the sort above.
-    qs, search_form = _get_search_form(
-        request, Webapp.objects.filter(id__in=sorted_app_ids))
+    qs = Webapp.objects.filter(id__in=sorted_app_ids)
 
     # Put the filtered qs back into the correct sort order.
     qs = manual_order(qs, sorted_app_ids, 'addons.id')
-    [QueuedApp(app, app.created) for app in qs]
 
-    return qs, search_form
+    return qs
 
 
-def _get_search_form(request, qs):
+def _get_search_form(request):
     form = ApiSearchForm()
     fields = [f.name for f in form.visible_fields() + form.hidden_fields()]
     get = dict((k, v) for k, v in request.GET.items() if k in fields)
-    return qs, ApiSearchForm(get or None)
+    return ApiSearchForm(get or None)
 
 
 @permission_required('Apps', 'Review')

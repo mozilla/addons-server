@@ -2,30 +2,83 @@ import datetime
 import json
 
 from django.conf import settings
+from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Q
 from django.forms.formsets import formset_factory
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.datastructures import MultiValueDictKeyError
 
+from elasticutils.contrib.django import S
 import jingo
 from tower import ugettext as _
 from waffle.decorators import waffle_switch
 
 import amo
 from access import acl
-from addons.models import Persona
+from addons.models import Addon, Persona
 from amo.decorators import json_view, post_required
 from amo.urlresolvers import reverse
 from amo.utils import paginate
 from devhub.models import ActivityLog
 from editors.views import reviewer_required
+from search.views import name_only_query
 from zadmin.decorators import admin_required
 
 import mkt.constants.reviewers as rvw
 
 from . import forms
 from .models import ThemeLock
-from .views import context, queue_counts
+from .views import context, _get_search_form, queue_counts, QUEUE_PER_PAGE
+
+
+@waffle_switch('mkt-themes')
+@reviewer_required('persona')
+def pending_themes(request):
+    pending_themes = Addon.objects.filter(status=amo.STATUS_PENDING,
+                                          type=amo.ADDON_PERSONA)
+
+    search_form = _get_search_form(request)
+    per_page = request.GET.get('per_page', QUEUE_PER_PAGE)
+    pager = paginate(request, pending_themes, per_page)
+
+    return jingo.render(request, 'reviewers/themes/list.html', context(**{
+        'addons': pager.object_list,
+        'pager': pager,
+        'tab': 'themes',
+        'STATUS_CHOICES': amo.STATUS_CHOICES,
+        'search_form': search_form,
+    }))
+
+
+@json_view
+@waffle_switch('mkt-themes')
+@admin_required(reviewers=True)
+def themes_search(request):
+    search_form = forms.ThemeSearchForm(request.GET)
+    if search_form.is_valid():
+        # ES query on name.
+        themes = (S(Addon).filter(type=amo.ADDON_PERSONA,
+                                  status=amo.STATUS_PENDING)
+            .query(or_=name_only_query(search_form.cleaned_data['q'].lower()))
+            [:100])
+
+        now = datetime.datetime.now()
+        reviewers = []
+        for theme in themes:
+            try:
+                themelock = theme.persona.themelock
+                if themelock.expiry > now:
+                    reviewers.append(themelock.reviewer.email)
+                else:
+                    reviewers.append('')
+            except ObjectDoesNotExist:
+                reviewers.append('')
+
+        themes = list(themes.values_dict('name', 'slug', 'status'))
+        for theme, reviewer in zip(themes, reviewers):
+            # Dehydrate.
+            theme['reviewer'] = reviewer
+        return {'objects': themes, 'meta': {'total_count': len(themes)}}
 
 
 @waffle_switch('mkt-themes')

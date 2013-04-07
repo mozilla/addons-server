@@ -1,8 +1,10 @@
 import urlparse
 
+from django.utils.encoding import smart_str
+from django.core.exceptions import ObjectDoesNotExist
+
 import jinja2
 import waffle
-from django.utils.encoding import smart_str
 from jingo import register
 from tower import ugettext as _, ugettext_lazy as _lazy
 
@@ -104,7 +106,7 @@ def queue_tabnav(context):
     if (acl.action_allowed(context['request'], 'Personas', 'Review') and
         waffle.switch_is_active('mkt-themes')):
         rv.append(
-            ('themes', 'themes', 'queue_themes',
+            ('themes', 'themes', 'list',
              _('Themes ({0})',
                counts['themes']).format(counts['themes'])),
         )
@@ -149,3 +151,13 @@ def sort_link(context, pretty_name, sort_field):
 
     return create_sort_link(pretty_name, sort_field, get_params,
                             sort, order)
+
+
+@register.function
+@jinja2.contextfunction
+def hasOneToOne(context, obj, attr):
+    try:
+        getattr(obj, attr)
+        return True
+    except ObjectDoesNotExist:
+        return False

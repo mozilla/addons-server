@@ -16,6 +16,12 @@
 
 {% block history %}{% endblock %}
 
+{% block reviewer %}
+  {% if hasOneToOne(theme, 'themelock') %}
+    <dt>{{ _('Reviewer') }}</dt><dd>{{ emaillink(theme.themelock.reviewer.email) }}</dd>
+  {% endif %}
+{% endblock %}
+
 {% block sidebar %}
   {% if theme.addon.is_public() %}
     <a class="button" href="{{ theme.addon.get_url_path() }}">
