@@ -94,14 +94,15 @@
 
 {% block app_summary %}
   <div class="summary">
-    <h4>{{ _('Difficulty') }}: <span>{{ _('Advanced') }}</span></h4>
+    {# L10N: This is the difficulty level of the app. #}
+    <h4>{{ _('Difficulty:') }} <span>{{ _('Advanced') }}</span></h4>
   </div>
   <div class="summary">
     <h4>{{ _('Code Breakdown') }}:</h4>
     <ol>
-      <li>{{ _('5% HTML') }}</li>
-      <li>{{ _('26% CSS') }}</li>
-      <li>{{ _('69% JavaScript') }}</li>
+      <li>{{ _('5%') }} HTML</li>
+      <li>{{ _('26%') }} CSS</li>
+      <li>{{ _('69%') }} JavaScript</li>
     </ol>
   </div>
 {% endblock %}

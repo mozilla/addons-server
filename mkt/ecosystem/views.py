@@ -532,15 +532,15 @@ def apps_documentation(request, page=None):
         },
         'open_web_apps': {
             'link': '//developer.mozilla.org/docs/Apps/Apps_JavaScript_API',
-            'title': _('Open Web Apps')
+            'title': 'Open Web Apps'
         },
         'indexed_db': {
             'link': '//developer.mozilla.org/en-US/docs/IndexedDB',
-            'title': _('IndexedDB')
+            'title': 'IndexedDB'
         },
         'systemxhr': {
             'link': '//developer.mozilla.org/en-US/docs/DOM/XMLHttpRequest#Non-standard_properties',
-            'title': _('systemXHR')
+            'title': 'systemXHR'
         },
         'canvas': {
             'link': '//developer.mozilla.org/en-US/docs/HTML/Canvas',
