@@ -189,8 +189,12 @@ This follows the order of the `django-tastypie`_ REST verbs.
 A ``GET`` that accesses a standard listing object, also accepts the parameters
 in the query string for filtering the result set down.
 
-A ``POST``, ``PUT`` and ``PATCH`` accept parameters as a JSON document in the
-body of the request.
+A ``POST``, ``PUT`` and ``PATCH`` accept parameters as either:
+
+* a JSON document in the body of the request, if so the `Content-Type` must be
+  set to `application\json` or
+* form urlencoded values in the body of the request, if so the `Content-Type`
+  must be set to `application/x-www-form-urlencoded`
 
 If you are unable to make the correct kind of request, you send a request using
 any verb with the header ``X-HTTP-METHOD-OVERRIDE`` containing the verb you
@@ -200,7 +204,9 @@ Responses
 =========
 
 Because the responses can be quite long, rather than show the full result, we
-link to examples of the results.  All responses are in JSON.
+link to examples of the results.  All responses are in JSON. The client must
+send either no HTTP `Accept` header, or a value of `application\json`. Any
+other value will result in 400 status code.
 
 Data errors
 +++++++++++
