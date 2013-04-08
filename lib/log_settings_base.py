@@ -3,7 +3,6 @@ import logging.handlers
 
 from django.conf import settings
 
-from .metlog_shim import MetlogTastypieHandler
 from raven.handlers.logging import SentryHandler
 import commonware.log
 import dictconfig
@@ -96,6 +95,15 @@ cfg = {
 }
 
 
+def get_sentry_handler():
+    # This should effectively make Tastypie do the same thing as
+    # the error trapping in
+    # raven.contrib.django.models:sentry_exception_handler
+    from raven.contrib.django.models import get_client
+    handler = SentryHandler(get_client())
+    return handler
+
+
 def log_configure():
     """You have to explicitly call this to configure logging."""
     for key, value in settings.LOGGING.items():
@@ -120,7 +128,4 @@ def log_configure():
     # logging.getLogger() accesses a singleton, this just binds
     # in the SentryHandler to error level messages
     tastypie = logging.getLogger('django.request.tastypie')
-    if settings.USE_METLOG_FOR_TASTYPIE:
-        tastypie.addHandler(MetlogTastypieHandler(settings.METLOG))
-    else:
-        tastypie.addHandler(SentryHandler())
+    tastypie.addHandler(get_sentry_handler())

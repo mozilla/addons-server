@@ -150,5 +150,4 @@ METLOG_CONF = {
 }
 METLOG = client_from_dict_config(METLOG_CONF)
 USE_METLOG_FOR_CEF = True
-USE_METLOG_FOR_TASTYPIE = True
 SENTRY_CLIENT = 'djangoraven.metlog.MetlogDjangoClient'

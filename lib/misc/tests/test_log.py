@@ -12,7 +12,7 @@ from metlog.config import client_from_dict_config
 import amo.tests
 import commonware.log
 from lib.log_settings_base import error_fmt
-from lib.metlog_shim import MetlogTastypieHandler
+from lib.log_settings_base import get_sentry_handler
 from lib.misc.admin_log import ErrorTypeHandler
 from test_utils import RequestFactory
 
@@ -178,11 +178,6 @@ class TestRaven(amo.tests.TestCase):
         """
         We need to set the settings.METLOG instance to use a
         DebugCaptureSender so that we can inspect the sent messages.
-
-        We also need to force list of handlers for
-        'django.request.tastypie' to use only the MetlogTastypieHandler,
-        then revert the list of handlers back to whatever they were
-        prior to invoking the test case.
         """
 
         metlog = settings.METLOG
@@ -204,42 +199,35 @@ class TestRaven(amo.tests.TestCase):
         eq_(msg['type'], 'sentry')
 
 
-class TestTastypieHandler(amo.tests.TestCase):
+class TestStdTastypieHandler(amo.tests.TestCase):
     def setUp(self):
         """
-        We need to set the settings.METLOG instance to use a
-        DebugCaptureSender so that we can inspect the sent messages.
+        The SentryHandler had it's constructor arguments change.
+        This just verifies that client wrapped inside the
+        SentryHandler is properly initialized
 
-        We also need to force list of handlers for
-        'django.request.tastypie' to use only the MetlogTastypieHandler,
-        then revert the list of handlers back to whatever they were
-        prior to invoking the test case.
-        """
-
-        metlog = settings.METLOG
-        METLOG_CONF = {
-            'logger': 'zamboni',
-            'sender': {'class': 'metlog.senders.DebugCaptureSender'},
-        }
-        from metlog.config import client_from_dict_config
-        self.metlog = client_from_dict_config(METLOG_CONF, metlog)
-        self.metlog.sender.msgs.clear()
-
-        self.logger = logging.getLogger('django.request.tastypie')
-
-        """
         When logging.config.dictConfig is used to configure logging
         with a 'one-shot' config dictionary, any previously
         instantiated singleton loggers (ie: all old loggers not in
         the new config) will be explicitly disabled.
         """
+        self.logger = logging.getLogger('django.request.tastypie')
         self.logger.disabled = False
 
         self._orig_handlers = self.logger.handlers
-        self.logger.handlers = [MetlogTastypieHandler(settings.METLOG)]
+        while self.logger.handlers:
+            self.logger.removeHandler(self.logger.handlers[0])
+        self._handler = get_sentry_handler()
+        def capture_func(record):
+            self._captured = record
+        self._handler.emit = capture_func
+        self.logger.addHandler(self._handler)
 
     def tearDown(self):
-        self.logger.handlers = self._orig_handlers
+        while self.logger.handlers:
+            self.logger.removeHandler(self.logger.handlers[0])
+        while self._orig_handlers:
+            self.logger.addHandler(self._orig_handlers[0])
 
     def test_tastypie_handler(self):
         err_msg = "tastypie error triggered"
@@ -248,7 +236,7 @@ class TestTastypieHandler(amo.tests.TestCase):
         except:
             self.logger.error(err_msg)
 
-        msg = json.loads(self.metlog.sender.msgs[0])
-
-        eq_(msg['type'], 'sentry')
-        eq_(msg['fields']['msg'], err_msg)
+        # This will fail if the SentryHandler isn't configured
+        # properly
+        assert self._handler.client.is_enabled()
+        eq_("tastypie error triggered", self._captured.message)
