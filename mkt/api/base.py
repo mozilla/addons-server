@@ -48,7 +48,7 @@ class Marketplace(object):
                 msg = "Unsupported Content-Type header '%s'" % ct
             else:
                 msg = 'No Content-Type header specified'
-            raise self.non_form_errors(('__all__', msg))
+            raise self.non_form_errors((('__all__', msg),))
 
     def non_form_errors(self, error_list):
         """
