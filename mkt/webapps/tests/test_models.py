@@ -555,7 +555,8 @@ class TestPackagedModel(amo.tests.TestCase):
         # Check manifest.
         url = app.get_manifest_url()
         res = self.client.get(url)
-        eq_(res['Content-type'], 'application/x-web-app-manifest+json')
+        eq_(res['Content-type'],
+            'application/x-web-app-manifest+json; charset=utf-8')
         assert 'etag' in res._headers
         data = json.loads(res.content)
         eq_(data['name'], 'Blocked by Mozilla')
