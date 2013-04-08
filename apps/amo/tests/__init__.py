@@ -372,7 +372,7 @@ class TestCase(RedisTest, test_utils.TestCase):
         This is a thing in unittest in 2.7,
         but until then this is the thing.
 
-        Oh, and Dyango's `assertSetEqual` is lame and requires actual sets:
+        Oh, and Django's `assertSetEqual` is lame and requires actual sets:
         http://bit.ly/RO9sTr
         """
         eq_(set(a), set(b), message)
