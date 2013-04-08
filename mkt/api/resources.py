@@ -12,6 +12,7 @@ from tastypie.bundle import Bundle
 from tastypie.exceptions import ImmediateHttpResponse
 from tastypie.resources import ALL_WITH_RELATIONS
 from tastypie.serializers import Serializer
+from tastypie.throttle import CacheThrottle
 
 import amo
 from addons.forms import CategoryFormSet
@@ -122,6 +123,8 @@ class AppResource(CORSResource, MarketplaceModelResource):
         resource_name = 'app'
         serializer = Serializer(formats=['json'])
         slug_lookup = 'app_slug'
+        # Throttle users without Apps:APIUnthrottled at 10 POST requests/day.
+        throttle = CacheThrottle(throttle_at=10, timeframe=60 * 60 * 24)
 
     @write
     @transaction.commit_on_success
@@ -147,6 +150,13 @@ class AppResource(CORSResource, MarketplaceModelResource):
 
         log.info('App created: %s' % bundle.obj.pk)
         return bundle
+
+    def log_throttled_access(self, request):
+        """
+        Only throttle POST requests.
+        """
+        if request.method == 'POST':
+            super(AppResource, self).log_throttled_access(request)
 
     def _icons_and_images(self, bundle_obj):
         pipeline = TaskTree()

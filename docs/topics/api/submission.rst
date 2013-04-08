@@ -215,6 +215,8 @@ App resource
 
     .. note:: Requires authentication and a successfully validated manifest.
 
+    .. note:: This method is throttled at 10 requests/day.
+
     **Request**
 
     :param manifest: the id of the validated manifest.
