@@ -89,7 +89,7 @@ class TestAPI(BaseOAuth):
 
 @mock.patch.object(settings, 'WEBAPPS_RECEIPT_KEY',
                    amo.tests.AMOPaths.sample_key())
-class TestResource(amo.tests.TestCase):
+class TestReceipt(amo.tests.TestCase):
     fixtures = fixture('user_2519', 'webapp_337141')
 
     def setUp(self):
@@ -151,7 +151,7 @@ class TestResource(amo.tests.TestCase):
 
     @mock.patch('mkt.webapps.models.Webapp.has_purchased')
     def test_not_paid(self, has_purchased):
-        has_purchased.return_valueHttpPaymentRequired = False
+        has_purchased.return_value = False
         self.addon.update(premium_type=amo.ADDON_PREMIUM)
         with self.assertImmediate(HttpPaymentRequired):
             ok_(self.handle(self.profile))

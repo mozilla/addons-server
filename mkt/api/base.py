@@ -3,7 +3,6 @@ import json
 
 from django.conf.urls.defaults import url
 from django.core.exceptions import ObjectDoesNotExist
-from django.http import HttpResponse
 
 from tastypie import fields, http
 from tastypie.bundle import Bundle
@@ -12,6 +11,8 @@ from tastypie.resources import Resource, ModelResource
 
 import commonware.log
 from translations.fields import PurifiedField, TranslatedField
+
+from .http import HttpTooManyRequests
 
 log = commonware.log.getLogger('z.api')
 
@@ -24,10 +25,6 @@ def list_url(name, **kw):
 def get_url(name, pk, **kw):
     kw.update({'resource_name': name, 'pk': pk})
     return ('api_dispatch_detail', kw)
-
-
-class HttpTooManyRequests(HttpResponse):
-    status_code = 429
 
 
 class Marketplace(object):

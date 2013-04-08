@@ -1,6 +1,5 @@
 import commonware.log
 
-from django.http import HttpResponse
 from tastypie import http
 from tastypie.authorization import Authorization
 from tastypie.exceptions import ImmediateHttpResponse
@@ -13,16 +12,13 @@ from lib.cef_loggers import receipt_cef
 from lib.metrics import record_action
 from mkt.api.authentication import OAuthAuthentication
 from mkt.api.base import CORSResource, MarketplaceResource
+from mkt.api.http import HttpPaymentRequired
 from mkt.constants import apps
 from mkt.receipts.forms import ReceiptForm
 from mkt.receipts.utils import create_receipt
 from mkt.webapps.models import Installed
 
 log = commonware.log.getLogger('z.receipt')
-
-
-class HttpPaymentRequired(HttpResponse):
-    status_code = 402
 
 
 class ReceiptResource(CORSResource, MarketplaceResource):
@@ -73,7 +69,7 @@ class ReceiptResource(CORSResource, MarketplaceResource):
         if (bundle.obj.is_premium() and
                 not bundle.obj.has_purchased(request.amo_user)):
             log.info('App not purchased: %s' % bundle.obj.pk)
-            raise ImmediateHttpResponse(response=http.HttpPaymentRequired())
+            raise ImmediateHttpResponse(response=HttpPaymentRequired())
 
         # Anonymous users will fall through, they don't need anything else
         # handling.
