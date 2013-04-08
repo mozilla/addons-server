@@ -30,6 +30,7 @@ from addons.utils import get_featured_ids, get_creatured_ids
 import amo
 import amo.models
 import mkt.constants
+from access import acl
 from amo.decorators import use_master
 from amo.fields import DecimalCharField
 from amo.helpers import absolutify, shared_url
@@ -1525,7 +1526,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         Used by acl.check_ownership to see if request.user has permissions for
         the addon.
         """
-        from access import acl
         if require_author:
             require_owner = False
             ignore_disabled = True

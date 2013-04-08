@@ -16,6 +16,7 @@ import caching.base as caching
 import amo
 import amo.models
 import sharing.utils as sharing
+from access import acl
 from amo.helpers import absolutify
 from amo.utils import sorted_groupby
 from amo.urlresolvers import reverse
@@ -335,7 +336,6 @@ class Collection(CollectionBase, amo.models.ModelBase):
         return (user.id == self.author_id)
 
     def can_view_stats(self, request):
-        from access import acl
         if request and request.amo_user:
             return (self.publishable_by(request.amo_user) or
                     acl.action_allowed(request, 'CollectionStats', 'View'))
