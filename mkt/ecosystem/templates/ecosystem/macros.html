@@ -75,7 +75,8 @@
                                                                'chrono',
                                                                'face_value',
                                                                'podcasts',
-                                                               'roller') }}">
+                                                               'roller',
+                                                               'webfighter') }}">
               <h2 class="subtitle nav-title">
                 <a href="{{ url('ecosystem.build_reference') }}">
                   {{- _('Reference Apps') }}</a>
@@ -112,6 +113,14 @@
                      class="selected"
                      {% endif %}>
                     {{- _('Roller') }}</a>
+                </li>
+                <li>
+                  <a href="{{ url('ecosystem.apps_documentation',
+                     page='webfighter') }}"
+                     {%- if section == 'webfighter' %}
+                     class="selected"
+                     {% endif %}>
+                    {{- _('Webfighter') }}</a>
                 </li>
               </ol>
             </li>
