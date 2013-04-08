@@ -13,6 +13,8 @@ import commonware.log
 from translations.fields import PurifiedField, TranslatedField
 
 from .http import HttpTooManyRequests
+from .serializers import Serializer
+
 
 log = commonware.log.getLogger('z.api')
 
@@ -32,6 +34,9 @@ class Marketplace(object):
     A mixin with some general Marketplace stuff.
     """
 
+    class Meta(object):
+        serializer = Serializer()
+
     def dispatch(self, request_type, request, **kwargs):
         # OAuth authentication uses the method in the signature. So we need
         # to store the original method used to sign the request.
@@ -44,11 +49,20 @@ class Marketplace(object):
                     .dispatch(request_type, request, **kwargs))
         except UnsupportedFormat:
             ct = request.META.get('CONTENT_TYPE')
-            if ct:
-                msg = "Unsupported Content-Type header '%s'" % ct
+            msgs = []
+            if ct not in self._meta.serializer.supported_formats:
+                msgs.append(('__all__',
+                             "Unsupported Content-Type header '%s'" % ct))
             else:
-                msg = 'No Content-Type header specified'
-            raise self.non_form_errors((('__all__', msg),))
+                msgs.append(('__all__',
+                             'No Content-Type header specified'))
+
+            accept = request.META.get('HTTP_ACCEPT')
+            if accept and accept != 'application/json':
+                msgs.append(('__all__',
+                             "Unsupported Accept header '%s'" % accept))
+
+            raise self.non_form_errors(msgs)
 
     def non_form_errors(self, error_list):
         """

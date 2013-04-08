@@ -14,7 +14,7 @@ class Wrapper(object):
 
 class ReviewingResource(MarketplaceResource):
 
-    class Meta:
+    class Meta(MarketplaceResource.Meta):
         authentication = OAuthAuthentication()
         authorization = PermissionAuthorization('Apps', 'Review')
         list_allowed_methods = ['get']

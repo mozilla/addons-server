@@ -9,7 +9,7 @@ from mkt.webapps.models import Webapp
 
 class HomepageResource(CORSResource, MarketplaceResource):
 
-    class Meta(MarketplaceResource):
+    class Meta(MarketplaceResource.Meta):
         authorization = ReadOnlyAuthorization()
         detail_allowed_methods = []
         list_allowed_methods = ['get']

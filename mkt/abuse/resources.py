@@ -21,7 +21,7 @@ class BaseAbuseResource(PotatoCaptchaResource, CORSResource,
     reporter = fields.ForeignKey(UserProfileResource, attribute='reporter',
                                  null=True, full=True)
 
-    class Meta:
+    class Meta(MarketplaceResource.Meta):
         always_return_data = True
         list_allowed_methods = ['post']
         detail_allowed_methods = []
@@ -75,8 +75,8 @@ class BaseAbuseResource(PotatoCaptchaResource, CORSResource,
 
     def rename_fields(self, bundle):
         """
-        Rename fields as defined in Meta.rename_field_map. Used to rename fields
-        in the bundle before sending to Model.objects.create().
+        Rename fields as defined in Meta.rename_field_map. Used to rename
+        fields in the bundle before sending to Model.objects.create().
         """
         data = bundle.data.copy()
         for old, new in self._meta.rename_field_map:
@@ -94,7 +94,8 @@ class UserAbuseResource(BaseAbuseResource):
 
     def hydrate_user(self, bundle):
         if 'user' in bundle.data:
-            bundle.data['user'] = self.user.to().obj_get(pk=bundle.data['user'])
+            bundle.data['user'] = (self.user.to()
+                                       .obj_get(pk=bundle.data['user']))
         return bundle
 
 

@@ -29,7 +29,7 @@ from .forms import FeedbackForm
 
 class AccountResource(CORSResource, MarketplaceModelResource):
 
-    class Meta:
+    class Meta(MarketplaceModelResource.Meta):
         authentication = (SharedSecretAuthentication(), OAuthAuthentication())
         authorization = OwnerAuthorization()
         detail_allowed_methods = ['get', 'patch', 'put']
@@ -51,7 +51,7 @@ class AccountResource(CORSResource, MarketplaceModelResource):
 
 class InstalledResource(AppResource):
 
-    class Meta:
+    class Meta(AppResource.Meta):
         authentication = (SharedSecretAuthentication(), OAuthAuthentication())
         authorization = OwnerAuthorization()
         detail_allowed_methods = []
@@ -66,7 +66,7 @@ class InstalledResource(AppResource):
 
 class LoginResource(CORSResource, MarketplaceResource):
 
-    class Meta:
+    class Meta(MarketplaceResource.Meta):
         resource_name = 'login'
         always_return_data = True
         list_allowed_methods = ['post']
@@ -113,7 +113,7 @@ class FeedbackResource(PotatoCaptchaResource, CORSResource,
     user_agent = fields.CharField(attribute='user_agent', blank=True)
     ip_address = fields.CharField(attribute='ip_address', blank=True)
 
-    class Meta:
+    class Meta(MarketplaceResource.Meta):
         resource_name = 'feedback'
         always_return_data = True
         list_allowed_methods = ['post']

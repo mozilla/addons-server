@@ -23,7 +23,7 @@ log = commonware.log.getLogger('z.receipt')
 
 class ReceiptResource(CORSResource, MarketplaceResource):
 
-    class Meta:
+    class Meta(MarketplaceResource.Meta):
         always_return_data = True
         authentication = OAuthAuthentication()
         authorization = Authorization()

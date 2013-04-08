@@ -43,7 +43,7 @@ log = commonware.log.getLogger('z.api')
 
 class ValidationResource(CORSResource, MarketplaceModelResource):
 
-    class Meta:
+    class Meta(MarketplaceModelResource.Meta):
         queryset = FileUpload.objects.all()
         fields = ['valid', 'validation']
         list_allowed_methods = ['post']
@@ -108,7 +108,7 @@ class AppResource(CORSResource, MarketplaceModelResource):
     previews = fields.ToManyField('mkt.api.resources.PreviewResource',
                                   'previews', readonly=True)
 
-    class Meta:
+    class Meta(MarketplaceModelResource.Meta):
         queryset = Addon.objects.filter(type=amo.ADDON_WEBAPP)
         fields = ['categories', 'description', 'device_types',
                   'homepage', 'id', 'name', 'privacy_policy',
@@ -247,7 +247,7 @@ class AppResource(CORSResource, MarketplaceModelResource):
 
 class StatusResource(MarketplaceModelResource):
 
-    class Meta:
+    class Meta(MarketplaceModelResource.Meta):
         queryset = Addon.objects.filter(type=amo.ADDON_WEBAPP)
         fields = ['status', 'disabled_by_user']
         list_allowed_methods = []
@@ -296,7 +296,7 @@ class StatusResource(MarketplaceModelResource):
 
 class CategoryResource(CORSResource, MarketplaceModelResource):
 
-    class Meta:
+    class Meta(MarketplaceModelResource.Meta):
         queryset = Category.objects.filter(type=amo.ADDON_WEBAPP,
                                            weight__gte=0)
         list_allowed_methods = ['get']
@@ -327,7 +327,7 @@ class PreviewResource(CORSResource, MarketplaceModelResource):
     image_url = fields.CharField(attribute='image_url', readonly=True)
     thumbnail_url = fields.CharField(attribute='thumbnail_url', readonly=True)
 
-    class Meta:
+    class Meta(MarketplaceModelResource.Meta):
         queryset = Preview.objects.all()
         list_allowed_methods = ['post']
         allowed_methods = ['get', 'delete']
@@ -389,14 +389,16 @@ class PreviewResource(CORSResource, MarketplaceModelResource):
 
 
 class UserResource(CORSResource, MarketplaceModelResource):
-    class Meta:
+
+    class Meta(MarketplaceModelResource.Meta):
         queryset = User.objects.all()
         resource_name = 'user'
         fields = ['id', 'username']
 
 
 class UserProfileResource(CORSResource, MarketplaceModelResource):
-    class Meta:
+
+    class Meta(MarketplaceModelResource.Meta):
         queryset = UserProfile.objects.all()
         resource_name = 'user_profile'
         fields = ['id', 'username']
