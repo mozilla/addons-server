@@ -159,12 +159,18 @@ class Command(BaseCommand):
             collection_id = self.cursor_z.fetchone()[0]
         except TypeError:
             uuid_ = unicode(uuid.uuid4())
-            self.cursor_z.execute("""
-                INSERT INTO collections (created, modified, uuid, slug,
-                defaultlocale, collection_type, author_id)
-                VALUES (NOW(), NOW(), %s, 'favorites', 'en-US', 4, %s)
-            """, (uuid_, data['user_id']))
-            collection_id = self.cursor_z.lastrowid
+            try:
+                self.cursor_z.execute("""
+                    INSERT INTO collections (created, modified, uuid, slug,
+                    defaultlocale, collection_type, author_id)
+                    VALUES (NOW(), NOW(), %s, 'favorites', 'en-US', 4, %s)
+                """, (uuid_, data['user_id']))
+            except IntegrityError:
+                self.log(' Failed saving collection for unknown user - '
+                         'hopefully prod is okay (%s)' % user['email'])
+                continue
+            else:
+                collection_id = self.cursor_z.lastrowid
 
         rows = []
         for fav in self.get_favourites(user['username']):
