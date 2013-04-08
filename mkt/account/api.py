@@ -56,7 +56,7 @@ class InstalledResource(AppResource):
         authorization = OwnerAuthorization()
         detail_allowed_methods = []
         list_allowed_methods = ['get']
-        resource_name = 'installed'
+        resource_name = 'installed/mine/'
         slug_lookup = None
 
     def obj_get_list(self, request=None, **kwargs):

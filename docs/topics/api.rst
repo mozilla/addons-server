@@ -184,8 +184,10 @@ This follows the order of the `django-tastypie`_ REST verbs.
 * ``PUT`` replaces a resource, so this alters all the data on an existing
   resource.
 * ``PATCH`` alters some parts of an existing resource.
+* ``DELETE`` deletes an object.
 
-A ``GET`` accepts query string parameters for filtering.
+A ``GET`` that accesses a standard listing object, also accepts the parameters
+in the query string for filtering the result set down.
 
 A ``POST``, ``PUT`` and ``PATCH`` accept parameters as a JSON document in the
 body of the request.

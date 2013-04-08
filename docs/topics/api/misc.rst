@@ -48,6 +48,9 @@ Home page and featured apps
 Account
 =======
 
+The account API, makes use of the term `mine`. This is an explicit variable to
+lookup the logged in user account id.
+
 .. http:get:: /api/v1/account/settings/mine/
 
     Returns data on the currently logged in user.
@@ -64,8 +67,7 @@ Account
         }
 
 The same information is also accessible at the canoncial `resource_uri`
-`/api/v1/account/settings/1/`. The `/api/v1/account/mine/` URL is provided as
-a convenience for users who don't know their full URL ahead of time.
+`/api/v1/account/settings/1/`.
 
 To update account information:
 
@@ -85,7 +87,7 @@ Fields that can be updated:
 
 * *display_name*
 
-.. http:get:: /api/v1/account/installed/
+.. http:get:: /api/v1/account/installed/mine/
 
     Returns a list of the installed apps for the currently logged in user. This
     ignores any reviewer or developer installed apps.
@@ -100,6 +102,7 @@ Fields that can be updated:
 
     :param meta: :ref:`meta-response-label`.
     :param objects: A :ref:`listing <objects-response-label>` of :ref:`apps <app-response-label>`.
+    :status 200: sucessfully completed.
 
 Categories
 ==========
