@@ -1,4 +1,5 @@
 import json
+from io import BytesIO
 
 from django.conf import settings
 from django.core.cache import cache
@@ -130,18 +131,19 @@ class TestManifest(amo.tests.TestCase):
         # Trigger a change to the manifest by changing the name.
         with self.settings(WEBAPP_MANIFEST_NAME='Mozilla Fruitstand'):
             resp = self.client.get(self.url)
+            assert etag, 'Missing ETag'
             self.assertNotEqual(etag, resp.get('Etag'))
 
     def test_conditional_get_manifest(self):
         resp = self.client.get(self.url)
         etag = resp.get('Etag')
 
-        resp = self.client.get(self.url, HTTP_IF_NONE_MATCH='%s' % etag)
+        resp = self.client.get(self.url, HTTP_IF_NONE_MATCH=str(etag))
         eq_(resp.content, '')
         eq_(resp.status_code, 304)
 
 
-class TestMinifest(amo.tests.TestCase):
+class TestPackageMinifest(amo.tests.TestCase):
 
     def setUp(self):
         self.url = reverse('minifest.webapp')
@@ -162,7 +164,73 @@ class TestMinifest(amo.tests.TestCase):
         # Trigger a change to the minifest by changing the name.
         with self.settings(WEBAPP_MANIFEST_NAME='Mozilla Fruitstand'):
             res = self.client.get(self.url)
+            assert etag, 'Missing ETag'
             self.assertNotEqual(etag, res.get('Etag'))
+
+
+class TestPackageZip(amo.tests.TestCase):
+
+    def setUp(self):
+        self.url = reverse('package.zip')
+
+        # Avoid actually reading the modified time of the `.zip`.
+        os_mock_patch = mock.patch('mkt.site.views.os')
+        self.os_mock = os_mock_patch.start()
+        self.os_mock.return_value = mock.Mock(st_mtime=8675309)
+        self.addCleanup(os_mock_patch.stop)
+
+        # Avoid actually reading the `.zip` from the filesystem.
+        open_mock_patch = mock.patch('mkt.site.views.storage.open')
+        self.open_mock = open_mock_patch.start()
+        self.open_mock.return_value = BytesIO('boop')
+        self.addCleanup(open_mock_patch.stop)
+
+    def _test_valid(self):
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        eq_(res.get('Content-Type'), 'application/zip')
+        eq_(res.content, 'boop')
+        assert res.get('Etag'), 'Missing ETag'
+        return res
+
+    def test_package_valid(self):
+        self._test_valid()
+
+    def test_package_unchanged(self):
+        """
+        Assuming the file was unchanged, requesting the `.zip` package again
+        should avoid an unnecessary read and immediately return the cached
+        contents with the same `ETag` header.
+        """
+        first = self._test_valid()
+        eq_(self.open_mock.call_count, 1)
+
+        # Calling it again should not read the `.zip` again.
+        second = self._test_valid()
+        eq_(self.open_mock.call_count, 1)
+
+        eq_(first['Etag'], second['Etag'])
+
+    def test_package_changed(self):
+        """
+        Ensure that we're bypassing the cache when the `.zip` file's
+        last-modified timestamp changes.
+        """
+        first = self._test_valid()
+        eq_(self.open_mock.call_count, 1)
+
+        # Make a new `BytesIO` stream for reading.
+        self.open_mock.return_value = BytesIO('boop')
+
+        # Force a new ETag by changing the last-modified time.
+        with mock.patch('mkt.site.views.os') as os_mock:
+            os_mock.stat.return_value = mock.Mock(st_mtime=911)
+
+            # Calling it again should read the `.zip` again.
+            second = self._test_valid()
+            eq_(self.open_mock.call_count, 2)
+
+            self.assertNotEqual(first['Etag'], second['Etag'])
 
 
 class TestMozmarketJS(amo.tests.TestCase):
