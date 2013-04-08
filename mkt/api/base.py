@@ -9,6 +9,7 @@ from tastypie.bundle import Bundle
 from tastypie.exceptions import ImmediateHttpResponse, UnsupportedFormat
 from tastypie.resources import Resource, ModelResource
 
+from access import acl
 import commonware.log
 from translations.fields import PurifiedField, TranslatedField
 
@@ -142,13 +143,15 @@ class Marketplace(object):
         Mostly a hook, this uses class assigned to ``throttle`` from
         ``Resource._meta``.
         """
-        identifiers = [a.get_identifier(request) for a in self._auths()]
+        # Never throttle users with Apps:APIUnthrottled.
+        if not acl.action_allowed(request, 'Apps', 'APIUnthrottled'):
+            identifiers = [a.get_identifier(request) for a in self._auths()]
 
-        # Check to see if they should be throttled.
-        if any(self._meta.throttle.should_be_throttled(identifier)
-               for identifier in identifiers):
-            # Throttle limit exceeded.
-            raise ImmediateHttpResponse(response=HttpTooManyRequests())
+            # Check to see if they should be throttled.
+            if any(self._meta.throttle.should_be_throttled(identifier)
+                   for identifier in identifiers):
+                # Throttle limit exceeded.
+                raise ImmediateHttpResponse(response=HttpTooManyRequests())
 
     def log_throttled_access(self, request):
         """
