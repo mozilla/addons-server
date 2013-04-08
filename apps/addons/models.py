@@ -1519,6 +1519,21 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         # Not implemented for non-webapps.
         return ''
 
+    def check_ownership(self, request, require_owner, require_author,
+                        ignore_disabled, admin):
+        """
+        Used by acl.check_ownership to see if request.user has permissions for
+        the addon.
+        """
+        from access import acl
+        if require_author:
+            require_owner = False
+            ignore_disabled = True
+            admin = False
+        return acl.check_addon_ownership(request, self, admin=admin,
+                                         viewer=(not require_owner),
+                                         ignore_disabled=ignore_disabled)
+
 dbsignals.pre_save.connect(save_signal, sender=Addon,
                            dispatch_uid='addon_translations')
 

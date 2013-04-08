@@ -1,6 +1,4 @@
 import amo
-from addons.models import Addon
-from bandwagon.models import Collection
 
 
 def match_rules(rules, app, action):
@@ -42,19 +40,11 @@ def check_ownership(request, obj, require_owner=False, require_author=False,
     A convenience function.  Check if request.user has permissions
     for the object.
     """
-    if isinstance(obj, Addon):
-        # This checks if user has correct permissions but is NOT an admin.
-        if require_author:
-            require_owner = False
-            ignore_disabled = True
-            admin = False
-        return check_addon_ownership(request, obj, viewer=not require_owner,
-                                     admin=admin,
-                                     ignore_disabled=ignore_disabled)
-    elif isinstance(obj, Collection):
-        return check_collection_ownership(request, obj, require_owner)
-    else:
-        return False
+    if hasattr(obj, 'check_ownership'):
+        return obj.check_ownership(request, require_owner=require_owner,
+                                   require_author=require_author,
+                                   ignore_disabled=ignore_disabled, admin=admin)
+    return False
 
 
 def check_collection_ownership(request, collection, require_owner=False):

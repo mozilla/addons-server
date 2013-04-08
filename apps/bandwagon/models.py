@@ -373,6 +373,15 @@ class Collection(CollectionBase, amo.models.ModelBase):
             return
         tasks.unindex_collections.delay([instance.id])
 
+    def check_ownership(self, request, require_owner, require_author,
+                        ignore_disabled, admin):
+        """
+        Used by acl.check_ownership to see if request.user has permissions for
+        the collection.
+        """
+        from access import acl
+        return acl.check_collection_ownership(request, self, require_owner)
+
 
 models.signals.post_save.connect(Collection.post_save, sender=Collection,
                                  dispatch_uid='coll.post_save')
