@@ -93,7 +93,7 @@ class TestInstalled(BaseOAuth):
 
     def setUp(self):
         super(TestInstalled, self).setUp(api_name='account')
-        self.list_url = list_url('installed/mine/')
+        self.list_url = list_url('installed/mine')
         self.user = UserProfile.objects.get(pk=2519)
 
     def test_verbs(self):
