@@ -92,7 +92,7 @@ def manifest(request, uuid):
     def _inner_view(request, addon):
         response = http.HttpResponse(
             manifest_content,
-            content_type='application/x-web-app-manifest+json')
+            content_type='application/x-web-app-manifest+json; charset=utf-8')
         return response
 
     return _inner_view(request, addon)

@@ -96,12 +96,14 @@ class Command(BaseCommand):
         return self.cursor.fetchall()
 
     def handle_user(self, user):
+        email = user['email']
         self.cursor.execute('SELECT username, email, description FROM users '
-                            'WHERE email = %s', user['email'])
+                            'WHERE email = %s', email)
         try:
             user = self.cursor.fetchone()[0]
+            print ' Processing %s' % email
         except TypeError:
-            print ' Could not find GP user with email: %s' % user['email']
+            print ' Could not find GP user with email: %s' % email
             return
 
         user = dict(zip(['username', 'email', 'description'], user))
@@ -109,7 +111,7 @@ class Command(BaseCommand):
         for k in ('username', 'description', 'email'):
             user[k] = (user.get(k) or '').decode('latin1').encode('utf-8')
 
-        data = {'user_id': self.get_user_id(email=user['email'])}
+        data = {'user_id': self.get_user_id(email=email)}
 
         try:
             data['bio'] = re.sub('&([^;]+);', lambda m: unichr(

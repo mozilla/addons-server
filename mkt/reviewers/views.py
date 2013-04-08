@@ -583,7 +583,7 @@ def mini_manifest(request, addon_id, version_id):
     addon = get_object_or_404(Webapp, pk=addon_id)
     return http.HttpResponse(
         _mini_manifest(addon, version_id),
-        content_type='application/x-web-app-manifest+json')
+        content_type='application/x-web-app-manifest+json; charset=utf-8')
 
 
 def _mini_manifest(addon, version_id):

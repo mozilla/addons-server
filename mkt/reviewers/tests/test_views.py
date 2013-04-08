@@ -2364,7 +2364,8 @@ class TestMiniManifestView(BasePackagedAppTest):
     def test_reviewer(self):
         self.setup_files()
         res = self.client.get(self.url)
-        eq_(res['Content-type'], 'application/x-web-app-manifest+json')
+        eq_(res['Content-type'],
+            'application/x-web-app-manifest+json; charset=utf-8')
         data = json.loads(res.content)
         eq_(data['name'], self.app.name)
         eq_(data['developer']['name'], 'Mozilla Labs')
@@ -2379,7 +2380,8 @@ class TestMiniManifestView(BasePackagedAppTest):
         self.app.update(status=amo.STATUS_REJECTED)
         self.file.update(status=amo.STATUS_DISABLED)
         res = self.client.get(self.url)
-        eq_(res['Content-type'], 'application/x-web-app-manifest+json')
+        eq_(res['Content-type'],
+            'application/x-web-app-manifest+json; charset=utf-8')
         data = json.loads(res.content)
         eq_(data['name'], self.app.name)
         eq_(data['developer']['name'], 'Mozilla Labs')

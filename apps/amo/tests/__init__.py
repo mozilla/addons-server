@@ -690,9 +690,8 @@ class ESTestCase(TestCase):
 
     @classmethod
     def tearDownClass(cls):
-        if hasattr(cls, 'addons'):
-            for addon in cls.addons:
-                addon.delete()
+        if hasattr(cls, '_addons'):
+            Addon.objects.filter(pk__in=[a.id for a in cls._addons]).delete()
 
     @classmethod
     def setUpIndex(cls):
@@ -717,7 +716,7 @@ class ESTestCase(TestCase):
 
     @classmethod
     def add_addons(cls):
-        cls.addons = [
+        cls._addons = [
             addon_factory(name='user-disabled', disabled_by_user=True),
             addon_factory(name='admin-disabled', status=amo.STATUS_DISABLED),
             addon_factory(status=amo.STATUS_UNREVIEWED),
