@@ -168,7 +168,7 @@ class Command(BaseCommand):
             except IntegrityError:
                 self.log(' Failed saving collection for unknown user - '
                          'hopefully prod is okay (%s)' % user['email'])
-                continue
+                return
             else:
                 collection_id = self.cursor_z.lastrowid
 
