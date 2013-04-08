@@ -928,7 +928,8 @@ class TestPackagedManifest(DetailBase):
         _mock.return_value = self._mocked_json()
         res = self.client.get(self.url)
         eq_(res.content, self._mocked_json())
-        eq_(res['Content-Type'], 'application/x-web-app-manifest+json')
+        eq_(res['Content-Type'],
+            'application/x-web-app-manifest+json; charset=utf-8')
         eq_(res['ETag'], '"%s"' % self.get_digest_from_manifest())
 
     @mock.patch('mkt.webapps.models.Webapp.get_cached_manifest')
@@ -938,7 +939,8 @@ class TestPackagedManifest(DetailBase):
         # Get the minifest with the first simulated package.
         res = self.client.get(self.url)
         eq_(res.content, self._mocked_json())
-        eq_(res['Content-Type'], 'application/x-web-app-manifest+json')
+        eq_(res['Content-Type'],
+            'application/x-web-app-manifest+json; charset=utf-8')
 
         first_etag = res['ETag']
 
@@ -954,7 +956,8 @@ class TestPackagedManifest(DetailBase):
         # Get the minifest with the second simulated package.
         res = self.client.get(self.url)
         eq_(res.content, self._mocked_json())
-        eq_(res['Content-Type'], 'application/x-web-app-manifest+json')
+        eq_(res['Content-Type'],
+            'application/x-web-app-manifest+json; charset=utf-8')
 
         second_etag = res['ETag']
 
@@ -980,7 +983,8 @@ class TestPackagedManifest(DetailBase):
         _mock.return_value = self._mocked_json()
         res = self.client.get(self.url)
         eq_(res.content, self._mocked_json())
-        eq_(res['Content-Type'], 'application/x-web-app-manifest+json')
+        eq_(res['Content-Type'],
+            'application/x-web-app-manifest+json; charset=utf-8')
         eq_(res['ETag'], '"%s"' % self.get_digest_from_manifest())
 
     @mock.patch('mkt.webapps.models.Webapp.get_cached_manifest')
@@ -990,7 +994,8 @@ class TestPackagedManifest(DetailBase):
         _mock.return_value = self._mocked_json()
         res = self.client.get(self.url)
         eq_(res.content, self._mocked_json())
-        eq_(res['Content-Type'], 'application/x-web-app-manifest+json')
+        eq_(res['Content-Type'],
+            'application/x-web-app-manifest+json; charset=utf-8')
         eq_(res['ETag'], '"%s"' % self.get_digest_from_manifest())
 
     @mock.patch('mkt.webapps.models.Webapp.get_cached_manifest')
@@ -999,4 +1004,5 @@ class TestPackagedManifest(DetailBase):
         self.client.logout()
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
-        eq_(res['Content-type'], 'application/x-web-app-manifest+json')
+        eq_(res['Content-type'],
+            'application/x-web-app-manifest+json; charset=utf-8')
