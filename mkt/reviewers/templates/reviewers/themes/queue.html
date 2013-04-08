@@ -25,9 +25,11 @@
       {{ _('Flagged Queue') }}
     </a></li>
   {% else %}
-    <li><a href="{{ url('reviewers.themes.queue_themes') }}">
-      {{ _('Back to Themes Queue') }}
-    </a></li>
+    {% if flagged or theme %}
+      <li><a href="{{ url('reviewers.themes.queue_themes') }}">
+        {{ _('Back to Themes Queue') }}
+      </a></li>
+    {% endif %}
   {% endif %}
 </ul></nav>
 

@@ -124,6 +124,7 @@
                 $(themes[i].element).addClass('active');
                 vertAlignSidebar($window, $('.theme.active'));
                 currentTheme = i;
+                $('.rq-dropdown').hide();
             }
 
             function findCurrentTheme() {
