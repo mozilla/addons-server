@@ -245,3 +245,7 @@ def _open_pipe(cmd):
     return subprocess.Popen(cmd,
                             stdin=subprocess.PIPE, stdout=subprocess.PIPE,
                             stderr=subprocess.PIPE)
+
+
+def potato_login(request):
+    return jingo.render(request, 'site/potato_login.html')
