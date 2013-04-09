@@ -38,8 +38,15 @@ urlpatterns = patterns('',
     url('^terms-of-use(.(?P<format>\w+))?$', template_plus_xframe,
         {'template': 'site/terms-of-use.html'}, name='site.terms'),
     url('^robots.txt$', views.robots, name='robots.txt'),
+
+    # These are the new manifest URLs going forward.
+    url('^hosted.webapp$', views.manifest, name='hosted.webapp'),
+    url('^packaged.webapp$', views.package_minifest, name='packaged.webapp'),
+
+    # TODO: Deprecate this in favour of the ones above.
     url('^manifest.webapp$', views.manifest, name='manifest.webapp'),
     url('^minifest.webapp$', views.package_minifest, name='minifest.webapp'),
+
     url('^package.zip$', views.package_zip, name='package.zip'),
     url('^timing/record$', views.record, name='mkt.timing.record'),
     url('^feedback$', feedback, name='site.feedback'),
