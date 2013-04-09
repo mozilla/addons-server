@@ -83,20 +83,20 @@
 
                   <tr id="files-change-prev">
                     {% if diff %}
-                      <th><code title="{{ _('Previous diff') }}">[c</code></th>
+                      <th><code title="{{ _('Previous diff') }}">p</code></th>
                       <td><a href="#" class="command">{{ _('Previous diff') }}</a></td>
                     {% else %}
-                      <th><code title="{{ _('Previous note') }}">[c</code></th>
+                      <th><code title="{{ _('Previous note') }}">p</code></th>
                       <td><a href="#" class="command">{{ _('Previous note') }}</a></td>
                     {% endif %}
                   </tr>
 
                   <tr id="files-change-next">
                     {% if diff %}
-                      <th><code title="{{ _('Next diff') }}">]c</code></th>
+                      <th><code title="{{ _('Next diff') }}">n</code></th>
                       <td><a href="#" class="command">{{ _('Next diff') }}</a></td>
                     {% else %}
-                      <th><code title="{{ _('Next note') }}">]c</code></th>
+                      <th><code title="{{ _('Next note') }}">n</code></th>
                       <td><a href="#" class="command">{{ _('Next note') }}</a></td>
                     {% endif %}
                   </tr>
