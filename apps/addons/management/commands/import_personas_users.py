@@ -59,7 +59,7 @@ class Command(BaseCommand):
         self.cursor_z = django_connection.cursor()
 
     def do_import(self, offset, limit, **options):
-        self.log('Processing users %s to %s' % (offset, offset + limit))
+        self.log('\nProcessing users %s to %s' % (offset, offset + limit))
         for user in self.get_users(limit, offset):
             self.handle_user({'email': user})
 
@@ -112,6 +112,8 @@ class Command(BaseCommand):
             user[k] = (user.get(k) or '').decode('latin1').encode('utf-8')
 
         data = {'user_id': self.get_user_id(email=email)}
+        print '\t\t[GP username] %s\n[AMO user_id] %s' % (
+            user['username'], data['user_id'])
 
         try:
             data['bio'] = re.sub('&([^;]+);', lambda m: unichr(
@@ -135,7 +137,7 @@ class Command(BaseCommand):
             if addon_id:
                 rows.append('(%s, %s, 5)' % (addon_id, data['user_id']))
             else:
-                self.log(' Skipping unknown persona (%s) for user (%s)' %
+                self.log('\t\tSkipping unknown persona (%s) for user with username (%s)' %
                          (persona_id[0], user['username']))
 
         if rows:
@@ -149,7 +151,7 @@ class Command(BaseCommand):
             except IntegrityError:
                 # Can mean they already own the personas (eg. you've run this
                 # script before) or a persona doesn't exist in the db.
-                self.log(' Failed adding (%s) as owner of (%s) personas. Rows: %s' %
+                self.log('\t\tUser (%s) already an owner of (%s) personas. Rows: %s' %
                          (user['username'], len(rows), values))
 
         # Now hook up any favorites
@@ -179,7 +181,7 @@ class Command(BaseCommand):
                 rows.append('(NOW(), NOW(), %s, %s, %s)' %
                             (addon_id, collection_id, data['user_id']))
             else:
-                self.log(' Skipping unknown favorite (%s) for user (%s)' %
+                self.log('\t\tSkipping unknown favorite (%s) for user (%s)' %
                          (fav[0], user['username']))
 
         if rows:
@@ -190,10 +192,10 @@ class Command(BaseCommand):
                     (created, modified, addon_id, collection_id, user_id)
                     VALUES %s
                 """ % values)
-                self.log(' Adding %s favs for user %s' %
+                self.log('\t\tAdding %s favs for user %s' %
                          (len(rows), user['username']))
             except IntegrityError:
-                self.log(' Failed to import (%s) favorites for user (%s). Rows: %s' %
+                self.log('\t\tUser (%s) already an owner of (%s). Rows: %s' %
                          (len(rows), user['username'], values))
 
     @transaction.commit_manually
@@ -215,7 +217,7 @@ class Command(BaseCommand):
 
             self.log('Found %s users. Grab some coffee and settle in' % count)
 
-            step = 2500
+            step = 500
             start = options.get('start', 0)
             self.log("Starting at offset: %s" % start)
             for offset in range(start, count, step):
