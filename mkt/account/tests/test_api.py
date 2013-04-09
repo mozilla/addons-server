@@ -221,7 +221,6 @@ class TestFeedbackHandler(ThrottleTests, TestPotatoCaptcha, BaseOAuth):
 
     def test_send_without_platform(self):
         del self.default_data['platform']
-        import pdb; pdb.set_trace()
         self.list_url += ({'dev': 'platfoo'}, )
 
         res, data = self._call()
