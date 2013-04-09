@@ -1,5 +1,8 @@
 from collections import defaultdict
 import json
+import logging
+import sys
+import traceback
 
 from django.conf.urls.defaults import url
 from django.core.exceptions import ObjectDoesNotExist
@@ -18,6 +21,7 @@ from .serializers import Serializer
 
 
 log = commonware.log.getLogger('z.api')
+tasty_log = logging.getLogger('django.request.tastypie')
 
 
 def list_url(name, **kw):
@@ -30,6 +34,24 @@ def get_url(name, pk, **kw):
     return ('api_dispatch_detail', kw)
 
 
+def handle_500(resource, request, exception):
+    # Print some nice 500 errors back to the clients if not in debug mode.
+    tb = traceback.format_tb(sys.exc_traceback)
+    tasty_log.error('%s: %s %s\n%s' % (request.path,
+                        exception.__class__.__name__, exception,
+                        '\n'.join(tb)),
+                    extra={'status_code': 500, 'request': request})
+    data = {
+        'error_message': str(exception),
+        'error_code': getattr(exception, 'id',
+                              exception.__class__.__name__),
+        'error_data': getattr(exception, 'data', {})
+    }
+    serialized = resource.serialize(request, data, 'application/json')
+    return http.HttpApplicationError(content=serialized,
+                content_type='application/json; charset=utf-8')
+
+
 class Marketplace(object):
     """
     A mixin with some general Marketplace stuff.
@@ -37,6 +59,9 @@ class Marketplace(object):
 
     class Meta(object):
         serializer = Serializer()
+
+    def _handle_500(self, request, exception):
+        return handle_500(self, request, exception)
 
     def dispatch(self, request_type, request, **kwargs):
         # OAuth authentication uses the method in the signature. So we need
