@@ -106,7 +106,7 @@ class LoginResource(CORSResource, MarketplaceResource):
 class FeedbackResource(PotatoCaptchaResource, CORSResource,
                        MarketplaceResource):
     feedback = fields.CharField(attribute='feedback')
-    platform = fields.CharField(attribute='platform', null=True)
+    platform = fields.CharField(attribute='platform', blank=True)
     chromeless = fields.CharField(attribute='chromeless', null=True)
     from_url = fields.CharField(attribute='from_url', null=True)
     user = fields.CharField(attribute='user', null=True)
@@ -138,6 +138,9 @@ class FeedbackResource(PotatoCaptchaResource, CORSResource,
         """
         Add the authenticated user to the bundle.
         """
+        if 'platform' not in bundle.data:
+            bundle.data['platform'] = bundle.request.GET.get('dev', '')
+
         bundle.data.update({
             'user': bundle.request.amo_user,
             'user_agent': bundle.request.META.get('HTTP_USER_AGENT', ''),

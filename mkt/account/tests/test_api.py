@@ -219,6 +219,15 @@ class TestFeedbackHandler(ThrottleTests, TestPotatoCaptcha, BaseOAuth):
         eq_(unicode(self.user), data['user'])
         eq_(mail.outbox[0].from_email, self.user.email)
 
+    def test_send_without_platform(self):
+        del self.default_data['platform']
+        import pdb; pdb.set_trace()
+        self.list_url += ({'dev': 'platfoo'}, )
+
+        res, data = self._call()
+        self._test_success(res, data)
+        assert 'platfoo' in mail.outbox[0].body
+
     def test_send_anonymous(self):
         res, data = self._call(anonymous=True)
         self._test_success(res, data)
