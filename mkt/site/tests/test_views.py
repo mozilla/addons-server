@@ -127,11 +127,12 @@ class TestManifest(amo.tests.TestCase):
     def test_manifest_etag(self):
         resp = self.client.get(self.url)
         etag = resp.get('Etag')
+        assert etag, 'Missing ETag'
 
         # Trigger a change to the manifest by changing the name.
         with self.settings(WEBAPP_MANIFEST_NAME='Mozilla Fruitstand'):
             resp = self.client.get(self.url)
-            assert etag, 'Missing ETag'
+            assert resp.get('Etag'), 'Missing ETag'
             self.assertNotEqual(etag, resp.get('Etag'))
 
     def test_conditional_get_manifest(self):
