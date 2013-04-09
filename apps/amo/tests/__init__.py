@@ -657,7 +657,8 @@ class ESTestCase(TestCase):
         # because we may have indexation occuring in upper classes.
         for key, index in settings.ES_INDEXES.items():
             if not index.startswith('test_'):
-                settings.ES_INDEXES[key] = 'test_%s' % index
+                settings.ES_INDEXES[key] = 'test_%s_%s' % (
+                    'mkt' if settings.MARKETPLACE else 'amo', index)
 
         super(ESTestCase, cls).setUpClass()
         try:
