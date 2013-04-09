@@ -83,7 +83,7 @@ class Command(BaseCommand):
             return 0
 
     def get_users(self, limit, offset):
-        return self.users[offset:limit]
+        return self.users[offset:][:limit]
 
     def get_designers(self, author):
         self.cursor.execute('SELECT id FROM personas WHERE author = %s',
