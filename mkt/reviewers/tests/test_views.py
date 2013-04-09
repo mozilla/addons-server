@@ -763,8 +763,9 @@ class TestReviewTransaction(AttachmentManagementMixin,
     def get_app(self):
         return Webapp.uncached.get(id=337141)
 
+    @mock.patch('mkt.webapps.models.Webapp.get_manifest_json')
     @mock.patch('lib.crypto.packaged.sign_app')
-    def test_public_sign(self, sign):
+    def test_public_sign(self, sign, json):
 
         self.app = self.get_app()
         self.app.update(status=amo.STATUS_PENDING, is_packaged=True)
@@ -773,6 +774,8 @@ class TestReviewTransaction(AttachmentManagementMixin,
         eq_(self.get_app().status, amo.STATUS_PENDING)
 
         sign.return_value = None  # Didn't fail.
+        json.return_value = {'name': 'Something'}
+
         self.client.login(username='editor@mozilla.com',
                           password='password')
         data = {'action': 'public', 'comments': 'something'}
@@ -784,8 +787,9 @@ class TestReviewTransaction(AttachmentManagementMixin,
         eq_(self.get_app().status, amo.STATUS_PUBLIC)
         eq_(resp.status_code, 302)
 
+    @mock.patch('mkt.webapps.models.Webapp.get_manifest_json')
     @mock.patch('lib.crypto.packaged.sign_app')
-    def test_public_sign_failure(self, sign):
+    def test_public_sign_failure(self, sign, json):
 
         self.app = self.get_app()
         self.app.update(status=amo.STATUS_PENDING, is_packaged=True)
@@ -794,6 +798,7 @@ class TestReviewTransaction(AttachmentManagementMixin,
         eq_(self.get_app().status, amo.STATUS_PENDING)
 
         sign.side_effect = packaged.SigningError('Bad things happened.')
+
         self.client.login(username='editor@mozilla.com',
                           password='password')
         data = {'action': 'public', 'comments': 'something'}
@@ -1834,11 +1839,11 @@ class TestAbuseReports(amo.tests.TestCase):
     def test_abuse_reports_list(self):
         assert self.client.login(username='admin@mozilla.com',
                                  password='password')
-        r = self.client.get(reverse('reviewers.apps.review.abuse',
-                                    args=[self.app.app_slug]))
-        eq_(r.status_code, 200)
+        res = self.client.get(reverse('reviewers.apps.review.abuse',
+                                      args=[self.app.app_slug]))
+        eq_(res.status_code, 200)
         # We see the two abuse reports created in setUp.
-        reports = r.context['reports']
+        reports = res.context['reports']
         eq_(len(reports), 2)
         eq_(sorted([r.message for r in reports]), [u'eff', u'yeah'])
 
@@ -1979,8 +1984,8 @@ class ThemeReviewTestMixin(object):
 
         for expected in expected_themes:
             reviewer = self.create_and_become_reviewer()
-            eq_(_get_themes(mock.Mock(), reviewer, initial=False, flagged=self.flagged),
-                expected)
+            eq_(_get_themes(mock.Mock(), reviewer, initial=False,
+                            flagged=self.flagged), expected)
             eq_(ThemeLock.objects.filter(reviewer=reviewer).count(),
                 len(expected))
 
@@ -2236,7 +2241,8 @@ class TestThemeReviewQueue(ThemeReviewTestMixin, amo.tests.TestCase):
     def test_permissions_reviewer(self):
         slug = addon_factory(type=amo.ADDON_PERSONA, status=self.status).slug
 
-        self.assertLoginRedirects(self.client.get(self.queue_url), self.queue_url)
+        self.assertLoginRedirects(self.client.get(self.queue_url),
+                                  self.queue_url)
 
         self.login('regular@mozilla.com')
         self.check_permissions(slug, 403)
