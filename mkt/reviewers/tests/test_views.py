@@ -758,56 +758,55 @@ class TestEscalationQueue(AppReviewerTest, AccessMixin, FlagsMixin,
 
 class TestReviewTransaction(AttachmentManagementMixin,
                             amo.tests.test_utils.TransactionTestCase):
-    fixtures = ['base/platforms', 'base/users', 'webapps/337141-steamcube']
+    fixtures = fixture('group_editor', 'user_editor', 'user_editor_group',
+                       'webapp_337141')
 
     def get_app(self):
         return Webapp.uncached.get(id=337141)
 
     @mock.patch('mkt.webapps.models.Webapp.get_manifest_json')
     @mock.patch('lib.crypto.packaged.sign_app')
-    def test_public_sign(self, sign, json):
-
+    def test_public_sign(self, sign_mock, json_mock):
         self.app = self.get_app()
         self.app.update(status=amo.STATUS_PENDING, is_packaged=True)
         self.version = self.app.current_version
         self.version.files.all().update(status=amo.STATUS_PENDING)
         eq_(self.get_app().status, amo.STATUS_PENDING)
 
-        sign.return_value = None  # Didn't fail.
-        json.return_value = {'name': 'Something'}
+        sign_mock.return_value = None  # Didn't fail.
+        json_mock.return_value = {'name': 'Something'}
 
-        self.client.login(username='editor@mozilla.com',
-                          password='password')
+        assert self.client.login(username='editor@mozilla.com',
+                                 password='password')
         data = {'action': 'public', 'comments': 'something'}
         data.update(self._attachment_management_form(num=0))
         resp = self.client.post(
             reverse('reviewers.apps.review', args=[self.app.app_slug]),
             data)
+        eq_(resp.status_code, 302)
 
         eq_(self.get_app().status, amo.STATUS_PUBLIC)
-        eq_(resp.status_code, 302)
 
     @mock.patch('mkt.webapps.models.Webapp.get_manifest_json')
     @mock.patch('lib.crypto.packaged.sign_app')
-    def test_public_sign_failure(self, sign, json):
-
+    def test_public_sign_failure(self, sign_mock, json_mock):
         self.app = self.get_app()
         self.app.update(status=amo.STATUS_PENDING, is_packaged=True)
         self.version = self.app.current_version
         self.version.files.all().update(status=amo.STATUS_PENDING)
         eq_(self.get_app().status, amo.STATUS_PENDING)
 
-        sign.side_effect = packaged.SigningError('Bad things happened.')
+        sign_mock.side_effect = packaged.SigningError('Bad things happened.')
 
-        self.client.login(username='editor@mozilla.com',
-                          password='password')
+        assert self.client.login(username='editor@mozilla.com',
+                                 password='password')
         data = {'action': 'public', 'comments': 'something'}
         data.update(self._attachment_management_form(num=0))
         resp = self.client.post(
             reverse('reviewers.apps.review', args=[self.app.app_slug]), data)
+        eq_(resp.status_code, 302)
 
         eq_(self.get_app().status, amo.STATUS_PENDING)
-        eq_(resp.status_code, 302)
 
 
 class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
