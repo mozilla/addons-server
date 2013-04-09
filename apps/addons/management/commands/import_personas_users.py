@@ -100,7 +100,7 @@ class Command(BaseCommand):
         self.cursor.execute('SELECT username, email, description FROM users '
                             'WHERE email = %s', email)
         try:
-            user = self.cursor.fetchone()[0]
+            user = self.cursor.fetchone()
             print ' Processing %s' % email
         except TypeError:
             print ' Could not find GP user with email: %s' % email
