@@ -80,7 +80,7 @@ slumber==0.5.3
 SQLAlchemy==0.7.5
 statsd==1.0.0
 suds==0.3.9
-tastypie-services==0.2
+tastypie-services==0.2.2
 
 ## Not on pypi.
 -e git://github.com/mozilla/amo-validator.git@604a3fad6feee9486392268e3102ddd54ae12626#egg=amo-validator
