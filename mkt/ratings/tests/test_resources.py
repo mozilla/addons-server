@@ -21,18 +21,38 @@ class TestRatingResource(BaseOAuth, AMOPaths):
         super(TestRatingResource, self).setUp()
         self.app = Webapp.objects.get(pk=337141)
         self.user = UserProfile.objects.get(pk=2519)
-        self.collection_url = ('api_dispatch_list',
-                               {'resource_name': 'rating'},
-                               {'app': self.app.pk})
+
+    def _collection_url(self, **kwargs):
+        data = {'app': self.app.pk}
+        if kwargs:
+            data.update(kwargs)
+        return ('api_dispatch_list', {'resource_name': 'rating'}, data)
 
     def test_get(self):
         AddonUser.objects.create(user=self.user, addon=self.app)
-        res = self.client.get(self.collection_url)
+        res = self.client.get(self._collection_url())
         data = json.loads(res.content)
         eq_(data['info']['average'], self.app.average_rating)
         eq_(data['info']['slug'], self.app.app_slug)
         assert not data['user']['can_rate']
         assert not data['user']['has_rated']
+
+    def _get_single(self, **kwargs):
+        Review.objects.create(addon=self.app, user=self.user, body="yes")
+        url = self._collection_url(**kwargs)
+        res = self.client.get(url)
+        data = json.loads(res.content)
+        return res, data
+
+    def test_get_by_pk(self):
+        res, data = self._get_single()
+        eq_(len(data['objects']), 1)
+        eq_(data['info']['slug'], self.app.app_slug)
+
+    def test_get_by_slug(self):
+        res, data = self._get_single(app=self.app.app_slug)
+        eq_(len(data['objects']), 1)
+        eq_(data['info']['slug'], self.app.app_slug)
 
     def test_anonymous_get_list(self):
         res = self.anon.get(list_url('rating'))
@@ -45,20 +65,20 @@ class TestRatingResource(BaseOAuth, AMOPaths):
         eq_(res.status_code, 401)
 
     def test_anonymous_get_detail(self):
-        res = self.anon.get(self.collection_url)
+        res = self.anon.get(self._collection_url())
         data = json.loads(res.content)
         eq_(res.status_code, 200)
         eq_(data['user'], None)
 
     def test_non_owner(self):
-        res = self.client.get(self.collection_url)
+        res = self.client.get(self._collection_url())
         data = json.loads(res.content)
         assert data['user']['can_rate']
         assert not data['user']['has_rated']
 
     def test_already_rated(self):
         Review.objects.create(addon=self.app, user=self.user, body="yes")
-        res = self.client.get(self.collection_url)
+        res = self.client.get(self._collection_url())
         data = json.loads(res.content)
         assert data['user']['can_rate']
         assert data['user']['has_rated']

@@ -8,7 +8,6 @@ from tastypie.exceptions import ImmediateHttpResponse
 from tastypie.utils import trailing_slash
 
 import amo
-from addons.models import Addon
 from lib.metrics import record_action
 
 from mkt.api.authentication import (AppOwnerAuthorization,
@@ -68,6 +67,30 @@ class RatingResource(MarketplaceModelResource):
         data.update(**form.cleaned_data)
         return data
 
+    def get_app(self, ident):
+        try:
+            return Webapp.objects.by_identifier(ident)
+        except Webapp.DoesNotExist:
+            raise self.non_form_errors([('app', 'Invalid app')])
+
+    def build_filters(self, filters=None):
+        """
+        If `addon__exact` is a filter and its value cannot be coerced into an
+        int, assume that it's a slug lookup.
+
+        Run the query necessary to determine the app, and substitute the slug
+        with the PK in the filter so tastypie will continue doing its thing.
+        """
+        built = super(RatingResource, self).build_filters(filters)
+        if 'addon__exact' in built:
+            try:
+                int(built['addon__exact'])
+            except ValueError:
+                app = self.get_app(built['addon__exact'])
+                if app:
+                    built['addon__exact'] = str(app.pk)
+        return built
+
     def obj_create(self, bundle, request=None, **kwargs):
         """
         Handle POST requests to the resource. If the data validates, create a
@@ -78,11 +101,7 @@ class RatingResource(MarketplaceModelResource):
         if not form.is_valid():
             raise self.form_errors(form)
 
-        # Validate that the app exists.
-        try:
-            app = Webapp.objects.get(pk=bundle.data['app'])
-        except Webapp.DoesNotExist:
-            raise self.non_form_errors([('app', 'Invalid app')])
+        app = self.get_app(bundle.data['app'])
 
         # Return 409 if the user has already reviewed this app.
         if self._meta.queryset.filter(addon=app, user=request.user).exists():
@@ -149,7 +168,7 @@ class RatingResource(MarketplaceModelResource):
 
     def alter_list_data_to_serialize(self, request, data):
         if 'app' in request.GET:
-            addon = Addon.objects.get(pk=request.GET['app'])
+            addon = self.get_app(request.GET['app'])
             data['info'] = {
                 'average': addon.average_rating,
                 'slug': addon.app_slug
@@ -175,7 +194,7 @@ class RatingResource(MarketplaceModelResource):
             url(r'^(?P<resource_name>%s)/(?P<review_id>\w[\w/-]*)/flag%s$' %
                 (self._meta.resource_name, trailing_slash()),
                 self.wrap_view('post_flag'), name='api_post_flag')
-            ]
+        ]
 
     def post_flag(self, request, **kwargs):
         return RatingFlagResource().dispatch('list', request,

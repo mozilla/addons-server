@@ -503,6 +503,14 @@ class TestWebappManager(amo.tests.TestCase):
         w.update(disabled_by_user=True)
         self.listed_eq()
 
+    def test_by_identifier(self):
+        w = Webapp.objects.create(app_slug='foo')
+        eq_(Webapp.objects.by_identifier(w.id), w)
+        eq_(Webapp.objects.by_identifier(str(w.id)), w)
+        eq_(Webapp.objects.by_identifier(w.app_slug), w)
+        with self.assertRaises(Webapp.DoesNotExist):
+            Webapp.objects.by_identifier('fake')
+
 
 class TestManifest(BaseWebAppTest):
 

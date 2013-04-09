@@ -8,6 +8,7 @@ import uuid
 
 from django.conf import settings
 from django.core.cache import cache
+from django.core.exceptions import ObjectDoesNotExist
 from django.core.files.storage import default_storage as storage
 from django.core.urlresolvers import NoReverseMatch
 from django.db import models
@@ -95,6 +96,20 @@ class WebappManager(amo.models.ManagerBase):
         # ** Unreviewed -- LITE
         # ** Rejected   -- REJECTED
         return self.filter(status=amo.WEBAPPS_UNREVIEWED_STATUS)
+
+    def by_identifier(self, identifier):
+        """
+        Look up a single app by its `id` or `app_slug`.
+
+        If the identifier is coercable into an integer, we first check for an
+        ID match, falling back to a slug check (probably not necessary, as there
+        is validation preventing numeric slugs). Otherwise, we only look for a
+        slug match.
+        """
+        try:
+            return self.get(id=identifier)
+        except (ObjectDoesNotExist, ValueError):
+            return self.get(app_slug=identifier)
 
 
 # We use super(Addon, self) on purpose to override expectations in Addon that
