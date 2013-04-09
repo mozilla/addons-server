@@ -33,7 +33,7 @@ def app_to_dict(app, user=None):
         'content_ratings': dict([(cr.get_body().name, {
             'name': cr.get_rating().name,
             'description': unicode(cr.get_rating().description),
-        }) for cr in app.content_ratings.all()]),
+        }) for cr in app.content_ratings.all()]) or None,
         'current_version': version_data,
         'image_assets': dict([(ia.slug, (ia.image_url, ia.hue))
                               for ia in app.image_assets.all()]),

@@ -27,3 +27,6 @@ class TestAppToDict(amo.tests.TestCase):
              'resource_uri'])
         eq_(preview['caption'], 'foo')
         eq_(int(preview['id']), obj.pk)
+
+    def test_no_rating(self):
+        eq_(app_to_dict(self.app)['content_ratings'], None)
