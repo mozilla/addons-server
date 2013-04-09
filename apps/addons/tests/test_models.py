@@ -2127,6 +2127,15 @@ class TestAddonUpsell(amo.tests.TestCase):
         eq_(self.one.upsell.premium, self.two)
         eq_(self.two.upsell, None)
 
+    def test_delete(self):
+        self.upsell = AddonUpsell.objects.create(free=self.two,
+                                                 premium=self.one)
+        self.create_switch('soft_delete')
+        # Note: delete ignores if status 0.
+        self.one.update(status=amo.STATUS_PUBLIC)
+        self.one.delete()
+        eq_(AddonUpsell.objects.count(), 0)
+
 
 class TestAddonPurchase(amo.tests.TestCase):
     fixtures = ['base/users']

@@ -2135,6 +2135,27 @@ class AddonUpsell(amo.models.ModelBase):
         except Addon.DoesNotExist:
             pass
 
+    def cleanup(self):
+        try:
+            # Just accessing these may raise an error.
+            assert self.free and self.premium
+        except ObjectDoesNotExist:
+            log.info('Deleted upsell: from %s, to %s' %
+                     (self.free_id, self.premium_id))
+            self.delete()
+
+
+def cleanup_upsell(sender, instance, **kw):
+    if 'raw' in kw or not waffle.switch_is_active('soft_delete'):
+        return
+
+    both = Q(free=instance) | Q(premium=instance)
+    for upsell in list(AddonUpsell.objects.filter(both)):
+        upsell.cleanup()
+
+dbsignals.post_delete.connect(cleanup_upsell, sender=Addon,
+                              dispatch_uid='addon_upsell')
+
 
 class CompatOverride(amo.models.ModelBase):
     """Helps manage compat info for add-ons not hosted on AMO."""
