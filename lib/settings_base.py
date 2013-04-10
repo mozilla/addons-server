@@ -984,7 +984,7 @@ PFS_URL = 'https://pfs.mozilla.org/plugins/PluginFinderService.php'
 REDIRECT_URL_WHITELIST = ['addons.mozilla.org']
 
 # Default to short expiration; check "remember me" to override
-SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
+SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 SESSION_COOKIE_AGE = 1209600
 SESSION_COOKIE_SECURE = True
