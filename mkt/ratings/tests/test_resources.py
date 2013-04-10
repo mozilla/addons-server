@@ -29,9 +29,7 @@ class TestRatingResource(BaseOAuth, AMOPaths):
         return ('api_dispatch_list', {'resource_name': 'rating'}, data)
 
     def test_has_cors(self):
-        res = self.client.get(self._collection_url())
-        eq_(res['Access-Control-Allow-Origin'], '*')
-        eq_(res['Access-Control-Allow-Methods'], 'GET, POST, OPTIONS')
+        self.assertCORS(self.client.get(self._collection_url()), 'get', 'post')
 
     def test_get(self):
         AddonUser.objects.create(user=self.user, addon=self.app)
@@ -245,9 +243,7 @@ class TestReviewFlagResource(BaseOAuth, AMOPaths):
                           'review_id': self.rating.pk}, {})
 
     def test_has_cors(self):
-        res = self.client.get(self.flag_url)
-        eq_(res['Access-Control-Allow-Origin'], '*')
-        eq_(res['Access-Control-Allow-Methods'], 'POST, OPTIONS')
+        self.assertCORS(self.client.get(self.flag_url), 'post')
 
     def test_flag(self):
         data = json.dumps({'flag': ReviewFlag.SPAM})

@@ -4,7 +4,7 @@ import json
 from django.core import mail
 
 from mock import patch
-from nose.tools import eq_, ok_
+from nose.tools import eq_
 
 from market.models import Price, PriceCurrency
 from mkt.api.tests.test_oauth import BaseOAuth

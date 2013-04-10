@@ -53,9 +53,7 @@ class TestAPI(BaseOAuth, BrowseBase):
         self.url = list_url('page')
 
     def test_has_cors(self):
-        res = self.anon.get(self.url)
-        eq_(res['Access-Control-Allow-Origin'], '*')
-        eq_(res['Access-Control-Allow-Methods'], 'GET, OPTIONS')
+        self.assertCORS(self.anon.get(self.url), 'get')
 
     def test_response(self):
         cf1, cf2, hf = self.setup_featured()
@@ -101,9 +99,7 @@ class TestFeaturedHomeHandler(BaseOAuth):
         self._allowed_verbs(self.list_url, ['get'])
 
     def test_has_cors(self):
-        res = self.client.get(self.list_url)
-        eq_(res['Access-Control-Allow-Origin'], '*')
-        eq_(res['Access-Control-Allow-Methods'], 'GET, OPTIONS')
+        self.assertCORS(self.client.get(self.list_url), 'get')
 
     def test_get_featured(self):
         res = self.anon.get(self.list_url)

@@ -31,9 +31,7 @@ class ValidationHandler(BaseOAuth):
         self.user = UserProfile.objects.get(pk=2519)
 
     def test_has_cors(self):
-        res = self.client.get(self.list_url)
-        eq_(res['Access-Control-Allow-Origin'], '*')
-        eq_(res['Access-Control-Allow-Methods'], 'POST, OPTIONS')
+        self.assertCORS(self.client.get(self.list_url), 'post')
 
     def create(self):
         res = self.client.post(self.list_url,
@@ -737,9 +735,7 @@ class TestCategoryHandler(BaseOAuth):
         self._allowed_verbs(self.get_url, ['get'])
 
     def test_has_cors(self):
-        res = self.client.get(self.list_url)
-        eq_(res['Access-Control-Allow-Origin'], '*')
-        eq_(res['Access-Control-Allow-Methods'], 'GET, OPTIONS')
+        self.assertCORS(self.client.get(self.list_url), 'get')
 
     def test_weight(self):
         self.cat.update(weight=-1)
@@ -840,9 +836,7 @@ class TestPreviewHandler(BaseOAuth, AMOPaths):
                      'position': 1}
 
     def test_has_cors(self):
-        res = self.client.get(self.list_url)
-        eq_(res['Access-Control-Allow-Origin'], '*')
-        eq_(res['Access-Control-Allow-Methods'], 'POST, OPTIONS')
+        self.assertCORS(self.client.get(self.list_url), 'post')
 
     def test_no_addon(self):
         list_url = ('api_dispatch_list', {'resource_name': 'preview'})

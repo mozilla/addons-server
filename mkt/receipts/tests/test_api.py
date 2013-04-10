@@ -35,9 +35,7 @@ class TestAPI(BaseOAuth):
         self.profile = self.user.get_profile()
 
     def test_has_cors(self):
-        res = self.client.get(self.url)
-        eq_(res['Access-Control-Allow-Origin'], '*')
-        eq_(res['Access-Control-Allow-Methods'], 'POST, OPTIONS')
+        self.assertCORS(self.client.get(self.url), 'post')
 
     def post(self, anon=False):
         client = self.client if not anon else self.anon
