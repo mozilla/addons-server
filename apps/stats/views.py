@@ -490,7 +490,7 @@ def _monolith_site_query(period, start, end, field):
     fields = {'mmo_total_visitors': 'visits',
               'apps_count_installed': 'app_installs',
               'apps_review_count_new': 'review_count',
-              'mmo_user_count_new': 'new_user_count',
+              'mmo_user_count_new': 'user_count',
               'apps_count_new': 'app_count',
               'mmo_user_count_total': 'total_user_count'}
 
