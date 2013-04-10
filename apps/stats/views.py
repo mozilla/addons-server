@@ -514,8 +514,10 @@ def _monolith_site_query(period, start, end, field):
 
 
 @memoize(prefix='global_stats', time=60 * 60)
-def _site_query(period, start, end, field=None):
-    if waffle.switch_is_active('monolith-stats'):
+def _site_query(period, start, end, field=None, request=None):
+    old_version = request and request.GET.get('old_version', '0') or '0'
+
+    if waffle.switch_is_active('monolith-stats') and old_version == '0':
         res = _monolith_site_query(period, start, end, field)
         return res
 
@@ -556,7 +558,7 @@ def site(request, format, group, start=None, end=None):
 
     group = 'date' if group == 'day' else group
     start, end = get_daterange_or_404(start, end)
-    series, keys = _site_query(group, start, end)
+    series, keys = _site_query(group, start, end, request)
 
     if format == 'csv':
         return render_csv(request, None, series, ['date'] + keys,
@@ -586,7 +588,7 @@ def site_series(request, format, group, start, end, field):
     start, end = get_daterange_or_404(start, end)
     group = 'date' if group == 'day' else group
     series = []
-    full_series, keys = _site_query(group, start, end, field)
+    full_series, keys = _site_query(group, start, end, field, request)
     for row in full_series:
         if field in row['data']:
             series.append({
