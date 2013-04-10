@@ -192,16 +192,12 @@ def persona_detail(request, addon, template=None):
         'category_personas': category_personas,
     }
 
-    author = None
-    if persona.is_new():
-        try:
-            author = addon.authors.all()[0]
-        except IndexError:
-            pass
-        else:
-            author = author.get_url_path(src='addon-detail')
+    try:
+        author = addon.authors.all()[0]
+    except IndexError:
+        author = None
     else:
-        author = settings.PERSONAS_USER_ROOT % persona.author
+        author = author.get_url_path(src='addon-detail')
     data['author_gallery'] = author
 
     if not request.MOBILE:
