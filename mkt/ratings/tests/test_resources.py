@@ -247,7 +247,7 @@ class TestReviewFlagResource(BaseOAuth, AMOPaths):
     def test_has_cors(self):
         res = self.client.get(self.flag_url)
         eq_(res['Access-Control-Allow-Origin'], '*')
-        eq_(res['Access-Control-Allow-Methods'], 'GET, OPTIONS')
+        eq_(res['Access-Control-Allow-Methods'], 'POST, OPTIONS')
 
     def test_flag(self):
         data = json.dumps({'flag': ReviewFlag.SPAM})
