@@ -6,9 +6,9 @@ from django.contrib.auth.models import User
 from nose.tools import eq_
 
 import amo
-from addons.models import AddonCategory, AddonDeviceType, Category
-from amo.tests import ESTestCase
 import mkt.regions
+from addons.models import AddonCategory, AddonDeviceType, Category, Flag
+from amo.tests import ESTestCase
 from mkt.api.base import list_url
 from mkt.api.models import Access, generate
 from mkt.api.tests.test_oauth import BaseOAuth, OAuthClient
@@ -22,7 +22,7 @@ class TestApi(BaseOAuth, ESTestCase):
 
     def setUp(self):
         self.client = OAuthClient(None)
-        self.list_url = ('api_dispatch_list', {'resource_name': 'search'})
+        self.url = list_url('search')
         self.webapp = Webapp.objects.get(pk=337141)
         self.category = Category.objects.create(name='test',
                                                 type=amo.ADDON_WEBAPP)
@@ -30,38 +30,38 @@ class TestApi(BaseOAuth, ESTestCase):
         self.refresh()
 
     def test_verbs(self):
-        self._allowed_verbs(self.list_url, ['get'])
+        self._allowed_verbs(self.url, ['get'])
 
     def test_has_cors(self):
-        res = self.client.get(self.list_url)
+        res = self.client.get(self.url)
         eq_(res['Access-Control-Allow-Origin'], '*')
         eq_(res['Access-Control-Allow-Methods'], 'GET, OPTIONS')
 
     def test_meta(self):
-        res = self.client.get(self.list_url)
+        res = self.client.get(self.url)
         eq_(res.status_code, 200)
         data = json.loads(res.content)
         eq_(set(data.keys()), set(['objects', 'meta']))
         eq_(data['meta']['total_count'], 1)
 
     def test_wrong_category(self):
-        res = self.client.get(self.list_url + ({'cat': self.category.pk + 1},))
+        res = self.client.get(self.url + ({'cat': self.category.pk + 1},))
         eq_(res.status_code, 400)
         eq_(res['Content-Type'], 'application/json')
 
     def test_wrong_weight(self):
         self.category.update(weight=-1)
-        res = self.client.get(self.list_url + ({'cat': self.category.pk},))
+        res = self.client.get(self.url + ({'cat': self.category.pk},))
         eq_(res.status_code, 200)
         data = json.loads(res.content)
         eq_(len(data['objects']), 0)
 
     def test_wrong_sort(self):
-        res = self.client.get(self.list_url + ({'sort': 'awesomeness'},))
+        res = self.client.get(self.url + ({'sort': 'awesomeness'},))
         eq_(res.status_code, 400)
 
     def test_right_category(self):
-        res = self.client.get(self.list_url + ({'cat': self.category.pk},))
+        res = self.client.get(self.url + ({'cat': self.category.pk},))
         eq_(res.status_code, 200)
         eq_(json.loads(res.content)['objects'], [])
 
@@ -72,7 +72,7 @@ class TestApi(BaseOAuth, ESTestCase):
 
     def test_right_category_present(self):
         self.create()
-        res = self.client.get(self.list_url + ({'cat': self.category.pk},))
+        res = self.client.get(self.url + ({'cat': self.category.pk},))
         eq_(res.status_code, 200)
         objs = json.loads(res.content)['objects']
         eq_(len(objs), 1)
@@ -80,7 +80,7 @@ class TestApi(BaseOAuth, ESTestCase):
     def test_dehydrate(self):
         with self.settings(SITE_URL=''):
             self.create()
-            res = self.client.get(self.list_url + ({'cat': self.category.pk},))
+            res = self.client.get(self.url + ({'cat': self.category.pk},))
             eq_(res.status_code, 200)
             obj = json.loads(res.content)['objects'][0]
             eq_(obj['slug'], self.webapp.app_slug)
@@ -89,7 +89,7 @@ class TestApi(BaseOAuth, ESTestCase):
             eq_(obj['resource_uri'], None)
 
     def test_q(self):
-        res = self.client.get(self.list_url + ({'q': 'something'},))
+        res = self.client.get(self.url + ({'q': 'something'},))
         eq_(res.status_code, 200)
         obj = json.loads(res.content)['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
@@ -99,27 +99,27 @@ class TestApi(BaseOAuth, ESTestCase):
             addon=self.webapp, device_type=DEVICE_CHOICES_IDS['desktop'])
         self.webapp.save()
         self.refresh()
-        res = self.client.get(self.list_url + ({'device': 'desktop'},))
+        res = self.client.get(self.url + ({'device': 'desktop'},))
         eq_(res.status_code, 200)
         obj = json.loads(res.content)['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
 
     def test_premium_types(self):
-        res = self.client.get(self.list_url + (
+        res = self.client.get(self.url + (
             {'premium_types': 'free'},))
         eq_(res.status_code, 200)
         obj = json.loads(res.content)['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
 
     def test_premium_types_empty(self):
-        res = self.client.get(self.list_url + (
+        res = self.client.get(self.url + (
             {'premium_types': 'premium'},))
         eq_(res.status_code, 200)
         objs = json.loads(res.content)['objects']
         eq_(len(objs), 0)
 
     def test_multiple_premium_types(self):
-        res = self.client.get(self.list_url + (
+        res = self.client.get(self.url + (
             {'premium_types': 'free'},
             {'premium_types': 'premium'}))
         eq_(res.status_code, 200)
@@ -127,7 +127,7 @@ class TestApi(BaseOAuth, ESTestCase):
         eq_(obj['slug'], self.webapp.app_slug)
 
     def test_app_type_hosted(self):
-        res = self.client.get(self.list_url + ({'app_type': 'hosted'},))
+        res = self.client.get(self.url + ({'app_type': 'hosted'},))
         eq_(res.status_code, 200)
         obj = json.loads(res.content)['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
@@ -137,28 +137,28 @@ class TestApi(BaseOAuth, ESTestCase):
         self.webapp.save()
         self.refresh()
 
-        res = self.client.get(self.list_url + ({'app_type': 'packaged'},))
+        res = self.client.get(self.url + ({'app_type': 'packaged'},))
         eq_(res.status_code, 200)
         obj = json.loads(res.content)['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
 
     def test_status_anon(self):
-        res = self.client.get(self.list_url + ({'status': 'public'},))
+        res = self.client.get(self.url + ({'status': 'public'},))
         eq_(res.status_code, 200)
         obj = json.loads(res.content)['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
 
-        res = self.client.get(self.list_url + ({'status': 'vindaloo'},))
+        res = self.client.get(self.url + ({'status': 'vindaloo'},))
         eq_(res.status_code, 400)
         error = json.loads(res.content)['error_message']
         eq_(error.keys(), ['status'])
 
-        res = self.client.get(self.list_url + ({'status': 'any'},))
+        res = self.client.get(self.url + ({'status': 'any'},))
         eq_(res.status_code, 401)
         eq_(json.loads(res.content)['reason'],
             'Unauthorized to filter by status.')
 
-        res = self.client.get(self.list_url + ({'status': 'rejected'},))
+        res = self.client.get(self.url + ({'status': 'rejected'},))
         eq_(res.status_code, 401)
         eq_(json.loads(res.content)['reason'],
             'Unauthorized to filter by status.')
@@ -166,24 +166,24 @@ class TestApi(BaseOAuth, ESTestCase):
     def test_status_value_packaged(self):
         # When packaged and not a reviewer we exclude latest version status.
         self.webapp.update(is_packaged=True)
-        res = self.client.get(self.list_url)
+        res = self.client.get(self.url)
         eq_(res.status_code, 200)
         obj = json.loads(res.content)['objects'][0]
         eq_(obj['status'], amo.STATUS_PUBLIC)
         eq_('latest_version_status' in obj, False)
 
     def test_addon_type_anon(self):
-        res = self.client.get(self.list_url + ({'type': 'app'},))
+        res = self.client.get(self.url + ({'type': 'app'},))
         eq_(res.status_code, 200)
         obj = json.loads(res.content)['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
 
-        res = self.client.get(self.list_url + ({'type': 'vindaloo'},))
+        res = self.client.get(self.url + ({'type': 'vindaloo'},))
         eq_(res.status_code, 400)
         error = json.loads(res.content)['error_message']
         eq_(error.keys(), ['type'])
 
-        res = self.client.get(self.list_url + ({'type': 'persona'},))
+        res = self.client.get(self.url + ({'type': 'persona'},))
         eq_(res.status_code, 200)
         objs = json.loads(res.content)['objects']
         eq_(len(objs), 0)
@@ -201,7 +201,7 @@ class TestApiReviewer(BaseOAuth, ESTestCase):
         self.access = Access.objects.create(key='foo', secret=generate(),
                                             user=self.user)
         self.client = OAuthClient(self.access, api_name=api_name)
-        self.list_url = ('api_dispatch_list', {'resource_name': 'search'})
+        self.url = list_url('search')
 
         self.webapp = Webapp.objects.get(pk=337141)
         self.category = Category.objects.create(name='test',
@@ -210,22 +210,22 @@ class TestApiReviewer(BaseOAuth, ESTestCase):
         self.refresh()
 
     def test_status_reviewer(self):
-        res = self.client.get(self.list_url + ({'status': 'public'},))
+        res = self.client.get(self.url + ({'status': 'public'},))
         eq_(res.status_code, 200)
         obj = json.loads(res.content)['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
 
-        res = self.client.get(self.list_url + ({'status': 'rejected'},))
+        res = self.client.get(self.url + ({'status': 'rejected'},))
         eq_(res.status_code, 200)
         objs = json.loads(res.content)['objects']
         eq_(len(objs), 0)
 
-        res = self.client.get(self.list_url + ({'status': 'any'},))
+        res = self.client.get(self.url + ({'status': 'any'},))
         eq_(res.status_code, 200)
         obj = json.loads(res.content)['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
 
-        res = self.client.get(self.list_url + ({'status': 'vindaloo'},))
+        res = self.client.get(self.url + ({'status': 'vindaloo'},))
         eq_(res.status_code, 400)
         error = json.loads(res.content)['error_message']
         eq_(error.keys(), ['status'])
@@ -233,24 +233,24 @@ class TestApiReviewer(BaseOAuth, ESTestCase):
     def test_status_value_packaged(self):
         # When packaged we also include the latest version status.
         self.webapp.update(is_packaged=True)
-        res = self.client.get(self.list_url)
+        res = self.client.get(self.url)
         eq_(res.status_code, 200)
         obj = json.loads(res.content)['objects'][0]
         eq_(obj['status'], amo.STATUS_PUBLIC)
         eq_(obj['latest_version_status'], amo.STATUS_PUBLIC)
 
     def test_addon_type_reviewer(self):
-        res = self.client.get(self.list_url + ({'type': 'app'},))
+        res = self.client.get(self.url + ({'type': 'app'},))
         eq_(res.status_code, 200)
         obj = json.loads(res.content)['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
 
-        res = self.client.get(self.list_url + ({'type': 'persona'},))
+        res = self.client.get(self.url + ({'type': 'persona'},))
         eq_(res.status_code, 200)
         objs = json.loads(res.content)['objects']
         eq_(len(objs), 0)
 
-        res = self.client.get(self.list_url + ({'type': 'vindaloo'},))
+        res = self.client.get(self.url + ({'type': 'vindaloo'},))
         eq_(res.status_code, 400)
         error = json.loads(res.content)['error_message']
         eq_(error.keys(), ['type'])
@@ -289,3 +289,44 @@ class TestCategoriesWithCreatured(BaseOAuth, ESTestCase):
         data = json.loads(res.content)
         eq_(len(data['objects']), 2)
         eq_(len(data['creatured']), 0)
+
+
+class TestApiFlags(BaseOAuth, ESTestCase):
+    fixtures = fixture('webapp_337141')
+    url = list_url('search')
+
+    def setUp(self):
+        self.client = OAuthClient(None)
+        self.webapp = Webapp.objects.get(pk=337141)
+
+    def _flag(self, adult=False, child=False):
+        Flag.objects.create(addon=self.webapp, adult_content=adult,
+                            child_content=child)
+        self.webapp.save()
+        self.refresh()
+
+    def test_no_flags(self):
+        self.webapp.save()
+        self.refresh()
+        res = self.client.get(self.url + ({'q': 'something'},))
+        eq_(res.status_code, 200)
+        obj = json.loads(res.content)['objects'][0]
+        eq_(obj['slug'], self.webapp.app_slug)
+
+    def test_adult(self):
+        self._flag(adult=True)
+        res = self.client.get(self.url + (
+            {'q': 'something',
+             'region': list(mkt.regions.ADULT_EXCLUDED)[0].slug},))
+        eq_(res.status_code, 200)
+        objs = json.loads(res.content)['objects']
+        eq_(len(objs), 0, 'App with adult_content not removed from search.')
+
+    def test_child(self):
+        self._flag(child=True)
+        res = self.client.get(self.url + (
+            {'q': 'something',
+             'region': list(mkt.regions.CHILD_EXCLUDED)[0].slug},))
+        eq_(res.status_code, 200)
+        objs = json.loads(res.content)['objects']
+        eq_(len(objs), 0, 'App with child_content not removed from search.')

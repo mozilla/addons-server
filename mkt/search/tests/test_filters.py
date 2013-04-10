@@ -7,7 +7,9 @@ from django.contrib.auth.models import AnonymousUser
 
 import amo
 from addons.models import Category
+from mkt import regions
 from mkt.api.tests.test_oauth import BaseOAuth
+from mkt.regions import set_region
 from mkt.search.forms import ApiSearchForm, DEVICE_CHOICES_IDS
 from mkt.search.views import _filter_search
 from mkt.site.fixtures import fixture
@@ -24,6 +26,8 @@ class TestSearchFilters(BaseOAuth):
 
         self.category = Category.objects.create(name='games',
                                                 type=amo.ADDON_WEBAPP)
+        # Pick a region that has relatively few filters.
+        set_region(regions.UK.slug)
 
     def _grant(self, rules):
         self.grant_permission(self.profile, rules)
@@ -100,3 +104,21 @@ class TestSearchFilters(BaseOAuth):
     def test_app_type(self):
         qs = self._filter(self.req, {'app_type': 'hosted'})
         eq_(qs['filter']['term'], {'app_type': 1})
+
+    def test_region(self):
+        # Test regions that affect search filters.
+
+        # Test region with no filters.
+        qs = self._filter(self.req, {'q': 'yolo'})
+        qs_str = json.dumps(qs)
+        ok_('not' not in qs_str)
+
+        # Test child-excluded region.
+        set_region(list(regions.CHILD_EXCLUDED)[0].slug)
+        qs = self._filter(self.req, {'q': 'yolo'})
+        eq_(qs['filter']['not'], {'filter': {'term': {'flag_child': True}}})
+
+        # Test adult-excluded region.
+        set_region(list(regions.ADULT_EXCLUDED)[0].slug)
+        qs = self._filter(self.req, {'q': 'yolo'})
+        eq_(qs['filter']['not'], {'filter': {'term': {'flag_adult': True}}})

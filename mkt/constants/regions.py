@@ -18,7 +18,7 @@ class REGION(object):
 
     slug::
         The text that gets stored in the cookie or in ?region=<slug>.
-        Use the ISO-3166 code please. 
+        Use the ISO-3166 code please.
 
     mcc::
         Don't know what an ITU MCC is? They're useful for carrier billing.
@@ -33,6 +33,13 @@ class REGION(object):
 
     weight::
         Determines sort order (after slug).
+
+    exclude_child::
+        If true no apps flagged as containing child content will be shown.
+
+    exclude_adult::
+        If true no apps flagged as containing adult content will be shown.
+
     """
     id = None
     name = slug = ''
@@ -43,6 +50,8 @@ class REGION(object):
     weight = 0
     ratingsbodies = ()
     has_payments = False
+    exclude_child = False
+    exclude_adult = False
 
 
 class WORLDWIDE(REGION):
@@ -50,6 +59,7 @@ class WORLDWIDE(REGION):
     name = _lazy(u'Worldwide')
     slug = 'worldwide'
     weight = -1
+    exclude_child = True
 
 
 class US(REGION):
@@ -59,6 +69,7 @@ class US(REGION):
     mcc = 310
     weight = 1
     has_payments = True
+    exclude_child = True
 
 
 class UK(REGION):
@@ -108,6 +119,7 @@ class VE(REGION):
     default_language = 'es'
     mcc = 734
     has_payments = True
+    exclude_adult = True
 
 
 class PL(REGION):
@@ -152,3 +164,8 @@ ALL_PAID_REGIONS = frozenset(r for r in ALL_REGIONS if r.has_payments)
 ALL_REGION_IDS = sorted(REGIONS_CHOICES_ID_DICT.keys())
 ALL_PAID_REGION_IDS = sorted(r.id for r in ALL_PAID_REGIONS)
 REGION_IDS = sorted(REGIONS_CHOICES_ID_DICT.keys())[1:]
+
+CHILD_EXCLUDED = frozenset(r for r in ALL_REGIONS if r.exclude_child)
+CHILD_EXCLUDED_IDS = sorted(r.id for r in CHILD_EXCLUDED)
+ADULT_EXCLUDED = frozenset(r for r in ALL_REGIONS if r.exclude_adult)
+ADULT_EXCLUDED_IDS = sorted(r.id for r in ADULT_EXCLUDED)

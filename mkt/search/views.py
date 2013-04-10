@@ -2,6 +2,7 @@ from django.shortcuts import redirect
 
 import jingo
 from tower import ugettext as _
+from elasticutils.contrib.django import F
 
 import amo
 import amo.utils
@@ -10,6 +11,8 @@ from apps.addons.models import Category
 from apps.search.views import name_query, WebappSuggestionsAjax
 
 import mkt
+from mkt.constants import regions
+from mkt.regions import get_region_id
 from mkt.webapps.models import Webapp
 
 from . import forms
@@ -87,6 +90,13 @@ def _filter_search(request, qs, query, filters=None, sorting=None,
 
         # Sort by a default if there was no query so results are predictable.
         qs = qs.order_by(sorting_default)
+
+    # Filter by adult/child flags.
+    region_id = get_region_id()
+    if region_id in regions.CHILD_EXCLUDED_IDS:
+        qs = qs.filter(~F(flag_child=True))
+    if region_id in regions.ADULT_EXCLUDED_IDS:
+        qs = qs.filter(~F(flag_adult=True))
 
     return qs
 
