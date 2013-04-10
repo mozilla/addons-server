@@ -17,7 +17,7 @@ from mkt.api.authentication import (AppOwnerAuthorization,
                                     PermissionAuthorization,
                                     SharedSecretAuthentication)
 from mkt.api.authorization import AnonymousReadOnlyAuthorization
-from mkt.api.base import MarketplaceModelResource
+from mkt.api.base import CORSResource, MarketplaceModelResource
 from mkt.api.resources import AppResource, UserResource
 from mkt.ratings.forms import ReviewForm
 from mkt.webapps.models import Webapp
@@ -26,7 +26,7 @@ from reviews.models import Review, ReviewFlag
 log = commonware.log.getLogger('z.api')
 
 
-class RatingResource(MarketplaceModelResource):
+class RatingResource(CORSResource, MarketplaceModelResource):
 
     app = fields.ToOneField(AppResource, 'addon', readonly=True)
     user = fields.ToOneField(UserResource, 'user', readonly=True, full=True)
@@ -201,7 +201,7 @@ class RatingResource(MarketplaceModelResource):
                                              review_id=kwargs['review_id'])
 
 
-class RatingFlagResource(MarketplaceModelResource):
+class RatingFlagResource(CORSResource, MarketplaceModelResource):
 
     class Meta:
         queryset = ReviewFlag.objects.all()
