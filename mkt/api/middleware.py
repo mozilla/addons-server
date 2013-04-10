@@ -70,6 +70,10 @@ class CORSMiddleware(object):
                 # to be set.
                 response['Access-Control-Allow-Headers'] = 'Content-Type'
             response['Access-Control-Allow-Methods'] = ', '.join(options)
+
+        # The headers that the response will be able to access.
+        response['Access-Control-Expose-Headers'] = ('X-API-Version, '
+                                                     'X-API-Status')
         return response
 
 v_re = re.compile('^/api/v(?P<version>\d+)/|^/api/')

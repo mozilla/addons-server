@@ -4,7 +4,7 @@ import json
 from django.core import mail
 
 from mock import patch
-from nose.tools import eq_
+from nose.tools import eq_, ok_
 
 from market.models import Price, PriceCurrency
 from mkt.api.tests.test_oauth import BaseOAuth
@@ -64,17 +64,14 @@ class TestPrices(BaseOAuth):
         self.assertSetEqual(self.get_currencies(data), ['USD'])
 
     def test_has_cors(self):
-        res = self.client.get(self.get_url)
-        eq_(res['Access-Control-Allow-Origin'], '*')
-        eq_(res['Access-Control-Allow-Methods'], 'GET, OPTIONS')
+        self.assertCORS(self.client.get(self.get_url), 'get')
 
     @patch('mkt.webpay.resources.PriceResource.dehydrate_prices')
     def test_other_cors(self, prices):
         prices.side_effect = ValueError
         res = self.client.get(self.get_url)
         eq_(res.status_code, 500)
-        eq_(res['Access-Control-Allow-Origin'], '*')
-        eq_(res['Access-Control-Allow-Methods'], 'GET, OPTIONS')
+        self.assertCORS(res, 'get')
 
     def test_locale(self):
         self.make_currency(5, self.price, 'BRL')

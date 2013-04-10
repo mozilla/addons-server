@@ -409,6 +409,21 @@ class TestCase(RedisTest, test_utils.TestCase):
             ok_(isinstance(exc.response, response),
                 'Expected %s, got %s' % (response, exc.response.__class__))
 
+    def assertCORS(self, res, *verbs):
+        """
+        Determines if a response has suitable CORS headers. Appends 'OPTIONS'
+        on to the list of verbs.
+        """
+        eq_(res['Access-Control-Allow-Origin'], '*')
+        eq_(res['Access-Control-Expose-Headers'],
+            'X-API-Version, X-API-Status')
+
+        verbs = map(str.upper, verbs) + ['OPTIONS',]
+        actual = res['Access-Control-Allow-Methods'].split(', ')
+        self.assertSetEqual(verbs, actual)
+        if set(['PATCH', 'POST', 'PUT']).intersection(set(actual)):
+            eq_(res['Access-Control-Allow-Headers'], 'Content-Type')
+
     def make_premium(self, addon, price='1.00', currencies=None):
         price_obj = Price.objects.create(price=price)
         if currencies:
