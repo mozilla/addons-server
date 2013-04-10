@@ -37,7 +37,8 @@ from lib.crypto import packaged
 from lib.crypto.tests import mock_sign
 import mkt.constants.reviewers as rvw
 from mkt.reviewers.models import ThemeLock
-from mkt.reviewers.views import _do_sort, _get_themes, _queue_to_apps
+from mkt.reviewers.views import (_do_sort, _get_themes, _queue_to_apps,
+                                 themes_more)
 from mkt.site.fixtures import fixture
 from mkt.submit.tests.test_views import BasePackagedAppTest
 from mkt.webapps.models import Webapp
@@ -1967,6 +1968,22 @@ class ThemeReviewTestMixin(object):
         self.reviewer_count += 1
         return user
 
+    def themes_more_helper(self):
+        for x in range(rvw.THEME_INITIAL_LOCKS * 2):
+            addon_factory(type=amo.ADDON_PERSONA, status=self.status)
+
+        reviewer = self.create_and_become_reviewer()
+        req = RequestFactory().get(reverse('reviewers.themes.more'))
+        req.user = reviewer.user
+        req.groups = req.user.get_profile().groups.all()
+        req.TABLET = True
+
+        themes = _get_themes(req, req.user.get_profile(), initial=True,
+                             flagged=self.flagged)
+        eq_(len(themes), 2)
+
+        return req, themes
+
     @mock.patch.object(rvw, 'THEME_INITIAL_LOCKS', 2)
     def test_basic_queue(self):
         """
@@ -2011,6 +2028,32 @@ class ThemeReviewTestMixin(object):
             actual = _get_themes(mock.Mock(), reviewer, initial=False,
                                  flagged=self.flagged)
             eq_(actual, expected)
+
+    @mock.patch.object(rvw, 'THEME_INITIAL_LOCKS', 2)
+    def test_themes_more(self):
+        """Check data-id of async'ed grabbed themes."""
+        req, themes = self.themes_more_helper()
+
+        res = themes_more(req, flagged=self.flagged)
+
+        themes = pq(json.loads(res.content)['html'])('.theme')
+        eq_(pq(themes[0]).attr('data-id'), '2')
+        eq_(pq(themes[1]).attr('data-id'), '3')
+
+    @mock.patch.object(rvw, 'THEME_INITIAL_LOCKS', 2)
+    def test_themes_more_expired(self):
+        """
+        Check data-id of async'ed grabbed themes, should ignore expired
+        theme locks.
+        """
+        req, themes = self.themes_more_helper()
+        ThemeLock.objects.update(expiry=self.days_ago(1))
+
+        res = themes_more(req, flagged=self.flagged)
+
+        themes = pq(json.loads(res.content)['html'])('.theme')
+        eq_(pq(themes[0]).attr('data-id'), '0')
+        eq_(pq(themes[1]).attr('data-id'), '1')
 
     @mock.patch.object(rvw, 'THEME_INITIAL_LOCKS', 2)
     def test_top_off(self):
