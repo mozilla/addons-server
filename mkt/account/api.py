@@ -106,7 +106,7 @@ class LoginResource(CORSResource, MarketplaceResource):
 class FeedbackResource(PotatoCaptchaResource, CORSResource,
                        MarketplaceResource):
     feedback = fields.CharField(attribute='feedback')
-    platform = fields.CharField(attribute='platform', blank=True)
+    platform = fields.CharField(attribute='platform', null=True)
     chromeless = fields.CharField(attribute='chromeless', null=True)
     from_url = fields.CharField(attribute='from_url', null=True)
     user = fields.CharField(attribute='user', null=True)
