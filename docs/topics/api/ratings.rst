@@ -48,8 +48,12 @@ _`List`
                     "resource_uri": "/api/v1/apps/rating/19/",
                     "report_spam": "/api/v1/apps/rating/19/flag",
                     "user": {
-                        "id": "198",
-                        "username": "chuck"
+                        "display_name": "chuck",
+                        "resource_uri": "/api/v1/account/settings/27/"
+                    },
+                    "version": {
+                        "name": "1.0",
+                        "latest": true
                     }
                 }
             ]
@@ -74,14 +78,19 @@ _`Detail`
     .. code-block:: json
 
         {
-          "app": "/api/v1/apps/app/18/",
-          "body": "This app is top notch. Aces in my book!",
-          "rating": 5,
-          "resource_uri": "/api/v1/apps/rating/19/",
-          "user": {
-              "id": "198",
-              "username": "chuck"
-          }
+            "app": "/api/v1/apps/app/18/",
+            "body": "This app is top notch. Aces in my book!",
+            "for_old_version": false,
+            "rating": 5,
+            "resource_uri": "/api/v1/apps/rating/19/",
+            "user": {
+                "display_name": "chuck",
+                "resource_uri": "/api/v1/account/settings/27/"
+            },
+            "version": {
+                "name": "1.0",
+                "latest": true
+            }
         }
 
     :status 200: success.

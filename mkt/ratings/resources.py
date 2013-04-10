@@ -10,6 +10,7 @@ from tastypie.utils import trailing_slash
 import amo
 from lib.metrics import record_action
 
+from mkt.account.api import AccountResource
 from mkt.api.authentication import (AppOwnerAuthorization,
                                     OAuthAuthentication,
                                     OptionalOAuthAuthentication,
@@ -18,7 +19,7 @@ from mkt.api.authentication import (AppOwnerAuthorization,
                                     SharedSecretAuthentication)
 from mkt.api.authorization import AnonymousReadOnlyAuthorization
 from mkt.api.base import CORSResource, MarketplaceModelResource
-from mkt.api.resources import AppResource, UserResource
+from mkt.api.resources import AppResource
 from mkt.ratings.forms import ReviewForm
 from mkt.webapps.models import Webapp
 from reviews.models import Review, ReviewFlag
@@ -29,7 +30,7 @@ log = commonware.log.getLogger('z.api')
 class RatingResource(CORSResource, MarketplaceModelResource):
 
     app = fields.ToOneField(AppResource, 'addon', readonly=True)
-    user = fields.ToOneField(UserResource, 'user', readonly=True, full=True)
+    user = fields.ToOneField(AccountResource, 'user', readonly=True, full=True)
     report_spam = fields.CharField()
 
     class Meta:
@@ -51,6 +52,16 @@ class RatingResource(CORSResource, MarketplaceModelResource):
         }
 
         ordering = ['created']
+
+    def dehydrate(self, bundle):
+        bundle = super(RatingResource, self).dehydrate(bundle)
+        bundle.data['version'] = None
+        if hasattr(bundle.obj, 'version') and bundle.obj.version:
+            bundle.data['version'] = {
+                'name': bundle.obj.version.version,
+                'latest': bundle.obj.addon.latest_version == bundle.obj.version
+            }
+        return bundle
 
     def dehydrate_report_spam(self, bundle):
         return self._build_reverse_url(
