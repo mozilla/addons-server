@@ -1,6 +1,7 @@
 import csv
 import cStringIO
 import itertools
+import logging
 import time
 from types import GeneratorType
 from datetime import date, timedelta
@@ -36,6 +37,7 @@ from amo.utils import memoize
 from .models import CollectionCount, Contribution, DownloadCount, UpdateCount
 
 
+logger = logging.getLogger('z.apps.stats.views')
 SERIES_GROUPS = ('day', 'week', 'month')
 SERIES_GROUPS_DATE = ('date', 'week', 'month')  # Backwards compat.
 SERIES_FORMATS = ('json', 'csv')
@@ -503,7 +505,12 @@ def _monolith_site_query(period, start, end, field):
             yield {'date': result['date'].strftime('%Y-%m-%d'),
                    'data': {field: result['count']}}
 
-    return list(_get_data()), _CACHED_KEYS
+    try:
+        return list(_get_data()), _CACHED_KEYS
+    except ValueError, e:
+        if len(e.args) > 0:
+            logger.error(e.args[0])
+        return [], _CACHED_KEYS
 
 
 @memoize(prefix='global_stats', time=60 * 60)
