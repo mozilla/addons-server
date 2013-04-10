@@ -513,7 +513,9 @@ def _monolith_site_query(period, start, end, field):
         return [], _CACHED_KEYS
 
 
-@memoize(prefix='global_stats', time=60 * 60)
+# XXX deactivated until we're happy with monolith
+#@memoize(prefix='global_stats', time=60 * 60)
+#
 def _site_query(period, start, end, field=None, request=None):
     old_version = request and request.GET.get('old_version', '0') or '0'
 
