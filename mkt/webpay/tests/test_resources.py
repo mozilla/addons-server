@@ -7,8 +7,10 @@ from mock import patch
 from nose.tools import eq_
 
 from market.models import Price, PriceCurrency
+from mkt.api.base import list_url
 from mkt.api.tests.test_oauth import BaseOAuth
 from mkt.constants import regions
+from mkt.webpay.models import ProductIcon
 from mkt.site.fixtures import fixture
 from stats.models import Contribution
 
@@ -156,3 +158,60 @@ class TestNotification(BaseOAuth):
         self.contribution.update(uuid=None)
         res = self.client.patch(self.get_url, data=json.dumps({}))
         eq_(res.status_code, 404)
+
+
+class TestProductIconResource(BaseOAuth):
+    fixtures = fixture('webapp_337141', 'user_2519')
+
+    def setUp(self):
+        super(TestProductIconResource, self).setUp(api_name='webpay')
+        self.list_url = list_url('product/icon')
+        p = patch('mkt.webpay.resources.tasks.fetch_product_icon')
+        self.fetch_product_icon = p.start()
+        self.addCleanup(p.stop)
+        self.data = {
+            'ext_size': 128,
+            'ext_url': 'http://someappnoreally.com/icons/icon_128.png',
+            'size': 64
+        }
+
+    def post(self, data, with_perms=True):
+        if with_perms:
+            self.grant_permission(self.profile, 'ProductIcon:Create')
+        return self.client.post(self.list_url, data=json.dumps(data))
+
+    def test_list_allowed(self):
+        self._allowed_verbs(self.list_url, ['get', 'post'])
+
+    def test_missing_fields(self):
+        res = self.post({'ext_size': 1})
+        eq_(res.status_code, 400)
+
+    def test_post(self):
+        res = self.post(self.data)
+        eq_(res.status_code, 202)
+        self.fetch_product_icon.delay.assert_called_with(self.data['ext_url'],
+                                                         self.data['ext_size'],
+                                                         self.data['size'])
+
+    def test_post_without_perms(self):
+        res = self.post(self.data, with_perms=False)
+        eq_(res.status_code, 401)
+
+    def test_anon_get(self):
+        data = {
+            'ext_size': 128,
+            'ext_url': 'http://someappnoreally.com/icons/icon_128.png',
+            'size': 64,
+            'format': 'png'
+        }
+        icon = ProductIcon.objects.create(**data)
+
+        # We don't need to filter by these:
+        data.pop('size')
+        data.pop('format')
+        res = self.anon.get(self.list_url, data=data)
+        eq_(res.status_code, 200)
+
+        ob = json.loads(res.content)['objects'][0]
+        eq_(ob['url'], icon.url())

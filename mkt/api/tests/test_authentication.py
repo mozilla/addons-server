@@ -81,22 +81,6 @@ class TestAppOwnerAuthorization(OwnerAuthorization):
                                       self.app))
 
 
-class TestPermissionAuthorization(OwnerAuthorization):
-
-    def setUp(self):
-        super(TestPermissionAuthorization, self).setUp()
-        self.auth = authentication.PermissionAuthorization('Drinkers', 'Beer')
-        self.app = app_factory()
-
-    def test_has_role(self):
-        self.grant_permission(self.profile, 'Drinkers:Beer')
-        ok_(self.auth.is_authorized(self.request(self.profile), self.app))
-
-    def test_not_has_role(self):
-        self.grant_permission(self.profile, 'Drinkers:Scotch')
-        ok_(not self.auth.is_authorized(self.request(self.profile), self.app))
-
-
 class TestOAuthAuthentication(TestCase):
     fixtures = fixture('user_2519', 'group_admin', 'group_editor')
 

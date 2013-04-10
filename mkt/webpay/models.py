@@ -33,4 +33,4 @@ class ProductIcon(ModelBase):
         return '%s/%s.%s' % (self.pk / 1000, self.pk, ext)
 
     class Meta:
-        db_table = 'webpay_product_icons'
+        db_table = 'payment_assets'

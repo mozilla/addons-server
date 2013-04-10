@@ -1,14 +1,25 @@
-from tastypie import fields
+import commonware.log
+from tastypie import fields, http
+from tastypie.exceptions import ImmediateHttpResponse
+from tastypie.validation import CleanedDataFormValidation
 
 from amo.helpers import absolutify, urlparams
 from amo.urlresolvers import reverse
 from amo.utils import send_mail_jinja
-from mkt.api.authentication import (PermissionAuthorization,
+from mkt.api.authentication import (OptionalOAuthAuthentication,
                                     OAuthAuthentication)
-from mkt.api.base import CORSResource, MarketplaceModelResource
-from mkt.webpay.forms import FailureForm
+from mkt.api.authorization import (AnonymousReadOnlyAuthorization,
+                                   PermissionAuthorization)
+from mkt.api.base import (CORSResource, MarketplaceResource,
+                          MarketplaceModelResource)
+from mkt.webpay.forms import FailureForm, ProductIconForm
+from mkt.webpay.models import ProductIcon
 from market.models import Price
 from stats.models import Contribution
+
+from . import tasks
+
+log = commonware.log.getLogger('z.webpay')
 
 
 class PriceResource(CORSResource, MarketplaceModelResource):
@@ -87,3 +98,36 @@ class FailureNotificationResource(MarketplaceModelResource):
                         'webpay/failure.txt',
                         data, recipient_list=owners)
         return bundle
+
+
+class ProductIconResource(CORSResource, MarketplaceModelResource):
+    url = fields.CharField(readonly=True)
+
+    class Meta(MarketplaceResource.Meta):
+        queryset = ProductIcon.objects.filter()
+        authentication = OptionalOAuthAuthentication()
+        authorization = AnonymousReadOnlyAuthorization(
+                authorizer=PermissionAuthorization('ProductIcon', 'Create'))
+        detail_allowed_methods = ['get']
+        list_allowed_methods = ['get', 'post']
+        resource_name = 'product/icon'
+        fields = ['ext_url', 'ext_size', 'size']
+        filtering = {
+            'ext_url': 'exact',
+            'ext_size': 'exact',
+            'size': 'exact',
+        }
+        validation = CleanedDataFormValidation(form_class=ProductIconForm)
+
+    def dehydrate_url(self, bundle):
+        return bundle.obj.url()
+
+    def obj_create(self, bundle, request, **kwargs):
+        log.info('Resizing product icon %s @ %s to %s for webpay'
+                 % (bundle.data['ext_url'], bundle.data['ext_size'],
+                    bundle.data['size']))
+        tasks.fetch_product_icon.delay(bundle.data['ext_url'],
+                                       bundle.data['ext_size'],
+                                       bundle.data['size'])
+        # Tell the client that deferred processing will create an object.
+        raise ImmediateHttpResponse(response=http.HttpAccepted())
