@@ -154,6 +154,13 @@ Feedback
 
     **Request**
 
+    :param chromeless: (optional) "Yes" or "No", indicating whether the user
+                       agent sending the feedback is chromeless.
+    :param feedback: (required) the text of the feedback.
+    :param from_url: (optional) the URL from which the feedback was sent.
+    :param platform: (optional) a description of the platform from which the
+                     feedback is being sent.
+
     .. code-block:: json
 
         {

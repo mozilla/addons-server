@@ -296,7 +296,10 @@ class GenericObject(dict):
     subclass.
     """
     def __getattr__(self, name):
-        return self.__getitem__(name)
+        try:
+            return self.__getitem__(name)
+        except KeyError:
+            return None
 
     def __setattr__(self, name, value):
         self.__setitem__(name, value)

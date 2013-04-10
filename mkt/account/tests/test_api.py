@@ -241,6 +241,10 @@ class TestFeedbackHandler(ThrottleTests, TestPotatoCaptcha, BaseOAuth):
         self._test_bad_api_potato_data(tuber_res, tuber_data)
         self._test_bad_api_potato_data(potato_res, potato_data)
 
+    def test_missing_optional_field(self):
+        res, data = self._call(data={'platform': None})
+        eq_(201, res.status_code)
+
     def test_send_bad_data(self):
         """
         One test to ensure that FeedbackForm is doing its validation duties.
