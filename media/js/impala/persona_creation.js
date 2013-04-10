@@ -82,6 +82,14 @@
         var $licenseField = $('#id_license');
 
         function licenseUpdate(updateList) {
+            // Select "Yes" if nothing was selected (this is the implied answer).
+            $('#cc-chooser .radios').each(function() {
+                var $this = $(this);
+                if (!$this.find('input:checked').length) {
+                    $this.find('input[value="0"]').prop('checked', true);
+                }
+            });
+
             var licenseClass;
             if ($('input[data-cc="copyr"]:checked').length) {
                 licenseClass = 'copyr';
@@ -145,14 +153,6 @@
             // Check the appropriate radio in the license list.
             _.each(licenseClassesById[+$licenseField.val()].split(' '), function(cc) {
                 $('input[type=radio][data-cc="' + cc + '"]').prop('checked', true);
-            });
-
-            // Select "Yes" if nothing was selected (this is the implied answer).
-            $('#cc-chooser .radios').each(function() {
-                var $this = $(this);
-                if (!$this.find('input:checked').length) {
-                    $this.find('input[value="0"]').prop('checked', true);
-                }
             });
         }
 
