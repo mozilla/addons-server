@@ -104,7 +104,7 @@
 
 
   {% set previews = product.all_previews %}
-  {% if product.description or previews or product.developer_comments %}
+  {% if product.description or previews %}
   <h2 id="more-about">{{ _('Description') }}</h2>
   <div class="article userinput">
     <p{{ product.description|locale_html }}>{{ product.description|nl2br }}</p>
@@ -119,13 +119,6 @@
       {% endfor %}
     {% endif %}
 
-    {% if product.developer_comments %}
-      <h2>{{ _('Developer Comments') }}</h2>
-      <div class="prose userinput">
-        <p{{ product.developer_comments|locale_html }}>{{
-          product.developer_comments|nl2br }}</p>
-      </div>
-    {% endif %}
   </div>{# /article #}
   {% else %}
     <h2 id="more-about">{{ _('More about this app') }}</h2>

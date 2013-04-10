@@ -933,12 +933,11 @@ class DevNewsletterForm(happyforms.Form):
 
 
 class AppFormTechnical(addons.forms.AddonFormBase):
-    developer_comments = TransField(widget=TransTextarea, required=False)
     flash = forms.BooleanField(required=False)
 
     class Meta:
         model = Addon
-        fields = ('developer_comments', 'public_stats')
+        fields = 'public_stats',
 
     def __init__(self, *args, **kw):
         super(AppFormTechnical, self).__init__(*args, **kw)

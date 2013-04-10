@@ -76,8 +76,7 @@
 
     {% set summary_len = product.summary.__unicode__()|length if product.summary else 0 %}
     {% set descr_len = product.description.__unicode__()|length if product.description else 0 %}
-    {% set comments_len = product.developer_comments.__unicode__()|length if product.developer_comments else 0 %}
-    {% set super_long = (summary_len + descr_len + comments_len) > 700 %}
+    {% set super_long = (summary_len + descr_len) > 700 %}
     <section class="main blurbs infobox">
       <div>
         <p class="summary">
@@ -86,15 +85,11 @@
             <a href="#" class="show-toggle" data-toggle-text="{{ _('Less&hellip;') }}">{{ _('More&hellip;') }}</a>
           {% endif %}
         </p>
-        {% if descr_len or comments_len or product.is_packaged %}
+        {% if descr_len or product.is_packaged %}
           <div{% if super_long %} class="collapsed"{% endif %}>
             {% if descr_len %}
               <h3>{{ _('Description') }}</h3>
               <div class="description">{{ product.description|nl2br }}</div>
-            {% endif %}
-            {% if comments_len %}
-              <h3>{{ _('Developer Comments') }}</h3>
-              <div class="developer-comments">{{ product.developer_comments|nl2br }}</div>
             {% endif %}
             {% if product.is_packaged %}
               <h3>{{ _('Version') }}</h3>

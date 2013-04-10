@@ -262,15 +262,6 @@ class TestDetail(DetailBase):
         description = self.get_pq()('.description')
         eq_(description.text(), self.app.description)
 
-    def test_no_developer_comments(self):
-        eq_(self.get_pq()('.developer-comments').length, 0)
-
-    def test_has_developer_comments(self):
-        self.app.developer_comments = 'hot ish is coming brah'
-        self.app.save()
-        eq_(self.get_pq()('.developer-comments').text(),
-            self.app.developer_comments)
-
     def test_has_version(self):
         self.app.summary = ''
         self.app.description = ''
@@ -281,9 +272,6 @@ class TestDetail(DetailBase):
         version = self.get_pq()('.package-version')
         eq_(version.text(),
             'Latest version: %s' % str(self.app.current_version))
-
-    def test_no_support(self):
-        eq_(self.get_pq()('.developer-comments').length, 0)
 
     def test_has_support_email(self):
         self.app.support_email = 'gkoberger@mozilla.com'

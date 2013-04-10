@@ -1100,48 +1100,30 @@ class TestEditTechnical(TestEdit):
     def test_form_url(self):
         self.check_form_url('technical')
 
-    def test_log(self):
-        data = formset(developer_comments='This is a test')
-        o = ActivityLog.objects
-        eq_(o.count(), 0)
-        r = self.client.post(self.edit_url, data)
-        self.assertNoFormErrors(r)
-        eq_(o.filter(action=amo.LOG.EDIT_PROPERTIES.id).count(), 1)
-
     def test_toggles(self):
         # Turn everything on.
-        data = dict(developer_comments='Test comment!',
-                    flash='checked')
+        data = dict(flash='checked')
         r = self.client.post(self.edit_url, formset(**data))
         self.assertNoFormErrors(r)
-        expected = dict(developer_comments='Test comment!',
-                        uses_flash=True)
-        self.compare(expected)
+        self.compare({'uses_flash': True})
 
         # And off.
-        r = self.client.post(self.edit_url,
-                             formset(developer_comments='Test comment!'))
-        expected.update(uses_flash=False)
-        self.compare(expected)
-
-    def test_devcomment_optional(self):
-        data = dict(developer_comments='')
-        r = self.client.post(self.edit_url, formset(**data))
-        self.assertNoFormErrors(r)
-
-        expected = dict(developer_comments='')
-        self.compare(expected)
+        r = self.client.post(self.edit_url)
+        self.compare({'uses_flash': False})
 
     def test_public_stats(self):
+        o = ActivityLog.objects
+        eq_(o.count(), 0)
+
         eq_(self.webapp.public_stats, False)
         assert not self.webapp.public_stats, (
             'Unexpectedly found public stats for app. Says Basta.')
 
-        data = dict(public_stats=True)
-        r = self.client.post(self.edit_url, formset(**data))
+        r = self.client.post(self.edit_url, formset(public_stats=True))
         self.assertNoFormErrors(r)
 
-        self.compare(dict(public_stats=True))
+        self.compare({'public_stats': True})
+        eq_(o.filter(action=amo.LOG.EDIT_PROPERTIES.id).count(), 1)
 
 
 class TestAdmin(TestEdit):

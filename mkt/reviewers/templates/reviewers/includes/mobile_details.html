@@ -19,18 +19,11 @@
     </li>
     {% endif %}
     {# Mobile description section. #}
-    {% if product.developer_comments or product.summary %}
+    {% if product.summary %}
       <li class="expandable c">
         <div class="expandcontent short">
           {% if product.summary %}
             <p{{ product.summary|locale_html }}>{{ product.summary|nl2br }}</p>
-          {% endif %}
-          {% if product.developer_comments %}
-            <h2>{{ _('Developer Comments') }}</h2>
-            <div class="prose userinput">
-              <p{{ product.developer_comments|locale_html }}>{{
-                product.developer_comments|nl2br }}</p>
-            </div>
           {% endif %}
         </div>
         <a href="#" class="showmore">{{ _('more...') }}</a>

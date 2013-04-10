@@ -15,32 +15,6 @@
       <tbody>
         <tr>
           <th>
-            <label data-for="developer_comments">
-              {{ _("Developer Comments") }}
-              {{ tip(None,
-                     _("Any information end users may want to know that
-                        isn't necessarily applicable to the app summary
-                        or description. Common uses include listing known
-                        major bugs, information on how to report bugs,
-                        anticipated release date of a new version, etc.")) }}
-            </label>
-          </th>
-          <td>
-            {% if editable %}
-              {{ form.developer_comments }}
-              {{ form.developer_comments.errors }}
-              {{ some_html_tip() }}
-            {% else %}
-              {% call empty_unless(addon.developer_comments) %}
-                <div id="developer_comments" class="prose">
-                  {{ addon|all_locales('developer_comments') }}
-                </div>
-              {% endcall %}
-            {% endif %}
-          </td>
-        </tr>
-        <tr>
-          <th>
             <label for="flash">
               {{ _('Uses Flash') }}
               {{ tip(None,
