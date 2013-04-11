@@ -204,7 +204,7 @@ Abusive apps and users may be reported to Marketplace staff.
 Report An Abusive App
 ---------------------
 
-.. http:post:: /api/abuse/app/
+.. http:post:: /api/v1/abuse/app/
 
     Report an abusive app to Marketplace staff.
 
@@ -247,7 +247,7 @@ Report An Abusive App
 Report An Abusive User
 ----------------------
 
-.. http:post:: /api/abuse/user/
+.. http:post:: /api/v1/abuse/user/
 
     Report an abusive user to Marketplace staff.
 

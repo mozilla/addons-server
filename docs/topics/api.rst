@@ -257,9 +257,9 @@ through the listing with. For example:
         {
             "meta": {
                 "limit": 3,
-                "next": "/api/apps/category/?limit=3&offset=6",
+                "next": "/api/v1/apps/category/?limit=3&offset=6",
                 "offset": 3,
-                "previous": "/api/apps/category/?limit=3&offset=0",
+                "previous": "/api/v1/apps/category/?limit=3&offset=0",
                 "total_count": 16
             }
         }
@@ -292,17 +292,17 @@ objects depends upon the listing in question. For example:
             "objects": [{
                 "id": "156",
                 "name": "Music",
-                "resource_uri": "/api/apps/category/156/",
+                "resource_uri": "/api/v1/apps/category/156/",
                 "slug": "music"
             }, {
                 "id": "157",
                 "name": "News",
-                "resource_uri": "/api/apps/category/157/",
+                "resource_uri": "/api/v1/apps/category/157/",
                 "slug": "news-weather"
             }, {
                 "id": "158",
                 "name": "Productivity",
-                "resource_uri": "/api/apps/category/158/",
+                "resource_uri": "/api/v1/apps/category/158/",
                 "slug": "productivity"
             }]
         }
