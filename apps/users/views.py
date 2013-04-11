@@ -582,6 +582,8 @@ def profile(request, user):
         else:
             items = user.addons_listed.exclude(type=amo.ADDON_PERSONA)
             personas = user.addons_listed.filter(type=amo.ADDON_PERSONA)
+            #XXX hack to protect performance until we have proper incremental loading
+            personas = personas[:60]
         addons = amo.utils.paginate(request,
                                     items.order_by('-weekly_downloads'))
     else:
@@ -601,7 +603,8 @@ def profile(request, user):
     data = {'profile': user, 'own_coll': own_coll, 'reviews': reviews,
             'fav_coll': fav_coll, 'edit_any_user': edit_any_user,
             'addons': addons, 'own_profile': own_profile,
-            'personas': personas}
+            'personas': personas,
+            'limited_personas': len(personas) == 60}
     if not own_profile:
         data['abuse_form'] = AbuseForm(request=request)
 
