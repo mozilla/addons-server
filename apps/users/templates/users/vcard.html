@@ -39,7 +39,7 @@
         {{ _('Number of add-ons developed') }}
       </th>
       <td class="num-addons">
-        {% with num=profile.addons_listed|length %}
+        {% with num=profile.num_addons_listed %}
           {% if num == 0 %}
              {{ _('{0} add-ons')|f(num) }}
           {% else %}
