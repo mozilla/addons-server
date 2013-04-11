@@ -44,7 +44,7 @@
              {{ _('{0} add-ons')|f(num) }}
           {% else %}
             <a href="{{ '#my-submissions' if is_profile else profile.get_url_path() }}">
-              {% trans num=num %}
+              {% trans cnt=num, num=num|numberfmt %}
                 {{ num }} add-on
               {% pluralize %}
                 {{ num }} add-ons
