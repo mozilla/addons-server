@@ -4,7 +4,6 @@ import json
 import time
 import uuid
 
-from django import forms
 from django.conf import settings
 
 import mock
@@ -22,7 +21,7 @@ from mkt.constants import apps
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
 from mkt.receipts.utils import create_test_receipt
-from mkt.receipts.views import test_verify
+from mkt.receipts.views import devhub_verify
 from services.verify import decode_receipt, settings as verify_settings
 from users.models import UserProfile
 from zadmin.models import DownloadSource
@@ -259,6 +258,8 @@ class TestReceiptVerify(amo.tests.TestCase):
     def get_mock(self, user=None, **kwargs):
         self.verify = mock.Mock()
         self.verify.return_value = json.dumps(kwargs)
+        self.verify.check_without_purchase.return_value = json.dumps(
+            {'status': 'ok'})
         self.verify.invalid.return_value = json.dumps({'status': 'invalid'})
         self.verify.user_id = user.pk if user else self.reviewer.pk
         return self.verify
@@ -430,6 +431,8 @@ class RawRequestFactory(RequestFactory):
                    amo.tests.AMOPaths.sample_key())
 @mock.patch.object(settings, 'WEBAPPS_RECEIPT_KEY',
                    amo.tests.AMOPaths.sample_key())
+@mock.patch.object(settings, 'SITE_URL', 'https://foo.com')
+@mock.patch.object(verify_settings, 'DOMAIN', 'foo.com')
 class TestDevhubReceipts(amo.tests.TestCase):
 
     def setUp(self):
@@ -471,11 +474,13 @@ class TestDevhubReceipts(amo.tests.TestCase):
 
     def test_verify_fails(self):
         req = RawRequestFactory().post('/', '')
-        res = test_verify(req, 'expired')
+        res = devhub_verify(req, 'expired')
         eq_(json.loads(res.content)['status'], 'invalid')
 
     def test_verify(self):
-        req = RawRequestFactory().post('/',
-            create_test_receipt('http://foo', 'expired'))
-        res = test_verify(req, 'expired')
+        url = absolutify(reverse('receipt.test.verify',
+                                 kwargs={'status': 'expired'}))
+        receipt = create_test_receipt('http://foo', 'expired')
+        req = RawRequestFactory().post(url, receipt)
+        res = devhub_verify(req, 'expired')
         eq_(json.loads(res.content)['status'], 'expired')

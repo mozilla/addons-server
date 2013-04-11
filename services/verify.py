@@ -2,7 +2,7 @@ import calendar
 from datetime import datetime
 import json
 from time import gmtime, time
-from urlparse import parse_qsl
+from urlparse import parse_qsl, urlparse
 from wsgiref.handlers import format_date_time
 
 from django.core.management import setup_environ
@@ -38,56 +38,167 @@ class VerificationError(Exception):
     pass
 
 
+class InvalidReceipt(Exception):
+    pass
+
+
+class RefundedReceipt(Exception):
+    pass
+
+
 class Verify:
 
     def __init__(self, receipt, environ):
         self.receipt = receipt
         self.environ = environ
         # These will be extracted from the receipt.
+        self.decoded = None
         self.addon_id = None
         self.user_id = None
         self.premium = None
         # This is so the unit tests can override the connection.
         self.conn, self.cursor = None, None
 
-    def __call__(self, check_purchase=True):
+    def setup_db(self):
         if not self.cursor:
             self.conn = mypool.connect()
             self.cursor = self.conn.cursor()
 
-        # Try and decode the receipt data.
-        # If its invalid, then just return invalid rather than give out any
-        # information.
+    def check_full(self):
+        """
+        This is the default that verify will use, this will
+        do the entire stack of checks.
+        """
+        try:
+            self.decoded = self.decode()
+            self.check_type()
+            self.check_db()
+            self.check_url()
+        except InvalidReceipt:
+            return self.invalid()
+
+        if self.premium != ADDON_PREMIUM:
+            log_info('Valid receipt, not premium')
+            return self.ok_or_expired()
+
+        try:
+            self.check_purchase()
+        except InvalidReceipt:
+            return self.invalid()
+        except RefundedReceipt:
+            return self.refund()
+
+        return self.ok_or_expired()
+
+    def check_without_purchase(self):
+        """
+        This is what the developer and reviewer receipts do, we aren't
+        expecting a purchase, but require a specific type and install.
+        """
+        try:
+            self.decoded = self.decode()
+            self.check_type('developer', 'reviewer')
+            self.check_db()
+            self.check_url()
+        except InvalidReceipt:
+            return self.invalid()
+
+        return self.ok_or_expired()
+
+    def check_without_db(self, status):
+        """
+        This is what test receipts do, no purchase or install check.
+        In this case the return is custom to the caller.
+        """
+        assert status in ['ok', 'expired', 'invalid', 'refunded']
+
+        try:
+            self.decoded = self.decode()
+            self.check_type('test')
+            self.check_url()
+        except InvalidReceipt:
+            return self.invalid()
+
+        return getattr(self, status)()
+
+    def decode(self):
+        """
+        Verifies that the receipt can be decoded and that the initial
+        contents of the receipt are correct.
+
+        If its invalid, then just return invalid rather than give out any
+        information.
+        """
         try:
             receipt = decode_receipt(self.receipt)
         except:
             log_exception({'receipt': '%s...' % self.receipt[:10],
                            'addon': self.addon_id})
             log_info('Error decoding receipt')
-            return self.invalid()
+            raise InvalidReceipt
 
         try:
             assert receipt['user']['type'] == 'directed-identifier'
         except (AssertionError, KeyError):
             log_info('No directed-identifier supplied')
-            return self.invalid()
+            raise InvalidReceipt
 
+        return receipt
+
+    def check_type(self, *types):
+        """
+        Verifies that the type of receipt is what we expect.
+        """
+        type_ = self.decoded.get('product', {}).get('type', '')
+        if not type_ and not types:
+            # If you are not expecting any types then check its empty.
+            return
+
+        if type_ not in types:
+            log_info('Receipt type %s not in %s' % (type_, types))
+            raise InvalidReceipt
+
+    def check_url(self):
+        """
+        Verifies that the URL of the verification is what we expect.
+        """
+        path = self.environ['PATH_INFO']
+        parsed = urlparse(self.decoded.get('verify', ''))
+
+        if parsed.netloc not in settings.DOMAIN:
+            log_info('Receipt had invalid domain')
+            raise InvalidReceipt
+
+        if parsed.path != path:
+            log_info('Receipt had the wrong path')
+            raise InvalidReceipt
+
+    def check_db(self):
+        """
+        Verifies the decoded receipt against the database.
+
+        Requires that decode is run first.
+        """
+        if not self.decoded:
+            raise ValueError('decode not run')
+
+        self.setup_db()
         # Get the addon and user information from the installed table.
         try:
-            uuid = receipt['user']['value']
+            uuid = self.decoded['user']['value']
         except KeyError:
             # If somehow we got a valid receipt without a uuid
             # that's a problem. Log here.
             log_info('No user in receipt')
-            return self.invalid()
+            raise InvalidReceipt
 
         try:
-            storedata = receipt['product']['storedata']
+            storedata = self.decoded['product']['storedata']
             self.addon_id = int(dict(parse_qsl(storedata)).get('id', ''))
         except:
             # There was some value for storedata but it was invalid.
             log_info('Invalid store data')
-            return self.invalid()
+            raise InvalidReceipt
 
         sql = """SELECT id, user_id, premium_type FROM users_install
                  WHERE addon_id = %(addon_id)s
@@ -98,60 +209,54 @@ class Verify:
         if not result:
             # We've got no record of this receipt being created.
             log_info('No entry in users_install for uuid: %s' % uuid)
-            return self.invalid()
+            raise InvalidReceipt
 
-        rid, self.user_id, self.premium = result
+        pk, self.user_id, self.premium = result
 
-        # If it's a premium addon, then we need to get that the purchase
-        # information.
-        if self.premium != ADDON_PREMIUM:
-            log_info('Valid receipt, not premium')
-            return self.ok_or_expired(receipt)
+    def check_purchase(self):
+        """
+        Verifies that the app has been purchased.
+        """
+        sql = """SELECT id, type FROM addon_purchase
+                 WHERE addon_id = %(addon_id)s
+                 AND user_id = %(user_id)s LIMIT 1;"""
+        self.cursor.execute(sql, {'addon_id': self.addon_id,
+                                  'user_id': self.user_id})
+        result = self.cursor.fetchone()
+        if not result:
+            log_info('Invalid receipt, no purchase')
+            raise InvalidReceipt
 
-        elif self.premium and not check_purchase:
-            return self.ok_or_expired(receipt)
+        if result[-1] in [CONTRIB_REFUND, CONTRIB_CHARGEBACK]:
+            log_info('Valid receipt, but refunded')
+            raise RefundedReceipt
+
+        elif result[-1] == CONTRIB_PURCHASE:
+            log_info('Valid receipt')
+            return
 
         else:
-            sql = """SELECT id, type FROM addon_purchase
-                     WHERE addon_id = %(addon_id)s
-                     AND user_id = %(user_id)s LIMIT 1;"""
-            self.cursor.execute(sql, {'addon_id': self.addon_id,
-                                      'user_id': self.user_id})
-            result = self.cursor.fetchone()
-            if not result:
-                log_info('Invalid receipt, no purchase')
-                return self.invalid()
-
-            if result[-1] in [CONTRIB_REFUND, CONTRIB_CHARGEBACK]:
-                log_info('Valid receipt, but refunded')
-                return self.refund()
-
-            elif result[-1] == CONTRIB_PURCHASE:
-                log_info('Valid receipt')
-                return self.ok_or_expired(receipt)
-
-            else:
-                log_info('Valid receipt, but invalid contribution')
-                return self.invalid()
+            log_info('Valid receipt, but invalid contribution')
+            raise InvalidReceipt
 
     def invalid(self):
         return json.dumps({'status': 'invalid'})
 
-    def ok_or_expired(self, receipt):
+    def ok_or_expired(self):
         # This receipt is ok now let's check it's expiry.
         # If it's expired, we'll have to return a new receipt
         try:
-            expire = int(receipt.get('exp', 0))
+            expire = int(self.decoded.get('exp', 0))
         except ValueError:
             log_info('Error with expiry in the receipt')
-            return self.expired(receipt)
+            return self.expired()
 
         now = calendar.timegm(gmtime()) + 10  # For any clock skew.
         if now > expire:
             log_info('This receipt has expired: %s UTC < %s UTC'
-                                 % (datetime.utcfromtimestamp(expire),
-                                    datetime.utcfromtimestamp(now)))
-            return self.expired(receipt)
+                     % (datetime.utcfromtimestamp(expire),
+                        datetime.utcfromtimestamp(now)))
+            return self.expired()
 
         return self.ok()
 
@@ -161,13 +266,14 @@ class Verify:
     def refund(self):
         return json.dumps({'status': 'refunded'})
 
-    def expired(self, receipt):
+    def expired(self):
         if settings.WEBAPPS_RECEIPT_EXPIRED_SEND:
-            receipt['exp'] = (calendar.timegm(gmtime()) +
+            self.decoded['exp'] = (calendar.timegm(gmtime()) +
                               settings.WEBAPPS_RECEIPT_EXPIRY_SECONDS)
             receipt_cef.log(self.environ, self.addon_id, 'sign',
                             'Expired signing request')
-            return json.dumps({'status': 'expired', 'receipt': sign(receipt)})
+            return json.dumps({'status': 'expired',
+                               'receipt': sign(self.decoded)})
         return json.dumps({'status': 'expired'})
 
 
@@ -224,7 +330,7 @@ def receipt_check(environ):
         data = environ['wsgi.input'].read()
         try:
             verify = Verify(data, environ)
-            return 200, verify()
+            return 200, verify.check_full()
         except:
             log_exception('<none>')
             return 500, ''

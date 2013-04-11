@@ -5,7 +5,6 @@ from django.views.decorators.csrf import csrf_exempt
 
 import commonware.log
 import jingo
-from nose.tools import nottest
 from session_csrf import anonymous_csrf_exempt
 from tower import ugettext as _
 
@@ -27,7 +26,7 @@ import mkt
 from mkt.constants import apps
 from mkt.receipts.utils import create_test_receipt
 from mkt.webapps.models import Installed, Webapp
-from services.verify import decode_receipt, Verify, get_headers
+from services.verify import Verify, get_headers
 from stats.models import ClientData
 from users.models import UserProfile
 from zadmin.models import DownloadSource
@@ -162,8 +161,8 @@ def verify(request, uuid):
     # use guid in the URL.
     addon = get_object_or_404(Addon, guid=uuid)
     receipt = request.read()
-    verify = Verify(receipt, request)
-    output = verify(check_purchase=False)
+    verify = Verify(receipt, request.META)
+    output = verify.check_without_purchase()
 
     # Only reviewers or the developers can use this which is different
     # from the standard receipt verification. The user is contained in the
@@ -221,7 +220,7 @@ def check(request, uuid):
 
 
 # These methods are for the test of receipts in the devhub.
-def test_install(request):
+def devhub_install(request):
     return jingo.render(request, 'receipts/test_manifest.html',
                         {'form': forms.TestInstall()})
 
@@ -229,7 +228,7 @@ def test_install(request):
 @anonymous_csrf_exempt
 @json_view
 @post_required
-def test_receipt(request):
+def devhub_receipt(request):
     form = forms.TestInstall(request.POST)
     if form.is_valid():
         receipt_type = form.cleaned_data['receipt_type']
@@ -244,20 +243,13 @@ def test_receipt(request):
     return {'receipt': '', 'error': form.errors}
 
 
-def test_details(request):
+def devhub_details(request):
     return jingo.render(request, 'receipts/test_details.html')
 
 
 @csrf_exempt
-@json_view
 @post_required
-@nottest
-def test_verify(request, status):
-    try:
-        result = decode_receipt(request.body)
-        # TODO: insert type and url checks here.
-        if result:
-            return {'status': status}
-    except:
-        log.error('Decoding test receipt', exc_info=True)
-        return {'status': 'invalid'}
+def devhub_verify(request, status):
+    receipt = request.read()
+    verify = Verify(receipt, request.META)
+    return response(verify.check_without_db(status))

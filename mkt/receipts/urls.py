@@ -29,13 +29,13 @@ receipt_api_patterns = patterns('',
 )
 
 test_patterns = patterns('',
-    url('^$', views.test_install,
+    url('^$', views.devhub_install,
         name='receipt.test.install'),
-    url('^issue/$', views.test_receipt,
+    url('^issue/$', views.devhub_receipt,
         name='receipt.test.issue'),
-    url('^details/$', views.test_details,
+    url('^details/$', views.devhub_details,
         name='receipt.test.details'),
     url('^verify/(?P<status>ok|expired|invalid|refunded)/$',
-        views.test_verify,
+        views.devhub_verify,
         name='receipt.test.verify'),
 )

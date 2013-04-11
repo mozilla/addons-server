@@ -7,9 +7,11 @@ import time
 from django.db import connection
 from django.conf import settings
 
+import jwt
 import M2Crypto
 import mock
 from nose.tools import eq_
+from test_utils import RequestFactory
 
 import amo
 import amo.tests
@@ -57,6 +59,7 @@ sample = ('eyJqa3UiOiAiaHR0cHM6Ly9tYXJrZXRwbGFjZS1kZXYtY2RuL'
                    amo.tests.AMOPaths.sample_key())
 @mock.patch.object(settings, 'WEBAPPS_RECEIPT_KEY',
                    amo.tests.AMOPaths.sample_key())
+@mock.patch.object(utils.settings, 'DOMAIN', 'foo.com')
 class TestVerify(amo.tests.TestCase):
     fixtures = ['base/addon_3615', 'base/users']
 
@@ -67,13 +70,15 @@ class TestVerify(amo.tests.TestCase):
                                    'value': 'some-uuid'},
                           'product': {'url': 'http://f.com',
                                       'storedata': urlencode({'id': 3615})},
+                          'verify': 'https://foo.com/verifyme/',
                           'exp': calendar.timegm(time.gmtime()) + 1000}
 
     def get_decode(self, receipt, check_purchase=True):
         # Ensure that the verify code is using the test database cursor.
-        v = verify.Verify(receipt, {})
+        v = verify.Verify(receipt, RequestFactory().get('/verifyme/').META)
         v.cursor = connection.cursor()
-        return json.loads(v(check_purchase=check_purchase))
+        name = 'check_full' if check_purchase else 'check_without_purchase'
+        return json.loads(getattr(v, name)())
 
     @mock.patch.object(verify, 'decode_receipt')
     def get(self, receipt, decode_receipt, check_purchase=True):
@@ -127,6 +132,13 @@ class TestVerify(amo.tests.TestCase):
         self.make_install()
         res = self.get(self.user_data)
         eq_(res['status'], 'ok')
+
+    def test_user_type(self):
+        user_data = self.user_data.copy()
+        user_data['product']['type'] = 'anything'
+        self.make_install()
+        res = self.get(self.user_data)
+        eq_(res['status'], 'invalid')
 
     def test_user_deleted(self):
         self.make_install()
@@ -200,6 +212,15 @@ class TestVerify(amo.tests.TestCase):
     def test_premium_dont_check(self):
         self.addon.update(premium_type=amo.ADDON_PREMIUM)
         self.make_install()
+        res = self.get(self.user_data, check_purchase=False)
+        # Because the receipt is the wrong type for skipping purchase.
+        eq_(res['status'], 'invalid')
+
+    def test_premium_dont_check_properly(self):
+        self.addon.update(premium_type=amo.ADDON_PREMIUM)
+        self.make_install()
+        user_data = self.user_data.copy()
+        user_data['product']['type'] = 'developer'
         res = self.get(self.user_data, check_purchase=False)
         eq_(res['status'], 'ok')
 
@@ -300,3 +321,57 @@ class TestVerify(amo.tests.TestCase):
     def test_no_cache(self):
         hdrs = self.get_headers()
         assert ('Cache-Control', 'no-cache') in hdrs, 'No cache header needed'
+
+
+class TestBase(amo.tests.TestCase):
+
+    def create(self, data, request=None):
+        stuff = {'user': {'type': 'directed-identifier'}}
+        stuff.update(data)
+        key = jwt.rsa_load(settings.WEBAPPS_RECEIPT_KEY)
+        receipt = jwt.encode(stuff, key, u'RS512')
+        v = verify.Verify(receipt, request)
+        v.decoded = v.decode()
+        return v
+
+
+@mock.patch.object(utils.settings, 'WEBAPPS_RECEIPT_KEY',
+                   amo.tests.AMOPaths.sample_key())
+class TestType(TestBase):
+
+    def test_no_type(self):
+        self.create({}).check_type()
+
+    def test_wrong_type(self):
+        with self.assertRaises(verify.InvalidReceipt):
+            self.create({}).check_type('test')
+
+    def test_test_type(self):
+        sample = {'product': {'type': 'test'}}
+        with self.assertRaises(verify.InvalidReceipt):
+            self.create(sample).check_type('blargh')
+
+
+@mock.patch.object(utils.settings, 'WEBAPPS_RECEIPT_KEY',
+                   amo.tests.AMOPaths.sample_key())
+class TestURL(TestBase):
+
+    def setUp(self):
+        self.req = RequestFactory().post('/foo').META
+
+    @mock.patch.object(utils.settings, 'DOMAIN', 'f.com')
+    def test_wrong_domain(self):
+        sample = {'verify': 'https://foo.com'}
+        with self.assertRaises(verify.InvalidReceipt):
+            self.create(sample, request=self.req).check_url()
+
+    @mock.patch.object(utils.settings, 'DOMAIN', 'f.com')
+    def test_wrong_path(self):
+        sample = {'verify': 'https://f.com/bar'}
+        with self.assertRaises(verify.InvalidReceipt):
+            self.create(sample, request=self.req).check_url()
+
+    @mock.patch.object(utils.settings, 'DOMAIN', 'f.com')
+    def test_good(self):
+        sample = {'verify': 'https://f.com/foo'}
+        self.create(sample, request=self.req).check_url()
