@@ -412,7 +412,7 @@ class TestPreapproval(amo.tests.TestCase):
     def test_preapproval_complete(self):
         ssn = self.client.session
         ssn['setup-preapproval'] = {'key': 'xyz'}
-        ssn.save()
+        self.update_session(ssn)
         res = self.client.post(self.get_url('complete'))
         eq_(res.status_code, 200)
         eq_(self.user.preapprovaluser.paypal_key, 'xyz')
@@ -426,7 +426,7 @@ class TestPreapproval(amo.tests.TestCase):
     def test_preapproval_complete_solitude(self, client):
         ssn = self.client.session
         ssn['setup-preapproval'] = {'solitude-key': 'xyz'}
-        ssn.save()
+        self.update_session(ssn)
         waffle.models.Flag.objects.create(name='solitude-payments',
                                           everyone=True)
         res = self.client.post(self.get_url('complete'))
@@ -453,7 +453,7 @@ class TestPreapproval(amo.tests.TestCase):
     def test_session_complete(self):
         ssn = self.client.session
         ssn['setup-preapproval'] = {'key': 'xyz', 'complete': '/foo'}
-        ssn.save()
+        self.update_session(ssn)
         res = self.client.post(self.get_url('complete'))
         assert res['Location'].endswith('/foo')
         eq_(self.user.preapprovaluser.paypal_key, 'xyz')
@@ -461,7 +461,7 @@ class TestPreapproval(amo.tests.TestCase):
     def test_session_cancel(self):
         ssn = self.client.session
         ssn['setup-preapproval'] = {'key': 'abc', 'cancel': '/bar'}
-        ssn.save()
+        self.update_session(ssn)
         res = self.client.post(self.get_url('cancel'))
         assert res['Location'].endswith('/bar')
         eq_(self.user.preapprovaluser.paypal_key, None)

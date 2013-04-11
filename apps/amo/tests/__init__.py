@@ -13,6 +13,7 @@ from django.conf import settings
 from django.core.cache import cache
 from django.core.files.storage import default_storage as storage
 from django.forms.fields import Field
+from django.http import SimpleCookie
 from django.test.client import Client
 from django.utils import translation
 
@@ -423,6 +424,15 @@ class TestCase(RedisTest, test_utils.TestCase):
         self.assertSetEqual(verbs, actual)
         if set(['PATCH', 'POST', 'PUT']).intersection(set(actual)):
             eq_(res['Access-Control-Allow-Headers'], 'Content-Type')
+
+    def update_session(self, session):
+        """
+        Update the session on the client. Needed if you manipulate the session
+        in the test. Needed when we use signed cookies for sessions.
+        """
+        cookie = SimpleCookie()
+        cookie[settings.SESSION_COOKIE_NAME] = session._get_session_key()
+        self.client.cookies.update(cookie)
 
     def make_premium(self, addon, price='1.00', currencies=None):
         price_obj = Price.objects.create(price=price)
