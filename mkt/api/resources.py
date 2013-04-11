@@ -16,7 +16,7 @@ from tastypie.throttle import CacheThrottle
 
 import amo
 from addons.forms import CategoryFormSet
-from addons.models import Addon, AddonUser, Category, Preview
+from addons.models import Addon, AddonUser, Category, Preview, Webapp
 from amo.decorators import write
 from amo.utils import no_translation
 from constants.applications import DEVICE_TYPES
@@ -35,7 +35,7 @@ from mkt.api.forms import (CategoryForm, DeviceTypeForm, NewPackagedForm,
 from mkt.carriers import get_carrier_id
 from mkt.developers import tasks
 from mkt.developers.forms import NewManifestForm, PreviewForm
-from mkt.regions import get_region_id
+from mkt.regions import get_region_id, get_region, REGIONS_DICT
 from mkt.submit.forms import AppDetailsBasicForm
 from mkt.webapps.utils import app_to_dict
 
@@ -110,7 +110,7 @@ class AppResource(CORSResource, MarketplaceModelResource):
                                   'previews', readonly=True)
 
     class Meta(MarketplaceModelResource.Meta):
-        queryset = Addon.objects.filter(type=amo.ADDON_WEBAPP)
+        queryset = Webapp.objects.all()  # Gets overriden in dispatch.
         fields = ['categories', 'description', 'device_types',
                   'homepage', 'id', 'name', 'privacy_policy',
                   'status', 'summary', 'support_email',
@@ -125,6 +125,15 @@ class AppResource(CORSResource, MarketplaceModelResource):
         slug_lookup = 'app_slug'
         # Throttle users without Apps:APIUnthrottled at 10 POST requests/day.
         throttle = CacheThrottle(throttle_at=10, timeframe=60 * 60 * 24)
+
+    def dispatch(self, request_type, request, **kwargs):
+        # Using `Webapp.objects.all()` here forces a new queryset, which for
+        # now avoids bug 854505. We're also using this to filter by flagged
+        # apps.
+        self._meta.queryset = Webapp.objects.exclude(
+            id__in=Webapp.get_excluded_in(REGIONS_DICT[get_region()]))
+        return super(AppResource, self).dispatch(request_type, request,
+                                                 **kwargs)
 
     @write
     @transaction.commit_on_success
@@ -188,13 +197,8 @@ class AppResource(CORSResource, MarketplaceModelResource):
         try:
             # Use queryset, not get_object_list to ensure a distinction
             # between a 404 and a 403.
-            #
-            # For reasons I haven't been able to figure out, accessing the
-            # queryset at this point will get you the locale of the class
-            # when it was initialized, which means that the locale gets
-            # set and results in bug 854505.
-            obj = Addon.objects.filter(type=amo.ADDON_WEBAPP).get(**kwargs)
-        except Addon.DoesNotExist:
+            obj = self._meta.queryset.get(**kwargs)
+        except self._meta.object_class.DoesNotExist:
             raise ImmediateHttpResponse(response=http.HttpNotFound())
 
         # If it's public, just return it.
@@ -250,8 +254,8 @@ class AppResource(CORSResource, MarketplaceModelResource):
         if not request.amo_user:
             log.info('Anonymous listing not allowed')
             raise ImmediateHttpResponse(response=http.HttpForbidden())
-        return Addon.objects.filter(type=amo.ADDON_WEBAPP,
-                                    authors=request.amo_user)
+        return self._meta.queryset.filter(type=amo.ADDON_WEBAPP,
+                                          authors=request.amo_user)
 
 
 class StatusResource(MarketplaceModelResource):

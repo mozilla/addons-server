@@ -23,7 +23,7 @@ import amo
 import amo.models
 from access.acl import action_allowed, check_reviewer
 from addons import query
-from addons.models import (Addon, AddonDeviceType, Category,
+from addons.models import (Addon, AddonDeviceType, Category, Flag,
                            update_search_index)
 from addons.signals import version_changed
 from amo.decorators import skip_cache
@@ -40,6 +40,7 @@ from versions.models import Version
 from mkt.zadmin.models import FeaturedApp
 
 import mkt
+from mkt import regions
 from mkt.constants import apps
 from mkt.constants import APP_IMAGE_SIZES
 from mkt.webapps.utils import get_locale_properties
@@ -102,9 +103,9 @@ class WebappManager(amo.models.ManagerBase):
         Look up a single app by its `id` or `app_slug`.
 
         If the identifier is coercable into an integer, we first check for an
-        ID match, falling back to a slug check (probably not necessary, as there
-        is validation preventing numeric slugs). Otherwise, we only look for a
-        slug match.
+        ID match, falling back to a slug check (probably not necessary, as
+        there is validation preventing numeric slugs). Otherwise, we only look
+        for a slug match.
         """
         try:
             return self.get(id=identifier)
@@ -517,9 +518,9 @@ class Webapp(Addon):
              <class 'mkt.constants.regions.US'>,
              <class 'mkt.constants.regions.WORLDWIDE'>]
         """
-        regions = map(mkt.regions.REGIONS_CHOICES_ID_DICT.get,
-                      self.get_region_ids(worldwide=True))
-        return sorted(regions, key=lambda x: x.slug)
+        _regions = map(mkt.regions.REGIONS_CHOICES_ID_DICT.get,
+                       self.get_region_ids(worldwide=True))
+        return sorted(_regions, key=lambda x: x.slug)
 
     def listed_in(self, region=None, category=None):
         listed = []
@@ -559,8 +560,18 @@ class Webapp(Addon):
     @classmethod
     def get_excluded_in(cls, region):
         """Return IDs of Webapp objects excluded from a particular region."""
-        return list(AddonExcludedRegion.objects.filter(region=region.id)
-                    .values_list('addon', flat=True))
+        excluded = list(AddonExcludedRegion.objects.filter(region=region.id)
+                        .values_list('addon', flat=True))
+        q = models.Q()
+        if region.id in regions.ADULT_EXCLUDED_IDS:
+            q |= models.Q(adult_content=True)
+        if region.id in regions.CHILD_EXCLUDED_IDS:
+            q |= models.Q(child_content=True)
+
+        excluded += list(Flag.objects.filter(q)
+                         .values_list('addon', flat=True))
+
+        return list(set(excluded))
 
     @classmethod
     def from_search(cls, cat=None, region=None, gaia=False, mobile=False,

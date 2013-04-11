@@ -19,7 +19,8 @@ from nose.tools import eq_, raises
 
 import amo
 from addons.models import (Addon, AddonCategory, AddonDeviceType,
-                           BlacklistedSlug, Category, Preview, version_changed)
+                           BlacklistedSlug, Category, Flag, Preview,
+                           version_changed)
 from addons.signals import version_changed as version_changed_signal
 from amo.helpers import absolutify
 from amo.tests import app_factory, version_factory
@@ -414,6 +415,15 @@ class TestWebapp(amo.tests.TestCase):
         old_ver.update(nomination=self.days_ago(1))
         v = Version.objects.create(addon=app, version='1.9')
         self.assertCloseToNow(v.nomination)
+
+    def test_excluded_in(self):
+        app1 = app_factory()
+        app2 = app_factory()
+        region = list(mkt.regions.ADULT_EXCLUDED)[0]
+        AddonExcludedRegion.objects.create(addon=app1, region=region.id)
+        Flag.objects.create(addon=app1, adult_content=True)
+        Flag.objects.create(addon=app2, adult_content=True)
+        eq_(Webapp.get_excluded_in(region), [app1.id, app2.id])
 
 
 class TestPackagedAppManifestUpdates(amo.tests.TestCase):

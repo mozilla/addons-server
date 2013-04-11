@@ -8,7 +8,7 @@ from nose.tools import eq_
 
 import amo
 from addons.models import (Addon, AddonUpsell, AddonDeviceType,
-                           AddonUser, Category, Preview)
+                           AddonUser, Category, Flag, Preview)
 from amo.tests import app_factory, AMOPaths
 from files.models import FileUpload
 from users.models import UserProfile
@@ -691,17 +691,28 @@ class TestAppStatusHandler(CreateHandler, AMOPaths):
 class TestAppDetail(BaseOAuth, AMOPaths):
     fixtures = fixture('user_2519', 'webapp_337141')
 
-    def test_price(self):
+    def setUp(self):
+        super(TestAppDetail, self).setUp()
         self.get_url = get_url('app', pk=337141)
+
+    def test_price(self):
         res = self.client.get(self.get_url)
         data = json.loads(res.content)
         eq_(data['price'], None)
 
     def test_price_other_region(self):
-        self.get_url = get_url('app', pk=337141)
         res = self.client.get(self.get_url, {'lang': 'fr'})
         data = json.loads(res.content)
         eq_(data['price'], None)
+
+    def test_flagged(self):
+        # Acess a flagged app via API should 404.
+        Flag.objects.create(addon_id=337141, adult_content=True)
+        Webapp.objects.get(pk=337141).save()
+        res = self.client.get(
+            self.get_url,
+            data={'region': list(regions.ADULT_EXCLUDED)[0].slug})
+        eq_(res.status_code, 404)
 
 
 class TestCategoryHandler(BaseOAuth):
