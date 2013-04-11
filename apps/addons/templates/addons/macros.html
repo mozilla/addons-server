@@ -25,7 +25,7 @@
         </span>
       {% else %}
         <span class="adu">
-          {% set adu=addon.persona.popularity if addon.is_persona() else addon.average_daily_users }}
+          {% set adu=addon.persona.popularity if addon.is_persona() else addon.average_daily_users %}
           {% trans cnt=adu, num=adu|numberfmt %}
             {{ num }} user
           {% pluralize %}
