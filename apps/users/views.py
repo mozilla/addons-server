@@ -583,7 +583,7 @@ def profile(request, user):
             items = user.addons_listed.exclude(type=amo.ADDON_PERSONA)
             personas = user.addons_listed.filter(type=amo.ADDON_PERSONA)
             #XXX hack to protect performance until we have proper incremental loading
-            personas = personas[:60]
+            personas = personas.order_by('-average_daily_users')[:60]
         addons = amo.utils.paginate(request,
                                     items.order_by('-weekly_downloads'))
     else:
