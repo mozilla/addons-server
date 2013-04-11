@@ -64,6 +64,7 @@ LOGGING['loggers'].update({
     'z.hera': { 'level': logging.INFO },
     'z.redis': { 'level': logging.DEBUG },
     'z.receipt': {'level': logging.ERROR },
+    'elasticutils': {'level': logging.INFO },
 })
 
 PAYPAL_APP_ID = private_mkt.PAYPAL_APP_ID
