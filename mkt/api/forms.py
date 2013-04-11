@@ -5,6 +5,7 @@ import StringIO
 from django import forms
 
 import happyforms
+from tastypie.validation import CleanedDataFormValidation
 
 import amo
 from addons.models import Addon, AddonDeviceType, Category
@@ -103,6 +104,25 @@ class SluggableModelChoiceField(forms.ModelChoiceField):
         except AttributeError:
             pass
         return super(SluggableModelChoiceField, self).to_python(value)
+
+
+class RequestFormValidation(CleanedDataFormValidation):
+    """
+    A sub class of CleanedDataFormValidation that passes request through to
+    the form.
+    """
+    def is_valid(self, bundle, request=None):
+        data = bundle.data
+        if data is None:
+            data = {}
+
+        form = self.form_class(data, request=request)
+
+        if form.is_valid():
+            bundle.data = form.cleaned_data
+            return {}
+
+        return form.errors
 
 
 def parse(file_, require_name=False, require_type=None):

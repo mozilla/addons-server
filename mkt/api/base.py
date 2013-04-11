@@ -124,11 +124,14 @@ class Marketplace(object):
         if not isinstance(forms, list):
             forms = [forms]
         for f in forms:
-            if isinstance(f.errors, list):  # Cope with formsets.
-                for e in f.errors:
+            # If we've got form objects, get the error object off it.
+            # Otherwise assume we've just been passed a form object.
+            form_errors = getattr(f, 'errors', f)
+            if isinstance(form_errors, list):  # Cope with formsets.
+                for e in form_errors:
                     errors.update(e)
                 continue
-            errors.update(dict(f.errors.items()))
+            errors.update(dict(form_errors.items()))
 
         response = http.HttpBadRequest(json.dumps({'error_message': errors}),
                                        content_type='application/json')
@@ -199,6 +202,12 @@ class Marketplace(object):
     def cached_obj_get(self, request=None, **kwargs):
         """Do not interfere with cache machine caching."""
         return self.obj_get(request, **kwargs)
+
+    def is_valid(self, bundle, request=None):
+        """A simple wrapper to return form errors in the format we want."""
+        errors = self._meta.validation.is_valid(bundle, request)
+        if errors:
+            raise self.form_errors(errors)
 
 
 class MarketplaceResource(Marketplace, Resource):

@@ -6,6 +6,7 @@ from abuse.models import AbuseReport
 from mkt.api.authentication import OptionalOAuthAuthentication
 from mkt.api.base import (CORSResource, GenericObject, MarketplaceResource,
                           PotatoCaptchaResource)
+from mkt.api.forms import RequestFormValidation
 from mkt.api.resources import AppResource, UserProfileResource
 
 from .forms import AppAbuseForm, UserAbuseForm
@@ -37,10 +38,6 @@ class BaseAbuseResource(PotatoCaptchaResource, CORSResource,
 
     def obj_create(self, bundle, request=None, **kwargs):
         bundle.obj = self._meta.object_class(**kwargs)
-
-        form = self._meta.validation_form(bundle.data, request=request)
-        if not form.is_valid():
-            raise self.form_errors(form)
 
         bundle = self.full_hydrate(bundle)
         self.remove_potato(bundle)
@@ -90,13 +87,7 @@ class UserAbuseResource(BaseAbuseResource):
 
     class Meta(BaseAbuseResource.Meta):
         resource_name = 'user'
-        validation_form = UserAbuseForm
-
-    def hydrate_user(self, bundle):
-        if 'user' in bundle.data:
-            bundle.data['user'] = (self.user.to()
-                                       .obj_get(pk=bundle.data['user']))
-        return bundle
+        validation = RequestFormValidation(form_class=UserAbuseForm)
 
 
 class AppAbuseResource(BaseAbuseResource):
@@ -104,12 +95,7 @@ class AppAbuseResource(BaseAbuseResource):
 
     class Meta(BaseAbuseResource.Meta):
         resource_name = 'app'
-        validation_form = AppAbuseForm
+        validation = RequestFormValidation(form_class=AppAbuseForm)
         rename_field_map = BaseAbuseResource.Meta.rename_field_map + [
             ('app', 'addon'),
         ]
-
-    def hydrate_app(self, bundle):
-        if 'app' in bundle.data:
-            bundle.data['app'] = self.app.to().obj_get(pk=bundle.data['app'])
-        return bundle

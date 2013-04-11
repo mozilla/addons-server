@@ -31,7 +31,8 @@ class BaseTestAbuseResource(ThrottleTests, TestPotatoCaptcha, BaseOAuth):
 
 class AbuseResourceTests(object):
     """
-    Setup for AbuseResource tests that do not require inheritance from TestCase.
+    Setup for AbuseResource tests that do not require inheritance from
+    TestCase.
 
     Separate from BaseTestAbuseResource to ensure that test_* methods of this
     abstract base class are not discovered by the runner.
@@ -145,3 +146,7 @@ class TestAppAbuseResource(AbuseResourceTests, BaseTestAbuseResource):
         res, data = self._call(data={'app': -1})
         eq_(400, res.status_code)
         assert 'app' in data['error_message']
+
+    def test_slug_app(self):
+        res, data = self._call(data={'app': self.app.app_slug})
+        eq_(201, res.status_code)
