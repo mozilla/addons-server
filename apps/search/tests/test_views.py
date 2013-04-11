@@ -1077,8 +1077,13 @@ class TestGenericAjaxSearch(TestAjaxSearch):
         self.search_addons('q=%s' % addon.id, [])
 
     def test_ajax_search_by_name(self):
-        addon = Addon.objects.filter(slug='addon-11')
-        self.search_addons('q=11', addon)
+        addon = amo.tests.addon_factory(
+            name='uniqueaddon',
+            status=amo.STATUS_LITE,
+            type=amo.ADDON_EXTENSION,
+        )
+        self.refresh(timesleep=1)
+        self.search_addons('q=' + unicode(addon.name), [addon])
 
     def test_ajax_search_by_bad_name(self):
         self.search_addons('q=some+filthy+bad+word', [])
