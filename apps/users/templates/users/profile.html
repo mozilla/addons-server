@@ -64,11 +64,7 @@
 
 {% if personas %}
   <div id="{{ 'my-themes' if addons.object_list else 'my-submissions' }}" class="island c">
-    {% if limited_personas %}
-      <h2>{{ _("My most popular 60 Themes") }}</h2>
-    {% else %}
-      <h2>{{ _("Themes I've created") }}</h2>
-    {% endif %}
+    <h2>{{ _("Themes I've created") }}</h2>
     {{ personas|impala_persona_grid(cols=5, pagesize=15) }}
   </div>
 {% endif %}
