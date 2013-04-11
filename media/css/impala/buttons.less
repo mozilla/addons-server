@@ -115,6 +115,10 @@ button.bad, .button.bad, .button.developer, .button.scary { // Red
     &.platform {
         display: none;
     }
+    // Show install button for Android if not concealed.
+    &.platform.android:not(.concealed) {
+        display: inline-block;
+    }
 }
 .html-rtl {
     .button {
