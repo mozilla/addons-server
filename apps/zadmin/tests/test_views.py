@@ -162,8 +162,8 @@ class BulkValidationTest(amo.tests.TestCase):
         self.addon = Addon.objects.get(pk=3615)
         self.creator = UserProfile.objects.get(username='editor')
         self.version = self.addon.get_version()
-        ApplicationsVersions.objects.filter(application=1,
-                                            version=self.version).update(
+        ApplicationsVersions.objects.filter(
+            application=1, version=self.version).update(
             max=AppVersion.objects.get(application=1, version='3.7a1pre'))
         self.application_version = self.version.apps.all()[0]
         self.application = self.application_version.application
@@ -1862,22 +1862,6 @@ class TestElastic(amo.tests.ESTestCase):
         self.assertRedirects(self.client.get(self.url),
             reverse('users.login') + '?to=/en-US/admin/elastic')
 
-    @mock.patch('zadmin.views.elasticutils')
-    @mock.patch('zadmin.views.create_es_index_if_missing')
-    @mock.patch('zadmin.views.setup_mapping')
-    def test_recreate_index(self, setup_mapping, _create, es):
-        self.client.post(self.url, {'recreate': 1})
-        index = settings.ES_INDEXES['default']
-        index in es.get_es().delete_index_if_exists.call_args_list[0][0]
-        assert setup_mapping.called
-        index in _create.call_args_list[0][0]
-
-    def test_reindex_addons(self):
-        eq_(list(Addon.search()), [])
-        self.client.post(self.url, {'reindex': 'addons'})
-        self.refresh()
-        eq_(list(Addon.search()), list(Addon.objects.all()))
-
 
 class TestEmailDevs(amo.tests.TestCase):
     fixtures = ['base/addon_3615', 'base/users']
@@ -1993,7 +1977,7 @@ class TestEmailDevs(amo.tests.TestCase):
         self.addon.update(type=amo.ADDON_EXTENSION)
         res = self.post(recipients='all_extensions')
         self.assertNoFormErrors(res)
-        eq_(len(mail.outbox), 1)        
+        eq_(len(mail.outbox), 1)
 
     def test_ignore_deleted_always(self):
         self.addon.update(status=amo.STATUS_DELETED)

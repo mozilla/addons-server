@@ -2,10 +2,6 @@
 
 {% block title %}Elastic Search {{ super() }}{% endblock %}
 
-{% block extrahead %}
-<style>form { margin-bottom: 1em }</style>
-{% endblock %}
-
 {% block content %}
 <ul>
   <li><a href="#mapping">Mappings</a></li>
@@ -14,21 +10,6 @@
   <li><a href="#nodes">Nodes</a></li>
 </ul>
 <h3 id="mapping">Mappings</h3>
-<form method="post" action="">
-  {{ csrf() }}
-  <button name="recreate" value="1">Recreate {{ index }} index</button>
-</form>
-<form method="post" action="">
-  {{ csrf() }}
-  <b>Choices:</b>
-  <ul>
-    {% for choice in choices|sort %}
-      <li>{{ choice }}</li>
-    {% endfor %}
-  </ul>
-  <input name="reindex" placeholder="mapping name">
-  <button>Reindex</button>
-</form>
 {% for index, mapping in mappings %}
   <h4>{{ index }}</h4>
   <pre>{{ mapping|dictsort|pprint }}</pre>

@@ -1,7 +1,6 @@
 import csv
-from decimal import Decimal
 import json
-import re
+from decimal import Decimal
 from urlparse import urlparse
 
 from django import http
@@ -26,7 +25,6 @@ from tower import ugettext as _
 
 import amo
 from addons.cron import reindex_addons, reindex_apps
-from addons.search import setup_mapping
 from addons.decorators import addon_view
 from addons.models import Addon, AddonUser, CompatOverride
 from amo import messages, get_user
@@ -34,7 +32,7 @@ from amo.decorators import (any_permission_required, json_view, login_required,
                             post_required)
 from amo.mail import FakeEmailBackend
 from amo.urlresolvers import reverse
-from amo.utils import chunked, create_es_index_if_missing, sorted_groupby
+from amo.utils import chunked, sorted_groupby
 from bandwagon.cron import reindex_collections
 from bandwagon.models import Collection
 from compat.cron import compatibility_report
@@ -45,7 +43,6 @@ from files.tasks import start_upgrade as start_upgrade_task
 from files.utils import find_jetpacks, JetpackUpgrader
 from market.utils import update_from_csv
 from stats.cron import index_latest_stats
-from stats.search import setup_indexes
 from users.cron import reindex_users
 from users.models import UserProfile
 from versions.compare import version_int as vint
@@ -125,7 +122,7 @@ def langpacks(request):
     if request.method == 'POST':
         try:
             tasks.fetch_langpacks.delay(request.POST['path'])
-        except ValueError, e:
+        except ValueError:
             messages.error(request, "Invalid language pack sub-path provided.")
 
         return redirect('zadmin.langpacks')
@@ -599,23 +596,6 @@ def elastic(request):
                 'stats_latest': index_latest_stats,
                 'mkt_stats': index_mkt_stats,
                 'mkt_stats_latest': index_latest_mkt_stats}
-    if request.method == 'POST':
-        if request.POST.get('recreate'):
-            es.delete_index_if_exists(INDEX)
-            # We must set up the mappings before we create the index again.
-            setup_mapping()
-            setup_indexes()
-            if setup_mkt_indexes:
-                setup_mkt_indexes()
-            create_es_index_if_missing(INDEX)
-            messages.info(request, 'Deleting %s index.' % INDEX)
-        if request.POST.get('reindex') in mappings:
-            name = request.POST['reindex']
-            # Reindex.
-            if mappings.get(name):
-                mappings[name]()
-            messages.info(request, 'Reindexing %s.' % name)
-        return redirect('zadmin.elastic')
 
     indexes = set(settings.ES_INDEXES.values())
     es_mappings = es.get_mapping(None, indexes)
@@ -761,7 +741,7 @@ def general_search(request, app_id, model_id):
     # Override search_fields_response on the ModelAdmin object
     # if you'd like to pass something else back to the front end.
     lookup = getattr(obj, 'search_fields_response', None)
-    return [{'value':o.pk, 'label':getattr(o, lookup) if lookup else str(o)}
+    return [{'value': o.pk, 'label': getattr(o, lookup) if lookup else str(o)}
             for o in qs[:limit]]
 
 
