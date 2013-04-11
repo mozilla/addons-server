@@ -211,7 +211,7 @@ Report An Abusive App
     **Request**
 
     :param text: a textual description of the abuse
-    :param app: the primary key of the app being reported
+    :param app: the app id or slug of the app being reported
 
     .. code-block:: json
 
