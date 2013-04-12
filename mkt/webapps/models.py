@@ -568,8 +568,9 @@ class Webapp(Addon):
         if region.id in regions.CHILD_EXCLUDED_IDS:
             q |= models.Q(child_content=True)
 
-        excluded += list(Flag.objects.filter(q)
-                         .values_list('addon', flat=True))
+        if q:
+            excluded += list(Flag.objects.filter(q)
+                             .values_list('addon', flat=True))
 
         return list(set(excluded))
 
