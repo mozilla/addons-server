@@ -18,9 +18,10 @@
           </dd>
       </dt>
       <dt>{{ _('Submitted') }}</dt><dd>{{ theme.addon.created|datetime('%Y-%m-%d') }}</dd>
+      <dt class="license">{{ _('License') }}</dt><dd>{{ license_link(theme.license) }}</dd>
     </dl>
     <dl class="meta">
-      <dt class="license">{{ _('License') }}</dt><dd>{{ license_link(theme.license) }}</dd>
+      <dt>{{ _('Reviewer') }}</dt><dd>{{ emaillink(theme.themelock.reviewer.email) }}</dd>
     </dl>
 
     <div class="preview">

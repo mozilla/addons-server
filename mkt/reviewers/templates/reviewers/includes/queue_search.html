@@ -8,9 +8,7 @@
       <button class="search button" type="submit"><span>{{ _('Search') }}</span></button>
       <a class="toggle-queue-search" href="#">{{ _('Advanced Search') }}</a>
       <span class="clear-queue-search hidden">
-        | <a href="{{ url('reviewers.apps.queue_%s' % tab) }}">
-            {{ _('Clear Search') }}
-          </a>
+        | <a>{{ _('Clear Search') }}</a>
       </span>
 
       <div class="advanced-search desktop c hidden">

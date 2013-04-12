@@ -148,3 +148,10 @@ class ThemeReviewForm(happyforms.Form):
         theme_lock = ThemeLock.objects.get(theme=self.cleaned_data['theme'])
         send_mail(self.cleaned_data, theme_lock)
         theme_lock.delete()
+
+
+class ThemeSearchForm(forms.Form):
+    q = forms.CharField(
+        required=False, label=_lazy(u'Search'),
+        widget=forms.TextInput(attrs={'autocomplete': 'off',
+                                      'placeholder': _lazy(u'Search')}))
