@@ -9,14 +9,19 @@
       <span></span>
     </div>
     <dl class="meta">
-      <dt>{{ _('Artist') }}</dt><dd>{{ theme.author }}</dd>
+      <dt>{{ _('Artist') }}</dt>
+      <dd>
+        <!--Hardcode-->
+        <a href={{ "https://addons.mozilla.org/user/{0}/"|f(theme.author) }}>
+          {{ theme.author }}
+        </a>
+      </dd>
       <dt>{{ _('Categories') }}</dt>
-          <dd>
-          {% for category in theme.addon.categories.all() %}
-            <a href="{{ category.get_url_path() }}">{{ category.name }}</a>{{ ', ' if not loop.last }}
-          {% endfor %}
-          </dd>
-      </dt>
+      <dd>
+        {% for category in theme.addon.categories.all() %}
+          <a href="{{ category.get_url_path() }}">{{ category.name }}</a>{{ ', ' if not loop.last }}
+        {% endfor %}
+      </dd>
       <dt>{{ _('Submitted') }}</dt><dd>{{ theme.addon.created|datetime('%Y-%m-%d') }}</dd>
       <dt class="license">{{ _('License') }}</dt><dd>{{ license_link(theme.license) }}</dd>
     </dl>
