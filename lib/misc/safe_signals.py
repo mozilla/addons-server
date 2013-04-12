@@ -31,7 +31,7 @@ def safe_send(self, sender, **named):
     # Return a list of tuple pairs [(receiver, response), ... ].
     for receiver in self._live_receivers(_make_id(sender)):
         try:
-            with statsd.timer('signal.sender.%s' % sender.__name__.lower()):
+            with statsd.timer('signal.send'):
                 response = receiver(signal=self, sender=sender, **named)
         except Exception, err:
             if do_raise:
