@@ -199,3 +199,6 @@ except AttributeError:
     pass
 
 ALLOW_TASTYPIE_SERVICES = True
+
+# Until Bango can properly do refunds.
+BANGO_FAKE_REFUNDS = True

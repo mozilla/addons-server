@@ -357,14 +357,10 @@ class TestTransactionRefund(TestCase):
         self.user = UserProfile.objects.get(username='regularuser')
         AddonUser.objects.create(addon=self.app, user=self.user)
 
+        self.req = self.request({'refund_reason': 'text'})
         self.contrib = Contribution.objects.create(
             addon=self.app, user=self.user, uuid=self.uuid,
-            type=amo.CONTRIB_PURCHASE, amount=1)
-
-        self.req = RequestFactory().post(self.url, {'refund_reason': 'text'})
-        self.req.user = User.objects.get(username='support_staff')
-        self.req.amo_user = UserProfile.objects.get(username='support_staff')
-        self.req.groups = self.req.amo_user.groups.all()
+            type=amo.CONTRIB_PURCHASE, amount=1, transaction_id='123')
         # Fix Django 1.4 RequestFactory bug with MessageMiddleware.
         setattr(self.req, 'session', 'session')
         messages = FallbackStorage(self.req)
@@ -377,8 +373,30 @@ class TestTransactionRefund(TestCase):
             'transaction': 'transaction_uri'
         }
 
+    def request(self, data):
+        req = RequestFactory().post(self.url, data)
+        req.user = User.objects.get(username='support_staff')
+        req.amo_user = UserProfile.objects.get(username='support_staff')
+        req.groups = req.amo_user.groups.all()
+        return req
+
     def refund_tx_ret(self):
         return {'uuid': self.refund_uuid}
+
+    @mock.patch('mkt.lookup.views.client')
+    def test_fake_refund_ignored(self, client):
+        req = self.request({'refund_reason': 'text', 'fake': 'OK'})
+        with self.settings(BANGO_FAKE_REFUNDS=False):
+            transaction_refund(req, self.uuid)
+        client.api.bango.refund.post.assert_called_with({'uuid': '123'})
+
+    @mock.patch('mkt.lookup.views.client')
+    def test_fake_refund(self, client):
+        req = self.request({'refund_reason': 'text', 'fake': 'OK'})
+        with self.settings(BANGO_FAKE_REFUNDS=True):
+            transaction_refund(req, self.uuid)
+        client.api.bango.refund.post.assert_called_with({
+            'fake_response_status': {'responseCode': 'OK'}, 'uuid': '123'})
 
     @mock.patch('mkt.lookup.views.client')
     def test_refund_success(self, solitude):

@@ -2,6 +2,7 @@ from datetime import datetime, timedelta
 import hashlib
 import uuid
 
+from django.conf import settings
 from django.db import connection
 from django.db.models import Sum, Count, Q
 from django.http import Http404
@@ -149,8 +150,13 @@ def transaction_refund(request, tx_uuid):
                   'tx_form': TransactionSearchForm()}.items() +
                  _transaction_summary(tx_uuid).items()))
 
+    data = {'uuid': contrib.transaction_id}
+    if settings.BANGO_FAKE_REFUNDS:
+        data['fake_response_status'] = {'responseCode':
+                                        form.cleaned_data['fake']}
+
     try:
-        res = client.api.bango.refund.post({'uuid': contrib.transaction_id})
+        res = client.api.bango.refund.post(data)
     except (HttpClientError, HttpServerError):
         # Either doing something not supposed to or Solitude had an issue.
         log.exception('Refund error: %s' % tx_uuid)
