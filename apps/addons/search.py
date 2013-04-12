@@ -4,10 +4,10 @@ from operator import attrgetter
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Count
 
-import elasticutils.contrib.django as elasticutils
 import pyes.exceptions as pyes
 
 import amo
+import amo.search
 from amo.utils import create_es_index_if_missing
 from .models import Addon, Flag
 from bandwagon.models import Collection
@@ -158,7 +158,7 @@ def setup_mapping(index=None, aliased=True):
             'analyzer': analyzer,
         }
 
-    es = elasticutils.get_es()
+    es = amo.search.get_es()
     # Adjust the mapping for all models at once because fields are shared
     # across all doc types in an index. If we forget to adjust one of them
     # we'll get burned later on.

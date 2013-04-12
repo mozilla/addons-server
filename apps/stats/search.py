@@ -1,8 +1,7 @@
 import collections
 
-import elasticutils.contrib.django as elasticutils
-
 import amo
+import amo.search
 from amo.utils import create_es_index_if_missing
 from applications.models import AppVersion
 from stats.models import CollectionCount, DownloadCount, UpdateCount
@@ -118,7 +117,7 @@ def get_all_app_versions():
 
 
 def setup_indexes(index=None, aliased=True):
-    es = elasticutils.get_es()
+    es = amo.search.get_es()
     for model in CollectionCount, DownloadCount, UpdateCount:
         index = index or model._get_index()
         index = create_es_index_if_missing(index, aliased=aliased)

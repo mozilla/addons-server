@@ -3,8 +3,8 @@ import copy
 
 from celeryutils import task
 import commonware.log
-import elasticutils.contrib.django as elasticutils
 
+import amo.search
 from . import search
 from lib.es.utils import get_indices
 from mkt.inapp_pay.models import InappPayment
@@ -19,7 +19,7 @@ def index_finance_total(addons, **kw):
     Aggregates financial stats from all of the contributions for a given app.
     """
     index = kw.get('index', Contribution._get_index())
-    es = elasticutils.get_es()
+    es = amo.search.get_es()
     log.info('Indexing total financial stats for %s apps.' %
               len(addons))
 
@@ -47,7 +47,7 @@ def index_finance_total_by_src(addons, **kw):
     Total finance stats, source breakdown.
     """
     index = kw.get('index', Contribution._get_index())
-    es = elasticutils.get_es()
+    es = amo.search.get_es()
     log.info('Indexing total financial stats by source for %s apps.' %
               len(addons))
 
@@ -82,7 +82,7 @@ def index_finance_total_by_currency(addons, **kw):
     Total finance stats, currency breakdown.
     """
     index = kw.get('index', Contribution._get_index())
-    es = elasticutils.get_es()
+    es = amo.search.get_es()
     log.info('Indexing total financial stats by currency for %s apps.' %
               len(addons))
 
@@ -128,7 +128,7 @@ def index_finance_daily(ids, **kw):
     ids -- ids of apps.stats.Contribution objects
     """
     index = kw.get('index', Contribution._get_index())
-    es = elasticutils.get_es()
+    es = amo.search.get_es()
 
     # Get contributions.
     qs = (Contribution.objects.filter(id__in=ids)
@@ -164,7 +164,7 @@ def index_finance_total_inapp(addons, **kw):
     Aggregates financial stats from all of the contributions for in-apps.
     """
     index = kw.get('index', InappPayment._get_index())
-    es = elasticutils.get_es()
+    es = amo.search.get_es()
     log.info('Indexing total financial in-app stats for %s apps.' %
              len(addons))
 
@@ -200,7 +200,7 @@ def index_finance_total_inapp_by_currency(addons, **kw):
     Total finance in-app stats, currency breakdown.
     """
     index = kw.get('index', InappPayment._get_index())
-    es = elasticutils.get_es()
+    es = amo.search.get_es()
     log.info('Indexing total financial in-app stats by currency for %s apps.' %
              len(addons))
 
@@ -242,7 +242,7 @@ def index_finance_total_inapp_by_src(addons, **kw):
     Total finance in-app stats, src breakdown.
     """
     index = kw.get('index', InappPayment._get_index())
-    es = elasticutils.get_es()
+    es = amo.search.get_es()
     log.info('Indexing total financial in-app stats by src for %s apps.' %
              len(addons))
 
@@ -293,7 +293,7 @@ def index_finance_daily_inapp(ids, **kw):
     ids -- ids of mkt.stats.webapps.InappPayment objects
     """
     index = kw.get('index', InappPayment._get_index())
-    es = elasticutils.get_es()
+    es = amo.search.get_es()
 
     # Get contributions.
     qs = (InappPayment.objects.filter(id__in=ids)
@@ -334,7 +334,7 @@ def index_installed_daily(ids, **kw):
     """
     from mkt.webapps.models import Installed
     index = kw.get('index', Installed._get_index())
-    es = elasticutils.get_es()
+    es = amo.search.get_es()
     # Get Installed's
     qs = (Installed.objects.filter(id__in=set(ids)).
         order_by('-created').values('addon', 'created'))

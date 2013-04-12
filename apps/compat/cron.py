@@ -4,9 +4,9 @@ from collections import defaultdict
 from django.db.models import Count, Max
 
 import cronjobs
-import elasticutils.contrib.django as elasticutils
 
 import amo
+import amo.search
 import amo.utils
 from addons.models import Addon
 from search.utils import floor_version
@@ -125,4 +125,4 @@ def compatibility_report(index=None, aliased=True):
         for doc in chunk:
             for index in indices:
                 AppCompat.index(doc, id=doc['id'], bulk=True, index=index)
-        elasticutils.get_es().flush_bulk(forced=True)
+        amo.search.get_es().flush_bulk(forced=True)

@@ -1,11 +1,74 @@
 import logging
 from operator import itemgetter
 
-import elasticutils.contrib.django as elasticutils
+from pyes import ES as pyes_ES
+from pyes import VERSION as PYES_VERSION
+
 from django_statsd.clients import statsd
 
 
 log = logging.getLogger('z.es')
+
+
+DEFAULT_HOSTS = ['localhost:9200']
+DEFAULT_TIMEOUT = 5
+DEFAULT_INDEXES = ['default']
+DEFAULT_DUMP_CURL = None
+
+
+# Pulled from elasticutils 0.5 so we can upgrade elasticutils to a newer
+# version which is based on pyelasticsearch and not break AMO.
+def get_es(hosts=None, default_indexes=None, timeout=None, dump_curl=None,
+           **settings):
+    """Create an ES object and return it.
+
+    :arg hosts: list of uris; ES hosts to connect to, defaults to
+        ``['localhost:9200']``
+    :arg default_indexes: list of strings; the default indexes to use,
+        defaults to 'default'
+    :arg timeout: int; the timeout in seconds, defaults to 5
+    :arg dump_curl: function or None; function that dumps curl output,
+        see docs, defaults to None
+    :arg settings: other settings to pass into `pyes.es.ES`
+
+    Examples:
+
+    >>> es = get_es()
+
+    >>> es = get_es(hosts=['localhost:9200'])
+
+    >>> es = get_es(timeout=30)  # good for indexing
+
+    >>> es = get_es(default_indexes=['sumo_prod_20120627']
+
+    >>> class CurlDumper(object):
+    ...     def write(self, text):
+    ...         print text
+    ...
+    >>> es = get_es(dump_curl=CurlDumper())
+
+    """
+    # Cheap way of de-None-ifying things
+    hosts = hosts or DEFAULT_HOSTS
+    default_indexes = default_indexes or DEFAULT_INDEXES
+    timeout = timeout if timeout is not None else DEFAULT_TIMEOUT
+    dump_curl = dump_curl or DEFAULT_DUMP_CURL
+
+    if not isinstance(default_indexes, list):
+        default_indexes = [default_indexes]
+
+    es = pyes_ES(hosts, default_indexes=default_indexes, timeout=timeout,
+                 dump_curl=dump_curl, **settings)
+
+    # pyes 0.15 does this lame thing where it ignores dump_curl in
+    # the ES constructor and always sets it to None. So what we do
+    # is set it manually after the ES has been created and
+    # defaults['dump_curl'] is truthy. This might not work for all
+    # values of dump_curl.
+    if PYES_VERSION[0:2] == (0, 15) and dump_curl is not None:
+        es.dump_curl = dump_curl
+
+    return es
 
 
 class ES(object):
@@ -192,7 +255,7 @@ class ES(object):
 
     def raw(self):
         qs = self._build_query()
-        es = elasticutils.get_es()
+        es = get_es()
         try:
             with statsd.timer('search.es.timer') as timer:
                 hits = es.search(qs, self.index, self.type._meta.db_table)

@@ -1,8 +1,8 @@
 import os
 
+import amo.search
 from .models import Reindexing
 from django.core.management.base import CommandError
-import elasticutils.contrib.django as elasticutils
 
 
 def get_indices(index):
@@ -36,7 +36,7 @@ def index_objects(ids, model, search, index=None, transforms=None):
         for index in indices:
             model.index(data, bulk=True, id=ob.id, index=index)
 
-    elasticutils.get_es().flush_bulk(forced=True)
+    amo.search.get_es().flush_bulk(forced=True)
 
 
 def database_flagged():

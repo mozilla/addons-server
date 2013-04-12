@@ -1361,7 +1361,8 @@ class TestAddonModelsFeatured(amo.tests.TestCase):
 
 
 class TestBackupVersion(amo.tests.TestCase):
-    fixtures = ['addons/update', 'base/platforms']
+    fixtures = ['addons/update', 'base/apps', 'base/appversion',
+                'base/platforms']
 
     def setUp(self):
         self.version_1_2_0 = 105387
@@ -1555,13 +1556,13 @@ class TestAddonDependencies(amo.tests.TestCase):
 
     def test_dependencies(self):
         ids = [3615, 3723, 4664, 6704]
-        a = Addon.objects.get(id=5299)
+        addon = Addon.objects.get(id=5299)
 
         for dependent_id in ids:
-            AddonDependency(addon=a,
+            AddonDependency(addon=addon,
                 dependent_addon=Addon.objects.get(id=dependent_id)).save()
 
-        eq_(sorted([a.id for a in a.dependencies.all()]), sorted(ids))
+        eq_(sorted([a.id for a in addon.dependencies.all()]), sorted(ids))
         eq_(list(a.dependencies.all()), a.all_dependencies)
 
     def test_unique_dependencies(self):

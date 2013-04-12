@@ -30,6 +30,7 @@ from waffle.models import Flag, Sample, Switch
 
 import addons.search
 import amo
+import amo.search
 import stats.search
 from access.models import Group, GroupUser
 from addons.models import Addon, AddonCategory, Category, Persona
@@ -186,7 +187,7 @@ class TestClient(Client):
             raise AttributeError
 
 
-ES_patchers = [mock.patch('elasticutils.get_es', spec=True),
+ES_patchers = [mock.patch('amo.search.get_es', spec=True),
                mock.patch('elasticutils.contrib.django', spec=True)]
 
 
@@ -676,7 +677,7 @@ class ESTestCase(TestCase):
     def setUpClass(cls):
         if not settings.RUN_ES_TESTS:
             raise SkipTest('ES disabled')
-        cls.es = elasticutils.get_es(timeout=settings.ES_TIMEOUT)
+        cls.es = amo.search.get_es(timeout=settings.ES_TIMEOUT)
 
         # The ES setting are set before we call super()
         # because we may have indexation occuring in upper classes.

@@ -8,13 +8,13 @@ from nose.tools import eq_
 from django.conf import settings
 from django.db import connection
 
-from addons.models import AddonCategory, Category
+import amo.search
 import amo.tests
+from addons.models import AddonCategory, Category
 from amo.urlresolvers import reverse
 from amo.utils import urlparams
 from es.management.commands.reindex import (call_es, unflag_database,
                                             database_flagged)
-import elasticutils.contrib.django as elasticutils
 from mkt.webapps.models import Webapp
 
 
@@ -162,7 +162,7 @@ class TestIndexCommand(amo.tests.ESTestCase):
         stdout, stderr = indexer.communicate()
         self.assertTrue('Reindexation done' in stdout, stdout + '\n' + stderr)
 
-        elasticutils.get_es().refresh()
+        amo.search.get_es().refresh()
         # the reindexation is done, let's double check we have all our docs
         self.check_results({'sort': 'popularity'}, wanted)
 
@@ -180,7 +180,7 @@ class TestIndexCommand(amo.tests.ESTestCase):
 
     def test_remove_index(self):
         # Putting a test_amo index in the way.
-        es = elasticutils.get_es()
+        es = amo.search.get_es()
 
         for index in es.get_indices().keys():
             for prefix in ('test_amo', 'test_amo_stats'):

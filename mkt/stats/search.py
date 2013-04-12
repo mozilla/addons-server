@@ -1,8 +1,7 @@
 from django.db.models import Count, Q, Sum
 
-import elasticutils.contrib.django as elasticutils
-
 import amo
+import amo.search
 from amo.utils import create_es_index_if_missing
 from mkt.inapp_pay.models import InappPayment
 from mkt.webapps.models import Installed
@@ -187,7 +186,7 @@ def setup_mkt_indexes(index=None, aliased=True):
     defined and a field is inserted, ES will dynamically guess the type and
     insert it, in a schemaless manner.
     """
-    es = elasticutils.get_es()
+    es = amo.search.get_es()
     for model in [Contribution, InappPayment]:
         index_ = index or model._get_index()
         index_ = create_es_index_if_missing(index_, aliased=aliased)

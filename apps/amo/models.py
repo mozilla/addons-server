@@ -6,7 +6,6 @@ from django.db import models, transaction
 from django.utils import translation
 
 import caching.base
-import elasticutils.contrib.django as elasticutils
 import multidb.pinning
 import pyes.exceptions
 import queryset_transform
@@ -300,14 +299,14 @@ class SearchMixin(object):
     def index(cls, document, id=None, bulk=False, force_insert=False,
               index=None):
         """Wrapper around pyes.ES.index."""
-        elasticutils.get_es().index(
+        search.get_es().index(
             document, index=index or cls._get_index(),
             doc_type=cls._meta.db_table, id=id, bulk=bulk,
             force_insert=force_insert)
 
     @classmethod
     def unindex(cls, id, index=None):
-        es = elasticutils.get_es()
+        es = search.get_es()
         try:
             es.delete(index or cls._get_index(), cls._meta.db_table, id)
         except pyes.exceptions.NotFoundException:

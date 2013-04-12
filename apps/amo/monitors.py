@@ -8,9 +8,9 @@ from PIL import Image
 from django.conf import settings
 
 import commonware.log
-import elasticutils.contrib.django as elasticutils
 import requests
 
+import amo.search
 from amo.utils import memoize
 from applications.management.commands import dump_apps
 from lib.crypto import receipt
@@ -92,7 +92,7 @@ def elastic():
     elastic_results = None
     status = ''
     try:
-        health = elasticutils.get_es().cluster_health()
+        health = amo.search.get_es().cluster_health()
         if health['status'] == 'red':
             status = 'ES is red'
         elastic_results = health

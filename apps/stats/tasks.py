@@ -8,11 +8,11 @@ from django.db.models import Sum, Max
 
 from apiclient.discovery import build
 import commonware.log
-import elasticutils.contrib.django as elasticutils
 from celeryutils import task
 from oauth2client.client import OAuth2Credentials
 
 import amo
+import amo.search
 from addons.models import Addon
 from bandwagon.models import Collection
 from mkt.monolith.models import MonolithRecord
@@ -259,27 +259,27 @@ def _get_daily_jobs(date=None):
     # move from sandbox -> public
     if date == datetime.date.today():
         stats.update({
-        'addon_count_experimental': Addon.objects.filter(
+            'addon_count_experimental': Addon.objects.filter(
                 created__lte=date, status=amo.STATUS_UNREVIEWED,
                 disabled_by_user=0).count,
-        'addon_count_nominated': Addon.objects.filter(
+            'addon_count_nominated': Addon.objects.filter(
                 created__lte=date, status=amo.STATUS_NOMINATED,
                 disabled_by_user=0).count,
-        'addon_count_public': Addon.objects.filter(
+            'addon_count_public': Addon.objects.filter(
                 created__lte=date, status=amo.STATUS_PUBLIC,
                 disabled_by_user=0).count,
-        'addon_count_pending': Version.objects.filter(
+            'addon_count_pending': Version.objects.filter(
                 created__lte=date, files__status=amo.STATUS_PENDING).count,
 
-        'collection_count_private': Collection.objects.filter(
+            'collection_count_private': Collection.objects.filter(
                 created__lte=date, listed=0).count,
-        'collection_count_public': Collection.objects.filter(
+            'collection_count_public': Collection.objects.filter(
                 created__lte=date, listed=1).count,
-        'collection_count_editorspicks': Collection.objects.filter(
+            'collection_count_editorspicks': Collection.objects.filter(
                 created__lte=date, type=amo.COLLECTION_FEATURED).count,
-        'collection_count_normal': Collection.objects.filter(
+            'collection_count_normal': Collection.objects.filter(
                 created__lte=date, type=amo.COLLECTION_NORMAL).count,
-            })
+        })
 
     return stats
 
@@ -310,7 +310,7 @@ def index_update_counts(ids, **kw):
     index = kw.pop('index', None)
     indices = get_indices(index)
 
-    es = elasticutils.get_es()
+    es = amo.search.get_es()
     qs = list(UpdateCount.objects.filter(id__in=ids))
     if qs:
         log.info('Indexing %s updates for %s.' % (len(qs), qs[0].date))
@@ -331,7 +331,7 @@ def index_download_counts(ids, **kw):
     index = kw.pop('index', None)
     indices = get_indices(index)
 
-    es = elasticutils.get_es()
+    es = amo.search.get_es()
     qs = DownloadCount.objects.filter(id__in=ids)
     if qs:
         log.info('Indexing %s downloads for %s.' % (len(qs), qs[0].date))
@@ -353,7 +353,7 @@ def index_collection_counts(ids, **kw):
     index = kw.pop('index', None)
     indices = get_indices(index)
 
-    es = elasticutils.get_es()
+    es = amo.search.get_es()
     qs = CollectionCount.objects.filter(collection__in=ids)
     if qs:
         log.info('Indexing %s addon collection counts: %s'

@@ -1,11 +1,11 @@
 from django.core import paginator
 
-import elasticutils.contrib.django as elasticutils
 import mock
 from nose import SkipTest
 from nose.tools import eq_
 
 import amo
+import amo.search
 import amo.tests
 from addons.models import Addon
 
@@ -22,7 +22,7 @@ class TestESIndexing(amo.tests.ESTestCase):
                                  status__in=amo.VALID_STATUSES).count())
 
     def test_get_es_not_mocked(self):
-        es = elasticutils.get_es()
+        es = amo.search.get_es()
         assert not issubclass(es.__class__, mock.Mock)
 
 
@@ -44,7 +44,7 @@ class TestNoESIndexing(amo.tests.TestCase):
 
     def test_get_es_mocked(self):
         raise SkipTest
-        es = elasticutils.get_es()
+        es = amo.search.get_es()
         assert issubclass(es.__class__, mock.Mock)
 
 

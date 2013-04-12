@@ -111,6 +111,7 @@ class TestDataValidate(amo.tests.TestCase):
 
 class TestLookup(amo.tests.TestCase):
     fixtures = ['addons/update',
+                'base/apps',
                 'base/appversion',
                 'base/platforms']
 
@@ -340,12 +341,12 @@ class TestLookup(amo.tests.TestCase):
         file_two.save()
         version, file = self.get('1.2', self.version_int,
                                  self.app, amo.PLATFORM_LINUX)
-        eq_(version,  self.version_1_2_2)
+        eq_(version, self.version_1_2_2)
         eq_(file, file_one.pk)
 
         version, file = self.get('1.2', self.version_int,
                                  self.app, amo.PLATFORM_WIN)
-        eq_(version,  self.version_1_2_2)
+        eq_(version, self.version_1_2_2)
         eq_(file, file_two.pk)
 
     def test_file_preliminary(self):

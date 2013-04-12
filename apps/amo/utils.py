@@ -1010,7 +1010,7 @@ def create_es_index_if_missing(index, config=None, aliased=False):
     - aliased: If set to true, the index is suffixed with a timestamp
       and an alias with the index name is created.
     """
-    es = elasticutils.get_es()
+    es = amo.search.get_es()
 
     if aliased:
         alias = index

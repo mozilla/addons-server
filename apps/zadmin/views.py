@@ -16,7 +16,6 @@ from django.views import debug
 from django.views.decorators.cache import never_cache
 
 import commonware.log
-import elasticutils.contrib.django as elasticutils
 import jinja2
 import jingo
 from hera.contrib.django_forms import FlushForm
@@ -24,6 +23,7 @@ from hera.contrib.django_utils import get_hera, flush_urls
 from tower import ugettext as _
 
 import amo
+import amo.search
 from addons.cron import reindex_addons, reindex_apps
 from addons.decorators import addon_view
 from addons.models import Addon, AddonUser, CompatOverride
@@ -123,7 +123,7 @@ def langpacks(request):
         try:
             tasks.fetch_langpacks.delay(request.POST['path'])
         except ValueError:
-            messages.error(request, "Invalid language pack sub-path provided.")
+            messages.error(request, 'Invalid language pack sub-path provided.')
 
         return redirect('zadmin.langpacks')
 
@@ -587,7 +587,7 @@ def monthly_pick(request):
 @admin.site.admin_view
 def elastic(request):
     INDEX = settings.ES_INDEXES['default']
-    es = elasticutils.get_es()
+    es = amo.search.get_es()
     mappings = {'addons': reindex_addons,
                 'apps': reindex_apps,
                 'collections': reindex_collections,
