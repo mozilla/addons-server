@@ -19,19 +19,16 @@
 {{ reviewers_breadcrumbs(queue='themes') }}
 
 <h1 class="theme-queue-header">{% block page_header %}{{ title_text }}{% endblock %}</h1>
-<nav class="theme-review"><ul>
-  {% if action_allowed('ReviewerAdminTools', 'View') and not theme and not flagged %}
-    <li><a href="{{ url('reviewers.themes.queue_flagged') }}">
-      {{ _('Flagged Queue') }}
-    </a></li>
-  {% else %}
-    {% if flagged or theme %}
-      <li><a href="{{ url('reviewers.themes.queue_themes') }}">
-        {{ _('Back to Themes Queue') }}
-      </a></li>
-    {% endif %}
-  {% endif %}
-</ul></nav>
+<nav class="theme-review island c">
+  <strong>{{ _('Queues') }}:</strong>
+  <ul>
+    {% for prefix, this, loc, text in queue_tabnav_themes() %}
+      <li{% if tab == this %} class="active"{% endif %}>
+        <a href="{{ url('reviewers.%s.%s' % (prefix, loc)) }}">{{ text }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+</nav>
 
 <span class="queue-context" data-actions="{{ actions }}"
       data-flagged="{{ flagged }}" data-max-locks="{{ max_locks }}"
@@ -83,10 +80,14 @@
   <a class="button" href="{{ url('reviewers.themes.history') }}">{{ _('Your Review History') }}</a>
   {% block sidebar %}{% endblock %}
 
-  {% if reviewable %}
+  {% if reviewable and theme_count %}
     <button id="commit" type="submit">
       <img src="{{ media('/img/sprites/mkt-reviewer-icons/page_white_edit.png') }}">
-      {{ _('Commit Reviews') }}
+      {% if theme_count == 1 %}
+        {{ _('Commit Review') }}
+      {% else %}
+        {{ _('Commit Reviews') }}
+      {% endif %}
     </button>
     <button id="more" type="submit">{{ _('Load More') }}</button>
     <div id="queue-details">
@@ -98,7 +99,7 @@
 
 <div class="theme-queue details single">
   {% if not theme_count %}
-    <strong>{{ _('There are currently no Themes to review.') }}</strong>
+    <h3>{{ _('There are currently no Themes to review.') }}</h3>
   {% endif %}
 
   <form id="theme-queue-form" action="{{ url('reviewers.themes.commit') }}" method="post">

@@ -105,12 +105,27 @@ def queue_tabnav(context):
     # Themes.
     if (acl.action_allowed(context['request'], 'Personas', 'Review') and
         waffle.switch_is_active('mkt-themes')):
-        rv.append(
-            ('themes', 'themes', 'list',
-             _('Themes ({0})',
-               counts['themes']).format(counts['themes'])),
-        )
+        rv.append((
+            'themes', 'themes', 'list',
+            _('Themes ({0})').format(counts['themes']),
+        ))
     return rv
+
+
+@register.function
+@jinja2.contextfunction
+def queue_tabnav_themes(context):
+    """Similar to queue_tabnav, but for themes."""
+    tabs = []
+    if acl.action_allowed(context['request'], 'Personas', 'Review'):
+        tabs.append((
+            'themes', 'pending', 'queue_themes', _('Pending'),
+        ))
+    if acl.action_allowed(context['request'], 'ReviewerAdminTools', 'View'):
+        tabs.append((
+            'themes', 'flagged', 'queue_flagged', _('Flagged'),
+        ))
+    return tabs
 
 
 @register.function

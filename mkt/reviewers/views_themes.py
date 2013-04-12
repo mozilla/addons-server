@@ -124,6 +124,7 @@ def _themes_queue(request, flagged=False):
         'reviewable': True,
         'theme_formsets': zip(themes, formset),
         'theme_count': len(themes),
+        'tab': 'flagged' if flagged else 'pending'
     }))
 
 

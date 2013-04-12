@@ -11,15 +11,27 @@ h1.theme-queue-header {
     float: left;
 }
 nav.theme-review {
-    float: left;
-    left: 16px;
+    float: right;
+    font-size: 15px;
     position: relative;
-    top: 17px;
+    right: 4px;
+    strong {
+        margin-right: 2px;
+    }
+    ul {
+        display: inline;
+    }
     li {
-        float: left;
-        font-size: 16px;
-        + li:after {
+        display: inline;
+        + li:before {
             content: "|";
+        }
+        &.active a {
+            color: $orange;
+            cursor: default;
+            &:hover {
+                text-decoration: none;
+            }
         }
     }
 }
@@ -39,6 +51,7 @@ nav.theme-review {
 .sidebar {
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+    clear: both;
     float: right;
     padding-left: 20px;
     position: relative;
