@@ -1,10 +1,11 @@
 import logging
 from operator import itemgetter
 
+from django_statsd.clients import statsd
 from pyes import ES as pyes_ES
 from pyes import VERSION as PYES_VERSION
 
-from django_statsd.clients import statsd
+from django.conf import settings as dj_settings
 
 
 log = logging.getLogger('z.es')
@@ -49,10 +50,11 @@ def get_es(hosts=None, default_indexes=None, timeout=None, dump_curl=None,
 
     """
     # Cheap way of de-None-ifying things
-    hosts = hosts or DEFAULT_HOSTS
-    default_indexes = default_indexes or DEFAULT_INDEXES
-    timeout = timeout if timeout is not None else DEFAULT_TIMEOUT
-    dump_curl = dump_curl or DEFAULT_DUMP_CURL
+    hosts = hosts or getattr(dj_settings, 'ES_HOSTS', DEFAULT_HOSTS)
+    default_indexes = default_indexes or [dj_settings.ES_INDEXES['default']]
+    timeout = (timeout if timeout is not None else
+               getattr(dj_settings, 'ES_TIMEOUT', DEFAULT_TIMEOUT))
+    dump_curl = dump_curl or getattr(dj_settings, 'DEFAULT_DUMP_CURL', False)
 
     if not isinstance(default_indexes, list):
         default_indexes = [default_indexes]
