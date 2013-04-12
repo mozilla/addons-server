@@ -186,3 +186,5 @@ UGLIFY_BIN = 'uglifyjs'
 XSENDFILE_HEADER  = 'X-Accel-Redirect'
 
 GOOGLE_ANALYTICS_CREDENTIALS = private.GOOGLE_ANALYTICS_CREDENTIALS
+
+GEOIP_URL = 'http://geo.marketplace.firefox.com'

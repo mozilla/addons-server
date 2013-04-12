@@ -203,3 +203,5 @@ LESS_PREPROCESS = True
 XSENDFILE_HEADER  = 'X-Accel-Redirect'
 
 ALLOW_SELF_REVIEWS = True
+
+GEOIP_URL = 'http://geo.marketplace.allizom.org'

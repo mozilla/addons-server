@@ -189,3 +189,5 @@ ALLOW_SELF_REVIEWS = True
 GOOGLE_ANALYTICS_CREDENTIALS = private.GOOGLE_ANALYTICS_CREDENTIALS
 
 MONOLITH_SERVER = 'https://monolith.allizom.org'
+
+GEOIP_URL = 'http://geo-dev.marketplace.allizom.org'
