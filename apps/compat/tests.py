@@ -24,6 +24,21 @@ incoming_data = {
 }
 
 
+class TestCompatReportModel(amo.tests.TestCase):
+
+    def test_none(self):
+        eq_(CompatReport.get_counts('xxx'), {'success': 0, 'failure': 0})
+
+    def test_some(self):
+        guid = '{2fa4ed95-0317-4c6a-a74c-5f3e3912c1f9}'
+        CompatReport.objects.create(guid=guid, works_properly=True)
+        CompatReport.objects.create(guid=guid, works_properly=True)
+        CompatReport.objects.create(guid=guid, works_properly=False)
+        CompatReport.objects.create(guid='ballin', works_properly=True)
+        CompatReport.objects.create(guid='ballin', works_properly=False)
+        eq_(CompatReport.get_counts(guid), {'success': 2, 'failure': 1})
+
+
 class TestIndex(amo.tests.TestCase):
 
     # TODO: Test valid version processing here.

@@ -325,9 +325,9 @@ def persona_grid(context, addons):
 @jinja2.contextfilter
 @register.inclusion_tag('addons/impala/persona_grid.html')
 def impala_persona_grid(context, personas, src=None, pagesize=6, cols=3):
-    pages = chunked(personas, pagesize)
-    columns = 'cols-%d' % cols
-    return new_context(**locals())
+    c = dict(context.items())
+    return dict(pages=chunked(personas, pagesize),
+                columns='cols-%d' % cols, **c)
 
 
 @register.filter

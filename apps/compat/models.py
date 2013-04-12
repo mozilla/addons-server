@@ -2,6 +2,7 @@ from django.db import models
 
 import json_field
 
+import amo
 import amo.models
 
 
@@ -20,15 +21,15 @@ class CompatReport(amo.models.ModelBase):
     class Meta:
         db_table = 'compatibility_reports'
 
-    @staticmethod
-    def transformer(addons):
-        qs = CompatReport.uncached
-        for addon in addons:
-            works_ = dict(qs.filter(guid=addon.guid)
-                            .values_list('works_properly')
-                            .annotate(models.Count('id')))
-            addon._compat_counts = {'success': works_.get(True, 0),
-                                    'failure': works_.get(False, 0)}
+    @classmethod
+    def get_counts(self, guid):
+        works = dict(CompatReport.objects.filter(guid=guid)
+                     .values_list('works_properly')
+                     .annotate(models.Count('id')))
+        return {
+            'success': works.get(True, 0),
+            'failure': works.get(False, 0)
+        }
 
 
 class AppCompat(amo.models.ModelBase):

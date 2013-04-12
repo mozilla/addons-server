@@ -1120,7 +1120,7 @@ class TestProfileSections(amo.tests.TestCase):
 
         doc = pq(r.content)
         eq_(doc('.num-addons a[href="#my-submissions"]').length, 1)
-        items = doc('#my-submissions .item')
+        items = doc('#my-addons .item')
         eq_(items.length, 2)
         eq_(items('.install[data-addon=3615]').length, 1)
         eq_(items('.install[data-addon=5299]').length, 1)
@@ -1135,7 +1135,7 @@ class TestProfileSections(amo.tests.TestCase):
         r = self.client.get(self.url)
 
         doc = pq(r.content)
-        items = doc('#my-submissions .persona')
+        items = doc('#my-themes .persona')
         eq_(items.length, 1)
         eq_(items('a[href="%s"]' % a.get_url_path()).length, 1)
 
@@ -1192,7 +1192,7 @@ class TestProfileSections(amo.tests.TestCase):
         r = self.client.get(self.url)
         assert len(self.user.addons_listed) <= 10, (
             'This user should have fewer than 10 add-ons.')
-        eq_(pq(r.content)('#my-submissions .paginator').length, 0)
+        eq_(pq(r.content)('#my-addons .paginator').length, 0)
 
     def test_my_reviews_pagination(self):
         for i in xrange(20):
@@ -1200,7 +1200,7 @@ class TestProfileSections(amo.tests.TestCase):
         assert len(self.user.addons_listed) > 10, (
             'This user should have way more than 10 add-ons.')
         r = self.client.get(self.url)
-        eq_(pq(r.content)('#my-submissions .paginator').length, 1)
+        eq_(pq(r.content)('#my-addons .paginator').length, 1)
 
     def test_my_collections_followed(self):
         coll = Collection.objects.all()[0]

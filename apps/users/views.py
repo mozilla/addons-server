@@ -27,7 +27,7 @@ import amo
 import users.notifications as notifications
 from abuse.models import send_abuse_report
 from access.middleware import ACLMiddleware
-from addons.models import Addon
+from addons.models import Addon, AddonUser
 from addons.decorators import addon_view_factory
 from amo import messages
 from amo.decorators import (json_view, login_required, permission_required,
@@ -575,18 +575,20 @@ def profile(request, user):
     own_profile = (request.user.is_authenticated() and
                    request.amo_user.id == user.id)
 
+    addons = []
     personas = []
+    user.num_addons_listed = 0
     if user.is_developer:
-        if webapp:
-            items = user.apps_listed
-        else:
-            items = user.addons_listed.exclude(type=amo.ADDON_PERSONA)
-            personas = (user.addons_listed.filter(type=amo.ADDON_PERSONA)
-                        .order_by('-average_daily_users'))
-        addons = amo.utils.paginate(request,
-                                    items.order_by('-weekly_downloads'))
-    else:
-        addons = []
+        addons = user.addons.reviewed().exclude(type=amo.ADDON_WEBAPP).filter(
+            addonuser__user=user, addonuser__listed=True)
+        user.num_addons_listed = addons.count()
+
+        personas = addons.filter(type=amo.ADDON_PERSONA).order_by(
+            '-average_daily_users')
+
+        addons = addons.exclude(type=amo.ADDON_PERSONA).order_by(
+            '-weekly_downloads')
+        addons = amo.utils.paginate(request, addons, 5)
 
     def get_addons(reviews):
         if not reviews:
@@ -595,6 +597,7 @@ def profile(request, user):
         addons = dict((addon.id, addon) for addon in qs)
         for review in reviews:
             review.addon = addons.get(review.addon_id)
+
     # (Don't show marketplace reviews for AMO (since that would break))
     reviews = list(user.reviews.exclude(addon__type=amo.ADDON_WEBAPP)
                    .transform(get_addons))

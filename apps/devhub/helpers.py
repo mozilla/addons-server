@@ -12,6 +12,7 @@ from amo.urlresolvers import reverse
 from amo.helpers import breadcrumbs, impala_breadcrumbs, page_title
 from access import acl
 from addons.helpers import new_context
+from compat.models import CompatReport
 
 
 register.function(acl.check_addon_ownership)
@@ -215,3 +216,9 @@ def display_url(url):
     bytes = urllib.unquote(url)
     c = chardet.detect(bytes)
     return bytes.decode(c['encoding'], 'replace')
+
+
+@register.function
+def get_compat_counts(addon):
+    """Get counts for add-on compatibility reports."""
+    return CompatReport.get_counts(addon.guid)

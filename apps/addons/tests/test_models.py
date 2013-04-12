@@ -1269,20 +1269,6 @@ class TestAddonModels(amo.tests.TestCase):
         file.update(binary_components=True)
         eq_(addon.binary_components, True)
 
-    def test_compat_counts_transform_none(self):
-        addon = Addon.objects.get(id=3615)
-        eq_(addon._compat_counts, {'success': 0, 'failure': 0})
-
-    def test_compat_counts_transform_some(self):
-        guid = '{2fa4ed95-0317-4c6a-a74c-5f3e3912c1f9}'
-        CompatReport.objects.create(guid=guid, works_properly=True)
-        CompatReport.objects.create(guid=guid, works_properly=True)
-        CompatReport.objects.create(guid=guid, works_properly=False)
-        CompatReport.objects.create(guid='ballin', works_properly=True)
-        CompatReport.objects.create(guid='ballin', works_properly=False)
-        eq_(Addon.objects.get(id=3615)._compat_counts,
-            {'success': 2, 'failure': 1})
-
 
 class TestAddonDelete(amo.tests.TestCase):
 

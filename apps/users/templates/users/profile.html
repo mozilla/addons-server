@@ -52,8 +52,13 @@
   </section>
 </div>
 
+{# For anchors. #}
+{% if addons.object_list or personas %}
+  <div id="my-submissions"></div>
+{% endif %}
+
 {% if addons.object_list %}
-  <div id="my-submissions" class="island primary listing c">
+  <div id="my-addons" class="island primary listing c">
     <h2>{{ _("Add-ons I've created") }}</h2>
     <div class="items">
       {{ impala_addon_listing_items(addons.object_list, field=sorting, src='userprofile') }}
@@ -63,7 +68,7 @@
 {% endif %}
 
 {% if personas %}
-  <div id="{{ 'my-themes' if addons.object_list else 'my-submissions' }}" class="island c">
+  <div id="my-themes" class="island c">
     <h2>{{ _("Themes I've created") }}</h2>
     {{ personas|impala_persona_grid(cols=5, pagesize=15) }}
   </div>
