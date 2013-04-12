@@ -15,6 +15,7 @@ import logging
 from django.dispatch.dispatcher import Signal, _make_id
 from django.conf import settings
 
+from django_statsd.clients import statsd
 
 log = logging.getLogger('signals')
 
@@ -30,7 +31,8 @@ def safe_send(self, sender, **named):
     # Return a list of tuple pairs [(receiver, response), ... ].
     for receiver in self._live_receivers(_make_id(sender)):
         try:
-            response = receiver(signal=self, sender=sender, **named)
+            with statsd.timer('signal.sender.%s' % sender.__name__.lower()):
+                response = receiver(signal=self, sender=sender, **named)
         except Exception, err:
             if do_raise:
                 raise
