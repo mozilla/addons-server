@@ -93,12 +93,16 @@ python manage.py update_product_details
 echo "Starting tests..." `date`
 export FORCE_DB='yes sir'
 
-run_tests="python manage.py test -v 2 --noinput --logging-clear-handlers"
+run_tests="python manage.py test -v 2 --noinput --logging-clear-handlers --with-blockage"
 if [[ $3 = '--with-coverage' ]]; then
-    exec $run_tests --with-coverage --cover-package=mkt --cover-erase --cover-html --cover-xml --cover-xml-file=coverage.xml
+    run_tests+=" --with-coverage --cover-package=mkt --cover-erase --cover-html --cover-xml --cover-xml-file=coverage.xml"
 else
-    exec $run_tests --with-xunit --with-blockage
+   if [[ $3 ]]; then
+    run_tests+=" $3"
+   fi
 fi
+exec $run_tests
+
 rv=$?
 
 echo 'shazam!'
