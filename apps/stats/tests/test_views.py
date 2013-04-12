@@ -19,7 +19,7 @@ from stats.models import (CollectionCount, DownloadCount, GlobalStat,
 from users.models import UserProfile
 
 
-class StatsTest(amo.tests.ESTestCase):
+class StatsTest(amo.tests.TestCase):
     fixtures = ['stats/test_views.json', 'stats/test_models.json']
 
     def setUp(self):
@@ -70,7 +70,7 @@ class StatsTest(amo.tests.ESTestCase):
                 yield (view, args)
 
 
-class ESStatsTest(StatsTest):
+class ESStatsTest(StatsTest, amo.tests.ESTestCase):
     """Test class with some ES setup."""
 
     def setUp(self):
@@ -85,7 +85,7 @@ class ESStatsTest(StatsTest):
         self.refresh('update_counts')
 
 
-class TestSeriesSecurity(ESStatsTest):
+class TestSeriesSecurity(StatsTest):
     """Tests to make sure all restricted data remains restricted."""
     mock_es = True  # We're checking only headers, not content.
 
@@ -165,7 +165,7 @@ class TestSeriesSecurity(ESStatsTest):
         self._check_it(self.private_views_gen(addon_id=5, format='json'), 403)
 
 
-class _TestCSVs(StatsTest, amo.tests.TestCase):
+class _TestCSVs(StatsTest):
     """Tests for CSV output of all known series views."""
     first_row = 5
 
@@ -315,7 +315,7 @@ class _TestCSVs(StatsTest, amo.tests.TestCase):
         eq_(rows[self.first_row], [])  # There is no data
 
 
-class TestCacheControl(StatsTest, amo.tests.TestCase):
+class TestCacheControl(StatsTest):
     """Tests we set cache control headers"""
 
     def _test_cache_control(self):
@@ -325,7 +325,7 @@ class TestCacheControl(StatsTest, amo.tests.TestCase):
             'Bad or no cache-control: %r' % response.get('cache-control', ''))
 
 
-class TestLayout(StatsTest, amo.tests.TestCase):
+class TestLayout(StatsTest):
 
     def test_not_public_stats(self):
         r = self.client.get(reverse('stats.downloads', args=[4]))

@@ -13,9 +13,9 @@
         "model": "applications.appversion",
         "fields": {
             "application": 1,
-            "version": "4.0",
+            "version": "4.1",
             "created": "2007-03-05 13:09:26",
-            "version_int": 3070000001000,
+            "version_int": 4010002001000,
             "modified": "2010-01-02 12:34:56"
         }
     },
