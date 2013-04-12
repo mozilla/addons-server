@@ -1035,7 +1035,8 @@ PAYPAL_LIMIT_PREAPPROVAL = True
 MAX_CONTRIBUTION = 1000
 
 # Email settings
-DEFAULT_FROM_EMAIL = "Mozilla Add-ons <nobody@mozilla.org>"
+ADDONS_EMAIL = "Mozilla Add-ons <nobody@mozilla.org>"
+DEFAULT_FROM_EMAIL = ADDONS_EMAIL
 
 # Email goes to the console by default.  s/console/smtp/ for regular delivery
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

@@ -61,10 +61,12 @@ def send_mail(cleaned_data, theme_lock):
 
         # Send another email to the user notifying them that their Theme has
         # been flagged.
-        send_mail_jinja(_('A problem with your Theme submission'),
-                        'reviewers/themes/emails/flag_user.html', context,
-                        recipient_list=emails,
-                        headers={'Reply-To': settings.THEMES_EMAIL})
+        send_mail_jinja(
+            _('A problem with your Theme submission'),
+            'reviewers/themes/emails/flag_user.html', context,
+            recipient_list=emails,
+            from_email=settings.ADDONS_EMAIL,
+            headers={'Reply-To': settings.THEMES_EMAIL})
 
         # Send the other email below to themes email.
         emails = [settings.THEMES_EMAIL]
@@ -87,4 +89,5 @@ def send_mail(cleaned_data, theme_lock):
 
     send_mail_jinja(subject, template, context,
                     recipient_list=emails, cc=cc,
+                    from_email=settings.ADDONS_EMAIL,
                     headers={'Reply-To': settings.THEMES_EMAIL})
