@@ -577,14 +577,17 @@ def profile(request, user):
 
     addons = []
     personas = []
-    user.num_addons_listed = 0
+    limited_personas = False
     if user.is_developer:
         addons = user.addons.reviewed().exclude(type=amo.ADDON_WEBAPP).filter(
             addonuser__user=user, addonuser__listed=True)
-        user.num_addons_listed = addons.count()
 
+        # TODO: Paginate themes so we don't have to take a slice (bug 860306).
         personas = addons.filter(type=amo.ADDON_PERSONA).order_by(
-            '-average_daily_users')
+            '-persona__popularity')
+        if personas.count() > 60:
+            limited_personas = True
+            personas = personas[:60]
 
         addons = addons.exclude(type=amo.ADDON_PERSONA).order_by(
             '-weekly_downloads')
@@ -605,7 +608,7 @@ def profile(request, user):
     data = {'profile': user, 'own_coll': own_coll, 'reviews': reviews,
             'fav_coll': fav_coll, 'edit_any_user': edit_any_user,
             'addons': addons, 'own_profile': own_profile,
-            'personas': personas}
+            'personas': personas, 'limited_personas': limited_personas}
     if not own_profile:
         data['abuse_form'] = AbuseForm(request=request)
 

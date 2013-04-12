@@ -44,11 +44,19 @@
              {{ _('{0} add-ons')|f(num) }}
           {% else %}
             <a href="{{ '#my-submissions' if is_profile else profile.get_url_path() }}">
-              {% trans cnt=num, num=num|numberfmt %}
-                {{ num }} add-on
-              {% pluralize %}
-                {{ num }} add-ons
-              {% endtrans -%}
+              {% if profile.is_artist and not profile.is_addon_developer %}
+                {% trans cnt=num, num=num|numberfmt %}
+                  {{ num }} theme
+                {% pluralize %}
+                  {{ num }} themes
+                {% endtrans -%}
+              {% else %}
+                {% trans cnt=num, num=num|numberfmt %}
+                  {{ num }} add-on
+                {% pluralize %}
+                  {{ num }} add-ons
+                {% endtrans -%}
+              {% endif %}
             </a>
           {% endif %}
         {% endwith %}

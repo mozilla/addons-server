@@ -175,6 +175,12 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
             addonuser__user=self, addonuser__listed=True)
 
     @amo.cached_property
+    def num_addons_listed(self):
+        """Number of public add-ons this user is listed as author of."""
+        return self.addons.reviewed().exclude(type=amo.ADDON_WEBAPP).filter(
+            addonuser__user=self, addonuser__listed=True).count()
+
+    @amo.cached_property
     def apps_listed(self):
         """Public apps this user is listed as author of."""
         return self.addons.reviewed().filter(type=amo.ADDON_WEBAPP,
