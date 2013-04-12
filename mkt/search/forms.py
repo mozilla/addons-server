@@ -145,9 +145,9 @@ class ApiSearchForm(forms.Form):
                              label=_lazy(u'Add-on type'))
     status = forms.ChoiceField(required=False, choices=STATUS_CHOICES,
                                label=_lazy(u'Status'))
-    cat = SluggableModelChoiceField(queryset=Category.objects.all(),
-                                    sluggable_to_field_name='slug',
-                                    required=False)
+    cat = SluggableModelChoiceField(
+        queryset=Category.objects.filter(type=amo.ADDON_WEBAPP),
+        sluggable_to_field_name='slug', required=False)
     device = forms.ChoiceField(
         required=False, choices=DEVICE_CHOICES, label=_lazy(u'Device type'))
     premium_types = forms.MultipleChoiceField(

@@ -260,6 +260,7 @@ class TestCategoriesWithCreatured(BaseOAuth, ESTestCase):
 
     def test_creatured_plus_category(self):
         cat = Category.objects.create(type=amo.ADDON_WEBAPP, slug='shiny')
+        Category.objects.create(type=amo.ADDON_EXTENSION, slug='shiny')
         app2 = amo.tests.app_factory()
         AddonCategory.objects.get_or_create(addon=app2, category=cat)
         AddonCategory.objects.get_or_create(addon_id=337141, category=cat)
