@@ -172,6 +172,14 @@
 
                 $('button#more').html(gettext('Loading&hellip;'));
                 $.get(moreUrl, function(data) {
+                    if (!data.html || data.count <= 0) {
+                        // Display notification if no themes to load.
+                        $('button#more').text(
+                            gettext('No available themes to load'))
+                        .unbind('click').addClass('inactive');
+                        return;
+                    }
+
                     // Insert the themes into the DOM.
                     $('#theme-queue-form').append(data.html);
                     themesList = $('div.theme', queue);
