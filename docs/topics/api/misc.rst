@@ -276,8 +276,8 @@ Report An Abusive User
             "reporter": null,
             "text": "There is a problem with this user.",
             "user": {
-                "id": "27",
-                "username": "cvan"
+                "display_name": "cvan",
+                "resource_uri": "/api/v1/account/settings/27/"
             }
         }
 

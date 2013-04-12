@@ -3,11 +3,12 @@ from tastypie.authorization import Authorization
 from tastypie.throttle import CacheThrottle
 
 from abuse.models import AbuseReport
+from mkt.account.api import AccountResource
 from mkt.api.authentication import OptionalOAuthAuthentication
 from mkt.api.base import (CORSResource, GenericObject, MarketplaceResource,
                           PotatoCaptchaResource)
 from mkt.api.forms import RequestFormValidation
-from mkt.api.resources import AppResource, UserProfileResource
+from mkt.api.resources import AppResource
 
 from .forms import AppAbuseForm, UserAbuseForm
 
@@ -19,7 +20,7 @@ class BaseAbuseResource(PotatoCaptchaResource, CORSResource,
     """
     text = fields.CharField(attribute='text')
     ip_address = fields.CharField(attribute='ip_address', blank=True)
-    reporter = fields.ForeignKey(UserProfileResource, attribute='reporter',
+    reporter = fields.ForeignKey(AccountResource, attribute='reporter',
                                  null=True, full=True)
 
     class Meta(MarketplaceResource.Meta):
@@ -83,7 +84,7 @@ class BaseAbuseResource(PotatoCaptchaResource, CORSResource,
 
 
 class UserAbuseResource(BaseAbuseResource):
-    user = fields.ForeignKey(UserProfileResource, attribute='user', full=True)
+    user = fields.ForeignKey(AccountResource, attribute='user', full=True)
 
     class Meta(BaseAbuseResource.Meta):
         resource_name = 'user'

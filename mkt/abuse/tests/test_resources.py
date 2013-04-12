@@ -66,7 +66,7 @@ class AbuseResourceTests(object):
         del fields['sprout']
 
         if 'user' in fields:
-            eq_(int(data.pop('user')['id']), self.user.pk)
+            eq_(data.pop('user')['display_name'], self.user.display_name)
             del fields['user']
         if 'app' in fields:
             eq_(int(data.pop('app')['id']), self.app.pk)
@@ -84,7 +84,7 @@ class AbuseResourceTests(object):
     def test_send(self):
         res, data = self._call()
         self._test_success(res, data)
-        assert 'id' in data['reporter']
+        assert 'display_name' in data['reporter']
 
     def test_send_anonymous(self):
         res, data = self._call(anonymous=True)

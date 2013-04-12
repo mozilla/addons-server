@@ -1,6 +1,5 @@
 import json
 
-from django.contrib.auth.models import User
 from django.db import transaction
 from django.db.models import Q
 
@@ -22,7 +21,6 @@ from amo.utils import no_translation
 from constants.applications import DEVICE_TYPES
 from files.models import FileUpload, Platform
 from lib.metrics import record_action
-from users.models import UserProfile
 
 from mkt.api.authentication import (AppOwnerAuthorization,
                                     OptionalOAuthAuthentication,
@@ -399,26 +397,3 @@ class PreviewResource(CORSResource, MarketplaceModelResource):
         if 'file' in bundle.data:
             del bundle.data['file']
         return bundle
-
-
-class UserResource(CORSResource, MarketplaceModelResource):
-
-    class Meta(MarketplaceModelResource.Meta):
-        queryset = User.objects.all()
-        resource_name = 'user'
-        fields = ['id', 'username']
-
-
-class UserProfileResource(CORSResource, MarketplaceModelResource):
-
-    class Meta(MarketplaceModelResource.Meta):
-        queryset = UserProfile.objects.all()
-        resource_name = 'user_profile'
-        fields = ['id', 'username']
-        include_resource_uri = False
-
-    def get_resource_uri(self, bundle_or_obj=None):
-        """
-        Noop needed to prevent NotImplementedError.
-        """
-        return ''
