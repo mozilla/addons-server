@@ -11,9 +11,10 @@
     <dl class="meta">
       <dt>{{ _('Artist') }}</dt>
       <dd>
-        <!--Hardcode-->
-        <a href={{ "https://addons.mozilla.org/user/{0}/"|f(theme.author) }}>
-          {{ theme.author }}
+        {% set author = theme.addon.listed_authors[0].username %}
+        {# Hardcode #}
+        <a href="{{ 'https://addons.mozilla.org/user/{0}/'|f(author) }}">
+          {{ author }}
         </a>
       </dd>
       <dt>{{ _('Categories') }}</dt>
