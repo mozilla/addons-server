@@ -93,7 +93,7 @@ python manage.py update_product_details
 echo "Starting tests..." `date`
 export FORCE_DB='yes sir'
 
-run_tests="python manage.py test -v 2 --noinput --logging-clear-handlers --with-blockage"
+run_tests="python manage.py test -v 2 --noinput --logging-clear-handlers --with-blockage --with-xunit"
 if [[ $3 = '--with-coverage' ]]; then
     run_tests+=" --with-coverage --cover-package=mkt --cover-erase --cover-html --cover-xml --cover-xml-file=coverage.xml"
 else
