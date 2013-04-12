@@ -95,6 +95,19 @@ need to recompile the .mo files manually, for example::
 
 .. _`javascript-testing`:
 
+
+API Tests
+---------
+
+To run all Marketplace API tests, pass an additional `--config` flag to the test
+runner::
+
+  ./manage.py test --config=mkt/api/tests/nose.cfg
+
+If adding new test modules related to the API, ensure that you add them to the
+list at `mkt/api/tests/nose.cfg`.
+
+
 JavaScript Tests
 ----------------
 
