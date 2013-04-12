@@ -250,15 +250,6 @@ class ThemeReviewTestMixin(object):
                 headers={'Reply-To': settings.THEMES_EMAIL},
                 from_email=settings.ADDONS_EMAIL,
                 recipient_list=set([]), cc=settings.THEMES_EMAIL),
-            mock.call('A problem with your Theme submission',
-                'reviewers/themes/emails/flag_user.html',
-                {'reason': None,
-                 'comment': u'flag',
-                 'theme': themes[1],
-                 'base_url': 'http://testserver'},
-                headers={'Reply-To': settings.THEMES_EMAIL},
-                from_email=settings.ADDONS_EMAIL,
-                recipient_list=set([])),
             mock.call('Theme submission flagged for review',
                 'reviewers/themes/emails/flag_reviewer.html',
                 {'reason': None,
@@ -301,7 +292,6 @@ class ThemeReviewTestMixin(object):
         eq_(send_mail_jinja_mock.call_args_list[2], expected_calls[2])
         eq_(send_mail_jinja_mock.call_args_list[3], expected_calls[3])
         eq_(send_mail_jinja_mock.call_args_list[4], expected_calls[4])
-        eq_(send_mail_jinja_mock.call_args_list[5], expected_calls[5])
 
     def test_user_review_history(self):
         addon_factory(type=amo.ADDON_PERSONA, status=self.status)

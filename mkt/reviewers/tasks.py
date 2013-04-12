@@ -59,16 +59,7 @@ def send_mail(cleaned_data, theme_lock):
         template = 'reviewers/themes/emails/flag_reviewer.html'
         theme.addon.update(status=amo.STATUS_REVIEW_PENDING)
 
-        # Send another email to the user notifying them that their Theme has
-        # been flagged.
-        send_mail_jinja(
-            _('A problem with your Theme submission'),
-            'reviewers/themes/emails/flag_user.html', context,
-            recipient_list=emails,
-            from_email=settings.ADDONS_EMAIL,
-            headers={'Reply-To': settings.THEMES_EMAIL})
-
-        # Send the other email below to themes email.
+        # Send the flagged email to themes email.
         emails = [settings.THEMES_EMAIL]
         cc = None
 
