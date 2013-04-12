@@ -1,6 +1,16 @@
 Settings Changelog
 ==================
 
+2012-04-12
+----------
+* Removed ``GEOIP_NOOP``, ``GEOIP_HOST``, and ``GEOIP_PORT`` as they are no
+  longer used.
+* Added ``GEOIP_URL`` which is the fully qualified URL to your locally running
+  `geodude <https://github.com/mozilla/geodude>` instance without trailing
+  slash.
+* Changed default ``GEOIP_DEFAULT_VAL`` to ``'worldwide'``.
+
+
 2012-04-01
 ----------
 * Added ``PACKAGED_ZIP`` setting, which is the base filename of the ``.zip``

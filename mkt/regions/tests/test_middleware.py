@@ -108,9 +108,6 @@ class TestRegionMiddleware(amo.tests.TestCase):
         r = self.client.get('/')
         assert not r.cookies
 
-    # To actually test these calls with a valid GeoIP server,
-    # please remove the GEOIP_NOOP overrides.
-    @mock.patch.object(settings, 'GEOIP_NOOP', True)
     @mock.patch.object(settings, 'GEOIP_DEFAULT_VAL', 'worldwide')
     def test_geoip_missing_worldwide(self):
         """ Test for worldwide region """
@@ -121,7 +118,6 @@ class TestRegionMiddleware(amo.tests.TestCase):
         r = self.client.get('/', HTTP_ACCEPT_LANGUAGE='sa-US')
         eq_(r.cookies['region'].value, 'worldwide')
 
-    @mock.patch.object(settings, 'GEOIP_NOOP', True)
     @mock.patch.object(settings, 'GEOIP_DEFAULT_VAL', 'us')
     def test_geoip_missing_lang(self):
         """ Test for US region """

@@ -1,4 +1,3 @@
-import socket
 import mock
 from nose.tools import eq_
 
@@ -7,38 +6,44 @@ import amo.tests
 from lib.geoip import GeoIP
 
 
-class NOOP_Settings:
-
-    GEOIP_DEFAULT_VAL = 'worldwide'
+def generate_settings(url='', default='worldwide', timeout=0.2):
+    return mock.Mock(GEOIP_URL=url, GEOIP_DEFAULT_VAL=default,
+                     GEOIP_DEFAULT_TIMEOUT=timeout)
 
 
 class GeoIPTest(amo.tests.TestCase):
 
     def setUp(self):
-        # Use GEOIP_NOOP to always return the default value.
-        # This *should* be properly tested against a call to a GeoIP server.
-        self.geoip = GeoIP(NOOP_Settings)
+        self.create_switch(name='geoip-geodude', active=True)
 
-    @mock.patch('socket.socket')
-    def test_lookup(self, mock_socket):
-        send_value = 'mozilla.com'
-        mock_socket.return_value.connect.return_value = True
-        rcv = list('{"success":{"country_code":"us"}}')
-        # 5 = prefixed "GET " and new line
-        mock_socket.return_value.send.return_value = len(send_value) + 5
-        mock_socket.return_value.recv.side_effect = rcv
-        result = self.geoip.lookup(send_value)
+    @mock.patch('requests.post')
+    def test_lookup(self, mock_post):
+        url = 'localhost'
+        geoip = GeoIP(generate_settings(url=url))
+        mock_post.return_value = mock.Mock(status_code=200, json={
+            'country_code': 'US',
+            'country_name': 'United States'
+        })
+        ip = '1.1.1.1'
+        result = geoip.lookup(ip)
+        mock_post.assert_called_with('{0}/country.json'.format(url),
+                                     timeout=0.2, data={'ip': ip})
         eq_(result, 'us')
 
-    @mock.patch('socket.socket')
-    def test_no_connect(self, mock_socket):
-        mock_socket.return_value.connect.side_effect = IOError
-        result = self.geoip.lookup('mozilla.com')
+    @mock.patch('requests.post')
+    def test_no_url(self, mock_post):
+        geoip = GeoIP(generate_settings())
+        result = geoip.lookup('2.2.2.2')
+        assert not mock_post.called
         eq_(result, 'worldwide')
 
-    @mock.patch('socket.socket')
-    def test_timeout(self, mock_socket):
-        mock_socket.return_value.connect.return_value = True
-        mock_socket.return_value.send.side_effect = socket.timeout
-        result = self.geoip.lookup('mozilla.com')
+    @mock.patch('requests.post')
+    def test_bad_request(self, mock_post):
+        url = 'localhost'
+        geoip = GeoIP(generate_settings(url=url))
+        mock_post.return_value = mock.Mock(status_code=404, json=None)
+        ip = '3.3.3.3'
+        result = geoip.lookup(ip)
+        mock_post.assert_called_with('{0}/country.json'.format(url),
+                                     timeout=0.2, data={'ip': ip})
         eq_(result, 'worldwide')

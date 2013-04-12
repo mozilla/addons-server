@@ -207,8 +207,6 @@ LESS_PREPROCESS = True
 
 XSENDFILE_HEADER  = 'X-Accel-Redirect'
 
-GEOIP_NOOP = 0
-
 METLOG_CONF = {
     'plugins': {'cef': ('metlog_cef.cef_plugin:config_plugin', {})},
     'sender': {
