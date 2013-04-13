@@ -105,9 +105,6 @@ Validate
             }],
         }
 
-    :status 451: resource unavailable for legal reasons.
-
-
 App resource
 =================
 
@@ -133,6 +130,13 @@ App resource
     .. note:: Does not require authentication if your app is public.
 
     **Response**
+
+    An app object, see below for an example.
+
+    :status 200: successfully completed.
+    :status 403: not allowed to access this object.
+    :status 404: not found.
+    :status 451: resource unavailable for legal reasons.
 
     Example:
 
