@@ -705,6 +705,16 @@ class TestAppDetail(BaseOAuth, AMOPaths):
         data = json.loads(res.content)
         eq_(data['price'], None)
 
+    def test_nonexistant_app(self):
+        """
+        In combination with test_flagged, this ensures that a distinction is
+        appropriately drawn between attempts to access nonexistant apps and
+        attempts to access apps that are unavailable due to legal restrictions.
+        """
+        self.get_url[1]['pk'] = 1  # Not the PK of a real Webapp object
+        res = self.client.get(self.get_url)
+        eq_(res.status_code, 404)
+
     def test_flagged(self):
         # Acess a flagged app via API should 404.
         Flag.objects.create(addon_id=337141, adult_content=True)
@@ -712,7 +722,7 @@ class TestAppDetail(BaseOAuth, AMOPaths):
         res = self.client.get(
             self.get_url,
             data={'region': list(regions.ADULT_EXCLUDED)[0].slug})
-        eq_(res.status_code, 404)
+        eq_(res.status_code, 451)
 
 
 class TestCategoryHandler(BaseOAuth):

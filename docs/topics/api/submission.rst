@@ -105,6 +105,8 @@ Validate
             }],
         }
 
+    :status 451: resource unavailable for legal reasons.
+
 
 App resource
 =================

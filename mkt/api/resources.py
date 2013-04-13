@@ -30,6 +30,7 @@ from mkt.api.base import CORSResource, MarketplaceModelResource
 from mkt.api.forms import (CategoryForm, DeviceTypeForm, NewPackagedForm,
                            PreviewArgsForm, PreviewJSONForm, StatusForm,
                            UploadForm)
+from mkt.api.http import HttpLegallyUnavailable
 from mkt.carriers import get_carrier_id
 from mkt.developers import tasks
 from mkt.developers.forms import NewManifestForm, PreviewForm
@@ -128,7 +129,8 @@ class AppResource(CORSResource, MarketplaceModelResource):
         # Using `Webapp.objects.all()` here forces a new queryset, which for
         # now avoids bug 854505. We're also using this to filter by flagged
         # apps.
-        self._meta.queryset = Webapp.objects.exclude(
+        self._meta.queryset_base = Webapp.objects.all()
+        self._meta.queryset = self._meta.queryset_base.exclude(
             id__in=Webapp.get_excluded_in(REGIONS_DICT[get_region()]))
         return super(AppResource, self).dispatch(request_type, request,
                                                  **kwargs)
@@ -197,6 +199,9 @@ class AppResource(CORSResource, MarketplaceModelResource):
             # between a 404 and a 403.
             obj = self._meta.queryset.get(**kwargs)
         except self._meta.object_class.DoesNotExist:
+            legally_unavail = self._meta.queryset_base.filter(**kwargs).exists()
+            if legally_unavail:
+                raise ImmediateHttpResponse(response=HttpLegallyUnavailable())
             raise ImmediateHttpResponse(response=http.HttpNotFound())
 
         # If it's public, just return it.
