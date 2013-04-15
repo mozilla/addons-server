@@ -191,6 +191,12 @@ class TestUpdateManifest(amo.tests.TestCase):
         assert mock_.called
 
     @mock.patch('mkt.webapps.tasks._update_manifest')
+    def test_waiting(self, mock_):
+        self.addon.update(status=amo.STATUS_PUBLIC_WAITING)
+        call_command('process_addons', task='update_manifests')
+        assert mock_.called
+
+    @mock.patch('mkt.webapps.tasks._update_manifest')
     def test_ignore_disabled(self, mock_):
         self.addon.update(status=amo.STATUS_DISABLED)
         call_command('process_addons', task='update_manifests')
