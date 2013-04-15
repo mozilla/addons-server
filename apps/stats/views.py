@@ -501,7 +501,8 @@ def _monolith_site_query(period, start, end, field):
         period = 'day'
 
     def _get_data():
-        for result in client(fields[field], start, end, interval=period):
+        for result in client(fields[field], start, end, interval=period,
+                             strict_range=True):
             yield {'date': result['date'].strftime('%Y-%m-%d'),
                    'data': {field: result['count']}}
 
