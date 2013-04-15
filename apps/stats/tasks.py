@@ -14,7 +14,7 @@ from oauth2client.client import OAuth2Credentials
 
 import amo
 import amo.search
-from addons.models import Addon
+from addons.models import Addon, AddonUser
 from bandwagon.models import Collection
 from mkt.monolith.models import MonolithRecord
 from mkt.webapps.models import Installed
@@ -256,6 +256,10 @@ def _get_daily_jobs(date=None):
         'mmo_user_count_new': UserProfile.objects.filter(
                 created__range=(date, next_date),
                 source=amo.LOGIN_SOURCE_MMO_BROWSERID).count,
+
+        # New developers
+        'mmo_developer_count_total': AddonUser.objects.filter(
+            addon__type=amo.ADDON_WEBAPP).values('user').distinct().count,
     }
 
     # If we're processing today's stats, we'll do some extras.  We don't do

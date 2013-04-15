@@ -7,7 +7,7 @@ import mock
 from nose.tools import eq_
 
 import amo.tests
-from addons.models import Addon
+from addons.models import Addon, AddonUser
 from bandwagon.models import CollectionAddon, Collection
 from mkt.webapps.models import Installed
 from reviews.models import Review
@@ -90,6 +90,19 @@ class TestGlobalStats(amo.tests.TestCase):
         UserProfile.objects.create(username='foo',
                                    source=amo.LOGIN_SOURCE_MMO_BROWSERID)
         eq_(tasks._get_daily_jobs()['mmo_user_count_new'](), 1)
+
+    def test_dev_total(self):
+        p1 = UserProfile.objects.create(username='foo',
+                                        source=amo.LOGIN_SOURCE_MMO_BROWSERID)
+        p2 = UserProfile.objects.create(username='bar',
+                                        source=amo.LOGIN_SOURCE_MMO_BROWSERID)
+        a1 = amo.tests.addon_factory()
+        a2 = amo.tests.app_factory()
+        AddonUser.objects.create(addon=a1, user=p1)
+        AddonUser.objects.create(addon=a1, user=p2)
+        AddonUser.objects.create(addon=a2, user=p1)
+
+        eq_(tasks._get_daily_jobs()['mmo_developer_count_total'](), 1)
 
 
 class TestGoogleAnalytics(amo.tests.TestCase):
