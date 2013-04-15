@@ -33,7 +33,7 @@ class RatingResource(CORSResource, MarketplaceModelResource):
     user = fields.ToOneField(AccountResource, 'user', readonly=True, full=True)
     report_spam = fields.CharField()
 
-    class Meta:
+    class Meta(MarketplaceModelResource.Meta):
         # Unfortunately, the model class name for ratings is "Review".
         queryset = Review.objects.valid()
         resource_name = 'rating'
@@ -214,7 +214,7 @@ class RatingResource(CORSResource, MarketplaceModelResource):
 
 class RatingFlagResource(CORSResource, MarketplaceModelResource):
 
-    class Meta:
+    class Meta(MarketplaceModelResource.Meta):
         queryset = ReviewFlag.objects.all()
         resource_name = 'rating_flag'
         list_allowed_methods = ['post']
