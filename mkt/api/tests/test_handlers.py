@@ -705,10 +705,10 @@ class TestAppDetail(BaseOAuth, AMOPaths):
         data = json.loads(res.content)
         eq_(data['price'], None)
 
-    def test_nonexistant_app(self):
+    def test_nonexistent_app(self):
         """
         In combination with test_flagged, this ensures that a distinction is
-        appropriately drawn between attempts to access nonexistant apps and
+        appropriately drawn between attempts to access nonexistent apps and
         attempts to access apps that are unavailable due to legal restrictions.
         """
         self.get_url[1]['pk'] = 1  # Not the PK of a real Webapp object
