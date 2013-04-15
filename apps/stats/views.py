@@ -500,9 +500,13 @@ def _monolith_site_query(period, start, end, field):
     if period == 'date':
         period = 'day'
 
+    # The start date is not included in the range.
+    # The end date is included.
+    start = start - timedelta(days=1)
+
     def _get_data():
         for result in client(fields[field], start, end, interval=period,
-                             strict_range=True):
+                             strict_range=False):
             yield {'date': result['date'].strftime('%Y-%m-%d'),
                    'data': {field: result['count']}}
 
