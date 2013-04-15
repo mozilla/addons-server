@@ -502,7 +502,7 @@ def _monolith_site_query(period, start, end, field):
 
     # The start date is not included in the range.
     # The end date is included.
-    start = start - timedelta(days=1)
+    start = start + timedelta(days=1)
 
     def _get_data():
         for result in client(fields[field], start, end, interval=period,
