@@ -30,10 +30,10 @@ class GeoIP:
                     res = requests.post('{0}/country.json'.format(self.url),
                                         timeout=self.timeout,
                                         data={'ip': address})
-                except request.Timeout:
+                except requests.Timeout:
                     log.error(('Geodude timed out looking up: {0}'
                                .format(address)))
-                except request.RequestException as e:
+                except requests.RequestException as e:
                     log.error('Geodude connection error: {0}'.format(str(e)))
                 if res.status_code == 200:
                     return res.json.get('country_code',
