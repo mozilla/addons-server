@@ -95,7 +95,7 @@ def market_button(context, product, receipt_type=None, classes=None):
         if installed or purchased:
             label = _('Install')
         else:
-            label = product.get_price()
+            label = product.get_price(request.REGION.default_currency)
 
         # Free apps and purchased apps get active install buttons.
         if not product.is_premium() or purchased:
@@ -151,7 +151,8 @@ def product_as_dict(request, product, purchased=None, receipt_type=None,
     if product.has_price():
         ret.update({
             'price': product.premium.get_price() or '0',
-            'priceLocale': product.premium.get_price_locale(),
+            'priceLocale': product.premium.get_price_locale(
+                request.REGION.default_currency),
         })
         currencies = product.premium.supported_currencies()
         if len(currencies) > 1 and waffle.switch_is_active('currencies'):

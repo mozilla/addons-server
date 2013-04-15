@@ -218,8 +218,13 @@ class AddonPremium(amo.models.ModelBase):
     def get_price(self):
         return self.price.get_price()
 
-    def get_price_locale(self):
-        return self.price.get_price_locale()
+    def get_price_locale(self, currency=None):
+        """
+        Retuns a price for this locale. If you already know the currency
+        you would like, we will us that. Otherwise we will look it up
+        based on locale.
+        """
+        return self.price.get_price_locale(currency=currency)
 
     def is_complete(self):
         return bool(self.addon and self.price and

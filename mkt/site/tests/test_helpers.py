@@ -16,6 +16,7 @@ from amo.urlresolvers import reverse
 from market.models import AddonPremium, AddonPurchase
 from users.models import UserProfile
 
+from mkt.constants import regions
 from mkt.site.helpers import (css, get_login_link, js, market_button,
                               market_tile)
 from mkt.webapps.models import Webapp
@@ -38,6 +39,7 @@ class TestMarketButton(amo.tests.TestCase):
         request.TABLET = False
         request.META = {'HTTP_USER_AGENT': 'Mozilla/5.0 (Mobile; rv:17.0) '
                                            'Gecko/17.0 Firefox/17.0'}
+        request.REGION = regions.US()
         self.context = {'request': request}
 
     def test_not_webapp(self):
@@ -92,6 +94,9 @@ class TestMarketButton(amo.tests.TestCase):
 
     def test_is_premium_webapp_foreign(self):
         self.make_premium(self.webapp)
+        self.context['request'].REGION = regions.SPAIN
+        # The region is set to Spain, so the currency is set EUR
+        # and the display is set to French.
         with self.activate('fr'):
             doc = pq(market_tile(self.context, self.webapp))
             data = json.loads(doc('.mkt-tile').attr('data-product'))

@@ -484,9 +484,9 @@ class Webapp(Addon):
         return bool(self.is_premium() and self.premium and
                     self.premium.has_price())
 
-    def get_price(self):
+    def get_price(self, currency):
         if self.has_price():
-            return self.premium.get_price_locale()
+            return self.premium.get_price_locale(currency)
         return _(u'Free')
 
     @amo.cached_property

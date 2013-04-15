@@ -68,6 +68,10 @@ class TestPremium(amo.tests.TestCase):
         ap.paypal_permissions_token = 'asd'
         assert ap.has_valid_permissions_token()
 
+    def test_price_locale(self):
+        ap = AddonPremium(addon=self.addon, price=self.tier_one)
+        eq_(ap.get_price_locale('CAD'), 'CA$3.01')
+
 
 class TestPrice(amo.tests.TestCase):
     fixtures = ['market/prices.json']
