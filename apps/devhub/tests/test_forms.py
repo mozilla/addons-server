@@ -15,7 +15,7 @@ from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
 import paypal
 from applications.models import AppVersion
-from addons.forms import EditThemeForm, ThemeForm
+from addons.forms import EditThemeForm, EditThemeOwnerForm, ThemeForm
 from addons.models import Addon, Category, Charity, Persona
 from devhub import forms
 from files.helpers import copyfileobj
@@ -370,8 +370,8 @@ class TestThemeForm(amo.tests.TestCase):
         eq_(persona.license, data['license'])
         eq_(persona.accentcolor, data['accentcolor'].lstrip('#'))
         eq_(persona.textcolor, data['textcolor'].lstrip('#'))
-        eq_(persona.author, self.request.amo_user.name)
-        eq_(persona.display_username, self.request.amo_user.username)
+        eq_(persona.author, self.request.amo_user.username)
+        eq_(persona.display_username, self.request.amo_user.name)
 
         v = addon.versions.all()
         eq_(len(v), 1)
@@ -406,6 +406,7 @@ class TestEditThemeForm(amo.tests.TestCase):
         self.request.groups = ()
         self.request.amo_user = mock.Mock()
         self.request.amo_user.username = 'swagyismymiddlename'
+        self.request.amo_user.name = 'Sir Swag A Lot'
         self.request.amo_user.is_authenticated.return_value = True
 
     def populate(self):
@@ -488,3 +489,46 @@ class TestEditThemeForm(amo.tests.TestCase):
         eq_(self.form.is_valid(), False)
         eq_(self.form.errors,
             {'name': ['This name is already in use. Please choose another.']})
+
+
+class TestEditThemeOwnerForm(amo.tests.TestCase):
+    fixtures = ['base/apps', 'base/users']
+
+    def setUp(self):
+        self.instance = Addon.objects.create(type=amo.ADDON_PERSONA,
+            status=amo.STATUS_PUBLIC, slug='swag-overload',
+            name='Bands Make Me Dance', summary='tha summary')
+        Persona.objects.create(persona_id=0, addon_id=self.instance.id,
+            license=amo.LICENSE_CC_BY.id, accentcolor='C0FFEE', textcolor='EFFFFF')
+
+    def test_initial(self):
+        self.form = EditThemeOwnerForm(None, instance=self.instance)
+        eq_(self.form.initial, {})
+
+        self.instance.addonuser_set.create(user_id=999)
+        eq_(self.instance.addonuser_set.all()[0].user.email,
+            'regular@mozilla.com')
+        self.form = EditThemeOwnerForm(None, instance=self.instance)
+        eq_(self.form.initial, {'owner': 'regular@mozilla.com'})
+
+    def test_success_change_from_no_owner(self):
+        self.form = EditThemeOwnerForm({'owner': 'regular@mozilla.com'},
+                                       instance=self.instance)
+        eq_(self.form.is_valid(), True, self.form.errors)
+        self.form.save()
+        eq_(self.instance.addonuser_set.all()[0].user.email,
+            'regular@mozilla.com')
+
+    def test_success_replace_owner(self):
+        self.instance.addonuser_set.create(user_id=999)
+        self.form = EditThemeOwnerForm({'owner': 'regular@mozilla.com'},
+                                       instance=self.instance)
+        eq_(self.form.is_valid(), True, self.form.errors)
+        self.form.save()
+        eq_(self.instance.addonuser_set.all()[0].user.email,
+            'regular@mozilla.com')
+
+    def test_error_invalid_user(self):
+        self.form = EditThemeOwnerForm({'owner': 'omg@org.yes'},
+                                       instance=self.instance)
+        eq_(self.form.is_valid(), False)

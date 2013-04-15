@@ -321,13 +321,25 @@ def edit(request, addon_id, addon, webapp=False):
 def edit_theme(request, addon_id, addon, theme=False):
     form = addon_forms.EditThemeForm(data=request.POST or None,
                                      request=request, instance=addon)
-    if request.method == 'POST' and form.is_valid():
-        form.save()
-        messages.success(request, _('Changes successfully saved.'))
-        return redirect('devhub.themes.edit', addon.reload().slug)
+    owner_form = addon_forms.EditThemeOwnerForm(data=request.POST or None,
+                                                instance=addon)
+
+    if request.method == 'POST':
+        if 'owner_submit' in request.POST:
+            if owner_form.is_valid():
+                owner_form.save()
+                messages.success(request, _('Changes successfully saved.'))
+                return redirect('devhub.themes.edit', addon.slug)
+        elif form.is_valid():
+            form.save()
+            owner_form.save()
+            messages.success(request, _('Changes successfully saved.'))
+            return redirect('devhub.themes.edit', addon.reload().slug)
+
     return jingo.render(request, 'devhub/personas/edit.html', {
         'addon': addon,
-        'form': form
+        'form': form,
+        'owner_form': owner_form
     })
 
 

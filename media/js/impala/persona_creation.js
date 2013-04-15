@@ -1,20 +1,85 @@
 (function() {
-    if (!$('#submit-persona, #addon-edit-license').length) {
+    if (!$('#submit-persona').length) {
         return;
     }
 
-    function checkValid(form) {
-        if (form) {
-            $(form).find('button[type=submit]').attr('disabled', !form.checkValidity());
+    var $ownerForm = $('.owner-email form');
+
+    var origVal = $('input[name=owner]').val(),
+        lastVal;
+    function validateUser(e) {
+        var $this = e ? $(this) :  $('.email-autocomplete');
+        if ($this.val().length > 2) {
+            var timeout, request;
+            if (timeout) {
+                clearTimeout(timeout);
+            }
+            timeout = setTimeout(function() {
+                $this.addClass('ui-autocomplete-loading')
+                     .removeClass('invalid valid');
+                lastVal = $this.val();
+                request = $.ajax({
+                    url: $this.attr('data-src'),
+                    data: {q: lastVal},
+                    success: function(data) {
+                        $this.removeClass('ui-autocomplete-loading tooltip formerror')
+                             .removeAttr('title')
+                             .removeAttr('data-oldtitle');
+                        $('#tooltip').hide();
+                        if (data.status == 1) {
+                            $this.addClass('valid');
+                        } else {
+                            $this.addClass('invalid tooltip formerror')
+                                 .attr('title', data.message);
+                        }
+                        checkOwnerValid();
+                    },
+                    error: function() {
+                        $this.removeClass('ui-autocomplete-loading')
+                             .addClass('invalid');
+                    }
+                });
+            }, 500);
         }
     }
 
+    $(document).delegate('.email-autocomplete', 'keyup paste', validateUser);
+    validateUser();
+
+    function toggleOwnership() {
+        if (location.hash == '#ownership') {
+            $('.owner-email').removeClass('hidden').find('input').focus();
+        } else {
+            $('.owner-email').addClass('hidden').find('input').blur();
+        }
+    }
+
+    $('.transfer-ownership').click(function(e) {
+        if (location.hash == '#ownership') {
+            location.hash = '';
+            e.preventDefault();
+        }
+    });
+
+    window.addEventListener('hashchange', function() {
+        toggleOwnership();
+    }, false);
+    toggleOwnership();
+
+    function checkOwnerValid() {
+        $ownerForm.find('button').prop('disabled', !$ownerForm.find('input').hasClass('valid'));
+    }
+    $ownerForm.delegate('input, select, textarea', 'change keyup paste', function(e) {
+        checkOwnerValid();
+    });
+    checkOwnerValid();
+
     function hex2rgb(hex) {
-        var hex = parseInt(((hex.indexOf('#') > -1) ? hex.substring(1) : hex), 16);
+        var hex = parseInt((hex.indexOf('#') > -1 ? hex.substring(1) : hex), 16);
         return {
             r: hex >> 16,
             g: (hex & 0x00FF00) >> 8,
-            b: (hex & 0x0000FF)
+            b: hex & 0x0000FF
         };
     }
 
@@ -66,6 +131,12 @@
     var licenseClassesById = _.object(_.map(licensesByClass, function(v, k) {
         return [v.id, k];
     }));
+
+    function checkValid(form) {
+        if (form) {
+            $(form).find('button[type=submit]').attr('disabled', !form.checkValidity());
+        }
+    }
 
     // Validate the form.
     var $form = $('#submit-persona form');

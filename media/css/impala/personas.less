@@ -263,7 +263,6 @@ ul.license {
 .theme-info {
     float: left;
     .addon-icon {
-        border: 1px solid #ccc;
         display: inline-block;
         height: 32px;
         width: 32px;
@@ -273,9 +272,15 @@ ul.license {
         float: left;
     }
     .addon-name {
-        font: 24px/36px @sans-stack;
+        display: inline-block;
+        font: 24px/32px @sans-stack;
+        margin: 0;
         padding-left: 8px;
         vertical-align: top;
+    }
+    .author {
+        padding-left: 44px;
+        margin-bottom: .25em;
     }
     .persona {
         float: left;
@@ -311,5 +316,35 @@ ul.license {
     .button {
         float: left;
         margin: 0;
+    }
+}
+
+.transfer-ownership {
+    font-size: 11px;
+    margin-left: 1em;
+    &.button:active {
+        top: 0;
+    }
+}
+
+.owner-email {
+    margin-left: 44px;
+    input[name=owner] {
+        font-size: 14px;
+        line-height: 16px;
+        padding: 5px;
+        width: 275px;
+        &.formerror {
+            border-color: #c00000;
+        }
+        &.invalid {
+            background: url(../../img/zamboni/notifications.png) no-repeat 100% -157px;
+        }
+        &.valid {
+            background: url(../../img/zamboni/notifications.png) no-repeat 100% -363px;
+        }
+        &.ui-autocomplete-loading {
+            background-position: 99% 50%;
+        }
     }
 }

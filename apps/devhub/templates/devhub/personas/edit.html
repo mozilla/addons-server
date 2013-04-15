@@ -9,6 +9,8 @@
 {{ dev_page_title(title, addon) }}
 {% endblock %}
 
+{% set can_delete = check_addon_ownership(request, addon) and addon.can_be_deleted() %}
+
 {% block content %}
 <section class="primary full">
   {{ dev_breadcrumbs(addon) }}
@@ -18,7 +20,19 @@
   <div class="island swagger theme-info c">
     <div class="addon-name-and-icon c">
       <img class="addon-icon" src="{{ addon.icon_url }}">
-      <strong class="addon-name">{{ addon.name }}</strong>
+      <h2 class="addon-name">{{ addon.name }}</h2>
+      <h3 class="author">
+        {{ _('by {0}')|f(users_list(addon.listed_authors) or persona.display_username)|safe }}
+        <a href="#ownership" class="button transfer-ownership">{{ _('Transfer ownership') }}</a>
+      </h3>
+      <div class="owner-email hidden">
+        <form action="{{ request.path }}" method="post">
+          {{ csrf() }}
+          {{ owner_form.owner.errors }}
+          {{ owner_form.owner }}
+          <button name="owner_submit" disabled type="submit">{{ _('Save Changes') }}</button>
+        </form>
+      </div>
     </div>
     <div>
       {{ persona_preview(addon.persona, linked=False) }}
@@ -42,7 +56,7 @@
         {% endif %}
         <p><a href="{{ url('devhub.feed', addon.slug) }}">
           {{ _('View Recent Changes') }}</a></p>
-        {% if check_addon_ownership(request, addon) and addon.can_be_deleted() %}
+        {% if can_delete %}
           <a href="#" class="button scary delete-addon">{{ _('Delete Theme') }}</a>
           <div class="modal-delete modal hidden">
             {% include 'devhub/addons/listing/delete_form.html' %}
@@ -53,7 +67,6 @@
   </div>
 
   <div class="island prettyform" id="submit-persona">
-    <form method="post">
       {{ csrf() }}
       {{ form.unsaved_data }}
       <fieldset>

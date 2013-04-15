@@ -18,8 +18,8 @@ import captcha.fields
 from amo.fields import ColorField
 from amo.urlresolvers import reverse
 from amo.utils import slug_validator, slugify, sorted_groupby, remove_icons
-from addons.models import (Addon, AddonCategory, AddonUser, BlacklistedSlug,
-                           Category, Persona)
+from addons.models import (Addon, AddonCategory, BlacklistedSlug, Category,
+                           Persona)
 from addons.utils import reverse_name_lookup
 from addons.widgets import IconWidgetRenderer, CategoriesSelectMultiple
 from applications.models import Application
@@ -29,6 +29,7 @@ from translations.fields import TransField, TransTextarea
 from translations.forms import TranslationFormMixin
 from translations.models import Translation
 from translations.widgets import TranslationTextInput
+from users.models import UserEmailField
 from versions.models import Version
 
 log = commonware.log.getLogger('z.addons')
@@ -570,7 +571,7 @@ class ThemeForm(ThemeFormBase):
 
         # Save user info.
         user = self.request.amo_user
-        AddonUser(addon=addon, user=user).save()
+        addon.addonuser_set.create(user=user, role=amo.AUTHOR_ROLE_OWNER)
 
         # Create Persona instance.
         p = Persona()
@@ -584,8 +585,8 @@ class ThemeForm(ThemeFormBase):
             p.textcolor = data['textcolor'].lstrip('#')
         p.license = data['license']
         p.submit = datetime.now()
-        p.author = user.name
-        p.display_username = user.username
+        p.author = user.username
+        p.display_username = user.name
         p.save()
 
         # Save tags.
@@ -660,7 +661,8 @@ class EditThemeForm(AddonFormBase):
             'license': int(data['license']),
             'accentcolor': data['accentcolor'].lstrip('#'),
             'textcolor': data['textcolor'].lstrip('#'),
-            'display_username': self.request.amo_user.username
+            'author': self.request.amo_user.username,
+            'display_username': self.request.amo_user.name
         }
         changed = False
         for k, v in persona_data.iteritems():
@@ -700,6 +702,56 @@ class EditThemeForm(AddonFormBase):
         else:
             old_cat.category = data['category']
             old_cat.save()
+
+        return data
+
+
+class EditThemeOwnerForm(happyforms.Form):
+    owner = UserEmailField()
+
+    def __init__(self, *args, **kw):
+        self.instance = kw.pop('instance')
+
+        super(EditThemeOwnerForm, self).__init__(*args, **kw)
+
+        addon = self.instance
+
+        self.fields['owner'].widget.attrs['placeholder'] = _(
+            "Enter a new author's email address")
+
+        try:
+            self.instance_addonuser = addon.addonuser_set.all()[0]
+            self.initial['owner'] = self.instance_addonuser.user.email
+        except IndexError:
+            # If there was never an author before, then don't require one now.
+            self.instance_addonuser = None
+            self.fields['owner'].required = False
+
+    def save(self):
+        data = self.cleaned_data
+
+        if data.get('owner'):
+            changed = (not self.instance_addonuser or
+                       self.instance_addonuser != data['owner'])
+            if changed:
+                # Update Persona-specific data.
+                persona = self.instance.persona
+                persona.author = data['owner'].username
+                persona.display_username = data['owner'].name
+                persona.save()
+
+            if not self.instance_addonuser:
+                # If there previously never another owner, create one.
+                self.instance.addonuser_set.create(user=data['owner'],
+                                                   role=amo.AUTHOR_ROLE_OWNER)
+            elif self.instance_addonuser != data['owner']:
+                # If the owner has changed, update the `AddonUser` object.
+                self.instance_addonuser.user = data['owner']
+                self.instance_addonuser.role = amo.AUTHOR_ROLE_OWNER
+                self.instance_addonuser.save()
+
+            self.instance.modified = datetime.now()
+            self.instance.save()
 
         return data
 
