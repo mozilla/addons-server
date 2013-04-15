@@ -8,6 +8,7 @@ from mkt import regions
 
 log = logging.getLogger('z.geoip')
 
+
 class GeoIP:
     """Call to geodude server to resolve an IP to Geo Info block."""
 
@@ -26,6 +27,7 @@ class GeoIP:
         """
         if self.url and waffle.switch_is_active('geoip-geodude'):
             with statsd.timer('z.geoip'):
+                res = None
                 try:
                     res = requests.post('{0}/country.json'.format(self.url),
                                         timeout=self.timeout,
@@ -35,7 +37,7 @@ class GeoIP:
                                .format(address)))
                 except requests.RequestException as e:
                     log.error('Geodude connection error: {0}'.format(str(e)))
-                if res.status_code == 200:
+                if res and res.status_code == 200:
                     return res.json.get('country_code',
                                         self.default_val).lower()
         return self.default_val

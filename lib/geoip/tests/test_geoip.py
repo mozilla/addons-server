@@ -1,4 +1,5 @@
 import mock
+import requests
 from nose.tools import eq_
 
 import amo.tests
@@ -42,6 +43,28 @@ class GeoIPTest(amo.tests.TestCase):
         url = 'localhost'
         geoip = GeoIP(generate_settings(url=url))
         mock_post.return_value = mock.Mock(status_code=404, json=None)
+        ip = '3.3.3.3'
+        result = geoip.lookup(ip)
+        mock_post.assert_called_with('{0}/country.json'.format(url),
+                                     timeout=0.2, data={'ip': ip})
+        eq_(result, 'worldwide')
+
+    @mock.patch('requests.post')
+    def test_timeout(self, mock_post):
+        url = 'localhost'
+        geoip = GeoIP(generate_settings(url=url))
+        mock_post.side_effect = requests.Timeout
+        ip = '3.3.3.3'
+        result = geoip.lookup(ip)
+        mock_post.assert_called_with('{0}/country.json'.format(url),
+                                     timeout=0.2, data={'ip': ip})
+        eq_(result, 'worldwide')
+
+    @mock.patch('requests.post')
+    def test_connection_error(self, mock_post):
+        url = 'localhost'
+        geoip = GeoIP(generate_settings(url=url))
+        mock_post.side_effect = requests.ConnectionError
         ip = '3.3.3.3'
         result = geoip.lookup(ip)
         mock_post.assert_called_with('{0}/country.json'.format(url),
