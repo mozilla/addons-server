@@ -268,13 +268,15 @@ class MarketplaceModelResource(Marketplace, ModelResource):
             raise ImmediateHttpResponse(response=http.HttpNotFound())
         return obj
 
-    def dehydrate_objects(self, objects):
+    def dehydrate_objects(self, objects, request=None):
         """
         Dehydrates each object using the full_dehydrate and then
         returns the data for each object. This is useful for compound
-        results that return sub objects data.
+        results that return sub objects data. If you need request in the
+        dehydration, pass that through (eg: accessing region)
         """
-        return [self.full_dehydrate(Bundle(obj=o)).data for o in objects]
+        return [self.full_dehydrate(Bundle(obj=o, request=request)).data
+                for o in objects]
 
     def base_urls(self):
         """

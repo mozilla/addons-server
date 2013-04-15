@@ -58,6 +58,7 @@ class TestAPI(BaseOAuth, BrowseBase):
     def test_response(self):
         cf1, cf2, hf = self.setup_featured()
         res = self.anon.get(self.url)
+        eq_(res.status_code, 200, res.content)
         content = json.loads(res.content)
         eq_(content['categories'][0]['slug'], u'lifestyle')
         eq_(content['featured'][0]['id'], u'%s' % hf.id)

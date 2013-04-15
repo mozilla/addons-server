@@ -37,7 +37,8 @@ class HomepageResource(CORSResource, MarketplaceResource):
 
         return self.create_response(request, {
             'categories': cat.dehydrate_objects(cat.obj_get_list()),
-            'featured': AppResource().dehydrate_objects(featured)
+            'featured': AppResource().dehydrate_objects(featured,
+                                                        request=request)
         })
 
 
