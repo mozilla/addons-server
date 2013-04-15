@@ -94,7 +94,7 @@ class BR(REGION):
 class SPAIN(REGION):
     id = 8
     name = _lazy(u'Spain')
-    slug = 'spain'
+    slug = 'es'
     default_currency = 'EUR'
     default_language = 'es'
     mcc = 214
