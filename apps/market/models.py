@@ -205,7 +205,6 @@ class AddonPremium(amo.models.ModelBase):
     addon = models.OneToOneField('addons.Addon')
     price = models.ForeignKey(Price, blank=True, null=True)
     paypal_permissions_token = models.CharField(max_length=255, blank=True)
-    currencies = json_field.JSONField(default={})
 
     class Meta:
         db_table = 'addons_premium'
@@ -247,16 +246,8 @@ class AddonPremium(amo.models.ModelBase):
                                        ['REFUND'])
 
     def supported_currencies(self):
-        """
-        Return a list of the supported currencies for this app.
-        You get a list of tuples of currency name and the price currency
-        object.
-
-        USD will always be present since that is the default.
-        """
-        currencies = self.currencies or {}
-        return [c for c in self.price.currencies()
-                if c[0] in currencies or c[0] == 'USD']
+        """A hook for currency filtering."""
+        return self.price.currencies()
 
 
 class PreApprovalUser(amo.models.ModelBase):

@@ -260,23 +260,6 @@ class TestMarketButton(amo.tests.TestCase):
         eq_(data['name'], escaped)
         eq_(data['author'], escaped)
 
-    def test_default_supported_currencies(self):
-        self.make_premium(self.webapp)
-        doc = pq(market_tile(self.context, self.webapp))
-        data = json.loads(doc('.mkt-tile').attr('data-product'))
-        assert 'currencies' not in data
-
-    @mock.patch('mkt.site.helpers.waffle.switch_is_active')
-    def test_some_supported_currencies(self, switch_is_active):
-        switch_is_active.return_value = True
-        self.make_premium(self.webapp, currencies=['CAD'])
-        ad = AddonPremium.objects.get(addon=self.webapp)
-        ad.update(currencies=['USD', 'CAD'])
-        doc = pq(market_tile(self.context, self.webapp))
-        data = json.loads(doc('.mkt-tile').attr('data-product'))
-        eq_(json.loads(data['currencies'])['USD'], '$1.00')
-        eq_(json.loads(data['currencies'])['CAD'], 'CA$1.00')
-
     @mock.patch('access.acl.action_allowed')
     def test_reviewers(self, action_allowed):
         action_allowed.return_value = True
