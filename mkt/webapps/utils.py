@@ -17,7 +17,7 @@ def get_locale_properties(manifest, property, default_locale=None):
     return locale_dict
 
 
-def app_to_dict(app, user=None):
+def app_to_dict(app, currency=None, user=None):
     """Return app data as dict for API."""
     # Sad circular import issues.
     from mkt.api.resources import PreviewResource
@@ -47,7 +47,7 @@ def app_to_dict(app, user=None):
         'previews': PreviewResource().dehydrate_objects(app.previews.all()),
         'premium_type': amo.ADDON_PREMIUM_API[app.premium_type],
         'public_stats': app.public_stats,
-        'price': app.get_price(),
+        'price': app.get_price(currency),
         'price_locale': (app.premium.get_price_locale()
                          if app.premium else None),
         'ratings': {'average': app.average_rating,

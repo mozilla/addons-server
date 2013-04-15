@@ -243,7 +243,8 @@ class AppResource(CORSResource, MarketplaceModelResource):
     def dehydrate(self, bundle):
         obj = bundle.obj
         user = getattr(bundle.request, 'user', None)
-        bundle.data.update(app_to_dict(obj, user=user))
+        bundle.data.update(app_to_dict(obj,
+            currency=bundle.request.REGION.default_currency, user=user))
         bundle.data['upsell'] = False
         if obj.upsell:
             upsell_bundle = Bundle(obj=obj.upsell.premium,
