@@ -9,13 +9,12 @@ This API is for Apps. There is a separate set of `APIs for Add-ons`_.
 .. toctree::
    :maxdepth: 2
 
-   api/submission.rst
-   api/payment.rst
-   api/search.rst
-   api/ratings.rst
-   api/misc.rst
-   api/reviewers.rst
-   api/ratings.rst
+   topics/submission.rst
+   topics/payment.rst
+   topics/search.rst
+   topics/ratings.rst
+   topics/misc.rst
+   topics/reviewers.rst
 
 Versioning
 ==========

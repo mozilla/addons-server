@@ -39,11 +39,6 @@ html:
 	@echo
 	@echo "Build finished. The HTML pages are in $(BUILDDIR)/html."
 
-htmlapi:
-	cd api; make html
-	@echo
-	@echo "Build finished. The HTML pages are in $(APIBUILDDIR)/html."
-
 dirhtml:
 	$(SPHINXBUILD) -b dirhtml $(ALLSPHINXOPTS) $(BUILDDIR)/dirhtml
 	@echo

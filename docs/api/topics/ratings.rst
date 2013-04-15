@@ -1,8 +1,8 @@
 .. _ratings:
 
-===========
-Ratings API
-===========
+=======
+Ratings
+=======
 
 These endpoints allow the retrieval, creation, and modification of ratings on
 apps in Marketplace.

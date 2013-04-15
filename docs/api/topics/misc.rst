@@ -1,8 +1,8 @@
 .. _misc:
 
-======================
-Miscellaneous API
-======================
+=============
+Miscellaneous
+=============
 
 
 Home page and featured apps

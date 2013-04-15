@@ -1,8 +1,8 @@
 .. _submission:
 
-======================
-Submission API
-======================
+==========
+Submission
+==========
 
 Adding an app follows a few steps, roughly analgous to the flow in a browser.
 Validate your app, add it in, update it with the various data and

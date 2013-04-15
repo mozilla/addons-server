@@ -1,8 +1,8 @@
 .. _search:
 
-==========
-Search API
-==========
+======
+Search
+======
 
 This API allows search for apps by various properties.
 

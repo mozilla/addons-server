@@ -1,8 +1,8 @@
 .. _reviewers:
 
-=============
-Reviewers API
-=============
+=========
+Reviewers
+=========
 
 Reviewer API provides access to the reviewer tools.
 
