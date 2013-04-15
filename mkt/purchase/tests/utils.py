@@ -19,8 +19,7 @@ class PurchaseTest(amo.tests.TestCase):
         self.addon.update(premium_type=amo.ADDON_PREMIUM)
         self.user = UserProfile.objects.get(email='regular@mozilla.com')
         self.price = Price.objects.get(pk=1)
-        AddonPremium.objects.create(addon=self.addon, price=self.price,
-                                    currencies=['BRL'])
+        AddonPremium.objects.create(addon=self.addon, price=self.price)
         assert self.client.login(username='regular@mozilla.com',
                                  password='password')
         self.brl = PriceCurrency.objects.create(currency='BRL',
