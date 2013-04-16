@@ -76,11 +76,11 @@ class PriceResource(CORSResource, MarketplaceModelResource):
 class FailureNotificationResource(MarketplaceModelResource):
 
     class Meta:
-        queryset = Contribution.objects.filter(uuid__isnull=False)
-        allowed_methods = ['patch']
-        resource_name = 'failure'
         authentication = OAuthAuthentication()
         authorization = PermissionAuthorization('Transaction', 'NotifyFailure')
+        detail_allowed_methods = ['patch']
+        queryset = Contribution.objects.filter(uuid__isnull=False)
+        resource_name = 'failure'
 
     def obj_update(self, bundle, **kw):
         form = FailureForm(bundle.data)

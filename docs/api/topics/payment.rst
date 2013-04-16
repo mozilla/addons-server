@@ -214,5 +214,24 @@ safe way. This API lets WebPay cache and later retrieve icon URLs.
     :statuscode 400: Some required fields were missing or invalid.
     :statuscode 401: The API user is unauthorized to cache product icons.
 
+
+Transaction failure
+===================
+
+.. note:: Requires authenticated users to have the Transaction:NotifyFailure
+    permission. This API is used by internal clients such as WebPay_.
+
+.. http:patch:: /api/v1/webpay/failure/(int:transaction_id)/
+
+    Notify the app developers that our attempts to call the postback or
+    chargebacks URLs from `In-app Payments`_ failed. This will send an
+    email to the app developers.
+
+    **Response**
+
+    :status 202: Notification will be sent.
+    :statuscode 401: The API user is not authorized to report failures.
+
 .. _CORS: https://developer.mozilla.org/en-US/docs/HTTP/Access_control_CORS
 .. _WebPay: https://github.com/mozilla/webpay
+.. _In-app Payments: https://developer.mozilla.org/en-US/docs/Apps/Publishing/In-app_payments
