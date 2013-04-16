@@ -12,7 +12,6 @@ from tastypie import http
 from tastypie.authentication import Authentication
 from tastypie.authorization import Authorization
 
-from access import acl
 from access.middleware import ACLMiddleware
 from mkt.api.middleware import APIPinningMiddleware
 from mkt.api.models import Access
@@ -44,18 +43,6 @@ class AppOwnerAuthorization(OwnerAuthorization):
     def check_owner(self, request, object):
         # If the user on the object and the amo_user match, we are golden.
         return object.authors.filter(user__id=request.amo_user.pk)
-
-
-class PermissionAuthorization(Authorization):
-
-    def __init__(self, app, action, *args, **kw):
-        self.app, self.action = app, action
-
-    def is_authorized(self, request, object=None):
-        if acl.action_allowed(request, self.app, self.action):
-            log.info('Permission authorization failed')
-            return True
-        return False
 
 
 class OAuthError(RuntimeError):

@@ -1,12 +1,15 @@
 from django.contrib.auth.models import AnonymousUser, User
 
-from nose.tools import eq_
+from nose.tools import eq_, ok_
 
-from amo.tests import TestCase
+from amo.tests import app_factory, TestCase
 from test_utils import RequestFactory
 
-from mkt.api.authorization import AnonymousReadOnlyAuthorization
+from mkt.api.authorization import (AnonymousReadOnlyAuthorization,
+                                   PermissionAuthorization)
 from mkt.site.fixtures import fixture
+
+from .test_authentication import OwnerAuthorization
 
 
 class TestAnonymousReadOnlyAuthorization(TestCase):
@@ -34,3 +37,30 @@ class TestAnonymousReadOnlyAuthorization(TestCase):
     def test_post_authenticated(self):
         self.post.user = self.user
         eq_(self.auth.is_authorized(self.post), True)
+
+    def test_with_authorizer(self):
+
+        class LockedOut:
+            def is_authorized(self, request, object=None):
+                return False
+
+        self.auth = AnonymousReadOnlyAuthorization(
+                                authorizer=LockedOut())
+        self.post.user = self.user
+        eq_(self.auth.is_authorized(self.post), False)
+
+
+class TestPermissionAuthorization(OwnerAuthorization):
+
+    def setUp(self):
+        super(TestPermissionAuthorization, self).setUp()
+        self.auth = PermissionAuthorization('Drinkers', 'Beer')
+        self.app = app_factory()
+
+    def test_has_role(self):
+        self.grant_permission(self.profile, 'Drinkers:Beer')
+        ok_(self.auth.is_authorized(self.request(self.profile), self.app))
+
+    def test_not_has_role(self):
+        self.grant_permission(self.profile, 'Drinkers:Scotch')
+        ok_(not self.auth.is_authorized(self.request(self.profile), self.app))

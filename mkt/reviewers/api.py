@@ -1,7 +1,7 @@
 from amo.urlresolvers import reverse
 
-from mkt.api.authentication import (OAuthAuthentication,
-                                    PermissionAuthorization)
+from mkt.api.authentication import OAuthAuthentication
+from mkt.api.authorization import PermissionAuthorization
 from mkt.api.base import MarketplaceResource
 from mkt.reviewers.utils import AppsReviewing
 

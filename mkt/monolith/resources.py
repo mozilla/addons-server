@@ -3,8 +3,8 @@ import json
 
 from django.db import transaction
 
-from mkt.api.authentication import (OAuthAuthentication,
-                                    PermissionAuthorization)
+from mkt.api.authentication import OAuthAuthentication
+from mkt.api.authorization import PermissionAuthorization
 from mkt.api.base import MarketplaceModelResource
 
 from .models import MonolithRecord

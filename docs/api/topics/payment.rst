@@ -148,4 +148,66 @@ accept is not the currency of the country. For example, a request with
 Please note: these are just examples to demonstrate cases. Actual results will
 vary depending upon data sent and payment methods in the Marketplace.
 
+Product Icons
+=============
+
+Authenticated clients like `WebPay`_ need to display external product images in a
+safe way. This API lets WebPay cache and later retrieve icon URLs.
+
+
+.. http:get:: /api/v1/webpay/product/icon/
+
+    Gets a list of cached product icons.
+
+    **Request**
+
+    :param ext_url: Absolute external URL of product icon that was cached.
+    :param ext_size: Height and width pixel value that was declared for this icon.
+    :param size: Height and width pixel value that this icon was resized to.
+
+    You may also request :ref:`list-query-params-label`.
+
+    **Response**
+
+    :param meta: :ref:`meta-response-label`.
+    :param objects: A :ref:`listing <objects-response-label>` of :ref:`product icons <product-icon-response-label>`.
+    :statuscode 200: successfully completed.
+
+.. _product-icon-response-label:
+
+.. http:get:: /api/v1/webpay/product/icon/(int:id)/
+
+    **Response**
+
+    .. code-block:: json
+
+        {
+            "url": "http://marketplace-cdn/product-icons/0/1.png",
+            "resource_uri": "/api/v1/webpay/product/icon/1/",
+            "ext_url": "http://appserver/media/icon.png",
+            "ext_size": 64,
+            "size": 64
+        }
+
+    :param url: Absolute URL of the cached product icon.
+    :statuscode 200: successfully completed.
+
+.. http:post:: /api/v1/webpay/product/icon/
+
+    Post a new product icon URL that should be cached.
+    This schedules an icon to be processed but does not return any object data.
+
+    **Request**
+
+    :param ext_url: Absolute external URL of product icon that should be cached.
+    :param ext_size: Height and width pixel value that was declared for this icon.
+    :param size: Height and width pixel value that this icon should be resized to.
+
+    **Response**
+
+    :statuscode 202: New icon accepted. Deferred processing will begin.
+    :statuscode 401: The API user is unauthorized to cache product icons.
+    :statuscode 400: Some required fields were missing or invalid.
+
 .. _CORS: https://developer.mozilla.org/en-US/docs/HTTP/Access_control_CORS
+.. _WebPay: https://github.com/mozilla/webpay

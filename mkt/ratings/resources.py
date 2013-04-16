@@ -15,9 +15,9 @@ from mkt.api.authentication import (AppOwnerAuthorization,
                                     OAuthAuthentication,
                                     OptionalOAuthAuthentication,
                                     OwnerAuthorization,
-                                    PermissionAuthorization,
                                     SharedSecretAuthentication)
-from mkt.api.authorization import AnonymousReadOnlyAuthorization
+from mkt.api.authorization import (AnonymousReadOnlyAuthorization,
+                                   PermissionAuthorization)
 from mkt.api.base import CORSResource, MarketplaceModelResource
 from mkt.api.resources import AppResource
 from mkt.ratings.forms import ReviewForm
