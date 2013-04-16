@@ -423,8 +423,8 @@ class TestCase(RedisTest, test_utils.TestCase):
         verbs = map(str.upper, verbs) + ['OPTIONS',]
         actual = res['Access-Control-Allow-Methods'].split(', ')
         self.assertSetEqual(verbs, actual)
-        if set(['PATCH', 'POST', 'PUT']).intersection(set(actual)):
-            eq_(res['Access-Control-Allow-Headers'], 'Content-Type')
+        eq_(res['Access-Control-Allow-Headers'],
+            'X-HTTP-Method-Override, Content-Type')
 
     def update_session(self, session):
         """

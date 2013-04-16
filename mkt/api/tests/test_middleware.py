@@ -34,7 +34,8 @@ class TestCORS(amo.tests.TestCase):
         self.req.CORS = ['get', 'post']
         res = self.mware.process_response(self.req, HttpResponse())
         eq_(res['Access-Control-Allow-Methods'], 'GET, POST, OPTIONS')
-        eq_(res['Access-Control-Allow-Headers'], 'Content-Type')
+        eq_(res['Access-Control-Allow-Headers'],
+            'X-HTTP-Method-Override, Content-Type')
 
     @mock.patch.object(settings, 'FIREPLACE_URL', fireplace_url)
     def test_from_fireplace(self):

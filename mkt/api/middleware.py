@@ -55,6 +55,8 @@ class CORSMiddleware(object):
         # responses.
         fireplace_url = settings.FIREPLACE_URL
         fireplacey = request.META.get('HTTP_ORIGIN') == fireplace_url
+        response['Access-Control-Allow-Headers'] = (
+            'X-HTTP-Method-Override, Content-Type')
         if fireplacey or getattr(request, 'CORS', None):
             # If this is a request from our hosted frontend, allow cookies.
             if fireplacey:
@@ -65,10 +67,6 @@ class CORSMiddleware(object):
             options = [h.upper() for h in request.CORS]
             if not 'OPTIONS' in options:
                 options.append('OPTIONS')
-            if set(['PATCH', 'POST', 'PUT']).intersection(set(options)):
-                # We will be expecting JSON in the POST so expect Content-Type
-                # to be set.
-                response['Access-Control-Allow-Headers'] = 'Content-Type'
             response['Access-Control-Allow-Methods'] = ', '.join(options)
 
         # The headers that the response will be able to access.
