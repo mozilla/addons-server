@@ -32,12 +32,20 @@ class TestGlobalStats(amo.tests.TestCase):
                                                  name=job)), 1)
 
     @mock.patch('stats.tasks.MonolithRecord')
-    def test_user_total_count_updates_monolith(self, record):
+    def test_mmo_user_total_count_updates_monolith(self, record):
         date = datetime.date(2013, 3, 11)
-        job = 'user_count_total'
+        job = 'mmo_user_count_total'
 
         tasks.update_global_totals(job, date)
-        assert record.called
+        self.assertTrue(record.called)
+
+    @mock.patch('stats.tasks.MonolithRecord')
+    def test_addon_total_downloads_doesnot_update_monolith(self, record):
+        date = datetime.date(2013, 3, 11)
+        job = 'addon_total_downloads'
+
+        tasks.update_global_totals(job, date)
+        self.assertFalse(record.called)
 
     def test_marketplace_stats(self):
         res = tasks._get_daily_jobs()
