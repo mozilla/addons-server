@@ -1105,7 +1105,7 @@ class TestCollectionDetailFeed(amo.tests.TestCase):
         eq_(len(data['addons']), 1)
         eq_(data['addons'][0]['id'], theme.id)
 
-        eq_(data['addons'][0]['type'], 'theme')
+        eq_(data['addons'][0]['type'], 'background-theme')
         eq_(data['addons'][0]['theme']['id'],
             unicode(theme.persona.persona_id))
 
