@@ -35,6 +35,12 @@ class RequestFactory(client.RequestFactory):
         super(RequestFactory, self).__init__(*args, **kwargs)
 
 
+def total_seconds(td):
+    # not present in 2.6
+    return ((td.microseconds + (td.seconds + td.days * 24 * 3600) * 10**6) /
+            10**6)
+
+
 class TestModels(TestCase):
 
     def setUp(self):
@@ -42,20 +48,15 @@ class TestModels(TestCase):
         self.request = RequestFactory()
 
     def test_record_stat(self):
-        now = datetime.datetime.now()
-        record_stat('app.install', self.request, recorded=now, value=1)
+        now = datetime.datetime.utcnow()
+        record_stat('app.install', self.request, value=1)
 
         # we should have only one record
         record = MonolithRecord.objects.get()
 
         eq_(record.key, 'app.install')
         eq_(record.value, json.dumps({'value': 1}))
-        eq_(record.recorded.timetuple()[0:6], now.timetuple()[0:6])
-
-    def test_record_stat_without_date(self):
-        record_stat('app.install', self.request, value=1)
-        record = MonolithRecord.objects.get()
-        self.assertTrue(record.recorded <= datetime.datetime.now())
+        self.assertTrue(total_seconds(record.recorded - now) < 1)
 
     def test_record_stat_without_data(self):
         with self.assertRaises(ValueError):
@@ -83,7 +84,7 @@ class TestMonolithResource(BaseOAuth):
         eq_(data['objects'], [])
 
     def test_normal_call(self):
-        record_stat('app.install', self.request, recorded=self.now, value=2)
+        record_stat('app.install', self.request, value=2)
 
         res = self.client.get(self.list_url)
         eq_(res.status_code, 200)
@@ -96,7 +97,8 @@ class TestMonolithResource(BaseOAuth):
 
     def test_filter_by_date(self):
         for id_, date in enumerate((self.last_week, self.yesterday, self.now)):
-            record_stat('app.install', self.request, recorded=date, value=id_)
+            record_stat('app.install', self.request, __recorded=date,
+                        value=id_)
 
         res = self.client.get(self.list_url,
                               data={'recorded__lte': self.now.isoformat()})
@@ -114,7 +116,7 @@ class TestMonolithResource(BaseOAuth):
     def test_deletion_by_filtering(self):
         # we should be able to delete a set of items using the API
         for id_, date in enumerate((self.last_week, self.yesterday, self.now)):
-            record_stat('app.install', self.request, recorded=date, value=id_)
+            record_stat('app.install', self.request, __recorded=date, value=id_)
 
         eq_(MonolithRecord.objects.count(), 3)
         records = MonolithRecord.objects.all()
@@ -126,7 +128,7 @@ class TestMonolithResource(BaseOAuth):
         eq_(MonolithRecord.objects.count(), 1)
 
     def test_deletion_by_id(self):
-        record_stat('app.install', self.request, recorded=self.now, value=1)
+        record_stat('app.install', self.request, __recorded=self.now, value=1)
         records = MonolithRecord.objects.all()
         eq_(len(records), 1)
 
@@ -139,8 +141,8 @@ class TestMonolithResource(BaseOAuth):
 
     def test_deletion_by_date(self):
         for date in (self.last_week, self.yesterday, self.now):
-            record_stat('app.install', self.request, recorded=date, value=1)
-            record_stat('foo.bar', self.request, recorded=date, value=1)
+            record_stat('app.install', self.request, __recorded=date, value=1)
+            record_stat('foo.bar', self.request, __recorded=date, value=1)
 
         res = self.client.delete(self.list_url, data={
             'recorded__gte': self.last_week.isoformat(),

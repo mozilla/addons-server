@@ -33,7 +33,7 @@ def get_user_hash(request):
     return hashlib.sha1('-'.join(map(str, (ip, ua, session_key)))).hexdigest()
 
 
-def record_stat(key, request, recorded=None, **data):
+def record_stat(key, request, **data):
     """Create a new record in the database with the given values.
 
     :param key:
@@ -43,15 +43,14 @@ def record_stat(key, request, recorded=None, **data):
         The request associated with this call. It will be used to define who
         the user is.
 
-    :param recorded:
-        The date for the record insertion. By default, uses "now".
-
     :para: data:
         The data you want to store. You can pass the data to this function as
         named arguments.
     """
-    if recorded is None:
-        recorded = datetime.datetime.now()
+    if '__recorded' in data:
+        recorded = data.pop('__recorded')
+    else:
+        recorded = datetime.datetime.utcnow()
 
     if not data:
         raise ValueError('You should at least define one value')
