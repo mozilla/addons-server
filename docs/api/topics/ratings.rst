@@ -20,7 +20,10 @@ _`List`
     **Request**:
 
     :query app: the ID or slug of the app whose ratings are to be returned.
-    :query user: the ID of the user whose ratings are to be returned.
+    :query user: the ID of the user or `mine` whose ratings are to be returned.
+
+    The value `mine` can be used to filter ratings belonging to the currently
+    logged in user.
 
     Plus standard :ref:`list-query-params-label`.
 

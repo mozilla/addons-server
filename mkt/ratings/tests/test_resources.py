@@ -42,7 +42,7 @@ class TestRatingResource(BaseOAuth, AMOPaths):
         assert not data['user']['has_rated']
 
     def _get_single(self, **kwargs):
-        Review.objects.create(addon=self.app, user=self.user, body="yes")
+        Review.objects.create(addon=self.app, user=self.user, body='yes')
         url = self._collection_url(**kwargs)
         res = self.client.get(url)
         data = json.loads(res.content)
@@ -52,6 +52,22 @@ class TestRatingResource(BaseOAuth, AMOPaths):
         res, data = self._get_single()
         eq_(len(data['objects']), 1)
         eq_(data['info']['slug'], self.app.app_slug)
+
+    def _get_filter(self, client, key):
+        Review.objects.create(addon=self.app, user=self.user, body='yes')
+        res = client.get(list_url('rating') + ({'user': key},))
+        eq_(res.status_code, 200)
+        eq_(json.loads(res.content)['meta']['total_count'], 1)
+
+    def test_filter_self(self):
+        self._get_filter(self.client, self.user.pk)
+
+    def test_filter_mine(self):
+        self._get_filter(self.client, 'mine')
+
+    def test_filter_not_mine(self):
+        res = self.anon.get(list_url('rating') + ({'user': 'mine'},))
+        eq_(res.status_code, 401)
 
     def test_get_by_slug(self):
         res, data = self._get_single(app=self.app.app_slug)
@@ -70,7 +86,7 @@ class TestRatingResource(BaseOAuth, AMOPaths):
 
     def test_version_not_latest(self):
         self.app.update(is_packaged=True)
-        Review.objects.create(addon=self.app, user=self.user, body="yes",
+        Review.objects.create(addon=self.app, user=self.user, body='yes',
                               version=self.app.latest_version)
         Version.objects.create(addon=self.app, version='1.1')
         res = self.anon.get(self._collection_url())
@@ -101,7 +117,7 @@ class TestRatingResource(BaseOAuth, AMOPaths):
         assert not data['user']['has_rated']
 
     def test_already_rated(self):
-        Review.objects.create(addon=self.app, user=self.user, body="yes")
+        Review.objects.create(addon=self.app, user=self.user, body='yes')
         res = self.client.get(self._collection_url())
         data = json.loads(res.content)
         assert data['user']['can_rate']
@@ -207,20 +223,20 @@ class TestRatingResource(BaseOAuth, AMOPaths):
     def test_delete_app_mine(self):
         AddonUser.objects.filter(addon=self.app).update(user=self.user)
         user2 = UserProfile.objects.get(pk=31337)
-        r = Review.objects.create(addon=self.app, user=user2, body="yes")
+        r = Review.objects.create(addon=self.app, user=user2, body='yes')
         res = self.client.delete(get_url('rating', r.pk))
         eq_(res.status_code, 204)
         eq_(Review.objects.count(), 0)
 
     def test_delete_comment_mine(self):
-        r = Review.objects.create(addon=self.app, user=self.user, body="yes")
+        r = Review.objects.create(addon=self.app, user=self.user, body='yes')
         res = self.client.delete(get_url('rating', r.pk))
         eq_(res.status_code, 204)
         eq_(Review.objects.count(), 0)
 
     def test_delete_addons_admin(self):
         user2 = UserProfile.objects.get(pk=31337)
-        r = Review.objects.create(addon=self.app, user=user2, body="yes")
+        r = Review.objects.create(addon=self.app, user=user2, body='yes')
         self.grant_permission(self.user, 'Addons:Edit')
         res = self.client.delete(get_url('rating', r.pk))
         eq_(res.status_code, 204)
@@ -228,7 +244,7 @@ class TestRatingResource(BaseOAuth, AMOPaths):
 
     def test_delete_users_admin(self):
         user2 = UserProfile.objects.get(pk=31337)
-        r = Review.objects.create(addon=self.app, user=user2, body="yes")
+        r = Review.objects.create(addon=self.app, user=user2, body='yes')
         self.grant_permission(self.user, 'Users:Edit')
         res = self.client.delete(get_url('rating', r.pk))
         eq_(res.status_code, 204)
@@ -236,7 +252,7 @@ class TestRatingResource(BaseOAuth, AMOPaths):
 
     def test_delete_not_mine(self):
         user2 = UserProfile.objects.get(pk=31337)
-        r = Review.objects.create(addon=self.app, user=user2, body="yes")
+        r = Review.objects.create(addon=self.app, user=user2, body='yes')
         url = ('api_dispatch_detail', {'resource_name': 'rating', 'pk': r.pk})
         self.app.authors.clear()
         res = self.client.delete(url)
@@ -259,7 +275,7 @@ class TestReviewFlagResource(BaseOAuth, AMOPaths):
         self.user = UserProfile.objects.get(pk=2519)
         self.user2 = UserProfile.objects.get(pk=31337)
         self.rating = Review.objects.create(addon=self.app,
-                                            user=self.user2, body="yes")
+                                            user=self.user2, body='yes')
         self.flag_url = ('api_post_flag',
                          {'resource_name': 'rating',
                           'review_id': self.rating.pk}, {})

@@ -8,6 +8,7 @@ from tastypie.exceptions import ImmediateHttpResponse
 from tastypie.utils import trailing_slash
 
 import amo
+from amo import get_user
 from lib.metrics import record_action
 
 from mkt.account.api import AccountResource
@@ -100,6 +101,15 @@ class RatingResource(CORSResource, MarketplaceModelResource):
                 app = self.get_app(built['addon__exact'])
                 if app:
                     built['addon__exact'] = str(app.pk)
+
+        if built.get('user__exact', None) == 'mine':
+            # This is a cheat. Would prefer /mine/ in the URL.
+            user = get_user()
+            if not user:
+                # You must be logged in to use "mine".
+                raise ImmediateHttpResponse(response=http.HttpUnauthorized())
+
+            built['user__exact'] = user.pk
         return built
 
     def obj_create(self, bundle, request=None, **kwargs):
