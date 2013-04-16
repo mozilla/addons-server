@@ -1,6 +1,7 @@
 import datetime
 import httplib2
 import itertools
+import json
 
 from django.conf import settings
 from django.db import connection, transaction
@@ -163,11 +164,14 @@ def update_global_totals(job, date, **kw):
     except Exception, e:
         log.critical("Failed to update global stats: (%s): %s" % (p, e))
 
-    try:
-        MonolithRecord(recorded=date, key=job, value=num or 0,
-                       user_hash='none').save()
-    except Exception, e:
-        log.critical("Failed to update the monolith table: (%s): %s" % (p, e))
+    # monolith is only used for marketplace
+    if job.startswith(('apps', 'mmo')):
+        try:
+            value = json.dumps({'count': num or 0})
+            MonolithRecord(recorded=date, key=job, value=value,
+                           user_hash='none').save()
+        except Exception as e:
+            log.critical("Update of monolith table failed: (%s): %s" % (p, e))
 
     log.debug("Committed global stats details: (%s) has (%s) for (%s)"
               % tuple(p))
