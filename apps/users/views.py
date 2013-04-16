@@ -27,8 +27,8 @@ import amo
 import users.notifications as notifications
 from abuse.models import send_abuse_report
 from access.middleware import ACLMiddleware
-from addons.models import Addon, AddonUser
 from addons.decorators import addon_view_factory
+from addons.models import Addon
 from amo import messages
 from amo.decorators import (json_view, login_required, permission_required,
                             post_required, write)
