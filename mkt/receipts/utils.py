@@ -24,6 +24,7 @@ def create_receipt(installed_pk, flavour=None):
     webapp = installed.addon
     origin = (settings.SITE_URL if webapp.is_packaged else webapp.origin)
     time_ = calendar.timegm(time.gmtime())
+    typ = 'purchase-receipt'
 
     product = {'url': origin, 'storedata': urlencode({'id': int(webapp.pk)})}
 
@@ -37,7 +38,7 @@ def create_receipt(installed_pk, flavour=None):
 
         # Developer and reviewer receipts should expire after 24 hours.
         expiry = time_ + (60 * 60 * 24)
-        product['type'] = flavour
+        typ = flavour + '-receipt'
         verify = absolutify(reverse('receipt.verify', args=[webapp.guid]))
     else:
         verify = settings.WEBAPPS_RECEIPT_URL
@@ -46,7 +47,7 @@ def create_receipt(installed_pk, flavour=None):
     reissue = webapp.get_purchase_url('reissue')
     receipt = dict(detail=absolutify(detail), exp=expiry, iat=time_,
                    iss=settings.SITE_URL, nbf=time_, product=product,
-                   reissue=absolutify(reissue), typ='purchase-receipt',
+                   reissue=absolutify(reissue), typ=typ,
                    user={'type': 'directed-identifier',
                          'value': installed.uuid},
                    verify=verify)
@@ -72,10 +73,9 @@ def create_test_receipt(root, status):
         'product': {
             'storedata': urlencode({'id': 0}),
             'url': root,
-            'type': 'test'
         },
         'reissue': detail,
-        'typ': 'purchase-receipt',
+        'typ': 'test-receipt',
         'user': {
             'type': 'directed-identifier',
             'value': 'none'

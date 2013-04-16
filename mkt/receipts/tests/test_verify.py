@@ -71,7 +71,8 @@ class TestVerify(amo.tests.TestCase):
                           'product': {'url': 'http://f.com',
                                       'storedata': urlencode({'id': 3615})},
                           'verify': 'https://foo.com/verifyme/',
-                          'exp': calendar.timegm(time.gmtime()) + 1000}
+                          'exp': calendar.timegm(time.gmtime()) + 1000,
+                          'typ': 'purchase-receipt'}
 
     def get_decode(self, receipt, check_purchase=True):
         # Ensure that the verify code is using the test database cursor.
@@ -133,11 +134,11 @@ class TestVerify(amo.tests.TestCase):
         res = self.get(self.user_data)
         eq_(res['status'], 'ok')
 
-    def test_user_type(self):
+    def test_type(self):
         user_data = self.user_data.copy()
-        user_data['product']['type'] = 'anything'
+        user_data['typ'] = 'anything'
         self.make_install()
-        res = self.get(self.user_data)
+        res = self.get(user_data)
         eq_(res['status'], 'invalid')
 
     def test_user_deleted(self):
@@ -220,8 +221,8 @@ class TestVerify(amo.tests.TestCase):
         self.addon.update(premium_type=amo.ADDON_PREMIUM)
         self.make_install()
         user_data = self.user_data.copy()
-        user_data['product']['type'] = 'developer'
-        res = self.get(self.user_data, check_purchase=False)
+        user_data['typ'] = 'developer-receipt'
+        res = self.get(user_data, check_purchase=False)
         eq_(res['status'], 'ok')
 
     def test_premium_addon_purchased(self):
@@ -342,14 +343,14 @@ class TestType(TestBase):
     @mock.patch.object(utils.settings, 'WEBAPPS_RECEIPT_KEY',
                        amo.tests.AMOPaths.sample_key())
     def test_no_type(self):
-        self.create({}).check_type()
+        self.create({'typ': 'test-receipt'}).check_type('test-receipt')
 
     def test_wrong_type(self):
         with self.assertRaises(verify.InvalidReceipt):
-            self.create({}).check_type('test')
+            self.create({}).check_type('test-receipt')
 
     def test_test_type(self):
-        sample = {'product': {'type': 'test'}}
+        sample = {'typ': 'test-receipt'}
         with self.assertRaises(verify.InvalidReceipt):
             self.create(sample).check_type('blargh')
 

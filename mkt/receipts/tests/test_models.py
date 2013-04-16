@@ -116,7 +116,7 @@ class TestReceipt(amo.tests.TestCase):
         encode.return_value = 'tmp-to-keep-memoize-happy'
         create_receipt(ins.pk, flavour=flavour)
         receipt = encode.call_args[0][0]
-        eq_(receipt['product']['type'], flavour)
+        eq_(receipt['typ'], flavour + '-receipt')
         eq_(receipt['verify'],
             absolutify(reverse('receipt.verify', args=[ins.addon.guid])))
         return receipt

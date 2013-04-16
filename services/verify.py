@@ -71,7 +71,7 @@ class Verify:
         """
         try:
             self.decoded = self.decode()
-            self.check_type()
+            self.check_type('purchase-receipt')
             self.check_db()
             self.check_url()
         except InvalidReceipt:
@@ -97,7 +97,7 @@ class Verify:
         """
         try:
             self.decoded = self.decode()
-            self.check_type('developer', 'reviewer')
+            self.check_type('developer-receipt', 'reviewer-receipt')
             self.check_db()
             self.check_url()
         except InvalidReceipt:
@@ -114,7 +114,7 @@ class Verify:
 
         try:
             self.decoded = self.decode()
-            self.check_type('test')
+            self.check_type('test-receipt')
             self.check_url()
         except InvalidReceipt:
             return self.invalid()
@@ -149,13 +149,8 @@ class Verify:
         """
         Verifies that the type of receipt is what we expect.
         """
-        type_ = self.decoded.get('product', {}).get('type', '')
-        if not type_ and not types:
-            # If you are not expecting any types then check its empty.
-            return
-
-        if type_ not in types:
-            log_info('Receipt type %s not in %s' % (type_, types))
+        if self.decoded.get('typ', '') not in types:
+            log_info('Receipt type not in %s' % ','.join(types))
             raise InvalidReceipt
 
     def check_url(self):
