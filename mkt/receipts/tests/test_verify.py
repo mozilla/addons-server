@@ -335,10 +335,12 @@ class TestBase(amo.tests.TestCase):
         return v
 
 
-@mock.patch.object(utils.settings, 'WEBAPPS_RECEIPT_KEY',
+@mock.patch.object(settings, 'WEBAPPS_RECEIPT_KEY',
                    amo.tests.AMOPaths.sample_key())
 class TestType(TestBase):
 
+    @mock.patch.object(utils.settings, 'WEBAPPS_RECEIPT_KEY',
+                       amo.tests.AMOPaths.sample_key())
     def test_no_type(self):
         self.create({}).check_type()
 
@@ -352,7 +354,7 @@ class TestType(TestBase):
             self.create(sample).check_type('blargh')
 
 
-@mock.patch.object(utils.settings, 'WEBAPPS_RECEIPT_KEY',
+@mock.patch.object(settings, 'WEBAPPS_RECEIPT_KEY',
                    amo.tests.AMOPaths.sample_key())
 class TestURL(TestBase):
 
@@ -371,6 +373,8 @@ class TestURL(TestBase):
         with self.assertRaises(verify.InvalidReceipt):
             self.create(sample, request=self.req).check_url()
 
+    @mock.patch.object(utils.settings, 'WEBAPPS_RECEIPT_KEY',
+                       amo.tests.AMOPaths.sample_key())
     @mock.patch.object(utils.settings, 'DOMAIN', 'f.com')
     def test_good(self):
         sample = {'verify': 'https://f.com/foo'}
