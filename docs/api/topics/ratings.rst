@@ -80,7 +80,6 @@ _`Detail`
         {
             "app": "/api/v1/apps/app/18/",
             "body": "This app is top notch. Aces in my book!",
-            "for_old_version": false,
             "rating": 5,
             "resource_uri": "/api/v1/apps/rating/19/",
             "user": {
