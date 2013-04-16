@@ -38,6 +38,7 @@ class TestGlobalStats(amo.tests.TestCase):
 
         tasks.update_global_totals(job, date)
         self.assertTrue(record.called)
+        eq_(record.call_args[1]['value'], '{"count": 0}')
 
     @mock.patch('stats.tasks.MonolithRecord')
     def test_addon_total_downloads_doesnot_update_monolith(self, record):

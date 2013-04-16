@@ -1,6 +1,7 @@
 import datetime
 import httplib2
 import itertools
+import json
 
 from django.conf import settings
 from django.db import connection, transaction
@@ -166,7 +167,8 @@ def update_global_totals(job, date, **kw):
     # monolith is only used for marketplace
     if job.startswith(('apps', 'mmo')):
         try:
-            MonolithRecord(recorded=date, key=job, value=num or 0,
+            value = json.dumps({'count': num or 0})
+            MonolithRecord(recorded=date, key=job, value=value,
                            user_hash='none').save()
         except Exception as e:
             log.critical("Update of monolith table failed: (%s): %s" % (p, e))
