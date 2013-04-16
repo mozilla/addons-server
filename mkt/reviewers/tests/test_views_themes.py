@@ -34,6 +34,13 @@ class ThemeReviewTestMixin(object):
         self.status = amo.STATUS_PENDING
         self.flagged = False
 
+    def req_factory_factory(self, user, url):
+        req = RequestFactory().get(reverse(url))
+        req.user = user.user
+        req.groups = req.user.get_profile().groups.all()
+        req.TABLET = True
+        return req
+
     def create_and_become_reviewer(self):
         """Login as new reviewer with unique username."""
         username = 'reviewer%s' % self.reviewer_count
@@ -55,10 +62,7 @@ class ThemeReviewTestMixin(object):
             addon_factory(type=amo.ADDON_PERSONA, status=self.status)
 
         reviewer = self.create_and_become_reviewer()
-        req = RequestFactory().get(reverse('reviewers.themes.more'))
-        req.user = reviewer.user
-        req.groups = req.user.get_profile().groups.all()
-        req.TABLET = True
+        req = self.req_factory_factory(reviewer, 'reviewers.themes.more')
 
         themes = _get_themes(req, req.user.get_profile(), initial=True,
                              flagged=self.flagged)
@@ -112,7 +116,7 @@ class ThemeReviewTestMixin(object):
             eq_(actual, expected)
 
     @mock.patch.object(rvw, 'THEME_INITIAL_LOCKS', 2)
-    def test_themes_more(self):
+    def test_themes_more_data_id(self):
         """Check data-id of async'ed grabbed themes."""
         req, themes = self.themes_more_helper()
 
@@ -123,7 +127,7 @@ class ThemeReviewTestMixin(object):
         eq_(pq(themes[1]).attr('data-id'), '3')
 
     @mock.patch.object(rvw, 'THEME_INITIAL_LOCKS', 2)
-    def test_themes_more_expired(self):
+    def test_themes_more_expired_data_id(self):
         """
         Check data-id of async'ed grabbed themes, should ignore expired
         theme locks.
@@ -419,3 +423,32 @@ class TestThemeReviewQueueFlagged(ThemeReviewTestMixin, amo.tests.TestCase):
 
         self.login('admin@mozilla.com')
         eq_(self.client.get(self.queue_url).status_code, 200)
+
+    @mock.patch.object(rvw, 'THEME_INITIAL_LOCKS', 2)
+    def test_mix_pending_flagged_data_id(self):
+        """
+        Case where reviewer holds locks for both pending and flagged themes.
+        Calculating theme_lock_count on themes_more should be correct.
+        """
+        reviewer = self.create_and_become_reviewer()
+
+        # Check out pending themes.
+        addon_factory(type=amo.ADDON_PERSONA, status=amo.STATUS_PENDING)
+        req = self.req_factory_factory(reviewer,
+                                       'reviewers.themes.queue_themes')
+        _get_themes(req, req.user.get_profile(), initial=True)
+
+        # Check out flagged themes.
+        for x in range(rvw.THEME_INITIAL_LOCKS + 1):
+            addon_factory(type=amo.ADDON_PERSONA,
+                          status=amo.STATUS_REVIEW_PENDING)
+        req = self.req_factory_factory(reviewer,
+                                       'reviewers.themes.queue_flagged')
+        _get_themes(req, req.user.get_profile(), initial=True, flagged=True)
+
+        # Get more flagged themes.
+        req = self.req_factory_factory(reviewer,
+                                       'reviewers.themes.more_flagged')
+        res = themes_more(req, flagged=True)
+        themes = pq(json.loads(res.content)['html'])('.theme')
+        eq_(pq(themes[0]).attr('data-id'), '2')

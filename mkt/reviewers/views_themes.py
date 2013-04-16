@@ -224,8 +224,14 @@ def themes_more_flagged(request):
 @reviewer_required('persona')
 def themes_more(request, flagged=False):
     reviewer = request.user.get_profile()
-    theme_locks_count = ThemeLock.uncached.filter(
-        reviewer=reviewer, expiry__gte=datetime.datetime.now()).count()
+
+    # Grab count of locks to know where to start enumerating them in templates.
+    reviewer_locks = ThemeLock.uncached.filter(
+        reviewer=reviewer, expiry__gte=datetime.datetime.now())
+    if flagged:
+        reviewer_locks = reviewer_locks.filter(
+            theme__addon__status=amo.STATUS_REVIEW_PENDING)
+    theme_locks_count = reviewer_locks.count()
 
     # Maximum number of locks.
     if theme_locks_count >= rvw.THEME_MAX_LOCKS:
