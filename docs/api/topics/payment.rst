@@ -154,6 +154,9 @@ Product Icons
 Authenticated clients like `WebPay`_ need to display external product images in a
 safe way. This API lets WebPay cache and later retrieve icon URLs.
 
+.. note:: All write requests (``POST``, ``PATCH``) require authenticated users to have the
+    ``ProductIcon:Create``  permission.
+
 
 .. http:get:: /api/v1/webpay/product/icon/
 
@@ -206,8 +209,8 @@ safe way. This API lets WebPay cache and later retrieve icon URLs.
     **Response**
 
     :statuscode 202: New icon accepted. Deferred processing will begin.
-    :statuscode 401: The API user is unauthorized to cache product icons.
     :statuscode 400: Some required fields were missing or invalid.
+    :statuscode 401: The API user is unauthorized to cache product icons.
 
 .. _CORS: https://developer.mozilla.org/en-US/docs/HTTP/Access_control_CORS
 .. _WebPay: https://github.com/mozilla/webpay
