@@ -1486,6 +1486,9 @@ SOLITUDE_SECRET = ''
 # The timeout we'll give solitude.
 SOLITUDE_TIMEOUT = 10
 
+# The OAuth keys to connect to the solitude host specified above.
+SOLITUDE_OAUTH = {'key': '', 'secret': ''}
+
 # Temporary flag to work with navigator.mozPay() on devices that don't
 # support it natively.
 SIMULATE_NAV_PAY = False

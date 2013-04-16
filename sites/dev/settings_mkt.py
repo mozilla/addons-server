@@ -111,6 +111,8 @@ INAPP_IMAGE_PATH = NETAPP_STORAGE + '/inapp-image'
 INAPP_KEY_PATHS = private_mkt.INAPP_KEY_PATHS
 
 SOLITUDE_HOSTS = ('https://payments-dev.allizom.org',)
+SOLITUDE_OAUTH = {'key': private.SOLITUDE_OAUTH_KEY,
+                  'secret': private.SOLITUDE_OAUTH_SECRET}
 
 PAYPAL_LIMIT_PREAPPROVAL = False
 

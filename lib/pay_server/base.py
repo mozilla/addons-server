@@ -5,6 +5,8 @@ import json
 import logging
 import urllib
 
+from django.conf import settings
+
 from curling.lib import API
 from django_statsd.clients import statsd
 import requests
@@ -86,6 +88,8 @@ class Client(object):
     def __init__(self, config=None):
         self.config = self.parse(config)
         self.api = API(config['server'])
+        self.api.activate_oauth(settings.SOLITUDE_OAUTH.get('key'),
+                                settings.SOLITUDE_OAUTH.get('secret'))
         self.encoder = None
         self.filter_encoder = urllib.urlencode
 
