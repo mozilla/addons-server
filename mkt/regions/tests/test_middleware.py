@@ -71,7 +71,7 @@ class TestRegionMiddleware(amo.tests.TestCase):
             ('xx, yy, zz', 'worldwide'),
             ('<script>alert("ballin")</script>', 'worldwide'),
             ('en-us;q=0.5, de', 'worldwide'),
-            ('es-PE', 'co'),
+            ('es-PE', 'es'),
         ]
         for locale, expected in locales:
             self.client.cookies.clear()
