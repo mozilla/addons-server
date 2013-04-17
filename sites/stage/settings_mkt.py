@@ -110,8 +110,8 @@ SENTRY_DSN = private_mkt.SENTRY_DSN
 METRICS_SERVER = 'https://data.mozilla.com/'
 
 SOLITUDE_HOSTS = ('https://payments.allizom.org',)
-SOLITUDE_OAUTH = {'key': private.SOLITUDE_OAUTH_KEY,
-                  'secret': private.SOLITUDE_OAUTH_SECRET}
+SOLITUDE_OAUTH = {'key': private_mkt.SOLITUDE_OAUTH_KEY,
+                  'secret': private_mkt.SOLITUDE_OAUTH_SECRET}
 
 WEBAPPS_PUBLIC_KEY_DIRECTORY = NETAPP_STORAGE + '/public_keys'
 INAPP_IMAGE_PATH = NETAPP_STORAGE + '/inapp-image'

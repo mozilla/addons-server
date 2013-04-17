@@ -109,8 +109,8 @@ METRICS_SERVER = 'https://data.mozilla.com/'
 INAPP_KEY_PATHS = {'2012-05-09': private_mkt.INAPP_KEY_PATH}
 
 SOLITUDE_HOSTS = ('https://payments.firefox.com',)
-SOLITUDE_OAUTH = {'key': private.SOLITUDE_OAUTH_KEY,
-                  'secret': private.SOLITUDE_OAUTH_SECRET}
+SOLITUDE_OAUTH = {'key': private_mkt.SOLITUDE_OAUTH_KEY,
+                  'secret': private_mkt.SOLITUDE_OAUTH_SECRET}
 
 # Bug 748403
 SIGNING_SERVER = private_mkt.SIGNING_SERVER
