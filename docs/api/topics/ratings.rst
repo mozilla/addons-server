@@ -47,7 +47,7 @@ _`List`
                 {
                     "app": "/api/v1/apps/app/18/",
                     "body": "This app is top notch. Aces in my book!",
-                    "is_owner": true,
+                    "is_author": true,
                     "rating": 5,
                     "resource_uri": "/api/v1/apps/rating/19/",
                     "report_spam": "/api/v1/apps/rating/19/flag",
@@ -63,9 +63,9 @@ _`List`
             ]
         }
 
-    :param is_owner: whether the authenticated user is the author of the rating.
+    :param is_author: whether the authenticated user is the author of the rating.
                      Parameter not present in anonymous requests.
-    :type is_owner: boolean
+    :type is_author: boolean
 
     :status 200: success.
     :status 400: submission error.
@@ -88,7 +88,7 @@ _`Detail`
         {
             "app": "/api/v1/apps/app/18/",
             "body": "This app is top notch. Aces in my book!",
-            "is_owner": true,
+            "is_author": true,
             "rating": 5,
             "resource_uri": "/api/v1/apps/rating/19/",
             "user": {
@@ -101,9 +101,9 @@ _`Detail`
             }
         }
 
-    :param is_owner: whether the authenticated user is the author of the rating.
+    :param is_author: whether the authenticated user is the author of the rating.
                      Parameter not present in anonymous requests.
-    :type is_owner: boolean
+    :type is_author: boolean
 
     :status 200: success.
     :status 400: submission error.
