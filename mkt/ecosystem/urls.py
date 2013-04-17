@@ -51,6 +51,8 @@ urlpatterns = patterns('',
         name='ecosystem.build_web_developers'),
     url('^docs/dev_tools$', views.build_dev_tools,
         name='ecosystem.build_dev_tools'),
+    url('^docs/payments$', views.build_payments,
+        name='ecosystem.build_payments'),
 
     url('^docs/apps/(?P<page>\w+)?$', views.apps_documentation,
         name='ecosystem.apps_documentation'),

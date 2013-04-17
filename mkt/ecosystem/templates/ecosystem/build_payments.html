@@ -1,0 +1,98 @@
+{% extends 'ecosystem/base.html' %}
+{% from "ecosystem/macros.html" import navigation with context %}
+
+{% block title %}
+  {{ hub_page_title(_('Paid Apps')) }}
+{% endblock %}
+
+{% block content %}
+  <div class="doc-wrapper">
+    {{ navigation('build_payments') }}
+
+    <article>
+      <h1>Paid Apps</h1>
+      <h2>Receipt Verification</h2>
+      <ul>
+        <li>
+          <a href="https://hacks.mozilla.org/2013/02/building-a-paid-app-for-firefox-os"
+             rel="external">Building a Paid App for Firefox OS</a>
+        </li>
+        <li>
+          <a href="https://developer.mozilla.org/en-US/docs/Apps/FAQs/Marketplace_payments"
+             rel="external">Marketplace Payments FAQ</a>
+        </li>
+        <li>
+          <a href="https://developer.mozilla.org/en-US/docs/Apps/Publishing/Marketplace_Payments"
+             rel="external">Marketplace Payment</a>
+        </li>
+        <li>
+          <a href="https://developer.mozilla.org/en-US/docs/Apps/Publishing/Validating_a_receipt"
+             rel="external">Validating a Receipt</a>
+        </li>
+        <li>
+          <a href="https://github.com/mozilla/receiptverifier"
+             rel="external">receiptverifier Github Repository</a>
+        </li>
+        <li>
+          <a href="https://wiki.mozilla.org/Apps/WebApplicationReceipt"
+             rel="external">Web Application Receipt</a>
+        </li>
+      </ul>
+
+      <h2>App Submission</h2>
+      <ul>
+        <li>
+          <a href="https://developer.mozilla.org/en-US/docs/Apps/Publishing/Submitting_an_app"
+             rel="external">Submitting an app to the Firefox Marketplace</a>
+        </li>
+      </ul>
+
+      <h2>Packaged vs. Hosted Apps</h2>
+      <ul>
+        <li>
+          <a href="https://developer.mozilla.org/en-US/docs/Apps/Packaged_apps"
+             rel="external">Packaged Apps</a>
+        </li>
+        <li>
+          <a href="https://wiki.mozilla.org/Apps/Security"
+             rel="external">Security</a>
+        </li>
+        <li>
+          <a href="https://developer.mozilla.org/en-US/docs/Apps/Reference"
+             rel="external">App Development API Reference</a>
+        </li>
+      </ul>
+
+      <h2>Getting an API Key</h2>
+      <ul>
+        <li>
+          <a href="{{ url('mkt.developers.apps.in_app_keys') }}">
+            In-App Payment Keys</a>
+        </li>
+      </ul>
+
+      <h2>Adding a JWT Request from Client to Server</h2>
+      <ul>
+        <li>
+          <a href="https://developer.mozilla.org/en-US/docs/Apps/Publishing/In-app_payments"
+             rel="external">In-app Payments</a>
+        </li>
+        <li>
+          <a href="https://wiki.mozilla.org/WebAPI/WebPayment"
+             rel="external">WebAPI/Webpayment</a>
+        </li>
+        <li>
+          <a href="https://hacks.mozilla.org/2013/04/introducing-navigator-mozpay-for-web-payments"
+             rel="external">Introducing navigator.mozPay() for Web Payments</a>
+        </li>
+      </ul>
+
+      <h2>Adding a JWT Response from Server to Client</h2>
+      <ul>
+        <li>
+          <a href="http://openid.net/specs/draft-jones-json-web-token-07.html"
+             rel="external">JSON Web Token</a>
+        </li>
+    </article>
+  </div>
+{% endblock %}

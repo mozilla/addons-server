@@ -16,7 +16,7 @@ VIEW_PAGES = (
     'build_tools', 'build_web_developers', 'design_concept',
     'design_fundamentals', 'design_patterns', 'design_ui', 'dev_phone',
     'partners', 'publish_deploy', 'publish_hosted', 'publish_packaged',
-    'publish_review', 'publish_submit', 'support',
+    'publish_review', 'publish_submit', 'support', 'build_payments',
 )
 
 
