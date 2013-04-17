@@ -71,7 +71,6 @@ class Marketplace(object):
             request.method = request.META['HTTP_X_HTTP_METHOD_OVERRIDE']
 
         # Temp for bug 862600.
-        print request.META.get('CONTENT_TYPE', '-')
         log.info('Content-Type: %s' % request.META.get('CONTENT_TYPE', '-'))
         try:
             return (super(Marketplace, self)
