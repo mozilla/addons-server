@@ -284,3 +284,36 @@ Report An Abusive User
     :status 201: successfully submitted.
     :status 400: submission error.
     :status 429: exceeded rate limit.
+
+Site configuration
+==================
+
+.. http:get:: /api/v1/services/config/site/
+
+    Returns information about how the marketplace is configured. Not all
+    settings and configuration options are returned - only a subset. This
+    subset will change as features in the site change. The list of results
+    should not be relied upon to stay consistent.
+
+    **Response**
+
+    :param version: the git commit number of the deployment.
+    :param settings: a subset of useful site settings.
+    :param flags: a subset of useful runtime configuration settings.
+
+    Example:
+
+    .. code-block:: json
+
+        {
+            "flags": {
+                "allow-b2g-paid-submission": true,
+                "allow-refund": true,
+                "in-app-sandbox": false
+            },
+            "resource_uri": "",
+            "settings": {
+                "SITE_URL": "http://z.mozilla.dev"
+            },
+            "version": null
+        }

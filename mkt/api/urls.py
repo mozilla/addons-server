@@ -4,8 +4,9 @@ from django.conf.urls import include, patterns, url
 from tastypie.api import Api
 from tastypie_services.services import (ErrorResource, SettingsResource)
 from mkt.api.base import handle_500
-from mkt.api.resources import (AppResource, CategoryResource, PreviewResource,
-                               StatusResource, ValidationResource)
+from mkt.api.resources import (AppResource, CategoryResource, ConfigResource,
+                               PreviewResource, StatusResource,
+                               ValidationResource)
 from mkt.ratings.resources import RatingResource
 from mkt.search.api import SearchResource, WithFeaturedResource
 
@@ -22,8 +23,10 @@ api.register(RatingResource())
 
 
 urls = [url(r'^', include(api.urls)),]
+services = Api(api_name='services')
+services.register(ConfigResource())
+
 if settings.ALLOW_TASTYPIE_SERVICES:
-    services = Api(api_name='services')
     services.register(ErrorResource(set_handler=handle_500))
     if getattr(settings, 'CLEANSED_SETTINGS_ACCESS', False):
         services.register(SettingsResource())

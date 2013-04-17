@@ -1,7 +1,9 @@
 import json
 
+from django.conf import settings
 from django.db import transaction
 from django.db.models import Q
+from django.views import debug
 
 import commonware.log
 from celery_tasktree import TaskTree
@@ -12,8 +14,10 @@ from tastypie.exceptions import ImmediateHttpResponse
 from tastypie.resources import ALL_WITH_RELATIONS
 from tastypie.serializers import Serializer
 from tastypie.throttle import CacheThrottle
+import waffle
 
 import amo
+from amo.utils import memoize
 from addons.forms import CategoryFormSet
 from addons.models import Addon, AddonUser, Category, Preview, Webapp
 from amo.decorators import write
@@ -26,7 +30,8 @@ from mkt.api.authentication import (AppOwnerAuthorization,
                                     OptionalOAuthAuthentication,
                                     OwnerAuthorization,
                                     OAuthAuthentication)
-from mkt.api.base import CORSResource, MarketplaceModelResource
+from mkt.api.base import (CORSResource, GenericObject,
+                          MarketplaceModelResource, MarketplaceResource)
 from mkt.api.forms import (CategoryForm, DeviceTypeForm, NewPackagedForm,
                            PreviewArgsForm, PreviewJSONForm, StatusForm,
                            UploadForm)
@@ -401,3 +406,42 @@ class PreviewResource(CORSResource, MarketplaceModelResource):
         if 'file' in bundle.data:
             del bundle.data['file']
         return bundle
+
+
+@memoize(prefix='config-waffles')
+def waffles():
+    switches = ['in-app-sandbox', 'allow-b2g-paid-submission', 'allow-refund']
+    return dict([s, waffle.switch_is_active(s)] for s in switches)
+
+
+@memoize(prefix='config-settings')
+def settings():
+    safe = debug.get_safe_settings()
+    settings = ['SITE_URL',]
+    return dict([k, safe[k]] for k in settings)
+
+
+class ConfigResource(CORSResource, MarketplaceResource):
+    """
+    A resource that is designed to be exposed externally and contains
+    settings or waffle flags that might be relevant to the client app.
+    """
+    version = fields.CharField()
+    flags = fields.DictField('flags')
+    settings = fields.DictField('settings')
+
+    class Meta(MarketplaceResource.Meta):
+        detail_allowed_methods = ['get']
+        list_allowed_methods = []
+        resource_name = 'config'
+
+    def obj_get(self, request, **kw):
+        if kw['pk'] != 'site':
+            raise ImmediateHttpResponse(response=http.HttpNotFound())
+
+        return GenericObject({
+            # This is the git commit on IT servers.
+            'version': getattr(settings, 'BUILD_ID_JS', ''),
+            'flags': waffles(),
+            'settings': settings(),
+        })
