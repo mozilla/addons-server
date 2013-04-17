@@ -62,6 +62,9 @@ class RatingResource(CORSResource, MarketplaceModelResource):
                 'name': bundle.obj.version.version,
                 'latest': bundle.obj.addon.latest_version == bundle.obj.version
             }
+        if bundle.request.amo_user:
+            bundle.data['is_author'] = (bundle.obj.user.pk ==
+                                        bundle.request.amo_user.pk)
         return bundle
 
     def dehydrate_report_spam(self, bundle):

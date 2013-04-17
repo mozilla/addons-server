@@ -22,6 +22,7 @@ class TestRatingResource(BaseOAuth, AMOPaths):
         super(TestRatingResource, self).setUp()
         self.app = Webapp.objects.get(pk=337141)
         self.user = UserProfile.objects.get(pk=2519)
+        self.user2 = UserProfile.objects.get(pk=31337)
 
     def _collection_url(self, **kwargs):
         data = {'app': self.app.pk}
@@ -115,6 +116,24 @@ class TestRatingResource(BaseOAuth, AMOPaths):
         data = json.loads(res.content)
         assert data['user']['can_rate']
         assert not data['user']['has_rated']
+
+    def test_isowner_true(self):
+        Review.objects.create(addon=self.app, user=self.user, body='yes')
+        res = self.client.get(self._collection_url())
+        data = json.loads(res.content)
+        eq_(data['objects'][0]['is_author'], True)
+
+    def test_isowner_flase(self):
+        Review.objects.create(addon=self.app, user=self.user2, body='yes')
+        res = self.client.get(self._collection_url())
+        data = json.loads(res.content)
+        eq_(data['objects'][0]['is_author'], False)
+
+    def test_isowner_anonymous(self):
+        Review.objects.create(addon=self.app, user=self.user, body='yes')
+        res = self.anon.get(self._collection_url())
+        data = json.loads(res.content)
+        self.assertNotIn('is_author', data['objects'][0])
 
     def test_already_rated(self):
         Review.objects.create(addon=self.app, user=self.user, body='yes')
