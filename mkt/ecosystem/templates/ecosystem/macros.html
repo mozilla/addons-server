@@ -153,6 +153,13 @@
                 {{- _('Developing Game Apps') }}</a>
             </li>
             <li>
+              <a href="{{ url('ecosystem.build_payments') }}"
+                 {%- if section == 'build_payments' %}
+                 class="selected"
+                 {% endif %}>
+                {{- _('Payments Integration') }}</a>
+            </li>
+            <li>
               <a href="{{ url('ecosystem.build_manifests') }}"
                  {%- if section == 'build_manifests' %}
                  class="selected"
