@@ -7,7 +7,7 @@ from mkt.api.base import handle_500
 from mkt.api.resources import (AppResource, CategoryResource, PreviewResource,
                                StatusResource, ValidationResource)
 from mkt.ratings.resources import RatingResource
-from mkt.search.api import SearchResource, WithCreaturedResource
+from mkt.search.api import SearchResource, WithFeaturedResource
 
 
 api = Api(api_name='apps')
@@ -15,7 +15,7 @@ api.register(ValidationResource())
 api.register(AppResource())
 api.register(CategoryResource())
 api.register(PreviewResource())
-api.register(WithCreaturedResource())
+api.register(WithFeaturedResource())
 api.register(SearchResource())
 api.register(StatusResource())
 api.register(RatingResource())

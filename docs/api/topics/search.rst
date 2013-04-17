@@ -58,20 +58,22 @@ The API returns a list of the apps sorted by relevance (default) or
         }
 
 
-Category Listing With Featured Apps
+Featured App Listing
 ===================================
 
-.. http:get::  /api/v1/apps/search/creatured/
+.. http:get::  /api/v1/apps/search/featured/
 
     **Request**
 
-    Accepts the same parameters and returns the same objects as the normal
-    search interface: :ref:`search-api`.  Includes 'creatured' list of
-    apps, listing featured apps for the requested category, if any.
+    Accepts the same parameters and returns the same objects as the
+    normal search interface: :ref:`search-api`.  Includes 'featured'
+    list of apps, listing featured apps for the requested category, if
+    any. When no category is specified, frontpage featured apps are
+    listed.
 
     **Response**:
 
     :param meta: :ref:`meta-response-label`.
     :param objects: A :ref:`listing <objects-response-label>` of :ref:`apps <app-response-label>` satisfying the search parameters.
-    :param creatured: A list of :ref:`apps <app-response-label>` featured for the requested category, if any
+    :param featured: A list of :ref:`apps <app-response-label>` featured for the requested category, if any
     :status 200: successfully completed..

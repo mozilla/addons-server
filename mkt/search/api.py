@@ -100,16 +100,16 @@ class SearchResource(AppResource):
 
     def override_urls(self):
         return [
-            url(r'^(?P<resource_name>%s)/creatured%s$' %
+            url(r'^(?P<resource_name>%s)/featured%s$' %
                 (self._meta.resource_name, trailing_slash()),
-                self.wrap_view('with_creatured'), name='api_with_creatured')
+                self.wrap_view('with_featured'), name='api_with_featured')
             ]
 
-    def with_creatured(self, request, **kwargs):
-        return WithCreaturedResource().dispatch('list', request, **kwargs)
+    def with_featured(self, request, **kwargs):
+        return WithFeaturedResource().dispatch('list', request, **kwargs)
 
 
-class WithCreaturedResource(SearchResource):
+class WithFeaturedResource(SearchResource):
 
     class Meta(SearchResource.Meta):
         authorization = ReadOnlyAuthorization()
@@ -117,18 +117,18 @@ class WithCreaturedResource(SearchResource):
         detail_allowed_methods = []
         fields = SearchResource.Meta.fields + ['cat']
         list_allowed_methods = ['get']
-        resource_name = 'search/creatured'
+        resource_name = 'search/featured'
         slug_lookup = None
 
     def alter_list_data_to_serialize(self, request, data):
         form_data = self.search_form(request)
         region = getattr(request, 'REGION', mkt.regions.WORLDWIDE)
-        if not form_data['cat']:
-            data['creatured'] = []
-            return data
-        category = Category.objects.get(pk=form_data['cat'])
+        if form_data['cat']:
+            category = Category.objects.get(pk=form_data['cat'])
+        else:
+            category = None
         bundles = [self.build_bundle(obj=obj, request=request)
                    for obj in Webapp.featured(cat=category,
                                               region=region)]
-        data['creatured'] = [self.full_dehydrate(bundle) for bundle in bundles]
+        data['featured'] = [self.full_dehydrate(bundle) for bundle in bundles]
         return data
