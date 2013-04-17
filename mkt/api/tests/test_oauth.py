@@ -60,7 +60,7 @@ class OAuthClient(Client):
         if len(url) > 2 and data:
             raise RuntimeError('Query string specified both in urlspec and as '
                                'data arg. Pick one or the other.')
-        urlstring = get_absolute_url(url)
+        urlstring = self.get_absolute_url(url)
         if data:
             urlstring = '?'.join([urlstring,
                                   urllib.urlencode(data, doseq=True)])
