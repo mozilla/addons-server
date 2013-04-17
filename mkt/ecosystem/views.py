@@ -483,10 +483,10 @@ def build_dev_tools(request):
            {'page': 'build_dev_tools', 'category': 'build'})
 
 
-def build_payments(request):
-    """Build - Payments Integration page."""
-    return jingo.render(request, 'ecosystem/build_payments.html',
-           {'page': 'build_payments', 'category': 'build'})
+def build_paid_apps(request):
+    """Build - Paid Apps page."""
+    return jingo.render(request, 'ecosystem/build_paid_apps.html',
+           {'page': 'build_paid_apps', 'category': 'build'})
 
 
 def apps_documentation(request, page=None):
