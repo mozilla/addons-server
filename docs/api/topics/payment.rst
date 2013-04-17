@@ -93,6 +93,8 @@ Pay Tiers
     :statuscode 200: successfully completed.
 
 
+.. _localized-tier-label:
+
 Localized tier
 ~~~~~~~~~~~~~~
 

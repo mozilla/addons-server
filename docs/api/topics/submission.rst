@@ -217,6 +217,17 @@ App resource
             "resource_uri": "/api/v1/apps/app/24/"
         }
 
+    Notes on the response:
+
+    * price: will be null if the app is free. If it is a paid app this will be
+      a string representing the price in the currency calculated for the
+      request. Example: 1.00
+    * price_locale: will be null if the app is free. If it is a paid app this
+      will be a string representing the price with the currency formatted using
+      the currency symbol and the locale representations of numbers. Example:
+      "1,00 $US". For more information on this see :ref:`payment tiers
+      <localized-tier-label>`.
+
 .. http:post:: /api/v1/apps/app/
 
     .. note:: Requires authentication and a successfully validated manifest.

@@ -215,8 +215,8 @@ class AddonPremium(amo.models.ModelBase):
     def has_price(self):
         return self.price is not None and bool(self.price.price)
 
-    def get_price(self):
-        return self.price.get_price()
+    def get_price(self, currency=None):
+        return self.price.get_price(currency=currency)
 
     def get_price_locale(self, currency=None):
         """

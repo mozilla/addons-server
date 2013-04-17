@@ -250,8 +250,6 @@ class AppResource(CORSResource, MarketplaceModelResource):
             upsell_bundle = Bundle(obj=obj.upsell.premium,
                                    request=bundle.request)
             bundle.data['upsell'] = self.full_dehydrate(upsell_bundle).data
-        if not obj.has_price():
-            bundle.data['price'] = None
         return bundle
 
     def get_object_list(self, request):

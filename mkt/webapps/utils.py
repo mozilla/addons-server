@@ -27,6 +27,7 @@ def app_to_dict(app, currency=None, user=None):
         'version': getattr(cv, 'version', None),
         'release_notes': getattr(cv, 'releasenotes', None)
     }
+
     data = {
         'app_type': app.app_type,
         'categories': list(app.categories.values_list('pk', flat=True)),
@@ -47,13 +48,16 @@ def app_to_dict(app, currency=None, user=None):
         'previews': PreviewResource().dehydrate_objects(app.previews.all()),
         'premium_type': amo.ADDON_PREMIUM_API[app.premium_type],
         'public_stats': app.public_stats,
-        'price': app.get_price(currency),
-        'price_locale': (app.premium.get_price_locale()
-                         if app.premium else None),
+        'price': None,
+        'price_locale': None,
         'ratings': {'average': app.average_rating,
                     'count': app.total_reviews},
         'slug': app.app_slug,
     }
+
+    if app.premium:
+        data['price'] = app.premium.get_price(currency)
+        data['price_locale'] = app.premium.get_price_locale(currency)
 
     with no_translation():
         data['device_types'] = [n.api_name

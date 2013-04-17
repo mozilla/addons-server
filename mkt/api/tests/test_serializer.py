@@ -1,3 +1,4 @@
+from decimal import Decimal
 import json
 import urllib
 
@@ -18,6 +19,10 @@ class TestSerializer(TestCase):
         eq_(self.s.deserialize(json.dumps({'foo': 'bar'}),
                                'application/json'),
             {'foo': 'bar'})
+
+    def test_decimal(self):
+        eq_(self.s.serialize({'foo': Decimal('5.00')}),
+            json.dumps({'foo': '5.00'}))
 
     def test_url(self):
         eq_(self.s.deserialize(urllib.urlencode({'foo': 'bar'}),
