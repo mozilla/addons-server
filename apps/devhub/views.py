@@ -332,7 +332,6 @@ def edit_theme(request, addon_id, addon, theme=False):
                 return redirect('devhub.themes.edit', addon.slug)
         elif form.is_valid():
             form.save()
-            owner_form.save()
             messages.success(request, _('Changes successfully saved.'))
             return redirect('devhub.themes.edit', addon.reload().slug)
 
