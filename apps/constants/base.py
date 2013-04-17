@@ -113,6 +113,10 @@ PREMIUM_STATUSES = (STATUS_NULL,) + STATUS_UNDER_REVIEW
 # Newly submitted apps begin life at this status.
 WEBAPPS_UNREVIEWED_STATUS = STATUS_PENDING
 
+# These apps have been approved and are listed; or could be without further
+# review
+WEBAPPS_APPROVED_STATUSES = (STATUS_PUBLIC, STATUS_PUBLIC_WAITING)
+
 # An app with this status makes its detail page "invisible".
 WEBAPPS_UNLISTED_STATUSES = (STATUS_DISABLED, STATUS_PENDING,
                              STATUS_PUBLIC_WAITING, STATUS_REJECTED)

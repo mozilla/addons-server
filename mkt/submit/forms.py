@@ -61,7 +61,7 @@ class DeviceTypeForm(happyforms.Form):
             addon.addondevicetype_set.filter(device_type=d).delete()
 
         # Send app to re-review queue if public and new devices are added.
-        if added_devices and addon.status == amo.STATUS_PUBLIC:
+        if added_devices and addon.status in amo.WEBAPPS_APPROVED_STATUSES:
             mark_for_rereview(addon, added_devices, removed_devices)
 
     def _add_error(self, msg):

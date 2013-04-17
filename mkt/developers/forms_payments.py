@@ -388,7 +388,7 @@ class BangoAccountListForm(happyforms.Form):
             # and the app is currently marked as incomplete, put it into the
             # re-review queue.
             if (self.addon.status == amo.STATUS_NULL and
-                self.addon.highest_status == amo.STATUS_PUBLIC):
+                self.addon.highest_status in amo.WEBAPPS_APPROVED_STATUSES):
                 # FIXME: This might cause noise in the future if bank accounts
                 # get manually closed by Bango and we mark apps as STATUS_NULL
                 # until a new account is selected. That will trigger a

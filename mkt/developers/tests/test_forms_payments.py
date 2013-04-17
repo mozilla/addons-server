@@ -80,7 +80,7 @@ class TestPremiumForm(amo.tests.TestCase):
         eq_(RereviewQueue.objects.count(), 0)
         eq_(self.addon.status, amo.STATUS_PENDING)
 
-    def test_add_device_rereview(self):
+    def test_add_device_public_rereview(self):
         self.addon.update(status=amo.STATUS_PUBLIC)
         self.platforms['free_platforms'].append('free-desktop')
         form = forms_payments.PremiumForm(data=self.platforms, **self.kwargs)
@@ -89,6 +89,16 @@ class TestPremiumForm(amo.tests.TestCase):
         assert amo.DEVICE_DESKTOP in self.addon.device_types
         eq_(RereviewQueue.objects.count(), 1)
         eq_(self.addon.status, amo.STATUS_PUBLIC)
+
+    def test_add_device_publicwaiting_rereview(self):
+        self.addon.update(status=amo.STATUS_PUBLIC_WAITING)
+        self.platforms['free_platforms'].append('free-desktop')
+        form = forms_payments.PremiumForm(data=self.platforms, **self.kwargs)
+        assert form.is_valid(), form.errors
+        form.save()
+        assert amo.DEVICE_DESKTOP in self.addon.device_types
+        eq_(RereviewQueue.objects.count(), 1)
+        eq_(self.addon.status, amo.STATUS_PUBLIC_WAITING)
 
     def test_update(self):
         self.make_premium(self.addon)
