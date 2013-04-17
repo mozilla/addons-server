@@ -39,6 +39,7 @@ COLLECTION_ICON_URL = STATIC_URL + '/img/uploads/collection_icons/%s/%s.png?m=%s
 MEDIA_URL = STATIC_URL + 'media/'
 ADDON_ICONS_DEFAULT_URL = MEDIA_URL + 'img/hub'
 ADDON_ICON_BASE_URL = MEDIA_URL + 'img/icons/'
+PRODUCT_ICON_URL = MEDIA_URL + '/product-icons'
 
 INAPP_IMAGE_URL = STATIC_URL + 'inapp-image'
 
@@ -108,6 +109,7 @@ METRICS_SERVER = 'https://data.mozilla.com/'
 
 WEBAPPS_PUBLIC_KEY_DIRECTORY = NETAPP_STORAGE + '/public_keys'
 INAPP_IMAGE_PATH = NETAPP_STORAGE + '/inapp-image'
+PRODUCT_ICON_PATH = NETAPP_STORAGE + '/product-icons'
 
 INAPP_KEY_PATHS = private_mkt.INAPP_KEY_PATHS
 

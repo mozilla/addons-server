@@ -43,6 +43,7 @@ COLLECTION_ICON_URL = STATIC_URL + 'img/uploads/collection_icons/%s/%s.png?m=%s'
 MEDIA_URL = STATIC_URL + 'media/'
 ADDON_ICONS_DEFAULT_URL = MEDIA_URL + 'img/hub'
 ADDON_ICON_BASE_URL = MEDIA_URL + 'img/icons/'
+PRODUCT_ICON_URL = MEDIA_URL + '/product-icons'
 
 CACHE_PREFIX = 'marketplace.%s' % CACHE_PREFIX
 CACHE_MIDDLEWARE_KEY_PREFIX = CACHE_PREFIX
@@ -157,3 +158,5 @@ APP_PURCHASE_KEY = DOMAIN
 APP_PURCHASE_AUD = DOMAIN
 # This must match private.SECRET in webpay settings.
 APP_PURCHASE_SECRET = private_mkt.APP_PURCHASE_SECRET
+
+PRODUCT_ICON_PATH = NETAPP_STORAGE + '/product-icons'
