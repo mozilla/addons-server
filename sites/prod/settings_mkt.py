@@ -153,6 +153,8 @@ USE_METLOG_FOR_CEF = True
 
 SENTRY_CLIENT = 'djangoraven.metlog.MetlogDjangoClient'
 
+MONOLITH_PASSWORD = private_mkt.MONOLITH_PASSWORD
+
 # Payment settings.
 APP_PURCHASE_KEY = DOMAIN
 APP_PURCHASE_AUD = DOMAIN

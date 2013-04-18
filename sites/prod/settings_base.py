@@ -187,4 +187,6 @@ XSENDFILE_HEADER  = 'X-Accel-Redirect'
 
 GOOGLE_ANALYTICS_CREDENTIALS = private.GOOGLE_ANALYTICS_CREDENTIALS
 
+MONOLITH_SERVER = 'https://monolith.firefox.com'
+
 GEOIP_URL = 'http://geo.marketplace.firefox.com'
