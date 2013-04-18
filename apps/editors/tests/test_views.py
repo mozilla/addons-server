@@ -367,7 +367,7 @@ class TestHome(EditorTest):
         eq_(int(cols.eq(1).text()), 2, 'Approval count should be 2')
 
     def test_new_editors(self):
-        EventLog(type='admin', action='group_addmember', changed_id=2,
+        EventLog(type='admin', action='group_addmember', changed_id=50002,
                  added=self.user.id, user=self.user).save()
 
         doc = pq(self.client.get(self.url).content)

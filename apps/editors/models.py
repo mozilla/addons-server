@@ -77,7 +77,7 @@ class EventLog(models.Model):
         items = (EventLog.objects.values('added', 'created')
                                  .filter(type='admin',
                                          action='group_addmember',
-                                         changed_id=2)
+                                         changed_id=50002)
                                  .order_by('-created')[:5])
 
         users = UserProfile.objects.filter(id__in=[i['added'] for i in items])
