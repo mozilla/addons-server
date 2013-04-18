@@ -1,6 +1,7 @@
 import datetime
 from datetime import date, timedelta
 from dateutil.relativedelta import relativedelta
+import logging
 
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import redirect
@@ -21,6 +22,8 @@ from stats.models import Contribution, UpdateCount
 from stats.views import (check_series_params_or_404, daterange,
                          get_report_view, render_csv, render_json)
 
+
+logger = logging.getLogger('z.mkt.stats.views')
 FINANCE_SERIES = (
     'sales', 'refunds', 'revenue',
     'currency_revenue', 'currency_sales', 'currency_refunds',
@@ -127,15 +130,20 @@ def get_series_line(model, group, primary_field=None, extra_fields=None,
         if group == 'date':
             group = 'day'
 
-        for result in client(field, start, end, interval=group,
-                             addon_id=filters['addon']):
-            res = {'count': result['count']}
-            for extra_field in extra_fields:
-                res[extra_field] = result[extra_field]
-            date_ = date(*result['date'].timetuple()[:3])
-            res['end'] = res['date'] = date_
-            res.update(extra_values)
-            yield res
+        try:
+            for result in client(field, start, end, interval=group,
+                                 addon_id=filters['addon']):
+                res = {'count': result['count']}
+                for extra_field in extra_fields:
+                    res[extra_field] = result[extra_field]
+                date_ = date(*result['date'].timetuple()[:3])
+                res['end'] = res['date'] = date_
+                res.update(extra_values)
+                yield res
+        except ValueError as e:
+            if len(e.args) > 0:
+                logger.error(e.args[0])
+
     else:
         # Pull data out of ES
         data = list((model.search().order_by('-date').filter(**filters)
