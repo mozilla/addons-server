@@ -14,10 +14,12 @@ from tower import ugettext_lazy as _lazy
 
 import amo
 import amo.models
+from access.models import Group
 from amo.helpers import absolutify
 from amo.urlresolvers import reverse
 from amo.utils import cache_ns_key, send_mail
 from addons.models import Addon
+from devhub.models import ActivityLog
 from editors.sql_model import RawSQLModel
 from translations.fields import save_signal, TranslatedField
 from users.models import UserProfile
@@ -76,16 +78,15 @@ class EventLog(models.Model):
 
     @staticmethod
     def new_editors():
-        items = (EventLog.objects.values('added', 'created')
-                                 .filter(type='admin',
-                                         action='group_addmember',
-                                         changed_id=50002)
-                                 .order_by('-created')[:5])
+        action = amo.LOG.GROUP_USER_ADDED
+        group = Group.objects.get(name='Add-on Reviewers')
+        items = (ActivityLog.objects.for_group(group)
+                            .filter(action=action.id)
+                            .order_by('-created')[:5])
 
-        users = UserProfile.objects.filter(id__in=[i['added'] for i in items])
-        names = dict((u.id, u.display_name) for u in users)
-
-        return [dict(display_name=names[int(i['added'])], **i) for i in items]
+        return [dict(user=i.arguments[1],
+                     created=i.created)
+                for i in items]
 
 
 class ViewQueue(RawSQLModel):

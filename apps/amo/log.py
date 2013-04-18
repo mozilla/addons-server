@@ -602,6 +602,22 @@ class THEME_REVIEW(_LOG):
     format = _(u'{addon} reviewed.')
 
 
+class GROUP_USER_ADDED(_LOG):
+    id = 120
+    action_class = 'access'
+    format = _(u'User {0.name} added to {group}.')
+    keep = True
+    admin_event = True
+
+
+class GROUP_USER_REMOVED(_LOG):
+    id = 121
+    action_class = 'access'
+    format = _(u'User {0.name} removed from {group}.')
+    keep = True
+    admin_event = True
+
+
 LOGS = [x for x in vars().values()
         if isclass(x) and issubclass(x, _LOG) and x != _LOG]
 
@@ -625,10 +641,12 @@ def log(action, *args, **kw):
     e.g. amo.log(amo.LOG.CREATE_ADDON, []),
          amo.log(amo.LOG.ADD_FILE_TO_VERSION, file, version)
     """
+    from access.models import Group
     from addons.models import Addon
     from amo import get_user, logger_log
     from devhub.models import (ActivityLog, ActivityLogAttachment, AddonLog,
-                               AppLog, CommentLog, UserLog, VersionLog)
+                               AppLog, CommentLog, GroupLog, UserLog,
+                               VersionLog)
     from mkt.webapps.models import Webapp
     from users.models import UserProfile
     from versions.models import Version
@@ -678,6 +696,8 @@ def log(action, *args, **kw):
                 VersionLog(version_id=arg[1], activity_log=al).save()
             elif arg[0] == UserProfile:
                 UserLog(user_id=arg[1], activity_log=al).save()
+            elif arg[0] == Group:
+                GroupLog(group_id=arg[1], activity_log=al).save()
 
         # Webapp first since Webapp subclasses Addon.
         if isinstance(arg, Webapp):
@@ -689,6 +709,8 @@ def log(action, *args, **kw):
         elif isinstance(arg, UserProfile):
             # Index by any user who is mentioned as an argument.
             UserLog(activity_log=al, user=arg).save()
+        elif isinstance(arg, Group):
+            GroupLog(group=arg, activity_log=al).save()
 
     # Index by every user
     UserLog(activity_log=al, user=user).save()

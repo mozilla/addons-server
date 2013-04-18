@@ -23,7 +23,7 @@ from amo.urlresolvers import reverse
 from amo.utils import urlparams
 from applications.models import Application
 from devhub.models import ActivityLog
-from editors.models import EditorSubscription, EventLog, ReviewerScore
+from editors.models import EditorSubscription, ReviewerScore
 from files.models import File
 from reviews.models import Review, ReviewFlag
 from users.models import UserProfile
@@ -367,8 +367,8 @@ class TestHome(EditorTest):
         eq_(int(cols.eq(1).text()), 2, 'Approval count should be 2')
 
     def test_new_editors(self):
-        EventLog(type='admin', action='group_addmember', changed_id=50002,
-                 added=self.user.id, user=self.user).save()
+        amo.log(amo.LOG.GROUP_USER_ADDED,
+                Group.objects.get(name='Add-on Reviewers'), self.user)
 
         doc = pq(self.client.get(self.url).content)
 
