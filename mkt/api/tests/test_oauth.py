@@ -70,8 +70,15 @@ class OAuthClient(Client):
             HTTP_AUTHORIZATION=headers.get('Authorization', ''),
             **kw)
 
-    def delete(self, url, **kw):
-        url, headers, _ = self.sign('DELETE', self.get_absolute_url(url))
+    def delete(self, url, data={}, **kw):
+        if len(url) > 2 and data:
+            raise RuntimeError('Query string specified both in urlspec and as '
+                               'data arg. Pick one or the other.')
+        urlstring = self.get_absolute_url(url)
+        if data:
+            urlstring = '?'.join([urlstring,
+                                  urllib.urlencode(data, doseq=True)])
+        url, headers, _ = self.sign('DELETE', urlstring)
         return super(OAuthClient, self).delete(url,
                         HTTP_HOST='testserver',
                         HTTP_AUTHORIZATION=headers.get('Authorization', ''),
