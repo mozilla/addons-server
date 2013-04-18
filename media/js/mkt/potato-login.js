@@ -45,8 +45,9 @@
     // Load `include.js` from persona.org, and drop login hotness like it's hot.
     var s = document.createElement('script');
 
+    var desktop
     var android = navigator.userAgent.indexOf('Firefox') !== -1 && navigator.userAgent.indexOf('Android') !== -1;
-    var fxos = navigator.mozApps && !android;
+    var fxos = navigator.mozApps && !android && navigator.userAgent.indexOf('Mobile') !== -1;
 
     if (fxos) {
         // Load the Firefox OS include that knows how to handle native Persona.
