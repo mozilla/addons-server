@@ -57,11 +57,15 @@ def global_settings(request):
 
     if request.user.is_authenticated() and hasattr(request, 'amo_user'):
         amo_user = request.amo_user
+        profile = request.user.get_profile()
         is_reviewer = acl.check_reviewer(request)
-        account_links.append({
-            'text': _('My Profile'),
-            'href': request.user.get_profile().get_url_path(),
-        })
+
+        account_links.append({'text': _('My Profile'),
+                              'href': profile.get_url_path()})
+        if amo_user.is_artist:
+            account_links.append({'text': _('My Themes'),
+                                  'href': profile.get_user_url('themes')})
+
         account_links.append({'text': _('Account Settings'),
                               'href': reverse('users.edit')})
         if not settings.APP_PREVIEW:

@@ -2,6 +2,35 @@
 
 // Sidebar on /themes/ pages.
 
+aside.profile {
+    &:after {
+        clear: both;
+        content: "";
+        display: block;
+        margin-bottom: 1em;
+    }
+    .avatar {
+        float: left;
+        margin-right: 10px;
+        max-height: 40px;
+        max-width: 40px;
+        min-height: 40px;
+        min-width: 40px;
+    }
+    h2 {
+        .ellipsis();
+        font-size: 18px;
+        margin: 0 0 0 15px;
+        padding-top: 6px;
+    }
+    a:hover {
+        text-decoration: none;
+        div {
+            text-decoration: underline;
+        }
+    }
+}
+
 .secondary .submit-theme {
     .border-radius(5px);
     border: 1px solid #ddd;

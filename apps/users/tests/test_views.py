@@ -23,7 +23,7 @@ import amo
 import amo.tests
 from abuse.models import AbuseReport
 from access.models import Group, GroupUser
-from addons.models import Addon, AddonUser, AddonPremium
+from addons.models import Addon, AddonPremium, AddonUser, Category
 from amo.helpers import urlparams
 from amo.pyquery_wrapper import PyQuery as pq
 from amo.urlresolvers import reverse
@@ -1285,6 +1285,65 @@ class TestProfileSections(amo.tests.TestCase):
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         eq_(app.app_slug in r.content, False)
+
+
+class TestThemesProfile(amo.tests.TestCase):
+    fixtures = ['base/user_2519']
+
+    def setUp(self):
+        self.user = UserProfile.objects.get(pk=2519)
+        self.url = self.user.get_user_url('themes')
+
+    def _test_good(self, res):
+        eq_(res.status_code, 200)
+
+        ids = res.context['addons'].object_list.values_list('id', flat=True)
+        self.assertSetEqual(ids, [self.theme.id])
+
+        doc = pq(res.content)
+        eq_(doc('.no-results').length, 0)
+
+        results = doc('.personas-grid .persona-preview')
+        eq_(results.length, 1)
+        eq_(results.find('h6').text(), unicode(self.theme.name))
+
+    def test_bad_user(self):
+        res = self.client.get(reverse('users.themes', args=['yolo']))
+        eq_(res.status_code, 404)
+
+    def test_no_themes(self):
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+
+        eq_(pq(res.content)('.no-results').length, 1)
+
+    def test_themes(self):
+        self.theme = amo.tests.addon_factory(type=amo.ADDON_PERSONA)
+        self.theme.addonuser_set.create(user=self.user, listed=True)
+
+        res = self.client.get(self.url)
+        self._test_good(res)
+
+    def test_bad_category(self):
+        res = self.client.get(reverse('users.themes', args=['yolo', 'swag']))
+        eq_(res.status_code, 404)
+
+    def test_empty_category(self):
+        self.theme = amo.tests.addon_factory(type=amo.ADDON_PERSONA)
+        self.theme.addonuser_set.create(user=self.user, listed=True)
+        cat = Category.objects.create(type=amo.ADDON_PERSONA, slug='swag')
+
+        res = self.client.get(self.user.get_user_url('themes', args=[cat.slug]))
+        eq_(res.status_code, 200)
+
+    def test_themes_category(self):
+        self.theme = amo.tests.addon_factory(type=amo.ADDON_PERSONA)
+        self.theme.addonuser_set.create(user=self.user, listed=True)
+        cat = Category.objects.create(type=amo.ADDON_PERSONA, slug='swag')
+        self.theme.addoncategory_set.create(category=cat)
+
+        res = self.client.get(self.user.get_user_url('themes', args=[cat.slug]))
+        self._test_good(res)
 
 
 class TestReportAbuse(amo.tests.TestCase):

@@ -5,7 +5,8 @@ from urlparse import urlparse
 from django import http
 from django.conf import settings
 from django.db import IntegrityError, transaction
-from django.shortcuts import get_object_or_404, redirect
+from django.shortcuts import (get_list_or_404, get_object_or_404,
+                              redirect)
 from django.contrib import auth
 from django.contrib.auth.forms import PasswordResetForm
 from django.contrib.auth.tokens import default_token_generator
@@ -28,7 +29,7 @@ import users.notifications as notifications
 from abuse.models import send_abuse_report
 from access.middleware import ACLMiddleware
 from addons.decorators import addon_view_factory
-from addons.models import Addon
+from addons.models import Addon, Category
 from amo import messages
 from amo.decorators import (json_view, login_required, permission_required,
                             post_required, write)
@@ -38,6 +39,8 @@ from amo.urlresolvers import get_url_prefix, reverse
 from amo.utils import escape_all, log_cef, send_mail
 from access import acl
 from bandwagon.models import Collection
+from browse.views import PersonasFilter
+from translations.query import order_by_translation
 from users.models import UserNotification
 
 from lib.metrics import record_action
@@ -51,6 +54,8 @@ import tasks
 log = commonware.log.getLogger('z.users')
 
 addon_view = addon_view_factory(qs=Addon.objects.valid)
+
+THEMES_LIMIT = 40
 
 
 def user_view(f):
@@ -582,12 +587,11 @@ def profile(request, user):
         addons = user.addons.reviewed().exclude(type=amo.ADDON_WEBAPP).filter(
             addonuser__user=user, addonuser__listed=True)
 
-        # TODO: Paginate themes so we don't have to take a slice (bug 860306).
         personas = addons.filter(type=amo.ADDON_PERSONA).order_by(
             '-persona__popularity')
-        if personas.count() > 60:
+        if personas.count() > THEMES_LIMIT:
             limited_personas = True
-            personas = personas[:60]
+            personas = personas[:THEMES_LIMIT]
 
         addons = addons.exclude(type=amo.ADDON_PERSONA).order_by(
             '-weekly_downloads')
@@ -608,11 +612,49 @@ def profile(request, user):
     data = {'profile': user, 'own_coll': own_coll, 'reviews': reviews,
             'fav_coll': fav_coll, 'edit_any_user': edit_any_user,
             'addons': addons, 'own_profile': own_profile,
-            'personas': personas, 'limited_personas': limited_personas}
+            'personas': personas, 'limited_personas': limited_personas,
+            'THEMES_LIMIT': THEMES_LIMIT}
     if not own_profile:
         data['abuse_form'] = AbuseForm(request=request)
 
     return jingo.render(request, 'users/profile.html', data)
+
+
+@user_view
+def themes(request, user, category=None):
+    cats = Category.objects.filter(type=amo.ADDON_PERSONA)
+
+    ctx = {
+        'profile': user,
+        'categories': order_by_translation(cats, 'name'),
+        'search_cat': 'themes'
+    }
+
+    if user.is_artist:
+        base = user.addons.reviewed().filter(type=amo.ADDON_PERSONA,
+            addonuser__user=user, addonuser__listed=True)
+
+        if category:
+            qs = cats.filter(slug=category)
+            ctx['category'] = cat = get_list_or_404(qs)[0]
+            base = base.filter(categories__id=cat.id)
+
+    else:
+        base = Addon.objects.none()
+
+    filter_ = PersonasFilter(request, base, key='sort',
+                             default='popular')
+    addons = amo.utils.paginate(request, filter_.qs, 30,
+                                count=base.count())
+
+    ctx.update({
+        'addons': addons,
+        'filter': filter_,
+        'sorting': filter_.field,
+        'sort_opts': filter_.opts
+    })
+
+    return jingo.render(request, 'browse/personas/grid.html', ctx)
 
 
 @anonymous_csrf

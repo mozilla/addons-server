@@ -17,6 +17,7 @@ auth_views.User = UserProfile
 # These will all start with /user/<user_id>/
 detail_patterns = patterns('',
     url('^$', views.profile, name='users.profile'),
+    url('^themes(?:/(?P<category>[^ /]+))?$', views.themes, name='users.themes'),
     url('^confirm/resend$', views.confirm_resend, name='users.confirm.resend'),
     url('^confirm/(?P<token>[-\w]+)$', views.confirm, name='users.confirm'),
     url(r'^emailchange/(?P<token>[-\w]+={0,3})/(?P<hash>[\w]+)$',

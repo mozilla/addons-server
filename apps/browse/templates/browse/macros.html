@@ -1,24 +1,23 @@
-{% macro secondary_categories(title, viewname, categories, filter) %}
+{% macro secondary_categories(title, viewname, categories, filter, profile) %}
+  {% set base_url = profile.get_user_url('themes') if profile else url(viewname) %}
   <div class="other-categories highlight">
-    <h3><a href="{{ url(viewname) }}">{{ title }}</a></h3>
+    <h3><a href="{{ base_url }}">{{ title }}</a></h3>
     {% if filter %}
       <ul>
         {% for key, title_ in filter.opts_dict.items() %}
           <li id="p-{{ key }}">
-            <a href="{{ url(viewname)|urlparams(sort=key) }}">{{ title_ }}</a>
+            <a href="{{ base_url|urlparams(sort=key) }}">{{ title_ }}</a>
           </li>
         {% endfor %}
       </ul>
     {% endif %}
     <ul>
-    {% cache categories %}
-    {% for cat in categories %}
-      <li id="p-{{ cat.id }}">
-        <a href="{{ url(viewname, cat.slug) }}">
-          {{ cat.name }}</a>
-      </li>
-    {% endfor %}
-    {% endcache %}
+      {% for cat in categories %}
+        <li id="p-{{ cat.id }}">
+          <a href="{{ profile.get_user_url('themes', args=[cat.slug]) if profile else url(viewname, cat.slug) }}">
+            {{ cat.name }}</a>
+        </li>
+      {% endfor %}
     </ul>
   </div>
 {% endmacro %}
