@@ -1,29 +1,39 @@
 (function() {
     window.addEventListener('message', function(e) {
-        console.log('Got message from ' + e.origin);
+
+        function postBack(key, value) {
+            e.source.postMessage([key, value], '*');
+        }
 
         var key = e.data[0];
         var body = e.data[1];
+        console.log('[potato][iframe] Got message from ' + e.origin, key, body);
 
         switch (key) {
             case 'navigator.id.request':
                 body.oncancel = function() {
+                    console.log('[potato][iframe] n.id.request cancelled');
                     postBack('navigator.id.request:cancel', true);
                 };
                 navigator.id.request(body);
                 break;
             case 'navigator.id.logout':
                 if (navigator.id.logout) {
+                    console.log('[potato][iframe] Logout requested');
                     navigator.id.logout();
                 }
                 break;
             case 'navigator.id.watch':
+                postBack('_shimmed', navigator.id._shimmed);
+                console.log('[potato][iframe] n.id.watch for ' + body);
                 navigator.id.watch({
                     loggedInUser: body,
                     onlogin: function(assertion) {
+                        console.log('[potato][iframe] n.id.watch logged in');
                         postBack('navigator.id.watch:login', assertion);
                     },
                     onlogout: function() {
+                        console.log('[potato][iframe] n.id.watch logged out');
                         postBack('navigator.id.watch:logout', true);
                     },
                 })
@@ -32,15 +42,8 @@
 
     }, false);
 
-    function postBack(key, value) {
-        window.postMessage([key, value], '*');
-    }
-
     // Load `include.js` from persona.org, and drop login hotness like it's hot.
     var s = document.createElement('script');
-    s.onload = function() {
-        postBack('setup', true);
-    };
 
     var android = navigator.userAgent.indexOf('Firefox') !== -1 && navigator.userAgent.indexOf('Android') !== -1;
     var fxos = navigator.mozApps && !android;
