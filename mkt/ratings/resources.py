@@ -22,6 +22,7 @@ from mkt.api.authorization import (AnonymousReadOnlyAuthorization,
 from mkt.api.base import CORSResource, MarketplaceModelResource
 from mkt.api.resources import AppResource
 from mkt.ratings.forms import ReviewForm
+from mkt.versions.resources import VersionResource
 from mkt.webapps.models import Webapp
 from reviews.models import Review, ReviewFlag
 
@@ -32,6 +33,8 @@ class RatingResource(CORSResource, MarketplaceModelResource):
 
     app = fields.ToOneField(AppResource, 'addon', readonly=True)
     user = fields.ToOneField(AccountResource, 'user', readonly=True, full=True)
+    version = fields.ToOneField(VersionResource, 'version', readonly=True,
+                                full=True, null=True)
     report_spam = fields.CharField()
 
     class Meta(MarketplaceModelResource.Meta):
@@ -56,12 +59,6 @@ class RatingResource(CORSResource, MarketplaceModelResource):
 
     def dehydrate(self, bundle):
         bundle = super(RatingResource, self).dehydrate(bundle)
-        bundle.data['version'] = None
-        if hasattr(bundle.obj, 'version') and bundle.obj.version:
-            bundle.data['version'] = {
-                'name': bundle.obj.version.version,
-                'latest': bundle.obj.addon.latest_version == bundle.obj.version
-            }
         if bundle.request.amo_user:
             bundle.data['is_author'] = (bundle.obj.user.pk ==
                                         bundle.request.amo_user.pk)
