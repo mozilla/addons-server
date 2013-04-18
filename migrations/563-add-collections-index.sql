@@ -1,1 +1,2 @@
-CREATE INDEX colllections_author_idx ON collections (author_id);
+-- commented out as requested in bug 861224
+-- CREATE INDEX colllections_author_idx ON collections (author_id);
