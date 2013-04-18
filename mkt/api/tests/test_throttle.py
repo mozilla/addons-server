@@ -18,8 +18,11 @@ class ThrottleTests(object):
     request = RequestFactory().get('/')
 
     def test_should_throttle(self):
-        with patch.object(self, 'resource') as resource:
-            resource._meta.throttle.should_be_throttled.return_value = True
+        if not self.resource:
+            return
+
+        with patch.object(self.resource._meta, 'throttle') as throttle:
+            throttle.should_be_throttled.return_value = True
             with self.assertImmediate(HttpTooManyRequests):
                 self.resource.throttle_check(self.request)
 
