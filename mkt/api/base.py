@@ -328,8 +328,12 @@ class CORSResource(object):
         It will set a value on the request for the middleware to pick up on
         the response and add in the headers, so that any immediate http
         responses (which are usually errors) get the headers.
+
+        Optionally, you can specify the methods that will be specifying the
+        `cors_allowed` attribute on the resource meta. Otherwise, it will use
+        the combination of allowed_methods specified on the resource.
         """
-        request.CORS = allowed
+        request.CORS = getattr(self._meta, 'cors_allowed', None) or allowed
         return super(CORSResource, self).method_check(request, allowed=allowed)
 
 

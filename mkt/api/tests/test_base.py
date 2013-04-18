@@ -14,7 +14,7 @@ from test_utils import RequestFactory
 
 from access.middleware import ACLMiddleware
 from amo.tests import TestCase
-from mkt.api.base import MarketplaceResource
+from mkt.api.base import CORSResource, MarketplaceResource
 from mkt.api.http import HttpTooManyRequests
 from mkt.api.serializers import Serializer
 from mkt.site.fixtures import fixture
@@ -125,3 +125,26 @@ class TestThrottling(TestCase):
         with self.mocked_sbt as sbt:
             sbt.return_value = True
             self.no_throttle_expected()
+
+
+class FilteredCORS(CORSResource, MarketplaceResource):
+
+    class Meta(object):
+        cors_allowed = ['get', 'put']
+
+
+class UnfilteredCORS(CORSResource, MarketplaceResource):
+    pass
+
+
+class TestCORSResource(TestCase):
+
+    def test_filtered(self):
+        request = RequestFactory().get('/')
+        FilteredCORS().method_check(request, allowed=['get'])
+        eq_(request.CORS, ['get', 'put'])
+
+    def test_unfiltered(self):
+        request = RequestFactory().get('/')
+        UnfilteredCORS().method_check(request, allowed=['get'])
+        eq_(request.CORS, ['get'])

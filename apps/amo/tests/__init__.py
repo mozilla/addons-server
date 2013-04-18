@@ -407,6 +407,7 @@ class TestCase(RedisTest, test_utils.TestCase):
     def assertImmediate(self, response):
         try:
             yield
+            raise AssertionError('ImmediateHttpResponse not raised.')
         except ImmediateHttpResponse, exc:
             ok_(isinstance(exc.response, response),
                 'Expected %s, got %s' % (response, exc.response.__class__))
