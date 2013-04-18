@@ -12,7 +12,6 @@ from metlog.config import client_from_dict_config
 import amo.tests
 import commonware.log
 from lib.log_settings_base import error_fmt
-from lib.log_settings_base import get_sentry_handler
 from lib.misc.admin_log import ErrorTypeHandler
 from test_utils import RequestFactory
 
