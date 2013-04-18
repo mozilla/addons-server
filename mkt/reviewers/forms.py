@@ -1,3 +1,6 @@
+import datetime
+import logging
+
 from django import forms
 
 import happyforms
@@ -12,7 +15,10 @@ from editors.models import CannedResponse
 from mkt.reviewers.utils import ReviewHelper
 
 from .models import ThemeLock
-from .tasks import send_mail
+from .tasks import approve_rereview, reject_rereview, send_mail
+
+
+log = logging.getLogger('z.reviewers.forms')
 
 
 class ReviewAppAttachmentForm(happyforms.Form):
@@ -145,8 +151,58 @@ class ThemeReviewForm(happyforms.Form):
         return comment
 
     def save(self):
+        action = self.cleaned_data['action']
+        comment = self.cleaned_data.get('comment')
+        reject_reason = self.cleaned_data.get('reject_reason')
+        theme = self.cleaned_data['theme']
+        is_rereview = theme.rereviewqueuetheme_set.exists()
+
         theme_lock = ThemeLock.objects.get(theme=self.cleaned_data['theme'])
-        send_mail(self.cleaned_data, theme_lock)
+
+        mail_and_log = True
+        if action == rvw.ACTION_APPROVE:
+            if is_rereview:
+                approve_rereview(theme)
+            theme.addon.update(status=amo.STATUS_PUBLIC)
+            theme.approve = datetime.datetime.now()
+            theme.save()
+
+        elif action == rvw.ACTION_REJECT:
+            if is_rereview:
+                reject_rereview(theme)
+            else:
+                theme.addon.update(status=amo.STATUS_REJECTED)
+
+        elif action == rvw.ACTION_DUPLICATE:
+            if is_rereview:
+                reject_rereview(theme)
+            else:
+                theme.addon.update(status=amo.STATUS_REJECTED)
+
+        elif action == rvw.ACTION_FLAG:
+            if is_rereview:
+                mail_and_log = False
+            else:
+                theme.addon.update(status=amo.STATUS_REVIEW_PENDING)
+
+        elif action == rvw.ACTION_MOREINFO:
+            if is_rereview:
+                mail_and_log = False
+            else:
+                theme.addon.update(status=amo.STATUS_REVIEW_PENDING)
+
+        if mail_and_log:
+            send_mail(self.cleaned_data, theme_lock)
+
+            # Log.
+            amo.log(amo.LOG.THEME_REVIEW, theme.addon, details={
+                    'action': action,
+                    'reject_reason': reject_reason,
+                    'comment': comment}, user=theme_lock.reviewer)
+            log.info('%sTheme %s (%s) - %s' % (
+                '[Rereview] ' if is_rereview else '', theme.addon.name,
+                theme.id, action))
+
         theme_lock.delete()
 
 
