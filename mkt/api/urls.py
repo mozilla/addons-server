@@ -22,8 +22,7 @@ api.register(StatusResource())
 api.register(RatingResource())
 
 
-urls = [url(r'^', include(api.urls)),]
-services = Api(api_name='services')
+urls = services = Api(api_name='services')
 services.register(ConfigResource())
 
 if settings.ALLOW_TASTYPIE_SERVICES:
@@ -31,6 +30,8 @@ if settings.ALLOW_TASTYPIE_SERVICES:
     if getattr(settings, 'CLEANSED_SETTINGS_ACCESS', False):
         services.register(SettingsResource())
 
-    urls.append(url(r'^', include(services.urls)))
 
-urlpatterns = patterns('', *urls)
+urlpatterns = patterns('',
+    url(r'^', include(api.urls)),
+    url(r'^', include(services.urls))
+)
