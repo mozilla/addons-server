@@ -226,11 +226,10 @@ def themes_more(request, flagged=False):
     reviewer = request.user.get_profile()
 
     # Grab count of locks to know where to start enumerating them in templates.
+    status = amo.STATUS_REVIEW_PENDING if flagged else amo.STATUS_PENDING
     reviewer_locks = ThemeLock.uncached.filter(
-        reviewer=reviewer, expiry__gte=datetime.datetime.now())
-    if flagged:
-        reviewer_locks = reviewer_locks.filter(
-            theme__addon__status=amo.STATUS_REVIEW_PENDING)
+        reviewer=reviewer, expiry__gte=datetime.datetime.now(),
+        theme__addon__status=status)
     theme_locks_count = reviewer_locks.count()
 
     # Maximum number of locks.
@@ -259,7 +258,7 @@ def themes_more(request, flagged=False):
     }).content
 
     return {'html': html,
-            'count': ThemeLock.objects.filter(reviewer=reviewer).count()}
+            'count': len(themes)}
 
 
 @waffle_switch('mkt-themes')

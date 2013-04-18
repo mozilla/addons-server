@@ -175,7 +175,7 @@
                     if (!data.html || data.count <= 0) {
                         // Display notification if no themes to load.
                         $('button#more').text(
-                            gettext('No available themes to load'))
+                            gettext('No available themes to review'))
                         .unbind('click').addClass('inactive');
                         return;
                     }

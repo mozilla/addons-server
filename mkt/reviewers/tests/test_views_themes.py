@@ -433,7 +433,8 @@ class TestThemeReviewQueueFlagged(ThemeReviewTestMixin, amo.tests.TestCase):
         reviewer = self.create_and_become_reviewer()
 
         # Check out pending themes.
-        addon_factory(type=amo.ADDON_PERSONA, status=amo.STATUS_PENDING)
+        for x in range(rvw.THEME_INITIAL_LOCKS + 1):
+            addon_factory(type=amo.ADDON_PERSONA, status=amo.STATUS_PENDING)
         req = self.req_factory_factory(reviewer,
                                        'reviewers.themes.queue_themes')
         _get_themes(req, req.user.get_profile(), initial=True)
@@ -450,5 +451,11 @@ class TestThemeReviewQueueFlagged(ThemeReviewTestMixin, amo.tests.TestCase):
         req = self.req_factory_factory(reviewer,
                                        'reviewers.themes.more_flagged')
         res = themes_more(req, flagged=True)
+        themes = pq(json.loads(res.content)['html'])('.theme')
+        eq_(pq(themes[0]).attr('data-id'), '2')
+
+        # Get more pending themes.
+        req = self.req_factory_factory(reviewer, 'reviewers.themes.more')
+        res = themes_more(req)
         themes = pq(json.loads(res.content)['html'])('.theme')
         eq_(pq(themes[0]).attr('data-id'), '2')
