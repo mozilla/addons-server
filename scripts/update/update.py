@@ -3,7 +3,8 @@ import sys
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
-from commander.deploy import BadReturnCode, hostgroups, task
+from commander.deploy import hostgroups, task
+from commander.settings import config
 
 import commander_settings as settings
 
@@ -12,11 +13,30 @@ _src_dir = lambda *p: os.path.join(settings.SRC_DIR, *p)
 VIRTUALENV = os.path.join(os.path.dirname(settings.SRC_DIR), 'venv')
 
 
+def setup_notifier():
+    notifier_endpoint = getattr(settings, 'NOTIFIER_ENDPOINT', None)
+    notifier_key = getattr(settings, 'NOTIFIER_KEY', None)
+    if not notifier_endpoint:
+        return
+
+    try:
+        import pushbotnotify
+    except ImportError:
+        return
+
+    notifier = pushbotnotify.Notifier(endpoint=notifier_endpoint,
+                                      api_key=notifier_key)
+    config['notifiers'] = [notifier.notify]
+
+
+setup_notifier()
+
+
 @task
 def create_virtualenv(ctx):
     venv = VIRTUALENV
     if not venv.startswith('/data'):
-        raise Exception('venv must start with /data') # this is just to avoid rm'ing /
+        raise Exception('venv must start with /data')  # this is just to avoid rm'ing /
 
     ctx.local('rm -rf %s' % venv)
     ctx.local('virtualenv --distribute --never-download %s' % venv)
@@ -44,12 +64,14 @@ def update_locales(ctx):
         ctx.local("svn up")
         ctx.local("./compile-mo.sh .")
 
+
 @task
 def loadtest(ctx, repo=''):
     if hasattr(settings, 'MARTEAU'):
         os.environ['MACAUTH_USER'] = settings.MARTEAU_USER
         os.environ['MACAUTH_SECRET'] = settings.MARTEAU_SECRET
         ctx.local('%s %s --server %s' % (settings.MARTEAU, repo, settings.MARTEAU_SERVER))
+
 
 @task
 def update_products(ctx):
@@ -109,12 +131,14 @@ def install_cron(ctx):
         ctx.local('mv /etc/cron.d/.%s /etc/cron.d/%s' % (settings.CRON_NAME, settings.CRON_NAME))
 
 
-@hostgroups(settings.WEB_HOSTGROUP, remote_kwargs={'ssh_key': settings.SSH_KEY})
+@hostgroups(settings.WEB_HOSTGROUP,
+            remote_kwargs={'ssh_key': settings.SSH_KEY})
 def sync_code(ctx):
     ctx.remote(settings.REMOTE_UPDATE_SCRIPT)
 
 
-@hostgroups(settings.WEB_HOSTGROUP, remote_kwargs={'ssh_key': settings.SSH_KEY})
+@hostgroups(settings.WEB_HOSTGROUP,
+            remote_kwargs={'ssh_key': settings.SSH_KEY})
 def restart_workers(ctx):
     if getattr(settings, 'GUNICORN', False):
         for gservice in settings.GUNICORN:
@@ -132,7 +156,8 @@ def deploy_app(ctx):
     restart_workers()
 
 
-@hostgroups(settings.CELERY_HOSTGROUP, remote_kwargs={'ssh_key': settings.SSH_KEY})
+@hostgroups(settings.CELERY_HOSTGROUP,
+            remote_kwargs={'ssh_key': settings.SSH_KEY})
 def update_celery(ctx):
     ctx.remote(settings.REMOTE_UPDATE_SCRIPT)
     if getattr(settings, 'CELERY_SERVICE_PREFIX', False):
