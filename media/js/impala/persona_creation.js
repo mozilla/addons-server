@@ -9,7 +9,7 @@
         lastVal;
     function validateUser(e) {
         var $this = e ? $(this) :  $('.email-autocomplete');
-        if ($this.val().length > 2) {
+        if ($this.val() && $this.val().length > 2) {
             var timeout, request;
             if (timeout) {
                 clearTimeout(timeout);
