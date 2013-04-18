@@ -196,8 +196,8 @@ class TestApiReviewer(BaseOAuth, ESTestCase):
         self.profile.update(read_dev_agreement=datetime.now())
         self.grant_permission(self.profile, 'Apps:Review')
 
-        self.access = Access.objects.create(key='foo', secret=generate(),
-                                            user=self.user)
+        self.access = Access.objects.create(
+            key='test_oauth_key', secret=generate(), user=self.user)
         self.client = OAuthClient(self.access, api_name=api_name)
         self.url = list_url('search')
 
