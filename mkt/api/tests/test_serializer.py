@@ -5,8 +5,10 @@ import urllib
 from django.test import TestCase
 
 from nose.tools import eq_
+from simplejson import JSONDecodeError
 from tastypie.exceptions import UnsupportedFormat
 
+from mkt.api.exceptions import DeserializationError
 from mkt.api.serializers import Serializer
 
 
@@ -32,3 +34,11 @@ class TestSerializer(TestCase):
     def test_from_url(self):
         with self.assertRaises(UnsupportedFormat):
             self.s.to_urlencode({})
+
+    def test_deserialization_error(self):
+        try:
+            self.s.deserialize('')
+        except DeserializationError, e:
+            self.assertIsInstance(e.original, JSONDecodeError)
+        else:
+            self.fail('DeserializationError not raised')

@@ -17,6 +17,7 @@ from amo.tests import TestCase
 from mkt.api.base import CORSResource, MarketplaceResource
 from mkt.api.http import HttpTooManyRequests
 from mkt.api.serializers import Serializer
+from mkt.receipts.tests.test_views import RawRequestFactory
 from mkt.site.fixtures import fixture
 
 
@@ -52,6 +53,16 @@ class TestEncoding(TestCase):
         self.request.META['CONTENT_TYPE'] = 'application/blah'
         with self.assertImmediate(http.HttpBadRequest):
             self.resource.dispatch('list', self.request)
+
+    def test_no_contenttype(self):
+        del self.request.META['CONTENT_TYPE']
+        with self.assertImmediate(http.HttpBadRequest):
+            self.resource.dispatch('list', self.request)
+
+    def test_bad_json(self):
+        request = RawRequestFactory().post('/', "not ' json ' 5")
+        with self.assertImmediate(http.HttpBadRequest):
+            self.resource.dispatch('list', request)
 
     def test_not_json(self):
         self.request.META['HTTP_ACCEPT'] = 'application/blah'

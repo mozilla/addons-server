@@ -16,6 +16,7 @@ from access import acl
 import commonware.log
 from translations.fields import PurifiedField, TranslatedField
 
+from .exceptions import DeserializationError
 from .http import HttpTooManyRequests
 from .serializers import Serializer
 
@@ -70,18 +71,23 @@ class Marketplace(object):
         if 'HTTP_X_HTTP_METHOD_OVERRIDE' in request.META:
             request.method = request.META['HTTP_X_HTTP_METHOD_OVERRIDE']
 
+        ct = request.META.get('CONTENT_TYPE')
         try:
             return (super(Marketplace, self)
                     .dispatch(request_type, request, **kwargs))
+
+        except DeserializationError:
+            if ct:
+                error = "Unable to deserialize request body as '%s'"
+            else:
+                error = 'Content-Type header required'
+            raise self.non_form_errors(('__all__', error))
+
         except UnsupportedFormat:
-            ct = request.META.get('CONTENT_TYPE')
             msgs = []
             if ct not in self._meta.serializer.supported_formats:
                 msgs.append(('__all__',
                              "Unsupported Content-Type header '%s'" % ct))
-            else:
-                msgs.append(('__all__',
-                             'No Content-Type header specified'))
 
             accept = request.META.get('HTTP_ACCEPT')
             if accept and accept != 'application/json':
