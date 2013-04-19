@@ -38,6 +38,6 @@ class GeoIP:
                 except requests.RequestException as e:
                     log.error('Geodude connection error: {0}'.format(str(e)))
                 if res and res.status_code == 200:
-                    return res.json.get('country_code',
+                    return res.json().get('country_code',
                                         self.default_val).lower()
         return self.default_val
