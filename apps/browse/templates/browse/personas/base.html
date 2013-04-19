@@ -40,16 +40,16 @@
     {{ secondary_categories(_("{0}'s Themes")|f(profile.name), 'browse.personas', categories, filter, profile) }}
   {% else %}
     {{ secondary_categories(_('Themes'), 'browse.personas', categories, filter) }}
+    <div class="submit-theme">
+      <h3>{{ _('Create Your Own Theme') }}</h3>
+      <p>
+        {% trans %}
+          Your browser, your style! Dress it up with a design of your own!
+        {% endtrans %}
+      </p>
+      <p><a href="{{ url('devhub.themes.submit') }}" class="button">{{ _('Submit a New Theme') }}</a></p>
+      <p><a href="{{ url('devhub.docs', 'themes') }}" class="learn-more">{{ _('Learn more') }}</a></p>
+    </div>
   {% endif %}
-  <div class="submit-theme">
-    <h3>{{ _('Create Your Own Theme') }}</h3>
-    <p>
-      {% trans %}
-        Your browser, your style! Dress it up with a design of your own!
-      {% endtrans %}
-    </p>
-    <p><a href="{{ url('devhub.themes.submit') }}" class="button">{{ _('Submit a New Theme') }}</a></p>
-    <p><a href="{{ url('devhub.docs', 'themes') }}" class="learn-more">{{ _('Learn more') }}</a></p>
-  </div>
 </div>
 {% endmacro %}
