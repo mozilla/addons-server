@@ -55,7 +55,7 @@ log = commonware.log.getLogger('z.users')
 
 addon_view = addon_view_factory(qs=Addon.objects.valid)
 
-THEMES_LIMIT = 40
+THEMES_LIMIT = 20
 
 
 def user_view(f):
