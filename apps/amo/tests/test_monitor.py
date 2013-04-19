@@ -40,7 +40,7 @@ class TestMonitor(amo.tests.TestCase):
     def test_good(self, receipt, cert_response):
         receipt.crack.return_value = self._make_receipt()
         cert_response.return_value.ok = True
-        cert_response.return_value.json = {'jwk': []}
+        cert_response.return_value.json = lambda: {'jwk': []}
         eq_(signer()[0], '')
 
     @patch('requests.get')
@@ -63,7 +63,7 @@ class TestMonitor(amo.tests.TestCase):
     def test_public_cert_no_json(self, receipt, cert_response):
         receipt.crack.return_value = self._make_receipt()
         cert_response.return_value.ok = True
-        cert_response.return_value.json = None
+        cert_response.return_value.json = lambda: None
         eq_(signer()[0][:29], 'Error on checking public cert')
 
     @patch('requests.get')
@@ -71,5 +71,5 @@ class TestMonitor(amo.tests.TestCase):
     def test_public_cert_invalid_jwk(self, receipt, cert_response):
         receipt.crack.return_value = self._make_receipt()
         cert_response.return_value.ok = True
-        cert_response.return_value.json = {'foo': 1}
+        cert_response.return_value.json = lambda: {'foo': 1}
         eq_(signer()[0][:29], 'Error on checking public cert')
