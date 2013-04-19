@@ -1229,7 +1229,6 @@ class TestPersonas(amo.tests.TestCase):
         eq_(personas.length, 1)
 
 
-
 class TestMobileFeatured(TestMobile):
 
     def test_featured(self):
