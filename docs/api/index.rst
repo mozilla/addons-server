@@ -41,6 +41,69 @@ We will also return the version of the API we think you are using::
     of the small number of clients using that URL, we hope all users are able to
     update to `/api/v1/` quickly so we can remove that unversioned URL.
 
+
+Modifying Results
+=================
+
+In order to return the most relevant results for the consumer, the API attempts
+to detect and filter responses by region and language. Additionally, it is
+possible to globally restrict responses by device type and carrier.
+
+The API will report which filters are implemented via the URL-encoded 
+`X-API-Filter` header in responses::
+
+    X-API-Filter: lang=en-US&device=&region=us&carrier=
+
+In some cases, such as that where the API consumer is actually a proxy for the
+end user, it may be appropriate to manually set one or more of these parameters.
+
+
+Carrier
++++++++
+
+Responses may be modified to include results relevent to a specific carrier by
+passing the `carrier` querystring parameter. This must be set to a slug
+representing an item from the `list of carriers`_.
+
+
+Region
+++++++
+
+Responses may be modified to include results relevent to a specific region by
+passing the `region` querystring parameter. This must be set to a slug
+representing an item from the `list of regions`_.
+
+
+Language
+++++++++
+
+Responses may be filtered to only include results for a specific language. This
+is done by inspecting the value of the `Accept-Language` header on the request.
+This value may be overriden via the `lang` querystring parameter. This may be
+set to any of the valid `RFC 3060 languages`_.
+
+
+Device
+++++++
+
+Responses may be filtered to only include results relevant for one or more types
+of devices.
+
+* `gaia` - return results relevant to `Gaia`_.
+* `mobile` - return results relevant to mobile devices.
+* `tablet` - return results relevant to tablets.
+
+The `X-API-Filter` header will represent this as a representation of a list in a
+queryset::
+
+    X-API-Filter: device=mobile&device=gaia
+
+You may override these values with separate querystring values for each device
+type::
+
+    gaia=true&mobile=true&tablet=false
+
+
 Authentication
 ==============
 
@@ -325,3 +388,7 @@ specified.
 .. _`APIs for Add-ons`: https://developer.mozilla.org/en/addons.mozilla.org_%28AMO%29_API_Developers%27_Guide
 .. _`example marketplace client`: https://github.com/mozilla/Marketplace.Python
 .. _`Cross-Origin Resource Sharing`: https://developer.mozilla.org/en-US/docs/HTTP/Access_control_CORS
+.. _`list of carriers`: https://github.com/mozilla/zamboni/blob/master/mkt/constants/carriers.py
+.. _`list of regions`: https://github.com/mozilla/zamboni/blob/master/mkt/constants/regions.py
+.. _`RFC 3060 languages`: http://tools.ietf.org/html/rfc3066
+.. _`Gaia`: https://developer.mozilla.org/en-US/docs/Mozilla/Firefox_OS/Platform/Gaia

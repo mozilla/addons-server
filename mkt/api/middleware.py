@@ -1,10 +1,14 @@
 import re
+from urllib import urlencode
 
 from django.conf import settings
 from django.middleware.transaction import TransactionMiddleware
+from django.utils.cache import patch_vary_headers
 
 from django_statsd.clients import statsd
 from multidb.pinning import pin_this_thread, unpin_this_thread
+
+from mkt.carriers import get_carrier
 
 
 class APITransactionMiddleware(TransactionMiddleware):
@@ -70,8 +74,9 @@ class CORSMiddleware(object):
             response['Access-Control-Allow-Methods'] = ', '.join(options)
 
         # The headers that the response will be able to access.
-        response['Access-Control-Expose-Headers'] = ('X-API-Version, '
-                                                     'X-API-Status')
+        response['Access-Control-Expose-Headers'] = (
+            'X-API-Filter, X-API-Status, X-API-Version')
+
         return response
 
 v_re = re.compile('^/api/v(?P<version>\d+)/|^/api/')
@@ -101,4 +106,25 @@ class APIVersionMiddleware(object):
         response['X-API-Version'] = request.API_VERSION
         if not request.API_VERSION:
             response['X-API-Status'] = 'Deprecated'
+        return response
+
+
+class APIFilterMiddleware(object):
+    """
+    Add an X-API-Filter header containing a urlencoded string of filters applied
+    to API requests.
+    """
+    def process_response(self, request, response):
+        if getattr(request, 'API', False):
+            filters = {
+                'carrier': get_carrier() or '',
+                'device': [],
+                'lang': request.LANG,
+                'region': request.REGION.slug
+            }
+            for device in ('GAIA', 'MOBILE', 'TABLET'):
+                if getattr(request, device, False):
+                    filters['device'].append(device.lower())
+            response['X-API-Filter'] = urlencode(filters, doseq=True)
+            patch_vary_headers(response, ['X-API-Filter'])
         return response

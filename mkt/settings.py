@@ -100,7 +100,8 @@ MIDDLEWARE_CLASSES += [
     'mkt.api.middleware.APIVersionMiddleware',
     'mkt.api.middleware.CORSMiddleware',
     'mkt.api.middleware.APITransactionMiddleware',
-    'mkt.api.middleware.APIPinningMiddleware'
+    'mkt.api.middleware.APIPinningMiddleware',
+    'mkt.api.middleware.APIFilterMiddleware'
 ]
 
 TEMPLATE_DIRS += (path('mkt/templates'), path('mkt/zadmin/templates'))
