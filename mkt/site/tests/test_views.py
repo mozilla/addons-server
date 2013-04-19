@@ -15,6 +15,7 @@ import amo
 import amo.tests
 from amo.urlresolvers import reverse
 
+from mkt.site.views import get_package_path
 from mkt.site.urls import template_plus_xframe
 from mkt.webapps.models import Webapp
 
@@ -148,6 +149,10 @@ class TestPackageMinifest(amo.tests.TestCase):
 
     def setUp(self):
         self.url = reverse('minifest.webapp')
+        get_package_path_patch = mock.patch('mkt.site.views.get_package_path')
+        self.get_package_path = get_package_path_patch.start()
+        self.get_package_path.return_value = get_package_path(signed=False)
+        self.addCleanup(get_package_path_patch.stop)
 
     @mock.patch.object(settings, 'WEBAPP_MANIFEST_NAME', 'Firefox Marketplace')
     def test_minifest(self):
