@@ -86,7 +86,7 @@ def call_es(path, *args, **kw):
     if res.status_code not in status:
         error = CommandError('Call on %r failed.\n%s' % (path, res.content))
         error.content = res.content
-        error.json = res.json
+        error.json = res.json()
         raise error
 
     return res
@@ -132,7 +132,7 @@ def run_aliases_actions(actions):
         call_es('_aliases', post_data, method='POST')
     except CommandError, e:
         # XXX Did not find a better way to extract the info
-        error = e.json['error']
+        error = e.json()['error']
         res = re.search('(Invalid alias name \[)(?P<index>.*?)(\])', error)
         if res is None:
             raise
@@ -159,7 +159,7 @@ def create_mapping(new_index, alias, num_replicas=DEFAULT_NUM_REPLICAS,
     log('Create the mapping for index %r, alias: %r' % (new_index, alias))
 
     if requests.head(url('/' + alias)).status_code == 200:
-        res = call_es('%s/_settings' % (alias)).json
+        res = call_es('%s/_settings' % (alias)).json()
         idx_settings = res.get(alias, {}).get('settings', {})
     else:
         idx_settings = {}
@@ -290,7 +290,7 @@ class Command(BaseCommand):
             unflag_database()
 
         # Get list current aliases at /_aliases.
-        all_aliases = requests.get(url('/_aliases')).json
+        all_aliases = requests.get(url('/_aliases')).json()
 
         # building the list of indexes
         indexes = set([prefix + index for index in
@@ -373,6 +373,6 @@ class Command(BaseCommand):
         sys.stdout.write('\n')
 
         # let's return the /_aliases values
-        aliases = call_es('_aliases').json
+        aliases = call_es('_aliases').json()
         aliases = json.dumps(aliases, sort_keys=True, indent=4)
         return _SUMMARY % (len(indexes), aliases)

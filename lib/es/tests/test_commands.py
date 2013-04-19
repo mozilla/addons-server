@@ -46,14 +46,14 @@ class TestIndexCommand(amo.tests.ESTestCase):
                 target.write(f.read() % data)
 
         # any index created during the test will be deleted
-        self.indices = call_es('_status').json['indices'].keys()
+        self.indices = call_es('_status').json()['indices'].keys()
 
     def tearDown(self):
         for file_ in (self.target, self.target_pyc):
             if os.path.exists(file_):
                 os.remove(file_)
 
-        current_indices = call_es('_status').json['indices'].keys()
+        current_indices = call_es('_status').json()['indices'].keys()
         for index in current_indices:
             if index not in self.indices:
                 call_es(index, method='DELETE')
@@ -112,7 +112,7 @@ class TestIndexCommand(amo.tests.ESTestCase):
         # right now, the DB should be composed of
         # two indexes, and two aliases, let's check
         # we have two aliases
-        aliases = call_es('_aliases').json
+        aliases = call_es('_aliases').json()
         old_aliases = [(index, aliases['aliases'].keys()[0])
                        for index, aliases in aliases.items()
                        if len(aliases['aliases']) > 0 and
@@ -167,7 +167,7 @@ class TestIndexCommand(amo.tests.ESTestCase):
         self.check_results({'sort': 'popularity'}, wanted)
 
         # let's check the aliases as well, we should have 2
-        aliases = call_es('_aliases').json
+        aliases = call_es('_aliases').json()
         new_aliases = [(index, aliases['aliases'].keys()[0])
                        for index, aliases in aliases.items()
                        if len(aliases['aliases']) > 0 and

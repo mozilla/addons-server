@@ -224,7 +224,7 @@ def signer():
         msg = cert_err_msg % (location, resp.reason)
         return msg, msg
 
-    cert_json = resp.json
+    cert_json = resp.json()
     if not cert_json or not 'jwk' in cert_json:
         msg = cert_err_msg % (location, 'Not valid JSON/JWK')
         return msg, msg
