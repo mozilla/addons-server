@@ -5,7 +5,6 @@ from datetime import datetime
 
 from django import forms
 from django.conf import settings
-from django.forms.extras.widgets import SelectDateWidget
 from django.forms.models import formset_factory, modelformset_factory
 from django.template.defaultfilters import filesizeformat
 
@@ -33,6 +32,7 @@ from translations.models import Translation
 from translations.widgets import TransTextarea
 
 import mkt
+from mkt.api.models import Access
 from mkt.constants import APP_IMAGE_SIZES, MAX_PACKAGED_APP_SIZE
 from mkt.constants.ratingsbodies import (ALL_RATINGS, RATINGS_BODIES,
                                          RATINGS_BY_NAME)
@@ -973,3 +973,12 @@ class TransactionFilterForm(happyforms.Form):
         self.apps = kwargs.pop('apps', [])
         super(TransactionFilterForm, self).__init__(*args, **kwargs)
         self.fields['app'].queryset = self.apps
+
+
+class APIConsumerForm(happyforms.ModelForm):
+    app_name = forms.CharField(required=True)
+    redirect_uri = forms.CharField(required=True)
+
+    class Meta:
+        model = Access
+        fields = ('app_name', 'redirect_uri')

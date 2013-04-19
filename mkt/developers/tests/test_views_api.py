@@ -23,21 +23,20 @@ class TestAPI(amo.tests.TestCase):
         self.assertLoginRequired(self.client.get(self.url))
 
     def test_create(self):
-        res = self.client.post(self.url)
+        Access.objects.create(user=self.user, key='foo', secret='bar')
+        res = self.client.post(
+            self.url,
+            {'app_name': 'test', 'redirect_uri': 'http://example.com/myapp'})
         eq_(res.status_code, 302)
-        eq_(Access.objects.filter(user=self.user).count(), 1)
+        consumers = Access.objects.filter(user=self.user)
+        eq_(len(consumers), 2)
+        eq_(consumers[1].key, 'mkt:999:regular@mozilla.com:1')
 
     def test_delete(self):
-        Access.objects.create(user=self.user, key='foo', secret='bar')
-        res = self.client.post(self.url, {'delete': 'yep'})
+        a = Access.objects.create(user=self.user, key='foo', secret='bar')
+        res = self.client.post(self.url, {'delete': 'yep', 'consumer': a.pk})
         eq_(res.status_code, 302)
         eq_(Access.objects.filter(user=self.user).count(), 0)
-
-    def test_regenerate(self):
-        Access.objects.create(user=self.user, key='foo', secret='bar')
-        res = self.client.post(self.url)
-        eq_(res.status_code, 302)
-        assert Access.objects.get(user=self.user).secret != 'bar'
 
     def test_admin(self):
         self.grant_permission(self.profile, 'What:ever', name='Admins')

@@ -45,7 +45,8 @@ from versions.models import Version
 from mkt.api.models import Access, generate
 from mkt.constants import APP_IMAGE_SIZES
 from mkt.developers.decorators import dev_required
-from mkt.developers.forms import (AppFormBasic, AppFormDetails, AppFormMedia,
+from mkt.developers.forms import (APIConsumerForm, AppFormBasic,
+                                  AppFormDetails, AppFormMedia,
                                   AppFormSupport, AppFormTechnical,
                                   CategoryForm, ImageAssetFormSet,
                                   NewPackagedAppForm, PreviewFormSet,
@@ -753,11 +754,6 @@ def terms(request):
 @waffle_switch('create-api-tokens')
 @login_required
 def api(request):
-    try:
-        access = Access.objects.get(user=request.user)
-    except Access.DoesNotExist:
-        access = None
-
     roles = request.amo_user.groups.filter(name='Admins').exists()
     if roles:
         messages.error(request,
@@ -768,24 +764,32 @@ def api(request):
 
     elif request.method == 'POST':
         if 'delete' in request.POST:
-            if access:
-                access.delete()
-                messages.success(request, _('API key deleted.'))
-
+            try:
+                consumer = Access.objects.get(pk=request.POST.get('consumer'))
+                consumer.delete()
+            except Access.DoesNotExist:
+                messages.error(request, _('No such API key.'))
         else:
-            if not access:
-                key = 'mkt:%s:%s' % (request.amo_user.pk,
-                                     request.amo_user.email)
-                access = Access.objects.create(key=key, user=request.user,
-                                               secret=generate())
+            key = 'mkt:%s:%s:%s' % (
+                request.amo_user.pk,
+                request.amo_user.email,
+                Access.objects.filter(user=request.user).count())
+            access = Access.objects.create(key=key,
+                                           user=request.user,
+                                           secret=generate())
+            f = APIConsumerForm(request.POST, instance=access)
+            if f.is_valid():
+                f.save()
+                messages.success(request, _('New API key generated.'))
             else:
-                access.update(secret=generate())
-            messages.success(request, _('New API key generated.'))
-
+                access.delete()
+                messages.error(
+                    request,
+                    _('Both application name and redirect URI are required.'))
         return redirect(reverse('mkt.developers.apps.api'))
-
+    consumers = list(Access.objects.filter(user=request.user))
     return jingo.render(request, 'developers/api.html',
-                        {'consumer': access, 'profile': profile,
+                        {'consumers': consumers, 'profile': profile,
                          'roles': roles})
 
 
