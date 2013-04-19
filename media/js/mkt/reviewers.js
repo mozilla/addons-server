@@ -113,19 +113,19 @@ function initMobileMenus() {
     var $logTabOverlay = $('#log-tab-overlay');
     var $queueTabOverlay = $('#queue-tab-overlay');
     $('.trigger-queues').click(_pd(function() {
-        if (z.capabilities.mobile) {
+        if (z.capabilities.mobile || z.capabilities.tablet) {
             $queueTabOverlay.show();
         }
     }));
    $('.trigger-logs').click(_pd(function() {
-        if (z.capabilities.mobile) {
+        if (z.capabilities.mobile || z.capabilities.tablet) {
             $logTabOverlay.show();
         }
     }));
     $('.nav-action-menu button').click(_pd(function() {
         // Turn buttons into links on nav tab overlays.
         var $button = $(this);
-        if ($button.is(':last-child')) {
+        if ($button.data('url') == '#cancel') {
             $queueTabOverlay.hide();
             $logTabOverlay.hide();
         } else {

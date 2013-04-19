@@ -1,11 +1,6 @@
 {% extends 'reviewers/base.html' %}
 {% from 'site/helpers/form_row.html' import form_row %}
 
-{% block extrahead %}
-  {{ super() }}
-  {{ css('mkt/gaia') }}
-{% endblock %}
-
 {% block breadcrumbs %}
   {{ reviewers_breadcrumbs(queue=tab) }}
 {% endblock %}
