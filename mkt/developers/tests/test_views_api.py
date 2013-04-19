@@ -46,6 +46,8 @@ class TestAPI(amo.tests.TestCase):
 
     def test_other(self):
         self.grant_permission(self.profile, 'What:ever')
-        res = self.client.post(self.url)
+        res = self.client.post(
+            self.url,
+            {'app_name': 'test', 'redirect_uri': 'http://example.com/myapp'})
         eq_(res.status_code, 302)
         eq_(Access.objects.filter(user=self.user).count(), 1)
