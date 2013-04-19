@@ -5,6 +5,7 @@ from datetime import datetime
 
 from django import forms
 from django.conf import settings
+from django.forms.extras.widgets import SelectDateWidget
 from django.forms.models import formset_factory, modelformset_factory
 from django.template.defaultfilters import filesizeformat
 
