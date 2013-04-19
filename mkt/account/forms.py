@@ -101,3 +101,9 @@ class FeedbackForm(PotatoCaptchaForm):
                                  label='')
     from_url = forms.CharField(required=False, widget=forms.HiddenInput,
                                label='')
+
+
+class LoginForm(happyforms.Form):
+    assertion = forms.CharField(required=True)
+    audience = forms.CharField(required=False)
+

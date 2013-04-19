@@ -166,6 +166,12 @@ class TestLoginHandler(TestCase):
                                     audience='fakeamo.org'))
         eq_(res.status_code, 401)
 
+    def test_login_empty(self):
+        res = self.client.post(self.list_url)
+        data = json.loads(res.content)
+        eq_(res.status_code, 400)
+        assert 'assertion' in data['error_message']
+
 
 class TestFeedbackHandler(ThrottleTests, TestPotatoCaptcha, BaseOAuth):
     resource = FeedbackResource()

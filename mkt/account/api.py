@@ -24,7 +24,7 @@ from mkt.webapps.models import Webapp
 from users.models import UserProfile
 from users.views import browserid_login
 
-from .forms import FeedbackForm
+from .forms import FeedbackForm, LoginForm
 
 
 class AccountResource(CORSResource, MarketplaceModelResource):
@@ -65,7 +65,6 @@ class InstalledResource(AppResource):
 
 
 class LoginResource(CORSResource, MarketplaceResource):
-
     class Meta(MarketplaceResource.Meta):
         resource_name = 'login'
         always_return_data = True
@@ -84,10 +83,18 @@ class LoginResource(CORSResource, MarketplaceResource):
         return ','.join((email, hm.hexdigest(), unique_id))
 
     def post_list(self, request, **kwargs):
+        form = LoginForm(request.POST)
+        if not form.is_valid():
+            raise self.form_errors(form)
+
+        # We use request.POST rather than form.cleaned_data to conform to what
+        # django_browserid expects. That means that any mutations performed by
+        # LoginForm validation are lost. Be careful!
         if 'audience' in request.POST:
             audience = lambda r: r.POST.get('audience')
         else:
             audience = get_audience
+
         res = browserid_login(request, browserid_audience=audience)
         if res.status_code == 200:
             return self.create_response(request, {
