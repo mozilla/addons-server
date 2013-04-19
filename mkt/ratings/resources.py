@@ -229,7 +229,8 @@ class RatingFlagResource(CORSResource, MarketplaceModelResource):
         resource_name = 'rating_flag'
         list_allowed_methods = ['post']
         detail_allowed_methods = []
-        authentication = OAuthAuthentication()
+        authentication = (SharedSecretAuthentication(),
+                          OAuthAuthentication())
         authorization = Authorization()
         fields = ['review', 'flag', 'note', 'user']
 
