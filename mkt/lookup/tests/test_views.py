@@ -601,8 +601,7 @@ class TestAppSummary(AppSummaryTest):
                                         role=amo.AUTHOR_ROLE_DEV)
         self.app.addonuser_set.add(role)
         res = self.summary()
-        eq_(res.context['authors'][0].display_name,
-            user.display_name)
+        eq_(res.context['authors'][0].display_name, user.display_name)
 
     def test_visible_authors(self):
         for role in (amo.AUTHOR_ROLE_DEV,
@@ -651,6 +650,11 @@ class TestAppSummary(AppSummaryTest):
         self.app.update(is_packaged=True)
         res = self.summary()
         eq_(pq(res.content)('section.version-history').length, 1)
+
+    def test_edit_link_staff(self):
+        res = self.summary()
+        eq_(pq(res.content)('.shortcuts li').length, 4)
+        eq_(pq(res.content)('.shortcuts li').eq(3).text(), 'Edit Listing')
 
 
 class DownloadSummaryTest(AppSummaryTest):

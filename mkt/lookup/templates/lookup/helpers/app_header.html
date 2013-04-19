@@ -32,7 +32,7 @@
           {{ _('Statistics') }}
         </a>
       </li>
-      {% if is_admin %}
+      {% if is_admin or is_staff %}
       <li>
         <a href="{{ app.get_dev_url() if app.is_webapp() else '' }}">
           {{ _('Edit Listing') }}
