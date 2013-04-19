@@ -36,7 +36,7 @@
 </span>
 
 {% set sidebar_class = "absolute" %}
-{% if theme_count == 1 %}{% set sidebar_class = "align absolute" %}{% endif %}
+{% if theme_count == 1 %}{% set sidebar_class = "absolute" %}{% endif %}
 {% if theme_count > 1 %}{% set sidebar_class = "align fixed" %}{% endif %}
 <div class="sidebar"><div class="{{ sidebar_class }}">
   {% block queue_options %}
