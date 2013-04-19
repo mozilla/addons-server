@@ -21,7 +21,7 @@ class GeoIPTest(amo.tests.TestCase):
     def test_lookup(self, mock_post):
         url = 'localhost'
         geoip = GeoIP(generate_settings(url=url))
-        mock_post.return_value = mock.Mock(status_code=200, json={
+        mock_post.return_value = mock.Mock(status_code=200, json=lambda: {
             'country_code': 'US',
             'country_name': 'United States'
         })
@@ -42,7 +42,7 @@ class GeoIPTest(amo.tests.TestCase):
     def test_bad_request(self, mock_post):
         url = 'localhost'
         geoip = GeoIP(generate_settings(url=url))
-        mock_post.return_value = mock.Mock(status_code=404, json=None)
+        mock_post.return_value = mock.Mock(status_code=404, json=lambda: None)
         ip = '3.3.3.3'
         result = geoip.lookup(ip)
         mock_post.assert_called_with('{0}/country.json'.format(url),
