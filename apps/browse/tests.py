@@ -1228,23 +1228,6 @@ class TestPersonas(amo.tests.TestCase):
         personas = pq(res.content).find('.persona-preview')
         eq_(personas.length, 1)
 
-    def test_submit_pitch_firefox(self):
-        r = self.client.get(self.landing_url)
-        eq_(pq(r.content)('.submit-theme').length, 0)
-
-        self.create_flag('submit-personas')
-        r = self.client.get(self.landing_url)
-        eq_(pq(r.content)('.submit-theme').length, 1)
-
-    def test_submit_pitch_thunderbird(self):
-        url = self.landing_url.replace('firefox', 'thunderbird')
-
-        r = self.client.get(url)
-        eq_(pq(r.content)('.submit-theme').length, 0)
-
-        self.create_flag('submit-personas')
-        r = self.client.get(url)
-        eq_(pq(r.content)('.submit-theme').length, 0)
 
 
 class TestMobileFeatured(TestMobile):
