@@ -1563,3 +1563,7 @@ MONOLITH_MAX_DATE_RANGE = 365
 # These are useful services, like error generation, getting settings and the
 # like. They should *not* be on in production.
 ALLOW_TASTYPIE_SERVICES = False
+
+# The version we append to the app feature profile. Bump when we add new app
+# features to the `AppFeatures` model.
+APP_FEATURES_VERSION = 1

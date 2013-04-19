@@ -35,9 +35,11 @@ from users.models import UserProfile
 from versions.models import update_status, Version
 
 import mkt
-from mkt.constants import apps
+from mkt.constants import APP_FEATURES, apps
+from mkt.site.fixtures import fixture
 from mkt.submit.tests.test_views import BasePackagedAppTest, BaseWebAppTest
-from mkt.webapps.models import AddonExcludedRegion, Installed, Webapp
+from mkt.webapps.models import (AddonExcludedRegion, AppFeatures, Installed,
+                                Webapp)
 
 
 class TestWebapp(amo.tests.TestCase):
@@ -1214,3 +1216,59 @@ class TestInstalled(amo.tests.TestCase):
         assert self.m(install_type=apps.INSTALL_TYPE_USER)[1]
         assert not self.m(install_type=apps.INSTALL_TYPE_USER)[1]
         assert self.m(install_type=apps.INSTALL_TYPE_REVIEWER)[1]
+
+
+class TestAppFeatures(amo.tests.TestCase):
+    fixtures = fixture('webapp_337141')
+
+    def setUp(self):
+        self.app = Addon.objects.get(pk=337141)
+        self.flags = ('APPS', 'GEOLOCATION', 'PAY', 'SMS')
+
+    def _flag(self):
+        "Flag app with a handful of feature flags for testing."
+        af = AppFeatures(version=self.app.current_version)
+        for f in self.flags:
+            setattr(af, 'has_%s' % f.lower(), True)
+        af.save()
+
+    def _check(self, obj=None):
+        if not obj:
+            obj = self.app.current_version.features
+
+        for feature in APP_FEATURES:
+            field = 'has_%s' % feature[0].lower()
+            value = feature[0] in self.flags
+            if isinstance(obj, dict):
+                eq_(obj[field], value,
+                    u'Unexpected value for field: %s' % field)
+            else:
+                eq_(getattr(obj, field), value,
+                    u'Unexpected value for field: %s' % field)
+
+    def test_features(self):
+        self._flag()
+        self._check()
+
+    def test_no_features(self):
+        with self.assertRaises(AppFeatures.DoesNotExist):
+            self.app.current_version.features
+
+    def test_signature_parity(self):
+        # Test flags -> signature -> flags works as expected.
+        self._flag()
+        signature = self.app.current_version.features.to_signature()
+        eq_(signature.count('.'), 2, 'Unexpected signature format')
+
+        af = AppFeatures(version=self.app.current_version)
+        af.set_flags(signature)
+        self._check(af)
+
+    def test_to_dict(self):
+        self._flag()
+        self._check(self.app.current_version.features.to_dict())
+
+    def test_bad_data(self):
+        af = AppFeatures(version=self.app.current_version)
+        af.set_flags('foo')
+        af.set_flags('<script>')

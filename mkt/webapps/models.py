@@ -41,8 +41,7 @@ from mkt.zadmin.models import FeaturedApp
 
 import mkt
 from mkt import regions
-from mkt.constants import apps
-from mkt.constants import APP_IMAGE_SIZES
+from mkt.constants import apps, APP_FEATURES, APP_IMAGE_SIZES
 from mkt.webapps.utils import get_locale_properties
 
 
@@ -934,3 +933,97 @@ class ContentRating(amo.models.ModelBase):
     def get_label(self):
         """Gives us the name to be used for the form options."""
         return u'%s - %s' % (self.get_body().name, self.get_rating().name)
+
+
+# The AppFeatures table is created with dynamic fields based on
+# mkt.constants.features, which requires some setup work before we call `type`.
+class AppFeaturesBase(amo.models.ModelBase):
+    """
+    A class to more easily define model methods on the dynamically generated
+    AppFeatures model.
+    """
+    class Meta:
+        abstract = True
+
+    def __unicode__(self):
+        return u'Version: %s: %s' % (self.version.id, self.to_signature())
+
+    def _fields(self):
+        """
+        Returns array of all field names starting with 'has'.
+        """
+        return [f.name for f in self._meta.fields if f.name.startswith('has')]
+
+    def set_flags(self, signature):
+        """
+        Sets flags given the signature.
+
+        This takes the reverse steps in `to_signature` to set the various flags
+        given a signature. Boolean math is used since "0.23.1" is a valid
+        signature but does not produce a string of required length when doing
+        string indexing.
+        """
+        fields = self._fields()
+        # Grab the profile part of the signature and convert to binary string.
+        try:
+            profile = bin(int(signature.split('.')[0], 16)).lstrip('0b')
+            n = len(fields) - 1
+            for i, f in enumerate(fields):
+                setattr(self, f, bool(int(profile, 2) & 2 ** (n - i)))
+        except ValueError as e:
+            log.error(u'ValueError converting %s. %s' % (signature, e))
+
+    def to_dict(self):
+        return dict((f, getattr(self, f)) for f in self._fields())
+
+    def to_signature(self):
+        """
+        This converts the boolean values of the flags to a signature string.
+
+        For example, all the flags in APP_FEATURES order produce a string of
+        binary digits that is then converted to a hexadecimal string with the
+        length of the features list plus a version appended. E.g.::
+
+            >>> profile = '10001010111111010101011'
+            >>> int(profile, 2)
+            4554411
+            >>> '%x' % int(profile, 2)
+            '457eab'
+            >>> '%x.%s.%s' % (int(profile, 2), len(profile), 1)
+            '457eab.23.1'
+
+        """
+        profile = ''.join(['1' if getattr(self, f) else '0'
+                           for f in self._fields()])
+        return '%x.%s.%s' % (int(profile, 2), len(profile),
+                             settings.APP_FEATURES_VERSION)
+
+
+class AppFeaturesMeta(object):
+    db_table = 'addons_features'
+
+
+app_feature_attrs = dict([
+    # Module path.
+    ('__module__', 'mkt.webapps.models'),
+
+    # Inner Meta class.
+    ('Meta', AppFeaturesMeta),
+
+    # Database fields.
+    ('version', models.OneToOneField(Version, related_name='features')),
+    ],
+
+    # Dynamic database fields based on mkt.constants.features.
+    **dict(('has_%s' % f[0].lower(), models.BooleanField(default=False))
+           for f in APP_FEATURES)
+)
+
+
+"""
+AppFeatures django model.
+
+A set of boolean values stating if an app requires a particular feature.
+
+"""
+AppFeatures = type('AppFeatures', (AppFeaturesBase,), app_feature_attrs)
