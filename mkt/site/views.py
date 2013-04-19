@@ -108,13 +108,22 @@ def manifest(request):
     return _inner_view(request)
 
 
-def get_package_info():
+def get_package_path(signed=True):
+    path = os.path.join(settings.MEDIA_ROOT, 'packaged-apps',
+                        settings.PACKAGED_ZIP)
+    if signed:
+        split = path.rsplit('.', 1)
+        split.insert(-1, 'signed')
+        path = '.'.join(split)
+    return path
+
+
+def get_package_info(signed=True):
     """
     Returns the local path to the packaged `.zip` and a hash of
     the package's last-modified time.
     """
-    path = os.path.join(settings.MEDIA_ROOT, 'packaged-apps',
-                        settings.PACKAGED_ZIP)
+    path = get_package_path(signed=signed)
     etag = hashlib.md5(str(os.stat(path).st_mtime)).hexdigest()
     return path, etag
 
