@@ -219,7 +219,7 @@ Flagging as spam
 
     Flag a rating as spam.
 
-    .. note:: This requires authentication via OAuth.
+    .. note:: Authentication required.
 
     **Request**:
 
