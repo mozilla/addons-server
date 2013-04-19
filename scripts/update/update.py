@@ -4,7 +4,6 @@ import sys
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 from commander.deploy import hostgroups, task
-from commander.settings import config
 
 import commander_settings as settings
 
@@ -27,7 +26,6 @@ def setup_notifier():
 
     notifier = pushbotnotify.Notifier(endpoint=notifier_endpoint,
                                       api_key=notifier_key)
-    config['notifiers'] = [notifier.notify]
 
     return notifier.notify
 
