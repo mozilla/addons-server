@@ -129,7 +129,7 @@ function initMobileMenus() {
             $queueTabOverlay.hide();
             $logTabOverlay.hide();
         } else {
-            window.location = button.data('url');
+            window.location.href = $button.data('url');
         }
     }));
 }
