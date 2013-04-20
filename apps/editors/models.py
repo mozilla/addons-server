@@ -10,6 +10,8 @@ from django.db.models import Sum
 from django.template import Context, loader
 from django.utils.datastructures import SortedDict
 
+from tower import ugettext_lazy as _lazy
+
 import amo
 import amo.models
 from amo.helpers import absolutify
@@ -212,6 +214,25 @@ class ViewQueue(RawSQLModel):
     @property
     def application_ids(self):
         return self._explode_concat(self._application_ids)
+
+    @property
+    def is_traditional_restartless(self):
+        return self.is_restartless and not self.is_jetpack
+
+    @property
+    def flags(self):
+        props = (
+            ('admin_review', 'admin-review', _lazy('Admin Review')),
+            ('is_jetpack', 'jetpack', _lazy('Jetpack Add-on')),
+            ('is_traditional_restartless', 'restartless',
+             _lazy('Restartless Add-on')),
+            ('is_premium', 'premium', _lazy('Premium Add-on')),
+            ('has_info_request', 'info', _lazy('More Information Requested')),
+            ('has_editor_comment', 'editor', _lazy('Contains Editor Comment')),
+        )
+
+        return [(cls, title) for (prop, cls, title) in props
+                if getattr(self, prop)]
 
     def for_latest_version(self, vals, cast=int, default=0):
         split = self._explode_concat(vals, cast=str)

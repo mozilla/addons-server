@@ -212,33 +212,9 @@ class EditorQueueTable(SQLTable, ItemStateTable):
         return u''.join(icons)
 
     def render_flags(self, row):
-        o = []
-
-        if row.admin_review:
-            o.append(u'<div class="app-icon ed-sprite-admin-review" '
-                     u'title="%s"></div>' % _('Admin Review'))
-
-        if row.is_jetpack:
-            o.append(u'<div class="app-icon ed-sprite-jetpack" title="%s">'
-                     u'</div>' % _('Jetpack Add-on'))
-        elif row.is_restartless:
-            # Only show restartless if it's not also a jetpack
-            o.append(u'<div class="app-icon ed-sprite-restartless" title="%s">'
-                     u'</div>' % _('Bootstrapped Restartless Add-on'))
-
-        if row.is_premium:
-            o.append(u'<div class="app-icon ed-sprite-premium" title="%s">'
-                     u'</div>' % _('Premium add-on'))
-
-        if row.has_info_request:
-            o.append(u'<div class="app-icon ed-sprite-info" title="%s">'
-                     u'</div>' % _('More Information Requested'))
-
-        if row.has_editor_comment:
-            o.append(u'<div class="app-icon ed-sprite-editor" title="%s">'
-                     u'</div>' % _('Contains Editor Comment'))
-
-        return ''.join(o)
+        return ''.join(u'<div class="app-icon ed-sprite-%s" '
+                       u'title="%s"></div>' % flag
+                       for flag in row.flags)
 
     def render_waiting_time_min(self, row):
         if row.waiting_time_min == 0:

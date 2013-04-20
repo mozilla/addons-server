@@ -279,9 +279,8 @@
   {% if flags: %}
   <strong>{{ _('Flags') }}</strong>
   <ul>
-    {% for flag in flags %}
-    {# TODO(andym): not sure what goes here #}
-    <li>{{ flag }}</li>
+    {% for cls, title in flags %}
+      <li>{{ title }}</li>
     {% endfor %}
   </ul>
   {% endif %}
