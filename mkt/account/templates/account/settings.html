@@ -79,6 +79,24 @@
         </footer>
       {% endif %}
     </form>
+    {% if tokens %}
+      <form class="container form-grid" method="post" id="authorized_apps">
+        {{ csrf() }}
+          <div class="simple-field c">
+            <div class="form-label label">{{ _('Authorized Apps') }}</div>
+            <div class="form-col">
+              <select multiple name="authorized_apps">
+                {% for tok in tokens %}
+                <option value="{{ tok.pk }}">{{ tok.creds.app_name }}</option>
+                {% endfor %}
+              </select>
+              <footer class="form-footer c">
+                <button type="submit">{{ _('Revoke Access') }}</button>
+              </footer>
+            </div>
+          </div>
+      </form>
+    {% endif %}
 
     {% if not DESKTOP %}
       <div class="several-buttons c">

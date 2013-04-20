@@ -26,6 +26,7 @@ from users.models import UserNotification, UserProfile
 from versions.models import Version
 import users.notifications as email
 
+from mkt.api.models import Access, ACCESS_TOKEN, Token
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Installed, Webapp
 
@@ -227,6 +228,30 @@ class TestAccountSettings(amo.tests.TestCase):
         eq_(r.status_code, 200)
         eq_(doc('#language option[selected]').attr('value'), 'en-us')
         eq_(doc('#region option[selected]').attr('value'), 'us')
+
+    def test_tokens(self):
+        appname = "Test Mkt App"
+        a = Access.objects.create(key="", secret="", user=self.user.user,
+                                  app_name=appname, redirect_uri="")
+        t = Token.generate_new(token_type=ACCESS_TOKEN, creds=a,
+                               user=self.user.user)
+        r = self.client.get(self.url)
+        doc = pq(r.content)
+        eq_(r.status_code, 200)
+        eq_(doc('#authorized_apps option').text(), appname)
+        eq_(doc('#authorized_apps option').attr('value'), str(t.pk))
+
+    def test_revoke_token(self):
+        appname = "Test Mkt App"
+        a = Access.objects.create(key="", secret="", user=self.user.user,
+                                  app_name=appname, redirect_uri="")
+        t = Token.generate_new(token_type=ACCESS_TOKEN, creds=a,
+                               user=self.user.user)
+        r = self.client.post(self.url, {'authorized_apps': [str(t.pk)]})
+        doc = pq(r.content)
+        eq_(r.status_code, 200)
+        eq_(len(doc('#authorized_apps')), 0)
+        eq_(Token.objects.count(), 0)
 
 
 class TestAdminAccountSettings(amo.tests.TestCase):
