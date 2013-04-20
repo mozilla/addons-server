@@ -96,9 +96,8 @@ stored as a cookie.
 OAuth
 +++++
 
-Currently only two legged OAuth authentication is supported. This is focused on
-clients who would like to create multiple apps on the app store from an end
-point.
+Marketplace provides OAuth 1.0a, allowing third-party apps to interact with its
+API.
 
 When you are first developing your API to communicate with the Marketplace, you
 should use the development server to test your API. When it's complete, you can
@@ -118,7 +117,10 @@ regularly purged, causing the deletion of apps and tokens.
 2. Once logged in, read and accept the terms of service for the Marketplace
    at: https://marketplace-dev.allizom.org/developers/terms
 
-3. Generate a new key at: https://marketplace-dev.allizom.org/developers/api
+3.  At https://marketplace-dev.allizom.org/developers/api provide the name of
+   the app that will use the key, and the URI that Marketplace's OAuth provide
+   will redirect to after the user grants permission to your app. You may then
+   generate a key pair for use in your application.
 
 Production server
 ~~~~~~~~~~~~~~~~~
@@ -131,7 +133,7 @@ The production server is at https://marketplace.firefox.com.
 2. Once logged in, read and accept the terms of service for the Marketplace
    at: https://marketplace.firefox.com/developers/terms
 
-3. You cannot generate your own tokens. Please contact a `Marketplace
+3. Currently you cannot generate your own tokens. Please contact a `Marketplace
    representative`_.
 
 Using OAuth Tokens
