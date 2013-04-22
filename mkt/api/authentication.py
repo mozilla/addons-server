@@ -94,7 +94,7 @@ class OAuthAuthentication(Authentication):
                     method, headers=auth_header,
                     require_resource_owner=True)
             except ValueError:
-                log.error('ValueError on verifying_request')
+                log.error('ValueError on verifying_request', exc_info=True)
                 return False
             if not valid:
                 log.error(u'Cannot find APIAccess token with that key: %s'
@@ -112,7 +112,7 @@ class OAuthAuthentication(Authentication):
                     method, headers=auth_header,
                     require_resource_owner=False)
             except ValueError:
-                log.error('ValueError on verifying_request')
+                log.error('ValueError on verifying_request', exc_info=True)
                 return False
             if not valid:
                 log.error(u'Cannot find APIAccess token with that key: %s'
