@@ -99,56 +99,11 @@ class TestViewPendingQueueTable(amo.tests.TestCase):
         row.waiting_time_min = 0
         eq_(self.table.render_waiting_time_min(row), u'moments ago')
 
-    def test_flags_admin_review(self):
+    def test_flags(self):
         row = Mock()
-        row.admin_review = True
+        row.flags = [('admin-review', 'Admin Review')]
         doc = pq(self.table.render_flags(row))
         assert doc('div.ed-sprite-admin-review').length
-
-    def test_flags_info_request(self):
-        row = Mock()
-        row.has_info_request = True
-        doc = pq(self.table.render_flags(row))
-        assert doc('div.ed-sprite-info').length
-
-    def test_flags_editor_comment(self):
-        row = Mock()
-        row.has_editor_comment = True
-        doc = pq(self.table.render_flags(row))
-        assert doc('div.ed-sprite-editor').length
-
-    def test_flags_jetpack_and_restartless(self):
-        row = Mock()
-        row.is_jetpack = True
-        row.is_restartless = True
-        doc = pq(self.table.render_flags(row))
-        eq_(doc('div.ed-sprite-jetpack').length, 1)
-        eq_(doc('div.ed-sprite-restartless').length, 0)
-
-    def test_flags_restartless(self):
-        row = Mock()
-        row.is_restartless = True
-        row.is_jetpack = False
-        doc = pq(self.table.render_flags(row))
-        eq_(doc('div.ed-sprite-jetpack').length, 0)
-        eq_(doc('div.ed-sprite-restartless').length, 1)
-
-    def test_flags_jetpack(self):
-        row = Mock()
-        row.is_jetpack = True
-        doc = pq(self.table.render_flags(row))
-        eq_(doc('div.ed-sprite-restartless').length, 0)
-        eq_(doc('div.ed-sprite-jetpack').length, 1)
-
-    def test_no_flags(self):
-        row = Mock()
-        row.is_restartless = False
-        row.is_jetpack = False
-        row.admin_review = False
-        row.has_editor_comment = False
-        row.has_info_request = False
-        row.is_premium = False
-        eq_(self.table.render_flags(row), '')
 
 
 class TestAdditionalInfoInQueue(amo.tests.TestCase):

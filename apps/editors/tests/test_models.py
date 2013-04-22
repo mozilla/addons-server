@@ -146,6 +146,48 @@ class TestPendingQueue(TestQueue):
         # Time zone will be off, hard to test this.
         assert row.waiting_time_hours is not None
 
+    # These apply to all queues, except that all add-ons in the Fast
+    # Track queue are Jetpack
+    def test_flags_admin_review(self):
+        f = self.new_file(version=u'0.1')
+        f['addon'].update(admin_review=True)
+
+        q = self.Queue.objects.get()
+        eq_(q.flags, [('admin-review', 'Admin Review')])
+
+    def test_flags_info_request(self):
+        f = self.new_file(version=u'0.1')
+        f['version'].update(has_info_request=True)
+        q = self.Queue.objects.get()
+        eq_(q.flags, [('info', 'More Information Requested')])
+
+    def test_flags_editor_comment(self):
+        f = self.new_file(version=u'0.1')
+        f['version'].update(has_editor_comment=True)
+
+        q = self.Queue.objects.get()
+        eq_(q.flags, [('editor', 'Contains Editor Comment')])
+
+    def test_flags_jetpack_and_restartless(self):
+        f = self.new_file(version=u'0.1')
+        f['file'].update(jetpack_version='1.8', no_restart=True)
+
+        q = self.Queue.objects.get()
+        eq_(q.flags, [('jetpack', 'Jetpack Add-on')])
+
+    def test_flags_restartless(self):
+        f = self.new_file(version=u'0.1')
+        f['file'].update(no_restart=True)
+
+        q = self.Queue.objects.get()
+        eq_(q.flags, [('restartless', 'Restartless Add-on')])
+
+    def test_no_flags(self):
+        self.new_file(version=u'0.1')
+
+        q = self.Queue.objects.get()
+        eq_(q.flags, [])
+
 
 class TestFullReviewQueue(TestQueue):
     __test__ = True

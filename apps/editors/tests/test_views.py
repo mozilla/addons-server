@@ -1467,8 +1467,7 @@ class TestReview(ReviewBase):
         eq_(len(response.context['flags']), 0)
 
     def test_flags(self):
-        Review.objects.create(addon=self.addon, flag=True, user=self.editor)
-        Review.objects.create(addon=self.addon, flag=False, user=self.editor)
+        self.addon.update(admin_review=True)
         response = self.client.get(self.url)
         eq_(len(response.context['flags']), 1)
 
