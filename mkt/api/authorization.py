@@ -35,7 +35,8 @@ class AnonymousReadOnlyAuthorization(ReadOnlyAuthorization):
             return res
         if self.authorizer:
             res = self.authorizer.is_authorized(request, object)
-            log.info('Authorizer %s returned: %s' % (self.authorizer, res))
+            log.info('Authorizer %s returned: %s' %
+                     (self.authorizer.__class__.__name__, res))
             return res
         return True
 

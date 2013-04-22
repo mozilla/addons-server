@@ -71,6 +71,7 @@ class Marketplace(object):
         if 'HTTP_X_HTTP_METHOD_OVERRIDE' in request.META:
             request.method = request.META['HTTP_X_HTTP_METHOD_OVERRIDE']
 
+        log.info('Request: %s' % request.META.get('PATH_INFO'))
         ct = request.META.get('CONTENT_TYPE')
         try:
             return (super(Marketplace, self)
@@ -159,6 +160,7 @@ class Marketplace(object):
         of the loop if they desire.
         """
         for auth in self._auths():
+            log.info('Trying auth with %s' % auth.__class__.__name__)
             auth_result = auth.is_authenticated(request)
 
             if isinstance(auth_result, http.HttpResponse):
