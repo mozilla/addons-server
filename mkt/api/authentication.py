@@ -143,6 +143,7 @@ class OAuthAuthentication(Authentication):
                      % request.amo_user.pk)
             return self._error('roles')
 
+        log.info('Successful OAuth with user: %s' % request.user.pk)
         return True
 
 
@@ -158,6 +159,7 @@ class OptionalOAuthAuthentication(OAuthAuthentication):
         if (not auth_header_value and
             'oauth_token' not in request.META['QUERY_STRING']):
             request.user = AnonymousUser()
+            log.info('Successful OptionalOAuth as anonymous user')
             return True
 
         return (super(OptionalOAuthAuthentication, self)
@@ -188,6 +190,7 @@ class SharedSecretAuthentication(Authentication):
             else:
                 log.info('Shared-secret auth token does not match')
 
+            log.info('Successful SharedSecret with user: %s' % request.user.pk)
             return matches
         except Exception, e:
             log.info('Bad shared-secret auth data: %s (%s)', auth, e)

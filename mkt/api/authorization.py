@@ -30,9 +30,13 @@ class AnonymousReadOnlyAuthorization(ReadOnlyAuthorization):
     def is_authorized(self, request, object=None):
         if request.user.is_anonymous():
             sup = super(AnonymousReadOnlyAuthorization, self)
-            return sup.is_authorized(request, object)
+            res = sup.is_authorized(request, object)
+            log.info('ReadOnlyAuthorization returned: %s' % res)
+            return res
         if self.authorizer:
-            return self.authorizer.is_authorized(request, object)
+            res = self.authorizer.is_authorized(request, object)
+            log.info('Authorizer %s returned: %s' % (self.authorizer, res))
+            return res
         return True
 
 
