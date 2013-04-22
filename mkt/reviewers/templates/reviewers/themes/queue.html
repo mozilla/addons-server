@@ -31,9 +31,7 @@
 </nav>
 
 <span class="queue-context" data-actions="{{ actions }}"
-      data-flagged="{{ flagged }}" data-max-locks="{{ max_locks }}"
-      data-more-url="{{ more_url }}">
-</span>
+      data-flagged="{{ flagged }}"></span>
 
 {% set sidebar_class = "absolute" %}
 {% if theme_count == 1 %}{% set sidebar_class = "absolute" %}{% endif %}
@@ -89,7 +87,6 @@
         {{ _('Commit Reviews') }}
       {% endif %}
     </button>
-    <button id="more" type="submit">{{ _('Load More') }}</button>
     <div id="queue-details">
        {{ _('{0} out of {1} reviewed').format('<span id="reviewed-count">0</span>'|safe,
                                               '<span id="total">%d</span>'|safe % theme_count) }}

@@ -24,8 +24,6 @@
             var cacheQueueHeight;
 
             var $queueContext = $('.queue-context');
-            var maxLocks = parseInt($queueContext.data('max-locks'), 10);
-            var moreUrl = $queueContext.data('more-url');
             var actionConstants = $queueContext.data('actions');
 
             var themesList = $('div.theme', queue);
@@ -156,68 +154,6 @@
                 }
             }
 
-            var ajaxLockFlag = 0;
-            function moreThemes() {
-                // Don't do anything if max locks or currently making request
-                // or not all themes reviewed. Using an exposed DOM element to
-                // hold data, but we don't really care if they try to tamper
-                // with that.
-                var themeCount = $('#total').text();
-                if (themesList.length >= maxLocks || ajaxLockFlag ||
-                    $('#reviewed-count').text() != themeCount) {
-                    return;
-                }
-                ajaxLockFlag = 1;
-                var i = parseInt(themeCount, 10);
-
-                $('button#more').html(gettext('Loading&hellip;'));
-                $.get(moreUrl, function(data) {
-                    if (!data.html || data.count <= 0) {
-                        // Display notification if no themes to load.
-                        $('button#more').text(
-                            gettext('No available themes to review'))
-                        .unbind('click').addClass('inactive');
-                        return;
-                    }
-
-                    // Insert the themes into the DOM.
-                    $('#theme-queue-form').append(data.html);
-                    themesList = $('div.theme', queue);
-                    themes = themesList.map(function() {
-                        return {
-                            element: this,
-                            top: 0
-                        };
-                    }).get();
-                    $('.zoombox').zoomBox();
-
-                    // Correct the new Django forms' prefixes
-                    // (id_form-x-field) to play well with the formset.
-                    var $input;
-                    var newThemes = themesList.slice(themeCount, themesList.length);
-                    $(newThemes).each(function(index, theme) {
-                        $('input', theme).each(function(index, input) {
-                            $input = $(input);
-                            $input.attr('id', $input.attr('id').replace(/-\d-/, '-' + themeCount + '-'));
-                            $input.attr('name', $input.attr('name').replace(/-\d-/, '-' + themeCount + '-'));
-                        });
-                        themeCount++;
-                    });
-
-                    // Update metadata on Django management form for formset.
-                    updateTotalForms('form', 1);
-                    $('#id_form-INITIAL_FORMS').val(themeCount.toString());
-
-                    // Update total.
-                    $('#total').text(themeCount);
-
-                    goToTheme(i, 250);
-                    ajaxLockFlag = 0;
-
-                    $('button#more').toggle().text(gettext('Load More')).unbind('click');
-                });
-            }
-
             var keymap = {
                 j: ['next', null],
                 k: ['prev', null],
@@ -241,10 +177,6 @@
                 } else {
                     delete keymap[z.keys.ENTER];
                     $('.rq-dropdown').hide();
-                }
-                if ($('#reviewed-count').text() == $('#total').text() &&
-                    themesList.length < maxLocks) {
-                    $('button#more').show().click(moreThemes);
                 }
             }
 
@@ -387,11 +319,6 @@
                     $('.status', nthTheme(i)).removeClass('reviewed');
 
                     $('#reviewed-count').text($('div.theme.reviewed').length);
-                    if ($('#reviewed-count').text() < $('#total').text() &&
-                        themesList.length < maxLocks) {
-                        // Hide More button if fell under max review count.
-                        $('button#more').hide().unbind('click');
-                    }
                 }
             };
 

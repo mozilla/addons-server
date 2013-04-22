@@ -10,7 +10,6 @@ APP_TYPES = {
 
 # Theme review queue constants.
 THEME_INITIAL_LOCKS = 5  # Initial number of themes to check out.
-THEME_MAX_LOCKS = 20  # Max amount of themes to check out per reviewer.
 THEME_LOCK_EXPIRY = 30  # Minutes.
 
 ACTION_MOREINFO = 0
