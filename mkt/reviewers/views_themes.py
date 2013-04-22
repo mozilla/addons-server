@@ -290,7 +290,7 @@ def themes_single(request, slug):
         elif (theme_lock.reviewer.id != reviewer.id and
               theme_lock.expiry < datetime.datetime.now()):
             # Steal expired lock.
-            theme_lock.reviewer = reviewer,
+            theme_lock.reviewer = reviewer
             theme_lock.expiry = get_updated_expiry()
             theme_lock.save()
         else:
