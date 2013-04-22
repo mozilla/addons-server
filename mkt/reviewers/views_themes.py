@@ -175,7 +175,8 @@ def _get_themes(request, reviewer, initial=True, flagged=False):
     # Empty pool? Go look for some expired locks.
     if not themes:
         expired_locks = ThemeLock.objects.filter(
-            expiry__lte=datetime.datetime.now())[:rvw.THEME_INITIAL_LOCKS]
+            expiry__lte=datetime.datetime.now(),
+            theme__addon__status=status)[:rvw.THEME_INITIAL_LOCKS]
         # Steal expired locks.
         for theme_lock in expired_locks:
             theme_lock.reviewer = reviewer

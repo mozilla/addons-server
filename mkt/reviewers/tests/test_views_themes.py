@@ -408,6 +408,14 @@ class TestThemeReviewQueue(ThemeReviewTestMixin, amo.tests.TestCase):
         eq_(res.status_code, 200)
         eq_(pq(res.content)('#addon-queue tbody tr').length, 1)
 
+    @mock.patch.object(rvw, 'THEME_INITIAL_LOCKS', 1)
+    def test_expired_locks_approved_themes(self):
+        reviewer = self.create_and_become_reviewer()
+        addon_factory(type=amo.ADDON_PERSONA, status=amo.STATUS_PENDING)
+        eq_(len(_get_themes(mock.Mock(), reviewer, initial=True)), 1)
+        addon_factory(type=amo.ADDON_PERSONA, status=amo.STATUS_PUBLIC)
+        eq_(len(_get_themes(mock.Mock(), reviewer, initial=False)), 0)
+
 
 class TestThemeReviewQueueFlagged(ThemeReviewTestMixin, amo.tests.TestCase):
 
