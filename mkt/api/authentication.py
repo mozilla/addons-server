@@ -81,6 +81,8 @@ class OAuthAuthentication(Authentication):
             log.error('No header')
             return self._error('headers')
 
+        # Remove this, temporary.
+        log.info(u'Headers: %s' % auth_header_value)
         auth_header = {'Authorization': auth_header_value}
         method = getattr(request, 'signed_method', request.method)
         oauth = OAuthServer()
