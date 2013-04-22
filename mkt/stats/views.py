@@ -116,7 +116,7 @@ def get_series_line(model, group, primary_field=None, extra_fields=None,
     extra_values = extra_values or {}
 
     if waffle.switch_is_active('monolith-stats'):
-        keys = {Installed: 'apps_installs',
+        keys = {Installed: 'app_installs',
                 UpdateCount: 'updatecount_XXX',
                 Contribution: 'contribution_XXX',
                 InappPayment: 'inapppayment_XXX'}
