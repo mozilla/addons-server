@@ -6,7 +6,7 @@ from market.models import Price
 def run():
     print 'Adding in new tiers'
     for tier in ['0.10', '0.25', '0.50', '12.49']:
-        exists = Price.objects.filter(price=Decimal(tier)).exists()
+        exists = Price.uncached.filter(price=Decimal(tier)).exists()
         if exists:
             print 'Tier already exists, skipping: %s' % tier
             continue
@@ -20,13 +20,15 @@ def run():
                  '15.99', '16.99', '17.99', '18.99', '20.99', '21.99', '22.99',
                  '23.99', '34.99', '44.99']:
         try:
-            Price.objects.get(price=Decimal(tier)).update(active=False)
+            price = Price.uncached.get(price=Decimal(tier))
+            price.active = False
+            price.save()
             print 'Deactivating tier: %s' % tier
         except Price.DoesNotExist:
             print 'Tier does not exist, skipping: %s' % tier
 
     print 'Renaming tiers'
-    for k, tier in enumerate(Price.objects.filter(active=True)
+    for k, tier in enumerate(Price.uncached.filter(active=True)
                                   .order_by('price')):
         new = 'Tier %s' % k
         print 'Renaming %s to %s' % (tier.name, new)
