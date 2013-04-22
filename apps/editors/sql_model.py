@@ -93,14 +93,18 @@ class RawSQLManager(object):
         self._execute('SELECT count(*) from (%s) as q' % self.as_sql())
         return self._cursor.fetchone()[0]
 
-    def get(self):
+    def get(self, **kw):
         clone = self._clone()
+        if kw:
+            clone = clone.filter(**kw)
         cnt = clone.count()
         if cnt > 1:
             raise clone.sql_model.MultipleObjectsReturned(
                 'get() returned more than one row -- it returned %s!' % cnt)
         elif cnt == 0:
-            raise clone.sql_model.DoesNotExist('No rows matching query')
+            raise clone.sql_model.DoesNotExist(
+                '%s matching query does not exist.'
+                    % self.sql_model.__class__.__name__)
         else:
             return clone[0:1][0]
 
@@ -170,6 +174,17 @@ class RawSQLManager(object):
         clone = self._clone()
         clone.base_query['having'].append(clone._filter_to_clause(spec, val))
         return clone
+
+    def latest(self, column):
+        """Return the latest item, based on the given column."""
+
+        clone = self._clone()
+        clone.order_by('-%s' % column)
+        if clone.count() == 0:
+            raise clone.sql_model.DoesNotExist(
+                '%s matching query does not exist.'
+                    % self.sql_model.__class__.__name__)
+        return clone[0]
 
     def order_by(self, spec):
         """Order by column (ascending) or -column (descending)."""
@@ -358,7 +373,8 @@ class RawSQLModel(object):
     building a query with many different types of where clauses.
     """
     __metaclass__ = RawSQLModelMeta
-    DoesNotExist = ObjectDoesNotExist
+    class DoesNotExist(ObjectDoesNotExist):
+        pass
     MultipleObjectsReturned = MultipleObjectsReturned
 
     def __init__(self, **kwargs):

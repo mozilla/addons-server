@@ -29,7 +29,8 @@ from editors import forms
 from editors.models import (AddonCannedResponse, EditorSubscription, EventLog,
                             PerformanceGraph, ReviewerScore,
                             ViewFastTrackQueue, ViewFullReviewQueue,
-                            ViewPendingQueue, ViewPreliminaryQueue)
+                            ViewPendingQueue, ViewPreliminaryQueue,
+                            ViewQueue)
 from editors.helpers import (ViewFastTrackQueueTable, ViewFullReviewQueueTable,
                              ViewPendingQueueTable, ViewPreliminaryQueueTable)
 from reviews.forms import ReviewFlagFormSet
@@ -567,9 +568,13 @@ def _review(request, addon):
     num_pages = pager.paginator.num_pages
     count = pager.paginator.count
 
+    try:
+        flags = ViewQueue.objects.get(id=addon.id).flags
+    except ViewQueue.DoesNotExist:
+        flags = []
+
     ctx = context(version=version, addon=addon,
-                  pager=pager, num_pages=num_pages, count=count,
-                  flags=Review.objects.filter(addon=addon, flag=True),
+                  pager=pager, num_pages=num_pages, count=count, flags=flags,
                   form=form, paging=paging, canned=canned, is_admin=is_admin,
                   status_types=amo.STATUS_CHOICES, show_diff=show_diff,
                   allow_unchecking_files=allow_unchecking_files,
