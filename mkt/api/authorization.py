@@ -43,6 +43,6 @@ class PermissionAuthorization(Authorization):
 
     def is_authorized(self, request, object=None):
         if acl.action_allowed(request, self.app, self.action):
-            log.info('Permission authorization failed')
             return True
+        log.info('Permission authorization failed')
         return False
