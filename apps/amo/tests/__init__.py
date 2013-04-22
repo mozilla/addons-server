@@ -418,8 +418,8 @@ class TestCase(RedisTest, test_utils.TestCase):
         on to the list of verbs.
         """
         eq_(res['Access-Control-Allow-Origin'], '*')
-        eq_(res['Access-Control-Expose-Headers'],
-            'X-API-Version, X-API-Status')
+        assert 'X-API-Status' in res['Access-Control-Expose-Headers']
+        assert 'X-API-Version' in res['Access-Control-Expose-Headers']
 
         verbs = map(str.upper, verbs) + ['OPTIONS',]
         actual = res['Access-Control-Allow-Methods'].split(', ')
