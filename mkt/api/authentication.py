@@ -78,49 +78,49 @@ class OAuthAuthentication(Authentication):
         if (not auth_header_value and
             'oauth_token' not in request.META['QUERY_STRING']):
             self.user = AnonymousUser()
+            log.error('No header')
             return self._error('headers')
-        auth_header = {'Authorization': auth_header_value}
 
+        auth_header = {'Authorization': auth_header_value}
         method = getattr(request, 'signed_method', request.method)
         oauth = OAuthServer()
         if ('oauth_token' in request.META['QUERY_STRING'] or
             'oauth_token' in auth_header_value):
             # This is 3-legged OAuth.
+            log.info('Trying 3 legged OAuth')
             try:
                 valid, oauth_request = oauth.verify_request(
                     request.build_absolute_uri(),
                     method, headers=auth_header,
                     require_resource_owner=True)
             except ValueError:
+                log.error('ValueError on verifying_request')
                 return False
             if not valid:
                 log.error(u'Cannot find APIAccess token with that key: %s'
                           % oauth.attempted_key)
                 return self._error('headers')
-            try:
-                request.user = Token.objects.get(
-                    token_type=ACCESS_TOKEN,
-                    key=oauth_request.resource_owner_key).user
-            except Token.DoesNotExist:
-                request.user = AnonymousUser()
+            request.user = Token.objects.get(token_type=ACCESS_TOKEN,
+                key=oauth_request.resource_owner_key).user
+
         else:
             # This is 2-legged OAuth.
+            log.info('Trying 2 legged OAuth')
             try:
                 valid, oauth_request = oauth.verify_request(
                     request.build_absolute_uri(),
                     method, headers=auth_header,
                     require_resource_owner=False)
             except ValueError:
+                log.error('ValueError on verifying_request')
                 return False
             if not valid:
                 log.error(u'Cannot find APIAccess token with that key: %s'
                           % oauth.attempted_key)
                 return self._error('headers')
-            try:
-                request.user = Access.objects.get(
-                    key=oauth_request.client_key).user
-            except Access.DoesNotExist:
-                request.user = AnonymousUser()
+            request.user = Access.objects.get(
+                key=oauth_request.client_key).user
+
         ACLMiddleware().process_request(request)
         # We've just become authenticated, time to run the pinning middleware
         # again.
@@ -143,7 +143,7 @@ class OAuthAuthentication(Authentication):
                      % request.amo_user.pk)
             return self._error('roles')
 
-        log.info('Successful OAuth with user: %s' % request.user.pk)
+        log.info('Successful OAuth with user: %s' % request.user)
         return True
 
 
