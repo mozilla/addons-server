@@ -3,6 +3,7 @@ import codecs
 import collections
 import contextlib
 import datetime
+import errno
 import functools
 import hashlib
 import itertools
@@ -908,8 +909,12 @@ class LocalFileStorage(FileSystemStorage):
     def _open(self, name, mode='rb'):
         if mode.startswith('w'):
             parent = os.path.dirname(self.path(name))
-            if not os.path.exists(parent):
+            try:
+                # Try/except to prevent race condition raising "File exists".
                 os.makedirs(parent)
+            except OSError as e:
+                if e.errno != errno.EEXIST:
+                    raise
         return super(LocalFileStorage, self)._open(name, mode=mode)
 
     def path(self, name):
