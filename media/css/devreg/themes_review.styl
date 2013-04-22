@@ -191,7 +191,7 @@ nav.theme-review {
         height: 100px;
     }
     .status {
-        background: #258;
+        background: #1584CE;
         border-radius: 0 3px;
         color: #fff;
         display: none;
@@ -199,6 +199,12 @@ nav.theme-review {
         position: absolute;
         right: 0;
         top: 0;
+        &.red {
+            background: $button-red-dark;
+        }
+        &.green {
+            background: $button-green-dark;
+        }
         &.reviewed {
             display: block;
         }

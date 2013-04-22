@@ -168,9 +168,21 @@
                 keymap[j] = ['reject', j];
             }
 
-            function setReviewed(i, text) {
+            function setReviewed(i, action) {
+                var ac = actionConstants;
+                var actionMap = {};
+                actionMap[ac.moreinfo] = [gettext('Requested Info'), 'blue'];
+                actionMap[ac.flagged] = [gettext('Flagged'), 'red'];
+                actionMap[ac.duplicate] = [gettext('Duplicate'), 'red'];
+                actionMap[ac.reject] = [gettext('Rejected'), 'red'];
+                actionMap[ac.approve] = [gettext('Approved'), 'green'];
+                var text = actionMap[action][0];
+                var color = actionMap[action][1];
+
                 $(nthTheme(i)).addClass('reviewed');
-                $('.status', nthTheme(i)).addClass('reviewed').find('span').text(text);
+                $('.status', nthTheme(i)).removeClass('red blue green')
+                    .addClass('reviewed ' + color).find('span').text(text);
+
                 $('#reviewed-count').text($('div.theme.reviewed').length);
                 if ($(queue).hasClass('advance')) {
                     goToTheme(i + 1, 250);
@@ -199,7 +211,7 @@
 
                 approve: function (i) {
                     $('input.action', nthTheme(i)).val(actionConstants.approve);
-                    setReviewed(i, gettext('Approved'));
+                    setReviewed(i, actionConstants.approve);
                 },
 
                 reject_reason: function (i) {
@@ -242,7 +254,7 @@
                     // the Theme.
                     $('input.action', nthTheme(i)).val(actionConstants.reject);
                     $('input.reject-reason', nthTheme(i)).val(rejectId);
-                    setReviewed(i, gettext('Rejected'));
+                    setReviewed(i, actionConstants.reject);
                     isRejecting = false;
                 },
 
@@ -258,7 +270,7 @@
                             $('input.action', nthTheme(i)).val(actionConstants.duplicate);
                             $('input.comment', nthTheme(i)).val(textArea.val());
                             textArea.blur();
-                            setReviewed(i, gettext('Duplicate'));
+                            setReviewed(i, actionConstants.duplicate);
                         } else {
                             $('.duplicate-dropdown .error-required',
                               nthTheme(i)).show();
@@ -280,7 +292,7 @@
                             $('input.action', nthTheme(i)).val(actionConstants.flag);
                             $('input.comment', nthTheme(i)).val(textArea.val());
                             textArea.blur();
-                            setReviewed(i, gettext('Flagged'));
+                            setReviewed(i, actionConstants.flagged);
                         } else {
                             $('.flag-dropdown .error-required',
                               nthTheme(i)).show();
@@ -302,7 +314,7 @@
                             $('input.action', nthTheme(i)).val(actionConstants.moreinfo);
                             $('input.comment', nthTheme(i)).val(textArea.val());
                             textArea.blur();
-                            setReviewed(i, gettext('Requested Info'));
+                            setReviewed(i, actionConstants.moreinfo);
                         } else {
                             $('.moreinfo-dropdown .error-required',
                               nthTheme(i)).show();
