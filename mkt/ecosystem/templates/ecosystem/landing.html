@@ -219,6 +219,7 @@
           {{ newsletter_form['country'].errors }}
 
           <ul class="errorlist">
+            {{ newsletter_form.email_format.errors }}
             {{ newsletter_form.email.errors }}
             {{ newsletter_form.privacy.errors }}
           </ul>
