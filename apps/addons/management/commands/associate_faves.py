@@ -2,18 +2,14 @@ from optparse import make_option
 from time import time
 
 from django.core.management.base import BaseCommand
+from django.db.utils import IntegrityError
 
-from addons.models import AddonCollection
+from bandwagon.models import CollectionAddon
 from users.models import UserProfile
 import amo
 
 
 class Command(BaseCommand):
-    """
-    Import from the personas database:
-    `host`: the host of the personas database
-    `database`: the personas database, eg: personas
-    """
     option_list = BaseCommand.option_list + (
         make_option('--from', action='store', dest='from',
                     help='Filename to get users from'),
@@ -21,8 +17,6 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         t_start = time()
-
-        self.connect(**options)
 
         print "You're running a script to associate favo(u)rites!"
 
@@ -47,23 +41,29 @@ class Command(BaseCommand):
                 print '[ERROR] User #%s does not exist' % user_id
                 continue
 
-            all_ac = (AddonCollection.objects.filter(user_id=user_id)
+            all_ac = (CollectionAddon.objects.filter(user_id=user_id)
                       .exclude(collection__type=amo.COLLECTION_FAVORITES))
             if not all_ac.exists():
                 print '[OK] User #%s has the correct favourites' % user_id
                 continue
 
-            faves_id = profile.favorites_collection.id
+            faves_id = profile.favorites_collection().id
 
             for ac in all_ac:
                 if ac.collection_id != faves_id:
-                    print('[OK] Changed AddonCollection #%s (from Collection '
+                    print('[OK] Changed CollectionAddon #%s (from Collection '
                           '#%s to #%s)' % (ac.id, ac.collection_id, faves_id))
                     ac.collection_id = faves_id
-                    ac.save()
-                    changed += 1
+                    try:
+                        ac.save()
+                    except IntegrityError:
+                        print('[OK] Skipped CollectionAddon #%s - already fave '
+                             '(from Collection #%s)' % (ac.id, faves_id))
+                        unchanged += 1
+                    else:
+                        changed += 1
                 else:
-                    print('[OK] Skipped AddonCollection #%s (from Collection '
+                    print('[OK] Skipped CollectionAddon #%s (from Collection '
                          '#%s)' % (ac.id, faves_id))
                     unchanged += 1
 
