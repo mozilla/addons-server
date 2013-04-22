@@ -116,15 +116,16 @@ class APIFilterMiddleware(object):
     """
     def process_response(self, request, response):
         if getattr(request, 'API', False):
-            filters = {
-                'carrier': get_carrier() or '',
-                'device': [],
-                'lang': request.LANG,
-                'region': request.REGION.slug
-            }
+            devices = []
             for device in ('GAIA', 'MOBILE', 'TABLET'):
                 if getattr(request, device, False):
-                    filters['device'].append(device.lower())
+                    devices.append(device.lower())
+            filters = (
+                ('carrier', get_carrier() or ''),
+                ('device', devices),
+                ('lang', request.LANG),
+                ('region', request.REGION.slug),
+            )
             response['X-API-Filter'] = urlencode(filters, doseq=True)
             patch_vary_headers(response, ['X-API-Filter'])
         return response

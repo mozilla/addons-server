@@ -137,12 +137,18 @@ class TestFilterMiddleware(amo.tests.TestCase):
         self.request.MOBILE = mobile
         res = self.middleware.process_response(self.request, HttpResponse())
         if api:
+            header = res.get('X-API-Filter')
             assert 'vary' in res._headers
             eq_(res._headers['vary'][1], 'X-API-Filter')
+            self._test_order(header)
+            return parse_qs(header)
         else:
             assert 'vary' not in res._headers
-        header = res.get('X-API-Filter')
-        return parse_qs(header) if header else None
+            return None
+
+    def _test_order(self, header):
+        order = [item.split('=')[0] for item in header.split('&')]
+        eq_(order, sorted(order))
 
     @mock.patch('mkt.api.middleware.get_carrier')
     def test_success(self, gc):
