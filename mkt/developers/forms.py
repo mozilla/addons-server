@@ -917,7 +917,14 @@ class DevNewsletterForm(happyforms.Form):
 
     email = forms.EmailField(
         error_messages={'required':
-                        _lazy(u'Please enter a valid email address.')})
+                        _lazy(u'Please enter a valid email address.')},
+        widget=forms.TextInput(attrs={'required': '',
+                                      'placeholder':
+                                      _lazy(u'Your email address')}))
+    email_format = forms.ChoiceField(
+        widget=forms.RadioSelect(),
+        choices=(('H', 'HTML'), ('T', _lazy(u'Text'))),
+        initial='H')
     privacy = forms.BooleanField(
         error_messages={'required':
                         _lazy(u'You must agree to the Privacy Policy.')})

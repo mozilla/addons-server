@@ -51,6 +51,7 @@ def landing(request):
         try:
             basket.subscribe(data['email'],
                              'app-dev',
+                             format=data['email_format'],
                              source_url=settings.SITE_URL)
             messages.success(request, _('Thank you for subscribing!'))
             return redirect('ecosystem.landing')

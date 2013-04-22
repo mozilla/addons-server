@@ -36,14 +36,16 @@ class TestLanding(amo.tests.TestCase):
 
     @mock.patch('basket.subscribe')
     def test_newsletter_form_valid(self, subscribe_mock):
-        d = {'email': 'a@b.cd', 'privacy': True, 'country': 'us'}
+        d = {'email': 'a@b.cd', 'email_format': 'T', 'privacy': True,
+             'country': 'us'}
         r = self.client.post(self.url, d)
         self.assert3xx(r, reverse('ecosystem.landing'))
         assert subscribe_mock.called
 
     @mock.patch('basket.subscribe')
     def test_newsletter_form_invalid(self, subscribe_mock):
-        d = {'email': '', 'privacy': True, 'country': 'us'}
+        d = {'email': '', 'email_format': 'T', 'privacy': True,
+             'country': 'us'}
         r = self.client.post(self.url, d)
         eq_(r.status_code, 200)
         self.assertFormError(r, 'newsletter_form', 'email',
@@ -53,7 +55,8 @@ class TestLanding(amo.tests.TestCase):
     @mock.patch('basket.subscribe')
     def test_newsletter_form_exception(self, subscribe_mock):
         subscribe_mock.side_effect = basket.BasketException
-        d = {'email': 'a@b.cd', 'privacy': True, 'country': 'us'}
+        d = {'email': 'a@b.cd', 'email_format': 'T', 'privacy': True,
+             'country': 'us'}
         r = self.client.post(self.url, d)
         eq_(r.status_code, 200)
         eq_(pq(r.content)('.notification-box.error h2').text(),
