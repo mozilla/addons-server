@@ -49,7 +49,7 @@ In order to return the most relevant results for the consumer, the API attempts
 to detect and filter responses by region and language. Additionally, it is
 possible to globally restrict responses by device type and carrier.
 
-The API will report which filters are implemented via the URL-encoded 
+The API will report which filters are implemented via the URL-encoded
 `X-API-Filter` header in responses::
 
     X-API-Filter: lang=en-US&device=&region=us&carrier=
@@ -163,8 +163,24 @@ Marketplace provides OAuth 1.0a, allowing third-party apps to interact with its
 API.
 
 When you are first developing your API to communicate with the Marketplace, you
-should use the development server to test your API. When it's complete, you can
-request a production token.
+should use the development server to test your API.
+
+Production server
+~~~~~~~~~~~~~~~~~
+
+The production server is at https://marketplace.firefox.com.
+
+
+1. Log in using Persona:
+   https://marketplace.firefox.com/login
+
+2. Once logged in, read and accept the terms of service for the Marketplace
+   at: https://marketplace.firefox.com/developers/terms
+
+3. At https://marketplace.firefox.com/developers/api provide the name of
+   the app that will use the key, and the URI that Marketplace's OAuth provide
+   will redirect to after the user grants permission to your app. You may then
+   generate a key pair for use in your application.
 
 Development server
 ~~~~~~~~~~~~~~~~~~
@@ -174,30 +190,6 @@ The development server is at https://marketplace-dev.allizom.org.
 We make no guarantees on the uptime of the development server. Data is
 regularly purged, causing the deletion of apps and tokens.
 
-1. Login to the development server using Persona:
-   https://marketplace-dev.allizom.org/login
-
-2. Once logged in, read and accept the terms of service for the Marketplace
-   at: https://marketplace-dev.allizom.org/developers/terms
-
-3.  At https://marketplace-dev.allizom.org/developers/api provide the name of
-   the app that will use the key, and the URI that Marketplace's OAuth provide
-   will redirect to after the user grants permission to your app. You may then
-   generate a key pair for use in your application.
-
-Production server
-~~~~~~~~~~~~~~~~~
-
-The production server is at https://marketplace.firefox.com.
-
-1. Login to the production server using Persona:
-   https://marketplace.firefox.com
-
-2. Once logged in, read and accept the terms of service for the Marketplace
-   at: https://marketplace.firefox.com/developers/terms
-
-3. Currently you cannot generate your own tokens. Please contact a `Marketplace
-   representative`_.
 
 Using OAuth Tokens
 ~~~~~~~~~~~~~~~~~~
