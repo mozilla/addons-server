@@ -15,6 +15,7 @@
                     console.log('[potato][iframe] n.id.request cancelled');
                     postBack('navigator.id.request:cancel', true);
                 };
+                console.log('[potato][iframe] Calling navigator.id.request()')
                 navigator.id.request(body);
                 break;
             case 'navigator.id.logout':
@@ -54,8 +55,10 @@
         // Once this functionality lands in the normal include we can stop
         // doing this special case. See bug 821351.
         s.src = document.body.attributes.getNamedItem('data-native-persona-url').value;
+        console.log('[potato][iframe] Using native persona');
     } else {
         s.src = document.body.attributes.getNamedItem('data-persona-url').value;
+        console.log('[potato][iframe] Using standard persona');
     }
     document.body.appendChild(s);
 
