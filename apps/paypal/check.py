@@ -74,25 +74,6 @@ class Check(object):
             self.failure(test_id, msg)
             return
 
-        token = premium.paypal_permissions_token
-        if not token:
-            self.state['permissions'] = False
-            self.failure(test_id, msg)
-            return
-
-        try:
-            status = paypal.check_permission(token, ['REFUND'])
-            if not status:
-                self.state['permissions'] = False
-                self.failure(test_id, _('No permission to do refunds.'))
-            else:
-                self.pass_(test_id)
-        except paypal.PaypalError:
-            self.state['permissions'] = False
-            self.failure(test_id, msg)
-            log.info('Refund permission check returned an error '
-                     'for %s' % id, exc_info=True)
-
     def check_currencies(self):
         """Check that we've got the currencies."""
         test_id = 'currencies'

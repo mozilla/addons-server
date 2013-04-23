@@ -204,7 +204,6 @@ class AddonPremium(amo.models.ModelBase):
     """Additions to the Addon model that only apply to Premium add-ons."""
     addon = models.OneToOneField('addons.Addon')
     price = models.ForeignKey(Price, blank=True, null=True)
-    paypal_permissions_token = models.CharField(max_length=255, blank=True)
 
     class Meta:
         db_table = 'addons_premium'
@@ -229,26 +228,6 @@ class AddonPremium(amo.models.ModelBase):
     def is_complete(self):
         return bool(self.addon and self.price and
                     self.addon.paypal_id and self.addon.support_email)
-
-    def has_permissions_token(self):
-        """
-        Have we got a permissions token. If you've got 'should_ignore_paypal'
-        enabled, then it will just happily return True.
-        """
-        return bool(paypal.should_ignore_paypal() or
-                    self.paypal_permissions_token)
-
-    def has_valid_permissions_token(self):
-        """
-        Have we got a valid permissions token by pinging PayPal. If you've got
-        'should_ignore_paypal', then it will just happily return True.
-        """
-        if paypal.should_ignore_paypal():
-            return True
-        if not self.paypal_permissions_token:
-            return False
-        return paypal.check_permission(self.paypal_permissions_token,
-                                       ['REFUND'])
 
     def supported_currencies(self):
         """A hook for currency filtering."""

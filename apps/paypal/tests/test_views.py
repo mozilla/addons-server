@@ -226,6 +226,7 @@ class TestPaypalSolitude(PaypalTest):
 
 @patch('paypal.views.requests.post')
 class TestPaypal(PaypalTest):
+    fixtures = ['base/users']
 
     def test_not_verified(self, urlopen):
         urlopen.return_value = self.urlopener('xxx')
@@ -298,7 +299,8 @@ class TestPaypal(PaypalTest):
         urlopen.return_value = self.urlopener('VERIFIED')
         add = Addon.objects.create(type=amo.ADDON_EXTENSION)
         con = Contribution.objects.create(addon_id=add.pk,
-                         transaction_id=sample_contribution['tracking_id'])
+                         transaction_id=sample_contribution['tracking_id'],
+                         user=UserProfile.objects.all()[0])
 
         for type_ in [amo.CONTRIB_VOLUNTARY, amo.CONTRIB_PURCHASE]:
             con.update(type=type_)

@@ -81,8 +81,6 @@ database:
                 - average_daily_downloads
                 - average_daily_users
                 - total_contributions
-        addons_premium:
-            nullify: paypal_permissions_token
         addons_users:
             delete:
                 listed: 0

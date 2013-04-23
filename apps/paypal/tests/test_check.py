@@ -49,28 +49,6 @@ class TestCheck(amo.tests.TestCase):
         self.check.check_id()
         assert not self.check.passed, self.check.state
 
-    @patch('paypal.check_permission')
-    def test_check_refund(self, check_permission):
-        check_permission.return_value = True
-        self.check.check_refund()
-        assert self.check.passed, self.check.state
-
-    @patch('paypal.check_permission')
-    def test_check_refund_fails(self, check_permission):
-        check_permission.return_value = False
-        self.check.check_refund()
-        assert not self.check.passed, self.check.state
-
-    def test_check_refund_no_token(self):
-        self.addon.premium.paypal_permission_token = ''
-        self.check.check_refund()
-        assert not self.check.passed, self.check.state
-
-    def test_check_refund_no_premium(self):
-        self.addon.premium = None
-        self.check.check_refund()
-        assert not self.check.passed, self.check.state
-
     @patch('paypal.get_paykey')
     def test_check_paykey(self, get_paykey):
         self.check.check_currencies()

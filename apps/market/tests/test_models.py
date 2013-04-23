@@ -38,36 +38,6 @@ class TestPremium(amo.tests.TestCase):
         self.tier_one.update(price=Decimal('0.00'))
         eq_(ap.has_price(), False)
 
-    @mock.patch('paypal.should_ignore_paypal', lambda: False)
-    def test_has_permissions_token(self):
-        ap = AddonPremium(addon=self.addon)
-        assert not ap.has_permissions_token()
-        ap.paypal_permissions_token = 'asd'
-        assert ap.has_permissions_token()
-
-    @mock.patch('paypal.should_ignore_paypal', lambda: True)
-    def test_has_permissions_token_ignore(self):
-        ap = AddonPremium(addon=self.addon)
-        assert ap.has_permissions_token()
-        ap.paypal_permissions_token = 'asd'
-        assert ap.has_permissions_token()
-
-    @mock.patch('paypal.should_ignore_paypal', lambda: False)
-    @mock.patch('paypal.check_permission')
-    def test_has_valid_permissions_token(self, check_permission):
-        ap = AddonPremium(addon=self.addon)
-        assert not ap.has_valid_permissions_token()
-        check_permission.return_value = True
-        ap.paypal_permissions_token = 'some_token'
-        assert ap.has_valid_permissions_token()
-
-    @mock.patch('paypal.should_ignore_paypal', lambda: True)
-    def test_has_valid_permissions_token_ignore(self):
-        ap = AddonPremium(addon=self.addon)
-        assert ap.has_valid_permissions_token()
-        ap.paypal_permissions_token = 'asd'
-        assert ap.has_valid_permissions_token()
-
     def test_price_locale(self):
         ap = AddonPremium(addon=self.addon, price=self.tier_one)
         eq_(ap.get_price_locale('CAD'), 'CA$3.01')
