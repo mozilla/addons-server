@@ -87,4 +87,8 @@
 
         self.parent().toggleClass('active');
     });
+
+    $('.notification-box').on('click', function() {
+        $(this).addClass('hidden');
+    });
 })();
