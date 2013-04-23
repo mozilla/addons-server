@@ -4,7 +4,9 @@
       <tr class="listing-header">
         <th>{{ _('App') }}</th>
         <th>{{ _('Devices') }}</th>
+        <th>{{ _('Flags') }}</th>
         <th>{{ _('Status') }}</th>
+        <th>{{ _('Price') }}</th>
       </tr>
     </thead>
     <tbody>{rows}</tbody>
@@ -26,7 +28,14 @@
         </ul>
       </div>
     </td>
+    <td>
+      <% _.each(flags, function(flag) { %>
+        <div class="sprite-reviewer sprite-reviewer-<%= flag.suffix %>"
+             title="<%= flag.title %>"></div>
+      <% }); %>
+    </td>
     <td><%= status %></td>
+    <td><%= price %></td>
   </tr>
 </script>
 
