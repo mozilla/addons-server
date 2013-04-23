@@ -56,12 +56,14 @@ class Command(BaseCommand):
                     try:
                         ac.save()
                     except IntegrityError:
-                        print('[OK] Skipped CollectionAddon #%s - already fave '
-                             '(from Collection #%s)' % (ac.id, faves_id))
+                        ac.delete()
+                        print('[OK] Removed CollectionAddon #%s - already '
+                             'fave (from Collection #%s)' % (ac.id, faves_id))
                         unchanged += 1
                     else:
-                        print('[OK] Changed CollectionAddon #%s (from Collection '
-                              '#%s to #%s)' % (ac.id, old_id, faves_id))
+                        print('[OK] Changed CollectionAddon #%s (from '
+                              'Collection #%s to #%s)' % (ac.id, old_id,
+                                                          faves_id))
                         changed += 1
                 else:
                     print('[OK] Skipped CollectionAddon #%s (from Collection '
@@ -69,4 +71,5 @@ class Command(BaseCommand):
                     unchanged += 1
 
         print '\nDone. Total time: %s seconds' % (time() - t_start)
-        print 'Changed: %s. Unchanged: %s.' % (changed, unchanged)
+        print 'Added to favourites: %s. Already favourited: %s.' % (changed,
+                                                                    unchanged)
