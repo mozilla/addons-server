@@ -51,8 +51,7 @@ class Command(BaseCommand):
 
             for ac in all_ac:
                 if ac.collection_id != faves_id:
-                    print('[OK] Changed CollectionAddon #%s (from Collection '
-                          '#%s to #%s)' % (ac.id, ac.collection_id, faves_id))
+                    old_id = ac.collection_id
                     ac.collection_id = faves_id
                     try:
                         ac.save()
@@ -61,6 +60,8 @@ class Command(BaseCommand):
                              '(from Collection #%s)' % (ac.id, faves_id))
                         unchanged += 1
                     else:
+                        print('[OK] Changed CollectionAddon #%s (from Collection '
+                              '#%s to #%s)' % (ac.id, old_id, faves_id))
                         changed += 1
                 else:
                     print('[OK] Skipped CollectionAddon #%s (from Collection '
