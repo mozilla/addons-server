@@ -42,7 +42,8 @@ class Command(BaseCommand):
                 continue
 
             all_ac = (CollectionAddon.objects.filter(user_id=user_id)
-                      .exclude(collection__type=amo.COLLECTION_FAVORITES))
+                      .exclude(collection__type=amo.COLLECTION_FAVORITES)
+                      .filter(created__gt='2013-01-01', created__lt='2013-04-13'))
             if not all_ac.exists():
                 print '[OK] User #%s has the correct favourites' % user_id
                 continue
