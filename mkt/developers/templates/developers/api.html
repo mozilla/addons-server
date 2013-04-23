@@ -20,7 +20,6 @@
       {% if not roles %}
         <form method="POST">
           {{ csrf() }}
-          <div class="listing-footer">
           <table>
             <tbody>
               <tr>
@@ -31,10 +30,13 @@
               </tr>
               </tbody>
           </table>
+          <div class="listing-footer">
             <button>{{ _('Create') }}</button>
           </div>
         </form>
       {% endif %}
+    </div>
+    <div class="island devhub-form">
       {% for consumer in consumers %}
         <table>
           <tbody>
