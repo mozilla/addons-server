@@ -724,6 +724,13 @@ class TestAppDetail(BaseOAuth, AMOPaths):
             data={'region': list(regions.ADULT_EXCLUDED)[0].slug})
         eq_(res.status_code, 451)
 
+    def test_packaged_manifest_url(self):
+        app = Webapp.objects.get(pk=337141)
+        app.update(is_packaged=True)
+        res = self.client.get(self.get_url, pk=app.pk)
+        data = json.loads(res.content)
+        eq_(app.get_manifest_url(), data['manifest_url'])
+
 
 class TestCategoryHandler(BaseOAuth):
 

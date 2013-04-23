@@ -49,7 +49,7 @@ def app_to_dict(app, currency=None, user=None):
         'is_packaged': app.is_packaged,
         'listed_authors': [{'name': author.name}
                            for author in app.listed_authors],
-        'manifest_url': app.manifest_url,
+        'manifest_url': app.get_manifest_url(),
         'previews': PreviewResource().dehydrate_objects(app.previews.all()),
         'premium_type': amo.ADDON_PREMIUM_API[app.premium_type],
         'public_stats': app.public_stats,
