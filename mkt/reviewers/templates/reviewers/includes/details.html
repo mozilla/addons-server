@@ -5,6 +5,8 @@
   {% endif %}
   <h2>{{ _('Details') }}</h2>
   <dl>
+    <dt>{{ _('ID') }}</dt>
+    <dd>{{ product.id }}</dd>
     <dt>{{ _('Type') }}</dt>
     <dd>{{ _('Packaged app') if product.is_packaged else _('Hosted app') }}</dd>
     <dt>{{ _('Status') }}</dt>
