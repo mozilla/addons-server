@@ -47,7 +47,7 @@ class TestAppToDictPrices(amo.tests.TestCase):
     def setUp(self):
         self.app = amo.tests.app_factory()
         price = Price.objects.get(pk=1)
-        AddonPremium.objects.create(addon=self.app, price=price)
+        self.premium = AddonPremium.objects.create(addon=self.app, price=price)
 
     def test_some_price(self):
         res = app_to_dict(self.app)
@@ -59,3 +59,9 @@ class TestAppToDictPrices(amo.tests.TestCase):
             res = app_to_dict(self.app)
             eq_(res['price'], Decimal('5.01'))
             eq_(res['price_locale'], u'5,01\xa0\u20ac')
+
+    def test_missing_price(self):
+        self.premium.update(price=None)
+        res = app_to_dict(self.app)
+        eq_(res['price'], None)
+        eq_(res['price_locale'], None)

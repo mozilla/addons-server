@@ -1,5 +1,10 @@
+import commonware.log
+
 import amo
 from amo.utils import no_translation
+
+
+log = commonware.log.getLogger('z.webapps')
 
 
 def get_locale_properties(manifest, property, default_locale=None):
@@ -56,8 +61,12 @@ def app_to_dict(app, currency=None, user=None):
     }
 
     if app.premium:
-        data['price'] = app.premium.get_price(currency)
-        data['price_locale'] = app.premium.get_price_locale(currency)
+        try:
+            data['price'] = app.premium.get_price(currency)
+            data['price_locale'] = app.premium.get_price_locale(currency)
+        except AttributeError:
+            # Until bug 864569 gets fixed.
+            log.info('Missing price data for premium app: %s' % app.pk)
 
     with no_translation():
         data['device_types'] = [n.api_name
