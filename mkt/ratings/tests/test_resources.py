@@ -1,3 +1,4 @@
+from datetime import datetime
 import json
 
 from nose.tools import eq_
@@ -53,6 +54,14 @@ class TestRatingResource(BaseOAuth, AMOPaths):
         res, data = self._get_single()
         eq_(len(data['objects']), 1)
         eq_(data['info']['slug'], self.app.app_slug)
+
+    def test_get_timestamps(self):
+        fmt = '%Y-%m-%dT%H:%M:%S'
+        rev = Review.objects.create(addon=self.app, user=self.user, body='yes')
+        res = self.client.get(get_url('rating', rev.pk))
+        data = json.loads(res.content)
+        self.assertCloseToNow(datetime.strptime(data['modified'], fmt))
+        self.assertCloseToNow(datetime.strptime(data['created'], fmt))
 
     def _get_filter(self, client, key):
         Review.objects.create(addon=self.app, user=self.user, body='yes')

@@ -374,6 +374,14 @@ Cross Origin
 All APIs are available with `Cross-Origin Resource Sharing`_ unless otherwise
 specified.
 
+
+Timestamps
+==========
+
+Timestamps use the `%Y-%m-%dT%H:%M:%S` format (`Python's strftime notation`_),
+using the `America/Los_Angeles time zone`_. 
+
+
 .. _`MDN`: https://developer.mozilla.org
 .. _`Marketplace representative`: marketplace-team@mozilla.org
 .. _`django-tastypie`: https://github.com/toastdriven/django-tastypie
@@ -384,3 +392,5 @@ specified.
 .. _`list of regions`: https://github.com/mozilla/zamboni/blob/master/mkt/constants/regions.py
 .. _`RFC 3060 languages`: http://tools.ietf.org/html/rfc3066
 .. _`Gaia`: https://developer.mozilla.org/en-US/docs/Mozilla/Firefox_OS/Platform/Gaia
+.. _`Python's strftime notation`: http://docs.python.org/2/library/time.html#time.strftime
+.. _`America/Los_Angeles time zone`: https://en.wikipedia.org/wiki/America/Los_Angeles

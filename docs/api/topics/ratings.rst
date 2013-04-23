@@ -47,7 +47,9 @@ _`List`
                 {
                     "app": "/api/v1/apps/app/18/",
                     "body": "This app is top notch. Aces in my book!",
+                    "created": "2013-04-17T15:25:16",
                     "is_author": true,
+                    "modified": "2013-04-17T15:34:19",
                     "rating": 5,
                     "resource_uri": "/api/v1/apps/rating/19/",
                     "report_spam": "/api/v1/apps/rating/19/flag",
@@ -88,7 +90,9 @@ _`Detail`
         {
             "app": "/api/v1/apps/app/18/",
             "body": "This app is top notch. Aces in my book!",
+            "created": "2013-04-17T15:25:16",
             "is_author": true,
+            "modified": "2013-04-17T15:34:19",
             "rating": 5,
             "resource_uri": "/api/v1/apps/rating/19/",
             "user": {

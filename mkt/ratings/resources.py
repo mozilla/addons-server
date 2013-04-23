@@ -47,7 +47,7 @@ class RatingResource(CORSResource, MarketplaceModelResource):
         authentication = (SharedSecretAuthentication(),
                           OptionalOAuthAuthentication())
         authorization = AnonymousReadOnlyAuthorization()
-        fields = ['rating', 'body']
+        fields = ['rating', 'body', 'modified', 'created']
 
         filtering = {
             'app': ('exact',),
