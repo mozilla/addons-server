@@ -18,7 +18,7 @@ from access.models import Group
 from amo.helpers import absolutify
 from amo.urlresolvers import reverse
 from amo.utils import cache_ns_key, send_mail
-from addons.models import Addon
+from addons.models import Addon, Persona
 from devhub.models import ActivityLog
 from editors.sql_model import RawSQLModel
 from translations.fields import save_signal, TranslatedField
@@ -658,3 +658,39 @@ class RereviewQueue(amo.models.ModelBase):
                     details={'comments': message})
         else:
             amo.log(event, addon, addon.current_version)
+
+
+class RereviewQueueTheme(amo.models.ModelBase):
+    theme = models.ForeignKey(Persona, on_delete=Persona)
+    header = models.CharField(max_length=72, blank=True, default='')
+    footer = models.CharField(max_length=72, blank=True, default='')
+
+    class Meta:
+        db_table = 'rereview_queue_theme'
+
+    def __str__(self):
+        return str(self.id)
+
+    @property
+    def header_path(self):
+        return self.theme.get_mirror_url(self.header, cached=True)
+
+    @property
+    def footer_path(self):
+        return self.theme.get_mirror_url(self.footer, cached=True)
+
+    @property
+    def header_url(self):
+        return self.theme.header_url.replace('header', 'pending_header')
+
+    @property
+    def footer_url(self):
+        return self.theme.footer_url.replace('footer', 'pending_footer')
+
+    @amo.cached_property
+    def original_header_path(self):
+        return self.header_path.replace('pending_header', 'header')
+
+    @amo.cached_property
+    def original_footer_path(self):
+        return self.footer_path.replace('pending_footer', 'footer')

@@ -1673,7 +1673,7 @@ class Persona(caching.CachingMixin, models.Model):
     movers = models.FloatField(null=True, db_index=True)
     popularity = models.IntegerField(null=False, default=0, db_index=True)
     license = models.PositiveIntegerField(choices=amo.PERSONA_LICENSES_CHOICES,
-        null=True, blank=True)
+                                          null=True, blank=True)
 
     objects = caching.CachingManager()
 
@@ -1703,7 +1703,7 @@ class Persona(caching.CachingMixin, models.Model):
     def _image_path(self, filename):
         return os.path.join(settings.ADDONS_PATH, str(self.addon.id), filename)
 
-    def get_mirror_url(self, filename):
+    def get_mirror_url(self, filename, cached=False):
         host = (settings.PRIVATE_MIRROR_URL if self.addon.is_disabled
                 else settings.LOCAL_MIRROR_URL)
         image_url = posixpath.join(host, str(self.addon.id), filename or '')
@@ -1712,7 +1712,11 @@ class Persona(caching.CachingMixin, models.Model):
             modified = int(time.mktime(self.addon.modified.timetuple()))
         else:
             modified = 0
-        return '%s?%s' % (image_url, modified)
+
+        if cached:
+            return image_url
+        else:
+            return '%s?%s' % (image_url, modified)
 
     @amo.cached_property
     def thumb_url(self):

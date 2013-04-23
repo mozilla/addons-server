@@ -31,13 +31,13 @@ from applications.models import Application, AppVersion
 import amo
 import amo.utils
 from amo import messages
-from amo.decorators import json_view, login_required, post_required, write
+from amo.decorators import json_view, login_required, post_required
 from amo.helpers import absolutify, loc, urlparams
 from amo.utils import escape_all, HttpResponseSendFile, MenuItem
 from amo.urlresolvers import reverse
 from access import acl
 from addons import forms as addon_forms
-from addons.decorators import addon_view, can_become_premium
+from addons.decorators import addon_view
 from addons.models import Addon, AddonUser
 from addons.views import BaseFilter
 from devhub.decorators import dev_required
@@ -48,7 +48,7 @@ from editors.helpers import ReviewHelper, get_position
 from files.models import File, FileUpload, Platform
 from files.utils import parse_addon
 from lib.pay_server import client
-from market.models import AddonPremium, Refund
+from market.models import Refund
 from paypal.check import Check
 import paypal
 from search.views import BaseAjaxSearch
@@ -337,6 +337,7 @@ def edit_theme(request, addon_id, addon, theme=False):
 
     return jingo.render(request, 'devhub/personas/edit.html', {
         'addon': addon,
+        'persona': addon.persona,
         'form': form,
         'owner_form': owner_form
     })
@@ -1208,7 +1209,7 @@ def image_status(request, addon_id, addon, theme=False):
 
 
 @json_view
-def ajax_upload_image(request, upload_type):
+def ajax_upload_image(request, upload_type, addon_id=None):
     errors = []
     upload_hash = ''
 

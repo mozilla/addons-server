@@ -3,10 +3,58 @@
         return;
     }
 
-    var $ownerForm = $('.owner-email form');
+    $(document).delegate('.email-autocomplete', 'keyup paste', validateUser);
+    validateUser();
 
-    var origVal = $('input[name=owner]').val(),
-        lastVal;
+    initOwnership();
+
+    var $ownerForm = $('.owner-email form');
+    $ownerForm.delegate('input, select, textarea', 'change keyup paste', function(e) {
+        checkOwnerValid();
+    });
+    checkOwnerValid();
+
+    // Validate the form.
+    var $form = $('#submit-persona form');
+    $form.delegate('input, select, textarea', 'change keyup paste', function(e) {
+        checkValid(e.target.form);
+    });
+    checkValid($form[0]);
+
+    initLicense();
+    initCharCount();
+    initPreview();
+    initReuploadTheme();
+
+
+    function checkOwnerValid() {
+        $ownerForm.find('button').prop('disabled', !$ownerForm.find('input').hasClass('valid'));
+    }
+
+
+    function toggleOwnership() {
+        if (location.hash == '#ownership') {
+            $('.owner-email').removeClass('hidden').find('input').focus();
+        } else {
+            $('.owner-email').addClass('hidden').find('input').blur();
+        }
+    }
+
+    function initOwnership() {
+        $('.transfer-ownership').click(function(e) {
+            if (location.hash == '#ownership') {
+                location.hash = '';
+                e.preventDefault();
+            }
+        });
+        window.addEventListener('hashchange', function() {
+            toggleOwnership();
+        }, false);
+        toggleOwnership();
+    }
+
+
+    var lastVal;
     function validateUser(e) {
         var $this = e ? $(this) :  $('.email-autocomplete');
         if ($this.val() && $this.val().length > 2) {
@@ -43,114 +91,50 @@
         }
     }
 
-    $(document).delegate('.email-autocomplete', 'keyup paste', validateUser);
-    validateUser();
-
-    function toggleOwnership() {
-        if (location.hash == '#ownership') {
-            $('.owner-email').removeClass('hidden').find('input').focus();
-        } else {
-            $('.owner-email').addClass('hidden').find('input').blur();
-        }
-    }
-
-    $('.transfer-ownership').click(function(e) {
-        if (location.hash == '#ownership') {
-            location.hash = '';
-            e.preventDefault();
-        }
-    });
-
-    window.addEventListener('hashchange', function() {
-        toggleOwnership();
-    }, false);
-    toggleOwnership();
-
-    function checkOwnerValid() {
-        $ownerForm.find('button').prop('disabled', !$ownerForm.find('input').hasClass('valid'));
-    }
-    $ownerForm.delegate('input, select, textarea', 'change keyup paste', function(e) {
-        checkOwnerValid();
-    });
-    checkOwnerValid();
-
-    function hex2rgb(hex) {
-        var hex = parseInt((hex.indexOf('#') > -1 ? hex.substring(1) : hex), 16);
-        return {
-            r: hex >> 16,
-            g: (hex & 0x00FF00) >> 8,
-            b: hex & 0x0000FF
-        };
-    }
-
-    function loadUnsaved() {
-        return JSON.parse($('input[name="unsaved_data"]').val() || '{}');
-    }
-
-    function postUnsaved(data) {
-        $('input[name="unsaved_data"]').val(JSON.stringify(data));
-    }
-
-    var licensesByClass = {
-        'copyr': {
-            'id': 1,
-            'name': gettext('All Rights Reserved')
-        },
-        'cc-attrib': {
-            'id': 2,
-            'name': gettext('Creative Commons Attribution 3.0'),
-            'url': 'http://creativecommons.org/licenses/by/3.0/'
-        },
-        'cc-attrib cc-noncom': {
-            'id': 3,
-            'name': gettext('Creative Commons Attribution-NonCommercial 3.0'),
-            'url': 'http://creativecommons.org/licenses/by-nc/3.0/'
-        },
-        'cc-attrib cc-noncom cc-noderiv': {
-            'id': 4,
-            'name': gettext('Creative Commons Attribution-NonCommercial-NoDerivs 3.0'),
-            'url': 'http://creativecommons.org/licenses/by/3.0/'
-        },
-        'cc-attrib cc-noncom cc-share': {
-            'id': 5,
-            'name': gettext('Creative Commons Attribution-NonCommercial-Share Alike 3.0'),
-            'url': 'http://creativecommons.org/licenses/by-nc-sa/3.0/'
-        },
-        'cc-attrib cc-noderiv': {
-            'id': 6,
-            'name': gettext('Creative Commons Attribution-NoDerivs 3.0'),
-            'url': 'http://creativecommons.org/licenses/by-nd/3.0/'
-        },
-        'cc-attrib cc-share': {
-            'id': 7,
-            'name': gettext('Creative Commons Attribution-ShareAlike 3.0'),
-            'url': 'http://creativecommons.org/licenses/by/3.0/'
-        }
-    };
-    // Build an object for lookups by id: {{1: 'copyr'}, {2: 'cc-attrib'}, ...}.
-    var licenseClassesById = _.object(_.map(licensesByClass, function(v, k) {
-        return [v.id, k];
-    }));
-
-    function checkValid(form) {
-        if (form) {
-            $(form).find('button[type=submit]').attr('disabled', !form.checkValidity());
-        }
-    }
-
-    // Validate the form.
-    var $form = $('#submit-persona form');
-    $form.delegate('input, select, textarea', 'change keyup paste', function(e) {
-        checkValid(e.target.form);
-    });
-    checkValid($form[0]);
-
-    initLicense();
-    initCharCount();
-    initPreview();
 
     function initLicense() {
         var $licenseField = $('#id_license');
+
+        // Build an object for lookups by id: {{1: 'copyr'}, {2: 'cc-attrib'}, ...}.
+        var licensesByClass = {
+            'copyr': {
+                'id': 1,
+                'name': gettext('All Rights Reserved')
+            },
+            'cc-attrib': {
+                'id': 2,
+                'name': gettext('Creative Commons Attribution 3.0'),
+                'url': 'http://creativecommons.org/licenses/by/3.0/'
+            },
+            'cc-attrib cc-noncom': {
+                'id': 3,
+                'name': gettext('Creative Commons Attribution-NonCommercial 3.0'),
+                'url': 'http://creativecommons.org/licenses/by-nc/3.0/'
+            },
+            'cc-attrib cc-noncom cc-noderiv': {
+                'id': 4,
+                'name': gettext('Creative Commons Attribution-NonCommercial-NoDerivs 3.0'),
+                'url': 'http://creativecommons.org/licenses/by/3.0/'
+            },
+            'cc-attrib cc-noncom cc-share': {
+                'id': 5,
+                'name': gettext('Creative Commons Attribution-NonCommercial-Share Alike 3.0'),
+                'url': 'http://creativecommons.org/licenses/by-nc-sa/3.0/'
+            },
+            'cc-attrib cc-noderiv': {
+                'id': 6,
+                'name': gettext('Creative Commons Attribution-NoDerivs 3.0'),
+                'url': 'http://creativecommons.org/licenses/by-nd/3.0/'
+            },
+            'cc-attrib cc-share': {
+                'id': 7,
+                'name': gettext('Creative Commons Attribution-ShareAlike 3.0'),
+                'url': 'http://creativecommons.org/licenses/by/3.0/'
+            }
+        };
+        var licenseClassesById = _.object(_.map(licensesByClass, function(v, k) {
+            return [v.id, k];
+        }));
 
         function licenseUpdate(updateList) {
             // Select "Yes" if nothing was selected (this is the implied answer).
@@ -171,14 +155,14 @@
             }
             var license = licensesByClass[licenseClass];
             if (license) {
-                var licenseTxt = license['name'];
-                if (license['url']) {
+                var licenseTxt = license.name;
+                if (license.url) {
                     licenseTxt = format('<a href="{0}" target="_blank">{1}</a>',
-                                         license['url'], licenseTxt);
+                                         license.url, licenseTxt);
                 }
                 var $p = $('#persona-license');
                 $p.show().find('#cc-license').html(licenseTxt).attr('class', 'license icon ' + licenseClass);
-                $licenseField.val(license['id']);
+                $licenseField.val(license.id);
                 if (updateList) {
                     updateLicenseList();
                 }
@@ -249,8 +233,8 @@
         updateLicenseList();
     }
 
-    var POST = {};
 
+    var POST = {};
     function initPreview() {
         var $d = $('#persona-design'),
             upload_finished = function(e) {
@@ -318,8 +302,8 @@
             });
             // TODO(cvan): We need to link to the CDN-served Persona images since
             //             Personas cannot reference moz-filedata URIs.
-            data['header'] = data['headerURL'] = $d.find('#persona-header .preview').attr('src');
-            data['footer'] = data['footerURL'] = $d.find('#persona-footer .preview').attr('src');
+            data.header = data.headerURL = $d.find('#persona-header .preview').attr('src');
+            data.footer = data.footerURL = $d.find('#persona-footer .preview').attr('src');
             $preview.attr('data-browsertheme', JSON.stringify(data));
             var accentcolor = $d.find('#id_accentcolor').attr('data-rgb'),
                 textcolor = $d.find('#id_textcolor').val();
@@ -366,4 +350,38 @@
         });
     }
 
+
+    function initReuploadTheme() {
+        $('.reupload').click(_pd(function() {
+            $('.theme-design').slideToggle();
+            $('.reupload, .theme-preview').toggle();
+        }));
+    }
+
+
+    function checkValid(form) {
+        if (form) {
+            $(form).find('button[type=submit]').attr('disabled', !form.checkValidity());
+        }
+    }
+
+
+    function loadUnsaved() {
+        return JSON.parse($('input[name="unsaved_data"]').val() || '{}');
+    }
+
+
+    function postUnsaved(data) {
+        $('input[name="unsaved_data"]').val(JSON.stringify(data));
+    }
+
+
+    function hex2rgb(hex) {
+        hex = parseInt((hex.indexOf('#') > -1 ? hex.substring(1) : hex), 16);
+        return {
+            r: hex >> 16,
+            g: (hex & 0x00FF00) >> 8,
+            b: hex & 0x0000FF
+        };
+    }
 })();
