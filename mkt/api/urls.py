@@ -9,6 +9,7 @@ from mkt.api.resources import (AppResource, CategoryResource, ConfigResource,
                                ValidationResource)
 from mkt.ratings.resources import RatingResource
 from mkt.search.api import SearchResource, WithFeaturedResource
+from mkt.stats.api import GlobalStatsResource
 
 
 api = Api(api_name='apps')
@@ -21,8 +22,10 @@ api.register(SearchResource())
 api.register(StatusResource())
 api.register(RatingResource())
 
+stats_api = Api(api_name='stats')
+stats_api.register(GlobalStatsResource())
 
-urls = services = Api(api_name='services')
+services = Api(api_name='services')
 services.register(ConfigResource())
 
 if settings.ALLOW_TASTYPIE_SERVICES:
@@ -33,5 +36,6 @@ if settings.ALLOW_TASTYPIE_SERVICES:
 
 urlpatterns = patterns('',
     url(r'^', include(api.urls)),
+    url(r'^', include(stats_api.urls)),
     url(r'^', include(services.urls))
 )
