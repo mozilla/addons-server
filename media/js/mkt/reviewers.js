@@ -96,15 +96,13 @@ function buildAppResultRow(app, review_url, statuses) {
     if (app.is_packaged) {
         flags.push({suffix: 'packaged-app', title: gettext('Packaged App')});
     }
-    if (app.current_version.has_info_request) {
-        flags.push({suffix: 'reviewer-info', title: gettext('More Information Requested')});
+    if (app.reviewer_flags.has_info_request) {
+        flags.push({suffix: 'info', title: gettext('More Information Requested')});
     }
-    if (app.current_version.has_editor_comment) {
+    if (app.reviewer_flags.has_comment) {
         flags.push({suffix: 'editor', title: gettext('Contains Editor Comment')});
     }
-    // TODO: This key doesn't exist on the app object...being developed.
-    // Markup and CSS are ready. Change this if sample key below is wrong.
-    if (app.current_version.escalated) {
+    if (app.reviewer_flags.is_escalated) {
         flags.push({suffix: 'escalated', title: gettext('Escalated')});
     }
     app.flags = flags;

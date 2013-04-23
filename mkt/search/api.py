@@ -89,12 +89,19 @@ class SearchResource(AppResource):
         bundle = super(SearchResource, self).dehydrate(bundle)
         bundle.data['absolute_url'] = absolutify(bundle.obj.get_detail_url())
 
-        # Add latest version status for reviewers.
+        # Add extra data for reviewers. Used in reviewer tool search.
         # TODO: When this no longer hits the db, use the field in ES.
         if acl.action_allowed(bundle.request, 'Apps', 'Review'):
+            version = bundle.obj.versions.latest()
+            file_ = version.all_files[0]
+
             bundle.data['latest_version_status'] = (
-                bundle.obj.versions.latest().all_files[0].status
-                if bundle.obj.is_packaged else None)
+                file_.status if bundle.obj.is_packaged else None)
+            bundle.data['reviewer_flags'] = {
+                'has_comment': version.has_editor_comment,
+                'has_info_request': version.has_info_request,
+                'is_escalated': bundle.obj.in_escalation_queue(),
+            }
 
         return bundle
 

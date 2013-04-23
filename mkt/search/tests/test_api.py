@@ -3,7 +3,7 @@ from datetime import datetime
 
 from django.contrib.auth.models import User
 
-from nose.tools import eq_
+from nose.tools import eq_, ok_
 
 import amo
 import mkt.regions
@@ -85,6 +85,10 @@ class TestApi(BaseOAuth, ESTestCase):
             eq_(obj['icons']['128'], self.webapp.get_icon_url(128))
             eq_(obj['absolute_url'], self.webapp.get_absolute_url())
             eq_(obj['resource_uri'], None)
+
+            # These only exists if requested by a reviewer.
+            ok_('latest_version_status' not in obj)
+            ok_('reviewer_flags' not in obj)
 
     def test_q(self):
         res = self.client.get(self.url + ({'q': 'something'},))
@@ -252,6 +256,22 @@ class TestApiReviewer(BaseOAuth, ESTestCase):
         eq_(res.status_code, 400)
         error = json.loads(res.content)['error_message']
         eq_(error.keys(), ['type'])
+
+    def test_extra_attributes(self):
+        version = self.webapp.versions.latest()
+        version.has_editor_comment = True
+        version.has_info_request = True
+        version.save()
+
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        obj = json.loads(res.content)['objects'][0]
+
+        # These only exist if requested by a reviewer.
+        eq_(obj['latest_version_status'], None)
+        eq_(obj['reviewer_flags']['has_comment'], True)
+        eq_(obj['reviewer_flags']['has_info_request'], True)
+        eq_(obj['reviewer_flags']['is_escalated'], False)
 
 
 class TestCategoriesWithFeatured(BaseOAuth, ESTestCase):
