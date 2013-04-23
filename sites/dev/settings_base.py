@@ -47,6 +47,8 @@ SLAVE_DATABASES = ['slave']
 SPHINX_HOST = private.SPHINX_HOST
 SPHINX_PORT = private.SPHINX_PORT
 
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+
 CACHES = {
     'default': {
         'BACKEND': 'caching.backends.memcached.CacheClass',
@@ -191,3 +193,7 @@ GOOGLE_ANALYTICS_CREDENTIALS = private.GOOGLE_ANALYTICS_CREDENTIALS
 MONOLITH_SERVER = 'https://monolith.allizom.org'
 
 GEOIP_URL = 'http://geo-dev.marketplace.allizom.org'
+
+AWS_ACCESS_KEY_ID = private.AWS_ACCESS_KEY_ID
+AWS_SECRET_ACCESS_KEY = private.AWS_SECRET_ACCESS_KEY
+AWS_STORAGE_BUCKET_NAME = private.AWS_STORAGE_BUCKET_NAME
