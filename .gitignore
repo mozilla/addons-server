@@ -33,3 +33,4 @@ tags
 vagrantconfig_local.yaml
 vagrant/manifests/classes/custom.pp
 node_modules
+*.signed.zip
