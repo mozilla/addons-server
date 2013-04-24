@@ -14,7 +14,7 @@ from files.models import FileUpload
 from users.models import UserProfile
 
 from mkt.api.tests.test_oauth import BaseOAuth
-from mkt.api.base import get_url
+from mkt.api.base import get_url, list_url
 from mkt.constants import APP_IMAGE_SIZES, carriers, regions
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import ContentRating, ImageAsset, Webapp
@@ -941,3 +941,31 @@ class TestPreviewHandler(BaseOAuth, AMOPaths):
                         {'resource_name': 'preview', 'pk': 123})
         res = self.client.get(self.get_url)
         eq_(res.status_code, 404)
+
+
+class TestRegionsCarriers(BaseOAuth, AMOPaths):
+
+    def test_regions_list(self):
+        res = self.client.get(list_url('region'))
+        data = json.loads(res.content)
+        eq_(set(r['slug'] for r in data['objects']),
+            set(r.slug for r in regions.ALL_REGIONS))
+
+    def test_region(self):
+        res = self.client.get(('api_dispatch_detail',
+                               {'resource_name': 'region', 'pk': 'co'}))
+        data = json.loads(res.content)
+        eq_(data['default_currency'], regions.CO.default_currency)
+
+    def test_carriers_list(self):
+        res = self.client.get(list_url('carrier'))
+        data = json.loads(res.content)
+        eq_(set(r['slug'] for r in data['objects']),
+            set(r.slug for r in carriers.CARRIERS))
+
+    def test_carrier(self):
+        res = self.client.get(('api_dispatch_detail',
+                               {'resource_name': 'carrier',
+                                'pk': 'telefonica'}))
+        data = json.loads(res.content)
+        eq_(data['id'], carriers.TELEFONICA.id)

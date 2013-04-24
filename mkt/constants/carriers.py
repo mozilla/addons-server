@@ -13,103 +13,103 @@ class UNKNOWN_CARRIER(CARRIER):
 
 class TELEFONICA(CARRIER):
     id = 1
-    name = 'Telefónica'
+    name = u'Telefónica'
     slug = 'telefonica'
 
 
 class AMERICA_MOVIL(CARRIER):
     id = 2
-    name = 'América Móvil'
+    name = u'América Móvil'
     slug = 'america_movil'
 
 
 class CHINA_UNICOM(CARRIER):
     id = 3
-    name = 'China Unicom'
+    name = u'China Unicom'
     slug = 'china_unicom'
 
 
 class DEUTCHE_TELEKOM(CARRIER):
     id = 4
-    name = 'Deutsche Telekom'
+    name = u'Deutsche Telekom'
     slug = 'deutsche_telekom'
 
 
 class ETISALAT(CARRIER):
     id = 5
-    name = 'Etisalat'
+    name = u'Etisalat'
     slug = 'etisalat'
 
 
 class HUTCHINSON_THREE_GROUP(CARRIER):
     id = 6
-    name = 'Hutchinson Three Group'
+    name = u'Hutchinson Three Group'
     slug = 'hutchinson_three_group'
 
 
 class KDDI(CARRIER):
     id = 7
-    name = 'KDDI'
+    name = u'KDDI'
     slug = 'kddi'
 
 
 class KT(CARRIER):
     id = 8
-    name = 'KT'
+    name = u'KT'
     slug = 'kt'
 
 
 class MEGAFON(CARRIER):
     id = 9
-    name = 'MegaFon'
+    name = u'MegaFon'
     slug = 'megafon'
 
 
 class QTEL(CARRIER):
     id = 10
-    name = 'Qtel'
+    name = u'Qtel'
     slug = 'qtel'
 
 
 class SINGTEL(CARRIER):
     id = 11
-    name = 'SingTel'
+    name = u'SingTel'
     slug = 'singtel'
 
 
 class SMART(CARRIER):
     id = 12
-    name = 'Smart'
+    name = u'Smart'
     slug = 'smart'
 
 
 class SPRINT(CARRIER):
     id = 13
-    name = 'Sprint'
+    name = u'Sprint'
     slug = 'sprint'
 
 
 class TELECOM_ITALIA_GROUP(CARRIER):
     id = 14
-    name = 'Telecom Italia Group'
+    name = u'Telecom Italia Group'
     slug = 'telecom_italia_group'
 
 
 class TELENOR(CARRIER):
     id = 15
-    name = 'Telenor'
+    name = u'Telenor'
     slug = 'telenor'
 
 
 class TMN(CARRIER):
     id = 16
-    name = 'TMN'
+    name = u'TMN'
     slug = 'tmn'
 
 
 class VIMPELCOM(CARRIER):
     id = 17
-    name = 'VimpelCom'
+    name = u'VimpelCom'
     slug = 'vimpelcom'
 
 

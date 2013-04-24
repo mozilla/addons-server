@@ -4,9 +4,9 @@ from django.conf.urls import include, patterns, url
 from tastypie.api import Api
 from tastypie_services.services import (ErrorResource, SettingsResource)
 from mkt.api.base import handle_500
-from mkt.api.resources import (AppResource, CategoryResource, ConfigResource,
-                               PreviewResource, StatusResource,
-                               ValidationResource)
+from mkt.api.resources import (AppResource, CarrierResource, CategoryResource,
+                               ConfigResource, PreviewResource, RegionResource,
+                               StatusResource, ValidationResource)
 from mkt.ratings.resources import RatingResource
 from mkt.search.api import SearchResource, WithFeaturedResource
 from mkt.stats.api import GlobalStatsResource
@@ -21,6 +21,8 @@ api.register(WithFeaturedResource())
 api.register(SearchResource())
 api.register(StatusResource())
 api.register(RatingResource())
+api.register(RegionResource())
+api.register(CarrierResource())
 
 stats_api = Api(api_name='stats')
 stats_api.register(GlobalStatsResource())

@@ -317,3 +317,79 @@ Site configuration
             },
             "version": null
         }
+
+Carriers
+=======
+
+
+.. http:get:: /api/v1/apps/carrier/
+
+    Returns a list of possible carriers for apps.
+
+    **Response**
+
+
+    :param meta: :ref:`meta-response-label`.
+    :param objects: A :ref:`listing <objects-response-label>` of :ref:`carriers <carrier-response-label>`.
+    :status 200: successfully completed.
+
+.. _carrier-response-label:
+
+.. http:get:: /api/v1/apps/carrier/<slug>/
+
+    Returns a carrier.
+
+    **Request**
+
+    Standard :ref:`list-query-params-label`.
+
+    **Response**
+
+    .. code-block:: json
+
+        {
+            "id": "1",
+            "name": "PhoneORama",
+            "resource_uri": "/api/v1/apps/carrier/phoneorama/",
+            "slug": "phoneorama"
+        }
+
+
+
+Regions
+=======
+
+
+.. http:get:: /api/v1/apps/region/
+
+    Returns a list of possible regions for apps.
+
+    **Response**
+
+
+    :param meta: :ref:`meta-response-label`.
+    :param objects: A :ref:`listing <objects-response-label>` of :ref:`regions <region-response-label>`.
+    :status 200: successfully completed.
+
+.. _region-response-label:
+
+.. http:get:: /api/v1/apps/region/<slug>/
+
+    Returns a region.
+
+    **Request**
+
+    Standard :ref:`list-query-params-label`.
+
+    **Response**
+
+    .. code-block:: json
+
+        {
+            "id": "1",
+            "name": "Appistan",
+            "resource_uri": "/api/v1/apps/region/ap/",
+            "slug": "ap",
+            "default_currency": "USD",
+            "default_language": "en-AP"
+        }

@@ -36,7 +36,7 @@ from mkt.api.forms import (CategoryForm, DeviceTypeForm, NewPackagedForm,
                            PreviewArgsForm, PreviewJSONForm, StatusForm,
                            UploadForm)
 from mkt.api.http import HttpLegallyUnavailable
-from mkt.carriers import get_carrier_id
+from mkt.carriers import get_carrier_id, CARRIERS, CARRIER_MAP
 from mkt.developers import tasks
 from mkt.developers.forms import NewManifestForm, PreviewForm
 from mkt.regions import get_region_id, get_region, REGIONS_DICT
@@ -445,3 +445,71 @@ class ConfigResource(CORSResource, MarketplaceResource):
             'flags': waffles(),
             'settings': settings(),
         })
+
+
+class RegionResource(CORSResource, MarketplaceResource):
+    name = fields.CharField('name')
+    slug = fields.CharField('slug')
+    id = fields.IntegerField('id')
+    default_currency = fields.CharField('default_currency')
+    default_language = fields.CharField('default_language')
+    has_payments = fields.BooleanField('has_payments')
+    ratingsbodies = fields.ListField('ratingsbodies')
+
+    class Meta(MarketplaceResource.Meta):
+        detail_allowed_methods = ['get']
+        list_allowed_methods = ['get']
+        resource_name = 'region'
+
+    def dehydrate_ratingsbodies(self, bundle):
+        return [rb.name for rb in bundle.obj.ratingsbodies]
+
+    def obj_get_list(self, request=None, **kwargs):
+        return REGIONS_DICT.values()
+
+    def obj_get(self, request=None, **kwargs):
+        return REGIONS_DICT.get(kwargs['pk'], None)
+
+    def get_resource_uri(self, bundle_or_obj):
+        kwargs = {
+            'resource_name': self._meta.resource_name,
+            'api_name': self._meta.api_name
+        }
+        if isinstance(bundle_or_obj, Bundle):
+            kwargs['pk'] = bundle_or_obj.obj.slug
+        else:
+            kwargs['pk'] = bundle_or_obj.slug
+
+        return self._build_reverse_url("api_dispatch_detail", kwargs=kwargs)
+
+
+class CarrierResource(CORSResource, MarketplaceResource):
+    name = fields.CharField('name')
+    slug = fields.CharField('slug')
+    id = fields.IntegerField('id')
+
+    class Meta(MarketplaceResource.Meta):
+        detail_allowed_methods = ['get']
+        list_allowed_methods = ['get']
+        resource_name = 'carrier'
+
+    def dehydrate_ratingsbodies(self, bundle):
+        return [rb.name for rb in bundle.obj.ratingsbodies]
+
+    def obj_get_list(self, request=None, **kwargs):
+        return CARRIERS
+
+    def obj_get(self, request=None, **kwargs):
+        return CARRIER_MAP.get(kwargs['pk'], None)
+
+    def get_resource_uri(self, bundle_or_obj):
+        kwargs = {
+            'resource_name': self._meta.resource_name,
+            'api_name': self._meta.api_name
+        }
+        if isinstance(bundle_or_obj, Bundle):
+            kwargs['pk'] = bundle_or_obj.obj.slug
+        else:
+            kwargs['pk'] = bundle_or_obj.slug
+
+        return self._build_reverse_url("api_dispatch_detail", kwargs=kwargs)
