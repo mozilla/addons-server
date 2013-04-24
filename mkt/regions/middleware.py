@@ -13,6 +13,12 @@ class RegionMiddleware(object):
     def __init__(self):
         self.geoip = GeoIP(settings)
 
+    def region_from_request(self, request, choices=mkt.regions.REGIONS_CHOICES):
+        ip_reg = self.geoip.lookup(request.META.get('REMOTE_ADDR'))
+        for name, region in choices:
+            if ip_reg == name:
+                return region.slug
+
     def process_request(self, request):
         regions = mkt.regions.REGIONS_DICT
 
@@ -40,11 +46,8 @@ class RegionMiddleware(object):
             # valid region, try from the IP
             if (request.LANG.lower() not in
                 request.META.get('HTTP_ACCEPT_LANGUAGE', '').lower()):
-                ip_reg = self.geoip.lookup(request.META.get('REMOTE_ADDR'))
-                for name, region in choices:
-                    if ip_reg == name:
-                        reg = region.slug
-                        break
+                ip_reg = self.region_from_request(request, choices)
+                reg = ip_reg or reg
             elif request.LANG:
                 for name, region in choices:
                     if name.lower() in request.LANG.lower():
@@ -67,6 +70,12 @@ class RegionMiddleware(object):
         if reg == 'us' and a_l is not None and not a_l.startswith('en'):
             # Let us default to worldwide if it's not English.
             reg = mkt.regions.WORLDWIDE.slug
+
+        # If we don't have a remembered region and our current best guess is
+        # `worldwide`, lets try to detect from the IP.
+        if not remembered and reg == mkt.regions.WORLDWIDE.slug:
+            ip_reg = self.region_from_request(request)
+            reg = ip_reg or reg
 
         # Update cookie if value have changed.
         if reg != stored_reg:

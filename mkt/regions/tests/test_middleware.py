@@ -118,6 +118,22 @@ class TestRegionMiddleware(amo.tests.TestCase):
         r = self.client.get('/', HTTP_ACCEPT_LANGUAGE='sa-US')
         eq_(r.cookies['region'].value, 'worldwide')
 
+    @mock.patch('mkt.regions.middleware.GeoIP.lookup')
+    @mock.patch.object(settings, 'GEOIP_DEFAULT_VAL', 'worldwide')
+    def test_geoip_lookup_available(self, mock_lookup):
+        lang = 'br'
+        mock_lookup.return_value = lang
+        r = self.client.get('/', HTTP_ACCEPT_LANGUAGE='sa-US')
+        eq_(r.cookies['region'].value, lang)
+
+    @mock.patch('mkt.regions.middleware.GeoIP.lookup')
+    @mock.patch.object(settings, 'GEOIP_DEFAULT_VAL', 'worldwide')
+    def test_geoip_lookup_unavailable(self, mock_lookup):
+        lang = 'zz'
+        mock_lookup.return_value = lang
+        r = self.client.get('/', HTTP_ACCEPT_LANGUAGE='sa-US')
+        eq_(r.cookies['region'].value, 'worldwide')
+
     @mock.patch.object(settings, 'GEOIP_DEFAULT_VAL', 'us')
     def test_geoip_missing_lang(self):
         """ Test for US region """
