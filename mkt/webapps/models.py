@@ -595,6 +595,8 @@ class Webapp(Addon):
         if region:
             excluded = cls.get_excluded_in(region)
             if excluded:
+                log.info('Excluding the following IDs based on region %s: %s'
+                          % (region.slug, excluded))
                 srch = srch.filter(~F(id__in=excluded))
 
         if mobile:
