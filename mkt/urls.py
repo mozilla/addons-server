@@ -83,9 +83,6 @@ urlpatterns = patterns('',
     # Fall through for any URLs not matched above stats dashboard.
     url('^statistics/', lambda r: redirect('/'), name='statistics.dashboard'),
 
-    # Support (e.g., refunds, FAQs).
-    ('^support/', include('mkt.support.urls')),
-
     # Users (Legacy).
     ('^user/(?P<user_id>\d+)/', include(user_detail_patterns)),
     ('^users/', include(users_users_patterns)),

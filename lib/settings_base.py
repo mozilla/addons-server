@@ -432,7 +432,6 @@ INSTALLED_APPS = (
     # Has to load after auth
     'django_browserid',
     'django_statsd',
-    'radagast',
 )
 
 # These apps will be removed from INSTALLED_APPS in a production environment.

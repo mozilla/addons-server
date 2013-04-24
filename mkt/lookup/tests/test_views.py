@@ -274,6 +274,7 @@ class TestTransactionSearch(TestCase):
         eq_(r.status_code, 403)
 
 
+#@mock.patch.object(settings, 'TASK_USER_ID', 999)
 class TestTransactionSummary(TestCase):
     fixtures = fixture('user_support_staff', 'user_999')
 
@@ -293,10 +294,11 @@ class TestTransactionSummary(TestCase):
         self.client.login(username='support-staff@mozilla.com',
                           password='password')
 
+    @mock.patch.object(settings, 'TASK_USER_ID', 999)
     def create_test_refund(self):
         refund_contrib = Contribution.objects.create(
             addon=self.app, related=self.contrib, type=amo.CONTRIB_REFUND,
-            transaction_id='testtransactionid')
+            transaction_id='testtransactionid', user=self.user)
         refund_contrib.enqueue_refund(amo.REFUND_PENDING, self.user)
 
     def test_transaction_summary(self):

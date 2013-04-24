@@ -656,18 +656,12 @@ class PurchaseBase(amo.tests.TestCase):
                 self.app, self.con = app, con
             self.apps[name] = app
 
-    def get_support_url(self, *args):
-        return reverse('support', args=[self.con.pk] + list(args))
-
 
 class TestPurchases(PurchaseBase):
 
     # We don't have this page/flow right now. It will be back.
     def setUp(self):
         raise SkipTest
-
-    def get_support_url(self, pk=None, *args):
-        return reverse('support', args=[pk or self.con.pk] + list(args))
 
     def make_contribution(self, product, amt, type, day, user=None):
         c = Contribution.objects.create(user=user or self.user,
@@ -766,24 +760,6 @@ class TestPurchases(PurchaseBase):
                                       args=[self.app.pk]))
         eq_(pq(res.content)('#sorter a').attr('href'),
             reverse('account.purchases'))
-
-    def test_support_link(self):
-        eq_(self.get_pq()('a.request-support').eq(0).attr('href'),
-            self.get_support_url())
-
-    def test_support_link_inapp(self):
-        self.con.update(type=amo.CONTRIB_INAPP)
-        eq_(self.get_pq()('a.request-support').eq(0).attr('href'),
-            self.get_support_url())
-
-    def test_support_link_inapp_multiple(self):
-        self.con.update(type=amo.CONTRIB_INAPP)
-        con = self.make_contribution(self.con.addon, 1, amo.CONTRIB_INAPP, 2)
-        res = self.get_pq()
-        eq_(res('a.request-support').eq(0).attr('href'),
-            self.get_support_url())
-        eq_(res('a.request-support').eq(1).attr('href'),
-            self.get_support_url(pk=con.pk))
 
     def test_support_text_inapp(self):
         self.con.update(type=amo.CONTRIB_INAPP)

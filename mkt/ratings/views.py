@@ -189,23 +189,10 @@ def add(request, addon):
         # just show a blank version of the form.
         form = ReviewForm()
 
-    # Get app's support url, either from support flow if contribution exists or
-    # author's support url.
     support_email = str(addon.support_email) if addon.support_email else None
-    try:
-        contrib_id = (Contribution.objects
-                      .filter(user=request.user, addon=addon,
-                              type__in=(amo.CONTRIB_PURCHASE,
-                                        amo.CONTRIB_INAPP,
-                                        amo.CONTRIB_REFUND))
-                      .order_by('-created')[0].id)
-        support_url = reverse('support', args=[contrib_id])
-    except IndexError:
-        support_url = addon.support_url
-
     return jingo.render(request, 'ratings/add.html',
                         {'product': addon, 'form': form,
-                         'support_url': support_url,
+                         'support_url': addon.support_url,
                          'has_review': has_review,
                          'support_email': support_email,
                          'page_parent': addon.get_detail_url() if

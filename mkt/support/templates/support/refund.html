@@ -1,9 +1,0 @@
-<h1>{{ _('Request Refund') }}</h1>
-<form method="post">
-  {{ csrf() }}
-  {{ form_field(form.text, _('Please tell us why you are requesting a refund:'), tag='p') }}
-  <p class="form-footer">
-    <button type="submit">{{ _('Request Refund') }}</button> {{ _('or') }}
-    <a href="{{ url('account.purchases') }}">{{ _('Cancel') }}</a>
-  </p>
-</form>
