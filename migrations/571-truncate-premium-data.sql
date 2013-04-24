@@ -1,1 +1,1 @@
-TRUNCATE addons_premium;
+-- TRUNCATE addons_premium;
