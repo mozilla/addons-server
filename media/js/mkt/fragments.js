@@ -194,6 +194,11 @@ function fragmentFilter(el) {
                 $def.resolve(fragmentCache[href]);
             } else {
                 console.log(format('fetching {0}', href));
+
+                // TEMP!
+                console.log(format('window.location.href: {0}', window.location.href));
+                console.log(format('document.cookie: {0}', document.cookie));
+
                 fetchFragment(href).done(function(d, textStatus, xhr) {
                     // Bail if this is not HTML.
                     if (xhr.getResponseHeader('content-type').indexOf('text/html') < 0) {
