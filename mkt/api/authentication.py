@@ -8,7 +8,6 @@ from django.contrib.auth.models import AnonymousUser, User
 import commonware.log
 from tastypie import http
 from tastypie.authentication import Authentication
-from tastypie.authorization import Authorization
 
 from access.middleware import ACLMiddleware
 from mkt.api.middleware import APIPinningMiddleware
@@ -19,32 +18,6 @@ from mkt.api.oauth import OAuthServer
 log = commonware.log.getLogger('z.api')
 
 
-class OwnerAuthorization(Authorization):
-
-    def is_authorized(self, request, object=None):
-        # There is no object being passed, so we'll assume it's ok
-        if not object:
-            return True
-        # There is no request user or no user on the object.
-        if not request.amo_user:
-            return False
-
-        return self.check_owner(request, object)
-
-    def check_owner(self, request, object):
-        if not object.user:
-            return False
-        # If the user on the object and the amo_user match, we are golden.
-        return object.user.pk == request.amo_user.pk
-
-
-class AppOwnerAuthorization(OwnerAuthorization):
-
-    def check_owner(self, request, object):
-        # If the user on the object and the amo_user match, we are golden.
-        return object.authors.filter(user__id=request.amo_user.pk)
-
-
 class OAuthError(RuntimeError):
     def __init__(self, message='OAuth error occured.'):
         self.message = message
@@ -53,7 +26,6 @@ class OAuthError(RuntimeError):
 errors = {
     'headers': 'Error with OAuth headers',
     'roles': 'Cannot be a user with roles.',
-    'terms': 'Terms of service not accepted.',
 }
 
 
@@ -128,12 +100,6 @@ class OAuthAuthentication(Authentication):
         # TODO: I'd like to see the OAuth authentication move to middleware.
         request.API = True  # We can be pretty sure we are in the API.
         APIPinningMiddleware().process_request(request)
-
-        # Do not allow access without agreeing to the dev agreement.
-        if not request.amo_user.read_dev_agreement:
-            log.info(u'Attempt to use API without dev agreement: %s'
-                     % request.amo_user.pk)
-            return self._error('terms')
 
         # But you cannot have one of these roles.
         denied_groups = set(['Admins'])

@@ -160,7 +160,7 @@ class Marketplace(object):
         of the loop if they desire.
         """
         for auth in self._auths():
-            log.info('Trying auth with %s' % auth.__class__.__name__)
+            log.info('Trying authentication with %s' % auth.__class__.__name__)
             auth_result = auth.is_authenticated(request)
 
             if isinstance(auth_result, http.HttpResponse):

@@ -232,6 +232,8 @@ App resource
 
     .. note:: Requires authentication and a successfully validated manifest.
 
+    .. note:: You must accept the `terms of use`_ before submitting apps.
+
     .. note:: This method is throttled at 10 requests/day.
 
     **Request**
@@ -375,3 +377,5 @@ Valid transitions that users can initiate are:
   been made public.
 * *disabled_by_user*: by changing this value from `True` to `False` you can
   enable or disable an app.
+
+.. _`terms of use`: https://marketplace.firefox.com/developers/api

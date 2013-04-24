@@ -12,12 +12,12 @@ from amo import get_user
 from lib.metrics import record_action
 
 from mkt.account.api import AccountResource
-from mkt.api.authentication import (AppOwnerAuthorization,
-                                    OAuthAuthentication,
+from mkt.api.authentication import (OAuthAuthentication,
                                     OptionalOAuthAuthentication,
-                                    OwnerAuthorization,
                                     SharedSecretAuthentication)
 from mkt.api.authorization import (AnonymousReadOnlyAuthorization,
+                                   AppOwnerAuthorization,
+                                   OwnerAuthorization,
                                    PermissionAuthorization)
 from mkt.api.base import CORSResource, MarketplaceModelResource
 from mkt.api.resources import AppResource

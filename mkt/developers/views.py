@@ -759,9 +759,6 @@ def api(request):
         messages.error(request,
                        _('Users with the admin role cannot use the API.'))
 
-    elif not request.amo_user.read_dev_agreement:
-        messages.error(request, _('You must accept the terms of service.'))
-
     elif request.method == 'POST':
         if 'delete' in request.POST:
             try:

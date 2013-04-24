@@ -104,12 +104,6 @@ class TestOAuthAuthentication(TestCase):
         ok_(self.auth.is_authenticated(self.call()))
         ok_(this_thread_is_pinned())
 
-    def test_no_agreement(self):
-        self.profile.update(read_dev_agreement=None)
-        res = self.auth.is_authenticated(self.call())
-        eq_(res.status_code, 401)
-        eq_(json.loads(res.content)['reason'], errors['terms'])
-
     def test_request_token_fake(self):
         c = Mock()
         c.key = self.access.key

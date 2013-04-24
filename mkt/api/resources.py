@@ -26,10 +26,9 @@ from constants.applications import DEVICE_TYPES
 from files.models import FileUpload, Platform
 from lib.metrics import record_action
 
-from mkt.api.authentication import (AppOwnerAuthorization,
-                                    OptionalOAuthAuthentication,
-                                    OwnerAuthorization,
+from mkt.api.authentication import (OptionalOAuthAuthentication,
                                     OAuthAuthentication)
+from mkt.api.authorization import AppOwnerAuthorization, OwnerAuthorization
 from mkt.api.base import (CORSResource, GenericObject,
                           MarketplaceModelResource, MarketplaceResource)
 from mkt.api.forms import (CategoryForm, DeviceTypeForm, NewPackagedForm,
@@ -145,6 +144,14 @@ class AppResource(CORSResource, MarketplaceModelResource):
     def obj_create(self, bundle, request, **kwargs):
         form = UploadForm(bundle.data)
 
+        if not request.amo_user.read_dev_agreement:
+            log.info(u'Attempt to use API without dev agreement: %s'
+                     % request.amo_user.pk)
+            response = http.HttpUnauthorized()
+            response.content = json.dumps({'reason':
+                                           'Terms of service not accepted.'})
+            raise ImmediateHttpResponse(response=response)
+
         if not form.is_valid():
             raise self.form_errors(form)
 
@@ -204,8 +211,8 @@ class AppResource(CORSResource, MarketplaceModelResource):
             # between a 404 and a 403.
             obj = self._meta.queryset.get(**kwargs)
         except self._meta.object_class.DoesNotExist:
-            legally_unavail = self._meta.queryset_base.filter(**kwargs).exists()
-            if legally_unavail:
+            unavail = self._meta.queryset_base.filter(**kwargs).exists()
+            if unavail:
                 raise ImmediateHttpResponse(response=HttpLegallyUnavailable())
             raise ImmediateHttpResponse(response=http.HttpNotFound())
 
@@ -415,10 +422,10 @@ def waffles():
 
 
 @memoize(prefix='config-settings')
-def settings():
+def get_settings():
     safe = debug.get_safe_settings()
-    settings = ['SITE_URL',]
-    return dict([k, safe[k]] for k in settings)
+    _settings = ['SITE_URL']
+    return dict([k, safe[k]] for k in _settings)
 
 
 class ConfigResource(CORSResource, MarketplaceResource):
@@ -443,7 +450,7 @@ class ConfigResource(CORSResource, MarketplaceResource):
             # This is the git commit on IT servers.
             'version': getattr(settings, 'BUILD_ID_JS', ''),
             'flags': waffles(),
-            'settings': settings(),
+            'settings': get_settings(),
         })
 
 

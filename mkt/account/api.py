@@ -13,8 +13,8 @@ from tastypie.throttle import CacheThrottle
 from amo.utils import send_mail_jinja
 from mkt.api.authentication import (OAuthAuthentication,
                                     OptionalOAuthAuthentication,
-                                    OwnerAuthorization,
                                     SharedSecretAuthentication)
+from mkt.api.authorization import OwnerAuthorization
 from mkt.api.base import (CORSResource, GenericObject,
                           MarketplaceModelResource, MarketplaceResource,
                           PotatoCaptchaResource)

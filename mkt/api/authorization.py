@@ -1,9 +1,36 @@
 import commonware.log
+
 from tastypie.authorization import Authorization, ReadOnlyAuthorization
 
 from access import acl
 
 log = commonware.log.getLogger('z.api')
+
+
+class OwnerAuthorization(Authorization):
+
+    def is_authorized(self, request, object=None):
+        # There is no object being passed, so we'll assume it's ok
+        if not object:
+            return True
+        # There is no request user or no user on the object.
+        if not request.amo_user:
+            return False
+
+        return self.check_owner(request, object)
+
+    def check_owner(self, request, object):
+        if not object.user:
+            return False
+        # If the user on the object and the amo_user match, we are golden.
+        return object.user.pk == request.amo_user.pk
+
+
+class AppOwnerAuthorization(OwnerAuthorization):
+
+    def check_owner(self, request, object):
+        # If the user on the object and the amo_user match, we are golden.
+        return object.authors.filter(user__id=request.amo_user.pk)
 
 
 class AnonymousReadOnlyAuthorization(ReadOnlyAuthorization):

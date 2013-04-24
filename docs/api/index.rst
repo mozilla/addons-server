@@ -174,10 +174,7 @@ The production server is at https://marketplace.firefox.com.
 1. Log in using Persona:
    https://marketplace.firefox.com/login
 
-2. Once logged in, read and accept the terms of service for the Marketplace
-   at: https://marketplace.firefox.com/developers/terms
-
-3. At https://marketplace.firefox.com/developers/api provide the name of
+2. At https://marketplace.firefox.com/developers/api provide the name of
    the app that will use the key, and the URI that Marketplace's OAuth provide
    will redirect to after the user grants permission to your app. You may then
    generate a key pair for use in your application.
@@ -379,7 +376,7 @@ Timestamps
 ==========
 
 Timestamps use the `%Y-%m-%dT%H:%M:%S` format (`Python's strftime notation`_),
-using the `America/Los_Angeles time zone`_. 
+using the `America/Los_Angeles time zone`_.
 
 
 .. _`MDN`: https://developer.mozilla.org

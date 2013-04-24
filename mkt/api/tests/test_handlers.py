@@ -867,8 +867,8 @@ class TestPreviewHandler(BaseOAuth, AMOPaths):
         self.assertCORS(self.client.get(self.list_url), 'post')
 
     def test_no_addon(self):
-        list_url = ('api_dispatch_list', {'resource_name': 'preview'})
-        res = self.client.post(list_url, data=json.dumps(self.good))
+        _list_url = ('api_dispatch_list', {'resource_name': 'preview'})
+        res = self.client.post(_list_url, data=json.dumps(self.good))
         eq_(res.status_code, 404)
 
     def test_post_preview(self):
