@@ -322,7 +322,7 @@ Carriers
 =======
 
 
-.. http:get:: /api/v1/apps/carrier/
+.. http:get:: /api/v1/services/carrier/
 
     Returns a list of possible carriers for apps.
 
@@ -335,7 +335,7 @@ Carriers
 
 .. _carrier-response-label:
 
-.. http:get:: /api/v1/apps/carrier/<slug>/
+.. http:get:: /api/v1/services/carrier/<slug>/
 
     Returns a carrier.
 
@@ -350,7 +350,7 @@ Carriers
         {
             "id": "1",
             "name": "PhoneORama",
-            "resource_uri": "/api/v1/apps/carrier/phoneorama/",
+            "resource_uri": "/api/v1/services/carrier/phoneorama/",
             "slug": "phoneorama"
         }
 
@@ -360,7 +360,7 @@ Regions
 =======
 
 
-.. http:get:: /api/v1/apps/region/
+.. http:get:: /api/v1/services/region/
 
     Returns a list of possible regions for apps.
 
@@ -373,7 +373,7 @@ Regions
 
 .. _region-response-label:
 
-.. http:get:: /api/v1/apps/region/<slug>/
+.. http:get:: /api/v1/services/region/<slug>/
 
     Returns a region.
 
@@ -388,7 +388,7 @@ Regions
         {
             "id": "1",
             "name": "Appistan",
-            "resource_uri": "/api/v1/apps/region/ap/",
+            "resource_uri": "/api/v1/services/region/ap/",
             "slug": "ap",
             "default_currency": "USD",
             "default_language": "en-AP"

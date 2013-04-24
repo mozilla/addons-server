@@ -21,14 +21,14 @@ api.register(WithFeaturedResource())
 api.register(SearchResource())
 api.register(StatusResource())
 api.register(RatingResource())
-api.register(RegionResource())
-api.register(CarrierResource())
 
 stats_api = Api(api_name='stats')
 stats_api.register(GlobalStatsResource())
 
 services = Api(api_name='services')
 services.register(ConfigResource())
+services.register(RegionResource())
+services.register(CarrierResource())
 
 if settings.ALLOW_TASTYPIE_SERVICES:
     services.register(ErrorResource(set_handler=handle_500))

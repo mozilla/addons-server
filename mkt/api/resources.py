@@ -460,6 +460,7 @@ class RegionResource(CORSResource, MarketplaceResource):
         detail_allowed_methods = ['get']
         list_allowed_methods = ['get']
         resource_name = 'region'
+        slug_lookup = 'slug'
 
     def dehydrate_ratingsbodies(self, bundle):
         return [rb.name for rb in bundle.obj.ratingsbodies]
@@ -469,18 +470,6 @@ class RegionResource(CORSResource, MarketplaceResource):
 
     def obj_get(self, request=None, **kwargs):
         return REGIONS_DICT.get(kwargs['pk'], None)
-
-    def get_resource_uri(self, bundle_or_obj):
-        kwargs = {
-            'resource_name': self._meta.resource_name,
-            'api_name': self._meta.api_name
-        }
-        if isinstance(bundle_or_obj, Bundle):
-            kwargs['pk'] = bundle_or_obj.obj.slug
-        else:
-            kwargs['pk'] = bundle_or_obj.slug
-
-        return self._build_reverse_url("api_dispatch_detail", kwargs=kwargs)
 
 
 class CarrierResource(CORSResource, MarketplaceResource):
@@ -492,6 +481,7 @@ class CarrierResource(CORSResource, MarketplaceResource):
         detail_allowed_methods = ['get']
         list_allowed_methods = ['get']
         resource_name = 'carrier'
+        slug_lookup = 'slug'
 
     def dehydrate_ratingsbodies(self, bundle):
         return [rb.name for rb in bundle.obj.ratingsbodies]
@@ -501,15 +491,3 @@ class CarrierResource(CORSResource, MarketplaceResource):
 
     def obj_get(self, request=None, **kwargs):
         return CARRIER_MAP.get(kwargs['pk'], None)
-
-    def get_resource_uri(self, bundle_or_obj):
-        kwargs = {
-            'resource_name': self._meta.resource_name,
-            'api_name': self._meta.api_name
-        }
-        if isinstance(bundle_or_obj, Bundle):
-            kwargs['pk'] = bundle_or_obj.obj.slug
-        else:
-            kwargs['pk'] = bundle_or_obj.slug
-
-        return self._build_reverse_url("api_dispatch_detail", kwargs=kwargs)

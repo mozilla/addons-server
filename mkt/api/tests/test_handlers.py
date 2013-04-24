@@ -945,6 +945,9 @@ class TestPreviewHandler(BaseOAuth, AMOPaths):
 
 class TestRegionsCarriers(BaseOAuth, AMOPaths):
 
+    def setUp(self):
+        super(TestRegionsCarriers, self).setUp(api_name='services')
+
     def test_regions_list(self):
         res = self.client.get(list_url('region'))
         data = json.loads(res.content)
@@ -952,8 +955,7 @@ class TestRegionsCarriers(BaseOAuth, AMOPaths):
             set(r.slug for r in regions.ALL_REGIONS))
 
     def test_region(self):
-        res = self.client.get(('api_dispatch_detail',
-                               {'resource_name': 'region', 'pk': 'co'}))
+        res = self.client.get(get_url('region', pk='co'))
         data = json.loads(res.content)
         eq_(data['default_currency'], regions.CO.default_currency)
 
@@ -964,8 +966,6 @@ class TestRegionsCarriers(BaseOAuth, AMOPaths):
             set(r.slug for r in carriers.CARRIERS))
 
     def test_carrier(self):
-        res = self.client.get(('api_dispatch_detail',
-                               {'resource_name': 'carrier',
-                                'pk': 'telefonica'}))
+        res = self.client.get(get_url('carrier', pk='telefonica'))
         data = json.loads(res.content)
         eq_(data['id'], carriers.TELEFONICA.id)
