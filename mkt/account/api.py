@@ -104,7 +104,6 @@ class LoginResource(CORSResource, MarketplaceResource):
                     'display_name': (UserProfile.objects
                                      .get(user=request.user).display_name),
                     'email': request.user.email,
-                    'region': 'internet',
                 }
             })
         return res
