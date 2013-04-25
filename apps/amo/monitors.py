@@ -215,7 +215,7 @@ def signer():
     cert_err_msg = 'Error on checking public cert (%s): %s'
     location = cert['iss']
     try:
-        resp = requests.get(location, timeout=5, prefetch=True)
+        resp = requests.get(location, timeout=5, stream=False)
     except Exception as err:
         msg = cert_err_msg % (location, err)
         return msg, msg
