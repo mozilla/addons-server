@@ -104,14 +104,7 @@ def delete_preview_files(id, **kw):
             log.error('Error deleting preview file (%s): %s' % (f, e))
 
 
-def index_addon_held(ids, **kw):
-    # Hold the indexes till the end of the request or until lib.es signal,
-    # process is called.
-    for pk in ids:
-        add(index_addons, pk)
-
-
-@task
+@task(acks_late=True)
 def index_addons(ids, **kw):
     log.info('Indexing addons %s-%s. [%s]' % (ids[0], ids[-1], len(ids)))
     transforms = (attach_categories, attach_devices, attach_prices,

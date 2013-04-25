@@ -1559,12 +1559,8 @@ def version_changed(sender, **kw):
           dispatch_uid='addons.search.index')
 def update_search_index(sender, instance, **kw):
     from . import tasks
-
     if not kw.get('raw'):
-        if settings.IN_TEST_SUITE:
-            tasks.index_addon_held([instance.id])
-        else:
-            tasks.index_addons([instance.id])
+        tasks.index_addons.delay([instance.id])
 
 
 @Addon.on_change
