@@ -21,10 +21,12 @@ class UserEditForm(happyforms.ModelForm):
         required=True,
         help_text=_lazy(u'This will be publicly displayed next to your '
                          'ratings, collections, and other contributions.'))
+    lang = forms.CharField(required=False)
+    region = forms.CharField(required=False)
 
     class Meta:
         model = UserProfile
-        fields = 'display_name',
+        fields = 'display_name', 'lang', 'region'
 
 
 class AdminUserEditForm(BaseAdminUserEditForm, UserEditForm):

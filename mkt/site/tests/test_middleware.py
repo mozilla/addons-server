@@ -5,9 +5,11 @@ from nose.tools import eq_
 from test_utils import RequestFactory
 
 import amo.tests
+from users.models import UserProfile
 
 import mkt
 from mkt.site.middleware import DeviceDetectionMiddleware
+from mkt.site.fixtures import fixture
 
 _langs = ['de', 'en-US', 'es', 'fr', 'pt-BR', 'pt-PT']
 
@@ -229,6 +231,18 @@ class TestLocaleMiddleware(amo.tests.TestCase):
 
         r = self.client.get('/', HTTP_ACCEPT_LANGUAGE='fr')
         eq_(r.cookies['lang'].value, 'fr,')
+
+
+@mock.patch.object(settings, 'LANGUAGES', [x.lower() for x in _langs])
+@mock.patch.object(settings, 'LANGUAGE_URL_MAP',
+                   dict([x.lower(), x] for x in _langs))
+class TestLocaleMiddlewarePersistence(amo.tests.TestCase):
+    fixtures = fixture('user_999')
+
+    def test_save_lang(self):
+        self.client.login(username='regular@mozilla.com', password='password')
+        self.client.get('/', HTTP_ACCEPT_LANGUAGE='de')
+        eq_(UserProfile.objects.get(pk=999).lang, 'de')
 
 
 class TestVaryMiddleware(amo.tests.TestCase):

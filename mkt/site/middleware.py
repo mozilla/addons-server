@@ -13,7 +13,6 @@ from amo.utils import urlparams
 
 import mkt
 
-
 def _set_cookie(self, key, value='', max_age=None, expires=None, path='/',
                 domain=None, secure=False):
     self._resp_cookies[key] = value
@@ -159,7 +158,9 @@ class LocaleMiddleware(object):
         # Update cookie if values have changed.
         if lang != stored_lang or ov_lang != stored_ov_lang:
             request.LANG_COOKIE = ','.join([lang, ov_lang])
-
+            if request.amo_user:
+                request.amo_user.lang = lang
+                request.amo_user.save()
         request.LANG = lang
         tower.activate(lang)
 

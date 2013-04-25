@@ -105,6 +105,10 @@ class TestAccountSettings(amo.tests.TestCase):
         eq_(doc('#language option[selected]').attr('value'), 'fr')
         eq_(doc('#region option[selected]').attr('value'), 'br')
 
+        user = self.get_user()
+        eq_(user.region, 'br')
+        eq_(user.lang, 'fr')
+
     def test_no_password_changes(self):
         self.client.post(self.url, self.data)
         eq_(self.user.userlog_set
