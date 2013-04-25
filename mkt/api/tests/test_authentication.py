@@ -15,7 +15,7 @@ from amo.tests import app_factory, TestCase
 from test_utils import RequestFactory
 from users.models import UserProfile
 
-from mkt.api import authentication
+from mkt.api import authentication, authorization
 from mkt.api.authentication import errors
 from mkt.api.base import MarketplaceResource
 from mkt.api.models import Access, generate
@@ -41,7 +41,7 @@ class TestOwnerAuthorization(OwnerAuthorization):
 
     def setUp(self):
         super(TestOwnerAuthorization, self).setUp()
-        self.auth = authentication.OwnerAuthorization()
+        self.auth = authorization.OwnerAuthorization()
 
     def test_user(self):
         ok_(self.auth.check_owner(self.request(self.profile),
@@ -68,7 +68,7 @@ class TestAppOwnerAuthorization(OwnerAuthorization):
 
     def setUp(self):
         super(TestAppOwnerAuthorization, self).setUp()
-        self.auth = authentication.AppOwnerAuthorization()
+        self.auth = authorization.AppOwnerAuthorization()
         self.app = app_factory()
 
     def test_owner(self):
