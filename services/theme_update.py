@@ -143,7 +143,8 @@ class ThemeUpdate(object):
             'updateURL': self.locale_url(settings.VAMO_URL,
                 '/themes/update-check/%s' % row['addon_id']),
             # TODO: Change this when we add versions (bug 851881).
-            'version': '1.0'
+            # 04-25-2013: Bumped for GP migration so we get new `updateURL`s.
+            'version': '1.1'
         })
 
     def image_path(self, filename):
