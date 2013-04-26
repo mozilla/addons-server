@@ -307,6 +307,10 @@ table.field-list tbody {
     background: none repeat scroll 0% 0% rgb(240, 240, 240) !important;
 }
 
-big, em.property, tt.descname {
-    font-size: 1.5em;
+dt tt.descname {
+    font-size: 1.5em !important;
+}
+
+dt big, dt em {
+    font-size: 1em !important;
 }
