@@ -79,6 +79,10 @@ class RegionMiddleware(object):
 
         # Update cookie if value have changed.
         if reg != stored_reg:
+            if (getattr(request, 'amo_user', None)
+                and request.amo_user.region != reg):
+                request.amo_user.region = reg
+                request.amo_user.save()
             request.set_cookie('region', reg)
 
         request.REGION = regions[reg]

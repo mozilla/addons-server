@@ -9,7 +9,7 @@ from test_utils import RequestFactory
 import amo
 import amo.tests
 from addons.models import AddonDeviceType, Category
-from addons.tasks import index_addon_held
+from addons.tasks import index_addons
 from amo.urlresolvers import reverse
 from amo.utils import urlparams
 from search.tests.test_views import TestAjaxSearch
@@ -342,7 +342,7 @@ class TestSuggestions(TestAjaxSearch):
         self.w1.addoncategory_set.create(category=self.c1)
         self.w2.addoncategory_set.create(category=self.c2)
 
-        index_addon_held([self.w1.id, self.w2.id])
+        index_addons([self.w1.id, self.w2.id])
         self.refresh()
 
     def check_suggestions(self, url, params, addons=()):

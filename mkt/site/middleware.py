@@ -158,7 +158,8 @@ class LocaleMiddleware(object):
         # Update cookie if values have changed.
         if lang != stored_lang or ov_lang != stored_ov_lang:
             request.LANG_COOKIE = ','.join([lang, ov_lang])
-            if request.amo_user:
+            if (getattr(request, 'amo_user', None)
+                and request.amo_user.lang != lang):
                 request.amo_user.lang = lang
                 request.amo_user.save()
         request.LANG = lang

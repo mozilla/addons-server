@@ -12,7 +12,6 @@ from django.core.signals import request_finished
 import mock
 from nose.tools import eq_
 from pyquery import PyQuery as pq
-import es.hold
 
 import amo
 import amo.tests
@@ -40,8 +39,6 @@ class TestSubmit(amo.tests.TestCase):
     fixtures = fixture('user_999')
 
     def setUp(self):
-        request_finished.disconnect(es.hold.process,
-                                    dispatch_uid='process_es_tasks_on_finish')
         self.gia_mock = mock.patch(
             'mkt.developers.tasks.generate_image_assets').__enter__()
         self.fi_mock = mock.patch(
@@ -439,8 +436,6 @@ class BasePackagedAppTest(BaseUploadTest, UploadAddon, amo.tests.TestCase):
     fixtures = fixture('webapp_337141', 'user_999')
 
     def setUp(self):
-        request_finished.disconnect(es.hold.process,
-                                    dispatch_uid='process_es_tasks_on_finish')
         super(BasePackagedAppTest, self).setUp()
         self.app = Webapp.objects.get(pk=337141)
         self.app.update(is_packaged=True)

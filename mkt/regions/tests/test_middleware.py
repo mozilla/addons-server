@@ -6,8 +6,10 @@ import mock
 from nose.tools import eq_
 
 import amo.tests
+from users.models import UserProfile
 
 import mkt
+from mkt.site.fixtures import fixture
 
 
 _langs = ['de', 'en-US', 'es', 'fr', 'pt-BR', 'pt-PT']
@@ -156,3 +158,12 @@ class TestRegionMiddleware(amo.tests.TestCase):
         mock_socket.return_value.send.side_effect = socket.timeout
         r = self.client.get('/', REMOTE_ADDR='mozilla.com')
         eq_(r.cookies['region'].value, 'us')
+
+
+class TestRegionMiddlewarePersistence(amo.tests.TestCase):
+    fixtures = fixture('user_999')
+
+    def test_save_region(self):
+        self.client.login(username='regular@mozilla.com', password='password')
+        self.client.get('/?region=br')
+        eq_(UserProfile.objects.get(pk=999).region, 'br')

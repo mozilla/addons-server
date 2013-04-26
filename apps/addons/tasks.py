@@ -11,7 +11,6 @@ import amo
 from amo.decorators import set_modified_on, write
 from amo.utils import (attach_trans_dict, cache_ns_key, sorted_groupby,
                        ImageCheck)
-from lib.es.hold import add
 from lib.es.utils import index_objects
 from market.models import AddonPremium
 from tags.models import Tag
