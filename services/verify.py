@@ -69,11 +69,12 @@ class Verify:
         This is the default that verify will use, this will
         do the entire stack of checks.
         """
+        receipt_domain = urlparse(settings.WEBAPPS_RECEIPT_URL).netloc
         try:
             self.decoded = self.decode()
             self.check_type('purchase-receipt')
             self.check_db()
-            self.check_url()
+            self.check_url(receipt_domain)
         except InvalidReceipt:
             return self.invalid()
 
@@ -99,7 +100,7 @@ class Verify:
             self.decoded = self.decode()
             self.check_type('developer-receipt', 'reviewer-receipt')
             self.check_db()
-            self.check_url()
+            self.check_url(settings.DOMAIN)
         except InvalidReceipt:
             return self.invalid()
 
@@ -115,7 +116,7 @@ class Verify:
         try:
             self.decoded = self.decode()
             self.check_type('test-receipt')
-            self.check_url()
+            self.check_url(settings.DOMAIN)
         except InvalidReceipt:
             return self.invalid()
 
@@ -153,14 +154,18 @@ class Verify:
             log_info('Receipt type not in %s' % ','.join(types))
             raise InvalidReceipt
 
-    def check_url(self):
+    def check_url(self, domain):
         """
         Verifies that the URL of the verification is what we expect.
+
+        :param domain: the domain you expect the receipt to be verified at,
+            note that "real" receipts are verified at a different domain
+            from the main marketplace domain.
         """
         path = self.environ['PATH_INFO']
         parsed = urlparse(self.decoded.get('verify', ''))
 
-        if parsed.netloc not in settings.DOMAIN:
+        if parsed.netloc != domain:
             log_info('Receipt had invalid domain')
             raise InvalidReceipt
 

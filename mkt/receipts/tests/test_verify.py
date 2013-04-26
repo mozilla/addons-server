@@ -59,7 +59,7 @@ sample = ('eyJqa3UiOiAiaHR0cHM6Ly9tYXJrZXRwbGFjZS1kZXYtY2RuL'
                    amo.tests.AMOPaths.sample_key())
 @mock.patch.object(settings, 'WEBAPPS_RECEIPT_KEY',
                    amo.tests.AMOPaths.sample_key())
-@mock.patch.object(utils.settings, 'DOMAIN', 'foo.com')
+@mock.patch.object(utils.settings, 'WEBAPPS_RECEIPT_URL', 'http://foo.com')
 class TestVerify(amo.tests.TestCase):
     fixtures = ['base/addon_3615', 'base/users']
 
@@ -217,6 +217,7 @@ class TestVerify(amo.tests.TestCase):
         # Because the receipt is the wrong type for skipping purchase.
         eq_(res['status'], 'invalid')
 
+    @mock.patch.object(utils.settings, 'DOMAIN', 'foo.com')
     def test_premium_dont_check_properly(self):
         self.addon.update(premium_type=amo.ADDON_PREMIUM)
         self.make_install()
@@ -362,21 +363,18 @@ class TestURL(TestBase):
     def setUp(self):
         self.req = RequestFactory().post('/foo').META
 
-    @mock.patch.object(utils.settings, 'DOMAIN', 'f.com')
     def test_wrong_domain(self):
         sample = {'verify': 'https://foo.com'}
         with self.assertRaises(verify.InvalidReceipt):
-            self.create(sample, request=self.req).check_url()
+            self.create(sample, request=self.req).check_url('f.com')
 
-    @mock.patch.object(utils.settings, 'DOMAIN', 'f.com')
     def test_wrong_path(self):
         sample = {'verify': 'https://f.com/bar'}
         with self.assertRaises(verify.InvalidReceipt):
-            self.create(sample, request=self.req).check_url()
+            self.create(sample, request=self.req).check_url('f.com')
 
     @mock.patch.object(utils.settings, 'WEBAPPS_RECEIPT_KEY',
                        amo.tests.AMOPaths.sample_key())
-    @mock.patch.object(utils.settings, 'DOMAIN', 'f.com')
     def test_good(self):
         sample = {'verify': 'https://f.com/foo'}
-        self.create(sample, request=self.req).check_url()
+        self.create(sample, request=self.req).check_url('f.com')
