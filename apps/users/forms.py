@@ -289,7 +289,6 @@ class UserEditForm(UserRegisterForm, PasswordMixin):
         exclude = ('password', 'picture_type')
 
     def clean(self):
-
         data = self.cleaned_data
         amouser = self.request.user.get_profile()
 
