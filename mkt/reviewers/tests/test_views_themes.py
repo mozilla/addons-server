@@ -13,7 +13,7 @@ from access.models import GroupUser
 from addons.models import Persona
 import amo
 import amo.tests
-from amo.tests import addon_factory
+from amo.tests import addon_factory, days_ago
 from amo.urlresolvers import reverse
 from devhub.models import ActivityLog
 import mkt.constants.reviewers as rvw
@@ -111,7 +111,7 @@ class ThemeReviewTestMixin(object):
 
         # Manually expire a lock and see if it's reassigned.
         expired_theme_lock = ThemeLock.objects.all()[0]
-        expired_theme_lock.expiry = datetime.datetime.now()
+        expired_theme_lock.expiry = self.days_ago(1)
         expired_theme_lock.save()
         _get_themes(mock.Mock(), reviewer, flagged=self.flagged)
         eq_(ThemeLock.objects.filter(reviewer=reviewer).count(), 1)
@@ -122,11 +122,10 @@ class ThemeReviewTestMixin(object):
         reviewer = self.create_and_become_reviewer()
         _get_themes(mock.Mock(), reviewer, flagged=self.flagged)
 
-        earlier = datetime.datetime.now() - datetime.timedelta(minutes=10)
-        ThemeLock.objects.filter(reviewer=reviewer).update(expiry=earlier)
+        ThemeLock.objects.filter(reviewer=reviewer).update(expiry=days_ago(1))
         _get_themes(mock.Mock(), reviewer, flagged=self.flagged)
-        eq_(ThemeLock.objects.filter(reviewer=reviewer)[0].expiry > earlier,
-            True)
+        eq_(ThemeLock.objects.filter(reviewer=reviewer)[0].expiry >
+            days_ago(1), True)
 
     @mock.patch('mkt.reviewers.tasks.send_mail_jinja')
     def test_commit(self, send_mail_jinja_mock):
@@ -141,9 +140,10 @@ class ThemeReviewTestMixin(object):
         # Create locks.
         reviewer = self.create_and_become_reviewer()
         for index, theme in enumerate(themes):
-            ThemeLock.objects.create(theme=theme, reviewer=reviewer,
+            ThemeLock.objects.create(
+                theme=theme, reviewer=reviewer,
                 expiry=datetime.datetime.now() +
-                       datetime.timedelta(minutes=rvw.THEME_LOCK_EXPIRY))
+                datetime.timedelta(minutes=rvw.THEME_LOCK_EXPIRY))
             form_data['form-%s-theme' % index] = str(theme.id)
 
         # moreinfo
