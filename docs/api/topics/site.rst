@@ -116,8 +116,8 @@ Regions
             "default_language": "en-AP"
         }
 
-Site configuration
-==================
+Configuration
+=============
 
 .. http:get:: /api/v1/services/config/site/
 

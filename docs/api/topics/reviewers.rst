@@ -15,27 +15,11 @@ Reviewing
 
 .. http:get::  /api/v1/reviewers/reviewing/
 
-   Returns a list of apps that are being reviewed.
+    Returns a list of apps that are being reviewed.
 
-   **Request**:
+    **Response**:
 
-   .. sourcecode:: http
+    :param meta: :ref:`meta-response-label`.
+    :param objects: A :ref:`listing <objects-response-label>` of :ref:`apps <app-response-label>`.
 
-      GET /api/v1/reviewers/reviewing/
-
-   **Response**:
-
-   .. sourcecode:: http
-
-      {
-        "meta": {
-            "previous": None, ...
-        },
-        "objects': [
-            {
-                "resource_uri": "/api/v1/apps/app/337141/"
-            }
-        ]
-      }
-
-   :statuscode 200: no error
+    :status 200: successfully completed.

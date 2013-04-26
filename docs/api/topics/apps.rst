@@ -284,4 +284,4 @@ Valid transitions that users can initiate are:
 * *disabled_by_user*: by changing this value from `True` to `False` you can
   enable or disable an app.
 
-.. _`terms of use`: https://marketplace.firefox.com/developers/api
+.. _`terms of use`: https://marketplace.firefox.com/developers/terms
