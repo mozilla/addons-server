@@ -243,8 +243,8 @@ div.admonition p.admonition-title + p {
 }
 
 div.note {
-    background-color: #eee;
-    border: 1px solid #ccc;
+    background: none repeat scroll 0% 0% rgb(255, 246, 191);
+    border: 1px solid rgb(255, 211, 36);
 }
 
 div.seealso {
@@ -297,4 +297,16 @@ div.viewcode-block:target {
 
 #searchbox {
     margin: 0px 20px auto auto;
+}
+
+table.field-list tbody {
+    border-left: solid 8px rgb(240, 240, 240);
+}
+
+.highlight {
+    background: none repeat scroll 0% 0% rgb(240, 240, 240) !important;
+}
+
+big, em.property, tt.descname {
+    font-size: 1.5em;
 }

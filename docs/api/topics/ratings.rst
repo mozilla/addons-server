@@ -40,7 +40,7 @@ _`List`
                 "total_count": 391
             },
             "info": {
-                "average": 3.4,
+                "average": "3.4",
                 "slug": "marble-run"
             },
             "objects": [
