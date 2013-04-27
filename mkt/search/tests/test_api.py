@@ -275,19 +275,19 @@ class TestApiReviewer(BaseOAuth, ESTestCase):
 
 
 class TestCategoriesWithFeatured(BaseOAuth, ESTestCase):
-    fixtures = fixture('webapp_337141', 'user_2519')
     list_url = list_url('search/featured')
 
     def test_featured_plus_category(self):
         cat = Category.objects.create(type=amo.ADDON_WEBAPP, slug='shiny')
         Category.objects.create(type=amo.ADDON_EXTENSION, slug='shiny')
+        self.app = amo.tests.app_factory()
         app2 = amo.tests.app_factory()
         AddonCategory.objects.get_or_create(addon=app2, category=cat)
-        AddonCategory.objects.get_or_create(addon_id=337141, category=cat)
+        AddonCategory.objects.get_or_create(addon_id=self.app.pk, category=cat)
         self.make_featured(app=app2, category=cat,
                            region=mkt.regions.US)
-
-        self.refresh()
+        self.app.save()
+        app2.save()
         res = self.client.get(self.list_url + ({'cat': 'shiny'},))
         eq_(res.status_code, 200)
         data = json.loads(res.content)
@@ -296,13 +296,13 @@ class TestCategoriesWithFeatured(BaseOAuth, ESTestCase):
         eq_(int(data['featured'][0]['id']), app2.pk)
 
     def test_no_category(self):
+
         cat = Category.objects.create(type=amo.ADDON_WEBAPP, slug='shiny')
+        self.app = amo.tests.app_factory()
         app = amo.tests.app_factory()
         AddonCategory.objects.get_or_create(addon_id=337141, category=cat)
         self.make_featured(app=app, category=None,
                            region=mkt.regions.US)
-
-        self.refresh()
         res = self.client.get(self.list_url)
         eq_(res.status_code, 200)
         data = json.loads(res.content)
