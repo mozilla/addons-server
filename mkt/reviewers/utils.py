@@ -435,16 +435,16 @@ class ReviewHelper(object):
         return self.actions[action]['method']()
 
 
-def clean_sort_param(request):
+def clean_sort_param(request, date_field='created'):
     """
     Handles empty and invalid values for sort and sort order
     'created' by ascending is the default ordering.
     """
-    sort = request.GET.get('sort', 'created')
+    sort = request.GET.get('sort', date_field)
     order = request.GET.get('order', 'asc')
 
-    if sort not in ('name', 'created', 'num_abuse_reports'):
-        sort = 'created'
+    if sort not in ('name', date_field, 'num_abuse_reports'):
+        sort = date_field
     if order not in ('desc', 'asc'):
         order = 'asc'
     return sort, order

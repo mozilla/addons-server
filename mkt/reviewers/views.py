@@ -317,11 +317,11 @@ def _queue(request, apps, tab, pager_processor=None):
     }))
 
 
-def _do_sort(request, qs):
+def _do_sort(request, qs, date_field='created'):
     """Column sorting logic based on request GET parameters."""
-    sort, order = clean_sort_param(request)
+    sort, order = clean_sort_param(request, date_field=date_field)
 
-    if qs.model is not Webapp and sort != 'created':
+    if qs.model is not Webapp and sort != date_field:
         # For when `Webapp` isn't the base model of the queryset.
         sort = 'addon__' + sort
 
@@ -349,7 +349,7 @@ def queue_apps(request):
                           .order_by('nomination', 'created')
                           .select_related('addon').no_transforms())
 
-    qs = _queue_to_apps(request, qs)
+    qs = _queue_to_apps(request, qs, date_field='nomination')
     apps = [QueuedApp(app, app.all_versions[0].nomination)
             for app in Webapp.version_and_file_transformer(qs)]
 
@@ -423,16 +423,17 @@ def queue_moderated(request):
                                 tab='moderated', page=page, flags=flags))
 
 
-def _queue_to_apps(request, queue_qs):
+def _queue_to_apps(request, queue_qs, date_field='created'):
     """Apply sorting and filtering to queue queryset and return apps within
     that queue in sorted order.
 
     Args:
     queue_qs -- queue queryset (e.g. RereviewQueue, EscalationQueue)
+    date_field -- field to sort on
 
     """
     # Preserve the sort order by storing the properly sorted ids.
-    sorted_app_ids = (_do_sort(request, queue_qs)
+    sorted_app_ids = (_do_sort(request, queue_qs, date_field=date_field)
                       .values_list('addon', flat=True))
 
     # The filter below undoes the sort above.
