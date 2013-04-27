@@ -362,6 +362,16 @@ class TestThemeReviewQueue(ThemeReviewTestMixin, amo.tests.TestCase):
         # Check other reviewer's theme lock intact.
         eq_(ThemeLock.objects.filter(reviewer=other_reviewer).count(), 1)
 
+    @mock.patch.object(rvw, 'THEME_INITIAL_LOCKS', 2)
+    def test_themes_less_than_initial(self):
+        """
+        Number of themes in the pool is less than amount we want to check out.
+        """
+        addon_factory(type=amo.ADDON_PERSONA, status=self.status)
+        reviewer = self.create_and_become_reviewer()
+        eq_(len(_get_themes(mock.Mock(), reviewer)), 1)
+        eq_(len(_get_themes(mock.Mock(), reviewer)), 1)
+
 
 class TestThemeReviewQueueFlagged(ThemeReviewTestMixin, amo.tests.TestCase):
 

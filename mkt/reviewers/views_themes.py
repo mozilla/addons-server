@@ -161,7 +161,8 @@ def _get_themes(request, reviewer, flagged=False):
             theme_lock.reviewer = reviewer
             theme_lock.expiry = expiry
             theme_lock.save()
-        theme_locks = expired_locks
+        if expired_locks:
+            theme_locks = expired_locks
 
     # New theme locks may have been created, grab all reviewer's themes again.
     return [lock.theme for lock in theme_locks]
