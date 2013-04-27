@@ -345,6 +345,23 @@ class TestThemeReviewQueue(ThemeReviewTestMixin, amo.tests.TestCase):
         eq_(res.status_code, 200)
         eq_(pq(res.content)('#addon-queue tbody tr').length, 1)
 
+    @mock.patch.object(rvw, 'THEME_INITIAL_LOCKS', 1)
+    def test_release_locks(self):
+        for x in range(2):
+            addon_factory(type=amo.ADDON_PERSONA, status=self.status)
+        other_reviewer = self.create_and_become_reviewer()
+        _get_themes(mock.Mock(), other_reviewer)
+
+        # Check reviewer's theme lock released.
+        reviewer = self.create_and_become_reviewer()
+        _get_themes(mock.Mock(), reviewer)
+        eq_(ThemeLock.objects.filter(reviewer=reviewer).count(), 1)
+        self.client.get(reverse('reviewers.themes.release_locks'))
+        eq_(ThemeLock.objects.filter(reviewer=reviewer).count(), 0)
+
+        # Check other reviewer's theme lock intact.
+        eq_(ThemeLock.objects.filter(reviewer=other_reviewer).count(), 1)
+
 
 class TestThemeReviewQueueFlagged(ThemeReviewTestMixin, amo.tests.TestCase):
 

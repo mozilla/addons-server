@@ -10,11 +10,12 @@ from django.utils.datastructures import MultiValueDictKeyError
 
 from elasticutils.contrib.django import S
 import jingo
+from tower import ugettext as _
 from waffle.decorators import waffle_switch
 
-import amo
 from access import acl
 from addons.models import Addon, Persona
+import amo
 from amo.decorators import json_view, post_required
 from amo.urlresolvers import reverse
 from amo.utils import paginate
@@ -189,6 +190,16 @@ def themes_commit(request):
         return redirect(request.session['theme_redirect_url'])
     else:
         return redirect(reverse('reviewers.themes.queue_themes'))
+
+
+@waffle_switch('mkt-themes')
+@reviewer_required('persona')
+def release_locks(request):
+    ThemeLock.objects.filter(reviewer=request.user.get_profile()).delete()
+    amo.messages.success(
+        request, _('Your theme locks have successfully been released. '
+                   'Other reviewers may now review those released themes.'))
+    return redirect(reverse('reviewers.themes.list'))
 
 
 @waffle_switch('mkt-themes')
