@@ -402,5 +402,12 @@ $(document).ready(function() {
             }, 100));
             vertAlignSidebar($window);
         }
+
+        // If daily message is present, align fixed sidebar.
+        if (['none', undefined].indexOf($('.daily-message').css('display')) < 0) {
+            var $sidebar = $('.sidebar .align.fixed');
+            var top = parseInt($sidebar.css('top'), 10) + 82;
+            $sidebar.css('top', top + 'px');
+        }
     }
 });
