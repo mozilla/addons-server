@@ -199,8 +199,11 @@ def market_tile(context, product, link=True, src=''):
         purchased = (request.amo_user and
                      product.pk in request.amo_user.purchase_ids())
 
-        is_dev = product.has_author(request.amo_user)
-        receipt_type = 'developer' if is_dev else None
+        receipt_type = None
+        if product.has_author(request.amo_user):
+            receipt_type = 'developer'
+            purchased = True
+
         product_dict = product_as_dict(request, product, purchased=purchased,
                                        receipt_type=receipt_type, src=src)
         product_dict['prepareNavPay'] = reverse('webpay.prepare_pay',

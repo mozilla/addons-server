@@ -10,20 +10,21 @@ from pyquery import PyQuery as pq
 
 import amo
 import amo.tests
-from addons.models import AddonCategory, Category
+from addons.models import AddonCategory, Category, AddonUser
 from amo.helpers import urlparams
 from amo.urlresolvers import reverse
 from market.models import AddonPremium, AddonPurchase
 from users.models import UserProfile
 
 from mkt.constants import regions
+from mkt.site.fixtures import fixture
 from mkt.site.helpers import (css, get_login_link, js, market_button,
                               market_tile)
 from mkt.webapps.models import Webapp
 
 
 class TestMarketButton(amo.tests.TestCase):
-    fixtures = ['webapps/337141-steamcube', 'base/users']
+    fixtures = fixture('webapp_337141', 'user_999', 'prices')
 
     def setUp(self):
         self.webapp = Webapp.objects.filter(pk=337141).no_transforms()[0]
@@ -273,6 +274,14 @@ class TestMarketButton(amo.tests.TestCase):
         issue = urlparams(reverse('detail.record',
                                   args=[self.webapp.app_slug]), src='foo')
         eq_(data['recordUrl'], issue)
+
+    def test_developers(self):
+        AddonPremium.objects.create(price_id=1, addon_id=self.webapp.pk)
+        AddonUser.objects.create(user=self.user, addon=self.webapp)
+        self.webapp.update(premium_type=amo.ADDON_PREMIUM)
+        doc = pq(market_tile(self.context, self.webapp))
+        data = json.loads(doc('.mkt-tile').attr('data-product'))
+        eq_(data['isPurchased'], True)
 
     def test_category(self):
         c = Category.objects.create(name='test-cat', type=amo.ADDON_WEBAPP)
