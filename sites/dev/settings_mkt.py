@@ -11,7 +11,7 @@ SERVER_EMAIL = 'zmarketplacedev@addons.mozilla.org'
 
 SITE_URL = 'https://marketplace-dev.allizom.org'
 SERVICES_URL = SITE_URL
-STATIC_URL = 'https://marketplace-dev-cdn.allizom.org/'
+STATIC_URL = 'https://marketplace-dev-shared-data.s3.amazonaws.com/'
 LOCAL_MIRROR_URL = '%s_files' % STATIC_URL
 MIRROR_URL = LOCAL_MIRROR_URL
 
@@ -141,7 +141,7 @@ BLUEVIA_SECRET = private_mkt.BLUEVIA_SECRET
 #Bug 748403
 SIGNING_SERVER = private_mkt.SIGNING_SERVER
 SIGNING_SERVER_ACTIVE = True
-SIGNING_VALID_ISSUERS = ['marketplace-dev-cdn.allizom.org']
+SIGNING_VALID_ISSUERS = ['marketplace-dev-shared-data.s3.amazonaws.com']
 
 #Bug 793876
 SIGNED_APPS_KEY = private_mkt.SIGNED_APPS_KEY
