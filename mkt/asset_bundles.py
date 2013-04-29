@@ -353,9 +353,6 @@ JS = {
     'mkt/debug': (
         'js/debug/tinytools.js',
     ),
-    'mkt/potatologin': (
-        'js/mkt/potato-login.js',
-    ),
 }
 
 JS_desktop = list(JS['mkt/consumer'])

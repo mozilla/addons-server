@@ -256,5 +256,5 @@ def _open_pipe(cmd):
                             stderr=subprocess.PIPE)
 
 
-def potato_login(request):
-    return jingo.render(request, 'site/potato_login.html')
+def fireplace(request):
+    return jingo.render(request, 'site/fireplace.html')

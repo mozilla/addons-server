@@ -50,5 +50,5 @@ urlpatterns = patterns('',
     url('^package.zip$', views.package_zip, name='package.zip'),
     url('^timing/record$', views.record, name='mkt.timing.record'),
     url('^feedback$', feedback, name='site.feedback'),
-    url('^potato-login$', views.potato_login, name='site.potato_login'),
+    url('^server.html$', views.fireplace, name='site.fireplace'),
 )
