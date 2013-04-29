@@ -47,8 +47,6 @@ SLAVE_DATABASES = ['slave']
 SPHINX_HOST = private.SPHINX_HOST
 SPHINX_PORT = private.SPHINX_PORT
 
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-
 CACHES = {
     'default': {
         'BACKEND': 'caching.backends.memcached.CacheClass',
