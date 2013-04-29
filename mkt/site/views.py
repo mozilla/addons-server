@@ -165,7 +165,11 @@ def package_minifest(request):
         'name': getattr(settings, 'WEBAPP_MANIFEST_NAME', 'Marketplace'),
         'size': storage.size(package_path),
         'package_path': absolutify(reverse('package.zip')),
+        'permissions': {
+            'mobileconnection': {}
+        },
         #'release_notes': '',
+        'type': 'privileged',
         'version': '0.0.1',
     })
     manifest_etag = hashlib.md5(manifest_content).hexdigest()
