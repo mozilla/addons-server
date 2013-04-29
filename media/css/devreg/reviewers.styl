@@ -1924,12 +1924,14 @@ $mobileborder = #d7d2c3;
     /* editors/queue tabs */
     .tabnav {
         margin: 0 10px;
+        position: relative;
+        top: 13px;
     }
     #page .tabnav li {
         display: inline;
         position: relative;
-        top: 13px;
         margin: 0 5px;
+        top: 0;
         z-index: 0;
         &:after {
             /* Cover the bottom part of the box-shadow. */
@@ -1940,7 +1942,7 @@ $mobileborder = #d7d2c3;
             height: 15px;
             margin-bottom: -15px;
             position: relative;
-            top: 1px;
+            bottom: 12px;
             width: 100%;
         }
         &.selected {
