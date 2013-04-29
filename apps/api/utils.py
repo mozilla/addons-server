@@ -32,7 +32,7 @@ def addon_to_dict(addon, disco=False, src='api'):
 
     d = {
          'id': addon.id,
-         'name': addon.name,
+         'name': unicode(addon.name) if addon.name else None,
          'guid': addon.guid,
          'status': amo.STATUS_CHOICES_API[addon.status],
          'type': amo.ADDON_SLUGS_UPDATE[addon.type],
@@ -49,8 +49,8 @@ def addon_to_dict(addon, disco=False, src='api'):
          'adu': addon.average_daily_users,
          'created': epoch(addon.created),
          'last_updated': epoch(addon.last_updated),
-         'homepage': addon.homepage,
-         'support': addon.support_url,
+         'homepage': unicode(addon.homepage) if addon.homepage else None,
+         'support': unicode(addon.support_url) if addon.support_url else None,
     }
     if addon.is_persona():
         d['theme'] = addon.persona.theme_data
@@ -61,10 +61,10 @@ def addon_to_dict(addon, disco=False, src='api'):
         d['compatible_apps'] = v.compatible_apps.values()
 
     if addon.eula:
-        d['eula'] = addon.eula
+        d['eula'] = unicode(addon.eula)
 
     if addon.developer_comments:
-        d['dev_comments'] = addon.developer_comments
+        d['dev_comments'] = unicode(addon.developer_comments)
 
     if addon.takes_contributions:
         contribution = {
