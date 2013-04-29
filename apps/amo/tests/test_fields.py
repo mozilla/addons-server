@@ -1,13 +1,14 @@
 from decimal import Decimal
 
+from django import forms
 from django.core.cache import cache
 from django.core import exceptions
 
 from nose.tools import eq_
 from test_utils import ExtraAppTestCase
 
-from amo.fields import DecimalCharField
-
+import amo
+from amo.fields import SeparatedValuesField
 from fieldtestapp.models import DecimalCharFieldModel
 
 
@@ -53,3 +54,30 @@ class DecimalCharFieldTestCase(ExtraAppTestCase):
         b = DecimalCharFieldModel.objects.get(pk=a.id)
         eq_(b.strict, Decimal('1.23'))
         eq_(b.loose, None)
+
+
+class SeparatedValuesFieldTestCase(amo.tests.TestCase):
+
+    def setUp(self):
+        self.field = SeparatedValuesField(forms.EmailField)
+
+    def test_email_field(self):
+        eq_(self.field.clean(u'a@b.com, c@d.com'), u'a@b.com, c@d.com')
+
+    def test_email_field_w_empties(self):
+        eq_(self.field.clean(u'a@b.com,,   \n,c@d.com'), u'a@b.com, c@d.com')
+
+    def test_email_validation_error(self):
+        with self.assertRaises(exceptions.ValidationError):
+            self.field.clean(u'e')
+        with self.assertRaises(exceptions.ValidationError):
+            self.field.clean(u'a@b.com, c@d.com, e')
+
+    def test_url_field(self):
+        field = SeparatedValuesField(forms.URLField)
+        eq_(field.clean(u'http://hy.fr/,,http://yo.lo'),
+            u'http://hy.fr/, http://yo.lo/')
+
+    def test_alt_separator(self):
+        self.field = SeparatedValuesField(forms.EmailField, separator='#')
+        eq_(self.field.clean(u'a@b.com#c@d.com'), u'a@b.com, c@d.com')

@@ -787,7 +787,7 @@ class TestReviewTransaction(AttachmentManagementMixin,
     @mock.patch('mkt.webapps.models.Webapp.get_manifest_json')
     @mock.patch('lib.crypto.packaged.sign_app')
     def test_public_sign_failure(self, sign_mock, json_mock):
-        raise SkipTest, 'Passes locally, but fails on Jenkins :('
+        raise SkipTest('Passes locally, but fails on Jenkins :(')
 
         self.app = self.get_app()
         self.app.update(status=amo.STATUS_PENDING, is_packaged=True)
@@ -1290,6 +1290,18 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         vqs = self.get_app().versions.all()
         eq_(vqs.count(), 1)
         eq_(vqs.filter(has_info_request=True).count(), 1)
+        eq_(len(mail.outbox), 1)
+        msg = mail.outbox[0]
+        self._check_email(msg, 'Submission Update')
+
+    def test_multi_cc_email(self):
+        # Test multiple mozilla_contact emails via more information.
+        contacts = [u'á@b.com', u'ç@d.com']
+        self.mozilla_contact = ', '.join(contacts)
+        self.app.update(mozilla_contact=self.mozilla_contact)
+        data = {'action': 'info', 'comments': 'Knead moor in faux'}
+        data.update(self._attachment_management_form(num=0))
+        self.post(data)
         eq_(len(mail.outbox), 1)
         msg = mail.outbox[0]
         self._check_email(msg, 'Submission Update')

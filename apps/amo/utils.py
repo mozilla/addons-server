@@ -190,7 +190,12 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
 
     if not from_email:
         from_email = settings.DEFAULT_FROM_EMAIL
-    cc = cc and [cc] or None
+
+    if cc:
+        # If not basestring, assume it is already a list.
+        if isinstance(cc, basestring):
+            cc = [cc]
+
     if not headers:
         headers = {}
 

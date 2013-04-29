@@ -24,6 +24,7 @@ from addons.models import (Addon, AddonCategory, AddonUser, BlacklistedSlug,
                            Category, CategorySupervisor, Flag, Preview)
 from addons.widgets import CategoriesSelectMultiple
 from amo import get_user
+from amo.fields import SeparatedValuesField
 from amo.utils import remove_icons
 from files.models import FileUpload
 from lib.video import tasks as vtasks
@@ -286,7 +287,8 @@ class ImageAssetForm(happyforms.Form):
 
 class AdminSettingsForm(PreviewForm):
     DELETE = forms.BooleanField(required=False)
-    mozilla_contact = forms.EmailField(required=False)
+    mozilla_contact = SeparatedValuesField(forms.EmailField, separator=',',
+                                           required=False)
     app_ratings = forms.MultipleChoiceField(
         required=False,
         choices=RATINGS_BY_NAME)
