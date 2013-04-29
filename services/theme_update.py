@@ -24,12 +24,13 @@ class ThemeUpdate(object):
 
     def __init__(self, locale, id_, qs=None):
         self.conn, self.cursor = None, None
+        self.from_gp = qs == 'src=gp'
         self.data = {
             'locale': locale,
             'id': id_,
             # If we came from getpersonas.com, then look up by `persona_id`.
             # Otherwise, look up `addon_id`.
-            'primary_key': 'persona_id' if qs == 'src=gp' else 'addon_id',
+            'primary_key': 'persona_id' if self.from_gp else 'addon_id',
             'atype': base.ADDON_PERSONA,
             'row': {}
         }
@@ -123,8 +124,11 @@ class ThemeUpdate(object):
         row = self.data['row']
         accent = row.get('accentcolor')
         text = row.get('textcolor')
-        return json.dumps({
-            'id': str(row['addon_id']),
+
+        id_ = str(row[self.data['primary_key']])
+
+        data = {
+            'id': id_,
             'name': row.get('name'),
             'description': row.get('description'),
             # TODO: Change this to be `addons_users.user.username`.
@@ -141,11 +145,18 @@ class ThemeUpdate(object):
             'accentcolor': '#%s' % accent if accent else None,
             'textcolor': '#%s' % text if text else None,
             'updateURL': self.locale_url(settings.VAMO_URL,
-                '/themes/update-check/%s' % row['addon_id']),
+                                         '/themes/update-check/' + id_),
             # TODO: Change this when we add versions (bug 851881).
             # 04-25-2013: Bumped for GP migration so we get new `updateURL`s.
             'version': '1.1'
-        })
+        }
+
+        # If this theme was originally installed from getpersonas.com,
+        # we have to use the `<persona_id>?src=gp` version of the `updateURL`.
+        if self.from_gp:
+            data['updateURL'] += '?src=gp'
+
+        return json.dumps(data)
 
     def image_path(self, filename):
         row = self.data['row']

@@ -62,42 +62,45 @@ class TestWSGIApplication(amo.tests.TestCase):
 
 class TestThemeUpdate(amo.tests.TestCase):
     fixtures = ['addons/persona']
-    good = {
-        'username': 'persona_author',
-        'description': 'yolo',
-        'detailURL': settings.SITE_URL + '/en-US/addon/a15663/',
-        'accentcolor': '#8d8d97',
-        'iconURL': '/15663/preview_small.jpg',
-        'previewURL': '/15663/preview.jpg',
-        'textcolor': '#ffffff',
-        'id': '15663',
-        'headerURL': '/15663/BCBG_Persona_header2.png',
-        'dataurl': '',
-        'name': 'My Persona',
-        'author': 'persona_author',
-        'updateURL': settings.VAMO_URL + '/en-US/themes/update-check/15663',
-        'version': '1.0',
-        'footerURL': '/15663/BCBG_Persona_footer2.png'
-    }
+
+    def setUp(self):
+        self.good = {
+            'username': 'persona_author',
+            'description': 'yolo',
+            'detailURL': '/en-US/addon/a15663/',
+            'accentcolor': '#8d8d97',
+            'iconURL': '/15663/preview_small.jpg',
+            'previewURL': '/15663/preview.jpg',
+            'textcolor': '#ffffff',
+            'id': '15663',
+            'headerURL': '/15663/BCBG_Persona_header2.png',
+            'dataurl': '',
+            'name': 'My Persona',
+            'author': 'persona_author',
+            'updateURL': (settings.VAMO_URL +
+                          '/en-US/themes/update-check/15663'),
+            'version': '1.1',
+            'footerURL': '/15663/BCBG_Persona_footer2.png'
+        }
 
     def check_good(self, data):
         for k, v in self.good.iteritems():
             got = data[k]
             if k.endswith('URL'):
                 if k in ('detailURL', 'updateURL'):
-                    eq_(got.find('?'), -1,
-                        '"%s" should not contain "?"' % k)
+                    assert got.startswith('http'), (
+                        'Expected absolute URL for "%s": %s' % (k, got))
+                    assert got.endswith(v), (
+                        'Expected "%s" to end with "%s". Got "%s".' % (k, v, got))
                 else:
                     assert got.find('?') > -1, (
                         '"%s" must contain "?" for modified timestamp' % k)
 
-                # Strip `?<modified>` timestamps.
-                got = got.rsplit('?')[0]
+                    # Strip `?<modified>` timestamps.
+                    got = got.rsplit('?')[0]
 
-                assert got.endswith(v), (
-                    'Expected "%s" to end with "%s". Got "%s".' % (k, v, got))
-            else:
-                eq_(got, v, 'Expected "%s" for "%s". Got "%s".' % (v, k, got))
+                    assert got.endswith(v), (
+                        'Expected "%s" to end with "%s". Got "%s".' % (k, v, got))
 
     def get_update(self, *args):
         update = theme_update.ThemeUpdate(*args)
@@ -122,5 +125,11 @@ class TestThemeUpdate(amo.tests.TestCase):
             json.loads(self.get_update('en-US', 15663).get_json()))
 
         # Testing `persona_id` from GP.
+        self.good.update({
+            'id': '813',
+            'updateURL': (settings.VAMO_URL +
+                          '/en-US/themes/update-check/813?src=gp')
+        })
+
         self.check_good(
             json.loads(self.get_update('en-US', 813, 'src=gp').get_json()))
