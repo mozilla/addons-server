@@ -11,7 +11,7 @@ SERVER_EMAIL = 'zmarketplacedev@addons.mozilla.org'
 DOMAIN = "marketplace-altdev.allizom.org"
 SITE_URL = 'https://marketplace-altdev.allizom.org'
 SERVICES_URL = SITE_URL
-STATIC_URL = 'https://marketplace-altdev-cdn.allizom.org/'
+STATIC_URL = 'http://marketplace-dev-shared-data.s3-website-us-west-1.amazonaws.com/'
 LOCAL_MIRROR_URL = '%s_files' % STATIC_URL
 MIRROR_URL = LOCAL_MIRROR_URL
 
