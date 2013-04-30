@@ -7,7 +7,6 @@ import zipfile
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
-from django.core.signals import request_finished
 
 import mock
 from nose.tools import eq_
@@ -372,6 +371,11 @@ class TestCreateWebApp(BaseWebAppTest):
         self.assertSetEqual(app.device_types, [amo.DEVICE_GAIA])
         eq_(app.premium_type, amo.ADDON_PREMIUM)
 
+    def test_supported_locales(self):
+        addon = self.post_addon()
+        eq_(addon.default_locale, 'en-US')
+        eq_(addon.versions.latest().supported_locales, 'es,it')
+
     def test_short_locale(self):
         # This manifest has a locale code of "pt" which is in the
         # SHORTER_LANGUAGES setting and should get converted to "pt-PT".
@@ -379,6 +383,7 @@ class TestCreateWebApp(BaseWebAppTest):
         self.upload = self.get_upload(abspath=self.manifest)
         addon = self.post_addon()
         eq_(addon.default_locale, 'pt-PT')
+        eq_(addon.versions.latest().supported_locales, 'es')
 
     def test_unsupported_detail_locale(self):
         # This manifest has a locale code of "en-GB" which is unsupported, so
@@ -387,6 +392,7 @@ class TestCreateWebApp(BaseWebAppTest):
         self.upload = self.get_upload(abspath=self.manifest)
         addon = self.post_addon()
         eq_(addon.default_locale, 'en-US')
+        eq_(addon.versions.latest().supported_locales, 'es,it')
 
 
 class TestCreateWebAppFromManifest(BaseWebAppTest):

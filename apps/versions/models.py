@@ -21,6 +21,7 @@ from amo.urlresolvers import reverse
 from applications.models import Application, AppVersion
 from files import utils
 from files.models import File, Platform, cleanup_file
+from mkt.webapps.utils import get_supported_locales
 from tower import ugettext as _
 from translations.fields import (LinkifiedField, PurifiedField, save_signal,
                                  TranslatedField)
@@ -60,6 +61,8 @@ class Version(amo.models.ModelBase):
     has_editor_comment = models.BooleanField(default=False)
 
     deleted = models.BooleanField(default=False)
+
+    supported_locales = models.CharField(max_length=255)
 
     objects = VersionManager()
     with_deleted = VersionManager(include_deleted=True)
@@ -112,7 +115,11 @@ class Version(amo.models.ModelBase):
 
         for platform in platforms:
             f = File.from_upload(upload, v, platform, parse_data=data)
-            if addon.type == amo.ADDON_WEBAPP and addon.is_packaged:
+
+        if addon.type == amo.ADDON_WEBAPP:
+            mf = addon.get_manifest_json()
+            v.update(supported_locales=','.join(get_supported_locales(mf)))
+            if addon.is_packaged:
                 f.inject_ids()
 
         v.disable_old_files()

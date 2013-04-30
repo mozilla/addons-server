@@ -38,7 +38,6 @@ from amo.utils import (cache_ns_key, chunked, find_language, JSONEncoder,
                        send_mail, slugify, sorted_groupby, to_language,
                        urlparams, timer)
 from amo.urlresolvers import get_outgoing_url, reverse
-from compat.models import CompatReport
 from files.models import File
 from market.models import AddonPremium, Price
 from reviews.models import Review
@@ -1454,7 +1453,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         locales = dict(Translation.objects.filter(id=self.name_id)
                                           .values_list('locale',
                                                        'localized_string'))
-        msg_c = []  # For names that were created messaging.
+        msg_c = []  # For names that were created.
         msg_d = []  # For deletes.
         msg_u = []  # For updates.
 

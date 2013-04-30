@@ -1,7 +1,7 @@
 import commonware.log
 
 import amo
-from amo.utils import no_translation
+from amo.utils import find_language, no_translation
 
 
 log = commonware.log.getLogger('z.webapps')
@@ -20,6 +20,20 @@ def get_locale_properties(manifest, property, default_locale=None):
         locale_dict[default] = root_property
 
     return locale_dict
+
+
+def get_supported_locales(manifest):
+    """
+    Returns a list of locales found in the "locales" property of the manifest.
+
+    This will convert locales found in the SHORTER_LANGUAGES setting to their
+    full locale. It will also remove locales not found in AMO_LANGUAGES.
+
+    Note: The default_locale is not included.
+
+    """
+    return sorted(filter(None, map(find_language, set(
+        manifest.get('locales', {}).keys()))))
 
 
 def app_to_dict(app, currency=None, user=None):
