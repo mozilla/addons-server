@@ -79,10 +79,10 @@ class Marketplace(object):
 
         except DeserializationError:
             if ct:
-                error = "Unable to deserialize request body as '%s'"
+                error = "Unable to deserialize request body as '%s'" % ct
             else:
                 error = 'Content-Type header required'
-            raise self.non_form_errors(('__all__', error))
+            raise self.non_form_errors((('__all__', error),),)
 
         except UnsupportedFormat:
             msgs = []
