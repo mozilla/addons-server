@@ -1256,6 +1256,16 @@ class SearchTest(ESTestCase):
         assert not response.has_header('Access-Control-Allow-Origin')
         assert not response.has_header('Access-Control-Allow-Methods')
 
+    def test_suggestions(self):
+        response = self.client.get(
+            '/en-US/firefox/api/%.1f/search_suggestions/?q=delicious' %
+            api.CURRENT_VERSION)
+        data = json.loads(response.content)['suggestions'][0]
+        a = Addon.objects.get(pk=3615)
+        eq_(data['id'], str(a.pk))
+        eq_(data['name'], a.name)
+        eq_(data['rating'], a.average_rating)
+
 
 class LanguagePacks(UploadTest):
     fixtures = ['addons/listed', 'base/apps', 'base/platforms']

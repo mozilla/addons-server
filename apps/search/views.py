@@ -131,13 +131,14 @@ class BaseAjaxSearch(object):
 
     """
 
-    def __init__(self, request, excluded_ids=()):
+    def __init__(self, request, excluded_ids=(), ratings=False):
         self.request = request
         self.excluded_ids = excluded_ids
         self.src = getattr(self, 'src', None)
         self.types = getattr(self, 'types', amo.ADDON_TYPES.keys())
         self.limit = 10
         self.key = 'q'  # Name of search field.
+        self.ratings = ratings
 
         # Mapping of JSON key => add-on property.
         default_fields = {
@@ -147,6 +148,8 @@ class BaseAjaxSearch(object):
             'icon': 'icon_url'
         }
         self.fields = getattr(self, 'fields', default_fields)
+        if self.ratings:
+            self.fields['rating'] = 'average_rating'
 
     def queryset(self):
         """Get items based on ID or search by name."""
@@ -265,12 +268,24 @@ def ajax_search(request):
 
 @json_view
 def ajax_search_suggestions(request):
+    cat = request.GET.get('cat', 'all')
+    suggesterClass = {
+        'all': AddonSuggestionsAjax,
+        'themes': PersonaSuggestionsAjax,
+        'apps': WebappSuggestionsAjax,
+    }.get(cat, AddonSuggestionsAjax)
+    suggester = suggesterClass(request, ratings=False)
+    return _build_suggestions(
+        request,
+        cat,
+        suggester)
+
+
+def _build_suggestions(request, cat, suggester):
     results = []
     q = request.GET.get('q')
     if q and (q.isdigit() or len(q) > 2):
         q_ = q.lower()
-
-        cat = request.GET.get('cat', 'all')
 
         # Don't let Marketplace query any other types.
         if settings.MARKETPLACE:
@@ -315,13 +330,7 @@ def ajax_search_suggestions(request):
                     'cls': 'cat'
                 })
 
-        suggestions = {
-            'all': AddonSuggestionsAjax,
-            'themes': PersonaSuggestionsAjax,
-            'apps': WebappSuggestionsAjax,
-        }.get(cat, AddonSuggestionsAjax)
-
-        results += suggestions(request).items
+        results += suggester.items
 
     return results
 

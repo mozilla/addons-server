@@ -25,7 +25,7 @@ from tower import ugettext as _, ugettext_lazy
 import amo
 import api
 from addons.models import Addon, CompatOverride
-from amo.decorators import post_required, allow_cross_site_request
+from amo.decorators import post_required, allow_cross_site_request, json_view
 from amo.models import manual_order
 from amo.urlresolvers import get_url_prefix
 from amo.utils import JSONEncoder
@@ -34,7 +34,8 @@ from api.forms import PerformanceForm
 from api.utils import addon_to_dict, extract_filters
 from perf.models import (Performance, PerformanceAppVersions,
                          PerformanceOSVersion)
-from search.views import name_query
+from search.views import (name_query, _build_suggestions,
+                          PersonaSuggestionsAjax, AddonSuggestionsAjax)
 from versions.compare import version_int
 
 
@@ -388,6 +389,20 @@ class SearchView(APIView):
             'version': version,
             'compat_mode': compat_mode,
         })
+
+
+@json_view
+def search_suggestions(request):
+    cat = request.GET.get('cat', 'all')
+    suggesterClass = {
+        'all': AddonSuggestionsAjax,
+        'themes': PersonaSuggestionsAjax,
+    }.get(cat, AddonSuggestionsAjax)
+    suggester = suggesterClass(request, ratings=True)
+    suggs = _build_suggestions(request, cat, suggester)
+    for s in suggs:
+        s['rating'] = float(s['rating'])
+    return {'suggestions': suggs}
 
 
 class ListView(APIView):
