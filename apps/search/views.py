@@ -215,7 +215,7 @@ class WebappSuggestionsAjax(SearchSuggestionsAjax):
     types = [amo.ADDON_WEBAPP]
     fields = {'url': 'get_url_path', 'name': 'name', 'id': 'id'}
 
-    def __init__(self, request, excluded_ids=(), category=None):
+    def __init__(self, request, excluded_ids=(), category=None, ratings=False):
         self.category = category
         self.gaia = getattr(request, 'GAIA', False)
         self.mobile = getattr(request, 'MOBILE', False)
