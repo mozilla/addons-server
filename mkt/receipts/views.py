@@ -231,13 +231,13 @@ def devhub_install(request):
 def devhub_receipt(request):
     form = forms.TestInstall(request.POST)
     if form.is_valid():
-        receipt_type = form.cleaned_data['receipt_type']
+        data = form.cleaned_data
 
-        if receipt_type == 'none':
+        if data['receipt_type'] == 'none':
             return {'receipt': '', 'error': ''}
 
         receipt_cef.log(request, None, 'sign', 'Test receipt signing')
-        receipt = create_test_receipt(form.root, receipt_type)
+        receipt = create_test_receipt(data['root'], data['receipt_type'])
         return {'receipt': receipt, 'error': ''}
 
     return {'receipt': '', 'error': form.errors}

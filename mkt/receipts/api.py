@@ -3,6 +3,7 @@ import commonware.log
 from tastypie import http
 from tastypie.authorization import Authorization
 from tastypie.exceptions import ImmediateHttpResponse
+from tastypie.validation import CleanedDataFormValidation
 
 import amo
 from amo.utils import memoize_get
@@ -10,13 +11,16 @@ from amo.utils import memoize_get
 from access.acl import check_ownership
 from lib.cef_loggers import receipt_cef
 from lib.metrics import record_action
-from mkt.api.authentication import OAuthAuthentication
+from mkt.api.authentication import (OAuthAuthentication,
+                                    OptionalOAuthAuthentication)
 from mkt.api.base import CORSResource, MarketplaceResource
 from mkt.api.http import HttpPaymentRequired
 from mkt.constants import apps
-from mkt.receipts.forms import ReceiptForm
-from mkt.receipts.utils import create_receipt
+from mkt.receipts.forms import ReceiptForm, TestInstall
+from mkt.receipts.utils import create_receipt, create_test_receipt
+
 from mkt.webapps.models import Installed
+
 
 log = commonware.log.getLogger('z.receipt')
 
@@ -41,11 +45,6 @@ class ReceiptResource(CORSResource, MarketplaceResource):
             'anonymous': request.user.is_anonymous(),
         })
         return bundle
-
-    def get_resource_uri(self, bundle_or_obj=None,
-                         url_name='api_dispatch_list'):
-        # When we fix bug 845856, remove this.
-        return ''
 
     def handle(self, bundle, request, **kwargs):
         form = ReceiptForm(bundle.data)
@@ -90,3 +89,22 @@ class ReceiptResource(CORSResource, MarketplaceResource):
 
         receipt_cef.log(request, bundle.obj, 'sign', 'Receipt signing')
         return create_receipt(installed.pk)
+
+
+class TestReceiptResource(CORSResource, MarketplaceResource):
+
+    class Meta(MarketplaceResource.Meta):
+        always_return_data = True
+        authentication = OptionalOAuthAuthentication()
+        authorization = Authorization()
+        detail_allowed_methods = []
+        list_allowed_methods = ['post']
+        object_class = dict
+        resource_name = 'test'
+        validation = CleanedDataFormValidation(form_class=TestInstall)
+
+    def obj_create(self, bundle, request=None, **kwargs):
+        receipt_cef.log(request, None, 'sign', 'Test receipt signing')
+        bundle.data= {'receipt': create_test_receipt(
+            bundle.data['root'], bundle.data['receipt_type'])}
+        return bundle

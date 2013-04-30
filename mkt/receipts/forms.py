@@ -23,7 +23,10 @@ class TestInstall(forms.Form):
     receipt_type = forms.ChoiceField(choices=TYPE_CHOICES)
     manifest_url = forms.URLField()
 
-    @property
-    def root(self):
-        parsed = urlparse(self.cleaned_data['manifest_url'])
-        return '%s://%s' % (parsed.scheme, parsed.netloc)
+    def clean(self):
+        data = self.cleaned_data
+        url = data.get('manifest_url')
+        if url:
+            parsed = urlparse(url)
+            data['root'] = '%s://%s' % (parsed.scheme, parsed.netloc)
+        return data

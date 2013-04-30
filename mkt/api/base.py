@@ -223,7 +223,9 @@ class MarketplaceResource(Marketplace, Resource):
     Use this if you would like to expose something that is *not* a Django
     model as an API.
     """
-    pass
+
+    def get_resource_uri(self, *args, **kw):
+        return ''
 
 
 class MarketplaceModelResource(Marketplace, ModelResource):

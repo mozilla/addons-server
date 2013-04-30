@@ -87,6 +87,33 @@ class TestAPI(BaseOAuth):
 
 @mock.patch.object(settings, 'WEBAPPS_RECEIPT_KEY',
                    amo.tests.AMOPaths.sample_key())
+class TestDevhubAPI(BaseOAuth):
+    fixtures = fixture('user_2519', 'webapp_337141')
+
+    def setUp(self):
+        super(TestDevhubAPI, self).setUp(api_name='receipts')
+        self.data = json.dumps({'manifest_url': 'http://foo.com',
+                                'receipt_type': 'expired'})
+        self.url = list_url('test')
+
+    def test_has_cors(self):
+        self.assertCORS(self.client.get(self.url), 'post')
+
+    def test_decode(self):
+        res = self.anon.post(self.url, data=self.data)
+        eq_(res.status_code, 201)
+        data = json.loads(res.content)
+        receipt = Receipt(data['receipt'].encode('ascii')).receipt_decoded()
+        eq_(receipt['typ'], u'test-receipt')
+
+    @mock.patch('mkt.receipts.api.receipt_cef.log')
+    def test_cef_log(self, cef):
+        self.anon.post(self.url, data=self.data)
+        cef.assert_called_with(mock.ANY, None, 'sign', 'Test receipt signing')
+
+
+@mock.patch.object(settings, 'WEBAPPS_RECEIPT_KEY',
+                   amo.tests.AMOPaths.sample_key())
 class TestReceipt(amo.tests.TestCase):
     fixtures = fixture('user_2519', 'webapp_337141')
 

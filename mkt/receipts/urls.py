@@ -7,6 +7,7 @@ from . import api, views
 
 receipt = Api(api_name='receipts')
 receipt.register(api.ReceiptResource())
+receipt.register(api.TestReceiptResource())
 
 # Note: this URL is embedded in receipts, if you change the URL, make sure
 # that you put a redirect in.

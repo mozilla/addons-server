@@ -28,9 +28,9 @@ to be used on install.
 
     **Response**:
 
-    .. code-block:: http
+    .. code-block:: json
 
-        {"receipt": "ey...[truncated]"}
+        {"receipt": "eyJhbGciOiAiUlM1MT...[truncated]"}
 
     :statuscode 201: successfully completed.
     :statuscode 402: payment required.
@@ -40,12 +40,36 @@ Developers
 ~~~~~~~~~~
 
 Developers of the app will get a special developer receipt that is valid for
-24 hours and does not require payment.
+24 hours and does not require payment. See also `Test Receipts`_.
 
 Reviewers
 ~~~~~~~~~
 
 Reviewers should not use this API.
+
+Test Receipts
+=============
+
+Returns test receipts for use during testing or development. The returned
+receipt will have type `test-receipt`. Only works for hosted apps.
+
+.. http:post:: /api/v1/receipts/test/
+
+    Returns a receipt suitable for testing your app.
+
+    **Request**:
+
+    :param string manifest_url: the fully qualified URL to the manifest, including
+        protocol.
+    :param string receipt_type: one of ``ok``, ``expired``, ``invalid`` or ``refunded``.
+
+    **Response**:
+
+    .. code-block:: json
+
+        {"receipt": "eyJhbGciOiAiUlM1MT...[truncated]"}
+
+    :status 201: successfully completed.
 
 Pay Tiers
 ==========
