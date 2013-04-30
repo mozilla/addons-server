@@ -9,7 +9,7 @@ from django.conf import settings
 from django.core.files.storage import default_storage as storage
 
 import mock
-from nose.tools import eq_
+from nose.tools import eq_, ok_
 from pyquery import PyQuery as pq
 
 import amo
@@ -28,10 +28,10 @@ from users.models import UserProfile
 
 import mkt
 from mkt.site.fixtures import fixture
-from mkt.submit.forms import NewWebappVersionForm
+from mkt.submit.forms import AppFeaturesForm, NewWebappVersionForm
 from mkt.submit.models import AppSubmissionChecklist
 from mkt.submit.decorators import read_dev_agreement_required
-from mkt.webapps.models import AddonExcludedRegion as AER, Webapp
+from mkt.webapps.models import AddonExcludedRegion as AER, AppFeatures, Webapp
 
 
 class TestSubmit(amo.tests.TestCase):
@@ -267,6 +267,10 @@ class BaseWebAppTest(BaseUploadTest, UploadAddon, amo.tests.TestCase):
 
 class TestCreateWebApp(BaseWebAppTest):
 
+    def setUp(self):
+        super(TestCreateWebApp, self).setUp()
+        self.create_switch('buchets')
+
     def test_post_app_redirect(self):
         r = self.post()
         webapp = Webapp.objects.get()
@@ -393,6 +397,18 @@ class TestCreateWebApp(BaseWebAppTest):
         addon = self.post_addon()
         eq_(addon.default_locale, 'en-US')
         eq_(addon.versions.latest().supported_locales, 'es,it')
+
+    def test_appfeatures_creation(self):
+        addon = self.post_addon(data={
+            'free_platforms': ['free-desktop'],
+            'has_contacts': 'on'
+        })
+        features = addon.current_version.features
+        ok_(isinstance(features, AppFeatures))
+        field_names = [f.name for f in AppFeaturesForm().all_fields()]
+        for field in field_names:
+            expected = field == 'has_contacts'
+            eq_(getattr(features, field), expected)
 
 
 class TestCreateWebAppFromManifest(BaseWebAppTest):

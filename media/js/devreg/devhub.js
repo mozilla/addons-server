@@ -59,6 +59,7 @@ $(document).ready(function() {
     var $webapp_url = $('#upload-webapp-url'),
         $validate_form = $('#validate-field'),
         $validate_button = $('#validate_app'),
+        $webapp_features = $('#upload-webapp-features'),
         $submit_footer = $('#upload-webapp').find('footer');
 
     if ($webapp_url.length) {
@@ -81,7 +82,7 @@ $(document).ready(function() {
                     $('#validate-error-protocol').removeClass('protocol visible')
                         .parent().removeClass('show-tip');
                 }
-
+                $webapp_features.filter(':visible').addClass('hidden');
                 $submit_footer.filter(':visible').addClass('hidden');
                 $('.upload-details .hint:hidden').show();
 
@@ -139,9 +140,10 @@ $(document).ready(function() {
                     window.sessionStorage['manifest_url'] = $webapp_url.val();
                 }
             }
-
             // Show footer to "Continue" only if there was a success.
+            $webapp_features.toggleClass('hidden', !success);
             $submit_footer.toggleClass('hidden', !success);
+
             $('.upload-details .hint').hide();
         })
         .bind('upload_errors', function(e, r) {

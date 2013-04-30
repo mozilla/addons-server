@@ -1279,6 +1279,7 @@ class TestAppFeatures(amo.tests.TestCase):
     def setUp(self):
         self.app = Addon.objects.get(pk=337141)
         self.flags = ('APPS', 'GEOLOCATION', 'PAY', 'SMS')
+        self.create_switch('buchets')
 
     def _flag(self):
         "Flag app with a handful of feature flags for testing."
@@ -1322,6 +1323,11 @@ class TestAppFeatures(amo.tests.TestCase):
     def test_to_dict(self):
         self._flag()
         self._check(self.app.current_version.features.to_dict())
+
+    def test_to_list(self):
+        self._flag()
+        self.assertSetEqual(self.app.current_version.features.to_list(),
+                            ['Apps', 'Geolocation', 'Web Payment', 'WebSMS'])
 
     def test_bad_data(self):
         af = AppFeatures(version=self.app.current_version)

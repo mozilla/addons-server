@@ -21,6 +21,7 @@ from translations.widgets import TransInput, TransTextarea
 
 from mkt.constants import FREE_PLATFORMS, PAID_PLATFORMS
 from mkt.site.forms import AddonChoiceField, APP_PUBLIC_CHOICES
+from mkt.webapps.models import AppFeatures
 
 
 def mark_for_rereview(addon, added_devices, removed_devices):
@@ -401,3 +402,23 @@ class AppDetailsBasicForm(TranslationFormMixin, happyforms.ModelForm):
         form.save()
 
         return form
+
+
+class AppFeaturesForm(happyforms.ModelForm):
+    class Meta:
+        exclude = ['version']
+        model = AppFeatures
+
+    def all_fields(self):
+        """
+        Degeneratorizes self.__iter__(), the list of fields on the form. This
+        allows further manipulation of fields: to display a subset of fields or
+        order them in a specific way.
+        """
+        return [f for f in self.__iter__()]
+
+    def required_api_fields(self):
+        """
+        All fields on the form, alphabetically sorted by help text.
+        """
+        return sorted(self.all_fields(), key=lambda x: x.help_text.decode())

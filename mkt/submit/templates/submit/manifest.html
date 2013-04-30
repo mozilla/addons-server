@@ -102,6 +102,18 @@
         {{ form.paid_platforms }}
         {{ form.packaged }}
       </div>
+
+      {% if waffle.switch('buchets') %}
+      <div id="upload-webapp-features" class="hidden">
+        <h3>{% trans %}My App Requires:{% endtrans %}</h3>
+        <ul>
+          {% for field in features_form.required_api_fields() %}
+            <li><label for="{{ field.auto_id }}">{{ field }} {{ field.help_text }}</label></li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+
       <footer class="listing-footer hidden">
         {% trans %}
           <b>What's next:</b> fill out the rest of your app's details

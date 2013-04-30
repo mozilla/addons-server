@@ -1,3 +1,5 @@
+from django.forms.fields import BooleanField
+
 import mock
 from nose.tools import eq_
 
@@ -6,8 +8,10 @@ import amo.tests
 from files.models import FileUpload
 from users.models import UserProfile
 
+from mkt.constants.features import APP_FEATURES
 from mkt.site.fixtures import fixture
 from mkt.submit import forms
+from mkt.webapps.models import AppFeatures
 
 
 class TestNewWebappForm(amo.tests.TestCase):
@@ -119,3 +123,27 @@ class TestAppDetailsBasicForm(amo.tests.TestCase):
         request.amo_user = UserProfile.objects.get(id=999)
         form = forms.AppDetailsBasicForm({}, request=request)
         eq_(form.initial, {'support_email': {'en-us': 'regular@mozilla.com'}})
+
+
+class TestAppFeaturesForm(amo.tests.TestCase):
+
+    def setUp(self):
+        self.form = forms.AppFeaturesForm()
+        self.create_switch('buchets')
+
+    def test_required(self):
+        f_names = self.form.fields.keys()
+        for value in (True, False):
+            form = forms.AppFeaturesForm(dict((n, value) for n in f_names))
+            eq_(form.is_valid(), True, form.errors)
+
+    def test_correct_fields(self):
+        fields = self.form.fields
+        f_values = fields.values()
+        assert 'version' not in fields
+        assert all(isinstance(f, BooleanField) for f in f_values)
+        self.assertSetEqual(fields, AppFeatures()._fields())
+
+    def test_required_api_fields(self):
+        fields = [f.help_text.decode() for f in self.form.required_api_fields()]
+        eq_(fields, sorted(f[1].decode() for f in APP_FEATURES))

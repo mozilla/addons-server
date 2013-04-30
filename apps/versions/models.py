@@ -448,6 +448,21 @@ class Version(amo.models.ModelBase):
             for f in qs:
                 f.update(status=amo.STATUS_DISABLED)
 
+    def get_features(self):
+        """
+        Returns this version's AppFeatures instance. If one doesn't exist, it is
+        created and returned.
+
+        Used on Marketplace only.
+        """
+        from mkt.webapps.models import AppFeatures
+        try:
+            return self.features
+        except AppFeatures.DoesNotExist:
+            self.features = AppFeatures.objects.create(version=self)
+            self.save()
+            return self.features
+
 
 def update_status(sender, instance, **kw):
     if not kw.get('raw'):

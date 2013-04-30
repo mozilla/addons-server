@@ -52,7 +52,7 @@ from mkt.developers.forms import (APIConsumerForm, AppFormBasic,
                                   NewPackagedAppForm, PreviewFormSet,
                                   TransactionFilterForm, trap_duplicate)
 from mkt.developers.utils import check_upload
-from mkt.submit.forms import NewWebappVersionForm
+from mkt.submit.forms import AppFeaturesForm, NewWebappVersionForm
 from mkt.webapps.tasks import update_manifests, _update_manifest
 from mkt.webapps.models import Webapp
 
@@ -128,6 +128,8 @@ def edit(request, addon_id, addon, webapp=False):
                                                          flat=True),
         'previews': addon.get_previews(),
     }
+    if waffle.switch_is_active('buchets'):
+        data['appfeatures'] = addon.current_version.get_features().to_list()
     if acl.action_allowed(request, 'Apps', 'Configure'):
         data['admin_settings_form'] = forms.AdminSettingsForm(instance=addon)
     return jingo.render(request, 'developers/apps/edit.html', data)
@@ -580,6 +582,10 @@ def addons_section(request, addon_id, addon, section, editable=False,
     tags = image_assets = previews = restricted_tags = []
     cat_form = None
 
+    if waffle.switch_is_active('buchets'):
+        appfeatures = addon.current_version.get_features()
+        appfeatures_form = AppFeaturesForm(instance=appfeatures)
+
     # Permissions checks.
     # Only app owners can edit any of the details of their apps.
     # Users with 'Apps:Configure' can edit the admin settings.
@@ -606,17 +612,26 @@ def addons_section(request, addon_id, addon, section, editable=False,
     if editable:
         if request.method == 'POST':
 
+            if waffle.switch_is_active('buchets'):
+                appfeatures_form = AppFeaturesForm(request.POST or None,
+                                                   instance=appfeatures)
+
             if (section == 'admin' and
                 not acl.action_allowed(request, 'Apps', 'Configure')):
                 raise PermissionDenied
 
             form = models[section](request.POST, request.FILES,
                                    instance=addon, request=request)
-            if (form.is_valid()
-                and (not previews or previews.is_valid())
-                and (not image_assets or image_assets.is_valid())):
+
+            all_forms = [form, previews, image_assets]
+            if waffle.switch_is_active('buchets'):
+                all_forms.append(appfeatures_form)
+            if all(not f or f.is_valid() for f in all_forms):
 
                 addon = form.save(addon)
+
+                if waffle.switch_is_active('buchets'):
+                    appfeatures_form.save()
 
                 if 'manifest_url' in form.changed_data:
                     addon.update(
@@ -659,6 +674,12 @@ def addons_section(request, addon_id, addon, section, editable=False,
             'preview_form': previews,
             'image_asset_form': image_assets,
             'valid_slug': valid_slug, }
+
+    if waffle.switch_is_active('buchets'):
+        data.update({
+            'appfeatures': appfeatures.to_list(),
+            'appfeatures_form': appfeatures_form
+        })
 
     return jingo.render(request,
                         'developers/apps/edit/%s.html' % section, data)

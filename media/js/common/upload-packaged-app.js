@@ -305,7 +305,8 @@
                     upload_progress_outside.attr('class', 'bar-success');
                     upload_progress_inside.fadeOut();
 
-                    $('footer.listing-footer').removeClass('hidden');
+                    $('footer.listing-footer').removeClass('hidden')
+                        .siblings('#upload-webapp-features').removeClass('hidden');
                     $('button.upload-file-submit').removeAttr('disabled').focus();
 
                     $upload_field.trigger('reenable_uploader');
