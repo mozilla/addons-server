@@ -74,8 +74,6 @@ receipt will have type `test-receipt`. Only works for hosted apps.
 Pay Tiers
 ==========
 
-.. note:: Accessible via CORS_.
-
 .. http:get:: /api/v1/webpay/prices/
 
     Gets a list of pay tiers from the Marketplace.
