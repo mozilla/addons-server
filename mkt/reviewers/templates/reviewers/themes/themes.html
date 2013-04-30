@@ -4,11 +4,20 @@
   {% if rereview %}
     {% set header_url = theme.header_url %}
     {% set footer_url = theme.footer_url %}
+    {% set reupload = theme %}
     {% set theme = theme.theme %}
   {% endif %}
   <div class="theme" data-id="{{ loop.index0 + (initial_count or 0) }}">
     {{ form }}
-    <h2><a href="{{ url('reviewers.themes.single', theme.addon.slug) }}">{{ theme.addon.name }}</a></h2>
+    <h2>
+      <a href="{{ url('reviewers.themes.single', theme.addon.slug) }}">{{ theme.addon.name }}</a>
+      {% if theme.dupe_persona %}
+        <a class="dupe" href="{{ theme.dupe_persona.addon.get_url_path() }}"> {{ _('(Probable Duplicate Submission)') }}</a>
+      {% endif %}
+      {% if reupload and reupload.dupe_persona %}
+        <a class="dupe" href="{{ reupload.dupe_persona.addon.get_url_path() }}"> {{ _('(Probable Duplicate Submission)') }}</a>
+      {% endif %}
+    </h2>
     <div class="status">
       <img class="clear-review" src="{{ media('/img/mkt/close.png') }}">
       <span></span>

@@ -277,10 +277,11 @@ class TestThemeForm(amo.tests.TestCase):
             {'data-allowed-types': 'image/jpeg|image/png',
              'data-upload-url': footer_url})
 
+    @mock.patch('addons.forms.make_checksum')
     @mock.patch('addons.tasks.create_persona_preview_images.delay')
     @mock.patch('addons.tasks.save_persona_image.delay')
     def test_success(self, save_persona_image_mock,
-                     create_persona_preview_images_mock):
+                     create_persona_preview_images_mock, mock1):
         if not hasattr(Image.core, 'jpeg_encoder'):
             raise SkipTest
 
@@ -320,6 +321,7 @@ class TestThemeForm(amo.tests.TestCase):
         eq_(persona.textcolor, data['textcolor'].lstrip('#'))
         eq_(persona.author, self.request.amo_user.username)
         eq_(persona.display_username, self.request.amo_user.name)
+        assert not persona.dupe_persona
 
         v = addon.versions.all()
         eq_(len(v), 1)
@@ -339,10 +341,36 @@ class TestThemeForm(amo.tests.TestCase):
              mock.call(src=footer_src,
                        full_dst=os.path.join(dst, 'footer.png'))])
 
-        create_persona_preview_images_mock.assert_called_with(src=header_src,
+        create_persona_preview_images_mock.assert_called_with(
+            src=header_src,
             full_dst=[os.path.join(dst, 'preview.png'),
                       os.path.join(dst, 'icon.png')],
             set_modified_on=[addon])
+
+    @mock.patch('addons.tasks.create_persona_preview_images.delay')
+    @mock.patch('addons.tasks.save_persona_image.delay')
+    @mock.patch('addons.forms.make_checksum')
+    def test_dupe_persona(self, make_checksum_mock, mock1, mock2):
+        """
+        Submitting persona with checksum already in db should be marked
+        duplicate.
+        """
+        make_checksum_mock.return_value = 'cornhash'
+
+        self.request.amo_user = UserProfile.objects.get(pk=2519)
+
+        self.post()
+        eq_(self.form.is_valid(), True, self.form.errors)
+        self.form.save()
+
+        self.post(name='whatsinaname', slug='metalslug')
+        eq_(self.form.is_valid(), True, self.form.errors)
+        self.form.save()
+
+        personas = Persona.objects.order_by('addon__created')
+        eq_(personas[0].checksum, personas[1].checksum)
+        eq_(personas[1].dupe_persona, personas[0])
+        eq_(personas[0].dupe_persona, None)
 
 
 class TestEditThemeForm(amo.tests.TestCase):
@@ -358,15 +386,17 @@ class TestEditThemeForm(amo.tests.TestCase):
         self.request.amo_user.is_authenticated.return_value = True
 
     def populate(self):
-        self.instance = Addon.objects.create(type=amo.ADDON_PERSONA,
-            status=amo.STATUS_PUBLIC, slug='swag-overload',
-            name='Bands Make Me Dance', summary='tha summary')
+        self.instance = Addon.objects.create(
+            type=amo.ADDON_PERSONA, status=amo.STATUS_PUBLIC,
+            slug='swag-overload', name='Bands Make Me Dance',
+            summary='tha summary')
         self.cat = Category.objects.create(
             type=amo.ADDON_PERSONA, name='xxxx')
         self.instance.addoncategory_set.create(category=self.cat)
         self.license = amo.LICENSE_CC_BY.id
-        Persona.objects.create(persona_id=0, addon_id=self.instance.id,
-            license=self.license, accentcolor='C0FFEE', textcolor='EFFFFF')
+        Persona.objects.create(
+            persona_id=0, addon_id=self.instance.id, license=self.license,
+            accentcolor='C0FFEE', textcolor='EFFFFF')
         Tag(tag_text='sw').save_tag(self.instance)
         Tag(tag_text='ag').save_tag(self.instance)
 
@@ -438,10 +468,12 @@ class TestEditThemeForm(amo.tests.TestCase):
         eq_(self.form.errors,
             {'name': ['This name is already in use. Please choose another.']})
 
+    @mock.patch('addons.forms.make_checksum')
     @mock.patch('addons.tasks.create_persona_preview_images.delay')
     @mock.patch('addons.tasks.save_persona_image.delay')
     def test_reupload(self, save_persona_image_mock,
-                      create_persona_preview_images_mock):
+                      create_persona_preview_images_mock,
+                      make_checksum_mock):
         data = self.get_dict(header_hash='y0l0', footer_hash='abab')
         self.form = EditThemeForm(data, request=self.request,
                                   instance=self.instance)
@@ -462,8 +494,30 @@ class TestEditThemeForm(amo.tests.TestCase):
 
         rqt = RereviewQueueTheme.objects.filter(theme=self.instance.persona)
         eq_(rqt.count(), 1)
-        eq_(rqt[0].header, os.path.join(dst, 'pending_header.png'))
-        eq_(rqt[0].footer, os.path.join(dst, 'pending_footer.png'))
+        eq_(rqt[0].header, 'pending_header.png')
+        eq_(rqt[0].footer, 'pending_footer.png')
+        assert not rqt[0].dupe_persona
+
+    @mock.patch('addons.forms.make_checksum')
+    @mock.patch('addons.tasks.create_persona_preview_images.delay')
+    @mock.patch('addons.tasks.save_persona_image.delay')
+    def test_reupload_duplicate(self, save_persona_image_mock,
+                                create_persona_preview_images_mock,
+                                make_checksum_mock):
+        make_checksum_mock.return_value = 'checksumbeforeyouwrecksome'
+
+        theme = amo.tests.addon_factory(type=amo.ADDON_PERSONA)
+        theme.persona.checksum = 'checksumbeforeyouwrecksome'
+        theme.persona.save()
+
+        data = self.get_dict(header_hash='head', footer_hash='foot')
+        self.form = EditThemeForm(data, request=self.request,
+                                  instance=self.instance)
+        eq_(self.form.is_valid(), True)
+        self.form.save()
+
+        rqt = RereviewQueueTheme.objects.get(theme=self.instance.persona)
+        eq_(rqt.dupe_persona, theme.persona)
 
 
 class TestEditThemeOwnerForm(amo.tests.TestCase):
