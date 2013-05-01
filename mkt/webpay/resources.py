@@ -26,13 +26,15 @@ class PriceResource(CORSResource, MarketplaceModelResource):
     prices = fields.ListField(attribute='prices', readonly=True)
     localized = fields.DictField(attribute='suggested', readonly=True,
                                  blank=True, null=True)
+    pricePoint = fields.CharField(attribute='name', readonly=True)
+    name = fields.CharField(attribute='tier_name', readonly=True)
 
     class Meta:
         queryset = Price.objects.filter(active=True)
         list_allowed_methods = ['get']
         detail_allowed_methods = ['get']
         resource_name = 'prices'
-        fields = ['name', 'suggested']
+        filtering = {'pricePoint': 'exact'}
 
     def _get_prices(self, bundle):
         """

@@ -4,7 +4,7 @@ from django.db import connection, models
 from django.dispatch import receiver
 from django.utils import translation
 
-from translations.fields import save_signal, TranslatedField
+from tower import ugettext_lazy as _
 
 import amo
 import amo.models
@@ -16,8 +16,6 @@ from stats.models import Contribution
 from users.models import UserProfile
 
 import commonware.log
-import json_field
-import paypal
 from babel import numbers
 from jinja2.filters import do_dictsort
 
@@ -36,7 +34,7 @@ class PriceManager(amo.models.ManagerBase):
 
 class Price(amo.models.ModelBase):
     active = models.BooleanField(default=True)
-    name = TranslatedField()
+    name = models.CharField(max_length=4)
     price = models.DecimalField(max_digits=10, decimal_places=2)
 
     objects = PriceManager()
@@ -45,8 +43,12 @@ class Price(amo.models.ModelBase):
     class Meta:
         db_table = 'prices'
 
+    def tier_name(self):
+        # L10n: %s is the name of the price tier, eg: 10.
+        return _('Tier %s' % self.name)
+
     def __unicode__(self):
-        return u'%s - $%s' % (self.name, self.price)
+        return u'%s - $%s' % (self.tier_name(), self.price)
 
     @staticmethod
     def transformer(prices):
@@ -109,10 +111,6 @@ class Price(amo.models.ModelBase):
         else:
             return [({'currency': o.currency, 'amount': o.price})
                     for c, o in self.currencies()]
-
-models.signals.pre_save.connect(save_signal, sender=Price,
-                                dispatch_uid='price_translations')
-
 
 
 class PriceCurrency(amo.models.ModelBase):

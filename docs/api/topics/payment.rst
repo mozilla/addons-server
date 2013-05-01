@@ -100,6 +100,7 @@ Pay Tiers
 
         {
             "name": "Tier 1",
+            "pricePoint": "1",
             "prices": [{
                 "amount": "0.99",
                 "currency": "USD"
@@ -112,6 +113,7 @@ Pay Tiers
         }
 
     :param localized: see `Localized tier`.
+    :param pricePoint: this is the value used for in-app payments.
     :statuscode 200: successfully completed.
 
 
