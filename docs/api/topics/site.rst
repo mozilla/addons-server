@@ -9,14 +9,17 @@ Configuration about the site.
 Categories
 ==========
 
-.. note:: This API will be moving to be under site
+.. note:: The URL for this API will be moving.
 
 .. http:get:: /api/v1/apps/category/
 
     Returns a list of categories available on the marketplace.
 
-    **Response**
+    **Request**
 
+    Standard :ref:`list-query-params-label`.
+
+    **Response**
 
     :param meta: :ref:`meta-response-label`.
     :param objects: A :ref:`listing <objects-response-label>` of :ref:`categories <category-response-label>`.
@@ -25,13 +28,9 @@ Categories
 
 .. _category-response-label:
 
-.. http:get:: /api/v1/apps/category/<id>/
+.. http:get:: /api/v1/apps/category/(int:id)/
 
     Returns a category.
-
-    **Request**
-
-    Standard :ref:`list-query-params-label`.
 
     **Response**
 
