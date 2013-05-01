@@ -1,0 +1,40 @@
+<h2>
+  {{ _('Country and Language') }}
+</h2>
+<div class="item island">
+  <table>
+    {# L10n: {0} is an addon name #}
+    <caption>{{ _('Country and Language Details for {0}')|f(addon.name) }}</caption>
+    <tbody>
+      <tr>
+        <th>
+          <span class="label">{{ _('Country') }}</span>
+        </th>
+        <td>
+          {% for region in addon.get_region_ids() %}
+            {{ mkt.regions.REGIONS_CHOICES_ID_DICT.get(region).name }}
+            {{- ', ' if not loop.last -}}
+          {% endfor %}
+          <small>
+            <a href="{{ addon.get_dev_url('payments') }}">
+              {{ _('Edit country in the Compatibility Page') }}
+            </a>
+          </small>
+        </td>
+      </tr>
+      <tr>
+        <th>
+          <span class="label">{{ _('Language' )}}</span>
+        </th>
+        <td>
+          {% with locales=addon.supported_locales %}
+            {{- locales[0] }} ({{ _('default') }}), {{ locales[1]|join(", ") -}}
+          {% endwith %}
+          <small>
+            {{ _('Edit language in your app manifest file') }}
+          </small>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

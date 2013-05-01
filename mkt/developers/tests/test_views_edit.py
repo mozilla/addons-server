@@ -35,6 +35,8 @@ from mkt.site.fixtures import fixture
 from mkt.webapps.models import (AddonExcludedRegion as AER, ContentRating,
                                 ImageAsset)
 
+from tower import strip_whitespace
+
 response_mock = mock.Mock()
 response_mock.read.return_value = '''
     {
@@ -444,6 +446,35 @@ class TestEditBasic(TestEdit):
         r = self.client.post(url)
         eq_(r.status_code, 403)
         eq_(fetch.called, 0)
+
+
+@mock.patch.object(settings, 'TASK_USER_ID', 999)
+class TestEditCountryLanguage(TestEdit):
+    fixtures = TestEdit.fixtures
+
+    def get_webapp(self):
+        return Addon.objects.get(id=337141)
+
+    def test_apps_context(self):
+        eq_(self.client.get(self.url).context['webapp'], True)
+
+    def test_data_visible(self):
+        clean_countries = []
+        self.get_webapp().current_version.update(supported_locales='de,es')
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+
+        countries = (pq(pq(r.content)('#edit-app-language tr').eq(0))
+                     .find('td').remove('small').text())
+        langs = (pq(pq(r.content)('#edit-app-language tr').eq(1)).find('td')
+                 .remove('small').text())
+
+        for c in countries.split(', '):
+            clean_countries.append(strip_whitespace(c))
+
+        eq_(langs, u'English (US) (default), Deutsch, Espa\xc3\xb1ol')
+        eq_(clean_countries, ['United States', 'United Kingdom', 'Brazil',
+                              'Spain', 'Colombia', 'Venezuela', 'Poland'])
 
 
 class TestEditMedia(TestEdit):
