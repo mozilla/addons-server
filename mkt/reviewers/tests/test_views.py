@@ -958,7 +958,9 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         self._check_email(msg, 'Submission Update')
         self._check_email_body(msg)
 
-    def test_pending_to_public(self):
+    @mock.patch('mkt.webapps.models.Webapp.update_supported_locales')
+    @mock.patch('mkt.webapps.models.Webapp.update_name_from_package_manifest')
+    def test_pending_to_public(self, update_name, update_locales):
         self.create_switch(name='reviewer-incentive-points')
         data = {'action': 'public', 'device_types': '', 'browsers': '',
                 'comments': 'something'}
@@ -975,9 +977,11 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         self._check_email_body(msg)
         self._check_score(amo.REVIEWED_WEBAPP_HOSTED)
 
-    @mock.patch('mkt.webapps.models.Webapp.update_name_from_package_manifest')
+        assert update_name.called
+        assert update_locales.called
+
     @mock.patch('lib.crypto.packaged.sign')
-    def test_public_signs(self, sign, update):
+    def test_public_signs(self, sign):
         self.get_app().update(is_packaged=True)
         data = {'action': 'public', 'comments': 'something'}
         data.update(self._attachment_management_form(num=0))
@@ -985,7 +989,6 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
 
         eq_(self.get_app().status, amo.STATUS_PUBLIC)
         eq_(sign.call_args[0][0], self.get_app().current_version.pk)
-        assert update.called
 
     def test_pending_to_public_no_mozilla_contact(self):
         self.create_switch(name='reviewer-incentive-points')
@@ -1005,7 +1008,9 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         self._check_email_body(msg)
         self._check_score(amo.REVIEWED_WEBAPP_HOSTED)
 
-    def test_pending_to_public_waiting(self):
+    @mock.patch('mkt.webapps.models.Webapp.update_supported_locales')
+    @mock.patch('mkt.webapps.models.Webapp.update_name_from_package_manifest')
+    def test_pending_to_public_waiting(self, update_name, update_locales):
         self.create_switch(name='reviewer-incentive-points')
         self.get_app().update(make_public=amo.PUBLIC_WAIT)
         data = {'action': 'public', 'device_types': '', 'browsers': '',
@@ -1024,9 +1029,11 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         self._check_email_body(msg)
         self._check_score(amo.REVIEWED_WEBAPP_HOSTED)
 
-    @mock.patch('mkt.webapps.models.Webapp.update_name_from_package_manifest')
+        assert not update_name.called
+        assert not update_locales.called
+
     @mock.patch('lib.crypto.packaged.sign')
-    def test_public_waiting_signs(self, sign, update):
+    def test_public_waiting_signs(self, sign):
         self.get_app().update(is_packaged=True, make_public=amo.PUBLIC_WAIT)
         data = {'action': 'public', 'comments': 'something'}
         data.update(self._attachment_management_form(num=0))
@@ -1034,7 +1041,6 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
 
         eq_(self.get_app().status, amo.STATUS_PUBLIC_WAITING)
         eq_(sign.call_args[0][0], self.get_app().current_version.pk)
-        assert not update.called
 
     def test_pending_to_reject(self):
         self.create_switch(name='reviewer-incentive-points')

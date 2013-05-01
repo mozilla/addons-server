@@ -37,12 +37,12 @@ from files.utils import parse_addon, WebAppParser
 from lib.crypto import packaged
 from translations.fields import save_signal
 from versions.models import Version
-from mkt.zadmin.models import FeaturedApp
 
 import mkt
 from mkt import regions
 from mkt.constants import apps, APP_FEATURES, APP_IMAGE_SIZES
-from mkt.webapps.utils import get_locale_properties
+from mkt.webapps.utils import get_locale_properties, get_supported_locales
+from mkt.zadmin.models import FeaturedApp
 
 
 log = commonware.log.getLogger('z.addons')
@@ -771,6 +771,24 @@ class Webapp(Addon):
         crud = self.update_names(locale_names)
         if any(crud.values()):
             self.save()
+
+    def update_supported_locales(self, manifest=None):
+        """
+        Loads the manifest (for either hosted or packaged) and updates
+        Version.supported_locales for the current version.
+        """
+        version = self.current_version
+        if not manifest:
+            manifest = self.get_manifest_json()
+
+        updated = False
+
+        supported_locales = ','.join(get_supported_locales(manifest))
+        if version.supported_locales != supported_locales:
+            updated = True
+            version.update(supported_locales=supported_locales, _signal=False)
+
+        return updated
 
     @property
     def app_type(self):

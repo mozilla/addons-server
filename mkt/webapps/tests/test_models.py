@@ -456,6 +456,14 @@ class TestPackagedAppManifestUpdates(amo.tests.TestCase):
         self.trans_eq(self.webapp.name, 'en-US', None)
         self.trans_eq(self.webapp.name, 'fr', 'Yo')
 
+    @mock.patch('mkt.webapps.models.Webapp.get_manifest_json')
+    def test_package_manifest_locales_change(self, get_manifest_json):
+        get_manifest_json.return_value = {'name': 'Yo',
+                                          'locales': {'es': {'name': 'es'},
+                                                      'de': {'name': 'de'}}}
+        self.webapp.update_supported_locales()
+        eq_(self.webapp.current_version.supported_locales, 'de,es')
+
 
 class TestWebappVersion(amo.tests.TestCase):
     fixtures = ['base/platforms']

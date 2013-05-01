@@ -203,6 +203,7 @@ class ReviewApp(ReviewBase):
         # Call update_version, so various other bits of data update.
         self.addon.update_version()
         self.addon.update_name_from_package_manifest()
+        self.addon.update_supported_locales()
         self.addon.sign_if_packaged(self.version.pk)
 
         self.log_action(amo.LOG.APPROVE_VERSION)
