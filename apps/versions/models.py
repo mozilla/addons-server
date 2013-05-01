@@ -118,7 +118,8 @@ class Version(amo.models.ModelBase):
 
         if addon.type == amo.ADDON_WEBAPP:
             mf = addon.get_manifest_json()
-            v.update(supported_locales=','.join(get_supported_locales(mf)))
+            v.update(supported_locales=','.join(get_supported_locales(mf)),
+                     _signal=False)
             if addon.is_packaged:
                 f.inject_ids()
 
