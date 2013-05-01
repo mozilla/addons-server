@@ -153,7 +153,9 @@ class TestAddVersion(BasePackagedAppTest):
         eq_(res.status_code, expected_status)
         return res
 
-    def test_post(self):
+    @mock.patch('mkt.webapps.models.Webapp.get_manifest_json')
+    def test_post(self, _mock):
+        _mock.return_value = {}
         self.app.current_version.update(version='0.9',
                                         created=self.days_ago(1))
         self._post(302)
@@ -166,8 +168,10 @@ class TestAddVersion(BasePackagedAppTest):
         self.assertFormError(res, 'upload_form', 'upload',
                              'Version 1.0 already exists')
 
-    def test_pending_on_new_version(self):
+    @mock.patch('mkt.webapps.models.Webapp.get_manifest_json')
+    def test_pending_on_new_version(self, _mock):
         # Test app rejection, then new version, updates app status to pending.
+        _mock.return_value = {}
         self.app.current_version.update(version='0.9',
                                         created=self.days_ago(1))
         self.app.update(status=amo.STATUS_REJECTED)
@@ -197,7 +201,9 @@ class TestAddVersion(BasePackagedAppTest):
         assert EscalationQueue.objects.filter(addon=self.app).exists(), (
             'App not in escalation queue')
 
-    def test_new_version_gets_ids_file(self):
+    @mock.patch('mkt.webapps.models.Webapp.get_manifest_json')
+    def test_new_version_gets_ids_file(self, _mock):
+        _mock.return_value = {}
         self.app.current_version.update(version='0.9',
                                         created=self.days_ago(1))
         self._post(302)
