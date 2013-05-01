@@ -119,7 +119,7 @@ class AppResource(CORSResource, MarketplaceModelResource):
                   'status', 'summary', 'support_email',
                   'support_url']
         list_allowed_methods = ['get', 'post']
-        allowed_methods = ['get', 'put']
+        detail_allowed_methods = ['get', 'put', 'delete']
         always_return_data = True
         authentication = OptionalOAuthAuthentication()
         authorization = AppOwnerAuthorization()
@@ -225,6 +225,12 @@ class AppResource(CORSResource, MarketplaceModelResource):
         if not AppOwnerAuthorization().is_authorized(request, object=obj):
             raise ImmediateHttpResponse(response=http.HttpForbidden())
         return obj
+
+    @write
+    @transaction.commit_on_success
+    def obj_delete(self, request, **kwargs):
+        app = self.get_and_check_ownership(request, **kwargs)
+        app.delete('Removed via API')
 
     @write
     @transaction.commit_on_success

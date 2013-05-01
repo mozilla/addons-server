@@ -174,6 +174,18 @@ App
 
     :status 201: successfully updated.
 
+
+.. http:delete:: /api/v1/apps/app/(int:id)/
+
+   .. note:: Requires authentication.
+
+   **Response**
+
+   :status 204: successfully deleted.
+
+
+
+
 Screenshots or videos
 =====================
 

@@ -240,7 +240,7 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         self.create()
         self._allowed_verbs(self.list_url, ['get', 'post'])
         self.create_app()
-        self._allowed_verbs(self.get_url, ['get', 'put'])
+        self._allowed_verbs(self.get_url, ['get', 'put', 'delete'])
 
     def test_not_accepted_tos(self):
         self.user.update(read_dev_agreement=None)
@@ -532,6 +532,21 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         url = ('api_dispatch_detail', {'resource_name': 'app', 'pk': 123})
         res = self.client.put(url, data='{}')
         eq_(res.status_code, 404)
+
+    def test_delete(self):
+        self.create_switch('soft_delete')
+        obj = self.create_app()
+        res = self.client.delete(self.get_url)
+        eq_(res.status_code, 204)
+        assert not Webapp.objects.filter(pk=obj.pk).exists()
+
+    def test_delete_not_mine(self):
+        self.create_switch('soft_delete')
+        obj = self.create_app()
+        obj.authors.clear()
+        res = self.client.delete(self.get_url)
+        eq_(res.status_code, 403)
+        assert Webapp.objects.filter(pk=obj.pk).exists()
 
 
 class CreatePackagedHandler(amo.tests.AMOPaths, BaseOAuth):
