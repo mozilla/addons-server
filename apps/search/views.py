@@ -269,6 +269,9 @@ def ajax_search(request):
 @json_view
 def ajax_search_suggestions(request):
     cat = request.GET.get('cat', 'all')
+    # Don't let Marketplace query any other types.
+    if settings.MARKETPLACE:
+        cat = 'apps'
     suggesterClass = {
         'all': AddonSuggestionsAjax,
         'themes': PersonaSuggestionsAjax,
@@ -286,10 +289,6 @@ def _build_suggestions(request, cat, suggester):
     q = request.GET.get('q')
     if q and (q.isdigit() or len(q) > 2):
         q_ = q.lower()
-
-        # Don't let Marketplace query any other types.
-        if settings.MARKETPLACE:
-            cat = 'apps'
 
         if cat != 'apps':
             # Applications.
