@@ -38,15 +38,19 @@ def run():
 
     for action, admin, added, removed, group_id, created in items:
         if action == 'group_addmember':
-            user_id, action = int(added), amo.LOG.GROUP_USER_ADDED
+            user_id, action = added, amo.LOG.GROUP_USER_ADDED
         else:
-            user_id, action = int(removed), amo.LOG.GROUP_USER_REMOVED
+            user_id, action = removed, amo.LOG.GROUP_USER_REMOVED
+
+        if not user_id.isdigit():
+            continue
+        user_id = int(user_id)
 
         kw = {'created': created}
         if admin in users:
             kw['user'] = users[admin]
 
-        if long(user_id) in users:
+        if user_id in users:
             amo.log(action, group_map[group_id], users[user_id], **kw)
 
     # Fudge logs for editors who were added while logging was broken.
