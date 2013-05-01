@@ -17,7 +17,7 @@ from editors.models import RereviewQueue
 from files.models import FileUpload
 from mkt.developers.tasks import _fetch_manifest, validator
 from mkt.webapps.models import Webapp
-from mkt.webapps.utils import get_locale_properties
+from mkt.webapps.utils import get_locale_properties, get_supported_locales
 from users.utils import get_task_user
 
 task_log = logging.getLogger('z.task')
@@ -90,7 +90,8 @@ def update_manifests(ids, **kw):
 
 def _update_manifest(id, check_hash, failed_fetches):
     webapp = Webapp.objects.get(pk=id)
-    file_ = webapp.get_latest_file()
+    version = webapp.versions.latest()
+    file_ = version.files.latest()
 
     _log(webapp, u'Fetching webapp manifest')
     if not file_:
@@ -187,6 +188,11 @@ def _update_manifest(id, check_hash, failed_fetches):
     if crud.get('updated'):
         rereview = True
         msg.append(u'Locales updated: %s' % crud.get('updated'))
+
+    # Check if supported_locales changed and update if so.
+    supported_locales = ','.join(get_supported_locales(new))
+    if version.supported_locales != supported_locales:
+        version.update(supported_locales=supported_locales, _signal=False)
 
     if rereview:
         msg = ' '.join(msg)

@@ -145,12 +145,12 @@ class TestUpdateManifest(amo.tests.TestCase):
         old_file = self.addon.get_latest_file()
         self._run()
 
-        new = Webapp.objects.get(pk=self.addon.pk)
-        version = new.current_version
-        file = new.get_latest_file()
+        app = Webapp.objects.get(pk=self.addon.pk)
+        version = app.current_version
+        file = app.get_latest_file()
 
-        # Test that our new version looks good
-        eq_(new.versions.count(), 1)
+        # Test that our new version looks good.
+        eq_(app.versions.count(), 1)
         assert version == old_version, 'Version created'
         assert file == old_file, 'File created'
 
@@ -166,8 +166,8 @@ class TestUpdateManifest(amo.tests.TestCase):
         self._hash = 'foo'
         self._run()
 
-        new = Webapp.objects.get(pk=self.addon.pk)
-        eq_(new.versions.latest().version, '1.1')
+        app = Webapp.objects.get(pk=self.addon.pk)
+        eq_(app.versions.latest().version, '1.1')
 
     def test_not_log(self):
         self._hash = ohash
@@ -248,10 +248,9 @@ class TestUpdateManifest(amo.tests.TestCase):
         # Mock original manifest file lookup.
         open_manifest.return_value = original
         # Mock new manifest with name change.
-        n = new.copy()
-        n['name'] = 'Mozilla Ball Ultimate Edition'
+        self.new['name'] = 'Mozilla Ball Ultimate Edition'
         response_mock = mock.Mock()
-        response_mock.read.return_value = json.dumps(n)
+        response_mock.read.return_value = json.dumps(self.new)
         response_mock.headers = {
             'Content-Type': 'application/x-web-app-manifest+json'}
         self.urlopen_mock.return_value = response_mock
@@ -267,10 +266,9 @@ class TestUpdateManifest(amo.tests.TestCase):
         # Mock original manifest file lookup.
         open_manifest.return_value = original
         # Mock new manifest with name change.
-        n = new.copy()
-        n['locales'] = {'es': {'name': 'eso'}}
+        self.new['locales'] = {'es': {'name': 'eso'}}
         response_mock = mock.Mock()
-        response_mock.read.return_value = json.dumps(n)
+        response_mock.read.return_value = json.dumps(self.new)
         response_mock.headers = {
             'Content-Type': 'application/x-web-app-manifest+json'}
         self.urlopen_mock.return_value = response_mock
@@ -290,10 +288,9 @@ class TestUpdateManifest(amo.tests.TestCase):
         # Mock original manifest file lookup.
         open_manifest.return_value = original
         # Mock new manifest with name change.
-        n = new.copy()
-        n['locales'] = {'de': {'name': 'Bippity Bop'}}
+        self.new['locales'] = {'de': {'name': 'Bippity Bop'}}
         response_mock = mock.Mock()
-        response_mock.read.return_value = json.dumps(n)
+        response_mock.read.return_value = json.dumps(self.new)
         response_mock.headers = {
             'Content-Type': 'application/x-web-app-manifest+json'}
         self.urlopen_mock.return_value = response_mock
@@ -313,12 +310,11 @@ class TestUpdateManifest(amo.tests.TestCase):
         # Mock original manifest file lookup.
         open_manifest.return_value = original
         # Mock new manifest with name change.
-        n = new.copy()
-        n['name'] = u'Mozilla Balón'
-        n['default_locale'] = 'es'
-        n['locales'] = {'en-US': {'name': 'MozillaBall'}}
+        self.new['name'] = u'Mozilla Balón'
+        self.new['default_locale'] = 'es'
+        self.new['locales'] = {'en-US': {'name': 'MozillaBall'}}
         response_mock = mock.Mock()
-        response_mock.read.return_value = json.dumps(n)
+        response_mock.read.return_value = json.dumps(self.new)
         response_mock.headers = {
             'Content-Type': 'application/x-web-app-manifest+json'}
         self.urlopen_mock.return_value = response_mock
@@ -341,10 +337,11 @@ class TestUpdateManifest(amo.tests.TestCase):
         # Mock original manifest file lookup.
         open_manifest.return_value = original
         # Mock new manifest with name change.
-        n = new.copy()
-        del n['locales']['de']
+        # Note: Not using `del` b/c copy doesn't copy nested structures.
+        self.new['locales'] = {
+            'fr': {'description': 'Testing name-less locale'}}
         response_mock = mock.Mock()
-        response_mock.read.return_value = json.dumps(n)
+        response_mock.read.return_value = json.dumps(self.new)
         response_mock.headers = {
             'Content-Type': 'application/x-web-app-manifest+json'}
         self.urlopen_mock.return_value = response_mock
@@ -360,10 +357,9 @@ class TestUpdateManifest(amo.tests.TestCase):
         # Mock original manifest file lookup.
         open_manifest.return_value = original
         # Mock new manifest with name change.
-        n = new.copy()
-        n['name'] = 'Mozilla Ball Ultimate Edition'
+        self.new['name'] = 'Mozilla Ball Ultimate Edition'
         response_mock = mock.Mock()
-        response_mock.read.return_value = json.dumps(n)
+        response_mock.read.return_value = json.dumps(self.new)
         response_mock.headers = {
             'Content-Type': 'application/x-web-app-manifest+json'}
         self.urlopen_mock.return_value = response_mock
@@ -379,3 +375,19 @@ class TestUpdateManifest(amo.tests.TestCase):
 
         # 2 logs: 1 for manifest update, 1 for re-review trigger.
         eq_(ActivityLog.objects.for_apps(self.addon).count(), 2)
+
+    @mock.patch('mkt.webapps.tasks._open_manifest')
+    def test_manifest_support_locales_change(self, open_manifest):
+        # Mock original manifest file lookup.
+        open_manifest.return_value = original
+        # Mock new manifest with name change.
+        self.new['locales'].update({'es': {'name': u'Mozilla Balón'}})
+        response_mock = mock.Mock()
+        response_mock.read.return_value = json.dumps(self.new)
+        response_mock.headers = {
+            'Content-Type': 'application/x-web-app-manifest+json'}
+        self.urlopen_mock.return_value = response_mock
+
+        self._run()
+        ver = self.version.reload()
+        eq_(ver.supported_locales, 'de,es,fr')
