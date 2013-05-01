@@ -29,7 +29,9 @@ def run():
                                      changed_id__in=group_map.keys())
                              .order_by('created'))
 
-    user_ids = set(chain(*[(i[1], int(i[2] or i[3])) for i in items]))
+    user_ids = set(chain(*[(i[1], int(i[2] or i[3]))
+                           for i in items
+                           if (i[2] or i[3] or '').isdigit()]))
 
     users = dict((u.id, u)
                  for u in UserProfile.objects.filter(id__in=user_ids))
