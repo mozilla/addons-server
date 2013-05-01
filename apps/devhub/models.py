@@ -18,6 +18,7 @@ from uuidfield.fields import UUIDField
 
 import amo
 import amo.models
+from access.models import Group
 from addons.models import Addon
 from bandwagon.models import Collection
 from mkt.webapps.models import Webapp
@@ -157,6 +158,18 @@ class UserLog(amo.models.ModelBase):
         ordering = ('-created',)
 
 
+class GroupLog(amo.models.ModelBase):
+    """
+    This table is for indexing the activity log by access group.
+    """
+    activity_log = models.ForeignKey('ActivityLog')
+    group = models.ForeignKey(Group)
+
+    class Meta:
+        db_table = table_name('log_activity_group')
+        ordering = ('-created',)
+
+
 class ActivityLogManager(amo.models.ManagerBase):
     def for_addons(self, addons):
         if isinstance(addons, Addon):
@@ -186,6 +199,9 @@ class ActivityLogManager(amo.models.ManagerBase):
         vals = (VersionLog.objects.filter(version=version)
                 .values_list('activity_log', flat=True))
         return self.filter(pk__in=list(vals))
+
+    def for_group(self, group):
+        return self.filter(grouplog__group=group)
 
     def for_user(self, user):
         vals = (UserLog.objects.filter(user=user)
@@ -349,6 +365,7 @@ class ActivityLog(amo.models.ModelBase):
         version = None
         collection = None
         tag = None
+        group = None
 
         for arg in self.arguments:
             if isinstance(arg, Addon) and not addon:
@@ -377,12 +394,15 @@ class ActivityLog(amo.models.ModelBase):
                                  arg.get_url_path(), arg.tag_text)
                 else:
                     tag = self.f('{0}', arg.tag_text)
+            if isinstance(arg, Group) and not group:
+                group = arg.name
+                arguments.remove(arg)
 
         user = user_link(self.user)
 
         try:
             kw = dict(addon=addon, review=review, version=version,
-                      collection=collection, tag=tag, user=user)
+                      collection=collection, tag=tag, user=user, group=group)
             return self.f(format, *arguments, **kw)
         except (AttributeError, KeyError, IndexError):
             log.warning('%d contains garbage data' % (self.id or 0))

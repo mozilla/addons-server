@@ -95,8 +95,8 @@
               {% for editors in new_editors %}
               <tr>
                 <td>
-                  <a href="{{ url('users.profile', editors['added']) }}">
-                    {{ editors['display_name'] }}
+                  <a href="{{ url('users.profile', editors['user'].username) }}">
+                    {{ editors['user'].display_name }}
                   </a>
                 </td>
                 <td class="date" title="{{ editors['created']|babel_datetime }}">

@@ -2,6 +2,7 @@ from django.db import models
 from django import dispatch
 from django.db.models import signals
 
+import amo
 import amo.models
 
 
@@ -32,8 +33,13 @@ class GroupUser(models.Model):
 @dispatch.receiver(signals.post_save, sender=GroupUser,
                    dispatch_uid='groupuser.post_save')
 def groupuser_post_save(sender, instance, **kw):
-    if (not kw.get('raw') and instance.user.user and
-        instance.user.groups.filter(rules='*:*').count()):
+    if kw.get('raw'):
+        return
+
+    amo.log(amo.LOG.GROUP_USER_ADDED, instance.group, instance.user)
+
+    if (instance.user.user and
+        instance.user.groups.filter(rules='*:*').exists()):
         instance.user.user.is_superuser = instance.user.user.is_staff = True
         instance.user.user.save()
 
@@ -41,7 +47,12 @@ def groupuser_post_save(sender, instance, **kw):
 @dispatch.receiver(signals.post_delete, sender=GroupUser,
                    dispatch_uid='groupuser.post_delete')
 def groupuser_post_delete(sender, instance, **kw):
-    if (not kw.get('raw') and instance.user.user and
-        not instance.user.groups.filter(rules='*:*').count()):
+    if kw.get('raw'):
+        return
+
+    amo.log(amo.LOG.GROUP_USER_REMOVED, instance.group, instance.user)
+
+    if (instance.user.user and
+        not instance.user.groups.filter(rules='*:*').exists()):
         instance.user.user.is_superuser = instance.user.user.is_staff = False
         instance.user.user.save()
