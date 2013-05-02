@@ -98,10 +98,7 @@ cfg = {
 def log_configure():
     """You have to explicitly call this to configure logging."""
     for key, value in settings.LOGGING.items():
-        if isinstance(cfg[key], dict):
-            cfg[key].update(value)
-        else:
-            cfg[key] = value
+        cfg[key].update(value)
 
     USE_SYSLOG = settings.HAS_SYSLOG and not settings.DEBUG
 
