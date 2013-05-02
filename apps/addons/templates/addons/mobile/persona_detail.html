@@ -10,23 +10,29 @@
 {% block page %}
 {% set author = users_list(addon.listed_authors) or persona.display_username %}
 
-<div id="persona" class="persona-previewer infobox item">
-  {{ mobile_persona_preview(persona) }}
-  <h3>{{ addon.name }}</h3>
-  <h4 class="author">{{ _('by') }} {{ author }}</h4>
-  <p id="summary"{{ addon.summary|locale_html }}>{{ addon.summary|nl2br }}</p>
-  {{ mobile_persona_confirm(persona) }}
-</div>
+{% include "addons/includes/persona_pending_notice.html" %}
 
-{{ mobile_reviews_link(addon) }}
+{% if not persona.addon.is_pending() or waffle.flag('submit-personas') and request.check_ownership(addon, require_owner=False) %}
+  {# If theme is pending, only artist should see theme listing. #}
 
-<details>
-  <table>
-    {% with author=author %}
-      {% include "addons/mobile/persona_detail_table.html" %}
-    {% endwith %}
-  </table>
-</details>
+  <div id="persona" class="persona-previewer infobox item">
+    {{ mobile_persona_preview(persona) }}
+    <h3>{{ addon.name }}</h3>
+    <h4 class="author">{{ _('by') }} {{ author }}</h4>
+    <p id="summary"{{ addon.summary|locale_html }}>{{ addon.summary|nl2br }}</p>
+    {{ mobile_persona_confirm(persona) }}
+  </div>
+
+  {{ mobile_reviews_link(addon) }}
+
+  <details>
+    <table>
+      {% with author=author %}
+        {% include "addons/mobile/persona_detail_table.html" %}
+      {% endwith %}
+    </table>
+  </details>
+{% endif %}
 
 <div id="more-personas">
   {% cache author_personas %}

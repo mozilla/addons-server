@@ -1200,7 +1200,8 @@ class TestStatus(amo.tests.TestCase):
             self.persona.status = status
             self.persona.save()
             eq_(self.client.head(self.persona_url).status_code,
-                200 if status == amo.STATUS_PUBLIC else 404)
+                200 if status in [amo.STATUS_PUBLIC, amo.STATUS_PENDING]
+                else 404)
 
     def test_persona_disabled(self):
         for status in amo.STATUS_CHOICES.keys():

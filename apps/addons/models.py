@@ -101,6 +101,16 @@ class AddonManager(amo.models.ManagerBase):
         return self.filter(Q(status__in=statuses) | Q(disabled_by_user=True),
                            _current_version__isnull=False)
 
+    def valid_and_disabled_and_pending(self):
+        """
+        Get valid, pending, enabled and disabled add-ons.
+        Used to allow pending theme pages to still be viewed.
+        """
+        statuses = list(amo.LISTED_STATUSES) + [amo.STATUS_DISABLED,
+                                                amo.STATUS_PENDING]
+        return self.filter(Q(status__in=statuses) | Q(disabled_by_user=True),
+                           _current_version__isnull=False)
+
     def featured(self, app, lang=None, type=None):
         """
         Filter for all featured add-ons for an application in all locales.

@@ -1111,6 +1111,13 @@ ul.license li.copyr { background-position: 0 -260px; }
 .persona-large .persona-preview [data-browsertheme] {
     height: 100px;
 }
+#persona-summary .unreviewed {
+    background: none;
+}
+
+.persona.pending-notice {
+    padding-left: 10px;
+}
 
 .persona-preview .created,
 .persona-preview .users,

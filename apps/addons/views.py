@@ -54,7 +54,8 @@ log = commonware.log.getLogger('z.addons')
 paypal_log = commonware.log.getLogger('z.paypal')
 addon_view = addon_view_factory(qs=Addon.objects.valid)
 addon_unreviewed_view = addon_view_factory(qs=Addon.objects.unreviewed)
-addon_disabled_view = addon_view_factory(qs=Addon.objects.valid_and_disabled)
+addon_valid_disabled_pending_view = addon_view_factory(
+    qs=Addon.objects.valid_and_disabled_and_pending)
 
 
 def author_addon_clicked(f):
@@ -73,10 +74,11 @@ def author_addon_clicked(f):
     return decorated
 
 
-@addon_disabled_view
+@addon_valid_disabled_pending_view
 def addon_detail(request, addon):
     """Add-ons details page dispatcher."""
-    if addon.is_deleted:
+    if addon.is_deleted or (addon.is_pending() and not addon.is_persona()):
+        # If the addon is pending, it better be a theme.
         raise http.Http404
     if addon.is_disabled:
         return jingo.render(request, 'addons/impala/disabled.html',
@@ -172,12 +174,12 @@ def _category_personas(qs, limit):
 @mobile_template('addons/{mobile/}persona_detail.html')
 def persona_detail(request, addon, template=None):
     """Details page for Personas."""
-    if not addon.is_public():
+    if not (addon.is_public() or addon.is_pending()):
         raise http.Http404
 
     persona = addon.persona
 
-    # this persona's categories
+    # This persona's categories.
     categories = addon.categories.all()
     category_personas = None
     if categories.exists():
