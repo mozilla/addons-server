@@ -46,6 +46,10 @@ urlpatterns = patterns('',
     url('^$', 'mkt.home.views.home', name='home'),
 
     # App Detail pages.
+    # XXX: Temporary workaround for accessing overridden Fireplace URLs.
+    # Must come first so that url() isn't broken.
+    ('^details/%s/' % amo.APP_SLUG, include('mkt.detail.urls')),
+    # TODO: Remove the app/.../ patterns after the consumer pages are removed
     ('^app/%s/' % amo.APP_SLUG, include('mkt.detail.urls')),
     url('^app/%s/manifest.webapp$' % amo.ADDON_UUID, mini_manifest,
         name='detail.manifest'),
