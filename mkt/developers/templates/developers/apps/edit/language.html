@@ -17,14 +17,14 @@
           {% endfor %}
           <small>
             <a href="{{ addon.get_dev_url('payments') }}">
-              {{ _('Edit country in the Compatibility Page') }}
+              {{ _('Edit country on the Compatibility Page') }}
             </a>
           </small>
         </td>
       </tr>
       <tr>
         <th>
-          <span class="label">{{ _('Language' )}}</span>
+          <span class="label">{{ _('Language') }}</span>
         </th>
         <td>
           {% with locales=addon.supported_locales %}

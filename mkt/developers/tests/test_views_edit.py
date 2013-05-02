@@ -11,6 +11,7 @@ from nose import SkipTest
 from nose.tools import eq_
 from PIL import Image
 from pyquery import PyQuery as pq
+from tower import strip_whitespace
 from waffle.models import Switch
 
 import amo
@@ -35,7 +36,6 @@ from mkt.site.fixtures import fixture
 from mkt.webapps.models import (AddonExcludedRegion as AER, ContentRating,
                                 ImageAsset)
 
-from tower import strip_whitespace
 
 response_mock = mock.Mock()
 response_mock.read.return_value = '''
@@ -448,15 +448,10 @@ class TestEditBasic(TestEdit):
         eq_(fetch.called, 0)
 
 
-@mock.patch.object(settings, 'TASK_USER_ID', 999)
 class TestEditCountryLanguage(TestEdit):
-    fixtures = TestEdit.fixtures
 
     def get_webapp(self):
         return Addon.objects.get(id=337141)
-
-    def test_apps_context(self):
-        eq_(self.client.get(self.url).context['webapp'], True)
 
     def test_data_visible(self):
         clean_countries = []
