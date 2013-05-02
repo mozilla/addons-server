@@ -5,6 +5,7 @@
     "fields": {
       "active": true,
       "price": "0.99",
+      "name": "1",
       "modified": "2011-08-10 04:21:42",
       "created": "2011-08-10 04:21:42"
     }
@@ -15,6 +16,7 @@
     "fields": {
       "active": false,
       "price": "1.99",
+      "name": "2",
       "modified": "2011-08-10 04:21:42",
       "created": "2011-08-10 04:21:42"
     }

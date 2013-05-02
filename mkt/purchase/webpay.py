@@ -111,7 +111,7 @@ def prepare_pay(request, addon):
         'request': {
             'name': unicode(addon.name),
             'description': app_summary,
-            'pricePoint': addon.premium.price.pk,
+            'pricePoint': addon.premium.price.name,
             'id': make_ext_id(addon.pk),
             'postbackURL': absolutify(reverse('webpay.postback')),
             'chargebackURL': absolutify(reverse('webpay.chargeback')),

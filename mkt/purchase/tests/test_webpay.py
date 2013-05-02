@@ -57,7 +57,7 @@ class TestPurchase(PurchaseTest):
         eq_(data['typ'], settings.APP_PURCHASE_TYP)
         eq_(data['aud'], settings.APP_PURCHASE_AUD)
         req = data['request']
-        eq_(req['pricePoint'], self.price.pk)
+        eq_(req['pricePoint'], self.price.name)
         eq_(req['id'], make_ext_id(self.addon.pk))
         eq_(req['name'], unicode(self.addon.name))
         eq_(req['description'], unicode(self.addon.summary))
