@@ -100,7 +100,7 @@ class TestPrices(BaseOAuth):
         # Check that for each price tier a different localisation is
         # returned.
         self.make_currency(2, self.price, 'BRL')
-        price_two = Price.objects.create(name='tier 2', price=Decimal(1))
+        price_two = Price.objects.create(name='2', price=Decimal(1))
         self.make_currency(12, price_two, 'BRL')
 
         res = self.client.get(self.list_url, HTTP_ACCEPT_LANGUAGE='pt-BR')
