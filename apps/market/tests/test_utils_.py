@@ -20,7 +20,7 @@ csv = StringIO("""USD\tCAD\tBRL\n0.99\t1.99\t1.00""")
 class TestUpdate(amo.tests.TestCase):
 
     def setUp(self):
-        self.tier = Price.objects.create(name='tier 1', price='0.99')
+        self.tier = Price.objects.create(name='1', price='0.99')
 
     def test_create(self):
         update(tiers)
