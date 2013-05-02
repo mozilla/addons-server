@@ -12,7 +12,8 @@ from access.acl import check_ownership
 from lib.cef_loggers import receipt_cef
 from lib.metrics import record_action
 from mkt.api.authentication import (OAuthAuthentication,
-                                    OptionalOAuthAuthentication)
+                                    OptionalOAuthAuthentication,
+                                    SharedSecretAuthentication)
 from mkt.api.base import CORSResource, MarketplaceResource
 from mkt.api.http import HttpPaymentRequired
 from mkt.constants import apps
@@ -29,7 +30,8 @@ class ReceiptResource(CORSResource, MarketplaceResource):
 
     class Meta(MarketplaceResource.Meta):
         always_return_data = True
-        authentication = OAuthAuthentication()
+        authentication = (SharedSecretAuthentication(),
+                          OptionalOAuthAuthentication())
         authorization = Authorization()
         detail_allowed_methods = []
         list_allowed_methods = ['post']
@@ -66,7 +68,7 @@ class ReceiptResource(CORSResource, MarketplaceResource):
             raise ImmediateHttpResponse(response=http.HttpForbidden())
 
         if (bundle.obj.is_premium() and
-                not bundle.obj.has_purchased(request.amo_user)):
+            not bundle.obj.has_purchased(request.amo_user)):
             log.info('App not purchased: %s' % bundle.obj.pk)
             raise ImmediateHttpResponse(response=HttpPaymentRequired())
 

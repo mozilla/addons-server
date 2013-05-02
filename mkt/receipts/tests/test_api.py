@@ -42,8 +42,9 @@ class TestAPI(BaseOAuth):
         return client.post(self.url, data=self.data)
 
     def test_record_logged_out(self):
-        self.client.logout()
-        eq_(self.post().status_code, 201)
+        res = self.post(anon=True)
+        eq_(res.status_code, 201)
+        eq_(res.json['receipt'], None)
 
     @mock.patch('mkt.receipts.api.receipt_cef.log')
     def test_cef_logs(self, cef):

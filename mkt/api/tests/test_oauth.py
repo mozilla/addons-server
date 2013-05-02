@@ -34,6 +34,15 @@ def get_absolute_url(url, api_name='apps', absolute=True):
     return res
 
 
+def wrap(response):
+    """Wrapper around responses to parse json."""
+    if response.content and 'application/json' in response['Content-Type']:
+        def _json(self):
+            return json.loads(self.content)
+        response.__class__.json = property(_json)
+    return response
+
+
 class OAuthClient(Client):
     """
     OAuthClient can do all the requests the Django test client,
@@ -56,6 +65,11 @@ class OAuthClient(Client):
                            signature_method=self.signature_method)
         return cl.sign(url, http_method=method)
 
+    def kw(self, headers, **kw):
+        kw.setdefault('HTTP_HOST', 'testserver')
+        kw.setdefault('HTTP_AUTHORIZATION', headers.get('Authorization', ''))
+        return kw
+
     def get(self, url, data={}, **kw):
         if len(url) > 2 and data:
             raise RuntimeError('Query string specified both in urlspec and as '
@@ -65,10 +79,8 @@ class OAuthClient(Client):
             urlstring = '?'.join([urlstring,
                                   urllib.urlencode(data, doseq=True)])
         url, headers, _ = self.sign('GET', urlstring)
-        return super(OAuthClient, self).get(
-            url, HTTP_HOST='testserver',
-            HTTP_AUTHORIZATION=headers.get('Authorization', ''),
-            **kw)
+        return wrap(super(OAuthClient, self)
+                    .get(url, **self.kw(headers, **kw)))
 
     def delete(self, url, data={}, **kw):
         if len(url) > 2 and data:
@@ -79,39 +91,31 @@ class OAuthClient(Client):
             urlstring = '?'.join([urlstring,
                                   urllib.urlencode(data, doseq=True)])
         url, headers, _ = self.sign('DELETE', urlstring)
-        return super(OAuthClient, self).delete(url,
-                        HTTP_HOST='testserver',
-                        HTTP_AUTHORIZATION=headers.get('Authorization', ''),
-                        **kw)
+        return wrap(super(OAuthClient, self)
+                    .delete(url, **self.kw(headers, **kw)))
 
     def post(self, url, data='', **kw):
         url, headers, _ = self.sign('POST', self.get_absolute_url(url))
-        return super(OAuthClient, self).post(url, data=data,
-                        content_type='application/json',
-                        HTTP_HOST='testserver',
-                        HTTP_AUTHORIZATION=headers.get('Authorization', ''),
-                        **kw)
+        return wrap(super(OAuthClient, self).post(url, data=data,
+            content_type='application/json',
+            **self.kw(headers, **kw)))
 
     def put(self, url, data='', **kw):
         url, headers, body = self.sign('PUT', self.get_absolute_url(url))
-        return super(OAuthClient, self).put(url, data=data,
-                        content_type='application/json',
-                        HTTP_HOST='testserver',
-                        HTTP_AUTHORIZATION=headers.get('Authorization', ''),
-                        **kw)
+        return wrap(super(OAuthClient, self).put(url, data=data,
+            content_type='application/json',
+            **self.kw(headers, **kw)))
 
     def patch(self, url, data='', **kw):
         url, headers, body = self.sign('PATCH', self.get_absolute_url(url))
         parsed = urlparse.urlparse(url)
-        kw.update({
+        kw.update(**self.kw(headers, **{
             'CONTENT_LENGTH': len(data),
             'CONTENT_TYPE': 'application/json',
             'PATH_INFO': urllib.unquote(parsed[2]),
             'REQUEST_METHOD': 'PATCH',
             'wsgi.input': FakePayload(data),
-            'HTTP_HOST': 'testserver',
-            'HTTP_AUTHORIZATION': headers.get('Authorization', '')
-        })
+        }))
         response = self.request(**kw)
         return response
 
