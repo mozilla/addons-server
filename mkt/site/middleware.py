@@ -179,6 +179,15 @@ class DeviceDetectionMiddleware(object):
     devices = ['mobile', 'gaia', 'tablet']
 
     def process_request(self, request):
+        dev = request.GET.get('dev')
+        if dev:
+            setattr(request, 'MOBILE', dev == 'android')
+            setattr(request, 'GAIA', dev == 'firefoxos')
+            setattr(request, 'TABLET', dev == 'desktop')
+            return
+
+        # TODO: These are deprecated, remove them. Update the docs (and API
+        # docs).
         for device in self.devices:
             # The XMobility middleware might have already set this.
             if getattr(request, device.upper(), False):
