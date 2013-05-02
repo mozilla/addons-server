@@ -12,298 +12,412 @@
     <article>
       <h1>{{ _('Firefox OS Simulator') }}</h1>
 
-      <div id="app-preview">
-        <img src="{{ media('img/ecosystem/firefox-os-screenshot.png') }}">
-        <a href="http://www.youtube.com/watch?v=g6oLUmc2iOQ">
-          <img src="{{ media('img/ecosystem/simulator-screenshot.jpg') }}">
-        </a>
-        <a href="http://www.youtube.com/watch?v=g6oLUmc2iOQ"
-           rel="external">
-          {{ _('Watch the Firefox OS Simulator in Action') }}
-        </a>
+      <div class="note">
+        {% trans issues='https://github.com/mozilla/r2d2b2g/issues?state=open',
+                 dev_tools_list='https://lists.mozilla.org/listinfo/dev-developer-tools',
+                 irc='irc://irc.mozilla.org/#devtools' %}
+        <p>The Firefox OS Simulator is still at an early stage of development,
+          and isn't complete or fully reliable.</p>
+        <p>If you find any bugs, please <a href="{{ issues }}">file them on
+          GitHub</a>, and if you have any questions, try asking on the
+          <a href="{{ dev_tools_list }}">dev-developer-tools mailing list</a>
+          or on <a href="{{ irc }}">#devtools on irc.mozilla.org</a>.</p>
+        {% endtrans %}
       </div>
 
-      <div id="app-details">
-        <h2>{{ _('Develop for Firefox OS without a phone') }}</h2>
-        <p>
-          {% trans %}
-            Firefox OS Simulator is the easiest way to try out
-            apps and verify how they’ll look on Firefox OS before
-            submitting to the Marketplace.
-          {% endtrans %}
-        </p>
-        <ul>
-          <li>
-            {% trans %}
-              Easy to install: just a couple of clicks, no need to
-              fire up a command line
-            {% endtrans %}
-          </li>
-          <li>
-            {% trans %}
-              Updates automatically: update check is run every day,
-              as with any Firefox add-on
-            {% endtrans %}
-          </li>
-          <li>
-            {% trans %}
-              Easy to install apps: quickly get apps into the Simulator
-              from your local drive or any URL
-            {% endtrans %}
-          </li>
-          <li>
-            {% trans %}
-              Comes with APIs that aren't available on Firefox Desktop,
-              like Contacts and Settings
-            {% endtrans %}
-          </li>
-        </ul>
-        <h2>{{ _('Download') }}</h2>
-        <a href="https://addons.mozilla.org/firefox/downloads/file/190978/firefox_os_simulator-2.0-fx-windows.xpi"
-           class="button">{{ _('Windows') }}</a>
-        <a href="https://addons.mozilla.org/firefox/downloads/file/190998/firefox_os_simulator-2.0-fx-mac.xpi"
-           class="button">{{ _('Mac OSX') }}</a>
-        <a href="https://addons.mozilla.org/firefox/downloads/file/190986/firefox_os_simulator-2.0-fx-linux.xpi"
-           class="button">{{ _('Linux') }}</a>
-        <h2>{{ _('Additional Resources') }}</h2>
-        <ul>
-          <li>
-            {% trans intro_link='https://hacks.mozilla.org/2012/11/announcing-the-prototype-firefox-os-simulator' %}
-              <a href="{{ intro_link }}">Introductory blog post</a>
-            {% endtrans %}
-          </li>
-          <li>
-            {% trans report_link='https://github.com/mozilla/r2d2b2g/issues?state=open' %}
-              <a href="{{ report_link }}">Report problems on GitHub</a>
-            {% endtrans %}
-          </li>
-          <li>
-            {% trans desktop_link='https://developer.mozilla.org/en-US/docs/Mozilla/Boot_to_Gecko/Using_the_B2G_desktop_client' %}
-              <a href="{{ desktop_link }}">
-                Mozilla Developers Network: Using the B2G desktop client
-              </a>
-            {% endtrans %}
-          </li>
-        </ul>
-      </div>
-
-      <h2>{{ _('Using Firefox OS Simulator') }}</h2>
       <p>
-        {%- trans %}
-          The Firefox OS Simulator is a desktop platform tool that shows you
-          what apps will look like on a phone that is running the Firefox OS.
-          It is the easiest way to try out apps on Firefox OS before
-          submitting them to the Firefox Marketplace. The Firefox OS
-          Simulator was formerly called "r2d2b2g", but that name is too
-          difficult.
-        {% endtrans -%}
+        {% trans %}
+          The Firefox OS Simulator add-on is a tool that enables you to test and
+          debug your app on the desktop. The code-test-debug cycle is much
+          faster with the simulator than with a real device, and of course, you
+          don't need a real device in order to use it.
+        {% endtrans %}
       </p>
-      <p>
-        {%- trans %}
-          The Simulator is packaged as a desktop Firefox add-on. You can use
-          any recent version of Firefox from Firefox 17 onward.
-        {% endtrans -%}
-      </p>
-      <p>
-        {%- trans %}
-          Although there are other ways to run the Firefox OS desktop, the
-          best and most convenient way for app developers is this one. If
-          you're a core Firefox OS platform developer, or are working on
-          localization, there are other tools that are better suited for your
-          needs. The Simulator add-on includes support for adding apps to the
-          test environment, and is configured to support remote debugging,
-          remote Web console, and other features. It also provides a visible
-          Home button you can click, and sets the user-agent string to the
-          one used by Firefox OS on devices. The result is, in nearly every
-          way, a better environment for app developers.
-        {% endtrans -%}
-      </p>
-      <h2>{{ _('Installing Firefox OS Simulator') }}</h2>
-      <ol>
+      <p>{{ _('Essentially, the Simulator add-on consists of:') }}</p>
+      <ul>
+        {% trans using_b2g='https://developer.mozilla.org/docs/Mozilla/Firefox_OS/Using_the_B2G_desktop_client' %}
         <li>
-          {%- trans url='https://addons.mozilla.org/en-US/firefox/addon/firefox-os-simulator' %}
-            Using Firefox, go to this link:
-            <a href="{{ url }}">https://addons.mozilla.org/addon/firefox-os-simulator/</a>
-          {% endtrans -%}
+          <strong>the Simulator</strong>: this includes the <a href="{{ using_b2g }}">Firefox OS
+          desktop client</a>, which is a version of the higher layers of
+          Firefox OS that runs on your desktop. The Simulator also includes some
+          <a href="#Simulator-toolbar">additional emulation features</a> that aren't in the
+          standard Firefox OS desktop builds.
         </li>
         <li>
-          {%- trans %}
-            Click <strong>Add to Firefox</strong>. It's a large download.
-            Follow the prompts that appear.
-          {% endtrans -%}
+          <strong>the Dashboard</strong>: a tool hosted by the Firefox browser that enables you to
+          start and stop the Simulator and to install, uninstall, and debug apps running in it. The
+          Dashboard also helps you push apps to a real device, and checks app manifests for common
+          problems.
         </li>
-      </ol>
+        {% endtrans %}
+      </ul>
+      <p>{{ _('The screenshot below shows a debugging session using the Simulator.') }}</p>
       <p>
-        {%- trans url='https://bugzilla.mozilla.org/show_bug.cgi?id=814505' %}
-          Because of the size of the add-on, Firefox may freeze for several
-          seconds while installing it, and its <em>unresponsive script</em>
-          dialog may appear, due to <a href="{{ url }}">bug 814505</a>. If
-          it does, just click the <em>Continue</em> button, and Firefox
-          will continue installing the add-on.
-        {% endtrans -%}
+        {% trans %}
+        The Dashboard is on the top-right, running inside a Firefox tab. We've
+        added one app, a packaged app called "Where am I?". At the top-left the
+        app is running in the Simulator. We've also connected the debugging
+        tools, which are in the window at the bottom. You can see that we've
+        just hit a breakpoint in the app.
+        {% endtrans %}
       </p>
-      <h2>{{ _('Starting the Simulator') }}</h2>
-      <ol>
-        <li>
-          {%- trans %}
-            On the <strong>Firefox</strong> menu (Windows) or the
-            <strong>Tools</strong> menu (Mac, Linux), go to <strong>Web
-            Developer</strong> and click <strong>Firefox OS
-            Simulator</strong>. The dashboard appears.
-          {% endtrans -%}
-          <p>
-            <img alt="{{ _('Simulator') }}"
-                 src="{{ media('img/ecosystem/sim-dashboard.jpg') }}">
-          </p>
-        </li>
-        <li>
-          {%- trans %}
-            Click the <strong>Stopped</strong> button. It changes into the
-            <strong>Running</strong> button and Firefox OS boots up in its
-            own window. The default size for this window is 320x480.
-          {% endtrans -%}
-          <p>
-            <img alt="{{ _('Simulator Screen') }}"
-                 src="{{ media('img/ecosystem/simulator-screen.jpg') }}">
-          </p>
-          <p>
-            {%- trans %}
-              To stop the Simulator, click the <strong>Running</strong>
-              button in the dashboard, or just close the Simulator
-              window.
-            {% endtrans -%}
-          </p>
-        </li>
-      </ol>
+      <p><img alt="" src="https://mdn.mozillademos.org/files/5139/Simulator-overview.png" /></p>
+      <p>{{ _('This guide covers the following topics:') }}</p>
+      <ul>
+        <li><a href="#Installing">{{ _('how to install the Simulator add-on') }}</a></li>
+        <li><a href="#Adding-updating-removing">{{ _('how to add, remove, and update apps') }}</a></li>
+        <li><a href="#Manifest-validation">{{ _('manifest validation') }}</a></li>
+        <li><a href="#Running-the-Simulator">{{ _('how to run the Simulator') }}</a></li>
+        <li><a href="#Attaching-developer-tools">{{ _('how to connect developer tools such as the JS debugger to apps running in the Simulator') }}</a></li>
+        <li><a href="#Limitations">{{ _('the limitations of the Simulator compared with a real Firefox OS device') }}</a></li>
+      </ul>
       <p>
-        {%- trans %}
-          <strong>Note:</strong> You can also start and stop the Simulator
-          in the Developer Toolbar command line using <code>firefoxos
-          start</code> and <code>firefoxos stop</code>.
-        {% endtrans -%}
+        {% trans walkthrough='https://developer.mozilla.org/docs/Tools/Firefox_OS_Simulator/Simulator_Walkthrough' %}
+        For a practical walkthrough that shows how to use the Simulator to
+        debug a real web app, see the <a href="{{ walkthrough }}">Simulator
+        Walkthrough</a> page.
+        {% endtrans %}
       </p>
-      <h2>{{ _('Navigating in the Simulator') }}</h2>
+      <h2 id="Installing_the_Simulator_add-on" name="Installing">{{ _('Installing the Simulator add-on') }}</h2>
       <p>
-        {%- trans %}
-          Imitate swipe motions in the Simulator by clicking and dragging
-          with the mouse. The mouse scroll wheel will move a list up and
-          down, such as in the Settings app. Click and hold down the mouse
-          button to simulate a long press.
-        {% endtrans -%}
-      </p>
-      <p>
-        {%- trans %}
-          To get back to the home screen, click the home button at the
-          bottom of the Simulator, or press the <strong>Home</strong> key on
-          your keyboard. On Mac keyboards without a <strong>Home</strong>
-          key, use <strong>Fn + Left Arrow</strong>.
-        {% endtrans -%}
-      </p>
-      <h2>{{ _('Console checkbox') }}</h2>
-      <p>
-        {%- trans %}
-          Click the <strong>Console</strong> check box before you start the
-          Simulator to open an error console so you can spot errors that
-          might occur while you're working on your app.
-        {% endtrans -%}
-      </p>
-      <h2>{{ _('Web APIs in the Simulator') }}</h2>
-      <p>
-        {%- trans %}
-          Mozilla is working on many Web APIs to make native platform
-          capabilities available to Open Web Apps. The Web APIs currently
-          supported in the Simulator are:
-        {% endtrans -%}
+        {% trans %}
+        The Simulator is packaged and distributed as a Firefox add-on. To install it:<br />
+        <br />
+        1. Using Firefox, go to the appropriate link for your host operating system. You'll probably have to tell Firefox to allow the site to install software:
+        {% endtrans %}
       </p>
       <ul>
-        <li>{{ _('Contacts API') }}</li>
-        <li>{{ _('Settings API') }}</li>
+        <li><a href="https://ftp.mozilla.org/pub/mozilla.org/labs/r2d2b2g/r2d2b2g-windows.xpi">{{ _('Firefox OS Simulator Preview for Windows') }}</a></li>
+        <li><a href="https://ftp.mozilla.org/pub/mozilla.org/labs/r2d2b2g/r2d2b2g-mac.xpi">{{ _('Firefox OS Simulator Preview for Mac') }}</a></li>
+        <li><a href="https://ftp.mozilla.org/pub/mozilla.org/labs/r2d2b2g/r2d2b2g-linux.xpi">{{ _('Firefox OS Simulator Preview for Linux') }}</a></li>
       </ul>
-      <h2>{{ _('Installing an app in the Simulator') }}</h2>
       <p>
-        {%- trans %}
-          To install a hosted app in the Simulator, type the URL to the app's
-          manifest in the URL box, and click <strong>Add Manifest</strong>.
-          This will install the app in the Simulator. Here is a simple
-          weather app that you can use as a test:
-        {% endtrans -%}
-      </p>
-      <pre>
-        {{- _('http://jlongster.github.com/weatherme/manifest.webapp') -}}
-      </pre>
-      <p>
-        {%- trans %}
-          The app's icon will be added to one of the home screens in the
-          Simulator.
-        {% endtrans -%}
+        {% trans bug_814505='https://bugzilla.mozilla.org/show_bug.cgi?id=814505' %}
+        2. Click "Add to Firefox".<br />
+        3. Once the add-on has downloaded you will be prompted to install it: click "Install Now".<br />
+        <br />
+        Because of the size of the add-on, Firefox may freeze for several
+        seconds while installing it, and a dialog titled "Warning: Unresponsive
+        script" may appear. It it does, click "Continue" to wait for
+        installation to finish. This issue is being tracked as
+        <a href="{{ bug_814505 }}">bug 814505</a>.<br />
+        <br />
+        Once you have installed the Simulator add-on, Firefox will periodically
+        check for newer versions and keep it up to date for you.
+        {% endtrans %}
       </p>
       <p>
-        {%- trans %}
-          You can also install a plain website in the same way. Just type the
-          website's URL in the box and click <strong>Add URL</strong>, and an
-          icon for the site will be added to a home screen. Autocompletion
-          works if you have the website open in another tab.
-        {% endtrans -%}
+        {% trans %}
+        The Dashboard opens automatically when you install the Simulator, and you can reopen it
+        at any time by going to the "Firefox" menu (or the "Tools" menu on OS X and Linux), then
+        "Web Developer", then "Firefox OS Simulator":
+        {% endtrans %}
+      </p>
+      <p><img alt="" src="https://mdn.mozillademos.org/files/5141/simulator-open-on-windows-7.png"></p>
+      <p>
+        {% trans %}
+        The Dashboard is the tool you use to add your app to the Simulator and run it. Here's
+        what it looks like:
+        {% endtrans %}
+      </p>
+      <p><img alt="" src="https://mdn.mozillademos.org/files/5143/dashboard.png"></p>
+      <h2 id="Adding.2C_updating.2C_and_removing_apps" name="Adding-updating-removing">{{ _('Adding, updating, and removing apps') }}</h2>
+      <h3 id="Adding_apps">{{ _('Adding apps') }}</h3>
+      <p>
+        {% trans packaged_apps='https://developer.mozilla.org/docs/Apps/Packaged_apps',
+                 manifests=url('ecosystem.build_manifests') %}
+        To add a <a href="{{ packaged_apps }}">packaged app</a> to the Simulator, open the
+        Dashboard, click "Add Directory" and select the <a href="{{ manifests }}">manifest
+        file</a> for your app.
+        {% endtrans %}
       </p>
       <p>
-        {%- trans %}
-          To install a packaged app in the Simulator, click the <strong>Add
-          Directory</strong> button, then select the mini-manifest of the app
-          on your local filesystem.
-        {% endtrans -%}
+        {% trans %}
+        To add a hosted app, enter a URL in the textbox where it says "URL for page or
+        manifest.webapp", then click "Add URL". If the URL points to a manifest, then that
+        manifest will be used. If it doesn't, the Dashboard will generate a manifest for
+        the URL: so you can add any website as an app just by entering its URL.
+        {% endtrans %}
       </p>
       <p>
-        {%- trans %}
-          To remove an app from the Simulator, click the
-          <strong>Remove</strong> link for the app in the dashboard. You may
-          have to restart the Simulator to see it gone.
-        {% endtrans -%}
-      </p>
-      <h2>{{ _('Updating an app') }}</h2>
-      <p>
-        {%- trans %}
-          If you are working on an app and need to update it in the
-          Simulator, click the app's Update button in the dashboard. You
-          will have to restart the Simulator. Hosted apps follow the usual
-          rules for Website caching and working with appcache.
-        {% endtrans -%}
-      </p>
-      <h2>{{ _('Reporting bugs') }}</h2>
-      <p>
-        {%- trans url='https://github.com/mozilla/r2d2b2g/issues?state=open' %}
-          Remember that the Simulator is a brand-new tool and is still
-          heavily under development. Please <a rel="external"
-          href="{{ url }}">let us know</a> if you find any bugs.
-        {% endtrans -%}
-      </p>
-      <h2>{{ _('More information') }}</h2>
-      <p>
-        {%- trans url='//developer.mozilla.org/docs/Mozilla/Boot_to_Gecko/Using_the_B2G_desktop_client' %}
-          The Simulator itself is the <a href="{{ url }}">Firefox OS desktop
-          client</a> (also called the B2G desktop client), which is a build
-          of Firefox OS that runs on Windows, Mac, and Linux. Firefox OS
-          Simulator makes it easier to test apps on Firefox OS desktop
-          because it includes functionality for adding apps to the
-          environment and is configured/extended in a variety of ways to
-          better meet the needs of app developers.
-        {% endtrans -%}
+        {% trans %}
+        When you add an app, the Dashboard will run a series of tests on your manifest file,
+        checking for common problems. See the section on <a href="#Manifest-validation">
+        Manifest Validation</a> for details on what tests are run.
+        {% endtrans %}
       </p>
       <p>
-        {%- trans %}
-          However, because the Simulator uses the Firefox OS desktop client,
-          the documentation for B2G Desktop, Gaia, and B2G generally will
-          also apply to the Simulator to some extent. Here are a couple of
-          those docs:
-        {% endtrans -%}
+        {% trans %}
+        Unless manifest validation reveals that your app has errors, the Dashboard will then
+        automatically run your app in the Simulator.
+        {% endtrans %}
+      </p>
+      <h3 id="Managing_apps">{{ _('Managing apps') }}</h3>
+      <p>
+        {% trans %}
+        Once you have added an app, it will appear in the Manager's list of installed apps:
+        {% endtrans %}
+      </p>
+      <p><img alt="" src="https://mdn.mozillademos.org/files/5145/dashboard-list-apps.png" /></p>
+      <p>
+        {% trans %}
+        Each entry gives us the following information about the app:
+        {% endtrans %}
+      </p>
+      <ul>
+        <li>{{ _('its name, taken from the manifest') }}</li>
+        <li>{{ _('its type, which will be one of "Packaged", "Hosted", or "Generated"') }}</li>
+        <li>{{ _('a link to its manifest file') }}</li>
+        <li>{{ _('the result of manifest validation') }}</li>
+      </ul>
+      <p>{{ _('It also gives us three commands:') }}</p>
+      <ul>
+        <li>{{ _('"Remove": remove the app from the Simulator or the Dashboard. You can undo this action as long as the Dashboard tab is open.') }}</li>
+        <li>{{ _('"Update": use this to update the app in the Simulator after you have made changes to it. This also makes the Dashboard validate the manifest again. If you make changes to your app they will not be reflected automatically in the installed app: you will need to click "Update", and restart the Simulator if it is running.') }}</li>
+        <li>{{ _('"Run": run the app in the Simulator') }}</li>
+      </ul>
+      <p>
+        {% trans %}
+        If you've <a href="#Push-to-device">connected a Firefox OS device</a> to your computer, you'll see a fourth command labeled "Push to device".
+        {% endtrans %}
+      </p>
+      <h3 id="Manifest_validation" name="Manifest-validation">{{ _('Manifest validation') }}</h3>
+      <p>
+        {% trans %}
+        When you supply a manifest, the Manager will run some validation tests on it. It reports three categories of problems:
+        {% endtrans %}
+      </p>
+      <ul>
+        <li>{{ _('manifest errors: problems that will prevent your app from running') }}</li>
+        <li>{{ _('manifest warnings: problems that may prevent your app from working properly') }}</li>
+        <li>{% trans %}simulator-specific warnings: features your app is using that the Simulator doesn't yet support{% endtrans %}</li>
+      </ul>
+      <p>
+        {% trans %}
+        It summarises the problems encountered in the entry for the app: clicking on the summary provides more details.
+        {% endtrans %}
+      </p>
+      <h4 id="Manifest_errors">{{ _('Manifest errors') }}</h4>
+      <p>
+        {% trans %}
+        The Dashboard will report the following conditions as errors, meaning that you won't be able to run your app in the Simulator without fixing them:
+        {% endtrans %}
+      </p>
+      <ul>
+        <li>{{ _('the manifest does not include the mandatory "name" field') }}</li>
+        <li>{{ _('the manifest is not valid JSON') }}</li>
+        <li>{{ _('the app is a hosted app, but the <code>type</code> field in its manifest is "privileged" or "certified", which are only available to packaged apps') }}</li>
+      </ul>
+      <p>
+        {% trans %}
+        Here's the result of trying to add a manifest file with a missing "name":
+        {% endtrans %}
+      </p>
+      <p><img alt="" src="https://mdn.mozillademos.org/files/5147/dashboard-missing-name.png" /></p>
+      <h4 id="Manifest_warnings">{{ _('Manifest warnings') }}</h4>
+      <p>{{ _('The Dashboard will report the following manifest issues as warnings:') }}</p>
+      <ul>
+        <li>{{ _('missing icons') }}</li>
+        <li>{{ _('the icon is less than 128 pixels: all apps submitted to the Marketplace must have at least one icon that is at least 128 pixels square') }}</li>
+        <li>{{ _('the <code>type</code> field is unrecognized') }}</li>
+        <li>{{ _('the manifest requests a permission that is unrecognized') }}</li>
+        <li>{{ _('the manifest requests a permission which will be denied') }}</li>
+        <li>{{ _('the manifest requests a permission for which access could not be determined') }}</li>
+      </ul>
+      <h4 id="Simulator-specific_warnings">{{ _('Simulator-specific warnings') }}</h4>
+      <p>{{ _('Finally, the Manager will emit warnings for apps that use features of Firefox OS not yet fully supported by the Simulator:') }}</p>
+      <ul>
+        <li>{{ _('the <code>type</code> field is "certified", but the Simulator does not yet fully supprt certified apps') }}</li>
+        <li>{{ _('the manifest requests a permission to use an API that is <a href="#Unsupported-APIs">not yet supported</a> by the Simulator') }}</li>
+      </ul>
+      <h2 id="Running_the_Simulator" name="Running-the-Simulator">{{ _('Running the Simulator') }}</h2>
+      <p>{{ _('There are two different ways the Simulator may be started:') }}</p>
+      <ul>
+        <li>{% trans %}if you add, update, or remove an app, or click the "Run" button next to your app's entry, the Dashboard will automatically run your app in the Simulator{% endtrans %}</li>
+        <li>{% trans %}if you click the button labeled "Stopped" on the left-hand side of the Dashboard, the Simulator will boot to the Home screen and you'll need to navigate to your app{% endtrans %}</li>
+      </ul>
+      <p>
+        {% trans %}
+        Either way, once the Simulator is running, the button labeled "Stopped" turns green and the
+        label changes to "Running". To stop the Simulator, click this button again.
+        {% endtrans %}
       </p>
       <p>
-        <a href="//developer.mozilla.org/docs/Mozilla/Boot_to_Gecko/Using_the_B2G_desktop_client">
-          {{- _('Using the Firefox OS desktop client') }}</a>
+        {% trans %}
+        The Simulator appears as a separate window, sized so the simulated screen area is 320x480 pixels,
+        with a <a href="#Simulator-toolbar">toolbar at the bottom that contains some extra features</a>.
+        {% endtrans %}
       </p>
       <p>
-        <a rel="external"
-           href="https://wiki.mozilla.org/Gaia/Hacking">
-          {{- _('Hacking Gaia') }}</a>
+        {% trans %}
+        To simulate touch events you can click the mouse button and drag while holding the button down.
+        So by clicking and dragging right-to-left from the Home Screen, you'll see the built-in apps,
+        as well as any apps you have added:
+        {% endtrans %}
+      </p>
+      <p>
+        <img alt="" src="https://mdn.mozillademos.org/files/5149/simulator-homescreen.png">
+        <img alt="" src="https://mdn.mozillademos.org/files/5151/simulator-apps-screen.png">
+      </p>
+      <h3 id="Simulator_toolbar" name="Simulator-toolbar">{{ _('Simulator toolbar') }}</h3>
+      <p>
+        {% trans %}
+        You'll see three buttons on the toolbar at the bottom of
+        the Simulator window:
+        {% endtrans %}
+      </p>
+      <p><img alt="" src="https://mdn.mozillademos.org/files/5159/simulator-toolbar.png"></p>
+      <p>
+        {% trans %}
+        From left to right, these are the Home button, the Rotation Simulation
+        button, and the Geolocation Simulation button.
+        {% endtrans %}
+      </p>
+      <ul>
+        <li>{{ _('the Home button takes you to the Home screen') }}</li>
+        <li>{{ _('the Rotation Simulation button switches the device between portrait and landscape orientation. This will generate the <code>deviceorientation</code> event.') }}</li>
+        <li>{{ _('the Geolocation Simulation button triggers a dialog asking you to share your geographic location, either using your current coordinates or supplying custom coordinates: this will be made available to your app via the Geolocation API.') }}</li>
+      </ul>
+      <h3 id="Enabling_console_logging">{{ _('Enabling console logging') }}</h3>
+      <p>
+        {% trans %}
+        If you check the "Console" box underneath the "Stopped/Running" switch,
+        then the Error Console will be opened when you run the Simulator. Your
+        app will be able to log to this console using the global console object.
+        {% endtrans %}
+      </p>
+      <h3 id="Attaching_developer_tools" name="Attaching-developer-tools">{{ _('Attaching developer tools') }}</h3>
+      <p>
+        {% trans %}
+        You can attach developer tools to the Simulator, to help debug your
+        app. At the moment you can only attach the JavaScript Debugger and the
+        Web Console, but we're working on adding support for more developer
+        tools.
+        {% endtrans %}
+      </p>
+      <p>
+        {% trans %}
+        While the Simulator is running another button appears underneath the
+        "Console" checkbox. It is labeled "Connect...":
+        {% endtrans %}
+      </p>
+      <p><img alt="" src="https://mdn.mozillademos.org/files/5167/dashboard-connect.png"></p>
+      <p>{% trans %}Click it, and you'll be taken to a page that looks like this:{% endtrans %}</p>
+      <p><img alt="" src="https://mdn.mozillademos.org/files/5163/connect-port-selection.png"></p>
+      <p>{% trans %}Click "Connect" here and you'll see another page, this time like this:{% endtrans %}</p>
+      <p><img alt="" src="https://mdn.mozillademos.org/files/5165/connect-target-selection.png"></p>
+      <p>
+        {% trans debug_toolbar='/docs/Tools/Debugger#The_debugger_toolbar' %}
+        To use the JavaScript Debugger, select
+        "chrome://prosthesis/content/shell.xul" here. Once it's launched,
+        you'll need to find your app's scripts in the
+        <a href="{{ debug_toolbar }}">script chooser</a>, but if you open your
+        app and then connect the debugger, your app's main script will be
+        selected by default:
+        {% endtrans %}
+      </p>
+      <p><img alt="" src="https://mdn.mozillademos.org/files/5169/js-debugger.png"></p>
+      <p>{% trans %}To use the Web Console with your app, select "Main Process" in the "Connect to remote device" window.{% endtrans %}</p>
+      <p>
+        {% trans %}
+        At the moment, unfortunately, there's no single debugging target that
+        will work with both the Web Console and the JS Debugger - but you can
+        run two simultaneous instances of the debugging tools, one targeting
+        "shell.xul" and the other targeting "Main Process".
+        {% endtrans %}
+      </p>
+      <h2 id="Push_to_device" name="Push-to-device">{{ _('Push to device') }}</h2>
+      <p>
+        {% trans %}
+        If you have a Firefox OS device you can connect it to the Simulator,
+        and can then push apps from the Dashboard to the device.
+        {% endtrans %}
+      </p>
+      <h3 id="Connecting_a_device">{{ _('Connecting a device') }}</h3>
+      <p>
+        {% trans adb='http://developer.android.com/tools/help/adb.html' %}
+        To connect a device to the Simulator, you need the
+        <a href="{{ adb }}">Android Debug Bridge (adb)</a> to be installed,
+        but the Simulator add-on bundles adb for you. You do, though,
+        need to configure both the Firefox OS device and your desktop OS.
+        {% endtrans %}
+      </p>
+      <ol>
+        <li>
+          {% trans %}
+          On your Firefox OS device: open the Settings app, then <code>Device
+          Information</code> &gt; <code>More Information</code> &gt; <code>Developer</code>.
+          In the developer menu, check "Remote debugging".
+          {% endtrans %}
+        </li>
+        <li>
+          {% trans android_tools='https://developer.android.com/tools/device.html' %}
+          Set up your OS to detect the device. Instructions for this are
+          OS-specific, and are detailed in point 3 of
+          <a href="{{ android_tools }}">"Setting up a Device for Development"
+          </a> on the Android developer site. The vendor ID to use for Firefox
+          OS Geeksphone devices is <code>05c6</code>.
+          {% endtrans %}
+        </li>
+      </ol>
+      <h3 id="Pushing_apps_to_the_device">{{ _('Pushing apps to the device') }}</h3>
+      <p>
+        {% trans %}
+        Once you've set up the device and desktop, and connected the device to
+        your desktop via USB, you'll see the note "Device connected." appear on
+        the left of the Dashboard, and a new command appear in the entry for
+        each app labeled "Push":
+        {% endtrans %}
+      </p>
+      <p><img alt="" src="https://mdn.mozillademos.org/files/5227/device-connected.png" /></p>
+      <p>{% trans %}Click "Push", and the app will be installed on the Firefox OS device.{% endtrans %}</p>
+      <h2 id="Limitations_of_the_Simulator" name="Limitations">{{ _('Limitations of the Simulator') }}</h2>
+      <p>{% trans %}Note that the Firefox OS Simulator isn't a perfect simulation.{% endtrans %}</p>
+      <h3 id="Hardware_limitations">{{ _('Hardware limitations') }}</h3>
+      <p>
+        {% trans %}
+        Apart from screen size, the Simulator does not simulate the hardware limitations of a Firefox OS device such as available memory or CPU speed.
+        {% endtrans %}
+      </p>
+      <h3 id="Audio.2Fvideo_codecs">Audio/video codecs</h3>
+      <p>{{ _('The following codecs depend on hardware-accelerated decoding and are therefore not yet supported:') }}</p>
+      <ul>
+        <li>MP3</li>
+        <li>AAC</li>
+        <li>H.264 (MP4)</li>
+        <li>WebM</li>
+      </ul>
+      <h3 id="Unsupported_APIs" name="Unsupported-APIs">{{ _('Unsupported APIs') }}</h3>
+      <p>
+        {% trans %}
+        Certain APIs that work on the device won't work on the Simulator,
+        generally because the supporting hardware is not available on the
+        desktop. We've implemented simulations for some APIs such as
+        geolocation, and expect to add more in future releases. However, at
+        the moment the following APIs are not supported. Using them might
+        throw errors or just return incorrect results:
+        {% endtrans %}
+      </p>
+      <ul>
+        <li><a href="https://developer.mozilla.org/WebAPI/WebTelephony">Telephony</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/WebAPI/WebSMS">WebSMS</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/WebAPI/WebBluetooth">WebBluetooth</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/WebAPI/Using_Light_Events">Ambient Light</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/WebAPI/Proximity">Proximity</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/WebAPI/Network_Information">Network Information</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Online_and_offline_events">navigator.onLine and offline events</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/WebAPI/Vibration">Vibration</a></li>
+      </ul>
+      <h2 id="Getting_help">{{ _('Getting help') }}</h2>
+      <p>
+        {% trans issues='https://github.com/mozilla/r2d2b2g/issues?state=open',
+                 mailing_list='https://lists.mozilla.org/listinfo/dev-developer-tools',
+                 irc='irc://irc.mozilla.org/#devtools' %}
+        If you find any bugs, please <a href="{{ issues }}">file them on GitHub</a>.
+        If you have a question, try asking us on the <a href="{{ mailing_list }}">
+        dev-developer-tools mailing list</a> or on <a href="{{ irc }}">#devtools on
+        irc.mozilla.org</a>.
+        {% endtrans %}
       </p>
     </article>
   </div>
