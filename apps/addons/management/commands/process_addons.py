@@ -1,6 +1,6 @@
 from optparse import make_option
 
-from django.core.management.base import BaseCommand
+from django.core.management.base import BaseCommand, CommandError
 from django.db.models import Q
 
 import amo
@@ -8,7 +8,9 @@ from addons.models import Addon
 from amo.utils import chunked
 from devhub.tasks import convert_purified, flag_binary, get_preview_sizes
 from market.tasks import check_paypal, check_paypal_multiple
-from mkt.webapps.tasks import add_uuids, update_manifests
+from mkt.webapps.tasks import (add_uuids, update_manifests,
+                               update_supported_locales)
+
 
 tasks = {
     # binary-components depend on having a chrome manifest.
@@ -37,6 +39,11 @@ tasks = {
     'add_uuids': {'method': add_uuids,
                   'qs': [Q(type=amo.ADDON_WEBAPP, guid=None),
                          ~Q(status=amo.STATUS_DELETED)]},
+    'update_supported_locales': {
+        'method': update_supported_locales,
+        'qs': [Q(type=amo.ADDON_WEBAPP, disabled_by_user=False,
+                 status__in=[amo.STATUS_PENDING, amo.STATUS_PUBLIC,
+                             amo.STATUS_PUBLIC_WAITING])]},
 }
 
 
@@ -59,7 +66,8 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         task = tasks.get(options.get('task'))
         if not task:
-            raise ValueError('Unknown task: %s' % ', '.join(tasks.keys()))
+            raise CommandError('Unknown task provided. Options are: %s'
+                               % ', '.join(tasks.keys()))
         pks = (Addon.objects.filter(*task['qs'])
                             .values_list('pk', flat=True)
                             .order_by('-last_updated'))

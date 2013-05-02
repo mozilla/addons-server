@@ -223,3 +223,15 @@ def add_uuids(ids, **kw):
             # Save triggers the creation of a guid if the app doesn't currently
             # have one.
             app.save()
+
+
+@task
+@write
+def update_supported_locales(ids, **kw):
+    for chunk in chunked(ids, 50):
+        for app in Webapp.objects.filter(id__in=chunk):
+            try:
+                if app.update_supported_locales():
+                    _log(app, u'Updated supported locales')
+            except Exception:
+                _log(app, u'Updating supported locales failed.', exc_info=True)
