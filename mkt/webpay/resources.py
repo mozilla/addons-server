@@ -7,19 +7,42 @@ from amo.helpers import absolutify, urlparams
 from amo.urlresolvers import reverse
 from amo.utils import send_mail_jinja
 from mkt.api.authentication import (OptionalOAuthAuthentication,
-                                    OAuthAuthentication)
+                                    OAuthAuthentication,
+                                    SharedSecretAuthentication)
 from mkt.api.authorization import (AnonymousReadOnlyAuthorization,
+                                   Authorization,
                                    PermissionAuthorization)
-from mkt.api.base import (CORSResource, MarketplaceResource,
-                          MarketplaceModelResource)
-from mkt.webpay.forms import FailureForm, ProductIconForm
+from mkt.api.base import (CORSResource, GenericObject,
+                          MarketplaceResource, MarketplaceModelResource)
+from mkt.webpay.forms import FailureForm, PrepareForm, ProductIconForm
 from mkt.webpay.models import ProductIcon
+from mkt.purchase.webpay import _prepare_pay
 from market.models import Price
 from stats.models import Contribution
 
 from . import tasks
 
 log = commonware.log.getLogger('z.webpay')
+
+
+class PreparePayResource(CORSResource, MarketplaceResource):
+    webpayJWT = fields.CharField(attribute='webpayJWT', readonly=True)
+    contribStatusURL = fields.CharField(attribute='contribStatusURL',
+                                        readonly=True)
+
+    class Meta(MarketplaceResource.Meta):
+        always_return_data = True
+        authentication = (SharedSecretAuthentication(), OAuthAuthentication())
+        authorization = Authorization()
+        detail_allowed_methods = []
+        list_allowed_methods = ['post']
+        object_class = GenericObject
+        resource_name = 'prepare'
+        validation = CleanedDataFormValidation(form_class=PrepareForm)
+
+    def obj_create(self, bundle, request, **kwargs):
+        bundle.obj = GenericObject(_prepare_pay(request, bundle.data['app']))
+        return bundle
 
 
 class PriceResource(CORSResource, MarketplaceModelResource):
@@ -30,11 +53,11 @@ class PriceResource(CORSResource, MarketplaceModelResource):
     name = fields.CharField(attribute='tier_name', readonly=True)
 
     class Meta:
-        queryset = Price.objects.filter(active=True)
-        list_allowed_methods = ['get']
         detail_allowed_methods = ['get']
-        resource_name = 'prices'
         filtering = {'pricePoint': 'exact'}
+        list_allowed_methods = ['get']
+        queryset = Price.objects.filter(active=True)
+        resource_name = 'prices'
 
     def _get_prices(self, bundle):
         """
@@ -106,19 +129,19 @@ class ProductIconResource(CORSResource, MarketplaceModelResource):
     url = fields.CharField(readonly=True)
 
     class Meta(MarketplaceResource.Meta):
-        queryset = ProductIcon.objects.filter()
         authentication = OptionalOAuthAuthentication()
         authorization = AnonymousReadOnlyAuthorization(
                 authorizer=PermissionAuthorization('ProductIcon', 'Create'))
         detail_allowed_methods = ['get']
-        list_allowed_methods = ['get', 'post']
-        resource_name = 'product/icon'
         fields = ['ext_url', 'ext_size', 'size']
         filtering = {
             'ext_url': 'exact',
             'ext_size': 'exact',
             'size': 'exact',
         }
+        list_allowed_methods = ['get', 'post']
+        queryset = ProductIcon.objects.filter()
+        resource_name = 'product/icon'
         validation = CleanedDataFormValidation(form_class=ProductIconForm)
 
     def dehydrate_url(self, bundle):

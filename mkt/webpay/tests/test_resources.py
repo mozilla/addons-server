@@ -4,15 +4,48 @@ import json
 from django.core import mail
 
 from mock import patch
-from nose.tools import eq_
+from nose.tools import eq_, ok_
 
 from market.models import Price, PriceCurrency
+from users.models import UserProfile
+
 from mkt.api.base import get_url, list_url
 from mkt.api.tests.test_oauth import BaseOAuth
 from mkt.constants import regions
 from mkt.webpay.models import ProductIcon
 from mkt.site.fixtures import fixture
 from stats.models import Contribution
+from mkt.purchase.tests.utils import PurchaseTest
+
+
+class TestPrepare(PurchaseTest, BaseOAuth):
+    fixtures = fixture('webapp_337141', 'user_2519', 'prices')
+
+    def setUp(self):
+        BaseOAuth.setUp(self, api_name='webpay')
+        self.create_switch('marketplace')
+        self.list_url = list_url('prepare')
+        self.user = UserProfile.objects.get(pk=2519)
+
+    def test_allowed(self):
+        self._allowed_verbs(self.list_url, ['post'])
+
+    def test_anon(self):
+        eq_(self.anon.post(self.list_url, data={}).status_code, 401)
+
+    def test_good(self):
+        self.setup_base()
+        self.setup_package()
+        res = self.client.post(self.list_url, data=json.dumps({'app': 337141}))
+        eq_(res.status_code, 201)
+        ok_(res.json['contribStatusURL'])
+        ok_(res.json['webpayJWT'])
+
+    @patch('mkt.webapps.models.Webapp.has_purchased')
+    def test_already_purchased(self, has_purchased):
+        has_purchased.return_value = True
+        res = self.client.post(self.list_url, data=json.dumps({'app': 337141}))
+        eq_(res.status_code, 403)
 
 
 class TestPrices(BaseOAuth):

@@ -7,6 +7,35 @@ Payments
 This API is specific to setting up and processing payments for an app in the
 Marketplace.
 
+Preparing payment
+=================
+
+Produces the JWT that is passed to `navigator.mozPay`_.
+
+.. note:: Authentication is required.
+
+.. http:post:: /api/v1/webpay/prepare/
+
+    **Request**
+
+    :param string app: the id or slug of the app to be purchased.
+
+    **Response**
+
+    .. code-block:: json
+
+        {
+            "app": "337141: Something Something Steamcube!",
+            "contribStatusURL": "[bug 868030]",
+            "resource_uri": "",
+            "webpayJWT": "eyJhbGciOiAiSFMy... [truncated]",
+        }
+
+    :status 201: successfully completed.
+    :status 401: not authenticated.
+    :status 403: app cannot be purchased. This could be because the app has
+        already been purchased.
+
 Installing
 ==========
 
@@ -19,10 +48,6 @@ to be used on install.
     Returns a receipt if the app is paid and a receipt should be installed.
 
     **Request**:
-
-    .. sourcecode:: http
-
-        POST /api/v1/receipts/install/
 
     :param app: the id of the app being installed.
 
@@ -259,3 +284,4 @@ Transaction failure
 .. _CORS: https://developer.mozilla.org/en-US/docs/HTTP/Access_control_CORS
 .. _WebPay: https://github.com/mozilla/webpay
 .. _In-app Payments: https://developer.mozilla.org/en-US/docs/Apps/Publishing/In-app_payments
+.. _navigator.mozPay: https://wiki.mozilla.org/WebAPI/WebPayment

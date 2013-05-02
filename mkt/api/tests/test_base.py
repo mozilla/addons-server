@@ -2,6 +2,7 @@ import json
 import urllib
 
 from django.contrib.auth.models import User
+from django.core.exceptions import PermissionDenied
 
 from mock import patch
 from nose.tools import eq_
@@ -87,6 +88,14 @@ class TestEncoding(TestCase):
             content_type='application/x-www-form-urlencoded')
         self.resource.dispatch('list', request)
         eq_(obj_create.call_args[0][0].data, {'foo': 'bar'})
+
+    @patch.object(SampleResource, 'obj_create')
+    def test_permission(self, obj_create):
+        request = RequestFactory().post('/', data={},
+            content_type='application/json')
+        obj_create.side_effect = PermissionDenied
+        with self.assertImmediate(http.HttpForbidden):
+            self.resource.dispatch('list', request)
 
 
 class ThrottleResource(MarketplaceResource):

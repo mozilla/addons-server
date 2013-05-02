@@ -75,13 +75,17 @@ def make_ext_id(addon_pk):
 
 @login_required
 @addon_view
-@can_be_purchased
-@has_not_purchased
 @write
 @post_required
 @json_view
 def prepare_pay(request, addon):
-    """Prepare a BlueVia JWT to pass into navigator.pay()"""
+    return _prepare_pay(request, addon)
+
+
+@can_be_purchased
+@has_not_purchased
+def _prepare_pay(request, addon):
+    """Prepare a JWT to pass into navigator.pay()"""
     amount, currency, uuid_, contrib_for = start_purchase(request, addon)
     log.debug('Storing contrib for uuid: %s' % uuid_)
     Contribution.objects.create(addon_id=addon.id, amount=amount,

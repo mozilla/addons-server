@@ -5,7 +5,7 @@ import sys
 import traceback
 
 from django.conf.urls.defaults import url
-from django.core.exceptions import ObjectDoesNotExist
+from django.core.exceptions import ObjectDoesNotExist, PermissionDenied
 
 from tastypie import fields, http
 from tastypie.bundle import Bundle
@@ -19,7 +19,6 @@ from translations.fields import PurifiedField, TranslatedField
 from .exceptions import DeserializationError
 from .http import HttpTooManyRequests
 from .serializers import Serializer
-
 
 log = commonware.log.getLogger('z.api')
 tasty_log = logging.getLogger('django.request.tastypie')
@@ -96,6 +95,10 @@ class Marketplace(object):
                              "Unsupported Accept header '%s'" % accept))
 
             raise self.non_form_errors(msgs)
+
+        except PermissionDenied:
+            # Reraise PermissionDenied as 403, otherwise you get 500.
+            raise ImmediateHttpResponse(response=http.HttpForbidden())
 
     def non_form_errors(self, error_list):
         """
