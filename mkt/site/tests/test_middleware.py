@@ -292,19 +292,19 @@ class TestDeviceMiddleware(amo.tests.TestCase):
             assert not getattr(r.context['request'], device.upper())
 
     def test_dev_firefoxos(self):
-        r = self.client.get('/?dev=firefoxos' % device, follow=True)
-        eq_(r.cookies['gaia'].value, 'true')
-        assert getattr(r.context['request'], 'GAIA')
+        req = self.client.get('/?dev=firefoxos', follow=True)
+        eq_(req.cookies['gaia'].value, 'true')
+        assert getattr(req.context['request'], 'GAIA')
 
     def test_dev_android(self):
-        r = self.client.get('/?dev=android' % device, follow=True)
-        eq_(r.cookies['mobile'].value, 'true')
-        assert getattr(r.context['request'], 'MOBILE')
+        req = self.client.get('/?dev=android', follow=True)
+        eq_(req.cookies['mobile'].value, 'true')
+        assert getattr(req.context['request'], 'MOBILE')
 
     def test_dev_android(self):
-        r = self.client.get('/?dev=desktop' % device, follow=True)
-        eq_(r.cookies['tablet'].value, 'true')
-        assert getattr(r.context['request'], 'TABLET')
+        req = self.client.get('/?dev=desktop', follow=True)
+        eq_(req.cookies['tablet'].value, 'true')
+        assert getattr(req.context['request'], 'TABLET')
 
     def test_force(self):
         for device in self.devices:
