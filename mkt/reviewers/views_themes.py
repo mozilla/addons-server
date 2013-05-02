@@ -52,7 +52,7 @@ def pending_themes(request):
 
 @json_view
 @waffle_switch('mkt-themes')
-@admin_required(reviewers=True)
+@reviewer_required('persona')
 def themes_search(request):
     search_form = forms.ThemeSearchForm(request.GET)
     if search_form.is_valid():
@@ -92,7 +92,7 @@ def themes_queue(request):
 
 
 @waffle_switch('mkt-themes')
-@admin_required(reviewers=True)
+@admin_required(theme_reviewers=True)
 def themes_queue_flagged(request):
     # By default, redirect back to the queue after a commit.
     request.session['theme_redirect_url'] = reverse(

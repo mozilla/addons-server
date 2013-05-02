@@ -25,7 +25,8 @@ from users.models import UserProfile
 
 class ThemeReviewTestMixin(object):
     fixtures = fixture('group_admin', 'user_admin', 'user_admin_group',
-                       'user_persona_reviewer', 'user_999')
+                       'user_persona_reviewer', 'user_999',
+                       'user_senior_persona_reviewer')
 
     def setUp(self):
         self.reviewer_count = 0
@@ -385,5 +386,5 @@ class TestThemeReviewQueueFlagged(ThemeReviewTestMixin, amo.tests.TestCase):
         self.login('persona_reviewer@mozilla.com')
         eq_(self.client.get(self.queue_url).status_code, 403)
 
-        self.login('admin@mozilla.com')
+        self.login('senior_persona_reviewer@mozilla.com')
         eq_(self.client.get(self.queue_url).status_code, 200)
