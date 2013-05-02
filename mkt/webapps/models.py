@@ -797,6 +797,22 @@ class Webapp(Addon):
                amo.ADDON_WEBAPP_HOSTED)
         return amo.ADDON_WEBAPP_TYPES[key]
 
+    @property
+    def supported_locales(self):
+        """
+        Returns a tuple of the form:
+
+            (localized default_locale, list of localized supported locales)
+
+        for the current public version.
+
+        """
+        return (
+            settings.LANGUAGES[self.default_locale.lower()],
+            sorted([settings.LANGUAGES[l.lower()] for l
+                    in self.current_version.supported_locales.split(',')])
+        )
+
 
 # Pull all translated_fields from Addon over to Webapp.
 Webapp._meta.translated_fields = Addon._meta.translated_fields

@@ -427,6 +427,13 @@ class TestWebapp(amo.tests.TestCase):
         Flag.objects.create(addon=app2, adult_content=True)
         eq_(Webapp.get_excluded_in(region), [app1.id, app2.id])
 
+    def test_supported_locale_property(self):
+        app = app_factory()
+        app.versions.latest().update(supported_locales='de,fr', _signal=False)
+        app.reload()
+        eq_(app.supported_locales,
+            (u'English (US)', [u'Deutsch', u'Fran\xe7ais']))
+
 
 class TestPackagedAppManifestUpdates(amo.tests.TestCase):
     # Note: More extensive tests for `Addon.update_names` are in the Addon
