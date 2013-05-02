@@ -35,11 +35,12 @@ def get_absolute_url(url, api_name='apps', absolute=True):
 
 
 def wrap(response):
-    """Wrapper around responses to parse json."""
-    if response.content and 'application/json' in response['Content-Type']:
-        def _json(self):
+    """Wrapper around responses to add additional info."""
+    def _json(self):
+        """Will return parsed JSON on response if there is any."""
+        if self.content and 'application/json' in response['Content-Type']:
             return json.loads(self.content)
-        response.__class__.json = property(_json)
+    response.__class__.json = property(_json)
     return response
 
 
