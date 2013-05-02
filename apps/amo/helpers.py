@@ -412,6 +412,8 @@ def category_arrow(context, key, prefix):
 
 @register.filter
 def timesince(time):
+    if not time:
+        return u''
     ago = defaultfilters.timesince(time)
     # L10n: relative time in the past, like '4 days ago'
     return _(u'{0} ago').format(ago)

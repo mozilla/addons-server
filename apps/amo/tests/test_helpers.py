@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-from datetime import datetime
 import mimetypes
 import os
+from datetime import datetime, timedelta
 
 from django.conf import settings
 from django.core.cache import cache
@@ -486,3 +486,9 @@ def test_absolutify():
     eq_(helpers.absolutify('/woo'), settings.SITE_URL + '/woo')
     eq_(helpers.absolutify('https://addons.mozilla.org'),
         'https://addons.mozilla.org')
+
+
+def test_timesince():
+    month_ago = datetime.now() - timedelta(days=30)
+    eq_(helpers.timesince(month_ago), u'1 month ago')
+    eq_(helpers.timesince(None), u'')
