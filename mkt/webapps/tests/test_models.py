@@ -434,6 +434,16 @@ class TestWebapp(amo.tests.TestCase):
         eq_(app.supported_locales,
             (u'English (US)', [u'Deutsch', u'Fran\xe7ais']))
 
+    def test_supported_locale_property_empty(self):
+        app = app_factory()
+        eq_(app.supported_locales, (u'English (US)', []))
+
+    def test_supported_locale_property_bad(self):
+        app = app_factory()
+        app.versions.latest().update(supported_locales='de,xx', _signal=False)
+        app.reload()
+        eq_(app.supported_locales, (u'English (US)', [u'Deutsch']))
+
 
 class TestPackagedAppManifestUpdates(amo.tests.TestCase):
     # Note: More extensive tests for `Addon.update_names` are in the Addon

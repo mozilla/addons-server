@@ -807,10 +807,16 @@ class Webapp(Addon):
         for the current public version.
 
         """
+        languages = []
+        for locale in self.current_version.supported_locales.split(','):
+            if locale:
+                language = settings.LANGUAGES.get(locale.lower())
+                if language:
+                    languages.append(language)
+
         return (
-            settings.LANGUAGES[self.default_locale.lower()],
-            sorted([settings.LANGUAGES[l.lower()] for l
-                    in self.current_version.supported_locales.split(',')])
+            settings.LANGUAGES.get(self.default_locale.lower()),
+            sorted(languages)
         )
 
 
