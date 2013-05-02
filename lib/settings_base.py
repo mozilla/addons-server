@@ -71,7 +71,7 @@ ADMINS = (
 )
 MANAGERS = ADMINS
 
-FLIGTAR = 'amo-admins@mozilla.org'
+FLIGTAR = 'marketplace-staff@mozilla.org'
 EDITORS_EMAIL = 'amo-editors@mozilla.org'
 SENIOR_EDITORS_EMAIL = 'amo-admin-reviews@mozilla.org'
 THEMES_EMAIL = 'background-themes@mozilla.com'
