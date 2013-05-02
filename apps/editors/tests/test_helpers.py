@@ -752,3 +752,44 @@ class TestCompareLink(amo.tests.TestCase):
         file = File.objects.create(version=self.version,
                                    platform_id=amo.PLATFORM_WIN.id)
         eq_(file.pk, helpers.file_compare(self.current, self.version).pk)
+
+
+class TestGetPosition(amo.tests.TestCase):
+    fixtures = ['webapps/337141-steamcube']
+
+    def setUp(self):
+        # Add a public, reviewed app for measure.
+        self.public_app = Addon.objects.get(pk=337141)
+        # Took 4 days for this app to get reviewed.
+        self.public_app.latest_version.update(nomination=self.days_ago(7),
+            reviewed=self.days_ago(3))
+
+    def test_public_app(self):
+        eq_(helpers.get_position(self.public_app), False)
+
+    def test_pending_app(self):
+        # Took 8 days for some app to get reviewed.
+        approved_app = amo.tests.app_factory()
+        approved_app.latest_version.update(nomination=self.days_ago(10),
+            reviewed=self.days_ago(2))
+
+        # Add to the queue 2 pending apps for good measure.
+        amo.tests.app_factory(status=amo.STATUS_PENDING).latest_version.update(
+            nomination=self.days_ago(3))
+        amo.tests.app_factory(status=amo.STATUS_PENDING).latest_version.update(
+            nomination=self.days_ago(1))
+
+        pending_app = amo.tests.app_factory(status=amo.STATUS_PENDING)
+        pending_app.latest_version.update(nomination=self.days_ago(2))
+
+        pos = helpers.get_position(pending_app)
+
+        # It took 12 days for 2 apps to get reviewed, giving us an average of
+        # 6 days to go from pending->public, but we've already waited 2 days.
+        eq_(pos['days'], 4.0)
+
+        # There is one pending app in front of us.
+        eq_(pos['pos'], 2)
+
+        # There are three pending apps.
+        eq_(pos['total'], 3)

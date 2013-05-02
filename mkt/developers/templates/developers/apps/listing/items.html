@@ -1,4 +1,5 @@
 {% from 'developers/apps/listing/macros.html' import dev_heading %}
+{% from 'developers/includes/macros.html' import queue_position %}
 {% from 'addons/macros.html' import price %}
 {% for addon in addons %}
   <div class="item addon" data-addonid="{{ addon.id }}">
@@ -27,12 +28,6 @@
               {% endif %}
             </a>
           </li>
-          {% if waffle.switch('marketplace') %}
-            <li>
-              <strong>{{ _('Price:') }}</strong>
-              {{ price(addon) }}
-            </li>
-          {% endif %}
           {% if addon.is_packaged %}
             <li class="item-current-version">
               <strong>{{ _('Packaged App Version:') }}</strong>
@@ -45,6 +40,11 @@
               </li>
             {% endif %}
           {% endif %}
+          {{ queue_position(addon, 'li') }}
+          <li>
+            <strong>{{ _('Price:') }}</strong>
+            {{ price(addon) }}
+          </li>
           <li class="item-devices">
             {{ device_list(addon) }}
             <a href="{{ addon.get_dev_url('payments') }}#edit-app-basic">{{ _('Change Devices') }}</a>

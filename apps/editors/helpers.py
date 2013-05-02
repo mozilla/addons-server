@@ -1,4 +1,7 @@
 import datetime
+import math
+
+from django.db import connection
 
 import commonware.log
 import django_tables as tables
@@ -15,10 +18,11 @@ from addons.models import Addon
 from amo.helpers import absolutify, breadcrumbs, page_title
 from amo.urlresolvers import reverse
 from amo.utils import send_mail as amo_send_mail
-from editors.models import (ReviewerScore, ViewFastTrackQueue,
+from editors.models import (EscalationQueue, ReviewerScore, ViewFastTrackQueue,
                             ViewFullReviewQueue, ViewPendingQueue,
                             ViewPreliminaryQueue)
 from editors.sql_table import SQLTable
+from versions.models import Version
 
 
 @register.function
@@ -294,20 +298,69 @@ def send_mail(template, subject, emails, context, perm_setting=None):
                   use_blacklist=False, perm_setting=perm_setting)
 
 
+def get_avg_app_waiting_time():
+    """
+    Returns the rolling average from the past 30 days of the time taken for a
+    pending app to become public.
+    """
+    cursor = connection.cursor()
+    cursor.execute('''
+        SELECT AVG(DATEDIFF(reviewed, nomination)) FROM versions
+        RIGHT JOIN addons ON versions.addon_id = addons.id
+        WHERE addontype_id = %s AND status = %s AND
+              reviewed >= DATE_SUB(NOW(), INTERVAL 30 DAY)
+    ''', (amo.ADDON_WEBAPP, amo.STATUS_PUBLIC))
+    row = cursor.fetchone()
+    days = 0
+    if row:
+        try:
+            days = math.ceil(float(row[0]))
+        except TypeError:
+            pass
+    return days
+
+
 @register.function
 def get_position(addon):
     if addon.is_persona() and addon.is_pending():
-        pending_themes = (Addon.objects
-                          .filter(status=amo.STATUS_PENDING,
-                                  type=amo.ADDON_PERSONA)
-                          .order_by('created').values_list('id', flat=True))
-        for idx, pending in enumerate(pending_themes, start=1):
-            if pending == addon.id:
+        qs = (Addon.objects.filter(status=amo.STATUS_PENDING,
+                                   type=amo.ADDON_PERSONA)
+              .no_transforms().order_by('created')
+              .values_list('id', flat=True))
+        id_ = addon.id
+        position = 0
+        for idx, addon_id in enumerate(qs, start=1):
+            if addon_id == id_:
                 position = idx
                 break
-        total = pending_themes.count()
-        return {'mins': 1 * total, 'pos': position, 'total': total}
-
+        total = qs.count()
+        return {'pos': position, 'total': total}
+    elif addon.is_webapp() and addon.is_pending():
+        excluded_ids = EscalationQueue.objects.values_list('addon', flat=True)
+        qs = (Version.objects.filter(addon__type=amo.ADDON_WEBAPP,
+                                     addon__disabled_by_user=False,
+                                     addon__status=amo.STATUS_PENDING,
+                                     deleted=False)
+              .exclude(addon__id__in=excluded_ids)
+              .order_by('nomination', 'created').select_related('addon')
+              .no_transforms().values_list('addon_id', 'nomination'))
+        id_ = addon.id
+        position = 0
+        nomination_date = None
+        for idx, (addon_id, nomination) in enumerate(qs, start=1):
+            if addon_id == addon.id:
+                position = idx
+                nomination_date = nomination
+                break
+        total = qs.count()
+        days = 0
+        if nomination_date:
+            # Estimated waiting time is calculated from the rolling average of
+            # the queue waiting time in the past 30 days but subtracting from
+            # it the number of days this app has already spent in the queue.
+            days_in_queue = datetime.datetime.now() - nomination_date
+            days = get_avg_app_waiting_time() - days_in_queue.days
+        return {'days': max(0, days), 'pos': position, 'total': total}
     else:
         version = addon.latest_version
 

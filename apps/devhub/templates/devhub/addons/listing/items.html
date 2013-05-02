@@ -45,6 +45,15 @@
               {% endif %}
             </a>
           </li>
+          {% with position = get_position(addon) %}
+            {% if position.pos and position.total %}
+              <li class="queue-position">
+                {% trans pos=position.pos|numberfmt, total=position.total|numberfmt %}
+                  <b>Queue position:</b> {{ pos }} of {{ total }}
+                {% endtrans %}
+              </li>
+            {% endif %}
+          {% endwith %}
         </ul>
       {% endif %}
       <div class="item-actions">

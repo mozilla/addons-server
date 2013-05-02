@@ -61,15 +61,17 @@
                 </a>
               </p>
             {% endif %}
-            {% if item.position %}
-              <p>
-                <strong>{{ _('Queue Position:') }}</strong>
-                {% trans position=item.position.pos|numberfmt,
-                         total=item.position.total|numberfmt %}
-                  {{ position }} of {{ total }}
-                {% endtrans %}
-              </p>
-            {% endif %}
+            {% with position = item.position %}
+              {% if position and position.pos and position.total %}
+                <p>
+                  <strong>{{ _('Queue Position:') }}</strong>
+                  {% trans position=position.pos|numberfmt,
+                           total=position.total|numberfmt %}
+                    {{ position }} of {{ total }}
+                  {% endtrans %}
+                </p>
+              {% endif %}
+            {% endwith %}
             {% if not item.addon.is_persona() and not item.addon.is_incomplete() and not item.addon.is_disabled %}
               <p class="upload-new-version">
                 <a href="{{ item.addon.get_dev_url('versions') }}#version-upload">

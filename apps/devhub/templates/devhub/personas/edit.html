@@ -42,7 +42,7 @@
           <span class="{{ status_class(addon) }}"><b>{{ amo.STATUS_CHOICES[addon.status] }}</b></span>
         </p>
         {% set position = get_position(addon) %}
-        {% if position %}
+        {% if position and position.pos and position.total %}
           <p>
             <strong>{{ _('Queue Position:') }}</strong>
             {% trans position=position.pos|numberfmt,

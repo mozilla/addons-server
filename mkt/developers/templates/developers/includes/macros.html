@@ -91,3 +91,29 @@
     {{ form.categories.errors }}
   </div>
 {% endmacro %}
+
+{% macro queue_position(addon, tag='p') %}
+  {% set position = get_position(addon) %}
+  {% if position %}
+    {% if position.pos and position.total %}
+      <{{ tag }} class="queue-position">
+        {% trans pos=position.pos|numberfmt, total=position.total|numberfmt %}
+          <b>Queue position:</b> {{ pos }} of {{ total }}
+        {% endtrans %}
+      </{{ tag }}>
+    {% endif %}
+    <{{ tag }} class="queue-days">
+      {% if position.days %}
+        {% trans cnt=position.days, num=position.days|numberfmt %}
+          <b>Estimated waiting time:</b> {{ num }} working day
+        {% pluralize %}
+          <b>Estimated waiting time:</b> {{ num }} working days
+        {% endtrans %}
+      {% else %}
+        {% trans %}
+          <b>Estimated waiting time:</b> 3-5 working days
+        {% endtrans %}
+      {% endif %}
+    </{{ tag }}>
+  {% endif %}
+{% endmacro %}
