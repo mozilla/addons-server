@@ -597,17 +597,8 @@ def profile(request, user):
             '-weekly_downloads')
         addons = amo.utils.paginate(request, addons, 5)
 
-    def get_addons(reviews):
-        if not reviews:
-            return
-        qs = Addon.objects.filter(id__in=set(r.addon_id for r in reviews))
-        addons = dict((addon.id, addon) for addon in qs)
-        for review in reviews:
-            review.addon = addons.get(review.addon_id)
-
-    # (Don't show marketplace reviews for AMO (since that would break))
-    reviews = list(user.reviews.exclude(addon__type=amo.ADDON_WEBAPP)
-                   .transform(get_addons))
+    # Don't show marketplace reviews for AMO (since that would break).
+    reviews = list(user.reviews.exclude(addon__type=amo.ADDON_WEBAPP))
 
     data = {'profile': user, 'own_coll': own_coll, 'reviews': reviews,
             'fav_coll': fav_coll, 'edit_any_user': edit_any_user,
