@@ -36,7 +36,7 @@ def addon_to_dict(addon, disco=False, src='api'):
          'guid': addon.guid,
          'status': amo.STATUS_CHOICES_API[addon.status],
          'type': amo.ADDON_SLUGS_UPDATE[addon.type],
-         'authors': [{'id': a.id, 'name': a.name,
+         'authors': [{'id': a.id, 'name': unicode(a.name),
                       'link': absolutify(a.get_url_path(src=src))}
                      for a in addon.listed_authors],
          'summary': strip_tags(addon.summary) if addon.summary else None,
@@ -57,7 +57,7 @@ def addon_to_dict(addon, disco=False, src='api'):
 
     if v:
         d['version'] = v.version
-        d['platforms'] = [a.name for a in v.supported_platforms]
+        d['platforms'] = [unicode(a.name) for a in v.supported_platforms]
         d['compatible_apps'] = v.compatible_apps.values()
 
     if addon.eula:
