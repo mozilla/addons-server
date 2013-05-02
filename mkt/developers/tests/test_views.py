@@ -437,14 +437,16 @@ class TestPublicise(amo.tests.TestCase):
         eq_(res.status_code, 302)
         eq_(self.get_webapp().status, amo.STATUS_PUBLIC_WAITING)
 
+    @mock.patch('mkt.webapps.models.Webapp.update_supported_locales')
     @mock.patch('mkt.webapps.models.Webapp.update_name_from_package_manifest')
-    def test_publicise(self, update):
+    def test_publicise(self, update_name, update_locales):
         res = self.client.post(self.publicise_url)
         eq_(res.status_code, 302)
         eq_(self.get_webapp().status, amo.STATUS_PUBLIC)
         eq_(self.get_webapp().versions.latest().all_files[0].status,
             amo.STATUS_PUBLIC)
-        assert update.called
+        assert update_name.called
+        assert update_locales.called
 
     def test_status(self):
         res = self.client.get(self.status_url)
