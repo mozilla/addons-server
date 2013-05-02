@@ -7,10 +7,13 @@ from tower import ugettext_lazy as _lazy
 import amo
 from addons.models import Addon
 
+from mkt.api.forms import SluggableModelChoiceField
+
 
 class ReceiptForm(forms.Form):
-    app = forms.ModelChoiceField(queryset=
-        Addon.objects.filter(type=amo.ADDON_WEBAPP))
+    app = SluggableModelChoiceField(
+        queryset=Addon.objects.filter(type=amo.ADDON_WEBAPP),
+        sluggable_to_field_name='app_slug')
 
 
 class TestInstall(forms.Form):

@@ -41,6 +41,14 @@ class TestAPI(BaseOAuth):
         client = self.client if not anon else self.anon
         return client.post(self.url, data=self.data)
 
+    def test_no_app(self):
+        self.data = json.dumps({'app': 0})
+        eq_(self.post().status_code, 400)
+
+    def test_app_slug(self):
+        self.data = json.dumps({'app': self.addon.app_slug})
+        eq_(self.post().status_code, 201)
+
     def test_record_logged_out(self):
         res = self.post(anon=True)
         eq_(res.status_code, 201)

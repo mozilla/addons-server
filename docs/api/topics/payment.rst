@@ -49,7 +49,7 @@ to be used on install.
 
     **Request**:
 
-    :param app: the id of the app being installed.
+    :param string app: the id or slug of the app being installed.
 
     **Response**:
 
