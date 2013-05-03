@@ -1,11 +1,13 @@
-from decimal import Decimal
 import json
+from decimal import Decimal
 
 from django.core import mail
 
 from mock import patch
 from nose.tools import eq_, ok_
 
+from amo import CONTRIB_PENDING, CONTRIB_PURCHASE
+from amo.urlresolvers import reverse
 from market.models import Price, PriceCurrency
 from users.models import UserProfile
 
@@ -37,8 +39,11 @@ class TestPrepare(PurchaseTest, BaseOAuth):
         self.setup_base()
         self.setup_package()
         res = self.client.post(self.list_url, data=json.dumps({'app': 337141}))
+        contribution = Contribution.objects.get()
         eq_(res.status_code, 201)
-        ok_(res.json['contribStatusURL'])
+        eq_(res.json['contribStatusURL'], reverse('api_dispatch_detail',
+            kwargs={'api_name': 'webpay', 'resource_name': 'status',
+                    'uuid': contribution.uuid}))
         ok_(res.json['webpayJWT'])
 
     @patch('mkt.webapps.models.Webapp.has_purchased')
@@ -46,6 +51,45 @@ class TestPrepare(PurchaseTest, BaseOAuth):
         has_purchased.return_value = True
         res = self.client.post(self.list_url, data=json.dumps({'app': 337141}))
         eq_(res.status_code, 403)
+
+
+class TestStatus(BaseOAuth):
+    fixtures = fixture('webapp_337141', 'user_2519')
+
+    def setUp(self):
+        super(TestStatus, self).setUp(api_name='webpay')
+        self.contribution = Contribution.objects.create(
+            addon_id=337141, user_id=2519, type=CONTRIB_PURCHASE,
+            uuid='some:uid')
+        self.get_url = ('api_dispatch_detail', {
+            'api_name': 'webpay', 'resource_name': 'status',
+            'uuid': self.contribution.uuid})
+
+    def test_allowed(self):
+        self._allowed_verbs(self.get_url, ['get'])
+
+    def test_get(self):
+        res = self.client.get(self.get_url)
+        eq_(res.status_code, 200)
+        eq_(res.json['status'], 'complete')
+
+    def test_no_contribution(self):
+        self.contribution.delete()
+        res = self.client.get(self.get_url)
+        eq_(res.status_code, 200, res.content)
+        eq_(res.json['status'], 'incomplete', res.content)
+
+    def test_incomplete(self):
+        self.contribution.update(type=CONTRIB_PENDING)
+        res = self.client.get(self.get_url)
+        eq_(res.status_code, 200, res.content)
+        eq_(res.json['status'], 'incomplete', res.content)
+
+    def test_no_purchase(self):
+        self.contribution.addon.addonpurchase_set.get().delete()
+        res = self.client.get(self.get_url)
+        eq_(res.status_code, 200, res.content)
+        eq_(res.json['status'], 'incomplete', res.content)
 
 
 class TestPrices(BaseOAuth):

@@ -1,19 +1,23 @@
+from django.conf.urls.defaults import url
+from django.core.exceptions import ObjectDoesNotExist
+
 import commonware.log
 from tastypie import fields, http
 from tastypie.exceptions import ImmediateHttpResponse
 from tastypie.validation import CleanedDataFormValidation
 
+import amo
 from amo.helpers import absolutify, urlparams
 from amo.urlresolvers import reverse
 from amo.utils import send_mail_jinja
-from mkt.api.authentication import (OptionalOAuthAuthentication,
-                                    OAuthAuthentication,
+from mkt.api.authentication import (OAuthAuthentication,
+                                    OptionalOAuthAuthentication,
                                     SharedSecretAuthentication)
 from mkt.api.authorization import (AnonymousReadOnlyAuthorization,
-                                   Authorization,
+                                   Authorization, OwnerAuthorization,
                                    PermissionAuthorization)
 from mkt.api.base import (CORSResource, GenericObject,
-                          MarketplaceResource, MarketplaceModelResource)
+                          MarketplaceModelResource, MarketplaceResource)
 from mkt.webpay.forms import FailureForm, PrepareForm, ProductIconForm
 from mkt.webpay.models import ProductIcon
 from mkt.purchase.webpay import _prepare_pay
@@ -45,6 +49,47 @@ class PreparePayResource(CORSResource, MarketplaceResource):
         return bundle
 
 
+class StatusPayResource(CORSResource, MarketplaceModelResource):
+
+    class Meta(MarketplaceModelResource.Meta):
+        always_return_data = True
+        authentication = (SharedSecretAuthentication(), OAuthAuthentication())
+        authorization = OwnerAuthorization()
+        detail_allowed_methods = ['get']
+        queryset = Contribution.objects.filter(type=amo.CONTRIB_PURCHASE)
+        resource_name = 'status'
+
+    def obj_get(self, request=None, **kw):
+        try:
+            obj = super(StatusPayResource, self).obj_get(request=request, **kw)
+        except ObjectDoesNotExist:
+            # Anything that's not correct will be raised as a 404 so that it's
+            # harder to iterate over contribution values.
+            log.info('Contribution not found')
+            return None
+
+        if not OwnerAuthorization().is_authorized(request, object=obj):
+            raise ImmediateHttpResponse(response=http.HttpForbidden())
+
+        if not obj.addon.has_purchased(request.amo_user):
+            log.info('Not in AddonPurchase table')
+            return None
+
+        return obj
+
+    def base_urls(self):
+        return [
+            url(r"^(?P<resource_name>%s)/(?P<uuid>[^/]+)/$" %
+                self._meta.resource_name,
+                self.wrap_view('dispatch_detail'),
+                name='api_dispatch_detail')
+        ]
+
+    def full_dehydrate(self, bundle):
+        bundle.data = {'status': 'complete' if bundle.obj.id else 'incomplete'}
+        return bundle
+
+
 class PriceResource(CORSResource, MarketplaceModelResource):
     prices = fields.ListField(attribute='prices', readonly=True)
     localized = fields.DictField(attribute='suggested', readonly=True,
@@ -55,6 +100,7 @@ class PriceResource(CORSResource, MarketplaceModelResource):
     class Meta:
         detail_allowed_methods = ['get']
         filtering = {'pricePoint': 'exact'}
+        include_resource_uri = False
         list_allowed_methods = ['get']
         queryset = Price.objects.filter(active=True)
         resource_name = 'prices'

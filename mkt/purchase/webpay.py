@@ -2,9 +2,9 @@ import calendar
 import hashlib
 import sys
 import time
-from urllib import urlencode
 import urlparse
 import uuid
+from urllib import urlencode
 
 from django import http
 from django.conf import settings
@@ -12,8 +12,8 @@ from django.views.decorators.csrf import csrf_exempt
 
 import bleach
 import commonware.log
-from tower import ugettext as _
 import waffle
+from tower import ugettext as _
 
 from addons.decorators import (addon_view_factory, can_be_purchased,
                                has_not_purchased)
@@ -130,9 +130,14 @@ def _prepare_pay(request, addon):
     log.debug('Preparing webpay JWT for addon %s: %s' % (addon, jwt_))
     app_pay_cef.log(request, 'Preparing JWT', 'preparing_jwt',
                     'Preparing JWT for: %s' % (addon.pk), severity=3)
-    return {'webpayJWT': jwt_,
-            'contribStatusURL': reverse('webpay.pay_status',
-                                        args=[addon.app_slug, uuid_])}
+
+    if request.API:
+        url = reverse('api_dispatch_detail', kwargs={
+            'resource_name': 'status', 'api_name': 'webpay',
+            'uuid': uuid_})
+    else:
+        url = reverse('webpay.pay_status', args=[addon.app_slug, uuid_])
+    return {'webpayJWT': jwt_, 'contribStatusURL': url}
 
 
 @login_required

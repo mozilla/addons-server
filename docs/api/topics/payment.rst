@@ -26,15 +26,40 @@ Produces the JWT that is passed to `navigator.mozPay`_.
 
         {
             "app": "337141: Something Something Steamcube!",
-            "contribStatusURL": "[bug 868030]",
+            "contribStatusURL": "https://marketplace.firefox.com/api/v1/webpay/status/123/",
             "resource_uri": "",
             "webpayJWT": "eyJhbGciOiAiSFMy... [truncated]",
         }
+
+    :param string webpayJWT: the JWT to pass to `navigator.mozPay`_
+    :param string contribStatusURL: the URL to poll for
+        :ref:`payment-status-label`.
 
     :status 201: successfully completed.
     :status 401: not authenticated.
     :status 403: app cannot be purchased. This could be because the app has
         already been purchased.
+
+.. _payment-status-label:
+
+Payment status
+==============
+
+.. note:: Authentication is required.
+
+.. http:get:: /api/v1/webpay/status/(string:uuid)/
+
+    **Request**
+
+    :param string uuid: the uuid of the payment. This URL is returned as the
+        ``contribStatusURL`` parameter of a call to *prepare*.
+
+    **Response**
+
+    :param string status: ``complete`` or ``incomplete``
+
+    :status 200: request processed, check status for value.
+    :status 403: not authorized to view details on that transaction.
 
 Installing
 ==========
