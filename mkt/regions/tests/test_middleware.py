@@ -57,7 +57,9 @@ class TestRegionMiddleware(amo.tests.TestCase):
             eq_(r.cookies['region'].value, 'worldwide')
             eq_(r.context['request'].REGION, mkt.regions.WORLDWIDE)
 
-    def test_accept_language(self):
+    @mock.patch('mkt.regions.middleware.RegionMiddleware.region_from_request')
+    def test_accept_language(self, mock_rfr):
+        mock_rfr.return_value = mkt.regions.WORLDWIDE.slug
         locales = [
             ('', 'worldwide'),
             ('de', 'worldwide'),
@@ -88,21 +90,14 @@ class TestRegionMiddleware(amo.tests.TestCase):
             eq_(got, expected,
                 'For %r: expected %r but got %r' % (locale, expected, got))
 
-    def test_accept_language_takes_precedence_over_previous_request(self):
-        r = self.client.get('/')
+    @mock.patch('mkt.regions.middleware.RegionMiddleware.region_from_request')
+    def test_url_param_override(self, mock_rfr):
+        self.client.cookies['lang'] = 'pt-BR'
+        self.client.cookies['region'] = 'br'
+        r = self.client.get('/?region=us')
         eq_(r.cookies['region'].value, 'us')
-
-        # Even though you remembered my previous language, I've since
-        # changed it in my browser, so let's respect that.
-        r = self.client.get('/', HTTP_ACCEPT_LANGUAGE='pt-br')
-        eq_(r.cookies['region'].value, 'br')
-
-    def test_accept_language_takes_precedence_over_cookie(self):
-        self.client.cookies['lang'] = 'ar,ja'
-        self.client.cookies['region'] = 'worldwide'
-
-        r = self.client.get('/', HTTP_ACCEPT_LANGUAGE='pt-BR')
-        eq_(r.cookies['region'].value, 'br')
+        eq_(r.context['request'].REGION, mkt.regions.REGIONS_DICT['us'])
+        assert not mock_rfr.called
 
     def test_not_stuck(self):
         self.client.cookies['lang'] = 'en-US,'
@@ -127,6 +122,13 @@ class TestRegionMiddleware(amo.tests.TestCase):
         mock_lookup.return_value = lang
         r = self.client.get('/', HTTP_ACCEPT_LANGUAGE='sa-US')
         eq_(r.cookies['region'].value, lang)
+
+    @mock.patch('mkt.regions.middleware.GeoIP.lookup')
+    @mock.patch.object(settings, 'GEOIP_DEFAULT_VAL', 'worldwide')
+    def test_geoip_lookup_unavailable_fall_to_accept_lang(self, mock_lookup):
+        mock_lookup.return_value = 'worldwide'
+        r = self.client.get('/', HTTP_ACCEPT_LANGUAGE='pt-BR')
+        eq_(r.cookies['region'].value, 'br')
 
     @mock.patch('mkt.regions.middleware.GeoIP.lookup')
     @mock.patch.object(settings, 'GEOIP_DEFAULT_VAL', 'worldwide')
