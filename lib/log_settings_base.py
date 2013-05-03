@@ -10,7 +10,7 @@ import dictconfig
 base_fmt = ('%(name)s:%(levelname)s %(message)s '
             ':%(pathname)s:%(lineno)s')
 error_fmt = ('%(name)s:%(levelname)s %(request_path)s %(message)s '
-            ':%(pathname)s:%(lineno)s')
+             ':%(pathname)s:%(lineno)s')
 
 formatters = {
     'debug': {
@@ -21,20 +21,20 @@ formatters = {
     'prod': {
         '()': commonware.log.Formatter,
         'datefmt': '%H:%M:%S',
-        'format': ('%s: [%%(USERNAME)s][%%(REMOTE_ADDR)s] %s'
-                   % (settings.SYSLOG_TAG, base_fmt)),
+        'format': ('%s %s: [%%(USERNAME)s][%%(REMOTE_ADDR)s] %s'
+                   % (settings.HOSTNAME, settings.SYSLOG_TAG, base_fmt)),
     },
     'prod2': {
         '()': commonware.log.Formatter,
         'datefmt': '%H:%M:%S',
-        'format': ('%s: [%%(USERNAME)s][%%(REMOTE_ADDR)s] %s'
-                   % (settings.SYSLOG_TAG2, base_fmt)),
+        'format': ('%s %s: [%%(USERNAME)s][%%(REMOTE_ADDR)s] %s'
+                   % (settings.HOSTNAME, settings.SYSLOG_TAG2, base_fmt)),
     },
     'error': {
         '()': commonware.log.Formatter,
         'datefmt': '%H:%M:%S',
-        'format': ('%s: [%%(USERNAME)s][%%(REMOTE_ADDR)s] %s'
-                   % (settings.SYSLOG_TAG, error_fmt)),
+        'format': ('%s %s: [%%(USERNAME)s][%%(REMOTE_ADDR)s] %s'
+                   % (settings.HOSTNAME, settings.SYSLOG_TAG, error_fmt)),
     },
 }
 
