@@ -279,7 +279,7 @@ GEOIP_DEFAULT_VAL = 'worldwide'
 GEOIP_DEFAULT_TIMEOUT = .2
 
 # A smaller range of languages for the Marketplace.
-AMO_LANGUAGES = ('en-US', 'es', 'pt-BR')
+AMO_LANGUAGES = ('en-US', 'es', 'pl', 'pt-BR')
 LANGUAGES = lazy(lazy_langs, dict)(AMO_LANGUAGES)
 LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in AMO_LANGUAGES])
 
@@ -289,7 +289,7 @@ LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in AMO_LANGUAGES])
 HIDDEN_LANGUAGES = (
     # List of languages from AMO's settings (excluding mkt's active locales).
     'af', 'ar', 'bg', 'ca', 'cs', 'da', 'de', 'el', 'eu', 'fa',
-    'fi', 'fr', 'ga-IE', 'he', 'hu', 'id', 'it', 'ja', 'ko', 'mn', 'nl', 'pl',
+    'fi', 'fr', 'ga-IE', 'he', 'hu', 'id', 'it', 'ja', 'ko', 'mn', 'nl',
     'pt-PT', 'ro', 'ru', 'sk', 'sl', 'sq', 'sv-SE', 'uk', 'vi',
     'zh-CN', 'zh-TW',
     # The hidden list from AMO's settings:

@@ -12,7 +12,7 @@ import mkt
 from mkt.site.fixtures import fixture
 
 
-_langs = ['de', 'en-US', 'es', 'fr', 'pt-BR', 'pt-PT']
+_langs = ['de', 'en-US', 'es', 'fr', 'pl', 'pt-BR', 'pt-PT']
 
 
 @mock.patch.object(settings, 'LANGUAGE_URL_MAP',
