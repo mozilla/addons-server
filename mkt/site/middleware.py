@@ -2,7 +2,7 @@ from types import MethodType
 
 from django import http
 from django.conf import settings
-from django.http import SimpleCookie, HttpRequest
+from django.http import HttpRequest, SimpleCookie
 from django.utils.cache import patch_vary_headers
 
 import tower
@@ -12,6 +12,7 @@ from amo.urlresolvers import lang_from_accept_header, Prefixer
 from amo.utils import urlparams
 
 import mkt
+
 
 def _set_cookie(self, key, value='', max_age=None, expires=None, path='/',
                 domain=None, secure=False):
@@ -168,7 +169,8 @@ class LocaleMiddleware(object):
     def process_response(self, request, response):
         # We want to change the cookie, but didn't have the response in
         # process request.
-        if hasattr(request, 'LANG_COOKIE'):
+        if (hasattr(request, 'LANG_COOKIE') and
+            not getattr(request, 'API', False)):
             response.set_cookie('lang', request.LANG_COOKIE)
         patch_vary_headers(response, ['Accept-Language', 'Cookie'])
         return response
@@ -212,7 +214,7 @@ class DeviceDetectionMiddleware(object):
             if not active and cookie:
                 # If the device isn't active, but there is a cookie, remove it.
                 response.delete_cookie(device)
-            elif active and not cookie:
+            elif active and not cookie and not request.API:
                 # Set the device if it's active and there's no cookie.
                 response.set_cookie(device, 'true')
 

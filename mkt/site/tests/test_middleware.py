@@ -1,13 +1,12 @@
 from django.conf import settings
 
 import mock
-from nose.tools import eq_
+from nose.tools import eq_, ok_
 from test_utils import RequestFactory
 
 import amo.tests
 from users.models import UserProfile
 
-import mkt
 from mkt.site.middleware import DeviceDetectionMiddleware
 from mkt.site.fixtures import fixture
 
@@ -178,6 +177,11 @@ class TestLocaleMiddleware(amo.tests.TestCase):
         eq_(r.cookies['lang'].value, settings.LANGUAGE_CODE + ',')
         eq_(r.context['request'].LANG, settings.LANGUAGE_CODE)
 
+    def test_no_api_cookie(self):
+        res = self.client.get('/api/v1/apps/schema/?region=worldwide',
+                              HTTP_ACCEPT_LANGUAGE='de')
+        ok_(not res.cookies)
+
     def test_cookie_gets_set_once(self):
         r = self.client.get('/', HTTP_ACCEPT_LANGUAGE='de')
         eq_(r.cookies['lang'].value, 'de,')
@@ -301,7 +305,7 @@ class TestDeviceMiddleware(amo.tests.TestCase):
         eq_(req.cookies['mobile'].value, 'true')
         assert getattr(req.context['request'], 'MOBILE')
 
-    def test_dev_android(self):
+    def test_dev_tablet(self):
         req = self.client.get('/?dev=desktop', follow=True)
         eq_(req.cookies['tablet'].value, 'true')
         assert getattr(req.context['request'], 'TABLET')

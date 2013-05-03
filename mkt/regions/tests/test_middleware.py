@@ -3,7 +3,7 @@ import socket
 from django.conf import settings
 
 import mock
-from nose.tools import eq_
+from nose.tools import eq_, ok_
 
 import amo.tests
 from users.models import UserProfile
@@ -28,6 +28,10 @@ class TestRegionMiddleware(amo.tests.TestCase):
             else:
                 eq_(r.cookies.get('lang'), None)
             eq_(r.context['request'].LANG, settings.LANGUAGE_CODE)
+
+    def test_no_api_cookie(self):
+        res = self.client.get('/api/v1/apps/schema/?region=worldwide')
+        ok_(not res.cookies)
 
     def test_accept_good_region(self):
         for region, region_cls in mkt.regions.REGIONS_CHOICES:

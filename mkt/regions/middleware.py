@@ -65,7 +65,8 @@ class RegionMiddleware(object):
                 and request.amo_user.region != reg):
                 request.amo_user.region = reg
                 request.amo_user.save()
-            request.set_cookie('region', reg)
+            if not getattr(request, 'API', False):
+                request.set_cookie('region', reg)
 
         request.REGION = regions[reg]
         mkt.regions.set_region(reg)
