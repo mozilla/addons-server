@@ -7,9 +7,11 @@ from django.conf import settings
 from django_browserid import get_audience
 from tastypie import fields, http
 from tastypie.authorization import Authorization
+from tastypie.bundle import Bundle
 from tastypie.exceptions import ImmediateHttpResponse
 from tastypie.throttle import CacheThrottle
 
+from access import acl
 from amo.utils import send_mail_jinja
 from mkt.api.authentication import (OAuthAuthentication,
                                     OptionalOAuthAuthentication,
@@ -27,7 +29,20 @@ from users.views import browserid_login
 from .forms import FeedbackForm, LoginForm
 
 
-class AccountResource(CORSResource, MarketplaceModelResource):
+class Mine(object):
+
+    def obj_get(self, request=None, **kwargs):
+        if kwargs.get('pk') == 'mine':
+            kwargs['pk'] = request.amo_user.pk
+
+        # TODO: put in acl checks for admins to get other users information.
+        obj = super(Mine, self).obj_get(request=request, **kwargs)
+        if not OwnerAuthorization().is_authorized(request, object=obj):
+            raise ImmediateHttpResponse(response=http.HttpForbidden())
+        return obj
+
+
+class AccountResource(Mine, CORSResource, MarketplaceModelResource):
 
     class Meta(MarketplaceModelResource.Meta):
         authentication = (SharedSecretAuthentication(), OAuthAuthentication())
@@ -38,15 +53,28 @@ class AccountResource(CORSResource, MarketplaceModelResource):
         queryset = UserProfile.objects.filter()
         resource_name = 'settings'
 
-    def obj_get(self, request=None, **kwargs):
-        if kwargs.get('pk') == 'mine':
-            kwargs['pk'] = request.amo_user.pk
 
-        # TODO: put in acl checks for admins to get other users information.
-        obj = super(AccountResource, self).obj_get(request=request, **kwargs)
-        if not OwnerAuthorization().is_authorized(request, object=obj):
-            raise ImmediateHttpResponse(response=http.HttpForbidden())
-        return obj
+class PermissionResource(Mine, CORSResource, MarketplaceModelResource):
+
+    class Meta(MarketplaceModelResource.Meta):
+        authentication = (SharedSecretAuthentication(), OAuthAuthentication())
+        authorization = OwnerAuthorization()
+        detail_allowed_methods = ['get']
+        list_allowed_methods = []
+        fields = ['resource_uri']
+        queryset = UserProfile.objects.filter()
+        resource_name = 'permissions'
+
+    def dehydrate(self, bundle):
+        permissions = {
+            'reviewer': acl.check_reviewer(bundle.request),
+            'admin': acl.action_allowed(bundle.request, 'Admin', '%'),
+            'localizer': acl.action_allowed(bundle.request, 'Localizers', '%'),
+            'lookup': acl.action_allowed(bundle.request, 'AccountLookup', '%'),
+            'developer': bundle.request.amo_user.is_app_developer
+        }
+        bundle.data['permissions'] = permissions
+        return bundle
 
 
 class InstalledResource(AppResource):
@@ -65,6 +93,7 @@ class InstalledResource(AppResource):
 
 
 class LoginResource(CORSResource, MarketplaceResource):
+
     class Meta(MarketplaceResource.Meta):
         resource_name = 'login'
         always_return_data = True
@@ -97,15 +126,18 @@ class LoginResource(CORSResource, MarketplaceResource):
 
         res = browserid_login(request, browserid_audience=audience)
         if res.status_code == 200:
-            return self.create_response(request, {
+            request.amo_user = request.user.get_profile()
+            result = {
                 'error': None,
                 'token': self.get_token(request.user.email),
                 'settings': {
-                    'display_name': (UserProfile.objects
-                                     .get(user=request.user).display_name),
+                    'display_name': request.amo_user.display_name,
                     'email': request.user.email,
                 }
-            })
+            }
+            result.update(PermissionResource()
+                          .dehydrate(Bundle(request=request)).data)
+            return self.create_response(request, result)
         return res
 
 

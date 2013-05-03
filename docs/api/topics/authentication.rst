@@ -33,11 +33,12 @@ stored as a cookie.
 
     **Response**
 
-    :param error: any error that occurred.
-    :param token: a shared secret to be used on later requests. It should be
+    :param string error: any error that occurred.
+    :param string token: a shared secret to be used on later requests. It should be
         sent with authorized requests as a query string parameter named
         ``_user``.
-    :param settings: user account settings.
+    :param object permissions: :ref:`user permissions <permission-get-label>`.
+    :param object settings: user account settings.
 
     Example:
 
@@ -50,6 +51,13 @@ stored as a cookie.
                 "display_name": "fred foobar",
                 "email": "ffoob@example.com",
                 "region": "appistan"
+            },
+            "permissions": {
+                "reviewer": false,
+                "admin": false,
+                "localizer": false,
+                "lookup": true,
+                "developer": true
             }
         }
 

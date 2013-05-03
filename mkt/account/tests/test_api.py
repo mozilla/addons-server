@@ -6,11 +6,11 @@ from django.conf import settings
 from django.core import mail
 
 from mock import patch
-from nose.tools import eq_
+from nose.tools import eq_, ok_
 
 from amo.tests import TestCase
 from mkt.account.api import FeedbackResource
-from mkt.api.base import list_url, get_url
+from mkt.api.base import get_url, list_url
 from mkt.api.tests.test_oauth import BaseOAuth, get_absolute_url
 from mkt.api.tests.test_throttle import ThrottleTests
 from mkt.constants.apps import INSTALL_TYPE_REVIEWER
@@ -25,6 +25,32 @@ class TestPotatoCaptcha(object):
             data = json.loads(response.content)
         eq_(400, response.status_code)
         assert '__all__' in data['error_message']
+
+
+class TestPermission(BaseOAuth):
+    fixtures = fixture('user_2519')
+
+    def setUp(self):
+        super(TestPermission, self).setUp(api_name='account')
+        self.get_url = get_url('permissions', '2519')
+        self.user = UserProfile.objects.get(pk=2519)
+
+    def test_verbs(self):
+        self._allowed_verbs(self.get_url, ('get'))
+
+    def test_no_permissions(self):
+        res = self.client.get(self.get_url)
+        eq_(res.status_code, 200, res.content)
+        self.assertSetEqual(
+            ['reviewer', 'admin', 'localizer', 'lookup', 'developer'],
+            res.json['permissions'].keys()
+        )
+        ok_(not all(res.json['permissions'].values()))
+
+    def test_some_permission(self):
+        self.grant_permission(self.user, 'Localizers:%')
+        res = self.client.get(self.get_url)
+        ok_(res.json['permissions']['localizer'])
 
 
 class TestAccount(BaseOAuth):
@@ -154,6 +180,7 @@ class TestLoginHandler(TestCase):
             'cvan@mozilla.com,95c9063d9f249aacfe5697fc83192ed6480c01463e2a80b3'
             '5af5ecaef11754700f4be33818d0e83a0cfc2cab365d60ba53b3c2b9f8f6589d1'
             'c43e9bbb876eef0,000000')
+        eq_(data['permissions']['localizer'], False)
 
     @patch('requests.post')
     def test_login_failure(self, http_request):

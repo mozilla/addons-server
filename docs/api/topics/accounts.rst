@@ -9,14 +9,14 @@ User accounts on the Firefox Marketplace.
 Account
 =======
 
-The account API, makes use of the term `mine`. This is an explicit variable to
+.. note:: Requires authentication.
+
+The account API, makes use of the term ``mine``. This is an explicit variable to
 lookup the logged in user account id.
 
 .. http:get:: /api/v1/account/settings/mine/
 
     Returns data on the currently logged in user.
-
-    .. note:: Requires authentication.
 
     **Response**
 
@@ -26,9 +26,6 @@ lookup the logged in user account id.
             "resource_uri": "/api/v1/account/settings/1/",
             "display_name": "Nice person",
         }
-
-The same information is also accessible at the canoncial `resource_uri`
-`/api/v1/account/settings/1/`.
 
 To update account information:
 
@@ -53,8 +50,6 @@ Fields that can be updated:
     Returns a list of the installed apps for the currently logged in user. This
     ignores any reviewer or developer installed apps.
 
-    .. note:: Requires authentication.
-
     **Request**
 
     The standard :ref:`list-query-params-label`.
@@ -63,6 +58,32 @@ Fields that can be updated:
 
     :param meta: :ref:`meta-response-label`.
     :param objects: A :ref:`listing <objects-response-label>` of :ref:`apps <app-response-label>`.
+    :status 200: sucessfully completed.
+
+.. _permission-get-label:
+
+.. http:get:: /api/v1/account/permissions/mine/
+
+    Returns a mapping of the permissions for the currently logged in user.
+
+    **Response**
+
+    .. code-block:: json
+
+        {
+            "permissions": {
+                "admin": false,
+                "developer": false,
+                "localizer": false,
+                "lookup": true,
+                "reviewer": false
+            },
+            "resource_uri": "/api/v1/account/permissions/1/"
+        }
+
+    :param permissions: permissions and properties for the user account. It
+        contains boolean values which describe whether the user has the
+        permission described by the key of the field.
     :status 200: sucessfully completed.
 
 Feedback
