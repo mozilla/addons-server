@@ -4,7 +4,10 @@ from django.db.models import signals
 
 import amo
 import amo.models
+import commonware.log
 
+
+log = commonware.log.getLogger('z.users')
 
 class Group(amo.models.ModelBase):
 
@@ -42,6 +45,7 @@ def groupuser_post_save(sender, instance, **kw):
         instance.user.groups.filter(rules='*:*').exists()):
         instance.user.user.is_superuser = instance.user.user.is_staff = True
         instance.user.user.save()
+    log.info('Added %s to %s' % (instance.user, instance.group))
 
 
 @dispatch.receiver(signals.post_delete, sender=GroupUser,
@@ -56,3 +60,4 @@ def groupuser_post_delete(sender, instance, **kw):
         not instance.user.groups.filter(rules='*:*').exists()):
         instance.user.user.is_superuser = instance.user.user.is_staff = False
         instance.user.user.save()
+    log.info('Removed %s from %s' % (instance.user, instance.group))
