@@ -13,7 +13,6 @@ database:
         - addon_inapp_payment
         - addon_payment_data
         - api_access
-        - api_auth_tokens
         - approvals
         - auth_group
         - auth_group_permissions
@@ -47,6 +46,8 @@ database:
         - log_activity_user_mkt
         - log_activity_version
         - log_activity_version_mkt
+        - oauth_nonce
+        - oauth_token
         - paypal_checkstatus
         - piston_consumer
         - piston_nonce

@@ -203,7 +203,6 @@ def unconfirmed():
         LEFT JOIN addons_users on users.id = addons_users.user_id
         LEFT JOIN addons_collections ON users.id=addons_collections.user_id
         LEFT JOIN collections_users ON users.id=collections_users.user_id
-        LEFT JOIN api_auth_tokens ON users.id=api_auth_tokens.user_id
         WHERE users.created < DATE_SUB(CURDATE(), INTERVAL 2 WEEK)
         AND users.confirmationcode != ''
         AND addons_users.user_id IS NULL
