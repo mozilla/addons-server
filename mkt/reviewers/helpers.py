@@ -121,7 +121,8 @@ def queue_tabnav_themes(context):
         tabs.append((
             'themes', 'pending', 'queue_themes', _('Pending'),
         ))
-    if acl.action_allowed(context['request'], 'ReviewerAdminTools', 'View'):
+    if acl.action_allowed(context['request'], 'SeniorPersonasTools',
+                          'View'):
         tabs.append((
             'themes', 'flagged', 'queue_flagged', _('Flagged'),
         ))
