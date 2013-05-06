@@ -1,4 +1,4 @@
-/* 2013.05.06_10.27.39 */
+/* 2013.05.06_12.59.13 */
 (function(window, undefined) {
 
 var defined = {};
@@ -17519,7 +17519,7 @@ t_14 += "\" class=\"view-all\">";
 t_14 += runtime.suppressValue((lineno = 41, colno = 50, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["View All"])), env.autoesc);
 t_14 += "</a>\n      </header>\n    ";
 }
-t_14 += "\n    <ol class=\"container listing grid-if-desktop c\">\n      ";
+t_14 += "\n    <ol class=\"container listing grid-if-desktop search-listing c\">\n      ";
 frame = frame.push();
 var t_17 = runtime.contextOrFrameLookup(context, frame, "this");
 for(var t_16=0; t_16 < t_17.length; t_16++) {
@@ -17654,7 +17654,7 @@ if(!frame.parent) {
 context.setVariable("endpoint", t_1);
 context.addExport("endpoint");
 }
-output += "\n\n<div class=\"detail\">\n<section class=\"main product-details listing verbose expanded c\">\n  ";
+output += "\n\n<div class=\"detail\">\n<section class=\"main product-details listing expanded c\">\n  ";
 output += runtime.suppressValue(env.getExtension("defer")["run"](context,runtime.makeKeywordArgs({"url": t_1,"as": "app","key": runtime.contextOrFrameLookup(context, frame, "slug"),"id": "app-data"}),function() {var t_2 = "";t_2 += "\n    ";
 t_2 += runtime.suppressValue((lineno = 10, colno = 16, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "market_tile"), "market_tile", [runtime.contextOrFrameLookup(context, frame, "this")])), env.autoesc);
 t_2 += "\n  ";
@@ -17787,96 +17787,99 @@ return t_7;
 ,function() {var t_11 = "";t_11 += "\n      <p class=\"spinner alt\"></p>\n    ";
 return t_11;
 }
-,null,null), env.autoesc);
-output += "\n  </div>\n</section>\n\n<section class=\"main infobox support c\">\n  <div>\n    ";
-output += runtime.suppressValue(env.getExtension("defer")["run"](context,runtime.makeKeywordArgs({"url": t_1,"as": "app","key": runtime.contextOrFrameLookup(context, frame, "slug")}),function() {var t_12 = "";t_12 += "\n      <ul class=\"c\">\n        ";
-if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "this")),"support_email", env.autoesc)) {
-t_12 += "\n          <li class=\"support-email\">\n            ";
-t_12 += runtime.suppressValue((lineno = 128, colno = 22, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "emaillink"), "emaillink", [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "this")),"support_email", env.autoesc),(lineno = 128, colno = 44, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Support Email"])),runtime.makeKeywordArgs({"class": "button alt"})])), env.autoesc);
-t_12 += "\n          </li>\n        ";
-}
-t_12 += "\n        ";
-if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "this")),"support_url", env.autoesc)) {
-t_12 += "\n          <li class=\"support-url\">\n            <a class=\"button alt\" rel=\"external\" ";
-t_12 += runtime.suppressValue(env.getFilter("external_href")(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "this")),"support_url", env.autoesc)), env.autoesc);
-t_12 += ">\n              ";
-t_12 += runtime.suppressValue((lineno = 134, colno = 16, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Support Site"])), env.autoesc);
-t_12 += "</a>\n          </li>\n        ";
-}
-t_12 += "\n        ";
-if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "this")),"homepage", env.autoesc)) {
-t_12 += "\n          <li class=\"homepage\">\n            <a class=\"button alt\" rel=\"external\" ";
-t_12 += runtime.suppressValue(env.getFilter("external_href")(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "this")),"homepage", env.autoesc)), env.autoesc);
-t_12 += ">";
-t_12 += runtime.suppressValue((lineno = 139, colno = 81, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Homepage"])), env.autoesc);
-t_12 += "</a>\n          </li>\n        ";
-}
-t_12 += "\n        ";
-if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "this")),"privacy_policy", env.autoesc)) {
-t_12 += "\n          <li><a class=\"button alt\" href=\"";
-t_12 += runtime.suppressValue((lineno = 143, colno = 46, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "url"), "url", ["app/privacy",[runtime.contextOrFrameLookup(context, frame, "slug")]])), env.autoesc);
-t_12 += "\">\n            ";
-t_12 += runtime.suppressValue((lineno = 144, colno = 14, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Privacy Policy"])), env.autoesc);
-t_12 += "</a></li>\n        ";
-}
-t_12 += "\n        ";
-if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "this")),"public_stats", env.autoesc)) {
-t_12 += "\n          <li><a class=\"button alt view-stats\" rel=\"external\" href=\"/statistics/app/";
-t_12 += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "slug"), env.autoesc);
-t_12 += "/\">\n            ";
-t_12 += runtime.suppressValue((lineno = 148, colno = 14, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Statistics"])), env.autoesc);
-t_12 += "</a></li>\n        ";
-}
-t_12 += "\n        <li><a class=\"button alt\" href=\"";
-t_12 += runtime.suppressValue((lineno = 150, colno = 44, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "url"), "url", ["app/abuse",[runtime.contextOrFrameLookup(context, frame, "slug")]])), env.autoesc);
-t_12 += "\">\n          ";
-t_12 += runtime.suppressValue((lineno = 151, colno = 12, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Report Abuse"])), env.autoesc);
-t_12 += "</a></li>\n      </ul>\n      ";
-if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "settings")),"payment_enabled", env.autoesc)) {
-t_12 += "\n        ";
-if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "this")),"upsell", env.autoesc)) {
-t_12 += "\n          <a id=\"upsell\" class=\"button alt\"\n             href=\"";
-t_12 += runtime.suppressValue(env.getFilter("urlparams")(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "this")),"upsell", env.autoesc)),"url", env.autoesc),runtime.makeKeywordArgs({"src": "mkt-detail-upsell"})), env.autoesc);
-t_12 += "\">\n             <span class=\"avail\">";
-t_12 += runtime.suppressValue((lineno = 157, colno = 35, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Premium version available"])), env.autoesc);
-t_12 += "</span>\n             <img class=\"icon\" src=\"";
-t_12 += runtime.suppressValue(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "upsell")),"icons", env.autoesc)),16, env.autoesc), env.autoesc);
-t_12 += "\">\n             <span class=\"name\">";
-t_12 += runtime.suppressValue(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "this")),"upsell", env.autoesc)),"name", env.autoesc), env.autoesc);
-t_12 += "</span>\n          </a>\n        ";
-}
-t_12 += "\n      ";
-}
-t_12 += "\n    ";
+,null,function() {var t_12 = "";t_12 += "\n    ";
 return t_12;
+}
+), env.autoesc);
+output += "\n  </div>\n</section>\n\n<section class=\"main infobox support c\">\n  <div>\n    ";
+output += runtime.suppressValue(env.getExtension("defer")["run"](context,runtime.makeKeywordArgs({"url": t_1,"as": "app","key": runtime.contextOrFrameLookup(context, frame, "slug")}),function() {var t_13 = "";t_13 += "\n      <ul class=\"c\">\n        ";
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "this")),"support_email", env.autoesc)) {
+t_13 += "\n          <li class=\"support-email\">\n            ";
+t_13 += runtime.suppressValue((lineno = 129, colno = 22, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "emaillink"), "emaillink", [runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "this")),"support_email", env.autoesc),(lineno = 129, colno = 44, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Support Email"])),runtime.makeKeywordArgs({"class": "button alt"})])), env.autoesc);
+t_13 += "\n          </li>\n        ";
+}
+t_13 += "\n        ";
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "this")),"support_url", env.autoesc)) {
+t_13 += "\n          <li class=\"support-url\">\n            <a class=\"button alt\" rel=\"external\" ";
+t_13 += runtime.suppressValue(env.getFilter("external_href")(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "this")),"support_url", env.autoesc)), env.autoesc);
+t_13 += ">\n              ";
+t_13 += runtime.suppressValue((lineno = 135, colno = 16, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Support Site"])), env.autoesc);
+t_13 += "</a>\n          </li>\n        ";
+}
+t_13 += "\n        ";
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "this")),"homepage", env.autoesc)) {
+t_13 += "\n          <li class=\"homepage\">\n            <a class=\"button alt\" rel=\"external\" ";
+t_13 += runtime.suppressValue(env.getFilter("external_href")(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "this")),"homepage", env.autoesc)), env.autoesc);
+t_13 += ">";
+t_13 += runtime.suppressValue((lineno = 140, colno = 81, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Homepage"])), env.autoesc);
+t_13 += "</a>\n          </li>\n        ";
+}
+t_13 += "\n        ";
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "this")),"privacy_policy", env.autoesc)) {
+t_13 += "\n          <li><a class=\"button alt\" href=\"";
+t_13 += runtime.suppressValue((lineno = 144, colno = 46, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "url"), "url", ["app/privacy",[runtime.contextOrFrameLookup(context, frame, "slug")]])), env.autoesc);
+t_13 += "\">\n            ";
+t_13 += runtime.suppressValue((lineno = 145, colno = 14, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Privacy Policy"])), env.autoesc);
+t_13 += "</a></li>\n        ";
+}
+t_13 += "\n        ";
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "this")),"public_stats", env.autoesc)) {
+t_13 += "\n          <li><a class=\"button alt view-stats\" rel=\"external\" href=\"/statistics/app/";
+t_13 += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "slug"), env.autoesc);
+t_13 += "/\">\n            ";
+t_13 += runtime.suppressValue((lineno = 149, colno = 14, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Statistics"])), env.autoesc);
+t_13 += "</a></li>\n        ";
+}
+t_13 += "\n        <li><a class=\"button alt\" href=\"";
+t_13 += runtime.suppressValue((lineno = 151, colno = 44, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "url"), "url", ["app/abuse",[runtime.contextOrFrameLookup(context, frame, "slug")]])), env.autoesc);
+t_13 += "\">\n          ";
+t_13 += runtime.suppressValue((lineno = 152, colno = 12, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Report Abuse"])), env.autoesc);
+t_13 += "</a></li>\n      </ul>\n      ";
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "settings")),"payment_enabled", env.autoesc)) {
+t_13 += "\n        ";
+if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "this")),"upsell", env.autoesc)) {
+t_13 += "\n          <a id=\"upsell\" class=\"button alt\"\n             href=\"";
+t_13 += runtime.suppressValue(env.getFilter("urlparams")(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "this")),"upsell", env.autoesc)),"url", env.autoesc),runtime.makeKeywordArgs({"src": "mkt-detail-upsell"})), env.autoesc);
+t_13 += "\">\n             <span class=\"avail\">";
+t_13 += runtime.suppressValue((lineno = 158, colno = 35, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Premium version available"])), env.autoesc);
+t_13 += "</span>\n             <img class=\"icon\" src=\"";
+t_13 += runtime.suppressValue(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "upsell")),"icons", env.autoesc)),16, env.autoesc), env.autoesc);
+t_13 += "\">\n             <span class=\"name\">";
+t_13 += runtime.suppressValue(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "this")),"upsell", env.autoesc)),"name", env.autoesc), env.autoesc);
+t_13 += "</span>\n          </a>\n        ";
+}
+t_13 += "\n      ";
+}
+t_13 += "\n    ";
+return t_13;
 }
 ,null,null,null), env.autoesc);
 output += "\n  </div>\n</section>\n\n<div class=\"content_ratings\">\n  ";
-output += runtime.suppressValue(env.getExtension("defer")["run"](context,runtime.makeKeywordArgs({"url": t_1,"as": "app","key": runtime.contextOrFrameLookup(context, frame, "slug")}),function() {var t_13 = "";t_13 += "\n    ";
+output += runtime.suppressValue(env.getExtension("defer")["run"](context,runtime.makeKeywordArgs({"url": t_1,"as": "app","key": runtime.contextOrFrameLookup(context, frame, "slug")}),function() {var t_14 = "";t_14 += "\n    ";
 if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "this")),"content_ratings", env.autoesc)) {
-t_13 += "\n      <div class=\"content-ratings-wrapper main infobox c\">\n        <div>\n          <h3>\n            ";
-t_13 += runtime.suppressValue((lineno = 173, colno = 14, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Rating by the <a href=\"{dejus_url}\" title=\"{dejus}\">DEJUS</a>",runtime.makeKeywordArgs({"dejus_url": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "settings")),"DEJUS_URL", env.autoesc),"dejus": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "settings")),"DEJUS", env.autoesc)})])), env.autoesc);
-t_13 += "\n          </h3>\n          <div class=\"content-ratings\">\n            ";
+t_14 += "\n      <div class=\"content-ratings-wrapper main infobox c\">\n        <div>\n          <h3>\n            ";
+t_14 += runtime.suppressValue((lineno = 174, colno = 14, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Rating by the <a href=\"{dejus_url}\" title=\"{dejus}\">DEJUS</a>",runtime.makeKeywordArgs({"dejus_url": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "settings")),"DEJUS_URL", env.autoesc),"dejus": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "settings")),"DEJUS", env.autoesc)})])), env.autoesc);
+t_14 += "\n          </h3>\n          <div class=\"content-ratings\">\n            ";
 frame = frame.push();
-var t_15 = (lineno = 178, colno = 54, runtime.callWrap(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "this")),"content_ratings", env.autoesc)),"values", env.autoesc), "this[\"content_ra\"][\"values\"]", []));
-for(var t_14=0; t_14 < t_15.length; t_14++) {
-var t_16 = t_15[t_14];
-frame.set("rating", t_16);
-t_13 += "\n              <div class=\"content-rating c\">\n                <div class=\"icon icon-";
-t_13 += runtime.suppressValue(runtime.memberLookup((t_16),"name", env.autoesc), env.autoesc);
-t_13 += "\" title=\"";
-t_13 += runtime.suppressValue(runtime.memberLookup((t_16),"name", env.autoesc), env.autoesc);
-t_13 += "\">";
-t_13 += runtime.suppressValue(runtime.memberLookup((t_16),"name", env.autoesc), env.autoesc);
-t_13 += "</div>\n                <p class=\"description\">";
-t_13 += runtime.suppressValue(runtime.memberLookup((t_16),"description", env.autoesc), env.autoesc);
-t_13 += "</p>\n              </div>\n            ";
+var t_16 = (lineno = 179, colno = 54, runtime.callWrap(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "this")),"content_ratings", env.autoesc)),"values", env.autoesc), "this[\"content_ra\"][\"values\"]", []));
+for(var t_15=0; t_15 < t_16.length; t_15++) {
+var t_17 = t_16[t_15];
+frame.set("rating", t_17);
+t_14 += "\n              <div class=\"content-rating c\">\n                <div class=\"icon icon-";
+t_14 += runtime.suppressValue(runtime.memberLookup((t_17),"name", env.autoesc), env.autoesc);
+t_14 += "\" title=\"";
+t_14 += runtime.suppressValue(runtime.memberLookup((t_17),"name", env.autoesc), env.autoesc);
+t_14 += "\">";
+t_14 += runtime.suppressValue(runtime.memberLookup((t_17),"name", env.autoesc), env.autoesc);
+t_14 += "</div>\n                <p class=\"description\">";
+t_14 += runtime.suppressValue(runtime.memberLookup((t_17),"description", env.autoesc), env.autoesc);
+t_14 += "</p>\n              </div>\n            ";
 }
 frame = frame.pop();
-t_13 += "\n          </div>\n        </div>\n      </div>\n    ";
+t_14 += "\n          </div>\n        </div>\n      </div>\n    ";
 }
-t_13 += "\n  ";
-return t_13;
+t_14 += "\n  ";
+return t_14;
 }
 ,null,null,null), env.autoesc);
 output += "\n</div>\n</div>\n";
@@ -17993,7 +17996,7 @@ output += runtime.suppressValue(env.getExtension("defer")["run"](context,runtime
 t_1 += runtime.suppressValue((lineno = 5, colno = 12, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Featured"])), env.autoesc);
 t_1 += "</h2>\n      <a href=\"#\" class=\"expand-toggle\" title=\"";
 t_1 += runtime.suppressValue((lineno = 6, colno = 49, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Expand"])), env.autoesc);
-t_1 += "\"></a>\n    </header>\n    <ol class=\"container listing search-listing verbose c\">\n      ";
+t_1 += "\"></a>\n    </header>\n    <ol class=\"container listing search-listing c\">\n      ";
 frame = frame.push();
 var t_3 = runtime.contextOrFrameLookup(context, frame, "this");
 for(var t_2=0; t_2 < t_3.length; t_2++) {
@@ -18481,7 +18484,7 @@ t_1 += "\n        <span class=\"subtitle\">";
 t_1 += runtime.suppressValue((lineno = 8, colno = 33, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>",runtime.makeKeywordArgs({"total": runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "response")),"meta", env.autoesc)),"offset", env.autoesc) + runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "response")),"meta", env.autoesc)),"limit", env.autoesc)})])), env.autoesc);
 t_1 += "</span>\n      </h2>\n      <a href=\"#\" class=\"expand-toggle\" title=\"";
 t_1 += runtime.suppressValue((lineno = 10, colno = 49, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Expand"])), env.autoesc);
-t_1 += "\"></a>\n    </header>\n    <ol class=\"container listing search-listing verbose c\">\n      ";
+t_1 += "\"></a>\n    </header>\n    <ol class=\"container listing search-listing c\">\n      ";
 frame = frame.push();
 var t_3 = runtime.contextOrFrameLookup(context, frame, "this");
 for(var t_2=0; t_2 < t_3.length; t_2++) {
