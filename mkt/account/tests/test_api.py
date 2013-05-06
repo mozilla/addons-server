@@ -54,10 +54,11 @@ class TestPermission(BaseOAuth):
         ok_(res.json['permissions']['localizer'])
 
     def test_webpay(self):
-        self.grant_permission(self.user, 'ProductIcon:Create')
         res = self.client.get(self.get_url)
         ok_(not res.json['permissions']['webpay'])
 
+    def test_webpay_ok(self):
+        self.grant_permission(self.user, 'ProductIcon:Create')
         self.grant_permission(self.user, 'Transaction:NotifyFailure')
         res = self.client.get(self.get_url)
         ok_(res.json['permissions']['webpay'])
