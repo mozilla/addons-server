@@ -177,7 +177,8 @@ class Webapp(Addon):
     def get_api_url(self, action=None, api=None, resource=None):
         """Reverse a URL for the API."""
         return reverse('api_dispatch_%s' % (action or 'detail'),
-                       kwargs={'api_name': api or 'apps', 'pk': self.pk,
+                       kwargs={'api_name': api or 'apps',
+                               'app_slug': self.app_slug,
                                'resource_name': resource or 'app'})
 
     def get_url_path(self, more=False, add_prefix=True):

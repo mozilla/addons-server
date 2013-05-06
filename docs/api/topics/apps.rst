@@ -11,7 +11,7 @@ App
 
     .. note:: Requires authentication.
 
-    Will return a list of your apps.
+    Retuns a list of apps you have developed.
 
     **Request**
 
