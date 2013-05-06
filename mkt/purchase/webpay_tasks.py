@@ -1,6 +1,8 @@
 import logging
 
 from celeryutils import task
+from jingo.helpers import datetime
+from tower import ugettext as _
 
 import amo
 from amo.decorators import write
@@ -63,17 +65,20 @@ def send_purchase_receipt(contrib_id, **kw):
     Sends an email to the purchaser of the app.
     """
     contrib = Contribution.objects.get(pk=contrib_id)
-    # TODO: localize when 833049 is done.
-    subject = u'Receipt for %s' % contrib.addon.name
-    data = {'app_name': contrib.addon.name,
-            'date': contrib.created.date(),
-            # TODO: localize this properly.
-            'authors': contrib.addon.authors,
+    with contrib.user.activate_lang():
+        # L10n: {0} is the app name.
+        subject = _('Receipt for {0}') % contrib.addon.name
+        data = {
+            'app_name': contrib.addon.name,
+            'authors': ', '.join([author.display_name
+                                  for author in contrib.addon.authors.all()]),
+            'date': datetime(contrib.created.date()),
             'purchases': absolutify(reverse('account.purchases')),
             'support_url': contrib.addon.support_url,
             'terms_of_service_url': absolutify(reverse('site.terms')),
-            'transaction_id': contrib.uuid}
+            'transaction_id': contrib.uuid
+        }
 
-    log.info('Sending email about purchase: %s' % contrib_id)
-    send_mail_jinja(subject, 'purchase/receipt.txt', data,
-                    recipient_list=[contrib.user.email])
+        log.info('Sending email about purchase: %s' % contrib_id)
+        send_mail_jinja(subject, 'purchase/receipt.txt', data,
+                        recipient_list=[contrib.user.email])

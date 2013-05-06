@@ -1,19 +1,21 @@
-from base64 import decodestring
-from datetime import datetime
 import hashlib
 import os
 import random
 import re
 import string
 import time
+from base64 import decodestring
+from contextlib import contextmanager
+from datetime import datetime
 
-from django import forms, dispatch
+from django import dispatch, forms
 from django.conf import settings
 from django.contrib.auth.models import User as DjangoUser
 from django.core import validators
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import models, transaction
 from django.template import Context, loader
+from django.utils import translation
 from django.utils.encoding import smart_str, smart_unicode
 from django.utils.functional import lazy
 
@@ -25,7 +27,7 @@ import amo
 import amo.models
 from access.models import Group, GroupUser
 from amo.urlresolvers import reverse
-from translations.fields import save_signal, PurifiedField
+from translations.fields import PurifiedField, save_signal
 from translations.query import order_by_translation
 
 log = commonware.log.getLogger('z.users')
@@ -475,6 +477,19 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
         pre_approval doesn't exist or the key is blank.
         """
         return bool(getattr(self.get_preapproval(), 'paypal_key', ''))
+
+    @contextmanager
+    def activate_lang(self):
+        """
+        Activate the language for the user. If none is set will go to the site
+        default which is en-US.
+        """
+        lang = self.lang if self.lang else settings.LANGUAGE_CODE
+        old = translation.get_language()
+        translation.activate(lang)
+        yield
+        translation.activate(old)
+
 
 models.signals.pre_save.connect(save_signal, sender=UserProfile,
                                 dispatch_uid='userprofile_translations')

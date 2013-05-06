@@ -1,13 +1,13 @@
+{% trans %}
 Thank you for purchasing from the Firefox Marketplace.
 
 App name: {{ app_name }}
-App developer: {% for author in authors.all() %}{{ author.display_name }}{% if not loop.last %}, {% endif %}{% endfor %}
+App developer: {{ authors }}
 
-Order date: {{ date|datetime }}
+Order date: {{ date }}
 Order number: {{ transaction_id }}
 
-{% if support_url %}
 For support please visit: {{ support_url }}
-{% endif %}
 Your purchase history: {{ purchases }}
 Marketplace terms of service: {{ terms_of_service_url }}
+{% endtrans %}

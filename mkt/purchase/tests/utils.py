@@ -1,6 +1,6 @@
 from decimal import Decimal
 
-import amo
+import amo.tests
 from addons.models import Addon
 from market.models import AddonPremium, Price, PriceCurrency
 from users.models import UserProfile

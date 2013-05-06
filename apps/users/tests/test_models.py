@@ -7,7 +7,7 @@ from django import forms
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.core import mail
-from django.utils import encoding
+from django.utils import encoding, translation
 
 from mock import patch
 from nose.tools import eq_
@@ -229,6 +229,15 @@ class TestUserProfile(amo.tests.TestCase):
             '/en-US/firefox/user/1/')
         eq_(UserProfile(username='<yolo>', id=1).get_url_path(),
             '/en-US/firefox/user/1/')
+
+    @patch.object(settings, 'LANGUAGE_CODE', 'en-US')
+    def test_activate_locale(self):
+        eq_(translation.get_language(), 'en-us')
+        with UserProfile(username='yolo').activate_lang():
+            eq_(translation.get_language(), 'en-us')
+
+        with UserProfile(username='yolo', lang='fr').activate_lang():
+            eq_(translation.get_language(), 'fr')
 
 
 class TestPasswords(amo.tests.TestCase):
