@@ -21,11 +21,11 @@ from amo.urlresolvers import reverse
 from applications.models import Application, AppVersion
 from files import utils
 from files.models import File, Platform, cleanup_file
-from mkt.webapps.utils import get_supported_locales
 from tower import ugettext as _
 from translations.fields import (LinkifiedField, PurifiedField, save_signal,
                                  TranslatedField)
 from users.models import UserProfile
+from versions.tasks import update_supported_locales_single
 
 from .compare import version_dict, version_int
 
@@ -117,9 +117,11 @@ class Version(amo.models.ModelBase):
             f = File.from_upload(upload, v, platform, parse_data=data)
 
         if addon.type == amo.ADDON_WEBAPP:
-            mf = addon.get_manifest_json()
-            v.update(supported_locales=','.join(get_supported_locales(mf)),
-                     _signal=False)
+            update_supported_locales_single.apply_async(
+                args=[addon.id], kwargs={'latest': True},
+                eta=datetime.datetime.now() +
+                    datetime.timedelta(seconds=settings.NFS_LAG_DELAY))
+
             if addon.is_packaged:
                 f.inject_ids()
 

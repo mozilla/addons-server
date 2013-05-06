@@ -1,3 +1,4 @@
+import datetime
 import functools
 import json
 
@@ -178,7 +179,9 @@ def set_modified_on(f):
                 task_log.info('Delaying setting modified on object: %s, %s' %
                               (obj.__class__.__name__, obj.pk))
                 set_modified_on_object.apply_async(
-                    args=[obj], kwargs=None, countdown=settings.MODIFIED_DELAY)
+                    args=[obj], kwargs=None,
+                    eta=datetime.datetime.now() +
+                        datetime.timedelta(seconds=settings.NFS_LAG_DELAY))
         return result
     return wrapper
 

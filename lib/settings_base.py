@@ -1337,8 +1337,8 @@ FILE_VIEWER_SIZE_LIMIT = 1048576
 # The maximum file size that you can have inside a zip file.
 FILE_UNZIP_SIZE_LIMIT = 104857600
 
-# How long to delay modify updates to cope with alleged NFS slowness.
-MODIFIED_DELAY = 3
+# How long to delay tasks relying on file system to cope with NFS lag.
+NFS_LAG_DELAY = 3
 
 # URL for reporting arecibo errors too. If not set, won't be sent.
 ARECIBO_SERVER_URL = ""

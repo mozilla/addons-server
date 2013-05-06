@@ -772,14 +772,17 @@ class Webapp(Addon):
         if any(crud.values()):
             self.save()
 
-    def update_supported_locales(self, manifest=None):
+    def update_supported_locales(self, latest=False, manifest=None):
         """
         Loads the manifest (for either hosted or packaged) and updates
-        Version.supported_locales for the current version.
+        Version.supported_locales for the current version or latest version if
+        latest=True.
         """
-        version = self.current_version
+        version = self.versions.latest() if latest else self.current_version
+        file_ = version.all_files[0]
+
         if not manifest:
-            manifest = self.get_manifest_json()
+            manifest = self.get_manifest_json(file_)
 
         updated = False
 

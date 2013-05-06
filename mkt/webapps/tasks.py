@@ -228,6 +228,10 @@ def add_uuids(ids, **kw):
 @task
 @write
 def update_supported_locales(ids, **kw):
+    """
+    Task intended to run via command line to update all apps' supported locales
+    based on the current version.
+    """
     for chunk in chunked(ids, 50):
         for app in Webapp.objects.filter(id__in=chunk):
             try:
