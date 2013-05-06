@@ -38,9 +38,13 @@ def wrap(response):
     """Wrapper around responses to add additional info."""
     def _json(self):
         """Will return parsed JSON on response if there is any."""
-        if self.content and 'application/json' in response['Content-Type']:
-            return json.loads(self.content)
-    response.__class__.json = property(_json)
+        if self.content and 'application/json' in self['Content-Type']:
+            if not hasattr(self, '_content_json'):
+                self._content_json = json.loads(self.content)
+            return self._content_json
+
+    if not hasattr(response.__class__, 'json'):
+        response.__class__.json = property(_json)
     return response
 
 
