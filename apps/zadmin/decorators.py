@@ -19,11 +19,11 @@ def admin_required(reviewers=False, theme_reviewers=False):
         def wrapper(request, *args, **kw):
             admin = (action_allowed(request, 'Admin', '%') or
                      action_allowed(request, 'AdminTools', 'View'))
-            if reviewers:
+            if reviewers == True:
                 admin = (
                     admin or
                     action_allowed(request, 'ReviewerAdminTools', 'View'))
-            if theme_reviewers:
+            if theme_reviewers == True:
                 admin = (
                     admin or
                     action_allowed(request, 'SeniorPersonasTools', 'View'))
