@@ -35,28 +35,30 @@ notify = setup_notifier()
 
 @task
 def create_virtualenv(ctx):
-    venv = VIRTUALENV
-    if not venv.startswith('/data'):
-        raise Exception('venv must start with /data')
+    status = ctx.local('git diff HEAD@{1} HEAD --name-only')
+    if 'requirements/' in status.out:
+        venv = VIRTUALENV
+        if not venv.startswith('/data'):
+            raise Exception('venv must start with /data')
 
-    ctx.local('rm -rf %s' % venv)
-    ctx.local('virtualenv --distribute --never-download %s' % venv)
+        ctx.local('rm -rf %s' % venv)
+        ctx.local('virtualenv --distribute --never-download %s' % venv)
 
-    ctx.local('%s/bin/pip install --exists-action=w --no-deps --no-index '
-              '--download-cache=/tmp/pip-cache -f %s '
-              '-r %s/requirements/prod.txt' %
-              (venv, settings.PYREPO, settings.SRC_DIR))
-
-    if getattr(settings, 'LOAD_TESTING', False):
         ctx.local('%s/bin/pip install --exists-action=w --no-deps --no-index '
                   '--download-cache=/tmp/pip-cache -f %s '
-                  '-r %s/requirements/load.txt' %
+                  '-r %s/requirements/prod.txt' %
                   (venv, settings.PYREPO, settings.SRC_DIR))
 
-    # make sure this always runs
-    ctx.local("rm -f %s/lib/python2.6/no-global-site-packages.txt" % venv)
-    ctx.local("%s/bin/python /usr/bin/virtualenv --relocatable %s" %
-              (venv, venv))
+        if getattr(settings, 'LOAD_TESTING', False):
+            ctx.local('%s/bin/pip install --exists-action=w --no-deps '
+                      '--no-index --download-cache=/tmp/pip-cache -f %s '
+                      '-r %s/requirements/load.txt' %
+                      (venv, settings.PYREPO, settings.SRC_DIR))
+
+        # make sure this always runs
+        ctx.local("rm -f %s/lib/python2.6/no-global-site-packages.txt" % venv)
+        ctx.local("%s/bin/python /usr/bin/virtualenv --relocatable %s" %
+                  (venv, venv))
 
 
 @task
