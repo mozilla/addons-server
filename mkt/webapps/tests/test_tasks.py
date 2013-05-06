@@ -137,8 +137,9 @@ class TestUpdateManifest(amo.tests.TestCase):
     def _data(self):
         return json.dumps(self.new)
 
+    @mock.patch('mkt.webapps.models.Webapp.get_manifest_json')
     @mock.patch('mkt.webapps.models.copy_stored_file')
-    def test_new_version_not_created(self, _copy_stored_file):
+    def test_new_version_not_created(self, _copy_stored_file, _manifest_json):
         # Test that update_manifest doesn't create multiple versions/files.
         eq_(self.addon.versions.count(), 1)
         old_version = self.addon.current_version
@@ -158,6 +159,7 @@ class TestUpdateManifest(amo.tests.TestCase):
         _copy_stored_file.assert_called_with(path,
                                              os.path.join(version.path_prefix,
                                                           file.filename))
+        _manifest_json.assert_called_with(file)
 
     def test_version_updated(self):
         self._run()
