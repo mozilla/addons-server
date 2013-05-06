@@ -214,7 +214,7 @@ class DeviceDetectionMiddleware(object):
             if not active and cookie:
                 # If the device isn't active, but there is a cookie, remove it.
                 response.delete_cookie(device)
-            elif active and not cookie and not request.API:
+            elif active and not cookie and not getattr(request, 'API', False):
                 # Set the device if it's active and there's no cookie.
                 response.set_cookie(device, 'true')
 
