@@ -1,3 +1,4 @@
+from functools import partial
 import hashlib
 import hmac
 import uuid
@@ -66,12 +67,15 @@ class PermissionResource(Mine, CORSResource, MarketplaceModelResource):
         resource_name = 'permissions'
 
     def dehydrate(self, bundle):
+        allowed = partial(acl.action_allowed, bundle.request)
         permissions = {
             'reviewer': acl.check_reviewer(bundle.request),
-            'admin': acl.action_allowed(bundle.request, 'Admin', '%'),
-            'localizer': acl.action_allowed(bundle.request, 'Localizers', '%'),
-            'lookup': acl.action_allowed(bundle.request, 'AccountLookup', '%'),
-            'developer': bundle.request.amo_user.is_app_developer
+            'admin': allowed('Admin', '%'),
+            'localizer': allowed('Localizers', '%'),
+            'lookup': allowed('AccountLookup', '%'),
+            'developer': bundle.request.amo_user.is_app_developer,
+            'webpay': (allowed('Transaction', 'NotifyFailure')
+                       and allowed('ProductIcon', 'Create')),
         }
         bundle.data['permissions'] = permissions
         return bundle
