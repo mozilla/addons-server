@@ -153,3 +153,9 @@ METLOG_CONF = {
 METLOG = client_from_dict_config(METLOG_CONF)
 USE_METLOG_FOR_CEF = True
 SENTRY_CLIENT = 'djangoraven.metlog.MetlogDjangoClient'
+
+# See mkt/settings.py for more info.
+APP_PURCHASE_KEY = DOMAIN
+APP_PURCHASE_AUD = DOMAIN
+APP_PURCHASE_TYP = 'mozilla-altdev/payments/pay/v1'
+APP_PURCHASE_SECRET = private_mkt.APP_PURCHASE_SECRET
