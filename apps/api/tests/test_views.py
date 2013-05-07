@@ -1266,16 +1266,18 @@ class SearchTest(ESTestCase):
         eq_(data['name'], a.name)
         eq_(data['rating'], a.average_rating)
 
-    def test_category_suggestions(self):
-        cat = Category.objects.get(slug='feeds')
+    def test_no_category_suggestions(self):
         response = self.client.get(
             '/en-US/firefox/api/%.1f/search_suggestions/?q=Feed' %
             api.CURRENT_VERSION)
-        data = json.loads(response.content)['suggestions'][0]
-        eq_(data['id'], cat.pk)
-        eq_(data['name'], cat.name)
-        assert 'rating' not in data
+        eq_(json.loads(response.content)['suggestions'], [])
 
+    def test_suggestions_throttle(self):
+        self.create_sample('autosuggest-throttle')
+        response = self.client.get(
+            '/en-US/firefox/api/%.1f/search_suggestions/?q=delicious' %
+            api.CURRENT_VERSION)
+        eq_(response.status_code, 503)
 
 class LanguagePacks(UploadTest):
     fixtures = ['addons/listed', 'base/apps', 'base/platforms']

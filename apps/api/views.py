@@ -393,17 +393,17 @@ class SearchView(APIView):
 
 @json_view
 def search_suggestions(request):
+    if waffle.sample_is_active('autosuggest-throttle'):
+        return HttpResponse(status=503)
     cat = request.GET.get('cat', 'all')
     suggesterClass = {
         'all': AddonSuggestionsAjax,
         'themes': PersonaSuggestionsAjax,
     }.get(cat, AddonSuggestionsAjax)
-    suggester = suggesterClass(request, ratings=True)
-    suggs = _build_suggestions(request, cat, suggester)
-    for s in suggs:
-        if 'rating' in s:
-            s['rating'] = float(s['rating'])
-    return {'suggestions': suggs}
+    items = suggesterClass(request, ratings=True).items
+    for s in items:
+        s['rating'] = float(s['rating'])
+    return {'suggestions': items}
 
 
 class ListView(APIView):
