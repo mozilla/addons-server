@@ -1,4 +1,4 @@
-/* 2013.05.07_11.00.51 */
+/* 2013.05.07_14.11.09 */
 (function(window, undefined) {
 
 var defined = {};
@@ -17057,7 +17057,7 @@ output += runtime.suppressValue(env.getFilter("join")(t_3," "), env.autoesc);
 output += "\" ";
 output += runtime.suppressValue(env.getFilter("make_data_attrs")(l_data_attrs), env.autoesc);
 output += ">\n    ";
-output += runtime.suppressValue((runtime.memberLookup((runtime.memberLookup((l_app),"user", env.autoesc)),"owns", env.autoesc)?(lineno = 4, colno = 6, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Install"])):t_2), env.autoesc);
+output += runtime.suppressValue((runtime.memberLookup((runtime.memberLookup((l_app),"user", env.autoesc)),"installed", env.autoesc) || runtime.memberLookup((runtime.memberLookup((l_app),"user", env.autoesc)),"purchased", env.autoesc)?(lineno = 4, colno = 6, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Install"])):t_2), env.autoesc);
 output += "\n  </button>\n";
 frame = frame.pop();
 return new runtime.SafeString(output);
@@ -17766,7 +17766,7 @@ t_7 += "\n          ";
 }
 frame = frame.pop();
 t_7 += "\n        </ul>\n        <div class=\"";
-t_7 += runtime.suppressValue((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "this")),"user", env.autoesc)),"can_rate", env.autoesc)?"split":"full"), env.autoesc);
+t_7 += runtime.suppressValue((!runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "this")),"user", env.autoesc)),"developed", env.autoesc)?"split":"full"), env.autoesc);
 t_7 += "\">\n          <a class=\"button alt average-rating\" href=\"";
 t_7 += runtime.suppressValue((lineno = 89, colno = 57, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "url"), "url", ["app/ratings",[runtime.contextOrFrameLookup(context, frame, "slug")]])), env.autoesc);
 t_7 += "\">\n            <span>\n              ";
@@ -17781,7 +17781,7 @@ t_7 += runtime.suppressValue((lineno = 99, colno = 12, runtime.callWrap(runtime.
 t_7 += "\n        </p>\n      ";
 }
 t_7 += "\n      ";
-if(!runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "this")),"user", env.autoesc)),"owns", env.autoesc)) {
+if(!runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "this")),"user", env.autoesc)),"developed", env.autoesc)) {
 t_7 += "\n        <div class=\"";
 t_7 += runtime.suppressValue((runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "this")),"objects", env.autoesc)),"length", env.autoesc)?"split":" full"), env.autoesc);
 t_7 += "\">\n          ";
@@ -18787,7 +18787,7 @@ return t_2;
 ,function() {var t_6 = "";t_6 += "\n      <p class=\"spinner alt spaced\"></p>\n    ";
 return t_6;
 }
-,function() {var t_7 = "";t_7 += "\n      <header class=\"secondary-header c\">\n        <h2>";
+,function() {var t_7 = "";t_7 += "\n      <header class=\"secondary-header hide-on-mobile c\">\n        <h2>";
 t_7 += runtime.suppressValue((lineno = 31, colno = 14, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["My Apps"])), env.autoesc);
 t_7 += "</h2>\n      </header>\n      <p class=\"no-results only-logged-in\">\n        ";
 t_7 += runtime.suppressValue((lineno = 34, colno = 10, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["You have no apps"])), env.autoesc);
