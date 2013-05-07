@@ -1,4 +1,4 @@
-/* 2013.05.07_09.43.22 */
+/* 2013.05.07_11.00.51 */
 (function(window, undefined) {
 
 var defined = {};
@@ -2870,9 +2870,14 @@ define('settings', ['settings_local', 'underscore'], function(settings_local, _)
 
         // TODO: put real values here.
         REGION_CHOICES_SLUG: {
-            'us': 'United States',
+            '': 'Worldwide',
             'br': 'Brazil',
-            'es': 'Spain'
+            'co': 'Colombia',
+            'pl': 'Poland',
+            'es': 'Spain',
+            'uk': 'United Kingdom',
+            'us': 'United States',
+            've': 'Venezuela'
         },
 
         timing_url: '',  // TODO: figure this out
