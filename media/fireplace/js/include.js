@@ -1,4 +1,4 @@
-/* 2013.05.07_14.51.28 */
+/* 2013.05.07_16.23.59 */
 (function(window, undefined) {
 
 var defined = {};
@@ -669,12 +669,14 @@ define('cache', ['rewriters', 'underscore'], function(rewriters, _) {
 
     function get(key) {
         return cache[key];
-
     }
 
-    function purge() {
+    function purge(filter) {
         for (var key in cache) {
             if (cache.hasOwnProperty(key)) {
+                if (filter && !filter(key)) {
+                    continue;
+                }
                 delete cache[key];
             }
         }
@@ -1034,8 +1036,11 @@ define('helpers',
         settings: require('settings'),
         user: require('user'),
 
-        range: _.range,
         escape: utils.escape_,
+        len: function(x) {return x.length;},
+        max: Math.max,
+        min: Math.min,
+        range: _.range,
 
         REGIONS: require('settings').REGION_CHOICES_SLUG,
 
@@ -1477,8 +1482,16 @@ define('lightbox', ['keys', 'utils', 'shothandles', 'underscore', 'z'],
 });
 
 define('login',
-    ['capabilities', 'jquery', 'notification', 'settings', 'underscore', 'user', 'requests', 'z', 'utils', 'urls'],
-    function(capabilities, $, notification, settings, _, user, requests, z) {
+    ['cache', 'capabilities', 'jquery', 'models', 'notification', 'settings', 'underscore', 'urls', 'user', 'requests', 'z', 'utils'],
+    function(cache, capabilities, $, models, notification, settings, _, urls, user, requests, z) {
+
+    function flush_caches() {
+        // We need to flush the global cache
+        var cat_url = urls.api.url('categories');
+        cache.purge(function(key) {return key != cat_url;});
+
+        models('apps').purge();
+    }
 
     z.body.on('click', '.persona', function(e) {
         e.preventDefault();
@@ -1496,6 +1509,7 @@ define('login',
         user.clear_token();
         z.body.removeClass('logged-in');
         z.page.trigger('reload_chrome');
+        flush_caches();
         navigator.id.logout();
         notification.notification({message: gettext('You have been signed out')});
     });
@@ -1527,7 +1541,9 @@ define('login',
                 is_native: navigator.id._shimmed ? 0 : 1
             };
 
-            requests.post(require('urls').api.url('login'), data).done(function(data) {
+            flush_caches();
+
+            requests.post(urls.api.url('login'), data).done(function(data) {
                 user.set_token(data.token, data.settings);
                 console.log('finished login');
                 z.body.addClass('logged-in');
@@ -1763,7 +1779,11 @@ define('models', ['requests', 'underscore'], function(requests, _) {
 
     var prototypes = {
         'app': 'slug',
-        'category': 'slug'
+        'category': 'slug',
+
+        // Dummy prototypes to facilitate testing
+        'dummy': 'id',
+        'dummy2': 'id'
     };
 
     return function(type) {
@@ -1824,10 +1844,15 @@ define('models', ['requests', 'underscore'], function(requests, _) {
             console.log('[model] ' + type + ' cache miss for key ' + keyed_value);
         };
 
+        var purge = function() {
+            data_store[type] = [];
+        }
+
         return {
             cast: cast,
             get: get,
-            lookup: lookup
+            lookup: lookup,
+            purge: purge
         };
     };
 
@@ -16793,11 +16818,30 @@ define('views/tests', ['assert'], function() {
     };
 });
 
-define('views/app/abuse', ['l10n'], function(l10n) {
+define('views/app/abuse',
+       ['forms', 'l10n', 'notification', 'requests', 'urls', 'z'],
+       function(forms, l10n, notification, requests, urls, z) {
 
     var gettext = l10n.gettext;
+    var notify = notification.notification;
 
-    // Form submission handled in views/abuse.js
+    z.page.on('submit', '.abuse-form', function(e) {
+        e.preventDefault();
+        // Submit report abuse form
+        var $this = $(this);
+        var slug = $this.find('input[name=app]').val();
+        var data = $this.serialize();
+
+        forms.toggleSubmitFormState($this);
+
+        requests.post($this.data('action'), data).done(function(data) {
+            notify({message: gettext('Abuse reported')});
+            z.page.trigger('navigate', urls.reverse('app', [slug]));
+        }).fail(function() {
+            forms.toggleSubmitFormState($this, true);
+            notify({message: gettext('Error while submitting report')});
+        });
+    });
 
     return function(builder, args) {
         builder.start('detail/abuse.html', {slug: args[0]});
@@ -17514,9 +17558,7 @@ t_14 += "\" class=\"view-all\">";
 t_14 += runtime.suppressValue((lineno = 41, colno = 48, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["View All"])), env.autoesc);
 t_14 += "</a>\n    </header>\n  ";
 }
-t_14 += "\n  <ol class=\"container listing grid-if-desktop search-listing";
-t_14 += runtime.suppressValue((!t_15?" not-paginated":""), env.autoesc);
-t_14 += " c\">\n    ";
+t_14 += "\n  <ol class=\"container listing grid-if-desktop search-listing c\">\n    ";
 frame = frame.push();
 var t_17 = runtime.contextOrFrameLookup(context, frame, "this");
 for(var t_16=0; t_16 < t_17.length; t_16++) {
@@ -18480,7 +18522,7 @@ output += "\n\n<section id=\"search-results\" class=\"main full c\">\n  ";
 output += runtime.suppressValue(env.getExtension("defer")["run"](context,runtime.makeKeywordArgs({"url": (lineno = 4, colno = 23, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "apiParams"), "apiParams", ["search",runtime.contextOrFrameLookup(context, frame, "params")])),"pluck": "objects","as": "app","paginate": "ol.listing"}),function() {var t_1 = "";t_1 += "\n    <header class=\"secondary-header c\">\n      <h2>\n        ";
 t_1 += runtime.suppressValue((lineno = 7, colno = 16, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_plural"), "_plural", ["<b>{n}</b> Result","<b>{n}</b> Results",runtime.makeKeywordArgs({"n": runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "response")),"meta", env.autoesc)),"total_count", env.autoesc)})])), env.autoesc);
 t_1 += "\n        <span class=\"subtitle\">";
-t_1 += runtime.suppressValue((lineno = 8, colno = 33, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>",runtime.makeKeywordArgs({"total": runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "response")),"meta", env.autoesc)),"offset", env.autoesc) + runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "response")),"meta", env.autoesc)),"limit", env.autoesc)})])), env.autoesc);
+t_1 += runtime.suppressValue((lineno = 8, colno = 33, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>",runtime.makeKeywordArgs({"total": (lineno = 8, colno = 106, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "len"), "len", [runtime.contextOrFrameLookup(context, frame, "this")]))})])), env.autoesc);
 t_1 += "</span>\n      </h2>\n      <a href=\"#\" class=\"expand-toggle\" title=\"";
 t_1 += runtime.suppressValue((lineno = 10, colno = 49, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Expand"])), env.autoesc);
 t_1 += "\"></a>\n    </header>\n    <ol class=\"container listing search-listing c\">\n      ";
@@ -18689,7 +18731,7 @@ var lineno = null;
 var colno = null;
 var output = "";
 try {
-output += "<section class=\"main infobox\">\n    <div>\n        <h2>Unit Tests</h2>\n        <progress value=\"0\" />\n        <table>\n            <tr>\n                <th>Started</th>\n                <th>Passed</th>\n                <th>Failed</th>\n            </tr>\n            <tr>\n                <td id=\"c_started\">0</td>\n                <td id=\"c_passed\">0</td>\n                <td id=\"c_failed\">0</td>\n            </tr>\n        </table>\n        <ol class=\"tests\"></ol>\n    </div>\n</section>\n\n<script type=\"text/javascript\" src=\"/tests/apps.js\"></script>\n<script type=\"text/javascript\" src=\"/tests/cache.js\"></script>\n<script type=\"text/javascript\" src=\"/tests/l10n.js\"></script>\n<script type=\"text/javascript\" src=\"/tests/requests.js\"></script>\n<script type=\"text/javascript\" src=\"/tests/rewriters.js\"></script>\n<script type=\"text/javascript\" src=\"/tests/urls.js\"></script>\n<script type=\"text/javascript\" src=\"/tests/utils.js\"></script>\n";
+output += "<section class=\"main infobox\">\n    <div>\n        <h2>Unit Tests</h2>\n        <progress value=\"0\" />\n        <table>\n            <tr>\n                <th>Started</th>\n                <th>Passed</th>\n                <th>Failed</th>\n            </tr>\n            <tr>\n                <td id=\"c_started\">0</td>\n                <td id=\"c_passed\">0</td>\n                <td id=\"c_failed\">0</td>\n            </tr>\n        </table>\n        <ol class=\"tests\"></ol>\n    </div>\n</section>\n\n<script type=\"text/javascript\" src=\"/tests/apps.js\"></script>\n<script type=\"text/javascript\" src=\"/tests/cache.js\"></script>\n<script type=\"text/javascript\" src=\"/tests/l10n.js\"></script>\n<script type=\"text/javascript\" src=\"/tests/models.js\"></script>\n<script type=\"text/javascript\" src=\"/tests/requests.js\"></script>\n<script type=\"text/javascript\" src=\"/tests/rewriters.js\"></script>\n<script type=\"text/javascript\" src=\"/tests/urls.js\"></script>\n<script type=\"text/javascript\" src=\"/tests/utils.js\"></script>\n";
 return output;
 } catch (e) {
   runtime.handleError(e, lineno, colno);
@@ -18725,7 +18767,7 @@ output += "\n    ";
 output += runtime.suppressValue(env.getExtension("defer")["run"](context,runtime.makeKeywordArgs({"url": (lineno = 8, colno = 19, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "api"), "api", ["installed"])),"pluck": "objects","as": "app","paginate": "ol.listing"}),function() {var t_2 = "";t_2 += "\n      <header class=\"secondary-header hide-on-mobile c\">\n        <h2>\n          ";
 t_2 += runtime.suppressValue((lineno = 11, colno = 12, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["My Apps"])), env.autoesc);
 t_2 += "\n          <span class=\"subtitle\">";
-t_2 += runtime.suppressValue((lineno = 12, colno = 35, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>",runtime.makeKeywordArgs({"total": runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "response")),"meta", env.autoesc)),"offset", env.autoesc) + runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "response")),"meta", env.autoesc)),"limit", env.autoesc)})])), env.autoesc);
+t_2 += runtime.suppressValue((lineno = 12, colno = 35, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>",runtime.makeKeywordArgs({"total": (lineno = 12, colno = 108, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "len"), "len", [runtime.contextOrFrameLookup(context, frame, "this")]))})])), env.autoesc);
 t_2 += "</span>\n        </h2>\n        <a href=\"#\" class=\"expand-toggle\" title=\"";
 t_2 += runtime.suppressValue((lineno = 14, colno = 51, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Expand"])), env.autoesc);
 t_2 += "\"></a>\n      </header>\n      <ol class=\"container listing only-logged-in c\">\n        ";
