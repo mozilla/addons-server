@@ -86,6 +86,9 @@ def app_to_dict(app, currency=None, user=None):
         data['device_types'] = [n.api_name
                                 for n in app.device_types]
     if user:
-        data['user'] = {'owns': app.has_author(user,
-                                               [amo.AUTHOR_ROLE_OWNER])}
+        data['user'] = {
+            'developed': app.has_author(user, [amo.AUTHOR_ROLE_OWNER]),
+            'installed': app.has_installed(user),
+            'purchased': app.has_purchased(user),
+        }
     return data

@@ -101,7 +101,9 @@ App
                 }
             ],
             "user": {
-                "owns": false
+                "developed": false,
+                "installed": false,
+                "purchased": false
             },
             "slug": "test-app-zrnktefoptje",
             "categories": [
@@ -116,16 +118,24 @@ App
             "resource_uri": "/api/v1/apps/app/24/"
         }
 
-    Notes on the response:
+    Notes on the response.
 
-    * price: will be null if the app is free. If it is a paid app this will be
-      a string representing the price in the currency calculated for the
-      request. Example: 1.00
-    * price_locale: will be null if the app is free. If it is a paid app this
-      will be a string representing the price with the currency formatted using
-      the currency symbol and the locale representations of numbers. Example:
-      "1,00 $US". For more information on this see :ref:`payment tiers
-      <localized-tier-label>`.
+    :param string|null price: will be null if the app is free. If it is a
+        paid app this will b a string representing the price in the currency
+        calculated for the request. Example: 1.00
+    :param string|null price_locale: will be null if the app is free. If it
+        is a paid app this will be a string representing the price with the
+        currency formatted using the currency symbol and the locale
+        representations of numbers. Example: "1,00 $US". For more information
+        on this see :ref:`payment tiers <localized-tier-label>`.
+    :param object user: an object representing information specific to this
+        user for the app. If the user is anonymous this object will not
+        be present.
+    :param boolean user > developed: true if the user is a developer of the app.
+    :param boolean user > installed: true if the user installed the app (this might differ from
+        the device).
+    :param boolean user > purchased: true if the user has purchased the app from
+        the marketplace.
 
 .. _app-post-label:
 

@@ -9,14 +9,15 @@ from addons.models import Preview
 from mkt.site.fixtures import fixture
 from mkt.webapps.utils import app_to_dict, get_supported_locales
 from market.models import AddonPremium, Price
+from users.models import UserProfile
 
 
 class TestAppToDict(amo.tests.TestCase):
-    # TODO: expand this and move more stuff out of
-    # mkt/api/tests/test_handlers.
+    fixtures = fixture('user_2519')
 
     def setUp(self):
         self.app = amo.tests.app_factory()
+        self.user = UserProfile.objects.get(pk=2519)
 
     def test_no_previews(self):
         eq_(app_to_dict(self.app)['previews'], [])
@@ -39,6 +40,26 @@ class TestAppToDict(amo.tests.TestCase):
         res = app_to_dict(self.app)
         eq_(res['price'], None)
         eq_(res['price_locale'], None)
+
+    def check_user(self, user, **kw):
+        expected = {'developed': False, 'installed': False, 'purchased': False}
+        expected.update(**kw)
+        eq_(user, expected)
+
+    def test_installed(self):
+        self.app.installed.create(user=self.user)
+        res = app_to_dict(self.app, user=self.user)
+        self.check_user(res['user'], installed=True)
+
+    def test_purchased(self):
+        self.app.addonpurchase_set.create(user=self.user)
+        res = app_to_dict(self.app, user=self.user)
+        self.check_user(res['user'], purchased=True)
+
+    def test_owned(self):
+        self.app.addonuser_set.create(user=self.user)
+        res = app_to_dict(self.app, user=self.user)
+        self.check_user(res['user'], developed=True)
 
 
 class TestAppToDictPrices(amo.tests.TestCase):

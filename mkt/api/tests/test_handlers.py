@@ -7,9 +7,9 @@ from mock import patch
 from nose.tools import eq_
 
 import amo
-from addons.models import (Addon, AddonUpsell, AddonDeviceType,
+from addons.models import (Addon, AddonDeviceType, AddonUpsell,
                            AddonUser, Category, Flag, Preview)
-from amo.tests import app_factory, AMOPaths
+from amo.tests import AMOPaths, app_factory
 from files.models import FileUpload
 from users.models import UserProfile
 
@@ -465,7 +465,7 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         eq_(data['public_stats'], False)
         eq_(data['support_email'], u'a@a.com')
         eq_(data['ratings'], {'count': 0, 'average': 0.0})
-        eq_(data['user'], {'owns': True})
+        eq_(data['user'], {'developed': True})
 
     def test_ratings(self):
         app = self.create_app()
