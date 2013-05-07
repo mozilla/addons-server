@@ -122,6 +122,14 @@
                      {% endif %}>
                     {{- _('Webfighter') }}</a>
                 </li>
+                <li>
+                  <a href="{{ url('ecosystem.apps_documentation',
+                     page='generalnotes') }}"
+                     {%- if section == 'generalnotes' %}
+                     class="selected"
+                     {% endif %}>
+                    {{- _('General Notes') }}</a>
+                </li>
               </ol>
             </li>
             <li>

@@ -494,7 +494,7 @@ def apps_documentation(request, page=None):
     """Page template for all reference apps."""
 
     if page not in ('chrono', 'face_value', 'podcasts', 'roller',
-                    'webfighter'):
+                    'webfighter', 'generalnotes'):
         raise Http404
 
     third_party_libs = {
