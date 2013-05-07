@@ -1,4 +1,4 @@
-/* 2013.05.07_14.11.09 */
+/* 2013.05.07_14.17.39 */
 (function(window, undefined) {
 
 var defined = {};
@@ -17039,7 +17039,7 @@ frame.set("classes", l_classes);
 frame.set("data_attrs", l_data_attrs);
 var output= "";
 output += "\n  ";
-var t_2 = (runtime.memberLookup((l_app),"price", env.autoesc)?runtime.memberLookup((l_app),"price", env.autoesc):(lineno = 1, colno = 44, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Free"])));
+var t_2 = (runtime.memberLookup((l_app),"price", env.autoesc)?runtime.memberLookup((l_app),"price_locale", env.autoesc):(lineno = 1, colno = 51, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Free"])));
 frame.set("price", t_2);
 if(!frame.parent) {
 context.setVariable("price", t_2);
