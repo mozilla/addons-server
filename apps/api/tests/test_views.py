@@ -13,7 +13,7 @@ from nose.tools import eq_
 from pyquery import PyQuery as pq
 
 import amo
-from addons.models import (Addon, AppSupport, CompatOverride,
+from addons.models import (Addon, AppSupport, Category, CompatOverride,
                            CompatOverrideRange, Persona, Preview)
 from amo import helpers
 from amo.helpers import absolutify
@@ -1265,6 +1265,16 @@ class SearchTest(ESTestCase):
         eq_(data['id'], str(a.pk))
         eq_(data['name'], a.name)
         eq_(data['rating'], a.average_rating)
+
+    def test_category_suggestions(self):
+        cat = Category.objects.get(slug='feeds')
+        response = self.client.get(
+            '/en-US/firefox/api/%.1f/search_suggestions/?q=Feed' %
+            api.CURRENT_VERSION)
+        data = json.loads(response.content)['suggestions'][0]
+        eq_(data['id'], cat.pk)
+        eq_(data['name'], cat.name)
+        assert 'rating' not in data
 
 
 class LanguagePacks(UploadTest):

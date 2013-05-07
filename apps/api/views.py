@@ -401,7 +401,8 @@ def search_suggestions(request):
     suggester = suggesterClass(request, ratings=True)
     suggs = _build_suggestions(request, cat, suggester)
     for s in suggs:
-        s['rating'] = float(s['rating'])
+        if 'rating' in s:
+            s['rating'] = float(s['rating'])
     return {'suggestions': suggs}
 
 
