@@ -75,7 +75,7 @@ class CORSMiddleware(object):
 
         # The headers that the response will be able to access.
         response['Access-Control-Expose-Headers'] = (
-            'X-API-Filter, X-API-Status, X-API-Version')
+            'API-Filter, API-Status, API-Version')
 
         return response
 
@@ -103,15 +103,15 @@ class APIVersionMiddleware(object):
         if not hasattr(request, 'API_VERSION'):
             return response
 
-        response['X-API-Version'] = request.API_VERSION
+        response['API-Version'] = request.API_VERSION
         if not request.API_VERSION:
-            response['X-API-Status'] = 'Deprecated'
+            response['API-Status'] = 'Deprecated'
         return response
 
 
 class APIFilterMiddleware(object):
     """
-    Add an X-API-Filter header containing a urlencoded string of filters applied
+    Add an API-Filter header containing a urlencoded string of filters applied
     to API requests.
     """
     def process_response(self, request, response):
@@ -126,6 +126,6 @@ class APIFilterMiddleware(object):
                 ('lang', request.LANG),
                 ('region', request.REGION.slug),
             )
-            response['X-API-Filter'] = urlencode(filters, doseq=True)
-            patch_vary_headers(response, ['X-API-Filter'])
+            response['API-Filter'] = urlencode(filters, doseq=True)
+            patch_vary_headers(response, ['API-Filter'])
         return response

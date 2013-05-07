@@ -113,11 +113,11 @@ class TestAPIVersionMiddleware(amo.tests.TestCase):
         return res.get(header, None)
 
     def test_notice(self):
-        eq_(self.req('/foo/', 'X-API-Status'), None)
-        eq_(self.req('/foo/api/', 'X-API-Status'), None)
-        eq_(self.req('/api/', 'X-API-Status'), 'Deprecated')
-        eq_(self.req('/api/v1/', 'X-API-Status'), None)
-        eq_(self.req('/api/v1/', 'X-API-Version'), '1')
+        eq_(self.req('/foo/', 'API-Status'), None)
+        eq_(self.req('/foo/api/', 'API-Status'), None)
+        eq_(self.req('/api/', 'API-Status'), 'Deprecated')
+        eq_(self.req('/api/v1/', 'API-Status'), None)
+        eq_(self.req('/api/v1/', 'API-Version'), '1')
 
 
 class TestFilterMiddleware(amo.tests.TestCase):
@@ -137,9 +137,9 @@ class TestFilterMiddleware(amo.tests.TestCase):
         self.request.MOBILE = mobile
         res = self.middleware.process_response(self.request, HttpResponse())
         if api:
-            header = res.get('X-API-Filter')
+            header = res.get('API-Filter')
             assert 'vary' in res._headers
-            eq_(res._headers['vary'][1], 'X-API-Filter')
+            eq_(res._headers['vary'][1], 'API-Filter')
             self._test_order(header)
             return parse_qs(header)
         else:

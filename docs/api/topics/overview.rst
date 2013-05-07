@@ -54,7 +54,7 @@ The API will be versioned by the URL, so that version 1 APIs will all be at::
 If you are not using the most recent version of the API then you will get
 a header in the response::
 
-    X-API-Status: Deprecated
+    API-Status: Deprecated
 
 The current policy for how long deprecated APIs will exist has not been
 defined, but it would include time for any clients to upgrade before versions
@@ -62,7 +62,7 @@ are turned off.
 
 We will also return the version of the API we think you are using::
 
-    X-API-Version: 1
+    API-Version: 1
 
 .. note: Before v1 is released, the API was unversioned at `/api/v1/`, because
     of the small number of clients using that URL, we hope all users are able to
@@ -77,9 +77,9 @@ to detect and filter responses by region and language. Additionally, it is
 possible to globally restrict responses by device type and carrier.
 
 The API will report which filters are implemented via the URL-encoded
-`X-API-Filter` header in responses::
+`API-Filter` header in responses::
 
-    X-API-Filter: lang=en-US&device=&region=us&carrier=
+    API-Filter: lang=en-US&device=&region=us&carrier=
 
 In some cases, such as that where the API consumer is actually a proxy for the
 end user, it may be appropriate to manually set one or more of these parameters.
@@ -119,10 +119,10 @@ of devices.
 * `mobile` - return results relevant to mobile devices.
 * `tablet` - return results relevant to tablets.
 
-The `X-API-Filter` header will represent this as a representation of a list in a
+The `API-Filter` header will represent this as a representation of a list in a
 queryset::
 
-    X-API-Filter: device=mobile&device=gaia
+    API-Filter: device=mobile&device=gaia
 
 You may override these values with separate querystring values for each device
 type::
