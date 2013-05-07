@@ -32,7 +32,7 @@ APP_FEATURES = (
     ('FM', _lazy(u'WebFM')),
     ('SMS', _lazy(u'WebSMS')),
     ('TOUCH', _lazy(u'Touch')),
-    ('QHD', _lazy(u'Quarter HD (qHD)')),
+    ('QHD', _lazy(u'Smartphone-Sized Displays')),
     ('MP3', _lazy(u'MP3')),
     ('AUDIO', _lazy(u'Audio')),
     ('WEBAUDIO', _lazy(u'Web Audio')),
