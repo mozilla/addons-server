@@ -465,7 +465,8 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         eq_(data['public_stats'], False)
         eq_(data['support_email'], u'a@a.com')
         eq_(data['ratings'], {'count': 0, 'average': 0.0})
-        eq_(data['user'], {'developed': True})
+        eq_(data['user'], {'developed': True, 'installed': False,
+                           'purchased': False})
 
     def test_ratings(self):
         app = self.create_app()

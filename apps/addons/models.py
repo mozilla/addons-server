@@ -1177,7 +1177,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         return [a for a, v in self.compatible_apps.items() if v and
                 version_int(v.max.version) < version_int(a.latest_version)]
 
-    @caching.cached_method
     def has_author(self, user, roles=None):
         """True if ``user`` is an author with any of the specified ``roles``.
 
