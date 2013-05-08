@@ -23,7 +23,7 @@ Search
     :param optional premium_types: Filters by whether the app is free or
         premium or has in-app purchasing. Any of 'free', 'free-inapp',
         'premium', 'premium-inapp', or 'other'.
-    :param optional addon_type: Filters by type of add-on. One of 'app' or
+    :param optional type: Filters by type of add-on. One of 'app' or
         'theme'.
     :param optional app_type: Filters by type of web app. One of 'hosted' or
         'packaged'.
