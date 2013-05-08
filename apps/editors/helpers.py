@@ -204,11 +204,9 @@ class EditorQueueTable(SQLTable, ItemStateTable):
     def render_platforms(self, row):
         icons = []
         html = u'<div class="platform-icon plat-sprite-%s" title="%s"></div>'
-        for i in row.file_platform_vers:
-            platform, version = i.split('-')
-            if int(version) == row.latest_version_id:
-                icons.append(html % (amo.PLATFORMS[int(platform)].shortname,
-                                     amo.PLATFORMS[int(platform)].name))
+        for platform in row.file_platforms:
+            icons.append(html % (amo.PLATFORMS[int(platform)].shortname,
+                                 amo.PLATFORMS[int(platform)].name))
         return u''.join(icons)
 
     def render_flags(self, row):

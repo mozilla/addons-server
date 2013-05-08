@@ -23,7 +23,7 @@ from devhub.models import ActivityLog
 from editors.sql_model import RawSQLModel
 from translations.fields import save_signal, TranslatedField
 from users.models import UserProfile
-from versions.models import version_uploaded
+from versions.models import Version, version_uploaded
 
 import commonware.log
 
@@ -101,20 +101,17 @@ class ViewQueue(RawSQLModel):
     binary = models.BooleanField()
     binary_components = models.BooleanField()
     premium_type = models.IntegerField()
-    _no_restart = models.CharField(max_length=255)
-    _jetpack_versions = models.CharField(max_length=255)
-    _latest_versions = models.CharField(max_length=255)
-    _latest_version_ids = models.CharField(max_length=255)
+    is_restartless = models.BooleanField()
+    is_jetpack = models.BooleanField()
+    latest_version = models.CharField(max_length=255)
     _file_platform_ids = models.CharField(max_length=255)
-    _file_platform_vers = models.CharField(max_length=255)
-    _info_request_vers = models.CharField(max_length=255)
-    _editor_comment_vers = models.CharField(max_length=255)
+    has_info_request = models.BooleanField()
+    has_editor_comment = models.BooleanField()
     _application_ids = models.CharField(max_length=255)
     waiting_time_days = models.IntegerField()
     waiting_time_hours = models.IntegerField()
     waiting_time_min = models.IntegerField()
     is_version_specific = False
-    _latest_version_id = None
 
     def base_query(self):
         return {
@@ -130,34 +127,20 @@ class ViewQueue(RawSQLModel):
                 ('binary', 'files.binary'),
                 ('binary_components', 'files.binary_components'),
                 ('premium_type', 'addons.premium_type'),
-                ('_latest_version_ids', """GROUP_CONCAT(versions.id
-                                           ORDER BY versions.created DESC)"""),
-                ('_latest_versions', """GROUP_CONCAT(versions.version
-                                        ORDER BY versions.created
-                                        DESC SEPARATOR '&&&&')"""),
-                ('_editor_comment_vers', """GROUP_CONCAT(DISTINCT CONCAT(CONCAT(
-                                            versions.has_editor_comment, '-'),
-                                            versions.id))"""),
-                ('_info_request_vers', """GROUP_CONCAT(DISTINCT CONCAT(CONCAT(
-                                          versions.has_info_request, '-'),
-                                          versions.id))"""),
-                ('_file_platform_vers', """GROUP_CONCAT(DISTINCT CONCAT(CONCAT(
-                                           files.platform_id, '-'),
-                                           files.version_id))"""),
+                ('latest_version', 'versions.version'),
+                ('has_editor_comment', 'versions.has_editor_comment'),
+                ('has_info_request', 'versions.has_info_request'),
                 ('_file_platform_ids', """GROUP_CONCAT(DISTINCT
                                           files.platform_id)"""),
-                ('_jetpack_versions', """GROUP_CONCAT(DISTINCT
-                                         files.jetpack_version)"""),
-                ('_no_restart', """GROUP_CONCAT(DISTINCT files.no_restart)"""),
+                ('is_jetpack', 'MAX(files.jetpack_version IS NOT NULL)'),
+                ('is_restartless', 'MAX(files.no_restart)'),
                 ('_application_ids', """GROUP_CONCAT(DISTINCT
                                         apps.application_id)"""),
             ]),
             'from': [
-                'files',
-                'JOIN versions ON (files.version_id = versions.id)',
-                'JOIN addons ON (versions.addon_id = addons.id)',
-                """JOIN files AS version_files ON (
-                            version_files.version_id = versions.id)""",
+                'addons',
+                'JOIN versions ON (versions.id = addons.latest_version)',
+                'JOIN files ON (files.version_id = versions.id)',
                 """LEFT JOIN applications_versions as apps
                             ON versions.id = apps.version_id""",
 
@@ -173,43 +156,11 @@ class ViewQueue(RawSQLModel):
             'group_by': 'id'}
 
     @property
-    def latest_version(self):
-        return self._explode_concat(self._latest_versions, sep='&&&&',
-                                    cast=unicode)[0]
-
-    @property
-    def latest_version_id(self):
-        if not self._latest_version_id:
-            ids = self._explode_concat(self._latest_version_ids)
-            self._latest_version_id = ids[0]
-        return self._latest_version_id
-
-    @property
-    def is_restartless(self):
-        return any(self._explode_concat(self._no_restart))
-
-    @property
-    def is_jetpack(self):
-        return bool(self._jetpack_versions)
-
-    @property
     def is_premium(self):
         return self.premium_type in amo.ADDON_PREMIUMS
 
     @property
-    def file_platform_vers(self):
-        return self._explode_concat(self._file_platform_vers, cast=str)
-
-    @property
-    def has_info_request(self):
-        return self.for_latest_version(self._info_request_vers)
-
-    @property
-    def has_editor_comment(self):
-        return self.for_latest_version(self._editor_comment_vers)
-
-    @property
-    def file_platform_ids(self):
+    def file_platforms(self):
         return self._explode_concat(self._file_platform_ids)
 
     @property
@@ -234,14 +185,6 @@ class ViewQueue(RawSQLModel):
 
         return [(cls, title) for (prop, cls, title) in props
                 if getattr(self, prop)]
-
-    def for_latest_version(self, vals, cast=int, default=0):
-        split = self._explode_concat(vals, cast=str)
-        for s in split:
-            val, version_id = s.split('-')
-            if int(version_id) == self.latest_version_id:
-                return cast(val)
-        return default
 
 
 class ViewFullReviewQueue(ViewQueue):

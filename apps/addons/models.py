@@ -31,7 +31,7 @@ import amo
 import amo.models
 import mkt.constants
 from access import acl
-from amo.decorators import use_master
+from amo.decorators import use_master, write
 from amo.fields import DecimalCharField
 from amo.helpers import absolutify, shared_url
 from amo.utils import (cache_ns_key, chunked, find_language, JSONEncoder,
@@ -288,7 +288,9 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     _backup_version = models.ForeignKey(
         Version, related_name='___backup', db_column='backup_version',
         null=True, on_delete=models.SET_NULL)
-    _latest_version = None
+    latest_version = models.ForeignKey(Version, db_column='latest_version',
+                                       on_delete=models.SET_NULL,
+                                       null=True, related_name='+')
     make_public = models.DateTimeField(null=True)
     mozilla_contact = models.EmailField()
 
@@ -551,7 +553,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     def get_version(self, backup_version=False):
         """
-        Retrieves the latest version of an addon.
+        Retrieves the latest public version of an addon.
         backup_version: if specified the highest file up to but *not* including
                         this version will be found.
         """
@@ -584,6 +586,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         except (IndexError, Version.DoesNotExist):
             return None
 
+    @write
     def update_version(self):
         "Returns true if we updated the field."
         backup = None
@@ -594,45 +597,52 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                 firefox_min.min.version_int > amo.FIREFOX.backup_version):
                 backup = self.get_version(backup_version=True)
 
+        try:
+            latest = (self.versions.exclude(files__status=amo.STATUS_BETA)
+                          .latest())
+        except Version.DoesNotExist:
+            latest = None
+        latest_id = latest and latest.id
+
         diff = [self._backup_version, backup, self._current_version, current]
+
+        # Sometimes the DB is in an inconsistent state when this
+        # signal is dispatched.
+        try:
+            if self.latest_version:
+                # Make sure stringifying this does not trigger
+                # Version.DoesNotExist before trying to use it for
+                # logging.
+                unicode(self.latest_version)
+            diff += [self.latest_version, latest]
+        except Version.DoesNotExist:
+            diff += [self.latest_version_id, latest_id]
 
         updated = {}
         if self._backup_version != backup:
             updated.update({'_backup_version': backup})
         if self._current_version != current:
             updated.update({'_current_version': current})
+        # Don't use self.latest_version here. It may throw
+        # Version.DoesNotExist if we're called from a post_delete
+        # signal.
+        if self.latest_version_id != latest_id:
+            updated.update({'latest_version': latest})
 
         if updated:
             try:
                 self.update(**updated)
                 signals.version_changed.send(sender=self)
                 log.info(u'Version changed from backup: %s to %s, '
-                          'current: %s to %s for addon %s'
+                          'current: %s to %s, latest: %s to %s for addon %s'
                           % tuple(diff + [self]))
             except Exception, e:
                 log.error(u'Could not save version changes backup: %s to %s, '
-                          'current: %s to %s for addon %s (%s)' %
+                          'current: %s to %s, latest: %s to %s '
+                          'for addon %s (%s)' %
                           tuple(diff + [self, e]))
 
         return bool(updated)
-
-    @property
-    def latest_version(self):
-        """Returns the absolutely newest non-beta version. """
-        if self.type == amo.ADDON_PERSONA:
-            try:
-                return self.versions.all()[0]
-            except IndexError:
-                return
-        if not self._latest_version:
-            try:
-                v = (self.versions.exclude(files__status=amo.STATUS_BETA)
-                                  .latest())
-                self._latest_version = v
-            except Version.DoesNotExist:
-                self._latest_version = None
-
-        return self._latest_version
 
     def compatible_version(self, app_id, app_version=None, platform=None,
                            compat_mode='strict'):

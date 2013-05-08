@@ -115,14 +115,10 @@ class TestAdditionalInfoInQueue(amo.tests.TestCase):
         self.row = Mock()
         self.row.latest_version_id = 1
         self.row.is_site_specific = False
-        self.row.file_platform_ids = [self.platform_id(amo.PLATFORM_ALL.id)]
-        self.row.file_platform_vers = [self.platform_id(amo.PLATFORM_ALL.id)]
+        self.row.file_platforms = [amo.PLATFORM_ALL.id]
         self.row.external_software = False
         self.row.binary = False
         self.row.binary_components = False
-
-    def platform_id(self, platform):
-        return '%s-%s' % (platform, self.row.latest_version_id)
 
     def test_no_info(self):
         eq_(self.table.render_additional_info(self.row), '')
@@ -132,7 +128,7 @@ class TestAdditionalInfoInQueue(amo.tests.TestCase):
         eq_(self.table.render_additional_info(self.row), u'Site Specific')
 
     def test_platform(self):
-        self.row.file_platform_vers = [self.platform_id(amo.PLATFORM_LINUX.id)]
+        self.row.file_platforms = [amo.PLATFORM_LINUX.id]
         assert "plat-sprite-linux" in self.table.render_platforms(self.row)
 
     def test_combo(self):
@@ -142,12 +138,12 @@ class TestAdditionalInfoInQueue(amo.tests.TestCase):
             u'Site Specific, Requires External Software')
 
     def test_all_platforms(self):
-        self.row.file_platform_vers = [self.platform_id(amo.PLATFORM_ALL.id)]
+        self.row.file_platforms = [amo.PLATFORM_ALL.id]
         assert "plat-sprite-all" in self.table.render_platforms(self.row)
 
     def test_mixed_platforms(self):
-        self.row.file_platform_vers = [self.platform_id(amo.PLATFORM_ALL.id),
-                                       self.platform_id(amo.PLATFORM_LINUX.id)]
+        self.row.file_platforms = [amo.PLATFORM_ALL.id,
+                                   amo.PLATFORM_LINUX.id]
         assert "plat-sprite-linux" in self.table.render_platforms(self.row)
         assert "plat-sprite-all" in self.table.render_platforms(self.row)
 
