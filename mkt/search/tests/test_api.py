@@ -185,7 +185,7 @@ class TestApi(BaseOAuth, ESTestCase):
         error = json.loads(res.content)['error_message']
         eq_(error.keys(), ['type'])
 
-        res = self.client.get(self.url + ({'type': 'persona'},))
+        res = self.client.get(self.url + ({'type': 'theme'},))
         eq_(res.status_code, 200)
         objs = json.loads(res.content)['objects']
         eq_(len(objs), 0)
@@ -247,7 +247,7 @@ class TestApiReviewer(BaseOAuth, ESTestCase):
         obj = json.loads(res.content)['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
 
-        res = self.client.get(self.url + ({'type': 'persona'},))
+        res = self.client.get(self.url + ({'type': 'theme'},))
         eq_(res.status_code, 200)
         objs = json.loads(res.content)['objects']
         eq_(len(objs), 0)

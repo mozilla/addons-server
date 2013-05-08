@@ -1,5 +1,5 @@
-from datetime import datetime
 import re
+from datetime import datetime
 
 from tower import ugettext_lazy as _
 
@@ -263,12 +263,9 @@ ADDON_SEARCH_SLUGS = {
 
 # Marketplace search API addon types.
 MKT_ADDON_TYPES_API = {
-    ADDON_PERSONA: 'persona',
-    ADDON_WEBAPP: 'app',
+    'theme': ADDON_PERSONA,
+    'app': ADDON_WEBAPP,
 }
-MKT_ADDON_TYPES_API_LOOKUP = dict(
-    (v, k) for k, v in MKT_ADDON_TYPES_API.items())
-
 
 ADDON_FREE = 0
 ADDON_PREMIUM = 1

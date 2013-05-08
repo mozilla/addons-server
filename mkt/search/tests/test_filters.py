@@ -59,7 +59,7 @@ class TestSearchFilters(BaseOAuth):
         # happens in the view, not the _filter_search call.
         self._addon_type_check({})
         self._addon_type_check({'type': 'app'})
-        self._addon_type_check({'type': 'persona'})
+        self._addon_type_check({'type': 'theme'})
         # Test a bad value.
         qs = self._filter(self.req, {'type': 'vindaloo'})
         ok_(u'Select a valid choice' in qs['type'][0])

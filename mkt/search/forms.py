@@ -9,7 +9,7 @@ import amo
 from mkt.api.forms import SluggableModelChoiceField
 
 
-ADDON_CHOICES = [(v, v) for k, v in amo.MKT_ADDON_TYPES_API.items()]
+ADDON_CHOICES = [(k, k) for k in amo.MKT_ADDON_TYPES_API.keys()]
 
 # We set 'any' here since we need to default this field
 # to PUBLIC if not specified for consumer pages.
@@ -177,8 +177,8 @@ class ApiSearchForm(forms.Form):
             return self.cleaned_data['cat'].pk
 
     def clean_type(self):
-        return amo.MKT_ADDON_TYPES_API_LOOKUP.get(self.cleaned_data['type'],
-                                                  amo.ADDON_WEBAPP)
+        return amo.MKT_ADDON_TYPES_API.get(self.cleaned_data['type'],
+                                           amo.ADDON_WEBAPP)
 
     def clean_status(self):
         status = self.cleaned_data['status']

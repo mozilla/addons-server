@@ -24,7 +24,7 @@ Search
         premium or has in-app purchasing. Any of 'free', 'free-inapp',
         'premium', 'premium-inapp', or 'other'.
     :param optional addon_type: Filters by type of add-on. One of 'app' or
-        'persona'.
+        'theme'.
     :param optional app_type: Filters by type of web app. One of 'hosted' or
         'packaged'.
     :param optional sort: The field to sort by. One of 'downloads', 'rating',
