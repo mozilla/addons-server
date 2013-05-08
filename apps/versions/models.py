@@ -455,6 +455,8 @@ def update_status(sender, instance, **kw):
             instance.addon.update_status(using='default')
             instance.addon.update_version()
         except models.ObjectDoesNotExist:
+            log.info('Got ObjectDoesNotExist processing Version change signal',
+                     exc_info=True)
             pass
 
 
