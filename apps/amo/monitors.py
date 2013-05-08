@@ -235,6 +235,9 @@ def signer():
 
 # Not called settings to avoid conflict with django.conf.settings.
 def settings_check():
+    if not settings.MARKETPLACE:
+        return '', 'No required settings checked on amo'
+
     required = ['APP_PURCHASE_KEY', 'APP_PURCHASE_TYP', 'APP_PURCHASE_AUD',
                 'APP_PURCHASE_SECRET']
     for key in required:
@@ -246,6 +249,9 @@ def settings_check():
 
 
 def solitude():
+    if not settings.MARKETPLACE:
+        return '', 'Solitude access not required on amo'
+
     try:
         res = client.api.services.request.get()
     except Exception as err:
