@@ -31,10 +31,10 @@ ENGAGE_ROBOTS = True
 
 MKT_FEEDBACK_EMAIL = 'apps-feedback@mozilla.com'
 MKT_REVIEWERS_EMAIL = 'app-reviewers@mozilla.org'
-MKT_SENIOR_EDITORS_EMAIL = 'app-review-staff@mozilla.com'
+MKT_SENIOR_EDITORS_EMAIL = 'marketplace-staff@mozilla.com'
 MKT_SUPPORT_EMAIL = 'marketplace-developer-support@mozilla.org'
-MARKETPLACE_EMAIL = 'amo-marketplace@mozilla.org'
-ABUSE_EMAIL = 'Firefox Marketplace <marketplace-abuse@mozilla.org>'
+MARKETPLACE_EMAIL = 'marketplace-staff@mozilla.org'
+ABUSE_EMAIL = 'Firefox Marketplace <marketplace-staff@mozilla.org>'
 NOBODY_EMAIL = 'Firefox Marketplace <nobody@mozilla.org>'
 DEFAULT_FROM_EMAIL = 'Firefox Marketplace <nobody@mozilla.org>'
 
