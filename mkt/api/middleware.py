@@ -1,4 +1,5 @@
 import re
+import time
 from urllib import urlencode
 
 from django.conf import settings
@@ -143,3 +144,15 @@ class TimingMiddleware(GraphiteRequestTimingMiddleware):
             TastyPieRequestTimingMiddleware().process_view(request, *args)
         else:
             super(TimingMiddleware, self).process_view(request, *args)
+
+    def _record_time(self, request):
+        pre = 'api' if getattr(request, 'API', False) else 'view'
+        if hasattr(request, '_start_time'):
+            ms = int((time.time() - request._start_time) * 1000)
+            data = {'method': request.method,
+                    'module': request._view_module,
+                    'name': request._view_name,
+                    'pre': pre}
+            statsd.timing('{pre}.{module}.{name}.{method}'.format(**data), ms)
+            statsd.timing('{pre}.{module}.{method}'.format(**data), ms)
+            statsd.timing('{pre}.{method}'.format(**data), ms)
