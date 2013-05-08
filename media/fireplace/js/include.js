@@ -1,4 +1,4 @@
-/* 2013.05.08_14.35.44 */
+/* 2013.05.08_15.53.05 */
 (function(window, undefined) {
 
 var defined = {};
@@ -1126,28 +1126,24 @@ define('install',
                     .fail(installError);
         }
 
-        if (!product.recordUrl) {
-            return do_install();
-        } else {
-            var def = $.Deferred();
-            requests.post(urls.api.url('record'), post_data).done(function(response) {
-                if (response.error) {
-                    $('#pay-error').show().find('div').text(response.error);
-                    installError(product);
-                    def.reject();
-                    return;
-                }
-                if (response.receipt) {
-                    data.data = {'receipts': [response.receipt]};
-                }
-                do_install().done(def.resolve).fail(def.reject);
-            }).fail(function() {
-                // Could not record/generate receipt!
-                installError(null, product);
+        var def = $.Deferred();
+        requests.post(urls.api.url('record'), post_data).done(function(response) {
+            if (response.error) {
+                $('#pay-error').show().find('div').text(response.error);
+                installError(product);
                 def.reject();
-            });
-            return def;
-        }
+                return;
+            }
+            if (response.receipt) {
+                data.data = {'receipts': [response.receipt]};
+            }
+            do_install().done(def.resolve).fail(def.reject);
+        }).fail(function() {
+            // Could not record/generate receipt!
+            installError(null, product);
+            def.reject();
+        });
+        return def;
     }
 
     function installSuccess(installer, product) {
@@ -18393,45 +18389,47 @@ output += includeTemplate.render(context.getVariables(), frame.push());
 output += "\n";
 var includeTemplate = env.getTemplate("_macros/rating.html");
 output += includeTemplate.render(context.getVariables(), frame.push());
-output += "\n\n<section class=\"main c\" id=\"reviews\">\n  ";
-output += runtime.suppressValue(env.getExtension("defer")["run"](context,runtime.makeKeywordArgs({"url": (lineno = 5, colno = 23, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "apiParams"), "apiParams", ["reviews",{"app": runtime.contextOrFrameLookup(context, frame, "slug")}])),"pluck": "objects","id": "ratings","paginate": "#review-list"}),function() {var t_1 = "";t_1 += "\n    <p id=\"add-review\" class=\"only-logged-in\">\n      ";
+output += "\n\n<section class=\"main c\">\n  <header class=\"secondary-header c\">\n    <h2>";
+output += runtime.suppressValue((lineno = 6, colno = 10, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Reviews"])), env.autoesc);
+output += "</h2>\n  </header>\n  ";
+output += runtime.suppressValue(env.getExtension("defer")["run"](context,runtime.makeKeywordArgs({"url": (lineno = 8, colno = 23, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "apiParams"), "apiParams", ["reviews",{"app": runtime.contextOrFrameLookup(context, frame, "slug")}])),"pluck": "objects","id": "ratings","paginate": ".ratings-placeholder-inner"}),function() {var t_1 = "";t_1 += "\n    <p id=\"add-review\" class=\"primary-button\">\n      ";
 if(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "response")),"user", env.autoesc)),"has_rated", env.autoesc)) {
 t_1 += "\n        <a class=\"button\" id=\"write-review\" href=\"";
-t_1 += runtime.suppressValue((lineno = 8, colno = 54, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "url"), "url", ["app/ratings/edit",[runtime.contextOrFrameLookup(context, frame, "slug")]])), env.autoesc);
+t_1 += runtime.suppressValue((lineno = 11, colno = 54, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "url"), "url", ["app/ratings/edit",[runtime.contextOrFrameLookup(context, frame, "slug")]])), env.autoesc);
 t_1 += "\">";
-t_1 += runtime.suppressValue((lineno = 8, colno = 87, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Edit Review"])), env.autoesc);
+t_1 += runtime.suppressValue((lineno = 11, colno = 87, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Edit Review"])), env.autoesc);
 t_1 += "</a>\n      ";
 }
 else {
 t_1 += "\n        <a class=\"button\" id=\"write-review\" href=\"";
-t_1 += runtime.suppressValue((lineno = 10, colno = 54, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "url"), "url", ["app/ratings/add",[runtime.contextOrFrameLookup(context, frame, "slug")]])), env.autoesc);
+t_1 += runtime.suppressValue((lineno = 13, colno = 54, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "url"), "url", ["app/ratings/add",[runtime.contextOrFrameLookup(context, frame, "slug")]])), env.autoesc);
 t_1 += "\">";
-t_1 += runtime.suppressValue((lineno = 10, colno = 86, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Write a Review"])), env.autoesc);
+t_1 += runtime.suppressValue((lineno = 13, colno = 86, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Write a Review"])), env.autoesc);
 t_1 += "</a>\n      ";
 }
-t_1 += "\n    </p>\n\n    <ul id=\"review-list\">\n      ";
+t_1 += "\n    </p>\n    <div class=\"reviews reviews-listing\">\n      <ul class=\"ratings-placeholder-inner\">\n        ";
 frame = frame.push();
 var t_3 = runtime.contextOrFrameLookup(context, frame, "this");
 for(var t_2=0; t_2 < t_3.length; t_2++) {
 var t_4 = t_3[t_2];
 frame.set("rat", t_4);
+t_1 += "\n          ";
+t_1 += runtime.suppressValue((lineno = 19, colno = 17, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "rating"), "rating", [t_4])), env.autoesc);
 t_1 += "\n        ";
-t_1 += runtime.suppressValue((lineno = 16, colno = 15, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "rating"), "rating", [t_4])), env.autoesc);
-t_1 += "\n      ";
 }
 frame = frame.pop();
-t_1 += "\n\n      ";
-t_1 += "\n      ";
-if(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "response")),"meta", env.autoesc)),"next", env.autoesc)) {
+t_1 += "\n\n        ";
 t_1 += "\n        ";
-t_1 += runtime.suppressValue((lineno = 21, colno = 20, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "more_button"), "more_button", [runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "response")),"meta", env.autoesc)),"next", env.autoesc)])), env.autoesc);
-t_1 += "\n      ";
+if(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "response")),"meta", env.autoesc)),"next", env.autoesc)) {
+t_1 += "\n          ";
+t_1 += runtime.suppressValue((lineno = 24, colno = 22, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "more_button"), "more_button", [runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "response")),"meta", env.autoesc)),"next", env.autoesc)])), env.autoesc);
+t_1 += "\n        ";
 }
-t_1 += "\n    </ul>\n  ";
+t_1 += "\n      </ul>\n    </div>\n  ";
 return t_1;
 }
 ,null,function() {var t_5 = "";t_5 += "\n    <p class=\"no-results\">\n      ";
-t_5 += runtime.suppressValue((lineno = 26, colno = 8, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["No results found"])), env.autoesc);
+t_5 += runtime.suppressValue((lineno = 30, colno = 8, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["No results found"])), env.autoesc);
 t_5 += "\n    </p>\n  ";
 return t_5;
 }
@@ -18842,6 +18840,10 @@ define("templates", ["nunjucks"], function(nunjucks) {
     nunjucks.env = new nunjucks.Environment([], {autoescape: true});
     nunjucks.env.registerPrecompiled(templates);
     nunjucks.templates = templates;
+    console.log("Templates loaded");
+    return nunjucks;
+});
+})();;
     console.log("Templates loaded");
     return nunjucks;
 });
