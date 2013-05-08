@@ -6,6 +6,8 @@ from django.middleware.transaction import TransactionMiddleware
 from django.utils.cache import patch_vary_headers
 
 from django_statsd.clients import statsd
+from django_statsd.middleware import (GraphiteRequestTimingMiddleware,
+                                      TastyPieRequestTimingMiddleware)
 from multidb.pinning import pin_this_thread, unpin_this_thread
 
 from mkt.carriers import get_carrier
@@ -129,3 +131,15 @@ class APIFilterMiddleware(object):
             response['API-Filter'] = urlencode(filters, doseq=True)
             patch_vary_headers(response, ['API-Filter'])
         return response
+
+
+class TimingMiddleware(GraphiteRequestTimingMiddleware):
+    """
+    A wrapper around django_statsd timing middleware that sends different
+    pings if being used in API to the.
+    """
+    def process_view(self, request, *args):
+        if getattr(request, 'API', False):
+            TastyPieRequestTimingMiddleware().process_view(request, *args)
+        else:
+            super(TimingMiddleware, self).process_view(request, *args)

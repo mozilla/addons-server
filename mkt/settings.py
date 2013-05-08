@@ -88,6 +88,7 @@ MIDDLEWARE_CLASSES.append('mkt.site.middleware.RequestCookiesMiddleware')
 MIDDLEWARE_CLASSES.append('mkt.carriers.middleware.CarrierURLMiddleware')
 MIDDLEWARE_CLASSES.remove('amo.middleware.LocaleAndAppURLMiddleware')
 MIDDLEWARE_CLASSES.remove('commonware.middleware.FrameOptionsHeader')
+MIDDLEWARE_CLASSES.remove('django_statsd.middleware.GraphiteRequestTimingMiddleware')
 MIDDLEWARE_CLASSES += [
     'mkt.site.middleware.RedirectPrefixedURIMiddleware',
     'mkt.site.middleware.LocaleMiddleware',
@@ -96,6 +97,7 @@ MIDDLEWARE_CLASSES += [
     'mkt.fragments.middleware.VaryOnAJAXMiddleware',
     'mkt.site.middleware.DeviceDetectionMiddleware',
     'mkt.fragments.middleware.HijackRedirectMiddleware',
+    'mkt.api.middleware.TimingMiddleware',
     'mkt.api.middleware.APIVersionMiddleware',
     'mkt.api.middleware.CORSMiddleware',
     'mkt.api.middleware.APITransactionMiddleware',
