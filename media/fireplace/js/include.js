@@ -1,4 +1,4 @@
-/* 2013.05.08_15.53.05 */
+/* 2013.05.08_16.22.36 */
 (function(window, undefined) {
 
 var defined = {};
@@ -17187,13 +17187,15 @@ output += "\n        ";
 output += runtime.suppressValue((lineno = 21, colno = 14, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "stars"), "stars", [runtime.memberLookup((runtime.memberLookup((l_app),"ratings", env.autoesc)),"average", env.autoesc)])), env.autoesc);
 output += "\n        ";
 if(runtime.memberLookup((runtime.memberLookup((l_app),"ratings", env.autoesc)),"count", env.autoesc)) {
-output += "\n          <span class=\"cnt\">\n            ";
-output += runtime.suppressValue((lineno = 24, colno = 20, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_plural"), "_plural", ["{n} Review","{n} Reviews",runtime.makeKeywordArgs({"n": runtime.memberLookup((runtime.memberLookup((l_app),"ratings", env.autoesc)),"count", env.autoesc)})])), env.autoesc);
+output += "\n          <span class=\"cnt short\">\n            ";
+output += runtime.suppressValue((lineno = 24, colno = 14, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["({n})",runtime.makeKeywordArgs({"n": runtime.memberLookup((runtime.memberLookup((l_app),"ratings", env.autoesc)),"count", env.autoesc)})])), env.autoesc);
+output += "\n          </span>\n          <span class=\"cnt long\">\n            ";
+output += runtime.suppressValue((lineno = 27, colno = 20, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_plural"), "_plural", ["{n} Review","{n} Reviews",runtime.makeKeywordArgs({"n": runtime.memberLookup((runtime.memberLookup((l_app),"ratings", env.autoesc)),"count", env.autoesc)})])), env.autoesc);
 output += "\n          </span>\n        ";
 }
 else {
 output += "\n          <span class=\"cnt\">";
-output += runtime.suppressValue((lineno = 27, colno = 30, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Not yet rated"])), env.autoesc);
+output += runtime.suppressValue((lineno = 30, colno = 30, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Not yet rated"])), env.autoesc);
 output += "</span>\n        ";
 }
 output += "\n        ";
@@ -17203,7 +17205,7 @@ output += "</a>";
 output += "\n      </div>\n      ";
 if(runtime.contextOrFrameLookup(context, frame, "force_button") || (runtime.memberLookup((l_app),"current_version", env.autoesc) && !runtime.contextOrFrameLookup(context, frame, "link"))) {
 output += "\n        ";
-output += runtime.suppressValue((lineno = 32, colno = 22, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "market_button"), "market_button", [l_app,runtime.makeKeywordArgs({"classes": t_3,"data_attrs": {"manifest_url": runtime.memberLookup((l_app),"manifest_url", env.autoesc)}})])), env.autoesc);
+output += runtime.suppressValue((lineno = 35, colno = 22, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "market_button"), "market_button", [l_app,runtime.makeKeywordArgs({"classes": t_3,"data_attrs": {"manifest_url": runtime.memberLookup((l_app),"manifest_url", env.autoesc)}})])), env.autoesc);
 output += "\n      ";
 }
 output += "\n    </div>\n    ";
@@ -17248,10 +17250,10 @@ frame = frame.push();
 kwargs = kwargs || {};
 frame.set("next_page_url", l_next_page_url);
 var output= "";
-output += "\n<li class=\"loadmore\">\n  <button data-url=\"";
+output += "\n<li class=\"loadmore\">\n  <button class=\"alt\" data-url=\"";
 output += runtime.suppressValue(env.getFilter("safe")((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "settings")),"api_url", env.autoesc) + l_next_page_url)), env.autoesc);
 output += "\">";
-output += runtime.suppressValue((lineno = 2, colno = 65, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["More"])), env.autoesc);
+output += runtime.suppressValue((lineno = 2, colno = 77, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["More"])), env.autoesc);
 output += "</button>\n</li>\n";
 frame = frame.pop();
 return new runtime.SafeString(output);
@@ -17317,21 +17319,22 @@ output += "\n          <li><a class=\"edit\"\n                 href=\"";
 output += runtime.suppressValue((lineno = 23, colno = 27, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "url"), "url", ["app/ratings/edit",[runtime.contextOrFrameLookup(context, frame, "slug")]])), env.autoesc);
 output += "\">";
 output += runtime.suppressValue((lineno = 23, colno = 60, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Edit"])), env.autoesc);
-output += "</a></li>\n          <li>\n            <a class=\"delete post\" data-action=\"delete\" href=\"#\"\n               data-href=\"";
+output += "</a></li>\n          <li><a class=\"delete post\" data-action=\"delete\" href=\"#\"\n                 data-href=\"";
 output += runtime.suppressValue(runtime.memberLookup((l_this),"resource_uri", env.autoesc), env.autoesc);
-output += "\"\n               data-app=\"";
+output += "\"\n                 data-app=\"";
 output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "slug"), env.autoesc);
 output += "\">";
-output += runtime.suppressValue((lineno = 27, colno = 35, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Delete"])), env.autoesc);
+output += runtime.suppressValue((lineno = 26, colno = 37, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Delete"])), env.autoesc);
 output += "</a></li>\n        ";
 }
 else {
 output += "\n          <li><a class=\"flag post\" data-action=\"report\" href=\"#\">";
-output += runtime.suppressValue((lineno = 29, colno = 67, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Report"])), env.autoesc);
+output += runtime.suppressValue((lineno = 28, colno = 67, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Report"])), env.autoesc);
 output += "</a></li>\n        ";
 }
-output += "\n      </ul>\n      <time>";
-output += runtime.suppressValue(runtime.memberLookup((l_this),"posted", env.autoesc), env.autoesc);
+output += "\n      </ul>\n      ";
+output += "\n      <time>";
+output += runtime.suppressValue(env.getFilter("replace")(runtime.memberLookup((l_this),"posted", env.autoesc)," 00:00:00",""), env.autoesc);
 output += "</time>\n    ";
 }
 output += "\n  </div>\n</li>\n";
@@ -17791,12 +17794,12 @@ return t_5;
 return t_7;
 }
 ,null,null), env.autoesc);
-output += "\n  </div>\n</section>\n\n<section class=\"main reviews c\">\n  <div id=\"reviews-detail\">\n    ";
+output += "\n  </div>\n</section>\n\n<section class=\"main reviews-wrapper c\">\n  <div class=\"reviews\">\n    ";
 output += runtime.suppressValue(env.getExtension("defer")["run"](context,runtime.makeKeywordArgs({"url": (lineno = 85, colno = 25, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "apiParams"), "apiParams", ["reviews",{"app": runtime.contextOrFrameLookup(context, frame, "slug")}])),"id": "ratings"}),function() {var t_8 = "";t_8 += "\n      <h3>";
 t_8 += runtime.suppressValue((lineno = 86, colno = 12, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Reviews"])), env.autoesc);
 t_8 += "</h3>\n      ";
 if(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "this")),"meta", env.autoesc)),"total_count", env.autoesc)) {
-t_8 += "\n        <ul class=\"c ratings-placeholder-inner\">\n          ";
+t_8 += "\n        <ul class=\"ratings-placeholder-inner\">\n          ";
 frame = frame.push();
 var t_10 = (lineno = 89, colno = 40, runtime.callWrap(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "this")),"objects", env.autoesc)),"slice", env.autoesc), "this[\"objects\"][\"slice\"]", [0,2]));
 for(var t_9=0; t_9 < t_10.length; t_9++) {
@@ -18840,10 +18843,6 @@ define("templates", ["nunjucks"], function(nunjucks) {
     nunjucks.env = new nunjucks.Environment([], {autoescape: true});
     nunjucks.env.registerPrecompiled(templates);
     nunjucks.templates = templates;
-    console.log("Templates loaded");
-    return nunjucks;
-});
-})();;
     console.log("Templates loaded");
     return nunjucks;
 });
