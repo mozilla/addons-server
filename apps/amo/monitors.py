@@ -15,6 +15,7 @@ from amo.utils import memoize
 from applications.management.commands import dump_apps
 from lib.crypto import receipt
 from lib.crypto.receipt import SigningError
+from lib.pay_server import client
 
 monitor_log = commonware.log.getLogger('z.monitor')
 
@@ -230,3 +231,28 @@ def signer():
         return msg, msg
 
     return '', 'Signer working and up to date'
+
+
+# Not called settings to avoid conflict with django.conf.settings.
+def settings_check():
+    required = ['APP_PURCHASE_KEY', 'APP_PURCHASE_TYP', 'APP_PURCHASE_AUD',
+                'APP_PURCHASE_SECRET']
+    for key in required:
+        if not getattr(settings, key):
+            msg = 'Missing required value %s' % key
+            return msg, msg
+
+    return '', 'Required settings ok'
+
+
+def solitude():
+    try:
+        res = client.api.services.request.get()
+    except Exception as err:
+        return repr(err), repr(err)
+    auth = res.get('authenticated', None)
+    if auth != 'marketplace':
+        msg = 'Solitude authenticated as: %s' % auth
+        return msg, msg
+
+    return '', 'Solitude authentication ok'

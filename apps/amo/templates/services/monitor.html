@@ -101,11 +101,17 @@
   </ul>
 </div>
 
-<div class="notification-box {{ status(status_summary.signer) }}">
-  <h2>[Signer] Connection Test (signer) ({{ signer_timer }}ms)</h2>
-  <ul>
-      <li>{{ signer_results }}</li>
-  </ul>
-</div>
+{% macro section(text, summary, timer, results) %}
+  <div class="notification-box {{ status(summary) }}">
+    <h2>{{ text }} ({{ timer }}ms)</h2>
+    <ul>
+      <li>{{ results }}</li>
+    </ul>
+  </div>
+{% endmacro %}
+
+{{ section("[Signer] Connection Test", status_summary.signer, signer_timer, signer_results) }}
+{{ section("[Settings] Required Keys", status_summary.settings_check, settings_check_timer,  settings_check_results) }}
+{{ section("[Solitude] Connection Test", status_summary.solitude, solitude_timer, solitude_results) }}
 
 {% endblock main_content %}
