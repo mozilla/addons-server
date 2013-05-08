@@ -136,7 +136,7 @@ class APIFilterMiddleware(object):
 class TimingMiddleware(GraphiteRequestTimingMiddleware):
     """
     A wrapper around django_statsd timing middleware that sends different
-    pings if being used in API to the.
+    statsd pings if being used in API.
     """
     def process_view(self, request, *args):
         if getattr(request, 'API', False):
