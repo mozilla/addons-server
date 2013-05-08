@@ -31,14 +31,14 @@ class Config(models.Model):
             return {}
 
 
-def get_config(conf):
+def unmemoized_get_config(conf):
     try:
         c = Config.objects.get(key=conf)
         return c.value
     except Config.DoesNotExist:
         return
 
-get_config = memoize(get_config, _config_cache, 1)
+get_config = memoize(unmemoized_get_config, _config_cache, 1)
 
 
 def set_config(conf, value):

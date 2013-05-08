@@ -41,7 +41,7 @@ from reviews.forms import ReviewFlagFormSet
 from reviews.models import Review, ReviewFlag
 from translations.query import order_by_translation
 from users.models import UserProfile
-from zadmin.models import Config, get_config, set_config
+from zadmin.models import set_config, unmemoized_get_config
 
 from mkt.reviewers.utils import AppsReviewing, clean_sort_param
 from mkt.search.forms import ApiSearchForm
@@ -153,7 +153,7 @@ def _progress():
 
 def context(**kw):
     statuses = dict((k, unicode(v)) for k, v in amo.STATUS_CHOICES.items())
-    ctx = dict(motd=Config.objects.get(key='mkt_reviewers_motd').value,
+    ctx = dict(motd=unmemoized_get_config('mkt_reviewers_motd'),
                queue_counts=queue_counts(),
                search_url=reverse('api_dispatch_list', kwargs={
                    'api_name': 'apps', 'resource_name': 'search'}),
@@ -487,7 +487,7 @@ def logs(request):
 @reviewer_required
 def motd(request):
     form = None
-    motd = Config.objects.get(key='mkt_reviewers_motd').value
+    motd = unmemoized_get_config('mkt_reviewers_motd')
     if acl.action_allowed(request, 'AppReviewerMOTD', 'Edit'):
         form = MOTDForm(request.POST or None, initial={'motd': motd})
     if form and request.method == 'POST' and form.is_valid():
