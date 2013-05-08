@@ -225,7 +225,7 @@ def collection_detail_json(request, username, slug):
     c = get_collection(request, username, slug)
     if not (c.listed or acl.check_collection_ownership(request, c)):
         raise PermissionDenied
-    addons_dict = [addon_to_dict(a) for a in c.addons.valid()]
+    addons_dict = [addon_to_dict(a) for a in list(c.addons.valid())]
     return {
         'name': c.name,
         'url': c.get_abs_url(),
