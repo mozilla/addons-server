@@ -89,6 +89,8 @@ MIDDLEWARE_CLASSES.append('mkt.carriers.middleware.CarrierURLMiddleware')
 MIDDLEWARE_CLASSES.remove('amo.middleware.LocaleAndAppURLMiddleware')
 MIDDLEWARE_CLASSES.remove('commonware.middleware.FrameOptionsHeader')
 MIDDLEWARE_CLASSES.remove('django_statsd.middleware.GraphiteRequestTimingMiddleware')
+MIDDLEWARE_CLASSES.remove('multidb.middleware.PinningRouterMiddleware')
+
 MIDDLEWARE_CLASSES += [
     'mkt.site.middleware.RedirectPrefixedURIMiddleware',
     'mkt.site.middleware.LocaleMiddleware',

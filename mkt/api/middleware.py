@@ -10,6 +10,7 @@ from django_statsd.clients import statsd
 from django_statsd.middleware import (GraphiteRequestTimingMiddleware,
                                       TastyPieRequestTimingMiddleware)
 from multidb.pinning import pin_this_thread, unpin_this_thread
+from multidb.middleware import PinningRouterMiddleware
 
 from mkt.carriers import get_carrier
 
@@ -34,15 +35,17 @@ class APITransactionMiddleware(TransactionMiddleware):
         return response
 
 
-class APIPinningMiddleware(object):
+class APIPinningMiddleware(PinningRouterMiddleware):
     """
     Similar to multidb, but we can't rely on cookies. Instead this will
     examine the request and pin to the master db if the user is authenticated.
+
+    If not in the API, will fall back to the cookie pinning middleware.
     """
 
     def process_request(self, request):
         if not getattr(request, 'API', False):
-            return
+            return super(APIPinningMiddleware, self).process_request(request)
 
         if request.amo_user and not request.amo_user.is_anonymous():
             statsd.incr('api.db.pinned')
@@ -51,6 +54,13 @@ class APIPinningMiddleware(object):
 
         statsd.incr('api.db.unpinned')
         unpin_this_thread()
+
+    def process_response(self, request, response):
+        if not getattr(request, 'API', False):
+            return (super(APIPinningMiddleware, self)
+                    .process_response(request, response))
+
+        return response
 
 
 class CORSMiddleware(object):
