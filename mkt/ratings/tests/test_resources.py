@@ -331,9 +331,13 @@ class TestReviewFlagResource(BaseOAuth, AMOPaths):
         eq_(rf.note, note)
 
     def test_flag_anon(self):
-        res = self.anon.post(self.flag_url)
-        eq_(res.status_code, 401)
-        eq_(ReviewFlag.objects.all().count(), 0)
+        data = json.dumps({'flag': ReviewFlag.SPAM})
+        res = self.anon.post(self.flag_url, data=data)
+        eq_(res.status_code, 201)
+        rf = ReviewFlag.objects.get(review=self.rating)
+        eq_(rf.user, None)
+        eq_(rf.flag, ReviewFlag.SPAM)
+        eq_(rf.note, '')
 
     def test_flag_conflict(self):
         data = json.dumps({'flag': ReviewFlag.SPAM})

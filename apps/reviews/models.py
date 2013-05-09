@@ -137,7 +137,7 @@ class ReviewFlag(amo.models.ModelBase):
     )
 
     review = models.ForeignKey(Review)
-    user = models.ForeignKey('users.UserProfile')
+    user = models.ForeignKey('users.UserProfile', null=True)
     flag = models.CharField(max_length=64, default=OTHER,
                             choices=FLAGS, db_column='flag_name')
     note = models.CharField(max_length=100, db_column='flag_notes', blank=True,
