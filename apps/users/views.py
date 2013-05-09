@@ -48,7 +48,7 @@ from lib.metrics import record_action
 from .models import UserProfile
 from .signals import logged_out
 from . import forms
-from .utils import EmailResetCode, UnsubscribeCode, autocreate_username
+from .utils import autocreate_username, EmailResetCode, UnsubscribeCode
 import tasks
 
 log = commonware.log.getLogger('z.users')
@@ -328,10 +328,9 @@ def browserid_authenticate(request, assertion, is_native=False,
         extra_params = {'forceIssuer': settings.UNVERIFIED_ISSUER or False,
                         'allowUnverified': 'true'}
 
-    audience = browserid_audience(request)
     log.debug('Verifying Persona at %s, audience: %s, '
-              'extra_params: %s' % (url, audience, extra_params))
-    result = verify(assertion, audience,
+              'extra_params: %s' % (url, browserid_audience, extra_params))
+    result = verify(assertion, browserid_audience,
                     url=url, extra_params=extra_params)
     if not result:
         return None, _('Persona authentication failure.')
@@ -389,7 +388,7 @@ def browserid_authenticate(request, assertion, is_native=False,
 @post_required
 @transaction.commit_on_success
 #@ratelimit(block=True, rate=settings.LOGIN_RATELIMIT_ALL_USERS)
-def browserid_login(request, browserid_audience=get_audience):
+def browserid_login(request, browserid_audience=None):
     msg = ''
     if waffle.switch_is_active('browserid-login'):
         if request.user.is_authenticated():
@@ -403,9 +402,9 @@ def browserid_login(request, browserid_audience=get_audience):
             profile, msg = browserid_authenticate(
                 request, request.POST['assertion'],
                 is_native=is_native,
-                browserid_audience=browserid_audience)
+                browserid_audience=browserid_audience or get_audience(request))
         if profile is not None:
-            auth.login(request, profile.user)
+            request.user = profile.user
             profile.log_login_attempt(True)
             return http.HttpResponse(status=200)
     return http.HttpResponse(msg, status=401)

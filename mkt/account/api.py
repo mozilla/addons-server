@@ -1,16 +1,19 @@
-from functools import partial
 import hashlib
 import hmac
 import uuid
+from functools import partial
 
 from django.conf import settings
+from django.contrib.auth.signals import user_logged_in
 
-from django_browserid import get_audience
+import commonware.log
+from django_statsd.clients import statsd
 from tastypie import fields, http
 from tastypie.authorization import Authorization
 from tastypie.bundle import Bundle
 from tastypie.exceptions import ImmediateHttpResponse
 from tastypie.throttle import CacheThrottle
+from tastypie.validation import CleanedDataFormValidation
 
 from access import acl
 from amo.utils import send_mail_jinja
@@ -25,9 +28,11 @@ from mkt.api.resources import AppResource
 from mkt.constants.apps import INSTALL_TYPE_USER
 from mkt.webapps.models import Webapp
 from users.models import UserProfile
-from users.views import browserid_login
+from users.views import browserid_authenticate
 
 from .forms import FeedbackForm, LoginForm
+
+log = commonware.log.getLogger('z.account')
 
 
 class Mine(object):
@@ -99,10 +104,12 @@ class InstalledResource(AppResource):
 class LoginResource(CORSResource, MarketplaceResource):
 
     class Meta(MarketplaceResource.Meta):
-        resource_name = 'login'
         always_return_data = True
-        list_allowed_methods = ['post']
         authorization = Authorization()
+        list_allowed_methods = ['post']
+        object_class = dict
+        resource_name = 'login'
+        validation = CleanedDataFormValidation(form_class=LoginForm)
 
     def get_token(self, email):
         unique_id = uuid.uuid4().hex
@@ -115,23 +122,23 @@ class LoginResource(CORSResource, MarketplaceResource):
             consumer_id, hashlib.sha512)
         return ','.join((email, hm.hexdigest(), unique_id))
 
-    def post_list(self, request, **kwargs):
-        form = LoginForm(request.POST)
-        if not form.is_valid():
-            raise self.form_errors(form)
+    def obj_create(self, bundle, request, **kwargs):
+        with statsd.timer('auth.browserid.verify'):
+            profile, msg = browserid_authenticate(
+                request, bundle.data['assertion'],
+                browserid_audience=bundle.data['audience'],
+                is_native=bundle.data.get('is_native', False)
+            )
+        if profile is None:
+            log.info('No profile')
+            raise ImmediateHttpResponse(response=http.HttpUnauthorized())
 
-        # We use request.POST rather than form.cleaned_data to conform to what
-        # django_browserid expects. That means that any mutations performed by
-        # LoginForm validation are lost. Be careful!
-        if 'audience' in request.POST:
-            audience = lambda r: r.POST.get('audience')
-        else:
-            audience = get_audience
-
-        res = browserid_login(request, browserid_audience=audience)
-        if res.status_code == 200:
-            request.amo_user = request.user.get_profile()
-            result = {
+        request.user, request.amo_user = profile.user, profile
+        # TODO: move this to the signal.
+        profile.log_login_attempt(True)
+        user_logged_in.send(sender=profile.user.__class__, request=request,
+                            user=profile.user)
+        bundle.data = {
                 'error': None,
                 'token': self.get_token(request.user.email),
                 'settings': {
@@ -139,10 +146,9 @@ class LoginResource(CORSResource, MarketplaceResource):
                     'email': request.user.email,
                 }
             }
-            result.update(PermissionResource()
-                          .dehydrate(Bundle(request=request)).data)
-            return self.create_response(request, result)
-        return res
+        bundle.data.update(PermissionResource()
+                           .dehydrate(Bundle(request=request)).data)
+        return bundle
 
 
 class FeedbackResource(PotatoCaptchaResource, CORSResource,

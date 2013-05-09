@@ -172,7 +172,10 @@ class TestLoginHandler(TestCase):
     def setUp(self):
         super(TestLoginHandler, self).setUp()
         self.list_url = get_absolute_url(list_url('login'), api_name='account')
-        self.create_switch('browserid-login')
+
+    def post(self, data):
+        return self.client.post(self.list_url, json.dumps(data),
+                                content_type='application/json')
 
     @patch.object(uuid, 'uuid4', FakeUUID)
     @patch('requests.post')
@@ -182,10 +185,10 @@ class TestLoginHandler(TestCase):
         http_request.return_value = FakeResponse(200, json.dumps(
                 {'status': 'okay',
                  'email': 'cvan@mozilla.com'}))
-        res = self.client.post(self.list_url,
-                               dict(assertion='fake-assertion',
-                                    audience='fakeamo.org'))
-        eq_(res.status_code, 200)
+        res = self.post({'assertion': 'fake-assertion',
+                         'audience': 'fakeamo.org'})
+
+        eq_(res.status_code, 201)
         data = json.loads(res.content)
         eq_(data['token'],
             'cvan@mozilla.com,95c9063d9f249aacfe5697fc83192ed6480c01463e2a80b3'
@@ -199,13 +202,12 @@ class TestLoginHandler(TestCase):
                                               'status_code content')
         http_request.return_value = FakeResponse(200, json.dumps(
                 {'status': 'busted'}))
-        res = self.client.post(self.list_url,
-                               dict(assertion='fake-assertion',
-                                    audience='fakeamo.org'))
+        res = self.post({'assertion': 'fake-assertion',
+                         'audience': 'fakeamo.org'})
         eq_(res.status_code, 401)
 
     def test_login_empty(self):
-        res = self.client.post(self.list_url)
+        res = self.post({})
         data = json.loads(res.content)
         eq_(res.status_code, 400)
         assert 'assertion' in data['error_message']

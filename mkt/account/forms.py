@@ -4,11 +4,11 @@ from django import forms
 
 import commonware.log
 import happyforms
-from mkt.site.forms import PotatoCaptchaForm
 from tower import ugettext_lazy as _lazy
 
 import amo
 from market.models import PriceCurrency
+from mkt.site.forms import PotatoCaptchaForm
 from users.forms import BaseAdminUserEditForm
 from users.models import UserProfile
 
@@ -108,4 +108,4 @@ class FeedbackForm(PotatoCaptchaForm):
 class LoginForm(happyforms.Form):
     assertion = forms.CharField(required=True)
     audience = forms.CharField(required=False)
-
+    is_native = forms.BooleanField(required=False)

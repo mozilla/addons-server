@@ -61,6 +61,9 @@ stored as a cookie.
             }
         }
 
+    :status 201: successfully completed, a new profile might have been created
+        in the marketplace if the account was new.
+
 OAuth
 =====
 
