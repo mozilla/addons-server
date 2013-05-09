@@ -1,4 +1,4 @@
-/* 2013.05.09_16.31.44 */
+/* 2013.05.09_16.38.52 */
 (function(window, undefined) {
 
 var defined = {};
@@ -781,6 +781,7 @@ define('cat-dropdown',
     var cat_dropdown = $('#cat-dropdown');
     var cat_list = $('#cat-list');
 
+
     // TODO: Detect when the user is offline and raise an error.
 
     // Do the request out here so it happens immediately when the app loads.
@@ -835,6 +836,13 @@ define('cat-dropdown',
         updateCurrentCat(newCat, $target);
     }
 
+    function handleDropDownMousedowns(e) {
+        // When I press down on the mouse, add that cute little white checkmark.
+        e.preventDefault();
+        var $target = $(e.target);
+        updateCurrentCat($target.data('catSlug'), $target);
+    }
+
     function dropDownRefresh(catSlug) {
         updateDropDown(catSlug);
         updateCurrentCat(catSlug);
@@ -872,7 +880,8 @@ define('cat-dropdown',
     }
 
     z.body.on('click', '.dropdown a', toggleMenu)
-          .on('click', '.cat-menu a', handleDropDownClicks);
+          .on('mouseup', '.cat-menu a', handleDropDownClicks)
+          .on('mousedown', '.cat-menu a', handleDropDownMousedowns);
     z.page.on('build_start', handleBuildStart)
           .on('reload_chrome', handleRenderDropdown);
 
@@ -17766,7 +17775,7 @@ output += "\n    </p>\n    <p class=\"how windows\">\n      ";
 output += runtime.suppressValue((lineno = 39, colno = 8, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Launch this app from your <b>Windows desktop</b> or <b>Start &#9658; All Programs</b>."])), env.autoesc);
 output += "\n    </p>\n    <p class=\"how linux\">\n      ";
 output += runtime.suppressValue((lineno = 42, colno = 8, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."])), env.autoesc);
-output += "\n    </p>\n  </div>\n</section>\n<div id=\"purchased-message\"></div>\n\n<section class=\"main blurbs infobox\">\n  <div>\n    ";
+output += "\n    </p>\n  </div>\n</section>\n<div id=\"purchased-message\"></div>\n\n<section class=\"main blurbs prose infobox\">\n  <div>\n    ";
 output += runtime.suppressValue(env.getExtension("defer")["run"](context,runtime.makeKeywordArgs({"url": t_1,"as": "app","key": runtime.contextOrFrameLookup(context, frame, "slug")}),function() {var t_5 = "";t_5 += "\n      ";
 var t_6 = runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "this")),"summary", env.autoesc)),"length", env.autoesc) + runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "description")),"length", env.autoesc) > 700;
 frame.set("super_long", t_6);
@@ -18004,7 +18013,7 @@ var output = "";
 try {
 output += "<section class=\"app-privacy-policy main full c\">\n  ";
 output += runtime.suppressValue(env.getExtension("defer")["run"](context,runtime.makeKeywordArgs({"url": (lineno = 1, colno = 17, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "api"), "api", ["app",[runtime.contextOrFrameLookup(context, frame, "slug")]])),"as": "app","key": runtime.contextOrFrameLookup(context, frame, "slug")}),function() {var t_1 = "";t_1 += "\n    <header class=\"secondary-header c\">\n      <h2>";
-t_1 += runtime.suppressValue((lineno = 3, colno = 12, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Privacy Policy"])), env.autoesc);
+t_1 += runtime.suppressValue((lineno = 3, colno = 12, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Privacy Policy: {app}",runtime.makeKeywordArgs({"app": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "this")),"name", env.autoesc)})])), env.autoesc);
 t_1 += "</h2>\n    </header>\n    <a href=\"";
 t_1 += runtime.suppressValue((lineno = 5, colno = 17, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "url"), "url", ["app",[runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "this")),"slug", env.autoesc)]])), env.autoesc);
 t_1 += "\" class=\"back-to-app\">";
@@ -18848,11 +18857,16 @@ return t_7;
 ,null), env.autoesc);
 output += "\n  ";
 }
-output += "\n  <footer class=\"only-logged-out\">\n    <div class=\"extras\">\n      <p class=\"notice\">";
-output += runtime.suppressValue((lineno = 40, colno = 26, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["You must be signed in to view your apps."])), env.autoesc);
+else {
+output += "\n    <header class=\"secondary-header hide-on-mobile c\">\n      <h2>";
+output += runtime.suppressValue((lineno = 39, colno = 12, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["My Apps"])), env.autoesc);
+output += "</h2>\n    </header>\n  ";
+}
+output += "\n  <footer class=\"only-logged-out\">\n    <article class=\"extras\">\n      <p class=\"notice\">";
+output += runtime.suppressValue((lineno = 44, colno = 26, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["You must be signed in to view your apps."])), env.autoesc);
 output += "</p>\n      <a class=\"button full persona\" href=\"#\">";
-output += runtime.suppressValue((lineno = 41, colno = 48, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Sign in / Sign up"])), env.autoesc);
-output += "</a>\n    </div>\n  </footer>\n</section>\n";
+output += runtime.suppressValue((lineno = 45, colno = 48, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Sign in / Sign up"])), env.autoesc);
+output += "</a>\n    </article>\n  </footer>\n</section>\n";
 return output;
 } catch (e) {
   runtime.handleError(e, lineno, colno);
