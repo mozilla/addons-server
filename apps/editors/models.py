@@ -160,7 +160,7 @@ class ViewQueue(RawSQLModel):
         return self.premium_type in amo.ADDON_PREMIUMS
 
     @property
-    def file_platforms(self):
+    def file_platform_ids(self):
         return self._explode_concat(self._file_platform_ids)
 
     @property

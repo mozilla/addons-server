@@ -45,7 +45,6 @@ class TestViewPendingQueueTable(amo.tests.TestCase):
         row.addon_name = 'フォクすけといっしょ'.decode('utf8')
         row.addon_slug = 'test'
         row.latest_version = u'0.12'
-        row.latest_version_id = 1234
         self.table.set_page(page)
         a = pq(self.table.render_addon_name(row))
 
@@ -113,9 +112,8 @@ class TestAdditionalInfoInQueue(amo.tests.TestCase):
         qs = Mock()
         self.table = helpers.ViewPendingQueueTable(qs)
         self.row = Mock()
-        self.row.latest_version_id = 1
         self.row.is_site_specific = False
-        self.row.file_platforms = [amo.PLATFORM_ALL.id]
+        self.row.file_platform_ids = [amo.PLATFORM_ALL.id]
         self.row.external_software = False
         self.row.binary = False
         self.row.binary_components = False
@@ -128,7 +126,7 @@ class TestAdditionalInfoInQueue(amo.tests.TestCase):
         eq_(self.table.render_additional_info(self.row), u'Site Specific')
 
     def test_platform(self):
-        self.row.file_platforms = [amo.PLATFORM_LINUX.id]
+        self.row.file_platform_ids = [amo.PLATFORM_LINUX.id]
         assert "plat-sprite-linux" in self.table.render_platforms(self.row)
 
     def test_combo(self):
@@ -138,12 +136,12 @@ class TestAdditionalInfoInQueue(amo.tests.TestCase):
             u'Site Specific, Requires External Software')
 
     def test_all_platforms(self):
-        self.row.file_platforms = [amo.PLATFORM_ALL.id]
+        self.row.file_platform_ids = [amo.PLATFORM_ALL.id]
         assert "plat-sprite-all" in self.table.render_platforms(self.row)
 
     def test_mixed_platforms(self):
-        self.row.file_platforms = [amo.PLATFORM_ALL.id,
-                                   amo.PLATFORM_LINUX.id]
+        self.row.file_platform_ids = [amo.PLATFORM_ALL.id,
+                                      amo.PLATFORM_LINUX.id]
         assert "plat-sprite-linux" in self.table.render_platforms(self.row)
         assert "plat-sprite-all" in self.table.render_platforms(self.row)
 
