@@ -619,20 +619,25 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             diff += [self.latest_version_id, latest_id]
 
         updated = {}
+        send_signal = False
         if self._backup_version != backup:
             updated.update({'_backup_version': backup})
+            send_signal = True
         if self._current_version != current:
             updated.update({'_current_version': current})
-        # Don't use self.latest_version here. It may throw
-        # Version.DoesNotExist if we're called from a post_delete
-        # signal.
+            send_signal = True
+        # Don't use self.latest_version here. It may throw Version.DoesNotExist
+        # if we're called from a post_delete signal. We also don't set
+        # send_signal since we only want this fired if the public version
+        # changes.
         if self.latest_version_id != latest_id:
             updated.update({'latest_version': latest})
 
         if updated:
             try:
                 self.update(**updated)
-                signals.version_changed.send(sender=self)
+                if send_signal:
+                    signals.version_changed.send(sender=self)
                 log.info(u'Version changed from backup: %s to %s, '
                           'current: %s to %s, latest: %s to %s for addon %s'
                           % tuple(diff + [self]))
