@@ -918,9 +918,7 @@ class LocalFileStorage(FileSystemStorage):
                 # Try/except to prevent race condition raising "File exists".
                 os.makedirs(parent)
             except OSError as e:
-                if e.errno == errno.EEXIST and os.path.isdir(parent):
-                    pass
-                else:
+                if e.errno != errno.EEXIST:
                     raise
         return super(LocalFileStorage, self)._open(name, mode=mode)
 
