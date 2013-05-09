@@ -660,7 +660,7 @@ class Webapp(Addon):
             data = {}
         else:
             file_obj = version.all_files[0]
-            manifest = self.get_manifest_json()
+            manifest = self.get_manifest_json(file_obj)
             package_path = absolutify(
                 os.path.join(reverse('downloads.file', args=[file_obj.id]),
                              file_obj.filename))
