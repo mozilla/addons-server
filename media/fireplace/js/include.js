@@ -1,4 +1,4 @@
-/* 2013.05.09_16.38.52 */
+/* 2013.05.09_16.42.26 */
 (function(window, undefined) {
 
 var defined = {};
@@ -887,42 +887,6 @@ define('cat-dropdown',
 
 });
 
-// JS for the desktop Feedback overlay.
-
-define(
-    'feedback',
-    ['buckets', 'capabilities', 'l10n', 'notification', 'urls', 'utils', 'z', 'requests', 'templates'],
-    function(buckets, capabilities, l10n, notification, urls, utils, z, requests, nunjucks) {
-
-    var gettext = l10n.gettext;
-    var notify = notification.notification;
-    var overlay = utils.makeOrGetOverlay('feedback-overlay');
-
-    z.body.on('submit', '.feedback-form', utils._pd(function(e) {
-        // Submit feedback form
-        var $this = $(this);
-        var data = utils.getVars($this.serialize());
-        data.chromeless = capabilities.chromeless ? 'Yes' : 'No';
-        data.from_url = window.location.pathname;
-        data.profile = buckets.get_profile();
-        requests.post(urls.api.url('feedback'), data).done(function() {
-            console.log('submitted feedback');
-            $this.find('textarea').val('');
-            overlay.removeClass('show');
-            notify({message: gettext('Feedback submitted. Thanks!')});
-        }).fail(function() {
-            notify({message: gettext('There was a problem submitting your feedback. Try again soon.')});
-        });
-
-    })).on('click', '.submit-feedback', utils._pd(function(e) {
-        if (!overlay.find('form').length) {
-            overlay.html(
-                nunjucks.env.getTemplate('feedback.html').render(require('helpers')));
-        }
-        overlay.addClass('show').trigger('overlayloaded');
-    }));
-});
-
 define('forms', ['z'], function(z) {
 
     function checkValid(form) {
@@ -1666,7 +1630,6 @@ require.config({
             'buttons',
             'capabilities',
             'cat-dropdown',
-            'feedback',
             'forms',
             'header',
             'helpers',
@@ -2242,42 +2205,46 @@ define('overflow', [], function() {
 });
 
 define('overlay', ['keys', 'l10n', 'utils', 'z'], function(keys, l10n, utils, z) {
+    // Welcome to the world of overlays!
+    // To setup your trigger do:
+    // function() { z.body.trigger('decloak');doOtherStuff(); }
 
     var gettext = l10n.gettext;
+    var $cloak = $('.cloak');
 
     function dismiss() {
-        var $overlay = $('.overlay.show');
-        if ($overlay.length) {
-            $overlay.removeClass('show');
-            $overlay.trigger('overlay_dismissed');
+        if ($cloak.is('.show')) {
+            $('.modal').removeClass('show');
+            $cloak.removeClass('show').trigger('overlay_dismissed');
         }
     }
 
-    z.body.on('touchmove', '.overlay', function(e) {
+    $cloak.on('touchmove', function(e) {
         e.preventDefault();
         e.stopPropagation();
-    }).on('click', function() {
-        $('#notification').removeClass('show');
-    });
-
-    z.page.on('loaded', dismiss);
-
-    // Dismiss overlay when we click outside of it.
-    z.body.on('click', '.overlay', function(e) {
+    }).on('click', function(e) {
         if ($(e.target).parent('body').length) {
             dismiss();
         }
+    }).on('dismiss', function() {
+        dismiss();
+    });
+
+    z.body.on('click', function() {
+        $('#notification').removeClass('show');
     }).on('keydown.overlayDismiss', function(e) {
         if (!utils.fieldFocused(e) && e.which == keys.ESCAPE) {
             e.preventDefault();
             dismiss();
         }
-    }).on('dismiss', '.overlay', dismiss)
-      .on('click', '.overlay .dismiss', utils._pd(dismiss))
-      .on('overlay_dismissed', function() {
+    }).on('overlay_dismissed', function() {
         z.body.removeClass('overlayed');
-    });
+    }).on('decloak', function() {
+        z.body.addClass('overlayed');
+        $cloak.addClass('show');
+    }).on('click', '.modal .btn-cancel, .modal .cancel', utils._pd(dismiss));
 
+    z.page.on('loaded', dismiss);
 });
 
 define('paginator', ['z'], function(z) {
@@ -2445,16 +2412,18 @@ define('ratings',
     }
 
     function flagReview($reviewEl) {
-        var $overlay = utils.makeOrGetOverlay('flag-review');
-        $overlay.html(nunjucks.env.getTemplate('ratings/report.html').render(require('helpers')));
-        $overlay.addClass('show').trigger('overlayloaded');
+        var $modal = $('.report-spam');
 
-        $overlay.one('click', '.cancel', utils._pd(function() {
-            $overlay.removeClass('show');
-        })).one('click', '.menu a', utils._pd(function(e) {
+        if (!$modal.length) {
+            z.page.append(
+                nunjucks.env.getTemplate('ratings/report.html').render(require('helpers'))
+            );
+            $modal = $('.report-spam');
+        }
+
+        $modal.one('click', '.menu a', utils._pd(function(e) {
             var $actionEl = $reviewEl.find('.actions .flag');
-
-            $overlay.removeClass('show');
+            $('.cloak').trigger('dismiss');
             $actionEl.text(gettext('Sending report...'));
             require('requests').post(
                 require('settings').api_url + urls.api.sign($reviewEl.data('report-uri')),
@@ -2466,6 +2435,9 @@ define('ratings',
                 notify({message: gettext('Report review operation failed')});
             });
         }));
+
+        z.body.trigger('decloak');
+        $modal.addClass('show');
     }
 
     function deleteReview(reviewEl, uri, app) {
@@ -2498,24 +2470,21 @@ define('ratings',
             return;
         }
 
-        var overlay = utils.makeOrGetOverlay('edit-review');
         var ctx = _.extend({slug: $senderEl.data('app')}, require('helpers'));
-        overlay.html(nunjucks.env.getTemplate('ratings/write-overlay.html').render(ctx));
-        overlay.find('select[name="rating"]').ratingwidget('large');
+        z.page.append(
+            nunjucks.env.getTemplate('ratings/write.html').render(ctx)
+        );
 
+        $('.compose-review').find('select[name="rating"]').ratingwidget('large');
         initCharCount();
-        overlay.addClass('show').trigger('overlayloaded');
-        overlay.on('click', '.cancel', function(e) {
-            e.preventDefault();
-            overlay.removeClass('show');
-        });
+
+        z.body.trigger('decloak');
+        $('.compose-review.modal').addClass('show');
     }
 
     z.page.on('click', '.review .actions a, #add-review', utils._pd(function(e) {
         var $this = $(this);
 
-        // data('action') only picks up once so we reference attr('data-action') since
-        // it changes if a user edits a review
         var action = $this.data('action');
         if (!action) return;
         var $review = $this.closest('.review');
@@ -2533,13 +2502,7 @@ define('ratings',
     })).on('loaded', function() {
         // Hijack <select> with stars.
         $('select[name="rating"]').ratingwidget();
-
         initCharCount();
-
-        // Show add review modal on app/app_slug/reviews/add for desktop.
-        if ($('.reviews.add-review').length) {
-            addOrEditYourReview($('#add-first-review'));
-        }
     });
 
     z.body.on('submit', 'form.add-review-form', function(e) {
@@ -2553,7 +2516,7 @@ define('ratings',
         data.app = app;
 
         // This must be below `.serialize()`. Disabled form controls aren't posted.
-        forms.toggleReviewFormState($this);
+        forms.toggleSubmitFormState($this);
 
         require('requests').post(
             urls.api.url('reviews'),
@@ -2568,15 +2531,10 @@ define('ratings',
             });
 
             notify({message: gettext('Your review was posted')});
-            var overlay = $this.closest('.overlay');
-            if (overlay.length) {
-                overlay.remove();
-                require('views').reload();
-            } else {
-                z.page.trigger('navigate', urls.reverse('app', [$this.data('app')]));
-            }
+            z.page.trigger('navigate', urls.reverse('app', [$this.data('app')]));
+
         }).fail(function() {
-            forms.toggleReviewFormState($this, true);
+            forms.toggleSubmitFormState($this, true);
             notify({message: gettext('Error while submitting review')});
         });
     });
@@ -2860,6 +2818,7 @@ var routes = [
     {pattern: '^/category/([^/<>"\']+)$', view_name: 'category'},
     {pattern: '^/category/([^/<>"\']+)/featured$', view_name: 'featured'},
     {pattern: '^/settings$', view_name: 'settings'},
+    {pattern: '^/feedback$', view_name: 'feedback'},
     {pattern: '^/purchases$', view_name: 'purchases'},
 
     {pattern: '^/privacy-policy$', view_name: 'privacy'},
@@ -3283,19 +3242,11 @@ define('utils', ['jquery', 'underscore'], function($, _) {
                 .value();
     }
 
-    function makeOrGetOverlay(id) {
-        $('#' + el).remove();
-        var el = $('<div class="overlay" id="' + id + '">');
-        document.body.appendChild(el[0]);
-        return el;
-    }
-
     return {
         '_pd': _pd,
         'escape_': escape_,
         'fieldFocused': fieldFocused,
         'getVars': getVars,
-        'makeOrGetOverlay': makeOrGetOverlay,
         'urlparams': urlparams,
         'urlunparam': urlunparam,
         'baseurl': baseurl,
@@ -16303,35 +16254,32 @@ var preauth_window;
 })();
 
 define('payments/payments',
-    ['capabilities', 'notification', 'requests', 'settings', 'urls'],
-    function(caps, notification, requests, settings, urls) {
+    ['capabilities', 'l10n', 'notification', 'requests', 'settings', 'urls'],
+    function(caps, l10n, notification, requests, settings, urls) {
 
     var notify = notification.notification;
+    var gettext = l10n.gettext;
 
-    var _abortCheck = false;
-    var _giveUp;
     function waitForPayment($def, product, webpayJWT, contribStatusURL) {
-        if (_abortCheck) {
-            return;
-        }
-        var selfArgs = arguments;
-        var nextCheck = setTimeout(function() {
-            waitForPayment.apply(this, selfArgs);
-        }, 2000);
-        if (!_giveUp) {
-            _giveUp = setTimeout(function() {
-                _abortCheck = true;
-                $def.reject(null, product, 'MKT_INSTALL_ERROR');
-            }, 60000);
-        }
-        requests.get(settings.api_url + urls.api.sign(contribStatusURL)).done(function(result) {
-            if (result.status == 'complete') {
-                clearTimeout(nextCheck);
-                clearTimeout(_giveUp);
-                $def.resolve(product);
-            }
-        }).fail(function() {
-            $def.reject(null, product, 'MKT_SERVER_ERROR');
+        var checkFunc = function() {
+            requests.get(settings.api_url + urls.api.sign(contribStatusURL)).done(function(result) {
+                if (result.status == 'complete') {
+                    $def.resolve(product);
+                }
+            }).fail(function() {
+                $def.reject(null, product, 'MKT_SERVER_ERROR');
+            });
+        };
+        var checker = setInterval(checkFunc, 3000);
+        var giveUp = setTimeout(function() {
+            $def.reject(null, product, 'MKT_INSTALL_ERROR');
+        }, 60000);
+
+        checkFunc();
+
+        $def.always(function() {
+            clearTimeout(checker);
+            clearTimeout(giveUp);
         });
     }
 
@@ -16356,10 +16304,9 @@ define('payments/payments',
         console.log('[payments] stubbed out navigator.mozPay()');
     }
 
-    function beginPurchase(prod) {
-        if (!prod) return;
+    function beginPurchase(product) {
+        if (!product) return;
         var $def = $.Deferred();
-        var product = prod;
 
         console.log('[payments] Initiating transaction');
 
@@ -16434,8 +16381,8 @@ define('views/abuse',
 });
 
 define('views/app',
-    ['l10n', 'utils', 'requests', 'urls', 'z', 'templates', 'overflow'],
-    function(l10n, utils, requests, urls, z, nunjucks, overflow) {
+    ['capabilities', 'l10n', 'utils', 'requests', 'urls', 'z', 'templates', 'overflow'],
+    function(caps, l10n, utils, requests, urls, z, nunjucks, overflow) {
     'use strict';
 
     z.page.on('click', '#product-rating-status .toggle', utils._pd(function() {
@@ -16458,8 +16405,18 @@ define('views/app',
         // When I click on the icon, append `#id=<id>` to the URL.
         window.location.hash = 'id=' + $('.product').data('product')['id'];
         e.stopPropagation();
-
     }));
+
+    // Init desktop abuse form modal trigger.
+    // The modal is responsive even if this handler isn't removed.
+    if (caps.widescreen) {
+        z.page.on('click', '.abuse .button', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            z.body.trigger('decloak');
+            $('.report-abuse.modal').addClass('show');
+        });
+    }
 
     return function(builder, args) {
         builder.start('detail/main.html', {slug: args[0]});
@@ -16577,6 +16534,64 @@ define('views/featured', ['urls', 'z'], function(urls, z) {
         });
     };
 
+});
+
+define('views/feedback',
+       ['buckets', 'capabilities', 'forms', 'l10n', 'notification', 'requests', 'z'],
+       function(buckets, caps, forms, l10n, notification, requests, z) {
+
+    var gettext = l10n.gettext;
+    var notify = notification.notification;
+    var nunjucks = require('templates');
+    var urls = require('urls');
+    var utils = require('utils');
+
+    z.page.on('submit', '.feedback-form', function(e) {
+        e.preventDefault();
+
+        var $this = $(this);
+        var data = utils.getVars($this.serialize());
+        data.chromeless = caps.chromeless ? 'Yes' : 'No';
+        data.from_url = window.location.pathname;
+        data.profile = buckets.get_profile();
+
+        forms.toggleSubmitFormState($this);
+
+        requests.post(urls.api.url('feedback'), data).done(function(data) {
+            $this.find('textarea').val('');
+            notify({message: gettext('Feedback submitted. Thanks!')});
+        }).fail(function() {
+            forms.toggleSubmitFormState($this, true);
+            notify({
+                message: gettext('There was a problem submitting your feedback. Try again soon.')
+            });
+        });
+    });
+
+    // Init desktop feedback form modal trigger.
+    // The modal is responsive even if this handler isn't removed.
+    if (caps.widescreen) {
+        z.page.on('loaded', function() {
+            z.page.append(
+                nunjucks.env.getTemplate('settings/feedback.html').render(require('helpers'))
+            );
+        });
+        z.body.on('click', '.submit-feedback', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            z.body.trigger('decloak');
+            $('.feedback.modal').addClass('show');
+        });
+    }
+
+    return function(builder, args) {
+        builder.start('settings/feedback.html').done(function() {
+            $('.feedback').removeClass('modal');
+        });
+
+        builder.z('type', 'leaf');
+        builder.z('title', gettext('Feedback'));
+    };
 });
 
 define('views/homepage',
@@ -16868,7 +16883,9 @@ define('views/app/abuse',
     });
 
     return function(builder, args) {
-        builder.start('detail/abuse.html', {slug: args[0]});
+        builder.start('detail/abuse.html', {slug: args[0]}).done(function() {
+            $('.report-abuse').removeClass('modal');
+        });
 
         builder.z('type', 'leaf');
         builder.z('parent', urls.reverse('app', [args[0]]));
@@ -16928,8 +16945,8 @@ define('views/app/ratings/add',
             return;
         }
 
-        builder.start('ratings/write.html', {
-            'slug': slug
+        builder.start('ratings/write.html', {'slug': slug}).done(function() {
+            $('.compose-review').removeClass('modal');
         });
 
         builder.z('type', 'leaf');
@@ -16989,8 +17006,10 @@ define('views/app/ratings/edit',
             return;
         }
 
-        builder.start('ratings/edit.html', {
-            'slug': slug
+        builder.start('ratings/edit.html', {'slug': slug}).done(function() {
+            $('.edit-review-form .cancel').click(utils._pd(function() {
+                z.page.trigger('navigate', urls.reverse('app', [slug]));
+            }));
         });
 
         // If we hit the API and find out that there's no review for the user,
@@ -17701,16 +17720,18 @@ var output = "";
 try {
 var includeTemplate = env.getTemplate("_macros/forms.html");
 output += includeTemplate.render(context.getVariables(), frame.push());
-output += "\n\n<div class=\"main report-abuse infobox c\">\n  <div>\n    <h1>";
-output += runtime.suppressValue((lineno = 4, colno = 10, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Report Abuse"])), env.autoesc);
-output += "</h1>\n    <form method=\"post\" class=\"abuse-form\" data-action=\"";
-output += runtime.suppressValue((lineno = 5, colno = 60, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "api"), "api", ["app_abuse"])), env.autoesc);
-output += "\">\n      <p class=\"brform simple-field c\">\n        <textarea rows=\"10\" cols=\"40\" name=\"text\" required></textarea>\n      </p>\n      <p class=\"form-footer\">\n        ";
-output += runtime.suppressValue((lineno = 10, colno = 23, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "potato_captcha"), "potato_captcha", [])), env.autoesc);
+output += "\n\n<div class=\"main report-abuse modal c\">\n  <div>\n    <div class=\"secondary-header\">\n      <h2>";
+output += runtime.suppressValue((lineno = 5, colno = 12, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Report Abuse"])), env.autoesc);
+output += "</h2>\n      <a href=\"#\" class=\"close btn-cancel\">";
+output += runtime.suppressValue((lineno = 6, colno = 45, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Close"])), env.autoesc);
+output += "</a>\n    </div>\n    <form method=\"post\" class=\"abuse-form form-modal\" data-action=\"";
+output += runtime.suppressValue((lineno = 8, colno = 71, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "api"), "api", ["app_abuse"])), env.autoesc);
+output += "\">\n      <p class=\"brform simple-field c\">\n        <textarea name=\"text\" required></textarea>\n      </p>\n      <p class=\"form-footer\">\n        ";
+output += runtime.suppressValue((lineno = 13, colno = 23, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "potato_captcha"), "potato_captcha", [])), env.autoesc);
 output += "\n        <input type=\"hidden\" name=\"app\" value=\"";
 output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "slug"), env.autoesc);
 output += "\">\n        <button type=\"submit\">";
-output += runtime.suppressValue((lineno = 12, colno = 32, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Send Report"])), env.autoesc);
+output += runtime.suppressValue((lineno = 15, colno = 32, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Send Report"])), env.autoesc);
 output += "</button>\n      </p>\n    </form>\n  </div>\n</div>\n";
 return output;
 } catch (e) {
@@ -17925,18 +17946,18 @@ t_14 += "/\">\n            ";
 t_14 += runtime.suppressValue((lineno = 152, colno = 14, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Statistics"])), env.autoesc);
 t_14 += "</a></li>\n        ";
 }
-t_14 += "\n        <li><a class=\"button alt\" href=\"";
-t_14 += runtime.suppressValue((lineno = 154, colno = 44, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "url"), "url", ["app/abuse",[runtime.contextOrFrameLookup(context, frame, "slug")]])), env.autoesc);
+t_14 += "\n        <li class=\"abuse\">\n          <a class=\"button alt\" href=\"";
+t_14 += runtime.suppressValue((lineno = 155, colno = 42, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "url"), "url", ["app/abuse",[runtime.contextOrFrameLookup(context, frame, "slug")]])), env.autoesc);
 t_14 += "\">\n          ";
-t_14 += runtime.suppressValue((lineno = 155, colno = 12, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Report Abuse"])), env.autoesc);
-t_14 += "</a></li>\n      </ul>\n      ";
+t_14 += runtime.suppressValue((lineno = 156, colno = 12, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Report Abuse"])), env.autoesc);
+t_14 += "</a>\n        </li>\n      </ul>\n      ";
 if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "settings")),"payment_enabled", env.autoesc)) {
 t_14 += "\n        ";
 if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "this")),"upsell", env.autoesc)) {
 t_14 += "\n          <a id=\"upsell\" class=\"button alt\"\n             href=\"";
 t_14 += runtime.suppressValue(env.getFilter("urlparams")(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "this")),"upsell", env.autoesc)),"url", env.autoesc),runtime.makeKeywordArgs({"src": "mkt-detail-upsell"})), env.autoesc);
 t_14 += "\">\n             <span class=\"avail\">";
-t_14 += runtime.suppressValue((lineno = 161, colno = 35, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Premium version available"])), env.autoesc);
+t_14 += runtime.suppressValue((lineno = 163, colno = 35, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Premium version available"])), env.autoesc);
 t_14 += "</span>\n             <img class=\"icon\" src=\"";
 t_14 += runtime.suppressValue(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "upsell")),"icons", env.autoesc)),16, env.autoesc), env.autoesc);
 t_14 += "\">\n             <span class=\"name\">";
@@ -17949,14 +17970,17 @@ t_14 += "\n    ";
 return t_14;
 }
 ,null,null,null), env.autoesc);
-output += "\n  </div>\n</section>\n\n<div class=\"content_ratings\">\n  ";
+output += "\n  </div>\n</section>\n\n";
+var includeTemplate = env.getTemplate("detail/abuse.html");
+output += includeTemplate.render(context.getVariables(), frame.push());
+output += "\n\n<div class=\"content_ratings\">\n  ";
 output += runtime.suppressValue(env.getExtension("defer")["run"](context,runtime.makeKeywordArgs({"url": t_1,"as": "app","key": runtime.contextOrFrameLookup(context, frame, "slug")}),function() {var t_15 = "";t_15 += "\n    ";
 if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "this")),"content_ratings", env.autoesc)) {
 t_15 += "\n      <div class=\"content-ratings-wrapper main infobox c\">\n        <div>\n          <h3>\n            ";
-t_15 += runtime.suppressValue((lineno = 177, colno = 14, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Rating by the <a href=\"{dejus_url}\" title=\"{dejus}\">DEJUS</a>",runtime.makeKeywordArgs({"dejus_url": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "settings")),"DEJUS_URL", env.autoesc),"dejus": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "settings")),"DEJUS", env.autoesc)})])), env.autoesc);
+t_15 += runtime.suppressValue((lineno = 181, colno = 14, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Rating by the <a href=\"{dejus_url}\" title=\"{dejus}\">DEJUS</a>",runtime.makeKeywordArgs({"dejus_url": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "settings")),"DEJUS_URL", env.autoesc),"dejus": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "settings")),"DEJUS", env.autoesc)})])), env.autoesc);
 t_15 += "\n          </h3>\n          <div class=\"content-ratings\">\n            ";
 frame = frame.push();
-var t_17 = (lineno = 182, colno = 54, runtime.callWrap(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "this")),"content_ratings", env.autoesc)),"values", env.autoesc), "this[\"content_ra\"][\"values\"]", []));
+var t_17 = (lineno = 186, colno = 54, runtime.callWrap(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "this")),"content_ratings", env.autoesc)),"values", env.autoesc), "this[\"content_ra\"][\"values\"]", []));
 for(var t_16=0; t_16 < t_17.length; t_16++) {
 var t_18 = t_17[t_16];
 frame.set("rating", t_18);
@@ -18130,31 +18154,6 @@ return {
 root: root
 };
 })();
-templates["feedback.html"] = (function() {function root(env, context, frame, runtime) {
-var lineno = null;
-var colno = null;
-var output = "";
-try {
-var includeTemplate = env.getTemplate("_macros/forms.html");
-output += includeTemplate.render(context.getVariables(), frame.push());
-output += "\n\n<section class=\"bare\">\n  <header class=\"header\">\n    <h1 class=\"title\">";
-output += runtime.suppressValue((lineno = 4, colno = 24, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Feedback"])), env.autoesc);
-output += "</h1>\n    <a href=\"#\" class=\"header-button icon cancel dismiss\">";
-output += runtime.suppressValue((lineno = 5, colno = 60, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Cancel"])), env.autoesc);
-output += "</a>\n  </header>\n  <form class=\"container form-grid feedback-form\" method=\"post\">\n    <div class=\"brform simple-field c\">\n      <textarea rows=\"4\" cols=\"40\" name=\"feedback\" required></textarea>\n    </div>\n    ";
-output += runtime.suppressValue((lineno = 11, colno = 19, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "potato_captcha"), "potato_captcha", [])), env.autoesc);
-output += "\n    <footer class=\"form-footer c\">\n      <button type=\"submit\">";
-output += runtime.suppressValue((lineno = 13, colno = 30, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Send"])), env.autoesc);
-output += "</button>\n    </footer>\n  </form>\n</section>\n";
-return output;
-} catch (e) {
-  runtime.handleError(e, lineno, colno);
-}
-}
-return {
-root: root
-};
-})();
 templates["footer.html"] = (function() {function root(env, context, frame, runtime) {
 var lineno = null;
 var colno = null;
@@ -18215,10 +18214,10 @@ output += "</label>\n    <div id=\"site-search-suggestions\" data-src=\"\"></div
 output += runtime.suppressValue((lineno = 8, colno = 43, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Search"])), env.autoesc);
 output += "\" required\n         value=\"";
 output += runtime.suppressValue(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "z")),"context", env.autoesc)),"search", env.autoesc) || "", env.autoesc);
-output += "\">\n    <a href=\"#\" class=\"search-clear\" title=\"";
-output += runtime.suppressValue((lineno = 10, colno = 46, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Clear"])), env.autoesc);
+output += "\">\n    <a href=\"#\" class=\"close search-clear\" title=\"";
+output += runtime.suppressValue((lineno = 10, colno = 52, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Clear"])), env.autoesc);
 output += "\">";
-output += runtime.suppressValue((lineno = 10, colno = 60, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Clear"])), env.autoesc);
+output += runtime.suppressValue((lineno = 10, colno = 66, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Clear"])), env.autoesc);
 output += "</a>\n  </form>\n  <span class=\"flex-span\"></span>\n  <div class=\"act-tray\">\n    <a href=\"";
 output += runtime.suppressValue((lineno = 14, colno = 17, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "url"), "url", ["settings"])), env.autoesc);
 output += "\" class=\"header-button icon settings\" title=\"";
@@ -18367,34 +18366,38 @@ if(!frame.parent) {
 context.setVariable("this", t_2);
 context.addExport("this");
 }
-t_1 += "\n  <form class=\"friendly main c edit-review-form\" data-uri=\"";
+t_1 += "\n  <div class=\"main compose-review\">\n    <header class=\"secondary-header\">\n      <h2>";
+t_1 += runtime.suppressValue((lineno = 4, colno = 12, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Edit Review"])), env.autoesc);
+t_1 += "</h2>\n    </header>\n    <form class=\"edit-review-form form-modal\" data-uri=\"";
 t_1 += runtime.suppressValue(runtime.memberLookup((t_2),"resource_uri", env.autoesc), env.autoesc);
 t_1 += "\" data-slug=\"";
 t_1 += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "slug"), env.autoesc);
-t_1 += "\">\n    <p class=\"brform simple-field rating c\">\n      <label for=\"id_rating\">";
-t_1 += runtime.suppressValue((lineno = 4, colno = 31, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Rate:"])), env.autoesc);
-t_1 += "</label>\n      <select name=\"rating\" id=\"id_rating\" required>\n        ";
+t_1 += "\">\n      <p class=\"brform simple-field rating c\">\n        <label for=\"id_rating\">";
+t_1 += runtime.suppressValue((lineno = 8, colno = 33, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Rate:"])), env.autoesc);
+t_1 += "</label>\n        <select name=\"rating\" id=\"id_rating\" required>\n          ";
 frame = frame.push();
-var t_4 = (lineno = 6, colno = 23, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "range"), "range", [1,6]));
+var t_4 = (lineno = 10, colno = 25, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "range"), "range", [1,6]));
 for(var t_3=0; t_3 < t_4.length; t_3++) {
 var t_5 = t_4[t_3];
 frame.set("i", t_5);
-t_1 += "\n          <option value=\"";
+t_1 += "\n            <option value=\"";
 t_1 += runtime.suppressValue(t_5, env.autoesc);
 t_1 += "\"";
 t_1 += runtime.suppressValue((t_5 == runtime.memberLookup((t_2),"rating", env.autoesc)?" selected":""), env.autoesc);
 t_1 += ">";
 t_1 += runtime.suppressValue(t_5, env.autoesc);
-t_1 += "</option>\n        ";
+t_1 += "</option>\n          ";
 }
 frame = frame.pop();
-t_1 += "\n      </select>\n    </p>\n    <p class=\"brform simple-field c\">\n      <textarea id=\"id_body\" rows=\"2\" cols=\"40\" name=\"body\" required maxlength=\"150\">";
+t_1 += "\n        </select>\n      </p>\n      <p class=\"brform simple-field c\">\n        <textarea id=\"id_body\" rows=\"2\" cols=\"40\" name=\"body\" required maxlength=\"150\">";
 t_1 += runtime.suppressValue(runtime.memberLookup((t_2),"body", env.autoesc), env.autoesc);
-t_1 += "</textarea>\n    </p>\n    <footer class=\"form-footer c only-logged-in\">\n      <button type=\"submit\">";
-t_1 += runtime.suppressValue((lineno = 15, colno = 30, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Save Changes"])), env.autoesc);
-t_1 += "</button>\n      <div class=\"char-count\" data-for=\"id_body\"></div>\n    </footer>\n    <footer class=\"form-footer c only-logged-out\">\n      <p>";
-t_1 += runtime.suppressValue((lineno = 19, colno = 11, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Only logged in users may edit reviews."])), env.autoesc);
-t_1 += "</p>\n    </footer>\n  </form>\n";
+t_1 += "</textarea>\n        <div class=\"char-count\" data-for=\"id_body\"></div>\n      </p>\n      <footer class=\"form-footer buttons c only-logged-in\">\n        <div class=\"two-up\"><a href=\"#\" class=\"alt cancel button\">";
+t_1 += runtime.suppressValue((lineno = 20, colno = 68, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Cancel"])), env.autoesc);
+t_1 += "</a></div>\n        <div class=\"two-up\"><button type=\"submit\">";
+t_1 += runtime.suppressValue((lineno = 21, colno = 52, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Submit"])), env.autoesc);
+t_1 += "</button></div>\n      </footer>\n      <footer class=\"form-footer c only-logged-out\">\n        <p>";
+t_1 += runtime.suppressValue((lineno = 24, colno = 13, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Only logged in users may edit reviews."])), env.autoesc);
+t_1 += "</p>\n      </footer>\n    </form>\n  </div>\n";
 return t_1;
 }
 ,function() {var t_6 = "";t_6 += "\n  <p class=\"spinner alt\"></p>\n";
@@ -18484,39 +18487,19 @@ var lineno = null;
 var colno = null;
 var output = "";
 try {
-output += "<section>\n  <h3>";
-output += runtime.suppressValue((lineno = 1, colno = 8, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Please select a reason:"])), env.autoesc);
-output += "</h3>\n  <ul class=\"menu alt\">\n    <li>\n      <a class=\"button alt\" href=\"#review_flag_reason_spam\">\n        ";
-output += runtime.suppressValue((lineno = 5, colno = 10, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Spam or otherwise non-review content"])), env.autoesc);
+output += "<div class=\"main report-spam modal\">\n  <header class=\"secondary-header\">\n    <h2>";
+output += runtime.suppressValue((lineno = 2, colno = 10, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Please select a reason:"])), env.autoesc);
+output += "</h2>\n    <a href=\"#\" class=\"close btn-cancel\">";
+output += runtime.suppressValue((lineno = 3, colno = 43, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Cancel"])), env.autoesc);
+output += "</a>\n  </header>\n  <ul class=\"menu alt\">\n    <li>\n      <a class=\"button alt\" href=\"#review_flag_reason_spam\">\n        ";
+output += runtime.suppressValue((lineno = 8, colno = 10, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Spam or otherwise non-review content"])), env.autoesc);
 output += "\n      </a>\n    </li>\n    <li>\n      <a class=\"button alt\" href=\"#review_flag_reason_language\">\n        ";
-output += runtime.suppressValue((lineno = 10, colno = 10, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Inappropriate language/dialog"])), env.autoesc);
+output += runtime.suppressValue((lineno = 13, colno = 10, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Inappropriate language/dialog"])), env.autoesc);
 output += "\n      </a>\n    </li>\n    <li>\n      <a class=\"button alt\" href=\"#review_flag_reason_bug_support\">\n        ";
-output += runtime.suppressValue((lineno = 15, colno = 10, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Misplaced bug report or support request"])), env.autoesc);
+output += runtime.suppressValue((lineno = 18, colno = 10, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Misplaced bug report or support request"])), env.autoesc);
 output += "\n      </a>\n    </li>\n  </ul>\n  <footer>\n    <button class=\"button cancel fat\">";
-output += runtime.suppressValue((lineno = 20, colno = 40, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Cancel"])), env.autoesc);
-output += "</button>\n  </footer>\n</section>\n";
-return output;
-} catch (e) {
-  runtime.handleError(e, lineno, colno);
-}
-}
-return {
-root: root
-};
-})();
-templates["ratings/write-overlay.html"] = (function() {function root(env, context, frame, runtime) {
-var lineno = null;
-var colno = null;
-var output = "";
-try {
-output += "<section class=\"bare\">\n  <header class=\"header\">\n    <h1 class=\"title\">";
-output += runtime.suppressValue((lineno = 2, colno = 24, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Write a Review"])), env.autoesc);
-output += "</h1>\n    <a href=\"#\" class=\"header-button icon cancel dismiss\">";
-output += runtime.suppressValue((lineno = 3, colno = 60, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Cancel"])), env.autoesc);
-output += "</a>\n  </header>\n  ";
-var includeTemplate = env.getTemplate("ratings/write.html");
-output += includeTemplate.render(context.getVariables(), frame.push());
-output += "\n</section>\n";
+output += runtime.suppressValue((lineno = 23, colno = 40, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Cancel"])), env.autoesc);
+output += "</button>\n  </footer>\n</div>\n";
 return output;
 } catch (e) {
   runtime.handleError(e, lineno, colno);
@@ -18531,28 +18514,34 @@ var lineno = null;
 var colno = null;
 var output = "";
 try {
-output += "<form class=\"friendly main add-review-form\" data-app=\"";
+output += "<div class=\"main compose-review modal\">\n  <header class=\"secondary-header\">\n    <h2>";
+output += runtime.suppressValue((lineno = 2, colno = 10, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Write a Review"])), env.autoesc);
+output += "</h2>\n    <a href=\"#\" class=\"close btn-cancel\">";
+output += runtime.suppressValue((lineno = 3, colno = 43, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Cancel"])), env.autoesc);
+output += "</a>\n  </header>\n  <form class=\"add-review-form form-modal\" data-app=\"";
 output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "slug"), env.autoesc);
-output += "\">\n  <p class=\"brform simple-field rating c\">\n    <label for=\"id_rating\">";
-output += runtime.suppressValue((lineno = 2, colno = 29, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Rate:"])), env.autoesc);
-output += "</label>\n    <select name=\"rating\" id=\"id_rating\" required>\n        ";
+output += "\">\n    <p class=\"brform simple-field rating c\">\n      <label for=\"id_rating\">";
+output += runtime.suppressValue((lineno = 7, colno = 31, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Rate:"])), env.autoesc);
+output += "</label>\n      <select name=\"rating\" id=\"id_rating\" required>\n          ";
 frame = frame.push();
-var t_2 = (lineno = 4, colno = 23, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "range"), "range", [1,6]));
+var t_2 = (lineno = 9, colno = 25, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "range"), "range", [1,6]));
 for(var t_1=0; t_1 < t_2.length; t_1++) {
 var t_3 = t_2[t_1];
 frame.set("i", t_3);
-output += "\n          <option value=\"";
+output += "\n            <option value=\"";
 output += runtime.suppressValue(t_3, env.autoesc);
 output += "\">";
 output += runtime.suppressValue(t_3, env.autoesc);
-output += "</option>\n        ";
+output += "</option>\n          ";
 }
 frame = frame.pop();
-output += "\n    </select>\n  </p>\n  <p class=\"brform simple-field c\">\n    <textarea id=\"id_body\" rows=\"2\" cols=\"40\" name=\"body\" required maxlength=\"150\"></textarea>\n  </p>\n  <footer class=\"form-footer c only-logged-in\">\n    <button type=\"submit\">";
-output += runtime.suppressValue((lineno = 13, colno = 28, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Submit"])), env.autoesc);
-output += "</button>\n    <div class=\"char-count\" data-for=\"id_body\"></div>\n  </footer>\n  <footer class=\"form-footer c only-logged-out\">\n    <p>";
-output += runtime.suppressValue((lineno = 17, colno = 9, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Only logged in users may edit reviews."])), env.autoesc);
-output += "</p>\n  </footer>\n</form>";
+output += "\n      </select>\n    </p>\n    <p class=\"brform simple-field c\">\n      <textarea id=\"id_body\" rows=\"2\" cols=\"40\" name=\"body\" required maxlength=\"150\"></textarea>\n      <div class=\"char-count\" data-for=\"id_body\"></div>\n    </p>\n    <footer class=\"form-footer buttons c only-logged-in\">\n      <div class=\"two-up\"><a href=\"#\" class=\"alt cancel button\">";
+output += runtime.suppressValue((lineno = 19, colno = 66, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Cancel"])), env.autoesc);
+output += "</a></div>\n      <div class=\"two-up\"><button type=\"submit\">";
+output += runtime.suppressValue((lineno = 20, colno = 50, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Submit"])), env.autoesc);
+output += "</button></div>\n    </footer>\n    <footer class=\"form-footer c only-logged-out\">\n      <p>";
+output += runtime.suppressValue((lineno = 23, colno = 11, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Only logged in users may edit reviews."])), env.autoesc);
+output += "</p>\n    </footer>\n  </form>\n</div>\n";
 return output;
 } catch (e) {
   runtime.handleError(e, lineno, colno);
@@ -18616,6 +18605,37 @@ return t_7;
 }
 ), env.autoesc);
 output += "\n</section>\n";
+return output;
+} catch (e) {
+  runtime.handleError(e, lineno, colno);
+}
+}
+return {
+root: root
+};
+})();
+templates["settings/feedback.html"] = (function() {function root(env, context, frame, runtime) {
+var lineno = null;
+var colno = null;
+var output = "";
+try {
+var includeTemplate = env.getTemplate("_macros/forms.html");
+output += includeTemplate.render(context.getVariables(), frame.push());
+output += "\n";
+var t_1 = "feedback";
+frame.set("current_page", t_1);
+if(!frame.parent) {
+context.setVariable("current_page", t_1);
+context.addExport("current_page");
+}
+output += "\n\n<div class=\"main feedback modal c\">\n  <div>\n    ";
+var includeTemplate = env.getTemplate("settings/nav.html");
+output += includeTemplate.render(context.getVariables(), frame.push());
+output += "\n    <form method=\"post\" class=\"feedback-form form-modal\">\n      <p class=\"brform simple-field c\">\n        <textarea name=\"feedback\" required></textarea>\n      </p>\n      <p class=\"form-footer\">\n        ";
+output += runtime.suppressValue((lineno = 11, colno = 23, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "potato_captcha"), "potato_captcha", [])), env.autoesc);
+output += "\n        <button type=\"submit\">";
+output += runtime.suppressValue((lineno = 12, colno = 32, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Send"])), env.autoesc);
+output += "</button>\n      </p>\n    </form>\n  </div>\n</div>\n";
 return output;
 } catch (e) {
   runtime.handleError(e, lineno, colno);
@@ -18743,9 +18763,13 @@ output += "\n\n<menu class=\"secondary-header toggles c\">\n  ";
 output += runtime.suppressValue((lineno = 6, colno = 7, runtime.callWrap(macro_t_1, "_url", ["settings",(lineno = 6, colno = 21, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Account"]))])), env.autoesc);
 output += "\n  ";
 output += runtime.suppressValue((lineno = 7, colno = 7, runtime.callWrap(macro_t_1, "_url", ["purchases",(lineno = 7, colno = 22, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["My Apps"]))])), env.autoesc);
-output += "\n  <li><a class=\"submit-feedback\" href=\"#\">";
-output += runtime.suppressValue((lineno = 8, colno = 44, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Feedback"])), env.autoesc);
-output += "</a></li>\n</menu>\n";
+output += "\n  ";
+output += runtime.suppressValue((lineno = 8, colno = 7, runtime.callWrap(macro_t_1, "_url", ["feedback",(lineno = 8, colno = 21, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Feedback"]))])), env.autoesc);
+output += "\n</menu>\n<div class=\"secondary-header hide-on-mobile\">\n  <h2>";
+output += runtime.suppressValue((lineno = 11, colno = 8, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Feedback"])), env.autoesc);
+output += "</h2>\n  <a href=\"#\" class=\"close btn-cancel\">";
+output += runtime.suppressValue((lineno = 12, colno = 41, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Close"])), env.autoesc);
+output += "</a>\n</div>\n";
 return output;
 } catch (e) {
   runtime.handleError(e, lineno, colno);
