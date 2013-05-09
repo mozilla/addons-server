@@ -35,7 +35,8 @@ notify = setup_notifier()
 
 @task
 def create_virtualenv(ctx):
-    status = ctx.local('git diff HEAD@{1} HEAD --name-only')
+    with ctx.lcd(settings.SRC_DIR):
+        status = ctx.local('git diff HEAD@{1} HEAD --name-only')
     if 'requirements/' in status.out:
         venv = VIRTUALENV
         if not venv.startswith('/data'):
