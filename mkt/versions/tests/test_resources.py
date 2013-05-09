@@ -1,4 +1,3 @@
-from mock import patch
 from nose.tools import eq_
 
 from mkt.api.tests.test_oauth import BaseOAuth
@@ -31,8 +30,7 @@ class TestVersionResource(BaseOAuth):
         eq_(bundle.data['latest'], True)
 
     def test_version_not_latest(self):
-        new_version = Version.objects.create(addon=self.app, version='1.1')
-        with patch.object(self.app, '_latest_version', new_version):
-            bundle = self._get_bundle()
-            eq_(bundle.data['name'], '1.0')
-            eq_(bundle.data['latest'], False)
+        Version.objects.create(addon=self.app, version='1.1')
+        bundle = self._get_bundle()
+        eq_(bundle.data['name'], '1.0')
+        eq_(bundle.data['latest'], False)
