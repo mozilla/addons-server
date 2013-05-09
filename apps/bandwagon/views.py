@@ -225,6 +225,7 @@ def collection_detail_json(request, username, slug):
     c = get_collection(request, username, slug)
     if not (c.listed or acl.check_collection_ownership(request, c)):
         raise PermissionDenied
+    # We evaluate the QuerySet with `list` to work around bug 866454.
     addons_dict = [addon_to_dict(a) for a in list(c.addons.valid())]
     return {
         'name': c.name,
