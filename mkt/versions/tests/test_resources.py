@@ -15,7 +15,7 @@ class TestVersionResource(BaseOAuth):
         self.app = Webapp.objects.get(pk=337141)
         self.request = RequestFactory().get('/')
         self.resource = VersionResource()
-        self.version = Version.objects.create(addon=self.app, version='1.0')
+        self.version = self.app.latest_version
 
     def _get_bundle(self):
         bundle = self.resource.build_bundle(obj=self.version,
