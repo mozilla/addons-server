@@ -204,7 +204,7 @@ class EditorQueueTable(SQLTable, ItemStateTable):
     def render_platforms(self, row):
         icons = []
         html = u'<div class="platform-icon plat-sprite-%s" title="%s"></div>'
-        for platform in row.file_platforms:
+        for platform in row.file_platform_ids:
             icons.append(html % (amo.PLATFORMS[int(platform)].shortname,
                                  amo.PLATFORMS[int(platform)].name))
         return u''.join(icons)

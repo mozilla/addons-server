@@ -21,25 +21,29 @@ from users.models import UserProfile
 
 def create_addon_file(name, version_str, addon_status, file_status,
                       platform=amo.PLATFORM_ALL, application=amo.FIREFOX,
-                      admin_review=False, addon_type=amo.ADDON_EXTENSION):
-    app, created = Application.objects.get_or_create(id=application.id,
-                                                     guid=application.guid)
-    app_vr, created = AppVersion.objects.get_or_create(application=app,
-                                                       version='1.0')
-    pl, created = Platform.objects.get_or_create(id=platform.id)
+                      admin_review=False, addon_type=amo.ADDON_EXTENSION,
+                      created=None):
+    app, created_ = Application.objects.get_or_create(id=application.id,
+                                                      guid=application.guid)
+    app_vr, created_ = AppVersion.objects.get_or_create(application=app,
+                                                        version='1.0')
+    pl, created_ = Platform.objects.get_or_create(id=platform.id)
     try:
         ad = Addon.objects.get(name__localized_string=name)
     except Addon.DoesNotExist:
         ad = Addon.objects.create(type=addon_type, name=name)
     if admin_review:
         ad.update(admin_review=True)
-    vr, created = Version.objects.get_or_create(addon=ad, version=version_str)
-    va, created = ApplicationsVersions.objects.get_or_create(
+    vr, created_ = Version.objects.get_or_create(addon=ad, version=version_str)
+    va, created_ = ApplicationsVersions.objects.get_or_create(
         version=vr, application=app, min=app_vr, max=app_vr)
     file_ = File.objects.create(version=vr, filename=u"%s.xpi" % name,
                                 platform=pl, status=file_status)
     # Update status *after* there are files:
     Addon.objects.get(pk=ad.id).update(status=addon_status)
+    if created:
+        vr.update(created=created)
+        file_.update(created=created)
     return {'addon': ad, 'version': vr, 'file': file_}
 
 
@@ -62,12 +66,11 @@ class TestQueue(amo.tests.TestCase):
     __test__ = False  # this is an abstract test case
 
     def test_latest_version(self):
-        self.new_file(version=u'0.1')
-        self.new_file(version=u'0.2')
+        self.new_file(version=u'0.1', created=self.days_ago(2))
+        self.new_file(version=u'0.2', created=self.days_ago(1))
         latest = self.new_file(version=u'0.3')
         row = self.Queue.objects.get()
         eq_(row.latest_version, '0.3')
-        eq_(row.latest_version_id, latest['version'].id)
 
     def test_file_platforms(self):
         # Here's a dupe platform in another version:
