@@ -74,7 +74,8 @@ class TestQueue(amo.tests.TestCase):
 
     def test_file_platforms(self):
         # Here's a dupe platform in another version:
-        self.new_file(version=u'0.1', platform=amo.PLATFORM_MAC)
+        self.new_file(version=u'0.1', platform=amo.PLATFORM_MAC,
+                      created=self.days_ago(1))
         self.new_file(version=u'0.2', platform=amo.PLATFORM_LINUX)
         self.new_file(version=u'0.2', platform=amo.PLATFORM_MAC)
         row = self.Queue.objects.get()
