@@ -36,7 +36,6 @@ django-statsd-mozilla==0.3.8.6
 django-storages==1.1.4
 django-tastypie==0.9.11
 easy-thumbnails==1.1
-elasticutils==0.5
 fastchardet==0.2.0
 feedparser==5.0.1
 fudge==1.0.3
@@ -62,7 +61,7 @@ oauth2==1.5.211
 oauthlib==0.4.0
 ordereddict==1.1
 PyBrowserID==0.6
-pyelasticsearch==0.4.1
+pyelasticsearch==0.5
 pyes==0.16.0
 PyJWT-mozilla==0.1.4.2
 PyMySQL==0.5
@@ -77,6 +76,7 @@ receipts==0.2.6
 requests==1.2.0
 schematic==0.2
 signing_clients==0.1.5
+six==1.3.0
 slumber==0.5.3
 SQLAlchemy==0.7.5
 statsd==1.0.0
@@ -91,6 +91,7 @@ tastypie-services==0.2.2
 -e git://github.com/miracle2k/django-tables.git@546f339308103880c823b2056830fcdc9220edd0#egg=django-tables
 -e git://github.com/washort/gelato.models.git@6297036871419651032f7724b6b536c19a228ec6#egg=gelato.models
 -e git://github.com/mozilla/happyforms.git@729612c2a824a7e8283d416d2084bf506c671e24#egg=happyforms
+-e git://github.com/mozilla/elasticutils.git@5bde211443dbe524d940974d477119f51e3ac357#egg=elasticutils
 # Temporary fork.
 -e git://github.com/jsocol/jingo-minify.git@475b6955e741a0a31692e721ceb34a8a4c1b2194#egg=jingo-minify
 -e git://github.com/mozilla/nuggets.git@96e80a64aa4bfcfef4f43fc3ab6966450ccd7325#egg=nuggets

@@ -39,7 +39,7 @@ from applications.models import Application, AppVersion
 from bandwagon.models import Collection
 from files.helpers import copyfileobj
 from files.models import File, Platform
-from lib.es.signals import reset, process
+from lib.es.signals import process, reset
 from market.models import AddonPremium, Price, PriceCurrency
 from translations.models import Translation
 from versions.models import ApplicationsVersions, Version
@@ -200,7 +200,7 @@ def stop_es_mock():
     for patch in ES_patchers:
         patch.stop()
 
-    if hasattr(elasticutils._local, 'es'):
+    if hasattr(elasticutils, '_local') and hasattr(elasticutils._local, 'es'):
         delattr(elasticutils._local, 'es')
 
 
@@ -421,7 +421,7 @@ class TestCase(RedisTest, test_utils.TestCase):
         assert 'API-Status' in res['Access-Control-Expose-Headers']
         assert 'API-Version' in res['Access-Control-Expose-Headers']
 
-        verbs = map(str.upper, verbs) + ['OPTIONS', ]
+        verbs = map(str.upper, verbs) + ['OPTIONS']
         actual = res['Access-Control-Allow-Methods'].split(', ')
         self.assertSetEqual(verbs, actual)
         eq_(res['Access-Control-Allow-Headers'],

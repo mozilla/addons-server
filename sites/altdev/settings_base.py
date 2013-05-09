@@ -153,6 +153,7 @@ BUILDER_VERSIONS_URL = "https://builder-addons-dev.allizom.org/repackage/sdk-ver
 
 
 ES_HOSTS = splitstrip(private.ES_HOSTS)
+ES_URLS = ['http://%s' % h for h in ES_HOSTS]
 ES_INDEXES = {'default': 'marketplace_altdev',
               'update_counts': 'marketplace_altdev_stats',
               'download_counts': 'marketplace_altdev_stats'}

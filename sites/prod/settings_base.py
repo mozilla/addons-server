@@ -137,6 +137,7 @@ CRONJOB_LOCK_PREFIX = 'addons'
 BUILDER_SECRET_KEY = private.BUILDER_SECRET_KEY
 
 ES_HOSTS = splitstrip(private.ES_HOSTS)
+ES_URLS = ['http://%s' % h for h in ES_HOSTS]
 ES_INDEXES = {'default': 'addons',
               'update_counts': 'addons_stats',
               'download_counts': 'addons_stats'}

@@ -1,11 +1,12 @@
 import logging
 from operator import itemgetter
 
+from django.conf import settings as dj_settings
+
 from django_statsd.clients import statsd
+from elasticutils import S as EU_S
 from pyes import ES as pyes_ES
 from pyes import VERSION as PYES_VERSION
-
-from django.conf import settings as dj_settings
 
 
 log = logging.getLogger('z.es')
@@ -332,3 +333,34 @@ class ObjectSearchResults(SearchResults):
     def __iter__(self):
         objs = dict((obj.id, obj) for obj in self.objects)
         return (objs[id] for id in self.ids if id in objs)
+
+
+class TempS(EU_S):
+    # Temporary class override to mimic ElasticUtils v0.5 behavior.
+    # TODO: Remove this when we've moved mkt to its own index.
+
+    def _do_search(self):
+        """
+        Perform the search, then convert that raw format into a SearchResults
+        instance and return it.
+        """
+        if not self._results_cache:
+            hits = self.raw()
+            if self.as_list:
+                ResultClass = ListSearchResults
+            elif self.as_dict or self.type is None:
+                ResultClass = DictSearchResults
+            else:
+                ResultClass = ObjectSearchResults
+            self._results_cache = ResultClass(self.type, hits, self.fields)
+        return self._results_cache
+
+    def _build_query(self):
+        query = super(TempS, self)._build_query()
+        if 'fields' in query:
+            if 'id' not in query['fields']:
+                query['fields'].append('id')
+        else:
+            query['fields'] = ['id']
+
+        return query
