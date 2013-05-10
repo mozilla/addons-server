@@ -394,6 +394,7 @@ class TestFilterMobileCompat(amo.tests.ESTestCase):
     """
 
     def setUp(self):
+        raise SkipTest
         self.app_name = 'Basta Pasta'
         self.webapp = Webapp.objects.create(name=self.app_name,
                                             type=amo.ADDON_WEBAPP,
