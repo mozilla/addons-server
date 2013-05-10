@@ -166,8 +166,7 @@ class TestPaymentAccount(amo.tests.TestCase):
             something_other_value='not a package key')
         eq_(res.name, 'new name')
 
-        self.client.call_uri.assert_called_with(
-            uri=res.uri, method='patch',
+        self.client.api.by_url(res.uri).patch.assert_called_with(
             data={'vendorName': 'new vendor name'})
 
 
