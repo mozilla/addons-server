@@ -83,12 +83,18 @@ class ReceiptResource(CORSResource, MarketplaceResource):
             addon=bundle.obj, user=request.user.get_profile(),
             install_type=install_type)
 
+        log.info('Installed record %s: %s' % (
+            'created' if created else 're-used',
+            bundle.obj.pk))
+
         # Generate or re-use a recent receipt.
         receipt_cef.log(request, bundle.obj, 'request', 'Receipt requested')
         receipt = memoize_get('create-receipt', installed.pk)
         if receipt:
+            log.info('Cached receipt found: %s' % bundle.obj.pk)
             return receipt
 
+        log.info('Creating receipt: %s' % bundle.obj.pk)
         receipt_cef.log(request, bundle.obj, 'sign', 'Receipt signing')
         return create_receipt(installed.pk)
 
