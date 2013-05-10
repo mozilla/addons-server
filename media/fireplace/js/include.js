@@ -1,4 +1,4 @@
-/* 2013.05.09_16.42.26 */
+/* 2013.05.10_10.44.19 */
 (function(window, undefined) {
 
 var defined = {};
@@ -37,6 +37,51 @@ require.config = function() {};
 
 window.require = require;
 window.define = define;
+
+(function(window, undefined) {
+
+var defined = {};
+var resolved = {};
+
+function define(id, deps, module) {
+    defined[id] = [deps, module];
+}
+define.amd = {jQuery: true};
+
+function require(id) {
+
+    if (!resolved[id]) {
+
+        var definition = defined[id];
+
+        if (!definition) {
+            throw 'Attempted to resolve undefined module ' + id;
+        }
+
+        var deps = definition[0];
+        var module = definition[1];
+
+        if (typeof deps == 'function' && module === undefined) {
+            module = deps;
+            deps = [];
+        }
+
+        resolved[id] = module.apply(window, deps.map(require));
+
+    }
+    return resolved[id];
+}
+
+require.config = function() {};
+
+window.require = require;
+window.define = define;
+
+'replace me';
+
+require('marketplace');
+
+})(window, void 0);
 
 /*
     Provides the apps module, a wrapper around navigator.mozApps
@@ -491,6 +536,28 @@ define(
                         request.done(function(data) {
                             context.ctx['response'] = data;
                             out = get_result(data, true);
+
+                            // Now update the response with the values from the model cache
+                            // For details, see bug 870447
+                            if ('as' in signature) {
+                                var resp = data;
+                                var plucked = 'pluck' in signature;
+                                var uncaster = models(signature.as).uncast;
+
+                                if (plucked) {
+                                    resp = resp[signature.pluck];
+                                }
+                                if (_.isArray(resp)) {
+                                    for (var i = 0; i < resp.length; i++) {
+                                        resp[i] = uncaster(resp[i]);
+                                    }
+                                } else if (plucked) {
+                                    data[signature.pluck] = uncaster(resp[i]);
+                                }
+                                // We can't do this for requests which have no pluck
+                                // and aren't an array. :(
+                            }
+
                         });
                         if (signature.paginate) {
                             pool.done(function() {
@@ -1661,6 +1728,11 @@ require.config({
 
         nunjucks.env.dev = true;
 
+        // Get mobile region and carrier information.
+        var GET = require('utils').getVars();
+        settings.mcc = GET.mcc;
+        settings.mnc = GET.mnc;
+
         z.body.addClass('html-' + require('l10n').getDirection());
         if (settings.body_classes) {
             z.body.addClass(settings.body_classes);
@@ -1769,13 +1841,26 @@ define('models', ['requests', 'underscore'], function(requests, _) {
         var key = prototypes[type];
 
         var cast = function(data) {
+            function do_cast(data) {
+                var keyed_value = data[key];
+                data_store[type][keyed_value] = data;
+                console.log('[model] Stored ' + keyed_value + ' as ' + type);
+            }
             if (_.isArray(data)) {
-                _.each(data, cast);
+                _.each(data, do_cast);
                 return;
             }
-            var keyed_value = data[key];
-            data_store[type][keyed_value] = data;
-            console.log('[model] Stored ' + keyed_value + ' as ' + type);
+            return do_cast(data);
+        };
+
+        var uncast = function(object) {
+            function do_uncast(object) {
+                return data_store[type][object[key]];
+            }
+            if (_.isArray(object)) {
+                return object.map(uncast);
+            }
+            return do_uncast(object);
         };
 
         var get = function(url, keyed_value, getter) {
@@ -1820,6 +1905,7 @@ define('models', ['requests', 'underscore'], function(requests, _) {
 
         return {
             cast: cast,
+            uncast: uncast,
             get: get,
             lookup: lookup,
             purge: purge
@@ -1834,7 +1920,6 @@ define('navigation',
     'use strict';
 
     var gettext = l10n.gettext;
-
     var stack = [
         {path: '/', type: 'root'}
     ];
@@ -1900,9 +1985,11 @@ define('navigation',
         state.type = z.context.type;
         state.title = z.context.title;
 
-        if (popped && state.scrollTop) {
-            console.log('[nav] Setting scroll: ', state.scrollTop);
-            z.doc.scrollTop(state.scrollTop);
+        if ((state.preserveScroll || popped) && state.scrollTop) {
+            z.page.one('loaded', function() {
+                console.log('[nav] Setting scroll: ', state.scrollTop);
+                z.doc.scrollTop(state.scrollTop);
+            });
         } else {
             console.log('[nav] Resetting scroll');
             // Asynchronously reset scroll position.
@@ -1985,11 +2072,22 @@ define('navigation',
         e.preventDefault();
         return z.page.trigger(
             'navigate', utils.urlparams(urls.reverse('search'), params));
-    }).on('navigate divert', function(e, url, params) {
+    }).on('navigate divert', function(e, url, params, preserveScroll) {
         console.log('[nav] Received ' + e.type + ' event:', url);
         if (!url) return;
 
         var divert = e.type === 'divert';
+        var newState = {
+            params: params,
+            path: url
+        };
+        var scrollTop = z.doc.scrollTop();
+        var state_method = history.pushState;
+
+        if (preserveScroll) {
+            newState.preserveScroll = preserveScroll;
+            newState.scrollTop = scrollTop;
+        }
 
         if (!canNavigate()) {
             console.log('[nav] Navigation aborted; canNavigate is falsey.');
@@ -2001,13 +2099,12 @@ define('navigation',
             last_bobj.terminate();
         }
 
-        var newState = {
-            path: url,
-            scrollTop: divert ? 0 : z.doc.scrollTop(),
-            params: params
-        };
-
-        var state_method = history.pushState;
+        // Update scrollTop for current history state.
+        if (stack.length && scrollTop !== stack[0].scrollTop) {
+            stack[0].scrollTop = scrollTop;
+            console.log('[nav] Updating scrollTop for path: "' + stack[0].path + '" as: ' + scrollTop);
+            history.replaceState(stack[0], false, stack[0].path);
+        }
 
         if (!last_bobj || divert) {
             // If we're redirecting or we've never loaded a page before,
@@ -2039,6 +2136,10 @@ define('navigation',
 
     z.body.on('click', 'a', function(e) {
         var href = this.getAttribute('href');
+        var $elm = $(this);
+        var preserveScrollData = $elm.data('preserveScroll');
+        // Handle both data-preserve-scroll and data-preserve-scroll="true"
+        var preserveScroll = typeof preserveScrollData !== 'undefined' && preserveScrollData !== false;
         if (e.metaKey || e.ctrlKey || e.button !== 0) return;
         if (navigationFilter(this)) return;
 
@@ -2046,7 +2147,7 @@ define('navigation',
         // above situations.
         e.preventDefault();
         e.stopPropagation();
-        z.page.trigger('navigate', [href, $(this).data('params') || {path: href}]);
+        z.page.trigger('navigate', [href, $elm.data('params') || {path: href}, preserveScroll]);
 
     }).on('submit', 'form#search', function(e) {
         e.stopPropagation();
@@ -2063,9 +2164,9 @@ define('navigation',
     z.win.on('popstate', function(e) {
         var state = e.originalEvent.state;
         if (state) {
+            console.log('[nav] popstate navigate');
             navigate(state.path, true, state);
         }
-
     }).on('submit', 'form', function(e) {
         console.error("We don't allow form submissions.");
         return false;
@@ -2715,7 +2816,9 @@ define('requests',
             requests.push(req);
             req.always(function() {
                 initiated--;
-                finish();
+                // Prevent race condition causing early
+                // closing of pool.
+                setTimeout(finish, 0);
             });
             return req;
         }
@@ -2879,7 +2982,13 @@ define('settings', ['settings_local', 'underscore'], function(settings_local, _)
         persona: 'https://login.persona.org/include.js',
 
         title_suffix: 'Firefox Marketplace',
-        carrier: null
+        carrier: null,
+
+        // `MCC`: Mobile Country Code
+        mcc: null,
+
+        // `MNC`: Mobile Network Code
+        mnc: null
     });
 });
 
@@ -3083,7 +3192,7 @@ define('user', ['capabilities'], function(capabilities) {
 
     var save_to_ls = !capabilities.phantom;
 
-    if (!save_to_ls) {
+    if (save_to_ls) {
         token = localStorage.getItem('user');
         settings = JSON.parse(localStorage.getItem('settings') || '{}');
     }
@@ -16559,6 +16668,8 @@ define('views/feedback',
 
         requests.post(urls.api.url('feedback'), data).done(function(data) {
             $this.find('textarea').val('');
+            forms.toggleSubmitFormState($this, true);
+            $('.cloak').trigger('dismiss');
             notify({message: gettext('Feedback submitted. Thanks!')});
         }).fail(function() {
             forms.toggleSubmitFormState($this, true);
@@ -17237,8 +17348,11 @@ output += runtime.suppressValue((lineno = 29, colno = 20, runtime.callWrap(runti
 output += "\n          </span>\n        ";
 }
 else {
-output += "\n          <span class=\"cnt\">";
-output += runtime.suppressValue((lineno = 32, colno = 30, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Not yet rated"])), env.autoesc);
+output += "\n          ";
+output += "\n          <span class=\"cnt short\">";
+output += runtime.suppressValue((lineno = 33, colno = 36, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["(0)"])), env.autoesc);
+output += "</span>\n          <span class=\"cnt long\">";
+output += runtime.suppressValue((lineno = 34, colno = 35, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Not yet rated"])), env.autoesc);
 output += "</span>\n        ";
 }
 output += "\n        ";
@@ -17248,7 +17362,7 @@ output += "</a>";
 output += "\n      </div>\n      ";
 if(runtime.contextOrFrameLookup(context, frame, "force_button") || (runtime.memberLookup((l_app),"current_version", env.autoesc) && !runtime.contextOrFrameLookup(context, frame, "link"))) {
 output += "\n        ";
-output += runtime.suppressValue((lineno = 37, colno = 22, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "market_button"), "market_button", [l_app,runtime.makeKeywordArgs({"classes": t_3,"data_attrs": {"manifest_url": runtime.memberLookup((l_app),"manifest_url", env.autoesc)}})])), env.autoesc);
+output += runtime.suppressValue((lineno = 39, colno = 22, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "market_button"), "market_button", [l_app,runtime.makeKeywordArgs({"classes": t_3,"data_attrs": {"manifest_url": runtime.memberLookup((l_app),"manifest_url", env.autoesc)}})])), env.autoesc);
 output += "\n      ";
 }
 output += "\n    </div>\n    ";
@@ -17589,73 +17703,76 @@ return t_12;
 ,function() {var t_13 = "";t_13 += "\n";
 return t_13;
 }
-,null), env.autoesc);
-output += "\n\n<section id=\"gallery\" class=\"main category gallery full c\">\n";
-output += runtime.suppressValue(env.getExtension("defer")["run"](context,runtime.makeKeywordArgs({"url": runtime.contextOrFrameLookup(context, frame, "endpoint"),"pluck": "objects","as": "app","paginate": "ol.listing"}),function() {var t_14 = "";t_14 += "\n  ";
-var t_15 = runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "response")),"meta", env.autoesc)),"total_count", env.autoesc) > runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "response")),"meta", env.autoesc)),"limit", env.autoesc);
-frame.set("paginated", t_15);
-if(!frame.parent) {
-context.setVariable("paginated", t_15);
-context.addExport("paginated");
-}
-t_14 += "\n  ";
-if(t_15) {
-t_14 += "\n    <header class=\"featured-header c\">\n      <nav class=\"tabs\">\n        <a";
-if(!runtime.contextOrFrameLookup(context, frame, "sort")) {
-t_14 += " class=\"active\"";
-}
-t_14 += " href=\"";
-t_14 += runtime.suppressValue(t_4, env.autoesc);
-t_14 += "\">";
-t_14 += runtime.suppressValue((lineno = 38, colno = 69, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Popular"])), env.autoesc);
-t_14 += "</a>\n        <a";
-if(runtime.contextOrFrameLookup(context, frame, "sort") == "created") {
-t_14 += " class=\"active\"";
-}
-t_14 += " href=\"";
-t_14 += runtime.suppressValue(t_5, env.autoesc);
-t_14 += "\">";
-t_14 += runtime.suppressValue((lineno = 39, colno = 74, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["New"])), env.autoesc);
-t_14 += "</a>\n      </nav>\n      <a href=\"";
-t_14 += runtime.suppressValue(t_7, env.autoesc);
-t_14 += "\" class=\"view-all\">";
-t_14 += runtime.suppressValue((lineno = 41, colno = 48, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["View All"])), env.autoesc);
-t_14 += "</a>\n    </header>\n  ";
-}
-t_14 += "\n  <ol class=\"container listing grid-if-desktop search-listing c\">\n    ";
-frame = frame.push();
-var t_17 = runtime.contextOrFrameLookup(context, frame, "this");
-for(var t_16=0; t_16 < t_17.length; t_16++) {
-var t_18 = t_17[t_16];
-frame.set("result", t_18);
-t_14 += "\n      <li class=\"item result app c\">\n        ";
-t_14 += runtime.suppressValue((lineno = 47, colno = 20, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "market_tile"), "market_tile", [t_18,runtime.makeKeywordArgs({"link": true,"force_button": true,"src": runtime.contextOrFrameLookup(context, frame, "sort")})])), env.autoesc);
-t_14 += "\n      </li>\n    ";
-}
-frame = frame.pop();
-t_14 += "\n\n    ";
-t_14 += "\n    ";
-if(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "response")),"meta", env.autoesc)),"next", env.autoesc)) {
-t_14 += "\n      ";
-t_14 += runtime.suppressValue((lineno = 53, colno = 18, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "more_button"), "more_button", [runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "response")),"meta", env.autoesc)),"next", env.autoesc)])), env.autoesc);
-t_14 += "\n    ";
-}
-t_14 += "\n  </ol>\n";
+,function() {var t_14 = "";t_14 += "\n";
 return t_14;
 }
-,function() {var t_19 = "";t_19 += "\n  <p class=\"spinner padded alt\"></p>\n";
-return t_19;
+), env.autoesc);
+output += "\n\n<section id=\"gallery\" class=\"main category gallery full c\">\n";
+output += runtime.suppressValue(env.getExtension("defer")["run"](context,runtime.makeKeywordArgs({"url": runtime.contextOrFrameLookup(context, frame, "endpoint"),"pluck": "objects","as": "app","paginate": "ol.listing"}),function() {var t_15 = "";t_15 += "\n  ";
+var t_16 = runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "response")),"meta", env.autoesc)),"total_count", env.autoesc) > runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "response")),"meta", env.autoesc)),"limit", env.autoesc);
+frame.set("paginated", t_16);
+if(!frame.parent) {
+context.setVariable("paginated", t_16);
+context.addExport("paginated");
 }
-,function() {var t_20 = "";t_20 += "\n  <p class=\"no-results\">\n    ";
-t_20 += runtime.suppressValue((lineno = 60, colno = 6, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["No apps in this category"])), env.autoesc);
-t_20 += "\n  </p>\n";
+t_15 += "\n  ";
+if(t_16) {
+t_15 += "\n    <header class=\"featured-header c\">\n      <nav class=\"tabs\">\n        <a";
+if(!runtime.contextOrFrameLookup(context, frame, "sort")) {
+t_15 += " class=\"active\"";
+}
+t_15 += " href=\"";
+t_15 += runtime.suppressValue(t_4, env.autoesc);
+t_15 += "\" data-preserve-scroll>";
+t_15 += runtime.suppressValue((lineno = 39, colno = 90, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Popular"])), env.autoesc);
+t_15 += "</a>\n        <a";
+if(runtime.contextOrFrameLookup(context, frame, "sort") == "created") {
+t_15 += " class=\"active\"";
+}
+t_15 += " href=\"";
+t_15 += runtime.suppressValue(t_5, env.autoesc);
+t_15 += "\" data-preserve-scroll>";
+t_15 += runtime.suppressValue((lineno = 40, colno = 95, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["New"])), env.autoesc);
+t_15 += "</a>\n      </nav>\n      <a href=\"";
+t_15 += runtime.suppressValue(t_7, env.autoesc);
+t_15 += "\" class=\"view-all\">";
+t_15 += runtime.suppressValue((lineno = 42, colno = 48, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["View All"])), env.autoesc);
+t_15 += "</a>\n    </header>\n  ";
+}
+t_15 += "\n  <ol class=\"container listing grid-if-desktop search-listing c\">\n    ";
+frame = frame.push();
+var t_18 = runtime.contextOrFrameLookup(context, frame, "this");
+for(var t_17=0; t_17 < t_18.length; t_17++) {
+var t_19 = t_18[t_17];
+frame.set("result", t_19);
+t_15 += "\n      <li class=\"item result app c\">\n        ";
+t_15 += runtime.suppressValue((lineno = 48, colno = 20, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "market_tile"), "market_tile", [t_19,runtime.makeKeywordArgs({"link": true,"force_button": true,"src": runtime.contextOrFrameLookup(context, frame, "sort")})])), env.autoesc);
+t_15 += "\n      </li>\n    ";
+}
+frame = frame.pop();
+t_15 += "\n\n    ";
+t_15 += "\n    ";
+if(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "response")),"meta", env.autoesc)),"next", env.autoesc)) {
+t_15 += "\n      ";
+t_15 += runtime.suppressValue((lineno = 54, colno = 18, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "more_button"), "more_button", [runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "response")),"meta", env.autoesc)),"next", env.autoesc)])), env.autoesc);
+t_15 += "\n    ";
+}
+t_15 += "\n  </ol>\n";
+return t_15;
+}
+,function() {var t_20 = "";t_20 += "\n  <p class=\"spinner padded alt\"></p>\n";
 return t_20;
 }
 ,function() {var t_21 = "";t_21 += "\n  <p class=\"no-results\">\n    ";
-t_21 += "\n    ";
-t_21 += runtime.suppressValue((lineno = 65, colno = 6, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["No apps in this category, try again later"])), env.autoesc);
+t_21 += runtime.suppressValue((lineno = 61, colno = 6, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["No apps in this category"])), env.autoesc);
 t_21 += "\n  </p>\n";
 return t_21;
+}
+,function() {var t_22 = "";t_22 += "\n  <p class=\"no-results\">\n    ";
+t_22 += "\n    ";
+t_22 += runtime.suppressValue((lineno = 66, colno = 6, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["No apps in this category, try again later"])), env.autoesc);
+t_22 += "\n  </p>\n";
+return t_22;
 }
 ), env.autoesc);
 output += "\n</section>\n";
@@ -17675,16 +17792,29 @@ var output = "";
 try {
 output += "<section class=\"main infobox\">\n  <div>\n    <style>\n      dt {\n        clear: left;\n        float: left;\n      }\n      dd {\n        float: left;\n      }\n    </style>\n    <h2>Debug</h2>\n    <p>\n      <button id=\"toggle-debug\">Debug Mode: <b id=\"debug-status\">";
 output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "dbg"), env.autoesc);
-output += "</b></button>\n    </p>\n\n    <dl class=\"c\">\n      ";
+output += "</b></button>\n    </p>\n\n    <dl class=\"settings c\">\n      ";
 frame = frame.push();
-var t_2 = (lineno = 17, colno = 36, runtime.callWrap(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "capabilities")),"items", env.autoesc), "capabilities[\"items\"]", []));
+var t_2 = (lineno = 17, colno = 36, runtime.callWrap(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "settings")),"items", env.autoesc), "settings[\"items\"]", []));
 for(var t_1=0; t_1 < t_2.length; t_1++) {
 var t_3 = t_2[t_1];
-frame.set("cap", t_3);
+frame.set("setting", t_3);
 output += "\n        <dt>";
 output += runtime.suppressValue(runtime.memberLookup((t_3),0, env.autoesc), env.autoesc);
 output += "</dt>\n        <dd>";
-output += runtime.suppressValue(runtime.memberLookup((t_3),1, env.autoesc), env.autoesc);
+output += runtime.suppressValue(runtime.memberLookup((t_3),1, env.autoesc) || "––", env.autoesc);
+output += "</dd>\n      ";
+}
+frame = frame.pop();
+output += "\n    </dl>\n\n    <dl class=\"capabilities c\">\n      ";
+frame = frame.push();
+var t_5 = (lineno = 24, colno = 36, runtime.callWrap(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "capabilities")),"items", env.autoesc), "capabilities[\"items\"]", []));
+for(var t_4=0; t_4 < t_5.length; t_4++) {
+var t_6 = t_5[t_4];
+frame.set("cap", t_6);
+output += "\n        <dt>";
+output += runtime.suppressValue(runtime.memberLookup((t_6),0, env.autoesc), env.autoesc);
+output += "</dt>\n        <dd>";
+output += runtime.suppressValue(runtime.memberLookup((t_6),1, env.autoesc), env.autoesc);
 output += "</dd>\n      ";
 }
 frame = frame.pop();
@@ -17692,14 +17822,14 @@ output += "\n      <dt>Feature Profile</dt>\n      <dd>";
 output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "profile"), env.autoesc);
 output += "</dd>\n    </dl>\n\n    <h3>Cache</h3>\n\n    <pre id=\"cache-inspector\"></pre>\n\n    <ul class=\"cache-menu\">\n      ";
 frame = frame.push();
-var t_5 = (lineno = 30, colno = 26, runtime.callWrap(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "cache")),"keys", env.autoesc), "cache[\"keys\"]", []));
-for(var t_4=0; t_4 < t_5.length; t_4++) {
-var t_6 = t_5[t_4];
-frame.set("k", t_6);
+var t_8 = (lineno = 37, colno = 26, runtime.callWrap(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "cache")),"keys", env.autoesc), "cache[\"keys\"]", []));
+for(var t_7=0; t_7 < t_8.length; t_7++) {
+var t_9 = t_8[t_7];
+frame.set("k", t_9);
 output += "\n        <li><a href=\"#\" data-url=\"";
-output += runtime.suppressValue(t_6, env.autoesc);
+output += runtime.suppressValue(t_9, env.autoesc);
 output += "\">";
-output += runtime.suppressValue(env.getFilter("urlparams")(t_6,runtime.makeKeywordArgs({"_user": "REDACTED"})), env.autoesc);
+output += runtime.suppressValue(env.getFilter("urlparams")(t_9,runtime.makeKeywordArgs({"_user": "REDACTED"})), env.autoesc);
 output += "</a></li>\n      ";
 }
 frame = frame.pop();
