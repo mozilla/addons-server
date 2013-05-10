@@ -58,7 +58,7 @@ xml_template = """\
 </RDF:RDF>
 """
 
-flash_re = re.compile(r'^(Win|(PPC|Intel) Mac OS X|Linux.+i\d86)|SunOs', re.IGNORECASE)
+flash_re = re.compile(r'^(Win|(PPC|Intel) Mac OS X|Linux.+(x86_64|i\d86))|SunOs', re.IGNORECASE)
 quicktime_re = re.compile(r'^(application/(sdp|x-(mpeg|rtsp|sdp))|audio/(3gpp(2)?|AMR|aiff|basic|mid(i)?|mp4|mpeg|vnd\.qcelp|wav|x-(aiff|m4(a|b|p)|midi|mpeg|wav))|image/(pict|png|tiff|x-(macpaint|pict|png|quicktime|sgi|targa|tiff))|video/(3gpp(2)?|flc|mp4|mpeg|quicktime|sd-video|x-mpeg))$')
 java_re = re.compile(r'^application/x-java-((applet|bean)(;jpi-version=1\.5|;version=(1\.(1(\.[1-3])?|(2|4)(\.[1-2])?|3(\.1)?|5)))?|vm)$')
 wmp_re = re.compile(r'^(application/(asx|x-(mplayer2|ms-wmp))|video/x-ms-(asf(-plugin)?|wm(p|v|x)?|wvx)|audio/x-ms-w(ax|ma))$')
@@ -94,19 +94,13 @@ def get_output(data):
                           'application/futuresplash'] and
         re.match(flash_re, g['clientOS'])):
 
-        # We really want the regexp for Linux to be /Linux(?! x86_64)/ but
-        # for now we can't tell 32-bit linux appart from 64-bit linux, so
-        # feed all x86_64 users the flash player, even if it's a 32-bit
-        # plugin.
-
-        # We've got flash plugin installers for Win and Linux (x86),
-        # present those to the user, and for Mac users, tell them where
-        # they can go to get the installer.
+        # Tell the user where they can go to get the installer.
 
         plugin.update(
             name='Adobe Flash Player',
             manualInstallationURL='http://www.adobe.com/go/getflashplayer')
 
+        # Offer Windows users a specific flash plugin installer instead.
         # Don't use a https URL for the license here, per request from
         # Macromedia.
 
