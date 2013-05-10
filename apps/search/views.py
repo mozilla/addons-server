@@ -1,13 +1,13 @@
 from django import http
 from django.conf import settings
 from django.db.models import Q
-from django.utils import translation
 from django.utils.encoding import smart_str
 from django.views.decorators.vary import vary_on_headers
+from django.utils import translation
 
+from elasticutils.contrib.django import F, S
 import commonware.log
 import jingo
-from elasticutils.contrib.django import F
 from mobility.decorators import mobile_template
 from tower import ugettext as _
 
@@ -17,10 +17,9 @@ import browse.views
 from addons.models import Addon, Category
 from amo.decorators import json_view
 from amo.helpers import locale_url, urlparams
-from amo.search import TempS as S
 from amo.utils import sorted_groupby
 from bandwagon.models import Collection
-from versions.compare import dict_from_int, version_dict, version_int
+from versions.compare import dict_from_int, version_int, version_dict
 
 import mkt
 from mkt.webapps.models import Webapp

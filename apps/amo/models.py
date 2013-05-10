@@ -317,17 +317,6 @@ class SearchMixin(object):
     def search(cls, index=None):
         return search.ES(cls, index or cls._get_index())
 
-    # For compatibility with elasticutils > v0.5.
-    # TODO: Remove these when we've moved mkt to its own index.
-
-    @classmethod
-    def get_index(cls):
-        return cls._get_index()
-
-    @classmethod
-    def get_mapping_type_name(cls):
-        return cls._meta.db_table
-
 
 class ModelBase(SearchMixin, caching.base.CachingMixin, models.Model):
     """

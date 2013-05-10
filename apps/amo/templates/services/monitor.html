@@ -89,7 +89,7 @@
 <div class="notification-box {{ status(status_summary.elastic) }}">
   <h2>[Elastic Search] Health Check ({{ elastic_timer }}ms)</h2>
   <ul>
-    <li><code>{{ settings.ES_URLS|pprint }}</code></li>
+    <li><code>{{ settings.ES_HOSTS|pprint }}</code></li>
     <li><code>{{ settings.ES_INDEXES|pprint }}</code></li>
     {% if status_summary.elastic %}
       {% for k, v in elastic_results|dictsort %}

@@ -1,6 +1,6 @@
-import json
 from datetime import datetime, timedelta
 from decimal import Decimal
+import json
 
 from django.conf import settings
 from django.contrib.auth.models import User
@@ -195,6 +195,10 @@ class SearchTestMixin(object):
         self.client.logout()
         res = self.client.get(self.url)
         self.assertLoginRedirects(res, self.url)
+
+    def test_no_results(self):
+        data = self.search(q='__garbage__', expect_results=False)
+        eq_(data['results'], [])
 
 
 class TestAcctSearch(ESTestCase, SearchTestMixin):
