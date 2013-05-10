@@ -524,8 +524,8 @@ class TestCreatePackagedApp(BasePackagedAppTest):
         assert zf.getinfo(filename), (
             'Expected %s in zip archive but not found.' % filename)
         ids = json.loads(zf.read(filename))
-        eq_(ids['app_id'], app.guid)
-        eq_(ids['version_id'], file_.version_id)
+        eq_(ids['id'], app.guid)
+        eq_(ids['version'], file_.version_id)
 
 
 class TestDetails(TestSubmit):

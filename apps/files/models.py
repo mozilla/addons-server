@@ -497,8 +497,8 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         """
         For packaged webapps, adds a META-INF/ids.json file with a JSON
         document like the following:
-            {"app_id": "6106d3b3-881a-4ddf-9dec-6b2bf8ff8341",
-             "version_id": 42}
+            {"id": "6106d3b3-881a-4ddf-9dec-6b2bf8ff8341",
+             "version": 42}
         """
         app = self.version.addon
         if not (app.type == amo.ADDON_WEBAPP and app.is_packaged):
@@ -506,8 +506,8 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
 
         filename = 'META-INF/ids.json'
         ids = {
-            'app_id': app.guid,
-            'version_id': self.version_id,
+            'id': app.guid,
+            'version': self.version_id,
         }
         zf = SafeUnzip(self.file_path, mode='a')
         zf.is_valid()

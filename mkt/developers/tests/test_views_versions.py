@@ -213,8 +213,8 @@ class TestAddVersion(BasePackagedAppTest):
         assert zf.getinfo(filename), (
             'Expected %s in zip archive but not found.' % filename)
         ids = json.loads(zf.read(filename))
-        eq_(ids['app_id'], self.app.guid)
-        eq_(ids['version_id'], file_.version_id)
+        eq_(ids['id'], self.app.guid)
+        eq_(ids['version'], file_.version_id)
 
 
 class TestEditVersion(amo.tests.TestCase):
