@@ -66,7 +66,7 @@ class TestAppToDictPrices(amo.tests.TestCase):
     fixtures = fixture('prices')
 
     def setUp(self):
-        self.app = amo.tests.app_factory()
+        self.app = amo.tests.app_factory(premium_type=amo.ADDON_PREMIUM)
         price = Price.objects.get(pk=1)
         self.premium = AddonPremium.objects.create(addon=self.app, price=price)
 
