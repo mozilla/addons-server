@@ -5,6 +5,7 @@ import os
 import time
 import urlparse
 import uuid
+from operator import attrgetter
 
 from django.conf import settings
 from django.core.cache import cache
@@ -16,7 +17,7 @@ from django.dispatch import receiver
 from django.utils.http import urlquote
 
 import commonware.log
-from elasticutils.contrib.django import F
+from elasticutils.contrib.django import F, Indexable, MappingType
 from tower import ugettext as _
 
 import amo
@@ -36,6 +37,7 @@ from constants.applications import DEVICE_TYPES
 from files.models import File, nfd_str, Platform
 from files.utils import parse_addon, WebAppParser
 from lib.crypto import packaged
+from stats.models import ClientData
 from translations.fields import save_signal
 from versions.models import Version
 
@@ -823,6 +825,175 @@ class Webapp(Addon):
             settings.LANGUAGES.get(self.default_locale.lower()),
             sorted(languages)
         )
+
+
+class WebappIndexer(MappingType, Indexable):
+    """
+    Mapping type for Webapp models.
+
+    By default we will return these objects rather than hit the database so
+    include here all the things we need to avoid hitting the database.
+    """
+
+    @classmethod
+    def get_mapping_type_name(cls):
+        """
+        Returns mapping type name which is used as the key in ES_INDEXES to
+        determine which index to use.
+
+        We override this because Webapp is a proxy model to
+        Addon.
+        """
+        return 'webapp'
+
+    @classmethod
+    def get_index(cls):
+        return settings.ES_INDEXES[cls.get_mapping_type_name()]
+
+    @classmethod
+    def get_model(cls):
+        return Webapp
+
+    @classmethod
+    def get_mapping(cls):
+
+        doc_type = cls.get_mapping_type_name()
+
+        def _locale_field_mapping(field, analyzer):
+            return {'name_%s' % analyzer: {'type': 'string',
+                                           'analyzer': analyzer}}
+
+        mapping = {
+            doc_type: {
+                # Add a boost field to enhance relevancy of a document.
+                '_boost': {'name': '_boost', 'null_value': 1.0},
+                'properties': {
+                    'id': {'type': 'long'},
+                    'app_slug': {'type': 'string'},
+                    'app_type': {'type': 'byte'},
+                    'authors': {'type': 'string'},
+                    'average_daily_users': {'type': 'long'},
+                    'bayesian_rating': {'type': 'float'},
+                    'category': {'type': 'integer'},
+                    'created': {'format': 'dateOptionalTime', 'type': 'date'},
+                    'description': {'type': 'string', 'analyzer': 'snowball'},
+                    'device': {'type': 'byte'},
+                    'flag_adult': {'type': 'boolean'},
+                    'flag_child': {'type': 'boolean'},
+                    'has_version': {'type': 'boolean'},
+                    'hotness': {'type': 'float'},
+                    'is_disabled': {'type': 'boolean'},
+                    'last_updated': {'format': 'dateOptionalTime',
+                                     'type': 'date'},
+                    'latest_version_status': {'type': 'byte'},
+                    'name': {'type': 'string',
+                             'analyzer': 'standardPlusWordDelimiter'},
+                    # Turn off analysis on name so we can sort by it.
+                    'name_sort': {'type': 'string', 'index': 'not_analyzed'},
+                    'popularity': {'type': 'long'},
+                    'premium_type': {'type': 'byte'},
+                    'price': {'type': 'double'},
+                    'slug': {'type': 'string'},
+                    'status': {'type': 'byte'},
+                    'type': {'type': 'byte'},
+                    'uses_flash': {'type': 'boolean'},
+                    'weekly_downloads': {'type': 'long'},
+                }
+            }
+        }
+
+        # Add popularity by region.
+        for region in mkt.regions.ALL_REGION_IDS:
+            mapping[doc_type]['properties'].update(
+                {'popularity_%s' % region: {'type': 'long'}})
+
+        # Add room for language-specific indexes.
+        for analyzer in amo.SEARCH_ANALYZER_MAP:
+            mapping[doc_type]['properties'].update(
+                _locale_field_mapping('name', analyzer))
+            mapping[doc_type]['properties'].update(
+                _locale_field_mapping('description', analyzer))
+
+        # TODO: boolean mappings for mkt.constants.features (bug 862479)
+        # TODO: reviewer flags (bug 848446)
+
+        return mapping
+
+    @classmethod
+    def extract_document(cls, pk, obj=None):
+        """Extracts the ElasticSearch index document for this instance."""
+        if obj is None:
+            obj = cls.get_model().uncached.get(pk=pk)
+
+        attrs = ('id', 'app_slug', 'created', 'last_updated',
+                 'weekly_downloads', 'bayesian_rating', 'average_daily_users',
+                 'status', 'type', 'hotness', 'is_disabled', 'premium_type',
+                 'uses_flash')
+        d = dict(zip(attrs, attrgetter(*attrs)(obj)))
+        # Coerce the Translation into a string.
+        d['name_sort'] = unicode(obj.name).lower()
+        translations = obj.translations
+        d['name'] = list(set(string for _, string
+                             in translations[obj.name_id]))
+        d['description'] = list(set(string for _, string
+                                    in translations[obj.description_id]))
+        d['authors'] = [a.name for a in obj.listed_authors]
+        d['device'] = getattr(obj, 'device_ids', [])
+        # This is an extra query, not good for perf.
+        d['category'] = getattr(obj, 'category_ids', [])
+        d['price'] = getattr(obj, 'price', 0.0)
+        try:
+            d['has_version'] = obj._current_version is not None
+        except ObjectDoesNotExist:
+            d['has_version'] = None
+        try:
+            d['flag_adult'] = obj.flag.adult_content
+            d['flag_child'] = obj.flag.child_content
+        except Flag.DoesNotExist:
+            d['flag_adult'] = d['flag_child'] = False
+
+        installed_ids = list(Installed.objects.filter(addon=obj)
+                             .values_list('id', flat=True))
+        d['popularity'] = d['_boost'] = len(installed_ids)
+
+        # Calculate regional popularity for "mature regions"
+        # (installs + reviews/installs from that region).
+        installs = dict(ClientData.objects.filter(installed__in=installed_ids)
+                        .annotate(region_counts=models.Count('region'))
+                        .values_list('region', 'region_counts').distinct())
+        for region in mkt.regions.ALL_REGION_IDS:
+            cnt = installs.get(region, 0)
+            if cnt:
+                # Magic number (like all other scores up in this piece).
+                d['popularity_%s' % region] = d['popularity'] + cnt * 10
+            else:
+                d['popularity_%s' % region] = len(installed_ids)
+            d['_boost'] += cnt * 10
+        d['app_type'] = (amo.ADDON_WEBAPP_PACKAGED if obj.is_packaged else
+                         amo.ADDON_WEBAPP_HOSTED)
+
+        # Bump the boost if the add-on is public.
+        if obj.status == amo.STATUS_PUBLIC:
+            d['_boost'] = max(d['_boost'], 1) * 4
+
+        # Indices for each language. languages is a list of locales we want to
+        # index with analyzer if the string's locale matches.
+        for analyzer, languages in amo.SEARCH_ANALYZER_MAP.iteritems():
+            d['name_' + analyzer] = list(
+                set(string for locale, string in translations[obj.name_id]
+                    if locale.lower() in languages))
+            d['description_' + analyzer] = list(
+                set(string for locale, string
+                    in translations[obj.description_id]
+                    if locale.lower() in languages))
+
+        return d
+
+    @classmethod
+    def get_indexable(cls):
+        """Returns the queryset of ids of all things to be indexed."""
+        return (Webapp.objects.all()
+                              .order_by('-id').values_list('id', flat=True))
 
 
 # Pull all translated_fields from Addon over to Webapp.
