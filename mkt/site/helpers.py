@@ -5,13 +5,13 @@ from django.conf import settings
 import caching.base as caching
 import jinja2
 import waffle
-from jingo import register, env
+from jingo import env, register
 from jingo_minify import helpers as jingo_minify_helpers
 from tower import ugettext as _
 
 import amo
 from amo.helpers import urlparams
-from amo.urlresolvers import reverse, get_outgoing_url
+from amo.urlresolvers import get_outgoing_url, reverse
 from amo.utils import JSONEncoder
 from translations.helpers import truncate
 from versions.compare import version_int as vint
@@ -149,10 +149,10 @@ def product_as_dict(request, product, purchased=None, receipt_type=None,
         ret.update({'previews': previews})
 
     if product.has_price():
+        currency = request.REGION.default_currency
         ret.update({
-            'price': product.premium.get_price() or '0',
-            'priceLocale': product.premium.get_price_locale(
-                request.REGION.default_currency),
+            'price': product.get_price(currency) or '0',
+            'priceLocale': product.get_price_locale(currency),
         })
         currencies = product.premium.supported_currencies()
         if len(currencies) > 1 and waffle.switch_is_active('currencies'):
@@ -228,7 +228,8 @@ def market_tile(context, product, link=True, src=''):
         sumo_url = ('https://support.mozilla.org/en-US/kb/'
                     'how-access-firefox-marketplace')
         if (not request.GAIA and
-            (product.device_types == [amo.DEVICE_GAIA] or product.is_packaged)):
+            (product.device_types ==
+            [amo.DEVICE_GAIA] or product.is_packaged)):
             # This includes packaged apps.
             notices.append(_('This app is available on only Firefox OS.'))
             # TODO: Add a link when we have one.
@@ -317,7 +318,7 @@ def mkt_breadcrumbs(context, product=None, items=None, crumb_size=40,
     if len(crumbs) == 1:
         crumbs = []
 
-    crumbs = [(url_, truncate(label, crumb_size)) for (url_, label) in crumbs]
+    crumbs = [(u, truncate(label, crumb_size)) for (u, label) in crumbs]
     t = env.get_template('site/helpers/breadcrumbs.html').render(
         breadcrumbs=crumbs, cls=cls)
     return jinja2.Markup(t)

@@ -499,6 +499,10 @@ class Webapp(Addon):
 
     def get_price(self, currency):
         if self.has_price():
+            return self.premium.get_price(currency)
+
+    def get_price_locale(self, currency):
+        if self.has_price():
             return self.premium.get_price_locale(currency)
         return _(u'Free')
 

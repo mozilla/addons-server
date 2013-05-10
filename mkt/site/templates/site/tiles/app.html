@@ -27,7 +27,7 @@
     {% if product.listed_authors -%}
       <div class="author lineclamp vital">{{ product.listed_authors[0].name }}</div>
     {%- endif %}
-    <div class="price vital">{{ product.get_price(request.REGION.default_currency) }}</div>
+    <div class="price vital">{{ product.get_price_locale(request.REGION.default_currency) }}</div>
     <div class="rating vital{{ ' unrated' if not product.total_reviews }}">
       {%- if tag != "a" -%}
         <a href="{{ product.get_ratings_url() }}" class="rating_link">

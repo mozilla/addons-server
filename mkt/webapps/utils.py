@@ -76,8 +76,8 @@ def app_to_dict(app, currency=None, user=None):
 
     if app.premium:
         try:
-            data['price'] = app.premium.get_price(currency)
-            data['price_locale'] = app.premium.get_price_locale(currency)
+            data['price'] = app.get_price(currency)
+            data['price_locale'] = app.get_price_locale(currency)
         except AttributeError:
             # Until bug 864569 gets fixed.
             log.info('Missing price data for premium app: %s' % app.pk)

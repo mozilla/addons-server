@@ -6,7 +6,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import get_object_or_404, redirect
 
 import commonware
-from curling.lib import HttpClientError, HttpServerError
+from curling.lib import HttpClientError
 import jingo
 from jingo import helpers
 import jinja2
@@ -24,8 +24,10 @@ from lib.pay_server import client
 
 from mkt.constants import DEVICE_LOOKUP
 from mkt.developers.decorators import dev_required
+from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
+                                   UserInappKey)
 
-from . import forms, forms_payments, models
+from . import forms, forms_payments
 
 
 log = commonware.log.getLogger('z.devhub')
@@ -91,9 +93,9 @@ def payments(request, addon_id, addon, webapp=False):
             if is_now_paid and success:
                 # Update the product's price if we need to.
                 try:
-                    apa = models.AddonPaymentAccount.objects.get(addon=addon)
+                    apa = AddonPaymentAccount.objects.get(addon=addon)
                     apa.update_price(addon.addonpremium.price.price)
-                except models.AddonPaymentAccount.DoesNotExist:
+                except AddonPaymentAccount.DoesNotExist:
                     pass
                 except client.Error:
                     log.error('Error updating AddonPaymentAccount (%s) price' %
@@ -138,7 +140,7 @@ def payments(request, addon_id, addon, webapp=False):
 @login_required
 @json_view
 def payment_accounts(request):
-    accounts = models.PaymentAccount.objects.filter(
+    accounts = PaymentAccount.objects.filter(
         user=request.amo_user, inactive=False)
 
     def account(acc):
@@ -150,8 +152,7 @@ def payment_accounts(request):
             'delete-url':
                 reverse('mkt.developers.bango.delete_payment_account',
                         args=[acc.pk]),
-            'agreement-url':
-                reverse('mkt.developers.bango.agreement', args=[acc.pk]),
+            'agreement-url': acc.get_agreement_url(),
             'agreement': 'accepted' if acc.agreed_tos else 'rejected'
         }
         return data
@@ -175,30 +176,22 @@ def payment_accounts_form(request):
 def payments_accounts_add(request):
     form = forms_payments.BangoPaymentAccountForm(request.POST)
     if not form.is_valid():
-        return http.HttpResponse(json.dumps(form.errors), status=400)
+        return http.HttpResponseBadRequest(json.dumps(form.errors))
 
     try:
-        obj = models.PaymentAccount.create_bango(
-            request.amo_user, form.cleaned_data)
+        obj = PaymentAccount.create_bango(request.amo_user, form.cleaned_data)
     except HttpClientError as e:
         log.error('Client error create Bango account; %s' % e)
-        return http.HttpResponse(json.dumps(e.content), status=400)
-    except HttpServerError as e:
-        log.error('Error creating Bango payment account; %s' % e)
-        return http.HttpResponse(
-            _(u'Could not connect to payment server.'), status=400)
-    return {
-        'pk': obj.pk,
-        'agreement-url': reverse('mkt.developers.bango.agreement', args=[obj.pk]),
-    }
+        return http.HttpResponseBadRequest(json.dumps(e.content))
+
+    return {'pk': obj.pk, 'agreement-url': obj.get_agreement_url()}
 
 
 @write
 @login_required
 @json_view
 def payments_account(request, id):
-    account = get_object_or_404(models.PaymentAccount, pk=id,
-                                user=request.user)
+    account = get_object_or_404(PaymentAccount, pk=id, user=request.user)
     if request.POST:
         form = forms_payments.BangoPaymentAccountForm(
             request.POST, account=account)
@@ -214,8 +207,7 @@ def payments_account(request, id):
 @post_required
 @login_required
 def payments_accounts_delete(request, id):
-    account = get_object_or_404(models.PaymentAccount, pk=id,
-                                user=request.user)
+    account = get_object_or_404(PaymentAccount, pk=id, user=request.user)
     account.cancel()
     log.info('Account cancelled: %s' % id)
     return http.HttpResponse('success')
@@ -224,7 +216,7 @@ def payments_accounts_delete(request, id):
 @login_required
 @waffle_switch('in-app-sandbox')
 def in_app_keys(request):
-    keys = (models.UserInappKey.uncached
+    keys = (UserInappKey.uncached
             .filter(solitude_seller__user=request.amo_user))
     # TODO(Kumar) support multiple test keys. For now there's only one.
     if keys.count():
@@ -236,7 +228,7 @@ def in_app_keys(request):
             key.reset()
             messages.success(request, _('Secret was reset successfully.'))
         else:
-            models.UserInappKey.create(request.amo_user)
+            UserInappKey.create(request.amo_user)
             messages.success(request,
                              _('Key and secret were created successfully.'))
         return redirect(reverse('mkt.developers.apps.in_app_keys'))
@@ -248,7 +240,7 @@ def in_app_keys(request):
 @login_required
 @waffle_switch('in-app-sandbox')
 def in_app_key_secret(request, pk):
-    key = (models.UserInappKey.uncached
+    key = (UserInappKey.uncached
            .filter(solitude_seller__user=request.amo_user, pk=pk))
     if not key.count():
         # Either the record does not exist or it's not owned by the
@@ -318,8 +310,7 @@ def get_seller_product(account):
 @login_required
 @json_view
 def agreement(request, id):
-    account = get_object_or_404(models.PaymentAccount, pk=id,
-                                user=request.user)
+    account = get_object_or_404(PaymentAccount, pk=id, user=request.user)
     # It's a shame we have to do another get to find this out.
     package = client.api.bango.package(account.uri).get_object_or_404()
     if request.method == 'POST':

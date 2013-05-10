@@ -7,6 +7,7 @@ import commonware.log
 from tower import ugettext_lazy as _lazy
 
 import amo
+from amo.urlresolvers import reverse
 from lib.crypto import generate_key
 from lib.pay_server import client
 from mkt.constants.payments import ACCESS_PURCHASE, ACCESS_SIMULATE
@@ -16,14 +17,11 @@ from users.models import UserForeignKey
 log = commonware.log.getLogger('z.devhub')
 
 
-class CurlingHelper(object):
-
-    @staticmethod
-    def uri_to_pk(uri):
-        """
-        Convert a resource URI to the primary key of the resource.
-        """
-        return uri.rstrip('/').split('/')[-1]
+def uri_to_pk(uri):
+    """
+    Convert a resource URI to the primary key of the resource.
+    """
+    return uri.rstrip('/').split('/')[-1]
 
 
 class SolitudeSeller(amo.models.ModelBase):
@@ -48,7 +46,7 @@ class SolitudeSeller(amo.models.ModelBase):
         return obj
 
 
-class PaymentAccount(CurlingHelper, amo.models.ModelBase):
+class PaymentAccount(amo.models.ModelBase):
     user = UserForeignKey()
     name = models.CharField(max_length=64)
     agreed_tos = models.BooleanField()
@@ -75,12 +73,9 @@ class PaymentAccount(CurlingHelper, amo.models.ModelBase):
         db_table = 'payment_accounts'
         unique_together = ('user', 'uri')
 
-    # TODO(solitude): Make this async.
     @classmethod
     def create_bango(cls, user, form_data):
         # Get the seller object.
-        # TODO(solitude): When solitude supports multiple packages per seller,
-        # change this to .get_or_create(user).
         user_seller = SolitudeSeller.create(user)
 
         # Get the data together for the package creation.
@@ -119,7 +114,6 @@ class PaymentAccount(CurlingHelper, amo.models.ModelBase):
         will be set to STATUS_NULL.
 
         """
-
         self.update(inactive=True)
         log.info('[1@None] Soft-deleted payment account (uri: %s)' %
                      self.uri)
@@ -130,38 +124,28 @@ class PaymentAccount(CurlingHelper, amo.models.ModelBase):
                 acc_ref.addon.update(status=amo.STATUS_NULL)
             acc_ref.delete()
 
-        # TODO(solitude): Make this a celery task.
-
-        # We would otherwise have delete(), but we don't want to do that
-        # without CancelPackage-ing. Once that support is added, we can write a
-        # migration to re-cancel and hard delete the inactive objects.
-
     def update_account_details(self, **kwargs):
         self.update(name=kwargs.pop('account_name'))
-        # We can't do client.patch_package, so we do this.
-        client.call_uri(uri=self.uri, method='patch',
-                        data=dict((k, v) for k, v in kwargs.items() if
-                                  k in self.BANGO_PACKAGE_VALUES))
+        client.api.by_url(self.uri).patch(
+            data=dict((k, v) for k, v in kwargs.items() if
+                      k in self.BANGO_PACKAGE_VALUES))
 
     def get_details(self):
         data = {'account_name': self.name}
-        package_data = (client.api
-                              .bango
-                              .package(self.uri_to_pk(self.uri))
-                              .get(data={'full': True}))
-
+        package_data = (client.api.bango.package(uri_to_pk(self.uri))
+                        .get(data={'full': True}))
         data.update((k, v) for k, v in package_data.get('full').items() if
                     k in self.BANGO_PACKAGE_VALUES)
-
-        # TODO(solitude): Someday, we'll want to show existing bank details.
-
         return data
 
     def __unicode__(self):
         return u'%s - %s' % (self.created.strftime('%m/%y'), self.name)
 
+    def get_agreement_url(self):
+        return reverse('mkt.developers.bango.agreement', args=[self.pk])
 
-class AddonPaymentAccount(CurlingHelper, amo.models.ModelBase):
+
+class AddonPaymentAccount(amo.models.ModelBase):
     addon = models.OneToOneField(
         'addons.Addon', related_name='app_payment_account')
     payment_account = models.ForeignKey(PaymentAccount)
@@ -193,7 +177,7 @@ class AddonPaymentAccount(CurlingHelper, amo.models.ModelBase):
         """
         secret = generate_key(48)
         external_id = webpay.make_ext_id(addon.pk)
-        data = {'seller': cls.uri_to_pk(payment_account.seller_uri),
+        data = {'seller': uri_to_pk(payment_account.seller_uri),
                 'external_id': external_id}
         try:
             generic_product = client.api.generic.product.get_object(**data)
@@ -226,7 +210,7 @@ class AddonPaymentAccount(CurlingHelper, amo.models.ModelBase):
                                       'have a bango_package_id')
         res = None
         if product_uri:
-            data = {'seller_product': cls.uri_to_pk(product_uri)}
+            data = {'seller_product': uri_to_pk(product_uri)}
             try:
                 res = client.api.bango.product.get_object(**data)
             except ObjectDoesNotExist:
@@ -301,7 +285,7 @@ class AddonPaymentAccount(CurlingHelper, amo.models.ModelBase):
         super(AddonPaymentAccount, self).delete()
 
 
-class UserInappKey(CurlingHelper, amo.models.ModelBase):
+class UserInappKey(amo.models.ModelBase):
     solitude_seller = models.ForeignKey(SolitudeSeller)
     seller_product_pk = models.IntegerField(unique=True)
 
