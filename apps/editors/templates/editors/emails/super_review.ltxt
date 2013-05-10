@@ -7,12 +7,10 @@ Please open your plethora of knowledge and wield your mighty administrative swor
 
 {{ name }} - {{ review_url }}
 
-Reviewer:
-{{ reviewer }}
-
 Comments:
 {{ comments }}
 
 
 Love,
+{{ reviewer }}
 {% endblock %}
