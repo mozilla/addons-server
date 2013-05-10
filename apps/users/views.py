@@ -404,7 +404,7 @@ def browserid_login(request, browserid_audience=None):
                 is_native=is_native,
                 browserid_audience=browserid_audience or get_audience(request))
         if profile is not None:
-            request.user = profile.user
+            auth.login(request, profile.user)
             profile.log_login_attempt(True)
             return http.HttpResponse(status=200)
     return http.HttpResponse(msg, status=401)
