@@ -80,6 +80,9 @@ def create_index(new_index, alias, settings):
     except pyelasticsearch.exceptions.IndexAlreadyExistsError:
         raise CommandError('New index [%s] already exists' % new_index)
 
+    # Don't return until the health is green. By default waits for 30s.
+    ES.health(new_index, wait_for_status='green', wait_for_relocating_shards=0)
+
 
 def index_webapp(ids, **kw):
     index = kw.pop('index', None) or ALIAS
