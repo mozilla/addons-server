@@ -593,8 +593,12 @@ class Webapp(Addon):
     @classmethod
     def from_search(cls, cat=None, region=None, gaia=False, mobile=False,
                     tablet=False, filter_overrides=None):
-        filters = dict(type=amo.ADDON_WEBAPP, status=amo.STATUS_PUBLIC,
-                       is_disabled=False)
+
+        filters = {
+            'type': amo.ADDON_WEBAPP,
+            'status': amo.STATUS_PUBLIC,
+            'is_disabled': False,
+        }
 
         # Special handling if status is 'any' to remove status filter.
         if filter_overrides and 'status' in filter_overrides:
@@ -608,7 +612,7 @@ class Webapp(Addon):
         if cat:
             filters.update(category=cat.id)
 
-        srch = S(cls).query(**filters)
+        srch = S(cls).filter(**filters)
         if region:
             excluded = cls.get_excluded_in(region)
             if excluded:

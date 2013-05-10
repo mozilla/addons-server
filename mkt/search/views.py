@@ -51,7 +51,7 @@ def _filter_search(request, qs, query, filters=None, sorting=None,
     show = filter(query.get, filters)
 
     if query.get('q'):
-        qs = qs.query(or_=name_query(query['q'].lower()))
+        qs = qs.query(should=True, **name_query(query['q'].lower()))
     if 'cat' in show:
         qs = qs.filter(category=query['cat'])
     if 'price' in show:

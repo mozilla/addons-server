@@ -326,6 +326,7 @@ class TestWebappSearch(PaidAppMixin, SearchBase):
 class TestSuggestions(TestAjaxSearch):
 
     def setUp(self):
+        raise SkipTest
         super(TestSuggestions, self).setUp()
         self.url = reverse('search.apps_ajax')
 

@@ -1,7 +1,7 @@
 import json
 
 import test_utils
-from nose.tools import eq_, ok_
+from nose.tools import ok_
 
 from django.contrib.auth.models import AnonymousUser
 
@@ -50,7 +50,7 @@ class TestSearchFilters(BaseOAuth):
 
     def _addon_type_check(self, query, expected=amo.ADDON_WEBAPP):
         qs = self._filter(self.req, query)
-        ok_({'term': {'type': expected}} in qs['query']['bool']['must'],
+        ok_({'term': {'type': expected}} in qs['filter']['and'],
             'Unexpected type. Expected: %s.' % expected)
 
     def test_addon_type(self):
@@ -66,7 +66,7 @@ class TestSearchFilters(BaseOAuth):
 
     def _status_check(self, query, expected=amo.STATUS_PUBLIC):
         qs = self._filter(self.req, query)
-        ok_({'term': {'status': expected}} in qs['query']['bool']['must'],
+        ok_({'term': {'status': expected}} in qs['filter']['and'],
             'Unexpected status. Expected: %s.' % expected)
 
     def test_status(self):
@@ -82,28 +82,29 @@ class TestSearchFilters(BaseOAuth):
 
     def test_category(self):
         qs = self._filter(self.req, {'cat': self.category.pk})
-        eq_(qs['filter']['term'], {'category': self.category.pk})
+        ok_({'term': {'category': self.category.pk}} in qs['filter']['and'])
 
     def test_device(self):
         qs = self._filter(self.req, {'device': 'desktop'})
-        eq_(qs['filter']['term'], {'device': DEVICE_CHOICES_IDS['desktop']})
+        ok_({'term': {
+            'device': DEVICE_CHOICES_IDS['desktop']}} in qs['filter']['and'])
 
     def test_premium_types(self):
         ptype = lambda p: amo.ADDON_PREMIUM_API_LOOKUP.get(p)
         # Test a single premium type.
         qs = self._filter(self.req, {'premium_types': ['free']})
-        eq_(qs['filter']['in'], {'premium_type': [ptype('free')]})
+        ok_({'in': {'premium_type': [ptype('free')]}} in qs['filter']['and'])
         # Test many premium types.
         qs = self._filter(self.req, {'premium_types': ['free', 'free-inapp']})
-        eq_(qs['filter']['in'],
-            {'premium_type': [ptype('free'), ptype('free-inapp')]})
+        ok_({'in': {'premium_type': [ptype('free'), ptype('free-inapp')]}}
+            in qs['filter']['and'])
         # Test a non-existent premium type.
         qs = self._filter(self.req, {'premium_types': ['free', 'platinum']})
         ok_(u'Select a valid choice' in qs['premium_types'][0])
 
     def test_app_type(self):
         qs = self._filter(self.req, {'app_type': 'hosted'})
-        eq_(qs['filter']['term'], {'app_type': 1})
+        ok_({'term': {'app_type': 1}} in qs['filter']['and'])
 
     def test_region(self):
         # Test regions that affect search filters.
@@ -116,9 +117,11 @@ class TestSearchFilters(BaseOAuth):
         # Test child-excluded region.
         set_region(list(regions.CHILD_EXCLUDED)[0].slug)
         qs = self._filter(self.req, {'q': 'yolo'})
-        eq_(qs['filter']['not'], {'filter': {'term': {'flag_child': True}}})
+        ok_({'not': {'filter': {'term': {'flag_child': True}}}}
+            in qs['filter']['and'])
 
         # Test adult-excluded region.
         set_region(list(regions.ADULT_EXCLUDED)[0].slug)
         qs = self._filter(self.req, {'q': 'yolo'})
-        eq_(qs['filter']['not'], {'filter': {'term': {'flag_adult': True}}})
+        ok_({'not': {'filter': {'term': {'flag_adult': True}}}}
+            in qs['filter']['and'])
