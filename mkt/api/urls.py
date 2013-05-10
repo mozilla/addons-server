@@ -7,6 +7,7 @@ from mkt.api.base import handle_500
 from mkt.api.resources import (AppResource, CarrierResource, CategoryResource,
                                ConfigResource, PreviewResource, RegionResource,
                                StatusResource, ValidationResource)
+from mkt.developers.api import AccountResource
 from mkt.ratings.resources import RatingResource
 from mkt.search.api import SearchResource, WithFeaturedResource
 from mkt.stats.api import GlobalStatsResource
@@ -22,6 +23,8 @@ api.register(SearchResource())
 api.register(StatusResource())
 api.register(RatingResource())
 
+payments = Api(api_name='payments')
+payments.register(AccountResource())
 stats_api = Api(api_name='stats')
 stats_api.register(GlobalStatsResource())
 
@@ -38,6 +41,7 @@ if settings.ALLOW_TASTYPIE_SERVICES:
 
 urlpatterns = patterns('',
     url(r'^', include(api.urls)),
+    url(r'^', include(payments.urls)),
     url(r'^', include(stats_api.urls)),
     url(r'^', include(services.urls))
 )
