@@ -25,7 +25,7 @@ from lib.pay_server import client
 from mkt.constants import DEVICE_LOOKUP
 from mkt.developers.decorators import dev_required
 from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
-                                   UserInappKey)
+                                   uri_to_pk, UserInappKey)
 
 from . import forms, forms_payments
 
@@ -296,13 +296,13 @@ def get_seller_product(account):
     Get the solitude seller_product for a payment account object.
     """
     bango_product = (client.api.bango
-                           .product(account.uri_to_pk(account.product_uri))
+                           .product(uri_to_pk(account.product_uri))
                            .get_object_or_404())
     # TODO(Kumar): we can optimize this by storing the seller_product
     # when we create it in developers/models.py or allowing solitude
     # to filter on both fields.
     return (client.api.generic
-                  .product(account.uri_to_pk(bango_product['seller_product']))
+                  .product(uri_to_pk(bango_product['seller_product']))
                   .get_object_or_404())
 
 

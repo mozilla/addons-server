@@ -18,7 +18,7 @@ from users.models import UserProfile
 
 import mkt
 from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
-                                   SolitudeSeller, UserInappKey)
+                                   SolitudeSeller, uri_to_pk, UserInappKey)
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import AddonExcludedRegion as AER, ContentRating
 
@@ -117,7 +117,7 @@ class TestInappSecret(InappTest):
         self.set_mocks(solitude)
         resp = self.client.get(self.url)
         eq_(resp.content, 'shhh!')
-        pk = self.account.uri_to_pk(self.account.product_uri)
+        pk = uri_to_pk(self.account.product_uri)
         solitude.api.bango.product.assert_called_with(pk)
         solitude.api.generic.product.assert_called_with('prod-pk')
 
