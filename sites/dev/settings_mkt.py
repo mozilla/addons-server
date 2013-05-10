@@ -195,7 +195,7 @@ MONOLITH_PASSWORD = private_mkt.MONOLITH_PASSWORD
 WEBAPP_MANIFEST_NAME = 'Marketplace Dev'
 
 # Yule Log (our <iframe>'d Marketplace) needs to point to -dev instead of prod.
-PACKAGED_ZIP = 'yulelog_dev_2013.05.10_09.50.26.zip'
+PACKAGED_ZIP = 'yulelog_dev_2013.05.10_11.37.12.zip'
 
 # Replace LESS with Stylus.
 try:

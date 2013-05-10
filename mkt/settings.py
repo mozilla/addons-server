@@ -327,7 +327,7 @@ APP_PURCHASE_TYP = 'mozilla/payments/pay/v1'
 # This is the base filename of the `.zip` containing the packaged app for the
 # consumer-facing pages of the Marketplace (aka Fireplace). Expected path:
 #     /media/packaged-apps/<path>
-PACKAGED_ZIP = 'yulelog_prod_2013.05.10_09.50.26.zip'
+PACKAGED_ZIP = 'yulelog_prod_2013.05.10_11.37.12.zip'
 
 # A solitude specific settings that allows you to send fake refunds to
 # solitude. The matching setting will have to be on in solitude, otherwise
