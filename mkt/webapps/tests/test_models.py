@@ -211,7 +211,7 @@ class TestWebapp(amo.tests.TestCase):
     def test_get_price_no_premium(self):
         webapp = Webapp(premium_type=amo.ADDON_PREMIUM)
         eq_(webapp.get_price(currency='USD'), None)
-        eq_(webapp.get_price_locale(currency='USD'), 'Free')
+        eq_(webapp.get_price_locale(currency='USD'), None)
 
     def test_get_price(self):
         # This test can be expensive to set up, lets just check it goes
