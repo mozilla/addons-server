@@ -21,17 +21,17 @@
 <div class="queue-outer">
   <div class="queue-inner">
     {% if search_form %}
-    <div id="queue-search">
+    <div class="queue-search">
       <form action="" method="get">
         {{ search_form['searching'] }}
         <label for="id_text_query">{{ search_form['text_query'].label }}</label>
         {{ search_form['text_query'] }}
         <button type="submit">{{ _('Search') }}</button>
-        <a id="toggle-queue-search" href="#">{{ _('Advanced Search') }}</a>
+        <a class="toggle-queue-search" href="#">{{ _('Advanced Search') }}</a>
         {% if search_form.data and search_form.data['searching'] %}
-          (<a id="clear-queue-search" href="{{ url('editors.queue_%s' % tab) }}">{{ _('clear search') }}</a>)
+          (<a class="clear-queue-search" href="{{ url('editors.queue_%s' % tab) }}">{{ _('clear search') }}</a>)
         {% endif %}
-        <div id="advanced-search">
+        <div class="advanced-search">
           <div class="column1">
             <div class="form-row">
               {% for elem in ('admin_review', 'application_id',
