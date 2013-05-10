@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 # Django settings for zamboni project.
 
-import os
 import logging
+import os
 import socket
 
 from django.utils.functional import lazy
@@ -1360,6 +1360,7 @@ BUILDER_VERSIONS_URL = ('https://builder.addons.mozilla.org/repackage/' +
 
 ## elasticsearch
 ES_HOSTS = ['127.0.0.1:9200']
+ES_URLS = ['http://%s' % h for h in ES_HOSTS]
 ES_INDEXES = {'default': 'amo',
               'update_counts': 'amo_stats',
               'download_counts': 'amo_stats',

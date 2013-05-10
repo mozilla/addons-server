@@ -1,12 +1,12 @@
 import datetime
 import json
 import logging
-from optparse import make_option
 import os
 import re
 import sys
-import traceback
 import time
+import traceback
+from optparse import make_option
 
 import requests
 from celery_tasktree import task_with_callbacks, TaskTree
@@ -15,20 +15,19 @@ from django.conf import settings as django_settings
 from django.core.management import call_command
 from django.core.management.base import BaseCommand, CommandError
 
-from amo.utils import timestamp_index
-
 from addons.cron import reindex_addons, reindex_apps
+from amo.utils import timestamp_index
 from apps.addons.search import setup_mapping as put_amo_mapping
 from bandwagon.cron import reindex_collections
 from compat.cron import compatibility_report
+from lib.es.models import Reindexing
+from lib.es.utils import database_flagged
 from stats.search import setup_indexes as put_stats_mapping
 from users.cron import reindex_users
 
-from lib.es.models import Reindexing
-from lib.es.utils import database_flagged
-
 
 _INDEXES = {}
+
 
 def index_stats(index=None, aliased=True):
     """Indexes the previous 365 days."""
@@ -55,10 +54,8 @@ logger = logging.getLogger('z.elasticsearch')
 DEFAULT_NUM_REPLICAS = 0
 DEFAULT_NUM_SHARDS = 3
 
-if hasattr(django_settings, 'ES_HOSTS'):
-    base_url = django_settings.ES_HOSTS[0]
-    # The configuration comes with no scheme.
-    base_url = 'http://%s' % base_url
+if hasattr(django_settings, 'ES_URLS'):
+    base_url = django_settings.ES_URLS[0]
 else:
     base_url = 'http://127.0.0.1:9200'
 

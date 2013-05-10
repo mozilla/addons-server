@@ -1,13 +1,13 @@
 from django import http
 from django.conf import settings
 from django.db.models import Q
+from django.utils import translation
 from django.utils.encoding import smart_str
 from django.views.decorators.vary import vary_on_headers
-from django.utils import translation
 
-from elasticutils.contrib.django import F, S
 import commonware.log
 import jingo
+from elasticutils.contrib.django import F
 from mobility.decorators import mobile_template
 from tower import ugettext as _
 
@@ -17,9 +17,10 @@ import browse.views
 from addons.models import Addon, Category
 from amo.decorators import json_view
 from amo.helpers import locale_url, urlparams
+from amo.search import TempS as S
 from amo.utils import sorted_groupby
 from bandwagon.models import Collection
-from versions.compare import dict_from_int, version_int, version_dict
+from versions.compare import dict_from_int, version_dict, version_int
 
 import mkt
 from mkt.webapps.models import Webapp
@@ -66,7 +67,7 @@ def _personas(request):
     search_opts['offset'] = (page - 1) * search_opts['limit']
 
     pager = amo.utils.paginate(request, results, per_page=search_opts['limit'])
-    categories, filter, _, _ = browse.views.personas_listing(request)
+    categories, filter, base, category = browse.views.personas_listing(request)
     c = dict(pager=pager, form=form, categories=categories, query=query,
              filter=filter, search_placeholder='themes')
     return jingo.render(request, 'search/personas.html', c)
@@ -168,7 +169,7 @@ class BaseAjaxSearch(object):
                 # Oh, how I wish I could elastically exclude terms.
                 # (You can now, but I forgot why I was complaining to
                 # begin with.)
-                qs = (S(Addon).query(or_=name_only_query(q.lower()))
+                qs = (Addon.search().query(or_=name_only_query(q.lower()))
                       .filter(is_disabled=False))
             if qs:
                 results = qs.filter(type__in=self.types,
@@ -549,8 +550,8 @@ def category_sidebar(request, query, facets):
     if qcat not in categories.values_list('id', flat=True):
         qatype = qcat = None
 
-    categories = [(atype, sorted(cats, key=lambda x: x.name))
-                  for atype, cats in sorted_groupby(categories, 'type')]
+    categories = [(_atype, sorted(_cats, key=lambda x: x.name))
+                  for _atype, _cats in sorted_groupby(categories, 'type')]
 
     rv = []
     cat_params = dict(cat=None)

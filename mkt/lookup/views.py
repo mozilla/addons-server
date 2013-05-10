@@ -1,10 +1,10 @@
-from datetime import datetime, timedelta
 import hashlib
 import uuid
+from datetime import datetime, timedelta
 
 from django.conf import settings
 from django.db import connection
-from django.db.models import Sum, Count, Q
+from django.db.models import Count, Q, Sum
 from django.http import Http404
 from django.shortcuts import get_object_or_404, redirect
 
@@ -16,14 +16,14 @@ from tower import ugettext as _
 
 import amo
 from addons.models import Addon
-from amo.decorators import (login_required, permission_required, post_required,
-                            json_view)
+from amo.decorators import (json_view, login_required, permission_required,
+                            post_required)
+from amo.search import TempS as S
 from amo.urlresolvers import reverse
 from amo.utils import paginate
 from apps.access import acl
 from apps.bandwagon.models import Collection
 from devhub.models import ActivityLog
-from elasticutils.contrib.django import S
 from lib.pay_server import client
 from market.models import AddonPaymentData, Refund
 from mkt.constants.payments import (COMPLETED, FAILED, PENDING,
@@ -34,7 +34,7 @@ from mkt.lookup.tasks import (email_buyer_refund_approved,
                               email_buyer_refund_pending)
 from mkt.site import messages
 from mkt.webapps.models import Installed
-from stats.models import DownloadCount, Contribution
+from stats.models import Contribution, DownloadCount
 from users.models import UserProfile
 
 log = commonware.log.getLogger('z.lookup')
@@ -335,8 +335,8 @@ def app_search(request):
         qs = (Addon.objects.filter(type=addon_type, guid=q)
                            .values(*non_es_fields))
         if not qs.count():
-            qs = (S(Addon).query(type=addon_type,
-                                 or_=_expand_query(q, fields))
+            qs = (S(Addon).query(must=True, type=addon_type)
+                          .query(should=True, **_expand_query(q, fields))
                           .values_dict(*fields)[:20])
     for app in qs:
         app['url'] = reverse('lookup.app_summary', args=[app['id']])

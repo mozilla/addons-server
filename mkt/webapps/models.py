@@ -16,7 +16,7 @@ from django.dispatch import receiver
 from django.utils.http import urlquote
 
 import commonware.log
-from elasticutils.contrib.django import F, S
+from elasticutils.contrib.django import F
 from tower import ugettext as _
 
 import amo
@@ -28,6 +28,7 @@ from addons.models import (Addon, AddonDeviceType, Category, Flag,
 from addons.signals import version_changed
 from amo.decorators import skip_cache
 from amo.helpers import absolutify
+from amo.search import TempS as S
 from amo.storage_utils import copy_stored_file
 from amo.urlresolvers import reverse
 from amo.utils import JSONEncoder, smart_path
@@ -40,7 +41,7 @@ from versions.models import Version
 
 import mkt
 from mkt import regions
-from mkt.constants import apps, APP_FEATURES, APP_IMAGE_SIZES
+from mkt.constants import APP_FEATURES, APP_IMAGE_SIZES, apps
 from mkt.webapps.utils import get_locale_properties, get_supported_locales
 from mkt.zadmin.models import FeaturedApp
 
