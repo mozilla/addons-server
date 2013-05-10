@@ -1,4 +1,4 @@
-/* 2013.05.10_10.44.19 */
+/* 2013.05.10_10.52.33 */
 (function(window, undefined) {
 
 var defined = {};
@@ -37,51 +37,6 @@ require.config = function() {};
 
 window.require = require;
 window.define = define;
-
-(function(window, undefined) {
-
-var defined = {};
-var resolved = {};
-
-function define(id, deps, module) {
-    defined[id] = [deps, module];
-}
-define.amd = {jQuery: true};
-
-function require(id) {
-
-    if (!resolved[id]) {
-
-        var definition = defined[id];
-
-        if (!definition) {
-            throw 'Attempted to resolve undefined module ' + id;
-        }
-
-        var deps = definition[0];
-        var module = definition[1];
-
-        if (typeof deps == 'function' && module === undefined) {
-            module = deps;
-            deps = [];
-        }
-
-        resolved[id] = module.apply(window, deps.map(require));
-
-    }
-    return resolved[id];
-}
-
-require.config = function() {};
-
-window.require = require;
-window.define = define;
-
-'replace me';
-
-require('marketplace');
-
-})(window, void 0);
 
 /*
     Provides the apps module, a wrapper around navigator.mozApps
@@ -815,7 +770,7 @@ define('capabilities', [], function() {
         ),
         'fileAPI': !!window.FileReader,
         'userAgent': navigator.userAgent,
-        'widescreen': safeMatchMedia('(min-width: 1024px)'),
+        'widescreen': function(){ return safeMatchMedia('(min-width: 710px)'); },
         'firefoxAndroid': navigator.userAgent.indexOf('Firefox') !== -1 && navigator.userAgent.indexOf('Android') !== -1,
         'touch': !!(('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch),
         'nativeScroll': (function() {
