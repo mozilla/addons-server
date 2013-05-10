@@ -1,4 +1,4 @@
-/* 2013.05.10_10.52.33 */
+/* 2013.05.10_11.09.45 */
 (function(window, undefined) {
 
 var defined = {};
@@ -16557,6 +16557,16 @@ define('views/debug',
             localStorage.setItem('debug-enabled', 'yes');
             label.text('yes');
         }
+    }).on('click', '#install-yulelog', function(e) {
+        var origin = window.location.origin || (
+            window.location.protocol + '//' + window.location.host);
+        var request = window.navigator.mozApps.installPackage(origin + '/packaged.webapp', null);
+        request.onerror = function(e) {
+            console.error('Error installing app:', + request.error.name);
+        };
+        request.onsuccess = function(e) {
+            console.log('Success installing app:', + request.result.manifest.name);
+        };
     }).on('click', '.cache-menu a', function(e) {
         e.preventDefault();
         var data = cache.get($(this).data('url'));
@@ -17747,9 +17757,9 @@ var output = "";
 try {
 output += "<section class=\"main infobox\">\n  <div>\n    <style>\n      dt {\n        clear: left;\n        float: left;\n      }\n      dd {\n        float: left;\n      }\n    </style>\n    <h2>Debug</h2>\n    <p>\n      <button id=\"toggle-debug\">Debug Mode: <b id=\"debug-status\">";
 output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "dbg"), env.autoesc);
-output += "</b></button>\n    </p>\n\n    <dl class=\"settings c\">\n      ";
+output += "</b></button>\n    </p>\n\n    <p>\n      <button id=\"install-yulelog\">Install Yulelog</button>\n    </p>\n\n    <dl class=\"settings c\">\n      ";
 frame = frame.push();
-var t_2 = (lineno = 17, colno = 36, runtime.callWrap(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "settings")),"items", env.autoesc), "settings[\"items\"]", []));
+var t_2 = (lineno = 21, colno = 36, runtime.callWrap(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "settings")),"items", env.autoesc), "settings[\"items\"]", []));
 for(var t_1=0; t_1 < t_2.length; t_1++) {
 var t_3 = t_2[t_1];
 frame.set("setting", t_3);
@@ -17762,7 +17772,7 @@ output += "</dd>\n      ";
 frame = frame.pop();
 output += "\n    </dl>\n\n    <dl class=\"capabilities c\">\n      ";
 frame = frame.push();
-var t_5 = (lineno = 24, colno = 36, runtime.callWrap(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "capabilities")),"items", env.autoesc), "capabilities[\"items\"]", []));
+var t_5 = (lineno = 28, colno = 36, runtime.callWrap(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "capabilities")),"items", env.autoesc), "capabilities[\"items\"]", []));
 for(var t_4=0; t_4 < t_5.length; t_4++) {
 var t_6 = t_5[t_4];
 frame.set("cap", t_6);
@@ -17777,7 +17787,7 @@ output += "\n      <dt>Feature Profile</dt>\n      <dd>";
 output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "profile"), env.autoesc);
 output += "</dd>\n    </dl>\n\n    <h3>Cache</h3>\n\n    <pre id=\"cache-inspector\"></pre>\n\n    <ul class=\"cache-menu\">\n      ";
 frame = frame.push();
-var t_8 = (lineno = 37, colno = 26, runtime.callWrap(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "cache")),"keys", env.autoesc), "cache[\"keys\"]", []));
+var t_8 = (lineno = 41, colno = 26, runtime.callWrap(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "cache")),"keys", env.autoesc), "cache[\"keys\"]", []));
 for(var t_7=0; t_7 < t_8.length; t_7++) {
 var t_9 = t_8[t_7];
 frame.set("k", t_9);
