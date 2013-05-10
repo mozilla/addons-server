@@ -1,10 +1,10 @@
 from nose.tools import eq_
 
 import amo.tests
-from addons.models import Addon, Flag
+from addons.models import (Addon, attach_categories, attach_devices,
+                           attach_prices, attach_tags, attach_translations,
+                           Flag)
 from addons.search import extract
-from addons.tasks import (attach_categories, attach_devices, attach_prices,
-                          attach_tags, attach_translations)
 
 
 class TestExtract(amo.tests.TestCase):

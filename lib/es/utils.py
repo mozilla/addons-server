@@ -10,9 +10,8 @@ def get_indices(index):
     try:
         reindex = Reindexing.objects.get(alias=index)
         # Yes. Let's reindex on both indexes
-        return [index for index in
-                reindex.new_index, reindex.old_index
-                if index is not None]
+        return [idx for idx in reindex.new_index, reindex.old_index
+                if idx is not None]
     except Reindexing.DoesNotExist:
         return [index]
 

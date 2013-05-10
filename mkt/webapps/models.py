@@ -24,8 +24,9 @@ import amo
 import amo.models
 from access.acl import action_allowed, check_reviewer
 from addons import query
-from addons.models import (Addon, AddonDeviceType, Category, Flag,
-                           update_search_index)
+from addons.models import (Addon, AddonDeviceType, attach_categories,
+                           attach_devices, attach_prices, attach_translations,
+                           Category, Flag, update_search_index)
 from addons.signals import version_changed
 from amo.decorators import skip_cache
 from amo.helpers import absolutify
@@ -176,6 +177,15 @@ class Webapp(Addon):
             app.all_versions = v_dict.get(app.id, [])
 
         return apps
+
+    @staticmethod
+    def indexing_transformer(apps):
+        """Attach everything we need to index apps."""
+        transforms = (attach_categories, attach_devices, attach_prices,
+                      attach_translations)
+        for t in transforms:
+            qs = apps.transform(t)
+        return qs
 
     def get_api_url(self, action=None, api=None, resource=None):
         """Reverse a URL for the API."""

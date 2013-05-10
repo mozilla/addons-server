@@ -10,7 +10,9 @@ import commonware.log
 import amo
 from amo.utils import memoize
 
+
 safe_key = lambda x: hashlib.md5(smart_str(x).lower().strip()).hexdigest()
+
 
 log = commonware.log.getLogger('z.redis')
 rnlog = logging.getLogger('z.rn')

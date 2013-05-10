@@ -9,16 +9,14 @@ from PIL import Image
 
 import amo
 from amo.decorators import set_modified_on, write
-from amo.utils import (attach_trans_dict, cache_ns_key, sorted_groupby,
-                       ImageCheck)
+from amo.utils import cache_ns_key, ImageCheck
 from lib.es.utils import index_objects
-from market.models import AddonPremium
-from tags.models import Tag
 from versions.models import Version
 
 # pulling tasks from cron
 from . import cron, search  # NOQA
-from .models import (Addon, AddonDeviceType, Category, CompatOverride,
+from .models import (Addon, attach_categories, attach_devices, attach_prices,
+                     attach_tags, attach_translations, CompatOverride,
                      IncompatibleVersions, Preview)
 
 
@@ -109,46 +107,6 @@ def index_addons(ids, **kw):
     transforms = (attach_categories, attach_devices, attach_prices,
                   attach_tags, attach_translations)
     index_objects(ids, Addon, search, kw.pop('index', None), transforms)
-
-
-def attach_devices(addons):
-    addon_dict = dict((a.id, a) for a in addons if a.type == amo.ADDON_WEBAPP)
-    devices = (AddonDeviceType.objects.filter(addon__in=addon_dict)
-               .values_list('addon', 'device_type'))
-    for addon, device_types in sorted_groupby(devices, lambda x: x[0]):
-        addon_dict[addon].device_ids = [d[1] for d in device_types]
-
-
-def attach_prices(addons):
-    addon_dict = dict((a.id, a) for a in addons)
-    prices = (AddonPremium.objects
-              .filter(addon__in=addon_dict,
-                      addon__premium_type__in=amo.ADDON_PREMIUMS)
-              .values_list('addon', 'price__price'))
-    for addon, price in prices:
-        addon_dict[addon].price = price
-
-
-def attach_categories(addons):
-    """Put all of the add-on's categories into a category_ids list."""
-    addon_dict = dict((a.id, a) for a in addons)
-    categories = (Category.objects.filter(addoncategory__addon__in=addon_dict)
-                  .values_list('addoncategory__addon', 'id'))
-    for addon, cats in sorted_groupby(categories, lambda x: x[0]):
-        addon_dict[addon].category_ids = [c[1] for c in cats]
-
-
-def attach_translations(addons):
-    """Put all translations into a translations dict."""
-    attach_trans_dict(Addon, addons)
-
-
-def attach_tags(addons):
-    addon_dict = dict((a.id, a) for a in addons)
-    qs = (Tag.objects.not_blacklisted().filter(addons__in=addon_dict)
-          .values_list('addons__id', 'tag_text'))
-    for addon, tags in sorted_groupby(qs, lambda x: x[0]):
-        addon_dict[addon].tag_list = [t[1] for t in tags]
 
 
 @task

@@ -15,17 +15,17 @@ from django.core.cache import cache
 from django.core.exceptions import ObjectDoesNotExist, ValidationError
 from django.db import models, transaction
 from django.dispatch import receiver
-from django.db.models import Q, Max, signals as dbsignals
+from django.db.models import Max, Q, signals as dbsignals
 from django.utils.translation import trans_real as translation
-from jinja2.filters import do_dictsort
 
 import caching.base as caching
 import commonware.log
 import json_field
 import waffle
+from jinja2.filters import do_dictsort
 from tower import ugettext_lazy as _
 
-from addons.utils import get_featured_ids, get_creatured_ids
+from addons.utils import get_creatured_ids, get_featured_ids
 
 import amo
 import amo.models
@@ -34,24 +34,26 @@ from access import acl
 from amo.decorators import use_master, write
 from amo.fields import DecimalCharField
 from amo.helpers import absolutify, shared_url
-from amo.utils import (cache_ns_key, chunked, find_language, JSONEncoder,
-                       send_mail, slugify, sorted_groupby, to_language,
-                       urlparams, timer)
+from amo.utils import (attach_trans_dict, cache_ns_key, chunked, find_language,
+                       JSONEncoder, send_mail, slugify, sorted_groupby, timer,
+                       to_language, urlparams)
 from amo.urlresolvers import get_outgoing_url, reverse
 from files.models import File
 from market.models import AddonPremium, Price
 from reviews.models import Review
 import sharing.utils as sharing
 from stats.models import AddonShareCountTotal
+from tags.models import Tag
 from translations.fields import (LinkifiedField, PurifiedField, save_signal,
                                  TranslatedField, Translation)
 from translations.query import order_by_translation
-from users.models import UserProfile, UserForeignKey
+from users.models import UserForeignKey, UserProfile
 from users.utils import find_users
 from versions.compare import version_int
 from versions.models import Version
 
 from . import query, signals
+
 
 log = commonware.log.getLogger('z.addons')
 
@@ -1612,6 +1614,46 @@ def watch_disabled(old_attr={}, new_attr={}, instance=None, sender=None, **kw):
     if instance.is_disabled and not Addon(**attrs).is_disabled:
         for f in File.objects.filter(version__addon=instance.id):
             f.hide_disabled_file()
+
+
+def attach_devices(addons):
+    addon_dict = dict((a.id, a) for a in addons if a.type == amo.ADDON_WEBAPP)
+    devices = (AddonDeviceType.objects.filter(addon__in=addon_dict)
+               .values_list('addon', 'device_type'))
+    for addon, device_types in sorted_groupby(devices, lambda x: x[0]):
+        addon_dict[addon].device_ids = [d[1] for d in device_types]
+
+
+def attach_prices(addons):
+    addon_dict = dict((a.id, a) for a in addons)
+    prices = (AddonPremium.objects
+              .filter(addon__in=addon_dict,
+                      addon__premium_type__in=amo.ADDON_PREMIUMS)
+              .values_list('addon', 'price__price'))
+    for addon, price in prices:
+        addon_dict[addon].price = price
+
+
+def attach_categories(addons):
+    """Put all of the add-on's categories into a category_ids list."""
+    addon_dict = dict((a.id, a) for a in addons)
+    categories = (Category.objects.filter(addoncategory__addon__in=addon_dict)
+                  .values_list('addoncategory__addon', 'id'))
+    for addon, cats in sorted_groupby(categories, lambda x: x[0]):
+        addon_dict[addon].category_ids = [c[1] for c in cats]
+
+
+def attach_translations(addons):
+    """Put all translations into a translations dict."""
+    attach_trans_dict(Addon, addons)
+
+
+def attach_tags(addons):
+    addon_dict = dict((a.id, a) for a in addons)
+    qs = (Tag.objects.not_blacklisted().filter(addons__in=addon_dict)
+          .values_list('addons__id', 'tag_text'))
+    for addon, tags in sorted_groupby(qs, lambda x: x[0]):
+        addon_dict[addon].tag_list = [t[1] for t in tags]
 
 
 class Persona(caching.CachingMixin, models.Model):

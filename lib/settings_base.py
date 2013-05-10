@@ -1063,7 +1063,8 @@ CELERY_SEND_TASK_ERROR_EMAILS = True
 CELERYD_LOG_LEVEL = logging.INFO
 CELERYD_HIJACK_ROOT_LOGGER = False
 CELERY_IMPORTS = ('lib.video.tasks', 'lib.metrics',
-                  'lib.es.management.commands.reindex')
+                  'lib.es.management.commands.reindex',
+                  'lib.es.management.commands.reindex_mkt')
 # We have separate celeryds for processing devhub & images as fast as possible
 # Some notes:
 # - always add routes here instead of @task(queue=<name>)
