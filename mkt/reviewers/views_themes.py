@@ -8,15 +8,15 @@ from django.forms.formsets import formset_factory
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.datastructures import MultiValueDictKeyError
 
-from elasticutils.contrib.django import S
 import jingo
 from tower import ugettext as _
 from waffle.decorators import waffle_switch
 
+import amo
 from access import acl
 from addons.models import Addon, Persona
-import amo
 from amo.decorators import json_view, post_required
+from amo.search import TempS
 from amo.urlresolvers import reverse
 from amo.utils import paginate
 from devhub.models import ActivityLog
@@ -57,8 +57,8 @@ def themes_search(request):
     search_form = forms.ThemeSearchForm(request.GET)
     if search_form.is_valid():
         # ES query on name.
-        themes = (S(Addon).filter(type=amo.ADDON_PERSONA,
-                                  status=amo.STATUS_PENDING)
+        themes = (TempS(Addon).filter(type=amo.ADDON_PERSONA,
+                                      status=amo.STATUS_PENDING)
             .query(or_=name_only_query(search_form.cleaned_data['q'].lower()))
             [:100])
 
