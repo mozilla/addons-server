@@ -15,6 +15,7 @@ from mkt.account.urls import (api_patterns as account_api_patterns,
                               users_patterns as mkt_users_patterns)
 from mkt.detail.views import manifest as mini_manifest
 from mkt.developers.views import login
+from mkt.developers.urls import api_patterns as payments_api_patterns
 from mkt.api import oauth
 from mkt.home.urls import home_api_patterns
 from mkt.purchase.urls import webpay_services_patterns
@@ -37,6 +38,7 @@ api_patterns = patterns('',
     url('', include(account_api_patterns)),
     url('', include(reviewer_api_patterns)),
     url('', include('mkt.webpay.urls')),
+    url('', include(payments_api_patterns)),
     url('', include(receipt_api_patterns)),
     url('', include('mkt.monolith.urls')),
 )

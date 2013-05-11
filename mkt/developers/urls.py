@@ -1,10 +1,13 @@
 from django import http
 from django.conf.urls import include, patterns, url
 
+from tastypie.api import Api
+
 from lib.misc.urlconf_decorator import decorate
 
 import amo
 from amo.decorators import write
+from mkt.developers.api import AccountResource
 from mkt.developers.decorators import use_apps
 from mkt.receipts.urls import test_patterns
 from mkt.stats.urls import all_apps_stats_patterns
@@ -153,3 +156,9 @@ urlpatterns = decorate(write, patterns('',
 
     url('^test/receipts/', include(test_patterns)),
 ))
+
+payments = Api(api_name='payments')
+
+payments.register(AccountResource())
+api_patterns = patterns('',
+    url(r'^', include(payments.urls)))

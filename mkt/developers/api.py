@@ -1,10 +1,8 @@
 import json
 
-from django import http
-
 import commonware
 from curling.lib import HttpClientError, HttpServerError
-from tastypie import validation
+from tastypie import validation, http
 from tastypie.authorization import Authorization
 from tastypie.exceptions import ImmediateHttpResponse
 from tower import ugettext as _
@@ -23,7 +21,7 @@ class AccountResource(MarketplaceModelResource):
             form_class=BangoPaymentAccountForm)
         queryset = PaymentAccount.objects.all()
         list_allowed_methods = ['get', 'post']
-        detail_allowed_methods = ['get', 'post', 'put', 'delete']
+        detail_allowed_methods = ['get', 'post', 'put']
         authentication = OAuthAuthentication()
         authorization = Authorization()
         resource_name = 'account'
@@ -38,11 +36,10 @@ class AccountResource(MarketplaceModelResource):
                 request.amo_user, bundle.data)
         except HttpClientError as e:
             log.error('Client error create Bango account; %s' % e)
-            raise ImmediateHttpResponse(http.HttpResponse(
-                json.dumps(e.content), status=400))
+            raise ImmediateHttpResponse(
+                http.HttpApplicationError(json.dumps(e.content)))
         except HttpServerError as e:
             log.error('Error creating Bango payment account; %s' % e)
-            raise ImmediateHttpResponse(http.HttpResponse(
-                _(u'Could not connect to payment server.'), status=400))
-
+            raise ImmediateHttpResponse(http.HttpApplicationError(
+                _(u'Could not connect to payment server.')))
         return self.full_hydrate(bundle)
