@@ -1,4 +1,4 @@
-/* 2013.05.10_11.09.45 */
+/* 2013.05.12_17.13.13 */
 (function(window, undefined) {
 
 var defined = {};
@@ -678,7 +678,7 @@ define('buttons',
         } else {
             $button.parent().append($('#noApps').html());
         }
-    }).on('loaded', function() {
+    }).on('loaded loaded_more', function() {
         if (!capabilities.webApps) {
             $('.button.product').attr('disabled', true);
         }
@@ -721,6 +721,7 @@ define('cache', ['rewriters', 'underscore'], function(rewriters, _) {
     }
 
     function bust(key) {
+        console.log('[cache] Busting cache for ', key);
         if (key in cache) {
             delete cache[key];
         }
@@ -770,7 +771,7 @@ define('capabilities', [], function() {
         ),
         'fileAPI': !!window.FileReader,
         'userAgent': navigator.userAgent,
-        'widescreen': function(){ return safeMatchMedia('(min-width: 710px)'); },
+        'widescreen': function() { return safeMatchMedia('(min-width: 710px)'); },
         'firefoxAndroid': navigator.userAgent.indexOf('Firefox') !== -1 && navigator.userAgent.indexOf('Android') !== -1,
         'touch': !!(('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch),
         'nativeScroll': (function() {
@@ -1314,7 +1315,6 @@ define('lightbox', ['keys', 'utils', 'shothandles', 'underscore', 'z'],
     var currentApp;
     var previews;
     var slider;
-    var trayOrigin; // Remember the tray that originated the lightbox trigger.
 
     $lightbox.addClass('shots');
 
@@ -1323,7 +1323,6 @@ define('lightbox', ['keys', 'utils', 'shothandles', 'underscore', 'z'],
         var which = $this.closest('li').index();
         var $tray = $this.closest('.tray');
         var $tile = $tray.prev();
-        trayOrigin = $this.closest('.content')[0];
 
         // we get the screenshots from the associated tile. No tile? bail.
         if (!$tile.hasClass('mkt-tile')) return;
@@ -1362,20 +1361,6 @@ define('lightbox', ['keys', 'utils', 'shothandles', 'underscore', 'z'],
             resize();
             $lightbox.addClass('show');
         }, 0);
-    }
-
-    // Beat this mutant with a stick once FF fixes layered transition repaints.
-    function ghettoFresh(transformation) {
-        if (!transformation) return;
-        var trans = transformation.replace('translate3d(', '');
-        trans = parseInt(trans.split(',')[0], 10) | 0;
-
-        // Shift the tray by 1px then reset to original position.
-        setTimeout(function() {
-            trayOrigin.style.MozTransform = 'translate3d(' + (trans + 1) + 'px, 0, 0)';
-            trayOrigin.style.MozTransform = 'translate3d(' + trans + 'px, 0, 0)';
-            console.log('[lightbox] ghettoFresh() happened');
-        }, 100);
     }
 
     function renderPreviews() {
@@ -1444,9 +1429,6 @@ define('lightbox', ['keys', 'utils', 'shothandles', 'underscore', 'z'],
             $lightbox.hide();
         }, 500);
         z.win.unbind('keydown.lightboxDismiss');
-        if (trayOrigin) {
-            ghettoFresh(trayOrigin.style.MozTransform);
-        }
     }
 
     // prevent mouse cursors from dragging these images.
@@ -2386,7 +2368,7 @@ define('previews',
         });
 
         // Tray can fit 3 desktop thumbs before paging is required.
-        if (numPreviews > 3 && caps.widescreen) {
+        if (numPreviews > 3 && caps.widescreen()) {
             handles.attachHandles(slider, $tray.find('.slider'));
         }
 
@@ -16427,7 +16409,7 @@ define('views/abuse',
 
         forms.toggleSubmitFormState($this);
 
-        requests.post($this.data('action'), data).done(function(data) {
+        requests.post(urls.api.url('app_abuse'), data).done(function(data) {
             notify({message: gettext('Abuse reported')});
             z.page.trigger('navigate', urls.reverse('app', [slug]));
         }).fail(function() {
@@ -16473,7 +16455,7 @@ define('views/app',
 
     // Init desktop abuse form modal trigger.
     // The modal is responsive even if this handler isn't removed.
-    if (caps.widescreen) {
+    if (caps.widescreen()) {
         z.page.on('click', '.abuse .button', function(e) {
             e.preventDefault();
             e.stopPropagation();
@@ -16494,6 +16476,11 @@ define('views/app',
             builder.z('title', builder.results['app-data'].name);
             z.page.trigger('populatetray');
             overflow.init();
+            if (caps.widescreen() && !$('.report-abuse').length) {
+                z.page.append(
+                    nunjucks.env.getTemplate('detail/abuse.html').render(require('helpers'))
+                );
+            }
         }).onload('ratings', function() {
             var reviews = $('.detail .reviews li');
             if (reviews.length < 3) return;
@@ -16611,14 +16598,12 @@ define('views/featured', ['urls', 'z'], function(urls, z) {
 });
 
 define('views/feedback',
-       ['buckets', 'capabilities', 'forms', 'l10n', 'notification', 'requests', 'z'],
-       function(buckets, caps, forms, l10n, notification, requests, z) {
+       ['buckets', 'capabilities', 'forms', 'l10n', 'notification', 'requests', 'templates', 'utils', 'z'],
+       function(buckets, caps, forms, l10n, notification, requests, nunjucks, utils, z) {
 
     var gettext = l10n.gettext;
     var notify = notification.notification;
-    var nunjucks = require('templates');
     var urls = require('urls');
-    var utils = require('utils');
 
     z.page.on('submit', '.feedback-form', function(e) {
         e.preventDefault();
@@ -16646,11 +16631,13 @@ define('views/feedback',
 
     // Init desktop feedback form modal trigger.
     // The modal is responsive even if this handler isn't removed.
-    if (caps.widescreen) {
+    if (caps.widescreen()) {
         z.page.on('loaded', function() {
-            z.page.append(
-                nunjucks.env.getTemplate('settings/feedback.html').render(require('helpers'))
-            );
+            if (!$('.main.feedback').length) {
+                z.page.append(
+                    nunjucks.env.getTemplate('settings/feedback.html').render(require('helpers'))
+                );
+            }
         });
         z.body.on('click', '.submit-feedback', function(e) {
             e.preventDefault();
@@ -17012,17 +16999,17 @@ define('views/app/ratings/add',
         // open a login window. If they complete the login, click the Write
         // Review button if it exists.
         if (!user.logged_in()) {
-            z.page.trigger('navigate', urls.reverse('app', [slug]));
-            setTimeout(function() {
-                login.login().done(function() {
-                    $('#add-review').click();
-                });
-            }, 0);
+            login.login().done(function() {
+                $('#add-review').trigger('click');
+            });
             return;
         }
 
         builder.start('ratings/write.html', {'slug': slug}).done(function() {
             $('.compose-review').removeClass('modal');
+            $('.compose-review .cancel').on('click', function() {
+                z.page.trigger('navigate', urls.reverse('app', [slug]));
+            });
         });
 
         builder.z('type', 'leaf');
@@ -17819,9 +17806,7 @@ output += "\n\n<div class=\"main report-abuse modal c\">\n  <div>\n    <div clas
 output += runtime.suppressValue((lineno = 5, colno = 12, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Report Abuse"])), env.autoesc);
 output += "</h2>\n      <a href=\"#\" class=\"close btn-cancel\">";
 output += runtime.suppressValue((lineno = 6, colno = 45, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Close"])), env.autoesc);
-output += "</a>\n    </div>\n    <form method=\"post\" class=\"abuse-form form-modal\" data-action=\"";
-output += runtime.suppressValue((lineno = 8, colno = 71, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "api"), "api", ["app_abuse"])), env.autoesc);
-output += "\">\n      <p class=\"brform simple-field c\">\n        <textarea name=\"text\" required></textarea>\n      </p>\n      <p class=\"form-footer\">\n        ";
+output += "</a>\n    </div>\n    <form method=\"post\" class=\"abuse-form form-modal\">\n      <p class=\"brform simple-field c\">\n        <textarea name=\"text\" required></textarea>\n      </p>\n      <p class=\"form-footer\">\n        ";
 output += runtime.suppressValue((lineno = 13, colno = 23, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "potato_captcha"), "potato_captcha", [])), env.autoesc);
 output += "\n        <input type=\"hidden\" name=\"app\" value=\"";
 output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "slug"), env.autoesc);
@@ -18065,17 +18050,14 @@ t_14 += "\n    ";
 return t_14;
 }
 ,null,null,null), env.autoesc);
-output += "\n  </div>\n</section>\n\n";
-var includeTemplate = env.getTemplate("detail/abuse.html");
-output += includeTemplate.render(context.getVariables(), frame.push());
-output += "\n\n<div class=\"content_ratings\">\n  ";
+output += "\n  </div>\n</section>\n\n<div class=\"content_ratings\">\n  ";
 output += runtime.suppressValue(env.getExtension("defer")["run"](context,runtime.makeKeywordArgs({"url": t_1,"as": "app","key": runtime.contextOrFrameLookup(context, frame, "slug")}),function() {var t_15 = "";t_15 += "\n    ";
 if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "this")),"content_ratings", env.autoesc)) {
 t_15 += "\n      <div class=\"content-ratings-wrapper main infobox c\">\n        <div>\n          <h3>\n            ";
-t_15 += runtime.suppressValue((lineno = 181, colno = 14, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Rating by the <a href=\"{dejus_url}\" title=\"{dejus}\">DEJUS</a>",runtime.makeKeywordArgs({"dejus_url": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "settings")),"DEJUS_URL", env.autoesc),"dejus": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "settings")),"DEJUS", env.autoesc)})])), env.autoesc);
+t_15 += runtime.suppressValue((lineno = 179, colno = 14, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Rating by the <a href=\"{dejus_url}\" title=\"{dejus}\">DEJUS</a>",runtime.makeKeywordArgs({"dejus_url": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "settings")),"DEJUS_URL", env.autoesc),"dejus": runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "settings")),"DEJUS", env.autoesc)})])), env.autoesc);
 t_15 += "\n          </h3>\n          <div class=\"content-ratings\">\n            ";
 frame = frame.push();
-var t_17 = (lineno = 186, colno = 54, runtime.callWrap(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "this")),"content_ratings", env.autoesc)),"values", env.autoesc), "this[\"content_ra\"][\"values\"]", []));
+var t_17 = (lineno = 184, colno = 54, runtime.callWrap(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "this")),"content_ratings", env.autoesc)),"values", env.autoesc), "this[\"content_ra\"][\"values\"]", []));
 for(var t_16=0; t_16 < t_17.length; t_16++) {
 var t_18 = t_17[t_16];
 frame.set("rating", t_18);
@@ -18617,17 +18599,17 @@ output += "</a>\n  </header>\n  <form class=\"add-review-form form-modal\" data-
 output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "slug"), env.autoesc);
 output += "\">\n    <p class=\"brform simple-field rating c\">\n      <label for=\"id_rating\">";
 output += runtime.suppressValue((lineno = 7, colno = 31, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Rate:"])), env.autoesc);
-output += "</label>\n      <select name=\"rating\" id=\"id_rating\" required>\n          ";
+output += "</label>\n      <select name=\"rating\" id=\"id_rating\" required>\n        ";
 frame = frame.push();
-var t_2 = (lineno = 9, colno = 25, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "range"), "range", [1,6]));
+var t_2 = (lineno = 9, colno = 23, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "range"), "range", [1,6]));
 for(var t_1=0; t_1 < t_2.length; t_1++) {
 var t_3 = t_2[t_1];
 frame.set("i", t_3);
-output += "\n            <option value=\"";
+output += "\n          <option value=\"";
 output += runtime.suppressValue(t_3, env.autoesc);
 output += "\">";
 output += runtime.suppressValue(t_3, env.autoesc);
-output += "</option>\n          ";
+output += "</option>\n        ";
 }
 frame = frame.pop();
 output += "\n      </select>\n    </p>\n    <p class=\"brform simple-field c\">\n      <textarea id=\"id_body\" rows=\"2\" cols=\"40\" name=\"body\" required maxlength=\"150\"></textarea>\n      <div class=\"char-count\" data-for=\"id_body\"></div>\n    </p>\n    <footer class=\"form-footer buttons c only-logged-in\">\n      <div class=\"two-up\"><a href=\"#\" class=\"alt cancel button\">";
