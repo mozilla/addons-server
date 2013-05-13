@@ -79,6 +79,8 @@ CACHES = {
 }
 CELERY_ALWAYS_EAGER = True
 RUN_ES_TESTS = ${RUN_ES_TESTS}
+ES_HOSTS = ['jenkins-es20:9200']
+ES_URLS = ['http://%s' % h for h in ES_HOSTS]
 ADDONS_PATH = '/tmp/warez'
 STATIC_URL = ''
 
