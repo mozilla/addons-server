@@ -5,6 +5,7 @@ cd $WORKSPACE
 VENV=$WORKSPACE/venv
 VENDOR=$WORKSPACE/vendor
 LOCALE=$WORKSPACE/locale
+ES_HOST='jenkins-es20'
 SETTINGS=mkt
 
 echo "Starting build on executor $EXECUTOR_NUMBER..." `date`
@@ -79,7 +80,7 @@ CACHES = {
 }
 CELERY_ALWAYS_EAGER = True
 RUN_ES_TESTS = ${RUN_ES_TESTS}
-ES_HOSTS = ['jenkins-es20:9200']
+ES_HOSTS = ['${ES_HOST}:9200']
 ES_URLS = ['http://%s' % h for h in ES_HOSTS]
 ADDONS_PATH = '/tmp/warez'
 STATIC_URL = ''
@@ -95,7 +96,7 @@ python manage.py update_product_details
 echo "Starting tests..." `date`
 export FORCE_DB='yes sir'
 
-run_tests="python manage.py test -v 2 --noinput --logging-clear-handlers --with-blockage --with-xunit"
+run_tests="python manage.py test -v 2 --noinput --logging-clear-handlers --with-blockage --http-whitelist=127.0.0.1,localhost,${ES_HOST} --with-xunit"
 if [[ $3 = '--with-coverage' ]]; then
     run_tests+=" --with-coverage --cover-package=mkt --cover-erase --cover-html --cover-xml --cover-xml-file=coverage.xml"
 else
