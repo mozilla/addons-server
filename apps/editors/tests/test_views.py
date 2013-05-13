@@ -1366,12 +1366,12 @@ class TestQueueSearch(SearchTest):
     def test_clear_search_visible(self):
         r = self.search(text_query='admin', searching=True)
         eq_(r.status_code, 200)
-        eq_(pq(r.content)('#clear-queue-search').text(), 'clear search')
+        eq_(pq(r.content)('.clear-queue-search').text(), 'clear search')
 
     def test_clear_search_hidden(self):
         r = self.search(text_query='admin')
         eq_(r.status_code, 200)
-        eq_(pq(r.content)('#clear-queue-search').text(), None)
+        eq_(pq(r.content)('.clear-queue-search').text(), None)
 
 
 class TestQueueSearchVersionSpecific(SearchTest):
