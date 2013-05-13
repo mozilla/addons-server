@@ -102,8 +102,8 @@ MIDDLEWARE_CLASSES += [
     'mkt.api.middleware.TimingMiddleware',
     'mkt.api.middleware.APIVersionMiddleware',
     'mkt.api.middleware.CORSMiddleware',
-    'mkt.api.middleware.APITransactionMiddleware',
     'mkt.api.middleware.APIPinningMiddleware',
+    'mkt.api.middleware.APITransactionMiddleware',
     'mkt.api.middleware.APIFilterMiddleware'
 ]
 
