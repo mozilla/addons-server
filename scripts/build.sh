@@ -5,6 +5,7 @@ cd $WORKSPACE
 VENV=$WORKSPACE/venv
 VENDOR=$WORKSPACE/vendor
 LOCALE=$WORKSPACE/locale
+ES_HOST='jenkins-es20'
 SETTINGS=default
 
 echo "Starting build on executor $EXECUTOR_NUMBER..." `date`
@@ -81,6 +82,8 @@ CACHES = {
 }
 CELERY_ALWAYS_EAGER = True
 RUN_ES_TESTS = ${RUN_ES_TESTS}
+ES_HOSTS = ['${ES_HOST}:9200']
+ES_URLS = ['http://%s' % h for h in ES_HOSTS]
 ADDONS_PATH = '/tmp/warez'
 STATIC_URL = ''
 
@@ -98,7 +101,7 @@ if [[ $3 = 'with-coverage' ]]; then
     coverage run manage.py test -v 2 --noinput --logging-clear-handlers --with-xunit
     coverage xml $(find apps lib -name '*.py')
 else
-    python manage.py test -v 2 --noinput --logging-clear-handlers --with-xunit --with-blockage
+    python manage.py test -v 2 --noinput --logging-clear-handlers --with-xunit --with-blockage --http-whitelist=127.0.0.1,localhost,${ES_HOST}
 fi
 
 
