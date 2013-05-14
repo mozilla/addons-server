@@ -23,10 +23,11 @@ from mkt.site.fixtures import fixture
 from mkt.webapps.models import AddonExcludedRegion as AER, ContentRating
 
 
-def setup_payment_account(app, user):
-    seller = SolitudeSeller.objects.create(user=user, uuid='uid')
+def setup_payment_account(app, user, uid='uid'):
+    seller = SolitudeSeller.objects.create(user=user, uuid=uid)
     payment = PaymentAccount.objects.create(user=user, solitude_seller=seller,
-                                            agreed_tos=True)
+                                            agreed_tos=True, seller_uri=uid,
+                                            uri=uid)
     return AddonPaymentAccount.objects.create(addon=app,
         product_uri='/path/to/%s/' % app.pk, payment_account=payment,
         set_price=1)
