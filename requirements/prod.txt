@@ -1,4 +1,4 @@
-amqplib==1.0.2
+amqp==1.0.11
 anyjson==0.3.3
 argparse==1.2.1
 babel==0.9.6
@@ -6,7 +6,7 @@ basket-client==0.3.2
 bleach==1.1.5
 boto==2.9.0
 cef==0.5
-celery==2.5.1
+celery==3.0.19
 celery-tasktree==0.3.2
 certifi==0.0.8
 chardet==1.0.1
@@ -17,7 +17,7 @@ dj-database-url==0.2.1
 django_appcache==1.4
 django-browserid==0.8
 django-cache-machine==0.6
-django-celery==2.2.4
+django-celery==3.0.17
 django-cronjobs==0.2.3
 django_csp==1.0.2
 django-extensions==0.9
@@ -46,7 +46,7 @@ hera==0.1.2
 html5lib==0.90
 httplib2==0.7.6
 importlib-no-failure==1.0.2
-kombu==2.1.2
+kombu==2.5.10
 metlog-py==0.9.10
 metlog-cef==0.2
 metlog-raven==0.5
