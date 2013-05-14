@@ -1213,7 +1213,7 @@ CSP_IMG_SRC = ("'self'", STATIC_URL,
 CSP_SCRIPT_SRC = ("'self'", STATIC_URL,
                   "https://www.google.com",  # Recaptcha
                   "https://login.persona.org",
-                  "https://native-persona.org",
+                  "https://firefoxos.persona.org",
                   "https://www.paypalobjects.com",
                   "https://ssl.google-analytics.com",
                   "http://www.google-analytics.com",
@@ -1228,7 +1228,7 @@ CSP_FRAME_SRC = ("https://s3.amazonaws.com",
                  "https://getsatisfaction.com",  # getsatisfaction
                  "https://ssl.google-analytics.com",
                  "https://login.persona.org",
-                 "https://native-persona.org",
+                 "https://firefoxos.persona.org",
                  "https://www.youtube.com",
                 )
 CSP_FONT_SRC = ("'self'", "fonts.mozilla.org", "www.mozilla.org",)
@@ -1527,7 +1527,7 @@ BROWSERID_JS_URL = 'https://login.persona.org/include.js'
 # We only trust one issuer to grant us unverified emails.
 # If UNVERIFIED_ISSUER is set to None, forceIssuer will not
 # be sent to the client or the verifier.
-NATIVE_BROWSERID_DOMAIN = 'native-persona.org'
+NATIVE_BROWSERID_DOMAIN = 'firefoxos.persona.org'
 #UNVERIFIED_ISSUER = 'b2g2pac.personatest.org'
 # Temporarily disabling this to get auto-logins working. See bug 850084.
 UNVERIFIED_ISSUER = None
