@@ -57,7 +57,7 @@ monolith.client==0.4
 moz-addon-packager==1.0.1
 mozpay==2.0.0
 nose==1.2.1
-newrelic==1.5.0.103
+newrelic==1.11.0.55
 oauth2==1.5.211
 oauthlib==0.4.0
 ordereddict==1.1
