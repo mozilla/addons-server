@@ -51,9 +51,7 @@
             {% endtrans %}
           </p>
         {% endif %}
-        {% if addon.is_public() %}
-          <p><a href="{{ addon.get_url_path() }}">{{ _('View Listing') }}</a></p>
-        {% endif %}
+        <p><a href="{{ addon.get_url_path() }}">{{ _('View Listing') }}</a></p>
         <p><a href="{{ url('devhub.feed', addon.slug) }}">
           {{ _('View Recent Changes') }}</a></p>
         {% if can_delete %}

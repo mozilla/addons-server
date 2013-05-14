@@ -40,14 +40,14 @@ urlpatterns = patterns('',
     # Personas are now Themes.
     url('^personas/(?P<category>[^ /]+)?$',
         views.legacy_theme_redirects),
-    # TODO(percona): Rename this to `browse.themes`.
+    # TODO (percona): Rename this to `browse.themes`.
     url('^themes/(?P<category>[^ /]+)?$', views.personas,
         name='browse.personas'),
 
     # Themes are now Complete Themes.
     url('^themes/(?P<category_name>[^/]+)/format:rss$',
         views.legacy_theme_redirects),
-    # TODO(percona): Rename this to `browse.complete-themes`.
+    # TODO (percona): Rename this to `browse.complete-themes`.
     url('^complete-themes/(?P<category>[^/]+)?$', views.themes,
         name='browse.themes'),
     url('^complete-themes/(?:(?P<category_name>[^/]+)/)?format:rss$',

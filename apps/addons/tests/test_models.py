@@ -137,6 +137,11 @@ class TestAddonManager(amo.tests.TestCase):
         addon.update(status=amo.STATUS_DELETED)
         eq_(Addon.objects.valid_and_disabled().count(), before - 1)
 
+    def test_valid_disabled_pending(self):
+        before = Addon.objects.valid_and_disabled_and_pending().count()
+        amo.tests.addon_factory(status=amo.STATUS_PENDING)
+        eq_(Addon.objects.valid_and_disabled_and_pending().count(), before + 1)
+
     def test_top_free_public(self):
         addons = list(Addon.objects.listed(amo.FIREFOX))
         eq_(list(Addon.objects.top_free(amo.FIREFOX)),

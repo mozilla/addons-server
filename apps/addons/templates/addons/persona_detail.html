@@ -17,47 +17,13 @@
   <h4 class="author">{{ _('by') }} {{ users_list(addon.listed_authors) or persona.display_username }}</h4>
 </hgroup>
 
+{% include "addons/includes/persona_pending_notice.html" %}
+
 <div id="persona" class="primary" role="main" data-id="{{ addon.id }}">
-  <div class="featured">
-    <div class="featured-inner object-lead">
-
-      <div id="addon-summary-wrapper">
-        <div id="persona-summary" class="{{ addon|statusflags }}">
-
-          {{ persona_preview(persona, linked=False) }}
-
-          <table itemscope itemtype="http://data-vocabulary.org/Review-aggregate">
-            {% with addon_name='<span itemprop="itemreviewed">{0}</span>'|f(addon.name|e) %}
-              {# L10n: This is a caption for a table. {0} is an add-on name. #}
-              <caption>{{ _('Add-on Information for {0}')|f(addon_name)|xssafe }}</caption>
-            {% endwith %}
-            {% include "addons/persona_detail_table.html" %}
-          </table>
-
-          <p{{ addon.description|locale_html }}>{{ addon.description|nl2br }}</p>
-
-          {{ big_install_button(addon, show_warning=False) }}
-
-          {% if waffle.flag('submit-personas') and request.check_ownership(addon, require_owner=False) %}
-            <p><a href="{{ addon.get_dev_url() }}" class="button developer prominent">{{ _('Edit Theme') }}</a></p>
-          {% endif %}
-          {% if waffle.flag('submit-personas') and is_reviewer %}
-            {# TODO: Move Reviewer Tools to AMO so we don't need to hack. #}
-            <p><a href="{{ settings.SITE_URL|replace('//addons', '//marketplace') }}/reviewers/themes/queue/single/{{ addon.slug }}" class="button prominent">
-              {{ _('Approve / Reject') if addon.is_pending() else _('Review History') }}</a>
-          {% endif %}
-
-          <div class="widgets">
-            {{ favorites_widget(addon) }}
-            {% include 'addons/includes/collection_add_widget.html' %}
-          </div>
-
-          {# TODO(davedash): Remove until zamboni does sharing
-          {{ sharing_box(addon) }}
-          #}
-
-      </div></div>{# /addon-summary and -wrapper #}
-  </div></div>{# /featured-inner and featured #}
+  {% if not persona.addon.is_pending() or waffle.flag('submit-personas') and request.check_ownership(addon, require_owner=False) %}
+    {# If theme is pending, only artist should see theme listing. #}
+    {% include "addons/includes/persona.html" %}
+  {% endif %}
 
   <div id="more-personas">
     {% if category_personas %}
@@ -97,7 +63,6 @@
   {% if abuse_form %}
     {{ addon_report_abuse(hide=True, addon=addon) }}
   {% endif %}
-
 </div>{# /primary #}
 
 <div id="persona-side" class="secondary" role="navigation">

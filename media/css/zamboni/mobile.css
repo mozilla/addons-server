@@ -662,6 +662,12 @@ li.persona-previewer {
     padding: 10px;
 }
 
+.persona.pending-notice {
+    font-weight: bold;
+    padding: 0 10px;
+    text-align: center;
+}
+
 .persona-slider {
     background-color: #ccc;
     height: 0;
