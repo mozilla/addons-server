@@ -197,14 +197,10 @@ class ThemeReviewTestMixin(object):
                 eq_(themes[i].header, None)
                 eq_(themes[i].footer, None)
 
-            approved_theme = themes[4]
-            eq_(copy_file_mock.mock_calls,
-                [mock.call('%s/pending_header' % approved_theme.id,
-                           '%s/header' % approved_theme.id,
-                           storage=mock.ANY, chunk_size=mock.ANY),
-                 mock.call('%s/pending_footer' % approved_theme.id,
-                           '%s/footer' % approved_theme.id,
-                           storage=mock.ANY, chunk_size=mock.ANY)])
+            assert '/pending_header' in copy_file_mock.call_args_list[0][0][0]
+            assert '/header' in copy_file_mock.call_args_list[0][0][1]
+            assert '/pending_footer' in copy_file_mock.call_args_list[1][0][0]
+            assert '/footer' in copy_file_mock.call_args_list[1][0][1]
 
             # Only two since reuploaded themes are not flagged/moreinfo'ed.
             eq_(RereviewQueueTheme.objects.count(), 2)
