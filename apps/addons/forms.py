@@ -24,6 +24,7 @@ from addons.utils import reverse_name_lookup
 from addons.widgets import IconWidgetRenderer, CategoriesSelectMultiple
 from applications.models import Application
 from devhub import tasks as devhub_tasks
+from editors.models import RereviewQueueTheme
 from tags.models import Tag
 from translations.fields import TransField, TransTextarea
 from translations.forms import TranslationFormMixin
@@ -613,6 +614,12 @@ class EditThemeForm(AddonFormBase):
         coerce=int, empty_value=None, widget=forms.HiddenInput,
         error_messages={'required': _lazy(u'A license must be selected.')})
 
+    # Theme re-upload.
+    header = forms.FileField(required=False)
+    header_hash = forms.CharField(widget=forms.HiddenInput, required=False)
+    footer = forms.FileField(required=False)
+    footer_hash = forms.CharField(widget=forms.HiddenInput, required=False)
+
     class Meta:
         model = Addon
         fields = ('name', 'slug', 'summary', 'tags')
@@ -651,7 +658,17 @@ class EditThemeForm(AddonFormBase):
         except IndexError:
             pass
 
+        for field in ('header', 'footer'):
+            self.fields[field].widget.attrs = {
+                'data-upload-url': reverse('devhub.personas.reupload_persona',
+                                           args=[addon.slug,
+                                                 'persona_%s' % field]),
+                'data-allowed-types': 'image/jpeg|image/png'
+            }
+
     def save(self):
+        from addons.tasks import save_persona_image
+
         addon = self.instance
         persona = addon.persona
         data = self.cleaned_data
@@ -702,6 +719,36 @@ class EditThemeForm(AddonFormBase):
         else:
             old_cat.category = data['category']
             old_cat.save()
+
+        try:
+            # Save header and/or footer for rereview.
+            header_dst = None
+            footer_dst = None
+            dst_root = os.path.join(settings.ADDONS_PATH, str(addon.id))
+
+            if data['header_hash']:
+                header = data['header_hash']
+                header = os.path.join(settings.TMP_PATH, 'persona_header',
+                                      header)
+                header_dst = os.path.join(dst_root, 'pending_header.png')
+                save_persona_image.delay(src=header, full_dst=header_dst)
+
+            if data['footer_hash']:
+                footer = data['footer_hash']
+                footer = os.path.join(settings.TMP_PATH, 'persona_footer',
+                                      footer)
+                footer_dst = os.path.join(dst_root, 'pending_footer.png')
+                save_persona_image.delay(src=footer, full_dst=footer_dst)
+
+            if header_dst or footer_dst:
+                # Store pending header and/or footer file paths for review.
+                RereviewQueueTheme.objects.filter(theme=persona).delete()
+                RereviewQueueTheme.objects.create(
+                    theme=persona, header=header_dst or persona.header,
+                    footer=footer_dst or persona.footer)
+        except IOError as e:
+            log.error(str(e))
+            raise
 
         return data
 

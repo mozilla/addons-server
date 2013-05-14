@@ -71,10 +71,12 @@
         <li><strong>A</strong> <span>{{ _('Approve') }}</span></li>
         <li><strong>R</strong> <span>{{ _('Reject') }}</span></li>
         <li><strong>D</strong> <span>{{ _('Duplicate') }}</span></li>
-        {% if not flagged %}
+        {% if not flagged and not rereview %}
           <li><strong>F</strong> <span>{{ _('Flag') }}</span></li>
         {% endif %}
-        <li><strong>M</strong> <span>{{ _('Request More Info') }}</span></li>
+        {% if not rereview %}
+          <li><strong>M</strong> <span>{{ _('Request More Info') }}</span></li>
+        {% endif %}
       </ul>
     </div>
   {% endif %}

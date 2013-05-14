@@ -147,6 +147,9 @@ ul.license {
     #persona-license-list {
         margin-top: 1em;
     }
+    h3.colors {
+        margin-top: 26px;
+    }
     .colors {
         li.row {
             display: inline-block;
@@ -345,6 +348,34 @@ ul.license {
         }
         &.ui-autocomplete-loading {
             background-position: 99% 50%;
+        }
+    }
+}
+
+#persona-design.edit {
+    .reupload {
+        cursor: pointer;
+        float: right;
+        position: relative;
+        top: 3px;
+        &.cancel {
+            display: none;
+        }
+    }
+    .theme-design {
+        display: none;
+        .theme-design-form {
+            float: left;
+            margin-right: 35px;
+        }
+        .rereview-preview {
+            float: left;
+            img {
+                max-width: 500px;
+            }
+        }
+        h3 {
+            margin-bottom: 13px;
         }
     }
 }

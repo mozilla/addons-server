@@ -1,6 +1,11 @@
 {% from 'includes/forms.html' import required %}
 
 {% for theme, form in theme_formsets %}
+  {% if rereview %}
+    {% set header_url = theme.header_url %}
+    {% set footer_url = theme.footer_url %}
+    {% set theme = theme.theme %}
+  {% endif %}
   <div class="theme" data-id="{{ loop.index0 + (initial_count or 0) }}">
     {{ form }}
     <h2><a href="{{ url('reviewers.themes.single', theme.addon.slug) }}">{{ theme.addon.name }}</a></h2>
@@ -33,13 +38,13 @@
     </dl>
 
     <div class="preview">
-      <img src="{{ theme.header_url }}" width="1250" height="100">
+      <img src="{{ header_url or theme.header_url }}" width="1250" height="100">
     </div>
     <div class="header zoombox">
-      <img src="{{ theme.header_url }}" width="2500" height="200">
+      <img src="{{ header_url or theme.header_url }}" width="2500" height="200">
     </div>
     <div class="footer zoombox">
-      <img src="{{ theme.footer_url }}" width="2500" height="100">
+      <img src="{{ footer_url or theme.footer_url }}" width="2500" height="100">
     </div>
 
     {% if theme.addon.description %}
@@ -49,17 +54,22 @@
     {% endif %}
     {% if flagged %}
       <div class="desc"><strong>{{ _('Reason for Flagging') }}: </strong>
-        {{ theme.addon.addonlog_set.all()[0].activity_log.details.comment }}
+        {% set logs = theme.addon.addonlog_set.all() %}
+        {% if logs.exists() %}
+          {{ logs[0].activity_log.details.comment }}
+        {% endif %}
       </div>
     {% endif %}
 
     {% if reviewable %}
       <div class="choices">
         <div class="group">
-          <button class="moreinfo">{{ _('Request More Info') }} &#9662;</button>
+          {% if not rereview %}
+            <button class="moreinfo">{{ _('Request More Info') }} &#9662;</button>
+          {% endif %}
         </div>
         <div class="group">
-          {% if not flagged %}
+          {% if not flagged and not rereview %}
             <button class="flag">{{ _('Flag') }} &#9662;</button>
           {% endif %}
           <button class="duplicate">{{ _('Duplicate') }} &#9662;</button>
@@ -99,13 +109,15 @@
         {{ required_styled() }}
         <button>{{ _('Continue') }}</button>
       </div>
-      <div class="moreinfo-dropdown rq-dropdown">
-        <label>{{ _('Ask a question to the artist') }}:</label>
-        <textarea></textarea>
-        {{ required_styled() }}
-        <button>{{ _('Continue') }}</button>
-      </div>
-      {% if not flagged %}
+      {% if not rereview %}
+        <div class="moreinfo-dropdown rq-dropdown">
+          <label>{{ _('Ask a question to the artist') }}:</label>
+          <textarea></textarea>
+          {{ required_styled() }}
+          <button>{{ _('Continue') }}</button>
+        </div>
+      {% endif %}
+      {% if not flagged and not rereview %}
         <div class="flag-dropdown rq-dropdown">
           <label>{{ _('Describe your reason for flagging') }}:</label>
           <textarea></textarea>

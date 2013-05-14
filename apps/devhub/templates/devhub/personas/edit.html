@@ -6,7 +6,7 @@
 {% set title = _('Edit Listing') %}
 
 {% block title %}
-{{ dev_page_title(title, addon) }}
+  {{ dev_page_title(title, addon) }}
 {% endblock %}
 
 {% set can_delete = check_addon_ownership(request, addon) and addon.can_be_deleted() %}
@@ -35,7 +35,7 @@
       </div>
     </div>
     <div>
-      {{ persona_preview(addon.persona, linked=False) }}
+      {{ persona_preview(persona, linked=False) }}
       <div class="info">
         <p>
           <strong>{{ _('Status:') }}</strong>
@@ -202,19 +202,56 @@
           </ul>
         </div>
       </fieldset>
-      <fieldset id="persona-design">
+      <fieldset id="persona-design" class="edit">
         <legend>{{ _('Theme Design') }}</legend>
-        <ul>
+
+        <!--Theme upload new design/reupload.-->
+        <a class="reupload">{{ _('Upload New Design') }}</a>
+        <a class="reupload cancel">{{ _('Cancel') }}</a>
+        <div class="theme-design c">
+          <h2>{{ _('Upload New Design') }}</h2>
+          <p>
+            {% trans %}
+              Upon upload and form submission, the AMO Team will review your
+              updated design. Your current design will still be public in the
+              meantime.
+            {% endtrans %}
+          </p>
+
+          <div class="theme-design-form">
+            {% with required = False %}
+              {% include "devhub/personas/includes/theme_design.html" %}
+            {% endwith %}
+          </div>
+
+          {% set rereview = persona.rereviewqueuetheme_set.all() %}
+          {% if rereview.exists() %}
+            <h3>{{ _('Your previously resubmitted design, '
+                    ' which is under pending review.') }}</h3>
+            <ul class="rereview-preview">
+              <li id="persona-header" class="row">
+                <h3>{{ _('Pending Header') }}</h3>
+                <img class="preview loaded" src="{{ rereview[0].header_url }}">
+              </li>
+              <li id="persona-footer" class="row">
+                <h3>{{ _('Pending Footer') }}</h3>
+                <img class="preview loaded" src="{{ rereview[0].footer_url }}">
+              </li>
+            </ul>
+          {% endif %}
+        </div>
+
+        <ul class="theme-preview">
           <li id="persona-header" class="row">
             <h3>{{ _('Header') }}</h3>
-            <img class="preview loaded" src="{{ addon.persona.header_url }}">
+            <img class="preview loaded" src="{{ persona.header_url }}">
           </li>
           <li id="persona-footer" class="row">
             <h3>{{ _('Footer') }}</h3>
-            <img class="preview loaded" src="{{ addon.persona.footer_url }}">
+            <img class="preview loaded" src="{{ persona.footer_url }}">
           </li>
         </ul>
-        <h3>{{ _('Select colors for your Theme.') }}</h3>
+        <h3 class="colors">{{ _('Select colors for your Theme.') }}</h3>
         <ul class="colors">
           {{ pretty_field(form.textcolor, label=_('Foreground Text'),
                           tooltip=_('This is the color of the tab text.'),
@@ -227,8 +264,8 @@
       <fieldset id="persona-preview">
         <legend>{{ _('Preview') }}</legend>
         <div class="persona persona-large persona-preview">
-          <div class="persona-viewer" data-browsertheme="{{ addon.persona.json_data }}"
-               style="background-image:url({{ addon.persona.header_url }})">
+          <div class="persona-viewer" data-browsertheme="{{ persona.json_data }}"
+               style="background-image:url({{ persona.header_url }})">
             <div class="details">
               <span class="title" id="persona-preview-name">
                 {{ _("Your Theme's Name") }}</span>
