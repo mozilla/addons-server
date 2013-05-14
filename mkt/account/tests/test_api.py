@@ -20,6 +20,7 @@ from users.models import UserProfile
 
 
 class TestPotatoCaptcha(object):
+
     def _test_bad_api_potato_data(self, response, data=None):
         if not data:
             data = json.loads(response.content)
@@ -169,6 +170,7 @@ class FakeUUID(object):
 
 @patch.object(settings, 'SECRET_KEY', 'gubbish')
 class TestLoginHandler(TestCase):
+
     def setUp(self):
         super(TestLoginHandler, self).setUp()
         self.list_url = get_absolute_url(list_url('login'), api_name='account')
@@ -179,7 +181,7 @@ class TestLoginHandler(TestCase):
 
     @patch.object(uuid, 'uuid4', FakeUUID)
     @patch('requests.post')
-    def test_login_success(self, http_request):
+    def _test_login(self, http_request):
         FakeResponse = collections.namedtuple('FakeResponse',
                                               'status_code content')
         http_request.return_value = FakeResponse(200, json.dumps(
@@ -187,14 +189,33 @@ class TestLoginHandler(TestCase):
                  'email': 'cvan@mozilla.com'}))
         res = self.post({'assertion': 'fake-assertion',
                          'audience': 'fakeamo.org'})
-
         eq_(res.status_code, 201)
         data = json.loads(res.content)
         eq_(data['token'],
             'cvan@mozilla.com,95c9063d9f249aacfe5697fc83192ed6480c01463e2a80b3'
             '5af5ecaef11754700f4be33818d0e83a0cfc2cab365d60ba53b3c2b9f8f6589d1'
             'c43e9bbb876eef0,000000')
-        eq_(data['permissions']['localizer'], False)
+
+        return data
+
+    def test_login_new_user_success(self):
+        data = self._test_login()
+        ok_(not any(data['permissions'].values()))
+
+    def test_login_existing_user_success(self):
+        profile = UserProfile.objects.create(email='cvan@mozilla.com')
+        profile.create_django_user(
+            backend='django_browserid.auth.BrowserIDBackend')
+        self.grant_permission(profile, 'Apps:Review')
+
+        data = self._test_login()
+        eq_(data['permissions'],
+            {'admin': False,
+             'localizer': False,
+             'lookup': False,
+             'webpay': False,
+             'reviewer': True,
+             'developer': False})
 
     @patch('requests.post')
     def test_login_failure(self, http_request):

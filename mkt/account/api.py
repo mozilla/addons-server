@@ -134,6 +134,8 @@ class LoginResource(CORSResource, MarketplaceResource):
             raise ImmediateHttpResponse(response=http.HttpUnauthorized())
 
         request.user, request.amo_user = profile.user, profile
+        request.groups = profile.groups.all()
+
         # TODO: move this to the signal.
         profile.log_login_attempt(True)
         user_logged_in.send(sender=profile.user.__class__, request=request,
