@@ -407,6 +407,8 @@ def browserid_login(request, browserid_audience=None):
             auth.login(request, profile.user)
             profile.log_login_attempt(True)
             return http.HttpResponse(status=200)
+    else:
+        msg = 'browserid-login waffle switch is not enabled'
     return http.HttpResponse(msg, status=401)
 
 
