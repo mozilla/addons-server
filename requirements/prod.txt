@@ -3,6 +3,7 @@ anyjson==0.3.3
 argparse==1.2.1
 babel==0.9.6
 basket-client==0.3.2
+billiard==2.7.3.28
 bleach==1.1.5
 boto==2.9.0
 cef==0.5
