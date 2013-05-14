@@ -1362,13 +1362,13 @@ BUILDER_VERSIONS_URL = ('https://builder.addons.mozilla.org/repackage/' +
 ## elasticsearch
 ES_HOSTS = ['127.0.0.1:9200']
 ES_URLS = ['http://%s' % h for h in ES_HOSTS]
-ES_INDEXES = {'default': 'amo',
-              'webapp': 'mkt',
-              'update_counts': 'amo_stats',
-              'download_counts': 'amo_stats',
-              'stats_contributions': 'amo_stats',
-              'stats_collections_counts': 'amo_stats',
-              'users_install': 'amo_stats'}
+ES_INDEXES = {'default': 'addons',
+              'webapp': 'apps',
+              'update_counts': 'addons_stats',
+              'download_counts': 'addons_stats',
+              'stats_contributions': 'addons_stats',
+              'stats_collections_counts': 'addons_stats',
+              'users_install': 'addons_stats'}
 ES_TIMEOUT = 30
 
 # Default AMO user id to use for tasks.

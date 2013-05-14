@@ -5,7 +5,7 @@ import os
 
 import dj_database_url
 
-from lib.settings_base import CACHE_PREFIX, KNOWN_PROXIES, LOGGING
+from lib.settings_base import CACHE_PREFIX, ES_INDEXES, KNOWN_PROXIES, LOGGING
 
 from .. import splitstrip
 import private_base as private
@@ -131,10 +131,7 @@ BUILDER_VERSIONS_URL = "https://builder-addons-dev.allizom.org/repackage/sdk-ver
 
 ES_HOSTS = splitstrip(private.ES_HOSTS)
 ES_URLS = ['http://%s' % h for h in ES_HOSTS]
-ES_INDEXES = {'default': 'addons_dev',
-              'webapp': 'mkt_dev',
-              'update_counts': 'addons_dev_stats',
-              'download_counts': 'addons_dev_stats'}
+ES_INDEXES = dict((k, '%s_dev' % v) for k, v in ES_INDEXES.items())
 
 BUILDER_UPGRADE_URL = "https://builder-addons-dev.allizom.org/repackage/rebuild/"
 

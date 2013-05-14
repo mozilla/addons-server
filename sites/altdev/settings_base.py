@@ -3,7 +3,7 @@
 import logging
 import os
 
-from lib.settings_base import CACHE_PREFIX, KNOWN_PROXIES, LOGGING
+from lib.settings_base import CACHE_PREFIX, ES_INDEXES, KNOWN_PROXIES, LOGGING
 
 from .. import splitstrip
 import private_base as private
@@ -154,9 +154,7 @@ BUILDER_VERSIONS_URL = "https://builder-addons-dev.allizom.org/repackage/sdk-ver
 
 ES_HOSTS = splitstrip(private.ES_HOSTS)
 ES_URLS = ['http://%s' % h for h in ES_HOSTS]
-ES_INDEXES = {'default': 'marketplace_altdev',
-              'update_counts': 'marketplace_altdev_stats',
-              'download_counts': 'marketplace_altdev_stats'}
+ES_INDEXES = dict((k, '%s_altdev' % v) for k, v in ES_INDEXES.items())
 
 BUILDER_UPGRADE_URL = "https://builder-addons-dev.allizom.org/repackage/rebuild/"
 
