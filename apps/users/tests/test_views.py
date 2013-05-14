@@ -796,8 +796,8 @@ class TestPersonaLogin(UserViewBase):
                 headers=ANY)
         data = http_request.call_args[1]['data']
         eq_(data['audience'], 'http://testserver')
-        eq_(data['forceIssuer'], settings.UNVERIFIED_ISSUER)
-        eq_(data['allowUnverified'], 'true')
+        eq_(data['experimental_forceIssuer'], settings.UNVERIFIED_ISSUER)
+        eq_(data['experimental_allowUnverified'], 'true')
 
     @patch.object(waffle, 'switch_is_active', lambda x: True)
     @patch.object(settings, 'NATIVE_BROWSERID_VERIFICATION_URL',
@@ -815,7 +815,7 @@ class TestPersonaLogin(UserViewBase):
                                    is_native='1'))
         data = http_request.call_args[1]['data']
         eq_(data['audience'], 'http://testserver')
-        eq_(data['forceIssuer'], False)
+        eq_(data['experimental_forceIssuer'], False)
 
     @patch.object(waffle, 'switch_is_active', lambda x: True)
     @patch('requests.post')

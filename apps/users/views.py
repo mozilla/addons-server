@@ -325,8 +325,8 @@ def browserid_authenticate(request, assertion, is_native=False,
         # We also need to force the appropriate issuer
         # for potentially unverified emails.
         url = settings.NATIVE_BROWSERID_VERIFICATION_URL
-        extra_params = {'forceIssuer': settings.UNVERIFIED_ISSUER or False,
-                        'allowUnverified': 'true'}
+        extra_params = {'experimental_forceIssuer': settings.UNVERIFIED_ISSUER or False,
+                        'experimental_allowUnverified': 'true'}
 
     log.debug('Verifying Persona at %s, audience: %s, '
               'extra_params: %s' % (url, browserid_audience, extra_params))

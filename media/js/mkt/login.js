@@ -21,8 +21,8 @@ define('login', ['notification'], function(notification) {
     function startLogin() {
         requestedLogin = true;
         navigator.id.request({
-            forceIssuer: z.body.data('persona-unverified-issuer') || null,
-            allowUnverified: true,
+            experimental_forceIssuer: z.body.data('persona-unverified-issuer') || null,
+            experimental_allowUnverified: true,
             termsOfService: '/terms-of-use',
             privacyPolicy: '/privacy-policy',
             oncancel: function() {
