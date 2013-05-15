@@ -230,10 +230,13 @@ class Command(BaseCommand):
         # Note: We set num_replicas=0 here to decrease load while re-indexing.
         # In a later step we increase it which results in a more efficient bulk
         # copy in Elasticsearch.
+        # For ES < 0.90 we manually enable compression.
         step2 = step1.add_task(
             create_index, args=[new_index, ALIAS,
                                 {'number_of_replicas': 0,
                                  'number_of_shards': num_shards,
+                                 'store.compress.tv': True,
+                                 'store.compress.stored': True,
                                  'refresh_interval': '-1'}])
 
         # Index all the things!
