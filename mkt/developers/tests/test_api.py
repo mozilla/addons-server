@@ -129,6 +129,14 @@ class AccountTests(BaseOAuth):
         d = client.api.by_url().patch.call_args[1]['data']
         eq_(d['adminEmailAddress'], addr)
 
+    def test_only_put_by_owner(self, client):
+        app2 = app_factory(premium_type=amo.ADDON_FREE_INAPP)
+        AddonUser.objects.create(addon=app2, user=self.other)
+        acct = setup_payment_account(app2, self.other).payment_account
+        r = self.client.put(get_url('account', acct.pk),
+                            data=json.dumps(package_data))
+        eq_(r.status_code, 404)
+
     def test_delete(self, client):
         rdel = self.client.delete(get_url('account', self.account.pk))
         eq_(rdel.status_code, 204)

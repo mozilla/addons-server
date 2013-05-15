@@ -6,10 +6,11 @@ import traceback
 
 from django.conf.urls.defaults import url
 from django.core.exceptions import ObjectDoesNotExist, PermissionDenied
+from django.http import HttpResponseNotFound
 
 from tastypie import fields, http
 from tastypie.bundle import Bundle
-from tastypie.exceptions import ImmediateHttpResponse, UnsupportedFormat
+from tastypie.exceptions import ImmediateHttpResponse, UnsupportedFormat, NotFound
 from tastypie.resources import Resource, ModelResource
 
 from access import acl
@@ -35,6 +36,10 @@ def get_url(name, pk, **kw):
 
 
 def handle_500(resource, request, exception):
+    response_class = http.HttpApplicationError
+    if isinstance(exception, (NotFound, ObjectDoesNotExist)):
+        response_class = HttpResponseNotFound
+
     # Print some nice 500 errors back to the clients if not in debug mode.
     tb = traceback.format_tb(sys.exc_traceback)
     tasty_log.error('%s: %s %s\n%s' % (request.path,
@@ -48,8 +53,8 @@ def handle_500(resource, request, exception):
         'error_data': getattr(exception, 'data', {})
     }
     serialized = resource.serialize(request, data, 'application/json')
-    return http.HttpApplicationError(content=serialized,
-                content_type='application/json; charset=utf-8')
+    return response_class(content=serialized,
+                          content_type='application/json; charset=utf-8')
 
 
 class Marketplace(object):
