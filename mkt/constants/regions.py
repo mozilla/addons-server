@@ -132,6 +132,36 @@ class PL(REGION):
     has_payments = True
 
 
+class MX(REGION):
+    id = 12
+    name = _lazy(u'Meixco')
+    slug = 'mx'
+    default_currency = 'MXN'
+    default_language = 'es'
+    mcc = 334
+    has_payments = True
+
+
+class HU(REGION):
+    id = 13
+    name = _lazy(u'Hungary')
+    slug = 'hu'
+    default_currency = 'HUF'
+    default_language = 'hu'
+    mcc = 216
+    has_payments = True
+
+
+class DE(REGION):
+    id = 14
+    name = _lazy(u'Germany')
+    slug = 'de'
+    default_currency = 'EUR'
+    default_language = 'de'
+    mcc = 262
+    has_payments = True
+
+
 # Create a list of tuples like so (in alphabetical order):
 #
 #     [('worldwide', <class 'mkt.constants.regions.WORLDWIDE'>),
