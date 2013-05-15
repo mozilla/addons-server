@@ -93,6 +93,14 @@ class TestNewWebappForm(amo.tests.TestCase):
         assert form.is_valid(), form.errors
         assert form.is_packaged()
 
+    @mock.patch('mkt.submit.forms.parse_addon')
+    def test_packaged_allowed_android(self, parse_addon):
+        form = forms.NewWebappForm({'free_platforms': ['free-android-mobile'],
+                                    'upload': self.file.uuid,
+                                    'packaged': True})
+        assert form.is_valid(), form.errors
+        assert form.is_packaged()
+
     @mock.patch('mkt.submit.forms.parse_addon',
                 lambda *args: {'version': None})
     def test_packaged_wrong_device(self):
