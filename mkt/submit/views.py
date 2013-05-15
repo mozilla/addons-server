@@ -5,6 +5,7 @@ from django.utils.translation.trans_real import to_language
 
 import commonware.log
 import jingo
+import waffle
 
 import amo
 from amo.decorators import login_required
@@ -21,7 +22,7 @@ from mkt.developers.decorators import dev_required
 from mkt.developers.forms import AppFormMedia, CategoryForm, PreviewFormSet
 from mkt.submit.forms import AppDetailsBasicForm
 from mkt.submit.models import AppSubmissionChecklist
-from mkt.webapps.models import AddonExcludedRegion
+from mkt.webapps.models import AddonExcludedRegion, AppFeatures
 
 from . import forms
 from .decorators import read_dev_agreement_required, submit_step
@@ -84,7 +85,12 @@ def terms(request):
 def manifest(request):
     form = forms.NewWebappForm(request.POST or None)
 
-    if request.method == 'POST' and form.is_valid():
+    features_form = forms.AppFeaturesForm(request.POST or None)
+    features_form_valid = (True if not waffle.switch_is_active('buchets') else
+                           features_form.is_valid())
+
+    if (request.method == 'POST' and form.is_valid() and features_form_valid):
+
         addon = Addon.from_upload(
             form.cleaned_data['upload'],
             [Platform.objects.get(id=amo.PLATFORM_ALL.id)],
@@ -112,10 +118,16 @@ def manifest(request):
         AppSubmissionChecklist.objects.create(addon=addon, terms=True,
                                               manifest=True)
 
+        # Create feature profile.
+        if waffle.switch_is_active('buchets'):
+            AppFeatures.objects.create(version=addon.current_version,
+                                       **features_form.cleaned_data)
+
         return redirect('submit.app.details', addon.app_slug)
 
     return jingo.render(request, 'submit/manifest.html', {
         'step': 'manifest',
+        'features_form': features_form,
         'form': form,
         'DEVICE_LOOKUP': DEVICE_LOOKUP
     })

@@ -33,8 +33,8 @@ import mkt
 from mkt.constants import APP_IMAGE_SIZES
 from mkt.constants.ratingsbodies import RATINGS_BODIES
 from mkt.site.fixtures import fixture
-from mkt.webapps.models import (AddonExcludedRegion as AER, ContentRating,
-                                ImageAsset)
+from mkt.webapps.models import (AddonExcludedRegion as AER, AppFeatures,
+                                ContentRating, ImageAsset)
 
 
 response_mock = mock.Mock()
@@ -103,6 +103,27 @@ class TestEdit(amo.tests.TestCase):
             if val is None:
                 val = ''
 
+            eq_(unicode(val), unicode(v))
+
+    def make_appfeatures(self, data=None):
+        """
+        Create and return an AppFeatures object for the TestCase's Webapp
+        instance.
+        """
+        data = data if data else {}
+        version = self.get_webapp().current_version
+        return AppFeatures.objects.create(version=version, **data)
+
+    def compare_features(self, data):
+        """
+        Compare an app's set of required features against a `dict` of expected
+        values.
+        """
+        features = self.get_webapp().current_version.features
+        for k, v in data.iteritems():
+            val = getattr(features, k)
+            if callable(val):
+                val = val()
             eq_(unicode(val), unicode(v))
 
     def check_form_url(self, section):
@@ -1122,19 +1143,19 @@ class TestEditTechnical(TestEdit):
         super(TestEditTechnical, self).setUp()
         self.url = self.get_url('technical')
         self.edit_url = self.get_url('technical', edit=True)
+        self.create_switch('buchets')
 
     def test_form_url(self):
         self.check_form_url('technical')
 
     def test_toggles(self):
         # Turn everything on.
-        data = dict(flash='checked')
-        r = self.client.post(self.edit_url, formset(**data))
+        r = self.client.post(self.edit_url, formset(**{'flash': 'on'}))
         self.assertNoFormErrors(r)
         self.compare({'uses_flash': True})
 
         # And off.
-        r = self.client.post(self.edit_url)
+        r = self.client.post(self.edit_url, formset(**{'flash': ''}))
         self.compare({'uses_flash': False})
 
     def test_public_stats(self):
@@ -1150,6 +1171,21 @@ class TestEditTechnical(TestEdit):
 
         self.compare({'public_stats': True})
         eq_(o.filter(action=amo.LOG.EDIT_PROPERTIES.id).count(), 1)
+
+    def test_features(self):
+        self.make_appfeatures()
+        data_on = {'has_contacts': True}
+        data_off = {'has_contacts': False}
+
+        # Turn contacts on.
+        r = self.client.post(self.edit_url, formset(**data_on))
+        self.assertNoFormErrors(r)
+        self.compare_features(data_on)
+
+        # And turn it back off.
+        r = self.client.post(self.edit_url, formset(**data_off))
+        self.assertNoFormErrors(r)
+        self.compare_features(data_off)
 
 
 class TestAdmin(TestEdit):

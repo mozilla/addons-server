@@ -1232,6 +1232,12 @@ class AppFeaturesBase(amo.models.ModelBase):
     def to_dict(self):
         return dict((f, getattr(self, f)) for f in self._fields())
 
+    def to_list(self):
+        features = [k for k, v in self.to_dict().iteritems() if v]
+        all_features = dict(APP_FEATURES)
+        feature_names = [all_features[f[4:].upper()].decode() for f in features]
+        return sorted(feature_names)
+
     def to_signature(self):
         """
         This converts the boolean values of the flags to a signature string.
@@ -1271,7 +1277,8 @@ app_feature_attrs = dict([
     ],
 
     # Dynamic database fields based on mkt.constants.features.
-    **dict(('has_%s' % f[0].lower(), models.BooleanField(default=False))
+    **dict(('has_%s' % f[0].lower(), models.BooleanField(default=False,
+                                                         help_text=f[1]))
            for f in APP_FEATURES)
 )
 
