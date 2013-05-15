@@ -36,7 +36,7 @@ class DeviceTypeForm(happyforms.Form):
     ERRORS = {
         'both': _lazy(u'Cannot be free and paid.'),
         'none': _lazy(u'Please select a device.'),
-        'packaged': _lazy(u'Packaged apps are valid for only Firefox OS'
+        'packaged': _lazy(u'Packaged apps are valid for only Firefox OS '
                           'and Android.'),
     }
 
