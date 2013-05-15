@@ -592,10 +592,10 @@ class ThemeForm(ThemeFormBase):
         p.display_username = user.name
 
         # To spot duplicate submissions.
-        p.checksum = make_checksum(header_dst, footer_dst)
-        dupe_personas = Persona.objects.filter(checksum=p.checksum)
-        if dupe_personas.exists():
-            p.dupe_persona = dupe_personas[0]
+        # p.checksum = make_checksum(header_dst, footer_dst)
+        # dupe_personas = Persona.objects.filter(checksum=p.checksum)
+        # if dupe_personas.exists():
+        #     p.dupe_persona = dupe_personas[0]
         p.save()
 
         # Save tags.
