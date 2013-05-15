@@ -55,7 +55,7 @@
           {% endif %}
           <div class="error">{{ form.errors.free_platforms }}</div>
           {%- for item in form.fields['free_platforms'].choices -%}
-            {{ button(form, item, can_change=not is_paid and not is_packaged) }}
+            {{ button(form, item, can_change=not is_paid) }}
           {%- endfor %}
           {% if is_paid %}
             <div id="free-tab-save" class="update-payment-type">

@@ -108,28 +108,11 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
 
     def clean(self):
 
-        def refresh_data():
-            # We want to throw out the user's selections in this case and
-            # not update the <select> element that goes along with this.
-            # I.e.: we don't want to re-populate these big chunky
-            # checkboxes with bad data.
-            # Also, I'm so, so sorry.
-            self.data = dict(self.data)
-            platforms = dict(
-                free_platforms=self.initial.get('free_platforms', []),
-                paid_platforms=self.initial.get('paid_platforms', []))
-            self.data.update(**platforms)
-            return platforms
-
         is_toggling = self.is_toggling()
 
-        if self.addon.is_packaged:
-            # Force packaged apps to have their initial data.
-            # IT CANNOT BE CHANGED!
-            # TODO: Remove this when packaged apps land for all WebRT
-            # platforms.
-            platforms = refresh_data()
-            self.cleaned_data.update(**platforms)
+        if self.addon.is_packaged and 'desktop' in self._get_combined():
+           self._errors['free_platforms'] = self._errors['paid_platforms'] = (
+                self.ERRORS['packaged'])
 
         elif not is_toggling:
             # If a platform wasn't selected, raise an error.
@@ -137,7 +120,17 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
                 '%s_platforms' % ('paid' if self.is_paid() else 'free')]:
 
                 self._add_error('none')
-                refresh_data()
+                
+                # We want to throw out the user's selections in this case and
+                # not update the <select> element that goes along with this.
+                # I.e.: we don't want to re-populate these big chunky
+                # checkboxes with bad data.
+                # Also, I'm so, so sorry.
+                self.data = dict(self.data)
+                platforms = dict(
+                    free_platforms=self.initial.get('free_platforms', []),
+                    paid_platforms=self.initial.get('paid_platforms', []))
+                self.data.update(**platforms)
 
         return self.cleaned_data
 
