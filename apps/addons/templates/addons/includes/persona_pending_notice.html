@@ -1,4 +1,3 @@
-{% set is_artist = waffle.flag('submit-personas') and request.check_ownership(addon, require_owner=False) %}
 {% if persona.addon.is_pending() and not is_artist %}
   <div class="persona featured pending-notice">
     <strong>{{ _('Sorry, this theme is pending. Please come back later.') }}</strong>

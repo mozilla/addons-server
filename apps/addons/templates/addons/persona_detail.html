@@ -7,6 +7,8 @@
 {% block content %}
 {{ breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type]), (None, addon.name)]) }}
 
+{% set is_artist = waffle.flag('submit-personas') and request.check_ownership(addon, require_owner=False) %}
+
 <hgroup>
   <h2 class="addon"{{ addon.name|locale_html }}>
     <img src="{{ addon.icon_url }}" class="icon"/>
