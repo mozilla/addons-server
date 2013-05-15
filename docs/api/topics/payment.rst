@@ -7,6 +7,109 @@ Payments
 This API is specific to setting up and processing payments for an app in the
 Marketplace.
 
+Configuring payment accounts
+============================
+
+Payment accounts can be added and listed.
+
+.. note:: Authentication is required.
+
+.. http:post:: /api/v1/payments/account/
+
+    **Request**
+    :param account_name: Account name.
+    :param companyName: Company name.
+    :param vendorName: Vendor name.
+    :param financeEmailAddress: Financial email.
+    :param supportEmailAddress: Support email.
+    :param address1: Address.
+    :param address2: Second line of address.
+    :param addressCity: City/municipality.
+    :param addressState: State/province/region.
+    :param addressZipCode: Zip/postal code.
+    :param countryIso: Country.
+    :param vatNumber: VAT number.
+
+    *the following fields cannot be modified after account creation*
+
+    :param bankAccountPayeeName: Account holder name.
+    :param bankAccountNumber: Bank account number.
+    :param bankAccountCode: Bank account code.
+    :param bankName: Bank name.
+    :param bankAddress1: Bank address.
+    :param bankAddress2: Second line of bank address.
+    :param bankAddressState: Bank state/province/region.
+    :param bankAddressZipCode: Bank zip/postal code.
+    :param bankAddressIso: Bank country.
+    :param adminEmailAddress: Administrative email.
+    :param currencyIso: Currency you prefer to be paid in.
+
+    **Response**
+    :status code: 201 successfully created.
+
+.. http:put:: /api/v1/payments/account/(int:id)/
+
+    **Request**
+    :param account_name: Account name.
+    :param companyName: Company name.
+    :param vendorName: Vendor name.
+    :param financeEmailAddress: Financial email.
+    :param supportEmailAddress: Support email.
+    :param address1: Address.
+    :param address2: Second line of address.
+    :param addressCity: City/municipality.
+    :param addressState: State/province/region.
+    :param addressZipCode: Zip/postal code.
+    :param countryIso: Country.
+    :param vatNumber: VAT number.
+
+    **Response**
+    :status 204: successfully updated.
+
+.. http:delete:: /api/v1/payments/account/(int:id)/
+
+    **Response**
+    :status 204: successfully deleted.
+
+.. http:get:: /api/v1/payments/account/
+    **Request**
+    The standard :ref:`list-query-params-label`.
+
+    **Response**
+    :param meta: :ref:`meta-response-label`.
+    :param objects: A :ref:`listing <objects-response-label>` of :ref:`accounts <payment-account-response-label>`.
+
+.. _payment-account-response-label:
+
+.. http:get:: /api/v1/payments/account/(int:id)/
+
+    **Response**
+
+    An account object, see below for an example.
+    :status 200: successfully completed.
+
+    Example:
+
+    .. code-block:: json
+        {
+             "account_name": "account",
+             "address1": "123 Main St",
+             "addressCity": "Byteville",
+             "addressPhone": "605-555-1212",
+             "addressState": "HX",
+             "addressZipCode": "55555",
+             "adminEmailAddress": "apps_admin@example.com",
+             "companyName": "Example Company",
+             "countryIso": "BRA",
+             "currencyIso": "EUR",
+             "financeEmailAddress": "apps_accounts@example.com",
+             "resource_uri": "/api/v1/payments/account/175/",
+             "supportEmailAddress": "apps_support@example.com",
+             "vendorName": "vendor"
+        }
+
+
+
 Preparing payment
 =================
 

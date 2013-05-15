@@ -2,7 +2,7 @@ import json
 
 import commonware
 from curling.lib import HttpClientError, HttpServerError
-from tastypie import validation, http
+from tastypie import http
 from tastypie.authorization import Authorization
 from tastypie.exceptions import ImmediateHttpResponse, NotFound
 from tower import ugettext as _
