@@ -75,10 +75,14 @@ class Price(amo.models.ModelBase):
         locale = get_locale_from_lang(lang)
         if not currency:
             currency = amo.LOCALE_CURRENCY.get(locale.language)
-        if currency:
-            price_currency = Price._currencies.get((currency, self.id), None)
-            if price_currency:
-                return price_currency.price, currency, locale
+        # If the currency is USD, we just use the price, not the price tier.
+        if currency and currency != 'USD':
+            price_currency = Price._currencies.get((currency, self.id))
+            if not price_currency:
+                # Asking for a currency that doesn't exist.
+                raise KeyError('No currency found: %s' % currency)
+
+            return price_currency.price, currency, locale
 
         return self.price, currency or self.currency, locale
 

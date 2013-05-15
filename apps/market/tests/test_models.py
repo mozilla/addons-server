@@ -124,6 +124,13 @@ class TestPrice(amo.tests.TestCase):
         eq_(currencies[0]['currency'], 'USD')
         eq_(currencies[1], {'currency': 'CAD', 'amount': Decimal('3.01')})
 
+    def test_wrong_currency(self):
+        with self.assertRaises(KeyError):
+            Price.objects.get(pk=1).get_price('foo')
+
+        with self.assertRaises(KeyError):
+            Price.objects.get(pk=1).get_price_locale('foo')
+
     @mock.patch('market.models.PROVIDER_CURRENCIES', {'bango': ['USD', 'EUR']})
     def test_prices_provider(self):
         currencies = Price.objects.get(pk=1).prices(provider='bango')
