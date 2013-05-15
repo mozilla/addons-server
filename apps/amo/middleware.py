@@ -102,6 +102,10 @@ class NoVarySessionMiddleware(SessionMiddleware):
     Cookie at this level only hurts us.
     """
 
+    def process_request(self, request):
+        if not getattr(request, 'API', False):
+            super(NoVarySessionMiddleware, self).process_request(request)
+
     def process_response(self, request, response):
         if settings.READ_ONLY:
             return response

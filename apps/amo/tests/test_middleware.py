@@ -11,7 +11,8 @@ from pyquery import PyQuery as pq
 from test_utils import RequestFactory
 
 import amo.tests
-from amo.middleware import LazyPjaxMiddleware, NoAddonsMiddleware
+from amo.middleware import (LazyPjaxMiddleware, NoAddonsMiddleware,
+                            NoVarySessionMiddleware)
 from amo.urlresolvers import reverse
 from zadmin.models import Config, _config_cache
 
@@ -26,6 +27,21 @@ class TestMiddleware(amo.tests.TestCase):
         # But we do prevent Vary: Cookie.
         response = test.Client().get('/', follow=True)
         eq_(response['Vary'], 'X-Mobile, User-Agent')
+
+    @patch('django.contrib.sessions.middleware.'
+           'SessionMiddleware.process_request')
+    def test_session_not_used(self, process_request):
+        req = RequestFactory().get('/')
+        req.API = True
+        NoVarySessionMiddleware().process_request(req)
+        assert not process_request.called
+
+    @patch('django.contrib.sessions.middleware.'
+           'SessionMiddleware.process_request')
+    def test_session_not_used(self, process_request):
+        req = RequestFactory().get('/')
+        NoVarySessionMiddleware().process_request(req)
+        assert process_request.called
 
 
 def test_redirect_with_unicode_get():
