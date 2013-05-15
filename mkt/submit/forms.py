@@ -36,7 +36,8 @@ class DeviceTypeForm(happyforms.Form):
     ERRORS = {
         'both': _lazy(u'Cannot be free and paid.'),
         'none': _lazy(u'Please select a device.'),
-        'packaged': _lazy(u'Packaged apps are valid for only Firefox OS.'),
+        'packaged': _lazy(u'Packaged apps are valid for only Firefox OS'
+                          'and Android.'),
     }
 
     free_platforms = forms.MultipleChoiceField(
@@ -200,7 +201,9 @@ class NewWebappForm(DeviceTypeForm, NewWebappVersionForm):
         if not data:
             return
 
-        if self.is_packaged() and 'firefoxos' not in self._get_combined():
+        combined_platforms = self._get_combined()
+        if self.is_packaged() and not ('firefoxos' in combined_platforms or
+                                       'android' in combined_platforms):
             self._errors['free_platforms'] = self._errors['paid_platforms'] = (
                 self.ERRORS['packaged'])
             return
