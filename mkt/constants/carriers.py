@@ -30,7 +30,7 @@ class CHINA_UNICOM(CARRIER):
     slug = 'china_unicom'
 
 
-class DEUTCHE_TELEKOM(CARRIER):
+class DEUTSCHE_TELEKOM(CARRIER):
     id = 4
     name = u'Deutsche Telekom'
     slug = 'deutsche_telekom'
