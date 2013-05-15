@@ -848,11 +848,14 @@ class Webapp(Addon):
 
         """
         languages = []
-        for locale in self.current_version.supported_locales.split(','):
-            if locale:
-                language = settings.LANGUAGES.get(locale.lower())
-                if language:
-                    languages.append(language)
+        version = self.current_version
+
+        if version:
+            for locale in version.supported_locales.split(','):
+                if locale:
+                    language = settings.LANGUAGES.get(locale.lower())
+                    if language:
+                        languages.append(language)
 
         return (
             settings.LANGUAGES.get(self.default_locale.lower()),

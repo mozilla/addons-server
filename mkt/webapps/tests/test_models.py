@@ -458,6 +458,22 @@ class TestWebapp(amo.tests.TestCase):
         app.reload()
         eq_(app.supported_locales, (u'English (US)', [u'Deutsch']))
 
+    def test_supported_locale_app_rejected(self):
+        """
+        Simulate an app being rejected, which sets the
+        app.current_version to None, and verify supported_locales works
+        as expected -- which is that if there is no current version we
+        can't report supported_locales for it, so we return an empty
+        list.
+        """
+        app = app_factory()
+        app.versions.latest().update(supported_locales='de', _signal=False)
+        app.update(status=amo.STATUS_REJECTED)
+        app.versions.latest().all_files[0].update(status=amo.STATUS_REJECTED)
+        app.update_version()
+        app.reload()
+        eq_(app.supported_locales, (u'English (US)', []))
+
 
 class TestPackagedAppManifestUpdates(amo.tests.TestCase):
     # Note: More extensive tests for `Addon.update_names` are in the Addon
