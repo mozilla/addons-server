@@ -665,6 +665,10 @@ class RereviewQueueTheme(amo.models.ModelBase):
     header = models.CharField(max_length=72, blank=True, default='')
     footer = models.CharField(max_length=72, blank=True, default='')
 
+    # Holds whether this reuploaded theme is a duplicate.
+    dupe_persona = models.ForeignKey(Persona, null=True,
+                                     related_name='dupepersona')
+
     class Meta:
         db_table = 'rereview_queue_theme'
 
@@ -673,24 +677,16 @@ class RereviewQueueTheme(amo.models.ModelBase):
 
     @property
     def header_path(self):
-        return self.theme.get_mirror_url(self.header, cached=True)
+        return self.theme._image_path(self.header or self.theme.header)
 
     @property
     def footer_path(self):
-        return self.theme.get_mirror_url(self.footer, cached=True)
+        return self.theme._image_path(self.footer or self.theme.footer)
 
     @property
     def header_url(self):
-        return self.theme.header_url.replace('header', 'pending_header')
+        return self.theme._image_url(self.header or self.theme.header)
 
     @property
     def footer_url(self):
-        return self.theme.footer_url.replace('footer', 'pending_footer')
-
-    @amo.cached_property
-    def original_header_path(self):
-        return self.header_path.replace('pending_header', 'header')
-
-    @amo.cached_property
-    def original_footer_path(self):
-        return self.footer_path.replace('pending_footer', 'footer')
+        return self.theme._image_url(self.footer or self.theme.footer)

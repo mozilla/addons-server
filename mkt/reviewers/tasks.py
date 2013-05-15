@@ -76,10 +76,10 @@ def approve_rereview(theme):
     reupload = rereview[0]
 
     move_stored_file(
-        reupload.header_path, reupload.original_header_path,
+        reupload.header_path, reupload.theme.header_path,
         storage=storage)
     move_stored_file(
-        reupload.footer_path, reupload.original_footer_path,
+        reupload.footer_path, reupload.theme.footer_path,
         storage=storage)
     rereview.delete()
 

@@ -1682,8 +1682,12 @@ class Persona(caching.CachingMixin, models.Model):
     approve = models.DateTimeField(null=True)
     movers = models.FloatField(null=True, db_index=True)
     popularity = models.IntegerField(null=False, default=0, db_index=True)
-    license = models.PositiveIntegerField(choices=amo.PERSONA_LICENSES_CHOICES,
-                                          null=True, blank=True)
+    license = models.PositiveIntegerField(
+        choices=amo.PERSONA_LICENSES_CHOICES, null=True, blank=True)
+
+    # To spot duplicate submissions.
+    checksum = models.CharField(max_length=64, blank=True, default='')
+    dupe_persona = models.ForeignKey('self', null=True)
 
     objects = caching.CachingManager()
 
@@ -1713,7 +1717,7 @@ class Persona(caching.CachingMixin, models.Model):
     def _image_path(self, filename):
         return os.path.join(settings.ADDONS_PATH, str(self.addon.id), filename)
 
-    def get_mirror_url(self, filename, cached=False):
+    def get_mirror_url(self, filename):
         host = (settings.PRIVATE_MIRROR_URL if self.addon.is_disabled
                 else settings.LOCAL_MIRROR_URL)
         image_url = posixpath.join(host, str(self.addon.id), filename or '')
@@ -1722,11 +1726,7 @@ class Persona(caching.CachingMixin, models.Model):
             modified = int(time.mktime(self.addon.modified.timetuple()))
         else:
             modified = 0
-
-        if cached:
-            return image_url
-        else:
-            return '%s?%s' % (image_url, modified)
+        return '%s?%s' % (image_url, modified)
 
     @amo.cached_property
     def thumb_url(self):
@@ -1759,6 +1759,14 @@ class Persona(caching.CachingMixin, models.Model):
     @amo.cached_property
     def footer_url(self):
         return self._image_url(self.footer)
+
+    @amo.cached_property
+    def header_path(self):
+        return self._image_path(self.header)
+
+    @amo.cached_property
+    def footer_path(self):
+        return self._image_path(self.footer)
 
     @amo.cached_property
     def update_url(self):

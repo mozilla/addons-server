@@ -66,6 +66,10 @@ class ThemeReviewTestMixin(object):
             RereviewQueueTheme.objects.create(
                 theme=addon.persona, header='pending_header',
                 footer='pending_footer')
+        persona = addon.persona
+        persona.header = 'header'
+        persona.footer = 'footer'
+        persona.save()
         return addon
 
     def get_themes(self, reviewer):
@@ -194,8 +198,8 @@ class ThemeReviewTestMixin(object):
             # Original design of reuploaded themes should stay public.
             for i in range(4):
                 eq_(themes[i].addon.status, amo.STATUS_PUBLIC)
-                eq_(themes[i].header, None)
-                eq_(themes[i].footer, None)
+                eq_(themes[i].header, 'header')
+                eq_(themes[i].footer, 'footer')
 
             assert '/pending_header' in copy_file_mock.call_args_list[0][0][0]
             assert '/header' in copy_file_mock.call_args_list[0][0][1]
