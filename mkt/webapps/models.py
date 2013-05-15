@@ -882,7 +882,7 @@ class WebappIndexer(MappingType, Indexable):
 
         mapping = {
             doc_type: {
-                # disable _all field to reduce index size
+                # Disable _all field to reduce index size.
                 '_all': {'enabled': False},
                 # Add a boost field to enhance relevancy of a document.
                 '_boost': {'name': '_boost', 'null_value': 1.0},
