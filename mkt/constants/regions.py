@@ -134,7 +134,7 @@ class PL(REGION):
 
 class MX(REGION):
     id = 12
-    name = _lazy(u'Meixco')
+    name = _lazy(u'Mexico')
     slug = 'mx'
     default_currency = 'MXN'
     default_language = 'es'
