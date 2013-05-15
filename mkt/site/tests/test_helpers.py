@@ -94,6 +94,8 @@ class TestMarketButton(amo.tests.TestCase):
         eq_(doc('.bad-app').length, 0)
 
     def test_is_premium_webapp_foreign(self):
+        from nose.exc import SkipTest
+        raise SkipTest('temporarily disabled; see bug 871839')
         self.make_premium(self.webapp)
         self.context['request'].REGION = regions.SPAIN
         # The region is set to Spain, so the currency is set EUR
