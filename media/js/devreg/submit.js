@@ -94,6 +94,7 @@
         return ($('#id_free_platforms option[value=free-firefoxos]:selected').length &&
                $('#id_free_platforms option:selected').length == 1) ||
                $('#id_paid_platforms option[value=paid-firefoxos]:selected').length ||
+               $('option[value*=android]:select').length ||
                allTabsDeselected();
     }
 
