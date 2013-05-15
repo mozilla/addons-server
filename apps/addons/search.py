@@ -6,6 +6,7 @@ from django.db.models import Count
 
 import pyes.exceptions as pyes
 
+from addons.models import Persona
 import amo
 import amo.search
 from amo.utils import create_es_index_if_missing
@@ -67,10 +68,14 @@ def extract(addon):
         d['flag_adult'] = d['flag_child'] = False
 
     if addon.type == amo.ADDON_PERSONA:
-        # This would otherwise get attached when by the transformer.
-        d['weekly_downloads'] = addon.persona.popularity
-        # Boost on popularity.
-        d['_boost'] = addon.persona.popularity ** .2
+        try:
+            # This would otherwise get attached when by the transformer.
+            d['weekly_downloads'] = addon.persona.popularity
+            # Boost on popularity.
+            d['_boost'] = addon.persona.popularity ** .2
+        except Persona.DoesNotExist:
+            # The addon won't have a persona while it's being created.
+            pass
     elif addon.type == amo.ADDON_WEBAPP:
         installed_ids = list(Installed.objects.filter(addon=addon)
                              .values_list('id', flat=True))
