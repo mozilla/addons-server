@@ -234,6 +234,8 @@ class Command(BaseCommand):
             create_index, args=[new_index, ALIAS,
                                 {'number_of_replicas': 0,
                                  'number_of_shards': num_shards,
+                                 'store.compress.tv': True,
+                                 'store.compress.stored': True,
                                  'refresh_interval': '-1'}])
 
         # Index all the things!
