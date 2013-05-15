@@ -497,13 +497,29 @@ class Webapp(Addon):
         return bool(self.is_premium() and self.premium and
                     self.premium.has_price())
 
-    def get_price(self, currency):
-        if self.has_price():
-            return self.premium.get_price(currency)
+    def get_price(self, currency=None):
+        """
+        A shortcut to get the price as decimal. Returns None if their is no
+        price for the app.
 
-    def get_price_locale(self, currency):
+        :param optional currency: If you do not pass in a currency, one
+            will be chosen for you. If you ask for a currency that does
+            not exist, you'll get an error.
+        """
         if self.has_price():
-            return self.premium.get_price_locale(currency)
+            return self.premium.get_price(currency=currency)
+
+    def get_price_locale(self, currency=None):
+        """
+        A shortcut to get the localised price with currency. Returns None if
+        their is no price for the app.
+
+        :param optional currency: If you do not pass in a currency, one
+            will be chosen for you. If you ask for a currency that does
+            not exist, you'll get an error.
+        """
+        if self.has_price():
+            return self.premium.get_price_locale(currency=currency)
 
     @amo.cached_property
     def promo(self):
