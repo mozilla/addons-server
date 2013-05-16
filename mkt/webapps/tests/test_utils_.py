@@ -17,7 +17,7 @@ class TestAppToDict(amo.tests.TestCase):
 
     def setUp(self):
         self.app = amo.tests.app_factory()
-        self.user = UserProfile.objects.get(pk=2519)
+        self.profile = UserProfile.objects.get(pk=2519)
 
     def test_no_previews(self):
         eq_(app_to_dict(self.app)['previews'], [])
@@ -41,25 +41,25 @@ class TestAppToDict(amo.tests.TestCase):
         eq_(res['price'], None)
         eq_(res['price_locale'], None)
 
-    def check_user(self, user, **kw):
+    def check_profile(self, profile, **kw):
         expected = {'developed': False, 'installed': False, 'purchased': False}
         expected.update(**kw)
-        eq_(user, expected)
+        eq_(profile, expected)
 
     def test_installed(self):
-        self.app.installed.create(user=self.user)
-        res = app_to_dict(self.app, user=self.user)
-        self.check_user(res['user'], installed=True)
+        self.app.installed.create(user=self.profile)
+        res = app_to_dict(self.app, profile=self.profile)
+        self.check_profile(res['user'], installed=True)
 
     def test_purchased(self):
-        self.app.addonpurchase_set.create(user=self.user)
-        res = app_to_dict(self.app, user=self.user)
-        self.check_user(res['user'], purchased=True)
+        self.app.addonpurchase_set.create(user=self.profile)
+        res = app_to_dict(self.app, profile=self.profile)
+        self.check_profile(res['user'], purchased=True)
 
     def test_owned(self):
-        self.app.addonuser_set.create(user=self.user)
-        res = app_to_dict(self.app, user=self.user)
-        self.check_user(res['user'], developed=True)
+        self.app.addonuser_set.create(user=self.profile)
+        res = app_to_dict(self.app, profile=self.profile)
+        self.check_profile(res['user'], developed=True)
 
 
 class TestAppToDictPrices(amo.tests.TestCase):

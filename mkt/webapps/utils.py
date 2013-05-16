@@ -36,7 +36,7 @@ def get_supported_locales(manifest):
         manifest.get('locales', {}).keys()))))
 
 
-def app_to_dict(app, currency=None, user=None):
+def app_to_dict(app, currency=None, profile=None):
     """Return app data as dict for API."""
     # Sad circular import issues.
     from mkt.api.resources import PreviewResource
@@ -92,10 +92,10 @@ def app_to_dict(app, currency=None, user=None):
     with no_translation():
         data['device_types'] = [n.api_name
                                 for n in app.device_types]
-    if user:
+    if profile:
         data['user'] = {
-            'developed': app.has_author(user, [amo.AUTHOR_ROLE_OWNER]),
-            'installed': app.has_installed(user),
-            'purchased': app.has_purchased(user),
+            'developed': app.has_author(profile, [amo.AUTHOR_ROLE_OWNER]),
+            'installed': app.has_installed(profile),
+            'purchased': app.has_purchased(profile)
         }
     return data
