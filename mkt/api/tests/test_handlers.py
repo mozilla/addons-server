@@ -436,15 +436,6 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         eq_(set([c.pk for c in app.categories.all()]),
             set([c.pk for c in self.categories]))
 
-    def test_premium(self):
-        app = self.create_app()
-        data = self.base_data()
-        data['premium_type'] = 'premium'
-        res = self.client.put(self.get_url, data=json.dumps(data))
-        eq_(res.status_code, 202)
-        app = Webapp.objects.get(pk=app.pk)
-        eq_(app.premium_type, amo.ADDON_PREMIUM)
-
     def test_get_content_ratings(self):
         app = self.create_app()
         ContentRating.objects.create(addon=app, ratings_body=0, rating=2)
