@@ -18,7 +18,8 @@ import amo
 import captcha.fields
 from amo.fields import ColorField
 from amo.urlresolvers import reverse
-from amo.utils import slug_validator, slugify, sorted_groupby, remove_icons
+from amo.utils import (LocalFileStorage, slug_validator, slugify,
+                       sorted_groupby, remove_icons)
 from addons.models import (Addon, AddonCategory, BlacklistedSlug, Category,
                            Persona)
 from addons.utils import reverse_name_lookup
@@ -592,10 +593,10 @@ class ThemeForm(ThemeFormBase):
         p.display_username = user.name
 
         # To spot duplicate submissions.
-        # p.checksum = make_checksum(header_dst, footer_dst)
-        # dupe_personas = Persona.objects.filter(checksum=p.checksum)
-        # if dupe_personas.exists():
-        #     p.dupe_persona = dupe_personas[0]
+        p.checksum = make_checksum(p.header_path, p.footer_path)
+        dupe_personas = Persona.objects.filter(checksum=p.checksum)
+        if dupe_personas.exists():
+            p.dupe_persona = dupe_personas[0]
         p.save()
 
         # Save tags.
@@ -608,8 +609,9 @@ class ThemeForm(ThemeFormBase):
         return addon
 
 
-def make_checksum(header_dst, footer_dst):
-    raw_checksum = open(header_dst).read() + open(footer_dst).read()
+def make_checksum(header_path, footer_path):
+    ls = LocalFileStorage()
+    raw_checksum = ls._open(header_path).read() + ls._open(footer_path).read()
     return hashlib.sha224(raw_checksum).hexdigest()
 
 
