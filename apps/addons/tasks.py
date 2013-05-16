@@ -1,3 +1,4 @@
+import hashlib
 import logging
 
 from django.conf import settings
@@ -7,9 +8,10 @@ from django.db import connection, transaction
 from celeryutils import task
 from PIL import Image
 
+from addons.models import Persona
 import amo
 from amo.decorators import set_modified_on, write
-from amo.utils import cache_ns_key, ImageCheck
+from amo.utils import cache_ns_key, ImageCheck, LocalFileStorage
 from lib.es.utils import index_objects
 from versions.models import Version
 
@@ -263,3 +265,29 @@ def update_incompatible_appversions(data, **kw):
     # Increment namespace cache of compat versions.
     for addon_id in addon_ids:
         cache_ns_key('d2c-versions:%s' % addon_id, increment=True)
+
+
+@task
+def theme_checksum(theme, **kw):
+    theme.checksum = make_checksum(theme.header_path, theme.footer_path)
+    dupe_personas = Persona.objects.filter(checksum=theme.checksum)
+    if dupe_personas.exists():
+        theme.dupe_persona = dupe_personas[0]
+    theme.save()
+
+
+@task
+def rereviewqueuetheme_checksum(rqt, **kw):
+    """Check for possible duplicate theme images."""
+    dupe_personas = Persona.objects.filter(
+        checksum=make_checksum(rqt.header_path or rqt.theme.header_path,
+                               rqt.footer_path or rqt.theme.footer_path))
+    if dupe_personas.exists():
+        rqt.dupe_persona = dupe_personas[0]
+        rqt.save()
+
+
+def make_checksum(header_path, footer_path):
+    ls = LocalFileStorage()
+    raw_checksum = ls._open(header_path).read() + ls._open(footer_path).read()
+    return hashlib.sha224(raw_checksum).hexdigest()

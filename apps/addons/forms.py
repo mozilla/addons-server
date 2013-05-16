@@ -1,5 +1,4 @@
 from datetime import datetime
-import hashlib
 import os
 import re
 
@@ -18,10 +17,10 @@ import amo
 import captcha.fields
 from amo.fields import ColorField
 from amo.urlresolvers import reverse
-from amo.utils import (LocalFileStorage, slug_validator, slugify,
-                       sorted_groupby, remove_icons)
+from amo.utils import slug_validator, slugify, sorted_groupby, remove_icons
 from addons.models import (Addon, AddonCategory, BlacklistedSlug, Category,
                            Persona)
+from addons.tasks import rereviewqueuetheme_checksum, theme_checksum
 from addons.utils import reverse_name_lookup
 from addons.widgets import IconWidgetRenderer, CategoriesSelectMultiple
 from applications.models import Application
@@ -591,13 +590,9 @@ class ThemeForm(ThemeFormBase):
         p.submit = datetime.now()
         p.author = user.username
         p.display_username = user.name
-
-        # To spot duplicate submissions.
-        # p.checksum = make_checksum(p.header_path, p.footer_path)
-        # dupe_personas = Persona.objects.filter(checksum=p.checksum)
-        # if dupe_personas.exists():
-        # p.dupe_persona = dupe_personas[0]
         p.save()
+
+        theme_checksum.delay(theme=p)
 
         # Save tags.
         for t in data['tags']:
@@ -607,12 +602,6 @@ class ThemeForm(ThemeFormBase):
         AddonCategory(addon=addon, category=data['category']).save()
 
         return addon
-
-
-def make_checksum(header_path, footer_path):
-    ls = LocalFileStorage()
-    raw_checksum = ls._open(header_path).read() + ls._open(footer_path).read()
-    return hashlib.sha224(raw_checksum).hexdigest()
 
 
 class EditThemeForm(AddonFormBase):
@@ -764,14 +753,7 @@ class EditThemeForm(AddonFormBase):
                 RereviewQueueTheme.objects.filter(theme=persona).delete()
                 rqt = RereviewQueueTheme.objects.create(
                     theme=persona, header=header, footer=footer)
-
-                # Check for possible duplicate theme images.
-                dupe_personas = Persona.objects.filter(
-                    checksum=make_checksum(header_dst or persona.header_path,
-                                           footer_dst or persona.footer_path))
-                if dupe_personas.exists():
-                    rqt.dupe_persona = dupe_personas[0]
-                    rqt.save()
+                rereviewqueuetheme_checksum.delay(rqt=rqt)
         except IOError as e:
             log.error(str(e))
             raise

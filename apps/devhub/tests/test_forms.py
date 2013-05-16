@@ -277,13 +277,14 @@ class TestThemeForm(amo.tests.TestCase):
             {'data-allowed-types': 'image/jpeg|image/png',
              'data-upload-url': footer_url})
 
-    @mock.patch('addons.forms.make_checksum')
+    @mock.patch('addons.tasks.make_checksum')
     @mock.patch('addons.tasks.create_persona_preview_images.delay')
     @mock.patch('addons.tasks.save_persona_image.delay')
     def test_success(self, save_persona_image_mock,
-                     create_persona_preview_images_mock, mock1):
+                     create_persona_preview_images_mock, make_checksum_mock):
         if not hasattr(Image.core, 'jpeg_encoder'):
             raise SkipTest
+        make_checksum_mock.return_value = 'hashyourselfbeforeyoucrashyourself'
 
         self.request.amo_user = UserProfile.objects.get(pk=2519)
 
@@ -349,7 +350,7 @@ class TestThemeForm(amo.tests.TestCase):
 
     @mock.patch('addons.tasks.create_persona_preview_images.delay')
     @mock.patch('addons.tasks.save_persona_image.delay')
-    @mock.patch('addons.forms.make_checksum')
+    @mock.patch('addons.tasks.make_checksum')
     def test_dupe_persona(self, make_checksum_mock, mock1, mock2):
         """
         Submitting persona with checksum already in db should be marked
@@ -468,7 +469,7 @@ class TestEditThemeForm(amo.tests.TestCase):
         eq_(self.form.errors,
             {'name': ['This name is already in use. Please choose another.']})
 
-    @mock.patch('addons.forms.make_checksum')
+    @mock.patch('addons.tasks.make_checksum')
     @mock.patch('addons.tasks.create_persona_preview_images.delay')
     @mock.patch('addons.tasks.save_persona_image.delay')
     def test_reupload(self, save_persona_image_mock,
@@ -498,7 +499,7 @@ class TestEditThemeForm(amo.tests.TestCase):
         eq_(rqt[0].footer, 'pending_footer.png')
         assert not rqt[0].dupe_persona
 
-    @mock.patch('addons.forms.make_checksum')
+    @mock.patch('addons.tasks.make_checksum')
     @mock.patch('addons.tasks.create_persona_preview_images.delay')
     @mock.patch('addons.tasks.save_persona_image.delay')
     def test_reupload_duplicate(self, save_persona_image_mock,
