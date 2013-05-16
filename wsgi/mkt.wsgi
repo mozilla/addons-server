@@ -34,6 +34,20 @@ command.validate()
 # This is what mod_wsgi runs.
 django_app = django.core.handlers.wsgi.WSGIHandler()
 
+newrelic_ini = getattr(django.conf.settings, 'NEWRELIC_INI', None)
+load_newrelic = False
+
+if newrelic_ini:
+    import newrelic.agent
+    try:
+        newrelic.agent.initialize(newrelic_ini)
+        load_newrelic = True
+    except:
+        import logging
+        startup_logger = logging.getLogger('z.startup')
+        startup_logger.exception('Failed to load new relic config.')
+
+
 # Normally we could let WSGIHandler run directly, but while we're dark
 # launching, we want to force the script name to be empty so we don't create
 # any /z links through reverse.  This fixes bug 554576.
@@ -46,6 +60,8 @@ def application(env, start_response):
     return django_app(env, start_response)
 
 
+if load_newrelic:
+    application = newrelic.agent.wsgi_application()(application)
 # Uncomment this to figure out what's going on with the mod_wsgi environment.
 # def application(env, start_response):
 #     start_response('200 OK', [('Content-Type', 'text/plain')])
