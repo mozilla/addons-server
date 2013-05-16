@@ -173,7 +173,7 @@ def package_minifest(request):
         },
         #'release_notes': '',
         'type': 'privileged',
-        'version': '0.0.3',
+        'version': '0.0.4',
     })
 
     manifest_etag = hashlib.md5(manifest_content).hexdigest()
