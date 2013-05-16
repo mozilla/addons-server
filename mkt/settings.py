@@ -161,7 +161,9 @@ PRODUCT_ICON_URL = MEDIA_URL + '/product-icons'
 
 # Number of days the webpay product icon is valid for.
 # After this period, the icon will be re-fetched from its external URL.
-PRODUCT_ICON_EXPIRY = 5
+# If you change this value, update the docs:
+# https://developer.mozilla.org/en-US/docs/Web/Apps/Publishing/In-app_payments
+PRODUCT_ICON_EXPIRY = 1
 
 # Directory path to where product images for in-app payments are stored.
 INAPP_IMAGE_PATH = NETAPP_STORAGE + '/inapp-image'
