@@ -30,7 +30,7 @@ from lib.video.tests import files as video_files
 from users.models import UserProfile
 
 import mkt
-from mkt.constants import APP_IMAGE_SIZES
+from mkt.constants import APP_IMAGE_SIZES, regions
 from mkt.constants.ratingsbodies import RATINGS_BODIES
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import (AddonExcludedRegion as AER, AppFeatures,
@@ -477,20 +477,22 @@ class TestEditCountryLanguage(TestEdit):
     def test_data_visible(self):
         clean_countries = []
         self.get_webapp().current_version.update(supported_locales='de,es')
-        r = self.client.get(self.url)
-        eq_(r.status_code, 200)
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
 
-        countries = (pq(pq(r.content)('#edit-app-language tr').eq(0))
+        countries = (pq(pq(res.content)('#edit-app-language tr').eq(0))
                      .find('td').remove('small').text())
-        langs = (pq(pq(r.content)('#edit-app-language tr').eq(1)).find('td')
+        langs = (pq(pq(res.content)('#edit-app-language tr').eq(1)).find('td')
                  .remove('small').text())
 
         for c in countries.split(', '):
             clean_countries.append(strip_whitespace(c))
 
         eq_(langs, u'English (US) (default), Deutsch, Espa\xc3\xb1ol')
-        eq_(clean_countries, ['United States', 'United Kingdom', 'Brazil',
-                              'Spain', 'Colombia', 'Venezuela', 'Poland'])
+        self.assertSetEqual(
+            sorted(clean_countries),
+            sorted([r.name.decode() for r in regions.ALL_REGIONS
+                    if r.slug is not 'worldwide']))
 
 
 class TestEditMedia(TestEdit):
