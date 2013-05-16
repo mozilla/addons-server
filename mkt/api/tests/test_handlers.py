@@ -11,11 +11,15 @@ from addons.models import (Addon, AddonDeviceType, AddonUpsell,
                            AddonUser, Category, Flag, Preview)
 from amo.tests import AMOPaths, app_factory
 from files.models import FileUpload
+from market.models import Price, AddonPremium
 from users.models import UserProfile
 
-from mkt.api.tests.test_oauth import BaseOAuth
+from mkt.api.tests.test_oauth import BaseOAuth, get_absolute_url
 from mkt.api.base import get_url, list_url
 from mkt.constants import APP_IMAGE_SIZES, carriers, regions
+from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
+                                   SolitudeSeller)
+from mkt.developers.tests.test_api import payment_data
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import ContentRating, ImageAsset, Webapp
 from reviews.models import Review
@@ -532,6 +536,130 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         eq_(res.status_code, 400)
         assert '12345' in self.get_error(res)['device_types'][0], (
             self.get_error(res))
+
+    def test_put_price(self):
+        app = self.create_app()
+        data = self.base_data()
+        Price.objects.create(price='1.07')
+        data['premium_type'] = 'premium'
+        data['price'] = "1.07"
+        res = self.client.put(self.get_url, data=json.dumps(data))
+        eq_(res.status_code, 202)
+        eq_(str(app.addonpremium.price.get_price()), "1.07")
+
+    def test_put_premium_inapp(self):
+        app = self.create_app()
+        data = self.base_data()
+        Price.objects.create(price='1.07')
+        data['premium_type'] = 'premium-inapp'
+        data['price'] = "1.07"
+        res = self.client.put(self.get_url, data=json.dumps(data))
+        eq_(res.status_code, 202)
+        eq_(str(app.addonpremium.price.get_price()), "1.07")
+        eq_(Webapp.objects.get(pk=app.pk).premium_type,
+            amo.ADDON_PREMIUM_INAPP)
+
+    def test_put_bad_price(self):
+        self.create_app()
+        data = self.base_data()
+        Price.objects.create(price='1.07')
+        Price.objects.create(price='3.14')
+        data['premium_type'] = 'premium'
+        data['price'] = "2.03"
+        res = self.client.put(self.get_url, data=json.dumps(data))
+        eq_(res.status_code, 400)
+        eq_(res.content,
+            'Premium app specified without a valid price. price can be one of '
+            '"1.07", "3.14".')
+
+    def test_put_no_price(self):
+        self.create_app()
+        data = self.base_data()
+        Price.objects.create(price='1.07')
+        Price.objects.create(price='3.14')
+        data['premium_type'] = 'premium'
+        res = self.client.put(self.get_url, data=json.dumps(data))
+        eq_(res.status_code, 400)
+        eq_(res.content,
+            'Premium app specified without a valid price. price can be one of '
+            '"1.07", "3.14".')
+
+    def test_put_free_inapp(self):
+        app = self.create_app()
+        data = self.base_data()
+        Price.objects.create(price='0.00')
+        Price.objects.create(price='3.14')
+        data['premium_type'] = 'free-inapp'
+        res = self.client.put(self.get_url, data=json.dumps(data))
+        eq_(res.status_code, 202)
+        eq_(str(app.addonpremium.get_price()), "0.00")
+
+    @patch('mkt.developers.models.client')
+    def test_get_payment_account(self, client):
+        client.api.bango.package().get.return_value = {"full": payment_data}
+        app = self.create_app()
+        app.premium_type = amo.ADDON_PREMIUM
+        app.save()
+        seller = SolitudeSeller.objects.create(user=self.profile, uuid='uid')
+        acct = PaymentAccount.objects.create(
+            user=self.profile, solitude_seller=seller, agreed_tos=True,
+            seller_uri='uri', uri='uri', bango_package_id=123)
+        AddonPaymentAccount.objects.create(
+            addon=app, payment_account=acct, set_price=1,
+            product_uri="/path/to/app/")
+        p = Price.objects.create(price='1.07')
+        AddonPremium.objects.create(addon=app, price=p)
+        acct_url = get_absolute_url(get_url('account', acct.pk),
+                                    'payments', False)
+        res = self.client.get(self.get_url)
+        eq_(res.status_code, 200)
+        data = json.loads(res.content)
+        eq_(data['payment_account'], acct_url)
+        eq_(data['price'], '1.07')
+
+    @patch('mkt.developers.models.client')
+    def test_put_payment_account(self, client):
+        client.api.bango.package().get.return_value = {"full": payment_data}
+        app = self.create_app()
+        data = self.base_data()
+        seller = SolitudeSeller.objects.create(user=self.profile, uuid='uid')
+        acct = PaymentAccount.objects.create(
+            user=self.profile, solitude_seller=seller, agreed_tos=True,
+            seller_uri='uri', uri='uri', bango_package_id=123)
+        Price.objects.create(price='1.07')
+        data['price'] = "1.07"
+        data['premium_type'] = 'premium'
+        data['payment_account'] = get_absolute_url(get_url('account', acct.pk),
+                                                   'payments', False)
+        res = self.client.put(self.get_url, data=json.dumps(data))
+        eq_(res.status_code, 202)
+        eq_(app.app_payment_account.payment_account.pk, acct.pk)
+
+    @patch('mkt.developers.models.client')
+    def test_put_payment_account_on_free(self, client):
+        client.api.bango.package().get.return_value = {"full": payment_data}
+        self.create_app()
+        data = self.base_data()
+        seller = SolitudeSeller.objects.create(user=self.profile, uuid='uid')
+        acct = PaymentAccount.objects.create(
+            user=self.profile, solitude_seller=seller, agreed_tos=True,
+            seller_uri='uri', uri='uri', bango_package_id=123)
+        data['payment_account'] = get_absolute_url(get_url('account', acct.pk),
+                                                   'payments', False)
+        res = self.client.put(self.get_url, data=json.dumps(data))
+        eq_(res.status_code, 400)
+
+    def test_put_bogus_payment_account(self):
+        app = self.create_app()
+        data = self.base_data()
+        Price.objects.create(price='1.07')
+        data['price'] = "1.07"
+        data['premium_type'] = 'premium'
+        data['payment_account'] = get_absolute_url(get_url('account', 999),
+                                                   'payments', False)
+        res = self.client.put(self.get_url, data=json.dumps(data))
+        eq_(res.status_code, 400)
+        assert not hasattr(app, 'app_payment_account')
 
     def test_put_not_mine(self):
         obj = self.create_app()

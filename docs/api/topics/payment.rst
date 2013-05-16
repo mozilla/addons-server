@@ -7,6 +7,8 @@ Payments
 This API is specific to setting up and processing payments for an app in the
 Marketplace.
 
+.. _payment-account-label:
+
 Configuring payment accounts
 ============================
 

@@ -25,6 +25,7 @@ from amo.utils import no_translation
 from constants.applications import DEVICE_TYPES
 from files.models import FileUpload, Platform
 from lib.metrics import record_action
+from market.models import AddonPremium, Price
 
 from mkt.api.authentication import (OptionalOAuthAuthentication,
                                     OAuthAuthentication)
@@ -38,6 +39,7 @@ from mkt.api.http import HttpLegallyUnavailable
 from mkt.carriers import get_carrier_id, CARRIERS, CARRIER_MAP
 from mkt.developers import tasks
 from mkt.developers.forms import NewManifestForm, PreviewForm
+from mkt.developers.models import AddonPaymentAccount
 from mkt.regions import get_region_id, get_region, REGIONS_DICT
 from mkt.submit.forms import AppDetailsBasicForm
 from mkt.webapps.utils import app_to_dict
@@ -109,14 +111,17 @@ class ValidationResource(CORSResource, MarketplaceModelResource):
 
 
 class AppResource(CORSResource, MarketplaceModelResource):
+    payment_account = fields.ToOneField('mkt.developers.api.AccountResource',
+                                        'app_payment_account', null=True)
+    premium_type = fields.IntegerField(null=True)
     previews = fields.ToManyField('mkt.api.resources.PreviewResource',
                                   'previews', readonly=True)
-    premium_type = fields.IntegerField()
 
     class Meta(MarketplaceModelResource.Meta):
         queryset = Webapp.objects.all()  # Gets overriden in dispatch.
         fields = ['categories', 'description', 'device_types', 'homepage',
-                  'id', 'name', 'premium_type', 'privacy_policy',
+                  'id', 'name', 'payment_account', 'premium_type',
+                  'privacy_policy',
                   'status', 'summary', 'support_email', 'support_url']
         list_allowed_methods = ['get', 'post']
         detail_allowed_methods = ['get', 'put', 'delete']
@@ -241,7 +246,8 @@ class AppResource(CORSResource, MarketplaceModelResource):
         data['app_slug'] = data.get('app_slug', obj.app_slug)
         data.update(self.formset(data))
         data.update(self.devices(data))
-        self.hydrate_premium_type(bundle)
+        self.update_premium_type(bundle)
+        self.update_payment_account(bundle)
 
         forms = [AppDetailsBasicForm(data, instance=obj, request=request),
                  DeviceTypeForm(data, addon=obj),
@@ -257,6 +263,45 @@ class AppResource(CORSResource, MarketplaceModelResource):
         log.info('App updated: %s' % obj.pk)
 
         return bundle
+
+    def update_premium_type(self, bundle):
+        self.hydrate_premium_type(bundle)
+        if bundle.obj.premium_type != amo.ADDON_FREE:
+            ap = AddonPremium.objects.safer_get_or_create(addon=bundle.obj)[0]
+        else:
+            ap = None
+        if bundle.obj.premium_type in amo.ADDON_PREMIUMS:
+            if not bundle.data.get('price') or not Price.objects.filter(
+                    price=bundle.data['price']).exists():
+                tiers = ', '.join('"%s"' % p.get_price()
+                                  for p in Price.objects.exclude(price="0.00"))
+                raise fields.ApiFieldError(
+                    'Premium app specified without a valid price. price can be'
+                    ' one of %s.' % (tiers,))
+            else:
+                ap.price = Price.objects.get(price=bundle.data['price'])
+                ap.save()
+        else:
+            if ap:
+                ap.price = Price.objects.get(price='0.00')
+                ap.save()
+
+    def update_payment_account(self, bundle):
+        if 'payment_account' in bundle.data:
+            if bundle.obj.premium_type == amo.ADDON_FREE:
+                raise fields.ApiFieldError(
+                    'Free apps cannot have payment accounts.')
+            acct = self.fields['payment_account'].hydrate(bundle).obj
+            try:
+                log.info('[1@%s] Deleting app payment account' % bundle.obj.pk)
+                AddonPaymentAccount.objects.get(addon=bundle.obj).delete()
+            except AddonPaymentAccount.DoesNotExist:
+                pass
+
+            log.info('[1@%s] Creating new app payment account' % bundle.obj.pk)
+            AddonPaymentAccount.create(
+                provider='bango', addon=bundle.obj,
+                payment_account=acct)
 
     def dehydrate(self, bundle):
         obj = bundle.obj

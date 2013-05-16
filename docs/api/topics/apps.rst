@@ -180,10 +180,15 @@ App
         refer to Android mobile and tablet. As opposed to Firefox OS.
     :param required premium_type: One of `free`, `premium`,
         `free-inapp`, `premium-inapp`, or `other`.
+    :param optional price: The price for your app as a string, for example
+        "0.10". Required for `premium` or `premium-inapp` apps.
+    :param optional payment_account: The path for the
+        :ref:`payment account <payment-account-label>` resource you want to
+        associate with this app.
 
     **Response**
 
-    :status 201: successfully updated.
+    :status 202: successfully updated.
 
 
 .. http:delete:: /api/v1/apps/app/(int:id)/

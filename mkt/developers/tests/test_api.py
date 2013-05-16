@@ -119,6 +119,10 @@ class AccountTests(BaseOAuth):
         pkg['resource_uri'] = '/api/v1/payments/account/%s/' % self.account.pk
         eq_(data, pkg)
 
+    def test_only_get_by_owner(self, client):
+        r = self.anon.get(get_url('account', self.account.pk))
+        eq_(r.status_code, 401)
+
     def test_put(self, client):
         addr = 'b@b.com'
         newpkg = package_data.copy()

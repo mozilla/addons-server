@@ -40,6 +40,9 @@ def app_to_dict(app, currency=None, user=None):
     """Return app data as dict for API."""
     # Sad circular import issues.
     from mkt.api.resources import PreviewResource
+    from mkt.developers.api import AccountResource
+    from mkt.developers.models import AddonPaymentAccount
+
 
     cv = app.current_version
     version_data = {
@@ -75,6 +78,10 @@ def app_to_dict(app, currency=None, user=None):
     }
 
     if app.premium:
+        q = AddonPaymentAccount.objects.filter(addon=app)
+        if len(q) > 0 and q[0].payment_account:
+            data['payment_account'] = AccountResource().get_resource_uri(
+                q[0].payment_account)
         try:
             data['price'] = app.get_price(currency)
             data['price_locale'] = app.get_price_locale(currency)
