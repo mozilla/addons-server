@@ -94,17 +94,15 @@ class TestMarketButton(amo.tests.TestCase):
         eq_(doc('.bad-app').length, 0)
 
     def test_is_premium_webapp_foreign(self):
-        from nose.exc import SkipTest
-        raise SkipTest('temporarily disabled; see bug 871839')
-        self.make_premium(self.webapp)
+        self.make_premium(self.webapp, price='0.99')
         self.context['request'].REGION = regions.SPAIN
         # The region is set to Spain, so the currency is set EUR
         # and the display is set to French.
         with self.activate('fr'):
             doc = pq(market_tile(self.context, self.webapp))
             data = json.loads(doc('.mkt-tile').attr('data-product'))
-            eq_(data['price'], 1.0)
-            eq_(data['priceLocale'], u'1,00 €')
+            eq_(data['price'], 5.01)
+            eq_(data['priceLocale'], u'5,01\xa0\u20ac')
 
     def test_is_premium_purchased(self):
         AddonPurchase.objects.create(user=self.user, addon=self.webapp)

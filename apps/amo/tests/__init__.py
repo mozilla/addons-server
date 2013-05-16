@@ -437,7 +437,7 @@ class TestCase(RedisTest, test_utils.TestCase):
         self.client.cookies.update(cookie)
 
     def make_premium(self, addon, price='1.00', currencies=None):
-        price_obj = Price.objects.create(price=price)
+        price_obj, created = Price.objects.get_or_create(price=price)
         if currencies:
             for currency in currencies:
                 PriceCurrency.objects.create(currency=currency,
