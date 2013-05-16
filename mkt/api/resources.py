@@ -111,13 +111,13 @@ class ValidationResource(CORSResource, MarketplaceModelResource):
 class AppResource(CORSResource, MarketplaceModelResource):
     previews = fields.ToManyField('mkt.api.resources.PreviewResource',
                                   'previews', readonly=True)
+    premium_type = fields.IntegerField()
 
     class Meta(MarketplaceModelResource.Meta):
         queryset = Webapp.objects.all()  # Gets overriden in dispatch.
-        fields = ['categories', 'description', 'device_types',
-                  'homepage', 'id', 'name', 'privacy_policy',
-                  'status', 'summary', 'support_email',
-                  'support_url']
+        fields = ['categories', 'description', 'device_types', 'homepage',
+                  'id', 'name', 'premium_type', 'privacy_policy',
+                  'status', 'summary', 'support_email', 'support_url']
         list_allowed_methods = ['get', 'post']
         detail_allowed_methods = ['get', 'put', 'delete']
         always_return_data = True
@@ -237,10 +237,11 @@ class AppResource(CORSResource, MarketplaceModelResource):
     def obj_update(self, bundle, request, **kwargs):
         data = bundle.data
         obj = self.get_and_check_ownership(request, **kwargs)
-
+        bundle.obj = obj
         data['app_slug'] = data.get('app_slug', obj.app_slug)
         data.update(self.formset(data))
         data.update(self.devices(data))
+        self.hydrate_premium_type(bundle)
 
         forms = [AppDetailsBasicForm(data, instance=obj, request=request),
                  DeviceTypeForm(data, addon=obj),
@@ -250,12 +251,11 @@ class AppResource(CORSResource, MarketplaceModelResource):
         valid = all([f.is_valid() for f in forms])
         if not valid:
             raise self.form_errors(forms)
-
         forms[0].save(obj)
         forms[1].save(obj)
         forms[2].save()
         log.info('App updated: %s' % obj.pk)
-        bundle.obj = obj
+
         return bundle
 
     def dehydrate(self, bundle):
@@ -269,6 +269,15 @@ class AppResource(CORSResource, MarketplaceModelResource):
                                    request=bundle.request)
             bundle.data['upsell'] = self.full_dehydrate(upsell_bundle).data
         return bundle
+
+    def hydrate_premium_type(self, bundle):
+        typ = amo.ADDON_PREMIUM_API_LOOKUP.get(bundle.data['premium_type'],
+                                               None)
+        if typ is None:
+            raise fields.ApiFieldError(
+                "premium_type should be one of 'free', 'premium', 'free-inapp'"
+                ", 'premium-inapp', or 'other'.")
+        bundle.obj.premium_type = typ
 
     def get_object_list(self, request):
         if not request.amo_user:

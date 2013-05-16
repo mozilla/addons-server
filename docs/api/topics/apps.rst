@@ -178,7 +178,8 @@ App
     :param required device_types: a list of the device types at least one of:
         `desktop`, `mobile`, `tablet`, `firefoxos`. `mobile` and `tablet` both
         refer to Android mobile and tablet. As opposed to Firefox OS.
-    :param required payment_type: only choice at this time is `free`.
+    :param required premium_type: One of `free`, `premium`,
+        `free-inapp`, `premium-inapp`, or `other`.
 
     **Response**
 
