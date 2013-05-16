@@ -66,7 +66,7 @@ class TestRegionMiddleware(amo.tests.TestCase):
         mock_rfr.return_value = mkt.regions.WORLDWIDE.slug
         locales = [
             ('', 'worldwide'),
-            ('de', 'worldwide'),
+            ('de', 'de'),
             ('en-us, de', 'us'),
             ('en-US', 'us'),
             ('fr, en', 'worldwide'),
@@ -78,7 +78,7 @@ class TestRegionMiddleware(amo.tests.TestCase):
             ('pt-BR', 'br'),
             ('xx, yy, zz', 'worldwide'),
             ('<script>alert("ballin")</script>', 'worldwide'),
-            ('en-us;q=0.5, de', 'worldwide'),
+            ('en-us;q=0.5, de', 'de'),
             ('es-PE', 'es'),
         ]
         for locale, expected in locales:
