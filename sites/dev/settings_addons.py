@@ -103,3 +103,5 @@ USE_METLOG_FOR_CEF = True
 USE_METLOG_FOR_TASTYPIE = False
 
 GOOGLE_ANALYTICS_DOMAIN = 'addons.mozilla.org'
+
+NEWRELIC_INI = '/etc/newrelic.d/addons-dev.allizom.org.ini'

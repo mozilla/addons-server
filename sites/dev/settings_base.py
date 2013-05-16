@@ -102,7 +102,8 @@ CACHE_MACHINE_USE_REDIS = True
 
 RECAPTCHA_PUBLIC_KEY = private.RECAPTCHA_PUBLIC_KEY
 RECAPTCHA_PRIVATE_KEY = private.RECAPTCHA_PRIVATE_KEY
-RECAPTCHA_URL = ('https://www.google.com/recaptcha/api/challenge?k=%s' % RECAPTCHA_PUBLIC_KEY)
+RECAPTCHA_URL = ('https://www.google.com/recaptcha/api/challenge?k=%s' %
+                 RECAPTCHA_PUBLIC_KEY)
 
 TMP_PATH = os.path.join(NETAPP_STORAGE, 'tmp')
 PACKAGER_PATH = os.path.join(TMP_PATH, 'packager')
@@ -196,5 +197,3 @@ AWS_SECRET_ACCESS_KEY = private.AWS_SECRET_ACCESS_KEY
 AWS_STORAGE_BUCKET_NAME = private.AWS_STORAGE_BUCKET_NAME
 
 RAISE_ON_SIGNAL_ERROR = True
-
-NEWRELIC_INI = '/etc/newrelic.d/addons-dev.allizom.org.ini'
