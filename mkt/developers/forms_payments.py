@@ -120,7 +120,7 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
                 '%s_platforms' % ('paid' if self.is_paid() else 'free')]:
 
                 self._add_error('none')
-                
+
                 # We want to throw out the user's selections in this case and
                 # not update the <select> element that goes along with this.
                 # I.e.: we don't want to re-populate these big chunky
@@ -197,7 +197,7 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
 
             premium.save()
 
-        if not toggle and not self.addon.is_packaged:
+        if not toggle:
             # Save the device compatibility information when we're not
             # toggling.
             super(PremiumForm, self).save(self.addon, is_premium)
