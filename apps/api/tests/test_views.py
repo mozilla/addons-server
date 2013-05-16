@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from decimal import Decimal
 import json
+from decimal import Decimal
 from textwrap import dedent
 
 from django.conf import settings
@@ -8,12 +8,13 @@ from django.test.client import Client
 from django.utils import translation
 
 import jingo
+import waffle
 from mock import patch
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
 import amo
-from addons.models import (Addon, AppSupport, Category, CompatOverride,
+from addons.models import (Addon, AppSupport, CompatOverride,
                            CompatOverrideRange, Persona, Preview)
 from amo import helpers
 from amo.helpers import absolutify
@@ -27,9 +28,8 @@ from applications.models import Application, AppVersion
 from bandwagon.models import Collection, CollectionAddon, FeaturedCollection
 from files.models import File, Platform
 from files.tests.test_models import UploadTest
-from market.models import AddonPremium, Price
+from market.models import AddonPremium, Price, PriceCurrency
 from tags.models import AddonTag, Tag
-import waffle
 
 
 def api_url(x, app='firefox', lang='en-US', version=1.2):
@@ -469,6 +469,8 @@ class APITest(TestCase):
         addon.update(premium_type=amo.ADDON_PREMIUM,
                      wants_contributions=False)
         price = Price.objects.create(price=Decimal('5.12'))
+        PriceCurrency.objects.create(tier=price, currency='EUR',
+                                     price=Decimal('5.12'))
         AddonPremium.objects.create(addon=addon, price=price)
         return pq(make_call('addon/4664', version=1.5, lang=lang).content)
 
@@ -510,6 +512,7 @@ class APITest(TestCase):
             self.assertContains(response, needle)
 
     def test_slug(self):
+        Addon.objects.get(pk=5299).update(type=amo.ADDON_FREE)
         self.assertContains(make_call('addon/5299', version=1.5),
                             '<slug>%s</slug>' %
                             Addon.objects.get(pk=5299).slug)
@@ -1278,6 +1281,7 @@ class SearchTest(ESTestCase):
             '/en-US/firefox/api/%.1f/search_suggestions/?q=delicious' %
             api.CURRENT_VERSION)
         eq_(response.status_code, 503)
+
 
 class LanguagePacks(UploadTest):
     fixtures = ['addons/listed', 'base/apps', 'base/platforms']
