@@ -83,3 +83,5 @@ WEBAPPS_RECEIPT_KEY = '/data/www/addons.mozilla.org/zamboni/README.rst'
 VALIDATOR_TIMEOUT = 90
 
 SENTRY_DSN = private_addons.SENTRY_DSN
+
+NEWRELIC_INI = '/etc/newrelic.d/addons.mozilla.org.ini'
