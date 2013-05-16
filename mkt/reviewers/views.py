@@ -386,7 +386,8 @@ def queue_updates(request):
                                      version__addon__is_packaged=True,
                                      version__addon__status=amo.STATUS_PUBLIC,
                                      version__addon__type=amo.ADDON_WEBAPP,
-                                     version__addon__disabled_by_user=False)
+                                     version__addon__disabled_by_user=False,
+                                     version__deleted=False)
                              .values_list('version__addon_id', flat=True))
 
     qs = _do_sort(

@@ -42,6 +42,7 @@ from mkt.webapps.tests.test_models import PackagedFilesMixin
 import reviews
 from reviews.models import Review, ReviewFlag
 from users.models import UserProfile
+from versions.models import Version
 from zadmin.models import get_config, set_config
 
 
@@ -628,6 +629,30 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         assert app not in apps, (
             'Unexpected: Found a new packaged app in the updates queue.')
         eq_(pq(res.content)('.tabnav li a:eq(2)').text(), u'Updates (2)')
+
+    @mock.patch('mkt.webapps.tasks.update_cached_manifests')
+    def test_deleted_version_not_in_queue(self, _mock):
+        """
+        This tests that an app with a prior pending version that got
+        deleted doesn't trigger the app to remain in the review queue.
+        """
+        app = self.apps[0]
+        # File is PENDING and delete current version.
+        old_ver = app.versions.order_by('id')[0]
+        old_ver.files.latest().update(status=amo.STATUS_PENDING)
+        old_ver.delete()
+        # "Approve" the app.
+        app.update(status=amo.STATUS_PUBLIC)
+        app.versions.latest().files.latest().update(status=amo.STATUS_PUBLIC)
+
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        # Verify that our app has 2 versions.
+        eq_(Version.with_deleted.filter(addon=app).count(), 2)
+        # Verify the apps in the context are what we expect.
+        apps = [a.app for a in res.context['addons']]
+        ok_(app not in apps)
+        ok_(self.apps[1] in apps)
 
 
 class TestEscalationQueue(AppReviewerTest, AccessMixin, FlagsMixin,
