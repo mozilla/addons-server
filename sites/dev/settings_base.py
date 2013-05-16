@@ -196,3 +196,5 @@ AWS_SECRET_ACCESS_KEY = private.AWS_SECRET_ACCESS_KEY
 AWS_STORAGE_BUCKET_NAME = private.AWS_STORAGE_BUCKET_NAME
 
 RAISE_ON_SIGNAL_ERROR = True
+
+NEWRELIC_INI = '/etc/newrelic.d/addons-dev.allizom.org.ini'
