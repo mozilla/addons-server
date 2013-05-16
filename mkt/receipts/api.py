@@ -79,7 +79,7 @@ class ReceiptResource(CORSResource, MarketplaceResource):
 
     def record(self, bundle, request, install_type):
         # Generate or re-use an existing install record.
-        installed, created = Installed.objects.get_or_create(
+        installed, created = Installed.objects.safer_get_or_create(
             addon=bundle.obj, user=request.user.get_profile(),
             install_type=install_type)
 
