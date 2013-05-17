@@ -1,9 +1,7 @@
-<h2>
-  {{ _('Country and Language') }}
-</h2>
+<h2>{{ _('Country and Language') }}</h2>
 <div class="item island">
   <table>
-    {# L10n: {0} is an addon name #}
+    {# L10n: {0} is an add-on name. #}
     <caption>{{ _('Country and Language Details for {0}')|f(addon.name) }}</caption>
     <tbody>
       <tr>
@@ -17,8 +15,7 @@
           {% endfor %}
           <small>
             <a href="{{ addon.get_dev_url('payments') }}">
-              {{ _('Edit country on the Compatibility Page') }}
-            </a>
+              {{ _('Edit country on the Compatibility Page') }}</a>
           </small>
         </td>
       </tr>
@@ -28,7 +25,7 @@
         </th>
         <td>
           {% with locales=addon.supported_locales %}
-            {{- locales[0] }} ({{ _('default') }}), {{ locales[1]|join(", ") -}}
+            {{- locales[0] }} ({{ _('default') }}){% if locales[1] %}, {{ locales[1]|join(', ') -}}{% endif -%}
           {% endwith %}
           <small>
             {{ _('Edit language in your app manifest file') }}
