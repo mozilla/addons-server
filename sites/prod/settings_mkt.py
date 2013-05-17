@@ -163,4 +163,4 @@ APP_PURCHASE_SECRET = private_mkt.APP_PURCHASE_SECRET
 
 PRODUCT_ICON_PATH = NETAPP_STORAGE + '/product-icons'
 
-NEWRELIC_INI = '/etc/newrelic.d/marketplace.firefox.com.ini'
+#NEWRELIC_INI = '/etc/newrelic.d/marketplace.firefox.com.ini'
