@@ -225,6 +225,16 @@ class Marketplace(object):
         if errors:
             raise self.form_errors(errors)
 
+    def dehydrate_objects(self, objects, request=None):
+        """
+        Dehydrates each object using the full_dehydrate and then
+        returns the data for each object. This is useful for compound
+        results that return sub objects data. If you need request in the
+        dehydration, pass that through (eg: accessing region)
+        """
+        return [self.full_dehydrate(Bundle(obj=o, request=request)).data
+                for o in objects]
+
 
 class MarketplaceResource(Marketplace, Resource):
     """
@@ -285,16 +295,6 @@ class MarketplaceModelResource(Marketplace, ModelResource):
         except ObjectDoesNotExist:
             raise ImmediateHttpResponse(response=http.HttpNotFound())
         return obj
-
-    def dehydrate_objects(self, objects, request=None):
-        """
-        Dehydrates each object using the full_dehydrate and then
-        returns the data for each object. This is useful for compound
-        results that return sub objects data. If you need request in the
-        dehydration, pass that through (eg: accessing region)
-        """
-        return [self.full_dehydrate(Bundle(obj=o, request=request)).data
-                for o in objects]
 
     def base_urls(self):
         """

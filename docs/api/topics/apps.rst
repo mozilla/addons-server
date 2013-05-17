@@ -100,6 +100,26 @@ App
                     "resource_uri": "/api/v1/apps/preview/37/"
                 }
             ],
+            "default_locale": "en-US",
+            "supported_locales": [
+                "en-US",
+                "es",
+                "it"
+            ],
+            "regions": [
+                {
+                    "adolescent": true,
+                    "mcc": 310,
+                    "name": "United States",
+                    "slug": "us"
+                },
+                {
+                    "adolescent": true,
+                    "mcc": null,
+                    "name": "Worldwide",
+                    "slug": "worldwide"
+                }
+            ],
             "user": {
                 "developed": false,
                 "installed": false,
@@ -128,6 +148,11 @@ App
         currency formatted using the currency symbol and the locale
         representations of numbers. Example: "1,00 $US". For more information
         on this see :ref:`payment tiers <localized-tier-label>`.
+    :param boolean regions > adolescent: an adolescent region has a sufficient
+        volume of data to calculate ratings and rankings independent of
+        worldwide data.
+    :param string|null regions > mcc: represents the region's ITU `mobile 
+        country code`_.
     :param object user: an object representing information specific to this
         user for the app. If the user is anonymous this object will not
         be present.
@@ -315,3 +340,4 @@ Valid transitions that users can initiate are:
   enable or disable an app.
 
 .. _`terms of use`: https://marketplace.firefox.com/developers/terms
+.. _`mobile country code`: http://en.wikipedia.org/wiki/List_of_mobile_country_codes

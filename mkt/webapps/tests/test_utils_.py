@@ -61,6 +61,21 @@ class TestAppToDict(amo.tests.TestCase):
         res = app_to_dict(self.app, profile=self.profile)
         self.check_profile(res['user'], developed=True)
 
+    def test_locales(self):
+        res = app_to_dict(self.app)
+        eq_(res['default_locale'], 'en-US')
+        eq_(res['supported_locales'], [])
+
+    def test_multiple_locales(self):
+        self.app.current_version.update(supported_locales='en-US,it')
+        res = app_to_dict(self.app)
+        self.assertSetEqual(res['supported_locales'], ['en-US', 'it'])
+
+    def test_regions(self):
+        res = app_to_dict(self.app)
+        self.assertSetEqual([region['slug'] for region in res['regions']],
+                            [region.slug for region in self.app.get_regions()])
+
 
 class TestAppToDictPrices(amo.tests.TestCase):
     fixtures = fixture('prices')

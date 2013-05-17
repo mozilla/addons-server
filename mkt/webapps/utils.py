@@ -3,6 +3,7 @@ import commonware.log
 import amo
 from amo.utils import find_language, no_translation
 
+from mkt.regions.api import RegionResource
 
 log = commonware.log.getLogger('z.webapps')
 
@@ -43,12 +44,13 @@ def app_to_dict(app, currency=None, profile=None):
     from mkt.developers.api import AccountResource
     from mkt.developers.models import AddonPaymentAccount
 
-
     cv = app.current_version
     version_data = {
         'version': getattr(cv, 'version', None),
         'release_notes': getattr(cv, 'releasenotes', None)
     }
+
+    supported_locales = getattr(app.current_version, 'supported_locales', '')
 
     data = {
         'app_type': app.app_type,
@@ -58,6 +60,7 @@ def app_to_dict(app, currency=None, profile=None):
             'description': unicode(cr.get_rating().description),
         }) for cr in app.content_ratings.all()]) or None,
         'current_version': version_data,
+        'default_locale': app.default_locale,
         'image_assets': dict([(ia.slug, (ia.image_url, ia.hue))
                               for ia in app.image_assets.all()]),
         'icons': dict([(icon_size,
@@ -74,7 +77,10 @@ def app_to_dict(app, currency=None, profile=None):
         'price_locale': None,
         'ratings': {'average': app.average_rating,
                     'count': app.total_reviews},
+        'regions': RegionResource().dehydrate_objects(app.get_regions()),
         'slug': app.app_slug,
+        'supported_locales': (supported_locales.split(',') if supported_locales
+                              else [])
     }
 
     if app.premium:
