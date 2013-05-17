@@ -83,6 +83,9 @@ loggers = {
     'caching': {
         'level': 'ERROR',
     },
+    'newrelic': {
+        'level': 'INFO',
+    },
 }
 
 cfg = {
