@@ -647,9 +647,13 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
 
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
+
         # Verify that our app has 2 versions.
         eq_(Version.with_deleted.filter(addon=app).count(), 2)
+
         # Verify the apps in the context are what we expect.
+        doc = pq(res.content)
+        eq_(doc('.tabnav li a:eq(2)').text(), u'Updates (1)')
         apps = [a.app for a in res.context['addons']]
         ok_(app not in apps)
         ok_(self.apps[1] in apps)
