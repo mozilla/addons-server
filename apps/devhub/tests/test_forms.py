@@ -279,7 +279,7 @@ class TestThemeForm(amo.tests.TestCase):
 
     @mock.patch('addons.tasks.make_checksum')
     @mock.patch('addons.tasks.create_persona_preview_images.delay')
-    @mock.patch('addons.tasks.save_persona_image.delay')
+    @mock.patch('addons.tasks.save_persona_image')
     def test_success(self, save_persona_image_mock,
                      create_persona_preview_images_mock, make_checksum_mock):
         if not hasattr(Image.core, 'jpeg_encoder'):
@@ -349,7 +349,7 @@ class TestThemeForm(amo.tests.TestCase):
             set_modified_on=[addon])
 
     @mock.patch('addons.tasks.create_persona_preview_images.delay')
-    @mock.patch('addons.tasks.save_persona_image.delay')
+    @mock.patch('addons.tasks.save_persona_image')
     @mock.patch('addons.tasks.make_checksum')
     def test_dupe_persona(self, make_checksum_mock, mock1, mock2):
         """
@@ -471,7 +471,7 @@ class TestEditThemeForm(amo.tests.TestCase):
 
     @mock.patch('addons.tasks.make_checksum')
     @mock.patch('addons.tasks.create_persona_preview_images.delay')
-    @mock.patch('addons.tasks.save_persona_image.delay')
+    @mock.patch('addons.tasks.save_persona_image')
     def test_reupload(self, save_persona_image_mock,
                       create_persona_preview_images_mock,
                       make_checksum_mock):
@@ -501,7 +501,7 @@ class TestEditThemeForm(amo.tests.TestCase):
 
     @mock.patch('addons.tasks.make_checksum')
     @mock.patch('addons.tasks.create_persona_preview_images.delay')
-    @mock.patch('addons.tasks.save_persona_image.delay')
+    @mock.patch('addons.tasks.save_persona_image')
     def test_reupload_duplicate(self, save_persona_image_mock,
                                 create_persona_preview_images_mock,
                                 make_checksum_mock):
