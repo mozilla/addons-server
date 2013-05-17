@@ -148,12 +148,3 @@ class AccountTests(BaseOAuth):
         client.api.bango.package().get.return_value = {"full": payment_data}
         rget = self.client.get(list_url('account'))
         eq_(json.loads(rget.content)['objects'], [])
-
-
-
-
-
-
-
-
-

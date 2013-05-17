@@ -222,9 +222,11 @@ class CreateHandler(BaseOAuth):
                 name='cat-%s' % x,
                 type=amo.ADDON_WEBAPP))
 
-    def create(self):
-        return FileUpload.objects.create(user=self.user, path=self.file,
-                                         name=self.file, valid=True)
+    def create(self, fil=None):
+        if fil is None:
+            fil = self.file
+        return FileUpload.objects.create(user=self.user, path=fil,
+                                         name=fil, valid=True)
 
 
 def _mock_fetch_content(url):
@@ -302,8 +304,8 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         eq_(set(app.authors.all()), set([self.user]))
         assert record_action.called
 
-    def create_app(self):
-        obj = self.create()
+    def create_app(self, fil=None):
+        obj = self.create(fil)
         res = self.client.post(self.list_url,
                                data=json.dumps({'manifest': obj.uuid}))
         pk = json.loads(res.content)['id']
@@ -584,6 +586,39 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         res = self.client.put(self.get_url, data=json.dumps(data))
         eq_(res.status_code, 202)
         eq_(str(app.addonpremium.get_price()), "0.00")
+
+    def test_put_upsold(self):
+        free_webapp = tempfile.NamedTemporaryFile('w', suffix='.webapp').name
+        self.manifest_copy_over(free_webapp, 'mozball-nice-slug.webapp')
+        free_app = self.create_app(free_webapp)
+        free_data = self.base_data()
+        free_data['name'] = 'mozball free'
+        self.client.put(get_url('app', free_app.pk), data=json.dumps(free_data))
+        app = self.create_app()
+        data = self.base_data()
+        Price.objects.create(price='3.14')
+        data['premium_type'] = 'premium'
+        data['price'] = '3.14'
+        data['upsold'] = get_absolute_url(get_url('app', free_app.pk),
+                                          absolute=False)
+        res = self.client.put(self.get_url, data=json.dumps(data))
+        eq_(res.status_code, 202)
+        eq_(app.upsold.free, free_app)
+
+    def test_put_no_upsold_for_free(self):
+        free_webapp = tempfile.NamedTemporaryFile('w', suffix='.webapp').name
+        self.manifest_copy_over(free_webapp, 'mozball-nice-slug.webapp')
+        free_app = self.create_app(free_webapp)
+        free_data = self.base_data()
+        free_data['name'] = 'mozball free'
+        self.client.put(get_url('app', free_app.pk), data=json.dumps(free_data))
+        app = self.create_app()
+        data = self.base_data()
+        data['upsold'] = get_absolute_url(get_url('app', free_app.pk),
+                                          absolute=False)
+        res = self.client.put(self.get_url, data=json.dumps(data))
+        eq_(res.status_code, 400)
+
 
     @patch('mkt.developers.models.client')
     def test_get_payment_account(self, client):

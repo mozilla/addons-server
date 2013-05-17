@@ -19,7 +19,8 @@ import waffle
 import amo
 from amo.utils import memoize
 from addons.forms import CategoryFormSet
-from addons.models import Addon, AddonUser, Category, Preview, Webapp
+from addons.models import (Addon, AddonUpsell, AddonUser, Category, Preview,
+                           Webapp)
 from amo.decorators import write
 from amo.utils import no_translation
 from constants.applications import DEVICE_TYPES
@@ -116,6 +117,8 @@ class AppResource(CORSResource, MarketplaceModelResource):
     premium_type = fields.IntegerField(null=True)
     previews = fields.ToManyField('mkt.api.resources.PreviewResource',
                                   'previews', readonly=True)
+    upsold = fields.ToOneField('mkt.api.resources.AppResource', 'upsold',
+                               null=True)
 
     class Meta(MarketplaceModelResource.Meta):
         queryset = Webapp.objects.all()  # Gets overriden in dispatch.
@@ -248,6 +251,7 @@ class AppResource(CORSResource, MarketplaceModelResource):
         data.update(self.devices(data))
         self.update_premium_type(bundle)
         self.update_payment_account(bundle)
+        self.update_upsell(bundle)
 
         forms = [AppDetailsBasicForm(data, instance=obj, request=request),
                  DeviceTypeForm(data, addon=obj),
@@ -302,6 +306,21 @@ class AppResource(CORSResource, MarketplaceModelResource):
             AddonPaymentAccount.create(
                 provider='bango', addon=bundle.obj,
                 payment_account=acct)
+
+    def update_upsell(self, bundle):
+        if 'upsold' in bundle.data:
+            if bundle.obj.premium_type in amo.ADDON_FREES:
+                raise fields.ApiFieldError('Free apps cannot have upsells.')
+            free_app = self.fields['upsold'].hydrate(bundle).obj
+            current_upsell = bundle.obj.upsold
+            if not current_upsell:
+                log.debug('[1@%s] Creating app upsell' % bundle.obj.pk)
+                current_upsell = AddonUpsell(premium=bundle.obj)
+            current_upsell.free = free_app
+            current_upsell.save()
+            # smack that cached property right back out
+            del bundle.obj.__dict__['upsold']
+        return bundle
 
     def dehydrate(self, bundle):
         obj = bundle.obj

@@ -185,6 +185,8 @@ App
     :param optional payment_account: The path for the
         :ref:`payment account <payment-account-label>` resource you want to
         associate with this app.
+    :param optional upsold: The path to the free app resource that
+        this premium app is an upsell for.
 
     **Response**
 
