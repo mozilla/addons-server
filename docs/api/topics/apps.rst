@@ -42,29 +42,33 @@ App
     .. code-block:: json
 
         {
-            "premium_type": "premium",
-            "support_email": "amckay@mozilla.com",
+            "app_type": "hosted",
+            "categories": [
+                3
+            ],
             "content_ratings": {},
             "current_version": {
-                "version": "1.0",
-                "release_notes": null
+                "release_notes": null,
+                "version": "1.0"
             },
-            "manifest_url": "http://zrnktefoptje.test-manifest.herokuapp.com/manifest.webapp",
-            "id": "24",
-            "ratings": {
-                "count": 0,
-                "average": 0.0
-            },
-            "app_type": "hosted",
-            "icons": {
-                "128": "/tmp/uploads/addon_icons/0/24-128.png?modified=1362762723",
-                "64": "/tmp/uploads/addon_icons/0/24-64.png?modified=1362762723",
-                "48": "/tmp/uploads/addon_icons/0/24-48.png?modified=1362762723",
-                "16": "/tmp/uploads/addon_icons/0/24-32.png?modified=1362762723"
-            },
-            "support_url": "",
+            "default_locale": "en-US",
+            "description": "sdf",
+            "device_types": [
+                "firefoxos"
+            ],
             "homepage": "",
+            "icons": {
+                "16": "/tmp/uploads/addon_icons/0/24-32.png?modified=1362762723",
+                "48": "/tmp/uploads/addon_icons/0/24-48.png?modified=1362762723",
+                "64": "/tmp/uploads/addon_icons/0/24-64.png?modified=1362762723",
+                "128": "/tmp/uploads/addon_icons/0/24-128.png?modified=1362762723"
+            },
+            "id": "24",
             "image_assets": {
+                "desktop_tile": [
+                    "http://server.local/img/uploads/imageassets/0/60.png?modified=1362762724",
+                    0
+                ],
                 "featured_tile": [
                     "http://server.local/img/uploads/imageassets/0/58.png?modified=1362762724",
                     0
@@ -72,40 +76,35 @@ App
                 "mobile_tile": [
                     "http://server.local/img/uploads/imageassets/0/59.png?modified=1362762724",
                     0
-                ],
-                "desktop_tile": [
-                    "http://server.local/img/uploads/imageassets/0/60.png?modified=1362762724",
-                    0
                 ]
             },
-            "public_stats": false,
-            "status": 0,
-            "privacy_policy": "sdfsdf",
             "is_packaged": false,
-            "description": "sdf",
             "listed_authors": [
                 {
                     "name": "amckay"
                 }
             ],
-            "price": null,
-            "price_locale": null,
+            "manifest_url": "http://zrnktefoptje.test-manifest.herokuapp.com/manifest.webapp",
+            "name": "Test App (zrnktefoptje)",
+            "premium_type": "premium",
             "previews": [
                 {
-                    "filetype": "image/png",
                     "caption": "",
-                    "thumbnail_url": "/tmp/uploads/previews/thumbs/0/37.png?modified=1362762723",
-                    "image_url": "/tmp/uploads/previews/full/0/37.png?modified=1362762723",
+                    "filetype": "image/png",
                     "id": "37",
-                    "resource_uri": "/api/v1/apps/preview/37/"
+                    "image_url": "/tmp/uploads/previews/full/0/37.png?modified=1362762723",
+                    "resource_uri": "/api/v1/apps/preview/37/",
+                    "thumbnail_url": "/tmp/uploads/previews/thumbs/0/37.png?modified=1362762723"
                 }
             ],
-            "default_locale": "en-US",
-            "supported_locales": [
-                "en-US",
-                "es",
-                "it"
-            ],
+            "price": null,
+            "price_locale": null,
+            "privacy_policy": "sdfsdf",
+            "public_stats": false,
+            "ratings": {
+                "average": 0.0,
+                "count": 0
+            },
             "regions": [
                 {
                     "adolescent": true,
@@ -120,22 +119,22 @@ App
                     "slug": "worldwide"
                 }
             ],
+            "resource_uri": "/api/v1/apps/app/24/",
+            "slug": "test-app-zrnktefoptje",
+            "status": 0,
+            "supported_locales": [
+                "en-US",
+                "es",
+                "it"
+            ],
+            "support_email": "amckay@mozilla.com",
+            "support_url": "",
+            "upsell": false,
             "user": {
                 "developed": false,
                 "installed": false,
                 "purchased": false
-            },
-            "slug": "test-app-zrnktefoptje",
-            "categories": [
-                3
-            ],
-            "name": "Test App (zrnktefoptje)",
-            "device_types": [
-                "firefoxos"
-            ],
-            "summary": "Test manifest",
-            "upsell": false,
-            "resource_uri": "/api/v1/apps/app/24/"
+            }
         }
 
     Notes on the response.
