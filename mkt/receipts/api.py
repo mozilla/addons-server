@@ -6,13 +6,11 @@ from tastypie.exceptions import ImmediateHttpResponse
 from tastypie.validation import CleanedDataFormValidation
 
 import amo
-from amo.utils import memoize_get
 
 from access.acl import check_ownership
 from lib.cef_loggers import receipt_cef
 from lib.metrics import record_action
-from mkt.api.authentication import (OAuthAuthentication,
-                                    OptionalOAuthAuthentication,
+from mkt.api.authentication import (OptionalOAuthAuthentication,
                                     SharedSecretAuthentication)
 from mkt.api.base import CORSResource, MarketplaceResource
 from mkt.api.http import HttpPaymentRequired
@@ -79,7 +77,7 @@ class ReceiptResource(CORSResource, MarketplaceResource):
 
     def record(self, bundle, request, install_type):
         # Generate or re-use an existing install record.
-        installed, created = Installed.objects.safer_get_or_create(
+        installed, created = Installed.objects.get_or_create(
             addon=bundle.obj, user=request.user.get_profile(),
             install_type=install_type)
 
@@ -87,16 +85,9 @@ class ReceiptResource(CORSResource, MarketplaceResource):
             'created' if created else 're-used',
             bundle.obj.pk))
 
-        # Generate or re-use a recent receipt.
-        receipt_cef.log(request, bundle.obj, 'request', 'Receipt requested')
-        receipt = memoize_get('create-receipt', installed.pk)
-        if receipt:
-            log.info('Cached receipt found: %s' % bundle.obj.pk)
-            return receipt
-
         log.info('Creating receipt: %s' % bundle.obj.pk)
         receipt_cef.log(request, bundle.obj, 'sign', 'Receipt signing')
-        return create_receipt(installed.pk)
+        return create_receipt(installed)
 
 
 class TestReceiptResource(CORSResource, MarketplaceResource):
@@ -113,6 +104,6 @@ class TestReceiptResource(CORSResource, MarketplaceResource):
 
     def obj_create(self, bundle, request=None, **kwargs):
         receipt_cef.log(request, None, 'sign', 'Test receipt signing')
-        bundle.data= {'receipt': create_test_receipt(
+        bundle.data = {'receipt': create_test_receipt(
             bundle.data['root'], bundle.data['receipt_type'])}
         return bundle

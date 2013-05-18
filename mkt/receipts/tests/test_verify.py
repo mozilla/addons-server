@@ -1,8 +1,8 @@
 # -*- coding: utf8 -*-
 import calendar
 import json
-from urllib import urlencode
 import time
+from urllib import urlencode
 
 from django.db import connection
 from django.conf import settings
@@ -10,16 +10,16 @@ from django.conf import settings
 import jwt
 import M2Crypto
 import mock
+from browserid.errors import ExpiredSignatureError
 from nose.tools import eq_
 from test_utils import RequestFactory
 
 import amo
 import amo.tests
 from addons.models import Addon
-from browserid.errors import ExpiredSignatureError
-from services import verify
-from services import utils
+from services import utils, verify
 from mkt.receipts.utils import create_receipt
+from mkt.site.fixtures import fixture
 from mkt.webapps.models import Installed
 from market.models import AddonPurchase
 from users.models import UserProfile
@@ -61,15 +61,15 @@ sample = ('eyJqa3UiOiAiaHR0cHM6Ly9tYXJrZXRwbGFjZS1kZXYtY2RuL'
                    amo.tests.AMOPaths.sample_key())
 @mock.patch.object(utils.settings, 'WEBAPPS_RECEIPT_URL', 'http://foo.com')
 class TestVerify(amo.tests.TestCase):
-    fixtures = ['base/addon_3615', 'base/users']
+    fixtures = fixture('webapp_337141', 'user_999')
 
     def setUp(self):
-        self.addon = Addon.objects.get(pk=3615)
-        self.user = UserProfile.objects.get(email='regular@mozilla.com')
+        self.addon = Addon.objects.get(pk=337141)
+        self.user = UserProfile.objects.get(pk=999)
         self.user_data = {'user': {'type': 'directed-identifier',
                                    'value': 'some-uuid'},
                           'product': {'url': 'http://f.com',
-                                      'storedata': urlencode({'id': 3615})},
+                                      'storedata': urlencode({'id': 337141})},
                           'verify': 'https://foo.com/verifyme/',
                           'exp': calendar.timegm(time.gmtime()) + 1000,
                           'typ': 'purchase-receipt'}
@@ -270,14 +270,14 @@ class TestVerify(amo.tests.TestCase):
         self.make_install()
         data = self.user_data.copy()
         data['product'] = {'url': 'http://f.com',
-                           'storedata': urlencode({'id': 3615})}
+                           'storedata': urlencode({'id': 337141})}
         eq_(self.get(data)['status'], 'ok')
 
     def test_product_ok_store_data(self):
         self.make_install()
         data = self.user_data.copy()
         data['product'] = {'url': 'http://f.com',
-                           'storedata': urlencode({'id': 3615})}
+                           'storedata': urlencode({'id': 337141})}
         eq_(self.get(data)['status'], 'ok')
 
     def test_product_barf_store_data(self):
@@ -290,7 +290,7 @@ class TestVerify(amo.tests.TestCase):
     def test_crack_receipt(self):
         # Check that we can decode our receipt and get a dictionary back.
         self.addon.update(type=amo.ADDON_WEBAPP, manifest_url='http://a.com')
-        receipt = create_receipt(self.make_install().pk)
+        receipt = create_receipt(self.make_install())
         result = verify.decode_receipt(receipt)
         eq_(result['typ'], u'purchase-receipt')
 
@@ -304,7 +304,7 @@ class TestVerify(amo.tests.TestCase):
 
     def test_crack_borked_receipt(self):
         self.addon.update(type=amo.ADDON_WEBAPP, manifest_url='http://a.com')
-        receipt = create_receipt(self.make_install().pk)
+        receipt = create_receipt(self.make_install())
         self.assertRaises(M2Crypto.RSA.RSAError, verify.decode_receipt,
                           receipt + 'x')
 

@@ -57,14 +57,8 @@ class TestAPI(BaseOAuth):
     @mock.patch('mkt.receipts.api.receipt_cef.log')
     def test_cef_logs(self, cef):
         eq_(self.post().status_code, 201)
-        eq_(len(cef.call_args_list), 2)
-        eq_([x[0][2] for x in cef.call_args_list],
-            ['request', 'sign'])
-
-        eq_(self.post().status_code, 201)
-        eq_(len(cef.call_args_list), 3)
-        eq_([x[0][2] for x in cef.call_args_list],
-            ['request', 'sign', 'request'])
+        eq_(len(cef.call_args_list), 1)
+        eq_([x[0][2] for x in cef.call_args_list], ['sign'])
 
     @mock.patch('mkt.receipts.api.record_action')
     @mock.patch('mkt.receipts.api.receipt_cef.log')

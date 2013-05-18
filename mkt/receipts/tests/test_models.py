@@ -49,24 +49,24 @@ class TestReceipt(amo.tests.TestCase):
 
     def test_receipt(self):
         ins = self.create_install(self.user, self.webapp)
-        assert create_receipt(ins.pk).startswith('eyJhbGciOiAiUlM1MTIiLCA')
+        assert create_receipt(ins).startswith('eyJhbGciOiAiUlM1MTIiLCA')
 
     def test_receipt_different(self):
         ins = self.create_install(self.user, self.webapp)
         ins_other = self.create_install(self.other_user, self.webapp)
-        assert create_receipt(ins.pk) != create_receipt(ins_other.pk)
+        assert create_receipt(ins) != create_receipt(ins_other)
 
     def test_addon_premium(self):
         for type_ in amo.ADDON_PREMIUMS:
             self.webapp.update(premium_type=type_)
             ins = self.create_install(self.user, self.webapp)
-            assert create_receipt(ins.pk)
+            assert create_receipt(ins)
 
     def test_addon_free(self):
         for type_ in amo.ADDON_FREES:
             self.webapp.update(premium_type=amo.ADDON_FREE)
             ins = self.create_install(self.user, self.webapp)
-            assert create_receipt(ins.pk)
+            assert create_receipt(ins)
 
     def test_install_has_uuid(self):
         install = self.create_install(self.user, self.webapp)
@@ -91,7 +91,7 @@ class TestReceipt(amo.tests.TestCase):
     def test_receipt_data(self, encode):
         encode.return_value = 'tmp-to-keep-memoize-happy'
         ins = self.create_install(self.user, self.webapp)
-        create_receipt(ins.pk)
+        create_receipt(ins)
         receipt = encode.call_args[0][0]
         eq_(receipt['product']['url'], self.webapp.manifest_url[:-1])
         eq_(receipt['product']['storedata'], 'id=%s' % int(ins.addon.pk))
@@ -104,17 +104,17 @@ class TestReceipt(amo.tests.TestCase):
     def test_receipt_not_reviewer(self):
         ins = self.create_install(self.user, self.webapp)
         self.assertRaises(ValueError,
-                          create_receipt, ins.pk, flavour='reviewer')
+                          create_receipt, ins, flavour='reviewer')
 
     def test_receipt_other(self):
         ins = self.create_install(self.user, self.webapp)
         self.assertRaises(AssertionError,
-                          create_receipt, ins.pk, flavour='wat')
+                          create_receipt, ins, flavour='wat')
 
     @mock.patch('jwt.encode')
     def for_user(self, ins, flavour, encode):
         encode.return_value = 'tmp-to-keep-memoize-happy'
-        create_receipt(ins.pk, flavour=flavour)
+        create_receipt(ins, flavour=flavour)
         receipt = encode.call_args[0][0]
         eq_(receipt['typ'], flavour + '-receipt')
         eq_(receipt['verify'],
@@ -149,7 +149,7 @@ class TestReceipt(amo.tests.TestCase):
     def test_receipt_signer(self, sign):
         sign.return_value = 'something-cunning'
         ins = self.create_install(self.user, self.webapp)
-        eq_(create_receipt(ins.pk), 'something-cunning')
+        eq_(create_receipt(ins), 'something-cunning')
         #TODO: more goes here.
 
 

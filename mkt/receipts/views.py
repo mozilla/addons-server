@@ -13,10 +13,8 @@ from addons.decorators import addon_view_factory
 from addons.models import Addon
 import amo
 import amo.log
-from amo.decorators import login_required
-from amo.decorators import json_view, post_required, write
+from amo.decorators import json_view, login_required, post_required, write
 from amo.urlresolvers import reverse
-from amo.utils import memoize_get
 from devhub.models import AppLog
 from editors.views import reviewer_required
 from lib.metrics import record_action
@@ -26,7 +24,7 @@ import mkt
 from mkt.constants import apps
 from mkt.receipts.utils import create_test_receipt
 from mkt.webapps.models import Installed, Webapp
-from services.verify import Verify, get_headers
+from services.verify import get_headers, Verify
 from stats.models import ClientData
 from users.models import UserProfile
 from zadmin.models import DownloadSource
@@ -80,7 +78,7 @@ def _record(request, addon):
         install_type = (apps.INSTALL_TYPE_DEVELOPER if is_dev
                         else apps.INSTALL_TYPE_USER)
         # Log the install.
-        installed, c = Installed.objects.safer_get_or_create(addon=addon,
+        installed, c = Installed.objects.get_or_create(addon=addon,
             user=request.amo_user, install_type=install_type)
 
         # Get download source from GET if it exists, if so get the download
@@ -102,17 +100,12 @@ def _record(request, addon):
             region=region)
         installed.update(client_data=client_data)
 
-        # Look up to see if its in the receipt cache and log if we have
-        # to recreate it.
-        receipt = memoize_get('create-receipt', installed.pk)
         error = ''
-        receipt_cef.log(request, addon, 'request', 'Receipt requested')
-        if not receipt:
-            receipt_cef.log(request, addon, 'sign', 'Receipt signing')
-            try:
-                receipt = create_receipt(installed.pk)
-            except SigningError:
-                error = _('There was a problem installing the app.')
+        receipt_cef.log(request, addon, 'sign', 'Receipt requested')
+        try:
+            receipt = create_receipt(installed)
+        except SigningError:
+            error = _('There was a problem installing the app.')
 
         ctx.update(receipt=receipt, error=error)
     else:
@@ -200,7 +193,7 @@ def issue(request, addon):
     receipt_cef.log(request, addon, 'sign', 'Receipt signing for %s' % flavour)
     receipt = None
     try:
-        receipt = create_receipt(installed.pk, flavour=flavour)
+        receipt = create_receipt(installed, flavour=flavour)
     except SigningError:
         error = _('There was a problem installing the app.')
 

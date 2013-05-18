@@ -10,17 +10,13 @@ from nose.tools import nottest
 from access import acl
 from amo.helpers import absolutify
 from amo.urlresolvers import reverse
-from amo.utils import memoize
 from lib.crypto.receipt import sign
-from mkt.webapps.models import Installed
 
 
-@memoize(prefix='create-receipt', time=60 * 10)
-def create_receipt(installed_pk, flavour=None):
+def create_receipt(installed, flavour=None):
     assert flavour in [None, 'developer', 'reviewer'], (
            'Invalid flavour: %s' % flavour)
 
-    installed = Installed.objects.get(pk=installed_pk)
     webapp = installed.addon
     origin = (settings.SITE_URL if webapp.is_packaged else webapp.origin)
     time_ = calendar.timegm(time.gmtime())

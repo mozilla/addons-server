@@ -187,15 +187,8 @@ class TestInstall(amo.tests.TestCase):
     def test_cef_logs(self, cef):
         res = self.client.post(self.url)
         eq_(res.status_code, 200)
-        eq_(len(cef.call_args_list), 2)
-        eq_([x[0][2] for x in cef.call_args_list],
-            ['request', 'sign'])
-
-        res = self.client.post(self.url)
-        eq_(res.status_code, 200)
-        eq_(len(cef.call_args_list), 3)
-        eq_([x[0][2] for x in cef.call_args_list],
-            ['request', 'sign', 'request'])
+        eq_(len(cef.call_args_list), 1)
+        eq_([x[0][2] for x in cef.call_args_list], ['sign'])
 
     @mock.patch('mkt.receipts.views.receipt_cef.log')
     def test_record_install(self, cef):
