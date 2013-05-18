@@ -278,7 +278,7 @@ class TestThemeForm(amo.tests.TestCase):
              'data-upload-url': footer_url})
 
     @mock.patch('addons.tasks.make_checksum')
-    @mock.patch('addons.tasks.create_persona_preview_images.delay')
+    @mock.patch('addons.tasks.create_persona_preview_images')
     @mock.patch('addons.tasks.save_persona_image')
     def test_success(self, save_persona_image_mock,
                      create_persona_preview_images_mock, make_checksum_mock):
@@ -348,7 +348,7 @@ class TestThemeForm(amo.tests.TestCase):
                       os.path.join(dst, 'icon.png')],
             set_modified_on=[addon])
 
-    @mock.patch('addons.tasks.create_persona_preview_images.delay')
+    @mock.patch('addons.tasks.create_persona_preview_images')
     @mock.patch('addons.tasks.save_persona_image')
     @mock.patch('addons.tasks.make_checksum')
     def test_dupe_persona(self, make_checksum_mock, mock1, mock2):
@@ -470,7 +470,7 @@ class TestEditThemeForm(amo.tests.TestCase):
             {'name': ['This name is already in use. Please choose another.']})
 
     @mock.patch('addons.tasks.make_checksum')
-    @mock.patch('addons.tasks.create_persona_preview_images.delay')
+    @mock.patch('addons.tasks.create_persona_preview_images')
     @mock.patch('addons.tasks.save_persona_image')
     def test_reupload(self, save_persona_image_mock,
                       create_persona_preview_images_mock,
@@ -500,7 +500,7 @@ class TestEditThemeForm(amo.tests.TestCase):
         assert not rqt[0].dupe_persona
 
     @mock.patch('addons.tasks.make_checksum')
-    @mock.patch('addons.tasks.create_persona_preview_images.delay')
+    @mock.patch('addons.tasks.create_persona_preview_images')
     @mock.patch('addons.tasks.save_persona_image')
     def test_reupload_duplicate(self, save_persona_image_mock,
                                 create_persona_preview_images_mock,

@@ -132,7 +132,6 @@ def delete_persona_image(dst, **kw):
         log.error('Error deleting persona image: %s' % e)
 
 
-@task
 @set_modified_on
 def create_persona_preview_images(src, full_dst, **kw):
     """
@@ -169,7 +168,6 @@ def create_persona_preview_images(src, full_dst, **kw):
     return True
 
 
-@task
 @set_modified_on
 def save_persona_image(src, full_dst, **kw):
     """Creates a PNG of a Persona header/footer image."""
@@ -306,7 +304,7 @@ def save_theme(header, footer, addon, **kw):
     try:
         save_persona_image(src=header, full_dst=header_dst)
         save_persona_image(src=footer, full_dst=footer_dst)
-        create_persona_preview_images.delay(
+        create_persona_preview_images(
             src=header, full_dst=[os.path.join(dst_root, 'preview.png'),
                                   os.path.join(dst_root, 'icon.png')],
             set_modified_on=[addon])
