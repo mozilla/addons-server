@@ -20,12 +20,11 @@ from amo.urlresolvers import reverse
 from amo.utils import slug_validator, slugify, sorted_groupby, remove_icons
 from addons.models import (Addon, AddonCategory, BlacklistedSlug, Category,
                            Persona)
-from addons.tasks import rereviewqueuetheme_checksum, theme_checksum
+from addons.tasks import save_theme, save_theme_reupload
 from addons.utils import reverse_name_lookup
 from addons.widgets import IconWidgetRenderer, CategoriesSelectMultiple
 from applications.models import Application
 from devhub import tasks as devhub_tasks
-from editors.models import RereviewQueueTheme
 from tags.models import Tag
 from translations.fields import TransField, TransTextarea
 from translations.forms import TranslationFormMixin
@@ -539,8 +538,6 @@ class ThemeForm(ThemeFormBase):
         fields = ('name', 'slug', 'summary', 'tags')
 
     def save(self, commit=False):
-        from addons.tasks import (create_persona_preview_images,
-                                  save_persona_image)
         data = self.cleaned_data
         addon = Addon.objects.create(slug=data.get('slug'),
             status=amo.STATUS_PENDING, type=amo.ADDON_PERSONA)
@@ -550,31 +547,6 @@ class ThemeForm(ThemeFormBase):
         addon._current_version = Version.objects.create(addon=addon,
                                                         version='0')
         addon.save()
-
-        # Save header, footer, and preview images.
-        try:
-            header = data['header_hash']
-            footer = data['footer_hash']
-            header = os.path.join(settings.TMP_PATH, 'persona_header', header)
-            footer = os.path.join(settings.TMP_PATH, 'persona_footer', footer)
-            dst_root = os.path.join(settings.ADDONS_PATH, str(addon.id))
-
-            header_dst = os.path.join(dst_root, 'header.png')
-            footer_dst = os.path.join(dst_root, 'footer.png')
-
-            save_persona_image.delay(src=header, full_dst=header_dst)
-            save_persona_image.delay(src=footer, full_dst=footer_dst)
-            create_persona_preview_images.delay(src=header,
-                full_dst=[os.path.join(dst_root, 'preview.png'),
-                          os.path.join(dst_root, 'icon.png')],
-                set_modified_on=[addon])
-        except IOError:
-            addon.delete()
-            raise
-
-        # Save user info.
-        user = self.request.amo_user
-        addon.addonuser_set.create(user=user, role=amo.AUTHOR_ROLE_OWNER)
 
         # Create Persona instance.
         p = Persona()
@@ -588,11 +560,16 @@ class ThemeForm(ThemeFormBase):
             p.textcolor = data['textcolor'].lstrip('#')
         p.license = data['license']
         p.submit = datetime.now()
+        user = self.request.amo_user
         p.author = user.username
         p.display_username = user.name
         p.save()
 
-        theme_checksum.delay(theme=p)
+        # Save header, footer, and preview images.
+        save_theme.delay(data['header_hash'], data['footer_hash'], addon)
+
+        # Save user info.
+        addon.addonuser_set.create(user=user, role=amo.AUTHOR_ROLE_OWNER)
 
         # Save tags.
         for t in data['tags']:
@@ -672,8 +649,6 @@ class EditThemeForm(AddonFormBase):
             }
 
     def save(self):
-        from addons.tasks import save_persona_image
-
         addon = self.instance
         persona = addon.persona
         data = self.cleaned_data
@@ -725,38 +700,9 @@ class EditThemeForm(AddonFormBase):
             old_cat.category = data['category']
             old_cat.save()
 
-        try:
-            # Save header and/or footer for rereview.
-            header_dst = None
-            footer_dst = None
-            dst_root = os.path.join(settings.ADDONS_PATH, str(addon.id))
-
-            if data['header_hash']:
-                header = data['header_hash']
-                header = os.path.join(settings.TMP_PATH, 'persona_header',
-                                      header)
-                header_dst = os.path.join(dst_root, 'pending_header.png')
-                save_persona_image.delay(src=header, full_dst=header_dst)
-
-            if data['footer_hash']:
-                footer = data['footer_hash']
-                footer = os.path.join(settings.TMP_PATH, 'persona_footer',
-                                      footer)
-                footer_dst = os.path.join(dst_root, 'pending_footer.png')
-                save_persona_image.delay(src=footer, full_dst=footer_dst)
-
-            if header_dst or footer_dst:
-                header = 'pending_header.png' if header_dst else 'header.png'
-                footer = 'pending_footer.png' if footer_dst else 'footer.png'
-
-                # Store pending header and/or footer file paths for review.
-                RereviewQueueTheme.objects.filter(theme=persona).delete()
-                rqt = RereviewQueueTheme.objects.create(
-                    theme=persona, header=header, footer=footer)
-                rereviewqueuetheme_checksum.delay(rqt=rqt)
-        except IOError as e:
-            log.error(str(e))
-            raise
+        # Theme reupload.
+        save_theme_reupload.delay(data['header_hash'], data['footer_hash'],
+                                  addon)
 
         return data
 

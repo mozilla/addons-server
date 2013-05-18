@@ -1,5 +1,6 @@
 import hashlib
 import logging
+import os
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
@@ -9,6 +10,7 @@ from celeryutils import task
 from PIL import Image
 
 from addons.models import Persona
+from editors.models import RereviewQueueTheme
 import amo
 from amo.decorators import set_modified_on, write
 from amo.utils import cache_ns_key, ImageCheck, LocalFileStorage
@@ -267,7 +269,12 @@ def update_incompatible_appversions(data, **kw):
         cache_ns_key('d2c-versions:%s' % addon_id, increment=True)
 
 
-@task
+def make_checksum(header_path, footer_path):
+    ls = LocalFileStorage()
+    raw_checksum = ls._open(header_path).read() + ls._open(footer_path).read()
+    return hashlib.sha224(raw_checksum).hexdigest()
+
+
 def theme_checksum(theme, **kw):
     theme.checksum = make_checksum(theme.header_path, theme.footer_path)
     dupe_personas = Persona.objects.filter(checksum=theme.checksum)
@@ -276,7 +283,6 @@ def theme_checksum(theme, **kw):
     theme.save()
 
 
-@task
 def rereviewqueuetheme_checksum(rqt, **kw):
     """Check for possible duplicate theme images."""
     dupe_personas = Persona.objects.filter(
@@ -287,7 +293,56 @@ def rereviewqueuetheme_checksum(rqt, **kw):
         rqt.save()
 
 
-def make_checksum(header_path, footer_path):
-    ls = LocalFileStorage()
-    raw_checksum = ls._open(header_path).read() + ls._open(footer_path).read()
-    return hashlib.sha224(raw_checksum).hexdigest()
+@task
+@write
+def save_theme(header, footer, addon, **kw):
+    """Save theme image and calculates checksum after theme save."""
+    dst_root = os.path.join(settings.ADDONS_PATH, str(addon.id))
+    header = os.path.join(settings.TMP_PATH, 'persona_header', header)
+    footer = os.path.join(settings.TMP_PATH, 'persona_footer', footer)
+    header_dst = os.path.join(dst_root, 'header.png')
+    footer_dst = os.path.join(dst_root, 'footer.png')
+
+    try:
+        save_persona_image(src=header, full_dst=header_dst)
+        save_persona_image(src=footer, full_dst=footer_dst)
+        create_persona_preview_images.delay(
+            src=header, full_dst=[os.path.join(dst_root, 'preview.png'),
+                                  os.path.join(dst_root, 'icon.png')],
+            set_modified_on=[addon])
+        theme_checksum(addon.persona)
+    except IOError:
+        addon.delete()
+        raise
+
+
+@task
+@write
+def save_theme_reupload(header, footer, addon, **kw):
+    header_dst = None
+    footer_dst = None
+    dst_root = os.path.join(settings.ADDONS_PATH, str(addon.id))
+
+    try:
+        if header:
+            header = os.path.join(settings.TMP_PATH, 'persona_header', header)
+            header_dst = os.path.join(dst_root, 'pending_header.png')
+            save_persona_image(src=header, full_dst=header_dst)
+        if footer:
+            footer = os.path.join(settings.TMP_PATH, 'persona_footer', footer)
+            footer_dst = os.path.join(dst_root, 'pending_footer.png')
+            save_persona_image(src=footer, full_dst=footer_dst)
+    except IOError as e:
+        log.error(str(e))
+        raise
+
+    if header_dst or footer_dst:
+        theme = addon.persona
+        header = 'pending_header.png' if header_dst else 'header.png'
+        footer = 'pending_footer.png' if footer_dst else 'footer.png'
+
+        # Store pending header and/or footer file paths for review.
+        RereviewQueueTheme.objects.filter(theme=theme).delete()
+        rqt = RereviewQueueTheme.objects.create(
+            theme=theme, header=header, footer=footer)
+        rereviewqueuetheme_checksum(rqt=rqt)
