@@ -30,7 +30,12 @@ class AppOwnerAuthorization(OwnerAuthorization):
 
     def check_owner(self, request, object):
         # If the user on the object and the amo_user match, we are golden.
-        return object.authors.filter(user__id=request.amo_user.pk)
+        if object.authors.filter(user__id=request.amo_user.pk):
+            return True
+        # Reviewers can see non-public apps.
+        if request.method == 'GET':
+            if acl.action_allowed(request, 'Apps', 'Review'):
+                return True
 
 
 class AnonymousReadOnlyAuthorization(ReadOnlyAuthorization):

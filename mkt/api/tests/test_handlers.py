@@ -7,6 +7,7 @@ from mock import patch
 from nose.tools import eq_
 
 import amo
+from access.models import Group, GroupUser
 from addons.models import (Addon, AddonDeviceType, AddonUpsell,
                            AddonUser, Category, Flag, Preview)
 from amo.tests import AMOPaths, app_factory
@@ -14,8 +15,9 @@ from files.models import FileUpload
 from market.models import Price, AddonPremium
 from users.models import UserProfile
 
-from mkt.api.tests.test_oauth import BaseOAuth, get_absolute_url
+from mkt.api.tests.test_oauth import BaseOAuth, OAuthClient, get_absolute_url
 from mkt.api.base import get_url, list_url
+from mkt.api.models import Access, generate
 from mkt.constants import APP_IMAGE_SIZES, carriers, regions
 from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
                                    SolitudeSeller)
@@ -712,6 +714,28 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         res = self.client.delete(self.get_url)
         eq_(res.status_code, 403)
         assert Webapp.objects.filter(pk=obj.pk).exists()
+
+    def test_reviewer_get(self):
+        self.create_app()
+        editor = UserProfile.objects.get(email='admin@mozilla.com')
+        g = Group.objects.create(rules='Apps:Review,Reviews:Edit')
+        GroupUser.objects.create(group=g, user=editor)
+        ac = Access.objects.create(key='adminOauthKey', secret=generate(),
+                                   user=editor.user)
+        client = OAuthClient(ac, api_name='apps')
+        r = client.get(self.get_url)
+        eq_(r.status_code, 200)
+
+    def test_admin_get(self):
+        self.create_app()
+        admin = UserProfile.objects.get(email='admin@mozilla.com')
+        g = Group.objects.create(rules='*:*')
+        GroupUser.objects.create(group=g, user=admin)
+        ac = Access.objects.create(key='adminOauthKey', secret=generate(),
+                                   user=admin.user)
+        client = OAuthClient(ac, api_name='apps')
+        r = client.get(self.get_url)
+        eq_(r.status_code, 200)
 
 
 class CreatePackagedHandler(amo.tests.AMOPaths, BaseOAuth):
