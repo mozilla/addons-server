@@ -291,8 +291,6 @@ def rereviewqueuetheme_checksum(rqt, **kw):
         rqt.save()
 
 
-@task
-@write
 def save_theme(header, footer, addon, **kw):
     """Save theme image and calculates checksum after theme save."""
     dst_root = os.path.join(settings.ADDONS_PATH, str(addon.id))
@@ -314,8 +312,6 @@ def save_theme(header, footer, addon, **kw):
         raise
 
 
-@task
-@write
 def save_theme_reupload(header, footer, addon, **kw):
     header_dst = None
     footer_dst = None
