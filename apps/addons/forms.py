@@ -566,7 +566,7 @@ class ThemeForm(ThemeFormBase):
         p.save()
 
         # Save header, footer, and preview images.
-        save_theme(data['header_hash'], data['footer_hash'], addon)
+        save_theme.delay(data['header_hash'], data['footer_hash'], addon)
 
         # Save user info.
         addon.addonuser_set.create(user=user, role=amo.AUTHOR_ROLE_OWNER)
@@ -701,7 +701,8 @@ class EditThemeForm(AddonFormBase):
             old_cat.save()
 
         # Theme reupload.
-        save_theme_reupload(data['header_hash'], data['footer_hash'], addon)
+        save_theme_reupload.delay(data['header_hash'], data['footer_hash'],
+                                  addon)
 
         return data
 
