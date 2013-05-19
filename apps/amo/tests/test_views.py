@@ -103,7 +103,7 @@ class TestCommon(amo.tests.TestCase):
 
         expected = [
             ('Tools', '#'),
-            ('Manage My Add-ons', reverse('devhub.addons')),
+            ('Manage My Submissions', reverse('devhub.addons')),
             ('Submit a New Add-on', reverse('devhub.submit.1')),
             ('Submit a New Theme', reverse('devhub.themes.submit')),
             ('Developer Hub', reverse('devhub.index')),
@@ -138,7 +138,7 @@ class TestCommon(amo.tests.TestCase):
 
         expected = [
             ('Tools', '#'),
-            ('Manage My Add-ons', reverse('devhub.addons')),
+            ('Manage My Submissions', reverse('devhub.addons')),
             ('Submit a New Add-on', reverse('devhub.submit.1')),
             ('Submit a New Theme', reverse('devhub.themes.submit')),
             ('Developer Hub', reverse('devhub.index')),
@@ -180,7 +180,7 @@ class TestCommon(amo.tests.TestCase):
 
         expected = [
             ('Tools', '#'),
-            ('Manage My Add-ons', reverse('devhub.addons')),
+            ('Manage My Submissions', reverse('devhub.addons')),
             ('Submit a New Add-on', reverse('devhub.submit.1')),
             ('Submit a New Theme', reverse('devhub.themes.submit')),
             ('Developer Hub', reverse('devhub.index')),

@@ -120,22 +120,26 @@ def index(request):
 
 
 @login_required
-def dashboard(request, webapp=False):
-    addons, filter = addon_listing(request, webapp=webapp)
-    addons = amo.utils.paginate(request, addons, per_page=10)
+def dashboard(request, webapp=False, theme=False):
+    addon_items = _get_items(
+        None, request.amo_user.addons.exclude(type=amo.ADDON_WEBAPP))[:4]
 
-    themes, theme_filter = addon_listing(request, theme=True)
-    themes = amo.utils.paginate(request, themes, per_page=10)
+    data = dict(rss=_get_rss_feed(request), blog_posts=_get_posts(),
+                timestamp=int(time.time()), addon_tab=not webapp and not theme,
+                webapp=webapp, theme=theme, addon_items=addon_items)
 
-    blog_posts = _get_posts()
-    all_addons = request.amo_user.addons.exclude(type=amo.ADDON_WEBAPP)
-    data = dict(addons=addons, sorting=filter.field, filter=filter,
-                themes=themes, theme_sorting=theme_filter.field,
-                theme_filter=theme_filter,
-                addon_items=_get_items(None, all_addons)[:4],
-                sort_opts=filter.opts, rss=_get_rss_feed(request),
-                blog_posts=blog_posts, timestamp=int(time.time()),
-                webapp=webapp)
+    if data['addon_tab']:
+        addons, data['filter'] = addon_listing(request, webapp=webapp)
+        data['addons'] = amo.utils.paginate(request, addons, per_page=10)
+
+    if theme:
+        themes, data['filter'] = addon_listing(request, theme=True)
+        data['themes'] = amo.utils.paginate(request, themes, per_page=10)
+
+    if 'filter' in data:
+        data['sorting'] = data['filter'].field
+        data['sort_opts'] = data['filter'].opts
+
     return jingo.render(request, 'devhub/addons/dashboard.html', data)
 
 

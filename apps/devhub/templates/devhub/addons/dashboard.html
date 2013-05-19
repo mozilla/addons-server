@@ -3,7 +3,7 @@
 {% if webapp %}
   {% set title = loc('Manage My Apps') %}
 {% else %}
-  {% set title = _('Manage My Add-ons') %}
+  {% set title = _('Manage My Submissions') %}
 {% endif %}
 
 {% block title %}{{ dev_page_title(title) }}{% endblock %}
@@ -13,7 +13,8 @@
     <header class="hero">
       {{ dev_breadcrumbs(impala=True) }}
       <h1>{{ title }}</h1>
-      {% if addons %}
+
+      {% if addons and addon_tab %}
         {% set cnt = addons.paginator.count %}
         {% if webapp %}
           {# L10n: {0} is an integer. #}
@@ -26,7 +27,7 @@
     </header>
   </section>
 
-{% if not addons and not themes %}
+{% if webapp %}
   <div class="island action-needed">
     <h2>{{ _('Welcome to the Developer Dashboard') }}</h2>
     {% if webapp %}
@@ -96,7 +97,8 @@
     {% endif %}
   </section>
 
-  {% if addons %}
+  {% if addon_tab %}
+    {% include "addons/includes/dashboard_tabs.html" %}
     <section class="dashboard primary" role="main">
       <div class="listing island hero c">
         {{ impala_addon_listing_header(request.get_full_path(), search_filter=filter) }}
@@ -108,15 +110,16 @@
     </section>
   {% endif %}
 
-  {% if waffle.flag('submit-personas') and themes %}
+  {% if waffle.flag('submit-personas') and themes and theme %}
     {# L10n: {0} is an integer. #}
     <section class="dashboard primary theme-dashboard">
       {% set cnt = themes.paginator.count %}
       <h2 class="theme-count">
         {{ ngettext('<b>{0}</b> theme', '<b>{0}</b> themes', cnt)|f(cnt|numberfmt)|safe }}
       </h2>
+      {% include "addons/includes/dashboard_tabs.html" %}
       <div class="listing island hero c">
-        {{ impala_addon_listing_header(request.get_full_path(), search_filter=theme_filter) }}
+        {{ impala_addon_listing_header(request.get_full_path(), search_filter=filter) }}
         <div class="items">
           {{ dev_addon_listing_items(themes.object_list) }}
         </div>

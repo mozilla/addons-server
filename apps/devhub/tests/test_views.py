@@ -7,7 +7,6 @@ from decimal import Decimal
 
 from django.conf import settings
 from django.core import mail
-from django.utils.http import urlencode
 from django.core.files.storage import default_storage as storage
 
 import jingo
@@ -141,12 +140,13 @@ class TestDashboard(HubTest):
         super(TestDashboard, self).setUp()
         self.url = reverse('devhub.addons')
         self.apps_url = reverse('devhub.apps')
+        self.themes_url = reverse('devhub.themes')
         eq_(self.client.get(self.url).status_code, 200)
 
     def test_addons_layout(self):
         doc = pq(self.client.get(self.url).content)
         eq_(doc('title').text(),
-            'Manage My Add-ons :: Developer Hub :: Add-ons for Firefox')
+            'Manage My Submissions :: Developer Hub :: Add-ons for Firefox')
         eq_(doc('#social-footer').length, 1)
         eq_(doc('#copyright').length, 1)
         eq_(doc('#footer-links .mobile-link').length, 0)
@@ -192,7 +192,7 @@ class TestDashboard(HubTest):
         for x in range(2):
             addon = addon_factory(type=amo.ADDON_PERSONA)
             AddonUser.objects.create(user=self.user_profile, addon=addon)
-        r = self.client.get(self.url)
+        r = self.client.get(self.themes_url)
         doc = pq(r.content)
         eq_(len(doc('.item .item-info')), 2)
 
