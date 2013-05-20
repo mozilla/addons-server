@@ -23,7 +23,7 @@ from devhub.models import ActivityLog
 from editors.sql_model import RawSQLModel
 from translations.fields import save_signal, TranslatedField
 from users.models import UserProfile
-from versions.models import Version, version_uploaded
+from versions.models import version_uploaded
 
 import commonware.log
 

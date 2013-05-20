@@ -438,6 +438,9 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         for preview in previews:
             tasks.delete_preview_files.delay(preview)
         tasks.unindex_addons.delay([id])
+        if waffle.switch_is_active('search-api-es'):
+            from mkt.webapps import tasks as mkt_tasks
+            mkt_tasks.unindex_webapps.delay([id])
         return True
 
     @classmethod

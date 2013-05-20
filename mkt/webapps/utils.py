@@ -1,7 +1,17 @@
+from operator import attrgetter
+
+from django.conf import settings
+from django.utils import translation
+
 import commonware.log
 
 import amo
+from amo.helpers import absolutify
 from amo.utils import find_language, no_translation
+from addons.models import AddonUser
+from constants.applications import DEVICE_TYPES
+from market.models import Price
+from users.models import UserProfile
 
 from mkt.regions.api import RegionResource
 
@@ -104,4 +114,86 @@ def app_to_dict(app, currency=None, profile=None):
             'installed': app.has_installed(profile),
             'purchased': app.has_purchased(profile)
         }
+
+    return data
+
+
+def get_attr_lang(src, attr):
+    """
+    Our index stores localized strings in elasticsearch as, e.g.,
+    "name_spanish": [u'Nombre']. This takes the current language in the
+    threadlocal and gets the localized value, defaulting to
+    settings.LANGUAGE_CODE.
+    """
+    req_lang = amo.SEARCH_LANGUAGE_TO_ANALYZER.get(translation.get_language())
+    def_lang = amo.SEARCH_LANGUAGE_TO_ANALYZER.get(settings.LANGUAGE_CODE)
+
+    value = (src.get('%s_%s' % (attr, req_lang)) or
+             src.get('%s_%s' % (attr, def_lang)))
+    return value[0] if value else ''
+
+
+def es_app_to_dict(obj, currency=None, profile=None):
+    """
+    Return app data as dict for API where `app` is the elasticsearch result.
+    """
+    # Circular import.
+    from mkt.developers.api import AccountResource
+    from mkt.developers.models import AddonPaymentAccount
+    from mkt.webapps.models import Installed, Webapp
+    from stats.models import Contribution
+
+    src = obj._source
+    # The following doesn't perform a database query, but gives us useful
+    # methods like `get_detail_url`. If you use `obj` make sure the calls
+    # don't query the database.
+    app = Webapp(app_slug=obj.app_slug)
+
+    attrs = ('app_type', 'content_ratings', 'current_version', 'homepage',
+             'id', 'manifest_url', 'previews', 'ratings', 'status',
+             'support_email', 'support_url')
+    data = dict(zip(attrs, attrgetter(*attrs)(obj)))
+    data.update({
+        'absolute_url': absolutify(app.get_detail_url()),
+        'categories': [c for c in obj.category],
+        'description': get_attr_lang(src, 'description'),
+        'device_types': [DEVICE_TYPES[d].api_name for d in src['device']],
+        'icons': dict((i['size'], i['url']) for i in src['icons']),
+        'is_packaged': src['app_type'] == amo.ADDON_WEBAPP_PACKAGED,
+        'listed_authors': [{'name': name} for name in src['authors']],
+        'name': get_attr_lang(src, 'name'),
+        'premium_type': amo.ADDON_PREMIUM_API[src['premium_type']],
+        'public_stats': obj.has_public_stats,
+        'slug': obj.app_slug,
+    })
+
+    if src['premium_type'] in amo.ADDON_PREMIUMS:
+        acct = list(AddonPaymentAccount.objects.filter(addon=app))
+        if acct and acct.payment_account:
+            data['payment_account'] = AccountResource().get_resource_uri(
+                acct.payment_account)
+
+    try:
+        price = Price.objects.get(name=src['price_tier'])
+        data['price'] = price.get_price(currency=currency)
+        data['price_locale'] = price.get_price_locale(currency=currency)
+    except Price.DoesNotExist:
+        data['price'] = data['price_locale'] = None
+
+    # TODO: Let's get rid of these from the API to avoid db hits.
+    if profile and isinstance(profile, UserProfile):
+        data['user'] = {
+            'developed': AddonUser.objects.filter(
+                user=profile, role=amo.AUTHOR_ROLE_OWNER).exists(),
+            'installed': Installed.objects.filter(
+                user=profile, addon_id=obj.id).exists(),
+        }
+        try:
+            contribution = Contribution.objects.get(
+                user=profile, addon_id=obj.id)
+            data['user']['purchased'] = (
+                contribution.type == amo.CONTRIB_PURCHASE)
+        except Contribution.DoesNotExist:
+            data['user']['purchased'] = False
+
     return data

@@ -38,7 +38,7 @@
             "public_stats": false,
             "status": 4,
             "privacy_policy": 2326784,
-            "description": null,
+            "description": 2425898,
             "default_locale": "en-US",
             "target_locale": null,
             "suggested_amount": null,
@@ -57,7 +57,7 @@
             "icon_type": "image/png",
             "annoying": 0,
             "modified": "2011-10-18 16:29:46",
-            "summary": 2425898,
+            "summary": null,
             "nomination_message": null,
             "site_specific": false,
             "charity": null,
@@ -130,7 +130,7 @@
             "locale": "en-US",
             "modified": "2011-10-18 16:28:57",
             "id": 2425898,
-            "localized_string": "Something Something Steamcube Summary!"
+            "localized_string": "Something Something Steamcube description!"
         }
     },
     {

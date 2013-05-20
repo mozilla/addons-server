@@ -39,7 +39,15 @@ Search
     **Response**
 
     :param meta: :ref:`meta-response-label`.
-    :param objects: A :ref:`listing <objects-response-label>` of :ref:`apps <app-response-label>`.
+    :param objects: A :ref:`listing <objects-response-label>` of
+    :ref:`apps <app-response-label>`, with the following additional
+    fields:
+
+    .. code-block:: json
+
+        {
+            "absolute_url": http://server.local/app/my-app/",
+        }
 
     :status 200: successfully completed.
     :status 401: if attempting to filter by status, you do not have that role.

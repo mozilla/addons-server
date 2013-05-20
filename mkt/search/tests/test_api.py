@@ -21,13 +21,14 @@ class TestApi(BaseOAuth, ESTestCase):
     fixtures = fixture('webapp_337141')
 
     def setUp(self):
+        self.create_switch('search-api-es')
         self.client = OAuthClient(None)
         self.url = list_url('search')
         self.webapp = Webapp.objects.get(pk=337141)
         self.category = Category.objects.create(name='test',
                                                 type=amo.ADDON_WEBAPP)
         self.webapp.save()
-        self.refresh()
+        self.refresh('webapp')
 
     def test_verbs(self):
         self._allowed_verbs(self.url, ['get'])
@@ -66,7 +67,7 @@ class TestApi(BaseOAuth, ESTestCase):
     def create(self):
         AddonCategory.objects.create(addon=self.webapp, category=self.category)
         self.webapp.save()
-        self.refresh()
+        self.refresh('webapp')
 
     def test_right_category_present(self):
         self.create()
@@ -84,7 +85,12 @@ class TestApi(BaseOAuth, ESTestCase):
             eq_(obj['slug'], self.webapp.app_slug)
             eq_(obj['icons']['128'], self.webapp.get_icon_url(128))
             eq_(obj['absolute_url'], self.webapp.get_absolute_url())
-            eq_(obj['resource_uri'], None)
+            eq_(obj['resource_uri'], '/api/v1/apps/app/337141/')
+            eq_(obj['current_version']['version'], u'1.0')
+            eq_(obj['manifest_url'], self.webapp.get_manifest_url())
+            eq_(obj['public_stats'], self.webapp.public_stats)
+            eq_(obj['icons']['128'], self.webapp.get_icon_url(128))
+            eq_(obj['ratings'], {'average': 0.0, 'count': 0})
 
             # These only exists if requested by a reviewer.
             ok_('latest_version_status' not in obj)
@@ -100,7 +106,7 @@ class TestApi(BaseOAuth, ESTestCase):
         AddonDeviceType.objects.create(
             addon=self.webapp, device_type=DEVICE_CHOICES_IDS['desktop'])
         self.webapp.save()
-        self.refresh()
+        self.refresh('webapp')
         res = self.client.get(self.url + ({'device': 'desktop'},))
         eq_(res.status_code, 200)
         obj = json.loads(res.content)['objects'][0]
@@ -137,7 +143,7 @@ class TestApi(BaseOAuth, ESTestCase):
     def test_app_type_packaged(self):
         self.webapp.update(is_packaged=True)
         self.webapp.save()
-        self.refresh()
+        self.refresh('webapp')
 
         res = self.client.get(self.url + ({'app_type': 'packaged'},))
         eq_(res.status_code, 200)
@@ -195,6 +201,7 @@ class TestApiReviewer(BaseOAuth, ESTestCase):
     fixtures = fixture('webapp_337141', 'user_2519')
 
     def setUp(self, api_name='apps'):
+        self.create_switch('search-api-es')
         self.user = User.objects.get(pk=2519)
         self.profile = self.user.get_profile()
         self.profile.update(read_dev_agreement=datetime.now())
@@ -209,7 +216,7 @@ class TestApiReviewer(BaseOAuth, ESTestCase):
         self.category = Category.objects.create(name='test',
                                                 type=amo.ADDON_WEBAPP)
         self.webapp.save()
-        self.refresh()
+        self.refresh('webapp')
 
     def test_status_reviewer(self):
         res = self.client.get(self.url + ({'status': 'public'},))
@@ -268,26 +275,30 @@ class TestApiReviewer(BaseOAuth, ESTestCase):
         obj = json.loads(res.content)['objects'][0]
 
         # These only exist if requested by a reviewer.
-        eq_(obj['latest_version_status'], None)
+        eq_(obj['latest_version_status'], amo.STATUS_PUBLIC)
         eq_(obj['reviewer_flags']['has_comment'], True)
         eq_(obj['reviewer_flags']['has_info_request'], True)
         eq_(obj['reviewer_flags']['is_escalated'], False)
 
 
 class TestCategoriesWithFeatured(BaseOAuth, ESTestCase):
+    fixtures = fixture('user_2519', 'webapp_337141')
     list_url = list_url('search/featured')
 
+    def setUp(self):
+        super(TestCategoriesWithFeatured, self).setUp()
+        self.create_switch('search-api-es')
+        self.cat = Category.objects.create(type=amo.ADDON_WEBAPP, slug='shiny')
+        self.app = Webapp.objects.get(pk=337141)
+
     def test_featured_plus_category(self):
-        cat = Category.objects.create(type=amo.ADDON_WEBAPP, slug='shiny')
-        Category.objects.create(type=amo.ADDON_EXTENSION, slug='shiny')
-        self.app = amo.tests.app_factory()
         app2 = amo.tests.app_factory()
-        AddonCategory.objects.get_or_create(addon=app2, category=cat)
-        AddonCategory.objects.get_or_create(addon_id=self.app.pk, category=cat)
-        self.make_featured(app=app2, category=cat,
-                           region=mkt.regions.US)
-        self.app.save()
-        app2.save()
+        AddonCategory.objects.get_or_create(addon=app2, category=self.cat)
+        AddonCategory.objects.get_or_create(addon_id=self.app.pk,
+                                            category=self.cat)
+        self.make_featured(app=app2, category=self.cat, region=mkt.regions.US)
+        self.reindex(Webapp, 'webapp')
+
         res = self.client.get(self.list_url + ({'cat': 'shiny'},))
         eq_(res.status_code, 200)
         data = json.loads(res.content)
@@ -296,19 +307,16 @@ class TestCategoriesWithFeatured(BaseOAuth, ESTestCase):
         eq_(int(data['featured'][0]['id']), app2.pk)
 
     def test_no_category(self):
+        AddonCategory.objects.get_or_create(addon=self.app, category=self.cat)
+        self.make_featured(app=self.app, category=None, region=mkt.regions.US)
+        self.reindex(Webapp, 'webapp')
 
-        cat = Category.objects.create(type=amo.ADDON_WEBAPP, slug='shiny')
-        self.app = amo.tests.app_factory()
-        app = amo.tests.app_factory()
-        AddonCategory.objects.get_or_create(addon_id=337141, category=cat)
-        self.make_featured(app=app, category=None,
-                           region=mkt.regions.US)
         res = self.client.get(self.list_url)
         eq_(res.status_code, 200)
         data = json.loads(res.content)
         eq_(len(data['objects']), 2)
         eq_(len(data['featured']), 1)
-        eq_(int(data['featured'][0]['id']), app.pk)
+        eq_(int(data['featured'][0]['id']), self.app.pk)
 
 
 class TestApiFlags(BaseOAuth, ESTestCase):
@@ -316,6 +324,7 @@ class TestApiFlags(BaseOAuth, ESTestCase):
     url = list_url('search')
 
     def setUp(self):
+        self.create_switch('search-api-es')
         self.client = OAuthClient(None)
         self.webapp = Webapp.objects.get(pk=337141)
 
@@ -323,11 +332,11 @@ class TestApiFlags(BaseOAuth, ESTestCase):
         Flag.objects.create(addon=self.webapp, adult_content=adult,
                             child_content=child)
         self.webapp.save()
-        self.refresh()
+        self.refresh('webapp')
 
     def test_no_flags(self):
         self.webapp.save()
-        self.refresh()
+        self.refresh('webapp')
         res = self.client.get(self.url + ({'q': 'something'},))
         eq_(res.status_code, 200)
         obj = json.loads(res.content)['objects'][0]

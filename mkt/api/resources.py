@@ -124,8 +124,8 @@ class AppResource(CORSResource, MarketplaceModelResource):
         queryset = Webapp.objects.all()  # Gets overriden in dispatch.
         fields = ['categories', 'description', 'device_types', 'homepage',
                   'id', 'name', 'payment_account', 'premium_type',
-                  'privacy_policy',
-                  'status', 'summary', 'support_email', 'support_url']
+                  'privacy_policy', 'status', 'summary', 'support_email',
+                  'support_url']
         list_allowed_methods = ['get', 'post']
         detail_allowed_methods = ['get', 'put', 'delete']
         always_return_data = True

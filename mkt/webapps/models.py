@@ -13,11 +13,13 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.core.files.storage import default_storage as storage
 from django.core.urlresolvers import NoReverseMatch
 from django.db import models
+from django.db.models import signals as dbsignals
 from django.dispatch import receiver
 from django.utils.http import urlquote
 
 import commonware.log
-from elasticutils.contrib.django import F, Indexable, MappingType
+import waffle
+from elasticutils.contrib.django import F, Indexable, MappingType, S
 from tower import ugettext as _
 
 import amo
@@ -26,11 +28,12 @@ from access.acl import action_allowed, check_reviewer
 from addons import query
 from addons.models import (Addon, AddonDeviceType, attach_categories,
                            attach_devices, attach_prices, attach_translations,
-                           Category, Flag, update_search_index)
+                           Category, Flag,
+                           update_search_index as amo_update_search_index)
 from addons.signals import version_changed
 from amo.decorators import skip_cache
 from amo.helpers import absolutify
-from amo.search import TempS as S
+from amo.search import TempS
 from amo.storage_utils import copy_stored_file
 from amo.urlresolvers import reverse
 from amo.utils import JSONEncoder, smart_path
@@ -38,6 +41,7 @@ from constants.applications import DEVICE_TYPES
 from files.models import File, nfd_str, Platform
 from files.utils import parse_addon, WebAppParser
 from lib.crypto import packaged
+from market.models import AddonPremium
 from stats.models import ClientData
 from translations.fields import save_signal
 from versions.models import Version
@@ -608,7 +612,7 @@ class Webapp(Addon):
 
     @classmethod
     def from_search(cls, cat=None, region=None, gaia=False, mobile=False,
-                    tablet=False, filter_overrides=None):
+                    tablet=False, filter_overrides=None, new_idx=False):
 
         filters = {
             'type': amo.ADDON_WEBAPP,
@@ -628,7 +632,11 @@ class Webapp(Addon):
         if cat:
             filters.update(category=cat.id)
 
-        srch = S(cls).filter(**filters)
+        if new_idx and waffle.switch_is_active('search-api-es'):
+            srch = S(WebappIndexer).filter(**filters)
+        else:
+            srch = TempS(cls).filter(**filters)
+
         if region:
             excluded = cls.get_excluded_in(region)
             if excluded:
@@ -890,6 +898,12 @@ class WebappIndexer(MappingType, Indexable):
         return Webapp
 
     @classmethod
+    def setup_mapping(cls):
+        """Creates the ES index/mapping."""
+        cls.get_es().create_index(cls.get_index(),
+                                  {'mappings': cls.get_mapping()})
+
+    @classmethod
     def get_mapping(cls):
 
         doc_type = cls.get_mapping_type_name()
@@ -912,26 +926,58 @@ class WebappIndexer(MappingType, Indexable):
                     'average_daily_users': {'type': 'long'},
                     'bayesian_rating': {'type': 'float'},
                     'category': {'type': 'integer'},
+                    'content_ratings': {
+                        'type': 'object',
+                        'dynamic': 'true',
+                    },
                     'created': {'format': 'dateOptionalTime', 'type': 'date'},
+                    'current_version': {
+                        'type': 'object',
+                        'properties': {
+                            'version': {'type': 'string'},
+                            'release_notes': {'type': 'string'},
+                        }
+                    },
                     'description': {'type': 'string', 'analyzer': 'snowball'},
                     'device': {'type': 'byte'},
                     'flag_adult': {'type': 'boolean'},
                     'flag_child': {'type': 'boolean'},
-                    'has_version': {'type': 'boolean'},
-                    'hotness': {'type': 'float'},
+                    'has_public_stats': {'type': 'boolean'},
+                    'homepage': {'type': 'string'},
+                    'icons': {
+                        'type': 'object',
+                        'properties': {
+                            'size': {'type': 'short'},
+                            'url': {'type': 'string'},
+                        }
+                    },
                     'is_disabled': {'type': 'boolean'},
                     'last_updated': {'format': 'dateOptionalTime',
                                      'type': 'date'},
                     'latest_version_status': {'type': 'byte'},
+                    'manifest_url': {'type': 'string'},
                     'name': {'type': 'string',
                              'analyzer': 'standardPlusWordDelimiter'},
                     # Turn off analysis on name so we can sort by it.
                     'name_sort': {'type': 'string', 'index': 'not_analyzed'},
+                    'owners': {'type': 'long'},
                     'popularity': {'type': 'long'},
                     'premium_type': {'type': 'byte'},
-                    'price': {'type': 'double'},
-                    'slug': {'type': 'string'},
+                    'previews': {
+                        'type': 'object',
+                        'dynamic': 'true',
+                    },
+                    'price_tier': {'type': 'string'},
+                    'ratings': {
+                        'type': 'object',
+                        'properties': {
+                            'average': {'type': 'float'},
+                            'count': {'type': 'short'},
+                        }
+                    },
                     'status': {'type': 'byte'},
+                    'support_email': {'type': 'string'},
+                    'support_url': {'type': 'string'},
                     'type': {'type': 'byte'},
                     'uses_flash': {'type': 'boolean'},
                     'weekly_downloads': {'type': 'long'},
@@ -953,6 +999,8 @@ class WebappIndexer(MappingType, Indexable):
 
         # TODO: boolean mappings for mkt.constants.features (bug 862479)
         # TODO: reviewer flags (bug 848446)
+        # TODO: privacy_policy (bug 870557)
+        # TODO: upsell (bug 867896)
 
         return mapping
 
@@ -962,36 +1010,81 @@ class WebappIndexer(MappingType, Indexable):
         if obj is None:
             obj = cls.get_model().uncached.get(pk=pk)
 
-        attrs = ('id', 'app_slug', 'created', 'last_updated',
-                 'weekly_downloads', 'bayesian_rating', 'average_daily_users',
-                 'status', 'type', 'hotness', 'is_disabled', 'premium_type',
-                 'uses_flash')
-        d = dict(zip(attrs, attrgetter(*attrs)(obj)))
-        # Coerce the Translation into a string.
-        d['name_sort'] = unicode(obj.name).lower()
+        version = obj.current_version
+        try:
+            file_ = version and version.files.latest()
+        except ObjectDoesNotExist:
+            file_ = None
+
         translations = obj.translations
-        d['name'] = list(set(string for _, string
-                             in translations[obj.name_id]))
+        installed_ids = list(Installed.objects.filter(addon=obj)
+                             .values_list('id', flat=True))
+
+        attrs = ('app_slug', 'average_daily_users', 'bayesian_rating',
+                 'created', 'id', 'is_disabled', 'last_updated',
+                 'premium_type', 'status', 'type', 'uses_flash',
+                 'weekly_downloads')
+        d = dict(zip(attrs, attrgetter(*attrs)(obj)))
+
+        d['app_type'] = (amo.ADDON_WEBAPP_PACKAGED if obj.is_packaged else
+                         amo.ADDON_WEBAPP_HOSTED)
+        d['authors'] = [a.name for a in obj.listed_authors]
+        d['category'] = getattr(obj, 'category_ids', [])
+        d['content_ratings'] = dict(
+            (cr.get_body().name, {
+                'name': cr.get_rating().name,
+                'description': unicode(cr.get_rating().description)})
+            for cr in obj.content_ratings.all())
+        if version:
+            d['current_version'] = {
+                'version': version.version,
+                # TODO: Store all localizations of release notes.
+                'release_notes': (unicode(version.releasenotes)
+                                  if version.releasenotes else None),
+            }
+        else:
+            d['current_version'] = {
+                'version': None,
+                'release_notes': None,
+            }
         d['description'] = list(set(string for _, string
                                     in translations[obj.description_id]))
-        d['authors'] = [a.name for a in obj.listed_authors]
         d['device'] = getattr(obj, 'device_ids', [])
-        # This is an extra query, not good for perf.
-        d['category'] = getattr(obj, 'category_ids', [])
-        d['price'] = getattr(obj, 'price', 0.0)
-        try:
-            d['has_version'] = obj._current_version is not None
-        except ObjectDoesNotExist:
-            d['has_version'] = None
         try:
             d['flag_adult'] = obj.flag.adult_content
             d['flag_child'] = obj.flag.child_content
         except Flag.DoesNotExist:
             d['flag_adult'] = d['flag_child'] = False
-
-        installed_ids = list(Installed.objects.filter(addon=obj)
-                             .values_list('id', flat=True))
+        d['has_public_stats'] = obj.public_stats
+        # TODO: Store all localizations of homepage.
+        d['homepage'] = unicode(obj.homepage) if obj.homepage else None
+        d['icons'] = [{'size': icon_size, 'url': obj.get_icon_url(icon_size)}
+                      for icon_size in (16, 48, 64, 128)]
+        d['latest_version_status'] = (file_.status if file_ else None)
+        d['manifest_url'] = obj.get_manifest_url()
+        d['name'] = list(set(string for _, string
+                             in translations[obj.name_id]))
+        d['name_sort'] = unicode(obj.name).lower()
+        d['owners'] = [au.user.id for au in
+                       obj.addonuser_set.filter(role=amo.AUTHOR_ROLE_OWNER)]
         d['popularity'] = d['_boost'] = len(installed_ids)
+        d['previews'] = [{'filetype': p.filetype,
+                          'caption': unicode(p.caption),
+                          'image_url': p.image_url,
+                          'thumbnail_url': p.thumbnail_url}
+                         for p in obj.previews.all()]
+        try:
+            d['price_tier'] = obj.addonpremium.price.name
+        except AddonPremium.DoesNotExist:
+            d['price_tier'] = None
+        d['ratings'] = {
+            'average': obj.average_rating,
+            'count': obj.total_reviews,
+        }
+        d['support_email'] = (unicode(obj.support_email)
+                              if obj.support_email else None)
+        d['support_url'] = (unicode(obj.support_url)
+                            if obj.support_url else None)
 
         # Calculate regional popularity for "mature regions"
         # (installs + reviews/installs from that region).
@@ -1006,8 +1099,6 @@ class WebappIndexer(MappingType, Indexable):
             else:
                 d['popularity_%s' % region] = len(installed_ids)
             d['_boost'] += cnt * 10
-        d['app_type'] = (amo.ADDON_WEBAPP_PACKAGED if obj.is_packaged else
-                         amo.ADDON_WEBAPP_HOSTED)
 
         # Bump the boost if the add-on is public.
         if obj.status == amo.STATUS_PUBLIC:
@@ -1029,7 +1120,8 @@ class WebappIndexer(MappingType, Indexable):
     @classmethod
     def get_indexable(cls):
         """Returns the queryset of ids of all things to be indexed."""
-        return (Webapp.objects.all()
+        return (Webapp.objects.filter(status__in=amo.VALID_STATUSES,
+                                      disabled_by_user=False)
                               .order_by('-id').values_list('id', flat=True))
 
 
@@ -1037,8 +1129,18 @@ class WebappIndexer(MappingType, Indexable):
 Webapp._meta.translated_fields = Addon._meta.translated_fields
 
 
-models.signals.post_save.connect(update_search_index, sender=Webapp,
-                                 dispatch_uid='mkt.webapps.index')
+@receiver(dbsignals.post_save, sender=Webapp,
+          dispatch_uid='webapp.search.index')
+def update_search_index(sender, instance, **kw):
+    if waffle.switch_is_active('search-api-es'):
+        from . import tasks
+        if not kw.get('raw'):
+            tasks.index_webapps.delay([instance.id])
+
+    # Also continue to index to old index if we enable/disable the switch.
+    amo_update_search_index(sender, instance, **kw)
+
+
 models.signals.pre_save.connect(save_signal, sender=Webapp,
                                 dispatch_uid='webapp_translations')
 

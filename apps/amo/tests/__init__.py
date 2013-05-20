@@ -19,6 +19,7 @@ from django.utils import translation
 
 import elasticutils.contrib.django as elasticutils
 import mock
+import pyelasticsearch.exceptions as pyelasticsearch
 import pyes.exceptions as pyes
 import test_utils
 from nose.exc import SkipTest
@@ -45,7 +46,7 @@ from translations.models import Translation
 from versions.models import ApplicationsVersions, Version
 
 import mkt
-from mkt.webapps.models import ContentRating
+from mkt.webapps.models import ContentRating, WebappIndexer
 from mkt.zadmin.models import FeaturedApp, FeaturedAppRegion
 
 
@@ -701,19 +702,22 @@ class ESTestCase(TestCase):
             try:
                 indices = cls.es.get_alias(index)
                 index = indices[0]
-            except pyes.IndexMissingException:
+            except (pyes.IndexMissingException,
+                    pyelasticsearch.ElasticHttpNotFoundError):
                 pass
 
             # this removes any alias as well
             try:
                 cls.es.delete_index(index)
-            except pyes.IndexMissingException, exc:
+            except (pyes.IndexMissingException,
+                    pyelasticsearch.ElasticHttpNotFoundError) as exc:
                 print 'Could not delete index %r: %s' % (index, exc)
 
         addons.search.setup_mapping()
         stats.search.setup_indexes()
         if settings.MARKETPLACE:
             import mkt.stats.search
+            WebappIndexer.setup_mapping()
             mkt.stats.search.setup_mkt_indexes()
 
     @classmethod
@@ -737,10 +741,10 @@ class ESTestCase(TestCase):
         cls.es.refresh(settings.ES_INDEXES[index], timesleep=timesleep)
 
     @classmethod
-    def reindex(cls, model):
+    def reindex(cls, model, index='default'):
         # Emit post-save signal so all of the objects get reindexed.
         [o.save() for o in model.objects.all()]
-        cls.refresh()
+        cls.refresh(index)
 
     @classmethod
     def add_addons(cls):

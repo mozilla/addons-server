@@ -8,7 +8,7 @@ import amo
 import amo.utils
 from amo.decorators import json_view
 from apps.addons.models import Category
-from apps.search.views import name_query, WebappSuggestionsAjax
+from apps.search.views import WebappSuggestionsAjax, _get_locale_analyzer
 
 import mkt
 from mkt.constants import regions
@@ -40,6 +40,49 @@ DEFAULT_SORTING = {
     'hotness': '-hotness',
     'price': 'price'
 }
+
+
+def name_only_query(q):
+    """
+    Returns a dictionary with field/value mappings to pass to elasticsearch.
+
+    This sets up various queries with boosting against the name field in the
+    elasticsearch index.
+
+    """
+    d = {}
+
+    rules = {'text': {'query': q, 'boost': 3, 'analyzer': 'standard'},
+             'text': {'query': q, 'boost': 4, 'type': 'phrase'},
+             'fuzzy': {'value': q, 'boost': 2, 'prefix_length': 4},
+             'startswith': {'value': q, 'boost': 1.5}}
+    for k, v in rules.iteritems():
+        for field in ('name', 'app_slug', 'authors'):
+            d['%s__%s' % (field, k)] = v
+
+    analyzer = _get_locale_analyzer()
+    if analyzer:
+        d['name_%s__text' % analyzer] = {'query': q, 'boost': 2.5,
+                                         'analyzer': analyzer}
+    return d
+
+
+def name_query(q):
+    """
+    Returns a dictionary with field/value mappings to pass to elasticsearch.
+
+    Note: This is marketplace specific. See apps/search/views.py for AMO.
+
+    """
+    more = {'description__text': {'query': q, 'boost': 0.3, 'type': 'phrase'}}
+
+    analyzer = _get_locale_analyzer()
+    if analyzer:
+        more['description_%s__text' % analyzer] = {'query': q,
+                                                   'boost': 0.1,
+                                                   'type': 'phrase',
+                                                   'analyzer': analyzer}
+    return dict(more, **name_only_query(q))
 
 
 def _filter_search(request, qs, query, filters=None, sorting=None,
@@ -138,10 +181,10 @@ def sort_sidebar(query, form):
             for key, text in form.fields['sort'].choices]
 
 
-def _get_query(region, gaia, mobile, tablet, filters=None):
+def _get_query(region, gaia, mobile, tablet, filters=None, new_idx=False):
     return Webapp.from_search(
         region=region, gaia=gaia, mobile=mobile, tablet=tablet,
-        filter_overrides=filters).facet('category')
+        filter_overrides=filters, new_idx=new_idx).facet('category')
 
 
 def _app_search(request, category=None, browse=None):

@@ -1,14 +1,18 @@
 from decimal import Decimal
 
-from nose.tools import eq_
+from elasticutils.contrib.django import S
+from nose.tools import eq_, ok_
 
 import amo
 import amo.tests
 
-from addons.models import Preview
-from mkt.site.fixtures import fixture
-from mkt.webapps.utils import app_to_dict, get_supported_locales
+from addons.models import AddonDeviceType, AddonUser, Preview
 from market.models import AddonPremium, Price
+from mkt.site.fixtures import fixture
+from mkt.webapps.models import Installed, Webapp, WebappIndexer
+from mkt.webapps.utils import (app_to_dict, es_app_to_dict,
+                               get_supported_locales)
+from stats.models import Contribution
 from users.models import UserProfile
 
 
@@ -101,6 +105,92 @@ class TestAppToDictPrices(amo.tests.TestCase):
         res = app_to_dict(self.app)
         eq_(res['price'], None)
         eq_(res['price_locale'], None)
+
+
+class TestESAppToDict(amo.tests.ESTestCase):
+    fixtures = fixture('user_2519', 'webapp_337141')
+
+    def setUp(self):
+        self.create_switch('search-api-es')
+        self.app = Webapp.objects.get(pk=337141)
+        self.profile = UserProfile.objects.get(pk=2519)
+        self.app.save()
+        self.refresh('webapp')
+
+    def get_obj(self):
+        return S(WebappIndexer).filter(id=self.app.pk).execute().objects[0]
+
+    def test_basic(self):
+        res = es_app_to_dict(self.get_obj())
+        expected = {
+            'absolute_url': 'http://testserver/app/something-something/',
+            'app_type': 1,
+            'current_version': {
+                'release_notes': None,
+                'version': '1.0',
+            },
+            'description': u'Something Something Steamcube description!',
+            'homepage': None,
+            'id': 337141,
+            'is_packaged': False,
+            'listed_authors': [
+                {'name': u'31337 \u0627\u0644\u062a\u0637\u0628'},
+            ],
+            'manifest_url': 'http://micropipes.com/temp/steamcube.webapp',
+            'name': 'Something Something Steamcube!',
+            'premium_type': 'free',
+            'public_stats': False,
+            'ratings': {
+                'average': 0.0,
+                'count': 0,
+            },
+            'slug': 'something-something',
+            'status': 4,
+            'support_email': None,
+            'support_url': None,
+            'user': {
+                'developed': False,
+                'installed': False,
+                'purchased': False,
+            }
+        }
+
+        for k, v in res.items():
+            if k in expected:
+                eq_(expected[k], v, u'Unexpected value for field: %s' % k)
+
+    def test_icons(self):
+        """
+        Tested separately b/c they have timestamps.
+        """
+        res = es_app_to_dict(self.get_obj())
+        self.assertSetEqual(set([16, 48, 64, 128]), set(res['icons'].keys()))
+        ok_(res['icons'][128].startswith(
+            'http://testserver/img/uploads/addon_icons/337/337141-128.png'))
+
+    def test_devices(self):
+        AddonDeviceType.objects.create(addon=self.app,
+                                       device_type=amo.DEVICE_GAIA.id)
+        self.app.save()
+        self.refresh('webapp')
+
+        res = es_app_to_dict(self.get_obj())
+        eq_(res['device_types'], ['firefoxos'])
+
+    def test_user(self):
+        Contribution.objects.create(addon=self.app, user=self.profile,
+                                    amount='1.00', type=amo.CONTRIB_PURCHASE)
+        Installed.objects.create(addon=self.app, user=self.profile)
+        AddonUser.objects.create(addon=self.app, user=self.profile)
+        self.app.save()
+        self.refresh('webapp')
+
+        res = es_app_to_dict(self.get_obj(), profile=self.profile)
+        eq_(res['user'], {
+            'developed': True,
+            'installed': True,
+            'purchased': True,
+        })
 
 
 class TestSupportedLocales(amo.tests.TestCase):

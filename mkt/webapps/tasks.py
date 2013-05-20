@@ -3,10 +3,12 @@ import hashlib
 import json
 import logging
 
+from django.conf import settings
+from django.core.files.storage import default_storage as storage
+
 from celery.exceptions import RetryTaskError
 from celeryutils import task
-
-from django.core.files.storage import default_storage as storage
+from pyelasticsearch.exceptions import ElasticHttpNotFoundError
 
 import amo
 from amo.decorators import write
@@ -15,8 +17,9 @@ from amo.urlresolvers import reverse
 from amo.utils import chunked
 from editors.models import RereviewQueue
 from files.models import FileUpload
-from mkt.developers.tasks import _fetch_manifest, validator
-from mkt.webapps.models import Webapp
+from lib.es.utils import get_indices
+from mkt.developers.tasks import validator, _fetch_manifest
+from mkt.webapps.models import Webapp, WebappIndexer
 from mkt.webapps.utils import get_locale_properties
 from users.utils import get_task_user
 
@@ -239,3 +242,40 @@ def update_supported_locales(ids, **kw):
                     _log(app, u'Updated supported locales')
             except Exception:
                 _log(app, u'Updating supported locales failed.', exc_info=True)
+
+
+@task(acks_late=True)
+def index_webapps(ids, **kw):
+    task_log.info('Indexing apps %s-%s. [%s]' % (ids[0], ids[-1], len(ids)))
+
+    index = kw.pop('index', WebappIndexer.get_index())
+    # Note: If reindexing is currently occurring, `get_indices` will return
+    # more than one index.
+    indices = get_indices(index)
+
+    es = WebappIndexer.get_es(urls=settings.ES_URLS)
+    qs = Webapp.indexing_transformer(Webapp.uncached.filter(id__in=ids))
+    for obj in qs:
+        doc = WebappIndexer.extract_document(obj.id, obj)
+        for idx in indices:
+            WebappIndexer.index(doc, id_=obj.id, es=es, index=idx)
+
+
+@task(acks_late=True)
+def unindex_webapps(ids, **kw):
+    task_log.info('Un-indexing apps %s-%s. [%s]' % (ids[0], ids[-1], len(ids)))
+
+    index = kw.pop('index', WebappIndexer.get_index())
+    # Note: If reindexing is currently occurring, `get_indices` will return
+    # more than one index.
+    indices = get_indices(index)
+
+    es = WebappIndexer.get_es(urls=settings.ES_URLS)
+    for id_ in ids:
+        for idx in indices:
+            try:
+                WebappIndexer.unindex(id_=id_, es=es, index=idx)
+            except ElasticHttpNotFoundError:
+                # Ignore if it's not there.
+                task_log.info(
+                    u'[Webapp:%s] Unindexing app but not found in index' % id_)
