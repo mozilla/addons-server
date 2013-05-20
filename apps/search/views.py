@@ -226,7 +226,24 @@ class WebappSuggestionsAjax(SearchSuggestionsAjax):
             self.limit = 3
 
     def queryset(self):
-        res = SearchSuggestionsAjax.queryset(self)
+        """Get items based on ID or search by name."""
+        res = Addon.objects.none()
+        q = self.request.GET.get(self.key)
+        if q:
+            pk = None
+            try:
+                pk = int(q)
+            except ValueError:
+                pass
+            qs = None
+            if pk:
+                qs = Addon.objects.filter(id=int(q), disabled_by_user=False)
+            elif len(q) > 2:
+                qs = (S(Webapp).query(or_=name_only_query(q.lower()))
+                      .filter(is_disabled=False))
+            if qs:
+                res = qs.filter(type__in=self.types,
+                                status__in=amo.REVIEWED_STATUSES)
         if self.category:
             res = res.filter(category__in=[self.category])
         if (self.mobile or self.tablet) and not self.gaia:

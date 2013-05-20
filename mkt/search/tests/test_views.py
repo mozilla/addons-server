@@ -9,7 +9,6 @@ from test_utils import RequestFactory
 import amo
 import amo.tests
 from addons.models import AddonDeviceType, Category
-from addons.tasks import index_addons
 from amo.urlresolvers import reverse
 from amo.utils import urlparams
 from search.tests.test_views import TestAjaxSearch
@@ -324,9 +323,9 @@ class TestWebappSearch(PaidAppMixin, SearchBase):
 
 
 class TestSuggestions(TestAjaxSearch):
+    fixtures = ['webapps/337141-steamcube']
 
     def setUp(self):
-        raise SkipTest
         super(TestSuggestions, self).setUp()
         self.url = reverse('search.apps_ajax')
 
@@ -339,12 +338,12 @@ class TestSuggestions(TestAjaxSearch):
             name='groovy app 1')
         self.w2 = Webapp.objects.create(status=amo.STATUS_PUBLIC,
             name='awesome app 2')
+        self.w3 = Webapp.objects.get(pk=337141)
 
         self.w1.addoncategory_set.create(category=self.c1)
         self.w2.addoncategory_set.create(category=self.c2)
 
-        index_addons([self.w1.id, self.w2.id])
-        self.refresh()
+        self.reindex(Webapp)
 
     def check_suggestions(self, url, params, addons=()):
         r = self.client.get(url + '?' + params)
@@ -363,7 +362,7 @@ class TestSuggestions(TestAjaxSearch):
 
     def test_webapp_search(self):
         self.check_suggestions(self.url, 'q=app&category=',
-            addons=[self.w1, self.w2])
+            addons=[self.w1, self.w2, self.w3])
         self.check_suggestions(
             self.url, 'q=app&category=%d' % self.c1.id, addons=[self.w1])
         self.check_suggestions(
