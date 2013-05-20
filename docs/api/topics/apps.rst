@@ -202,6 +202,8 @@ App
     :param required device_types: a list of the device types at least one of:
         `desktop`, `mobile`, `tablet`, `firefoxos`. `mobile` and `tablet` both
         refer to Android mobile and tablet. As opposed to Firefox OS.
+    :param required regions: a list of regions this app should be
+        listed in, expressed as country codes or 'worldwide'.
     :param required premium_type: One of `free`, `premium`,
         `free-inapp`, `premium-inapp`, or `other`.
     :param optional price: The price for your app as a string, for example

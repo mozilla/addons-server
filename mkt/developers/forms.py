@@ -737,7 +737,7 @@ class RegionForm(forms.Form):
         before = set(self.regions_before)
         after = set(map(int, self.cleaned_data['regions']))
 
-        # If the app is paid, disable regions that use payments.
+        # If the app is paid, disable regions that do not use payments.
         if self._product_is_paid():
             after &= set(mkt.regions.ALL_PAID_REGION_IDS)
 

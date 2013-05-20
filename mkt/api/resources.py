@@ -39,7 +39,7 @@ from mkt.api.forms import (CategoryForm, DeviceTypeForm, NewPackagedForm,
 from mkt.api.http import HttpLegallyUnavailable
 from mkt.carriers import get_carrier_id, CARRIERS, CARRIER_MAP
 from mkt.developers import tasks
-from mkt.developers.forms import NewManifestForm, PreviewForm
+from mkt.developers.forms import NewManifestForm, PreviewForm, RegionForm
 from mkt.developers.models import AddonPaymentAccount
 from mkt.regions import get_region_id, get_region, REGIONS_DICT
 from mkt.submit.forms import AppDetailsBasicForm
@@ -252,9 +252,13 @@ class AppResource(CORSResource, MarketplaceModelResource):
         self.update_premium_type(bundle)
         self.update_payment_account(bundle)
         self.update_upsell(bundle)
+        if 'regions' in data:
+            data['regions'] = [REGIONS_DICT[r].id for r in data['regions']
+                               if r in REGIONS_DICT]
 
         forms = [AppDetailsBasicForm(data, instance=obj, request=request),
                  DeviceTypeForm(data, addon=obj),
+                 RegionForm(data, product=obj),
                  CategoryFormSet(data, addon=obj, request=request),
                  CategoryForm({'categories': data['form-0-categories']})]
 
@@ -264,6 +268,7 @@ class AppResource(CORSResource, MarketplaceModelResource):
         forms[0].save(obj)
         forms[1].save(obj)
         forms[2].save()
+        forms[3].save()
         log.info('App updated: %s' % obj.pk)
 
         return bundle

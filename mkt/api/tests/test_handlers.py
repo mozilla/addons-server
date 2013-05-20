@@ -408,6 +408,7 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
                 'categories': [c.pk for c in self.categories],
                 'summary': 'wat...',
                 'premium_type': 'free',
+                'regions': ['us'],
                 'device_types': amo.DEVICE_TYPES.keys()}
 
     def test_put(self):
@@ -688,6 +689,21 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         res = self.client.put(self.get_url, data=json.dumps(data))
         eq_(res.status_code, 400)
         assert not hasattr(app, 'app_payment_account')
+
+    def test_put_region_bad(self):
+        self.create_app()
+        data = self.base_data()
+        data['regions'] = []
+        res = self.client.put(self.get_url, data=json.dumps(data))
+        eq_(res.status_code, 400)
+
+    def test_put_region_good(self):
+        app = self.create_app()
+        data = self.base_data()
+        data['regions'] = ['br', 'us', 'uk']
+        res = self.client.put(self.get_url, data=json.dumps(data))
+        eq_(res.status_code, 202)
+        eq_(app.get_regions(), [regions.BR, regions.UK, regions.US])
 
     def test_put_not_mine(self):
         obj = self.create_app()
