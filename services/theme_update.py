@@ -4,20 +4,21 @@ import os
 import posixpath
 import re
 from time import time
+from wsgiref.handlers import format_date_time
 
 from django.core.management import setup_environ
 
-from django_statsd.clients import statsd
-from wsgiref.handlers import format_date_time
-
 from constants import base
-from services.utils import settings
 from utils import log_configure, log_exception, mypool
 
+from services.utils import settings
 setup_environ(settings)
 
 # Configure the log.
 log_configure()
+
+# This has to be imported after the settings (utils).
+from django_statsd.clients import statsd
 
 
 class ThemeUpdate(object):
