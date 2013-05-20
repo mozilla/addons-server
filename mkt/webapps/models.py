@@ -776,7 +776,6 @@ class Webapp(Addon):
         f.size = storage.size(f.file_path)
         f.hash = f.generate_hash(f.file_path)
         f.save()
-        f.inject_ids()
         self.sign_if_packaged(v.pk)
         self.status = amo.STATUS_BLOCKED
         self._current_version = v

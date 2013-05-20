@@ -2,6 +2,7 @@
 import json
 import os
 import shutil
+import zipfile
 
 from django.conf import settings  # For mocking.
 from django.core.files.storage import default_storage as storage
@@ -176,3 +177,20 @@ class TestPackaged(PackagedApp, amo.tests.TestCase):
             endpoint = packaged._get_endpoint(reviewer=True)
         assert endpoint.startswith('http://review.me'), (
             'Unexpected endpoint returned.')
+
+    @mock.patch('lib.crypto.packaged.sign_app')
+    def test_inject_ids(self, sign):
+        packaged.sign(self.version.pk)
+        zf = zipfile.ZipFile(self.file.file_path, mode='r')
+        ids_data = zf.read('META-INF/ids.json')
+        eq_(sorted(json.loads(ids_data).keys()), ['id', 'version'])
+
+    @mock.patch('lib.crypto.packaged.sign_app')
+    def test_inject_ids_replace(self, sign):
+        zf = zipfile.ZipFile(self.file.file_path, mode='a')
+        zf.writestr('META-INF/ids.json', '{}')
+        zf.close()
+        packaged.sign(self.version.pk)
+        zf = zipfile.ZipFile(self.file.file_path, mode='r')
+        ids_data = zf.read('META-INF/ids.json')
+        eq_(sorted(json.loads(ids_data).keys()), ['id', 'version'])

@@ -136,6 +136,8 @@ def sign(version_id, reviewer=False, resign=False, **kw):
         log.info('Already signed app exists.')
         return path
 
+    file_obj.inject_ids()
+
     with statsd.timer('services.sign.app'):
         try:
             sign_app(file_obj.file_path, path, reviewer)
