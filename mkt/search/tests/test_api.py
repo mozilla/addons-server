@@ -112,6 +112,18 @@ class TestApi(BaseOAuth, ESTestCase):
         obj = json.loads(res.content)['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
 
+    def test_no_flash_on_gaia(self):
+        AddonDeviceType.objects.create(
+            addon=self.webapp, device_type=DEVICE_CHOICES_IDS['gaia'])
+        f = self.webapp.get_latest_file()
+        f.uses_flash = True
+        f.save()
+        self.webapp.save()
+        self.refresh('webapp')
+        res = self.client.get(self.url + ({'dev': 'firefoxos'},))
+        eq_(res.status_code, 200)
+        eq_(len(json.loads(res.content)['objects']), 0)
+
     def test_premium_types(self):
         res = self.client.get(self.url + (
             {'premium_types': 'free'},))

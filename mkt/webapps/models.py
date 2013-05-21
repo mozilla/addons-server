@@ -644,7 +644,7 @@ class Webapp(Addon):
                           % (region.slug, excluded))
                 srch = srch.filter(~F(id__in=excluded))
 
-        if mobile:
+        if mobile or gaia:
             srch = srch.filter(uses_flash=False)
 
         if (mobile or tablet) and not gaia:
