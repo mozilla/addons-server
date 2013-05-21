@@ -614,6 +614,8 @@ class EditThemeForm(AddonFormBase):
         addon = self.instance
         persona = addon.persona
 
+        self.initial['summary'] = addon.summary
+
         # Do not simply append validators, as validators will persist between
         # instances.
         self.fields['name'].validators = list(self.fields['name'].validators)
