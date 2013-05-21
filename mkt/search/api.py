@@ -5,6 +5,7 @@ from django.core.exceptions import ObjectDoesNotExist
 
 from tastypie import http
 from tastypie.authorization import ReadOnlyAuthorization
+from tastypie.throttle import BaseThrottle
 from tastypie.utils import trailing_slash
 from tower import ugettext as _
 import waffle
@@ -36,6 +37,8 @@ class SearchResource(CORSResource, MarketplaceResource):
         authorization = ReadOnlyAuthorization()
         authentication = OptionalOAuthAuthentication()
         slug_lookup = None
+        # Override CacheThrottle with a no-op.
+        throttle = BaseThrottle()
 
     def get_resource_uri(self, bundle):
         # Link to the AppResource URI.
