@@ -12,6 +12,7 @@ import waffle
 import amo
 from access import acl
 from addons.models import Category
+from amo.helpers import absolutify
 from editors.models import EscalationQueue
 from versions.models import Version
 
@@ -22,7 +23,7 @@ from mkt.api.resources import AppResource
 from mkt.search.views import _get_query, _filter_search
 from mkt.search.forms import ApiSearchForm
 from mkt.webapps.models import Webapp
-from mkt.webapps.utils import app_to_dict, es_app_to_dict
+from mkt.webapps.utils import es_app_to_dict
 
 
 class SearchResource(CORSResource, MarketplaceResource):
@@ -50,6 +51,8 @@ class SearchResource(CORSResource, MarketplaceResource):
         form_data = self.search_form(request)
         is_admin = acl.action_allowed(request, 'Admin', '%')
         is_reviewer = acl.action_allowed(request, 'Apps', 'Review')
+
+        uses_es = waffle.switch_is_active('search-api-es')
 
         # Pluck out status and addon type first since it forms part of the base
         # query, but only for privileged users.
@@ -85,7 +88,13 @@ class SearchResource(CORSResource, MarketplaceResource):
             obj.pk = obj.id
             objs.append(self.build_bundle(obj=obj, request=request))
 
-        page['objects'] = [self.full_dehydrate(bundle) for bundle in objs]
+        if uses_es:
+            page['objects'] = [self.full_dehydrate(bundle)
+                               for bundle in objs]
+        else:
+            page['objects'] = [AppResource().full_dehydrate(bundle)
+                               for bundle in objs]
+
         # This isn't as quite a full as a full TastyPie meta object,
         # but at least it's namespaced that way and ready to expand.
         to_be_serialized = self.alter_list_data_to_serialize(request, page)
@@ -102,9 +111,9 @@ class SearchResource(CORSResource, MarketplaceResource):
                 obj, currency=bundle.request.REGION.default_currency,
                 profile=amo_user))
         else:
-            bundle.data.update(app_to_dict(
-                obj, currency=bundle.request.REGION.default_currency,
-                profile=amo_user))
+            bundle = AppResource().dehydrate(bundle)
+            bundle.data['absolute_url'] = absolutify(
+                bundle.obj.get_detail_url())
 
         # Add extra data for reviewers. Used in reviewer tool search.
         # TODO: Reviewer flags in ES (bug 848446)
