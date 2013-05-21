@@ -38,7 +38,7 @@ Search for all hosted apps about Twitter: https://marketplace.firefox.com/api/v1
 Questions
 =========
 
-Contact us in the #marketplace channel on irc.mozilla.org.
+Contact us in the #marketplace-api channel on irc.mozilla.org.
 
 Bugs or feature requests are filed in `Bugzilla`_. The code for the API
 and the source of these docs is part of the `zamboni project`_.
