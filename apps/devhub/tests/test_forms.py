@@ -408,7 +408,7 @@ class TestEditThemeForm(amo.tests.TestCase):
             'license': self.license,
             'name': unicode(self.instance.name),
             'slug': self.instance.slug,
-            'summary': self.instance.summary.id,
+            'summary': self.instance.summary,
             'tags': 'ag, sw',
             'textcolor': '#EFFFFF'
         }

@@ -51,7 +51,7 @@ class TestDevBreadcrumbs(unittest.TestCase):
         doc = pq(s)
         crumbs = doc('li')
         eq_(len(crumbs), 2)
-        eq_(crumbs.text(), 'Developer Hub My Add-ons')
+        eq_(crumbs.text(), 'Developer Hub My Submissions')
         eq_(crumbs.eq(1).children('a'), [])
 
     def test_no_args_with_default(self):
@@ -59,7 +59,7 @@ class TestDevBreadcrumbs(unittest.TestCase):
                    {'request': self.request})
         doc = pq(s)
         crumbs = doc('li')
-        eq_(crumbs.text(), 'Add-ons Developer Hub My Add-ons')
+        eq_(crumbs.text(), 'Add-ons Developer Hub My Submissions')
         eq_(crumbs.eq(1).children('a').attr('href'), reverse('devhub.index'))
         eq_(crumbs.eq(2).children('a'), [])
 
@@ -83,8 +83,8 @@ class TestDevBreadcrumbs(unittest.TestCase):
                    {'request': self.request, 'addon': addon})
         doc = pq(s)
         crumbs = doc('li')
-        eq_(crumbs.text(), 'Developer Hub My Add-ons Firebug')
-        eq_(crumbs.eq(1).text(), 'My Add-ons')
+        eq_(crumbs.text(), 'Developer Hub My Submissions Firebug')
+        eq_(crumbs.eq(1).text(), 'My Submissions')
         eq_(crumbs.eq(1).children('a').attr('href'), reverse('devhub.addons'))
         eq_(crumbs.eq(2).text(), 'Firebug')
         eq_(crumbs.eq(2).children('a'), [])

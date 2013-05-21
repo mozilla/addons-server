@@ -102,7 +102,7 @@ def extract(addon):
         # boost (11,000,000 users for adblock) is about 5x.
         d['_boost'] = addon.average_daily_users ** .2
     # Double the boost if the add-on is public.
-    if addon.status == amo.STATUS_PUBLIC:
+    if addon.status == amo.STATUS_PUBLIC and 'boost' in d:
         d['_boost'] = max(d['_boost'], 1) * 4
 
     # Indices for each language. languages is a list of locales we want to
