@@ -1,6 +1,7 @@
 @import '../impala/lib';
 
 .dashboard .island {
+    border-radius: 0 5px 5px;
     float: left;
     .users {
         color: #390;
@@ -9,18 +10,31 @@
 
 .submission-type-tabs {
     margin-bottom: 8px;
+    padding-top: 10px;
     a {
-        background: #FCFDFE;
-        .gradient-two-color(#FCFDFE, #F4F8FC);
-        border: 1px solid @border-blue;
-        border-radius: 5px 5px 0 0;
         .box-shadow(0 -2px 0 rgba(204, 223, 243, 0.3) inset, 0 0 1px rgba(0, 0, 0, 0.1));
+        .gradient-two-color(#fcfdfe, #f4f8fc);
+        background: #fcfdfe;
+        border-radius: 5px 5px 0 0;
+        border: 1px solid @border-blue;
         padding: 8px 14px;
+        position: relative;
+        top: -1px;
+        z-index: 0;
+        &:hover {
+            background: #F4F8FC;
+        }
     }
     a.active {
+        .gradient-two-color(#fff, #fcfdfe);
+        border-bottom: 0;
+        box-shadow: none;
         color: @orange;
         cursor: default;
         font-weight: bold;
+        position: relative;
+        top: 0;
+        z-index: 1;
         &:hover {
             text-decoration: none;
         }
