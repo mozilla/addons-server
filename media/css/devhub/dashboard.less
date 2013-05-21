@@ -7,6 +7,26 @@
     }
 }
 
+.submission-type-tabs {
+    margin-bottom: 8px;
+    a {
+        background: #FCFDFE;
+        .gradient-two-color(#FCFDFE, #F4F8FC);
+        border: 1px solid @border-blue;
+        border-radius: 5px 5px 0 0;
+        .box-shadow(0 -2px 0 rgba(204, 223, 243, 0.3) inset, 0 0 1px rgba(0, 0, 0, 0.1));
+        padding: 8px 14px;
+    }
+    a.active {
+        color: @orange;
+        cursor: default;
+        font-weight: bold;
+        &:hover {
+            text-decoration: none;
+        }
+    }
+}
+
 .action-needed {
     p {
         color: @medium-gray;
@@ -72,5 +92,5 @@ h3 a.subscribe-feed {
 }
 
 h2.theme-count {
-    margin-bottom: 16px;
+    margin-bottom: 20px;
 }

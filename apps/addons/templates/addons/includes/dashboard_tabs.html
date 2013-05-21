@@ -1,0 +1,8 @@
+{% if addons or themes %}
+  <div class="submission-type-tabs">
+    <a href="{{ url('devhub.addons') }}"{% if addon_tab %} class="active"{% endif %}>
+      {{ _('My Add-ons') }}</a>
+    <a href="{{ url('devhub.themes') }}"{% if theme %} class="active"{% endif %}>
+      {{ _('My Themes') }}</a>
+  </div>
+{% endif %}

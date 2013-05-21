@@ -69,7 +69,7 @@ def dev_breadcrumbs(context, addon=None, items=None, add_default=False,
         link = reverse('devhub.apps')
     else:
         crumbs = [(reverse('devhub.index'), _('Developer Hub'))]
-        title = _('My Add-ons')
+        title = _('My Submissions')
         link = reverse('devhub.addons')
 
     if not addon and not items:

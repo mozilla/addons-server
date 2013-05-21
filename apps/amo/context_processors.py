@@ -85,7 +85,7 @@ def global_settings(request):
         })
 
         if request.amo_user.is_developer:
-            tools_links.append({'text': _('Manage My Add-ons'),
+            tools_links.append({'text': _('Manage My Submissions'),
                                 'href': reverse('devhub.addons')})
         tools_links.append({'text': _('Submit a New Add-on'),
                             'href': reverse('devhub.submit.1')})
