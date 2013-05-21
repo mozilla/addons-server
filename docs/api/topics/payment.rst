@@ -19,6 +19,7 @@ Payment accounts can be added and listed.
 .. http:post:: /api/v1/payments/account/
 
     **Request**
+
     :param account_name: Account name.
     :param companyName: Company name.
     :param vendorName: Vendor name.
@@ -47,11 +48,13 @@ Payment accounts can be added and listed.
     :param currencyIso: Currency you prefer to be paid in.
 
     **Response**
+
     :status code: 201 successfully created.
 
 .. http:put:: /api/v1/payments/account/(int:id)/
 
     **Request**
+
     :param account_name: Account name.
     :param companyName: Company name.
     :param vendorName: Vendor name.
@@ -66,18 +69,23 @@ Payment accounts can be added and listed.
     :param vatNumber: VAT number.
 
     **Response**
+
     :status 204: successfully updated.
 
 .. http:delete:: /api/v1/payments/account/(int:id)/
 
     **Response**
+
     :status 204: successfully deleted.
 
 .. http:get:: /api/v1/payments/account/
+
     **Request**
+
     The standard :ref:`list-query-params-label`.
 
     **Response**
+
     :param meta: :ref:`meta-response-label`.
     :param objects: A :ref:`listing <objects-response-label>` of :ref:`accounts <payment-account-response-label>`.
 
@@ -88,11 +96,13 @@ Payment accounts can be added and listed.
     **Response**
 
     An account object, see below for an example.
+
     :status 200: successfully completed.
 
     Example:
 
     .. code-block:: json
+
         {
              "account_name": "account",
              "address1": "123 Main St",
