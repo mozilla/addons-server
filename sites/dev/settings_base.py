@@ -5,7 +5,7 @@ import os
 
 import dj_database_url
 
-from lib.settings_base import CACHE_PREFIX, ES_INDEXES, KNOWN_PROXIES, LOGGING
+from lib.settings_base import CACHE_PREFIX, ES_INDEXES, KNOWN_PROXIES, LOGGING, HOSTNAME
 
 from .. import splitstrip
 import private_base as private
@@ -199,3 +199,8 @@ AWS_STORAGE_BUCKET_NAME = private.AWS_STORAGE_BUCKET_NAME
 RAISE_ON_SIGNAL_ERROR = True
 
 API_THROTTLE = False
+
+NEWRELIC_WHITELIST = ['dev1.addons.phx1.mozilla.com',
+                      'dev2.addons.phx1.mozilla.com']
+
+NEWRELIC_ENABLE = HOSTNAME in NEWRELIC_WHITELIST

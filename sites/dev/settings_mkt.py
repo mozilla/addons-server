@@ -208,4 +208,5 @@ ALLOW_TASTYPIE_SERVICES = True
 # Until Bango can properly do refunds.
 BANGO_FAKE_REFUNDS = True
 
-NEWRELIC_INI = '/etc/newrelic.d/marketplace-dev.allizom.org.ini'
+if NEWRELIC_ENABLE:
+    NEWRELIC_INI = '/etc/newrelic.d/marketplace-dev.allizom.org.ini'

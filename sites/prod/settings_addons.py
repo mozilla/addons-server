@@ -84,4 +84,5 @@ VALIDATOR_TIMEOUT = 90
 
 SENTRY_DSN = private_addons.SENTRY_DSN
 
-#NEWRELIC_INI = '/etc/newrelic.d/addons.mozilla.org.ini'
+if NEWRELIC_ENABLE:
+    NEWRELIC_INI = '/etc/newrelic.d/addons.mozilla.org.ini'

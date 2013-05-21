@@ -104,4 +104,5 @@ USE_METLOG_FOR_TASTYPIE = False
 
 GOOGLE_ANALYTICS_DOMAIN = 'addons.mozilla.org'
 
-NEWRELIC_INI = '/etc/newrelic.d/addons-dev.allizom.org.ini'
+if NEWRELIC_ENABLE:
+    NEWRELIC_INI = '/etc/newrelic.d/addons-dev.allizom.org.ini'

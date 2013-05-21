@@ -1,7 +1,8 @@
 import logging
 import os
 
-from lib.settings_base import CACHE_PREFIX, KNOWN_PROXIES, LOGGING
+from lib.settings_base import CACHE_PREFIX, KNOWN_PROXIES, LOGGING, HOSTNAME
+
 from .. import splitstrip
 import private_base as private
 
@@ -182,10 +183,16 @@ NEW_FEATURES = True
 CLEANCSS_BIN = 'cleancss'
 UGLIFY_BIN = 'uglifyjs'
 
-XSENDFILE_HEADER  = 'X-Accel-Redirect'
+XSENDFILE_HEADER = 'X-Accel-Redirect'
 
 GOOGLE_ANALYTICS_CREDENTIALS = private.GOOGLE_ANALYTICS_CREDENTIALS
 
 MONOLITH_SERVER = 'https://monolith.firefox.com'
 
 GEOIP_URL = 'http://geo.marketplace.firefox.com'
+
+NEWRELIC_WHITELIST = ['web1.addons.phx1.mozilla.com',
+                      'web10.addons.phx1.mozilla.com',
+                      'web20.addons.phx1.mozilla.com']
+
+NEWRELIC_ENABLE = HOSTNAME in NEWRELIC_WHITELIST
