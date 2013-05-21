@@ -17,10 +17,15 @@ def update_supported_locales_single(id, latest=False, **kw):
     """
     from mkt.webapps.models import Webapp
 
-    app = Webapp.objects.get(pk=id)
+    try:
+        app = Webapp.objects.get(pk=id)
+    except Webapp.DoesNotExist:
+        log.info(u'[Webapp:%s] Did not find webapp to update supported '
+                 u'locales.' % app.id)
+
     try:
         if app.update_supported_locales(latest=latest):
-            log.info(u'[Webapp:%s] Updated supported locales' % app.id)
+            log.info(u'[Webapp:%s] Updated supported locales.' % app.id)
     except Exception:
         log.info(u'[Webapp%s] Updating supported locales failed.' % app.id,
                  exc_info=True)
