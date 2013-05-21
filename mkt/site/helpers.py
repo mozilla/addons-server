@@ -92,7 +92,7 @@ def market_button(context, product, receipt_type=None, classes=None):
                     request.check_ownership(product, require_author=True)):
                 purchased = True
 
-        if installed or purchased:
+        if installed or purchased or not product.has_price():
             label = _('Install')
         else:
             label = product.get_price(request.REGION.default_currency)
