@@ -416,7 +416,7 @@ class TestMarketplace(MarketplaceMixin, amo.tests.TestCase):
 
 
 class TestPublicise(amo.tests.TestCase):
-    fixtures = ['webapps/337141-steamcube']
+    fixtures = fixture('webapp_337141')
 
     def setUp(self):
         self.webapp = self.get_webapp()
@@ -436,6 +436,9 @@ class TestPublicise(amo.tests.TestCase):
         res = self.client.post(self.publicise_url)
         eq_(res.status_code, 302)
         eq_(self.get_webapp().status, amo.STATUS_PUBLIC_WAITING)
+
+    def test_publicise_get(self):
+        eq_(self.client.get(self.publicise_url).status_code, 405)
 
     @mock.patch('mkt.webapps.models.Webapp.update_supported_locales')
     @mock.patch('mkt.webapps.models.Webapp.update_name_from_package_manifest')
@@ -952,6 +955,9 @@ class TestDeleteApp(amo.tests.TestCase):
         self.client.login(username='admin@mozilla.com', password='password')
         waffle.models.Switch.objects.create(name='soft_delete', active=True)
 
+    def test_delete_get(self):
+        eq_(self.client.get(self.url).status_code, 405)
+
     def test_delete_nonincomplete(self):
         r = self.client.post(self.url)
         self.assertRedirects(r, self.dev_url)
@@ -989,6 +995,35 @@ class TestDeleteApp(amo.tests.TestCase):
         r = self.client.get(self.versions_url)
         eq_(pq(r.content)('.modal-delete form').attr('action'), self.url)
         self.check_delete_redirect('', self.dev_url)
+
+
+class TestEnableDisable(amo.tests.TestCase):
+    fixtures = fixture('webapp_337141', 'user_2519')
+
+    def setUp(self):
+        self.webapp = Webapp.objects.get(id=337141)
+        self.enable_url = self.webapp.get_dev_url('enable')
+        self.disable_url = self.webapp.get_dev_url('disable')
+        assert self.client.login(username='steamcube@mozilla.com',
+                                 password='password')
+
+    def test_get(self):
+        eq_(self.client.get(self.enable_url).status_code, 405)
+        eq_(self.client.get(self.disable_url).status_code, 405)
+
+    def test_not_allowed(self):
+        self.client.logout()
+        self.assertLoginRequired(self.client.get(self.enable_url))
+        self.assertLoginRequired(self.client.get(self.disable_url))
+
+    def test_enable(self):
+        self.webapp.update(disabled_by_user=True)
+        self.client.post(self.enable_url)
+        eq_(self.webapp.reload().disabled_by_user, False)
+
+    def test_disable(self):
+        self.client.post(self.disable_url)
+        eq_(self.webapp.reload().disabled_by_user, True)
 
 
 class TestRemoveLocale(amo.tests.TestCase):

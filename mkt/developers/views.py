@@ -160,6 +160,7 @@ def delete(request, addon_id, addon, webapp=False):
 
 
 @dev_required
+@post_required
 def enable(request, addon_id, addon):
     addon.update(disabled_by_user=False)
     amo.log(amo.LOG.USER_ENABLE, addon)

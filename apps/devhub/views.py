@@ -377,6 +377,7 @@ def delete(request, addon_id, addon, webapp=False, theme=False):
 
 
 @dev_required
+@post_required
 def enable(request, addon_id, addon):
     addon.update(disabled_by_user=False)
     amo.log(amo.LOG.USER_ENABLE, addon)
@@ -384,6 +385,7 @@ def enable(request, addon_id, addon):
 
 
 @dev_required(owner_for_post=True)
+@post_required
 def cancel(request, addon_id, addon):
     if addon.status in amo.STATUS_UNDER_REVIEW:
         if addon.status == amo.STATUS_LITE_AND_NOMINATED:

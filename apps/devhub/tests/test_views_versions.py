@@ -175,9 +175,12 @@ class TestVersion(amo.tests.TestCase):
         msg = entry.to_string()
         assert self.addon.name.__unicode__() in msg, ("Unexpected: %r" % msg)
 
+    def test_user_get(self):
+        eq_(self.client.get(self.enable_url).status_code, 405)
+
     def test_user_can_enable_addon(self):
         self.addon.update(status=amo.STATUS_PUBLIC, disabled_by_user=True)
-        res = self.client.get(self.enable_url)
+        res = self.client.post(self.enable_url)
         self.assertRedirects(res, self.url, 302)
         addon = self.get_addon()
         eq_(addon.disabled_by_user, False)
@@ -237,6 +240,10 @@ class TestVersion(amo.tests.TestCase):
         eq_(a.attr('href'), self.enable_url)
         assert not doc('#modal-disable')
         assert not doc('#disable-addon')
+
+    def test_cancel_get(self):
+        cancel_url = reverse('devhub.addons.cancel', args=['a3615'])
+        eq_(self.client.get(cancel_url).status_code, 405)
 
     def test_cancel_wrong_status(self):
         cancel_url = reverse('devhub.addons.cancel', args=['a3615'])
