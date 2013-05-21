@@ -109,6 +109,20 @@ from lib.misc import safe_signals
 safe_signals.start_the_machine()
 
 
+import django.conf
+newrelic_ini = getattr(django.conf.settings, 'NEWRELIC_INI', None)
+load_newrelic = False
+
+if newrelic_ini:
+    import newrelic.agent
+    try:
+        newrelic.agent.initialize(newrelic_ini)
+        load_newrelic = True
+    except:
+        startup_logger = logging.getLogger('z.startup')
+        startup_logger.exception('Failed to load new relic config.')
+
+
 if __name__ == "__main__":
     # If product details aren't present, get them.
     from product_details import product_details
