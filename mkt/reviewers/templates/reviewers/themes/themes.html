@@ -11,11 +11,10 @@
     {{ form }}
     <h2>
       <a href="{{ url('reviewers.themes.single', theme.addon.slug) }}">{{ theme.addon.name }}</a>
-      {% if theme.dupe_persona %}
-        <a class="dupe" href="{{ theme.dupe_persona.addon.get_url_path() }}"> {{ _('(Probable Duplicate Submission)') }}</a>
-      {% endif %}
-      {% if reupload and reupload.dupe_persona %}
-        <a class="dupe" href="{{ reupload.dupe_persona.addon.get_url_path() }}"> {{ _('(Probable Duplicate Submission)') }}</a>
+      {% if theme.dupe_persona and hasOneToOne(theme.dupe_persona, 'addon') %}
+        <a class="dupe" href="{{ theme.dupe_persona.addon.get_url_path() }}">
+          {{ _('(Probable Duplicate Submission)') }}
+        </a>
       {% endif %}
     </h2>
     <div class="status">
