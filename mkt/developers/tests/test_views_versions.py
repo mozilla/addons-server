@@ -1,6 +1,3 @@
-import json
-import zipfile
-
 import mock
 from nose.tools import eq_
 from pyquery import PyQuery as pq
@@ -200,21 +197,6 @@ class TestAddVersion(BasePackagedAppTest):
         eq_(self.app.status, amo.STATUS_BLOCKED)
         assert EscalationQueue.objects.filter(addon=self.app).exists(), (
             'App not in escalation queue')
-
-    @mock.patch('mkt.webapps.models.Webapp.get_manifest_json')
-    def test_new_version_gets_ids_file(self, _mock):
-        _mock.return_value = {}
-        self.app.current_version.update(version='0.9',
-                                        created=self.days_ago(1))
-        self._post(302)
-        file_ = self.app.versions.latest().files.latest()
-        filename = 'META-INF/ids.json'
-        zf = zipfile.ZipFile(file_.file_path)
-        assert zf.getinfo(filename), (
-            'Expected %s in zip archive but not found.' % filename)
-        ids = json.loads(zf.read(filename))
-        eq_(ids['id'], self.app.guid)
-        eq_(ids['version'], file_.version_id)
 
 
 class TestEditVersion(amo.tests.TestCase):

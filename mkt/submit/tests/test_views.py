@@ -3,7 +3,6 @@ import datetime
 import json
 import os
 import shutil
-import zipfile
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
@@ -530,18 +529,6 @@ class TestCreatePackagedApp(BasePackagedAppTest):
             data={'packaged': True, 'free_platforms': ['free-firefoxos']})
         assert not _verify.called, (
             '`verify_app_domain` should not be called for packaged apps.')
-
-    def test_packaged_app_has_ids_file(self):
-        app = self.post_addon(
-            data={'packaged': True, 'free_platforms': ['free-firefoxos']})
-        file_ = app.versions.latest().files.latest()
-        filename = 'META-INF/ids.json'
-        zf = zipfile.ZipFile(file_.file_path)
-        assert zf.getinfo(filename), (
-            'Expected %s in zip archive but not found.' % filename)
-        ids = json.loads(zf.read(filename))
-        eq_(ids['id'], app.guid)
-        eq_(ids['version'], file_.version_id)
 
 
 class TestDetails(TestSubmit):
