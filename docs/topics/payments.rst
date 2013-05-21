@@ -53,10 +53,10 @@ https://sandbox.paypal.com/ in your browser.
 Sell an App
 ===========
 
-Make sure the waffle switch ``marketplace`` is flipped on then create a test
-*seller* account on the `PayPal developer site`_. This seller account has to
-be different from the one linked to the API Credentials that you added in the
-above settings.
+Make sure the waffle switch ``allow-b2g-paid-submission`` is flipped on then
+create a test *seller* account on the `PayPal developer site`_. This seller
+account has to be different from the one linked to the API Credentials that
+you added in the above settings.
 
 Submit an app. On the last screen you'll see a link to enroll your app in the
 marketplace. Enter the email for the test seller account and enter any email
