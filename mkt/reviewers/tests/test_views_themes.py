@@ -316,7 +316,9 @@ class ThemeReviewTestMixin(object):
             res = self.client.get(reverse('reviewers.themes.single',
                                           args=[addon.slug]))
             eq_(res.status_code, 200)
-            eq_(res.context['theme'].id, addon.persona.id)
+            eq_(res.context['theme'].id,
+                addon.persona.rereviewqueuetheme_set.all()[0].id
+                if self.rereview else addon.persona.id)
             eq_(res.context['reviewable'], not self.flagged)
 
     def test_single_cannot_review_my_app(self):
@@ -331,7 +333,9 @@ class ThemeReviewTestMixin(object):
             res = self.client.get(reverse('reviewers.themes.single',
                                           args=[addon.slug]))
             eq_(res.status_code, 200)
-            eq_(res.context['theme'].id, addon.persona.id)
+            eq_(res.context['theme'].id,
+                addon.persona.rereviewqueuetheme_set.all()[0].id
+                if self.rereview else addon.persona.id)
             eq_(res.context['reviewable'], False)
 
 

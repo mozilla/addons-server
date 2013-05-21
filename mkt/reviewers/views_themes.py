@@ -319,15 +319,18 @@ def themes_single(request, slug):
     request.session['theme_redirect_url'] = reverse('reviewers.themes.single',
                                                     args=[theme.addon.slug])
 
+    rereview = (theme.rereviewqueuetheme_set.all()[0] if
+        theme.rereviewqueuetheme_set.exists() else None)
     return jingo.render(request, 'reviewers/themes/single.html', context(**{
         'formset': formset,
-        'theme': theme,
-        'theme_formsets': zip([theme], formset),
+        'theme': rereview if rereview else theme,
+        'theme_formsets': zip([rereview if rereview else theme], formset),
         'theme_reviews': paginate(request, ActivityLog.objects.filter(
             action=amo.LOG.THEME_REVIEW.id,
             _arguments__contains=theme.addon.id)),
         'actions': get_actions_json(),
         'theme_count': 1,
+        'rereview': rereview,
         'reviewable': reviewable,
         'reject_reasons': rvw.THEME_REJECT_REASONS.items(),
         'action_dict': rvw.REVIEW_ACTIONS,
