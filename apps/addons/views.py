@@ -78,7 +78,7 @@ def author_addon_clicked(f):
 def addon_detail(request, addon):
     """Add-ons details page dispatcher."""
     if addon.is_deleted or (addon.is_pending() and not addon.is_persona()):
-        # If the addon is pending, it better be a theme.
+        # Allow pending themes to be listed.
         raise http.Http404
     if addon.is_disabled:
         return jingo.render(request, 'addons/impala/disabled.html',
