@@ -21,7 +21,7 @@ def update_supported_locales_single(id, latest=False, **kw):
         app = Webapp.objects.get(pk=id)
     except Webapp.DoesNotExist:
         log.info(u'[Webapp:%s] Did not find webapp to update supported '
-                 u'locales.' % app.id)
+                 u'locales.' % id)
 
     try:
         if app.update_supported_locales(latest=latest):
