@@ -1209,6 +1209,7 @@ CSP_IMG_SRC = ("'self'", STATIC_URL,
                "https://s3.amazonaws.com",  # getsatisfaction
                "https://ssl.google-analytics.com",
                "http://www.google-analytics.com",
+               "data:"
               )
 CSP_SCRIPT_SRC = ("'self'", STATIC_URL,
                   "https://www.google.com",  # Recaptcha
