@@ -1019,6 +1019,11 @@ class WebappIndexer(MappingType, Indexable):
         translations = obj.translations
         installed_ids = list(Installed.objects.filter(addon=obj)
                              .values_list('id', flat=True))
+        content_ratings = dict(
+            (cr.get_body().name, {
+                'name': cr.get_rating().name,
+                'description': unicode(cr.get_rating().description)})
+            for cr in obj.content_ratings.all())
 
         attrs = ('app_slug', 'average_daily_users', 'bayesian_rating',
                  'created', 'id', 'is_disabled', 'last_updated',
@@ -1030,11 +1035,7 @@ class WebappIndexer(MappingType, Indexable):
                          amo.ADDON_WEBAPP_HOSTED)
         d['authors'] = [a.name for a in obj.listed_authors]
         d['category'] = getattr(obj, 'category_ids', [])
-        d['content_ratings'] = dict(
-            (cr.get_body().name, {
-                'name': cr.get_rating().name,
-                'description': unicode(cr.get_rating().description)})
-            for cr in obj.content_ratings.all())
+        d['content_ratings'] = content_ratings if content_ratings else None
         if version:
             d['current_version'] = {
                 'version': version.version,
@@ -1057,7 +1058,7 @@ class WebappIndexer(MappingType, Indexable):
             d['flag_adult'] = d['flag_child'] = False
         d['has_public_stats'] = obj.public_stats
         # TODO: Store all localizations of homepage.
-        d['homepage'] = unicode(obj.homepage) if obj.homepage else None
+        d['homepage'] = unicode(obj.homepage) if obj.homepage else ''
         d['icons'] = [{'size': icon_size, 'url': obj.get_icon_url(icon_size)}
                       for icon_size in (16, 48, 64, 128)]
         d['latest_version_status'] = (file_.status if file_ else None)

@@ -82,15 +82,18 @@ class TestApi(BaseOAuth, ESTestCase):
             res = self.client.get(self.url + ({'cat': self.category.pk},))
             eq_(res.status_code, 200)
             obj = json.loads(res.content)['objects'][0]
-            eq_(obj['slug'], self.webapp.app_slug)
-            eq_(obj['icons']['128'], self.webapp.get_icon_url(128))
             eq_(obj['absolute_url'], self.webapp.get_absolute_url())
-            eq_(obj['resource_uri'], '/api/v1/apps/app/337141/')
+            eq_(obj['app_type'], self.webapp.app_type)
+            eq_(obj['content_ratings'], None)
             eq_(obj['current_version']['version'], u'1.0')
-            eq_(obj['manifest_url'], self.webapp.get_manifest_url())
-            eq_(obj['public_stats'], self.webapp.public_stats)
             eq_(obj['icons']['128'], self.webapp.get_icon_url(128))
+            eq_(obj['id'], str(self.webapp.id))
+            eq_(obj['manifest_url'], self.webapp.get_manifest_url())
+            eq_(obj['payment_account'], None)
+            eq_(obj['public_stats'], self.webapp.public_stats)
             eq_(obj['ratings'], {'average': 0.0, 'count': 0})
+            eq_(obj['resource_uri'], '/api/v1/apps/app/337141/')
+            eq_(obj['slug'], self.webapp.app_slug)
 
             # These only exists if requested by a reviewer.
             ok_('latest_version_status' not in obj)

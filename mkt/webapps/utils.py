@@ -147,19 +147,21 @@ def es_app_to_dict(obj, currency=None, profile=None):
     # The following doesn't perform a database query, but gives us useful
     # methods like `get_detail_url`. If you use `obj` make sure the calls
     # don't query the database.
-    app = Webapp(app_slug=obj.app_slug)
+    is_packaged = src['app_type'] == amo.ADDON_WEBAPP_PACKAGED
+    app = Webapp(app_slug=obj.app_slug, is_packaged=is_packaged)
 
-    attrs = ('app_type', 'content_ratings', 'current_version', 'homepage',
-             'id', 'manifest_url', 'previews', 'ratings', 'status',
-             'support_email', 'support_url')
+    attrs = ('content_ratings', 'current_version', 'homepage', 'manifest_url',
+             'previews', 'ratings', 'status', 'support_email', 'support_url')
     data = dict(zip(attrs, attrgetter(*attrs)(obj)))
     data.update({
         'absolute_url': absolutify(app.get_detail_url()),
+        'app_type': app.app_type,
         'categories': [c for c in obj.category],
         'description': get_attr_lang(src, 'description'),
         'device_types': [DEVICE_TYPES[d].api_name for d in src['device']],
         'icons': dict((i['size'], i['url']) for i in src['icons']),
-        'is_packaged': src['app_type'] == amo.ADDON_WEBAPP_PACKAGED,
+        'id': str(obj._id),
+        'is_packaged': is_packaged,
         'listed_authors': [{'name': name} for name in src['authors']],
         'name': get_attr_lang(src, 'name'),
         'premium_type': amo.ADDON_PREMIUM_API[src['premium_type']],
@@ -172,6 +174,8 @@ def es_app_to_dict(obj, currency=None, profile=None):
         if acct and acct.payment_account:
             data['payment_account'] = AccountResource().get_resource_uri(
                 acct.payment_account)
+    else:
+        data['payment_account'] = None
 
     try:
         price = Price.objects.get(name=src['price_tier'])
