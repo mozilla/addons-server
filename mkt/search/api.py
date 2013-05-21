@@ -1,11 +1,13 @@
 import json
 
 from django.conf.urls import url
+from django.core.exceptions import ObjectDoesNotExist
 
 from tastypie import http
 from tastypie.authorization import ReadOnlyAuthorization
 from tastypie.utils import trailing_slash
 from tower import ugettext as _
+import waffle
 
 import amo
 from access import acl
@@ -20,7 +22,7 @@ from mkt.api.resources import AppResource
 from mkt.search.views import _get_query, _filter_search
 from mkt.search.forms import ApiSearchForm
 from mkt.webapps.models import Webapp
-from mkt.webapps.utils import es_app_to_dict
+from mkt.webapps.utils import app_to_dict, es_app_to_dict
 
 
 class SearchResource(CORSResource, MarketplaceResource):
@@ -93,18 +95,36 @@ class SearchResource(CORSResource, MarketplaceResource):
         obj = bundle.obj
         amo_user = getattr(bundle.request, 'amo_user', None)
 
-        bundle.data.update(es_app_to_dict(obj,
-            currency=bundle.request.REGION.default_currency, profile=amo_user))
+        uses_es = waffle.switch_is_active('search-api-es')
+
+        if uses_es:
+            bundle.data.update(es_app_to_dict(
+                obj, currency=bundle.request.REGION.default_currency,
+                profile=amo_user))
+        else:
+            bundle.data.update(app_to_dict(
+                obj, currency=bundle.request.REGION.default_currency,
+                profile=amo_user))
 
         # Add extra data for reviewers. Used in reviewer tool search.
         # TODO: Reviewer flags in ES (bug 848446)
         if acl.action_allowed(bundle.request, 'Apps', 'Review'):
-            addon_id = bundle.obj._id
+            addon_id = bundle.obj._id if uses_es else bundle.obj.id
             version = Version.objects.filter(addon_id=addon_id).latest()
             escalated = EscalationQueue.objects.filter(
                 addon_id=addon_id).exists()
 
-            bundle.data['latest_version_status'] = obj.latest_version_status
+            if uses_es:
+                bundle.data['latest_version_status'] = (
+                    obj.latest_version_status)
+            else:
+                try:
+                    file_ = version and version.files.latest()
+                    bundle.data['latest_version_status'] = (
+                        file_.status if file_ else None)
+                except ObjectDoesNotExist:
+                    bundle.data['latest_version_status'] = None
+
             bundle.data['reviewer_flags'] = {
                 'has_comment': version.has_editor_comment,
                 'has_info_request': version.has_info_request,
