@@ -4,6 +4,7 @@ import logging
 import sys
 import traceback
 
+from django.conf import settings
 from django.conf.urls.defaults import url
 from django.core.exceptions import ObjectDoesNotExist, PermissionDenied
 from django.http import HttpResponseNotFound
@@ -188,7 +189,8 @@ class Marketplace(object):
         ``Resource._meta``.
         """
         # Never throttle users with Apps:APIUnthrottled.
-        if not acl.action_allowed(request, 'Apps', 'APIUnthrottled'):
+        if (settings.API_THROTTLE and
+            not acl.action_allowed(request, 'Apps', 'APIUnthrottled')):
             identifiers = [a.get_identifier(request) for a in self._auths()]
 
             # Check to see if they should be throttled.

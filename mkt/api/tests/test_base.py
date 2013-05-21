@@ -146,6 +146,20 @@ class TestThrottling(TestCase):
             sbt.return_value = True
             self.no_throttle_expected()
 
+    def test_throttled_user_setting_enabled(self):
+        with self.settings(API_THROTTLE=True):
+            ACLMiddleware().process_request(self.request)
+            with self.mocked_sbt as sbt:
+                sbt.return_value = True
+                self.throttle_expected()
+
+    def test_throttled_user_setting_disabled(self):
+        with self.settings(API_THROTTLE=False):
+            ACLMiddleware().process_request(self.request)
+            with self.mocked_sbt as sbt:
+                sbt.return_value = True
+                self.no_throttle_expected()
+
 
 class FilteredCORS(CORSResource, MarketplaceResource):
 
