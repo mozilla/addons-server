@@ -14,14 +14,14 @@
       {{ dev_breadcrumbs(impala=True) }}
       <h1>{{ title }}</h1>
 
-      {% if addons and addon_tab %}
+      {% if addon_tab %}
         {% set cnt = addons.paginator.count %}
         {% if webapp %}
           {# L10n: {0} is an integer. #}
           <h2>{{ ngettext('<b>{0}</b> app', '<b>{0}</b> apps', cnt)|f(cnt|numberfmt)|safe }}</h2>
         {% else %}
           {# L10n: {0} is an integer. #}
-          <h2>{{ ngettext('<b>{0}</b> add-on', '<b>{0}</b> add-ons', cnt)|f(cnt|numberfmt)|safe }}</h2>
+          <h2 class="submission-count">{{ ngettext('<b>{0}</b> add-on', '<b>{0}</b> add-ons', cnt)|f(cnt|numberfmt)|safe }}</h2>
         {% endif %}
       {% endif %}
     </header>
@@ -110,11 +110,11 @@
     </section>
   {% endif %}
 
-  {% if waffle.flag('submit-personas') and themes and theme %}
+  {% if waffle.flag('submit-personas') and theme %}
     {# L10n: {0} is an integer. #}
     <section class="dashboard primary theme-dashboard">
       {% set cnt = themes.paginator.count %}
-      <h2 class="theme-count">
+      <h2 class="submission-count">
         {{ ngettext('<b>{0}</b> theme', '<b>{0}</b> themes', cnt)|f(cnt|numberfmt)|safe }}
       </h2>
       {% include "addons/includes/dashboard_tabs.html" %}
