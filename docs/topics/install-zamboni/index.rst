@@ -13,3 +13,4 @@ Install Zamboni
    celery
    elasticsearch
    packages
+   troubleshooting
