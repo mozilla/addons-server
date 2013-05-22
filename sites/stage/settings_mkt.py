@@ -182,3 +182,5 @@ MONOLITH_PASSWORD = private_mkt.MONOLITH_PASSWORD
 WEBAPP_MANIFEST_NAME = 'Marketplace Stage'
 
 ALLOW_TASTYPIE_SERVICES = True
+
+NEWRELIC_INI = '/etc/newrelic.d/marketplace.allizom.org.ini'
