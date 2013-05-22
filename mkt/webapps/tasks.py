@@ -2,26 +2,33 @@ import datetime
 import hashlib
 import json
 import logging
+import os
+import subprocess
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
+from django.template import Context, loader
 
 from celery.exceptions import RetryTaskError
 from celeryutils import task
 from pyelasticsearch.exceptions import ElasticHttpNotFoundError
+from test_utils import RequestFactory
 
 import amo
 from amo.decorators import write
 from amo.helpers import absolutify
 from amo.urlresolvers import reverse
-from amo.utils import chunked
+from amo.utils import chunked, JSONEncoder
 from editors.models import RereviewQueue
 from files.models import FileUpload
 from lib.es.utils import get_indices
-from mkt.developers.tasks import validator, _fetch_manifest
+from users.utils import get_task_user
+
+from mkt.api.resources import AppResource
+from mkt.constants.regions import WORLDWIDE
+from mkt.developers.tasks import _fetch_manifest, validator
 from mkt.webapps.models import Webapp, WebappIndexer
 from mkt.webapps.utils import get_locale_properties
-from users.utils import get_task_user
 
 task_log = logging.getLogger('z.task')
 
@@ -279,3 +286,61 @@ def unindex_webapps(ids, **kw):
                 # Ignore if it's not there.
                 task_log.info(
                     u'[Webapp:%s] Unindexing app but not found in index' % id_)
+
+
+@task
+def dump_app(id, **kw):
+    # Note: not using storage because all these operations should be local.
+    target_dir = os.path.join(settings.DUMPED_APPS_PATH, 'apps',
+                              str(id / 1000))
+    target_file = os.path.join(target_dir, str(id) + '.json')
+
+    try:
+        obj = Webapp.objects.get(pk=id)
+    except Webapp.DoesNotExist:
+        task_log.info(u'Webapp does not exist: {0}'.format(id))
+        return
+
+    req = RequestFactory().get('/')
+    req.REGION = WORLDWIDE
+
+    if not os.path.exists(target_dir):
+        os.makedirs(target_dir)
+
+    task_log.info('Dumping app {0}.'.format(id))
+    res = AppResource().dehydrate_objects([obj], request=req)
+    json.dump(res[0], open(target_file, 'w'), cls=JSONEncoder)
+    return target_file
+
+
+@task
+def dump_apps(ids, **kw):
+    task_log.info(u'Dumping apps {0} to {0}. [{0}]'
+                  .format(ids[0], ids[-1], len(ids)))
+    for id in ids:
+        dump_app(id)
+
+
+@task
+def zip_apps(*args, **kw):
+    # Note: not using storage because all these operations should be local.
+    today = datetime.datetime.today().strftime('%Y-%m-%d')
+    target_dir = os.path.join(settings.DUMPED_APPS_PATH, 'tarballs')
+    target_file = os.path.join(target_dir, today + '.tgz')
+
+    if not os.path.exists(target_dir):
+        os.makedirs(target_dir)
+
+    # Put some .txt files in place.
+    context = Context({'date': today, 'url': settings.SITE_URL})
+    files = ['license.txt', 'readme.txt']
+    for f in files:
+        template = loader.get_template('webapps/dump/' + f)
+        dest = os.path.join(settings.DUMPED_APPS_PATH, f)
+        open(dest, 'w').write(template.render(context))
+
+    cmd = ['tar', 'czf', target_file, '-C',
+           settings.DUMPED_APPS_PATH, 'apps'] + files
+    task_log.info(u'Creating app dump {0}'.format(target_file))
+    subprocess.call(cmd)
+    return target_file

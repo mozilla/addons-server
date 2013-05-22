@@ -2,13 +2,14 @@
 import datetime
 import json
 import os
+import stat
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.core.management import call_command
 
 import mock
-from nose.tools import eq_
+from nose.tools import eq_, ok_
 
 import amo
 import amo.tests
@@ -19,8 +20,9 @@ from files.models import File, FileUpload
 from users.models import UserProfile
 from versions.models import Version
 
+from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
-from mkt.webapps.tasks import update_manifests
+from mkt.webapps.tasks import dump_app, update_manifests, zip_apps
 
 
 original = {
@@ -393,3 +395,31 @@ class TestUpdateManifest(amo.tests.TestCase):
         self._run()
         ver = self.version.reload()
         eq_(ver.supported_locales, 'de,es,fr')
+
+
+class TestDumpApps(amo.tests.TestCase):
+    fixtures = fixture('webapp_337141')
+
+    def test_dump_app(self):
+        fn = dump_app(337141)
+        result = json.load(open(fn, 'r'))
+        eq_(result['id'], str(337141))
+
+    def test_zip_apps(self):
+        dump_app(337141)
+        fn = zip_apps()
+        for f in ['license.txt', 'readme.txt']:
+            ok_(os.path.exists(os.path.join(settings.DUMPED_APPS_PATH, f)))
+        ok_(os.stat(fn)[stat.ST_SIZE])
+
+    @mock.patch('mkt.webapps.tasks.dump_app')
+    def test_not_public(self, dump_app):
+        app = Addon.objects.get(pk=337141)
+        app.update(status=amo.STATUS_PENDING)
+        call_command('process_addons', task='dump_apps')
+        assert not dump_app.called
+
+    @mock.patch('mkt.webapps.tasks.dump_app')
+    def test_public(self, dump_app):
+        call_command('process_addons', task='dump_apps')
+        assert dump_app.called

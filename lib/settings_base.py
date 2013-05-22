@@ -266,6 +266,9 @@ UPLOADS_PATH = NETAPP_STORAGE + '/uploads'
 # /mnt/netapp_amo/addons.mozilla.org-remora/public-staging
 MIRROR_STAGE_PATH = NETAPP_STORAGE + '/public-staging'
 
+# Where dumped apps will be written too.
+DUMPED_APPS_PATH = NETAPP_STORAGE + '/dumped-apps'
+
 # paths that don't require an app prefix
 SUPPORTED_NONAPPS = ('about', 'admin', 'apps', 'blocklist', 'credits',
                      'developer_agreement', 'developer_faq', 'developers',

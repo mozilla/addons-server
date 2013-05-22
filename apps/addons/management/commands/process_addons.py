@@ -3,13 +3,16 @@ from optparse import make_option
 from django.core.management.base import BaseCommand, CommandError
 from django.db.models import Q
 
+from celery import group
+
 import amo
 from addons.models import Addon
 from amo.utils import chunked
 from devhub.tasks import convert_purified, flag_binary, get_preview_sizes
 from market.tasks import check_paypal, check_paypal_multiple
-from mkt.webapps.tasks import (add_uuids, update_manifests,
-                               update_supported_locales)
+
+from mkt.webapps.tasks import (add_uuids, dump_apps, update_manifests,
+                               update_supported_locales, zip_apps)
 
 
 tasks = {
@@ -44,6 +47,9 @@ tasks = {
         'qs': [Q(type=amo.ADDON_WEBAPP, disabled_by_user=False,
                  status__in=[amo.STATUS_PENDING, amo.STATUS_PUBLIC,
                              amo.STATUS_PUBLIC_WAITING])]},
+    'dump_apps': {'method': dump_apps,
+                  'qs': [Q(type=amo.ADDON_WEBAPP, status=amo.STATUS_PUBLIC)],
+                  'post': zip_apps}
 }
 
 
@@ -72,7 +78,20 @@ class Command(BaseCommand):
                             .values_list('pk', flat=True)
                             .order_by('-last_updated'))
         if 'pre' in task:
+            # This is run in process to ensure its run before the tasks.
             pks = task['pre'](pks)
         if pks:
+            kw = task.get('kwargs', {})
+            # All the remaining tasks go in one group.
+            grouping = []
             for chunk in chunked(pks, 100):
-                task['method'].delay(chunk, **task.get('kwargs', {}))
+                grouping.append(
+                    task['method'].subtask(args=[chunk], kwargs=kw))
+
+            # Add the post task on to the end.
+            post = None
+            if 'post' in task:
+                post = task['post'].subtask(args=[], kwargs=kw)
+
+            ts = group(grouping)
+            ts.apply_async(link=post)
