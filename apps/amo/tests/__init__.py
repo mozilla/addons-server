@@ -698,15 +698,19 @@ class ESTestCase(TestCase):
             raise
 
         for index in set(settings.ES_INDEXES.values()):
-            # getting the index that's pointed by the alias
+            # Get the index that's pointed to by the alias.
             try:
                 indices = cls.es.get_alias(index)
                 index = indices[0]
+            except IndexError:
+                # There's no alias, just use the index.
+                print 'Found no alias for %s.' % index
+                index = index
             except (pyes.IndexMissingException,
                     pyelasticsearch.ElasticHttpNotFoundError):
                 pass
 
-            # this removes any alias as well
+            # Remove any alias as well.
             try:
                 cls.es.delete_index(index)
             except (pyes.IndexMissingException,
