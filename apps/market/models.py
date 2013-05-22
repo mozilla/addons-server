@@ -11,7 +11,7 @@ import amo.models
 from amo.decorators import write
 from amo.utils import get_locale_from_lang, memoize_key
 from constants.payments import PROVIDER_CURRENCIES
-from mkt.constants import apps
+from mkt.constants import apps, payments
 from stats.models import Contribution
 from users.models import UserProfile
 
@@ -115,6 +115,10 @@ class Price(amo.models.ModelBase):
         else:
             return [({'currency': o.currency, 'amount': o.price})
                     for c, o in self.currencies()]
+
+    def carrier_billing_only(self):
+        return (int(self.price) <
+                payments.MINIMUM_PRICE_FOR_NON_CARRIER_BILLING)
 
 
 class PriceCurrency(amo.models.ModelBase):

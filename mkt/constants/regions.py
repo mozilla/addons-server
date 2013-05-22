@@ -45,6 +45,7 @@ class REGION(object):
     weight = 0
     ratingsbodies = ()
     has_payments = False
+    supports_carrier_billing = True
 
 
 class WORLDWIDE(REGION):

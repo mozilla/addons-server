@@ -10,6 +10,8 @@ from apps.addons.models import Category
 from apps.search.views import WebappSuggestionsAjax, _get_locale_analyzer
 
 import mkt
+from mkt.constants import regions
+from mkt.regions import get_region
 from mkt.webapps.models import Webapp
 
 from . import forms
@@ -137,6 +139,11 @@ def _filter_search(request, qs, query, filters=None, sorting=None,
         # Sort by a default if there was no query so results are predictable.
         qs = qs.order_by(sorting_default)
 
+    region = regions.REGIONS_DICT[get_region()]
+    # If the region only supports carrier billing for app purchase,
+    # don't list apps that require carrier billing to buy.
+    if not region.supports_carrier_billing:
+        qs = qs.filter(carrier_billing_only=False)
     return qs
 
 

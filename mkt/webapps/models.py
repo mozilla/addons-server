@@ -47,7 +47,7 @@ from translations.fields import save_signal
 from versions.models import Version
 
 import mkt
-from mkt.constants import APP_FEATURES, APP_IMAGE_SIZES, apps
+from mkt.constants import APP_FEATURES, APP_IMAGE_SIZES, apps, payments
 from mkt.webapps.utils import get_locale_properties, get_supported_locales
 from mkt.zadmin.models import FeaturedApp
 
@@ -953,6 +953,7 @@ class WebappIndexer(MappingType, Indexable):
                     },
                     'price_tier': {'type': 'string',
                                    'index': 'not_analyzed'},
+                    'carrier_billing_only': {'type': 'boolean'},
                     'ratings': {
                         'type': 'object',
                         'properties': {
@@ -1072,9 +1073,13 @@ class WebappIndexer(MappingType, Indexable):
                           'thumbnail_url': p.thumbnail_url}
                          for p in obj.previews.all()]
         try:
-            d['price_tier'] = obj.addonpremium.price.name
+            p = obj.addonpremium.price
+            d['price_tier'] = p.name
+            d['carrier_billing_only'] = p.carrier_billing_only()
         except AddonPremium.DoesNotExist:
             d['price_tier'] = None
+            d['carrier_billing_only'] = False
+
         d['ratings'] = {
             'average': obj.average_rating,
             'count': obj.total_reviews,

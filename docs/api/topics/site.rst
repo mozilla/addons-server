@@ -112,7 +112,8 @@ Regions
             "resource_uri": "/api/v1/services/region/ap/",
             "slug": "ap",
             "default_currency": "USD",
-            "default_language": "en-AP"
+            "default_language": "en-AP",
+            "supports_carrier_billing": true
         }
 
 Configuration
