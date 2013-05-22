@@ -14,14 +14,14 @@
       <p>
         {%- trans %}
           This article describes the set of requirements an app must meet to
-          be distributed via the Firefox Marketplace. These requirements are
-          designed to balance the needs of both developers and users of apps
-          from the Firefox OS Marketplace. Developers want fair, consistent,
-          non-draconian requirements that they can trust to build a business
-          on. On the other hand, users want assurance that apps are safe,
-          will work on their device, and that the app will do what it says
-          it'll do. The app requirements below aim for the delicate balance
-          between these needs.
+          be distributed through the Firefox Marketplace. These requirements
+          are designed to balance the needs of both developers and users of
+          apps from the Firefox Marketplace. Developers want fair,
+          consistent, non-draconian requirements that they can trust to build
+          a business on. On the other hand, users want assurance that apps
+          are safe, will work on their device, and that the app will do what
+          it says it'll do. The app requirements below aim for the delicate
+          balance between these needs.
         {% endtrans -%}
       </p>
       <p>
@@ -95,6 +95,12 @@
         </li>
         <li>
           {%- trans %}
+            Apps should not use redirects or iframes to load content that the
+            developer isn't authorized to use.
+          {% endtrans -%}
+        </li>
+        <li>
+          {%- trans %}
             Requested privileges must be specified in the app manifest with
             description of why the privilege is needed.
           {% endtrans -%}
@@ -136,6 +142,14 @@
           {%- trans %}
             Screenshots and descriptions submitted to the Firefox Marketplace
             must accurately represent the app.
+          {% endtrans -%}
+        </li>
+        <li>
+          {%- trans url='//developer.mozilla.org/en-US/docs/Web/Apps/Manifest#locales' %}
+            In the app manifest, the <a href="{{ url }}">locale keys</a> should
+            match the localizations that your app supports. For example, by
+            providing a locale key in Polish, users will expect your app to be
+            available in that language.
           {% endtrans -%}
         </li>
       </ol>
