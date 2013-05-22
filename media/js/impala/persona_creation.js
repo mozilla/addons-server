@@ -293,6 +293,8 @@
                 $preview = $('#persona-preview .persona-viewer');
             if (previewSrc) {
                 $preview.css('background-image', 'url(' + previewSrc + ')');
+            } else {
+                $preview.removeAttr('style');
             }
             var data = {'id': '0'};
             $.each(['name', 'accentcolor', 'textcolor'], function(i, v) {
