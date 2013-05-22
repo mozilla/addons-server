@@ -124,14 +124,14 @@ class TestESAppToDict(amo.tests.ESTestCase):
         res = es_app_to_dict(self.get_obj())
         expected = {
             'absolute_url': 'http://testserver/app/something-something/',
-            'app_type': 1,
+            'app_type': 'hosted',
             'current_version': {
                 'release_notes': None,
                 'version': '1.0',
             },
             'description': u'Something Something Steamcube description!',
-            'homepage': None,
-            'id': 337141,
+            'homepage': '',
+            'id': '337141',
             'is_packaged': False,
             'listed_authors': [
                 {'name': u'31337 \u0627\u0644\u062a\u0637\u0628'},
