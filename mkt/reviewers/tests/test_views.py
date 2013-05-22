@@ -2062,11 +2062,13 @@ class TestMiniManifestView(BasePackagedAppTest):
 
     def test_reviewer(self):
         self.setup_files()
+        manifest = self.app.get_manifest_json(self.file)
+
         res = self.client.get(self.url)
         eq_(res['Content-type'],
             'application/x-web-app-manifest+json; charset=utf-8')
         data = json.loads(res.content)
-        eq_(data['name'], self.app.name)
+        eq_(data['name'], manifest['name'])
         eq_(data['developer']['name'], 'Mozilla Labs')
         eq_(data['package_path'],
             absolutify(reverse('reviewers.signed',
@@ -2078,16 +2080,28 @@ class TestMiniManifestView(BasePackagedAppTest):
         self.setup_files()
         self.app.update(status=amo.STATUS_REJECTED)
         self.file.update(status=amo.STATUS_DISABLED)
+        manifest = self.app.get_manifest_json(self.file)
+
         res = self.client.get(self.url)
         eq_(res['Content-type'],
             'application/x-web-app-manifest+json; charset=utf-8')
         data = json.loads(res.content)
-        eq_(data['name'], self.app.name)
+        eq_(data['name'], manifest['name'])
         eq_(data['developer']['name'], 'Mozilla Labs')
         eq_(data['package_path'],
             absolutify(reverse('reviewers.signed',
                        args=[self.app.app_slug,
                              self.version.id])))
+
+    def test_minifest_name_matches_manifest_name(self):
+        self.setup_files()
+        self.app.name = 'XXX'
+        self.app.save()
+        manifest = self.app.get_manifest_json(self.file)
+
+        res = self.client.get(self.url)
+        data = json.loads(res.content)
+        eq_(data['name'], manifest['name'])
 
 
 class TestReviewersScores(AppReviewerTest, AccessMixin):

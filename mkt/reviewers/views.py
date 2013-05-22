@@ -592,7 +592,7 @@ def _mini_manifest(addon, version_id):
     manifest = addon.get_manifest_json(file_)
 
     data = {
-        'name': addon.name,
+        'name': manifest['name'],
         'version': version.version,
         'size': file_.size,
         'release_notes': version.releasenotes,
