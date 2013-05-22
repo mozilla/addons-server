@@ -71,12 +71,12 @@ ADMINS = (
 )
 MANAGERS = ADMINS
 
-FLIGTAR = 'marketplace-staff@mozilla.org'
+FLIGTAR = 'marketplace-staff+random-goings-on@mozilla.org'
 EDITORS_EMAIL = 'amo-editors@mozilla.org'
-SENIOR_EDITORS_EMAIL = 'marketplace-staff@mozilla.org'
+SENIOR_EDITORS_EMAIL = 'amo-admin-reviews@mozilla.org'
 THEMES_EMAIL = 'theme-reviews@mozilla.org'
 MARKETPLACE_EMAIL = 'marketplace-staff@mozilla.org'
-ABUSE_EMAIL = 'marketplace-staff@mozilla.org'
+ABUSE_EMAIL = 'marketplace-staff+abuse@mozilla.org'
 NOBODY_EMAIL = 'nobody@mozilla.org'
 
 DATABASES = {
