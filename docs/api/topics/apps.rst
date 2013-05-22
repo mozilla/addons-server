@@ -99,7 +99,7 @@ App
             ],
             "price": null,
             "price_locale": null,
-            "privacy_policy": "sdfsdf",
+            "privacy_policy": "/api/v1/apps/app/24/privacy_policy/",
             "public_stats": false,
             "ratings": {
                 "average": 0.0,
@@ -155,11 +155,24 @@ App
     :param object user: an object representing information specific to this
         user for the app. If the user is anonymous this object will not
         be present.
+    :param privacy_policy: The path to the privacy policy resource.
     :param boolean user > developed: true if the user is a developer of the app.
     :param boolean user > installed: true if the user installed the app (this might differ from
         the device).
     :param boolean user > purchased: true if the user has purchased the app from
         the marketplace.
+
+.. http:get:: /api/v1/apps/(int:id)|(string:slug)/privacy_policy/
+
+    **Response**
+
+    :param privacy_policy: The text of the app's privacy policy.
+
+    :status 200: successfully completed.
+    :status 403: not allowed to access this object.
+    :status 404: not found.
+    :status 451: resource unavailable for legal reasons.
+
 
 .. _app-post-label:
 

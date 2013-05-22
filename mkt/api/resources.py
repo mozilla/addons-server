@@ -1,6 +1,6 @@
 import json
 
-from django.conf import settings
+from django.conf import settings, urls
 from django.db import transaction
 from django.db.models import Q
 from django.views import debug
@@ -14,6 +14,7 @@ from tastypie.exceptions import ImmediateHttpResponse
 from tastypie.resources import ALL_WITH_RELATIONS
 from tastypie.serializers import Serializer
 from tastypie.throttle import CacheThrottle
+from tastypie.utils import trailing_slash
 import waffle
 
 import amo
@@ -124,8 +125,7 @@ class AppResource(CORSResource, MarketplaceModelResource):
         queryset = Webapp.objects.all()  # Gets overriden in dispatch.
         fields = ['categories', 'description', 'device_types', 'homepage',
                   'id', 'name', 'payment_account', 'premium_type',
-                  'privacy_policy', 'status', 'summary', 'support_email',
-                  'support_url']
+                  'status', 'summary', 'support_email', 'support_url']
         list_allowed_methods = ['get', 'post']
         detail_allowed_methods = ['get', 'put', 'delete']
         always_return_data = True
@@ -333,6 +333,7 @@ class AppResource(CORSResource, MarketplaceModelResource):
         bundle.data.update(app_to_dict(obj,
             currency=bundle.request.REGION.default_currency, profile=amo_user))
         bundle.data['upsell'] = False
+        bundle.data['privacy_policy'] = self.get_resource_uri(bundle) + 'privacy_policy/'
         if obj.upsell:
             upsell_bundle = Bundle(obj=obj.upsell.premium,
                                    request=bundle.request)
@@ -354,6 +355,33 @@ class AppResource(CORSResource, MarketplaceModelResource):
             raise ImmediateHttpResponse(response=http.HttpForbidden())
         return self._meta.queryset.filter(type=amo.ADDON_WEBAPP,
                                           authors=request.amo_user)
+
+    def override_urls(self):
+        return [
+            urls.url(r"^%s/(?P<pk>\w[\w/-]*)/(?P<resource_name>privacy_policy)%s$" % (
+                self._meta.resource_name, trailing_slash()),
+            self.wrap_view('get_privacy_policy'), name="api_dispatch_detail"),
+        ]
+
+    def get_privacy_policy(self, request, **kwargs):
+        return PrivacyPolicyResource().dispatch('detail', request, **kwargs)
+
+class PrivacyPolicyResource(MarketplaceModelResource):
+
+    class Meta(MarketplaceResource.Meta):
+        api_name = 'apps'
+        queryset = Webapp.objects.all()  # Gets overriden in dispatch.
+        fields = ['privacy_policy']
+        detail_allowed_methods = ['get', 'put']
+        always_return_data = True
+        authentication = OptionalOAuthAuthentication()
+        authorization = AppOwnerAuthorization()
+        resource_name = 'privacy_policy'
+        serializer = Serializer(formats=['json'])
+        slug_lookup = 'app_slug'
+        # Throttle users without Apps:APIUnthrottled at 10 POST requests/day.
+        throttle = CacheThrottle(throttle_at=10, timeframe=60 * 60 * 24)
+
 
 
 class StatusResource(MarketplaceModelResource):
