@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.core.exceptions import PermissionDenied
 
 from mock import patch
-from nose.tools import eq_
+from nose.tools import eq_, ok_
 
 from tastypie import http
 from tastypie.authorization import Authorization
@@ -15,7 +15,7 @@ from test_utils import RequestFactory
 
 from access.middleware import ACLMiddleware
 from amo.tests import TestCase
-from mkt.api.base import CORSResource, MarketplaceResource
+from mkt.api.base import CORSResource, handle_500, MarketplaceResource
 from mkt.api.http import HttpTooManyRequests
 from mkt.api.serializers import Serializer
 from mkt.receipts.tests.test_views import RawRequestFactory
@@ -37,6 +37,23 @@ class URLRequestFactory(RequestFactory):
 
     def _encode_data(self, data, content_type):
         return urllib.urlencode(data)
+
+
+class TestLogging(TestCase):
+
+    def setUp(self):
+        self.resource = SampleResource()
+        self.request = URLRequestFactory().get('/')
+        self.exception_cls = type('SampleException', (Exception,), {})
+
+    @patch('mkt.api.base.tasty_log.error')
+    def test_logging(self, mock_error_log):
+        msg = 'oops'
+        handle_500(self.resource, self.request, self.exception_cls(msg))
+        eq_(mock_error_log.call_count, 1)
+        ok_(self.exception_cls.__name__ in mock_error_log.call_args[0][0])
+        ok_(msg in mock_error_log.call_args[0][0])
+        ok_('exc_info' in mock_error_log.call_args[1])
 
 
 class TestEncoding(TestCase):

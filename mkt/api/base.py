@@ -42,11 +42,13 @@ def handle_500(resource, request, exception):
         response_class = HttpResponseNotFound
 
     # Print some nice 500 errors back to the clients if not in debug mode.
-    tb = traceback.format_tb(sys.exc_traceback)
+    exc_info = sys.exc_info()
     tasty_log.error('%s: %s %s\n%s' % (request.path,
-                        exception.__class__.__name__, exception,
-                        '\n'.join(tb)),
-                    extra={'status_code': 500, 'request': request})
+                                       exception.__class__.__name__,
+                                       exception,
+                                       traceback.format_tb(exc_info[2])),
+                    extra={'status_code': 500, 'request': request},
+                    exc_info=exc_info)
     data = {
         'error_message': str(exception),
         'error_code': getattr(exception, 'id',
