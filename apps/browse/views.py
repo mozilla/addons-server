@@ -64,9 +64,9 @@ class AddonFilter(BaseFilter):
 class ThemeFilter(AddonFilter):
     opts = (('users', _lazy(u'Most Users')),
             ('rating', _lazy(u'Top Rated')),
-            ('created', _lazy(u'Newest')))
+            ('created', _lazy(u'Newest')),
+            ('featured', _lazy(u'Featured')))
     extras = (('name', _lazy(u'Name')),
-              ('featured', _lazy(u'Featured')),
               ('popular', _lazy(u'Weekly Downloads')),
               ('updated', _lazy(u'Recently Updated')),
               ('hotness', _lazy(u'Up & Coming')))

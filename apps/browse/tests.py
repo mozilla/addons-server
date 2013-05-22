@@ -364,7 +364,7 @@ class TestThemes(amo.tests.TestCase):
 
     def test_featured_sort(self):
         test_listing_sort(self, 'featured', reverse=False,
-                          sel_class='extra-opt')
+                          sel_class='opt')
 
     def test_downloads_sort(self):
         test_listing_sort(self, 'popular', 'weekly_downloads',
