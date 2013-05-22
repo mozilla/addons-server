@@ -5,9 +5,16 @@
 {% endblock %}
 
 {% block content %}
-
   {% include 'reviewers/logs_filter.html' %}
-  <h1 class="trigger-logs">{{ _('App Review Log') }}</h1>
+
+  <ul class="tabnav search-toggle">
+    {% for named_url, tab_code, text in logs_tabnav() %}
+      <li{% if tab == tab_code %} class="selected trigger-logs"{% endif %}>
+        <a href="{{ url(named_url) }}">{{ text }}</a>
+        <div class="tabnav-sprite hidden"></div>
+      </li>
+    {% endfor %}
+  </ul>
 
   <section class="island">
     {% if pager.object_list %}

@@ -29,9 +29,9 @@
   </div>
 
   <ul class="tabnav search-toggle">
-    {% for prefix, this, loc, text in queue_tabnav() %}
-      <li{% if tab == this %} class="selected trigger-queues"{% endif %}>
-        <a href="{{ url('reviewers.%s.%s' % (prefix, loc)) }}">{{ text }}</a>
+    {% for named_url, tab_code, text in queue_tabnav() %}
+      <li{% if tab == tab_code %} class="selected trigger-queues"{% endif %}>
+        <a href="{{ url(named_url) }}">{{ text }}</a>
         <div class="tabnav-sprite hidden"></div>
       </li>
     {% endfor %}

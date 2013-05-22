@@ -1,21 +1,19 @@
 {% extends 'reviewers/base.html' %}
 
-{% set pagetitle = _('Apps Reviewing') %}
-
-{% block title %}
-  {{ reviewers_page_title(title=pagetitle) }}
+{% block breadcrumbs %}
+  {{ reviewers_breadcrumbs(queue=tab) }}
 {% endblock %}
 
 {% block content %}
-
 <header class="c trigger-queues">
   <h1>{{ pagetitle }}</h1>
 </header>
 
-<section class="island">
+{% include "reviewers/includes/tabnav.html" %}
 
+<section class="island">
   {% if not apps %}
-    <p>{{ _('No apps being reviewed right now.') }}</p>
+    <p>{{ _('No apps are being reviewed right now.') }}</p>
   {% else %}
     {% if DESKTOP %}
       <table id="apps-reviewing" class="data-grid four-col items">
@@ -103,9 +101,7 @@
       </table>
     {% endif %}
   {% endif %}
-
 </section>
-
 {% endblock %}
 
 {% block js %}

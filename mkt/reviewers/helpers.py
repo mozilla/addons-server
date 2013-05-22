@@ -38,6 +38,7 @@ def reviewers_breadcrumbs(context, queue=None, items=None):
                   'updates': _('Updates'),
                   'escalated': _('Escalations'),
                   'moderated': _('Moderated Reviews'),
+                  'reviewing': _('Reviewing'),
                   'themes': _('Themes')}
 
         if items:
@@ -69,8 +70,7 @@ def queue_tabnav(context):
     """
     Returns tuple of tab navigation for the queue pages.
 
-    Each tuple contains four elements: (url namespace prefix, tab_code,
-                                        page_url, tab_text)
+    Each tuple contains three elements: (named_url. tab_code, tab_text)
     """
     counts = context['queue_counts']
     apps_reviewing = AppsReviewing(context['request']).get_apps()
@@ -78,25 +78,27 @@ def queue_tabnav(context):
     # Apps.
     if acl.action_allowed(context['request'], 'Apps', 'Review'):
         rv = [
-            ('apps', 'pending', 'queue_pending',
+            ('reviewers.apps.queue_pending', 'pending',
              _('Apps ({0})', counts['pending']).format(counts['pending'])),
-            ('apps', 'rereview', 'queue_rereview',
-             _('Re-reviews ({0})', counts['rereview'])
-             .format(counts['rereview'])),
-            ('apps', 'updates', 'queue_updates',
+
+            ('reviewers.apps.queue_rereview', 'rereview',
+             _('Re-reviews ({0})', counts['rereview']).format(
+             counts['rereview'])),
+
+            ('reviewers.apps.queue_updates', 'updates',
              _('Updates ({0})', counts['updates']).format(counts['updates'])),
         ]
         if acl.action_allowed(context['request'], 'Apps', 'ReviewEscalated'):
-            rv.append(
-                ('apps', 'escalated', 'queue_escalated',
-                 _('Escalations ({0})',
-                   counts['escalated']).format(counts['escalated']))
+            rv.append(('reviewers.apps.queue_escalated', 'escalated',
+                       _('Escalations ({0})', counts['escalated']).format(
+                       counts['escalated']))
             )
         rv.extend([
-            ('apps', 'moderated', 'queue_moderated',
-             _('Moderated Reviews ({0})',
-               counts['moderated']).format(counts['moderated'])),
-            ('apps', '', 'apps_reviewing',
+            ('reviewers.apps.queue_moderated', 'moderated',
+             _('Moderated Reviews ({0})', counts['moderated'])
+             .format(counts['moderated'])),
+
+            ('reviewers.apps.apps_reviewing', 'reviewing',
              _('Reviewing ({0})').format(len(apps_reviewing))),
         ])
     else:
@@ -105,10 +107,28 @@ def queue_tabnav(context):
     # Themes.
     if (acl.action_allowed(context['request'], 'Personas', 'Review') and
         waffle.switch_is_active('mkt-themes')):
-        rv.append((
-            'themes', 'themes', 'list',
-            _('Themes ({0})').format(counts['themes']),
-        ))
+        rv.append(('reviewers.themes.list', 'themes',
+                  _('Themes ({0})').format(counts['themes']),))
+    return rv
+
+
+@register.function
+@jinja2.contextfunction
+def logs_tabnav(context):
+    """
+    Returns tuple of tab navigation for the log pages.
+
+    Each tuple contains three elements: (named url, tab_code, tab_text)
+    """
+    rv = []
+    # Apps.
+    if acl.action_allowed(context['request'], 'Apps', 'Review'):
+        rv.append(('reviewers.apps.logs', 'apps', _('Apps')))
+
+    # Themes.
+    if (acl.action_allowed(context['request'], 'Personas', 'Review') and
+        waffle.switch_is_active('mkt-themes')):
+        rv.append(('reviewers.themes.logs', 'themes', _('Themes')))
     return rv
 
 
@@ -129,26 +149,6 @@ def queue_tabnav_themes(context):
             'themes', 'rereview', 'queue_rereview', _('Re-review'),
         ))
     return tabs
-
-
-@register.function
-@jinja2.contextfunction
-def logs_tabnav(context):
-    """
-    Returns tuple of tab navigation for the log pages.
-
-    Each tuple contains two elements: (page_url, tab_text)
-    """
-    rv = []
-    # Apps.
-    if acl.action_allowed(context['request'], 'Apps', 'Review'):
-        rv.append(('reviewers.apps.logs', _('Apps')))
-
-    # Themes.
-    if (acl.action_allowed(context['request'], 'Personas', 'Review') and
-        waffle.switch_is_active('mkt-themes')):
-        rv.append(('reviewers.themes.logs', _('Themes')))
-    return rv
 
 
 @register.function

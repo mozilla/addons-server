@@ -482,7 +482,8 @@ def logs(request):
                 Q(user__username__icontains=term)).distinct()
 
     pager = paginate(request, approvals, 50)
-    data = context(form=form, pager=pager, ACTION_DICT=amo.LOG_BY_ID)
+    data = context(form=form, pager=pager, ACTION_DICT=amo.LOG_BY_ID,
+                   tab='apps')
     return jingo.render(request, 'reviewers/logs.html', data)
 
 
@@ -696,7 +697,8 @@ def leaderboard(request):
 def apps_reviewing(request):
 
     return jingo.render(request, 'reviewers/apps_reviewing.html', context(**{
-        'apps': AppsReviewing(request).get_apps()}))
+        'apps': AppsReviewing(request).get_apps(),
+        'tab': 'reviewing'}))
 
 
 @permission_required('Apps', 'Review')

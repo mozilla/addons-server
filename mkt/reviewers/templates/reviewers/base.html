@@ -28,18 +28,16 @@
                 in request.path %} class="selected"{% endif %}>
             <a href="#" class="controller trigger-queues">{{ _('Queues') }}</a>
             <ul>
-              {% for prefix, this, loc, text in queue_tabnav() %}
-                <li>
-                  <a href="{{ url('reviewers.%s.%s' % (prefix, loc)) }}">{{ text }}</a>
-                </li>
+              {% for named_url, tab_code, text in queue_tabnav() %}
+                <li><a href="{{ url(named_url) }}">{{ text }}</a></li>
               {% endfor %}
             </ul>
           </li>
           <li{% if 'logs' in request.path %} class="selected"{% endif %}>
             <a href="#" class="controller logs trigger-logs">{{ _('Logs') }}</a>
             <ul>
-              {% for loc, text in logs_tabnav() %}
-                <li><a href="{{ url(loc) }}">{{ text }}</a></li>
+              {% for named_url, tab, text in logs_tabnav() %}
+                <li><a href="{{ url(named_url) }}">{{ text }}</a></li>
               {% endfor %}
             </ul>
           </li>
@@ -71,10 +69,8 @@
     <header>{{ _('Queues') }}</header>
     <menu class="nav-action-menu">
       <div>
-        {% for prefix, this, loc, text in queue_tabnav() %}
-          <button data-url="{{ url('reviewers.%s.%s' % (prefix, loc)) }}">
-            {{ text }}
-          </button>
+        {% for named_url, tab_code, text in queue_tabnav() %}
+          <button data-url="{{ url(named_url) }}">{{ text }}</button>
         {% endfor %}
       </div>
       <button data-url="#cancel">Cancel</button>
@@ -85,8 +81,8 @@
     <header>{{ _('Logs') }}</header>
     <menu class="nav-action-menu">
       <div>
-        {% for loc, text in logs_tabnav() %}
-          <button data-url="{{ url(loc) }}">{{ text }}</button>
+        {% for named_url, tab_code, text in logs_tabnav() %}
+          <button data-url="{{ url(named_url) }}">{{ text }}</button>
         {% endfor %}
       </div>
       <button data-url="#cancel">{{ _('Cancel') }}</button>

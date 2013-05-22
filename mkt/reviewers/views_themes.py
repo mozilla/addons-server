@@ -365,7 +365,7 @@ def themes_logs(request):
 
     pager = paginate(request, theme_logs, 30)
     data = context(form=form, pager=pager, ACTION_DICT=rvw.REVIEW_ACTIONS,
-                   REJECT_REASONS=rvw.THEME_REJECT_REASONS)
+                   REJECT_REASONS=rvw.THEME_REJECT_REASONS, tab='themes')
     return jingo.render(request, 'reviewers/themes/logs.html', data)
 
 

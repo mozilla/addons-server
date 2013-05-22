@@ -565,9 +565,11 @@ div.editor-stats-table > div.editor-stats-dark {
     margin: 0;
 }
 .log-filter-outside {
-    float: right;
+    float: none;
+    text-align: center;
     label {
         font-weight: normal;
+        padding: 0 6px;
     }
     input::-webkit-input-placeholder {
        color: #BBB;
@@ -577,6 +579,9 @@ div.editor-stats-table > div.editor-stats-dark {
     }
     div.date_range {
         padding: .5em 0 0;
+    }
+    form button {
+        right: 6px;
     }
 }
 
@@ -599,7 +604,7 @@ div.editor-stats-table > div.editor-stats-dark {
         left: 5px;
     }
 }
-button.search {
+button.search, .log-filter-outside button {
     border-radius: 0 3px 3px 0;
     height: 30px;
     line-height: 14px;
