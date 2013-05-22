@@ -139,14 +139,14 @@ def queue_tabnav_themes(context):
     tabs = []
     if acl.action_allowed(context['request'], 'Personas', 'Review'):
         tabs.append((
-            'themes', 'pending', 'queue_themes', _('Pending'),
+            'reviewers.themes.queue_themes', 'pending', _('Pending'),
         ))
     if acl.action_allowed(context['request'], 'SeniorPersonasTools', 'View'):
         tabs.append((
-            'themes', 'flagged', 'queue_flagged', _('Flagged'),
+            'reviewers.themes.queue_flagged', 'flagged', _('Flagged'),
         ))
         tabs.append((
-            'themes', 'rereview', 'queue_rereview', _('Re-review'),
+            'reviewers.themes.queue_rereview', 'rereview', _('Re-review'),
         ))
     return tabs
 
