@@ -88,7 +88,8 @@ def update_products(ctx):
 @task
 def compress_assets(ctx, arg=''):
     with ctx.lcd(settings.SRC_DIR):
-        ctx.local("%s manage.py compress_assets %s" % (settings.PYTHON, arg))
+        ctx.local("%s manage.py compress_assets -t %s" % (settings.PYTHON,
+                                                          arg))
 
 
 @task
