@@ -16,8 +16,8 @@ var z = {
         if (!z.prefix) return property;
         return '-' + z.prefix + '-' + property;
     },
-    canInstallApps: true,
-    state: {}
+    state: {},
+    canInstallApps: true
 };
 
 z.prefixUpper = z.prefix[0].toUpperCase() + z.prefix.substr(1);
@@ -98,7 +98,7 @@ z.page.on('fragmentloaded', function() {
 
     // Navigation toggle.
     var $header = $('#site-header'),
-        $nav = $header.find('nav ul'),
+        $nav = $header.find('ul'),
         $outer = $('html, body');
     $header.on('click', '.region', _pd(function() {
         $outer.animate({scrollTop: $outer.height()}, 1000);
