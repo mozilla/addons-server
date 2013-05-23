@@ -211,7 +211,7 @@ def update(ctx):
     create_virtualenv()
     update_locales()
     update_products()
-    compress_assets()
+    compress_assets(arg='--update-only')
     compress_assets(arg='--settings=settings_local_mkt')
     schematic()
     with ctx.lcd(settings.SRC_DIR):
