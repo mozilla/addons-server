@@ -10,7 +10,6 @@ import jwt
 
 
 log = commonware.log.getLogger('z.crypto')
-secret = settings.APP_PURCHASE_SECRET
 
 
 class InvalidSender(Exception):
@@ -24,7 +23,7 @@ def get_uuid():
 def verify_webpay_jwt(signed_jwt):
     # This can probably be deleted depending upon solitude.
     try:
-        jwt.decode(signed_jwt.encode('ascii'), secret)
+        jwt.decode(signed_jwt.encode('ascii'), settings.APP_PURCHASE_SECRET)
     except Exception, e:
         log.error('Error decoding webpay jwt: %s' % e, exc_info=True)
         return {'valid': False}
@@ -32,12 +31,13 @@ def verify_webpay_jwt(signed_jwt):
 
 
 def sign_webpay_jwt(data):
-    return jwt.encode(data, secret)
+    return jwt.encode(data, settings.APP_PURCHASE_SECRET)
 
 
 def parse_from_webpay(signed_jwt, ip):
     try:
-        data = jwt.decode(signed_jwt.encode('ascii'), secret)
+        data = jwt.decode(signed_jwt.encode('ascii'),
+                          settings.APP_PURCHASE_SECRET)
     except Exception, e:
         log.info('Received invalid webpay postback from IP %s: %s' %
                  (ip or '(unknown)', e), exc_info=True)
