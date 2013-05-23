@@ -308,7 +308,7 @@ def dump_app(id, **kw):
     if not os.path.exists(target_dir):
         os.makedirs(target_dir)
 
-    task_log.info('Dumping app {0}.'.format(id))
+    task_log.info('Dumping app {0} to {1}'.format(id, target_file))
     res = AppResource().dehydrate_objects([obj], request=req)
     json.dump(res[0], open(target_file, 'w'), cls=JSONEncoder)
     return target_file
