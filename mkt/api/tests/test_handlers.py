@@ -337,8 +337,12 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         AddonUpsell.objects.create(free=app, premium=upsell)
         res = self.client.get(self.get_url)
         eq_(res.status_code, 200)
-        content = json.loads(res.content)
-        eq_(len(content.get('upsell', {})), len(content))
+        obj = json.loads(res.content)['upsell']
+        eq_(obj['id'], upsell.id)
+        eq_(obj['app_slug'], upsell.app_slug)
+        eq_(obj['name'], upsell.name)
+        eq_(obj['icon_url'], upsell.get_icon_url(128))
+        eq_(obj['resource_uri'], '/api/v1/apps/app/%s/' % upsell.id)
 
     def test_get(self):
         self.create_app()
@@ -603,7 +607,8 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         free_app = self.create_app(free_webapp)
         free_data = self.base_data()
         free_data['name'] = 'mozball free'
-        self.client.put(get_url('app', free_app.pk), data=json.dumps(free_data))
+        self.client.put(get_url('app', free_app.pk),
+                        data=json.dumps(free_data))
         app = self.create_app()
         data = self.base_data()
         Price.objects.create(price='3.14')
@@ -621,14 +626,14 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         free_app = self.create_app(free_webapp)
         free_data = self.base_data()
         free_data['name'] = 'mozball free'
-        self.client.put(get_url('app', free_app.pk), data=json.dumps(free_data))
-        app = self.create_app()
+        self.client.put(get_url('app', free_app.pk),
+                        data=json.dumps(free_data))
+        self.create_app()
         data = self.base_data()
         data['upsold'] = get_absolute_url(get_url('app', free_app.pk),
                                           absolute=False)
         res = self.client.put(self.get_url, data=json.dumps(data))
         eq_(res.status_code, 400)
-
 
     @patch('mkt.developers.models.client')
     def test_get_payment_account(self, client):

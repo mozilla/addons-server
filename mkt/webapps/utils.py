@@ -50,7 +50,7 @@ def get_supported_locales(manifest):
 def app_to_dict(app, currency=None, profile=None):
     """Return app data as dict for API."""
     # Sad circular import issues.
-    from mkt.api.resources import PreviewResource
+    from mkt.api.resources import AppResource, PreviewResource
     from mkt.developers.api import AccountResource
     from mkt.developers.models import AddonPaymentAccount
 
@@ -92,6 +92,17 @@ def app_to_dict(app, currency=None, profile=None):
         'supported_locales': (supported_locales.split(',') if supported_locales
                               else [])
     }
+
+    data['upsell'] = False
+    if app.upsell:
+        upsell = app.upsell.premium
+        data['upsell'] = {
+            'id': upsell.id,
+            'app_slug': upsell.app_slug,
+            'icon_url': upsell.get_icon_url(128),
+            'name': unicode(upsell.name),
+            'resource_uri': AppResource().get_resource_uri(upsell),
+        }
 
     if app.premium:
         q = AddonPaymentAccount.objects.filter(addon=app)
@@ -138,6 +149,7 @@ def es_app_to_dict(obj, currency=None, profile=None):
     Return app data as dict for API where `app` is the elasticsearch result.
     """
     # Circular import.
+    from mkt.api.resources import AppResource
     from mkt.developers.api import AccountResource
     from mkt.developers.models import AddonPaymentAccount
     from mkt.webapps.models import Installed, Webapp
@@ -183,6 +195,12 @@ def es_app_to_dict(obj, currency=None, profile=None):
         data['price_locale'] = price.get_price_locale(currency=currency)
     except Price.DoesNotExist:
         data['price'] = data['price_locale'] = None
+
+    data['upsell'] = False
+    if hasattr(obj, 'upsell'):
+        data['upsell'] = obj.upsell
+        data['upsell']['resource_uri'] = AppResource().get_resource_uri(
+            Webapp(id=obj.upsell['id']))
 
     # TODO: Let's get rid of these from the API to avoid db hits.
     if profile and isinstance(profile, UserProfile):

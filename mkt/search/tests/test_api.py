@@ -7,8 +7,9 @@ from nose.tools import eq_, ok_
 
 import amo
 import mkt.regions
-from addons.models import AddonCategory, AddonDeviceType, Category, Flag
-from amo.tests import ESTestCase
+from addons.models import (AddonCategory, AddonDeviceType, AddonUpsell,
+                           Category, Flag)
+from amo.tests import app_factory, ESTestCase
 from mkt.api.base import list_url
 from mkt.api.models import Access, generate
 from mkt.api.tests.test_oauth import BaseOAuth, OAuthClient
@@ -98,6 +99,21 @@ class TestApi(BaseOAuth, ESTestCase):
             # These only exists if requested by a reviewer.
             ok_('latest_version_status' not in obj)
             ok_('reviewer_flags' not in obj)
+
+    def test_upsell(self):
+        upsell = app_factory()
+        AddonUpsell.objects.create(free=self.webapp, premium=upsell)
+        self.webapp.save()
+        self.refresh('webapp')
+
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        obj = json.loads(res.content)['objects'][0]
+        eq_(obj['upsell']['id'], upsell.id)
+        eq_(obj['upsell']['app_slug'], upsell.app_slug)
+        eq_(obj['upsell']['name'], upsell.name)
+        eq_(obj['upsell']['icon_url'], upsell.get_icon_url(128))
+        eq_(obj['upsell']['resource_uri'], '/api/v1/apps/app/%s/' % upsell.id)
 
     def test_q(self):
         res = self.client.get(self.url + ({'q': 'something'},))

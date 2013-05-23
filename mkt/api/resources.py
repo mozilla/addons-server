@@ -9,7 +9,6 @@ import commonware.log
 from celery_tasktree import TaskTree
 from tastypie import fields, http
 from tastypie.authorization import Authorization
-from tastypie.bundle import Bundle
 from tastypie.exceptions import ImmediateHttpResponse
 from tastypie.resources import ALL_WITH_RELATIONS
 from tastypie.serializers import Serializer
@@ -332,12 +331,8 @@ class AppResource(CORSResource, MarketplaceModelResource):
         amo_user = getattr(bundle.request, 'amo_user', None)
         bundle.data.update(app_to_dict(obj,
             currency=bundle.request.REGION.default_currency, profile=amo_user))
-        bundle.data['upsell'] = False
-        bundle.data['privacy_policy'] = PrivacyPolicyResource().get_resource_uri(bundle)
-        if obj.upsell:
-            upsell_bundle = Bundle(obj=obj.upsell.premium,
-                                   request=bundle.request)
-            bundle.data['upsell'] = self.full_dehydrate(upsell_bundle).data
+        bundle.data['privacy_policy'] = (
+            PrivacyPolicyResource().get_resource_uri(bundle))
         return bundle
 
     def hydrate_premium_type(self, bundle):

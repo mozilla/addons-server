@@ -934,8 +934,10 @@ class WebappIndexer(MappingType, Indexable):
                     'current_version': {
                         'type': 'object',
                         'properties': {
-                            'version': {'type': 'string'},
-                            'release_notes': {'type': 'string'},
+                            'version': {'type': 'string',
+                                        'index': 'not_analyzed'},
+                            'release_notes': {'type': 'string',
+                                              'index': 'not_analyzed'},
                         }
                     },
                     'description': {'type': 'string', 'analyzer': 'snowball'},
@@ -943,12 +945,12 @@ class WebappIndexer(MappingType, Indexable):
                     'flag_adult': {'type': 'boolean'},
                     'flag_child': {'type': 'boolean'},
                     'has_public_stats': {'type': 'boolean'},
-                    'homepage': {'type': 'string'},
+                    'homepage': {'type': 'string', 'index': 'not_analyzed'},
                     'icons': {
                         'type': 'object',
                         'properties': {
                             'size': {'type': 'short'},
-                            'url': {'type': 'string'},
+                            'url': {'type': 'string', 'index': 'not_analyzed'},
                         }
                     },
                     'is_disabled': {'type': 'boolean'},
@@ -967,7 +969,8 @@ class WebappIndexer(MappingType, Indexable):
                         'type': 'object',
                         'dynamic': 'true',
                     },
-                    'price_tier': {'type': 'string'},
+                    'price_tier': {'type': 'string',
+                                   'index': 'not_analyzed'},
                     'ratings': {
                         'type': 'object',
                         'properties': {
@@ -976,9 +979,23 @@ class WebappIndexer(MappingType, Indexable):
                         }
                     },
                     'status': {'type': 'byte'},
-                    'support_email': {'type': 'string'},
-                    'support_url': {'type': 'string'},
+                    'support_email': {'type': 'string',
+                                      'index': 'not_analyzed'},
+                    'support_url': {'type': 'string',
+                                    'index': 'not_analyzed'},
                     'type': {'type': 'byte'},
+                    'upsell': {
+                        'type': 'object',
+                        'properties': {
+                            'id': {'type': 'long'},
+                            'app_slug': {'type': 'string',
+                                         'index': 'not_analyzed'},
+                            'icon_url': {'type': 'string',
+                                         'index': 'not_analyzed'},
+                            'name': {'type': 'string',
+                                     'index': 'not_analyzed'}
+                        }
+                    },
                     'uses_flash': {'type': 'boolean'},
                     'weekly_downloads': {'type': 'long'},
                 }
@@ -1000,7 +1017,6 @@ class WebappIndexer(MappingType, Indexable):
         # TODO: boolean mappings for mkt.constants.features (bug 862479)
         # TODO: reviewer flags (bug 848446)
         # TODO: privacy_policy (bug 870557)
-        # TODO: upsell (bug 867896)
 
         return mapping
 
@@ -1086,6 +1102,18 @@ class WebappIndexer(MappingType, Indexable):
                               if obj.support_email else None)
         d['support_url'] = (unicode(obj.support_url)
                             if obj.support_url else None)
+
+        if obj.upsell:
+            upsell_obj = obj.upsell.premium
+            d['upsell'] = {
+                'id': upsell_obj.id,
+                'app_slug': upsell_obj.app_slug,
+                'icon_url': upsell_obj.get_icon_url(128),
+                # TODO: Store all localizations of upsell.name.
+                'name': unicode(upsell_obj.name),
+            }
+        else:
+            print "No upsell found"
 
         # Calculate regional popularity for "mature regions"
         # (installs + reviews/installs from that region).
