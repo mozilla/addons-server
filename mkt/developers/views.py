@@ -136,6 +136,7 @@ def edit(request, addon_id, addon, webapp=False):
 
 
 @dev_required(owner_for_post=True, webapp=True)
+@post_required
 def delete(request, addon_id, addon, webapp=False):
     # Database deletes only allowed for free or incomplete addons.
     if not addon.can_be_deleted():
