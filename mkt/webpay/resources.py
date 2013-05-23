@@ -102,7 +102,7 @@ class PriceResource(CORSResource, MarketplaceModelResource):
         filtering = {'pricePoint': 'exact'}
         include_resource_uri = False
         list_allowed_methods = ['get']
-        queryset = Price.objects.filter(active=True)
+        queryset = Price.objects.filter(active=True).order_by('price')
         resource_name = 'prices'
 
     def _get_prices(self, bundle):
