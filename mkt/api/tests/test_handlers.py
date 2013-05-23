@@ -404,7 +404,7 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         app = self.create_app()
         data = self.base_data()
         self.client.put(self.get_url, data=json.dumps(data))
-        res = self.client.get(get_url('privacy_policy', app.pk))
+        res = self.client.get(get_url('privacy', app.pk))
         eq_(res.json['privacy_policy'], data['privacy_policy'])
 
     def base_data(self):
