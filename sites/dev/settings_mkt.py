@@ -110,6 +110,7 @@ METRICS_SERVER = 'https://data.mozilla.com/'
 WEBAPPS_PUBLIC_KEY_DIRECTORY = NETAPP_STORAGE + '/public_keys'
 INAPP_IMAGE_PATH = NETAPP_STORAGE + '/inapp-image'
 PRODUCT_ICON_PATH = NETAPP_STORAGE + '/product-icons'
+DUMPED_APPS_PATH = NETAPP_STORAGE + '/dumped-apps'
 
 INAPP_KEY_PATHS = private_mkt.INAPP_KEY_PATHS
 
