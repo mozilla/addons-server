@@ -84,7 +84,10 @@ loggers = {
         'level': 'ERROR',
     },
     'newrelic': {
-        'level': 'INFO',
+        'level': 'WARNING',
+    },
+    'elasticutils': {
+        'level': 'WARNING',
     },
 }
 
