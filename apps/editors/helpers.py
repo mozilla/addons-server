@@ -353,14 +353,14 @@ def get_position(addon):
                 nomination_date = nomination
                 break
         total = qs.count()
-        days = 0
+        days = 1
         if nomination_date:
             # Estimated waiting time is calculated from the rolling average of
             # the queue waiting time in the past 30 days but subtracting from
             # it the number of days this app has already spent in the queue.
             days_in_queue = datetime.datetime.now() - nomination_date
             days = get_avg_app_waiting_time() - days_in_queue.days
-        return {'days': max(0, days), 'pos': position, 'total': total}
+        return {'days': days, 'pos': position, 'total': total}
     else:
         version = addon.latest_version
 

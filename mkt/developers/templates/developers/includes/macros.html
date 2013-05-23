@@ -103,15 +103,16 @@
       </{{ tag }}>
     {% endif %}
     <{{ tag }} class="queue-days">
-      {% if position.days %}
+      {% if position.days > 0 %}
         {% trans cnt=position.days, num=position.days|numberfmt %}
           <b>Estimated waiting time:</b> {{ num }} working day
         {% pluralize %}
           <b>Estimated waiting time:</b> {{ num }} working days
         {% endtrans %}
       {% else %}
-        {% trans %}
-          <b>Estimated waiting time:</b> 3-5 working days
+        {% trans email=emaillink(settings.MKT_REVIEWERS_EMAIL) %}
+          <b>Estimated waiting time:</b> Unknown
+          <span class="hint">(Please email {{ email }} for more information.)</span>
         {% endtrans %}
       {% endif %}
     </{{ tag }}>

@@ -1,5 +1,5 @@
 {% from 'developers/apps/listing/macros.html' import dev_heading %}
-{% from 'developers/includes/macros.html' import queue_position %}
+{% from 'developers/includes/macros.html' import queue_position with context %}
 {% from 'addons/macros.html' import price %}
 {% for addon in addons %}
   <div class="item addon" data-addonid="{{ addon.id }}">

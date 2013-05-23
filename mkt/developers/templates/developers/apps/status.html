@@ -1,5 +1,5 @@
 {% extends 'developers/base_impala.html' %}
-{% from 'developers/includes/macros.html' import queue_position %}
+{% from 'developers/includes/macros.html' import queue_position with context %}
 
 {% if addon.is_packaged %}
   {% set title = _('Manage Status & Versions') %}
