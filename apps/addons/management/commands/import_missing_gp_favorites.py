@@ -125,7 +125,7 @@ class Command(BaseCommand):
                 print '[ERROR] Could not add favourite: %s\n%e' % (data, e)
                 errored += 1
 
-            return added, ignored, errored
+        return added, ignored, errored
 
     def handle(self, *args, **options):
         t_total_start = time()
