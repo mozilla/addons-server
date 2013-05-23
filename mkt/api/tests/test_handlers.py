@@ -411,6 +411,15 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         res = self.client.get(get_url('privacy', app.pk))
         eq_(res.json['privacy_policy'], data['privacy_policy'])
 
+    def test_get_privacy_policy_slug(self):
+        app = self.create_app()
+        data = self.base_data()
+        self.client.put(self.get_url, data=json.dumps(data))
+        url = ('api_dispatch_detail',
+               {'resource_name': 'privacy', 'app_slug': app.app_slug})
+        res = self.client.get(url)
+        eq_(res.json['privacy_policy'], data['privacy_policy'])
+
     def base_data(self):
         return {'support_email': 'a@a.com',
                 'privacy_policy': 'wat',

@@ -353,7 +353,10 @@ class AppResource(CORSResource, MarketplaceModelResource):
 
     def override_urls(self):
         return [
-            urls.url(r"^%s/(?P<pk>\w[\w/-]*)/(?P<resource_name>privacy)%s$" % (
+            urls.url(r"^%s/(?P<pk>\d+)/(?P<resource_name>privacy)%s$" % (
+                self._meta.resource_name, trailing_slash()),
+            self.wrap_view('get_privacy_policy'), name="api_dispatch_detail"),
+            urls.url(r"^%s/(?P<app_slug>[^/<>\"']+)/(?P<resource_name>privacy)%s$" % (
                 self._meta.resource_name, trailing_slash()),
             self.wrap_view('get_privacy_policy'), name="api_dispatch_detail"),
         ]
