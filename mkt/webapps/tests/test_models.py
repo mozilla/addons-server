@@ -433,7 +433,7 @@ class TestWebapp(amo.tests.TestCase):
 
     def test_excluded_in(self):
         app1 = app_factory()
-        region = list(mkt.regions.ADULT_EXCLUDED)[0]
+        region = mkt.regions.BR
         AddonExcludedRegion.objects.create(addon=app1, region=region.id)
         eq_(Webapp.get_excluded_in(region), [app1.id])
 
