@@ -8,7 +8,7 @@ from nose.tools import eq_, ok_
 import amo
 import mkt.regions
 from addons.models import (AddonCategory, AddonDeviceType, AddonUpsell,
-                           Category, Flag)
+                           Category)
 from amo.tests import app_factory, ESTestCase
 from mkt.api.base import list_url
 from mkt.api.models import Access, generate
@@ -348,45 +348,3 @@ class TestCategoriesWithFeatured(BaseOAuth, ESTestCase):
         eq_(len(data['objects']), 2)
         eq_(len(data['featured']), 1)
         eq_(int(data['featured'][0]['id']), self.app.pk)
-
-
-class TestApiFlags(BaseOAuth, ESTestCase):
-    fixtures = fixture('webapp_337141')
-    url = list_url('search')
-
-    def setUp(self):
-        self.create_switch('search-api-es')
-        self.client = OAuthClient(None)
-        self.webapp = Webapp.objects.get(pk=337141)
-
-    def _flag(self, adult=False, child=False):
-        Flag.objects.create(addon=self.webapp, adult_content=adult,
-                            child_content=child)
-        self.webapp.save()
-        self.refresh('webapp')
-
-    def test_no_flags(self):
-        self.webapp.save()
-        self.refresh('webapp')
-        res = self.client.get(self.url + ({'q': 'something'},))
-        eq_(res.status_code, 200)
-        obj = json.loads(res.content)['objects'][0]
-        eq_(obj['slug'], self.webapp.app_slug)
-
-    def test_adult(self):
-        self._flag(adult=True)
-        res = self.client.get(self.url + (
-            {'q': 'something',
-             'region': list(mkt.regions.ADULT_EXCLUDED)[0].slug},))
-        eq_(res.status_code, 200)
-        objs = json.loads(res.content)['objects']
-        eq_(len(objs), 0, 'App with adult_content not removed from search.')
-
-    def test_child(self):
-        self._flag(child=True)
-        res = self.client.get(self.url + (
-            {'q': 'something',
-             'region': list(mkt.regions.CHILD_EXCLUDED)[0].slug},))
-        eq_(res.status_code, 200)
-        objs = json.loads(res.content)['objects']
-        eq_(len(objs), 0, 'App with child_content not removed from search.')

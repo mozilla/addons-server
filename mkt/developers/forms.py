@@ -21,7 +21,7 @@ import addons.forms
 from access import acl
 from addons.forms import icons, IconWidgetRenderer, slug_validator
 from addons.models import (Addon, AddonCategory, AddonUser, BlacklistedSlug,
-                           Category, CategorySupervisor, Flag, Preview)
+                           Category, CategorySupervisor, Preview)
 from addons.widgets import CategoriesSelectMultiple
 from amo import get_user
 from amo.fields import SeparatedValuesField
@@ -61,8 +61,8 @@ class AuthorForm(happyforms.ModelForm):
         user = self.cleaned_data['user']
         if not user.read_dev_agreement:
             raise forms.ValidationError(
-                _('All team members must have read and agreed to the developer '
-                  'agreement.'))
+                _('All team members must have read and agreed to the '
+                  'developer agreement.'))
 
         return user
 
@@ -292,8 +292,6 @@ class AdminSettingsForm(PreviewForm):
     app_ratings = forms.MultipleChoiceField(
         required=False,
         choices=RATINGS_BY_NAME)
-    child_content = forms.BooleanField(required=False)
-    adult_content = forms.BooleanField(required=False)
 
     class Meta:
         model = Preview
@@ -313,8 +311,6 @@ class AdminSettingsForm(PreviewForm):
 
         if self.instance:
             self.initial['mozilla_contact'] = addon.mozilla_contact
-            self.initial['adult_content'] = addon.has_flag('adult_content')
-            self.initial['child_content'] = addon.has_flag('child_content')
 
             rs = []
             for r in addon.content_ratings.all():
@@ -345,15 +341,6 @@ class AdminSettingsForm(PreviewForm):
             self.promo.delete()
         elif self.cleaned_data.get('upload_hash'):
             super(AdminSettingsForm, self).save(addon, True)
-
-        adult_content = self.cleaned_data.get('adult_content')
-        child_content = self.cleaned_data.get('child_content')
-        addon.flag, created = Flag.objects.safer_get_or_create(addon=addon,
-                            defaults={'adult_content': adult_content,
-                                      'child_content': child_content})
-        if not created:
-            addon.flag.update(adult_content=adult_content,
-                              child_content=child_content)
 
         contact = self.cleaned_data.get('mozilla_contact')
         if contact:

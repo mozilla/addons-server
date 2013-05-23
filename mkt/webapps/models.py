@@ -28,7 +28,7 @@ from access.acl import action_allowed, check_reviewer
 from addons import query
 from addons.models import (Addon, AddonDeviceType, attach_categories,
                            attach_devices, attach_prices, attach_translations,
-                           Category, Flag,
+                           Category,
                            update_search_index as amo_update_search_index)
 from addons.signals import version_changed
 from amo.decorators import skip_cache
@@ -47,7 +47,6 @@ from translations.fields import save_signal
 from versions.models import Version
 
 import mkt
-from mkt import regions
 from mkt.constants import APP_FEATURES, APP_IMAGE_SIZES, apps
 from mkt.webapps.utils import get_locale_properties, get_supported_locales
 from mkt.zadmin.models import FeaturedApp
@@ -596,19 +595,8 @@ class Webapp(Addon):
     @classmethod
     def get_excluded_in(cls, region):
         """Return IDs of Webapp objects excluded from a particular region."""
-        excluded = list(AddonExcludedRegion.objects.filter(region=region.id)
-                        .values_list('addon', flat=True))
-        q = models.Q()
-        if region.id in regions.ADULT_EXCLUDED_IDS:
-            q |= models.Q(adult_content=True)
-        if region.id in regions.CHILD_EXCLUDED_IDS:
-            q |= models.Q(child_content=True)
-
-        if q:
-            excluded += list(Flag.objects.filter(q)
-                             .values_list('addon', flat=True))
-
-        return list(set(excluded))
+        return list(AddonExcludedRegion.objects.filter(region=region.id)
+                    .values_list('addon', flat=True))
 
     @classmethod
     def from_search(cls, cat=None, region=None, gaia=False, mobile=False,
@@ -942,8 +930,6 @@ class WebappIndexer(MappingType, Indexable):
                     },
                     'description': {'type': 'string', 'analyzer': 'snowball'},
                     'device': {'type': 'byte'},
-                    'flag_adult': {'type': 'boolean'},
-                    'flag_child': {'type': 'boolean'},
                     'has_public_stats': {'type': 'boolean'},
                     'homepage': {'type': 'string', 'index': 'not_analyzed'},
                     'icons': {
@@ -1067,11 +1053,6 @@ class WebappIndexer(MappingType, Indexable):
         d['description'] = list(set(string for _, string
                                     in translations[obj.description_id]))
         d['device'] = getattr(obj, 'device_ids', [])
-        try:
-            d['flag_adult'] = obj.flag.adult_content
-            d['flag_child'] = obj.flag.child_content
-        except Flag.DoesNotExist:
-            d['flag_adult'] = d['flag_child'] = False
         d['has_public_stats'] = obj.public_stats
         # TODO: Store all localizations of homepage.
         d['homepage'] = unicode(obj.homepage) if obj.homepage else ''

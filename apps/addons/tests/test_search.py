@@ -2,8 +2,7 @@ from nose.tools import eq_
 
 import amo.tests
 from addons.models import (Addon, attach_categories, attach_devices,
-                           attach_prices, attach_tags, attach_translations,
-                           Flag)
+                           attach_prices, attach_tags, attach_translations)
 from addons.search import extract
 
 
@@ -29,15 +28,3 @@ class TestExtract(amo.tests.TestCase):
         extracted = self._extract()
         for attr in self.attrs:
             eq_(extracted[attr], getattr(self.addon, attr))
-
-    def test_flags(self):
-        Flag.objects.create(addon_id=3615, adult_content=True,
-                            child_content=False)
-        extracted = self._extract()
-        eq_(extracted['flag_adult'], True)
-        eq_(extracted['flag_child'], False)
-
-    def test_no_flags(self):
-        extracted = self._extract()
-        eq_(extracted['flag_adult'], False)
-        eq_(extracted['flag_child'], False)

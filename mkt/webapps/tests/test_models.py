@@ -19,8 +19,7 @@ from nose.tools import eq_, raises
 
 import amo
 from addons.models import (Addon, AddonCategory, AddonDeviceType,
-                           BlacklistedSlug, Category, Flag, Preview,
-                           version_changed)
+                           BlacklistedSlug, Category, Preview, version_changed)
 from addons.signals import version_changed as version_changed_signal
 from amo.helpers import absolutify
 from amo.tests import app_factory, version_factory
@@ -434,12 +433,9 @@ class TestWebapp(amo.tests.TestCase):
 
     def test_excluded_in(self):
         app1 = app_factory()
-        app2 = app_factory()
         region = list(mkt.regions.ADULT_EXCLUDED)[0]
         AddonExcludedRegion.objects.create(addon=app1, region=region.id)
-        Flag.objects.create(addon=app1, adult_content=True)
-        Flag.objects.create(addon=app2, adult_content=True)
-        eq_(Webapp.get_excluded_in(region), [app1.id, app2.id])
+        eq_(Webapp.get_excluded_in(region), [app1.id])
 
     def test_supported_locale_property(self):
         app = app_factory()

@@ -6,11 +6,10 @@ from django.db.models import Count
 
 import pyes.exceptions as pyes
 
-from addons.models import Persona
 import amo
 import amo.search
+from addons.models import Persona
 from amo.utils import create_es_index_if_missing
-from .models import Addon, Flag
 from bandwagon.models import Collection
 from compat.models import AppCompat
 from stats.models import ClientData
@@ -19,6 +18,8 @@ from versions.compare import version_int
 
 import mkt
 from mkt.webapps.models import Installed
+
+from .models import Addon
 
 
 log = logging.getLogger('z.es')
@@ -61,11 +62,6 @@ def extract(addon):
     except ObjectDoesNotExist:
         d['has_version'] = None
     d['app'] = [app.id for app in addon.compatible_apps.keys()]
-    try:
-        d['flag_adult'] = addon.flag.adult_content
-        d['flag_child'] = addon.flag.child_content
-    except Flag.DoesNotExist:
-        d['flag_adult'] = d['flag_child'] = False
 
     if addon.type == amo.ADDON_PERSONA:
         try:

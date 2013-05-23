@@ -9,7 +9,7 @@ from nose.tools import eq_
 import amo
 from access.models import Group, GroupUser
 from addons.models import (Addon, AddonDeviceType, AddonUpsell,
-                           AddonUser, Category, Flag, Preview)
+                           AddonUser, Category, Preview)
 from amo.tests import AMOPaths, app_factory
 from files.models import FileUpload
 from market.models import Price, AddonPremium
@@ -955,15 +955,6 @@ class TestAppDetail(BaseOAuth, AMOPaths):
         self.get_url[1]['pk'] = 1  # Not the PK of a real Webapp object
         res = self.client.get(self.get_url)
         eq_(res.status_code, 404)
-
-    def test_flagged(self):
-        # Acess a flagged app via API should 404.
-        Flag.objects.create(addon_id=337141, adult_content=True)
-        Webapp.objects.get(pk=337141).save()
-        res = self.client.get(
-            self.get_url,
-            data={'region': list(regions.ADULT_EXCLUDED)[0].slug})
-        eq_(res.status_code, 451)
 
     def test_packaged_manifest_url(self):
         app = Webapp.objects.get(pk=337141)

@@ -105,23 +105,3 @@ class TestSearchFilters(BaseOAuth):
     def test_app_type(self):
         qs = self._filter(self.req, {'app_type': 'hosted'})
         ok_({'term': {'app_type': 1}} in qs['filter']['and'])
-
-    def test_region(self):
-        # Test regions that affect search filters.
-
-        # Test region with no filters.
-        qs = self._filter(self.req, {'q': 'yolo'})
-        qs_str = json.dumps(qs)
-        ok_('not' not in qs_str)
-
-        # Test child-excluded region.
-        set_region(list(regions.CHILD_EXCLUDED)[0].slug)
-        qs = self._filter(self.req, {'q': 'yolo'})
-        ok_({'not': {'filter': {'term': {'flag_child': True}}}}
-            in qs['filter']['and'])
-
-        # Test adult-excluded region.
-        set_region(list(regions.ADULT_EXCLUDED)[0].slug)
-        qs = self._filter(self.req, {'q': 'yolo'})
-        ok_({'not': {'filter': {'term': {'flag_adult': True}}}}
-            in qs['filter']['and'])
