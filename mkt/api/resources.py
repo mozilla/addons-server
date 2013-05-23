@@ -364,7 +364,7 @@ class AppResource(CORSResource, MarketplaceModelResource):
     def get_privacy_policy(self, request, **kwargs):
         return PrivacyPolicyResource().dispatch('detail', request, **kwargs)
 
-class PrivacyPolicyResource(MarketplaceModelResource):
+class PrivacyPolicyResource(CORSResource, MarketplaceModelResource):
 
     class Meta(MarketplaceResource.Meta):
         api_name = 'apps'
