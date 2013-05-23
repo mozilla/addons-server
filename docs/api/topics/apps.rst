@@ -99,7 +99,7 @@ App
             ],
             "price": null,
             "price_locale": null,
-            "privacy_policy": "/api/v1/apps/app/24/privacy_policy/",
+            "privacy_policy": "/api/v1/apps/app/24/privacy/",
             "public_stats": false,
             "ratings": {
                 "average": 0.0,
@@ -162,7 +162,7 @@ App
     :param boolean user > purchased: true if the user has purchased the app from
         the marketplace.
 
-.. http:get:: /api/v1/apps/(int:id)|(string:slug)/privacy_policy/
+.. http:get:: /api/v1/apps/(int:id)|(string:slug)/privacy/
 
     **Response**
 

@@ -333,7 +333,7 @@ class AppResource(CORSResource, MarketplaceModelResource):
         bundle.data.update(app_to_dict(obj,
             currency=bundle.request.REGION.default_currency, profile=amo_user))
         bundle.data['upsell'] = False
-        bundle.data['privacy_policy'] = self.get_resource_uri(bundle) + 'privacy_policy/'
+        bundle.data['privacy_policy'] = PrivacyPolicyResource().get_resource_uri(bundle)
         if obj.upsell:
             upsell_bundle = Bundle(obj=obj.upsell.premium,
                                    request=bundle.request)
@@ -358,7 +358,7 @@ class AppResource(CORSResource, MarketplaceModelResource):
 
     def override_urls(self):
         return [
-            urls.url(r"^%s/(?P<pk>\w[\w/-]*)/(?P<resource_name>privacy_policy)%s$" % (
+            urls.url(r"^%s/(?P<pk>\w[\w/-]*)/(?P<resource_name>privacy)%s$" % (
                 self._meta.resource_name, trailing_slash()),
             self.wrap_view('get_privacy_policy'), name="api_dispatch_detail"),
         ]
@@ -376,7 +376,7 @@ class PrivacyPolicyResource(MarketplaceModelResource):
         always_return_data = True
         authentication = OptionalOAuthAuthentication()
         authorization = AppOwnerAuthorization()
-        resource_name = 'privacy_policy'
+        resource_name = 'privacy'
         serializer = Serializer(formats=['json'])
         slug_lookup = 'app_slug'
         # Throttle users without Apps:APIUnthrottled at 10 POST requests/day.
