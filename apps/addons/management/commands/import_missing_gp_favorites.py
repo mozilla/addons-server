@@ -122,7 +122,7 @@ class Command(BaseCommand):
                 print '[ADDED] Favourite added: %s' % data
                 added += 1
             except IntegrityError, e:
-                print '[ERROR] Could not add favourite: %s\n%e' % (data, e)
+                print '[ERROR] Could not add favourite: %s\n%s' % (data, e)
                 errored += 1
 
         return added, ignored, errored
