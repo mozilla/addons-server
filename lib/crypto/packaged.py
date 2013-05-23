@@ -1,3 +1,4 @@
+import json
 import os
 import shutil
 
@@ -22,7 +23,7 @@ class SigningError(Exception):
     pass
 
 
-def sign_app(src, dest, reviewer=False):
+def sign_app(src, dest, ids, reviewer=False):
     """
     Generate a manifest and signature and send signature to signing server to
     be signed.
@@ -38,6 +39,7 @@ def sign_app(src, dest, reviewer=False):
     try:
         jar = JarExtractor(
             storage.open(src, 'r'), storage.open(dest, 'w'),
+            ids,
             omit_signature_sections=settings.SIGNED_APPS_OMIT_PER_FILE_SIGS)
     except:
         log.error('Archive extraction failed. Bad archive?', exc_info=True)
@@ -139,9 +141,13 @@ def sign(version_id, reviewer=False, resign=False, **kw):
         log.info('[Webapp:%s] Already signed app exists.' % app.id)
         return path
 
+    ids = json.dumps({
+        'id': app.guid,
+        'version': version_id
+    })
     with statsd.timer('services.sign.app'):
         try:
-            sign_app(file_obj.file_path, path, reviewer)
+            sign_app(file_obj.file_path, path, ids, reviewer)
         except SigningError:
             log.info('[Webapp:%s] Signing failed' % app.id)
             if storage.exists(path):

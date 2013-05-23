@@ -8,6 +8,7 @@ import unicodedata
 import uuid
 import shutil
 import stat
+import tempfile
 import time
 import zipfile
 
@@ -492,36 +493,6 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
                 self.write_watermarked_addon(dest, data)
 
         return dest
-
-    def inject_ids(self):
-        """
-        For packaged webapps, adds a META-INF/ids.json file with a JSON
-        document like the following:
-            {"id": "6106d3b3-881a-4ddf-9dec-6b2bf8ff8341",
-             "version": 42}
-        """
-        app = self.version.addon
-        if not (app.type == amo.ADDON_WEBAPP and app.is_packaged):
-            return
-
-        filename = 'META-INF/ids.json'
-        ids = {
-            'id': app.guid,
-            'version': self.version_id,
-        }
-        zf = SafeUnzip(self.file_path, mode='a')
-        zf.is_valid()
-
-        # Check if there's already a META-INF/ids.json.
-        try:
-            zf.zip.getinfo(filename)
-            zf.close()
-            return
-        except KeyError:
-            pass  # Not found, we need to add it.
-
-        zf.zip.writestr(filename, json.dumps(ids))
-        zf.close()
 
 
 @receiver(models.signals.post_save, sender=File,
