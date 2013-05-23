@@ -544,6 +544,7 @@ class ThemeForm(ThemeFormBase):
         addon.name = {'en-US': data['name']}
         if data.get('summary'):
             addon.description = {'en-US': data['summary']}
+            addon.summary = data['summary']
         addon._current_version = Version.objects.create(addon=addon,
                                                         version='0')
         addon.save()
