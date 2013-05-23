@@ -112,17 +112,20 @@ def sign(version_id, reviewer=False, resign=False, **kw):
     log.info('Signing version: %s of app: %s' % (version_id, app))
 
     if not app.type == amo.ADDON_WEBAPP:
-        log.error('Attempt to sign something other than an app.')
+        log.error('[Webapp:%s] Attempt to sign something other than an app.' %
+                  app.id)
         raise SigningError('Not an app')
 
     if not app.is_packaged:
-        log.error('Attempt to sign a non-packaged app.')
+        log.error('[Webapp:%s] Attempt to sign a non-packaged app.' % app.id)
         raise SigningError('Not packaged')
 
     try:
         file_obj = version.all_files[0]
     except IndexError:
-        log.error('Attempt to sign an app with no files in version.')
+        log.error(
+            '[Webapp:%s] Attempt to sign an app with no files in version.' %
+            app.id)
         raise SigningError('No file')
 
     path = (file_obj.signed_reviewer_file_path if reviewer else
@@ -133,7 +136,7 @@ def sign(version_id, reviewer=False, resign=False, **kw):
         except OSError:
             pass
     elif storage.exists(path):
-        log.info('Already signed app exists.')
+        log.info('[Webapp:%s] Already signed app exists.' % app.id)
         return path
 
     file_obj.inject_ids()
@@ -142,8 +145,9 @@ def sign(version_id, reviewer=False, resign=False, **kw):
         try:
             sign_app(file_obj.file_path, path, reviewer)
         except SigningError:
+            log.info('[Webapp:%s] Signing failed' % app.id)
             if storage.exists(path):
                 storage.delete(path)
             raise
-    log.info('Signing complete.')
+    log.info('[Webapp:%s] Signing complete.' % app.id)
     return path
