@@ -133,3 +133,19 @@ Feedback
 
     :status 201: successfully completed.
     :status 429: exceeded rate limit.
+
+Newsletter signup
+=================
+
+This resource requests that the current user be subscribed to the
+Marketplace newsletter.
+
+.. http:post:: /api/v1/account/newsletter/
+
+   **Request**
+
+   :param email: The email address to send newsletters to.
+
+   **Response**
+
+   :status 204: Successfully signed up.

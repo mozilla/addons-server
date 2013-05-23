@@ -6,6 +6,7 @@ from functools import partial
 from django.conf import settings
 from django.contrib.auth.signals import user_logged_in
 
+import basket
 import commonware.log
 from django_statsd.clients import statsd
 from tastypie import fields, http
@@ -224,3 +225,21 @@ class FeedbackResource(PotatoCaptchaResource, CORSResource,
         self._send_email(bundle)
 
         return bundle
+
+
+class NewsletterResource(CORSResource, MarketplaceResource):
+    email = fields.CharField(attribute='email')
+    class Meta(MarketplaceResource.Meta):
+        list_allowed_methods = ['post']
+        detail_allowed_methods = []
+        resource_name = 'newsletter'
+        authorization = Authorization()
+        authentication = (SharedSecretAuthentication(), OAuthAuthentication())
+
+    def post_list(self, request, **kwargs):
+        data = self.deserialize(request, request.raw_post_data,
+                                format='application/json')
+        basket.subscribe(data['email'], 'marketplace',
+                         format='H', country=request.REGION.slug,
+                         lang=request.LANG, optin='Y',
+                         trigger_welcome='Y')

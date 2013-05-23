@@ -320,3 +320,20 @@ class TestFeedbackHandler(ThrottleTests, TestPotatoCaptcha, BaseOAuth):
         res, data = self._call(data={'feedback': None})
         eq_(400, res.status_code)
         assert 'feedback' in data['error_message']
+
+
+class TestNewsletter(BaseOAuth):
+    def setUp(self):
+        super(TestNewsletter, self).setUp(api_name='account')
+
+    @patch('basket.subscribe')
+    def test_signup(self, subscribe):
+        res = self.client.post(list_url('newsletter'))
+        eq_(res.status_code, 400)
+        res = self.client.post(list_url('newsletter'),
+                               data=json.dumps({'email': 'bob@example.com'}))
+        eq_(res.status_code, 204)
+        subscribe.assert_called_with(
+            'bob@example.com', 'marketplace', lang='en-US', country='us',
+            trigger_welcome='Y', optin='Y', format='H')
+

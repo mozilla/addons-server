@@ -7,7 +7,7 @@ from amo.decorators import login_required
 from lib.misc.urlconf_decorator import decorate
 from mkt.account.api import (AccountResource, FeedbackResource,
                              InstalledResource, LoginResource,
-                             PermissionResource)
+                             NewsletterResource, PermissionResource)
 from . import views
 
 settings_patterns = patterns('',
@@ -55,6 +55,7 @@ account.register(FeedbackResource())
 account.register(InstalledResource())
 account.register(LoginResource())
 account.register(PermissionResource())
+account.register(NewsletterResource())
 
 api_patterns = patterns('',
     url('^', include(account.urls)),
