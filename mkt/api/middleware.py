@@ -128,7 +128,7 @@ class APIFilterMiddleware(object):
     to API requests.
     """
     def process_response(self, request, response):
-        if getattr(request, 'API', False):
+        if getattr(request, 'API', False) and response.status_code < 500:
             devices = []
             for device in ('GAIA', 'MOBILE', 'TABLET'):
                 if getattr(request, device, False):

@@ -1,7 +1,7 @@
 from urlparse import parse_qs
 
 from django.conf import settings
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseServerError
 
 import mock
 from multidb import this_thread_is_pinned
@@ -127,7 +127,7 @@ class TestFilterMiddleware(amo.tests.TestCase):
         self.factory = RequestFactory()
 
     def _header(self, url='/', api=True, region=mkt.regions.US, lang='en-US',
-                gaia=True, tablet=True, mobile=True):
+                gaia=True, tablet=True, mobile=True, response_cls=HttpResponse):
         self.request = self.factory.get(url)
         self.request.API = api
         self.request.REGION = region
@@ -135,8 +135,8 @@ class TestFilterMiddleware(amo.tests.TestCase):
         self.request.GAIA = gaia
         self.request.TABLET = tablet
         self.request.MOBILE = mobile
-        res = self.middleware.process_response(self.request, HttpResponse())
-        if api:
+        res = self.middleware.process_response(self.request, response_cls())
+        if api and response_cls.status_code < 500:
             header = res.get('API-Filter')
             assert 'vary' in res._headers
             eq_(res._headers['vary'][1], 'API-Filter')
@@ -196,3 +196,6 @@ class TestFilterMiddleware(amo.tests.TestCase):
     def test_no_lang(self):
         header = self._header(lang=None)
         assert 'lang' not in header
+
+    def test_500(self):
+        self._header(response_cls=HttpResponseServerError)
