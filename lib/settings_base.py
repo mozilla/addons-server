@@ -728,6 +728,7 @@ MINIFY_BUNDLES = {
             'js/impala/ajaxcache.js',
             'js/zamboni/helpers.js',
             'js/zamboni/global.js',
+            'js/lib/stick.js',
             'js/impala/global.js',
             'js/common/ratingwidget.js',
             'js/lib/jquery-ui/jqModal.js',
@@ -781,7 +782,6 @@ MINIFY_BUNDLES = {
 
             # Fix-up outgoing links
             'js/zamboni/outgoing_links.js',
-            'js/lib/stick.js',
         ),
         'zamboni/discovery': (
             'js/lib/jquery-1.6.4.js',
