@@ -63,7 +63,7 @@ class Command(BaseCommand):
                 'SELECT addon_id FROM personas WHERE persona_id = %s',
                 persona_id)
             try:
-                self.addons[persona_id] = self.cursor.fetchone()[0]
+                self.addons[persona_id] = self.cursor_z.fetchone()[0]
             except:
                 print('[ERROR] Could not find add-on with persona_id "%s"' %
                       persona_id)
