@@ -24,7 +24,6 @@ from files.models import FileUpload
 from lib.es.utils import get_indices
 from users.utils import get_task_user
 
-from mkt.api.resources import AppResource
 from mkt.constants.regions import WORLDWIDE
 from mkt.developers.tasks import _fetch_manifest, validator
 from mkt.webapps.models import Webapp, WebappIndexer
@@ -290,6 +289,8 @@ def unindex_webapps(ids, **kw):
 
 @task
 def dump_app(id, **kw):
+    # Because @robhudson told me to.
+    from mkt.api.resources import AppResource
     # Note: not using storage because all these operations should be local.
     target_dir = os.path.join(settings.DUMPED_APPS_PATH, 'apps',
                               str(id / 1000))
