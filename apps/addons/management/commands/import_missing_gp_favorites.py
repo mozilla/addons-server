@@ -95,6 +95,8 @@ class Command(BaseCommand):
             if not addon_id:
                 print('[ERROR] Could not add favourite "%s" because of bad '
                       'persona_id' % persona_id)
+                errored += 1
+                continue
 
             coll = CollectionAddon.objects.filter(collection_id=faves_id,
                 addon_id=addon_id)
