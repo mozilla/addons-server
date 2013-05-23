@@ -81,7 +81,7 @@ class Command(BaseCommand):
             'ORDER BY username, id LIMIT %s OFFSET %s' % (limit, offset))
         favorites = self.cursor.fetchall()
 
-        for gp_username, persona_id, added in favorites:
+        for gp_username, persona_id, date_added in favorites:
             profile = self.get_user_by_gp_username(gp_username)
             if not profile:
                 print('[ERROR] Could not add favourite "%s" because of bad '
@@ -105,7 +105,7 @@ class Command(BaseCommand):
                 continue
 
             data = {
-                'added': added,
+                'date_added': date_added,
                 'addon_id': addon_id,
                 'persona_id': persona_id,
                 'collection_id': faves_id,
@@ -116,9 +116,9 @@ class Command(BaseCommand):
                 self.cursor_z.execute("""
                     INSERT INTO addons_collections
                     (created, modified, addon_id, collection_id, user_id)
-                    VALUES (%(added)s, %(added)s, %(addon_id)s,
+                    VALUES (%(date_added)s, %(date_added)s, %(addon_id)s,
                             %(collection_id)s, %(user_id)s)
-                """ % data)
+                """, data)
                 print '[ADDED] Favourite added: %s' % data
                 added += 1
             except IntegrityError, e:
