@@ -244,6 +244,16 @@ $(document).ready(function() {
         }
     });
 
+    $('#enable-addon').bind('click', _pd(function() {
+        $.ajax({
+            'type': 'POST',
+            'url': $(this).attr('href'),
+            'success': function() {
+                window.location.reload();
+            }
+        });
+    }));
+
     if (document.getElementById('version-list')) {
         var status = $('#version-status').data('status');
         var versions = $('#modal-delete-version').data('versions');

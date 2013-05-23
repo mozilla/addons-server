@@ -302,6 +302,16 @@ $(document).ready(function() {
         }
     });
 
+    $('#enable-addon').bind('click', _pd(function() {
+        $.ajax({
+            'type': 'POST',
+            'url': $(this).attr('href'),
+            'success': function() {
+                window.location.reload();
+            }
+        });
+    }));
+
     // In-app payments config.
     if ($('#in-app-config').length) {
         initInAppConfig($('#in-app-config'));
