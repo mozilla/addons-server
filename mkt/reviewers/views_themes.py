@@ -380,7 +380,7 @@ def themes_history(request, username):
             action=amo.LOG.THEME_REVIEW.id, user__username=username), 20),
         'user_history': True,
         'username': username,
-        'reject_reasons': rvw.THEME_REJECT_REASONS.items(),
+        'reject_reasons': rvw.THEME_REJECT_REASONS,
         'action_dict': rvw.REVIEW_ACTIONS,
     }))
 

@@ -16,18 +16,22 @@
         {% set details = theme_review.details %}
         <tr>
           <td>{{ theme_review.created|datetime('%Y-%m-%d') }}</td>
-          {% if not user_history %}<td>{{ theme_review.user.display_name }}</td>
+          {% if not user_history %}
+            <td>{{ theme_review.user.display_name }}</td>
           {% else %}
             <td>
+             {% if theme_review.arguments %}
               <a href="{{ url('reviewers.themes.single', theme_review.arguments[0].slug) }}">
-                {{ theme_review.arguments[0].name }}
-              </a>
+                {{ theme_review.arguments[0].name }}</a>
+             {% else %}
+               {{ _('Deleted') }}
+             {% endif %}
             </td>
           {% endif %}
           <td>{{ action_dict[details.action] }}</td>
           <td>
             {% if details.reject_reason not in ('', None) %}
-              {{ reject_reasons[details.reject_reason][1] }}
+              {{ reject_reasons[details.reject_reason] }}
             {% endif %}
           </td>
           <td>{{ details.comment }}</td>
