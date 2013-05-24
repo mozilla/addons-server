@@ -27,7 +27,6 @@ def send_mail(cleaned_data, theme_lock):
         reason = _('Duplicate Submission')
 
     emails = set(theme.addon.authors.values_list('email', flat=True))
-    cc = settings.THEMES_EMAIL
     context = {
         'theme': theme,
         'base_url': settings.SITE_URL,
@@ -55,7 +54,6 @@ def send_mail(cleaned_data, theme_lock):
 
         # Send the flagged email to themes email.
         emails = [settings.THEMES_EMAIL]
-        cc = None
 
     elif action == rvw.ACTION_MOREINFO:
         subject = _('A question about your Theme submission')
@@ -63,8 +61,7 @@ def send_mail(cleaned_data, theme_lock):
         context['reviewer_email'] = theme_lock.reviewer.email
 
     send_mail_jinja(subject, template, context,
-                    recipient_list=emails, cc=cc,
-                    from_email=settings.ADDONS_EMAIL,
+                    recipient_list=emails, from_email=settings.ADDONS_EMAIL,
                     headers={'Reply-To': settings.THEMES_EMAIL})
 
 

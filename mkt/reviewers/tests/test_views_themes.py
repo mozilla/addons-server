@@ -234,7 +234,7 @@ class ThemeReviewTestMixin(object):
                  'base_url': 'http://testserver'},
                 headers={'Reply-To': settings.THEMES_EMAIL},
                 from_email=settings.ADDONS_EMAIL,
-                recipient_list=set([]), cc=settings.THEMES_EMAIL),
+                recipient_list=set([])),
             mock.call(
                 'Theme submission flagged for review',
                 'reviewers/themes/emails/flag_reviewer.html',
@@ -244,7 +244,7 @@ class ThemeReviewTestMixin(object):
                  'base_url': 'http://testserver'},
                 headers={'Reply-To': settings.THEMES_EMAIL},
                 from_email=settings.ADDONS_EMAIL,
-                recipient_list=[settings.THEMES_EMAIL], cc=None),
+                recipient_list=[settings.THEMES_EMAIL]),
             mock.call(
                 'A problem with your Theme submission',
                 'reviewers/themes/emails/reject.html',
@@ -254,7 +254,7 @@ class ThemeReviewTestMixin(object):
                  'base_url': 'http://testserver'},
                 headers={'Reply-To': settings.THEMES_EMAIL},
                 from_email=settings.ADDONS_EMAIL,
-                recipient_list=set([]), cc=settings.THEMES_EMAIL),
+                recipient_list=set([])),
             mock.call(
                 'A problem with your Theme submission',
                 'reviewers/themes/emails/reject.html',
@@ -264,7 +264,7 @@ class ThemeReviewTestMixin(object):
                  'base_url': 'http://testserver'},
                 headers={'Reply-To': settings.THEMES_EMAIL},
                 from_email=settings.ADDONS_EMAIL,
-                recipient_list=set([]), cc=settings.THEMES_EMAIL),
+                recipient_list=set([])),
             mock.call(
                 'Thanks for submitting your Theme',
                 'reviewers/themes/emails/approve.html',
@@ -274,7 +274,7 @@ class ThemeReviewTestMixin(object):
                  'base_url': 'http://testserver'},
                 headers={'Reply-To': settings.THEMES_EMAIL},
                 from_email=settings.ADDONS_EMAIL,
-                recipient_list=set([]), cc=settings.THEMES_EMAIL)
+                recipient_list=set([]))
         ]
         if self.rereview:
             eq_(send_mail_jinja_mock.call_args_list[0], expected_calls[2])
