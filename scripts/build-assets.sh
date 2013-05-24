@@ -50,5 +50,5 @@ git submodule --quiet sync && git submodule update --init --recursive
 
 echo "building assets..." `date`
 
-python manage.py compress_assets --update-only
+python manage.py compress_assets
 exit $?
