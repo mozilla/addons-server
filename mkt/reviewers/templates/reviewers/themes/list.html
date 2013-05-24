@@ -69,7 +69,8 @@
                 </a>
               </td>
               <td>
-                {% if hasOneToOne(qa.persona, 'themelock') %}
+                {% if hasOneToOne(qa.persona, 'themelock')
+                   and not is_expired_lock(qa.persona.themelock) %}
                   {{ emaillink(qa.persona.themelock.reviewer.email) }}
                 {% endif %}
               </td>

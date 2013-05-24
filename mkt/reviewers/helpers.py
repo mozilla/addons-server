@@ -1,3 +1,4 @@
+import datetime
 import urlparse
 
 from django.utils.encoding import smart_str
@@ -91,8 +92,7 @@ def queue_tabnav(context):
         if acl.action_allowed(context['request'], 'Apps', 'ReviewEscalated'):
             rv.append(('reviewers.apps.queue_escalated', 'escalated',
                        _('Escalations ({0})', counts['escalated']).format(
-                       counts['escalated']))
-            )
+                       counts['escalated'])))
         rv.extend([
             ('reviewers.apps.queue_moderated', 'moderated',
              _('Moderated Reviews ({0})', counts['moderated'])
@@ -179,3 +179,9 @@ def hasOneToOne(context, obj, attr):
         return True
     except ObjectDoesNotExist:
         return False
+
+
+@register.function
+@jinja2.contextfunction
+def is_expired_lock(context, lock):
+    return lock.expiry < datetime.datetime.now()

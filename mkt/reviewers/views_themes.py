@@ -264,8 +264,11 @@ def themes_commit(request):
 def release_locks(request):
     ThemeLock.objects.filter(reviewer=request.user.get_profile()).delete()
     amo.messages.success(
-        request, _('Your theme locks have successfully been released. '
-                   'Other reviewers may now review those released themes.'))
+        request,
+        _('Your theme locks have successfully been released. '
+          'Other reviewers may now review those released themes. '
+          'You may have to refresh the page to see the changes reflected in '
+          'the table below.'))
     return redirect(reverse('reviewers.themes.list'))
 
 
