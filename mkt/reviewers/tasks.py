@@ -3,6 +3,7 @@ from django.conf import settings
 from celeryutils import task
 from tower import ugettext as _
 
+from addons.tasks import create_persona_preview_images
 import amo
 from amo.storage_utils import move_stored_file
 from amo.utils import LocalFileStorage, send_mail_jinja
@@ -81,6 +82,12 @@ def approve_rereview(theme):
     move_stored_file(
         reupload.footer_path, reupload.theme.footer_path,
         storage=storage)
+    create_persona_preview_images(
+        src=reupload.theme.header_path,
+        full_dst=[
+            reupload.theme.header_path.replace('header', 'preview'),
+            reupload.theme.header_path.replace('header', 'icon')],
+        set_modified_on=[reupload.theme.addon])
     rereview.delete()
 
 

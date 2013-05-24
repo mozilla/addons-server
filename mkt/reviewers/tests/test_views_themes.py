@@ -158,8 +158,10 @@ class ThemeReviewTestMixin(object):
 
     @mock.patch.object(settings, 'LOCAL_MIRROR_URL', '')
     @mock.patch('mkt.reviewers.tasks.send_mail_jinja')
+    @mock.patch('mkt.reviewers.tasks.create_persona_preview_images')
     @mock.patch('amo.storage_utils.copy_stored_file')
-    def test_commit(self, copy_file_mock, send_mail_jinja_mock):
+    def test_commit(self, copy_file_mock, create_preview_mock,
+                    send_mail_jinja_mock):
         for x in range(5):
             self.theme_factory()
         count = Persona.objects.count()
@@ -205,6 +207,11 @@ class ThemeReviewTestMixin(object):
             assert '/header' in copy_file_mock.call_args_list[0][0][1]
             assert '/pending_footer' in copy_file_mock.call_args_list[1][0][0]
             assert '/footer' in copy_file_mock.call_args_list[1][0][1]
+
+            create_preview_args = create_preview_mock.call_args_list[0][1]
+            assert '/header' in create_preview_args['src']
+            assert '/preview' in create_preview_args['full_dst'][0]
+            assert '/icon' in create_preview_args['full_dst'][1]
 
             # Only two since reuploaded themes are not flagged/moreinfo'ed.
             eq_(RereviewQueueTheme.objects.count(), 2)
