@@ -1374,6 +1374,8 @@ ES_INDEXES = {'default': 'addons',
               'stats_collections_counts': 'addons_stats',
               'users_install': 'addons_stats'}
 ES_TIMEOUT = 30
+ES_DEFAULT_NUM_REPLICAS = 2
+ES_DEFAULT_NUM_SHARDS = 5
 
 # Default AMO user id to use for tasks.
 TASK_USER_ID = 4757633

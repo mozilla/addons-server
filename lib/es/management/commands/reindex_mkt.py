@@ -36,8 +36,6 @@ logger = logging.getLogger('z.elasticsearch')
 
 
 # The subset of settings.ES_INDEXES we are concerned with.
-DEFAULT_NUM_REPLICAS = 2
-DEFAULT_NUM_SHARDS = 5
 ALIAS = settings.ES_INDEXES['webapp']
 
 if hasattr(settings, 'ES_URLS'):
@@ -215,8 +213,9 @@ class Command(BaseCommand):
         else:
             s = {}
 
-        num_replicas = s.get('number_of_replicas', DEFAULT_NUM_REPLICAS)
-        num_shards = s.get('number_of_shards', DEFAULT_NUM_SHARDS)
+        num_replicas = s.get('number_of_replicas',
+                             settings.ES_DEFAULT_NUM_REPLICAS)
+        num_shards = s.get('number_of_shards', settings.ES_DEFAULT_NUM_SHARDS)
 
         # Start our chain of events to re-index.
         tree = TaskTree()

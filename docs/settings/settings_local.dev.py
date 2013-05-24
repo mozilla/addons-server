@@ -35,7 +35,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'USER': 'root',
         'PASSWORD': '',
-        'OPTIONS':  {'init_command': 'SET storage_engine=InnoDB'},
+        'OPTIONS': {'init_command': 'SET storage_engine=InnoDB'},
         'TEST_CHARSET': 'utf8',
         'TEST_COLLATION': 'utf8_general_ci',
     },
@@ -89,3 +89,7 @@ APP_PURCHASE_SECRET = 'This secret must match your webpay SECRET'
 # Assuming you did `npm install` (and not `-g`) like you were supposed to,
 # this will be the path to the `stylus` executable.
 STYLUS_BIN = path('node_modules/stylus/bin/stylus')
+
+# Locally we typically don't run more than 1 elasticsearch node. So we set
+# replicas to zero.
+ES_DEFAULT_NUM_REPLICAS = 0
