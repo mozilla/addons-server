@@ -87,6 +87,7 @@ class TestApi(BaseOAuth, ESTestCase):
             eq_(obj['app_type'], self.webapp.app_type)
             eq_(obj['content_ratings'], None)
             eq_(obj['current_version']['version'], u'1.0')
+            eq_(obj['description'], unicode(self.webapp.description))
             eq_(obj['icons']['128'], self.webapp.get_icon_url(128))
             eq_(obj['id'], str(self.webapp.id))
             eq_(obj['manifest_url'], self.webapp.get_manifest_url())
@@ -95,6 +96,7 @@ class TestApi(BaseOAuth, ESTestCase):
             eq_(obj['ratings'], {'average': 0.0, 'count': 0})
             eq_(obj['resource_uri'], '/api/v1/apps/app/337141/')
             eq_(obj['slug'], self.webapp.app_slug)
+            eq_(obj['summary'], u'')
 
             # These only exists if requested by a reviewer.
             ok_('latest_version_status' not in obj)

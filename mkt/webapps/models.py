@@ -966,6 +966,8 @@ class WebappIndexer(MappingType, Indexable):
                         }
                     },
                     'status': {'type': 'byte'},
+                    # TODO: Remove when bug 862603 lands.
+                    'summary': {'type': 'string', 'analyzer': 'snowball'},
                     'support_email': {'type': 'string',
                                       'index': 'not_analyzed'},
                     'support_url': {'type': 'string',
@@ -1000,10 +1002,11 @@ class WebappIndexer(MappingType, Indexable):
                 _locale_field_mapping('name', analyzer))
             mapping[doc_type]['properties'].update(
                 _locale_field_mapping('description', analyzer))
+            mapping[doc_type]['properties'].update(
+                _locale_field_mapping('summary', analyzer))
 
         # TODO: boolean mappings for mkt.constants.features (bug 862479)
         # TODO: reviewer flags (bug 848446)
-        # TODO: privacy_policy (bug 870557)
 
         return mapping
 
@@ -1051,7 +1054,7 @@ class WebappIndexer(MappingType, Indexable):
                 'version': None,
                 'release_notes': None,
             }
-        d['description'] = list(set(string for _, string
+        d['description'] = list(set(s for _, s
                                     in translations[obj.description_id]))
         d['device'] = getattr(obj, 'device_ids', [])
         d['has_public_stats'] = obj.public_stats
@@ -1080,6 +1083,8 @@ class WebappIndexer(MappingType, Indexable):
             'average': obj.average_rating,
             'count': obj.total_reviews,
         }
+        # TODO: Remove when bug 862603 lands.
+        d['summary'] = list(set(s for _, s in translations[obj.summary_id]))
         d['support_email'] = (unicode(obj.support_email)
                               if obj.support_email else None)
         d['support_url'] = (unicode(obj.support_url)
@@ -1122,6 +1127,10 @@ class WebappIndexer(MappingType, Indexable):
             d['description_' + analyzer] = list(
                 set(string for locale, string
                     in translations[obj.description_id]
+                    if locale.lower() in languages))
+            d['summary_' + analyzer] = list(
+                set(string for locale, string
+                    in translations[obj.summary_id]
                     if locale.lower() in languages))
 
         return d

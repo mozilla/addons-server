@@ -141,7 +141,7 @@ def get_attr_lang(src, attr):
 
     value = (src.get('%s_%s' % (attr, req_lang)) or
              src.get('%s_%s' % (attr, def_lang)))
-    return value[0] if value else ''
+    return value[0] if value else u''
 
 
 def es_app_to_dict(obj, currency=None, profile=None):
@@ -178,6 +178,7 @@ def es_app_to_dict(obj, currency=None, profile=None):
         'name': get_attr_lang(src, 'name'),
         'premium_type': amo.ADDON_PREMIUM_API[src['premium_type']],
         'public_stats': obj.has_public_stats,
+        'summary': get_attr_lang(src, 'summary'),
         'slug': obj.app_slug,
     })
 
