@@ -136,8 +136,10 @@ def get_attr_lang(src, attr):
     threadlocal and gets the localized value, defaulting to
     settings.LANGUAGE_CODE.
     """
-    req_lang = amo.SEARCH_LANGUAGE_TO_ANALYZER.get(translation.get_language())
-    def_lang = amo.SEARCH_LANGUAGE_TO_ANALYZER.get(settings.LANGUAGE_CODE)
+    req_lang = amo.SEARCH_LANGUAGE_TO_ANALYZER.get(
+        translation.get_language().lower())
+    def_lang = amo.SEARCH_LANGUAGE_TO_ANALYZER.get(
+        settings.LANGUAGE_CODE.lower())
 
     value = (src.get('%s_%s' % (attr, req_lang)) or
              src.get('%s_%s' % (attr, def_lang)))

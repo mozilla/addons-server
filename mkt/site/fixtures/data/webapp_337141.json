@@ -122,6 +122,18 @@
         }
     },
     {
+        "pk": 2527087,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string_clean": null,
+            "created": "2011-10-18 16:28:24",
+            "locale": "es",
+            "modified": "2011-10-18 16:28:57",
+            "id": 2425897,
+            "localized_string": "Algo Algo Steamcube!"
+        }
+    },
+    {
         "pk": 2527086,
         "model": "translations.translation",
         "fields": {
