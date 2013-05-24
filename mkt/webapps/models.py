@@ -1093,8 +1093,6 @@ class WebappIndexer(MappingType, Indexable):
                 # TODO: Store all localizations of upsell.name.
                 'name': unicode(upsell_obj.name),
             }
-        else:
-            print "No upsell found"
 
         # Calculate regional popularity for "mature regions"
         # (installs + reviews/installs from that region).
@@ -1346,7 +1344,8 @@ class AppFeaturesBase(amo.models.ModelBase):
     def to_list(self):
         features = [k for k, v in self.to_dict().iteritems() if v]
         all_features = dict(APP_FEATURES)
-        feature_names = [all_features[f[4:].upper()].decode() for f in features]
+        feature_names = [all_features[f[4:].upper()].decode()
+                         for f in features]
         return sorted(feature_names)
 
     def to_signature(self):
