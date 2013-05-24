@@ -512,6 +512,14 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         zf = SafeUnzip(self.file_path, mode='a')
         zf.is_valid()
 
+        # Check if there's already a META-INF/ids.json.
+        try:
+            zf.zip.getinfo(filename)
+            zf.close()
+            return
+        except KeyError:
+            pass  # Not found, we need to add it.
+
         zf.zip.writestr(filename, json.dumps(ids))
         zf.close()
 

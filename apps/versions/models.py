@@ -122,6 +122,9 @@ class Version(amo.models.ModelBase):
                 eta=datetime.datetime.now() +
                     datetime.timedelta(seconds=settings.NFS_LAG_DELAY))
 
+            if addon.is_packaged:
+                f.inject_ids()
+
         v.disable_old_files()
         # After the upload has been copied to all platforms, remove the upload.
         storage.delete(upload.path)
