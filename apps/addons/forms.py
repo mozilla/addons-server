@@ -612,7 +612,7 @@ class EditThemeForm(AddonFormBase):
 
         super(AddonFormBase, self).__init__(*args, **kw)
 
-        addon = self.instance
+        addon = Addon.uncached.get(id=self.instance.id)
         persona = addon.persona
 
         self.initial['summary'] = addon.summary
