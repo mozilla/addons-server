@@ -929,6 +929,8 @@ class WebappIndexer(MappingType, Indexable):
                                               'index': 'not_analyzed'},
                         }
                     },
+                    'default_locale': {'type': 'string',
+                                       'index': 'not_analyzed'},
                     'description': {'type': 'string', 'analyzer': 'snowball'},
                     'device': {'type': 'byte'},
                     'has_public_stats': {'type': 'boolean'},
@@ -1054,6 +1056,7 @@ class WebappIndexer(MappingType, Indexable):
                 'version': None,
                 'release_notes': None,
             }
+        d['default_locale'] = obj.default_locale
         d['description'] = list(set(s for _, s
                                     in translations[obj.description_id]))
         d['device'] = getattr(obj, 'device_ids', [])

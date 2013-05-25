@@ -129,7 +129,7 @@ def app_to_dict(app, currency=None, profile=None):
     return data
 
 
-def get_attr_lang(src, attr):
+def get_attr_lang(src, attr, default_locale):
     """
     Our index stores localized strings in elasticsearch as, e.g.,
     "name_spanish": [u'Nombre']. This takes the current language in the
@@ -139,10 +139,13 @@ def get_attr_lang(src, attr):
     req_lang = amo.SEARCH_LANGUAGE_TO_ANALYZER.get(
         translation.get_language().lower())
     def_lang = amo.SEARCH_LANGUAGE_TO_ANALYZER.get(
+        default_locale.lower())
+    svr_lang = amo.SEARCH_LANGUAGE_TO_ANALYZER.get(
         settings.LANGUAGE_CODE.lower())
 
     value = (src.get('%s_%s' % (attr, req_lang)) or
-             src.get('%s_%s' % (attr, def_lang)))
+             src.get('%s_%s' % (attr, def_lang)) or
+             src.get('%s_%s' % (attr, svr_lang)))
     return value[0] if value else u''
 
 
@@ -171,16 +174,16 @@ def es_app_to_dict(obj, currency=None, profile=None):
         'absolute_url': absolutify(app.get_detail_url()),
         'app_type': app.app_type,
         'categories': [c for c in obj.category],
-        'description': get_attr_lang(src, 'description'),
+        'description': get_attr_lang(src, 'description', obj.default_locale),
         'device_types': [DEVICE_TYPES[d].api_name for d in src['device']],
         'icons': dict((i['size'], i['url']) for i in src['icons']),
         'id': str(obj._id),
         'is_packaged': is_packaged,
         'listed_authors': [{'name': name} for name in src['authors']],
-        'name': get_attr_lang(src, 'name'),
+        'name': get_attr_lang(src, 'name', obj.default_locale),
         'premium_type': amo.ADDON_PREMIUM_API[src['premium_type']],
         'public_stats': obj.has_public_stats,
-        'summary': get_attr_lang(src, 'summary'),
+        'summary': get_attr_lang(src, 'summary', obj.default_locale),
         'slug': obj.app_slug,
     })
 

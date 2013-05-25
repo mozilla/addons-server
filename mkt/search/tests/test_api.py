@@ -131,6 +131,18 @@ class TestApi(BaseOAuth, ESTestCase):
         eq_(obj['slug'], self.webapp.app_slug)
         eq_(obj['name'], u'Algo Algo Steamcube!')
 
+    def test_name_localized_to_default_locale(self):
+        self.webapp.update(default_locale='es')
+        self.refresh('webapp')
+
+        # Make a request in another language that we know will fail.
+        res = self.client.get(self.url + ({'q': 'something',
+                                           'lang': 'de'},))
+        eq_(res.status_code, 200)
+        obj = json.loads(res.content)['objects'][0]
+        eq_(obj['slug'], self.webapp.app_slug)
+        eq_(obj['name'], u'Algo Algo Steamcube!')
+
     def test_device(self):
         AddonDeviceType.objects.create(
             addon=self.webapp, device_type=DEVICE_CHOICES_IDS['desktop'])
