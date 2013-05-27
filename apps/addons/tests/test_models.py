@@ -330,6 +330,16 @@ class TestAddonModels(amo.tests.TestCase):
         self._delete_url()
         eq_(count, Addon.with_deleted.count())
 
+    def test_delete_reason(self):
+        """Test deleting with a reason gives the reason in the mail."""
+        reason = u'trêason'
+        a = Addon.objects.get(pk=3615)
+        a.name = u'é'
+        eq_(len(mail.outbox), 0)
+        a.delete(msg='bye', reason=reason)
+        eq_(len(mail.outbox), 1)
+        assert reason in mail.outbox[0].body
+
     def _delete_status_gone_wild(self):
         """
         Test deleting add-ons where the higheststatus is zero, but there's a

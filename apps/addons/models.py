@@ -380,7 +380,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         setattr(self, slug_field, slug)
 
     @transaction.commit_on_success
-    def delete(self, msg=''):
+    def delete(self, msg='', reason=''):
         id = self.id
         previews = list(Preview.objects.filter(addon__id=id)
                         .values_list('id', flat=True))
@@ -400,6 +400,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                 'guid': self.guid,
                 'id': self.id,
                 'msg': msg,
+                'reason': reason,
                 'name': self.name,
                 'slug': self.slug,
                 'total_downloads': self.total_downloads,
@@ -420,6 +421,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             TOTAL DOWNLOADS: %(total_downloads)s
             AVERAGE DAILY USERS: %(adu)s
             NOTES: %(msg)s
+            REASON GIVEN BY USER FOR DELETION: %(reason)s
             """ % context
             log.debug('Sending delete email for %(atype)s %(id)s' % context)
             subject = 'Deleting %(atype)s %(slug)s (%(id)d)' % context

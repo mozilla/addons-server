@@ -107,16 +107,10 @@ AuthorFormSet = modelformset_factory(AddonUser, formset=BaseAuthorFormSet,
 
 
 class DeleteForm(happyforms.Form):
-    password = forms.CharField()
+    reason = forms.CharField(required=False)
 
     def __init__(self, request):
-        self.user = request.amo_user
         super(DeleteForm, self).__init__(request.POST)
-
-    def clean_password(self):
-        data = self.cleaned_data
-        if not self.user.check_password(data['password']):
-            raise forms.ValidationError(_('Password incorrect.'))
 
 
 def ProfileForm(*args, **kw):

@@ -361,7 +361,8 @@ def delete(request, addon_id, addon, webapp=False, theme=False):
 
     form = forms.DeleteForm(request)
     if form.is_valid():
-        addon.delete('Removed via devhub')
+        reason = form.cleaned_data.get('reason', '')
+        addon.delete(msg='Removed via devhub', reason=reason)
         messages.success(request,
             _('Theme deleted.') if theme else _('Add-on deleted.'))
         return redirect('devhub.%s' % ('apps' if webapp else 'addons'))

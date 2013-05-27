@@ -144,12 +144,12 @@ def delete(request, addon_id, addon, webapp=False):
         messages.error(request, msg)
         return redirect(addon.get_dev_url('versions'))
 
-    # TODO: This short circuits the delete form which checks the password. When
-    # BrowserID adds re-auth support, update the form to check with BrowserID
-    # and remove the short circuit.
+    # TODO: Force the user to re-auth with BrowserID (this DeleteForm doesn't
+    # ask the user for his password)
     form = forms.DeleteForm(request)
-    if True or form.is_valid():
-        addon.delete('Removed via devhub')
+    if form.is_valid():
+        reason = form.cleaned_data.get('reason', '')
+        addon.delete(msg='Removed via devhub', reason=reason)
         messages.success(request, _('App deleted.'))
         # Preserve query-string parameters if we were directed from Dashboard.
         return redirect(request.GET.get('to') or
