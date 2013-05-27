@@ -6,6 +6,7 @@ from django.core.cache import cache
 from django.test.utils import override_settings
 
 import mock
+from lxml import etree
 from nose import SkipTest
 from nose.tools import eq_
 from pyquery import PyQuery as pq
@@ -377,3 +378,34 @@ class TestXLegalFrame(amo.tests.TestCase):
             assert 'x-frame-options' not in res, (
                 'Unexpected headers for referrer %r: %s' % (referrer,
                                                             res._headers))
+
+
+class TestOpensearch(amo.tests.TestCase):
+
+    def test_opensearch_declaration(self):
+        """Look for opensearch declaration in templates."""
+        query = 'link[rel=search][type="application/opensearchdescription+xml"]'
+
+        # Look in home.
+        response = self.client.get(reverse('home'))
+        elm = pq(response.content)(query)
+        eq_(elm.attr('href'), reverse('opensearch'))
+        eq_(elm.attr('title'), 'Firefox Marketplace')
+
+        # Also look in fireplace.
+        response = self.client.get(reverse('site.fireplace'))
+        elm = pq(response.content)(query)
+        eq_(elm.attr('href'), reverse('opensearch'))
+        eq_(elm.attr('title'), 'Firefox Marketplace')
+
+    def test_opensearch(self):
+        response = self.client.get(reverse('opensearch'))
+        eq_(response['Content-Type'], 'text/xml')
+        eq_(response.status_code, 200)
+        doc = etree.fromstring(response.content)
+        e = doc.find('{http://a9.com/-/spec/opensearch/1.1/}ShortName')
+        eq_(e.text, 'Firefox Marketplace')
+        e = doc.find('{http://a9.com/-/spec/opensearch/1.1/}Url')
+        wanted = '%s%s?q={searchTerms}' % (settings.SITE_URL,
+                                           reverse('search.search'))
+        eq_(e.attrib['template'], wanted)

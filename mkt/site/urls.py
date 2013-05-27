@@ -39,6 +39,10 @@ urlpatterns = patterns('',
         {'template': 'site/terms-of-use.html'}, name='site.terms'),
     url('^robots.txt$', views.robots, name='robots.txt'),
 
+    # Replace opensearch.xml from amo with a specific one for Marketplace.
+    url('^opensearch.xml$', 'api.views.render_xml',
+        {'template': 'mkt/opensearch.xml'}, name='opensearch'),
+
     # These are the new manifest URLs going forward.
     url('^hosted.webapp$', views.manifest, name='hosted.webapp'),
     url('^packaged.webapp$', views.package_minifest, name='packaged.webapp'),
