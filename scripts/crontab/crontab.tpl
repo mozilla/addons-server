@@ -48,6 +48,7 @@ HOME=/tmp
 50 1 * * * %(z_cron)s gc
 45 1 * * * %(z_cron)s mkt_gc --settings=settings_local_mkt
 45 2 * * * %(django)s process_addons --task=update_manifests --settings=settings_local_mkt
+45 3 * * * %(django)s process_addons --task=dump_apps --settings=settings_local_mkt
 30 4 * * * %(z_cron)s cleanup_synced_collections
 30 5 * * * %(z_cron)s expired_resetcode
 30 6 * * * %(z_cron)s category_totals
