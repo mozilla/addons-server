@@ -16,16 +16,17 @@ This documentation covers interacting with the `Firefox Marketplace`_.
 
    topics/overview.rst
    topics/authentication.rst
+   topics/abuse.rst
    topics/accounts.rst
    topics/apps.rst
-   topics/submission.rst
-   topics/payment.rst
-   topics/search.rst
-   topics/ratings.rst
+   topics/export.rst
    topics/home.rst
-   topics/abuse.rst
+   topics/payment.rst
+   topics/ratings.rst
    topics/reviewers.rst
+   topics/search.rst
    topics/site.rst
+   topics/submission.rst
 
 
 Quickstart
