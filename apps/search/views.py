@@ -23,7 +23,7 @@ from bandwagon.models import Collection
 from versions.compare import dict_from_int, version_dict, version_int
 
 import mkt
-from mkt.webapps.models import Webapp
+from mkt.webapps.models import get_excluded_in, Webapp
 
 from .forms import ESSearchForm, SecondarySearchForm
 
@@ -255,7 +255,7 @@ class WebappSuggestionsAjax(SearchSuggestionsAjax):
 
         region = getattr(self.request, 'REGION', mkt.regions.WORLDWIDE)
         if region:
-            excluded = Webapp.get_excluded_in(region)
+            excluded = get_excluded_in(region.id)
             if excluded:
                 if isinstance(res, S):
                     # ES? Do fanciness.

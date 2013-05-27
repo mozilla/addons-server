@@ -36,7 +36,7 @@ from amo.helpers import absolutify
 from amo.search import TempS
 from amo.storage_utils import copy_stored_file
 from amo.urlresolvers import reverse
-from amo.utils import JSONEncoder, smart_path
+from amo.utils import JSONEncoder, memoize, memoize_key, smart_path
 from constants.applications import DEVICE_TYPES
 from files.models import File, nfd_str, Platform
 from files.utils import parse_addon, WebAppParser
@@ -591,12 +591,6 @@ class Webapp(Addon):
         qs = FeaturedApp.objects.featured(cat, region, limit, mobile, gaia,
                                           tablet)
         return [w.app for w in qs]
-
-    @classmethod
-    def get_excluded_in(cls, region):
-        """Return IDs of Webapp objects excluded from a particular region."""
-        return list(AddonExcludedRegion.objects.filter(region=region.id)
-                    .values_list('addon', flat=True))
 
     @classmethod
     def from_search(cls, cat=None, region=None, gaia=False, mobile=False,
@@ -1284,6 +1278,22 @@ class AddonExcludedRegion(amo.models.ModelBase):
 
     def get_region(self):
         return mkt.regions.REGIONS_CHOICES_ID_DICT.get(self.region)
+
+
+@memoize(prefix='get_excluded_in')
+def get_excluded_in(region_id):
+    """Return IDs of Webapp objects excluded from a particular region."""
+    return list(AddonExcludedRegion.objects.filter(region=region_id)
+                .values_list('addon', flat=True))
+
+
+@receiver(models.signals.post_save, sender=AddonExcludedRegion,
+          dispatch_uid='clean_memoized_exclusions')
+def clean_memoized_exclusions(sender, **kw):
+    if not kw.get('raw'):
+        for k in mkt.regions.ALL_REGION_IDS:
+            cache.delete_many([memoize_key('get_excluded_in', k)
+                               for k in mkt.regions.ALL_REGION_IDS])
 
 
 class ContentRating(amo.models.ModelBase):

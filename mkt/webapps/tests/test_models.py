@@ -37,8 +37,8 @@ import mkt
 from mkt.constants import APP_FEATURES, apps
 from mkt.site.fixtures import fixture
 from mkt.submit.tests.test_views import BasePackagedAppTest, BaseWebAppTest
-from mkt.webapps.models import (AddonExcludedRegion, AppFeatures, Installed,
-                                Webapp)
+from mkt.webapps.models import (AddonExcludedRegion, AppFeatures,
+                                get_excluded_in, Installed, Webapp)
 
 
 class TestWebapp(amo.tests.TestCase):
@@ -435,7 +435,7 @@ class TestWebapp(amo.tests.TestCase):
         app1 = app_factory()
         region = mkt.regions.BR
         AddonExcludedRegion.objects.create(addon=app1, region=region.id)
-        eq_(Webapp.get_excluded_in(region), [app1.id])
+        eq_(get_excluded_in(region.id), [app1.id])
 
     def test_supported_locale_property(self):
         app = app_factory()

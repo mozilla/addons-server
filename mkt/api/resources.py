@@ -6,6 +6,7 @@ from django.db.models import Q
 from django.views import debug
 
 import commonware.log
+import waffle
 from celery_tasktree import TaskTree
 from tastypie import fields, http
 from tastypie.authorization import Authorization
@@ -14,7 +15,6 @@ from tastypie.resources import ALL_WITH_RELATIONS
 from tastypie.serializers import Serializer
 from tastypie.throttle import CacheThrottle
 from tastypie.utils import trailing_slash
-import waffle
 
 import amo
 from amo.utils import memoize
@@ -28,8 +28,8 @@ from files.models import FileUpload, Platform
 from lib.metrics import record_action
 from market.models import AddonPremium, Price
 
-from mkt.api.authentication import (OptionalOAuthAuthentication,
-                                    OAuthAuthentication)
+from mkt.api.authentication import (OAuthAuthentication,
+                                    OptionalOAuthAuthentication)
 from mkt.api.authorization import AppOwnerAuthorization, OwnerAuthorization
 from mkt.api.base import (CORSResource, GenericObject,
                           MarketplaceModelResource, MarketplaceResource)
@@ -37,12 +37,13 @@ from mkt.api.forms import (CategoryForm, DeviceTypeForm, NewPackagedForm,
                            PreviewArgsForm, PreviewJSONForm, StatusForm,
                            UploadForm)
 from mkt.api.http import HttpLegallyUnavailable
-from mkt.carriers import get_carrier_id, CARRIERS, CARRIER_MAP
+from mkt.carriers import CARRIER_MAP, CARRIERS, get_carrier_id
 from mkt.developers import tasks
 from mkt.developers.forms import NewManifestForm, PreviewForm, RegionForm
 from mkt.developers.models import AddonPaymentAccount
-from mkt.regions import get_region_id, get_region, REGIONS_DICT
+from mkt.regions import get_region, get_region_id, REGIONS_DICT
 from mkt.submit.forms import AppDetailsBasicForm
+from mkt.webapps.models import get_excluded_in
 from mkt.webapps.utils import app_to_dict
 
 log = commonware.log.getLogger('z.api')
@@ -142,7 +143,7 @@ class AppResource(CORSResource, MarketplaceModelResource):
         # apps.
         self._meta.queryset_base = Webapp.objects.all()
         self._meta.queryset = self._meta.queryset_base.exclude(
-            id__in=Webapp.get_excluded_in(REGIONS_DICT[get_region()]))
+            id__in=get_excluded_in(REGIONS_DICT[get_region()].id))
         return super(AppResource, self).dispatch(request_type, request,
                                                  **kwargs)
 
@@ -356,13 +357,15 @@ class AppResource(CORSResource, MarketplaceModelResource):
             urls.url(r"^%s/(?P<pk>\d+)/(?P<resource_name>privacy)%s$" % (
                 self._meta.resource_name, trailing_slash()),
             self.wrap_view('get_privacy_policy'), name="api_dispatch_detail"),
-            urls.url(r"^%s/(?P<app_slug>[^/<>\"']+)/(?P<resource_name>privacy)%s$" % (
+            urls.url(r"^%s/(?P<app_slug>[^/<>\"']+)/"
+                     r"(?P<resource_name>privacy)%s$" % (
                 self._meta.resource_name, trailing_slash()),
             self.wrap_view('get_privacy_policy'), name="api_dispatch_detail"),
         ]
 
     def get_privacy_policy(self, request, **kwargs):
         return PrivacyPolicyResource().dispatch('detail', request, **kwargs)
+
 
 class PrivacyPolicyResource(CORSResource, MarketplaceModelResource):
 
@@ -379,7 +382,6 @@ class PrivacyPolicyResource(CORSResource, MarketplaceModelResource):
         slug_lookup = 'app_slug'
         # Throttle users without Apps:APIUnthrottled at 10 POST requests/day.
         throttle = CacheThrottle(throttle_at=10, timeframe=60 * 60 * 24)
-
 
 
 class StatusResource(MarketplaceModelResource):
