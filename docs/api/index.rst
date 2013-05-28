@@ -22,7 +22,6 @@ This documentation covers interacting with the `Firefox Marketplace`_.
    topics/payment.rst
    topics/search.rst
    topics/ratings.rst
-   topics/home.rst
    topics/abuse.rst
    topics/reviewers.rst
    topics/site.rst
