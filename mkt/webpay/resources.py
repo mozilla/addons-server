@@ -106,21 +106,10 @@ class PriceResource(CORSResource, MarketplaceModelResource):
         resource_name = 'prices'
 
     def _get_prices(self, bundle):
-        """
-        Both localized and prices need access to this. But we whichever
-        one gets accessed first, cache the result on the object so
-        we don't have to worry about it.
+        """Both localized and prices need access to this. """
+        return bundle.obj.prices(provider=
+            bundle.request.GET.get('provider', None))
 
-        This is going to be called once for each for bundle.obj.
-        """
-        if not getattr(self, '_prices', {}):
-            self._prices = {}
-
-        if bundle.obj.pk not in self._prices:
-            self._prices[bundle.obj.pk] = bundle.obj.prices(
-                provider=bundle.request.GET.get('provider', None))
-
-        return self._prices[bundle.obj.pk]
 
     def dehydrate_localized(self, bundle):
         region = bundle.request.REGION

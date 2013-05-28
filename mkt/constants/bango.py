@@ -24,6 +24,7 @@ BANGO_CURRENCIES = [
     ('NOK', _(u'Norwegian Krone')),
     ('NZD', _(u'New Zealand Dollars')),
     ('PHP', _(u'Philippine Peso')),
+    ('PLN', _(u'Polish Złoty')),
     ('QAR', _(u'Qatar Riyal')),
     ('SEK', _(u'Swedish Kronor')),
     ('SGD', _(u'Singapore Dollars')),
