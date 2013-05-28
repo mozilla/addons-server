@@ -17,7 +17,6 @@ from mkt.detail.views import manifest as mini_manifest
 from mkt.developers.views import login
 from mkt.developers.urls import api_patterns as payments_api_patterns
 from mkt.api import oauth
-from mkt.home.urls import home_api_patterns
 from mkt.purchase.urls import webpay_services_patterns
 from mkt.receipts.urls import receipt_api_patterns
 from mkt.reviewers.urls import (api_patterns as reviewer_api_patterns,
@@ -32,7 +31,6 @@ handler404 = 'mkt.site.views.handler404'
 handler500 = 'mkt.site.views.handler500'
 
 api_patterns = patterns('',
-    url('', include(home_api_patterns)),
     url('', include('mkt.api.urls')),
     url('', include(abuse_api_patterns)),
     url('', include(account_api_patterns)),
