@@ -620,7 +620,6 @@ class Webapp(Addon):
             srch = TempS(cls).filter(**filters)
 
         if region:
-            from mkt.webapps.models import get_excluded_in
             excluded = get_excluded_in(region.id)
             if excluded:
                 log.info('Excluding the following IDs based on region %s: %s'
