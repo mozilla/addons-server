@@ -1,6 +1,8 @@
 import json
 import os
 import shutil
+import tempfile
+import zipfile
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
@@ -9,7 +11,6 @@ from base64 import b64decode
 from celeryutils import task
 import commonware.log
 from django_statsd.clients import statsd
-import json
 from signing_clients.apps import JarExtractor
 import requests
 
@@ -36,9 +37,10 @@ def sign_app(src, dest, ids, reviewer=False):
         return
 
     # Extract necessary info from the archive
+    tempf = tempfile.TemporaryFile()
     try:
         jar = JarExtractor(
-            storage.open(src, 'r'), storage.open(dest, 'w'),
+            storage.open(src, 'r'), tempf,
             ids,
             omit_signature_sections=settings.SIGNED_APPS_OMIT_PER_FILE_SIGS)
     except:
@@ -76,7 +78,9 @@ def sign_app(src, dest, ids, reviewer=False):
     except:
         log.error('App signing failed', exc_info=True)
         raise SigningError('App signing failed')
-
+    with storage.open(dest, 'w') as destf:
+        tempf.seek(0)
+        shutil.copyfileobj(tempf, destf)
 
 def _get_endpoint(reviewer=False):
     """
@@ -132,14 +136,24 @@ def sign(version_id, reviewer=False, resign=False, **kw):
 
     path = (file_obj.signed_reviewer_file_path if reviewer else
             file_obj.signed_file_path)
-    if resign:
-        try:
-            storage.delete(path)
-        except OSError:
-            pass
-    elif storage.exists(path):
+
+    if storage.exists(path) and not resign:
         log.info('[Webapp:%s] Already signed app exists.' % app.id)
         return path
+
+    if resign:
+        z = zipfile.ZipFile(file_obj.file_path, 'r')
+        if 'META-INF/ids.json' in z.namelist():
+            # This zip is broken due to previously used bad signing
+            # code. rebuild it. (This code can be deleted once all
+            # broken packages are re-signed.)
+            tempf = tempfile.NamedTemporaryFile(delete=False)
+            zout = zipfile.ZipFile(tempf, 'w', zipfile.ZIP_DEFLATED)
+            for f in sorted(z.infolist()):
+                if f.filename != 'META-INF/ids.json':
+                    zout.writestr(f, z.read(f.filename))
+            zout.close()
+            os.rename(tempf.name, file_obj.file_path)
 
     ids = json.dumps({
         'id': app.guid,

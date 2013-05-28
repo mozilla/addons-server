@@ -76,7 +76,7 @@ recaptcha-client==1.0.5
 receipts==0.2.6
 requests==1.2.0
 schematic==0.2
-#signing_clients==0.1.5
+#signing_clients==0.1.7
 six==1.3.0
 slumber==0.5.3
 SQLAlchemy==0.7.5
@@ -97,13 +97,14 @@ tastypie-services==0.2.2
 -e git://github.com/mozilla/nuggets.git@96e80a64aa4bfcfef4f43fc3ab6966450ccd7325#egg=nuggets
 -e git://github.com/jbalogh/test-utils.git@ce5136a257cd44a1c663319124a255c1d10a9834#egg=test-utils
 -e git://github.com/fwenzel/django-mozilla-product-details.git@36ef06539d6b34c4f345fd0d3e16937d0db9a752#egg=django-mozilla-product-details
+-e git://github.com/mozilla/signing-clients/commit/a8bd730b202391c080113d224d223463e03088e9#egg=signing-clients
 
 ## Forked.
 -e git://github.com/andymckay/django-piston-oauth2.git@6cb1ad61e3f437e7ca080ee00ae7b80de7d010f0#egg=django-piston-oauth2
 -e git://github.com/kumar303/django-qunit.git@b0f468dcf33439488158c845df37ef3261852b55#egg=django-qunit
 -e git://github.com/washort/django-waffle.git@c8da885613dfddf2262e11adde6b6027906536ed#egg=django-waffle
 -e git://github.com/andymckay/django-uuidfield.git@029dd1263794ec36c327617cd6c2346da81c8c33#egg=django-uuidfield
--e git://github.com/washort/signing-clients.git@d3afee5d00a06c33cd1a78e639601fa6b6c47bc6#egg=signing-clients
+
 
 ## Out of date or not sure on pypi.
 -e git://github.com/jbalogh/django-mobility.git@e2b60a1f96e4c4aed736395c01bf707e969d8e83#egg=django-mobility
