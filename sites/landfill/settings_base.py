@@ -61,9 +61,6 @@ SERVICES_DATABASE = {
 
 SLAVE_DATABASES = ['slave']
 
-SPHINX_HOST = private.SPHINX_HOST
-SPHINX_PORT = private.SPHINX_PORT
-
 CACHES = {
     'default': {
         'BACKEND': 'caching.backends.memcached.CacheClass',
@@ -131,9 +128,6 @@ TMP_PATH = os.path.join(NETAPP_STORAGE, 'tmp')
 PACKAGER_PATH = os.path.join(TMP_PATH, 'packager')
 
 ADDONS_PATH = private.NETAPP_STORAGE_ROOT + '/files'
-
-SPHINX_CATALOG_PATH = TMP_PATH + '/data/sphinx'
-SPHINX_LOG_PATH = TMP_PATH + '/log/searchd'
 
 PERF_THRESHOLD = 20
 

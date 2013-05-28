@@ -50,9 +50,6 @@ SERVICES_DATABASE = {
 
 SLAVE_DATABASES = ['slave']
 
-SPHINX_HOST = private.SPHINX_HOST
-SPHINX_PORT = private.SPHINX_PORT
-
 CACHES = {
     'default': {
        'BACKEND': 'caching.backends.memcached.CacheClass',
@@ -116,8 +113,6 @@ RECAPTCHA_URL = ('https://www.google.com/recaptcha/api/challenge?k=%s' % RECAPTC
 
 TMP_PATH = os.path.join(NETAPP_STORAGE, 'tmp')
 PACKAGER_PATH = os.path.join(TMP_PATH, 'packager')
-SPHINX_CATALOG_PATH = TMP_PATH + '/data/sphinx'
-SPHINX_LOG_PATH = TMP_PATH + '/log/searchd'
 
 ADDONS_PATH = NETAPP_STORAGE_ROOT + '/files'
 
