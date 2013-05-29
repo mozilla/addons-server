@@ -154,21 +154,13 @@ class TestPackageMinifest(amo.tests.TestCase):
         self.get_package_path.return_value = get_package_path(signed=False)
         self.addCleanup(get_package_path_patch.stop)
 
-    @mock.patch.object(settings, 'WEBAPP_MANIFEST_NAME', 'Firefox Marketplace')
-    def test_minifest(self):
-        res = self.client.get(self.url)
-        eq_(res.status_code, 200)
-        content = json.loads(res.content)
-        eq_(content['name'], 'Firefox Marketplace')
-        assert 'package_path' in content
-        assert res.get('Etag'), 'Missing ETag'
-
     def test_minifest_etag(self):
         res = self.client.get(self.url)
         etag = res.get('Etag')
 
-        # Trigger a change to the minifest by changing the name.
-        with self.settings(WEBAPP_MANIFEST_NAME='Mozilla Fruitstand'):
+        # Trigger a change to the minifest by changing the `SITE_URL` which
+        # will result in a different `package_path`.
+        with self.settings(SITE_URL='http://omg.org/yes'):
             res = self.client.get(self.url)
             assert etag, 'Missing ETag'
             self.assertNotEqual(etag, res.get('Etag'))
