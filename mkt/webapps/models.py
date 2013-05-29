@@ -19,7 +19,7 @@ from django.utils.http import urlquote
 
 import commonware.log
 import waffle
-from elasticutils.contrib.django import F, Indexable, MappingType, S
+from elasticutils.contrib.django import F, Indexable, MappingType
 from tower import ugettext as _
 
 import amo
@@ -47,7 +47,8 @@ from translations.fields import save_signal
 from versions.models import Version
 
 import mkt
-from mkt.constants import APP_FEATURES, APP_IMAGE_SIZES, apps, payments
+from mkt.constants import APP_FEATURES, APP_IMAGE_SIZES, apps
+from mkt.search.utils import S
 from mkt.webapps.utils import get_locale_properties, get_supported_locales
 from mkt.zadmin.models import FeaturedApp
 
