@@ -909,7 +909,11 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         versions = list(Version.objects.filter(id__in=all_ids).order_by()
                         .transform(Version.transformer))
         for version in versions:
-            addon = addon_dict[version.addon_id]
+            try:
+                addon = addon_dict[version.addon_id]
+            except KeyError:
+                log.debug('Version %s has an invalid add-on id.' % version.id)
+                continue
             if addon._current_version_id == version.id:
                 addon._current_version = version
             elif addon._backup_version_id == version.id:
