@@ -253,7 +253,7 @@ class TestApi(BaseOAuth, ESTestCase):
     @patch.object(mkt.regions.US, 'supports_carrier_billing', False)
     def test_minimum_price_tier(self):
         price = Price.objects.create(name="5", price="0.50")
-        PriceCurrency.objects.create(currency='BRL', price=1.00, tier=price)
+        PriceCurrency.objects.create(currency='BRL', price="1.00" , tier=price)
         AddonPremium.objects.create(addon=self.webapp, price=price)
         self.webapp.save()
         self.refresh('webapp')
