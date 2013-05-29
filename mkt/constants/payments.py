@@ -1,6 +1,7 @@
+from decimal import Decimal
 from tower import ugettext as _
 
-MINIMUM_PRICE_FOR_NON_CARRIER_BILLING = 0.99
+MINIMUM_PRICE_FOR_NON_CARRIER_BILLING = Decimal('0.99')
 
 PENDING = 'PENDING'
 COMPLETED = 'OK'

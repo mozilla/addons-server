@@ -117,8 +117,7 @@ class Price(amo.models.ModelBase):
                     for c, o in self.currencies()]
 
     def carrier_billing_only(self):
-        return (int(self.price) <
-                payments.MINIMUM_PRICE_FOR_NON_CARRIER_BILLING)
+        return self.price < payments.MINIMUM_PRICE_FOR_NON_CARRIER_BILLING
 
 
 class PriceCurrency(amo.models.ModelBase):
