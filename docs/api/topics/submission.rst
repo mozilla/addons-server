@@ -13,7 +13,7 @@ Validate
 
 .. _validation-post-label:
 
-.. http:post:: /api/vi/apps/validation/
+.. http:post:: /api/v1/apps/validation/
 
     **Request**
 
@@ -48,7 +48,7 @@ Validate
 
 .. _validation-response-label:
 
-.. http:get:: /api/vi/apps/validation/(int:id)/
+.. http:get:: /api/v1/apps/validation/(int:id)/
 
     **Response**
 
