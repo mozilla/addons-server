@@ -135,8 +135,10 @@ class CollectionPromo(PromoModule):
 class ShoppingCollection(CollectionPromo):
     slug = 'Shopping Collection'
     pk = 16651
-    cls = 'shopping'
-    title = _(u'Save cash and have fun with these shopping add-ons')
+    cls = 'promo promo-purple'
+    title = _(u'Shopping Made Easy')
+    subtitle = _(u'Save on your favorite items '
+                  'from the comfort of your browser.')
 
 
 class WebdevCollection(CollectionPromo):
@@ -268,6 +270,33 @@ class ValentinesDay(CollectionPromo):
     id = 'valentines'
     title = _(u'Love is in the Air')
     subtitle = _(u'Add some romance to your Firefox.')
+
+
+class MobileThemes(CollectionPromo):
+    slug = 'Mobile Themes'
+    cls = 'promo promo-grey'
+    collection_author, collection_slug = 'mozilla', 'mobilethemes'
+    title = _(u'Put a Theme on It!')
+    subtitle = _(u'Visit addons.mozilla.org from Firefox for Android and '
+                  'dress up your mobile browser to match your style, mood, '
+                  'or the season.')
+
+
+class Fitness(CollectionPromo):
+    slug = 'Fitness'
+    cls = 'promo promo-yellow'
+    collection_author, collection_slug = 'mozilla', 'fitness'
+    title = _(u'Get up and move!')
+    subtitle = _(u'Install these fitness add-ons to keep you active and '
+                  'healthy.')
+
+
+class UpAndComing(CollectionPromo):
+    slug = 'Up & Coming'
+    cls = 'promo promo-blue'
+    collection_author, collection_slug = 'mozilla', 'up_coming'
+    title = _(u'New &amp; Now')
+    subtitle = _(u'Get the latest, must-have add-ons of the moment.')
 
 
 class Olympics(TemplatePromo):
