@@ -134,7 +134,7 @@ class CollectionPromo(PromoModule):
 
 class ShoppingCollection(CollectionPromo):
     slug = 'Shopping Collection'
-    pk = 16651
+    collection_author, collection_slug = 'mozilla', 'onlineshopping'
     cls = 'promo promo-purple'
     title = _(u'Shopping Made Easy')
     subtitle = _(u'Save on your favorite items '
