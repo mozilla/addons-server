@@ -37,10 +37,10 @@ def sign_app(src, dest, ids, reviewer=False):
         return
 
     # Extract necessary info from the archive
-    tempf = tempfile.TemporaryFile()
+    tempname = tempfile.mktemp()
     try:
         jar = JarExtractor(
-            storage.open(src, 'r'), tempf,
+            storage.open(src, 'r'), tempname,
             ids,
             omit_signature_sections=settings.SIGNED_APPS_OMIT_PER_FILE_SIGS)
     except:
@@ -79,8 +79,9 @@ def sign_app(src, dest, ids, reviewer=False):
         log.error('App signing failed', exc_info=True)
         raise SigningError('App signing failed')
     with storage.open(dest, 'w') as destf:
-        tempf.seek(0)
+        tempf = open(tempname)
         shutil.copyfileobj(tempf, destf)
+        os.unlink(tempname)
 
 def _get_endpoint(reviewer=False):
     """
@@ -147,13 +148,14 @@ def sign(version_id, reviewer=False, resign=False, **kw):
             # This zip is broken due to previously used bad signing
             # code. rebuild it. (This code can be deleted once all
             # broken packages are re-signed.)
-            tempf = tempfile.NamedTemporaryFile(delete=False)
+            tempf = tempfile.NamedTemporaryFile()
             zout = zipfile.ZipFile(tempf, 'w', zipfile.ZIP_DEFLATED)
             for f in sorted(z.infolist()):
                 if f.filename != 'META-INF/ids.json':
                     zout.writestr(f, z.read(f.filename))
             zout.close()
-            os.rename(tempf.name, file_obj.file_path)
+            shutil.copyfile(tempf.name, file_obj.file_path)
+            tempf.close()
 
     ids = json.dumps({
         'id': app.guid,
