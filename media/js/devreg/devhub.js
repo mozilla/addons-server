@@ -131,6 +131,16 @@ $(document).ready(function() {
                                             'text': gettext('See full validation report')}));
             }
 
+            if (r && r.validation &&
+                r.validation.feature_profile &&
+                r.validation.feature_profile.length) {
+                // Update the checkboxes with information from the valdator's idea
+                // of the feature profile for the app.
+                r.validation.feature_profile.forEach(function(feature) {
+                    $('#id_has_' + feature.toLowerCase()).prop('checked', true);
+                });
+            }
+
             $('.upload-status').append($error_box);
 
             if (z.capabilities.sessionStorage) {
