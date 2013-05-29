@@ -19,7 +19,7 @@ Search
     :param optional cat: The category slug or ID to filter by. Use the
         category API to find the ids of the categories.
     :param optional device: Filters by supported device. One of 'desktop',
-        'mobile', 'tablet', or 'gaia'.
+        'mobile', 'tablet', or 'firefoxos'.
     :param optional premium_types: Filters by whether the app is free or
         premium or has in-app purchasing. Any of 'free', 'free-inapp',
         'premium', 'premium-inapp', or 'other'.

@@ -54,14 +54,14 @@ DEVICE_CHOICES = [
     ('desktop', _lazy(u'Desktop')),
     ('mobile', _lazy(u'Mobile')),
     ('tablet', _lazy(u'Tablet')),
-    ('gaia', _lazy(u'Gaia')),
+    ('firefoxos', _lazy(u'Firefox OS')),
 ]
 
 DEVICE_CHOICES_IDS = {
     'desktop': amo.DEVICE_DESKTOP.id,
     'mobile': amo.DEVICE_MOBILE.id,
     'tablet': amo.DEVICE_TABLET.id,
-    'gaia': amo.DEVICE_GAIA.id,
+    'firefoxos': amo.DEVICE_GAIA.id,
 }
 
 # "Relevance" doesn't make sense for Category listing pages.
