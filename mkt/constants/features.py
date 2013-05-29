@@ -1,3 +1,7 @@
+from ordereddict import OrderedDict
+
+from django.conf import settings
+
 from tower import ugettext_lazy as _lazy
 
 
@@ -42,3 +46,78 @@ APP_FEATURES = (
     ('GAMEPAD', _lazy(u'Gamepad')),
     ('QUOTA', _lazy(u'Quota Management')),
 )
+
+
+class FeatureProfile(OrderedDict):
+    """
+    Convenience class for performing conversion operations on feature profile
+    representations.
+    """
+
+    @classmethod
+    def from_binary(cls, binary):
+        """
+        Construct a FeatureProfile object from a binary string.
+
+        >>> FeatureProfile.from_binary('01000010...')
+        FeatureProfile([('apps', False), ('packaged_apps', True), ...)
+        """
+        if len(binary) != len(APP_FEATURES):
+            raise ValueError((
+                'A binary representation of a FeatureProfile must be %d bytes '
+                'long.'
+            ) % len(APP_FEATURES))
+        instance = cls()
+        for i, char in enumerate(binary):
+            key = APP_FEATURES[i][0].lower()
+            instance[key] = char == '1'
+        return instance
+
+    @classmethod
+    def from_signature(cls, signature):
+        """
+        Construct a FeatureProfile object from a decimal signature.
+
+        >>> FeatureProfile.from_signature('40000000.32.1')
+        FeatureProfile([('apps', False), ('packaged_apps', True), ...)
+        """
+        dehexed = int(signature.split('.')[0], 16)
+        return cls.from_binary(bin(dehexed).lstrip('0b'))
+
+    def to_binary(self):
+        """
+        Convert a FeatureProfile object to its binary representation.
+
+        >>> profile.to_binary()
+        '0100000000000000000000000000000'
+        """
+        return ''.join(['1' if v else '0' for v in self.values()])
+
+    def to_signature(self):
+        """
+        Convert a FeatureProfile object to its decimal signature.
+
+        >>> profile.to_signature()
+        '40000000.32.1'
+        """
+        profile = self.to_binary()
+        return '%x.%s.%s' % (int(profile, 2), len(profile),
+                             settings.APP_FEATURES_VERSION)
+
+    def to_kwargs(self, prefix='', only_true=True):
+        """
+        Convert a FeatureProfile object to a dict representing its values. This
+        is helpful if using a FeatureProfile in a queryset.
+
+        Parameters:
+        - `prefix` - a string prepended to the key name. Helpful if being used
+                     to traverse relations
+        - `only_true` - if True, any features with a False value are excluded
+                        from the return dict.
+
+        >>> profile = FeatureProject.from_signature(request.get('pro'))
+        >>> Webapp.objects.filter(**profile.to_kwargs())
+        """
+        items = dict([(k, v) for k, v in self.iteritems() if v]) if only_true \
+            else self
+        return dict([(prefix + k, v) for k, v in items.iteritems()])
