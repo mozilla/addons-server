@@ -154,7 +154,8 @@ def es_app_to_dict(obj, currency=None, profile=None):
     Return app data as dict for API where `app` is the elasticsearch result.
     """
     # Circular import.
-    from mkt.api.resources import AppResource
+    from mkt.api.base import GenericObject
+    from mkt.api.resources import AppResource, PrivacyPolicyResource
     from mkt.developers.api import AccountResource
     from mkt.developers.models import AddonPaymentAccount
     from mkt.webapps.models import Installed, Webapp
@@ -167,8 +168,9 @@ def es_app_to_dict(obj, currency=None, profile=None):
     is_packaged = src['app_type'] == amo.ADDON_WEBAPP_PACKAGED
     app = Webapp(app_slug=obj.app_slug, is_packaged=is_packaged)
 
-    attrs = ('content_ratings', 'current_version', 'homepage', 'manifest_url',
-             'previews', 'ratings', 'status', 'support_email', 'support_url')
+    attrs = ('content_ratings', 'current_version', 'default_locale',
+             'homepage', 'manifest_url', 'previews', 'ratings', 'status',
+             'support_email', 'support_url')
     data = dict(zip(attrs, attrgetter(*attrs)(obj)))
     data.update({
         'absolute_url': absolutify(app.get_detail_url()),
@@ -182,6 +184,9 @@ def es_app_to_dict(obj, currency=None, profile=None):
         'listed_authors': [{'name': name} for name in src['authors']],
         'name': get_attr_lang(src, 'name', obj.default_locale),
         'premium_type': amo.ADDON_PREMIUM_API[src['premium_type']],
+        'privacy_policy': PrivacyPolicyResource().get_resource_uri(
+            GenericObject({'pk': obj._id})
+        ),
         'public_stats': obj.has_public_stats,
         'summary': get_attr_lang(src, 'summary', obj.default_locale),
         'slug': obj.app_slug,

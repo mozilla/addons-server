@@ -94,6 +94,7 @@ class TestApi(BaseOAuth, ESTestCase):
             eq_(obj['id'], str(self.webapp.id))
             eq_(obj['manifest_url'], self.webapp.get_manifest_url())
             eq_(obj['payment_account'], None)
+            eq_(obj['privacy_policy'], '/api/v1/apps/app/337141/privacy/')
             eq_(obj['public_stats'], self.webapp.public_stats)
             eq_(obj['ratings'], {'average': 0.0, 'count': 0})
             eq_(obj['resource_uri'], '/api/v1/apps/app/337141/')
@@ -252,8 +253,8 @@ class TestApi(BaseOAuth, ESTestCase):
 
     @patch.object(mkt.regions.US, 'supports_carrier_billing', False)
     def test_minimum_price_tier(self):
-        price = Price.objects.create(name="5", price="0.50")
-        PriceCurrency.objects.create(currency='BRL', price="1.00" , tier=price)
+        price = Price.objects.create(name='5', price='0.50')
+        PriceCurrency.objects.create(currency='BRL', price='1.00', tier=price)
         AddonPremium.objects.create(addon=self.webapp, price=price)
         self.webapp.save()
         self.refresh('webapp')
