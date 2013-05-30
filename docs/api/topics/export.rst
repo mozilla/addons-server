@@ -9,6 +9,10 @@ can be found at the following URLs:
 
 * Development server: https://marketplace-dev-cdn.allizom.org/dumped-apps/tarballs/YYYY-MM-DD.tgz
 
+* Production server: https://marketplace.cdn.mozilla.net/dumped-apps/tarballs/YYYY-MM-DD.tgz
+
+Files remain on the server for 30 days then are removed.
+
 Contents:
 
 * *readme.txt* and *license.txt*: information about the export.
