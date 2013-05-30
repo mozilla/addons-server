@@ -289,7 +289,7 @@ class TestMarketButton(amo.tests.TestCase):
         doc = pq(market_tile(self.context, self.webapp))
         data = json.loads(doc('.mkt-tile').attr('data-product'))
         eq_(data['categories'],
-            [str(cat.name) for cat in self.webapp.categories.all()])
+            [str(cat.id) for cat in self.webapp.categories.all()])
 
     def test_install_src(self):
         # request.GET['src'] is 'foo', and we're overriding it.
