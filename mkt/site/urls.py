@@ -47,7 +47,6 @@ urlpatterns = patterns('',
     url('^manifest.webapp$', views.manifest, name='manifest.webapp'),
     url('^minifest.webapp$', views.package_minifest, name='minifest.webapp'),
 
-    url('^package.zip$', views.package_zip, name='package.zip'),
     url('^timing/record$', views.record, name='mkt.timing.record'),
     url('^feedback$', feedback, name='site.feedback'),
     url('^server.html$', views.fireplace, name='site.fireplace'),

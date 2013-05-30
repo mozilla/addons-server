@@ -5,11 +5,10 @@ import os
 import subprocess
 
 from django.conf import settings
-from django.core.cache import cache
 from django.core.exceptions import PermissionDenied
-from django.core.files.storage import default_storage as storage
 from django.http import (HttpResponse, HttpResponseNotFound,
                          HttpResponseServerError)
+from django.shortcuts import get_object_or_404, redirect
 from django.template import RequestContext
 from django.views.decorators.cache import cache_page
 from django.views.decorators.csrf import csrf_exempt, requires_csrf_token
@@ -23,12 +22,13 @@ from jingo import render_to_string
 
 from amo.context_processors import get_collect_timings
 from amo.decorators import post_required
-from amo.helpers import absolutify, media
+from amo.helpers import media
 from amo.urlresolvers import reverse
 from amo.utils import urlparams
-from files.utils import SafeUnzip
 
 from mkt.carriers import get_carrier
+from mkt.detail.views import manifest as mini_manifest
+from mkt.webapps.models import Webapp
 
 
 log = logging.getLogger('z.mkt.site')
@@ -109,85 +109,11 @@ def manifest(request):
     return _inner_view(request)
 
 
-def get_package_path(signed=True):
-    path = os.path.join(settings.MEDIA_ROOT, 'packaged-apps',
-                        settings.PACKAGED_ZIP)
-    if signed:
-        split = path.rsplit('.', 1)
-        split.insert(-1, 'signed')
-        if os.path.exists('.'.join(split)):
-            path = '.'.join(split)
-    return path
-
-
-def get_package_info(signed=True):
-    """
-    Returns the local path to the packaged `.zip` and a hash of
-    the package's last-modified time.
-    """
-    path = get_package_path(signed=signed)
-    etag = hashlib.md5(str(os.stat(path).st_mtime)).hexdigest()
-    return path, etag
-
-
-def package_zip(request):
-    """
-    Serves the packaged `.zip` with an `ETag` header based on
-    the package's last-modified time.
-    """
-    package_path, package_etag = get_package_info()
-
-    cache_key = 'package_zip:%s' % package_etag
-    package_content = cache.get(cache_key)
-    if package_content is None:
-        with storage.open(package_path) as fd:
-            package_content = fd.read()
-        cache.set(cache_key, package_content)
-
-    @etag(lambda r: package_etag)
-    def _inner_view(request):
-        return HttpResponse(package_content, mimetype='application/zip')
-
-    return _inner_view(request)
-
-
 def package_minifest(request):
     """Serves the mini manifest ("minifest") for the packaged `.zip`."""
-    package_path, package_etag = get_package_info()
-
-    cache_key = 'package_manifest:%s' % package_etag
-    manifest = cache.get(cache_key)
-    if manifest is None:
-        # Extract `.zip` package.
-        package = SafeUnzip(package_path)
-        if package.is_valid():
-            # Read contents of `manifest.webapp`.
-            manifest = package.extract_path('manifest.webapp')
-            cache.set(cache_key, manifest)
-
-    manifest = json.loads(manifest or {})
-
-    data = {
-        'name': manifest.get('name'),
-        'version': manifest.get('version'),
-        'size': storage.size(package_path),
-        'package_path': absolutify(reverse('package.zip')),
-    }
-    for key in ('developer', 'icons', 'name', 'locales', 'release_notes'):
-        if key in manifest:
-            data[key] = manifest[key]
-
-    manifest_content = json.dumps(data)
-
-    manifest_etag = hashlib.md5(manifest_content).hexdigest()
-
-    @etag(lambda r: manifest_etag)
-    def _inner_view(request):
-        response = HttpResponse(manifest_content,
-                                mimetype='application/x-web-app-manifest+json')
-        return response
-
-    return _inner_view(request)
+    if not settings.MARKETPLACE_GUID:
+        return HttpResponseNotFound()
+    return mini_manifest(request, settings.MARKETPLACE_GUID)
 
 
 def robots(request):
