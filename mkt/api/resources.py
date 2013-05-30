@@ -269,11 +269,6 @@ class AppResource(CORSResource, MarketplaceModelResource):
         forms[1].save(obj)
         forms[2].save()
         forms[3].save()
-        if bundle.obj.premium_type == amo.ADDON_FREE:
-            bundle.obj.update(status=amo.STATUS_PENDING)
-        else:
-            bundle.obj.update(status=amo.STATUS_NULL,
-                              highest_status=amo.STATUS_PENDING)
         log.info('App updated: %s' % obj.pk)
 
         return bundle

@@ -437,7 +437,6 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         eq_(res.status_code, 202)
         app = Webapp.objects.get(pk=app.pk)
         eq_(app.privacy_policy, 'wat')
-        eq_(app.status, amo.STATUS_PENDING)
 
     def test_put_as_post(self):
         # This is really a test of the HTTP_X_HTTP_METHOD_OVERRIDE header
@@ -563,7 +562,6 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         res = self.client.put(self.get_url, data=json.dumps(data))
         eq_(res.status_code, 202)
         eq_(str(app.addonpremium.price.get_price()), "1.07")
-        eq_(app.status, amo.STATUS_NULL)
 
     def test_put_premium_inapp(self):
         app = self.create_app()
