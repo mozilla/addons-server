@@ -15,7 +15,7 @@ from django.db.models.signals import post_delete, post_save
 import mock
 import waffle
 from nose import SkipTest
-from nose.tools import eq_, raises
+from nose.tools import eq_, ok_, raises
 
 import amo
 from addons.models import (Addon, AddonCategory, AddonDeviceType,
@@ -38,7 +38,8 @@ from mkt.constants import APP_FEATURES, apps
 from mkt.site.fixtures import fixture
 from mkt.submit.tests.test_views import BasePackagedAppTest, BaseWebAppTest
 from mkt.webapps.models import (AddonExcludedRegion, AppFeatures,
-                                get_excluded_in, Installed, Webapp)
+                                get_excluded_in, Installed, Webapp,
+                                WebappIndexer)
 
 
 class TestWebapp(amo.tests.TestCase):
@@ -1329,3 +1330,75 @@ class TestAppFeatures(amo.tests.TestCase):
         af = AppFeatures(version=self.app.current_version)
         af.set_flags('foo')
         af.set_flags('<script>')
+
+
+class TestWebappIndexer(amo.tests.TestCase):
+    fixtures = fixture('webapp_337141')
+
+    def setUp(self):
+        self.app = Webapp.objects.get(pk=337141)
+
+    def test_mapping_type_name(self):
+        eq_(WebappIndexer.get_mapping_type_name(), 'webapp')
+
+    def test_index(self):
+        with self.settings(ES_INDEXES={'webapp': 'apps'}):
+            eq_(WebappIndexer.get_index(), 'apps')
+
+    def test_model(self):
+        eq_(WebappIndexer.get_model(), Webapp)
+
+    def test_mapping(self):
+        mapping = WebappIndexer.get_mapping()
+        eq_(mapping.keys(), ['webapp'])
+        eq_(mapping['webapp']['_all'], {'enabled': False})
+        eq_(mapping['webapp']['_boost'], {'name': '_boost', 'null_value': 1.0})
+
+    def test_mapping_properties(self):
+        # Spot check a few of the key properties.
+        mapping = WebappIndexer.get_mapping()
+        keys = mapping['webapp']['properties'].keys()
+        for k in ('id', 'app_slug', 'category', 'default_locale',
+                  'description', 'device', 'features', 'name', 'status'):
+            ok_(k in keys, 'Key %s not found in mapping properties' % k)
+
+    def _get_doc(self):
+        qs = Webapp.indexing_transformer(
+            Webapp.uncached.filter(id__in=[self.app.pk]))
+        obj = qs[0]
+        return obj, WebappIndexer.extract_document(obj.pk, obj)
+
+    def test_extract(self):
+        obj, doc = self._get_doc()
+        eq_(doc['id'], obj.id)
+        eq_(doc['app_slug'], obj.app_slug)
+        eq_(doc['category'], [])
+        eq_(doc['default_locale'], obj.default_locale)
+        eq_(doc['description'], list(
+            set(s for _, s in obj.translations[obj.description_id])))
+        eq_(doc['device'], [])
+        eq_(doc['name'], list(
+            set(s for _, s in obj.translations[obj.name_id])))
+        eq_(doc['status'], obj.status)
+
+    def test_extract_category(self):
+        cat = Category.objects.create(name='c', type=amo.ADDON_WEBAPP)
+        AddonCategory.objects.create(addon=self.app, category=cat)
+
+        obj, doc = self._get_doc()
+        eq_(doc['category'], [cat.id])
+
+    def test_extract_device(self):
+        device = DEVICE_TYPES.keys()[0]
+        AddonDeviceType.objects.create(addon=self.app, device_type=device)
+
+        obj, doc = self._get_doc()
+        eq_(doc['device'], [device])
+
+    def test_extract_features(self):
+        enabled = ('has_apps', 'has_sms', 'has_geolocation')
+        AppFeatures.objects.create(version=self.app.current_version,
+                                   **dict((k, True) for k in enabled))
+        obj, doc = self._get_doc()
+        for k, v in doc['features'].iteritems():
+            eq_(v, k in enabled)

@@ -927,6 +927,12 @@ class WebappIndexer(MappingType, Indexable):
                                        'index': 'not_analyzed'},
                     'description': {'type': 'string', 'analyzer': 'snowball'},
                     'device': {'type': 'byte'},
+                    'features': {
+                        'type': 'object',
+                        'properties': dict(
+                            ('has_%s' % f[0].lower(), {'type': 'boolean'})
+                            for f in APP_FEATURES)
+                    },
                     'has_public_stats': {'type': 'boolean'},
                     'homepage': {'type': 'string', 'index': 'not_analyzed'},
                     'icons': {
@@ -1002,7 +1008,6 @@ class WebappIndexer(MappingType, Indexable):
             mapping[doc_type]['properties'].update(
                 _locale_field_mapping('summary', analyzer))
 
-        # TODO: boolean mappings for mkt.constants.features (bug 862479)
         # TODO: reviewer flags (bug 848446)
 
         return mapping
@@ -1018,6 +1023,9 @@ class WebappIndexer(MappingType, Indexable):
             file_ = version and version.files.latest()
         except ObjectDoesNotExist:
             file_ = None
+
+        features = (version.get_features().to_dict()
+                    if version else AppFeatures.to_dict())
 
         translations = obj.translations
         installed_ids = list(Installed.objects.filter(addon=obj)
@@ -1055,6 +1063,7 @@ class WebappIndexer(MappingType, Indexable):
         d['description'] = list(set(s for _, s
                                     in translations[obj.description_id]))
         d['device'] = getattr(obj, 'device_ids', [])
+        d['features'] = features
         d['has_public_stats'] = obj.public_stats
         # TODO: Store all localizations of homepage.
         d['homepage'] = unicode(obj.homepage) if obj.homepage else ''
