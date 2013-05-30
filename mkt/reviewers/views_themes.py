@@ -175,7 +175,10 @@ def _get_themes(request, reviewer, flagged=False, rereview=False):
     # Don't allow self-reviews.
     if (not settings.ALLOW_SELF_REVIEWS and
         not acl.action_allowed(request, 'Admin', '%')):
-        themes = themes.exclude(addon__addonuser__user=reviewer)
+        if rereview:
+            themes = themes.exclude(theme__addon__addonuser__user=reviewer)
+        else:
+            themes = themes.exclude(addon__addonuser__user=reviewer)
 
     # Check out themes by setting lock.
     themes = list(themes)[:num]
