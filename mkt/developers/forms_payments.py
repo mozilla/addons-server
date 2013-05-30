@@ -22,9 +22,9 @@ log = commonware.log.getLogger('z.devhub')
 
 
 def _restore_app(app, save=True):
-    """Restore an incomplete app to its former status. The app will be marked
-    as its previuos status or PENDING if it was never reviewed.
-
+    """
+    Restore an incomplete app to its former status. The app will be marked
+    as its previous status or PENDING if it was never reviewed.
     """
 
     log.info('Changing app from incomplete to previous status: %d' % app.pk)
