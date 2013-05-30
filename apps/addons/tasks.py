@@ -344,3 +344,28 @@ def save_theme_reupload(header, footer, addon, **kw):
         rqt = RereviewQueueTheme.objects.create(
             theme=theme, header=header, footer=footer)
         rereviewqueuetheme_checksum(rqt=rqt)
+
+
+@task
+@write
+def calc_checksum(theme_id, **kw):
+    """For migration 596."""
+    theme = Persona.objects.get(id=theme_id)
+    header = theme.header_path
+    footer = theme.footer_path
+
+    # Delete invalid themes that are not images (e.g. PDF, EXE).
+    try:
+        Image.open(header)
+        Image.open(footer)
+    except IOError:
+        theme.addon.delete()
+        theme.delete()
+        return
+
+    # Calculate checksum and save.
+    try:
+        theme.checksum = make_checksum(header, footer)
+        theme.save()
+    except Exception as e:
+        log.error(str(e))
