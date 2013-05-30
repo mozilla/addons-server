@@ -70,7 +70,7 @@
   </header>
   {{ disabled_payments_notice() }}
   <section id="refunds" class="primary payments devhub-form" role="main">
-    {% if not addon.needs_paypal() %}
+    {% if not addon.needs_payment() %}
       <div id="enable-payments" class="error item">
         {{ _('Your app is not currently accepting payments.') }}
         <p class="item-actions">

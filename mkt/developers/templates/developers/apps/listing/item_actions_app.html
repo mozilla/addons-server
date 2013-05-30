@@ -2,7 +2,7 @@
 <ul>
 {% if addon.is_incomplete() %}
   {% if check_addon_ownership(request, addon, dev=True) %}
-    {% if addon.is_complete()[0] %}
+    {% if addon.is_complete()[0] and addon.needs_payment() %}
       {# The app just needs payments information. #}
     <li>
       <a href="{{ addon.get_dev_url('payments') }}" class="tooltip"
