@@ -124,7 +124,7 @@ def product_as_dict(request, product, purchased=None, receipt_type=None,
     ret = {
         'id': product.id,
         'name': product.name,
-        'categories': [unicode(cat.name) for cat in
+        'categories': [unicode(cat.id) for cat in
                        product.categories.all()],
         'manifest_url': product.get_manifest_url(reviewer),
         'recordUrl': urlparams(url, src=src),
