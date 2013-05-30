@@ -27,7 +27,7 @@
 </section>
 
 <section class="primary" id="homepage">
-  {% if request.APP == amo.FIREFOX %}
+  {% if request.APP in (amo.FIREFOX, amo.ANDROID) %}
     <section class="island" id="promos" data-promo-url="{{ url('addons.homepage_promos') }}">
       <div>
         <ul class="slider">
