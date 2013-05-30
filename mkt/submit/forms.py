@@ -19,7 +19,8 @@ from translations.fields import TransField
 from translations.forms import TranslationFormMixin
 from translations.widgets import TransInput, TransTextarea
 
-from mkt.constants import FREE_PLATFORMS, PAID_PLATFORMS
+from mkt.constants import (APP_FEATURES_DESCRIPTIONS, FREE_PLATFORMS,
+                           PAID_PLATFORMS)
 from mkt.site.forms import AddonChoiceField, APP_PUBLIC_CHOICES
 from mkt.webapps.models import AppFeatures
 
@@ -422,3 +423,8 @@ class AppFeaturesForm(happyforms.ModelForm):
         All fields on the form, alphabetically sorted by help text.
         """
         return sorted(self.all_fields(), key=lambda x: x.help_text.decode())
+
+    def get_tooltip(self, field):
+        field_id = field.name.split('_', 1)[1].upper()
+        return (unicode(APP_FEATURES_DESCRIPTIONS.get(field_id)) if
+                field_id in APP_FEATURES_DESCRIPTIONS else None)

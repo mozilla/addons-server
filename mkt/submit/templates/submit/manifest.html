@@ -105,10 +105,21 @@
 
       {% if waffle.switch('buchets') %}
       <div id="upload-webapp-features" class="hidden">
-        <h3>{% trans %}My App Requires:{% endtrans %}</h3>
+        <h3>{{ _('App Minimum Requirements:') }}</h3>
+        <p>
+          {% trans %}
+            Check the boxes of the features that your app requires to function
+            properly. Your app will be hidden from users whose devices don't
+            support it.
+          {% endtrans %}
+        </p>
         <ul>
           {% for field in features_form.required_api_fields() %}
-            <li><label for="{{ field.auto_id }}">{{ field }} {{ field.help_text }}</label></li>
+            {% set tooltip = features_form.get_tooltip(field) %}
+            <li>
+              <label for="{{ field.auto_id }}">{{ field }} {{ field.help_text }}</label>
+              {% if tooltip %}<span class="tip tooltip" title="{{ tooltip }}">?</span>{% endif %}
+            </li>
           {% endfor %}
         </ul>
       </div>

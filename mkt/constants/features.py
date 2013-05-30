@@ -47,6 +47,78 @@ APP_FEATURES = (
     ('QUOTA', _lazy(u'Quota Management')),
 )
 
+APP_FEATURES_DESCRIPTIONS = {
+    'APPS': _lazy('The app requires the `navigator.mozApps` API.'),
+    'PACKAGED_APPS': _lazy(
+        'The app requires the `navigator.mozApps.installPackage` API.'),
+    'PAY': _lazy('The app requires the `navigator.mozPay` API.'),
+    'ACTIVITY': _lazy(
+        'The app requires Web Activities (the `MozActivity` API).'),
+    'LIGHT_EVENTS': _lazy(
+        'The app requires an ambient light sensor (the `ondevicelight` API).'),
+    #'ARCHIVE': _lazy('The app requires the web archive API.'),
+    'BATTERY': _lazy('The app requires the `navigator.battery` API.'),
+    'BLUETOOTH': _lazy('The app requires the `navigator.mozBluetooth` API.'),
+    'CONTACTS': _lazy('The app requires the `navigator.mozContacts` API.'),
+    'DEVICE_STORAGE': _lazy(
+        'The app requires the Device Storage API to access files on the '
+        'filesyste.'),
+    'INDEXEDDB': _lazy('The app requires the platform to support IndexedDB.'),
+    'GEOLOCATION': _lazy(
+        'The app requires the platform to support the '
+        '`navigator.geolocation` API.'),
+    #'IDLE': _lazy('The app requires the `addIdleObserver` API.'),
+    'NETWORK_INFO': _lazy(
+        'The app requires the ability to get information about the network '
+        'connection (the `navigator.mozConnection` API).'),
+    'NETWORK_STATS': _lazy(
+        'The app requires the `navigator.mozNetworkStats` API.'),
+    'PROXIMITY': _lazy(
+        'The app requires a proximity sensor (the `ondeviceproximity` API).'),
+    'PUSH': _lazy('The app requires the `navigator.mozPush` API.'),
+    'ORIENTATION': _lazy(
+        'The app requires the platform to support the `ondeviceorientation` '
+        'API.'),
+    'TIME_CLOCK': _lazy('The app requires the `navigator.mozTime` API.'),
+    'VIBRATE': _lazy(
+        'The app requires the device to support vibration (the '
+        '`navigator.vibrate` API).'),
+    'FM': _lazy(
+        'The app requires the `navigator.mozFM` or `navigator.mozFMRadio` '
+        'APIs.'),
+    'SMS': _lazy('The app requires the `navigator.mozSms` API.'),
+    'TOUCH': _lazy(
+        'The app requires the platform to support touch events. This option '
+        'indicates that the app will not function when used with a mouse.'),
+    'QHD': _lazy(
+        'The app requies the platform to have a smartphone-sized display '
+        '(having qHD resolution). This option indicates that the app will '
+        'be unusable on larger displays (e.g.: tablets, desktop, etc.).'),
+    'MP3': _lazy(
+        'The app requires that the platform can decode and play Mp3 files.'),
+    'AUDIO': _lazy(
+        'The app requires that the platform supports the HTML5 audio API.'),
+    'WEBAUDIO': _lazy(
+        'The app requires that the platform supports the Web Audio API '
+        '(`window.AudioContext`).'),
+    'VIDEO_H264': _lazy(
+        'The app requires that the platform can decode and play H.264 video '
+        'files.'),
+    'VIDEO_WEBM': _lazy(
+        'The app requires that the platform can decode and play WebM video '
+        'files (VP8).'),
+    'FULLSCREEN': _lazy(
+        'The app requires the Full Screen API (`requestFullScreen` or '
+        '`mozRequestFullScreen`).'),
+    'GAMEPAD': _lazy(
+        'The app requires the platform to support the gamepad API '
+        '(`navigator.getGamepads`)'),
+    'QUOTA': _lazy(
+        'The app requires the platform to allow persistent storage limit '
+        'increases above the normally allowed limits for an app '
+        '(`window.StorageInfo` or `window.persistentStorage`).'),
+}
+
 
 class FeatureProfile(OrderedDict):
     """
