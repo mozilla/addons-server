@@ -1280,6 +1280,7 @@ class TestAppFeatures(amo.tests.TestCase):
 
     def _flag(self):
         "Flag app with a handful of feature flags for testing."
+        AppFeatures.objects.filter(version=self.app.current_version).delete()
         af = AppFeatures(version=self.app.current_version)
         for f in self.flags:
             setattr(af, 'has_%s' % f.lower(), True)
