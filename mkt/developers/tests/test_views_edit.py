@@ -155,6 +155,18 @@ class TestEditListingWebapp(TestEdit):
         eq_(doc.length, 1)
         eq_(doc('.view-stats').length, 0)
 
+    def test_edit_with_no_current_version(self):
+        self.create_switch('buchets')
+
+        # Disable file for latest version, and then update app.current_version.
+        app = self.get_webapp()
+        app.versions.latest().all_files[0].update(status=amo.STATUS_DISABLED)
+        app.update_version()
+
+        # Now try to display edit page.
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+
 
 @mock.patch.object(settings, 'TASK_USER_ID', 999)
 class TestEditBasic(TestEdit):
@@ -1188,6 +1200,22 @@ class TestEditTechnical(TestEdit):
         r = self.client.post(self.edit_url, formset(**data_off))
         self.assertNoFormErrors(r)
         self.compare_features(data_off)
+
+    def test_edit_features_with_no_current_version(self):
+        self.make_appfeatures()
+
+        # Disable file for latest version, and then update app.current_version.
+        app = self.get_webapp()
+        app.versions.latest().all_files[0].update(status=amo.STATUS_DISABLED)
+        app.update_version()
+
+        # Now try to display edit technical page.
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+
+        # Also try to submit it.
+        r = self.client.post(self.edit_url, formset(has_apps=True))
+        self.assertNoFormErrors(r)
 
 
 class TestAdmin(TestEdit):
