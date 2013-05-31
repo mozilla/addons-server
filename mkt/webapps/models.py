@@ -1116,8 +1116,11 @@ class WebappIndexer(MappingType, Indexable):
                               if obj.support_email else None)
         d['support_url'] = (unicode(obj.support_url)
                             if obj.support_url else None)
-        d['supported_locales'] = filter(None,
-                                        version.supported_locales.split(','))
+        if version:
+            d['supported_locales'] = filter(
+                None, version.supported_locales.split(','))
+        else:
+            d['supported_locales'] = []
 
         if obj.upsell:
             upsell_obj = obj.upsell.premium
