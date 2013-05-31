@@ -205,12 +205,14 @@ def es_app_to_dict(obj, currency=None, profile=None):
     else:
         data['payment_account'] = None
 
+    data['price'] = data['price_locale'] = None
     try:
-        price = Price.objects.get(name=src['price_tier'])
-        data['price'] = price.get_price(currency=currency)
-        data['price_locale'] = price.get_price_locale(currency=currency)
+        if src['price_tier']:
+            price = Price.objects.get(name=src['price_tier'])
+            data['price'] = price.get_price(currency=currency)
+            data['price_locale'] = price.get_price_locale(currency=currency)
     except Price.DoesNotExist:
-        data['price'] = data['price_locale'] = None
+        pass
 
     data['upsell'] = False
     if hasattr(obj, 'upsell'):

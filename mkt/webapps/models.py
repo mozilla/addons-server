@@ -628,11 +628,15 @@ class Webapp(Addon):
             srch = TempS(cls).filter(**filters)
 
         if region:
-            excluded = get_excluded_in(region.id)
-            if excluded:
-                log.info('Excluding the following IDs based on region %s: %s'
-                          % (region.slug, excluded))
-                srch = srch.filter(~F(id__in=excluded))
+            if new_idx and waffle.switch_is_active('search-api-es'):
+                srch.filter(~F(region_exclusions=region.id))
+            else:
+                excluded = get_excluded_in(region.id)
+                if excluded:
+                    log.info(
+                        'Excluding the following IDs based on region %s: %s'
+                        % (region.slug, excluded))
+                    srch = srch.filter(~F(id__in=excluded))
 
         if mobile or gaia:
             srch = srch.filter(uses_flash=False)
