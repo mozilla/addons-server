@@ -13,6 +13,7 @@ from addons.models import Persona
 from editors.models import RereviewQueueTheme
 import amo
 from amo.decorators import set_modified_on, write
+from amo.storage_utils import rm_stored_dir
 from amo.utils import cache_ns_key, ImageCheck, LocalFileStorage
 from lib.es.utils import index_objects
 from versions.models import Version
@@ -350,6 +351,7 @@ def save_theme_reupload(header, footer, addon, **kw):
 @write
 def calc_checksum(theme_id, **kw):
     """For migration 596."""
+    lfs = LocalFileStorage()
     theme = Persona.objects.get(id=theme_id)
     header = theme.header_path
     footer = theme.footer_path
@@ -359,13 +361,16 @@ def calc_checksum(theme_id, **kw):
         Image.open(header)
         Image.open(footer)
     except IOError:
+        log.info('Deleting invalid theme [%s] (header: %s) (footer: %s)' %
+                 theme.addon.id, header, footer)
         theme.addon.delete()
         theme.delete()
+        rm_stored_dir(header.replace('header.png', ''), storage=lfs)
         return
 
     # Calculate checksum and save.
     try:
         theme.checksum = make_checksum(header, footer)
         theme.save()
-    except Exception as e:
+    except IOError as e:
         log.error(str(e))
