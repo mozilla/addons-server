@@ -308,6 +308,7 @@ class TestApiFeatures(BaseOAuth, ESTestCase):
         #  'webaudio': True}
         self.profile = '8a7dd46c.32.1'
         self.qs = {'q': 'something', 'pro': self.profile, 'dev': 'firefoxos'}
+        AppFeatures.objects.all().delete()
 
     def test_no_features(self):
         # Base test to make sure we find the app.
