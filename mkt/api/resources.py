@@ -297,20 +297,30 @@ class AppResource(CORSResource, MarketplaceModelResource):
 
     def update_payment_account(self, bundle):
         if 'payment_account' in bundle.data:
-            if bundle.obj.premium_type == amo.ADDON_FREE:
+            # You cannot specify a payment account and be free.
+            # If you specify None, then we will delete the account.
+            if (bundle.data['payment_account'] and
+                bundle.obj.premium_type == amo.ADDON_FREE):
                 raise fields.ApiFieldError(
                     'Free apps cannot have payment accounts.')
-            acct = self.fields['payment_account'].hydrate(bundle).obj
+
+            # Delete the old Payment account.
+            # See bug 878350.
             try:
-                log.info('[1@%s] Deleting app payment account' % bundle.obj.pk)
+                log.info('[1@{0}] Deleting app payment account'
+                         .format(bundle.obj.pk))
                 AddonPaymentAccount.objects.get(addon=bundle.obj).delete()
             except AddonPaymentAccount.DoesNotExist:
                 pass
 
-            log.info('[1@%s] Creating new app payment account' % bundle.obj.pk)
-            AddonPaymentAccount.create(
-                provider='bango', addon=bundle.obj,
-                payment_account=acct)
+            # Create a Payment account, only if one is specified.
+            if bundle.data['payment_account']:
+                acct = self.fields['payment_account'].hydrate(bundle).obj
+                log.info('[1@{0}] Creating new app payment account'
+                         .format(bundle.obj.pk))
+                AddonPaymentAccount.create(
+                    provider='bango', addon=bundle.obj,
+                    payment_account=acct)
 
     def update_upsell(self, bundle):
         if 'upsold' in bundle.data:

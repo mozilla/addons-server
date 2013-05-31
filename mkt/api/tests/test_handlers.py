@@ -2,6 +2,7 @@ import base64
 import json
 import os
 import tempfile
+from decimal import Decimal
 
 from mock import patch
 from nose.tools import eq_
@@ -698,6 +699,30 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
                                                    'payments', False)
         res = self.client.put(self.get_url, data=json.dumps(data))
         eq_(res.status_code, 400)
+
+    @patch('mkt.developers.models.client')
+    def test_delete_payment_account_on_free(self, client):
+        client.api.bango.package().get.return_value = {"full": payment_data}
+        app = self.create_app()
+        data = self.base_data()
+        seller = SolitudeSeller.objects.create(user=self.profile, uuid='uid')
+        acct = PaymentAccount.objects.create(
+            user=self.profile, solitude_seller=seller, agreed_tos=True,
+            seller_uri='uri', uri='uri', bango_package_id=123)
+        app = AddonPaymentAccount.objects.create(addon=app,
+            payment_account=acct, set_price=Decimal('1.0'))
+        data['payment_account'] = None
+        res = self.client.put(self.get_url, data=json.dumps(data))
+        eq_(res.status_code, 202)
+        eq_(AddonPaymentAccount.objects.count(), 0)
+
+    def test_no_payment_account_on_free(self):
+        self.create_app()
+        data = self.base_data()
+        data['payment_account'] = None
+        res = self.client.put(self.get_url, data=json.dumps(data))
+        eq_(res.status_code, 202)
+        eq_(AddonPaymentAccount.objects.count(), 0)
 
     def test_put_bogus_payment_account(self):
         app = self.create_app()
