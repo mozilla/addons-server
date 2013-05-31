@@ -81,11 +81,27 @@
         appGeneratorDetail.find('#' + self.data('generator')).addClass('on');
     });
 
+    // Restore the opened sections.
+    var openSections = JSON.parse(localStorage.openSections || '{}');
+    var $sections = $('.has-children .section');
+    $sections.each(function(idx) {
+        if (openSections[idx]) {
+            $(this).addClass('active');
+        }
+    });
+
     // Navigation toggle for Dev Hub sidebar
     sideNav.on('click', '.nav-title', function() {
         var self = $(this);
 
         self.parent().toggleClass('active');
+
+        // Remember the opened sections.
+        openSections = {};
+        $('.has-children .section').each(function(idx) {
+            openSections[idx] = +$(this).hasClass('active');
+        });
+        localStorage.openSections = JSON.stringify(openSections);
     });
 
     $('.notification-box').on('click', function() {
