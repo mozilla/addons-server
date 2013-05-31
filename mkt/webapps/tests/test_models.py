@@ -1402,3 +1402,10 @@ class TestWebappIndexer(amo.tests.TestCase):
         obj, doc = self._get_doc()
         for k, v in doc['features'].iteritems():
             eq_(v, k in enabled)
+
+    def test_extract_regions(self):
+        self.app.addonexcludedregion.create(region=mkt.regions.BR.id)
+        self.app.addonexcludedregion.create(region=mkt.regions.UK.id)
+        obj, doc = self._get_doc()
+        self.assertSetEqual(doc['region_exclusions'],
+                            set([mkt.regions.BR.id, mkt.regions.UK.id]))

@@ -13,6 +13,7 @@ from constants.applications import DEVICE_TYPES
 from market.models import Price
 from users.models import UserProfile
 
+from mkt.regions import REGIONS_CHOICES_ID_DICT
 from mkt.regions.api import RegionResource
 
 log = commonware.log.getLogger('z.webapps')
@@ -159,7 +160,6 @@ def es_app_to_dict(obj, currency=None, profile=None):
     from mkt.developers.api import AccountResource
     from mkt.developers.models import AddonPaymentAccount
     from mkt.webapps.models import Installed, Webapp
-    from stats.models import Contribution
 
     src = obj._source
     # The following doesn't perform a database query, but gives us useful
@@ -191,6 +191,11 @@ def es_app_to_dict(obj, currency=None, profile=None):
         'summary': get_attr_lang(src, 'summary', obj.default_locale),
         'slug': obj.app_slug,
     })
+
+    data['regions'] = RegionResource().dehydrate_objects(
+        map(REGIONS_CHOICES_ID_DICT.get,
+            app.get_region_ids(worldwide=True,
+                               excluded=obj.region_exclusions)))
 
     if src['premium_type'] in amo.ADDON_PREMIUMS:
         acct = list(AddonPaymentAccount.objects.filter(addon=app))

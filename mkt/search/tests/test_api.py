@@ -42,9 +42,8 @@ class TestApi(BaseOAuth, ESTestCase):
     def test_meta(self):
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
-        data = json.loads(res.content)
-        eq_(set(data.keys()), set(['objects', 'meta']))
-        eq_(data['meta']['total_count'], 1)
+        eq_(set(res.json.keys()), set(['objects', 'meta']))
+        eq_(res.json['meta']['total_count'], 1)
 
     def test_wrong_category(self):
         res = self.client.get(self.url + ({'cat': self.category.pk + 1},))
@@ -55,8 +54,7 @@ class TestApi(BaseOAuth, ESTestCase):
         self.category.update(weight=-1)
         res = self.client.get(self.url + ({'cat': self.category.pk},))
         eq_(res.status_code, 200)
-        data = json.loads(res.content)
-        eq_(len(data['objects']), 0)
+        eq_(len(res.json['objects']), 0)
 
     def test_wrong_sort(self):
         res = self.client.get(self.url + ({'sort': 'awesomeness'},))
@@ -65,7 +63,7 @@ class TestApi(BaseOAuth, ESTestCase):
     def test_right_category(self):
         res = self.client.get(self.url + ({'cat': self.category.pk},))
         eq_(res.status_code, 200)
-        eq_(json.loads(res.content)['objects'], [])
+        eq_(res.json['objects'], [])
 
     def create(self):
         AddonCategory.objects.create(addon=self.webapp, category=self.category)
@@ -76,7 +74,7 @@ class TestApi(BaseOAuth, ESTestCase):
         self.create()
         res = self.client.get(self.url + ({'cat': self.category.pk},))
         eq_(res.status_code, 200)
-        objs = json.loads(res.content)['objects']
+        objs = res.json['objects']
         eq_(len(objs), 1)
 
     def test_dehydrate(self):
@@ -84,7 +82,7 @@ class TestApi(BaseOAuth, ESTestCase):
             self.create()
             res = self.client.get(self.url + ({'cat': self.category.pk},))
             eq_(res.status_code, 200)
-            obj = json.loads(res.content)['objects'][0]
+            obj = res.json['objects'][0]
             eq_(obj['absolute_url'], self.webapp.get_absolute_url())
             eq_(obj['app_type'], self.webapp.app_type)
             eq_(obj['content_ratings'], None)
@@ -113,24 +111,36 @@ class TestApi(BaseOAuth, ESTestCase):
 
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
-        obj = json.loads(res.content)['objects'][0]
+        obj = res.json['objects'][0]
         eq_(obj['upsell']['id'], upsell.id)
         eq_(obj['upsell']['app_slug'], upsell.app_slug)
         eq_(obj['upsell']['name'], upsell.name)
         eq_(obj['upsell']['icon_url'], upsell.get_icon_url(128))
         eq_(obj['upsell']['resource_uri'], '/api/v1/apps/app/%s/' % upsell.id)
 
+    def test_dehydrate_regions(self):
+        self.webapp.addonexcludedregion.create(region=mkt.regions.BR.id)
+        self.webapp.save()
+        self.refresh('webapp')
+
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        obj = res.json['objects'][0]
+        regions = obj['regions']
+        ok_(mkt.regions.BR.slug not in [r['slug'] for r in regions])
+        eq_(len(regions), len(mkt.regions.ALL_REGION_IDS) - 1)
+
     def test_q(self):
         res = self.client.get(self.url + ({'q': 'something'},))
         eq_(res.status_code, 200)
-        obj = json.loads(res.content)['objects'][0]
+        obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
 
     def test_name_localized(self):
         res = self.client.get(self.url + ({'q': 'something',
                                            'lang': 'es'},))
         eq_(res.status_code, 200)
-        obj = json.loads(res.content)['objects'][0]
+        obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
         eq_(obj['name'], u'Algo Algo Steamcube!')
 
@@ -142,7 +152,7 @@ class TestApi(BaseOAuth, ESTestCase):
         res = self.client.get(self.url + ({'q': 'something',
                                            'lang': 'de'},))
         eq_(res.status_code, 200)
-        obj = json.loads(res.content)['objects'][0]
+        obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
         eq_(obj['name'], u'Algo Algo Steamcube!')
 
@@ -153,7 +163,7 @@ class TestApi(BaseOAuth, ESTestCase):
         self.refresh('webapp')
         res = self.client.get(self.url + ({'device': 'desktop'},))
         eq_(res.status_code, 200)
-        obj = json.loads(res.content)['objects'][0]
+        obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
 
     def test_no_flash_on_firefoxos(self):
@@ -166,20 +176,20 @@ class TestApi(BaseOAuth, ESTestCase):
         self.refresh('webapp')
         res = self.client.get(self.url + ({'dev': 'firefoxos'},))
         eq_(res.status_code, 200)
-        eq_(len(json.loads(res.content)['objects']), 0)
+        eq_(len(res.json['objects']), 0)
 
     def test_premium_types(self):
         res = self.client.get(self.url + (
             {'premium_types': 'free'},))
         eq_(res.status_code, 200)
-        obj = json.loads(res.content)['objects'][0]
+        obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
 
     def test_premium_types_empty(self):
         res = self.client.get(self.url + (
             {'premium_types': 'premium'},))
         eq_(res.status_code, 200)
-        objs = json.loads(res.content)['objects']
+        objs = res.json['objects']
         eq_(len(objs), 0)
 
     def test_multiple_premium_types(self):
@@ -187,13 +197,13 @@ class TestApi(BaseOAuth, ESTestCase):
             {'premium_types': 'free'},
             {'premium_types': 'premium'}))
         eq_(res.status_code, 200)
-        obj = json.loads(res.content)['objects'][0]
+        obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
 
     def test_app_type_hosted(self):
         res = self.client.get(self.url + ({'app_type': 'hosted'},))
         eq_(res.status_code, 200)
-        obj = json.loads(res.content)['objects'][0]
+        obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
 
     def test_app_type_packaged(self):
@@ -203,18 +213,18 @@ class TestApi(BaseOAuth, ESTestCase):
 
         res = self.client.get(self.url + ({'app_type': 'packaged'},))
         eq_(res.status_code, 200)
-        obj = json.loads(res.content)['objects'][0]
+        obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
 
     def test_status_anon(self):
         res = self.client.get(self.url + ({'status': 'public'},))
         eq_(res.status_code, 200)
-        obj = json.loads(res.content)['objects'][0]
+        obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
 
         res = self.client.get(self.url + ({'status': 'vindaloo'},))
         eq_(res.status_code, 400)
-        error = json.loads(res.content)['error_message']
+        error = res.json['error_message']
         eq_(error.keys(), ['status'])
 
         res = self.client.get(self.url + ({'status': 'any'},))
@@ -232,19 +242,19 @@ class TestApi(BaseOAuth, ESTestCase):
         self.webapp.update(is_packaged=True)
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
-        obj = json.loads(res.content)['objects'][0]
+        obj = res.json['objects'][0]
         eq_(obj['status'], amo.STATUS_PUBLIC)
         eq_('latest_version_status' in obj, False)
 
     def test_addon_type_anon(self):
         res = self.client.get(self.url + ({'type': 'app'},))
         eq_(res.status_code, 200)
-        obj = json.loads(res.content)['objects'][0]
+        obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
 
         res = self.client.get(self.url + ({'type': 'vindaloo'},))
         eq_(res.status_code, 400)
-        error = json.loads(res.content)['error_message']
+        error = res.json['error_message']
         eq_(error.keys(), ['type'])
 
         res = self.client.get(self.url + ({'type': 'theme'},))
@@ -290,22 +300,22 @@ class TestApiReviewer(BaseOAuth, ESTestCase):
     def test_status_reviewer(self):
         res = self.client.get(self.url + ({'status': 'public'},))
         eq_(res.status_code, 200)
-        obj = json.loads(res.content)['objects'][0]
+        obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
 
         res = self.client.get(self.url + ({'status': 'rejected'},))
         eq_(res.status_code, 200)
-        objs = json.loads(res.content)['objects']
+        objs = res.json['objects']
         eq_(len(objs), 0)
 
         res = self.client.get(self.url + ({'status': 'any'},))
         eq_(res.status_code, 200)
-        obj = json.loads(res.content)['objects'][0]
+        obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
 
         res = self.client.get(self.url + ({'status': 'vindaloo'},))
         eq_(res.status_code, 400)
-        error = json.loads(res.content)['error_message']
+        error = res.json['error_message']
         eq_(error.keys(), ['status'])
 
     def test_status_value_packaged(self):
@@ -313,24 +323,24 @@ class TestApiReviewer(BaseOAuth, ESTestCase):
         self.webapp.update(is_packaged=True)
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
-        obj = json.loads(res.content)['objects'][0]
+        obj = res.json['objects'][0]
         eq_(obj['status'], amo.STATUS_PUBLIC)
         eq_(obj['latest_version_status'], amo.STATUS_PUBLIC)
 
     def test_addon_type_reviewer(self):
         res = self.client.get(self.url + ({'type': 'app'},))
         eq_(res.status_code, 200)
-        obj = json.loads(res.content)['objects'][0]
+        obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
 
         res = self.client.get(self.url + ({'type': 'theme'},))
         eq_(res.status_code, 200)
-        objs = json.loads(res.content)['objects']
+        objs = res.json['objects']
         eq_(len(objs), 0)
 
         res = self.client.get(self.url + ({'type': 'vindaloo'},))
         eq_(res.status_code, 400)
-        error = json.loads(res.content)['error_message']
+        error = res.json['error_message']
         eq_(error.keys(), ['type'])
 
     def test_extra_attributes(self):
@@ -341,7 +351,7 @@ class TestApiReviewer(BaseOAuth, ESTestCase):
 
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
-        obj = json.loads(res.content)['objects'][0]
+        obj = res.json['objects'][0]
 
         # These only exist if requested by a reviewer.
         eq_(obj['latest_version_status'], amo.STATUS_PUBLIC)
@@ -370,10 +380,9 @@ class TestCategoriesWithFeatured(BaseOAuth, ESTestCase):
 
         res = self.client.get(self.list_url + ({'cat': 'shiny'},))
         eq_(res.status_code, 200)
-        data = json.loads(res.content)
-        eq_(len(data['objects']), 2)
-        eq_(len(data['featured']), 1)
-        eq_(int(data['featured'][0]['id']), app2.pk)
+        eq_(len(res.json['objects']), 2)
+        eq_(len(res.json['featured']), 1)
+        eq_(int(res.json['featured'][0]['id']), app2.pk)
 
     def test_no_category(self):
         AddonCategory.objects.get_or_create(addon=self.app, category=self.cat)
@@ -382,7 +391,6 @@ class TestCategoriesWithFeatured(BaseOAuth, ESTestCase):
 
         res = self.client.get(self.list_url)
         eq_(res.status_code, 200)
-        data = json.loads(res.content)
-        eq_(len(data['objects']), 2)
-        eq_(len(data['featured']), 1)
-        eq_(int(data['featured'][0]['id']), self.app.pk)
+        eq_(len(res.json['objects']), 2)
+        eq_(len(res.json['featured']), 1)
+        eq_(int(res.json['featured'][0]['id']), self.app.pk)

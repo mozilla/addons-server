@@ -535,14 +535,21 @@ class Webapp(Addon):
         except IndexError:
             pass
 
-    def get_region_ids(self, worldwide=False):
-        """Return IDs of regions in which this app is listed."""
+    def get_region_ids(self, worldwide=False, excluded=None):
+        """
+        Return IDs of regions in which this app is listed.
+
+        If `excluded` is provided we'll use that instead of doing our own
+        excluded lookup.
+
+        """
         if worldwide:
             all_ids = mkt.regions.ALL_REGION_IDS
         else:
             all_ids = mkt.regions.REGION_IDS
-        excluded = list(self.addonexcludedregion
-                            .values_list('region', flat=True))
+        if excluded is None:
+            excluded = list(self.addonexcludedregion
+                                .values_list('region', flat=True))
         return sorted(list(set(all_ids) - set(excluded)))
 
     def get_regions(self):
@@ -968,6 +975,7 @@ class WebappIndexer(MappingType, Indexable):
                             'count': {'type': 'short'},
                         }
                     },
+                    'region_exclusions': {'type': 'short'},
                     'status': {'type': 'byte'},
                     # TODO: Remove when bug 862603 lands.
                     'summary': {'type': 'string', 'analyzer': 'snowball'},
@@ -1025,7 +1033,7 @@ class WebappIndexer(MappingType, Indexable):
             file_ = None
 
         features = (version.get_features().to_dict()
-                    if version else AppFeatures.to_dict())
+                    if version else AppFeatures().to_dict())
 
         translations = obj.translations
         installed_ids = list(Installed.objects.filter(addon=obj)
@@ -1094,6 +1102,8 @@ class WebappIndexer(MappingType, Indexable):
             'average': obj.average_rating,
             'count': obj.total_reviews,
         }
+        d['region_exclusions'] = list(
+            obj.addonexcludedregion.values_list('region', flat=True))
         # TODO: Remove when bug 862603 lands.
         d['summary'] = list(set(s for _, s in translations[obj.summary_id]))
         d['support_email'] = (unicode(obj.support_email)
