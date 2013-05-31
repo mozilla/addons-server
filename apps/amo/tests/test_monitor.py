@@ -4,12 +4,14 @@ from django.conf import settings
 
 from mock import patch
 from nose.tools import eq_
+import requests
 
 import amo.tests
-from amo.monitors import signer
+from amo.monitors import receipt_signer as signer, package_signer
 
-
+@patch.object(settings, 'SIGNED_APPS_SERVER_ACTIVE', True)
 @patch.object(settings, 'SIGNING_SERVER', 'http://foo/')
+@patch.object(settings, 'SIGNED_APPS_SERVER', 'http://baz/')
 class TestMonitor(amo.tests.TestCase):
     # Some rudimentary tests for the rest of the monitor would be nice.
 
@@ -73,3 +75,16 @@ class TestMonitor(amo.tests.TestCase):
         cert_response.return_value.ok = True
         cert_response.return_value.json = lambda: {'foo': 1}
         eq_(signer()[0][:29], 'Error on checking public cert')
+
+
+    @patch('requests.post')
+    def test_app_sign_good(self, sign_response):
+        sign_response().status_code = 200
+        sign_response().content = '{"zigbert.rsa": "Vm0wd2QyUXlVWGxW"}'
+        eq_(package_signer()[0], '')
+
+
+    @patch('requests.post')
+    def test_app_sign_fail(self, sign_response):
+        sign_response().side_effect = requests.exceptions.HTTPError
+        assert package_signer()[0].startswith('Error on package signing')

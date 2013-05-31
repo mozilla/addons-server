@@ -1,6 +1,7 @@
 import os
 import socket
 import StringIO
+import tempfile
 import time
 import traceback
 from PIL import Image
@@ -13,7 +14,8 @@ import requests
 import amo.search
 from amo.utils import memoize
 from applications.management.commands import dump_apps
-from lib.crypto import receipt
+from lib.crypto import receipt, packaged
+from lib.crypto.packaged import SigningError as PackageSigningError
 from lib.crypto.receipt import SigningError
 from lib.pay_server import client
 
@@ -177,7 +179,7 @@ def redis():
 # once per nagios check, once per web head might be a bit much. The memoize
 # slows it down a bit, by caching the result for 15 seconds.
 @memoize('monitors-signer', time=15)
-def signer():
+def receipt_signer():
     destination = getattr(settings, 'SIGNING_SERVER', None)
     if not destination:
         return '', 'Signer is not configured.'
@@ -232,6 +234,22 @@ def signer():
 
     return '', 'Signer working and up to date'
 
+
+# Like the receipt signer above this asks the packaged app signing
+# service to sign one for us.
+@memoize('monitors-package-signer', time=60)
+def package_signer():
+    destination = getattr(settings, 'SIGNED_APPS_SERVER', None)
+    if not destination:
+        return '', 'Signer is not configured.'
+    app_path = os.path.join(os.path.dirname(__file__), 'nagios_check_packaged_app.zip')
+    signed_path = tempfile.mktemp()
+    try:
+        packaged.sign_app(app_path, signed_path, None, False)
+        return '', 'Package signer working'
+    except PackageSigningError, e:
+        msg = 'Error on package signing (%s): %s' % (destination, e)
+        return msg, msg
 
 # Not called settings to avoid conflict with django.conf.settings.
 def settings_check():
