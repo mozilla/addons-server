@@ -107,7 +107,7 @@ class VE(REGION):
     id = 10
     name = _lazy(u'Venezuela')
     slug = 've'
-    default_currency = 'VEF'
+    default_currency = 'USD'
     default_language = 'es'
     mcc = 734
     has_payments = True
