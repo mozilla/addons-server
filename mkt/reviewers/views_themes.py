@@ -295,27 +295,27 @@ def themes_single(request, slug):
         not acl.action_allowed(request, 'Admin', '%') and
         theme.addon.has_author(request.amo_user)):
         reviewable = False
-
-    # Don't review a locked theme (that's not locked to self).
-    try:
-        lock = theme.themelock
-        if (lock.reviewer.id != reviewer.id and
-            lock.expiry > datetime.datetime.now()):
-            reviewable = False
-        elif (lock.reviewer.id != reviewer.id and
-              lock.expiry < datetime.datetime.now()):
-            # Steal expired lock.
-            lock.reviewer = reviewer
-            lock.expiry = get_updated_expiry()
-            lock.save()
-        else:
-            # Update expiry.
-            lock.expiry = get_updated_expiry()
-            lock.save()
-    except ThemeLock.DoesNotExist:
-        # Create lock if not created.
-        ThemeLock.objects.create(theme=theme, reviewer=reviewer,
-                                 expiry=get_updated_expiry())
+    else:
+        # Don't review a locked theme (that's not locked to self).
+        try:
+            lock = theme.themelock
+            if (lock.reviewer.id != reviewer.id and
+                lock.expiry > datetime.datetime.now()):
+                reviewable = False
+            elif (lock.reviewer.id != reviewer.id and
+                  lock.expiry < datetime.datetime.now()):
+                # Steal expired lock.
+                lock.reviewer = reviewer
+                lock.expiry = get_updated_expiry()
+                lock.save()
+            else:
+                # Update expiry.
+                lock.expiry = get_updated_expiry()
+                lock.save()
+        except ThemeLock.DoesNotExist:
+            # Create lock if not created.
+            ThemeLock.objects.create(theme=theme, reviewer=reviewer,
+                                     expiry=get_updated_expiry())
 
     ThemeReviewFormset = formset_factory(forms.ThemeReviewForm)
     formset = ThemeReviewFormset(initial=[{'theme': theme.id}])
