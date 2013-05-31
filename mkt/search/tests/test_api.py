@@ -98,6 +98,7 @@ class TestApi(BaseOAuth, ESTestCase):
             eq_(obj['resource_uri'], '/api/v1/apps/app/337141/')
             eq_(obj['slug'], self.webapp.app_slug)
             eq_(obj['summary'], u'')
+            eq_(obj['supported_locales'], ['en-US', 'es', 'pt-BR'])
 
             # These only exists if requested by a reviewer.
             ok_('latest_version_status' not in obj)

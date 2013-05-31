@@ -82,7 +82,8 @@
             "version_int": 1000000200100,
             "reviewed": null,
             "nomination": null,
-            "addon": 337141
+            "addon": 337141,
+            "supported_locales": "en-US,es,pt-BR"
         }
     },
     {

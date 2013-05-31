@@ -1410,3 +1410,9 @@ class TestWebappIndexer(amo.tests.TestCase):
         obj, doc = self._get_doc()
         self.assertSetEqual(doc['region_exclusions'],
                             set([mkt.regions.BR.id, mkt.regions.UK.id]))
+
+    def test_extract_supported_locales(self):
+        locales = 'en-US,es,pt-BR'
+        self.app.current_version.update(supported_locales=locales)
+        obj, doc = self._get_doc()
+        self.assertSetEqual(doc['supported_locales'], set(locales.split(',')))

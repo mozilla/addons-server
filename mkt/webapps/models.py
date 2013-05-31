@@ -987,6 +987,8 @@ class WebappIndexer(MappingType, Indexable):
                                       'index': 'not_analyzed'},
                     'support_url': {'type': 'string',
                                     'index': 'not_analyzed'},
+                    'supported_locales': {'type': 'string',
+                                          'index': 'not_analyzed'},
                     'type': {'type': 'byte'},
                     'upsell': {
                         'type': 'object',
@@ -1114,6 +1116,8 @@ class WebappIndexer(MappingType, Indexable):
                               if obj.support_email else None)
         d['support_url'] = (unicode(obj.support_url)
                             if obj.support_url else None)
+        d['supported_locales'] = filter(None,
+                                        version.supported_locales.split(','))
 
         if obj.upsell:
             upsell_obj = obj.upsell.premium
