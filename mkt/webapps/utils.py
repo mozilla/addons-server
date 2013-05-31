@@ -123,7 +123,7 @@ def app_to_dict(app, currency=None, profile=None):
         data['user'] = {
             'developed': app.has_author(profile, [amo.AUTHOR_ROLE_OWNER]),
             'installed': app.has_installed(profile),
-            'purchased': app.has_purchased(profile)
+            'purchased': app.pk in profile.purchase_ids(),
         }
 
     return data
@@ -220,13 +220,7 @@ def es_app_to_dict(obj, currency=None, profile=None):
                 user=profile, role=amo.AUTHOR_ROLE_OWNER).exists(),
             'installed': Installed.objects.filter(
                 user=profile, addon_id=obj.id).exists(),
+            'purchased': obj._id in profile.purchase_ids(),
         }
-        try:
-            contribution = Contribution.objects.get(
-                user=profile, addon_id=obj.id)
-            data['user']['purchased'] = (
-                contribution.type == amo.CONTRIB_PURCHASE)
-        except Contribution.DoesNotExist:
-            data['user']['purchased'] = False
 
     return data
