@@ -8,7 +8,6 @@ from django.conf import settings
 from django.core.exceptions import PermissionDenied
 from django.http import (HttpResponse, HttpResponseNotFound,
                          HttpResponseServerError)
-from django.shortcuts import get_object_or_404, redirect
 from django.template import RequestContext
 from django.views.decorators.cache import cache_page
 from django.views.decorators.csrf import csrf_exempt, requires_csrf_token
@@ -28,7 +27,6 @@ from amo.utils import urlparams
 
 from mkt.carriers import get_carrier
 from mkt.detail.views import manifest as mini_manifest
-from mkt.webapps.models import Webapp
 
 
 log = logging.getLogger('z.mkt.site')
