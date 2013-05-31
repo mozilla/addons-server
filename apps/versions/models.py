@@ -114,7 +114,7 @@ class Version(amo.models.ModelBase):
             platforms = cls._make_safe_platform_files(platforms)
 
         for platform in platforms:
-            f = File.from_upload(upload, v, platform, parse_data=data)
+            File.from_upload(upload, v, platform, parse_data=data)
 
         if addon.type == amo.ADDON_WEBAPP:
             update_supported_locales_single.apply_async(
@@ -447,8 +447,8 @@ class Version(amo.models.ModelBase):
 
     def get_features(self):
         """
-        Returns this version's AppFeatures instance. If one doesn't exist, it is
-        created and returned.
+        Returns this version's AppFeatures instance. If one doesn't exist, it
+        is created and returned.
 
         Used on Marketplace only.
         """
@@ -457,7 +457,6 @@ class Version(amo.models.ModelBase):
             return self.features
         except AppFeatures.DoesNotExist:
             self.features = AppFeatures.objects.create(version=self)
-            self.save()
             return self.features
 
 
