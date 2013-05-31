@@ -220,7 +220,7 @@ def es_app_to_dict(obj, currency=None, profile=None):
                 user=profile, role=amo.AUTHOR_ROLE_OWNER).exists(),
             'installed': Installed.objects.filter(
                 user=profile, addon_id=obj.id).exists(),
-            'purchased': obj._id in profile.purchase_ids(),
+            'purchased': obj.id in profile.purchase_ids(),
         }
 
     return data

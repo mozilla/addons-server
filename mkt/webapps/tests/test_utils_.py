@@ -7,12 +7,11 @@ import amo
 import amo.tests
 
 from addons.models import AddonDeviceType, AddonUser, Preview
-from market.models import AddonPremium, Price
+from market.models import AddonPremium, AddonPurchase, Price
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Installed, Webapp, WebappIndexer
 from mkt.webapps.utils import (app_to_dict, es_app_to_dict,
                                get_supported_locales)
-from stats.models import Contribution
 from users.models import UserProfile
 
 
@@ -179,8 +178,7 @@ class TestESAppToDict(amo.tests.ESTestCase):
         eq_(res['device_types'], ['firefoxos'])
 
     def test_user(self):
-        Contribution.objects.create(addon=self.app, user=self.profile,
-                                    amount='1.00', type=amo.CONTRIB_PURCHASE)
+        AddonPurchase.objects.create(addon=self.app, user=self.profile)
         Installed.objects.create(addon=self.app, user=self.profile)
         AddonUser.objects.create(addon=self.app, user=self.profile)
         self.app.save()
