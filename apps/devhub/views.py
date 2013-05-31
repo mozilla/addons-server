@@ -364,7 +364,8 @@ def delete(request, addon_id, addon, webapp=False, theme=False):
         addon.delete('Removed via devhub')
         messages.success(request,
             _('Theme deleted.') if theme else _('Add-on deleted.'))
-        return redirect('devhub.%s' % ('apps' if webapp else 'addons'))
+        return redirect('devhub.%s' % ('apps' if webapp else
+                                       'themes' if theme else 'addons'))
     else:
         if theme:
             messages.error(request,

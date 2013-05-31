@@ -57,6 +57,8 @@ url_patterns = patterns('',
         name='reviewers.themes.logs'),
     url('^themes/release$', views_themes.release_locks,
         name='reviewers.themes.release_locks'),
+    url('^themes/deleted/$', views_themes.deleted_themes,
+        name='reviewers.themes.deleted'),
     url('^themes/search/$', views_themes.themes_search,
         name='reviewers.themes.search'),
 

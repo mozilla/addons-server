@@ -105,6 +105,16 @@ class ReviewAppLogForm(ReviewLogForm):
             'size': 30}
 
 
+class DeletedThemeLogForm(ReviewLogForm):
+
+    def __init__(self, *args, **kwargs):
+        super(DeletedThemeLogForm, self).__init__(*args, **kwargs)
+        self.fields['search'].widget.attrs = {
+            # L10n: Descript of what can be searched for.
+            'placeholder': _lazy(u'theme name'),
+            'size': 30}
+
+
 class ThemeReviewForm(happyforms.Form):
     theme = forms.ModelChoiceField(queryset=Persona.objects.all(),
                                    widget=forms.HiddenInput())

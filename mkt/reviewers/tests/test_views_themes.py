@@ -452,3 +452,27 @@ class TestThemeQueueRereview(ThemeReviewTestMixin, amo.tests.TestCase):
         self.status = amo.STATUS_PUBLIC
         self.rereview = True
         self.queue_url = reverse('reviewers.themes.queue_rereview')
+
+
+class TestDeletedThemeLookup(amo.tests.TestCase):
+    fixtures = fixture('group_admin', 'user_admin', 'user_admin_group',
+                       'user_persona_reviewer', 'user_senior_persona_reviewer')
+
+    def setUp(self):
+        self.deleted = addon_factory(type=amo.ADDON_PERSONA)
+        self.deleted.update(status=amo.STATUS_DELETED)
+        self.create_switch(name='mkt-themes')
+
+    def test_table(self):
+        self.client.login(username='senior_persona_reviewer@mozilla.com',
+                          password='password')
+        r = self.client.get(reverse('reviewers.themes.deleted'))
+        eq_(r.status_code, 200)
+        eq_(pq(r.content)('tbody td:nth-child(3)').text(),
+            self.deleted.name.localized_string)
+
+    def test_perm(self):
+        self.client.login(username='persona_reviewer@mozilla.com',
+                          password='password')
+        r = self.client.get(reverse('reviewers.themes.deleted'))
+        eq_(r.status_code, 403)

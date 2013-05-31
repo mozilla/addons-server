@@ -21,6 +21,9 @@
   </ul>
 
   <section class="island">
+    {% if action_allowed('SeniorPersonasTools', 'View') %}
+      <a href="{{ url('reviewers.themes.deleted') }}">{{ _('View Deleted Themes') }}</a>
+    {% endif %}
     {% if pager.object_list %}
       <table id="log-listing" class="data-grid items">
         <thead>

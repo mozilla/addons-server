@@ -361,7 +361,7 @@ def themes_logs(request):
         if data.get('start'):
             theme_logs = theme_logs.filter(created__gte=data['start'])
         if data.get('end'):
-            theme_logs = theme_logs.filter(created__lt=data['end'])
+            theme_logs = theme_logs.filter(created__lte=data['end'])
         if data.get('search'):
             term = data['search']
             theme_logs = theme_logs.filter(
@@ -373,6 +373,37 @@ def themes_logs(request):
     data = context(form=form, pager=pager, ACTION_DICT=rvw.REVIEW_ACTIONS,
                    REJECT_REASONS=rvw.THEME_REJECT_REASONS, tab='themes')
     return jingo.render(request, 'reviewers/themes/logs.html', data)
+
+
+@waffle_switch('mkt-themes')
+@admin_required(theme_reviewers=True)
+def deleted_themes(request):
+    data = request.GET.copy()
+    deleted = Addon.with_deleted.filter(type=amo.ADDON_PERSONA,
+                                        status=amo.STATUS_DELETED)
+
+    if not data.get('start') and not data.get('end'):
+        today = datetime.date.today()
+        data['start'] = datetime.date(today.year, today.month, 1)
+
+    form = forms.DeletedThemeLogForm(data)
+    if form.is_valid():
+        data = form.cleaned_data
+        if data.get('start'):
+            deleted = deleted.filter(modified__gte=data['start'])
+        if data.get('end'):
+            deleted = deleted.filter(modified__lte=data['end'])
+        if data.get('search'):
+            term = data['search']
+            deleted = deleted.filter(
+                Q(name__localized_string__icontains=term))
+
+    return jingo.render(request, 'reviewers/themes/deleted.html', {
+        'form': form,
+        'pager': paginate(request, deleted.order_by('-modified'), 30),
+        'queue_counts': queue_counts(),
+        'tab': 'themes'
+    })
 
 
 @waffle_switch('mkt-themes')
