@@ -3,12 +3,12 @@ import json
 from django.conf.urls import url
 from django.core.exceptions import ObjectDoesNotExist
 
+import waffle
 from tastypie import http
 from tastypie.authorization import ReadOnlyAuthorization
 from tastypie.throttle import BaseThrottle
 from tastypie.utils import trailing_slash
 from tower import ugettext as _
-import waffle
 
 import amo
 from access import acl
@@ -21,7 +21,8 @@ import mkt
 from mkt.api.authentication import OptionalOAuthAuthentication
 from mkt.api.base import CORSResource, MarketplaceResource
 from mkt.api.resources import AppResource
-from mkt.search.views import _get_query, _filter_search
+from mkt.constants.features import FeatureProfile
+from mkt.search.views import _filter_search, _get_query
 from mkt.search.forms import ApiSearchForm
 from mkt.webapps.models import Webapp
 from mkt.webapps.utils import es_app_to_dict
@@ -66,6 +67,7 @@ class SearchResource(CORSResource, MarketplaceResource):
             'type': addon_type,
         }
 
+        # Allow reviewers and admins to search by statuses other than PUBLIC.
         if status and (status == 'any' or status != amo.STATUS_PUBLIC):
             if is_admin or is_reviewer:
                 base_filters['status'] = status
@@ -74,12 +76,22 @@ class SearchResource(CORSResource, MarketplaceResource):
                     content=json.dumps(
                         {'reason': _('Unauthorized to filter by status.')}))
 
-        # Search specific processing of the results.
+        # Filter by device feature profile.
+        profile = None
+        # TODO: Remove uses_es conditional with 'search-api-es' waffle.
+        if uses_es and request.GET.get('dev') in ('firefoxos', 'android'):
+            sig = request.GET.get('pro')
+            if sig:
+                profile = FeatureProfile.from_signature(sig)
+
+        # Filter by region.
         region = getattr(request, 'REGION', mkt.regions.WORLDWIDE)
+
         qs = _get_query(region, gaia=request.GAIA, mobile=request.MOBILE,
                         tablet=request.TABLET, filters=base_filters,
                         new_idx=True)
-        qs = _filter_search(request, qs, form_data, region=region)
+        qs = _filter_search(request, qs, form_data, region=region,
+                            profile=profile)
         paginator = self._meta.paginator_class(request.GET, qs,
             resource_uri=self.get_resource_list_uri(),
             limit=self._meta.limit)

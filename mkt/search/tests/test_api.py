@@ -15,9 +15,10 @@ from market.models import AddonPremium, Price, PriceCurrency
 from mkt.api.base import list_url
 from mkt.api.models import Access, generate
 from mkt.api.tests.test_oauth import BaseOAuth, OAuthClient
+from mkt.constants.features import FeatureProfile
 from mkt.search.forms import DEVICE_CHOICES_IDS
 from mkt.site.fixtures import fixture
-from mkt.webapps.models import Webapp
+from mkt.webapps.models import AppFeatures, Webapp
 
 
 class TestApi(BaseOAuth, ESTestCase):
@@ -275,6 +276,100 @@ class TestApi(BaseOAuth, ESTestCase):
         res2 = self.client.get(self.url + ({'region': 'us'},))
         eq_(res2.status_code, 200)
         eq_(len(res2.json['objects']), 0)
+
+
+class TestApiFeatures(BaseOAuth, ESTestCase):
+    fixtures = fixture('webapp_337141')
+
+    def setUp(self):
+        self.create_switch('search-api-es')
+        self.client = OAuthClient(None)
+        self.url = list_url('search')
+        self.webapp = Webapp.objects.get(pk=337141)
+        self.category = Category.objects.create(name='test',
+                                                type=amo.ADDON_WEBAPP)
+        # A typical desktop profile on Firefox with the following features:
+        # {'apps': True,
+        #  'audio': True,
+        #  'battery': True,
+        #  'device_storage': True,
+        #  'fullscreen': True,
+        #  'geolocation': True,
+        #  'idle': True,
+        #  'indexeddb': True,
+        #  'light_events': True,
+        #  'network_info': True,
+        #  'orientation': True,
+        #  'proximity': True,
+        #  'push': True,
+        #  'sms': True,
+        #  'vibrate': True,
+        #  'video_webm': True,
+        #  'webaudio': True}
+        self.profile = '8a7dd46c.32.1'
+        self.qs = {'q': 'something', 'pro': self.profile, 'dev': 'firefoxos'}
+
+    def test_no_features(self):
+        # Base test to make sure we find the app.
+        self.webapp.save()
+        self.refresh('webapp')
+
+        res = self.client.get(self.url + (self.qs,))
+        eq_(res.status_code, 200)
+        obj = json.loads(res.content)['objects'][0]
+        eq_(obj['slug'], self.webapp.app_slug)
+
+    def test_one_good_feature(self):
+        # Enable an app feature that matches one in our profile.
+        AppFeatures.objects.create(version=self.webapp.current_version,
+                                   has_geolocation=True)
+        self.webapp.save()
+        self.refresh('webapp')
+
+        res = self.client.get(self.url + (self.qs,))
+        eq_(res.status_code, 200)
+        obj = json.loads(res.content)['objects'][0]
+        eq_(obj['slug'], self.webapp.app_slug)
+
+    def test_one_bad_feature(self):
+        # Enable an app feature that doesn't match one in our profile.
+        AppFeatures.objects.create(version=self.webapp.current_version,
+                                   has_pay=True)
+        self.webapp.save()
+        self.refresh('webapp')
+
+        res = self.client.get(self.url + (self.qs,))
+        eq_(res.status_code, 200)
+        objs = json.loads(res.content)['objects']
+        eq_(len(objs), 0)
+
+    def test_all_good_features(self):
+        # Enable app features so they exactly match our device profile.
+        fp = FeatureProfile.from_signature(self.profile)
+        AppFeatures.objects.create(
+            version=self.webapp.current_version,
+            **dict(('has_%s' % k, v) for k, v in fp.items()))
+        self.webapp.save()
+        self.refresh('webapp')
+
+        res = self.client.get(self.url + (self.qs,))
+        eq_(res.status_code, 200)
+        obj = json.loads(res.content)['objects'][0]
+        eq_(obj['slug'], self.webapp.app_slug)
+
+    def test_bad_profile_on_desktop(self):
+        # Enable an app feature that doesn't match one in our profile.
+        qs = self.qs.copy()
+        del qs['dev']  # Desktop doesn't send a device.
+        AppFeatures.objects.create(version=self.webapp.current_version,
+                                   has_pay=True)
+        self.webapp.save()
+        self.refresh('webapp')
+
+        res = self.client.get(self.url + (qs,))
+        eq_(res.status_code, 200)
+        obj = json.loads(res.content)['objects'][0]
+        eq_(obj['slug'], self.webapp.app_slug)
 
 
 class TestApiReviewer(BaseOAuth, ESTestCase):

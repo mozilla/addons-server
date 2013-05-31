@@ -1,13 +1,14 @@
 from django.shortcuts import redirect
 
 import jingo
+from elasticutils.contrib.django import F
 from tower import ugettext as _
 
 import amo
 import amo.utils
 from amo.decorators import json_view
 from apps.addons.models import Category
-from apps.search.views import WebappSuggestionsAjax, _get_locale_analyzer
+from apps.search.views import _get_locale_analyzer, WebappSuggestionsAjax
 
 import mkt
 from mkt.constants import regions
@@ -91,8 +92,15 @@ def name_query(q):
 
 
 def _filter_search(request, qs, query, filters=None, sorting=None,
-                   sorting_default='-popularity', region=None):
-    """Filter an ES queryset based on a list of filters."""
+                   sorting_default='-popularity', region=None, profile=None):
+    """
+    Filter an ES queryset based on a list of filters.
+
+    If `profile` (a FeatureProfile object) is provided we filter by the
+    profile. If you don't want to filter by these don't pass it. I.e. do the
+    device detection for when this happens elsewhere.
+
+    """
     # Intersection of the form fields present and the filters we want to apply.
     filters = filters or DEFAULT_FILTERS
     sorting = sorting or DEFAULT_SORTING
@@ -144,6 +152,14 @@ def _filter_search(request, qs, query, filters=None, sorting=None,
     # don't list apps that require carrier billing to buy.
     if not region.supports_carrier_billing:
         qs = qs.filter(carrier_billing_only=False)
+
+    if profile:
+        f = F()
+        for k, v in profile.iteritems():
+            if not v:
+                f &= ~F(**{'features.has_%s' % k: True})
+        qs = qs.filter(f)
+
     return qs
 
 
