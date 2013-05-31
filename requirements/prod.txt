@@ -32,7 +32,7 @@ django-quieter-formset==0.3
 django-raven-metlog==0.2
 django-ratelimit==0.1
 django-recaptcha-mozilla==0.0.1
-django-session-csrf==0.5
+#django-session-csrf==0.6
 django-statsd-mozilla==0.3.8.6
 django-storages==1.1.4
 django-tastypie==0.9.11
@@ -98,6 +98,7 @@ tastypie-services==0.2.2
 -e git://github.com/jbalogh/test-utils.git@ce5136a257cd44a1c663319124a255c1d10a9834#egg=test-utils
 -e git://github.com/fwenzel/django-mozilla-product-details.git@36ef06539d6b34c4f345fd0d3e16937d0db9a752#egg=django-mozilla-product-details
 -e git://github.com/mozilla/signing-clients@a8bd730b202391c080113d224d223463e03088e9#egg=signing-clients
+-e git://github.com/mozilla/django-session-csrf@f00ad913c62e139d36078e8a7e07dab65a021386#egg=django-session-csrf
 
 ## Forked.
 -e git://github.com/andymckay/django-piston-oauth2.git@6cb1ad61e3f437e7ca080ee00ae7b80de7d010f0#egg=django-piston-oauth2
