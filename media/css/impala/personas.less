@@ -16,6 +16,7 @@
     }
 }
 
+
 ul.license {
     position: relative;
     top: 3px;
@@ -202,11 +203,31 @@ ul.license {
         background-size: cover;
         .gradient-two-color(#ccc, #bbb);
     }
+    label {
+        &[data-for="name"], &[data-for="summary"] {
+            p {
+                display: inline;
+            }
+            .locale {
+                color: @note-gray;
+                display: block;
+                font-weight: normal;
+                margin-top: 6px;
+            }
+        }
+    }
+    .html-support {
+        float: none;
+    }
 }
 .html-rtl #submit-persona {
     .colors li.row {
         margin: 0 0 0 2em;
     }
+}
+
+#l10n-confirm-rm {
+    margin-right: 5px;
 }
 
 #persona-header img {

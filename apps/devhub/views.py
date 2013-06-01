@@ -1732,9 +1732,9 @@ def submit_theme_done(request, addon_id, addon, theme):
                         dict(addon=addon))
 
 
-@dev_required
+@dev_required(theme=True)
 @post_required
-def remove_locale(request, addon_id, addon):
+def remove_locale(request, addon_id, addon, theme):
     POST = request.POST
     if 'locale' in POST and POST['locale'] != addon.default_locale:
         addon.remove_locale(POST['locale'])

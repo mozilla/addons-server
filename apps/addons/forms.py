@@ -583,12 +583,13 @@ class ThemeForm(ThemeFormBase):
 
 
 class EditThemeForm(AddonFormBase):
-    name = forms.CharField(max_length=50)
+    name = TransField(max_length=50, label=_lazy('Give Your Theme a Name.'))
     slug = forms.CharField(max_length=30)
     category = forms.ModelChoiceField(queryset=Category.objects.all(),
                                       widget=forms.widgets.RadioSelect)
-    summary = forms.CharField(widget=forms.Textarea(attrs={'rows': 4}),
-                              max_length=250, required=False)
+    summary = TransField(
+        widget=TransTextarea(attrs={'rows': 4}),
+        max_length=250, required=False, label=_lazy('Describe your Theme.'))
     tags = forms.CharField(required=False)
     accentcolor = ColorField(required=False)
     textcolor = ColorField(required=False)
@@ -615,16 +616,16 @@ class EditThemeForm(AddonFormBase):
         addon = Addon.uncached.get(id=self.instance.id)
         persona = addon.persona
 
-        self.initial['summary'] = addon.summary
-
         # Do not simply append validators, as validators will persist between
         # instances.
         self.fields['name'].validators = list(self.fields['name'].validators)
         self.fields['name'].validators.append(lambda x: clean_name(x, addon))
 
-        # TODO: Allow theme artists to localize Name and Summary (bug 855617).
-        self.initial['name'] = Translation.objects.get(locale='en-US',
-                                                       id=self.initial['name'])
+        # Allow theme artists to localize Name and Summary.
+        for trans in Translation.objects.filter(id=self.initial['name']):
+            self.initial['name_' + trans.locale.lower()] = trans
+        for trans in Translation.objects.filter(id=self.initial['summary']):
+            self.initial['summary_' + trans.locale.lower()] = trans
 
         self.initial['tags'] = ', '.join(self.get_tags(addon))
         if persona.accentcolor:
@@ -657,7 +658,7 @@ class EditThemeForm(AddonFormBase):
         data = self.cleaned_data
 
         if data.get('summary'):
-            addon.description = {'en-US': data['summary']}
+            addon.description = data['summary']
             addon.summary = data['summary']
             addon.save()
 
@@ -677,10 +678,8 @@ class EditThemeForm(AddonFormBase):
         if changed:
             persona.save()
 
-        # Update name, slug, and summary.
         if self.changed_data:
             amo.log(amo.LOG.EDIT_PROPERTIES, addon)
-
         self.instance.modified = datetime.now()
 
         # Save the Addon object.

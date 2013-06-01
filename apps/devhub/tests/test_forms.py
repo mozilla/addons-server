@@ -406,11 +406,12 @@ class TestEditThemeForm(amo.tests.TestCase):
             'accentcolor': '#C0FFEE',
             'category': self.cat.id,
             'license': self.license,
-            'name': unicode(self.instance.name),
             'slug': self.instance.slug,
-            'summary': self.instance.summary,
             'tags': 'ag, sw',
-            'textcolor': '#EFFFFF'
+            'textcolor': '#EFFFFF',
+
+            'name_en-us': unicode(self.instance.name),
+            'summary_en-us': unicode(self.instance.summary),
         }
         data.update(**kw)
         return data
@@ -418,7 +419,12 @@ class TestEditThemeForm(amo.tests.TestCase):
     def test_initial(self):
         self.form = EditThemeForm(None, request=self.request,
                                   instance=self.instance)
-        eq_(self.form.initial, self.get_dict())
+
+        # Compare form initial data with post data.
+        eq_data = self.get_dict()
+        for k in [k for k in self.form.initial.keys()
+                  if k not in ['name', 'summary']]:
+            eq_(self.form.initial[k], eq_data[k])
 
     def save_success(self):
         other_cat = Category.objects.create(type=amo.ADDON_PERSONA)
@@ -426,15 +432,24 @@ class TestEditThemeForm(amo.tests.TestCase):
             'accentcolor': '#EFF0FF',
             'category': other_cat.id,
             'license': amo.LICENSE_CC_BY_NC_SA.id,
-            'name': 'All Day I Dream About Swag',
             'slug': 'swag-lifestyle',
-            'summary': 'ADIDAS',
             'tags': 'ag',
-            'textcolor': '#CACACA'
+            'textcolor': '#CACACA',
+
+            'name_init': '',
+            'name_en-us': 'All Day I Dream About Swag',
+            'summmary_init': '',
+            'summary_en-us': 'ADIDAS',
         }
         self.form = EditThemeForm(self.data, request=self.request,
                                   instance=self.instance)
-        eq_(self.form.initial, self.get_dict())
+
+        # Compare form initial data with post data.
+        eq_data = self.get_dict()
+        for k in [k for k in self.form.initial.keys()
+                  if k not in ['name', 'summary']]:
+            eq_(self.form.initial[k], eq_data[k])
+
         eq_(self.form.data, self.data)
         eq_(self.form.is_valid(), True, self.form.errors)
         self.form.save()
@@ -446,8 +461,8 @@ class TestEditThemeForm(amo.tests.TestCase):
             self.data['accentcolor'].lstrip('#'))
         eq_(self.instance.categories.all()[0].id, self.data['category'])
         eq_(self.instance.persona.license, self.data['license'])
-        eq_(unicode(self.instance.name), self.data['name'])
-        eq_(unicode(self.instance.summary), self.data['summary'])
+        eq_(unicode(self.instance.name), self.data['name_en-us'])
+        eq_(unicode(self.instance.summary), self.data['summary_en-us'])
         self.assertSetEqual(
             self.instance.tags.values_list('tag_text', flat=True),
             [self.data['tags']])
@@ -460,14 +475,22 @@ class TestEditThemeForm(amo.tests.TestCase):
         self.form.save()
 
     def test_name_unique(self):
-        data = self.get_dict(name='Bands Make You Dance')
+        data = self.get_dict(**{'name_en-us': 'Bands Make You Dance'})
         Addon.objects.create(type=amo.ADDON_PERSONA, status=amo.STATUS_PUBLIC,
-                             name=data['name'])
+                             name=data['name_en-us'])
         self.form = EditThemeForm(data, request=self.request,
                                   instance=self.instance)
         eq_(self.form.is_valid(), False)
-        eq_(self.form.errors,
-            {'name': ['This name is already in use. Please choose another.']})
+        eq_(self.form.errors, {'name':
+            [('en-us', 'This name is already in use. Please choose another.')]
+        })
+
+    def test_localize_name_description(self):
+        data = self.get_dict(name_de='name_de', summary_de='summary_de')
+        self.form = EditThemeForm(data, request=self.request,
+                                  instance=self.instance)
+        eq_(self.form.is_valid(), True, self.form.errors)
+        self.form.save()
 
     @mock.patch('addons.tasks.make_checksum')
     @mock.patch('addons.tasks.create_persona_preview_images')

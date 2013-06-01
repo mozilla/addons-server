@@ -1,6 +1,6 @@
 {% extends "devhub/base_impala.html" %}
 
-{% from "includes/forms.html" import pretty_field, tip %}
+{% from "includes/forms.html" import pretty_field, required, tip %}
 {% from "devhub/includes/macros.html" import some_html_tip %}
 
 {% set title = _('Edit Listing') %}
@@ -12,8 +12,10 @@
 {% set can_delete = check_addon_ownership(request, addon) and addon.can_be_deleted() %}
 
 {% block content %}
+
 <section class="primary full">
   {{ dev_breadcrumbs(addon) }}
+  {{ l10n_menu(addon.default_locale) }}
 
   <h1>{{ title }}</h1>
 
@@ -71,7 +73,12 @@
       <fieldset>
         <legend>{{ _('Theme Details') }}</legend>
         <ul>
-          {{ pretty_field(form.name, label=_('Give your Theme a name.'), validate=True) }}
+          <li class="row">
+            <label for="id_name" class="row" data-for="name">
+              <p>{{ form.name.label }} {{ required() }}</p>
+            </label>
+            {{ form.name }}
+          </li>
           <li class="row">
             {% set before_slug = ('<span class="url-prefix">%s/addon/</span>' % settings.SITE_URL)|safe %}
             {{ pretty_field(form.slug, label=_('Supply a pretty URL for your detail page.'), tag=None, before=before_slug, validate=True) }}
@@ -90,13 +97,15 @@
               {{ _('Example: dark, cinema, noir. Limit 20.') }}
             </span>
           </li>
-          <li class="row c">
-            {{ pretty_field(form.summary, label=_('Describe your Theme.'),
-                            tooltip=_("A short explanation of your theme's
-                                      basic functionality that is displayed in
-                                      search and browse listings, as well as at
-                                      the top of your theme's details page."),
-                            tag=None, opt=True, validate=True) }}
+          <li class="row">
+            <label for="id_summary" class="row" data-for="summary">
+              <p>{{ form.summary.label }} {{ required() }}</p>
+              {{ tip(None, _("A short explanation of your theme's
+                                basic functionality that is displayed in
+                                search and browse listings, as well as at
+                                the top of your theme's details page.")) }}
+            </label>
+            {{ form.summary}}
             <div class="note">
               {{ some_html_tip() }}
               <span class="char-count" data-for="{{ form.summary.auto_id }}"

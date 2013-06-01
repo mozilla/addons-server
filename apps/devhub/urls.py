@@ -41,6 +41,7 @@ theme_detail_patterns = patterns('',
         '(?P<upload_type>persona_header|persona_footer)$',
         views.ajax_upload_image, name='devhub.personas.reupload_persona'),
     url('^edit$', views.edit_theme, name='devhub.themes.edit'),
+    url('^rmlocale$', views.remove_locale, name='devhub.themes.remove-locale'),
 )
 
 # These will all start with /app/<app_slug>/
