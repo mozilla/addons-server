@@ -11,8 +11,9 @@ SERVER_EMAIL = 'zmarketplacedev@addons.mozilla.org'
 DOMAIN = "marketplace-altdev.allizom.org"
 SITE_URL = 'https://marketplace-altdev.allizom.org'
 SERVICES_URL = SITE_URL
-STATIC_URL = 'https://marketplace-altdev-cdn.allizom.org/'
-LOCAL_MIRROR_URL = '%s_files' % STATIC_URL
+STATIC_URL = 'https://marketplace-dev-shared-data.s3.amazonaws.com/'
+MEDIA_STATIC_URL = 'https://marketplace-altdev-cdn.allizom.org/'
+LOCAL_MIRROR_URL = '%sfiles' % STATIC_URL
 MIRROR_URL = LOCAL_MIRROR_URL
 
 CSP_STATIC_URL = STATIC_URL[:-1]
@@ -36,7 +37,7 @@ IMAGEASSET_FULL_URL = STATIC_URL + 'img/uploads/imageassets/%s/%d.png?modified=%
 USERPICS_URL = STATIC_URL + 'img/uploads/userpics/%s/%s/%s.png?modified=%d'
 COLLECTION_ICON_URL = STATIC_URL + '/img/uploads/collection_icons/%s/%s.png?m=%s'
 
-MEDIA_URL = STATIC_URL + 'media/'
+MEDIA_URL = MEDIA_STATIC_URL + 'media/'
 ADDON_ICONS_DEFAULT_URL = MEDIA_URL + 'img/hub'
 ADDON_ICON_BASE_URL = MEDIA_URL + 'img/icons/'
 
