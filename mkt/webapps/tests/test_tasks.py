@@ -434,6 +434,7 @@ class TestUpdateFeatures(amo.tests.TestCase):
 
         self.app = Webapp.objects.get(pk=337141)
         self.app.update(is_packaged=True)
+        AppFeatures.objects.all().delete()
         # Note: the app files are wrong, since we now have a packaged app, but
         # it doesn't matter since we are mocking everything, we'll never touch
         # the files.
