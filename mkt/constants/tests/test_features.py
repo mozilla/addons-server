@@ -18,9 +18,9 @@ class TestFeatureProfile(amo.tests.TestCase):
         eq_(profile.to_signature(), self.signature)
         for k, v in profile.iteritems():
             if v:
-                ok_(k in self.truths)
+                ok_(k in self.truths, '%s not in truths' % k)
             else:
-                ok_(k not in self.truths)
+                ok_(k not in self.truths, '%s is in truths' % k)
 
     def test_from_binary(self):
         profile = FeatureProfile.from_binary(self.binary)

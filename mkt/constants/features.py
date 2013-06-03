@@ -133,16 +133,12 @@ class FeatureProfile(OrderedDict):
 
         >>> FeatureProfile.from_binary('01000010...')
         FeatureProfile([('apps', False), ('packaged_apps', True), ...)
+
         """
-        if len(binary) != len(APP_FEATURES):
-            raise ValueError((
-                'A binary representation of a FeatureProfile must be %d bytes '
-                'long.'
-            ) % len(APP_FEATURES))
         instance = cls()
-        for i, char in enumerate(binary):
-            key = APP_FEATURES[i][0].lower()
-            instance[key] = char == '1'
+        n = len(APP_FEATURES) - 1
+        for i, k in enumerate(APP_FEATURES):
+            instance[k[0].lower()] = bool(int(binary, 2) & 2 ** (n - i))
         return instance
 
     @classmethod
