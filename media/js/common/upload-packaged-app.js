@@ -321,6 +321,14 @@
                                                         'target': '_blank',
                                                         'text': gettext('See full validation report')}));
                     }
+                    
+                    if (v.feature_profile && v.feature_profile.length) {
+                        // Update the checkboxes with information from the valdator's idea
+                        // of the feature profile for the app.
+                        v.feature_profile.forEach(function(feature) {
+                            $('#id_has_' + feature.toLowerCase()).prop('checked', true);
+                        });
+                    }
 
                 }
 
