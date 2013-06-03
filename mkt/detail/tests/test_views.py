@@ -875,7 +875,7 @@ class TestPackagedManifest(DetailBase):
         elif not isinstance(manifest, (str, unicode)):
             manifest = json.dumps(manifest)
 
-        hash_ = hashlib.md5()
+        hash_ = hashlib.sha256()
         hash_.update(manifest)
         hash_.update(self.app.get_latest_file().hash)
         return hash_.hexdigest()

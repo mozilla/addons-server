@@ -96,7 +96,7 @@ def manifest(request):
         data['launch_path'] = urlparams('/', carrier=get_carrier())
 
     manifest_content = json.dumps(data)
-    manifest_etag = hashlib.md5(manifest_content).hexdigest()
+    manifest_etag = hashlib.sha256(manifest_content).hexdigest()
 
     @etag(lambda r: manifest_etag)
     def _inner_view(request):

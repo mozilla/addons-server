@@ -70,7 +70,7 @@ def manifest(request, uuid):
     is_dev = addon.has_author(request.amo_user)
     is_avail = addon.status in [amo.STATUS_PUBLIC, amo.STATUS_BLOCKED]
 
-    package_etag = hashlib.md5()
+    package_etag = hashlib.sha256()
 
     if (not addon.is_packaged or addon.disabled_by_user or
         not (is_avail or is_reviewer or is_dev)):
