@@ -98,6 +98,7 @@ AuthorFormSet = modelformset_factory(AddonUser, formset=BaseAuthorFormSet,
 
 class DeleteForm(happyforms.Form):
     password = forms.CharField()
+    reason = forms.CharField(required=False)
 
     def __init__(self, request):
         self.user = request.amo_user

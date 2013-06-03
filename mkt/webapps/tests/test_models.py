@@ -9,6 +9,7 @@ import zipfile
 from datetime import datetime, timedelta
 
 from django.conf import settings
+from django.core import mail
 from django.core.files.storage import default_storage as storage
 from django.db.models.signals import post_delete, post_save
 
@@ -56,6 +57,16 @@ class TestWebapp(amo.tests.TestCase):
         w.delete('boom shakalakalaka')
         eq_(len(Webapp.objects.all()), 0)
         eq_(len(Webapp.with_deleted.all()), 0)
+
+    def test_delete_reason(self):
+        """Test deleting with a reason gives the reason in the mail."""
+        reason = u'trêason'
+        w = Webapp.objects.create(status=amo.STATUS_PUBLIC)
+        w.name = u'é'
+        eq_(len(mail.outbox), 0)
+        w.delete(msg='bye', reason=reason)
+        eq_(len(mail.outbox), 1)
+        assert reason in mail.outbox[0].body
 
     def test_soft_deleted(self):
         # Uncomment when redis gets fixed on ci.mozilla.org.
