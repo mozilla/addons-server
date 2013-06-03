@@ -33,7 +33,7 @@ class AbuseReport(amo.models.ModelBase):
         if self.reporter:
             user_name = '%s (%s)' % (self.reporter.name, self.reporter.email)
         else:
-            user_name = 'An anonymous user'
+            user_name = 'An anonymous coward'
 
         with amo.utils.no_translation():
             type_ = (gettext(amo.ADDON_TYPE[self.addon.type])
