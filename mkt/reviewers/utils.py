@@ -178,12 +178,11 @@ class ReviewApp(ReviewBase):
 
     def process_public_waiting(self):
         """Make an app pending."""
+        self.addon.sign_if_packaged(self.version.pk)
         self.set_files(amo.STATUS_PUBLIC_WAITING, self.version.files.all())
         if self.addon.status != amo.STATUS_PUBLIC:
             self.set_addon(status=amo.STATUS_PUBLIC_WAITING,
                            highest_status=amo.STATUS_PUBLIC_WAITING)
-
-        self.addon.sign_if_packaged(self.version.pk)
 
         self.log_action(amo.LOG.APPROVE_VERSION_WAITING)
         self.notify_email('pending_to_public_waiting',
@@ -194,6 +193,7 @@ class ReviewApp(ReviewBase):
 
     def process_public_immediately(self):
         """Approve an app."""
+        self.addon.sign_if_packaged(self.version.pk)
         # Save files first, because set_addon checks to make sure there
         # is at least one public file or it won't make the addon public.
         self.set_files(amo.STATUS_PUBLIC, self.version.files.all())
@@ -204,7 +204,6 @@ class ReviewApp(ReviewBase):
         self.addon.update_version()
         self.addon.update_name_from_package_manifest()
         self.addon.update_supported_locales()
-        self.addon.sign_if_packaged(self.version.pk)
 
         self.log_action(amo.LOG.APPROVE_VERSION)
         self.notify_email('pending_to_public', u'App Approved: %s')

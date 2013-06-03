@@ -1019,6 +1019,16 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         eq_(self.get_app().status, amo.STATUS_PUBLIC)
         eq_(sign.call_args[0][0], self.get_app().current_version.pk)
 
+    @mock.patch('lib.crypto.packaged.sign')
+    def test_require_sig_for_public(self, sign):
+        sign.side_effect = packaged.SigningError
+        self.get_app().update(is_packaged=True)
+        data = {'action': 'public', 'comments': 'something'}
+        data.update(self._attachment_management_form(num=0))
+        self.client.post(self.url, data)
+        eq_(self.get_app().status, amo.STATUS_PENDING)
+
+
     def test_pending_to_public_no_mozilla_contact(self):
         self.create_switch(name='reviewer-incentive-points')
         self.app.update(mozilla_contact='')
