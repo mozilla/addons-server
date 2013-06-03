@@ -447,7 +447,7 @@ class ReviewHelper:
     def _review_actions(self):
         labels = {'prelim': _lazy('Grant preliminary review')}
         details = {'prelim': _lazy('This will mark the files as '
-                                   'premliminary reviewed.'),
+                                   'preliminarily reviewed.'),
                    'info': _lazy('Use this form to request more information '
                                  'from the author. They will receive an email '
                                  'and be able to answer here. You will be '
