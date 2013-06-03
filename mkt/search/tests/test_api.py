@@ -283,6 +283,7 @@ class TestApiFeatures(BaseOAuth, ESTestCase):
 
     def setUp(self):
         self.create_switch('search-api-es')
+        self.create_switch('buchets')
         self.client = OAuthClient(None)
         self.url = list_url('search')
         self.webapp = Webapp.objects.get(pk=337141)

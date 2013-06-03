@@ -1,6 +1,7 @@
 from django.shortcuts import redirect
 
 import jingo
+import waffle
 from elasticutils.contrib.django import F
 from tower import ugettext as _
 
@@ -153,7 +154,7 @@ def _filter_search(request, qs, query, filters=None, sorting=None,
     if not region.supports_carrier_billing:
         qs = qs.filter(carrier_billing_only=False)
 
-    if profile:
+    if profile and waffle.switch_is_active('buchets'):
         f = F()
         for k, v in profile.iteritems():
             if not v:
