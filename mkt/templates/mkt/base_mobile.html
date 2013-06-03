@@ -44,6 +44,10 @@
       {{ css('mkt/consumer') }}
     {% endblock %}
 
+    <link title="Firefox Marketplace"
+          rel="search" type="application/opensearchdescription+xml"
+          href="{{ url('opensearch') }}">
+
     {% block extrahead %}{% endblock %}
 
     {% if logged %}
