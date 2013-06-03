@@ -4,6 +4,7 @@ import json
 import logging
 import os
 import subprocess
+from collections import defaultdict
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
@@ -25,8 +26,8 @@ from lib.es.utils import get_indices
 from users.utils import get_task_user
 
 from mkt.constants.regions import WORLDWIDE
-from mkt.developers.tasks import _fetch_manifest, validator
-from mkt.webapps.models import Webapp, WebappIndexer
+from mkt.developers.tasks import _fetch_manifest, run_validator, validator
+from mkt.webapps.models import AppFeatures, Webapp, WebappIndexer
 from mkt.webapps.utils import get_locale_properties
 
 task_log = logging.getLogger('z.task')
@@ -345,3 +346,42 @@ def zip_apps(*args, **kw):
     task_log.info(u'Creating app dump {0}'.format(target_file))
     subprocess.call(cmd)
     return target_file
+
+
+def _update_features(id):
+    try:
+        webapp = Webapp.objects.get(pk=id)
+    except Webapp.DoesNotExist:
+        _log(id, u'Webapp does not exist')
+        return
+
+    # We only detect features on packaged webapps.
+    if not webapp.is_packaged:
+        _log(id, u'Webapp is not a packaged app')
+        return
+
+    # If the app doesn't have a current_version, don't bother either.
+    if not webapp.current_version:
+        _log(id, u'Webapp does not have a current_version')
+        return
+
+    # If the app already has a feature profile, don't touch it.
+    if AppFeatures.objects.filter(version=webapp.current_version).exists():
+        _log(id, u'Webapp already has a feature profile')
+        return
+
+    version = webapp.current_version
+    res = run_validator(version.all_files[0].file_path)
+    validation_result = json.loads(res)
+
+    # Set all detected features as True and save them.
+    feature_profile = validation_result['feature_profile']
+    keys = ['has_%s' % feature.lower() for feature in feature_profile]
+    data = defaultdict.fromkeys(keys, True)
+    AppFeatures.objects.create(version=version, **data)
+
+
+@task
+def update_features(ids, **kw):
+    for id in ids:
+        _update_features(id)
