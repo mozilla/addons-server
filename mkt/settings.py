@@ -335,3 +335,29 @@ MARKETPLACE_GUID = 'e6a59937-29e4-456a-b636-b69afa8693b4'
 # solitude. The matching setting will have to be on in solitude, otherwise
 # it will just laugh at your request.
 BANGO_FAKE_REFUNDS = False
+
+REST_FRAMEWORK = {
+    'DEFAULT_MODEL_SERIALIZER_CLASS':
+        'rest_framework.serializers.HyperlinkedModelSerializer',
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'mkt.api.authentication.RestOAuthAuthentication',
+    ),
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+    ),
+    'DEFAULT_PARSER_CLASSES': (
+        'rest_framework.parsers.JSONParser',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        # By default no-one gets anything. You will have to override this
+        # in each resource to match your needs.
+        'mkt.api.authorization.AllowNone',
+    ),
+    'DEFAULT_PAGINATION_SERIALIZER_CLASS':
+        'mkt.api.paginator.CustomPaginationSerializer',
+    'DEFAULT_FILTER_BACKENDS': (
+        'rest_framework.filters.DjangoFilterBackend',
+    ),
+    'PAGINATE_BY': 20,
+    'PAGINATE_BY_PARAM': 'limit'
+}

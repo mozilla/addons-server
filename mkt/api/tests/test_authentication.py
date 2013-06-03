@@ -128,6 +128,30 @@ class TestOAuthAuthentication(TestCase):
         ok_(self.auth.is_authenticated(self.call()))
 
 
+class TestRestOAuthAuthentication(TestOAuthAuthentication):
+
+    def setUp(self):
+        super(TestRestOAuthAuthentication, self).setUp()
+        self.auth = authentication.RestOAuthAuthentication()
+
+    def test_accepted(self):
+        eq_(self.auth.authenticate(self.call()), (self.profile.user, None))
+        ok_(this_thread_is_pinned())
+
+    def test_request_token_fake(self):
+        c = Mock()
+        c.key = self.access.key
+        c.secret = 'mom'
+        ok_(not self.auth.authenticate(self.call(client=OAuthClient(c))))
+
+    def test_request_admin(self):
+        self.add_group_user(self.profile, 'Admins')
+        ok_(not self.auth.authenticate(self.call()))
+
+    def test_request_has_role(self):
+        self.add_group_user(self.profile, 'App Reviewers')
+        ok_(self.auth.authenticate(self.call()))
+
 
 @patch.object(settings, 'SECRET_KEY', 'gubbish')
 class TestSharedSecretAuthentication(TestCase):

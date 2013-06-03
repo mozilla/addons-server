@@ -1,5 +1,6 @@
 import commonware.log
 
+from rest_framework.permissions import BasePermission
 from tastypie.authorization import Authorization, ReadOnlyAuthorization
 
 from access import acl
@@ -82,4 +83,13 @@ class PermissionAuthorization(Authorization):
         if acl.action_allowed(request, self.app, self.action):
             return True
         log.info('Permission authorization failed')
+        return False
+
+
+class AllowNone(BasePermission):
+
+    def has_permission(self, request, view):
+        return False
+
+    def has_object_permission(self, request, view, obj):
         return False

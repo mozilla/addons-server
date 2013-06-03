@@ -6,6 +6,7 @@ from django.conf import settings
 from django.contrib.auth.models import AnonymousUser, User
 
 import commonware.log
+from rest_framework.authentication import BaseAuthentication
 from tastypie import http
 from tastypie.authentication import Authentication
 
@@ -161,3 +162,19 @@ class SharedSecretAuthentication(Authentication):
         except Exception, e:
             log.info('Bad shared-secret auth data: %s (%s)', auth, e)
             return False
+
+
+class RestOAuthAuthentication(BaseAuthentication, OAuthAuthentication):
+    """
+    OAuthAuthentication suitable for DRF, wraps around tastypie ones.
+
+    Since DRF includes OAuthAuthentication libraries, we can probably
+    remove all this at some point in the future.
+    """
+
+    def authenticate(self, request):
+        result = self.is_authenticated(request)
+        if (isinstance(result, http.HttpUnauthorized)
+            or not request.user):
+            return None
+        return (request.user, None)
