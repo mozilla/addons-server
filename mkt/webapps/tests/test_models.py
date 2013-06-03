@@ -1316,6 +1316,7 @@ class TestAppFeatures(amo.tests.TestCase):
         self._check()
 
     def test_no_features(self):
+        AppFeatures.objects.filter(version=self.app.current_version).delete()
         with self.assertRaises(AppFeatures.DoesNotExist):
             self.app.current_version.features
 
@@ -1349,6 +1350,7 @@ class TestWebappIndexer(amo.tests.TestCase):
 
     def setUp(self):
         self.app = Webapp.objects.get(pk=337141)
+        AppFeatures.objects.all().delete()
 
     def test_mapping_type_name(self):
         eq_(WebappIndexer.get_mapping_type_name(), 'webapp')
