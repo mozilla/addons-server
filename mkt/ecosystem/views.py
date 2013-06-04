@@ -556,6 +556,10 @@ def apps_documentation(request, page=None):
         'fullscreen': {
             'link': '//developer.mozilla.org/en-US/docs/DOM/Using_fullscreen_mode',
             'title': 'Fullscreen'
+        },
+        'in_app_payments': {
+            'link': '//developer.mozilla.org/en-US/docs/Web/Apps/Publishing/In-app_payments',
+            'title': 'In-app Payments'
         }
     }
 

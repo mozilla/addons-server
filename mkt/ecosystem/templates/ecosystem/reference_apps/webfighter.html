@@ -37,7 +37,8 @@
       down an alien bug and destroy it. As a side-scrolling shooter, pick up
       various weapons to blast your way through enemies. In addition to
       destroying the alien bug, kill as many enemies as possible to get the
-      highest score.
+      highest score. 
+      <a href="https://marketplace.firefox.com/app/webfighter">View on the marketplace</a>
       <a href="{{ walkthrough_link }}"
          class="walkthrough">Read the full developer walkthrough</a>
     {% endtrans %}
@@ -61,6 +62,15 @@
         <p>
           {% trans %}
             Allows the game to be played in fullscreen mode.
+          {% endtrans %}
+        </p>
+      </li>
+      <li>
+        {{ web_api('in_app_payments') }}
+        <p>
+          {% trans %}
+            The player can purchase items in a store that will aid their quest.
+            This shows the workflow for in-app payments.
           {% endtrans %}
         </p>
       </li>
