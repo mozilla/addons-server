@@ -96,7 +96,7 @@ tastypie-services==0.2.2
 -e git://github.com/mozilla/elasticutils.git@5bde211443dbe524d940974d477119f51e3ac357#egg=elasticutils
 # Temporary fork.
 -e git://github.com/jsocol/jingo-minify.git@cb911038e20a399aeff871e199c8bc2be12b5cee#egg=jingo-minify
--e git://github.com/mozilla/nuggets.git@96e80a64aa4bfcfef4f43fc3ab6966450ccd7325#egg=nuggets
+-e git://github.com/mozilla/nuggets.git@95cbddcc871fbdb7f67a0c115767304ffc183f93#egg=nuggets
 -e git://github.com/jbalogh/test-utils.git@ce5136a257cd44a1c663319124a255c1d10a9834#egg=test-utils
 -e git://github.com/fwenzel/django-mozilla-product-details.git@36ef06539d6b34c4f345fd0d3e16937d0db9a752#egg=django-mozilla-product-details
 -e git://github.com/mozilla/signing-clients@a8bd730b202391c080113d224d223463e03088e9#egg=signing-clients

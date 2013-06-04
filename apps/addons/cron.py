@@ -15,7 +15,7 @@ import cronjobs
 import multidb
 import path
 from lib import recommend
-from celery.task.sets import TaskSet
+from celery import group
 from celeryutils import task
 import waffle
 
@@ -68,7 +68,7 @@ def update_addons_current_version():
 
     ts = [_update_addons_current_version.subtask(args=[chunk])
           for chunk in chunked(d, 100)]
-    TaskSet(ts).apply_async()
+    group(ts).apply_async()
 
 
 # TODO(jbalogh): removed from cron on 6/27/11. If the site doesn't break,
@@ -109,7 +109,7 @@ def update_addon_average_daily_users():
 
     ts = [_update_addon_average_daily_users.subtask(args=[chunk])
           for chunk in chunked(d, 250)]
-    TaskSet(ts).apply_async()
+    group(ts).apply_async()
 
 
 @task
@@ -155,7 +155,7 @@ def update_addon_download_totals():
 
     ts = [_update_addon_download_totals.subtask(args=[chunk])
           for chunk in chunked(d, 250)]
-    TaskSet(ts).apply_async()
+    group(ts).apply_async()
 
 
 @task
@@ -228,7 +228,7 @@ def update_addon_appsupport():
 
     ts = [_update_appsupport.subtask(args=[chunk])
           for chunk in chunked(ids, 20)]
-    TaskSet(ts).apply_async()
+    group(ts).apply_async()
 
 
 @cronjobs.register
@@ -445,6 +445,10 @@ def give_personas_versions():
 
 @cronjobs.register
 def reindex_addons(index=None, aliased=True, addon_type=None):
+    reindex_addons_task(index, aliased, addon_type)()
+
+
+def reindex_addons_task(index=None, aliased=True, addon_type=None):
     from . import tasks
     # Make sure our mapping is up to date.
     search.setup_mapping(index, aliased)
@@ -454,19 +458,23 @@ def reindex_addons(index=None, aliased=True, addon_type=None):
                    disabled_by_user=False))
     if addon_type:
         ids = ids.filter(type=addon_type)
-    ts = [tasks.index_addons.subtask(args=[chunk], kwargs=dict(index=index))
-          for chunk in chunked(sorted(list(ids)), 150)]
-    TaskSet(ts).apply_async()
+    p = group([tasks.index_addons.si(chunk, index=index)
+                  for chunk in chunked(sorted(list(ids)), 150)])
+    return p
 
 
 @cronjobs.register
 def reindex_apps(index=None, aliased=True):
+    reindex_apps_task(index, aliased)()
+
+
+def reindex_apps_task(index=None, aliased=True):
     """Apps do get indexed by `reindex_addons`, but run this for apps only."""
     from . import tasks
     search.setup_mapping(index, aliased)
     ids = (Addon.objects.values_list('id', flat=True)
            .filter(type=amo.ADDON_WEBAPP, status__in=amo.VALID_STATUSES,
                    disabled_by_user=False))
-    ts = [tasks.index_addons.subtask(args=[chunk], kwargs=dict(index=index))
-          for chunk in chunked(sorted(list(ids)), 150)]
-    TaskSet(ts).apply_async()
+    return group([tasks.index_addons.si(chunk, index=index)
+                  for chunk in chunked(sorted(list(ids)), 150)])
+

@@ -9,26 +9,26 @@ import traceback
 from optparse import make_option
 
 import requests
-from celery_tasktree import task_with_callbacks, TaskTree
+from celery import chain, group, task
 
 from django.conf import settings as django_settings
 from django.core.management import call_command
 from django.core.management.base import BaseCommand, CommandError
 
-from addons.cron import reindex_addons, reindex_apps
+from addons.cron import reindex_addons_task
 from amo.utils import timestamp_index
 from apps.addons.search import setup_mapping as put_amo_mapping
-from bandwagon.cron import reindex_collections
-from compat.cron import compatibility_report
+from bandwagon.cron import reindex_collections_task
+from compat.cron import compatibility_report_task
 from lib.es.models import Reindexing
 from lib.es.utils import database_flagged
 from stats.search import setup_indexes as put_stats_mapping
-from users.cron import reindex_users
+from users.cron import reindex_users_task
 
 
 _INDEXES = {}
 
-
+@task(ignore_result=False)
 def index_stats(index=None, aliased=True):
     """Indexes the previous 365 days."""
     call_command('index_stats', addons=None)
@@ -40,15 +40,14 @@ if django_settings.MARKETPLACE:
     # then tries to delete from the non-existant table.
     #
     # This really only affects tests where the table does not exist.
-    from mkt.stats.cron import index_mkt_stats
+    from mkt.stats.cron import index_mkt_stats_task
     from mkt.stats.search import setup_mkt_indexes as put_mkt_stats_mapping
 
-    _INDEXES = {'stats': [index_stats, index_mkt_stats],
-                'apps': [reindex_addons,
-                         reindex_apps,
-                         reindex_collections,
-                         reindex_users,
-                         compatibility_report]}
+    _INDEXES = {'stats': [index_stats.si, index_mkt_stats_task.si],
+                'apps': [reindex_addons_task,
+                         reindex_collections_task,
+                         reindex_users_task,
+                         compatibility_report_task]}
 
 logger = logging.getLogger('z.elasticsearch')
 DEFAULT_NUM_REPLICAS = 0
@@ -93,7 +92,7 @@ def log(msg):
     print msg
 
 
-@task_with_callbacks
+@task(ignore_result=False)
 def delete_indexes(indexes):
     """Removes the indexes.
 
@@ -105,7 +104,7 @@ def delete_indexes(indexes):
         call_es(index, method='DELETE')
 
 
-@task_with_callbacks
+@task(ignore_result=False)
 def run_aliases_actions(actions):
     """Run actions on aliases.
 
@@ -143,7 +142,7 @@ def run_aliases_actions(actions):
         call_es('_aliases', post_data, method='POST')
 
 
-@task_with_callbacks
+@task(ignore_result=False)
 def create_mapping(new_index, alias, num_replicas=DEFAULT_NUM_REPLICAS,
                    num_shards=DEFAULT_NUM_SHARDS):
     """Creates a mapping for the new index.
@@ -186,7 +185,6 @@ def create_mapping(new_index, alias, num_replicas=DEFAULT_NUM_REPLICAS,
             status=(200, 201))
 
 
-@task_with_callbacks
 def create_index(index, is_stats):
     """Create the index.
 
@@ -194,19 +192,12 @@ def create_index(index, is_stats):
     - is_stats: if True, we're indexing stats
     """
     log('Running all indexes for %r' % index)
-    indexers = is_stats and _INDEXES['stats'] or _INDEXES['apps']
+    indexers = _INDEXES['stats' if is_stats else 'apps']
+    #TODO look at task failure states? chord?
+    ts = [indexer(index, aliased=False) for indexer in indexers]
+    return group(ts)
 
-    for indexer in indexers:
-        log('Indexing %r' % indexer.__name__)
-        try:
-            indexer(index, aliased=False)
-        except Exception:
-            # We want to log this event but continue
-            log('Indexer %r failed' % indexer.__name__)
-            traceback.print_exc()
-
-
-@task_with_callbacks
+@task(ignore_result=False)
 def flag_database(new_index, old_index, alias):
     """Flags the database to indicate that the reindexing has started."""
     log('Flagging the database to start the reindexation')
@@ -215,7 +206,7 @@ def flag_database(new_index, old_index, alias):
                                      start_date=datetime.datetime.now())
 
 
-@task_with_callbacks
+@task(ignore_result=False)
 def unflag_database():
     """Unflag the database to indicate that the reindexing is over."""
     log('Unflagging the database')
@@ -304,10 +295,9 @@ class Command(BaseCommand):
 
         # creating a task tree
         log('Building the task tree')
-        tree = TaskTree()
-        last_action = None
 
         to_remove = []
+        creates = []
 
         # for each index, we create a new time-stamped index
         for alias in indexes:
@@ -333,34 +323,31 @@ class Command(BaseCommand):
                 old_index = alias
 
             # flag the database
-            step1 = tree.add_task(flag_database, args=[new_index, old_index,
-                                                       alias])
-            step2 = step1.add_task(create_mapping, args=[new_index, alias])
-            step3 = step2.add_task(create_index, args=[new_index, is_stats])
-            last_action = step3
-
+            step1 = flag_database.si(new_index, old_index, alias)
+            step2 = create_mapping.si(new_index, alias)
+            step3 = create_index(new_index, is_stats)
+            creates.append(step1 | step2 | step3)
             # adding new index to the alias
             add_action('add', new_index, alias)
 
+        create = group(creates)
         # Alias the new index and remove the old aliases, if any.
-        renaming_step = last_action.add_task(run_aliases_actions,
-                                             args=[actions])
+        rename = run_aliases_actions.si(actions)
 
         # unflag the database - there's no need to duplicate the
         # indexing anymore
-        delete = renaming_step.add_task(unflag_database)
+        delete = unflag_database.si()
 
         # Delete the old indexes, if any
-        delete.add_task(delete_indexes, args=[to_remove])
+        del_indexes = delete_indexes.si(to_remove)
 
         # let's do it
         log('Running all indexation tasks')
 
         os.environ['FORCE_INDEXING'] = '1'
         try:
-            tree.apply_async()
-            time.sleep(10)   # give celeryd some time to flag the DB
-            while database_flagged():
+            res = (create | rename | delete | del_indexes).apply_async()
+            while not res.ready():
                 sys.stdout.write('.')
                 sys.stdout.flush()
                 time.sleep(5)

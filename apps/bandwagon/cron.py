@@ -5,7 +5,7 @@ from django.db import connection, transaction
 from django.db.models import Count
 
 import commonware.log
-from celery.task.sets import TaskSet
+from celery import group
 from celeryutils import task
 
 import amo
@@ -185,9 +185,12 @@ def _drop_collection_recs(**kw):
 
 @cronjobs.register
 def reindex_collections(index=None, aliased=True):
+    reindex_collections_task(index, aliased).apply_async()
+
+def reindex_collections_task(index=None, aliased=True):
     from . import tasks
     ids = (Collection.objects.exclude(type=amo.COLLECTION_SYNCHRONIZED)
            .values_list('id', flat=True))
-    taskset = [tasks.index_collections.subtask(args=[chunk], kwargs=dict(index=index))
+    taskset = [tasks.index_collections.si(chunk, index=index)
                for chunk in chunked(sorted(list(ids)), 150)]
-    TaskSet(taskset).apply_async()
+    return group(taskset)
