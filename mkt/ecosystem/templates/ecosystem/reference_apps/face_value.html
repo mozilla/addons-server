@@ -76,10 +76,12 @@
     <h2>{{ _('Third-party Libraries') }}</h2>
     <ul>
       <li>
-        {{ third_party_lib('node') }}
+        {{ third_party_lib('backbone') }}
         <p>
           {% trans %}
-            Both server and client code are written in JavaScript.
+            By using backbone's data bindings, Face Value ensures that
+            changes to the backend (such as exchange rate updates)
+            are automatically reflected on the frontend.
           {% endtrans %}
         </p>
       </li>
@@ -89,16 +91,6 @@
           {% trans %}
             The lightweight jQuery-like library simplifies common
             tasks such as DOM manipulation.
-          {% endtrans %}
-        </p>
-      </li>
-      <li>
-        {{ third_party_lib('backbone') }}
-        <p>
-          {% trans %}
-            By using backbone's data bindings, Face Value ensures that
-            changes to the backend (such as exchange rate updates)
-            are automatically reflected on the frontend.
           {% endtrans %}
         </p>
       </li>
