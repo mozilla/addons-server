@@ -47,3 +47,10 @@
     {% endfor %}
   </ol>
 </div>
+{% if step.current == 1 %}
+<div class="highlight">
+  <h3>{{ _('Amp up your Firefox and win!') }}</h3>
+  <p>{{ _('Make (or update) an add-on for a chance to win a MacBook Air or Android tablet.') }}</p>
+  <p><a href="https://blog.mozilla.org/addons/amp-your-firefox" target="_blank">{{ _('Learn more') }}</a></p>
+</div>
+{% endif %}

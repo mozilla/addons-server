@@ -322,3 +322,8 @@ class Holiday(TemplatePromo):
         # Hide on discovery pane.
         if module_context == 'home':
             return super(Holiday, self).render()
+
+
+class AmpYourFirefox(TemplatePromo):
+    slug = 'Amp Your Firefox'
+    template = 'discovery/modules/amp_your_firefox.html'

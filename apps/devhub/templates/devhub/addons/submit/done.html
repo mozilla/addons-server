@@ -53,12 +53,21 @@
 </div>
 
 {% if not webapp %}
+  {# Disabled while we run the Amp Your Firefox Promo...
   <div id="editor-pitch" class="action-needed">
     <h3>{{ _('Get Ahead in the Review Queue!') }}</h3>
     <p>
       {{ _('Become an AMO Editor today and get your add-ons reviewed faster.') }}
       <a class="button learn-more" href="https://wiki.mozilla.org/AMO:Editors">
         {{ _('Learn More') }}</a>
+    </p>
+  </div>
+  #}
+  <div class="action-needed">
+    <h3>{{ _('Amp up your Firefox and win!') }}</h3>
+    <p>
+      {{ _('Enter this add-on for a chance to win a MacBook Air or Android tablet.') }}
+      <a class="button learn-more" href="https://blog.mozilla.org/addons/amp-your-firefox">{{ _('Learn more') }}</a>
     </p>
   </div>
 {% endif %}

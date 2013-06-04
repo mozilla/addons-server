@@ -83,6 +83,7 @@
       {% endfor %}
       <p><a id="link-view-all" href="{{ url('devhub.addons') }}">{{ _('View all add-ons ►') }}</a></p>
     </div>
+    {# Disabled while we run the Amp Your Firefox Promo...
     <div id="editor-promo" class="item">
       <h3>{{ _('AMO Editors') }}</h3>
       <p>
@@ -90,6 +91,12 @@
       </p>
       <p><a href="https://wiki.mozilla.org/AMO:Editors" class="button">
         {{ _('Become an Editor') }}</a></p>
+    </div>
+    #}
+    <div id="amp-your-firefox-promo" class="item">
+      <h3>{{ _('Amp up your Firefox and win!') }}</h3>
+      <p>{{ _('Make (or update) an add-on for a chance to win a MacBook Air or Android tablet.') }}</p>
+      <p><a href="https://blog.mozilla.org/addons/amp-your-firefox">{{ _('Learn more') }}</a></p>
     </div>
   {% endif %}
   {% include "devhub/includes/blog_posts.html" %}
