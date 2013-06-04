@@ -128,7 +128,7 @@ def edit(request, addon_id, addon, webapp=False):
                                                          flat=True),
         'previews': addon.get_previews(),
     }
-    if waffle.switch_is_active('buchets'):
+    if waffle.switch_is_active('buchets') and addon.current_version:
         data['appfeatures'] = addon.current_version.get_features().to_list()
     if acl.action_allowed(request, 'Apps', 'Configure'):
         data['admin_settings_form'] = forms.AdminSettingsForm(instance=addon)
@@ -585,8 +585,11 @@ def addons_section(request, addon_id, addon, section, editable=False,
     cat_form = None
 
     if waffle.switch_is_active('buchets'):
-        appfeatures = addon.current_version.get_features()
-        appfeatures_form = AppFeaturesForm(instance=appfeatures)
+        if addon.current_version:
+            appfeatures = addon.current_version.get_features()
+            appfeatures_form = AppFeaturesForm(instance=appfeatures)
+        else:
+            appfeatures = appfeatures_form = None
 
     # Permissions checks.
     # Only app owners can edit any of the details of their apps.
@@ -614,7 +617,7 @@ def addons_section(request, addon_id, addon, section, editable=False,
     if editable:
         if request.method == 'POST':
 
-            if waffle.switch_is_active('buchets'):
+            if waffle.switch_is_active('buchets') and appfeatures:
                 appfeatures_form = AppFeaturesForm(request.POST or None,
                                                    instance=appfeatures)
 
@@ -626,13 +629,13 @@ def addons_section(request, addon_id, addon, section, editable=False,
                                    instance=addon, request=request)
 
             all_forms = [form, previews, image_assets]
-            if waffle.switch_is_active('buchets'):
+            if waffle.switch_is_active('buchets') and appfeatures_form:
                 all_forms.append(appfeatures_form)
             if all(not f or f.is_valid() for f in all_forms):
 
                 addon = form.save(addon)
 
-                if waffle.switch_is_active('buchets'):
+                if waffle.switch_is_active('buchets') and appfeatures_form:
                     appfeatures_form.save()
 
                 if 'manifest_url' in form.changed_data:
@@ -677,7 +680,7 @@ def addons_section(request, addon_id, addon, section, editable=False,
             'image_asset_form': image_assets,
             'valid_slug': valid_slug, }
 
-    if waffle.switch_is_active('buchets'):
+    if waffle.switch_is_active('buchets') and appfeatures:
         data.update({
             'appfeatures': appfeatures.to_list(),
             'appfeatures_form': appfeatures_form
