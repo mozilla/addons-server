@@ -150,7 +150,7 @@ App
     :param boolean regions > adolescent: an adolescent region has a sufficient
         volume of data to calculate ratings and rankings independent of
         worldwide data.
-    :param string|null regions > mcc: represents the region's ITU `mobile 
+    :param string|null regions > mcc: represents the region's ITU `mobile
         country code`_.
     :param object user: an object representing information specific to this
         user for the app. If the user is anonymous this object will not
@@ -240,8 +240,66 @@ App
 
    :status 204: successfully deleted.
 
+Payments
+========
 
+.. note:: Requires authentication and a successfully created app.
 
+.. http:get:: /api/v1/apps/app/(int:id)/payments/
+
+    **Response**
+
+    .. code-block:: json
+
+    :param upsell: URL to the upsell of the app.
+    :status 200: sucessfully completed.
+
+.. http:post:: /api/v1/developers/upsell/(int:id)/
+
+    Creates an upsell relationship between two apps, a free and premium one.
+    Send the URLs for both apps in the post to create the relationship.
+
+    **Request**
+
+    :param free: URL to the free app.
+    :param premium: URL to the premium app.
+
+    **Response**
+
+    :status 201: sucessfully created.
+
+.. http:get:: /api/v1/developers/upsell/(int:id)/
+
+    **Response**
+
+    .. code-block:: json
+
+        {"free": "/api/v1/apps/app/1/",
+         "premium": "/api/v1/apps/app/2/"}
+
+    :param free: URL to the free app.
+    :param premium: URL to the premium app.
+
+.. http:patch:: /api/v1/developers/upsell/(int:id)/
+
+    Alter the upsell from free to premium by passing in new free and premiums.
+
+    **Request**
+
+    :param free: URL to the free app.
+    :param premium: URL to the premium app.
+
+    **Response**
+
+    :status 200: sucessfully altered.
+
+.. http:delete:: /api/v1/developers/upsell/(int:id)/
+
+    To delete the upsell relationship.
+
+    **Response**
+
+    :status 204: sucessfully deleted.
 
 Screenshots or videos
 =====================

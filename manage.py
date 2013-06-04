@@ -108,10 +108,13 @@ log_configure()
 from lib.misc import safe_signals
 safe_signals.start_the_machine()
 
-
 import django.conf
 newrelic_ini = getattr(django.conf.settings, 'NEWRELIC_INI', None)
 load_newrelic = False
+
+# Monkey patches DRF to not use fqdn urls.
+from mkt.api.patch import patch
+patch()
 
 if newrelic_ini:
     import newrelic.agent

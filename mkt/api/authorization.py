@@ -93,3 +93,12 @@ class AllowNone(BasePermission):
 
     def has_object_permission(self, request, view, obj):
         return False
+
+
+class AllowAppOwner(BasePermission):
+
+    def has_permission(self, request, view):
+        return not request.user.is_anonymous()
+
+    def has_object_permission(self, request, view, object):
+        return AppOwnerAuthorization().check_owner(request, object)

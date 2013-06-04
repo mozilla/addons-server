@@ -5,13 +5,17 @@ import sys
 import traceback
 
 from django.conf import settings
+from django.core.urlresolvers import reverse
 from django.conf.urls.defaults import url
 from django.core.exceptions import ObjectDoesNotExist, PermissionDenied
 from django.http import HttpResponseNotFound
 
+from rest_framework.routers import SimpleRouter, Route
+from rest_framework.relations import HyperlinkedRelatedField
 from tastypie import fields, http
 from tastypie.bundle import Bundle
-from tastypie.exceptions import ImmediateHttpResponse, UnsupportedFormat, NotFound
+from tastypie.exceptions import (ImmediateHttpResponse, NotFound,
+                                 UnsupportedFormat)
 from tastypie.resources import Resource, ModelResource
 
 from access import acl
@@ -380,3 +384,51 @@ class PotatoCaptchaResource(object):
         sup = super(PotatoCaptchaResource, self)
         bundle = sup.alter_detail_data_to_serialize(request, data)
         return self.remove_potato(bundle)
+
+
+class CompatRelatedField(HyperlinkedRelatedField):
+    """
+    Upsell field for connecting Tastypie resources to
+    django-rest-framework instances, this got complicated.
+    """
+
+    def __init__(self, *args, **kwargs):
+        self.tastypie = kwargs.pop('tastypie')
+        return super(CompatRelatedField, self).__init__(*args, **kwargs)
+
+    def to_native(self, obj):
+        if getattr(obj, 'pk', None) is None:
+            return
+
+        self.tastypie['pk'] = obj.pk
+        return reverse('api_dispatch_detail', kwargs=self.tastypie)
+
+    def get_object(self, queryset, view_name, view_args, view_kwargs):
+        return queryset.get(pk=view_kwargs['pk'])
+
+
+class AppRouter(SimpleRouter):
+    routes = [
+        # List route.
+        Route(
+            url=r'^{prefix}/$',
+            mapping={
+                'get': 'list',
+                'post': 'create'
+            },
+            name='{basename}-list',
+            initkwargs={'suffix': 'List'}
+        ),
+        # Detail route.
+        Route(
+            url=r'^{lookup}/{prefix}/$',
+            mapping={
+                'get': 'retrieve',
+                'put': 'update',
+                'patch': 'partial_update',
+                'delete': 'destroy'
+            },
+            name='{basename}-detail',
+            initkwargs={'suffix': 'Instance'}
+        )
+    ]

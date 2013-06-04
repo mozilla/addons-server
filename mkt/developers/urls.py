@@ -1,13 +1,16 @@
 from django import http
 from django.conf.urls import include, patterns, url
 
+from rest_framework.routers import SimpleRouter
 from tastypie.api import Api
 
 from lib.misc.urlconf_decorator import decorate
 
 import amo
 from amo.decorators import write
+from mkt.api.base import AppRouter
 from mkt.developers.api import AccountResource
+from mkt.developers.api_payments import PaymentViewSet, UpsellViewSet
 from mkt.developers.decorators import use_apps
 from mkt.receipts.urls import test_patterns
 from mkt.stats.urls import all_apps_stats_patterns
@@ -158,7 +161,16 @@ urlpatterns = decorate(write, patterns('',
 ))
 
 payments = Api(api_name='payments')
-
 payments.register(AccountResource())
+
+api_payments = SimpleRouter()
+api_payments.register(r'upsell', UpsellViewSet, base_name='app-upsell')
+
+app_payments = AppRouter()
+app_payments.register(r'payments', PaymentViewSet, base_name='app-payments')
+
 api_patterns = patterns('',
-    url(r'^', include(payments.urls)))
+    url(r'^', include(payments.urls)),
+    url(r'^developers/', include(api_payments.urls)),
+    url(r'^apps/app/', include(app_payments.urls))
+)

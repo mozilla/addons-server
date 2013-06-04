@@ -14,7 +14,7 @@ from pyquery import PyQuery as pq
 from test_utils import RequestFactory
 
 from amo.tests import TestCase
-from amo.helpers import urlparams
+from amo.helpers import absolutify, urlparams
 from amo.urlresolvers import reverse
 
 from mkt.api import authentication
@@ -155,6 +155,28 @@ class BaseOAuth(TestCase):
 
     def get_error(self, response):
         return json.loads(response.content)['error_message']
+
+
+class RestOAuthClient(OAuthClient):
+
+    def __init__(self, access):
+        super(OAuthClient, self).__init__(self)
+        self.access = access
+        self.get_absolute_url = absolutify
+
+
+class RestOAuth(BaseOAuth):
+    fixtures = fixture('user_2519')
+
+    def setUp(self):
+        self.user = User.objects.get(pk=2519)
+        self.profile = self.user.get_profile()
+        self.profile.update(read_dev_agreement=datetime.now())
+        self.access = Access.objects.create(key='oauthClientKeyForTests',
+                                            secret=generate(),
+                                            user=self.user)
+        self.client = RestOAuthClient(self.access)
+        self.anon = RestOAuthClient(None)
 
 
 class Resource(CORSResource, MarketplaceResource):

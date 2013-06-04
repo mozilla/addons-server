@@ -165,12 +165,7 @@ class SharedSecretAuthentication(Authentication):
 
 
 class RestOAuthAuthentication(BaseAuthentication, OAuthAuthentication):
-    """
-    OAuthAuthentication suitable for DRF, wraps around tastypie ones.
-
-    Since DRF includes OAuthAuthentication libraries, we can probably
-    remove all this at some point in the future.
-    """
+    """OAuthAuthentication suitable for DRF, wraps around tastypie ones."""
 
     def authenticate(self, request):
         result = self.is_authenticated(request)

@@ -251,7 +251,6 @@ class AppResource(CORSResource, MarketplaceModelResource):
         data.update(self.devices(data))
         self.update_premium_type(bundle)
         self.update_payment_account(bundle)
-        self.update_upsell(bundle)
         if 'regions' in data:
             data['regions'] = [REGIONS_DICT[r].id for r in data['regions']
                                if r in REGIONS_DICT]
@@ -321,21 +320,6 @@ class AppResource(CORSResource, MarketplaceModelResource):
                 AddonPaymentAccount.create(
                     provider='bango', addon=bundle.obj,
                     payment_account=acct)
-
-    def update_upsell(self, bundle):
-        if 'upsold' in bundle.data:
-            if bundle.obj.premium_type in amo.ADDON_FREES:
-                raise fields.ApiFieldError('Free apps cannot have upsells.')
-            free_app = self.fields['upsold'].hydrate(bundle).obj
-            current_upsell = bundle.obj.upsold
-            if not current_upsell:
-                log.debug('[1@%s] Creating app upsell' % bundle.obj.pk)
-                current_upsell = AddonUpsell(premium=bundle.obj)
-            current_upsell.free = free_app
-            current_upsell.save()
-            # smack that cached property right back out
-            del bundle.obj.__dict__['upsold']
-        return bundle
 
     def dehydrate(self, bundle):
         obj = bundle.obj
