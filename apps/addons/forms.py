@@ -657,10 +657,6 @@ class EditThemeForm(AddonFormBase):
         persona = addon.persona
         data = self.cleaned_data
 
-        if data.get('description'):
-            addon.description = data['description']
-            addon.save()
-
         # Update Persona-specific data.
         persona_data = {
             'license': int(data['license']),
