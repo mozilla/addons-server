@@ -1099,6 +1099,10 @@ class TestCategoryHandler(BaseOAuth):
         data = json.loads(res.content)
         eq_(data['name'], 'Le Webapp')
 
+        res = self.anon.get(self.get_url, HTTP_ACCEPT_LANGUAGE='en-US')
+        data = json.loads(res.content)
+        eq_(data['name'], 'Webapp')
+
     def test_get_other_category(self):
         res = self.anon.get(('api_dispatch_detail',
                              {'resource_name': 'category',

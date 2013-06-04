@@ -446,8 +446,7 @@ class StatusResource(MarketplaceModelResource):
 class CategoryResource(CORSResource, MarketplaceModelResource):
 
     class Meta(MarketplaceModelResource.Meta):
-        queryset = Category.objects.filter(type=amo.ADDON_WEBAPP,
-                                           weight__gte=0)
+        queryset = Category.objects.all()
         list_allowed_methods = ['get']
         allowed_methods = ['get']
         fields = ['name', 'id', 'slug']
@@ -455,6 +454,13 @@ class CategoryResource(CORSResource, MarketplaceModelResource):
         resource_name = 'category'
         serializer = Serializer(formats=['json'])
         slug_lookup = 'slug'
+
+    def dispatch(self, request_type, request, **kwargs):
+        self._meta.queryset = Category.objects.filter(
+            type=amo.ADDON_WEBAPP,
+            weight__gte=0)
+        return super(CategoryResource, self).dispatch(request_type, request,
+                                                      **kwargs)
 
     def obj_get_list(self, request=None, **kwargs):
         objs = super(CategoryResource, self).obj_get_list(request, **kwargs)
