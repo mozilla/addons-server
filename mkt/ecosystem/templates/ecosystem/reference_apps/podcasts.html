@@ -43,6 +43,31 @@
   </section>
 {% endblock %}
 
+{% block app_folder_structure %}
+  <section>
+    <h2>{{ _('Folder Structure') }}</h2>
+
+    <pre>
+  - <a href="https://github.com/mozilla/high-fidelity/tree/master/locales">locales/</a> ({{ _('Translation files') }})
+  - <a href="https://github.com/mozilla/high-fidelity/tree/master/test">test/</a> (<a href="https://developer.mozilla.org/en-US/docs/Marionette">Marionette</a> {{ _('integration and UI tests') }})
+  - <a href="https://github.com/mozilla/high-fidelity/tree/master/www">www/</a> ({{ _('client-side code/styles') }})
+  - <a href="https://github.com/mozilla/high-fidelity/tree/master/www/index.html">www/index.html</a> ({{ _('base HTML file') }})
+  - <a href="https://github.com/mozilla/high-fidelity/tree/master/www/js/templates">www/gaia/</a> (<a href="https://developer.mozilla.org/en-US/docs/Mozilla/Firefox_OS/Platform/Gaia">Gaia</a> {{ _('UI files') }})
+  - <a href="https://github.com/mozilla/high-fidelity/tree/master/www/js/templates">www/js/templates/</a> ({{ _('EJS/HTML templates') }})</pre>
+
+    <p>
+      {%- trans packaged_apps_links='https://developer.mozilla.org/en-US/docs/Web/Apps/Packaged_apps',
+                simulator_link='https://developer.mozilla.org/en-US/docs/Tools/Firefox_OS_Simulator' %}
+        Podcasts is a <a href="{{ packaged_apps_link }}">packaged app</a>,
+        so it requires a build step to be installed to Firefox OS. The
+        <code>Makefile</code> contains a multi-step process that will create a
+        <code>www-built</code> folder used to install the app on a phone or
+        the <a href="{{ simulator_link }}">Firefox OS Simulator</a>.
+      {% endtrans -%}
+    </p>
+  </section>
+{% endblock %}
+
 {% block app_web_apis %}
   <section>
     <h2>{{ _('Web API Usage') }}</h2>
