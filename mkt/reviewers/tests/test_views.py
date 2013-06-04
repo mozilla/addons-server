@@ -10,6 +10,7 @@ from django.core import mail
 from django.core.files.storage import default_storage as storage
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
+from django.utils import translation
 
 import mock
 from nose import SkipTest
@@ -1008,6 +1009,34 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
 
         assert update_name.called
         assert update_locales.called
+
+    def test_notification_email_translation(self):
+        """Test that the app name is translated with the app's default_locale
+        and not the reviewer's when we are sending notification emails."""
+        original_name = unicode(self.app.name)
+        fr_translation = u'Mais allô quoi!'
+        es_translation = u'¿Dónde está la biblioteca?'
+        self.app.name = {
+            'fr': fr_translation,
+            'es': es_translation,
+        }
+        self.app.default_locale = 'fr'
+        self.app.save()
+
+        data = {'action': 'public', 'comments': 'something'}
+        data.update(self._attachment_management_form(num=0))
+        self.client.post(self.url, data, HTTP_ACCEPT_LANGUAGE='es')
+        eq_(translation.get_language(), 'es')
+
+        eq_(len(mail.outbox), 1)
+        msg = mail.outbox[0]
+
+        assert not original_name in msg.subject
+        assert not es_translation in msg.subject
+        assert fr_translation in msg.subject
+        assert not original_name in msg.body
+        assert not es_translation in msg.body
+        assert fr_translation in msg.body
 
     @mock.patch('lib.crypto.packaged.sign')
     def test_public_signs(self, sign):
