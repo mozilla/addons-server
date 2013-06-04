@@ -21,28 +21,29 @@ CSP_IMG_SRC = CSP_IMG_SRC + (CSP_STATIC_URL,)
 CSP_SCRIPT_SRC = CSP_SCRIPT_SRC + (CSP_STATIC_URL,)
 CSP_STYLE_SRC = CSP_STYLE_SRC + (CSP_STATIC_URL,)
 
-ADDON_ICON_URL = "%s/%s/%s/images/addon_icon/%%d-%%d.png?modified=%%s" % (STATIC_URL, LANGUAGE_CODE, DEFAULT_APP)
-ADDON_ICON_URL = STATIC_URL + 'img/uploads/addon_icons/%s/%s-%s.png?modified=%s'
-PREVIEW_THUMBNAIL_URL = (STATIC_URL +
-        'img/uploads/previews/thumbs/%s/%d.png?modified=%d')
-PREVIEW_FULL_URL = (STATIC_URL +
-        'img/uploads/previews/full/%s/%d.%s?modified=%d')
+STATIC_URL_PREFIX = 'shared_storage/'
+
+ADDON_ICON_URL = STATIC_URL + STATIC_URL_PREFIX + 'uploads/addon_icons/%s/%s-%s.png?modified=%s'
+PREVIEW_THUMBNAIL_URL = (STATIC_URL + STATIC_URL_PREFIX +
+        'uploads/previews/thumbs/%s/%d.png?modified=%d')
+PREVIEW_FULL_URL = (STATIC_URL + STATIC_URL_PREFIX +
+        'uploads/previews/full/%s/%d.%s?modified=%d')
 # paths for uploaded extensions
 FILES_URL = STATIC_URL + "%s/%s/downloads/file/%d/%s?src=%s"
 
 SESSION_COOKIE_DOMAIN = ".%s" % DOMAIN
 
 # paths for uploaded extensions
-IMAGEASSET_FULL_URL = STATIC_URL + 'img/uploads/imageassets/%s/%d.png?modified=%d'
-USERPICS_URL = STATIC_URL + 'img/uploads/userpics/%s/%s/%s.png?modified=%d'
-COLLECTION_ICON_URL = STATIC_URL + '/img/uploads/collection_icons/%s/%s.png?m=%s'
+IMAGEASSET_FULL_URL = STATIC_URL + STATIC_URL_PREFIX + 'uploads/imageassets/%s/%d.png?modified=%d'
+USERPICS_URL = STATIC_URL + STATIC_URL_PREFIX + 'uploads/userpics/%s/%s/%s.png?modified=%d'
+COLLECTION_ICON_URL = STATIC_URL + STATIC_URL_PREFIX + 'uploads/collection_icons/%s/%s.png?m=%s'
 
 MEDIA_URL = MEDIA_STATIC_URL + 'media/'
 ADDON_ICONS_DEFAULT_URL = MEDIA_URL + 'img/hub'
 ADDON_ICON_BASE_URL = MEDIA_URL + 'img/icons/'
 
-PRODUCT_ICON_URL = STATIC_URL + 'product-icons'
-INAPP_IMAGE_URL = STATIC_URL + 'inapp-image'
+PRODUCT_ICON_URL = STATIC_URL + STATIC_URL_PREFIX + 'shared_storage/product-icons'
+INAPP_IMAGE_URL = STATIC_URL + STATIC_URL_PREFIX + 'shared_storage/inapp-image'
 
 
 CACHE_PREFIX = 'altdev.mkt.%s' % CACHE_PREFIX
