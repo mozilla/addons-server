@@ -4,6 +4,7 @@ from datetime import datetime
 
 from django.conf import settings
 from django.core.cache import cache
+from django.db.models.signals import post_save
 from django.utils import translation
 from django.utils.datastructures import SortedDict
 
@@ -74,22 +75,20 @@ class ReviewBase(object):
 
     def set_addon(self, **kw):
         """Alters addon and sets reviewed timestamp on version."""
-        self.addon.update(**kw)
-        self.version.update(reviewed=datetime.now())
+        self.addon.update(_signal=False, **kw)
+        self.version.update(_signal=False, reviewed=datetime.now())
 
     def set_files(self, status, files, copy_to_mirror=False,
                   hide_disabled_file=False):
         """Change the files to be the new status
         and copy, remove from the mirror as appropriate."""
         for file in files:
-            file.datestatuschanged = datetime.now()
-            file.reviewed = datetime.now()
+            file.update(_signal=False, datestatuschanged=datetime.now(),
+                        reviewed=datetime.now(), status=status)
             if copy_to_mirror:
                 file.copy_to_mirror()
             if hide_disabled_file:
                 file.hide_disabled_file()
-            file.status = status
-            file.save()
 
     def log_action(self, action):
         details = {'comments': self.data['comments'],
@@ -196,6 +195,8 @@ class ReviewApp(ReviewBase):
             self.set_addon(status=amo.STATUS_PUBLIC_WAITING,
                            highest_status=amo.STATUS_PUBLIC_WAITING)
 
+        post_save.send(sender=Webapp, instance=self.addon, created=False)
+
         self.log_action(amo.LOG.APPROVE_VERSION_WAITING)
         self.notify_email('pending_to_public_waiting',
                           u'App Approved but waiting: %s')
@@ -212,10 +213,13 @@ class ReviewApp(ReviewBase):
         if self.addon.status != amo.STATUS_PUBLIC:
             self.set_addon(status=amo.STATUS_PUBLIC,
                            highest_status=amo.STATUS_PUBLIC)
+
         # Call update_version, so various other bits of data update.
         self.addon.update_version()
         self.addon.update_name_from_package_manifest()
         self.addon.update_supported_locales()
+
+        post_save.send(sender=Webapp, instance=self.addon, created=False)
 
         self.log_action(amo.LOG.APPROVE_VERSION)
         self.notify_email('pending_to_public', u'App Approved: %s')

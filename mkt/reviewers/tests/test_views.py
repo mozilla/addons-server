@@ -988,9 +988,11 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         self._check_email(msg, 'Submission Update')
         self._check_email_body(msg)
 
+    @mock.patch('addons.tasks.index_addons')
     @mock.patch('mkt.webapps.models.Webapp.update_supported_locales')
     @mock.patch('mkt.webapps.models.Webapp.update_name_from_package_manifest')
-    def test_pending_to_public(self, update_name, update_locales):
+    def test_pending_to_public(self, update_name, update_locales,
+                               index_addons):
         self.create_switch(name='reviewer-incentive-points')
         data = {'action': 'public', 'device_types': '', 'browsers': '',
                 'comments': 'something'}
@@ -1009,6 +1011,8 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
 
         assert update_name.called
         assert update_locales.called
+
+        eq_(index_addons.delay.call_count, 1)
 
     def test_notification_email_translation(self):
         """Test that the app name is translated with the app's default_locale
@@ -1057,7 +1061,6 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         self.client.post(self.url, data)
         eq_(self.get_app().status, amo.STATUS_PENDING)
 
-
     def test_pending_to_public_no_mozilla_contact(self):
         self.create_switch(name='reviewer-incentive-points')
         self.app.update(mozilla_contact='')
@@ -1076,18 +1079,22 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         self._check_email_body(msg)
         self._check_score(amo.REVIEWED_WEBAPP_HOSTED)
 
+    @mock.patch('addons.tasks.index_addons')
     @mock.patch('mkt.webapps.models.Webapp.update_supported_locales')
     @mock.patch('mkt.webapps.models.Webapp.update_name_from_package_manifest')
-    def test_pending_to_public_waiting(self, update_name, update_locales):
+    def test_pending_to_public_waiting(self, update_name, update_locales,
+                                       index_addons):
         self.create_switch(name='reviewer-incentive-points')
-        self.get_app().update(make_public=amo.PUBLIC_WAIT)
+        self.get_app().update(_signal=False, make_public=amo.PUBLIC_WAIT)
+        index_addons.delay.reset_mock()
+
         data = {'action': 'public', 'device_types': '', 'browsers': '',
                 'comments': 'something'}
         data.update(self._attachment_management_form(num=0))
         self.post(data)
         app = self.get_app()
         eq_(app.status, amo.STATUS_PUBLIC_WAITING)
-        eq_(app.current_version.files.all()[0].status,
+        eq_(app._current_version.files.all()[0].status,
             amo.STATUS_PUBLIC_WAITING)
         self._check_log(amo.LOG.APPROVE_VERSION_WAITING)
 
@@ -1099,6 +1106,8 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
 
         assert not update_name.called
         assert not update_locales.called
+
+        eq_(index_addons.delay.call_count, 1)
 
     @mock.patch('lib.crypto.packaged.sign')
     def test_public_waiting_signs(self, sign):
