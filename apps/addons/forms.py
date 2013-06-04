@@ -515,8 +515,8 @@ class ThemeForm(ThemeFormBase):
     slug = forms.CharField(max_length=30)
     category = forms.ModelChoiceField(queryset=Category.objects.all(),
                                       widget=forms.widgets.RadioSelect)
-    summary = forms.CharField(widget=forms.Textarea(attrs={'rows': 4}),
-                              max_length=250, required=False)
+    description = forms.CharField(widget=forms.Textarea(attrs={'rows': 4}),
+                                  max_length=250, required=False)
     tags = forms.CharField(required=False)
 
     license = forms.TypedChoiceField(choices=amo.PERSONA_LICENSES_CHOICES,
@@ -535,16 +535,15 @@ class ThemeForm(ThemeFormBase):
 
     class Meta:
         model = Addon
-        fields = ('name', 'slug', 'summary', 'tags')
+        fields = ('name', 'slug', 'description', 'tags')
 
     def save(self, commit=False):
         data = self.cleaned_data
         addon = Addon.objects.create(slug=data.get('slug'),
             status=amo.STATUS_PENDING, type=amo.ADDON_PERSONA)
         addon.name = {'en-US': data['name']}
-        if data.get('summary'):
-            addon.description = {'en-US': data['summary']}
-            addon.summary = data['summary']
+        if data.get('description'):
+            addon.description = data['description']
         addon._current_version = Version.objects.create(addon=addon,
                                                         version='0')
         addon.save()
@@ -587,7 +586,7 @@ class EditThemeForm(AddonFormBase):
     slug = forms.CharField(max_length=30)
     category = forms.ModelChoiceField(queryset=Category.objects.all(),
                                       widget=forms.widgets.RadioSelect)
-    summary = TransField(
+    description = TransField(
         widget=TransTextarea(attrs={'rows': 4}),
         max_length=250, required=False, label=_lazy('Describe your Theme.'))
     tags = forms.CharField(required=False)
@@ -606,7 +605,7 @@ class EditThemeForm(AddonFormBase):
 
     class Meta:
         model = Addon
-        fields = ('name', 'slug', 'summary', 'tags')
+        fields = ('name', 'slug', 'description', 'tags')
 
     def __init__(self, *args, **kw):
         self.request = kw.pop('request')
@@ -621,11 +620,12 @@ class EditThemeForm(AddonFormBase):
         self.fields['name'].validators = list(self.fields['name'].validators)
         self.fields['name'].validators.append(lambda x: clean_name(x, addon))
 
-        # Allow theme artists to localize Name and Summary.
+        # Allow theme artists to localize Name and Description.
         for trans in Translation.objects.filter(id=self.initial['name']):
             self.initial['name_' + trans.locale.lower()] = trans
-        for trans in Translation.objects.filter(id=self.initial['summary']):
-            self.initial['summary_' + trans.locale.lower()] = trans
+        for trans in Translation.objects.filter(
+            id=self.initial['description']):
+            self.initial['description_' + trans.locale.lower()] = trans
 
         self.initial['tags'] = ', '.join(self.get_tags(addon))
         if persona.accentcolor:
@@ -657,9 +657,8 @@ class EditThemeForm(AddonFormBase):
         persona = addon.persona
         data = self.cleaned_data
 
-        if data.get('summary'):
-            addon.description = data['summary']
-            addon.summary = data['summary']
+        if data.get('description'):
+            addon.description = data['description']
             addon.save()
 
         # Update Persona-specific data.

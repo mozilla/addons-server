@@ -152,7 +152,7 @@ class TestThemeForm(amo.tests.TestCase):
             'category': self.cat.id,
             'accentcolor': '#003366',
             'textcolor': '#C0FFEE',
-            'summary': 'new summary',
+            'description': 'new description',
             'tags': 'tag1, tag2, tag3',
             'license': amo.LICENSE_CC_BY.id,
             'agreed': True,
@@ -208,15 +208,16 @@ class TestThemeForm(amo.tests.TestCase):
         eq_(self.form.errors, {'slug': ['Ensure this value has at most '
                                         '30 characters (it has 31).']})
 
-    def test_summary_optional(self):
-        self.post(summary='')
+    def test_description_optional(self):
+        self.post(description='')
         eq_(self.form.is_valid(), True, self.form.errors)
 
-    def test_summary_length(self):
-        self.post(summary='a' * 251)
+    def test_description_length(self):
+        self.post(description='a' * 251)
         eq_(self.form.is_valid(), False)
-        eq_(self.form.errors, {'summary': ['Ensure this value has at most '
-                                           '250 characters (it has 251).']})
+        eq_(self.form.errors,
+            {'description': ['Ensure this value has at most '
+                             '250 characters (it has 251).']})
 
     def test_categories_required(self):
         self.post(category='')
@@ -390,7 +391,7 @@ class TestEditThemeForm(amo.tests.TestCase):
         self.instance = Addon.objects.create(
             type=amo.ADDON_PERSONA, status=amo.STATUS_PUBLIC,
             slug='swag-overload', name='Bands Make Me Dance',
-            summary='tha summary')
+            description='tha description')
         self.cat = Category.objects.create(
             type=amo.ADDON_PERSONA, name='xxxx')
         self.instance.addoncategory_set.create(category=self.cat)
@@ -411,7 +412,7 @@ class TestEditThemeForm(amo.tests.TestCase):
             'textcolor': '#EFFFFF',
 
             'name_en-us': unicode(self.instance.name),
-            'summary_en-us': unicode(self.instance.summary),
+            'description_en-us': unicode(self.instance.description),
         }
         data.update(**kw)
         return data
@@ -423,7 +424,7 @@ class TestEditThemeForm(amo.tests.TestCase):
         # Compare form initial data with post data.
         eq_data = self.get_dict()
         for k in [k for k in self.form.initial.keys()
-                  if k not in ['name', 'summary']]:
+                  if k not in ['name', 'description']]:
             eq_(self.form.initial[k], eq_data[k])
 
     def save_success(self):
@@ -436,10 +437,8 @@ class TestEditThemeForm(amo.tests.TestCase):
             'tags': 'ag',
             'textcolor': '#CACACA',
 
-            'name_init': '',
             'name_en-us': 'All Day I Dream About Swag',
-            'summmary_init': '',
-            'summary_en-us': 'ADIDAS',
+            'description_en-us': 'ADIDAS',
         }
         self.form = EditThemeForm(self.data, request=self.request,
                                   instance=self.instance)
@@ -447,7 +446,7 @@ class TestEditThemeForm(amo.tests.TestCase):
         # Compare form initial data with post data.
         eq_data = self.get_dict()
         for k in [k for k in self.form.initial.keys()
-                  if k not in ['name', 'summary']]:
+                  if k not in ['name', 'description']]:
             eq_(self.form.initial[k], eq_data[k])
 
         eq_(self.form.data, self.data)
@@ -462,7 +461,7 @@ class TestEditThemeForm(amo.tests.TestCase):
         eq_(self.instance.categories.all()[0].id, self.data['category'])
         eq_(self.instance.persona.license, self.data['license'])
         eq_(unicode(self.instance.name), self.data['name_en-us'])
-        eq_(unicode(self.instance.summary), self.data['summary_en-us'])
+        eq_(unicode(self.instance.description), self.data['description_en-us'])
         self.assertSetEqual(
             self.instance.tags.values_list('tag_text', flat=True),
             [self.data['tags']])
@@ -486,7 +485,8 @@ class TestEditThemeForm(amo.tests.TestCase):
         })
 
     def test_localize_name_description(self):
-        data = self.get_dict(name_de='name_de', summary_de='summary_de')
+        data = self.get_dict(name_de='name_de',
+                             description_de='description_de')
         self.form = EditThemeForm(data, request=self.request,
                                   instance=self.instance)
         eq_(self.form.is_valid(), True, self.form.errors)
@@ -551,7 +551,7 @@ class TestEditThemeOwnerForm(amo.tests.TestCase):
         self.instance = Addon.objects.create(
             type=amo.ADDON_PERSONA,
             status=amo.STATUS_PUBLIC, slug='swag-overload',
-            name='Bands Make Me Dance', summary='tha summary')
+            name='Bands Make Me Dance', description='tha description')
         Persona.objects.create(
             persona_id=0, addon_id=self.instance.id,
             license=amo.LICENSE_CC_BY.id, accentcolor='C0FFEE',

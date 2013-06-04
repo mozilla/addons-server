@@ -50,7 +50,7 @@
             </span>
           </li>
           <li class="row c">
-            {{ pretty_field(form.summary, label=_('Describe your Theme.'),
+            {{ pretty_field(form.description, label=_('Describe your Theme.'),
                             tooltip=_("A short explanation of your theme's
                                       basic functionality that is displayed in
                                       search and browse listings, as well as at
@@ -58,8 +58,8 @@
                             tag=None, opt=True, validate=True) }}
             <div class="note">
               {{ some_html_tip() }}
-              <span class="char-count" data-for="{{ form.summary.auto_id }}"
-                    data-maxlength="{{ form.summary.field.max_length }}"></span>
+              <span class="char-count" data-for="{{ form.description.auto_id }}"
+                    data-maxlength="{{ form.description.field.max_length }}"></span>
             </div>
           </li>
         </ul>
