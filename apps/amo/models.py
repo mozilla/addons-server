@@ -282,7 +282,7 @@ class OnChangeMixin(object):
         """
         signal = kw.pop('_signal', True)
         old_attr = dict(self.__dict__)
-        result = super(OnChangeMixin, self).update(**kw)
+        result = super(OnChangeMixin, self).update(_signal=signal, **kw)
         if signal and self.__class__ in _on_change_callbacks:
             self._send_changes(old_attr, kw)
         return result
