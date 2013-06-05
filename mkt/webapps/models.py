@@ -47,7 +47,7 @@ from translations.fields import save_signal
 from versions.models import Version
 
 import mkt
-from mkt.constants import APP_FEATURES, APP_IMAGE_SIZES, apps
+from mkt.constants import APP_FEATURES, APP_IMAGE_SIZES, apps, FEATURES_DICT
 from mkt.search.utils import S
 from mkt.webapps.utils import get_locale_properties, get_supported_locales
 from mkt.zadmin.models import FeaturedApp
@@ -1401,9 +1401,7 @@ class AppFeaturesBase(amo.models.ModelBase):
 
     def to_list(self):
         features = [k for k, v in self.to_dict().iteritems() if v]
-        all_features = dict(APP_FEATURES)
-        feature_names = [all_features[f[4:].upper()].decode()
-                         for f in features]
+        feature_names = [FEATURES_DICT[f[4:].upper()] for f in features]
         return sorted(feature_names)
 
     def to_signature(self):

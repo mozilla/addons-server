@@ -12,6 +12,7 @@ from django.conf import settings
 from django.core import mail
 from django.core.files.storage import default_storage as storage
 from django.db.models.signals import post_delete, post_save
+from django.utils.translation import ugettext_lazy as _
 
 import mock
 import waffle
@@ -1287,6 +1288,7 @@ class TestAppFeatures(amo.tests.TestCase):
     def setUp(self):
         self.app = Addon.objects.get(pk=337141)
         self.flags = ('APPS', 'GEOLOCATION', 'PAY', 'SMS')
+        self.expected = [u'Apps', u'Geolocation', u'Web Payment', u'WebSMS']
         self.create_switch('buchets')
 
     def _flag(self):
@@ -1310,6 +1312,13 @@ class TestAppFeatures(amo.tests.TestCase):
             else:
                 eq_(getattr(obj, field), value,
                     u'Unexpected value for field: %s' % field)
+
+    def to_unicode(self, items):
+        """
+        Force unicode evaluation of lazy items in the passed list, for set
+        comparison to a list of already-evaluated unicode strings.
+        """
+        return [unicode(i) for i in items]
 
     def test_features(self):
         self._flag()
@@ -1336,8 +1345,15 @@ class TestAppFeatures(amo.tests.TestCase):
 
     def test_to_list(self):
         self._flag()
-        self.assertSetEqual(self.app.current_version.features.to_list(),
-                            ['Apps', 'Geolocation', 'Web Payment', 'WebSMS'])
+        to_list = self.app.current_version.features.to_list()
+        self.assertSetEqual(self.to_unicode(to_list), self.expected)
+
+    @mock.patch.dict('mkt.webapps.models.FEATURES_DICT', APPS=_(u'H\xe9llo'))
+    def test_to_list_nonascii(self):
+        self.expected[0] = u'H\xe9llo'
+        self._flag()
+        to_list = self.app.current_version.features.to_list()
+        self.assertSetEqual(self.to_unicode(to_list), self.expected)
 
     def test_bad_data(self):
         af = AppFeatures(version=self.app.current_version)

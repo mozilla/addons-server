@@ -1,4 +1,5 @@
 from django.forms.fields import BooleanField
+from django.utils.translation import ugettext_lazy as _
 
 import mock
 from nose.tools import eq_
@@ -145,5 +146,10 @@ class TestAppFeaturesForm(amo.tests.TestCase):
         self.assertSetEqual(fields, AppFeatures()._fields())
 
     def test_required_api_fields(self):
-        fields = [f.help_text.decode() for f in self.form.required_api_fields()]
-        eq_(fields, sorted(f[1].decode() for f in APP_FEATURES))
+        fields = [f.help_text for f in self.form.required_api_fields()]
+        eq_(fields, sorted(f[1] for f in APP_FEATURES))
+
+    def test_required_api_fields_nonascii(self):
+        forms.AppFeaturesForm.base_fields['has_apps'].help_text = _(u'H\xe9llo')
+        fields = [f.help_text for f in self.form.required_api_fields()]
+        eq_(fields, sorted(f[1] for f in APP_FEATURES))

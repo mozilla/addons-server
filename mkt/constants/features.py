@@ -47,6 +47,8 @@ APP_FEATURES = (
     ('QUOTA', _lazy(u'Quota Management')),
 )
 
+FEATURES_DICT = dict(APP_FEATURES)
+
 APP_FEATURES_DESCRIPTIONS = {
     'APPS': _lazy('The app requires the `navigator.mozApps` API.'),
     'PACKAGED_APPS': _lazy(

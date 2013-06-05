@@ -422,7 +422,7 @@ class AppFeaturesForm(happyforms.ModelForm):
         """
         All fields on the form, alphabetically sorted by help text.
         """
-        return sorted(self.all_fields(), key=lambda x: x.help_text.decode())
+        return sorted(self.all_fields(), key=lambda x: x.help_text)
 
     def get_tooltip(self, field):
         field_id = field.name.split('_', 1)[1].upper()
