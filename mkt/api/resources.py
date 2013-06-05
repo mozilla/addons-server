@@ -250,9 +250,11 @@ class AppResource(CORSResource, MarketplaceModelResource):
         data.update(self.formset(data))
         data.update(self.devices(data))
         self.update_premium_type(bundle)
-        if 'regions' in data:
-            data['regions'] = [REGIONS_DICT[r].id for r in data['regions']
-                               if r in REGIONS_DICT]
+
+# TODO: renable when regions are sorted out.
+#        if 'regions' in data:
+#            data['regions'] = [REGIONS_DICT[r['slug']].id for r in data['regions']
+#                               if r.get('slug') in REGIONS_DICT]
 
         forms = [AppDetailsBasicForm(data, instance=obj, request=request),
                  DeviceTypeForm(data, addon=obj),
