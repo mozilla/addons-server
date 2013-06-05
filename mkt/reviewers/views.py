@@ -15,6 +15,7 @@ from django.shortcuts import get_object_or_404, redirect
 import commonware.log
 import jingo
 import requests
+import waffle
 from tower import ugettext as _
 
 import amo
@@ -47,6 +48,7 @@ from mkt.reviewers.utils import AppsReviewing, clean_sort_param
 from mkt.search.forms import ApiSearchForm
 from mkt.site.helpers import product_as_dict
 from mkt.webapps.models import Webapp
+from mkt.webapps.tasks import index_webapps
 
 from . import forms
 from .models import AppCannedResponse
@@ -297,6 +299,8 @@ def app_review(request, addon):
         # Temp. reindex the addon now it's been committed.
         if not settings.IN_TEST_SUITE and request.method == 'POST':
             index_addons.delay([addon.pk])
+            if waffle.switch_is_active('search-api-es'):
+                index_webapps.delay([addon.pk])
             transaction.commit()
         if resp:
             return resp
