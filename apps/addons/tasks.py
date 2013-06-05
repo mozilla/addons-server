@@ -362,7 +362,7 @@ def calc_checksum(theme_id, **kw):
         Image.open(footer)
     except IOError:
         log.info('Deleting invalid theme [%s] (header: %s) (footer: %s)' %
-                 theme.addon.id, header, footer)
+                 (theme.addon.id, header, footer))
         theme.addon.delete()
         theme.delete()
         rm_stored_dir(header.replace('header.png', ''), storage=lfs)
