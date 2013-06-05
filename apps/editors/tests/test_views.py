@@ -2211,3 +2211,52 @@ class TestAbuseReports(amo.tests.TestCase):
         eq_(r.status_code, 200)
         # We see the two abuse reports created in setUp.
         eq_(len(r.context['reports']), 2)
+
+
+class TestLeaderboard(EditorTest):
+    fixtures = ['base/users']
+
+    def setUp(self):
+        self.url = reverse('editors.leaderboard')
+
+        self.create_switch(name='reviewer-incentive-points')
+        self.user = UserProfile.objects.get(email='editor@mozilla.com')
+        self.login_as_editor()
+        amo.set_user(self.user)
+
+    def _award_points(self, user, score):
+        ReviewerScore.objects.create(user=user, note_key=amo.REVIEWED_MANUAL,
+                                     score=score, note='Thing.')
+
+    def test_leaderboard_ranks(self):
+        users = (self.user,
+                 UserProfile.objects.get(email='regular@mozilla.com'),
+                 UserProfile.objects.get(email='clouserw@gmail.com'))
+
+        self._award_points(users[0], amo.REVIEWED_LEVELS[0]['points'] - 1)
+        self._award_points(users[1], amo.REVIEWED_LEVELS[0]['points'] + 1)
+        self._award_points(users[2], amo.REVIEWED_LEVELS[0]['points'] + 2)
+
+        def get_cells():
+            doc = pq(self.client.get(self.url).content)
+
+            cells = doc('#leaderboard > tbody > tr > .name, '
+                        '#leaderboard > tbody > tr > .level')
+
+            return [cells.eq(i).text() for i in range(0, cells.length)]
+
+        eq_(get_cells(),
+            [users[2].display_name,
+             users[1].display_name,
+             amo.REVIEWED_LEVELS[0]['name'],
+             users[0].display_name])
+
+        self._award_points(users[2], (amo.REVIEWED_LEVELS[1]['points'] -
+                                      amo.REVIEWED_LEVELS[0]['points']))
+
+        eq_(get_cells(),
+            [users[2].display_name,
+             amo.REVIEWED_LEVELS[1]['name'],
+             users[1].display_name,
+             amo.REVIEWED_LEVELS[0]['name'],
+             users[0].display_name])

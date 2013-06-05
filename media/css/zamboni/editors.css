@@ -1000,3 +1000,15 @@ h2.addon {
 #leaderboard .name {
     width: 70%;
 }
+
+#leaderboard .level {
+    padding: 0.2em;
+    text-align: center;
+}
+#leaderboard .level::before,
+#leaderboard .level::after,
+#leaderboard .level:before,
+#leaderboard .level:after {
+    content: "▴";
+    padding: 0 0.6em;
+}

@@ -602,22 +602,20 @@ class ReviewerScore(amo.models.ModelBase):
         """
         query = cls._leaderboard_query()
         scores = []
-        prev = None
 
         for row in query:
             user_id, name, total = row
-            user_level = len(amo.REVIEWED_LEVELS) - 1
+            user_level = len(amo.REVIEWED_LEVELS)
             for i, level in enumerate(amo.REVIEWED_LEVELS):
                 if total < level['points']:
-                    user_level = i
+                    user_level = i - 1
                     break
 
             # Only show level if it changes.
-            level = amo.REVIEWED_LEVELS[user_level]['name']
-            if prev == level:
+            if user_level < 0:
                 level = ''
             else:
-                prev = level
+                level = amo.REVIEWED_LEVELS[user_level]['name']
 
             scores.append({
                 'user_id': user_id,
@@ -625,6 +623,12 @@ class ReviewerScore(amo.models.ModelBase):
                 'total': int(total),
                 'level': level,
             })
+
+        prev = None
+        for score in reversed(scores):
+            if score['level'] == prev:
+                score['level'] = ''
+            prev = score['level']
 
         return scores
 

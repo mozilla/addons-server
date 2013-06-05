@@ -1141,9 +1141,17 @@ span.currently_viewing_warning {
     th.rank {
         color: $orange;
     }
-    td.level {
-        color: $medium-gray;
-        white-space: nowrap;
+
+    .level {
+        padding: 0.2em;
+        text-align: center;
+    }
+    .level::before,
+    .level::after,
+    .level:before,
+    .level:after {
+        content: "▴";
+        padding: 0 0.6em;
     }
 }
 
