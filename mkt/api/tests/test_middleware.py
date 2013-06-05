@@ -127,8 +127,9 @@ class TestFilterMiddleware(amo.tests.TestCase):
         self.factory = RequestFactory()
 
     def _header(self, url='/', api=True, region=mkt.regions.US, lang='en-US',
-                gaia=True, tablet=True, mobile=True, response_cls=HttpResponse):
-        self.request = self.factory.get(url)
+                gaia=True, tablet=True, mobile=True, pro='8a7d546c.32.1',
+                response_cls=HttpResponse):
+        self.request = self.factory.get(url, {'pro': pro})
         self.request.API = api
         self.request.REGION = region
         self.request.LANG = lang or ''
@@ -158,6 +159,7 @@ class TestFilterMiddleware(amo.tests.TestCase):
         self.assertIsInstance(header, dict)
         assert mkt.regions.US.slug in header['region']
         assert 'en-US' in header['lang']
+        assert '8a7d546c.32.1' in header['pro']
         assert carrier in header['carrier']
         self.assertSetEqual(['gaia', 'mobile', 'tablet'], header['device'])
 

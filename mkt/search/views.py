@@ -156,6 +156,7 @@ def _filter_search(request, qs, query, filters=None, sorting=None,
 
     if profile and waffle.switch_is_active('buchets'):
         f = F()
+        # Exclude apps that require any features we don't support.
         for k, v in profile.iteritems():
             if not v:
                 f &= F(**{'features.has_%s' % k: False})

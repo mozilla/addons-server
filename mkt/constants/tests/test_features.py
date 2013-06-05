@@ -46,4 +46,3 @@ class TestFeatureProfile(amo.tests.TestCase):
         self._test_kwargs('', False)
         self._test_kwargs('prefix_', True)
         self._test_kwargs('prefix_', False)
-

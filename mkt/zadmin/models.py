@@ -24,7 +24,7 @@ class FeaturedAppQuerySet(models.query.QuerySet):
     """
 
     def featured(self, cat=None, region=None, limit=9, mobile=False,
-                 gaia=False, tablet=False):
+                 gaia=False, tablet=False, profile=None):
         """
         Filters the QuerySet, removing FeaturedApp instances that should
         not be featured based on the passed criteria.
@@ -32,6 +32,11 @@ class FeaturedAppQuerySet(models.query.QuerySet):
         If a region is defined and there are fewer than `limit` items
         remaining in the resultant queryset, the difference is populated by
         additional apps that are featured worldwide.
+
+        If `profile` (a FeatureProfile object) is provided we filter by the
+        profile. If you don't want to filter by these don't pass it. I.e. do
+        the device detection for when this happens elsewhere.
+
         """
         qs = self.active()
         Webapp = get_model('webapps', 'Webapp')
@@ -57,6 +62,12 @@ class FeaturedAppQuerySet(models.query.QuerySet):
 
         if tablet:
             qs = qs.tablet()
+
+        if profile and waffle.switch_is_active('buchets'):
+            # Exclude apps that require any features we don't support.
+            qs = qs.filter(**dict(
+                ('app___current_version__features__has_%s' % k, False)
+                for k, v in profile.iteritems() if not v))
 
         qs_pre_region = qs._clone()
 

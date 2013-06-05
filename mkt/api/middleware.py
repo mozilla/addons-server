@@ -137,6 +137,7 @@ class APIFilterMiddleware(object):
                 ('carrier', get_carrier() or ''),
                 ('device', devices),
                 ('lang', request.LANG),
+                ('pro', request.GET.get('pro', '')),
                 ('region', request.REGION.slug),
             )
             response['API-Filter'] = urlencode(filters, doseq=True)

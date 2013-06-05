@@ -186,9 +186,17 @@ class WithFeaturedResource(SearchResource):
             category = Category.objects.get(pk=form_data['cat'])
         else:
             category = None
-        bundles = [self.build_bundle(obj=obj, request=request)
-                   for obj in Webapp.featured(cat=category,
-                                              region=region)]
+
+        # Filter by device feature profile.
+        profile = None
+        if request.GET.get('dev') in ('firefoxos', 'android'):
+            sig = request.GET.get('pro')
+            if sig:
+                profile = FeatureProfile.from_signature(sig)
+
+        qs = Webapp.featured(cat=category, region=region, profile=profile)
+
+        bundles = [self.build_bundle(obj=obj, request=request) for obj in qs]
         data['featured'] = [AppResource().full_dehydrate(bundle)
                             for bundle in bundles]
         return data

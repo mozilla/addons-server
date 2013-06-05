@@ -595,9 +595,9 @@ class Webapp(Addon):
 
     @classmethod
     def featured(cls, cat=None, region=None, limit=9, mobile=False,
-                 gaia=False, tablet=False):
+                 gaia=False, tablet=False, profile=None):
         qs = FeaturedApp.objects.featured(cat, region, limit, mobile, gaia,
-                                          tablet)
+                                          tablet, profile)
         return [w.app for w in qs]
 
     @classmethod
