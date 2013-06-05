@@ -12,13 +12,16 @@ from addons.models import (AddonCategory, AddonDeviceType, AddonUpsell,
                            Category)
 from amo.tests import app_factory, ESTestCase
 from market.models import AddonPremium, Price, PriceCurrency
+from stats.models import ClientData
+from users.models import UserProfile
+
 from mkt.api.base import list_url
 from mkt.api.models import Access, generate
 from mkt.api.tests.test_oauth import BaseOAuth, OAuthClient
 from mkt.constants.features import FeatureProfile
 from mkt.search.forms import DEVICE_CHOICES_IDS
 from mkt.site.fixtures import fixture
-from mkt.webapps.models import AppFeatures, Webapp
+from mkt.webapps.models import AppFeatures, Installed, Webapp
 
 
 class TestApi(BaseOAuth, ESTestCase):
@@ -276,6 +279,37 @@ class TestApi(BaseOAuth, ESTestCase):
         res2 = self.client.get(self.url + ({'region': 'us'},))
         eq_(res2.status_code, 200)
         eq_(len(res2.json['objects']), 0)
+
+    def test_adolescent_popularity(self):
+        """
+        Adolescent regions use global popularity.
+
+          Webapp:   Global: 0, Regional: 0
+          Unknown1: Global: 1, Regional: 1 + 10 * 1 = 11
+          Unknown2: Global: 2, Regional: 0
+
+        """
+        user = UserProfile.objects.all()[0]
+        cd = ClientData.objects.create(region=mkt.regions.BR.id)
+
+        unknown1 = amo.tests.app_factory()
+        Installed.objects.create(addon=unknown1, user=user, client_data=cd)
+
+        unknown2 = amo.tests.app_factory()
+        Installed.objects.create(addon=unknown2, user=user)
+        Installed.objects.create(addon=unknown2, user=user)
+
+        self.reindex(Webapp, 'webapp')
+
+        res = self.client.get(self.url + ({'region': 'br'},))
+        eq_(res.status_code, 200)
+
+        objects = res.json['objects']
+        eq_(len(objects), 3)
+
+        eq_(int(objects[0]['id']), unknown2.id)
+        eq_(int(objects[1]['id']), unknown1.id)
+        eq_(int(objects[2]['id']), self.webapp.id)
 
 
 class TestApiFeatures(BaseOAuth, ESTestCase):
