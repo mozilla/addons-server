@@ -311,6 +311,10 @@ class TestApi(BaseOAuth, ESTestCase):
         eq_(int(objects[1]['id']), unknown1.id)
         eq_(int(objects[2]['id']), self.webapp.id)
 
+        # Cleanup to remove these from the index.
+        unknown1.delete()
+        unknown2.delete()
+
 
 class TestApiFeatures(BaseOAuth, ESTestCase):
     fixtures = fixture('webapp_337141')
