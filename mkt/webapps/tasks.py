@@ -252,6 +252,7 @@ def update_supported_locales(ids, **kw):
 
 
 @task(acks_late=True)
+@write
 def index_webapps(ids, **kw):
     task_log.info('Indexing apps %s-%s. [%s]' % (ids[0], ids[-1], len(ids)))
 
@@ -269,6 +270,7 @@ def index_webapps(ids, **kw):
 
 
 @task(acks_late=True)
+@write
 def unindex_webapps(ids, **kw):
     task_log.info('Un-indexing apps %s-%s. [%s]' % (ids[0], ids[-1], len(ids)))
 
