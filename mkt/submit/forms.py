@@ -204,10 +204,7 @@ class NewWebappForm(DeviceTypeForm, NewWebappVersionForm):
             return
 
         combined_platforms = self._get_combined()
-        if self.is_packaged() and not (
-                'firefoxos' in combined_platforms or
-                'android-mobile' in combined_platforms or
-                'android-tablet' in combined_platforms):
+        if self.is_packaged() and 'desktop' in combined_platforms:
             self._errors['free_platforms'] = self._errors['paid_platforms'] = (
                 self.ERRORS['packaged'])
             return
