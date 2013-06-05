@@ -4,6 +4,7 @@ from datetime import datetime
 
 from django.conf import settings
 from django.core.cache import cache
+from django.utils import translation
 from django.utils.datastructures import SortedDict
 
 import commonware.log
@@ -13,7 +14,7 @@ import amo
 from access import acl
 from amo.helpers import absolutify
 from amo.urlresolvers import reverse
-from amo.utils import JSONEncoder, send_mail_jinja
+from amo.utils import JSONEncoder, send_mail_jinja, to_language
 from editors.models import EscalationQueue, RereviewQueue, ReviewerScore
 from files.models import File
 
@@ -114,20 +115,29 @@ class ReviewBase(object):
             data['tested'] = 'Tested on %s' % dt
         elif not dt and br:
             data['tested'] = 'Tested with %s' % br
-        send_mail(subject % self.addon.name,
+        send_mail(subject % data['name'],
                   'reviewers/emails/decisions/%s.txt' % template, data,
                   emails, perm_setting='app_reviewed', cc=cc_email,
                   attachments=self.get_attachments())
 
     def get_context_data(self):
-        return {'name': self.addon.name,
+        # We need to display the name in some language that is relevant to the
+        # recipient(s) instead of using the reviewer's. addon.default_locale
+        # should work.
+        if self.addon.name.locale != self.addon.default_locale:
+            lang = to_language(self.addon.default_locale)
+            with translation.override(lang):
+                app = Webapp.objects.get(id=self.addon.id)
+        else:
+            app = self.addon
+        return {'name': app.name,
                 'reviewer': self.request.user.get_profile().name,
                 'detail_url': absolutify(
-                    self.addon.get_url_path(add_prefix=False)),
+                    app.get_url_path(add_prefix=False)),
                 'review_url': absolutify(reverse('reviewers.apps.review',
-                                                 args=[self.addon.app_slug],
+                                                 args=[app.app_slug],
                                                  add_prefix=False)),
-                'status_url': absolutify(self.addon.get_dev_url('versions')),
+                'status_url': absolutify(app.get_dev_url('versions')),
                 'comments': self.data['comments'],
                 'MKT_SUPPORT_EMAIL': settings.MKT_SUPPORT_EMAIL,
                 'SITE_URL': settings.SITE_URL}
@@ -140,18 +150,20 @@ class ReviewBase(object):
         self.version.update(has_info_request=True)
         log.info(u'Sending request for information for %s to %s' %
                  (self.addon, emails))
-        send_mail(u'Submission Update: %s' % self.addon.name,
+        data = self.get_context_data()
+        send_mail(u'Submission Update: %s' % data['name'],
                   'reviewers/emails/decisions/info.txt',
-                  self.get_context_data(), emails,
+                  data, emails,
                   perm_setting='app_individual_contact', cc=cc_email,
                   attachments=self.get_attachments())
 
     def send_escalate_mail(self):
         self.log_action(amo.LOG.ESCALATE_MANUAL)
         log.info(u'Escalated review requested for %s' % self.addon)
-        send_mail(u'Escalated Review Requested: %s' % self.addon.name,
+        data = self.get_context_data()
+        send_mail(u'Escalated Review Requested: %s' % data['name'],
                   'reviewers/emails/super_review.txt',
-                  self.get_context_data(), [settings.MKT_SENIOR_EDITORS_EMAIL],
+                  data, [settings.MKT_SENIOR_EDITORS_EMAIL],
                   attachments=self.get_attachments())
 
 
