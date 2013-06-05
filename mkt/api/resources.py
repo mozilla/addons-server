@@ -268,7 +268,7 @@ class AppResource(CORSResource, MarketplaceModelResource):
         forms[0].save(obj)
         forms[1].save(obj)
         forms[2].save()
-        forms[3].save()
+#        forms[3].save()
         log.info('App updated: %s' % obj.pk)
 
         return bundle
