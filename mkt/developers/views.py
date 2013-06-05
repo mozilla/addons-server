@@ -682,7 +682,7 @@ def addons_section(request, addon_id, addon, section, editable=False,
 
     if waffle.switch_is_active('buchets') and appfeatures:
         data.update({
-            'appfeatures': appfeatures.to_list(),
+            'appfeatures': [unicode(feat) for feat in appfeatures.to_list()],
             'appfeatures_form': appfeatures_form
         })
 
