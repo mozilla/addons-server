@@ -250,7 +250,6 @@ class AppResource(CORSResource, MarketplaceModelResource):
         data.update(self.formset(data))
         data.update(self.devices(data))
         self.update_premium_type(bundle)
-        self.update_payment_account(bundle)
         if 'regions' in data:
             data['regions'] = [REGIONS_DICT[r].id for r in data['regions']
                                if r in REGIONS_DICT]
@@ -293,33 +292,6 @@ class AppResource(CORSResource, MarketplaceModelResource):
             if ap:
                 ap.price = Price.objects.get(price='0.00')
                 ap.save()
-
-    def update_payment_account(self, bundle):
-        if 'payment_account' in bundle.data:
-            # You cannot specify a payment account and be free.
-            # If you specify None, then we will delete the account.
-            if (bundle.data['payment_account'] and
-                bundle.obj.premium_type == amo.ADDON_FREE):
-                raise fields.ApiFieldError(
-                    'Free apps cannot have payment accounts.')
-
-            # Delete the old Payment account.
-            # See bug 878350.
-            try:
-                log.info('[1@{0}] Deleting app payment account'
-                         .format(bundle.obj.pk))
-                AddonPaymentAccount.objects.get(addon=bundle.obj).delete()
-            except AddonPaymentAccount.DoesNotExist:
-                pass
-
-            # Create a Payment account, only if one is specified.
-            if bundle.data['payment_account']:
-                acct = self.fields['payment_account'].hydrate(bundle).obj
-                log.info('[1@{0}] Creating new app payment account'
-                         .format(bundle.obj.pk))
-                AddonPaymentAccount.create(
-                    provider='bango', addon=bundle.obj,
-                    payment_account=acct)
 
     def dehydrate(self, bundle):
         obj = bundle.obj
