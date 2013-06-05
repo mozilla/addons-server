@@ -5,7 +5,7 @@ import waffle
 
 from django.conf import settings
 from django.core.cache import cache
-from django.db import connection, models
+from django.db import models
 from django.db.models import Sum
 from django.template import Context, loader
 from django.utils.datastructures import SortedDict
@@ -424,8 +424,12 @@ class ReviewerScore(amo.models.ModelBase):
         """Awards points to user based on moderated review."""
         if not waffle.switch_is_active('reviewer-incentive-points'):
             return
-        event = amo.REVIEWED_REVIEW
+
+        event = amo.REVIEWED_ADDON_REVIEW
+        if addon.type == amo.ADDON_WEBAPP:
+            event = amo.REVIEWED_APP_REVIEW
         score = amo.REVIEWED_SCORES.get(event)
+
         cls.objects.create(user=user, addon=addon, score=score, note_key=event)
         cls.get_key(invalidate=True)
         user_log.info(
@@ -509,31 +513,27 @@ class ReviewerScore(amo.models.ModelBase):
         return val
 
     @classmethod
-    def _leaderboard_query(cls, since=False):
+    def _leaderboard_query(cls, since=None, types=None):
         """
         Returns common SQL to leaderboard calls.
         """
-        sql = """
-            SELECT `u`.`id`, `u`.`display_name`, SUM(`rs`.`score`) AS `total`
-            FROM `reviewer_scores` AS `rs`
-            JOIN `users` AS `u` ON `rs`.`user_id`=`u`.`id`
-            WHERE `rs`.`user_id` NOT IN (
-                SELECT DISTINCT `user_id`
-                FROM `groups_users` AS `gu`
-                JOIN `groups` ON `gu`.`group_id`=`groups`.`id`
-                WHERE `groups`.`name` in ('Staff', 'Admins',
-                                          'No Reviewer Incentives'))
-        """
-        if since:
-            sql += '  AND `rs`.`created` >= %s '
-        sql += """
-            GROUP BY `u`.`id`, `u`.`display_name`
-            ORDER BY `total` DESC
-        """
-        return sql
+        query = (cls.objects
+                    .values_list('user__id', 'user__display_name')
+                    .annotate(total=Sum('score'))
+                    .exclude(user__groups__name__in=('No Reviewer Incentives',
+                                                     'Staff', 'Admins'))
+                    .order_by('-total'))
+
+        if since is not None:
+            query = query.filter(created__gte=since)
+
+        if types is not None:
+            query = query.filter(note_key__in=types)
+
+        return query
 
     @classmethod
-    def get_leaderboards(cls, user, days=7):
+    def get_leaderboards(cls, user, days=7, types=None):
         """Returns leaderboards with ranking for the past given days.
 
         This will return a dict of 3 items::
@@ -554,20 +554,15 @@ class ReviewerScore(amo.models.ModelBase):
 
         week_ago = datetime.date.today() - datetime.timedelta(days=days)
 
-        # I'd normally use Django's ORM aggregation but bug 17144 scared me
-        # away.
         leader_top = []
         leader_near = []
 
-        sql = cls._leaderboard_query(since=True)
+        query = cls._leaderboard_query(since=week_ago, types=types)
         scores = []
-
-        cursor = connection.cursor()
-        cursor.execute(sql, [week_ago])
 
         user_rank = 0
         in_leaderboard = False
-        for rank, row in enumerate(cursor.fetchall(), 1):
+        for rank, row in enumerate(query, 1):
             user_id, name, total = row
             scores.append({
                 'user_id': user_id,
@@ -605,14 +600,11 @@ class ReviewerScore(amo.models.ModelBase):
         """
         Returns reviewers ordered by highest total points first.
         """
-        sql = cls._leaderboard_query()
+        query = cls._leaderboard_query()
         scores = []
         prev = None
 
-        cursor = connection.cursor()
-        cursor.execute(sql)
-
-        for row in cursor.fetchall():
+        for row in query:
             user_id, name, total = row
             user_level = len(amo.REVIEWED_LEVELS) - 1
             for i, level in enumerate(amo.REVIEWED_LEVELS):
