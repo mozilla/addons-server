@@ -258,7 +258,7 @@ class AppResource(CORSResource, MarketplaceModelResource):
 
         forms = [AppDetailsBasicForm(data, instance=obj, request=request),
                  DeviceTypeForm(data, addon=obj),
-                 RegionForm(data, product=obj),
+#                 RegionForm(data, product=obj),
                  CategoryFormSet(data, addon=obj, request=request),
                  CategoryForm({'categories': data['form-0-categories']})]
 
