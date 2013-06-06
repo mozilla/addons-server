@@ -19,8 +19,7 @@ from tastypie.utils import trailing_slash
 import amo
 from amo.utils import memoize
 from addons.forms import CategoryFormSet
-from addons.models import (Addon, AddonUpsell, AddonUser, Category, Preview,
-                           Webapp)
+from addons.models import Addon, AddonUser, Category, Preview, Webapp
 from amo.decorators import write
 from amo.utils import no_translation
 from constants.applications import DEVICE_TYPES
@@ -39,8 +38,7 @@ from mkt.api.forms import (CategoryForm, DeviceTypeForm, NewPackagedForm,
 from mkt.api.http import HttpLegallyUnavailable
 from mkt.carriers import CARRIER_MAP, CARRIERS, get_carrier_id
 from mkt.developers import tasks
-from mkt.developers.forms import NewManifestForm, PreviewForm, RegionForm
-from mkt.developers.models import AddonPaymentAccount
+from mkt.developers.forms import NewManifestForm, PreviewForm
 from mkt.regions import get_region, get_region_id, REGIONS_DICT
 from mkt.submit.forms import AppDetailsBasicForm
 from mkt.webapps.models import get_excluded_in
