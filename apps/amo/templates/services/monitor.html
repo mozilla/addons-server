@@ -110,7 +110,8 @@
   </div>
 {% endmacro %}
 
-{{ section("[Signer] Connection Test", status_summary.signer, signer_timer, signer_results) }}
+{{ section("[Receipt Signer] Connection Test", status_summary.receipt_signer, receipt_signer_timer, receipt_signer_results) }}
+{{ section("[Package Signer] Connection Test", status_summary.package_signer, package_signer_timer, package_signer_results) }}
 {{ section("[Settings] Required Keys", status_summary.settings_check, settings_check_timer,  settings_check_results) }}
 {{ section("[Solitude] Connection Test", status_summary.solitude, solitude_timer, solitude_results) }}
 
