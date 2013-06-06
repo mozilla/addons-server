@@ -371,6 +371,10 @@ function bind_viewer(nodes) {
 
                 this.messages = {};
                 _.each(data.validation.messages, function(message) {
+                    // Skip warnings for known libraries.
+                    if (message.id.join('/') == 'testcases_content/test_packed_packages/blacklisted_js_library')
+                        return;
+
                     var path = [].concat(message.file).join("/");
 
                     if (!this.messages[path]) {
@@ -387,12 +391,23 @@ function bind_viewer(nodes) {
                             .find('span').text(metadata.jetpack_sdk_version);
                     }
 
-                    if (metadata.jetpack_identified_files) {
-                        var files = metadata.jetpack_identified_files;
-                        for (var file in files) {
-                            this.known_files[file] = ['JetPack'].concat(files[file]);
+                    var identified_files = {};
+                    (function process_files(prefix, metadata) {
+                        if (metadata.identified_files) {
+                            var files = metadata.identified_files;
+                            for (var path in files) {
+                                var file = files[path];
+                                path = prefix + path;
+                                viewer.known_files[path] = file;
+                            }
                         }
-                    }
+
+                        if (metadata.sub_packages) {
+                            for (var prefix in metadata.sub_packages) {
+                                process_files(prefix, metadata.sub_packages[prefix]);
+                            }
+                        }
+                    })('', metadata);
                 }
 
                 this.nodes.$files.find('.file').each(function() {
@@ -400,11 +415,15 @@ function bind_viewer(nodes) {
 
                     var known = viewer.known_files[$self.attr('data-short')];
                     if (known) {
-                        $self.attr('title',
-                                   format('Identified:\n' +
-                                          '    Library: {0} {2}\n' +
-                                          '    Original path: {1}',
-                                          known))
+                        var msg = ['Identified:'];
+                        if ('library' in known) {
+                            msg.push(
+                                format('    Library: {library} {version}\n',
+                                       known));
+                        }
+                        msg.push(format('    Original path: {0}', known.path));
+
+                        $self.attr('title', msg.join('\n'))
                              .addClass('known')
                              .addClass('tooltip');
                     }
@@ -702,8 +721,8 @@ function bind_viewer(nodes) {
         viewer.toggle_leaf($(this));
     }));
 
-    $(window).resize(_.debounce(function() { viewer.update_viewport(true); }, 100))
-             .scroll(_.debounce(function() { viewer.update_viewport(false); }, 100));
+    $(window).resize(_.throttle(function() { viewer.update_viewport(true); }, 10))
+             .scroll(_.throttle(function() { viewer.update_viewport(false); }, 10));
 
     $('#toggle-known').change(function () { viewer.toggle_known(this.checked); });
     viewer.toggle_known();
