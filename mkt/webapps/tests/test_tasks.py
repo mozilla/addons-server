@@ -487,9 +487,9 @@ class TestUpdateFeatures(amo.tests.TestCase):
         update_features(ids=(self.app.pk,))
         assert not self.mock_validator.called
 
-    def test_ignore_existing_features_profile(self):
+    def test_ignore_non_empty_features_profile(self):
         version = self.app.current_version
-        AppFeatures.objects.create(version=version)
+        AppFeatures.objects.create(version=version, has_sms=True)
         update_features(ids=(self.app.pk,))
         assert not self.mock_validator.called
 
@@ -510,6 +510,27 @@ class TestUpdateFeatures(amo.tests.TestCase):
         update_features(ids=(self.app.pk,))
         assert self.mock_validator.called
         eq_(AppFeatures.objects.count(), 1)
+        features = self.app.current_version.get_features().to_dict()
+        eq_(features['has_apps'], True)
+        eq_(features['has_activity'], True)
+        eq_(features['has_sms'], False)
+
+    def test_validator_with_results_existing_empty_profile(self):
+        feature_profile = ['APPS', 'ACTIVITY']
+        self.mock_validator.return_value = json.dumps({
+            'feature_profile': feature_profile
+        })
+        version = self.app.current_version
+        AppFeatures.objects.create(version=version)
+        eq_(AppFeatures.objects.count(), 1)
+        eq_(version.get_features().to_list(), [])
+        update_features(ids=(self.app.pk,))
+        assert self.mock_validator.called
+        eq_(AppFeatures.objects.count(), 1)
+
+        # Features are cached on the version, therefore reload the app since we
+        # were using the same instance as before.
+        self.app.reload()
         features = self.app.current_version.get_features().to_dict()
         eq_(features['has_apps'], True)
         eq_(features['has_activity'], True)

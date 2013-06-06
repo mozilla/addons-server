@@ -367,9 +367,10 @@ def _update_features(id):
         _log(id, u'Webapp does not have a current_version')
         return
 
-    # If the app already has a feature profile, don't touch it.
-    if AppFeatures.objects.filter(version=webapp.current_version).exists():
-        _log(id, u'Webapp already has a feature profile')
+    # If the app already has a non-empty feature profile, don't touch it.
+    features = webapp.current_version.get_features()
+    if features.to_list():
+        _log(id, u'Webapp already has a non-empty feature profile')
         return
 
     version = webapp.current_version
@@ -380,7 +381,9 @@ def _update_features(id):
     feature_profile = validation_result['feature_profile']
     keys = ['has_%s' % feature.lower() for feature in feature_profile]
     data = defaultdict.fromkeys(keys, True)
-    AppFeatures.objects.create(version=version, **data)
+
+    # get_features() auto-creates an AppFeature, so we just need to update it.
+    features.update(**data)
 
 
 @task
