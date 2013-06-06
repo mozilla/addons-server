@@ -685,8 +685,8 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             else:
                 platform = None
 
-        log.info(u'Checking compatibility for add-on ID:%s, APP:%s, V:%s, '
-                  'OS:%s, Mode:%s' % (self.id, app_id, app_version, platform,
+        log.debug(u'Checking compatibility for add-on ID:%s, APP:%s, V:%s, '
+                   'OS:%s, Mode:%s' % (self.id, app_id, app_version, platform,
                                       compat_mode))
         valid_file_statuses = ','.join(map(str, amo.REVIEWED_STATUSES))
         data = dict(id=self.id, app_id=app_id, platform=platform,
@@ -703,8 +703,8 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                                         compat_mode)
         version_id = cache.get(cache_key)
         if version_id is not None:
-            log.info(u'Found compatible version in cache: %s => %s' % (
-                     cache_key, version_id))
+            log.debug(u'Found compatible version in cache: %s => %s' % (
+                      cache_key, version_id))
             if version_id == 0:
                 return None
             else:
@@ -781,7 +781,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             version = None
             version_id = 0
 
-        log.info(u'Caching compat version %s => %s' % (cache_key, version_id))
+        log.debug(u'Caching compat version %s => %s' % (cache_key, version_id))
         cache.set(cache_key, version_id, 0)
 
         return version
