@@ -47,6 +47,10 @@ else:
 ES = pyelasticsearch.ElasticSearch(ES_URL)
 
 
+job = 'lib.es.management.commands.reindex_mkt.run_indexing'
+time_limits = settings.CELERY_TIME_LIMITS[job]
+
+
 @task_with_callbacks
 def delete_index(old_index):
     """Removes the index."""
@@ -92,7 +96,8 @@ def index_webapp(ids, **kw):
     WebappIndexer.bulk_index(docs, es=ES, index=index)
 
 
-@task_with_callbacks
+@task_with_callbacks(time_limit=time_limits['hard'],
+                     soft_time_limit=time_limits['soft'])
 def run_indexing(index):
     """Index the objects.
 

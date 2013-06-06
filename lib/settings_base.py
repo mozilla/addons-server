@@ -1108,6 +1108,10 @@ CELERY_ROUTES = {
 # Otherwise your task will use the default settings.
 CELERY_TIME_LIMITS = {
     'lib.video.tasks.resize_video': {'soft': 360, 'hard': 600},
+    'lib.es.management.commands.reindex_mkt.run_indexing': {
+        'soft': 60 * 10,  # 10 mins to reindex.
+        'hard': 60 * 20,  # 20 mins hard limit.
+    },
 }
 
 # When testing, we always want tasks to raise exceptions. Good for sanity.
