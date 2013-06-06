@@ -34,7 +34,8 @@ class TestWebApps(amo.tests.TestCase, amo.tests.AMOPaths):
                         f)
         self.tmp_files = []
         self.manifest = dict(name=u'Ivan Krsti\u0107', version=u'1.0',
-                             description=u'summary')
+                             description=u'summary',
+                             developer=dict(name=u'Dev Namé'))
 
     def tearDown(self):
         for tmp in self.tmp_files:
@@ -94,12 +95,14 @@ class TestWebApps(amo.tests.TestCase, amo.tests.AMOPaths):
 
     def test_no_locales(self):
         wp = WebAppParser().parse(self.webapp(dict(name='foo', version='1.0',
-                                                   description='summary')))
+                                                   description='summary',
+                                                   developer=dict(name='bar'))))
         eq_(wp['summary']['en-US'], u'summary')
 
     def test_no_description(self):
         wp = WebAppParser().parse(self.webapp(dict(name='foo',
-                                                   version='1.0')))
+                                                   version='1.0',
+                                                   developer=dict(name='bar'))))
         eq_(wp['summary'], {})
 
     def test_syntax_error(self):
@@ -115,7 +118,8 @@ class TestWebApps(amo.tests.TestCase, amo.tests.AMOPaths):
         eq_(wp['version'], '1.0')
 
     def test_non_ascii(self):
-        wm = json.dumps({'name': u'まつもとゆきひろ', 'version': '1.0'},
+        wm = json.dumps(dict(name=u'まつもとゆきひろ', version='1.0',
+                             developer=dict(name=u'まつもとゆきひろ')),
                         encoding='shift-jis')
         wp = WebAppParser().parse(self.webapp(contents=wm))
         eq_(wp['name'], {'en-US': u'まつもとゆきひろ'})

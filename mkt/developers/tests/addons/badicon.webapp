@@ -3,4 +3,7 @@
     "name": "MozillaBall",
     "description": "Exciting Open Web development action!",
     "icons": {},
+    "developer": {
+        "name": "Bad Icon Developer"
+    }
 }

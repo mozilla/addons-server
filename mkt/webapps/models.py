@@ -361,7 +361,9 @@ class Webapp(Addon):
         """
         data = parse_addon(upload, self)
         version = self.versions.latest()
-        version.update(version=data['version'])
+        max_ = Version._meta.get_field_by_name('_developer_name')[0].max_length
+        version.update(version=data['version'],
+                       _developer_name=data['developer_name'][:max_])
         path = smart_path(nfd_str(upload.path))
         file = version.files.latest()
         file.filename = file.generate_filename(extension='.webapp')
@@ -935,6 +937,8 @@ class WebappIndexer(MappingType, Indexable):
                                         'index': 'not_analyzed'},
                             'release_notes': {'type': 'string',
                                               'index': 'not_analyzed'},
+                            'developer_name': {'type': 'string',
+                                               'index': 'not_analyzed'},
                         }
                     },
                     'default_locale': {'type': 'string',
@@ -1069,11 +1073,13 @@ class WebappIndexer(MappingType, Indexable):
                 # TODO: Store all localizations of release notes.
                 'release_notes': (unicode(version.releasenotes)
                                   if version.releasenotes else None),
+                'developer_name': version.developer_name,
             }
         else:
             d['current_version'] = {
                 'version': None,
                 'release_notes': None,
+                'developer_name': None,
             }
         d['default_locale'] = obj.default_locale
         d['description'] = list(set(s for _, s

@@ -127,6 +127,7 @@ def edit(request, addon_id, addon, webapp=False):
         'tags': addon.tags.not_blacklisted().values_list('tag_text',
                                                          flat=True),
         'previews': addon.get_previews(),
+        'version': addon.current_version or addon.latest_version
     }
     if (waffle.switch_is_active('buchets') and not addon.is_packaged and
         addon.current_version):
@@ -692,6 +693,7 @@ def addons_section(request, addon_id, addon, section, editable=False,
 
     data = {'addon': addon,
             'webapp': webapp,
+            'version': addon.current_version or addon.latest_version,
             'form': form,
             'editable': editable,
             'tags': tags,

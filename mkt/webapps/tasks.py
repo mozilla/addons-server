@@ -178,6 +178,17 @@ def _update_manifest(id, check_hash, failed_fetches):
         msg.append(u'Manifest name changed from "%s" to "%s".' % (
             old.get('name'), new.get('name')))
 
+    new_version = webapp.versions.latest()
+    # Compare developer_name between old and new version using the property that
+    # fallbacks to the author name instead of using the db field directly. This
+    # allows us to avoid forcing a re-review on old apps which didn't have
+    # developer name in their manifest initially and upload a new version that
+    # does, providing that it matches the original author name.
+    if version.developer_name != new_version.developer_name:
+        rereview = True
+        msg.append(u'Developer name changed from "%s" to "%s".'
+            % (version.developer_name, new_version.developer_name))
+
     # Get names in "locales" as {locale: name}.
     locale_names = get_locale_properties(new, 'name', webapp.default_locale)
 

@@ -339,6 +339,7 @@ class TestCreateWebApp(BaseWebAppTest):
         eq_(addon.app_domain, u'http://allizom.org')
         eq_(Translation.objects.get(id=addon.summary.id, locale='it'),
             u'Azione aperta emozionante di sviluppo di fotoricettore!')
+        eq_(addon.current_version.developer_name, 'Mozilla Labs')
 
     def test_manifest_with_any_extension(self):
         self.manifest = os.path.join(settings.ROOT, 'mkt', 'developers',
@@ -522,6 +523,7 @@ class TestCreatePackagedApp(BasePackagedAppTest):
         eq_(addon.app_domain, None)
         eq_(Translation.objects.get(id=addon.summary.id, locale='it'),
             u'Azione aperta emozionante di sviluppo di fotoricettore!')
+        eq_(addon.current_version.developer_name, 'Mozilla Labs')
 
     @mock.patch('mkt.developers.forms.verify_app_domain')
     def test_packaged_app_not_unique_by_domain(self, _verify):

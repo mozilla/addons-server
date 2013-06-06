@@ -28,6 +28,19 @@
             {{ addon|all_locales('name') }}
           </td>
         </tr>
+        <tr id="developer-name">
+          <th>
+            <label data-for="developer_name">
+              {{ _('Developer Name') }}
+              {{ tip(None,
+                     _('This field can only be edited by updating it in the '
+                       'manifest.')) }}
+            </label>
+          </th>
+          <td>
+            {{ version.developer_name }}
+          </td>
+        </tr>
         <tr>
           <th>
             {{ tip(_('App URL'),

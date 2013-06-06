@@ -5,6 +5,7 @@ import tempfile
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
+from django.utils.encoding import smart_unicode
 
 import mock
 from nose import SkipTest
@@ -478,6 +479,22 @@ class TestEditBasic(TestEdit):
         r = self.client.post(url)
         eq_(r.status_code, 403)
         eq_(fetch.called, 0)
+
+    def test_view_developer_name(self):
+        r = self.client.get(self.url)
+        developer_name = self.webapp.current_version.developer_name
+        content = smart_unicode(r.content)
+        eq_(pq(content)('#developer-name td').html().strip(), developer_name)
+
+    def test_view_developer_name_xss(self):
+        version = self.webapp.current_version
+        version._developer_name = '<script>alert("xss-devname")</script>'
+        version.save()
+
+        r = self.client.get(self.url)
+
+        assert '<script>alert' not in r.content
+        assert '&lt;script&gt;alert' in r.content
 
 
 class TestEditCountryLanguage(TestEdit):

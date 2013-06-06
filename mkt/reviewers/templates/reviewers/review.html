@@ -82,8 +82,8 @@
       {% set version = pager.object_list[i-1] %}
       <tr class="listing-header">
         <th colspan="2">
-          {% trans version = version.version, created = version.created|datetime, version_status = version.status|join(',') %}
-          Version {{ version }} &middot; {{ created }} <span class="light">&middot; {{ version_status }}</span>
+          {% trans version = version.version, created = version.created|datetime, version_status = version.status|join(','), developer_name = version.developer_name %}
+          Version {{ version }} &middot; {{ developer_name }} &middot; {{ created }} <span class="light">&middot; {{ version_status }}</span>
           {% endtrans %}
         </th>
       </tr>

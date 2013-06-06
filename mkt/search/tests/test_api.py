@@ -89,6 +89,8 @@ class TestApi(BaseOAuth, ESTestCase):
             eq_(obj['app_type'], self.webapp.app_type)
             eq_(obj['content_ratings'], None)
             eq_(obj['current_version']['version'], u'1.0')
+            eq_(obj['current_version']['developer_name'],
+                self.webapp.current_version.developer_name)
             eq_(obj['description'], unicode(self.webapp.description))
             eq_(obj['icons']['128'], self.webapp.get_icon_url(128))
             eq_(obj['id'], str(self.webapp.id))

@@ -70,6 +70,10 @@ new = {
         "fr": {
             "description": "Testing name-less locale"
         }
+    },
+    "developer": {
+        "name": "Mozilla",
+        "url": "http://www.mozilla.org/"
     }
 }
 
@@ -89,7 +93,8 @@ class TestUpdateManifest(amo.tests.TestCase):
         # Not using app factory since it creates translations with an invalid
         # locale of "en-us".
         self.addon = Addon.objects.create(type=amo.ADDON_WEBAPP)
-        self.version = Version.objects.create(addon=self.addon)
+        self.version = Version.objects.create(addon=self.addon,
+                                              _developer_name='Mozilla')
         self.file = File.objects.create(
             version=self.version, hash=ohash, status=amo.STATUS_PUBLIC,
             filename='%s-%s' % (self.addon.id, self.version.id))
@@ -396,6 +401,27 @@ class TestUpdateManifest(amo.tests.TestCase):
         self._run()
         ver = self.version.reload()
         eq_(ver.supported_locales, 'de,es,fr')
+
+    @mock.patch('mkt.webapps.tasks._open_manifest')
+    def test_manifest_support_developer_change(self, open_manifest):
+        # Mock original manifest file lookup.
+        open_manifest.return_value = original
+        # Mock new manifest with developer name change.
+        self.new['developer']['name'] = 'Allizom'
+        response_mock = mock.Mock()
+        response_mock.read.return_value = json.dumps(self.new)
+        response_mock.headers = {
+            'Content-Type': 'application/x-web-app-manifest+json'}
+        self.urlopen_mock.return_value = response_mock
+
+        self._run()
+        ver = self.version.reload()
+        eq_(ver.developer_name, 'Allizom')
+
+        # We should get a re-review because of the developer name change.
+        eq_(RereviewQueue.objects.count(), 1)
+        # 2 logs: 1 for manifest update, 1 for re-review trigger.
+        eq_(ActivityLog.objects.for_apps(self.addon).count(), 2)
 
 
 class TestDumpApps(amo.tests.TestCase):

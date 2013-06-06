@@ -254,9 +254,18 @@ class WebAppParser(object):
                                               'description', default='')
         if 'description' in data:
             localized_descr.update({default_locale: data['description']})
+        developer_info = data.get('developer', {})
+        developer_name = developer_info.get('name')
+        if not developer_name:
+            # Missing developer name shouldn't happen if validation took place,
+            # but let's be explicit about this just in case.
+            raise forms.ValidationError(
+                _("Developer name is required in the manifest in order to "
+                  "display it on the app's listing."))
         return {'guid': None,
                 'type': amo.ADDON_WEBAPP,
                 'name': {default_locale: data['name']},
+                'developer_name': developer_name,
                 'summary': self.trans_all_locales(localized_descr),
                 'version': data.get('version', '1.0'),
                 'default_locale': default_locale}
