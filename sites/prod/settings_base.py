@@ -1,6 +1,8 @@
 import logging
 import os
 
+import dj_database_url
+
 from lib.settings_base import CACHE_PREFIX, KNOWN_PROXIES, LOGGING, HOSTNAME
 
 from .. import splitstrip
@@ -20,39 +22,22 @@ REDIRECT_SECRET_KEY = private.REDIRECT_SECRET_KEY
 
 ADMINS = ()
 
-DATABASES = {
-    'default': {
-        'NAME': private.DATABASES_DEFAULT_NAME,
-        'ENGINE': 'mysql_pool',
-        'HOST': private.DATABASES_DEFAULT_HOST,
-        'PORT': private.DATABASES_DEFAULT_PORT,
-        'USER': private.DATABASES_DEFAULT_USER,
-        'PASSWORD': private.DATABASES_DEFAULT_PASSWORD,
-        'OPTIONS': {'init_command': 'SET storage_engine=InnoDB'},
-    },
-    'slave': {
-        'NAME': private.DATABASES_SLAVE_NAME,
-        'ENGINE': 'mysql_pool',
-        'HOST': private.DATABASES_SLAVE_HOST,
-        'PORT': private.DATABASES_SLAVE_PORT,
-        'USER': private.DATABASES_SLAVE_USER,
-        'PASSWORD': private.DATABASES_SLAVE_PASSWORD,
-        'OPTIONS': {'init_command': 'SET storage_engine=InnoDB'},
-    },
-}
+DATABASES = {}
+DATABASES['default'] = dj_database_url.parse(private.DATABASES_DEFAULT_URL)
+DATABASES['default']['ENGINE'] = 'mysql_pool'
+DATABASES['default']['OPTIONS'] = {'init_command': 'SET storage_engine=InnoDB'}
 
-SERVICES_DATABASE = {
-    'NAME': private.SERVICES_DATABASE_NAME,
-    'USER': private.SERVICES_DATABASE_USER,
-    'PASSWORD': private.SERVICES_DATABASE_PASSWORD,
-    'HOST': private.SERVICES_DATABASE_HOST,
-}
+DATABASES['slave'] = dj_database_url.parse(private.DATABASES_SLAVE_URL)
+DATABASES['slave']['ENGINE'] = 'mysql_pool'
+DATABASES['slave']['OPTIONS'] = {'init_command': 'SET storage_engine=InnoDB'}
+
+SERVICES_DATABASE = dj_database_url.parse(private.SERVICES_DATABASE_URL)
 
 SLAVE_DATABASES = ['slave']
 
 CACHES = {
     'default': {
-       'BACKEND': 'caching.backends.memcached.CacheClass',
+        'BACKEND': 'caching.backends.memcached.CacheClass',
         'LOCATION': splitstrip(private.CACHES_DEFAULT_LOCATION),
         'TIMEOUT': 500,
         'KEY_PREFIX': CACHE_PREFIX,
