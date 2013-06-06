@@ -9,7 +9,9 @@ def run():
     Migrate summary to description field for a handful of themes after
     getpersonas migration.
     """
-    addons = Addon.objects.filter(type=amo.ADDON_PERSONA,
-                                  description__isnull=True, summary__isnull=False)
-    for addon in addons:
-            addon.update(description=addon.summary, summary='')
+    # addons = Addon.objects.filter(type=amo.ADDON_PERSONA,
+    #     description__isnull=True, summary__isnull=False)
+    # for addon in addons:
+    #     addon.description = addon.summary
+    #     addon.summary = ''
+    #     addon.save()
