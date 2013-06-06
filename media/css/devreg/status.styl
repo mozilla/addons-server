@@ -5,7 +5,7 @@
         margin: 10px 0 0;
     }
     + p {
-        margin-top: 20px;
+        margin: 20px 0 0;
     }
 }
 
@@ -35,9 +35,22 @@
     }
 }
 
-.status {
-    display: block;
-    margin-bottom: 5px;
+.status-info {
+    .status {
+        display: block;
+        margin-bottom: 10px;
+    }
+    .island {
+        margin: 20px 0;
+    }
+    form {
+        p {
+            margin: 15px 0;
+        }
+        div[style]:first-child + p:last-child {
+            margin: 15px 0 0;
+        }
+    }
 }
 
 #version-status-item a,

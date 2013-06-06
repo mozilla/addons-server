@@ -20,7 +20,7 @@
   <section id="edit-addon" class="primary devhub-form manage">
     <h2>{{ _('Current Status') }}</h2>
     <div class="island" id="version-status" data-status="{{ addon.status }}">
-      <div class="status">
+      <div class="status-info">
         {% if addon.disabled_by_user and addon.status != amo.STATUS_DISABLED %}
           {{ status(_('You have <b>delisted</b> this app.')|safe) }}
         {% elif addon.status == amo.STATUS_NULL %}
@@ -79,10 +79,17 @@
                 </blockquote>
               </div>
               <p>
-                {% trans %}
-                  Once you have addressed these concerns, you may resubmit your
-                  app below.
-                {% endtrans %}
+                {% if addon.is_packaged %}
+                  {% trans resubmit_url='#upload-new-version' %}
+                    Once you have addressed these concerns, you may <a href="{{ resubmit_url }}">resubmit your
+                    app below</a>.
+                  {% endtrans %}
+                {% else %}
+                  {% trans %}
+                    Once you have addressed these concerns, you may resubmit your
+                    app below.
+                  {% endtrans %}
+                {% endif %}
               </p>
             {% endif %}
             {% if not addon.is_packaged %}
@@ -174,7 +181,7 @@
         </div>
       {% endif %}
 
-      <h2>{{ _('Upload New Version') }}</h2>
+      <h2 id="upload-new-version">{{ _('Upload New Version') }}</h2>
       <div class="island">
         <form method="post" id="create-addon" class="item">
           {{ csrf() }}
