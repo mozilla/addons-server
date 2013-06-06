@@ -10,12 +10,12 @@ from django import http
 from django.conf import settings
 from django.db import transaction
 from django.db.models import Count, Q
+from django.db.models.signals import post_save
 from django.shortcuts import get_object_or_404, redirect
 
 import commonware.log
 import jingo
 import requests
-import waffle
 from tower import ugettext as _
 
 import amo
@@ -23,7 +23,6 @@ from abuse.models import AbuseReport
 from access import acl
 from addons.decorators import addon_view
 from addons.models import AddonDeviceType, Persona, Version
-from addons.tasks import index_addons
 from amo import messages
 from amo.decorators import json_view, permission_required
 from amo.helpers import absolutify
@@ -48,7 +47,6 @@ from mkt.reviewers.utils import AppsReviewing, clean_sort_param
 from mkt.search.forms import ApiSearchForm
 from mkt.site.helpers import product_as_dict
 from mkt.webapps.models import Webapp
-from mkt.webapps.tasks import index_webapps
 
 from . import forms
 from .models import AppCannedResponse
@@ -165,8 +163,7 @@ def context(**kw):
     return ctx
 
 
-def _review(request, addon):
-    version = addon.latest_version
+def _review(request, addon, version):
 
     if (not settings.ALLOW_SELF_REVIEWS and
         not acl.action_allowed(request, 'Admin', '%') and
@@ -282,9 +279,10 @@ def _review(request, addon):
 @permission_required('Apps', 'Review')
 @addon_view
 def app_review(request, addon):
+    version = addon.latest_version
     resp = None
     try:
-        resp = _review(request, addon)
+        resp = _review(request, addon, version)
     except SigningError, exc:
         transaction.rollback()
         messages.error(request, 'Signing Error: %s' % exc)
@@ -298,9 +296,8 @@ def app_review(request, addon):
         transaction.commit()
         # Temp. reindex the addon now it's been committed.
         if not settings.IN_TEST_SUITE and request.method == 'POST':
-            index_addons.delay([addon.pk])
-            if waffle.switch_is_active('search-api-es'):
-                index_webapps.delay([addon.pk])
+            post_save.send(sender=Webapp, instance=addon, created=False)
+            post_save.send(sender=Version, instance=version, created=False)
             transaction.commit()
         if resp:
             return resp

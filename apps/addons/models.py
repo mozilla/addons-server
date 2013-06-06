@@ -604,8 +604,13 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             return None
 
     @write
-    def update_version(self):
-        "Returns true if we updated the field."
+    def update_version(self, _signal=True):
+        """
+        Returns true if we updated the field.
+
+        Pass ``_signal=False`` if you want to no signals fired at all.
+
+        """
         backup = None
         current = self.get_version()
         if current:
@@ -653,7 +658,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         if updated:
             try:
                 self.update(**updated)
-                if send_signal:
+                if send_signal and _signal:
                     signals.version_changed.send(sender=self)
                 log.info(u'Version changed from backup: %s to %s, '
                           'current: %s to %s, latest: %s to %s for addon %s'

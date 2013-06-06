@@ -1012,7 +1012,9 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         assert update_name.called
         assert update_locales.called
 
-        eq_(index_addons.delay.call_count, 1)
+        # It's zero for the view but happens after the transaction commits. If
+        # this increases we could get tasks being called with stale data.
+        eq_(index_addons.delay.call_count, 0)
 
     def test_notification_email_translation(self):
         """Test that the app name is translated with the app's default_locale
@@ -1107,7 +1109,9 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         assert not update_name.called
         assert not update_locales.called
 
-        eq_(index_addons.delay.call_count, 1)
+        # It's zero for the view but happens after the transaction commits. If
+        # this increases we could get tasks being called with stale data.
+        eq_(index_addons.delay.call_count, 0)
 
     @mock.patch('lib.crypto.packaged.sign')
     def test_public_waiting_signs(self, sign):

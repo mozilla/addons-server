@@ -4,7 +4,6 @@ from datetime import datetime
 
 from django.conf import settings
 from django.core.cache import cache
-from django.db.models.signals import post_save
 from django.utils import translation
 from django.utils.datastructures import SortedDict
 
@@ -195,8 +194,6 @@ class ReviewApp(ReviewBase):
             self.set_addon(status=amo.STATUS_PUBLIC_WAITING,
                            highest_status=amo.STATUS_PUBLIC_WAITING)
 
-        post_save.send(sender=Webapp, instance=self.addon, created=False)
-
         self.log_action(amo.LOG.APPROVE_VERSION_WAITING)
         self.notify_email('pending_to_public_waiting',
                           u'App Approved but waiting: %s')
@@ -215,11 +212,13 @@ class ReviewApp(ReviewBase):
                            highest_status=amo.STATUS_PUBLIC)
 
         # Call update_version, so various other bits of data update.
-        self.addon.update_version()
+        self.addon.update_version(_signal=False)
         self.addon.update_name_from_package_manifest()
         self.addon.update_supported_locales()
 
-        post_save.send(sender=Webapp, instance=self.addon, created=False)
+        # Note: Post save signal happens in the view after the transaction is
+        # committed to avoid multiple indexing tasks getting fired with stale
+        # data.
 
         self.log_action(amo.LOG.APPROVE_VERSION)
         self.notify_email('pending_to_public', u'App Approved: %s')
