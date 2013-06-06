@@ -53,11 +53,6 @@ SYSLOG_TAG = "http_app_addons"
 SYSLOG_TAG2 = "http_app_addons_timer"
 SYSLOG_CSP = "http_app_addons_addons_csp"
 
-## Celery
-BROKER_USER = private_addons.BROKER_USER
-BROKER_PASSWORD = private_addons.BROKER_PASSWORD
-BROKER_VHOST = private_addons.BROKER_VHOST
-
 FETCH_BY_ID = True
 
 PAYPAL_APP_ID = private_addons.PAYPAL_APP_ID

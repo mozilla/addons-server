@@ -53,11 +53,9 @@ SYSLOG_TAG2 = "http_app_addons_marketplace_timer"
 SYSLOG_CSP = "http_app_addons_marketplace_csp"
 
 ## Celery
-BROKER_HOST = private_mkt.BROKER_HOST
-BROKER_PORT = private_mkt.BROKER_PORT
-BROKER_USER = private_mkt.BROKER_USER
-BROKER_PASSWORD = private_mkt.BROKER_PASSWORD
-BROKER_VHOST = private_mkt.BROKER_VHOST
+
+BROKER_URL = private_mkt.BROKER_URL
+
 CELERYD_PREFETCH_MULTIPLIER = 1
 
 LOGGING['loggers'].update({

@@ -55,11 +55,8 @@ SYSLOG_CSP = "http_app_addons_marketplacelandfill_csp"
 STATSD_PREFIX = 'marketplace-landfill'
 
 ## Celery
-BROKER_HOST = private_mkt.BROKER_HOST
-BROKER_PORT = private_mkt.BROKER_PORT
-BROKER_USER = private_mkt.BROKER_USER
-BROKER_PASSWORD = private_mkt.BROKER_PASSWORD
-BROKER_VHOST = private_mkt.BROKER_VHOST
+BROKER_URL = private_mkt.BROKER_URL
+
 CELERY_IGNORE_RESULT = True
 CELERY_DISABLE_RATE_LIMITS = True
 CELERYD_PREFETCH_MULTIPLIER = 1
