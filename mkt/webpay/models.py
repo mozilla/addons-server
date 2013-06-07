@@ -8,7 +8,7 @@ from amo.models import ModelBase
 
 
 class ProductIcon(ModelBase):
-    ext_url = models.CharField(max_length=255, db_index=True)
+    ext_url = models.CharField(max_length=255, db_index=True, unique=True)
     # Height/width of square icon as declared in JWT.
     ext_size = models.IntegerField(db_index=True)
     # Height/width of local icon after cache.
