@@ -131,9 +131,8 @@ class TestSignApps(amo.tests.TestCase):
         file1 = v1.all_files[0]
         file2 = v2.all_files[0]
         eq_(len(sign_mock.mock_calls), 2)
-        sign_mock.assert_has_calls([
-            mock.call(file1.file_path,
-                      file1.signed_file_path, False),
-            mock.call(file2.file_path,
-                      file2.signed_file_path, False)],
-            any_order=True)
+        eq_(sign_mock.mock_calls[0][1][:2],
+            (file1.file_path, file1.signed_file_path))
+        eq_(sign_mock.mock_calls[1][1][:2],
+            (file2.file_path, file2.signed_file_path))
+
