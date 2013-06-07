@@ -29,8 +29,7 @@ def setup_payment_account(app, user, uid='uid'):
                                             agreed_tos=True, seller_uri=uid,
                                             uri=uid)
     return AddonPaymentAccount.objects.create(addon=app,
-        product_uri='/path/to/%s/' % app.pk, payment_account=payment,
-        set_price=1)
+        product_uri='/path/to/%s/' % app.pk, payment_account=payment)
 
 
 class InappTest(amo.tests.TestCase):

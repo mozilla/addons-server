@@ -259,54 +259,11 @@ Payments
     .. code-block:: json
 
     :param upsell: URL to the upsell of the app.
+    :param account: URL to the app payment account.
     :status 200: sucessfully completed.
 
-.. http:post:: /api/v1/developers/upsell/(int:id)/
 
-    Creates an upsell relationship between two apps, a free and premium one.
-    Send the URLs for both apps in the post to create the relationship.
-
-    **Request**
-
-    :param free: URL to the free app.
-    :param premium: URL to the premium app.
-
-    **Response**
-
-    :status 201: sucessfully created.
-
-.. http:get:: /api/v1/developers/upsell/(int:id)/
-
-    **Response**
-
-    .. code-block:: json
-
-        {"free": "/api/v1/apps/app/1/",
-         "premium": "/api/v1/apps/app/2/"}
-
-    :param free: URL to the free app.
-    :param premium: URL to the premium app.
-
-.. http:patch:: /api/v1/developers/upsell/(int:id)/
-
-    Alter the upsell from free to premium by passing in new free and premiums.
-
-    **Request**
-
-    :param free: URL to the free app.
-    :param premium: URL to the premium app.
-
-    **Response**
-
-    :status 200: sucessfully altered.
-
-.. http:delete:: /api/v1/developers/upsell/(int:id)/
-
-    To delete the upsell relationship.
-
-    **Response**
-
-    :status 204: sucessfully deleted.
+For more information on these, see the payments documentation.
 
 Screenshots or videos
 =====================

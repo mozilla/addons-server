@@ -120,7 +120,90 @@ Payment accounts can be added and listed.
              "vendorName": "vendor"
         }
 
+Upsell
+======
 
+.. http:post:: /api/v1/payments/upsell/(int:id)/
+
+    Creates an upsell relationship between two apps, a free and premium one.
+    Send the URLs for both apps in the post to create the relationship.
+
+    **Request**
+
+    :param free: URL to the free app.
+    :param premium: URL to the premium app.
+
+    **Response**
+
+    :status 201: sucessfully created.
+
+.. http:get:: /api/v1/payments/upsell/(int:id)/
+
+    **Response**
+
+    .. code-block:: json
+
+        {"free": "/api/v1/apps/app/1/",
+         "premium": "/api/v1/apps/app/2/"}
+
+    :param free: URL to the free app.
+    :param premium: URL to the premium app.
+
+.. http:patch:: /api/v1/payments/upsell/(int:id)/
+
+    Alter the upsell from free to premium by passing in new free and premiums.
+
+    **Request**
+
+    :param free: URL to the free app.
+    :param premium: URL to the premium app.
+
+    **Response**
+
+    :status 200: sucessfully altered.
+
+.. http:delete:: /api/v1/payments/upsell/(int:id)/
+
+    To delete the upsell relationship.
+
+    **Response**
+
+    :status 204: sucessfully deleted.
+
+Payment accounts
+================
+
+.. http:post:: /api/v1/payments/app/
+
+    Creates a relationship between the payment account and the app.
+
+    **Request**
+
+    :param app: URL to the premium app.
+    :param account: URL to the account.
+
+    Once created, the app is not changeable.
+
+    **Response**
+
+    :status 201: sucessfully created.
+    :param app: URL to the premium app.
+    :param account: URL to the account.
+
+.. http:patch:: /api/v1/payments/app/(int:id)/
+
+    Alter the payment account being used.
+
+    **Request**
+
+    :param app: URL to the premium app. Must be unchanged.
+    :param account: URL to the account.
+
+    **Response**
+
+    :status 200: sucessfully updated.
+    :param app: URL to the premium app.
+    :param account: URL to the account.
 
 Preparing payment
 =================

@@ -154,27 +154,20 @@ class AddonPaymentAccount(amo.models.ModelBase):
     account_uri = models.CharField(max_length=255)
     product_uri = models.CharField(max_length=255, unique=True)
 
-    # The set_price is the price that the product was created at. This lets us
-    # figure out whether we need to post an update to Solitude when the price
-    # of the app changes.
-    set_price = models.DecimalField(max_digits=10, decimal_places=2)
-
     class Meta:
         db_table = 'addon_payment_account'
 
     @classmethod
     def create(cls, provider, addon, payment_account):
-        """Parameters:
+        # TODO: remove once API is the only access point.
+        uri = cls.setup_bango(provider, addon, payment_account)
+        return cls.objects.create(addon=addon, provider=provider,
+                                  payment_account=payment_account,
+                                  account_uri=payment_account.uri,
+                                  product_uri=uri)
 
-        - provider:
-            The provider that the product is to be created for. (currently only
-            `bango`)
-        - addon:
-            The app that the product is being created for.
-        - payment_account:
-            The PaymentAccount object to tie the app to.
-
-        """
+    @classmethod
+    def setup_bango(cls, provider, addon, payment_account):
         secret = generate_key(48)
         external_id = webpay.make_ext_id(addon.pk)
         data = {'seller': uri_to_pk(payment_account.seller_uri),
@@ -189,18 +182,12 @@ class AddonPaymentAccount(amo.models.ModelBase):
             })
 
         product_uri = generic_product['resource_uri']
-
         if provider == 'bango':
             uri = cls._create_bango(
                 product_uri, addon, payment_account, secret)
         else:
             uri = ''
-
-        return cls.objects.create(addon=addon, provider=provider,
-                                  payment_account=payment_account,
-                                  set_price=addon.addonpremium.price.price,
-                                  account_uri=payment_account.uri,
-                                  product_uri=uri)
+        return uri
 
     @classmethod
     def _create_bango(cls, product_uri, addon, payment_account, secret):
@@ -259,10 +246,6 @@ class AddonPaymentAccount(amo.models.ModelBase):
         return product_uri
 
     def update_price(self, new_price):
-        # Ignore the update if it's the same as what we've got.
-        if new_price == self.set_price:
-            return
-
         if self.provider == 'bango':
             # Get the Bango number for this product.
             res = client.api.bango.product.get_object(data=self.product_uri)
@@ -270,8 +253,6 @@ class AddonPaymentAccount(amo.models.ModelBase):
 
             AddonPaymentAccount._push_bango_premium(
                 bango_number, self.product_uri, new_price)
-
-            self.update(set_price=new_price)
 
     def delete(self):
         if self.provider == 'bango':

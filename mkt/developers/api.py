@@ -16,6 +16,7 @@ log = commonware.log.getLogger('z.devhub')
 
 
 class BangoFormValidation(object):
+
     def is_valid(self, bundle, request=None):
         data = bundle.data or {}
         if request.method == 'PUT':
@@ -28,6 +29,7 @@ class BangoFormValidation(object):
 
 
 class AccountResource(MarketplaceModelResource):
+
     class Meta(MarketplaceModelResource.Meta):
         validation = BangoFormValidation()
         queryset = PaymentAccount.objects.all()
