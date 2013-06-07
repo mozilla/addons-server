@@ -2,6 +2,7 @@ import commonware.log
 
 from rest_framework.permissions import BasePermission
 from tastypie.authorization import Authorization, ReadOnlyAuthorization
+from waffle import flag_is_active, switch_is_active
 
 from access import acl
 
@@ -102,3 +103,23 @@ class AllowAppOwner(BasePermission):
 
     def has_object_permission(self, request, view, object):
         return AppOwnerAuthorization().check_owner(request, object)
+
+
+def flag(name):
+    return type('FlagPermission', (WafflePermission,),
+                {'type': 'flag', 'name': name})
+
+
+def switch(name):
+    return type('SwitchPermission', (WafflePermission,),
+                {'type': 'switch', 'name': name})
+
+
+class WafflePermission(BasePermission):
+
+    def has_permission(self, request, view):
+        if self.type == 'flag':
+            return flag_is_active(request, self.name)
+        elif self.type == 'switch':
+            return switch_is_active(self.name)
+        raise NotImplementedError

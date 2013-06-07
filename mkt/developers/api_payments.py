@@ -10,8 +10,8 @@ from django.core.exceptions import PermissionDenied
 import amo
 from addons.models import AddonUpsell
 
+from mkt.api.authorization import AllowAppOwner, switch
 from mkt.api.base import CompatRelatedField
-from mkt.api.authorization import AllowAppOwner
 from mkt.webapps.models import Webapp
 
 
@@ -70,7 +70,8 @@ class UpsellPermission(BasePermission):
 
 class UpsellViewSet(CreateModelMixin, DestroyModelMixin, RetrieveModelMixin,
                     UpdateModelMixin, GenericViewSet):
-    permission_classes = (UpsellPermission,)
+    permission_classes = (switch('allow-b2g-paid-submission'),
+                          UpsellPermission,)
     queryset = AddonUpsell.objects.filter()
     serializer_class = UpsellSerializer
 

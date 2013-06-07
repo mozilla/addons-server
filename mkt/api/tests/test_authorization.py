@@ -5,8 +5,8 @@ from nose.tools import eq_, ok_
 from amo.tests import app_factory, TestCase
 from test_utils import RequestFactory
 
-from mkt.api.authorization import (AnonymousReadOnlyAuthorization,
-                                   PermissionAuthorization)
+from mkt.api.authorization import (AnonymousReadOnlyAuthorization, flag,
+                                   PermissionAuthorization, switch)
 from mkt.site.fixtures import fixture
 
 from .test_authentication import OwnerAuthorization
@@ -64,3 +64,24 @@ class TestPermissionAuthorization(OwnerAuthorization):
     def test_not_has_role(self):
         self.grant_permission(self.profile, 'Drinkers:Scotch')
         ok_(not self.auth.is_authorized(self.request(self.profile), self.app))
+
+
+class TestWaffle(TestCase):
+
+    def setUp(self):
+        super(TestWaffle, self).setUp()
+        self.request = RequestFactory().get('/')
+
+    def test_waffle_flag(self):
+        self.create_flag('foo')
+        ok_(flag('foo')().has_permission(self.request, ''))
+
+    def test_not_waffle_flag(self):
+        ok_(not flag('foo')().has_permission(self.request, ''))
+
+    def test_waffle_switch(self):
+        self.create_switch('foo')
+        ok_(switch('foo')().has_permission(self.request, ''))
+
+    def test_not_switch_flag(self):
+        ok_(not switch('foo')().has_permission(self.request, ''))
