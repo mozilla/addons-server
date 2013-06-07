@@ -33,8 +33,8 @@ import mkt
 from mkt.constants import APP_IMAGE_SIZES, regions
 from mkt.constants.ratingsbodies import RATINGS_BODIES
 from mkt.site.fixtures import fixture
-from mkt.webapps.models import (AddonExcludedRegion as AER, AppFeatures,
-                                ContentRating, ImageAsset)
+from mkt.webapps.models import (AddonExcludedRegion as AER, ContentRating,
+                                ImageAsset)
 
 
 response_mock = mock.Mock()
@@ -111,8 +111,7 @@ class TestEdit(amo.tests.TestCase):
         instance.
         """
         data = data if data else {}
-        version = self.get_webapp().current_version
-        return AppFeatures.objects.create(version=version, **data)
+        self.get_webapp().current_version.features.update(**data)
 
     def compare_features(self, data):
         """
