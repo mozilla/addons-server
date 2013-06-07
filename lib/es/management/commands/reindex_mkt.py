@@ -14,7 +14,7 @@ import time
 from optparse import make_option
 
 import pyelasticsearch
-from celery_tasktree import task_with_callbacks, TaskTree
+from celery import task
 
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
@@ -51,14 +51,14 @@ job = 'lib.es.management.commands.reindex_mkt.run_indexing'
 time_limits = settings.CELERY_TIME_LIMITS[job]
 
 
-@task_with_callbacks
+@task
 def delete_index(old_index):
     """Removes the index."""
     sys.stdout.write('Removing index %r' % old_index)
     ES.delete_index(old_index)
 
 
-@task_with_callbacks
+@task
 def create_index(new_index, alias, settings):
     """Creates a mapping for the new index.
 
@@ -96,8 +96,7 @@ def index_webapp(ids, **kw):
     WebappIndexer.bulk_index(docs, es=ES, index=index)
 
 
-@task_with_callbacks(time_limit=time_limits['hard'],
-                     soft_time_limit=time_limits['soft'])
+@task(time_limit=time_limits['hard'], soft_time_limit=time_limits['soft'])
 def run_indexing(index):
     """Index the objects.
 
@@ -117,7 +116,7 @@ def run_indexing(index):
         index_webapp(chunk, index=index)
 
 
-@task_with_callbacks
+@task
 def flag_database(new_index, old_index, alias):
     """Flags the database to indicate that the reindexing has started."""
     sys.stdout.write('Flagging the database to start the reindexation')
@@ -126,14 +125,14 @@ def flag_database(new_index, old_index, alias):
     time.sleep(5)  # Give celeryd some time to flag the DB.
 
 
-@task_with_callbacks
+@task
 def unflag_database():
     """Unflag the database to indicate that the reindexing is over."""
     sys.stdout.write('Unflagging the database')
     Reindexing.objects.all().delete()
 
 
-@task_with_callbacks
+@task
 def update_alias(new_index, old_index, alias, settings):
     """
     Update the alias now that indexing is over.
@@ -164,7 +163,7 @@ def update_alias(new_index, old_index, alias, settings):
     ES.update_aliases(dict(actions=actions))
 
 
-@task_with_callbacks
+@task
 def output_summary():
     aliases = ES.aliases(ALIAS)
     sys.stdout.write(
@@ -222,12 +221,8 @@ class Command(BaseCommand):
                              settings.ES_DEFAULT_NUM_REPLICAS)
         num_shards = s.get('number_of_shards', settings.ES_DEFAULT_NUM_SHARDS)
 
-        # Start our chain of events to re-index.
-        tree = TaskTree()
-
         # Flag the database.
-        step1 = tree.add_task(
-            flag_database, args=[new_index, old_index, ALIAS])
+        chain = flag_database.si(new_index, old_index, ALIAS)
 
         # Create the index and mapping.
         #
@@ -235,36 +230,31 @@ class Command(BaseCommand):
         # In a later step we increase it which results in a more efficient bulk
         # copy in Elasticsearch.
         # For ES < 0.90 we manually enable compression.
-        step2 = step1.add_task(
-            create_index, args=[new_index, ALIAS,
-                                {'number_of_replicas': 0,
-                                 'number_of_shards': num_shards,
-                                 'store.compress.tv': True,
-                                 'store.compress.stored': True,
-                                 'refresh_interval': '-1'}])
+        chain |= create_index.si(new_index, ALIAS, {
+            'number_of_replicas': 0, 'number_of_shards': num_shards,
+            'store.compress.tv': True, 'store.compress.stored': True,
+            'refresh_interval': '-1'})
 
         # Index all the things!
-        step3 = step2.add_task(run_indexing, args=[new_index])
+        chain |= run_indexing.si(new_index)
 
         # After indexing we optimize the index, adjust settings, and point the
         # alias to the new index.
-        step4 = step3.add_task(
-            update_alias, args=[new_index, old_index, ALIAS,
-                                {'number_of_replicas': num_replicas,
-                                 'refresh_interval': '5s'}])
+        chain |= update_alias.si(new_index, old_index, ALIAS, {
+            'number_of_replicas': num_replicas, 'refresh_interval': '5s'})
 
         # Unflag the database.
-        step5 = step4.add_task(unflag_database)
+        chain |= unflag_database.si()
 
         # Delete the old index, if any.
         if old_index:
-            step5 = step5.add_task(delete_index, args=[old_index])
+            chain |= delete_index.si(old_index)
 
-        step5.add_task(output_summary)
+        chain |= output_summary.si()
 
         self.stdout.write('\nNew index and indexing tasks all queued up.\n')
         os.environ['FORCE_INDEXING'] = '1'
         try:
-            tree.apply_async()
+            chain.apply_async()
         finally:
             del os.environ['FORCE_INDEXING']
