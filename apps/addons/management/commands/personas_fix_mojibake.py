@@ -54,7 +54,7 @@ class Command(BaseCommand):
     def connect(self, **options):
         options = dict([(k, v) for k, v in options.items() if k in
                         ['host', 'db', 'user'] and v])
-        options['passwd'] = ''#getpass('MySQL Password: ')
+        options['passwd'] = getpass('MySQL Password: ')
         options['charset'] = 'latin1'
         options['use_unicode'] = False
         if options['host'][0] == '/':
