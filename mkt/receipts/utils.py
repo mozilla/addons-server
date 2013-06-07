@@ -39,9 +39,9 @@ def create_receipt(installed, flavour=None):
     else:
         verify = settings.WEBAPPS_RECEIPT_URL
 
-    detail = reverse('account.purchases.receipt', args=[webapp.pk])
     reissue = webapp.get_purchase_url('reissue')
-    receipt = dict(detail=absolutify(detail), exp=expiry, iat=time_,
+    # TODO: Add `detail` when we have a receipt page.
+    receipt = dict(exp=expiry, iat=time_,
                    iss=settings.SITE_URL, nbf=time_, product=product,
                    reissue=absolutify(reissue), typ=typ,
                    user={'type': 'directed-identifier',

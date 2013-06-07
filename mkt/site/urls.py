@@ -7,7 +7,6 @@ from django.http import HttpResponse, HttpResponseServerError
 import jingo
 
 from amo.decorators import allow_cross_site_request
-from mkt.account.views import feedback
 from . import views
 
 
@@ -52,6 +51,5 @@ urlpatterns = patterns('',
     url('^minifest.webapp$', views.package_minifest, name='minifest.webapp'),
 
     url('^timing/record$', views.record, name='mkt.timing.record'),
-    url('^feedback$', feedback, name='site.feedback'),
     url('^server.html$', views.fireplace, name='site.fireplace'),
 )

@@ -19,8 +19,7 @@
     {{ review.rating|stars(large=True) }}
     <span class="byline">
       {# TODO: Re-link user profile pages if desktop implements them. #}
-      {% trans user_url=review.user.get_url_path(),
-               user_name=review.user.name %}
+      {% trans user_name=review.user.name %}
         by <strong>{{ user_name }}</strong>
       {% endtrans %}
       {% if product.is_packaged and review.version != product.current_version %}

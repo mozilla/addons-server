@@ -3,8 +3,8 @@ The following feedback was submitted to the Marketplace:
 User:
 
 {% if user %}
-  user: {{ user.get_url_path()|absolutify }}
   username: {{ user.username }} (id={{ user.id }})
+  name: {{ user.name }}
   email: {{ user.email }}
 {% else %}
   user: Anonymous

@@ -1,7 +1,9 @@
+{# TODO: Deprecate this. This is shown only for user's purchases from the Lookup Tool.
+         We should move all the code there. #}
 {% set urls = [
-  (url('account.settings'), _('Account')),
-  (url('account.purchases'), _('My Apps')),
-  (url('site.feedback'), _('Feedback')),
+  ('/settings', _('Account')),
+  ('#', _('My Apps')),
+  ('/feedback', _('Feedback')),
 ] %}
 <ul class="toggles c">
   {% for link, title in urls %}

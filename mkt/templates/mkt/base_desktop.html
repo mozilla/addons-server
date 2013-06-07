@@ -44,19 +44,19 @@
           {% for link in footer_links -%}
             <a href="{{ link.href }}" class="sync">{{ link.text }}</a>
           {%- endfor %}
-          <a href="{{ url('account.settings') }}"
+          <a href="/settings"
              class="region region-{{ request.REGION.slug }}">
             {{ LANGUAGES[request.LANG|lower] }}</a>
         </div>
       {% endif %}
       <div class="group links">
         <a href="{{ url('ecosystem.landing') }}">{{ _('Developer Hub') }}</a>
-        <a href="{{ url('site.feedback') }}" class="{{ 'submit-feedback' if logged else 'feedback' }}">{{ _('Feedback') }}</a>
+        <a href="/feedback" class="{{ 'submit-feedback' if logged else 'feedback' }}">{{ _('Feedback') }}</a>
         <a href="https://support.mozilla.org/products/marketplace">{{ _('Support') }}</a>
       </div>
       {% if not logged or not footer_links %}
         <div class="group links">
-          <a href="{{ url('account.settings') }}"
+          <a href="/settings"
              class="region region-{{ request.REGION.slug }}">
             {{ LANGUAGES[request.LANG|lower] }}</a>
         </div>

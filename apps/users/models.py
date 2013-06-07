@@ -159,6 +159,9 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
         We use <username> as the slug, unless it contains gross
         characters - in which case use <id> as the slug.
         """
+        # TODO: Remove this ASAP (bug 880767).
+        if settings.MARKETPLACE and name == 'profile':
+            return '#'
         from amo.utils import urlparams
         chars = '/<>"\''
         slug = self.username

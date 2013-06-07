@@ -67,11 +67,6 @@ def pay_start(request, signed_req, pay_req):
     return jingo.render(request, 'inapp_pay/pay_start.html', data)
 
 
-def preauth(request):
-    from mkt.account.views import preapproval
-    return preapproval(request)
-
-
 @require_inapp_request
 @login_required
 @post_required

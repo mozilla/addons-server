@@ -28,7 +28,7 @@ def global_settings(request):
             # {'text': _('Account History'),
             #  'href': reverse('account.purchases')},
             {'text': _('Account Settings'),
-             'href': reverse('account.settings')},
+             'href': '/settings'},
             {'text': _('Change Password'),
              'href': 'https://login.persona.org/signin'},
             {'text': _('Sign out'), 'href': reverse('users.logout')},

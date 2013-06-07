@@ -1,4 +1,4 @@
-<form class="container form-grid feedback-form" method="post" id="feedback-form" action="{{ url('site.feedback') }}">
+<form class="container form-grid feedback-form" method="post" id="feedback-form" action="/feedback">
   {{ csrf() }}
 
   {{ form_field(fform.feedback, req=False, validate=True) }}

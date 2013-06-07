@@ -10,11 +10,6 @@
   <nav class="shortcuts" role="navigation">
     <ul>
       <li>
-        <a href="{{ account.get_url_path() }}">
-          {{ _('Public Profile') }}
-        </a>
-      </li>
-      <li>
         <a href="{{ url('lookup.user_activity', account.id) }}"
           {% if page_type == 'activity' %}class="sel"{% endif %}>
           {{ _('Activity') }}
@@ -26,13 +21,6 @@
           {{ _('Purchases') }}
         </a>
       </li>
-      {% if is_admin %}
-      <li class="edit">
-        <a href="{{ url('users.admin_edit', account.id) }}">
-          {{ _('Edit Account') }}
-        </a>
-      </li>
-      {% endif %}
     </ul>
   </nav>
 </section>

@@ -2,20 +2,15 @@
 {% if logged %}
   <ul>
     <li>
-      <a href="{{ url('account.settings') }}">
+      <a href="/settings">
         <em>{{ request.amo_user.email }}</em>
         {{ _('Edit Account Settings') }}</a>
     </li>
-    {% if not in_devhub %}
-      <li><a href="{{ url('account.purchases') }}">{{ _('My Apps') }}</a></li>
-    {% endif %}
     {% if amo_user.is_app_developer %}
       <li><a href="{{ url('mkt.developers.apps') }}">{{ _('My Submissions') }}</a></li>
     {% endif %}
     {% if in_devhub %}
       <li><a href="{{ url('home') }}">{{ _('Return to the Marketplace') }}</a></li>
-    {% else %}
-      <li class="submit-feedback"><a href="{{ url('site.feedback') }}">{{ _('Feedback') }}</a></li>
     {% endif %}
     <li><a href="{{ url('users.logout') }}" class="sync logout">{{ _('Sign Out') }}</a></li>
   </ul>

@@ -7,6 +7,7 @@ from bandwagon.models import Collection
 from reviews.models import Review
 from users.models import UserProfile
 
+
 class TestUserProfile(amo.tests.TestCase):
     fixtures = ('base/addon_3615', 'base/user_2519', 'base/user_4043307',
                 'users/test_backends', 'base/apps',)

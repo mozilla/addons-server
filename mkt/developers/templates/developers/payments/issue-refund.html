@@ -15,8 +15,9 @@
   {% if transaction_id and enabled %}
     {{ csrf() }}
     <p>
+      {# TODO: Kill this template. #}
       {% with user=contribution.user.display_name,
-              user_url=contribution.user.get_url_path(),
+              user_url='#',
               addon_url=addon.get_url_path(),
               addon_name=addon.name %}
         A refund was requested by

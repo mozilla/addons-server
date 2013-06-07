@@ -73,7 +73,7 @@ def send_purchase_receipt(contrib_id, **kw):
             'authors': ', '.join([author.display_name
                                   for author in contrib.addon.authors.all()]),
             'date': datetime(contrib.created.date()),
-            'purchases': absolutify(reverse('account.purchases')),
+            'purchases': absolutify('/purchases'),
             'support_url': contrib.addon.support_url,
             'terms_of_service_url': absolutify(reverse('site.terms')),
             'transaction_id': contrib.uuid

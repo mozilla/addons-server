@@ -10,9 +10,7 @@ from apps.users.views import logout
 from apps.users.urls import (detail_patterns as user_detail_patterns,
                              users_patterns as users_users_patterns)
 from mkt.abuse.urls import api_patterns as abuse_api_patterns
-from mkt.account.urls import (api_patterns as account_api_patterns,
-                              purchases_patterns, settings_patterns,
-                              users_patterns as mkt_users_patterns)
+from mkt.account.urls import api_patterns as account_api_patterns
 from mkt.detail.views import manifest as mini_manifest
 from mkt.developers.views import login
 from mkt.developers.urls import api_patterns as payments_api_patterns
@@ -90,11 +88,6 @@ urlpatterns = patterns('',
     # Users (Legacy).
     ('^user/(?P<user_id>\d+)/', include(user_detail_patterns)),
     ('^users/', include(users_users_patterns)),
-
-    # Account info (e.g., purchases, settings).
-    ('^users/', include(mkt_users_patterns)),
-    ('^purchases/', include(purchases_patterns)),
-    ('^settings', include(settings_patterns)),
 
     # Site Search.
     ('^search/', include('mkt.search.urls')),
