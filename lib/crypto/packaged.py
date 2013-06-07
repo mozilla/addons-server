@@ -142,21 +142,6 @@ def sign(version_id, reviewer=False, resign=False, **kw):
         log.info('[Webapp:%s] Already signed app exists.' % app.id)
         return path
 
-    if resign:
-        z = zipfile.ZipFile(file_obj.file_path, 'r')
-        if 'META-INF/ids.json' in z.namelist():
-            # This zip is broken due to previously used bad signing
-            # code. rebuild it. (This code can be deleted once all
-            # broken packages are re-signed.)
-            tempf = tempfile.NamedTemporaryFile()
-            zout = zipfile.ZipFile(tempf, 'w', zipfile.ZIP_DEFLATED)
-            for f in sorted(z.infolist()):
-                if f.filename != 'META-INF/ids.json':
-                    zout.writestr(f, z.read(f.filename))
-            zout.close()
-            shutil.copyfile(tempf.name, file_obj.file_path)
-            tempf.close()
-
     ids = json.dumps({
         'id': app.guid,
         'version': version_id
