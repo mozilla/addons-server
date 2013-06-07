@@ -3,6 +3,7 @@ from django.utils.translation import ugettext_lazy as _
 
 import mock
 from nose.tools import eq_
+from test_utils import RequestFactory
 
 import amo
 import amo.tests
@@ -18,6 +19,7 @@ from mkt.webapps.models import AppFeatures
 class TestNewWebappForm(amo.tests.TestCase):
 
     def setUp(self):
+        self.request = RequestFactory().get('/')
         self.file = FileUpload.objects.create(valid=True)
 
     def test_not_free_or_paid(self):
@@ -33,21 +35,22 @@ class TestNewWebappForm(amo.tests.TestCase):
         eq_(form.ERRORS['none'], form.errors['paid_platforms'])
 
     def test_paid(self):
-        self.create_switch('allow-b2g-paid-submission')
+        self.create_flag('allow-b2g-paid-submission')
         form = forms.NewWebappForm({'paid_platforms': ['paid-firefoxos'],
-                                    'upload': self.file.uuid})
+                                    'upload': self.file.uuid},
+                                   request=self.request)
         assert form.is_valid()
         eq_(form.get_paid(), amo.ADDON_PREMIUM)
 
     def test_free(self):
-        self.create_switch('allow-b2g-paid-submission')
+        self.create_flag('allow-b2g-paid-submission')
         form = forms.NewWebappForm({'free_platforms': ['free-firefoxos'],
                                     'upload': self.file.uuid})
         assert form.is_valid()
         eq_(form.get_paid(), amo.ADDON_FREE)
 
     def test_platform(self):
-        self.create_switch('allow-b2g-paid-submission')
+        self.create_flag('allow-b2g-paid-submission')
         mappings = (
             ({'free_platforms': ['free-firefoxos']}, [amo.DEVICE_GAIA]),
             ({'paid_platforms': ['paid-firefoxos']}, [amo.DEVICE_GAIA]),
@@ -65,9 +68,10 @@ class TestNewWebappForm(amo.tests.TestCase):
             self.assertSetEqual(res, form.get_devices())
 
     def test_both(self):
-        self.create_switch('allow-b2g-paid-submission')
+        self.create_flag('allow-b2g-paid-submission')
         form = forms.NewWebappForm({'paid_platforms': ['paid-firefoxos'],
-                                    'free_platforms': ['free-firefoxos']})
+                                    'free_platforms': ['free-firefoxos']},
+                                   request=self.request)
         assert not form.is_valid()
         eq_(form.ERRORS['both'], form.errors['free_platforms'])
         eq_(form.ERRORS['both'], form.errors['paid_platforms'])

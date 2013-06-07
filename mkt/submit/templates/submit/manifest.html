@@ -28,7 +28,7 @@
 
   <section id="submit-payment-type" class="island tabbable">
     <div class="free tab active">
-      {% if waffle.switch('allow-b2g-paid-submission') %}
+      {% if waffle.flag('allow-b2g-paid-submission') %}
         <h2 id="free-tab-header"><a href="#">{{ _('Free') }}</a></h2>
       {% else %}
         <h2>{{ _('Device Type') }}</h2>
@@ -39,7 +39,7 @@
       {%- endfor %}
     </div>
 
-    {% if waffle.switch('allow-b2g-paid-submission') %}
+    {% if waffle.flag('allow-b2g-paid-submission') %}
       <div class="paid tab">
         <h2 id="paid-tab-header"><a href="#">{{ _('Paid / In-app') }}</a></h2>
         <div class="error">{{ form.errors.paid_platforms }}</div>

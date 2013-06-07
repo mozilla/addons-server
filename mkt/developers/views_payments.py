@@ -133,7 +133,7 @@ def payments(request, addon_id, addon, webapp=False):
          'bango_account_list_form': bango_account_list_form,
          # Waffles
          'payments_enabled':
-             waffle.switch_is_active('allow-b2g-paid-submission') and
+             waffle.flag_is_active(request, 'allow-b2g-paid-submission') and
              not waffle.switch_is_active('disabled-payments')})
 
 

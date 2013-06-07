@@ -47,7 +47,7 @@ class AppHubTest(amo.tests.TestCase):
     fixtures = ['base/users', 'webapps/337141-steamcube']
 
     def setUp(self):
-        self.create_switch('allow-b2g-paid-submission')
+        self.create_flag('allow-b2g-paid-submission')
 
         self.url = reverse('mkt.developers.apps')
         self.user = UserProfile.objects.get(username='31337')
@@ -324,7 +324,7 @@ class TestDevRequired(AppHubTest):
 class MarketplaceMixin(object):
 
     def setUp(self):
-        self.create_switch('allow-b2g-paid-submission')
+        self.create_flag('allow-b2g-paid-submission')
 
         self.addon = Addon.objects.get(id=337141)
         self.addon.update(status=amo.STATUS_NOMINATED,

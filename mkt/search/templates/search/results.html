@@ -23,7 +23,7 @@
   {% set title = _('Search Results') %}
 {% endif %}
 
-{% set show_paid = prices and waffle.switch('allow-b2g-paid-submission') %}
+{% set show_paid = prices and waffle.flag('allow-b2g-paid-submission') %}
 
 {% set pagetitle = title %}
 {% set pagetype = 'search' %}

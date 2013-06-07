@@ -499,10 +499,12 @@ class PreviewResource(CORSResource, MarketplaceModelResource):
         return bundle
 
 
-@memoize(prefix='config-waffles')
-def waffles():
-    switches = ['in-app-sandbox', 'allow-b2g-paid-submission', 'allow-refund']
-    return dict([s, waffle.switch_is_active(s)] for s in switches)
+def waffles(request):
+    switches = ['in-app-sandbox', 'allow-refund']
+    flags = ['allow-b2g-paid-submission']
+    res = dict([s, waffle.switch_is_active(s)] for s in switches)
+    res.update(dict([f, waffle.flag_is_active(request, f)] for f in flags))
+    return res
 
 
 @memoize(prefix='config-settings')
@@ -533,7 +535,7 @@ class ConfigResource(CORSResource, MarketplaceResource):
         return GenericObject({
             # This is the git commit on IT servers.
             'version': getattr(settings, 'BUILD_ID_JS', ''),
-            'flags': waffles(),
+            'flags': waffles(request),
             'settings': get_settings(),
         })
 

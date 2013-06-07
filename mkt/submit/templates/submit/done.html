@@ -4,7 +4,7 @@
 
 {% block title %}{{ hub_page_title(title) }}{% endblock %}
 
-{% set payments = waffle.switch('allow-b2g-paid-submission') and addon.is_premium() %}
+{% set payments = waffle.flag('allow-b2g-paid-submission') and addon.is_premium() %}
 
 {% block content %}
   {{ hub_breadcrumbs(items=[(None, _('Submit App'))]) }}

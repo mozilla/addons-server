@@ -369,7 +369,7 @@ class TestCreateWebApp(BaseWebAppTest):
         eq_(app.premium_type, amo.ADDON_FREE)
 
     def test_premium(self):
-        self.create_switch('allow-b2g-paid-submission')
+        self.create_flag('allow-b2g-paid-submission')
         app = self.post_addon({'paid_platforms': ['paid-firefoxos']})
         self.assertSetEqual(app.device_types, [amo.DEVICE_GAIA])
         eq_(app.premium_type, amo.ADDON_PREMIUM)

@@ -198,7 +198,7 @@ def publicise(request, addon_id, addon):
 def status(request, addon_id, addon, webapp=False):
     form = forms.AppAppealForm(request.POST, product=addon)
     upload_form = NewWebappVersionForm(request.POST or None, is_packaged=True,
-                                       addon=addon)
+                                       addon=addon, request=request)
 
     if request.method == 'POST':
         if 'resubmit-app' in request.POST and form.is_valid():
