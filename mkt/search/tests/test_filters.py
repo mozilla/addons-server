@@ -105,3 +105,44 @@ class TestSearchFilters(BaseOAuth):
     def test_app_type(self):
         qs = self._filter(self.req, {'app_type': 'hosted'})
         ok_({'term': {'app_type': 1}} in qs['filter']['and'])
+
+
+class TestSearchFiltersAndroid(BaseOAuth):
+    fixtures = fixture('webapp_337141', 'user_2519')
+
+    def setUp(self):
+        super(TestSearchFiltersAndroid, self).setUp()
+        self.req = test_utils.RequestFactory().get('/')
+        self.req.user = AnonymousUser()
+
+        self.category = Category.objects.create(name='games',
+                                                type=amo.ADDON_WEBAPP)
+        # Pick a region that has relatively few filters.
+        set_region(regions.UK.slug)
+
+        self.filter_kwargs = {
+            'mobile': True,
+            'gaia': False,
+            'tablet': False,
+        }
+
+        self.query_string = {
+            'dev': 'android',
+            'device': 'mobile',
+        }
+
+    def _filter(self, req, filters, **kwargs):
+        form = ApiSearchForm(filters)
+        if form.is_valid():
+            qs = Webapp.from_search(**kwargs).facet('category')
+            return _filter_search(
+                self.req, qs, form.cleaned_data)._build_query()
+        else:
+            return form.errors.copy()
+
+    def test_no_premium_on_android(self):
+        """Ensure premium apps are filtered out on Android."""
+        qs = self._filter(self.req, self.query_string, **self.filter_kwargs)
+        ok_({'not': {'filter': {'and': [
+            {'range': {'price': {'gt': 0}}},
+            {'in': {'premium_type': (1, 2)}}]}}} in qs['filter']['and'])
