@@ -165,6 +165,7 @@ class SharedSecretAuthentication(Authentication):
                 ACLMiddleware().process_request(request)
             else:
                 log.info('Shared-secret auth token does not match')
+                return False
 
             log.info('Successful SharedSecret with user: %s' % request.user.pk)
             return matches
@@ -180,5 +181,17 @@ class RestOAuthAuthentication(BaseAuthentication, OAuthAuthentication):
         result = self.is_authenticated(request)
         if (isinstance(result, http.HttpUnauthorized)
             or not request.user):
+            return None
+        return (request.user, None)
+
+
+class RestSharedSecretAuthentication(BaseAuthentication,
+                                     SharedSecretAuthentication):
+    """SharedSecretAuthentication suitable for DRF."""
+
+    def authenticate(self, request):
+        result = self.is_authenticated(request)
+
+        if not (result and request.user):
             return None
         return (request.user, None)

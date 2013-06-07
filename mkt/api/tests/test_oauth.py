@@ -76,9 +76,10 @@ class OAuthClient(Client):
         return kw
 
     def get(self, url, data={}, **kw):
-        if len(url) > 2 and data:
+        if isinstance(url, tuple) and len(url) > 2 and data:
             raise RuntimeError('Query string specified both in urlspec and as '
                                'data arg. Pick one or the other.')
+
         urlstring = self.get_absolute_url(url)
         if data:
             urlstring = '?'.join([urlstring,

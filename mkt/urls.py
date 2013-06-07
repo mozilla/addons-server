@@ -14,6 +14,7 @@ from apps.users.urls import (detail_patterns as user_detail_patterns,
                              users_patterns as users_users_patterns)
 from mkt.abuse.urls import api_patterns as abuse_api_patterns
 from mkt.account.urls import api_patterns as account_api_patterns
+from mkt.comm.urls import api_patterns as comm_api_patterns
 from mkt.detail.views import manifest as mini_manifest
 from mkt.developers.views import login
 from mkt.developers.urls import api_patterns as payments_api_patterns
@@ -40,6 +41,7 @@ api_patterns = patterns('',
     url('', include(payments_api_patterns)),
     url('', include(receipt_api_patterns)),
     url('', include('mkt.monolith.urls')),
+    url('', include(comm_api_patterns)),
 )
 
 home = lambda request: HttpResponse('''
