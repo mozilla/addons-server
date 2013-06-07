@@ -14,6 +14,18 @@ function initPreviewTheme(mktTheme) {
         return;
     }
 
+    if (!jQuery.browser.mozilla) {
+        $('.persona-install').addClass('disabled-install');
+        $('.persona-install button').addClass('disabled');
+    }
+
+    // Hover thumbnail install buttons.
+    $('.persona-install .add').click(_pd(function(e) {
+        dispatchPersonaEvent(
+            'SelectPersona',
+            $(this).closest('.persona').find('.persona-preview a')[0]);
+    }));
+
     if (mktTheme === true) {
         z.mktThemeFlag = true;
         bindPreviewListeners($themes);
