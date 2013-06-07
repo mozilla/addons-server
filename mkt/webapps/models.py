@@ -1035,7 +1035,7 @@ class WebappIndexer(MappingType, Indexable):
         except ObjectDoesNotExist:
             file_ = None
 
-        features = (version.get_features().to_dict()
+        features = (version.features.to_dict()
                     if version else AppFeatures().to_dict())
 
         translations = obj.translations

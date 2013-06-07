@@ -434,7 +434,6 @@ class TestUpdateFeatures(amo.tests.TestCase):
 
         self.app = Webapp.objects.get(pk=337141)
         self.app.update(is_packaged=True)
-        AppFeatures.objects.all().delete()
         # Note: the app files are wrong, since we now have a packaged app, but
         # it doesn't matter since we are mocking everything, we'll never touch
         # the files.
@@ -489,16 +488,14 @@ class TestUpdateFeatures(amo.tests.TestCase):
 
     def test_ignore_non_empty_features_profile(self):
         version = self.app.current_version
-        AppFeatures.objects.create(version=version, has_sms=True)
+        version.features.update(has_sms=True)
         update_features(ids=(self.app.pk,))
         assert not self.mock_validator.called
 
     def test_validator(self):
-        eq_(AppFeatures.objects.count(), 0)
         update_features(ids=(self.app.pk,))
         assert self.mock_validator.called
-        eq_(AppFeatures.objects.count(), 1)
-        features = self.app.current_version.get_features().to_dict()
+        features = self.app.current_version.features.to_dict()
         eq_(AppFeatures().to_dict(), features)
 
     def test_validator_with_results(self):
@@ -506,11 +503,9 @@ class TestUpdateFeatures(amo.tests.TestCase):
         self.mock_validator.return_value = json.dumps({
             'feature_profile': feature_profile
         })
-        eq_(AppFeatures.objects.count(), 0)
         update_features(ids=(self.app.pk,))
         assert self.mock_validator.called
-        eq_(AppFeatures.objects.count(), 1)
-        features = self.app.current_version.get_features().to_dict()
+        features = self.app.current_version.features.to_dict()
         eq_(features['has_apps'], True)
         eq_(features['has_activity'], True)
         eq_(features['has_sms'], False)
@@ -521,9 +516,8 @@ class TestUpdateFeatures(amo.tests.TestCase):
             'feature_profile': feature_profile
         })
         version = self.app.current_version
-        AppFeatures.objects.create(version=version)
         eq_(AppFeatures.objects.count(), 1)
-        eq_(version.get_features().to_list(), [])
+        eq_(version.features.to_list(), [])
         update_features(ids=(self.app.pk,))
         assert self.mock_validator.called
         eq_(AppFeatures.objects.count(), 1)
@@ -531,7 +525,7 @@ class TestUpdateFeatures(amo.tests.TestCase):
         # Features are cached on the version, therefore reload the app since we
         # were using the same instance as before.
         self.app.reload()
-        features = self.app.current_version.get_features().to_dict()
+        features = self.app.current_version.features.to_dict()
         eq_(features['has_apps'], True)
         eq_(features['has_activity'], True)
         eq_(features['has_sms'], False)

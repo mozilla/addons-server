@@ -90,7 +90,13 @@ class Version(amo.models.ModelBase):
             else:
                 log.error('No version_int written for version %s, %s' %
                           (self.pk, self.version))
-        return super(Version, self).save(*args, **kw)
+        creating = not self.id
+        super(Version, self).save(*args, **kw)
+        if creating:
+            from mkt.webapps.models import AppFeatures
+            if self.addon.type == amo.ADDON_WEBAPP:
+                AppFeatures.objects.create(version=self)
+        return self
 
     @classmethod
     def from_upload(cls, upload, addon, platforms, send_signal=True):
@@ -445,20 +451,6 @@ class Version(amo.models.ModelBase):
             for f in qs:
                 f.update(status=amo.STATUS_DISABLED)
 
-    def get_features(self):
-        """
-        Returns this version's AppFeatures instance. If one doesn't exist, it
-        is created and returned.
-
-        Used on Marketplace only.
-        """
-        from mkt.webapps.models import AppFeatures
-        try:
-            return self.features
-        except AppFeatures.DoesNotExist:
-            self.features = AppFeatures.objects.create(version=self)
-            return self.features
-
 
 def update_status(sender, instance, **kw):
     if not kw.get('raw'):
@@ -529,7 +521,10 @@ def cleanup_version(sender, instance, **kw):
 
 def clear_compatversion_cache_on_save(sender, instance, created, **kw):
     """Clears compatversion cache if new Version created."""
-    if not instance.addon.type == amo.ADDON_EXTENSION:
+    try:
+        if not instance.addon.type == amo.ADDON_EXTENSION:
+            return
+    except ObjectDoesNotExist:
         return
 
     if not kw.get('raw') and created:

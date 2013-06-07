@@ -1293,11 +1293,8 @@ class TestAppFeatures(amo.tests.TestCase):
 
     def _flag(self):
         "Flag app with a handful of feature flags for testing."
-        AppFeatures.objects.filter(version=self.app.current_version).delete()
-        af = AppFeatures(version=self.app.current_version)
-        for f in self.flags:
-            setattr(af, 'has_%s' % f.lower(), True)
-        af.save()
+        self.app.current_version.features.update(
+            **dict(('has_%s' % f.lower(), True) for f in self.flags))
 
     def _check(self, obj=None):
         if not obj:
@@ -1325,9 +1322,7 @@ class TestAppFeatures(amo.tests.TestCase):
         self._check()
 
     def test_no_features(self):
-        AppFeatures.objects.filter(version=self.app.current_version).delete()
-        with self.assertRaises(AppFeatures.DoesNotExist):
-            self.app.current_version.features
+        eq_(self.app.current_version.features.to_list(), [])
 
     def test_signature_parity(self):
         # Test flags -> signature -> flags works as expected.
@@ -1366,7 +1361,6 @@ class TestWebappIndexer(amo.tests.TestCase):
 
     def setUp(self):
         self.app = Webapp.objects.get(pk=337141)
-        AppFeatures.objects.all().delete()
 
     def test_mapping_type_name(self):
         eq_(WebappIndexer.get_mapping_type_name(), 'webapp')
@@ -1427,8 +1421,8 @@ class TestWebappIndexer(amo.tests.TestCase):
 
     def test_extract_features(self):
         enabled = ('has_apps', 'has_sms', 'has_geolocation')
-        AppFeatures.objects.create(version=self.app.current_version,
-                                   **dict((k, True) for k in enabled))
+        self.app.current_version.features.update(
+            **dict((k, True) for k in enabled))
         obj, doc = self._get_doc()
         for k, v in doc['features'].iteritems():
             eq_(v, k in enabled)

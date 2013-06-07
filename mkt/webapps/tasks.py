@@ -27,7 +27,7 @@ from users.utils import get_task_user
 
 from mkt.constants.regions import WORLDWIDE
 from mkt.developers.tasks import _fetch_manifest, run_validator, validator
-from mkt.webapps.models import AppFeatures, Webapp, WebappIndexer
+from mkt.webapps.models import Webapp, WebappIndexer
 from mkt.webapps.utils import get_locale_properties
 
 task_log = logging.getLogger('z.task')
@@ -368,7 +368,7 @@ def _update_features(id):
         return
 
     # If the app already has a non-empty feature profile, don't touch it.
-    features = webapp.current_version.get_features()
+    features = webapp.current_version.features
     if features.to_list():
         _log(id, u'Webapp already has a non-empty feature profile')
         return
@@ -382,7 +382,7 @@ def _update_features(id):
     keys = ['has_%s' % feature.lower() for feature in feature_profile]
     data = defaultdict.fromkeys(keys, True)
 
-    # get_features() auto-creates an AppFeature, so we just need to update it.
+    # Update features.
     features.update(**data)
 
 

@@ -21,7 +21,7 @@ from mkt.api.tests.test_oauth import BaseOAuth, OAuthClient
 from mkt.constants.features import FeatureProfile
 from mkt.search.forms import DEVICE_CHOICES_IDS
 from mkt.site.fixtures import fixture
-from mkt.webapps.models import AppFeatures, Installed, Webapp
+from mkt.webapps.models import Installed, Webapp
 
 
 class TestApi(BaseOAuth, ESTestCase):
@@ -347,7 +347,6 @@ class TestApiFeatures(BaseOAuth, ESTestCase):
         #  'webaudio': True}
         self.profile = '8a7dd46c.32.1'
         self.qs = {'q': 'something', 'pro': self.profile, 'dev': 'firefoxos'}
-        AppFeatures.objects.all().delete()
 
     def test_no_features(self):
         # Base test to make sure we find the app.
@@ -361,8 +360,7 @@ class TestApiFeatures(BaseOAuth, ESTestCase):
 
     def test_one_good_feature(self):
         # Enable an app feature that matches one in our profile.
-        AppFeatures.objects.create(version=self.webapp.current_version,
-                                   has_geolocation=True)
+        self.webapp.current_version.features.update(has_geolocation=True)
         self.webapp.save()
         self.refresh('webapp')
 
@@ -373,8 +371,7 @@ class TestApiFeatures(BaseOAuth, ESTestCase):
 
     def test_one_bad_feature(self):
         # Enable an app feature that doesn't match one in our profile.
-        AppFeatures.objects.create(version=self.webapp.current_version,
-                                   has_pay=True)
+        self.webapp.current_version.features.update(has_pay=True)
         self.webapp.save()
         self.refresh('webapp')
 
@@ -386,8 +383,7 @@ class TestApiFeatures(BaseOAuth, ESTestCase):
     def test_all_good_features(self):
         # Enable app features so they exactly match our device profile.
         fp = FeatureProfile.from_signature(self.profile)
-        AppFeatures.objects.create(
-            version=self.webapp.current_version,
+        self.webapp.current_version.features.update(
             **dict(('has_%s' % k, v) for k, v in fp.items()))
         self.webapp.save()
         self.refresh('webapp')
@@ -401,8 +397,7 @@ class TestApiFeatures(BaseOAuth, ESTestCase):
         # Enable an app feature that doesn't match one in our profile.
         qs = self.qs.copy()
         del qs['dev']  # Desktop doesn't send a device.
-        AppFeatures.objects.create(version=self.webapp.current_version,
-                                   has_pay=True)
+        self.webapp.current_version.features.update(has_pay=True)
         self.webapp.save()
         self.refresh('webapp')
 
@@ -507,7 +502,6 @@ class TestFeaturedNoCategories(BaseOAuth, ESTestCase):
         self.cat = Category.objects.create(type=amo.ADDON_WEBAPP, slug='shiny')
         self.app = Webapp.objects.get(pk=337141)
         AddonCategory.objects.get_or_create(addon=self.app, category=self.cat)
-        AppFeatures.objects.all().delete()
         self.make_featured(app=self.app, category=None, region=mkt.regions.US)
         self.profile = '8a7dd46c.32.1'
         self.qs = {'pro': self.profile, 'dev': 'firefoxos'}
@@ -521,8 +515,7 @@ class TestFeaturedNoCategories(BaseOAuth, ESTestCase):
 
     def test_one_good_feature_no_category(self):
         """Enable an app feature that matches one in our profile."""
-        AppFeatures.objects.create(version=self.app.current_version,
-                                   has_geolocation=True)
+        self.app.current_version.features.update(has_geolocation=True)
         self.reindex(Webapp, 'webapp')
 
         res = self.client.get(self.list_url + (self.qs,))
@@ -532,8 +525,7 @@ class TestFeaturedNoCategories(BaseOAuth, ESTestCase):
 
     def test_one_bad_feature_no_category(self):
         """Enable an app feature that doesn't match one in our profile."""
-        AppFeatures.objects.create(version=self.app.current_version,
-                                   has_pay=True)
+        self.app.current_version.features.update(has_pay=True)
         self.reindex(Webapp, 'webapp')
 
         res = self.client.get(self.list_url + (self.qs,))
@@ -543,8 +535,7 @@ class TestFeaturedNoCategories(BaseOAuth, ESTestCase):
     def test_all_good_features_no_category(self):
         """Enable app features so they exactly match our device profile."""
         fp = FeatureProfile.from_signature(self.profile)
-        AppFeatures.objects.create(
-            version=self.app.current_version,
+        self.app.current_version.features.update(
             **dict(('has_%s' % k, v) for k, v in fp.items()))
         self.reindex(Webapp, 'webapp')
 
@@ -555,8 +546,7 @@ class TestFeaturedNoCategories(BaseOAuth, ESTestCase):
 
     def test_non_matching_profile_desktop_no_category(self):
         """Enable unmatched feature but desktop should find it."""
-        AppFeatures.objects.create(version=self.app.current_version,
-                                   has_pay=True)
+        self.app.current_version.features.update(has_pay=True)
         self.reindex(Webapp, 'webapp')
 
         self.qs.update({'dev': ''})
@@ -577,7 +567,6 @@ class TestFeaturedWithCategories(BaseOAuth, ESTestCase):
         self.cat = Category.objects.create(type=amo.ADDON_WEBAPP, slug='shiny')
         self.app = Webapp.objects.get(pk=337141)
         AddonCategory.objects.get_or_create(addon=self.app, category=self.cat)
-        AppFeatures.objects.all().delete()
         self.make_featured(app=self.app, category=self.cat,
                            region=mkt.regions.US)
         self.profile = '8a7dd46c.32.1'
@@ -596,8 +585,7 @@ class TestFeaturedWithCategories(BaseOAuth, ESTestCase):
 
     def test_one_good_feature_with_category(self):
         """Enable an app feature that matches one in our profile."""
-        AppFeatures.objects.create(version=self.app.current_version,
-                                   has_geolocation=True)
+        self.app.current_version.features.update(has_geolocation=True)
         self.reindex(Webapp, 'webapp')
 
         res = self.client.get(self.list_url + (self.qs,))
@@ -607,8 +595,7 @@ class TestFeaturedWithCategories(BaseOAuth, ESTestCase):
 
     def test_one_bad_feature_with_category(self):
         """Enable an app feature that doesn't match one in our profile."""
-        AppFeatures.objects.create(version=self.app.current_version,
-                                   has_pay=True)
+        self.app.current_version.features.update(has_pay=True)
         self.reindex(Webapp, 'webapp')
 
         res = self.client.get(self.list_url + (self.qs,))
@@ -618,8 +605,7 @@ class TestFeaturedWithCategories(BaseOAuth, ESTestCase):
     def test_all_good_features_with_category(self):
         """Enable app features so they exactly match our device profile."""
         fp = FeatureProfile.from_signature(self.profile)
-        AppFeatures.objects.create(
-            version=self.app.current_version,
+        self.app.current_version.features.update(
             **dict(('has_%s' % k, v) for k, v in fp.items()))
         self.reindex(Webapp, 'webapp')
 
@@ -630,8 +616,7 @@ class TestFeaturedWithCategories(BaseOAuth, ESTestCase):
 
     def test_non_matching_profile_desktop_with_category(self):
         """Enable unmatched feature but desktop should find it."""
-        AppFeatures.objects.create(version=self.app.current_version,
-                                   has_pay=True)
+        self.app.current_version.features.update(has_pay=True)
         self.reindex(Webapp, 'webapp')
 
         self.qs.update({'dev': ''})

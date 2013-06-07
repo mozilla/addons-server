@@ -22,7 +22,7 @@ from mkt.developers.decorators import dev_required
 from mkt.developers.forms import AppFormMedia, CategoryForm, PreviewFormSet
 from mkt.submit.forms import AppDetailsBasicForm
 from mkt.submit.models import AppSubmissionChecklist
-from mkt.webapps.models import AddonExcludedRegion, AppFeatures
+from mkt.webapps.models import AddonExcludedRegion
 
 from . import forms
 from .decorators import read_dev_agreement_required, submit_step
@@ -120,8 +120,7 @@ def manifest(request):
 
         # Create feature profile.
         if waffle.switch_is_active('buchets'):
-            AppFeatures.objects.create(version=addon.current_version,
-                                       **features_form.cleaned_data)
+            addon.current_version.features.update(**features_form.cleaned_data)
 
         return redirect('submit.app.details', addon.app_slug)
 

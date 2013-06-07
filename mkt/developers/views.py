@@ -129,7 +129,7 @@ def edit(request, addon_id, addon, webapp=False):
         'previews': addon.get_previews(),
     }
     if waffle.switch_is_active('buchets') and addon.current_version:
-        data['appfeatures'] = addon.current_version.get_features().to_list()
+        data['appfeatures'] = addon.current_version.features.to_list()
     if acl.action_allowed(request, 'Apps', 'Configure'):
         data['admin_settings_form'] = forms.AdminSettingsForm(instance=addon)
     return jingo.render(request, 'developers/apps/edit.html', data)
@@ -586,7 +586,7 @@ def addons_section(request, addon_id, addon, section, editable=False,
 
     if waffle.switch_is_active('buchets'):
         if addon.current_version:
-            appfeatures = addon.current_version.get_features()
+            appfeatures = addon.current_version.features
             appfeatures_form = AppFeaturesForm(instance=appfeatures)
         else:
             appfeatures = appfeatures_form = None

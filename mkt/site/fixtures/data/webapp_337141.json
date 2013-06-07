@@ -203,5 +203,46 @@
             "listed": true,
             "user": 31337
         }
+    },
+    {
+        "pk": 175,
+        "model": "webapps.appfeatures",
+        "fields": {
+            "has_video_h264": false,
+            "has_mp3": false,
+            "has_fullscreen": false,
+            "has_packaged_apps": false,
+            "has_bluetooth": false,
+            "has_gamepad": false,
+            "has_geolocation": false,
+            "has_indexeddb": false,
+            "has_push": false,
+            "has_idle": false,
+            "has_network_info": false,
+            "version": 1268829,
+            "has_orientation": false,
+            "has_apps": false,
+            "has_light_events": false,
+            "has_device_storage": false,
+            "has_touch": false,
+            "has_archive": false,
+            "has_proximity": false,
+            "has_contacts": false,
+            "has_quota": false,
+            "has_sms": false,
+            "has_time_clock": false,
+            "has_battery": false,
+            "has_fm": false,
+            "has_webaudio": false,
+            "has_pay": false,
+            "created": "2013-06-06T11:46:12",
+            "has_activity": false,
+            "has_qhd": false,
+            "modified": "2013-06-06T11:46:12",
+            "has_video_webm": false,
+            "has_network_stats": false,
+            "has_vibrate": false,
+            "has_audio": false
+        }
     }
 ]
