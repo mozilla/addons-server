@@ -187,31 +187,3 @@ class TestPackaged(PackagedApp, amo.tests.TestCase):
         zf = zipfile.ZipFile(self.file.signed_file_path, mode='r')
         ids_data = zf.read('META-INF/ids.json')
         eq_(sorted(json.loads(ids_data).keys()), ['id', 'version'])
-
-    @mock.patch.object(packaged, '_get_endpoint', lambda _: '/fake/url/')
-    @mock.patch('requests.post')
-    def test_inject_ids_replace(self, post):
-        post().status_code = 200
-        post().content = '{"zigbert.rsa": ""}'
-
-        origz = zipfile.ZipFile(self.file.file_path, mode='r')
-        original_contents = sorted([
-            (zi.filename, origz.read(zi.filename))
-            for zi in origz.infolist()])
-
-        zf = zipfile.ZipFile(self.file.file_path, mode='a')
-        zf.writestr('META-INF/ids.json', '{}')
-        zf.close()
-
-        packaged.sign(self.version.pk, resign=True)
-
-        zf = zipfile.ZipFile(self.file.signed_file_path, mode='r')
-        ids_data = zf.read('META-INF/ids.json')
-        eq_(sorted(json.loads(ids_data).keys()), ['id', 'version'])
-        eq_([zi.filename for zi in zf.infolist()].count('META-INF/ids.json'),
-            1)
-        eq_(sorted([(zi.filename, zf.read(zi.filename))
-                    for zi in zf.infolist()
-                    if not zi.filename.startswith('META-INF')]),
-            original_contents)
-
