@@ -316,6 +316,7 @@ def _queue(request, apps, tab, pager_processor=None):
         'pager': pager,
         'tab': tab,
         'search_form': _get_search_form(request),
+        'point_types': amo.REVIEWED_MARKETPLACE,
     }))
 
 

@@ -8,7 +8,7 @@
 
 {% if waffle.switch('reviewer-incentive-points') %}
 <div id="reviewers-score-bar" class="c">
-  {{ reviewers_score_bar() }}
+  {{ reviewers_score_bar(types=point_types) }}
 </div>
 {% endif %}
 

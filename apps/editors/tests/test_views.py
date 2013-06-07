@@ -871,7 +871,8 @@ class TestModeratedQueue(QueueTest):
     def test_skip_score(self):
         self.create_switch('reviewer-incentive-points')
         self.setup_actions(reviews.REVIEW_MODERATE_SKIP)
-        eq_(ReviewerScore.objects.filter(note_key=amo.REVIEWED_REVIEW).count(),
+        eq_(ReviewerScore.objects.filter(note_key=amo.REVIEWED_ADDON_REVIEW)
+                         .count(),
             0)
 
     def get_logs(self, action):
@@ -920,7 +921,8 @@ class TestModeratedQueue(QueueTest):
     def test_remove_score(self):
         self.create_switch('reviewer-incentive-points')
         self.setup_actions(reviews.REVIEW_MODERATE_DELETE)
-        eq_(ReviewerScore.objects.filter(note_key=amo.REVIEWED_REVIEW).count(),
+        eq_(ReviewerScore.objects.filter(note_key=amo.REVIEWED_ADDON_REVIEW)
+                         .count(),
             1)
 
     def test_keep(self):
@@ -944,7 +946,8 @@ class TestModeratedQueue(QueueTest):
     def test_keep_score(self):
         self.create_switch('reviewer-incentive-points')
         self.setup_actions(reviews.REVIEW_MODERATE_KEEP)
-        eq_(ReviewerScore.objects.filter(note_key=amo.REVIEWED_REVIEW).count(),
+        eq_(ReviewerScore.objects.filter(note_key=amo.REVIEWED_ADDON_REVIEW)
+                         .count(),
             1)
 
     def test_queue_count(self):

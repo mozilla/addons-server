@@ -145,7 +145,7 @@ def queue_tabnav(context):
 
 @register.inclusion_tag('editors/includes/reviewers_score_bar.html')
 @jinja2.contextfunction
-def reviewers_score_bar(context):
+def reviewers_score_bar(context, types=None):
     user = context.get('amo_user')
 
     return new_context(dict(
@@ -153,7 +153,7 @@ def reviewers_score_bar(context):
         amo=amo, settings=settings,
         points=ReviewerScore.get_recent(user),
         total=ReviewerScore.get_total(user),
-        **ReviewerScore.get_leaderboards(user)))
+        **ReviewerScore.get_leaderboards(user, types=types)))
 
 
 class ItemStateTable(object):

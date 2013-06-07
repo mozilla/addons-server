@@ -348,7 +348,8 @@ def _queue(request, TableObj, tab, qs=None):
     table.set_page(page)
     return jingo.render(request, 'editors/queue.html',
                         context(table=table, page=page, tab=tab,
-                                search_form=search_form))
+                                search_form=search_form,
+                                point_types=amo.REVIEWED_AMO))
 
 
 def queue_counts(type=None, **kw):
@@ -436,7 +437,8 @@ def queue_moderated(request):
     return jingo.render(request, 'editors/queue.html',
                         context(reviews_formset=reviews_formset,
                                 tab='moderated', page=page, flags=flags,
-                                search_form=None))
+                                search_form=None,
+                                point_types=amo.REVIEWED_AMO))
 
 
 @reviewer_required

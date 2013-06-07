@@ -381,6 +381,7 @@ class TestReviewerScore(amo.tests.TestCase):
     def setUp(self):
         self.create_switch(name='reviewer-incentive-points')
         self.addon = amo.tests.addon_factory(status=amo.STATUS_NOMINATED)
+        self.app = amo.tests.app_factory(status=amo.STATUS_NOMINATED)
         self.user = UserProfile.objects.get(email='editor@mozilla.com')
 
     def _give_points(self, user=None, addon=None, status=None):
@@ -461,8 +462,8 @@ class TestReviewerScore(amo.tests.TestCase):
     def test_award_moderation_points(self):
         ReviewerScore.award_moderation_points(self.user, self.addon, 1)
         score = ReviewerScore.objects.all()[0]
-        eq_(score.score, amo.REVIEWED_SCORES.get(amo.REVIEWED_REVIEW))
-        eq_(score.note_key, amo.REVIEWED_REVIEW)
+        eq_(score.score, amo.REVIEWED_SCORES.get(amo.REVIEWED_ADDON_REVIEW))
+        eq_(score.note_key, amo.REVIEWED_ADDON_REVIEW)
 
     def test_get_total(self):
         user2 = UserProfile.objects.get(email='admin@mozilla.com')
@@ -516,6 +517,27 @@ class TestReviewerScore(amo.tests.TestCase):
         eq_(len(leaders['leader_top']), 1)  # Only the editor is here.
         assert user2.id not in [l['user_id'] for l in leaders['leader_top']], (
             'Unexpected admin user found in leaderboards.')
+
+    def test_no_marketplace_points_in_amo_leaderboards(self):
+        user2 = UserProfile.objects.get(email='regular@mozilla.com')
+        self._give_points()
+        self._give_points(status=amo.STATUS_LITE)
+        self._give_points(addon=self.app, status=amo.STATUS_NOMINATED)
+        leaders = ReviewerScore.get_leaderboards(self.user,
+                                                 types=amo.REVIEWED_AMO)
+        eq_(leaders['leader_top'][0]['total'],
+            amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_FULL] +
+            amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_PRELIM])
+
+    def test_no_amo_points_in_marketplace_leaderboards(self):
+        user2 = UserProfile.objects.get(email='regular@mozilla.com')
+        self._give_points()
+        self._give_points(status=amo.STATUS_LITE)
+        self._give_points(addon=self.app, status=amo.STATUS_NOMINATED)
+        leaders = ReviewerScore.get_leaderboards(
+            self.user, types=amo.REVIEWED_MARKETPLACE)
+        eq_(leaders['leader_top'][0]['total'],
+            amo.REVIEWED_SCORES[amo.REVIEWED_WEBAPP_HOSTED])
 
     def test_get_breakdown(self):
         self._give_points()
