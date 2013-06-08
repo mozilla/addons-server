@@ -1,4 +1,8 @@
 from datetime import datetime, timedelta
+import os
+import time
+
+from django.conf import settings
 
 import commonware.log
 import cronjobs
@@ -13,7 +17,6 @@ log = commonware.log.getLogger('z.cron')
 @cronjobs.register
 def mkt_gc(**kw):
     """Site-wide garbage collections."""
-
     days_ago = lambda days: datetime.today() - timedelta(days=days)
 
     log.debug('Collecting data to delete')
@@ -24,3 +27,11 @@ def mkt_gc(**kw):
         chunk.sort()
         log.debug('Deleting log entries: %s' % str(chunk))
         amo.tasks.delete_logs.delay(chunk)
+
+    # Delete the dump apps over 30 days.
+    for app in os.listdir(settings.DUMPED_APPS_PATH):
+        app = os.path.join(settings.DUMPED_APPS_PATH, app)
+        if (os.stat(app).st_mtime < time.time() -
+            settings.DUMPED_APPS_DAYS_DELETE):
+            log.debug('Deleting old tarball: {0}'.format(app))
+            os.remove(app)
