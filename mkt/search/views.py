@@ -2,7 +2,6 @@ from django.shortcuts import redirect
 
 import jingo
 import waffle
-from elasticutils.contrib.django import F
 from tower import ugettext as _
 
 import amo
@@ -155,12 +154,8 @@ def _filter_search(request, qs, query, filters=None, sorting=None,
         qs = qs.filter(carrier_billing_only=False)
 
     if profile and waffle.switch_is_active('buchets'):
-        f = F()
         # Exclude apps that require any features we don't support.
-        for k, v in profile.iteritems():
-            if not v:
-                f &= F(**{'features.has_%s' % k: False})
-        qs = qs.filter(f)
+        qs = qs.filter(**profile.to_kwargs(prefix='features.has_'))
 
     return qs
 

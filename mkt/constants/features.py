@@ -174,20 +174,20 @@ class FeatureProfile(OrderedDict):
         return '%x.%s.%s' % (int(profile, 2), len(profile),
                              settings.APP_FEATURES_VERSION)
 
-    def to_kwargs(self, prefix='', only_true=True):
+    def to_kwargs(self, prefix=''):
         """
-        Convert a FeatureProfile object to a dict representing its values. This
-        is helpful if using a FeatureProfile in a queryset.
+        Returns a dict representing the false values of this profile.
 
         Parameters:
         - `prefix` - a string prepended to the key name. Helpful if being used
                      to traverse relations
-        - `only_true` - if True, any features with a False value are excluded
-                        from the return dict.
+
+        This only includes keys for which the profile is False, which is useful
+        for querying apps where we want to filter by apps which do not require
+        a feature.
 
         >>> profile = FeatureProject.from_signature(request.get('pro'))
         >>> Webapp.objects.filter(**profile.to_kwargs())
+
         """
-        items = dict([(k, v) for k, v in self.iteritems() if v]) if only_true \
-            else self
-        return dict([(prefix + k, v) for k, v in items.iteritems()])
+        return dict((prefix + k, False) for k, v in self.iteritems() if not v)

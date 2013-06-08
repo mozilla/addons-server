@@ -65,9 +65,8 @@ class FeaturedAppQuerySet(models.query.QuerySet):
 
         if profile and waffle.switch_is_active('buchets'):
             # Exclude apps that require any features we don't support.
-            qs = qs.filter(**dict(
-                ('app___current_version__features__has_%s' % k, False)
-                for k, v in profile.iteritems() if not v))
+            qs = qs.filter(**profile.to_kwargs(
+                prefix='app___current_version__features__has_'))
 
         qs_pre_region = qs._clone()
 
