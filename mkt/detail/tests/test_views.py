@@ -964,27 +964,17 @@ class TestPackagedManifest(DetailBase):
         res = self.client.get(self.url)
         eq_(res.status_code, 404)
 
-    @mock.patch('mkt.webapps.models.Webapp.get_cached_manifest')
-    def test_app_pending_reviewer(self, _mock):
+    def test_app_pending_reviewer(self):
         self.login_as_reviewer()
         self.app.update(status=amo.STATUS_PENDING)
-        _mock.return_value = self._mocked_json()
         res = self.client.get(self.url)
-        eq_(res.content, self._mocked_json())
-        eq_(res['Content-Type'],
-            'application/x-web-app-manifest+json; charset=utf-8')
-        eq_(res['ETag'], '"%s"' % self.get_digest_from_manifest())
+        eq_(res.status_code, 404)
 
-    @mock.patch('mkt.webapps.models.Webapp.get_cached_manifest')
-    def test_app_pending_author(self, _mock):
+    def test_app_pending_author(self):
         self.login_as_author()
         self.app.update(status=amo.STATUS_PENDING)
-        _mock.return_value = self._mocked_json()
         res = self.client.get(self.url)
-        eq_(res.content, self._mocked_json())
-        eq_(res['Content-Type'],
-            'application/x-web-app-manifest+json; charset=utf-8')
-        eq_(res['ETag'], '"%s"' % self.get_digest_from_manifest())
+        eq_(res.status_code, 404)
 
     @mock.patch('mkt.webapps.models.Webapp.get_cached_manifest')
     def test_logged_out(self, _mock):

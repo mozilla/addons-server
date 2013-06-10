@@ -65,15 +65,10 @@ def manifest(request, uuid):
 
     """
     addon = get_object_or_404(Webapp, guid=uuid, is_packaged=True)
-
-    is_reviewer = acl.check_reviewer(request)
-    is_dev = addon.has_author(request.amo_user)
     is_avail = addon.status in [amo.STATUS_PUBLIC, amo.STATUS_BLOCKED]
-
     package_etag = hashlib.sha256()
 
-    if (not addon.is_packaged or addon.disabled_by_user or
-        not (is_avail or is_reviewer or is_dev)):
+    if not addon.is_packaged or addon.disabled_by_user or not is_avail:
         raise http.Http404
 
     else:
