@@ -70,8 +70,12 @@ class Command(BaseCommand):
         descs = []
         for theme in self.get_themes(limit, offset):
             if max(theme[1]) > u'\x7f':
-                ids.append(theme[0]),
-                descs.append(''.join(debake(theme[1])))
+                try:
+                    descs.append(''.join(debake(theme[1])))
+                    ids.append(theme[0])
+                except UnicodeEncodeError:
+                    # probably already done?
+                    print "skipped", theme[0]
         if ids:
             targets = self.find_needed_fixes(ids, descs)
             self.fix_descs(targets)
