@@ -1,5 +1,4 @@
 from getpass import getpass
-import itertools
 from optparse import make_option
 from time import time
 
@@ -94,7 +93,7 @@ class Command(BaseCommand):
     def fix_descs(self, targets):
         for id, desc in targets:
             try:
-                desc = desc.decode('utf-8')
+                desc.decode('utf-8')
                 print "FIX", id
             except UnicodeDecodeError:
                 print "SKIPPED", id
