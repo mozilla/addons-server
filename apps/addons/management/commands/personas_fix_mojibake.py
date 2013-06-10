@@ -98,8 +98,9 @@ class Command(BaseCommand):
             except UnicodeDecodeError:
                 print "SKIPPED", id
             self.cursor_z.execute(
-                'UPDATE translations as t, personas as p set t.localized_string = %s '
-                'where t.id = p.description and p.persona_id = %s', [desc, id])
+                'UPDATE translations AS t, personas AS p SET t.localized_string = %s, '
+                't.localized_string_clean = NULL '
+                'WHERE t.id = p.description AND p.persona_id = %s', [desc, id])
 
     def count_themes(self):
         self.cursor_z.execute('SELECT count(persona_id) from personas')
