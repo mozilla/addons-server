@@ -5,7 +5,7 @@ from django.db import models
 from uuidfield.fields import UUIDField
 
 import amo.models
-from mkt.constants import communications as const
+from mkt.constants import comm as const
 from translations.fields import TranslatedField, save_signal
 
 
