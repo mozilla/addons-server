@@ -3,7 +3,7 @@ from nose.tools import eq_, ok_
 from django.conf import settings
 
 import amo.tests
-from mkt.constants.features import FeatureProfile
+from mkt.constants.features import APP_FEATURES, FeatureProfile
 
 
 class TestFeatureProfile(amo.tests.TestCase):
@@ -30,19 +30,14 @@ class TestFeatureProfile(amo.tests.TestCase):
         profile = FeatureProfile.from_signature(self.signature)
         self._test_profile(profile)
 
-    def _test_kwargs(self, prefix, only_true):
+    def _test_kwargs(self, prefix):
         profile = FeatureProfile.from_binary(self.binary)
-        kwargs = profile.to_kwargs(prefix=prefix, only_true=only_true)
+        kwargs = profile.to_kwargs(prefix=prefix)
 
         ok_(all([k.startswith(prefix) for k in kwargs.keys()]))
-        eq_(kwargs.values().count(True), self.binary.count('1'))
-        if only_true:
-            eq_(kwargs.values().count(False), 0)
-        else:
-            eq_(kwargs.values().count(False), self.binary.count('0'))
+        eq_(kwargs.values().count(False), self.binary.count('0'))
+        eq_(len(kwargs.values()), len(APP_FEATURES) - len(self.truths))
 
     def test_to_kwargs(self):
-        self._test_kwargs('', True)
-        self._test_kwargs('', False)
-        self._test_kwargs('prefix_', True)
-        self._test_kwargs('prefix_', False)
+        self._test_kwargs('')
+        self._test_kwargs('prefix_')
