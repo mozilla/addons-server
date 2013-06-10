@@ -389,6 +389,7 @@ INSTALLED_APPS = (
     'bandwagon',
     'blocklist',
     'browse',
+    'comm',
     'compat',
     'cronjobs',
     'csp',
