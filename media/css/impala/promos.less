@@ -532,26 +532,38 @@
     }
 }
 
-#promos #amp-your-firefox {
-    background: url(../../img/zamboni/discovery_pane/promos/amp_your_firefox.png) 100% 0 no-repeat #FF592D;
-    padding: 28px 350px 48px 28px;
-    .border-box();
-    height: 271px;
+// This is for the "Amp Your Firefox" promo. It'd be nice to use this elsewhere.
+@font-face {
+    font-family: "OpenSansWeb";
+    src: url("../../css/mkt/fonts/OpenSans-Light-webfont.woff") format("woff");
+    font-weight: 300;
+    font-style: normal;
+}
 
+#promos #amp-your-firefox {
+    .border-box();
+    background: url(../../img/zamboni/discovery_pane/promos/amp_your_firefox.png) 100% 0 no-repeat #FF592D;
+    font-family: OpenSansWeb, "Open Sans", "Lucida Grande", "Lucida Sans", @sans-stack;
+    font-weight: 300;
+    height: 271px;
+    padding: 28px 350px 48px 28px;
+    hgroup, .wrap {
+        padding-left: 10px;
+        width: 350px;
+    }
     hgroup {
         margin: 0 auto;
-        width: 340px;
-    }
-    h2 {
-        color: #fff;
-        font-size: 42px;
-        font-weight: normal;
-        line-height: 1em;
-        text-shadow: none;
     }
     .wrap {
         margin: 12px auto;
-        width: 340px;
+    }
+    h2 {
+        color: #fff;
+        font-family: inherit;
+        font-size: 44px;
+        font-weight: 300;
+        line-height: 1em;
+        text-shadow: none;
     }
     p {
         color: #fff;
@@ -560,11 +572,21 @@
     }
     a {
         color: #fff;
+        display: block;
         font-size: 22px;
+        // Big click target :)
+        margin: -200px -20px;
+        padding: 200px 20px;
+        position: relative;
         text-decoration: none;
-    }
-    a:after {
-        content: " »";
+        text-shadow: 0 -1px 1px #666;
+        z-index: 1;
+        &:hover {
+            text-shadow: 0 -1px 1px #000;
+        }
+        &:after {
+            content: " »";
+        }
     }
 }
 
