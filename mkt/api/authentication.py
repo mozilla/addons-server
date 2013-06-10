@@ -11,6 +11,7 @@ from tastypie import http
 from tastypie.authentication import Authentication
 
 from access.middleware import ACLMiddleware
+from users.models import UserProfile
 from mkt.api.middleware import APIPinningMiddleware
 
 from mkt.api.models import Access, Token, ACCESS_TOKEN
@@ -73,9 +74,13 @@ class OAuthAuthentication(Authentication):
                 log.error(u'Cannot find APIAccess token with that key: %s'
                           % oauth.attempted_key)
                 return self._error('headers')
-            request.user = Token.objects.get(token_type=ACCESS_TOKEN,
-                key=oauth_request.resource_owner_key).user
-
+            uid = Token.objects.filter(
+                token_type=ACCESS_TOKEN,
+                key=oauth_request.resource_owner_key).values_list(
+                    'user_id', flat=True)[0]
+            request.amo_user = UserProfile.objects.select_related(
+                'user').get(pk=uid)
+            request.user = request.amo_user.user
         else:
             # This is 2-legged OAuth.
             log.info('Trying 2 legged OAuth')
@@ -91,9 +96,12 @@ class OAuthAuthentication(Authentication):
                 log.error(u'Cannot find APIAccess token with that key: %s'
                           % oauth.attempted_key)
                 return self._error('headers')
-            request.user = Access.objects.get(
-                key=oauth_request.client_key).user
-
+            uid = Access.objects.filter(
+                key=oauth_request.client_key).values_list(
+                    'user_id', flat=True)[0]
+            request.amo_user = UserProfile.objects.select_related(
+                'user').get(pk=uid)
+            request.user = request.amo_user.user
         ACLMiddleware().process_request(request)
         # We've just become authenticated, time to run the pinning middleware
         # again.
@@ -148,11 +156,12 @@ class SharedSecretAuthentication(Authentication):
                                consumer_id, hashlib.sha512).hexdigest() == hm
             if matches:
                 try:
-                    request.user = User.objects.get(email=email)
-                except User.DoesNotExist:
+                    request.amo_user = UserProfile.objects.select_related(
+                        'user').get(email=email)
+                    request.user = request.amo_user.user
+                except UserProfile.DoesNotExist:
                     log.info('Auth token matches absent user (%s)' % email)
                     return False
-
                 ACLMiddleware().process_request(request)
             else:
                 log.info('Shared-secret auth token does not match')

@@ -160,6 +160,7 @@ class TestSharedSecretAuthentication(TestCase):
     def setUp(self):
         self.auth = authentication.SharedSecretAuthentication()
         self.profile = UserProfile.objects.get(pk=2519)
+        self.profile.update(email=self.profile.user.email)
 
     def test_session_auth(self):
         req = RequestFactory().get('/?_user=cfinke@m.com,56b6f1a3dd735d962c56'
@@ -207,6 +208,7 @@ class TestMultipleAuthentication(TestCase):
     def setUp(self):
         self.resource = MultipleTestResource()
         self.profile = UserProfile.objects.get(pk=2519)
+        self.profile.update(email=self.profile.user.email)
 
     def test_single(self):
         req = RequestFactory().get('/?_user=cfinke@m.com,56b6f1a3dd735d962c56'
