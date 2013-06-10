@@ -103,12 +103,7 @@ class SearchResource(CORSResource, MarketplaceResource):
             obj.pk = obj.id
             objs.append(self.build_bundle(obj=obj, request=request))
 
-        if uses_es:
-            page['objects'] = [self.full_dehydrate(bundle)
-                               for bundle in objs]
-        else:
-            page['objects'] = [AppResource().full_dehydrate(bundle)
-                               for bundle in objs]
+        page['objects'] = [self.full_dehydrate(bundle) for bundle in objs]
 
         # This isn't as quite a full as a full TastyPie meta object,
         # but at least it's namespaced that way and ready to expand.
