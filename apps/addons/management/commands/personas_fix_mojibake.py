@@ -89,8 +89,11 @@ class Command(BaseCommand):
 
     def fix_descs(self, targets):
         for id, desc in targets:
-            desc = desc.decode('utf-8')
-            print "FIX", id
+            try:
+                desc = desc.decode('utf-8')
+                print "FIX", id
+            except UnicodeDecodeError:
+                print "SKIPPED", id
             self.cursor_z.execute(
                 'UPDATE translations as t, personas as p set t.localized_string = %s '
                 'where t.id = p.description and p.persona_id = %s', [desc, id])
