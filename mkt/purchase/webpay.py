@@ -24,7 +24,6 @@ from amo.urlresolvers import reverse
 from lib.cef_loggers import app_pay_cef
 from lib.crypto.webpay import (InvalidSender, parse_from_webpay,
                                sign_webpay_jwt)
-from market.forms import PriceCurrencyForm
 from mkt.webapps.models import Webapp
 from stats.models import ClientData, Contribution
 
@@ -44,15 +43,6 @@ def start_purchase(request, addon):
                    .format(addon.name))
 
     currency = request.REGION.default_currency
-
-    # If tier is specified, then let's look it up.
-    if waffle.switch_is_active('currencies'):
-        form = PriceCurrencyForm(data=request.POST, addon=addon)
-        if form.is_valid():
-            tier = form.get_tier()
-            if tier:
-                amount, currency = tier.price, tier.currency
-
     return amount, currency, uuid_, contrib_for
 
 

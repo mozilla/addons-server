@@ -113,7 +113,6 @@ class PriceResource(CORSResource, MarketplaceModelResource):
             provider = PROVIDER_LOOKUP[provider]
         return bundle.obj.prices(provider=provider)
 
-
     def dehydrate_localized(self, bundle):
         region = bundle.request.REGION
 
@@ -121,7 +120,7 @@ class PriceResource(CORSResource, MarketplaceModelResource):
             if price['region'] == region.id:
                 result = price.copy()
                 result.update({
-                    'locale': price_locale(price['amount'], price['currency']),
+                    'locale': price_locale(price['price'], price['currency']),
                     'region': region.name,
                 })
                 return result
