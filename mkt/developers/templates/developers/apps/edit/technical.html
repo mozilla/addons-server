@@ -42,10 +42,10 @@
                      _("No, this app's stats are not publicly viewable.")) }}
           </td>
         </tr>
-        {% if waffle.switch('buchets') and appfeatures_form %}
+        {% if waffle.switch('buchets') and not addon.is_packaged %}
           <tr>
             <th>
-              {{ tip(_("Required Features"),
+              {{ tip(_("Minimum Requirements"),
                      _("Device features required for this app to function.")) }}
             </th>
             <td>
@@ -55,8 +55,8 @@
                     <li><label for="{{ field.auto_id }}">{{ field }} {{ field.help_text }}</label></li>
                   {% endfor %}
                 </ul>
-              {% elif not editable and appfeatures %}
-                {{ ', '.join(appfeatures) }}
+              {% elif not editable and feature_list %}
+                {{ feature_list|join(', ') }}
               {% else %}
                 {{ _("This app does not require any device features") }}
               {% endif %}

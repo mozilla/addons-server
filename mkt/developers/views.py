@@ -128,8 +128,9 @@ def edit(request, addon_id, addon, webapp=False):
                                                          flat=True),
         'previews': addon.get_previews(),
     }
-    if waffle.switch_is_active('buchets') and addon.current_version:
-        data['appfeatures'] = addon.current_version.features.to_list()
+    if waffle.switch_is_active('buchets') and not addon.is_packaged:
+        data['feature_list'] = [unicode(f) for f in
+                                addon.current_version.features.to_list()]
     if acl.action_allowed(request, 'Apps', 'Configure'):
         data['admin_settings_form'] = forms.AdminSettingsForm(instance=addon)
     return jingo.render(request, 'developers/apps/edit.html', data)
@@ -240,16 +241,36 @@ def status(request, addon_id, addon, webapp=False):
 
 @dev_required
 def version_edit(request, addon_id, addon, version_id):
+    show_features = waffle.switch_is_active('buchets') and addon.is_packaged
+
     version = get_object_or_404(Version, pk=version_id, addon=addon)
     form = VersionForm(request.POST or None, instance=version)
+    all_forms = [form]
 
-    if request.method == 'POST' and form.is_valid():
-        form.save()
+    if show_features:
+        appfeatures = addon.current_version.features
+        appfeatures_form = AppFeaturesForm(request.POST, instance=appfeatures)
+        all_forms.append(appfeatures_form)
+
+    if request.method == 'POST' and all(f.is_valid() for f in all_forms):
+        [f.save() for f in all_forms]
         messages.success(request, _('Version successfully edited.'))
         return redirect(addon.get_dev_url('versions'))
 
-    return jingo.render(request, 'developers/apps/version_edit.html', {
-        'addon': addon, 'version': version, 'form': form})
+    context = {
+        'addon': addon,
+        'version': version,
+        'form': form
+    }
+
+    if show_features:
+        context.update({
+            'appfeatures_form': appfeatures_form,
+            'appfeatures': appfeatures,
+            'feature_list': [unicode(f) for f in appfeatures.to_list()]
+        })
+
+    return jingo.render(request, 'developers/apps/version_edit.html', context)
 
 
 @dev_required
@@ -581,15 +602,15 @@ def addons_section(request, addon_id, addon, section, editable=False,
     if section not in models:
         raise http.Http404()
 
+    # Only show the list of features if app isn't packaged.
+    show_features = waffle.switch_is_active('buchets') and not addon.is_packaged
+    appfeatures = appfeatures_form = None
+    if show_features:
+        appfeatures = addon.current_version.features
+        appfeatures_form = AppFeaturesForm(instance=appfeatures)
+
     tags = image_assets = previews = restricted_tags = []
     cat_form = None
-
-    if waffle.switch_is_active('buchets'):
-        if addon.current_version:
-            appfeatures = addon.current_version.features
-            appfeatures_form = AppFeaturesForm(instance=appfeatures)
-        else:
-            appfeatures = appfeatures_form = None
 
     # Permissions checks.
     # Only app owners can edit any of the details of their apps.
@@ -617,8 +638,8 @@ def addons_section(request, addon_id, addon, section, editable=False,
     if editable:
         if request.method == 'POST':
 
-            if waffle.switch_is_active('buchets') and appfeatures:
-                appfeatures_form = AppFeaturesForm(request.POST or None,
+            if show_features:
+                appfeatures_form = AppFeaturesForm(request.POST,
                                                    instance=appfeatures)
 
             if (section == 'admin' and
@@ -629,13 +650,13 @@ def addons_section(request, addon_id, addon, section, editable=False,
                                    instance=addon, request=request)
 
             all_forms = [form, previews, image_assets]
-            if waffle.switch_is_active('buchets') and appfeatures_form:
+            if show_features:
                 all_forms.append(appfeatures_form)
             if all(not f or f.is_valid() for f in all_forms):
 
                 addon = form.save(addon)
 
-                if waffle.switch_is_active('buchets') and appfeatures_form:
+                if show_features:
                     appfeatures_form.save()
 
                 if 'manifest_url' in form.changed_data:
@@ -680,9 +701,10 @@ def addons_section(request, addon_id, addon, section, editable=False,
             'image_asset_form': image_assets,
             'valid_slug': valid_slug, }
 
-    if waffle.switch_is_active('buchets') and appfeatures:
+    if show_features:
         data.update({
-            'appfeatures': [unicode(feat) for feat in appfeatures.to_list()],
+            'appfeatures': appfeatures,
+            'feature_list': [unicode(f) for f in appfeatures.to_list()],
             'appfeatures_form': appfeatures_form
         })
 

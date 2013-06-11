@@ -8,7 +8,7 @@ from django.core.files.storage import default_storage as storage
 
 import mock
 from nose import SkipTest
-from nose.tools import eq_
+from nose.tools import eq_, ok_
 from PIL import Image
 from pyquery import PyQuery as pq
 from tower import strip_whitespace
@@ -33,8 +33,8 @@ import mkt
 from mkt.constants import APP_IMAGE_SIZES, regions
 from mkt.constants.ratingsbodies import RATINGS_BODIES
 from mkt.site.fixtures import fixture
-from mkt.webapps.models import (AddonExcludedRegion as AER, ContentRating,
-                                ImageAsset)
+from mkt.webapps.models import (AddonExcludedRegion as AER, AppFeatures,
+                                ContentRating, ImageAsset)
 
 
 response_mock = mock.Mock()
@@ -1185,7 +1185,7 @@ class TestEditTechnical(TestEdit):
         self.compare({'public_stats': True})
         eq_(o.filter(action=amo.LOG.EDIT_PROPERTIES.id).count(), 1)
 
-    def test_features(self):
+    def test_features_hosted(self):
         self.make_appfeatures()
         data_on = {'has_contacts': True}
         data_off = {'has_contacts': False}
@@ -1199,22 +1199,6 @@ class TestEditTechnical(TestEdit):
         r = self.client.post(self.edit_url, formset(**data_off))
         self.assertNoFormErrors(r)
         self.compare_features(data_off)
-
-    def test_edit_features_with_no_current_version(self):
-        self.make_appfeatures()
-
-        # Disable file for latest version, and then update app.current_version.
-        app = self.get_webapp()
-        app.versions.latest().all_files[0].update(status=amo.STATUS_DISABLED)
-        app.update_version()
-
-        # Now try to display edit technical page.
-        r = self.client.get(self.url)
-        eq_(r.status_code, 200)
-
-        # Also try to submit it.
-        r = self.client.post(self.edit_url, formset(has_apps=True))
-        self.assertNoFormErrors(r)
 
 
 class TestAdmin(TestEdit):
@@ -1410,3 +1394,44 @@ class TestPromoUpload(TestAdmin):
 
         self.post(DELETE=True)
         assert not self.get_webapp().get_promo()
+
+
+class TestEditVersion(TestEdit):
+    fixtures = fixture('group_admin', 'user_999', 'user_admin',
+                       'user_admin_group', 'webapp_337141')
+
+    def setUp(self):
+        self.create_switch('buchets')
+        self.webapp = self.get_webapp()
+        self.webapp.update(is_packaged=True)
+        self.url = reverse('mkt.developers.apps.versions.edit', kwargs={
+            'version_id': self.webapp.current_version.id,
+            'app_slug': self.webapp.app_slug
+        })
+        self.user = UserProfile.objects.get(username='31337')
+        self.login(self.user)
+
+    def test_post(self, **kwargs):
+        data = {'releasenotes_init': '',
+                'releasenotes_en-us': 'Hot new version',
+                'approvalnotes': 'The release notes are true.',
+                'has_audio': False,
+                'has_apps': False}
+        data.update(kwargs)
+        req = self.client.post(self.url, data)
+        eq_(req.status_code, 302)
+        version = self.get_webapp().current_version
+        eq_(version.releasenotes, data['releasenotes_en-us'])
+        eq_(version.approvalnotes, data['approvalnotes'])
+        return version
+
+    def test_features(self):
+        # Turn a feature on.
+        version = self.test_post(has_audio=True)
+        ok_(version.features.has_audio)
+        ok_(not version.features.has_apps)
+
+        # Then turn the feature off.
+        version = self.test_post(has_audio=False)
+        ok_(not version.features.has_audio)
+        ok_(not version.features.has_apps)
