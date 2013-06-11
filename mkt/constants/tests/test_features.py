@@ -14,7 +14,10 @@ class TestFeatureProfile(amo.tests.TestCase):
         self.truths = ['apps', 'proximity', 'light_events', 'vibrate']
 
     def _test_profile(self, profile):
-        eq_(profile.to_binary(), self.binary)
+        if self.binary == '':
+            eq_(profile.to_binary(), '0' * 32)
+        else:
+            eq_(profile.to_binary(), self.binary)
         eq_(profile.to_signature(), self.signature)
         for k, v in profile.iteritems():
             if v:
@@ -25,6 +28,12 @@ class TestFeatureProfile(amo.tests.TestCase):
     def test_from_binary(self):
         profile = FeatureProfile.from_binary(self.binary)
         self._test_profile(profile)
+
+    def test_from_binary_all_false(self):
+        self.binary = ''
+        self.signature = '0.32.%s' % settings.APP_FEATURES_VERSION
+        self.truths = []
+        self.test_from_binary()
 
     def test_from_signature(self):
         profile = FeatureProfile.from_signature(self.signature)

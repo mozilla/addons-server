@@ -54,12 +54,18 @@ def app_to_dict(app, currency=None, profile=None):
     from mkt.api.resources import AppResource, PreviewResource
     from mkt.developers.api import AccountResource
     from mkt.developers.models import AddonPaymentAccount
+    from mkt.webapps.api import AppFeaturesSerializer
 
     cv = app.current_version
     version_data = {
         'version': getattr(cv, 'version', None),
         'release_notes': getattr(cv, 'releasenotes', None)
     }
+
+    features = getattr(cv, 'features', None)
+    if features:
+        features = AppFeaturesSerializer().to_native(features)['required']
+    version_data['required_features'] = features
 
     supported_locales = getattr(app.current_version, 'supported_locales', '')
 

@@ -138,6 +138,8 @@ class FeatureProfile(OrderedDict):
 
         """
         instance = cls()
+        if not binary:
+            binary = '0' * len(APP_FEATURES)
         n = len(APP_FEATURES) - 1
         for i, k in enumerate(APP_FEATURES):
             instance[k[0].lower()] = bool(int(binary, 2) & 2 ** (n - i))
@@ -173,6 +175,12 @@ class FeatureProfile(OrderedDict):
         profile = self.to_binary()
         return '%x.%s.%s' % (int(profile, 2), len(profile),
                              settings.APP_FEATURES_VERSION)
+
+    def to_list(self):
+        """
+        Returns a list representing the true values of this profile.
+        """
+        return [k for k, v in self.iteritems() if v]
 
     def to_kwargs(self, prefix=''):
         """

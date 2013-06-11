@@ -8,6 +8,7 @@ import amo.tests
 
 from addons.models import AddonDeviceType, AddonUser, Preview
 from market.models import AddonPremium, AddonPurchase, Price
+from mkt.constants import FEATURES_DICT
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Installed, Webapp, WebappIndexer
 from mkt.webapps.utils import (app_to_dict, es_app_to_dict,
@@ -21,6 +22,7 @@ class TestAppToDict(amo.tests.TestCase):
     def setUp(self):
         self.app = amo.tests.app_factory()
         self.profile = UserProfile.objects.get(pk=2519)
+        self.features = self.app.current_version.features
 
     def test_no_previews(self):
         eq_(app_to_dict(self.app)['previews'], [])
@@ -78,6 +80,23 @@ class TestAppToDict(amo.tests.TestCase):
         res = app_to_dict(self.app)
         self.assertSetEqual([region['slug'] for region in res['regions']],
                             [region.slug for region in self.app.get_regions()])
+
+    def test_no_features(self):
+        res = app_to_dict(self.app)
+        self.assertSetEqual(res['current_version']['required_features'], [])
+
+    def test_one_feature(self):
+        self.features.update(has_pay=True)
+        res = app_to_dict(self.app)
+        self.assertSetEqual(res['current_version']['required_features'],
+                            ['pay'])
+
+    def test_all_features(self):
+        data = dict(('has_' + f.lower(), True) for f in FEATURES_DICT.keys())
+        self.features.update(**data)
+        res = app_to_dict(self.app)
+        self.assertSetEqual(res['current_version']['required_features'],
+                            [f.lower() for f in FEATURES_DICT.keys()])
 
 
 class TestAppToDictPrices(amo.tests.TestCase):

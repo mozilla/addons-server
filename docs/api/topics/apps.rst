@@ -49,6 +49,11 @@ App
             "content_ratings": {},
             "current_version": {
                 "release_notes": null,
+                "required_features": [
+                    "apps",
+                    "archive",
+                    "audio"
+                ],
                 "version": "1.0"
             },
             "default_locale": "en-US",
@@ -147,18 +152,20 @@ App
         currency formatted using the currency symbol and the locale
         representations of numbers. Example: "1,00 $US". For more information
         on this see :ref:`payment tiers <localized-tier-label>`.
+    :param privacy_policy: The path to the privacy policy resource.
     :param boolean regions > adolescent: an adolescent region has a sufficient
         volume of data to calculate ratings and rankings independent of
         worldwide data.
     :param string|null regions > mcc: represents the region's ITU `mobile
         country code`_.
+    :param list|null required_features: a list of device features required by
+        this application.
     :param object user: an object representing information specific to this
         user for the app. If the user is anonymous this object will not
         be present.
-    :param privacy_policy: The path to the privacy policy resource.
     :param boolean user > developed: true if the user is a developer of the app.
-    :param boolean user > installed: true if the user installed the app (this might differ from
-        the device).
+    :param boolean user > installed: true if the user installed the app (this
+        might differ from the device).
     :param boolean user > purchased: true if the user has purchased the app from
         the marketplace.
 
