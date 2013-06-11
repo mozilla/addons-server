@@ -601,8 +601,9 @@ class Webapp(Addon):
         return [w.app for w in qs]
 
     @classmethod
-    def from_search(cls, cat=None, region=None, gaia=False, mobile=False,
-                    tablet=False, filter_overrides=None, new_idx=False):
+    def from_search(cls, request, cat=None, region=None, gaia=False,
+                    mobile=False, tablet=False, filter_overrides=None,
+                    new_idx=False):
 
         filters = {
             'type': amo.ADDON_WEBAPP,
@@ -641,7 +642,8 @@ class Webapp(Addon):
         if mobile or gaia:
             srch = srch.filter(uses_flash=False)
 
-        if (mobile or tablet) and not gaia:
+        if (not waffle.flag_is_active(request, 'allow-b2g-paid-submission')
+            and (mobile or tablet) and not gaia):
             # Only show premium apps on gaia and desktop for now.
             srch = srch.filter(~F(premium_type__in=amo.ADDON_PREMIUMS,
                                   price__gt=0))
@@ -649,14 +651,16 @@ class Webapp(Addon):
         return srch
 
     @classmethod
-    def popular(cls, cat=None, region=None, gaia=False):
+    def popular(cls, request, cat=None, region=None, gaia=False):
         """Elastically grab the most popular apps."""
-        return cls.from_search(cat, region, gaia=gaia).order_by('-popularity')
+        return cls.from_search(request, cat, region,
+                               gaia=gaia).order_by('-popularity')
 
     @classmethod
-    def latest(cls, cat=None, region=None, gaia=False):
+    def latest(cls, request, cat=None, region=None, gaia=False):
         """Elastically grab the most recent apps."""
-        return cls.from_search(cat, region, gaia=gaia).order_by('-created')
+        return cls.from_search(request, cat, region,
+                               gaia=gaia).order_by('-created')
 
     @classmethod
     def category(cls, slug):

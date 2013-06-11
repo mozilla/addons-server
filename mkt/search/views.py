@@ -142,9 +142,10 @@ def _filter_search(request, qs, query, filters=None, sorting=None,
     return qs
 
 
-def _get_query(region, gaia, mobile, tablet, filters=None, new_idx=False):
+def _get_query(request, region, gaia, mobile, tablet, filters=None,
+               new_idx=False):
     return Webapp.from_search(
-        region=region, gaia=gaia, mobile=mobile, tablet=tablet,
+        request, region=region, gaia=gaia, mobile=mobile, tablet=tablet,
         filter_overrides=filters, new_idx=new_idx).facet('category')
 
 
