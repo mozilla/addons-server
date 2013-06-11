@@ -1,22 +1,16 @@
 {% set data = {'cat': category.id} if category else request.GET %}
-{% set search_form = SimpleSearchForm(data) %}
 
 <header id="site-header" class="header site-header">
   <nav role="navigation">
     <a href="#" id="nav-back" class="header-button icon back" title="{{ _('Back') }}"><b>{{ _('Back') }}</b></a>
     <h1 class="site"><a class="sync" href="{{ url('home') }}"><span class="wordmark">Firefox Marketplace</span></a></h1>
     <h1 class="title">{{ headertitle }}</h1>
-    <form novalidate method="GET" id="search" class="search" action="{{ url('search.search') }}">
+    <form novalidate method="GET" id="search" class="search" action="/search">
       <label for="search-q">{{ _('Search') }}</label>
-      <div id="site-search-suggestions" data-cat="apps" data-src="{{ url('search.suggestions') }}"></div>
       <input id="search-q" class="query-input" type="search" name="q" title="" required
              autocomplete="off"
              placeholder="{{ category.name if category else _('Search') }}"
-             data-placeholder-default="{{ _('Search') }}"
-             {% if search_form.q.value() %}value="{{ search_form.q.value() }}"{% endif %}>
-      {% if search_form.cat.value() %}
-        {{ search_form.cat }}
-      {% endif %}
+             data-placeholder-default="{{ _('Search') }}">
       <a href="#" class="search-clear" title="{{ _('Clear') }}">{{ _('Clear') }}</a>
     </form>
     <span class="flex-span"></span>

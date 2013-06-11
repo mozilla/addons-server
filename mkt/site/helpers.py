@@ -310,8 +310,7 @@ def mkt_breadcrumbs(context, product=None, items=None, crumb_size=40,
         else:
             # The Product is the end of the trail.
             url_ = None
-        crumbs += [(reverse('browse.apps'), _('Apps')),
-                   (url_, product.name)]
+        crumbs += [(None, _('Apps')), (url_, product.name)]
     if items:
         crumbs.extend(items)
 

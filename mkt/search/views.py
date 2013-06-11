@@ -1,32 +1,14 @@
-from django.shortcuts import redirect
-
-import jingo
 import waffle
-from tower import ugettext as _
 
 import amo
-import amo.utils
 from amo.decorators import json_view
-from apps.addons.models import Category
 from apps.search.views import _get_locale_analyzer, WebappSuggestionsAjax
 
-import mkt
 from mkt.constants import regions
 from mkt.regions import get_region
 from mkt.webapps.models import Webapp
 
 from . import forms
-
-
-class FacetLink(object):
-
-    def __init__(self, text, urlparams, selected=False, children=None):
-        self.text = text
-        self.urlparams = urlparams
-        self.selected = selected
-        self.children = children or []
-        self.null_urlparams = dict((x, None) for x in urlparams)
-        self.null_urlparams['page'] = None
 
 
 DEFAULT_FILTERS = ['cat', 'device', 'premium_types', 'price', 'sort']
@@ -160,143 +142,10 @@ def _filter_search(request, qs, query, filters=None, sorting=None,
     return qs
 
 
-def category_sidebar(query, categories):
-    qcat = query.get('cat')
-
-    categories = sorted(categories, key=lambda x: x.name)
-    cat_params = dict(cat=None)
-
-    rv = [FacetLink(_(u'Any Category'), cat_params, selected=not qcat)]
-    rv += [FacetLink(c.name, dict(cat_params, **dict(cat=c.id)),
-                     c.id == qcat) for c in categories]
-    return rv
-
-
-def price_sidebar(query):
-    qprice = query.get('price')
-    free = qprice == 'free'
-    paid = qprice == 'paid'
-    return [
-        FacetLink(_('All'), dict(price=None), not (paid or free)),
-        FacetLink(_('Free'), dict(price='free'), free),
-        FacetLink(_('Paid'), dict(price='paid'), paid),
-    ]
-
-
-def device_sidebar(query):
-    device = query.get('device') or None
-    links = []
-    for key, label in forms.DEVICE_CHOICES:
-        links.append(FacetLink(label, dict(device=key), device == key))
-    return links
-
-
-def sort_sidebar(query, form):
-    sort = query.get('sort')
-    return [FacetLink(text, dict(sort=key), key == sort)
-            for key, text in form.fields['sort'].choices]
-
-
 def _get_query(region, gaia, mobile, tablet, filters=None, new_idx=False):
     return Webapp.from_search(
         region=region, gaia=gaia, mobile=mobile, tablet=tablet,
         filter_overrides=filters, new_idx=new_idx).facet('category')
-
-
-def _app_search(request, category=None, browse=None):
-    form = forms.AppSearchForm(request.GET, request=request)
-    form.is_valid()  # Let the form try to clean data.
-    query = form.cleaned_data
-
-    # Remove `sort=price` if `price=free`.
-    if query.get('price') == 'free' and query.get('sort') == 'price':
-        return {'redirect': amo.utils.urlparams(request.get_full_path(),
-                                                sort='popularity',
-                                                price='free')}
-
-    region = getattr(request, 'REGION', mkt.regions.WORLDWIDE)
-
-    qs = _get_query(region, gaia=request.GAIA, mobile=request.MOBILE,
-                    tablet=request.TABLET)
-
-    qs = _filter_search(request, qs, dict(query), region=region)
-
-    # If we're mobile, leave no witnesses. (i.e.: hide "Applied Filters:
-    # Mobile")
-    if request.MOBILE and not request.TABLET:
-        del query['device']
-
-    pager = amo.utils.paginate(request, qs)
-    facets = pager.object_list.facet_counts()
-
-    if category or browse:
-        if query.get('price') == 'free':
-            sort_opts = forms.FREE_LISTING_SORT_CHOICES
-        else:
-            sort_opts = forms.LISTING_SORT_CHOICES
-    else:
-        if query.get('price') == 'free':
-            # Remove 'Sort by Price' option if filtering by free apps.
-            sort_opts = forms.FREE_SORT_CHOICES
-        else:
-            sort_opts = form.fields['sort'].choices
-
-    cats = [f['term'] for f in facets['category']]
-    categories = Category.objects.filter(type=amo.ADDON_WEBAPP, id__in=cats)
-
-    ctx = {
-        'pager': pager,
-        'query': query,
-        'form': form,
-        'sorting': sort_sidebar(query, form),
-        'sort_opts': sort_opts,
-        'extra_sort_opts': [],
-        'sort': query.get('sort'),
-        'price': query.get('price'),
-        'categories': category_sidebar(query, categories),
-        'prices': price_sidebar(query),
-        'devices': device_sidebar(query),
-        'active': {},
-    }
-
-    applied_filters = []
-    for facet in ('prices', 'categories', 'devices'):
-        for idx, f in enumerate(ctx[facet]):
-            # Show filters where something besides its first/default choice
-            # is selected.
-            if idx and f.selected:
-                applied_filters.append(f)
-                ctx['active'][facet] = f
-
-    # We shouldn't show the "Applied Filters" for category browse/search pages.
-    if not category:
-        ctx['applied_filters'] = applied_filters
-
-    return ctx
-
-
-def app_search(request):
-    ctx = _app_search(request)
-    category = None
-
-    if 'query' in ctx and 'cat' in ctx['query']:
-        cat = ctx['query']['cat']
-        cats = Category.objects.filter(type=amo.ADDON_WEBAPP, pk=cat)
-
-        if cats.exists():
-            category = cats[0]
-    else:
-        cat = None
-
-    # If we're supposed to redirect, then do that.
-    if ctx.get('redirect'):
-        return redirect(ctx['redirect'])
-
-    if category:
-        ctx['featured'] = Webapp.featured(cat=category)[:3]
-
-    # Otherwise render results.
-    return jingo.render(request, 'search/results.html', ctx)
 
 
 @json_view

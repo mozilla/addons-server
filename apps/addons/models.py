@@ -1989,6 +1989,8 @@ class Category(amo.models.ModelBase):
         if settings.MARKETPLACE and self.type == amo.ADDON_PERSONA:
             # TODO: Move Theme Reviewer Tools to AMO so we don't have to hack.
             return 'https://addons.mozilla.org/firefox/themes/%s' % self.slug
+        elif settings.MARKETPLACE and self.type == amo.ADDON_WEBAPP:
+            return '/search?cat=%s' % self.slug
         return reverse('browse.%s' % type, args=[self.slug])
 
     @staticmethod

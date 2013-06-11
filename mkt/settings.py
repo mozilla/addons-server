@@ -58,7 +58,6 @@ INSTALLED_APPS += (
     'mkt.site',
     'mkt.account',
     'mkt.api',
-    'mkt.browse',
     'mkt.detail',
     'mkt.developers',
     'mkt.ecosystem',

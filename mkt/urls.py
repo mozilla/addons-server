@@ -52,9 +52,6 @@ urlpatterns = patterns('',
     url('^app/%s/manifest.webapp$' % amo.ADDON_UUID, mini_manifest,
         name='detail.manifest'),
 
-    # Browse pages.
-    ('^apps/', include('mkt.browse.urls')),
-
     # Dev Ecosystem
     ('^developers/', include('mkt.ecosystem.urls')),
     ('^ecosystem/', lambda r: redirect('ecosystem.landing', permanent=True)),

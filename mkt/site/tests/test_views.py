@@ -288,17 +288,10 @@ class TestOpensearch(amo.tests.TestCase):
 
     def test_opensearch_declaration(self):
         """Look for opensearch declaration in templates."""
-        query = 'link[rel=search][type="application/opensearchdescription+xml"]'
 
-        # Look in home.
-        response = self.client.get(reverse('home'))
-        elm = pq(response.content)(query)
-        eq_(elm.attr('href'), reverse('opensearch'))
-        eq_(elm.attr('title'), 'Firefox Marketplace')
-
-        # Also look in fireplace.
         response = self.client.get(reverse('site.fireplace'))
-        elm = pq(response.content)(query)
+        elm = pq(response.content)(
+            'link[rel=search][type="application/opensearchdescription+xml"]')
         eq_(elm.attr('href'), reverse('opensearch'))
         eq_(elm.attr('title'), 'Firefox Marketplace')
 
@@ -310,6 +303,5 @@ class TestOpensearch(amo.tests.TestCase):
         e = doc.find('{http://a9.com/-/spec/opensearch/1.1/}ShortName')
         eq_(e.text, 'Firefox Marketplace')
         e = doc.find('{http://a9.com/-/spec/opensearch/1.1/}Url')
-        wanted = '%s%s?q={searchTerms}' % (settings.SITE_URL,
-                                           reverse('search.search'))
+        wanted = '%s%s?q={searchTerms}' % (settings.SITE_URL, '/search')
         eq_(e.attrib['template'], wanted)

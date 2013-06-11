@@ -1,5 +1,4 @@
 from django import forms
-from django.forms.util import ErrorDict
 
 from tower import ugettext_lazy as _lazy
 
@@ -69,7 +68,7 @@ LISTING_SORT_CHOICES = SORT_CHOICES[1:]
 FREE_LISTING_SORT_CHOICES = [(k, v) for k, v in LISTING_SORT_CHOICES
                              if k != 'price']
 
-# Placeholder.
+
 SEARCH_PLACEHOLDERS = {'apps': _lazy(u'Search for apps')}
 
 
@@ -83,57 +82,6 @@ class SimpleSearchForm(forms.Form):
 
     def placeholder(self, txt=None):
         return txt or SEARCH_PLACEHOLDERS['apps']
-
-
-class AppSearchForm(forms.Form):
-    q = forms.CharField(required=False)
-    cat = forms.CharField(required=False)
-    sort = forms.ChoiceField(required=False, choices=SORT_CHOICES)
-    price = forms.ChoiceField(required=False, choices=PRICE_CHOICES)
-    device = forms.ChoiceField(required=False, choices=DEVICE_CHOICES)
-
-    def __init__(self, *args, **kw):
-        self.request = kw.pop('request', None)
-        super(AppSearchForm, self).__init__(*args, **kw)
-
-    def clean_cat(self):
-        cat = self.cleaned_data.get('cat')
-        try:
-            return int(cat)
-        except ValueError:
-            return None
-
-    def clean_device(self):
-        """Ignore the user. Respect the User-Agent."""
-        device = self.cleaned_data.get('device') or None
-        if self.request.MOBILE:
-            device = 'mobile'
-        if self.request.TABLET:
-            device = 'tablet'
-        if self.request.GAIA:
-            device = 'gaia'
-        return device
-
-    def full_clean(self):
-        """
-        Cleans self.data and populates self._errors and self.cleaned_data.
-
-        Does not remove cleaned_data if there are errors.
-        """
-        self._errors = ErrorDict()
-        if not self.is_bound:  # Stop further processing.
-            return
-        self.cleaned_data = {}
-        # If the form is permitted to be empty, and none of the form data
-        # has changed from the initial data, short circuit any validation.
-        if self.empty_permitted and not self.has_changed():
-            return
-        self._clean_fields()
-        self._clean_form()
-
-
-class AppListForm(AppSearchForm):
-    sort = forms.ChoiceField(required=False, choices=LISTING_SORT_CHOICES)
 
 
 class ApiSearchForm(forms.Form):
