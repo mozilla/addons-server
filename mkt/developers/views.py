@@ -128,7 +128,8 @@ def edit(request, addon_id, addon, webapp=False):
                                                          flat=True),
         'previews': addon.get_previews(),
     }
-    if waffle.switch_is_active('buchets') and not addon.is_packaged:
+    if (waffle.switch_is_active('buchets') and not addon.is_packaged and
+        addon.current_version):
         data['feature_list'] = [unicode(f) for f in
                                 addon.current_version.features.to_list()]
     if acl.action_allowed(request, 'Apps', 'Configure'):
