@@ -575,6 +575,7 @@ class TestReviewerScore(amo.tests.TestCase):
 
     def test_all_users_by_score(self):
         user2 = UserProfile.objects.get(email='regular@mozilla.com')
+        amo.REVIEWED_LEVELS[0]['points'] = 180
         self._give_points()
         self._give_points(status=amo.STATUS_LITE)
         self._give_points(user=user2, status=amo.STATUS_NOMINATED)
