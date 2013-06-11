@@ -40,10 +40,12 @@ def create_receipt(installed, flavour=None):
         verify = settings.WEBAPPS_RECEIPT_URL
 
     reissue = webapp.get_purchase_url('reissue')
-    # TODO: Add `detail` when we have a receipt page.
     receipt = dict(exp=expiry, iat=time_,
                    iss=settings.SITE_URL, nbf=time_, product=product,
-                   reissue=absolutify(reissue), typ=typ,
+                   # TODO: This is temporary until detail pages get added.
+                   detail=absolutify(reissue),  # Currently this is a 404.
+                   reissue=absolutify(reissue),  # Currently this is a 404.
+                   typ=typ,
                    user={'type': 'directed-identifier',
                          'value': installed.uuid},
                    verify=verify)
