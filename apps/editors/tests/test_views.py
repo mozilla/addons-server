@@ -2238,7 +2238,7 @@ class TestLeaderboard(EditorTest):
         self._award_points(users[2], amo.REVIEWED_LEVELS[0]['points'] + 2)
 
         def get_cells():
-            doc = pq(self.client.get(self.url).content)
+            doc = pq(self.client.get(self.url).content.decode('utf-8'))
 
             cells = doc('#leaderboard > tbody > tr > .name, '
                         '#leaderboard > tbody > tr > .level')
