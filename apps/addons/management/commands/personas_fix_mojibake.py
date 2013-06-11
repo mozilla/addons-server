@@ -97,6 +97,7 @@ class Command(BaseCommand):
                 print "FIX", id
             except UnicodeDecodeError:
                 print "SKIPPED", id
+                continue
             self.cursor_z.execute(
                 'UPDATE translations AS t, personas AS p SET t.localized_string = %s, '
                 't.localized_string_clean = NULL '
