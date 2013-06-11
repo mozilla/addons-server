@@ -105,7 +105,7 @@
       {% if is_paid %}
       <div id="paid-island">
         {{ disabled_payments_notice() }}
-        <h2>{{ _('Prices and payment accounts') }}</h2>
+        <h2>{{ _('Payment accounts') }}</h2>
         {% if is_incomplete %}
           <div class="island warning">
             {%- trans %}
@@ -115,6 +115,38 @@
           </div>
         {% endif %}
         <section class="island payments">
+          <table>
+            <tbody>
+              <tr>
+                <th><label data-for="accounts">{{ _('Payment Account') }}</label></th>
+                <td>
+                  <div id="bango-account-list" data-url="{{ url('mkt.developers.bango.payment_accounts_form') }}">
+                    {{ bango_account_list_form.errors }}
+                    {% include 'developers/payments/includes/bango_accounts_form.html' %}
+                  </div>
+                  <a href="#" class="payment-account-actions" data-action="add">
+                    {{- _('Add or manage payment accounts') -}}
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="listing-footer">
+            <button>{{ _('Save Changes') }}</button>
+          </div>
+        </section>
+      </div>
+      {% endif %}
+
+      {% if is_paid %}
+      <div id="paid-regions-island">
+        <h2>{{ _('Prices and countries') }}</h2>
+
+        {% if region_form.has_inappropriate_regions() %}
+          {% include 'developers/payments/includes/regions_inappropriate.html' %}
+        {% endif %}
+
+        <section id="regions" class="island">
           <table>
             <tbody>
               <tr>
@@ -134,6 +166,91 @@
                   {{ form.allow_inapp }}
                 </td>
               </tr>
+              <tr>
+                <th colspan="2" class="region-toggle">
+                  {% include 'developers/payments/includes/regions_toggle.html' %}
+                </th>
+              </tr>
+              <tr>
+                <td colspan="2" class="region-container">
+                  <div class="checkbox-choices regions"
+                       data-disabled-regions="{{ region_form.disabled_regions|json }}"
+                       data-pricelist-api-url="{{ api_pricelist_url }}">
+                    {{ region_form.regions.errors }}
+                    <table>
+                      <thead>
+                        <th><span class="region-heading">{{ _('Region') }}</span></th>
+                        <th>{{ _('Retail price') }}
+                            <span class="local-currency-heading">({{ _('local currency') }})</span></th>
+                      </thead>
+                      <tbody>
+                        {% for value, text in region_form.regions.field.choices %}
+                          <tr>
+                              <td>
+                                <label class="disabled">
+                                  <input type="checkbox" disabled
+                                         {% if value in region_form.initial.regions %}checked{% endif %}
+                                         name="regions" value="{{ value }}" />{{ text }}</label>
+                              </td>
+                              <td><span class="local-retail"></span></td>
+                          </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </td>
+              </tr>
+              {% if region_form.disabled_regions %}
+              <tr>
+                <td colspan="2">
+                  {% include 'developers/payments/includes/regions_disabled.html' %}
+                </td>
+              </tr>
+              {% endif %}
+              <tr>
+                <td colspan="2">
+                  {% include 'developers/payments/includes/regions_other.html' %}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="listing-footer">
+            <button class="button">{{ _('Save Changes') }}</button>
+          </div>
+        </section>
+      </div>
+      {% else %}
+      {# Non-paid app region lists #}
+      <div id="regions-island">
+        <h2>{{ _('Regions and listings') }}</h2>
+        {% if region_form.has_inappropriate_regions() %}
+          {% include 'developers/payments/includes/regions_inappropriate.html' %}
+        {% endif %}
+        <section id="regions" class="island">
+          {% include 'developers/payments/includes/regions_toggle.html' %}
+          {{ region_form.regions.errors }}
+          <div class="checkbox-choices"
+               data-disabled="{{ region_form.disabled_regions|json }}">
+            {{ region_form.regions }}
+          </div>
+          {% if region_form.disabled_regions %}
+            {% include 'developers/payments/includes/regions_disabled.html' %}
+          {% endif %}
+          <div class="other-regions">
+            {% include 'developers/payments/includes/regions_other.html' %}
+          </div>
+          <button>{{ _('Save Changes') }}</button>
+        </section>
+      </div>
+      {% endif %}
+
+      {% if is_paid %}
+      <div id="paid-upsell-island">
+        {{ disabled_payments_notice() }}
+        <h2>{{ _('Promote as upgrade to free version') }}</h2>
+        <section class="island upsell">
+          <table>
+            <tbody>
               <tr>
                 <th>
                   {{ tip(_('This is a paid upgrade of'),
@@ -157,72 +274,14 @@
                   {% endif %}
                 </td>
               </tr>
-              <tr>
-                <th><label data-for="accounts">{{ _('Payment Account') }}</label>
-                </th>
-                <td>
-                  <div id="bango-account-list" data-url="{{ url('mkt.developers.bango.payment_accounts_form') }}">
-                    {{ bango_account_list_form.errors }}
-                    {% include 'developers/payments/includes/bango_accounts_form.html' %}
-                  </div>
-                  <a href="#" class="payment-account-actions" data-action="add">
-                    {{- _('Add or manage payment accounts') -}}
-                  </a>
-                </td>
-              </tr>
             </tbody>
           </table>
-
           <div class="listing-footer">
             <button>{{ _('Save Changes') }}</button>
           </div>
         </section>
       </div>
       {% endif %}
-
-      <h2>{{ _('Regions and listings') }}</h2>
-      {% if region_form.has_inappropriate_regions() %}
-        <div class="island warning">
-          {% trans %}
-            Your app will no longer be listed in certain regions because those
-            regions do not support payments. We have transferred your region
-            choices. Please review the changes before saving.
-          {% endtrans %}
-        </div>
-      {% endif %}
-      <section id="regions" class="island">
-        {{ region_form.non_field_errors() }}
-        {{ region_form.regions.label }}
-        <p class="toggles">
-          <a href="#" class="all">{{ _('Select All') }}</a> &middot;
-          <a href="#" class="none">{{ _('None') }}</a>
-        </p>
-        {{ region_form.regions.errors }}
-        <div class="checkbox-choices"
-             data-disabled="{{ region_form.disabled_regions|json }}">
-          {{ region_form.regions }}
-        </div>
-        {% if region_form.disabled_regions %}
-          <p class="note disabled-regions">
-            <a href="https://developer.mozilla.org/en-US/docs/Apps/Marketplace_Review" target="_blank">
-              {{ _('Learn why some regions are restricted.') }}</a>
-          </p>
-        {% endif %}
-        <div class="other-regions">
-          {{ region_form.other_regions }}
-          {{ region_form.other_regions.label_tag() }}
-          {{ region_form.other_regions.errors }}
-          <div class="hint note">
-            {%- trans %}
-              Your app will be displayed in the worldwide Marketplace and
-              in any regional marketplace that is added in the future.
-              You will receive an email notification when a new region
-              is added.
-            {% endtrans -%}
-          </div>
-        </div>
-        <button>{{ _('Save Changes') }}</button>
-      </section>
     </form>
   </section>
   {% include 'developers/includes/addons_edit_nav.html' %}

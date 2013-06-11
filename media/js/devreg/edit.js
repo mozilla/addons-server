@@ -3,9 +3,9 @@
         var $this = $(this);
         var $choices = $this.closest('td, div').find('.checkbox-choices input[type=checkbox]:not(:disabled)');
         if ($this.hasClass('all')) {
-            $choices.attr('checked', true);
+            $choices.prop('checked', true).trigger('change');
         } else {
-            $choices.removeAttr('checked');
+            $choices.prop('checked', false).trigger('change');
         }
     })).on('editLoaded.disableCheckboxes', function(e) {
         // Disable individual checkbox fields when we see them.

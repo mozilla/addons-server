@@ -273,6 +273,25 @@ class TestPayments(amo.tests.TestCase):
         self.assert3xx(res, self.url)
         eq_(self.get_webapp().premium_type, amo.ADDON_PREMIUM)
 
+    def test_check_api_url_in_context(self):
+        self.webapp.update(premium_type=amo.ADDON_FREE)
+        res = self.client.get(self.url)
+        eq_(res.context['api_pricelist_url'],
+            reverse('api_dispatch_list', kwargs={'resource_name': 'prices',
+                                                 'api_name': 'webpay'}))
+
+    def test_regions_display_free(self):
+        self.webapp.update(premium_type=amo.ADDON_FREE)
+        res = self.client.get(self.url)
+        self.assertIn('id="regions-island"', res.content)
+        self.assertNotIn('id="paid-regions-island"', res.content)
+
+    def test_regions_display_premium(self):
+        self.webapp.update(premium_type=amo.ADDON_PREMIUM)
+        res = self.client.get(self.url)
+        self.assertIn('id="paid-regions-island"', res.content)
+        self.assertNotIn('id="regions-island"', res.content)
+
     def test_premium_in_app_passes(self):
         self.webapp.update(premium_type=amo.ADDON_FREE)
         res = self.client.post(
