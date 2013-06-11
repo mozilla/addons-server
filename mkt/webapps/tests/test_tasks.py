@@ -7,6 +7,7 @@ import stat
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.core.management import call_command
+from django.forms import ValidationError
 
 import mock
 from nose.tools import eq_, ok_
@@ -22,8 +23,8 @@ from versions.models import Version
 
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import AppFeatures, Webapp
-from mkt.webapps.tasks import (dump_app, update_features, update_manifests,
-                               zip_apps)
+from mkt.webapps.tasks import (dump_app, update_developer_name, update_features,
+                               update_manifests, zip_apps)
 
 
 original = {
@@ -555,3 +556,68 @@ class TestUpdateFeatures(amo.tests.TestCase):
         eq_(features['has_apps'], True)
         eq_(features['has_activity'], True)
         eq_(features['has_sms'], False)
+
+
+class TestUpdateDeveloperName(amo.tests.TestCase):
+    fixtures = fixture('webapp_337141')
+
+    def setUp(self):
+        self.app = Webapp.objects.get(pk=337141)
+
+    @mock.patch('mkt.webapps.tasks._update_developer_name')
+    def test_ignore_not_webapp(self, mock_):
+        self.app.update(type=amo.ADDON_EXTENSION)
+        call_command('process_addons', task='update_developer_name')
+        assert not mock_.called
+
+    @mock.patch('mkt.webapps.tasks._update_developer_name')
+    def test_pending(self, mock_):
+        self.app.update(status=amo.STATUS_PENDING)
+        call_command('process_addons', task='update_developer_name')
+        assert mock_.called
+
+    @mock.patch('mkt.webapps.tasks._update_developer_name')
+    def test_public_waiting(self, mock_):
+        self.app.update(status=amo.STATUS_PUBLIC_WAITING)
+        call_command('process_addons', task='update_developer_name')
+        assert mock_.called
+
+    @mock.patch('mkt.webapps.tasks._update_developer_name')
+    def test_ignore_disabled(self, mock_):
+        self.app.update(status=amo.STATUS_DISABLED)
+        call_command('process_addons', task='update_developer_name')
+        assert not mock_.called
+
+    @mock.patch('files.utils.WebAppParser.parse')
+    def test_ignore_no_current_version(self, mock_parser):
+        self.app.current_version.all_files[0].update(status=amo.STATUS_DISABLED)
+        self.app.update_version()
+        update_developer_name(ids=(self.app.pk,))
+        assert not mock_parser.called
+
+    @mock.patch('files.utils.WebAppParser.parse')
+    def test_ignore_if_existing_developer_name(self, mock_parser):
+        version = self.app.current_version
+        version.update(_developer_name=u"Mï")
+        update_developer_name(ids=(self.app.pk,))
+        assert not mock_parser.called
+
+    @mock.patch('files.utils.WebAppParser.parse')
+    def test_update_developer_name(self, mock_parser):
+        mock_parser.return_value = {
+            'developer_name': u'New Dêv'
+        }
+        update_developer_name(ids=(self.app.pk,))
+        version = self.app.current_version.reload()
+        eq_(version._developer_name, u'New Dêv')
+        eq_(version.developer_name, u'New Dêv')
+
+    @mock.patch('files.utils.WebAppParser.parse')
+    @mock.patch('mkt.webapps.tasks._log')
+    def test_update_developer_name_validation_error(self, _log, mock_parser):
+        mock_parser.side_effect = ValidationError('dummy validation error')
+        update_developer_name(ids=(self.app.pk,))
+        assert _log.called_with(337141, u'Webapp manifest can not be parsed')
+
+        version = self.app.current_version.reload()
+        eq_(version._developer_name, '')

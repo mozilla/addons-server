@@ -8,6 +8,7 @@ from collections import defaultdict
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
+from django.forms import ValidationError
 from django.template import Context, loader
 
 from celery.exceptions import RetryTaskError
@@ -22,6 +23,7 @@ from amo.urlresolvers import reverse
 from amo.utils import chunked, JSONEncoder
 from editors.models import RereviewQueue
 from files.models import FileUpload
+from files.utils import WebAppParser
 from lib.es.utils import get_indices
 from users.utils import get_task_user
 
@@ -401,3 +403,39 @@ def _update_features(id):
 def update_features(ids, **kw):
     for id in ids:
         _update_features(id)
+
+
+def _update_developer_name(id):
+    try:
+        webapp = Webapp.objects.get(pk=id)
+    except Webapp.DoesNotExist:
+        _log(id, u'Webapp does not exist')
+        return
+
+    version = webapp.current_version
+
+    # If the app doesn't have a current_version, don't bother.
+    if not version:
+        _log(id, u'Webapp does not have a current_version')
+        return
+
+    # If the current_version already has a non-empty developer_name set, don't
+    # touch it and bail.
+    if version._developer_name:
+        _log(id, u'Webapp already has a non-empty developer_name')
+        return
+
+    try:
+        data = WebAppParser().parse(webapp.get_latest_file().file_path)
+    except ValidationError:
+        _log(id, u'Webapp manifest can not be parsed')
+        return
+
+    max_len = version._meta.get_field_by_name('_developer_name')[0].max_length
+    version.update(_developer_name=data['developer_name'][:max_len])
+
+
+@task
+def update_developer_name(ids, **kw):
+    for id in ids:
+        _update_developer_name(id)
