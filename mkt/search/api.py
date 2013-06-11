@@ -118,7 +118,7 @@ class SearchResource(CORSResource, MarketplaceResource):
 
         if uses_es:
             bundle.data.update(es_app_to_dict(
-                obj, currency=bundle.request.REGION.default_currency,
+                obj, region=bundle.request.REGION.id,
                 profile=amo_user))
         else:
             bundle = AppResource().dehydrate(bundle)

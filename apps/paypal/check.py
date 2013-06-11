@@ -21,7 +21,7 @@ class Check(object):
         # If this state flips to False, it means they need to
         # go to Paypal and re-set up permissions. We'll assume the best.
         self.state = {'permissions': True}
-        self.tests = ['id', 'refund', 'currencies']
+        self.tests = ['id', 'refund']
         for test in self.tests:
             # Three states for pass:
             #   None: haven't tried
@@ -36,7 +36,6 @@ class Check(object):
     def all(self):
         self.check_id()
         self.check_refund()
-        self.check_currencies()
 
     def failure(self, test, msg):
         self.state[test]['errors'].append(msg)
@@ -73,37 +72,6 @@ class Check(object):
             self.state['permissions'] = False
             self.failure(test_id, msg)
             return
-
-    def check_currencies(self):
-        """Check that we've got the currencies."""
-        test_id = 'currencies'
-        if self.addon and self.addon.premium:
-            price = self.addon.premium.price
-            if not price:
-                tiers = [('USD', '1.00')]
-            else:
-                tiers = [(name, obj.price) for name, obj
-                         in self.addon.premium.supported_currencies()]
-
-        else:
-            tiers = (('USD', '0.99'),)
-
-        for currency, amount in tiers:
-            try:
-                self.test_paykey({'currency': currency,
-                                  'amount': amount,
-                                  'email': self.paypal_id})
-                log.info('Get paykey passed in %s' % currency)
-            except paypal.PaypalError:
-                msg = _('Failed to make a test transaction '
-                        'in %s.' % (currency))
-                self.failure(test_id, msg)
-                log.info('Get paykey returned an error'
-                         'in %s' % currency, exc_info=True)
-
-        # If we haven't failed anything by this point, it's all good.
-        if self.state[test_id]['pass'] is None:
-            self.pass_(test_id)
 
     def test_paykey(self, data):
         """

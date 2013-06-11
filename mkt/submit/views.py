@@ -83,7 +83,7 @@ def terms(request):
 @submit_step('manifest')
 @transaction.commit_on_success
 def manifest(request):
-    form = forms.NewWebappForm(request.POST or None)
+    form = forms.NewWebappForm(request.POST or None, request=request)
 
     features_form = forms.AppFeaturesForm(request.POST or None)
     features_form_valid = (True if not waffle.switch_is_active('buchets') else

@@ -2,6 +2,7 @@
 from django.core.cache import cache
 from django.db import connection, models
 from django.dispatch import receiver
+from django.forms.models import model_to_dict
 from django.utils import translation
 
 from tower import ugettext_lazy as _
@@ -10,8 +11,10 @@ import amo
 import amo.models
 from amo.decorators import write
 from amo.utils import get_locale_from_lang, memoize_key
-from constants.payments import PROVIDER_CURRENCIES
-from mkt.constants import apps, payments
+from constants.payments import (CARRIER_CHOICES, PROVIDER_BANGO,
+                                PROVIDER_CHOICES)
+from mkt.constants import apps
+from mkt.constants.regions import WORLDWIDE
 from stats.models import Contribution
 from users.models import UserProfile
 
@@ -20,6 +23,17 @@ from babel import numbers
 from jinja2.filters import do_dictsort
 
 log = commonware.log.getLogger('z.market')
+
+
+def price_locale(price, currency):
+    lang = translation.get_language()
+    locale = get_locale_from_lang(lang)
+    return numbers.format_currency(price, currency, locale=locale)
+
+
+def price_key(data):
+    return ('carrier={carrier}|tier={tier}|region={region}|provider={provider}'
+            .format(**data))
 
 
 class PriceManager(amo.models.ManagerBase):
@@ -38,7 +52,6 @@ class Price(amo.models.ModelBase):
     price = models.DecimalField(max_digits=10, decimal_places=2)
 
     objects = PriceManager()
-    currency = 'USD'
 
     class Meta:
         db_table = 'prices'
@@ -54,89 +67,72 @@ class Price(amo.models.ModelBase):
     def transformer(prices):
         # There are a constrained number of price currencies, let's just
         # get them all.
-        Price._currencies = dict([(p.currency, p.tier_id), p]
+        Price._currencies = dict((price_key(model_to_dict(p)), p)
                                  for p in PriceCurrency.objects.all())
 
-    def get_price_data(self, currency=None):
-        """Returns a tuple of Decimal(price), currency, locale.
-
-        The price is the actual price in the current locale.
-        That is, if the instance is tier 1 ($0.99) and the current locale
-        maps to Euros then you get 5,01 EUR or whatever the exchange is.
-
-        If currency is None, the default currency from the current locale will
-        be returned. If you do pass in an explicit currency, you will still
-        get the currently active locale which may or may not match.
+    def get_price_data(self, carrier=None, region=None, provider=None):
         """
+        Returns a tuple of Decimal(price), currency, locale.
+
+        :param optional carrier: an int for the carrier.
+        :param optional region: an int for the region. Defaults to worldwide.
+        :param optional provider: an int for the provider. Defaults to bango.
+        """
+        region = region or WORLDWIDE.id
+        provider = provider or PROVIDER_BANGO
         if not hasattr(self, '_currencies'):
             Price.transformer([])
 
-        lang = translation.get_language()
-        locale = get_locale_from_lang(lang)
-        if not currency:
-            currency = amo.LOCALE_CURRENCY.get(locale.language)
-        # If the currency is USD, we just use the price, not the price tier.
-        if currency and currency != 'USD':
-            price_currency = Price._currencies.get((currency, self.id))
-            if not price_currency:
-                # Asking for a currency that doesn't exist.
-                raise KeyError('No currency found: %s' % currency)
+        lookup = price_key({
+            'tier': self.id, 'carrier': carrier,
+            'provider': provider, 'region': region
+        })
 
-            return price_currency.price, currency, locale
+        price_currency = Price._currencies[lookup]
+        return price_currency.price, price_currency.currency
 
-        return self.price, currency or self.currency, locale
-
-    def get_price(self, currency=None):
+    def get_price(self, carrier=None, region=None, provider=None):
         """Return the price as a decimal for the current locale."""
-        return self.get_price_data(currency=currency)[0]
+        return self.get_price_data(carrier=carrier, region=region,
+                                   provider=provider)[0]
 
-    def get_price_locale(self, currency=None):
+    def get_price_locale(self, carrier=None, region=None, provider=None):
         """Return the price as a nicely localised string for the locale."""
-        price, currency, locale = self.get_price_data(currency=currency)
-        return numbers.format_currency(price, currency, locale=locale)
-
-    def currencies(self):
-        """A listing of all the currency objects for this tier."""
-        if not hasattr(self, '_currencies'):
-            Price.transformer([])
-
-        currencies = [('USD', self)]
-        currencies.extend([(c.currency, c)
-                           for c in self._currencies.values()
-                           if c.tier_id == self.pk])
-        return currencies
+        return price_locale(*self.get_price_data(carrier=carrier,
+                                                 region=region,
+                                                 provider=provider))
 
     def prices(self, provider=None):
         """A list of dicts of all the currencies and prices for this tier."""
-        if provider:
-            currencies = PROVIDER_CURRENCIES.get(provider, [])
-            return [({'currency': o.currency, 'amount': o.price})
-                    for c, o in self.currencies() if o.currency in currencies]
-        else:
-            return [({'currency': o.currency, 'amount': o.price})
-                    for c, o in self.currencies()]
-
-    def carrier_billing_only(self):
-        return self.price < payments.MINIMUM_PRICE_FOR_NON_CARRIER_BILLING
+        provider = provider or PROVIDER_BANGO
+        return [model_to_dict(o) for o in
+                self.pricecurrency_set.filter(provider=provider)]
 
 
 class PriceCurrency(amo.models.ModelBase):
+    # The carrier for this currency.
+    carrier = models.IntegerField(choices=CARRIER_CHOICES, blank=True,
+                                  null=True)
     currency = models.CharField(max_length=10,
                                 choices=do_dictsort(amo.OTHER_CURRENCIES))
     price = models.DecimalField(max_digits=10, decimal_places=2)
+
+    # The payments provider for this tier.
+    provider = models.IntegerField(choices=PROVIDER_CHOICES, blank=True,
+                                   null=True)
+
+    # These are the regions as defined in mkt/constants/regions.
+    region = models.IntegerField(default=1)  # Default to worldwide.
     tier = models.ForeignKey(Price)
 
     class Meta:
         db_table = 'price_currency'
         verbose_name = 'Price currencies'
-        unique_together = ('tier', 'currency')
+        unique_together = ('tier', 'currency', 'carrier', 'region')
 
     def get_price_locale(self):
         """Return the price as a nicely localised string for the locale."""
-        lang = translation.get_language()
-        locale = get_locale_from_lang(lang)
-        return numbers.format_currency(self.price, self.currency,
-                                       locale=locale)
+        return price_locale(self.price, self.currency)
 
     def __unicode__(self):
         return u'%s, %s: %s' % (self.tier, self.currency, self.price)
@@ -219,24 +215,9 @@ class AddonPremium(amo.models.ModelBase):
     def has_price(self):
         return self.price is not None and bool(self.price.price)
 
-    def get_price(self, currency=None):
-        return self.price.get_price(currency=currency)
-
-    def get_price_locale(self, currency=None):
-        """
-        Retuns a price for this locale. If you already know the currency
-        you would like, we will us that. Otherwise we will look it up
-        based on locale.
-        """
-        return self.price.get_price_locale(currency=currency)
-
     def is_complete(self):
         return bool(self.addon and self.price and
                     self.addon.paypal_id and self.addon.support_email)
-
-    def supported_currencies(self):
-        """A hook for currency filtering."""
-        return self.price.currencies()
 
 
 class PreApprovalUser(amo.models.ModelBase):

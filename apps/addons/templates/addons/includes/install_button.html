@@ -8,14 +8,6 @@
   {% elif b.show_eula and not addon.is_webapp() and request.MOBILE %}
     href="{{ link.url|absolutify }}"
     data-realurl="{{ b.xpiurl }}"
-  {# TODO: Fix this when we move purchases logic into mkt/. #}
-  {% elif False and waffle.switch('marketplace') and addon.can_be_purchased() %}
-    href="{{ addon.get_detail_url('purchase') }}"
-    {% if not addon.is_webapp() %}
-      data-realurl="{{ link.url }}"
-    {% endif %}
-  {% elif addon.is_webapp() %}
-    href="#"
   {% else %}
     href="{{ link.url }}"
   {% endif %}>

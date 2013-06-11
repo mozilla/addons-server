@@ -4,14 +4,16 @@ from decimal import Decimal
 from django.utils import translation
 
 import mock
-from nose.tools import eq_
+from nose.tools import eq_, ok_
 
 import amo
 import amo.tests
 from addons.models import Addon, AddonUser
+from constants.payments import PROVIDER_BANGO
 from market.models import (AddonPremium, PreApprovalUser, Price, PriceCurrency,
                            Refund)
 from mkt.constants import apps
+from mkt.constants.regions import ALL_REGION_IDS, PL
 from stats.models import Contribution
 from users.models import UserProfile
 
@@ -38,10 +40,6 @@ class TestPremium(amo.tests.TestCase):
         self.tier_one.update(price=Decimal('0.00'))
         eq_(ap.has_price(), False)
 
-    def test_price_locale(self):
-        ap = AddonPremium(addon=self.addon, price=self.tier_one)
-        eq_(ap.get_price_locale('CAD'), 'CA$3.01')
-
 
 class TestPrice(amo.tests.TestCase):
     fixtures = ['market/prices.json']
@@ -62,41 +60,20 @@ class TestPrice(amo.tests.TestCase):
             [Decimal('0.00'), Decimal('0.99'), Decimal('1.99')])
 
     def test_currency(self):
-        eq_(self.tier_one.pricecurrency_set.count(), 2)
+        eq_(self.tier_one.pricecurrency_set.count(), 3)
 
     def test_get(self):
         eq_(Price.objects.get(pk=1).get_price(), Decimal('0.99'))
 
-    @mock.patch.object(amo, 'LOCALE_CURRENCY', {'en_US': 'USD'})
-    def test_get_locale(self):
-        with self.activate('fr'):  # not in locale translations.
-            eq_(Price.objects.filter(pk=2)[0].get_price(), Decimal('1.99'))
-            # If you are in France, you might still get US prices but at
-            # least we'll format into French for you.
-            eq_(Price.objects.filter(pk=2)[0].get_price_locale(),
-                u'1,99\xa0$US')
-
-    def test_get_mapped_locale(self):
-        with self.activate('fr'):  # mapped in locale translations.
-            # In this case we have a currency so it's converted into Euro.
-            eq_(Price.objects.filter(pk=1)[0].get_price_locale(),
-                u'5,01\xa0\u20ac')
-
-    def test_get_locale_for_currency(self):
-        eq_(self.tier_one.get_price(currency='EUR'),
-            Decimal('5.01'))
-        eq_(self.tier_one.get_price_locale(currency='EUR'),
-            u'\u20ac5.01')  # has Euro sign.
-
     def test_get_tier(self):
         translation.activate('en_CA')
-        eq_(Price.objects.get(pk=1).get_price(), Decimal('3.01'))
-        eq_(Price.objects.get(pk=1).get_price_locale(), u'$3.01')
+        eq_(Price.objects.get(pk=1).get_price(), Decimal('0.99'))
+        eq_(Price.objects.get(pk=1).get_price_locale(), u'US$0.99')
 
     def test_get_tier_and_locale(self):
         translation.activate('pt_BR')
-        eq_(Price.objects.get(pk=2).get_price(), Decimal('1.01'))
-        eq_(Price.objects.get(pk=2).get_price_locale(), u'R$1,01')
+        eq_(Price.objects.get(pk=2).get_price(), Decimal('1.99'))
+        eq_(Price.objects.get(pk=2).get_price_locale(), u'US$1,99')
 
     def test_fallback(self):
         translation.activate('foo')
@@ -105,35 +82,30 @@ class TestPrice(amo.tests.TestCase):
 
     def test_transformer(self):
         price = Price.objects.get(pk=1)
-        price.get_price_locale()  # warm up Price._currencies
+        price.get_price_locale()
+        # Warm up Price._currencies.
         with self.assertNumQueries(0):
             eq_(price.get_price_locale(), u'$0.99')
 
     def test_get_tier_price(self):
         eq_(PriceCurrency.objects.get(pk=3).get_price_locale(), 'R$1.01')
 
-    def test_currencies(self):
-        currencies = Price.objects.get(pk=1).currencies()
-        eq_(len(currencies), 3)
-        eq_(currencies[0][0], 'USD')
-        eq_(currencies[1][1].currency, 'CAD')
-
     def test_prices(self):
         currencies = Price.objects.get(pk=1).prices()
-        eq_(len(currencies), 3)
-        eq_(currencies[0]['currency'], 'USD')
-        eq_(currencies[1], {'currency': 'CAD', 'amount': Decimal('3.01')})
+        eq_(len(currencies), 2)
+        eq_(currencies[0]['currency'], 'PLN')
 
     def test_wrong_currency(self):
+        bad = 4999
+        ok_(bad not in ALL_REGION_IDS)
         with self.assertRaises(KeyError):
-            Price.objects.get(pk=1).get_price('foo')
+            Price.objects.get(pk=1).get_price('foo', region=bad)
 
         with self.assertRaises(KeyError):
-            Price.objects.get(pk=1).get_price_locale('foo')
+            Price.objects.get(pk=1).get_price_locale('foo', region=bad)
 
-    @mock.patch('market.models.PROVIDER_CURRENCIES', {'bango': ['USD', 'EUR']})
     def test_prices_provider(self):
-        currencies = Price.objects.get(pk=1).prices(provider='bango')
+        currencies = Price.objects.get(pk=1).prices(provider=PROVIDER_BANGO)
         eq_(len(currencies), 2)
 
 

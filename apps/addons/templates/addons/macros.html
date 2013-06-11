@@ -12,7 +12,6 @@
       </span>
     {% elif type == 'rating' %}
       {{ impala_reviews_link(addon) }}
-      {{ price(addon) }}
     {% elif type in ('downloads', 'adu') %}
       {% if type == 'downloads' %}
         <span class="downloads adu">
@@ -44,18 +43,6 @@
       <span class="version">{{ version.version }}</span>
     {% endif %}
   </h1>
-{% endmacro %}
-
-{% macro price(addon) %}
-  {% if waffle.switch('marketplace') and addon.is_webapp() %}
-    <span class="vital price {% if addon.is_premium() %}premium{% endif %}">
-      {% if addon.has_price() %}
-        {{ addon.premium.get_price_locale() }}
-      {% else %}
-        {{ _('FREE') }}
-      {% endif %}
-    </span>
-  {% endif %}
 {% endmacro %}
 
 {% macro sort_vital(addon, field) %}

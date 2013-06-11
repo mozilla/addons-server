@@ -7,13 +7,6 @@
   data-versions="{{ url('addons.versions', addon.id) }}"
   data-name="{{ addon.name }}"
   {{ b.attrs()|xmlattr }}
-{# TODO: Fix this when we move purchases logic into mkt/. #}
-{% if False and waffle.switch('marketplace') and addon.can_be_purchased() and addon.premium %}
-  data-purchase="{{ addon.get_detail_url('purchase') }}?"
-  data-start-purchase="{{ addon.get_detail_url('purchase.start') }}"
-  data-cost="{{ addon.premium.get_price() }}"
-  data-login-url="{{ url('users.login_modal') }}"
-{% endif %}
 {% if compat %}
   data-min="{{ compat.min.version }}"
   data-max="{{ compat.max.version }}"
@@ -23,10 +16,4 @@
     data-is-compatible-app="{{ version.is_compatible_app(APP)|json }}"
     data-compat-overrides="{{ version.compat_override_app_versions()|json }}"
   {% endif %}
-{% endif %}
-{% if addon.is_webapp() %}
-  data-manifest-url="{% if (addon.is_premium() and addon.has_purchased(amo_user)) or (not addon.is_premium()) -%}
-    {{ addon.manifest_url }}
-  {%- endif %}"
-  data-record-url="{{ addon.get_detail_url('record') }}"
 {% endif %}

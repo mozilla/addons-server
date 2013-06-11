@@ -35,16 +35,15 @@ addon_view = addon_view_factory(qs=Webapp.objects.valid)
 
 
 def start_purchase(request, addon):
-    log.debug('Starting purchase of addon: %s by user: %s'
+    log.debug('Starting purchase of app: %s by user: %s'
               % (addon.pk, request.amo_user.pk))
-    amount = addon.premium.get_price()
+    amount = addon.get_price(region=request.REGION.id)
     uuid_ = hashlib.md5(str(uuid.uuid4())).hexdigest()
     # L10n: {0} is the addon name.
     contrib_for = (_(u'Firefox Marketplace purchase of {0}')
                    .format(addon.name))
 
-    amount, currency = (addon.premium.get_price(),
-                        request.REGION.default_currency)
+    currency = request.REGION.default_currency
 
     # If tier is specified, then let's look it up.
     if waffle.switch_is_active('currencies'):

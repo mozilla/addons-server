@@ -9,6 +9,7 @@ from django.core.files.storage import default_storage as storage
 from django.utils.html import strip_tags
 
 import mock
+from nose import SkipTest
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 from tower import strip_whitespace
@@ -50,6 +51,10 @@ class DetailBase(amo.tests.WebappTestCase):
 
 
 class TestDetail(DetailBase):
+
+    def setUp(self):
+        # To all be deleted.
+        raise SkipTest
 
     def test_page(self):
         r = self.client.get(self.url)

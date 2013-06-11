@@ -113,7 +113,6 @@ Regions
             "slug": "ap",
             "default_currency": "USD",
             "default_language": "en-AP",
-            "supports_carrier_billing": true
         }
 
 Configuration

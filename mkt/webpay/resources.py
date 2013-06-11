@@ -10,6 +10,7 @@ import amo
 from amo.helpers import absolutify, urlparams
 from amo.urlresolvers import reverse
 from amo.utils import send_mail_jinja
+from constants.payments import PROVIDER_LOOKUP
 from mkt.api.authentication import (OAuthAuthentication,
                                     OptionalOAuthAuthentication,
                                     SharedSecretAuthentication)
@@ -21,7 +22,7 @@ from mkt.api.base import (CORSResource, GenericObject,
 from mkt.webpay.forms import FailureForm, PrepareForm, ProductIconForm
 from mkt.webpay.models import ProductIcon
 from mkt.purchase.webpay import _prepare_pay
-from market.models import Price
+from market.models import Price, price_locale
 from stats.models import Contribution
 
 from . import tasks
@@ -107,22 +108,20 @@ class PriceResource(CORSResource, MarketplaceModelResource):
 
     def _get_prices(self, bundle):
         """Both localized and prices need access to this. """
-        return bundle.obj.prices(provider=
-            bundle.request.GET.get('provider', None))
+        provider = bundle.request.GET.get('provider', None)
+        if provider:
+            provider = PROVIDER_LOOKUP[provider]
+        return bundle.obj.prices(provider=provider)
 
 
     def dehydrate_localized(self, bundle):
         region = bundle.request.REGION
-        if not region.default_currency:
-            return {}
 
-        # TODO: prices is a list of dicts, can we make this faster?
         for price in self._get_prices(bundle):
-            if price['currency'] == region.default_currency:
+            if price['region'] == region.id:
                 result = price.copy()
                 result.update({
-                    'locale': bundle.obj.get_price_locale(
-                        currency=price['currency']),
+                    'locale': price_locale(price['amount'], price['currency']),
                     'region': region.name,
                 })
                 return result

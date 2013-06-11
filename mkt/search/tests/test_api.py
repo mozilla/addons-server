@@ -3,7 +3,6 @@ from datetime import datetime
 
 from django.contrib.auth.models import User
 
-from mock import patch
 from nose.tools import eq_, ok_
 
 import amo
@@ -11,7 +10,6 @@ import mkt.regions
 from addons.models import (AddonCategory, AddonDeviceType, AddonUpsell,
                            Category)
 from amo.tests import app_factory, ESTestCase
-from market.models import AddonPremium, Price, PriceCurrency
 from stats.models import ClientData
 from users.models import UserProfile
 
@@ -265,20 +263,6 @@ class TestApi(BaseOAuth, ESTestCase):
         res = self.client.get(self.url + ({'type': 'theme'},))
         eq_(res.status_code, 200)
         eq_(len(res.json['objects']), 0)
-
-    @patch.object(mkt.regions.US, 'supports_carrier_billing', False)
-    def test_minimum_price_tier(self):
-        price = Price.objects.create(name='5', price='0.50')
-        PriceCurrency.objects.create(currency='BRL', price='1.00', tier=price)
-        AddonPremium.objects.create(addon=self.webapp, price=price)
-        self.webapp.save()
-        self.refresh('webapp')
-        res = self.client.get(self.url + ({'region': 'br'},))
-        eq_(res.status_code, 200)
-        eq_(len(res.json['objects']), 1)
-        res2 = self.client.get(self.url + ({'region': 'us'},))
-        eq_(res2.status_code, 200)
-        eq_(len(res2.json['objects']), 0)
 
     def test_adolescent_popularity(self):
         """

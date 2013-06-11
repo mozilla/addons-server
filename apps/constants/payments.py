@@ -152,6 +152,13 @@ PAYMENT_DETAILS_ERROR = {
                  'and is awaiting processing.'),
 }
 
-PROVIDER_CURRENCIES = {
-    'bango': BANGO_CURRENCIES_KEYS
-}
+PROVIDER_PAYPAL = 0
+PROVIDER_BANGO = 1
+
+PROVIDER_CHOICES = (
+    (PROVIDER_PAYPAL, 'paypal'),
+    (PROVIDER_BANGO, 'bango')
+)
+
+PROVIDER_LOOKUP = dict([(v, k) for k, v in PROVIDER_CHOICES])
+CARRIER_CHOICES = ()

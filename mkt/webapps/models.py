@@ -501,29 +501,31 @@ class Webapp(Addon):
         return bool(self.is_premium() and self.premium and
                     self.premium.has_price())
 
-    def get_price(self, currency=None):
+    def get_price(self, carrier=None, region=None, provider=None):
         """
         A shortcut to get the price as decimal. Returns None if their is no
         price for the app.
 
-        :param optional currency: If you do not pass in a currency, one
-            will be chosen for you. If you ask for a currency that does
-            not exist, you'll get an error.
+        :param optional carrier: an int for the carrier.
+        :param optional region: an int for the region. Defaults to worldwide.
+        :param optional provider: an int for the provider. Defaults to bango.
         """
         if self.has_price():
-            return self.premium.get_price(currency=currency)
+            return self.premium.price.get_price(carrier=carrier,
+                region=region, provider=provider)
 
-    def get_price_locale(self, currency=None):
+    def get_price_locale(self, carrier=None, region=None, provider=None):
         """
         A shortcut to get the localised price with currency. Returns None if
         their is no price for the app.
 
-        :param optional currency: If you do not pass in a currency, one
-            will be chosen for you. If you ask for a currency that does
-            not exist, you'll get an error.
+        :param optional carrier: an int for the carrier.
+        :param optional region: an int for the region. Defaults to worldwide.
+        :param optional provider: an int for the provider. Defaults to bango.
         """
         if self.has_price():
-            return self.premium.get_price_locale(currency=currency)
+            return self.premium.price.get_price_locale(carrier=carrier,
+                region=region, provider=provider)
 
     @amo.cached_property
     def promo(self):
@@ -972,7 +974,6 @@ class WebappIndexer(MappingType, Indexable):
                     },
                     'price_tier': {'type': 'string',
                                    'index': 'not_analyzed'},
-                    'carrier_billing_only': {'type': 'boolean'},
                     'ratings': {
                         'type': 'object',
                         'properties': {
@@ -1100,10 +1101,8 @@ class WebappIndexer(MappingType, Indexable):
         try:
             p = obj.addonpremium.price
             d['price_tier'] = p.name
-            d['carrier_billing_only'] = p.carrier_billing_only()
         except AddonPremium.DoesNotExist:
             d['price_tier'] = None
-            d['carrier_billing_only'] = False
 
         d['ratings'] = {
             'average': obj.average_rating,

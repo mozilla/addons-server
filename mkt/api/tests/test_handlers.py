@@ -13,7 +13,7 @@ from addons.models import (Addon, AddonDeviceType, AddonUpsell,
                            AddonUser, Category, Preview)
 from amo.tests import AMOPaths, app_factory
 from files.models import FileUpload
-from market.models import Price, AddonPremium
+from market.models import AddonPremium, Price, PriceCurrency
 from users.models import UserProfile
 
 from mkt.api.tests.test_oauth import BaseOAuth, OAuthClient, get_absolute_url
@@ -554,39 +554,45 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         assert '12345' in self.get_error(res)['device_types'][0], (
             self.get_error(res))
 
+    def create_price(self, price):
+        tier = Price.objects.create(price=price)
+        # This is needed for the serialisation of the app.
+        PriceCurrency.objects.create(tier=tier, price=price, provider=1,
+                                     region=regions.US.id)
+
     def test_put_price(self):
         app = self.create_app()
         data = self.base_data()
-        Price.objects.create(price='1.07')
+        self.create_price('1.07')
         data['premium_type'] = 'premium'
-        data['price'] = "1.07"
+        data['price'] = '1.07'
         res = self.client.put(self.get_url, data=json.dumps(data))
         eq_(res.status_code, 202)
-        eq_(str(app.addonpremium.price.get_price()), "1.07")
+        eq_(str(app.reload().get_price(region=regions.US.id)), '1.07')
 
     def test_put_premium_inapp(self):
         app = self.create_app()
         data = self.base_data()
-        Price.objects.create(price='1.07')
+        self.create_price('1.07')
         data['premium_type'] = 'premium-inapp'
-        data['price'] = "1.07"
+        data['price'] = '1.07'
         res = self.client.put(self.get_url, data=json.dumps(data))
         eq_(res.status_code, 202)
-        eq_(str(app.addonpremium.price.get_price()), "1.07")
-        eq_(Webapp.objects.get(pk=app.pk).premium_type,
-            amo.ADDON_PREMIUM_INAPP)
+        app = app.reload()
+        eq_(str(app.get_price(region=regions.US.id)), '1.07')
+        eq_(app.premium_type, amo.ADDON_PREMIUM_INAPP)
 
     def test_put_bad_price(self):
         self.create_app()
         data = self.base_data()
-        Price.objects.create(price='1.07')
-        Price.objects.create(price='3.14')
+        self.create_price('1.07')
+        self.create_price('3.14')
         data['premium_type'] = 'premium'
         data['price'] = "2.03"
         res = self.client.put(self.get_url, data=json.dumps(data))
         eq_(res.status_code, 400)
         eq_(res.content,
-            'Premium app specified without a valid price. price can be one of '
+            'Premium app specified without a valid price. Price can be one of '
             '"1.07", "3.14".')
 
     def test_put_no_price(self):
@@ -598,18 +604,16 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         res = self.client.put(self.get_url, data=json.dumps(data))
         eq_(res.status_code, 400)
         eq_(res.content,
-            'Premium app specified without a valid price. price can be one of '
+            'Premium app specified without a valid price. Price can be one of '
             '"1.07", "3.14".')
 
     def test_put_free_inapp(self):
         app = self.create_app()
         data = self.base_data()
-        Price.objects.create(price='0.00')
-        Price.objects.create(price='3.14')
         data['premium_type'] = 'free-inapp'
         res = self.client.put(self.get_url, data=json.dumps(data))
         eq_(res.status_code, 202)
-        eq_(str(app.addonpremium.get_price()), "0.00")
+        eq_(app.reload().get_price(region=regions.US.id), None)
 
 # TODO: renable when regions are sorted out.
 #    def test_put_region_bad(self):

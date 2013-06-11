@@ -48,7 +48,7 @@ def get_supported_locales(manifest):
         manifest.get('locales', {}).keys()))))
 
 
-def app_to_dict(app, currency=None, profile=None):
+def app_to_dict(app, region=None, profile=None):
     """Return app data as dict for API."""
     # Sad circular import issues.
     from mkt.api.resources import AppResource, PreviewResource
@@ -116,12 +116,9 @@ def app_to_dict(app, currency=None, profile=None):
         if len(q) > 0 and q[0].payment_account:
             data['payment_account'] = AccountResource().get_resource_uri(
                 q[0].payment_account)
-        try:
-            data['price'] = app.get_price(currency)
-            data['price_locale'] = app.get_price_locale(currency)
-        except AttributeError:
-            # Until bug 864569 gets fixed.
-            log.info('Missing price data for premium app: %s' % app.pk)
+
+        data['price'] = app.get_price(region=region)
+        data['price_locale'] = app.get_price_locale(region=region)
 
     with no_translation():
         data['device_types'] = [n.api_name
@@ -156,7 +153,7 @@ def get_attr_lang(src, attr, default_locale):
     return value[0] if value else u''
 
 
-def es_app_to_dict(obj, currency=None, profile=None):
+def es_app_to_dict(obj, region=None, profile=None):
     """
     Return app data as dict for API where `app` is the elasticsearch result.
     """
@@ -216,8 +213,8 @@ def es_app_to_dict(obj, currency=None, profile=None):
     try:
         if src['price_tier']:
             price = Price.objects.get(name=src['price_tier'])
-            data['price'] = price.get_price(currency=currency)
-            data['price_locale'] = price.get_price_locale(currency=currency)
+            data['price'] = price.get_price(region=region)
+            data['price_locale'] = price.get_price_locale(region=region)
     except Price.DoesNotExist:
         pass
 

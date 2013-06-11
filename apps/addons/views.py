@@ -2,7 +2,6 @@ import functools
 import hashlib
 import json
 import random
-from urlparse import urlparse
 import uuid
 from operator import attrgetter
 
@@ -26,29 +25,25 @@ from mobility.decorators import mobilized, mobile_template
 
 import amo
 from amo import messages
-from amo.decorators import login_required, post_required, write
+from amo.decorators import post_required
 from amo.forms import AbuseForm
-from amo.helpers import shared_url
-from amo.utils import randslice, sorted_groupby, urlparams
+from amo.utils import randslice, sorted_groupby
 from amo.models import manual_order
 from amo import urlresolvers
 from amo.urlresolvers import reverse
 from abuse.models import send_abuse_report
 from bandwagon.models import Collection, CollectionFeature, CollectionPromo
-from market.forms import PriceCurrencyForm
 import paypal
 from reviews.forms import ReviewForm
 from reviews.models import Review, GroupedRating
-from session_csrf import anonymous_csrf, anonymous_csrf_exempt
+from session_csrf import anonymous_csrf_exempt
 from sharing.views import share as share_redirect
 from stats.models import Contribution
 from translations.query import order_by_translation
 from versions.models import Version
 from .forms import ContributionForm
 from .models import Addon, Persona, FrozenAddon
-from .decorators import (addon_view_factory, can_be_purchased, has_purchased,
-                         has_not_purchased)
-from mkt.webapps.models import Installed
+from .decorators import addon_view_factory
 
 log = commonware.log.getLogger('z.addons')
 paypal_log = commonware.log.getLogger('z.paypal')
@@ -487,193 +482,6 @@ def developers(request, addon, page):
                          'version': version})
 
 
-# TODO(andym): remove this once we figure out how to process for
-# anonymous users. For now we are concentrating on logged in users.
-@login_required
-@addon_view
-@can_be_purchased
-@has_not_purchased
-@write
-@post_required
-def purchase(request, addon):
-    log.debug('Starting purchase of addon: %s by user: %s'
-              % (addon.pk, request.amo_user.pk))
-    amount = addon.premium.get_price()
-    source = request.POST.get('source', '')
-    uuid_ = hashlib.md5(str(uuid.uuid4())).hexdigest()
-    # l10n: {0} is the addon name
-    contrib_for = _(u'Purchase of {0}').format(jinja2.escape(addon.name))
-
-    # Default is USD.
-    amount, currency = addon.premium.get_price(), 'USD'
-
-    # If tier is specified, then let's look it up.
-    form = PriceCurrencyForm(data=request.POST, addon=addon)
-    if form.is_valid():
-        tier = form.get_tier()
-        if tier:
-            amount, currency = tier.price, tier.currency
-
-    paykey, status, error = '', '', ''
-    preapproval = None
-    if waffle.flag_is_active(request, 'allow-pre-auth') and request.amo_user:
-        preapproval = request.amo_user.get_preapproval()
-
-    try:
-        pattern = 'addons.purchase.finished'
-        slug = addon.slug
-        if addon.is_webapp():
-            pattern = 'apps.purchase.finished'
-            slug = addon.app_slug
-
-        paykey, status = paypal.get_paykey(
-            dict(amount=amount,
-                 chains=settings.PAYPAL_CHAINS,
-                 currency=currency,
-                 email=addon.paypal_id,
-                 ip=request.META.get('REMOTE_ADDR'),
-                 memo=contrib_for,
-                 pattern=pattern,
-                 preapproval=preapproval, qs={'realurl':
-                                              request.POST.get('realurl')},
-                 slug=slug, uuid=uuid_))
-    except paypal.PaypalError as error:
-        paypal.paypal_log_cef(request, addon, uuid_,
-                              'PayKey Failure', 'PAYKEYFAIL',
-                              'There was an error getting the paykey')
-        log.error('Error getting paykey, purchase of addon: %s' % addon.pk,
-                  exc_info=True)
-
-    if paykey:
-        contrib = Contribution(addon_id=addon.id, amount=amount,
-                               source=source, source_locale=request.LANG,
-                               uuid=str(uuid_), type=amo.CONTRIB_PENDING,
-                               paykey=paykey, user=request.amo_user)
-        log.debug('Storing contrib for uuid: %s' % uuid_)
-
-        # If this was a pre-approval, it's completed already, we'll
-        # double check this with PayPal, just to be sure nothing went wrong.
-        if status == 'COMPLETED':
-            paypal.paypal_log_cef(request, addon, uuid_,
-                                  'Purchase', 'PURCHASE',
-                                  'A user purchased using pre-approval')
-
-            log.debug('Status is completed for uuid: %s' % uuid_)
-            if paypal.check_purchase(paykey) == 'COMPLETED':
-                log.debug('Check purchase is completed for uuid: %s' % uuid_)
-                contrib.type = amo.CONTRIB_PURCHASE
-            else:
-                # In this case PayPal disagreed, we should not be trusting
-                # what get_paykey said. Which is a worry.
-                log.error('Check purchase failed on uuid: %s' % uuid_)
-                status = 'NOT-COMPLETED'
-
-        contrib.save()
-
-    else:
-        log.error('No paykey present for uuid: %s' % uuid_)
-
-    log.debug('Got paykey for addon: %s by user: %s'
-              % (addon.pk, request.amo_user.pk))
-    url = '%s?paykey=%s' % (settings.PAYPAL_FLOW_URL, paykey)
-    if request.POST.get('result_type') == 'json' or request.is_ajax():
-        return http.HttpResponse(json.dumps({'url': url,
-                                             'paykey': paykey,
-                                             'error': str(error),
-                                             'status': status}),
-                                 content_type='application/json')
-
-    # This is the non-Ajax fallback.
-    if status != 'COMPLETED':
-        return http.HttpResponseRedirect(url)
-
-    messages.success(request, _('Purchase complete'))
-    return http.HttpResponseRedirect(shared_url('addons.detail', addon))
-
-
-# TODO(andym): again, remove this once we figure out logged out flow.
-@csrf_exempt
-@login_required
-@addon_view
-@can_be_purchased
-@write
-def purchase_complete(request, addon, status):
-    result = ''
-    if status == 'complete':
-        uuid_ = request.GET.get('uuid')
-        log.debug('Looking up contrib for uuid: %s' % uuid_)
-
-        # The IPN may, or may not have come through. Which means looking for
-        # a for pre or post IPN contributions. If both fail, then we've not
-        # got a matching contribution.
-        lookup = (Q(uuid=uuid_, type=amo.CONTRIB_PENDING) |
-                  Q(transaction_id=uuid_, type=amo.CONTRIB_PURCHASE))
-        con = get_object_or_404(Contribution, lookup)
-
-        log.debug('Check purchase paypal addon: %s, user: %s, paykey: %s'
-                  % (addon.pk, request.amo_user.pk, con.paykey[:10]))
-        try:
-            result = paypal.check_purchase(con.paykey)
-            if result == 'ERROR':
-                paypal.paypal_log_cef(request, addon, uuid_, 'Purchase Fail',
-                                      'PURCHASEFAIL',
-                                      'Checking purchase state returned error')
-                raise
-        except:
-            paypal.paypal_log_cef(request, addon, uuid_, 'Purchase Fail',
-                                  'PURCHASEFAIL',
-                                  'There was an error checking purchase state')
-            log.error('Check purchase paypal addon: %s, user: %s, paykey: %s'
-                      % (addon.pk, request.amo_user.pk, con.paykey[:10]),
-                      exc_info=True)
-            result = 'ERROR'
-            status = 'error'
-
-        log.debug('Paypal returned: %s for paykey: %s'
-                  % (result, con.paykey[:10]))
-        if result == 'COMPLETED' and con.type == amo.CONTRIB_PENDING:
-            con.update(type=amo.CONTRIB_PURCHASE)
-
-    context = {'realurl': request.GET.get('realurl', ''),
-               'status': status, 'result': result}
-
-    # For mobile, bounce back to the details page.
-    if request.MOBILE:
-        url = urlparams(shared_url('detail', addon), **context)
-        return http.HttpResponseRedirect(url)
-
-    context.update({'addon': addon})
-    response = jingo.render(request, 'addons/paypal_result.html', context)
-    response['x-frame-options'] = 'allow'
-    return response
-
-
-@login_required
-@addon_view
-@can_be_purchased
-@has_purchased
-def purchase_thanks(request, addon):
-    download = urlparse(request.GET.get('realurl', '')).path
-
-    data = {'addon': addon, 'is_ajax': request.is_ajax(),
-            'download': download}
-
-    if addon.is_webapp():
-        installed, c = Installed.objects.safer_get_or_create(
-            addon=addon, user=request.amo_user)
-        data['receipt'] = installed.receipt
-
-    return jingo.render(request, 'addons/paypal_thanks.html', data)
-
-
-@login_required
-@addon_view
-@can_be_purchased
-def purchase_error(request, addon):
-    data = {'addon': addon, 'is_ajax': request.is_ajax()}
-    return jingo.render(request, 'addons/paypal_error.html', data)
-
-
 @addon_view
 @anonymous_csrf_exempt
 @post_required
@@ -770,23 +578,6 @@ def paypal_result(request, addon, status):
                             {'addon': addon, 'status': status})
     response['x-frame-options'] = 'allow'
     return response
-
-
-@addon_view
-@can_be_purchased
-@anonymous_csrf
-def paypal_start(request, addon=None):
-    download = urlparse(request.GET.get('realurl', '')).path
-    data = {'addon': addon, 'is_ajax': request.is_ajax(),
-            'download': download,
-            'currencies': addon.premium.price.currencies()}
-
-    if request.user.is_authenticated():
-        return jingo.render(request, 'addons/paypal_start.html', data)
-
-    from users.views import _login
-    return _login(request, data=data, template='addons/paypal_start.html',
-                  dont_redirect=True)
 
 
 @addon_view

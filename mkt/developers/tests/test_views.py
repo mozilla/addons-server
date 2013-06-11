@@ -44,7 +44,7 @@ from mkt.webapps.models import Webapp
 
 
 class AppHubTest(amo.tests.TestCase):
-    fixtures = ['base/users', 'webapps/337141-steamcube']
+    fixtures = fixture('prices', 'webapp_337141') + ['base/users']
 
     def setUp(self):
         self.create_flag('allow-b2g-paid-submission')
@@ -287,6 +287,7 @@ class TestDevRequired(AppHubTest):
         assert self.client.login(username=self.user.email, password='password')
         self.au = AddonUser.objects.get(user=self.user, addon=self.webapp)
         eq_(self.au.role, amo.AUTHOR_ROLE_OWNER)
+        self.make_price()
 
     def test_anon(self):
         self.client.logout()
@@ -1166,8 +1167,8 @@ class TestTransactionList(amo.tests.TestCase):
         self.do_filter(self.txs)
         self.do_filter(self.txs, transaction_type='None', app='oshawott')
 
-        self.do_filter([tx0], app=tx0.id)
-        self.do_filter([tx1], app=tx1.id)
+        self.do_filter([tx0], app=tx0.addon.id)
+        self.do_filter([tx1], app=tx1.addon.id)
 
         self.do_filter([tx0], transaction_type=tx0.type)
         self.do_filter([tx1], transaction_type=tx1.type)

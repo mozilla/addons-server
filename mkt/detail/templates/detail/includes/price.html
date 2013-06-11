@@ -1,0 +1,9 @@
+{% macro price(addon) %}
+  <span class="vital price {% if addon.is_premium() %}premium{% endif %}">
+    {% if addon.has_price() %}
+      {{ addon.get_price_locale(region=request.REGION.id) }}
+    {% else %}
+      {{ _('FREE') }}
+    {% endif %}
+  </span>
+{% endmacro %}

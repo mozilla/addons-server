@@ -273,31 +273,26 @@ class AppResource(CORSResource, MarketplaceModelResource):
 
     def update_premium_type(self, bundle):
         self.hydrate_premium_type(bundle)
-        if bundle.obj.premium_type != amo.ADDON_FREE:
-            ap = AddonPremium.objects.safer_get_or_create(addon=bundle.obj)[0]
+        if bundle.obj.premium_type in (amo.ADDON_FREE, amo.ADDON_FREE_INAPP):
+            return
+
+        ap = AddonPremium.objects.safer_get_or_create(addon=bundle.obj)[0]
+        if not bundle.data.get('price') or not Price.objects.filter(
+                price=bundle.data['price']).exists():
+            tiers = ', '.join('"%s"' % p.price
+                              for p in Price.objects.exclude(price="0.00"))
+            raise fields.ApiFieldError(
+                'Premium app specified without a valid price. Price can be'
+                ' one of %s.' % (tiers,))
         else:
-            ap = None
-        if bundle.obj.premium_type in amo.ADDON_PREMIUMS:
-            if not bundle.data.get('price') or not Price.objects.filter(
-                    price=bundle.data['price']).exists():
-                tiers = ', '.join('"%s"' % p.get_price()
-                                  for p in Price.objects.exclude(price="0.00"))
-                raise fields.ApiFieldError(
-                    'Premium app specified without a valid price. price can be'
-                    ' one of %s.' % (tiers,))
-            else:
-                ap.price = Price.objects.get(price=bundle.data['price'])
-                ap.save()
-        else:
-            if ap:
-                ap.price = Price.objects.get(price='0.00')
-                ap.save()
+            ap.price = Price.objects.get(price=bundle.data['price'])
+            ap.save()
 
     def dehydrate(self, bundle):
         obj = bundle.obj
         amo_user = getattr(bundle.request, 'amo_user', None)
         bundle.data.update(app_to_dict(obj,
-            currency=bundle.request.REGION.default_currency, profile=amo_user))
+            region=bundle.request.REGION.id, profile=amo_user))
         bundle.data['privacy_policy'] = (
             PrivacyPolicyResource().get_resource_uri(bundle))
         return bundle

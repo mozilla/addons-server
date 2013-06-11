@@ -8,6 +8,7 @@ from nose.tools import eq_, ok_
 
 from amo import CONTRIB_PENDING, CONTRIB_PURCHASE
 from amo.urlresolvers import reverse
+from constants.payments import PROVIDER_BANGO
 from market.models import Price, PriceCurrency
 from users.models import UserProfile
 
@@ -94,14 +95,15 @@ class TestStatus(BaseOAuth):
 
 class TestPrices(BaseOAuth):
 
-    def make_currency(self, amount, tier, currency):
-        return PriceCurrency.objects.create(price=Decimal(amount),
-                                            tier=tier, currency=currency)
+    def make_currency(self, amount, tier, currency, region):
+        return PriceCurrency.objects.create(price=Decimal(amount), tier=tier,
+            currency=currency, provider=PROVIDER_BANGO, region=region.id)
 
     def setUp(self):
         super(TestPrices, self).setUp(api_name='webpay')
         self.price = Price.objects.create(name='1', price=Decimal(1))
-        self.currency = self.make_currency(3, self.price, 'CAD')
+        self.currency = self.make_currency(3, self.price, 'DE', regions.DE)
+        self.us_currency = self.make_currency(3, self.price, 'USD', regions.US)
         self.list_url = list_url('prices')
         self.get_url = get_url('prices', self.price.pk)
 
@@ -118,9 +120,8 @@ class TestPrices(BaseOAuth):
     def test_single(self):
         res = self.client.get(self.get_url)
         eq_(res.status_code, 200)
-        data = json.loads(res.content)
-        eq_(data['pricePoint'], '1')
-        eq_(data['name'], 'Tier 1')
+        eq_(res.json['pricePoint'], '1')
+        eq_(res.json['name'], 'Tier 1')
 
     def test_price_point(self):
         res = self.client.get(self.list_url + ({'pricePoint': '1'},))
@@ -131,29 +132,25 @@ class TestPrices(BaseOAuth):
 
     def test_list(self):
         res = self.client.get(self.list_url)
-        data = json.loads(res.content)
-        eq_(data['meta']['total_count'], 1)
-        self.assertSetEqual(self.get_currencies(data['objects'][0]),
-                            ['USD', 'CAD'])
+        eq_(res.json['meta']['total_count'], 1)
+        self.assertSetEqual(self.get_currencies(res.json['objects'][0]),
+                            ['USD', 'DE'])
 
-    @patch('market.models.PROVIDER_CURRENCIES', {'bango': ['USD', 'EUR']})
     def test_list_filtered(self):
+        self.currency.update(provider=0)
         res = self.client.get(self.list_url + ({'provider': 'bango'},))
-        data = json.loads(res.content)
-        self.assertSetEqual(self.get_currencies(data['objects'][0]), ['USD'])
+        eq_(self.get_currencies(res.json['objects'][0]), ['USD'])
 
     def test_prices(self):
         res = self.client.get(self.get_url)
         eq_(res.status_code, 200)
-        data = json.loads(res.content)
-        self.assertSetEqual(self.get_currencies(data), ['USD', 'CAD'])
+        self.assertSetEqual(self.get_currencies(res.json), ['USD', 'DE'])
 
-    @patch('market.models.PROVIDER_CURRENCIES', {'bango': ['USD', 'EUR']})
     def test_prices_filtered(self):
+        self.currency.update(provider=0)
         res = self.client.get(self.get_url + ({'provider': 'bango'},))
         eq_(res.status_code, 200)
-        data = json.loads(res.content)
-        self.assertSetEqual(self.get_currencies(data), ['USD'])
+        self.assertSetEqual(self.get_currencies(res.json), ['USD'])
 
     def test_has_cors(self):
         self.assertCORS(self.client.get(self.get_url), 'get')
@@ -166,42 +163,29 @@ class TestPrices(BaseOAuth):
         self.assertCORS(res, 'get')
 
     def test_locale(self):
-        self.make_currency(5, self.price, 'BRL')
+        self.make_currency(5, self.price, 'BRL', regions.BR)
         res = self.client.get(self.get_url, HTTP_ACCEPT_LANGUAGE='pt-BR')
         eq_(res.status_code, 200)
-        data = json.loads(res.content)
-        eq_(data['localized']['region'], 'Brasil')
-        eq_(data['localized']['locale'], 'R$5,00')
+        eq_(res.json['localized']['locale'], 'R$5,00')
 
     def test_locale_list(self):
         # Check that for each price tier a different localisation is
         # returned.
-        self.make_currency(2, self.price, 'BRL')
+        self.make_currency(2, self.price, 'BRL', regions.BR)
         price_two = Price.objects.create(name='2', price=Decimal(1))
-        self.make_currency(12, price_two, 'BRL')
+        self.make_currency(12, price_two, 'BRL', regions.BR)
 
         res = self.client.get(self.list_url, HTTP_ACCEPT_LANGUAGE='pt-BR')
         eq_(res.status_code, 200)
-        data = json.loads(res.content)
-        eq_(data['objects'][0]['localized']['locale'], 'R$2,00')
-        eq_(data['objects'][1]['localized']['locale'], 'R$12,00')
+        eq_(res.json['objects'][0]['localized']['locale'], 'R$2,00')
+        eq_(res.json['objects'][1]['localized']['locale'], 'R$12,00')
 
     def test_no_locale(self):
         # This results in a region of BR and a currency of BRL. But there
         # isn't a price tier for that currency. So we don't know what to show.
         res = self.client.get(self.get_url, HTTP_ACCEPT_LANGUAGE='pt-BR')
         eq_(res.status_code, 200)
-        data = json.loads(res.content)
-        eq_(data['localized'], {})
-
-    def test_no_region(self):
-        # Because the this results in a lang of fr,
-        # but a region of worldwide. The currency for that region is USD.
-        res = self.client.get(self.get_url, HTTP_ACCEPT_LANGUAGE='fr')
-        eq_(res.status_code, 200)
-        data = json.loads(res.content)
-        eq_(data['localized']['region'], 'Monde entier')
-        eq_(data['localized']['locale'], u'1,00\xa0$US')
+        eq_(res.json['localized'], {})
 
 
 class TestNotification(BaseOAuth):

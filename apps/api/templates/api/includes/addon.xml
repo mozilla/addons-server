@@ -118,12 +118,6 @@
       </meet_developers>
     </contribution_data>
     {%- endif -%}
-    {% if addon.is_premium() %}
-    <payment_data>
-        <link>{{ url('addons.purchase', addon.slug)|absolutify|urlparams(src='api') }}</link>
-        <amount amount="{{ addon.premium.get_price() }}">{{ addon.premium.get_price_locale() }}</amount>
-    </payment_data>
-    {% endif %}
     <developer_comments>{{ addon.developer_comments }}</developer_comments>
     <reviews num="{{ addon.total_reviews }}">
       {{ addon.reviews_url|absolutify|urlparams(src='api') }}

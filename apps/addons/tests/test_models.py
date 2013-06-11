@@ -2075,30 +2075,6 @@ class TestMarketplace(amo.tests.TestCase):
             self.addon.status = status
             assert self.addon.can_be_purchased()
 
-    def test_transformer(self):
-        self.addon.save()
-        other = Addon.objects.create(type=amo.ADDON_EXTENSION)
-        price = Price.objects.create(price='1.00')
-
-        self.addon.update(type=amo.ADDON_PREMIUM)
-        AddonPremium.objects.create(addon=self.addon, price=price)
-
-        assert getattr(Addon.objects.get(pk=self.addon.pk), 'premium')
-        assert not getattr(Addon.objects.get(pk=other.pk), 'premium')
-
-    def test_price_transformer(self):
-        self.addon.save()
-        price = Price.objects.create(price='1.00')
-        price.pricecurrency_set.create(currency='BRL', price='1.01')
-        self.addon.update(premium_type=amo.ADDON_PREMIUM)
-        AddonPremium.objects.create(addon=self.addon, price=price)
-
-        addon = list(Addon.objects.filter(pk=self.addon.pk))
-        with self.assertNumQueries(0):
-            eq_(addon[0].premium.get_price_locale(), '$1.00')
-            translation.activate('pt_BR')
-            eq_(addon[0].premium.get_price_locale(), u'R$1,01')
-
 
 class TestAddonUpsell(amo.tests.TestCase):
 

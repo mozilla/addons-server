@@ -49,8 +49,10 @@
     "pk": 1,
     "model": "market.pricecurrency",
     "fields": {
-      "currency": "EUR",
+      "currency": "PLN",
       "tier": 1,
+      "provider": 1,
+      "region": 11,
       "price": "5.01",
       "modified": "2011-08-15 16:14:15",
       "created": "2011-08-15 16:14:15"
@@ -60,8 +62,10 @@
     "pk": 2,
     "model": "market.pricecurrency",
     "fields": {
-      "currency": "CAD",
+      "currency": "DE",
       "tier": 1,
+      "provider": 0,
+      "region": 14,
       "price": "3.01",
       "modified": "2011-08-15 16:14:26",
       "created": "2011-08-15 16:14:26"
@@ -73,7 +77,35 @@
     "fields": {
       "currency": "BRL",
       "tier": 2,
+      "provider": 1,
+      "region": 7,
       "price": "1.01",
+      "modified": "2011-08-15 16:15:23",
+      "created": "2011-08-15 16:15:23"
+    }
+  },
+  {
+    "pk": 4,
+    "model": "market.pricecurrency",
+    "fields": {
+      "currency": "USD",
+      "tier": 2,
+      "provider": 1,
+      "region": 1,
+      "price": "1.99",
+      "modified": "2011-08-15 16:15:23",
+      "created": "2011-08-15 16:15:23"
+    }
+  },
+  {
+    "pk": 5,
+    "model": "market.pricecurrency",
+    "fields": {
+      "currency": "USD",
+      "tier": 1,
+      "provider": 1,
+      "region": 1,
+      "price": "0.99",
       "modified": "2011-08-15 16:15:23",
       "created": "2011-08-15 16:15:23"
     }

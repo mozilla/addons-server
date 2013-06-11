@@ -5,7 +5,7 @@ class RegionResource(MarketplaceResource):
 
     class Meta(MarketplaceResource.Meta):
         allowed_methods = []
-        fields = ('name', 'slug', 'mcc', 'adolescent', 'supports_carrier_billing')
+        fields = ('name', 'slug', 'mcc', 'adolescent')
         resource_name = 'region'
         include_resource_uri = False
 

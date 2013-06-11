@@ -8,7 +8,7 @@ import amo.tests
 
 from addons.models import AddonDeviceType, AddonUser, Preview
 from market.models import AddonPremium, AddonPurchase, Price
-from mkt.constants import FEATURES_DICT
+from mkt.constants import FEATURES_DICT, regions
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Installed, Webapp, WebappIndexer
 from mkt.webapps.utils import (app_to_dict, es_app_to_dict,
@@ -114,9 +114,9 @@ class TestAppToDictPrices(amo.tests.TestCase):
 
     def test_with_locale(self):
         with self.activate(locale='fr'):
-            res = app_to_dict(self.app)
+            res = app_to_dict(self.app, region=regions.PL.id)
             eq_(res['price'], Decimal('5.01'))
-            eq_(res['price_locale'], u'5,01\xa0\u20ac')
+            eq_(res['price_locale'], u'5,01\xa0PLN')
 
     def test_missing_price(self):
         self.premium.update(price=None)

@@ -46,6 +46,7 @@ from translations.models import Translation
 from versions.models import ApplicationsVersions, Version
 
 import mkt
+from mkt.constants import regions
 from mkt.webapps.models import ContentRating, WebappIndexer
 from mkt.zadmin.models import FeaturedApp, FeaturedAppRegion
 
@@ -437,14 +438,17 @@ class TestCase(RedisTest, test_utils.TestCase):
         cookie[settings.SESSION_COOKIE_NAME] = session._get_session_key()
         self.client.cookies.update(cookie)
 
-    def make_premium(self, addon, price='1.00', currencies=None):
+    def make_price(self, price='1.00'):
         price_obj, created = Price.objects.get_or_create(price=price)
-        if currencies:
-            for currency in currencies:
-                PriceCurrency.objects.create(currency=currency,
-                                             price=price, tier=price_obj)
+        PriceCurrency.objects.create(region=regions.US.id, currency='USD',
+                                     price=price, tier=price_obj)
+        return price_obj
+
+    def make_premium(self, addon, price='1.00'):
+        price_obj = self.make_price(price=price)
         addon.update(premium_type=amo.ADDON_PREMIUM)
         AddonPremium.objects.create(addon=addon, price=price_obj)
+        del Price._currencies
 
     def make_featured(self, app, category=None, region=mkt.regions.US):
         f = FeaturedApp.objects.create(app=app, category=category)
