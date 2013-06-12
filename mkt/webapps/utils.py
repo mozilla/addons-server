@@ -1,20 +1,25 @@
 from operator import attrgetter
 
 from django.conf import settings
+from django.core.exceptions import ObjectDoesNotExist
 from django.utils import translation
 
 import commonware.log
+import waffle
 
 import amo
+from access import acl
+from addons.models import AddonUser
 from amo.helpers import absolutify
 from amo.utils import find_language, no_translation
-from addons.models import AddonUser
 from constants.applications import DEVICE_TYPES
 from market.models import Price
 from users.models import UserProfile
+from versions.models import Version
 
 from mkt.regions import REGIONS_CHOICES_ID_DICT
 from mkt.regions.api import RegionResource
+
 
 log = commonware.log.getLogger('z.webapps')
 
@@ -241,3 +246,36 @@ def es_app_to_dict(obj, region=None, profile=None):
         }
 
     return data
+
+
+def update_with_reviewer_data(bundle):
+    """Adds reviewer specific data to app response bundle."""
+    # TODO: Reviewer flags in ES (bug 848446)
+    from editors.models import EscalationQueue
+
+    uses_es = waffle.switch_is_active('search-api-es')
+
+    if acl.action_allowed(bundle.request, 'Apps', 'Review'):
+        addon_id = bundle.obj._id if uses_es else bundle.obj.id
+        version = Version.objects.filter(addon_id=addon_id).latest()
+        escalated = EscalationQueue.objects.filter(
+            addon_id=addon_id).exists()
+
+        if uses_es:
+            bundle.data['latest_version_status'] = (
+                bundle.obj.latest_version_status)
+        else:
+            try:
+                file_ = version and version.files.latest()
+                bundle.data['latest_version_status'] = (
+                    file_.status if file_ else None)
+            except ObjectDoesNotExist:
+                bundle.data['latest_version_status'] = None
+
+        bundle.data['reviewer_flags'] = {
+            'has_comment': version.has_editor_comment,
+            'has_info_request': version.has_info_request,
+            'is_escalated': escalated,
+        }
+
+    return bundle

@@ -1,7 +1,6 @@
 import json
 
 from django.conf.urls import url
-from django.core.exceptions import ObjectDoesNotExist
 
 import waffle
 from tastypie import http
@@ -14,8 +13,6 @@ import amo
 from access import acl
 from addons.models import Category
 from amo.helpers import absolutify
-from editors.models import EscalationQueue
-from versions.models import Version
 
 import mkt
 from mkt.api.authentication import OptionalOAuthAuthentication
@@ -25,7 +22,7 @@ from mkt.constants.features import FeatureProfile
 from mkt.search.views import _filter_search, _get_query
 from mkt.search.forms import ApiSearchForm
 from mkt.webapps.models import Webapp
-from mkt.webapps.utils import es_app_to_dict
+from mkt.webapps.utils import es_app_to_dict, update_with_reviewer_data
 
 
 class SearchResource(CORSResource, MarketplaceResource):
@@ -131,29 +128,7 @@ class SearchResource(CORSResource, MarketplaceResource):
                 bundle.obj.get_detail_url())
 
         # Add extra data for reviewers. Used in reviewer tool search.
-        # TODO: Reviewer flags in ES (bug 848446)
-        if acl.action_allowed(bundle.request, 'Apps', 'Review'):
-            addon_id = bundle.obj._id if uses_es else bundle.obj.id
-            version = Version.objects.filter(addon_id=addon_id).latest()
-            escalated = EscalationQueue.objects.filter(
-                addon_id=addon_id).exists()
-
-            if uses_es:
-                bundle.data['latest_version_status'] = (
-                    obj.latest_version_status)
-            else:
-                try:
-                    file_ = version and version.files.latest()
-                    bundle.data['latest_version_status'] = (
-                        file_.status if file_ else None)
-                except ObjectDoesNotExist:
-                    bundle.data['latest_version_status'] = None
-
-            bundle.data['reviewer_flags'] = {
-                'has_comment': version.has_editor_comment,
-                'has_info_request': version.has_info_request,
-                'is_escalated': escalated,
-            }
+        bundle = update_with_reviewer_data(bundle)
 
         return bundle
 

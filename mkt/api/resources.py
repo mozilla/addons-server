@@ -43,7 +43,7 @@ from mkt.developers.forms import NewManifestForm, PreviewForm
 from mkt.regions import get_region, get_region_id, REGIONS_DICT
 from mkt.submit.forms import AppDetailsBasicForm
 from mkt.webapps.models import get_excluded_in
-from mkt.webapps.utils import app_to_dict
+from mkt.webapps.utils import app_to_dict, update_with_reviewer_data
 
 log = commonware.log.getLogger('z.api')
 
@@ -295,6 +295,10 @@ class AppResource(CORSResource, MarketplaceModelResource):
             region=bundle.request.REGION.id, profile=amo_user))
         bundle.data['privacy_policy'] = (
             PrivacyPolicyResource().get_resource_uri(bundle))
+
+        # Add extra data for reviewers. Used in reviewer tool search.
+        bundle = update_with_reviewer_data(bundle)
+
         return bundle
 
     def hydrate_premium_type(self, bundle):
@@ -315,13 +319,17 @@ class AppResource(CORSResource, MarketplaceModelResource):
 
     def override_urls(self):
         return [
-            urls.url(r"^%s/(?P<pk>\d+)/(?P<resource_name>privacy)%s$" % (
-                self._meta.resource_name, trailing_slash()),
-            self.wrap_view('get_privacy_policy'), name="api_dispatch_detail"),
-            urls.url(r"^%s/(?P<app_slug>[^/<>\"']+)/"
-                     r"(?P<resource_name>privacy)%s$" % (
-                self._meta.resource_name, trailing_slash()),
-            self.wrap_view('get_privacy_policy'), name="api_dispatch_detail"),
+            urls.url(
+                r"^%s/(?P<pk>\d+)/(?P<resource_name>privacy)%s$" %
+                    (self._meta.resource_name, trailing_slash()),
+                self.wrap_view('get_privacy_policy'),
+                name="api_dispatch_detail"),
+            urls.url(
+                r"^%s/(?P<app_slug>[^/<>\"']+)/"
+                r"(?P<resource_name>privacy)%s$" %
+                    (self._meta.resource_name, trailing_slash()),
+                self.wrap_view('get_privacy_policy'),
+                name="api_dispatch_detail"),
         ]
 
     def get_privacy_policy(self, request, **kwargs):

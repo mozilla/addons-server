@@ -4,6 +4,7 @@ from datetime import datetime
 from django.contrib.auth.models import User
 
 from nose.tools import eq_, ok_
+from waffle.models import Switch
 
 import amo
 import mkt.regions
@@ -461,6 +462,25 @@ class TestApiReviewer(BaseOAuth, ESTestCase):
         eq_(error.keys(), ['type'])
 
     def test_extra_attributes(self):
+        version = self.webapp.versions.latest()
+        version.has_editor_comment = True
+        version.has_info_request = True
+        version.save()
+
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        obj = res.json['objects'][0]
+
+        # These only exist if requested by a reviewer.
+        eq_(obj['latest_version_status'], amo.STATUS_PUBLIC)
+        eq_(obj['reviewer_flags']['has_comment'], True)
+        eq_(obj['reviewer_flags']['has_info_request'], True)
+        eq_(obj['reviewer_flags']['is_escalated'], False)
+
+    def test_extra_attributes_no_waffle(self):
+        # Make sure these still exist when 'search-api-es' is off.
+        # TODO: Remove this test when we remove that switch.
+        Switch.objects.all().delete()
         version = self.webapp.versions.latest()
         version.has_editor_comment = True
         version.has_info_request = True
