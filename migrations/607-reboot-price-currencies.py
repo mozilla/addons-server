@@ -271,6 +271,7 @@ def run():
                 carrier=None,
                 provider=1,
                 price=values['price'],
-                region=values['region']
+                region=values['region'],
+                currency=values['currency']
             )
             print 'Creating: {0}, {1}'.format(k, country)
