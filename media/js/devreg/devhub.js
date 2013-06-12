@@ -63,10 +63,8 @@ $(document).ready(function() {
         $submit_footer = $('#upload-webapp').find('footer');
 
     if ($webapp_url.length) {
-        if (!$webapp_url.val()) {
-            if (z.capabilities.sessionStorage) {
-                $webapp_url.val(window.sessionStorage['manifest_url']);
-            }
+        if (!$webapp_url.val() && z.capabilities.sessionStorage) {
+            $webapp_url.val(window.sessionStorage['manifest_url']);
         }
         var attempts = $webapp_url.val().length;
         $webapp_url.bind('keyup change paste blur', function(e) {
