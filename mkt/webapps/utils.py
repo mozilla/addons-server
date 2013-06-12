@@ -215,8 +215,8 @@ def es_app_to_dict(obj, region=None, profile=None):
             price = Price.objects.get(name=src['price_tier'])
             data['price'] = price.get_price(region=region)
             data['price_locale'] = price.get_price_locale(region=region)
-    except Price.DoesNotExist:
-        pass
+    except (Price.DoesNotExist, KeyError):
+        log.warning('Issue with price tier on app: {0}'.format(obj._id))
 
     data['upsell'] = False
     if hasattr(obj, 'upsell'):
