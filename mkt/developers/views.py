@@ -250,7 +250,7 @@ def version_edit(request, addon_id, addon, version_id):
     all_forms = [form]
 
     if show_features:
-        appfeatures = addon.current_version.features
+        appfeatures = version.features
         appfeatures_form = AppFeaturesForm(request.POST, instance=appfeatures)
         all_forms.append(appfeatures_form)
 

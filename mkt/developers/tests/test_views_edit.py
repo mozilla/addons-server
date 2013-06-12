@@ -29,13 +29,14 @@ from constants.applications import DEVICE_TYPES
 from devhub.models import ActivityLog
 from lib.video.tests import files as video_files
 from users.models import UserProfile
+from versions.models import Version
 
 import mkt
 from mkt.constants import APP_IMAGE_SIZES, regions
 from mkt.constants.ratingsbodies import RATINGS_BODIES
 from mkt.site.fixtures import fixture
-from mkt.webapps.models import (AddonExcludedRegion as AER, AppFeatures,
-                                ContentRating, ImageAsset)
+from mkt.webapps.models import (AddonExcludedRegion as AER, ContentRating,
+                                ImageAsset)
 
 
 response_mock = mock.Mock()
@@ -1421,8 +1422,9 @@ class TestEditVersion(TestEdit):
         self.create_switch('buchets')
         self.webapp = self.get_webapp()
         self.webapp.update(is_packaged=True)
+        self.version_pk = self.webapp.latest_version.pk
         self.url = reverse('mkt.developers.apps.versions.edit', kwargs={
-            'version_id': self.webapp.current_version.id,
+            'version_id': self.version_pk,
             'app_slug': self.webapp.app_slug
         })
         self.user = UserProfile.objects.get(username='31337')
@@ -1437,7 +1439,7 @@ class TestEditVersion(TestEdit):
         data.update(kwargs)
         req = self.client.post(self.url, data)
         eq_(req.status_code, 302)
-        version = self.get_webapp().current_version
+        version = Version.objects.no_cache().get(pk=self.version_pk)
         eq_(version.releasenotes, data['releasenotes_en-us'])
         eq_(version.approvalnotes, data['approvalnotes'])
         return version
@@ -1452,3 +1454,8 @@ class TestEditVersion(TestEdit):
         version = self.test_post(has_audio=False)
         ok_(not version.features.has_audio)
         ok_(not version.features.has_apps)
+
+    def test_correct_version_features(self):
+        new_version = self.webapp.latest_version.update(id=self.version_pk + 1)
+        self.webapp.update(latest_version=new_version)
+        self.test_features()
