@@ -23,9 +23,7 @@
     {# `current_version` won't show versions with invalid statuses #}
     {% if product.current_version -%}
       {{ market_button(product, classes=classes) }}
-    {%- endif %}
-    {% if product.listed_authors -%}
-      <div class="author lineclamp vital">{{ product.listed_authors[0].name }}</div>
+      <div class="author lineclamp vital">{{ product.current_version.developer_name }}</div>
     {%- endif %}
     <div class="price vital">{{ product.get_price_locale(region=request.REGION.id) or _('Free') }}</div>
     <div class="rating vital{{ ' unrated' if not product.total_reviews }}">

@@ -29,6 +29,7 @@ from amo.urlresolvers import reverse
 from constants.applications import DEVICE_TYPES
 from editors.models import RereviewQueue
 from files.models import File
+from files.tests.test_models import UploadTest as BaseUploadTest
 from files.utils import WebAppParser
 from lib.crypto import packaged
 from lib.crypto.tests import mock_sign
@@ -1435,3 +1436,43 @@ class TestWebappIndexer(amo.tests.TestCase):
         self.app.current_version.update(supported_locales=locales)
         obj, doc = self._get_doc()
         self.assertSetEqual(doc['supported_locales'], set(locales.split(',')))
+
+
+class TestManifestUpload(BaseUploadTest, amo.tests.TestCase):
+    fixtures = fixture('webapp_337141')
+
+    @mock.patch('mkt.webapps.models.parse_addon')
+    def test_manifest_updated_developer_name(self, parse_addon):
+        parse_addon.return_value = {
+            'version': '4.0',
+            'developer_name': u'Méâ'
+        }
+        # Note: we need a valid FileUpload instance, but in the end we are not
+        # using its contents since we are mocking parse_addon().
+        path = os.path.join(settings.ROOT, 'apps', 'devhub', 'tests',
+                               'addons', 'mozball.webapp')
+        upload = self.get_upload(abspath=path, is_webapp=True)
+        app = Addon.objects.get(pk=337141)
+        app.manifest_updated('', upload)
+        version = app.current_version.reload()
+        eq_(version.version, '4.0')
+        eq_(version.developer_name, u'Méâ')
+
+    @mock.patch('mkt.webapps.models.parse_addon')
+    def test_manifest_updated_long_developer_name(self, parse_addon):
+        truncated_developer_name = u'é' * 255
+        long_developer_name = truncated_developer_name + u'ßßßß'
+        parse_addon.return_value = {
+            'version': '4.1',
+            'developer_name': long_developer_name,
+        }
+        # Note: we need a valid FileUpload instance, but in the end we are not
+        # using its contents since we are mocking parse_addon().
+        path = os.path.join(settings.ROOT, 'apps', 'devhub', 'tests',
+                               'addons', 'mozball.webapp')
+        upload = self.get_upload(abspath=path, is_webapp=True)
+        app = Addon.objects.get(pk=337141)
+        app.manifest_updated('', upload)
+        version = app.current_version.reload()
+        eq_(version.version, '4.1')
+        eq_(version.developer_name, truncated_developer_name)

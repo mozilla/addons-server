@@ -64,6 +64,9 @@ class Version(amo.models.ModelBase):
 
     supported_locales = models.CharField(max_length=255)
 
+    _developer_name = models.CharField(max_length=255, default='',
+                                       editable=False)
+
     objects = VersionManager()
     with_deleted = VersionManager(include_deleted=True)
 
@@ -105,8 +108,10 @@ class Version(amo.models.ModelBase):
             license = addon.versions.latest().license_id
         except Version.DoesNotExist:
             license = None
+        max_len = cls._meta.get_field_by_name('_developer_name')[0].max_length
+        developer = data.get('developer_name', '')[:max_len]
         v = cls.objects.create(addon=addon, version=data['version'],
-                               license_id=license)
+                               license_id=license, _developer_name=developer)
         log.info('New version: %r (%s) from %r' % (v, v.id, upload))
         # appversions
         AV = ApplicationsVersions
@@ -450,6 +455,15 @@ class Version(amo.models.ModelBase):
             # Use File.update so signals are triggered.
             for f in qs:
                 f.update(status=amo.STATUS_DISABLED)
+
+    @property
+    def developer_name(self):
+        if self._developer_name:
+            return self._developer_name
+        elif self.addon.listed_authors:
+            return self.addon.listed_authors[0].name
+        else:
+            return ''
 
 
 def update_status(sender, instance, **kw):

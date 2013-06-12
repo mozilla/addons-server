@@ -59,7 +59,8 @@ def app_to_dict(app, region=None, profile=None):
     cv = app.current_version
     version_data = {
         'version': getattr(cv, 'version', None),
-        'release_notes': getattr(cv, 'releasenotes', None)
+        'release_notes': getattr(cv, 'releasenotes', None),
+        'developer_name': getattr(cv, 'developer_name', None),
     }
 
     features = getattr(cv, 'features', None)

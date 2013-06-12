@@ -146,6 +146,7 @@ class TestESAppToDict(amo.tests.ESTestCase):
             'current_version': {
                 'release_notes': None,
                 'version': '1.0',
+                'developer_name': u'31337 \u0627\u0644\u062a\u0637\u0628'
             },
             'description': u'Something Something Steamcube description!',
             'homepage': '',

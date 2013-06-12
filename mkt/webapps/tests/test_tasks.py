@@ -7,6 +7,7 @@ import stat
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.core.management import call_command
+from django.forms import ValidationError
 
 import mock
 from nose.tools import eq_, ok_
@@ -22,8 +23,8 @@ from versions.models import Version
 
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import AppFeatures, Webapp
-from mkt.webapps.tasks import (dump_app, update_features, update_manifests,
-                               zip_apps)
+from mkt.webapps.tasks import (dump_app, update_developer_name, update_features,
+                               update_manifests, zip_apps)
 
 
 original = {
@@ -70,6 +71,10 @@ new = {
         "fr": {
             "description": "Testing name-less locale"
         }
+    },
+    "developer": {
+        "name": "Mozilla",
+        "url": "http://www.mozilla.org/"
     }
 }
 
@@ -89,7 +94,8 @@ class TestUpdateManifest(amo.tests.TestCase):
         # Not using app factory since it creates translations with an invalid
         # locale of "en-us".
         self.addon = Addon.objects.create(type=amo.ADDON_WEBAPP)
-        self.version = Version.objects.create(addon=self.addon)
+        self.version = Version.objects.create(addon=self.addon,
+                                              _developer_name='Mozilla')
         self.file = File.objects.create(
             version=self.version, hash=ohash, status=amo.STATUS_PUBLIC,
             filename='%s-%s' % (self.addon.id, self.version.id))
@@ -397,6 +403,27 @@ class TestUpdateManifest(amo.tests.TestCase):
         ver = self.version.reload()
         eq_(ver.supported_locales, 'de,es,fr')
 
+    @mock.patch('mkt.webapps.tasks._open_manifest')
+    def test_manifest_support_developer_change(self, open_manifest):
+        # Mock original manifest file lookup.
+        open_manifest.return_value = original
+        # Mock new manifest with developer name change.
+        self.new['developer']['name'] = 'Allizom'
+        response_mock = mock.Mock()
+        response_mock.read.return_value = json.dumps(self.new)
+        response_mock.headers = {
+            'Content-Type': 'application/x-web-app-manifest+json'}
+        self.urlopen_mock.return_value = response_mock
+
+        self._run()
+        ver = self.version.reload()
+        eq_(ver.developer_name, 'Allizom')
+
+        # We should get a re-review because of the developer name change.
+        eq_(RereviewQueue.objects.count(), 1)
+        # 2 logs: 1 for manifest update, 1 for re-review trigger.
+        eq_(ActivityLog.objects.for_apps(self.addon).count(), 2)
+
 
 class TestDumpApps(amo.tests.TestCase):
     fixtures = fixture('webapp_337141')
@@ -529,3 +556,68 @@ class TestUpdateFeatures(amo.tests.TestCase):
         eq_(features['has_apps'], True)
         eq_(features['has_activity'], True)
         eq_(features['has_sms'], False)
+
+
+class TestUpdateDeveloperName(amo.tests.TestCase):
+    fixtures = fixture('webapp_337141')
+
+    def setUp(self):
+        self.app = Webapp.objects.get(pk=337141)
+
+    @mock.patch('mkt.webapps.tasks._update_developer_name')
+    def test_ignore_not_webapp(self, mock_):
+        self.app.update(type=amo.ADDON_EXTENSION)
+        call_command('process_addons', task='update_developer_name')
+        assert not mock_.called
+
+    @mock.patch('mkt.webapps.tasks._update_developer_name')
+    def test_pending(self, mock_):
+        self.app.update(status=amo.STATUS_PENDING)
+        call_command('process_addons', task='update_developer_name')
+        assert mock_.called
+
+    @mock.patch('mkt.webapps.tasks._update_developer_name')
+    def test_public_waiting(self, mock_):
+        self.app.update(status=amo.STATUS_PUBLIC_WAITING)
+        call_command('process_addons', task='update_developer_name')
+        assert mock_.called
+
+    @mock.patch('mkt.webapps.tasks._update_developer_name')
+    def test_ignore_disabled(self, mock_):
+        self.app.update(status=amo.STATUS_DISABLED)
+        call_command('process_addons', task='update_developer_name')
+        assert not mock_.called
+
+    @mock.patch('files.utils.WebAppParser.parse')
+    def test_ignore_no_current_version(self, mock_parser):
+        self.app.current_version.all_files[0].update(status=amo.STATUS_DISABLED)
+        self.app.update_version()
+        update_developer_name(ids=(self.app.pk,))
+        assert not mock_parser.called
+
+    @mock.patch('files.utils.WebAppParser.parse')
+    def test_ignore_if_existing_developer_name(self, mock_parser):
+        version = self.app.current_version
+        version.update(_developer_name=u"Mï")
+        update_developer_name(ids=(self.app.pk,))
+        assert not mock_parser.called
+
+    @mock.patch('files.utils.WebAppParser.parse')
+    def test_update_developer_name(self, mock_parser):
+        mock_parser.return_value = {
+            'developer_name': u'New Dêv'
+        }
+        update_developer_name(ids=(self.app.pk,))
+        version = self.app.current_version.reload()
+        eq_(version._developer_name, u'New Dêv')
+        eq_(version.developer_name, u'New Dêv')
+
+    @mock.patch('files.utils.WebAppParser.parse')
+    @mock.patch('mkt.webapps.tasks._log')
+    def test_update_developer_name_validation_error(self, _log, mock_parser):
+        mock_parser.side_effect = ValidationError('dummy validation error')
+        update_developer_name(ids=(self.app.pk,))
+        assert _log.called_with(337141, u'Webapp manifest can not be parsed')
+
+        version = self.app.current_version.reload()
+        eq_(version._developer_name, '')
