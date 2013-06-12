@@ -61,8 +61,7 @@ class Review(amo.models.ModelBase):
 
     def get_url_path(self):
         if 'mkt.ratings' in settings.INSTALLED_APPS:
-            return reverse('ratings.detail',
-                           args=[self.addon.app_slug, self.id])
+            return '/app/%s/reviews/%s/' % (self.addon.app_slug, self.id)
         return shared_url('reviews.detail', self.addon, self.id)
 
     def flush_urls(self):
