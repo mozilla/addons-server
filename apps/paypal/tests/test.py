@@ -38,7 +38,7 @@ class TestPayKey(amo.tests.TestCase):
                      'email': 'someone@somewhere.com',
                      'uuid': time.time(),
                      'ip': '127.0.0.1',
-                     'pattern': 'addons.purchase.finished'}
+                     'pattern': 'addons.paypal'}
         self.pre = Mock()
         self.pre.paypal_key = 'xyz'
 

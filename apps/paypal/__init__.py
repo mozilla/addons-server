@@ -153,6 +153,7 @@ def get_paykey(data):
     currency: valid paypal currency, defaults to USD (optional)
     """
     if data['pattern']:
+        print data['pattern']
         complete = reverse(data['pattern'], args=[data['slug'], 'complete'])
         cancel = reverse(data['pattern'], args=[data['slug'], 'cancel'])
     else:

@@ -440,8 +440,10 @@ class TestCase(RedisTest, test_utils.TestCase):
 
     def make_price(self, price='1.00'):
         price_obj, created = Price.objects.get_or_create(price=price)
-        PriceCurrency.objects.create(region=regions.US.id, currency='USD',
-                                     price=price, tier=price_obj)
+        for region in [regions.US.id, regions.WORLDWIDE.id]:
+            PriceCurrency.objects.create(region=region, currency='USD',
+                                         price=price, tier=price_obj,
+                                         provider=1)
         return price_obj
 
     def make_premium(self, addon, price='1.00'):

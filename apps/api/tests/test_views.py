@@ -474,25 +474,6 @@ class APITest(TestCase):
         AddonPremium.objects.create(addon=addon, price=price)
         return pq(make_call('addon/4664', version=1.5, lang=lang).content)
 
-    def test_purchase(self):
-        doc = self.setup_premium()
-        eq_(len(doc('payment_data')), 1)
-
-    def test_purchase_number(self):
-        doc = self.setup_premium()
-        eq_(doc('amount').attr('amount'), '5.12')
-        eq_(doc('amount').text(), '$5.12')
-
-    def test_purchase_number_fr(self):
-        doc = self.setup_premium(lang='fr')
-        eq_(doc('amount').attr('amount'), '5.12')
-        eq_(doc('amount').text(), u'5,12\xa0\u20ac')  # displays in Euros
-
-    @patch.object(settings, 'SITE_URL', 'http://foo')
-    def test_absolute(self):
-        doc = self.setup_premium()
-        assert 'http://foo' in doc('payment_data').text()
-
     def test_beta_channel(self):
         """
         This tests that addons with files in beta will have those files

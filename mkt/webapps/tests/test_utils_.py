@@ -108,7 +108,7 @@ class TestAppToDictPrices(amo.tests.TestCase):
         self.premium = AddonPremium.objects.create(addon=self.app, price=price)
 
     def test_some_price(self):
-        res = app_to_dict(self.app)
+        res = app_to_dict(self.app, region=regions.US.id)
         eq_(res['price'], Decimal('0.99'))
         eq_(res['price_locale'], '$0.99')
 

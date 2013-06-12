@@ -226,13 +226,9 @@ class TestWebapp(amo.tests.TestCase):
         eq_(webapp.get_price_locale(), None)
 
     def test_get_price(self):
-        # This test can be expensive to set up, lets just check it goes
-        # down the stack.
-        webapp = Webapp(premium_type=amo.ADDON_PREMIUM)
-        webapp._premium = mock.Mock()
-        webapp._premium.has_price.return_value = True
-        webapp._premium.get_price.return_value = 1
-        eq_(webapp.get_price(), 1)
+        webapp = amo.tests.app_factory()
+        self.make_premium(webapp)
+        eq_(webapp.get_price(region=mkt.regions.US.id), 1)
 
     def test_has_no_premium(self):
         webapp = Webapp(premium_type=amo.ADDON_PREMIUM)
