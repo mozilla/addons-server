@@ -23,7 +23,7 @@
     <dt>{{ _('Default Locale') }}</dt>
     <dd>{{ product.default_locale }}</dd>
     <dt>{{ _('Price') }}</dt>
-    <dd>{{ price(product) }}
+    <dd>{{ price(request, product) }}
       {% if product.is_premium() %}
         &middot;
         <span id="receipt-check-result"

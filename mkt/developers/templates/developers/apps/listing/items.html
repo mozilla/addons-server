@@ -44,7 +44,7 @@
           {{ queue_position(addon, 'li') }}
           <li>
             <strong>{{ _('Price:') }}</strong>
-            {{ price(addon) }}
+            {{ price(request, addon) }}
           </li>
           <li class="item-devices">
             {{ device_list(addon) }}
