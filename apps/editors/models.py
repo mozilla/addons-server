@@ -605,7 +605,7 @@ class ReviewerScore(amo.models.ModelBase):
 
         for row in query:
             user_id, name, total = row
-            user_level = len(amo.REVIEWED_LEVELS)
+            user_level = len(amo.REVIEWED_LEVELS) - 1
             for i, level in enumerate(amo.REVIEWED_LEVELS):
                 if total < level['points']:
                     user_level = i - 1
