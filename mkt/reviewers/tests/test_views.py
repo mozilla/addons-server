@@ -2407,6 +2407,15 @@ class TestLeaderboard(AppReviewerTest):
              amo.REVIEWED_LEVELS[0]['name'],
              users[0].display_name])
 
+        self._award_points(users[0], 1)
+
+        eq_(get_cells(),
+            [users[2].display_name,
+             users[1].display_name,
+             users[0].display_name,
+             amo.REVIEWED_LEVELS[0]['name']])
+
+        self._award_points(users[0], -1)
         self._award_points(users[2], (amo.REVIEWED_LEVELS[1]['points'] -
                                       amo.REVIEWED_LEVELS[0]['points']))
 
