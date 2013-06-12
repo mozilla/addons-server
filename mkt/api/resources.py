@@ -5,9 +5,10 @@ from django.db import transaction
 from django.db.models import Q
 from django.views import debug
 
+from celery import group
+
 import commonware.log
 import waffle
-from celery_tasktree import TaskTree
 from tastypie import fields, http
 from tastypie.authorization import Authorization
 from tastypie.exceptions import ImmediateHttpResponse
@@ -186,10 +187,9 @@ class AppResource(CORSResource, MarketplaceModelResource):
             super(AppResource, self).log_throttled_access(request)
 
     def _icons_and_images(self, bundle_obj):
-        pipeline = TaskTree()
-        pipeline.push(tasks.fetch_icon, args=[bundle_obj])
-        pipeline.push(tasks.generate_image_assets, args=[bundle_obj])
-        pipeline.apply_async()
+        group(tasks.fetch_icon.s(bundle_obj),
+              tasks.generate_image_assets.s(bundle_obj)
+        ).apply_async()
 
     @write
     def obj_get(self, request=None, **kwargs):

@@ -18,7 +18,6 @@ from django.core.files.storage import default_storage as storage
 from django.utils.http import urlencode
 
 from appvalidator import validate_app, validate_packaged_app
-from celery_tasktree import task_with_callbacks
 from celeryutils import task
 from django_statsd.clients import statsd
 from PIL import Image
@@ -227,8 +226,7 @@ def _generate_image_asset_backdrop(hue, size=None):
 
     return im
 
-
-@task_with_callbacks
+@task
 @set_modified_on
 def generate_image_assets(addon, **kw):
     """Creates default image assets for each asset size for an app."""
@@ -383,8 +381,7 @@ def save_icon(webapp, content):
     webapp.icon_type = 'image/png'
     webapp.save()
 
-
-@task_with_callbacks
+@task
 @write
 def fetch_icon(webapp, **kw):
     """Downloads a webapp icon from the location specified in the manifest.
