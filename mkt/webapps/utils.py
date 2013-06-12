@@ -118,8 +118,13 @@ def app_to_dict(app, region=None, profile=None):
             data['payment_account'] = AccountResource().get_resource_uri(
                 q[0].payment_account)
 
-        data['price'] = app.get_price(region=region)
-        data['price_locale'] = app.get_price_locale(region=region)
+        try:
+            data['price'] = app.get_price(region=region)
+            data['price_locale'] = app.get_price_locale(region=region)
+        except KeyError:
+            data['price'] = None
+            data['price_locale'] = None
+            log.warning('Issue with price tier on app: {0}'.format(app.id))
 
     with no_translation():
         data['device_types'] = [n.api_name
