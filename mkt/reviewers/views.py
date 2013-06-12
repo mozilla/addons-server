@@ -16,6 +16,7 @@ from django.shortcuts import get_object_or_404, redirect
 import commonware.log
 import jingo
 import requests
+import waffle
 from tower import ugettext as _
 
 import amo
@@ -271,6 +272,9 @@ def _review(request, addon, version):
                   actions=actions, actions_minimal=actions_minimal,
                   tab=queue_type, product_attrs=product_attrs,
                   attachment_formset=attachment_formset)
+
+    if waffle.switch_is_active('buchets'):
+        ctx['feature_list'] = [unicode(f) for f in version.features.to_list()]
 
     return jingo.render(request, 'reviewers/review.html', ctx)
 
