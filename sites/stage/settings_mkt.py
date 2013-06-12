@@ -145,7 +145,14 @@ BLUEVIA_SECRET = private_mkt.BLUEVIA_SECRET
 #Bug 748403
 SIGNING_SERVER = private_mkt.SIGNING_SERVER
 SIGNING_SERVER_ACTIVE = True
-SIGNING_VALID_ISSUERS = ['marketplace-dev-cdn.allizom.org']
+SIGNING_VALID_ISSUERS = ['marketplace-cdn.allizom.org']
+
+#Bug 793876
+SIGNED_APPS_KEY = private_mkt.SIGNED_APPS_KEY
+SIGNED_APPS_SERVER_ACTIVE = True
+SIGNED_APPS_SERVER = private_mkt.SIGNED_APPS_SERVER
+SIGNED_APPS_REVIEWER_SERVER_ACTIVE = True
+SIGNED_APPS_REVIEWER_SERVER = private_mkt.SIGNED_APPS_REVIEWER_SERVER
 
 METLOG_CONF = {
     'plugins': {'cef': ('metlog_cef.cef_plugin:config_plugin', {
