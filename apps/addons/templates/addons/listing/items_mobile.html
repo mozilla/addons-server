@@ -1,4 +1,3 @@
-{% from "addons/macros.html" import price %}
 {% set amo_user = request.amo_user if request.user.is_authenticated() else None %}
 {% for addon in addons %}
   {% if show_refunds %}
@@ -26,7 +25,6 @@
               <i>{{ _('Not Yet Rated') }}</i>
             {% endif %}
           {% endwith %}
-          {{ price(addon) }}
           {% if sort in ('downloads', 'popular') or not addon.show_adu() %}
             <span class="vital downloads">
               {% with num=addon.weekly_downloads %}

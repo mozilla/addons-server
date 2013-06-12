@@ -46,32 +46,3 @@ class TestCheck(amo.tests.TestCase):
         self.check.paypal_id = None
         self.check.check_id()
         assert not self.check.passed, self.check.state
-
-    @patch('paypal.get_paykey')
-    def test_check_paykey(self, get_paykey):
-        self.check.check_currencies()
-        eq_(get_paykey.call_args_list[0][0][0]['currency'], 'USD')
-        eq_(get_paykey.call_args_list[1][0][0]['currency'], 'EUR')
-        assert self.check.passed, self.check.state
-
-    @patch('paypal.get_paykey')
-    def test_check_paykey_no_premium(self, get_paykey):
-        self.addon.premium = None
-        self.check.check_currencies()
-        eq_(len(get_paykey.call_args_list), 1)
-        assert self.check.passed, self.check.state
-
-    @patch('paypal.get_paykey')
-    def test_check_paykey_currencies(self, get_paykey):
-        self.check.check_currencies()
-        eq_(len(get_paykey.call_args_list), 2)
-        eq_([c[0][0]['currency'] for c in get_paykey.call_args_list],
-            ['USD', 'EUR'])
-        assert self.check.passed, self.check.state
-
-    @patch('paypal.get_paykey')
-    def test_check_price_none(self, get_paykey):
-        self.addon.premium.price = None
-        self.check.check_currencies()
-        eq_(len(get_paykey.call_args_list), 1)
-        mq_(get_paykey.call_args[0][0]['amount'], '1.00')
