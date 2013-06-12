@@ -658,7 +658,7 @@ class RereviewQueue(amo.models.ModelBase):
 
 
 class RereviewQueueTheme(amo.models.ModelBase):
-    theme = models.ForeignKey(Persona, on_delete=Persona)
+    theme = models.ForeignKey(Persona)
     header = models.CharField(max_length=72, blank=True, default='')
     footer = models.CharField(max_length=72, blank=True, default='')
 
