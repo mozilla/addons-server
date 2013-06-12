@@ -122,6 +122,8 @@ class TestPrices(BaseOAuth):
         eq_(res.status_code, 200)
         eq_(res.json['pricePoint'], '1')
         eq_(res.json['name'], 'Tier 1')
+        # Ensure that price is in the JSON since solitude depends upon it.
+        eq_(res.json['price'], '1.00')
 
     def test_price_point(self):
         res = self.client.get(self.list_url + ({'pricePoint': '1'},))
