@@ -76,6 +76,7 @@ tiers = {
                  'price': '3.99',
                  'region': 11},
           'US': {'currency': 'USD',
+                 'price': '0.99',
                  'region': 2},
           'VE': {'currency': 'USD',
                  'price': '0.99',
