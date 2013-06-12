@@ -628,7 +628,8 @@ class ReviewerScore(amo.models.ModelBase):
         for score in reversed(scores):
             if score['level'] == prev:
                 score['level'] = ''
-            prev = score['level']
+            else:
+                prev = score['level']
 
         return scores
 
