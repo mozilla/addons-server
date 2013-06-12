@@ -11,7 +11,8 @@ import amo
 import amo.models
 from amo.decorators import write
 from amo.utils import get_locale_from_lang, memoize_key
-from constants.payments import (CARRIER_CHOICES, PROVIDER_BANGO,
+from constants.payments import (CARRIER_CHOICES, PAYMENT_METHOD_CHOICES,
+                                PAYMENT_METHOD_ALL, PROVIDER_BANGO,
                                 PROVIDER_CHOICES)
 from mkt.constants import apps
 from mkt.constants.regions import WORLDWIDE
@@ -121,6 +122,10 @@ class PriceCurrency(amo.models.ModelBase):
     provider = models.IntegerField(choices=PROVIDER_CHOICES, blank=True,
                                    null=True)
 
+    # The payment methods allowed for this tier.
+    method = models.IntegerField(choices=PAYMENT_METHOD_CHOICES,
+                                 default=PAYMENT_METHOD_ALL)
+
     # These are the regions as defined in mkt/constants/regions.
     region = models.IntegerField(default=1)  # Default to worldwide.
     tier = models.ForeignKey(Price)
@@ -128,7 +133,8 @@ class PriceCurrency(amo.models.ModelBase):
     class Meta:
         db_table = 'price_currency'
         verbose_name = 'Price currencies'
-        unique_together = ('tier', 'currency', 'carrier', 'region')
+        unique_together = ('tier', 'currency', 'carrier', 'region',
+                           'provider')
 
     def get_price_locale(self):
         """Return the price as a nicely localised string for the locale."""

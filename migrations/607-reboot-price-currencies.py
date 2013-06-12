@@ -1,4 +1,7 @@
-from market.models import Price, PriceCurrency
+from django.db import models
+
+import amo
+from market.models import Price
 
 tiers = {
  '0.00': {'CO': {'currency': 'COP',
@@ -253,20 +256,31 @@ tiers = {
                  'region': 10}}
 }
 
+# This is because method gets added on to the model later.
+class FrozenPriceCurrency(amo.models.ModelBase):
+    carrier = models.IntegerField()
+    currency = models.CharField(max_length=10)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    provider = models.IntegerField()
+    region = models.IntegerField(default=1)
+    tier = models.ForeignKey(Price)
+
+    class Meta:
+        db_table = 'price_currency'
+
 
 def run():
-    # Drop all the existing currency objects.
-    PriceCurrency.objects.all().delete()
+    FrozenPriceCurrency.uncached.all().delete()
     for k in sorted(tiers.keys()):
         v = tiers[k]
         try:
-            tier = Price.objects.get(price=k)
-        except Price.DoesNotExist:
+            tier = Price.objects.filter(price=k).no_transforms()[0]
+        except IndexError:
             print 'Tier does not exist: {0}'.format(k)
             continue
 
         for country, values in v.items():
-            PriceCurrency.objects.create(
+            FrozenPriceCurrency.objects.create(
                 tier=tier,
                 carrier=None,
                 provider=1,

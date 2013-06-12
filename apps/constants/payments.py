@@ -162,3 +162,17 @@ PROVIDER_CHOICES = (
 
 PROVIDER_LOOKUP = dict([(v, k) for k, v in PROVIDER_CHOICES])
 CARRIER_CHOICES = ()
+
+# Payment methods accepted by the PriceCurrency..
+#
+# If we ever go beyond these two payment methods, we might need to do
+# something more scalable.
+PAYMENT_METHOD_OPERATOR = 0
+PAYMENT_METHOD_CARD = 1
+PAYMENT_METHOD_ALL = 2
+
+PAYMENT_METHOD_CHOICES = (
+    (PAYMENT_METHOD_OPERATOR, 'operator'),
+    (PAYMENT_METHOD_CARD, 'card'),
+    (PAYMENT_METHOD_ALL, 'operator+card')
+)
