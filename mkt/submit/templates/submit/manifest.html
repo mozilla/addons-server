@@ -104,8 +104,8 @@
       </div>
 
       {% if waffle.switch('buchets') %}
-      <div id="upload-webapp-features" class="hidden">
-        <h3>{{ _('App Minimum Requirements:') }}</h3>
+      <div id="upload-webapp-features">
+        <h3>{{ _('App Minimum Requirements') }}</h3>
         <p>
           {% trans %}
             Check the boxes of the features that your app requires to function
@@ -113,12 +113,23 @@
             support it.
           {% endtrans %}
         </p>
-        <ul>
+        <a href="#" class="button toggle view-all">{{ _('View all') }}</a>
+        <a href="#" class="button toggle hide-all hidden">{{ _('Hide all') }}</a>
+        <ul class="feature-choices">
           {% for field in features_form.required_api_fields() %}
+            {% set key = field.name|replace('has_', '')|upper %}
             {% set tooltip = features_form.get_tooltip(field) %}
             <li>
-              <label for="{{ field.auto_id }}">{{ field }} {{ field.help_text }}</label>
-              {% if tooltip %}<span class="tip tooltip" title="{{ tooltip }}">?</span>{% endif %}
+              <label for="{{ field.auto_id }}">
+                {{ field }}
+                <span class="label">{{ field.help_text }}</span>
+                <div class="apis">
+                  {% for api in mkt.constants.APP_FEATURES[key].apis %}
+                    <code class="api">{{ api }}</code>
+                  {% endfor %}
+                </div>
+                {% if tooltip %}<span class="hint">{{ tooltip }}</span>{% endif %}
+              </label>
             </li>
           {% endfor %}
         </ul>

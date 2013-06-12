@@ -20,8 +20,7 @@ from translations.fields import TransField
 from translations.forms import TranslationFormMixin
 from translations.widgets import TransInput, TransTextarea
 
-from mkt.constants import (APP_FEATURES_DESCRIPTIONS, FREE_PLATFORMS,
-                           PAID_PLATFORMS)
+from mkt.constants import APP_FEATURES, FREE_PLATFORMS, PAID_PLATFORMS
 from mkt.site.forms import AddonChoiceField, APP_PUBLIC_CHOICES
 from mkt.webapps.models import AppFeatures
 from mkt.developers.forms import validate_origin, verify_app_domain
@@ -409,7 +408,8 @@ class AppDetailsBasicForm(TranslationFormMixin, happyforms.ModelForm):
 
             if BlacklistedSlug.blocked(slug):
                 raise forms.ValidationError(
-                    _('The slug cannot be "%s". Please choose another.' % slug))
+                    _('The slug cannot be "%s". Please choose another.'
+                      % slug))
 
         return slug
 
@@ -453,8 +453,8 @@ class AppFeaturesForm(happyforms.ModelForm):
 
     def get_tooltip(self, field):
         field_id = field.name.split('_', 1)[1].upper()
-        return (unicode(APP_FEATURES_DESCRIPTIONS.get(field_id)) if
-                field_id in APP_FEATURES_DESCRIPTIONS else None)
+        return (unicode(APP_FEATURES[field_id].get('description') or '') if
+                field_id in APP_FEATURES else None)
 
     def _changed_features(self):
         old_features = defaultdict.fromkeys(self.initial_features, True)

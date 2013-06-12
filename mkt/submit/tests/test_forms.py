@@ -187,12 +187,13 @@ class TestAppFeaturesForm(amo.tests.TestCase):
 
     def test_required_api_fields(self):
         fields = [f.help_text for f in self.form.required_api_fields()]
-        eq_(fields, sorted(f[1] for f in APP_FEATURES))
+        eq_(fields, sorted(f['name'] for f in APP_FEATURES.values()))
 
     def test_required_api_fields_nonascii(self):
-        forms.AppFeaturesForm.base_fields['has_apps'].help_text = _(u'H\xe9llo')
+        forms.AppFeaturesForm.base_fields['has_apps'].help_text = _(
+            u'H\xe9llo')
         fields = [f.help_text for f in self.form.required_api_fields()]
-        eq_(fields, sorted(f[1] for f in APP_FEATURES))
+        eq_(fields, sorted(f['name'] for f in APP_FEATURES.values()))
 
     def test_changes_mark_for_rereview(self):
         self.features.update(has_sms=True)
@@ -202,8 +203,9 @@ class TestAppFeaturesForm(amo.tests.TestCase):
         ok_(self.features.has_apps)
         ok_(not self.features.has_sms)
         ok_(not self.features.has_contacts)
+        action_id = amo.LOG.REREVIEW_FEATURES_CHANGED.id
         assert AppLog.objects.filter(addon=self.app,
-             activity_log__action=amo.LOG.REREVIEW_FEATURES_CHANGED.id).exists()
+            activity_log__action=action_id).exists()
         eq_(RereviewQueue.objects.count(), 1)
 
     def test_no_changes_not_marked_for_rereview(self):
@@ -214,8 +216,9 @@ class TestAppFeaturesForm(amo.tests.TestCase):
         ok_(not self.features.has_apps)
         ok_(self.features.has_sms)
         eq_(RereviewQueue.objects.count(), 0)
+        action_id = amo.LOG.REREVIEW_FEATURES_CHANGED.id
         assert not AppLog.objects.filter(addon=self.app,
-             activity_log__action=amo.LOG.REREVIEW_FEATURES_CHANGED.id).exists()
+             activity_log__action=action_id).exists()
 
     def test_changes_mark_for_rereview_bypass(self):
         self.features.update(has_sms=True)
@@ -225,5 +228,6 @@ class TestAppFeaturesForm(amo.tests.TestCase):
         ok_(self.features.has_apps)
         ok_(not self.features.has_sms)
         eq_(RereviewQueue.objects.count(), 0)
+        action_id = amo.LOG.REREVIEW_FEATURES_CHANGED.id
         assert not AppLog.objects.filter(addon=self.app,
-             activity_log__action=amo.LOG.REREVIEW_FEATURES_CHANGED.id).exists()
+             activity_log__action=action_id).exists()

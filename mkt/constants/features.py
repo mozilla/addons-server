@@ -12,114 +12,200 @@ from tower import ugettext_lazy as _lazy
 #
 # These are used to dynamically generate the field list for the AppFeatures
 # django model in mkt.webapps.models.
-APP_FEATURES = (
-    ('APPS', _lazy(u'Apps')),
-    ('PACKAGED_APPS', _lazy(u'Packaged apps')),
-    ('PAY', _lazy(u'Web Payment')),
-    ('ACTIVITY', _lazy(u'Web Activities')),
-    ('LIGHT_EVENTS', _lazy(u'Ambient Light Sensor')),
-    ('ARCHIVE', _lazy(u'Archive')),
-    ('BATTERY', _lazy(u'Battery Status')),
-    ('BLUETOOTH', _lazy(u'Bluetooth')),
-    ('CONTACTS', _lazy(u'Contacts')),
-    ('DEVICE_STORAGE', _lazy(u'Device Storage')),
-    ('INDEXEDDB', _lazy(u'IndexedDB')),
-    ('GEOLOCATION', _lazy(u'Geolocation')),
-    ('IDLE', _lazy(u'Idle')),
-    ('NETWORK_INFO', _lazy(u'Network Information')),
-    ('NETWORK_STATS', _lazy(u'Network Stats')),
-    ('PROXIMITY', _lazy(u'Proximity')),
-    ('PUSH', _lazy(u'Simple Push')),
-    ('ORIENTATION', _lazy(u'Screen Orientation')),
-    ('TIME_CLOCK', _lazy(u'Time/Clock')),
-    ('VIBRATE', _lazy(u'Vibration')),
-    ('FM', _lazy(u'WebFM')),
-    ('SMS', _lazy(u'WebSMS')),
-    ('TOUCH', _lazy(u'Touch')),
-    ('QHD', _lazy(u'Smartphone-Sized Displays')),
-    ('MP3', _lazy(u'MP3')),
-    ('AUDIO', _lazy(u'Audio')),
-    ('WEBAUDIO', _lazy(u'Web Audio')),
-    ('VIDEO_H264', _lazy(u'H.264')),
-    ('VIDEO_WEBM', _lazy(u'WebM')),
-    ('FULLSCREEN', _lazy(u'Full Screen')),
-    ('GAMEPAD', _lazy(u'Gamepad')),
-    ('QUOTA', _lazy(u'Quota Management')),
-)
-
-FEATURES_DICT = dict(APP_FEATURES)
-
-APP_FEATURES_DESCRIPTIONS = {
-    'APPS': _lazy('The app requires the `navigator.mozApps` API.'),
-    'PACKAGED_APPS': _lazy(
-        'The app requires the `navigator.mozApps.installPackage` API.'),
-    'PAY': _lazy('The app requires the `navigator.mozPay` API.'),
-    'ACTIVITY': _lazy(
-        'The app requires Web Activities (the `MozActivity` API).'),
-    'LIGHT_EVENTS': _lazy(
-        'The app requires an ambient light sensor (the `ondevicelight` API).'),
-    #'ARCHIVE': _lazy('The app requires the web archive API.'),
-    'BATTERY': _lazy('The app requires the `navigator.battery` API.'),
-    'BLUETOOTH': _lazy('The app requires the `navigator.mozBluetooth` API.'),
-    'CONTACTS': _lazy('The app requires the `navigator.mozContacts` API.'),
-    'DEVICE_STORAGE': _lazy(
-        'The app requires the Device Storage API to access files on the '
-        'filesyste.'),
-    'INDEXEDDB': _lazy('The app requires the platform to support IndexedDB.'),
-    'GEOLOCATION': _lazy(
-        'The app requires the platform to support the '
-        '`navigator.geolocation` API.'),
-    #'IDLE': _lazy('The app requires the `addIdleObserver` API.'),
-    'NETWORK_INFO': _lazy(
-        'The app requires the ability to get information about the network '
-        'connection (the `navigator.mozConnection` API).'),
-    'NETWORK_STATS': _lazy(
-        'The app requires the `navigator.mozNetworkStats` API.'),
-    'PROXIMITY': _lazy(
-        'The app requires a proximity sensor (the `ondeviceproximity` API).'),
-    'PUSH': _lazy('The app requires the `navigator.mozPush` API.'),
-    'ORIENTATION': _lazy(
-        'The app requires the platform to support the `ondeviceorientation` '
-        'API.'),
-    'TIME_CLOCK': _lazy('The app requires the `navigator.mozTime` API.'),
-    'VIBRATE': _lazy(
-        'The app requires the device to support vibration (the '
-        '`navigator.vibrate` API).'),
-    'FM': _lazy(
-        'The app requires the `navigator.mozFM` or `navigator.mozFMRadio` '
-        'APIs.'),
-    'SMS': _lazy('The app requires the `navigator.mozSms` API.'),
-    'TOUCH': _lazy(
-        'The app requires the platform to support touch events. This option '
-        'indicates that the app will not function when used with a mouse.'),
-    'QHD': _lazy(
-        'The app requies the platform to have a smartphone-sized display '
-        '(having qHD resolution). This option indicates that the app will '
-        'be unusable on larger displays (e.g.: tablets, desktop, etc.).'),
-    'MP3': _lazy(
-        'The app requires that the platform can decode and play Mp3 files.'),
-    'AUDIO': _lazy(
-        'The app requires that the platform supports the HTML5 audio API.'),
-    'WEBAUDIO': _lazy(
-        'The app requires that the platform supports the Web Audio API '
-        '(`window.AudioContext`).'),
-    'VIDEO_H264': _lazy(
-        'The app requires that the platform can decode and play H.264 video '
-        'files.'),
-    'VIDEO_WEBM': _lazy(
-        'The app requires that the platform can decode and play WebM video '
-        'files (VP8).'),
-    'FULLSCREEN': _lazy(
-        'The app requires the Full Screen API (`requestFullScreen` or '
-        '`mozRequestFullScreen`).'),
-    'GAMEPAD': _lazy(
-        'The app requires the platform to support the gamepad API '
-        '(`navigator.getGamepads`)'),
-    'QUOTA': _lazy(
-        'The app requires the platform to allow persistent storage limit '
-        'increases above the normally allowed limits for an app '
-        '(`window.StorageInfo` or `window.persistentStorage`).'),
-}
+APP_FEATURES = OrderedDict([
+    ('APPS', {
+        'name': _lazy(u'Apps'),
+        'description': _lazy(u'The app requires the `navigator.mozApps` API.'),
+        'apis': ('navigator.mozApps',),
+    }),
+    ('PACKAGED_APPS', {
+        'name': _lazy(u'Packaged apps'),
+        'description': _lazy(u''),
+        'apis': ('navigator.mozApps.installPackage',),
+    }),
+    ('PAY', {
+        'name': _lazy(u'Web Payment'),
+        'description': _lazy(u'The app requires the `navigator.mozApps` API.'),
+        'apis': ('navigator.pay', 'navigator.mozPay',),
+    }),
+    ('ACTIVITY', {
+        'name': _lazy(u'Web Activities'),
+        'description': _lazy(u'The app requires Web Activities '
+                              '(the `MozActivity` API).'),
+        'apis': ('MozActivity',),
+    }),
+    ('LIGHT_EVENTS', {
+        'name': _lazy(u'Ambient Light Sensor'),
+        'description': _lazy(u'The app requires an ambient light sensor '
+                              '(the `ondevicelight` API).'),
+        'apis': ('window.ondevicelight',),
+    }),
+    ('ARCHIVE', {
+        'name': _lazy(u'Archive'),
+        'description': u'',
+        'apis': (),
+    }),
+    ('BATTERY', {
+        'name': _lazy(u'Battery'),
+        'description': _lazy(u'The app requires the `navigator.battery` API.'),
+        'apis': ('navigator.battery',),
+    }),
+    ('BLUETOOTH', {
+        'name': u'Bluetooth',
+        'description': _lazy(u'The app requires the `navigator.mozBluetooth` '
+                              'API.'),
+        'apis': ('navigator.bluetooth', 'navigator.mozBluetooth'),
+    }),
+    ('CONTACTS', {
+        'name': _lazy(u'Contacts'),
+        'description': _lazy(u'The app requires the `navigator.mozContacts` '
+                              'API.'),
+        'apis': ('navigator.contacts', 'navigator.mozContacts'),
+    }),
+    ('DEVICE_STORAGE', {
+        'name': _lazy(u'Device Storage'),
+        'description': _lazy(u'The app requires the Device Storage API to '
+                              'access files on the filesystem.'),
+        'apis': ('navigator.getDeviceStorage',),
+    }),
+    ('INDEXEDDB', {
+        'name': u'IndexedDB',
+        'description': _lazy(u'The app requires the platform to support '
+                              'IndexedDB.'),
+        'apis': ('navigator.indexedDB', 'navigator.mozIndexedDB'),
+    }),
+    ('GEOLOCATION', {
+        'name': _lazy(u'Geolocation'),
+        'description': _lazy(u'The app requires the platform to support the '
+                              '`navigator.geolocation` API.'),
+        'apis': ('navigator.geolocation',),
+    }),
+    ('IDLE', {
+        'name': _lazy(u'Idle'),
+        'description': u'',
+        'apis': ('addIdleObserver', 'removeIdleObserver'),
+    }),
+    ('NETWORK_INFO', {
+        'name': _lazy(u'Network Information'),
+        'description': _lazy(u'The app requires the ability to get '
+                              'information about the network connection (the '
+                              '`navigator.mozConnection` API).'),
+        'apis': ('navigator.mozConnection', 'navigator.mozMobileConnection'),
+    }),
+    ('NETWORK_STATS', {
+        'name': _lazy(u'Network Stats'),
+        'description': _lazy(u'The app requires the '
+                              '`navigator.mozNetworkStats` API.'),
+        'apis': ('navigator.networkStats', 'navigator.mozNetworkStats'),
+    }),
+    ('PROXIMITY', {
+        'name': _lazy(u'Proximity'),
+        'description': _lazy(u'The app requires a proximity sensor (the '
+                              '`ondeviceproximity` API).'),
+        'apis': ('navigator.ondeviceproximity',),
+    }),
+    ('PUSH', {
+        'name': _lazy(u'Simple Push'),
+        'description': _lazy(u'The app requires the `navigator.mozPush` API.'),
+        'apis': ('navigator.push', 'navigator.mozPush'),
+    }),
+    ('ORIENTATION', {
+        'name': _lazy(u'Screen Orientation'),
+        'description': _lazy(u'The app requires the platform to support the '
+                              '`ondeviceorientation` API.'),
+        'apis': ('ondeviceorientation',),
+    }),
+    ('TIME_CLOCK', {
+        'name': _lazy(u'Time/Clock'),
+        'description': _lazy(u'The app requires the `navigator.mozTime` API.'),
+        'apis': ('navigator.time', 'navigator.mozTime'),
+    }),
+    ('VIBRATE', {
+        'name': _lazy(u'Vibration'),
+        'description': _lazy(u'The app requires the device to support '
+                              'vibration (the `navigator.vibrate` API).'),
+        'apis': ('navigator.vibrate',),
+    }),
+    ('FM', {
+        'name': u'WebFM',
+        'description': _lazy(u'The app requires the `navigator.mozFM` or '
+                              '`navigator.mozFMRadio` APIs.'),
+        'apis': ('navigator.mozFM', 'navigator.mozFMRadio'),
+    }),
+    ('SMS', {
+        'name': u'WebSMS',
+        'description': _lazy(u'The app requires the `navigator.mozSms` API.'),
+        'apis': ('navigator.mozSms', 'navigator.mozSMS'),
+    }),
+    ('TOUCH', {
+        'name': _lazy(u'Touch'),
+        'description': _lazy(u'The app requires the platform to support touch '
+                               'events. This option indicates that the app '
+                               'will not function when used with a mouse.'),
+        'apis': ('window.ontouchstart',),
+    }),
+    ('QHD', {
+        'name': _lazy(u'Smartphone-Sized Displays'),
+        'description': _lazy(u'The app requires the platform to have a '
+                              'smartphone-sized display (having qHD '
+                              'resolution). This option indicates that the '
+                              'app will be unusable on larger displays '
+                              '(e.g., tablets, desktop).'),
+        'apis': (),
+    }),
+    ('MP3', {
+        'name': u'MP3',
+        'description': _lazy(u'The app requires that the platform can decode '
+                              'and play MP3 files.'),
+        'apis': (),
+    }),
+    ('AUDIO', {
+        'name': _lazy(u'Audio'),
+        'description': _lazy(u'The app requires that the platform supports '
+                              'the HTML5 audio API.'),
+        'apis': ('Audio',),
+    }),
+    ('WEBAUDIO', {
+        'name': _lazy(u'Web Audio'),
+        'description': _lazy(u'The app requires that the platform supports '
+                              'the Web Audio API (`window.AudioContext`).'),
+        'apis': ('AudioContext', 'mozAudioContext', 'webkitAudioContext'),
+    }),
+    ('VIDEO_H264', {
+        'name': u'H.264',
+        'description': _lazy(u'The app requires that the platform can decode '
+                              'and play H.264 video files.'),
+        'apis': (),
+    }),
+    ('VIDEO_WEBM', {
+        'name': u'WebM',
+        'description': _lazy(u'The app requires that the platform can decode '
+                              'and play WebM video files (VP8).'),
+        'apis': (),
+    }),
+    ('FULLSCREEN', {
+        'name': _lazy(u'Full Screen'),
+        'description': _lazy(u'The app requires the Full Screen API '
+                              '(`requestFullScreen` or '
+                              '`mozRequestFullScreen`).'),
+        'apis': ('document.documentElement.requestFullScreen',),
+    }),
+    ('GAMEPAD', {
+        'name': _lazy(u'Gamepad'),
+        'description': _lazy(u'The app requires the platform to support the '
+                              'gamepad API (`navigator.getGamepads`).'),
+        'apis': ('navigator.getGamepad', 'navigator.mozGetGamepad'),
+    }),
+    ('QUOTA', {
+        'name': _lazy(u'Quota Management'),
+        'description': _lazy(u'The app requires the platform to allow '
+                              'persistent storage limit increases above the '
+                              'normally allowed limits for an app '
+                              '(`window.StorageInfo` or '
+                              '`window.persistentStorage`).'),
+        'apis': ('navigator.persistentStorage', 'navigator.temporaryStorage'),
+    }),
+])
 
 
 class FeatureProfile(OrderedDict):
@@ -143,7 +229,7 @@ class FeatureProfile(OrderedDict):
         """
         super(FeatureProfile, self).__init__()
         for af in APP_FEATURES:
-            key = af[0].lower()
+            key = af.lower()
             self[key] = kwargs.get(key, False)
 
     @classmethod
@@ -160,7 +246,7 @@ class FeatureProfile(OrderedDict):
             binary = '0' * len(APP_FEATURES)
         n = len(APP_FEATURES) - 1
         for i, k in enumerate(APP_FEATURES):
-            instance[k[0].lower()] = bool(int(binary, 2) & 2 ** (n - i))
+            instance[k.lower()] = bool(int(binary, 2) & 2 ** (n - i))
         return instance
 
     @classmethod
@@ -181,7 +267,7 @@ class FeatureProfile(OrderedDict):
         >>> profile.to_binary()
         '0100000000000000000000000000000'
         """
-        return ''.join(['1' if v else '0' for v in self.values()])
+        return ''.join('1' if v else '0' for v in self.values())
 
     def to_signature(self):
         """

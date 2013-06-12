@@ -67,6 +67,14 @@ $(document).ready(function() {
             $webapp_url.val(window.sessionStorage['manifest_url']);
         }
         var attempts = $webapp_url.val().length;
+
+        $(document.body).on('change', '.feature-choices input', function() {
+            var $this = $(this);
+            $this.closest('li').toggleClass('checked', $this.is(':checked'));
+        }).on('click', '.toggle', _pd(function() {
+            $('.toggle').toggleClass('hidden');
+        }));
+
         $webapp_url.bind('keyup change paste blur', function(e) {
             var $this = $(this),
                 // Ensure it's at least "protocol://host/something".
@@ -135,7 +143,7 @@ $(document).ready(function() {
                 // Update the checkboxes with information from the valdator's idea
                 // of the feature profile for the app.
                 r.validation.feature_profile.forEach(function(feature) {
-                    $('#id_has_' + feature.toLowerCase()).prop('checked', true);
+                    $('#id_has_' + feature.toLowerCase()).prop('checked', true).trigger('change');
                 });
             }
 

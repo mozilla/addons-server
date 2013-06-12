@@ -47,7 +47,7 @@ from translations.fields import save_signal
 from versions.models import Version
 
 import mkt
-from mkt.constants import APP_FEATURES, APP_IMAGE_SIZES, apps, FEATURES_DICT
+from mkt.constants import APP_FEATURES, APP_IMAGE_SIZES, apps
 from mkt.search.utils import S
 from mkt.webapps.utils import get_locale_properties, get_supported_locales
 from mkt.zadmin.models import FeaturedApp
@@ -972,7 +972,7 @@ class WebappIndexer(MappingType, Indexable):
                     'features': {
                         'type': 'object',
                         'properties': dict(
-                            ('has_%s' % f[0].lower(), {'type': 'boolean'})
+                            ('has_%s' % f.lower(), {'type': 'boolean'})
                             for f in APP_FEATURES)
                     },
                     'has_public_stats': {'type': 'boolean'},
@@ -1435,7 +1435,9 @@ class AppFeaturesBase(amo.models.ModelBase):
 
     def to_list(self):
         features = self.to_keys()
-        feature_names = [FEATURES_DICT[f[4:].upper()] for f in features]
+        # Strip `has_` from each feature.
+        feature_names = [APP_FEATURES[f[4:].upper()]['name']
+                         for f in features]
         return sorted(feature_names)
 
     def to_signature(self):
@@ -1455,8 +1457,8 @@ class AppFeaturesBase(amo.models.ModelBase):
             '457eab.23.1'
 
         """
-        profile = ''.join(['1' if getattr(self, f) else '0'
-                           for f in self._fields()])
+        profile = ''.join('1' if getattr(self, f) else '0'
+                          for f in self._fields())
         return '%x.%s.%s' % (int(profile, 2), len(profile),
                              settings.APP_FEATURES_VERSION)
 
@@ -1474,12 +1476,12 @@ app_feature_attrs = dict([
 
     # Database fields.
     ('version', models.OneToOneField(Version, related_name='features')),
-    ],
+],
 
     # Dynamic database fields based on mkt.constants.features.
-    **dict(('has_%s' % f[0].lower(), models.BooleanField(default=False,
-                                                         help_text=f[1]))
-           for f in APP_FEATURES)
+    **dict(('has_%s' % k.lower(),
+           models.BooleanField(default=False, help_text=v['name']))
+           for k, v in APP_FEATURES.iteritems())
 )
 
 

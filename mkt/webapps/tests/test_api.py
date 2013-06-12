@@ -1,7 +1,7 @@
 from nose.tools import ok_
 
 from mkt.api.tests.test_oauth import BaseOAuth
-from mkt.constants import FEATURES_DICT
+from mkt.constants import APP_FEATURES
 from mkt.site.fixtures import fixture
 from mkt.webapps.api import AppFeaturesSerializer
 from mkt.webapps.models import Webapp
@@ -28,7 +28,7 @@ class TestAppFeaturesSerializer(BaseOAuth):
         self.assertSetEqual(native['required'], ['pay'])
 
     def test_all_features(self):
-        data = dict(('has_' + f.lower(), True) for f in FEATURES_DICT.keys())
+        data = dict(('has_' + f.lower(), True) for f in APP_FEATURES)
         native = self.get_native(**data)
         self.assertSetEqual(native['required'],
-                            [f.lower() for f in FEATURES_DICT.keys()])
+                            [f.lower() for f in APP_FEATURES])

@@ -8,7 +8,7 @@ import amo.tests
 
 from addons.models import AddonDeviceType, AddonUser, Preview
 from market.models import AddonPremium, AddonPurchase, Price
-from mkt.constants import FEATURES_DICT, regions
+from mkt.constants import APP_FEATURES, regions
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Installed, Webapp, WebappIndexer
 from mkt.webapps.utils import (app_to_dict, es_app_to_dict,
@@ -92,11 +92,11 @@ class TestAppToDict(amo.tests.TestCase):
                             ['pay'])
 
     def test_all_features(self):
-        data = dict(('has_' + f.lower(), True) for f in FEATURES_DICT.keys())
+        data = dict(('has_' + f.lower(), True) for f in APP_FEATURES)
         self.features.update(**data)
         res = app_to_dict(self.app)
         self.assertSetEqual(res['current_version']['required_features'],
-                            [f.lower() for f in FEATURES_DICT.keys()])
+                            [f.lower() for f in APP_FEATURES])
 
 
 class TestAppToDictPrices(amo.tests.TestCase):
@@ -216,11 +216,8 @@ class TestESAppToDict(amo.tests.ESTestCase):
         self.refresh('webapp')
 
         res = es_app_to_dict(self.get_obj(), profile=self.profile)
-        eq_(res['user'], {
-            'developed': True,
-            'installed': True,
-            'purchased': True,
-        })
+        eq_(res['user'],
+            {'developed': True, 'installed': True, 'purchased': True})
 
 
 class TestSupportedLocales(amo.tests.TestCase):

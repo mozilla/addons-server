@@ -1295,7 +1295,7 @@ class TestAppFeatures(amo.tests.TestCase):
         self.create_switch('buchets')
 
     def _flag(self):
-        "Flag app with a handful of feature flags for testing."
+        """Flag app with a handful of feature flags for testing."""
         self.app.current_version.features.update(
             **dict(('has_%s' % f.lower(), True) for f in self.flags))
 
@@ -1304,8 +1304,8 @@ class TestAppFeatures(amo.tests.TestCase):
             obj = self.app.current_version.features
 
         for feature in APP_FEATURES:
-            field = 'has_%s' % feature[0].lower()
-            value = feature[0] in self.flags
+            field = 'has_%s' % feature.lower()
+            value = feature in self.flags
             if isinstance(obj, dict):
                 eq_(obj[field], value,
                     u'Unexpected value for field: %s' % field)
@@ -1346,7 +1346,8 @@ class TestAppFeatures(amo.tests.TestCase):
         to_list = self.app.current_version.features.to_list()
         self.assertSetEqual(self.to_unicode(to_list), self.expected)
 
-    @mock.patch.dict('mkt.webapps.models.FEATURES_DICT', APPS=_(u'H\xe9llo'))
+    @mock.patch.dict('mkt.webapps.models.APP_FEATURES',
+                     APPS={'name': _(u'H\xe9llo')})
     def test_to_list_nonascii(self):
         self.expected[0] = u'H\xe9llo'
         self._flag()
