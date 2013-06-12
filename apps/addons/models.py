@@ -1107,6 +1107,9 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     def is_pending(self):
         return self.status == amo.STATUS_PENDING
 
+    def is_rejected(self):
+        return self.status == amo.STATUS_REJECTED
+
     def can_become_premium(self):
         """
         Not all addons can become premium and those that can only at
