@@ -87,9 +87,9 @@ class SearchResource(CORSResource, MarketplaceResource):
         # Filter by region.
         region = getattr(request, 'REGION', mkt.regions.WORLDWIDE)
 
-        qs = _get_query(region, gaia=request.GAIA, mobile=request.MOBILE,
-                        tablet=request.TABLET, filters=base_filters,
-                        new_idx=True)
+        qs = _get_query(request, region, gaia=request.GAIA,
+                        mobile=request.MOBILE, tablet=request.TABLET,
+                        filters=base_filters, new_idx=True)
         qs = _filter_search(request, qs, form_data, region=region,
                             profile=profile)
         paginator = self._meta.paginator_class(request.GET, qs,
