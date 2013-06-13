@@ -1,4 +1,4 @@
-{% from 'addons/macros.html' import price %}
+{% from 'detail/includes/price.html' import price %}
 {% set previews = product.all_previews %}
 <div id="summary">
   <ul class="statuslist padded">
@@ -47,7 +47,7 @@
           <dt>{{ _('Default Locale') }}</dt>
           <dd>{{ product.default_locale }}</dd>
           <dt>{{ _('Price') }}</dt>
-          <dd>{{ price(product) }}
+          <dd>{{ price(request, product) }}
             {% if product.is_premium() %}
               &middot;
               <span id="receipt-check-result"
