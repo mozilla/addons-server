@@ -132,8 +132,6 @@ urlpatterns = patterns('',
     # Must go below to ensure these resolve first.
     url('^api/v1/', include(api_patterns)),
 
-    url('^appcache/', include('django_appcache.urls')),
-
     url('^downloads/', include('mkt.downloads.urls')),
 
     # Try and keep urls without a prefix at the bottom of the list for

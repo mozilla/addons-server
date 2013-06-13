@@ -233,7 +233,5 @@ def update():
     execute(compress_assets, arg='--settings=settings_local_mkt')
     execute(schematic)
     with lcd(settings.SRC_DIR):
-        local('%s manage.py --settings=settings_local_mkt build_appcache' %
-              settings.PYTHON)
         local('%s manage.py dump_apps' % settings.PYTHON)
         local('%s manage.py statsd_ping --key=update' % settings.PYTHON)

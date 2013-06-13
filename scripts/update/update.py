@@ -215,7 +215,5 @@ def update(ctx):
     compress_assets(arg='--settings=settings_local_mkt')
     schematic()
     with ctx.lcd(settings.SRC_DIR):
-        ctx.local('%s manage.py --settings=settings_local_mkt build_appcache' %
-                  settings.PYTHON)
         ctx.local('%s manage.py dump_apps' % settings.PYTHON)
         ctx.local('%s manage.py statsd_ping --key=update' % settings.PYTHON)
