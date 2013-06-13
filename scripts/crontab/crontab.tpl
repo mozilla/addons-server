@@ -9,7 +9,6 @@ HOME=/tmp
 # Every 30 minutes.
 */30 * * * * %(z_cron)s tag_jetpacks
 */30 * * * * %(z_cron)s update_addons_current_version
-*/30 * * * * %(z_cron)s cleanup_watermarked_file
 
 #once per hour
 5 * * * * %(z_cron)s update_collections_subscribers
