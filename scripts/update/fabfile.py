@@ -1,4 +1,5 @@
 import os
+import time
 from fabric.api import env, execute, lcd, local, run, roles, task
 
 import commander.hosts
@@ -9,7 +10,12 @@ env.key_filename = settings.SSH_KEY
 env.roledefs.update(commander.hosts.hostgroups)
 
 _src_dir = lambda *p: os.path.join(settings.SRC_DIR, *p)
-VIRTUALENV = os.path.join(os.path.dirname(settings.SRC_DIR), 'venv')
+ROOT_DIR = os.path.dirname(settings.SRC_DIR)
+VIRTUALENV = os.path.join(ROOT_DIR, 'venv')
+
+BUILD_ID = str(int(time.time()))
+INSTALL_TO = os.path.join(os.path.dirname(settings.WWW_DIR), BUILD_ID)
+PACKAGE_DIR = '/tmp'
 
 
 def setup_notifier():
@@ -127,6 +133,21 @@ def update_info(ref='origin/master'):
 @task
 def checkin_changes():
     local(settings.DEPLOY_SCRIPT)
+
+
+@task
+def build_package(ref):
+    ref = ref[:6]
+    PACKAGE_NAME = 'zamboni-%s-%s-%s' % (getattr(settings, 'ENV', 'dev'),
+                                         ref, BUILD_ID)
+    local('fpm -s dir -t rpm -n "%s" '
+          '-p %s/NAME.TYPE '
+          '-C %s --prefix "%s" .' % (PACKAGE_NAME,
+                                     PACKAGE_DIR,
+                                     ROOT_DIR,
+                                     INSTALL_TO))
+
+    return os.path.join(PACKAGE_DIR, "%s.rpm" % PACKAGE_NAME)
 
 
 @task

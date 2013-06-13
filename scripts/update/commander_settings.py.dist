@@ -42,3 +42,7 @@ MARTEAU_SECRET = None
 MARTEAU_SERVER = None
 
 LOAD_TESTING = False
+
+
+#Settings for RPM deployment. Only applies to fabfile.py
+ENV = 'dev'
