@@ -84,6 +84,11 @@ class TestRatingResource(BaseOAuth, AMOPaths):
         eq_(len(data['objects']), 1)
         eq_(data['info']['slug'], self.app.app_slug)
 
+    def test_get_nonpublic(self):
+        self.app.update(status=amo.STATUS_PENDING)
+        res, data = self._get_single(app=self.app.app_slug)
+        eq_(res.status_code, 400)
+
     def test_version_none(self):
         res, data = self._get_single()
         eq_(data['objects'][0]['version'], None)
@@ -189,6 +194,11 @@ class TestRatingResource(BaseOAuth, AMOPaths):
         res, data = self._create({'app': -1})
         eq_(400, res.status_code)
         assert 'app' in data['error_message']
+
+    def test_create_for_nonpublic(self):
+        self.app.update(status=amo.STATUS_PENDING)
+        res, data = self._create()
+        eq_(400, res.status_code)
 
     def test_create_duplicate_rating(self):
         self._create()

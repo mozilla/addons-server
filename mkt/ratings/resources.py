@@ -81,9 +81,12 @@ class RatingResource(CORSResource, MarketplaceModelResource):
 
     def get_app(self, ident):
         try:
-            return Webapp.objects.by_identifier(ident)
-        except Webapp.DoesNotExist:
-            raise self.non_form_errors([('app', 'Invalid app')])
+            return Webapp.objects.valid().get(id=ident)
+        except (Webapp.DoesNotExist, ValueError):
+            try:
+                return Webapp.objects.valid().get(app_slug=ident)
+            except Webapp.DoesNotExist:
+                raise self.non_form_errors([('app', 'Invalid app')])
 
     def build_filters(self, filters=None):
         """
