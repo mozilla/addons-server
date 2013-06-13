@@ -646,9 +646,11 @@ class Webapp(Addon):
         if mobile or gaia:
             srch = srch.filter(uses_flash=False)
 
-        if (not waffle.flag_is_active(request, 'allow-b2g-paid-submission')
-            and (mobile or tablet) and not gaia):
-            # Only show premium apps on gaia and desktop for now.
+        exclude_paid = True
+        if waffle.flag_is_active(request, 'allow-paid-app-search'):
+            exclude_paid = (mobile or tablet) and not gaia
+
+        if exclude_paid:
             srch = srch.filter(~F(premium_type__in=amo.ADDON_PREMIUMS,
                                   price__gt=0))
 

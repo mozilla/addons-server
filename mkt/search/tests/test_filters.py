@@ -151,7 +151,7 @@ class TestSearchFiltersAndroid(BaseOAuth):
             {'in': {'premium_type': (1, 2)}}]}}} in qs['filter']['and'])
 
 
-# TODO: Remove this test when the 'allow-b2g-paid-submission' flag is removed
+# TODO: Remove this test when the 'allow-paid-app-search' flag is removed
 class TestFlaggedUsersPremiumApps(BaseOAuth):
     fixtures = fixture('webapp_337141', 'user_2519')
 
@@ -159,7 +159,7 @@ class TestFlaggedUsersPremiumApps(BaseOAuth):
         super(TestFlaggedUsersPremiumApps, self).setUp()
         self.req = test_utils.RequestFactory().get('/')
         self.req.user = self.user = UserProfile.objects.get(pk=2519).user
-        self.flag = Flag.objects.create(name='allow-b2g-paid-submission')
+        self.flag = Flag.objects.create(name='allow-paid-app-search')
 
         # Pick a region that has relatively few filters.
         set_region(regions.UK.slug)
@@ -198,10 +198,10 @@ class TestFlaggedUsersPremiumApps(BaseOAuth):
         qs = self._filter(self.req, self.query_string, **filters)
         ok_(self.prem_exclude in qs['filter']['and'])
 
+        # User is allowed to see paid apps, yet we don't show them on android.
         self.flag.users.add(self.user)
-
         qs = self._filter(self.req, self.query_string, **filters)
-        ok_(self.prem_exclude not in qs['filter']['and'])
+        ok_(self.prem_exclude in qs['filter']['and'])
 
     def test_premium_on_android_tablet(self):
         filters = self.filter_kwargs.copy()
@@ -210,10 +210,10 @@ class TestFlaggedUsersPremiumApps(BaseOAuth):
         qs = self._filter(self.req, self.query_string, **filters)
         ok_(self.prem_exclude in qs['filter']['and'])
 
+        # User is allowed to see paid apps, yet we don't show them on android.
         self.flag.users.add(self.user)
-
         qs = self._filter(self.req, self.query_string, **filters)
-        ok_(self.prem_exclude not in qs['filter']['and'])
+        ok_(self.prem_exclude in qs['filter']['and'])
 
     def test_premium_on_gaia(self):
         filters = self.filter_kwargs.copy()
@@ -222,9 +222,9 @@ class TestFlaggedUsersPremiumApps(BaseOAuth):
         query.update(dev='firefoxos')
 
         qs = self._filter(self.req, query, **filters)
-        ok_(self.prem_exclude not in qs['filter']['and'])
+        # TODO: Use `not in` when flag is removed.
+        ok_(self.prem_exclude in qs['filter']['and'])
 
         self.flag.users.add(self.user)
-
         qs = self._filter(self.req, query, **filters)
         ok_(self.prem_exclude not in qs['filter']['and'])
