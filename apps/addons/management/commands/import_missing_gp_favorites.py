@@ -7,7 +7,6 @@ from django.db import IntegrityError, connection as django_connection
 
 import MySQLdb as mysql
 
-from bandwagon.models import CollectionAddon
 from users.models import UserProfile
 
 
@@ -41,17 +40,28 @@ class Command(BaseCommand):
         self.cursor.execute('SELECT count(username) FROM favorites')
         return self.cursor.fetchone()[0]
 
+    def get_favorite_collection(self, collection_id, addon_id):
+        self.cursor_z.execute('SELECT id FROM addons_collections '
+                              'WHERE collection_id = %s AND addon_id = %s '
+                              'LIMIT 1', (collection_id, addon_id))
+        try:
+            return self.cursor_z.fetchone()[0]
+        except TypeError:
+            return None
+
     def get_user_by_gp_username(self, gp_username):
         if gp_username not in self.users:
             self.cursor.execute('SELECT email FROM users WHERE username = %s',
                                 gp_username)
             email = self.cursor.fetchone()[0]
             try:
-                self.users[gp_username] = UserProfile.objects.get(email=email)
+                profile = UserProfile.objects.get(email=email)
+                self.users[gp_username] = (profile,
+                                           profile.favorites_collection().id)
             except UserProfile.DoesNotExist:
                 print('[ERROR] Could not find user with GP username "%s"' %
                       gp_username)
-                self.users[gp_username] = None
+                self.users[gp_username] = None, None
 
         profile = self.users.get(gp_username)
 
@@ -82,14 +92,13 @@ class Command(BaseCommand):
         favorites = self.cursor.fetchall()
 
         for gp_username, persona_id, date_added in favorites:
-            profile = self.get_user_by_gp_username(gp_username)
+            profile, faves_id = self.get_user_by_gp_username(gp_username)
             if not profile:
                 print('[ERROR] Could not add favourite "%s" because of bad '
                       'username "%s"' % (persona_id, gp_username))
                 errored += 1
                 continue
 
-            faves_id = profile.favorites_collection().id
             addon_id = self.get_addon_id_from_persona_id(persona_id)
 
             if not addon_id:
@@ -98,11 +107,10 @@ class Command(BaseCommand):
                 errored += 1
                 continue
 
-            coll = CollectionAddon.objects.filter(collection_id=faves_id,
-                addon_id=addon_id)
-
-            if coll.exists():
-                print '[IGNORED] Favourite already exists: %s' % coll[0]
+            coll = self.get_favorite_collection(collection_id=faves_id,
+                                                addon_id=addon_id)
+            if coll:
+                print '[IGNORED] Favourite already exists: %s' % coll
                 ignored += 1
                 continue
 
