@@ -158,8 +158,11 @@ def build_package():
 @roles(settings.WEB_HOSTGROUP, settings.CELERY_HOSTGROUP)
 @task
 def install_package(package_file):
+    cur_sym = os.path.join(os.path.dirname(INSTALL_TO), 'current')
+
     put(package_file, package_file)
     run('rpm -i %s' % package_file)
+    run('[[ -d {0} ]] && ln -s {0} {1}'.format(INSTALL_TO, cur_sym))
 
 
 @task
