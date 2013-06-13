@@ -146,7 +146,7 @@ def build_package():
     PACKAGE_FILE = os.path.join(PACKAGE_DIR, '%s.rpm' % PACKAGE_NAME)
     local('fpm -s dir -t rpm -n "%s" '
           '-p "%s" '
-          '-x "*.git" -x "*.svn" '
+          '-x "*.git" -x "*.svn" -x "*.pyc" '
           '-C %s --prefix "%s" zamboni venv' % (PACKAGE_NAME,
                                                 PACKAGE_FILE,
                                                 ROOT_DIR,
