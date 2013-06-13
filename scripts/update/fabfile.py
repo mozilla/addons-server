@@ -1,6 +1,6 @@
 import os
 import time
-from fabric.api import env, execute, lcd, local, run, roles, task
+from fabric.api import env, execute, lcd, local, put, run, roles, task
 
 import commander.hosts
 import commander_settings as settings
@@ -155,6 +155,13 @@ def build_package():
     return PACKAGE_FILE
 
 
+@roles(settings.WEB_HOSTGROUP, settings.CELERY_HOSTGROUP)
+@task
+def install_package(package_file):
+    put(package_file, package_file)
+    run('rpm -i %s' % package_file)
+
+
 @task
 def disable_cron():
     local("rm -f /etc/cron.d/%s" % settings.CRON_NAME)
@@ -217,9 +224,11 @@ def update_celery():
 @task
 def deploy():
     execute(install_cron)
-    execute(checkin_changes)
-    execute(deploy_app)
-    execute(update_celery)
+    #execute(checkin_changes)
+    package_file = execute(build_package).values()[0]
+    execute(install_package, package_file)
+    #execute(deploy_app)
+    #execute(update_celery)
     with lcd(settings.SRC_DIR):
         local('%s manage.py cron cleanup_validation_results' %
               settings.PYTHON)
