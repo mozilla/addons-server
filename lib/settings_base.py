@@ -1055,16 +1055,11 @@ VALIDATION_FAQ_URL = ('https://wiki.mozilla.org/AMO:Editors/EditorGuide/'
 
 
 ## Celery
-BROKER_HOST = 'localhost'
-BROKER_PORT = 5672
-BROKER_USER = 'zamboni'
-BROKER_PASSWORD = 'zamboni'
-BROKER_VHOST = 'zamboni'
+BROKER_URL = 'amqp://zamboni:zamboni@localhost:5672/zamboni'
 BROKER_CONNECTION_TIMEOUT = 0.1
 CELERY_RESULT_BACKEND = 'amqp'
 CELERY_IGNORE_RESULT = False
 CELERY_SEND_TASK_ERROR_EMAILS = True
-CELERYD_LOG_LEVEL = logging.INFO
 CELERYD_HIJACK_ROOT_LOGGER = False
 CELERY_IMPORTS = ('lib.video.tasks', 'lib.metrics',
                   'lib.es.management.commands.reindex',
