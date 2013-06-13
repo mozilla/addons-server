@@ -75,6 +75,8 @@ class Command(BaseCommand):
                 except UnicodeEncodeError:
                     # probably already done?
                     print "skipped", theme[0]
+            else:
+                print "clean", theme[0]
         if ids:
             targets = self.find_needed_fixes(ids, descs)
             self.fix_descs(targets)
