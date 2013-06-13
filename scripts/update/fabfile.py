@@ -136,12 +136,16 @@ def checkin_changes():
 
 
 @task
-def build_package(ref):
+def build_package():
+    with lcd(settings.SRC_DIR):
+        ref = local('git rev-parse HEAD')
     ref = ref[:6]
+
     PACKAGE_NAME = 'zamboni-%s-%s-%s' % (getattr(settings, 'ENV', 'dev'),
                                          ref, BUILD_ID)
     local('fpm -s dir -t rpm -n "%s" '
           '-p %s/NAME.TYPE '
+          '-x "*.git" -x "*.svn" '
           '-C %s --prefix "%s" .' % (PACKAGE_NAME,
                                      PACKAGE_DIR,
                                      ROOT_DIR,
