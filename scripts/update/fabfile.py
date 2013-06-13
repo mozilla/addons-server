@@ -131,28 +131,14 @@ def update_info(ref='origin/master'):
 
 
 @task
-def checkin_changes():
-    local(settings.DEPLOY_SCRIPT)
-
-
-@task
-def build_package():
-    with lcd(settings.SRC_DIR):
-        ref = local('git rev-parse HEAD', capture=True)
-    ref = ref[:6]
-
-    PACKAGE_NAME = 'zamboni-%s-%s-%s' % (getattr(settings, 'ENV', 'dev'),
-                                         ref, BUILD_ID)
-    PACKAGE_FILE = os.path.join(PACKAGE_DIR, '%s.rpm' % PACKAGE_NAME)
+def build_package(name, pkgfile):
     local('fpm -s dir -t rpm -n "%s" '
           '-p "%s" '
           '-x "*.git" -x "*.svn" -x "*.pyc" '
-          '-C %s --prefix "%s" zamboni venv' % (PACKAGE_NAME,
-                                                PACKAGE_FILE,
+          '-C %s --prefix "%s" zamboni venv' % (name,
+                                                pkgfile,
                                                 ROOT_DIR,
                                                 INSTALL_TO))
-
-    return PACKAGE_FILE
 
 
 @roles(settings.WEB_HOSTGROUP, settings.CELERY_HOSTGROUP)
@@ -184,12 +170,6 @@ def install_cron():
 
 @roles(settings.WEB_HOSTGROUP)
 @task
-def sync_code():
-    run(settings.REMOTE_UPDATE_SCRIPT)
-
-
-@roles(settings.WEB_HOSTGROUP)
-@task
 def restart_workers():
     if getattr(settings, 'GUNICORN', False):
         for gservice in settings.GUNICORN:
@@ -203,16 +183,9 @@ def restart_workers():
             settings.REMOTE_APP)
 
 
-@task
-def deploy_app():
-    execute(sync_code)
-    execute(restart_workers)
-
-
 @roles(settings.CELERY_HOSTGROUP)
 @task
 def update_celery():
-    run(settings.REMOTE_UPDATE_SCRIPT)
     if getattr(settings, 'CELERY_SERVICE_PREFIX', False):
         run("/sbin/service %s restart" % settings.CELERY_SERVICE_PREFIX)
         run("/sbin/service %s-devhub restart" %
@@ -226,12 +199,18 @@ def update_celery():
 
 @task
 def deploy():
+    with lcd(settings.SRC_DIR):
+        ref = local('git rev-parse HEAD', capture=True)
+    ref = ref[:6]
+
+    package_name = 'zamboni-%s-%s-%s' % (getattr(settings, 'ENV', 'dev'),
+                                         ref, BUILD_ID)
+    package_file = os.path.join(PACKAGE_DIR, '%s.rpm' % package_name)
+
     execute(install_cron)
-    #execute(checkin_changes)
-    package_file = execute(build_package).values()[0]
+    execute(build_package, package_name, package_file)
     execute(install_package, package_file)
-    #execute(deploy_app)
-    #execute(update_celery)
+    execute(restart_workers)
     with lcd(settings.SRC_DIR):
         local('%s manage.py cron cleanup_validation_results' %
               settings.PYTHON)
