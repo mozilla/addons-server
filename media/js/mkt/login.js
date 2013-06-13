@@ -92,13 +92,13 @@ define('login', ['notification'], function(notification) {
         var user = z.body.data('user');
         var email = user ? user.email : '';
         console.log('detected user', email);
-        if (email) {
-            console.log('Not telling Persona about the user');
-            return;
-        }
         navigator.id.watch({
             loggedInUser: email,
-            onlogin: gotVerifiedEmail,
+            onlogin: function(assertion) {
+                if (!email) {
+                    gotVerifiedEmail(assertion);
+                }
+            },
             onlogout: function() {}
         });
     }
