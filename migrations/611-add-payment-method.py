@@ -40,6 +40,7 @@ tiers = {
     '49.99': {VE.id: {'method': PAYMENT_METHOD_CARD}},
 }
 
+
 def run():
     for k in sorted(tiers.keys()):
         v = tiers[k]
@@ -54,6 +55,8 @@ def run():
                 currency = PriceCurrency.objects.get(tier=tier, region=region)
             except PriceCurrency.DoesNotExist:
                 print 'Region does not exist: {0}'.format(region)
+                continue
+
             currency.method = values['method']
             currency.save()
             print 'Updating: {0}, {1}, {2}'.format(k, region, values['method'])
