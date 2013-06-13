@@ -90,8 +90,6 @@ def manifest(request):
         },
         'orientation': ['portrait-primary']
     }
-    if settings.USE_APPCACHE:
-        data['appcache_path'] = reverse('django_appcache.manifest')
     if get_carrier():
         data['launch_path'] = urlparams('/', carrier=get_carrier())
 

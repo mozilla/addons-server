@@ -104,20 +104,6 @@ class TestManifest(amo.tests.TestCase):
         content = json.loads(response.content)
         eq_(content['name'], 'Mozilla Fruitstand')
 
-    @mock.patch.object(settings, 'USE_APPCACHE', True)
-    def test_manifest_appcache(self):
-        response = self.client.get(self.url)
-        eq_(response.status_code, 200)
-        content = json.loads(response.content)
-        eq_(content['appcache_path'], reverse('django_appcache.manifest'))
-
-    @mock.patch.object(settings, 'USE_APPCACHE', False)
-    def test_manifest_no_appcache(self):
-        response = self.client.get(self.url)
-        eq_(response.status_code, 200)
-        content = json.loads(response.content)
-        assert 'appcache_path' not in content, 'Unexpected: `appcache_path`'
-
     def test_manifest_orientation(self):
         response = self.client.get(self.url)
         eq_(response.status_code, 200)

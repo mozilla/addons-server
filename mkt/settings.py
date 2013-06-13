@@ -54,7 +54,6 @@ INSTALLED_APPS = tuple(INSTALLED_APPS)
 
 INSTALLED_APPS += (
     'devhub',  # Put here so helpers.py doesn't get loaded first.
-    'django_appcache',
     'mkt.site',
     'mkt.account',
     'mkt.api',
@@ -66,7 +65,6 @@ INSTALLED_APPS += (
     'mkt.inapp_pay',
     'mkt.lookup',
     'mkt.monolith',
-    'mkt.offline',
     'mkt.purchase',
     'mkt.ratings',
     'mkt.receipts',
@@ -214,56 +212,6 @@ BLUEVIA_SECRET = ''
 BLUEVIA_ORIGIN = 'https://opentel20.tidprojects.com'
 BLUEVIA_URL = BLUEVIA_ORIGIN + '/en/mozilla/?req='
 
-# Link to the appcache manifest (activate it) when True.
-USE_APPCACHE = False
-
-# These are absolute paths to add to the cache. Wildcards are not allowed here.
-# These paths will be added as-is to the cache section.
-APPCACHE_TO_CACHE = [
-    '/offline/home'
-]
-
-APPCACHE_NET_PATHS = [
-    '*'
-]
-
-APPCACHE_FALLBACK_PATHS = {}
-
-
-# This callable yields paths relative to MEDIA_ROOT that you want to explicitly
-# cache. The browser will load *all* of these URLs when your app first loads
-# so be mindful to only list essential media files. The actual URL of the path
-# to cache will be determined using MEDIA_URL.
-# If you use wildcards here the real paths to the file(s) will be
-# expanded using glob.glob()
-
-
-def APPCACHE_MEDIA_TO_CACHE():
-    from jingo_minify import helpers
-    bundle = 'mkt/offline'
-
-    # TODO(Kumar) refactor jingo-minify so we don't have to copy/paste this
-    # logic.
-
-    css_build_id = helpers.BUILD_ID_CSS
-    bundle_full = "css:%s" % bundle
-    if bundle_full in helpers.BUNDLE_HASHES:
-        css_build_id = helpers.BUNDLE_HASHES[bundle_full]
-
-    return (
-        'css/%s-min.css?build=%s' % (bundle, css_build_id),
-    )
-
-
-# Are you working locally? place the following line in your settings_local:
-# APPCACHE_MEDIA_TO_CACHE = APPCACHE_MEDIA_DEBUG
-
-def APPCACHE_MEDIA_DEBUG():
-    for f in list(asset_bundles.CSS['mkt/offline']):
-        if f.endswith('.less'):
-            yield f + '.css'
-        else:
-            yield f
 
 # Allowed `installs_allowed_from` values for manifest validator.
 VALIDATOR_IAF_URLS = ['https://marketplace.firefox.com']

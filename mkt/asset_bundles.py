@@ -111,13 +111,6 @@ CSS = {
         'css/mkt/lightbox.styl',
         'css/mkt/filters.styl',
     ),
-    'mkt/offline': (
-        'css/mkt/reset.styl',
-        'css/mkt/site.styl',
-        'css/mkt/header.styl',
-        'css/mkt/buttons.styl',
-        'css/mkt/offline.styl',
-    ),
     'mkt/ecosystem': (
         'css/devreg/reset.styl',
         'css/devreg/consumer-typography.styl',

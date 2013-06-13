@@ -187,12 +187,6 @@
     {% block overlays %}
     {% endblock %}
 
-    {% block offline_pixel %}
-      {% if settings.USE_APPCACHE %}
-        <iframe id="offline-pixel" src="{{ url('offline.stub') }}"></iframe>
-      {% endif %}
-    {% endblock %}
-
     {% block dbgoverlay %}{% endblock %}
 
     {# js #}

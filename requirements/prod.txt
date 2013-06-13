@@ -14,7 +14,6 @@ cssutils==0.9.7b3
 curling==0.2.6
 Django==1.4.5
 dj-database-url==0.2.1
-django_appcache==1.4
 django-browserid==0.8
 django-cache-machine==0.6
 django-celery==3.0.17

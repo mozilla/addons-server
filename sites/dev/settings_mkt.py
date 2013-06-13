@@ -92,9 +92,6 @@ WEBAPPS_RECEIPT_URL = private_mkt.WEBAPPS_RECEIPT_URL
 
 APP_PREVIEW = True
 
-# Use HTML5 offline cache?
-USE_APPCACHE = False
-
 WEBAPPS_UNIQUE_BY_DOMAIN = False
 
 #Bug 744268
