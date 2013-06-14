@@ -134,9 +134,11 @@ def update_info(ref='origin/master'):
 def build_package(name, pkgfile):
     local('fpm -s dir -t rpm -n "%s" '
           '-p "%s" '
+          '--directories "%s" '
           '-x "*.git" -x "*.svn" -x "*.pyc" '
           '-C %s --prefix "%s" zamboni venv' % (name,
                                                 pkgfile,
+                                                INSTALL_TO,
                                                 ROOT_DIR,
                                                 INSTALL_TO))
 
