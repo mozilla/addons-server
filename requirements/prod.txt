@@ -8,6 +8,7 @@ bleach==1.1.5
 boto==2.9.0
 cef==0.5
 celery==3.0.19
+celery-tasktree==0.3.2
 certifi==0.0.8
 chardet==1.0.1
 cssutils==0.9.7b3
