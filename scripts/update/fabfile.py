@@ -14,7 +14,7 @@ ROOT_DIR = os.path.dirname(settings.SRC_DIR)
 VIRTUALENV = os.path.join(ROOT_DIR, 'venv')
 
 BUILD_ID = str(int(time.time()))
-INSTALL_TO = os.path.join(os.path.dirname(settings.WWW_DIR), BUILD_ID)
+INSTALL_TO = os.path.dirname(settings.WWW_DIR)
 PACKAGE_DIR = '/tmp'
 
 
@@ -136,20 +136,22 @@ def build_package(name, pkgfile):
           '-p "%s" '
           '--directories / '
           '-x "*.git" -x "*.svn" -x "*.pyc" '
-          '-C %s --prefix "%s" zamboni venv' % (name,
-                                                pkgfile,
-                                                ROOT_DIR,
-                                                INSTALL_TO))
+          '-C %s --prefix "%s" '
+          'zamboni venv' % (name,
+                            pkgfile,
+                            ROOT_DIR,
+                            os.path.join(INSTALL_TO, name)))
 
 
 @roles(settings.WEB_HOSTGROUP, settings.CELERY_HOSTGROUP)
 @task
-def install_package(package_file):
-    cur_sym = os.path.join(os.path.dirname(INSTALL_TO), 'current')
+def install_package(name, package_file):
+    cur_sym = os.path.join(INSTALL_TO, 'current')
 
     put(package_file, package_file)
     run('rpm -i %s' % package_file)
-    run('[[ -d {0} ]] && ln -sfn {0} {1}'.format(INSTALL_TO, cur_sym))
+    run('[[ -d {0} ]] && ln -sfn {0} {1}'.format(os.path.join(INSTALL_TO,
+                                                              name), cur_sym))
 
 
 @task
@@ -210,7 +212,7 @@ def deploy():
 
     execute(install_cron)
     execute(build_package, package_name, package_file)
-    execute(install_package, package_file)
+    execute(install_package, package_name, package_file)
     execute(restart_workers)
     with lcd(settings.SRC_DIR):
         local('%s manage.py cron cleanup_validation_results' %
