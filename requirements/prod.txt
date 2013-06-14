@@ -37,6 +37,7 @@ django-statsd-mozilla==0.3.8.6
 django-storages==1.1.4
 django-tastypie==0.9.11
 easy-thumbnails==1.1
+elasticutils==0.7
 fastchardet==0.2.0
 feedparser==5.0.1
 fudge==1.0.3
@@ -91,7 +92,6 @@ tastypie-services==0.2.2
 -e git://github.com/jbalogh/django-queryset-transform@a1ba6ae41bd86f5bb9ff66fb56614e0fafe6e022#egg=django-queryset-transform
 -e git://github.com/miracle2k/django-tables.git@546f339308103880c823b2056830fcdc9220edd0#egg=django-tables
 -e git://github.com/mozilla/happyforms.git@729612c2a824a7e8283d416d2084bf506c671e24#egg=happyforms
--e git://github.com/mozilla/elasticutils.git@5bde211443dbe524d940974d477119f51e3ac357#egg=elasticutils
 
 # Temporary fork.
 -e git://github.com/jsocol/jingo-minify.git@cb911038e20a399aeff871e199c8bc2be12b5cee#egg=jingo-minify
