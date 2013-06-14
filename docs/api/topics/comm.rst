@@ -1,8 +1,8 @@
 .. _comm:
 
-====
-Comm
-====
+=============
+Communication
+=============
 
 API for communication between reviewers and developers.
 

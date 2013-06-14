@@ -19,6 +19,7 @@ This documentation covers interacting with the `Firefox Marketplace`_.
    topics/abuse.rst
    topics/accounts.rst
    topics/apps.rst
+   topics/comm.rst
    topics/export.rst
    topics/home.rst
    topics/payment.rst
