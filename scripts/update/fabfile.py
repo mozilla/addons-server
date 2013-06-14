@@ -204,7 +204,7 @@ def deploy():
     ref = ref[:6]
 
     package_name = 'zamboni-%s-%s-%s' % (getattr(settings, 'ENV', 'dev'),
-                                         ref, BUILD_ID)
+                                         BUILD_ID, ref)
     package_file = os.path.join(PACKAGE_DIR, '%s.rpm' % package_name)
 
     execute(install_cron)
