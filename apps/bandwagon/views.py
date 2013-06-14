@@ -346,13 +346,13 @@ def ajax_new(request):
 
 @login_required(redirect=False)
 def ajax_list(request):
-    # Get collections associated with this user
-    collections = Collection.objects.publishable_by(request.amo_user)
-
     try:
         addon_id = int(request.GET['addon_id'])
     except (KeyError, ValueError):
         return http.HttpResponseBadRequest()
+
+    # Get collections associated with this user
+    collections = Collection.objects.publishable_by(request.amo_user)
 
     for collection in collections:
         # See if the collections contains the addon

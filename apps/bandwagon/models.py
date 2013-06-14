@@ -1,15 +1,14 @@
 import collections
-from datetime import datetime
 import hashlib
 import os
 import re
 import time
 import uuid
+from datetime import datetime
 
 from django.conf import settings
 from django.core.cache import cache
-from django.db import models, connection, transaction
-from django.db.models import Q
+from django.db import connection, models, transaction
 
 import caching.base as caching
 
@@ -17,10 +16,10 @@ import amo
 import amo.models
 import sharing.utils as sharing
 from access import acl
-from amo.helpers import absolutify
-from amo.utils import sorted_groupby
-from amo.urlresolvers import reverse
 from addons.models import Addon, AddonRecommendation
+from amo.helpers import absolutify
+from amo.urlresolvers import reverse
+from amo.utils import sorted_groupby
 from applications.models import Application
 from stats.models import CollectionShareCountTotal
 from translations.fields import LinkifiedField, save_signal, TranslatedField
@@ -66,9 +65,9 @@ class CollectionManager(amo.models.ManagerBase):
 
     def publishable_by(self, user):
         """Collections that are publishable by a user."""
-        owned_by = Q(author=user.id)
-        publishable_by = Q(users=user.id)
-        return self.filter(owned_by | publishable_by)
+        owned_by = list(self.filter(author=user.id))
+        publishable_by = list(self.filter(users=user.id))
+        return set(owned_by + publishable_by)
 
 
 class CollectionBase:
@@ -389,6 +388,7 @@ models.signals.pre_save.connect(save_signal, sender=Collection,
                                 dispatch_uid='coll_translations')
 models.signals.post_delete.connect(Collection.post_delete, sender=Collection,
                                    dispatch_uid='coll.post_delete')
+
 
 class CollectionAddon(amo.models.ModelBase):
     addon = models.ForeignKey(Addon)

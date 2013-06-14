@@ -769,7 +769,7 @@ class TestChangeAddon(amo.tests.TestCase):
     def check_redirect(self, request):
         url = '%s?addon_id=%s' % (reverse('collections.ajax_list'),
                                   self.addon.id)
-        self.assertRedirects(request, url)
+        self.assert3xx(request, url)
 
     def test_login_required(self):
         self.client.logout()
@@ -886,12 +886,8 @@ class AjaxTest(amo.tests.TestCase):
     def test_new_collection(self):
         num_collections = Collection.objects.all().count()
         r = self.client.post(reverse('collections.ajax_new'),
-                {'addon_id': 5299,
-                 'name': 'foo',
-                 'slug': 'auniqueone',
-                 'description': 'yermom',
-                 'listed': True},
-                follow=True)
+                {'addon_id': 5299, 'name': 'foo', 'slug': 'auniqueone',
+                 'description': 'yermom', 'listed': True}, follow=True)
         doc = pq(r.content)
         eq_(len(doc('li.selected')), 1, "The new collection is not selected.")
         eq_(Collection.objects.all().count(), num_collections + 1)
