@@ -350,17 +350,34 @@ Pay Tiers
             "name": "Tier 1",
             "pricePoint": "1",
             "prices": [{
-                "amount": "0.99",
-                "currency": "USD"
+                "price": "0.99",
+                "method": 2,
+                "region": 2,
+                "tier": 26,
+                "provider": 1,
+                "currency": "USD",
+                "id': 1225
             }, {
-                "amount": "0.69",
-                "currency": "GBP"
+                "price": "0.69",
+                "method": 2,
+                "region": 14,
+                "tier": 26,
+                "provider": 1,
+                "currency": "DE",
+                "id': 1226
             }],
             "localized": {},
             "resource_uri": "/api/v1/webpay/prices/1/"
+            "created": "2011-09-29T14:15:08",
+            "modified": "2013-05-02T14:43:58"
         }
 
+    :param region: :ref:`_region-response-label`
+    :param carrier: :ref:`_carrier-response-label`
     :param localized: see `Localized tier`.
+    :param tier: the id of the tier.
+    :param method: the payment method.
+    :param provider: payment provider, currently only ``1`` is supported.
     :param pricePoint: this is the value used for in-app payments.
     :statuscode 200: successfully completed.
 
