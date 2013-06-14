@@ -102,6 +102,8 @@ def _filter_search(request, qs, query, filters=None, sorting=None,
             qs = qs.filter(premium_type__in=query.get('premium_types'))
     if 'app_type' in query and query['app_type']:
         qs = qs.filter(app_type=query['app_type'])
+    if query.get('manifest_url'):
+        qs = qs.filter(manifest_url=query['manifest_url'])
     if 'sort' in show:
         sort_by = None
         if query['sort'] in sorting:

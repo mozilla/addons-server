@@ -27,6 +27,9 @@ Search
         'theme'.
     :param optional app_type: Filters by type of web app. One of 'hosted' or
         'packaged'.
+    :param optional manifest_url: Filters by manifest URL. Requires an
+        exact match and should only return a single result if a match is
+        found.
     :param optional sort: The field to sort by. One of 'downloads', 'rating',
         'price', 'created'. Sorts by relevance by default.
 
@@ -68,6 +71,8 @@ Featured App Listing
     **Response**:
 
     :param meta: :ref:`meta-response-label`.
-    :param objects: A :ref:`listing <objects-response-label>` of :ref:`apps <app-response-label>` satisfying the search parameters.
-    :param featured: A list of :ref:`apps <app-response-label>` featured for the requested category, if any
+    :param objects: A :ref:`listing <objects-response-label>` of
+        :ref:`apps <app-response-label>` satisfying the search parameters.
+    :param featured: A list of :ref:`apps <app-response-label>` featured
+        for the requested category, if any
     :status 200: successfully completed..

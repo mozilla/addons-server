@@ -109,6 +109,11 @@ class TestSearchFilters(BaseOAuth):
         qs = self._filter(self.req, {'app_type': 'hosted'})
         ok_({'term': {'app_type': 1}} in qs['filter']['and'])
 
+    def test_manifest_url(self):
+        url = 'http://hy.fr/manifest.webapp'
+        qs = self._filter(self.req, {'manifest_url': url})
+        ok_({'term': {'manifest_url': url}} in qs['filter']['and'])
+
 
 class TestSearchFiltersAndroid(BaseOAuth):
     fixtures = fixture('webapp_337141', 'user_2519')

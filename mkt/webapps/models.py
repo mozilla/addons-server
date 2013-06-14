@@ -969,7 +969,8 @@ class WebappIndexer(MappingType, Indexable):
                     'last_updated': {'format': 'dateOptionalTime',
                                      'type': 'date'},
                     'latest_version_status': {'type': 'byte'},
-                    'manifest_url': {'type': 'string'},
+                    'manifest_url': {'type': 'string',
+                                     'index': 'not_analyzed'},
                     'name': {'type': 'string',
                              'analyzer': 'standardPlusWordDelimiter'},
                     # Turn off analysis on name so we can sort by it.
