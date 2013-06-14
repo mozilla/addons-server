@@ -64,6 +64,9 @@ CONTRIB_CHARGEBACK = 3
 CONTRIB_PENDING = 4
 CONTRIB_INAPP_PENDING = 5
 CONTRIB_INAPP = 6
+# The app was temporarily free. This is so we can record it in
+# the purchase table, even though there isn't a contribution.
+CONTRIB_NO_CHARGE = 7
 CONTRIB_OTHER = 99
 
 CONTRIB_TYPES = {

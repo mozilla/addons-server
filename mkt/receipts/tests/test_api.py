@@ -13,6 +13,7 @@ from test_utils import RequestFactory
 import amo.tests
 
 from addons.models import Addon, AddonUser
+from constants.payments import CONTRIB_NO_CHARGE
 from devhub.models import AppLog
 from mkt.api.base import list_url
 from mkt.api.tests.test_oauth import BaseOAuth
@@ -176,6 +177,14 @@ class TestReceipt(amo.tests.TestCase):
     def test_own_payments(self):
         self.addon.update(premium_type=amo.ADDON_OTHER_INAPP)
         ok_(self.handle(self.profile))
+
+    def test_no_charge(self):
+        self.make_premium(self.addon, '0.00')
+        ok_(self.handle(self.profile))
+        eq_(self.profile.installed_set.all()[0].install_type,
+            apps.INSTALL_TYPE_USER)
+        eq_(self.profile.addonpurchase_set.all()[0].type,
+            CONTRIB_NO_CHARGE)
 
     @mock.patch('mkt.webapps.models.Webapp.has_purchased')
     def test_not_paid(self, has_purchased):

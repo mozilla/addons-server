@@ -8,7 +8,7 @@ from wsgiref.handlers import format_date_time
 from django.core.management import setup_environ
 
 from utils import (log_configure, log_exception, log_info, mypool,
-                   ADDON_PREMIUM, CONTRIB_CHARGEBACK,
+                   ADDON_PREMIUM, CONTRIB_CHARGEBACK, CONTRIB_NO_CHARGE,
                    CONTRIB_PURCHASE, CONTRIB_REFUND)
 
 from services.utils import settings
@@ -227,11 +227,11 @@ class Verify:
             log_info('Invalid receipt, no purchase')
             raise InvalidReceipt
 
-        if result[-1] in [CONTRIB_REFUND, CONTRIB_CHARGEBACK]:
+        if result[-1] in (CONTRIB_REFUND, CONTRIB_CHARGEBACK):
             log_info('Valid receipt, but refunded')
             raise RefundedReceipt
 
-        elif result[-1] == CONTRIB_PURCHASE:
+        elif result[-1] in (CONTRIB_PURCHASE, CONTRIB_NO_CHARGE):
             log_info('Valid receipt')
             return
 

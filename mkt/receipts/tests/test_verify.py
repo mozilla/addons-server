@@ -250,6 +250,14 @@ class TestVerify(amo.tests.TestCase):
             res = self.get(self.user_data)
             eq_(res['status'], 'refunded')
 
+    def test_premium_no_charge(self):
+        self.addon.update(premium_type=amo.ADDON_PREMIUM)
+        self.make_install()
+        purchase = self.make_purchase()
+        purchase.update(type=amo.CONTRIB_NO_CHARGE)
+        res = self.get(self.user_data)
+        eq_(res['status'], 'ok')
+
     def test_other_premiums(self):
         for k in (amo.ADDON_FREE, amo.ADDON_PREMIUM_INAPP,
                   amo.ADDON_FREE_INAPP, amo.ADDON_OTHER_INAPP):

@@ -8,8 +8,10 @@ from tastypie.validation import CleanedDataFormValidation
 import amo
 
 from access.acl import check_ownership
+from constants.payments import CONTRIB_NO_CHARGE
 from lib.cef_loggers import receipt_cef
 from lib.metrics import record_action
+from market.models import AddonPurchase
 from mkt.api.authentication import (OptionalOAuthAuthentication,
                                     SharedSecretAuthentication)
 from mkt.api.base import CORSResource, MarketplaceResource
@@ -67,8 +69,16 @@ class ReceiptResource(CORSResource, MarketplaceResource):
 
         if (bundle.obj.is_premium() and
             not bundle.obj.has_purchased(request.amo_user)):
-            log.info('App not purchased: %s' % bundle.obj.pk)
-            raise ImmediateHttpResponse(response=HttpPaymentRequired())
+            # Apps that are premium but have no charge will get an
+            # automatic purchase record created. This will ensure that
+            # the receipt will work into the future if the price changes.
+            if bundle.obj.premium and not bundle.obj.premium.has_price():
+                log.info('Create purchase record: {0}'.format(bundle.obj.pk))
+                AddonPurchase.objects.get_or_create(addon=bundle.obj,
+                    user=request.amo_user, type=CONTRIB_NO_CHARGE)
+            else:
+                log.info('App not purchased: %s' % bundle.obj.pk)
+                raise ImmediateHttpResponse(response=HttpPaymentRequired())
 
         # Anonymous users will fall through, they don't need anything else
         # handling.
