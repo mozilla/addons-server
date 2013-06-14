@@ -158,13 +158,14 @@ def install_package(name, package_file):
     run('rpm -i %s' % package_file)
     run('[[ -d {0} ]] && ln -sfn {0} {1}'.format(os.path.join(INSTALL_TO,
                                                               name), cur_sym))
+    run('rm -f %s' % package_file)
 
 
 @roles(settings.WEB_HOSTGROUP, settings.CELERY_HOSTGROUP)
 @task
 def cleanup_packages():
     installed = run('rpm -qa {0}-*'.format(PACKAGE_PREFIX)).split()
-    installed.sort() 
+    installed.sort()
 
     for i in installed[:-KEEP_RELEASES]:
         if BUILD_ID not in i:
@@ -231,6 +232,7 @@ def deploy():
     execute(install_package, package_name, package_file)
     execute(restart_workers)
     execute(cleanup_packages)
+    local('rm -f %s' % package_file)
     with lcd(settings.SRC_DIR):
         local('%s manage.py cron cleanup_validation_results' %
               settings.PYTHON)
