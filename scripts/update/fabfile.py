@@ -17,6 +17,10 @@ BUILD_ID = str(int(time.time()))
 INSTALL_TO = os.path.dirname(settings.WWW_DIR)
 PACKAGE_DIR = '/tmp'
 
+KEEP_RELEASES = 4
+
+ENV = getattr(settings, 'ENV', 'dev')
+
 
 def setup_notifier():
     notifier_endpoint = getattr(settings, 'NOTIFIER_ENDPOINT', None)
@@ -154,6 +158,17 @@ def install_package(name, package_file):
                                                               name), cur_sym))
 
 
+@roles(settings.WEB_HOSTGROUP, settings.CELERY_HOSTGROUP)
+@task
+def cleanup_packages():
+    installed = run('rpm -qa zamboni-{0}-*'.format(ENV)).split()
+    installed.sort() 
+
+    for i in installed[:-KEEP_RELEASES]:
+        if BUILD_ID not in i:
+            run('rpm -e %s' % i)
+
+
 @task
 def disable_cron():
     local("rm -f /etc/cron.d/%s" % settings.CRON_NAME)
@@ -206,14 +221,14 @@ def deploy():
         ref = local('git rev-parse HEAD', capture=True)
     ref = ref[:6]
 
-    package_name = 'zamboni-%s-%s-%s' % (getattr(settings, 'ENV', 'dev'),
-                                         BUILD_ID, ref)
+    package_name = 'zamboni-%s-%s-%s' % (ENV, BUILD_ID, ref)
     package_file = os.path.join(PACKAGE_DIR, '%s.rpm' % package_name)
 
     execute(install_cron)
     execute(build_package, package_name, package_file)
     execute(install_package, package_name, package_file)
     execute(restart_workers)
+    execute(cleanup_packages)
     with lcd(settings.SRC_DIR):
         local('%s manage.py cron cleanup_validation_results' %
               settings.PYTHON)
