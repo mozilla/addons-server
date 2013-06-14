@@ -21,6 +21,8 @@ KEEP_RELEASES = 4
 
 ENV = getattr(settings, 'ENV', 'dev')
 
+PACKAGE_PREFIX = 'deploy-zamboni-%s' % ENV
+
 
 def setup_notifier():
     notifier_endpoint = getattr(settings, 'NOTIFIER_ENDPOINT', None)
@@ -161,7 +163,7 @@ def install_package(name, package_file):
 @roles(settings.WEB_HOSTGROUP, settings.CELERY_HOSTGROUP)
 @task
 def cleanup_packages():
-    installed = run('rpm -qa zamboni-{0}-*'.format(ENV)).split()
+    installed = run('rpm -qa {0}-*'.format(PACKAGE_PREFIX)).split()
     installed.sort() 
 
     for i in installed[:-KEEP_RELEASES]:
@@ -221,7 +223,7 @@ def deploy():
         ref = local('git rev-parse HEAD', capture=True)
     ref = ref[:6]
 
-    package_name = 'zamboni-%s-%s-%s' % (ENV, BUILD_ID, ref)
+    package_name = '%s-%s-%s' % (PACKAGE_PREFIX, BUILD_ID, ref)
     package_file = os.path.join(PACKAGE_DIR, '%s.rpm' % package_name)
 
     execute(install_cron)
