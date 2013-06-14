@@ -62,7 +62,7 @@ class Price(amo.models.ModelBase):
         return _('Tier %s' % self.name)
 
     def __unicode__(self):
-        return u'%s - $%s' % (self.tier_name(), self.price)
+        return u'$%s' % self.price
 
     @staticmethod
     def transformer(prices):
