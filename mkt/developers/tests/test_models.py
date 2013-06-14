@@ -131,7 +131,7 @@ class TestPaymentAccount(amo.tests.TestCase):
         addon = Addon.objects.get()
         AddonPaymentAccount.objects.create(
             addon=addon, provider='bango', account_uri='foo',
-            payment_account=res, product_uri='bpruri', set_price=12345)
+            payment_account=res, product_uri='bpruri')
 
         res.cancel()
         assert res.inactive
@@ -206,7 +206,6 @@ class TestAddonPaymentAccount(amo.tests.TestCase):
             'bango', addon=self.app, payment_account=self.account)
         eq_(apa.addon, self.app)
         eq_(apa.provider, 'bango')
-        eq_(apa.set_price, self.price.price)
         eq_(apa.account_uri, 'acuri')
         eq_(apa.product_uri, 'bpruri')
 
@@ -243,10 +242,9 @@ class TestAddonPaymentAccount(amo.tests.TestCase):
         apa = AddonPaymentAccount.objects.create(
             addon=self.app, provider='bango', account_uri='acuri',
             payment_account=payment_account,
-            product_uri='bpruri', set_price=987654)
+            product_uri='bpruri')
 
         apa.update_price(new_price)
-        eq_(apa.set_price, new_price)
 
         client.api.bango.premium.post.assert_called_with(
             data={'bango': 'bango#', 'price': new_price,
@@ -268,10 +266,9 @@ class TestAddonPaymentAccount(amo.tests.TestCase):
         apa = AddonPaymentAccount.objects.create(
             addon=self.app, provider='bango', account_uri='acuri',
             payment_account=payment_account,
-            product_uri='bpruri', set_price=123)
+            product_uri='bpruri')
 
         apa.update_price(0)
-        eq_(apa.set_price, 0)
 
         client.post_make_free.assert_called_with(
             data={'bango': 'bango#', 'seller_product_bango': 'bpruri'})

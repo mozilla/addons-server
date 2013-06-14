@@ -37,5 +37,4 @@ class PurchaseTest(amo.tests.TestCase):
             solitude_seller=self.seller, bango_package_id=123)
         AddonPaymentAccount.objects.create(
             addon=self.addon, provider='bango', account_uri='foo',
-            payment_account=self.account, product_uri='bpruri',
-            set_price=12345)
+            payment_account=self.account, product_uri='bpruri')
