@@ -356,7 +356,7 @@ Pay Tiers
                 "tier": 26,
                 "provider": 1,
                 "currency": "USD",
-                "id': 1225
+                "id": 1225
             }, {
                 "price": "0.69",
                 "method": 2,
@@ -364,16 +364,16 @@ Pay Tiers
                 "tier": 26,
                 "provider": 1,
                 "currency": "DE",
-                "id': 1226
+                "id": 1226
             }],
             "localized": {},
-            "resource_uri": "/api/v1/webpay/prices/1/"
+            "resource_uri": "/api/v1/webpay/prices/1/",
             "created": "2011-09-29T14:15:08",
             "modified": "2013-05-02T14:43:58"
         }
 
-    :param region: :ref:`_region-response-label`
-    :param carrier: :ref:`_carrier-response-label`
+    :param region: a :ref:`region <region-response-label>`.
+    :param carrier: a :ref:`carrier <carrier-response-label>`.
     :param localized: see `Localized tier`.
     :param tier: the id of the tier.
     :param method: the payment method.
