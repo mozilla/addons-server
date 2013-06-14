@@ -1,4 +1,7 @@
+from decimal import Decimal
+
 from django import forms
+from django.core.exceptions import ValidationError
 
 import commonware
 import happyforms
@@ -7,6 +10,9 @@ from tower import ugettext as _, ugettext_lazy as _lazy
 import amo
 from amo.utils import raise_required
 from addons.models import Addon, AddonUpsell
+from constants.payments import (PAYMENT_METHOD_OPERATOR,
+                                PAYMENT_METHOD_CARD,
+                                PAYMENT_METHOD_ALL)
 from editors.models import RereviewQueue
 from market.models import AddonPremium, Price
 
@@ -45,9 +51,9 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
     allow_inapp = forms.ChoiceField(
         choices=((True, _lazy(u'Yes')), (False, _lazy(u'No'))),
         widget=forms.RadioSelect, required=False)
-    price = forms.ModelChoiceField(queryset=Price.objects.active(),
-                                   label=_lazy(u'App Price'),
-                                   empty_label=None, required=False)
+    # Choices are provided at init by group_tier_choices.
+    price = forms.ChoiceField(choices=(), label=_lazy(u'App Price'),
+                              required=False)
 
     def __init__(self, *args, **kw):
         self.request = kw.pop('request')
@@ -57,9 +63,9 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
         kw['initial'] = {
             'allow_inapp': self.addon.premium_type in amo.ADDON_INAPPS
         }
-        if self.addon.premium:
+        if self.addon.premium and self.addon.premium.price:
             # If the app has a premium object, set the initial price.
-            kw['initial']['price'] = self.addon.premium.price
+            kw['initial']['price'] = self.addon.premium.price.pk
 
         super(PremiumForm, self).__init__(*args, **kw)
 
@@ -87,7 +93,45 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
         if (not self.initial.get('price') and
             len(self.fields['price'].choices) > 1):
             # Tier 0 (Free) should not be the default selection.
-            self.initial['price'] = self._initial_price()
+            self.initial['price'] = self._initial_price().pk
+
+        self.fields['price'].choices = self.group_tier_choices()
+
+    def group_tier_choices(self):
+        """Creates tier choices with optgroups based on payment methods"""
+        price_choices = [('', _('Please select a price'))]
+        card_billed = []
+        operator_billed = []
+        card_and_operator_billed = []
+
+        for price in Price.objects.active():
+            choice = (price.pk, unicode(price))
+            # Special case zero priced tier.
+            if price.price == Decimal('0.00'):
+                price_choices.append((price.pk, _lazy('Free')))
+            # Tiers that can only be operator billed.
+            elif price.method == PAYMENT_METHOD_OPERATOR:
+                operator_billed.append(choice)
+            # Tiers that can only be card billed.
+            elif price.method == PAYMENT_METHOD_CARD:
+                card_billed.append(choice)
+            # Tiers that are can generally be billed by either
+            # operator or card.
+            elif price.method == PAYMENT_METHOD_ALL:
+                card_and_operator_billed.append(choice)
+
+        if operator_billed:
+            price_choices.append((_lazy('Only supports carrier billing'),
+                                  operator_billed))
+        if card_billed:
+            price_choices.append((_lazy('Only supports credit-card billing'),
+                                  card_billed))
+        if card_and_operator_billed:
+            price_choices.append(
+                (_lazy('Supports carrier billing and credit cards'),
+                 card_and_operator_billed))
+
+        return price_choices
 
     def _initial_price(self):
         return Price.objects.active().exclude(price='0.00')[0]
@@ -135,12 +179,23 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
         return self.cleaned_data
 
     def clean_price(self):
+
+        price_id = self.cleaned_data['price']
         if (self.cleaned_data.get('premium_type') in amo.ADDON_PREMIUMS
-            and not self.cleaned_data['price']):
+                and not price_id):
 
             raise_required()
 
-        return self.cleaned_data['price']
+        if not price_id and self.fields['price'].required is False:
+            return None
+
+        try:
+            price = Price.objects.get(pk=price_id, active=True)
+        except (ValueError, Price.DoesNotExist):
+            raise ValidationError(
+                self.fields['price'].error_messages['invalid_choice'])
+
+        return price
 
     def save(self):
         toggle = self.is_toggling()
