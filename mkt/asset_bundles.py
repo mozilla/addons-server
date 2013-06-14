@@ -264,9 +264,6 @@ JS = {
         'js/mkt/account.js',
         'js/mkt/feedback.js',
 
-        # Homepage.
-        'js/mkt/home.js',
-
         # Detail page.
         'js/mkt/detail.js',
         'js/mkt/lightbox.js',

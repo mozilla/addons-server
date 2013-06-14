@@ -22,7 +22,6 @@ from jingo import render_to_string
 from amo.context_processors import get_collect_timings
 from amo.decorators import post_required
 from amo.helpers import media
-from amo.urlresolvers import reverse
 from amo.utils import urlparams
 
 from mkt.carriers import get_carrier

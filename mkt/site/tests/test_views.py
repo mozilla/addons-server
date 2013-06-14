@@ -190,12 +190,12 @@ class TestHeader(amo.tests.TestCase):
 
     def test_auth(self):
         self.client.login(username='regular@mozilla.com', password='password')
-        res = self.client.get(reverse('home'))
+        res = self.client.get(reverse('site.privacy'))
         eq_(pq(res.content)('head meta[name="DCS.dcsaut"]').attr('content'),
             'yes')
 
     def test_not(self):
-        res = self.client.get(reverse('home'))
+        res = self.client.get(reverse('site.privacy'))
         eq_(len(pq(res.content)('head meta[name="DCS.dcsaut"]')), 0)
 
 

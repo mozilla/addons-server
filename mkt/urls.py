@@ -1,6 +1,9 @@
+# -*- coding: utf-8 -*-
+
 from django.conf import settings
 from django.conf.urls import include, patterns, url
 from django.contrib import admin
+from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.views.decorators.cache import cache_page
 from django.views.i18n import javascript_catalog
@@ -39,9 +42,14 @@ api_patterns = patterns('',
     url('', include('mkt.monolith.urls')),
 )
 
+home = lambda request: HttpResponse('''
+<a href="https://github.com/mozilla/fireplace#local-development-with-nginx">
+<marquee style="font-size:400px">☠ RIP ☠</marquee></a>
+''' if settings.DEBUG else '')
+
 urlpatterns = patterns('',
-    # Home.
-    url('^$', 'mkt.home.views.home', name='home'),
+    # Home (now served by Fireplace).
+    url('^$', home, name='home'),
 
     # App Detail pages.
     # XXX: Temporary workaround for accessing overridden Fireplace URLs.

@@ -61,7 +61,6 @@ INSTALLED_APPS += (
     'mkt.developers',
     'mkt.ecosystem',
     'mkt.files',
-    'mkt.home',
     'mkt.inapp_pay',
     'mkt.lookup',
     'mkt.monolith',
@@ -85,7 +84,8 @@ MIDDLEWARE_CLASSES.append('mkt.site.middleware.RequestCookiesMiddleware')
 MIDDLEWARE_CLASSES.append('mkt.carriers.middleware.CarrierURLMiddleware')
 MIDDLEWARE_CLASSES.remove('amo.middleware.LocaleAndAppURLMiddleware')
 MIDDLEWARE_CLASSES.remove('commonware.middleware.FrameOptionsHeader')
-MIDDLEWARE_CLASSES.remove('django_statsd.middleware.GraphiteRequestTimingMiddleware')
+MIDDLEWARE_CLASSES.remove(
+    'django_statsd.middleware.GraphiteRequestTimingMiddleware')
 MIDDLEWARE_CLASSES.remove('multidb.middleware.PinningRouterMiddleware')
 
 MIDDLEWARE_CLASSES += [

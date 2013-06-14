@@ -50,9 +50,9 @@ class TestRedirectPrefixedURIMiddleware(amo.tests.TestCase):
         self.assert3xx(r, '/?lang=pt-br', 302)
 
     def test_no_locale(self):
-        r = self.client.get('/')
+        r = self.client.get('/robots.txt')
         eq_(r.status_code, 200)
-        r = self.client.get('/?lang=fr')
+        r = self.client.get('/robots.txt?lang=fr')
         eq_(r.status_code, 200)
 
     def test_redirect_for_good_region(self):
@@ -105,7 +105,7 @@ class TestLocaleMiddleware(amo.tests.TestCase):
             ('fr', 'fr', 'fr,en-US'),
         ]
         for locale, r_lang, c_lang in locales:
-            r = self.client.get('/?lang=%s' % locale)
+            r = self.client.get('/robots.txt?lang=%s' % locale)
             if c_lang:
                 eq_(r.cookies['lang'].value, c_lang)
             else:
@@ -115,65 +115,65 @@ class TestLocaleMiddleware(amo.tests.TestCase):
     def test_accept_language_and_cookies(self):
         # Your cookie tells me pt-BR but your browser tells me en-US.
         self.client.cookies['lang'] = 'pt-BR,pt-BR'
-        r = self.client.get('/')
+        r = self.client.get('/robots.txt')
         eq_(r.cookies['lang'].value, 'en-US,')
         eq_(r.context['request'].LANG, 'en-US')
 
         # Your cookie tells me pt-br but your browser tells me en-US.
         self.client.cookies['lang'] = 'pt-br,fr'
-        r = self.client.get('/')
+        r = self.client.get('/robots.txt')
         eq_(r.cookies['lang'].value, 'en-US,')
         eq_(r.context['request'].LANG, 'en-US')
 
         # Your cookie tells me pt-BR and your browser tells me pt-BR.
         self.client.cookies['lang'] = 'pt-BR,pt-BR'
-        r = self.client.get('/', HTTP_ACCEPT_LANGUAGE='pt-BR')
+        r = self.client.get('/robots.txt', HTTP_ACCEPT_LANGUAGE='pt-BR')
         eq_(r.cookies.get('lang'), None)
         eq_(r.context['request'].LANG, 'pt-BR')
 
         # You explicitly changed to fr, and your browser still tells me pt-BR.
         # So no new cookie!
         self.client.cookies['lang'] = 'fr,pt-BR'
-        r = self.client.get('/', HTTP_ACCEPT_LANGUAGE='pt-BR')
+        r = self.client.get('/robots.txt', HTTP_ACCEPT_LANGUAGE='pt-BR')
         eq_(r.cookies.get('lang'), None)
         eq_(r.context['request'].LANG, 'fr')
 
         # You explicitly changed to fr, but your browser still tells me es.
         # So make a new cookie!
         self.client.cookies['lang'] = 'fr,pt-BR'
-        r = self.client.get('/', HTTP_ACCEPT_LANGUAGE='es')
+        r = self.client.get('/robots.txt', HTTP_ACCEPT_LANGUAGE='es')
         eq_(r.cookies['lang'].value, 'es,')
         eq_(r.context['request'].LANG, 'es')
 
     def test_ignore_bad_locale(self):
         # Good? Store language.
-        r = self.client.get('/?lang=fr')
+        r = self.client.get('/robots.txt?lang=fr')
         eq_(r.cookies['lang'].value, 'fr,en-US')
 
         # Bad? Reset language.
-        r = self.client.get('/?lang=')
+        r = self.client.get('/robots.txt?lang=')
         eq_(r.cookies['lang'].value, 'en-US,en-US')
 
         # Still bad? Don't change language.
         for locale in ('xxx', '<script>alert("ballin")</script>'):
-            r = self.client.get('/?lang=%s' % locale)
+            r = self.client.get('/robots.txt?lang=%s' % locale)
             eq_(r.cookies.get('lang'), None)
             eq_(r.context['request'].LANG, settings.LANGUAGE_CODE)
 
         # Good? Change language.
-        r = self.client.get('/?lang=fr')
+        r = self.client.get('/robots.txt?lang=fr')
         eq_(r.cookies['lang'].value, 'fr,en-US')
 
     def test_already_have_cookie_for_bad_locale(self):
         for locale in ('', 'xxx', '<script>alert("ballin")</script>'):
             self.client.cookies['lang'] = locale
 
-            r = self.client.get('/')
+            r = self.client.get('/robots.txt')
             eq_(r.cookies['lang'].value, settings.LANGUAGE_CODE + ',')
             eq_(r.context['request'].LANG, settings.LANGUAGE_CODE)
 
     def test_no_cookie(self):
-        r = self.client.get('/')
+        r = self.client.get('/robots.txt')
         eq_(r.cookies['lang'].value, settings.LANGUAGE_CODE + ',')
         eq_(r.context['request'].LANG, settings.LANGUAGE_CODE)
 
@@ -183,11 +183,11 @@ class TestLocaleMiddleware(amo.tests.TestCase):
         ok_(not res.cookies)
 
     def test_cookie_gets_set_once(self):
-        r = self.client.get('/', HTTP_ACCEPT_LANGUAGE='de')
+        r = self.client.get('/robots.txt', HTTP_ACCEPT_LANGUAGE='de')
         eq_(r.cookies['lang'].value, 'de,')
 
         # Since we already made a request above, we should remember the lang.
-        r = self.client.get('/', HTTP_ACCEPT_LANGUAGE='de')
+        r = self.client.get('/robots.txt', HTTP_ACCEPT_LANGUAGE='de')
         eq_(r.cookies.get('lang'), None)
 
     def test_accept_language(self):
@@ -209,7 +209,7 @@ class TestLocaleMiddleware(amo.tests.TestCase):
             ('es-PE', 'es'),
         ]
         for given, expected in locales:
-            r = self.client.get('/', HTTP_ACCEPT_LANGUAGE=given)
+            r = self.client.get('/robots.txt', HTTP_ACCEPT_LANGUAGE=given)
 
             got = r.cookies['lang'].value
             eq_(got, expected + ',',
@@ -222,18 +222,18 @@ class TestLocaleMiddleware(amo.tests.TestCase):
             self.client.cookies.clear()
 
     def test_accept_language_takes_precedence_over_previous_request(self):
-        r = self.client.get('/')
+        r = self.client.get('/robots.txt')
         eq_(r.cookies['lang'].value, settings.LANGUAGE_CODE + ',')
 
         # Even though you remembered my previous language, I've since
         # changed it in my browser, so let's respect that.
-        r = self.client.get('/', HTTP_ACCEPT_LANGUAGE='fr')
+        r = self.client.get('/robots.txt', HTTP_ACCEPT_LANGUAGE='fr')
         eq_(r.cookies['lang'].value, 'fr,')
 
     def test_accept_language_takes_precedence_over_cookie(self):
         self.client.cookies['lang'] = 'pt-BR'
 
-        r = self.client.get('/', HTTP_ACCEPT_LANGUAGE='fr')
+        r = self.client.get('/robots.txt', HTTP_ACCEPT_LANGUAGE='fr')
         eq_(r.cookies['lang'].value, 'fr,')
 
 
@@ -245,7 +245,7 @@ class TestLocaleMiddlewarePersistence(amo.tests.TestCase):
 
     def test_save_lang(self):
         self.client.login(username='regular@mozilla.com', password='password')
-        self.client.get('/', HTTP_ACCEPT_LANGUAGE='de')
+        self.client.get('/robots.txt', HTTP_ACCEPT_LANGUAGE='de')
         eq_(UserProfile.objects.get(pk=999).lang, 'de')
 
 
@@ -276,7 +276,7 @@ class TestVaryMiddleware(amo.tests.TestCase):
         # not vary headers based on User-Agent.
         self.client.login(username='31337', password='password')
 
-        r = self.client.get('/', follow=True)
+        r = self.client.get('/robots.txt', follow=True)
         eq_(r.status_code, 200)
 
         assert 'firefox' not in r.request['PATH_INFO'], (
@@ -286,55 +286,54 @@ class TestVaryMiddleware(amo.tests.TestCase):
 
 
 class TestDeviceMiddleware(amo.tests.TestCase):
-
     devices = ['mobile', 'gaia']
 
     def test_no_effect(self):
-        r = self.client.get('/', follow=True)
+        r = self.client.get('/robots.txt', follow=True)
         for device in self.devices:
             assert not r.cookies.get(device)
             assert not getattr(r.context['request'], device.upper())
 
     def test_dev_firefoxos(self):
-        req = self.client.get('/?dev=firefoxos', follow=True)
+        req = self.client.get('/robots.txt?dev=firefoxos', follow=True)
         eq_(req.cookies['gaia'].value, 'true')
         assert getattr(req.context['request'], 'GAIA')
 
     def test_dev_android(self):
-        req = self.client.get('/?dev=android', follow=True)
+        req = self.client.get('/robots.txt?dev=android', follow=True)
         eq_(req.cookies['mobile'].value, 'true')
         assert getattr(req.context['request'], 'MOBILE')
 
     def test_dev_tablet(self):
-        req = self.client.get('/?dev=desktop', follow=True)
+        req = self.client.get('/robots.txt?dev=desktop', follow=True)
         eq_(req.cookies['tablet'].value, 'true')
         assert getattr(req.context['request'], 'TABLET')
 
     def test_force(self):
         for device in self.devices:
-            r = self.client.get('/?%s=true' % device, follow=True)
+            r = self.client.get('/robots.txt?%s=true' % device, follow=True)
             eq_(r.cookies[device].value, 'true')
             assert getattr(r.context['request'], device.upper())
 
     def test_force_unset(self):
         for device in self.devices:
-            r = self.client.get('/?%s=true' % device, follow=True)
+            r = self.client.get('/robots.txt?%s=true' % device, follow=True)
             assert r.cookies.get(device)
 
-            r = self.client.get('/?%s=false' % device, follow=True)
+            r = self.client.get('/robots.txt?%s=false' % device, follow=True)
             eq_(r.cookies[device].value, '')
             assert not getattr(r.context['request'], device.upper())
 
     def test_persists(self):
         for device in self.devices:
-            r = self.client.get('/?%s=true' % device, follow=True)
+            r = self.client.get('/robots.txt?%s=true' % device, follow=True)
             assert r.cookies.get(device)
 
-            r = self.client.get('/', follow=True)
+            r = self.client.get('/robots.txt', follow=True)
             assert getattr(r.context['request'], device.upper())
 
     def test_xmobile(self):
-        rf = RequestFactory().get('/')
+        rf = RequestFactory().get('/robots.txt')
         for state in [True, False]:
             rf.MOBILE = state
             DeviceDetectionMiddleware().process_request(rf)

@@ -21,7 +21,7 @@ class TestRegionMiddleware(amo.tests.TestCase):
 
     def test_lang_set_with_region(self):
         for region in ('worldwide', 'us', 'br'):
-            r = self.client.get('/?region=%s' % region)
+            r = self.client.get('/robots.txt?region=%s' % region)
             if region == 'worldwide':
                 # Set cookie for first time only.
                 eq_(r.cookies['lang'].value, settings.LANGUAGE_CODE + ',')
@@ -35,7 +35,7 @@ class TestRegionMiddleware(amo.tests.TestCase):
 
     def test_accept_good_region(self):
         for region, region_cls in mkt.regions.REGIONS_CHOICES:
-            r = self.client.get('/?region=%s' % region)
+            r = self.client.get('/robots.txt?region=%s' % region)
             eq_(r.cookies['region'].value, region)
             eq_(r.context['request'].REGION, region_cls)
 
@@ -44,7 +44,7 @@ class TestRegionMiddleware(amo.tests.TestCase):
             self.client.cookies['lang'] = 'en-US,en-US'
             self.client.cookies['region'] = region
 
-            r = self.client.get('/')
+            r = self.client.get('/robots.txt')
             eq_(r.cookies.get('region'), None)
             eq_(r.context['request'].REGION,
                 mkt.regions.REGIONS_DICT[region])
@@ -56,7 +56,7 @@ class TestRegionMiddleware(amo.tests.TestCase):
             self.client.cookies.clear()
             self.client.cookies['lang'] = 'fr,fr'
 
-            r = self.client.get('/?region=%s' % region,
+            r = self.client.get('/robots.txt?region=%s' % region,
                                 HTTP_ACCEPT_LANGUAGE='fr')
             eq_(r.cookies['region'].value, 'worldwide')
             eq_(r.context['request'].REGION, mkt.regions.WORLDWIDE)
@@ -84,7 +84,7 @@ class TestRegionMiddleware(amo.tests.TestCase):
         for locale, expected in locales:
             self.client.cookies.clear()
 
-            r = self.client.get('/', HTTP_ACCEPT_LANGUAGE=locale)
+            r = self.client.get('/robots.txt', HTTP_ACCEPT_LANGUAGE=locale)
 
             got = r.cookies['region'].value
             eq_(got, expected,
@@ -98,7 +98,7 @@ class TestRegionMiddleware(amo.tests.TestCase):
     def test_url_param_override(self, mock_rfr):
         self.client.cookies['lang'] = 'pt-BR'
         self.client.cookies['region'] = 'br'
-        r = self.client.get('/?region=us')
+        r = self.client.get('/robots.txt?region=us')
         eq_(r.cookies['region'].value, 'us')
         eq_(r.context['request'].REGION, mkt.regions.REGIONS_DICT['us'])
         assert not mock_rfr.called
@@ -106,7 +106,7 @@ class TestRegionMiddleware(amo.tests.TestCase):
     def test_not_stuck(self):
         self.client.cookies['lang'] = 'en-US,'
         self.client.cookies['region'] = 'br'
-        r = self.client.get('/')
+        r = self.client.get('/robots.txt')
         assert not r.cookies
 
     @mock.patch.object(settings, 'GEOIP_DEFAULT_VAL', 'worldwide')
@@ -116,7 +116,7 @@ class TestRegionMiddleware(amo.tests.TestCase):
         # Use 'sa-US' as the language to defeat the lanugage sniffer
         # Note: This may be problematic should we ever offer
         # apps in US specific derivation of SanskritRight.
-        r = self.client.get('/', HTTP_ACCEPT_LANGUAGE='sa-US')
+        r = self.client.get('/robots.txt', HTTP_ACCEPT_LANGUAGE='sa-US')
         eq_(r.cookies['region'].value, 'worldwide')
 
     @mock.patch('mkt.regions.middleware.GeoIP.lookup')
@@ -124,14 +124,14 @@ class TestRegionMiddleware(amo.tests.TestCase):
     def test_geoip_lookup_available(self, mock_lookup):
         lang = 'br'
         mock_lookup.return_value = lang
-        r = self.client.get('/', HTTP_ACCEPT_LANGUAGE='sa-US')
+        r = self.client.get('/robots.txt', HTTP_ACCEPT_LANGUAGE='sa-US')
         eq_(r.cookies['region'].value, lang)
 
     @mock.patch('mkt.regions.middleware.GeoIP.lookup')
     @mock.patch.object(settings, 'GEOIP_DEFAULT_VAL', 'worldwide')
     def test_geoip_lookup_unavailable_fall_to_accept_lang(self, mock_lookup):
         mock_lookup.return_value = 'worldwide'
-        r = self.client.get('/', HTTP_ACCEPT_LANGUAGE='pt-BR')
+        r = self.client.get('/robots.txt', HTTP_ACCEPT_LANGUAGE='pt-BR')
         eq_(r.cookies['region'].value, 'br')
 
     @mock.patch('mkt.regions.middleware.GeoIP.lookup')
@@ -139,13 +139,13 @@ class TestRegionMiddleware(amo.tests.TestCase):
     def test_geoip_lookup_unavailable(self, mock_lookup):
         lang = 'zz'
         mock_lookup.return_value = lang
-        r = self.client.get('/', HTTP_ACCEPT_LANGUAGE='sa-US')
+        r = self.client.get('/robots.txt', HTTP_ACCEPT_LANGUAGE='sa-US')
         eq_(r.cookies['region'].value, 'worldwide')
 
     @mock.patch.object(settings, 'GEOIP_DEFAULT_VAL', 'us')
     def test_geoip_missing_lang(self):
         """ Test for US region """
-        r = self.client.get('/', REMOTE_ADDR='mozilla.com')
+        r = self.client.get('/robots.txt', REMOTE_ADDR='mozilla.com')
         eq_(r.cookies['region'].value, 'us')
 
     @mock.patch.object(settings, 'GEOIP_DEFAULT_VAL', 'us')
@@ -153,7 +153,7 @@ class TestRegionMiddleware(amo.tests.TestCase):
     def test_geoip_down(self, mock_socket):
         """ Test that we fail gracefully if the GeoIP server is down. """
         mock_socket.connect.side_effect = IOError
-        r = self.client.get('/', REMOTE_ADDR='mozilla.com')
+        r = self.client.get('/robots.txt', REMOTE_ADDR='mozilla.com')
         eq_(r.cookies['region'].value, 'us')
 
     @mock.patch.object(settings, 'GEOIP_DEFAULT_VAL', 'us')
@@ -162,7 +162,7 @@ class TestRegionMiddleware(amo.tests.TestCase):
         """ Test that we fail gracefully if the GeoIP server times out. """
         mock_socket.return_value.connect.return_value = True
         mock_socket.return_value.send.side_effect = socket.timeout
-        r = self.client.get('/', REMOTE_ADDR='mozilla.com')
+        r = self.client.get('/robots.txt', REMOTE_ADDR='mozilla.com')
         eq_(r.cookies['region'].value, 'us')
 
 
@@ -171,5 +171,5 @@ class TestRegionMiddlewarePersistence(amo.tests.TestCase):
 
     def test_save_region(self):
         self.client.login(username='regular@mozilla.com', password='password')
-        self.client.get('/?region=br')
+        self.client.get('/robots.txt?region=br')
         eq_(UserProfile.objects.get(pk=999).region, 'br')
