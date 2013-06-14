@@ -149,7 +149,7 @@ def install_package(package_file):
 
     put(package_file, package_file)
     run('rpm -i %s' % package_file)
-    run('[[ -d {0} ]] && ln -s -f {0} {1}'.format(INSTALL_TO, cur_sym))
+    run('[[ -d {0} ]] && ln -sfn {0} {1}'.format(INSTALL_TO, cur_sym))
 
 
 @task
