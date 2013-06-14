@@ -106,7 +106,7 @@ def delete_preview_files(id, **kw):
             log.error('Error deleting preview file (%s): %s' % (f, e))
 
 
-@task(acks_late=True, ignore_result=False)
+@task(acks_late=True)
 def index_addons(ids, **kw):
     log.info('Indexing addons %s-%s. [%s]' % (ids[0], ids[-1], len(ids)))
     transforms = (attach_categories, attach_devices, attach_prices,

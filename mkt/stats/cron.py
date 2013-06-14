@@ -1,7 +1,5 @@
 import datetime
 
-from celery import task
-
 from django.core.management import call_command
 
 import commonware.log
@@ -44,9 +42,5 @@ def index_latest_mkt_stats(index=None, aliased=True):
 
 @cronjobs.register
 def index_mkt_stats(index=None, aliased=True):
-    index_mkt_stats_task(index, aliased)()
-
-@task(ignore_result=False)
-def index_mkt_stats_task(index=None, aliased=True):
     cron_log.info('index_mkt_stats')
     call_command('index_mkt_stats', addons=None, date=None)

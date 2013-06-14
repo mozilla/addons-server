@@ -5,7 +5,7 @@ from django.db import connection, transaction
 from django.db.models import Count
 
 import commonware.log
-from celery import group
+from celery.task.sets import TaskSet
 from celeryutils import task
 
 import amo
@@ -61,7 +61,7 @@ def update_collections_subscribers():
 
     ts = [_update_collections_subscribers.subtask(args=[chunk])
           for chunk in chunked(d, 1000)]
-    group(ts).apply_async()
+    TaskSet(ts).apply_async()
 
 
 @task(rate_limit='15/m')
@@ -96,11 +96,11 @@ def update_collections_votes():
 
     ts = [_update_collections_votes.subtask(args=[chunk, 'new_votes_up'])
           for chunk in chunked(up, 1000)]
-    group(ts).apply_async()
+    TaskSet(ts).apply_async()
 
     ts = [_update_collections_votes.subtask(args=[chunk, 'new_votes_down'])
           for chunk in chunked(down, 1000)]
-    group(ts).apply_async()
+    TaskSet(ts).apply_async()
 
 
 @task(rate_limit='15/m')
@@ -185,12 +185,9 @@ def _drop_collection_recs(**kw):
 
 @cronjobs.register
 def reindex_collections(index=None, aliased=True):
-    reindex_collections_task(index, aliased).apply_async()
-
-def reindex_collections_task(index=None, aliased=True):
     from . import tasks
     ids = (Collection.objects.exclude(type=amo.COLLECTION_SYNCHRONIZED)
            .values_list('id', flat=True))
-    taskset = [tasks.index_collections.si(chunk, index=index)
+    taskset = [tasks.index_collections.subtask(args=[chunk], kwargs=dict(index=index))
                for chunk in chunked(sorted(list(ids)), 150)]
-    return group(taskset)
+    TaskSet(taskset).apply_async()

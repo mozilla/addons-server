@@ -1,8 +1,6 @@
 import logging
 from collections import defaultdict
 
-from celery import task
-
 from django.db.models import Count, Max
 
 import cronjobs
@@ -23,13 +21,6 @@ log = logging.getLogger('z.compat')
 
 @cronjobs.register
 def compatibility_report(index=None, aliased=True):
-    return compatibility_report_task(index, aliased)()
-
-def compatibility_report_task(index=None, aliased=True):
-    return _compatibility_report.si(index, aliased)
-
-@task(ignore_result=False)
-def _compatibility_report(index=None, aliased=True):
     docs = defaultdict(dict)
     indices = get_indices(index)
 

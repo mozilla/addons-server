@@ -42,7 +42,7 @@ def resize_photo(src, dst, locally=False, **kw):
         task_log.error("Error saving userpic: %s" % e)
 
 
-@task(ignore_result=False)
+@task
 def index_users(ids, **kw):
     task_log.debug('Indexing users %s-%s [%s].' % (ids[0], ids[-1], len(ids)))
     index = kw.pop('index', None)

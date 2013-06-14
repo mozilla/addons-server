@@ -102,7 +102,7 @@ def collection_watchers(*ids, **kw):
             log.error('Updating collection watchers failed: %s, %s' % (pk, e))
 
 
-@task(ignore_result=False)
+@task
 def index_collections(ids, **kw):
     log.debug('Indexing collections %s-%s [%s].' % (ids[0], ids[-1], len(ids)))
     index = kw.pop('index', None)
