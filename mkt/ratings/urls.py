@@ -1,25 +1,30 @@
 from django.conf.urls import include, patterns, url
+from django.http import HttpResponse
 
 from mkt.ratings.feeds import RatingsRss
 from reviews.views import delete as amo_delete, flag as amo_flag
 
-from . import views
-
 
 # These all start with /apps/<app_slug>/reviews/<review_id>/.
 detail_patterns = patterns('',
-    url('^$', views.review_list, name='ratings.detail'),
+    # Used by Fireplace.
+    url('^$', HttpResponse, name='ratings.detail'),
+    url('^edit$', HttpResponse, name='ratings.edit'),
+
+    # Used by Reviewer Tools.
     url('^flag$', amo_flag, name='ratings.flag'),
     url('^delete$', amo_delete, name='ratings.delete'),
-    url('^edit$', views.edit, name='ratings.edit'),
 )
 
 
 # These all start with /apps/<app_slug>/reviews/.
 review_patterns = patterns('',
-    url('^$', views.review_list, name='ratings.list'),
-    url('^add$', views.add, name='ratings.add'),
+    # Used by Fireplace.
+    url('^$', HttpResponse, name='ratings.list'),
+    url('^add$', HttpResponse, name='ratings.add'),
     url('^(?P<review_id>\d+)/', include(detail_patterns)),
+    url('^user:(?P<user_id>\d+)$', HttpResponse, name='ratings.user'),
+
+    # TODO: The API should expose this.
     url('^format:rss$', RatingsRss(), name='ratings.list.rss'),
-    url('^user:(?P<user_id>\d+)$', views.review_list, name='ratings.user'),
 )

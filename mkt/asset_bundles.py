@@ -269,10 +269,6 @@ JS = {
         'js/mkt/lightbox.js',
         'js/mkt/previews.js',
 
-        # Ratings.
-        'js/common/ratingwidget.js',
-        'js/mkt/ratings.js',
-
         # Fix-up outgoing links.
         'js/mkt/outgoing_links.js',
 
