@@ -39,7 +39,7 @@ class TestSearchFilters(BaseOAuth):
     def _filter(self, req, filters, sorting=None):
         form = ApiSearchForm(filters)
         if form.is_valid():
-            qs = Webapp.from_search(self.req).facet('category')
+            qs = Webapp.from_search(self.req)
             return _filter_search(
                 self.req, qs, form.cleaned_data, sorting)._build_query()
         else:
@@ -142,7 +142,7 @@ class TestSearchFiltersAndroid(BaseOAuth):
     def _filter(self, req, filters, **kwargs):
         form = ApiSearchForm(filters)
         if form.is_valid():
-            qs = Webapp.from_search(self.req, **kwargs).facet('category')
+            qs = Webapp.from_search(self.req, **kwargs)
             return _filter_search(
                 self.req, qs, form.cleaned_data)._build_query()
         else:
@@ -190,7 +190,7 @@ class TestFlaggedUsersPremiumApps(BaseOAuth):
     def _filter(self, req, filters, **kwargs):
         form = ApiSearchForm(filters)
         if form.is_valid():
-            qs = Webapp.from_search(self.req, **kwargs).facet('category')
+            qs = Webapp.from_search(self.req, **kwargs)
             return _filter_search(
                 self.req, qs, form.cleaned_data)._build_query()
         else:

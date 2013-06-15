@@ -140,7 +140,7 @@ def _get_query(request, region, gaia, mobile, tablet, filters=None,
                new_idx=False):
     return Webapp.from_search(
         request, region=region, gaia=gaia, mobile=mobile, tablet=tablet,
-        filter_overrides=filters, new_idx=new_idx).facet('category')
+        filter_overrides=filters, new_idx=new_idx)
 
 
 @json_view
