@@ -192,16 +192,8 @@ def install_cron():
 @roles(settings.WEB_HOSTGROUP)
 @task
 def restart_workers():
-    if getattr(settings, 'GUNICORN', False):
-        for gservice in settings.GUNICORN:
-            run("/sbin/service %s graceful" % gservice)
-    else:
-        run("/bin/touch %s/wsgi/zamboni.wsgi" % settings.REMOTE_APP)
-        run("/bin/touch %s/wsgi/mkt.wsgi" % settings.REMOTE_APP)
-        run("/bin/touch %s/services/wsgi/verify.wsgi" %
-            settings.REMOTE_APP)
-        run("/bin/touch %s/services/wsgi/application.wsgi" %
-            settings.REMOTE_APP)
+    for gservice in settings.GUNICORN:
+        run("/sbin/service %s graceful" % gservice)
 
 
 @roles(settings.CELERY_HOSTGROUP)

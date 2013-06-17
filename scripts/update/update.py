@@ -154,16 +154,8 @@ def sync_code(ctx):
 @hostgroups(settings.WEB_HOSTGROUP,
             remote_kwargs={'ssh_key': settings.SSH_KEY})
 def restart_workers(ctx):
-    if getattr(settings, 'GUNICORN', False):
-        for gservice in settings.GUNICORN:
-            ctx.remote("/sbin/service %s graceful" % gservice)
-    else:
-        ctx.remote("/bin/touch %s/wsgi/zamboni.wsgi" % settings.REMOTE_APP)
-        ctx.remote("/bin/touch %s/wsgi/mkt.wsgi" % settings.REMOTE_APP)
-        ctx.remote("/bin/touch %s/services/wsgi/verify.wsgi" %
-                   settings.REMOTE_APP)
-        ctx.remote("/bin/touch %s/services/wsgi/application.wsgi" %
-                   settings.REMOTE_APP)
+    for gservice in settings.GUNICORN:
+        ctx.remote("/sbin/service %s graceful" % gservice)
 
 
 @task
