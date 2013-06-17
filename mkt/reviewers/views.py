@@ -47,6 +47,7 @@ from zadmin.models import set_config, unmemoized_get_config
 from mkt.reviewers.utils import AppsReviewing, clean_sort_param
 from mkt.search.forms import ApiSearchForm
 from mkt.site.helpers import product_as_dict
+from mkt.submit.forms import AppFeaturesForm
 from mkt.webapps.models import Webapp
 
 from . import forms
@@ -185,39 +186,74 @@ def _review(request, addon, version):
                                  files=request.FILES or None, request=request,
                                  addon=addon, version=version,
                                  attachment_formset=attachment_formset)
+    postdata = request.POST if request.method == 'POST' else None
+    all_forms = [form, attachment_formset]
+
+    if waffle.switch_is_active('buchets'):
+        features_list = [unicode(f) for f in version.features.to_list()]
+        appfeatures_form = AppFeaturesForm(data=postdata,
+                                           instance=version.features)
+        all_forms.append(appfeatures_form)
+    else:
+        appfeatures_form = None
+
     queue_type = form.helper.review_type
     redirect_url = reverse('reviewers.apps.queue_%s' % queue_type)
     is_admin = acl.action_allowed(request, 'Addons', 'Edit')
 
-    forms_valid = lambda: form.is_valid() and attachment_formset.is_valid()
-    if request.method == 'POST' and forms_valid():
+    if request.method == 'POST' and all(f.is_valid() for f in all_forms):
 
         old_types = set(o.id for o in addon.device_types)
         new_types = set(form.cleaned_data.get('device_override'))
 
-        if (form.cleaned_data.get('action') == 'public' and
-            old_types != new_types):
+        if waffle.switch_is_active('buchets'):
+            old_features = set(features_list)
+            new_features = set(unicode(f) for f
+                               in appfeatures_form.instance.to_list())
 
-            # The reviewer overrode the device types. We need to not publish
-            # this app immediately.
-            if addon.make_public == amo.PUBLIC_IMMEDIATELY:
-                addon.update(make_public=amo.PUBLIC_WAIT)
+        if form.cleaned_data.get('action') == 'public':
+            if old_types != new_types:
+                # The reviewer overrode the device types. We need to not publish
+                # this app immediately.
+                if addon.make_public == amo.PUBLIC_IMMEDIATELY:
+                    addon.update(make_public=amo.PUBLIC_WAIT)
 
-            # And update the device types to what the reviewer set.
-            AddonDeviceType.objects.filter(addon=addon).delete()
-            for device in form.cleaned_data.get('device_override'):
-                addon.addondevicetype_set.create(device_type=device)
+                # And update the device types to what the reviewer set.
+                AddonDeviceType.objects.filter(addon=addon).delete()
+                for device in form.cleaned_data.get('device_override'):
+                    addon.addondevicetype_set.create(device_type=device)
 
-            # Log that the reviewer changed the device types.
-            added_devices = new_types - old_types
-            removed_devices = old_types - new_types
-            msg = _(u'Device(s) changed by reviewer: {0}').format(', '.join(
-                [_(u'Added {0}').format(unicode(amo.DEVICE_TYPES[d].name))
-                 for d in added_devices] +
-                [_(u'Removed {0}').format(unicode(amo.DEVICE_TYPES[d].name))
-                 for d in removed_devices]))
-            amo.log(amo.LOG.REVIEW_DEVICE_OVERRIDE, addon,
-                    addon.current_version, details={'comments': msg})
+                # Log that the reviewer changed the device types.
+                added_devices = new_types - old_types
+                removed_devices = old_types - new_types
+                msg = _(u'Device(s) changed by reviewer: {0}').format(', '.join(
+                    [_(u'Added {0}').format(unicode(amo.DEVICE_TYPES[d].name))
+                     for d in added_devices] +
+                    [_(u'Removed {0}').format(unicode(amo.DEVICE_TYPES[d].name))
+                     for d in removed_devices]))
+                amo.log(amo.LOG.REVIEW_DEVICE_OVERRIDE, addon,
+                        addon.current_version, details={'comments': msg})
+
+            if (waffle.switch_is_active('buchets') and
+                 old_features != new_features):
+                # The reviewer overrode the requirements. We need to not publish
+                # this app immediately.
+                if addon.make_public == amo.PUBLIC_IMMEDIATELY:
+                    addon.update(make_public=amo.PUBLIC_WAIT)
+
+                appfeatures_form.save()
+
+                # Log that the reviewer changed the minimum requirements.
+                added_features = new_features - old_features
+                removed_features = old_features - new_features
+
+                fmt = ', '.join(
+                      [_(u'Added {0}').format(f) for f in added_features] +
+                      [_(u'Removed {0}').format(f) for f in removed_features])
+                # L10n: {0} is the list of requirements changes.
+                msg = _(u'Requirements changed by reviewer: {0}').format(fmt)
+                amo.log(amo.LOG.REVIEW_FEATURES_OVERRIDE, addon,
+                        addon.current_version, details={'comments': msg})
 
         form.helper.process()
 
@@ -271,10 +307,11 @@ def _review(request, addon, version):
                   allow_unchecking_files=allow_unchecking_files,
                   actions=actions, actions_minimal=actions_minimal,
                   tab=queue_type, product_attrs=product_attrs,
-                  attachment_formset=attachment_formset)
+                  attachment_formset=attachment_formset,
+                  appfeatures_form=appfeatures_form)
 
     if waffle.switch_is_active('buchets'):
-        ctx['feature_list'] = [unicode(f) for f in version.features.to_list()]
+        ctx['feature_list'] = features_list
 
     return jingo.render(request, 'reviewers/review.html', ctx)
 

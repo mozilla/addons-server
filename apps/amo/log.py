@@ -618,6 +618,14 @@ class GROUP_USER_REMOVED(_LOG):
     admin_event = True
 
 
+class REVIEW_FEATURES_OVERRIDE(_LOG):
+    id = 122
+    format = _(u'{addon} minimum requirements manually changed by reviewer.')
+    short = _(u'Requirements Changed by Reviewer')
+    keep = True
+    review_queue = True
+
+
 LOGS = [x for x in vars().values()
         if isclass(x) and issubclass(x, _LOG) and x != _LOG]
 

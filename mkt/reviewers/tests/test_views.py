@@ -988,6 +988,48 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         self._check_email(msg, 'Submission Update')
         self._check_email_body(msg)
 
+    def test_pending_to_public_w_requirements_overrides(self):
+        self.create_switch(name='buchets')
+        data = {'action': 'public', 'comments': 'something',
+                'has_sms': True}
+        data.update(self._attachment_management_form(num=0))
+        assert not self.app.current_version.features.has_sms
+        self.post(data)
+        app = self.get_app()
+        assert app.current_version.features.has_sms
+        eq_(app.make_public, amo.PUBLIC_WAIT)
+        eq_(app.status, amo.STATUS_PUBLIC_WAITING)
+        self._check_log(amo.LOG.REVIEW_FEATURES_OVERRIDE)
+
+    def test_pending_to_reject_w_requirements_overrides(self):
+        # Rejecting an app doesn't let you override features requirements.
+        self.create_switch(name='buchets')
+        data = {'action': 'reject', 'comments': 'something',
+                'has_sms': True}
+        data.update(self._attachment_management_form(num=0))
+        assert not self.app.current_version.features.has_sms
+        self.post(data)
+        app = self.get_app()
+        eq_(app.make_public, amo.PUBLIC_IMMEDIATELY)
+        eq_(app.status, amo.STATUS_REJECTED)
+        assert not app.current_version.features.has_sms
+
+    def test_pending_to_reject_w_requirements_overrides_nothing_changed(self):
+        self.version.features.update(has_sms=True)
+        self.create_switch(name='buchets')
+        data = {'action': 'public', 'comments': 'something',
+                'has_sms': True}
+        data.update(self._attachment_management_form(num=0))
+        assert self.app.current_version.features.has_sms
+        self.post(data)
+        app = self.get_app()
+        assert app.current_version.features.has_sms
+        eq_(app.make_public, None)
+        eq_(app.status, amo.STATUS_PUBLIC)
+        action_id = amo.LOG.REVIEW_FEATURES_OVERRIDE.id
+        assert not AppLog.objects.filter(
+                        addon=self.app, activity_log__action=action_id).exists()
+
     @mock.patch('addons.tasks.index_addons')
     @mock.patch('mkt.webapps.models.Webapp.update_supported_locales')
     @mock.patch('mkt.webapps.models.Webapp.update_name_from_package_manifest')
