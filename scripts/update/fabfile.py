@@ -24,6 +24,16 @@ ENV = getattr(settings, 'ENV', 'dev')
 PACKAGE_PREFIX = 'deploy-zamboni-%s' % ENV
 
 
+def get_version():
+    with lcd(settings.SRC_DIR):
+        ref = local('git rev-parse HEAD', capture=True)
+    return ref
+
+
+def get_setting(n, default=None):
+    return getattr(settings, n, default)
+
+
 @task
 def create_virtualenv():
     with lcd(settings.SRC_DIR):
@@ -50,8 +60,8 @@ def create_virtualenv():
 
         # make sure this always runs
         local("rm -f %s/lib/python2.6/no-global-site-packages.txt" % venv)
-        local("%s/bin/python /usr/bin/virtualenv --relocatable %s" %
-              (venv, venv))
+        local('{0}/bin/python /usr/bin/virtualenv '
+              '--relocatable {0}'.format(venv))
 
 
 @task
@@ -173,6 +183,9 @@ def install_cron():
 def restart_workers():
     for gservice in settings.GUNICORN:
         run("/sbin/service %s graceful" % gservice)
+    for g in get_setting('MULTI_GUNICORN', []):
+        run('supervisorctl %s-a restart' % g)
+        run('supervisorctl %s-b restart' % g)
 
 
 @roles(settings.CELERY_HOSTGROUP)
@@ -191,9 +204,7 @@ def update_celery():
 
 @task
 def deploy():
-    with lcd(settings.SRC_DIR):
-        ref = local('git rev-parse HEAD', capture=True)
-    ref = ref[:6]
+    ref = get_version()[:6]
 
     package_name = '%s-%s-%s' % (PACKAGE_PREFIX, BUILD_ID, ref)
     package_file = os.path.join(PACKAGE_DIR, '%s.rpm' % package_name)
