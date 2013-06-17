@@ -163,6 +163,11 @@ class TestInstalled(BaseOAuth):
                                  install_type=INSTALL_TYPE_REVIEWER)
         self.not_there()
 
+    def test_installed_with_switch(self):
+        self.create_switch('search-api-es')
+        self.grant_permission(self.user, 'Apps:Review')
+        self.test_installed()
+
 
 class FakeUUID(object):
     hex = '000000'
@@ -336,4 +341,3 @@ class TestNewsletter(BaseOAuth):
         subscribe.assert_called_with(
             'bob@example.com', 'marketplace', lang='en-US', country='us',
             trigger_welcome='Y', optin='Y', format='H')
-

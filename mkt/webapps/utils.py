@@ -5,7 +5,6 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.utils import translation
 
 import commonware.log
-import waffle
 
 import amo
 from access import acl
@@ -253,15 +252,15 @@ def update_with_reviewer_data(bundle):
     # TODO: Reviewer flags in ES (bug 848446)
     from editors.models import EscalationQueue
 
-    uses_es = waffle.switch_is_active('search-api-es')
-
     if acl.action_allowed(bundle.request, 'Apps', 'Review'):
-        addon_id = bundle.obj._id if uses_es else bundle.obj.id
+        # Try to get bundle.obj._id first if it's coming from elasticsearch.
+        # Fallback to database results using `.id`.
+        addon_id = getattr(bundle.obj, '_id', bundle.obj.id)
         version = Version.objects.filter(addon_id=addon_id).latest()
         escalated = EscalationQueue.objects.filter(
             addon_id=addon_id).exists()
 
-        if uses_es:
+        if hasattr(bundle.data, 'latest_version_status'):
             bundle.data['latest_version_status'] = (
                 bundle.obj.latest_version_status)
         else:
