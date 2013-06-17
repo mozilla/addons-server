@@ -135,6 +135,9 @@ def sync_code(ctx):
 def restart_workers(ctx):
     for gservice in settings.GUNICORN:
         ctx.remote("/sbin/service %s graceful" % gservice)
+    for gservice in getattr(settings, 'MULTI_GUNICORN', []):
+        ctx.remote("/sbin/service %s-a graceful" % gservice)
+        ctx.remote("/sbin/service %s-b graceful" % gservice)
 
 
 @task
