@@ -233,7 +233,9 @@ class TestAddonPaymentAccount(amo.tests.TestCase):
     @patch('mkt.developers.models.client')
     def test_update_price(self, client):
         new_price = 123456
-        client.api.bango.product.get_object.return_value = {'bango': 'bango#'}
+        get = Mock()
+        get.get_object.return_value = {'bango_id': 'bango#'}
+        client.api.by_url.return_value = get
 
         payment_account = PaymentAccount.objects.create(
             user=self.user, name='paname', uri='/path/to/object',

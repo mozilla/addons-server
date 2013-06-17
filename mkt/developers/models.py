@@ -248,8 +248,8 @@ class AddonPaymentAccount(amo.models.ModelBase):
     def update_price(self, new_price):
         if self.provider == 'bango':
             # Get the Bango number for this product.
-            res = client.api.bango.product.get_object(data=self.product_uri)
-            bango_number = res['bango']
+            res = client.api.by_url(self.product_uri).get_object()
+            bango_number = res['bango_id']
 
             AddonPaymentAccount._push_bango_premium(
                 bango_number, self.product_uri, new_price)
