@@ -12,27 +12,6 @@ _src_dir = lambda *p: os.path.join(settings.SRC_DIR, *p)
 VIRTUALENV = os.path.join(os.path.dirname(settings.SRC_DIR), 'venv')
 
 
-def setup_notifier():
-    notifier_endpoint = getattr(settings, 'NOTIFIER_ENDPOINT', None)
-    notifier_key = getattr(settings, 'NOTIFIER_KEY', None)
-    null_notify = lambda a: None
-    if not notifier_endpoint:
-        return null_notify
-
-    try:
-        import pushbotnotify
-    except ImportError:
-        return null_notify
-
-    notifier = pushbotnotify.Notifier(endpoint=notifier_endpoint,
-                                      api_key=notifier_key)
-
-    return notifier.notify
-
-
-notify = setup_notifier()
-
-
 @task
 def create_virtualenv(ctx):
     with ctx.lcd(settings.SRC_DIR):
