@@ -128,6 +128,7 @@ def update_info(ref='origin/master'):
 @task
 def build_package(name, pkgfile):
     local('fpm -s dir -t rpm -n "%s" '
+          '--rpm-compression none '
           '-p "%s" '
           '--directories / '
           '-x "*.git" -x "*.svn" -x "*.pyc" '
