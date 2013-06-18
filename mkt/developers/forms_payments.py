@@ -90,10 +90,8 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
                 self.initial['free_platforms'].append('free-%s' % platform)
                 self.initial['paid_platforms'].append('paid-%s' % platform)
 
-        if (not self.initial.get('price') and
-            len(self.fields['price'].choices) > 1):
-            # Tier 0 (Free) should not be the default selection.
-            self.initial['price'] = self._initial_price().pk
+        if not self.initial.get('price'):
+            self.initial['price'] = self._initial_price_id()
 
         self.fields['price'].choices = self.group_tier_choices()
 
@@ -133,15 +131,21 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
 
         return price_choices
 
-    def _initial_price(self):
-        return Price.objects.active().exclude(price='0.00')[0]
+    def _initial_price_id(self):
+        """Sets the inital price tier if available."""
+        try:
+            return Price.objects.active().get(price='0.99').id
+        except Price.DoesNotExist:
+            log.warning('Could not find a price tier 0.99 to set as default.')
+            return None
 
     def _make_premium(self):
         if self.addon.premium:
             return self.addon.premium
 
         log.info('New AddonPremium object for addon %s' % self.addon.pk)
-        return AddonPremium(addon=self.addon, price=self._initial_price())
+        return AddonPremium(addon=self.addon,
+                            price_id=self._initial_price_id())
 
     def is_paid(self):
         return self.addon.premium_type in amo.ADDON_PREMIUMS
@@ -206,7 +210,7 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
             # Toggle free apps to paid by giving them a premium object.
 
             premium = self._make_premium()
-            premium.price = self._initial_price()
+            premium.price_id = self._initial_price_id()
             premium.save()
 
             self.addon.premium_type = amo.ADDON_PREMIUM

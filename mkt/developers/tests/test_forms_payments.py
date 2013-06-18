@@ -220,6 +220,15 @@ class TestPremiumForm(amo.tests.TestCase):
 
         self.assertSetEqual(self.addon.device_types, [amo.DEVICE_MOBILE])
 
+    def test_initial(self):
+        form = forms_payments.PremiumForm(**self.kwargs)
+        eq_(form._initial_price_id(), Price.objects.get(price='0.99').pk)
+
+    def test_initial_not_there(self):
+        Price.objects.get(price='0.99').update(active=False)
+        form = forms_payments.PremiumForm(**self.kwargs)
+        eq_(form._initial_price_id(), None)
+
 
 class TestPaidRereview(amo.tests.TestCase):
     fixtures = fixture('webapp_337141') + ['market/prices']
