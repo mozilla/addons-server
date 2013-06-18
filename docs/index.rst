@@ -9,6 +9,7 @@ If you want to build a completely different site with all the same Django
 optimizations for security, scalability, L10n, and ease of use, check out
 Mozilla's `Playdoh starter kit <http://playdoh.readthedocs.org/>`_.
 
+
 Installation
 ------------
 What are you waiting for?! :ref:`Install Zamboni! <installation>`
