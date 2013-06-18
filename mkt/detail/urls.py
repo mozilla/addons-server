@@ -1,4 +1,5 @@
 from django.conf.urls import include, patterns, url
+from django.http import HttpResponse
 
 from mkt.purchase.urls import app_purchase_patterns
 from mkt.ratings.urls import review_patterns
@@ -8,9 +9,9 @@ from . import views
 
 
 urlpatterns = patterns('',
-    url('^$', views.detail, name='detail'),
-    url('^abuse$', views.abuse, name='detail.abuse'),
-    url('^privacy$', views.privacy, name='detail.privacy'),
+    url('^$', HttpResponse, name='detail'),
+    url('^abuse$', HttpResponse, name='detail.abuse'),
+    url('^privacy$', HttpResponse, name='detail.privacy'),
 
     # Merge app purchase / receipt patterns.
     ('^purchase/', include(app_purchase_patterns)),
