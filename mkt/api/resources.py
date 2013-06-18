@@ -8,6 +8,11 @@ from django.views import debug
 import commonware.log
 import waffle
 from celery_tasktree import TaskTree
+from rest_framework.mixins import ListModelMixin, RetrieveModelMixin
+from rest_framework.permissions import AllowAny
+from rest_framework.serializers import (ModelSerializer, CharField,
+                                        HyperlinkedIdentityField)
+
 from tastypie import fields, http
 from tastypie.authorization import Authorization
 from tastypie.exceptions import ImmediateHttpResponse
@@ -30,7 +35,7 @@ from market.models import AddonPremium, Price
 from mkt.api.authentication import (OAuthAuthentication,
                                     OptionalOAuthAuthentication)
 from mkt.api.authorization import AppOwnerAuthorization, OwnerAuthorization
-from mkt.api.base import (CORSResource, GenericObject,
+from mkt.api.base import (CORSResource, CORSViewSet, GenericObject,
                           MarketplaceModelResource, MarketplaceResource)
 from mkt.api.forms import (CategoryForm, DeviceTypeForm, NewPackagedForm,
                            PreviewArgsForm, PreviewJSONForm, StatusForm,
@@ -401,40 +406,35 @@ class StatusResource(MarketplaceModelResource):
     def hydrate_status(self, bundle):
         return amo.STATUS_CHOICES_API_LOOKUP[int(bundle.data['status'])]
 
+class CategorySerializer(ModelSerializer):
+    name = CharField('name')
+    resource_uri = HyperlinkedIdentityField(view_name='app-category-detail')
+    class Meta:
+        model = Category
+        fields = ('name', 'id', 'resource_uri', 'slug')
+        view_name = 'category'
 
-class CategoryResource(CORSResource, MarketplaceModelResource):
 
-    class Meta(MarketplaceModelResource.Meta):
-        queryset = Category.objects.all()
-        list_allowed_methods = ['get']
-        allowed_methods = ['get']
-        fields = ['name', 'id', 'slug']
-        always_return_data = True
-        resource_name = 'category'
-        serializer = Serializer(formats=['json'])
-        slug_lookup = 'slug'
+class CategoryViewSet(ListModelMixin, RetrieveModelMixin, CORSViewSet):
+    model = Category
+    serializer_class = CategorySerializer
+    permission_classes = (AllowAny,)
+    cors_allowed_methods = ('get',)
+    slug_lookup = 'slug'
 
-    def dispatch(self, request_type, request, **kwargs):
-        self._meta.queryset = Category.objects.filter(
-            type=amo.ADDON_WEBAPP,
-            weight__gte=0)
-        return super(CategoryResource, self).dispatch(request_type, request,
-                                                      **kwargs)
-
-    def obj_get_list(self, request=None, **kwargs):
-        objs = super(CategoryResource, self).obj_get_list(request, **kwargs)
-
-        # Filter by region or worldwide.
-        objs = objs.filter(Q(region__isnull=True) | Q(region=get_region_id()))
-
-        # Check carrier.
-        carrier = get_carrier_id()
-        carrier_f = Q(carrier__isnull=True)
-        if carrier:
-            carrier_f |= Q(carrier=carrier)
-        objs = objs.filter(carrier_f)
-
-        return objs
+    def get_queryset(self):
+        qs = Category.objects.filter(type=amo.ADDON_WEBAPP,
+                                     weight__gte=0)
+        if self.action == 'list':
+            qs = qs.filter(Q(region__isnull=True) |
+                           Q(region=get_region_id()))
+            # Check carrier.
+            carrier = get_carrier_id()
+            carrier_f = Q(carrier__isnull=True)
+            if carrier:
+                carrier_f |= Q(carrier=carrier)
+            qs = qs.filter(carrier_f)
+        return qs
 
 
 class PreviewResource(CORSResource, MarketplaceModelResource):

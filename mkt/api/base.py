@@ -10,7 +10,7 @@ from django.conf.urls.defaults import url
 from django.core.exceptions import ObjectDoesNotExist, PermissionDenied
 from django.http import HttpResponseNotFound
 
-from rest_framework.routers import SimpleRouter, Route
+from rest_framework.routers import Route, SimpleRouter
 from rest_framework.relations import HyperlinkedRelatedField
 from rest_framework.viewsets import GenericViewSet
 from tastypie import fields, http
@@ -435,6 +435,48 @@ class AppRouter(SimpleRouter):
     ]
 
 
+class SlugRouter(SimpleRouter):
+
+    def get_urls(self):
+        """
+        Use the registered viewsets to generate a list of URL patterns.
+
+        We can't use the superclass' implementation of get_urls since
+        we want slug and pk urls for some resources, and it assumes
+        one url per resource.
+        """
+        ret = []
+
+        for prefix, viewset, basename in self.registry:
+            routes = self.get_routes(viewset)
+
+            for route in routes:
+
+                # Only actions which actually exist on the viewset will be bound
+                mapping = self.get_method_map(viewset, route.mapping)
+                if not mapping:
+                    continue
+
+                # Build the url pattern
+                if route.name.endswith('detail'):
+                    slug_field = getattr(viewset, 'slug_lookup', None)
+                    ret.append(self.create_url(prefix, viewset, basename,
+                                               route, mapping, '(?P<pk>\d+)'))
+                    if slug_field:
+                        ret.append(self.create_url(
+                            prefix, viewset, basename, route, mapping,
+                            '(?P<%s>[^/<>"\']+)' % (slug_field,)))
+
+                else:
+                    ret.append(self.create_url(prefix, viewset, basename, route, mapping))
+        return ret
+
+    def create_url(self, prefix, viewset, basename, route, mapping, lookup=''):
+        regex = route.url.format(prefix=prefix, lookup=lookup)
+        view = viewset.as_view(mapping, **route.initkwargs)
+        name = route.name.format(basename=basename)
+        return url(regex, view, name=name)
+
 class CORSViewSet(GenericViewSet):
     """
     CORS enabled viewset for DRF API.
@@ -446,3 +488,4 @@ class CORSViewSet(GenericViewSet):
         request._request.CORS = self.cors_allowed_methods
         return GenericViewSet.finalize_response(self, request, response, *args,
                                                 **kwargs)
+

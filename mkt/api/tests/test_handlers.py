@@ -2,8 +2,8 @@ import base64
 import json
 import os
 import tempfile
-from decimal import Decimal
 
+from django.core.urlresolvers import reverse
 from mock import patch
 from nose.tools import eq_
 
@@ -16,7 +16,7 @@ from files.models import FileUpload
 from market.models import AddonPremium, Price, PriceCurrency
 from users.models import UserProfile
 
-from mkt.api.tests.test_oauth import BaseOAuth, OAuthClient, get_absolute_url
+from mkt.api.tests.test_oauth import BaseOAuth, OAuthClient, RestOAuth, get_absolute_url
 from mkt.api.base import get_url, list_url
 from mkt.api.models import Access, generate
 from mkt.constants import APP_IMAGE_SIZES, carriers, regions
@@ -869,7 +869,7 @@ class TestAppDetail(BaseOAuth, AMOPaths):
         eq_(app.get_manifest_url(), data['manifest_url'])
 
 
-class TestCategoryHandler(BaseOAuth):
+class TestCategoryHandler(RestOAuth):
 
     def setUp(self):
         super(TestCategoryHandler, self).setUp()
@@ -881,9 +881,8 @@ class TestCategoryHandler(BaseOAuth):
         self.other = Category.objects.create(name='other',
                                              type=amo.ADDON_EXTENSION)
 
-        self.list_url = ('api_dispatch_list', {'resource_name': 'category'})
-        self.get_url = ('api_dispatch_detail',
-                        {'resource_name': 'category', 'pk': self.cat.pk})
+        self.list_url = reverse('app-category-list')
+        self.get_url = reverse('app-category-detail', kwargs={'pk': self.cat.pk})
 
     def _make_carrier_cat(self, carrier):
         return Category.objects.create(
@@ -909,11 +908,10 @@ class TestCategoryHandler(BaseOAuth):
         eq_(data['meta']['total_count'], 0)
 
     def test_get_slug(self):
-        url = ('api_dispatch_detail',
-               {'resource_name': 'category', 'slug': self.cat.slug})
+        url = reverse('app-category-detail', kwargs={'slug': self.cat.slug})
         res = self.client.get(url)
         data = json.loads(res.content)
-        eq_(data['id'], str(self.cat.pk))
+        eq_(data['id'], self.cat.pk)
 
     def test_get_categories(self):
         res = self.anon.get(self.list_url)
@@ -984,9 +982,7 @@ class TestCategoryHandler(BaseOAuth):
         eq_(data['name'], 'Webapp')
 
     def test_get_other_category(self):
-        res = self.anon.get(('api_dispatch_detail',
-                             {'resource_name': 'category',
-                              'pk': self.other.pk}))
+        res = self.anon.get(reverse('app-category-detail', kwargs={'pk': self.other.pk}))
         eq_(res.status_code, 404)
 
 

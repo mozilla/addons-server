@@ -3,8 +3,9 @@ from django.conf.urls import include, patterns, url
 
 from tastypie.api import Api
 from tastypie_services.services import (ErrorResource, SettingsResource)
-from mkt.api.base import handle_500
-from mkt.api.resources import (AppResource, CarrierResource, CategoryResource,
+from mkt.api.base import handle_500, SlugRouter
+from mkt.api.resources import (AppResource, CarrierResource,
+                               CategoryViewSet,
                                ConfigResource, PreviewResource, RegionResource,
                                StatusResource, ValidationResource)
 from mkt.ratings.resources import RatingResource
@@ -15,12 +16,14 @@ from mkt.stats.api import GlobalStatsResource
 api = Api(api_name='apps')
 api.register(ValidationResource())
 api.register(AppResource())
-api.register(CategoryResource())
 api.register(PreviewResource())
 api.register(WithFeaturedResource())
 api.register(SearchResource())
 api.register(StatusResource())
 api.register(RatingResource())
+
+apps = SlugRouter()
+apps.register(r'category', CategoryViewSet, base_name='app-category')
 
 stats_api = Api(api_name='stats')
 stats_api.register(GlobalStatsResource())
@@ -38,6 +41,7 @@ if settings.ALLOW_TASTYPIE_SERVICES:
 
 urlpatterns = patterns('',
     url(r'^', include(api.urls)),
+    url(r'^apps/', include(apps.urls)),
     url(r'^', include(stats_api.urls)),
     url(r'^', include(services.urls))
 )

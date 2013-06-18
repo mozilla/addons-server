@@ -37,7 +37,7 @@ Categories
     .. code-block:: json
 
         {
-            "id": "1",
+            "id": 1,
             "name": "Games",
             "resource_uri": "/api/v1/apps/category/1/",
             "slug": "games"
