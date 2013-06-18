@@ -12,6 +12,7 @@ from django.http import HttpResponseNotFound
 
 from rest_framework.routers import SimpleRouter, Route
 from rest_framework.relations import HyperlinkedRelatedField
+from rest_framework.viewsets import GenericViewSet
 from tastypie import fields, http
 from tastypie.bundle import Bundle
 from tastypie.exceptions import (ImmediateHttpResponse, NotFound,
@@ -432,3 +433,16 @@ class AppRouter(SimpleRouter):
             initkwargs={'suffix': 'Instance'}
         )
     ]
+
+
+class CORSViewSet(GenericViewSet):
+    """
+    CORS enabled viewset for DRF API.
+
+    Usage:
+    Subclass CORSViewSet and set `cors_allowed_methods`.
+    """
+    def finalize_response(self, request, response, *args, **kwargs):
+        request._request.CORS = self.cors_allowed_methods
+        return GenericViewSet.finalize_response(self, request, response, *args,
+                                                **kwargs)
