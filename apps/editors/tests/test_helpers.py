@@ -375,7 +375,6 @@ class TestReviewHelper(amo.tests.TestCase):
 
     def test_nomination_to_public_new_addon(self):
         """ Make sure new add-ons can be made public (bug 637959) """
-        self.create_switch(name='reviewer-incentive-points')
         status = amo.STATUS_NOMINATED
         self.setup_data(status)
 
@@ -404,7 +403,6 @@ class TestReviewHelper(amo.tests.TestCase):
         self._check_score(amo.REVIEWED_ADDON_FULL)
 
     def test_nomination_to_public(self):
-        self.create_switch(name='reviewer-incentive-points')
         for status in helpers.NOMINATED_STATUSES:
             self.setup_data(status)
             self.helper.handler.process_public()
@@ -435,7 +433,6 @@ class TestReviewHelper(amo.tests.TestCase):
         self.to_preliminary_premium(helpers.NOMINATED_STATUSES)
 
     def test_nomination_to_preliminary(self):
-        self.create_switch(name='reviewer-incentive-points')
         for status in helpers.NOMINATED_STATUSES:
             self.setup_data(status)
             self.helper.handler.process_preliminary()
@@ -514,7 +511,6 @@ class TestReviewHelper(amo.tests.TestCase):
         self.to_preliminary_premium(helpers.PRELIMINARY_STATUSES)
 
     def test_preliminary_to_preliminary(self):
-        self.create_switch(name='reviewer-incentive-points')
         for status in helpers.PRELIMINARY_STATUSES:
             self.setup_data(status)
             self.helper.handler.process_preliminary()
@@ -598,7 +594,6 @@ class TestReviewHelper(amo.tests.TestCase):
             eq_(self.check_log_count(amo.LOG.REQUEST_SUPER_REVIEW.id), 1)
 
     def test_pending_to_public(self):
-        self.create_switch(name='reviewer-incentive-points')
         for status in helpers.PENDING_STATUSES:
             self.setup_data(status)
             self.create_paths()

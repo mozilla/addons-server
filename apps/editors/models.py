@@ -1,8 +1,6 @@
 import copy
 import datetime
 
-import waffle
-
 from django.conf import settings
 from django.core.cache import cache
 from django.db import models
@@ -296,10 +294,12 @@ class EditorSubscription(amo.models.ModelBase):
                       (self.user.email, self.addon.pk))
         context = Context({
             'name': self.addon.name,
-            'url': absolutify(reverse('addons.detail', args=[self.addon.pk], add_prefix=False)),
+            'url': absolutify(reverse('addons.detail', args=[self.addon.pk],
+                                      add_prefix=False)),
             'number': version.version,
             'review': absolutify(reverse('editors.review',
-                                         args=[self.addon.pk], add_prefix=False)),
+                                         args=[self.addon.pk],
+                                         add_prefix=False)),
             'SITE_URL': settings.SITE_URL,
         })
         # Not being localised because we don't know the editors locale.
@@ -407,8 +407,6 @@ class ReviewerScore(amo.models.ModelBase):
         `status` is one of the `STATUS_` keys in constants.
 
         """
-        if not waffle.switch_is_active('reviewer-incentive-points'):
-            return
         event = cls.get_event(addon, status, **kwargs)
         score = amo.REVIEWED_SCORES.get(event)
         if score:
@@ -422,9 +420,6 @@ class ReviewerScore(amo.models.ModelBase):
     @classmethod
     def award_moderation_points(cls, user, addon, review_id):
         """Awards points to user based on moderated review."""
-        if not waffle.switch_is_active('reviewer-incentive-points'):
-            return
-
         event = amo.REVIEWED_ADDON_REVIEW
         if addon.type == amo.ADDON_WEBAPP:
             event = amo.REVIEWED_APP_REVIEW

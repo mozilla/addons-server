@@ -993,7 +993,6 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
     @mock.patch('mkt.webapps.models.Webapp.update_name_from_package_manifest')
     def test_pending_to_public(self, update_name, update_locales,
                                index_addons):
-        self.create_switch(name='reviewer-incentive-points')
         data = {'action': 'public', 'device_types': '', 'browsers': '',
                 'comments': 'something'}
         data.update(self._attachment_management_form(num=0))
@@ -1064,7 +1063,6 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         eq_(self.get_app().status, amo.STATUS_PENDING)
 
     def test_pending_to_public_no_mozilla_contact(self):
-        self.create_switch(name='reviewer-incentive-points')
         self.app.update(mozilla_contact='')
         data = {'action': 'public', 'device_types': '', 'browsers': '',
                 'comments': 'something'}
@@ -1086,7 +1084,6 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
     @mock.patch('mkt.webapps.models.Webapp.update_name_from_package_manifest')
     def test_pending_to_public_waiting(self, update_name, update_locales,
                                        index_addons):
-        self.create_switch(name='reviewer-incentive-points')
         self.get_app().update(_signal=False, make_public=amo.PUBLIC_WAIT)
         index_addons.delay.reset_mock()
 
@@ -1124,7 +1121,6 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         eq_(sign.call_args[0][0], self.get_app().current_version.pk)
 
     def test_pending_to_reject(self):
-        self.create_switch(name='reviewer-incentive-points')
         files = list(self.version.files.values_list('id', flat=True))
         data = {'action': 'reject', 'comments': 'suxor'}
         data.update(self._attachment_management_form(num=0))
@@ -1160,7 +1156,6 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         self._check_email_body(msg)
 
     def test_multiple_versions_reject_packaged(self):
-        self.create_switch(name='reviewer-incentive-points')
         self.app.update(status=amo.STATUS_PUBLIC, is_packaged=True)
         self.app.current_version.files.update(status=amo.STATUS_PUBLIC)
         new_version = version_factory(addon=self.app)
@@ -1236,7 +1231,6 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         self._check_email_body(msg)
 
     def test_escalation_to_reject(self):
-        self.create_switch(name='reviewer-incentive-points')
         EscalationQueue.objects.create(addon=self.app)
         eq_(self.app.status, amo.STATUS_PENDING)
         files = list(self.version.files.values_list('id', flat=True))
@@ -1296,7 +1290,6 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         eq_(len(mail.outbox), 0)
 
     def test_rereview_to_reject(self):
-        self.create_switch(name='reviewer-incentive-points')
         RereviewQueue.objects.create(addon=self.app)
         self.app.update(status=amo.STATUS_PUBLIC)
         data = {'action': 'reject', 'device_types': '', 'browsers': '',
@@ -1341,7 +1334,6 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         eq_(len(mail.outbox), 0)
 
     def test_clear_rereview(self):
-        self.create_switch(name='reviewer-incentive-points')
         self.app.update(status=amo.STATUS_PUBLIC)
         RereviewQueue.objects.create(addon=self.app)
         data = {'action': 'clear_rereview', 'comments': 'all clear'}
@@ -2375,7 +2367,6 @@ class TestLeaderboard(AppReviewerTest):
     def setUp(self):
         self.url = reverse('reviewers.leaderboard')
 
-        self.create_switch(name='reviewer-incentive-points')
         self.user = UserProfile.objects.get(email='editor@mozilla.com')
         self.login_as_editor()
         amo.set_user(self.user)

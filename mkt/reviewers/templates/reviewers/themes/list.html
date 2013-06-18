@@ -11,11 +11,9 @@
 {% endblock %}
 
 {% block content %}
-  {% if waffle.switch('reviewer-incentive-points') %}
-    <section id="reviewers-score-bar" class="island full c">
-      {{ reviewers_score_bar() }}
-    </section>
-  {% endif %}
+  <section id="reviewers-score-bar" class="island full c">
+    {{ reviewers_score_bar() }}
+  </section>
 
   <div class="queue-search theme-search island c"
        data-api-url="{{ url('reviewers.themes.search') }}"

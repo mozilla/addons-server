@@ -68,7 +68,7 @@ class TestQueue(amo.tests.TestCase):
     def test_latest_version(self):
         self.new_file(version=u'0.1', created=self.days_ago(2))
         self.new_file(version=u'0.2', created=self.days_ago(1))
-        latest = self.new_file(version=u'0.3')
+        self.new_file(version=u'0.3')
         row = self.Queue.objects.get()
         eq_(row.latest_version, '0.3')
 
@@ -379,7 +379,6 @@ class TestReviewerScore(amo.tests.TestCase):
     fixtures = ['base/users']
 
     def setUp(self):
-        self.create_switch(name='reviewer-incentive-points')
         self.addon = amo.tests.addon_factory(status=amo.STATUS_NOMINATED)
         self.app = amo.tests.app_factory(status=amo.STATUS_NOMINATED)
         self.user = UserProfile.objects.get(email='editor@mozilla.com')
@@ -519,7 +518,6 @@ class TestReviewerScore(amo.tests.TestCase):
             'Unexpected admin user found in leaderboards.')
 
     def test_no_marketplace_points_in_amo_leaderboards(self):
-        user2 = UserProfile.objects.get(email='regular@mozilla.com')
         self._give_points()
         self._give_points(status=amo.STATUS_LITE)
         self._give_points(addon=self.app, status=amo.STATUS_NOMINATED)
@@ -530,7 +528,6 @@ class TestReviewerScore(amo.tests.TestCase):
             amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_PRELIM])
 
     def test_no_amo_points_in_marketplace_leaderboards(self):
-        user2 = UserProfile.objects.get(email='regular@mozilla.com')
         self._give_points()
         self._give_points(status=amo.STATUS_LITE)
         self._give_points(addon=self.app, status=amo.STATUS_NOMINATED)

@@ -869,7 +869,6 @@ class TestModeratedQueue(QueueTest):
         eq_(rows.length, 1)
 
     def test_skip_score(self):
-        self.create_switch('reviewer-incentive-points')
         self.setup_actions(reviews.REVIEW_MODERATE_SKIP)
         eq_(ReviewerScore.objects.filter(note_key=amo.REVIEWED_ADDON_REVIEW)
                          .count(),
@@ -919,7 +918,6 @@ class TestModeratedQueue(QueueTest):
         eq_(Review.objects.filter(addon=1865).count(), 2)
 
     def test_remove_score(self):
-        self.create_switch('reviewer-incentive-points')
         self.setup_actions(reviews.REVIEW_MODERATE_DELETE)
         eq_(ReviewerScore.objects.filter(note_key=amo.REVIEWED_ADDON_REVIEW)
                          .count(),
@@ -944,7 +942,6 @@ class TestModeratedQueue(QueueTest):
         eq_(review.filter(editorreview=1).count(), 0)
 
     def test_keep_score(self):
-        self.create_switch('reviewer-incentive-points')
         self.setup_actions(reviews.REVIEW_MODERATE_KEEP)
         eq_(ReviewerScore.objects.filter(note_key=amo.REVIEWED_ADDON_REVIEW)
                          .count(),
@@ -2219,7 +2216,6 @@ class TestLeaderboard(EditorTest):
     def setUp(self):
         self.url = reverse('editors.leaderboard')
 
-        self.create_switch(name='reviewer-incentive-points')
         self.user = UserProfile.objects.get(email='editor@mozilla.com')
         self.login_as_editor()
         amo.set_user(self.user)

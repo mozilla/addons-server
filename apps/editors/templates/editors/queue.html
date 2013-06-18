@@ -6,11 +6,9 @@
 
 {% block content %}
 
-{% if waffle.switch('reviewer-incentive-points') %}
 <div id="reviewers-score-bar" class="c">
   {{ reviewers_score_bar(types=point_types) }}
 </div>
-{% endif %}
 
 <ul class="tabnav">
   {% for this, loc, text in queue_tabnav() %}
