@@ -5,26 +5,17 @@
     var modules = [
         'account',
         'feedback',
-        'forms',
         'install',
         'login',
         'notification',
         'potatocaptcha',
         'prefetch',
-        'state',
-        'tracking',
-        'webactivities'
+        'tracking'
     ];
 
     define('marketplace', modules, function() {
         // Initialize analytics tracking.
-        z.page.on('fragmentloaded', function(event, href, popped, state) {
-            // Otherwise we'll track back button hits etc.
-            if (!popped) {
-                // GA track every fragment loaded page.
-                _gaq.push(['_trackPageview', href]);
-            }
-        });
+        _gaq.push(['_trackPageview']);
 
         // Check for mobile sizing.
         if (z.capabilities.mobile && z.body.hasClass('desktop')) {
@@ -46,8 +37,6 @@
             });
         }
 
-        require('state').init();
-        require('webactivities').init();
     });
 
     require('marketplace');

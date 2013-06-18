@@ -8,10 +8,8 @@
         }
     }
 
-    z.page.on('fragmentloaded', function(e) {
-        // Dismiss overlay when we load a new fragment.
-        dismiss();
-    });
+    // Dismiss overlay upon page load.
+    dismiss();
 
     // Dismiss overlay when we click outside of it.
     z.doc.on('click', '.overlay:not(.undismissable)', function(e) {

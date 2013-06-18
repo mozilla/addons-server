@@ -26,10 +26,8 @@ define('feedback', [], function() {
     var overlayForm = overlay.find('form')
 
     overlayForm.on('submit', processFeedback);
-    z.page.on('fragmentloaded', function() {
-        reset(overlayForm);
-        z.page.find('.feedback-form').on('submit', processFeedback);
-    });
+    reset(overlayForm);
+    z.page.find('.feedback-form').on('submit', processFeedback);
 
     function processFeedback(e) {
         var $form = $(this);

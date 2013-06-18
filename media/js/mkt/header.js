@@ -7,7 +7,4 @@ if (z.capabilities.desktop) {
     }).on('click', '.account-links a', function() {
         $('.account-links, .settings').removeClass('active');
     });
-    z.page.on('fragmentloaded', function() {
-        $('.account-links, .settings').removeClass('active');
-    });
 }

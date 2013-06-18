@@ -67,10 +67,4 @@
         }
     }
 
-    // Clear search suggestions at start and end of fragmentload.
-    z.page.on('startfragmentload fragmentloaded', function() {
-        abortRequest();
-        $('#site-search-suggestions').trigger('dismiss').find('ul').empty();
-    });
-
 })();

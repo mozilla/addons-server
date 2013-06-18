@@ -238,8 +238,6 @@ JS = {
         'js/mkt/capabilities.js',
         'js/mkt/banners.js',
         'js/impala/serializers.js',
-        'js/mkt/fragments.js',
-        'js/mkt/navigation.js',
         'js/mkt/potatocaptcha.js',
         'js/mkt/overlay.js',
         'js/mkt/login.js',
@@ -258,16 +256,9 @@ JS = {
         'js/impala/suggestions.js',
         'js/mkt/mkt_suggestions.js',
 
-        'js/mkt/paginator.js',
-
         # Account settings.
         'js/mkt/account.js',
         'js/mkt/feedback.js',
-
-        # Detail page.
-        'js/mkt/detail.js',
-        'js/mkt/lightbox.js',
-        'js/mkt/previews.js',
 
         # Fix-up outgoing links.
         'js/mkt/outgoing_links.js',
@@ -276,11 +267,6 @@ JS = {
         'js/lib/stick.js',
 
         'js/mkt/prefetch.js',
-
-        'js/mkt/user_state.js',
-
-        'js/mkt/webactivities.js',
-        'js/mkt/forms.js',
 
         # Module initialization.
         'js/mkt/consumer_init.js',

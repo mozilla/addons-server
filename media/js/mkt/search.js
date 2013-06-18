@@ -62,16 +62,14 @@
         setTrays(expandListings);
     }));
 
-    z.page.on('fragmentloaded', function() {
-        if (z.body.data('page-type') === 'search') {
-            initExpanded();
-            setTrays(expandListings);
-        }
+    if (z.body.data('page-type') === 'search') {
+        initExpanded();
+        setTrays(expandListings);
+    }
 
-        // Set "Category Name" or "Apps" as search placeholder.
-        var $q = $('#search-q');
-        $q.attr('placeholder', z.context.category || $q.data('placeholder-default'));
-    });
+    // Set "Category Name" or "Apps" as search placeholder.
+    var $q = $('#search-q');
+    $q.attr('placeholder', z.context.category || $q.data('placeholder-default'));
 
     function initExpanded() {
         var storedExpand = localStorage.getItem('expand-listings');

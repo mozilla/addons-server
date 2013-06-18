@@ -94,9 +94,7 @@ MIDDLEWARE_CLASSES += [
     'mkt.site.middleware.LocaleMiddleware',
 
     'mkt.regions.middleware.RegionMiddleware',
-    'mkt.fragments.middleware.VaryOnAJAXMiddleware',
     'mkt.site.middleware.DeviceDetectionMiddleware',
-    'mkt.fragments.middleware.HijackRedirectMiddleware',
     'mkt.api.middleware.TimingMiddleware',
     'mkt.api.middleware.APIVersionMiddleware',
     'mkt.api.middleware.CORSMiddleware',

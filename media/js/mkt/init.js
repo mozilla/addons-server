@@ -35,13 +35,11 @@ z.prefixUpper = z.prefix[0].toUpperCase() + z.prefix.substr(1);
 
 $(document).ready(function() {
     // Initialize email links.
-    z.page.on('fragmentloaded', function() {
-        $('span.emaillink').each(function() {
-            var $this = $(this);
-            $this.find('.i').remove();
-            var em = $this.text().split('').reverse().join('');
-            $this.prev('a').attr('href', 'mailto:' + em);
-        });
+    $('span.emaillink').each(function() {
+        var $this = $(this);
+        $this.find('.i').remove();
+        var em = $this.text().split('').reverse().join('');
+        $this.prev('a').attr('href', 'mailto:' + em);
     });
     if (z.readonly) {
         $('form[method=post]')
@@ -65,7 +63,7 @@ $(document).ready(function() {
         $.cookie('gaia', 'true', {path: '/'});
 
         // reload the fragment for updated content.
-        z.page.trigger('refreshfragment');
+        window.location.reload();
     }
 
     // Sets a tablet cookie.
@@ -81,20 +79,9 @@ if (window.screen.lockOrientation) {
     window.screen.lockOrientation("portrait");
 }
 
-z.page.on('fragmentloaded', function() {
+(function() {
     z.apps = {};
     z.state.mozApps = {};
-    if (z.capabilities.webApps) {
-        // Get list of installed apps and mark as such.
-        r = window.navigator.mozApps.getInstalled();
-        r.onsuccess = function() {
-            _.each(r.result, function(val) {
-                z.apps[val.manifestURL] = z.state.mozApps[val.manifestURL] = val;
-                z.doc.trigger('app_install_success',
-                              [val, {'manifest_url': val.manifestURL}, false]);
-            });
-        };
-    }
 
     // Navigation toggle.
     var $header = $('#site-header'),
@@ -109,9 +96,7 @@ z.page.on('fragmentloaded', function() {
     });
 
     // Hijack external links if we're within the app.
-    if (z.capabilities.chromeless) {
-        $('a[rel=external]').attr('target', '_blank');
-    }
+    $('a[rel=external]').attr('target', '_blank');
 
     // Initialize selected class for currently active search filter (if any).
     function initSelectedFilter() {
@@ -134,10 +119,6 @@ z.page.on('fragmentloaded', function() {
                 // default.
                 $('#filter-sort li:first-child a').addClass('sel');
         }
-    }
-
-    if (z.capabilities.desktop) {
-        initSelectedFilter();
     }
 
     // Header controls.
@@ -164,11 +145,9 @@ z.page.on('fragmentloaded', function() {
             $('#search-q').val('').focus();
         }
 
-        z.page.on('fragmentloaded', function() {
-            z.body.removeClass('show-search');
-            $('#search-q').blur();
-        });
+        z.body.removeClass('show-search');
+        $('#search-q').blur();
         e.preventDefault();
     });
 
-});
+})();
