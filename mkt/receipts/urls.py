@@ -12,7 +12,7 @@ receipt.register(api.TestReceiptResource())
 # Note: this URL is embedded in receipts, if you change the URL, make sure
 # that you put a redirect in.
 app_receipt_patterns = patterns('',
-    url('^reissue$', views.reissue, name='purchase.reissue'),
+    # TODO: remove this?
     url('^record$', views.record_anon, name='detail.record'),
 )
 
@@ -27,6 +27,7 @@ receipt_patterns = patterns('',
 
 receipt_api_patterns = patterns('',
     url(r'^', include(receipt.urls)),
+    url(r'^receipts/reissue/', api.reissue, name='receipt.reissue')
 )
 
 test_patterns = patterns('',

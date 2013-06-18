@@ -37,16 +37,6 @@ addon_view = addon_view_factory(qs=Webapp.objects.valid)
 addon_all_view = addon_view_factory(qs=Webapp.objects.all)
 
 
-@login_required
-@addon_view
-def reissue(request, addon):
-    reissue = not addon.is_premium()
-    if addon.is_premium() and addon.has_purchased(request.amo_user):
-        reissue = True
-    return jingo.render(request, 'receipts/reissue.html',
-                        {'reissue': reissue, 'app': addon})
-
-
 def _record(request, addon):
     # TODO(andym): we have an API now, replace this with that.
     logged = request.user.is_authenticated()

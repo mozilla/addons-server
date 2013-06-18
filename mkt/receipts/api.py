@@ -1,5 +1,9 @@
 import commonware.log
 
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import AllowAny
+from rest_framework.response import Response
+
 from tastypie import http
 from tastypie.authorization import Authorization
 from tastypie.exceptions import ImmediateHttpResponse
@@ -117,3 +121,12 @@ class TestReceiptResource(CORSResource, MarketplaceResource):
         bundle.data = {'receipt': create_test_receipt(
             bundle.data['root'], bundle.data['receipt_type'])}
         return bundle
+
+
+@api_view(['POST'])
+@permission_classes((AllowAny,))
+def reissue(request):
+    # This is just a place holder for reissue that will hopefully return
+    # a valid response, once reissue works. For the moment it doesn't. When
+    # bug 757226 lands. For the moment just return a 200 and some text.
+    return Response({'status': 'not-implemented', 'receipt': ''})

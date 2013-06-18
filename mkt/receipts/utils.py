@@ -39,7 +39,7 @@ def create_receipt(installed, flavour=None):
     else:
         verify = settings.WEBAPPS_RECEIPT_URL
 
-    reissue = webapp.get_purchase_url('reissue')
+    reissue = absolutify(reverse('receipt.reissue'))
     receipt = dict(exp=expiry, iat=time_,
                    iss=settings.SITE_URL, nbf=time_, product=product,
                    # TODO: This is temporary until detail pages get added.

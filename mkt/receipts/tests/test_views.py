@@ -29,41 +29,6 @@ from zadmin.models import DownloadSource
 from .test_models import TEST_LEEWAY
 
 
-class TestReissue(amo.tests.TestCase):
-    fixtures = fixture('webapp_337141')
-
-    def setUp(self):
-        self.webapp = Webapp.objects.get(pk=337141)
-        assert self.client.login(username='steamcube@mozilla.com',
-                                 password='password')
-        self.url = self.webapp.get_purchase_url('reissue')
-
-    def test_reissue_logout(self):
-        self.client.logout()
-        res = self.client.get(self.url)
-        eq_(res.status_code, 302)
-
-    def test_reissue(self):
-        res = self.client.get(self.url)
-        eq_(res.context['reissue'], True)
-
-    @mock.patch('addons.models.Addon.has_purchased')
-    def test_reissue_premium_not_purchased(self, has_purchased):
-        self.make_premium(self.webapp)
-        has_purchased.return_value = False
-        res = self.client.get(self.url)
-        eq_(res.context['reissue'], False)
-        eq_(len(pq(res.content)('button.install')), 0)
-
-    @mock.patch('addons.models.Addon.has_purchased')
-    def test_reissue_premium_purchased(self, has_purchased):
-        self.make_premium(self.webapp)
-        has_purchased.return_value = True
-        res = self.client.get(self.url)
-        eq_(res.context['reissue'], True)
-        eq_(len(pq(res.content)('button.install')), 1)
-
-
 @mock.patch.object(settings, 'WEBAPPS_RECEIPT_KEY',
                    amo.tests.AMOPaths.sample_key())
 class TestInstall(amo.tests.TestCase):

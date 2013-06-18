@@ -319,6 +319,25 @@ receipt will have type `test-receipt`. Only works for hosted apps.
 
     :status 201: successfully completed.
 
+Receipt reissue
+===============
+
+This is currently not implemented `awaiting bug <https://bugzilla.mozilla.org/show_bug.cgi?id=757226>`_. It will
+be used for `replacing receipts <https://wiki.mozilla.org/Apps/WebApplicationReceiptRefresh>`_.
+
+.. http:post:: /api/v1/receipts/reissue/
+
+    **Response**:
+
+    .. code-block:: json
+
+        {"receipt": "", "status": "not-implemented"}
+
+    :param receipt: the receipt, currently blank.
+    :param status: one of ``not-implemented``.
+    :status 200: successfully completed.
+
+
 Pay Tiers
 ==========
 

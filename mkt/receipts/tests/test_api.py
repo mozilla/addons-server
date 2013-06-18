@@ -2,6 +2,7 @@ import json
 
 from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
+from django.core.urlresolvers import reverse
 
 import mock
 from nose.tools import eq_, ok_
@@ -210,3 +211,17 @@ class TestReceipt(amo.tests.TestCase):
     def test_record_receipt(self, cef):
         res = self.handle(self.profile)
         ok_(Receipt(res).receipt_decoded())
+
+
+class TestReissue(amo.tests.TestCase):
+
+    def setUp(self):
+        self.url = reverse('receipt.reissue')
+
+    def test_get(self):
+        eq_(self.client.get(self.url).status_code, 405)
+
+    def test_reissue(self):
+        res = self.client.post(self.url, data={})
+        eq_(res.status_code, 200)
+        eq_(json.loads(res.content)['status'], 'not-implemented')
