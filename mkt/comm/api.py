@@ -3,25 +3,27 @@ from functools import partial
 from django.db.models import Q
 from django.http import Http404
 
+import commonware.log
 from rest_framework.exceptions import PermissionDenied
 from rest_framework.mixins import (CreateModelMixin, DestroyModelMixin,
                                    ListModelMixin, RetrieveModelMixin)
 from rest_framework.permissions import BasePermission
 from rest_framework.relations import HyperlinkedRelatedField, RelatedField
 from rest_framework.serializers import ModelSerializer
-from rest_framework.viewsets import GenericViewSet
 
 from access import acl
 from comm.models import (CommunicationNote, CommunicationThread,
-                         CommunicationThreadCC)
+                         CommunicationThreadCC, CommunicationThreadToken)
 from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
+from mkt.api.base import CORSViewSet
 from mkt.webpay.forms import PrepareForm
+
+log = commonware.log.getLogger('mkt.comm')
 
 
 class NoteSerializer(ModelSerializer):
-    thread = HyperlinkedRelatedField(read_only=True,
-                                     view_name='comm-thread-detail')
+    thread = HyperlinkedRelatedField(view_name='comm-thread-detail')
     body = RelatedField('body')
 
     class Meta:
@@ -77,7 +79,6 @@ class ThreadPermission(BasePermission):
         Moreover, other object permissions are also checked agaisnt the ACLs
         of the user.
         """
-
         if not request.user.is_authenticated() or obj.read_permission_public:
             return obj.read_permission_public
 
@@ -86,6 +87,7 @@ class ThreadPermission(BasePermission):
             thread=obj)
         user_cc = CommunicationThreadCC.objects.filter(user=profile,
             thread=obj)
+
         if user_post.exists() or user_cc.exists():
             return True
 
@@ -114,18 +116,41 @@ class ThreadPermission(BasePermission):
 
 
 class NotePermission(ThreadPermission):
+
+    def has_permission(self, request, view):
+        if view.action == 'create':
+            if not request.user.is_authenticated():
+                return False
+
+            serializer = view.get_serializer(data=request.DATA)
+            if not serializer.is_valid():
+                return False
+
+            obj = serializer.object
+            # Check if author and user who created this request mismatch.
+            if obj.author.id != request.amo_user.id:
+                return False
+
+            # Determine permission to add the note based on the thread
+            # permission.
+            return ThreadPermission.has_object_permission(self,
+                request, view, obj.thread)
+
+        return True
+
     def has_object_permission(self, request, view, obj):
-        return super(ThreadPermission, self).has_object_permission(request,
-            view, obj.thread)
+        return ThreadPermission.has_object_permission(self, request, view,
+            obj.thread)
 
 
 class ThreadViewSet(ListModelMixin, RetrieveModelMixin, DestroyModelMixin,
-                    CreateModelMixin, GenericViewSet):
+                    CreateModelMixin, CORSViewSet):
     model = CommunicationThread
     serializer_class = ThreadSerializer
     authentication_classes = (RestOAuthAuthentication,
                               RestSharedSecretAuthentication)
     permission_classes = (ThreadPermission,)
+    cors_allowed_methods = ['get', 'post']
 
     def list(self, request):
         profile = request.amo_user
@@ -145,20 +170,31 @@ class ThreadViewSet(ListModelMixin, RetrieveModelMixin, DestroyModelMixin,
                 addon=form.cleaned_data['app'])
         else:
             # We list all the threads which uses an add-on authored by the
-            # user.
+            # user and with read permissions for add-on devs.
             notes, cc = list(notes), list(cc)
             addons = list(profile.addons.values_list('pk', flat=True))
+            q_dev = Q(addon__in=addons, read_permission_developer=True)
             queryset = CommunicationThread.objects.filter(
-                Q(pk__in=notes + cc) | Q(addon__in=addons))
+                Q(pk__in=notes + cc) | q_dev)
 
         self.queryset = queryset
         return ListModelMixin.list(self, request)
 
 
 class NoteViewSet(CreateModelMixin, RetrieveModelMixin, DestroyModelMixin,
-                  GenericViewSet):
+                  CORSViewSet):
     model = CommunicationNote
     serializer_class = NoteSerializer
     authentication_classes = (RestOAuthAuthentication,
                               RestSharedSecretAuthentication,)
     permission_classes = (NotePermission,)
+    cors_allowed_methods = ['get', 'post', 'delete']
+
+    def create(self, request):
+        res = CreateModelMixin.create(self, request)
+        if res.status_code == 201:
+            tok = CommunicationThreadToken.objects.create(
+                thread=self.object.thread, user=self.object.author)
+            log.info('Reply token with UUID %s created.' % (tok.uuid))
+
+        return res
