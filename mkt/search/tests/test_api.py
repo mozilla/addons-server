@@ -314,25 +314,10 @@ class TestApiFeatures(BaseOAuth, ESTestCase):
         self.webapp = Webapp.objects.get(pk=337141)
         self.category = Category.objects.create(name='test',
                                                 type=amo.ADDON_WEBAPP)
-        # A typical desktop profile on Firefox with the following features:
-        # {'apps': True,
-        #  'audio': True,
-        #  'battery': True,
-        #  'device_storage': True,
-        #  'fullscreen': True,
-        #  'geolocation': True,
-        #  'idle': True,
-        #  'indexeddb': True,
-        #  'light_events': True,
-        #  'network_info': True,
-        #  'orientation': True,
-        #  'proximity': True,
-        #  'push': True,
-        #  'sms': True,
-        #  'vibrate': True,
-        #  'video_webm': True,
-        #  'webaudio': True}
-        self.profile = '8a7dd46c.32.1'
+        # Pick a few common device features.
+        self.profile = FeatureProfile(apps=True, audio=True, fullscreen=True,
+                                      geolocation=True, indexeddb=True,
+                                      sms=True).to_signature()
         self.qs = {'q': 'something', 'pro': self.profile, 'dev': 'firefoxos'}
 
     def test_no_features(self):
@@ -509,7 +494,9 @@ class TestFeaturedNoCategories(BaseOAuth, ESTestCase):
         self.app = Webapp.objects.get(pk=337141)
         AddonCategory.objects.get_or_create(addon=self.app, category=self.cat)
         self.make_featured(app=self.app, category=None, region=mkt.regions.US)
-        self.profile = '8a7dd46c.32.1'
+        self.profile = FeatureProfile(apps=True, audio=True, fullscreen=True,
+                                      geolocation=True, indexeddb=True,
+                                      sms=True).to_signature()
         self.qs = {'pro': self.profile, 'dev': 'firefoxos'}
 
     def test_no_category(self):
@@ -575,7 +562,9 @@ class TestFeaturedWithCategories(BaseOAuth, ESTestCase):
         AddonCategory.objects.get_or_create(addon=self.app, category=self.cat)
         self.make_featured(app=self.app, category=self.cat,
                            region=mkt.regions.US)
-        self.profile = '8a7dd46c.32.1'
+        self.profile = FeatureProfile(apps=True, audio=True, fullscreen=True,
+                                      geolocation=True, indexeddb=True,
+                                      sms=True).to_signature()
         self.qs = {'cat': 'shiny', 'pro': self.profile, 'dev': 'firefoxos'}
 
     def test_featured_plus_category(self):

@@ -128,6 +128,24 @@ class FeatureProfile(OrderedDict):
     representations.
     """
 
+    def __init__(self, **kwargs):
+        """
+        Creates a FeatureProfile object.
+
+        Takes kwargs to the features to enable or disable. Features not
+        specified but that are in APP_FEATURES will be False by default.
+
+        E.g.:
+
+            >>> FeatureProfile(sms=True).to_signature()
+            '400.32.1'
+
+        """
+        super(FeatureProfile, self).__init__()
+        for af in APP_FEATURES:
+            key = af[0].lower()
+            self[key] = kwargs.get(key, False)
+
     @classmethod
     def from_binary(cls, binary):
         """
