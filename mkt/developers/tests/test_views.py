@@ -373,7 +373,7 @@ class TestMarketplace(MarketplaceMixin, amo.tests.TestCase):
         self.setup_premium()
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
-        eq_(res.context['form'].initial['price'], self.price)
+        eq_(res.context['form'].initial['price'], self.price.pk)
         assert 'Change to Free' in res.content
 
     def test_set(self):

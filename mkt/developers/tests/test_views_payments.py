@@ -281,15 +281,15 @@ class TestPayments(amo.tests.TestCase):
 
     def test_regions_display_free(self):
         self.webapp.update(premium_type=amo.ADDON_FREE)
-        res = self.client.get(self.url)
-        self.assertIn('id="regions-island"', res.content)
-        self.assertNotIn('id="paid-regions-island"', res.content)
+        r = self.client.get(self.url)
+        eq_(len(pq(r.content)('#regions-island')), 1),
+        eq_(len(pq(r.content)('#paid-regions-island')), 0),
 
     def test_regions_display_premium(self):
         self.webapp.update(premium_type=amo.ADDON_PREMIUM)
-        res = self.client.get(self.url)
-        self.assertIn('id="paid-regions-island"', res.content)
-        self.assertNotIn('id="regions-island"', res.content)
+        r = self.client.get(self.url)
+        eq_(len(pq(r.content)('#regions-island')), 0),
+        eq_(len(pq(r.content)('#paid-regions-island')), 1),
 
     def test_premium_in_app_passes(self):
         self.webapp.update(premium_type=amo.ADDON_FREE)

@@ -1,13 +1,17 @@
 from django.conf import settings
 
 import mock
-from nose.tools import eq_
+from nose.tools import eq_, ok_
+from pyquery import PyQuery as pq
 from test_utils import RequestFactory
 
 import amo
 import amo.tests
 
 from addons.models import Addon, AddonDeviceType
+from constants.payments import (PAYMENT_METHOD_OPERATOR,
+                                PAYMENT_METHOD_CARD,
+                                PAYMENT_METHOD_ALL)
 from editors.models import RereviewQueue
 from market.models import AddonPremium, Price
 from users.models import UserProfile
@@ -136,6 +140,47 @@ class TestPremiumForm(amo.tests.TestCase):
         form.save()
         addon = Addon.objects.get(pk=self.addon.pk)
         assert addon.premium
+
+    def test_update_with_bogus_price(self):
+        AddonPremium.objects.create(addon=self.addon)
+        self.addon.premium_type = amo.ADDON_PREMIUM
+        self.platforms.update(price='bogus')
+        form = forms_payments.PremiumForm(self.platforms, **self.kwargs)
+        eq_(form.is_valid(), False)
+        eq_(len(form.errors), 1)
+        ok_('price' in form.errors)
+
+    def test_premium_with_empty_price(self):
+        AddonPremium.objects.create(addon=self.addon)
+        self.addon.premium_type = amo.ADDON_PREMIUM
+        self.platforms.update(price='')
+        form = forms_payments.PremiumForm(self.platforms, **self.kwargs)
+        eq_(form.is_valid(), False)
+        eq_(len(form.errors), 1)
+        ok_('price' in form.errors)
+
+    def test_premium_with_price_does_not_exist(self):
+        AddonPremium.objects.create(addon=self.addon)
+        self.addon.premium_type = amo.ADDON_PREMIUM
+        self.platforms.update(price=9999)
+        form = forms_payments.PremiumForm(self.platforms, **self.kwargs)
+        form.fields['price'].choices = ((9999, 'foo'),)
+        eq_(form.is_valid(), False)
+        eq_(len(form.errors), 1)
+        ok_('price' in form.errors)
+
+    def test_optgroups_in_price_choices(self):
+        Price.objects.create(price='0.00', method=PAYMENT_METHOD_ALL)
+        Price.objects.create(price='0.10', method=PAYMENT_METHOD_OPERATOR)
+        Price.objects.create(price='1.00', method=PAYMENT_METHOD_CARD)
+        Price.objects.create(price='1.10', method=PAYMENT_METHOD_CARD)
+        Price.objects.create(price='1.00', method=PAYMENT_METHOD_ALL)
+        Price.objects.create(price='2.00', method=PAYMENT_METHOD_ALL)
+        form = forms_payments.PremiumForm(self.platforms, **self.kwargs)
+        # 1 Free, + 3 values grouped by billing + 1 'Please select' = 5.
+        eq_(len(form.fields['price'].choices), 5)
+        html = form.as_p()
+        eq_(len(pq(html)('#id_price optgroup')), 3, 'Should be 3 optgroups')
 
     def test_cannot_change_devices_on_toggle(self):
         self.request.POST = {'toggle-paid': 'paid'}

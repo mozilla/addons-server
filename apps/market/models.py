@@ -51,6 +51,9 @@ class Price(amo.models.ModelBase):
     active = models.BooleanField(default=True)
     name = models.CharField(max_length=4)
     price = models.DecimalField(max_digits=10, decimal_places=2)
+    # The payment methods availble for this tier.
+    method = models.IntegerField(choices=PAYMENT_METHOD_CHOICES,
+                                 default=PAYMENT_METHOD_ALL)
 
     objects = PriceManager()
 
