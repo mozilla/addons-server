@@ -261,16 +261,16 @@ class TestPayments(amo.tests.TestCase):
 
     def test_free(self):
         res = self.client.post(
-            self.url, self.get_postdata({'toggle-paid': 'free'}))
-        self.assert3xx(res, self.url)
+            self.url, self.get_postdata({'toggle-paid': 'free'}), follow=True)
         eq_(self.get_webapp().premium_type, amo.ADDON_FREE)
+        eq_(res.context['is_paid'], False)
 
     def test_premium_passes(self):
         self.webapp.update(premium_type=amo.ADDON_FREE)
         res = self.client.post(
-            self.url, self.get_postdata({'toggle-paid': 'paid'}))
-        self.assert3xx(res, self.url)
+            self.url, self.get_postdata({'toggle-paid': 'paid'}), follow=True)
         eq_(self.get_webapp().premium_type, amo.ADDON_PREMIUM)
+        eq_(res.context['is_paid'], True)
 
     def test_check_api_url_in_context(self):
         self.webapp.update(premium_type=amo.ADDON_FREE)

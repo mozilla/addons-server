@@ -657,6 +657,7 @@ class RegionForm(forms.Form):
 
     def __init__(self, *args, **kw):
         self.product = kw.pop('product', None)
+        self.request = kw.pop('request', None)
         super(RegionForm, self).__init__(*args, **kw)
 
         is_paid = self._product_is_paid()
@@ -695,6 +696,12 @@ class RegionForm(forms.Form):
 
         self.disabled_regions = list(self.disabled_regions)
 
+    def is_toggling(self):
+        if not self.request or not hasattr(self.request, 'POST'):
+            return False
+        value = self.request.POST.get('toggle-paid')
+        return value if value in ('free', 'paid') else False
+
     def _product_is_paid(self):
         return self.product.premium_type in amo.ADDON_PREMIUMS
 
@@ -708,13 +715,19 @@ class RegionForm(forms.Form):
 
     def clean(self):
         data = self.cleaned_data
-        if not data.get('regions') and not data.get('other_regions'):
+        if (not data.get('regions') and not data.get('other_regions')
+                and not self.is_toggling()):
             raise forms.ValidationError(
                 _('You must select at least one region or '
                   '"Other and new regions."'))
         return data
 
     def save(self):
+
+        # Don't save regions if we are toggling.
+        if self.is_toggling():
+            return
+
         before = set(self.regions_before)
         after = set(map(int, self.cleaned_data['regions']))
 
