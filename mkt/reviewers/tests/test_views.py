@@ -663,8 +663,8 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
 
 
 class TestDeviceQueue(AppReviewerTest, AccessMixin):
-    fixtures = fixture('group_editor.json', 'user_editor.json',
-                       'user_editor_group.json', 'user_999.json')
+    fixtures = fixture('group_editor', 'user_editor', 'user_editor_group',
+                       'user_999')
 
     def setUp(self):
         self.create_switch('buchets')
@@ -1074,7 +1074,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         eq_(app.status, amo.STATUS_PUBLIC)
         action_id = amo.LOG.REVIEW_FEATURES_OVERRIDE.id
         assert not AppLog.objects.filter(
-                        addon=self.app, activity_log__action=action_id).exists()
+            addon=self.app, activity_log__action=action_id).exists()
 
     @mock.patch('addons.tasks.index_addons')
     @mock.patch('mkt.webapps.models.Webapp.update_supported_locales')
