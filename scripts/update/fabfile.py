@@ -1,6 +1,7 @@
 import os
 import time
-from fabric.api import env, execute, lcd, local, put, run, roles, task
+from fabric.api import (env, execute, lcd, local, parallel,
+                        put, run, roles, task)
 
 import commander.hosts
 import commander_settings as settings
@@ -139,8 +140,9 @@ def build_package(name, pkgfile):
                             os.path.join(INSTALL_TO, name)))
 
 
-@roles(settings.WEB_HOSTGROUP, settings.CELERY_HOSTGROUP)
 @task
+@roles(settings.WEB_HOSTGROUP, settings.CELERY_HOSTGROUP)
+@parallel
 def install_package(name, package_file):
     cur_sym = os.path.join(INSTALL_TO, 'current')
 
@@ -151,8 +153,9 @@ def install_package(name, package_file):
     run('rm -f %s' % package_file)
 
 
-@roles(settings.WEB_HOSTGROUP, settings.CELERY_HOSTGROUP)
 @task
+@roles(settings.WEB_HOSTGROUP, settings.CELERY_HOSTGROUP)
+@parallel
 def cleanup_packages():
     installed = run('rpm -qa {0}-*'.format(PACKAGE_PREFIX)).split()
     installed.sort()
@@ -179,8 +182,9 @@ def install_cron():
                                                      settings.CRON_NAME))
 
 
-@roles(settings.WEB_HOSTGROUP)
 @task
+@roles(settings.WEB_HOSTGROUP)
+@parallel(pool_size=len(settings.WEB_HOSTGROUP) / 2)
 def restart_workers():
     for gservice in settings.GUNICORN:
         run("/sbin/service %s graceful" % gservice)
@@ -189,8 +193,9 @@ def restart_workers():
         run('supervisorctl restart %s-b' % g)
 
 
-@roles(settings.CELERY_HOSTGROUP)
 @task
+@roles(settings.CELERY_HOSTGROUP)
+@parallel
 def update_celery():
     if getattr(settings, 'CELERY_SERVICE_PREFIX', False):
         run("/sbin/service %s restart" % settings.CELERY_SERVICE_PREFIX)
