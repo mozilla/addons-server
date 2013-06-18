@@ -4,6 +4,7 @@ from fabric.api import (env, execute, lcd, local, parallel,
                         run, roles, task)
 
 from fabdeploytools.rpm import RPMBuild
+from fabdeploytools import helpers
 
 import commander.hosts
 import commander_settings as settings
@@ -48,23 +49,14 @@ def create_virtualenv():
             raise Exception('venv must start with /data')
 
         local('rm -rf %s' % venv)
-        local('virtualenv --distribute --never-download %s' % venv)
-
-        local('%s/bin/pip install --exists-action=w --no-deps --no-index '
-              '--download-cache=/tmp/pip-cache -f %s '
-              '-r %s/requirements/prod.txt' %
-              (venv, settings.PYREPO, settings.SRC_DIR))
+        helpers.create_venv(venv, settings.PYREPO,
+                            '%s/requirements/prod.txt' % settings.SRC_DIR)
 
         if getattr(settings, 'LOAD_TESTING', False):
             local('%s/bin/pip install --exists-action=w --no-deps '
                   '--no-index --download-cache=/tmp/pip-cache -f %s '
                   '-r %s/requirements/load.txt' %
                   (venv, settings.PYREPO, settings.SRC_DIR))
-
-        # make sure this always runs
-        local("rm -f %s/lib/python2.6/no-global-site-packages.txt" % venv)
-        local('{0}/bin/python /usr/bin/virtualenv '
-              '--relocatable {0}'.format(venv))
 
 
 @task
@@ -105,23 +97,9 @@ def schematic():
 
 
 @task
-def update_code(ref='origin/master'):
-    with lcd(settings.SRC_DIR):
-        local("git fetch && git fetch -t")
-        local("git reset --hard %s" % ref)
-        local("git submodule sync")
-        local("git submodule update --init --recursive")
-        # Recursively run submodule sync/update to get all the right repo URLs.
-        local("git submodule foreach 'git submodule sync --quiet'")
-        local("git submodule foreach "
-              "'git submodule update --init --recursive'")
-
-
-@task
 def update_info(ref='origin/master'):
+    helpers.git_info(settings.SRC_DIR)
     with lcd(settings.SRC_DIR):
-        local("git status")
-        local("git log -1")
         local("/bin/bash -c "
               "'source /etc/bash_completion.d/git && __git_ps1'")
         local('git show -s {0} --pretty="format:%h" '
@@ -206,7 +184,7 @@ def deploy():
 def pre_update(ref=settings.UPDATE_REF):
     local('date')
     execute(disable_cron)
-    execute(update_code, ref)
+    execute(helpers.git_update, settings.SRC_DIR, ref)
     execute(update_info, ref)
 
 
