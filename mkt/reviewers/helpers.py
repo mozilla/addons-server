@@ -5,9 +5,9 @@ from django.utils.encoding import smart_str
 from django.core.exceptions import ObjectDoesNotExist
 
 import jinja2
-import waffle
 from jingo import register
 from tower import ugettext as _, ugettext_lazy as _lazy
+import waffle
 
 
 from access import acl
