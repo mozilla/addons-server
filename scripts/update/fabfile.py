@@ -184,8 +184,8 @@ def restart_workers():
     for gservice in settings.GUNICORN:
         run("/sbin/service %s graceful" % gservice)
     for g in get_setting('MULTI_GUNICORN', []):
-        run('supervisorctl %s-a restart' % g)
-        run('supervisorctl %s-b restart' % g)
+        run('supervisorctl restart %s-a' % g)
+        run('supervisorctl restart %s-b' % g)
 
 
 @roles(settings.CELERY_HOSTGROUP)
