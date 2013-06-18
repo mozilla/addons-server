@@ -27,6 +27,7 @@ from addons.models import (Addon, AddonCategory, AddonDeviceType, AddonUser,
                            Category)
 from constants.applications import DEVICE_TYPES
 from devhub.models import ActivityLog
+from editors.models import RereviewQueue
 from lib.video.tests import files as video_files
 from users.models import UserProfile
 from versions.models import Version
@@ -1208,6 +1209,8 @@ class TestEditTechnical(TestEdit):
         data_on = {'has_contacts': True}
         data_off = {'has_contacts': False}
 
+        assert not RereviewQueue.objects.filter(addon=self.webapp).exists()
+
         # Turn contacts on.
         r = self.client.post(self.edit_url, formset(**data_on))
         self.assertNoFormErrors(r)
@@ -1217,6 +1220,9 @@ class TestEditTechnical(TestEdit):
         r = self.client.post(self.edit_url, formset(**data_off))
         self.assertNoFormErrors(r)
         self.compare_features(data_off)
+
+        # Changing features must trigger re-review.
+        assert RereviewQueue.objects.filter(addon=self.webapp).exists()
 
 
 class TestAdmin(TestEdit):
@@ -1445,6 +1451,8 @@ class TestEditVersion(TestEdit):
         return version
 
     def test_features(self):
+        assert not RereviewQueue.objects.filter(addon=self.webapp).exists()
+
         # Turn a feature on.
         version = self.test_post(has_audio=True)
         ok_(version.features.has_audio)
@@ -1454,6 +1462,9 @@ class TestEditVersion(TestEdit):
         version = self.test_post(has_audio=False)
         ok_(not version.features.has_audio)
         ok_(not version.features.has_apps)
+
+        # Changing features must trigger re-review.
+        assert RereviewQueue.objects.filter(addon=self.webapp).exists()
 
     def test_correct_version_features(self):
         new_version = self.webapp.latest_version.update(id=self.version_pk + 1)

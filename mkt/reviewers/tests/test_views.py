@@ -1047,6 +1047,9 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         eq_(app.status, amo.STATUS_PUBLIC_WAITING)
         self._check_log(amo.LOG.REVIEW_FEATURES_OVERRIDE)
 
+        # A reviewer changing features shouldn't generate a re-review.
+        eq_(RereviewQueue.objects.count(), 0)
+
     def test_pending_to_reject_w_requirements_overrides(self):
         # Rejecting an app doesn't let you override features requirements.
         self.create_switch(name='buchets')

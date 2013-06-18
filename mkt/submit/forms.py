@@ -1,4 +1,5 @@
 import datetime
+from collections import defaultdict
 
 from django import forms
 
@@ -32,6 +33,14 @@ def mark_for_rereview(addon, added_devices, removed_devices):
         [_(u'Removed {0}').format(unicode(amo.DEVICE_TYPES[d].name))
          for d in removed_devices]))
     RereviewQueue.flag(addon, amo.LOG.REREVIEW_DEVICES_ADDED, msg)
+
+
+def mark_for_rereview_features_change(addon, added_features, removed_features):
+    # L10n: {0} is the list of requirements changes.
+    msg = _(u'Requirements changed: {0}').format(', '.join(
+        [_(u'Added {0}').format(f) for f in added_features] +
+        [_(u'Removed {0}').format(f) for f in removed_features]))
+    RereviewQueue.flag(addon, amo.LOG.REREVIEW_FEATURES_CHANGED, msg)
 
 
 class DeviceTypeForm(happyforms.Form):
@@ -408,6 +417,13 @@ class AppFeaturesForm(happyforms.ModelForm):
         exclude = ['version']
         model = AppFeatures
 
+    def __init__(self, *args, **kwargs):
+        super(AppFeaturesForm, self).__init__(*args, **kwargs)
+        if self.instance:
+            self.initial_features = sorted(self.instance.to_keys())
+        else:
+            self.initial_features = None
+
     def all_fields(self):
         """
         Degeneratorizes self.__iter__(), the list of fields on the form. This
@@ -426,3 +442,24 @@ class AppFeaturesForm(happyforms.ModelForm):
         field_id = field.name.split('_', 1)[1].upper()
         return (unicode(APP_FEATURES_DESCRIPTIONS.get(field_id)) if
                 field_id in APP_FEATURES_DESCRIPTIONS else None)
+
+    def _changed_features(self):
+        old_features = defaultdict.fromkeys(self.initial_features, True)
+        old_features = set(unicode(f) for f
+                           in AppFeatures(**old_features).to_list())
+        new_features = set(unicode(f) for f in self.instance.to_list())
+
+        added_features = new_features - old_features
+        removed_features = old_features - new_features
+        return added_features, removed_features
+
+    def save(self, *args, **kwargs):
+        mark_for_rereview = kwargs.pop('mark_for_rereview', True)
+        rval = super(AppFeaturesForm, self).save(*args, **kwargs)
+        if (self.instance and mark_for_rereview and
+                sorted(self.instance.to_keys()) != self.initial_features):
+            added_features, removed_features = self._changed_features()
+            mark_for_rereview_features_change(self.instance.version.addon,
+                                              added_features,
+                                              removed_features)
+        return rval

@@ -2,18 +2,20 @@ from django.forms.fields import BooleanField
 from django.utils.translation import ugettext_lazy as _
 
 import mock
-from nose.tools import eq_
+from nose.tools import eq_, ok_
 from test_utils import RequestFactory
 
 import amo
 import amo.tests
+from devhub.models import AppLog
+from editors.models import RereviewQueue
 from files.models import FileUpload
 from users.models import UserProfile
 
 from mkt.constants.features import APP_FEATURES
 from mkt.site.fixtures import fixture
 from mkt.submit import forms
-from mkt.webapps.models import AppFeatures
+from mkt.webapps.models import AppFeatures, Webapp
 
 
 class TestNewWebappForm(amo.tests.TestCase):
@@ -131,10 +133,19 @@ class TestAppDetailsBasicForm(amo.tests.TestCase):
 
 
 class TestAppFeaturesForm(amo.tests.TestCase):
+    fixtures = fixture('user_999', 'webapp_337141')
 
     def setUp(self):
+        amo.set_user(UserProfile.objects.all()[0])
         self.form = forms.AppFeaturesForm()
+        self.app = Webapp.objects.get(pk=337141)
+        self.features = self.app.current_version.features
         self.create_switch('buchets')
+
+    def _check_log(self, action):
+        assert AppLog.objects.filter(
+            addon=self.app, activity_log__action=action.id).exists(), (
+                "Didn't find `%s` action in logs." % action.short)
 
     def test_required(self):
         f_names = self.form.fields.keys()
@@ -157,3 +168,37 @@ class TestAppFeaturesForm(amo.tests.TestCase):
         forms.AppFeaturesForm.base_fields['has_apps'].help_text = _(u'H\xe9llo')
         fields = [f.help_text for f in self.form.required_api_fields()]
         eq_(fields, sorted(f[1] for f in APP_FEATURES))
+
+    def test_changes_mark_for_rereview(self):
+        self.features.update(has_sms=True)
+        data = {'has_apps': True}
+        self.form = forms.AppFeaturesForm(instance=self.features, data=data)
+        self.form.save()
+        ok_(self.features.has_apps)
+        ok_(not self.features.has_sms)
+        ok_(not self.features.has_contacts)
+        assert AppLog.objects.filter(addon=self.app,
+             activity_log__action=amo.LOG.REREVIEW_FEATURES_CHANGED.id).exists()
+        eq_(RereviewQueue.objects.count(), 1)
+
+    def test_no_changes_not_marked_for_rereview(self):
+        self.features.update(has_sms=True)
+        data = {'has_sms': True}
+        self.form = forms.AppFeaturesForm(instance=self.features, data=data)
+        self.form.save()
+        ok_(not self.features.has_apps)
+        ok_(self.features.has_sms)
+        eq_(RereviewQueue.objects.count(), 0)
+        assert not AppLog.objects.filter(addon=self.app,
+             activity_log__action=amo.LOG.REREVIEW_FEATURES_CHANGED.id).exists()
+
+    def test_changes_mark_for_rereview_bypass(self):
+        self.features.update(has_sms=True)
+        data = {'has_apps': True}
+        self.form = forms.AppFeaturesForm(instance=self.features, data=data)
+        self.form.save(mark_for_rereview=False)
+        ok_(self.features.has_apps)
+        ok_(not self.features.has_sms)
+        eq_(RereviewQueue.objects.count(), 0)
+        assert not AppLog.objects.filter(addon=self.app,
+             activity_log__action=amo.LOG.REREVIEW_FEATURES_CHANGED.id).exists()

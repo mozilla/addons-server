@@ -247,7 +247,7 @@ def _review(request, addon, version):
                 if addon.make_public == amo.PUBLIC_IMMEDIATELY:
                     addon.update(make_public=amo.PUBLIC_WAIT)
 
-                appfeatures_form.save()
+                appfeatures_form.save(mark_for_rereview=False)
 
                 # Log that the reviewer changed the minimum requirements.
                 added_features = new_features - old_features

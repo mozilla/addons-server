@@ -1411,8 +1411,11 @@ class AppFeaturesBase(amo.models.ModelBase):
     def to_dict(self):
         return dict((f, getattr(self, f)) for f in self._fields())
 
+    def to_keys(self):
+        return [k for k, v in self.to_dict().iteritems() if v]
+
     def to_list(self):
-        features = [k for k, v in self.to_dict().iteritems() if v]
+        features = self.to_keys()
         feature_names = [FEATURES_DICT[f[4:].upper()] for f in features]
         return sorted(feature_names)
 

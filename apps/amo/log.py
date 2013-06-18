@@ -626,6 +626,14 @@ class REVIEW_FEATURES_OVERRIDE(_LOG):
     review_queue = True
 
 
+class REREVIEW_FEATURES_CHANGED(_LOG):
+    id = 123
+    format = _(u'{addon} minimum requirements manually changed.')
+    short = _(u'Requirements Changed')
+    keep = True
+    review_queue = True
+
+
 LOGS = [x for x in vars().values()
         if isclass(x) and issubclass(x, _LOG) and x != _LOG]
 
