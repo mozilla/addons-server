@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 import datetime
 import json
+import os.path
 import time
 from itertools import cycle
-import os.path
 
 from django.conf import settings
 from django.core import mail
@@ -13,13 +13,14 @@ from django.test.utils import override_settings
 from django.utils import translation
 
 import mock
+import requests
 from nose import SkipTest
 from nose.tools import eq_, ok_
 from pyquery import PyQuery as pq
-import requests
 
 import amo
 import amo.tests
+import reviews
 from abuse.models import AbuseReport
 from access.models import GroupUser
 from addons.models import AddonDeviceType
@@ -35,16 +36,17 @@ from editors.models import (CannedResponse, EscalationQueue, RereviewQueue,
 from files.models import File
 from lib.crypto import packaged
 from lib.crypto.tests import mock_sign
+from reviews.models import Review, ReviewFlag
+from users.models import UserProfile
+from versions.models import Version
+from zadmin.models import get_config, set_config
+
+from mkt.constants.features import FeatureProfile
 from mkt.reviewers.views import _do_sort, _queue_to_apps
 from mkt.site.fixtures import fixture
 from mkt.submit.tests.test_views import BasePackagedAppTest
 from mkt.webapps.models import Webapp
 from mkt.webapps.tests.test_models import PackagedFilesMixin
-import reviews
-from reviews.models import Review, ReviewFlag
-from users.models import UserProfile
-from versions.models import Version
-from zadmin.models import get_config, set_config
 
 
 class AttachmentManagementMixin(object):
@@ -658,6 +660,50 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         apps = [a.app for a in res.context['addons']]
         ok_(app not in apps)
         ok_(self.apps[1] in apps)
+
+
+class TestDeviceQueue(AppReviewerTest, AccessMixin):
+    fixtures = fixture('group_editor.json', 'user_editor.json',
+                       'user_editor_group.json', 'user_999.json')
+
+    def setUp(self):
+        self.create_switch('buchets')
+        self.create_switch('search-api-es')
+
+        self.app1 = app_factory(name='XXX',
+                                version_kw={'version': '1.0',
+                                            'created': self.days_ago(2),
+                                            'nomination': self.days_ago(2)})
+        self.app1.versions.latest().features.update(has_sms=True)
+
+        self.app2 = app_factory(name='YYY',
+                                version_kw={'version': '1.0',
+                                            'created': self.days_ago(2),
+                                            'nomination': self.days_ago(2)})
+        self.app2.versions.latest().features.update(has_mp3=True)
+
+        self.app1.update(status=amo.STATUS_PENDING)
+        self.app2.update(status=amo.STATUS_PENDING)
+
+        self.apps = list(Webapp.objects.order_by('id'))
+        self.login_as_editor()
+        self.url = reverse('reviewers.apps.queue_device')
+
+    def test_no_queue_if_no_pro(self):
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        ok_('queue_device' not in res.context['queue_counts'])
+        eq_(res.context['addons'], [])
+
+    def test_queue_filters(self):
+        "Test queue filters out apps we don't support."
+        pro = FeatureProfile(sms=True).to_signature()
+        res = self.client.get(self.url, {'pro': pro})
+        eq_(res.status_code, 200)
+        eq_(res.context['queue_counts']['device'], 1)
+        apps = [a.app for a in res.context['addons']]
+        ok_(self.app1 in apps)
+        ok_(self.app2 not in apps)
 
 
 class TestEscalationQueue(AppReviewerTest, AccessMixin, FlagsMixin,

@@ -44,7 +44,8 @@ from translations.query import order_by_translation
 from users.models import UserProfile
 from zadmin.models import set_config, unmemoized_get_config
 
-from mkt.reviewers.utils import AppsReviewing, clean_sort_param
+from mkt.reviewers.utils import (AppsReviewing, clean_sort_param,
+                                 device_queue_search)
 from mkt.search.forms import ApiSearchForm
 from mkt.site.helpers import product_as_dict
 from mkt.submit.forms import AppFeaturesForm
@@ -67,6 +68,7 @@ def home(request):
     progress, percentage = _progress()
 
     data = context(
+        request,
         reviews_total=ActivityLog.objects.total_reviews(webapp=True)[:5],
         reviews_monthly=ActivityLog.objects.monthly_reviews(webapp=True)[:5],
         #new_editors=EventLog.new_editors(),  # Bug 747035
@@ -78,7 +80,7 @@ def home(request):
     return jingo.render(request, 'reviewers/home.html', data)
 
 
-def queue_counts():
+def queue_counts(request):
     excluded_ids = EscalationQueue.uncached.values_list('addon', flat=True)
 
     counts = {
@@ -114,6 +116,10 @@ def queue_counts():
                                  .filter(addon__status=amo.STATUS_PENDING)
                                  .count(),
     }
+
+    if waffle.switch_is_active('buchets') and 'pro' in request.GET:
+        counts.update({'device': device_queue_search(request).count()})
+
     rv = {}
     if isinstance(type, basestring):
         return counts[type]
@@ -154,10 +160,10 @@ def _progress():
     return (progress, percentage)
 
 
-def context(**kw):
+def context(request, **kw):
     statuses = dict((k, unicode(v)) for k, v in amo.STATUS_CHOICES.items())
     ctx = dict(motd=unmemoized_get_config('mkt_reviewers_motd'),
-               queue_counts=queue_counts(),
+               queue_counts=queue_counts(request),
                search_url=reverse('api_dispatch_list', kwargs={
                    'api_name': 'apps', 'resource_name': 'search'}),
                statuses=statuses, point_types=amo.REVIEWED_MARKETPLACE)
@@ -299,7 +305,7 @@ def _review(request, addon, version):
     num_pages = pager.paginator.num_pages
     count = pager.paginator.count
 
-    ctx = context(version=version, product=addon, pager=pager,
+    ctx = context(request, version=version, product=addon, pager=pager,
                   num_pages=num_pages, count=count,
                   flags=Review.objects.filter(addon=addon, flag=True),
                   form=form, canned=canned, is_admin=is_admin,
@@ -352,7 +358,7 @@ def _queue(request, apps, tab, pager_processor=None):
     per_page = request.GET.get('per_page', QUEUE_PER_PAGE)
     pager = paginate(request, apps, per_page)
 
-    return jingo.render(request, 'reviewers/queue.html', context(**{
+    return jingo.render(request, 'reviewers/queue.html', context(request, **{
         'addons': pager.object_list,
         'pager': pager,
         'tab': tab,
@@ -444,6 +450,21 @@ def queue_updates(request):
 
 
 @permission_required('Apps', 'Review')
+def queue_device(request):
+    """
+    A device specific queue matching apps which require features that our
+    device support based on the `profile` query string.
+    """
+    if waffle.switch_is_active('buchets') and 'pro' in request.GET:
+        apps = [QueuedApp(app, app.all_versions[0].nomination)
+                for app in device_queue_search(request)]
+    else:
+        apps = []
+
+    return _queue(request, apps, 'device')
+
+
+@permission_required('Apps', 'Review')
 def queue_moderated(request):
     """Queue for reviewing app reviews."""
     rf = (Review.uncached.exclude(Q(addon__isnull=True) |
@@ -463,7 +484,7 @@ def queue_moderated(request):
         return redirect(reverse('reviewers.apps.queue_moderated'))
 
     return jingo.render(request, 'reviewers/queue.html',
-                        context(reviews_formset=reviews_formset,
+                        context(request, reviews_formset=reviews_formset,
                                 tab='moderated', page=page, flags=flags))
 
 
@@ -524,7 +545,7 @@ def logs(request):
                 Q(user__username__icontains=term)).distinct()
 
     pager = paginate(request, approvals, 50)
-    data = context(form=form, pager=pager, ACTION_DICT=amo.LOG_BY_ID,
+    data = context(request, form=form, pager=pager, ACTION_DICT=amo.LOG_BY_ID,
                    tab='apps')
     return jingo.render(request, 'reviewers/logs.html', data)
 
@@ -538,7 +559,7 @@ def motd(request):
     if form and request.method == 'POST' and form.is_valid():
         set_config(u'mkt_reviewers_motd', form.cleaned_data['motd'])
         return redirect(reverse('reviewers.apps.motd'))
-    data = context(form=form)
+    data = context(request, form=form)
     return jingo.render(request, 'reviewers/motd.html', data)
 
 
@@ -656,7 +677,8 @@ def app_abuse(request, addon):
     total = reports.count()
     reports = paginate(request, reports, count=total)
     return jingo.render(request, 'reviewers/abuse.html',
-                        context(addon=addon, reports=reports, total=total))
+                        context(request, addon=addon, reports=reports,
+                                total=total))
 
 
 @permission_required('Apps', 'Review')
@@ -718,7 +740,7 @@ def performance(request, username=None):
         }
     }
 
-    ctx = context(**{
+    ctx = context(request, **{
         'profile': user,
         'total': total,
         'breakdown': breakdown,
@@ -730,18 +752,18 @@ def performance(request, username=None):
 @permission_required('Apps', 'Review')
 def leaderboard(request):
 
-    return jingo.render(request, 'reviewers/leaderboard.html', context(**{
-        'scores': ReviewerScore.all_users_by_score(),
-    }))
+    return jingo.render(request, 'reviewers/leaderboard.html', context(request,
+        **{'scores': ReviewerScore.all_users_by_score()}))
 
 
 @permission_required('Apps', 'Review')
 @json_view
 def apps_reviewing(request):
 
-    return jingo.render(request, 'reviewers/apps_reviewing.html', context(**{
-        'apps': AppsReviewing(request).get_apps(),
-        'tab': 'reviewing'}))
+    return jingo.render(request, 'reviewers/apps_reviewing.html',
+                        context(request, **{
+                            'apps': AppsReviewing(request).get_apps(),
+                            'tab': 'reviewing'}))
 
 
 @permission_required('Apps', 'Review')

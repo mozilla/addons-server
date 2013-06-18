@@ -5,9 +5,9 @@ from django.utils.encoding import smart_str
 from django.core.exceptions import ObjectDoesNotExist
 
 import jinja2
+import waffle
 from jingo import register
 from tower import ugettext as _, ugettext_lazy as _lazy
-import waffle
 
 
 from access import acl
@@ -16,7 +16,7 @@ from amo.urlresolvers import reverse
 
 from mkt.developers.helpers import mkt_page_title
 from mkt.reviewers.utils import (AppsReviewing, clean_sort_param,
-                                 create_sort_link)
+                                 create_sort_link, device_queue_search)
 
 
 @register.function
@@ -38,6 +38,7 @@ def reviewers_breadcrumbs(context, queue=None, items=None):
                   'rereview': _('Re-reviews'),
                   'updates': _('Updates'),
                   'escalated': _('Escalations'),
+                  'device': _('Device'),
                   'moderated': _('Moderated Reviews'),
                   'reviewing': _('Reviewing'),
                   'themes': _('Themes')}
@@ -73,11 +74,12 @@ def queue_tabnav(context):
 
     Each tuple contains three elements: (named_url. tab_code, tab_text)
     """
+    request = context['request']
     counts = context['queue_counts']
-    apps_reviewing = AppsReviewing(context['request']).get_apps()
+    apps_reviewing = AppsReviewing(request).get_apps()
 
     # Apps.
-    if acl.action_allowed(context['request'], 'Apps', 'Review'):
+    if acl.action_allowed(request, 'Apps', 'Review'):
         rv = [
             ('reviewers.apps.queue_pending', 'pending',
              _('Apps ({0})', counts['pending']).format(counts['pending'])),
@@ -89,7 +91,7 @@ def queue_tabnav(context):
             ('reviewers.apps.queue_updates', 'updates',
              _('Updates ({0})', counts['updates']).format(counts['updates'])),
         ]
-        if acl.action_allowed(context['request'], 'Apps', 'ReviewEscalated'):
+        if acl.action_allowed(request, 'Apps', 'ReviewEscalated'):
             rv.append(('reviewers.apps.queue_escalated', 'escalated',
                        _('Escalations ({0})', counts['escalated']).format(
                        counts['escalated'])))
@@ -105,10 +107,16 @@ def queue_tabnav(context):
         rv = []
 
     # Themes.
-    if (acl.action_allowed(context['request'], 'Personas', 'Review') and
+    if (acl.action_allowed(request, 'Personas', 'Review') and
         waffle.switch_is_active('mkt-themes')):
         rv.append(('reviewers.themes.list', 'themes',
                   _('Themes ({0})').format(counts['themes']),))
+
+    if waffle.switch_is_active('buchets') and 'pro' in request.GET:
+        device_srch = device_queue_search(request)
+        rv.append(('reviewers.apps.queue_device', 'device',
+                  _('Device ({0})').format(device_srch.count()),))
+
     return rv
 
 

@@ -18,6 +18,7 @@ from amo.utils import JSONEncoder, send_mail_jinja, to_language
 from editors.models import EscalationQueue, RereviewQueue, ReviewerScore
 from files.models import File
 
+from mkt.constants.features import FeatureProfile
 from mkt.site.helpers import product_as_dict
 from mkt.webapps.models import Webapp
 
@@ -533,3 +534,23 @@ class AppsReviewing(object):
         apps.append(addon_id)
         cache.set(self.key, ','.join(map(str, set(apps))),
                   amo.EDITOR_VIEWING_INTERVAL * 2)
+
+
+def device_queue_search(request):
+    """
+    Returns a queryset that can be used as a base for searching the device
+    specific queue.
+    """
+    filters = {
+        'type': amo.ADDON_WEBAPP,
+        'status': amo.STATUS_PENDING,
+        'disabled_by_user': False,
+    }
+    sig = request.GET.get('pro')
+    if sig:
+        profile = FeatureProfile.from_signature(sig)
+        filters.update(dict(
+            **profile.to_kwargs(prefix='_current_version__features__has_')
+        ))
+    return Webapp.version_and_file_transformer(
+        Webapp.objects.filter(**filters))
