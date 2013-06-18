@@ -109,7 +109,7 @@ def update_info(ref='origin/master'):
 @task
 @roles(settings.WEB_HOSTGROUP, settings.CELERY_HOSTGROUP)
 @parallel
-def install_package(name, rpmbuild):
+def install_package(rpmbuild):
     rpmbuild.install_package()
 
 
