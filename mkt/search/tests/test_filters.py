@@ -36,10 +36,10 @@ class TestSearchFilters(BaseOAuth):
         self.grant_permission(self.profile, rules)
         self.req.groups = self.profile.groups.all()
 
-    def _filter(self, req, filters, sorting=None):
+    def _filter(self, req, filters, sorting=None, **kwargs):
         form = ApiSearchForm(filters)
         if form.is_valid():
-            qs = Webapp.from_search(self.req)
+            qs = Webapp.from_search(self.req, **kwargs)
             return _filter_search(
                 self.req, qs, form.cleaned_data, sorting)._build_query()
         else:
@@ -113,6 +113,13 @@ class TestSearchFilters(BaseOAuth):
         url = 'http://hy.fr/manifest.webapp'
         qs = self._filter(self.req, {'manifest_url': url})
         ok_({'term': {'manifest_url': url}} in qs['filter']['and'])
+
+    def test_region_exclusions(self):
+        self.create_switch('search-api-es')
+        qs = self._filter(self.req, {'q': 'search terms'}, new_idx=True,
+                          region=regions.CO)
+        ok_({'not': {'filter': {'term': {'region_exclusions': 9}}}}
+            in qs['filter']['and'])
 
 
 class TestSearchFiltersAndroid(BaseOAuth):

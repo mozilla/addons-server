@@ -637,7 +637,7 @@ class Webapp(Addon):
 
         if region:
             if new_idx and waffle.switch_is_active('search-api-es'):
-                srch.filter(~F(region_exclusions=region.id))
+                srch = srch.filter(~F(region_exclusions=region.id))
             else:
                 excluded = get_excluded_in(region.id)
                 if excluded:
