@@ -1523,7 +1523,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         assert data['content'], 'There should be a content with the traceback'
         eq_(data['headers'], {})
 
-    @mock.patch('mkt.reviewers.views._mini_manifest')
+    @mock.patch('mkt.reviewers.views.json.dumps')
     def test_manifest_json_packaged(self, mock_):
         # Test that when the app is packaged, _mini_manifest is called.
         mock_.return_value = '{}'
@@ -1534,20 +1534,16 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         eq_(res.status_code, 200)
         assert mock_.called
 
-    @mock.patch('mkt.reviewers.views.requests.get')
-    def test_manifest_json_perms(self, mock_get):
-        m = mock.Mock()
-        m.content = """
-        {"permissions":
-            {"foo": {"description": "foo"},
-             "camera": {"description": "<script>"}
+    @mock.patch('mkt.reviewers.views._get_manifest_json')
+    def test_manifest_json_perms(self, mock_):
+        mock_.return_value = {
+            'permissions': {
+                "foo": {"description": "foo"},
+                "camera": {"description": "<script>"}
             }
         }
-        """
-        m.headers = {'content-type':
-                     'application/x-web-app-manifest+json <script>'}
-        mock_get.return_value = m
 
+        self.get_app().update(is_packaged=True)
         r = self.client.get(reverse('reviewers.apps.review.manifest',
                                     args=[self.app.app_slug]))
         eq_(r.status_code, 200)

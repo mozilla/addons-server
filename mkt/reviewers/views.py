@@ -562,11 +562,9 @@ CERTIFIED_PERMISSIONS = set([
 
 
 def _get_permissions(manifest):
-    if 'permissions' not in manifest:
-        return {}
-
     permissions = {}
-    for perm in manifest['permissions'].keys():
+
+    for perm in manifest.get('permissions', {}).keys():
         pval = permissions[perm] = {'type': 'web'}
         if perm in PRIVILEGED_PERMISSIONS:
             pval['type'] = 'priv'
@@ -578,6 +576,10 @@ def _get_permissions(manifest):
     return permissions
 
 
+def _get_manifest_json(addon):
+    return addon.get_manifest_json(addon.versions.latest().all_files[0])
+
+
 @permission_required('Apps', 'Review')
 @addon_view
 @json_view
@@ -586,8 +588,7 @@ def app_view_manifest(request, addon):
     success = False
     headers = ''
     if addon.is_packaged:
-        version = addon.versions.latest()
-        manifest = json.loads(_mini_manifest(addon, version.id))
+        manifest = _get_manifest_json(addon)
         content = json.dumps(manifest, indent=4)
         success = True
 
