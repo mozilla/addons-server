@@ -46,9 +46,6 @@ class CommunicationNote(amo.models.ModelBase):
     class Meta:
         db_table = 'comm_thread_notes'
 
-    def get_type(self):
-        return const.NOTE_TYPES[self.note_type]
-
 
 class CommunicationThreadToken(amo.models.ModelBase):
     thread = models.ForeignKey(CommunicationThread, related_name='token')

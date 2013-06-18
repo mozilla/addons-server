@@ -128,19 +128,21 @@ Note
 
     ..
 
-        0 - Approval
+        0 - No Action
 
-        1 - Rejection
+        1 - Approval
 
-        2 - Disabled
+        2 - Rejection
 
-        3 - MoreInfo
+        3 - Disabled
 
-        4 - Escalation
+        4 - MoreInfo
 
-        5 - ReviewerComment
+        5 - Escalation
 
-        6 - Resubmission
+        6 - Reviewer Comment
+
+        7 - Resubmission
 
 .. _note-post-label:
 
