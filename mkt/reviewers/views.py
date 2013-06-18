@@ -159,7 +159,7 @@ def context(**kw):
                queue_counts=queue_counts(),
                search_url=reverse('api_dispatch_list', kwargs={
                    'api_name': 'apps', 'resource_name': 'search'}),
-               statuses=statuses)
+               statuses=statuses, point_types=amo.REVIEWED_MARKETPLACE)
     ctx.update(kw)
     return ctx
 
@@ -320,7 +320,6 @@ def _queue(request, apps, tab, pager_processor=None):
         'pager': pager,
         'tab': tab,
         'search_form': _get_search_form(request),
-        'point_types': amo.REVIEWED_MARKETPLACE,
     }))
 
 
