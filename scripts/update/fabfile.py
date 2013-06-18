@@ -1,7 +1,9 @@
 import os
 import time
 from fabric.api import (env, execute, lcd, local, parallel,
-                        put, run, roles, task)
+                        run, roles, task)
+
+from fabdeploytools.rpm import RPMBuild
 
 import commander.hosts
 import commander_settings as settings
@@ -127,42 +129,10 @@ def update_info(ref='origin/master'):
 
 
 @task
-def build_package(name, pkgfile):
-    local('fpm -s dir -t rpm -n "%s" '
-          '--rpm-compression none '
-          '-p "%s" '
-          '--directories / '
-          '-x "*.git" -x "*.svn" -x "*.pyc" '
-          '-C %s --prefix "%s" '
-          'zamboni venv' % (name,
-                            pkgfile,
-                            ROOT_DIR,
-                            os.path.join(INSTALL_TO, name)))
-
-
-@task
 @roles(settings.WEB_HOSTGROUP, settings.CELERY_HOSTGROUP)
 @parallel
-def install_package(name, package_file):
-    cur_sym = os.path.join(INSTALL_TO, 'current')
-
-    put(package_file, package_file)
-    run('rpm -i %s' % package_file)
-    run('[[ -d {0} ]] && ln -sfn {0} {1}'.format(os.path.join(INSTALL_TO,
-                                                              name), cur_sym))
-    run('rm -f %s' % package_file)
-
-
-@task
-@roles(settings.WEB_HOSTGROUP, settings.CELERY_HOSTGROUP)
-@parallel
-def cleanup_packages():
-    installed = run('rpm -qa {0}-*'.format(PACKAGE_PREFIX)).split()
-    installed.sort()
-
-    for i in installed[:-KEEP_RELEASES]:
-        if BUILD_ID not in i:
-            run('rpm -e %s' % i)
+def install_package(name, rpmbuild):
+    rpmbuild.install_package()
 
 
 @task
@@ -211,15 +181,21 @@ def update_celery():
 @task
 def deploy():
     ref = get_version()[:6]
+    rpmbuild = RPMBuild(name='zamboni',
+                        env=ENV,
+                        ref=ref,
+                        build_id=BUILD_ID,
+                        install_dir=INSTALL_TO)
 
     package_name = '%s-%s-%s' % (PACKAGE_PREFIX, BUILD_ID, ref)
     package_file = os.path.join(PACKAGE_DIR, '%s.rpm' % package_name)
 
     execute(install_cron)
-    execute(build_package, package_name, package_file)
-    execute(install_package, package_name, package_file)
+
+    rpmbuild.build_rpm(ROOT_DIR, ['zamboni', 'venv'])
+    execute(install_package, rpmbuild)
+
     execute(restart_workers)
-    execute(cleanup_packages)
     local('rm -f %s' % package_file)
     with lcd(settings.SRC_DIR):
         local('%s manage.py cron cleanup_validation_results' %
