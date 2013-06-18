@@ -140,7 +140,17 @@ class TestRegionForm(amo.tests.WebappTestCase):
     def setUp(self):
         super(TestRegionForm, self).setUp()
         self.request = RequestFactory()
-        self.kwargs = {'product': self.app}
+        self.kwargs = {'product': self.app, 'request': self.request}
+
+    def test_is_toggling_free(self):
+        form = forms.RegionForm(data=None, **self.kwargs)
+        self.request.POST = {'toggle-paid': 'free'}
+        eq_(form.is_toggling(), 'free')
+
+    def test_is_toggling_paid(self):
+        form = forms.RegionForm(data=None, **self.kwargs)
+        self.request.POST = {'toggle-paid': 'paid'}
+        eq_(form.is_toggling(), 'paid')
 
     def test_initial_empty(self):
         form = forms.RegionForm(data=None, **self.kwargs)

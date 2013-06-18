@@ -69,8 +69,10 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
 
         super(PremiumForm, self).__init__(*args, **kw)
 
-        if self.addon.premium_type in amo.ADDON_PREMIUMS:
-            # Require the price field if the app is premium.
+        if (self.addon.premium_type in amo.ADDON_PREMIUMS
+                and not self.is_toggling()):
+            # Require the price field if the app is premium and
+            # we're not toggling from free <-> paid.
             self.fields['price'].required = True
 
         # Get the list of supported devices and put them in the data.
@@ -182,8 +184,7 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
 
         price_id = self.cleaned_data['price']
         if (self.cleaned_data.get('premium_type') in amo.ADDON_PREMIUMS
-                and not price_id):
-
+                and not price_id and not self.is_toggling()):
             raise_required()
 
         if not price_id and self.fields['price'].required is False:

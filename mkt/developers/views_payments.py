@@ -47,7 +47,7 @@ def payments(request, addon_id, addon, webapp=False):
         user=request.amo_user)
 
     region_form = forms.RegionForm(
-        request.POST or None, product=addon)
+        request.POST or None, product=addon, request=request)
 
     upsell_form = forms_payments.UpsellForm(
         request.POST or None, addon=addon, user=request.amo_user)
