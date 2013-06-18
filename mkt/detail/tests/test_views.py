@@ -64,6 +64,7 @@ class TestPackagedManifest(amo.tests.TestCase):
     def login_as_author(self):
         self.client.logout()
         user = self.app.authors.all()[0]
+        self.app.addonuser_set.create(user=user)
         assert self.client.login(username=user.email, password='password')
 
     def test_non_packaged(self):
