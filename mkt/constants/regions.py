@@ -60,7 +60,7 @@ class US(REGION):
     slug = 'us'
     mcc = 310
     weight = 1
-    has_payments = True
+    has_payments = False
 
 
 class UK(REGION):
