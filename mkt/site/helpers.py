@@ -98,11 +98,7 @@ def market_button(context, product, receipt_type=None, classes=None):
         if installed or purchased or not product.has_price():
             label = _('Install')
         else:
-            try:
-                label = product.get_price(region=request.REGION.id)
-            except KeyError:
-                log.warning('Price failed for app: {0}'.format(product.id))
-                label = 'Price N/A'
+            label = product.get_tier_name()
 
         # Free apps and purchased apps get active install buttons.
         if not product.is_premium() or purchased:
@@ -156,15 +152,14 @@ def product_as_dict(request, product, purchased=None, receipt_type=None,
         ret.update({'previews': previews})
 
     if product.has_price():
-        try:
-            ret.update({
-                'price': product.get_price(region=request.REGION.id) or '0',
-                'priceLocale': (product
-                                .get_price_locale(region=request.REGION.id)
-                                or _('Free')),
-            })
-        except KeyError:
-            log.warning('Price failed for app: {0}'.format(product.id))
+        # Note: These should really not be doing this, if get_price
+        # or get_price_locale is empty it means there is no price for this
+        # region.
+        ret.update({
+            'price': product.get_price(region=request.REGION.id) or '0',
+            'priceLocale': (product.get_price_locale(region=request.REGION.id)
+                            or _('Free')),
+        })
 
         if request.amo_user:
             ret['isPurchased'] = purchased

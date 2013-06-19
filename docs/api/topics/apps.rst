@@ -144,14 +144,20 @@ App
 
     Notes on the response.
 
+    :param string premium_type: one of ``free``, ``premium``, ``free-inapp``,
+        ``premium-inapp``. If ``premium`` or ``premium-inapp`` the app should
+        be bought, check the ``price`` field to determine if it can.
     :param string|null price: will be null if the app is free. If it is a
         paid app this will b a string representing the price in the currency
-        calculated for the request. Example: 1.00
+        calculated for the request. If ``null``, a price cannot
+        be calculated for the region and cannot be bought. Example: 1.00
     :param string|null price_locale: will be null if the app is free. If it
         is a paid app this will be a string representing the price with the
         currency formatted using the currency symbol and the locale
-        representations of numbers. Example: "1,00 $US". For more information
-        on this see :ref:`payment tiers <localized-tier-label>`.
+        representations of numbers. If ``null``, a price cannot
+        be calculated for the region and cannot be bought.
+        Example: "1,00 $US". For more information on this
+        see :ref:`payment tiers <localized-tier-label>`.
     :param privacy_policy: The path to the privacy policy resource.
     :param boolean regions > adolescent: an adolescent region has a sufficient
         volume of data to calculate ratings and rankings independent of
@@ -168,6 +174,7 @@ App
         might differ from the device).
     :param boolean user > purchased: true if the user has purchased the app from
         the marketplace.
+
 
 .. http:get:: /api/v1/apps/(int:id)|(string:slug)/privacy/
 

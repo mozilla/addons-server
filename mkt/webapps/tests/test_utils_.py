@@ -1,6 +1,5 @@
 from decimal import Decimal
 
-import mock
 from elasticutils.contrib.django import S
 from nose.tools import eq_, ok_
 
@@ -121,14 +120,6 @@ class TestAppToDictPrices(amo.tests.TestCase):
 
     def test_missing_price(self):
         self.premium.update(price=None)
-        res = app_to_dict(self.app)
-        eq_(res['price'], None)
-        eq_(res['price_locale'], None)
-
-
-    @mock.patch('mkt.webapps.models.Webapp.get_price')
-    def test_invalid_price(self, get_price):
-        get_price.side_effect = KeyError
         res = app_to_dict(self.app)
         eq_(res['price'], None)
         eq_(res['price_locale'], None)

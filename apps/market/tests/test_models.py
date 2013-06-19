@@ -3,7 +3,6 @@ from decimal import Decimal
 
 from django.utils import translation
 
-import mock
 from nose.tools import eq_, ok_
 
 import amo
@@ -13,7 +12,7 @@ from constants.payments import PROVIDER_BANGO
 from market.models import (AddonPremium, PreApprovalUser, Price, PriceCurrency,
                            Refund)
 from mkt.constants import apps
-from mkt.constants.regions import ALL_REGION_IDS, PL
+from mkt.constants.regions import ALL_REGION_IDS
 from stats.models import Contribution
 from users.models import UserProfile
 
@@ -106,11 +105,7 @@ class TestPrice(amo.tests.TestCase):
     def test_wrong_currency(self):
         bad = 4999
         ok_(bad not in ALL_REGION_IDS)
-        with self.assertRaises(KeyError):
-            Price.objects.get(pk=1).get_price('foo', region=bad)
-
-        with self.assertRaises(KeyError):
-            Price.objects.get(pk=1).get_price_locale('foo', region=bad)
+        ok_(not Price.objects.get(pk=1).get_price('foo', region=bad))
 
     def test_prices_provider(self):
         currencies = Price.objects.get(pk=1).prices(provider=PROVIDER_BANGO)

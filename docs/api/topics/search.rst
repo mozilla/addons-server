@@ -43,8 +43,8 @@ Search
 
     :param meta: :ref:`meta-response-label`.
     :param objects: A :ref:`listing <objects-response-label>` of
-    :ref:`apps <app-response-label>`, with the following additional
-    fields:
+        :ref:`apps <app-response-label>`, with the following additional
+        fields:
 
     .. code-block:: json
 

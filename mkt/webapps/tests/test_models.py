@@ -231,6 +231,12 @@ class TestWebapp(amo.tests.TestCase):
         self.make_premium(webapp)
         eq_(webapp.get_price(region=mkt.regions.US.id), 1)
 
+    def test_get_price_tier(self):
+        webapp = amo.tests.app_factory()
+        self.make_premium(webapp)
+        eq_(str(webapp.get_tier().price), '1.00')
+        ok_(webapp.get_tier_name())
+
     def test_has_no_premium(self):
         webapp = Webapp(premium_type=amo.ADDON_PREMIUM)
         webapp._premium = None

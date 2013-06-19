@@ -5,23 +5,23 @@ from django.dispatch import receiver
 from django.forms.models import model_to_dict
 from django.utils import translation
 
+import commonware.log
+from babel import numbers
+from jinja2.filters import do_dictsort
 from tower import ugettext_lazy as _
 
 import amo
 import amo.models
 from amo.decorators import write
 from amo.utils import get_locale_from_lang, memoize_key
-from constants.payments import (CARRIER_CHOICES, PAYMENT_METHOD_CHOICES,
-                                PAYMENT_METHOD_ALL, PROVIDER_BANGO,
+from constants.payments import (CARRIER_CHOICES, PAYMENT_METHOD_ALL,
+                                PAYMENT_METHOD_CHOICES, PROVIDER_BANGO,
                                 PROVIDER_CHOICES)
 from mkt.constants import apps
 from mkt.constants.regions import WORLDWIDE
 from stats.models import Contribution
 from users.models import UserProfile
 
-import commonware.log
-from babel import numbers
-from jinja2.filters import do_dictsort
 
 log = commonware.log.getLogger('z.market')
 
@@ -64,6 +64,10 @@ class Price(amo.models.ModelBase):
         # L10n: %s is the name of the price tier, eg: 10.
         return _('Tier %s' % self.name)
 
+    def tier_locale(self, currency='USD'):
+        # A way to display the price of the tier.
+        return price_locale(self.price, currency)
+
     def __unicode__(self):
         return u'$%s' % self.price
 
@@ -92,7 +96,11 @@ class Price(amo.models.ModelBase):
             'provider': provider, 'region': region
         })
 
-        price_currency = Price._currencies[lookup]
+        try:
+            price_currency = Price._currencies[lookup]
+        except KeyError:
+            return None, None
+
         return price_currency.price, price_currency.currency
 
     def get_price(self, carrier=None, region=None, provider=None):
@@ -102,9 +110,10 @@ class Price(amo.models.ModelBase):
 
     def get_price_locale(self, carrier=None, region=None, provider=None):
         """Return the price as a nicely localised string for the locale."""
-        return price_locale(*self.get_price_data(carrier=carrier,
-                                                 region=region,
-                                                 provider=provider))
+        price, currency = self.get_price_data(carrier=carrier, region=region,
+                                              provider=provider)
+        if price and currency:
+            return price_locale(price, currency)
 
     def prices(self, provider=None):
         """A list of dicts of all the currencies and prices for this tier."""

@@ -122,13 +122,8 @@ def app_to_dict(app, region=None, profile=None):
             data['payment_account'] = AccountResource().get_resource_uri(
                 q[0].payment_account)
 
-        try:
-            data['price'] = app.get_price(region=region)
-            data['price_locale'] = app.get_price_locale(region=region)
-        except KeyError:
-            data['price'] = None
-            data['price_locale'] = None
-            log.warning('Issue with price tier on app: {0}'.format(app.id))
+        data['price'] = app.get_price(region=region)
+        data['price_locale'] = app.get_price_locale(region=region)
 
     with no_translation():
         data['device_types'] = [n.api_name
@@ -225,7 +220,7 @@ def es_app_to_dict(obj, region=None, profile=None):
             price = Price.objects.get(name=src['price_tier'])
             data['price'] = price.get_price(region=region)
             data['price_locale'] = price.get_price_locale(region=region)
-    except (Price.DoesNotExist, KeyError):
+    except Price.DoesNotExist:
         log.warning('Issue with price tier on app: {0}'.format(obj._id))
 
     data['upsell'] = False

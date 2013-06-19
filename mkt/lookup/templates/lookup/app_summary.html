@@ -35,7 +35,7 @@
           {{ amo.ADDON_TYPE[app.type] }};
           {{ amo.ADDON_PREMIUM_TYPES[app.premium_type] }}
           {% if price %}
-            ({{ price.get_price_locale() }})
+            ({{ price.get_tier_name() }})
           {% endif %}
         </dd>
         <dt>{{ _('Submitted') }}</dt>

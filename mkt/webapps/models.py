@@ -532,6 +532,22 @@ class Webapp(Addon):
             return self.premium.price.get_price_locale(carrier=carrier,
                 region=region, provider=provider)
 
+    def get_tier(self):
+        """
+        Returns the price tier object.
+        """
+        if self.has_price():
+            return self.premium.price
+
+    def get_tier_name(self):
+        """
+        Returns the price tier for showing prices in the reviewer
+        tools and developer hub.
+        """
+        tier = self.get_tier()
+        if tier:
+            return tier.tier_locale()
+
     @amo.cached_property
     def promo(self):
         return self.get_promo()
