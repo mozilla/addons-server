@@ -3,6 +3,7 @@ import json
 from django.conf import settings
 
 import caching.base as caching
+import commonware.log
 import jinja2
 import waffle
 from jingo import env, register
@@ -17,6 +18,8 @@ from translations.helpers import truncate
 from versions.compare import version_int as vint
 
 import mkt
+
+log = commonware.log.getLogger('z.mkt.site')
 
 
 @jinja2.contextfunction
