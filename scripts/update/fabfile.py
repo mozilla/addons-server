@@ -18,14 +18,12 @@ ROOT_DIR = os.path.dirname(settings.SRC_DIR)
 VIRTUALENV = os.path.join(ROOT_DIR, 'venv')
 
 BUILD_ID = str(int(time.time()))
-INSTALL_TO = os.path.dirname(settings.WWW_DIR)
-PACKAGE_DIR = '/tmp'
 
 KEEP_RELEASES = 4
 
+DOMAIN = getattr(settings, 'DOMAIN', 'addons-dev.allizom.org')
 ENV = getattr(settings, 'ENV', 'dev')
-
-PACKAGE_PREFIX = 'deploy-zamboni-%s' % ENV
+CLUSTER = getattr(settings, 'CLUSTER', settings.WEB_HOSTGROUP)
 
 
 def get_version():
@@ -163,7 +161,8 @@ def deploy():
                         env=ENV,
                         ref=ref,
                         build_id=BUILD_ID,
-                        install_dir=INSTALL_TO)
+                        cluster=CLUSTER,
+                        domain=DOMAIN)
 
     execute(install_cron)
 
