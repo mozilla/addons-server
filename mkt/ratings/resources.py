@@ -204,7 +204,11 @@ class RatingResource(CORSResource, MarketplaceModelResource):
             if not request.user.is_anonymous():
                 filters['user'] = request.user
                 existing_review = Review.objects.valid().filter(**filters)
-                data['user'] = {'can_rate': not addon.has_author(request.user),
+                if addon.is_premium():
+                    can_rate = addon.has_purchased(request.amo_user)
+                else:
+                    can_rate = not addon.has_author(request.user)
+                data['user'] = {'can_rate': can_rate,
                                 'has_rated': existing_review.exists()}
             else:
                 data['user'] = None

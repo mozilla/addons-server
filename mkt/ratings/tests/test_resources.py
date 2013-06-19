@@ -6,6 +6,7 @@ from nose.tools import eq_
 import amo
 from addons.models import AddonUser
 from amo.tests import AMOPaths
+from market.models import AddonPurchase
 from reviews.models import Review, ReviewFlag
 from users.models import UserProfile
 
@@ -156,6 +157,17 @@ class TestRatingResource(BaseOAuth, AMOPaths):
         assert data['user']['can_rate']
         assert data['user']['has_rated']
 
+    def test_can_rate_unpurchased(self):
+        self.app.update(premium_type=amo.ADDON_PREMIUM)
+        res = self.client.get(self._collection_url())
+        assert not res.json['user']['can_rate']
+
+    def test_can_rate_purchased(self):
+        self.app.update(premium_type=amo.ADDON_PREMIUM)
+        AddonPurchase.objects.create(addon=self.app, user=self.user)
+        res = self.client.get(self._collection_url())
+        assert res.json['user']['can_rate']
+
     def _create(self, data=None, anonymous=False):
         default_data = {
             'app': self.app.id,
@@ -214,6 +226,12 @@ class TestRatingResource(BaseOAuth, AMOPaths):
         self.app.update(premium_type=amo.ADDON_PREMIUM)
         res, data = self._create()
         eq_(403, res.status_code)
+
+    def test_rate_purchased_premium(self):
+        self.app.update(premium_type=amo.ADDON_PREMIUM)
+        AddonPurchase.objects.create(addon=self.app, user=self.user)
+        res, data = self._create()
+        eq_(201, res.status_code)
 
     def _update(self, updated_data):
         # Create the original review
