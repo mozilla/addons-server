@@ -14,6 +14,18 @@ function initPreviewTheme(mktTheme) {
         return;
     }
 
+    if (BrowserUtils().browser.firefox !== true) {
+        $('.artist-tools, .persona-install').addClass('incompat-browser');
+        $('.persona-install button').addClass('disabled');
+    }
+
+    // Hover thumbnail install buttons.
+    $('.persona-install .add').click(_pd(function(e) {
+        dispatchPersonaEvent(
+            'SelectPersona',
+            $(this).closest('.persona').find('.persona-preview a')[0]);
+    }));
+
     if (mktTheme === true) {
         z.mktThemeFlag = true;
         bindPreviewListeners($themes);
@@ -54,7 +66,7 @@ $.fn.previewPersona = function(o) {
     }
     o = $.extend({
         resetOnClick: true,
-        activeClass:  'persona-hover'
+        activeClass: 'persona-hover'
     }, o || {});
     var $this = $(this);
     if (o.resetOnClick) {
