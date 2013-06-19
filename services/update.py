@@ -1,15 +1,12 @@
-from email.Utils import formatdate
-from email.mime.text import MIMEText
 import smtplib
 import sys
-from time import time
 import traceback
+
+from email.Utils import formatdate
+from email.mime.text import MIMEText
+from time import time
 from urlparse import parse_qsl
 
-import MySQLdb as mysql
-import sqlalchemy.pool as pool
-
-import commonware.log
 from django.core.management import setup_environ
 from django.utils.http import urlencode
 
@@ -18,13 +15,19 @@ setup_environ(settings)
 # This has to be imported after the settings so statsd knows where to log to.
 from django_statsd.clients import statsd
 
+
+import commonware.log
+import MySQLdb as mysql
+import sqlalchemy.pool as pool
+
+
 try:
     from compare import version_int
 except ImportError:
     from apps.versions.compare import version_int
 
 from constants import applications, base
-from utils import (get_mirror, log_configure, APP_GUIDS, PLATFORMS,
+from utils import (APP_GUIDS, get_mirror, log_configure, PLATFORMS,
                    STATUSES_PUBLIC)
 
 # Go configure the log.
@@ -271,14 +274,8 @@ class Update(object):
                 'version', 'premium_type'],
                 list(result)))
             row['type'] = base.ADDON_SLUGS_UPDATE[row['type']]
-            if row['premium_type'] in base.ADDON_PREMIUMS:
-                qs = urlencode(dict((k, data.get(k, ''))
-                               for k in base.WATERMARK_KEYS))
-                row['url'] = (u'%s/downloads/watermarked/%s?%s' %
-                              (settings.SITE_URL, row['file_id'], qs))
-            else:
-                row['url'] = get_mirror(self.data['addon_status'],
-                                        self.data['id'], row)
+            row['url'] = get_mirror(self.data['addon_status'],
+                                    self.data['id'], row)
             data['row'] = row
             return True
 

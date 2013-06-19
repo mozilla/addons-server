@@ -4,17 +4,17 @@ import StringIO
 import tempfile
 import time
 import traceback
-from PIL import Image
 
 from django.conf import settings
 
 import commonware.log
 import requests
+from PIL import Image
 
 import amo.search
 from amo.utils import memoize
 from applications.management.commands import dump_apps
-from lib.crypto import receipt, packaged
+from lib.crypto import packaged, receipt
 from lib.crypto.packaged import SigningError as PackageSigningError
 from lib.crypto.receipt import SigningError
 from lib.pay_server import client
@@ -69,7 +69,7 @@ def libraries():
         libraries_results.append(('PIL+JPEG', False, msg))
 
     try:
-        import M2Crypto
+        import M2Crypto  # NOQA
         libraries_results.append(('M2Crypto', True, 'Got it!'))
     except ImportError:
         libraries_results.append(('M2Crypto', False, 'Failed to import'))
@@ -119,7 +119,6 @@ def path():
           settings.PREVIEWS_PATH,
           settings.IMAGEASSETS_PATH,
           settings.USERPICS_PATH,
-          settings.WATERMARKED_ADDONS_PATH,
           settings.REVIEWER_ATTACHMENTS_PATH,
           dump_apps.Command.JSON_PATH,)
     r = [os.path.join(settings.ROOT, 'locale'),
@@ -242,7 +241,8 @@ def package_signer():
     destination = getattr(settings, 'SIGNED_APPS_SERVER', None)
     if not destination:
         return '', 'Signer is not configured.'
-    app_path = os.path.join(os.path.dirname(__file__), 'nagios_check_packaged_app.zip')
+    app_path = os.path.join(os.path.dirname(__file__),
+                            'nagios_check_packaged_app.zip')
     signed_path = tempfile.mktemp()
     try:
         packaged.sign_app(app_path, signed_path, None, False)
@@ -250,6 +250,7 @@ def package_signer():
     except PackageSigningError, e:
         msg = 'Error on package signing (%s): %s' % (destination, e)
         return msg, msg
+
 
 # Not called settings to avoid conflict with django.conf.settings.
 def settings_check():

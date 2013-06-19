@@ -236,9 +236,6 @@ ADDONS_PATH = NETAPP_STORAGE + '/addons'
 # not be publicly accessible (like disabled add-ons).
 GUARDED_ADDONS_PATH = NETAPP_STORAGE + '/guarded-addons'
 
-# Used for storing watermarked addons for the app.
-WATERMARKED_ADDONS_PATH = NETAPP_STORAGE + '/watermarked-addons'
-
 # Used for storing signed webapps.
 SIGNED_APPS_PATH = NETAPP_STORAGE + '/signed-apps'
 # Special reviewer signed ones for special people.
@@ -1420,16 +1417,6 @@ WEBAPPS_RECEIPT_KEY = ''
 WEBAPPS_RECEIPT_EXPIRY_SECONDS = 60 * 60 * 24 * 182
 # Send a new receipt back when it expires.
 WEBAPPS_RECEIPT_EXPIRED_SEND = False
-
-# How long a watermarked addon should be re-used for, after this
-# time it will be regenerated.
-WATERMARK_REUSE_SECONDS = 1800
-# How long a watermarked addon should wait before being deleted
-# by a cron. Setting this far apart from the reuse flag so that we
-# shouldn't have an overlap.
-WATERMARK_CLEANUP_SECONDS = 3600
-# Used in providing a hash for the download of the addon.
-WATERMARK_SECRET_KEY = ''
 
 CSRF_FAILURE_VIEW = 'amo.views.csrf_failure'
 

@@ -1,16 +1,13 @@
-from datetime import datetime, timedelta
 import hashlib
 import json
 import os
 import posixpath
 import re
+import time
 import unicodedata
 import uuid
-import shutil
-import stat
-import tempfile
-import time
 import zipfile
+from datetime import datetime, timedelta
 
 import django.dispatch
 from django.conf import settings
@@ -32,7 +29,7 @@ from amo.urlresolvers import reverse
 from applications.models import Application, AppVersion
 from apps.amo.utils import memoize
 import devhub.signals
-from files.utils import RDF, SafeUnzip
+from files.utils import SafeUnzip
 from versions.compare import version_int as vint
 
 log = commonware.log.getLogger('z.files')
@@ -142,11 +139,8 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         # In most cases we have an addon in the calling context.
         if not addon:
             addon = self.version.addon
-        if addon.is_premium() and addon.type != amo.ADDON_WEBAPP:
-            url = reverse('downloads.watermarked', args=[self.id])
-        else:
-            url = reverse('downloads.file', args=[self.id])
-        url = os.path.join(url, self.filename)
+        url = os.path.join(reverse('downloads.file', args=[self.id]),
+                           self.filename)
         # Firefox's Add-on Manager needs absolute urls.
         return absolutify(urlparams(url, src=src))
 
@@ -274,12 +268,8 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         kw = {'addon_id': addon.pk}
         if self.platform_id != amo.PLATFORM_ALL.id:
             kw['platform'] = self.platform_id
-        if addon.is_premium() and addon.type != amo.ADDON_WEBAPP:
-            url = reverse('downloads.watermarked', args=[self.id])
-        else:
-            url = reverse('downloads.latest', kwargs=kw)
-        return os.path.join(url, 'addon-%s-latest%s' %
-                            (addon.pk, self.extension))
+        return os.path.join(reverse('downloads.latest', kwargs=kw),
+                            'addon-%s-latest%s' % (addon.pk, self.extension))
 
     def eula_url(self):
         return reverse('addons.eula', args=[self.version.addon_id, self.id])
@@ -300,11 +290,6 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
     def guarded_file_path(self):
         return os.path.join(settings.GUARDED_ADDONS_PATH,
                             str(self.version.addon_id), self.filename)
-
-    def watermarked_file_path(self, user_pk):
-        return os.path.join(settings.WATERMARKED_ADDONS_PATH,
-                            str(self.version.addon_id),
-                            '%s-%s-%s' % (self.pk, user_pk, self.filename))
 
     def _signed(self):
         split = self.filename.rsplit('.', 1)
@@ -422,77 +407,6 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
                  (self.pk, end))
         statsd.timing('files.extract.localepicker', (end * 1000))
         return res
-
-    def watermark_install_rdf(self, user):
-        """
-        Reads the install_rdf out of an addon and writes the user information
-        into it.
-        """
-        inzip = SafeUnzip(self.file_path)
-        inzip.is_valid()
-
-        try:
-            install = inzip.extract_path('install.rdf')
-            data = RDF(install)
-            data.set(user.email, self.version.addon.get_watermark_hash(user))
-        except Exception, e:
-            log.error('Could not alter install.rdf in file: %s for %s, %s'
-                      % (self.pk, user.pk, e))
-            raise
-
-        return data
-
-    def write_watermarked_addon(self, dest, data):
-        """
-        Writes the watermarked addon to the destination given
-        the addons install.rdf data.
-        """
-        directory = os.path.dirname(dest)
-        if not os.path.exists(directory):
-            os.makedirs(directory)
-
-        shutil.copyfile(self.file_path, dest)
-        outzip = SafeUnzip(dest, mode='a')
-        outzip.is_valid()
-        outzip.zip.writestr('install.rdf', str(data))
-        outzip.close()
-
-    def watermark(self, user):
-        """
-        Creates a copy of the file and watermarks the
-        metadata with the users.email. If something goes wrong, will
-        raise an error, will return the dest if its ready to be served.
-        """
-        dest = self.watermarked_file_path(user.pk)
-
-        with amo.utils.guard('marketplace.watermark.%s' % dest) as locked:
-            if locked:
-                # The calling method will need to do something about this.
-                log.error('Watermarking collision: %s for %s' %
-                          (self.pk, user.pk))
-                return
-
-            if os.path.exists(dest):
-                age = time.time() - os.stat(dest)[stat.ST_ATIME]
-                if age > settings.WATERMARK_REUSE_SECONDS:
-                    log.debug('Removing stale watermark %s for %s %dsecs.' %
-                             (self.pk, user.pk, age))
-                    os.remove(dest)
-                else:
-                    log.debug('Reusing existing watermarked file: %s for %s' %
-                             (self.pk, user.pk))
-                    # Touch the update time so that the cron job won't delete
-                    # us too quickly.
-                    os.utime(dest, None)
-                    return dest
-
-            with statsd.timer('marketplace.watermark'):
-                log.info('Starting watermarking of: %s for %s' %
-                         (self.pk, user.pk))
-                data = self.watermark_install_rdf(user)
-                self.write_watermarked_addon(dest, data)
-
-        return dest
 
 
 @receiver(models.signals.post_save, sender=File,

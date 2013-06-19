@@ -3,17 +3,15 @@ import posixpath
 from django import http
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404, redirect
-from django.views.decorators.cache import never_cache
 
 import caching.base as caching
 import commonware.log
 import jingo
 from mobility.decorators import mobile_template
-import waffle
 
 import amo
 from amo.urlresolvers import reverse
-from amo.utils import urlparams, HttpResponseSendFile
+from amo.utils import HttpResponseSendFile, urlparams
 from access import acl
 from addons.decorators import addon_view_factory
 from addons.models import Addon
@@ -81,50 +79,6 @@ def update_info_redirect(request, version_id):
                     permanent=True)
 
 
-@never_cache
-def download_watermarked(request, file_id):
-    if not waffle.switch_is_active('marketplace'):
-        raise http.Http404()
-
-    file = get_object_or_404(File.objects, pk=file_id)
-    addon = get_object_or_404(Addon.objects, pk=file.version.addon_id)
-    author = request.check_ownership(addon, require_owner=False)
-    user = request.amo_user
-
-    if not author:
-        if (not addon.is_premium() or addon.is_disabled
-            or file.status == amo.STATUS_DISABLED):
-            raise http.Http404()
-
-        if request.user.is_anonymous():
-            log.debug('Anonymous user, checking hash: %s' % file_id)
-            email = request.GET.get(amo.WATERMARK_KEY, None)
-            hsh = request.GET.get(amo.WATERMARK_KEY_HASH, None)
-
-            user = addon.get_user_from_hash(email, hsh)
-            if not user:
-                log.debug('Watermarking denied, no user: %s, %s, %s'
-                          % (file_id, email, hsh))
-                raise PermissionDenied
-
-        if not addon.has_purchased(user):
-            log.debug('Watermarking denied, not purchased: %s, %s'
-                      % (file_id, user.id))
-            raise PermissionDenied
-
-    dest = file.watermark(user)
-    if not dest:
-        # TODO(andym): the watermarking is already in progress and we've
-        # got multiple requests from the same users for the same file
-        # perhaps this should go into a loop.
-        log.debug('Watermarking in progress: %s, %s' % (file_id, user.id))
-        raise http.Http404()
-
-    log.debug('Serving watermarked file: %s, %s' % (file_id, user.id))
-    return HttpResponseSendFile(request, dest,
-                                content_type='application/xp-install')
-
-
 # Should accept junk at the end for filename goodness.
 def download_file(request, file_id, type=None):
     file = get_object_or_404(File.objects, pk=file_id)
@@ -166,9 +120,7 @@ def download_latest(request, addon, type='xpi', platform=None):
     except IndexError:
         raise http.Http404()
     args = [file.id, type] if type else [file.id]
-    pattern = ('downloads.watermarked' if addon.is_premium()
-               else 'downloads.file')
-    url = posixpath.join(reverse(pattern, args=args), file.filename)
+    url = posixpath.join(reverse('downloads.file', args=args), file.filename)
     if request.GET:
         url += '?' + request.GET.urlencode()
     return http.HttpResponseRedirect(url)

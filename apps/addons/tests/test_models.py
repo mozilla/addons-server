@@ -2,8 +2,8 @@
 import itertools
 import json
 import os
-import time
 import tempfile
+import time
 from contextlib import nested
 from datetime import datetime, timedelta
 from urlparse import urlparse
@@ -16,9 +16,9 @@ from django.core.exceptions import ValidationError
 from django.db import IntegrityError
 from django.utils import translation
 
-from mock import patch, Mock
-from nose.tools import eq_, assert_not_equal, ok_, raises
 import waffle
+from mock import Mock, patch
+from nose.tools import assert_not_equal, eq_, ok_, raises
 
 import amo
 import amo.tests
@@ -40,7 +40,7 @@ from files.models import File, Platform
 from files.tests.test_models import TestLanguagePack, UploadTest
 from market.models import AddonPaymentData, AddonPremium, Price
 from reviews.models import Review
-from translations.models import TranslationSequence, Translation
+from translations.models import Translation, TranslationSequence
 from users.models import UserProfile
 from versions.models import ApplicationsVersions, Version
 from versions.compare import version_int
@@ -2144,47 +2144,6 @@ class TestAddonPurchase(amo.tests.TestCase):
                       amo.CONTRIB_CHARGEBACK]:
             purchase.update(type=state)
             eq_(state, self.addon.get_purchase_type(self.user))
-
-
-class TestWatermarkHash(amo.tests.TestCase):
-    fixtures = ['base/addon_3615', 'base/users']
-
-    def setUp(self):
-        self.addon = Addon.objects.get(pk=3615)
-        self.user = UserProfile.objects.get(email='regular@mozilla.com')
-
-    def test_watermark_change_email(self):
-        hsh = self.addon.get_watermark_hash(self.user)
-        self.user.update(email='foo@bar.com')
-        eq_(hsh, self.addon.get_watermark_hash(self.user))
-
-    def test_check_hash(self):
-        hsh = self.addon.get_watermark_hash(self.user)
-        eq_(self.user, self.addon.get_user_from_hash(self.user.email, hsh))
-
-    def test_check_hash_messed(self):
-        hsh = self.addon.get_watermark_hash(self.user)
-        hsh = hsh + 'asd'
-        eq_(None, self.addon.get_user_from_hash(self.user.email, hsh))
-
-    def test_check_user_change(self):
-        self.user.update(email='foo@bar.com')
-        hsh = self.addon.get_watermark_hash(self.user)
-        eq_(self.user,
-            self.addon.get_user_from_hash('regular@mozilla.com', hsh))
-
-    def test_check_user_multiple(self):
-        hsh = self.addon.get_watermark_hash(self.user)
-        self.user.update(email='foo@bar.com')
-        UserProfile.objects.create(email='regular@mozilla.com')
-        eq_(self.user,
-            self.addon.get_user_from_hash('regular@mozilla.com', hsh))
-
-    def test_cant_takeover(self):
-        hsh = self.addon.get_watermark_hash(self.user)
-        self.user.delete()
-        UserProfile.objects.create(email='regular@mozilla.com')
-        eq_(None, self.addon.get_user_from_hash('regular@mozilla.com', hsh))
 
 
 class TestCompatOverride(amo.tests.TestCase):

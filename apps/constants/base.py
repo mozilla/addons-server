@@ -396,11 +396,6 @@ VERSION_SEARCH = re.compile('\.(\d+)$')
 # Editor Tools
 EDITOR_VIEWING_INTERVAL = 8  # How often we ping for "who's watching?"
 
-# Used to watermark addons install.rdf and update.
-WATERMARK_KEY = 'purchaser'
-WATERMARK_KEY_HASH = '%s-hash' % WATERMARK_KEY
-WATERMARK_KEYS = (WATERMARK_KEY, WATERMARK_KEY_HASH)
-
 # Types of SiteEvent
 SITE_EVENT_OTHER = 1
 SITE_EVENT_EXCEPTION = 2

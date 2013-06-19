@@ -1,4 +1,3 @@
-from datetime import datetime
 import hashlib
 import logging
 import os
@@ -6,6 +5,7 @@ import urllib
 import urllib2
 import urlparse
 import uuid
+from datetime import datetime
 
 import django.core.mail
 from django.conf import settings
@@ -20,10 +20,10 @@ import amo
 from amo.decorators import write
 from amo.helpers import absolutify
 from amo.urlresolvers import reverse
-from amo.utils import Message, get_email_backend
+from amo.utils import get_email_backend, Message
 from addons.models import Addon
 from versions.compare import version_int as vint
-from versions.models import Version, ApplicationsVersions
+from versions.models import ApplicationsVersions, Version
 from .models import File
 from .utils import JetpackUpgrader, parse_addon
 
@@ -260,9 +260,3 @@ def start_upgrade(file_ids, sdk_version=None, priority='low', **kw):
                          exc_info=True)
         filedata[file_.id] = data
     upgrader.files(filedata)
-
-
-@task
-def watermark_task(file, user):
-    task_log.info('Starting watermarking of: %s' % file.pk)
-    file.watermark(user)

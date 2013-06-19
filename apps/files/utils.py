@@ -10,6 +10,8 @@ import stat
 import StringIO
 import tempfile
 import zipfile
+
+from cStringIO import StringIO as cStringIO
 from datetime import datetime
 from itertools import groupby
 from xml.dom import minidom
@@ -18,7 +20,6 @@ from zipfile import BadZipfile, ZipFile
 from django import forms
 from django.conf import settings
 from django.core.cache import cache
-from django.utils.http import urlencode
 from django.utils.translation import trans_real as translation
 from django.core.files.storage import default_storage as storage
 
@@ -26,7 +27,7 @@ import rdflib
 from tower import ugettext as _
 
 import amo
-from amo.utils import to_language, strip_bom, rm_local_tmp_dir
+from amo.utils import rm_local_tmp_dir, strip_bom, to_language
 from applications.models import AppVersion
 from versions.compare import version_int as vint
 
@@ -66,8 +67,7 @@ def get_file(fileorpath):
 
 
 def make_xpi(files):
-    from cStringIO import StringIO
-    f = StringIO()
+    f = cStringIO()
     z = ZipFile(f, 'w')
     for path, data in files.items():
         z.writestr(path, data)
@@ -611,31 +611,3 @@ class JetpackUpgrader(object):
         cache.set(self.file_key, newfiles)
         if not newfiles:
             cache.delete(self.version_key)
-
-
-class RDF(object):
-
-    def __init__(self, data):
-        self.dom = minidom.parseString(data)
-
-    def __str__(self):
-        # See: https://bugzilla.mozilla.org/show_bug.cgi?id=567660
-        buf = StringIO.StringIO()
-        self.dom.writexml(buf, encoding="utf-8")
-        return buf.getvalue().encode('utf-8')
-
-    def set(self, user, hsh):
-        parent = (self.dom.documentElement
-                          .getElementsByTagName('Description')[0])
-        existing = parent.getElementsByTagName('em:updateURL')
-
-        for current in existing:
-            parent.removeChild(current)
-            current.unlink()
-
-        qs = urlencode({amo.WATERMARK_KEY: user,
-                        amo.WATERMARK_KEY_HASH: hsh})
-        value = u'%s&%s' % (default, qs)
-        elem = self.dom.createElement('em:updateURL')
-        elem.appendChild(self.dom.createTextNode(value))
-        parent.appendChild(elem)

@@ -32,7 +32,6 @@ IN_TEST_SUITE = True
 NETAPP_STORAGE = _polite_tmpdir()
 ADDONS_PATH = _polite_tmpdir()
 GUARDED_ADDONS_PATH = _polite_tmpdir()
-WATERMARKED_ADDONS_PATH = _polite_tmpdir()
 SIGNED_APPS_PATH = _polite_tmpdir()
 SIGNED_APPS_REVIEWER_PATH = _polite_tmpdir()
 UPLOADS_PATH = _polite_tmpdir()

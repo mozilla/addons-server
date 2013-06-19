@@ -23,7 +23,4 @@ download_patterns = patterns('',
     url('^latest/%s/(?:type:(?P<type>\w+)/)?'
         '(?:platform:(?P<platform>\d+)/)?.*' % ADDON_ID,
         views.download_latest, name='downloads.latest'),
-
-    url('^watermarked/(?P<file_id>\d+)?(?:/.*)?',
-        views.download_watermarked, name='downloads.watermarked'),
 )

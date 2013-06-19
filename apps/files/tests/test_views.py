@@ -7,12 +7,11 @@ import urlparse
 from django.conf import settings
 from django.core.cache import cache
 from django.utils.encoding import iri_to_uri
-from django.utils.http import http_date, urlencode
+from django.utils.http import http_date
 
 from mock import Mock, patch
 from nose.tools import eq_
 from pyquery import PyQuery as pq
-import waffle
 from waffle.models import Switch
 
 import amo
@@ -20,9 +19,8 @@ import amo.tests
 from amo.utils import Message
 from amo.urlresolvers import reverse
 from addons.models import Addon
-from files.helpers import FileViewer, DiffHelper
+from files.helpers import DiffHelper, FileViewer
 from files.models import File, Platform
-from market.models import AddonPurchase
 from users.models import UserProfile
 
 dictionary = 'apps/files/fixtures/files/dictionary-test.xpi'
@@ -555,8 +553,9 @@ class TestDiffViewer(FilesBase, amo.tests.TestCase):
         have an actual entry for certain files. Instead, the entry with the
         identical hash should be selected.
         """
-        res = self.client.get(reverse('files.compare', args=(self.files[0].id,
-                                                             self.files[2].id)))
+        res = self.client.get(reverse('files.compare',
+                                      args=(self.files[0].id,
+                                            self.files[2].id)))
         doc = pq(res.content)
 
         eq_(doc('#id_left option[selected]').attr('value'),
@@ -586,89 +585,3 @@ class TestBuilderPingback(amo.tests.TestCase):
     def test_bad_data(self):
         r = self.post({'wut': 0})
         eq_(r.status_code, 400)
-
-
-@patch.object(waffle, 'switch_is_active', lambda x: True)
-class TestWatermarkedFile(amo.tests.TestCase, amo.tests.AMOPaths):
-    fixtures = ['base/addon_3615', 'base/users.json']
-
-    def setUp(self):
-        self.addon = Addon.objects.get(pk=3615)
-        self.addon.update(premium_type=amo.ADDON_PREMIUM)
-        self.file = self.addon.current_version.all_files[0]
-        self.xpi_copy_over(self.file, 'firefm')
-        self.url = reverse('downloads.watermarked', args=[self.file.pk])
-        self.user = UserProfile.objects.get(pk=999)
-        self.author = self.addon.authors.all()[0]
-        self.purchase = AddonPurchase.objects.create(addon=self.addon,
-                                                     user=self.user)
-        self.client.login(username='regular@mozilla.com', password='password')
-
-    def get_anon(self, user=None, hsh=None):
-        self.client.logout()
-        url = reverse('downloads.watermarked', args=[self.file.pk])
-        qs = urlencode({amo.WATERMARK_KEY: user,
-                        amo.WATERMARK_KEY_HASH: hsh})
-        return self.client.get('%s?%s' % (url, qs))
-
-    def test_get_anon_watermarked(self):
-        eq_(self.get_anon().status_code, 403)
-
-    def test_get_anon_email(self):
-        eq_(self.get_anon(user=self.user.email).status_code, 403)
-
-    def test_get_anon_hash(self):
-        eq_(self.get_anon(user=self.user.email, hsh='123').status_code, 403)
-
-    def test_get_good_hash(self):
-        data = {'user': self.user.email,
-                'hsh': self.addon.get_watermark_hash(self.user)}
-        eq_(self.get_anon(**data).status_code, 200)
-
-    def test_good_hash_for_free(self):
-        self.purchase.delete()
-        data = {'user': self.user.email,
-                'hsh': self.addon.get_watermark_hash(self.user)}
-        eq_(self.get_anon(**data).status_code, 403)
-
-    def test_get_watermarked(self):
-        res = self.client.get(self.url)
-        assert os.path.exists(res[settings.XSENDFILE_HEADER])
-
-    def test_get_headers(self):
-        res = self.client.get(self.url)
-        eq_(res['Content-Type'], 'application/xp-install')
-        eq_(res['Cache-Control'], 'max-age=0')
-
-    def test_get_disabled(self):
-        self.addon.update(status=amo.STATUS_DISABLED)
-        res = self.client.get(self.url)
-        eq_(res.status_code, 404)
-
-    def test_get_free(self):
-        self.addon.update(premium_type=amo.ADDON_FREE)
-        res = self.client.get(self.url)
-        eq_(res.status_code, 404)
-
-    def test_watermark_locked(self):
-        dest = self.file.watermarked_file_path(self.user.pk)
-        msg = Message('marketplace.watermark.%s' % dest)
-        msg.save(True)
-        res = self.client.get(self.url)
-        eq_(res.status_code, 404)
-
-    def test_not_purchased(self):
-        self.purchase.delete()
-        res = self.client.get(self.url)
-        eq_(res.status_code, 403)
-
-    def test_watermark_latest_redirects(self):
-        url = reverse('downloads.latest', args=[self.addon.slug])
-        res = self.client.get(url, follow=False)
-        self.assertRedirects(res, '%s/%s' % (self.url, self.file.filename))
-
-    def test_author_can_get(self):
-        self.client.logout()
-        self.client.login(username=self.author.email, password='password')
-        res = self.client.get(self.url)
-        assert os.path.exists(res[settings.XSENDFILE_HEADER])

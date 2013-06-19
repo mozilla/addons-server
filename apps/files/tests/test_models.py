@@ -3,18 +3,13 @@ import hashlib
 import json
 import os
 import shutil
-import stat
 import tempfile
-import time
-import urllib
 import zipfile
 from datetime import datetime
-from xml.parsers import expat
 
 from django import forms
 from django.core.files.storage import default_storage as storage
 from django.conf import settings
-from django.utils.encoding import smart_str
 
 import mock
 import path
@@ -25,15 +20,12 @@ import amo.tests
 import amo.utils
 import devhub.signals
 
-from amo.urlresolvers import reverse
 from amo.utils import rm_local_tmp_dir
 from addons.models import Addon
 from applications.models import Application, AppVersion
 from files.models import File, FileUpload, FileValidation, nfd_str, Platform
 from files.helpers import copyfileobj
 from files.utils import check_rdf, JetpackUpgrader, parse_addon, parse_xpi
-from files.utils import RDF, SafeUnzip
-from users.models import UserProfile
 from versions.models import Version
 
 
@@ -1028,156 +1020,6 @@ class TestLanguagePack(LanguagePackBase):
         self.addon.update(type=amo.ADDON_DICT)
         self.file_create('langpack-localepicker')
         assert not get_localepicker.called
-
-
-class TestWatermark(amo.tests.TestCase, amo.tests.AMOPaths):
-    fixtures = ['base/addon_3615', 'base/users']
-
-    def setUp(self):
-        self.addon = Addon.objects.get(pk=3615)
-        self.version = Version.objects.create(addon=self.addon)
-        self.file = File.objects.create(version=self.version,
-                                        filename='firefm.xpi')
-
-        self.xpi_copy_over(self.file, 'firefm')
-        self.user = UserProfile.objects.get(pk=999)
-        self.dest = self.file.watermarked_file_path(self.user.pk)
-
-    def get_rdf(self, tmp):
-        assert tmp
-        unzip = SafeUnzip(tmp)
-        unzip.is_valid()
-        return RDF(unzip.extract_path('install.rdf'))
-
-    def get_updateURL(self, rdf):
-        return (rdf.dom.getElementsByTagName('em:updateURL')[0]
-                       .firstChild.nodeValue)
-
-    @mock.patch('files.utils.SafeUnzip.extract_path')
-    def get_extract(self, data, extract_path):
-        extract_path.return_value = data
-        return self.file.watermark(self.user)
-
-    def test_install_rdf(self):
-        self.user.update(email='a@a.com')
-        data = self.file.watermark_install_rdf(self.user)
-        assert urllib.quote_plus(self.user.email) in str(data)
-
-    @mock.patch('files.utils.SafeUnzip.extract_path')
-    def test_install_rdf_no_data(self, extract_path):
-        extract_path.return_value = ''
-        self.assertRaises(expat.ExpatError, self.file.watermark_install_rdf,
-                          self.user)
-
-    def test_write_watermarked(self):
-        self.user.update(email='a@a.com')
-        data = self.file.watermark_install_rdf(self.user)
-        self.file.write_watermarked_addon(self.dest, data)
-        assert os.path.exists(self.dest)
-        encoded = urllib.quote_plus(self.user.email)
-        assert encoded in self.get_updateURL(self.get_rdf(self.dest))
-
-    def test_watermark(self):
-        tmp = self.file.watermark(self.user)
-        encoded = urllib.quote_plus(self.user.email)
-        assert encoded in self.get_updateURL(self.get_rdf(tmp))
-
-    def test_watermark_hash(self):
-        tmp = self.file.watermark(self.user)
-        wm = self.file.version.addon.get_watermark_hash(self.user)
-        hsh = '&%s=%s' % (amo.WATERMARK_KEY_HASH, wm)
-        assert hsh in self.get_updateURL(self.get_rdf(tmp))
-
-    def test_watermark_unicode(self):
-        self.user.email = u'Strauß@Magyarország.com'
-        tmp = self.file.watermark(self.user)
-        encoded = urllib.quote_plus(smart_str(self.user.email))
-        assert encoded in self.get_updateURL(self.get_rdf(tmp))
-
-    def test_watermark_no_description(self):
-        self.assertRaises(IndexError, self.get_extract, """
-<RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-    xmlns:em="http://www.mozilla.org/2004/em-rdf#">
-</RDF>""")
-
-    def test_watermark_overwrites(self):
-        tmp = self.get_extract("""
-<RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-  xmlns:em="http://www.mozilla.org/2004/em-rdf#">
-
-  <Description about="urn:mozilla:install-manifest">
-    <em:updateURL>http://my.other.site/</em:updateURL>
-  </Description>
-</RDF>""")
-
-        encoded = urllib.quote_plus(smart_str(self.user.email))
-        assert encoded in self.get_updateURL(self.get_rdf(tmp))
-
-    def test_watermark_overwrites_multiple(self):
-        tmp = self.get_extract("""
-<RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-  xmlns:em="http://www.mozilla.org/2004/em-rdf#">
-
-  <Description about="urn:mozilla:install-manifest">
-    <em:updateURL>http://my.other.site/</em:updateURL>
-    <em:updateURL>http://my.other.other.site/</em:updateURL>
-  </Description>
-</RDF>""")
-        encoded = urllib.quote_plus(smart_str(self.user.email))
-        assert encoded in self.get_updateURL(self.get_rdf(tmp))
-        # one close and one open
-        eq_(str(self.get_rdf(tmp)).count('updateURL'), 2)
-
-    def test_in_progress(self):
-        msg = amo.utils.Message('marketplace.watermark.%s' % self.dest)
-        msg.save(True)
-        assert not self.file.watermark(self.user)
-
-    def test_watermark_task(self):
-        # Doesn't do much but checks the file.
-        assert self.file.watermark(self.user)
-
-    @mock.patch('files.utils.SafeUnzip')
-    def test_already_watermarked(self, SafeUnzip):
-        if not os.path.exists(os.path.dirname(self.dest)):
-            os.makedirs(os.path.dirname(self.dest))
-        open(self.dest, 'w')
-        assert self.file.watermark(self.user)
-        assert not SafeUnzip.called
-
-    def test_already_watermarked_updates(self):
-        if not os.path.exists(os.path.dirname(self.dest)):
-            os.makedirs(os.path.dirname(self.dest))
-        open(self.dest, 'w')
-        old_time = time.time() - 1000
-        os.utime(self.dest, (old_time, old_time))
-        assert self.file.watermark(self.user)
-        eq_(os.stat(self.dest)[stat.ST_ATIME] != old_time, True)
-
-    def test_already_watermarked_stale(self):
-        if not os.path.exists(os.path.dirname(self.dest)):
-            os.makedirs(os.path.dirname(self.dest))
-        open(self.dest, 'w')
-        old_time = time.time() - settings.WATERMARK_REUSE_SECONDS - 5
-        os.utime(self.dest, (old_time, old_time))
-        assert self.file.watermark(self.user)
-
-    def test_get_url_path(self):
-        url = reverse('downloads.watermarked', args=[self.file.id])
-        assert url not in self.file.get_url_path('test')
-        self.file.version.addon.update(premium_type=amo.ADDON_PREMIUM)
-        assert url in self.file.get_url_path('test')
-
-    def test_get_latest_path(self):
-        url = reverse('downloads.watermarked', args=[self.file.id])
-        assert url not in self.file.latest_xpi_url()
-        self.file.version.addon.update(premium_type=amo.ADDON_PREMIUM)
-        assert url in self.file.latest_xpi_url()
-
-    def test_dont_watermark_apps(self):
-        url = reverse('downloads.watermarked', args=[self.file.id])
-        self.file.version.addon.update(type=amo.ADDON_WEBAPP)
-        assert url not in self.file.latest_xpi_url()
 
 
 class TestSignedPath(amo.tests.TestCase):

@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 import collections
-import hashlib
-import hmac
 import itertools
 import json
 import os
@@ -48,7 +46,6 @@ from translations.fields import (LinkifiedField, PurifiedField, save_signal,
                                  TranslatedField, Translation)
 from translations.query import order_by_translation
 from users.models import UserForeignKey, UserProfile
-from users.utils import find_users
 from versions.compare import version_int
 from versions.models import Version
 
@@ -1407,27 +1404,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     def all_dependencies(self):
         """Return all the add-ons this add-on depends on."""
         return list(self.dependencies.all()[:3])
-
-    def get_watermark_hash(self, user):
-        """
-        Create a hash for the addon using the user and addon. Suitable for
-        receipts or addon updates.
-        """
-        keys = [user.pk, time.mktime(user.created.timetuple()),
-                self.pk, time.mktime(self.created.timetuple())]
-        return hmac.new(settings.WATERMARK_SECRET_KEY,
-                        ''.join(map(str, keys)),
-                        hashlib.sha512).hexdigest()
-
-    def get_user_from_hash(self, email, hsh):
-        """
-        Will try and match the watermark hash against a series of users,
-        based on any users who has had the addon. Will return the user
-        if it's found the person, otherwise None.
-        """
-        for user in find_users(email):
-            if hsh == self.get_watermark_hash(user):
-                return user
 
     def has_installed(self, user):
         if not user or not isinstance(user, UserProfile):
