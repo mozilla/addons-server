@@ -21,17 +21,24 @@
           {% else %}
             <td>
              {% if theme_review.arguments %}
-              <a href="{{ url('reviewers.themes.single', theme_review.arguments[0].slug) }}">
-                {{ theme_review.arguments[0].name }}</a>
+               {% if theme_review.arguments[0].slug and hasOneToOne(theme_review.arguments[0], 'persona') %}
+                 {# Link to the theme detail page if everything is there #}
+                 <a href="{{ url('reviewers.themes.single', theme_review.arguments[0].slug) }}">
+                   {{ theme_review.arguments[0].name }}</a>
+               {% elif theme_review.arguments[0] %}
+                 {# Only show the theme's name if the slug exists, but Persona no longer exists. #}
+                 {{ theme_review.arguments[0].name }}
+               {% endif %}
              {% else %}
-               {{ _('Deleted') }}
+               {# Note if the addon has been deleted #}
+               <i>{{ _('Deleted') }}</i>
              {% endif %}
             </td>
           {% endif %}
           <td>{{ action_dict[details.action] }}</td>
           <td>
             {% if details.reject_reason not in ('', None) %}
-              {{ reject_reasons[details.reject_reason] }}
+              {{ reject_reasons[details.reject_reason][1] }}
             {% endif %}
           </td>
           <td>{{ details.comment }}</td>
