@@ -98,7 +98,11 @@ def market_button(context, product, receipt_type=None, classes=None):
         if installed or purchased or not product.has_price():
             label = _('Install')
         else:
-            label = product.get_price(region=request.REGION.id)
+            try:
+                label = product.get_price(region=request.REGION.id)
+            except KeyError:
+                log.warning('Price failed for app: {0}'.format(product.id))
+                label = 'Price N/A'
 
         # Free apps and purchased apps get active install buttons.
         if not product.is_premium() or purchased:
