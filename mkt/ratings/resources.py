@@ -21,6 +21,7 @@ from mkt.api.authorization import (AnonymousReadOnlyAuthorization,
 from mkt.api.base import CORSResource, MarketplaceModelResource
 from mkt.api.resources import AppResource
 from mkt.ratings.forms import ReviewForm
+from mkt.regions import get_region, REGIONS_DICT
 from mkt.versions.resources import VersionResource
 from mkt.webapps.models import Webapp
 from reviews.models import Review, ReviewFlag
@@ -80,12 +81,15 @@ class RatingResource(CORSResource, MarketplaceModelResource):
 
     def get_app(self, ident):
         try:
-            return Webapp.objects.valid().get(id=ident)
+            app = Webapp.objects.valid().get(id=ident)
         except (Webapp.DoesNotExist, ValueError):
             try:
-                return Webapp.objects.valid().get(app_slug=ident)
+                app = Webapp.objects.valid().get(app_slug=ident)
             except Webapp.DoesNotExist:
                 raise self.non_form_errors([('app', 'Invalid app')])
+        if not app.listed_in(region=REGIONS_DICT[get_region()]):
+            raise self.non_form_errors([('app', 'Not available in this region')])
+        return app
 
     def build_filters(self, filters=None):
         """

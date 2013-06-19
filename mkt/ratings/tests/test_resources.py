@@ -10,10 +10,11 @@ from market.models import AddonPurchase
 from reviews.models import Review, ReviewFlag
 from users.models import UserProfile
 
+import mkt.regions
 from mkt.api.base import get_url, list_url
 from mkt.api.tests.test_oauth import BaseOAuth
 from mkt.site.fixtures import fixture
-from mkt.webapps.models import Webapp
+from mkt.webapps.models import AddonExcludedRegion, Webapp
 from versions.models import Version
 
 
@@ -87,6 +88,13 @@ class TestRatingResource(BaseOAuth, AMOPaths):
 
     def test_get_nonpublic(self):
         self.app.update(status=amo.STATUS_PENDING)
+        res, data = self._get_single(app=self.app.app_slug)
+        eq_(res.status_code, 400)
+
+    def test_get_nonregion(self):
+        AddonExcludedRegion.objects.create(addon=self.app,
+                                           region=mkt.regions.BR.id)
+        self.client.cookies['region'] = 'br'
         res, data = self._get_single(app=self.app.app_slug)
         eq_(res.status_code, 400)
 
@@ -206,6 +214,13 @@ class TestRatingResource(BaseOAuth, AMOPaths):
         res, data = self._create({'app': -1})
         eq_(400, res.status_code)
         assert 'app' in data['error_message']
+
+    def test_create_for_nonregion(self):
+        AddonExcludedRegion.objects.create(addon=self.app,
+                                           region=mkt.regions.BR.id)
+        self.client.cookies['region'] = 'br'
+        res, data = self._create()
+        eq_(400, res.status_code)
 
     def test_create_for_nonpublic(self):
         self.app.update(status=amo.STATUS_PENDING)
