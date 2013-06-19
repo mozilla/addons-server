@@ -8,6 +8,7 @@ import commonware.log
 import jingo
 
 import amo
+from addons.decorators import addon_view_factory
 from amo.decorators import login_required, permission_required
 from amo.utils import paginate
 from devhub.models import ActivityLog
@@ -15,6 +16,9 @@ from devhub.models import ActivityLog
 from mkt.webapps.models import Webapp
 
 log = commonware.log.getLogger('z.detail')
+
+addon_view = addon_view_factory(qs=Webapp.objects.valid)
+addon_all_view = addon_view_factory(qs=Webapp.objects.all)
 
 
 def manifest(request, uuid):
