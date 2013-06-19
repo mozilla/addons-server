@@ -185,7 +185,7 @@
                       </thead>
                       <tbody>
                         {% for value, text in region_form.regions.field.choices %}
-                          {% if value in mkt.regions.ALL_PAID_REGION_IDS %}
+                          {% if value|int in mkt.regions.ALL_PAID_REGION_IDS %}
                           <tr>
                               <td>
                                 <label class="disabled">
