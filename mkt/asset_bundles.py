@@ -302,6 +302,7 @@ JS = {
         'js/devreg/mobile_review_actions.js',
         'js/common/fakefilefield.js',
         'js/common/formsets.js',
+        '../fireplace/js/buckets.js',
         'js/devreg/reviewers_init.js',
     ),
     'mkt/stats': (
