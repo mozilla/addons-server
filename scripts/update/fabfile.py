@@ -158,15 +158,12 @@ def update_celery():
 
 @task
 def deploy():
-    ref = get_version()[:6]
+    ref = get_version()
     rpmbuild = RPMBuild(name='zamboni',
                         env=ENV,
                         ref=ref,
                         build_id=BUILD_ID,
                         install_dir=INSTALL_TO)
-
-    package_name = '%s-%s-%s' % (PACKAGE_PREFIX, BUILD_ID, ref)
-    package_file = os.path.join(PACKAGE_DIR, '%s.rpm' % package_name)
 
     execute(install_cron)
 
@@ -174,7 +171,7 @@ def deploy():
     execute(install_package, rpmbuild)
 
     execute(restart_workers)
-    local('rm -f %s' % package_file)
+    rpmbuild.clean()
     with lcd(settings.SRC_DIR):
         local('%s manage.py cron cleanup_validation_results' %
               settings.PYTHON)
