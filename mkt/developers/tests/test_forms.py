@@ -332,23 +332,6 @@ class TestNewManifestForm(amo.tests.TestCase):
         assert not _verify_app_domain.called
 
 
-class TestNewManifestForm(amo.tests.TestCase):
-
-    @mock.patch('mkt.developers.forms.verify_app_domain')
-    def test_normal_validator(self, _verify_app_domain):
-        form = forms.NewManifestForm({'manifest': 'http://omg.org/yes.webapp'},
-                                     is_standalone=False)
-        assert form.is_valid()
-        assert _verify_app_domain.called
-
-    @mock.patch('mkt.developers.forms.verify_app_domain')
-    def test_standalone_validator(self, _verify_app_domain):
-        form = forms.NewManifestForm({'manifest': 'http://omg.org/yes.webapp'},
-                                     is_standalone=True)
-        assert form.is_valid()
-        assert not _verify_app_domain.called
-
-
 class TestPackagedAppForm(amo.tests.AMOPaths, amo.tests.WebappTestCase):
 
     def setUp(self):
