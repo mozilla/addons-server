@@ -108,7 +108,8 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
             choice = (price.pk, unicode(price))
             # Special case zero priced tier.
             if price.price == Decimal('0.00'):
-                price_choices.append((price.pk, _lazy('Free')))
+                price_choices.append((price.pk,
+                                      _lazy('Free with in-app payments')))
             # Tiers that can only be operator billed.
             elif price.method == PAYMENT_METHOD_OPERATOR:
                 operator_billed.append(choice)
@@ -128,7 +129,7 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
                                   card_billed))
         if card_and_operator_billed:
             price_choices.append(
-                (_lazy('Supports carrier billing and credit cards'),
+                (_lazy('Supports all billing methods'),
                  card_and_operator_billed))
 
         return price_choices
@@ -199,6 +200,11 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
         except (ValueError, Price.DoesNotExist):
             raise ValidationError(
                 self.fields['price'].error_messages['invalid_choice'])
+
+        if (price and price.price == Decimal('0.00')
+                and self.cleaned_data.get('allow_inapp') != 'True'):
+            raise ValidationError(_('If app is Free, '
+                                    'in-app payments must be enabled'))
 
         return price
 

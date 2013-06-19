@@ -281,15 +281,25 @@ class TestPayments(amo.tests.TestCase):
 
     def test_regions_display_free(self):
         self.webapp.update(premium_type=amo.ADDON_FREE)
-        r = self.client.get(self.url)
-        eq_(len(pq(r.content)('#regions-island')), 1),
-        eq_(len(pq(r.content)('#paid-regions-island')), 0),
+        res = self.client.get(self.url)
+        pqr = pq(res.content)
+        eq_(len(pqr('#regions-island')), 1),
+        eq_(len(pqr('#paid-regions-island')), 0),
 
     def test_regions_display_premium(self):
         self.webapp.update(premium_type=amo.ADDON_PREMIUM)
-        r = self.client.get(self.url)
-        eq_(len(pq(r.content)('#regions-island')), 0),
-        eq_(len(pq(r.content)('#paid-regions-island')), 1),
+        res = self.client.get(self.url)
+        pqr = pq(res.content)
+        eq_(len(pqr('#regions-island')), 0),
+        eq_(len(pqr('#paid-regions-island')), 1),
+
+    def test_free_with_in_app_tier_id_in_context(self):
+        free_tier = Price.objects.create(price='0.00')
+        self.webapp.update(premium_type=amo.ADDON_PREMIUM)
+        res = self.client.get(self.url)
+        pqr = pq(res.content)
+        eq_(len(pqr('.regions[data-free-with-inapp-id]')), 1),
+        eq_(int(pqr('.regions').attr('data-free-with-inapp-id')), free_tier.pk)
 
     def test_premium_in_app_passes(self):
         self.webapp.update(premium_type=amo.ADDON_FREE)
