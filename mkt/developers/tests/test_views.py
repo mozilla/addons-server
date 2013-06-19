@@ -196,7 +196,7 @@ class TestAppDashboard(AppHubTest):
             ('Transactions', urlparams(
                 reverse('mkt.developers.transactions'), app=app.id)),
         ]
-        amo.tests.check_links(expected, doc('a.action-link'))
+        amo.tests.check_links(expected, doc('a.action-link'), verify=False)
 
     def test_action_links_packaged(self):
         self.create_switch('view-transactions')
@@ -218,7 +218,7 @@ class TestAppDashboard(AppHubTest):
                 reverse('mkt.developers.transactions'), app=app.id)),
             ('Manage In-App Payments', app.get_dev_url('in_app_config')),
         ]
-        amo.tests.check_links(expected, doc('a.action-link'))
+        amo.tests.check_links(expected, doc('a.action-link'), verify=False)
 
     def test_disabled_payments_action_links(self):
         self.create_switch('disabled-payments')
