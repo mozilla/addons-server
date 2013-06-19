@@ -103,7 +103,7 @@ tastypie-services==0.2.2
 -e git://github.com/mozilla/django-session-csrf@f00ad913c62e139d36078e8a7e07dab65a021386#egg=django-session-csrf
 
 ## Forked.
--e git://github.com/andymckay/django-piston-oauth2.git@6cb1ad61e3f437e7ca080ee00ae7b80de7d010f0#egg=django-piston-oauth2
+-e git://github.com/andymckay/django-piston-oauth2.git@fa28ee#egg=django-piston-oauth2
 -e git://github.com/kumar303/django-qunit.git@b0f468dcf33439488158c845df37ef3261852b55#egg=django-qunit
 -e git://github.com/washort/django-waffle.git@c8da885613dfddf2262e11adde6b6027906536ed#egg=django-waffle
 -e git://github.com/andymckay/django-uuidfield.git@029dd1263794ec36c327617cd6c2346da81c8c33#egg=django-uuidfield
