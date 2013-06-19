@@ -69,6 +69,7 @@ class UK(REGION):
     slug = 'uk'
     default_currency = 'GBP'
     mcc = 235
+    has_payments = False
 
 
 class BR(REGION):
@@ -79,7 +80,7 @@ class BR(REGION):
     default_language = 'pt-BR'
     mcc = 724
     ratingsbodies = (ratingsbodies.DJCTQ,)
-    has_payments = True
+    has_payments = False
 
 
 class SPAIN(REGION):
@@ -109,7 +110,7 @@ class VE(REGION):
     default_currency = 'USD'
     default_language = 'es'
     mcc = 734
-    has_payments = True
+    has_payments = False
 
 
 class PL(REGION):
@@ -129,7 +130,7 @@ class MX(REGION):
     default_currency = 'MXN'
     default_language = 'es'
     mcc = 334
-    has_payments = True
+    has_payments = False
 
 
 class HU(REGION):
@@ -139,7 +140,7 @@ class HU(REGION):
     default_currency = 'HUF'
     default_language = 'hu'
     mcc = 216
-    has_payments = True
+    has_payments = False
 
 
 class DE(REGION):
@@ -149,7 +150,7 @@ class DE(REGION):
     default_currency = 'EUR'
     default_language = 'de'
     mcc = 262
-    has_payments = True
+    has_payments = False
 
 
 # Create a list of tuples like so (in alphabetical order):
