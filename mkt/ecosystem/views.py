@@ -542,20 +542,24 @@ def apps_documentation(request, page=None):
             'title': 'Open Web Apps'
         },
         'indexed_db': {
-            'link': '//developer.mozilla.org/en-US/docs/IndexedDB',
+            'link': '//developer.mozilla.org/docs/IndexedDB',
             'title': 'IndexedDB'
         },
         'systemxhr': {
-            'link': '//developer.mozilla.org/en-US/docs/DOM/XMLHttpRequest#Non-standard_properties',
+            'link': '//developer.mozilla.org/docs/DOM/XMLHttpRequest#Non-standard_properties',
             'title': 'systemXHR'
         },
         'canvas': {
-            'link': '//developer.mozilla.org/en-US/docs/HTML/Canvas',
+            'link': '//developer.mozilla.org/docs/HTML/Canvas',
             'title': 'Canvas'
         },
         'fullscreen': {
-            'link': '//developer.mozilla.org/en-US/docs/DOM/Using_fullscreen_mode',
+            'link': '//developer.mozilla.org/docs/DOM/Using_fullscreen_mode',
             'title': 'Fullscreen'
+        },
+        'in_app_payments': {
+            'link': '//developer.mozilla.org/docs/Web/Apps/Publishing/In-app_payments',
+            'title': 'In-app Payments'
         }
     }
 
