@@ -149,11 +149,16 @@ def product_as_dict(request, product, purchased=None, receipt_type=None,
         ret.update({'previews': previews})
 
     if product.has_price():
-        ret.update({
-            'price': product.get_price(region=request.REGION.id) or '0',
-            'priceLocale': (product.get_price_locale(region=request.REGION.id)
-                            or _('Free')),
-        })
+        try:
+            ret.update({
+                'price': product.get_price(region=request.REGION.id) or '0',
+                'priceLocale': (product
+                                .get_price_locale(region=request.REGION.id)
+                                or _('Free')),
+            })
+        except KeyError:
+            log.warning('Price failed for app: {0}'.format(product.id))
+
         if request.amo_user:
             ret['isPurchased'] = purchased
 
