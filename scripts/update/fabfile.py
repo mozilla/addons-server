@@ -5,13 +5,15 @@ from fabric.api import (env, execute, lcd, local, parallel,
 
 from fabdeploytools.rpm import RPMBuild
 from fabdeploytools import helpers
+import fabdeploytools.envs
 
-import commander.hosts
 import commander_settings as settings
 
 
 env.key_filename = settings.SSH_KEY
-env.roledefs.update(commander.hosts.hostgroups)
+
+CLUSTER = getattr(settings, 'CLUSTER', settings.WEB_HOSTGROUP)
+fabdeploytools.envs.loadenv(os.path.join('/etc/deploytools/envs', CLUSTER))
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__),
                                     '..', '..', '..'))
@@ -25,7 +27,6 @@ KEEP_RELEASES = 4
 
 DOMAIN = getattr(settings, 'DOMAIN', 'addons-dev.allizom.org')
 ENV = getattr(settings, 'ENV', 'dev')
-CLUSTER = getattr(settings, 'CLUSTER', settings.WEB_HOSTGROUP)
 
 
 def get_version():
@@ -107,7 +108,7 @@ def update_info(ref='origin/master'):
 
 
 @task
-@roles(settings.WEB_HOSTGROUP, settings.CELERY_HOSTGROUP)
+@roles('web', 'celery')
 @parallel
 def install_package(rpmbuild):
     rpmbuild.install_package()
@@ -131,8 +132,8 @@ def install_cron():
 
 
 @task
-@roles(settings.WEB_HOSTGROUP)
-@parallel(pool_size=len(settings.WEB_HOSTGROUP) / 2)
+@roles('web')
+@parallel
 def restart_workers():
     for gservice in settings.GUNICORN:
         run("/sbin/service %s graceful" % gservice)
@@ -146,7 +147,7 @@ def restart_workers():
 
 
 @task
-@roles(settings.CELERY_HOSTGROUP)
+@roles('celery')
 @parallel
 def update_celery():
     if getattr(settings, 'CELERY_SERVICE_PREFIX', False):
