@@ -134,9 +134,13 @@ def install_cron():
 def restart_workers():
     for gservice in settings.GUNICORN:
         run("/sbin/service %s graceful" % gservice)
+    restarts = []
     for g in get_setting('MULTI_GUNICORN', []):
-        run('supervisorctl restart %s-a' % g)
-        run('supervisorctl restart %s-b' % g)
+        restarts.append('( supervisorctl restart {0}-a; '
+                        'supervisorctl restart {0}-a )&'.format(g))
+
+    if restarts:
+        run('%s wait' % ' '.join(restarts))
 
 
 @task
