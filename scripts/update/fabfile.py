@@ -7,12 +7,15 @@ from fabdeploytools.rpm import RPMBuild
 from fabdeploytools import helpers
 import fabdeploytools.envs
 
-import commander_settings as settings
+import deploysettings as settings
 
 
 env.key_filename = settings.SSH_KEY
 
-CLUSTER = getattr(settings, 'CLUSTER', settings.WEB_HOSTGROUP)
+CLUSTER = settings.CLUSTER
+DOMAIN = settings.DOMAIN
+ENV = settings.ENV
+
 fabdeploytools.envs.loadenv(os.path.join('/etc/deploytools/envs', CLUSTER))
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__),
@@ -20,13 +23,11 @@ ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__),
 ZAMBONI = os.path.join(ROOT, 'zamboni')
 
 VIRTUALENV = os.path.join(ROOT, 'venv')
+PYTHON = os.path.join(VIRTUALENV, 'bin', 'python')
 
 BUILD_ID = str(int(time.time()))
 
 KEEP_RELEASES = 4
-
-DOMAIN = getattr(settings, 'DOMAIN', 'addons-dev.allizom.org')
-ENV = getattr(settings, 'ENV', 'dev')
 
 
 def get_version():
@@ -80,13 +81,13 @@ def loadtest(repo=''):
 @task
 def update_products():
     with lcd(ZAMBONI):
-        local('%s manage.py update_product_details' % settings.PYTHON)
+        local('%s manage.py update_product_details' % PYTHON)
 
 
 @task
 def compress_assets(arg=''):
     with lcd(ZAMBONI):
-        local("%s manage.py compress_assets -t %s" % (settings.PYTHON,
+        local("%s manage.py compress_assets -t %s" % (PYTHON,
                                                       arg))
 
 
@@ -94,7 +95,7 @@ def compress_assets(arg=''):
 def schematic():
     with lcd(ZAMBONI):
         local("%s %s/bin/schematic migrations" %
-              (settings.PYTHON, VIRTUALENV))
+              (PYTHON, VIRTUALENV))
 
 
 @task
@@ -124,8 +125,8 @@ def install_cron():
     with lcd(ZAMBONI):
         local('%s ./scripts/crontab/gen-cron.py '
               '-z %s -u apache -p %s > /etc/cron.d/.%s' %
-              (settings.PYTHON, ZAMBONI,
-               settings.PYTHON, settings.CRON_NAME))
+              (PYTHON, ZAMBONI,
+               PYTHON, settings.CRON_NAME))
 
         local('mv /etc/cron.d/.%s /etc/cron.d/%s' % (settings.CRON_NAME,
                                                      settings.CRON_NAME))
@@ -180,7 +181,7 @@ def deploy():
     rpmbuild.clean()
     with lcd(ZAMBONI):
         local('%s manage.py cron cleanup_validation_results' %
-              settings.PYTHON)
+              PYTHON)
 
 
 @task
@@ -200,5 +201,5 @@ def update():
     execute(compress_assets, arg='--settings=settings_local_mkt')
     execute(schematic)
     with lcd(ZAMBONI):
-        local('%s manage.py dump_apps' % settings.PYTHON)
-        local('%s manage.py statsd_ping --key=update' % settings.PYTHON)
+        local('%s manage.py dump_apps' % PYTHON)
+        local('%s manage.py statsd_ping --key=update' % PYTHON)
