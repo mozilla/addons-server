@@ -22,16 +22,12 @@ HOME=/tmp
 
 #every 3 hours
 20 */3 * * * %(z_cron)s compatibility_report
-# clouserw commented this out
-#20 */3 * * * %(remora)s; php -f compatibility_report.php
 
 #every 4 hours
 40 */4 * * * %(django)s clean_redis
 
 #twice per day
 # Use system python to use an older version of sqlalchemy than what is in our venv
-# commented out 2013-03-28, clouserw
-#25 1,13 * * * %(remora)s; /usr/bin/python import-personas.py
 # Add slugs after we get all the new personas.
 # commented out 2013-03-28, clouserw
 #25 2,14 * * * %(z_cron)s addons_add_slugs

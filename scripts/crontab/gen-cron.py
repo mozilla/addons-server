@@ -10,11 +10,9 @@ def main():
     parser = OptionParser()
     parser.add_option("-z", "--zamboni",
                       help="Location of zamboni (required)")
-    parser.add_option("-r", "--remora",
-                      help="Location of remora bin dir (required)")
     parser.add_option("-u", "--user",
                       help=("Prefix cron with this user. "
-                           "Only define for cron.d style crontabs"))
+                            "Only define for cron.d style crontabs"))
     parser.add_option("-p", "--python", default="/usr/bin/python2.6",
                       help="Python interpreter to use")
     parser.add_option("-d", "--deprecations", default=False,
@@ -22,14 +20,13 @@ def main():
 
     (opts, args) = parser.parse_args()
 
-    if not opts.zamboni or not opts.remora:
-        parser.error("-z and -r must be defined")
+    if not opts.zamboni:
+        parser.error("-z must be defined")
 
     if not opts.deprecations:
         opts.python += ' -W ignore::DeprecationWarning'
 
-    ctx = {'django': 'cd %s; %s manage.py' % (opts.zamboni, opts.python),
-           'remora': 'cd %s' % opts.remora}
+    ctx = {'django': 'cd %s; %s manage.py' % (opts.zamboni, opts.python)}
     ctx['z_cron'] = '%s cron' % ctx['django']
 
     if opts.user:
