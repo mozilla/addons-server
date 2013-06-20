@@ -474,9 +474,11 @@ DOMAIN_METHODS = {
         # crashes the extractor with bad unicode data.
         ('media/js/*.js', 'javascript'),
         ('media/js/amo2009/**.js', 'javascript'),
+        ('media/js/common/**.js', 'javascript'),
         ('media/js/impala/**.js', 'javascript'),
         ('media/js/zamboni/**.js', 'javascript'),
         ('media/js/mkt/**.js', 'javascript'),
+        ('media/js/devreg/**.js', 'javascript'),
     ],
 }
 
