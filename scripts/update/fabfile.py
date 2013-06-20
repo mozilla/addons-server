@@ -13,9 +13,11 @@ import commander_settings as settings
 env.key_filename = settings.SSH_KEY
 env.roledefs.update(commander.hosts.hostgroups)
 
-_src_dir = lambda *p: os.path.join(settings.SRC_DIR, *p)
-ROOT_DIR = os.path.dirname(settings.SRC_DIR)
-VIRTUALENV = os.path.join(ROOT_DIR, 'venv')
+ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__),
+                                    '..', '..', '..'))
+ZAMBONI = os.path.join(ROOT, 'zamboni')
+
+VIRTUALENV = os.path.join(ROOT, 'venv')
 
 BUILD_ID = str(int(time.time()))
 
@@ -27,7 +29,7 @@ CLUSTER = getattr(settings, 'CLUSTER', settings.WEB_HOSTGROUP)
 
 
 def get_version():
-    with lcd(settings.SRC_DIR):
+    with lcd(ZAMBONI):
         ref = local('git rev-parse HEAD', capture=True)
     return ref
 
@@ -38,7 +40,7 @@ def get_setting(n, default=None):
 
 @task
 def create_virtualenv():
-    with lcd(settings.SRC_DIR):
+    with lcd(ZAMBONI):
         status = local('git diff HEAD@{1} HEAD --name-only')
 
     if 'requirements/' in status:
@@ -48,18 +50,18 @@ def create_virtualenv():
 
         local('rm -rf %s' % venv)
         helpers.create_venv(venv, settings.PYREPO,
-                            '%s/requirements/prod.txt' % settings.SRC_DIR)
+                            '%s/requirements/prod.txt' % ZAMBONI)
 
         if getattr(settings, 'LOAD_TESTING', False):
             local('%s/bin/pip install --exists-action=w --no-deps '
                   '--no-index --download-cache=/tmp/pip-cache -f %s '
                   '-r %s/requirements/load.txt' %
-                  (venv, settings.PYREPO, settings.SRC_DIR))
+                  (venv, settings.PYREPO, ZAMBONI))
 
 
 @task
 def update_locales():
-    with lcd(_src_dir("locale")):
+    with lcd(os.path.join(ZAMBONI, 'locale')):
         local("svn revert -R .")
         local("svn up")
         local("./compile-mo.sh .")
@@ -76,28 +78,28 @@ def loadtest(repo=''):
 
 @task
 def update_products():
-    with lcd(settings.SRC_DIR):
+    with lcd(ZAMBONI):
         local('%s manage.py update_product_details' % settings.PYTHON)
 
 
 @task
 def compress_assets(arg=''):
-    with lcd(settings.SRC_DIR):
+    with lcd(ZAMBONI):
         local("%s manage.py compress_assets -t %s" % (settings.PYTHON,
                                                       arg))
 
 
 @task
 def schematic():
-    with lcd(settings.SRC_DIR):
+    with lcd(ZAMBONI):
         local("%s %s/bin/schematic migrations" %
               (settings.PYTHON, VIRTUALENV))
 
 
 @task
 def update_info(ref='origin/master'):
-    helpers.git_info(settings.SRC_DIR)
-    with lcd(settings.SRC_DIR):
+    helpers.git_info(ZAMBONI)
+    with lcd(ZAMBONI):
         local("/bin/bash -c "
               "'source /etc/bash_completion.d/git && __git_ps1'")
         local('git show -s {0} --pretty="format:%h" '
@@ -118,10 +120,10 @@ def disable_cron():
 
 @task
 def install_cron():
-    with lcd(settings.SRC_DIR):
+    with lcd(ZAMBONI):
         local('%s ./scripts/crontab/gen-cron.py '
               '-z %s -u apache -p %s > /etc/cron.d/.%s' %
-              (settings.PYTHON, settings.SRC_DIR,
+              (settings.PYTHON, ZAMBONI,
                settings.PYTHON, settings.CRON_NAME))
 
         local('mv /etc/cron.d/.%s /etc/cron.d/%s' % (settings.CRON_NAME,
@@ -170,12 +172,12 @@ def deploy():
 
     execute(install_cron)
 
-    rpmbuild.build_rpm(ROOT_DIR, ['zamboni', 'venv'])
+    rpmbuild.build_rpm(ROOT, ['zamboni', 'venv'])
     execute(install_package, rpmbuild)
 
     execute(restart_workers)
     rpmbuild.clean()
-    with lcd(settings.SRC_DIR):
+    with lcd(ZAMBONI):
         local('%s manage.py cron cleanup_validation_results' %
               settings.PYTHON)
 
@@ -184,7 +186,7 @@ def deploy():
 def pre_update(ref=settings.UPDATE_REF):
     local('date')
     execute(disable_cron)
-    execute(helpers.git_update, settings.SRC_DIR, ref)
+    execute(helpers.git_update, ZAMBONI, ref)
     execute(update_info, ref)
 
 
@@ -196,6 +198,6 @@ def update():
     execute(compress_assets)
     execute(compress_assets, arg='--settings=settings_local_mkt')
     execute(schematic)
-    with lcd(settings.SRC_DIR):
+    with lcd(ZAMBONI):
         local('%s manage.py dump_apps' % settings.PYTHON)
         local('%s manage.py statsd_ping --key=update' % settings.PYTHON)
