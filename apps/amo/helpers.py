@@ -384,15 +384,14 @@ def shuffle(sequence):
 @register.function
 def license_link(license):
     """Link to a code license, including icon where applicable."""
-    if not license:
-        return ''
-
     # If passed in an integer, try to look up the License.
-    if isinstance(license, int):
+    if isinstance(license, int) or isinstance(license, long):
         license = License.objects.filter(id=license)
         if not license.exists():
             return ''
         license = license[0]
+    elif not license:
+        return ''
 
     if not getattr(license, 'builtin', True):
         return _('Custom License')
