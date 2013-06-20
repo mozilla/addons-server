@@ -61,6 +61,20 @@ class TestPremiumForm(amo.tests.TestCase):
         form.save()
         eq_(RereviewQueue.objects.count(), 0)
 
+    def test_free_with_in_app_requires_in_app(self):
+        self.make_premium(self.addon)
+        price = Price.objects.create(price='0.00')
+        self.platforms.update(price=price.pk, allow_inapp='False')
+        form = forms_payments.PremiumForm(self.platforms, **self.kwargs)
+        assert not form.is_valid()
+
+    def test_paid_free_with_in_app(self):
+        self.make_premium(self.addon)
+        price = Price.objects.create(price='0.00')
+        self.platforms.update(price=price.pk, allow_inapp='True')
+        form = forms_payments.PremiumForm(self.platforms, **self.kwargs)
+        assert form.is_valid()
+
     def test_premium_to_free(self):
         # Premium to Free is ok for public apps.
         self.make_premium(self.addon)

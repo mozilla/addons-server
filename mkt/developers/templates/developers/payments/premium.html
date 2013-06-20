@@ -175,7 +175,8 @@
                 <td colspan="2" class="region-container">
                   <div class="checkbox-choices regions"
                        data-disabled-regions="{{ region_form.disabled_regions|json }}"
-                       data-pricelist-api-url="{{ api_pricelist_url }}">
+                       data-pricelist-api-url="{{ api_pricelist_url }}"
+                       data-free-with-inapp-id="{{ free_with_in_app_id }}">
                     {{ region_form.regions.errors }}
                     <table>
                       <thead>
@@ -190,8 +191,8 @@
                               <td>
                                 <label class="disabled">
                                   <input type="checkbox" disabled
-                                         {% if value in region_form.initial.regions %}checked{% endif %}
-                                         name="regions" value="{{ value }}" />{{ text }}</label>
+                                         {%- if value in region_form.initial.regions %} checked {% endif -%}
+                                         name="regions" value="{{ value }}">{{ text }}</label>
                               </td>
                               <td><span class="local-retail"></span></td>
                           </tr>

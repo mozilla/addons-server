@@ -22,6 +22,7 @@ from amo.urlresolvers import reverse
 from lib.crypto import generate_key
 from lib.pay_server import client
 
+from market.models import Price
 from mkt.constants import DEVICE_LOOKUP
 from mkt.developers.decorators import dev_required
 from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
@@ -118,10 +119,17 @@ def payments(request, addon_id, addon, webapp=False):
             [('android-mobile', True), ('android-tablet', True),
              ('desktop', True), ('firefoxos', False)]))
 
+    try:
+        free_with_in_app_id = Price.objects.get(price='0.00',
+                                                active=True).pk
+    except Price.DoesNotExist:
+        free_with_in_app_id = ''
+
     return jingo.render(
         request, 'developers/payments/premium.html',
         {'addon': addon, 'webapp': webapp, 'premium': addon.premium,
          'form': premium_form, 'upsell_form': upsell_form,
+         'free_with_in_app_id': free_with_in_app_id,
          'region_form': region_form,
          'DEVICE_LOOKUP': DEVICE_LOOKUP,
          'is_paid': addon.premium_type in amo.ADDON_PREMIUMS,

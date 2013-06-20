@@ -78,9 +78,22 @@ define('payments', [], function() {
         var selectedPrice = $this.val() || '';
         var apiUrl = format(pricesApiEndpoint, parseInt(selectedPrice, 10));
         var disabledRegions = $regions.data('disabledRegions');
+        var freeWithInAppId = $regions.data('freeWithInappId');
 
         if (currentPrice == selectedPrice) {
             return;
+        }
+
+        // If free with in-app is selected then make the 'No' radio disabled
+        // and hide it and make the allow_inapp a hidden field.
+        if (selectedPrice == freeWithInAppId) {
+            $('input[name=allow_inapp][value=True]').attr('type', 'hidden');
+            $('input[name=allow_inapp][value=False]').prop('disabled', true)
+                                                     .parent('label').hide();
+        } else {
+            $('input[name=allow_inapp][value=True]').attr('type', 'radio');
+            $('input[name=allow_inapp][value=False]').prop('disabled', false)
+                                                     .parent('label').show();
         }
 
         // Clear out existing price data.
