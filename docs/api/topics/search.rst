@@ -56,9 +56,9 @@ Search
     :status 401: if attempting to filter by status, you do not have that role.
 
 Featured App Listing
-===================================
+====================
 
-.. http:get::  /api/v1/apps/search/featured/
+.. http:get::  /api/v1/fireplace/search/featured/
 
     **Request**
 

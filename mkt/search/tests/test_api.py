@@ -487,7 +487,7 @@ class TestFeaturedNoCategories(BaseOAuth, ESTestCase):
     list_url = list_url('search/featured')
 
     def setUp(self):
-        super(TestFeaturedNoCategories, self).setUp()
+        super(TestFeaturedNoCategories, self).setUp(api_name='fireplace')
         self.create_switch('search-api-es')
         self.create_switch('buchets')
         self.cat = Category.objects.create(type=amo.ADDON_WEBAPP, slug='shiny')
@@ -554,7 +554,7 @@ class TestFeaturedWithCategories(BaseOAuth, ESTestCase):
     list_url = list_url('search/featured')
 
     def setUp(self):
-        super(TestFeaturedWithCategories, self).setUp()
+        super(TestFeaturedWithCategories, self).setUp(api_name='fireplace')
         self.create_switch('search-api-es')
         self.create_switch('buchets')
         self.cat = Category.objects.create(type=amo.ADDON_WEBAPP, slug='shiny')
