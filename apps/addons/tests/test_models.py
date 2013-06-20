@@ -283,6 +283,7 @@ class TestAddonModels(amo.tests.TestCase):
 
         v2 = Version.objects.create(addon=a, version='2.0beta')
         File.objects.create(version=v2, status=amo.STATUS_BETA)
+        v2.save()
         eq_(a.latest_version.id, v1.id)  # Still should be f1
 
     def test_current_beta_version(self):
