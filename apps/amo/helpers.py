@@ -385,7 +385,7 @@ def shuffle(sequence):
 def license_link(license):
     """Link to a code license, including icon where applicable."""
     # If passed in an integer, try to look up the License.
-    if isinstance(license, int) or isinstance(license, long):
+    if isinstance(license, (long, int)):
         license = License.objects.filter(id=license)
         if not license.exists():
             return ''
