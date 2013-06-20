@@ -692,7 +692,12 @@ a.button.concealed:active {
 }
 
 .button.add b { background-position: 25% 0; }
-.button.add.prominent b { background-position: 25% -49px; }
+.button.add.prominent b {
+    background-position: 25% -49px;
+    position: relative;
+    right: 1px;
+    top: 2px;
+}
 .button.download b { background-position: 25% -100px; }
 .button.download.prominent b { background-position: 25% -150px; }
 .button.add.caution b { background-position: 25% -400px; }
@@ -1089,8 +1094,72 @@ ul.license li.copyr { background-position: 0 -260px; }
 .persona-hover .persona-inner {
     background: #c8e8f2;
 }
+.persona-install {
+    border: 0.25em solid #C8E8F2;
+    bottom: -3px;
+    display: none;
+    left: 0;
+    position: absolute;
+}
+.addons-column .persona-install {
+    left: -3px;
+}
+.with-details .persona-install {
+    bottom: 53px;
+}
+.persona-preview:hover .incompat-browser {
+    display: block;
+}
+.persona-install.incompat-browser {
+    left: 1px;
+}
+.addons-column .persona-install.incompat-browser {
+    left: -2px;
+}
+.persona-install button {
+    border-radius: 1px;
+    height: 25px;
+    width: 65px;
+}
+.persona .persona-install.incompat-browser button.disabled {
+    background: #fff;
+    border-color: #888;
+    text-shadow: none;
+}
+.persona-install.incompat-browser button img {
+    display: none;
+}
+.persona-install button .disabled-icon {
+    display: none;
+}
+.persona-install button span {
+    border-left: 0;
+    border-right: 0;
+    margin: 0;
+    padding: 0;
+    white-space: inherit;
+}
+.persona-install.incompat-browser button:hover {
+    cursor: default;
+}
+.persona-install.incompat-browser button .disabled-icon {
+    display: inline;
+}
+.persona-install button div {
+    bottom: 2px;
+    position: relative;
+}
+.persona-install button div img {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
 .persona-hover .persona-install {
     display: block;
+}
+#more-personas .persona-install {
+    bottom: 0;
+    left: 0;
 }
 .persona-preview {
     position: relative;
@@ -1101,6 +1170,66 @@ ul.license li.copyr { background-position: 0 -260px; }
     display: block;
     background: transparent no-repeat right top;
     border: .25em solid #c8e8f2 !important;
+}
+.persona-preview span.review-decal {
+    border-radius: 0 0 1px 0;
+    font-weight: normal;
+    left: 3px;
+    padding: 3px 5px;
+    top: 3px;
+}
+.addons-column .persona-preview .review-decal {
+    left: 0;
+    top: 0;
+}
+.review-decal:hover {
+    cursor: pointer;
+}
+.persona-hover .review-decal {
+    background: #fff;
+}
+.persona-preview .approved {
+    color: #339900;
+}
+.persona-preview .rejected {
+    color: red;
+}
+.persona-preview .artist-tools {
+    background: #F5F5F5;
+    border-radius: 1px 0 0 0;
+    bottom: 0;
+    display: none;
+    opacity: .95;
+    padding: 4px 8px;
+    position: absolute;
+    right: 0;
+}
+.with-details .artist-tools {
+    bottom: 54px;
+}
+.persona-hover .artist-tools {
+    display: inline-block;
+}
+.persona-preview .artist-tools:hover {
+    opacity: 1;
+}
+.persona-inner .persona-preview span.artist-tools a {
+    padding: 0;
+    min-height: 0;
+}
+.persona-inner .persona-preview span.artist-tools a:hover {
+    background: none;
+}
+.persona-preview .artist-tools img {
+    height: 18px;
+    width: 18px;
+}
+.artist-tools.incompat-browser {
+    bottom: 55px;
+    right: 3px;
+}
+.addons-column .artist-tools.incompat-browser {
+    bottom: 3px;
 }
 .persona-hover .persona-preview [data-browsertheme] {
     border-color: #fff !important;
@@ -1121,7 +1250,8 @@ ul.license li.copyr { background-position: 0 -260px; }
 
 .persona-preview .created,
 .persona-preview .users,
-.persona-preview .reviews {
+.persona-preview .reviews,
+.persona-preview .review-decal {
     background-color: #c8e8f2;
     display: inline-block;
     padding: .25em .5em;
@@ -1140,7 +1270,8 @@ ul.license li.copyr { background-position: 0 -260px; }
 
 .persona-hover .created,
 .persona-hover .users,
-.persona-hover .reviews {
+.persona-hover .reviews,
+.persona-hover .review-decal {
     background-color: #fff;
 }
 

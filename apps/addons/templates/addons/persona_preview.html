@@ -1,13 +1,22 @@
 <div class="persona persona-{{ size }}">
   <div class="persona-inner">
-    <div class="persona-preview">
+    <div class="persona-preview{% if details %} with-details{% endif %}">
       {% set tag = 'a' if linked else 'div' %}
       {% with addon_url = url_ or addon.get_url_path() %}
         <{{ tag }} {% if linked %}href="{{ addon_url }}" target="_self"{% endif %}
       {% endwith %}
       style="background-image:url('{{ preview }}')"
       data-browsertheme="{{ persona.json_data }}">
-        {% if extra == 'created' %}
+        {% if request.check_ownership(addon, require_owner=True, admin=False) %}
+          {% if addon.is_unreviewed() %}
+            <span class="review-decal">{{ _('Awaiting Review') }}</span>
+          {% elif addon.is_rejected() %}
+            <span class="review-decal rejected">{{ _('Rejected') }}</span>
+          {% elif addon.is_public() %}
+            <span class="review-decal approved">{{ _('Approved') }}</span>
+          {% endif %}
+
+        {% elif extra == 'created' %}
           <span class="created">
             {{ _('Added {0}')|f(addon.created|datetime) }}
           </span>
@@ -30,7 +39,24 @@
         {% if caption %}
           <span class="caption">{{ _('Hover to Preview') }}</span>
         {% endif %}
+        {% if linked %}
+          <span class="persona-install">
+            <button class="add">
+              <div>
+                <img src="{{ media('img/impala/add-small.png') }}">
+                <span class="disabled-icon">+</span>
+                <span>{{ _('Add') }}</span>
+              </div>
+            </button>
+          </span>
+        {% endif %}
       </{{ tag }}>
+
+      {% if request.check_ownership(addon, require_owner=True, admin=False) %}
+        <span class="artist-tools">
+          <a href="{{ addon.get_dev_url() }}"><img src="{{ media('img/admin/icon_changelink.gif') }}"></a>
+        </span>
+      {% endif %}
 
       {% if details %}
         <h6><a href="{{ addon.get_url_path() }}">{{ addon.name }}</a></h6>
@@ -52,11 +78,6 @@
             {{ _('<b>{0}</b> users')|f(addon.persona.popularity|numberfmt)|safe }}
           </span>
         </div>
-      {% endif %}
-
-      {% if linked %}
-      {# TODO persona install button on hover #}
-      <span class="persona-install"></span>
       {% endif %}
     </div>
   </div>
