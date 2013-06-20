@@ -174,4 +174,6 @@ class WithFeaturedResource(SearchResource):
         bundles = [self.build_bundle(obj=obj, request=request) for obj in qs]
         data['featured'] = [AppResource().full_dehydrate(bundle)
                             for bundle in bundles]
+        # Alter the _view_name so that statsd logs seperately from search.
+        request._view_name = 'featured'
         return data
