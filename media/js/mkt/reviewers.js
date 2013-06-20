@@ -236,7 +236,7 @@ function initPrefetchManifest() {
         // Show manifest.
         $viewManifest.click(_pd(function() {
             var $this = $viewManifest,
-                $manifest = $('#manifest-headers, #manifest-contents');
+                $manifest = $('#manifest-headers, #manifest-contents, #manifest-permissions');
             if ($manifest.length) {
                 $manifest.toggle();
             } else {

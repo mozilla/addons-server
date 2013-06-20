@@ -44,6 +44,12 @@
                data-url="{{ url('reviewers.apps.review.manifest', product.app_slug) }}">
               {{ product.manifest_url }} <b>{{ _('View') }}</b></a>
           </dd>
+          {% if product.is_packaged %}
+            <dt>{{ _('Signed Zip') }}</dt>
+            {% with package_url=url('reviewers.signed', product.app_slug, product.versions.latest().id) %}
+              <dd><a href="{{ package_url|absolutify }}">{{ package_url|absolutify }}</a>
+            {% endwith %}
+          {% endif %}
           <dt>{{ _('Default Locale') }}</dt>
           <dd>{{ product.default_locale }}</dd>
           <dt>{{ _('Price') }}</dt>
