@@ -137,7 +137,7 @@ def restart_workers():
     restarts = []
     for g in get_setting('MULTI_GUNICORN', []):
         restarts.append('( supervisorctl restart {0}-a; '
-                        'supervisorctl restart {0}-a )&'.format(g))
+                        'supervisorctl restart {0}-b )&'.format(g))
 
     if restarts:
         run('%s wait' % ' '.join(restarts))
