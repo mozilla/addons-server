@@ -103,8 +103,6 @@ WAFFLE_SUFFIX = WAFFLE_TABLE_SUFFIX = 'mkt'
 
 SENTRY_DSN = private_mkt.SENTRY_DSN
 
-METRICS_SERVER = 'https://data.mozilla.com/'
-
 INAPP_KEY_PATHS = {'2012-05-09': private_mkt.INAPP_KEY_PATH}
 
 SOLITUDE_HOSTS = ('https://payments.firefox.com',)

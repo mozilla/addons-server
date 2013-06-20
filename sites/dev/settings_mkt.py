@@ -101,9 +101,6 @@ INAPP_REQUIRE_HTTPS = False
 
 SENTRY_DSN = private_mkt.SENTRY_DSN
 
-#Bug 747548
-METRICS_SERVER = 'https://data.mozilla.com/'
-
 WEBAPPS_PUBLIC_KEY_DIRECTORY = NETAPP_STORAGE + '/public_keys'
 INAPP_IMAGE_PATH = NETAPP_STORAGE + '/inapp-image'
 PRODUCT_ICON_PATH = NETAPP_STORAGE + '/product-icons'

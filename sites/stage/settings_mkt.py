@@ -104,9 +104,6 @@ INAPP_REQUIRE_HTTPS = False
 
 SENTRY_DSN = private_mkt.SENTRY_DSN
 
-#Bug 747548
-METRICS_SERVER = 'https://data.mozilla.com/'
-
 SOLITUDE_HOSTS = ('https://payments.allizom.org',)
 SOLITUDE_OAUTH = {'key': private_mkt.SOLITUDE_OAUTH_KEY,
                   'secret': private_mkt.SOLITUDE_OAUTH_SECRET}

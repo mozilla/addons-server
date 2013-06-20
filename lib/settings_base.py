@@ -1450,12 +1450,6 @@ TOTEM_BINARIES = {'thumbnailer': 'totem-video-thumbnailer',
                   'indexer': 'totem-video-indexer'}
 VIDEO_LIBRARIES = ['lib.video.totem', 'lib.video.ffmpeg']
 
-# This is the metrics REST server for receiving data, should be a URL
-# including the protocol.
-METRICS_SERVER = ''
-# And how long we'll give the server to respond.
-METRICS_SERVER_TIMEOUT = 10
-
 # Turn on/off the use of the signing server and all the related things. This
 # is a temporary flag that we will remove.
 SIGNING_SERVER_ACTIVE = False

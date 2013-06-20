@@ -1,15 +1,12 @@
 import mock
 from nose.tools import eq_
 
-from django.conf import settings
-
 from mkt.api.base import list_url
 from mkt.api.tests.test_oauth import BaseOAuth
 from mkt.stats.api import STATS
 
 
 @mock.patch('monolith.client.Client')
-@mock.patch.object(settings, 'METRICS_SERVER', 'http://localhost')
 class TestGlobalStatsResource(BaseOAuth):
 
     def setUp(self):
