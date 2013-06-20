@@ -20,6 +20,7 @@ from amo.urlresolvers import reverse
 from mkt.api import authentication
 from mkt.api.base import CORSResource, MarketplaceResource
 from mkt.api.models import Access, Token, generate, REQUEST_TOKEN, ACCESS_TOKEN
+from mkt.api.tests import BaseAPI
 from mkt.site.fixtures import fixture
 
 
@@ -126,7 +127,7 @@ class OAuthClient(Client):
         return response
 
 
-class BaseOAuth(TestCase):
+class BaseOAuth(BaseAPI):
     fixtures = fixture('user_2519', 'group_admin', 'group_editor',
                        'group_support')
 
@@ -139,23 +140,6 @@ class BaseOAuth(TestCase):
                                             user=self.user)
         self.client = OAuthClient(self.access, api_name=api_name)
         self.anon = OAuthClient(None, api_name=api_name)
-
-    def _allowed_verbs(self, url, allowed):
-        """
-        Will run through all the verbs except the ones specified in allowed
-        and ensure that hitting those produces a 405. Otherwise the test will
-        fail.
-        """
-        verbs = ['get', 'post', 'put', 'patch', 'delete']
-        for verb in verbs:
-            if verb in allowed:
-                continue
-            res = getattr(self.client, verb)(url)
-            assert res.status_code in (401, 405), (
-                '%s: %s not 401 or 405' % (verb.upper(), res.status_code))
-
-    def get_error(self, response):
-        return json.loads(response.content)['error_message']
 
 
 class RestOAuthClient(OAuthClient):

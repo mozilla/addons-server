@@ -33,6 +33,7 @@ handler404 = 'mkt.site.views.handler404'
 handler500 = 'mkt.site.views.handler500'
 
 api_patterns = patterns('',
+    url('', include('mkt.fireplace.urls')),
     url('', include('mkt.api.urls')),
     url('', include(abuse_api_patterns)),
     url('', include(account_api_patterns)),

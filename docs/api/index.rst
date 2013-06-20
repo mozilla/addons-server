@@ -21,6 +21,7 @@ This documentation covers interacting with the `Firefox Marketplace`_.
    topics/apps.rst
    topics/comm.rst
    topics/export.rst
+   topics/fireplace.rst
    topics/payment.rst
    topics/ratings.rst
    topics/reviewers.rst
