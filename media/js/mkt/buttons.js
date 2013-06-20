@@ -24,6 +24,16 @@
         }
     }
 
+    if (!(navigator.mozApps && navigator.mozApps.installPackage)) {
+        // disable packaged apps if we can't install them
+        $('.button.product:not([disabled])').each(function() {
+            var $this = $(this);
+            if ($this.data('is_packaged')) {
+                $this.attr('disabled', true).addClass('incompatible disabled');
+            }
+        });
+    }
+
     z.doc.bind('app_purchase_start', function(e, product) {
         setButton(getButton(product), gettext('Purchasing'), 'purchasing');
     }).bind('app_purchase_success', function(e, product) {
