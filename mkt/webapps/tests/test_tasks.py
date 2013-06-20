@@ -621,3 +621,49 @@ class TestUpdateDeveloperName(amo.tests.TestCase):
 
         version = self.app.current_version.reload()
         eq_(version._developer_name, '')
+
+
+class TestFixMissingIcons(amo.tests.TestCase):
+    fixtures = fixture('webapp_337141')
+
+    def setUp(self):
+        self.app = Webapp.objects.get(pk=337141)
+
+    @mock.patch('mkt.webapps.tasks._fix_missing_icons')
+    def test_ignore_not_webapp(self, mock_):
+        self.app.update(type=amo.ADDON_EXTENSION)
+        call_command('process_addons', task='fix_missing_icons')
+        assert not mock_.called
+
+    @mock.patch('mkt.webapps.tasks._fix_missing_icons')
+    def test_pending(self, mock_):
+        self.app.update(status=amo.STATUS_PENDING)
+        call_command('process_addons', task='fix_missing_icons')
+        assert mock_.called
+
+    @mock.patch('mkt.webapps.tasks._fix_missing_icons')
+    def test_public_waiting(self, mock_):
+        self.app.update(status=amo.STATUS_PUBLIC_WAITING)
+        call_command('process_addons', task='fix_missing_icons')
+        assert mock_.called
+
+    @mock.patch('mkt.webapps.tasks._fix_missing_icons')
+    def test_ignore_disabled(self, mock_):
+        self.app.update(status=amo.STATUS_DISABLED)
+        call_command('process_addons', task='fix_missing_icons')
+        assert not mock_.called
+
+    @mock.patch('mkt.webapps.tasks.fetch_icon')
+    @mock.patch('mkt.webapps.tasks._log')
+    @mock.patch('mkt.webapps.tasks.storage.exists')
+    def test_for_missing_size(self, exists, _log, fetch_icon):
+        exists.return_value = False
+        call_command('process_addons', task='fix_missing_icons')
+
+        # We are checking two sizes, but since the 64 has already failed for
+        # this app, we should only have called exists() once, and we should
+        # never have logged that the 128 icon is missing.
+        eq_(exists.call_count, 1)
+        assert _log.any_call(337141, 'Webapp is missing icon size 64')
+        assert _log.any_call(337141, 'Webapp is missing icon size 128')
+        assert fetch_icon.called

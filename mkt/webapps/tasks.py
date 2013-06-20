@@ -28,7 +28,8 @@ from lib.es.utils import get_indices
 from users.utils import get_task_user
 
 from mkt.constants.regions import WORLDWIDE
-from mkt.developers.tasks import _fetch_manifest, run_validator, validator
+from mkt.developers.tasks import (fetch_icon, _fetch_manifest, run_validator,
+                                  validator)
 from mkt.webapps.models import Webapp, WebappIndexer
 from mkt.webapps.utils import get_locale_properties
 
@@ -439,3 +440,28 @@ def _update_developer_name(id):
 def update_developer_name(ids, **kw):
     for id in ids:
         _update_developer_name(id)
+
+
+def _fix_missing_icons(id):
+    try:
+        webapp = Webapp.objects.get(pk=id)
+    except Webapp.DoesNotExist:
+        _log(id, u'Webapp does not exist')
+        return
+
+    # Check for missing icons. If we find one important size missing, call
+    # fetch_icon for this app.
+    dirname = webapp.get_icon_dir()
+    destination = os.path.join(dirname, '%s' % webapp.id)
+    for size in (64, 128):
+        filename = '%s-%s.png' % (destination, size)
+        if not storage.exists(filename):
+            _log(id, u'Webapp is missing icon size %d' % (size, ))
+            return fetch_icon(webapp)
+
+
+@task
+@write
+def fix_missing_icons(ids, **kw):
+    for id in ids:
+        _fix_missing_icons(id)
