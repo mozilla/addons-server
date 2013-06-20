@@ -173,10 +173,11 @@
               </tr>
               <tr>
                 <td colspan="2" class="region-container">
-                  <div class="checkbox-choices regions"
+                  <div id="region-list" class="checkbox-choices regions"
                        data-api-error-msg="{{ _('A server error occurred. Please try again later.') }}"
                        data-disabled-regions="{{ region_form.disabled_regions|json }}"
                        data-free-with-inapp-id="{{ free_with_in_app_id }}"
+                       data-payment-methods="{{ payment_methods|json }}"
                        data-pricelist-api-url="{{ api_pricelist_url }}">
                     {{ region_form.regions.errors }}
                     <table>
@@ -185,6 +186,7 @@
                           <th><span class="region-heading">{{ _('Region') }}</span></th>
                           <th>{{ _('Retail price') }}
                             <span class="local-currency-heading">({{ _('local currency') }})</span></th>
+                          <th>{{ _('Billing method') }}</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -198,6 +200,7 @@
                                          name="regions" value="{{ value }}">{{ text }}</label>
                               </td>
                               <td><span class="local-retail"></span></td>
+                              <td><span class="local-method"></span></td>
                           </tr>
                           {% endif %}
                         {% endfor %}

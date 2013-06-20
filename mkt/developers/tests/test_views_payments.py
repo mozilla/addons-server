@@ -12,6 +12,9 @@ import amo.tests
 from amo.urlresolvers import reverse
 from addons.models import (Addon, AddonCategory, AddonDeviceType, AddonUser,
                            Category)
+from constants.payments import (PAYMENT_METHOD_ALL,
+                                PAYMENT_METHOD_CARD,
+                                PAYMENT_METHOD_OPERATOR)
 from mkt.constants.payments import ACCESS_PURCHASE, ACCESS_SIMULATE
 from market.models import Price
 from users.models import UserProfile
@@ -293,13 +296,20 @@ class TestPayments(amo.tests.TestCase):
         eq_(len(pqr('#regions-island')), 0),
         eq_(len(pqr('#paid-regions-island')), 1),
 
-    def test_free_with_in_app_tier_id_in_context(self):
+    def test_free_with_in_app_tier_id_in_content(self):
         free_tier = Price.objects.create(price='0.00')
         self.webapp.update(premium_type=amo.ADDON_PREMIUM)
         res = self.client.get(self.url)
         pqr = pq(res.content)
         eq_(len(pqr('.regions[data-free-with-inapp-id]')), 1),
         eq_(int(pqr('.regions').attr('data-free-with-inapp-id')), free_tier.pk)
+
+    def test_pay_method_ids_in_context(self):
+        self.webapp.update(premium_type=amo.ADDON_PREMIUM)
+        res = self.client.get(self.url)
+        self.assertSetEqual(res.context['payment_methods'].keys(),
+                            [PAYMENT_METHOD_ALL, PAYMENT_METHOD_CARD,
+                             PAYMENT_METHOD_OPERATOR])
 
     def test_premium_in_app_passes(self):
         self.webapp.update(premium_type=amo.ADDON_FREE)

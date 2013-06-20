@@ -19,6 +19,9 @@ from access import acl
 from amo import messages
 from amo.decorators import json_view, login_required, post_required, write
 from amo.urlresolvers import reverse
+from constants.payments import (PAYMENT_METHOD_ALL,
+                                PAYMENT_METHOD_CARD,
+                                PAYMENT_METHOD_OPERATOR)
 from lib.crypto import generate_key
 from lib.pay_server import client
 
@@ -145,7 +148,12 @@ def payments(request, addon_id, addon, webapp=False):
              not waffle.switch_is_active('disabled-payments'),
          'api_pricelist_url':
              reverse('api_dispatch_list', kwargs={'resource_name': 'prices',
-                                                  'api_name': 'webpay'})})
+                                                  'api_name': 'webpay'}),
+         'payment_methods': {
+             PAYMENT_METHOD_ALL: _('All'),
+             PAYMENT_METHOD_CARD: _('Credit card'),
+             PAYMENT_METHOD_OPERATOR: _('Carrier'),
+         }})
 
 
 @login_required

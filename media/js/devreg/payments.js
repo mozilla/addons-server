@@ -2,8 +2,13 @@ define('payments', [], function() {
     'use strict';
 
     var currentPrice;
-    var $regions = $('.regions');
+    var $regions = $('#region-list');
     var $regionsIsland = $('#regions');
+
+    var apiErrorMsg = $regions.data('apiErrorMsg');
+    var disabledRegions = $regions.data('disabledRegions');
+    var freeWithInAppId = $regions.data('freeWithInappId');
+    var paymentMethods = $regions.data('paymentMethods') || {};
     var pricesApiEndpoint = $regions.data('pricelistApiUrl') + '{0}/';
 
     function getOverlay(opts) {
@@ -77,29 +82,24 @@ define('payments', [], function() {
         /*jshint validthis:true */
         var $this = $(this);
         var selectedPrice = $this.val() || '';
-        var apiUrl = format(pricesApiEndpoint, parseInt(selectedPrice, 10));
-        var disabledRegions = $regions.data('disabledRegions');
-        var freeWithInAppId = $regions.data('freeWithInappId');
-        var apiErrorMsg = $regions.data('apiErrorMsg');
+        var apiUrl = format(pricesApiEndpoint, +selectedPrice);
 
         if (currentPrice == selectedPrice) {
             return;
         }
 
-        // If free with in-app is selected then make the 'No' radio disabled
-        // and hide it and make the allow_inapp a hidden field.
+        // If free with in-app is selected, check "Yes" then make the 'No' radio
+        // disabled and hide it.
         if (selectedPrice == freeWithInAppId) {
-            $('input[name=allow_inapp][value=True]').attr('type', 'hidden');
+            $('input[name=allow_inapp][value=True]').prop('checked', true);
             $('input[name=allow_inapp][value=False]').prop('disabled', true)
                                                      .parent('label').hide();
         } else {
-            $('input[name=allow_inapp][value=True]').attr('type', 'radio');
             $('input[name=allow_inapp][value=False]').prop('disabled', false)
                                                      .parent('label').show();
         }
 
         // Clear out existing price data.
-        $regions.find('.local-retail').text('');
 
         $.ajax({
             url: apiUrl,
@@ -114,25 +114,41 @@ define('payments', [], function() {
                 for (var i=0, j=prices.length; i<j; i++) {
                     var price = prices[i];
                     var region = price.region;
+                    var billingMethodText = paymentMethods[+price.method] || '';
                     var $chkbox = $regions.find('input:checkbox[value=' + region + ']');
+
                     // Skip if over regions that should be disabled e.g games app in Brazil.
                     if (disabledRegions.indexOf(region) > -1) {
                         continue;
                     }
                     // Enable checkboxes for those that we have price info for.
                     $chkbox.prop('disabled', false)
-                           .parent('label').removeClass('disabled')
-                           .closest('tr').find('.local-retail')
-                           .text(price.price +' '+ price.currency)
-                           .toggle($chkbox.prop('checked'));
+                           .closest('label').removeClass('disabled');
+
+                    var $tr = $chkbox.closest('tr');
+
+                    // Display local currency for price.
+                    $tr.find('.local-retail')
+                       .text(price.price + ' ' + price.currency);
+
+                    // Display local billing method.
+                    $tr.find('.local-method')
+                       .text(billingMethodText);
+
                     seen.push($chkbox[0]);
                 }
                 // Disable everything else.
-                $regions.find('input[type=checkbox]').not(seen)
-                                                     .prop('checked', false)
-                                                     .prop('disabled', true)
-                                                     .parent('label').addClass('disabled')
-                                                     .trigger('change');
+                $regions.find('input[type=checkbox]').not(seen).each(function() {
+                    var $this = $(this);
+                    var $tr = $this.closest('tr');
+
+                    $this.prop('checked', false)
+                         .prop('disabled', true)
+                         .closest('label').addClass('disabled');
+
+                    // Remove the text, where it shouldn't be displayed.
+                    $tr.find('.local-retail, .local-method').text('');
+                });
             },
             dataType: "json"
         }).fail(function() {
@@ -142,12 +158,6 @@ define('payments', [], function() {
         });
 
         currentPrice = selectedPrice;
-    }
-
-    function handleCheckboxChange() {
-        /*jshint validthis:true */
-        var $this = $(this);
-        $this.closest('tr').find('.local-retail').toggle($this.prop('checked'));
     }
 
     function init() {
@@ -167,7 +177,6 @@ define('payments', [], function() {
         $('#id_price').on('change', updatePrices)
                       .each(updatePrices);
 
-        $('.regions').on('change', 'input[type=checkbox]', handleCheckboxChange);
     }
 
     return {
