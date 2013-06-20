@@ -107,67 +107,18 @@ class ThemeReviewTestMixin(object):
             eq_(ThemeLock.objects.filter(reviewer=reviewer).count(),
                 len(expected))
 
-    @mock.patch.object(rvw, 'THEME_INITIAL_LOCKS', 2)
-    def test_top_off(self):
-        """If reviewer has fewer than max locks, get more from pool."""
-        for x in range(2):
-            self.theme_factory()
-        reviewer = self.create_and_become_reviewer()
-        self.get_themes(reviewer)
-        ThemeLock.objects.filter(reviewer=reviewer)[0].delete()
-        self.get_themes(reviewer)
-
-        # Check reviewer checked out the themes.
-        eq_(ThemeLock.objects.filter(reviewer=reviewer).count(),
-            rvw.THEME_INITIAL_LOCKS)
-
-    @mock.patch.object(rvw, 'THEME_INITIAL_LOCKS', 2)
-    def test_expiry(self):
-        """
-        Test that reviewers who want themes from an empty pool can steal
-        checked-out themes from other reviewers whose locks have expired.
-        """
-        for x in range(2):
-            self.theme_factory(status=self.status)
-        reviewer = self.create_and_become_reviewer()
-        self.get_themes(reviewer)
-
-        # Reviewer wants themes, but empty pool.
-        reviewer = self.create_and_become_reviewer()
-        self.get_themes(reviewer)
-        eq_(ThemeLock.objects.filter(reviewer=reviewer).count(), 0)
-
-        # Manually expire a lock and see if it's reassigned.
-        expired_theme_lock = ThemeLock.objects.all()[0]
-        expired_theme_lock.expiry = self.days_ago(1)
-        expired_theme_lock.save()
-        self.get_themes(reviewer)
-        eq_(ThemeLock.objects.filter(reviewer=reviewer).count(), 1)
-
-    def test_expiry_update(self):
-        """Test expiry is updated when reviewer reloads his queue."""
-        self.theme_factory()
-        reviewer = self.create_and_become_reviewer()
-        self.get_themes(reviewer)
-
-        ThemeLock.objects.filter(reviewer=reviewer).update(expiry=days_ago(1))
-        _get_themes(mock.Mock(), reviewer, flagged=self.flagged)
-        self.get_themes(reviewer)
-        eq_(ThemeLock.objects.filter(reviewer=reviewer)[0].expiry >
-            days_ago(1), True)
-
     @mock.patch.object(settings, 'LOCAL_MIRROR_URL', '')
     @mock.patch('mkt.reviewers.tasks.send_mail_jinja')
     @mock.patch('mkt.reviewers.tasks.create_persona_preview_images')
     @mock.patch('amo.storage_utils.copy_stored_file')
     def test_commit(self, copy_file_mock, create_preview_mock,
                     send_mail_jinja_mock):
+        if self.flagged:
+            return
+        themes = []
         for x in range(5):
-            self.theme_factory()
-        count = Persona.objects.count()
-        form_data = amo.tests.formset(initial_count=count,
-                                      total_count=count + 1)
-        themes = Persona.objects.all()
+            themes.append(self.theme_factory().persona)
+        form_data = amo.tests.formset(initial_count=5, total_count=6)
 
         # Create locks.
         reviewer = self.create_and_become_reviewer()
@@ -287,32 +238,6 @@ class ThemeReviewTestMixin(object):
             eq_(send_mail_jinja_mock.call_args_list[3], expected_calls[3])
             eq_(send_mail_jinja_mock.call_args_list[4], expected_calls[4])
 
-    def test_user_review_history(self):
-        self.theme_factory()
-
-        reviewer = self.create_and_become_reviewer()
-
-        res = self.client.get(reverse('reviewers.themes.history'))
-        eq_(res.status_code, 200)
-        doc = pq(res.content)
-        eq_(doc('tbody tr').length, 0)
-
-        theme = Persona.objects.all()[0]
-        for x in range(3):
-            amo.log(amo.LOG.THEME_REVIEW, theme.addon, user=reviewer,
-                    details={'action': rvw.ACTION_APPROVE,
-                             'comment': '', 'reject_reason': ''})
-
-        res = self.client.get(reverse('reviewers.themes.history'))
-        eq_(res.status_code, 200)
-        doc = pq(res.content)
-        eq_(doc('tbody tr').length, 3)
-
-        res = self.client.get(reverse('reviewers.themes.logs'))
-        eq_(res.status_code, 200)
-        doc = pq(res.content)
-        eq_(doc('tbody tr').length, 3 * 2)  # Double for comment rows.
-
     def test_single_basic(self):
         with self.settings(ALLOW_SELF_REVIEWS=True):
             user = UserProfile.objects.get(
@@ -327,23 +252,6 @@ class ThemeReviewTestMixin(object):
                 addon.persona.rereviewqueuetheme_set.all()[0].id
                 if self.rereview else addon.persona.id)
             eq_(res.context['reviewable'], not self.flagged)
-
-    def test_single_cannot_review_my_app(self):
-        with self.settings(ALLOW_SELF_REVIEWS=False):
-            user = UserProfile.objects.get(
-                email='persona_reviewer@mozilla.com')
-            self.login(user)
-            addon = self.theme_factory()
-
-            addon.addonuser_set.create(user=user)
-
-            res = self.client.get(reverse('reviewers.themes.single',
-                                          args=[addon.slug]))
-            eq_(res.status_code, 200)
-            eq_(res.context['theme'].id,
-                addon.persona.rereviewqueuetheme_set.all()[0].id
-                if self.rereview else addon.persona.id)
-            eq_(res.context['reviewable'], False)
 
 
 class TestThemeQueue(ThemeReviewTestMixin, amo.tests.TestCase):
@@ -427,6 +335,98 @@ class TestThemeQueue(ThemeReviewTestMixin, amo.tests.TestCase):
         reviewer = self.create_and_become_reviewer()
         eq_(len(_get_themes(mock.Mock(), reviewer)), 1)
         eq_(len(_get_themes(mock.Mock(), reviewer)), 1)
+
+    @mock.patch.object(rvw, 'THEME_INITIAL_LOCKS', 2)
+    def test_top_off(self):
+        """If reviewer has fewer than max locks, get more from pool."""
+        for x in range(2):
+            self.theme_factory()
+        reviewer = self.create_and_become_reviewer()
+        self.get_themes(reviewer)
+        ThemeLock.objects.filter(reviewer=reviewer)[0].delete()
+        self.get_themes(reviewer)
+
+        # Check reviewer checked out the themes.
+        eq_(ThemeLock.objects.filter(reviewer=reviewer).count(),
+            rvw.THEME_INITIAL_LOCKS)
+
+    @mock.patch.object(rvw, 'THEME_INITIAL_LOCKS', 2)
+    def test_expiry(self):
+        """
+        Test that reviewers who want themes from an empty pool can steal
+        checked-out themes from other reviewers whose locks have expired.
+        """
+        for x in range(2):
+            self.theme_factory(status=self.status)
+        reviewer = self.create_and_become_reviewer()
+        self.get_themes(reviewer)
+
+        # Reviewer wants themes, but empty pool.
+        reviewer = self.create_and_become_reviewer()
+        self.get_themes(reviewer)
+        eq_(ThemeLock.objects.filter(reviewer=reviewer).count(), 0)
+
+        # Manually expire a lock and see if it's reassigned.
+        expired_theme_lock = ThemeLock.objects.all()[0]
+        expired_theme_lock.expiry = self.days_ago(1)
+        expired_theme_lock.save()
+        self.get_themes(reviewer)
+        eq_(ThemeLock.objects.filter(reviewer=reviewer).count(), 1)
+
+    def test_expiry_update(self):
+        """Test expiry is updated when reviewer reloads his queue."""
+        self.theme_factory()
+        reviewer = self.create_and_become_reviewer()
+        self.get_themes(reviewer)
+
+        ThemeLock.objects.filter(reviewer=reviewer).update(expiry=days_ago(1))
+        _get_themes(mock.Mock(), reviewer, flagged=self.flagged)
+        self.get_themes(reviewer)
+        eq_(ThemeLock.objects.filter(reviewer=reviewer)[0].expiry >
+            days_ago(1), True)
+
+    def test_user_review_history(self):
+        self.theme_factory()
+
+        reviewer = self.create_and_become_reviewer()
+
+        res = self.client.get(reverse('reviewers.themes.history'))
+        eq_(res.status_code, 200)
+        doc = pq(res.content)
+        eq_(doc('tbody tr').length, 0)
+
+        theme = Persona.objects.all()[0]
+        for x in range(3):
+            amo.log(amo.LOG.THEME_REVIEW, theme.addon, user=reviewer,
+                    details={'action': rvw.ACTION_APPROVE,
+                             'comment': '', 'reject_reason': ''})
+
+        res = self.client.get(reverse('reviewers.themes.history'))
+        eq_(res.status_code, 200)
+        doc = pq(res.content)
+        eq_(doc('tbody tr').length, 3)
+
+        res = self.client.get(reverse('reviewers.themes.logs'))
+        eq_(res.status_code, 200)
+        doc = pq(res.content)
+        eq_(doc('tbody tr').length, 3 * 2)  # Double for comment rows.
+
+    def test_single_cannot_review_my_app(self):
+        with self.settings(ALLOW_SELF_REVIEWS=False):
+            user = UserProfile.objects.get(
+                email='persona_reviewer@mozilla.com')
+            self.login(user)
+            addon = self.theme_factory()
+
+            addon.addonuser_set.create(user=user)
+
+            res = self.client.get(reverse('reviewers.themes.single',
+                                          args=[addon.slug]))
+            eq_(res.status_code, 200)
+            eq_(res.context['theme'].id,
+                addon.persona.rereviewqueuetheme_set.all()[0].id
+                if self.rereview else addon.persona.id)
+            eq_(res.context['reviewable'], False)
 
 
 class TestThemeQueueFlagged(ThemeReviewTestMixin, amo.tests.TestCase):
