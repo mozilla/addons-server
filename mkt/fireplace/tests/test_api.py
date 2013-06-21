@@ -31,8 +31,6 @@ class TestAppDetail(BaseAPI):
         eq_(data['id'], '337141')
 
     def test_others(self):
-        print self.url
         url = get_absolute_url(list_url('app'), api_name='fireplace')
-        print url
         self._allowed_verbs(self.url, ['get'])
         self._allowed_verbs(url, [])
