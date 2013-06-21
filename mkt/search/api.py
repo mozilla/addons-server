@@ -132,6 +132,16 @@ class SearchResource(CORSResource, MarketplaceResource):
 
         return bundle
 
+    def override_urls(self):
+        return [
+            url(r'^(?P<resource_name>%s)/featured%s$' %
+                (self._meta.resource_name, trailing_slash()),
+                self.wrap_view('with_featured'), name='api_with_featured')
+            ]
+
+    def with_featured(self, request, **kwargs):
+        return WithFeaturedResource().dispatch('list', request, **kwargs)
+
 
 class WithFeaturedResource(SearchResource):
 
