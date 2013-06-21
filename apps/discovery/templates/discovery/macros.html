@@ -25,10 +25,10 @@
 </ul>
 {% endmacro %}
 
-{% macro persona_list(list, limit=5) %}
+{% macro persona_list(request, list, limit=5) %}
 <ul class="persona-list">
 {% for addon in list[:limit] %}
-  <li class="featured-themes">{{ disco_persona_preview(addon.persona, title=True, src='discovery-featured') }}</li>
+  <li class="featured-themes">{{ disco_persona_preview(addon.persona, title=True, src='discovery-featured', request=request) }}</li>
 {% endfor %}
 </ul>
 {% endmacro %}

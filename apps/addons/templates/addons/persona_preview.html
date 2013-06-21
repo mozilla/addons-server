@@ -43,7 +43,7 @@
           <span class="persona-install">
             <button class="add">
               <div>
-                <img src="{{ media('img/impala/add-small.png') }}">
+                <img src="{{ MEDIA_URL }}img/impala/add-small.png">
                 <span class="disabled-icon">+</span>
                 <span>{{ _('Add') }}</span>
               </div>
@@ -54,7 +54,7 @@
 
       {% if request.check_ownership(addon, require_owner=True, admin=False) %}
         <span class="artist-tools">
-          <a href="{{ addon.get_dev_url() }}"><img src="{{ media('img/admin/icon_changelink.gif') }}"></a>
+          <a href="{{ addon.get_dev_url() }}"><img src="{{ MEDIA_URL }}img/admin/icon_changelink.gif"></a>
         </span>
       {% endif %}
 

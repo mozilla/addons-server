@@ -95,7 +95,7 @@ data-upandcoming-url="{{ services_url('discovery.pane.more_addons', 'up-and-comi
       <section class="featured featured-themes" id="featured-themes">
         <h2><a class="all" href="{{ url('browse.personas') }}">{{ _('See all') }}</a>
           {{ _('Featured Themes') }}</h2>
-        {{ persona_list(featured_personas) }}
+        {{ persona_list(request, featured_personas) }}
       </section>
     {% endif %}
     <section id="more-ways">

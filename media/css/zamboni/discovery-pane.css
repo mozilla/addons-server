@@ -733,7 +733,7 @@ section#featured-addons {
     padding: 7px 10px;
     position: absolute;
 }
-.detail .persona-hover.persona-large .caption {
+.detail .persona-hover.persona-large .caption, .review-decal, .persona-install, .artist-tools {
     display: none;
 }
 /* @end */
