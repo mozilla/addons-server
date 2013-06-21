@@ -126,7 +126,7 @@ Thread
 Note
 ====
 
-.. http:get:: /api/v1/comm/thread/<int:thread_id>/note/
+.. http:get:: /api/v1/comm/thread/(int:thread_id)/note/
 
     .. note:: Does not require authentication if the thread is public.
 
@@ -138,6 +138,11 @@ Note
 
     For ordering params, see :ref:`list-ordering-params-label`.
 
+    In addition to above, there is another query param:
+
+    :param show_read: Filter notes by read status. Pass `true` to list read notes and `false` for unread notes.
+    :type show_read: boolean
+
     **Response**
 
     :param meta: :ref:`meta-response-label`.
@@ -145,7 +150,7 @@ Note
 
 .. _note-response-label:
 
-.. http:get:: /api/v1/comm/thread/<int:thread_id>/note/(int:id)/
+.. http:get:: /api/v1/comm/thread/(int:thread_id)/note/(int:id)/
 
     .. note:: Does not require authentication if the note is in a public thread.
 
@@ -174,13 +179,16 @@ Note
             "created": "2013-06-14T11:54:48",
             "id": 2,
             "note_type": 0,
-            "thread": 2
+            "thread": 2,
+            "is_read": false
         }
 
     Notes on the response.
 
     :param note_type: type of action taken with the note.
     :type note_type: int
+    :param is_read: Whether the note is read or unread.
+    :type is_read: boolean
 
 .. _note-type-label:
 
@@ -206,7 +214,7 @@ Note
 
 .. _note-post-label:
 
-.. http:post:: /api/v1/comm/thread/<int:thread_id>/note/
+.. http:post:: /api/v1/comm/thread/(int:thread_id)/note/
 
     .. note:: Requires authentication.
 
@@ -228,7 +236,7 @@ Note
 
 .. _note-delete-label:
 
-.. http:delete:: /api/v1/comm/thread/<int:thread_id>/note/(int:id)/
+.. http:delete:: /api/v1/comm/thread/(int:thread_id)/note/(int:id)/
 
     .. note:: Requires authentication.
 

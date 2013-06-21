@@ -49,9 +49,24 @@ class CommunicationNote(CommunicationPermissionModel):
     body = models.TextField(null=True)
     reply_to = models.ForeignKey('self', related_name='replies', null=True,
                                  blank=True)
+    read_by_users = models.ManyToManyField('users.UserProfile',
+        through='CommunicationNoteRead')
 
     class Meta:
         db_table = 'comm_thread_notes'
+
+    def save(self, *args, **kwargs):
+        super(CommunicationNote, self).save(*args, **kwargs)
+        self.thread.modified = self.created
+        self.thread.save()
+
+
+class CommunicationNoteRead(amo.models.ModelBase):
+    user = models.ForeignKey('users.UserProfile')
+    note = models.ForeignKey(CommunicationNote)
+
+    class Meta:
+        db_table = 'comm_notes_read'
 
 
 class CommunicationThreadToken(amo.models.ModelBase):

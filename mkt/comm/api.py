@@ -5,8 +5,8 @@ from django.shortcuts import get_object_or_404
 
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.exceptions import PermissionDenied, ParseError
-from rest_framework.fields import CharField
-from rest_framework.filters import OrderingFilter
+from rest_framework.fields import BooleanField, CharField
+from rest_framework.filters import BaseFilterBackend, OrderingFilter
 from rest_framework.mixins import (CreateModelMixin, DestroyModelMixin,
                                    ListModelMixin, RetrieveModelMixin)
 from rest_framework.permissions import BasePermission
@@ -17,12 +17,27 @@ from addons.models import Addon
 from users.models import UserProfile
 from comm.models import CommunicationNote, CommunicationThread
 from comm.tasks import consume_email
-from comm.utils import ThreadObjectPermission
+from comm.utils import filter_notes_by_read_status, ThreadObjectPermission
 from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.base import CORSViewSet
 from mkt.webpay.forms import PrepareForm
 from rest_framework.response import Response
+
+
+class PatchSerializerViewSet(CORSViewSet):
+    """
+    Overrides `get_serializer_class` to patch the serializer class
+    with a method to access the request object within the serializer methods.
+    """
+    def patched_get_request(self):
+        return lambda x: self.request
+
+    def get_serializer_class(self):
+        original = super(PatchSerializerViewSet, self).get_serializer_class()
+        original.get_request = self.patched_get_request()
+
+        return original
 
 
 class AuthorSerializer(ModelSerializer):
@@ -37,11 +52,16 @@ class NoteSerializer(ModelSerializer):
     body = CharField()
     author_meta = AuthorSerializer(source='author', read_only=True)
     reply_to = PrimaryKeyRelatedField(required=False)
+    is_read = SerializerMethodField('is_read_by_user')
+
+    def is_read_by_user(self, obj):
+        return obj.read_by_users.filter(
+            pk=self.get_request().amo_user.id).exists()
 
     class Meta:
         model = CommunicationNote
         fields = ('id', 'author', 'author_meta', 'note_type', 'body',
-                  'created', 'thread', 'reply_to')
+                  'created', 'thread', 'reply_to', 'is_read')
 
 
 class AddonSerializer(ModelSerializer):
@@ -66,6 +86,7 @@ class ThreadSerializer(ModelSerializer):
         view_name = 'comm-thread-detail'
 
     def get_recent_notes(self, obj):
+        NoteSerializer.get_request = self.get_request
         return NoteSerializer(obj.notes.all().order_by('-created')[:5]).data
 
     def get_notes_count(self, obj):
@@ -128,7 +149,7 @@ class NotePermission(ThreadPermission):
 
 
 class ThreadViewSet(ListModelMixin, RetrieveModelMixin, DestroyModelMixin,
-                    CreateModelMixin, CORSViewSet):
+                    CreateModelMixin, PatchSerializerViewSet):
     model = CommunicationThread
     serializer_class = ThreadSerializer
     authentication_classes = (RestOAuthAuthentication,
@@ -138,6 +159,7 @@ class ThreadViewSet(ListModelMixin, RetrieveModelMixin, DestroyModelMixin,
     cors_allowed_methods = ['get', 'post']
 
     def list(self, request):
+        self.serializer_class = ThreadSerializer
         profile = request.amo_user
         # We list all the threads the user has posted a note to.
         notes = profile.comm_notes.values_list('thread', flat=True)
@@ -166,14 +188,30 @@ class ThreadViewSet(ListModelMixin, RetrieveModelMixin, DestroyModelMixin,
         return ListModelMixin.list(self, request)
 
 
+class ReadUnreadFilter(BaseFilterBackend):
+    filter_param = 'show_read'
+
+    def filter_queryset(self, request, queryset, view):
+        """
+        Return only read notes if `show_read=true` is truthy and only unread
+        notes if `show_read=false.
+        """
+        val = request.GET.get(self.filter_param)
+        if val is None:
+            return queryset
+
+        return filter_notes_by_read_status(queryset, request.amo_user,
+                                           BooleanField().from_native(val))
+
+
 class NoteViewSet(ListModelMixin, CreateModelMixin, RetrieveModelMixin,
-                  DestroyModelMixin, CORSViewSet):
+                  DestroyModelMixin, PatchSerializerViewSet):
     model = CommunicationNote
     serializer_class = NoteSerializer
     authentication_classes = (RestOAuthAuthentication,
                               RestSharedSecretAuthentication,)
     permission_classes = (NotePermission,)
-    filter_backends = (OrderingFilter,)
+    filter_backends = (OrderingFilter, ReadUnreadFilter)
     cors_allowed_methods = ['get', 'post', 'delete']
 
     def get_queryset(self):

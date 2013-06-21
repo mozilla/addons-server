@@ -9,7 +9,7 @@ from test_utils import RequestFactory
 
 from amo.tests import addon_factory
 from comm.models import (CommunicationNote, CommunicationThread,
-                         CommunicationThreadCC)
+                         CommunicationThreadCC, CommunicationNoteRead)
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.comm.api import ThreadPermission, EmailCreationPermission, post_email
 from mkt.site.fixtures import fixture
@@ -171,6 +171,28 @@ class TestNote(RestOAuth):
         eq_(res.status_code, 200)
         eq_(res.json['body'], 'something')
         eq_(res.json['reply_to'], None)
+        eq_(res.json['is_read'], False)
+
+        CommunicationNoteRead.objects.create(user=self.profile, note=note)
+        res = self.client.get(reverse('comm-note-detail',
+                                      kwargs={'thread_id': self.thread.id,
+                                              'pk': note.id}))
+        eq_(res.json['is_read'], True)
+
+    def test_show_read_filter(self):
+        """Test `is_read` filter."""
+        note = CommunicationNote.objects.create(author=self.profile,
+            thread=self.thread, note_type=0, body='something')
+        CommunicationNoteRead.objects.create(user=self.profile, note=note)
+
+        # Test with `show_read=true`.
+        res = self.client.get(self.list_url, {'show_read': 'truey'})
+        eq_(res.json['objects'][0]['is_read'], True)
+
+        # Test with `show_read=false`.
+        CommunicationNoteRead.objects.all().delete()
+        res = self.client.get(self.list_url, {'show_read': '0'})
+        eq_(res.json['objects'][0]['is_read'], False)
 
     def test_creation(self):
         res = self.client.post(self.list_url, data=json.dumps(

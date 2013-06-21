@@ -5,8 +5,8 @@ import commonware.log
 from email_reply_parser import EmailReplyParser
 
 from access import acl
-from comm.models import (CommunicationNote, CommunicationThreadCC,
-                         CommunicationThreadToken)
+from comm.models import (CommunicationNote, CommunicationNoteRead,
+                         CommunicationThreadCC, CommunicationThreadToken)
 from mkt.constants import comm
 
 
@@ -122,3 +122,21 @@ def save_from_email_reply(reply_text):
                  (tok.user.id, uuid))
         return n
     return False
+
+
+def filter_notes_by_read_status(queryset, profile, read_status=True):
+    """
+    Filter read/unread notes using this method.
+
+    `read_status` = `True` for read notes, `False` for unread notes.
+    """
+    # Get some read notes from db.
+    notes = list(CommunicationNoteRead.objects.filter(
+        user=profile).values_list('note', flat=True))
+
+    if read_status:
+        # Filter and return read notes if they exist.
+        return queryset.filter(pk__in=notes) if notes else queryset.none()
+    else:
+        # Exclude read notes if they exist.
+        return queryset.exclude(pk__in=notes) if notes else queryset

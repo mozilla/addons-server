@@ -1,9 +1,8 @@
-from datetime import datetime, timedelta
+from datetime import datetime
 
 from addons.models import Addon
 from amo.tests import TestCase
-from comm.models import (CommunicationThread,
-                         CommunicationThreadToken)
+from comm.models import CommunicationThread, CommunicationThreadToken
 from mkt.constants import comm as const
 from users.models import UserProfile
 
