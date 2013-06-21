@@ -49,6 +49,9 @@
                 <td class="flags">{# Flags #}
                   {% if qa.app.is_packaged %}
                     <div class="sprite-reviewer sprite-reviewer-packaged-app" title="{{ _('Packaged App') }}"></div>
+                    {% if qa.app.latest_version.is_privileged %}
+                      <div class="sprite-reviewer sprite-reviewer-privileged-app" title="{{ _('Privileged App') }}"></div>
+                    {% endif %}
                   {% endif %}
                   {% if qa.app.status == amo.STATUS_BLOCKED %}
                     <div class="sprite-reviewer sprite-reviewer-blocked" title="{{ _('Blocklisted App') }}"></div>

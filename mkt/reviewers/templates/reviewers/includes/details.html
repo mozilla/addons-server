@@ -8,7 +8,17 @@
     <dt>{{ _('ID') }}</dt>
     <dd>{{ product.id }}</dd>
     <dt>{{ _('Type') }}</dt>
-    <dd>{{ _('Packaged app') if product.is_packaged else _('Hosted app') }}</dd>
+    <dd>
+      {% if product.is_packaged %}
+        {% if version.is_privileged %}
+          {{ _('Privileged Packaged app') }}
+        {% else %}
+          {{ _('Packaged app') }}
+        {% endif %}
+      {% else %}
+        {{ _('Hosted app') }}
+      {% endif %}
+    </dd>
     <dt>{{ _('Status') }}</dt>
     <dd{% if product.status == amo.STATUS_BLOCKED %} class="warn"{% endif %}>{{ amo.STATUS_CHOICES[product.status] }}
       {% if product.in_rereview_queue() %}&middot; <b id="queue-rereview">{{ _('In re-review queue') }}</b>{% endif %}

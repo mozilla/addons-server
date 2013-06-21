@@ -61,3 +61,24 @@ class TestVersion(BaseUploadTest, amo.tests.TestCase):
         version = Version.from_upload(upload, addon, [platform])
         eq_(version.version, '42.1')
         eq_(version.developer_name, truncated_developer_name)
+
+    def test_is_privileged_hosted_app(self):
+        addon = Addon.objects.get(pk=337141)
+        eq_(addon.current_version.is_privileged, False)
+
+    @mock.patch('mkt.webapps.models.Webapp.get_manifest_json')
+    def test_is_privileged_app(self, get_manifest_json):
+        get_manifest_json.return_value = {
+            'type': 'privileged'
+        }
+        addon = Addon.objects.get(pk=337141)
+        addon.update(is_packaged=True)
+        eq_(addon.current_version.is_privileged, True)
+
+    @mock.patch('mkt.webapps.models.Webapp.get_manifest_json')
+    def test_is_privileged_non_privileged_app(self, get_manifest_json):
+        get_manifest_json.return_value = {
+        }
+        addon = Addon.objects.get(pk=337141)
+        addon.update(is_packaged=True)
+        eq_(addon.current_version.is_privileged, False)

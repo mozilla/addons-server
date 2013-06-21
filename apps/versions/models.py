@@ -465,6 +465,13 @@ class Version(amo.models.ModelBase):
         else:
             return ''
 
+    @amo.cached_property
+    def is_privileged(self):
+        if self.addon.type != amo.ADDON_WEBAPP or not self.addon.is_packaged:
+            return False
+        data = self.addon.get_manifest_json(file_obj=self.all_files[0])
+        return data.get('type') == 'privileged'
+
 
 def update_status(sender, instance, **kw):
     if not kw.get('raw'):

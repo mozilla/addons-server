@@ -37,6 +37,17 @@
         <h2>{{ _('Details') }}</h2>
         <dl>
           <dt>{{ _('Type') }}</dt>
+          <dd>
+            {% if product.is_packaged %}
+              {% if version.is_privileged %}
+                {{ _('Privileged Packaged app') }}
+              {% else %}
+                {{ _('Packaged app') }}
+              {% endif %}
+            {% else %}
+              {{ _('Hosted app') }}
+            {% endif %}
+          </dd>
           <dd>{{ _('Packaged app') if product.is_packaged else _('Hosted app') }}</dd>
           <dt>{{ _('Manifest URL') }}</dt>
           <dd>
