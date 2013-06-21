@@ -152,13 +152,9 @@ def product_as_dict(request, product, purchased=None, receipt_type=None,
         ret.update({'previews': previews})
 
     if product.has_price():
-        # Note: These should really not be doing this, if get_price
-        # or get_price_locale is empty it means there is no price for this
-        # region.
         ret.update({
-            'price': product.get_price(region=request.REGION.id) or '0',
-            'priceLocale': (product.get_price_locale(region=request.REGION.id)
-                            or _('Free')),
+            'price': product.get_price(region=request.REGION.id),
+            'priceLocale': product.get_price_locale(region=request.REGION.id),
         })
 
         if request.amo_user:

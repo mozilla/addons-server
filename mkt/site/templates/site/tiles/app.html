@@ -25,7 +25,7 @@
       {{ market_button(product, classes=classes) }}
       <div class="author lineclamp vital">{{ product.current_version.developer_name }}</div>
     {%- endif %}
-    <div class="price vital">{{ product.get_price_locale(region=request.REGION.id) or _('Free') }}</div>
+    <div class="price vital">{% if product.is_premium() %}{{ product.get_price_locale(region=request.REGION.id) }}{% else %}Free{% endif %}</div>
     <div class="rating vital{{ ' unrated' if not product.total_reviews }}">
       {%- if tag != "a" -%}
         <a href="{{ product.get_ratings_url() }}" class="rating_link">

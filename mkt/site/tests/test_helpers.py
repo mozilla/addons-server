@@ -99,9 +99,8 @@ class TestMarketButton(amo.tests.TestCase):
         # The region is set to Spain, so the currency is set EUR
         # and the display is set to French.
         with self.activate('fr'):
-            # TODO bug: 878215, find what the answer here is.
-            with self.assertRaises(KeyError):
-                market_tile(self.context, self.webapp)
+            doc = pq(market_tile(self.context, self.webapp))
+            eq_(doc('.price').text(), '')
 
     def test_is_premium_purchased(self):
         AddonPurchase.objects.create(user=self.user, addon=self.webapp)
