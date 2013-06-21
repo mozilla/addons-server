@@ -7,7 +7,7 @@
       {% endwith %}
       style="background-image:url('{{ preview }}')"
       data-browsertheme="{{ persona.json_data }}">
-        {% if request.check_ownership(addon, require_owner=True, admin=False) %}
+        {% if request and request.check_ownership(addon, require_owner=True, admin=False) %}
           {% if addon.is_unreviewed() %}
             <span class="review-decal">{{ _('Awaiting Review') }}</span>
           {% elif addon.is_rejected() %}
@@ -52,7 +52,7 @@
         {% endif %}
       </{{ tag }}>
 
-      {% if request.check_ownership(addon, require_owner=True, admin=False) %}
+      {% if request and request.check_ownership(addon, require_owner=True, admin=False) %}
         <span class="artist-tools">
           <a href="{{ addon.get_dev_url() }}"><img src="{{ MEDIA_URL }}img/admin/icon_changelink.gif"></a>
         </span>

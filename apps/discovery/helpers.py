@@ -13,8 +13,8 @@ from addons.helpers import persona_preview
 @register.function
 @jinja2.contextfunction
 def disco_persona_preview(context, persona, size='large', linked=True,
-                          extra=None, details=False, title=False,
-                          caption=False, src=None, request=None):
+                          extra=None, details=False, title=False, caption=False,
+                          src=None):
     url = None
     if linked:
         url = reverse('discovery.addons.detail', args=[persona.addon.slug])
@@ -23,5 +23,4 @@ def disco_persona_preview(context, persona, size='large', linked=True,
             url = urlparams(url, src=src)
     return persona_preview(context, persona, size=size, linked=linked,
                            extra=extra, details=details, title=title,
-                           caption=caption, url=url,
-                           request=request or context['request'])
+                           caption=caption, url=url)
