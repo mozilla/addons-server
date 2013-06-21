@@ -254,12 +254,10 @@ class TestVaryMiddleware(amo.tests.TestCase):
     def test_no_vary_cookie(self):
         # What is expected to `Vary`.
         r = self.client.get('/privacy-policy')
-        eq_(r['Vary'],
-            'X-Requested-With, Accept-Language, Cookie, X-Mobile, User-Agent')
+        eq_(r['Vary'], 'Accept-Language, Cookie, X-Mobile, User-Agent')
 
         r = self.client.get('/privacy-policy', follow=True)
-        eq_(r['Vary'],
-            'X-Requested-With, Accept-Language, Cookie, X-Mobile, User-Agent')
+        eq_(r['Vary'], 'Accept-Language, Cookie, X-Mobile, User-Agent')
 
     # Patching MIDDLEWARE_CLASSES because other middleware tweaks vary headers.
     @mock.patch.object(settings, 'MIDDLEWARE_CLASSES', [
