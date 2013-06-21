@@ -40,6 +40,11 @@ def get_setting(n, default=None):
     return getattr(settings, n, default)
 
 
+def managecmd(cmd):
+    with lcd(ZAMBONI):
+        local('%s manage.py %s' % (PYTHON, cmd))
+
+
 @task
 def create_virtualenv():
     with lcd(ZAMBONI):
@@ -80,15 +85,12 @@ def loadtest(repo=''):
 
 @task
 def update_products():
-    with lcd(ZAMBONI):
-        local('%s manage.py update_product_details' % PYTHON)
+    managecmd('update_product_details')
 
 
 @task
 def compress_assets(arg=''):
-    with lcd(ZAMBONI):
-        local("%s manage.py compress_assets -t %s" % (PYTHON,
-                                                      arg))
+    managecmd('compress_assets -t %s' % arg)
 
 
 @task
@@ -179,9 +181,7 @@ def deploy():
 
     execute(restart_workers)
     rpmbuild.clean()
-    with lcd(ZAMBONI):
-        local('%s manage.py cron cleanup_validation_results' %
-              PYTHON)
+    managecmd('cron cleanup_validation_results')
 
 
 @task
@@ -200,6 +200,5 @@ def update():
     execute(compress_assets)
     execute(compress_assets, arg='--settings=settings_local_mkt')
     execute(schematic)
-    with lcd(ZAMBONI):
-        local('%s manage.py dump_apps' % PYTHON)
-        local('%s manage.py statsd_ping --key=update' % PYTHON)
+    managecmd('dump_apps')
+    managecmd('statsd_ping --key=update')
