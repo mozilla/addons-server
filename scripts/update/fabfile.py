@@ -11,12 +11,8 @@ import deploysettings as settings
 
 
 env.key_filename = settings.SSH_KEY
-
-CLUSTER = settings.CLUSTER
-DOMAIN = settings.DOMAIN
-ENV = settings.ENV
-
-fabdeploytools.envs.loadenv(os.path.join('/etc/deploytools/envs', CLUSTER))
+fabdeploytools.envs.loadenv(os.path.join('/etc/deploytools/envs',
+                                         settings.CLUSTER))
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__),
                                     '..', '..', '..'))
@@ -26,18 +22,6 @@ VIRTUALENV = os.path.join(ROOT, 'venv')
 PYTHON = os.path.join(VIRTUALENV, 'bin', 'python')
 
 BUILD_ID = str(int(time.time()))
-
-KEEP_RELEASES = 4
-
-
-def get_version():
-    with lcd(ZAMBONI):
-        ref = local('git rev-parse HEAD', capture=True)
-    return ref
-
-
-def get_setting(n, default=None):
-    return getattr(settings, n, default)
 
 
 def managecmd(cmd):
@@ -141,7 +125,7 @@ def restart_workers():
     for gservice in settings.GUNICORN:
         run("/sbin/service %s graceful" % gservice)
     restarts = []
-    for g in get_setting('MULTI_GUNICORN', []):
+    for g in settings.MULTI_GUNICORN:
         restarts.append('( supervisorctl restart {0}-a; '
                         'supervisorctl restart {0}-b )&'.format(g))
 
@@ -166,13 +150,15 @@ def update_celery():
 
 @task
 def deploy():
-    ref = get_version()
+    with lcd(ZAMBONI):
+        ref = local('git rev-parse HEAD', capture=True)
+
     rpmbuild = RPMBuild(name='zamboni',
-                        env=ENV,
+                        env=settings.ENV,
                         ref=ref,
                         build_id=BUILD_ID,
-                        cluster=CLUSTER,
-                        domain=DOMAIN)
+                        cluster=settings.CLUSTER,
+                        domain=settings.DOMAIN)
 
     execute(install_cron)
 
