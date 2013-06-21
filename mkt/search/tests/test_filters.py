@@ -158,9 +158,8 @@ class TestSearchFiltersAndroid(BaseOAuth):
     def test_no_premium_on_android_flagged(self):
         """Ensure premium apps are filtered out on Android."""
         qs = self._filter(self.req, self.query_string, **self.filter_kwargs)
-        ok_({'not': {'filter': {'and': [
-            {'range': {'price': {'gt': 0}}},
-            {'in': {'premium_type': (1, 2)}}]}}} in qs['filter']['and'])
+        ok_({'not': {'filter': {'in': {'premium_type': (1, 2)}}}}
+            in qs['filter']['and'])
 
 
 # TODO: Remove this test when the 'allow-paid-app-search' flag is removed
@@ -188,11 +187,7 @@ class TestFlaggedUsersPremiumApps(BaseOAuth):
         }
 
         self.prem_exclude = {
-            'not': {
-                'filter': {
-                    'and': [
-                        {'range': {'price': {'gt': 0}}},
-                        {'in': {'premium_type': (1, 2)}}]}}}
+            'not': {'filter': {'in': {'premium_type': (1, 2)}}}}
 
     def _filter(self, req, filters, **kwargs):
         form = ApiSearchForm(filters)

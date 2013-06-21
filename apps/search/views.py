@@ -248,10 +248,9 @@ class WebappSuggestionsAjax(SearchSuggestionsAjax):
             res = res.filter(category__in=[self.category])
         if (self.mobile or self.tablet) and not self.gaia:
             if isinstance(res, S):
-                res = res.filter(~F(premium_type__in=amo.ADDON_PREMIUMS,
-                                    price__gt=0))
+                res = res.filter(~F(premium_type__in=amo.ADDON_PREMIUMS))
             else:
-                res.exclude(premium_type__in=amo.ADDON_PREMIUMS, price__gt=0)
+                res.exclude(premium_type__in=amo.ADDON_PREMIUMS)
 
         region = getattr(self.request, 'REGION', mkt.regions.WORLDWIDE)
         if region:

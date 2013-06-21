@@ -83,14 +83,12 @@ class WebappManager(amo.models.ManagerBase):
     def top_free(self, listed=True):
         qs = self.visible() if listed else self
         return (qs.filter(premium_type__in=amo.ADDON_FREES)
-                .exclude(addonpremium__price__price__isnull=False)
                 .order_by('-weekly_downloads')
                 .with_index(addons='downloads_type_idx'))
 
     def top_paid(self, listed=True):
         qs = self.visible() if listed else self
-        return (qs.filter(premium_type__in=amo.ADDON_PREMIUMS,
-                          addonpremium__price__price__gt=0)
+        return (qs.filter(premium_type__in=amo.ADDON_PREMIUMS)
                 .order_by('-weekly_downloads')
                 .with_index(addons='downloads_type_idx'))
 
@@ -670,8 +668,7 @@ class Webapp(Addon):
             exclude_paid = (mobile or tablet) and not gaia
 
         if exclude_paid:
-            srch = srch.filter(~F(premium_type__in=amo.ADDON_PREMIUMS,
-                                  price__gt=0))
+            srch = srch.filter(~F(premium_type__in=amo.ADDON_PREMIUMS))
 
         return srch
 
