@@ -2,43 +2,73 @@ from functools import partial
 
 from django.db.models import Q
 from django.http import Http404
+from django.shortcuts import get_object_or_404
 
-import commonware.log
 from rest_framework.exceptions import PermissionDenied
+from rest_framework.fields import CharField
+from rest_framework.filters import OrderingFilter
 from rest_framework.mixins import (CreateModelMixin, DestroyModelMixin,
                                    ListModelMixin, RetrieveModelMixin)
 from rest_framework.permissions import BasePermission
 from rest_framework.relations import HyperlinkedRelatedField, RelatedField
-from rest_framework.serializers import ModelSerializer
+from rest_framework.serializers import ModelSerializer, SerializerMethodField
 
 from access import acl
+from addons.models import Addon
+from users.models import UserProfile
 from comm.models import (CommunicationNote, CommunicationThread,
                          CommunicationThreadCC, CommunicationThreadToken)
+from comm.utils import create_reply_tokens
 from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.base import CORSViewSet
 from mkt.webpay.forms import PrepareForm
 
-log = commonware.log.getLogger('mkt.comm')
+
+class AuthorSerializer(ModelSerializer):
+    name = CharField()
+
+    class Meta:
+        model = UserProfile
+        fields = ('name',)
 
 
 class NoteSerializer(ModelSerializer):
-    thread = HyperlinkedRelatedField(view_name='comm-thread-detail')
-    body = RelatedField('body')
+    body = CharField()
+    author_meta = AuthorSerializer(source='author', read_only=True)
 
     class Meta:
         model = CommunicationNote
-        fields = ('id', 'author', 'note_type', 'body', 'created', 'thread')
+        fields = ('id', 'author', 'author_meta', 'note_type', 'body',
+                  'created', 'thread')
+
+
+class AddonSerializer(ModelSerializer):
+    name = CharField()
+    thumbnail_url = RelatedField('thumbnail_url')
+    url = CharField(source='get_absolute_url')
+
+    class Meta:
+        model = Addon
+        fields = ('name', 'url', 'thumbnail_url', 'slug')
 
 
 class ThreadSerializer(ModelSerializer):
-    notes = HyperlinkedRelatedField(read_only=True, many=True,
-                                    view_name='comm-note-detail')
+    addon_meta = AddonSerializer(source='addon', read_only=True)
+    recent_notes = SerializerMethodField('get_recent_notes')
+    notes_count = SerializerMethodField('get_notes_count')
 
     class Meta:
         model = CommunicationThread
-        fields = ('id', 'addon', 'version', 'notes', 'created')
+        fields = ('id', 'addon', 'addon_meta', 'version', 'notes_count',
+                  'recent_notes', 'created', 'modified')
         view_name = 'comm-thread-detail'
+
+    def get_recent_notes(self, obj):
+        return NoteSerializer(obj.notes.all().order_by('-created')[:5]).data
+
+    def get_notes_count(self, obj):
+        return obj.notes.count()
 
 
 class ThreadPermission(BasePermission):
@@ -118,23 +148,23 @@ class ThreadPermission(BasePermission):
 class NotePermission(ThreadPermission):
 
     def has_permission(self, request, view):
+        thread_id = view.kwargs['thread_id']
+        # We save the thread in the view object so we can use it later.
+        view.comm_thread = get_object_or_404(CommunicationThread,
+            id=thread_id)
+
+        if view.action == 'list':
+            return ThreadPermission.has_object_permission(self,
+                request, view, view.comm_thread)
+
         if view.action == 'create':
             if not request.user.is_authenticated():
-                return False
-
-            serializer = view.get_serializer(data=request.DATA)
-            if not serializer.is_valid():
-                return False
-
-            obj = serializer.object
-            # Check if author and user who created this request mismatch.
-            if obj.author.id != request.amo_user.id:
                 return False
 
             # Determine permission to add the note based on the thread
             # permission.
             return ThreadPermission.has_object_permission(self,
-                request, view, obj.thread)
+                request, view, view.comm_thread)
 
         return True
 
@@ -150,6 +180,7 @@ class ThreadViewSet(ListModelMixin, RetrieveModelMixin, DestroyModelMixin,
     authentication_classes = (RestOAuthAuthentication,
                               RestSharedSecretAuthentication)
     permission_classes = (ThreadPermission,)
+    filter_backends = (OrderingFilter,)
     cors_allowed_methods = ['get', 'post']
 
     def list(self, request):
@@ -181,20 +212,32 @@ class ThreadViewSet(ListModelMixin, RetrieveModelMixin, DestroyModelMixin,
         return ListModelMixin.list(self, request)
 
 
-class NoteViewSet(CreateModelMixin, RetrieveModelMixin, DestroyModelMixin,
-                  CORSViewSet):
+class NoteViewSet(ListModelMixin, CreateModelMixin, RetrieveModelMixin,
+                  DestroyModelMixin, CORSViewSet):
     model = CommunicationNote
     serializer_class = NoteSerializer
     authentication_classes = (RestOAuthAuthentication,
                               RestSharedSecretAuthentication,)
     permission_classes = (NotePermission,)
+    filter_backends = (OrderingFilter,)
     cors_allowed_methods = ['get', 'post', 'delete']
 
-    def create(self, request):
-        res = CreateModelMixin.create(self, request)
-        if res.status_code == 201:
-            tok = CommunicationThreadToken.objects.create(
-                thread=self.object.thread, user=self.object.author)
-            log.info('Reply token with UUID %s created.' % (tok.uuid))
+    def get_queryset(self):
+        return CommunicationNote.objects.filter(thread=self.comm_thread)
 
-        return res
+    def get_serializer(self, instance=None, data=None,
+                       files=None, many=False, partial=False):
+        if self.action == 'create':
+            # HACK: We want to set the `author` as the current user
+            # (read-only), yet we can't specify `author` as a `read_only`
+            # field because then the serializer won't pick it up at the time
+            # of deserialization.
+            data_dict = {'author': self.request.amo_user.id,
+                         'thread': self.comm_thread.id,
+                         'note_type': data['note_type'],
+                         'body': data['body']}
+        else:
+            data_dict = data
+
+        return super(NoteViewSet, self).get_serializer(data=data_dict,
+            files=files, instance=instance, many=many, partial=partial)

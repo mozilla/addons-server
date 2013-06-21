@@ -41,7 +41,7 @@ class CommunicationNote(amo.models.ModelBase):
     thread = models.ForeignKey(CommunicationThread, related_name='notes')
     author = models.ForeignKey('users.UserProfile', related_name='comm_notes')
     note_type = models.IntegerField()
-    body = TranslatedField()
+    body = models.TextField(null=True)
 
     class Meta:
         db_table = 'comm_thread_notes'
@@ -50,20 +50,24 @@ class CommunicationNote(amo.models.ModelBase):
 class CommunicationThreadToken(amo.models.ModelBase):
     thread = models.ForeignKey(CommunicationThread, related_name='token')
     user = models.ForeignKey('users.UserProfile',
-                             related_name='comm_thread_tokens')
+        related_name='comm_thread_tokens')
     uuid = UUIDField(unique=True, auto=True)
     use_count = models.IntegerField(default=0,
         help_text='Stores the number of times the token has been used')
 
     class Meta:
         db_table = 'comm_thread_tokens'
-        unique_together = ('thread', 'user',)
+        unique_together = ('thread', 'user')
 
     def is_valid(self):
         # TODO: Confirm the expiration and max use count values.
-        timedelta = datetime.now() - self.created
+        timedelta = datetime.now() - self.modified
         return (timedelta.days <= const.THREAD_TOKEN_EXPIRY and
                 self.use_count < const.MAX_TOKEN_USE_COUNT)
+
+    def reset_uuid(self):
+        # Generate a new UUID.
+        self.uuid = UUIDField()._create_uuid().hex
 
 
 models.signals.pre_save.connect(save_signal, sender=CommunicationNote,

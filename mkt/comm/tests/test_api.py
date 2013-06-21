@@ -39,7 +39,9 @@ class TestThreadDetail(RestOAuth):
         res = self.client.get(reverse('comm-thread-detail',
                                       kwargs={'pk': thread.pk}))
         eq_(res.status_code, 200)
-        eq_(len(res.json['notes']), 1)
+        assert 'recent_notes' in res.json
+        eq_(len(res.json['recent_notes']), 1)
+        eq_(res.json['addon'], self.addon.id)
 
     def test_cc(self):
         self.thread = CommunicationThread.objects.create(addon=self.addon)
@@ -151,47 +153,35 @@ class TestNote(RestOAuth):
     def setUp(self):
         super(TestNote, self).setUp()
         addon = Webapp.objects.get(pk=337141)
-        self.list_url = reverse('comm-note-list')
         self.thread = CommunicationThread.objects.create(addon=addon,
             read_permission_developer=True)
         self.thread_url = reverse('comm-thread-detail',
                                   kwargs={'pk': self.thread.id})
+        self.list_url = reverse('comm-note-list',
+                                kwargs={'thread_id': self.thread.id})
+
         self.profile.addonuser_set.create(addon=addon)
 
     def test_response(self):
         note = CommunicationNote.objects.create(author=self.profile,
             thread=self.thread, note_type=0, body='something')
         res = self.client.get(reverse('comm-note-detail',
-                                      kwargs={'pk': note.id}))
+                                      kwargs={'thread_id': self.thread.id,
+                                              'pk': note.id}))
         eq_(res.status_code, 200)
         eq_(res.json['body'], 'something')
 
     def test_creation(self):
         res = self.client.post(self.list_url, data=json.dumps(
-            {'thread': self.thread_url, 'author': self.profile.id,
-             'note_type': '0', 'body': 'something'}))
+            {'note_type': '0', 'body': 'something'}))
         eq_(res.status_code, 201)
-        count = CommunicationThreadToken.objects.filter(
-            thread=self.thread, user=self.profile).count()
-        eq_(count, 1)
+        eq_(res.json['body'], 'something')
 
     def test_creation_denied(self):
         self.thread.read_permission_developer = False
         self.thread.save()
         res = self.client.post(self.list_url, data=json.dumps(
-            {'thread': self.thread_url, 'author': self.profile.id,
-             'note_type': '0', 'body': 'something'}))
-        eq_(res.status_code, 403)
-
-    def test_creation_by_diff_user_denied(self):
-        """
-        Test that the creation by specifying a different user as author fails.
-        """
-        self.thread.read_permission_developer = True
-        self.thread.save()
-        res = self.client.post(self.list_url, data=json.dumps(
-            {'thread': self.thread_url, 'author': '999',
-             'note_type': '0', 'body': 'something'}))
+            {'note_type': '0', 'body': 'something'}))
         eq_(res.status_code, 403)
 
     def test_cors_allowed(self):
