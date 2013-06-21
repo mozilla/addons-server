@@ -81,6 +81,7 @@ def app_to_dict(app, region=None, profile=None):
             'name': cr.get_rating().name,
             'description': unicode(cr.get_rating().description),
         }) for cr in app.content_ratings.all()]) or None,
+        'created': app.created,
         'current_version': version_data,
         'default_locale': app.default_locale,
         'image_assets': dict([(ia.slug, (ia.image_url, ia.hue))
@@ -102,7 +103,8 @@ def app_to_dict(app, region=None, profile=None):
         'regions': RegionResource().dehydrate_objects(app.get_regions()),
         'slug': app.app_slug,
         'supported_locales': (supported_locales.split(',') if supported_locales
-                              else [])
+                              else []),
+        'weekly_downloads': app.weekly_downloads if app.public_stats else None,
     }
 
     data['upsell'] = False
@@ -176,9 +178,9 @@ def es_app_to_dict(obj, region=None, profile=None):
     is_packaged = src['app_type'] == amo.ADDON_WEBAPP_PACKAGED
     app = Webapp(app_slug=obj.app_slug, is_packaged=is_packaged)
 
-    attrs = ('content_ratings', 'current_version', 'default_locale',
+    attrs = ('content_ratings', 'created', 'current_version', 'default_locale',
              'homepage', 'manifest_url', 'previews', 'ratings', 'status',
-             'support_email', 'support_url')
+             'support_email', 'support_url', 'weekly_downloads')
     data = dict(zip(attrs, attrgetter(*attrs)(obj)))
     data.update({
         'absolute_url': absolutify(app.get_detail_url()),
@@ -200,6 +202,9 @@ def es_app_to_dict(obj, region=None, profile=None):
         'supported_locales': src.get('supported_locales', ''),
         'slug': obj.app_slug,
     })
+
+    if not data['public_stats']:
+        data['weekly_downloads'] = None
 
     data['regions'] = RegionResource().dehydrate_objects(
         map(REGIONS_CHOICES_ID_DICT.get,
