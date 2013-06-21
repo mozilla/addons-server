@@ -230,6 +230,8 @@ GEOIP_URL = ''
 GEOIP_DEFAULT_VAL = 'worldwide'
 GEOIP_DEFAULT_TIMEOUT = .2
 
+SENTRY_DSN = None
+
 # A smaller range of languages for the Marketplace.
 AMO_LANGUAGES = ('de', 'en-US', 'es', 'fr', 'pl', 'pt-BR')
 LANGUAGES = lazy(lazy_langs, dict)(AMO_LANGUAGES)

@@ -1,13 +1,13 @@
 from django.conf import settings
 from django.conf.urls import include, patterns, url
 
+from rest_framework.routers import SimpleRouter
 from tastypie.api import Api
 from tastypie_services.services import (ErrorResource, SettingsResource)
 from mkt.submit.api import PreviewResource, StatusResource, ValidationResource
 from mkt.api.base import handle_500, SlugRouter
-from mkt.api.resources import (AppResource, CarrierResource,
-                               CategoryViewSet,
-                               ConfigResource, RegionResource)
+from mkt.api.resources import (AppResource, CarrierResource, CategoryViewSet,
+                               ConfigResource, error_reporter, RegionResource)
 from mkt.ratings.resources import RatingResource
 from mkt.search.api import SearchResource, WithFeaturedResource
 from mkt.stats.api import GlobalStatsResource
@@ -46,5 +46,6 @@ urlpatterns = patterns('',
     url(r'^', include(fireplace.urls)),
     url(r'^apps/', include(apps.urls)),
     url(r'^', include(stats_api.urls)),
-    url(r'^', include(services.urls))
+    url(r'^', include(services.urls)),
+    url(r'^fireplace/report_error', error_reporter, name='error-reporter'),
 )

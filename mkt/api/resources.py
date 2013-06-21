@@ -6,8 +6,11 @@ from django.views import debug
 import commonware.log
 import waffle
 from celery_tasktree import TaskTree
+from raven.base import Client
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.mixins import ListModelMixin, RetrieveModelMixin
 from rest_framework.permissions import AllowAny
+from rest_framework.response import Response
 from rest_framework.serializers import (ModelSerializer, CharField,
                                         HyperlinkedIdentityField)
 
@@ -408,3 +411,12 @@ class CarrierResource(CORSResource, MarketplaceResource):
 
     def obj_get(self, request=None, **kwargs):
         return CARRIER_MAP.get(kwargs['pk'], None)
+
+
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def error_reporter(request):
+    request._request.CORS = ['POST']
+    client = Client(settings.SENTRY_DSN)
+    client.capture('raven.events.Exception', data=request.DATA)
+    return Response(status=204)

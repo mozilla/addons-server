@@ -752,3 +752,17 @@ class TestRegionsCarriers(BaseOAuth, AMOPaths):
         res = self.client.get(get_url('carrier', pk='telefonica'))
         data = json.loads(res.content)
         eq_(data['id'], carriers.TELEFONICA.id)
+
+
+class TestErrorReporter(RestOAuth):
+    @patch('django.conf.settings.SENTRY_DSN', 'FAKE_DSN')
+    @patch('raven.base.Client')
+    def test_report_stack(self, Client):
+        msg = u'a log message'
+        stack = {u'foo': u'frame 1', u'baz': u'frame 2'}
+        res = self.anon.post(
+            reverse('error-reporter'),
+            data=json.dumps({'stack': stack, 'message': msg}))
+        eq_(res.status_code, 204)
+        Client().capture.assert_called_with('raven.events.Exception',
+                                           data={u'stack': stack, u'message': msg})
