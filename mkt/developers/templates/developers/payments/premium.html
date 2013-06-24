@@ -174,15 +174,18 @@
               <tr>
                 <td colspan="2" class="region-container">
                   <div class="checkbox-choices regions"
+                       data-api-error-msg="{{ _('A server error occurred. Please try again later.') }}"
                        data-disabled-regions="{{ region_form.disabled_regions|json }}"
-                       data-pricelist-api-url="{{ api_pricelist_url }}"
-                       data-free-with-inapp-id="{{ free_with_in_app_id }}">
+                       data-free-with-inapp-id="{{ free_with_in_app_id }}"
+                       data-pricelist-api-url="{{ api_pricelist_url }}">
                     {{ region_form.regions.errors }}
                     <table>
                       <thead>
-                        <th><span class="region-heading">{{ _('Region') }}</span></th>
-                        <th>{{ _('Retail price') }}
+                        <tr>
+                          <th><span class="region-heading">{{ _('Region') }}</span></th>
+                          <th>{{ _('Retail price') }}
                             <span class="local-currency-heading">({{ _('local currency') }})</span></th>
+                        </tr>
                       </thead>
                       <tbody>
                         {% for value, text in region_form.regions.field.choices %}

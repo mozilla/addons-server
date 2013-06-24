@@ -3,6 +3,7 @@ define('payments', [], function() {
 
     var currentPrice;
     var $regions = $('.regions');
+    var $regionsIsland = $('#regions');
     var pricesApiEndpoint = $regions.data('pricelistApiUrl') + '{0}/';
 
     function getOverlay(opts) {
@@ -79,6 +80,7 @@ define('payments', [], function() {
         var apiUrl = format(pricesApiEndpoint, parseInt(selectedPrice, 10));
         var disabledRegions = $regions.data('disabledRegions');
         var freeWithInAppId = $regions.data('freeWithInappId');
+        var apiErrorMsg = $regions.data('apiErrorMsg');
 
         if (currentPrice == selectedPrice) {
             return;
@@ -101,6 +103,9 @@ define('payments', [], function() {
 
         $.ajax({
             url: apiUrl,
+            beforeSend: function() {
+                $regionsIsland.addClass('loading');
+            },
             success: function(data) {
                 var prices = data.prices || [];
                 var tierPrice = data.price;
@@ -130,6 +135,10 @@ define('payments', [], function() {
                                                      .trigger('change');
             },
             dataType: "json"
+        }).fail(function() {
+            z.doc.trigger('notify', { 'msg': apiErrorMsg });
+        }).always(function() {
+            $regionsIsland.removeClass('loading');
         });
 
         currentPrice = selectedPrice;
