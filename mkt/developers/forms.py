@@ -658,6 +658,7 @@ class RegionForm(forms.Form):
     def __init__(self, *args, **kw):
         self.product = kw.pop('product', None)
         self.request = kw.pop('request', None)
+        self.region_ids = self.product.get_region_ids()
         super(RegionForm, self).__init__(*args, **kw)
 
         is_paid = self._product_is_paid()
@@ -687,12 +688,12 @@ class RegionForm(forms.Form):
 
         # If the app is paid, disable regions that use payments.
         if is_paid:
+            self.disabled_regions.update(set(mkt.regions.ALL_REGION_IDS)
+                .difference(self.product.get_possible_price_region_ids()))
+
             self.disabled_regions.add(mkt.regions.WORLDWIDE.id)
             self.fields['other_regions'].widget.attrs['disabled'] = 'disabled'
             self.fields['other_regions'].label = _(u'Other regions')
-            for region in mkt.regions.ALL_REGIONS:
-                if not region.has_payments:
-                    self.disabled_regions.add(region.id)
 
         self.disabled_regions = list(self.disabled_regions)
 
@@ -708,10 +709,8 @@ class RegionForm(forms.Form):
     def has_inappropriate_regions(self):
         """Returns whether the app is listed in regions that it shouldn't
         otherwise be registered in."""
-
         return (self._product_is_paid() and
-                set(self.product.get_region_ids()) -
-                    set(mkt.regions.ALL_PAID_REGION_IDS))
+                set(self.region_ids).intersection(self.disabled_regions))
 
     def clean(self):
         data = self.cleaned_data
@@ -720,10 +719,16 @@ class RegionForm(forms.Form):
             raise forms.ValidationError(
                 _('You must select at least one region or '
                   '"Other and new regions."'))
+        if data.get('regions'):
+            self.region_ids = [int(r) for r in data['regions']]
+            if self.has_inappropriate_regions():
+                raise forms.ValidationError(
+                    _('You have selected a region that is not valid for your '
+                      'price point.'))
+
         return data
 
     def save(self):
-
         # Don't save regions if we are toggling.
         if self.is_toggling():
             return
@@ -733,7 +738,7 @@ class RegionForm(forms.Form):
 
         # If the app is paid, disable regions that do not use payments.
         if self._product_is_paid():
-            after &= set(mkt.regions.ALL_PAID_REGION_IDS)
+            after &= set(self.product.get_possible_price_region_ids())
 
         # Add new region exclusions.
         to_add = before - after

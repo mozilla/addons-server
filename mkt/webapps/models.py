@@ -573,6 +573,11 @@ class Webapp(Addon):
                                 .values_list('region', flat=True))
         return sorted(list(set(all_ids) - set(excluded)))
 
+    def get_possible_price_region_ids(self):
+        if self.premium:
+            ids = [p['region'] for p in self.premium.price.prices()]
+            return sorted(set(ids))
+
     def get_regions(self):
         """
         Return regions, e.g.:

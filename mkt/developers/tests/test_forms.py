@@ -16,6 +16,7 @@ from amo.tests import app_factory
 from amo.tests.test_helpers import get_image_path
 from addons.models import Addon, AddonCategory, Category, CategorySupervisor
 from files.helpers import copyfileobj
+from market.models import AddonPremium, Price
 from users.models import UserProfile
 
 import mkt
@@ -135,22 +136,12 @@ class TestCategoryForm(amo.tests.WebappTestCase):
 
 
 class TestRegionForm(amo.tests.WebappTestCase):
-    fixtures = ['webapps/337141-steamcube']
+    fixtures = fixture('webapp_337141', 'prices')
 
     def setUp(self):
         super(TestRegionForm, self).setUp()
         self.request = RequestFactory()
-        self.kwargs = {'product': self.app, 'request': self.request}
-
-    def test_is_toggling_free(self):
-        form = forms.RegionForm(data=None, **self.kwargs)
-        self.request.POST = {'toggle-paid': 'free'}
-        eq_(form.is_toggling(), 'free')
-
-    def test_is_toggling_paid(self):
-        form = forms.RegionForm(data=None, **self.kwargs)
-        self.request.POST = {'toggle-paid': 'paid'}
-        eq_(form.is_toggling(), 'paid')
+        self.kwargs = {'product': self.app}
 
     def test_initial_empty(self):
         form = forms.RegionForm(data=None, **self.kwargs)
@@ -171,8 +162,7 @@ class TestRegionForm(amo.tests.WebappTestCase):
 
     def test_initial_excluded_in_regions_and_future_regions(self):
         for region in [mkt.regions.BR, mkt.regions.UK, mkt.regions.WORLDWIDE]:
-            AER.objects.create(addon=self.app,
-                                               region=region.id)
+            AER.objects.create(addon=self.app, region=region.id)
 
         regions = list(mkt.regions.REGION_IDS)
         regions.remove(mkt.regions.BR.id)
@@ -185,24 +175,49 @@ class TestRegionForm(amo.tests.WebappTestCase):
         eq_(form.initial['other_regions'], False)
 
     def test_disable_regions_on_paid(self):
+        mkt.regions.BR.has_payments = True
         eq_(self.app.get_region_ids(), mkt.regions.REGION_IDS)
 
         self.app.update(premium_type=amo.ADDON_PREMIUM)
+        AddonPremium.objects.create(addon=self.app,
+                                    price=Price.objects.get(id=1))
         form = forms.RegionForm(data=None, **self.kwargs)
-        assert form.has_inappropriate_regions()
         assert not form.is_valid()
+        assert form.has_inappropriate_regions()
 
         form = forms.RegionForm(
             data={'regions': mkt.regions.ALL_PAID_REGION_IDS}, **self.kwargs)
+        assert not form.is_valid()
         assert form.has_inappropriate_regions()
+
+        form = forms.RegionForm(data={'regions': [mkt.regions.PL.id]},
+                                **self.kwargs)
         assert form.is_valid(), form.errors
+        assert not form.has_inappropriate_regions()
         form.save()
 
         self.assertSetEqual(self.app.get_region_ids(),
-                            mkt.regions.ALL_PAID_REGION_IDS)
+                            [mkt.regions.PL.id])
 
-        form = forms.RegionForm(data=None, **self.kwargs)
+    def test_paid_enable_region(self):
+        for region in mkt.regions.ALL_REGION_IDS:
+            AER.objects.create(addon=self.app, region=region)
+        self.app.update(premium_type=amo.ADDON_PREMIUM)
+        AddonPremium.objects.create(addon=self.app,
+                                    price=Price.objects.get(id=1))
+        form = forms.RegionForm(data={'regions': []}, **self.kwargs)
+        assert not form.is_valid()  # Fails due to needing at least 1 region
+        assert not form.has_inappropriate_regions(), form.has_inappropriate_regions()
+
+        form = forms.RegionForm(data={'regions': [mkt.regions.PL.id]},
+                                **self.kwargs)
+        assert form.is_valid(), form.errors
         assert not form.has_inappropriate_regions()
+
+        form = forms.RegionForm(data={'regions': [mkt.regions.BR.id]},
+                                **self.kwargs)
+        assert not form.is_valid()
+        assert form.has_inappropriate_regions()
 
     def test_worldwide_only(self):
         form = forms.RegionForm(data={'other_regions': 'on'}, **self.kwargs)
