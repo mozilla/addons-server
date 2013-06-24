@@ -489,6 +489,7 @@ class TestRereviewQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         eq_(RereviewQueue.objects.filter(addon=app).exists(), False)
 
 
+@mock.patch('versions.models.Version.is_privileged', False)
 class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
                       XSSMixin):
     fixtures = ['base/users']
