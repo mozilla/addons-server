@@ -274,6 +274,7 @@ JS = {
     'mkt/reviewers': (
         'js/lib/highcharts.src.js',
         'js/zamboni/storage.js',
+        'js/common/buckets.js',
         'js/zamboni/editors.js',
         'js/impala/formset.js',
         'js/lib/jquery.hoverIntent.js',
@@ -288,7 +289,6 @@ JS = {
         'js/devreg/mobile_review_actions.js',
         'js/common/fakefilefield.js',
         'js/common/formsets.js',
-        'js/common/buckets.js',
         'js/devreg/reviewers_init.js',
     ),
     'mkt/stats': (
