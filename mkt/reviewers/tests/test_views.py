@@ -226,6 +226,7 @@ class XSSMixin(object):
         assert '<script>' not in tbody
 
 
+@mock.patch('versions.models.Version.is_privileged', False)
 class TestAppQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
                    XSSMixin):
     fixtures = ['base/users']
@@ -351,6 +352,7 @@ class TestAppQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         eq_(doc('.tabnav li a:eq(4)').text(), u'Moderated Reviews (0)')
 
 
+@mock.patch('versions.models.Version.is_privileged', False)
 class TestRereviewQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
                         XSSMixin):
     fixtures = ['base/users']
@@ -707,6 +709,7 @@ class TestDeviceQueue(AppReviewerTest, AccessMixin):
         ok_(self.app2 not in apps)
 
 
+@mock.patch('versions.models.Version.is_privileged', False)
 class TestEscalationQueue(AppReviewerTest, AccessMixin, FlagsMixin,
                           SearchMixin, XSSMixin):
     fixtures = ['base/users']
