@@ -187,7 +187,7 @@ class TestEditBasic(TestEdit):
         return Addon.objects.get(id=337141)
 
     def get_dict(self, **kw):
-        result = {'device_types': self.dtype, 'slug': 'test_slug',
+        result = {'device_types': self.dtype, 'slug': 'TeSt_SluG',
                   'description': 'New description with <em>html</em>!',
                   'manifest_url': self.get_webapp().manifest_url,
                   'categories': [self.cat.id]}
@@ -212,7 +212,7 @@ class TestEditBasic(TestEdit):
         self.assertNoFormErrors(r)
         eq_(r.status_code, 200)
         webapp = self.get_webapp()
-        eq_(webapp.app_slug, data['slug'])
+        eq_(webapp.app_slug, data['slug'].lower())
         # Make sure only the app_slug changed.
         eq_(webapp.slug, self.webapp.slug)
 
@@ -420,7 +420,7 @@ class TestEditBasic(TestEdit):
         eq_(r.status_code, 200)
         webapp = self.get_webapp()
 
-        eq_(unicode(webapp.app_slug), data['slug'])
+        eq_(unicode(webapp.app_slug), data['slug'].lower())
         eq_(unicode(webapp.description), data['description'])
 
     def get_l10n_urls(self):

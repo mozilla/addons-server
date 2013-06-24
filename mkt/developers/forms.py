@@ -526,7 +526,7 @@ class AppFormBasic(addons.forms.AddonFormBase):
                 raise forms.ValidationError(_('The slug cannot be "%s". '
                                               'Please choose another.' % slug))
 
-        return slug
+        return slug.lower()
 
     def clean_manifest_url(self):
         manifest_url = self.cleaned_data['manifest_url']

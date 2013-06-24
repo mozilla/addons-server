@@ -148,13 +148,30 @@ class TestNewWebappVersionForm(amo.tests.TestCase):
 
 
 class TestAppDetailsBasicForm(amo.tests.TestCase):
-    fixtures = fixture('user_999')
+    fixtures = fixture('user_999', 'webapp_337141')
+
+    def setUp(self):
+        self.request = mock.Mock()
+        self.request.amo_user = UserProfile.objects.get(id=999)
 
     def test_prefill_support_email(self):
-        request = mock.Mock()
-        request.amo_user = UserProfile.objects.get(id=999)
-        form = forms.AppDetailsBasicForm({}, request=request)
+        form = forms.AppDetailsBasicForm({}, request=self.request)
         eq_(form.initial, {'support_email': {'en-us': 'regular@mozilla.com'}})
+
+    def test_slug(self):
+        app = Webapp.objects.get(pk=337141)
+        data = {
+            'app_slug': 'thisIsAslug',
+            'summary': '.',
+            'privacy_policy': '.',
+            'support_email': 'test@example.com',
+        }
+        form = forms.AppDetailsBasicForm(data, request=self.request,
+                                         instance=app)
+        assert form.is_valid()
+        form.save()
+        app.reload()
+        eq_(app.app_slug, 'thisisaslug')
 
 
 class TestAppFeaturesForm(amo.tests.TestCase):

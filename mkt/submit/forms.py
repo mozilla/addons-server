@@ -406,7 +406,7 @@ class AppDetailsBasicForm(TranslationFormMixin, happyforms.ModelForm):
                     _('The slug cannot be "%s". Please choose another.'
                       % slug))
 
-        return slug
+        return slug.lower()
 
     def save(self, *args, **kw):
         uses_flash = self.cleaned_data.get('flash')
