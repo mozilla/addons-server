@@ -143,7 +143,7 @@ class TestESAppToDict(amo.tests.ESTestCase):
         expected = {
             'absolute_url': 'http://testserver/app/something-something/',
             'app_type': 'hosted',
-            'created': '2011-10-18T16:28:24',
+            'created': self.app.created,
             'current_version': {
                 'release_notes': None,
                 'version': '1.0',
@@ -179,10 +179,12 @@ class TestESAppToDict(amo.tests.ESTestCase):
 
         for k, v in res.items():
             if k in expected:
-                eq_(expected[k], v, u'Unexpected value for field: %s' % k)
+                eq_(expected[k], v,
+                    u'Expected value "%s" for field "%s", got "%s"' %
+                                                            (expected[k], k, v))
 
     def test_show_downloads_count(self):
-        """Show weekly_downloads in results if app stats are public"""
+        """Show weekly_downloads in results if app stats are public."""
         self.app.update(public_stats=True)
         self.refresh('webapp')
         res = es_app_to_dict(self.get_obj())
