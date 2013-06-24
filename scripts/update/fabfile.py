@@ -1,5 +1,4 @@
 import os
-import time
 from fabric.api import (env, execute, lcd, local, parallel,
                         run, roles, task)
 
@@ -20,8 +19,6 @@ ZAMBONI = os.path.join(ROOT, 'zamboni')
 
 VIRTUALENV = os.path.join(ROOT, 'venv')
 PYTHON = os.path.join(VIRTUALENV, 'bin', 'python')
-
-BUILD_ID = str(int(time.time()))
 
 
 def managecmd(cmd):
@@ -156,7 +153,6 @@ def deploy():
     rpmbuild = RPMBuild(name='zamboni',
                         env=settings.ENV,
                         ref=ref,
-                        build_id=BUILD_ID,
                         cluster=settings.CLUSTER,
                         domain=settings.DOMAIN)
 
