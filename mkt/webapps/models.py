@@ -623,9 +623,12 @@ class Webapp(Addon):
     @classmethod
     def featured(cls, cat=None, region=None, limit=9, mobile=False,
                  gaia=False, tablet=False, profile=None):
-        qs = FeaturedApp.objects.featured(cat, region, limit, mobile, gaia,
-                                          tablet, profile)
-        return [w.app for w in qs]
+        apps = (FeaturedApp.objects
+                .featured(cat, region, limit, mobile, gaia, tablet, profile)
+                .values_list('app_id', flat=True))
+        # Get a list of ids, then get all those objects in one query
+        # which will get cache-machined.
+        return list(cls.objects.filter(pk__in=list(apps)))
 
     @classmethod
     def from_search(cls, request, cat=None, region=None, gaia=False,
