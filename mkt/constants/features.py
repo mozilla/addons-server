@@ -20,7 +20,7 @@ APP_FEATURES = OrderedDict([
     }),
     ('PACKAGED_APPS', {
         'name': _lazy(u'Packaged apps'),
-        'description': _lazy(u''),
+        'description': u'',
         'apis': ('navigator.mozApps.installPackage',),
     }),
     ('PAY', {
