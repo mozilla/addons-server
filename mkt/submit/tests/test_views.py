@@ -501,13 +501,15 @@ class BasePackagedAppTest(BaseUploadTest, UploadAddon, amo.tests.TestCase):
 
 class TestCreatePackagedApp(BasePackagedAppTest):
 
-    def test_post_app_redirect(self):
+    @mock.patch('mkt.webapps.models.Webapp.get_cached_manifest')
+    def test_post_app_redirect(self, _mock):
         res = self.post()
         webapp = Webapp.objects.order_by('-created')[0]
         self.assert3xx(res,
             reverse('submit.app.details', args=[webapp.app_slug]))
 
-    def test_app_from_uploaded_package(self):
+    @mock.patch('mkt.webapps.models.Webapp.get_cached_manifest')
+    def test_app_from_uploaded_package(self, _mock):
         addon = self.post_addon(
             data={'packaged': True, 'free_platforms': ['free-firefoxos']})
         eq_(addon.type, amo.ADDON_WEBAPP)
@@ -520,17 +522,19 @@ class TestCreatePackagedApp(BasePackagedAppTest):
         eq_(addon.app_slug, u'packaged-mozillaball-ょ')
         eq_(addon.summary, u'Exciting Open Web development action!')
         eq_(addon.manifest_url, None)
-        eq_(addon.app_domain, None)
+        eq_(addon.app_domain, 'app://hy.fr')
         eq_(Translation.objects.get(id=addon.summary.id, locale='it'),
             u'Azione aperta emozionante di sviluppo di fotoricettore!')
         eq_(addon.current_version.developer_name, 'Mozilla Labs')
 
     @mock.patch('mkt.developers.forms.verify_app_domain')
-    def test_packaged_app_not_unique_by_domain(self, _verify):
+    @mock.patch('mkt.webapps.models.Webapp.get_cached_manifest')
+    def test_packaged_app_not_unique_by_domain(self, _verify, _mock):
         self.post(
             data={'packaged': True, 'free_platforms': ['free-firefoxos']})
-        assert not _verify.called, (
-            '`verify_app_domain` should not be called for packaged apps.')
+        assert _verify.called, (
+            '`verify_app_domain` should be called for packaged apps with '
+            'origins.')
 
 
 class TestDetails(TestSubmit):

@@ -24,6 +24,7 @@ from mkt.constants import (APP_FEATURES_DESCRIPTIONS, FREE_PLATFORMS,
                            PAID_PLATFORMS)
 from mkt.site.forms import AddonChoiceField, APP_PUBLIC_CHOICES
 from mkt.webapps.models import AppFeatures
+from mkt.developers.forms import validate_origin, verify_app_domain
 
 
 def mark_for_rereview(addon, added_devices, removed_devices):
@@ -150,7 +151,18 @@ class NewWebappVersionForm(happyforms.Form):
         queryset=FileUpload.objects.filter(valid=True),
         error_messages={'invalid_choice': upload_error})
 
+    def __init__(self, *args, **kw):
+        request = kw.pop('request', None)
+        self.addon = kw.pop('addon', None)
+        self._is_packaged = kw.pop('is_packaged', False)
+        super(NewWebappVersionForm, self).__init__(*args, **kw)
+
+        if (not waffle.flag_is_active(request, 'allow-b2g-paid-submission')
+            and 'paid_platforms' in self.fields):
+            del self.fields['paid_platforms']
+
     def clean(self):
+
         data = self.cleaned_data
         if 'upload' not in self.cleaned_data:
             self._errors['upload'] = self.upload_error
@@ -171,11 +183,22 @@ class NewWebappVersionForm(happyforms.Form):
                 self.addon.versions.filter(version=ver).exists()):
                 self._errors['upload'] = _(u'Version %s already exists') % ver
                 return
+
+            origin = pkg.get('origin')
+            if origin:
+                try:
+                    validate_origin(origin)
+                    origin = verify_app_domain(origin)
+                except forms.ValidationError, e:
+                    self._errors['upload'] = self.error_class(e.messages)
+                    return
+                if origin:
+                    data['origin'] = origin
+
         else:
             # Throw an error if this is a dupe.
             # (JS sets manifest as `upload.name`.)
             try:
-                from mkt.developers.forms import verify_app_domain
                 verify_app_domain(data['upload'].name)
             except forms.ValidationError, e:
                 self._errors['upload'] = self.error_class(e.messages)
@@ -185,16 +208,6 @@ class NewWebappVersionForm(happyforms.Form):
 
     def is_packaged(self):
         return self._is_packaged
-
-    def __init__(self, *args, **kw):
-        request = kw.pop('request', None)
-        self.addon = kw.pop('addon', None)
-        self._is_packaged = kw.pop('is_packaged', False)
-        super(NewWebappVersionForm, self).__init__(*args, **kw)
-
-        if (not waffle.flag_is_active(request, 'allow-b2g-paid-submission')
-            and 'paid_platforms' in self.fields):
-            del self.fields['paid_platforms']
 
 
 class NewWebappForm(DeviceTypeForm, NewWebappVersionForm):

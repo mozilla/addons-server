@@ -458,7 +458,9 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             addon.default_locale = to_language(translation.get_language())
         if addon.is_webapp():
             addon.is_packaged = is_packaged
-            if not is_packaged:
+            if is_packaged:
+                addon.app_domain = data.get('origin')
+            else:
                 addon.manifest_url = upload.name
                 addon.app_domain = addon.domain_from_url(addon.manifest_url)
         addon.save()

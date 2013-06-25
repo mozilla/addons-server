@@ -98,6 +98,7 @@ class TestNewWebappForm(amo.tests.TestCase):
 
     @mock.patch('mkt.submit.forms.parse_addon')
     def test_packaged_allowed(self, parse_addon):
+        parse_addon.return_value = {}
         form = forms.NewWebappForm({'free_platforms': ['free-firefoxos'],
                                     'upload': self.file.uuid,
                                     'packaged': True})
@@ -106,6 +107,7 @@ class TestNewWebappForm(amo.tests.TestCase):
 
     @mock.patch('mkt.submit.forms.parse_addon')
     def test_packaged_allowed_android(self, parse_addon):
+        parse_addon.return_value = {}
         form = forms.NewWebappForm({'free_platforms': ['free-android-mobile'],
                                     'upload': self.file.uuid,
                                     'packaged': True})
@@ -120,6 +122,29 @@ class TestNewWebappForm(amo.tests.TestCase):
                                     'packaged': True})
         assert not form.is_valid(), form.errors
         eq_(form.ERRORS['packaged'], form.errors['paid_platforms'])
+
+
+class TestNewWebappVersionForm(amo.tests.TestCase):
+
+    def setUp(self):
+        self.request = RequestFactory().get('/')
+        self.file = FileUpload.objects.create(valid=True)
+
+    def test_no_upload(self):
+        form = forms.NewWebappVersionForm(request=self.request,
+                                          is_packaged=True)
+        assert not form.is_valid(), form.errors
+
+    @mock.patch('mkt.submit.forms.parse_addon',
+                lambda *args: {"origin": "app://hy.fr"})
+    @mock.patch('mkt.submit.forms.validate_origin')
+    def test_validate_origin_called(self, _validate):
+        self.create_switch('webapps-unique-by-domain')
+        form = forms.NewWebappVersionForm({'upload': self.file.uuid},
+                                          request=self.request,
+                                          is_packaged=True)
+        assert form.is_valid(), form.errors
+        assert _validate.called
 
 
 class TestAppDetailsBasicForm(amo.tests.TestCase):

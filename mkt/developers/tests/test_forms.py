@@ -5,6 +5,7 @@ import shutil
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.core.files.uploadedfile import SimpleUploadedFile
+from django.forms import ValidationError
 
 import mock
 from nose.tools import eq_
@@ -345,6 +346,32 @@ class TestNewManifestForm(amo.tests.TestCase):
             is_standalone=True)
         assert form.is_valid()
         assert not _verify_app_domain.called
+
+
+class TestValidateOrigin(amo.tests.TestCase):
+
+    def test_invalid_origins(self):
+        origins = [
+            'this-is-not-an-origin',
+            'ftp://domain.com',
+            'mail:someone@somewhere.com',
+            '//domain.com',
+            'http://domain.com',
+            'https://domain.com',
+        ]
+        for origin in origins:
+            with self.assertRaises(ValidationError):
+                forms.validate_origin(origin)
+
+    def test_valid_origins(self):
+        origins = [
+            'app://domain.com',
+            'app://domain.com/with/path.exe?q=yo',
+            # TODO: Should that be valid? ^
+        ]
+        for origin in origins:
+            origin = forms.validate_origin(origin)
+            assert origin, 'Origin invalid: %s' % origin
 
 
 class TestPackagedAppForm(amo.tests.AMOPaths, amo.tests.WebappTestCase):

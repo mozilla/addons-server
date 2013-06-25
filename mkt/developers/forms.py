@@ -2,6 +2,7 @@
 import json
 import os
 from datetime import datetime
+from urlparse import urlparse, urlunparse
 
 from django import forms
 from django.conf import settings
@@ -178,6 +179,24 @@ def trap_duplicate(request, manifest_url):
                  '<a href="%s">Edit app</a>')
     if msg:
         return msg % (app.name, error_url)
+
+
+def validate_origin(origin):
+    """
+    Validates that an origin looks like a url.
+
+    Returns origin stripped of path, params, query strings, and fragments.
+    """
+    parts = urlparse(origin)
+    if not parts.scheme.startswith('app'):
+        raise forms.ValidationError(
+            _('Origin must start with either "app://".'))
+
+    if not '.' in parts.netloc:
+        raise forms.ValidationError(
+            _('Origin must be a fully qualified domain name.'))
+
+    return urlunparse((parts.scheme, parts.netloc, '', '', '', ''))
 
 
 def verify_app_domain(manifest_url, exclude=None):
