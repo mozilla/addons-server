@@ -70,6 +70,12 @@ OAuth
 Marketplace provides OAuth 1.0a, allowing third-party apps to interact with its
 API.
 
+
+See the `OAuth Guide <http://hueniverse.com/oauth/guide/>`_ and this `authentication flow diagram <http://oauth.net/core/diagram.png>`_ for an overview of OAuth concepts.
+The "Application Name" and "Redirect URI" fields are used by Marketplace when prompting users for authorization, allowing your application to make API requests on their behalf.
+"Application Name" should contain the name of your app, for Marketplace to show users when asking them for authorization.
+"Redirect URI" should contain the URI to redirect the user to, after the user grants access to your app (step D in the diagram linked above).
+These fields can be left blank if this key will only be used to access your own Marketplace account.
 When you are first developing your API to communicate with the Marketplace, you
 should use the development server to test your API.
 

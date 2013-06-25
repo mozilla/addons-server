@@ -8,14 +8,14 @@
   <section id="submit-api" class="primary">
     <div class="island devhub-form">
       {% trans terms=url('mkt.developers.apps.terms') %}
-        <p>This API key provides you access to the Marketplace API. Submitting
-        an app requires you to accept the <a href="{{ terms }}">terms of service</a>.
-        </p>
+        <p>
+          To access the Marketplace API, accept the <a href="{{ terms }}">terms of service</a> and create an OAuth key pair using the form below.
       {% endtrans %}
       {% trans %}
-        <p>Please read the <a href="https://firefox-marketplace-api.readthedocs.org">documentation</a> on how to use
-        the Marketplace API. Any testing should occur on the
-        development server and not the production server.</p>
+        <p>
+          Please read the <a href="https://firefox-marketplace-api.readthedocs.org/en/latest/topics/authentication.html#oauth">documentation</a> on how to create a keypair and use it with the Marketplace API.
+          Any testing should occur on the development server and not the production server.
+        </p>
       {% endtrans %}
       {% if not roles %}
         <form method="POST">
