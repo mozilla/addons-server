@@ -990,7 +990,13 @@ class WebappIndexer(MappingType, Indexable):
                     'is_disabled': {'type': 'boolean'},
                     'last_updated': {'format': 'dateOptionalTime',
                                      'type': 'date'},
-                    'latest_version_status': {'type': 'byte'},
+                    'latest_version': {
+                        'type': 'object',
+                        'properties': {
+                            'status': {'type': 'byte'},
+                            'is_privileged': {'type': 'boolean'},
+                        },
+                    },
                     'manifest_url': {'type': 'string',
                                      'index': 'not_analyzed'},
                     'name': {'type': 'string',
@@ -1062,14 +1068,15 @@ class WebappIndexer(MappingType, Indexable):
         if obj is None:
             obj = cls.get_model().uncached.get(pk=pk)
 
+        latest_version = obj.latest_version
         version = obj.current_version
-        try:
-            file_ = version and version.files.latest()
-        except ObjectDoesNotExist:
-            file_ = None
-
         features = (version.features.to_dict()
                     if version else AppFeatures().to_dict())
+
+        try:
+            status = latest_version.statuses[0][1] if latest_version else None
+        except IndexError:
+            status = None
 
         translations = obj.translations
         installed_ids = list(Installed.objects.filter(addon=obj)
@@ -1115,7 +1122,16 @@ class WebappIndexer(MappingType, Indexable):
         d['homepage'] = unicode(obj.homepage) if obj.homepage else ''
         d['icons'] = [{'size': icon_size, 'url': obj.get_icon_url(icon_size)}
                       for icon_size in (16, 48, 64, 128)]
-        d['latest_version_status'] = (file_.status if file_ else None)
+        if latest_version:
+            d['latest_version'] = {
+                'status': status,
+                'is_privileged': latest_version.is_privileged,
+            }
+        else:
+            d['latest_version'] = {
+                'status': None,
+                'is_privileged': None,
+            }
         d['manifest_url'] = obj.get_manifest_url()
         d['name'] = list(set(string for _, string
                              in translations[obj.name_id]))

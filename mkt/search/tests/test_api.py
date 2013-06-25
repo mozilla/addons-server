@@ -25,6 +25,7 @@ from mkt.site.fixtures import fixture
 from mkt.webapps.models import Installed, Webapp
 
 
+@patch('versions.models.Version.is_privileged', False)
 class TestApi(BaseOAuth, ESTestCase):
     fixtures = fixture('webapp_337141')
 
@@ -121,7 +122,7 @@ class TestApi(BaseOAuth, ESTestCase):
             eq_(obj['supported_locales'], ['en-US', 'es', 'pt-BR'])
 
             # These only exists if requested by a reviewer.
-            ok_('latest_version_status' not in obj)
+            ok_('latest_version' not in obj)
             ok_('reviewer_flags' not in obj)
 
     def test_upsell(self):
@@ -258,6 +259,22 @@ class TestApi(BaseOAuth, ESTestCase):
         eq_(json.loads(res.content)['reason'],
             'Unauthorized to filter by status.')
 
+    def test_is_privileged_anon(self):
+        res = self.client.get(self.url + ({'is_privileged': True},))
+        eq_(res.status_code, 401)
+        eq_(json.loads(res.content)['reason'],
+            'Unauthorized to filter by privileged.')
+
+        res = self.client.get(self.url + ({'is_privileged': False},))
+        eq_(res.status_code, 401)
+        eq_(json.loads(res.content)['reason'],
+            'Unauthorized to filter by privileged.')
+
+        res = self.client.get(self.url + ({'is_privileged': None},))
+        eq_(res.status_code, 200)
+        obj = res.json['objects'][0]
+        eq_(obj['slug'], self.webapp.app_slug)
+
     def test_status_value_packaged(self):
         # When packaged and not a reviewer we exclude latest version status.
         self.webapp.update(is_packaged=True)
@@ -265,7 +282,7 @@ class TestApi(BaseOAuth, ESTestCase):
         eq_(res.status_code, 200)
         obj = res.json['objects'][0]
         eq_(obj['status'], amo.STATUS_PUBLIC)
-        eq_('latest_version_status' in obj, False)
+        eq_('latest_version' in obj, False)
 
     def test_addon_type_anon(self):
         res = self.client.get(self.url + ({'type': 'app'},))
@@ -436,6 +453,22 @@ class TestApiReviewer(BaseOAuth, ESTestCase):
         error = res.json['error_message']
         eq_(error.keys(), ['status'])
 
+    def test_is_privileged_reviewer(self):
+        res = self.client.get(self.url + ({'is_privileged': True},))
+        eq_(res.status_code, 200)
+        objs = res.json['objects']
+        eq_(len(objs), 0)
+
+        res = self.client.get(self.url + ({'is_privileged': False},))
+        eq_(res.status_code, 200)
+        obj = res.json['objects'][0]
+        eq_(obj['slug'], self.webapp.app_slug)
+
+        res = self.client.get(self.url + ({'is_privileged': None},))
+        eq_(res.status_code, 200)
+        obj = res.json['objects'][0]
+        eq_(obj['slug'], self.webapp.app_slug)
+
     def test_status_value_packaged(self):
         # When packaged we also include the latest version status.
         self.webapp.update(is_packaged=True)
@@ -443,7 +476,7 @@ class TestApiReviewer(BaseOAuth, ESTestCase):
         eq_(res.status_code, 200)
         obj = res.json['objects'][0]
         eq_(obj['status'], amo.STATUS_PUBLIC)
-        eq_(obj['latest_version_status'], amo.STATUS_PUBLIC)
+        eq_(obj['latest_version']['status'], amo.STATUS_PUBLIC)
 
     def test_addon_type_reviewer(self):
         res = self.client.get(self.url + ({'type': 'app'},))
@@ -461,7 +494,10 @@ class TestApiReviewer(BaseOAuth, ESTestCase):
         error = res.json['error_message']
         eq_(error.keys(), ['type'])
 
+    @patch('versions.models.Version.is_privileged', True)
     def test_extra_attributes(self):
+        # Save the webapp to make sure our mocked Version is used.
+        self.webapp.save()
         version = self.webapp.versions.latest()
         version.has_editor_comment = True
         version.has_info_request = True
@@ -472,7 +508,8 @@ class TestApiReviewer(BaseOAuth, ESTestCase):
         obj = res.json['objects'][0]
 
         # These only exist if requested by a reviewer.
-        eq_(obj['latest_version_status'], amo.STATUS_PUBLIC)
+        eq_(obj['latest_version']['status'], amo.STATUS_PUBLIC)
+        eq_(obj['latest_version']['is_privileged'], True)
         eq_(obj['reviewer_flags']['has_comment'], True)
         eq_(obj['reviewer_flags']['has_info_request'], True)
         eq_(obj['reviewer_flags']['is_escalated'], False)
@@ -491,8 +528,8 @@ class TestApiReviewer(BaseOAuth, ESTestCase):
         obj = res.json['objects'][0]
 
         # These only exist if requested by a reviewer.
-        eq_(obj['latest_version_status'], amo.STATUS_PUBLIC)
-        eq_(obj['reviewer_flags']['has_comment'], True)
+        eq_(obj['latest_version']['status'], amo.STATUS_PUBLIC)
+        eq_(obj['latest_version']['is_privileged'], False)
         eq_(obj['reviewer_flags']['has_info_request'], True)
         eq_(obj['reviewer_flags']['is_escalated'], False)
 

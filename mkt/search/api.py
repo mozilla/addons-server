@@ -72,6 +72,14 @@ class SearchResource(CORSResource, MarketplaceResource):
                 raise http_error(http.HttpUnauthorized,
                                  _('Unauthorized to filter by status.'))
 
+        # Only allow reviewers and admin to search by is_privileged, because it
+        # depends on the latest_version, which may or may not be public yet.
+        is_privileged = form_data.get('is_privileged', None)
+        if is_privileged is not None and not (is_admin or is_reviewer):
+            return http.HttpUnauthorized(
+                content=json.dumps(
+                    {'reason': _('Unauthorized to filter by privileged.')}))
+
         # Filter by device feature profile.
         profile = None
         # TODO: Remove uses_es conditional with 'search-api-es' waffle.
@@ -127,7 +135,7 @@ class SearchResource(CORSResource, MarketplaceResource):
                 bundle.obj.get_detail_url())
 
         # Add extra data for reviewers. Used in reviewer tool search.
-        bundle = update_with_reviewer_data(bundle)
+        bundle = update_with_reviewer_data(bundle, using_es=uses_es)
 
         return bundle
 

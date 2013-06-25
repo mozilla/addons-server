@@ -90,11 +90,14 @@ function buildAppResultRow(app, review_url, statuses) {
     var flags = [];
     app.review_url = review_url.replace('__slug__', app.slug);
     app.status = statuses[app.status];
-    if (app.latest_version_status) {
-        app.status += format(' | {0}', statuses[app.latest_version_status]);
+    if (app.latest_version.status) {
+        app.status += format(' | {0}', statuses[app.latest_version.status]);
     }
     if (app.is_packaged) {
         flags.push({suffix: 'packaged-app', title: gettext('Packaged App')});
+    }
+    if (app.latest_version.is_privileged) {
+        flags.push({suffix: 'privileged-app', title: gettext('Privileged App')});
     }
     if (app.reviewer_flags.has_info_request) {
         flags.push({suffix: 'info', title: gettext('More Information Requested')});

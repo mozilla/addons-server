@@ -248,7 +248,7 @@ def es_app_to_dict(obj, region=None, profile=None):
     return data
 
 
-def update_with_reviewer_data(bundle):
+def update_with_reviewer_data(bundle, using_es=False):
     """Adds reviewer specific data to app response bundle."""
     # TODO: Reviewer flags in ES (bug 848446)
     from editors.models import EscalationQueue
@@ -261,16 +261,19 @@ def update_with_reviewer_data(bundle):
         escalated = EscalationQueue.objects.filter(
             addon_id=addon_id).exists()
 
-        if hasattr(bundle.data, 'latest_version_status'):
-            bundle.data['latest_version_status'] = (
-                bundle.obj.latest_version_status)
+        if using_es and hasattr(bundle.obj, 'latest_version'):
+            # If we know we are using elasticsearch and we have latest_version,
+            # then we can directly return it in the results.
+            bundle.data['latest_version'] = bundle.obj.latest_version
         else:
             try:
-                file_ = version and version.files.latest()
-                bundle.data['latest_version_status'] = (
-                    file_.status if file_ else None)
-            except ObjectDoesNotExist:
-                bundle.data['latest_version_status'] = None
+                latest_version_status = version.statuses[0][1]
+            except IndexError:
+                latest_version_status = None
+            bundle.data['latest_version'] = {
+                'status': latest_version_status,
+                'is_privileged': version.is_privileged,
+            }
 
         bundle.data['reviewer_flags'] = {
             'has_comment': version.has_editor_comment,

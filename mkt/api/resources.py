@@ -236,7 +236,7 @@ class AppResource(CORSResource, MarketplaceModelResource):
             PrivacyPolicyResource().get_resource_uri(bundle))
 
         # Add extra data for reviewers. Used in reviewer tool search.
-        bundle = update_with_reviewer_data(bundle)
+        bundle = update_with_reviewer_data(bundle, using_es=False)
 
         return bundle
 

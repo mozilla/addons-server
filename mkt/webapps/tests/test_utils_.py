@@ -1,5 +1,6 @@
 from decimal import Decimal
 
+import mock
 from elasticutils.contrib.django import S
 from nose.tools import eq_, ok_
 
@@ -125,6 +126,7 @@ class TestAppToDictPrices(amo.tests.TestCase):
         eq_(res['price_locale'], None)
 
 
+@mock.patch('versions.models.Version.is_privileged', False)
 class TestESAppToDict(amo.tests.ESTestCase):
     fixtures = fixture('user_2519', 'webapp_337141')
 
@@ -153,6 +155,10 @@ class TestESAppToDict(amo.tests.ESTestCase):
             'homepage': '',
             'id': '337141',
             'is_packaged': False,
+            'latest_version': {
+                'status': 4,
+                'is_privileged': False
+            },
             'listed_authors': [
                 {'name': u'31337 \u0627\u0644\u062a\u0637\u0628'},
             ],
