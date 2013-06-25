@@ -1,8 +1,8 @@
-from collections import defaultdict
 import json
 import logging
 import sys
 import traceback
+from collections import defaultdict
 
 from django.conf import settings
 from django.core.urlresolvers import reverse
@@ -10,6 +10,7 @@ from django.conf.urls.defaults import url
 from django.core.exceptions import ObjectDoesNotExist, PermissionDenied
 from django.http import HttpResponseNotFound
 
+import commonware.log
 from rest_framework.routers import Route, SimpleRouter
 from rest_framework.relations import HyperlinkedRelatedField
 from rest_framework.viewsets import GenericViewSet
@@ -17,10 +18,9 @@ from tastypie import fields, http
 from tastypie.bundle import Bundle
 from tastypie.exceptions import (ImmediateHttpResponse, NotFound,
                                  UnsupportedFormat)
-from tastypie.resources import Resource, ModelResource
+from tastypie.resources import ModelResource, Resource
 
 from access import acl
-import commonware.log
 from translations.fields import PurifiedField, TranslatedField
 
 from .exceptions import DeserializationError
@@ -452,7 +452,8 @@ class SlugRouter(SimpleRouter):
 
             for route in routes:
 
-                # Only actions which actually exist on the viewset will be bound
+                # Only actions which actually exist on the viewset will be
+                # bound.
                 mapping = self.get_method_map(viewset, route.mapping)
                 if not mapping:
                     continue
@@ -468,7 +469,8 @@ class SlugRouter(SimpleRouter):
                             '(?P<%s>[^/<>"\']+)' % (slug_field,)))
 
                 else:
-                    ret.append(self.create_url(prefix, viewset, basename, route, mapping))
+                    ret.append(self.create_url(prefix, viewset, basename,
+                                               route, mapping))
         return ret
 
     def create_url(self, prefix, viewset, basename, route, mapping, lookup=''):
@@ -476,6 +478,7 @@ class SlugRouter(SimpleRouter):
         view = viewset.as_view(mapping, **route.initkwargs)
         name = route.name.format(basename=basename)
         return url(regex, view, name=name)
+
 
 class CORSViewSet(GenericViewSet):
     """
@@ -488,4 +491,3 @@ class CORSViewSet(GenericViewSet):
         request._request.CORS = self.cors_allowed_methods
         return GenericViewSet.finalize_response(self, request, response, *args,
                                                 **kwargs)
-
