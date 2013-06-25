@@ -132,7 +132,8 @@ def app_to_dict(app, region=None, profile=None):
                                 for n in app.device_types]
     if profile:
         data['user'] = {
-            'developed': app.has_author(profile, [amo.AUTHOR_ROLE_OWNER]),
+            'developed': AddonUser.objects.filter(
+                user=profile, role=amo.AUTHOR_ROLE_OWNER).exists(),
             'installed': app.has_installed(profile),
             'purchased': app.pk in profile.purchase_ids(),
         }
