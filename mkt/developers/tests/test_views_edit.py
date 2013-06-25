@@ -22,7 +22,6 @@ from amo.helpers import absolutify
 from amo.tests import assert_required, formset, initial
 from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
-from addons.forms import AddonFormBasic
 from addons.models import (Addon, AddonCategory, AddonDeviceType, AddonUser,
                            Category)
 from constants.applications import DEVICE_TYPES
@@ -86,7 +85,7 @@ class TestEdit(amo.tests.TestCase):
     def get_dict(self, **kw):
         fs = formset(self.cat_initial, initial_count=1)
         result = {'name': 'new name', 'slug': 'test_slug',
-                  'summary': 'new summary'}
+                  'description': 'new description'}
         result.update(**kw)
         result.update(fs)
         return result
@@ -189,7 +188,7 @@ class TestEditBasic(TestEdit):
 
     def get_dict(self, **kw):
         result = {'device_types': self.dtype, 'slug': 'test_slug',
-                  'summary': 'new summary',
+                  'description': 'New description with <em>html</em>!',
                   'manifest_url': self.get_webapp().manifest_url,
                   'categories': [self.cat.id]}
         result.update(**kw)
@@ -231,6 +230,15 @@ class TestEditBasic(TestEdit):
         # Nothing changed.
         eq_(webapp.slug, self.webapp.slug)
         eq_(webapp.app_slug, self.webapp.app_slug)
+
+    def test_edit_xss(self):
+        self.webapp.description = ("This\n<b>IS</b>"
+                                   "<script>alert('awesome')</script>")
+        self.webapp.save()
+        r = self.client.get(self.url)
+        eq_(pq(r.content)('#addon-description span[lang]').html(),
+            "This<br/><b>IS</b>&lt;script&gt;alert('awesome')"
+            '&lt;/script&gt;')
 
     @mock.patch('devhub.tasks.urllib2.urlopen')
     @mock.patch('devhub.tasks.validator')
@@ -386,18 +394,11 @@ class TestEditBasic(TestEdit):
         eq_(r.context['cat_form'].errors['categories'],
             ['You can have only 2 categories.'])
 
-    def test_edit_summary_max_length(self):
-        r = self.client.post(self.edit_url, self.get_dict(summary='x' * 1025))
-        eq_(list(r.context['form'].errors['summary']),
-            [('en-us',
-              'Ensure this value has at most 1024 characters (it has 1025).')])
-
     def test_edit_check_description(self):
         # Make sure bug 629779 doesn't return.
         r = self.client.post(self.edit_url, self.get_dict())
         eq_(r.status_code, 200)
-
-        eq_(self.get_webapp().description, self.webapp.description)
+        eq_(self.get_webapp().description, self.get_dict()['description'])
 
     def test_edit_slug_valid(self):
         old_edit = self.edit_url
@@ -405,22 +406,6 @@ class TestEditBasic(TestEdit):
         r = self.client.post(self.edit_url, data)
         doc = pq(r.content)
         assert doc('form').attr('action') != old_edit
-
-    def test_edit_summary_escaping(self):
-        data = self.get_dict(summary='<b>oh my</b>')
-        r = self.client.post(self.edit_url, data)
-        eq_(r.status_code, 200)
-
-        # Fetch the page so the LinkifiedTranslation gets in cache.
-        webapp = self.get_webapp()
-        r = self.client.get(webapp.get_dev_url('edit'))
-        eq_(pq(r.content)('[data-name=summary]').html().strip(),
-            '<span lang="en-us">&lt;b&gt;oh my&lt;/b&gt;</span>')
-
-        # Now make sure we don't have escaped content in the rendered form.
-        form = AddonFormBasic(instance=webapp, request=object())
-        eq_(pq('<body>%s</body>' % form['summary'])('[lang="en-us"]').html(),
-            data['summary'])
 
     def test_edit_as_developer(self):
         self.client.login(username='regular@mozilla.com', password='password')
@@ -436,7 +421,7 @@ class TestEditBasic(TestEdit):
         webapp = self.get_webapp()
 
         eq_(unicode(webapp.app_slug), data['slug'])
-        eq_(unicode(webapp.summary), data['summary'])
+        eq_(unicode(webapp.description), data['description'])
 
     def get_l10n_urls(self):
         return [self.webapp.get_dev_url(p) for p in ('edit', 'profile')]
@@ -1003,8 +988,7 @@ class TestEditDetails(TestEdit):
         self.edit_url = self.get_url('details', edit=True)
 
     def get_dict(self, **kw):
-        data = dict(description='New description with <em>html</em>!',
-                    default_locale='en-US',
+        data = dict(default_locale='en-US',
                     homepage='http://twitter.com/fligtarsmom',
                     privacy_policy="fligtar's mom does <em>not</em> share "
                                    "your data with third parties.")
@@ -1020,19 +1004,6 @@ class TestEditDetails(TestEdit):
         self.assertNoFormErrors(r)
         self.compare(data)
 
-    def test_edit_xss(self):
-        """
-        Let's try to put xss in our description, and safe html, and verify
-        that we are playing safe.
-        """
-        self.webapp.description = ("This\n<b>IS</b>"
-                                   "<script>alert('awesome')</script>")
-        self.webapp.save()
-        r = self.client.get(self.url)
-        eq_(pq(r.content)('#addon-description span[lang]').html(),
-            "This<br/><b>IS</b>&lt;script&gt;alert('awesome')"
-            '&lt;/script&gt;')
-
     def test_privacy_policy_xss(self):
         self.webapp.privacy_policy = ("We\n<b>own</b>your"
                                       "<script>alert('soul')</script>")
@@ -1044,8 +1015,7 @@ class TestEditDetails(TestEdit):
 
     def test_edit_exclude_optional_fields(self):
         data = self.get_dict()
-        data.update(description='New description with <em>html</em>!',
-                    default_locale='en-US', homepage='',
+        data.update(default_locale='en-US', homepage='',
                     privacy_policy='we sell your data to everyone')
 
         r = self.client.post(self.edit_url, data)
@@ -1053,16 +1023,14 @@ class TestEditDetails(TestEdit):
         self.compare(data)
 
     def test_edit_default_locale_required_trans(self):
-        # name, summary, and description are required in the new locale.
+        # name and description are required in the new locale.
         data = self.get_dict()
         data.update(description='bullocks',
                     homepage='http://omg.org/yes',
                     privacy_policy='your data is delicious')
-        # TODO: description should get fixed up with the form.
-        fields = ['description', 'name', 'summary']
-        error = ('Before changing your default locale you must have a name, '
-                 'summary, and description in that locale. '
-                 'You are missing %s.')
+        fields = ['name', 'description']
+        error = ('Before changing your default locale you must have a name '
+                 'and description in that locale. You are missing %s.')
         missing = lambda f: error % ', '.join(map(repr, f))
 
         data.update(default_locale='pt-BR')
@@ -1075,18 +1043,6 @@ class TestEditDetails(TestEdit):
         fields.remove('name')
         r = self.client.post(self.edit_url, data)
         self.assertFormError(r, 'form', None, missing(fields))
-
-        # Now we have a summary.
-        self.webapp.summary = {'pt-BR': 'pt-BR summary'}
-        self.webapp.save()
-        fields.remove('summary')
-        r = self.client.post(self.edit_url, data)
-        self.assertFormError(r, 'form', None, missing(fields))
-
-        # Now we're sending an pt-BR description with the form.
-        data['description_pt-BR'] = 'pt-BR description'
-        r = self.client.post(self.edit_url, data)
-        self.assertNoFormErrors(r)
 
     def test_edit_default_locale_frontend_error(self):
         data = self.get_dict()

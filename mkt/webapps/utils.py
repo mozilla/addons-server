@@ -199,7 +199,6 @@ def es_app_to_dict(obj, region=None, profile=None):
             GenericObject({'pk': obj._id})
         ),
         'public_stats': obj.has_public_stats,
-        'summary': get_attr_lang(src, 'summary', obj.default_locale),
         'supported_locales': src.get('supported_locales', ''),
         'slug': obj.app_slug,
     })

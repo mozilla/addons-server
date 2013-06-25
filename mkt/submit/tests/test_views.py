@@ -334,10 +334,10 @@ class TestCreateWebApp(BaseWebAppTest):
         eq_(unicode(addon.name), u'MozillaBall ょ')
         eq_(addon.slug, 'app-%s' % addon.id)
         eq_(addon.app_slug, u'mozillaball-ょ')
-        eq_(addon.summary, u'Exciting Open Web development action!')
+        eq_(addon.description, u'Exciting Open Web development action!')
         eq_(addon.manifest_url, u'http://allizom.org/mozball.webapp')
         eq_(addon.app_domain, u'http://allizom.org')
-        eq_(Translation.objects.get(id=addon.summary.id, locale='it'),
+        eq_(Translation.objects.get(id=addon.description.id, locale='it'),
             u'Azione aperta emozionante di sviluppo di fotoricettore!')
         eq_(addon.current_version.developer_name, 'Mozilla Labs')
 
@@ -520,10 +520,10 @@ class TestCreatePackagedApp(BasePackagedAppTest):
         eq_(unicode(addon.name), u'Packaged MozillaBall ょ')
         eq_(addon.slug, 'app-%s' % addon.id)
         eq_(addon.app_slug, u'packaged-mozillaball-ょ')
-        eq_(addon.summary, u'Exciting Open Web development action!')
+        eq_(addon.description, u'Exciting Open Web development action!')
         eq_(addon.manifest_url, None)
         eq_(addon.app_domain, 'app://hy.fr')
-        eq_(Translation.objects.get(id=addon.summary.id, locale='it'),
+        eq_(Translation.objects.get(id=addon.description.id, locale='it'),
             u'Azione aperta emozionante di sviluppo di fotoricettore!')
         eq_(addon.current_version.developer_name, 'Mozilla Labs')
 
@@ -638,7 +638,6 @@ class TestDetails(TestSubmit):
     def get_dict(self, **kw):
         data = {
             'app_slug': 'testname',
-            'summary': 'Hello!',
             'description': 'desc',
             'privacy_policy': 'XXX <script>alert("xss")</script>',
             'homepage': 'http://www.goodreads.com/user/show/7595895-krupa',
@@ -666,7 +665,6 @@ class TestDetails(TestSubmit):
         # Build a dictionary of expected results.
         expected_data = {
             'app_slug': 'testname',
-            'summary': 'Hello!',
             'description': 'desc',
             'privacy_policy': 'XXX &lt;script&gt;alert("xss")&lt;/script&gt;',
             'uses_flash': True,
@@ -836,24 +834,12 @@ class TestDetails(TestSubmit):
         self.assertFormError(r, 'form_basic', 'app_slug',
                              'This field is required.')
 
-    def test_summary_required(self):
+    def test_description_required(self):
         self._step()
-        r = self.client.post(self.url, self.get_dict(summary=''))
+        r = self.client.post(self.url, self.get_dict(description=''))
         eq_(r.status_code, 200)
-        self.assertFormError(r, 'form_basic', 'summary',
+        self.assertFormError(r, 'form_basic', 'description',
                              'This field is required.')
-
-    def test_summary_length(self):
-        self._step()
-        r = self.client.post(self.url, self.get_dict(summary='a' * 1025))
-        eq_(r.status_code, 200)
-        self.assertFormError(r, 'form_basic', 'summary',
-            'Ensure this value has at most 1024 characters (it has 1025).')
-
-    def test_description_optional(self):
-        self._step()
-        r = self.client.post(self.url, self.get_dict(description=None))
-        self.assertNoFormErrors(r)
 
     def test_privacy_policy_required(self):
         self._step()

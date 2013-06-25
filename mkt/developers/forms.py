@@ -482,12 +482,14 @@ class AppFormBasic(addons.forms.AddonFormBase):
     """Form to edit basic app info."""
     slug = forms.CharField(max_length=30, widget=forms.TextInput)
     manifest_url = forms.URLField(verify_exists=False)
-    summary = TransField(widget=TransTextarea(attrs={'rows': 4}),
-                         max_length=1024)
+    description = TransField(required=True,
+        label=_lazy(u'Provide a detailed description of your app'),
+        help_text=_lazy(u'This description will appear on the details page.'),
+        widget=TransTextarea)
 
     class Meta:
         model = Addon
-        fields = ('slug', 'manifest_url', 'summary')
+        fields = ('slug', 'manifest_url', 'description')
 
     def __init__(self, *args, **kw):
         # Force the form to use app_slug if this is a webapp. We want to keep
@@ -546,10 +548,6 @@ class AppFormBasic(addons.forms.AddonFormBase):
 
 
 class AppFormDetails(addons.forms.AddonFormBase):
-    description = TransField(required=False,
-        label=_lazy(u'Provide a more detailed description of your app'),
-        help_text=_lazy(u'This description will appear on the details page.'),
-        widget=TransTextarea)
     default_locale = forms.TypedChoiceField(required=False,
                                             choices=Addon.LOCALES)
     homepage = TransField.adapt(forms.URLField)(required=False,
@@ -559,12 +557,11 @@ class AppFormDetails(addons.forms.AddonFormBase):
 
     class Meta:
         model = Addon
-        fields = ('description', 'default_locale', 'homepage',
-                  'privacy_policy')
+        fields = ('default_locale', 'homepage', 'privacy_policy')
 
     def clean(self):
         # Make sure we have the required translations in the new locale.
-        required = ['name', 'summary', 'description']
+        required = ['name', 'description']
         data = self.cleaned_data
         if not self.errors and 'default_locale' in self.changed_data:
             fields = dict((k, getattr(self.instance, k + '_id'))
@@ -575,13 +572,10 @@ class AppFormDetails(addons.forms.AddonFormBase):
                                              localized_string__isnull=False)
                   .values_list('id', flat=True))
             missing = [k for k, v in fields.items() if v not in qs]
-            # They might be setting description right now.
-            if 'description' in missing and locale in data['description']:
-                missing.remove('description')
             if missing:
                 raise forms.ValidationError(
                     _('Before changing your default locale you must have a '
-                      'name, summary, and description in that locale. '
+                      'name and description in that locale. '
                       'You are missing %s.') % ', '.join(map(repr, missing)))
         return data
 

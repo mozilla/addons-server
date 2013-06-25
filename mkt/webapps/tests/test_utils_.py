@@ -166,7 +166,6 @@ class TestESAppToDict(amo.tests.ESTestCase):
             },
             'slug': 'something-something',
             'status': 4,
-            'summary': u'',
             'support_email': None,
             'support_url': None,
             'user': {

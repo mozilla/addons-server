@@ -439,14 +439,15 @@ class TestAppFormBasic(amo.tests.TestCase):
         self.data = {
             'slug': 'yolo',
             'manifest_url': 'https://omg.org/yes.webapp',
-            'summary': 'You Only Live Once'
+            'description': 'You Only Live Once'
         }
         self.request = mock.Mock()
         self.request.groups = ()
 
     def post(self):
-        self.form = forms.AppFormBasic(self.data,
-            instance=Webapp.objects.create(app_slug='yolo'), request=self.request)
+        self.form = forms.AppFormBasic(
+            self.data, instance=Webapp.objects.create(app_slug='yolo'),
+            request=self.request)
 
     def test_success(self):
         self.post()

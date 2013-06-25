@@ -56,17 +56,12 @@ def name_query(q):
     """
     more = {
         'description__text': {'query': q, 'boost': 0.8, 'type': 'phrase'},
-        # TODO: Remove summary when bug 862603 lands.
-        'summary__text': {'query': q, 'boost': 0.3, 'type': 'phrase'},
     }
 
     analyzer = _get_locale_analyzer()
     if analyzer:
         more['description_%s__text' % analyzer] = {
             'query': q, 'boost': 0.6, 'type': 'phrase', 'analyzer': analyzer}
-        # TODO: Remove summary when bug 862603 lands.
-        more['summary_%s__text' % analyzer] = {
-            'query': q, 'boost': 0.1, 'type': 'phrase', 'analyzer': analyzer}
 
     return dict(more, **name_only_query(q))
 

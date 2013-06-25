@@ -25,6 +25,7 @@ from editors.models import RereviewQueue
 from files.models import FileUpload
 from files.utils import WebAppParser
 from lib.es.utils import get_indices
+from translations.models import delete_translation, Translation
 from users.utils import get_task_user
 
 from mkt.constants.regions import WORLDWIDE
@@ -32,6 +33,7 @@ from mkt.developers.tasks import (fetch_icon, _fetch_manifest, run_validator,
                                   validator)
 from mkt.webapps.models import Webapp, WebappIndexer
 from mkt.webapps.utils import get_locale_properties
+
 
 task_log = logging.getLogger('z.task')
 
@@ -182,9 +184,9 @@ def _update_manifest(id, check_hash, failed_fetches):
             old.get('name'), new.get('name')))
 
     new_version = webapp.versions.latest()
-    # Compare developer_name between old and new version using the property that
-    # fallbacks to the author name instead of using the db field directly. This
-    # allows us to avoid forcing a re-review on old apps which didn't have
+    # Compare developer_name between old and new version using the property
+    # that fallbacks to the author name instead of using the db field directly.
+    # This allows us to avoid forcing a re-review on old apps which didn't have
     # developer name in their manifest initially and upload a new version that
     # does, providing that it matches the original author name.
     if version.developer_name != new_version.developer_name:
@@ -465,3 +467,68 @@ def _fix_missing_icons(id):
 def fix_missing_icons(ids, **kw):
     for id in ids:
         _fix_missing_icons(id)
+
+
+# TODO: Remove the collapse_summary calls when bug 862603 is completed.
+@task
+@write
+def _collapse_summary(app):
+
+    task_log.info('[Webapp:%s] Collapsing summary.' % app.id)
+
+    # No prior summary so do nothing.
+    if app.summary is None:
+        return
+
+    # Handle no prior description.
+    if app.description is None:
+        # These should be translation ids and copy easily.
+        app.description_id = app.summary_id
+        app.summary_id = None
+        app.save()
+        task_log.info('[Webapp:%s] No description, copied translation %s.' % (
+            app.id, app.description_id))
+        return
+
+    # The other cases require looking at the localized strings in the
+    # translation table in all locales.
+    for summary in Translation.objects.filter(id=app.summary_id):
+        try:
+            descr = Translation.objects.get(id=app.description_id,
+                                            locale=summary.locale)
+        except Translation.DoesNotExist:
+            # We have a summary in this locale but not a description.
+            Translation.objects.create(
+                id=app.description_id, locale=summary.locale,
+                localized_string=summary.localized_string,
+                localized_string_clean=summary.localized_string_clean)
+            task_log.info('[Webapp:%s] Created description in locale %s with '
+                          'translation %s.' % (app.id, summary.locale,
+                                               app.description_id))
+            continue
+
+        # If summary is a truncated description, delete the summary.
+        if descr.localized_string.startswith(summary.localized_string):
+            task_log.info('[Webapp:%s] Description starts with summary for '
+                          'translation %s and locale %s.' % (
+                              app.id, summary.id, summary.locale))
+            continue
+
+        # Otherwise, concat summary and description together.
+        descr.localized_string = u'%s\n%s' % (
+            summary.localized_string, descr.localized_string)
+        descr.localized_string_clean = u'%s\n%s' % (
+            summary.localized_string_clean, descr.localized_string_clean)
+        descr.save()
+        task_log.info('[Webapp:%s] Concatenated summary and description for '
+                      'translation %s and locale %s' % (app.id, descr.id,
+                                                        descr.locale))
+
+    delete_translation(app, 'summary')
+
+
+@task
+def collapse_summary(ids, **kw):
+    for chunk in chunked(ids, 50):
+        for app in Webapp.objects.filter(id__in=chunk):
+            _collapse_summary.delay(app)

@@ -266,7 +266,7 @@ class WebAppParser(object):
                 'type': amo.ADDON_WEBAPP,
                 'name': {default_locale: data['name']},
                 'developer_name': developer_name,
-                'summary': self.trans_all_locales(localized_descr),
+                'description': self.trans_all_locales(localized_descr),
                 'version': data.get('version', '1.0'),
                 'default_locale': default_locale,
                 'origin': data.get('origin')}

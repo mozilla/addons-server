@@ -335,13 +335,8 @@ class AppDetailsBasicForm(TranslationFormMixin, happyforms.ModelForm):
 
     app_slug = forms.CharField(max_length=30,
                            widget=forms.TextInput(attrs={'class': 'm'}))
-    summary = TransField(max_length=1024,
-        label=_lazy(u"Brief Summary:"),
-        help_text=_lazy(u'This summary will be shown in listings and '
-                         'searches.'),
-        widget=TransTextarea(attrs={'rows': 2, 'class': 'full'}))
-    description = TransField(required=False,
-        label=_lazy(u'Additional Information:'),
+    description = TransField(required=True,
+        label=_lazy(u'Description:'),
         help_text=_lazy(u'This description will appear on the details page.'),
         widget=TransTextarea(attrs={'rows': 4}))
     privacy_policy = TransField(widget=TransTextarea(attrs={'rows': 6}),
@@ -384,8 +379,8 @@ class AppDetailsBasicForm(TranslationFormMixin, happyforms.ModelForm):
 
     class Meta:
         model = Addon
-        fields = ('app_slug', 'summary', 'description', 'privacy_policy',
-                  'homepage', 'support_url', 'support_email')
+        fields = ('app_slug', 'description', 'privacy_policy', 'homepage',
+                  'support_url', 'support_email')
 
     def __init__(self, *args, **kw):
         self.request = kw.pop('request')

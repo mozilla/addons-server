@@ -14,31 +14,6 @@
       <tbody>
         <tr>
           <th>
-            <label data-for="description">
-              {{ _('Description') }}
-              {{ tip(None,
-                     _("A longer explanation of features, functionality, and
-                        other relevant information. This field is displayed
-                        only on the app's details page.")) }}
-            </label>
-            {{ req_if_edit }}
-          </th>
-          <td>
-            {% if editable %}
-              {{ form.description }}
-              {{ form.description.errors }}
-              {{ some_html_tip() }}
-            {% else %}
-              {% call empty_unless(addon.description) %}
-                <div id="addon-description" class="prose">
-                  {{ addon|all_locales('description', nl2br=True) }}
-                </div>
-              {% endcall %}
-            {% endif %}
-          </td>
-        </tr>
-        <tr>
-          <th>
             {{ tip(_("Default Locale"),
                    _("Information about your app is displayed in this locale "
                      "unless you override it with a locale-specific "

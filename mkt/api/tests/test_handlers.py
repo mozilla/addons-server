@@ -13,16 +13,13 @@ from addons.models import (Addon, AddonDeviceType, AddonUpsell,
                            AddonUser, Category, Preview)
 from amo.tests import AMOPaths, app_factory
 from files.models import FileUpload
-from market.models import AddonPremium, Price, PriceCurrency
+from market.models import Price, PriceCurrency
 from users.models import UserProfile
 
-from mkt.api.tests.test_oauth import BaseOAuth, OAuthClient, RestOAuth, get_absolute_url
 from mkt.api.base import get_url, list_url
 from mkt.api.models import Access, generate
+from mkt.api.tests.test_oauth import BaseOAuth, OAuthClient, RestOAuth
 from mkt.constants import APP_IMAGE_SIZES, carriers, regions
-from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
-                                   SolitudeSeller)
-from mkt.developers.tests.test_api import payment_data
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import ContentRating, ImageAsset, Webapp
 from reviews.models import Review
@@ -427,7 +424,7 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
                 'homepage': 'http://www.whatever.com',
                 'name': 'mozball',
                 'categories': [c.pk for c in self.categories],
-                'summary': 'wat...',
+                'description': 'wat...',
                 'premium_type': 'free',
                 'regions': ['us'],
                 'device_types': amo.DEVICE_TYPES.keys()}
@@ -749,14 +746,14 @@ class TestListHandler(CreateHandler, AMOPaths):
         eq_(pks, set([str(app.pk) for app in apps]))
 
     def test_lang(self):
-        app = app_factory(summary={'fr': 'Le blah', 'en-US': 'Blah'})
+        app = app_factory(description={'fr': 'Le blah', 'en-US': 'Blah'})
         url = get_url('app', app.pk)
 
         res = self.client.get(url, HTTP_ACCEPT_LANGUAGE='en-US')
-        eq_(json.loads(res.content)['summary'], 'Blah')
+        eq_(json.loads(res.content)['description'], 'Blah')
 
         res = self.client.get(url, HTTP_ACCEPT_LANGUAGE='fr')
-        eq_(json.loads(res.content)['summary'], 'Le blah')
+        eq_(json.loads(res.content)['description'], 'Le blah')
 
 
 class TestAppStatusHandler(CreateHandler, AMOPaths):

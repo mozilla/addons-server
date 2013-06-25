@@ -1012,8 +1012,6 @@ class WebappIndexer(MappingType, Indexable):
                     },
                     'region_exclusions': {'type': 'short'},
                     'status': {'type': 'byte'},
-                    # TODO: Remove when bug 862603 lands.
-                    'summary': {'type': 'string', 'analyzer': 'snowball'},
                     'support_email': {'type': 'string',
                                       'index': 'not_analyzed'},
                     'support_url': {'type': 'string',
@@ -1050,8 +1048,6 @@ class WebappIndexer(MappingType, Indexable):
                 _locale_field_mapping('name', analyzer))
             mapping[doc_type]['properties'].update(
                 _locale_field_mapping('description', analyzer))
-            mapping[doc_type]['properties'].update(
-                _locale_field_mapping('summary', analyzer))
 
         # TODO: reviewer flags (bug 848446)
 
@@ -1141,8 +1137,6 @@ class WebappIndexer(MappingType, Indexable):
         }
         d['region_exclusions'] = list(
             obj.addonexcludedregion.values_list('region', flat=True))
-        # TODO: Remove when bug 862603 lands.
-        d['summary'] = list(set(s for _, s in translations[obj.summary_id]))
         d['support_email'] = (unicode(obj.support_email)
                               if obj.support_email else None)
         d['support_url'] = (unicode(obj.support_url)
@@ -1190,10 +1184,6 @@ class WebappIndexer(MappingType, Indexable):
             d['description_' + analyzer] = list(
                 set(string for locale, string
                     in translations[obj.description_id]
-                    if locale.lower() in languages))
-            d['summary_' + analyzer] = list(
-                set(string for locale, string
-                    in translations[obj.summary_id]
                     if locale.lower() in languages))
 
         return d

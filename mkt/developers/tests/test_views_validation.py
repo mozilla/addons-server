@@ -52,11 +52,11 @@ class TestWebApps(amo.tests.TestCase, amo.tests.AMOPaths):
         wp = WebAppParser().parse(self.webapp_path)
         eq_(wp['guid'], None)
         eq_(wp['type'], amo.ADDON_WEBAPP)
-        eq_(wp['summary']['en-US'], u'Exciting Open Web development action!')
+        eq_(wp['description']['en-US'], u'Exciting Open Web development action!')
         # UTF-8 byte string decoded to unicode.
-        eq_(wp['summary']['es'],
+        eq_(wp['description']['es'],
             u'\xa1Acci\xf3n abierta emocionante del desarrollo del Web!')
-        eq_(wp['summary']['it'],
+        eq_(wp['description']['it'],
             u'Azione aperta emozionante di sviluppo di fotoricettore!')
         eq_(wp['version'], '1.0')
         eq_(wp['default_locale'], 'en-US')
@@ -66,10 +66,10 @@ class TestWebApps(amo.tests.TestCase, amo.tests.AMOPaths):
         eq_(wp['guid'], None)
         eq_(wp['type'], amo.ADDON_WEBAPP)
         eq_(wp['name']['en-US'], u'Packaged MozillaBall ょ')
-        eq_(wp['summary']['en-US'], u'Exciting Open Web development action!')
-        eq_(wp['summary']['es'],
+        eq_(wp['description']['en-US'], u'Exciting Open Web development action!')
+        eq_(wp['description']['es'],
             u'¡Acción abierta emocionante del desarrollo del Web!')
-        eq_(wp['summary']['it'],
+        eq_(wp['description']['it'],
             u'Azione aperta emozionante di sviluppo di fotoricettore!')
         eq_(wp['version'], '1.0')
         eq_(wp['default_locale'], 'en-US')
@@ -79,9 +79,9 @@ class TestWebApps(amo.tests.TestCase, amo.tests.AMOPaths):
         eq_(wp['guid'], None)
         eq_(wp['type'], amo.ADDON_WEBAPP)
         eq_(wp['name']['en-US'], u'Packaged MozBOM ょ')
-        eq_(wp['summary']['en-US'], u'Exciting BOM action!')
-        eq_(wp['summary']['es'], u'¡Acción BOM!')
-        eq_(wp['summary']['it'], u'Azione BOM!')
+        eq_(wp['description']['en-US'], u'Exciting BOM action!')
+        eq_(wp['description']['es'], u'¡Acción BOM!')
+        eq_(wp['description']['it'], u'Azione BOM!')
         eq_(wp['version'], '1.0')
         eq_(wp['default_locale'], 'en-US')
 
@@ -95,15 +95,15 @@ class TestWebApps(amo.tests.TestCase, amo.tests.AMOPaths):
 
     def test_no_locales(self):
         wp = WebAppParser().parse(self.webapp(dict(name='foo', version='1.0',
-                                                   description='summary',
+                                                   description='description',
                                                    developer=dict(name='bar'))))
-        eq_(wp['summary']['en-US'], u'summary')
+        eq_(wp['description']['en-US'], u'description')
 
     def test_no_description(self):
         wp = WebAppParser().parse(self.webapp(dict(name='foo',
                                                    version='1.0',
                                                    developer=dict(name='bar'))))
-        eq_(wp['summary'], {})
+        eq_(wp['description'], {})
 
     def test_syntax_error(self):
         with self.assertRaises(forms.ValidationError) as exc:

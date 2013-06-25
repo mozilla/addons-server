@@ -135,8 +135,8 @@ def manifest(request):
 @dev_required
 @submit_step('details')
 def details(request, addon_id, addon):
-    # Name, Slug, Summary, Description, Privacy Policy,
-    # Homepage URL, Support URL, Support Email.
+    # Name, Slug, Description, Privacy Policy, Homepage URL, Support URL,
+    # Support Email.
     form_basic = AppDetailsBasicForm(request.POST or None, instance=addon,
                                      request=request)
     form_cats = CategoryForm(request.POST or None, product=addon,
@@ -148,7 +148,7 @@ def details(request, addon_id, addon):
 
     # For empty webapp-locale (or no-locale) fields that have
     # form-locale values, duplicate them to satisfy the requirement.
-    form_locale = request.COOKIES.get("current_locale", "")
+    form_locale = request.COOKIES.get('current_locale', '')
     app_locale = to_language(addon.default_locale)
     for name, value in request.POST.items():
         if value:

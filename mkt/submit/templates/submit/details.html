@@ -89,9 +89,7 @@
         <ul class="icon-errorlist errorlist"></ul>
       </header>
 
-      {{ form_field(form_basic.summary, hint=True,
-                    cc_startswith=form_basic.summary.auto_id + '_',
-                    cc_maxlength=form_basic.summary.field.max_length) }}
+      {{ form_field(form_basic.description, hint=True, some_html=True) }}
 
       <div id="addon-categories-edit"
            data-max-categories="{{ form_cats.max_categories() }}">
@@ -100,7 +98,6 @@
         {% endif %}
       </div>
 
-      {{ form_field(form_basic.description, hint=True, some_html=True) }}
       {{ form_field(form_basic.privacy_policy, hint=True) }}
 
       {# TODO: Remove since Privacy Policy is required.

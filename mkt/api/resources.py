@@ -128,7 +128,7 @@ class AppResource(CORSResource, MarketplaceModelResource):
         queryset = Webapp.objects.all()  # Gets overriden in dispatch.
         fields = ['categories', 'description', 'device_types', 'homepage',
                   'id', 'name', 'payment_account', 'premium_type',
-                  'status', 'summary', 'support_email', 'support_url']
+                  'status', 'support_email', 'support_url']
         list_allowed_methods = ['get', 'post']
         detail_allowed_methods = ['get', 'put', 'delete']
         always_return_data = True
@@ -406,9 +406,11 @@ class StatusResource(MarketplaceModelResource):
     def hydrate_status(self, bundle):
         return amo.STATUS_CHOICES_API_LOOKUP[int(bundle.data['status'])]
 
+
 class CategorySerializer(ModelSerializer):
     name = CharField('name')
     resource_uri = HyperlinkedIdentityField(view_name='app-category-detail')
+
     class Meta:
         model = Category
         fields = ('name', 'id', 'resource_uri', 'slug')
