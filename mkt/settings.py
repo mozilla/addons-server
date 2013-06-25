@@ -31,7 +31,7 @@ ENGAGE_ROBOTS = True
 
 MKT_FEEDBACK_EMAIL = 'apps-feedback@mozilla.com'
 MKT_REVIEWERS_EMAIL = 'app-reviewers@mozilla.org'
-MKT_SENIOR_EDITORS_EMAIL = 'marketplace-staff+senior-reviewers@mozilla.com'
+MKT_SENIOR_EDITORS_EMAIL = 'marketplace-staff+escalations@mozilla.org'
 MKT_SUPPORT_EMAIL = 'app-reviewers@mozilla.org'
 MARKETPLACE_EMAIL = 'marketplace-staff@mozilla.org'
 ABUSE_EMAIL = 'Firefox Marketplace Staff <marketplace-staff+abuse@mozilla.org>'
