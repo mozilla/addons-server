@@ -14,13 +14,16 @@ from tower import ugettext_lazy as _lazy
 # django model in mkt.webapps.models.
 APP_FEATURES = OrderedDict([
     ('APPS', {
-        'name': _lazy(u'Apps'),
-        'description': _lazy(u'The app requires the `navigator.mozApps` API.'),
+        'name': _lazy(u'App Management API'),
+        'description': _lazy(u'The app requires the `navigator.mozApps` API '
+                             'to install and manage other apps.'),
         'apis': ('navigator.mozApps',),
     }),
     ('PACKAGED_APPS', {
-        'name': _lazy(u'Packaged apps'),
-        'description': u'',
+        'name': _lazy(u'Packaged Apps Install API'),
+        'description': _lazy(
+            u'The app requires the `navigator.mozApps.installPackage` API '
+            'to install other packaged apps.'),
         'apis': ('navigator.mozApps.installPackage',),
     }),
     ('PAY', {
