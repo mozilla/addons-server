@@ -112,7 +112,7 @@ class Price(amo.models.ModelBase):
         """Return the price as a nicely localised string for the locale."""
         price, currency = self.get_price_data(carrier=carrier, region=region,
                                               provider=provider)
-        if price and currency:
+        if price is not None and currency is not None:
             return price_locale(price, currency)
 
     def prices(self, provider=None):
@@ -147,10 +147,6 @@ class PriceCurrency(amo.models.ModelBase):
         verbose_name = 'Price currencies'
         unique_together = ('tier', 'currency', 'carrier', 'region',
                            'provider')
-
-    def get_price_locale(self):
-        """Return the price as a nicely localised string for the locale."""
-        return price_locale(self.price, self.currency)
 
     def __unicode__(self):
         return u'%s, %s: %s' % (self.tier, self.currency, self.price)
@@ -229,9 +225,6 @@ class AddonPremium(amo.models.ModelBase):
 
     def __unicode__(self):
         return u'Premium %s: %s' % (self.addon, self.price)
-
-    def has_price(self):
-        return self.price is not None and bool(self.price.price)
 
     def is_complete(self):
         return bool(self.addon and self.price and

@@ -495,14 +495,9 @@ class Webapp(Addon):
 
         return visible
 
-    def has_price(self):
-        """
-        If the app is premium and has a price greater than zero. Primarily
-        of use in the payment flow to determine if we need payment. An app can
-        be premium, but not require any payment.
-        """
-        return bool(self.is_premium() and self.premium and
-                    self.premium.has_price())
+    def has_premium(self):
+        """If the app is premium status and has a premium object."""
+        return bool(self.is_premium() and self.premium)
 
     def get_price(self, carrier=None, region=None, provider=None):
         """
@@ -513,7 +508,7 @@ class Webapp(Addon):
         :param optional region: an int for the region. Defaults to worldwide.
         :param optional provider: an int for the provider. Defaults to bango.
         """
-        if self.has_price():
+        if self.has_premium():
             return self.premium.price.get_price(carrier=carrier,
                 region=region, provider=provider)
 
@@ -526,7 +521,7 @@ class Webapp(Addon):
         :param optional region: an int for the region. Defaults to worldwide.
         :param optional provider: an int for the provider. Defaults to bango.
         """
-        if self.has_price():
+        if self.has_premium():
             return self.premium.price.get_price_locale(carrier=carrier,
                 region=region, provider=provider)
 
@@ -534,7 +529,7 @@ class Webapp(Addon):
         """
         Returns the price tier object.
         """
-        if self.has_price():
+        if self.has_premium():
             return self.premium.price
 
     def get_tier_name(self):

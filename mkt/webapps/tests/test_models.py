@@ -211,15 +211,14 @@ class TestWebapp(amo.tests.TestCase):
         eq_(webapp.get_manifest_json(), None)
         eq_(webapp.current_version, None)
 
-    def test_has_price(self):
+    def test_has_premium(self):
         webapp = Webapp(premium_type=amo.ADDON_PREMIUM)
         webapp._premium = mock.Mock()
-        webapp._premium.price = None
-        webapp._premium.has_price.return_value = True
-        eq_(webapp.has_price(), True)
+        webapp._premium.price = 1
+        eq_(webapp.has_premium(), True)
 
-        webapp._premium.has_price.return_value = False
-        eq_(webapp.has_price(), False)
+        webapp._premium.price = 0
+        eq_(webapp.has_premium(), True)
 
     def test_get_price_no_premium(self):
         webapp = Webapp(premium_type=amo.ADDON_PREMIUM)
@@ -237,13 +236,19 @@ class TestWebapp(amo.tests.TestCase):
         eq_(str(webapp.get_tier().price), '1.00')
         ok_(webapp.get_tier_name())
 
+    def test_get_price_tier_no_charge(self):
+        webapp = amo.tests.app_factory()
+        self.make_premium(webapp, '0.00')
+        eq_(str(webapp.get_tier().price), '0.00')
+        ok_(webapp.get_tier_name())
+
     def test_has_no_premium(self):
         webapp = Webapp(premium_type=amo.ADDON_PREMIUM)
         webapp._premium = None
-        eq_(webapp.has_price(), False)
+        eq_(webapp.has_premium(), False)
 
     def test_not_premium(self):
-        eq_(Webapp().has_price(), False)
+        eq_(Webapp().has_premium(), False)
 
     def test_get_region_ids_no_exclusions(self):
         # This returns IDs for the *included* regions.

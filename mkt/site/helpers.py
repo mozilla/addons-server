@@ -78,7 +78,7 @@ def market_button(context, product, receipt_type=None, classes=None):
             installed = installed_set.filter(addon=product).exists()
 
         # Handle premium apps.
-        if product.has_price():
+        if product.has_premium():
             # User has purchased app.
             purchased = (request.amo_user and
                          product.pk in request.amo_user.purchase_ids())
@@ -88,7 +88,7 @@ def market_button(context, product, receipt_type=None, classes=None):
                     request.check_ownership(product, require_author=True)):
                 purchased = True
 
-        if installed or purchased or not product.has_price():
+        if installed or purchased or not product.has_premium():
             label = _('Install')
         else:
             label = product.get_tier_name()
@@ -144,7 +144,7 @@ def product_as_dict(request, product, purchased=None, receipt_type=None,
             previews.append(preview)
         ret.update({'previews': previews})
 
-    if product.has_price():
+    if product.premium:
         ret.update({
             'price': product.get_price(region=request.REGION.id),
             'priceLocale': product.get_price_locale(region=request.REGION.id),
@@ -155,8 +155,8 @@ def product_as_dict(request, product, purchased=None, receipt_type=None,
 
     # Jinja2 escape everything except this whitelist so that bool is retained
     # for the JSON encoding.
-    wl = ('isPurchased', 'price', 'currencies', 'categories', 'previews',
-          'is_packaged')
+    wl = ('categories', 'currencies', 'isPurchased', 'is_packaged', 'previews',
+          'price', 'priceLocale')
     return dict([k, jinja2.escape(v) if k not in wl else v]
                 for k, v in ret.items())
 

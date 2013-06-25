@@ -75,7 +75,7 @@ class ReceiptResource(CORSResource, MarketplaceResource):
             # Apps that are premium but have no charge will get an
             # automatic purchase record created. This will ensure that
             # the receipt will work into the future if the price changes.
-            if bundle.obj.premium and not bundle.obj.premium.has_price():
+            if bundle.obj.premium and not bundle.obj.premium.price:
                 log.info('Create purchase record: {0}'.format(bundle.obj.pk))
                 AddonPurchase.objects.get_or_create(addon=bundle.obj,
                     user=request.amo_user, type=CONTRIB_NO_CHARGE)

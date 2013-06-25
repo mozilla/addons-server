@@ -1137,7 +1137,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         intending to be free.
         """
         return not (self.is_premium() and self.premium and
-                    self.premium.has_price())
+                    self.premium.price)
 
     def needs_payment(self):
         return (self.premium_type not in

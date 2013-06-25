@@ -12,7 +12,7 @@ from constants.payments import PROVIDER_BANGO
 from market.models import (AddonPremium, PreApprovalUser, Price, PriceCurrency,
                            Refund)
 from mkt.constants import apps
-from mkt.constants.regions import ALL_REGION_IDS
+from mkt.constants.regions import ALL_REGION_IDS, BR, HU, US
 from stats.models import Contribution
 from users.models import UserProfile
 
@@ -31,13 +31,6 @@ class TestPremium(amo.tests.TestCase):
         assert not ap.is_complete()
         ap.addon.paypal_id = 'asd'
         assert ap.is_complete()
-
-    def test_has_price(self):
-        ap = AddonPremium(addon=self.addon, price=self.tier_one)
-        eq_(ap.has_price(), True)
-
-        self.tier_one.update(price=Decimal('0.00'))
-        eq_(ap.has_price(), False)
 
 
 class TestPrice(amo.tests.TestCase):
@@ -82,6 +75,9 @@ class TestPrice(amo.tests.TestCase):
         eq_(Price.objects.get(pk=2).get_price(), Decimal('1.99'))
         eq_(Price.objects.get(pk=2).get_price_locale(), u'US$1,99')
 
+    def test_no_region(self):
+        eq_(Price.objects.get(pk=2).get_price_locale(region=HU.id), None)
+
     def test_fallback(self):
         translation.activate('foo')
         eq_(Price.objects.get(pk=1).get_price(), Decimal('0.99'))
@@ -95,7 +91,11 @@ class TestPrice(amo.tests.TestCase):
             eq_(price.get_price_locale(), u'$0.99')
 
     def test_get_tier_price(self):
-        eq_(PriceCurrency.objects.get(pk=3).get_price_locale(), 'R$1.01')
+        eq_(Price.objects.get(pk=2).get_price_locale(region=BR.id), 'R$1.01')
+
+    def test_get_tier_price(self):
+        price = self.make_price('0.00')
+        eq_(price.get_price_locale(region=US.id), '$0.00')
 
     def test_prices(self):
         currencies = Price.objects.get(pk=1).prices()
