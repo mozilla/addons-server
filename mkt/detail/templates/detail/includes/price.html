@@ -2,6 +2,8 @@
   <span class="vital price {% if addon.is_premium() %}premium{% endif %}">
     {% if addon.is_premium() %}
       {{ addon.get_tier_name() }}
+    {% else %}
+      {{ _('Free') }}
     {% endif %}
   </span>
 {% endmacro %}
