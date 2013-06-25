@@ -345,12 +345,14 @@ class MarketplaceMixin(object):
                                  user=self.addon.authors.all()[0])
         AddonPremium.objects.create(addon=self.addon, price_id=self.price.pk)
         self.addon.update(premium_type=amo.ADDON_PREMIUM)
+        self.paid_regions = [p['region'] for p in self.price.prices()]
+        self.paid_regions_two = [p['region'] for p in self.price_two.prices()]
 
 
 @mock.patch('mkt.developers.forms_payments.PremiumForm.clean',
             new=lambda x: x.cleaned_data)
 class TestMarketplace(MarketplaceMixin, amo.tests.TestCase):
-    fixtures = ['base/users', 'webapps/337141-steamcube', 'market/prices']
+    fixtures = fixture('webapp_337141')
 
     def get_data(self, **kw):
         data = {
@@ -379,14 +381,16 @@ class TestMarketplace(MarketplaceMixin, amo.tests.TestCase):
     def test_set(self):
         self.setup_premium()
         res = self.client.post(
-            self.url, data=self.get_data(price=self.price_two.pk))
+            self.url, data=self.get_data(price=self.price_two.pk,
+                                         regions=self.paid_regions_two))
         eq_(res.status_code, 302)
         self.addon = Addon.objects.get(pk=self.addon.pk)
         eq_(self.addon.addonpremium.price, self.price_two)
 
     def test_set_upsell(self):
         self.setup_premium()
-        res = self.client.post(self.url, data=self.get_data())
+        res = self.client.post(self.url,
+            data=self.get_data(regions=self.paid_regions))
         eq_(res.status_code, 302)
         eq_(len(self.addon._upsell_to.all()), 1)
 
@@ -395,7 +399,8 @@ class TestMarketplace(MarketplaceMixin, amo.tests.TestCase):
         upsell = AddonUpsell.objects.create(
             free=self.other_addon, premium=self.addon)
         eq_(self.addon._upsell_to.all()[0], upsell)
-        self.client.post(self.url, data=self.get_data(upsell_of=''))
+        self.client.post(self.url,
+            data=self.get_data(upsell_of='', regions=self.paid_regions))
         eq_(len(self.addon._upsell_to.all()), 0)
 
     def test_replace_upsell(self):
@@ -410,7 +415,8 @@ class TestMarketplace(MarketplaceMixin, amo.tests.TestCase):
         AddonUser.objects.create(addon=new, user=self.addon.authors.all()[0])
 
         eq_(self.addon._upsell_to.all()[0], upsell)
-        self.client.post(self.url, self.get_data(upsell_of=new.id))
+        self.client.post(self.url, self.get_data(upsell_of=new.id,
+                                                 regions=self.paid_regions))
         upsell = self.addon._upsell_to.all()
         eq_(len(upsell), 1)
         eq_(upsell[0].free, new)
