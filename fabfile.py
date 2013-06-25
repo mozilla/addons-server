@@ -169,7 +169,7 @@ def pre_update(ref=settings.UPDATE_REF):
 @task
 def update():
     with lcd(ZAMBONI):
-        status = local('git diff HEAD@{1} HEAD --name-only')
+        status = local('git diff HEAD@{1} HEAD --name-only', capture=True)
     if 'requirements/' in status:
         execute(create_virtualenv)
 
