@@ -1217,7 +1217,7 @@ class TestPersonas(amo.tests.TestCase):
 
         personas = pq(r.content).find('.persona-preview')
         eq_(personas.length, 2)
-        eq_(personas.eq(1).find('a').text(), "My Persona")
+        eq_(personas.eq(1).find('a').text(), "+ Add My Persona")
 
         # Freeze the add-on
         FrozenAddon.objects.create(addon_id=15663)
