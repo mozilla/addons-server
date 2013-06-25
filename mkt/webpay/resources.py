@@ -17,7 +17,7 @@ from mkt.api.authentication import (OAuthAuthentication,
 from mkt.api.authorization import (AnonymousReadOnlyAuthorization,
                                    Authorization, OwnerAuthorization,
                                    PermissionAuthorization)
-from mkt.api.base import (CORSResource, GenericObject,
+from mkt.api.base import (CORSResource, GenericObject, http_error,
                           MarketplaceModelResource, MarketplaceResource)
 from mkt.webpay.forms import FailureForm, PrepareForm, ProductIconForm
 from mkt.webpay.models import ProductIcon
@@ -70,7 +70,8 @@ class StatusPayResource(CORSResource, MarketplaceModelResource):
             return None
 
         if not OwnerAuthorization().is_authorized(request, object=obj):
-            raise ImmediateHttpResponse(response=http.HttpForbidden())
+            raise http_error(http.HttpForbidden,
+                             'You are not an author of that app.')
 
         if not obj.addon.has_purchased(request.amo_user):
             log.info('Not in AddonPurchase table')

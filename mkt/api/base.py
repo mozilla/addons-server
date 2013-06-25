@@ -40,6 +40,10 @@ def get_url(name, pk, **kw):
     kw.update({'resource_name': name, 'pk': pk})
     return ('api_dispatch_detail', kw)
 
+def http_error(errorclass, reason):
+    response = errorclass()
+    response.content = json.dumps({'reason': reason})
+    return ImmediateHttpResponse(response)
 
 def handle_500(resource, request, exception):
     response_class = http.HttpApplicationError
@@ -111,7 +115,7 @@ class Marketplace(object):
 
         except PermissionDenied:
             # Reraise PermissionDenied as 403, otherwise you get 500.
-            raise ImmediateHttpResponse(response=http.HttpForbidden())
+            raise http_error(http.HttpForbidden, 'Permission denied.')
 
     def non_form_errors(self, error_list):
         """
@@ -186,7 +190,7 @@ class Marketplace(object):
                 log.info('Logged in using %s' % auth.__class__.__name__)
                 return
 
-        raise ImmediateHttpResponse(response=http.HttpUnauthorized())
+        raise http_error(http.HttpUnauthorized, 'Authentication required.')
 
     def throttle_check(self, request):
         """
@@ -204,7 +208,8 @@ class Marketplace(object):
             if any(self._meta.throttle.should_be_throttled(identifier)
                    for identifier in identifiers):
                 # Throttle limit exceeded.
-                raise ImmediateHttpResponse(response=HttpTooManyRequests())
+                raise http_error(HttpTooManyRequests,
+                                 'Throttle limit exceeded.')
 
     def log_throttled_access(self, request):
         """
@@ -289,11 +294,11 @@ class MarketplaceModelResource(Marketplace, ModelResource):
         to get access to an object that isn't covered by get_obj.
         """
         if not filters:
-            raise ImmediateHttpResponse(response=http.HttpNotFound())
+            raise http_error(http.HttpNotFound, 'Not found.')
         try:
             return cls.objects.get(**filters)
         except (cls.DoesNotExist, cls.MultipleObjectsReturned):
-            raise ImmediateHttpResponse(response=http.HttpNotFound())
+            raise http_error(http.HttpNotFound, 'Not found.')
 
     def get_by_resource_or_404(self, request, **kwargs):
         """
@@ -302,7 +307,7 @@ class MarketplaceModelResource(Marketplace, ModelResource):
         try:
             obj = self.obj_get(request, **kwargs)
         except ObjectDoesNotExist:
-            raise ImmediateHttpResponse(response=http.HttpNotFound())
+            raise http_error(http.HttpNotFound, 'Not found.')
         return obj
 
     def base_urls(self):

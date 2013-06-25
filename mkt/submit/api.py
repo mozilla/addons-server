@@ -5,7 +5,6 @@ from django.db import transaction
 import commonware.log
 from tastypie import fields, http
 from tastypie.authorization import Authorization
-from tastypie.exceptions import ImmediateHttpResponse
 from tastypie.resources import ALL_WITH_RELATIONS
 from tastypie.serializers import Serializer
 
@@ -17,7 +16,7 @@ from files.models import FileUpload
 from mkt.api.authentication import (OAuthAuthentication,
                                     OptionalOAuthAuthentication)
 from mkt.api.authorization import AppOwnerAuthorization, OwnerAuthorization
-from mkt.api.base import CORSResource, MarketplaceModelResource
+from mkt.api.base import CORSResource, http_error, MarketplaceModelResource
 from mkt.api.forms import (NewPackagedForm, PreviewArgsForm, PreviewJSONForm,
                            StatusForm)
 from mkt.developers import tasks
@@ -72,7 +71,7 @@ class ValidationResource(CORSResource, MarketplaceModelResource):
         try:
             obj = FileUpload.objects.get(pk=kwargs['pk'])
         except FileUpload.DoesNotExist:
-            raise ImmediateHttpResponse(response=http.HttpNotFound())
+            raise http_error(http.HttpNotFound, 'No upload with that ID.')
 
         log.info('Validation retreived: %s' % obj.pk)
         return obj
@@ -107,10 +106,11 @@ class StatusResource(MarketplaceModelResource):
         try:
             obj = self.get_object_list(bundle.request).get(**kwargs)
         except Addon.DoesNotExist:
-            raise ImmediateHttpResponse(response=http.HttpNotFound())
+            raise http_error(http.HttpNotFound, 'No such addon.')
 
         if not AppOwnerAuthorization().is_authorized(request, object=obj):
-            raise ImmediateHttpResponse(response=http.HttpForbidden())
+            raise http_error(http.HttpForbidden,
+                             'You are not an author of that app.')
 
         form = StatusForm(bundle.data, instance=obj)
         if not form.is_valid():
@@ -125,7 +125,8 @@ class StatusResource(MarketplaceModelResource):
     def obj_get(self, request=None, **kwargs):
         obj = super(StatusResource, self).obj_get(request=request, **kwargs)
         if not AppOwnerAuthorization().is_authorized(request, object=obj):
-            raise ImmediateHttpResponse(response=http.HttpForbidden())
+            raise http_error(http.HttpForbidden,
+                             'You are not an author of that app.')
 
         log.info('App status retreived: %s' % obj.pk)
         return obj
@@ -162,7 +163,8 @@ class PreviewResource(CORSResource, MarketplaceModelResource):
                                        pk=args.cleaned_data['app'],
                                        type=amo.ADDON_WEBAPP)
         if not AppOwnerAuthorization().is_authorized(request, object=addon):
-            raise ImmediateHttpResponse(response=http.HttpForbidden())
+            raise http_error(http.HttpForbidden,
+                             'You are not an author of that app.')
 
         data_form = PreviewJSONForm(bundle.data)
         if not data_form.is_valid():
@@ -181,7 +183,8 @@ class PreviewResource(CORSResource, MarketplaceModelResource):
         obj = self.get_by_resource_or_404(request, **kwargs)
         if not AppOwnerAuthorization().is_authorized(request,
                                                      object=obj.addon):
-            raise ImmediateHttpResponse(response=http.HttpForbidden())
+            raise http_error(http.HttpForbidden,
+                             'You are not an author of that app.')
 
         log.info('Preview deleted: %s' % obj.pk)
         return super(PreviewResource, self).obj_delete(request, **kwargs)
@@ -190,7 +193,8 @@ class PreviewResource(CORSResource, MarketplaceModelResource):
         obj = super(PreviewResource, self).obj_get(request=request, **kwargs)
         if not AppOwnerAuthorization().is_authorized(request,
                                                      object=obj.addon):
-            raise ImmediateHttpResponse(response=http.HttpForbidden())
+            raise http_error(http.HttpForbidden,
+                             'You are not an author of that app.')
 
         log.info('Preview retreived: %s' % obj.pk)
         return obj

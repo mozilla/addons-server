@@ -3,13 +3,12 @@ from django.conf.urls.defaults import url
 import waffle
 from tastypie import http
 from tastypie.authorization import Authorization
-from tastypie.exceptions import ImmediateHttpResponse
 from tastypie.utils import trailing_slash
 from tastypie.validation import CleanedDataFormValidation
 
 from lib.metrics import get_monolith_client
 from mkt.api.authentication import OptionalOAuthAuthentication
-from mkt.api.base import GenericObject, MarketplaceResource
+from mkt.api.base import GenericObject, http_error, MarketplaceResource
 
 from .forms import GlobalStatsForm
 
@@ -51,7 +50,7 @@ class GlobalStatsResource(MarketplaceResource):
 
     def dispatch(self, request_type, request, **kwargs):
         if not waffle.switch_is_active('stats-api'):
-            raise ImmediateHttpResponse(response=http.HttpNotImplemented())
+            raise http_error(http.HttpNotImplemented, 'Stats not enabled for this host.')
 
         return super(GlobalStatsResource, self).dispatch(request_type, request,
                                                          **kwargs)
@@ -59,7 +58,7 @@ class GlobalStatsResource(MarketplaceResource):
     def get_detail(self, request, **kwargs):
         metric = kwargs.get('metric')
         if metric not in STATS:
-            raise ImmediateHttpResponse(response=http.HttpNotFound())
+            raise http_error(http.HttpNotFound, 'No metric by that name.')
 
         # Trigger form validation which doesn't normally happen for GETs.
         bundle = self.build_bundle(data=request.GET, request=request)

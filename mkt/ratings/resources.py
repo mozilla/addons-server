@@ -4,7 +4,6 @@ import commonware.log
 from tastypie import fields, http
 from tastypie.bundle import Bundle
 from tastypie.authorization import Authorization
-from tastypie.exceptions import ImmediateHttpResponse
 from tastypie.utils import trailing_slash
 
 import amo
@@ -18,7 +17,7 @@ from mkt.api.authorization import (AnonymousReadOnlyAuthorization,
                                    AppOwnerAuthorization,
                                    OwnerAuthorization,
                                    PermissionAuthorization)
-from mkt.api.base import CORSResource, MarketplaceModelResource
+from mkt.api.base import CORSResource, http_error, MarketplaceModelResource
 from mkt.api.resources import AppResource
 from mkt.ratings.forms import ReviewForm
 from mkt.regions import get_region, REGIONS_DICT
@@ -113,7 +112,7 @@ class RatingResource(CORSResource, MarketplaceModelResource):
             user = get_user()
             if not user:
                 # You must be logged in to use "mine".
-                raise ImmediateHttpResponse(response=http.HttpUnauthorized())
+                raise http_error(http.HttpUnauthorized, 'You must be logged in to access "mine".')
 
             built['user__exact'] = user.pk
         return built
@@ -132,15 +131,17 @@ class RatingResource(CORSResource, MarketplaceModelResource):
 
         # Return 409 if the user has already reviewed this app.
         if self._meta.queryset.filter(addon=app, user=request.user).exists():
-            raise ImmediateHttpResponse(response=http.HttpConflict())
+            raise http_error(http.HttpConflict, 'You have already reviewed this app.')
 
         # Return 403 if the user is attempting to review their own app:
         if app.has_author(request.user):
-            raise ImmediateHttpResponse(response=http.HttpForbidden())
+            raise http_error(http.HttpForbidden, 'You may not review your own app.')
 
         # Return 403 if not a free app and the user hasn't purchased it.
         if app.is_premium() and not app.is_purchased(request.amo_user):
-            raise ImmediateHttpResponse(response=http.HttpForbidden())
+            raise http_error(
+                http.HttpForbidden,
+                "You may not review paid apps you haven't purchased.")
 
         bundle.obj = Review.objects.create(**self._review_data(request, app,
                                                                form))
@@ -181,7 +182,9 @@ class RatingResource(CORSResource, MarketplaceModelResource):
                                            'Edit').is_authorized(request)
                 or PermissionAuthorization('Addons',
                                            'Edit').is_authorized(request)):
-            raise ImmediateHttpResponse(response=http.HttpForbidden())
+            raise http_error(
+                http.HttpForbidden,
+                'You do not have permission to delete this review.')
 
         log.info('Rating %s deleted from addon %s' % (obj.pk, obj.addon.pk))
         return super(RatingResource, self).obj_delete(request, **kwargs)

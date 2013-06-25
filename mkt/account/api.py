@@ -12,7 +12,6 @@ from django_statsd.clients import statsd
 from tastypie import fields, http
 from tastypie.authorization import Authorization
 from tastypie.bundle import Bundle
-from tastypie.exceptions import ImmediateHttpResponse
 from tastypie.throttle import CacheThrottle
 from tastypie.validation import CleanedDataFormValidation
 
@@ -22,7 +21,7 @@ from mkt.api.authentication import (OAuthAuthentication,
                                     OptionalOAuthAuthentication,
                                     SharedSecretAuthentication)
 from mkt.api.authorization import OwnerAuthorization
-from mkt.api.base import (CORSResource, GenericObject,
+from mkt.api.base import (CORSResource, GenericObject, http_error,
                           MarketplaceModelResource, MarketplaceResource,
                           PotatoCaptchaResource)
 from mkt.api.resources import AppResource
@@ -45,7 +44,8 @@ class Mine(object):
         # TODO: put in acl checks for admins to get other users information.
         obj = super(Mine, self).obj_get(request=request, **kwargs)
         if not OwnerAuthorization().is_authorized(request, object=obj):
-            raise ImmediateHttpResponse(response=http.HttpForbidden())
+            raise http_error(http.HttpForbidden,
+                             'You do not have access to that account.')
         return obj
 
 
@@ -132,7 +132,8 @@ class LoginResource(CORSResource, MarketplaceResource):
             )
         if profile is None:
             log.info('No profile')
-            raise ImmediateHttpResponse(response=http.HttpUnauthorized())
+            raise http_error(http.HttpUnauthorized,
+                             'No profile.')
 
         request.user, request.amo_user = profile.user, profile
         request.groups = profile.groups.all()

@@ -6,7 +6,6 @@ from rest_framework.response import Response
 
 from tastypie import http
 from tastypie.authorization import Authorization
-from tastypie.exceptions import ImmediateHttpResponse
 from tastypie.validation import CleanedDataFormValidation
 
 import amo
@@ -18,7 +17,7 @@ from lib.metrics import record_action
 from market.models import AddonPurchase
 from mkt.api.authentication import (OptionalOAuthAuthentication,
                                     SharedSecretAuthentication)
-from mkt.api.base import CORSResource, MarketplaceResource
+from mkt.api.base import CORSResource, http_error, MarketplaceResource
 from mkt.api.http import HttpPaymentRequired
 from mkt.constants import apps
 from mkt.receipts.forms import ReceiptForm, TestInstall
@@ -69,7 +68,7 @@ class ReceiptResource(CORSResource, MarketplaceResource):
         # must have purchased it.
         if not bundle.obj.is_public():
             log.info('App not public: %s' % bundle.obj.pk)
-            raise ImmediateHttpResponse(response=http.HttpForbidden())
+            raise http_error(http.HttpForbidden, 'App not public.')
 
         if (bundle.obj.is_premium() and
             not bundle.obj.has_purchased(request.amo_user)):
@@ -82,7 +81,7 @@ class ReceiptResource(CORSResource, MarketplaceResource):
                     user=request.amo_user, type=CONTRIB_NO_CHARGE)
             else:
                 log.info('App not purchased: %s' % bundle.obj.pk)
-                raise ImmediateHttpResponse(response=HttpPaymentRequired())
+                raise http_error(HttpPaymentRequired, 'You have not purchased this app.')
 
         # Anonymous users will fall through, they don't need anything else
         # handling.

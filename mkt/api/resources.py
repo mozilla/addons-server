@@ -1,5 +1,3 @@
-import json
-
 from django.conf import settings, urls
 from django.db import transaction
 from django.db.models import Q
@@ -14,7 +12,6 @@ from rest_framework.serializers import (ModelSerializer, CharField,
                                         HyperlinkedIdentityField)
 
 from tastypie import fields, http
-from tastypie.exceptions import ImmediateHttpResponse
 from tastypie.serializers import Serializer
 from tastypie.throttle import CacheThrottle
 from tastypie.utils import trailing_slash
@@ -33,7 +30,8 @@ from market.models import AddonPremium, Price
 from mkt.api.authentication import OptionalOAuthAuthentication
 from mkt.api.authorization import AppOwnerAuthorization, OwnerAuthorization
 from mkt.api.base import (CORSResource, CORSViewSet, GenericObject,
-                          MarketplaceModelResource, MarketplaceResource)
+                          http_error, MarketplaceModelResource,
+                          MarketplaceResource)
 from mkt.api.forms import (CategoryForm, DeviceTypeForm, UploadForm)
 from mkt.api.http import HttpLegallyUnavailable
 from mkt.carriers import CARRIER_MAP, CARRIERS, get_carrier_id
@@ -89,17 +87,16 @@ class AppResource(CORSResource, MarketplaceModelResource):
         if not request.amo_user.read_dev_agreement:
             log.info(u'Attempt to use API without dev agreement: %s'
                      % request.amo_user.pk)
-            response = http.HttpUnauthorized()
-            response.content = json.dumps({'reason':
-                                           'Terms of service not accepted.'})
-            raise ImmediateHttpResponse(response=response)
+            raise http_error(http.HttpUnauthorized,
+                             'Terms of service not accepted.')
 
         if not form.is_valid():
             raise self.form_errors(form)
 
         if not (OwnerAuthorization()
                 .is_authorized(request, object=form.obj)):
-            raise ImmediateHttpResponse(response=http.HttpForbidden())
+            raise http_error(http.HttpForbidden,
+                             'You do not own that app.')
 
         plats = [Platform.objects.get(id=amo.PLATFORM_ALL.id)]
 
@@ -155,8 +152,10 @@ class AppResource(CORSResource, MarketplaceModelResource):
         except self._meta.object_class.DoesNotExist:
             unavail = self._meta.queryset_base.filter(**kwargs).exists()
             if unavail:
-                raise ImmediateHttpResponse(response=HttpLegallyUnavailable())
-            raise ImmediateHttpResponse(response=http.HttpNotFound())
+                raise http_error(HttpLegallyUnavailable,
+                                 'Not available in your region.')
+            raise http_error(http.HttpNotFound,
+                             'No such app.')
 
         # If it's public, just return it.
         if allow_anon and obj.is_public():
@@ -165,7 +164,8 @@ class AppResource(CORSResource, MarketplaceModelResource):
         # Now do the final check to see if you are allowed to see it and
         # return a 403 if you can't.
         if not AppOwnerAuthorization().is_authorized(request, object=obj):
-            raise ImmediateHttpResponse(response=http.HttpForbidden())
+            raise http_error(http.HttpForbidden,
+                             'You do not own that app.')
         return obj
 
     @write
@@ -249,7 +249,8 @@ class AppResource(CORSResource, MarketplaceModelResource):
     def get_object_list(self, request):
         if not request.amo_user:
             log.info('Anonymous listing not allowed')
-            raise ImmediateHttpResponse(response=http.HttpForbidden())
+            raise http_error(http.HttpForbidden,
+                             'Anonymous listing not allowed.')
         return self._meta.queryset.filter(type=amo.ADDON_WEBAPP,
                                           authors=request.amo_user)
 
@@ -352,7 +353,8 @@ class ConfigResource(CORSResource, MarketplaceResource):
 
     def obj_get(self, request, **kw):
         if kw['pk'] != 'site':
-            raise ImmediateHttpResponse(response=http.HttpNotFound())
+            raise http_error(http.HttpNotFound,
+                             'No such configuration.')
 
         return GenericObject({
             # This is the git commit on IT servers.
