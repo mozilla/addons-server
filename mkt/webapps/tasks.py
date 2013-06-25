@@ -472,7 +472,7 @@ def fix_missing_icons(ids, **kw):
 # TODO: Remove the collapse_summary calls when bug 862603 is completed.
 @task
 @write
-def _collapse_summary(app):
+def _collapse_summary(app, **kw):
 
     task_log.info('[Webapp:%s] Collapsing summary.' % app.id)
 
