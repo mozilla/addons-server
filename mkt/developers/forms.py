@@ -701,9 +701,6 @@ class RegionForm(forms.Form):
 
         # If the app is paid, disable regions that use payments.
         if is_paid:
-            self.disabled_regions.update(set(mkt.regions.ALL_REGION_IDS)
-                .difference(self.product.get_possible_price_region_ids()))
-
             self.disabled_regions.add(mkt.regions.WORLDWIDE.id)
             self.fields['other_regions'].widget.attrs['disabled'] = 'disabled'
             self.fields['other_regions'].label = _(u'Other regions')
@@ -722,8 +719,11 @@ class RegionForm(forms.Form):
     def has_inappropriate_regions(self):
         """Returns whether the app is listed in regions that it shouldn't
         otherwise be registered in."""
+        inappropriate_regions = (set(mkt.regions.ALL_REGION_IDS)
+            .difference(self.product.get_possible_price_region_ids())
+            .union(self.disabled_regions))
         return (self._product_is_paid() and
-                set(self.region_ids).intersection(self.disabled_regions))
+                set(self.region_ids).intersection(inappropriate_regions))
 
     def clean(self):
         data = self.cleaned_data
