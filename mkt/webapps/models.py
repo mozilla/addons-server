@@ -577,6 +577,7 @@ class Webapp(Addon):
         if self.premium:
             ids = [p['region'] for p in self.premium.price.prices()]
             return sorted(set(ids))
+        return set()
 
     def get_regions(self):
         """
