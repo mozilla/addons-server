@@ -1,4 +1,6 @@
 import os
+from os.path import join as pjoin
+
 from fabric.api import (env, execute, lcd, local, parallel,
                         run, roles, task)
 
@@ -10,14 +12,14 @@ import deploysettings as settings
 
 
 env.key_filename = settings.SSH_KEY
-fabdeploytools.envs.loadenv(os.path.join('/etc/deploytools/envs',
-                                         settings.CLUSTER))
+fabdeploytools.envs.loadenv(pjoin('/etc/deploytools/envs',
+                                  settings.CLUSTER))
 
-ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
-ZAMBONI = os.path.join(ROOT, 'zamboni')
+ROOT = os.path.abspath(pjoin(os.path.dirname(__file__), '..'))
+ZAMBONI = pjoin(ROOT, 'zamboni')
 
-VIRTUALENV = os.path.join(ROOT, 'venv')
-PYTHON = os.path.join(VIRTUALENV, 'bin', 'python')
+VIRTUALENV = pjoin(ROOT, 'venv')
+PYTHON = pjoin(VIRTUALENV, 'bin', 'python')
 
 
 def managecmd(cmd):
@@ -27,28 +29,19 @@ def managecmd(cmd):
 
 @task
 def create_virtualenv():
-    with lcd(ZAMBONI):
-        status = local('git diff HEAD@{1} HEAD --name-only')
+    if VIRTUALENV.startswith(pjoin('/data', 'src', settings.CLUSTER)):
+        local('rm -rf %s' % VIRTUALENV)
 
-    if 'requirements/' in status:
-        venv = VIRTUALENV
-        if not venv.startswith('/data'):
-            raise Exception('venv must start with /data')
+    helpers.create_venv(VIRTUALENV, settings.PYREPO,
+                        pjoin(ZAMBONI, 'requirements/prod.txt'))
 
-        local('rm -rf %s' % venv)
-        helpers.create_venv(venv, settings.PYREPO,
-                            '%s/requirements/prod.txt' % ZAMBONI)
-
-        if getattr(settings, 'LOAD_TESTING', False):
-            local('%s/bin/pip install --exists-action=w --no-deps '
-                  '--no-index --download-cache=/tmp/pip-cache -f %s '
-                  '-r %s/requirements/load.txt' %
-                  (venv, settings.PYREPO, ZAMBONI))
+    if settings.LOAD_TESTING:
+        helpers.pip_install_reqs(pjoin(ZAMBONI, 'requirements/load.txt'))
 
 
 @task
 def update_locales():
-    with lcd(os.path.join(ZAMBONI, 'locale')):
+    with lcd(pjoin(ZAMBONI, 'locale')):
         local("svn revert -R .")
         local("svn up")
         local("./compile-mo.sh .")
@@ -175,7 +168,11 @@ def pre_update(ref=settings.UPDATE_REF):
 
 @task
 def update():
-    execute(create_virtualenv)
+    with lcd(ZAMBONI):
+        status = local('git diff HEAD@{1} HEAD --name-only')
+    if 'requirements/' in status:
+        execute(create_virtualenv)
+
     execute(update_locales)
     execute(update_products)
     execute(compress_assets)
