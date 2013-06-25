@@ -529,4 +529,4 @@ def _collapse_summary(app):
 def collapse_summary(ids, **kw):
     for chunk in chunked(ids, 50):
         for app in Webapp.objects.filter(id__in=chunk):
-            _collapse_summary.delay(app)
+            _collapse_summary(app)
