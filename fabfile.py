@@ -154,6 +154,7 @@ def deploy():
     execute(install_package, rpmbuild)
 
     execute(restart_workers)
+    execute(update_celery)
     rpmbuild.clean()
     managecmd('cron cleanup_validation_results')
 
