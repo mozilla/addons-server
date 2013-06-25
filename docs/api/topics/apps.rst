@@ -187,65 +187,6 @@ App
     :status 404: not found.
     :status 451: resource unavailable for legal reasons.
 
-
-.. _app-post-label:
-
-.. http:post:: /api/v1/apps/app/
-
-    .. note:: Requires authentication and a successfully validated manifest.
-
-    .. note:: You must accept the `terms of use`_ before submitting apps.
-
-    .. note:: This method is throttled at 10 requests/day.
-
-    **Request**
-
-    :param manifest: the id of the validated manifest.
-
-    Or for a *packaged app*
-
-    :param upload: the id of the validated packaged app.
-
-    **Response**
-
-    :param: An :ref:`apps <app-response-label>`.
-    :status code: 201 successfully created.
-
-.. _app-put-label:
-
-.. http:put:: /api/v1/apps/app/(int:id)/
-
-    **Request**
-
-    :param required name: the title of the app. Maximum length 127 characters.
-    :param required summary: the summary of the app. Maximum length 255 characters.
-    :param required categories: a list of the categories, at least two of the
-        category ids provided from the category api (see below).
-    :param optional description: long description. Some HTML supported.
-    :param required privacy_policy: your privacy policy. Some HTML supported.
-    :param optional homepage: a URL to your apps homepage.
-    :param optional support_url: a URL to your support homepage.
-    :param required support_email: the email address for support.
-    :param required device_types: a list of the device types at least one of:
-        `desktop`, `mobile`, `tablet`, `firefoxos`. `mobile` and `tablet` both
-        refer to Android mobile and tablet. As opposed to Firefox OS.
-    :param required regions: a list of regions this app should be
-        listed in, expressed as country codes or 'worldwide'.
-    :param required premium_type: One of `free`, `premium`,
-        `free-inapp`, `premium-inapp`, or `other`.
-    :param optional price: The price for your app as a string, for example
-        "0.10". Required for `premium` or `premium-inapp` apps.
-    :param optional payment_account: The path for the
-        :ref:`payment account <payment-account-label>` resource you want to
-        associate with this app.
-    :param optional upsold: The path to the free app resource that
-        this premium app is an upsell for.
-
-    **Response**
-
-    :status 202: successfully updated.
-
-
 .. http:delete:: /api/v1/apps/app/(int:id)/
 
    .. note:: Requires authentication.
@@ -253,6 +194,9 @@ App
    **Response**
 
    :status 204: successfully deleted.
+
+.. http:post:: See :ref:`Creating an App <app-post-label>`
+.. http:put::  See :ref:`Creating an App <app-put-label>`
 
 Payments
 ========
@@ -272,115 +216,4 @@ Payments
 
 For more information on these, see the payments documentation.
 
-Screenshots or videos
-=====================
-
-.. note:: Requires authentication and a successfully created app.
-
-.. _screenshot-post-label:
-
-.. http:post:: /api/v1/apps/preview/?app=(int:app_id)
-
-    **Request**
-
-    :param position: the position of the preview on the app. We show the
-        previews in the order given.
-    :param file: a dictionary containing the appropriate file data in the upload field.
-    :param file type: the content type.
-    :param file name: the file name.
-    :param file data: the base 64 encoded data.
-
-    .. note:: There is currently a restriction of 5MB on file uploads through
-        the API.
-
-    **Response**
-
-    A :ref:`screenshot <screenshot-response-label>` resource.
-
-    :status 201: successfully completed.
-    :status 400: error processing the form.
-
-.. _screenshot-response-label:
-
-.. http:get:: /api/v1/apps/preview/(int:preview_id)/
-
-    **Response**
-
-    Example:
-
-    .. code-block:: json
-
-        {
-            "addon": "/api/v1/apps/app/1/",
-            "id": 1,
-            "position": 1,
-            "thumbnail_url": "/img/uploads/...",
-            "image_url": "/img/uploads/...",
-            "filetype": "image/png",
-            "resource_uri": "/api/v1/apps/preview/1/"
-            "caption": "Awesome screenshot"
-        }
-
-.. http:delete:: /api/v1/apps/preview/(int:preview_id)/
-
-    **Response**
-
-    :status 204: successfully deleted.
-
-Enabling an App
-===============
-
-.. note:: Requires authentication and a successfully created app.
-
-.. _enable-patch-label:
-
-.. http:patch:: /api/v1/apps/status/(int:app_id)/
-
-    **Request**
-
-    :params (optional) status: a status you'd like to move the app too (see
-        below).
-    :params (optional) disabled_by_user: can be `true` or `false`
-
-    **Response**
-
-    :status 200: successfully completed.
-    :status 400: something prevented the transition.
-
-
-Key statuses are:
-
-  * `incomplete`: incomplete
-  * `pending`: pending
-  * `public`: public
-  * `waiting`: waiting to be public
-
-Valid transitions that users can initiate are:
-
-* *incomplete* to *pending*: call this once your app has been completed and it
-  will be added to the Marketplace review queue. This can only be called if all
-  the required data is there. If not, you'll get an error containing the
-  reason. For example:
-
-    .. code-block:: json
-
-        {
-            "error_message": {
-                "status": [
-                    "You must provide a support email.",
-                    "You must provide at least one device type.",
-                    "You must provide at least one category.",
-                    "You must upload at least one screenshot or video."
-                ]
-            }
-        }
-
-* Once reviewed by the Marketplace review team, the app will be to *public* or
-  *waiting to be public*.
-* *waiting* to *public*: occurs when the app has been reviewed, but not yet
-  been made public.
-* *disabled_by_user*: by changing this value from `True` to `False` you can
-  enable or disable an app.
-
-.. _`terms of use`: https://marketplace.firefox.com/developers/terms
 .. _`mobile country code`: http://en.wikipedia.org/wiki/List_of_mobile_country_codes

@@ -55,9 +55,10 @@ def get_supported_locales(manifest):
 def app_to_dict(app, region=None, profile=None):
     """Return app data as dict for API."""
     # Sad circular import issues.
-    from mkt.api.resources import AppResource, PreviewResource
+    from mkt.api.resources import AppResource
     from mkt.developers.api import AccountResource
     from mkt.developers.models import AddonPaymentAccount
+    from mkt.submit.api import PreviewResource
     from mkt.webapps.api import AppFeaturesSerializer
 
     cv = app.current_version

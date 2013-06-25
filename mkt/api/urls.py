@@ -3,11 +3,11 @@ from django.conf.urls import include, patterns, url
 
 from tastypie.api import Api
 from tastypie_services.services import (ErrorResource, SettingsResource)
+from mkt.submit.api import PreviewResource, StatusResource, ValidationResource
 from mkt.api.base import handle_500, SlugRouter
 from mkt.api.resources import (AppResource, CarrierResource,
                                CategoryViewSet,
-                               ConfigResource, PreviewResource, RegionResource,
-                               StatusResource, ValidationResource)
+                               ConfigResource, RegionResource)
 from mkt.ratings.resources import RatingResource
 from mkt.search.api import SearchResource, WithFeaturedResource
 from mkt.stats.api import GlobalStatsResource
