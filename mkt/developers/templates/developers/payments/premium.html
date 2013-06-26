@@ -196,7 +196,7 @@
                               <td>
                                 <label class="disabled">
                                   <input type="checkbox" disabled
-                                         {%- if value in region_form.initial.regions %} checked {% endif -%}
+                                         {% if value in region_form.initial.regions %}checked{% endif %}
                                          name="regions" value="{{ value }}">{{ text }}</label>
                               </td>
                               <td><span class="local-retail"></span></td>
