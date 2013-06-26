@@ -110,7 +110,7 @@ class VE(REGION):
     default_currency = 'USD'
     default_language = 'es'
     mcc = 734
-    has_payments = False
+    has_payments = True
 
 
 class PL(REGION):
