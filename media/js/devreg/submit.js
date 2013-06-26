@@ -38,7 +38,7 @@
     };
 
     var $compat_save_button = $('#compat-save-button'),
-        isSubmitAppPage = $('#page > #submit-payment-type').length > 0;
+        isSubmitAppPage = $('#page > #submit-payment-type').length;
 
     // Reset selected device buttons and values.
     $('#submit-payment-type h2 a').click(function(e) {
@@ -91,10 +91,10 @@
 
     // Condition to show packaged tab...ugly but works.
     function showPackagedTab() {
-        return ($('#id_free_platforms option[value=free-firefoxos]:selected').length &&
+        return ($('#id_free_platforms option[value="free-firefoxos"]:selected').length &&
                $('#id_free_platforms option:selected').length == 1) ||
-               $('#id_paid_platforms option[value=paid-firefoxos]:selected').length ||
-               $('option[value*=android]:select').length ||
+               $('#id_paid_platforms option[value="paid-firefoxos"]:selected').length ||
+               $('option[value*=android]:selected').length ||
                allTabsDeselected();
     }
 
