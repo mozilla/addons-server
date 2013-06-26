@@ -195,8 +195,13 @@ App
 
    :status 204: successfully deleted.
 
-.. http:post:: See :ref:`Creating an App <app-post-label>`
-.. http:put::  See :ref:`Creating an App <app-put-label>`
+.. http:post:: /api/v1/apps/app/
+
+   See :ref:`Creating an App <app-post-label>`
+
+.. http:put:: /api/v1/apps/app/(int:id)/
+
+   See :ref:`Creating an App <app-put-label>`
 
 Payments
 ========
