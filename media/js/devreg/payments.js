@@ -78,13 +78,30 @@ define('payments', [], function() {
         }));
     }
 
+    function disableCheckbox() {
+        /*jshint validthis:true */
+        var $this = $(this);
+
+        $this.prop('disabled', true)
+             .closest('label').addClass('disabled');
+
+        // Remove the text, where it shouldn't be displayed.
+        $this.closest('tr').find('.local-retail, .local-method').text('');
+    }
+
     function updatePrices() {
         /*jshint validthis:true */
         var $this = $(this);
         var selectedPrice = $this.val() || '';
         var apiUrl = format(pricesApiEndpoint, +selectedPrice);
 
-        if (currentPrice == selectedPrice) {
+        if (currentPrice === selectedPrice) {
+            return;
+        }
+
+        if (!selectedPrice) {
+            $regions.find('input[type=checkbox]').each(disableCheckbox);
+            currentPrice = selectedPrice;
             return;
         }
 
@@ -138,17 +155,8 @@ define('payments', [], function() {
                     seen.push($chkbox[0]);
                 }
                 // Disable everything else.
-                $regions.find('input[type=checkbox]').not(seen).each(function() {
-                    var $this = $(this);
-                    var $tr = $this.closest('tr');
-
-                    $this.prop('checked', false)
-                         .prop('disabled', true)
-                         .closest('label').addClass('disabled');
-
-                    // Remove the text, where it shouldn't be displayed.
-                    $tr.find('.local-retail, .local-method').text('');
-                });
+                $regions.find('input[type=checkbox]').not(seen)
+                                                     .each(disableCheckbox);
             },
             dataType: "json"
         }).fail(function() {
