@@ -527,8 +527,8 @@ class TestCreatePackagedApp(BasePackagedAppTest):
             u'Azione aperta emozionante di sviluppo di fotoricettore!')
         eq_(addon.current_version.developer_name, 'Mozilla Labs')
 
-    @mock.patch('mkt.developers.forms.verify_app_domain')
     @mock.patch('mkt.webapps.models.Webapp.get_cached_manifest')
+    @mock.patch('mkt.submit.forms.verify_app_domain')
     def test_packaged_app_not_unique_by_domain(self, _verify, _mock):
         self.post(
             data={'packaged': True, 'free_platforms': ['free-firefoxos']})
