@@ -8,7 +8,6 @@ from django.core.management import call_command
 
 import mock
 from nose.tools import eq_
-from nose.plugins.skip import SkipTest
 
 import amo
 import amo.tests
@@ -135,4 +134,3 @@ class TestSignApps(amo.tests.TestCase):
             (file1.file_path, file1.signed_file_path))
         eq_(sign_mock.mock_calls[1][1][:2],
             (file2.file_path, file2.signed_file_path))
-
