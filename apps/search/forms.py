@@ -63,10 +63,6 @@ class SecondarySearchForm(forms.Form):
         d = self.cleaned_data
         if not d.get('pp'):
             d['pp'] = PER_PAGE
-        if d.get('sort'):
-            d['sort'] = [d['sort']]
-        else:
-            d['sort'] = []
         return d
 
     def full_clean(self):
