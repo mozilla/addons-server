@@ -94,6 +94,7 @@ def app_to_dict(app, region=None, profile=None):
         'listed_authors': [{'name': author.name}
                            for author in app.listed_authors],
         'manifest_url': app.get_manifest_url(),
+        'payment_required': False,
         'previews': PreviewResource().dehydrate_objects(app.previews.all()),
         'premium_type': amo.ADDON_PREMIUM_API[app.premium_type],
         'public_stats': app.public_stats,
@@ -127,6 +128,8 @@ def app_to_dict(app, region=None, profile=None):
 
         data['price'] = app.get_price(region=region)
         data['price_locale'] = app.get_price_locale(region=region)
+        data['payment_required'] = (bool(app.get_tier().price)
+                                    if app.get_tier() else False)
 
     with no_translation():
         data['device_types'] = [n.api_name
@@ -195,6 +198,7 @@ def es_app_to_dict(obj, region=None, profile=None):
         'is_packaged': is_packaged,
         'listed_authors': [{'name': name} for name in src['authors']],
         'name': get_attr_lang(src, 'name', obj.default_locale),
+        'payment_required': False,
         'premium_type': amo.ADDON_PREMIUM_API[src['premium_type']],
         'privacy_policy': PrivacyPolicyResource().get_resource_uri(
             GenericObject({'pk': obj._id})
@@ -226,8 +230,10 @@ def es_app_to_dict(obj, region=None, profile=None):
             price = Price.objects.get(name=src['price_tier'])
             data['price'] = price.get_price(region=region)
             data['price_locale'] = price.get_price_locale(region=region)
+            data['payment_required'] = bool(price.price)
     except Price.DoesNotExist:
         log.warning('Issue with price tier on app: {0}'.format(obj._id))
+        data['payment_required'] = True
 
     data['upsell'] = False
     if hasattr(obj, 'upsell'):

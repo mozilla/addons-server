@@ -8,7 +8,7 @@ import amo
 import amo.tests
 
 from addons.models import AddonDeviceType, AddonUser, Preview
-from market.models import AddonPremium, AddonPurchase, Price
+from market.models import AddonPremium, AddonPurchase, Price, PriceCurrency
 from mkt.constants import APP_FEATURES, regions
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Installed, Webapp, WebappIndexer
@@ -46,6 +46,7 @@ class TestAppToDict(amo.tests.TestCase):
         res = app_to_dict(self.app)
         eq_(res['price'], None)
         eq_(res['price_locale'], None)
+        eq_(res['payment_required'], False)
 
     def check_profile(self, profile, **kw):
         expected = {'developed': False, 'installed': False, 'purchased': False}
@@ -101,26 +102,47 @@ class TestAppToDict(amo.tests.TestCase):
 
 
 class TestAppToDictPrices(amo.tests.TestCase):
-    fixtures = fixture('prices')
 
     def setUp(self):
         self.app = amo.tests.app_factory(premium_type=amo.ADDON_PREMIUM)
-        price = Price.objects.get(pk=1)
-        self.premium = AddonPremium.objects.create(addon=self.app, price=price)
 
     def test_some_price(self):
+        self.make_premium(self.app, price='0.99')
         res = app_to_dict(self.app, region=regions.US.id)
         eq_(res['price'], Decimal('0.99'))
         eq_(res['price_locale'], '$0.99')
+        eq_(res['payment_required'], True)
+
+    def test_no_charge(self):
+        self.make_premium(self.app, price='0.00')
+        res = app_to_dict(self.app, region=regions.US.id)
+        eq_(res['price'], Decimal('0.00'))
+        eq_(res['price_locale'], '$0.00')
+        eq_(res['payment_required'], False)
+
+    def test_wrong_region(self):
+        self.make_premium(self.app, price='0.99')
+        res = app_to_dict(self.app, region=regions.PL.id)
+        eq_(res['price'], None)
+        eq_(res['price_locale'], None)
+        eq_(res['payment_required'], True)
 
     def test_with_locale(self):
+        premium = self.make_premium(self.app, price='0.99')
+        PriceCurrency.objects.create(region=regions.PL.id, currency='PLN',
+                                     price='5.01', tier=premium.price,
+                                     provider=1)
+
         with self.activate(locale='fr'):
             res = app_to_dict(self.app, region=regions.PL.id)
             eq_(res['price'], Decimal('5.01'))
             eq_(res['price_locale'], u'5,01\xa0PLN')
 
     def test_missing_price(self):
-        self.premium.update(price=None)
+        premium = self.make_premium(self.app, price='0.99')
+        premium.price = None
+        premium.save()
+
         res = app_to_dict(self.app)
         eq_(res['price'], None)
         eq_(res['price_locale'], None)

@@ -508,7 +508,7 @@ class Webapp(Addon):
         :param optional region: an int for the region. Defaults to worldwide.
         :param optional provider: an int for the provider. Defaults to bango.
         """
-        if self.has_premium():
+        if self.has_premium() and self.premium.price:
             return self.premium.price.get_price(carrier=carrier,
                 region=region, provider=provider)
 
@@ -521,7 +521,7 @@ class Webapp(Addon):
         :param optional region: an int for the region. Defaults to worldwide.
         :param optional provider: an int for the provider. Defaults to bango.
         """
-        if self.has_premium():
+        if self.has_premium() and self.premium.price:
             return self.premium.price.get_price_locale(carrier=carrier,
                 region=region, provider=provider)
 

@@ -451,9 +451,10 @@ class TestCase(RedisTest, test_utils.TestCase):
     def make_premium(self, addon, price='1.00'):
         price_obj = self.make_price(price=price)
         addon.update(premium_type=amo.ADDON_PREMIUM)
-        AddonPremium.objects.create(addon=addon, price=price_obj)
+        premium = AddonPremium.objects.create(addon=addon, price=price_obj)
         if hasattr(Price, '_currencies'):
             del Price._currencies
+        return premium
 
     def make_featured(self, app, category=None, region=mkt.regions.US):
         f = FeaturedApp.objects.create(app=app, category=category)

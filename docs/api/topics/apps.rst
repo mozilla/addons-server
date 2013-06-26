@@ -93,6 +93,7 @@ App
             ],
             "manifest_url": "http://zrnktefoptje.test-manifest.herokuapp.com/manifest.webapp",
             "name": "Test App (zrnktefoptje)",
+            "payment_required": false,
             "premium_type": "premium",
             "previews": [
                 {
@@ -146,6 +147,10 @@ App
 
     Notes on the response.
 
+    :param payment_required: A payment is required for this app. It
+        could be that ``payment_required`` is ``true``, but price is ``null``.
+        In this case, the app cannot be bought.
+    :type payment_required: boolean
     :param premium_type: one of ``free``, ``premium``, ``free-inapp``,
         ``premium-inapp``. If ``premium`` or ``premium-inapp`` the app should
         be bought, check the ``price`` field to determine if it can.
