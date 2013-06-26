@@ -162,7 +162,7 @@ class TestAppDetailsBasicForm(amo.tests.TestCase):
         app = Webapp.objects.get(pk=337141)
         data = {
             'app_slug': 'thisIsAslug',
-            'summary': '.',
+            'description': '.',
             'privacy_policy': '.',
             'support_email': 'test@example.com',
         }
