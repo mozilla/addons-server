@@ -20,7 +20,9 @@ stored as a cookie.
     **Request**
 
     :param assertion: the Persona assertion.
+    :type assertion: string
     :param audience: the Persona audience.
+    :type audience: string
 
     Example:
 
@@ -33,12 +35,16 @@ stored as a cookie.
 
     **Response**
 
-    :param string error: any error that occurred.
-    :param string token: a shared secret to be used on later requests. It should be
+    :param error: any error that occurred.
+    :type error: string
+    :param token: a shared secret to be used on later requests. It should be
         sent with authorized requests as a query string parameter named
         ``_user``.
-    :param object permissions: :ref:`user permissions <permission-get-label>`.
-    :param object settings: user account settings.
+    :type token: string
+    :param permissions: :ref:`user permissions <permission-get-label>`.
+    :type permissions: object
+    :param settings: user account settings.
+    :type settings: object
 
     Example:
 

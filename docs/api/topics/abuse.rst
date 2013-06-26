@@ -21,7 +21,9 @@ Report An Abusive App
     **Request**
 
     :param text: a textual description of the abuse
+    :type text: string
     :param app: the app id or slug of the app being reported
+    :type app: int|string
 
     .. code-block:: json
 
@@ -64,7 +66,9 @@ Report An Abusive User
     **Request**
 
     :param text: a textual description of the abuse
+    :type text: string
     :param user: the primary key of the user being reported
+    :type user: int
 
     .. code-block:: json
 

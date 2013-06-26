@@ -20,7 +20,9 @@ App
     **Response**
 
     :param meta: :ref:`meta-response-label`.
+    :type meta: object
     :param objects: A :ref:`listing <objects-response-label>` of :ref:`apps <app-response-label>`.
+    :type objects: array
 
 .. _app-response-label:
 
@@ -144,43 +146,54 @@ App
 
     Notes on the response.
 
-    :param string premium_type: one of ``free``, ``premium``, ``free-inapp``,
+    :param premium_type: one of ``free``, ``premium``, ``free-inapp``,
         ``premium-inapp``. If ``premium`` or ``premium-inapp`` the app should
         be bought, check the ``price`` field to determine if it can.
-    :param string|null price: will be null if the app is free. If it is a
+    :type premium_type: string
+    :param price: will be null if the app is free. If it is a
         paid app this will b a string representing the price in the currency
         calculated for the request. If ``null``, a price cannot
         be calculated for the region and cannot be bought. Example: 1.00
-    :param string|null price_locale: will be null if the app is free. If it
+    :type price: string|null
+    :param price_locale: will be null if the app is free. If it
         is a paid app this will be a string representing the price with the
         currency formatted using the currency symbol and the locale
         representations of numbers. If ``null``, a price cannot
         be calculated for the region and cannot be bought.
         Example: "1,00 $US". For more information on this
         see :ref:`payment tiers <localized-tier-label>`.
+    :type price_locale: string|null
     :param privacy_policy: The path to the privacy policy resource.
-    :param boolean regions > adolescent: an adolescent region has a sufficient
+    :type privacy_policy: string
+    :param regions.adolescent: an adolescent region has a sufficient
         volume of data to calculate ratings and rankings independent of
         worldwide data.
-    :param string|null regions > mcc: represents the region's ITU `mobile
+    :type regions.adolescent: boolean
+    :param regions.mcc: represents the region's ITU `mobile
         country code`_.
-    :param list|null required_features: a list of device features required by
+    :type regions.mcc: string|null
+    :param required_features: a list of device features required by
         this application.
-    :param object user: an object representing information specific to this
+    :type required_features: list|null
+    :param user: an object representing information specific to this
         user for the app. If the user is anonymous this object will not
         be present.
-    :param boolean user > developed: true if the user is a developer of the app.
-    :param boolean user > installed: true if the user installed the app (this
+    :type user: object
+    :param user.developed: true if the user is a developer of the app.
+    :type user.developed: boolean
+    :param user.installed: true if the user installed the app (this
         might differ from the device).
-    :param boolean user > purchased: true if the user has purchased the app from
+    :type user.installed: boolean
+    :param user.purchased: true if the user has purchased the app from
         the marketplace.
-
+    :type user.purchased: boolean
 
 .. http:get:: /api/v1/apps/(int:id)|(string:slug)/privacy/
 
     **Response**
 
     :param privacy_policy: The text of the app's privacy policy.
+    :type privacy_policy: string
 
     :status 200: successfully completed.
     :status 403: not allowed to access this object.
@@ -215,7 +228,9 @@ Payments
     .. code-block:: json
 
     :param upsell: URL to the upsell of the app.
+    :type upsell: string
     :param account: URL to the app payment account.
+    :type account: string
     :status 200: sucessfully completed.
 
 

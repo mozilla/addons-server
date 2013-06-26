@@ -37,6 +37,7 @@ Validate
     **Request**
 
     :param manifest: URL to the manifest.
+    :type manifest: string
 
     Example:
 
@@ -47,9 +48,13 @@ Validate
     Or for a *packaged app*
 
     :param upload: a dictionary containing the appropriate file data in the upload field.
-    :param upload type: the content type.
-    :param upload name: the file name.
-    :param upload data: the base 64 encoded data.
+    :type upload: object
+    :param upload.type: the content type.
+    :type upload.type: string
+    :param upload.name: the file name.
+    :type upload.name: string
+    :param upload.data: the base 64 encoded data.
+    :type upload.data: string
 
     Example:
 
@@ -74,11 +79,15 @@ Validate
     Returns a particular validation.
 
     :param id: the id of the validation.
+    :type id: int
     :param processed: if the validation has been processed. Hosted apps are
         done immediately but packaged apps are queued. Clients will have to
         poll the results URL until the validation has been processed.
+    :type processed: boolean
     :param valid: if the validation passed.
+    :type valid: boolean
     :param validation: the resulting validation messages if it failed.
+    :type validation: string
     :status 200: successfully completed.
 
     Example not processed:
@@ -139,10 +148,12 @@ Creating an App
     **Request**
 
     :param manifest: the id of the validated manifest.
+    :type manifest: int
 
     Or for a *packaged app*
 
     :param upload: the id of the validated packaged app.
+    :type upload: int
 
     **Response**
 
@@ -156,28 +167,43 @@ Creating an App
     **Request**
 
     :param required name: the title of the app. Maximum length 127 characters.
+    :type name: string
     :param required summary: the summary of the app. Maximum length 255 characters.
+    :type summary: string
     :param required categories: a list of the categories, at least two of the
         category ids provided from the category api (see below).
+    :type categories: array
     :param optional description: long description. Some HTML supported.
+    :type description: string
     :param required privacy_policy: your privacy policy. Some HTML supported.
+    :type privacy_policy: string
     :param optional homepage: a URL to your apps homepage.
+    :type homepage: string
     :param optional support_url: a URL to your support homepage.
+    :type support_url: string
     :param required support_email: the email address for support.
+    :type support_email: string
     :param required device_types: a list of the device types at least one of:
         `desktop`, `mobile`, `tablet`, `firefoxos`. `mobile` and `tablet` both
         refer to Android mobile and tablet. As opposed to Firefox OS.
+    :type device_types: array
     :param required regions: a list of regions this app should be
         listed in, expressed as country codes or 'worldwide'.
+    :type regions: array
     :param required premium_type: One of `free`, `premium`,
         `free-inapp`, `premium-inapp`, or `other`.
+    :type premium_type: string
     :param optional price: The price for your app as a string, for example
         "0.10". Required for `premium` or `premium-inapp` apps.
+    :type price: string
     :param optional payment_account: The path for the
         :ref:`payment account <payment-account-label>` resource you want to
         associate with this app.
+    :type payment_account: string
     :param optional upsold: The path to the free app resource that
         this premium app is an upsell for.
+    :type upsold: string
+
 
     **Response**
 
@@ -196,10 +222,15 @@ Screenshots or videos
 
     :param position: the position of the preview on the app. We show the
         previews in the order given.
+    :type position: int
     :param file: a dictionary containing the appropriate file data in the upload field.
-    :param file type: the content type.
-    :param file name: the file name.
-    :param file data: the base 64 encoded data.
+    :type file: object
+    :param file.type: the content type.
+    :type file.type: string
+    :param file.name: the file name.
+    :type file.name: string
+    :param file.data: the base 64 encoded data.
+    :type file.data: string
 
     .. note:: There is currently a restriction of 5MB on file uploads through
         the API.
@@ -249,9 +280,10 @@ Enabling an App
 
     **Request**
 
-    :params (optional) status: a status you'd like to move the app too (see
-        below).
-    :params (optional) disabled_by_user: can be `true` or `false`
+    :params optional status: a status you'd like to move the app to (see below).
+    :type status: string
+    :params optional disabled_by_user: Whether the app is disabled or not.
+    :type disabled_by_user: boolean
 
     **Response**
 

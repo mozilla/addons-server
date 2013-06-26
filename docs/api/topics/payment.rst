@@ -21,31 +21,53 @@ Payment accounts can be added and listed.
     **Request**
 
     :param account_name: Account name.
+    :type account_name: string
     :param companyName: Company name.
+    :type companyName: string
     :param vendorName: Vendor name.
+    :type vendorName: string
     :param financeEmailAddress: Financial email.
+    :type financeEmailAddress: string
     :param supportEmailAddress: Support email.
+    :type supportEmailAddress: string
     :param address1: Address.
+    :type address1: string
     :param address2: Second line of address.
+    :type address2: string
     :param addressCity: City/municipality.
+    :type addressCity: string
     :param addressState: State/province/region.
+    :type addressState: string
     :param addressZipCode: Zip/postal code.
+    :type addressZipCode: string
     :param countryIso: Country.
+    :type countryIso: string
     :param vatNumber: VAT number.
+    :type vatNumber: string
 
     *the following fields cannot be modified after account creation*
 
     :param bankAccountPayeeName: Account holder name.
+    :type bankAccountPayeeName: string
     :param bankAccountNumber: Bank account number.
+    :type bankAccountNumber: string
     :param bankAccountCode: Bank account code.
+    :type bankAccountCode: string
     :param bankName: Bank name.
     :param bankAddress1: Bank address.
+    :type bankAddress1: string
     :param bankAddress2: Second line of bank address.
+    :type bankAddress2: string
     :param bankAddressState: Bank state/province/region.
+    :type bankAddressState: string
     :param bankAddressZipCode: Bank zip/postal code.
+    :type bankAddressZipCode: string
     :param bankAddressIso: Bank country.
+    :type bankAddressIso: string
     :param adminEmailAddress: Administrative email.
+    :type adminEmailAddress: string
     :param currencyIso: Currency you prefer to be paid in.
+    :type currencyIso: string
 
     **Response**
 
@@ -56,17 +78,29 @@ Payment accounts can be added and listed.
     **Request**
 
     :param account_name: Account name.
+    :type  account_name: string
     :param companyName: Company name.
+    :type companyName: string
     :param vendorName: Vendor name.
+    :type vendorName: string
     :param financeEmailAddress: Financial email.
+    :type financeEmailAddress: string
     :param supportEmailAddress: Support email.
+    :type supportEmailAddress: string
     :param address1: Address.
+    :type address1: string
     :param address2: Second line of address.
+    :type address2: string
     :param addressCity: City/municipality.
+    :type addressCity: string
     :param addressState: State/province/region.
+    :type addressState: string
     :param addressZipCode: Zip/postal code.
+    :type addressZipCode: string
     :param countryIso: Country.
+    :type countryIso: string
     :param vatNumber: VAT number.
+    :type vatNumber: string
 
     **Response**
 
@@ -87,7 +121,9 @@ Payment accounts can be added and listed.
     **Response**
 
     :param meta: :ref:`meta-response-label`.
+    :type meta: object
     :param objects: A :ref:`listing <objects-response-label>` of :ref:`accounts <payment-account-response-label>`.
+    :type objects: array
 
 .. _payment-account-response-label:
 
@@ -131,7 +167,9 @@ Upsell
     **Request**
 
     :param free: URL to the free app.
+    :type free: string
     :param premium: URL to the premium app.
+    :type premium: string
 
     **Response**
 
@@ -147,7 +185,9 @@ Upsell
          "premium": "/api/v1/apps/app/2/"}
 
     :param free: URL to the free app.
+    :type free: string
     :param premium: URL to the premium app.
+    :type premium: string
 
 .. http:patch:: /api/v1/payments/upsell/(int:id)/
 
@@ -156,7 +196,9 @@ Upsell
     **Request**
 
     :param free: URL to the free app.
+    :type free: string
     :param premium: URL to the premium app.
+    :type premium: string
 
     **Response**
 
@@ -180,7 +222,9 @@ Payment accounts
     **Request**
 
     :param app: URL to the premium app.
+    :type app: string
     :param account: URL to the account.
+    :type account: string
 
     Once created, the app is not changeable.
 
@@ -188,7 +232,9 @@ Payment accounts
 
     :status 201: sucessfully created.
     :param app: URL to the premium app.
+    :type app: string
     :param account: URL to the account.
+    :type account: string
 
 .. http:patch:: /api/v1/payments/app/(int:id)/
 
@@ -197,13 +243,17 @@ Payment accounts
     **Request**
 
     :param app: URL to the premium app. Must be unchanged.
+    :type app: string
     :param account: URL to the account.
+    :type account: string
 
     **Response**
 
     :status 200: sucessfully updated.
     :param app: URL to the premium app.
+    :type app: string
     :param account: URL to the account.
+    :type account: string
 
 Preparing payment
 =================
@@ -229,9 +279,11 @@ Produces the JWT that is passed to `navigator.mozPay`_.
             "webpayJWT": "eyJhbGciOiAiSFMy... [truncated]",
         }
 
-    :param string webpayJWT: the JWT to pass to `navigator.mozPay`_
-    :param string contribStatusURL: the URL to poll for
+    :param webpayJWT: the JWT to pass to `navigator.mozPay`_
+    :type webpayJWT: string
+    :param contribStatusURL: the URL to poll for
         :ref:`payment-status-label`.
+    :type contribStatusURL: string
 
     :status 201: successfully completed.
     :status 401: not authenticated.
@@ -249,12 +301,14 @@ Payment status
 
     **Request**
 
-    :param string uuid: the uuid of the payment. This URL is returned as the
+    :param uuid: the uuid of the payment. This URL is returned as the
         ``contribStatusURL`` parameter of a call to *prepare*.
+    :type uuid: string
 
     **Response**
 
-    :param string status: ``complete`` or ``incomplete``
+    :param status: ``complete`` or ``incomplete``
+    :type status: string
 
     :status 200: request processed, check status for value.
     :status 403: not authorized to view details on that transaction.
@@ -272,7 +326,8 @@ to be used on install.
 
     **Request**:
 
-    :param string app: the id or slug of the app being installed.
+    :param app: the id or slug of the app being installed.
+    :type app : int|string
 
     **Response**:
 
@@ -307,9 +362,11 @@ receipt will have type `test-receipt`. Only works for hosted apps.
 
     **Request**:
 
-    :param string manifest_url: the fully qualified URL to the manifest, including
+    :param manifest_url: the fully qualified URL to the manifest, including
         protocol.
-    :param string receipt_type: one of ``ok``, ``expired``, ``invalid`` or ``refunded``.
+    :type manifest_url: string
+    :param receipt_type: one of ``ok``, ``expired``, ``invalid`` or ``refunded``.
+    :type receipt_type: string
 
     **Response**:
 
@@ -334,7 +391,9 @@ be used for `replacing receipts <https://wiki.mozilla.org/Apps/WebApplicationRec
         {"receipt": "", "status": "not-implemented"}
 
     :param receipt: the receipt, currently blank.
+    :type receipt: string
     :param status: one of ``not-implemented``.
+    :type status: string
     :status 200: successfully completed.
 
 
@@ -348,13 +407,16 @@ Pay Tiers
     **Request**
 
     :param provider: (optional) the payment provider. Current values: *bango*
+    :type provider: string
 
     The standard :ref:`list-query-params-label`.
 
     **Response**
 
     :param meta: :ref:`meta-response-label`.
+    :type meta: object
     :param objects: A :ref:`listing <objects-response-label>` of :ref:`apps <pay-tier-response-label>`.
+    :type objects: array
     :statuscode 200: successfully completed.
 
 .. _pay-tier-response-label:
@@ -392,12 +454,19 @@ Pay Tiers
         }
 
     :param region: a :ref:`region <region-response-label>`.
+    :type region: int
     :param carrier: a :ref:`carrier <carrier-response-label>`.
+    :type carrier: int
     :param localized: see `Localized tier`.
+    :type localized: object
     :param tier: the id of the tier.
+    :type tier: int
     :param method: the payment method.
+    :type method: int
     :param provider: payment provider, currently only ``1`` is supported.
+    :type provider: int
     :param pricePoint: this is the value used for in-app payments.
+    :type pricePoint: string
     :statuscode 200: successfully completed.
 
 
@@ -475,7 +544,9 @@ safe way. This API lets WebPay cache and later retrieve icon URLs.
     **Request**
 
     :param ext_url: Absolute external URL of product icon that was cached.
+    :type ext_url: string
     :param ext_size: Height and width pixel value that was declared for this icon.
+    :type ext_size: int
     :param size: Height and width pixel value that this icon was resized to.
 
     You may also request :ref:`list-query-params-label`.
@@ -483,7 +554,9 @@ safe way. This API lets WebPay cache and later retrieve icon URLs.
     **Response**
 
     :param meta: :ref:`meta-response-label`.
+    :type meta: object
     :param objects: A :ref:`listing <objects-response-label>` of :ref:`product icons <product-icon-response-label>`.
+    :type objects: array
     :statuscode 200: successfully completed.
 
 .. _product-icon-response-label:
@@ -503,6 +576,7 @@ safe way. This API lets WebPay cache and later retrieve icon URLs.
         }
 
     :param url: Absolute URL of the cached product icon.
+    :type url: string
     :statuscode 200: successfully completed.
 
 .. http:post:: /api/v1/webpay/product/icon/
@@ -513,8 +587,11 @@ safe way. This API lets WebPay cache and later retrieve icon URLs.
     **Request**
 
     :param ext_url: Absolute external URL of product icon that should be cached.
+    :type ext_url: string
     :param ext_size: Height and width pixel value that was declared for this icon.
+    :type ext_size: int
     :param size: Height and width pixel value that this icon should be resized to.
+    :type size: int
 
     **Response**
 

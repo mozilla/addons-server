@@ -125,9 +125,12 @@ _`Create`
     **Request**:
 
     :param app: the ID of the app being reviewed
+    :type app: int
     :param body: text of the rating
+    :type body: string
     :param rating: an integer between (and inclusive of) 1 and 5, indicating the
         numeric value of the rating
+    :type rating: int
 
     The user making the rating is inferred from the authentication details.
 
@@ -171,8 +174,10 @@ _`Update`
     **Request**:
 
     :param body: text of the rating
+    :type body: string
     :param rating: an integer between (and inclusive of) 1 and 5, indicating the
         numeric value of the rating
+    :type rating: int
 
     The user making the rating is inferred from the authentication details.
 

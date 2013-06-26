@@ -20,11 +20,14 @@ Thread
     The standard :ref:`list-query-params-label`.
 
     :param app: id or slug of the app to filter the threads by.
+    :type app: int|string
 
     **Response**
 
     :param meta: :ref:`meta-response-label`.
+    :type meta: object
     :param objects: A :ref:`listing <objects-response-label>` of :ref:`threads <thread-response-label>`.
+    :type objects: array
 
 .. _thread-response-label:
 
@@ -57,6 +60,7 @@ Thread
     Notes on the response.
 
     :param notes: contains all the notes that have been posted to the thread.
+    :type notes: array
 
 .. _thread-post-label:
 
@@ -67,7 +71,9 @@ Thread
     **Request**
 
     :param addon: the id of the addon.
+    :type addon: int
     :param version: the id of the version of the addon.
+    :type version: int
 
     **Response**
 
@@ -120,7 +126,8 @@ Note
 
     Notes on the response.
 
-    :param note_type: type of action taken with the note.:
+    :param note_type: type of action taken with the note.
+    :type note_type: int
 
 .. _note-type-label:
 
@@ -153,9 +160,13 @@ Note
     **Request**
 
     :param author: the id of the addon.
+    :type author: int
     :param thread: the id of the thread to post to.
+    :type thread: int
     :param note_type: the type of note to create. See :ref:`supported types <note-type-label>`.
+    :type note_type: int
     :param body: the comment text to be attached with the note.
+    :type body: string
 
     **Response**
 

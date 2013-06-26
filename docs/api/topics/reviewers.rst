@@ -20,6 +20,8 @@ Reviewing
     **Response**:
 
     :param meta: :ref:`meta-response-label`.
+    :type meta: object
     :param objects: A :ref:`listing <objects-response-label>` of :ref:`apps <app-response-label>`.
+    :type objects: array
 
     :status 200: successfully completed.

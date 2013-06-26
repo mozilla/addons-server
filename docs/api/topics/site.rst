@@ -22,7 +22,9 @@ Categories
     **Response**
 
     :param meta: :ref:`meta-response-label`.
+    :type meta: object
     :param objects: A :ref:`listing <objects-response-label>` of :ref:`categories <category-response-label>`.
+    :type objects: array
     :status 200: successfully completed.
 
 
@@ -54,7 +56,9 @@ Carriers
 
 
     :param meta: :ref:`meta-response-label`.
+    :type meta: object
     :param objects: A :ref:`listing <objects-response-label>` of :ref:`carriers <carrier-response-label>`.
+    :type objects: array
     :status 200: successfully completed.
 
 .. _carrier-response-label:
@@ -89,7 +93,9 @@ Regions
 
 
     :param meta: :ref:`meta-response-label`.
+    :type meta: object
     :param objects: A :ref:`listing <objects-response-label>` of :ref:`regions <region-response-label>`.
+    :type objects: array
     :status 200: successfully completed.
 
 .. _region-response-label:
@@ -128,8 +134,11 @@ Configuration
     **Response**
 
     :param version: the git commit number of the deployment.
+    :type version: string|null
     :param settings: a subset of useful site settings.
+    :type settings: object
     :param flags: a subset of useful runtime configuration settings.
+    :type flags: object
 
     Example:
 

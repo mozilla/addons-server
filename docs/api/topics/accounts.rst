@@ -34,6 +34,7 @@ To update account information:
     **Request**
 
     :param display_name: the displayed name for this user.
+    :type display_name: string
 
     **Response**
 
@@ -57,7 +58,9 @@ Fields that can be updated:
     **Response**
 
     :param meta: :ref:`meta-response-label`.
+    :type meta: object
     :param objects: A :ref:`listing <objects-response-label>` of :ref:`apps <app-response-label>`.
+    :type objects: array
     :status 200: sucessfully completed.
 
 .. _permission-get-label:
@@ -84,6 +87,7 @@ Fields that can be updated:
     :param permissions: permissions and properties for the user account. It
         contains boolean values which describe whether the user has the
         permission described by the key of the field.
+    :type permissions: object
     :status 200: sucessfully completed.
 
 Feedback
@@ -101,10 +105,14 @@ Feedback
 
     :param chromeless: (optional) "Yes" or "No", indicating whether the user
                        agent sending the feedback is chromeless.
+    :type chromeless: string
     :param feedback: (required) the text of the feedback.
+    :type feedback: string
     :param from_url: (optional) the URL from which the feedback was sent.
+    :type from_url: string
     :param platform: (optional) a description of the platform from which the
                      feedback is being sent.
+    :type platform: string
 
     .. code-block:: json
 
@@ -145,6 +153,7 @@ Marketplace newsletter.
    **Request**
 
    :param email: The email address to send newsletters to.
+   :type email: string
 
    **Response**
 
