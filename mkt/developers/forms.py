@@ -671,6 +671,7 @@ class RegionForm(forms.Form):
     def __init__(self, *args, **kw):
         self.product = kw.pop('product', None)
         self.request = kw.pop('request', None)
+        self.price = kw.pop('price', None)
         self.region_ids = self.product.get_region_ids()
         super(RegionForm, self).__init__(*args, **kw)
 
@@ -719,8 +720,20 @@ class RegionForm(forms.Form):
     def has_inappropriate_regions(self):
         """Returns whether the app is listed in regions that it shouldn't
         otherwise be registered in."""
+        # Premium form was valid.
+        if self.price:
+            price_region_ids = self.price.pricecurrency_set.values_list(
+                'region', flat=True)
+        # Premium form wasn't valid and it is a POST. Since we can't determine
+        # what price they wanted, just make sure it isn't a disabled price.
+        elif self.data:
+            price_region_ids = []
+        # Not a post, we can trust the price on the product.
+        else:
+            price_region_ids = self.product.get_possible_price_region_ids()
+
         inappropriate_regions = (set(mkt.regions.ALL_REGION_IDS)
-            .difference(self.product.get_possible_price_region_ids())
+            .difference(price_region_ids)
             .union(self.disabled_regions))
         return (self._product_is_paid() and
                 set(self.region_ids).intersection(inappropriate_regions))

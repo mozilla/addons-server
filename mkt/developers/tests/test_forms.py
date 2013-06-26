@@ -180,8 +180,10 @@ class TestRegionForm(amo.tests.WebappTestCase):
         eq_(self.app.get_region_ids(), mkt.regions.REGION_IDS)
 
         self.app.update(premium_type=amo.ADDON_PREMIUM)
+        price = Price.objects.get(id=1)
         AddonPremium.objects.create(addon=self.app,
-                                    price=Price.objects.get(id=1))
+                                    price=price)
+        self.kwargs['price'] = price
         form = forms.RegionForm(data=None, **self.kwargs)
         assert not form.is_valid()
         assert form.has_inappropriate_regions()
@@ -204,8 +206,10 @@ class TestRegionForm(amo.tests.WebappTestCase):
         for region in mkt.regions.ALL_REGION_IDS:
             AER.objects.create(addon=self.app, region=region)
         self.app.update(premium_type=amo.ADDON_PREMIUM)
+        price = Price.objects.get(id=1)
         AddonPremium.objects.create(addon=self.app,
-                                    price=Price.objects.get(id=1))
+                                    price=price)
+        self.kwargs['price'] = price
         form = forms.RegionForm(data={'regions': []}, **self.kwargs)
         assert not form.is_valid()  # Fails due to needing at least 1 region
         assert not form.has_inappropriate_regions(), form.has_inappropriate_regions()

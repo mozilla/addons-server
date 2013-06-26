@@ -60,6 +60,10 @@ def payments(request, addon_id, addon, webapp=False):
         request.POST or None, addon=addon, user=request.amo_user)
 
     if request.method == 'POST':
+        if premium_form.is_valid():
+            region_form = forms.RegionForm(request.POST, product=addon,
+                    request=request, price=premium_form.cleaned_data['price']
+                )
 
         success = all(form.is_valid() for form in
                       [premium_form, region_form, upsell_form,
