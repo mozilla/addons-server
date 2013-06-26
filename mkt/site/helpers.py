@@ -410,38 +410,6 @@ def get_login_link(context, to=None):
     return urlparams(url, to=to)
 
 
-@register.function
-@jinja2.contextfunction
-def check_firefox(context=None, ua=None):
-    """
-    This will return a dictionary of two booleans of whether we're using
-    Firefox and if so whether the version of Firefox supports
-    `navigator.mozApps`.
-    """
-    if context:
-        ua = context['request'].META.get('HTTP_USER_AGENT')
-    return caching.cached(lambda: _check_firefox(ua), 'check_firefox:%s' % ua)
-
-
-def _check_firefox(ua):
-    need_firefox, need_upgrade = True, True
-
-    if ua:
-        for ua_res, min_version in mkt.platforms.APP_PLATFORMS:
-            for ua_re in ua_res:
-                match = ua_re.search(ua)
-                if match:
-                    v = match.groups()[0]
-
-                    # If we found a version at all, then this is Firefox.
-                    need_firefox = False
-
-                    # If we found a matching version, then we can install apps!
-                    need_upgrade = vint(v) < min_version
-
-    return {'need_firefox': need_firefox, 'need_upgrade': need_upgrade}
-
-
 @register.filter
 def more_button(pager):
     t = env.get_template('site/paginator.html')

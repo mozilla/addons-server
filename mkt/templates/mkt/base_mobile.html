@@ -83,36 +83,6 @@
       {% endwith %}
     {% endblock %}
 
-    {% set firefox_compat = check_firefox() %}
-    {% if (firefox_compat.need_firefox or firefox_compat.need_upgrade) and
-          not request.GAIA %}
-      <div class="incompatible-browser incompatible-mobile">
-        <div>
-          <a href="{{ 'https://market.android.com/details?id=org.mozilla.firefox_beta' if request.MOBILE else 'https://www.mozilla.org/firefox' }}" class="download" target="_blank">
-            <span class="helper"></span>
-            <span>
-              {% if request.MOBILE %}
-                {% trans %}
-                  You must use Firefox Beta to install Firefox apps. <b>Install</b>
-                {% endtrans %}
-              {% else %}
-                {% if firefox_compat.need_firefox %}
-                  {% trans %}
-                    You must use Firefox to install Firefox apps to your desktop. <b>Download</b>
-                  {% endtrans %}
-                {% elif firefox_compat.need_upgrade %}
-                  {% trans %}
-                    You must use a more recent version of Firefox to install Firefox apps to your desktop. <b>Download</b>
-                  {% endtrans %}
-                {% endif %}
-              {% endif %}
-            </span>
-          </a>
-          <a href="#" class="close" title="{{ _('Close') }}">{{ _('Close') }}</a>
-        </div>
-      </div>
-    {% endif %}
-
     <div id="container">
       <div id="page" role="main"
            data-context="{{
