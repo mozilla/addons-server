@@ -36,7 +36,7 @@ def mock_sign(version_id, reviewer=False):
     return path
 
 
-@mock.patch('lib.metrics.urllib2.urlopen')
+@mock.patch('lib.crypto.receipt.urllib2.urlopen')
 @mock.patch.object(settings, 'SIGNING_SERVER', 'http://localhost')
 class TestReceipt(amo.tests.TestCase):
 
