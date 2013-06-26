@@ -2,22 +2,15 @@ import json
 
 from django.conf import settings
 
-import caching.base as caching
 import commonware.log
 import jinja2
-import waffle
 from jingo import env, register
 from jingo_minify import helpers as jingo_minify_helpers
 from tower import ugettext as _
 
-import amo
 from amo.helpers import urlparams
 from amo.urlresolvers import get_outgoing_url, reverse
-from amo.utils import JSONEncoder
 from translations.helpers import truncate
-from versions.compare import version_int as vint
-
-import mkt
 
 log = commonware.log.getLogger('z.mkt.site')
 
@@ -166,120 +159,6 @@ def product_as_dict(request, product, purchased=None, receipt_type=None,
           'is_packaged')
     return dict([k, jinja2.escape(v) if k not in wl else v]
                 for k, v in ret.items())
-
-
-def product_as_dict_theme(request, product):
-    # Dev environments might not have authors set.
-    author = ''
-    authors = product.persona.listed_authors
-    if authors:
-        author = authors[0].name
-
-    ret = {
-        'id': product.id,
-        'name': product.name,
-        'author': author,
-        'previewUrl': product.persona.preview_url,
-    }
-
-    # Jinja2 escape everything except this whitelist so that bool is retained
-    # for the JSON encoding.
-    return dict([k, jinja2.escape(v)] for k, v in ret.items())
-
-
-@jinja2.contextfunction
-@register.function
-def market_tile(context, product, link=True, src=''):
-    request = context['request']
-    if product.is_webapp():
-        classes = []
-        notices = []
-        purchased = (request.amo_user and
-                     product.pk in request.amo_user.purchase_ids())
-
-        receipt_type = None
-        if product.has_author(request.amo_user):
-            receipt_type = 'developer'
-            purchased = True
-
-        product_dict = product_as_dict(request, product, purchased=purchased,
-                                       receipt_type=receipt_type, src=src)
-        product_dict['prepareNavPay'] = reverse('webpay.prepare_pay',
-                                                args=[product.app_slug])
-
-        data_attrs = {
-            'product': json.dumps(product_dict, cls=JSONEncoder),
-            'manifest_url': product.get_manifest_url(),
-            'src': src
-        }
-
-        if product.is_premium() and product.premium:
-            classes.append('premium')
-
-            if waffle.switch_is_active('disabled-payments'):
-                notices.append(_('This app is temporarily unavailable for '
-                                 'purchase.'))
-            elif not request.GAIA:
-                notices.append(_('This app is available for purchase on '
-                                 'only Firefox OS.'))
-
-        sumo_url = ('https://support.mozilla.org/en-US/kb/'
-                    'how-access-firefox-marketplace')
-        if (not request.GAIA and
-            (product.device_types ==
-            [amo.DEVICE_GAIA] or product.is_packaged)):
-            # This includes packaged apps.
-            notices.append(_('This app is available on only Firefox OS.'))
-            # TODO: Add a link when we have one.
-            classes.append('firefoxos')
-        if (not (request.MOBILE or request.TABLET or request.GAIA) and
-            amo.DEVICE_DESKTOP not in product.device_types):
-            notices.append(_('This is a mobile-only app. Please try this '
-                             'app in Firefox Mobile on your Android '
-                             'phone. (<b data-href="%s">Learn more</b>)')
-                           % sumo_url)
-        if not request.TABLET and product.device_types == [amo.DEVICE_TABLET]:
-            notices.append(_('This is a tablet-only app. Please try this '
-                             'app in Firefox Mobile on your Android '
-                             'tablet. (<b data-href="%s">Learn more</b>)')
-                           % sumo_url)
-
-        firefox_compat = check_firefox(
-            ua=request.META.get('HTTP_USER_AGENT', ''))
-        if firefox_compat['need_firefox'] or firefox_compat['need_upgrade']:
-            classes.append('incompatible')
-
-        if notices or 'incompatible' in classes:
-            classes += ['bad', 'disabled']
-
-        c = dict(request=request, product=product, data_attrs=data_attrs,
-                 classes=classes, link=link, notices=notices[:1])
-        t = env.get_template('site/tiles/app.html')
-        return jinja2.Markup(t.render(c))
-
-    elif product.is_persona():
-        classes = ['product', 'mkt-tile']
-        product_dict = product_as_dict_theme(request, product)
-        data_attrs = {
-            'product': json.dumps(product_dict, cls=JSONEncoder),
-            'src': src
-        }
-        c = dict(product=product, data_attrs=data_attrs,
-                 classes=' '.join(classes), link=link)
-        t = env.get_template('site/tiles/theme.html')
-        return jinja2.Markup(t.render(c))
-
-
-@register.filter
-@jinja2.contextfilter
-def promo_slider(context, products, feature=False):
-    c = {
-        'products': products,
-        'feature': feature,
-        'request': context['request'],
-    }
-    t = env.get_template('site/promo_slider.html')
-    return jinja2.Markup(t.render(c))
 
 
 @register.function

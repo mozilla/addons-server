@@ -15,7 +15,7 @@
       {% if pager.object_list %}
         <ol class="container listing" start="{{ pager.start_index() }}">
         {% for product in pager.object_list %}
-          <li class="item c">{{ market_tile(product) }}</li>
+          <li class="item c"><a href="{{ product.get_url_path() }}">{{ product.name }}</a></li>
         {% endfor %}
         {% if pager.has_other_pages() %}
           <li class="loadmore" data-sel=".listing">

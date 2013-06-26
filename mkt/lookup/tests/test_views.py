@@ -962,7 +962,7 @@ class TestPurchases(amo.tests.TestCase):
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
         doc = pq(res.content)
-        eq_(doc('ol.listing a.mkt-tile').attr('href'),
+        eq_(doc('ol.listing a').attr('href'),
             urlparams(self.app.get_detail_url(), src=''))
 
     def test_no_support_link(self):

@@ -91,7 +91,6 @@ CSS = {
         'css/mkt/header.styl',
         'css/mkt/account-links.styl',
         'css/mkt/buttons.styl',
-        'css/mkt/tile.styl',
         'css/mkt/notification.styl',
         'css/mkt/detail.styl',
         'css/mkt/ratings.styl',
@@ -146,7 +145,6 @@ CSS.update({
     'mkt/consumer-desktop': CSS['mkt/consumer'] + (
         # TODO: Split components into individual, appropriate stylesheets.
         'css/mkt/desktop.styl',
-        'css/mkt/desktop-tile.styl',
         'css/mkt/desktop-filters.styl',
         'css/mkt/desktop-forms.styl',
         'css/mkt/desktop-account.styl',
