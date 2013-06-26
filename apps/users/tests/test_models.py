@@ -103,7 +103,7 @@ class TestUserProfile(amo.tests.TestCase):
         u = UserProfile.objects.create(email='yoyoyo@yo.yo', username='yoyo')
         assert u.user is None
         u.create_django_user()
-        eq_(u.user.username, 'yoyo')
+        eq_(u.user.username, 'uid-%d' % u.id)
 
     def test_resetcode_expires(self):
         """

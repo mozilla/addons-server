@@ -163,6 +163,12 @@ class UsernameMixin:
                       'underscores or hyphens.'))
         if BlacklistedUsername.blocked(name):
             raise forms.ValidationError(_('This username cannot be used.'))
+
+        # FIXME: Bug 858452. Remove this check when collation of the username
+        # column is changed to case insensitive.
+        if (UserProfile.objects.exclude(id=self.instance.id)
+                       .filter(username__iexact=name).exists()):
+            raise forms.ValidationError(_('This username is already in use.'))
         return name
 
 
