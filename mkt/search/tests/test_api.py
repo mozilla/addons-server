@@ -3,6 +3,7 @@ from datetime import datetime
 
 from django.contrib.auth.models import User
 
+from mock import Mock, patch
 from nose.tools import eq_, ok_
 from waffle.models import Switch
 
@@ -19,6 +20,7 @@ from mkt.api.models import Access, generate
 from mkt.api.tests.test_oauth import BaseOAuth, OAuthClient
 from mkt.constants.features import FeatureProfile
 from mkt.search.forms import DEVICE_CHOICES_IDS
+from mkt.search.views import _get_query
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Installed, Webapp
 
@@ -62,6 +64,20 @@ class TestApi(BaseOAuth, ESTestCase):
     def test_wrong_sort(self):
         res = self.client.get(self.url + ({'sort': 'awesomeness'},))
         eq_(res.status_code, 400)
+
+    def test_sort(self):
+        queries = []
+        def fake_get_query(*a, **kw):
+            qs = _get_query(*a, **kw)
+            m = Mock(wraps=qs)
+            queries.append(m)
+            return m
+        with patch('mkt.search.api._get_query', fake_get_query):
+            res = self.client.get(self.url,
+                                  [('sort', 'downloads'), ('sort', 'rating')])
+        eq_(res.status_code, 200)
+        queries[0].order_by.assert_called_with(
+            '-weekly_downloads', '-bayesian_rating')
 
     def test_right_category(self):
         res = self.client.get(self.url + ({'cat': self.category.pk},))

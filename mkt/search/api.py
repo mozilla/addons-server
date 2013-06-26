@@ -16,7 +16,7 @@ from amo.helpers import absolutify
 
 import mkt
 from mkt.api.authentication import OptionalOAuthAuthentication
-from mkt.api.base import CORSResource, MarketplaceResource
+from mkt.api.base import CORSResource, http_error, MarketplaceResource
 from mkt.api.resources import AppResource
 from mkt.constants.features import FeatureProfile
 from mkt.search.views import _filter_search, _get_query
@@ -69,9 +69,8 @@ class SearchResource(CORSResource, MarketplaceResource):
             if is_admin or is_reviewer:
                 base_filters['status'] = status
             else:
-                return http.HttpUnauthorized(
-                    content=json.dumps(
-                        {'reason': _('Unauthorized to filter by status.')}))
+                raise http_error(http.HttpUnauthorized,
+                                 _('Unauthorized to filter by status.'))
 
         # Filter by device feature profile.
         profile = None

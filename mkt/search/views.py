@@ -100,19 +100,17 @@ def _filter_search(request, qs, query, filters=None, sorting=None,
     if query.get('manifest_url'):
         qs = qs.filter(manifest_url=query['manifest_url'])
     if 'sort' in show:
-        sort_by = None
-        if query['sort'] in sorting:
-            sort_by = sorting[query['sort']]
+        sort_by = [sorting[name] for name in query['sort'] if name in sorting]
 
         # For "Adolescent" regions popularity is global installs + reviews.
 
         if query['sort'] == 'popularity' and region and not region.adolescent:
             # For "Mature" regions popularity becomes installs + reviews
             # from only that region.
-            sort_by = '-popularity_%s' % region.id
+            sort_by = ['-popularity_%s' % region.id]
 
         if sort_by:
-            qs = qs.order_by(sort_by)
+            qs = qs.order_by(*sort_by)
     elif not query.get('q'):
 
         if (sorting_default == 'popularity' and region and

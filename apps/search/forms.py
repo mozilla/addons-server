@@ -63,6 +63,10 @@ class SecondarySearchForm(forms.Form):
         d = self.cleaned_data
         if not d.get('pp'):
             d['pp'] = PER_PAGE
+        if d.get('sort'):
+            d['sort'] = [d['sort']]
+        else:
+            d['sort'] = []
         return d
 
     def full_clean(self):
@@ -135,7 +139,7 @@ class ESSearchForm(forms.Form):
 
     def clean_sort(self):
         sort = self.cleaned_data.get('sort')
-        return sort if sort in dict(self.sort_choices) else None
+        return [sort] if sort in dict(self.sort_choices) else []
 
     def clean_cat(self):
         cat = self.cleaned_data.get('cat')

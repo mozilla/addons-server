@@ -30,8 +30,11 @@ Search
     :param optional manifest_url: Filters by manifest URL. Requires an
         exact match and should only return a single result if a match is
         found.
-    :param optional sort: The field to sort by. One of 'downloads', 'rating',
-        'price', 'created'. Sorts by relevance by default.
+    :type manifest_url: string
+    :param optional sort: The fields to sort by. One of 'downloads',
+        'rating', 'price', 'created'. Can be used multiple times to
+        sort by multiple criteria. Sorts by relevance by default.
+    :type sort: string
 
     The following parameters requires an OAuth token by a user with App
     Reviewer privileges:
