@@ -50,8 +50,10 @@ $(document).ready(function() {
         initUploadPreview();
     }
 
-    // Add-on uploader
-    if(document.getElementById('upload-app')) {
+    // App uploader
+    var $upload_form = $('#upload-webapp');
+
+    if ($upload_form.length) {
         var opt = {'cancel': $('.upload-file-cancel') };
         $('#upload-app').packagedAppUploader(opt);
     }
@@ -60,7 +62,7 @@ $(document).ready(function() {
         $validate_form = $('#validate-field'),
         $validate_button = $('#validate_app'),
         $webapp_features = $('#upload-webapp-features'),
-        $submit_footer = $('#upload-webapp').find('footer');
+        $submit_footer = $upload_form.find('footer');
 
     if ($webapp_url.length) {
         if (!$webapp_url.val() && z.capabilities.sessionStorage) {

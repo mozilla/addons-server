@@ -52,6 +52,17 @@
     });
 
     // When a big device button is clicked, update the form.
+    var $upload_form = $('#upload-webapp'),
+        $qhd = $('#id_has_qhd');
+    $(document.body).on('change', '#upload-webapp select', function() {
+        // IT'S FINE. IT'S FINE.
+        if (!$upload_form.find('option[value$="-desktop"]:selected, option[value$="-tablet"]:selected').length) {
+            $qhd.prop('checked', true).trigger('change');
+        } else if ($upload_form.find('option:selected').length) {
+            $qhd.prop('checked', false).trigger('change');
+        }
+    });
+
     $('#submit-payment-type a.choice').on('click',
         _pd(function() {
             var $this = $(this),
@@ -68,7 +79,7 @@
             }
             $this.toggleClass('selected', nowSelected);
             $this.find('input').prop('checked', nowSelected);
-            $input.val(old);
+            $input.val(old).trigger('change');
             $compat_save_button.removeClass('hidden');
             setTabState();
         })
