@@ -164,7 +164,9 @@ class ThemeReviewTestMixin(object):
             assert '/preview' in create_preview_args['full_dst'][0]
             assert '/icon' in create_preview_args['full_dst'][1]
 
-            # Only two since reuploaded themes are not flagged/moreinfo'ed.
+            # Approved/rejected/dupe themes have their images deleted
+            # leaving only 2 RQT objects. Can't flag a rereview theme yet, and
+            # moreinfo does nothing but email the artist.
             eq_(RereviewQueueTheme.objects.count(), 2)
         else:
             eq_(themes[0].addon.status, amo.STATUS_REVIEW_PENDING)
@@ -172,7 +174,7 @@ class ThemeReviewTestMixin(object):
             eq_(themes[2].addon.status, amo.STATUS_REJECTED)
             eq_(themes[3].addon.status, amo.STATUS_REJECTED)
         eq_(themes[4].addon.status, amo.STATUS_PUBLIC)
-        eq_(ActivityLog.objects.count(), 3 if self.rereview else 5)
+        eq_(ActivityLog.objects.count(), 4 if self.rereview else 5)
 
         expected_calls = [
             mock.call(
@@ -228,9 +230,10 @@ class ThemeReviewTestMixin(object):
                 recipient_list=set([]))
         ]
         if self.rereview:
-            eq_(send_mail_jinja_mock.call_args_list[0], expected_calls[2])
-            eq_(send_mail_jinja_mock.call_args_list[1], expected_calls[3])
-            eq_(send_mail_jinja_mock.call_args_list[2], expected_calls[4])
+            eq_(send_mail_jinja_mock.call_args_list[0], expected_calls[0])
+            eq_(send_mail_jinja_mock.call_args_list[1], expected_calls[2])
+            eq_(send_mail_jinja_mock.call_args_list[2], expected_calls[3])
+            eq_(send_mail_jinja_mock.call_args_list[3], expected_calls[4])
         else:
             eq_(send_mail_jinja_mock.call_args_list[0], expected_calls[0])
             eq_(send_mail_jinja_mock.call_args_list[1], expected_calls[1])

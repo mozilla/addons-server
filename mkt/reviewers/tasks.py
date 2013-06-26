@@ -90,7 +90,7 @@ def approve_rereview(theme):
 
 @task
 def reject_rereview(theme):
-    """Replace original theme with pending theme on filesystem."""
+    """Delete pending theme from filesystem."""
     storage = LocalFileStorage()
     rereview = theme.rereviewqueuetheme_set.all()
     reupload = rereview[0]

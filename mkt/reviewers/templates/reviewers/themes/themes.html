@@ -62,21 +62,28 @@
         {{ theme.addon.description }}
       </div>
     {% endif %}
-    {% if flagged %}
-      <div class="desc"><strong>{{ _('Reason for Flagging') }}: </strong>
-        {% set logs = theme.addon.addonlog_set.all() %}
-        {% if logs.exists() %}
-          {{ logs[0].activity_log.details.comment }}
-        {% endif %}
+    {% set logs = theme.addon.addonlog_set.all() %}
+    {% if logs.exists() %}
+      <div class="desc"><strong>{{ _('Past Review Notes') }}</strong>
+        <ul>
+          {% for log in logs %}
+            <li>
+              {# l10n: {previous review action taken on theme}: {comment about review action} #}
+              {% if log.activity_log.details.action == 0 %}
+                {{ _('More Info Requested: {0}')|f(log.activity_log.details.comment) }}
+              {% elif log.activity_log.details.action == 1 %}
+                {{ _('Flagged: {0}')|f(log.activity_log.details.comment) }}
+              {% endif %}
+            </li>
+          {% endfor %}
+        </ul>
       </div>
     {% endif %}
 
     {% if reviewable %}
       <div class="choices">
         <div class="group">
-          {% if not rereview %}
-            <button class="moreinfo">{{ _('Request More Info') }} &#9662;</button>
-          {% endif %}
+          <button class="moreinfo">{{ _('Request More Info') }} &#9662;</button>
         </div>
         <div class="group">
           {% if not flagged and not rereview %}
@@ -119,14 +126,12 @@
         {{ required_styled() }}
         <button>{{ _('Continue') }}</button>
       </div>
-      {% if not rereview %}
-        <div class="moreinfo-dropdown rq-dropdown">
-          <label>{{ _('Ask a question to the artist') }}:</label>
-          <textarea></textarea>
-          {{ required_styled() }}
-          <button>{{ _('Continue') }}</button>
-        </div>
-      {% endif %}
+      <div class="moreinfo-dropdown rq-dropdown{% if rereview %} rereview{% endif %}">
+        <label>{{ _('Ask a question to the artist') }}:</label>
+        <textarea></textarea>
+        {{ required_styled() }}
+        <button>{{ _('Continue') }}</button>
+      </div>
       {% if not flagged and not rereview %}
         <div class="flag-dropdown rq-dropdown">
           <label>{{ _('Describe your reason for flagging') }}:</label>

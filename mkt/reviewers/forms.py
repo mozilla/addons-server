@@ -196,9 +196,7 @@ class ThemeReviewForm(happyforms.Form):
                 theme.addon.update(status=amo.STATUS_REVIEW_PENDING)
 
         elif action == rvw.ACTION_MOREINFO:
-            if is_rereview:
-                mail_and_log = False
-            else:
+            if not is_rereview:
                 theme.addon.update(status=amo.STATUS_REVIEW_PENDING)
 
         if mail_and_log:
