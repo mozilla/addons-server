@@ -704,7 +704,7 @@ class TestDetails(TestSubmit):
         self._step()
 
         self.webapp = self.get_webapp()
-        self.webapp.update(premium_type=amo.ADDON_PREMIUM)
+        self.make_premium(self.webapp)
 
         data = self.get_dict()
         r = self.client.post(self.url, data)
