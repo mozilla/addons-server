@@ -18,7 +18,6 @@ from addons.models import Addon
 from users.models import UserProfile
 from comm.models import (CommunicationNote, CommunicationThread,
                          CommunicationThreadCC, CommunicationThreadToken)
-from comm.utils import create_reply_tokens
 from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.base import CORSViewSet
