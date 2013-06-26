@@ -509,7 +509,8 @@ class TestCreatePackagedApp(BasePackagedAppTest):
             reverse('submit.app.details', args=[webapp.app_slug]))
 
     @mock.patch('mkt.webapps.models.Webapp.get_cached_manifest')
-    def test_app_from_uploaded_package(self, _mock):
+    @mock.patch('mkt.submit.forms.verify_app_domain')
+    def test_app_from_uploaded_package(self, _verify, _mock):
         addon = self.post_addon(
             data={'packaged': True, 'free_platforms': ['free-firefoxos']})
         eq_(addon.type, amo.ADDON_WEBAPP)
@@ -527,14 +528,19 @@ class TestCreatePackagedApp(BasePackagedAppTest):
             u'Azione aperta emozionante di sviluppo di fotoricettore!')
         eq_(addon.current_version.developer_name, 'Mozilla Labs')
 
-    @mock.patch('mkt.webapps.models.Webapp.get_cached_manifest')
-    @mock.patch('mkt.submit.forms.verify_app_domain')
-    def test_packaged_app_not_unique_by_domain(self, _verify, _mock):
-        self.post(
-            data={'packaged': True, 'free_platforms': ['free-firefoxos']})
         assert _verify.called, (
             '`verify_app_domain` should be called for packaged apps with '
             'origins.')
+
+    @mock.patch('mkt.webapps.models.Webapp.get_cached_manifest')
+    def test_packaged_app_not_unique(self, _mock):
+        Webapp.objects.create(is_packaged=True, app_domain='app://hy.fr')
+        res = self.post(
+            data={'packaged': True, 'free_platforms': ['free-firefoxos']},
+            expect_errors=True)
+        eq_(res.context['form'].errors, {
+            'upload': ['An app already exists on this domain; only one app '
+                       'per domain is allowed.']})
 
 
 class TestDetails(TestSubmit):

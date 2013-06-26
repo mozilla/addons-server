@@ -199,8 +199,8 @@ def validate_origin(origin):
     return urlunparse((parts.scheme, parts.netloc, '', '', '', ''))
 
 
-def verify_app_domain(manifest_url, exclude=None):
-    if waffle.switch_is_active('webapps-unique-by-domain'):
+def verify_app_domain(manifest_url, exclude=None, packaged=False):
+    if packaged or waffle.switch_is_active('webapps-unique-by-domain'):
         domain = Webapp.domain_from_url(manifest_url)
         qs = Webapp.objects.filter(app_domain=domain)
         if exclude:
