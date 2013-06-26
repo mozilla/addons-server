@@ -16,14 +16,14 @@ APP_FEATURES = OrderedDict([
     ('APPS', {
         'name': _lazy(u'App Management API'),
         'description': _lazy(u'The app requires the `navigator.mozApps` API '
-                             'to install and manage other apps.'),
+                             u'to install and manage other apps.'),
         'apis': ('navigator.mozApps',),
     }),
     ('PACKAGED_APPS', {
         'name': _lazy(u'Packaged Apps Install API'),
         'description': _lazy(
             u'The app requires the `navigator.mozApps.installPackage` API '
-            'to install other packaged apps.'),
+            u'to install other packaged apps.'),
         'apis': ('navigator.mozApps.installPackage',),
     }),
     ('PAY', {
@@ -34,13 +34,13 @@ APP_FEATURES = OrderedDict([
     ('ACTIVITY', {
         'name': _lazy(u'Web Activities'),
         'description': _lazy(u'The app requires Web Activities '
-                              '(the `MozActivity` API).'),
+                             u'(the `MozActivity` API).'),
         'apis': ('MozActivity',),
     }),
     ('LIGHT_EVENTS', {
         'name': _lazy(u'Ambient Light Sensor'),
         'description': _lazy(u'The app requires an ambient light sensor '
-                              '(the `ondevicelight` API).'),
+                             u'(the `ondevicelight` API).'),
         'apis': ('window.ondevicelight',),
     }),
     ('ARCHIVE', {
@@ -56,31 +56,31 @@ APP_FEATURES = OrderedDict([
     ('BLUETOOTH', {
         'name': u'Bluetooth',
         'description': _lazy(u'The app requires the `navigator.mozBluetooth` '
-                              'API.'),
+                             u'API.'),
         'apis': ('navigator.bluetooth', 'navigator.mozBluetooth'),
     }),
     ('CONTACTS', {
         'name': _lazy(u'Contacts'),
         'description': _lazy(u'The app requires the `navigator.mozContacts` '
-                              'API.'),
+                             u'API.'),
         'apis': ('navigator.contacts', 'navigator.mozContacts'),
     }),
     ('DEVICE_STORAGE', {
         'name': _lazy(u'Device Storage'),
         'description': _lazy(u'The app requires the Device Storage API to '
-                              'access files on the filesystem.'),
+                             u'access files on the filesystem.'),
         'apis': ('navigator.getDeviceStorage',),
     }),
     ('INDEXEDDB', {
         'name': u'IndexedDB',
         'description': _lazy(u'The app requires the platform to support '
-                              'IndexedDB.'),
+                             u'IndexedDB.'),
         'apis': ('navigator.indexedDB', 'navigator.mozIndexedDB'),
     }),
     ('GEOLOCATION', {
         'name': _lazy(u'Geolocation'),
         'description': _lazy(u'The app requires the platform to support the '
-                              '`navigator.geolocation` API.'),
+                             u'`navigator.geolocation` API.'),
         'apis': ('navigator.geolocation',),
     }),
     ('IDLE', {
@@ -91,20 +91,20 @@ APP_FEATURES = OrderedDict([
     ('NETWORK_INFO', {
         'name': _lazy(u'Network Information'),
         'description': _lazy(u'The app requires the ability to get '
-                              'information about the network connection (the '
-                              '`navigator.mozConnection` API).'),
+                             u'information about the network connection (the '
+                             u'`navigator.mozConnection` API).'),
         'apis': ('navigator.mozConnection', 'navigator.mozMobileConnection'),
     }),
     ('NETWORK_STATS', {
         'name': _lazy(u'Network Stats'),
         'description': _lazy(u'The app requires the '
-                              '`navigator.mozNetworkStats` API.'),
+                             u'`navigator.mozNetworkStats` API.'),
         'apis': ('navigator.networkStats', 'navigator.mozNetworkStats'),
     }),
     ('PROXIMITY', {
         'name': _lazy(u'Proximity'),
         'description': _lazy(u'The app requires a proximity sensor (the '
-                              '`ondeviceproximity` API).'),
+                             u'`ondeviceproximity` API).'),
         'apis': ('navigator.ondeviceproximity',),
     }),
     ('PUSH', {
@@ -115,7 +115,7 @@ APP_FEATURES = OrderedDict([
     ('ORIENTATION', {
         'name': _lazy(u'Screen Orientation'),
         'description': _lazy(u'The app requires the platform to support the '
-                              '`ondeviceorientation` API.'),
+                             u'`ondeviceorientation` API.'),
         'apis': ('ondeviceorientation',),
     }),
     ('TIME_CLOCK', {
@@ -126,13 +126,13 @@ APP_FEATURES = OrderedDict([
     ('VIBRATE', {
         'name': _lazy(u'Vibration'),
         'description': _lazy(u'The app requires the device to support '
-                              'vibration (the `navigator.vibrate` API).'),
+                             u'vibration (the `navigator.vibrate` API).'),
         'apis': ('navigator.vibrate',),
     }),
     ('FM', {
         'name': u'WebFM',
         'description': _lazy(u'The app requires the `navigator.mozFM` or '
-                              '`navigator.mozFMRadio` APIs.'),
+                             u'`navigator.mozFMRadio` APIs.'),
         'apis': ('navigator.mozFM', 'navigator.mozFMRadio'),
     }),
     ('SMS', {
@@ -143,69 +143,69 @@ APP_FEATURES = OrderedDict([
     ('TOUCH', {
         'name': _lazy(u'Touch'),
         'description': _lazy(u'The app requires the platform to support touch '
-                               'events. This option indicates that the app '
-                               'will not function when used with a mouse.'),
+                             u'events. This option indicates that the app '
+                             u'will not function when used with a mouse.'),
         'apis': ('window.ontouchstart',),
     }),
     ('QHD', {
         'name': _lazy(u'Smartphone-Sized Displays'),
         'description': _lazy(u'The app requires the platform to have a '
-                              'smartphone-sized display (having qHD '
-                              'resolution). This option indicates that the '
-                              'app will be unusable on larger displays '
-                              '(e.g., tablets, desktop).'),
+                             u'smartphone-sized display (having qHD '
+                             u'resolution). This option indicates that the '
+                             u'app will be unusable on larger displays '
+                             u'(e.g., tablets, desktop).'),
         'apis': (),
     }),
     ('MP3', {
         'name': u'MP3',
         'description': _lazy(u'The app requires that the platform can decode '
-                              'and play MP3 files.'),
+                             u'and play MP3 files.'),
         'apis': (),
     }),
     ('AUDIO', {
         'name': _lazy(u'Audio'),
         'description': _lazy(u'The app requires that the platform supports '
-                              'the HTML5 audio API.'),
+                             u'the HTML5 audio API.'),
         'apis': ('Audio',),
     }),
     ('WEBAUDIO', {
         'name': _lazy(u'Web Audio'),
         'description': _lazy(u'The app requires that the platform supports '
-                              'the Web Audio API (`window.AudioContext`).'),
+                             u'the Web Audio API (`window.AudioContext`).'),
         'apis': ('AudioContext', 'mozAudioContext', 'webkitAudioContext'),
     }),
     ('VIDEO_H264', {
         'name': u'H.264',
         'description': _lazy(u'The app requires that the platform can decode '
-                              'and play H.264 video files.'),
+                             u'and play H.264 video files.'),
         'apis': (),
     }),
     ('VIDEO_WEBM', {
         'name': u'WebM',
         'description': _lazy(u'The app requires that the platform can decode '
-                              'and play WebM video files (VP8).'),
+                             u'and play WebM video files (VP8).'),
         'apis': (),
     }),
     ('FULLSCREEN', {
         'name': _lazy(u'Full Screen'),
         'description': _lazy(u'The app requires the Full Screen API '
-                              '(`requestFullScreen` or '
-                              '`mozRequestFullScreen`).'),
+                             u'(`requestFullScreen` or '
+                             u'`mozRequestFullScreen`).'),
         'apis': ('document.documentElement.requestFullScreen',),
     }),
     ('GAMEPAD', {
         'name': _lazy(u'Gamepad'),
         'description': _lazy(u'The app requires the platform to support the '
-                              'gamepad API (`navigator.getGamepads`).'),
+                             u'gamepad API (`navigator.getGamepads`).'),
         'apis': ('navigator.getGamepad', 'navigator.mozGetGamepad'),
     }),
     ('QUOTA', {
         'name': _lazy(u'Quota Management'),
         'description': _lazy(u'The app requires the platform to allow '
-                              'persistent storage limit increases above the '
-                              'normally allowed limits for an app '
-                              '(`window.StorageInfo` or '
-                              '`window.persistentStorage`).'),
+                             u'persistent storage limit increases above the '
+                             u'normally allowed limits for an app '
+                             u'(`window.StorageInfo` or '
+                             u'`window.persistentStorage`).'),
         'apis': ('navigator.persistentStorage', 'navigator.temporaryStorage'),
     }),
 ])

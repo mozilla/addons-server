@@ -1291,7 +1291,8 @@ class TestAppFeatures(amo.tests.TestCase):
     def setUp(self):
         self.app = Addon.objects.get(pk=337141)
         self.flags = ('APPS', 'GEOLOCATION', 'PAY', 'SMS')
-        self.expected = [u'Apps', u'Geolocation', u'Web Payment', u'WebSMS']
+        self.expected = [u'App Management API', u'Geolocation', u'Web Payment',
+                         u'WebSMS']
         self.create_switch('buchets')
 
     def _flag(self):
