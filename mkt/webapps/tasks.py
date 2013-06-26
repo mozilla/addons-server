@@ -8,6 +8,7 @@ from collections import defaultdict
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
+from django.db.utils import IntegrityError
 from django.forms import ValidationError
 from django.template import Context, loader
 
@@ -496,17 +497,24 @@ def _collapse_summary(app):
                                             locale=summary.locale)
         except Translation.DoesNotExist:
             # We have a summary in this locale but not a description.
-            Translation.objects.create(
-                id=app.description_id, locale=summary.locale,
-                localized_string=summary.localized_string,
-                localized_string_clean=summary.localized_string_clean)
-            task_log.info('[Webapp:%s] Created description in locale %s with '
-                          'translation %s.' % (app.id, summary.locale,
-                                               app.description_id))
+            try:
+                Translation.objects.create(
+                    id=app.description_id, locale=summary.locale,
+                    localized_string=summary.localized_string,
+                    localized_string_clean=summary.localized_string_clean)
+                task_log.info('[Webapp:%s] Created description in locale %s '
+                              'with translation %s.' % (app.id, summary.locale,
+                                                        app.description_id))
+            except IntegrityError:
+                task_log.info('[Webapp:%s] Tried inserting a new description '
+                              'for translation %s and locale %s from summary '
+                              'but failed.' % (app.id, summary.id,
+                                               summary.locale))
             continue
 
         # If summary is a truncated description, delete the summary.
-        if descr.localized_string.startswith(summary.localized_string):
+        if (descr.localized_string and
+            descr.localized_string.startswith(summary.localized_string)):
             task_log.info('[Webapp:%s] Description starts with summary for '
                           'translation %s and locale %s.' % (
                               app.id, summary.id, summary.locale))
