@@ -476,11 +476,11 @@ def _collapse_summary(app):
     task_log.info('[Webapp:%s] Collapsing summary.' % app.id)
 
     # No prior summary so do nothing.
-    if app.summary is None:
+    if app.summary_id is None:
         return
 
     # Handle no prior description.
-    if app.description is None:
+    if app.description_id is None:
         # These should be translation ids and copy easily.
         app.description_id = app.summary_id
         app.summary_id = None
