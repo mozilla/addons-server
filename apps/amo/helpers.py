@@ -18,6 +18,7 @@ from tower import ugettext as _, strip_whitespace
 
 import amo
 from amo import utils, urlresolvers
+from constants.licenses import PERSONA_LICENSES_IDS
 from translations.query import order_by_translation
 from translations.helpers import truncate
 from versions.models import License
@@ -386,10 +387,15 @@ def license_link(license):
     """Link to a code license, including icon where applicable."""
     # If passed in an integer, try to look up the License.
     if isinstance(license, (long, int)):
-        license = License.objects.filter(id=license)
-        if not license.exists():
-            return ''
-        license = license[0]
+        if license in PERSONA_LICENSES_IDS:
+            # Grab built-in license.
+            license = PERSONA_LICENSES_IDS[license]
+        else:
+            # Grab custom license.
+            license = License.objects.filter(id=license)
+            if not license.exists():
+                return ''
+            license = license[0]
     elif not license:
         return ''
 
