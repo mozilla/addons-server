@@ -179,7 +179,7 @@ class RestOAuthAuthentication(BaseAuthentication, OAuthAuthentication):
 
     def authenticate(self, request):
         result = self.is_authenticated(request)
-        if (isinstance(result, http.HttpUnauthorized)
+        if (not result or isinstance(result, http.HttpUnauthorized)
             or not request.user):
             return None
         return (request.user, None)
