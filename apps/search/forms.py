@@ -139,7 +139,7 @@ class ESSearchForm(forms.Form):
 
     def clean_sort(self):
         sort = self.cleaned_data.get('sort')
-        return [sort] if sort in dict(self.sort_choices) else []
+        return sort if sort in dict(self.sort_choices) else None
 
     def clean_cat(self):
         cat = self.cleaned_data.get('cat')
