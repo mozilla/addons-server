@@ -154,6 +154,11 @@ class TestWebapp(amo.tests.TestCase):
         webapp = Webapp(manifest_url=url)
         eq_(webapp.origin, 'http://www.xx.com:4000')
 
+    def test_get_packaged_origin(self):
+        webapp = Webapp(app_domain='app://foo.com', is_packaged=True,
+                        manifest_url='')
+        eq_(webapp.origin, 'app://foo.com')
+
     def test_reviewed(self):
         assert not Webapp().is_unreviewed()
 

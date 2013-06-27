@@ -135,13 +135,13 @@ class TestReceipt(amo.tests.TestCase):
         assert receipt['exp'] > (calendar.timegm(time.gmtime()) +
                                  (60 * 60 * 24) - TEST_LEEWAY)
 
-    @mock.patch.object(settings, 'SITE_URL', 'https://foo.com')
     def test_receipt_packaged(self):
-        webapp = addon_factory(type=amo.ADDON_WEBAPP, is_packaged=True)
+        webapp = addon_factory(type=amo.ADDON_WEBAPP, is_packaged=True,
+                               app_domain='app://foo.com')
         user = UserProfile.objects.get(pk=5497308)
         ins = self.create_install(user, webapp)
         receipt = self.for_user(ins, 'developer')
-        eq_(receipt['product']['url'], settings.SITE_URL)
+        eq_(receipt['product']['url'], 'app://foo.com')
 
     @mock.patch.object(settings, 'SIGNING_SERVER_ACTIVE', True)
     @mock.patch('mkt.receipts.utils.sign')

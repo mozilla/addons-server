@@ -313,6 +313,9 @@ class Webapp(Addon):
 
     @property
     def origin(self):
+        if self.is_packaged:
+            return self.app_domain
+
         parsed = urlparse.urlparse(self.get_manifest_url())
         return '%s://%s' % (parsed.scheme, parsed.netloc)
 

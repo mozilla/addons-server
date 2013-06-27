@@ -18,11 +18,11 @@ def create_receipt(installed, flavour=None):
            'Invalid flavour: %s' % flavour)
 
     webapp = installed.addon
-    origin = (settings.SITE_URL if webapp.is_packaged else webapp.origin)
     time_ = calendar.timegm(time.gmtime())
     typ = 'purchase-receipt'
 
-    product = {'url': origin, 'storedata': urlencode({'id': int(webapp.pk)})}
+    product = {'storedata': urlencode({'id': int(webapp.pk)}),
+               'url': webapp.origin}
 
     # Generate different receipts for reviewers or developers.
     expiry = time_ + settings.WEBAPPS_RECEIPT_EXPIRY_SECONDS
