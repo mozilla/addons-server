@@ -15,7 +15,8 @@ from addons.models import Category
 from amo.helpers import absolutify
 
 import mkt
-from mkt.api.authentication import OptionalOAuthAuthentication
+from mkt.api.authentication import (SharedSecretAuthentication,
+                                    OptionalOAuthAuthentication)
 from mkt.api.base import CORSResource, http_error, MarketplaceResource
 from mkt.api.resources import AppResource
 from mkt.constants.features import FeatureProfile
@@ -33,7 +34,8 @@ class SearchResource(CORSResource, MarketplaceResource):
         detail_allowed_methods = []
         list_allowed_methods = ['get']
         authorization = ReadOnlyAuthorization()
-        authentication = OptionalOAuthAuthentication()
+        authentication = (SharedSecretAuthentication(),
+                          OptionalOAuthAuthentication())
         slug_lookup = None
         # Override CacheThrottle with a no-op.
         throttle = BaseThrottle()

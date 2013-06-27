@@ -30,7 +30,8 @@ from files.models import Platform
 from lib.metrics import record_action
 from market.models import AddonPremium, Price
 
-from mkt.api.authentication import OptionalOAuthAuthentication
+from mkt.api.authentication import (SharedSecretAuthentication,
+                                    OptionalOAuthAuthentication)
 from mkt.api.authorization import AppOwnerAuthorization, OwnerAuthorization
 from mkt.api.base import (CORSResource, CORSViewSet, GenericObject,
                           http_error, MarketplaceModelResource,
@@ -64,7 +65,8 @@ class AppResource(CORSResource, MarketplaceModelResource):
         list_allowed_methods = ['get', 'post']
         detail_allowed_methods = ['get', 'put', 'delete']
         always_return_data = True
-        authentication = OptionalOAuthAuthentication()
+        authentication = (SharedSecretAuthentication(),
+                          OptionalOAuthAuthentication())
         authorization = AppOwnerAuthorization()
         resource_name = 'app'
         serializer = Serializer(formats=['json'])

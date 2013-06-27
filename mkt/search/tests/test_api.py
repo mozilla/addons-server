@@ -97,6 +97,19 @@ class TestApi(BaseOAuth, ESTestCase):
         objs = res.json['objects']
         eq_(len(objs), 1)
 
+    def test_user_info_with_shared_secret(self):
+        user = UserProfile.objects.all()[0]
+        def fakeauth(auth, req, **kw):
+            req.amo_user = user
+            return True
+        with patch('mkt.api.authentication.SharedSecretAuthentication'
+                   '.is_authenticated', fakeauth):
+            with self.settings(SITE_URL=''):
+                self.create()
+            res = self.client.get(self.url + ({'cat': self.category.pk},))
+            obj = res.json['objects'][0]
+            assert 'user' in obj
+
     def test_dehydrate(self):
         with self.settings(SITE_URL=''):
             self.create()

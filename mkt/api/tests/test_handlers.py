@@ -602,7 +602,6 @@ class TestAppDetail(BaseOAuth, AMOPaths):
         res = self.client.get(self.get_url)
         eq_(res.status_code, 404)
 
-
     def test_nonregion(self):
         AddonExcludedRegion.objects.create(addon_id=337141, region=regions.BR.id)
         res = self.client.get(self.get_url, data={'region': 'br'})
@@ -621,6 +620,14 @@ class TestAppDetail(BaseOAuth, AMOPaths):
         data = json.loads(res.content)
         eq_(app.get_manifest_url(), data['manifest_url'])
 
+    def test_user_info_with_shared_secret(self):
+        def fakeauth(auth, req, **kw):
+            req.amo_user = UserProfile.objects.get(id=self.user.pk)
+            return True
+        with patch('mkt.api.authentication.SharedSecretAuthentication'
+                   '.is_authenticated', fakeauth):
+            res = self.anon.get(self.get_url)
+        assert 'user' in res.json
 
 class TestCategoryHandler(RestOAuth):
 
