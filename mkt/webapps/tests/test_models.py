@@ -784,6 +784,13 @@ class TestDomainFromURL(unittest.TestCase):
     def test_empty(self):
         Webapp.domain_from_url('')
 
+    def test_empty_or_none(self):
+        eq_(Webapp.domain_from_url(None, allow_none=True), None)
+
+    @raises(ValueError)
+    def test_no_scheme(self):
+        Webapp.domain_from_url('f.c')
+
 
 class TestTransformer(amo.tests.TestCase):
     fixtures = ['webapps/337141-steamcube']

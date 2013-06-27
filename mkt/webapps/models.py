@@ -291,10 +291,14 @@ class Webapp(Addon):
             return 0
 
     @staticmethod
-    def domain_from_url(url):
+    def domain_from_url(url, allow_none=False):
         if not url:
+            if allow_none:
+                return
             raise ValueError('URL was empty')
         pieces = urlparse.urlparse(url)
+        if not pieces.netloc:
+            raise ValueError('No netloc in URL: {0}'.format(url))
         return '%s://%s' % (pieces.scheme, pieces.netloc.lower())
 
     @property

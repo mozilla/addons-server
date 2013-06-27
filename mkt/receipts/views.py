@@ -104,7 +104,7 @@ def _record(request, addon):
 
     amo.log(amo.LOG.INSTALL_ADDON, addon)
     record_action('install', request, {
-        'app-domain': addon.domain_from_url(addon.origin),
+        'app-domain': addon.domain_from_url(addon.origin, allow_none=True),
         'app-id': addon.pk,
         'anonymous': request.user.is_anonymous(),
     })

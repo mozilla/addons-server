@@ -75,12 +75,11 @@ class TestAPI(BaseOAuth):
     @mock.patch('mkt.receipts.api.receipt_cef.log')
     def test_record_metrics_packaged_app(self, cef, record_action):
         # Mimic packaged app.
-        self.addon.update(is_packaged=True, manifest_url=None)
+        self.addon.update(is_packaged=True, manifest_url=None, app_domain=None)
         res = self.post()
         eq_(res.status_code, 201)
         record_action.assert_called_with('install', mock.ANY, {
-            'app-domain': settings.SITE_URL,
-            'app-id': self.addon.pk, 'anonymous': False})
+            'app-domain': None, 'app-id': self.addon.pk, 'anonymous': False})
 
     @mock.patch('mkt.receipts.views.receipt_cef.log')
     def test_log_metrics(self, cef):

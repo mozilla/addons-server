@@ -45,7 +45,8 @@ class ReceiptResource(CORSResource, MarketplaceResource):
         bundle.data['receipt'] = self.handle(bundle, request=request, **kwargs)
         amo.log(amo.LOG.INSTALL_ADDON, bundle.obj)
         record_action('install', request, {
-            'app-domain': bundle.obj.domain_from_url(bundle.obj.origin),
+            'app-domain': bundle.obj.domain_from_url(bundle.obj.origin,
+                                                     allow_none=True),
             'app-id': bundle.obj.pk,
             'anonymous': request.user.is_anonymous(),
         })
