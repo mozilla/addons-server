@@ -260,18 +260,16 @@ def update_with_reviewer_data(bundle, using_es=False):
     from editors.models import EscalationQueue
 
     if acl.action_allowed(bundle.request, 'Apps', 'Review'):
-        # Try to get bundle.obj._id first if it's coming from elasticsearch.
+        # Try bundle.obj._id first if it's coming from elasticsearch.
         # Fallback to database results using `.id`.
         addon_id = getattr(bundle.obj, '_id', bundle.obj.id)
-        version = Version.objects.filter(addon_id=addon_id).latest()
-        escalated = EscalationQueue.objects.filter(
-            addon_id=addon_id).exists()
 
         if using_es and hasattr(bundle.obj, 'latest_version'):
             # If we know we are using elasticsearch and we have latest_version,
             # then we can directly return it in the results.
             bundle.data['latest_version'] = bundle.obj.latest_version
         else:
+            version = Version.objects.filter(addon_id=addon_id).latest()
             try:
                 latest_version_status = version.statuses[0][1]
             except IndexError:
@@ -279,12 +277,15 @@ def update_with_reviewer_data(bundle, using_es=False):
             bundle.data['latest_version'] = {
                 'status': latest_version_status,
                 'is_privileged': version.is_privileged,
+                'has_editor_comment': version.has_editor_comment,
+                'has_info_request': version.has_info_request,
             }
 
-        bundle.data['reviewer_flags'] = {
-            'has_comment': version.has_editor_comment,
-            'has_info_request': version.has_info_request,
-            'is_escalated': escalated,
-        }
+        if using_es and hasattr(bundle.obj, 'is_escalated'):
+            bundle.data['is_escalated'] = bundle.obj.is_escalated
+        else:
+            escalated = EscalationQueue.objects.filter(
+                addon_id=addon_id).exists()
+            bundle.data['is_escalated'] = escalated
 
     return bundle

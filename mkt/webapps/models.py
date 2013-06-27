@@ -988,6 +988,7 @@ class WebappIndexer(MappingType, Indexable):
                         }
                     },
                     'is_disabled': {'type': 'boolean'},
+                    'is_escalated': {'type': 'boolean'},
                     'last_updated': {'format': 'dateOptionalTime',
                                      'type': 'date'},
                     'latest_version': {
@@ -995,6 +996,8 @@ class WebappIndexer(MappingType, Indexable):
                         'properties': {
                             'status': {'type': 'byte'},
                             'is_privileged': {'type': 'boolean'},
+                            'has_editor_comment': {'type': 'boolean'},
+                            'has_info_request': {'type': 'boolean'},
                         },
                     },
                     'manifest_url': {'type': 'string',
@@ -1072,6 +1075,7 @@ class WebappIndexer(MappingType, Indexable):
         version = obj.current_version
         features = (version.features.to_dict()
                     if version else AppFeatures().to_dict())
+        is_escalated = obj.escalationqueue_set.exists()
 
         try:
             status = latest_version.statuses[0][1] if latest_version else None
@@ -1122,15 +1126,20 @@ class WebappIndexer(MappingType, Indexable):
         d['homepage'] = unicode(obj.homepage) if obj.homepage else ''
         d['icons'] = [{'size': icon_size, 'url': obj.get_icon_url(icon_size)}
                       for icon_size in (16, 48, 64, 128)]
+        d['is_escalated'] = is_escalated
         if latest_version:
             d['latest_version'] = {
                 'status': status,
                 'is_privileged': latest_version.is_privileged,
+                'has_editor_comment': latest_version.has_editor_comment,
+                'has_info_request': latest_version.has_info_request,
             }
         else:
             d['latest_version'] = {
                 'status': None,
                 'is_privileged': None,
+                'has_editor_comment': None,
+                'has_info_request': None,
             }
         d['manifest_url'] = obj.get_manifest_url()
         d['name'] = list(set(string for _, string

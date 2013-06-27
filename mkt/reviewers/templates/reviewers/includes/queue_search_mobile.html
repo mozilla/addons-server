@@ -16,8 +16,9 @@
 
       <div class="advanced-search c hidden">
         <!--Switch/single-checkbox fields-->
-        {# for elem in ('admin_review', 'has_editor_comment',
-                        'has_info_request') %}
+        {# TODO: add back admin_review ? #}
+        {% for elem in ('is_privileged', 'has_editor_comment',
+                        'has_info_request', 'is_escalated') %}
           <div class="form-elem c">
             {{ search_form[elem].label_tag() }}
             <label>
@@ -26,7 +27,7 @@
             </label>
           </div>
           {{ search_form[elem].errors }}
-        {% endfor #}
+        {% endfor %}
 
         <!--Value selector fields.-->
         {% for field in ('status', 'app_type', 'device', 'premium_types') %}

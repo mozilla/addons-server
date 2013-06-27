@@ -5,7 +5,7 @@ from tower import ugettext_lazy as _lazy
 from addons.models import Category
 import amo
 
-from mkt.api.forms import SluggableModelChoiceField
+from mkt.api.forms import CustomNullBooleanSelect, SluggableModelChoiceField
 
 
 ADDON_CHOICES = [(k, k) for k in amo.MKT_ADDON_TYPES_API.keys()]
@@ -105,7 +105,20 @@ class ApiSearchForm(forms.Form):
                                  choices=APP_TYPE_CHOICES)
     manifest_url = forms.CharField(required=False, label=_lazy('Manifest URL'))
     is_privileged = forms.NullBooleanField(required=False,
-                                           label=_lazy(u'Privileged App'))
+                                           label=_lazy(u'Privileged App'),
+                                           widget=CustomNullBooleanSelect)
+    has_editor_comment = forms.NullBooleanField(
+        required=False,
+        label=_lazy(u'Contains Editor Comment'),
+        widget=CustomNullBooleanSelect)
+    has_info_request = forms.NullBooleanField(
+        required=False,
+        label=_lazy(u'More Information Requested'),
+        widget=CustomNullBooleanSelect)
+    is_escalated = forms.NullBooleanField(
+        required=False,
+        label=_lazy(u'Escalated'),
+        widget=CustomNullBooleanSelect)
 
     sort = forms.MultipleChoiceField(required=False, choices=LISTING_SORT_CHOICES)
     # TODO: Drop this back to a reasonable value when we do pagination.

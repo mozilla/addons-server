@@ -13,14 +13,12 @@
 
       <div class="advanced-search desktop c hidden">
         <div class="form-elems c">
-          {{ form_row(search_form, ('status', 'app_type', 'is_privileged',
-                                    'device', 'premium_types')) }}
-          {# TODO: Add back 'admin_review', 'has_editor_comment',
-             'has_info_request', 'waiting_time_days' when they are in
-             elasticsearch. #}
-          {# form_row(search_form, ('admin_review', 'has_editor_comment',
-                                    'has_info_request', 'waiting_time_days',
-                                    'app_type')) #}
+          {{ form_row(search_form, ('status', 'app_type', 'device',
+                                    'premium_types')) }}
+          {# TODO: Add back 'admin_review', 'waiting_time_days' when they are
+             in elasticsearch. #}
+          {{ form_row(search_form, ('is_privileged', 'has_editor_comment',
+                                    'has_info_request', 'is_escalated')) }}
         </div>
       </div>
       {{ search_form.limit }}

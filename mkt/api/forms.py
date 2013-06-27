@@ -6,6 +6,7 @@ from django import forms
 
 import happyforms
 from tastypie.validation import CleanedDataFormValidation
+from tower import ugettext_lazy as _lazy
 
 import amo
 from addons.models import Addon, AddonDeviceType, Category
@@ -219,3 +220,47 @@ class StatusForm(happyforms.ModelForm):
             if not valid:
                 raise forms.ValidationError(reasons)
         return amo.STATUS_CHOICES_API_LOOKUP[requested]
+
+
+class CustomNullBooleanSelect(forms.Select):
+    """A custom NullBooleanSelect, that uses true/false/'' values instead of
+    1/2/3. See also https://code.djangoproject.com/ticket/17210."""
+
+    def __init__(self, attrs=None):
+        choices = ((u'', _lazy('Unknown')),
+                   (u'true', _lazy('Yes')),
+                   (u'false', _lazy('No')))
+        super(CustomNullBooleanSelect, self).__init__(attrs, choices)
+
+    def render(self, name, value, attrs=None, choices=()):
+        try:
+            value = {
+                True: u'true',
+                False: u'false',
+                u'true': u'true',
+                u'false': u'false'
+            }[value]
+        except KeyError:
+            value = u''
+        return super(CustomNullBooleanSelect, self).render(name, value, attrs,
+                                                           choices)
+
+    def value_from_datadict(self, data, files, name):
+        value = data.get(name, None)
+        return {
+            u'true': True,
+            True: True,
+            'True': True,
+            u'false': False,
+            'False': False,
+            False: False
+        }.get(value, None)
+
+    def _has_changed(self, initial, data):
+        # For a CustomNullBooleanSelect, None (unknown) and False (No)
+        # are *not* the same.
+        if initial is not None:
+            initial = bool(initial)
+        if data is not None:
+            data = bool(data)
+        return initial != data

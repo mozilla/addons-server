@@ -276,14 +276,62 @@ class TestApi(BaseOAuth, ESTestCase):
         res = self.client.get(self.url + ({'is_privileged': True},))
         eq_(res.status_code, 401)
         eq_(json.loads(res.content)['reason'],
-            'Unauthorized to filter by privileged.')
+            'Unauthorized to filter by private fields.')
 
         res = self.client.get(self.url + ({'is_privileged': False},))
         eq_(res.status_code, 401)
         eq_(json.loads(res.content)['reason'],
-            'Unauthorized to filter by privileged.')
+            'Unauthorized to filter by private fields.')
 
         res = self.client.get(self.url + ({'is_privileged': None},))
+        eq_(res.status_code, 200)
+        obj = res.json['objects'][0]
+        eq_(obj['slug'], self.webapp.app_slug)
+
+    def test_has_editor_comment_anon(self):
+        res = self.client.get(self.url + ({'has_editor_comment': True},))
+        eq_(res.status_code, 401)
+        eq_(json.loads(res.content)['reason'],
+            'Unauthorized to filter by private fields.')
+
+        res = self.client.get(self.url + ({'has_editor_comment': False},))
+        eq_(res.status_code, 401)
+        eq_(json.loads(res.content)['reason'],
+            'Unauthorized to filter by private fields.')
+
+        res = self.client.get(self.url + ({'has_editor_comment': None},))
+        eq_(res.status_code, 200)
+        obj = res.json['objects'][0]
+        eq_(obj['slug'], self.webapp.app_slug)
+
+    def test_is_esclated_anon(self):
+        res = self.client.get(self.url + ({'is_escalated': True},))
+        eq_(res.status_code, 401)
+        eq_(json.loads(res.content)['reason'],
+            'Unauthorized to filter by private fields.')
+
+        res = self.client.get(self.url + ({'is_escalated': False},))
+        eq_(res.status_code, 401)
+        eq_(json.loads(res.content)['reason'],
+            'Unauthorized to filter by private fields.')
+
+        res = self.client.get(self.url + ({'is_escalated': None},))
+        eq_(res.status_code, 200)
+        obj = res.json['objects'][0]
+        eq_(obj['slug'], self.webapp.app_slug)
+
+    def test_has_info_request_anon(self):
+        res = self.client.get(self.url + ({'has_info_request': True},))
+        eq_(res.status_code, 401)
+        eq_(json.loads(res.content)['reason'],
+            'Unauthorized to filter by private fields.')
+
+        res = self.client.get(self.url + ({'has_info_request': False},))
+        eq_(res.status_code, 401)
+        eq_(json.loads(res.content)['reason'],
+            'Unauthorized to filter by private fields.')
+
+        res = self.client.get(self.url + ({'has_info_request': None},))
         eq_(res.status_code, 200)
         obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
@@ -482,6 +530,54 @@ class TestApiReviewer(BaseOAuth, ESTestCase):
         obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
 
+    def test_is_escalated_reviewer(self):
+        res = self.client.get(self.url + ({'is_escalated': True},))
+        eq_(res.status_code, 200)
+        objs = res.json['objects']
+        eq_(len(objs), 0)
+
+        res = self.client.get(self.url + ({'is_escalated': False},))
+        eq_(res.status_code, 200)
+        obj = res.json['objects'][0]
+        eq_(obj['slug'], self.webapp.app_slug)
+
+        res = self.client.get(self.url + ({'is_escalated': None},))
+        eq_(res.status_code, 200)
+        obj = res.json['objects'][0]
+        eq_(obj['slug'], self.webapp.app_slug)
+
+    def test_has_editors_comment_reviewer(self):
+        res = self.client.get(self.url + ({'has_editor_comment': True},))
+        eq_(res.status_code, 200)
+        objs = res.json['objects']
+        eq_(len(objs), 0)
+
+        res = self.client.get(self.url + ({'has_editor_comment': False},))
+        eq_(res.status_code, 200)
+        obj = res.json['objects'][0]
+        eq_(obj['slug'], self.webapp.app_slug)
+
+        res = self.client.get(self.url + ({'has_editor_comment': None},))
+        eq_(res.status_code, 200)
+        obj = res.json['objects'][0]
+        eq_(obj['slug'], self.webapp.app_slug)
+
+    def test_has_info_request_reviewer(self):
+        res = self.client.get(self.url + ({'has_info_request': True},))
+        eq_(res.status_code, 200)
+        objs = res.json['objects']
+        eq_(len(objs), 0)
+
+        res = self.client.get(self.url + ({'has_info_request': False},))
+        eq_(res.status_code, 200)
+        obj = res.json['objects'][0]
+        eq_(obj['slug'], self.webapp.app_slug)
+
+        res = self.client.get(self.url + ({'has_info_request': None},))
+        eq_(res.status_code, 200)
+        obj = res.json['objects'][0]
+        eq_(obj['slug'], self.webapp.app_slug)
+
     def test_status_value_packaged(self):
         # When packaged we also include the latest version status.
         self.webapp.update(is_packaged=True)
@@ -509,12 +605,12 @@ class TestApiReviewer(BaseOAuth, ESTestCase):
 
     @patch('versions.models.Version.is_privileged', True)
     def test_extra_attributes(self):
-        # Save the webapp to make sure our mocked Version is used.
-        self.webapp.save()
         version = self.webapp.versions.latest()
         version.has_editor_comment = True
         version.has_info_request = True
         version.save()
+
+        self.webapp.save()
 
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
@@ -523,10 +619,11 @@ class TestApiReviewer(BaseOAuth, ESTestCase):
         # These only exist if requested by a reviewer.
         eq_(obj['latest_version']['status'], amo.STATUS_PUBLIC)
         eq_(obj['latest_version']['is_privileged'], True)
-        eq_(obj['reviewer_flags']['has_comment'], True)
-        eq_(obj['reviewer_flags']['has_info_request'], True)
-        eq_(obj['reviewer_flags']['is_escalated'], False)
+        eq_(obj['latest_version']['has_editor_comment'], True)
+        eq_(obj['latest_version']['has_info_request'], True)
+        eq_(obj['is_escalated'], False)
 
+    @patch('versions.models.Version.is_privileged', True)
     def test_extra_attributes_no_waffle(self):
         # Make sure these still exist when 'search-api-es' is off.
         # TODO: Remove this test when we remove that switch.
@@ -536,15 +633,19 @@ class TestApiReviewer(BaseOAuth, ESTestCase):
         version.has_info_request = True
         version.save()
 
+        self.webapp.save()
+        self.refresh('webapp')
+
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
         obj = res.json['objects'][0]
 
         # These only exist if requested by a reviewer.
         eq_(obj['latest_version']['status'], amo.STATUS_PUBLIC)
-        eq_(obj['latest_version']['is_privileged'], False)
-        eq_(obj['reviewer_flags']['has_info_request'], True)
-        eq_(obj['reviewer_flags']['is_escalated'], False)
+        eq_(obj['latest_version']['is_privileged'], True)
+        eq_(obj['latest_version']['has_editor_comment'], True)
+        eq_(obj['latest_version']['has_info_request'], True)
+        eq_(obj['is_escalated'], False)
 
 
 class TestFeaturedNoCategories(BaseOAuth, ESTestCase):

@@ -74,13 +74,17 @@ class SearchResource(CORSResource, MarketplaceResource):
                 raise http_error(http.HttpUnauthorized,
                                  _('Unauthorized to filter by status.'))
 
-        # Only allow reviewers and admin to search by is_privileged, because it
-        # depends on the latest_version, which may or may not be public yet.
-        is_privileged = form_data.get('is_privileged', None)
-        if is_privileged is not None and not (is_admin or is_reviewer):
-            return http.HttpUnauthorized(
-                content=json.dumps(
-                    {'reason': _('Unauthorized to filter by privileged.')}))
+        # Only allow reviewers and admin to search by private fields or fields
+        # depending on the latest_version (which may or may not be public yet).
+        restricted_data = [form_data.get('is_privileged', None),
+                           form_data.get('has_editor_comment', None),
+                           form_data.get('has_info_request', None),
+                           form_data.get('is_escalated', None)]
+
+        if not (is_admin or is_reviewer) and any(f is not None
+                                                 for f in restricted_data):
+            return http.HttpUnauthorized(content=json.dumps(
+                {'reason': _('Unauthorized to filter by private fields.')}))
 
         # Filter by device feature profile.
         profile = None

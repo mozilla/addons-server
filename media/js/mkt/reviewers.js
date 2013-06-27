@@ -96,16 +96,18 @@ function buildAppResultRow(app, review_url, statuses) {
     if (app.is_packaged) {
         flags.push({suffix: 'packaged-app', title: gettext('Packaged App')});
     }
-    if (app.latest_version.is_privileged) {
-        flags.push({suffix: 'privileged-app', title: gettext('Privileged App')});
+    if (app.latest_version) {
+        if (app.latest_version.is_privileged) {
+            flags.push({suffix: 'privileged-app', title: gettext('Privileged App')});
+        }
+        if (app.latest_version.has_info_request) {
+            flags.push({suffix: 'info', title: gettext('More Information Requested')});
+        }
+        if (app.latest_version.has_editor_comment) {
+            flags.push({suffix: 'editor', title: gettext('Contains Editor Comment')});
+        }
     }
-    if (app.reviewer_flags.has_info_request) {
-        flags.push({suffix: 'info', title: gettext('More Information Requested')});
-    }
-    if (app.reviewer_flags.has_comment) {
-        flags.push({suffix: 'editor', title: gettext('Contains Editor Comment')});
-    }
-    if (app.reviewer_flags.is_escalated) {
+    if (app.is_escalated) {
         flags.push({suffix: 'escalated', title: gettext('Escalated')});
     }
     app.flags = flags;

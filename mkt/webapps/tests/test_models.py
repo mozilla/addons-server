@@ -27,7 +27,7 @@ from amo.helpers import absolutify
 from amo.tests import app_factory, version_factory
 from amo.urlresolvers import reverse
 from constants.applications import DEVICE_TYPES
-from editors.models import RereviewQueue
+from editors.models import RereviewQueue, EscalationQueue
 from files.models import File
 from files.tests.test_models import UploadTest as BaseUploadTest
 from files.utils import WebAppParser
@@ -1162,6 +1162,10 @@ class TestWebappIndexer(amo.tests.TestCase):
         eq_(doc['name'], list(
             set(s for _, s in obj.translations[obj.name_id])))
         eq_(doc['status'], obj.status)
+        eq_(doc['is_escalated'], False)
+        eq_(doc['latest_version']['status'], amo.STATUS_PUBLIC)
+        eq_(doc['latest_version']['has_editor_comment'], False)
+        eq_(doc['latest_version']['has_info_request'], False)
 
     def test_extract_category(self):
         cat = Category.objects.create(name='c', type=amo.ADDON_WEBAPP)
@@ -1197,6 +1201,21 @@ class TestWebappIndexer(amo.tests.TestCase):
         self.app.current_version.update(supported_locales=locales)
         obj, doc = self._get_doc()
         self.assertSetEqual(doc['supported_locales'], set(locales.split(',')))
+
+    def test_extract_latest_version(self):
+        amo.tests.version_factory(addon=self.app, version='43.0',
+                                  has_editor_comment=True,
+                                  has_info_request=True,
+                                  file_kw=dict(status=amo.STATUS_REJECTED))
+        obj, doc = self._get_doc()
+        eq_(doc['latest_version']['status'], amo.STATUS_REJECTED)
+        eq_(doc['latest_version']['has_editor_comment'], True)
+        eq_(doc['latest_version']['has_info_request'], True)
+
+    def test_extract_is_escalated(self):
+        EscalationQueue.objects.create(addon=self.app)
+        obj, doc = self._get_doc()
+        eq_(doc['is_escalated'], True)
 
 
 class TestManifestUpload(BaseUploadTest, amo.tests.TestCase):
