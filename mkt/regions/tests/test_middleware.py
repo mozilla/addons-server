@@ -36,7 +36,6 @@ class TestRegionMiddleware(amo.tests.TestCase):
     def test_accept_good_region(self):
         for region, region_cls in mkt.regions.REGIONS_CHOICES:
             r = self.client.get('/robots.txt?region=%s' % region)
-            eq_(r.cookies['region'].value, region)
             eq_(r.context['request'].REGION, region_cls)
 
     def test_already_have_cookie_for_good_region(self):
@@ -58,7 +57,6 @@ class TestRegionMiddleware(amo.tests.TestCase):
 
             r = self.client.get('/robots.txt?region=%s' % region,
                                 HTTP_ACCEPT_LANGUAGE='fr')
-            eq_(r.cookies['region'].value, 'worldwide')
             eq_(r.context['request'].REGION, mkt.regions.WORLDWIDE)
 
     @mock.patch('mkt.regions.middleware.RegionMiddleware.region_from_request')
@@ -86,10 +84,6 @@ class TestRegionMiddleware(amo.tests.TestCase):
 
             r = self.client.get('/robots.txt', HTTP_ACCEPT_LANGUAGE=locale)
 
-            got = r.cookies['region'].value
-            eq_(got, expected,
-                'For %r: expected %r but got %r' % (locale, expected, got))
-
             got = r.context['request'].REGION.slug
             eq_(got, expected,
                 'For %r: expected %r but got %r' % (locale, expected, got))
@@ -99,7 +93,6 @@ class TestRegionMiddleware(amo.tests.TestCase):
         self.client.cookies['lang'] = 'pt-BR'
         self.client.cookies['region'] = 'br'
         r = self.client.get('/robots.txt?region=us')
-        eq_(r.cookies['region'].value, 'us')
         eq_(r.context['request'].REGION, mkt.regions.REGIONS_DICT['us'])
         assert not mock_rfr.called
 
@@ -117,7 +110,7 @@ class TestRegionMiddleware(amo.tests.TestCase):
         # Note: This may be problematic should we ever offer
         # apps in US specific derivation of SanskritRight.
         r = self.client.get('/robots.txt', HTTP_ACCEPT_LANGUAGE='sa-US')
-        eq_(r.cookies['region'].value, 'worldwide')
+        eq_(r.context['request'].REGION, mkt.regions.REGIONS_DICT['worldwide'])
 
     @mock.patch('mkt.regions.middleware.GeoIP.lookup')
     @mock.patch.object(settings, 'GEOIP_DEFAULT_VAL', 'worldwide')
@@ -125,14 +118,14 @@ class TestRegionMiddleware(amo.tests.TestCase):
         lang = 'br'
         mock_lookup.return_value = lang
         r = self.client.get('/robots.txt', HTTP_ACCEPT_LANGUAGE='sa-US')
-        eq_(r.cookies['region'].value, lang)
+        eq_(r.context['request'].REGION, mkt.regions.REGIONS_DICT[lang])
 
     @mock.patch('mkt.regions.middleware.GeoIP.lookup')
     @mock.patch.object(settings, 'GEOIP_DEFAULT_VAL', 'worldwide')
     def test_geoip_lookup_unavailable_fall_to_accept_lang(self, mock_lookup):
         mock_lookup.return_value = 'worldwide'
         r = self.client.get('/robots.txt', HTTP_ACCEPT_LANGUAGE='pt-BR')
-        eq_(r.cookies['region'].value, 'br')
+        eq_(r.context['request'].REGION, mkt.regions.REGIONS_DICT['br'])
 
     @mock.patch('mkt.regions.middleware.GeoIP.lookup')
     @mock.patch.object(settings, 'GEOIP_DEFAULT_VAL', 'worldwide')
@@ -140,13 +133,14 @@ class TestRegionMiddleware(amo.tests.TestCase):
         lang = 'zz'
         mock_lookup.return_value = lang
         r = self.client.get('/robots.txt', HTTP_ACCEPT_LANGUAGE='sa-US')
-        eq_(r.cookies['region'].value, 'worldwide')
+        eq_(r.context['request'].REGION,
+            mkt.regions.REGIONS_DICT['worldwide'])
 
     @mock.patch.object(settings, 'GEOIP_DEFAULT_VAL', 'us')
     def test_geoip_missing_lang(self):
         """ Test for US region """
         r = self.client.get('/robots.txt', REMOTE_ADDR='mozilla.com')
-        eq_(r.cookies['region'].value, 'us')
+        eq_(r.context['request'].REGION, mkt.regions.REGIONS_DICT['us'])
 
     @mock.patch.object(settings, 'GEOIP_DEFAULT_VAL', 'us')
     @mock.patch('socket.socket')
@@ -154,7 +148,7 @@ class TestRegionMiddleware(amo.tests.TestCase):
         """ Test that we fail gracefully if the GeoIP server is down. """
         mock_socket.connect.side_effect = IOError
         r = self.client.get('/robots.txt', REMOTE_ADDR='mozilla.com')
-        eq_(r.cookies['region'].value, 'us')
+        eq_(r.context['request'].REGION, mkt.regions.REGIONS_DICT['us'])
 
     @mock.patch.object(settings, 'GEOIP_DEFAULT_VAL', 'us')
     @mock.patch('socket.socket')
@@ -163,7 +157,7 @@ class TestRegionMiddleware(amo.tests.TestCase):
         mock_socket.return_value.connect.return_value = True
         mock_socket.return_value.send.side_effect = socket.timeout
         r = self.client.get('/robots.txt', REMOTE_ADDR='mozilla.com')
-        eq_(r.cookies['region'].value, 'us')
+        eq_(r.context['request'].REGION, mkt.regions.REGIONS_DICT['us'])
 
 
 class TestRegionMiddlewarePersistence(amo.tests.TestCase):

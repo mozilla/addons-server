@@ -1,5 +1,4 @@
 from django.conf import settings
-from django.utils.cache import patch_vary_headers
 
 from lib.geoip import GeoIP
 
@@ -65,12 +64,6 @@ class RegionMiddleware(object):
                 and request.amo_user.region != reg):
                 request.amo_user.region = reg
                 request.amo_user.save()
-            if not getattr(request, 'API', False):
-                request.set_cookie('region', reg)
 
         request.REGION = regions[reg]
         mkt.regions.set_region(reg)
-
-    def process_response(self, request, response):
-        patch_vary_headers(response, ['Accept-Language', 'Cookie'])
-        return response
