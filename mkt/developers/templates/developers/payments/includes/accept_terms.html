@@ -4,12 +4,6 @@
       <h2>{{ _('Bango Terms of Agreement') }}</h2>
     </header>
     <form action="{{ url('mkt.developers.bango.add_payment_account') }}" method="post">
-      <p class="agreement-valid">
-        {# L10n: {date} is a YYYY-MM-DD timestamp. #}
-        {% trans %}
-          This agreement will be valid on <time datetime="{date}">{date}</time>.
-        {% endtrans %}
-      </p>
       <div class="agreement-text island"></div>
       <p class="listing-footer">
         <button type="submit">{{ _('Agree to the Terms') }}</button>
