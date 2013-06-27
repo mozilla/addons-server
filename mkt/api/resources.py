@@ -153,8 +153,12 @@ class AppResource(CORSResource, MarketplaceModelResource):
             # between a 404 and a 403.
             obj = self._meta.queryset.get(**kwargs)
         except self._meta.object_class.DoesNotExist:
-            unavail = self._meta.queryset_base.filter(**kwargs).exists()
-            if unavail:
+            unavail = self._meta.queryset_base.filter(**kwargs)
+            if unavail.exists():
+                obj = unavail[0]
+                # Owners can see their app no matter what region.
+                if AppOwnerAuthorization().is_authorized(request, object=obj):
+                    return obj
                 raise http_error(HttpLegallyUnavailable,
                                  'Not available in your region.')
             raise http_error(http.HttpNotFound,

@@ -21,7 +21,8 @@ from mkt.api.models import Access, generate
 from mkt.api.tests.test_oauth import BaseOAuth, OAuthClient, RestOAuth
 from mkt.constants import APP_IMAGE_SIZES, carriers, regions
 from mkt.site.fixtures import fixture
-from mkt.webapps.models import ContentRating, ImageAsset, Webapp
+from mkt.webapps.models import (AddonExcludedRegion, ContentRating,
+                                ImageAsset, Webapp)
 from reviews.models import Review
 
 
@@ -593,13 +594,25 @@ class TestAppDetail(BaseOAuth, AMOPaths):
 
     def test_nonexistent_app(self):
         """
-        In combination with test_flagged, this ensures that a distinction is
+        In combination with test_nonregion, this ensures that a distinction is
         appropriately drawn between attempts to access nonexistent apps and
         attempts to access apps that are unavailable due to legal restrictions.
         """
         self.get_url[1]['pk'] = 1  # Not the PK of a real Webapp object
         res = self.client.get(self.get_url)
         eq_(res.status_code, 404)
+
+
+    def test_nonregion(self):
+        AddonExcludedRegion.objects.create(addon_id=337141, region=regions.BR.id)
+        res = self.client.get(self.get_url, data={'region': 'br'})
+        eq_(res.status_code, 451)
+
+    def test_owner_nonregion(self):
+        AddonUser.objects.create(addon_id=337141, user_id=self.user.pk)
+        AddonExcludedRegion.objects.create(addon_id=337141, region=regions.BR.id)
+        res = self.client.get(self.get_url, data={'region': 'br'})
+        eq_(res.status_code, 200)
 
     def test_packaged_manifest_url(self):
         app = Webapp.objects.get(pk=337141)
