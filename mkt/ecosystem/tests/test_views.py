@@ -1,5 +1,3 @@
-from django.conf import settings
-
 import basket
 import mock
 from nose.tools import eq_
