@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.conf import settings
 from django.http import Http404
-from django.shortcuts import get_object_or_404, redirect
+from django.shortcuts import redirect
 
 import basket
 import commonware.log
@@ -11,7 +11,6 @@ from tower import ugettext as _
 
 from amo import messages
 from mkt.developers.forms import DevNewsletterForm
-from mkt.site import messages
 
 
 log = commonware.log.getLogger('z.ecosystem')
