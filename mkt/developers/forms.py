@@ -706,6 +706,20 @@ class RegionForm(forms.Form):
             self.fields['other_regions'].widget.attrs['disabled'] = 'disabled'
             self.fields['other_regions'].label = _(u'Other regions')
 
+            # Premium form was valid.
+            if self.price:
+                self.price_region_ids = (self.price.pricecurrency_set
+                                         .values_list('region', flat=True))
+            # Premium form wasn't valid and it is a POST. Since we can't
+            # determine what price they wanted, just make sure it isn't a
+            # disabled price.
+            elif self.data:
+                self.price_region_ids = []
+            # Not a post, we can trust the price on the product.
+            else:
+                self.price_region_ids = (self.product
+                                         .get_possible_price_region_ids())
+
         self.disabled_regions = list(self.disabled_regions)
 
     def is_toggling(self):
@@ -720,23 +734,12 @@ class RegionForm(forms.Form):
     def has_inappropriate_regions(self):
         """Returns whether the app is listed in regions that it shouldn't
         otherwise be registered in."""
-        # Premium form was valid.
-        if self.price:
-            price_region_ids = self.price.pricecurrency_set.values_list(
-                'region', flat=True)
-        # Premium form wasn't valid and it is a POST. Since we can't determine
-        # what price they wanted, just make sure it isn't a disabled price.
-        elif self.data:
-            price_region_ids = []
-        # Not a post, we can trust the price on the product.
-        else:
-            price_region_ids = self.product.get_possible_price_region_ids()
 
-        inappropriate_regions = (set(mkt.regions.ALL_REGION_IDS)
-            .difference(price_region_ids)
-            .union(self.disabled_regions))
-        return (self._product_is_paid() and
-                set(self.region_ids).intersection(inappropriate_regions))
+        if self._product_is_paid():
+            inappropriate_regions = (set(mkt.regions.ALL_REGION_IDS)
+                .difference(self.price_region_ids)
+                .union(self.disabled_regions))
+            return (set(self.region_ids).intersection(inappropriate_regions))
 
     def clean(self):
         data = self.cleaned_data
@@ -764,7 +767,7 @@ class RegionForm(forms.Form):
 
         # If the app is paid, disable regions that do not use payments.
         if self._product_is_paid():
-            after &= set(self.product.get_possible_price_region_ids())
+            after &= set(self.price_region_ids)
 
         # Add new region exclusions.
         to_add = before - after
