@@ -8,6 +8,7 @@ from django.utils import translation
 from django.utils.datastructures import SortedDict
 
 import commonware.log
+import waffle
 from tower import ugettext_lazy as _lazy
 
 import amo
@@ -15,12 +16,16 @@ from access import acl
 from amo.helpers import absolutify
 from amo.urlresolvers import reverse
 from amo.utils import JSONEncoder, send_mail_jinja, to_language
+from comm.models import (CommunicationNote, CommunicationThread,
+                         CommunicationThreadCC, CommunicationThreadToken)
 from editors.models import EscalationQueue, RereviewQueue, ReviewerScore
 from files.models import File
 
+from mkt.constants import comm
 from mkt.constants.features import FeatureProfile
 from mkt.site.helpers import product_as_dict
 from mkt.webapps.models import Webapp
+from users.models import UserProfile
 
 
 log = commonware.log.getLogger('z.mailer')
@@ -150,6 +155,10 @@ class ReviewBase(object):
         log.info(u'Sending request for information for %s to %s' %
                  (self.addon, emails))
         data = self.get_context_data()
+
+        # Create thread.
+        self.create_comm_thread(action='info')
+
         send_mail(u'Submission Update: %s' % data['name'],
                   'reviewers/emails/decisions/info.txt',
                   data, emails,
@@ -172,6 +181,52 @@ class ReviewApp(ReviewBase):
         self.data = data
         self.files = self.version.files.all()
 
+    def create_comm_thread(self, **kwargs):
+        """Create a thread/note objects for communication."""
+        if not waffle.switch_is_active('comm-dashboard'):
+            return
+
+        action = kwargs['action']
+        action_note_types = {
+            'approve': comm.APPROVAL,
+            'disable': comm.DISABLED,
+            'escalate': comm.ESCALATION,
+            'info': comm.MORE_INFO_REQUIRED,
+            'comment': comm.REVIEWER_COMMENT,
+            'reject': comm.REJECTION
+        }
+
+        thread = CommunicationThread.objects.filter(addon=self.addon,
+            version=self.version)
+
+        if thread.exists():
+            thread = thread[0]
+        else:
+            thread = CommunicationThread(addon=self.addon,
+                version=self.version)
+
+        # Set permissions from the form.
+        for key in self.data['action_visibility']:
+            setattr(thread, 'read_permission_%s' % key, True)
+        thread.save()
+
+        CommunicationNote.objects.create(
+            note_type=action_note_types[action],
+            body=self.data['comments'], author=self.request.amo_user,
+            thread=thread)
+
+        moz_email = self.addon.mozilla_contact
+        # CC mozilla contact.
+        try:
+            moz_contact = UserProfile.objects.get(email=moz_email)
+        except UserProfile.DoesNotExist:
+            moz_contact = None
+            pass
+
+        if moz_contact and moz_email:
+            CommunicationThreadCC.objects.create(thread=thread,
+                user=moz_contact)
+
     def process_public(self):
         # Hold onto the status before we change it.
         status = self.addon.status
@@ -186,6 +241,7 @@ class ReviewApp(ReviewBase):
 
         # Assign reviewer incentive scores.
         ReviewerScore.award_points(self.request.amo_user, self.addon, status)
+        self.create_comm_thread(action='approve')
 
     def process_public_waiting(self):
         """Make an app pending."""
@@ -256,6 +312,7 @@ class ReviewApp(ReviewBase):
         # Assign reviewer incentive scores.
         ReviewerScore.award_points(self.request.amo_user, self.addon, status,
                                    in_rereview=self.in_rereview)
+        self.create_comm_thread(action='reject')
 
     def process_escalate(self):
         """Ask for escalation for an app."""
@@ -263,10 +320,12 @@ class ReviewApp(ReviewBase):
         self.notify_email('author_super_review', u'Submission Update: %s')
 
         self.send_escalate_mail()
+        self.create_comm_thread(action='escalate')
 
     def process_comment(self):
         self.version.update(has_editor_comment=True)
         self.log_action(amo.LOG.COMMENT_VERSION)
+        self.create_comm_thread(action='comment')
 
     def process_clear_escalation(self):
         """Clear app from escalation queue."""
@@ -299,6 +358,7 @@ class ReviewApp(ReviewBase):
             RereviewQueue.objects.filter(addon=self.addon).delete()
         emails = list(self.addon.authors.values_list('email', flat=True))
         cc_email = self.addon.mozilla_contact or None
+        self.create_comm_thread(action='disable')
         send_mail(u'App disabled by reviewer: %s' % self.addon.name,
                   'reviewers/emails/decisions/disabled.txt',
                   self.get_context_data(), emails,

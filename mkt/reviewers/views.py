@@ -44,6 +44,7 @@ from translations.query import order_by_translation
 from users.models import UserProfile
 from zadmin.models import set_config, unmemoized_get_config
 
+from mkt.reviewers.forms import DEFAULT_ACTION_VISIBILITY
 from mkt.reviewers.utils import (AppsReviewing, clean_sort_param,
                                  device_queue_search)
 from mkt.search.forms import ApiSearchForm
@@ -315,7 +316,8 @@ def _review(request, addon, version):
                   actions=actions, actions_minimal=actions_minimal,
                   tab=queue_type, product_attrs=product_attrs,
                   attachment_formset=attachment_formset,
-                  appfeatures_form=appfeatures_form)
+                  appfeatures_form=appfeatures_form,
+                  default_visibility=DEFAULT_ACTION_VISIBILITY)
 
     if waffle.switch_is_active('buchets'):
         ctx['feature_list'] = features_list

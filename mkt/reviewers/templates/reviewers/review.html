@@ -254,13 +254,20 @@
         {{ form.device_override.errors}}
       </div>
       {% if waffle.switch('buchets') %}
-      <div class="review-actions-section review-actions-features-override data-toggle" data-value="public">
+      <div class="review-actions-section review-actions-options review-actions-features-override data-toggle" data-value="public">
         <strong>{{ _('Minimum Requirements Override:') }}</strong>
         <ul>
           {% for field in appfeatures_form.required_api_fields() %}
             <li><label for="{{ field.auto_id }}">{{ field }} {{ field.help_text }}</label></li>
           {% endfor %}
         </ul>
+      </div>
+      {% endif %}
+      {% if waffle.switch('comm-dashboard') %}
+      <div data-default-visibility="{{ default_visibility|json }}" class="review-actions-section review-actions-options review-actions-visibility">
+        <strong>{{ _('Make this action visible to') }}</strong>
+        {{ form.action_visibility }}
+        {{ form.action_visibility.errors }}
       </div>
       {% endif %}
       <div class="review-actions-section">
