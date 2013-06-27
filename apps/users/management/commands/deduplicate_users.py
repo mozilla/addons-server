@@ -1,6 +1,11 @@
+from datetime import datetime
+import traceback
+
 from django.core.management.base import BaseCommand
 from django.db import connection, transaction
 
+
+MAX_DUPS = 16
 
 class Command(BaseCommand):
     """
@@ -9,7 +14,7 @@ class Command(BaseCommand):
     """
 
     def log(self, msg):
-        print msg
+        print '[%s]' % datetime.now().strftime('%Y-%m-%d %H:%M:%S'), msg
 
     @transaction.commit_manually
     def handle(self, *args, **options):
@@ -44,6 +49,7 @@ class Command(BaseCommand):
         ''')
         self.log('%d rows updated' % cursor.rowcount)
 
+        rows = None
         try:
             # Create a temporary table to hold usernames and check for
             # conflicts.
@@ -92,10 +98,8 @@ class Command(BaseCommand):
 
             # Find all usernames with could possibly clash with our new
             # suffixed variants.
-            prefixes = [r[1].replace('%', r'\%').replace('_', r'\_') + '-%'
-                        for r in rows]
-
             self.log('Finding possible clashes for new usernames')
+            patterns = ['%%-%d' % i for i in range(2, MAX_DUPS + 1)]
             cursor.execute('''
                     SELECT
                         LOWER(username)
@@ -103,36 +107,50 @@ class Command(BaseCommand):
                         usernames
                     WHERE
                         %s
-                ''' % ' OR '.join('username LIKE %s'
-                                  for i in range(0, len(prefixes))),
-                prefixes)
+                ''' % ' OR '.join('username LIKE %s' for p in patterns),
+                patterns)
             self.log('%d rows returned' % cursor.rowcount)
 
             usernames = [r[0] for r in cursor]
 
         finally:
             cursor.execute('DROP TEMPORARY TABLE usernames')
+            if not rows:
+                transaction.rollback()
 
         # Update usernames to case-insensitive unique variants.
-        suffixes = range(2, 65535)
+        suffixes = range(2, MAX_DUPS + 1)
         def unique_username(username, lower):
-            u = next('%s-%d' % (username, i) for i in suffixes
+            n = next(i for i in suffixes
                      if '%s-%d' % (lower, i) not in usernames)
-            usernames.append(u)
-            return u
+            usernames.append('%s-%d' % (lower, n))
+            return '%s-%d' % (username, n)
+
+        failures = []
 
         self.log('Updating duplicate usernames in `users` table')
-        cursor.executemany('''
-                UPDATE
-                    users
-                SET
-                    username = %s
-                WHERE
-                    id = %s
-            ''',
-            ((unique_username(username, lower), id)
-             for id, username, lower in rows))
-        self.log('%d rows updated' % cursor.rowcount)
+        new_name = None
+        for id, username, lower in rows:
+            try:
+                new_name = unique_username(username, lower)
+                self.log('Renaming %d "%s" -> "%s"' % (id, username, new_name))
+
+                cursor.execute('''
+                        UPDATE
+                            users
+                        SET
+                            username = %s
+                        WHERE
+                            id = %s
+                    ''', (new_name, id))
+            except Exception, e:
+                failures.append((id, username, new_name))
+                self.log('FAIL: %s' % e)
+                traceback.print_exc()
+
+        if failures:
+            self.log('%d username updates failed:' % len(failures))
+            self.log('\t' + '\n\t'.join(map(repr, failures)))
 
         transaction.commit()
         self.log('Done.')
