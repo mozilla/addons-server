@@ -33,10 +33,6 @@ define('payments-manage', ['payments'], function(payments) {
                 });
             }));
 
-            // Plop in date of agreement.
-            var msg = $('.agreement-valid');
-            msg.html(format(msg.html(), {date: response.valid}));
-
             // Plop in text of agreement.
             $('.agreement-text').text(response.text);
         });
