@@ -8,18 +8,16 @@ from tastypie import http
 from tastypie.authorization import Authorization
 from tastypie.validation import CleanedDataFormValidation
 
-import amo
 
-from access.acl import check_ownership
 from constants.payments import CONTRIB_NO_CHARGE
 from lib.cef_loggers import receipt_cef
-from lib.metrics import record_action
 from market.models import AddonPurchase
 from mkt.api.authentication import (OptionalOAuthAuthentication,
                                     SharedSecretAuthentication)
 from mkt.api.base import CORSResource, http_error, MarketplaceResource
 from mkt.api.http import HttpPaymentRequired
 from mkt.constants import apps
+from mkt.installs.utils import install_type, record
 from mkt.receipts.forms import ReceiptForm, TestInstall
 from mkt.receipts.utils import create_receipt, create_test_receipt
 
@@ -43,13 +41,7 @@ class ReceiptResource(CORSResource, MarketplaceResource):
 
     def obj_create(self, bundle, request=None, **kwargs):
         bundle.data['receipt'] = self.handle(bundle, request=request, **kwargs)
-        amo.log(amo.LOG.INSTALL_ADDON, bundle.obj)
-        record_action('install', request, {
-            'app-domain': bundle.obj.domain_from_url(bundle.obj.origin,
-                                                     allow_none=True),
-            'app-id': bundle.obj.pk,
-            'anonymous': request.user.is_anonymous(),
-        })
+        record(request, bundle.obj)
         return bundle
 
     def handle(self, bundle, request, **kwargs):
@@ -59,10 +51,9 @@ class ReceiptResource(CORSResource, MarketplaceResource):
             raise self.form_errors(form)
 
         bundle.obj = form.cleaned_data['app']
+        type_ = install_type(request, bundle.obj)
 
-        # Developers get handled quickly.
-        if check_ownership(request, bundle.obj, require_owner=False,
-                           ignore_disabled=True, admin=False):
+        if type_ == apps.INSTALL_TYPE_DEVELOPER:
             return self.record(bundle, request, apps.INSTALL_TYPE_DEVELOPER)
 
         # The app must be public and if its a premium app, you
@@ -87,7 +78,7 @@ class ReceiptResource(CORSResource, MarketplaceResource):
         # Anonymous users will fall through, they don't need anything else
         # handling.
         if request.user.is_authenticated():
-            return self.record(bundle, request, apps.INSTALL_TYPE_USER)
+            return self.record(bundle, request, type_)
 
     def record(self, bundle, request, install_type):
         # Generate or re-use an existing install record.

@@ -317,8 +317,28 @@ Installing
 ==========
 
 When an app is installed from the Marketplace, call the install API. This will
-record the install. If the app is a paid app, it will return the receipt that
-to be used on install.
+record the install.
+
+Free apps
+---------
+
+.. http:post:: /api/v1/installs/record/
+
+    **Request**:
+
+    :param app: the id or slug of the app being installed.
+    :type app: int|string
+
+    **Response**:
+
+    :statuscode 201: successfully completed.
+    :statuscode 202: an install was already recorded for this user and app, so
+        we didn't bother creating another one.
+    :statuscode 403: app is not public, install not allowed.
+
+
+Premium apps
+------------
 
 .. http:post:: /api/v1/receipts/install/
 

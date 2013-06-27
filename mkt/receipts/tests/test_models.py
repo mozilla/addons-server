@@ -141,7 +141,7 @@ class TestReceipt(amo.tests.TestCase):
         user = UserProfile.objects.get(pk=5497308)
         ins = self.create_install(user, webapp)
         receipt = self.for_user(ins, 'developer')
-        eq_(receipt['product']['url'], 'app://foo.com')
+        eq_(receipt['product']['url'], 'http://testserver')
 
     @mock.patch.object(settings, 'SIGNING_SERVER_ACTIVE', True)
     @mock.patch('mkt.receipts.utils.sign')

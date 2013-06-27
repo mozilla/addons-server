@@ -62,7 +62,7 @@ class TestAPI(BaseOAuth):
         eq_(len(cef.call_args_list), 1)
         eq_([x[0][2] for x in cef.call_args_list], ['sign'])
 
-    @mock.patch('mkt.receipts.api.record_action')
+    @mock.patch('mkt.installs.utils.record_action')
     @mock.patch('mkt.receipts.api.receipt_cef.log')
     def test_record_metrics(self, cef, record_action):
         res = self.post()
@@ -71,7 +71,7 @@ class TestAPI(BaseOAuth):
             'app-domain': u'http://micropipes.com',
             'app-id': self.addon.pk, 'anonymous': False})
 
-    @mock.patch('mkt.receipts.api.record_action')
+    @mock.patch('mkt.installs.utils.record_action')
     @mock.patch('mkt.receipts.api.receipt_cef.log')
     def test_record_metrics_packaged_app(self, cef, record_action):
         # Mimic packaged app.

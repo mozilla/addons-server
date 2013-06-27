@@ -12,7 +12,7 @@ from django.http import HttpResponseNotFound
 
 import commonware.log
 from rest_framework.routers import Route, SimpleRouter
-from rest_framework.relations import HyperlinkedRelatedField
+from rest_framework.relations import HyperlinkedRelatedField, SlugRelatedField
 from rest_framework.viewsets import GenericViewSet
 from tastypie import fields, http
 from tastypie.bundle import Bundle
@@ -40,10 +40,12 @@ def get_url(name, pk, **kw):
     kw.update({'resource_name': name, 'pk': pk})
     return ('api_dispatch_detail', kw)
 
+
 def http_error(errorclass, reason):
     response = errorclass()
     response.content = json.dumps({'reason': reason})
     return ImmediateHttpResponse(response)
+
 
 def handle_500(resource, request, exception):
     response_class = http.HttpApplicationError
