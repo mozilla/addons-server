@@ -297,8 +297,6 @@ class Webapp(Addon):
                 return
             raise ValueError('URL was empty')
         pieces = urlparse.urlparse(url)
-        if not pieces.netloc:
-            raise ValueError('No netloc in URL: {0}'.format(url))
         return '%s://%s' % (pieces.scheme, pieces.netloc.lower())
 
     @property
