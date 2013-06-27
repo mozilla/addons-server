@@ -8,9 +8,10 @@ from django.db.models import Max, Min
 from celery.task.sets import TaskSet
 
 from amo.utils import chunked
-from stats.models import CollectionCount, DownloadCount, UpdateCount
+from stats.models import (CollectionCount, DownloadCount, ThemeUserCount,
+                          UpdateCount)
 from stats.tasks import (index_collection_counts, index_download_counts,
-                         index_update_counts)
+                         index_theme_user_counts, index_update_counts)
 
 log = logging.getLogger('z.stats')
 
@@ -57,6 +58,8 @@ class Command(BaseCommand):
                 {'date': 'date'}),
             (DownloadCount.objects, index_download_counts,
                 {'date': 'date'}),
+            (ThemeUserCount.objects, index_theme_user_counts,
+                {'date': 'date'})
         ]
 
         if not addons:
@@ -111,7 +114,8 @@ def create_tasks(task, qs):
 
 def fixup():
     queries = [(UpdateCount, index_update_counts),
-               (DownloadCount, index_download_counts)]
+               (DownloadCount, index_download_counts),
+               (ThemeUserCount, index_theme_user_counts)]
 
     for model, task in queries:
         all_addons = model.objects.distinct().values_list('addon', flat=True)

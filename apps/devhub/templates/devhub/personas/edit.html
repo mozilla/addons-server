@@ -56,6 +56,9 @@
         <p><a href="{{ addon.get_url_path() }}">{{ _('View Listing') }}</a></p>
         <p><a href="{{ url('devhub.feed', addon.slug) }}">
           {{ _('View Recent Changes') }}</a></p>
+        {% if waffle.switch('theme-stats') %}
+          <p><a href="{{ url('stats.usage', addon.slug) }}">{{ _('View Statistics') }}</a></p>
+        {% endif %}
         {% if can_delete %}
           <a href="#" class="button scary delete-addon">{{ _('Delete Theme') }}</a>
           <div class="modal-delete modal hidden">

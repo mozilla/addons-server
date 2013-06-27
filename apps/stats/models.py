@@ -449,3 +449,13 @@ class ClientData(models.Model):
         db_table = 'client_data'
         unique_together = ('download_source', 'device_type', 'user_agent',
                            'is_chromeless', 'language', 'region')
+
+
+class ThemeUserCount(SearchMixin, models.Model):
+    """Theme active daily users."""
+    addon = models.ForeignKey('addons.Addon')
+    count = models.PositiveIntegerField()
+    date = models.DateField()
+
+    class Meta:
+        db_table = 'theme_user_counts'

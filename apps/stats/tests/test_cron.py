@@ -11,9 +11,9 @@ from addons.models import Addon, AddonUser
 from bandwagon.models import CollectionAddon, Collection
 from mkt.webapps.models import Installed
 from reviews.models import Review
-from stats.models import (Contribution, DownloadCount, GlobalStat,
-                          UpdateCount, AddonCollectionCount)
 from stats import cron, tasks
+from stats.models import (AddonCollectionCount, Contribution, DownloadCount,
+                          GlobalStat, ThemeUserCount, UpdateCount)
 from users.models import UserProfile
 
 
@@ -160,6 +160,8 @@ class TestIndexStats(amo.tests.TestCase):
                           .values_list('id', flat=True))
         self.updates = (UpdateCount.objects.order_by('-date')
                         .values_list('id', flat=True))
+        self.theme_users = (ThemeUserCount.objects.order_by('-date')
+                            .values_list('id', flat=True))
 
     def test_by_date(self, tasks_mock):
         call_command('index_stats', addons=None, date='2009-06-01')
@@ -170,11 +172,11 @@ class TestIndexStats(amo.tests.TestCase):
 
     def test_called_three(self, tasks_mock):
         call_command('index_stats', addons=None, date='2009-06-01')
-        eq_(tasks_mock.call_count, 3)
+        eq_(tasks_mock.call_count, 4)
 
     def test_called_two(self, tasks_mock):
         call_command('index_stats', addons='5', date='2009-06-01')
-        eq_(tasks_mock.call_count, 2)
+        eq_(tasks_mock.call_count, 3)
 
     def test_by_date_range(self, tasks_mock):
         call_command('index_stats', addons=None,
@@ -215,6 +217,9 @@ class TestIndexStats(amo.tests.TestCase):
         # We add 1 because picking up 11 days means we have start/stop pairs at
         # [0, 5], [5, 10], [10, 15]
         eq_(len([c for c in calls if c[0][0] == tasks.index_update_counts]),
+            1 + (updates[0] - updates[-1]).days / 5)
+        eq_(len([c for c in calls
+                 if c[0][0] == tasks.index_theme_user_counts]),
             1 + (updates[0] - updates[-1]).days / 5)
         eq_(len([c for c in calls if c[0][0] == tasks.index_download_counts]),
             1 + (downloads[0] - downloads[-1]).days / 5)

@@ -15,7 +15,7 @@ from bandwagon.models import Collection
 from stats import views, tasks
 from stats import search
 from stats.models import (CollectionCount, DownloadCount, GlobalStat,
-                          UpdateCount)
+                          ThemeUserCount, UpdateCount)
 from users.models import UserProfile
 
 
@@ -25,9 +25,11 @@ class StatsTest(amo.tests.TestCase):
     def setUp(self):
         """Setup some reasonable testing defaults."""
         super(StatsTest, self).setUp()
-        # default url_args to an addon and range with data
+        # Default url_args to an addon and range with data.
         self.url_args = {'start': '20090601', 'end': '20090930', 'addon_id': 4}
-        # most tests don't care about permissions
+        self.url_args_theme = {'start': '20090601', 'end': '20090930',
+                               'addon_id': 6}
+        # Most tests don't care about permissions.
         self.login_as_admin()
 
     def login_as_admin(self):
@@ -82,6 +84,8 @@ class ESStatsTest(StatsTest, amo.tests.ESTestCase):
         tasks.index_update_counts(list(updates))
         downloads = DownloadCount.objects.values_list('id', flat=True)
         tasks.index_download_counts(list(downloads))
+        user_counts = ThemeUserCount.objects.values_list('id', flat=True)
+        tasks.index_theme_user_counts(list(user_counts))
         self.refresh('update_counts')
 
 
@@ -182,16 +186,20 @@ class _TestCSVs(StatsTest):
         eq_(count, '50', 'unexpected count value: %s' % count)
 
     def test_usage_series(self):
-        response = self.get_view_response('stats.usage_series',
-                                          group='month', format='csv')
+        for url_args in [self.url_args, self.url_args_theme]:
+            self.url_args = url_args
 
-        eq_(response.status_code, 200, 'unexpected http status')
-        rows = list(csv.reader(response.content.split('\n')))
-        row = rows[self.first_row]  # the first row of data after the header
-        eq_(len(row), 2, 'unexpected row length')
-        date, ave = row
-        eq_(date, '2009-06-01', 'unexpected date string: %s' % date)
-        eq_(ave, '83', 'unexpected ADU average: %s' % ave)
+            response = self.get_view_response('stats.usage_series',
+                                              group='month', format='csv')
+
+            eq_(response.status_code, 200, 'unexpected http status')
+            rows = list(csv.reader(response.content.split('\n')))
+            # The first row of data after the header.
+            row = rows[self.first_row]
+            eq_(len(row), 2, 'unexpected row length')
+            date, ave = row
+            eq_(date, '2009-06-01', 'unexpected date string: %s' % date)
+            eq_(ave, '83', 'unexpected ADU average: %s' % ave)
 
     def test_contributions_series(self):
         response = self.get_view_response('stats.contributions_series',
@@ -304,15 +312,21 @@ class _TestCSVs(StatsTest):
         eq_(response["cache-control"], 'max-age=0')
 
     def test_usage_series_no_data(self):
-        self.url_args = {'start': '20010101', 'end': '20010130', 'addon_id': 4}
-        response = self.get_view_response('stats.versions_series',
-                                          group='day', format='csv')
+        url_args = [
+            {'start': '20010101', 'end': '20010130', 'addon_id': 4},
+            # Also test for themes.
+            {'start': '20010101', 'end': '20010130', 'addon_id': 6}
+        ]
+        for url_arg in url_args:
+            self.url_args = url_arg
+            response = self.get_view_response('stats.usage_series',
+                                              group='day', format='csv')
 
-        eq_(response.status_code, 200)
-        rows = list(csv.reader(response.content.split('\n')))
-        eq_(len(rows), 6)
-        eq_(rows[4], [])  # No fields
-        eq_(rows[self.first_row], [])  # There is no data
+            eq_(response.status_code, 200)
+            rows = list(csv.reader(response.content.split('\n')))
+            eq_(len(rows), 6)
+            eq_(rows[4], [])  # No fields
+            eq_(rows[self.first_row], [])  # There is no data
 
 
 class TestCacheControl(StatsTest):
@@ -355,22 +369,28 @@ class TestResponses(ESStatsTest):
         self.assertListEqual(content, expected)
 
     def test_usage_json(self):
-        r = self.get_view_response('stats.usage_series', group='day',
-                                   format='json')
-        eq_(r.status_code, 200)
-        self.assertListEqual(json.loads(r.content), [
-            {'count': 1500, 'date': '2009-06-02', 'end': '2009-06-02'},
-            {'count': 1000, 'date': '2009-06-01', 'end': '2009-06-01'},
-        ])
+        for url_args in [self.url_args, self.url_args_theme]:
+            self.url_args = url_args
+
+            r = self.get_view_response('stats.usage_series', group='day',
+                                       format='json')
+            eq_(r.status_code, 200)
+            self.assertListEqual(json.loads(r.content), [
+                {'count': 1500, 'date': '2009-06-02', 'end': '2009-06-02'},
+                {'count': 1000, 'date': '2009-06-01', 'end': '2009-06-01'},
+            ])
 
     def test_usage_csv(self):
-        r = self.get_view_response('stats.usage_series', group='day',
-                                   format='csv')
-        eq_(r.status_code, 200)
-        self.csv_eq(r,
-                    """date,count
-                       2009-06-02,1500
-                       2009-06-01,1000""")
+        for url_args in [self.url_args, self.url_args_theme]:
+            self.url_args = url_args
+
+            r = self.get_view_response('stats.usage_series', group='day',
+                                       format='csv')
+            eq_(r.status_code, 200)
+            self.csv_eq(r,
+                        """date,count
+                           2009-06-02,1500
+                           2009-06-01,1000""")
 
     def test_usage_by_app_json(self):
         r = self.get_view_response('stats.apps_series', group='day',

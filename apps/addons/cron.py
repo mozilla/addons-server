@@ -22,10 +22,10 @@ import waffle
 import amo
 from amo.utils import chunked
 from addons import search
-from addons.models import Addon, FrozenAddon, AppSupport
+from addons.models import Addon, AppSupport, FrozenAddon, Persona
 from files.models import File
 from lib.es.utils import raise_if_reindex_in_progress
-from stats.models import UpdateCount
+from stats.models import ThemeUserCount, UpdateCount
 
 log = logging.getLogger('z.cron')
 task_log = logging.getLogger('z.task')
@@ -135,6 +135,29 @@ def _update_addon_average_daily_users(data, **kw):
             #task_log.debug('Updating "%s" :: ADU %s -> %s' %
             #               (addon.slug, addon.average_daily_users, count))
             addon.update(average_daily_users=count)
+
+
+@cronjobs.register
+def update_daily_theme_user_counts():
+    """Store the day's theme popularity counts into ThemeUserCount."""
+    raise_if_reindex_in_progress()
+    d = Persona.objects.values_list('addon', 'popularity').order_by('id')
+
+    date = datetime.now().strftime('%M-%d-%y')
+    ts = [_update_daily_theme_user_counts.subtask(args=[chunk],
+                                                  kwargs={'date': date})
+          for chunk in chunked(d, 250)]
+    TaskSet(ts).apply_async()
+
+
+@task
+def _update_daily_theme_user_counts(data, **kw):
+    task_log.info("[%s] Updating daily theme user counts for %s."
+                  % (len(data), kw['date']))
+
+    for pk, count in data:
+        ThemeUserCount.objects.create(addon_id=pk, count=count,
+                                      date=datetime.now())
 
 
 @cronjobs.register

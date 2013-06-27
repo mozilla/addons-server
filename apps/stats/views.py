@@ -34,7 +34,8 @@ from amo.decorators import allow_cross_site_request, json_view, login_required
 from amo.urlresolvers import reverse
 from amo.utils import memoize
 
-from .models import CollectionCount, Contribution, DownloadCount, UpdateCount
+from .models import (CollectionCount, Contribution, DownloadCount,
+                     ThemeUserCount, UpdateCount)
 
 
 logger = logging.getLogger('z.apps.stats.views')
@@ -193,7 +194,9 @@ def usage_series(request, addon, group, start, end, format):
     date_range = check_series_params_or_404(group, start, end, format)
     check_stats_permission(request, addon)
 
-    series = get_series(UpdateCount, addon=addon.id, date__range=date_range)
+    series = get_series(
+        ThemeUserCount if addon.type == amo.ADDON_PERSONA else UpdateCount,
+        addon=addon.id, date__range=date_range)
 
     if format == 'csv':
         return render_csv(request, addon, series, ['date', 'count'])
