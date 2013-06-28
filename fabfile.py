@@ -169,9 +169,11 @@ def pre_update(ref=settings.UPDATE_REF):
 
 @task
 def update():
-    with lcd(ZAMBONI):
-        status = local('git diff HEAD@{1} HEAD --name-only', capture=True)
-    if 'requirements/' in status:
+    def get_status():
+        with lcd(ZAMBONI):
+            return local('git diff HEAD@{1} HEAD --name-only', capture=True)
+
+    if not getattr(settings, 'DEV', False) or 'requirements/' in get_status():
         execute(create_virtualenv)
 
     execute(update_locales)
