@@ -328,6 +328,9 @@ class TestNewsletter(BaseOAuth):
 
     @patch('basket.subscribe')
     def test_signup(self, subscribe):
+        res = self.client.post(list_url('newsletter'),
+                               data=json.dumps({'email': '!not_an_email'}))
+        eq_(res.status_code, 400)
         res = self.client.post(list_url('newsletter'))
         eq_(res.status_code, 400)
         res = self.client.post(list_url('newsletter'),

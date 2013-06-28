@@ -5,6 +5,7 @@ from functools import partial
 
 from django.conf import settings
 from django.contrib.auth.signals import user_logged_in
+from django.core.validators import ValidationError, validate_email
 
 import basket
 import commonware.log
@@ -240,6 +241,12 @@ class NewsletterResource(CORSResource, MarketplaceResource):
     def post_list(self, request, **kwargs):
         data = self.deserialize(request, request.raw_post_data,
                                 format='application/json')
+        email = data['email']
+        try:
+            validate_email(email)
+            print 'accepted', email
+        except ValidationError:
+            raise http_error(http.HttpBadRequest, 'invalid email address')
         basket.subscribe(data['email'], 'marketplace',
                          format='H', country=request.REGION.slug,
                          lang=request.LANG, optin='Y',
