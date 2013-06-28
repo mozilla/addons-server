@@ -349,7 +349,7 @@ class Webapp(Addon):
         file_ = file_obj or self.get_latest_file()
         if not file_:
             return
-        if self.status == amo.STATUS_REJECTED:
+        if file_.status == amo.STATUS_DISABLED:
             file_path = file_.guarded_file_path
         else:
             file_path = file_.file_path

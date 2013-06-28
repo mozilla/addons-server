@@ -701,6 +701,20 @@ class TestPackagedManifest(BasePackagedAppTest):
         mf = self._get_manifest_json()
         eq_(webapp.get_manifest_json(), mf)
 
+    def test_get_manifest_json_multiple_version_disabled(self):
+        # Post an app, then emulate a reviewer reject and add a new, pending
+        # version.
+        webapp = self.post_addon()
+        webapp.latest_version.files.update(status=amo.STATUS_DISABLED)
+        webapp.update(status=amo.STATUS_REJECTED, _current_version=None)
+        version = version_factory(addon=webapp, version='2.0',
+                                  file_kw=dict(status=amo.STATUS_PENDING))
+        eq_(webapp.latest_version, version)
+        self.file = version.all_files[0]
+        self.setup_files()
+        mf = self._get_manifest_json()
+        eq_(webapp.get_manifest_json(), mf)
+
     def test_cached_manifest_is_cached(self):
         webapp = self.post_addon()
         # First call does queries and caches results.
