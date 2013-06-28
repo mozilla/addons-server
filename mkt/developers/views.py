@@ -808,6 +808,7 @@ def terms(request):
 @login_required
 def api(request):
     roles = request.amo_user.groups.filter(name='Admins').exists()
+    f = APIConsumerForm()
     if roles:
         messages.error(request,
                        _('Users with the admin role cannot use the API.'))
@@ -833,14 +834,10 @@ def api(request):
                 messages.success(request, _('New API key generated.'))
             else:
                 access.delete()
-                messages.error(
-                    request,
-                    _('Both application name and redirect URI are required.'))
-        return redirect(reverse('mkt.developers.apps.api'))
     consumers = list(Access.objects.filter(user=request.user))
     return jingo.render(request, 'developers/api.html',
                         {'consumers': consumers, 'profile': profile,
-                         'roles': roles})
+                         'roles': roles, 'form': f})
 
 
 @addon_view

@@ -6,6 +6,7 @@ from urlparse import urlparse, urlunparse
 
 from django import forms
 from django.conf import settings
+from django.core.validators import URLValidator
 from django.forms.extras.widgets import SelectDateWidget
 from django.forms.models import formset_factory, modelformset_factory
 from django.template.defaultfilters import filesizeformat
@@ -1015,7 +1016,8 @@ class TransactionFilterForm(happyforms.Form):
 
 class APIConsumerForm(happyforms.ModelForm):
     app_name = forms.CharField(required=True)
-    redirect_uri = forms.CharField(required=True)
+    redirect_uri = forms.CharField(validators=[URLValidator()],
+                                   required=True)
 
     class Meta:
         model = Access

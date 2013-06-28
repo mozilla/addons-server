@@ -23,10 +23,10 @@
           <table>
             <tbody>
               <tr>
-                <th><strong>{{ _('Application Name') }}</strong></th><td><input name="app_name"></input></td>
+                <th><strong>{{ _('Application Name') }}</strong></th><td>{{ form.app_name.errors }}{{ form.app_name }}</td>
               </tr>
               <tr>
-                <th><strong>{{ _('Redirect URI') }}</strong></th><td><input name="redirect_uri"></input></td>
+                <th><strong>{{ _('Redirect URI') }}</strong></th><td>{{ form.redirect_uri.errors }}{{ form.redirect_uri }}</td>
               </tr>
               </tbody>
           </table>
