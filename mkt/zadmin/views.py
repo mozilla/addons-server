@@ -1,27 +1,27 @@
 import datetime
 
-import jingo
-
-from django.conf import settings
 from django.core.exceptions import PermissionDenied
 from django.db import transaction
 from django.db.models import Q
 from django.http import HttpResponse
-from django.shortcuts import redirect
+
+import jingo
+from elasticutils.contrib.django import S
 
 import amo
 from access import acl
 from addons.models import Category
-from amo.decorators import any_permission_required, write
+from amo.decorators import any_permission_required, json_view, write
+from amo.urlresolvers import reverse
 from amo.utils import chunked
 from zadmin.decorators import admin_required
 
 import mkt
-from mkt.webapps.models import Webapp
+from mkt.webapps.models import Webapp, WebappIndexer
+from mkt.webapps.utils import get_attr_lang
 from mkt.webapps.tasks import update_manifests
 from mkt.zadmin.models import (FeaturedApp, FeaturedAppCarrier,
                                FeaturedAppRegion)
-
 
 
 @transaction.commit_on_success
@@ -51,8 +51,8 @@ def featured_apps_ajax(request):
                                        app__id=int(deleteid)).delete()
         appid = request.POST.get('add', None)
         if appid:
-            app, created = FeaturedApp.uncached.get_or_create(category_id=cat,
-                                                              app_id=int(appid))
+            app, created = FeaturedApp.uncached.get_or_create(
+                category_id=cat, app_id=int(appid))
             if created:
                 FeaturedAppRegion.objects.create(
                     featured_app=app, region=mkt.regions.WORLDWIDE.id)
@@ -64,7 +64,9 @@ def featured_apps_ajax(request):
         excluded_regions = app.app.addonexcludedregion.values_list('region',
                                                                    flat=True)
         carriers = app.carriers.values_list('carrier', flat=True)
-        apps_regions_carriers.append((app, regions, excluded_regions, carriers))
+        apps_regions_carriers.append((app, regions, excluded_regions,
+                                      carriers))
+
     return jingo.render(request, 'zadmin/featured_apps_ajax.html',
                         {'apps_regions_carriers': apps_regions_carriers,
                          'regions': mkt.regions.REGIONS_CHOICES,
@@ -138,4 +140,45 @@ def manifest_revalidation(request):
 
         amo.messages.success(request, "Manifest revalidation queued")
 
-    return jingo.render(request, 'zadmin/manifest.html')
+
+@any_permission_required([('Admin', '%'),
+                          ('FeaturedApps', '%')])
+@json_view
+def featured_suggestions(request):
+    q = request.GET.get('q', u'').lower().strip()
+    category = request.GET.get('category')
+    cat_id = int(category) if category else None
+
+    filters = {
+        'type': amo.ADDON_WEBAPP,
+        'status': amo.STATUS_PUBLIC,
+        'is_disabled': False,
+    }
+    if cat_id:
+        filters.update({'category': cat_id})
+
+    search_fields = ['app_slug', 'name']
+    # If search looks like an ID, also search the ID field.
+    if q.isdigit():
+        qs = search_fields.append('id')
+
+    # Do a search based on the query string.
+    qs = S(WebappIndexer).filter(**filters).query(
+        should=True, **dict(('{0}__prefix'.format(f), w)
+                            for f in search_fields for w in q.split()))
+
+    fields = ['id', 'app_slug', 'default_locale']
+    for analyzer in amo.SEARCH_ANALYZER_MAP:
+        fields.append('name_{0}'.format(analyzer))
+
+    qs = qs.values_dict(*fields)
+
+    results = []
+    for app in qs[:20]:
+        results.append({
+            'id': app._id,
+            'name': get_attr_lang(app, 'name', app['default_locale']),
+            'url': reverse('detail', args=[app['app_slug']]),
+        })
+
+    return results

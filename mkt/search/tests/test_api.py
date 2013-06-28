@@ -68,11 +68,13 @@ class TestApi(BaseOAuth, ESTestCase):
 
     def test_sort(self):
         queries = []
+
         def fake_get_query(*a, **kw):
             qs = _get_query(*a, **kw)
             m = Mock(wraps=qs)
             queries.append(m)
             return m
+
         with patch('mkt.search.api._get_query', fake_get_query):
             res = self.client.get(self.url,
                                   [('sort', 'downloads'), ('sort', 'rating')])
@@ -99,9 +101,11 @@ class TestApi(BaseOAuth, ESTestCase):
 
     def test_user_info_with_shared_secret(self):
         user = UserProfile.objects.all()[0]
+
         def fakeauth(auth, req, **kw):
             req.amo_user = user
             return True
+
         with patch('mkt.api.authentication.SharedSecretAuthentication'
                    '.is_authenticated', fakeauth):
             with self.settings(SITE_URL=''):

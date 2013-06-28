@@ -1,24 +1,23 @@
+import json
 from datetime import date, timedelta
 
-import json
-
-from mock import patch
-
 from django.conf import settings
+
+import waffle
+from mock import patch
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
-import waffle
-
 import amo
 import amo.tests
-import mkt
 from addons.models import Addon, AddonCategory, AddonDeviceType, Category
 from amo.utils import urlparams
 from amo.urlresolvers import reverse
 from editors.models import RereviewQueue
 from users.models import UserProfile
 
+import mkt
+from mkt.site.fixtures import fixture
 from mkt.webapps.models import AddonExcludedRegion, Webapp
 from mkt.zadmin.models import (FeaturedApp, FeaturedAppCarrier,
                                FeaturedAppRegion)
@@ -530,3 +529,68 @@ class TestManifestRevalidation(amo.tests.WebappTestCase):
         assert self.client.login(username='regular@mozilla.com',
                                  password='password')
         eq_(self.client.post(self.url).status_code, 403)
+
+
+class TestFeaturedSuggestions(amo.tests.ESTestCase):
+    fixtures = fixture('group_admin', 'user_admin', 'user_admin_group')
+
+    def setUp(self):
+        super(TestFeaturedSuggestions, self).setUp()
+        self.create_switch('search-api-es')
+
+        self.url = reverse('zadmin.featured_suggestions')
+
+        self.c1 = Category.objects.create(name='groovy',
+            type=amo.ADDON_WEBAPP)
+        self.c2 = Category.objects.create(name='awesome',
+            type=amo.ADDON_WEBAPP)
+
+        self.w1 = Webapp.objects.create(status=amo.STATUS_PUBLIC,
+                                        name='groovy app 1')
+        self.w2 = Webapp.objects.create(status=amo.STATUS_PUBLIC,
+                                        name='awesome app 2')
+
+        self.w1.addoncategory_set.create(category=self.c1)
+        self.w2.addoncategory_set.create(category=self.c2)
+
+        self.reindex(Webapp, 'webapp')
+
+    def _login(self):
+        assert self.client.login(username='admin@mozilla.com',
+                                 password='password')
+
+    def tearDown(self):
+        self.w1.delete()
+        self.w2.delete()
+
+    def check_suggestions(self, url, params, apps=()):
+        res = self.client.get(url + '?' + params)
+        eq_(res.status_code, 200)
+
+        data = json.loads(res.content)
+        eq_(len(data), len(apps))
+
+        data = sorted(data, key=lambda x: x['name'])
+        apps = sorted(apps, key=lambda x: x.name)
+        eq_(len(data), len(apps))
+
+        for got, expected in zip(data, apps):
+            eq_(got['name'], unicode(expected.name))
+            eq_(int(got['id']), expected.id)
+
+    def test_no_category(self):
+        self._login()
+        self.check_suggestions(self.url, 'q=app&category=',
+                               apps=[self.w1, self.w2])
+
+    def test_with_category(self):
+        self._login()
+        self.check_suggestions(self.url, 'q=app&category=%d' % self.c1.id,
+                               apps=[self.w1])
+        self.check_suggestions(self.url, 'q=app&category=%d' % self.c2.id,
+                               apps=[self.w2])
+
+    def test_access(self):
+        res = self.client.get(self.url)
+        eq_(res.status_code, 302)
+        assert 'login' in res['Location']

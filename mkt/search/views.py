@@ -1,8 +1,7 @@
 import waffle
 
 import amo
-from amo.decorators import json_view
-from apps.search.views import _get_locale_analyzer, WebappSuggestionsAjax
+from apps.search.views import _get_locale_analyzer
 
 from mkt.webapps.models import Webapp
 
@@ -148,11 +147,3 @@ def _get_query(request, region, gaia, mobile, tablet, filters=None,
     return Webapp.from_search(
         request, region=region, gaia=gaia, mobile=mobile, tablet=tablet,
         filter_overrides=filters, new_idx=new_idx)
-
-
-@json_view
-def ajax_search(request):
-    category = request.GET.get('category', None) or None
-    if category:
-        category = int(category)
-    return WebappSuggestionsAjax(request, category=category).items

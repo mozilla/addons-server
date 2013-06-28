@@ -97,9 +97,6 @@ urlpatterns = patterns('',
     ('^user/(?P<user_id>\d+)/', include(user_detail_patterns)),
     ('^users/', include(users_users_patterns)),
 
-    # Site Search.
-    ('^search/', include('mkt.search.urls')),
-
     # Reviewer tools.
     ('^reviewers/', include(reviewer_url_patterns)),
 

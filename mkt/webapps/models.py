@@ -682,18 +682,6 @@ class Webapp(Addon):
         return srch
 
     @classmethod
-    def popular(cls, request, cat=None, region=None, gaia=False):
-        """Elastically grab the most popular apps."""
-        return cls.from_search(request, cat, region,
-                               gaia=gaia).order_by('-popularity')
-
-    @classmethod
-    def latest(cls, request, cat=None, region=None, gaia=False):
-        """Elastically grab the most recent apps."""
-        return cls.from_search(request, cat, region,
-                               gaia=gaia).order_by('-created')
-
-    @classmethod
     def category(cls, slug):
         try:
             return (Category.objects

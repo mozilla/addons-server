@@ -7,7 +7,6 @@ from django.views.decorators.vary import vary_on_headers
 
 import commonware.log
 import jingo
-from elasticutils.contrib.django import F
 from mobility.decorators import mobile_template
 from tower import ugettext as _
 
@@ -17,13 +16,9 @@ import browse.views
 from addons.models import Addon, Category
 from amo.decorators import json_view
 from amo.helpers import locale_url, urlparams
-from amo.search import TempS as S
 from amo.utils import sorted_groupby
 from bandwagon.models import Collection
 from versions.compare import dict_from_int, version_dict, version_int
-
-import mkt
-from mkt.webapps.models import get_excluded_in, Webapp
 
 from .forms import ESSearchForm, SecondarySearchForm
 
@@ -212,65 +207,6 @@ class PersonaSuggestionsAjax(SearchSuggestionsAjax):
     types = [amo.ADDON_PERSONA]
 
 
-class WebappSuggestionsAjax(SearchSuggestionsAjax):
-    types = [amo.ADDON_WEBAPP]
-    fields = {'url': 'get_url_path', 'name': 'name', 'id': 'id'}
-
-    def __init__(self, request, excluded_ids=(), category=None, ratings=False):
-        self.category = category
-        self.gaia = getattr(request, 'GAIA', False)
-        self.mobile = getattr(request, 'MOBILE', False)
-        self.tablet = getattr(request, 'TABLET', False)
-        SearchSuggestionsAjax.__init__(self, request, excluded_ids)
-        if self.mobile:
-            self.limit = 3
-
-    def queryset(self):
-        """Get items based on ID or search by name."""
-        res = Addon.objects.none()
-        q = self.request.GET.get(self.key)
-        if q:
-            pk = None
-            try:
-                pk = int(q)
-            except ValueError:
-                pass
-            qs = None
-            if pk:
-                qs = Addon.objects.filter(id=int(q), disabled_by_user=False)
-            elif len(q) > 2:
-                qs = (S(Webapp).query(or_=name_only_query(q.lower()))
-                      .filter(is_disabled=False))
-            if qs:
-                res = qs.filter(type__in=self.types,
-                                status__in=amo.REVIEWED_STATUSES)
-        if self.category:
-            res = res.filter(category__in=[self.category])
-        if (self.mobile or self.tablet) and not self.gaia:
-            if isinstance(res, S):
-                res = res.filter(~F(premium_type__in=amo.ADDON_PREMIUMS))
-            else:
-                res.exclude(premium_type__in=amo.ADDON_PREMIUMS)
-
-        region = getattr(self.request, 'REGION', mkt.regions.WORLDWIDE)
-        if region:
-            excluded = get_excluded_in(region.id)
-            if excluded:
-                if isinstance(res, S):
-                    # ES? Do fanciness.
-                    res = res.filter(~F(id__in=excluded))
-                else:
-                    # Django ORM? Do an `exclude`.
-                    res = res.exclude(id__in=excluded)
-
-        if self.gaia:
-            res = res.filter(device=amo.DEVICE_GAIA.id, uses_flash=False)
-        elif self.mobile:
-            res = res.filter(device=amo.DEVICE_MOBILE.id, uses_flash=False)
-
-        return res
-
-
 @json_view
 def ajax_search(request):
     """This is currently used only to return add-ons for populating a
@@ -292,7 +228,6 @@ def ajax_search_suggestions(request):
     suggesterClass = {
         'all': AddonSuggestionsAjax,
         'themes': PersonaSuggestionsAjax,
-        'apps': WebappSuggestionsAjax,
     }.get(cat, AddonSuggestionsAjax)
     suggester = suggesterClass(request, ratings=False)
     return _build_suggestions(
