@@ -29,7 +29,18 @@ log = commonware.log.getLogger('z.market')
 def price_locale(price, currency):
     lang = translation.get_language()
     locale = get_locale_from_lang(lang)
-    return numbers.format_currency(price, currency, locale=locale)
+    pricestr = numbers.format_currency(price, currency, locale=locale)
+    if currency == 'EUR':
+        # See bug 865358. EU style guide
+        # (http://publications.europa.eu/code/en/en-370303.htm#position)
+        # disagrees with Unicode CLDR on placement of Euro symbol.
+        bare = pricestr.strip(u'\xa0\u20ac')
+        if lang.startswith(('en', 'ga', 'lv', 'mt')):
+            return u'\u20ac' + bare
+        else:
+            return bare + u'\xa0\u20ac'
+    return pricestr
+
 
 
 def price_key(data):

@@ -9,10 +9,9 @@ import amo
 import amo.tests
 from addons.models import Addon, AddonUser
 from constants.payments import PROVIDER_BANGO
-from market.models import (AddonPremium, PreApprovalUser, Price, PriceCurrency,
-                           Refund)
+from market.models import AddonPremium, PreApprovalUser, Price, Refund
 from mkt.constants import apps
-from mkt.constants.regions import ALL_REGION_IDS, BR, HU, US
+from mkt.constants.regions import ALL_REGION_IDS, BR, HU, SPAIN, US
 from stats.models import Contribution
 from users.models import UserProfile
 
@@ -93,9 +92,17 @@ class TestPrice(amo.tests.TestCase):
     def test_get_tier_price(self):
         eq_(Price.objects.get(pk=2).get_price_locale(region=BR.id), 'R$1.01')
 
-    def test_get_tier_price(self):
+    def test_get_free_tier_price(self):
         price = self.make_price('0.00')
         eq_(price.get_price_locale(region=US.id), '$0.00')
+
+    def test_euro_placement(self):
+        with self.activate('en-us'):
+            eq_(Price.objects.get(pk=2).get_price_locale(region=SPAIN.id),
+                u'\u20ac0.50')
+        with self.activate('es'):
+            eq_(Price.objects.get(pk=2).get_price_locale(region=SPAIN.id),
+                u'0,50\xa0\u20ac')
 
     def test_prices(self):
         currencies = Price.objects.get(pk=1).prices()

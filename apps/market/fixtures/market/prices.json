@@ -109,5 +109,18 @@
       "modified": "2011-08-15 16:15:23",
       "created": "2011-08-15 16:15:23"
     }
+  },
+  {
+    "pk": 6,
+    "model": "market.pricecurrency",
+    "fields": {
+      "currency": "EUR",
+      "tier": 2,
+      "provider": 1,
+      "region": 8,
+      "price": "0.50",
+      "modified": "2011-08-15 16:15:23",
+      "created": "2011-08-15 16:15:23"
+    }
   }
 ]
