@@ -135,7 +135,7 @@ def update_celery():
         restarts.append('supervisorctl %s-bulk restart &'
                         % settings.CELERY_SERVICE_PREFIX)
     if getattr(settings, 'CELERY_SERVICE_MKT_PREFIX', False):
-        restarts.append('supervisor %s restart &' %
+        restarts.append('supervisorctl %s restart &' %
                         settings.CELERY_SERVICE_MKT_PREFIX)
 
     if restarts:
