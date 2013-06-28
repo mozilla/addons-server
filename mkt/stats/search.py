@@ -3,9 +3,10 @@ from django.db.models import Count, Q, Sum
 import amo
 import amo.search
 from amo.utils import create_es_index_if_missing
+from stats.models import Contribution
+
 from mkt.inapp_pay.models import InappPayment
 from mkt.webapps.models import Installed
-from stats.models import Contribution
 
 
 def get_finance_total(qs, addon, field=None, **kwargs):
