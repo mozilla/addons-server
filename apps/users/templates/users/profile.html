@@ -98,10 +98,12 @@
   <div class="items">
     {% if reviews %}
       {% for review in reviews %}
-        {% set addon = review.addon %}
-        {% with show_addon = True %}
-          {% include "reviews/review.html" %}
-        {% endwith %}
+        {% if hasOneToOne(review, 'addon') %}
+          {% set addon = review.addon %}
+          {% with show_addon = True %}
+            {% include "reviews/review.html" %}
+          {% endwith %}
+        {% endif %}
       {% endfor %}
       {{ edit_review_form() }}
     {% else %}

@@ -5,6 +5,7 @@ import re
 from operator import attrgetter
 
 from django.conf import settings
+from django.core.exceptions import ObjectDoesNotExist
 from django.forms import CheckboxInput
 from django.utils import translation
 from django.utils.encoding import smart_unicode
@@ -575,3 +576,13 @@ def remora_url(context, url, lang=None, app=None, prefix=''):
         except (AttributeError, KeyError):
             pass
     return urlresolvers.remora_url(url=url, lang=lang, app=app, prefix=prefix)
+
+
+@register.function
+@jinja2.contextfunction
+def hasOneToOne(context, obj, attr):
+    try:
+        getattr(obj, attr)
+        return True
+    except ObjectDoesNotExist:
+        return False

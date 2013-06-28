@@ -2,7 +2,6 @@ import datetime
 import urlparse
 
 from django.utils.encoding import smart_str
-from django.core.exceptions import ObjectDoesNotExist
 
 import jinja2
 import waffle
@@ -177,16 +176,6 @@ def sort_link(context, pretty_name, sort_field):
 
     return create_sort_link(pretty_name, sort_field, get_params,
                             sort, order)
-
-
-@register.function
-@jinja2.contextfunction
-def hasOneToOne(context, obj, attr):
-    try:
-        getattr(obj, attr)
-        return True
-    except ObjectDoesNotExist:
-        return False
 
 
 @register.function
