@@ -327,3 +327,21 @@ class Holiday(TemplatePromo):
 class AmpYourFirefox(TemplatePromo):
     slug = 'Amp Your Firefox'
     template = 'discovery/modules/amp_your_firefox.html'
+
+
+class Privacy(CollectionPromo):
+    slug = 'Privacy Collection'
+    cls = 'promo promo-purple'
+    collection_author, collection_slug = 'mozilla', 'privacy'
+    title = _(u'Worry-free browsing')
+    subtitle = _(u'Protect your privacy online with the add-ons in this '
+                  'collection.')
+
+
+class Featured(CollectionPromo):
+    slug = 'Featured Add-ons Collection'
+    cls = 'promo promo-yellow'
+    collection_author, collection_slug = 'mozilla', 'featured-add-ons'
+    title = _(u'Featured Add-ons')
+    subtitle = _(u'Great add-ons for work, fun, privacy, productivity&hellip; '
+                  'just about anything!')
