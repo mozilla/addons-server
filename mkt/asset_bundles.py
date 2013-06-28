@@ -94,7 +94,6 @@ CSS = {
         'css/mkt/notification.styl',
         'css/mkt/detail.styl',
         'css/mkt/ratings.styl',
-        'css/mkt/abuse.styl',
         'css/mkt/categories.styl',
         'css/mkt/menu.styl',
         'css/mkt/infobox.styl',
