@@ -1,7 +1,6 @@
 from django.conf.urls import patterns, url
 from django.shortcuts import redirect
 
-import addons.views
 from . import views
 
 from stats.urls import series_re
