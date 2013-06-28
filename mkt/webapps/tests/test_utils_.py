@@ -8,7 +8,7 @@ import amo
 import amo.tests
 
 from addons.models import AddonDeviceType, AddonUser, Preview
-from market.models import AddonPremium, AddonPurchase, Price, PriceCurrency
+from market.models import AddonPurchase, PriceCurrency
 from mkt.constants import APP_FEATURES, regions
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Installed, Webapp, WebappIndexer
@@ -153,8 +153,8 @@ class TestESAppToDict(amo.tests.ESTestCase):
     fixtures = fixture('user_2519', 'webapp_337141')
 
     def setUp(self):
-        self.create_switch('search-api-es')
         self.app = Webapp.objects.get(pk=337141)
+        self.version = self.app.current_version
         self.profile = UserProfile.objects.get(pk=2519)
         self.app.save()
         self.refresh('webapp')
@@ -171,7 +171,7 @@ class TestESAppToDict(amo.tests.ESTestCase):
             'current_version': {
                 'release_notes': None,
                 'version': '1.0',
-                'developer_name': u'31337 \u0627\u0644\u062a\u0637\u0628'
+                'developer_name': self.version.developer_name,
             },
             'description': u'Something Something Steamcube description!',
             'homepage': '',

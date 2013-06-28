@@ -5,7 +5,6 @@ from django.contrib.auth.models import User
 
 from mock import Mock, patch
 from nose.tools import eq_, ok_
-from waffle.models import Switch
 
 import amo
 import mkt.regions
@@ -30,7 +29,6 @@ class TestApi(BaseOAuth, ESTestCase):
     fixtures = fixture('webapp_337141')
 
     def setUp(self):
-        self.create_switch('search-api-es')
         self.client = OAuthClient(None)
         self.url = list_url('search')
         self.webapp = Webapp.objects.get(pk=337141)
@@ -404,7 +402,6 @@ class TestApiFeatures(BaseOAuth, ESTestCase):
     fixtures = fixture('webapp_337141')
 
     def setUp(self):
-        self.create_switch('search-api-es')
         self.create_switch('buchets')
         self.client = OAuthClient(None)
         self.url = list_url('search')
@@ -480,7 +477,6 @@ class TestApiReviewer(BaseOAuth, ESTestCase):
     fixtures = fixture('webapp_337141', 'user_2519')
 
     def setUp(self, api_name='apps'):
-        self.create_switch('search-api-es')
         self.user = User.objects.get(pk=2519)
         self.profile = self.user.get_profile()
         self.profile.update(read_dev_agreement=datetime.now())
@@ -494,6 +490,11 @@ class TestApiReviewer(BaseOAuth, ESTestCase):
         self.webapp = Webapp.objects.get(pk=337141)
         self.category = Category.objects.create(name='test',
                                                 type=amo.ADDON_WEBAPP)
+
+        patcher = patch('mkt.webapps.models.Webapp.get_manifest_json')
+        patcher.start().return_value = {'type': 'privileged'}
+        self.addCleanup(patcher.stop)
+
         self.webapp.save()
         self.refresh('webapp')
 
@@ -607,38 +608,15 @@ class TestApiReviewer(BaseOAuth, ESTestCase):
         error = res.json['error_message']
         eq_(error.keys(), ['type'])
 
-    @patch('versions.models.Version.is_privileged', True)
     def test_extra_attributes(self):
         version = self.webapp.versions.latest()
         version.has_editor_comment = True
         version.has_info_request = True
         version.save()
-
-        self.webapp.save()
-
-        res = self.client.get(self.url)
-        eq_(res.status_code, 200)
-        obj = res.json['objects'][0]
-
-        # These only exist if requested by a reviewer.
-        eq_(obj['latest_version']['status'], amo.STATUS_PUBLIC)
-        eq_(obj['latest_version']['is_privileged'], True)
-        eq_(obj['latest_version']['has_editor_comment'], True)
-        eq_(obj['latest_version']['has_info_request'], True)
-        eq_(obj['is_escalated'], False)
-
-    @patch('versions.models.Version.is_privileged', True)
-    def test_extra_attributes_no_waffle(self):
-        # Make sure these still exist when 'search-api-es' is off.
-        # TODO: Remove this test when we remove that switch.
-        Switch.objects.all().delete()
-        version = self.webapp.versions.latest()
-        version.has_editor_comment = True
-        version.has_info_request = True
-        version.save()
-
-        self.webapp.save()
+        self.webapp.update(is_packaged=True)
         self.refresh('webapp')
+
+        self.webapp.save()
 
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
@@ -658,7 +636,6 @@ class TestFeaturedNoCategories(BaseOAuth, ESTestCase):
 
     def setUp(self):
         super(TestFeaturedNoCategories, self).setUp(api_name='fireplace')
-        self.create_switch('search-api-es')
         self.create_switch('buchets')
         self.cat = Category.objects.create(type=amo.ADDON_WEBAPP, slug='shiny')
         self.app = Webapp.objects.get(pk=337141)
@@ -725,7 +702,6 @@ class TestFeaturedWithCategories(BaseOAuth, ESTestCase):
 
     def setUp(self):
         super(TestFeaturedWithCategories, self).setUp(api_name='fireplace')
-        self.create_switch('search-api-es')
         self.create_switch('buchets')
         self.cat = Category.objects.create(type=amo.ADDON_WEBAPP, slug='shiny')
         self.app = Webapp.objects.get(pk=337141)

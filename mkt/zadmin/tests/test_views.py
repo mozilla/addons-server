@@ -536,8 +536,6 @@ class TestFeaturedSuggestions(amo.tests.ESTestCase):
 
     def setUp(self):
         super(TestFeaturedSuggestions, self).setUp()
-        self.create_switch('search-api-es')
-
         self.url = reverse('zadmin.featured_suggestions')
 
         self.c1 = Category.objects.create(name='groovy',

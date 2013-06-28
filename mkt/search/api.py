@@ -2,7 +2,6 @@ import json
 
 from django.conf.urls import url
 
-import waffle
 from tastypie import http
 from tastypie.authorization import ReadOnlyAuthorization
 from tastypie.throttle import BaseThrottle
@@ -12,7 +11,6 @@ from tower import ugettext as _
 import amo
 from access import acl
 from addons.models import Category
-from amo.helpers import absolutify
 
 import mkt
 from mkt.api.authentication import (SharedSecretAuthentication,
@@ -55,8 +53,6 @@ class SearchResource(CORSResource, MarketplaceResource):
         is_admin = acl.action_allowed(request, 'Admin', '%')
         is_reviewer = acl.action_allowed(request, 'Apps', 'Review')
 
-        uses_es = waffle.switch_is_active('search-api-es')
-
         # Pluck out status and addon type first since it forms part of the base
         # query, but only for privileged users.
         status = form_data['status']
@@ -88,8 +84,7 @@ class SearchResource(CORSResource, MarketplaceResource):
 
         # Filter by device feature profile.
         profile = None
-        # TODO: Remove uses_es conditional with 'search-api-es' waffle.
-        if uses_es and request.GET.get('dev') in ('firefoxos', 'android'):
+        if request.GET.get('dev') in ('firefoxos', 'android'):
             sig = request.GET.get('pro')
             if sig:
                 profile = FeatureProfile.from_signature(sig)
@@ -113,12 +108,7 @@ class SearchResource(CORSResource, MarketplaceResource):
             obj.pk = obj.id
             objs.append(self.build_bundle(obj=obj, request=request))
 
-        if uses_es:
-            page['objects'] = [self.full_dehydrate(bundle)
-                               for bundle in objs]
-        else:
-            page['objects'] = [AppResource().full_dehydrate(bundle)
-                               for bundle in objs]
+        page['objects'] = [self.full_dehydrate(bundle) for bundle in objs]
 
         # This isn't as quite a full as a full TastyPie meta object,
         # but at least it's namespaced that way and ready to expand.
@@ -129,19 +119,11 @@ class SearchResource(CORSResource, MarketplaceResource):
         obj = bundle.obj
         amo_user = getattr(bundle.request, 'amo_user', None)
 
-        uses_es = waffle.switch_is_active('search-api-es')
-
-        if uses_es:
-            bundle.data.update(es_app_to_dict(
-                obj, region=bundle.request.REGION.id,
-                profile=amo_user))
-        else:
-            bundle = AppResource().dehydrate(bundle)
-            bundle.data['absolute_url'] = absolutify(
-                bundle.obj.get_detail_url())
+        bundle.data.update(es_app_to_dict(obj, region=bundle.request.REGION.id,
+                                          profile=amo_user))
 
         # Add extra data for reviewers. Used in reviewer tool search.
-        bundle = update_with_reviewer_data(bundle, using_es=uses_es)
+        bundle = update_with_reviewer_data(bundle, using_es=True)
 
         return bundle
 

@@ -378,7 +378,18 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     @transaction.commit_on_success
     def delete(self, msg='', reason=''):
+        # To avoid a circular import.
+        from mkt.webapps import tasks as mkt_tasks
+        from . import tasks
+
+        # Remove from search index.
+        if self.type == amo.ADDON_WEBAPP:
+            mkt_tasks.unindex_webapps.delay([self.id])
+        else:
+            tasks.unindex_addons.delay([self.id])
+
         id = self.id
+
         previews = list(Preview.objects.filter(addon__id=id)
                         .values_list('id', flat=True))
         if self.highest_status or self.status:
@@ -433,13 +444,10 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             send_mail(subject, email_msg, recipient_list=to)
         else:
             super(Addon, self).delete()
-        from . import tasks
+
         for preview in previews:
             tasks.delete_preview_files.delay(preview)
-        tasks.unindex_addons.delay([id])
-        if waffle.switch_is_active('search-api-es'):
-            from mkt.webapps import tasks as mkt_tasks
-            mkt_tasks.unindex_webapps.delay([id])
+
         return True
 
     @classmethod

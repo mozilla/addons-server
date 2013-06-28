@@ -671,7 +671,6 @@ class TestDeviceQueue(AppReviewerTest, AccessMixin):
 
     def setUp(self):
         self.create_switch('buchets')
-        self.create_switch('search-api-es')
 
         self.app1 = app_factory(name='XXX',
                                 version_kw={'version': '1.0',

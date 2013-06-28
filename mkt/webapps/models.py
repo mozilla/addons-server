@@ -28,12 +28,10 @@ from access.acl import action_allowed, check_reviewer
 from addons import query
 from addons.models import (Addon, AddonDeviceType, attach_categories,
                            attach_devices, attach_prices, attach_translations,
-                           Category,
-                           update_search_index as amo_update_search_index)
+                           Category)
 from addons.signals import version_changed
 from amo.decorators import skip_cache
 from amo.helpers import absolutify
-from amo.search import TempS
 from amo.storage_utils import copy_stored_file
 from amo.urlresolvers import reverse
 from amo.utils import JSONEncoder, memoize, memoize_key, smart_path
@@ -653,21 +651,10 @@ class Webapp(Addon):
         if cat:
             filters.update(category=cat.id)
 
-        if new_idx and waffle.switch_is_active('search-api-es'):
-            srch = S(WebappIndexer).filter(**filters)
-        else:
-            srch = TempS(cls).filter(**filters)
+        srch = S(WebappIndexer).filter(**filters)
 
         if region:
-            if new_idx and waffle.switch_is_active('search-api-es'):
-                srch = srch.filter(~F(region_exclusions=region.id))
-            else:
-                excluded = get_excluded_in(region.id)
-                if excluded:
-                    log.info(
-                        'Excluding the following IDs based on region %s: %s'
-                        % (region.slug, excluded))
-                    srch = srch.filter(~F(id__in=excluded))
+            srch = srch.filter(~F(region_exclusions=region.id))
 
         if mobile or gaia:
             srch = srch.filter(uses_flash=False)
@@ -1219,13 +1206,9 @@ Webapp._meta.translated_fields = Addon._meta.translated_fields
 @receiver(dbsignals.post_save, sender=Webapp,
           dispatch_uid='webapp.search.index')
 def update_search_index(sender, instance, **kw):
-    if waffle.switch_is_active('search-api-es'):
-        from . import tasks
-        if not kw.get('raw'):
-            tasks.index_webapps.delay([instance.id])
-
-    # Also continue to index to old index if we enable/disable the switch.
-    amo_update_search_index(sender, instance, **kw)
+    from . import tasks
+    if not kw.get('raw'):
+        tasks.index_webapps.delay([instance.id])
 
 
 models.signals.pre_save.connect(save_signal, sender=Webapp,
