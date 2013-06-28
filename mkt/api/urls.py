@@ -1,7 +1,6 @@
 from django.conf import settings
 from django.conf.urls import include, patterns, url
 
-from rest_framework.routers import SimpleRouter
 from tastypie.api import Api
 from tastypie_services.services import (ErrorResource, SettingsResource)
 from mkt.submit.api import PreviewResource, StatusResource, ValidationResource

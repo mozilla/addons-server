@@ -784,5 +784,5 @@ class TestErrorReporter(RestOAuth):
             reverse('error-reporter'),
             data=json.dumps({'stack': stack, 'message': msg}))
         eq_(res.status_code, 204)
-        Client().capture.assert_called_with('raven.events.Exception',
-                                           data={u'stack': stack, u'message': msg})
+        Client().capture.assert_called_with(
+            'raven.events.Exception', data={u'stack': stack, u'message': msg})
