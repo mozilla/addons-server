@@ -9,7 +9,6 @@ import pyes
 from stats.models import Contribution
 from lib.es.utils import raise_if_reindex_in_progress
 from mkt.webapps.models import Installed
-from . import tasks
 
 cron_log = commonware.log.getLogger('mkt.cron')
 
