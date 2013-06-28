@@ -50,8 +50,10 @@
     </div>
 
     <div class="packaged tab">
-      <h2><a href="#">{{ _('Packaged') }}</a></h2>
-      <input type="file" id="upload-app" data-upload-url="{{ upload_packaged_url }}" />
+      <form id="upload-webapp">
+        <h2><a href="#">{{ _('Packaged') }}</a></h2>
+        <input type="file" id="upload-app" data-upload-url="{{ upload_packaged_url }}" />
+      </form>
     </div>
   </section>
 
