@@ -1,8 +1,8 @@
 from collections import defaultdict
 import copy
 
-from celeryutils import task
 import commonware.log
+from celeryutils import task
 
 import amo.search
 from . import search
