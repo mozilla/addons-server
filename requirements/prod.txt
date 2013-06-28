@@ -76,6 +76,7 @@ raven==3.1.16
 rdflib==3.0.0
 recaptcha-client==1.0.5
 receipts==0.2.6
+redis==2.7.6
 requests==1.2.0
 schematic==0.2
 #signing_clients==0.1.7
@@ -112,5 +113,4 @@ tastypie-services==0.2.2
 ## Out of date or not sure on pypi.
 -e git+https://github.com/jbalogh/django-mobility.git@e2b60a1f96e4c4aed736395c01bf707e969d8e83#egg=django-mobility
 -e git+https://github.com/jbalogh/jingo.git@b4ecca1066bcd1eac87358b4c82902442d4eedc4#egg=jingo
--e git+https://github.com/andymccurdy/redis-py.git@79d22358410936358c71c88abbdb2a26e3cedc28#egg=redis-py
 -e git+https://github.com/clouserw/tower.git@ce2eba049a5146918fa5239d827bdde9e36eadb7#egg=tower-dev
