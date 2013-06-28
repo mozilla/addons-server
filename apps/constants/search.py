@@ -35,7 +35,9 @@ SEARCH_ANALYZER_MAP = {
     'cjk':        ['ja', 'ko'],
 #    '':          ['mn'],    # Mongolian
     'dutch':      ['nl'],
-#    '':          ['pl'],    # Polish
+# Polish requires the Elasticsearch plugin:
+# https://github.com/elasticsearch/elasticsearch-analysis-stempel
+    'polish':     ['pl'],
     'brazilian':  ['pt-br'],
     'portuguese': ['pt-pt'],
     'romanian':   ['ro'],
@@ -55,3 +57,10 @@ SEARCH_LANGUAGE_TO_ANALYZER = {}
 for analyzer, languages in SEARCH_ANALYZER_MAP.items():
     for language in languages:
         SEARCH_LANGUAGE_TO_ANALYZER[language] = analyzer
+
+
+# List of analyzers that require a plugin. Depending on settings.ES_USE_PLUGINS
+# we may disable or bypass these.
+SEARCH_ANALYZER_PLUGINS = [
+    'polish',
+]

@@ -4,6 +4,7 @@ cluster:
 path:
   logs: /usr/local/var/log
   data: /usr/local/var/data
+  plugins: /usr/local/var/lib/elasticsearch/plugins
 
 index:
   analysis:

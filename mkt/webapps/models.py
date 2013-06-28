@@ -910,8 +910,8 @@ class WebappIndexer(MappingType, Indexable):
         doc_type = cls.get_mapping_type_name()
 
         def _locale_field_mapping(field, analyzer):
-            return {'name_%s' % analyzer: {'type': 'string',
-                                           'analyzer': analyzer}}
+            return {'%s_%s' % (field, analyzer): {'type': 'string',
+                                                  'analyzer': analyzer}}
 
         mapping = {
             doc_type: {
@@ -1031,6 +1031,13 @@ class WebappIndexer(MappingType, Indexable):
 
         # Add room for language-specific indexes.
         for analyzer in amo.SEARCH_ANALYZER_MAP:
+
+            if (not settings.ES_USE_PLUGINS and
+                analyzer in amo.SEARCH_ANALYZER_PLUGINS):
+                log.info('While creating mapping, skipping the %s analyzer'
+                         % analyzer)
+                continue
+
             mapping[doc_type]['properties'].update(
                 _locale_field_mapping('name', analyzer))
             mapping[doc_type]['properties'].update(
@@ -1181,6 +1188,10 @@ class WebappIndexer(MappingType, Indexable):
         # Indices for each language. languages is a list of locales we want to
         # index with analyzer if the string's locale matches.
         for analyzer, languages in amo.SEARCH_ANALYZER_MAP.iteritems():
+            if (not settings.ES_USE_PLUGINS and
+                analyzer in amo.SEARCH_ANALYZER_PLUGINS):
+                continue
+
             d['name_' + analyzer] = list(
                 set(string for locale, string in translations[obj.name_id]
                     if locale.lower() in languages))

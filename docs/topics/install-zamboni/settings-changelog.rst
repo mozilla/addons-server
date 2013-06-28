@@ -1,6 +1,12 @@
 Settings Changelog
 ==================
 
+2013-06-28
+----------
+* Added ``ES_USE_PLUGINS``. Some features of Elasticsearch require
+  installed plugins. To bypass requiring these plugins locally set this to
+  `False`. On our servers this should be `True`.
+
 2013-05-24
 ----------
 * Added ``ES_DEFAULT_NUM_REPLICAS``. Locally if you're running a single
