@@ -22,7 +22,9 @@ def create_receipt(installed, flavour=None):
     typ = 'purchase-receipt'
 
     product = {'storedata': urlencode({'id': int(webapp.pk)}),
-               'url': webapp.origin or ''}
+               # Trunion needs to see https:// URLs.
+               'url': settings.SITE_URL
+                      if webapp.is_packaged else webapp.origin}
 
     # Generate different receipts for reviewers or developers.
     expiry = time_ + settings.WEBAPPS_RECEIPT_EXPIRY_SECONDS
