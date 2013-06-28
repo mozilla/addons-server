@@ -45,8 +45,8 @@ api_patterns = patterns('',
     url('', include(comm_api_patterns)),
 )
 
-home = lambda request: HttpResponse('''
-<a href="https://github.com/mozilla/fireplace/wiki/Using-Fireplace-with-Zamboni">
+home = lambda request: HttpResponse('''<a
+href="https://github.com/mozilla/fireplace/wiki/Using-Fireplace-with-Zamboni">
 <marquee style="font-size:400px">☠ RIP ☠</marquee></a>
 ''' if settings.DEBUG else '')
 
