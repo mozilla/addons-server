@@ -22,7 +22,7 @@ def create_receipt(installed, flavour=None):
     typ = 'purchase-receipt'
 
     product = {'storedata': urlencode({'id': int(webapp.pk)}),
-               'url': webapp.origin}
+               'url': webapp.origin or ''}
 
     # Generate different receipts for reviewers or developers.
     expiry = time_ + settings.WEBAPPS_RECEIPT_EXPIRY_SECONDS
