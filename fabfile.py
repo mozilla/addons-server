@@ -126,15 +126,20 @@ def restart_workers():
 @roles('celery')
 @parallel
 def update_celery():
+    restarts = []
     if getattr(settings, 'CELERY_SERVICE_PREFIX', False):
-        run("/sbin/service %s restart" % settings.CELERY_SERVICE_PREFIX)
-        run("/sbin/service %s-devhub restart" %
-            settings.CELERY_SERVICE_PREFIX)
-        run("/sbin/service %s-bulk restart" %
-            settings.CELERY_SERVICE_PREFIX)
+        restarts.append('supervisorctl %s restart &' %
+                        settings.CELERY_SERVICE_PREFIX)
+        restarts.append('supervisorctl %s-devhub restart &'
+                        % settings.CELERY_SERVICE_PREFIX)
+        restarts.append('supervisorctl %s-bulk restart &'
+                        % settings.CELERY_SERVICE_PREFIX)
     if getattr(settings, 'CELERY_SERVICE_MKT_PREFIX', False):
-        run("/sbin/service %s restart" %
-            settings.CELERY_SERVICE_MKT_PREFIX)
+        restarts.append('supervisor %s restart &' %
+                        settings.CELERY_SERVICE_MKT_PREFIX)
+
+    if restarts:
+        run('%s wait' % ' '.join(restarts))
 
 
 @task
