@@ -236,20 +236,16 @@ class FeatureProfile(OrderedDict):
             self[key] = kwargs.get(key, False)
 
     @classmethod
-    def from_binary(cls, binary):
+    def from_int(cls, features):
         """
-        Construct a FeatureProfile object from a binary string.
+        Construct a FeatureProfile object from a integer bitfield.
 
-        >>> FeatureProfile.from_binary('01000010...')
+        >>> FeatureProfile.from_int(0x42)
         FeatureProfile([('apps', False), ('packaged_apps', True), ...)
-
         """
         instance = cls()
-        if not binary:
-            binary = '0' * len(APP_FEATURES)
-        n = len(APP_FEATURES) - 1
-        for i, k in enumerate(APP_FEATURES):
-            instance[k.lower()] = bool(int(binary, 2) & 2 ** (n - i))
+        for i, k in enumerate(reversed(APP_FEATURES)):
+            instance[k.lower()] = bool(features & 1 << i)
         return instance
 
     @classmethod
@@ -261,16 +257,19 @@ class FeatureProfile(OrderedDict):
         FeatureProfile([('apps', False), ('packaged_apps', True), ...)
         """
         dehexed = int(signature.split('.')[0], 16)
-        return cls.from_binary(bin(dehexed).lstrip('0b'))
+        return cls.from_int(dehexed)
 
-    def to_binary(self):
+    def to_int(self):
         """
-        Convert a FeatureProfile object to its binary representation.
+        Convert a FeatureProfile object to an integer bitfield.
 
-        >>> profile.to_binary()
-        '0100000000000000000000000000000'
+        >>> profile.to_int()
+        66
         """
-        return ''.join('1' if v else '0' for v in self.values())
+        features = 0
+        for i, v in enumerate(reversed(self.values())):
+            features |= bool(v) << i
+        return features
 
     def to_signature(self):
         """
@@ -279,8 +278,7 @@ class FeatureProfile(OrderedDict):
         >>> profile.to_signature()
         '40000000.32.1'
         """
-        profile = self.to_binary()
-        return '%x.%s.%s' % (int(profile, 2), len(profile),
+        return '%x.%s.%s' % (self.to_int(), len(self),
                              settings.APP_FEATURES_VERSION)
 
     def to_list(self):

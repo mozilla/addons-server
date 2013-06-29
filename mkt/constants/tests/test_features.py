@@ -9,20 +9,17 @@ from mkt.constants.features import APP_FEATURES, FeatureProfile
 class TestFeatureProfile(amo.tests.TestCase):
 
     def setUp(self):
-        self.binary = '10001000000000010001000000000000'
+        self.features = 0x88011000
         self.signature = '88011000.32.%s' % settings.APP_FEATURES_VERSION
         self.truths = ['apps', 'proximity', 'light_events', 'vibrate']
 
     def test_init(self):
         profile = FeatureProfile(**dict((f, True) for f in self.truths))
         eq_(profile.to_signature(), self.signature)
-        eq_(profile.to_binary(), self.binary)
+        eq_(profile.to_int(), self.features)
 
     def _test_profile(self, profile):
-        if self.binary == '':
-            eq_(profile.to_binary(), '0' * 32)
-        else:
-            eq_(profile.to_binary(), self.binary)
+        eq_(profile.to_int(), self.features)
         eq_(profile.to_signature(), self.signature)
         for k, v in profile.iteritems():
             if v:
@@ -30,26 +27,26 @@ class TestFeatureProfile(amo.tests.TestCase):
             else:
                 ok_(k not in self.truths, '%s is in truths' % k)
 
-    def test_from_binary(self):
-        profile = FeatureProfile.from_binary(self.binary)
+    def test_from_int(self):
+        profile = FeatureProfile.from_int(self.features)
         self._test_profile(profile)
 
-    def test_from_binary_all_false(self):
-        self.binary = ''
+    def test_from_int_all_false(self):
+        self.features = 0
         self.signature = '0.32.%s' % settings.APP_FEATURES_VERSION
         self.truths = []
-        self.test_from_binary()
+        self.test_from_int()
 
     def test_from_signature(self):
         profile = FeatureProfile.from_signature(self.signature)
         self._test_profile(profile)
 
     def _test_kwargs(self, prefix):
-        profile = FeatureProfile.from_binary(self.binary)
+        profile = FeatureProfile.from_int(self.features)
         kwargs = profile.to_kwargs(prefix=prefix)
 
         ok_(all([k.startswith(prefix) for k in kwargs.keys()]))
-        eq_(kwargs.values().count(False), self.binary.count('0'))
+        eq_(kwargs.values().count(False), bin(self.features)[2:].count('0'))
         eq_(len(kwargs.values()), len(APP_FEATURES) - len(self.truths))
 
     def test_to_kwargs(self):
