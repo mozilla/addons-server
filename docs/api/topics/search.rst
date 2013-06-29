@@ -26,7 +26,7 @@ Search
     :param optional dev: Enables filtering by device profile if either
                          'firefoxos' or 'android'.
     :type dev: string
-    :param optional pro: A `feature profile <feature-profile-label>`
+    :param optional pro: A :ref:`feature profile <feature-profile-label>`
                          describing the features to filter by.
     :type pro: string
     :param optional premium_types: Filters by whether the app is free or
@@ -120,41 +120,43 @@ of a feature.
 
 Feature table version 1:
 
-|-----+---------------------------|
-| bit | feature                   |
-|   0 | Quota Management          |
-|   1 | Gamepad                   |
-|   2 | Full Screen               |
-|   3 | WebM                      |
-|   4 | H.264                     |
-|   5 | Web Audio                 |
-|   6 | Audio                     |
-|   7 | MP3                       |
-|   8 | Smartphone-Sized Displays |
-|   9 | Touch                     |
-|  10 | WebSMS                    |
-|  11 | WebFM                     |
-|  12 | Vibration                 |
-|  13 | Time/Clock                |
-|  14 | Screen Orientation        |
-|  15 | Simple Push               |
-|  16 | Proximity                 |
-|  17 | Network Stats             |
-|  18 | Network Information       |
-|  19 | Idle                      |
-|  20 | Geolocation               |
-|  21 | IndexedDB                 |
-|  22 | Device Storage            |
-|  23 | Contacts                  |
-|  24 | Bluetooth                 |
-|  25 | Battery                   |
-|  26 | Archive                   |
-|  27 | Ambient Light Sensor      |
-|  28 | Web Activities            |
-|  29 | Web Payment               |
-|  30 | Packaged Apps Install API |
-|  31 | App Management API        |
-|-----+---------------------------|
+=====  ============================
+  bit   feature
+=====  ============================
+    0   Quota Management
+    1   Gamepad
+    2   Full Screen
+    3   WebM
+    4   H.264
+    5   Web Audio
+    6   Audio
+    7   MP3
+    8   Smartphone-Sized Displays
+    9   Touch
+   10   WebSMS
+   11   WebFM
+   12   Vibration
+   13   Time/Clock
+   14   Screen Orientation
+   15   Simple Push
+   16   Proximity
+   17   Network Stats
+   18   Network Information
+   19   Idle
+   20   Geolocation
+   21   IndexedDB
+   22   Device Storage
+   23   Contacts
+   24   Bluetooth
+   25   Battery
+   26   Archive
+   27   Ambient Light Sensor
+   28   Web Activities
+   29   Web Payment
+   30   Packaged Apps Install API
+   31   App Management API
+=====  ============================
+
 
 For example, a device with the 'App Management API', 'Proximity',
 'Ambient Light Sensor', and 'Vibration' features would send this
