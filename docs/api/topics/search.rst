@@ -23,6 +23,12 @@ Search
     :param optional device: Filters by supported device. One of 'desktop',
         'mobile', 'tablet', or 'firefoxos'.
     :type device: string
+    :param optional dev: Enables filtering by device profile if either
+                         'firefoxos' or 'android'.
+    :type dev: string
+    :param optional pro: A `feature profile <feature-profile-label>`
+                         describing the features to filter by.
+    :type pro: string
     :param optional premium_types: Filters by whether the app is free or
         premium or has in-app purchasing. Any of 'free', 'free-inapp',
         'premium', 'premium-inapp', or 'other'.
@@ -94,3 +100,65 @@ Featured App Listing
         for the requested category, if any
     :type featured: array
     :status 200: successfully completed.
+
+.. _feature-profile-label:
+
+Feature Profile Signatures
+==========================
+
+Feature profile signatures indicate what features a device supports or
+does not support, so the search results can exclude apps that require
+features your device doesn't provide.
+
+The format of a signature is FEATURES.SIZE.VERSION, where FEATURES is
+a bitfield in hexadecimal, SIZE is its length in bits as a decimal
+number, and VERSION is a decimal number indicating the version of the
+features table.
+
+Each bit in the features bitfield represents the presence or absence
+of a feature.
+
+Feature table version 1:
+
+|-----+---------------------------|
+| bit | feature                   |
+|   0 | Quota Management          |
+|   1 | Gamepad                   |
+|   2 | Full Screen               |
+|   3 | WebM                      |
+|   4 | H.264                     |
+|   5 | Web Audio                 |
+|   6 | Audio                     |
+|   7 | MP3                       |
+|   8 | Smartphone-Sized Displays |
+|   9 | Touch                     |
+|  10 | WebSMS                    |
+|  11 | WebFM                     |
+|  12 | Vibration                 |
+|  13 | Time/Clock                |
+|  14 | Screen Orientation        |
+|  15 | Simple Push               |
+|  16 | Proximity                 |
+|  17 | Network Stats             |
+|  18 | Network Information       |
+|  19 | Idle                      |
+|  20 | Geolocation               |
+|  21 | IndexedDB                 |
+|  22 | Device Storage            |
+|  23 | Contacts                  |
+|  24 | Bluetooth                 |
+|  25 | Battery                   |
+|  26 | Archive                   |
+|  27 | Ambient Light Sensor      |
+|  28 | Web Activities            |
+|  29 | Web Payment               |
+|  30 | Packaged Apps Install API |
+|  31 | App Management API        |
+|-----+---------------------------|
+
+For example, a device with the 'App Management API', 'Proximity',
+'Ambient Light Sensor', and 'Vibration' features would send this
+feature profile signature::
+
+    88011000.32.1
+
