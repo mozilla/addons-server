@@ -244,9 +244,8 @@ class NewsletterResource(CORSResource, MarketplaceResource):
         email = data['email']
         try:
             validate_email(email)
-            print 'accepted', email
         except ValidationError:
-            raise http_error(http.HttpBadRequest, 'invalid email address')
+            raise http_error(http.HttpBadRequest, 'Invalid email address')
         basket.subscribe(data['email'], 'marketplace',
                          format='H', country=request.REGION.slug,
                          lang=request.LANG, optin='Y',
