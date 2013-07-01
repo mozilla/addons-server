@@ -191,8 +191,7 @@ class TestClient(Client):
 
 ES_patchers = [mock.patch('amo.search.get_es', spec=True),
                mock.patch('elasticutils.contrib.django', spec=True),
-               mock.patch('mkt.webapps.models.WebappIndexer.get_es',
-                          spec=True)]
+               mock.patch('mkt.webapps.models.WebappIndexer', spec=True)]
 
 
 def start_es_mock():
