@@ -522,7 +522,7 @@ class TestAppSearch(ESTestCase, SearchTestMixin):
     def test_by_name_part(self):
         self.app.name = 'This is Steamcube'
         self.app.save()
-        self.refresh()
+        self.refresh('webapp')
         data = self.search(q='steamcube')
         self.verify_result(data)
 
@@ -534,14 +534,14 @@ class TestAppSearch(ESTestCase, SearchTestMixin):
     def test_multiword(self):
         self.app.name = 'Firefox Marketplace'
         self.app.save()
-        self.refresh()
+        self.refresh('webapp')
         data = self.search(q='Firefox Marketplace')
         self.verify_result(data)
 
     def test_by_stem_name(self):
         self.app.name = 'Instigation'
         self.app.save()
-        self.refresh()
+        self.refresh('webapp')
         data = self.search(q='instigate')
         self.verify_result(data)
 

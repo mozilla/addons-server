@@ -33,7 +33,7 @@ from mkt.lookup.forms import TransactionRefundForm, TransactionSearchForm
 from mkt.lookup.tasks import (email_buyer_refund_approved,
                               email_buyer_refund_pending)
 from mkt.site import messages
-from mkt.webapps.models import Installed
+from mkt.webapps.models import Installed, WebappIndexer
 from stats.models import Contribution, DownloadCount
 from users.models import UserProfile
 
@@ -335,9 +335,10 @@ def app_search(request):
         qs = (Addon.objects.filter(type=addon_type, guid=q)
                            .values(*non_es_fields))
         if not qs.count():
-            qs = (S(Addon).query(must=True, type=addon_type)
-                          .query(should=True, **_expand_query(q, fields))
-                          .values_dict(*fields)[:20])
+            qs = (S(WebappIndexer)
+                  .query(must=True, type=addon_type)
+                  .query(should=True, **_expand_query(q, fields))
+                  .values_dict(*fields)[:20])
     for app in qs:
         app['url'] = reverse('lookup.app_summary', args=[app['id']])
         # ES returns a list of localized names but database queries do not.
