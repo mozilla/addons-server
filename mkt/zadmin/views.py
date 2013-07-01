@@ -140,6 +140,8 @@ def manifest_revalidation(request):
 
         amo.messages.success(request, "Manifest revalidation queued")
 
+    return jingo.render(request, 'zadmin/manifest.html')
+
 
 @any_permission_required([('Admin', '%'),
                           ('FeaturedApps', '%')])
