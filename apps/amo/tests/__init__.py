@@ -12,6 +12,7 @@ from django import forms
 from django.conf import settings
 from django.core.cache import cache
 from django.core.files.storage import default_storage as storage
+from django.db.models.signals import post_save
 from django.forms.fields import Field
 from django.http import SimpleCookie
 from django.test.client import Client
@@ -35,7 +36,8 @@ import amo
 import amo.search
 import stats.search
 from access.models import Group, GroupUser
-from addons.models import Addon, AddonCategory, Category, Persona
+from addons.models import (Addon, AddonCategory, Category, Persona,
+                           update_search_index as addon_update_search_index)
 from addons.tasks import unindex_addons
 from amo.urlresolvers import get_url_prefix, Prefixer, reverse, set_url_prefix
 from applications.models import Application, AppVersion
@@ -49,7 +51,9 @@ from versions.models import ApplicationsVersions, Version
 
 import mkt
 from mkt.constants import regions
-from mkt.webapps.models import ContentRating, WebappIndexer
+from mkt.webapps.models import (
+    ContentRating, update_search_index as app_update_search_index,
+    WebappIndexer, Webapp)
 from mkt.webapps.tasks import unindex_webapps
 from mkt.zadmin.models import FeaturedApp, FeaturedAppRegion
 
@@ -602,6 +606,12 @@ def _get_created(created):
 
 
 def addon_factory(version_kw={}, file_kw={}, **kw):
+    # Disconnect signals until the last save.
+    post_save.disconnect(addon_update_search_index, sender=Addon,
+                         dispatch_uid='addons.search.index')
+    post_save.disconnect(app_update_search_index, sender=Webapp,
+                         dispatch_uid='webapp.search.index')
+
     type_ = kw.pop('type', amo.ADDON_EXTENSION)
     popularity = kw.pop('popularity', None)
     # Save 1.
@@ -626,6 +636,13 @@ def addon_factory(version_kw={}, file_kw={}, **kw):
         a.type = type_
         Persona.objects.create(addon_id=a.id, persona_id=a.id,
                                popularity=a.weekly_downloads)  # Save 3.
+
+    # Put signals back.
+    post_save.connect(addon_update_search_index, sender=Addon,
+                      dispatch_uid='addons.search.index')
+    post_save.connect(app_update_search_index, sender=Webapp,
+                      dispatch_uid='webapp.search.index')
+
     a.save()  # Save 4.
     return a
 
