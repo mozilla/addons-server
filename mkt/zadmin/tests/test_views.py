@@ -10,7 +10,7 @@ from pyquery import PyQuery as pq
 
 import amo
 import amo.tests
-from addons.models import Addon, AddonCategory, AddonDeviceType, Category
+from addons.models import AddonCategory, AddonDeviceType, Category
 from amo.utils import urlparams
 from amo.urlresolvers import reverse
 from editors.models import RereviewQueue
@@ -452,28 +452,6 @@ class TestFeaturedAppQueryset(amo.tests.TestCase):
     def test_soft_deleted_app(self):
         self.a1.delete()
         eq_(list(FeaturedApp.objects.all()), [self.f3])
-
-
-class TestAddonSearch(amo.tests.ESTestCase):
-    fixtures = ['base/users', 'webapps/337141-steamcube', 'base/addon_3615']
-
-    def setUp(self):
-        self.reindex(Addon)
-        assert self.client.login(username='admin@mozilla.com',
-                                 password='password')
-        self.url = reverse('zadmin.addon-search')
-
-    def test_lookup_addon(self):
-        res = self.client.get(urlparams(self.url, q='delicious'))
-        eq_(res.status_code, 200)
-        links = pq(res.content)('form + h3 + ul li a')
-        eq_(len(links), 0)
-        self.assertNotContains(res, 'Steamcube')
-
-    def test_lookup_addon_redirect(self):
-        res = self.client.get(urlparams(self.url, q='steamcube'))
-        # There's only one result, so it should just forward us to that page.
-        eq_(res.status_code, 302)
 
 
 class TestAddonAdmin(amo.tests.TestCase):
