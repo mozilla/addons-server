@@ -67,7 +67,7 @@ def send_purchase_receipt(contrib_id, **kw):
     contrib = Contribution.objects.get(pk=contrib_id)
     with contrib.user.activate_lang():
         # L10n: {0} is the app name.
-        subject = _('Receipt for {0}') % contrib.addon.name
+        subject = _('Receipt for {0}').format(contrib.addon.name)
         data = {
             'app_name': contrib.addon.name,
             'authors': ', '.join([author.display_name
