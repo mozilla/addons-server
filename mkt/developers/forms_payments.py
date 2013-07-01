@@ -63,14 +63,16 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
         kw['initial'] = {
             'allow_inapp': self.addon.premium_type in amo.ADDON_INAPPS
         }
-        if self.addon.premium and self.addon.premium.price:
+
+        if self.addon.premium_type == amo.ADDON_FREE_INAPP:
+            kw['initial']['price'] = 'free'
+        elif self.addon.premium and self.addon.premium.price:
             # If the app has a premium object, set the initial price.
             kw['initial']['price'] = self.addon.premium.price.pk
 
         super(PremiumForm, self).__init__(*args, **kw)
 
-        if (self.addon.premium_type in amo.ADDON_PREMIUMS
-                and not self.is_toggling()):
+        if (self.is_paid() and not self.is_toggling()):
             # Require the price field if the app is premium and
             # we're not toggling from free <-> paid.
             self.fields['price'].required = True
@@ -99,17 +101,20 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
 
     def group_tier_choices(self):
         """Creates tier choices with optgroups based on payment methods"""
-        price_choices = [('', _('Please select a price'))]
+        price_choices = [
+            ('', _('Please select a price')),
+            ('free', _('Free (with in-app payments)')),
+        ]
         card_billed = []
         operator_billed = []
         card_and_operator_billed = []
 
         for price in Price.objects.active():
             choice = (price.pk, unicode(price))
-            # Special case zero priced tier.
+            # Special case price tier 0.
             if price.price == Decimal('0.00'):
-                price_choices.append((price.pk,
-                                      _lazy('Free with in-app payments')))
+                price_choices.append((price.pk, '%s (%s)' %
+                    (unicode(price), _('Promotional Pricing'))))
             # Tiers that can only be operator billed.
             elif price.method == PAYMENT_METHOD_OPERATOR:
                 operator_billed.append(choice)
@@ -151,7 +156,12 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
                             price_id=self._initial_price_id())
 
     def is_paid(self):
-        return self.addon.premium_type in amo.ADDON_PREMIUMS
+        is_paid = (self.addon.premium_type in amo.ADDON_PREMIUMS
+                   or self.is_free_inapp())
+        return is_paid
+
+    def is_free_inapp(self):
+        return self.addon.premium_type == amo.ADDON_FREE_INAPP
 
     def is_toggling(self):
         value = self.request.POST.get('toggle-paid')
@@ -187,35 +197,41 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
 
     def clean_price(self):
 
-        price_id = self.cleaned_data['price']
-        if (self.cleaned_data.get('premium_type') in amo.ADDON_PREMIUMS
-                and not price_id and not self.is_toggling()):
+        price_value = self.cleaned_data.get('price')
+        premium_type = self.cleaned_data.get('premium_type')
+        if ((premium_type in amo.ADDON_PREMIUMS
+                or premium_type == amo.ADDON_FREE_INAPP)
+                and not price_value and not self.is_toggling()):
             raise_required()
 
-        if not price_id and self.fields['price'].required is False:
+        if not price_value and self.fields['price'].required is False:
             return None
 
-        try:
-            price = Price.objects.get(pk=price_id, active=True)
-        except (ValueError, Price.DoesNotExist):
-            raise ValidationError(
-                self.fields['price'].error_messages['invalid_choice'])
+        # Special case for a free app - in-app payments must be enabled.
+        # Note: this isn't enforced for tier zero apps.
+        if price_value == 'free':
+            if self.cleaned_data.get('allow_inapp') != 'True':
+                raise ValidationError(_('If app is Free, '
+                                        'in-app payments must be enabled'))
+            return price_value
 
-        if (price and price.price == Decimal('0.00')
-                and self.cleaned_data.get('allow_inapp') != 'True'):
-            raise ValidationError(_('If app is Free, '
-                                    'in-app payments must be enabled'))
+        try:
+            price = Price.objects.get(pk=price_value, active=True)
+        except (ValueError, Price.DoesNotExist):
+            raise ValidationError(_('Not a valid choice'))
 
         return price
 
     def save(self):
         toggle = self.is_toggling()
         upsell = self.addon.upsold
-        is_premium = self.is_paid()
+
+        # is_paid is true for both premium apps and free apps with
+        # in-app payments.
+        is_paid = self.is_paid()
 
         if toggle == 'paid' and self.addon.premium_type == amo.ADDON_FREE:
             # Toggle free apps to paid by giving them a premium object.
-
             premium = self._make_premium()
             premium.price_id = self._initial_price_id()
             premium.save()
@@ -223,9 +239,9 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
             self.addon.premium_type = amo.ADDON_PREMIUM
             self.addon.status = amo.STATUS_NULL
 
-            is_premium = True
+            is_paid = True
 
-        elif toggle == 'free' and is_premium:
+        elif toggle == 'free' and is_paid:
             # If the app is paid and we're making it free, remove it as an
             # upsell (if an upsell exists).
             upsell = self.addon.upsold
@@ -244,29 +260,48 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
             if self.addon.status == amo.STATUS_NULL:
                 _restore_app(self.addon, save=False)
 
-            is_premium = False
+            is_paid = False
 
-        elif is_premium:
-            # The dev is submitting updates for payment data about a paid app.
-            # This might also happen if she is associating a new paid app
-            # with an existing bank account.
-            premium = self._make_premium()
-            self.addon.premium_type = (
-                amo.ADDON_PREMIUM_INAPP if
-                self.cleaned_data.get('allow_inapp') == 'True' else
-                amo.ADDON_PREMIUM)
+        # Right is_paid is both paid apps and free with in-app payments.
+        elif is_paid:
+            price = self.cleaned_data.get('price')
 
-            if 'price' in self.cleaned_data:
-                log.debug('[1@%s] Updating app price (%s)' %
-                          (self.addon.pk, self.cleaned_data['price']))
-                premium.price = self.cleaned_data['price']
+            # If price is free then we want to make this an app that's
+            # free with in-app payments.
+            if price == 'free':
+                self.addon.premium_type = amo.ADDON_FREE_INAPP
+                log.debug('[1@%s] Changing to free with in_app' % self.addon.pk)
 
-            premium.save()
+                # Remove upsell
+                upsell = self.addon.upsold
+                if upsell:
+                    log.debug('[1@%s] Removing upsell; switching to free '
+                              'with in_app' % self.addon.pk)
+                    upsell.delete()
+
+                if self.addon.status == amo.STATUS_NULL:
+                    _restore_app(self.addon, save=False)
+            else:
+                # The dev is submitting updates for payment data about a paid
+                # app. This might also happen if he/she is associating a new
+                # paid app with an existing bank account.
+                premium = self._make_premium()
+                self.addon.premium_type = (
+                    amo.ADDON_PREMIUM_INAPP if
+                    self.cleaned_data.get('allow_inapp') == 'True' else
+                    amo.ADDON_PREMIUM)
+
+                if price and price != 'free':
+                    log.debug('[1@%s] Updating app price (%s)' %
+                              (self.addon.pk, self.cleaned_data['price']))
+                    premium.price = self.cleaned_data['price']
+
+                premium.save()
 
         if not toggle:
             # Save the device compatibility information when we're not
             # toggling.
-            super(PremiumForm, self).save(self.addon, is_premium)
+            super(PremiumForm, self).save(self.addon, is_paid)
 
         log.info('Saving app payment changes for addon %s.' % self.addon.pk)
         self.addon.save()

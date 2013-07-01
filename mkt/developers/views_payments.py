@@ -127,19 +127,20 @@ def payments(request, addon_id, addon, webapp=False):
              ('desktop', True), ('firefoxos', False)]))
 
     try:
-        free_with_in_app_id = Price.objects.get(price='0.00',
-                                                active=True).pk
+        tier_zero_id = Price.objects.get(price='0.00',
+                                         active=True).pk
     except Price.DoesNotExist:
-        free_with_in_app_id = ''
+        tier_zero_id = ''
 
     return jingo.render(
         request, 'developers/payments/premium.html',
         {'addon': addon, 'webapp': webapp, 'premium': addon.premium,
          'form': premium_form, 'upsell_form': upsell_form,
-         'free_with_in_app_id': free_with_in_app_id,
+         'tier_zero_id': tier_zero_id,
          'region_form': region_form,
          'DEVICE_LOOKUP': DEVICE_LOOKUP,
-         'is_paid': addon.premium_type in amo.ADDON_PREMIUMS,
+         'is_paid': (addon.premium_type in amo.ADDON_PREMIUMS
+                     or addon.premium_type == amo.ADDON_FREE_INAPP),
          'no_paid': cannot_be_paid,
          'is_incomplete': addon.status == amo.STATUS_NULL,
          'is_packaged': addon.is_packaged,

@@ -62,23 +62,31 @@ class TestPremiumForm(amo.tests.TestCase):
         eq_(RereviewQueue.objects.count(), 0)
 
     def test_free_with_in_app_requires_in_app(self):
-        self.make_premium(self.addon)
-        price = Price.objects.create(price='0.00')
-        self.platforms.update(price=price.pk, allow_inapp='False')
+        self.platforms.update(price='free', allow_inapp='False')
         form = forms_payments.PremiumForm(self.platforms, **self.kwargs)
         assert not form.is_valid()
 
-    def test_paid_free_with_in_app(self):
+    def test_free_with_in_app(self):
         self.make_premium(self.addon)
-        price = Price.objects.create(price='0.00')
+        self.platforms.update(price='free', allow_inapp='True')
+        form = forms_payments.PremiumForm(self.platforms, **self.kwargs)
+        assert form.is_valid()
+        form.save()
+        eq_(self.addon.premium_type, amo.ADDON_FREE_INAPP)
+
+    def test_tier_zero_inapp_is_optional(self):
+        self.platforms.update(price='free', allow_inapp='False')
+        price = Price.objects.create(price='9.99')
         self.platforms.update(price=price.pk, allow_inapp='True')
+        form = forms_payments.PremiumForm(self.platforms, **self.kwargs)
+        assert form.is_valid()
+        self.platforms.update(price=price.pk, allow_inapp='False')
         form = forms_payments.PremiumForm(self.platforms, **self.kwargs)
         assert form.is_valid()
 
     def test_premium_to_free(self):
         # Premium to Free is ok for public apps.
         self.make_premium(self.addon)
-
         self.request.POST = {'toggle-paid': 'free'}
         self.platforms.update(price=self.price.pk)
         form = forms_payments.PremiumForm(data=self.platforms, **self.kwargs)
@@ -87,6 +95,31 @@ class TestPremiumForm(amo.tests.TestCase):
         eq_(RereviewQueue.objects.count(), 0)
         eq_(self.addon.premium_type, amo.ADDON_FREE)
         eq_(self.addon.status, amo.STATUS_PUBLIC)
+
+    def test_is_paid_premium(self):
+        self.make_premium(self.addon)
+        form = forms_payments.PremiumForm(data=self.platforms, **self.kwargs)
+        eq_(form.is_paid(), True)
+
+    def test_free_inapp_price_required(self):
+        self.addon.update(premium_type=amo.ADDON_FREE_INAPP)
+        form = forms_payments.PremiumForm(data=self.platforms, **self.kwargs)
+        assert not form.is_valid()
+
+    def test_is_paid_premium_inapp(self):
+        self.addon.update(premium_type=amo.ADDON_PREMIUM_INAPP)
+        form = forms_payments.PremiumForm(data=self.platforms, **self.kwargs)
+        eq_(form.is_paid(), True)
+
+    def test_is_paid_free_inapp(self):
+        self.addon.update(premium_type=amo.ADDON_FREE_INAPP)
+        form = forms_payments.PremiumForm(data=self.platforms, **self.kwargs)
+        eq_(form.is_paid(), True)
+
+    def test_not_is_paid_free(self):
+        self.addon.update(premium_type=amo.ADDON_FREE)
+        form = forms_payments.PremiumForm(data=self.platforms, **self.kwargs)
+        eq_(form.is_paid(), False)
 
     def test_add_device(self):
         self.addon.update(status=amo.STATUS_PENDING)
@@ -191,8 +224,9 @@ class TestPremiumForm(amo.tests.TestCase):
         Price.objects.create(price='1.00', method=PAYMENT_METHOD_ALL)
         Price.objects.create(price='2.00', method=PAYMENT_METHOD_ALL)
         form = forms_payments.PremiumForm(self.platforms, **self.kwargs)
-        # 1 Free, + 3 values grouped by billing + 1 'Please select' = 5.
-        eq_(len(form.fields['price'].choices), 5)
+        # 1 x Free with inapp +  1 x price tier 0 + 3 x values grouped by billing +
+        # 1 x 'Please select' = 6.
+        eq_(len(form.fields['price'].choices), 6)
         html = form.as_p()
         eq_(len(pq(html)('#id_price optgroup')), 3, 'Should be 3 optgroups')
 

@@ -178,7 +178,6 @@ class TestRegionForm(amo.tests.WebappTestCase):
     @mock.patch('mkt.regions.BR.has_payments', new=True)
     def test_disable_regions_on_paid(self):
         eq_(self.app.get_region_ids(), mkt.regions.REGION_IDS)
-
         self.app.update(premium_type=amo.ADDON_PREMIUM)
         price = Price.objects.get(id=1)
         AddonPremium.objects.create(addon=self.app,
@@ -201,6 +200,73 @@ class TestRegionForm(amo.tests.WebappTestCase):
 
         self.assertSetEqual(self.app.get_region_ids(),
                             [mkt.regions.PL.id])
+
+    def test_free_inapp_with_non_paid_region(self):
+        # Start with a free app with in_app payments.
+        self.app.update(premium_type=amo.ADDON_FREE_INAPP)
+        self.kwargs['price'] = 'free'
+        form = forms.RegionForm(data=None, **self.kwargs)
+        assert not form.is_valid()
+        assert form.has_inappropriate_regions()
+
+        all_paid_regions = set(mkt.regions.ALL_PAID_REGION_IDS)
+
+        new_paid_set = all_paid_regions.difference(set([mkt.regions.BR.id]))
+        with mock.patch('mkt.developers.forms.ALL_PAID_REGION_IDS',
+                        new=new_paid_set):
+            form = forms.RegionForm(data={'regions': [mkt.regions.BR.id]},
+                                    **self.kwargs)
+            assert not form.is_valid()
+            assert form.has_inappropriate_regions()
+
+        new_paid_set = all_paid_regions.difference(set([mkt.regions.UK.id]))
+        with mock.patch('mkt.developers.forms.ALL_PAID_REGION_IDS',
+                        new=new_paid_set):
+            form = forms.RegionForm(data={'regions': [mkt.regions.UK.id]},
+                                    **self.kwargs)
+            assert not form.is_valid()
+            assert form.has_inappropriate_regions()
+
+        new_paid_set = all_paid_regions.union(set([mkt.regions.PL.id]))
+        with mock.patch('mkt.developers.forms.ALL_PAID_REGION_IDS',
+                        new=new_paid_set):
+            form = forms.RegionForm(data={'regions': [mkt.regions.PL.id]},
+                                    **self.kwargs)
+            assert form.is_valid()
+            assert not form.has_inappropriate_regions()
+
+    def test_premium_to_free_inapp_with_non_paid_region(self):
+        # At this point the app is premium.
+        self.app.update(premium_type=amo.ADDON_PREMIUM)
+        self.kwargs['price'] = 'free'
+        form = forms.RegionForm(data=None, **self.kwargs)
+        assert not form.is_valid()
+        assert form.has_inappropriate_regions()
+
+        all_paid_regions = set(mkt.regions.ALL_PAID_REGION_IDS)
+        new_paid_set = all_paid_regions.difference(set([mkt.regions.BR.id]))
+        with mock.patch('mkt.developers.forms.ALL_PAID_REGION_IDS',
+                        new=new_paid_set):
+            form = forms.RegionForm(data={'regions': [mkt.regions.BR.id]},
+                                    **self.kwargs)
+            assert not form.is_valid()
+            assert form.has_inappropriate_regions()
+
+        new_paid_set = all_paid_regions.difference(set([mkt.regions.UK.id]))
+        with mock.patch('mkt.developers.forms.ALL_PAID_REGION_IDS',
+                        new=new_paid_set):
+            form = forms.RegionForm(data={'regions': [mkt.regions.UK.id]},
+                                    **self.kwargs)
+            assert not form.is_valid()
+            assert form.has_inappropriate_regions()
+
+        new_paid_set = all_paid_regions.union(set([mkt.regions.PL.id]))
+        with mock.patch('mkt.developers.forms.ALL_PAID_REGION_IDS',
+                        new=new_paid_set):
+            form = forms.RegionForm(data={'regions': [mkt.regions.PL.id]},
+                                    **self.kwargs)
+            assert form.is_valid()
+            assert not form.has_inappropriate_regions()
 
     def test_paid_enable_region(self):
         for region in mkt.regions.ALL_REGION_IDS:
