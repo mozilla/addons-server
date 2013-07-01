@@ -202,3 +202,5 @@ BANGO_FAKE_REFUNDS = True
 
 if NEWRELIC_ENABLE:
     NEWRELIC_INI = '/etc/newrelic.d/marketplace-dev.allizom.org.ini'
+
+ES_USE_PLUGINS = True
