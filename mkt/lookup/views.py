@@ -335,10 +335,13 @@ def app_search(request):
         qs = (Addon.objects.filter(type=addon_type, guid=q)
                            .values(*non_es_fields))
         if not qs.count():
-            qs = (S(WebappIndexer)
-                  .query(must=True, type=addon_type)
-                  .query(should=True, **_expand_query(q, fields))
-                  .values_dict(*fields)[:20])
+            if addon_type == amo.ADDON_WEBAPP:
+                qs = S(WebappIndexer)
+            else:
+                qs = S(Addon)
+            qs = (qs.query(must=True, type=addon_type)
+                    .query(should=True, **_expand_query(q, fields))
+                    .values_dict(*fields)[:20])
     for app in qs:
         app['url'] = reverse('lookup.app_summary', args=[app['id']])
         # ES returns a list of localized names but database queries do not.

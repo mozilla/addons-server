@@ -20,7 +20,6 @@ import amo
 from abuse.models import AbuseReport
 from addons.cron import reindex_addons
 from addons.models import Addon, AddonUser
-from amo.helpers import urlparams
 from amo.tests import addon_factory, app_factory, ESTestCase, TestCase
 from amo.urlresolvers import reverse
 from devhub.models import ActivityLog
@@ -37,8 +36,7 @@ from users.models import UserProfile
 
 
 class TestAcctSummary(TestCase):
-    fixtures = ['base/users', 'base/addon_3615',
-                'webapps/337141-steamcube']
+    fixtures = fixture('user_support_staff', 'user_999', 'webapp_337141')
 
     def setUp(self):
         super(TestAcctSummary, self).setUp()
@@ -198,7 +196,7 @@ class SearchTestMixin(object):
 
 
 class TestAcctSearch(ESTestCase, SearchTestMixin):
-    fixtures = ['base/users']
+    fixtures = fixture('user_10482', 'user_support_staff')
 
     @classmethod
     def setUpClass(cls):
@@ -498,8 +496,7 @@ class TestTransactionRefund(TestCase):
 
 
 class TestAppSearch(ESTestCase, SearchTestMixin):
-    fixtures = ['base/users', 'webapps/337141-steamcube',
-                'base/addon_3615']
+    fixtures = fixture('user_support_staff', 'user_999', 'webapp_337141')
 
     @classmethod
     def setUpClass(cls):
@@ -546,15 +543,7 @@ class TestAppSearch(ESTestCase, SearchTestMixin):
         self.verify_result(data)
 
     def test_by_guid(self):
-        self.app = Addon.objects.get(pk=3615)
-        assert self.app.guid, 'Expected this addon to have a guid'
-        self.app = Addon.objects.get(guid=self.app.guid)
-        data = self.search(q=self.app.guid, type=amo.ADDON_EXTENSION)
-        self.verify_result(data)
-
-    def test_by_random_guid(self):
-        self.app = Addon.objects.get(pk=3615)
-        self.app.update(guid='__bonanza__')
+        self.app.update(guid='abcdef', type=amo.ADDON_EXTENSION)
         data = self.search(q=self.app.guid, type=amo.ADDON_EXTENSION)
         self.verify_result(data)
 
@@ -564,6 +553,7 @@ class TestAppSearch(ESTestCase, SearchTestMixin):
 
 
 class AppSummaryTest(TestCase):
+    # TODO: Override in subclasses to convert to new fixture style.
     fixtures = ['base/users', 'webapps/337141-steamcube',
                 'base/addon_3615', 'market/prices']
 
@@ -582,6 +572,8 @@ class AppSummaryTest(TestCase):
 
 
 class TestAppSummary(AppSummaryTest):
+    fixtures = fixture('prices', 'user_admin', 'user_support_staff',
+                       'webapp_337141')
 
     def setUp(self):
         super(TestAppSummary, self).setUp()
@@ -593,7 +585,7 @@ class TestAppSummary(AppSummaryTest):
             str(amo.ADDON_WEBAPP))
 
     def test_authors(self):
-        user = UserProfile.objects.get(username='admin')
+        user = UserProfile.objects.get(username='31337')
         role = AddonUser.objects.create(user=user,
                                         addon=self.app,
                                         role=amo.AUTHOR_ROLE_DEV)
@@ -602,6 +594,7 @@ class TestAppSummary(AppSummaryTest):
         eq_(res.context['authors'][0].display_name, user.display_name)
 
     def test_visible_authors(self):
+        AddonUser.objects.all().delete()
         for role in (amo.AUTHOR_ROLE_DEV,
                      amo.AUTHOR_ROLE_OWNER,
                      amo.AUTHOR_ROLE_VIEWER,
@@ -962,8 +955,7 @@ class TestPurchases(amo.tests.TestCase):
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
         doc = pq(res.content)
-        eq_(doc('ol.listing a').attr('href'),
-            urlparams(self.app.get_detail_url(), src=''))
+        eq_(doc('ol.listing a').attr('href'), self.app.get_detail_url())
 
     def test_no_support_link(self):
         for type_ in [amo.CONTRIB_PURCHASE, amo.CONTRIB_INAPP]:
