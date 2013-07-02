@@ -660,7 +660,8 @@ class Webapp(Addon):
             srch = srch.filter(uses_flash=False)
 
         exclude_paid = True
-        if waffle.flag_is_active(request, 'allow-paid-app-search'):
+        if ((region and region.id in settings.PURCHASE_ENABLED_REGIONS) or
+            waffle.flag_is_active(request, 'allow-paid-app-search')):
             exclude_paid = (mobile or tablet) and not gaia
 
         if exclude_paid:

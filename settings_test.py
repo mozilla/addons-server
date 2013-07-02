@@ -3,6 +3,8 @@ import tempfile
 
 from django.utils.functional import lazy
 
+from mkt.constants import regions
+
 _tmpdirs = set()
 
 
@@ -128,3 +130,5 @@ SQL_RESET_SEQUENCES = False
 GEOIP_URL = ''
 GEOIP_DEFAULT_VAL = 'worldwide'
 GEOIP_DEFAULT_TIMEOUT = .2
+
+PURCHASE_ENABLED_REGIONS = [regions.US.id,]  # US

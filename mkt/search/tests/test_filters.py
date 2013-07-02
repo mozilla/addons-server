@@ -1,6 +1,7 @@
 import json
 
 import test_utils
+from mock import patch
 from nose.tools import ok_
 from waffle.models import Flag
 
@@ -12,7 +13,7 @@ from users.models import UserProfile
 
 from mkt import regions
 from mkt.api.tests.test_oauth import BaseOAuth
-from mkt.regions import set_region
+from mkt.regions import set_region, UK
 from mkt.search.forms import ApiSearchForm, DEVICE_CHOICES_IDS
 from mkt.search.views import _filter_search
 from mkt.site.fixtures import fixture
@@ -169,10 +170,6 @@ class TestFlaggedUsersPremiumApps(BaseOAuth):
         super(TestFlaggedUsersPremiumApps, self).setUp()
         self.req = test_utils.RequestFactory().get('/')
         self.req.user = self.user = UserProfile.objects.get(pk=2519).user
-        self.flag = Flag.objects.create(name='allow-paid-app-search')
-
-        # Pick a region that has relatively few filters.
-        set_region(regions.UK.slug)
 
         self.filter_kwargs = {
             'mobile': False,
@@ -188,8 +185,12 @@ class TestFlaggedUsersPremiumApps(BaseOAuth):
         self.prem_exclude = {
             'not': {'filter': {'in': {'premium_type': (1, 2)}}}}
 
+    def _flag(self):
+        self.flag = Flag.objects.create(name='allow-paid-app-search')
+
     def _filter(self, req, filters, **kwargs):
         form = ApiSearchForm(filters)
+        kwargs.setdefault('region', UK)
         if form.is_valid():
             qs = Webapp.from_search(self.req, **kwargs)
             return _filter_search(
@@ -198,6 +199,7 @@ class TestFlaggedUsersPremiumApps(BaseOAuth):
             return form.errors.copy()
 
     def test_premium_on_android(self):
+        self._flag()
         filters = self.filter_kwargs.copy()
         filters.update(mobile=True)
 
@@ -210,6 +212,7 @@ class TestFlaggedUsersPremiumApps(BaseOAuth):
         ok_(self.prem_exclude in qs['filter']['and'])
 
     def test_premium_on_android_tablet(self):
+        self._flag()
         filters = self.filter_kwargs.copy()
         filters.update(tablet=True)
 
@@ -222,6 +225,7 @@ class TestFlaggedUsersPremiumApps(BaseOAuth):
         ok_(self.prem_exclude in qs['filter']['and'])
 
     def test_premium_on_gaia(self):
+        self._flag()
         filters = self.filter_kwargs.copy()
         filters.update(gaia=True)
         query = self.query_string.copy()
@@ -234,3 +238,25 @@ class TestFlaggedUsersPremiumApps(BaseOAuth):
         self.flag.users.add(self.user)
         qs = self._filter(self.req, query, **filters)
         ok_(self.prem_exclude not in qs['filter']['and'])
+
+    def test_premium_region(self):
+        filters = self.filter_kwargs.copy()
+        filters.update(gaia=True)
+        query = self.query_string.copy()
+        query.update(dev='firefoxos')
+
+        with self.settings(PURCHASE_ENABLED_REGIONS=[regions.UK.id]):
+            qs = self._filter(self.req, query, **filters)
+            # This means that premium is NOT excluded in the filters.
+            ok_(self.prem_exclude not in qs['filter']['and'])
+
+    def test_not_premium_region(self):
+        filters = self.filter_kwargs.copy()
+        filters.update(gaia=True)
+        query = self.query_string.copy()
+        query.update(dev='firefoxos')
+
+        with self.settings(PURCHASE_ENABLED_REGIONS=[]):
+            qs = self._filter(self.req, query, **filters)
+            # This means that premium is excluded in the filters.
+            ok_(self.prem_exclude in qs['filter']['and'])

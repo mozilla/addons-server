@@ -1,7 +1,9 @@
+from django.conf import settings
 from django.conf.urls.defaults import url
 from django.core.exceptions import ObjectDoesNotExist
 
 import commonware.log
+import waffle
 from tastypie import fields, http
 from tastypie.exceptions import ImmediateHttpResponse
 from tastypie.validation import CleanedDataFormValidation
@@ -46,6 +48,14 @@ class PreparePayResource(CORSResource, MarketplaceResource):
         validation = CleanedDataFormValidation(form_class=PrepareForm)
 
     def obj_create(self, bundle, request, **kwargs):
+        region = getattr(request, 'REGION', None)
+        # Are they in a region that allows purchasing?
+        if region and region.id not in settings.PURCHASE_ENABLED_REGIONS:
+            log.info('Region {0} is not in {1}'
+                     .format(region.id, settings.PURCHASE_ENABLED_REGIONS))
+            raise http_error(http.HttpForbidden,
+                             'Not allowed to purchase in this region')
+
         bundle.obj = GenericObject(_prepare_pay(request, bundle.data['app']))
         return bundle
 

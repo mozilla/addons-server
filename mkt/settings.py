@@ -3,6 +3,7 @@ import os
 
 from lib.settings_base import *
 from mkt import asset_bundles
+from mkt.constants import regions
 
 # The origin URL for our Fireplace frontend, from which API requests come.
 FIREPLACE_URL = ''
@@ -309,3 +310,7 @@ REST_FRAMEWORK = {
     'PAGINATE_BY': 20,
     'PAGINATE_BY_PARAM': 'limit'
 }
+
+# A list of ids where the regions are enabled. This is here as opposed to on
+# the region object, because it will vary from region to region per server.
+PURCHASE_ENABLED_REGIONS = [regions.SPAIN.id,]

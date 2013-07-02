@@ -1,5 +1,7 @@
 from decimal import Decimal
 
+from django.test.utils import override_settings
+
 import mock
 from elasticutils.contrib.django import S
 from nose.tools import eq_, ok_
@@ -101,6 +103,7 @@ class TestAppToDict(amo.tests.TestCase):
                             [f.lower() for f in APP_FEATURES])
 
 
+@override_settings(PURCHASE_ENABLED_REGIONS=[regions.US.id, regions.PL.id])
 class TestAppToDictPrices(amo.tests.TestCase):
 
     def setUp(self):
@@ -146,6 +149,23 @@ class TestAppToDictPrices(amo.tests.TestCase):
         res = app_to_dict(self.app)
         eq_(res['price'], None)
         eq_(res['price_locale'], None)
+
+    def test_cannot_purchase(self):
+        self.make_premium(self.app, price='0.99')
+        with self.settings(PURCHASE_ENABLED_REGIONS=[]):
+            res = app_to_dict(self.app, region=regions.UK.id)
+        eq_(res['price'], None)
+        eq_(res['price_locale'], None)
+        eq_(res['payment_required'], True)
+
+    def test_can_purchase(self):
+        self.make_premium(self.app, price='0.99')
+        with self.settings(PURCHASE_ENABLED_REGIONS=[regions.UK.id]):
+            res = app_to_dict(self.app, region=regions.UK.id)
+        res = app_to_dict(self.app, region=regions.UK.id)
+        eq_(res['price'], None)
+        eq_(res['price_locale'], None)
+        eq_(res['payment_required'], True)
 
 
 @mock.patch('versions.models.Version.is_privileged', False)

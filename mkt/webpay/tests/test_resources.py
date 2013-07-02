@@ -5,6 +5,7 @@ from django.core import mail
 
 from mock import patch
 from nose.tools import eq_, ok_
+from waffle.models import Flag
 
 from amo import CONTRIB_PENDING, CONTRIB_PURCHASE
 from amo.urlresolvers import reverse
@@ -27,6 +28,7 @@ class TestPrepare(PurchaseTest, BaseOAuth):
     def setUp(self):
         BaseOAuth.setUp(self, api_name='webpay')
         self.create_switch('marketplace')
+        self.create_switch('allow-paid-app-search')
         self.list_url = list_url('prepare')
         self.user = UserProfile.objects.get(pk=2519)
 
@@ -52,6 +54,20 @@ class TestPrepare(PurchaseTest, BaseOAuth):
         has_purchased.return_value = True
         res = self.client.post(self.list_url, data=json.dumps({'app': 337141}))
         eq_(res.status_code, 403)
+
+    def _post(self):
+        return self.client.post(self.list_url,
+                                data=json.dumps({'app': 337141}))
+
+    def test_bad_region(self):
+        with self.settings(PURCHASE_ENABLED_REGIONS=[]):
+            eq_(self._post().status_code, 403)
+
+    def test_good_region(self):
+        self.setup_base()
+        self.setup_package()
+        with self.settings(PURCHASE_ENABLED_REGIONS=[2]):
+            eq_(self._post().status_code, 201)
 
 
 class TestStatus(BaseOAuth):

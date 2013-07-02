@@ -110,7 +110,7 @@ def app_to_dict(app, region=None, profile=None):
     }
 
     data['upsell'] = False
-    if app.upsell:
+    if app.upsell and region in settings.PURCHASE_ENABLED_REGIONS:
         upsell = app.upsell.premium
         data['upsell'] = {
             'id': upsell.id,
@@ -126,8 +126,9 @@ def app_to_dict(app, region=None, profile=None):
             data['payment_account'] = AccountResource().get_resource_uri(
                 q[0].payment_account)
 
-        data['price'] = app.get_price(region=region)
-        data['price_locale'] = app.get_price_locale(region=region)
+        if region in settings.PURCHASE_ENABLED_REGIONS:
+            data['price'] = app.get_price(region=region)
+            data['price_locale'] = app.get_price_locale(region=region)
         data['payment_required'] = (bool(app.get_tier().price)
                                     if app.get_tier() else False)
 
@@ -228,15 +229,16 @@ def es_app_to_dict(obj, region=None, profile=None):
     try:
         if src['price_tier']:
             price = Price.objects.get(name=src['price_tier'])
-            data['price'] = price.get_price(region=region)
-            data['price_locale'] = price.get_price_locale(region=region)
+            if region in settings.PURCHASE_ENABLED_REGIONS:
+                data['price'] = price.get_price(region=region)
+                data['price_locale'] = price.get_price_locale(region=region)
             data['payment_required'] = bool(price.price)
     except Price.DoesNotExist:
         log.warning('Issue with price tier on app: {0}'.format(obj._id))
         data['payment_required'] = True
 
     data['upsell'] = False
-    if hasattr(obj, 'upsell'):
+    if hasattr(obj, 'upsell') and region in settings.PURCHASE_ENABLED_REGIONS:
         data['upsell'] = obj.upsell
         data['upsell']['resource_uri'] = AppResource().get_resource_uri(
             Webapp(id=obj.upsell['id']))
