@@ -82,12 +82,15 @@ def payments(request, addon_id, addon, webapp=False):
                                u'payment server.'))
                 raise  # We want to see these exceptions!
 
-            is_now_paid = addon.premium_type in amo.ADDON_PREMIUMS
+            is_free_inapp = addon.premium_type == amo.ADDON_FREE_INAPP
+            is_now_paid = (addon.premium_type in amo.ADDON_PREMIUMS
+                           or is_free_inapp)
 
             # If we haven't changed to a free app, check the upsell.
             if is_now_paid and success:
                 try:
-                    upsell_form.save()
+                    if not is_free_inapp:
+                        upsell_form.save()
                     bango_account_list_form.save()
                 except client.Error as err:
                     log.error('Error saving payment information (%s)' % err)
@@ -98,7 +101,7 @@ def payments(request, addon_id, addon, webapp=False):
                     raise  # We want to see all the solitude errors now.
 
             # Test again in case a call to Solitude failed.
-            if is_now_paid and success:
+            if is_now_paid and success and not is_free_inapp:
                 # Update the product's price if we need to.
                 try:
                     apa = AddonPaymentAccount.objects.get(addon=addon)

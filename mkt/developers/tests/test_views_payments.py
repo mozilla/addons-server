@@ -394,6 +394,34 @@ class TestPayments(amo.tests.TestCase):
         self.assert3xx(res, self.url)
         eq_(self.get_webapp().status, amo.STATUS_PENDING)
 
+    def test_associate_acct_to_app_free_inapp(self):
+        # Set up Solitude return values.
+        api = self.sol.api  # Set up Solitude return values.
+        api.generic.product.get_object.side_effect = ObjectDoesNotExist
+        api.generic.product.post.return_value = {'resource_uri': 'gpuri'}
+        api.bango.product.get_object.side_effect = ObjectDoesNotExist
+        api.bango.product.post.return_value = {
+            'resource_uri': 'bpruri', 'bango_id': 123}
+
+        # Set up an existing bank account.
+        user = UserProfile.objects.get(email=self.username)
+        amo.set_user(user)
+        seller = SolitudeSeller.objects.create(
+            resource_uri='/path/to/sel', user=user)
+        acct = PaymentAccount.objects.create(
+            user=user, uri='asdf', name='test', inactive=False,
+            solitude_seller=seller, bango_package_id=123, agreed_tos=True)
+
+        # Associate account with app.
+        self.make_premium(self.webapp)
+        res = self.client.post(
+            self.url, self.get_postdata({'price': 'free', 'allow_inapp': 'True',
+                                         'accounts': acct.pk}), follow=True)
+        self.assertNoFormErrors(res)
+        eq_(res.status_code, 200)
+        eq_(self.webapp.app_payment_account.payment_account.pk, acct.pk)
+
+
     def test_associate_acct_to_app(self):
         # Set up Solitude return values.
         api = self.sol.api  # Set up Solitude return values.
