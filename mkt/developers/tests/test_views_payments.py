@@ -301,8 +301,15 @@ class TestPayments(amo.tests.TestCase):
         self.webapp.update(premium_type=amo.ADDON_PREMIUM)
         res = self.client.get(self.url)
         pqr = pq(res.content)
-        eq_(len(pqr('.regions[data-free-with-inapp-id]')), 1)
-        eq_(int(pqr('.regions').attr('data-free-with-inapp-id')), free_tier.pk)
+        eq_(len(pqr('#region-list[data-free-with-inapp-id]')), 1)
+        eq_(int(pqr('#region-list').attr(
+            'data-free-with-inapp-id')), free_tier.pk)
+
+    def test_not_applicable_data_attr_in_content(self):
+        self.webapp.update(premium_type=amo.ADDON_PREMIUM)
+        res = self.client.get(self.url)
+        pqr = pq(res.content)
+        eq_(len(pqr('#region-list[data-not-applicable-msg]')), 1)
 
     def test_pay_method_ids_in_context(self):
         self.webapp.update(premium_type=amo.ADDON_PREMIUM)

@@ -177,6 +177,7 @@
                        data-api-error-msg="{{ _('A server error occurred. Please try again later.') }}"
                        data-disabled-regions="{{ region_form.disabled_regions|json }}"
                        data-free-with-inapp-id="{{ free_with_in_app_id }}"
+                       data-not-applicable-msg="{{ _('Not applicable') }}"
                        data-payment-methods="{{ payment_methods|json }}"
                        data-pricelist-api-url="{{ api_pricelist_url }}">
                     {{ region_form.regions.errors }}
