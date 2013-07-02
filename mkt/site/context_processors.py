@@ -28,8 +28,7 @@ def global_settings(request):
             # TODO: Coming soon with payments.
             # {'text': _('Account History'),
             #  'href': reverse('account.purchases')},
-            {'text': _('Account Settings'),
-             'href': '/settings'},
+            {'text': _('Account Settings'), 'href': '/settings'},
             {'text': _('Change Password'),
              'href': 'https://login.persona.org/signin'},
             {'text': _('Sign out'), 'href': reverse('users.logout')},
