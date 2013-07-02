@@ -220,6 +220,27 @@ class TestAddonPaymentAccount(amo.tests.TestCase):
             {'bango': 'bango#', 'rating': 'GENERAL',
              'ratingScheme': 'USA', 'seller_product_bango': 'bpruri'})
 
+    @patch('uuid.uuid4', Mock(return_value='lol'))
+    @patch('mkt.developers.models.generate_key', Mock(return_value='poop'))
+    @patch('mkt.developers.models.client')
+    def test_create_with_free_in_app(self, client):
+        client.api.generic.product.get_object.return_value = {
+            'resource_uri': 'gpuri'}
+
+        client.api.bango.product.get_object.return_value = {
+            'resource_uri': 'bpruri', 'bango_id': 'bango#', 'seller': 'selluri'
+        }
+
+        self.app.update(premium_type=amo.ADDON_FREE_INAPP)
+        apa = AddonPaymentAccount.create(
+            'bango', addon=self.app, payment_account=self.account)
+        eq_(apa.addon, self.app)
+        eq_(apa.provider, 'bango')
+        eq_(apa.account_uri, 'acuri')
+        eq_(apa.product_uri, 'bpruri')
+
+        assert not client.api.bango.premium.post.called
+
     @patch('mkt.developers.models.client')
     def test_create_new(self, client):
         client.api.bango.product.get_object.side_effect = ObjectDoesNotExist
