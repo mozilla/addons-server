@@ -511,6 +511,7 @@ class TestManifestRevalidation(amo.tests.WebappTestCase):
 
 class TestFeaturedSuggestions(amo.tests.ESTestCase):
     fixtures = fixture('group_admin', 'user_admin', 'user_admin_group')
+    mock_es = False
 
     def setUp(self):
         super(TestFeaturedSuggestions, self).setUp()
