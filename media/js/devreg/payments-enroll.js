@@ -156,6 +156,7 @@ define('payments-enroll', ['payments'], function(payments) {
         z.body.on('keyup', '#id_bankAccountCode', _.debounce(_pd(function() {
             var $this = $(this);
             var result = getCodeType($this.val());
+            // L10n: {0} is the name of a bank detected from the bank account code.
             $this.siblings('small').text(result ? format(gettext('Detected: {0}'), result) : '');
         }), 200));
 
