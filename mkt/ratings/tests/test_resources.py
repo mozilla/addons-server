@@ -337,6 +337,16 @@ class TestRatingResource(BaseOAuth, AMOPaths):
         eq_(res.status_code, 404)
 
 
+class TestFireplaceRatingResource(BaseOAuth, AMOPaths):
+    fixtures = fixture('user_2519', 'webapp_337141')
+
+    def setUp(self):
+        super(TestFireplaceRatingResource, self).setUp(api_name='fireplace')
+        self.app = Webapp.objects.get(pk=337141)
+        self.user = UserProfile.objects.get(pk=2519)
+        self.user2 = UserProfile.objects.get(pk=31337)
+
+
 class TestReviewFlagResource(BaseOAuth, AMOPaths):
     fixtures = fixture('user_2519', 'webapp_337141')
 

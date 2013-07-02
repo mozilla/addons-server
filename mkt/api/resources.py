@@ -283,6 +283,11 @@ class AppResource(CORSResource, MarketplaceModelResource):
         return PrivacyPolicyResource().dispatch('detail', request, **kwargs)
 
 
+class FireplaceAppResource(AppResource):
+    class Meta(AppResource.Meta):
+        pass
+
+
 class PrivacyPolicyResource(CORSResource, MarketplaceModelResource):
 
     class Meta(MarketplaceResource.Meta):

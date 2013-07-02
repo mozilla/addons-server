@@ -6,8 +6,9 @@ from tastypie_services.services import (ErrorResource, SettingsResource)
 from mkt.submit.api import PreviewResource, StatusResource, ValidationResource
 from mkt.api.base import handle_500, SlugRouter
 from mkt.api.resources import (AppResource, CarrierResource, CategoryViewSet,
-                               ConfigResource, error_reporter, RegionResource)
-from mkt.ratings.resources import RatingResource
+                               ConfigResource, FireplaceAppResource,
+                               error_reporter, RegionResource)
+from mkt.ratings.resources import FireplaceRatingResource, RatingResource
 from mkt.search.api import SearchResource, WithFeaturedResource
 from mkt.stats.api import GlobalStatsResource
 
@@ -22,6 +23,8 @@ api.register(RatingResource())
 
 fireplace = Api(api_name='fireplace')
 fireplace.register(WithFeaturedResource())
+fireplace.register(FireplaceAppResource())
+fireplace.register(FireplaceRatingResource())
 
 apps = SlugRouter()
 apps.register(r'category', CategoryViewSet, base_name='app-category')

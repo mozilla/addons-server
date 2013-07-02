@@ -235,6 +235,11 @@ class RatingResource(CORSResource, MarketplaceModelResource):
                                              review_id=kwargs['review_id'])
 
 
+class FireplaceRatingResource(RatingResource):
+    class Meta(RatingResource.Meta):
+        pass
+
+
 class RatingFlagResource(CORSResource, MarketplaceModelResource):
 
     class Meta(MarketplaceModelResource.Meta):

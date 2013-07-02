@@ -159,7 +159,7 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         eq_(obj['app_slug'], upsell.app_slug)
         eq_(obj['name'], upsell.name)
         eq_(obj['icon_url'], upsell.get_icon_url(128))
-        eq_(obj['resource_uri'], '/api/v1/apps/app/%s/' % upsell.id)
+        eq_(obj['resource_uri'], self.client.get_absolute_url(get_url('app', pk=upsell.id), absolute=False))
 
     def test_get(self):
         self.create_app()
@@ -628,6 +628,15 @@ class TestAppDetail(BaseOAuth, AMOPaths):
                    '.is_authenticated', fakeauth):
             res = self.anon.get(self.get_url)
         assert 'user' in res.json
+
+
+class TestFireplaceAppDetail(BaseOAuth, AMOPaths):
+    fixtures = fixture('user_2519', 'webapp_337141')
+
+    def setUp(self):
+        super(TestAppDetail, self).setUp(api_name='fireplace')
+        self.get_url = get_url('app', pk=337141)
+
 
 class TestCategoryHandler(RestOAuth):
 
