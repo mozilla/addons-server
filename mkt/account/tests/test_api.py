@@ -327,15 +327,30 @@ class TestNewsletter(BaseOAuth):
         super(TestNewsletter, self).setUp(api_name='account')
 
     @patch('basket.subscribe')
-    def test_signup(self, subscribe):
+    def test_signup_bad(self, subscribe):
         res = self.client.post(list_url('newsletter'),
                                data=json.dumps({'email': '!not_an_email'}))
         eq_(res.status_code, 400)
+
+    @patch('basket.subscribe')
+    def test_signup_empty(self, subscribe):
         res = self.client.post(list_url('newsletter'))
         eq_(res.status_code, 400)
+
+    @patch('basket.subscribe')
+    def test_signup(self, subscribe):
         res = self.client.post(list_url('newsletter'),
                                data=json.dumps({'email': 'bob@example.com'}))
         eq_(res.status_code, 204)
         subscribe.assert_called_with(
             'bob@example.com', 'marketplace', lang='en-US', country='us',
             trigger_welcome='Y', optin='Y', format='H')
+
+    @patch('basket.subscribe')
+    def test_signup_plus(self, subscribe):
+        res = self.client.post(list_url('newsletter'),
+                               data=json.dumps({'email': 'bob+totally+real@example.com'}))
+        subscribe.assert_called_with(
+            'bob+totally+real@example.com', 'marketplace', lang='en-US', country='us',
+            trigger_welcome='Y', optin='Y', format='H')
+        eq_(res.status_code, 204)
