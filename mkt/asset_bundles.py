@@ -93,7 +93,6 @@ CSS = {
         'css/mkt/buttons.styl',
         'css/mkt/notification.styl',
         'css/mkt/ratings.styl',
-        'css/mkt/categories.styl',
         'css/mkt/menu.styl',
         'css/mkt/infobox.styl',
         'css/mkt/promo-grid.styl',
