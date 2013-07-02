@@ -107,15 +107,13 @@ class TestPackagedValidation(amo.tests.AMOPaths, ValidationHandler):
         obj = FileUpload.objects.get(uuid=content['id'])
         eq_(obj.user, self.user)
 
-    @patch('mkt.developers.forms.MAX_PACKAGED_APP_SIZE', 1)
+    @patch('mkt.constants.MAX_PACKAGED_APP_SIZE', 2)
     def test_too_big(self):
         res = self.create()
-        eq_(res.status_code, 400)
-        obj = FileUpload.objects.get()
-        messages = json.loads(obj.validation)['messages']
-        eq_(messages[0]['message'],
-            ["Packaged app too large for submission.",
-             "Packages must be less than 1 byte."])
+        eq_(res.status_code, 413)
+        eq_(json.loads(res.content)['reason'],
+            'Packaged app too large for submission by this method. '
+            'Packages must be smaller than 2 bytes.')
 
     def form_errors(self, data, errors):
         self.data = data

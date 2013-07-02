@@ -1,6 +1,7 @@
 import json
 
 from django.db import transaction
+from django.http import HttpResponse
 
 import commonware.log
 from tastypie import fields, http
@@ -13,6 +14,7 @@ from amo.decorators import write
 from addons.models import Addon, Preview
 from files.models import FileUpload
 
+import mkt.constants
 from mkt.api.authentication import (OAuthAuthentication,
                                     OptionalOAuthAuthentication)
 from mkt.api.authorization import AppOwnerAuthorization, OwnerAuthorization
@@ -23,6 +25,10 @@ from mkt.developers import tasks
 from mkt.developers.forms import NewManifestForm, PreviewForm
 
 log = commonware.log.getLogger('z.api')
+
+class HttpRequestTooBig(HttpResponse):
+    status_code = 413
+
 
 class ValidationResource(CORSResource, MarketplaceModelResource):
 

@@ -1,7 +1,9 @@
+import json
 from types import MethodType
 
 from django import http
 from django.conf import settings
+from django.core import urlresolvers
 from django.http import HttpRequest, SimpleCookie
 from django.utils.cache import patch_vary_headers
 
@@ -12,6 +14,7 @@ from amo.urlresolvers import lang_from_accept_header, Prefixer
 from amo.utils import urlparams
 
 import mkt
+import mkt.constants
 
 
 def _set_cookie(self, key, value='', max_age=None, expires=None, path='/',
@@ -219,3 +222,20 @@ class DeviceDetectionMiddleware(object):
                 response.set_cookie(device, 'true')
 
         return response
+
+
+class RestrictJSONUploadSizeMiddleware(object):
+
+    def process_view(self, request, view_func, args, kwargs):
+        if not kwargs == {'api_name': 'apps', 'resource_name': 'validation'}:
+            return
+        if (int(request.META.get('CONTENT_LENGTH', 0)) >
+            mkt.constants.MAX_PACKAGED_APP_SIZE):
+            response = http.HttpResponse()
+            response.status_code = 413
+            response.content = json.dumps(
+                {'reason':
+                 'Packaged app too large for submission by this method. '
+                 'Packages must be smaller than %d bytes.' %
+                 mkt.constants.MAX_PACKAGED_APP_SIZE})
+            return response
