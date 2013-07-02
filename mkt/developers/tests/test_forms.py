@@ -175,8 +175,8 @@ class TestRegionForm(amo.tests.WebappTestCase):
         eq_(form.initial['regions'], regions)
         eq_(form.initial['other_regions'], False)
 
+    @mock.patch('mkt.regions.BR.has_payments', new=True)
     def test_disable_regions_on_paid(self):
-        mkt.regions.BR.has_payments = True
         eq_(self.app.get_region_ids(), mkt.regions.REGION_IDS)
 
         self.app.update(premium_type=amo.ADDON_PREMIUM)
