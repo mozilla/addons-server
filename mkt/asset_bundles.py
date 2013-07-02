@@ -106,7 +106,6 @@ CSS = {
         'css/mkt/login.styl',
         'css/mkt/purchase.styl',
         'css/mkt/lightbox.styl',
-        'css/mkt/filters.styl',
     ),
     'mkt/ecosystem': (
         'css/devreg/reset.styl',
