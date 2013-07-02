@@ -43,8 +43,7 @@ class BaseAbuseResource(PotatoCaptchaResource, CORSResource,
         bundle = self.full_hydrate(bundle)
         self.remove_potato(bundle)
 
-        report = AbuseReport.objects.create(**self.rename_fields(bundle))
-        report.send()
+        AbuseReport.objects.create(**self.rename_fields(bundle)).send()
 
         return bundle
 
