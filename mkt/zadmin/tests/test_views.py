@@ -471,10 +471,11 @@ class TestAddonAdmin(amo.tests.TestCase):
         eq_(rows.find('a').attr('href'), '337141/')
 
 
-class TestManifestRevalidation(amo.tests.WebappTestCase):
+class TestManifestRevalidation(amo.tests.TestCase):
     fixtures = ['webapps/337141-steamcube', 'base/users']
 
     def setUp(self):
+        super(TestManifestRevalidation, self).setUp()
         self.url = reverse('zadmin.manifest_revalidation')
 
     def tearDown(self):
