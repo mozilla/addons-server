@@ -10,8 +10,8 @@ from pyquery import PyQuery as pq
 import amo
 import amo.tests
 from amo.urlresolvers import reverse
-from addons.models import (Addon, AddonCategory, AddonDeviceType, AddonUser,
-                           Category)
+from addons.models import (Addon, AddonCategory, AddonDeviceType,
+                           AddonUpsell, AddonUser, Category)
 from constants.payments import (PAYMENT_METHOD_ALL,
                                 PAYMENT_METHOD_CARD,
                                 PAYMENT_METHOD_OPERATOR)
@@ -297,13 +297,13 @@ class TestPayments(amo.tests.TestCase):
         eq_(len(pqr('#paid-regions-island')), 1)
 
     def test_free_with_in_app_tier_id_in_content(self):
-        free_tier = Price.objects.create(price='0.00')
+        price_tier_zero = Price.objects.create(price='0.00')
         self.webapp.update(premium_type=amo.ADDON_PREMIUM)
         res = self.client.get(self.url)
         pqr = pq(res.content)
-        eq_(len(pqr('#region-list[data-free-with-inapp-id]')), 1)
+        eq_(len(pqr('#region-list[data-tier-zero-id]')), 1)
         eq_(int(pqr('#region-list').attr(
-            'data-free-with-inapp-id')), free_tier.pk)
+            'data-tier-zero-id')), price_tier_zero.pk)
 
     def test_not_applicable_data_attr_in_content(self):
         self.webapp.update(premium_type=amo.ADDON_PREMIUM)
@@ -317,6 +317,20 @@ class TestPayments(amo.tests.TestCase):
         self.assertSetEqual(res.context['payment_methods'].keys(),
                             [PAYMENT_METHOD_ALL, PAYMENT_METHOD_CARD,
                              PAYMENT_METHOD_OPERATOR])
+
+    def test_free_with_in_app_deletes_upsell(self):
+        self.make_premium(self.webapp)
+        new_upsell_app = Addon.objects.create(type=self.webapp.type,
+            status=self.webapp.status, name='upsell-%s' % self.webapp.id,
+            premium_type=amo.ADDON_FREE)
+        new_upsell = AddonUpsell(premium=self.webapp)
+        new_upsell.free = new_upsell_app
+        new_upsell.save()
+        assert self.webapp.upsold is not None
+        res = self.client.post(
+            self.url, self.get_postdata({'price': 'free',
+                                         'allow_inapp': 'True'}), follow=True)
+        eq_(self.get_webapp().upsold, None)
 
     def test_premium_in_app_passes(self):
         self.webapp.update(premium_type=amo.ADDON_FREE)
@@ -355,6 +369,30 @@ class TestPayments(amo.tests.TestCase):
         pqr = pq(res.content)
         eq_(pqr('select[name=price] option[selected]').attr('value'),
             str(Price.objects.get(price='0.99').id))
+
+    def test_starting_with_free_inapp_has_free_selected(self):
+        self.webapp.update(premium_type=amo.ADDON_FREE_INAPP)
+        res = self.client.get(self.url)
+        pqr = pq(res.content)
+        eq_(pqr('select[name=price] option[selected]').attr('value'), 'free')
+
+    def test_made_free_inapp_has_free_selected(self):
+        self.make_premium(self.webapp)
+        res = self.client.post(
+            self.url, self.get_postdata({'price': 'free',
+                                         'allow_inapp': 'True'}), follow=True)
+        pqr = pq(res.content)
+        eq_(pqr('select[name=price] option[selected]').attr('value'), 'free')
+
+    def test_premium_to_free_with_inapp_is_pending(self):
+        self.webapp.update(premium_type=amo.ADDON_PREMIUM,
+                           status=amo.STATUS_NULL,
+                           highest_status=amo.STATUS_PENDING)
+        res = self.client.post(
+            self.url, self.get_postdata({'price': 'free',
+                                         'allow_inapp': 'True'}))
+        self.assert3xx(res, self.url)
+        eq_(self.get_webapp().status, amo.STATUS_PENDING)
 
     def test_associate_acct_to_app(self):
         # Set up Solitude return values.
