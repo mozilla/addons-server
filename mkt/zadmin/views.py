@@ -37,30 +37,39 @@ def featured_apps_admin(request):
                           ('FeaturedApps', '%')])
 def featured_apps_ajax(request):
     if request.method == 'GET':
-        cat = request.GET.get('category', None) or None
-        if cat:
-            cat = int(cat)
+        cat_slug = request.GET.get('category', None)
     elif request.method == 'POST':
         if not acl.action_allowed(request, 'FeaturedApps', 'Edit'):
             raise PermissionDenied
-        cat = request.POST.get('category', None) or None
-        if cat:
-            cat = int(cat)
+        cat_slug = request.POST.get('category', None)
         deleteid = request.POST.get('delete', None)
         if deleteid:
-            FeaturedApp.uncached.filter(category__id=cat,
-                                       app__id=int(deleteid)).delete()
+            delete_apps = FeaturedApp.uncached.filter(
+                app__id=int(deleteid))
+            if not cat_slug:
+                delete_apps = delete_apps.filter(category__isnull=True)
+            else:
+                delete_apps = delete_apps.filter(category__slug=cat_slug)
+            delete_apps.delete()
         appid = request.POST.get('add', None)
         if appid:
+            category = None
+            if cat_slug:
+                try:
+                    category = Category.objects.get(slug=cat_slug,
+                                                    type=amo.ADDON_WEBAPP)
+                except (Category.DoesNotExist,
+                        Category.MultipleObjectsReturned):
+                    pass
             app, created = FeaturedApp.uncached.get_or_create(
-                category_id=cat, app_id=int(appid))
+                category=category, app_id=int(appid))
             if created:
                 FeaturedAppRegion.objects.create(
                     featured_app=app, region=mkt.regions.WORLDWIDE.id)
     else:
-        cat = None
+        cat_slug = None
     apps_regions_carriers = []
-    for app in FeaturedApp.objects.filter(category__id=cat):
+    for app in FeaturedApp.objects.filter(category__slug=cat_slug):
         regions = app.regions.values_list('region', flat=True)
         excluded_regions = app.app.addonexcludedregion.values_list('region',
                                                                    flat=True)
@@ -123,7 +132,7 @@ def featured_categories_ajax(request):
         'homecount': FeaturedApp.uncached.filter(category=None).count(),
         'categories': [{
             'name': cat.name,
-            'id': cat.pk,
+            'id': cat.slug,
             'count': FeaturedApp.uncached.filter(category=cat).count()
         } for cat in cats]})
 
@@ -149,16 +158,15 @@ def manifest_revalidation(request):
 @json_view
 def featured_suggestions(request):
     q = request.GET.get('q', u'').lower().strip()
-    category = request.GET.get('category')
-    cat_id = int(category) if category else None
+    cat_slug = request.GET.get('category')
 
     filters = {
         'type': amo.ADDON_WEBAPP,
         'status': amo.STATUS_PUBLIC,
         'is_disabled': False,
     }
-    if cat_id:
-        filters.update({'category': cat_id})
+    if cat_slug:
+        filters.update({'category': cat_slug})
 
     search_fields = ['app_slug', 'name']
     # If search looks like an ID, also search the ID field.
