@@ -453,6 +453,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     @classmethod
     def from_upload(cls, upload, platforms, is_packaged=False):
         from files.utils import parse_addon
+
         data = parse_addon(upload)
         fields = cls._meta.get_all_field_names()
         addon = Addon(**dict((k, v) for k, v in data.items() if k in fields))
@@ -473,8 +474,10 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                 addon.app_domain = addon.domain_from_url(addon.manifest_url)
         addon.save()
         Version.from_upload(upload, addon, platforms)
+
         amo.log(amo.LOG.CREATE_ADDON, addon)
         log.debug('New addon %r from %r' % (addon, upload))
+
         return addon
 
     def flush_urls(self):

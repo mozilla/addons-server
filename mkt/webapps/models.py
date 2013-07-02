@@ -347,12 +347,19 @@ class Webapp(Addon):
         file_ = file_obj or self.get_latest_file()
         if not file_:
             return
-        if file_.status == amo.STATUS_DISABLED:
-            file_path = file_.guarded_file_path
-        else:
-            file_path = file_.file_path
 
-        return WebAppParser().get_json_data(file_path)
+        try:
+            return file_.version.manifest
+        except AppManifest.DoesNotExist:
+            # TODO: Remove this when we're satisified the above is working.
+            log.info('Falling back to loading manifest from file system. '
+                     'Webapp:%s File:%s' % (self.id, file_.id))
+            if file_.status == amo.STATUS_DISABLED:
+                file_path = file_.guarded_file_path
+            else:
+                file_path = file_.file_path
+
+            return WebAppParser().get_json_data(file_path)
 
     def share_url(self):
         return reverse('apps.share', args=[self.app_slug])
@@ -364,10 +371,16 @@ class Webapp(Addon):
         single version and a single file.
         """
         data = parse_addon(upload, self)
+        manifest = WebAppParser().get_json_data(upload)
         version = self.versions.latest()
         max_ = Version._meta.get_field_by_name('_developer_name')[0].max_length
         version.update(version=data['version'],
                        _developer_name=data['developer_name'][:max_])
+        try:
+            version.manifest_json.update(manifest=json.dumps(manifest))
+        except AppManifest.DoesNotExist:
+            AppManifest.objects.create(version=version,
+                                       manifest=json.dumps(manifest))
         path = smart_path(nfd_str(upload.path))
         file = version.files.latest()
         file.filename = file.generate_filename(extension='.webapp')
@@ -786,6 +799,8 @@ class Webapp(Addon):
         f.size = storage.size(f.file_path)
         f.hash = f.generate_hash(f.file_path)
         f.save()
+        mf = WebAppParser().get_json_data(f.file_path)
+        AppManifest.objects.create(version=v, manifest=json.dumps(mf))
         self.sign_if_packaged(v.pk)
         self.status = amo.STATUS_BLOCKED
         self._current_version = v
@@ -825,9 +840,9 @@ class Webapp(Addon):
         latest=True.
         """
         version = self.versions.latest() if latest else self.current_version
-        file_ = version.all_files[0]
 
         if not manifest:
+            file_ = version.all_files[0]
             manifest = self.get_manifest_json(file_)
 
         updated = False
@@ -1493,3 +1508,17 @@ A set of boolean values stating if an app requires a particular feature.
 
 """
 AppFeatures = type('AppFeatures', (AppFeaturesBase,), app_feature_attrs)
+
+
+class AppManifest(amo.models.ModelBase):
+    """
+    Storage for manifests.
+
+    Tied to version since they change between versions. This stores both hosted
+    and packaged apps manifests for easy access.
+    """
+    version = models.OneToOneField(Version, related_name='manifest_json')
+    manifest = models.TextField()
+
+    class Meta:
+        db_table = 'app_manifest'

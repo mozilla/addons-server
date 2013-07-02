@@ -340,6 +340,8 @@ class TestCreateWebApp(BaseWebAppTest):
         eq_(Translation.objects.get(id=addon.description.id, locale='it'),
             u'Azione aperta emozionante di sviluppo di fotoricettore!')
         eq_(addon.current_version.developer_name, 'Mozilla Labs')
+        eq_(addon.current_version.manifest,
+            json.loads(open(self.manifest).read()))
 
     def test_manifest_with_any_extension(self):
         self.manifest = os.path.join(settings.ROOT, 'mkt', 'developers',

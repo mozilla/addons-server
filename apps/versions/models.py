@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import datetime
+import json
 import os
 
 import django.dispatch
@@ -96,6 +97,7 @@ class Version(amo.models.ModelBase):
         creating = not self.id
         super(Version, self).save(*args, **kw)
         if creating:
+            # To avoid circular import.
             from mkt.webapps.models import AppFeatures
             if self.addon.type == amo.ADDON_WEBAPP:
                 AppFeatures.objects.create(version=self)
@@ -113,7 +115,7 @@ class Version(amo.models.ModelBase):
         v = cls.objects.create(addon=addon, version=data['version'],
                                license_id=license, _developer_name=developer)
         log.info('New version: %r (%s) from %r' % (v, v.id, upload))
-        # appversions
+
         AV = ApplicationsVersions
         for app in data.get('apps', []):
             AV(version=v, min=app.min, max=app.max,
@@ -124,10 +126,21 @@ class Version(amo.models.ModelBase):
         else:
             platforms = cls._make_safe_platform_files(platforms)
 
+        if addon.is_webapp():
+            from mkt.webapps.models import AppManifest
+
+            # Create AppManifest if we're a Webapp.
+            # Note: This must happen before we call `File.from_upload`.
+            manifest = utils.WebAppParser().get_json_data(upload)
+            AppManifest.objects.create(
+                version=v, manifest=json.dumps(manifest))
+
         for platform in platforms:
             File.from_upload(upload, v, platform, parse_data=data)
 
-        if addon.type == amo.ADDON_WEBAPP:
+        if addon.is_webapp():
+            # Update supported locales from manifest.
+            # Note: This needs to happen after we call `File.from_upload`.
             update_supported_locales_single.apply_async(
                 args=[addon.id], kwargs={'latest': True},
                 eta=datetime.datetime.now() +
@@ -471,6 +484,18 @@ class Version(amo.models.ModelBase):
             return False
         data = self.addon.get_manifest_json(file_obj=self.all_files[0])
         return data.get('type') == 'privileged'
+
+    @amo.cached_property
+    def manifest(self):
+        # To avoid circular import.
+        from mkt.webapps.models import AppManifest
+
+        try:
+            manifest = self.manifest_json.manifest
+        except AppManifest.DoesNotExist:
+            manifest = None
+
+        return json.loads(manifest) if manifest else {}
 
 
 def update_status(sender, instance, **kw):

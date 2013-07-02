@@ -863,9 +863,8 @@ class TestReviewTransaction(AttachmentManagementMixin,
 
         eq_(self.get_app().status, amo.STATUS_PUBLIC)
 
-    @mock.patch('mkt.webapps.models.Webapp.get_manifest_json')
     @mock.patch('lib.crypto.packaged.sign_app')
-    def test_public_sign_failure(self, sign_mock, json_mock):
+    def test_public_sign_failure(self, sign_mock):
         raise SkipTest('Passes locally, but fails on Jenkins :(')
 
         self.app = self.get_app()
@@ -2162,7 +2161,8 @@ class TestGetSigned(BasePackagedAppTest, amo.tests.TestCase):
 
 
 class TestMiniManifestView(BasePackagedAppTest):
-    fixtures = ['base/users', 'webapps/337141-steamcube']
+    fixtures = fixture('user_editor', 'user_editor_group', 'group_editor',
+                       'user_999', 'webapp_337141')
 
     def setUp(self):
         super(TestMiniManifestView, self).setUp()
@@ -2203,7 +2203,7 @@ class TestMiniManifestView(BasePackagedAppTest):
             'application/x-web-app-manifest+json; charset=utf-8')
         data = json.loads(res.content)
         eq_(data['name'], manifest['name'])
-        eq_(data['developer']['name'], 'Mozilla Labs')
+        eq_(data['developer']['name'], 'Mozilla Marketplace')
         eq_(data['package_path'],
             absolutify(reverse('reviewers.signed',
                                args=[self.app.app_slug,
@@ -2221,7 +2221,7 @@ class TestMiniManifestView(BasePackagedAppTest):
             'application/x-web-app-manifest+json; charset=utf-8')
         data = json.loads(res.content)
         eq_(data['name'], manifest['name'])
-        eq_(data['developer']['name'], 'Mozilla Labs')
+        eq_(data['developer']['name'], 'Mozilla Marketplace')
         eq_(data['package_path'],
             absolutify(reverse('reviewers.signed',
                        args=[self.app.app_slug,

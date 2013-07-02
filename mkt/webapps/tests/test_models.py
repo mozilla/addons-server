@@ -40,7 +40,7 @@ import mkt
 from mkt.constants import APP_FEATURES, apps
 from mkt.site.fixtures import fixture
 from mkt.submit.tests.test_views import BasePackagedAppTest, BaseWebAppTest
-from mkt.webapps.models import (AddonExcludedRegion, AppFeatures,
+from mkt.webapps.models import (AddonExcludedRegion, AppFeatures, AppManifest,
                                 get_excluded_in, Installed, Webapp,
                                 WebappIndexer)
 
@@ -709,10 +709,14 @@ class TestPackagedManifest(BasePackagedAppTest):
         webapp.update(status=amo.STATUS_REJECTED, _current_version=None)
         version = version_factory(addon=webapp, version='2.0',
                                   file_kw=dict(status=amo.STATUS_PENDING))
+        mf = self._get_manifest_json()
+        AppManifest.objects.create(version=version,
+                                   manifest=json.dumps(mf))
+        webapp.update_version()
+        webapp = webapp.reload()
         eq_(webapp.latest_version, version)
         self.file = version.all_files[0]
         self.setup_files()
-        mf = self._get_manifest_json()
         eq_(webapp.get_manifest_json(), mf)
 
     def test_cached_manifest_is_cached(self):

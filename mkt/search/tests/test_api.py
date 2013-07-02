@@ -491,10 +491,6 @@ class TestApiReviewer(BaseOAuth, ESTestCase):
         self.category = Category.objects.create(name='test',
                                                 type=amo.ADDON_WEBAPP)
 
-        patcher = patch('mkt.webapps.models.Webapp.get_manifest_json')
-        patcher.start().return_value = {'type': 'privileged'}
-        self.addCleanup(patcher.stop)
-
         self.webapp.save()
         self.refresh('webapp')
 
@@ -608,7 +604,9 @@ class TestApiReviewer(BaseOAuth, ESTestCase):
         error = res.json['error_message']
         eq_(error.keys(), ['type'])
 
-    def test_extra_attributes(self):
+    @patch('mkt.webapps.models.Webapp.get_manifest_json')
+    def test_extra_attributes(self, _mock):
+        _mock.return_value = {'type': 'privileged'}
         version = self.webapp.versions.latest()
         version.has_editor_comment = True
         version.has_info_request = True

@@ -32,7 +32,7 @@ from users.utils import get_task_user
 from mkt.constants.regions import WORLDWIDE
 from mkt.developers.tasks import (fetch_icon, _fetch_manifest, run_validator,
                                   validator)
-from mkt.webapps.models import Webapp, WebappIndexer
+from mkt.webapps.models import AppManifest, Webapp, WebappIndexer
 from mkt.webapps.utils import get_locale_properties
 
 
@@ -58,22 +58,6 @@ def _log(webapp, message, rereview=False, exc_info=False):
         message = u'(Re-review) ' + unicode(message)
     task_log.info(u'[Webapp:%s] %s' % (webapp, unicode(message)),
                   exc_info=exc_info)
-
-
-def _open_manifest(webapp, file_):
-    try:
-        if file_.status == amo.STATUS_DISABLED:
-            path = file_.guarded_file_path
-        else:
-            path = file_.file_path
-        with storage.open(path, 'r') as fh:
-            manifest_json = fh.read()
-        return json.loads(manifest_json)
-    except IOError:
-        _log(webapp, u'Original manifest could not be found at: %s' % path,
-             exc_info=True)
-    except ValueError:
-        _log(webapp, u'JSON decoding error', exc_info=True)
 
 
 @task
@@ -166,7 +150,7 @@ def _update_manifest(id, check_hash, failed_fetches):
 
     # Get the old manifest before we overwrite it.
     new = json.loads(content)
-    old = _open_manifest(webapp, file_)
+    old = webapp.get_manifest_json(file_)
 
     # New manifest is different and validates, update version/file.
     try:
@@ -217,7 +201,7 @@ def _update_manifest(id, check_hash, failed_fetches):
         msg.append(u'Locales updated: %s' % crud.get('updated'))
 
     # Check if supported_locales changed and update if so.
-    webapp.update_supported_locales(new)
+    webapp.update_supported_locales(manifest=new)
 
     if rereview:
         msg = ' '.join(msg)
@@ -538,3 +522,25 @@ def collapse_summary(ids, **kw):
     for chunk in chunked(ids, 50):
         for app in Webapp.objects.filter(id__in=chunk):
             _collapse_summary(app)
+
+
+@task
+@write
+def import_manifests(ids, **kw):
+    for app in Webapp.objects.filter(id__in=ids):
+        for version in app.versions.all():
+            try:
+                manifest = app.get_manifest_json(version.files.latest())
+                m, c = AppManifest.objects.get_or_create(
+                    version=version, manifest=json.dumps(manifest))
+                if c:
+                    task_log.info(
+                        '[Webapp:%s] Imported manifest for version %s' % (
+                            app.id, version.id))
+                else:
+                    task_log.info(
+                        '[Webapp:%s] App manifest exists for version %s' % (
+                            app.id, version.id))
+            except Exception as e:
+                task_log.info('[Webapp:%s] Error loading manifest for version '
+                              '%s: %s' % (app.id, version.id, e))

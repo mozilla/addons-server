@@ -89,6 +89,7 @@ class TestUpdateManifest(amo.tests.TestCase):
     fixtures = ('base/platforms',)
 
     def setUp(self):
+
         UserProfile.objects.get_or_create(id=settings.TASK_USER_ID)
 
         # Not using app factory since it creates translations with an invalid
@@ -254,10 +255,10 @@ class TestUpdateManifest(amo.tests.TestCase):
         assert not retry.called
         assert RereviewQueue.objects.filter(addon=self.addon).exists()
 
-    @mock.patch('mkt.webapps.tasks._open_manifest')
-    def test_manifest_name_change_rereview(self, open_manifest):
+    @mock.patch('mkt.webapps.models.Webapp.get_manifest_json')
+    def test_manifest_name_change_rereview(self, _manifest):
         # Mock original manifest file lookup.
-        open_manifest.return_value = original
+        _manifest.return_value = original
         # Mock new manifest with name change.
         self.new['name'] = 'Mozilla Ball Ultimate Edition'
         response_mock = mock.Mock()
@@ -272,10 +273,10 @@ class TestUpdateManifest(amo.tests.TestCase):
         # 2 logs: 1 for manifest update, 1 for re-review trigger.
         eq_(ActivityLog.objects.for_apps(self.addon).count(), 2)
 
-    @mock.patch('mkt.webapps.tasks._open_manifest')
-    def test_manifest_locale_name_add_rereview(self, open_manifest):
+    @mock.patch('mkt.webapps.models.Webapp.get_manifest_json')
+    def test_manifest_locale_name_add_rereview(self, _manifest):
         # Mock original manifest file lookup.
-        open_manifest.return_value = original
+        _manifest.return_value = original
         # Mock new manifest with name change.
         self.new['locales'] = {'es': {'name': 'eso'}}
         response_mock = mock.Mock()
@@ -294,10 +295,10 @@ class TestUpdateManifest(amo.tests.TestCase):
         eq_(log.details.get('comments'),
             u'Locales added: "eso" (es).')
 
-    @mock.patch('mkt.webapps.tasks._open_manifest')
-    def test_manifest_locale_name_change_rereview(self, open_manifest):
+    @mock.patch('mkt.webapps.models.Webapp.get_manifest_json')
+    def test_manifest_locale_name_change_rereview(self, _manifest):
         # Mock original manifest file lookup.
-        open_manifest.return_value = original
+        _manifest.return_value = original
         # Mock new manifest with name change.
         self.new['locales'] = {'de': {'name': 'Bippity Bop'}}
         response_mock = mock.Mock()
@@ -316,10 +317,10 @@ class TestUpdateManifest(amo.tests.TestCase):
         eq_(log.details.get('comments'),
             u'Locales updated: "Mozilla Kugel" -> "Bippity Bop" (de).')
 
-    @mock.patch('mkt.webapps.tasks._open_manifest')
-    def test_manifest_default_locale_change(self, open_manifest):
+    @mock.patch('mkt.webapps.models.Webapp.get_manifest_json')
+    def test_manifest_default_locale_change(self, _manifest):
         # Mock original manifest file lookup.
-        open_manifest.return_value = original
+        _manifest.return_value = original
         # Mock new manifest with name change.
         self.new['name'] = u'Mozilla Balón'
         self.new['default_locale'] = 'es'
@@ -343,10 +344,10 @@ class TestUpdateManifest(amo.tests.TestCase):
             u'Default locale changed from "en-US" to "es". '
             u'Locales added: "Mozilla Balón" (es).')
 
-    @mock.patch('mkt.webapps.tasks._open_manifest')
-    def test_manifest_locale_name_removal_no_rereview(self, open_manifest):
+    @mock.patch('mkt.webapps.models.Webapp.get_manifest_json')
+    def test_manifest_locale_name_removal_no_rereview(self, _manifest):
         # Mock original manifest file lookup.
-        open_manifest.return_value = original
+        _manifest.return_value = original
         # Mock new manifest with name change.
         # Note: Not using `del` b/c copy doesn't copy nested structures.
         self.new['locales'] = {
@@ -363,10 +364,10 @@ class TestUpdateManifest(amo.tests.TestCase):
         # Log for manifest update.
         eq_(ActivityLog.objects.for_apps(self.addon).count(), 1)
 
-    @mock.patch('mkt.webapps.tasks._open_manifest')
-    def test_force_rereview(self, open_manifest):
+    @mock.patch('mkt.webapps.models.Webapp.get_manifest_json')
+    def test_force_rereview(self, _manifest):
         # Mock original manifest file lookup.
-        open_manifest.return_value = original
+        _manifest.return_value = original
         # Mock new manifest with name change.
         self.new['name'] = 'Mozilla Ball Ultimate Edition'
         response_mock = mock.Mock()
@@ -387,10 +388,10 @@ class TestUpdateManifest(amo.tests.TestCase):
         # 2 logs: 1 for manifest update, 1 for re-review trigger.
         eq_(ActivityLog.objects.for_apps(self.addon).count(), 2)
 
-    @mock.patch('mkt.webapps.tasks._open_manifest')
-    def test_manifest_support_locales_change(self, open_manifest):
+    @mock.patch('mkt.webapps.models.Webapp.get_manifest_json')
+    def test_manifest_support_locales_change(self, _manifest):
         # Mock original manifest file lookup.
-        open_manifest.return_value = original
+        _manifest.return_value = original
         # Mock new manifest with name change.
         self.new['locales'].update({'es': {'name': u'Mozilla Balón'}})
         response_mock = mock.Mock()
@@ -403,10 +404,10 @@ class TestUpdateManifest(amo.tests.TestCase):
         ver = self.version.reload()
         eq_(ver.supported_locales, 'de,es,fr')
 
-    @mock.patch('mkt.webapps.tasks._open_manifest')
-    def test_manifest_support_developer_change(self, open_manifest):
+    @mock.patch('mkt.webapps.models.Webapp.get_manifest_json')
+    def test_manifest_support_developer_change(self, _manifest):
         # Mock original manifest file lookup.
-        open_manifest.return_value = original
+        _manifest.return_value = original
         # Mock new manifest with developer name change.
         self.new['developer']['name'] = 'Allizom'
         response_mock = mock.Mock()
