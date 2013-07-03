@@ -49,12 +49,14 @@ class PreparePayResource(CORSResource, MarketplaceResource):
 
     def obj_create(self, bundle, request, **kwargs):
         region = getattr(request, 'REGION', None)
-        # Are they in a region that allows purchasing?
+
         if region and region.id not in settings.PURCHASE_ENABLED_REGIONS:
             log.info('Region {0} is not in {1}'
                      .format(region.id, settings.PURCHASE_ENABLED_REGIONS))
-            raise http_error(http.HttpForbidden,
-                             'Not allowed to purchase in this region')
+            if not waffle.flag_is_active(request, 'allow-paid-app-search'):
+                log.info('Flag not active')
+                raise http_error(http.HttpForbidden,
+                                 'Not allowed to purchase for this flag')
 
         bundle.obj = GenericObject(_prepare_pay(request, bundle.data['app']))
         return bundle

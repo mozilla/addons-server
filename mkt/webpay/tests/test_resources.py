@@ -69,6 +69,14 @@ class TestPrepare(PurchaseTest, BaseOAuth):
         with self.settings(PURCHASE_ENABLED_REGIONS=[2]):
             eq_(self._post().status_code, 201)
 
+    def test_waffle_fallback(self):
+        self.setup_base()
+        self.setup_package()
+        flag = self.create_flag('allow-paid-app-search', everyone=None)
+        flag.users.add(self.user.user)
+        with self.settings(PURCHASE_ENABLED_REGIONS=[]):
+            eq_(self._post().status_code, 201)
+
 
 class TestStatus(BaseOAuth):
     fixtures = fixture('webapp_337141', 'user_2519')
