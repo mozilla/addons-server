@@ -1,6 +1,7 @@
 import logging
 from operator import attrgetter
 
+from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Count
 
@@ -104,6 +105,12 @@ def extract(addon):
     # Indices for each language. languages is a list of locales we want to
     # index with analyzer if the string's locale matches.
     for analyzer, languages in amo.SEARCH_ANALYZER_MAP.iteritems():
+        if (not settings.ES_USE_PLUGINS and
+            analyzer in amo.SEARCH_ANALYZER_PLUGINS):
+            log.info('While creating mapping, skipping the %s analyzer'
+                     % analyzer)
+            continue
+
         d['name_' + analyzer] = list(
             set(string for locale, string in translations[addon.name_id]
                 if locale.lower() in languages))
@@ -146,6 +153,12 @@ def setup_mapping(index=None, aliased=True):
     }
     # Add room for language-specific indexes.
     for analyzer in amo.SEARCH_ANALYZER_MAP:
+        if (not settings.ES_USE_PLUGINS and
+            analyzer in amo.SEARCH_ANALYZER_PLUGINS):
+            log.info('While creating mapping, skipping the %s analyzer'
+                     % analyzer)
+            continue
+
         mapping['properties']['name_' + analyzer] = {
             'type': 'string',
             'analyzer': analyzer,

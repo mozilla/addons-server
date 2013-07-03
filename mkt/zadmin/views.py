@@ -1,5 +1,6 @@
 import datetime
 
+from django.conf import settings
 from django.core.exceptions import PermissionDenied
 from django.db import transaction
 from django.db.models import Q
@@ -171,6 +172,9 @@ def featured_suggestions(request):
 
     fields = ['id', 'app_slug', 'default_locale']
     for analyzer in amo.SEARCH_ANALYZER_MAP:
+        if (not settings.ES_USE_PLUGINS and
+            analyzer in amo.SEARCH_ANALYZER_PLUGINS):
+            continue
         fields.append('name_{0}'.format(analyzer))
 
     qs = qs.values_dict(*fields)

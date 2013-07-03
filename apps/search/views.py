@@ -287,7 +287,10 @@ def _build_suggestions(request, cat, suggester):
 
 
 def _get_locale_analyzer():
-    return amo.SEARCH_LANGUAGE_TO_ANALYZER.get(translation.get_language())
+    analyzer = amo.SEARCH_LANGUAGE_TO_ANALYZER.get(translation.get_language())
+    if not settings.ES_USE_PLUGINS and analyzer in amo.SEARCH_ANALYZER_PLUGINS:
+        return None
+    return analyzer
 
 
 def name_only_query(q):

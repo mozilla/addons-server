@@ -1,5 +1,7 @@
 from operator import attrgetter
 
+from django.conf import settings
+
 import amo
 
 
@@ -26,6 +28,10 @@ def extract(collection):
     # Indices for each language. languages is a list of locales we want to
     # index with analyzer if the string's locale matches.
     for analyzer, languages in amo.SEARCH_ANALYZER_MAP.iteritems():
+        if (not settings.ES_USE_PLUGINS and
+            analyzer in amo.SEARCH_ANALYZER_PLUGINS):
+            continue
+
         d['name_' + analyzer] = list(
             set(string for locale, string in translations[collection.name_id]
                 if locale.lower() in languages))
