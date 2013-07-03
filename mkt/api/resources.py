@@ -237,7 +237,8 @@ class AppResource(CORSResource, MarketplaceModelResource):
         obj = bundle.obj
         amo_user = getattr(bundle.request, 'amo_user', None)
         bundle.data.update(app_to_dict(obj,
-            region=bundle.request.REGION.id, profile=amo_user))
+            region=bundle.request.REGION.id, profile=amo_user,
+            request=bundle.request))
         bundle.data['privacy_policy'] = (
             PrivacyPolicyResource().get_resource_uri(bundle))
 

@@ -467,6 +467,7 @@ class TestCase(RedisTest, test_utils.TestCase):
         kw.setdefault('percent', 100)
         sample = Sample(**kw)
         sample.save() if db else cache_sample(instance=sample)
+        return sample
 
     def create_switch(self, name=None, db=False, **kw):
         kw.setdefault('active', True)
@@ -474,12 +475,13 @@ class TestCase(RedisTest, test_utils.TestCase):
             kw['name'] = name
         switch = Switch(**kw)
         switch.save() if db else cache_switch(instance=switch)
+        return switch
 
     def create_flag(self, name=None, **kw):
         if name is not None:
             kw['name'] = name
         kw.setdefault('everyone', True)
-        Flag.objects.create(**kw)
+        return Flag.objects.create(**kw)
 
     def grant_permission(self, user_obj, rules, name='Test Group'):
         """Creates group with rule, and adds user to group."""

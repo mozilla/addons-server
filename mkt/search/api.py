@@ -120,7 +120,8 @@ class SearchResource(CORSResource, MarketplaceResource):
         amo_user = getattr(bundle.request, 'amo_user', None)
 
         bundle.data.update(es_app_to_dict(obj, region=bundle.request.REGION.id,
-                                          profile=amo_user))
+                                          profile=amo_user,
+                                          request=bundle.request))
 
         # Add extra data for reviewers. Used in reviewer tool search.
         bundle = update_with_reviewer_data(bundle, using_es=True)

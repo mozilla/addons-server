@@ -5,6 +5,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.utils import translation
 
 import commonware.log
+import waffle
 
 import amo
 from access import acl
@@ -52,7 +53,7 @@ def get_supported_locales(manifest):
         manifest.get('locales', {}).keys()))))
 
 
-def app_to_dict(app, region=None, profile=None):
+def app_to_dict(app, region=None, profile=None, request=None):
     """Return app data as dict for API."""
     # Sad circular import issues.
     from mkt.api.resources import AppResource
@@ -126,7 +127,9 @@ def app_to_dict(app, region=None, profile=None):
             data['payment_account'] = AccountResource().get_resource_uri(
                 q[0].payment_account)
 
-        if region in settings.PURCHASE_ENABLED_REGIONS:
+        if (region in settings.PURCHASE_ENABLED_REGIONS or
+            (request and
+             waffle.flag_is_active(request, 'allow-paid-app-search'))):
             data['price'] = app.get_price(region=region)
             data['price_locale'] = app.get_price_locale(region=region)
         data['payment_required'] = (bool(app.get_tier().price)
@@ -166,7 +169,7 @@ def get_attr_lang(src, attr, default_locale):
     return value[0] if value else u''
 
 
-def es_app_to_dict(obj, region=None, profile=None):
+def es_app_to_dict(obj, region=None, profile=None, request=None):
     """
     Return app data as dict for API where `app` is the elasticsearch result.
     """
@@ -229,7 +232,9 @@ def es_app_to_dict(obj, region=None, profile=None):
     try:
         if src['price_tier']:
             price = Price.objects.get(name=src['price_tier'])
-            if region in settings.PURCHASE_ENABLED_REGIONS:
+            if (region in settings.PURCHASE_ENABLED_REGIONS or
+                (request and
+                 waffle.flag_is_active(request, 'allow-paid-app-search'))):
                 data['price'] = price.get_price(region=region)
                 data['price_locale'] = price.get_price_locale(region=region)
             data['payment_required'] = bool(price.price)

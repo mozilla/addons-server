@@ -5,6 +5,7 @@ from django.test.utils import override_settings
 import mock
 from elasticutils.contrib.django import S
 from nose.tools import eq_, ok_
+from test_utils import RequestFactory
 
 import amo
 import amo.tests
@@ -95,19 +96,14 @@ class TestAppToDict(amo.tests.TestCase):
         self.assertSetEqual(res['current_version']['required_features'],
                             ['pay'])
 
-    def test_all_features(self):
-        data = dict(('has_' + f.lower(), True) for f in APP_FEATURES)
-        self.features.update(**data)
-        res = app_to_dict(self.app)
-        self.assertSetEqual(res['current_version']['required_features'],
-                            [f.lower() for f in APP_FEATURES])
-
 
 @override_settings(PURCHASE_ENABLED_REGIONS=[regions.US.id, regions.PL.id])
 class TestAppToDictPrices(amo.tests.TestCase):
+    fixtures = fixture('user_2519')
 
     def setUp(self):
         self.app = amo.tests.app_factory(premium_type=amo.ADDON_PREMIUM)
+        self.profile = UserProfile.objects.get(pk=2519)
 
     def test_some_price(self):
         self.make_premium(self.app, price='0.99')
@@ -165,6 +161,18 @@ class TestAppToDictPrices(amo.tests.TestCase):
         res = app_to_dict(self.app, region=regions.UK.id)
         eq_(res['price'], None)
         eq_(res['price_locale'], None)
+        eq_(res['payment_required'], True)
+
+    def test_waffle_fallback(self):
+        self.make_premium(self.app, price='0.99')
+        flag = self.create_flag('allow-paid-app-search', everyone=None)
+        flag.users.add(self.profile.user)
+        req = RequestFactory().get('/')
+        req.user = self.profile.user
+        with self.settings(PURCHASE_ENABLED_REGIONS=[]):
+            res = app_to_dict(self.app, region=regions.US.id, request=req)
+        eq_(res['price'], Decimal('0.99'))
+        eq_(res['price_locale'], '$0.99')
         eq_(res['payment_required'], True)
 
 
