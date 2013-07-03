@@ -343,13 +343,20 @@ def get_preview_sizes(ids, **kw):
 def _fetch_content(url):
     with statsd.timer('developers.tasks.fetch_content'):
         try:
-            return urllib2.urlopen(url, timeout=30)
+            stream = urllib2.urlopen(url, timeout=30)
+            if not 200 <= stream.getcode() < 300:
+                raise Exception(
+                    'An invalid HTTP status code was returned.')
+            if not stream.headers:
+                raise Exception(
+                    'The HTTP server did not return headers.')
+            return stream
         except urllib2.HTTPError, e:
             raise Exception(
-                _('%s responded with %s (%s).') % (url, e.code, e.msg))
+                '%s responded with %s (%s).' % (url, e.code, e.msg))
         except urllib2.URLError, e:
             # Unpack the URLError to try and find a useful message.
-            raise Exception(_('The file could not be retrieved.'))
+            raise Exception('The file could not be retrieved.')
 
 
 class ResponseTooLargeException(Exception):
