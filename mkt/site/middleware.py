@@ -231,8 +231,11 @@ class RestrictJSONUploadSizeMiddleware(object):
         if not (match.view_name == 'api_dispatch_list' and
                 match.kwargs == {'api_name': 'apps', 'resource_name': 'validation'}):
             return
-        if (request.META['CONTENT_LENGTH'] >
-            mkt.constants.MAX_PACKAGED_APP_SIZE):
+        try:
+            content_length = int(request.META.get('CONTENT_LENGTH', 0))
+        except ValueError:
+            content_length = 0
+        if content_length > mkt.constants.MAX_PACKAGED_APP_SIZE:
             response = http.HttpResponse()
             response.status_code = 413
             response.content = json.dumps(
