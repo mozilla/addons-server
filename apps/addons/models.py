@@ -382,12 +382,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         from mkt.webapps import tasks as mkt_tasks
         from . import tasks
 
-        # Remove from search index.
-        if self.type == amo.ADDON_WEBAPP:
-            mkt_tasks.unindex_webapps.delay([self.id])
-        else:
-            tasks.unindex_addons.delay([self.id])
-
         id = self.id
 
         previews = list(Preview.objects.filter(addon__id=id)
@@ -447,6 +441,12 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
         for preview in previews:
             tasks.delete_preview_files.delay(preview)
+
+        # Remove from search index.
+        if self.type == amo.ADDON_WEBAPP:
+            mkt_tasks.unindex_webapps.delay([id])
+        else:
+            tasks.unindex_addons.delay([id])
 
         return True
 
