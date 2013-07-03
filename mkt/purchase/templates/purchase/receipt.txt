@@ -1,13 +1,11 @@
-{% trans %}
-Thank you for purchasing from the Firefox Marketplace.
+{{ _('Thank you for purchasing from the Firefox Marketplace.') }}
 
-App name: {{ app_name }}
-App developer: {{ authors }}
+{{ _('App name:') }} {{ app_name }}
+{{ _('App developer:') }} {{ authors }}
 
-Order date: {{ date }}
-Order number: {{ transaction_id }}
+{{ _('Order date:') }} {{ date }}
+{{ _('Order number:') }} {{ transaction_id }}
 
-For support please visit: {{ support_url }}
-Your purchase history: {{ purchases }}
-Marketplace terms of service: {{ terms_of_service_url }}
-{% endtrans %}
+{{ _('For support please visit:') }} {{ support_url }}
+{{ _('Your purchase history:') }} {{ purchases }}
+{{ _('Marketplace Terms of Service:') }} {{ terms_of_service_url }}
