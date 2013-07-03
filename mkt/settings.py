@@ -91,7 +91,6 @@ MIDDLEWARE_CLASSES.remove(
 MIDDLEWARE_CLASSES.remove('multidb.middleware.PinningRouterMiddleware')
 
 MIDDLEWARE_CLASSES += [
-    'mkt.site.middleware.RestrictJSONUploadSizeMiddleware',
     'mkt.site.middleware.RedirectPrefixedURIMiddleware',
     'mkt.site.middleware.LocaleMiddleware',
 
