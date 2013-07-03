@@ -20,6 +20,7 @@ var z = {
     canInstallApps: true
 };
 
+
 z.prefixUpper = z.prefix[0].toUpperCase() + z.prefix.substr(1);
 
 (function() {
