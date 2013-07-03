@@ -1124,6 +1124,17 @@ class TestTerms(amo.tests.TestCase):
         eq_(doc('#dev-agreement').length, 1)
         eq_(doc('#agreement-form').length, 0)
 
+    def test_l10n_good(self):
+        for locale in ('en-US', 'es', 'pl'):
+            res = self.client.get(self.url, {'lang': locale})
+            eq_(res.status_code, 200)
+            self.assertTemplateUsed(res, 'dev-agreement/%s.html' % locale)
+
+    def test_l10n_fallback(self):
+        res = self.client.get(self.url, {'lang': 'swag'})
+        eq_(res.status_code, 200)
+        self.assertTemplateUsed(res, 'dev-agreement/en-US.html')
+
 
 class TestTransactionList(amo.tests.TestCase):
     fixtures = fixture('user_999')

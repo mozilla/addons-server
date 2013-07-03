@@ -1,4 +1,5 @@
 import json
+import os
 
 from django.conf import settings
 
@@ -293,3 +294,14 @@ def get_login_link(context, to=None):
 def more_button(pager):
     t = env.get_template('site/paginator.html')
     return jinja2.Markup(t.render(pager=pager))
+
+
+@register.function
+@jinja2.contextfunction
+def dev_agreement(context):
+    langs = ['en-US', 'es', 'pl']
+    lang = context['request'].LANG
+    if lang not in langs:
+        lang = 'en-US'
+    template = env.get_template('dev-agreement/%s.html' % lang)
+    return jinja2.Markup(template.render())
