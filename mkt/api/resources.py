@@ -329,7 +329,7 @@ class CategoryViewSet(ListModelMixin, RetrieveModelMixin, CORSViewSet):
             if carrier:
                 carrier_f |= Q(carrier=carrier)
             qs = qs.filter(carrier_f)
-        return qs
+        return qs.order_by('-carrier', '-region')
 
 
 def waffles(request):
