@@ -128,12 +128,9 @@ def restart_workers():
 def update_celery():
     restarts = []
     if getattr(settings, 'CELERY_SERVICE_PREFIX', False):
-        restarts.append('supervisorctl %s restart &' %
-                        settings.CELERY_SERVICE_PREFIX)
-        restarts.append('supervisorctl %s-devhub restart &'
-                        % settings.CELERY_SERVICE_PREFIX)
-        restarts.append('supervisorctl %s-bulk restart &'
-                        % settings.CELERY_SERVICE_PREFIX)
+        restarts.extend(['supervisorctl restart {0}{1} &'.format(
+                         settings.CELERY_SERVICE_PREFIX, x)
+                         for x in ('', '-devhub', '-bulk')])
     if getattr(settings, 'CELERY_SERVICE_MKT_PREFIX', False):
         restarts.append('supervisorctl %s restart &' %
                         settings.CELERY_SERVICE_MKT_PREFIX)
