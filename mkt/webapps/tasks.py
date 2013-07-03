@@ -530,7 +530,12 @@ def import_manifests(ids, **kw):
     for app in Webapp.objects.filter(id__in=ids):
         for version in app.versions.all():
             try:
-                manifest = app.get_manifest_json(version.files.latest())
+                file_ = version.files.latest()
+                if file_.status == amo.STATUS_DISABLED:
+                    file_path = file_.guarded_file_path
+                else:
+                    file_path = file_.file_path
+                manifest = WebAppParser().get_json_data(file_path)
                 m, c = AppManifest.objects.get_or_create(
                     version=version, manifest=json.dumps(manifest))
                 if c:
