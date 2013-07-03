@@ -107,8 +107,6 @@ def extract(addon):
     for analyzer, languages in amo.SEARCH_ANALYZER_MAP.iteritems():
         if (not settings.ES_USE_PLUGINS and
             analyzer in amo.SEARCH_ANALYZER_PLUGINS):
-            log.info('While creating mapping, skipping the %s analyzer'
-                     % analyzer)
             continue
 
         d['name_' + analyzer] = list(
