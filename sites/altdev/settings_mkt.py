@@ -156,3 +156,5 @@ APP_PURCHASE_KEY = 'marketplace-dev.allizom.org'
 APP_PURCHASE_AUD = 'marketplace-dev.allizom.org'
 APP_PURCHASE_TYP = 'mozilla-dev/payments/pay/v1'
 APP_PURCHASE_SECRET = private_mkt.APP_PURCHASE_SECRET
+
+ES_USE_PLUGINS = True

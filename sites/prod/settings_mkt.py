@@ -162,3 +162,5 @@ DUMPED_APPS_PATH = NETAPP_STORAGE + '/dumped-apps'
 
 if NEWRELIC_ENABLE:
     NEWRELIC_INI = '/etc/newrelic.d/marketplace.firefox.com.ini'
+
+ES_USE_PLUGINS = True
