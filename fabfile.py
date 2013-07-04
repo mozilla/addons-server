@@ -133,12 +133,9 @@ def update_celery():
 
 @task
 def deploy():
-    with lcd(ZAMBONI):
-        ref = local('git rev-parse HEAD', capture=True)
-
     rpmbuild = RPMBuild(name='zamboni',
                         env=settings.ENV,
-                        ref=ref,
+                        ref=helpers.git_ref(ZAMBONI),
                         cluster=settings.CLUSTER,
                         domain=settings.DOMAIN)
 
