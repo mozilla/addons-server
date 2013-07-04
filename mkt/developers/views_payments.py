@@ -203,7 +203,7 @@ def payment_accounts_form(request):
 def payments_accounts_add(request):
     form = forms_payments.BangoPaymentAccountForm(request.POST)
     if not form.is_valid():
-        return http.HttpResponseBadRequest(json.dumps(form.errors))
+        return json_view.error(form.errors)
 
     try:
         obj = PaymentAccount.create_bango(request.amo_user, form.cleaned_data)
@@ -225,7 +225,7 @@ def payments_account(request, id):
         if form.is_valid():
             form.save()
         else:
-            return http.HttpResponse(json.dumps(form.errors), status=400)
+            return json_view.error(form.errors)
 
     return account.get_details()
 
