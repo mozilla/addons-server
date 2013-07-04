@@ -83,13 +83,6 @@ def update_info(ref='origin/master'):
 
 
 @task
-@roles('web', 'celery')
-@parallel
-def install_package(rpmbuild):
-    rpmbuild.install_package()
-
-
-@task
 def disable_cron():
     local("rm -f /etc/cron.d/%s" % settings.CRON_NAME)
 
@@ -149,14 +142,13 @@ def deploy():
                         cluster=settings.CLUSTER,
                         domain=settings.DOMAIN)
 
-    execute(install_cron)
-
     rpmbuild.build_rpm(ROOT, ['zamboni', 'venv'])
-    execute(install_package, rpmbuild)
+    rpmbuild.deploy('web', 'celery')
 
     execute(restart_workers)
     execute(update_celery)
     rpmbuild.clean()
+    execute(install_cron)
     managecmd('cron cleanup_validation_results')
 
 
