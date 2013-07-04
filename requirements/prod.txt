@@ -5,7 +5,7 @@ babel==0.9.6
 basket-client==0.3.2
 billiard==2.7.3.28
 bleach==1.1.5
-boto==2.9.0
+boto==2.9.6
 cef==0.5
 celery==3.0.19
 celery-tasktree==0.3.2
@@ -35,7 +35,7 @@ django-recaptcha-mozilla==0.0.1
 djangorestframework==2.3.5
 #django-session-csrf==0.6
 django-statsd-mozilla==0.3.8.6
-django-storages==1.1.4
+django-storages==1.1.8
 django-tastypie==0.9.11
 easy-thumbnails==1.1
 elasticutils==0.7
