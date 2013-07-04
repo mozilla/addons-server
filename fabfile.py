@@ -12,8 +12,7 @@ import deploysettings as settings
 
 
 env.key_filename = settings.SSH_KEY
-fabdeploytools.envs.loadenv(pjoin('/etc/deploytools/envs',
-                                  settings.CLUSTER))
+fabdeploytools.envs.loadenv(settings.CLUSTER)
 
 ROOT = os.path.abspath(pjoin(os.path.dirname(__file__), '..'))
 ZAMBONI = pjoin(ROOT, 'zamboni')
