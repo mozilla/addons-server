@@ -159,6 +159,10 @@ class TestWebapp(amo.tests.TestCase):
                         manifest_url='')
         eq_(webapp.origin, 'app://foo.com')
 
+    def test_punicode_domain(self):
+        webapp = Webapp(app_domain=u'http://www.allizôm.org')
+        eq_(webapp.punycode_app_domain, 'http://www.xn--allizm-mxa.org')
+
     def test_reviewed(self):
         assert not Webapp().is_unreviewed()
 

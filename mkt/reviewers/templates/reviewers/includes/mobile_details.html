@@ -54,6 +54,18 @@
                data-url="{{ url('reviewers.apps.review.manifest', product.app_slug) }}">
               {{ product.manifest_url }} <b>{{ _('View') }}</b></a>
           </dd>
+          {% if product.app_domain %}
+          <dt>{{ _('App domain') }}</dt>
+          <dd>
+            {{ product.app_domain }}
+            {% if product.punycode_app_domain != product.app_domain %}
+              <br>
+              {% trans punycode_app_domain=product.punycode_app_domain %}
+                <strong>IDN domain!</strong> punycode version: {{ punycode_app_domain }}
+              {% endtrans %}
+            {% endif %}
+          </dd>
+          {% endif %}
           {% if product.is_packaged %}
             <dt>{{ _('Signed Zip') }}</dt>
             {% with package_url=url('reviewers.signed', product.app_slug, product.versions.latest().id) %}

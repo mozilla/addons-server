@@ -1729,6 +1729,14 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         eq_(save_mock.call_args_list,
             [mock.call(os.path.join(ATTACHMENTS_DIR, 'bacon.txt'), mock.ANY)])
 
+    def test_idn_app_domain(self):
+        response = self.client.get(self.url)
+        assert not 'IDN domain!' in response.content
+
+        self.get_app().update(app_domain=u'http://www.allïzom.org')
+        response = self.client.get(self.url)
+        assert 'IDN domain!' in response.content
+
 
 class TestCannedResponses(AppReviewerTest):
 

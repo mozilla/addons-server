@@ -298,6 +298,10 @@ class Webapp(Addon):
         return '%s://%s' % (pieces.scheme, pieces.netloc.lower())
 
     @property
+    def punycode_app_domain(self):
+        return self.app_domain.encode('idna')
+
+    @property
     def parsed_app_domain(self):
         if self.is_packaged:
             raise ValueError('Packaged apps do not have a domain')
