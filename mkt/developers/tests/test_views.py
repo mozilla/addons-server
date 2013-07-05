@@ -900,6 +900,7 @@ class TestUploadDetail(BaseUploadTest):
                                               urlopen_mock):
         rs = mock.Mock()
         rs.read.return_value = self.file_content('mozball.owa')
+        rs.getcode.return_value = 200
         rs.headers = {'Content-Type': 'application/x-web-app-manifest+json'}
         urlopen_mock.return_value = rs
         validator_mock.return_value = json.dumps(self.validation_ok())

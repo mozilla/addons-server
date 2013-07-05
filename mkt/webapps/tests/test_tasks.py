@@ -123,6 +123,7 @@ class TestUpdateManifest(amo.tests.TestCase):
         self.addCleanup(urlopen_patch.stop)
 
         self.response_mock = mock.Mock()
+        self.response_mock.getcode.return_value = 200
         self.response_mock.read.return_value = self._data()
         self.response_mock.headers = {
             'Content-Type': 'application/x-web-app-manifest+json'}
@@ -263,6 +264,7 @@ class TestUpdateManifest(amo.tests.TestCase):
         self.new['name'] = 'Mozilla Ball Ultimate Edition'
         response_mock = mock.Mock()
         response_mock.read.return_value = json.dumps(self.new)
+        response_mock.getcode.return_value = 200
         response_mock.headers = {
             'Content-Type': 'application/x-web-app-manifest+json'}
         self.urlopen_mock.return_value = response_mock
@@ -280,6 +282,7 @@ class TestUpdateManifest(amo.tests.TestCase):
         # Mock new manifest with name change.
         self.new['locales'] = {'es': {'name': 'eso'}}
         response_mock = mock.Mock()
+        response_mock.getcode.return_value = 200
         response_mock.read.return_value = json.dumps(self.new)
         response_mock.headers = {
             'Content-Type': 'application/x-web-app-manifest+json'}
@@ -302,6 +305,7 @@ class TestUpdateManifest(amo.tests.TestCase):
         # Mock new manifest with name change.
         self.new['locales'] = {'de': {'name': 'Bippity Bop'}}
         response_mock = mock.Mock()
+        response_mock.getcode.return_value = 200
         response_mock.read.return_value = json.dumps(self.new)
         response_mock.headers = {
             'Content-Type': 'application/x-web-app-manifest+json'}
@@ -326,6 +330,7 @@ class TestUpdateManifest(amo.tests.TestCase):
         self.new['default_locale'] = 'es'
         self.new['locales'] = {'en-US': {'name': 'MozillaBall'}}
         response_mock = mock.Mock()
+        response_mock.getcode.return_value = 200
         response_mock.read.return_value = json.dumps(self.new)
         response_mock.headers = {
             'Content-Type': 'application/x-web-app-manifest+json'}
@@ -353,6 +358,7 @@ class TestUpdateManifest(amo.tests.TestCase):
         self.new['locales'] = {
             'fr': {'description': 'Testing name-less locale'}}
         response_mock = mock.Mock()
+        response_mock.getcode.return_value = 200
         response_mock.read.return_value = json.dumps(self.new)
         response_mock.headers = {
             'Content-Type': 'application/x-web-app-manifest+json'}
@@ -371,6 +377,7 @@ class TestUpdateManifest(amo.tests.TestCase):
         # Mock new manifest with name change.
         self.new['name'] = 'Mozilla Ball Ultimate Edition'
         response_mock = mock.Mock()
+        response_mock.getcode.return_value = 200
         response_mock.read.return_value = json.dumps(self.new)
         response_mock.headers = {
             'Content-Type': 'application/x-web-app-manifest+json'}
@@ -395,6 +402,7 @@ class TestUpdateManifest(amo.tests.TestCase):
         # Mock new manifest with name change.
         self.new['locales'].update({'es': {'name': u'Mozilla Balón'}})
         response_mock = mock.Mock()
+        response_mock.getcode.return_value = 200
         response_mock.read.return_value = json.dumps(self.new)
         response_mock.headers = {
             'Content-Type': 'application/x-web-app-manifest+json'}
@@ -411,6 +419,7 @@ class TestUpdateManifest(amo.tests.TestCase):
         # Mock new manifest with developer name change.
         self.new['developer']['name'] = 'Allizom'
         response_mock = mock.Mock()
+        response_mock.getcode.return_value = 200
         response_mock.read.return_value = json.dumps(self.new)
         response_mock.headers = {
             'Content-Type': 'application/x-web-app-manifest+json'}

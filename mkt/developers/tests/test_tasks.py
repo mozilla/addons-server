@@ -281,6 +281,7 @@ class TestFetchManifest(amo.tests.TestCase):
     @contextmanager
     def patch_urlopen(self):
         response_mock = mock.Mock()
+        response_mock.getcode.return_value = 200
         response_mock.read.return_value = '<default>'
         response_mock.headers = {'Content-Type': self.content_type}
         yield response_mock
@@ -355,9 +356,8 @@ class TestFetchManifest(amo.tests.TestCase):
 
         tasks.fetch_manifest('url', self.upload.pk)
         self.check_validation(
-            'Manifests must be served with the HTTP header "Content-Type: '
-            'application/x-web-app-manifest+json". See %s for more '
-            'information.' % tasks.CT_URL)
+            'No manifest was found at that URL. Check the address and try '
+            'again.')
 
     @mock.patch('mkt.developers.tasks.validator', lambda uid, **kw: None)
     def test_bad_content_type(self):
