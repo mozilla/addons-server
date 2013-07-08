@@ -375,7 +375,7 @@ class TestWebapp(amo.tests.TestCase):
         # and only in US region.
         for abbr, region in mkt.regions.REGIONS_CHOICES:
             self.assertSetEqual(
-                [a.id for a in Webapp.featured(cat=cat, region=region)],
+                [a.id for a in Webapp.featured(cat=[cat], region=region)],
                 creatured_ids if abbr == 'us' else [])
 
     def test_featured_no_creatured(self):
