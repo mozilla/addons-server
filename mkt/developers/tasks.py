@@ -347,7 +347,7 @@ def _fetch_content(url):
             if not 200 <= stream.getcode() < 300:
                 raise Exception(
                     'An invalid HTTP status code was returned.')
-            if not stream.headers:
+            if not stream.headers.keys():
                 raise Exception(
                     'The HTTP server did not return headers.')
             return stream
