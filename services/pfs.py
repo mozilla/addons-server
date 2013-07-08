@@ -133,8 +133,8 @@ def get_output(data):
         plugin.update(
             guid='{45f2a22c-4029-4209-8b3d-1421b989633f}',
             XPILocation='',
-            version='12.0.2.122',
-            InstallerHash='sha256:70d9dce4ad508276afe39992eb7a30c9475e3d778324ebfa831e2a1732a83738',
+            version='12.0.3.133',
+            InstallerHash='sha256:337498d0e556d5ec3d302db79895eaa0c47770f47227e400d582b783cca6caf8',
             InstallerLocation='http://fpdownload.macromedia.com/pub/shockwave/default/english/win95nt/latest/Shockwave_Installer_FF.exe',
             needsRestart='false',
             InstallerShowsUI='false')
@@ -299,7 +299,7 @@ def get_output(data):
             InstallerShowsUI='true',
             manualInstallationURL='http://www.videoegg.com/')
 
-    elif (g['mimetype'] == 'video/divx' and
+    elif (g['mimetype'] == 'video/vnd.divx' and
           g['clientOS'].startswith('Win')):
         plugin.update(
             name='DivX Web Player',
@@ -310,7 +310,7 @@ def get_output(data):
             licenseURL='http://go.divx.com/plugin/license/',
             manualInstallationURL='http://go.divx.com/plugin/download/')
 
-    elif (g['mimetype'] == 'video/divx' and
+    elif (g['mimetype'] == 'video/vnd.divx' and
           re.match(r'^(PPC|Intel) Mac OS X', g['clientOS'])):
         plugin.update(
             name='DivX Web Player',
