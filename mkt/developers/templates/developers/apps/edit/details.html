@@ -1,4 +1,4 @@
-{% from 'developers/includes/macros.html' import empty_unless, required, some_html_tip, tip %}
+{% from 'developers/includes/macros.html' import required, some_html_tip, tip %}
 {% set req_if_edit = required() if editable %}
 <form id="details" method="post" action="{{ addon.get_dev_url('section', args=['details', 'edit']) }}">
   <h2>
@@ -45,9 +45,7 @@
               {{ form.homepage }}
               {{ form.homepage.errors }}
             {% else %}
-              {% call empty_unless(addon.homepage) %}
-                {{ addon|all_locales('homepage') }}
-              {% endcall %}
+              {{ addon|all_locales('homepage', prettify_empty=True) }}
             {% endif %}
           </td>
         </tr>
@@ -68,11 +66,9 @@
               {{ form.privacy_policy.errors }}
               {{ some_html_tip() }}
             {% else %}
-              {% call empty_unless(addon.privacy_policy) %}
-                <div id="addon-privacy-policy" class="prose">
-                  {{ addon|all_locales('privacy_policy', nl2br=True) }}
-                </div>
-              {% endcall %}
+              <div id="addon-privacy-policy" class="prose">
+                {{ addon|all_locales('privacy_policy', nl2br=True, prettify_empty=True) }}
+              </div>
             {% endif %}
           </td>
         </tr>

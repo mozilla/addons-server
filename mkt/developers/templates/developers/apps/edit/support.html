@@ -1,4 +1,4 @@
-{% from 'developers/includes/macros.html' import empty_unless, required, tip %}
+{% from 'developers/includes/macros.html' import required, tip %}
 <form method="post" action="{{ addon.get_dev_url('section', args=['support', 'edit']) }}">
   <h2>
     {{ _('Support Information') }}
@@ -29,9 +29,7 @@
               {{ form.support_email }}
               {{ form.support_email.errors }}
             {% else %}
-              {% call empty_unless(addon.support_email) %}
-                {{ addon|all_locales('support_email') }}
-              {% endcall %}
+              {{ addon|all_locales('support_email', prettify_empty=True) }}
             {% endif %}
           </td>
         </tr>
@@ -60,9 +58,7 @@
               {{ form.support_url }}
               {{ form.support_url.errors }}
             {% else %}
-              {% call empty_unless(addon.support_url) %}
-                {{ addon|all_locales('support_url') }}
-              {% endcall %}
+              {{ addon|all_locales('support_url', prettify_empty=True) }}
             {% endif %}
           </td>
         </tr>

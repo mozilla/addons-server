@@ -114,11 +114,9 @@
               {{ form.description.errors }}
               {{ some_html_tip() }}
             {% else %}
-              {% call empty_unless(addon.description) %}
-                <div id="addon-description" class="prose">
-                  {{ addon|all_locales('description', nl2br=True) }}
-                </div>
-              {% endcall %}
+              <div id="addon-description" class="prose">
+                {{ addon|all_locales('description', nl2br=True, prettify_empty=True) }}
+              </div>
             {% endif %}
           </td>
         </tr>

@@ -1,10 +1,13 @@
 <div class="trans" data-name="{{ field_name }}">
   {% for trans in translations %}
-    {% if nl2br %}
+    {% if prettify_empty and not trans %}
+      {% set klass='empty' %}
+      {% set text=_('None') %}
+    {% elif nl2br %}
       {% set text=trans|nl2br %}
     {% else %}
       {% set text=trans %}
     {% endif %}
-    <span lang="{{ trans.locale|to_language }}">{{ text }}</span>
+    <span{% if klass %} class="{{ klass }}"{% endif %} lang="{{ trans.locale|to_language }}">{{ text }}</span>
   {% endfor %}
 </div>

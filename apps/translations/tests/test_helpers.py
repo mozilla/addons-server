@@ -4,9 +4,14 @@ from django.utils import translation
 import jingo
 from mock import Mock
 from nose.tools import eq_
+from tower import strip_whitespace
 
+import amo
+import amo.tests
 from translations import helpers
-from translations.models import PurifiedTranslation
+from translations.fields import save_signal
+from translations.models import PurifiedTranslation, Translation
+from translations.tests.testapp.models import TranslatedModel
 
 
 def super():
@@ -79,3 +84,55 @@ def test_clean():
 def test_clean_in_template():
     s = '<a href="#woo">yeah</a>'
     eq_(jingo.env.from_string('{{ s|clean }}').render(s=s), s)
+
+
+class TestAllLocales(amo.tests.TestCase):
+    def test_all_locales_none(self):
+        addon = None
+        field_name = 'description'
+        eq_(helpers.all_locales(addon, field_name), None)
+
+        addon = Mock()
+        field_name = 'description'
+        del addon.description
+        eq_(helpers.all_locales(addon, field_name), None)
+
+    def test_all_locales(self):
+        obj = TranslatedModel()
+        obj.description = {
+            'en-US': 'There',
+            'es': 'Is No',
+            'fr': 'Spoon'
+        }
+        # Pretend the TranslateModel instance was saved to force Translation
+        # objects to be saved.
+        save_signal(sender=TranslatedModel, instance=obj)
+
+        result = helpers.all_locales(obj, 'description')
+        eq_(strip_whitespace(result),
+            u'<div class="trans" data-name="description"> '
+            u'<span lang="en-us">There</span> <span lang="es">Is No</span> '
+            u'<span lang="fr">Spoon</span> </div>')
+
+    def test_all_locales_empty(self):
+        obj = TranslatedModel()
+        obj.description = {
+            'en-US': 'There',
+            'es': 'Is No',
+            'fr': ''
+        }
+        # Pretend the TranslateModel instance was saved to force Translation
+        # objects to be saved.
+        save_signal(sender=TranslatedModel, instance=obj)
+
+        result = helpers.all_locales(obj, 'description')
+        eq_(strip_whitespace(result),
+            u'<div class="trans" data-name="description"> '
+            u'<span lang="en-us">There</span> <span lang="es">Is No</span> '
+            u'<span lang="fr"></span> </div>')
+
+        result = helpers.all_locales(obj, 'description', prettify_empty=True)
+        eq_(strip_whitespace(result),
+            u'<div class="trans" data-name="description"> '
+            u'<span lang="en-us">There</span> <span lang="es">Is No</span> '
+            u'<span class="empty" lang="fr">None</span> </div>')
