@@ -1,5 +1,6 @@
 import datetime
 
+from django.core.cache import cache
 from django.db import models
 from django.db.models.loading import get_model
 
@@ -10,7 +11,7 @@ from addons.models import Category
 import amo
 import mkt
 import mkt.regions
-from mkt.carriers import get_carrier
+from mkt.carriers import get_carrier, get_carrier_id
 
 
 class FeaturedAppQuerySet(models.query.QuerySet):
@@ -86,6 +87,24 @@ class FeaturedAppQuerySet(models.query.QuerySet):
 
         return qs
 
+    def featured_ids(self, cat=None, region=None, profile=None):
+
+        carrier = get_carrier_id()
+        cache_key = 'featured:%s:%s:%s:%s' % (
+            region.id if region else 0,
+            cat.id if cat else 0,
+            profile.to_signature() if profile else 0,
+            carrier if carrier else 0)
+
+        val = cache.get(cache_key)
+        if val is not None:
+            return val
+
+        val = self.featured(cat=cat, region=region,
+                            profile=profile).values_list('app_id', flat=True)
+        cache.set(cache_key, val, 60 * 60)
+        return val
+
     def active(self):
         """
         Convenience method that bundles self.active_date and self.public
@@ -160,12 +179,11 @@ class FeaturedAppQuerySet(models.query.QuerySet):
     def for_category(self, category):
         """
         Removes features in the queryset that are not in the passed
-        category. The passed category can be either a Category instance
-        or a list of Category instances.
+        category. The passed category is a Category instance.
         """
-        if isinstance(category, list):
-            return self.filter(category__in=category)
-        return self.filter(category=category.id if category else None)
+        if category:
+            return self.filter(category=category.id)
+        return self
 
 
 class FeaturedAppManager(amo.models.ManagerBase):

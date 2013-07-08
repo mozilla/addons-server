@@ -634,9 +634,7 @@ class Webapp(Addon):
     @classmethod
     def featured(cls, cat=None, region=None, limit=9, mobile=False,
                  gaia=False, tablet=False, profile=None):
-        apps = (FeaturedApp.objects
-                .featured(cat, region, limit, mobile, gaia, tablet, profile)
-                .values_list('app_id', flat=True))
+        apps = FeaturedApp.objects.featured_ids(cat, region, profile)
         # Get a list of ids, then get all those objects in one query
         # which will get cache-machined.
         return list(cls.objects.filter(pk__in=list(apps)))
