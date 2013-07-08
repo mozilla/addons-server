@@ -80,5 +80,5 @@ def send_purchase_receipt(contrib_id, **kw):
         }
 
         log.info('Sending email about purchase: %s' % contrib_id)
-        send_mail_jinja(subject, 'purchase/receipt.txt', data,
+        send_mail_jinja(subject, 'purchase/receipt.html', data,
                         recipient_list=[contrib.user.email])
