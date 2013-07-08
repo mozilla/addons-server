@@ -9,6 +9,7 @@ import commonware.log
 from rest_framework.authentication import BaseAuthentication
 from tastypie import http
 from tastypie.authentication import Authentication
+import waffle
 
 from access.middleware import ACLMiddleware
 from users.models import UserProfile
@@ -144,7 +145,13 @@ class OptionalOAuthAuthentication(OAuthAuthentication):
 class SharedSecretAuthentication(Authentication):
 
     def is_authenticated(self, request, **kwargs):
-        auth = request.GET.get('_user')
+        header = request.META.get('HTTP_AUTHORIZATION', '').split(None, 1)
+        if header and header[0].lower() == 'mkt-shared-secret':
+            auth = header[1]
+        elif waffle.switch_is_active('shared-secret-in-url'):
+            auth = request.GET.get('_user')
+        else:
+            auth = ''
         if not auth:
             log.info('API request made without shared-secret auth token')
             return False
