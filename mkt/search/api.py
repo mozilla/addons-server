@@ -10,7 +10,6 @@ from tower import ugettext as _
 
 import amo
 from access import acl
-from addons.models import Category
 
 import mkt
 from mkt.api.authentication import (SharedSecretAuthentication,
@@ -153,10 +152,7 @@ class WithFeaturedResource(SearchResource):
     def alter_list_data_to_serialize(self, request, data):
         form_data = self.search_form(request)
         region = getattr(request, 'REGION', mkt.regions.WORLDWIDE)
-        if form_data['cat']:
-            category = Category.objects.get(pk=form_data['cat'])
-        else:
-            category = None
+        cat_id = form_data.get('cat')
 
         # Filter by device feature profile.
         profile = None
@@ -165,7 +161,7 @@ class WithFeaturedResource(SearchResource):
             if sig:
                 profile = FeatureProfile.from_signature(sig)
 
-        qs = Webapp.featured(cat=category, region=region, profile=profile)
+        qs = Webapp.featured(cat=[cat_id], region=region, profile=profile)
 
         bundles = [self.build_bundle(obj=obj, request=request) for obj in qs]
         data['featured'] = [AppResource().full_dehydrate(bundle)

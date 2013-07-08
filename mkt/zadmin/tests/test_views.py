@@ -345,7 +345,7 @@ class TestFeaturedAppQueryset(amo.tests.TestCase):
         return all(item in temp for item in x)
 
     def test_queryset_for_category(self):
-        self.assertQuerySetEqual(FeaturedApp.objects.for_category(self.c1),
+        self.assertQuerySetEqual(FeaturedApp.objects.for_category([self.c1]),
                                  FeaturedApp.objects.filter(category=self.c1))
 
     def test_queryset_worldwide(self):
@@ -406,8 +406,8 @@ class TestFeaturedAppQueryset(amo.tests.TestCase):
         carrier = 'telerizon'
         either_cat = [self.c1, self.c2]
         assert self._is_overlap(
-            FeaturedApp.objects.for_category(self.c1),
-            FeaturedApp.objects.featured(cat=self.c1)
+            FeaturedApp.objects.for_category([self.c1]),
+            FeaturedApp.objects.featured(cat=[self.c1])
         ), 'Unexpected items in category %s' % self.c1
         assert self._is_overlap(
             FeaturedApp.objects.for_carrier(carrier),
@@ -432,14 +432,14 @@ class TestFeaturedAppQueryset(amo.tests.TestCase):
 
     def test_queryset_featured_limit(self):
         # Does limit appropriately restrict the number of results?
-        limited = FeaturedApp.objects.featured(cat=self.c1, limit=1).count()
+        limited = FeaturedApp.objects.featured(cat=[self.c1], limit=1).count()
         eq_(limited, 1, '%s items returned, only 1 expected' % limited)
 
         # Does limit fill empty spots with worldwide-featured apps if the
         # number of apps for the specified region are less than the limit?
         # Regression test for Bug #842312
         cat_limited = FeaturedApp.objects.featured(region=mkt.regions.US,
-                                                   cat=self.c1, limit=2)
+                                                   cat=[self.c1], limit=2)
         acceptable_regions = [mkt.regions.US.id, mkt.regions.WORLDWIDE.id]
         eq_(cat_limited.count(), 2,
             'Queryset smaller than `limit` when `region` is specified')
