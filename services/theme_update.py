@@ -75,7 +75,7 @@ class ThemeUpdate(object):
         """
 
         sql = """
-        SELECT p.persona_id, a.id, a.slug,
+        SELECT p.persona_id, a.id, a.slug, v.version,
             t_name.localized_string AS name,
             t_desc.localized_string AS description,
             p.display_username, p.header,
@@ -83,6 +83,7 @@ class ThemeUpdate(object):
             UNIX_TIMESTAMP(a.modified) AS modified
         FROM addons AS a
         LEFT JOIN personas AS p ON p.addon_id=a.id
+        LEFT JOIN versions AS v ON a.current_version=v.id
         LEFT JOIN translations AS t_name
             ON t_name.id=a.name AND t_name.locale=%(locale)s
         LEFT JOIN translations AS t_desc
@@ -95,9 +96,9 @@ class ThemeUpdate(object):
         row = self.cursor.fetchone()
 
         row_to_dict = lambda row: dict(zip((
-            'persona_id', 'addon_id', 'slug', 'name', 'description',
-            'username', 'header', 'footer', 'accentcolor', 'textcolor',
-            'modified'),
+            'persona_id', 'addon_id', 'slug', 'current_version', 'name',
+            'description', 'username', 'header', 'footer', 'accentcolor',
+            'textcolor', 'modified'),
             list(row)))
 
         if row:
@@ -147,9 +148,8 @@ class ThemeUpdate(object):
             'textcolor': '#%s' % text if text else None,
             'updateURL': self.locale_url(settings.VAMO_URL,
                                          '/themes/update-check/' + id_),
-            # TODO: Change this when we add versions (bug 851881).
             # 04-25-2013: Bumped for GP migration so we get new `updateURL`s.
-            'version': '1.1'
+            'version': row.get('current_version', 0)
         }
 
         # If this theme was originally installed from getpersonas.com,

@@ -11,6 +11,7 @@ from nose.tools import eq_
 
 import amo.tests
 from addons.models import Addon
+from versions.models import Version
 from services import theme_update
 
 
@@ -79,7 +80,7 @@ class TestThemeUpdate(amo.tests.TestCase):
             'author': 'persona_author',
             'updateURL': (settings.VAMO_URL +
                           '/en-US/themes/update-check/15663'),
-            'version': '1.1',
+            'version': '0',
             'footerURL': '/15663/BCBG_Persona_footer2.png'
         }
 
@@ -118,7 +119,9 @@ class TestThemeUpdate(amo.tests.TestCase):
 
         self.addon = Addon.objects.get()
         self.addon.summary = 'yolo'
+        self.addon.current_version = Version.objects.get()
         self.addon.save()
+        self.addon.increment_version()
 
         # Testing `addon_id` from AMO.
         self.check_good(
@@ -128,7 +131,8 @@ class TestThemeUpdate(amo.tests.TestCase):
         self.good.update({
             'id': '813',
             'updateURL': (settings.VAMO_URL +
-                          '/en-US/themes/update-check/813?src=gp')
+                          '/en-US/themes/update-check/813?src=gp'),
+            'version': '1'
         })
 
         self.check_good(

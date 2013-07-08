@@ -38,7 +38,6 @@ def send_mail(cleaned_data, theme_lock):
     if action == rvw.ACTION_APPROVE:
         subject = _('Thanks for submitting your Theme')
         template = 'reviewers/themes/emails/approve.html'
-        theme.addon.update(status=amo.STATUS_PUBLIC)
 
     elif action == rvw.ACTION_REJECT:
         subject = _('A problem with your Theme submission')
@@ -86,6 +85,8 @@ def approve_rereview(theme):
             reupload.theme.header_path.replace('header', 'icon')],
         set_modified_on=[reupload.theme.addon])
     rereview.delete()
+
+    theme.addon.increment_version()
 
 
 @task

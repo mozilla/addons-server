@@ -108,13 +108,15 @@ class ThemeReviewTestMixin(object):
                 len(expected))
 
     @mock.patch.object(settings, 'LOCAL_MIRROR_URL', '')
+    @mock.patch('addons.tasks.version_changed')
     @mock.patch('mkt.reviewers.tasks.send_mail_jinja')
     @mock.patch('mkt.reviewers.tasks.create_persona_preview_images')
     @mock.patch('amo.storage_utils.copy_stored_file')
     def test_commit(self, copy_file_mock, create_preview_mock,
-                    send_mail_jinja_mock):
+                    send_mail_jinja_mock, version_changed_mock):
         if self.flagged:
             return
+
         themes = []
         for x in range(5):
             themes.append(self.theme_factory().persona)
@@ -143,6 +145,8 @@ class ThemeReviewTestMixin(object):
             form_data['form-%s-comment' % index] = comment
             form_data['form-%s-reject_reason' % index] = reject_reason
 
+        old_version = themes[4].addon.current_version.version
+
         # Commit.
         res = self.client.post(reverse('reviewers.themes.commit'), form_data)
         self.assert3xx(res, reverse('reviewers.themes.queue_themes'))
@@ -168,12 +172,16 @@ class ThemeReviewTestMixin(object):
             # leaving only 2 RQT objects. Can't flag a rereview theme yet, and
             # moreinfo does nothing but email the artist.
             eq_(RereviewQueueTheme.objects.count(), 2)
+
+            # Test version incremented.
+            eq_(themes[4].addon.reload().current_version.version,
+                str(float(old_version) + 1))
         else:
             eq_(themes[0].addon.status, amo.STATUS_REVIEW_PENDING)
             eq_(themes[1].addon.status, amo.STATUS_REVIEW_PENDING)
             eq_(themes[2].addon.status, amo.STATUS_REJECTED)
             eq_(themes[3].addon.status, amo.STATUS_REJECTED)
-        eq_(themes[4].addon.status, amo.STATUS_PUBLIC)
+        eq_(themes[4].addon.reload().status, amo.STATUS_PUBLIC)
         eq_(ActivityLog.objects.count(), 4 if self.rereview else 5)
 
         expected_calls = [

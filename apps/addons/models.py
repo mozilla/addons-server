@@ -796,6 +796,13 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
         return version
 
+    def increment_version(self):
+        """Increment version number by 1."""
+        version = self.latest_version or self.current_version
+        version.version = str(float(version.version) + 1)
+        # Set the current version.
+        self.update(_current_version=version.save())
+
     def invalidate_d2c_versions(self):
         """Invalidates the cache of compatible versions.
 
