@@ -324,7 +324,7 @@ def transaction_search(request):
 def app_search(request):
     results = []
     q = request.GET.get('q', u'').lower().strip()
-    addon_type = request.GET.get('type', amo.ADDON_WEBAPP)
+    addon_type = int(request.GET.get('type', amo.ADDON_WEBAPP))
     fields = ('name', 'app_slug')
     non_es_fields = ['id', 'name__localized_string'] + list(fields)
     if q.isnumeric():
