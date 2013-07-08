@@ -24,9 +24,9 @@ from users.models import UserProfile
 from versions.models import Version
 from lib.es.utils import get_indices
 from .models import (AddonCollectionCount, CollectionCount, CollectionStats,
-                     DownloadCount, UpdateCount)
-
+                     DownloadCount, ThemeUserCount, UpdateCount)
 from . import search
+
 
 log = commonware.log.getLogger('z.task')
 
@@ -178,7 +178,7 @@ def update_global_totals(job, date, **kw):
 
 
 def _get_daily_jobs(date=None):
-    """Return a dictionary of statisitics queries.
+    """Return a dictionary of statistics queries.
 
     If a date is specified and applies to the job it will be used.  Otherwise
     the date will default to today().
@@ -293,7 +293,7 @@ def _get_daily_jobs(date=None):
 
 
 def _get_metrics_jobs(date=None):
-    """Return a dictionary of statisitics queries.
+    """Return a dictionary of statistics queries.
 
     If a date is specified and applies to the job it will be used.  Otherwise
     the date will default to the last date metrics put something in the db.
@@ -319,9 +319,9 @@ def index_update_counts(ids, **kw):
     indices = get_indices(index)
 
     es = amo.search.get_es()
-    qs = list(UpdateCount.objects.filter(id__in=ids))
+    qs = UpdateCount.objects.filter(id__in=ids)
     if qs:
-        log.info('Indexing %s updates for %s.' % (len(qs), qs[0].date))
+        log.info('Indexing %s updates for %s.' % (qs.count(), qs[0].date))
     try:
         for update in qs:
             key = '%s-%s' % (update.addon_id, update.date)
@@ -342,7 +342,7 @@ def index_download_counts(ids, **kw):
     es = amo.search.get_es()
     qs = DownloadCount.objects.filter(id__in=ids)
     if qs:
-        log.info('Indexing %s downloads for %s.' % (len(qs), qs[0].date))
+        log.info('Indexing %s downloads for %s.' % (qs.count(), qs[0].date))
     try:
         for dl in qs:
             key = '%s-%s' % (dl.addon_id, dl.date)
@@ -365,19 +365,43 @@ def index_collection_counts(ids, **kw):
     qs = CollectionCount.objects.filter(collection__in=ids)
     if qs:
         log.info('Indexing %s addon collection counts: %s'
-                 % (len(qs), qs[0].date))
+                 % (qs.count(), qs[0].date))
     try:
         for collection_count in qs:
             collection = collection_count.collection_id
             key = '%s-%s' % (collection, collection_count.date)
             filters = dict(collection=collection,
                            date=collection_count.date)
-            data = search.extract_addon_collection(collection_count,
-                            AddonCollectionCount.objects.filter(**filters),
-                            CollectionStats.objects.filter(**filters))
+            data = search.extract_addon_collection(
+                collection_count,
+                AddonCollectionCount.objects.filter(**filters),
+                CollectionStats.objects.filter(**filters))
             for index in indices:
                 CollectionCount.index(data, bulk=True, id=key, index=index)
         es.flush_bulk(forced=True)
     except Exception, exc:
         index_collection_counts.retry(args=[ids], exc=exc)
+        raise
+
+
+@task
+def index_theme_user_counts(ids, **kw):
+    index = kw.pop('index', None)
+    indices = get_indices(index)
+
+    es = amo.search.get_es()
+    qs = ThemeUserCount.objects.filter(id__in=ids)
+
+    if qs:
+        log.info('Indexing %s theme user counts for %s.'
+                 % (qs.count(), qs[0].date))
+    try:
+        for user_count in qs:
+            key = '%s-%s' % (user_count.addon_id, user_count.date)
+            data = search.extract_theme_user_count(user_count)
+            for index in indices:
+                ThemeUserCount.index(data, bulk=True, id=key, index=index)
+            es.flush_bulk(forced=True)
+    except Exception, exc:
+        index_theme_user_counts.retry(args=[ids], exc=exc)
         raise

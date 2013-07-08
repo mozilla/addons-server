@@ -20,7 +20,13 @@ will show you the commands to launch. If you used aptitude, elasticsearch will
 come with an start-stop daemon in /etc/init.d as well as configuration files in
 /etc/elasticsearch.
 
+There is a ```config.yml``` in the ```scripts/elasticsearch/```
+directory. If you installed via brew, copy that file into
+```/usr/local/Cellar/elasticsearch/x.x.x/config/```. On Linux, the
+configuration directory is often ```/etc/elasticsearch/```.
+
 Mappings::
+
     ./manage.py shell_plus
     from stats.search import setup_indexes
     setup_indexes()

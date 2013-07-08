@@ -108,6 +108,13 @@ def extract_addon_collection(collection_count, addon_collections,
             })}
 
 
+def extract_theme_user_count(user_count):
+    return {'addon': user_count.addon_id,
+            'date': user_count.date,
+            'count': user_count.count,
+            'id': user_count.id}
+
+
 def get_all_app_versions():
     vals = AppVersion.objects.values_list('application', 'version')
     rv = collections.defaultdict(list)

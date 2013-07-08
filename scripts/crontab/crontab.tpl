@@ -68,6 +68,7 @@ HOME=/tmp
 30 23 * * * %(z_cron)s index_latest_stats
 35 23 * * * %(z_cron)s index_latest_mkt_stats --settings=settings_local_mkt
 45 23 * * * %(z_cron)s update_addons_collections_downloads
+50 23 * * * %(z_cron)s update_daily_theme_user_counts
 
 # Once per week
 45 23 * * 4 %(z_cron)s unconfirmed
