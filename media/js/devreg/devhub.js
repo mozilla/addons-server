@@ -143,10 +143,13 @@ $(document).ready(function() {
                                             'text': gettext('See full validation report')}));
             }
 
+            // Uncheck all existing features checkboxes since it's a new upload.
+            $webapp_features.find('input:checked').prop('checked', false).trigger('change');
+
             if (r && r.validation &&
                 r.validation.feature_profile &&
                 r.validation.feature_profile.length) {
-                // Update the checkboxes with information from the valdator's idea
+                // Update the checkboxes with information from the validator's idea
                 // of the feature profile for the app.
                 r.validation.feature_profile.forEach(function(feature) {
                     $('#id_has_' + feature.toLowerCase()).prop('checked', true).trigger('change');

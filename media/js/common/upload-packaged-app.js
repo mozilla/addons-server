@@ -277,7 +277,8 @@
                     }, 1000);
                 } else {
                     var errors = getErrors(results),
-                        v = results.validation;
+                        v = results.validation,
+                        $webapp_features = $('#upload-webapp-features');
                     if (errors.length > 0) {
                         $upload_field.trigger('upload_errors', [file, errors, results]);
                         return;
@@ -322,8 +323,11 @@
                                                         'text': gettext('See full validation report')}));
                     }
 
+                    // Uncheck all existing features checkboxes since it's a new upload.
+                    $webapp_features.find('input:checked').prop('checked', false).trigger('change');
+
                     if (v.feature_profile && v.feature_profile.length) {
-                        // Update the checkboxes with information from the valdator's idea
+                        // Update the checkboxes with information from the validator's idea
                         // of the feature profile for the app.
                         v.feature_profile.forEach(function(feature) {
                             $('#id_has_' + feature.toLowerCase()).prop('checked', true).trigger('change');
