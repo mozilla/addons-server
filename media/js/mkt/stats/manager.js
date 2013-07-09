@@ -1,8 +1,4 @@
-function dbg() {
-    if(window.console && (typeof window.console.log == 'function')) {
-        window.console.log(Array.prototype.slice.apply(arguments));
-    }
-}
+var dbg = console.log;
 
 z.hasPushState = (typeof history.replaceState === 'function');
 
@@ -363,6 +359,8 @@ z.StatsManager = (function() {
             view.group = 'day';
             group = 'day';
         }
+
+        console.log('grouping found: ', group);
 
         // if grouping is by day, do nothing.
         if (group == 'day') return data;
