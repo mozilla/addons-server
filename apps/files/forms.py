@@ -9,7 +9,6 @@ import jinja2
 from tower import ugettext as _
 
 import amo
-from amo.urlresolvers import reverse
 from files.models import File
 from versions.models import Version
 
@@ -19,6 +18,7 @@ log = commonware.log.getLogger('z.files')
 class FileSelectWidget(widgets.Select):
     def render_options(self, choices, selected_choices):
         def option(files, label=None):
+            addon = files[0].version.addon
             # Make sure that if there's a non-disabled version,
             # that's the one we use for the ID.
             files.sort(lambda a, b: ((a.status == amo.STATUS_DISABLED) -
@@ -29,8 +29,9 @@ class FileSelectWidget(widgets.Select):
 
             output = [u'<option value="', jinja2.escape(files[0].id), u'" ']
             if files[0].status == amo.STATUS_DISABLED:
-                # File viewer can't currently deal with disabled files
-                output.append(u' disabled="true"')
+                # Disabled files can be diffed on Marketplace.
+                if addon.type != amo.ADDON_WEBAPP:
+                    output.append(u' disabled')
             if selected in files:
                 output.append(u' selected="true"')
 
@@ -38,6 +39,9 @@ class FileSelectWidget(widgets.Select):
                          for f in files)
             output.extend((u' class="', jinja2.escape(' '.join(status)), u'"'))
 
+            if addon.type == amo.ADDON_WEBAPP:
+                # Extend apps to show file status in selects.
+                label += ' (%s)' % amo.STATUS_CHOICES_API[f.status]
             output.extend((u'>', jinja2.escape(label), u'</option>\n'))
             return output
 

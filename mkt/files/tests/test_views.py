@@ -276,8 +276,12 @@ class FilesBase(object):
 
         # Only one file per version on Marketplace for the time being.
         eq_(vers.eq(0).text(), '')
-        eq_(vers.eq(1).text(), self.versions[1].version)
-        eq_(vers.eq(2).text(), self.versions[0].version)
+        f = self.versions[1].all_files[0]
+        eq_(vers.eq(1).text(), '%s (%s)' % (self.versions[1].version,
+                                            amo.STATUS_CHOICES_API[f.status]))
+        f = self.versions[0].all_files[0]
+        eq_(vers.eq(2).text(), '%s (%s)' % (self.versions[0].version,
+                                            amo.STATUS_CHOICES_API[f.status]))
 
 
 class TestFileViewer(FilesBase, amo.tests.WebappTestCase):
