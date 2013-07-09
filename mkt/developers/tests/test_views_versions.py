@@ -181,6 +181,27 @@ class TestAddVersion(BasePackagedAppTest):
         self.app.update_status()
         eq_(self.app.status, amo.STATUS_PENDING)
 
+    @mock.patch('mkt.developers.views.run_validator')
+    @mock.patch('mkt.webapps.models.Webapp.get_manifest_json')
+    def test_prefilled_features(self, get_manifest_json_,
+                                run_validator_):
+        get_manifest_json_.return_value = {}
+        run_validator_.return_value = '{"feature_profile": ["apps", "audio"]}'
+
+        self.app.current_version.update(version='0.9',
+                                        created=self.days_ago(1))
+
+        # All features should be disabled.
+        features = self.app.current_version.features.to_dict()
+        eq_(any(features.values()), False)
+
+        self._post(302)
+
+        # In this new version we should be prechecked new ones.
+        features = self.app.versions.latest().features.to_dict()
+        for key, feature in features.iteritems():
+            eq_(feature, key in ('has_apps', 'has_audio'))
+
     def test_blocklist_on_new_version(self):
         # Test app blocked, then new version, doesn't update app status, and
         # app shows up in escalation queue.
@@ -200,6 +221,11 @@ class TestAddVersion(BasePackagedAppTest):
 
 
 class TestEditVersion(amo.tests.TestCase):
+    """
+    TODO: Clean this up. We already have tests elsewhere:
+    https://github.com/mozilla/zamboni/blob/a0ed5e3/mkt/developers/
+    tests/test_views_edit.py#L1379
+    """
     fixtures = fixture('user_999')
 
     def setUp(self):

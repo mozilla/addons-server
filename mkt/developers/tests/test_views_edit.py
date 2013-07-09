@@ -836,7 +836,7 @@ class TestEditMedia(TestEdit):
     def test_edit_preview_add_hash_size(self):
         res = self.add_json(open(get_image_path('mozilla.png'), 'rb'))
         assert any(e.startswith('App previews ') for e in res['errors']), (
-               "Small screenshot not flagged for size.")
+            'Small screenshot not flagged for size.')
 
     @mock.patch.object(settings, 'MAX_VIDEO_UPLOAD_SIZE', 1)
     @mock.patch('mimetypes.guess_type', lambda *a: ('video/webm', 'webm'))
@@ -1406,7 +1406,14 @@ class TestEditVersion(TestEdit):
         eq_(version.approvalnotes, data['approvalnotes'])
         return version
 
-    def test_features(self):
+    def test_existing_features_initial_form_data(self):
+        features = self.webapp.current_version.features
+        features.update(has_audio=True, has_apps=True)
+        r = self.client.get(self.url)
+        eq_(r.context['appfeatures_form'].initial,
+            dict(id=features.id, **features.to_dict()))
+
+    def test_new_features(self):
         assert not RereviewQueue.objects.filter(addon=self.webapp).exists()
 
         # Turn a feature on.
@@ -1425,4 +1432,4 @@ class TestEditVersion(TestEdit):
     def test_correct_version_features(self):
         new_version = self.webapp.latest_version.update(id=self.version_pk + 1)
         self.webapp.update(latest_version=new_version)
-        self.test_features()
+        self.test_new_features()

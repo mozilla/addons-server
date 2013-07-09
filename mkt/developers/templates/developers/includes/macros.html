@@ -118,3 +118,33 @@
     </{{ tag }}>
   {% endif %}
 {% endmacro %}
+
+{% macro upload_webapp_features(form) %}
+  <p>
+    {% trans %}
+      Check the boxes of the features that your app requires to function
+      properly. Your app will be hidden from users whose devices don't
+      support it.
+    {% endtrans %}
+  </p>
+  <a href="#" class="button toggle view-all">{{ _('View all') }}</a>
+  <a href="#" class="button toggle hide-all hidden">{{ _('Hide all') }}</a>
+  <ul class="feature-choices">
+    {% for field in form.required_api_fields() %}
+      {% set key = field.name|replace('has_', '')|upper %}
+      {% set tooltip = form.get_tooltip(field) %}
+      <li>
+        <label for="{{ field.auto_id }}">
+          {{ field }}
+          <span class="label">{{ field.help_text }}</span>
+          <div class="apis">
+            {% for api in mkt.constants.APP_FEATURES[key].apis %}
+              <code class="api">{{ api }}</code>
+            {% endfor %}
+          </div>
+          {% if tooltip %}<span class="hint">{{ tooltip }}</span>{% endif %}
+        </label>
+      </li>
+    {% endfor %}
+  </ul>
+{% endmacro %}

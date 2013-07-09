@@ -64,18 +64,22 @@ $(document).ready(function() {
         $webapp_features = $('#upload-webapp-features'),
         $submit_footer = $upload_form.find('footer');
 
+    // Handlers for buchet requirements.
+    $(document.body).on('change', '.feature-choices input', function() {
+        var $this = $(this);
+        $this.closest('li').toggleClass('checked', $this.is(':checked'));
+    }).on('click', '.toggle', _pd(function() {
+        $('.toggle').toggleClass('hidden');
+    }));
+
+    // Prechecked requirements should get initialised.
+    $('.feature-choices input:checked').trigger('change');
+
     if ($webapp_url.length) {
         if (!$webapp_url.val() && z.capabilities.sessionStorage) {
             $webapp_url.val(window.sessionStorage['manifest_url']);
         }
         var attempts = $webapp_url.val().length;
-
-        $(document.body).on('change', '.feature-choices input', function() {
-            var $this = $(this);
-            $this.closest('li').toggleClass('checked', $this.is(':checked'));
-        }).on('click', '.toggle', _pd(function() {
-            $('.toggle').toggleClass('hidden');
-        }));
 
         $webapp_url.bind('keyup change paste blur', function(e) {
             var $this = $(this),

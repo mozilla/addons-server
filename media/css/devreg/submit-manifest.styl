@@ -7,9 +7,6 @@
 }
 
 #upload-webapp-features {
-    border-top: 1px dotted $shadow-blue;
-    margin-top: 20px;
-    padding-top: 20px;
     label {
         display: block;
         padding: 15px 0;
@@ -41,12 +38,11 @@
             margin-left: 4px;
         }
     }
-    .apis {
-        float: right;
+    .apis, .hint {
+        padding: 2px 0 0 18px;
     }
     .hint {
         line-height: 1.3;
-        padding: 2px 0 0 21px;
     }
     .label {
         color: #444;
@@ -75,5 +71,19 @@
                 color: #222;
             }
         }
+    }
+}
+
+// Only on submission page.
+#upload-webapp #upload-webapp-features {
+    border-top: 1px dotted $shadow-blue;
+    margin-top: 20px;
+    padding-top: 20px;
+    .apis {
+        float: right;
+        padding: 0;
+    }
+    .hint {
+        padding: 2px 0 0 21px;
     }
 }

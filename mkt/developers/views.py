@@ -2,6 +2,7 @@ import json
 import os
 import sys
 import traceback
+from collections import defaultdict
 
 from django import http
 from django import forms as django_forms
@@ -14,9 +15,9 @@ from django.views.decorators.csrf import csrf_view_exempt
 
 import commonware.log
 import jingo
+import waffle
 from session_csrf import anonymous_csrf, anonymous_csrf_exempt
 from tower import ugettext as _, ugettext_lazy as _lazy
-import waffle
 from waffle.decorators import waffle_switch
 
 import amo
@@ -52,8 +53,9 @@ from mkt.developers.forms import (APIConsumerForm, AppFormBasic,
                                   NewPackagedAppForm, PreviewFormSet,
                                   TransactionFilterForm, trap_duplicate)
 from mkt.developers.utils import check_upload
+from mkt.developers.tasks import run_validator
 from mkt.submit.forms import AppFeaturesForm, NewWebappVersionForm
-from mkt.webapps.tasks import update_manifests, _update_manifest
+from mkt.webapps.tasks import _update_manifest, update_manifests
 from mkt.webapps.models import Webapp
 
 from . import forms, tasks
@@ -212,6 +214,18 @@ def status(request, addon_id, addon, webapp=False):
         elif 'upload-version' in request.POST and upload_form.is_valid():
             ver = Version.from_upload(upload_form.cleaned_data['upload'],
                                       addon, [amo.PLATFORM_ALL])
+
+            res = run_validator(ver.all_files[0].file_path)
+            validation_result = json.loads(res)
+
+            # Set all detected features as True and save them.
+            keys = ['has_%s' % feature.lower()
+                    for feature in validation_result['feature_profile']]
+            data = defaultdict.fromkeys(keys, True)
+
+            # Update feature profile for this version.
+            ver.features.update(**data)
+
             messages.success(request, _('New version successfully added.'))
             log.info('[Webapp:%s] New version created id=%s from upload: %s'
                      % (addon, ver.pk, upload_form.cleaned_data['upload']))
@@ -251,7 +265,8 @@ def version_edit(request, addon_id, addon, version_id):
 
     if show_features:
         appfeatures = version.features
-        appfeatures_form = AppFeaturesForm(request.POST, instance=appfeatures)
+        appfeatures_form = AppFeaturesForm(request.POST or None,
+                                           instance=appfeatures)
         all_forms.append(appfeatures_form)
 
     if request.method == 'POST' and all(f.is_valid() for f in all_forms):
@@ -605,7 +620,8 @@ def addons_section(request, addon_id, addon, section, editable=False,
         raise http.Http404()
 
     # Only show the list of features if app isn't packaged.
-    show_features = waffle.switch_is_active('buchets') and not addon.is_packaged
+    show_features = (waffle.switch_is_active('buchets') and
+                     not addon.is_packaged)
     appfeatures = appfeatures_form = None
     if show_features:
         appfeatures = addon.current_version.features
@@ -618,8 +634,8 @@ def addons_section(request, addon_id, addon, section, editable=False,
     # Only app owners can edit any of the details of their apps.
     # Users with 'Apps:Configure' can edit the admin settings.
     if (section != 'admin' and not is_dev) or (section == 'admin' and
-          not acl.action_allowed(request, 'Apps', 'Configure') and
-          not acl.action_allowed(request, 'Apps', 'ViewConfiguration')):
+        not acl.action_allowed(request, 'Apps', 'Configure') and
+        not acl.action_allowed(request, 'Apps', 'ViewConfiguration')):
         raise PermissionDenied
 
     if section == 'basic':

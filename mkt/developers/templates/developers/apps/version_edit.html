@@ -1,5 +1,5 @@
 {% extends 'developers/base_impala.html' %}
-{% from 'developers/includes/macros.html' import some_html_tip, tip %}
+{% from 'developers/includes/macros.html' import some_html_tip, tip, upload_webapp_features with context %}
 
 {% set title = _('Manage Version') + ' %s' % version.version %}
 {% block title %}{{ hub_page_title(title, addon) }}{% endblock %}
@@ -53,11 +53,9 @@
                        _("Device features required for this app to function.")) }}
               </th>
               <td>
-                <ul>
-                  {% for field in appfeatures_form.required_api_fields() %}
-                    <li><label for="{{ field.auto_id }}">{{ field }} {{ field.help_text }}</label></li>
-                  {% endfor %}
-                </ul>
+                <div id="upload-webapp-features">
+                  {{ upload_webapp_features(appfeatures_form) }}
+                </div>
               </td>
             </tr>
           {% endif %}
