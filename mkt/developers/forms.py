@@ -44,6 +44,7 @@ from mkt.site.forms import AddonChoiceField
 from mkt.regions import ALL_PAID_REGION_IDS
 from mkt.webapps.models import (AddonExcludedRegion, ContentRating, ImageAsset,
                                 Webapp)
+from mkt.zadmin.models import FeaturedApp
 
 from . import tasks
 
@@ -850,7 +851,8 @@ class CategoryForm(happyforms.Form):
         # If this app is featured, category changes are forbidden.
         self.disabled = (
             not acl.action_allowed(self.request, 'Addons', 'Edit') and
-            Webapp.featured(cat=self.cats_before)
+            self.product.id in FeaturedApp.objects.featured_ids(
+                cat=self.cats_before)
         )
 
     def special_cats(self):

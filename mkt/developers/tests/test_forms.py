@@ -25,6 +25,7 @@ from mkt.developers import forms
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import (AddonExcludedRegion as AER, ContentRating,
                                 Webapp)
+from mkt.zadmin.models import FeaturedApp
 
 
 class TestPreviewForm(amo.tests.TestCase):
@@ -88,7 +89,8 @@ class TestCategoryForm(amo.tests.WebappTestCase):
 
         self.cat = Category.objects.create(type=amo.ADDON_WEBAPP)
         self.op_cat = Category.objects.create(
-            type=amo.ADDON_WEBAPP, region=1, carrier=2)
+            type=amo.ADDON_WEBAPP, region=mkt.regions.WORLDWIDE.id,
+            carrier=mkt.carriers.AMERICA_MOVIL.id)
 
     def _make_form(self, data=None):
         self.form = forms.CategoryForm(
@@ -117,10 +119,11 @@ class TestCategoryForm(amo.tests.WebappTestCase):
             CategorySupervisor.objects.create(
                 user=self.user,
                 category=Category.objects.create(
-                    type=11, region=1, carrier=2))
+                    type=amo.ADDON_WEBAPP, region=mkt.regions.WORLDWIDE.id,
+                    carrier=mkt.carriers.AMERICA_MOVIL.id))
 
         self._make_form({'categories':
-            map(str, Category.objects.filter(type=11)
+            map(str, Category.objects.filter(type=amo.ADDON_WEBAPP)
                                      .values_list('id', flat=True))})
         assert self.form.is_valid(), self.form.errors
         self.form.save()
@@ -129,11 +132,20 @@ class TestCategoryForm(amo.tests.WebappTestCase):
         eq_(self.form.max_categories(), 12)  # 2 (default) + 10 (above)
 
     def test_unavailable_special_cats(self):
-        AER.objects.create(addon=self.app, region=1)
+        AER.objects.create(addon=self.app, region=mkt.regions.WORLDWIDE.id)
 
         self._make_form()
         eq_(self._cat_count(), 1)
         eq_(self.form.max_categories(), 2)
+
+    def test_disabled_when_featured(self):
+        FeaturedApp.objects.create(app=self.app, category=self.cat)
+        self._make_form()
+        eq_(self.form.disabled, True)
+
+    def test_not_disabled(self):
+        self._make_form()
+        eq_(self.form.disabled, False)
 
 
 class TestRegionForm(amo.tests.WebappTestCase):
