@@ -2,15 +2,14 @@ from django.conf import settings
 from django.utils import translation
 
 import jingo
-from mock import Mock
+from mock import Mock, patch
 from nose.tools import eq_
-from tower import strip_whitespace
 
 import amo
 import amo.tests
 from translations import helpers
 from translations.fields import save_signal
-from translations.models import PurifiedTranslation, Translation
+from translations.models import PurifiedTranslation
 from translations.tests.testapp.models import TranslatedModel
 
 
@@ -86,6 +85,7 @@ def test_clean_in_template():
     eq_(jingo.env.from_string('{{ s|clean }}').render(s=s), s)
 
 
+@patch.object(settings, 'AMO_LANGUAGES', ('de', 'en-US', 'es', 'fr', 'pt-BR'))
 class TestAllLocales(amo.tests.TestCase):
     def test_all_locales_none(self):
         addon = None
@@ -109,10 +109,10 @@ class TestAllLocales(amo.tests.TestCase):
         save_signal(sender=TranslatedModel, instance=obj)
 
         result = helpers.all_locales(obj, 'description')
-        eq_(strip_whitespace(result),
-            u'<div class="trans" data-name="description"> '
-            u'<span lang="en-us">There</span> <span lang="es">Is No</span> '
-            u'<span lang="fr">Spoon</span> </div>')
+        assert u'<div class="trans" data-name="description">' in result
+        assert u'<span lang="en-us">There</span>' in result
+        assert u'<span lang="es">Is No</span>' in result
+        assert u'<span lang="fr">Spoon</span>' in result
 
     def test_all_locales_empty(self):
         obj = TranslatedModel()
@@ -126,13 +126,13 @@ class TestAllLocales(amo.tests.TestCase):
         save_signal(sender=TranslatedModel, instance=obj)
 
         result = helpers.all_locales(obj, 'description')
-        eq_(strip_whitespace(result),
-            u'<div class="trans" data-name="description"> '
-            u'<span lang="en-us">There</span> <span lang="es">Is No</span> '
-            u'<span lang="fr"></span> </div>')
+        assert u'<div class="trans" data-name="description">' in result
+        assert u'<span lang="en-us">There</span>' in result
+        assert u'<span lang="es">Is No</span>' in result
+        assert u'<span lang="fr"></span>' in result
 
         result = helpers.all_locales(obj, 'description', prettify_empty=True)
-        eq_(strip_whitespace(result),
-            u'<div class="trans" data-name="description"> '
-            u'<span lang="en-us">There</span> <span lang="es">Is No</span> '
-            u'<span class="empty" lang="fr">None</span> </div>')
+        assert u'<div class="trans" data-name="description">' in result
+        assert u'<span lang="en-us">There</span>' in result
+        assert u'<span lang="es">Is No</span>' in result
+        assert u'<span class="empty" lang="fr">None</span>' in result

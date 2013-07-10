@@ -1,5 +1,6 @@
 <div class="trans" data-name="{{ field_name }}">
   {% for trans in translations %}
+    {% set klass='' %}
     {% if prettify_empty and not trans %}
       {% set klass='empty' %}
       {% set text=_('None') %}
