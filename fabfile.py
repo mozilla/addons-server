@@ -13,8 +13,7 @@ import deploysettings as settings
 env.key_filename = settings.SSH_KEY
 fabdeploytools.envs.loadenv(settings.CLUSTER)
 
-ROOT = os.path.abspath(pjoin(os.path.dirname(__file__), '..'))
-ZAMBONI = pjoin(ROOT, 'zamboni')
+ROOT, ZAMBONI = helpers.get_app_dirs(__file__)
 
 VIRTUALENV = pjoin(ROOT, 'venv')
 PYTHON = pjoin(VIRTUALENV, 'bin', 'python')
@@ -137,7 +136,6 @@ def deploy():
                    cluster=settings.CLUSTER,
                    domain=settings.DOMAIN,
                    root=ROOT,
-                   app_dir='zamboni',
                    deploy_roles=['web', 'celery'],
                    package_dirs=['zamboni', 'venv'])
 
