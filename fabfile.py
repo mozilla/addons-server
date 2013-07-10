@@ -89,8 +89,8 @@ def disable_cron():
 def install_cron():
     with lcd(ZAMBONI):
         local('%s ./scripts/crontab/gen-cron.py '
-              '-z %s -u apache -p %s > /etc/cron.d/.%s' %
-              (PYTHON, ZAMBONI,
+              '-z %s -u %s -p %s > /etc/cron.d/.%s' %
+              (PYTHON, ZAMBONI, getattr(settings, 'CRON_USER', 'apache'),
                PYTHON, settings.CRON_NAME))
 
         local('mv /etc/cron.d/.%s /etc/cron.d/%s' % (settings.CRON_NAME,
