@@ -166,7 +166,7 @@ var installButton = function() {
             _.each(overrides, function(override) {
                 var _min = override[0],
                     _max = override[1];
-                if (VersionCompare.compareVersions(z.browserVersion, _min) >= 0 ||
+                if (VersionCompare.compareVersions(z.browserVersion, _min) >= 0 &&
                     VersionCompare.compareVersions(z.browserVersion, _max) <= 0) {
                     compatible = false;
                     $d2c_reasons.append($('<li>', {text: gettext('Mozilla has marked this version as incompatible with your Firefox version.')}));
