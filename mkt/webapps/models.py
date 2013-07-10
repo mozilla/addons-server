@@ -465,8 +465,10 @@ class Webapp(Addon):
 
         # If there are no public versions and at least one pending, set status
         # to pending.
+        public_statuses = amo.WEBAPPS_APPROVED_STATUSES
         has_public = (
-            self.versions.filter(files__status=amo.STATUS_PUBLIC).exists())
+            self.versions.filter(files__status__in=public_statuses).exists()
+        )
         has_pending = (
             self.versions.filter(files__status=amo.STATUS_PENDING).exists())
         if not has_public and has_pending:

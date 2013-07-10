@@ -1025,6 +1025,14 @@ class TestUpdateStatus(amo.tests.TestCase):
         app.update_status()
         eq_(app.status, amo.STATUS_PUBLIC)
 
+    def test_was_public_waiting_then_new_version(self):
+        app = amo.tests.app_factory(status=amo.STATUS_PUBLIC_WAITING)
+        File.objects.filter(version__addon=app).update(status=app.status)
+        amo.tests.version_factory(addon=app,
+                                  file_kw=dict(status=amo.STATUS_PENDING))
+        app.update_status()
+        eq_(app.status, amo.STATUS_PUBLIC_WAITING)
+
     def test_blocklisted(self):
         app = amo.tests.app_factory(status=amo.STATUS_BLOCKED)
         app.current_version.delete()

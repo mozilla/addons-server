@@ -636,6 +636,23 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
             'Unexpected: Found a new packaged app in the updates queue.')
         eq_(pq(res.content)('.tabnav li a:eq(2)').text(), u'Updates (2)')
 
+    def test_public_waiting_update_in_queue(self):
+        app = app_factory(is_packaged=True, name='YYY',
+                          status=amo.STATUS_PUBLIC_WAITING,
+                          version_kw={'version': '1.0',
+                                      'created': self.days_ago(2),
+                                      'nomination': self.days_ago(2)})
+        File.objects.filter(version__addon=app).update(status=app.status)
+
+        version_factory(addon=app, version='1.1', created=self.days_ago(1),
+                        nomination=self.days_ago(1),
+                        file_kw={'status': amo.STATUS_PENDING})
+
+        res = self.client.get(self.url)
+        apps = [a.app for a in res.context['addons']]
+        assert app in apps
+        eq_(pq(res.content)('.tabnav li a:eq(2)').text(), u'Updates (3)')
+
     @mock.patch('mkt.webapps.tasks.update_cached_manifests')
     def test_deleted_version_not_in_queue(self, _mock):
         """

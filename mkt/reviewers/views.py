@@ -82,6 +82,7 @@ def home(request):
 
 def queue_counts(request):
     excluded_ids = EscalationQueue.uncached.values_list('addon', flat=True)
+    public_statuses = amo.WEBAPPS_APPROVED_STATUSES
 
     counts = {
         'pending': Webapp.uncached
@@ -101,7 +102,7 @@ def queue_counts(request):
                        .filter(version__addon__type=amo.ADDON_WEBAPP,
                                version__addon__disabled_by_user=False,
                                version__addon__is_packaged=True,
-                               version__addon__status=amo.STATUS_PUBLIC,
+                               version__addon__status__in=public_statuses,
                                version__deleted=False,
                                status=amo.STATUS_PENDING)
                        .count(),
@@ -431,9 +432,10 @@ def queue_escalated(request):
 @permission_required('Apps', 'Review')
 def queue_updates(request):
     excluded_ids = EscalationQueue.uncached.values_list('addon', flat=True)
+    pub_statuses = amo.WEBAPPS_APPROVED_STATUSES
     addon_ids = (File.objects.filter(status=amo.STATUS_PENDING,
                                      version__addon__is_packaged=True,
-                                     version__addon__status=amo.STATUS_PUBLIC,
+                                     version__addon__status__in=pub_statuses,
                                      version__addon__type=amo.ADDON_WEBAPP,
                                      version__addon__disabled_by_user=False,
                                      version__deleted=False)

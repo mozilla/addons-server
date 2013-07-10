@@ -587,7 +587,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         if self.type == amo.ADDON_PERSONA:
             return
         try:
-            if self.status == amo.STATUS_PUBLIC:
+            if self.status in (amo.STATUS_PUBLIC, amo.STATUS_PUBLIC_WAITING):
                 status = [self.status]
             elif self.status in (amo.STATUS_LITE,
                                  amo.STATUS_LITE_AND_NOMINATED):
