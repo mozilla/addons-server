@@ -129,7 +129,7 @@ def run_aliases_actions(actions):
         call_es('_aliases', post_data, method='POST')
     except CommandError, e:
         # XXX Did not find a better way to extract the info
-        error = e.json()['error']
+        error = e.json['error']
         res = re.search('(Invalid alias name \[)(?P<index>.*?)(\])', error)
         if res is None:
             raise
