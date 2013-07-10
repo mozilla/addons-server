@@ -4,7 +4,6 @@ from os.path import join as pjoin
 from fabric.api import (env, execute, lcd, local, parallel,
                         run, roles, task)
 
-from fabdeploytools.rpm import RPMBuild
 from fabdeploytools import helpers
 import fabdeploytools.envs
 
@@ -133,18 +132,17 @@ def update_celery():
 
 @task
 def deploy():
-    rpmbuild = RPMBuild(name='zamboni',
-                        env=settings.ENV,
-                        ref=helpers.git_ref(ZAMBONI),
-                        cluster=settings.CLUSTER,
-                        domain=settings.DOMAIN)
-
-    rpmbuild.build_rpm(ROOT, ['zamboni', 'venv'])
-    rpmbuild.deploy('web', 'celery')
+    helpers.deploy(name='zamboni',
+                   env=settings.ENV,
+                   cluster=settings.CLUSTER,
+                   domain=settings.DOMAIN,
+                   root=ROOT,
+                   app_dir='zamboni',
+                   deploy_roles=['web', 'celery'],
+                   package_dirs=['zamboni', 'venv'])
 
     execute(restart_workers)
     execute(update_celery)
-    rpmbuild.clean()
     execute(install_cron)
     managecmd('cron cleanup_validation_results')
 
