@@ -1,5 +1,6 @@
 import datetime
 
+from django.conf import settings
 from django.core.cache import cache
 from django.db import models
 from django.db.models.loading import get_model
@@ -102,7 +103,7 @@ class FeaturedAppQuerySet(models.query.QuerySet):
 
         val = self.featured(cat=cat, region=region,
                             profile=profile).values_list('app_id', flat=True)
-        cache.set(cache_key, val, 60 * 60)
+        cache.set(cache_key, val, settings.CACHE_SEARCH_FEATURED_API_TIMEOUT)
         return val
 
     def active(self):

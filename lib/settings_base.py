@@ -1561,3 +1561,6 @@ APP_FEATURES_VERSION = 1
 
 # Whether to throttle API requests. Default is True. Disable where appropriate.
 API_THROTTLE = True
+
+# Cache timeout on the /search/featured API.
+CACHE_SEARCH_FEATURED_API_TIMEOUT = 60 * 60  # 1 hour.
