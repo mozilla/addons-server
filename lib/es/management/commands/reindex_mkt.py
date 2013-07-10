@@ -202,7 +202,10 @@ class Command(BaseCommand):
             unflag_database()
 
         # The list of indexes that is currently aliased by `ALIAS`.
-        aliases = ES.aliases(ALIAS).keys()
+        try:
+            aliases = ES.aliases(ALIAS).keys()
+        except pyelasticsearch.exceptions.ElasticHttpNotFoundError:
+            aliases = []
         old_index = aliases[0] if aliases else None
         # Create a new index, using the index name with a timestamp.
         new_index = timestamp_index(prefix + ALIAS)
