@@ -146,7 +146,7 @@ $(document).ready(function() {
             // Uncheck all existing features checkboxes since it's a new upload.
             // We have to avoid has_qhd since it's not dependent on the feature 
             // profile returned by the validator.
-            $webapp_features.find('input:checked').prop('checked:not(#id_has_qhd)', false).trigger('change');
+            $webapp_features.find('input:checked:not(#id_has_qhd)').prop('checked', false).trigger('change');
 
             if (r && r.validation &&
                 r.validation.feature_profile &&
