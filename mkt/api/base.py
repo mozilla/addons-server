@@ -435,7 +435,7 @@ class AppRouter(SimpleRouter):
     routes = [
         # List route.
         Route(
-            url=r'^{prefix}/$',
+            url=r'^{lookup}/{prefix}/$',
             mapping={
                 'get': 'list',
                 'post': 'create'
@@ -474,7 +474,6 @@ class SlugRouter(SimpleRouter):
             routes = self.get_routes(viewset)
 
             for route in routes:
-
                 # Only actions which actually exist on the viewset will be
                 # bound.
                 mapping = self.get_method_map(viewset, route.mapping)

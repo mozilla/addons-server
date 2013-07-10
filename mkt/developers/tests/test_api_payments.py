@@ -1,7 +1,7 @@
 import json
 
 from django.core.urlresolvers import reverse
-from mock import patch
+from mock import Mock, patch
 from nose.tools import eq_, ok_
 
 import amo
@@ -243,3 +243,37 @@ class TestPaymentAccount(RestOAuth, AccountCase):
         res = self.client.patch(self.payment_detail, data=json.dumps(data))
         # Ideally we should make this a 400.
         eq_(res.status_code, 403, res.content)
+
+
+class TestPaymentStatus(RestOAuth, AccountCase):
+    fixtures = fixture('webapp_337141', 'user_999', 'user_2519')
+
+    def setUp(self):
+        super(TestPaymentStatus, self).setUp()
+        AccountCase.setUp(self)
+        self.create()
+        self.payment.account_uri = '/bango/package/1/'
+        self.payment.save()
+        self.list_url = reverse('app-payments-status-list',
+                                kwargs={'pk': 337141})
+
+    def test_no_auth(self):
+        eq_(self.anon.post(self.list_url, data={}).status_code, 403)
+
+    def test_not_owner(self):
+        eq_(self.client.post(self.list_url, data={}).status_code, 403)
+
+    def test_no_account(self):
+        self.payment.account_uri = ''
+        self.payment.save()
+        eq_(self.client.post(self.list_url, data={}).status_code, 400)
+
+    @patch('mkt.developers.api_payments.get_client')
+    def test_owner(self, get_client):
+        client = Mock()
+        client.api.bango.status.post.return_value = {'status': 1}
+        get_client.return_value = client
+        AddonUser.objects.create(addon_id=337141, user_id=self.user.pk)
+        res = self.client.post(self.list_url, data={})
+        eq_(res.json['bango']['status'], 'passed')
+        eq_(res.status_code, 200)

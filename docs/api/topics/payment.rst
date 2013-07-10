@@ -175,6 +175,8 @@ Upsell
 
     :status 201: sucessfully created.
 
+.. _upsell-response-label:
+
 .. http:get:: /api/v1/payments/upsell/(int:id)/
 
     **Response**

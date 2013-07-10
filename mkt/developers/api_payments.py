@@ -4,6 +4,7 @@ from rest_framework.mixins import (CreateModelMixin, DestroyModelMixin,
                                    RetrieveModelMixin, UpdateModelMixin)
 from rest_framework.permissions import BasePermission
 from rest_framework.relations import HyperlinkedRelatedField
+from rest_framework.response import Response
 from rest_framework.serializers import (HyperlinkedModelSerializer,
                                         ValidationError)
 from rest_framework.viewsets import GenericViewSet
@@ -13,8 +14,12 @@ from addons.models import AddonUpsell
 
 from mkt.api.authorization import AllowAppOwner, switch
 from mkt.api.base import CompatRelatedField
+from mkt.constants.payments import PAYMENT_STATUSES
+from mkt.developers.forms_payments import PaymentCheckForm
 from mkt.developers.models import AddonPaymentAccount
 from mkt.webapps.models import Webapp
+
+from lib.pay_server import get_client
 
 
 class PaymentSerializer(HyperlinkedModelSerializer):
@@ -144,3 +149,37 @@ class PaymentAccountViewSet(CreateModelMixin, RetrieveModelMixin,
                                             obj.payment_account)
             obj.product_uri = uri
             obj.save()
+
+
+
+class PaymentCheckViewSet(CreateModelMixin, GenericViewSet):
+    permission_classes = (AllowAppOwner,)
+
+    def create(self, request, *args, **kwargs):
+        """
+        We aren't actually creating objects, but proxying them
+        through to solitude.
+        """
+        # A hack to pass the value in the URL through to the form
+        # to get an app. Currently an id only, even though the form
+        # will accept a slug. The AppRouter will need to be fixed
+        # to accept slugs for that.
+        form = PaymentCheckForm({'app': kwargs.get('pk')})
+        if form.is_valid():
+            app = form.cleaned_data['app']
+            self.check_object_permissions(request, app)
+            client = get_client()
+
+            res = client.api.bango.status.post(
+                    data={'seller_product_bango':
+                          app.app_payment_account.account_uri})
+
+            filtered = {
+                'bango': {
+                    'status': PAYMENT_STATUSES[res['status']],
+                    'errors': ''
+                },
+            }
+            return Response(filtered, status=200)
+
+        return Response(form.errors, status=400)

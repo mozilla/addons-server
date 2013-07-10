@@ -10,12 +10,12 @@ from tower import ugettext as _, ugettext_lazy as _lazy
 import amo
 from amo.utils import raise_required
 from addons.models import Addon, AddonUpsell
-from constants.payments import (PAYMENT_METHOD_OPERATOR,
-                                PAYMENT_METHOD_CARD,
-                                PAYMENT_METHOD_ALL)
+from constants.payments import (PAYMENT_METHOD_ALL, PAYMENT_METHOD_CARD,
+                                PAYMENT_METHOD_OPERATOR)
 from editors.models import RereviewQueue
 from market.models import AddonPremium, Price
 
+from mkt.api.forms import SluggableModelChoiceField
 from mkt.constants import (BANGO_COUNTRIES, BANGO_OUTPAYMENT_CURRENCIES,
                            FREE_PLATFORMS, PAID_PLATFORMS)
 from mkt.site.forms import AddonChoiceField
@@ -172,7 +172,7 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
         is_toggling = self.is_toggling()
 
         if self.addon.is_packaged and 'desktop' in self._get_combined():
-           self._errors['free_platforms'] = self._errors['paid_platforms'] = (
+            self._errors['free_platforms'] = self._errors['paid_platforms'] = (
                 self.ERRORS['packaged'])
 
         elif not is_toggling:
@@ -270,7 +270,8 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
             # free with in-app payments.
             if price == 'free':
                 self.addon.premium_type = amo.ADDON_FREE_INAPP
-                log.debug('[1@%s] Changing to free with in_app' % self.addon.pk)
+                log.debug('[1@%s] Changing to free with in_app'
+                          % self.addon.pk)
 
                 # Remove upsell
                 upsell = self.addon.upsold
@@ -491,3 +492,20 @@ class BangoAccountListForm(happyforms.Form):
                     self.addon, amo.LOG.REREVIEW_PREMIUM_TYPE_UPGRADE)
 
             _restore_app(self.addon)
+
+
+class PaymentCheckForm(happyforms.Form):
+    app = SluggableModelChoiceField(queryset=
+            Addon.objects.filter(premium_type__in=amo.ADDON_PREMIUMS,
+                                 type=amo.ADDON_WEBAPP),
+        sluggable_to_field_name='app_slug')
+
+    def clean_app(self):
+        app = self.cleaned_data['app']
+        if not app.app_payment_account:
+            raise ValidationError(_('No payment account set up for that app'))
+
+        if not app.app_payment_account.account_uri:
+            raise ValidationError(_('Account not set up'))
+
+        return app

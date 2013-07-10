@@ -12,3 +12,8 @@ REFUND_STATUSES = {
 # SellerProduct access types.
 ACCESS_PURCHASE = 1
 ACCESS_SIMULATE = 2
+
+PAYMENT_STATUSES = {
+    1: 'passed',
+    2: 'failed'
+}

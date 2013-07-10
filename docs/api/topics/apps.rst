@@ -295,17 +295,47 @@ Payments
 
 .. http:get:: /api/v1/apps/app/(int:id)/payments/
 
+    Gets information about the payments of an app, including the payment
+    account.
+
+    **Response**
+
+    :param upsell: URL to the :ref:`upsell of the app <upsell-response-label>`.
+    :type upsell: string
+    :param account: URL to the :ref:`app payment account <payment-account-response-label>`.
+    :type account: string
+    :status 200: sucessfully completed.
+
+.. http:post:: /api/v1/apps/app/(int:id)/payments/status/
+
+    Queries the Mozilla payment server to check that the app is ready to be
+    sold. This would normally be run at the end of the payment flow to ensure
+    that the app is setup correctly. The Mozilla payment server records the
+    status of this check.
+
+    **Request**
+
+    Empty.
+
     **Response**
 
     .. code-block:: json
 
-    :param upsell: URL to the upsell of the app.
-    :type upsell: string
-    :param account: URL to the app payment account.
-    :type account: string
-    :status 200: sucessfully completed.
+        {
+            "bango": {
+                "status": "passed",
+                "errors": []
+            }
+        }
 
+    :param status: `passed` or `failed`.
+    :type status: string
+    :param errors: an array of errors as string. Currently empty, reserved for
+        future use.
+    :type errors: array of strings.
 
-For more information on these, see the payments documentation.
+    :status 200: successfully completed.
+    :status 400: app is not valid for checking, examine response content.
+    :status 403: not allowed.
 
 .. _`mobile country code`: http://en.wikipedia.org/wiki/List_of_mobile_country_codes
