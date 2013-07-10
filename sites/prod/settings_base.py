@@ -172,9 +172,6 @@ GEOIP_URL = 'http://geo.marketplace.firefox.com'
 
 NEWRELIC_WHITELIST = ['web1.addons.phx1.mozilla.com',
                       'web10.addons.phx1.mozilla.com',
-                      'web20.addons.phx1.mozilla.com',
-                      'celery1.addons.phx1.mozilla.com',
-                      'celery2.addons.phx1.mozilla.com',
-                      'celery3.addons.phx1.mozilla.com']
+                      'web20.addons.phx1.mozilla.com']
 
 NEWRELIC_ENABLE = HOSTNAME in NEWRELIC_WHITELIST

@@ -195,8 +195,6 @@ RAISE_ON_SIGNAL_ERROR = True
 API_THROTTLE = False
 
 NEWRELIC_WHITELIST = ['dev1.addons.phx1.mozilla.com',
-                      'dev2.addons.phx1.mozilla.com',
-                      'celery1.dev.addons.phx1.mozilla.com',
-                      'celery2.dev.addons.phx1.mozilla.com']
+                      'dev2.addons.phx1.mozilla.com']
 
 NEWRELIC_ENABLE = HOSTNAME in NEWRELIC_WHITELIST
