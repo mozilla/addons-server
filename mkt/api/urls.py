@@ -6,12 +6,11 @@ from tastypie_services.services import (ErrorResource, SettingsResource)
 from mkt.submit.api import PreviewResource, StatusResource, ValidationResource
 from mkt.api.base import handle_500, SlugRouter
 from mkt.api.resources import (AppResource, CarrierResource, CategoryViewSet,
-                               ConfigResource, FireplaceAppResource,
-                               error_reporter, RegionResource)
+                               ConfigResource, error_reporter, RegionResource)
 from mkt.features.views import AppFeaturesList
-from mkt.ratings.resources import FireplaceRatingResource, RatingResource
-from mkt.search.api import SearchResource, WithFeaturedResource
 from mkt.stats.api import GlobalStatsResource
+from mkt.ratings.resources import RatingResource
+from mkt.search.api import SearchResource
 
 
 api = Api(api_name='apps')
@@ -22,10 +21,6 @@ api.register(SearchResource())
 api.register(StatusResource())
 api.register(RatingResource())
 
-fireplace = Api(api_name='fireplace')
-fireplace.register(WithFeaturedResource())
-fireplace.register(FireplaceAppResource())
-fireplace.register(FireplaceRatingResource())
 
 apps = SlugRouter()
 apps.register(r'category', CategoryViewSet, base_name='app-category')
@@ -45,7 +40,6 @@ if settings.ALLOW_TASTYPIE_SERVICES:
 
 urlpatterns = patterns('',
     url(r'^', include(api.urls)),
-    url(r'^', include(fireplace.urls)),
     url(r'^apps/', include(apps.urls)),
     url(r'^', include(stats_api.urls)),
     url(r'^', include(services.urls)),

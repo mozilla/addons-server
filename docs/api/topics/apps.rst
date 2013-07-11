@@ -177,6 +177,8 @@ App
     :param required_features: a list of device features required by
         this application.
     :type required_features: list|null
+    :param optional upsold: The path to the free app resource that
+        this premium app is an upsell for.
     :param user: an object representing information specific to this
         user for the app. If the user is anonymous this object will not
         be present.

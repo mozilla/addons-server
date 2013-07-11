@@ -244,8 +244,13 @@ class AppResource(CORSResource, MarketplaceModelResource):
 
         # Add extra data for reviewers. Used in reviewer tool search.
         bundle = update_with_reviewer_data(bundle, using_es=False)
-
+        self.dehydrate_extra(bundle)
         return bundle
+
+    def dehydrate_extra(self, bundle):
+        if bundle.obj.upsold:
+            bundle.data['upsold'] = self.get_resource_uri(bundle.obj.upsold.free)
+
 
     def hydrate_premium_type(self, bundle):
         typ = amo.ADDON_PREMIUM_API_LOOKUP.get(bundle.data['premium_type'],
@@ -281,11 +286,6 @@ class AppResource(CORSResource, MarketplaceModelResource):
 
     def get_privacy_policy(self, request, **kwargs):
         return PrivacyPolicyResource().dispatch('detail', request, **kwargs)
-
-
-class FireplaceAppResource(AppResource):
-    class Meta(AppResource.Meta):
-        pass
 
 
 class PrivacyPolicyResource(CORSResource, MarketplaceModelResource):

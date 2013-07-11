@@ -236,6 +236,7 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         res = self.client.get(url)
         eq_(res.json['privacy_policy'], data['privacy_policy'])
 
+
     def base_data(self):
         return {'support_email': 'a@a.com',
                 'privacy_policy': 'wat',
@@ -576,8 +577,8 @@ class TestListHandler(CreateHandler, AMOPaths):
 class TestAppDetail(BaseOAuth, AMOPaths):
     fixtures = fixture('user_2519', 'webapp_337141')
 
-    def setUp(self):
-        super(TestAppDetail, self).setUp()
+    def setUp(self, api_name='apps'):
+        super(TestAppDetail, self).setUp(api_name=api_name)
         self.get_url = get_url('app', pk=337141)
 
     def test_price(self):
@@ -627,13 +628,13 @@ class TestAppDetail(BaseOAuth, AMOPaths):
             res = self.anon.get(self.get_url)
         assert 'user' in res.json
 
-
-class TestFireplaceAppDetail(BaseOAuth, AMOPaths):
-    fixtures = fixture('user_2519', 'webapp_337141')
-
-    def setUp(self):
-        super(TestAppDetail, self).setUp(api_name='fireplace')
-        self.get_url = get_url('app', pk=337141)
+    def test_get_upsold(self):
+        free = Webapp.objects.create(status=amo.STATUS_PUBLIC)
+        AddonUpsell.objects.create(premium_id=337141, free=free)
+        res = self.client.get(self.get_url)
+        eq_(res.json['upsold'],
+            self.client.get_absolute_url(get_url('app', pk=free.pk),
+                                         absolute=False))
 
 
 class TestCategoryHandler(RestOAuth):

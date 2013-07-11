@@ -2,6 +2,9 @@ import json
 
 from nose.tools import eq_
 
+import amo
+from addons.models import AddonUpsell
+
 from mkt.api.base import get_url, list_url
 from mkt.api.tests import BaseAPI
 from mkt.api.tests.test_oauth import get_absolute_url
@@ -34,3 +37,9 @@ class TestAppDetail(BaseAPI):
         url = get_absolute_url(list_url('app'), api_name='fireplace')
         self._allowed_verbs(self.url, ['get'])
         self._allowed_verbs(url, [])
+
+    def test_get_no_upsold(self):
+        free = Webapp.objects.create(status=amo.STATUS_PUBLIC)
+        AddonUpsell.objects.create(premium_id=337141, free=free)
+        res = self.client.get(self.url)
+        assert 'upsold' not in res.content
