@@ -213,7 +213,7 @@
                 }};
 
                 $('#id_upload').val(results.upload);
-                $('#id_packaged').attr('checked', true);
+                $('#id_packaged').prop('checked', true);
                 upload_progress_inside.animate({'width': '100%'}, animateArgs);
             });
 

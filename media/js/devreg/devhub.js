@@ -224,7 +224,7 @@ $(document).ready(function() {
         function check_webapp_validation(results) {
             var $upload_field = $('#upload-webapp-url');
             $('#id_upload').val(results.upload);
-            $('#id_packaged').val('');
+            $('#id_packaged').prop('checked', false);
             if(results.error) {
                 $upload_field.trigger("upload_finished", [false, results, results.error]);
             } else if(!results.validation) {
