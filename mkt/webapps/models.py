@@ -995,8 +995,7 @@ class WebappIndexer(MappingType, Indexable):
                     },
                     'manifest_url': {'type': 'string',
                                      'index': 'not_analyzed'},
-                    'name': {'type': 'string',
-                             'analyzer': 'standardPlusWordDelimiter'},
+                    'name': {'type': 'string', 'analyzer': 'snowball'},
                     # Turn off analysis on name so we can sort by it.
                     'name_sort': {'type': 'string', 'index': 'not_analyzed'},
                     'owners': {'type': 'long'},
