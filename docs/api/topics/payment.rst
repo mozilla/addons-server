@@ -159,7 +159,7 @@ Payment accounts can be added and listed.
 Upsell
 ======
 
-.. http:post:: /api/v1/payments/upsell/(int:id)/
+.. http:post:: /api/v1/payments/upsell/
 
     Creates an upsell relationship between two apps, a free and premium one.
     Send the URLs for both apps in the post to create the relationship.
