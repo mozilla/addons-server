@@ -28,6 +28,7 @@ from addons.widgets import CategoriesSelectMultiple
 from amo import get_user
 from amo.fields import SeparatedValuesField
 from amo.utils import remove_icons
+from devhub.forms import VersionForm
 from files.models import FileUpload
 from files.utils import WebAppParser
 from lib.video import tasks as vtasks
@@ -1054,3 +1055,24 @@ class APIConsumerForm(happyforms.ModelForm):
     class Meta:
         model = Access
         fields = ('app_name', 'redirect_uri')
+
+
+class AppVersionForm(VersionForm):
+    publish_immediately = forms.BooleanField(required=False)
+
+    def __init__(self, *args, **kwargs):
+        super(AppVersionForm, self).__init__(*args, **kwargs)
+        self.fields['publish_immediately'].initial = (
+            self.instance.addon.make_public == amo.PUBLIC_IMMEDIATELY)
+
+    def save(self, *args, **kwargs):
+        rval = super(AppVersionForm, self).save(*args, **kwargs)
+        if self.instance.all_files[0].status == amo.STATUS_PENDING:
+            # If version is pending, allow changes to make_public, which lives
+            # on the app itself.
+            if self.cleaned_data.get('publish_immediately'):
+                make_public = amo.PUBLIC_IMMEDIATELY
+            else:
+                make_public = amo.PUBLIC_WAIT
+            self.instance.addon.update(make_public=make_public)
+        return rval

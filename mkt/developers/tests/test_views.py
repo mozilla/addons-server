@@ -20,13 +20,14 @@ from pyquery import PyQuery as pq
 import amo
 import amo.tests
 from addons.models import Addon, AddonDeviceType, AddonUpsell, AddonUser
-from amo.tests import app_factory, assert_no_validation_errors
+from amo.tests import (app_factory, assert_no_validation_errors,
+                       version_factory)
 from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
 from amo.utils import urlparams
 from browse.tests import test_default_sort, test_listing_sort
 from devhub.models import ActivityLog
-from files.models import FileUpload
+from files.models import File, FileUpload
 from files.tests.test_models import UploadTest as BaseUploadTest
 from market.models import AddonPremium, Price
 from stats.models import Contribution
@@ -466,6 +467,90 @@ class TestPublicise(amo.tests.TestCase):
         # TODO: fix this when jenkins can get the jinja helpers loaded in
         # the correct order.
         #eq_(len(doc('strong.status-waiting')), 1)
+
+
+class TestPubliciseVersion(amo.tests.TestCase):
+    fixtures = fixture('webapp_337141')
+
+    def setUp(self):
+        Addon.objects.filter(pk=337141).update(is_packaged=True)
+        self.app = self.get_webapp()
+        self.url = self.app.get_dev_url('versions.publicise')
+        self.status_url = self.app.get_dev_url('versions')
+        assert self.client.login(username='steamcube@mozilla.com',
+                                 password='password')
+
+    def get_webapp(self):
+        return Addon.objects.no_cache().get(pk=337141)
+
+    def get_version_status(self):
+        v = Version.objects.no_cache().get(pk=self.app.latest_version.pk)
+        return v.all_files[0].status
+
+    def post(self, pk=None):
+        if not pk:
+            pk = self.app.latest_version.pk
+        return self.client.post(self.url, data={
+            'version_id': pk
+        })
+
+    def test_logout(self):
+        File.objects.filter(version__addon=self.app).update(
+            status=amo.STATUS_PUBLIC_WAITING)
+        self.client.logout()
+        res = self.post()
+        eq_(res.status_code, 302)
+        eq_(self.get_version_status(), amo.STATUS_PUBLIC_WAITING)
+
+    def test_publicise_get(self):
+        eq_(self.client.get(self.url).status_code, 405)
+
+    @mock.patch('mkt.webapps.tasks.update_cached_manifests')
+    @mock.patch('mkt.webapps.models.Webapp.update_supported_locales')
+    @mock.patch('mkt.webapps.models.Webapp.update_name_from_package_manifest')
+    def test_publicise_version_new_waiting(self, update_name, update_locales,
+                                           update_cached_manifests):
+        ver = version_factory(addon=self.app, version='2.0',
+                              file_kw=dict(status=amo.STATUS_PUBLIC_WAITING))
+        eq_(self.app.latest_version, ver)
+        assert self.app.current_version != ver
+        res = self.post()
+        eq_(res.status_code, 302)
+        eq_(self.get_version_status(), amo.STATUS_PUBLIC)
+        eq_(self.get_webapp().current_version, ver)
+        assert update_name.called
+        assert update_locales.called
+
+    @mock.patch('mkt.webapps.models.Webapp.update_supported_locales')
+    @mock.patch('mkt.webapps.models.Webapp.update_name_from_package_manifest')
+    def test_publicise_version_cur_waiting(self, update_name, update_locales):
+        File.objects.filter(version__addon=self.app).update(
+            status=amo.STATUS_PUBLIC_WAITING)
+        res = self.post()
+        eq_(res.status_code, 302)
+        eq_(self.get_version_status(), amo.STATUS_PUBLIC)
+        assert update_name.called
+        assert update_locales.called
+
+    @mock.patch('mkt.webapps.models.Webapp.update_supported_locales')
+    @mock.patch('mkt.webapps.models.Webapp.update_name_from_package_manifest')
+    def test_publicise_version_pending(self, update_name, update_locales):
+        version_factory(addon=self.app, version='2.0',
+                        file_kw=dict(status=amo.STATUS_PENDING))
+        self.app.reload()
+        res = self.post()
+        eq_(res.status_code, 302)
+        eq_(self.get_version_status(), amo.STATUS_PENDING)
+        assert not update_name.called
+        assert not update_locales.called
+
+    def test_status(self):
+        File.objects.filter(version__addon=self.app).update(
+            status=amo.STATUS_PUBLIC_WAITING)
+        res = self.client.get(self.status_url)
+        eq_(res.status_code, 200)
+        doc = pq(res.content)
+        eq_(doc('#version-list form').attr('action'), self.url)
 
 
 class TestStatus(amo.tests.TestCase):

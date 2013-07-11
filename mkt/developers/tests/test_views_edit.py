@@ -1433,3 +1433,11 @@ class TestEditVersion(TestEdit):
         new_version = self.webapp.latest_version.update(id=self.version_pk + 1)
         self.webapp.update(latest_version=new_version)
         self.test_new_features()
+
+    def test_publish_checkbox_presence(self):
+        res = self.client.get(self.url)
+        ok_(not pq(res.content)('#id_publish_immediately'))
+
+        self.webapp.latest_version.files.update(status=amo.STATUS_PENDING)
+        res = self.client.get(self.url)
+        ok_(pq(res.content)('#id_publish_immediately'))

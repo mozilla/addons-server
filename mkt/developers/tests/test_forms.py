@@ -12,7 +12,7 @@ from test_utils import RequestFactory
 
 import amo
 import amo.tests
-from amo.tests import app_factory
+from amo.tests import app_factory, version_factory
 from amo.tests.test_helpers import get_image_path
 from addons.models import Addon, AddonCategory, Category, CategorySupervisor
 from files.helpers import copyfileobj
@@ -527,3 +527,47 @@ class TestAppFormBasic(amo.tests.TestCase):
         eq_(self.form.is_valid(), False)
         eq_(self.form.errors,
             {'slug': ['This slug is already in use. Please choose another.']})
+
+
+class TestAppVersionForm(amo.tests.TestCase):
+    def setUp(self):
+        self.request = mock.Mock()
+        self.app = app_factory(make_public=amo.PUBLIC_IMMEDIATELY)
+        version_factory(addon=self.app, version='2.0',
+                        file_kw=dict(status=amo.STATUS_PENDING))
+        self.app.reload()
+
+    def get_form(self, version, data=None):
+        return forms.AppVersionForm(data, instance=version)
+
+    def test_get_publish(self):
+        form = self.get_form(self.app.latest_version)
+        eq_(form.fields['publish_immediately'].initial, True)
+
+        self.app.update(make_public=amo.PUBLIC_WAIT)
+        self.app.reload()
+        form = self.get_form(self.app.latest_version)
+        eq_(form.fields['publish_immediately'].initial, False)
+
+    def test_post_publish(self):
+        form = self.get_form(self.app.latest_version,
+                             data={'publish_immediately': True})
+        eq_(form.is_valid(), True)
+        form.save()
+        self.app.reload()
+        eq_(self.app.make_public, amo.PUBLIC_IMMEDIATELY)
+
+        form = self.get_form(self.app.latest_version,
+                             data={'publish_immediately': False})
+        eq_(form.is_valid(), True)
+        form.save()
+        self.app.reload()
+        eq_(self.app.make_public, amo.PUBLIC_WAIT)
+
+    def test_post_publish_not_pending(self):
+        form = self.get_form(self.app.current_version,
+                             data={'publish_immediately': False})
+        eq_(form.is_valid(), True)
+        form.save()
+        self.app.reload()
+        eq_(self.app.make_public, amo.PUBLIC_IMMEDIATELY)

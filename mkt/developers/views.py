@@ -32,7 +32,6 @@ from amo.decorators import (any_permission_required, json_view, login_required,
                             post_required)
 from amo.urlresolvers import reverse
 from amo.utils import escape_all
-from devhub.forms import VersionForm
 from devhub.models import AppLog
 from files.models import File, FileUpload
 from files.utils import parse_addon
@@ -49,9 +48,10 @@ from mkt.developers.decorators import dev_required
 from mkt.developers.forms import (APIConsumerForm, AppFormBasic,
                                   AppFormDetails, AppFormMedia,
                                   AppFormSupport, AppFormTechnical,
-                                  CategoryForm, ImageAssetFormSet,
-                                  NewPackagedAppForm, PreviewFormSet,
-                                  TransactionFilterForm, trap_duplicate)
+                                  AppVersionForm, CategoryForm,
+                                  ImageAssetFormSet, NewPackagedAppForm,
+                                  PreviewFormSet, TransactionFilterForm,
+                                  trap_duplicate)
 from mkt.developers.utils import check_upload
 from mkt.developers.tasks import run_validator
 from mkt.submit.forms import AppFeaturesForm, NewWebappVersionForm
@@ -258,9 +258,10 @@ def status(request, addon_id, addon, webapp=False):
 @dev_required
 def version_edit(request, addon_id, addon, version_id):
     show_features = waffle.switch_is_active('buchets') and addon.is_packaged
-
+    formdata = request.POST if request.method == 'POST' else None
     version = get_object_or_404(Version, pk=version_id, addon=addon)
-    form = VersionForm(request.POST or None, instance=version)
+    version.addon = addon  # Avoid extra useless query.
+    form = AppVersionForm(formdata, instance=version)
     all_forms = [form]
 
     if show_features:
@@ -288,6 +289,25 @@ def version_edit(request, addon_id, addon, version_id):
         })
 
     return jingo.render(request, 'developers/apps/version_edit.html', context)
+
+
+@dev_required
+@post_required
+def version_publicise(request, addon_id, addon):
+    version_id = request.POST.get('version_id')
+    version = get_object_or_404(Version, pk=version_id, addon=addon)
+    if version.all_files[0].status == amo.STATUS_PUBLIC_WAITING:
+        File.objects.filter(version=version).update(status=amo.STATUS_PUBLIC)
+        amo.log(amo.LOG.CHANGE_VERSION_STATUS, unicode(version.status[0]),
+                version)
+        # Call update_version, so various other bits of data update.
+        addon.update_version()
+        # Call to update names and locales if changed.
+        addon.update_name_from_package_manifest()
+        addon.update_supported_locales()
+        messages.success(request, _('Version successfully made public.'))
+
+    return redirect(addon.get_dev_url('versions'))
 
 
 @dev_required

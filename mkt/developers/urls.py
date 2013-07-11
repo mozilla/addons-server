@@ -65,6 +65,9 @@ app_detail_patterns = patterns('',
         name='mkt.developers.apps.versions.edit'),
     url('^versions/delete$', views.version_delete,
         name='mkt.developers.apps.versions.delete'),
+    url('^versions/publicise$', views.version_publicise,
+        name='mkt.developers.apps.versions.publicise'),
+
 
     url('^payments/$', views_payments.payments,
         name='mkt.developers.apps.payments'),

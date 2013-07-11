@@ -60,8 +60,8 @@
           {{ _('It is awaiting your approval to make public.') }}
         {% endif %}
         {% if not (addon.is_disabled or addon.is_incomplete()) %}
-          <a href="https://developer.mozilla.org/en-US/docs/Apps/Marketplace_Review"
-             target="_blank">{{ _('Learn more') }}</a>
+          <p><a href="https://developer.mozilla.org/en-US/docs/Apps/Marketplace_Review"
+             target="_blank">{{ _('Learn more') }}</a></p>
         {% endif %}
         {% if addon.status == amo.STATUS_REJECTED %}
             {% if rejection %}
@@ -99,13 +99,14 @@
                 <p><button type="submit" name="resubmit-app">{{ _('Resubmit App') }}</button></p>
               </form>
             {% endif %}
-        {% elif addon.status == amo.STATUS_PUBLIC_WAITING %}
-          <form method="post" action="{{ addon.get_dev_url('publicise') }}">
-            {{ csrf() }}
-            <p><button type="submit">{{ _('Make App public') }}</button></p>
-          </form>
         {% endif %}
       </div>
+      {% if addon.status == amo.STATUS_PUBLIC_WAITING %}
+        <form method="post" action="{{ addon.get_dev_url('publicise') }}">
+          {{ csrf() }}
+          <p class="listing-footer"><button type="submit">{{ _('Make App public') }}</button></p>
+        </form>
+      {% endif %}
     </div>
 
     {% if check_addon_ownership(request, addon, dev=True) %}
@@ -157,27 +158,46 @@
       {% if versions %}
         <h2>{{ _('Packaged Versions') }}</h2>
         <div class="island c">
-          <ul id="version-list">
-            {% for version in versions %}
-              <li>
-                <h4><a href="{{ addon.get_dev_url('versions.edit', [version.pk]) }}">Version {{ version.version }}</a></h4>
-                <small>
-                  {% if addon.disabled_by_user %}
-                    <span class="{{ mkt_file_status_class(addon, version) }}"><b>{{ _('Disabled') }}</b></span>
-                  {% else %}
-                    <span class="{{ mkt_file_status_class(addon, version) }}"><b>{{ version.status|join(', ') }}</b></span>
-                  {% endif %}
-                </small>
-                <small>Submitted <span title="{{ version.created|isotime }}">{{ version.created|datetime }}</span></small>
-                {% if version.all_files[0].status != amo.STATUS_BLOCKED %}
-                  <div class="buttons">
-                    <a href="{{ version.all_files[0].get_url_path('') }}" class="button download">{{ _('Download') }}</a>
-                    <a href="#" class="button bad delete-button delete-version" data-version="{{ version.id }}">{{ _('Delete') }}</a>
-                  </div>
-                {% endif %}
-              </li>
-            {% endfor %}
-          </ul>
+          <table id="version-list">
+            <thead>
+              <tr>
+                <th></th>
+                <th>{{ _('Status') }} </th>
+                <th class="date">{{ _('Submission date') }}</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for version in versions %}
+                <tr{% if version == addon.current_version %} class="current"{% endif %}>
+                  <td><h4><a href="{{ addon.get_dev_url('versions.edit', [version.pk]) }}">{{ version.version }}</a></h4></td>
+                  <td>
+                    {% if addon.disabled_by_user %}
+                      <span class="{{ mkt_file_status_class(addon, version) }}"><b>{{ _('Disabled') }}</b></span>
+                    {% else %}
+                      <span class="{{ mkt_file_status_class(addon, version) }}"><b>{{ version.status|join(', ') }}</b></span>
+                    {% endif %}
+                  </td>
+                  <td class="date" title="{{ version.created|isotime }}">{{ version.created|datetime }}</td>
+                  <td>
+                    {% if version.all_files[0].status != amo.STATUS_BLOCKED %}
+                      <div class="buttons">
+                        <a href="{{ version.all_files[0].get_url_path('') }}" class="download">{{ _('Download') }}</a>
+                        {% if version.all_files[0].status == amo.STATUS_PUBLIC_WAITING %}
+                          <form method="post" action="{{ addon.get_dev_url('versions.publicise') }}">
+                            {{ csrf() }}
+                            <input type="hidden" name="version_id" value="{{ version.id }}">
+                            <button type="submit">{{ _('Publish') }}</button>
+                          </form>
+                        {% endif %}
+                        <a href="#" class="button bad delete-button delete-version" data-version="{{ version.id }}">{{ _('Delete') }}</a>
+                      </div>
+                    {% endif %}
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
         </div>
       {% endif %}
 

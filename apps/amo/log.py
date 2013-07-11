@@ -634,6 +634,13 @@ class REREVIEW_FEATURES_CHANGED(_LOG):
     review_queue = True
 
 
+class CHANGE_VERSION_STATUS(_LOG):
+    id = 124
+    # L10n: {0} is the status
+    format = _(u'{version} status changed to {0}.')
+    keep = True
+
+
 LOGS = [x for x in vars().values()
         if isclass(x) and issubclass(x, _LOG) and x != _LOG]
 

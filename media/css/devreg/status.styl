@@ -89,22 +89,17 @@
 }
 
 #version-list {
-    li {
-        border-box();
-        float: left;
-        padding: 10px 0;
-        width: 100%;
-        + li {
-            border-top: 1px dotted #eef;
-        }
-        &:first-child h4 {
-            background: #ded;
-            color: $green;
-        }
+    table-layout: auto;
+    width: 100%;
+
+    td {
+        border-top: 1px dotted $border-taupe;
+        padding: 5px 0 5px 5px;
+        vertical-align: middle;
         h4 {
-            background: #f3f3f3;
-            float: left;
-            padding: 5px 10px;
+            font-size: 150%;
+            font-weight: normal;
+            padding: 5px;
         }
         small {
             border-left: 1px solid $faint-gray;
@@ -117,10 +112,29 @@
             padding: 7px 0 7px 10px;
         }
         .buttons {
-            float: right;
+            text-align: right;
             a {
-                margin-left: 10px;
+                margin: 0 5px 5px 0;
+            }
+            form {
+                display: inline;
             }
         }
+        input[type=checkbox] {
+            vertical-align: middle;
+        }
+        label {
+            display: inline-block;
+            margin-top: 5px;
+        }
+    }
+    th {
+        color: $medium-gray;
+        font-weight: bold;
+        padding: 5px 0 5px 5px;
+        width: auto;
+    }
+    .date {
+        white-space: nowrap;
     }
 }

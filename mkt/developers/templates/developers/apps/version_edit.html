@@ -60,6 +60,23 @@
             </tr>
           {% endif %}
 
+          {% if version.all_files[0].status == amo.STATUS_PENDING %}
+            <tr>
+              <th>
+                <label for="{{ form.publish_immediately.auto_id }}">{{ _('Auto-publish when approved') }}
+                {{ tip(None, _("If selected this version will be published
+                                immediately following its approval by reviewers.
+                                If you don't select this option you will be notified
+                                via email about this version's approval and you
+                                will need to log in and manually publish it.")) }}
+                </label>
+              </th>
+              <td>
+                {{ form.publish_immediately.errors }}
+                {{ form.publish_immediately }}
+              </td>
+            </tr>
+          {% endif %}
         </table>
         <div class="listing-footer">
           <button type="submit">{{ _('Save Changes') }}</button> {{ _('or') }}
