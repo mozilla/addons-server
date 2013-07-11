@@ -314,4 +314,6 @@ REST_FRAMEWORK = {
 
 # A list of ids where the regions are enabled. This is here as opposed to on
 # the region object, because it will vary from region to region per server.
-PURCHASE_ENABLED_REGIONS = [regions.SPAIN.id,]
+#
+# This is an easy default for development.
+PURCHASE_ENABLED_REGIONS = [regions.US.id]

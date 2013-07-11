@@ -164,3 +164,5 @@ if NEWRELIC_ENABLE:
     NEWRELIC_INI = '/etc/newrelic.d/marketplace.firefox.com.ini'
 
 ES_USE_PLUGINS = True
+
+PURCHASE_ENABLED_REGIONS = [regions.PL.id, regions.SPAIN.id]
