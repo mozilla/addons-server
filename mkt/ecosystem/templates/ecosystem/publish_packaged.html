@@ -24,8 +24,16 @@
       </p>
       <p>
         {%- trans %}
-          <strong>Note:</strong> Currently (January 2013) the Firefox
-          Marketplace supports packaged apps only for Firefox OS apps.
+          One difference from a hosted app is that a packaged app must 
+          specify a launch_path in the manifest, whereas it's an optional
+          manifest field for a hosted app.
+        {% endtrans -%}
+      </p>
+      <p>
+        {%- trans %}
+          <strong>Note:</strong> Currently (July 2013) the Firefox
+          Marketplace supports packaged apps only when they are Firefox
+          OS apps.
         {% endtrans -%}
       </p>
       <h2>{{ _('Purpose of packaged apps') }}</h2>
@@ -48,12 +56,15 @@
           <dt>{{ _('Privileged app') }}</dt>
           <dd>
             {%- trans %}
-              A privileged app has been approved by the Firefox OS
-              Marketplace using a special process. It is meant to provide
+              A privileged app is approved by the Firefox Marketplace
+              using a special process. It is meant to provide
               more safety for users when an app wants access to certain
               sensitive APIs on a device. It is equivalent to a native
-              app on a platform like iOS or Android. A privileged app
-              has the following characteristics:
+              app on a platform like iOS or Android. To specify that an app
+              is a privileged app, add the <code>type</code> field to its
+              <code>manifest.webapp</code> file and set it to 
+              <code>privileged</code>. A privileged app has the following
+              characteristics:
             {% endtrans -%}
             <ul>
               <li>
@@ -96,9 +107,12 @@
               implicit, meaning they do not require explicit user approval.
               A certified app must be approved for a device by the OEM or
               carrier in order to have this implicit approval to use
-              critical APIs. The following is the CSP for a certified app,
-              which is slightly different from the CSP for a privileged
-              app:
+              critical APIs. To specify that an app is a certified app, 
+              add the <code>type</code> field to its 
+              <code>manifest.webapp</code> file and set it to 
+              <code>certified</code>. The following is the CSP for a
+              certified app, which is slightly different from the CSP for
+              a privileged app:
             {% endtrans -%}
             <pre>"default-src *; script-src 'self'; object-src 'none'; style-src 'self'"</pre>
             {%- trans url_default_csp='https://wiki.mozilla.org/Apps/CSP',
@@ -117,7 +131,13 @@
               special authentication process used for privileged or
               certified apps. This plain packaged app cannot use certain
               sensitive Web APIs. It is not subject to the CSPs described
-              for privileged and certified apps.
+              for privileged and certified apps. This type of app could be
+              useful if you want all of your app's resources available on
+              the device when the user first uses it, with no downloading.
+              This type of packaged app does not require the <code>type</code>
+              field in its <code>manifest.webapp</code> file, because the
+              default value for <code>type</code> (<code>web</code>) 
+              is correct.
             {% endtrans -%}
           </dd>
         </dl>
