@@ -27,7 +27,7 @@ import amo.utils
 from amo.storage_utils import copy_stored_file, move_stored_file
 from amo.urlresolvers import reverse
 from applications.models import Application, AppVersion
-from apps.amo.utils import memoize
+from amo.utils import memoize
 import devhub.signals
 from files.utils import SafeUnzip
 from versions.compare import version_int as vint

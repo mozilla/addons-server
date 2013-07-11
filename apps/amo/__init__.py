@@ -1,7 +1,7 @@
 """
 Miscellaneous helpers that make Django compatible with AMO.
 """
-import re
+import sys
 import threading
 
 from django.conf import settings
@@ -9,6 +9,8 @@ from django.conf import settings
 import commonware.log
 
 from product_details import product_details
+
+import waffle
 
 from apps.search.utils import floor_version
 from constants.applications import *
@@ -20,6 +22,14 @@ from constants.search import *
 from .log import (LOG, LOG_BY_ID, LOG_ADMINS, LOG_EDITORS,
                   LOG_HIDE_DEVELOPER, LOG_KEEP, LOG_REVIEW_QUEUE,
                   LOG_REVIEW_EMAIL_USER, log)
+
+def patch_waffle():
+    suffix = getattr(settings, 'WAFFLE_TABLE_SUFFIX', None)
+    if suffix:
+        for m in [waffle.Flag, waffle.Switch, waffle.Sample]:
+            m._meta.db_table = '%s_%s' % (m._meta.db_table, suffix)
+
+patch_waffle()
 
 logger_log = commonware.log.getLogger('z.amo')
 

@@ -37,6 +37,7 @@ djangorestframework==2.3.5
 django-statsd-mozilla==0.3.8.6
 django-storages==1.1.8
 django-tastypie==0.9.11
+django-waffle==0.9.1
 easy-thumbnails==1.1
 elasticutils==0.7
 fastchardet==0.2.0
@@ -107,7 +108,6 @@ tastypie-services==0.2.2
 ## Forked.
 -e git+https://github.com/andymckay/django-piston-oauth2.git@fa28ee#egg=django-piston-oauth2
 -e git+https://github.com/kumar303/django-qunit.git@b0f468dcf33439488158c845df37ef3261852b55#egg=django-qunit
--e git+https://github.com/washort/django-waffle.git@c8da885613dfddf2262e11adde6b6027906536ed#egg=django-waffle
 -e git+https://github.com/andymckay/django-uuidfield.git@029dd1263794ec36c327617cd6c2346da81c8c33#egg=django-uuidfield
 
 

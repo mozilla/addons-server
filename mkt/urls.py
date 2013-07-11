@@ -150,7 +150,7 @@ urlpatterns = patterns('',
     ('', include('mkt.site.urls')),
 
     # Services.
-    ('', include('apps.amo.urls')),
+    ('', include('amo.urls')),
 )
 
 if settings.TEMPLATE_DEBUG:
