@@ -24,7 +24,7 @@
       </p>
       <p>
         {%- trans %}
-          One difference from a hosted app is that a packaged app must 
+          One difference from a hosted app is that a packaged app must
           specify a launch_path in the manifest, whereas it's an optional
           manifest field for a hosted app.
         {% endtrans -%}
@@ -55,6 +55,7 @@
         <dl>
           <dt>{{ _('Privileged app') }}</dt>
           <dd>
+            {# L10n: Do not localize text in <code></code> #}
             {%- trans %}
               A privileged app is approved by the Firefox Marketplace
               using a special process. It is meant to provide
@@ -62,7 +63,7 @@
               sensitive APIs on a device. It is equivalent to a native
               app on a platform like iOS or Android. To specify that an app
               is a privileged app, add the <code>type</code> field to its
-              <code>manifest.webapp</code> file and set it to 
+              <code>manifest.webapp</code> file and set it to
               <code>privileged</code>. A privileged app has the following
               characteristics:
             {% endtrans -%}
@@ -96,6 +97,7 @@
           </dd>
           <dt>{{ _('Certified app') }}</dt>
           <dd>
+            {# L10n: Do not localize text in <code></code> #}
             {%- trans %}
               A certified app is intended for a critical system function
               like the default dialer or the system settings app on a
@@ -107,9 +109,9 @@
               implicit, meaning they do not require explicit user approval.
               A certified app must be approved for a device by the OEM or
               carrier in order to have this implicit approval to use
-              critical APIs. To specify that an app is a certified app, 
-              add the <code>type</code> field to its 
-              <code>manifest.webapp</code> file and set it to 
+              critical APIs. To specify that an app is a certified app,
+              add the <code>type</code> field to its
+              <code>manifest.webapp</code> file and set it to
               <code>certified</code>. The following is the CSP for a
               certified app, which is slightly different from the CSP for
               a privileged app:
@@ -125,6 +127,7 @@
             {% endtrans -%}
           <dt>{{ _('Plain packaged app') }}</dt>
           <dd>
+            {# L10n: Do not localize text in <code></code> #}
             {%- trans %}
               You can also make a regular app that is simply packaged in a
               zip file. The Marketplace signs it, but does not perform the
@@ -136,7 +139,7 @@
               the device when the user first uses it, with no downloading.
               This type of packaged app does not require the <code>type</code>
               field in its <code>manifest.webapp</code> file, because the
-              default value for <code>type</code> (<code>web</code>) 
+              default value for <code>type</code> (<code>web</code>)
               is correct.
             {% endtrans -%}
           </dd>
