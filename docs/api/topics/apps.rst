@@ -49,15 +49,7 @@ App
                 3
             ],
             "content_ratings": {},
-            "current_version": {
-                "release_notes": null,
-                "required_features": [
-                    "apps",
-                    "archive",
-                    "audio"
-                ],
-                "version": "1.0"
-            },
+            "current_version": "1.1",
             "default_locale": "en-US",
             "description": "sdf",
             "device_types": [
@@ -142,6 +134,10 @@ App
                 "developed": false,
                 "installed": false,
                 "purchased": false
+            },
+            "versions": {
+                "1.0": "/api/v1/apps/versions/7012/",
+                "1.1": "/api/v1/apps/versions/7930/"
             }
         }
 
@@ -220,6 +216,77 @@ App
 .. http:put:: /api/v1/apps/app/(int:id)/
 
    See :ref:`Creating an App <app-put-label>`
+
+
+Versions
+========
+
+.. http:get:: /api/v1/apps/versions/(int:id)/
+
+    Retrieves data for a specific version of an application.
+
+    **Response**
+
+    :status 200: successfully completed.
+    :status 404: not found.
+
+    Example:
+
+    .. code-block:: json
+
+        {
+            "app": "/api/v1/apps/app/7/",
+            "developer_name": "Cee's Vans",
+            "features": [
+                "apps",
+                "push"
+            ],
+            "is_current_version": true,
+            "release_notes": "New and improved!",
+            "version": "1.1"
+        }
+
+    :param is_current_version: indicates whether this is the most recent
+        public version of the application.
+    :type is_current_version: boolean
+    :param features: each item represents a
+        :ref:`device feature <features>` required to run the application.
+    :type features: array
+
+.. http:patch:: /api/v1/apps/versions/(int:id)/
+
+    Update data for a specific version of an application.
+
+    .. note:: Requires authentication.
+
+    **Request**
+
+    Example:
+
+    .. code-block:: json
+
+        {
+            "developer_name": "Cee's Vans",
+            "features": [
+                "apps",
+                "mp3",
+                "push"
+            ]
+        }
+
+    :param object features: each item represents a
+        :ref:`device feature <features>` required to run the application.
+        Features not present are assumed not to be required.
+    :type features: array
+
+    **Response**
+
+    Returns the updated JSON representation
+
+    :status 200: sucessfully altered.
+    :status 403: not allowed to modify this version's app.
+    :status 404: not found.
+
 
 Payments
 ========

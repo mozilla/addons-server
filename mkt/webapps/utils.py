@@ -1,7 +1,6 @@
 from operator import attrgetter
 
 from django.conf import settings
-from django.core.exceptions import ObjectDoesNotExist
 from django.utils import translation
 
 import commonware.log
@@ -60,19 +59,7 @@ def app_to_dict(app, region=None, profile=None, request=None):
     from mkt.developers.api import AccountResource
     from mkt.developers.models import AddonPaymentAccount
     from mkt.submit.api import PreviewResource
-    from mkt.webapps.api import AppFeaturesSerializer
-
-    cv = app.current_version
-    version_data = {
-        'version': getattr(cv, 'version', None),
-        'release_notes': getattr(cv, 'releasenotes', None),
-        'developer_name': getattr(cv, 'developer_name', None),
-    }
-
-    features = getattr(cv, 'features', None)
-    if features:
-        features = AppFeaturesSerializer().to_native(features)['required']
-    version_data['required_features'] = features
+    from mkt.webapps.models import reverse_version
 
     supported_locales = getattr(app.current_version, 'supported_locales', '')
 
@@ -84,7 +71,8 @@ def app_to_dict(app, region=None, profile=None, request=None):
             'description': unicode(cr.get_rating().description),
         }) for cr in app.content_ratings.all()]) or None,
         'created': app.created,
-        'current_version': version_data,
+        'current_version': (app.current_version.version if
+                            getattr(app, 'current_version') else None),
         'default_locale': app.default_locale,
         'image_assets': dict([(ia.slug, (ia.image_url, ia.hue))
                               for ia in app.image_assets.all()]),
@@ -108,6 +96,8 @@ def app_to_dict(app, region=None, profile=None, request=None):
         'supported_locales': (supported_locales.split(',') if supported_locales
                               else []),
         'weekly_downloads': app.weekly_downloads if app.public_stats else None,
+        'versions': dict((v.version, reverse_version(v)) for
+                         v in app.versions.all())
     }
 
     data['upsell'] = False
@@ -189,7 +179,7 @@ def es_app_to_dict(obj, region=None, profile=None, request=None):
 
     attrs = ('content_ratings', 'created', 'current_version', 'default_locale',
              'homepage', 'manifest_url', 'previews', 'ratings', 'status',
-             'support_email', 'support_url', 'weekly_downloads')
+             'support_email', 'support_url', 'versions', 'weekly_downloads')
     data = dict(zip(attrs, attrgetter(*attrs)(obj)))
     data.update({
         'absolute_url': absolutify(app.get_detail_url()),
@@ -287,7 +277,6 @@ def update_with_reviewer_data(bundle, using_es=False):
                 'has_editor_comment': version.has_editor_comment,
                 'has_info_request': version.has_info_request,
             }
-
         if using_es and hasattr(bundle.obj, 'is_escalated'):
             bundle.data['is_escalated'] = bundle.obj.is_escalated
         else:

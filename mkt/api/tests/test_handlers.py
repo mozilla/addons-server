@@ -1,4 +1,3 @@
-import base64
 import json
 import os
 import tempfile
@@ -298,8 +297,7 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         data = json.loads(res.content)
         self.assertSetEqual(data['categories'],
                             [c.pk for c in self.categories])
-        eq_(data['current_version']['version'], u'1.0')
-        eq_(data['current_version']['release_notes'], None)
+        eq_(data['current_version'], app.current_version.version)
         self.assertSetEqual(data['device_types'],
                             [n.api_name for n in amo.DEVICE_TYPES.values()])
         eq_(data['homepage'], u'http://www.whatever.com')

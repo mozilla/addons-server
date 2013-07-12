@@ -54,6 +54,19 @@ from mkt.zadmin.models import FeaturedApp
 log = commonware.log.getLogger('z.addons')
 
 
+def reverse_version(version):
+    """
+    The try/except AttributeError allows this to be used where the input is
+    ambiguous, and could be either an already-reversed URL or a Version object.
+    """
+    if version:
+        try:
+            return reverse('version-detail', kwargs={'pk': version.pk})
+        except AttributeError:
+            return version
+    return
+
+
 class WebappManager(amo.models.ManagerBase):
 
     def __init__(self, include_deleted=False):
@@ -950,17 +963,8 @@ class WebappIndexer(MappingType, Indexable):
                         'dynamic': 'true',
                     },
                     'created': {'format': 'dateOptionalTime', 'type': 'date'},
-                    'current_version': {
-                        'type': 'object',
-                        'properties': {
-                            'version': {'type': 'string',
+                    'current_version': {'type': 'string',
                                         'index': 'not_analyzed'},
-                            'release_notes': {'type': 'string',
-                                              'index': 'not_analyzed'},
-                            'developer_name': {'type': 'string',
-                                               'index': 'not_analyzed'},
-                        }
-                    },
                     'default_locale': {'type': 'string',
                                        'index': 'not_analyzed'},
                     'description': {'type': 'string', 'analyzer': 'snowball'},
@@ -1036,6 +1040,10 @@ class WebappIndexer(MappingType, Indexable):
                         }
                     },
                     'uses_flash': {'type': 'boolean'},
+                    'versions': {
+                        'type': 'object',
+                        'dynamic': 'true',
+                    },
                     'weekly_downloads': {'type': 'long'},
                 }
             }
@@ -1101,20 +1109,7 @@ class WebappIndexer(MappingType, Indexable):
         d['authors'] = [a.name for a in obj.listed_authors]
         d['category'] = getattr(obj, 'category_ids', [])
         d['content_ratings'] = content_ratings if content_ratings else None
-        if version:
-            d['current_version'] = {
-                'version': version.version,
-                # TODO: Store all localizations of release notes.
-                'release_notes': (unicode(version.releasenotes)
-                                  if version.releasenotes else None),
-                'developer_name': version.developer_name,
-            }
-        else:
-            d['current_version'] = {
-                'version': None,
-                'release_notes': None,
-                'developer_name': None,
-            }
+        d['current_version'] = version.version if version else None
         d['default_locale'] = obj.default_locale
         d['description'] = list(set(s for _, s
                                     in translations[obj.description_id]))
@@ -1183,6 +1178,9 @@ class WebappIndexer(MappingType, Indexable):
                 # TODO: Store all localizations of upsell.name.
                 'name': unicode(upsell_obj.name),
             }
+
+        d['versions'] = dict((v.version, reverse_version(v)) for
+                             v in obj.versions.all())
 
         # Calculate regional popularity for "mature regions"
         # (installs + reviews/installs from that region).

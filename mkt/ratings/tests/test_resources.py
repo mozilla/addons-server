@@ -15,7 +15,6 @@ from mkt.api.base import get_url, list_url
 from mkt.api.tests.test_oauth import BaseOAuth
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import AddonExcludedRegion, Webapp
-from versions.models import Version
 
 
 class TestRatingResource(BaseOAuth, AMOPaths):
@@ -97,26 +96,6 @@ class TestRatingResource(BaseOAuth, AMOPaths):
         self.client.cookies['region'] = 'br'
         res, data = self._get_single(app=self.app.app_slug)
         eq_(res.status_code, 400)
-
-    def test_version_none(self):
-        res, data = self._get_single()
-        eq_(data['objects'][0]['version'], None)
-
-    def test_version_latest(self):
-        self.app.update(is_packaged=True)
-        res, data = self._create()
-        eq_(data['version']['name'], '1.0')
-        eq_(data['version']['latest'], True)
-
-    def test_version_not_latest(self):
-        self.app.update(is_packaged=True)
-        Review.objects.create(addon=self.app, user=self.user, body='yes',
-                              version=self.app.latest_version)
-        Version.objects.create(addon=self.app, version='1.1')
-        res = self.anon.get(self._collection_url())
-        data = json.loads(res.content)
-        eq_(data['objects'][0]['version']['name'], '1.0')
-        eq_(data['objects'][0]['version']['latest'], False)
 
     def test_anonymous_get_list(self):
         res = self.anon.get(list_url('rating'))

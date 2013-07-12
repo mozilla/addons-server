@@ -586,7 +586,6 @@ class TestApiReviewer(BaseOAuth, ESTestCase):
         eq_(res.status_code, 200)
         obj = res.json['objects'][0]
         eq_(obj['status'], amo.STATUS_PUBLIC)
-        eq_(obj['latest_version']['status'], amo.STATUS_PUBLIC)
 
     def test_addon_type_reviewer(self):
         res = self.client.get(self.url + ({'type': 'app'},))
@@ -603,29 +602,6 @@ class TestApiReviewer(BaseOAuth, ESTestCase):
         eq_(res.status_code, 400)
         error = res.json['error_message']
         eq_(error.keys(), ['type'])
-
-    @patch('mkt.webapps.models.Webapp.get_manifest_json')
-    def test_extra_attributes(self, _mock):
-        _mock.return_value = {'type': 'privileged'}
-        version = self.webapp.versions.latest()
-        version.has_editor_comment = True
-        version.has_info_request = True
-        version.save()
-        self.webapp.update(is_packaged=True)
-        self.refresh('webapp')
-
-        self.webapp.save()
-
-        res = self.client.get(self.url)
-        eq_(res.status_code, 200)
-        obj = res.json['objects'][0]
-
-        # These only exist if requested by a reviewer.
-        eq_(obj['latest_version']['status'], amo.STATUS_PUBLIC)
-        eq_(obj['latest_version']['is_privileged'], True)
-        eq_(obj['latest_version']['has_editor_comment'], True)
-        eq_(obj['latest_version']['has_info_request'], True)
-        eq_(obj['is_escalated'], False)
 
 
 class TestFeaturedNoCategories(BaseOAuth, ESTestCase):

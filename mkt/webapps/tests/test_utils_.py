@@ -12,12 +12,13 @@ import amo.tests
 
 from addons.models import AddonDeviceType, AddonUser, Preview
 from market.models import AddonPurchase, PriceCurrency
-from mkt.constants import APP_FEATURES, regions
+from mkt.constants import regions
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Installed, Webapp, WebappIndexer
 from mkt.webapps.utils import (app_to_dict, es_app_to_dict,
                                get_supported_locales)
 from users.models import UserProfile
+from versions.models import Version
 
 
 class TestAppToDict(amo.tests.TestCase):
@@ -26,7 +27,6 @@ class TestAppToDict(amo.tests.TestCase):
     def setUp(self):
         self.app = amo.tests.app_factory()
         self.profile = UserProfile.objects.get(pk=2519)
-        self.features = self.app.current_version.features
 
     def test_no_previews(self):
         eq_(app_to_dict(self.app)['previews'], [])
@@ -86,15 +86,23 @@ class TestAppToDict(amo.tests.TestCase):
         self.assertSetEqual([region['slug'] for region in res['regions']],
                             [region.slug for region in self.app.get_regions()])
 
-    def test_no_features(self):
+    def test_current_version(self):
         res = app_to_dict(self.app)
-        self.assertSetEqual(res['current_version']['required_features'], [])
+        ok_('current_version' in res)
+        eq_(res['current_version'], self.app.current_version.version)
 
-    def test_one_feature(self):
-        self.features.update(has_pay=True)
+    def test_versions_one(self):
         res = app_to_dict(self.app)
-        self.assertSetEqual(res['current_version']['required_features'],
-                            ['pay'])
+        self.assertSetEqual([v.version for v in self.app.versions.all()],
+                            res['versions'].keys())
+
+    def test_versions_multiple(self):
+        v = Version.objects.create(addon=self.app, version='1.9')
+        self.app.update(_current_version=v, latest_version=v)
+        res = app_to_dict(self.app)
+        self.assertSetEqual([v.version for v in self.app.versions.all()],
+                            res['versions'].keys())
+        eq_(res['current_version'], v.version)
 
 
 @override_settings(PURCHASE_ENABLED_REGIONS=[regions.US.id, regions.PL.id])
@@ -196,11 +204,7 @@ class TestESAppToDict(amo.tests.ESTestCase):
             'absolute_url': 'http://testserver/app/something-something/',
             'app_type': 'hosted',
             'created': self.app.created,
-            'current_version': {
-                'release_notes': None,
-                'version': '1.0',
-                'developer_name': self.version.developer_name,
-            },
+            'current_version': '/api/v1/apps/versions/1268829/',
             'description': u'Something Something Steamcube description!',
             'homepage': '',
             'id': '337141',
@@ -228,6 +232,9 @@ class TestESAppToDict(amo.tests.ESTestCase):
                 'developed': False,
                 'installed': False,
                 'purchased': False,
+            },
+            'versions': {
+                '1.0': '/api/v1/apps/versions/1268829/'
             },
             'weekly_downloads': None,
         }

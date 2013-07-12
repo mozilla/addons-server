@@ -8,6 +8,7 @@ from mkt.api.base import handle_500, SlugRouter
 from mkt.api.resources import (AppResource, CarrierResource, CategoryViewSet,
                                ConfigResource, FireplaceAppResource,
                                error_reporter, RegionResource)
+from mkt.features.views import AppFeaturesList
 from mkt.ratings.resources import FireplaceRatingResource, RatingResource
 from mkt.search.api import SearchResource, WithFeaturedResource
 from mkt.stats.api import GlobalStatsResource
@@ -42,7 +43,6 @@ if settings.ALLOW_TASTYPIE_SERVICES:
     if getattr(settings, 'CLEANSED_SETTINGS_ACCESS', False):
         services.register(SettingsResource())
 
-
 urlpatterns = patterns('',
     url(r'^', include(api.urls)),
     url(r'^', include(fireplace.urls)),
@@ -50,4 +50,7 @@ urlpatterns = patterns('',
     url(r'^', include(stats_api.urls)),
     url(r'^', include(services.urls)),
     url(r'^fireplace/report_error', error_reporter, name='error-reporter'),
+    url(r'^apps/', include('mkt.versions.urls')),
+    url(r'^apps/features/', AppFeaturesList.as_view(),
+        name='api-features-feature-list')
 )

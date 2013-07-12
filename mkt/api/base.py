@@ -18,6 +18,7 @@ from tastypie import fields, http
 from tastypie.bundle import Bundle
 from tastypie.exceptions import (ImmediateHttpResponse, NotFound,
                                  UnsupportedFormat)
+from tastypie.fields import ToOneField
 from tastypie.resources import ModelResource, Resource
 
 from access import acl
@@ -413,6 +414,21 @@ class CompatRelatedField(HyperlinkedRelatedField):
 
     def get_object(self, queryset, view_name, view_args, view_kwargs):
         return queryset.get(pk=view_kwargs['pk'])
+
+
+class CompatToOneField(ToOneField):
+    """
+    Tastypie field to relate a resource to a django-rest-framework view.
+    """
+    def __init__(self, *args, **kwargs):
+        self.rest = kwargs.pop('rest')
+        return super(CompatToOneField, self).__init__(*args, **kwargs)
+
+    def dehydrate_related(self, bundle, related_resource):
+        return reverse(self.rest + '-detail', kwargs={'pk': bundle.obj.pk})
+
+    def get_related_resource(self, related_instance):
+        return
 
 
 class AppRouter(SimpleRouter):

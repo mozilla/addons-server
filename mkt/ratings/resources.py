@@ -17,11 +17,11 @@ from mkt.api.authorization import (AnonymousReadOnlyAuthorization,
                                    AppOwnerAuthorization,
                                    OwnerAuthorization,
                                    PermissionAuthorization)
-from mkt.api.base import CORSResource, http_error, MarketplaceModelResource
+from mkt.api.base import (CompatToOneField, CORSResource, http_error,
+                          MarketplaceModelResource)
 from mkt.api.resources import AppResource
 from mkt.ratings.forms import ReviewForm
 from mkt.regions import get_region, REGIONS_DICT
-from mkt.versions.resources import VersionResource
 from mkt.webapps.models import Webapp
 from reviews.models import Review, ReviewFlag
 
@@ -32,8 +32,8 @@ class RatingResource(CORSResource, MarketplaceModelResource):
 
     app = fields.ToOneField(AppResource, 'addon', readonly=True)
     user = fields.ToOneField(AccountResource, 'user', readonly=True, full=True)
-    version = fields.ToOneField(VersionResource, 'version', readonly=True,
-                                full=True, null=True)
+    version = CompatToOneField(None, 'version', rest='version', readonly=True,
+                               null=True)
     report_spam = fields.CharField()
 
     class Meta(MarketplaceModelResource.Meta):
