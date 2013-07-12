@@ -1,58 +1,69 @@
 .. _elasticsearch:
 
-
 =============
 elasticsearch
 =============
-elasticsearch is a (magical black-box beast) search server that is used like a
-key-value store.
 
-Installation::
+elasticsearch is a search server. Documents (key-values) get stored,
+configurable queries come in, elasticsearch scores these documents, and returns
+the most relevant hits.
+
+Also check out [elasticsearch-head](http://mobz.github.io/elasticsearch-head/),
+a plugin with web front-end to elasticsearch that can be easier than talking to
+elasticsearch over curl.
+
+Installation
+------------
+
+elasticsearch comes with most package managers.::
 
     brew install elasticsearch  # or whatever your package manager is called.
 
-If elasticsearch isn't packaged for your system, you will have to install it
+If elasticsearch isn't packaged for your system, you can install it
 manually, `here are some good instructions on how to do so
 <http://www.elasticsearch.org/tutorials/2010/07/01/setting-up-elasticsearch.html>`_.
 
-Launch elasticsearch. If you used homebrew, `brew info elasticsearch`
-will show you the commands to launch. If you used aptitude, elasticsearch will
-come with an start-stop daemon in /etc/init.d as well as configuration files in
-/etc/elasticsearch.
+Settings
+--------
 
-There is a ```config.yml``` in the ```scripts/elasticsearch/```
-directory. If you installed via brew, copy that file into
-```/usr/local/Cellar/elasticsearch/x.x.x/config/```. On Linux, the
-configuration directory is often ```/etc/elasticsearch/```.
+.. literalinclude:: /../scripts/elasticsearch/elasticsearch.yml
 
-Mappings::
+We use a custom analyzer for indexing add-on names since they're a little
+different from normal text. To get the same results as our servers, put this in
+your elasticsearch.yml (available at
+:src:`scripts/elasticsearch/elasticsearch.yml`)
 
-    ./manage.py shell_plus
-    from stats.search import setup_indexes
-    setup_indexes()
+Once installed, we can configure elasticsearch. Zamboni has a ```config.yml```
+in the ```scripts/elasticsearch/``` directory. If on OSX, copy that file into
+```/usr/local/Cellar/elasticsearch/x.x.x/config/```. On Linux, the directory is
+```/etc/elasticsearch/```.
 
-    ./manage.py shell_plus --settings=your_local_mkt_settings
-    from mkt.stats.search import setup_mkt_indexes
-    setup_mkt_indexes()
+If you don't do this your results will be slightly different, but you probably
+won't notice.
 
-Setting up the mappings is similar to defining the schema for a database or
-structure of a table. For different tables, we define different mappings that
-explicitly define fields to store and their type. We can also define what
-analyzer or tokenizer ElasticSearch uses on those fields. If a field is not
-explicitly defined, ElasticSearch dynamically guesses the field's type in a
-schemaless manner.
+Launching and Setting Up
+------------------------
 
-Indexing::
+Launch the elasticsearch service. If you used homebrew, `brew info
+elasticsearch` will show you the commands to launch. If you used aptitude,
+elasticsearch will come with an start-stop daemon in /etc/init.d.
+
+Zamboni has commands that sets up mappings and indexes objects such as add-ons
+and apps for you. Setting up the mappings is analagous defining the structure
+of a table, indexing is analagous to storing rows.::
+
+    ./manage.py reindex --settings=your_local_mkt_settings
+    ./manage.py reindex_mkt --settings=your_local_mkt_settings
+
+Indexing
+--------
+
+Zamboni has other indexing commands. It is worth nothing the index is
+maintained incrementally through post_save and post_delete hooks.::
 
     ./manage.py cron reindex_addons  # Index all the add-ons.
 
-The reindex job uses celery to parallelize indexing. Running the job multiple
-times will replace old index items with a new document. You will want to set up
-the mappings, and run the indexing for a bit upon starting.
-
-The index is maintained incrementally through post_save and post_delete hooks.
-
-Setting up other indexes::
+    ./manage.py cron reindex_apps # Index all the apps.
 
     ./manage.py index_stats  # Index all the update and download counts.
 
@@ -69,53 +80,39 @@ Setting up other indexes::
 
     ./manage.py weekly_downloads # Index weekly downloads.
 
-
-Settings
---------
-
-We use a custom analyzer for indexing add-on names since they're a little
-different from normal text. To get the same results as our servers, put this in
-your elasticsearch.yml (available at
-:src:`scripts/elasticsearch/elasticsearch.yml`)
-
-.. literalinclude:: /../scripts/elasticsearch/elasticsearch.yml
-
-If you installed ElasticSearch via apt-get/aptitude, place this configuration
-file in `/etc/elasticsearch/` and restart ElasticSearch with
-`/etc/init.d/elasticsearch restart`.
-
-If you don't do this your results will be slightly different, but you probably
-won't notice.
-
-
 Querying ElasticSearch in Django
 --------------------------------
-Django models in zamboni are instantiated with a SearchMixin that has
-functions that communicate with ElasticSearch through elasticutils. A notable
-one is `.search()` which returns an ElasticSearch search object which acts a
-lot like Django's ORM's object manager. `.filter(**kwargs)` can be run on this
-search object. Sometimes a query returns nothing unless `.values_dict` is
-called on the query set::
 
-    query_results = list(MyModel.search().filter(
-    a_field=a_str.lower()).values_dict('that_field'))
+We use [elasticutils](http://github.com/mozilla/elasticutils), a Python library
+that gives us a search API to elasticsearch.
 
+We attach elasticutils to Django models with a mixin. This lets us do things like
+`.search()` which returns an object which acts a lot like Django's ORM's object
+manager. `.filter(**kwargs)` can be run on this search object.::
+
+    query_results = list(
+        MyModel.search().filter(my_field=a_str.lower())
+        .values_dict('that_field'))
+
+On Marketplace, apps use ```mkt/webapps/models:WebappIndexer``` as its
+interface to elasticsearch.
 
 Testing with elasticsearch
 --------------------------
 
-All test cases using ElasticSearch should inherit from `amo.tests.ESTestCase`. All such tests will be skipped by the test runner unless::
+All test cases using ElasticSearch should inherit from `amo.tests.ESTestCase`.
+All such tests will be skipped by the test runner unless::
 
     RUN_ES_TESTS = True
 
-This is done as a performance optimization to keep the run time of the test suite down, unless necessary.
+This is done as a performance optimization to keep the run time of the test
+suite down, unless necessary.
 
-
-Common Pitfalls
+Troubleshooting
 ---------------
 
 *I got a CircularReference error on .search()* - check that a whole object is
-not being passed into the filters, but rather just a field's value
+not being passed into the filters, but rather just a field's value.
 
 *I indexed something into ElasticSearch, but my query returns nothing* - check
 whether the query contains upper-case letters or hyphens. If so, try
@@ -124,4 +121,4 @@ analyzed::
 
     'my_field': {'type': 'string', 'index': 'not_analyzed'}
 
-Also try running .values_dict on the query as mentioned above
+Try running .values_dict on the query as mentioned above.
