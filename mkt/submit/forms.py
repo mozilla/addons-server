@@ -23,7 +23,7 @@ from translations.widgets import TransInput, TransTextarea
 from mkt.constants import APP_FEATURES, FREE_PLATFORMS, PAID_PLATFORMS
 from mkt.site.forms import AddonChoiceField, APP_PUBLIC_CHOICES
 from mkt.webapps.models import AppFeatures
-from mkt.developers.forms import validate_origin, verify_app_domain
+from mkt.developers.forms import verify_app_domain
 
 
 def mark_for_rereview(addon, added_devices, removed_devices):
@@ -186,7 +186,6 @@ class NewWebappVersionForm(happyforms.Form):
             origin = pkg.get('origin')
             if origin:
                 try:
-                    validate_origin(origin)
                     origin = verify_app_domain(origin, packaged=True)
                 except forms.ValidationError, e:
                     self._errors['upload'] = self.error_class(e.messages)

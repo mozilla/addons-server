@@ -227,13 +227,20 @@ class WebAppParser(object):
             data = file_.read()
             file_.close()
 
+        return WebAppParser.decode_manifest(data)
+
+    @classmethod
+    def decode_manifest(cls, manifest):
+        """
+        Returns manifest, stripped of BOMs and UTF-8 decoded, as Python dict.
+        """
         try:
-            data = strip_bom(data)
+            data = strip_bom(manifest)
             # Marketplace only supports UTF-8 encoded manifests.
             decoded_data = data.decode('utf-8')
         except (ValueError, UnicodeDecodeError) as exc:
-            msg = 'Error parsing webapp %r (encoding: utf-8): %s: %s'
-            log.error(msg % (fileorpath, exc.__class__.__name__, exc))
+            msg = 'Error parsing manifest (encoding: utf-8): %s: %s'
+            log.error(msg % (exc.__class__.__name__, exc))
             raise forms.ValidationError(
                 _('Could not decode the webapp manifest file.'))
 

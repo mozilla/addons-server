@@ -2,7 +2,7 @@
 import json
 import os
 from datetime import datetime
-from urlparse import urlparse, urlunparse
+from zipfile import ZipFile
 
 from django import forms
 from django.conf import settings
@@ -29,6 +29,7 @@ from amo import get_user
 from amo.fields import SeparatedValuesField
 from amo.utils import remove_icons
 from files.models import FileUpload
+from files.utils import WebAppParser
 from lib.video import tasks as vtasks
 from translations.fields import TransField
 from translations.forms import TranslationFormMixin
@@ -182,24 +183,6 @@ def trap_duplicate(request, manifest_url):
                  '<a href="%s">Edit app</a>')
     if msg:
         return msg % (app.name, error_url)
-
-
-def validate_origin(origin):
-    """
-    Validates that an origin looks like a url.
-
-    Returns origin stripped of path, params, query strings, and fragments.
-    """
-    parts = urlparse(origin)
-    if not parts.scheme.startswith('app'):
-        raise forms.ValidationError(
-            _('Origin must start with either "app://".'))
-
-    if not '.' in parts.netloc:
-        raise forms.ValidationError(
-            _('Origin must be a fully qualified domain name.'))
-
-    return urlunparse((parts.scheme, parts.netloc, '', '', '', ''))
 
 
 def verify_app_domain(manifest_url, exclude=None, packaged=False):
@@ -456,29 +439,70 @@ class NewPackagedAppForm(happyforms.Form):
 
     def clean_upload(self):
         upload = self.cleaned_data['upload']
+        errors = []
+
         if upload.size > self.max_size:
-            msg = 'Packaged app too large for submission.'
-            big = json.dumps({
-                'errors': 1,
-                'success': False,
-                'messages': [{
+            errors.append({
+                'type': 'error',
+                'message': _('Packaged app too large for submission. Packages '
+                             'must be less than %s.' % filesizeformat(
+                                 self.max_size)),
+                'tier': 1,
+            })
+
+        manifest = None
+        try:
+            # Be careful to keep this as in-memory zip reading.
+            manifest = ZipFile(upload, 'r').read('manifest.webapp')
+        except Exception as e:
+            errors.append({
+                'type': 'error',
+                'message': _('Error extracting manifest from zip file.'),
+                'tier': 1,
+            })
+
+        origin = None
+        if manifest:
+            try:
+                origin = WebAppParser.decode_manifest(manifest).get('origin')
+            except forms.ValidationError as e:
+                errors.append({
                     'type': 'error',
-                    'message': [
-                        msg,
-                        'Packages must be less than %s.' %
-                        filesizeformat(self.max_size)],
-                    'tier': 1}]})
+                    'message': ''.join(e.messages),
+                    'tier': 1,
+                })
+
+        if origin:
+            try:
+                verify_app_domain(origin, packaged=True)
+            except forms.ValidationError, e:
+                errors.append({
+                    'type': 'error',
+                    'message': ''.join(e.messages),
+                    'tier': 1,
+                })
+
+        if errors:
             # Persist the error with this into FileUpload, but do not persist
             # the file contents, which are too large.
+            validation = {
+                'errors': len(errors),
+                'success': False,
+                'messages': errors,
+            }
             self.file_upload = FileUpload.objects.create(
-                is_webapp=True, user=self.user, validation=big)
+                is_webapp=True, user=self.user,
+                name=getattr(upload, 'name', ''),
+                validation=json.dumps(validation))
             # Raise an error so the form is invalid.
-            raise forms.ValidationError(msg)
-        else:
-            self.file_upload = FileUpload.from_post(
-                upload, upload.name, upload.size, is_webapp=True)
-            self.file_upload.user = self.user
-            self.file_upload.save()
+            raise forms.ValidationError(' '.join(
+                [e['message'] for e in errors][0]))
+
+        # Everything passed validation.
+        self.file_upload = FileUpload.from_post(
+            upload, upload.name, upload.size, is_webapp=True)
+        self.file_upload.user = self.user
+        self.file_upload.save()
 
 
 class AppFormBasic(addons.forms.AddonFormBase):

@@ -137,14 +137,14 @@ class TestNewWebappVersionForm(amo.tests.TestCase):
 
     @mock.patch('mkt.submit.forms.parse_addon',
                 lambda *args: {"origin": "app://hy.fr"})
-    @mock.patch('mkt.submit.forms.validate_origin')
-    def test_validate_origin_called(self, _validate):
+    @mock.patch('mkt.submit.forms.verify_app_domain')
+    def test_verify_app_domain_called(self, _verify):
         self.create_switch('webapps-unique-by-domain')
         form = forms.NewWebappVersionForm({'upload': self.file.uuid},
                                           request=self.request,
                                           is_packaged=True)
         assert form.is_valid(), form.errors
-        assert _validate.called
+        assert _verify.called
 
 
 class TestAppDetailsBasicForm(amo.tests.TestCase):

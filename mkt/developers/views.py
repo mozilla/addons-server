@@ -395,6 +395,7 @@ def validate_addon(request):
 
 @post_required
 def _upload(request, addon_slug=None, is_standalone=False):
+
     # If there is no user, default to None (saves the file upload as anon).
     form = NewPackagedAppForm(request.POST, request.FILES,
                               user=getattr(request, 'amo_user', None))

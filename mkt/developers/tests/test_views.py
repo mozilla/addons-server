@@ -744,11 +744,12 @@ class TestUpload(BaseUploadTest):
         super(TestUpload, self).setUp()
         assert self.client.login(username='regular@mozilla.com',
                                  password='password')
+        self.package = self.packaged_app_path('mozball.zip')
         self.url = reverse('mkt.developers.upload')
 
     def post(self):
         # Has to be a binary, non xpi file.
-        data = open(get_image_path('animated.png'), 'rb')
+        data = open(self.package, 'rb')
         return self.client.post(self.url, {'upload': data})
 
     def test_login_required(self):
@@ -758,10 +759,9 @@ class TestUpload(BaseUploadTest):
 
     def test_create_fileupload(self):
         self.post()
-
-        upload = FileUpload.objects.get(name='animated.png')
-        eq_(upload.name, 'animated.png')
-        data = open(get_image_path('animated.png'), 'rb').read()
+        upload = FileUpload.objects.get(name='mozball.zip')
+        eq_(upload.name, 'mozball.zip')
+        data = open(self.package, 'rb').read()
         eq_(storage.open(upload.path).read(), data)
 
     def test_fileupload_user(self):
@@ -808,22 +808,23 @@ class TestUpload(BaseUploadTest):
     @attr('validator')
     def test_fileupload_validation(self):
         self.post()
-        fu = FileUpload.objects.get(name='animated.png')
+        fu = FileUpload.objects.get(name='mozball.zip')
         assert_no_validation_errors(fu)
         assert fu.validation
         validation = json.loads(fu.validation)
 
         eq_(validation['success'], False)
         # The current interface depends on this JSON structure:
-        eq_(validation['errors'], 1)
-        eq_(validation['warnings'], 0)
+        eq_(validation['errors'], 0)
+        eq_(validation['warnings'], 2)
         assert len(validation['messages'])
         msg = validation['messages'][0]
         assert 'uid' in msg, "Unexpected: %r" % msg
-        eq_(msg['type'], u'error')
-        eq_(msg['message'], u'JSON Parse Error')
-        eq_(msg['description'], u'The webapp extension could not be parsed'
-                                u' due to a syntax error in the JSON.')
+        eq_(msg['type'], u'warning')
+        eq_(msg['message'], u'60x60px icon should be provided for Firefox OS.')
+        eq_(msg['description'],
+            'An icon of size 60x60 should be provided for the app. Firefox OS '
+            'will look for this icon size before any other.')
 
     def test_redirect(self):
         r = self.post()

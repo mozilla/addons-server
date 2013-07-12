@@ -5,7 +5,6 @@ import shutil
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.core.files.uploadedfile import SimpleUploadedFile
-from django.forms import ValidationError
 
 import mock
 from nose.tools import eq_
@@ -289,8 +288,9 @@ class TestRegionForm(amo.tests.WebappTestCase):
                                     price=price)
         self.kwargs['price'] = price
         form = forms.RegionForm(data={'regions': []}, **self.kwargs)
-        assert not form.is_valid()  # Fails due to needing at least 1 region
-        assert not form.has_inappropriate_regions(), form.has_inappropriate_regions()
+        assert not form.is_valid()  # Fails due to needing at least 1 region.
+        assert not form.has_inappropriate_regions(), (
+            form.has_inappropriate_regions())
 
         form = forms.RegionForm(data={'regions': [mkt.regions.PL.id]},
                                 **self.kwargs)
@@ -430,35 +430,10 @@ class TestNewManifestForm(amo.tests.TestCase):
         assert not _verify_app_domain.called
 
 
-class TestValidateOrigin(amo.tests.TestCase):
-
-    def test_invalid_origins(self):
-        origins = [
-            'this-is-not-an-origin',
-            'ftp://domain.com',
-            'mail:someone@somewhere.com',
-            '//domain.com',
-            'http://domain.com',
-            'https://domain.com',
-        ]
-        for origin in origins:
-            with self.assertRaises(ValidationError):
-                forms.validate_origin(origin)
-
-    def test_valid_origins(self):
-        origins = [
-            'app://domain.com',
-            'app://domain.com/with/path.exe?q=yo',
-            # TODO: Should that be valid? ^
-        ]
-        for origin in origins:
-            origin = forms.validate_origin(origin)
-            assert origin, 'Origin invalid: %s' % origin
-
-
 class TestPackagedAppForm(amo.tests.AMOPaths, amo.tests.WebappTestCase):
 
     def setUp(self):
+        super(TestPackagedAppForm, self).setUp()
         path = self.packaged_app_path('mozball.zip')
         self.files = {'upload': SimpleUploadedFile('mozball.zip',
                                                    open(path).read())}
@@ -480,8 +455,17 @@ class TestPackagedAppForm(amo.tests.AMOPaths, amo.tests.WebappTestCase):
         validation = json.loads(form.file_upload.validation)
         assert 'messages' in validation, 'No messages in validation.'
         eq_(validation['messages'][0]['message'],
-            [u'Packaged app too large for submission.',
-             u'Packages must be less than 5 bytes.'])
+            u'Packaged app too large for submission. Packages must be less '
+            u'than 5 bytes.')
+
+    def test_origin_exists(self):
+        self.app.update(app_domain='app://hy.fr')
+        form = forms.NewPackagedAppForm({}, self.files)
+        assert not form.is_valid()
+        validation = json.loads(form.file_upload.validation)
+        eq_(validation['messages'][0]['message'],
+            'An app already exists on this domain; only one app per domain is '
+            'allowed.')
 
 
 class TestTransactionFilterForm(amo.tests.TestCase):
