@@ -73,7 +73,7 @@ STATSD_PREFIX = 'addons'
 GRAPHITE_PREFIX = STATSD_PREFIX
 
 # Just need it to be set to *something* for now, to make monitoring happy
-WEBAPPS_RECEIPT_KEY = '/data/www/addons.mozilla.org/zamboni/README.rst'
+WEBAPPS_RECEIPT_KEY = './README.rst'
 
 VALIDATOR_TIMEOUT = 90
 
