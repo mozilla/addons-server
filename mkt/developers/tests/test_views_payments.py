@@ -384,15 +384,27 @@ class TestPayments(amo.tests.TestCase):
         pqr = pq(res.content)
         eq_(pqr('select[name=price] option[selected]').attr('value'), 'free')
 
-    def test_premium_to_free_with_inapp_is_pending(self):
-        self.webapp.update(premium_type=amo.ADDON_PREMIUM,
-                           status=amo.STATUS_NULL,
-                           highest_status=amo.STATUS_PENDING)
+    def test_free_with_inapp_without_account_is_incomplete(self):
+        self.webapp.update(premium_type=amo.ADDON_FREE)
+        # Toggle to paid
+        self.client.post(
+            self.url, self.get_postdata({'toggle-paid': 'paid'}))
         res = self.client.post(
             self.url, self.get_postdata({'price': 'free',
                                          'allow_inapp': 'True'}))
         self.assert3xx(res, self.url)
-        eq_(self.get_webapp().status, amo.STATUS_PENDING)
+        eq_(self.get_webapp().status, amo.STATUS_NULL)
+
+    def test_paid_app_without_account_is_incomplete(self):
+        self.webapp.update(premium_type=amo.ADDON_FREE)
+        # Toggle to paid
+        self.client.post(
+            self.url, self.get_postdata({'toggle-paid': 'paid'}))
+        res = self.client.post(
+            self.url, self.get_postdata({'price': self.price.pk,
+                                         'allow_inapp': 'False'}))
+        self.assert3xx(res, self.url)
+        eq_(self.get_webapp().status, amo.STATUS_NULL)
 
     def test_associate_acct_to_app_free_inapp(self):
         # Set up Solitude return values.

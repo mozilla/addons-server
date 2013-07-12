@@ -278,9 +278,6 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
                     log.debug('[1@%s] Removing upsell; switching to free '
                               'with in_app' % self.addon.pk)
                     upsell.delete()
-
-                if self.addon.status == amo.STATUS_NULL:
-                    _restore_app(self.addon, save=False)
             else:
                 # The dev is submitting updates for payment data about a paid
                 # app. This might also happen if he/she is associating a new
