@@ -204,7 +204,7 @@ class TestESAppToDict(amo.tests.ESTestCase):
             'absolute_url': 'http://testserver/app/something-something/',
             'app_type': 'hosted',
             'created': self.app.created,
-            'current_version': '/api/v1/apps/versions/1268829/',
+            'current_version': '1.0',
             'description': u'Something Something Steamcube description!',
             'homepage': '',
             'id': '337141',
