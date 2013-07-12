@@ -619,6 +619,16 @@ def report_abuse(request, addon):
 
 @cache_control(max_age=60 * 60 * 24)
 def persona_redirect(request, persona_id):
+    if persona_id == 0:
+        # Newer themes have persona_id == 0, doesn't mean anything.
+        return http.HttpResponseNotFound()
+
     persona = get_object_or_404(Persona, persona_id=persona_id)
-    to = reverse('addons.detail', args=[persona.addon.slug])
+    try:
+        to = reverse('addons.detail', args=[persona.addon.slug])
+    except Addon.DoesNotExist:
+        # Would otherwise throw 500. Something funky happened during GP
+        # migration which caused some Personas to be without Addons (problem
+        # with cascading deletes?). Tell GoogleBot these are dead with a 404.
+        return http.HttpResponseNotFound()
     return http.HttpResponsePermanentRedirect(to)
