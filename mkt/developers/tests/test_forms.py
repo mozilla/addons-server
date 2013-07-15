@@ -138,6 +138,7 @@ class TestCategoryForm(amo.tests.WebappTestCase):
         eq_(self.form.max_categories(), 2)
 
     def test_disabled_when_featured(self):
+        self.app.addoncategory_set.create(category=self.cat)
         FeaturedApp.objects.create(app=self.app, category=self.cat)
         self._make_form()
         eq_(self.form.disabled, True)
