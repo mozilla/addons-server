@@ -1408,13 +1408,15 @@ class ContentRating(amo.models.ModelBase):
 
 # The AppFeatures table is created with dynamic fields based on
 # mkt.constants.features, which requires some setup work before we call `type`.
-class AppFeaturesBase(amo.models.ModelBase):
+class AppFeatures(amo.models.ModelBase):
     """
-    A class to more easily define model methods on the dynamically generated
-    AppFeatures model.
+    A dynamically generated model that contains a set of boolean values
+    stating if an app requires a particular feature.
     """
+    version = models.OneToOneField(Version, related_name='features')
+
     class Meta:
-        abstract = True
+        db_table = 'addons_features'
 
     def __unicode__(self):
         return u'Version: %s: %s' % (self.version.id, self.to_signature())
@@ -1480,35 +1482,10 @@ class AppFeaturesBase(amo.models.ModelBase):
                              settings.APP_FEATURES_VERSION)
 
 
-class AppFeaturesMeta(object):
-    db_table = 'addons_features'
-
-
-app_feature_attrs = dict([
-    # Module path.
-    ('__module__', 'mkt.webapps.models'),
-
-    # Inner Meta class.
-    ('Meta', AppFeaturesMeta),
-
-    # Database fields.
-    ('version', models.OneToOneField(Version, related_name='features')),
-],
-
-    # Dynamic database fields based on mkt.constants.features.
-    **dict(('has_%s' % k.lower(),
-           models.BooleanField(default=False, help_text=v['name']))
-           for k, v in APP_FEATURES.iteritems())
-)
-
-
-"""
-AppFeatures django model.
-
-A set of boolean values stating if an app requires a particular feature.
-
-"""
-AppFeatures = type('AppFeatures', (AppFeaturesBase,), app_feature_attrs)
+# Add a dynamic field to `AppFeatures` model for each buchet feature.
+for k, v in APP_FEATURES.iteritems():
+    field = models.BooleanField(default=False, help_text=v['name'])
+    field.contribute_to_class(AppFeatures, 'has_%s' % k.lower())
 
 
 class AppManifest(amo.models.ModelBase):
