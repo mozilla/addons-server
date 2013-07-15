@@ -133,9 +133,10 @@ class AddonFormBase(TranslationFormMixin, happyforms.ModelForm):
 
     def get_tags(self, addon):
         if acl.action_allowed(self.request, 'Addons', 'Edit'):
-            return [t.tag_text for t in addon.tags.all()]
+            return list(addon.tags.values_list('tag_text', flat=True))
         else:
-            return [t.tag_text for t in addon.tags.filter(restricted=False)]
+            return list(addon.tags.filter(restricted=False)
+                        .values_list('tag_text', flat=True))
 
 
 class AddonFormBasic(AddonFormBase):
