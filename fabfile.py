@@ -86,11 +86,13 @@ def disable_cron():
 
 
 @task
-def install_cron():
+def install_cron(installed_dir):
+    installed_zamboni_dir = os.path.join(installed_dir, 'zamboni')
     with lcd(ZAMBONI):
         local('%s ./scripts/crontab/gen-cron.py '
               '-z %s -u %s -p %s > /etc/cron.d/.%s' %
-              (PYTHON, ZAMBONI, getattr(settings, 'CRON_USER', 'apache'),
+              (PYTHON, installed_zamboni_dir,
+               getattr(settings, 'CRON_USER', 'apache'),
                PYTHON, settings.CRON_NAME))
 
         local('mv /etc/cron.d/.%s /etc/cron.d/%s' % (settings.CRON_NAME,
@@ -131,17 +133,17 @@ def update_celery():
 
 @task
 def deploy():
-    helpers.deploy(name='zamboni',
-                   env=settings.ENV,
-                   cluster=settings.CLUSTER,
-                   domain=settings.DOMAIN,
-                   root=ROOT,
-                   deploy_roles=['web', 'celery'],
-                   package_dirs=['zamboni', 'venv'])
+    rpmbuild = helpers.deploy(name='zamboni',
+                              env=settings.ENV,
+                              cluster=settings.CLUSTER,
+                              domain=settings.DOMAIN,
+                              root=ROOT,
+                              deploy_roles=['web', 'celery'],
+                              package_dirs=['zamboni', 'venv'])
 
     execute(restart_workers)
     execute(update_celery)
-    execute(install_cron)
+    execute(install_cron, rpmbuild.install_to)
     managecmd('cron cleanup_validation_results')
 
 
