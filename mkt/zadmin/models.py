@@ -184,7 +184,7 @@ class FeaturedAppQuerySet(models.query.QuerySet):
         """
         if cats:
             return self.filter(category__in=cats)
-        return self
+        return self.filter(category__isnull=True)
 
 
 class FeaturedAppManager(amo.models.ManagerBase):

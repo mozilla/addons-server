@@ -348,6 +348,11 @@ class TestFeaturedAppQueryset(amo.tests.TestCase):
         self.assertQuerySetEqual(FeaturedApp.objects.for_category([self.c1]),
                                  FeaturedApp.objects.filter(category=self.c1))
 
+    def test_queryset_for_no_category(self):
+        FeaturedApp.objects.create(app=self.g1, category=None)
+        self.assertQuerySetEqual(FeaturedApp.objects.for_category(None),
+                                 FeaturedApp.objects.filter(category=None))
+
     def test_queryset_worldwide(self):
         worldwide = mkt.regions.WORLDWIDE.id
         self.assertQuerySetEqual(

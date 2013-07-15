@@ -621,6 +621,8 @@ class TestFeaturedNoCategories(BaseOAuth, ESTestCase):
         self.qs = {'pro': self.profile, 'dev': 'firefoxos'}
 
     def test_no_category(self):
+        app2 = app_factory()
+        self.make_featured(app=app2, category=self.cat)
         self.reindex(Webapp, 'webapp')
         res = self.client.get(self.list_url + (self.qs,))
         eq_(res.status_code, 200)
