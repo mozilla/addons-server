@@ -60,7 +60,7 @@ class TestPurchase(PurchaseTest):
         eq_(req['pricePoint'], self.price.name)
         eq_(req['id'], make_ext_id(self.addon.pk))
         eq_(req['name'], unicode(self.addon.name))
-        eq_(req['description'], unicode(self.addon.summary))
+        eq_(req['description'], unicode(self.addon.description))
         eq_(req['postbackURL'], absolutify(reverse('webpay.postback')))
         eq_(req['chargebackURL'], absolutify(reverse('webpay.chargeback')))
         eq_(req['icons']['512'], absolutify(self.addon.get_icon_url(512)))
@@ -110,7 +110,7 @@ class TestPurchase(PurchaseTest):
         eq_(data['status'], 'incomplete')
 
     def test_strip_html(self):
-        self.addon.summary = 'Some <a href="http://soso.com">site</a>'
+        self.addon.description = 'Some <a href="http://soso.com">site</a>'
         self.addon.save()
         data = self.post(self.prepare_pay)
         data = jwt.decode(data['webpayJWT'].encode('ascii'), verify=False)

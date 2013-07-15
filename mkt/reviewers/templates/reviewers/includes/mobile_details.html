@@ -19,11 +19,11 @@
     </li>
     {% endif %}
     {# Mobile description section. #}
-    {% if product.summary %}
+    {% if product.description %}
       <li class="expandable c">
         <div class="expandcontent short">
-          {% if product.summary %}
-            <p{{ product.summary|locale_html }}>{{ product.summary|nl2br }}</p>
+          {% if product.description %}
+            <p{{ product.description|locale_html }}>{{ product.description|nl2br }}</p>
           {% endif %}
         </div>
         <a href="#" class="showmore">{{ _('more...') }}</a>

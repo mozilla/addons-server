@@ -1,8 +1,5 @@
 {% from 'detail/includes/price.html' import price %}
 <div id="summary">
-  {% if product.summary %}
-    <p{{ product.summary|locale_html }}>{{ product.summary|nl2br }}</p>
-  {% endif %}
   <h2>{{ _('Details') }}</h2>
   <dl>
     <dt>{{ _('ID') }}</dt>

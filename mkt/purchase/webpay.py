@@ -12,7 +12,6 @@ from django.views.decorators.csrf import csrf_exempt
 
 import bleach
 import commonware.log
-import waffle
 from tower import ugettext as _
 
 from addons.decorators import (addon_view_factory, can_be_purchased,
@@ -87,7 +86,8 @@ def _prepare_pay(request, addon):
 
     # Until atob() supports encoded HTML we are stripping all tags.
     # See bug 831524
-    app_summary = bleach.clean(unicode(addon.summary), strip=True, tags=[])
+    app_description = bleach.clean(unicode(addon.description), strip=True,
+                                   tags=[])
 
     acct = addon.app_payment_account.payment_account
     seller_uuid = acct.solitude_seller.uuid
@@ -103,7 +103,7 @@ def _prepare_pay(request, addon):
         'exp': issued_at + 3600,  # expires in 1 hour
         'request': {
             'name': unicode(addon.name),
-            'description': app_summary,
+            'description': app_description,
             'pricePoint': addon.premium.price.name,
             'id': make_ext_id(addon.pk),
             'postbackURL': absolutify(reverse('webpay.postback')),
