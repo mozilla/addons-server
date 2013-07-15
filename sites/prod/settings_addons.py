@@ -4,15 +4,15 @@ from settings_base import *
 
 import private_addons
 
-DOMAIN = 'addons.mozilla.org'
+DOMAIN = getattr(private_addons, 'DOMAIN', 'addons.mozilla.org')
 
 SERVER_EMAIL = 'zprod@addons.mozilla.org'
 SECRET_KEY = private_addons.SECRET_KEY
 
-SITE_URL = 'https://addons.mozilla.org'
+SITE_URL = getattr(private_addons, 'SITE_URL', 'https://' + DOMAIN)
 LOCAL_MIRROR_URL = '%s/_files' % SITE_URL
 SERVICES_URL = 'https://services.addons.mozilla.org'
-STATIC_URL = 'https://addons.cdn.mozilla.net/'
+STATIC_URL = getattr(private_addons, 'STATIC_URL', 'https://addons.cdn.mozilla.net/')
 MIRROR_URL = STATIC_URL + 'storage/public-staging'
 
 CSP_STATIC_URL = STATIC_URL[:-1]
