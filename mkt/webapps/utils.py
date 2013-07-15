@@ -1,5 +1,3 @@
-from operator import attrgetter
-
 from django.conf import settings
 from django.utils import translation
 
@@ -180,7 +178,7 @@ def es_app_to_dict(obj, region=None, profile=None, request=None):
     attrs = ('content_ratings', 'created', 'current_version', 'default_locale',
              'homepage', 'manifest_url', 'previews', 'ratings', 'status',
              'support_email', 'support_url', 'versions', 'weekly_downloads')
-    data = dict(zip(attrs, attrgetter(*attrs)(obj)))
+    data = dict((a, getattr(obj, a, None)) for a in attrs)
     data.update({
         'absolute_url': absolutify(app.get_detail_url()),
         'app_type': app.app_type,
