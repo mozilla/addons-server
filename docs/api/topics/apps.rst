@@ -151,15 +151,16 @@ App
         ``premium-inapp``. If ``premium`` or ``premium-inapp`` the app should
         be bought, check the ``price`` field to determine if it can.
     :type premium_type: string
-    :param price: will be null if the app is free. If it is a
-        paid app this will b a string representing the price in the currency
-        calculated for the request. If ``null``, a price cannot
-        be calculated for the region and cannot be bought. Example: 1.00
+    :param price: If it is a paid app this will be a string representing
+        the price in the currency calculated for the request. If ``0.00`` then
+        no payment is required, but the app requires a receipt. If ``null``, a
+        price cannot be calculated for the region and cannot be bought.
+        Example: 1.00
     :type price: string|null
-    :param price_locale: will be null if the app is free. If it
-        is a paid app this will be a string representing the price with the
-        currency formatted using the currency symbol and the locale
-        representations of numbers. If ``null``, a price cannot
+    :param price_locale: If it is a paid app this will be a string representing
+        the price with the currency formatted using the currency symbol and
+        the locale representations of numbers. If ``0.00`` then no payment is
+        required, but the app requires a receipt. If ``null``, a price cannot
         be calculated for the region and cannot be bought.
         Example: "1,00 $US". For more information on this
         see :ref:`payment tiers <localized-tier-label>`.
