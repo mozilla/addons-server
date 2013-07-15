@@ -324,11 +324,6 @@ class Holiday(TemplatePromo):
             return super(Holiday, self).render()
 
 
-class AmpYourFirefox(TemplatePromo):
-    slug = 'Amp Your Firefox'
-    template = 'discovery/modules/amp_your_firefox.html'
-
-
 class Privacy(CollectionPromo):
     slug = 'Privacy Collection'
     cls = 'promo promo-purple'
