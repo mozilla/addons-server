@@ -342,9 +342,9 @@ def save_theme_reupload(header, footer, addon, **kw):
 
         # Store pending header and/or footer file paths for review.
         RereviewQueueTheme.objects.filter(theme=theme).delete()
-        rqt = RereviewQueueTheme.objects.create(
-            theme=theme, header=header, footer=footer)
+        rqt = RereviewQueueTheme(theme=theme, header=header, footer=footer)
         rereviewqueuetheme_checksum(rqt=rqt)
+        rqt.save()
 
 
 @task
