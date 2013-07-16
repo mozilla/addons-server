@@ -20,7 +20,7 @@ STATS = {
         'metric': 'visits',
     },
     'total_developers': {
-        'metric': 'mmo_developer_count_total',
+        'metric': 'total_dev_count',
     },
 }
 
@@ -50,7 +50,8 @@ class GlobalStatsResource(MarketplaceResource):
 
     def dispatch(self, request_type, request, **kwargs):
         if not waffle.switch_is_active('stats-api'):
-            raise http_error(http.HttpNotImplemented, 'Stats not enabled for this host.')
+            raise http_error(http.HttpNotImplemented,
+                             'Stats not enabled for this host.')
 
         return super(GlobalStatsResource, self).dispatch(request_type, request,
                                                          **kwargs)
