@@ -75,10 +75,13 @@ HERA = []
 LOG_LEVEL = logging.DEBUG
 
 LOGGING['loggers'].update({
-    'z.task': { 'level': logging.DEBUG },
-    'z.hera': { 'level': logging.INFO },
-    'z.redis': { 'level': logging.DEBUG },
-    'z.pool': { 'level': logging.ERROR },
+    'ampq': {'level': logging.WARNING},
+    'raven': {'level': logging.WARNING},
+    'z.addons': {'level': logging.INFO},
+    'z.task': {'level': logging.DEBUG},
+    'z.hera': {'level': logging.INFO},
+    'z.redis': {'level': logging.DEBUG},
+    'z.pool': {'level': logging.ERROR},
 })
 
 REDIS_BACKEND = private.REDIS_BACKENDS_CACHE
