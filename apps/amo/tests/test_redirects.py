@@ -26,22 +26,6 @@ class TestRedirects(amo.tests.TestCase):
         self.assert3xx(response, '/en-US/firefox/tags/top',
                        status_code=301)
 
-    def test_persona_redirect(self):
-        """`/persona/\d+` should go to `/addon/\d+`."""
-        r = self.client.get('/persona/813', follow=True)
-        self.assert3xx(r, '/en-US/firefox/addon/a15663/', status_code=301)
-
-    def test_persona_redirect_addon_no_exist(self):
-        """When the persona exists but not its addon, throw a 404."""
-        # Got get shady to separate Persona/Addons.
-        connection.cursor().execute("""
-            SET FOREIGN_KEY_CHECKS = 0;
-            TRUNCATE addons;
-            SET FOREIGN_KEY_CHECKS = 1;
-        """)
-        r = self.client.get('/persona/813', follow=True)
-        eq_(r.status_code, 404)
-
     def test_contribute_installed(self):
         """`/addon/\d+/about` should go to
            `/addon/\d+/contribute/installed`."""
@@ -196,3 +180,23 @@ class TestRedirects(amo.tests.TestCase):
 
         res = self.client.get('/mobile/extensions/', follow=True)
         self.assert3xx(res, '/en-US/mobile/extensions/', status_code=301)
+
+
+class TestPersonaRedirect(amo.tests.TestCase):
+    fixtures = ['addons/persona']
+
+    def test_persona_redirect(self):
+        """`/persona/\d+` should go to `/addon/\d+`."""
+        r = self.client.get('/persona/813', follow=True)
+        self.assert3xx(r, '/en-US/firefox/addon/a15663/', status_code=301)
+
+    def test_persona_redirect_addon_no_exist(self):
+        """When the persona exists but not its addon, throw a 404."""
+        # Got get shady to separate Persona/Addons.
+        connection.cursor().execute("""
+            SET FOREIGN_KEY_CHECKS = 0;
+            TRUNCATE addons;
+            SET FOREIGN_KEY_CHECKS = 1;
+        """)
+        r = self.client.get('/persona/813', follow=True)
+        eq_(r.status_code, 404)
