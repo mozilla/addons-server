@@ -85,6 +85,7 @@ HERA = []
 LOGGING['loggers'].update({
     'ampq': {'level': logging.WARNING},
     'raven': {'level': logging.WARNING},
+    'requests': {'level': logging.WARNING},
     'z.addons': {'level': logging.INFO},
     'z.task': {'level': logging.DEBUG},
     'z.hera': {'level': logging.INFO},
