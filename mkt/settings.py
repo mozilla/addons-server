@@ -317,3 +317,7 @@ REST_FRAMEWORK = {
 #
 # This is an easy default for development.
 PURCHASE_ENABLED_REGIONS = [regions.US.id]
+
+# Upon signing out (of Developer Hub/Reviewer Tools), redirect users to
+# Developer Hub instead of to Fireplace.
+LOGOUT_REDIRECT_URL = '/developers/'
