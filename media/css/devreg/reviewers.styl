@@ -1122,20 +1122,6 @@ span.currently_viewing_warning {
     }
 }
 
-#view-manifest {
-    &:hover, b {
-        color: #036;
-    }
-    b {
-        &:before {
-            content: "(";
-        }
-        &:after {
-            content: ")";
-        }
-    }
-}
-
 #leaderboard {
     td.name {
         width: 70%;
@@ -1172,55 +1158,6 @@ span.currently_viewing_warning {
             padding: 0 5px;
         }
     }
-}
-
-#manifest-headers,
-#manifest-permissions,
-#manifest-contents {
-    border-box();
-    color: $dark-gray;
-    clear: both;
-    font: 12px/14px $mono-stack;
-    list-style: none;
-    margin: 15px 0;
-    overflow-x: auto;
-    white-space: pre;
-    width: 100%;
-}
-
-#manifest-headers,
-#manifest-permissions {
-    background-color: $faint-gray;
-    border: $dark-gray 2px solid;
-    padding: 5px 10px;
-}
-
-#manifest-contents {
-    background-color: #def;
-    border: darken(#def, 75%) 2px solid;
-    // Using counters so we can style the line numbers.
-    counter-reset: item;
-    li {
-        counter-increment: item;
-        padding: 5px 10px;
-        &:before {
-            background-color: $faint-gray;
-            display: inline-block;
-            color: $note-gray;
-            content: counter(item);
-            margin: -5px 10px -5px -10px;
-            padding: 5px;
-            text-align: right;
-            width: 3ex;
-        }
-        &:nth-child(2n + 1) {
-            background: lighten(#def, 4%);
-        }
-    }
-}
-
-iframe#manifest-contents {
-    min-height: 250px;
 }
 
 // Addresses issue with drop-downs menus vs. active queue tab.

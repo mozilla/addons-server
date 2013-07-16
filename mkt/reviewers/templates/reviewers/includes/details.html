@@ -23,9 +23,14 @@
     </dd>
     <dt>{{ _('Manifest URL') }}</dt>
     <dd>
+      {% if product.is_packaged %}
+        {{ _('Packaged') }}
+      {% else %}
+        <a target="_blank" href="{{ product.manifest_url }}">{{ product.manifest_url }}</a>
+      {% endif %}
       <a href="#" id="view-manifest" data-manifest="{{ product.manifest_url }}"
          data-url="{{ url('reviewers.apps.review.manifest', product.app_slug) }}">
-        {{ product.manifest_url }} <b>{{ _('View') }}</b></a>
+        <b>{{ _('View') }}</b></a>
     </dd>
     {% if product.app_domain %}
     <dt>{{ _('App domain') }}</dt>

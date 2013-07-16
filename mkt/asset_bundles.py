@@ -75,6 +75,7 @@ CSS = {
         'css/devreg/consumer-buttons.styl',
         'css/devreg/ratings.styl',
         'css/devreg/data-grid.styl',
+        'css/devreg/manifest.styl',
         'css/devreg/reviewers.styl',
         'css/devreg/themes_review.styl',
         'css/devreg/legacy-paginator.styl',
@@ -124,6 +125,7 @@ CSS = {
         'css/devreg/stats.styl',
     ),
     'mkt/lookup': (
+        'css/devreg/manifest.styl',
         'css/devreg/lookup-tool.styl',
         'css/devreg/activity.styl',
     ),
@@ -274,6 +276,7 @@ JS = {
         'js/mkt/payments.js',
         'js/mkt/install.js',
         'js/mkt/buttons.js',
+        'js/mkt/manifest.js',
         'js/mkt/reviewers.js',
         'js/devreg/expandable.js',
         'js/devreg/mobile_review_actions.js',
@@ -308,6 +311,7 @@ JS = {
         'js/common/keys.js',
         'js/impala/ajaxcache.js',
         'js/impala/suggestions.js',
+        'js/mkt/manifest.js',
         'js/mkt/lookup-tool.js',
     ),
     'mkt/ecosystem': (

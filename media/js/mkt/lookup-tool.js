@@ -1,3 +1,6 @@
+require(['prefetchManifest']);
+
+
 (function() {
     $('#account-search').searchSuggestions($('#account-search-suggestions'),
                                            processResults);
