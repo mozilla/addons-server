@@ -3,6 +3,7 @@ from decimal import Decimal
 from django.test.utils import override_settings
 
 import mock
+import waffle
 from elasticutils.contrib.django import S
 from nose.tools import eq_, ok_
 from test_utils import RequestFactory
@@ -112,6 +113,7 @@ class TestAppToDictPrices(amo.tests.TestCase):
     def setUp(self):
         self.app = amo.tests.app_factory(premium_type=amo.ADDON_PREMIUM)
         self.profile = UserProfile.objects.get(pk=2519)
+        self.create_flag('allow-paid-app-search', everyone=True)
 
     def test_some_price(self):
         self.make_premium(self.app, price='0.99')
@@ -173,8 +175,11 @@ class TestAppToDictPrices(amo.tests.TestCase):
 
     def test_waffle_fallback(self):
         self.make_premium(self.app, price='0.99')
-        flag = self.create_flag('allow-paid-app-search', everyone=None)
+        flag = waffle.models.Flag.objects.get(name='allow-paid-app-search')
+        flag.everyone = None
         flag.users.add(self.profile.user)
+        flag.save()
+
         req = RequestFactory().get('/')
         req.user = self.profile.user
         with self.settings(PURCHASE_ENABLED_REGIONS=[]):
