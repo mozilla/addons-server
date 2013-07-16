@@ -208,6 +208,7 @@ class TestESAppToDict(amo.tests.ESTestCase):
         expected = {
             'absolute_url': 'http://testserver/app/something-something/',
             'app_type': 'hosted',
+            'author': 'Mozilla Tester',
             'created': self.app.created,
             'current_version': '1.0',
             'description': u'Something Something Steamcube description!',
@@ -218,9 +219,6 @@ class TestESAppToDict(amo.tests.ESTestCase):
                 'status': 4,
                 'is_privileged': False
             },
-            'listed_authors': [
-                {'name': u'31337 \u0627\u0644\u062a\u0637\u0628'},
-            ],
             'manifest_url': 'http://micropipes.com/temp/steamcube.webapp',
             'name': 'Something Something Steamcube!',
             'premium_type': 'free',

@@ -63,6 +63,7 @@ def app_to_dict(app, region=None, profile=None, request=None):
 
     data = {
         'app_type': app.app_type,
+        'author': app.developer_name,
         'categories': list(app.categories.values_list('pk', flat=True)),
         'content_ratings': dict([(cr.get_body().name, {
             'name': cr.get_rating().name,
@@ -78,8 +79,6 @@ def app_to_dict(app, region=None, profile=None, request=None):
                         app.get_icon_url(icon_size))
                        for icon_size in (16, 48, 64, 128)]),
         'is_packaged': app.is_packaged,
-        'listed_authors': [{'name': author.name}
-                           for author in app.listed_authors],
         'manifest_url': app.get_manifest_url(),
         'payment_required': False,
         'previews': PreviewResource().dehydrate_objects(app.previews.all()),
@@ -182,13 +181,13 @@ def es_app_to_dict(obj, region=None, profile=None, request=None):
     data.update({
         'absolute_url': absolutify(app.get_detail_url()),
         'app_type': app.app_type,
+        'author': src['author'],
         'categories': [c for c in obj.category],
         'description': get_attr_lang(src, 'description', obj.default_locale),
         'device_types': [DEVICE_TYPES[d].api_name for d in src['device']],
         'icons': dict((i['size'], i['url']) for i in src['icons']),
         'id': str(obj._id),
         'is_packaged': is_packaged,
-        'listed_authors': [{'name': name} for name in src['authors']],
         'name': get_attr_lang(src, 'name', obj.default_locale),
         'payment_required': False,
         'premium_type': amo.ADDON_PREMIUM_API[src['premium_type']],

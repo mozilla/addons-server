@@ -903,6 +903,12 @@ class Webapp(Addon):
             sorted(languages)
         )
 
+    @property
+    def developer_name(self):
+        """This is the developer name extracted from the manifest."""
+        if self.current_version:
+            return self.current_version.developer_name
+
 
 class WebappIndexer(MappingType, Indexable):
     """
@@ -1108,7 +1114,7 @@ class WebappIndexer(MappingType, Indexable):
 
         d['app_type'] = (amo.ADDON_WEBAPP_PACKAGED if obj.is_packaged else
                          amo.ADDON_WEBAPP_HOSTED)
-        d['authors'] = [a.name for a in obj.listed_authors]
+        d['author'] = obj.developer_name
         d['category'] = getattr(obj, 'category_ids', [])
         d['content_ratings'] = content_ratings if content_ratings else None
         d['current_version'] = version.version if version else None

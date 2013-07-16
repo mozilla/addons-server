@@ -302,7 +302,7 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
                             [n.api_name for n in amo.DEVICE_TYPES.values()])
         eq_(data['homepage'], u'http://www.whatever.com')
         eq_(data['is_packaged'], False)
-        eq_(data['listed_authors'][0].get('name'), self.user.display_name)
+        eq_(data['author'], 'Mozilla Labs')
         eq_(data['manifest_url'], app.manifest_url)
         eq_(data['premium_type'], 'free')
         eq_(data['price'], None)
