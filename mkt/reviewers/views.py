@@ -445,7 +445,7 @@ def queue_updates(request):
         request,
         Webapp.uncached.exclude(id__in=excluded_ids).filter(id__in=addon_ids))
 
-    apps = [QueuedApp(app, app.all_versions[0].nomination)
+    apps = [QueuedApp(app, app.all_versions[0].nomination or app.created)
             for app in Webapp.version_and_file_transformer(qs)]
     apps = sorted(apps, key=lambda a: a.created)
     return _queue(request, apps, 'updates')

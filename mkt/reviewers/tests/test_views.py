@@ -653,6 +653,29 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         assert app in apps
         eq_(pq(res.content)('.tabnav li a:eq(2)').text(), u'Updates (3)')
 
+    def test_update_queue_with_empty_nomination(self):
+        app = app_factory(is_packaged=True, name='YYY',
+                          status=amo.STATUS_NULL,
+                          version_kw={'version': '1.0',
+                                      'created': self.days_ago(2),
+                                      'nomination': None})
+        first_version = app.latest_version
+        version_factory(addon=app, version='1.1', created=self.days_ago(1),
+                        nomination=None,
+                        file_kw={'status': amo.STATUS_PENDING})
+
+        # Now that we have a version with nomination=None, reset app status.
+        app.update(status=amo.STATUS_PUBLIC_WAITING)
+        File.objects.filter(version=first_version).update(status=app.status)
+
+        # Safeguard: we /really/ want to test with nomination=None.
+        eq_(app.latest_version.reload().nomination, None)
+
+        res = self.client.get(self.url)
+        apps = [a.app for a in res.context['addons']]
+        assert app in apps
+        eq_(pq(res.content)('.tabnav li a:eq(2)').text(), u'Updates (3)')
+
     @mock.patch('mkt.webapps.tasks.update_cached_manifests')
     def test_deleted_version_not_in_queue(self, _mock):
         """

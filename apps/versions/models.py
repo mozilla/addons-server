@@ -527,7 +527,8 @@ def inherit_nomination(sender, instance, **kw):
             instance.update(nomination=last_ver[0].nomination, _signal=False)
             log.debug('[Webapp:%s] Inheriting nomination from prior pending '
                       'version' % addon.id)
-        elif addon.status == amo.STATUS_PUBLIC and not instance.nomination:
+        elif (addon.status in amo.WEBAPPS_APPROVED_STATUSES and
+              not instance.nomination):
             log.debug('[Webapp:%s] Setting nomination date to now for new '
                       'version.' % addon.id)
             instance.update(nomination=datetime.datetime.now(), _signal=False)

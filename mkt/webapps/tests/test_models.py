@@ -461,6 +461,16 @@ class TestWebapp(amo.tests.TestCase):
         v = Version.objects.create(addon=app, version='1.9')
         self.assertCloseToNow(v.nomination)
 
+    def test_nomination_public_waiting(self):
+        # New versions while public waiting get a new version nomination.
+        app = app_factory()
+        app.update(is_packaged=True, status=amo.STATUS_PUBLIC_WAITING)
+        old_ver = app.versions.latest()
+        old_ver.update(nomination=self.days_ago(1))
+        old_ver.all_files[0].update(status=amo.STATUS_PUBLIC_WAITING)
+        v = Version.objects.create(addon=app, version='1.9')
+        self.assertCloseToNow(v.nomination)
+
     def test_excluded_in(self):
         app1 = app_factory()
         region = mkt.regions.BR
