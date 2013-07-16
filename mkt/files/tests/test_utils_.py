@@ -48,3 +48,56 @@ class TestWebAppParser(amo.tests.TestCase):
         # matter here though since we are mocking get_json_data().
         parsed_results = WebAppParser().parse('')
         eq_(parsed_results['developer_name'], 'Mozilla Marketplace Testing')
+
+    @mock.patch('files.utils.WebAppParser.get_json_data')
+    def test_name_with_translations(self, get_json_data):
+        get_json_data.return_value = {
+            'name': 'Blah',
+            'developer': {
+                'name': 'Mozilla Marketplace Testing'
+            },
+            'default_locale': 'en-US',
+            'locales': {
+                'fr': {
+                    'name': 'Blah (fr)',
+                },
+                'es': {
+                    'name': 'Blah (es)',
+                }
+            }
+        }
+        # The argument to parse() is supposed to be a filename, it doesn't
+        # matter here though since we are mocking get_json_data().
+        parsed_results = WebAppParser().parse('')
+        eq_(parsed_results['name'].get('fr'), 'Blah (fr)')
+        eq_(parsed_results['name'].get('es'), 'Blah (es)')
+        eq_(parsed_results['name'].get('en-US'), 'Blah')
+        eq_(parsed_results['name'].get('de'), None)
+        eq_(parsed_results['default_locale'], 'en-US')
+
+    @mock.patch('files.utils.WebAppParser.get_json_data')
+    def test_name_with_translations_fallback(self, get_json_data):
+        get_json_data.return_value = {
+            'name': 'Blah',
+            'description': 'Blah Description',
+            'developer': {
+                'name': 'Mozilla Marketplace Testing'
+            },
+            'default_locale': 'en-US',
+            'locales': {
+                'fr': {
+                    'description': 'Blah Description (fr)',
+                },
+                'es': {
+                    'name': 'Blah (es)',
+                }
+            }
+        }
+        # The argument to parse() is supposed to be a filename, it doesn't
+        # matter here though since we are mocking get_json_data().
+        parsed_results = WebAppParser().parse('')
+        eq_(parsed_results['name'].get('fr'), 'Blah')  # Falls back to default.
+        eq_(parsed_results['name'].get('es'), 'Blah (es)')
+        eq_(parsed_results['name'].get('en-US'), 'Blah')
+        eq_(parsed_results['name'].get('de'), None)
+        eq_(parsed_results['default_locale'], 'en-US')

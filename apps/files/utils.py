@@ -254,13 +254,20 @@ class WebAppParser(object):
         data = self.get_json_data(fileorpath)
         loc = data.get('default_locale', translation.get_language())
         default_locale = self.trans_locale(loc)
-        if type(data.get('locales')) == list:
+        locales = data.get('locales', {})
+        if type(locales) == list:
             raise forms.ValidationError(
                 _('Your specified app locales are not in the correct format.'))
-        localized_descr = self.extract_locale(data.get('locales', {}),
-                                              'description', default='')
+
+        localized_descr = self.extract_locale(locales, 'description',
+                                              default='')
         if 'description' in data:
             localized_descr.update({default_locale: data['description']})
+
+        localized_name = self.extract_locale(locales, 'name',
+                                             default=data['name'])
+        localized_name.update({default_locale: data['name']})
+
         developer_info = data.get('developer', {})
         developer_name = developer_info.get('name')
         if not developer_name:
@@ -269,9 +276,10 @@ class WebAppParser(object):
             raise forms.ValidationError(
                 _("Developer name is required in the manifest in order to "
                   "display it on the app's listing."))
+
         return {'guid': None,
                 'type': amo.ADDON_WEBAPP,
-                'name': {default_locale: data['name']},
+                'name': self.trans_all_locales(localized_name),
                 'developer_name': developer_name,
                 'description': self.trans_all_locales(localized_descr),
                 'version': data.get('version', '1.0'),
