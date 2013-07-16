@@ -141,7 +141,14 @@ class TestReceipt(amo.tests.TestCase):
         user = UserProfile.objects.get(pk=5497308)
         ins = self.create_install(user, webapp)
         receipt = self.for_user(ins, 'developer')
-        eq_(receipt['product']['url'], 'http://testserver')
+        eq_(receipt['product']['url'], 'app://foo.com')
+
+    def test_receipt_packaged_no_origin(self):
+        webapp = addon_factory(type=amo.ADDON_WEBAPP, is_packaged=True)
+        user = UserProfile.objects.get(pk=5497308)
+        ins = self.create_install(user, webapp)
+        receipt = self.for_user(ins, 'developer')
+        eq_(receipt['product']['url'], settings.SITE_URL)
 
     @mock.patch.object(settings, 'SIGNING_SERVER_ACTIVE', True)
     @mock.patch('mkt.receipts.utils.sign')
