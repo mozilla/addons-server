@@ -181,7 +181,7 @@ def es_app_to_dict(obj, region=None, profile=None, request=None):
     data.update({
         'absolute_url': absolutify(app.get_detail_url()),
         'app_type': app.app_type,
-        'author': src['author'],
+        'author': src.get('author', ''),
         'categories': [c for c in obj.category],
         'description': get_attr_lang(src, 'description', obj.default_locale),
         'device_types': [DEVICE_TYPES[d].api_name for d in src['device']],

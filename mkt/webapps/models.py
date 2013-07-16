@@ -962,7 +962,7 @@ class WebappIndexer(MappingType, Indexable):
                     'id': {'type': 'long'},
                     'app_slug': {'type': 'string'},
                     'app_type': {'type': 'byte'},
-                    'authors': {'type': 'string'},
+                    'author': {'type': 'string'},
                     'average_daily_users': {'type': 'long'},
                     'bayesian_rating': {'type': 'float'},
                     'category': {'type': 'integer'},
