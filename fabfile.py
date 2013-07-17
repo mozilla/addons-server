@@ -110,6 +110,9 @@ def restart_workers():
         restarts.append('( supervisorctl restart {0}-a; '
                         'supervisorctl restart {0}-b )&'.format(g))
 
+    for u in getattr(settings, 'UWSGI', []):
+        run('kill -HUP $(supervisorctl pid uwsgi-%s)' % u)
+
     if restarts:
         run('%s wait' % ' '.join(restarts))
 
