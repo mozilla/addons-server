@@ -116,7 +116,8 @@
               <td>{{ v.created|datetime }}</td>
               <td>{{ v.version }} ({{ v.id }})</td>
               {% with file = v.files.latest() %}
-                <td>{{ file.filename }} ({{ file.id }}, {{ file.size|filesizeformat }})</td>
+                <td><a href="{{ v.all_files[0].get_url_path('') }}" class="download">
+                  {{ file.filename }} ({{ file.id }}, {{ file.size|filesizeformat }})</a></td>
                 <td>{{ amo.STATUS_CHOICES[file.status] }}</td>
               {% endwith %}
             </tr>

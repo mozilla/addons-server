@@ -639,8 +639,14 @@ class TestAppSummary(AppSummaryTest):
 
     def test_version_history_packaged(self):
         self.app.update(is_packaged=True)
+        self.version = self.app.current_version
+        self.file = self.version.all_files[0]
+        self.file.update(filename='mozball.zip')
+
         res = self.summary()
         eq_(pq(res.content)('section.version-history').length, 1)
+        assert 'mozball.zip' in pq(res.content)(
+            'section.version-history a.download').attr('href')
 
     def test_edit_link_staff(self):
         res = self.summary()
