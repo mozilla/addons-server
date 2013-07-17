@@ -127,7 +127,7 @@ def app_to_dict(app, region=None, profile=None, request=None):
                                 for n in app.device_types]
     if profile:
         data['user'] = {
-            'developed': AddonUser.objects.filter(
+            'developed': app.addonuser_set.filter(
                 user=profile, role=amo.AUTHOR_ROLE_OWNER).exists(),
             'installed': app.has_installed(profile),
             'purchased': app.pk in profile.purchase_ids(),
@@ -239,7 +239,7 @@ def es_app_to_dict(obj, region=None, profile=None, request=None):
     # TODO: Let's get rid of these from the API to avoid db hits.
     if profile and isinstance(profile, UserProfile):
         data['user'] = {
-            'developed': AddonUser.objects.filter(
+            'developed': AddonUser.objects.filter(addon=obj.id,
                 user=profile, role=amo.AUTHOR_ROLE_OWNER).exists(),
             'installed': Installed.objects.filter(
                 user=profile, addon_id=obj.id).exists(),

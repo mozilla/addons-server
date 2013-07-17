@@ -11,8 +11,8 @@ from test_utils import RequestFactory
 import amo
 import amo.tests
 
-from addons.models import AddonDeviceType, AddonUser, Preview
-from market.models import AddonPurchase, PriceCurrency
+from addons.models import AddonDeviceType, Preview
+from market.models import PriceCurrency
 from mkt.constants import regions
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Installed, Webapp, WebappIndexer
@@ -274,15 +274,26 @@ class TestESAppToDict(amo.tests.ESTestCase):
         eq_(res['device_types'], ['firefoxos'])
 
     def test_user(self):
-        AddonPurchase.objects.create(addon=self.app, user=self.profile)
-        Installed.objects.create(addon=self.app, user=self.profile)
-        AddonUser.objects.create(addon=self.app, user=self.profile)
+        self.app.addonuser_set.create(user=self.profile)
+        self.profile.installed_set.create(addon=self.app)
+        self.app.addonpurchase_set.create(user=self.profile)
         self.app.save()
         self.refresh('webapp')
 
         res = es_app_to_dict(self.get_obj(), profile=self.profile)
         eq_(res['user'],
             {'developed': True, 'installed': True, 'purchased': True})
+
+    def test_user_not_mine(self):
+        self.app.addonuser_set.create(user_id=31337)
+        Installed.objects.create(addon=self.app, user_id=31337)
+        self.app.addonpurchase_set.create(user_id=31337)
+        self.app.save()
+        self.refresh('webapp')
+
+        res = es_app_to_dict(self.get_obj(), profile=self.profile)
+        eq_(res['user'],
+            {'developed': False, 'installed': False, 'purchased': False})
 
 
 class TestSupportedLocales(amo.tests.TestCase):
