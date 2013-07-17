@@ -11,7 +11,8 @@ from test_utils import RequestFactory
 import amo
 import amo.tests
 
-from addons.models import AddonDeviceType, Preview
+from addons.models import (AddonCategory, AddonDeviceType, Category,
+                           Preview)
 from market.models import PriceCurrency
 from mkt.constants import regions
 from mkt.site.fixtures import fixture
