@@ -27,7 +27,6 @@ from addons.utils import get_creatured_ids, get_featured_ids
 
 import amo
 import amo.models
-import mkt.constants
 from access import acl
 from amo.decorators import use_master, write
 from amo.fields import DecimalCharField
@@ -38,6 +37,7 @@ from amo.utils import (attach_trans_dict, cache_ns_key, chunked, find_language,
 from amo.urlresolvers import get_outgoing_url, reverse
 from files.models import File
 from market.models import AddonPremium, Price
+import mkt.constants
 from reviews.models import Review
 import sharing.utils as sharing
 from stats.models import AddonShareCountTotal
@@ -1949,7 +1949,7 @@ class BlacklistedGuid(amo.models.ModelBase):
         return self.guid
 
 
-class Category(amo.models.ModelBase):
+class Category(amo.models.OnChangeMixin, amo.models.ModelBase):
     name = TranslatedField()
     slug = models.SlugField(max_length=50, help_text='Used in Category URLs.')
     type = models.PositiveIntegerField(db_column='addontype_id',
@@ -2004,6 +2004,27 @@ class Category(amo.models.ModelBase):
     def clean(self):
         if self.slug.isdigit():
             raise ValidationError('Slugs cannot be all numbers.')
+
+
+@Category.on_change
+def reindex_cat_slug(old_attr=None, new_attr=None, instance=None,
+                     sender=None, **kw):
+    """ES reindex category's apps if category slug changes."""
+    from mkt.webapps.tasks import index_webapps
+
+    if new_attr.get('type') != amo.ADDON_WEBAPP:
+        instance.save()
+        return
+
+    slug_changed = (instance.pk is not None and old_attr and new_attr and
+                    old_attr.get('slug') != new_attr.get('slug'))
+
+    instance.save()
+
+    if slug_changed:
+        index_webapps(list(instance.addon_set.filter(type=amo.ADDON_WEBAPP)
+                           .values_list('id', flat=True)))
+
 
 dbsignals.pre_save.connect(save_signal, sender=Category,
                            dispatch_uid='category_translations')

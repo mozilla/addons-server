@@ -1412,6 +1412,20 @@ class TestCategoryModel(amo.tests.TestCase):
             cat = Category(type=AddonType(id=t), slug='omg')
             assert cat.get_url_path()
 
+    @patch('mkt.webapps.tasks.index_webapps')
+    def test_reindex_on_change(self, index_mock):
+        c = Category.objects.create(type=amo.ADDON_PERSONA, slug='keyboardcat')
+        c.update(slug='ceilingcat')
+        assert not index_mock.called
+        index_mock.reset_mock()
+
+        c = Category.objects.create(type=amo.ADDON_WEBAPP, slug='keyboardcat')
+        app = amo.tests.app_factory()
+        AddonCategory.objects.create(addon=app, category=c)
+        c.update(slug='nyancat')
+        assert index_mock.called
+        eq_(index_mock.call_args[0][0], [app.id])
+
 
 class TestPersonaModel(amo.tests.TestCase):
     fixtures = ['addons/persona']

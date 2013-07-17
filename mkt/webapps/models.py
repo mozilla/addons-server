@@ -679,7 +679,7 @@ class Webapp(Addon):
             filters.update(filter_overrides)
 
         if cat:
-            filters.update(category=cat.id)
+            filters.update(category=cat.slug)
 
         srch = S(WebappIndexer).filter(**filters)
 
@@ -965,7 +965,10 @@ class WebappIndexer(MappingType, Indexable):
                     'author': {'type': 'string'},
                     'average_daily_users': {'type': 'long'},
                     'bayesian_rating': {'type': 'float'},
-                    'category': {'type': 'integer'},
+                    'category': {
+                        'type': 'string',
+                        'index': 'not_analyzed'
+                    },
                     'content_ratings': {
                         'type': 'object',
                         'dynamic': 'true',
@@ -1115,7 +1118,7 @@ class WebappIndexer(MappingType, Indexable):
         d['app_type'] = (amo.ADDON_WEBAPP_PACKAGED if obj.is_packaged else
                          amo.ADDON_WEBAPP_HOSTED)
         d['author'] = obj.developer_name
-        d['category'] = getattr(obj, 'category_ids', [])
+        d['category'] = list(obj.categories.values_list('slug', flat=True))
         d['content_ratings'] = content_ratings if content_ratings else None
         d['current_version'] = version.version if version else None
         d['default_locale'] = obj.default_locale
