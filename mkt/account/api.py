@@ -76,7 +76,7 @@ class PermissionResource(Mine, CORSResource, MarketplaceModelResource):
     def dehydrate(self, bundle):
         allowed = partial(acl.action_allowed, bundle.request)
         permissions = {
-            'reviewer': acl.check_reviewer(bundle.request, only='app'),
+            'reviewer': acl.action_allowed(bundle.request, 'Apps', 'Review'),
             'admin': allowed('Admin', '%'),
             'localizer': allowed('Localizers', '%'),
             'lookup': allowed('AccountLookup', '%'),
