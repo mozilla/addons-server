@@ -146,6 +146,13 @@
           {% include 'developers/payments/includes/regions_inappropriate.html' %}
         {% endif %}
 
+        <div class="island info hidden" id="regions-changed">
+          {%- trans %}
+            Based on your chosen price point the available regions have been updated.
+            Please check them prior to saving your changes.
+          {% endtrans -%}
+        </div>
+
         <section id="regions" class="island">
           <table>
             <tbody>
@@ -175,7 +182,7 @@
                 <td colspan="2" class="region-container">
                   <div id="region-list" class="checkbox-choices regions"
                        data-api-error-msg="{{ _('A server error occurred. Please try again later.') }}"
-                       data-disabled-regions="{{ region_form.disabled_regions|json }}"
+                       data-disabled-general-regions="{{ region_form.disabled_general_regions|json }}"
                        data-not-applicable-msg="{{ _('Not applicable') }}"
                        data-payment-methods="{{ payment_methods|json }}"
                        data-pricelist-api-url="{{ api_pricelist_url }}"
@@ -195,8 +202,9 @@
                           {% if value|int in mkt.regions.ALL_PAID_REGION_IDS %}
                           <tr>
                               <td>
-                                <label class="disabled">
-                                  <input type="checkbox" disabled
+                                <label {% if value in region_form.disabled_regions %} class="disabled"{% endif %}>
+                                  <input type="checkbox"
+                                         {% if value in region_form.disabled_regions %}disabled{% endif %}
                                          {% if value in region_form.initial.regions %}checked{% endif %}
                                          name="regions" value="{{ value }}">{{ text }}</label>
                               </td>

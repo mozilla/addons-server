@@ -262,6 +262,16 @@ class TestPayments(amo.tests.TestCase):
         base.update(extension)
         return base
 
+    @mock.patch('mkt.developers.forms.ALL_PAID_REGION_IDS', new=[11])
+    def test_paid_app_has_correct_regions_when_loaded(self):
+        self.webapp.update(premium_type=amo.ADDON_PREMIUM)
+        price = Price.objects.get(pk=1)
+        res = self.client.post(
+            self.url, self.get_postdata({'allow_inapp': False,
+                                         'price': price.pk}), follow=True)
+        pqr = pq(res.content)
+        eq_(len(pqr('input[type=checkbox][value=11]:not(:disabled)')), 1)
+
     def test_free(self):
         res = self.client.post(
             self.url, self.get_postdata({'toggle-paid': 'free'}), follow=True)

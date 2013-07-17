@@ -1163,6 +1163,9 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         return not (self.is_premium() and self.premium and
                     self.premium.price)
 
+    def is_free_inapp(self):
+        return self.premium_type == amo.ADDON_FREE_INAPP
+
     def needs_payment(self):
         return (self.premium_type not in
                 (amo.ADDON_FREE, amo.ADDON_OTHER_INAPP))

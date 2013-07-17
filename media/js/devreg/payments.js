@@ -4,9 +4,13 @@ define('payments', [], function() {
     var currentPrice;
     var $regions = $('#region-list');
     var $regionsIsland = $('#regions');
+    var $regionCheckboxes = $regions.find('input[type=checkbox]');
+    var $regionsChangedWarning = $('#regions-changed');
+    var $regionsInappropriateWarning = $('#regions-inappropriate');
+    var $before = $regions.find('input[type=checkbox]:disabled');
 
     var apiErrorMsg = $regions.data('apiErrorMsg');
-    var disabledRegions = $regions.data('disabledRegions');
+    var disabledGeneralRegions = $regions.data('disabledGeneralRegions');
     var tierZeroId = $regions.data('tierZeroId');
     var notApplicableMsg = $regions.data('notApplicableMsg');
     var paymentMethods = $regions.data('paymentMethods') || {};
@@ -90,10 +94,41 @@ define('payments', [], function() {
         $this.closest('tr').find('.local-retail, .local-method').text('');
     }
 
-    function updatePrices() {
+    function compareDisabledCheckboxes($before) {
+        var hasChanged = false;
+        var $after = $regions.find('input[type=checkbox]:disabled');
+
+        if ($before.length && $after.length && $before.length === $after.length) {
+            $after.each(function() {
+                // If current element isn't in $before the state has changed and we can
+                // exit the each.
+                var beforeIndex = $.inArray(this, $before);
+                if (beforeIndex === -1) {
+                    hasChanged = true;
+                    return false;
+                // As soon as a disabled prop doesn't match flag the change and exit each.
+                } else if ($(this).prop('disabled') !== $($before[beforeIndex]).prop('disabled')) {
+                    hasChanged = true;
+                    return false;
+                }
+            });
+        } else if (($before.length || $after.length) && $before.length !== $after.length) {
+            hasChanged = true;
+        }
+        if (hasChanged) {
+            $regionsChangedWarning.removeClass('hidden');
+        } else {
+            $regionsChangedWarning.addClass('hidden');
+        }
+    }
+
+    function updatePrices(checkForChanges) {
+
         /*jshint validthis:true */
         var $this = $(this);
         var selectedPrice = $this.val();
+
+        checkForChanges = checkForChanges === false ? checkForChanges : true;
 
         // Check for NaN which will be caused by selectedPrice being ''.
         if (selectedPrice != 'free') {
@@ -108,7 +143,7 @@ define('payments', [], function() {
 
         // Handle the 'Please select a price' case.
         if (selectedPrice === false) {
-            $regions.find('input[type=checkbox]').each(disableCheckbox);
+            $regionCheckboxes.each(disableCheckbox);
             currentPrice = selectedPrice;
             return;
         }
@@ -120,13 +155,24 @@ define('payments', [], function() {
             $('input[name=allow_inapp][value=False]').prop('disabled', true)
                                                      .parent('label').hide();
 
-            // Enable all the checkboxes.
-            $regions.find('input[type=checkbox]').prop('disabled', false)
-                                                 .closest('label').removeClass('disabled')
-                                                 .closest('tr').find('.local-method, .local-retail')
-                                                 .text(notApplicableMsg);
+            // Enable all the checkboxes save for those that should be disabled.
+            // e.g. unrated games in Brazil.
+            $regionCheckboxes.each(function() {
+                $this = $(this);
+                if (disabledGeneralRegions.indexOf(parseInt($this.prop('value'), 10)) === -1) {
+                    $this.prop('disabled', false).closest('label').removeClass('disabled')
+                         .closest('tr').find('.local-method, .local-retail')
+                         .text(notApplicableMsg);
+                } else {
+                    disableCheckbox.call(this);
+                }
+            });
             $('#paid-upsell-island').hide();
             currentPrice = selectedPrice;
+
+            if (checkForChanges) {
+                compareDisabledCheckboxes($before);
+            }
             return;
         } else {
             $('#paid-upsell-island').show();
@@ -150,8 +196,8 @@ define('payments', [], function() {
                     var billingMethodText = paymentMethods[parseInt(price.method, 10)] || '';
                     var $chkbox = $regions.find('input:checkbox[value=' + region + ']');
 
-                    // Skip if over regions that should be disabled e.g games app in Brazil.
-                    if (disabledRegions.indexOf(region) > -1) {
+                    // Skip if over regions that should be disabled e.g an unrated games app in Brazil.
+                    if (disabledGeneralRegions.indexOf(region) > -1) {
                         continue;
                     }
                     // Enable checkboxes for those that we have price info for.
@@ -167,10 +213,14 @@ define('payments', [], function() {
                        .text(selectedPrice === tierZeroId ? notApplicableMsg : billingMethodText);
 
                     seen.push($chkbox[0]);
+
                 }
                 // Disable everything else.
-                $regions.find('input[type=checkbox]').not(seen)
-                                                     .each(disableCheckbox);
+                $regionCheckboxes.not(seen).each(disableCheckbox);
+
+                if (checkForChanges) {
+                    compareDisabledCheckboxes($before);
+                }
             },
             dataType: "json"
         }).fail(function() {
@@ -183,6 +233,7 @@ define('payments', [], function() {
     }
 
     function init() {
+        var $priceSelect = $('#id_price');
         $('#regions').trigger('editLoaded');
 
         $('.update-payment-type button').click(function() {
@@ -196,9 +247,8 @@ define('payments', [], function() {
             $free_island.toggle(tab.id == 'free-tab-header');
         });
 
-        $('#id_price').on('change', updatePrices)
-                      .each(updatePrices);
-
+        $priceSelect.on('change', updatePrices);
+        updatePrices.call($priceSelect[0], false);
     }
 
     return {
