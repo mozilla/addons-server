@@ -171,7 +171,7 @@ def es_app_to_dict(obj, region=None, profile=None, request=None):
     # The following doesn't perform a database query, but gives us useful
     # methods like `get_detail_url`. If you use `obj` make sure the calls
     # don't query the database.
-    is_packaged = src['app_type'] == amo.ADDON_WEBAPP_PACKAGED
+    is_packaged = src.get('app_type') == amo.ADDON_WEBAPP_PACKAGED
     app = Webapp(app_slug=obj.app_slug, is_packaged=is_packaged)
 
     attrs = ('content_ratings', 'created', 'current_version', 'default_locale',
@@ -184,13 +184,13 @@ def es_app_to_dict(obj, region=None, profile=None, request=None):
         'author': src.get('author', ''),
         'categories': [c for c in obj.category],
         'description': get_attr_lang(src, 'description', obj.default_locale),
-        'device_types': [DEVICE_TYPES[d].api_name for d in src['device']],
-        'icons': dict((i['size'], i['url']) for i in src['icons']),
+        'device_types': [DEVICE_TYPES[d].api_name for d in src.get('device')],
+        'icons': dict((i['size'], i['url']) for i in src.get('icons')),
         'id': str(obj._id),
         'is_packaged': is_packaged,
         'name': get_attr_lang(src, 'name', obj.default_locale),
         'payment_required': False,
-        'premium_type': amo.ADDON_PREMIUM_API[src['premium_type']],
+        'premium_type': amo.ADDON_PREMIUM_API[src.get('premium_type')],
         'privacy_policy': PrivacyPolicyResource().get_resource_uri(
             GenericObject({'pk': obj._id})
         ),
@@ -207,7 +207,7 @@ def es_app_to_dict(obj, region=None, profile=None, request=None):
             app.get_region_ids(worldwide=True,
                                excluded=obj.region_exclusions)))
 
-    if src['premium_type'] in amo.ADDON_PREMIUMS:
+    if src.get('premium_type') in amo.ADDON_PREMIUMS:
         acct = list(AddonPaymentAccount.objects.filter(addon=app))
         if acct and acct.payment_account:
             data['payment_account'] = AccountResource().get_resource_uri(
@@ -217,8 +217,9 @@ def es_app_to_dict(obj, region=None, profile=None, request=None):
 
     data['price'] = data['price_locale'] = None
     try:
-        if src['price_tier']:
-            price = Price.objects.get(name=src['price_tier'])
+        price_tier = src.get('price_tier')
+        if price_tier:
+            price = Price.objects.get(name=price_tier)
             if (region in settings.PURCHASE_ENABLED_REGIONS or
                 (request and
                  waffle.flag_is_active(request, 'allow-paid-app-search'))):
