@@ -146,6 +146,26 @@ class TestNewWebappVersionForm(amo.tests.TestCase):
         assert form.is_valid(), form.errors
         assert _verify.called
 
+    @mock.patch('mkt.submit.forms.parse_addon',
+                lambda *args: {"origin": "app://hy.fr"})
+    def test_verify_app_domain_exclude_same(self):
+        app = amo.tests.app_factory(app_domain='app://hy.fr')
+        form = forms.NewWebappVersionForm(
+            {'upload': self.file.uuid}, request=self.request, is_packaged=True,
+            addon=app)
+        assert form.is_valid(), form.errors
+
+    @mock.patch('mkt.submit.forms.parse_addon',
+                lambda *args: {"origin": "app://hy.fr"})
+    def test_verify_app_domain_exclude_different(self):
+        app = amo.tests.app_factory(app_domain='app://yo.lo')
+        amo.tests.app_factory(app_domain='app://hy.fr')
+        form = forms.NewWebappVersionForm(
+            {'upload': self.file.uuid}, request=self.request, is_packaged=True,
+            addon=app)
+        assert not form.is_valid(), form.errors
+        assert 'An app already exists' in ''.join(form.errors['upload'])
+
 
 class TestAppDetailsBasicForm(amo.tests.TestCase):
     fixtures = fixture('user_999', 'webapp_337141')

@@ -186,7 +186,8 @@ class NewWebappVersionForm(happyforms.Form):
             origin = pkg.get('origin')
             if origin:
                 try:
-                    origin = verify_app_domain(origin, packaged=True)
+                    origin = verify_app_domain(origin, packaged=True,
+                                               exclude=self.addon)
                 except forms.ValidationError, e:
                     self._errors['upload'] = self.error_class(e.messages)
                     return
