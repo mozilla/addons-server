@@ -868,8 +868,8 @@ class CategoryForm(happyforms.Form):
             # the app is unavailable in.
             self.fields['categories'].queryset |= supervisor_of
 
-        self.cats_before = list(self.product.categories
-                                            .values_list('id', flat=True))
+        self.cats_before = list(
+            self.product.categories.values_list('id', flat=True))
 
         self.initial['categories'] = self.cats_before
 
@@ -877,7 +877,7 @@ class CategoryForm(happyforms.Form):
         self.disabled = (
             not acl.action_allowed(self.request, 'Addons', 'Edit') and
             self.product.id in FeaturedApp.objects.featured_ids(
-                cat=self.cats_before)
+                cat=self.product.categories.values_list('slug', flat=True))
         )
 
     def special_cats(self):

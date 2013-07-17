@@ -64,7 +64,7 @@ def app_to_dict(app, region=None, profile=None, request=None):
     data = {
         'app_type': app.app_type,
         'author': app.developer_name,
-        'categories': list(app.categories.values_list('pk', flat=True)),
+        'categories': list(app.categories.values_list('slug', flat=True)),
         'content_ratings': dict([(cr.get_body().name, {
             'name': cr.get_rating().name,
             'description': unicode(cr.get_rating().description),

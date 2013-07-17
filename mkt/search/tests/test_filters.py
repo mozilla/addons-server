@@ -28,7 +28,7 @@ class TestSearchFilters(BaseOAuth):
         self.req = test_utils.RequestFactory().get('/')
         self.req.user = AnonymousUser()
 
-        self.category = Category.objects.create(name='games',
+        self.category = Category.objects.create(name='games', slug='games',
                                                 type=amo.ADDON_WEBAPP)
         # Pick a region that has relatively few filters.
         set_region(regions.UK.slug)
@@ -85,8 +85,8 @@ class TestSearchFilters(BaseOAuth):
         ok_(u'Select a valid choice' in qs['status'][0])
 
     def test_category(self):
-        qs = self._filter(self.req, {'cat': self.category.pk})
-        ok_({'term': {'category': self.category.pk}} in qs['filter']['and'])
+        qs = self._filter(self.req, {'cat': self.category.slug})
+        ok_({'term': {'category': self.category.slug}} in qs['filter']['and'])
 
     def test_device(self):
         qs = self._filter(self.req, {'device': 'desktop'})

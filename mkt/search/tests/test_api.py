@@ -3,7 +3,7 @@ from datetime import datetime
 
 from django.contrib.auth.models import User
 
-from mock import Mock, patch
+from mock import Mock
 from nose.tools import eq_, ok_
 
 import amo
@@ -32,7 +32,7 @@ class TestApi(BaseOAuth, ESTestCase):
         self.client = OAuthClient(None)
         self.url = list_url('search')
         self.webapp = Webapp.objects.get(pk=337141)
-        self.category = Category.objects.create(name='test',
+        self.category = Category.objects.create(name='test', slug='test',
                                                 type=amo.ADDON_WEBAPP)
         self.webapp.save()
         self.refresh('webapp')
@@ -50,13 +50,13 @@ class TestApi(BaseOAuth, ESTestCase):
         eq_(res.json['meta']['total_count'], 1)
 
     def test_wrong_category(self):
-        res = self.client.get(self.url + ({'cat': self.category.pk + 1},))
+        res = self.client.get(self.url + ({'cat': self.category.slug + 'xq'},))
         eq_(res.status_code, 400)
         eq_(res['Content-Type'], 'application/json')
 
     def test_wrong_weight(self):
         self.category.update(weight=-1)
-        res = self.client.get(self.url + ({'cat': self.category.pk},))
+        res = self.client.get(self.url + ({'cat': self.category.slug},))
         eq_(res.status_code, 200)
         eq_(len(res.json['objects']), 0)
 

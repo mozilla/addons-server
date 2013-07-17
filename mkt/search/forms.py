@@ -126,9 +126,11 @@ class ApiSearchForm(forms.Form):
 
     def __init__(self, *args, **kw):
         super(ApiSearchForm, self).__init__(*args, **kw)
-        CATS = (Category.objects.filter(type=amo.ADDON_WEBAPP, weight__gte=0)
-                .values_list('id', flat=True))
-        self.fields['cat'].choices = [(pk, pk) for pk in CATS]
+
+        # Clients understand cats via slugs, Zamboni thinks of them via IDs.
+        self.fields['cat'].choices = (
+            Category.objects.filter(type=amo.ADDON_WEBAPP, weight__gte=0)
+            .values_list('slug', 'id'))
 
         self.initial.update({
             'type': 'app',
@@ -138,7 +140,7 @@ class ApiSearchForm(forms.Form):
 
     def clean_cat(self):
         if self.cleaned_data['cat']:
-            return self.cleaned_data['cat'].pk
+            return self.cleaned_data['cat'].slug
 
     def clean_type(self):
         return amo.MKT_ADDON_TYPES_API.get(self.cleaned_data['type'],
