@@ -833,7 +833,7 @@ class Webapp(Addon):
         if not self.is_packaged:
             return None
 
-        file_ = self.versions.latest().all_files[0]
+        file_ = self.current_version.all_files[0]
         mf = self.get_manifest_json(file_)
 
         # Get names in "locales" as {locale: name}.

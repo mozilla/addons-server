@@ -547,6 +547,24 @@ class TestPackagedAppManifestUpdates(amo.tests.TestCase):
         self.webapp.update_supported_locales()
         eq_(self.webapp.current_version.supported_locales, 'de,es')
 
+    def test_update_name_from_package_manifest_version(self):
+        evil_manifest = {
+            'name': u'Evil App Name'
+        }
+        good_manifest = {
+            'name': u'Good App Name',
+        }
+        latest_version = version_factory(addon=self.webapp, version='2.3',
+            file_kw=dict(status=amo.STATUS_DISABLED))
+        current_version = self.webapp.current_version
+        AppManifest.objects.create(version=current_version,
+                                   manifest=json.dumps(good_manifest))
+        AppManifest.objects.create(version=latest_version,
+                                   manifest=json.dumps(evil_manifest))
+
+        self.webapp.update_name_from_package_manifest()
+        eq_(self.webapp.name, u'Good App Name')
+
 
 class TestWebappVersion(amo.tests.TestCase):
     fixtures = ['base/platforms']
