@@ -339,4 +339,26 @@ Payments
     :status 400: app is not valid for checking, examine response content.
     :status 403: not allowed.
 
+.. note:: The Transaction:Debug permission is required.
+
+.. http:get:: /api/v1/apps/api/(int:id)/payments/debug/
+
+    Returns useful debug information about the app, suitable for marketplace
+    developers and integrators. Output is truncated below and is subject
+    to change.
+
+    **Response**
+
+    .. code-block:: json
+
+        {
+            "bango": {
+                "environment": "test"
+            },
+        }
+
+    :status 200: successfully completed.
+    :status 400: app is not valid for checking, examine response content.
+    :status 403: not allowed.
+
 .. _`mobile country code`: http://en.wikipedia.org/wiki/List_of_mobile_country_codes

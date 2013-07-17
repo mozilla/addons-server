@@ -1,6 +1,7 @@
 import json
 import urllib
 
+from django import forms
 from django.contrib.auth.models import User
 from django.core.exceptions import PermissionDenied
 
@@ -15,7 +16,8 @@ from test_utils import RequestFactory
 
 from access.middleware import ACLMiddleware
 from amo.tests import TestCase
-from mkt.api.base import CORSResource, handle_500, MarketplaceResource
+from mkt.api.base import (AppViewSet, CORSResource, handle_500,
+                          MarketplaceResource)
 from mkt.api.http import HttpTooManyRequests
 from mkt.api.serializers import Serializer
 from mkt.receipts.tests.test_views import RawRequestFactory
@@ -199,3 +201,24 @@ class TestCORSResource(TestCase):
         request = RequestFactory().get('/')
         UnfilteredCORS().method_check(request, allowed=['get'])
         eq_(request.CORS, ['get'])
+
+
+class Form(forms.Form):
+    app = forms.ChoiceField(choices=(('valid', 'valid'),))
+
+
+class TestAppViewSet(TestCase):
+
+    def setUp(self):
+        self.request = RequestFactory().get('/')
+        self.viewset = AppViewSet()
+        self.viewset.action_map = {}
+        self.viewset.form = Form
+
+    def test_ok(self):
+        self.viewset.initialize_request(self.request, pk='valid')
+        ok_(self.viewset.app)
+
+    def test_not_ok(self):
+        self.viewset.initialize_request(self.request, pk='invalid')
+        eq_(self.viewset.app, None)

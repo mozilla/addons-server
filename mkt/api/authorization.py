@@ -92,6 +92,8 @@ class PermissionAuthorization(Authorization):
         log.info('Permission authorization failed')
         return False
 
+    has_permission = is_authorized
+
 
 class AllowNone(BasePermission):
 

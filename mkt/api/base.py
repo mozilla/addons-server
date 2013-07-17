@@ -513,3 +513,21 @@ class CORSViewSet(GenericViewSet):
         request._request.CORS = self.cors_allowed_methods
         return GenericViewSet.finalize_response(self, request, response, *args,
                                                 **kwargs)
+
+
+class AppViewSet(GenericViewSet):
+
+    def initialize_request(self, request, *args, **kwargs):
+        """
+        Pass the value in the URL through to the form defined on the
+        ViewSet, which will populate the app property with the app object.
+
+        You must define a form which will take an app object.
+        """
+        request = (super(AppViewSet, self)
+                   .initialize_request(request, *args, **kwargs))
+        self.app = None
+        form = self.form({'app': kwargs.get('pk')})
+        if form.is_valid():
+            self.app = form.cleaned_data['app']
+        return request

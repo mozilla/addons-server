@@ -11,7 +11,8 @@ from amo.decorators import write
 from mkt.api.base import AppRouter
 from mkt.developers.api import AccountResource
 from mkt.developers.api_payments import (PaymentAccountViewSet,
-                                         PaymentCheckViewSet, PaymentViewSet,
+                                         PaymentCheckViewSet,
+                                         PaymentDebugViewSet, PaymentViewSet,
                                          UpsellViewSet)
 from mkt.developers.decorators import use_apps
 from mkt.receipts.urls import test_patterns
@@ -177,6 +178,8 @@ app_payments = AppRouter()
 app_payments.register(r'payments', PaymentViewSet, base_name='app-payments')
 app_payments.register(r'payments/status', PaymentCheckViewSet,
                       base_name='app-payments-status')
+app_payments.register(r'payments/debug', PaymentDebugViewSet,
+                      base_name='app-payments-debug')
 
 api_patterns = patterns('',
     url(r'^', include(payments.urls)),

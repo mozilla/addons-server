@@ -277,3 +277,33 @@ class TestPaymentStatus(RestOAuth, AccountCase):
         res = self.client.post(self.list_url, data={})
         eq_(res.json['bango']['status'], 'passed')
         eq_(res.status_code, 200)
+
+
+class TestPaymentDebug(RestOAuth, AccountCase):
+    fixtures = fixture('webapp_337141', 'user_999', 'user_2519')
+
+    def setUp(self):
+        super(TestPaymentDebug, self).setUp()
+        AccountCase.setUp(self)
+        self.create()
+        self.payment.account_uri = '/bango/package/1/'
+        self.payment.save()
+        self.list_url = reverse('app-payments-debug-list',
+                                kwargs={'pk': 337141})
+
+    def test_no_auth(self):
+        eq_(self.anon.get(self.list_url).status_code, 403)
+
+    def test_no_perms(self):
+        eq_(self.client.get(self.list_url).status_code, 403)
+
+    @patch('mkt.developers.api_payments.get_client')
+    def test_good(self, get_client):
+        client = Mock()
+        client.api.bango.debug.get.return_value = {'bango':
+                                                   {'environment': 'dev'}}
+        get_client.return_value = client
+        self.grant_permission(self.profile, 'Transaction:Debug')
+        res = self.client.get(self.list_url)
+        eq_(res.status_code, 200)
+        eq_(res.json['bango']['environment'], 'dev')

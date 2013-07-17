@@ -1,3 +1,6 @@
+from functools import partial
+
+from django.conf import settings
 from django.core.exceptions import PermissionDenied
 
 from rest_framework.mixins import (CreateModelMixin, DestroyModelMixin,
@@ -12,8 +15,9 @@ from rest_framework.viewsets import GenericViewSet
 import amo
 from addons.models import AddonUpsell
 
-from mkt.api.authorization import AllowAppOwner, switch
-from mkt.api.base import CompatRelatedField
+from mkt.api.authorization import (AllowAppOwner, PermissionAuthorization,
+                                   switch)
+from mkt.api.base import AppViewSet, CompatRelatedField
 from mkt.constants.payments import PAYMENT_STATUSES
 from mkt.developers.forms_payments import PaymentCheckForm
 from mkt.developers.models import AddonPaymentAccount
@@ -151,35 +155,48 @@ class PaymentAccountViewSet(CreateModelMixin, RetrieveModelMixin,
             obj.save()
 
 
-
-class PaymentCheckViewSet(CreateModelMixin, GenericViewSet):
+class PaymentCheckViewSet(AppViewSet):
     permission_classes = (AllowAppOwner,)
+    form = PaymentCheckForm
 
     def create(self, request, *args, **kwargs):
         """
         We aren't actually creating objects, but proxying them
         through to solitude.
         """
-        # A hack to pass the value in the URL through to the form
-        # to get an app. Currently an id only, even though the form
-        # will accept a slug. The AppRouter will need to be fixed
-        # to accept slugs for that.
-        form = PaymentCheckForm({'app': kwargs.get('pk')})
-        if form.is_valid():
-            app = form.cleaned_data['app']
-            self.check_object_permissions(request, app)
-            client = get_client()
+        if not self.app:
+            return Response('', status=400)
 
-            res = client.api.bango.status.post(
-                    data={'seller_product_bango':
-                          app.app_payment_account.account_uri})
+        self.check_object_permissions(request, self.app)
+        client = get_client()
 
-            filtered = {
-                'bango': {
-                    'status': PAYMENT_STATUSES[res['status']],
-                    'errors': ''
-                },
-            }
-            return Response(filtered, status=200)
+        res = client.api.bango.status.post(
+                data={'seller_product_bango':
+                      self.app.app_payment_account.account_uri})
 
-        return Response(form.errors, status=400)
+        filtered = {
+            'bango': {
+                'status': PAYMENT_STATUSES[res['status']],
+                'errors': ''
+            },
+        }
+        return Response(filtered, status=200)
+
+
+class PaymentDebugViewSet(AppViewSet):
+    permission_classes = (partial(PermissionAuthorization,
+                                  'Transaction', 'Debug',),)
+    form = PaymentCheckForm
+
+    def list(self, request, *args, **kwargs):
+        if not self.app:
+            return Response('', status=400)
+
+        client = get_client()
+        res = client.api.bango.debug.get(
+                data={'seller_product_bango':
+                      self.app.app_payment_account.account_uri})
+        filtered = {
+            'bango': res['bango'],
+        }
+        return Response(filtered, status=200)
