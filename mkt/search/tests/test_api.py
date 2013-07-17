@@ -29,6 +29,7 @@ class TestApi(BaseOAuth, ESTestCase):
     fixtures = fixture('webapp_337141')
 
     def setUp(self):
+        super(TestApi, self).setUp()
         self.client = OAuthClient(None)
         self.url = list_url('search')
         self.webapp = Webapp.objects.get(pk=337141)
