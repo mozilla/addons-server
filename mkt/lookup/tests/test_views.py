@@ -267,6 +267,11 @@ class TestTransactionSearch(TestCase):
         r = self.client.get(self.url, {'q': self.uuid})
         eq_(r.status_code, 403)
 
+        self.client.login(username='operator@mozilla.com',
+                          password='password')
+        r = self.client.get(self.url, {'q': self.uuid})
+        eq_(r.status_code, 403)
+
 
 #@mock.patch.object(settings, 'TASK_USER_ID', 999)
 class TestTransactionSummary(TestCase):
@@ -330,6 +335,11 @@ class TestTransactionSummary(TestCase):
 
     def test_no_perm_403(self):
         self.client.login(username='regular@mozilla.com',
+                          password='password')
+        r = self.client.get(self.url)
+        eq_(r.status_code, 403)
+
+        self.client.login(username='operator@mozilla.com',
                           password='password')
         r = self.client.get(self.url)
         eq_(r.status_code, 403)
@@ -496,7 +506,8 @@ class TestTransactionRefund(TestCase):
 
 
 class TestAppSearch(ESTestCase, SearchTestMixin):
-    fixtures = fixture('user_support_staff', 'user_999', 'webapp_337141')
+    fixtures = fixture('user_support_staff', 'user_999', 'webapp_337141',
+                       'user_operator')
 
     @classmethod
     def setUpClass(cls):
@@ -551,6 +562,12 @@ class TestAppSearch(ESTestCase, SearchTestMixin):
         data = self.search(q=self.app.pk)
         self.verify_result(data)
 
+    def test_operator(self):
+        assert self.client.login(username='operator@mozilla.com',
+                                 password='password')
+        data = self.search(q=self.app.pk)
+        self.verify_result(data)
+
 
 class AppSummaryTest(TestCase):
     # TODO: Override in subclasses to convert to new fixture style.
@@ -573,7 +590,7 @@ class AppSummaryTest(TestCase):
 
 class TestAppSummary(AppSummaryTest):
     fixtures = fixture('prices', 'user_admin', 'user_support_staff',
-                       'webapp_337141')
+                       'webapp_337141', 'user_operator')
 
     def setUp(self):
         super(TestAppSummary, self).setUp()
@@ -652,6 +669,12 @@ class TestAppSummary(AppSummaryTest):
         res = self.summary()
         eq_(pq(res.content)('.shortcuts li').length, 4)
         eq_(pq(res.content)('.shortcuts li').eq(3).text(), 'Edit Listing')
+
+    def test_operator_200(self):
+        assert self.client.login(username='operator@mozilla.com',
+                                 password='password')
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
 
 
 class DownloadSummaryTest(AppSummaryTest):

@@ -1,9 +1,9 @@
 [
     {
-        "pk": 15,
+        "pk": 322,
         "model": "auth.user",
         "fields": {
-            "username": "support_staff",
+            "username": "operator",
             "first_name": "",
             "last_name": "",
             "is_active": true,
@@ -13,12 +13,12 @@
             "groups": [],
             "user_permissions": [],
             "password": "sha1$a04e0$0512298efb3e6e7dbace3976474151d396078fdd",
-            "email": "support-staff@mozilla.com",
+            "email": "operator@mozilla.com",
             "date_joined": "2012-03-22 15:58:36"
         }
     },
     {
-        "pk": 15,
+        "pk": 322,
         "model": "users.userprofile",
         "fields": {
             "display_collections_fav": false,
@@ -30,9 +30,9 @@
             "picture_type": "",
             "averagerating": null,
             "homepage": "",
-            "email": "support-staff@mozilla.com",
+            "email": "operator@mozilla.com",
             "notifycompat": true,
-            "username": "support_staff",
+            "username": "operator",
             "bio": null,
             "failed_login_attempts": 0,
             "deleted": false,
@@ -48,26 +48,26 @@
             "modified": "2012-05-22 14:59:28",
             "last_login_ip": "127.0.0.1",
             "notifyevents": true,
-            "user": 15
+            "user": 322
         }
     },
     {
-        "pk": 50059,
+        "pk": 322,
         "model": "access.group",
         "fields": {
-            "rules": "AccountLookup:View,Apps:Configure,Transaction:Refund,Transaction:View,Lookup:View,AppLookup:View",
+            "rules": "AppLookup:View,Lookup:View",
             "notes": "",
             "modified": "2012-05-22 17:53:57",
-            "name": "Support Staff",
+            "name": "Operator",
             "created": "2012-05-22 17:53:57"
         }
     },
     {
-        "pk": 6,
+        "pk": 322,
         "model": "access.groupuser",
         "fields": {
-            "group": 50059,
-            "user": 15
+            "group": 322,
+            "user": 322
         }
     }
 ]

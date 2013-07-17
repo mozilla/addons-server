@@ -41,7 +41,7 @@ log = commonware.log.getLogger('z.lookup')
 
 
 @login_required
-@permission_required('AccountLookup', 'View')
+@permission_required('Lookup', 'View')
 def home(request):
     tx_form = TransactionSearchForm()
 
@@ -204,7 +204,7 @@ def transaction_refund(request, tx_uuid):
 
 
 @login_required
-@permission_required('AccountLookup', 'View')
+@permission_required('AppLookup', 'View')
 def app_summary(request, addon_id):
     app = get_object_or_404(Addon, pk=addon_id)
     authors = (app.authors.filter(addonuser__role__in=(amo.AUTHOR_ROLE_DEV,
@@ -319,7 +319,7 @@ def transaction_search(request):
 
 
 @login_required
-@permission_required('AccountLookup', 'View')
+@permission_required('AppLookup', 'View')
 @json_view
 def app_search(request):
     results = []
