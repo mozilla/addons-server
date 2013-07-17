@@ -379,7 +379,7 @@ class TestWebapp(amo.tests.TestCase):
         # and only in US region.
         for abbr, region in mkt.regions.REGIONS_CHOICES:
             self.assertSetEqual(
-                [a.id for a in Webapp.featured(cat=[cat.slug], region=region)],
+                [a.id for a in Webapp.featured(cat=[cat], region=region)],
                 creatured_ids if abbr == 'us' else [])
 
     def test_featured_no_creatured(self):
@@ -1216,7 +1216,7 @@ class TestWebappIndexer(amo.tests.TestCase):
         AddonCategory.objects.create(addon=self.app, category=cat)
 
         obj, doc = self._get_doc()
-        eq_(doc['category'], [cat.slug])
+        eq_(doc['category'], [cat.id])
 
     def test_extract_device(self):
         device = DEVICE_TYPES.keys()[0]

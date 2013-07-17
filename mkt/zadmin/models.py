@@ -89,10 +89,11 @@ class FeaturedAppQuerySet(models.query.QuerySet):
         return qs
 
     def featured_ids(self, cat=None, region=None, profile=None):
+
         carrier = get_carrier_id()
         cache_key = 'featured:%s:%s:%s:%s' % (
             region.id if region else 0,
-            ','.join(cat) if cat else 0,
+            ','.join(map(str, cat)) if cat else 0,
             profile.to_signature() if profile else 0,
             carrier if carrier else 0)
 
@@ -179,10 +180,10 @@ class FeaturedAppQuerySet(models.query.QuerySet):
     def for_category(self, cats):
         """
         Removes features in the queryset that are not in the passed
-        categories. The passed category is a list of category slugs.
+        categories. The passed category is a list of category IDs.
         """
         if cats:
-            return self.filter(category__slug__in=cats)
+            return self.filter(category__in=cats)
         return self.filter(category__isnull=True)
 
 

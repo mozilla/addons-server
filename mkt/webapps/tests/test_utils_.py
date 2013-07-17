@@ -106,14 +106,6 @@ class TestAppToDict(amo.tests.TestCase):
                             res['versions'].keys())
         eq_(res['current_version'], v.version)
 
-    def test_categories(self):
-        cat1 = Category.objects.create(type=amo.ADDON_WEBAPP, slug='cat1')
-        cat2 = Category.objects.create(type=amo.ADDON_WEBAPP, slug='cat2')
-        AddonCategory.objects.create(addon=self.app, category=cat1)
-        AddonCategory.objects.create(addon=self.app, category=cat2)
-        res = app_to_dict(self.app)
-        self.assertSetEqual(res['categories'], ['cat1', 'cat2'])
-
 
 @override_settings(PURCHASE_ENABLED_REGIONS=[regions.US.id, regions.PL.id])
 class TestAppToDictPrices(amo.tests.TestCase):

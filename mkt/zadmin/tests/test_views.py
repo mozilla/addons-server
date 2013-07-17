@@ -94,10 +94,9 @@ class TestFeaturedApps(amo.tests.TestCase):
     fixtures = ['base/users']
 
     def setUp(self):
-        self.c1 = Category.objects.create(name='awesome', slug='awesome',
+        self.c1 = Category.objects.create(name='awesome',
                                           type=amo.ADDON_WEBAPP)
-        self.c2 = Category.objects.create(name='groovy', slug='groovy',
-                                          type=amo.ADDON_WEBAPP)
+        self.c2 = Category.objects.create(name='groovy', type=amo.ADDON_WEBAPP)
 
         self.a1 = Webapp.objects.create(status=amo.STATUS_PUBLIC,
                                         name='awesome app 1',
@@ -154,7 +153,7 @@ class TestFeaturedApps(amo.tests.TestCase):
                 'Unexpected status code for %s URL' % url)
 
     def test_get_featured_apps(self):
-        r = self.client.get(urlparams(self.url, category=self.c1.slug))
+        r = self.client.get(urlparams(self.url, category=self.c1.id))
         assert not r.content
 
         FeaturedApp.objects.create(app=self.a1, category=self.c1)
@@ -189,7 +188,7 @@ class TestFeaturedApps(amo.tests.TestCase):
                                           category=None).exists()
 
         self.client.post(self.url,
-                         {'category': self.c1.slug,
+                         {'category': self.c1.id,
                           'add': self.a1.id})
         assert FeaturedApp.objects.filter(app=self.a1,
                                           category=self.c1).exists()
@@ -206,7 +205,7 @@ class TestFeaturedApps(amo.tests.TestCase):
                                           category=self.c1).exists()
         FeaturedApp.objects.create(app=self.a1, category=None)
         self.client.post(self.url,
-                         {'category': self.c1.slug,
+                         {'category': self.c1.id,
                           'delete': self.a1.id})
         assert not FeaturedApp.objects.filter(app=self.a1,
                                               category=self.c1).exists()
@@ -283,10 +282,9 @@ class TestFeaturedApps(amo.tests.TestCase):
 class TestFeaturedAppQueryset(amo.tests.TestCase):
 
     def setUp(self):
-        self.c1 = Category.objects.create(name='awesome', slug='awesome',
+        self.c1 = Category.objects.create(name='awesome',
                                           type=amo.ADDON_WEBAPP)
-        self.c2 = Category.objects.create(name='groovy', slug='groovy',
-                                          type=amo.ADDON_WEBAPP)
+        self.c2 = Category.objects.create(name='groovy', type=amo.ADDON_WEBAPP)
 
         self.a1 = Webapp.objects.create(status=amo.STATUS_PUBLIC,
                                         name='awesome app 1',
@@ -347,9 +345,8 @@ class TestFeaturedAppQueryset(amo.tests.TestCase):
         return all(item in temp for item in x)
 
     def test_queryset_for_category(self):
-        self.assertQuerySetEqual(
-            FeaturedApp.objects.for_category([self.c1.slug]),
-            FeaturedApp.objects.filter(category=self.c1))
+        self.assertQuerySetEqual(FeaturedApp.objects.for_category([self.c1]),
+                                 FeaturedApp.objects.filter(category=self.c1))
 
     def test_queryset_for_no_category(self):
         FeaturedApp.objects.create(app=self.g1, category=None)
@@ -414,7 +411,7 @@ class TestFeaturedAppQueryset(amo.tests.TestCase):
         carrier = 'telerizon'
         either_cat = [self.c1, self.c2]
         assert self._is_overlap(
-            FeaturedApp.objects.for_category([self.c1.slug]),
+            FeaturedApp.objects.for_category([self.c1]),
             FeaturedApp.objects.featured(cat=[self.c1])
         ), 'Unexpected items in category %s' % self.c1
         assert self._is_overlap(
@@ -526,9 +523,9 @@ class TestFeaturedSuggestions(amo.tests.ESTestCase):
         super(TestFeaturedSuggestions, self).setUp()
         self.url = reverse('zadmin.featured_suggestions')
 
-        self.c1 = Category.objects.create(name='groovy', slug='groovy',
+        self.c1 = Category.objects.create(name='groovy',
             type=amo.ADDON_WEBAPP)
-        self.c2 = Category.objects.create(name='awesome', slug='awesome',
+        self.c2 = Category.objects.create(name='awesome',
             type=amo.ADDON_WEBAPP)
 
         self.w1 = Webapp.objects.create(status=amo.STATUS_PUBLIC,
@@ -571,9 +568,9 @@ class TestFeaturedSuggestions(amo.tests.ESTestCase):
 
     def test_with_category(self):
         self._login()
-        self.check_suggestions(self.url, 'q=app&category=%s' % self.c1.slug,
+        self.check_suggestions(self.url, 'q=app&category=%d' % self.c1.id,
                                apps=[self.w1])
-        self.check_suggestions(self.url, 'q=app&category=%s' % self.c2.slug,
+        self.check_suggestions(self.url, 'q=app&category=%d' % self.c2.id,
                                apps=[self.w2])
 
     def test_access(self):

@@ -296,7 +296,7 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         eq_(res.status_code, 200)
         data = json.loads(res.content)
         self.assertSetEqual(data['categories'],
-                            [c.slug for c in self.categories])
+                            [c.pk for c in self.categories])
         eq_(data['current_version'], app.current_version.version)
         self.assertSetEqual(data['device_types'],
                             [n.api_name for n in amo.DEVICE_TYPES.values()])
