@@ -212,6 +212,9 @@ def status(request, addon_id, addon, webapp=False):
             return redirect(addon.get_dev_url('versions'))
 
         elif 'upload-version' in request.POST and upload_form.is_valid():
+            mobile_only = (addon.latest_version and
+                           addon.latest_version.features.has_qhd)
+
             ver = Version.from_upload(upload_form.cleaned_data['upload'],
                                       addon, [amo.PLATFORM_ALL])
 
@@ -222,6 +225,13 @@ def status(request, addon_id, addon, webapp=False):
             keys = ['has_%s' % feature.lower()
                     for feature in validation_result['feature_profile']]
             data = defaultdict.fromkeys(keys, True)
+
+            # Set "Smartphone-Sized Displays" if it's a mobile-only app.
+            qhd_devices = (set(amo.DEVICE_GAIA),
+                           set(amo.DEVICE_MOBILE),
+                           set(amo.DEVICE_GAIA, amo.DEVICE_MOBILE))
+            if set(addon.device_types) in qhd_devices or mobile_only:
+                data['has_qhd'] = True
 
             # Update feature profile for this version.
             ver.features.update(**data)
