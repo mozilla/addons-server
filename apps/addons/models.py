@@ -1394,6 +1394,9 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                 pass
         return ''
 
+    def get_mozilla_contacts(self):
+        return [x.strip() for x in self.mozilla_contact.split(',')]
+
     @amo.cached_property
     def upsell(self):
         """Return the upsell or add-on, or None if there isn't one."""

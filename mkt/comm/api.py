@@ -1,5 +1,3 @@
-from functools import partial
-
 from django.db.models import Q
 from django.http import Http404
 from django.shortcuts import get_object_or_404
@@ -10,14 +8,13 @@ from rest_framework.filters import OrderingFilter
 from rest_framework.mixins import (CreateModelMixin, DestroyModelMixin,
                                    ListModelMixin, RetrieveModelMixin)
 from rest_framework.permissions import BasePermission
-from rest_framework.relations import HyperlinkedRelatedField, RelatedField
+from rest_framework.relations import RelatedField
 from rest_framework.serializers import ModelSerializer, SerializerMethodField
 
-from access import acl
 from addons.models import Addon
 from users.models import UserProfile
-from comm.models import (CommunicationNote, CommunicationThread,
-                         CommunicationThreadCC, CommunicationThreadToken)
+from comm.models import CommunicationNote, CommunicationThread
+from comm.utils import ThreadObjectPermission
 from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.base import CORSViewSet
@@ -70,23 +67,11 @@ class ThreadSerializer(ModelSerializer):
         return obj.notes.count()
 
 
-class ThreadPermission(BasePermission):
+class ThreadPermission(BasePermission, ThreadObjectPermission):
     """
     Permission wrapper for checking if the authenticated user has the
     permission to view the thread.
     """
-
-    def check_acls(self, request, obj, acl_type):
-        if acl_type == 'moz_contact':
-            return request.user.email == obj.addon.mozilla_contact
-        elif acl_type == 'admin':
-            return acl.action_allowed(request, 'Admin', '%')
-        elif acl_type == 'reviewer':
-            return acl.action_allowed(request, 'Apps', 'Review')
-        elif acl_type == 'senior_reviewer':
-            return acl.action_allowed(request, 'Apps', 'ReviewEscalated')
-        else:
-            raise 'Invalid ACL lookup.'
 
     def has_permission(self, request, view):
         # Let `has_object_permission` handle the permissions when we retrieve
@@ -101,47 +86,12 @@ class ThreadPermission(BasePermission):
     def has_object_permission(self, request, view, obj):
         """
         Make sure we give correct permissions to read/write the thread.
-
-        Developers of the add-on used in the thread, users in the CC list,
-        and users who post to the thread are allowed to access the object.
-
-        Moreover, other object permissions are also checked agaisnt the ACLs
-        of the user.
         """
         if not request.user.is_authenticated() or obj.read_permission_public:
             return obj.read_permission_public
 
         profile = request.amo_user
-        user_post = CommunicationNote.objects.filter(author=profile,
-            thread=obj)
-        user_cc = CommunicationThreadCC.objects.filter(user=profile,
-            thread=obj)
-
-        if user_post.exists() or user_cc.exists():
-            return True
-
-        check_acls = partial(self.check_acls, request, obj)
-
-        # User is a developer of the add-on and has the permission to read.
-        user_is_author = profile.addons.filter(pk=obj.addon_id)
-        if obj.read_permission_developer and user_is_author.exists():
-            return True
-
-        if obj.read_permission_reviewer and check_acls('reviewer'):
-            return True
-
-        if (obj.read_permission_senior_reviewer and check_acls(
-            'senior_reviewer')):
-            return True
-
-        if (obj.read_permission_mozilla_contact and check_acls(
-            'moz_contact')):
-            return True
-
-        if obj.read_permission_staff and check_acls('admin'):
-            return True
-
-        return False
+        return self.user_has_permission(obj, profile)
 
 
 class NotePermission(ThreadPermission):

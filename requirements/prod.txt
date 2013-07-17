@@ -40,6 +40,7 @@ django-tastypie==0.9.11
 django-waffle==0.9.1
 easy-thumbnails==1.1
 elasticutils==0.7
+email-reply-parser==0.1.9
 fastchardet==0.2.0
 feedparser==5.0.1
 fudge==1.0.3

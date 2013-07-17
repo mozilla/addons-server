@@ -7,10 +7,9 @@ from test_utils import RequestFactory
 
 from amo.tests import addon_factory
 from comm.models import (CommunicationNote, CommunicationThread,
-                         CommunicationThreadCC, CommunicationThreadToken)
+                         CommunicationThreadCC)
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.comm.api import ThreadPermission
-from mkt.constants import comm as const
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
 
@@ -75,7 +74,7 @@ class TestThreadDetail(RestOAuth):
     def test_read_moz_contact(self):
         thread = CommunicationThread.objects.create(addon=self.addon,
             read_permission_mozilla_contact=True)
-        thread.addon.mozilla_contact = self.user.email
+        thread.addon.mozilla_contact = self.profile.email
         thread.addon.save()
         self.thread = thread
         assert self.check_permissions()
@@ -139,7 +138,6 @@ class TestThreadList(RestOAuth):
         eq_(res.status_code, 404)
 
     def test_creation(self):
-        thread = CommunicationThread.objects.create(addon=self.addon)
         version = self.addon.current_version
         res = self.client.post(self.list_url, data=json.dumps(
             {'addon': self.addon.id, 'version': version.id}))
