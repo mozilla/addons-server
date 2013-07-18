@@ -160,12 +160,12 @@ class TestFeaturedApps(amo.tests.TestCase):
         FeaturedApp.objects.create(app=self.a1, category=self.c1)
         FeaturedApp.objects.create(app=self.s1, category=self.c2,
                                    is_sponsor=True)
-        r = self.client.get(urlparams(self.url, category=self.c1.id))
+        r = self.client.get(urlparams(self.url, category=self.c1.slug))
         doc = pq(r.content)
         eq_(len(doc), 1)
         eq_(doc('h2').text(), 'awesome app 1')
 
-        r = self.client.get(urlparams(self.url, category=self.c2.id))
+        r = self.client.get(urlparams(self.url, category=self.c2.slug))
         doc = pq(r.content)
         eq_(len(doc), 1)
         eq_(doc('h2').text(), 'splendid app 1')
