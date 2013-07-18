@@ -59,6 +59,12 @@ def file_review_status(addon, file):
 
 
 @register.function
+def version_status(addon, version):
+    return ','.join([unicode(file_review_status(addon, file)) for file in
+                     version.all_files])
+
+
+@register.function
 @jinja2.contextfunction
 def editor_page_title(context, title=None, addon=None):
     """Wrapper for editor page titles.  Eerily similar to dev_page_title."""
