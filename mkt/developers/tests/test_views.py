@@ -523,12 +523,32 @@ class TestPubliciseVersion(amo.tests.TestCase):
 
     @mock.patch('mkt.webapps.models.Webapp.update_supported_locales')
     @mock.patch('mkt.webapps.models.Webapp.update_name_from_package_manifest')
-    def test_publicise_version_cur_waiting(self, update_name, update_locales):
+    def test_publicise_version_cur_waiting_app_public(self, update_name,
+                                                      update_locales):
+        eq_(self.app.status, amo.STATUS_PUBLIC)
         File.objects.filter(version__addon=self.app).update(
             status=amo.STATUS_PUBLIC_WAITING)
+        eq_(self.app.current_version, self.app.latest_version)
         res = self.post()
         eq_(res.status_code, 302)
+        eq_(self.app.current_version, self.app.latest_version)
         eq_(self.get_version_status(), amo.STATUS_PUBLIC)
+        eq_(self.app.reload().status, amo.STATUS_PUBLIC)
+        assert update_name.called
+        assert update_locales.called
+
+    @mock.patch('mkt.webapps.models.Webapp.update_supported_locales')
+    @mock.patch('mkt.webapps.models.Webapp.update_name_from_package_manifest')
+    def test_publicise_version_cur_waiting(self, update_name, update_locales):
+        self.app.update(status=amo.STATUS_PUBLIC_WAITING)
+        File.objects.filter(version__addon=self.app).update(
+            status=amo.STATUS_PUBLIC_WAITING)
+        eq_(self.app.current_version, self.app.latest_version)
+        res = self.post()
+        eq_(res.status_code, 302)
+        eq_(self.app.current_version, self.app.latest_version)
+        eq_(self.get_version_status(), amo.STATUS_PUBLIC)
+        eq_(self.app.reload().status, amo.STATUS_PUBLIC)
         assert update_name.called
         assert update_locales.called
 

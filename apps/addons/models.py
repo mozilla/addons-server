@@ -587,8 +587,14 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         if self.type == amo.ADDON_PERSONA:
             return
         try:
-            if self.status in (amo.STATUS_PUBLIC, amo.STATUS_PUBLIC_WAITING):
+            if self.status == amo.STATUS_PUBLIC:
                 status = [self.status]
+            elif self.status == amo.STATUS_PUBLIC_WAITING:
+                # For public_waiting apps, accept both public and
+                # public_waiting statuses, because the file status might be
+                # changed from PUBLIC_WAITING to PUBLIC just before the app's
+                # is.
+                status = amo.WEBAPPS_APPROVED_STATUSES
             elif self.status in (amo.STATUS_LITE,
                                  amo.STATUS_LITE_AND_NOMINATED):
                 status = [amo.STATUS_PUBLIC, amo.STATUS_LITE,

@@ -312,6 +312,14 @@ def version_publicise(request, addon_id, addon):
                 version)
         # Call update_version, so various other bits of data update.
         addon.update_version()
+
+        # If the version we are publishing is the current_version one, and the
+        # app was in waiting state as well, update the app status.
+        if (version == addon.current_version and
+                addon.status == amo.STATUS_PUBLIC_WAITING):
+            addon.update(status=amo.STATUS_PUBLIC)
+            amo.log(amo.LOG.CHANGE_STATUS, addon.get_status_display(), addon)
+
         # Call to update names and locales if changed.
         addon.update_name_from_package_manifest()
         addon.update_supported_locales()
