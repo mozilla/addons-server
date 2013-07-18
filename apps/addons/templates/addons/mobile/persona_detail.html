@@ -35,7 +35,6 @@
 {% endif %}
 
 <div id="more-personas">
-  {% cache author_personas %}
     {% if author_personas %}
     <div id="more-artist" class="listview">
       <ul>
@@ -52,9 +51,7 @@
       </ul>
     </div>
     {% endif %}
-  {% endcache %}
 
-  {% cache category_personas %}
     {% if category_personas %}
     <div id="more-category" class="listview item">
       <ul>
@@ -70,7 +67,6 @@
       </ul>
     </div>
     {% endif %}
-  {% endcache %}
 </div>
 
 {% endblock %}
