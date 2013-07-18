@@ -48,6 +48,13 @@ def file_review_status(addon, file):
                               amo.STATUS_LITE_AND_NOMINATED,
                               amo.STATUS_PUBLIC]:
             return _(u'Pending Full Review')
+    if file.status in [amo.STATUS_DISABLED, amo.STATUS_REJECTED]:
+        if file.reviewed is not None:
+            return _(u'Rejected')
+        # Can't assume that if the reviewed date is missing its
+        # unreviewed.  Especially for versions.
+        else:
+            return _(u'Rejected or Unreviewed')
     return amo.STATUS_CHOICES[file.status]
 
 
