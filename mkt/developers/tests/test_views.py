@@ -928,8 +928,9 @@ class TestUpload(BaseUploadTest):
         eq_(msg['type'], u'warning')
         eq_(msg['message'], u'60x60px icon should be provided for Firefox OS.')
         eq_(msg['description'],
-            'An icon of size 60x60 should be provided for the app. Firefox OS '
-            'will look for this icon size before any other.')
+            ['An icon of size 60x60 should be provided for the app. Firefox OS '
+             'will look for this icon size before any other.',
+             'http://www.mozilla.org/styleguide/products/firefoxos/icons/'])
 
     def test_redirect(self):
         r = self.post()
