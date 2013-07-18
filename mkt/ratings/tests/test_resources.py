@@ -1,6 +1,7 @@
 from datetime import datetime
 import json
 
+from mock import patch
 from nose.tools import eq_
 
 import amo
@@ -90,10 +91,12 @@ class TestRatingResource(BaseOAuth, AMOPaths):
         res, data = self._get_single(app=self.app.app_slug)
         eq_(res.status_code, 400)
 
-    def test_get_nonregion(self):
+    @patch('mkt.regions.get_region')
+    def test_get_nonregion(self, get_region_mock):
         AddonExcludedRegion.objects.create(addon=self.app,
                                            region=mkt.regions.BR.id)
         self.client.cookies['region'] = 'br'
+        get_region_mock.return_value = 'br'
         res, data = self._get_single(app=self.app.app_slug)
         eq_(res.status_code, 400)
 
@@ -194,10 +197,12 @@ class TestRatingResource(BaseOAuth, AMOPaths):
         eq_(400, res.status_code)
         assert 'app' in data['error_message']
 
-    def test_create_for_nonregion(self):
+    @patch('mkt.regions.get_region')
+    def test_create_for_nonregion(self, get_region_mock):
         AddonExcludedRegion.objects.create(addon=self.app,
                                            region=mkt.regions.BR.id)
         self.client.cookies['region'] = 'br'
+        get_region_mock.return_value = 'br'
         res, data = self._create()
         eq_(400, res.status_code)
 
