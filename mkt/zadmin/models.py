@@ -100,8 +100,10 @@ class FeaturedAppQuerySet(models.query.QuerySet):
         if val is not None:
             return val
 
-        val = self.featured(cat=cat, region=region,
-                            profile=profile).values_list('app_id', flat=True)
+        val = list(self.featured(
+            cat=cat, region=region,
+            profile=profile).values_list('app_id', flat=True))
+
         cache.set(cache_key, val, settings.CACHE_SEARCH_FEATURED_API_TIMEOUT)
         return val
 
