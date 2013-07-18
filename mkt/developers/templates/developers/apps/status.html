@@ -213,7 +213,7 @@
           </p>
           <div id="upload-file">
             <div class="hidden">{{ upload_form.upload }}</div>
-            <input type="file" id="upload-app" data-upload-url="{{ url('mkt.developers.upload') }}">
+            <input type="file" id="upload-app" data-upload-url="{{ url('mkt.developers.upload_for_addon', addon.app_slug) }}">
             {% if upload_form.non_field_errors() or upload_form.upload.errors %}
               <div class="post-validation-errors">
                 {{ upload_form.non_field_errors() }}

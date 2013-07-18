@@ -435,6 +435,7 @@ class NewPackagedAppForm(happyforms.Form):
     def __init__(self, *args, **kwargs):
         self.max_size = kwargs.pop('max_size', MAX_PACKAGED_APP_SIZE)
         self.user = kwargs.pop('user', get_user())
+        self.addon = kwargs.pop('addon', None)
         self.file_upload = None
         super(NewPackagedAppForm, self).__init__(*args, **kwargs)
 
@@ -475,7 +476,7 @@ class NewPackagedAppForm(happyforms.Form):
 
         if origin:
             try:
-                verify_app_domain(origin, packaged=True)
+                verify_app_domain(origin, packaged=True, exclude=self.addon)
             except forms.ValidationError, e:
                 errors.append({
                     'type': 'error',

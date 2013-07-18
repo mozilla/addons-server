@@ -432,17 +432,18 @@ def validate_addon(request):
 
 
 @post_required
-def _upload(request, addon_slug=None, is_standalone=False):
+def _upload(request, addon=None, is_standalone=False):
 
     # If there is no user, default to None (saves the file upload as anon).
     form = NewPackagedAppForm(request.POST, request.FILES,
-                              user=getattr(request, 'amo_user', None))
+                              user=getattr(request, 'amo_user', None),
+                              addon=addon)
     if form.is_valid():
         tasks.validator.delay(form.file_upload.pk)
 
-    if addon_slug:
+    if addon:
         return redirect('mkt.developers.upload_detail_for_addon',
-                        addon_slug, form.file_upload.pk)
+                        addon.app_slug, form.file_upload.pk)
     elif is_standalone:
         return redirect('mkt.developers.standalone_upload_detail',
                         'packaged', form.file_upload.pk)
@@ -463,7 +464,7 @@ def standalone_packaged_upload(request):
 
 @dev_required
 def upload_for_addon(request, addon_id, addon):
-    return _upload(request, addon_slug=addon.slug)
+    return _upload(request, addon=addon)
 
 
 @dev_required
