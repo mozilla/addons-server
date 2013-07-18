@@ -3,7 +3,7 @@ from datetime import datetime
 
 from django.contrib.auth.models import User
 
-from mock import Mock
+from mock import Mock, patch
 from nose.tools import eq_, ok_
 
 import amo
