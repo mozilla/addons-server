@@ -99,12 +99,12 @@ class TestAppToDict(amo.tests.TestCase):
                             res['versions'].keys())
 
     def test_versions_multiple(self):
-        v = Version.objects.create(addon=self.app, version='1.9')
-        self.app.update(_current_version=v, latest_version=v)
+        ver = Version.objects.create(addon=self.app, version='1.9')
+        self.app.update(_current_version=ver, latest_version=ver)
         res = app_to_dict(self.app)
         self.assertSetEqual([v.version for v in self.app.versions.all()],
                             res['versions'].keys())
-        eq_(res['current_version'], v.version)
+        eq_(res['current_version'], ver.version)
 
 
 @override_settings(PURCHASE_ENABLED_REGIONS=[regions.US.id, regions.PL.id])
