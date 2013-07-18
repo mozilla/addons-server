@@ -227,9 +227,9 @@ def status(request, addon_id, addon, webapp=False):
             data = defaultdict.fromkeys(keys, True)
 
             # Set "Smartphone-Sized Displays" if it's a mobile-only app.
-            qhd_devices = (set(amo.DEVICE_GAIA),
-                           set(amo.DEVICE_MOBILE),
-                           set(amo.DEVICE_GAIA, amo.DEVICE_MOBILE))
+            qhd_devices = (set((amo.DEVICE_GAIA,)),
+                           set((amo.DEVICE_MOBILE,)),
+                           set((amo.DEVICE_GAIA, amo.DEVICE_MOBILE,)))
             if set(addon.device_types) in qhd_devices or mobile_only:
                 data['has_qhd'] = True
 
