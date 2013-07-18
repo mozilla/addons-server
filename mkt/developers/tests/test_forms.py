@@ -532,7 +532,9 @@ class TestAppFormBasic(amo.tests.TestCase):
 class TestAppVersionForm(amo.tests.TestCase):
     def setUp(self):
         self.request = mock.Mock()
-        self.app = app_factory(make_public=amo.PUBLIC_IMMEDIATELY)
+        self.app = app_factory(make_public=amo.PUBLIC_IMMEDIATELY,
+                               created=self.days_ago(5))
+        self.app.current_version.update(created=self.app.created)
         version_factory(addon=self.app, version='2.0',
                         file_kw=dict(status=amo.STATUS_PENDING))
         self.app.reload()
@@ -550,6 +552,7 @@ class TestAppVersionForm(amo.tests.TestCase):
         eq_(form.fields['publish_immediately'].initial, False)
 
     def test_post_publish(self):
+        # Using the latest_version, which is pending.
         form = self.get_form(self.app.latest_version,
                              data={'publish_immediately': True})
         eq_(form.is_valid(), True)
@@ -565,6 +568,7 @@ class TestAppVersionForm(amo.tests.TestCase):
         eq_(self.app.make_public, amo.PUBLIC_WAIT)
 
     def test_post_publish_not_pending(self):
+        # Using the current_version, which is public.
         form = self.get_form(self.app.current_version,
                              data={'publish_immediately': False})
         eq_(form.is_valid(), True)
