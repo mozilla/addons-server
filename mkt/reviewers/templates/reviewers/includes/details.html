@@ -24,7 +24,7 @@
     <dt>{{ _('Manifest URL') }}</dt>
     <dd>
       {% if product.is_packaged %}
-        <a target="_blank" href="{{ product.get_manifest_url(True) }}">{{ _('Mini-manifest') }}</a>
+        <a target="_blank" href="{{ product.get_manifest_url(True) }}">{{ product.get_manifest_url(True) }}</a>
       {% else %}
         <a target="_blank" href="{{ product.manifest_url }}">{{ product.manifest_url }}</a>
       {% endif %}
