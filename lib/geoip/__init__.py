@@ -33,11 +33,14 @@ class GeoIP:
                                         timeout=self.timeout,
                                         data={'ip': address})
                 except requests.Timeout:
+                    statsd.incr('z.geoip.timeout')
                     log.error(('Geodude timed out looking up: {0}'
                                .format(address)))
                 except requests.RequestException as e:
+                    statsd.incr('z.geoip.error')
                     log.error('Geodude connection error: {0}'.format(str(e)))
                 if res and res.status_code == 200:
+                    statsd.incr('z.geoip.success')
                     return res.json().get('country_code',
-                                        self.default_val).lower()
+                                          self.default_val).lower()
         return self.default_val

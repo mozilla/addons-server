@@ -1,5 +1,7 @@
 from django.conf import settings
 
+from django_statsd.clients import statsd
+
 from lib.geoip import GeoIP
 
 import mkt
@@ -26,15 +28,14 @@ class RegionMiddleware(object):
 
         # ?region= -> cookie -> geoip -> lang
         url_region = request.REQUEST.get('region')
-        cookie_region = request.COOKIES.get('region')
         if url_region in regions:
+            statsd.incr('z.regions.middleware.source.url')
             reg = url_region
-        elif cookie_region in regions:
-            reg = stored_reg = cookie_region
         else:
             reg = self.region_from_request(request)
             # If the above fails, let's try `Accept-Language`.
             if reg == worldwide:
+                statsd.incr('z.regions.middleware.source.accept-lang')
                 if request.LANG == settings.LANGUAGE_CODE:
                     choices = mkt.regions.REGIONS_CHOICES[1:]
                 else:
@@ -57,6 +58,8 @@ class RegionMiddleware(object):
                     and not a_l.startswith('en')):
                     # Let us default to worldwide if it's not English.
                     reg = mkt.regions.WORLDWIDE.slug
+            else:
+                statsd.incr('z.regions.middleware.source.geoip')
 
         # Update cookie if value have changed.
         if reg != stored_reg:
