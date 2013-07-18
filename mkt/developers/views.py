@@ -530,7 +530,7 @@ def standalone_upload_detail(request, type_, uuid):
 @json_view
 def upload_detail_for_addon(request, addon_id, addon, uuid):
     upload = get_object_or_404(FileUpload.uncached, uuid=uuid)
-    return json_upload_detail(request, upload, addon_slug=addon.slug)
+    return json_upload_detail(request, upload, addon=addon)
 
 
 def make_validation_result(data):
@@ -582,10 +582,7 @@ def json_file_validation(request, addon_id, addon, file_id):
 
 
 @json_view
-def json_upload_detail(request, upload, addon_slug=None):
-    addon = None
-    if addon_slug:
-        addon = get_object_or_404(Addon, slug=addon_slug)
+def json_upload_detail(request, upload, addon=None):
     result = upload_validation_context(request, upload, addon=addon)
     if result['validation']:
         if result['validation']['errors'] == 0:
@@ -602,10 +599,7 @@ def json_upload_detail(request, upload, addon_slug=None):
     return result
 
 
-def upload_validation_context(request, upload, addon_slug=None, addon=None,
-                              url=None):
-    if addon_slug and not addon:
-        addon = get_object_or_404(Addon, slug=addon_slug)
+def upload_validation_context(request, upload, addon=None, url=None):
     if not settings.VALIDATE_ADDONS:
         upload.task_error = ''
         upload.is_webapp = True
@@ -618,7 +612,7 @@ def upload_validation_context(request, upload, addon_slug=None, addon=None,
     if not url:
         if addon:
             url = reverse('mkt.developers.upload_detail_for_addon',
-                          args=[addon.slug, upload.uuid])
+                          args=[addon.app_slug, upload.uuid])
         else:
             url = reverse('mkt.developers.upload_detail',
                           args=[upload.uuid, 'json'])
