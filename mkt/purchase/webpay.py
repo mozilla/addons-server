@@ -14,8 +14,7 @@ import bleach
 import commonware.log
 from tower import ugettext as _
 
-from addons.decorators import (addon_view_factory, can_be_purchased,
-                               has_not_purchased)
+from addons.decorators import addon_view_factory, can_be_purchased
 import amo
 from amo.decorators import json_view, login_required, post_required, write
 from amo.helpers import absolutify
@@ -23,6 +22,7 @@ from amo.urlresolvers import reverse
 from lib.cef_loggers import app_pay_cef
 from lib.crypto.webpay import (InvalidSender, parse_from_webpay,
                                sign_webpay_jwt)
+from mkt.api.exceptions import AlreadyPurchased
 from mkt.webapps.models import Webapp
 from stats.models import ClientData, Contribution
 
@@ -71,9 +71,12 @@ def prepare_pay(request, addon):
 
 
 @can_be_purchased
-@has_not_purchased
 def _prepare_pay(request, addon):
     """Prepare a JWT to pass into navigator.pay()"""
+    if addon.is_premium() and addon.has_purchased(request.amo_user):
+        log.info('Already purchased: %d' % addon.pk)
+        raise AlreadyPurchased
+
     amount, currency, uuid_, contrib_for = start_purchase(request, addon)
     log.debug('Storing contrib for uuid: %s' % uuid_)
     Contribution.objects.create(addon_id=addon.id, amount=amount,

@@ -6,8 +6,8 @@ from django.shortcuts import get_object_or_404
 
 import waffle
 
-from addons.models import Addon
 import commonware.log
+from addons.models import Addon
 
 log = commonware.log.getLogger('mkt.purchase')
 
@@ -85,17 +85,6 @@ def has_purchased_or_refunded(f):
         if addon.is_premium() and not (addon.has_purchased(request.amo_user) or
                                        addon.is_refunded(request.amo_user)):
             log.info('Not purchased or refunded: %d' % addon.pk)
-            raise PermissionDenied
-        return f(request, addon, *args, **kw)
-    return wrapper
-
-
-def has_not_purchased(f):
-    """ The opposite of has_purchased. """
-    @functools.wraps(f)
-    def wrapper(request, addon, *args, **kw):
-        if addon.is_premium() and addon.has_purchased(request.amo_user):
-            log.info('Already purchased: %d' % addon.pk)
             raise PermissionDenied
         return f(request, addon, *args, **kw)
     return wrapper

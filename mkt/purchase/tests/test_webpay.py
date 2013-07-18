@@ -17,6 +17,8 @@ import amo
 from amo.helpers import absolutify
 from amo.tests import TestCase
 from amo.urlresolvers import reverse
+from market.models import AddonPurchase
+from mkt.api.exceptions import AlreadyPurchased
 from stats.models import Contribution
 
 from utils import PurchaseTest
@@ -103,6 +105,14 @@ class TestPurchase(PurchaseTest):
         data = self.get(reverse('webpay.pay_status',
                                 args=[self.addon.app_slug, uuid_]))
         eq_(data['status'], 'incomplete')
+
+    def test_status_for_already_purchased(self):
+        AddonPurchase.objects.create(addon=self.addon,
+                                     user=self.user,
+                                     type=amo.CONTRIB_PURCHASE)
+
+        with self.assertRaises(AlreadyPurchased):
+            self.client.post(self.prepare_pay)
 
     def test_pay_status_for_unknown_contrib(self):
         data = self.get(reverse('webpay.pay_status',

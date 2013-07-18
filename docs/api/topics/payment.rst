@@ -289,8 +289,8 @@ Produces the JWT that is passed to `navigator.mozPay`_.
 
     :status 201: successfully completed.
     :status 401: not authenticated.
-    :status 403: app cannot be purchased. This could be because the app has
-        already been purchased.
+    :status 403: app cannot be purchased.
+    :status 409: app already purchased.
 
 .. _payment-status-label:
 

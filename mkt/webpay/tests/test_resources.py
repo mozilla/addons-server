@@ -52,8 +52,11 @@ class TestPrepare(PurchaseTest, BaseOAuth):
     @patch('mkt.webapps.models.Webapp.has_purchased')
     def test_already_purchased(self, has_purchased):
         has_purchased.return_value = True
+        self.setup_base()
+        self.setup_package()
         res = self.client.post(self.list_url, data=json.dumps({'app': 337141}))
-        eq_(res.status_code, 403)
+        eq_(res.status_code, 409)
+        eq_(res.content, '{"reason": "Already purchased app."}')
 
     def _post(self):
         return self.client.post(self.list_url,
