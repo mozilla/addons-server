@@ -187,7 +187,7 @@ class TestEditBasic(TestEdit):
         return Addon.objects.get(id=337141)
 
     def get_dict(self, **kw):
-        result = {'device_types': self.dtype, 'slug': 'TeSt_SluG',
+        result = {'device_types': self.dtype, 'slug': 'NeW_SluG',
                   'description': 'New description with <em>html</em>!',
                   'manifest_url': self.get_webapp().manifest_url,
                   'categories': [self.cat.id]}
@@ -366,9 +366,11 @@ class TestEditBasic(TestEdit):
         app_cats = self.get_webapp().categories.values_list('id', flat=True)
         eq_(sorted(app_cats), cats)
 
-    def test_edit_categories_required(self):
+    @mock.patch('mkt.webapps.models.Webapp.save')
+    def test_edit_categories_required(self, save):
         r = self.client.post(self.edit_url, self.get_dict(categories=[]))
         assert_required(r.context['cat_form'].errors['categories'][0])
+        assert not save.called
 
     def test_edit_categories_xss(self):
         new = Category.objects.create(name='<script>alert("xss");</script>',
@@ -482,6 +484,15 @@ class TestEditBasic(TestEdit):
 
         assert '<script>alert' not in r.content
         assert '&lt;script&gt;alert' in r.content
+
+    def test_edit_packaged(self):
+        self.get_webapp().update(is_packaged=True)
+        data = self.get_dict()
+        data.pop('manifest_url')
+        r = self.client.post(self.edit_url, data)
+        eq_(r.status_code, 200)
+        eq_(r.context['editable'], False)
+        eq_(self.get_webapp().description, self.get_dict()['description'])
 
 
 class TestEditCountryLanguage(TestEdit):

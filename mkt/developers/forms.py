@@ -528,6 +528,10 @@ class AppFormBasic(addons.forms.AddonFormBase):
 
         super(AppFormBasic, self).__init__(*args, **kw)
 
+        if self.instance.is_packaged:
+            # Manifest URL field for packaged apps is empty.
+            self.fields['manifest_url'].required = False
+
     def _post_clean(self):
         # Switch slug to app_slug in cleaned_data and self._meta.fields so
         # we can update the app_slug field for webapps.

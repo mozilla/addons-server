@@ -704,7 +704,11 @@ def addons_section(request, addon_id, addon, section, editable=False,
             all_forms = [form, previews, image_assets]
             if show_features:
                 all_forms.append(appfeatures_form)
+            if cat_form:
+                all_forms.append(cat_form)
             if all(not f or f.is_valid() for f in all_forms):
+                if cat_form:
+                    cat_form.save()
 
                 addon = form.save(addon)
 
@@ -730,12 +734,6 @@ def addons_section(request, addon_id, addon, section, editable=False,
                     amo.log(amo.LOG.EDIT_PROPERTIES, addon)
 
                 valid_slug = addon.app_slug
-            if cat_form:
-                if cat_form.is_valid():
-                    cat_form.save()
-                    addon.save()
-                else:
-                    editable = True
         else:
             form = models[section](instance=addon, request=request)
     else:
