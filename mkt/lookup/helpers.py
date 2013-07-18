@@ -30,7 +30,7 @@ def app_header(context, app, page_type=''):
     t = env.get_template('lookup/helpers/app_header.html')
 
     is_author = acl.check_ownership(context['request'], app)
-    is_operator = 'Operators' in [g.name for g in context['request'].groups]
+    is_operator = any(g.name == 'Operators' for g in context['request'].groups)
     is_admin = acl.action_allowed(context['request'], 'Users', 'Edit')
     is_staff = acl.action_allowed(context['request'], 'Apps', 'Configure')
     is_reviewer = acl.check_reviewer(context['request'])
