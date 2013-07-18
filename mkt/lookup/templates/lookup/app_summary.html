@@ -31,7 +31,7 @@
         <dt>{{ _('Manifest') }}</dt>
         <dd>
           {% if app.is_packaged %}
-            {{ _('Packaged') }}
+            <a target="_blank" href="{{ app.get_manifest_url(True) }}">{{ _('Mini-manifest') }}</a>
           {% else %}
             <a target="_blank" href="{{ app.manifest_url }}">{{ app.manifest_url }}</a>
           {% endif %}
