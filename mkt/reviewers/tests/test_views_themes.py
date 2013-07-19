@@ -3,7 +3,6 @@ import datetime
 
 from django.conf import settings
 from django.contrib.auth.models import User
-from django.test.client import RequestFactory
 
 import mock
 from nose.tools import eq_
@@ -35,13 +34,6 @@ class ThemeReviewTestMixin(object):
         self.status = amo.STATUS_PENDING
         self.flagged = False
         self.rereview = False
-
-    def req_factory_factory(self, user, url):
-        req = RequestFactory().get(reverse(url))
-        req.user = user.user
-        req.groups = req.user.get_profile().groups.all()
-        req.TABLET = True
-        return req
 
     def create_and_become_reviewer(self):
         """Login as new reviewer with unique username."""
