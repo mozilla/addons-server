@@ -107,20 +107,14 @@ class TestEdit(amo.tests.TestCase):
 
             eq_(unicode(val), unicode(v))
 
-    def make_appfeatures(self, data=None):
-        """
-        Create and return an AppFeatures object for the TestCase's Webapp
-        instance.
-        """
-        data = data if data else {}
-        self.get_webapp().current_version.features.update(**data)
-
-    def compare_features(self, data):
+    def compare_features(self, data, version=None):
         """
         Compare an app's set of required features against a `dict` of expected
         values.
         """
-        features = self.get_webapp().current_version.features
+        if not version:
+            version = self.get_webapp().current_version
+        features = version.features
         for k, v in data.iteritems():
             val = getattr(features, k)
             if callable(val):
@@ -493,6 +487,18 @@ class TestEditBasic(TestEdit):
         eq_(r.status_code, 200)
         eq_(r.context['editable'], False)
         eq_(self.get_webapp().description, self.get_dict()['description'])
+
+    def test_edit_basic_not_public(self):
+        self.create_switch('buchets')
+
+        # Disable file for latest version, and then update app.current_version.
+        app = self.get_webapp()
+        app.versions.latest().all_files[0].update(status=amo.STATUS_DISABLED)
+        app.update_version()
+
+        # Now try to display edit page.
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
 
 
 class TestEditCountryLanguage(TestEdit):
@@ -1172,7 +1178,6 @@ class TestEditTechnical(TestEdit):
         eq_(o.filter(action=amo.LOG.EDIT_PROPERTIES.id).count(), 1)
 
     def test_features_hosted(self):
-        self.make_appfeatures()
         data_on = {'has_contacts': True}
         data_off = {'has_contacts': False}
 
@@ -1190,6 +1195,42 @@ class TestEditTechnical(TestEdit):
 
         # Changing features must trigger re-review.
         assert RereviewQueue.objects.filter(addon=self.webapp).exists()
+
+    def test_features_hosted_app_disabled(self):
+        # Reject the app.
+        app = self.get_webapp()
+        app.update(status=amo.STATUS_REJECTED)
+        app.versions.latest().all_files[0].update(status=amo.STATUS_DISABLED)
+        app.update_version()
+
+        assert not RereviewQueue.objects.filter(addon=self.webapp).exists()
+
+        data_on = {'has_contacts': True}
+        data_off = {'has_contacts': False}
+
+        # Display edit technical page
+        r = self.client.get(self.edit_url)
+        eq_(r.status_code, 200)
+
+        # Turn contacts on.
+        r = self.client.post(self.edit_url, formset(**data_on))
+        app = self.get_webapp()
+        self.assertNoFormErrors(r)
+        self.compare_features(data_on, version=app.latest_version)
+
+        # Display edit technical page again, is the feature on ?
+        r = self.client.get(self.edit_url)
+        eq_(r.status_code, 200)
+        ok_(pq(r.content)('#id_has_contacts:checked'))
+
+        # And turn it back off.
+        r = self.client.post(self.edit_url, formset(**data_off))
+        app = self.get_webapp()
+        self.assertNoFormErrors(r)
+        self.compare_features(data_off, version=app.latest_version)
+
+        # Changing features on a rejected app must NOT trigger re-review.
+        assert not RereviewQueue.objects.filter(addon=self.webapp).exists()
 
 
 class TestAdmin(TestEdit):

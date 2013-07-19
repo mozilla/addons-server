@@ -653,16 +653,10 @@ def addons_section(request, addon_id, addon, section, editable=False,
     if section not in models:
         raise http.Http404()
 
-    # Only show the list of features if app isn't packaged.
-    show_features = (waffle.switch_is_active('buchets') and
-                     not addon.is_packaged)
-    appfeatures = appfeatures_form = None
-    if show_features:
-        appfeatures = addon.current_version.features
-        appfeatures_form = AppFeaturesForm(instance=appfeatures)
+    version = addon.current_version or addon.latest_version
 
     tags = image_assets = previews = restricted_tags = []
-    cat_form = None
+    cat_form = appfeatures = appfeatures_form = None
 
     # Permissions checks.
     # Only app owners can edit any of the details of their apps.
@@ -685,14 +679,18 @@ def addons_section(request, addon_id, addon, section, editable=False,
             request.POST or None, prefix='files',
             queryset=addon.get_previews())
 
+    elif section == 'technical':
+        # Only show the list of features if app isn't packaged.
+        if (waffle.switch_is_active('buchets') and not addon.is_packaged and
+                section == 'technical'):
+            appfeatures = version.features
+            formdata = request.POST if request.method == 'POST' else None
+            appfeatures_form = AppFeaturesForm(formdata, instance=appfeatures)
+
     # Get the slug before the form alters it to the form data.
     valid_slug = addon.app_slug
     if editable:
         if request.method == 'POST':
-
-            if show_features:
-                appfeatures_form = AppFeaturesForm(request.POST,
-                                                   instance=appfeatures)
 
             if (section == 'admin' and
                 not acl.action_allowed(request, 'Apps', 'Configure')):
@@ -702,7 +700,7 @@ def addons_section(request, addon_id, addon, section, editable=False,
                                    instance=addon, request=request)
 
             all_forms = [form, previews, image_assets]
-            if show_features:
+            if appfeatures_form:
                 all_forms.append(appfeatures_form)
             if cat_form:
                 all_forms.append(cat_form)
@@ -712,7 +710,7 @@ def addons_section(request, addon_id, addon, section, editable=False,
 
                 addon = form.save(addon)
 
-                if show_features:
+                if appfeatures_form:
                     appfeatures_form.save()
 
                 if 'manifest_url' in form.changed_data:
@@ -741,7 +739,7 @@ def addons_section(request, addon_id, addon, section, editable=False,
 
     data = {'addon': addon,
             'webapp': webapp,
-            'version': addon.current_version or addon.latest_version,
+            'version': version,
             'form': form,
             'editable': editable,
             'tags': tags,
@@ -752,7 +750,7 @@ def addons_section(request, addon_id, addon, section, editable=False,
             'image_asset_form': image_assets,
             'valid_slug': valid_slug, }
 
-    if show_features:
+    if appfeatures_form and appfeatures:
         data.update({
             'appfeatures': appfeatures,
             'feature_list': [unicode(f) for f in appfeatures.to_list()],
