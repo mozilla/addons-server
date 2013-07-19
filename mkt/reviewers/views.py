@@ -139,25 +139,48 @@ def _progress():
     """
 
     days_ago = lambda n: datetime.datetime.now() - datetime.timedelta(days=n)
-    excluded_ids = EscalationQueue.uncached.values_list('addon', flat=True)
-    qs = (Webapp.uncached.exclude(id__in=excluded_ids)
+    excluded_ids = EscalationQueue.objects.values_list('addon', flat=True)
+    public_statuses = amo.WEBAPPS_APPROVED_STATUSES
+
+    base_queries = {
+        'pending': Webapp.objects
+                         .exclude(id__in=excluded_ids)
                          .filter(status=amo.STATUS_PENDING,
-                                 disabled_by_user=False))
-    progress = {
-        'new': qs.filter(created__gt=days_ago(5)).count(),
-        'med': qs.filter(created__range=(days_ago(10), days_ago(5))).count(),
-        'old': qs.filter(created__lt=days_ago(10)).count(),
-        'week': qs.filter(created__gte=days_ago(7)).count(),
+                                 disabled_by_user=False),
+        'rereview': RereviewQueue.objects
+                                 .exclude(addon__in=excluded_ids)
+                                 .filter(addon__disabled_by_user=False),
+        'escalated': EscalationQueue.objects
+                                    .filter(addon__disabled_by_user=False),
+        'updates': File.objects
+                       .exclude(version__addon__id__in=excluded_ids)
+                       .filter(version__addon__type=amo.ADDON_WEBAPP,
+                               version__addon__disabled_by_user=False,
+                               version__addon__is_packaged=True,
+                               version__addon__status__in=public_statuses,
+                               status=amo.STATUS_PENDING)
     }
+
+    types = base_queries.keys()
+    progress = {}
+    for t in types:
+        progress[t] = {
+            'new': base_queries[t].filter(created__gt=days_ago(5)).count(),
+            'med': base_queries[t].filter(
+                created__range=(days_ago(10), days_ago(5))).count(),
+            'old': base_queries[t].filter(created__lt=days_ago(10)).count(),
+            'week': base_queries[t].filter(created__gte=days_ago(7)).count(),
+        }
 
     # Return the percent of (p)rogress out of (t)otal.
     pct = lambda p, t: (p / float(t)) * 100 if p > 0 else 0
 
     percentage = {}
-    total = progress['new'] + progress['med'] + progress['old']
-    percentage = {}
-    for duration in ('new', 'med', 'old'):
-        percentage[duration] = pct(progress[duration], total)
+    for t in types:
+        total = progress[t]['new'] + progress[t]['med'] + progress[t]['old']
+        percentage[t] = {}
+        for duration in ('new', 'med', 'old'):
+            percentage[t][duration] = pct(progress[t][duration], total)
 
     return (progress, percentage)
 

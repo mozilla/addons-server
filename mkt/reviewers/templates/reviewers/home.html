@@ -7,7 +7,7 @@
 {% block content %}
   <section class="island">
     <div class="featured" id="editors-stats-charts">
-      <div class="listing-header">
+      <div class="listing-header c">
         <div class="editor-stats-title">
           <a href="{{ url('reviewers.apps.queue_pending') }}">
             {{ ngettext('{num} Pending App Review',
@@ -15,25 +15,39 @@
                         queue_counts['pending'])|f(num=queue_counts['pending']) }}
           </a>
         </div>
+        <div class="editor-stats-title">
+          <a href="{{ url('reviewers.apps.queue_rereview') }}">
+            {{ ngettext('{num} Re-review',
+                        '{num} Re-reviews',
+                        queue_counts['rereview'])|f(num=queue_counts['rereview']) }}
+          </a>
+        </div>
+        <div class="editor-stats-title">
+          <a href="{{ url('reviewers.apps.queue_updates') }}">
+            {{ ngettext('{num} Update Review',
+                        '{num} Update Reviews',
+                        queue_counts['updates'])|f(num=queue_counts['updates']) }}
+          </a>
+        </div>
         <div class="editor-stats">
-          {% for type in ['pending']: %}
+          {% for type in ['pending', 'rereview', 'updates']: %}
             <div class="editor-stats-table">
               <div>
                 {{ ngettext("{c} unreviewed app submission this week.",
                             "{c} unreviewed app submissions this week.",
-                            progress['week'])|f(c=progress['week']) }}
+                            progress[type]['week'])|f(c=progress[type]['week']) }}
               </div>
               <div class="editor-stats-dark">
                 <strong>{{ _('Current waiting times:') }}</strong>
                 <div class="editor-waiting">
                   {% for (d, duration) in durations: %}
-                  {% set total = progress[d] %}
+                  {% set total = progress[type][d] %}
                   <div class="waiting_{{ d }} tooltip"
                        data-delay="100"
-                       style="width:{{ percentage[d] }}%"
+                       style="width:{{ percentage[type][d] }}%"
                        title="{{ duration }} ::
                               {{ ngettext('{0} app', '{0} apps', total)|f(total) }}
-                              &bull; {{ _('{0}%')|f(percentage[d]|round|int) }}"></div>
+                              &bull; {{ _('{0}%')|f(percentage[type][d]|round|int) }}"></div>
                   {% endfor %}
                 </div>
               </div>

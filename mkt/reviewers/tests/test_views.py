@@ -14,7 +14,6 @@ from django.utils import translation
 
 import mock
 import requests
-import waffle
 from nose import SkipTest
 from nose.tools import eq_, ok_
 from pyquery import PyQuery as pq
@@ -30,7 +29,6 @@ from amo.tests import (app_factory, check_links, days_ago,
                        formset, initial, version_factory)
 from amo.urlresolvers import reverse
 from amo.utils import isotime
-from comm.models import CommunicationThread, CommunicationThreadCC
 from devhub.models import ActivityLog, ActivityLogAttachment, AppLog
 from devhub.tests.test_models import ATTACHMENTS_DIR
 from editors.models import (CannedResponse, EscalationQueue, RereviewQueue,
@@ -128,30 +126,56 @@ class TestReviewersHome(AppReviewerTest, AccessMixin):
                                  status=amo.STATUS_PENDING),
                      app_factory(name='Cougar',
                                  status=amo.STATUS_PENDING)]
+        self.packaged_app = app_factory(name='Dinosaur',
+                                        status=amo.STATUS_PUBLIC,
+                                        is_packaged=True)
+        version_factory(addon=self.packaged_app,
+                        file_kw={'status': amo.STATUS_PENDING})
+
         # Add a disabled app for good measure.
-        app_factory(name='Dungeness Crab', disabled_by_user=True,
+        app_factory(name='Elephant', disabled_by_user=True,
                     status=amo.STATUS_PENDING)
+
         # Escalate one app to make sure it doesn't affect stats.
         escalated = app_factory(name='Eyelash Pit Viper',
                                 status=amo.STATUS_PENDING)
         EscalationQueue.objects.create(addon=escalated)
 
+        # Add a public app under re-review.
+        rereviewed = app_factory(name='Finch', status=amo.STATUS_PUBLIC)
+        rq = RereviewQueue.objects.create(addon=rereviewed)
+        rq.update(created=self.days_ago(5))
+
     def test_stats_waiting(self):
         self.apps[0].update(created=self.days_ago(1))
         self.apps[1].update(created=self.days_ago(5))
         self.apps[2].update(created=self.days_ago(15))
+        self.packaged_app.update(created=self.days_ago(1))
 
         doc = pq(self.client.get(self.url).content)
 
-        # Total unreviewed apps.
-        eq_(doc('.editor-stats-title a').text(), '3 Pending App Reviews')
-        # Unreviewed submissions in the past week.
-        ok_('2 unreviewed app submissions' in
-            doc('.editor-stats-table > div').text())
+        anchors = doc('.editor-stats-title a')
+        eq_(anchors.eq(0).text(), '3 Pending App Reviews')
+        eq_(anchors.eq(1).text(), '1 Re-review')
+        eq_(anchors.eq(2).text(), '1 Update Review')
+
+        divs = doc('.editor-stats-table > div')
+        eq_(divs.eq(0).text(), '2 unreviewed app submissions this week.')
+        eq_(divs.eq(2).text(), '1 unreviewed app submission this week.')
+        eq_(divs.eq(4).text(), '1 unreviewed app submission this week.')
+
         # Maths.
-        eq_(doc('.waiting_new').attr('title')[-3:], '33%')
-        eq_(doc('.waiting_med').attr('title')[-3:], '33%')
-        eq_(doc('.waiting_old').attr('title')[-3:], '33%')
+        eq_(doc('.waiting_new').eq(0).attr('title')[-3:], '33%')
+        eq_(doc('.waiting_med').eq(0).attr('title')[-3:], '33%')
+        eq_(doc('.waiting_old').eq(0).attr('title')[-3:], '33%')
+
+        eq_(doc('.waiting_new').eq(1).attr('title')[-3:], ' 0%')
+        eq_(doc('.waiting_med').eq(1).attr('title')[-4:], '100%')
+        eq_(doc('.waiting_old').eq(1).attr('title')[-3:], ' 0%')
+
+        eq_(doc('.waiting_new').eq(0).attr('title')[-3:], '33%')
+        eq_(doc('.waiting_med').eq(0).attr('title')[-3:], '33%')
+        eq_(doc('.waiting_old').eq(0).attr('title')[-3:], '33%')
 
     def test_reviewer_leaders(self):
         reviewers = UserProfile.objects.all()[:2]
@@ -1014,7 +1038,6 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         perms = ('senior_reviewer', 'reviewer', 'staff', 'mozilla_contact')
 
         for key in perms:
-            perm = 'read_permission_%s' % key
             assert getattr(thread, 'read_permission_%s' % key)
 
     def _check_admin_email(self, msg, subject):
