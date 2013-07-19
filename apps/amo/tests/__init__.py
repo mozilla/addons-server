@@ -685,7 +685,6 @@ def req_factory_factory(url, user=None):
     if user:
         req.user = user.user
         req.groups = req.user.get_profile().groups.all()
-    req.TABLET = True
     return req
 
 
