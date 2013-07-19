@@ -71,6 +71,7 @@ PyMySQL==0.5
 pyquery==0.4
 python-dateutil==1.5
 python-gflags==2.0
+python-memcached==1.53
 pytz==2010e
 raven==3.1.16
 rdflib==3.0.0
