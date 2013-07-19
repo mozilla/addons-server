@@ -1,4 +1,5 @@
 {{ message }}
+{% if show_unsubscribe %}
 
 ===================================================================
 You received this email because you're subscribed to:
@@ -10,4 +11,5 @@ You can't unsubscribe from this type of email.
 Manage email notifications: {{ manage_url }}
 {% else %}
 Unsubscribe: {{ unsubscribe_url }}
+{% endif %}
 {% endif %}

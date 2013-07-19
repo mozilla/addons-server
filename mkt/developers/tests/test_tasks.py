@@ -543,7 +543,8 @@ class TestRegionEmail(amo.tests.WebappTestCase):
         assert dev_url in msg.body
         assert ' added a new ' in msg.body
         assert ' for Brazil.' in msg.body
-        assert 'Unsubscribe' in msg.body
+        # TODO: Re-enable this when we bring back Unsubscribe (bug 802379).
+        #assert 'Unsubscribe' in msg.body
 
     @mock.patch.object(settings, 'SITE_URL', 'http://omg.org/yes')
     def test_email_for_two_new_regions(self):
@@ -559,7 +560,8 @@ class TestRegionEmail(amo.tests.WebappTestCase):
         assert dev_url in msg.body
         assert ' added two new ' in msg.body
         assert ': Brazil and United Kingdom.' in msg.body
-        assert 'Unsubscribe' in msg.body
+        # TODO: Re-enable this when we bring back Unsubscribe (bug 802379).
+        #assert 'Unsubscribe' in msg.body
 
     @mock.patch.object(settings, 'SITE_URL', 'http://omg.org/yes')
     def test_email_for_several_new_regions(self):
