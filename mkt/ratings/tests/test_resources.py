@@ -91,11 +91,10 @@ class TestRatingResource(BaseOAuth, AMOPaths):
         res, data = self._get_single(app=self.app.app_slug)
         eq_(res.status_code, 400)
 
-    @patch('mkt.regions.get_region')
+    @patch('mkt.ratings.resources.get_region')
     def test_get_nonregion(self, get_region_mock):
         AddonExcludedRegion.objects.create(addon=self.app,
                                            region=mkt.regions.BR.id)
-        self.client.cookies['region'] = 'br'
         get_region_mock.return_value = 'br'
         res, data = self._get_single(app=self.app.app_slug)
         eq_(res.status_code, 400)
@@ -192,16 +191,15 @@ class TestRatingResource(BaseOAuth, AMOPaths):
         eq_(400, res.status_code)
         assert 'body' in data['error_message']
 
-    def test_create_nonexistant_app(self):
+    def test_create_nonexistent_app(self):
         res, data = self._create({'app': -1})
         eq_(400, res.status_code)
         assert 'app' in data['error_message']
 
-    @patch('mkt.regions.get_region')
+    @patch('mkt.ratings.resources.get_region')
     def test_create_for_nonregion(self, get_region_mock):
         AddonExcludedRegion.objects.create(addon=self.app,
                                            region=mkt.regions.BR.id)
-        self.client.cookies['region'] = 'br'
         get_region_mock.return_value = 'br'
         res, data = self._create()
         eq_(400, res.status_code)
