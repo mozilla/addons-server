@@ -38,16 +38,6 @@ class TestRegionMiddleware(amo.tests.TestCase):
             r = self.client.get('/robots.txt?region=%s' % region)
             eq_(r.context['request'].REGION, region_cls)
 
-    def test_already_have_cookie_for_good_region(self):
-        for region in ('worldwide', 'us', 'br'):
-            self.client.cookies['lang'] = 'en-US,en-US'
-            self.client.cookies['region'] = region
-
-            r = self.client.get('/robots.txt')
-            eq_(r.cookies.get('region'), None)
-            eq_(r.context['request'].REGION,
-                mkt.regions.REGIONS_DICT[region])
-
     def test_ignore_bad_region(self):
         # When no region is specified or the region is invalid, we use
         # whichever region satisfies `Accept-Language`.
