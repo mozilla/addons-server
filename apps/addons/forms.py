@@ -701,19 +701,15 @@ class EditThemeForm(AddonFormBase):
             Tag(tag_text=t).remove_tag(addon)
 
         # Update category.
-        try:
-            old_cat = (addon.addoncategory_set
-                       .exclude(category_id=data['category'].id))[0]
-        except IndexError:
-            # The category has remained unchanged.
-            pass
-        else:
-            old_cat.category = data['category']
-            old_cat.save()
+        if data['category'].id != self.initial['category']:
+            addon_cat = addon.addoncategory_set.all()[0]
+            addon_cat.category = data['category']
+            addon_cat.save()
 
         # Theme reupload.
-        save_theme_reupload.delay(data['header_hash'], data['footer_hash'],
-                                  addon)
+        if data['header_hash'] or data['footer_hash']:
+            save_theme_reupload.delay(data['header_hash'], data['footer_hash'],
+                                      addon)
 
         return data
 
