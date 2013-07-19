@@ -844,6 +844,8 @@ def terms(request):
     if request.POST and form.is_valid():
         form.save()
         log.info('Dev agreement agreed for user: %s' % request.amo_user.pk)
+        if request.GET.get('to') and request.GET['to'].startswith('/'):
+            return redirect(request.GET['to'])
         messages.success(request, _('Terms of service accepted.'))
     return jingo.render(request, 'developers/terms.html',
                         {'accepted': request.amo_user.read_dev_agreement,

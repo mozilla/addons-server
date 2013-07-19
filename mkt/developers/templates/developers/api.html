@@ -7,10 +7,19 @@
   <h1>{{ title }}</h1>
   <section id="submit-api" class="primary">
     <div class="island devhub-form">
-      {% trans terms=url('mkt.developers.apps.terms') %}
+      {% if dev_agreement_ok(amo_user) %}
         <p>
-          To access the Marketplace API, accept the <a href="{{ terms }}">terms of service</a> and create an OAuth key pair using the form below.
-      {% endtrans %}
+          {% trans %}
+            To access the Marketplace API, create an OAuth key pair using the form below.
+          {% endtrans %}
+        </p>
+      {% else %}
+        <p>
+          {% trans terms=url('mkt.developers.apps.terms')|urlparams(to=request.path) %}
+            To access the Marketplace API, accept the <a href="{{ terms }}">terms of service</a> and create an OAuth key pair using the form below.
+          {% endtrans %}
+        </p>
+      {% endif %}
       {% trans %}
         <p>
           Please read the <a href="https://firefox-marketplace-api.readthedocs.org/en/latest/topics/authentication.html#oauth">documentation</a> on how to create a keypair and use it with the Marketplace API.
@@ -28,7 +37,7 @@
               <tr>
                 <th><strong>{{ _('Redirect URI') }}</strong></th><td>{{ form.redirect_uri.errors }}{{ form.redirect_uri }}</td>
               </tr>
-              </tbody>
+            </tbody>
           </table>
           <div class="listing-footer">
             <button>{{ _('Create') }}</button>

@@ -1243,6 +1243,17 @@ class TestTerms(amo.tests.TestCase):
         eq_(res.status_code, 200)
         self.assertTemplateUsed(res, 'dev-agreement/en-US.html')
 
+    def test_redirect_to_relative(self):
+        api_url = reverse('mkt.developers.apps.api')
+        res = self.client.post(urlparams(self.url, to=api_url),
+                               {'read_dev_agreement': 'yeah'})
+        self.assert3xx(res, api_url)
+
+    def test_redirect_to_external(self):
+        res = self.client.post(urlparams(self.url, to='https://hy.fr'),
+                               {'read_dev_agreement': 'yeah'})
+        eq_(res.status_code, 200)
+
 
 class TestTransactionList(amo.tests.TestCase):
     fixtures = fixture('user_999')
