@@ -63,7 +63,8 @@ def global_settings(request):
         context['amo_user'] = AnonymousUser()
         logged = False
 
-    DESKTOP = request.TABLET or not request.MOBILE
+    DESKTOP = (getattr(request, 'TABLET', None) or
+               not getattr(request, 'MOBILE', None))
 
     context.update(account_links=account_links,
                    settings=settings,
