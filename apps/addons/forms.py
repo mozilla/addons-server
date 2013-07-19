@@ -29,6 +29,7 @@ from tags.models import Tag
 from translations.fields import TransField, TransTextarea
 from translations.forms import TranslationFormMixin
 from translations.models import Translation
+from translations.utils import transfield_changed
 from translations.widgets import TranslationTextInput
 from users.models import UserEmailField
 from versions.models import Version
@@ -628,7 +629,8 @@ class EditThemeForm(AddonFormBase):
             id=self.initial['description']):
             self.initial['description_' + trans.locale.lower()] = trans
 
-        self.initial['tags'] = ', '.join(self.get_tags(addon))
+        self.old_tags = self.get_tags(addon)
+        self.initial['tags'] = ', '.join(self.old_tags)
         if persona.accentcolor:
             self.initial['accentcolor'] = '#' + persona.accentcolor
         if persona.textcolor:
@@ -678,16 +680,22 @@ class EditThemeForm(AddonFormBase):
             amo.log(amo.LOG.EDIT_PROPERTIES, addon)
         self.instance.modified = datetime.now()
 
-        # Save the Addon object.
-        super(EditThemeForm, self).save()
+        # Update Addon-specific data.
+        changed = (
+            set(self.old_tags) != data['tags'] or  # Check if tags changed.
+            self.initial['slug'] != data['slug'] or  # Check if slug changed.
+            transfield_changed('description', self.initial, data) or
+            transfield_changed('name', self.initial, data))
+        if changed:
+            # Only save if addon data changed.
+            super(EditThemeForm, self).save()
 
+        # Update tags.
         tags_new = data['tags']
-        tags_old = [slugify(t, spaces=True) for t in self.get_tags(addon)]
-
+        tags_old = [slugify(t, spaces=True) for t in self.old_tags]
         # Add new tags.
         for t in set(tags_new) - set(tags_old):
             Tag(tag_text=t).save_tag(addon)
-
         # Remove old tags.
         for t in set(tags_old) - set(tags_new):
             Tag(tag_text=t).remove_tag(addon)

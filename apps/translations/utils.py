@@ -60,3 +60,23 @@ def truncate(html, length, killwords=False, end='...'):
     else:
         short, _ = trim(tree, length, killwords, end)
         return jinja2.Markup(force_unicode(short.toxml()))
+
+
+def transfield_changed(field, initial, data):
+    """
+    For forms, compares initial data against cleaned_data for TransFields.
+    Returns True if data is the same. Returns False if data is different.
+
+    Arguments:
+    field -- name of the form field as-is.
+    initial -- data in the form of {'description_en-us': 'x',
+                                    'description_en-br': 'y'}
+    data -- cleaned data in the form of {'description': {'init': '',
+                                                         'en-us': 'x',
+                                                         'en-br': 'y'}
+    """
+    initial = [(k, v.localized_string) for k, v in initial.iteritems()
+               if '%s_' % field in k]
+    data = [('%s_%s' % (field, k), v) for k, v in data[field].iteritems()
+            if k != 'init']
+    return set(initial) != set(data)
