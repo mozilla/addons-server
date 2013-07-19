@@ -21,6 +21,7 @@ from mkt.site.fixtures import fixture
 from mkt.webapps.models import AddonExcludedRegion, Webapp
 from mkt.zadmin.models import (FeaturedApp, FeaturedAppCarrier,
                                FeaturedAppRegion)
+from mkt.zadmin.views import featured_apps_ajax
 
 
 class TestGenerateError(amo.tests.TestCase):
@@ -170,6 +171,20 @@ class TestFeaturedApps(amo.tests.TestCase):
         eq_(len(doc), 1)
         eq_(doc('h2').text(), 'splendid app 1')
         eq_(doc('em.sponsored').attr('title'), 'Sponsored')
+
+    def test_get_featured_apps_no_cat(self):
+        request = amo.tests.req_factory_factory(
+            urlparams(self.url, category=''),
+            user=UserProfile.objects.get(username='admin'))
+        doc = pq(str(featured_apps_ajax(request)))
+        eq_(doc('.featured-app').length, 0)
+
+        FeaturedApp.objects.create(app=self.a1, category=None)
+        request = amo.tests.req_factory_factory(
+            urlparams(self.url, category=''),
+            user=UserProfile.objects.get(username='admin'))
+        doc = pq(str(featured_apps_ajax(request)))
+        eq_(doc('.featured-app').length, 1)
 
     def test_get_categories(self):
         url = reverse('zadmin.featured_categories_ajax')
