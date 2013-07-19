@@ -26,6 +26,7 @@ from nose.exc import SkipTest
 from nose.tools import eq_, nottest, ok_
 from redisutils import mock_redis, reset_redis
 from tastypie.exceptions import ImmediateHttpResponse
+from test_utils import RequestFactory
 from waffle import cache_sample, cache_switch
 from waffle.models import Flag, Sample, Switch
 
@@ -676,6 +677,16 @@ def collection_factory(**kw):
                                       random.randint(0, 59))
     c.save()
     return c
+
+
+def req_factory_factory(url, user=None):
+    """Creates a request factory, logged in with the user."""
+    req = RequestFactory().get(url)
+    if user:
+        req.user = user.user
+        req.groups = req.user.get_profile().groups.all()
+    req.TABLET = True
+    return req
 
 
 class ESTestCase(TestCase):

@@ -36,13 +36,14 @@ def featured_apps_admin(request):
 @any_permission_required([('Admin', '%'),
                           ('FeaturedApps', '%')])
 def featured_apps_ajax(request):
+    cat_slug = None
     if request.method == 'GET':
-        cat_slug = request.GET.get('category', None)
+        cat_slug = request.GET.get('category')
     elif request.method == 'POST':
         if not acl.action_allowed(request, 'FeaturedApps', 'Edit'):
             raise PermissionDenied
-        cat_slug = request.POST.get('category', None)
-        deleteid = request.POST.get('delete', None)
+        cat_slug = request.POST.get('category')
+        deleteid = request.POST.get('delete')
         if deleteid:
             delete_apps = FeaturedApp.uncached.filter(
                 app__id=int(deleteid))
@@ -51,7 +52,7 @@ def featured_apps_ajax(request):
             else:
                 delete_apps = delete_apps.filter(category__slug=cat_slug)
             delete_apps.delete()
-        appid = request.POST.get('add', None)
+        appid = request.POST.get('add')
         if appid:
             category = None
             if cat_slug:
@@ -66,10 +67,15 @@ def featured_apps_ajax(request):
             if created:
                 FeaturedAppRegion.objects.create(
                     featured_app=app, region=mkt.regions.WORLDWIDE.id)
-    else:
-        cat_slug = None
+
+    apps = []
     apps_regions_carriers = []
-    for app in FeaturedApp.objects.filter(category__slug=cat_slug):
+    if cat_slug:
+        apps = FeaturedApp.objects.filter(category__slug=cat_slug)
+    else:
+        apps = FeaturedApp.objects.filter(category=None)
+
+    for app in apps:
         regions = app.regions.values_list('region', flat=True)
         excluded_regions = app.app.addonexcludedregion.values_list('region',
                                                                    flat=True)
