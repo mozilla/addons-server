@@ -1760,11 +1760,11 @@ class TestAddonFromUpload(UploadTest):
         eq_(addon.default_locale, 'en-US')
 
     def test_browsing_locale_does_not_override(self):
-        translation.activate('gb')
-        # Upload app with en-US as default.
-        upload = self.get_upload(abspath=self.manifest('mozball.webapp'))
-        addon = Addon.from_upload(upload, [self.platform])
-        eq_(addon.default_locale, 'en-US')  # not gb
+        with translation.override('fr'):
+            # Upload app with en-US as default.
+            upload = self.get_upload(abspath=self.manifest('mozball.webapp'))
+            addon = Addon.from_upload(upload, [self.platform])
+            eq_(addon.default_locale, 'en-US')  # not fr
 
     @raises(forms.ValidationError)
     def test_malformed_locales(self):

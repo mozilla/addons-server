@@ -462,7 +462,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                          addon.default_locale in (
                              settings.AMO_LANGUAGES +
                              settings.HIDDEN_LANGUAGES) and
-                         addon.default_locale != settings.LANGUAGE_CODE)
+                         data.get('default_locale') == addon.default_locale)
         if not locale_is_set:
             addon.default_locale = to_language(translation.get_language())
         if addon.is_webapp():
