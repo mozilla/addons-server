@@ -148,12 +148,13 @@ APP_FEATURES = OrderedDict([
         'apis': ('window.ontouchstart',),
     }),
     ('QHD', {
-        'name': _lazy(u'Smartphone-Sized Displays'),
+        'name': _lazy(u'Smartphone-Sized Displays (qHD)'),
         'description': _lazy(u'The app requires the platform to have a '
                              u'smartphone-sized display (having qHD '
                              u'resolution). This option indicates that the '
                              u'app will be unusable on larger displays '
-                             u'(e.g., tablets, desktop).'),
+                             u'(e.g., tablets, desktop, large or high-DPI '
+                             u'phones).'),
         'apis': (),
     }),
     ('MP3', {
