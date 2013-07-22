@@ -132,6 +132,10 @@ h3.theme-queue-link {
     }
 }
 
+.statuslist {
+    margin-bottom: 20px;
+}
+
 #aux-nav a {
     color: $medium-gray;
 }
@@ -1356,6 +1360,10 @@ span.currently_viewing_warning {
 
 $mobileborder = #d7d2c3;
 @media $portrait-max {
+    .summary.island {
+        padding: 0 0 10px 10px;
+    }
+
     .queue-search-mobile, .mobile-paginator {
         display: block;
     }
@@ -1463,9 +1471,6 @@ $mobileborder = #d7d2c3;
         }
         &:nth-child(2) {
             padding-left: 3px;
-        }
-        &:last-child {
-            display: none;
         }
         &.app-install button.product, .button {
             border: 0;
@@ -1857,6 +1862,9 @@ $mobileborder = #d7d2c3;
 }
 
 @media (min-width: 768px) {
+    #scroll_sidebar_parent {
+        right: 70px;
+    }
     .site-title a {
         padding-left: 250px;
         position: relative;

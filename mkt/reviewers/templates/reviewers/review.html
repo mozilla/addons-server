@@ -21,17 +21,19 @@
 </header>
 
 <div id="scroll_sidebar_parent">
-  <div id="scroll_sidebar">
+  <div id="scroll_sidebar" class="island">
     <ul class="statuslist">
       <li class="currently_viewing_warning"></li>
       <li>
-        {{ amo.STATUS_CHOICES[product.status] }}
-        {% if product.in_rereview_queue() %}
-          &middot; <b id="queue-rereview">{{ _('In re-review queue') }}</b>
-        {% endif %}
-        {% if product.in_escalation_queue() %}
-          &middot; <b id="queue-escalation">{{ _('In escalation queue') }}</b>
-        {% endif %}
+        <ul>
+          <li><b>{{ _('Status') }}</b>: {{ amo.STATUS_CHOICES[product.status] }}</li>
+          {% if product.in_rereview_queue() %}
+            <li>&middot; <b id="queue-rereview">{{ _('In re-review queue') }}</b></li>
+          {% endif %}
+          {% if product.in_escalation_queue() %}
+            <li>&middot; <b id="queue-escalation">{{ _('In escalation queue') }}</b></li>
+          {% endif %}
+        </ul>
       </li>
     </ul>
     <ul id="actions" class="c">
@@ -63,7 +65,7 @@
 
 <div id="addon" data-id="{{ product.id }}" data-url="{{ url('editors.review_viewing') }}">
 
-<section class="island">
+<section class="island alpha summary">
   {% if DESKTOP %}
     {% include 'reviewers/includes/details.html' %}
   {% else %}
