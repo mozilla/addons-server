@@ -277,7 +277,7 @@ function bind_viewer(nodes) {
                                    message.message)];
 
                 $.each([].concat(message.description), function(i, msg) {
-                    html.push('<p>', message.description, '</p>');
+                    html.push('<p>', msg, '</p>');
                 });
 
                 html.push('</div>');
@@ -285,8 +285,7 @@ function bind_viewer(nodes) {
 
                 if (message.line != null && $line.length) {
                     $line.addClass(message.type)
-                         .parent()
-                         .appendMessage($dom);
+                         .parent().appendMessage($dom);
 
                     $('.code .' + $line.parent().attr('class').match(/number\d+/)[0] + ':eq(0)')
                          .addClass(message.type);
