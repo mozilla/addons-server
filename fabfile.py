@@ -39,8 +39,7 @@ def create_virtualenv():
 @task
 def update_locales():
     with lcd(pjoin(ZAMBONI, 'locale')):
-        local("svn revert -R .")
-        local("svn up")
+        local("git checkout .")
         local("./compile-mo.sh .")
 
 
