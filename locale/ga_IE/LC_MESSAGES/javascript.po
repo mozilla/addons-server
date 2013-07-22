@@ -1,0 +1,846 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: AMO-JS 0.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-01-16 11:45-0800\n"
+"PO-Revision-Date: 2008-04-08 00:00-0600\n"
+"Last-Translator: Kevin Scannell <kscanne@gmail.com>\n"
+"Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ga\n"
+"Plural-Forms: nplurals=5; plural=n==1 ? 0 : n==2 ? 1 : n<7 ? 2 : n < 11 ? "
+"3 : 4\n"
+
+#: media/js/common-all.js:2548 media/js/common-min.js:16
+#: media/js/zamboni/init.js:26
+msgid ""
+"This feature is temporarily disabled while we perform website maintenance. "
+"Please check back a little later."
+msgstr ""
+"Níl an ghné seo ar fáil faoi láthair agus cúram á dhéanamh ar an suíomh.  "
+"Tar ar ais chugainn ar ball."
+
+#. L10n: {0} is an app name like Firefox.
+#: media/js/common-all.js:2743 media/js/common-min.js:16
+#: media/js/zamboni/buttons.js:52
+msgid "Accept and Install"
+msgstr "Glac Leis agus Suiteáil"
+
+#: media/js/common-all.js:2743 media/js/common-min.js:16
+#: media/js/zamboni/buttons.js:52
+msgid "Add to {0}"
+msgstr "Cuir le {0}"
+
+#: media/js/common-all.js:2748 media/js/common-min.js:16
+#: media/js/zamboni/buttons.js:57
+msgid "Download Now"
+msgstr "Íosluchtaigh Anois"
+
+#. L10n: {0} is an platform like Windows or Linux.
+#: media/js/common-all.js:2825 media/js/common-min.js:16
+#: media/js/zamboni/buttons.js:134
+msgid "Install for {0} anyway"
+msgstr "Suiteáil ar {0} mar sin féin"
+
+#: media/js/common-all.js:2825 media/js/common-min.js:16
+#: media/js/zamboni/buttons.js:134
+msgid "Download for {0} anyway"
+msgstr "Íosluchtaigh le haghaidh {0} mar sin féin"
+
+#: media/js/common-all.js:2876 media/js/common-min.js:16
+#: media/js/zamboni/buttons.js:185
+msgid "Not available for your platform"
+msgstr "Níl sé ar fáil ar d'ardán"
+
+#. L10n: {0} is an app name, {1} is the app version.
+#: media/js/common-all.js:2883 media/js/common-min.js:16
+#: media/js/zamboni/buttons.js:192
+msgid "Not available for {0} {1}"
+msgstr "Níl sé ar fáil le haghaidh {0} {1}"
+
+#: media/js/common-all.js:3054 media/js/common-min.js:16
+#: media/js/zamboni/buttons.js:363
+msgid ""
+"Sorry, you need a Mozilla-based browser (such as Firefox) to install a "
+"search plugin."
+msgstr ""
+"Tá brabhsálaí de chuid Mozilla (mar shampla Firefox) de dhíth ort chun "
+"breiseán cuardaigh a shuiteáil."
+
+#: media/js/common-all.js:3072 media/js/common-min.js:16
+msgid "search for collections"
+msgstr "cuardaigh bailiúcháin"
+
+#: media/js/common-all.js:3075 media/js/common-min.js:16
+msgid "search for personas"
+msgstr "cuardaigh pearsantachtaí"
+
+#: media/js/common-all.js:3078 media/js/common-min.js:16
+msgid "search for add-ons"
+msgstr "cuardaigh breiseáin"
+
+#: media/js/common-all.js:3627 media/js/common-min.js:16
+#: media/js/amo2009/global.js:259
+msgid "{0} star"
+msgid_plural "{0} stars"
+msgstr[0] "{0} réiltín"
+msgstr[1] "{0} réiltín"
+msgstr[2] "{0} réiltín"
+msgstr[3] "{0} réiltín"
+msgstr[4] "{0} réiltín"
+
+#: media/js/common-all.js:4882 media/js/common-min.js:16
+msgid "{0} has been added to the {1} collection."
+msgstr "Cuireadh {0} le bailiúchán {1}."
+
+#: media/js/common-all.js:4965 media/js/common-min.js:16
+#: media/js/zamboni/reviews.js:34
+msgid "Your input is required"
+msgstr ""
+
+#: media/js/common-all.js:4984 media/js/common-min.js:16
+#: media/js/zamboni/reviews.js:18
+msgid "Flagged for review"
+msgstr ""
+
+#: media/js/common-all.js:5043 media/js/common-min.js:16
+#: media/js/zamboni/reviews.js:103
+msgid "Marked for deletion"
+msgstr ""
+
+#: media/js/common-all.js:5607 media/js/common-min.js:36
+#: media/js/zamboni/collections.js:187
+msgid "clear recently viewed"
+msgstr ""
+
+#: media/js/common-all.js:5775 media/js/common-min.js:36
+#: media/js/zamboni/collections.js:359
+msgid "Adding to Favorites&hellip;"
+msgstr "Á chur leis na Ceanáin&hellip;"
+
+#: media/js/common-all.js:5778 media/js/common-min.js:36
+#: media/js/zamboni/collections.js:362
+msgid "Removing Favorite&hellip;"
+msgstr "Ceanán á bhaint&hellip;"
+
+#: media/js/common-all.js:5781 media/js/common-min.js:36
+#: media/js/zamboni/collections.js:365
+msgid "Add to Favorites"
+msgstr "Cuir leis na Ceanáin"
+
+#: media/js/common-all.js:5784 media/js/common-min.js:36
+#: media/js/zamboni/collections.js:368
+msgid "Remove from Favorites"
+msgstr "Bain ó na Ceanáin"
+
+#: media/js/common-all.js:5840 media/js/common-min.js:36
+#: media/js/zamboni/collections.js:431
+msgid "Pending"
+msgstr "Ar Feitheamh"
+
+#: media/js/common-all.js:5841 media/js/common-min.js:36
+#: media/js/zamboni/collections.js:432
+msgid "Add a comment"
+msgstr "Cuir nóta leis"
+
+#: media/js/common-all.js:5841 media/js/common-min.js:36
+#: media/js/zamboni/collections.js:432
+msgid "Comment"
+msgstr "Nóta"
+
+#: media/js/common-all.js:5842 media/js/common-min.js:36
+#: media/js/zamboni/collections.js:433
+msgid "Remove this add-on from the collection"
+msgstr "Bain an breiseán seo ón bhailiúchán"
+
+#: media/js/common-all.js:5842 media/js/common-all.js:5872
+#: media/js/common-min.js:36 media/js/zamboni/collections.js:433
+#: media/js/zamboni/collections.js:462
+msgid "Remove"
+msgstr "Bain"
+
+#: media/js/common-all.js:5872 media/js/common-min.js:36
+#: media/js/zamboni/collections.js:462
+msgid "Remove this user as a contributor"
+msgstr "Bain an t-úsáideoir seo ó na rannpháirtithe"
+
+#: media/js/common-all.js:6122 media/js/common-min.js:36
+#: media/js/zamboni/collections.js:681
+msgid "Add to favorites"
+msgstr "Cuir leis na ceanáin"
+
+#: media/js/common-all.js:6126 media/js/common-min.js:36
+#: media/js/zamboni/collections.js:685
+msgid "Remove from favorites"
+msgstr "Bain ó na ceanáin"
+
+#: media/js/common-all.js:6142 media/js/common-min.js:36
+#: media/js/zamboni/collections.js:703
+msgid "Follow this Collection"
+msgstr "Lean an Bailiúchán seo"
+
+#: media/js/common-all.js:6151 media/js/common-min.js:36
+#: media/js/zamboni/collections.js:712
+msgid "Stop following"
+msgstr "Ná bí dá leanúint"
+
+#: media/js/common-all.js:6201 media/js/common-min.js:36
+msgid "Sending Emails..."
+msgstr "Ríomhphost á sheoladh..."
+
+#: media/js/common-all.js:6214 media/js/common-min.js:36
+msgid "Oh no! Please try again later."
+msgstr "Ochon!  Bain triail eile as ar ball."
+
+#: media/js/zamboni/devhub.js:118
+msgid "More"
+msgstr "Tuilleadh"
+
+#: media/js/zamboni/devhub.js:143
+msgid "Enter a new author's email address"
+msgstr ""
+
+#: media/js/zamboni/devhub.js:197
+msgid "This filetype is not supported."
+msgstr "Ní thacaítear leis an gcineál comhaid seo."
+
+#: media/js/zamboni/devhub.js:263
+msgid "The package is not of a recognized type."
+msgstr ""
+
+#: media/js/zamboni/devhub.js:274
+msgid "Preparing {0}"
+msgstr "{0} á ullmhú"
+
+#. L10n: {0} is the percent of the file that has been uploaded.
+#: media/js/zamboni/devhub.js:330
+msgid "{0}% complete"
+msgstr "{0}% críochnaithe"
+
+#. L10n: "{bytes uploaded} of {total filesize}".
+#: media/js/zamboni/devhub.js:332
+msgid "{0} of {1}"
+msgstr "{0} as {1}"
+
+#: media/js/zamboni/devhub.js:348
+msgid "Validating {0}"
+msgstr "{0} á bhailíochtú"
+
+#: media/js/zamboni/devhub.js:357
+msgid "There was an error with your upload."
+msgstr "Tharla earráid leis an uasluchtú."
+
+#: media/js/zamboni/devhub.js:368
+msgid "You aborted the add-on upload."
+msgstr ""
+
+#: media/js/zamboni/devhub.js:370
+msgid "We were unable to connect to the server."
+msgstr "Níorbh fhéidir ceangal leis an bhfreastalaí."
+
+#: media/js/zamboni/devhub.js:396
+msgid "Unexpected server error while validating."
+msgstr "Earráid fhreastalaí gan súil leis le linn bailíochtaithe."
+
+#: media/js/zamboni/devhub.js:411
+msgid "Validated {0}"
+msgstr "{0} bailíochtaithe"
+
+#: media/js/zamboni/devhub.js:416
+msgid "Your add-on passed validation with no errors and {0} warning."
+msgid_plural "Your add-on passed validation with no errors and {0} warnings."
+msgstr[0] "Bhí do bhreiseán bailíochtaithe gan earráidí agus le {0} rabhadh."
+msgstr[1] "Bhí do bhreiseán bailíochtaithe gan earráidí agus le {0} rabhadh."
+msgstr[2] "Bhí do bhreiseán bailíochtaithe gan earráidí agus le {0} rabhadh."
+msgstr[3] "Bhí do bhreiseán bailíochtaithe gan earráidí agus le {0} rabhadh."
+msgstr[4] "Bhí do bhreiseán bailíochtaithe gan earráidí agus le {0} rabhadh."
+
+#: media/js/zamboni/devhub.js:421
+msgid "Your add-on failed validation with {0} error."
+msgid_plural "Your add-on failed validation with {0} errors."
+msgstr[0] "Níor éirigh le bailíochtú do bhreiseáin; bhí {0} earráid ann."
+msgstr[1] "Níor éirigh le bailíochtú do bhreiseáin; bhí {0} earráid ann."
+msgstr[2] "Níor éirigh le bailíochtú do bhreiseáin; bhí {0} earráid ann."
+msgstr[3] "Níor éirigh le bailíochtú do bhreiseáin; bhí {0} n-earráid ann."
+msgstr[4] "Níor éirigh le bailíochtú do bhreiseáin; bhí {0} earráid ann."
+
+#. L10n: first argument is the number of errors.
+#: media/js/zamboni/devhub.js:445
+msgid "...and {0} more"
+msgstr "...agus {0} ceann eile"
+
+#: media/js/zamboni/devhub.js:456
+msgid "See full validation report"
+msgstr "Tuairisc iomlán ón bhailíochtóir"
+
+#: media/js/zamboni/devhub.js:578
+msgid "Learn more"
+msgstr "Tuilleadh eolais"
+
+#: media/js/zamboni/devhub.js:582
+msgid "Example"
+msgstr "Sampla"
+
+#: media/js/zamboni/devhub.js:630
+msgid "<b>{0}</b> character left."
+msgid_plural "<b>{0}</b> characters left."
+msgstr[0] "<b>{0}</b> charachtar fágtha."
+msgstr[1] "<b>{0}</b> charachtar fágtha."
+msgstr[2] "<b>{0}</b> charachtar fágtha."
+msgstr[3] "<b>{0}</b> gcarachtar fágtha."
+msgstr[4] "<b>{0}</b> carachtar fágtha."
+
+#: media/js/zamboni/devhub.js:967
+msgid "Add-on failed validation."
+msgstr "Níor éirigh le bailíochtú an bhreiseáin."
+
+#: media/js/zamboni/devhub.js:969
+msgid "Add-on passed validation."
+msgstr "D'éirigh le bailíochtú an bhreiseáin."
+
+#: media/js/zamboni/devhub.js:985
+msgid "{0} error"
+msgid_plural "{0} errors"
+msgstr[0] "{0} earráid"
+msgstr[1] "{0} earráid"
+msgstr[2] "{0} earráid"
+msgstr[3] "{0} n-earráid"
+msgstr[4] "{0} earráid"
+
+#: media/js/zamboni/devhub.js:988
+msgid "{0} warning"
+msgid_plural "{0} warnings"
+msgstr[0] "{0} rabhadh"
+msgstr[1] "{0} rabhadh"
+msgstr[2] "{0} rabhadh"
+msgstr[3] "{0} rabhadh"
+msgstr[4] "{0} rabhadh"
+
+#: media/js/zamboni/devhub.js:1006
+msgid "All tests passed successfully."
+msgstr "D'éirigh le gach tástáil."
+
+#: media/js/zamboni/devhub.js:1015
+msgid "Warning"
+msgstr "Rabhadh"
+
+#: media/js/zamboni/devhub.js:1016 media/js/zamboni/devhub.js:1122
+#: media/js/zamboni/devhub.js:1136
+msgid "Error"
+msgstr "Earráid"
+
+#: media/js/zamboni/devhub.js:1086 media/js/zamboni/devhub.js:1089
+msgid "Running tests..."
+msgstr "Tástálacha ar siúl..."
+
+#: media/js/zamboni/devhub.js:1123
+msgid "Validation task could not complete or completed with errors"
+msgstr ""
+"Níorbh fhéidir an bailíochtú a chur i gcrích, nó chríochnaigh sé le hearráidí"
+
+#: media/js/zamboni/devhub.js:1137
+msgid "Internal server error"
+msgstr "Earráid inmheánach leis an bhfreastalaí"
+
+#: media/js/zamboni/l10n.js:38
+msgid "Remove this localization"
+msgstr "Bain an logánú seo"
+
+#: media/js/zamboni/themes.js:14
+msgid "This theme is incompatible with your version of {0}"
+msgstr "Níl an téama seo comhoiriúnach do do leagan de {0}"
+
+#: media/js/zamboni/stats/csv_keys.js:3
+msgid "Afrikaans"
+msgstr "Afracáinis"
+
+#: media/js/zamboni/stats/csv_keys.js:4
+msgid "Akan"
+msgstr "Acáinis"
+
+#: media/js/zamboni/stats/csv_keys.js:5
+msgid "Asturian"
+msgstr "Astúiris"
+
+#: media/js/zamboni/stats/csv_keys.js:6
+msgid "Arabic"
+msgstr "Araibis"
+
+#: media/js/zamboni/stats/csv_keys.js:7
+msgid "Assamese"
+msgstr "Asaimis"
+
+#: media/js/zamboni/stats/csv_keys.js:8
+msgid "Belarusian"
+msgstr "Bealarúisis"
+
+#: media/js/zamboni/stats/csv_keys.js:9
+msgid "Bulgarian"
+msgstr "Bulgáiris"
+
+#: media/js/zamboni/stats/csv_keys.js:10
+msgid "Bengali (Bangladesh)"
+msgstr "Beangáilis (Banglaidéis)"
+
+#: media/js/zamboni/stats/csv_keys.js:11
+msgid "Bengali (India)"
+msgstr "Beangáilis (An India)"
+
+#: media/js/zamboni/stats/csv_keys.js:12
+msgid "Breton"
+msgstr "Briotáinis"
+
+#: media/js/zamboni/stats/csv_keys.js:13
+msgid "Catalan"
+msgstr "Catalóinis"
+
+#: media/js/zamboni/stats/csv_keys.js:14
+msgid "Catalan (Valencian)"
+msgstr "Catalóinis (Vaileinsis)"
+
+#: media/js/zamboni/stats/csv_keys.js:15
+msgid "Czech"
+msgstr "Seicis"
+
+#: media/js/zamboni/stats/csv_keys.js:16
+msgid "Welsh"
+msgstr "Breatnais"
+
+#: media/js/zamboni/stats/csv_keys.js:17
+msgid "Danish"
+msgstr "Danmhairgis"
+
+#: media/js/zamboni/stats/csv_keys.js:18
+msgid "German"
+msgstr "Gearmáinis"
+
+#: media/js/zamboni/stats/csv_keys.js:19
+msgid "German (Austria)"
+msgstr "Gearmáinis (An Ostair)"
+
+#: media/js/zamboni/stats/csv_keys.js:20
+msgid "German (Switzerland)"
+msgstr "Gearmáinis (An Eilvéis)"
+
+#: media/js/zamboni/stats/csv_keys.js:21
+msgid "German (Germany)"
+msgstr "Gearmáinis (An Ghearmáin)"
+
+#: media/js/zamboni/stats/csv_keys.js:22
+msgid "Lower Sorbian"
+msgstr "Sorbais Íochtarach"
+
+#: media/js/zamboni/stats/csv_keys.js:23
+msgid "Greek"
+msgstr "Gréigis"
+
+#: media/js/zamboni/stats/csv_keys.js:24
+msgid "English (Australian)"
+msgstr "Béarla (Astrálach)"
+
+#: media/js/zamboni/stats/csv_keys.js:25
+msgid "English (Canadian)"
+msgstr "Béarla (Ceanadach)"
+
+#: media/js/zamboni/stats/csv_keys.js:26
+msgid "English (British)"
+msgstr "Béarla (Sasanach)"
+
+#: media/js/zamboni/stats/csv_keys.js:27
+msgid "English (New Zealand)"
+msgstr "Béarla (An Nua-Shéalainn)"
+
+#: media/js/zamboni/stats/csv_keys.js:28
+msgid "English (US)"
+msgstr "Béarla (SAM)"
+
+#: media/js/zamboni/stats/csv_keys.js:29
+msgid "English (South African)"
+msgstr "Béarla (Afracach Theas)"
+
+#: media/js/zamboni/stats/csv_keys.js:30
+msgid "Esperanto"
+msgstr "Esperanto"
+
+#: media/js/zamboni/stats/csv_keys.js:31
+msgid "Spanish (Argentina)"
+msgstr "Spáinnis (An Airgintín)"
+
+#: media/js/zamboni/stats/csv_keys.js:32
+msgid "Spanish (Chile)"
+msgstr "Spáinnis (An tSile)"
+
+#: media/js/zamboni/stats/csv_keys.js:33
+msgid "Spanish (Spain)"
+msgstr "Spáinnis (An Spáinn)"
+
+#: media/js/zamboni/stats/csv_keys.js:34
+msgid "Spanish (Mexico)"
+msgstr "Spáinnis (Meicsiceo)"
+
+#: media/js/zamboni/stats/csv_keys.js:35
+msgid "Estonian"
+msgstr "Eastóinis"
+
+#: media/js/zamboni/stats/csv_keys.js:36
+msgid "Basque"
+msgstr "Bascais"
+
+#: media/js/zamboni/stats/csv_keys.js:37
+msgid "Persian"
+msgstr "Peirsis"
+
+#: media/js/zamboni/stats/csv_keys.js:38
+msgid "Finnish"
+msgstr "Fionlainnis"
+
+#: media/js/zamboni/stats/csv_keys.js:39
+msgid "Fijian"
+msgstr "Fidsis"
+
+#: media/js/zamboni/stats/csv_keys.js:40
+msgid "French"
+msgstr "Fraincis"
+
+#: media/js/zamboni/stats/csv_keys.js:41
+msgid "Friulian"
+msgstr "Friúilis"
+
+#: media/js/zamboni/stats/csv_keys.js:42
+msgid "Frisian"
+msgstr "Freaslainnis"
+
+#: media/js/zamboni/stats/csv_keys.js:43
+msgid "Irish"
+msgstr "Gaeilge"
+
+#: media/js/zamboni/stats/csv_keys.js:44
+msgid "Irish (Ireland)"
+msgstr "Gaeilge (Éire)"
+
+#: media/js/zamboni/stats/csv_keys.js:45
+msgid "Galician"
+msgstr "Gailísis"
+
+#: media/js/zamboni/stats/csv_keys.js:46
+msgid "Gujarati"
+msgstr "Gúisearáitis"
+
+#: media/js/zamboni/stats/csv_keys.js:47
+msgid "Hebrew"
+msgstr "Eabhrais"
+
+#: media/js/zamboni/stats/csv_keys.js:48
+msgid "Hindi"
+msgstr "Hiondúis"
+
+#: media/js/zamboni/stats/csv_keys.js:49
+msgid "Hindi (India)"
+msgstr "Hiondúis (An India)"
+
+#: media/js/zamboni/stats/csv_keys.js:50
+msgid "Croatian"
+msgstr "Cróitis"
+
+#: media/js/zamboni/stats/csv_keys.js:51
+msgid "Upper Sorbian"
+msgstr "Sorbais Uachtarach"
+
+#: media/js/zamboni/stats/csv_keys.js:52
+msgid "Hungarian"
+msgstr "Ungáiris"
+
+#: media/js/zamboni/stats/csv_keys.js:53
+msgid "Armenian"
+msgstr "Airméinis"
+
+#: media/js/zamboni/stats/csv_keys.js:54
+msgid "Indonesian"
+msgstr "Indinéisis"
+
+#: media/js/zamboni/stats/csv_keys.js:55
+msgid "Icelandic"
+msgstr "Íoslainnis"
+
+#: media/js/zamboni/stats/csv_keys.js:56
+msgid "Italian"
+msgstr "Iodáilis"
+
+#: media/js/zamboni/stats/csv_keys.js:57 media/js/zamboni/stats/csv_keys.js:58
+msgid "Japanese"
+msgstr "Seapáinis"
+
+#: media/js/zamboni/stats/csv_keys.js:59
+msgid "Georgian"
+msgstr "Seoirsis"
+
+#: media/js/zamboni/stats/csv_keys.js:60
+msgid "Kazakh"
+msgstr "Casaicis"
+
+#: media/js/zamboni/stats/csv_keys.js:61
+msgid "Kannada"
+msgstr "Cannadais"
+
+#: media/js/zamboni/stats/csv_keys.js:62
+msgid "Korean"
+msgstr "Cóiréis"
+
+#: media/js/zamboni/stats/csv_keys.js:63
+msgid "Kurdish"
+msgstr "Coirdis"
+
+#: media/js/zamboni/stats/csv_keys.js:64
+msgid "Latin"
+msgstr "Laidin"
+
+#: media/js/zamboni/stats/csv_keys.js:65
+msgid "Lithuanian"
+msgstr "Liotuáinis"
+
+#: media/js/zamboni/stats/csv_keys.js:66
+msgid "Latvian"
+msgstr "Laitvis"
+
+#: media/js/zamboni/stats/csv_keys.js:67
+msgid "Malagasy"
+msgstr "Malagásais"
+
+#: media/js/zamboni/stats/csv_keys.js:68
+msgid "Maori (Aotearoa)"
+msgstr "Maorais (Aotearoa)"
+
+#: media/js/zamboni/stats/csv_keys.js:69
+msgid "Macedonian"
+msgstr "Macadóinis"
+
+#: media/js/zamboni/stats/csv_keys.js:70
+msgid "Malayalam"
+msgstr "Mailéalaimis"
+
+#: media/js/zamboni/stats/csv_keys.js:71
+msgid "Mongolian"
+msgstr "Mongóilis"
+
+#: media/js/zamboni/stats/csv_keys.js:72
+msgid "Marathi"
+msgstr "Maraitis"
+
+#: media/js/zamboni/stats/csv_keys.js:73
+msgid "Norwegian (Bokmål)"
+msgstr "Ioruais (Bokmål)"
+
+#: media/js/zamboni/stats/csv_keys.js:74
+msgid "Nepali"
+msgstr "Neipealais"
+
+#: media/js/zamboni/stats/csv_keys.js:75
+msgid "Norwegian (Nynorsk)"
+msgstr "Ioruais (Nynorsk)"
+
+#: media/js/zamboni/stats/csv_keys.js:76
+msgid "Dutch"
+msgstr "Ollainnis"
+
+#: media/js/zamboni/stats/csv_keys.js:77
+msgid "Ndebele, South"
+msgstr "Ndebele Theas"
+
+#: media/js/zamboni/stats/csv_keys.js:78
+msgid "Northern Sotho"
+msgstr "Seipidis"
+
+#: media/js/zamboni/stats/csv_keys.js:79
+msgid "Occitan (Lengadocian)"
+msgstr "Ocatáinis"
+
+#: media/js/zamboni/stats/csv_keys.js:80
+msgid "Oriya"
+msgstr "Oirísis"
+
+#: media/js/zamboni/stats/csv_keys.js:81
+msgid "Punjabi"
+msgstr "Painseáibis"
+
+#: media/js/zamboni/stats/csv_keys.js:82
+msgid "Polish"
+msgstr "Polainnis"
+
+#: media/js/zamboni/stats/csv_keys.js:83
+msgid "Portuguese (Brazilian)"
+msgstr "Portaingéilis (Brasaíleach)"
+
+#: media/js/zamboni/stats/csv_keys.js:84
+msgid "Portuguese (Portugal)"
+msgstr "Portaingéilis (An Phortaingéil)"
+
+#: media/js/zamboni/stats/csv_keys.js:85
+msgid "Romanian"
+msgstr "Rómáinis"
+
+#: media/js/zamboni/stats/csv_keys.js:86
+msgid "Romansh"
+msgstr "Rómainis"
+
+#: media/js/zamboni/stats/csv_keys.js:87
+msgid "Russian"
+msgstr "Rúisis"
+
+#: media/js/zamboni/stats/csv_keys.js:88
+msgid "Kinyarwanda"
+msgstr "Cinearuáindis"
+
+#: media/js/zamboni/stats/csv_keys.js:89
+msgid "Sinhala"
+msgstr "Siolóinis"
+
+#: media/js/zamboni/stats/csv_keys.js:90
+msgid "Slovak"
+msgstr "Slóvaicis"
+
+#: media/js/zamboni/stats/csv_keys.js:91
+msgid "Slovenian"
+msgstr "Slóivéinis"
+
+#: media/js/zamboni/stats/csv_keys.js:92
+msgid "Albanian"
+msgstr "Albáinis"
+
+#: media/js/zamboni/stats/csv_keys.js:93 media/js/zamboni/stats/csv_keys.js:94
+msgid "Serbian"
+msgstr "Seirbis"
+
+#: media/js/zamboni/stats/csv_keys.js:95
+msgid "Siswati"
+msgstr "Suaisis"
+
+#: media/js/zamboni/stats/csv_keys.js:96
+msgid "Southern Sotho"
+msgstr "Sótó Theas"
+
+#: media/js/zamboni/stats/csv_keys.js:97
+msgid "Swedish"
+msgstr "Sualainnis"
+
+#: media/js/zamboni/stats/csv_keys.js:98
+msgid "Tamil"
+msgstr "Tamailis"
+
+#: media/js/zamboni/stats/csv_keys.js:99
+msgid "Tamil (India)"
+msgstr "Tamailis (An India)"
+
+#: media/js/zamboni/stats/csv_keys.js:100
+msgid "Tamil (Sri Lanka)"
+msgstr "Tamailis (Srí Lanca)"
+
+#: media/js/zamboni/stats/csv_keys.js:101
+msgid "Telugu"
+msgstr "Teileagúis"
+
+#: media/js/zamboni/stats/csv_keys.js:102
+msgid "Thai"
+msgstr "Téalainnis"
+
+#: media/js/zamboni/stats/csv_keys.js:103
+msgid "Tswana"
+msgstr "Suáinis"
+
+#: media/js/zamboni/stats/csv_keys.js:104
+msgid "Turkish"
+msgstr "Tuircis"
+
+#: media/js/zamboni/stats/csv_keys.js:105
+msgid "Tsonga"
+msgstr "Songais"
+
+#: media/js/zamboni/stats/csv_keys.js:106
+msgid "Tatar"
+msgstr "Tatairis"
+
+#: media/js/zamboni/stats/csv_keys.js:107
+msgid "Ukrainian"
+msgstr "Úcráinis"
+
+#: media/js/zamboni/stats/csv_keys.js:108
+msgid "Urdu"
+msgstr "Urdais"
+
+#: media/js/zamboni/stats/csv_keys.js:109
+msgid "Venda"
+msgstr "Veindis"
+
+#: media/js/zamboni/stats/csv_keys.js:110
+msgid "Vietnamese"
+msgstr "Vítneamais"
+
+#: media/js/zamboni/stats/csv_keys.js:111
+msgid "Wolof"
+msgstr "Volaifis"
+
+#: media/js/zamboni/stats/csv_keys.js:112
+msgid "Xhosa"
+msgstr "Cóisis"
+
+#: media/js/zamboni/stats/csv_keys.js:113
+msgid "Chinese (Simplified)"
+msgstr "Sínis (Simplithe)"
+
+#: media/js/zamboni/stats/csv_keys.js:114
+msgid "Chinese (Traditional)"
+msgstr "Sínis (Traidisiúnta)"
+
+#: media/js/zamboni/stats/csv_keys.js:115
+msgid "Zulu"
+msgstr "Súlúis"
+
+#: media/js/zamboni/stats/csv_keys.js:118
+msgid "Windows"
+msgstr "Windows"
+
+#: media/js/zamboni/stats/csv_keys.js:119
+msgid "Mac"
+msgstr "Mac"
+
+#: media/js/zamboni/stats/csv_keys.js:120
+#: media/js/zamboni/stats/csv_keys.js:123
+msgid "unknown"
+msgstr "anaithnid"
+
+#: media/js/zamboni/stats/csv_keys.js:126
+msgid "Firefox"
+msgstr "Firefox"
+
+#: media/js/zamboni/stats/csv_keys.js:127
+msgid "Mozilla"
+msgstr "Mozilla"
+
+#: media/js/zamboni/stats/csv_keys.js:128
+msgid "Thunderbird"
+msgstr "Thunderbird"
+
+#: media/js/zamboni/stats/csv_keys.js:129
+msgid "Sunbird"
+msgstr "Sunbird"
+
+#: media/js/zamboni/stats/csv_keys.js:130
+msgid "SeaMonkey"
+msgstr "SeaMonkey"
+
+#: media/js/zamboni/stats/csv_keys.js:131
+msgid "Fennec"
+msgstr "Fennec"
+
+#: media/js/zamboni/stats/stats.js:462
+msgid "Other"
+msgstr "Eile"
+
+#: media/js/zamboni/stats/stats.js:660
+msgid "Loading the latest data&hellip;"
+msgstr "Na sonraí is déanaí á luchtú&hellip;"
+
+#: media/js/zamboni/stats/stats_manager.js:401
+msgid "Loading&hellip;"
+msgstr "Á luchtú&hellip;"

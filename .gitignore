@@ -25,7 +25,6 @@ media/external/*
 *-all.js
 *.less.css
 *.styl.css
-locale
 vendor
 .nose*
 tmp/*
@@ -34,3 +33,4 @@ vagrantconfig_local.yaml
 vagrant/manifests/classes/custom.pp
 node_modules
 *.signed.zip
+*.po~
