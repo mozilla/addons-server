@@ -1,7 +1,9 @@
 import json
 
+from django.conf import settings
 from django.core.urlresolvers import reverse
 
+import mock
 from nose.tools import eq_
 from test_utils import RequestFactory
 
@@ -9,7 +11,7 @@ from amo.tests import addon_factory
 from comm.models import (CommunicationNote, CommunicationThread,
                          CommunicationThreadCC)
 from mkt.api.tests.test_oauth import RestOAuth
-from mkt.comm.api import ThreadPermission
+from mkt.comm.api import ThreadPermission, EmailCreationPermission, post_email
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
 
@@ -185,3 +187,44 @@ class TestNote(RestOAuth):
     def test_cors_allowed(self):
         res = self.client.get(self.list_url)
         self.assertCORS(res, 'get', 'post', 'delete')
+
+
+class TestEmailApi(RestOAuth):
+
+    def setUp(self):
+        super(TestEmailApi, self).setUp()
+        settings.WHITELISTED_CLIENTS_EMAIL_API = ['10.10.10.10']
+        self.mock_request = RequestFactory().get(reverse('post-email-api'))
+        mock.patch.object(settings, 'WHITELISTED_CLIENTS_EMAIL_API',
+                          ['10.10.10.10'])
+
+    def get_request(self, data):
+        req = self.mock_request
+        req.META['REMOTE_ADDR'] = '10.10.10.10'
+        req.POST = dict(data)
+        req.method = 'POST'
+        req.user = self.user
+        req.amo_user = self.profile
+        req.groups = req.amo_user.groups.all()
+        return req
+
+    def test_allowed(self):
+        self.mock_request.META['REMOTE_ADDR'] = '10.10.10.10'
+        assert EmailCreationPermission().has_permission(self.mock_request,
+                                                        None)
+
+    def test_denied(self):
+        self.mock_request.META['REMOTE_ADDR'] = '10.10.10.1'
+        assert not EmailCreationPermission().has_permission(self.mock_request,
+                                                            None)
+
+    @mock.patch('comm.tasks.consume_email.apply_async')
+    def test_response(self, _mock):
+        res = post_email(self.get_request({'email_body': 'something'}))
+        _mock.assert_called_with(('something',))
+        eq_(res.status_code, 201)
+
+    def test_bad_request(self):
+        """Test with no email body."""
+        res = post_email(self.get_request({}))
+        eq_(res.status_code, 400)

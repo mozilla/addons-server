@@ -1,8 +1,10 @@
+from django.conf import settings
 from django.db.models import Q
 from django.http import Http404
 from django.shortcuts import get_object_or_404
 
-from rest_framework.exceptions import PermissionDenied
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.exceptions import PermissionDenied, ParseError
 from rest_framework.fields import CharField
 from rest_framework.filters import OrderingFilter
 from rest_framework.mixins import (CreateModelMixin, DestroyModelMixin,
@@ -14,11 +16,13 @@ from rest_framework.serializers import ModelSerializer, SerializerMethodField
 from addons.models import Addon
 from users.models import UserProfile
 from comm.models import CommunicationNote, CommunicationThread
+from comm.tasks import consume_email
 from comm.utils import ThreadObjectPermission
 from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.base import CORSViewSet
 from mkt.webpay.forms import PrepareForm
+from rest_framework.response import Response
 
 
 class AuthorSerializer(ModelSerializer):
@@ -190,3 +194,22 @@ class NoteViewSet(ListModelMixin, CreateModelMixin, RetrieveModelMixin,
 
         return super(NoteViewSet, self).get_serializer(data=data_dict,
             files=files, instance=instance, many=many, partial=partial)
+
+
+class EmailCreationPermission(object):
+    def has_permission(self, request, view):
+        remote_ip = request.META.get('REMOTE_ADDR')
+        return remote_ip and (
+            remote_ip in settings.WHITELISTED_CLIENTS_EMAIL_API)
+
+
+@api_view(['POST'])
+@permission_classes((EmailCreationPermission,))
+def post_email(request):
+    email_body = request.POST.get('email_body')
+    if not email_body:
+        raise ParseError(
+            detail='email_body not present in the POST data.')
+
+    consume_email.apply_async((email_body,))
+    return Response(status=201)

@@ -2,7 +2,7 @@ from django.conf.urls import include, patterns, url
 
 from rest_framework.routers import DefaultRouter
 
-from mkt.comm.api import NoteViewSet, ThreadViewSet
+from mkt.comm.api import NoteViewSet, ThreadViewSet, post_email
 
 
 api_thread = DefaultRouter()
@@ -11,5 +11,6 @@ api_thread.register(r'thread/(?P<thread_id>\d+)/note', NoteViewSet,
                     base_name='comm-note')
 
 api_patterns = patterns('',
-    url(r'^comm/', include(api_thread.urls))
+    url(r'^comm/', include(api_thread.urls)),
+    url(r'^comm/email/', post_email, name='post-email-api')
 )
