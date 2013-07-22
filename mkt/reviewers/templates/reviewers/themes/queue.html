@@ -39,6 +39,7 @@
 
 {% set sidebar_class = "absolute" %}
 {% if theme_count == 1 %}{% set sidebar_class = "absolute" %}{% endif %}
+{% if single_theme %}{% set sidebar_class = "absolute single" %}{% endif %}
 {% if theme_count > 1 %}{% set sidebar_class = "align fixed" %}{% endif %}
 <div class="sidebar"><div class="{{ sidebar_class }}">
   {% block queue_options %}
