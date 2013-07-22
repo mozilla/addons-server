@@ -62,79 +62,85 @@ def landing(request):
                            'system. Please try again later.'))
 
     return jingo.render(request, 'ecosystem/landing.html',
-           {'videos': videos, 'newsletter_form': form})
+        {'videos': videos, 'newsletter_form': form})
 
 
 def support(request):
     """Landing page for support."""
     return jingo.render(request, 'ecosystem/support.html',
-           {'page': 'support', 'category': 'build'})
+        {'page': 'support', 'category': 'build'})
 
 
 def partners(request):
     """Landing page for partners."""
     return jingo.render(request, 'ecosystem/partners.html',
-           {'page': 'partners'})
+        {'page': 'partners'})
 
 
 def installation(request):
     """Landing page for installation."""
     return jingo.render(request, 'ecosystem/installation.html',
-           {'page': 'installation', 'category': 'publish'})
+        {'page': 'installation', 'category': 'publish'})
 
 
 def dev_phone(request):
     """Landing page for the developer phone."""
     return jingo.render(request, 'ecosystem/dev_phone.html',
-           {'page': 'dev_phone'})
+        {'page': 'dev_phone'})
 
 
 def design_concept(request):
     """Design - Concept: A great app page."""
     return jingo.render(request, 'ecosystem/design_concept.html',
-           {'page': 'design_concept', 'category': 'design'})
+        {'page': 'design_concept', 'category': 'design'})
 
 
 def design_fundamentals(request):
     """Design - Design Fundamentals page."""
     return jingo.render(request, 'ecosystem/design_fundamentals.html',
-           {'page': 'design_fundamentals', 'category': 'design'})
+        {'page': 'design_fundamentals', 'category': 'design'})
 
 
 def design_ui(request):
     """Design - UI Guidelines page."""
     return jingo.render(request, 'ecosystem/design_ui.html',
-           {'page': 'design_ui', 'category': 'design'})
+        {'page': 'design_ui', 'category': 'design'})
 
 
 def design_patterns(request):
     """Design - Responsive Navigation Patterns page."""
     return jingo.render(request, 'ecosystem/design_patterns.html',
-           {'page': 'design_patterns', 'category': 'design'})
+        {'page': 'design_patterns', 'category': 'design'})
 
 
 def publish_review(request):
     """Publish - Marketplace Review Criteria page."""
     return jingo.render(request, 'ecosystem/publish_review.html',
-           {'page': 'publish_review', 'category': 'publish'})
+        {'page': 'publish_review', 'category': 'publish'})
 
 
 def publish_deploy(request):
     """Publish - Deploying your app page."""
     return jingo.render(request, 'ecosystem/publish_deploy.html',
-           {'page': 'publish_deploy', 'category': 'publish'})
+        {'page': 'publish_deploy', 'category': 'publish'})
 
 
 def publish_hosted(request):
     """Publish - Hosted apps page."""
     return jingo.render(request, 'ecosystem/publish_hosted.html',
-           {'page': 'publish_hosted', 'category': 'publish'})
+        {'page': 'publish_hosted', 'category': 'publish'})
 
 
 def publish_submit(request):
     """Publish - Marketplace submission page."""
     return jingo.render(request, 'ecosystem/publish_submit.html',
-           {'page': 'publish_submit', 'category': 'publish'})
+        {'page': 'publish_submit', 'category': 'publish'})
+
+
+def publish_payments(request):
+    """Publish - Marketplace payments status."""
+    return jingo.render(request, 'ecosystem/publish_payments.html',
+        {'page': 'publish_payments', 'category': 'publish'})
 
 
 def publish_packaged(request):
@@ -353,25 +359,25 @@ if('vibrate' in navigator) {
 def build_intro(request):
     """Build - Intro to Open Web apps page."""
     return jingo.render(request, 'ecosystem/build_intro.html',
-           {'page': 'build_intro', 'category': 'build'})
+        {'page': 'build_intro', 'category': 'build'})
 
 
 def build_reference(request):
     """Build - Reference apps page."""
     return jingo.render(request, 'ecosystem/build_reference.html',
-           {'page': 'build_reference', 'category': 'build'})
+        {'page': 'build_reference', 'category': 'build'})
 
 
 def build_ffos(request):
     """Build - Firefox OS page."""
     return jingo.render(request, 'ecosystem/build_ffos.html',
-           {'page': 'build_ffos', 'category': 'build'})
+        {'page': 'build_ffos', 'category': 'build'})
 
 
 def build_manifests(request):
     """Build - Intro to Manifests page."""
     return jingo.render(request, 'ecosystem/build_manifests.html',
-           {'page': 'build_manifests', 'category': 'build'})
+        {'page': 'build_manifests', 'category': 'build'})
 
 
 def build_app_generator(request):
@@ -450,25 +456,25 @@ def build_app_generator(request):
 def build_tools(request):
     """Build - Tools page."""
     return jingo.render(request, 'ecosystem/build_tools.html',
-           {'page': 'build_tools', 'category': 'build'})
+        {'page': 'build_tools', 'category': 'build'})
 
 
 def build_game_apps(request):
     """Build - Developer Game Apps page."""
     return jingo.render(request, 'ecosystem/build_game_apps.html',
-           {'page': 'build_game_apps', 'category': 'build'})
+        {'page': 'build_game_apps', 'category': 'build'})
 
 
 def build_apps_offline(request):
     """Build - Apps Offline page."""
     return jingo.render(request, 'ecosystem/build_apps_offline.html',
-           {'page': 'build_apps_offline', 'category': 'build'})
+        {'page': 'build_apps_offline', 'category': 'build'})
 
 
 def build_mobile_developers(request):
     """Build - Mobile Developers page."""
     return jingo.render(request, 'ecosystem/build_mobile_developers.html',
-           {'page': 'build_mobile_developers', 'category': 'build'})
+        {'page': 'build_mobile_developers', 'category': 'build'})
 
 
 def build_web_developers(request):
@@ -480,13 +486,13 @@ def build_web_developers(request):
 def build_dev_tools(request):
     """Build - Developer Tools page."""
     return jingo.render(request, 'ecosystem/build_dev_tools.html',
-           {'page': 'build_dev_tools', 'category': 'build'})
+        {'page': 'build_dev_tools', 'category': 'build'})
 
 
 def build_payments(request):
     """Build - Payments page."""
     return jingo.render(request, 'ecosystem/build_payments.html',
-           {'page': 'build_payments', 'category': 'build'})
+        {'page': 'build_payments', 'category': 'build'})
 
 
 def apps_documentation(request, page=None):

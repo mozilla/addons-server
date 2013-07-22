@@ -134,6 +134,13 @@
               </ol>
             </li>
             <li>
+              <a href="{{ url('ecosystem.build_manifests') }}"
+                 {%- if section == 'build_manifests' %}
+                 class="selected"
+                 {% endif %}>
+                {{- _('Intro to Manifests') }}</a>
+            </li>
+            <li>
               <a href="{{ url('ecosystem.build_web_developers') }}"
                  {%- if section == 'build_web_developers' %}
                  class="selected"
@@ -167,13 +174,6 @@
                  class="selected"
                  {% endif %}>
                 {{- _('Payments') }}</a>
-            </li>
-            <li>
-              <a href="{{ url('ecosystem.build_manifests') }}"
-                 {%- if section == 'build_manifests' %}
-                 class="selected"
-                 {% endif %}>
-                {{- _('Intro to Manifests') }}</a>
             </li>
             <li class="has-children{{ ' active' if section in ('build_tools',
                                                                'build_app_generator',
@@ -253,6 +253,13 @@
                     {{- _('Packaged Apps') }}</a>
                 </li>
               </ol>
+              <li>
+                <a href="{{ url('ecosystem.publish_payments') }}"
+                   {% if section == 'publish_payments' -%}
+                   class="selected"
+                   {% endif -%}>
+                  {{- _('Payments Status') }}</a>
+              </li>
             </li>
           </ol>
         </div>

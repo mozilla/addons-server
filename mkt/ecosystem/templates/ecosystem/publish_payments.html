@@ -1,0 +1,70 @@
+{% extends 'ecosystem/base.html' %}
+{% from "ecosystem/macros.html" import navigation with context %}
+
+{% block title %}
+  {{ hub_page_title(_('Payments Status')) }}
+{% endblock %}
+
+{% block content %}
+  <div class="doc-wrapper">
+    {{ navigation('publish_payments') }}
+
+    <article>
+      <h1>{{ _('Payments Status') }}</h1>
+      <p>
+        {% trans mdn_url='https://developer.mozilla.org/en-US/docs/Web/Apps/Publishing/App_pricing',
+                 api_url='http://firefox-marketplace-api.readthedocs.org/en/latest/topics/payment.html#pay-tiers' %}
+          Payments are processed on a country by country basis, with different
+          prices and payment methods available in each country. A list of
+          price points is <a href="{{ mdn_url }}">documented in MDN</a> and is
+          <a href="{{ api_url }}">available through the API</a>.
+        {% endtrans %}
+      </p>
+      <p>
+        {% trans %}
+          These are the currently supported countries in the Marketplace.
+        {% endtrans %}
+      </p>
+      <div class="island">
+        <table id="ecosystem-payments-status">
+          <thead>
+            <tr>
+              <th></th>
+              <th>{{ _('Developer setup') }}</th>
+              <th>{{ _('Paid apps') }}</th>
+              <th>{{ _('In-app payments') }}</th>
+              <th>{{ _('Carrier billing') }}</th>
+              <th>{{ _('Credit card') }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>{{ _('Colombia') }}</td>
+              <td class="yes">{{ _('yes') }}</td>
+              <td class="yes">{{ _('yes') }}</td>
+              <td class="yes">{{ _('yes') }}</td>
+              <td class="varies">{{ _('varies') }}</td>
+              <td class="varies">{{ _('varies') }}</td>
+            </tr>
+            <tr>
+              <th>{{ _('Poland') }}</td>
+              <td class="yes">{{ _('yes') }}</td>
+              <td class="yes">{{ _('yes') }}</td>
+              <td class="yes">{{ _('yes') }}</td>
+              <td class="yes">{{ _('yes') }}</td>
+              <td class="yes">{{ _('yes') }}</td>
+            </tr>
+            <tr>
+              <th>{{ _('Spain') }}</td>
+              <td class="yes">{{ _('yes') }}</td>
+              <td class="yes">{{ _('yes') }}</td>
+              <td class="yes">{{ _('yes') }}</td>
+              <td class="yes">{{ _('yes') }}</td>
+              <td class="yes">{{ _('yes') }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </article>
+  </div>
+{% endblock %}
