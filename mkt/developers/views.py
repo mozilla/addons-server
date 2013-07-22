@@ -132,9 +132,9 @@ def edit(request, addon_id, addon, webapp=False):
         'version': addon.current_version or addon.latest_version
     }
     if (waffle.switch_is_active('buchets') and not addon.is_packaged and
-        addon.current_version):
+        data['version']):
         data['feature_list'] = [unicode(f) for f in
-                                addon.current_version.features.to_list()]
+                                data['version'].features.to_list()]
     if acl.action_allowed(request, 'Apps', 'Configure'):
         data['admin_settings_form'] = forms.AdminSettingsForm(instance=addon)
     return jingo.render(request, 'developers/apps/edit.html', data)
