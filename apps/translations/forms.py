@@ -27,11 +27,16 @@ class TranslationFormMixin(object):
     def __init__(self, *args, **kw):
         super(TranslationFormMixin, self).__init__(*args, **kw)
         self.error_class = self.error_class_
+        self.set_default_locale()
 
-    def full_clean(self):
+    def set_default_locale(self):
         locale = to_language(default_locale(self.instance))
         for field in self.fields.values():
             field.default_locale = locale
+            field.widget.default_locale = locale
+
+    def full_clean(self):
+        self.set_default_locale()
         return super(TranslationFormMixin, self).full_clean()
 
     def error_class_(self, *a, **k):

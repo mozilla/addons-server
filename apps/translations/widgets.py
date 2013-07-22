@@ -52,9 +52,11 @@ class TransMulti(forms.widgets.MultiWidget):
         if value:
             self.widgets = [self.widget() for _ in value]
         else:
-            # Give an empty widget in the current locale.
+            # Give an empty widget in the default locale.
+            default_locale = getattr(self, 'default_locale',
+                                     translation.get_language())
             self.widgets = [self.widget()]
-            value = [Translation(locale=translation.get_language())]
+            value = [Translation(locale=default_locale)]
         return super(TransMulti, self).render(name, value, attrs)
 
     def decompress(self, value):
