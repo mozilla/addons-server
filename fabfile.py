@@ -39,7 +39,6 @@ def create_virtualenv():
 @task
 def update_locales():
     with lcd(pjoin(ZAMBONI, 'locale')):
-        local("git checkout .")
         local("./compile-mo.sh .")
 
 
