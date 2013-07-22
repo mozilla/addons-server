@@ -90,7 +90,7 @@ tastypie-services==0.2.2
 
 ## Not on pypi.
 -e git+https://github.com/mozilla/amo-validator.git@77534ef1b684fbd3b3348352faf805ccd1ed850c#egg=amo-validator
--e git+https://github.com/mozilla/app-validator.git@ffe0bb4145eed06dbea95d6c637825b9f8cc6057#egg=app-validator
+-e git+https://github.com/mozilla/app-validator.git@8bbd2723aedecbe2f839790c7da38ceb634de39f#egg=app-validator
 -e git+https://github.com/jsocol/commonware.git@27646ecaca40a89024cc581c3ecf5eb0fa87ee11#egg=commonware
 -e git+https://github.com/jbalogh/django-queryset-transform@a1ba6ae41bd86f5bb9ff66fb56614e0fafe6e022#egg=django-queryset-transform
 -e git+https://github.com/miracle2k/django-tables.git@546f339308103880c823b2056830fcdc9220edd0#egg=django-tables
