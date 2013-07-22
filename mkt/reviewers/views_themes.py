@@ -166,7 +166,7 @@ def _get_themes(request, reviewer, flagged=False, rereview=False):
         num, themes, locks = _get_rereview_themes(reviewer)
     else:
         # Pending and flagged themes.
-        locks = ThemeLock.objects.filter(
+        locks = ThemeLock.uncached.filter(
             reviewer=reviewer, theme__addon__status=status)
         num, themes = _calc_num_themes_checkout(locks)
         if themes:

@@ -298,7 +298,6 @@ class TestThemeQueue(ThemeReviewTestMixin, amo.tests.TestCase):
                 email='persona_reviewer@mozilla.com')
             self.login(user)
             addon = self.theme_factory()
-
             addon.addonuser_set.create(user=user)
 
             res = self.client.get(self.queue_url)
@@ -414,13 +413,12 @@ class TestThemeQueue(ThemeReviewTestMixin, amo.tests.TestCase):
         doc = pq(res.content)
         eq_(doc('tbody tr').length, 3 * 2)  # Double for comment rows.
 
-    def test_single_cannot_review_my_app(self):
+    def test_single_cannot_review_own_theme(self):
         with self.settings(ALLOW_SELF_REVIEWS=False):
             user = UserProfile.objects.get(
                 email='persona_reviewer@mozilla.com')
             self.login(user)
             addon = self.theme_factory()
-
             addon.addonuser_set.create(user=user)
 
             res = self.client.get(reverse('reviewers.themes.single',
@@ -430,6 +428,18 @@ class TestThemeQueue(ThemeReviewTestMixin, amo.tests.TestCase):
                 addon.persona.rereviewqueuetheme_set.all()[0].id
                 if self.rereview else addon.persona.id)
             eq_(res.context['reviewable'], False)
+
+    @mock.patch.object(rvw, 'THEME_INITIAL_LOCKS', 2)
+    def test_queue_cannot_review_own_theme(self):
+        with self.settings(ALLOW_SELF_REVIEWS=False):
+            reviewer = self.create_and_become_reviewer()
+
+            for x in range(rvw.THEME_INITIAL_LOCKS + 1):
+                addon = self.theme_factory()
+                addon.addonuser_set.create(user=reviewer)
+            eq_(_get_themes(amo.tests.req_factory_factory('', reviewer),
+                            reviewer), [])
+            eq_(ThemeLock.objects.filter(reviewer=reviewer).count(), 0)
 
 
 class TestThemeQueueFlagged(ThemeReviewTestMixin, amo.tests.TestCase):
