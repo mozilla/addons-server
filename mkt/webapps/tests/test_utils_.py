@@ -27,7 +27,7 @@ class TestAppToDict(amo.tests.TestCase):
     fixtures = fixture('user_2519')
 
     def setUp(self):
-        self.app = amo.tests.app_factory()
+        self.app = amo.tests.app_factory(version_kw={'version': '1.8'})
         self.profile = UserProfile.objects.get(pk=2519)
 
     def test_no_previews(self):
@@ -102,9 +102,9 @@ class TestAppToDict(amo.tests.TestCase):
         ver = Version.objects.create(addon=self.app, version='1.9')
         self.app.update(_current_version=ver, latest_version=ver)
         res = app_to_dict(self.app)
+        eq_(res['current_version'], ver.version)
         self.assertSetEqual([v.version for v in self.app.versions.all()],
                             res['versions'].keys())
-        eq_(res['current_version'], ver.version)
 
     def test_categories(self):
         cat1 = Category.objects.create(type=amo.ADDON_WEBAPP, slug='cat1')
