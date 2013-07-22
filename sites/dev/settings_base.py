@@ -83,7 +83,7 @@ PREVIEW_FULL_PATH = PREVIEWS_PATH + '/full/%s/%d.%s'
 
 HERA = []
 LOGGING['loggers'].update({
-    'ampq': {'level': logging.WARNING},
+    'amqp': {'level': logging.WARNING},
     'raven': {'level': logging.WARNING},
     'requests': {'level': logging.WARNING},
     'z.addons': {'level': logging.INFO},
