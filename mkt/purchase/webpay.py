@@ -91,6 +91,7 @@ def _prepare_pay(request, addon):
 
     acct = addon.app_payment_account.payment_account
     seller_uuid = acct.solitude_seller.uuid
+    application_size = addon.current_version.all_files[0].size
     issued_at = calendar.timegm(time.gmtime())
     icons = {}
     for size in amo.ADDON_ICON_SIZES:
@@ -110,7 +111,8 @@ def _prepare_pay(request, addon):
             'chargebackURL': absolutify(reverse('webpay.chargeback')),
             'productData': urlencode({'contrib_uuid': uuid_,
                                       'seller_uuid': seller_uuid,
-                                      'addon_id': addon.pk}),
+                                      'addon_id': addon.pk,
+                                      'application_size': application_size}),
             'icons': icons,
         }
     }

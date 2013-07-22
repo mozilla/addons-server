@@ -68,6 +68,7 @@ class TestPurchase(PurchaseTest):
         eq_(pd['contrib_uuid'][0], cn.uuid)
         eq_(pd['seller_uuid'][0], self.seller.uuid)
         eq_(pd['addon_id'][0], str(self.addon.pk))
+        eq_(pd['application_size'][0], '388096')
 
     def test_require_login(self):
         self.client.logout()
