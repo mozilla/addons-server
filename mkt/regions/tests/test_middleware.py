@@ -33,24 +33,24 @@ class TestRegionMiddleware(amo.tests.TestCase):
         res = self.client.get('/api/v1/apps/schema/?region=worldwide')
         ok_(not res.cookies)
 
-    def test_accept_good_region(self):
+    @mock.patch('mkt.regions.set_region')
+    def test_accept_good_region(self, set_region):
         for region, region_cls in mkt.regions.REGIONS_CHOICES:
-            r = self.client.get('/robots.txt?region=%s' % region)
-            eq_(r.context['request'].REGION, region_cls)
+            self.client.get('/api/v1/apps/?region=%s' % region)
+            set_region.assert_called_with(region_cls.slug)
 
-    def test_ignore_bad_region(self):
+    @mock.patch('mkt.regions.set_region')
+    def test_ignore_bad_region(self, set_region):
         # When no region is specified or the region is invalid, we use
         # whichever region satisfies `Accept-Language`.
         for region in ('', 'BR', '<script>alert("ballin")</script>'):
-            self.client.cookies.clear()
-            self.client.cookies['lang'] = 'fr,fr'
-
-            r = self.client.get('/robots.txt?region=%s' % region,
-                                HTTP_ACCEPT_LANGUAGE='fr')
-            eq_(r.context['request'].REGION, mkt.regions.WORLDWIDE)
+            self.client.get('/api/v1/apps/?region=%s' % region,
+                            HTTP_ACCEPT_LANGUAGE='fr')
+            set_region.assert_called_with(mkt.regions.WORLDWIDE.slug)
 
     @mock.patch('mkt.regions.middleware.RegionMiddleware.region_from_request')
-    def test_accept_language(self, mock_rfr):
+    @mock.patch('mkt.regions.set_region')
+    def test_accept_language(self, set_region, mock_rfr):
         mock_rfr.return_value = mkt.regions.WORLDWIDE.slug
         locales = [
             ('', 'worldwide'),
@@ -70,84 +70,79 @@ class TestRegionMiddleware(amo.tests.TestCase):
             ('es-PE', 'es'),
         ]
         for locale, expected in locales:
-            self.client.cookies.clear()
+            self.client.get('/api/v1/apps/', HTTP_ACCEPT_LANGUAGE=locale)
+            set_region.assert_called_with(expected)
 
-            r = self.client.get('/robots.txt', HTTP_ACCEPT_LANGUAGE=locale)
-
-            got = r.context['request'].REGION.slug
-            eq_(got, expected,
-                'For %r: expected %r but got %r' % (locale, expected, got))
-
+    @mock.patch('mkt.regions.set_region')
     @mock.patch('mkt.regions.middleware.RegionMiddleware.region_from_request')
-    def test_url_param_override(self, mock_rfr):
-        self.client.cookies['lang'] = 'pt-BR'
-        self.client.cookies['region'] = 'br'
-        r = self.client.get('/robots.txt?region=us')
-        eq_(r.context['request'].REGION, mkt.regions.REGIONS_DICT['us'])
+    def test_url_param_override(self, mock_rfr, set_region):
+        self.client.get('/api/v1/apps/?region=br')
+        set_region.assert_called_with('br')
         assert not mock_rfr.called
 
-    def test_not_stuck(self):
-        self.client.cookies['lang'] = 'en-US,'
-        self.client.cookies['region'] = 'br'
-        r = self.client.get('/robots.txt')
-        assert not r.cookies
-
+    @mock.patch('mkt.regions.set_region')
     @mock.patch.object(settings, 'GEOIP_DEFAULT_VAL', 'worldwide')
-    def test_geoip_missing_worldwide(self):
+    def test_geoip_missing_worldwide(self, set_region):
         """ Test for worldwide region """
         # The remote address by default is 127.0.0.1
         # Use 'sa-US' as the language to defeat the lanugage sniffer
         # Note: This may be problematic should we ever offer
         # apps in US specific derivation of SanskritRight.
-        r = self.client.get('/robots.txt', HTTP_ACCEPT_LANGUAGE='sa-US')
-        eq_(r.context['request'].REGION, mkt.regions.REGIONS_DICT['worldwide'])
+        self.client.get('/api/v1/apps/', HTTP_ACCEPT_LANGUAGE='sa-US')
+        set_region.assert_called_with('worldwide')
 
     @mock.patch('mkt.regions.middleware.GeoIP.lookup')
+    @mock.patch('mkt.regions.set_region')
     @mock.patch.object(settings, 'GEOIP_DEFAULT_VAL', 'worldwide')
-    def test_geoip_lookup_available(self, mock_lookup):
+    def test_geoip_lookup_available(self, set_region, mock_lookup):
         lang = 'br'
         mock_lookup.return_value = lang
-        r = self.client.get('/robots.txt', HTTP_ACCEPT_LANGUAGE='sa-US')
-        eq_(r.context['request'].REGION, mkt.regions.REGIONS_DICT[lang])
+        self.client.get('/api/v1/apps/', HTTP_ACCEPT_LANGUAGE='sa-US')
+        set_region.assert_called_with(lang)
 
     @mock.patch('mkt.regions.middleware.GeoIP.lookup')
+    @mock.patch('mkt.regions.set_region')
     @mock.patch.object(settings, 'GEOIP_DEFAULT_VAL', 'worldwide')
-    def test_geoip_lookup_unavailable_fall_to_accept_lang(self, mock_lookup):
+    def test_geoip_lookup_unavailable_fall_to_accept_lang(self, set_region,
+                                                          mock_lookup):
         mock_lookup.return_value = 'worldwide'
-        r = self.client.get('/robots.txt', HTTP_ACCEPT_LANGUAGE='pt-BR')
-        eq_(r.context['request'].REGION, mkt.regions.REGIONS_DICT['br'])
+        self.client.get('/api/v1/apps/', HTTP_ACCEPT_LANGUAGE='pt-BR')
+        set_region.assert_called_with('br')
 
     @mock.patch('mkt.regions.middleware.GeoIP.lookup')
+    @mock.patch('mkt.regions.set_region')
     @mock.patch.object(settings, 'GEOIP_DEFAULT_VAL', 'worldwide')
-    def test_geoip_lookup_unavailable(self, mock_lookup):
+    def test_geoip_lookup_unavailable(self, set_region, mock_lookup):
         lang = 'zz'
         mock_lookup.return_value = lang
-        r = self.client.get('/robots.txt', HTTP_ACCEPT_LANGUAGE='sa-US')
-        eq_(r.context['request'].REGION,
-            mkt.regions.REGIONS_DICT['worldwide'])
+        self.client.get('/api/v1/apps/', HTTP_ACCEPT_LANGUAGE='sa-US')
+        set_region.assert_called_with('worldwide')
 
+    @mock.patch('mkt.regions.set_region')
     @mock.patch.object(settings, 'GEOIP_DEFAULT_VAL', 'us')
-    def test_geoip_missing_lang(self):
+    def test_geoip_missing_lang(self, set_region):
         """ Test for US region """
-        r = self.client.get('/robots.txt', REMOTE_ADDR='mozilla.com')
-        eq_(r.context['request'].REGION, mkt.regions.REGIONS_DICT['us'])
+        self.client.get('/api/v1/apps/', REMOTE_ADDR='mozilla.com')
+        set_region.assert_called_with('us')
 
     @mock.patch.object(settings, 'GEOIP_DEFAULT_VAL', 'us')
     @mock.patch('socket.socket')
-    def test_geoip_down(self, mock_socket):
+    @mock.patch('mkt.regions.set_region')
+    def test_geoip_down(self, set_region, mock_socket):
         """ Test that we fail gracefully if the GeoIP server is down. """
         mock_socket.connect.side_effect = IOError
-        r = self.client.get('/robots.txt', REMOTE_ADDR='mozilla.com')
-        eq_(r.context['request'].REGION, mkt.regions.REGIONS_DICT['us'])
+        self.client.get('/api/v1/apps/', REMOTE_ADDR='mozilla.com')
+        set_region.assert_called_with('us')
 
     @mock.patch.object(settings, 'GEOIP_DEFAULT_VAL', 'us')
     @mock.patch('socket.socket')
-    def test_geoip_timeout(self, mock_socket):
+    @mock.patch('mkt.regions.set_region')
+    def test_geoip_timeout(self, set_region, mock_socket):
         """ Test that we fail gracefully if the GeoIP server times out. """
         mock_socket.return_value.connect.return_value = True
         mock_socket.return_value.send.side_effect = socket.timeout
-        r = self.client.get('/robots.txt', REMOTE_ADDR='mozilla.com')
-        eq_(r.context['request'].REGION, mkt.regions.REGIONS_DICT['us'])
+        self.client.get('/api/v1/apps/', REMOTE_ADDR='mozilla.com')
+        set_region.assert_called_with('us')
 
 
 class TestRegionMiddlewarePersistence(amo.tests.TestCase):
@@ -155,5 +150,5 @@ class TestRegionMiddlewarePersistence(amo.tests.TestCase):
 
     def test_save_region(self):
         self.client.login(username='regular@mozilla.com', password='password')
-        self.client.get('/robots.txt?region=br')
+        self.client.get('/api/v1/apps/?region=br')
         eq_(UserProfile.objects.get(pk=999).region, 'br')

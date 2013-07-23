@@ -26,7 +26,12 @@ class RegionMiddleware(object):
         reg = worldwide = mkt.regions.WORLDWIDE.slug
         stored_reg = ''
 
-        # ?region= -> cookie -> geoip -> lang
+        if not getattr(request, 'API', False):
+            request.REGION = regions[worldwide]
+            mkt.regions.set_region(worldwide)
+            return
+
+        # ?region= -> geoip -> lang
         url_region = request.REQUEST.get('region')
         if url_region in regions:
             statsd.incr('z.regions.middleware.source.url')
