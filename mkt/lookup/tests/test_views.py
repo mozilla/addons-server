@@ -32,11 +32,12 @@ from mkt.webapps.cron import update_weekly_downloads
 from mkt.webapps.models import Installed, Webapp
 from stats.models import Contribution, DownloadCount
 from users.cron import reindex_users
-from users.models import UserProfile
+from users.models import Group, GroupUser, UserProfile
 
 
 class TestAcctSummary(TestCase):
-    fixtures = fixture('user_support_staff', 'user_999', 'webapp_337141')
+    fixtures = fixture('user_support_staff', 'user_999', 'webapp_337141',
+                       'user_operator')
 
     def setUp(self):
         super(TestAcctSummary, self).setUp()
@@ -179,6 +180,14 @@ class TestAcctSummary(TestCase):
         for key, value in payment_data.iteritems():
             eq_(pd[key], value)
 
+    def test_operator_app_lookup_only(self):
+        GroupUser.objects.create(
+            group=Group.objects.get(name='Operators'),
+            user=UserProfile.objects.get(username='support_staff'))
+        res = self.client.get(reverse('lookup.home'))
+        doc = pq(res.content)
+        eq_(doc('#app-search-form select').length, 0)
+
 
 class SearchTestMixin(object):
 
@@ -196,7 +205,7 @@ class SearchTestMixin(object):
 
 
 class TestAcctSearch(ESTestCase, SearchTestMixin):
-    fixtures = fixture('user_10482', 'user_support_staff')
+    fixtures = fixture('user_10482', 'user_support_staff', 'user_operator')
 
     @classmethod
     def setUpClass(cls):
@@ -248,7 +257,7 @@ class TestAcctSearch(ESTestCase, SearchTestMixin):
 
 
 class TestTransactionSearch(TestCase):
-    fixtures = fixture('user_support_staff', 'user_999')
+    fixtures = fixture('user_support_staff', 'user_999', 'user_operator')
 
     def setUp(self):
         self.uuid = 45
@@ -267,15 +276,15 @@ class TestTransactionSearch(TestCase):
         r = self.client.get(self.url, {'q': self.uuid})
         eq_(r.status_code, 403)
 
-        self.client.login(username='operator@mozilla.com',
-                          password='password')
+        assert self.client.login(username='operator@mozilla.com',
+                                 password='password')
         r = self.client.get(self.url, {'q': self.uuid})
         eq_(r.status_code, 403)
 
 
 #@mock.patch.object(settings, 'TASK_USER_ID', 999)
 class TestTransactionSummary(TestCase):
-    fixtures = fixture('user_support_staff', 'user_999')
+    fixtures = fixture('user_support_staff', 'user_999', 'user_operator')
 
     def setUp(self):
         self.uuid = 'some:uuid'
@@ -339,8 +348,8 @@ class TestTransactionSummary(TestCase):
         r = self.client.get(self.url)
         eq_(r.status_code, 403)
 
-        self.client.login(username='operator@mozilla.com',
-                          password='password')
+        assert self.client.login(username='operator@mozilla.com',
+                                 password='password')
         r = self.client.get(self.url)
         eq_(r.status_code, 403)
 

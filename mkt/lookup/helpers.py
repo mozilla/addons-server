@@ -38,3 +38,9 @@ def app_header(context, app, page_type=''):
                                   is_admin=is_admin, is_staff=is_staff,
                                   is_reviewer=is_reviewer, is_author=is_author,
                                   is_operator=is_operator))
+
+
+@register.function
+@jinja2.contextfunction
+def is_operator(context):
+    return any(g.name == 'Operators' for g in context['request'].groups)
