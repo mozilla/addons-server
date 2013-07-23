@@ -12,13 +12,23 @@ from addons.models import AddonDeviceType, Persona
 from amo.utils import raise_required
 from editors.forms import NonValidatingChoiceField, ReviewLogForm
 from editors.models import CannedResponse
+from mkt.api.forms import CustomNullBooleanSelect
 from mkt.reviewers.utils import ReviewHelper
+from mkt.search.forms import ApiSearchForm
+
 
 from .models import ThemeLock
 from .tasks import approve_rereview, reject_rereview, send_mail
 
 
 log = logging.getLogger('z.reviewers.forms')
+
+# We set 'any' here since we need to default this field
+# to PUBLIC if not specified for consumer pages.
+STATUS_CHOICES = [('any', _lazy(u'Any Status'))]
+for status in amo.WEBAPPS_UNLISTED_STATUSES + (amo.STATUS_PUBLIC,):
+    STATUS_CHOICES.append((amo.STATUS_CHOICES_API[status],
+                           amo.STATUS_CHOICES[status]))
 
 
 class ReviewAppAttachmentForm(happyforms.Form):
@@ -241,3 +251,30 @@ class ThemeSearchForm(forms.Form):
         required=False, label=_lazy(u'Search'),
         widget=forms.TextInput(attrs={'autocomplete': 'off',
                                       'placeholder': _lazy(u'Search')}))
+
+
+class ApiReviewersSearchForm(ApiSearchForm):
+    status = forms.ChoiceField(required=False, choices=STATUS_CHOICES,
+                               label=_lazy(u'Status'))
+    is_privileged = forms.NullBooleanField(required=False,
+                                           label=_lazy(u'Privileged App'),
+                                           widget=CustomNullBooleanSelect)
+    has_editor_comment = forms.NullBooleanField(
+        required=False,
+        label=_lazy(u'Contains Editor Comment'),
+        widget=CustomNullBooleanSelect)
+    has_info_request = forms.NullBooleanField(
+        required=False,
+        label=_lazy(u'More Information Requested'),
+        widget=CustomNullBooleanSelect)
+    is_escalated = forms.NullBooleanField(
+        required=False,
+        label=_lazy(u'Escalated'),
+        widget=CustomNullBooleanSelect)
+
+    def clean_status(self):
+        status = self.cleaned_data['status']
+        if status == 'any':
+            return 'any'
+
+        return amo.STATUS_CHOICES_API_LOOKUP.get(status, amo.STATUS_PENDING)

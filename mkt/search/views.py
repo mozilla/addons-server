@@ -98,20 +98,6 @@ def _filter_search(request, qs, query, filters=None, sorting=None,
         qs = qs.filter(app_type=query['app_type'])
     if query.get('manifest_url'):
         qs = qs.filter(manifest_url=query['manifest_url'])
-    if query.get('is_privileged', None) is not None:
-        qs = qs.filter(**{
-            'latest_version.is_privileged': query['is_privileged']
-        })
-    if query.get('has_info_request', None) is not None:
-        qs = qs.filter(**{
-            'latest_version.has_info_request': query['has_info_request']
-        })
-    if query.get('has_editor_comment', None) is not None:
-        qs = qs.filter(**{
-            'latest_version.has_editor_comment': query['has_editor_comment']
-        })
-    if query.get('is_escalated', None) is not None:
-        qs = qs.filter(is_escalated=query['is_escalated'])
     if 'sort' in show:
         sort_by = [sorting[name] for name in query['sort'] if name in sorting]
 

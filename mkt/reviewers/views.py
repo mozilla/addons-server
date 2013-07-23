@@ -47,7 +47,7 @@ from zadmin.models import set_config, unmemoized_get_config
 from mkt.reviewers.forms import DEFAULT_ACTION_VISIBILITY
 from mkt.reviewers.utils import (AppsReviewing, clean_sort_param,
                                  device_queue_search)
-from mkt.search.forms import ApiSearchForm
+from mkt.reviewers.forms import ApiReviewersSearchForm
 from mkt.site.helpers import product_as_dict
 from mkt.submit.forms import AppFeaturesForm
 from mkt.webapps.models import Webapp
@@ -190,7 +190,7 @@ def context(request, **kw):
     ctx = dict(motd=unmemoized_get_config('mkt_reviewers_motd'),
                queue_counts=queue_counts(request),
                search_url=reverse('api_dispatch_list', kwargs={
-                   'api_name': 'apps', 'resource_name': 'search'}),
+                   'api_name': 'reviewers', 'resource_name': 'search'}),
                statuses=statuses, point_types=amo.REVIEWED_MARKETPLACE)
     ctx.update(kw)
     return ctx
@@ -541,10 +541,10 @@ def _queue_to_apps(request, queue_qs, date_field='created'):
 
 
 def _get_search_form(request):
-    form = ApiSearchForm()
+    form = ApiReviewersSearchForm()
     fields = [f.name for f in form.visible_fields() + form.hidden_fields()]
     get = dict((k, v) for k, v in request.GET.items() if k in fields)
-    return ApiSearchForm(get or None)
+    return ApiReviewersSearchForm(get or None)
 
 
 @permission_required('Apps', 'Review')

@@ -8,8 +8,9 @@ from mkt.receipts.urls import receipt_patterns
 from . import api, views, views_themes
 
 
-account = Api(api_name='reviewers')
-account.register(api.ReviewingResource())
+reviewers_api = Api(api_name='reviewers')
+reviewers_api.register(api.ReviewingResource())
+reviewers_api.register(api.ReviewersSearchResource())
 
 # All URLs under /reviewers/.
 url_patterns = patterns('',
@@ -76,5 +77,5 @@ url_patterns = patterns('',
 )
 
 api_patterns = patterns('',
-    url(r'^', include(account.urls)),  # The API.
+    url(r'^', include(reviewers_api.urls)),  # The API.
 )

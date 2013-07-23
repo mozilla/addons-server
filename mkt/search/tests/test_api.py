@@ -1,7 +1,4 @@
 import json
-from datetime import datetime
-
-from django.contrib.auth.models import User
 
 from mock import Mock, patch
 from nose.tools import eq_, ok_
@@ -15,7 +12,6 @@ from stats.models import ClientData
 from users.models import UserProfile
 
 from mkt.api.base import list_url
-from mkt.api.models import Access, generate
 from mkt.api.tests.test_oauth import BaseOAuth, OAuthClient
 from mkt.constants.features import FeatureProfile
 from mkt.search.forms import DEVICE_CHOICES_IDS
@@ -171,6 +167,16 @@ class TestApi(BaseOAuth, ESTestCase):
         ok_(mkt.regions.BR.slug not in [r['slug'] for r in regions])
         eq_(len(regions), len(mkt.regions.ALL_REGION_IDS) - 1)
 
+    def test_region_filtering(self):
+        self.webapp.addonexcludedregion.create(region=mkt.regions.BR.id)
+        self.webapp.save()
+        self.refresh('webapp')
+
+        res = self.client.get(self.url + ({'region': 'br'},))
+        eq_(res.status_code, 200)
+        objs = res.json['objects']
+        eq_(len(objs), 0)
+
     def test_q(self):
         res = self.client.get(self.url + ({'q': 'something'},))
         eq_(res.status_code, 200)
@@ -253,91 +259,6 @@ class TestApi(BaseOAuth, ESTestCase):
         self.refresh('webapp')
 
         res = self.client.get(self.url + ({'app_type': 'packaged'},))
-        eq_(res.status_code, 200)
-        obj = res.json['objects'][0]
-        eq_(obj['slug'], self.webapp.app_slug)
-
-    def test_status_anon(self):
-        res = self.client.get(self.url + ({'status': 'public'},))
-        eq_(res.status_code, 200)
-        obj = res.json['objects'][0]
-        eq_(obj['slug'], self.webapp.app_slug)
-
-        res = self.client.get(self.url + ({'status': 'vindaloo'},))
-        eq_(res.status_code, 400)
-        error = res.json['error_message']
-        eq_(error.keys(), ['status'])
-
-        res = self.client.get(self.url + ({'status': 'any'},))
-        eq_(res.status_code, 401)
-        eq_(json.loads(res.content)['reason'],
-            'Unauthorized to filter by status.')
-
-        res = self.client.get(self.url + ({'status': 'rejected'},))
-        eq_(res.status_code, 401)
-        eq_(json.loads(res.content)['reason'],
-            'Unauthorized to filter by status.')
-
-    def test_is_privileged_anon(self):
-        res = self.client.get(self.url + ({'is_privileged': True},))
-        eq_(res.status_code, 401)
-        eq_(json.loads(res.content)['reason'],
-            'Unauthorized to filter by private fields.')
-
-        res = self.client.get(self.url + ({'is_privileged': False},))
-        eq_(res.status_code, 401)
-        eq_(json.loads(res.content)['reason'],
-            'Unauthorized to filter by private fields.')
-
-        res = self.client.get(self.url + ({'is_privileged': None},))
-        eq_(res.status_code, 200)
-        obj = res.json['objects'][0]
-        eq_(obj['slug'], self.webapp.app_slug)
-
-    def test_has_editor_comment_anon(self):
-        res = self.client.get(self.url + ({'has_editor_comment': True},))
-        eq_(res.status_code, 401)
-        eq_(json.loads(res.content)['reason'],
-            'Unauthorized to filter by private fields.')
-
-        res = self.client.get(self.url + ({'has_editor_comment': False},))
-        eq_(res.status_code, 401)
-        eq_(json.loads(res.content)['reason'],
-            'Unauthorized to filter by private fields.')
-
-        res = self.client.get(self.url + ({'has_editor_comment': None},))
-        eq_(res.status_code, 200)
-        obj = res.json['objects'][0]
-        eq_(obj['slug'], self.webapp.app_slug)
-
-    def test_is_esclated_anon(self):
-        res = self.client.get(self.url + ({'is_escalated': True},))
-        eq_(res.status_code, 401)
-        eq_(json.loads(res.content)['reason'],
-            'Unauthorized to filter by private fields.')
-
-        res = self.client.get(self.url + ({'is_escalated': False},))
-        eq_(res.status_code, 401)
-        eq_(json.loads(res.content)['reason'],
-            'Unauthorized to filter by private fields.')
-
-        res = self.client.get(self.url + ({'is_escalated': None},))
-        eq_(res.status_code, 200)
-        obj = res.json['objects'][0]
-        eq_(obj['slug'], self.webapp.app_slug)
-
-    def test_has_info_request_anon(self):
-        res = self.client.get(self.url + ({'has_info_request': True},))
-        eq_(res.status_code, 401)
-        eq_(json.loads(res.content)['reason'],
-            'Unauthorized to filter by private fields.')
-
-        res = self.client.get(self.url + ({'has_info_request': False},))
-        eq_(res.status_code, 401)
-        eq_(json.loads(res.content)['reason'],
-            'Unauthorized to filter by private fields.')
-
-        res = self.client.get(self.url + ({'has_info_request': None},))
         eq_(res.status_code, 200)
         obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
@@ -476,137 +397,6 @@ class TestApiFeatures(BaseOAuth, ESTestCase):
         eq_(res.status_code, 200)
         obj = json.loads(res.content)['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
-
-
-class TestApiReviewer(BaseOAuth, ESTestCase):
-    fixtures = fixture('webapp_337141', 'user_2519')
-
-    def setUp(self, api_name='apps'):
-        self.user = User.objects.get(pk=2519)
-        self.profile = self.user.get_profile()
-        self.profile.update(read_dev_agreement=datetime.now())
-        self.grant_permission(self.profile, 'Apps:Review')
-
-        self.access = Access.objects.create(
-            key='test_oauth_key', secret=generate(), user=self.user)
-        self.client = OAuthClient(self.access, api_name=api_name)
-        self.url = list_url('search')
-
-        self.webapp = Webapp.objects.get(pk=337141)
-        self.category = Category.objects.create(name='test',
-                                                type=amo.ADDON_WEBAPP)
-
-        self.webapp.save()
-        self.refresh('webapp')
-
-    def test_status_reviewer(self):
-        res = self.client.get(self.url + ({'status': 'public'},))
-        eq_(res.status_code, 200)
-        obj = res.json['objects'][0]
-        eq_(obj['slug'], self.webapp.app_slug)
-
-        res = self.client.get(self.url + ({'status': 'rejected'},))
-        eq_(res.status_code, 200)
-        objs = res.json['objects']
-        eq_(len(objs), 0)
-
-        res = self.client.get(self.url + ({'status': 'any'},))
-        eq_(res.status_code, 200)
-        obj = res.json['objects'][0]
-        eq_(obj['slug'], self.webapp.app_slug)
-
-        res = self.client.get(self.url + ({'status': 'vindaloo'},))
-        eq_(res.status_code, 400)
-        error = res.json['error_message']
-        eq_(error.keys(), ['status'])
-
-    def test_is_privileged_reviewer(self):
-        res = self.client.get(self.url + ({'is_privileged': True},))
-        eq_(res.status_code, 200)
-        objs = res.json['objects']
-        eq_(len(objs), 0)
-
-        res = self.client.get(self.url + ({'is_privileged': False},))
-        eq_(res.status_code, 200)
-        obj = res.json['objects'][0]
-        eq_(obj['slug'], self.webapp.app_slug)
-
-        res = self.client.get(self.url + ({'is_privileged': None},))
-        eq_(res.status_code, 200)
-        obj = res.json['objects'][0]
-        eq_(obj['slug'], self.webapp.app_slug)
-
-    def test_is_escalated_reviewer(self):
-        res = self.client.get(self.url + ({'is_escalated': True},))
-        eq_(res.status_code, 200)
-        objs = res.json['objects']
-        eq_(len(objs), 0)
-
-        res = self.client.get(self.url + ({'is_escalated': False},))
-        eq_(res.status_code, 200)
-        obj = res.json['objects'][0]
-        eq_(obj['slug'], self.webapp.app_slug)
-
-        res = self.client.get(self.url + ({'is_escalated': None},))
-        eq_(res.status_code, 200)
-        obj = res.json['objects'][0]
-        eq_(obj['slug'], self.webapp.app_slug)
-
-    def test_has_editors_comment_reviewer(self):
-        res = self.client.get(self.url + ({'has_editor_comment': True},))
-        eq_(res.status_code, 200)
-        objs = res.json['objects']
-        eq_(len(objs), 0)
-
-        res = self.client.get(self.url + ({'has_editor_comment': False},))
-        eq_(res.status_code, 200)
-        obj = res.json['objects'][0]
-        eq_(obj['slug'], self.webapp.app_slug)
-
-        res = self.client.get(self.url + ({'has_editor_comment': None},))
-        eq_(res.status_code, 200)
-        obj = res.json['objects'][0]
-        eq_(obj['slug'], self.webapp.app_slug)
-
-    def test_has_info_request_reviewer(self):
-        res = self.client.get(self.url + ({'has_info_request': True},))
-        eq_(res.status_code, 200)
-        objs = res.json['objects']
-        eq_(len(objs), 0)
-
-        res = self.client.get(self.url + ({'has_info_request': False},))
-        eq_(res.status_code, 200)
-        obj = res.json['objects'][0]
-        eq_(obj['slug'], self.webapp.app_slug)
-
-        res = self.client.get(self.url + ({'has_info_request': None},))
-        eq_(res.status_code, 200)
-        obj = res.json['objects'][0]
-        eq_(obj['slug'], self.webapp.app_slug)
-
-    def test_status_value_packaged(self):
-        # When packaged we also include the latest version status.
-        self.webapp.update(is_packaged=True)
-        res = self.client.get(self.url)
-        eq_(res.status_code, 200)
-        obj = res.json['objects'][0]
-        eq_(obj['status'], amo.STATUS_PUBLIC)
-
-    def test_addon_type_reviewer(self):
-        res = self.client.get(self.url + ({'type': 'app'},))
-        eq_(res.status_code, 200)
-        obj = res.json['objects'][0]
-        eq_(obj['slug'], self.webapp.app_slug)
-
-        res = self.client.get(self.url + ({'type': 'theme'},))
-        eq_(res.status_code, 200)
-        objs = res.json['objects']
-        eq_(len(objs), 0)
-
-        res = self.client.get(self.url + ({'type': 'vindaloo'},))
-        eq_(res.status_code, 400)
-        error = res.json['error_message']
-        eq_(error.keys(), ['type'])
 
 
 class TestFeaturedNoCategories(BaseOAuth, ESTestCase):

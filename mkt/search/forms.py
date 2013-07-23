@@ -5,17 +5,10 @@ from tower import ugettext_lazy as _lazy
 from addons.models import Category
 import amo
 
-from mkt.api.forms import CustomNullBooleanSelect, SluggableModelChoiceField
+from mkt.api.forms import SluggableModelChoiceField
 
 
 ADDON_CHOICES = [(k, k) for k in amo.MKT_ADDON_TYPES_API.keys()]
-
-# We set 'any' here since we need to default this field
-# to PUBLIC if not specified for consumer pages.
-STATUS_CHOICES = [('any', _lazy(u'Any Status'))]
-for status in amo.WEBAPPS_UNLISTED_STATUSES + (amo.STATUS_PUBLIC,):
-    STATUS_CHOICES.append((amo.STATUS_CHOICES_API[status],
-                           amo.STATUS_CHOICES[status]))
 
 SORT_CHOICES = [
     (None, _lazy(u'Relevance')),
@@ -91,8 +84,6 @@ class ApiSearchForm(forms.Form):
                                       'placeholder': _lazy(u'Search')}))
     type = forms.ChoiceField(required=False, choices=ADDON_CHOICES,
                              label=_lazy(u'Add-on type'))
-    status = forms.ChoiceField(required=False, choices=STATUS_CHOICES,
-                               label=_lazy(u'Status'))
     cat = SluggableModelChoiceField(
         queryset=Category.objects.filter(type=amo.ADDON_WEBAPP),
         sluggable_to_field_name='slug', required=False)
@@ -104,21 +95,6 @@ class ApiSearchForm(forms.Form):
     app_type = forms.ChoiceField(required=False, label=_lazy(u'App type'),
                                  choices=APP_TYPE_CHOICES)
     manifest_url = forms.CharField(required=False, label=_lazy('Manifest URL'))
-    is_privileged = forms.NullBooleanField(required=False,
-                                           label=_lazy(u'Privileged App'),
-                                           widget=CustomNullBooleanSelect)
-    has_editor_comment = forms.NullBooleanField(
-        required=False,
-        label=_lazy(u'Contains Editor Comment'),
-        widget=CustomNullBooleanSelect)
-    has_info_request = forms.NullBooleanField(
-        required=False,
-        label=_lazy(u'More Information Requested'),
-        widget=CustomNullBooleanSelect)
-    is_escalated = forms.NullBooleanField(
-        required=False,
-        label=_lazy(u'Escalated'),
-        widget=CustomNullBooleanSelect)
 
     sort = forms.MultipleChoiceField(required=False, choices=LISTING_SORT_CHOICES)
     # TODO: Drop this back to a reasonable value when we do pagination.
@@ -143,15 +119,8 @@ class ApiSearchForm(forms.Form):
             return self.cleaned_data['cat'].slug
 
     def clean_type(self):
-        return amo.MKT_ADDON_TYPES_API.get(self.cleaned_data['type'],
-                                           amo.ADDON_WEBAPP)
-
-    def clean_status(self):
-        status = self.cleaned_data['status']
-        if status == 'any':
-            return 'any'
-
-        return amo.STATUS_CHOICES_API_LOOKUP.get(status, amo.STATUS_PUBLIC)
+            return amo.MKT_ADDON_TYPES_API.get(self.cleaned_data['type'],
+                                               amo.ADDON_WEBAPP)
 
     def clean_premium_types(self):
         pt_ids = []

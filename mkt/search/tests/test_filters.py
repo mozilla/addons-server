@@ -1,7 +1,6 @@
 import json
 
 import test_utils
-from mock import patch
 from nose.tools import ok_
 from waffle.models import Flag
 
@@ -14,6 +13,7 @@ from users.models import UserProfile
 from mkt import regions
 from mkt.api.tests.test_oauth import BaseOAuth
 from mkt.regions import set_region, UK
+from mkt.reviewers.forms import ApiReviewersSearchForm
 from mkt.search.forms import ApiSearchForm, DEVICE_CHOICES_IDS
 from mkt.search.views import _filter_search
 from mkt.site.fixtures import fixture
@@ -33,12 +33,14 @@ class TestSearchFilters(BaseOAuth):
         # Pick a region that has relatively few filters.
         set_region(regions.UK.slug)
 
+        self.form_class = ApiSearchForm
+
     def _grant(self, rules):
         self.grant_permission(self.profile, rules)
         self.req.groups = self.profile.groups.all()
 
     def _filter(self, req, filters, sorting=None, **kwargs):
-        form = ApiSearchForm(filters)
+        form = self.form_class(filters)
         if form.is_valid():
             qs = Webapp.from_search(self.req, **kwargs)
             return _filter_search(
@@ -74,6 +76,7 @@ class TestSearchFilters(BaseOAuth):
             'Unexpected status. Expected: %s.' % expected)
 
     def test_status(self):
+        self.form_class = ApiReviewersSearchForm
         # Test all that should end up being public.
         # Note: Status permission can't be checked here b/c the acl check
         # happens in the view, not the _filter_search call.
