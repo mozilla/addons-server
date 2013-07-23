@@ -250,6 +250,8 @@ def package_signer():
     except PackageSigningError, e:
         msg = 'Error on package signing (%s): %s' % (destination, e)
         return msg, msg
+    finally:
+        os.unlink(signed_path)
 
 
 # Not called settings to avoid conflict with django.conf.settings.
