@@ -34,21 +34,33 @@ from .views import context, _get_search_form, queue_counts, QUEUE_PER_PAGE
 
 @waffle_switch('mkt-themes')
 @reviewer_required('persona')
-def pending_themes(request):
-    pending_themes = Addon.objects.filter(status=amo.STATUS_PENDING,
-                                          type=amo.ADDON_PERSONA)
+def themes_list(request, flagged=False, rereview=False):
+    themes = []
+    if flagged:
+        # TODO (ngoke): rename to STATUS_FLAGGED.
+        themes = Addon.objects.filter(status=amo.STATUS_REVIEW_PENDING,
+                                      type=amo.ADDON_PERSONA)
+    elif rereview:
+        themes = [rqt.theme.addon for rqt in
+                  RereviewQueueTheme.objects.select_related('theme__addon')]
+    else:
+        themes = Addon.objects.filter(status=amo.STATUS_PENDING,
+                                      type=amo.ADDON_PERSONA)
 
     search_form = _get_search_form(request)
     per_page = request.GET.get('per_page', QUEUE_PER_PAGE)
-    pager = paginate(request, pending_themes, per_page)
+    pager = paginate(request, themes, per_page)
 
-    return jingo.render(request, 'reviewers/themes/list.html', context(
+    return jingo.render(request, 'reviewers/themes/queue_list.html', context(
         request, **{
         'addons': pager.object_list,
+        'flagged': flagged,
         'pager': pager,
-        'tab': 'themes',
+        'rereview': rereview,
         'STATUS_CHOICES': amo.STATUS_CHOICES,
         'search_form': search_form,
+        'tab': ('rereview_themes' if rereview else
+                'flagged_themes' if flagged else 'pending_themes'),
     }))
 
 
@@ -406,7 +418,7 @@ def deleted_themes(request):
         'form': form,
         'pager': paginate(request, deleted.order_by('-modified'), 30),
         'queue_counts': queue_counts(request),
-        'tab': 'themes'
+        'tab': 'deleted'
     })
 
 

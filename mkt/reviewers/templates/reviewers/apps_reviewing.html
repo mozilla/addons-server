@@ -9,11 +9,11 @@
   <h1>{{ pagetitle }}</h1>
 </header>
 
-{% include "reviewers/includes/tabnav.html" %}
+{{ macros.tabnav('queues', tab, queue_tabnav()) }}
 
 <section class="island">
   {% if not apps %}
-    <p>{{ _('No apps are being reviewed right now.') }}</p>
+    <p class="no-results">{{ _('You are currently not reviewing any apps.') }}</p>
   {% else %}
     {% if DESKTOP %}
       <table id="apps-reviewing" class="data-grid four-col items">

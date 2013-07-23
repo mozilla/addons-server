@@ -1,4 +1,5 @@
 {% extends 'developers/skeleton_impala.html' %}
+{% import 'reviewers/includes/macros.html' as macros %}
 
 {% block title %}{{ reviewers_page_title() }}{% endblock %}
 
@@ -12,6 +13,27 @@
     {% endtrans %}
   </a>
 </h1>
+
+<nav class="pill-nav">
+  {% if action_allowed('Apps', 'Review') and action_allowed('Personas', 'Review') %}
+    {# Duplicate if statement because eventually there will be three tabs.
+       For now, either a reviewer has access to two queues or one. Don't need to show
+       this nav is the reviewer only access to one. #}
+    {% if action_allowed('Apps', 'Review') %}
+      {# "selected" logic will change if we ever have more than just apps + themes #}
+      <a {% if 'themes' not in request.path %}class="selected" {% endif %}
+         href="{{ url('reviewers.apps.queue_pending') if 'queue' in request.path
+                  else url('reviewers.apps.logs') }}">
+        {{ _('Apps') }}</a>
+    {% endif %}
+    <!--<a href="{# url('reviewers.addons.queue_pending') #}">{{ _('Add-ons') }}</a>-->
+    {% if action_allowed('Personas', 'Review') %}
+      <a {% if 'themes' in request.path %}class="selected" {% endif %}
+         href="{{ url('reviewers.themes.list') if 'queue' in request.path
+                  else url('reviewers.themes.logs') }}">{{ _('Themes') }}</a>
+    {% endif %}
+  {% endif %}
+</nav>
 {% endblock %}
 
 {% block extrahead %}
@@ -24,23 +46,15 @@
     <div class="pad">
       <nav class="menu-nav app-nav no-img" role="navigation">
         <ul class="c">
-          <li{% if 'queue' in request.path or url('reviewers.apps.apps_reviewing')
-                in request.path %} class="selected"{% endif %}>
-            <a href="#" class="controller trigger-queues">{{ _('Queues') }}</a>
-            <ul>
-              {% for named_url, tab_code, text in queue_tabnav() %}
-                <li><a href="{{ url(named_url) }}">{{ text }}</a></li>
-              {% endfor %}
-            </ul>
-          </li>
-          <li{% if 'logs' in request.path %} class="selected"{% endif %}>
-            <a href="#" class="controller logs trigger-logs">{{ _('Logs') }}</a>
-            <ul>
-              {% for named_url, tab, text in logs_tabnav() %}
-                <li><a href="{{ url(named_url) }}">{{ text }}</a></li>
-              {% endfor %}
-            </ul>
-          </li>
+          {% block queue_menu %}
+            {{ macros.dropdown_menu('queues', _('Queues'), queue_tabnav(),
+                                    'queue' in request.path or
+                                    url('reviewers.apps.apps_reviewing') in request.path) }}
+          {% endblock %}
+          {% block log_menu %}
+            {{ macros.dropdown_menu('logs', _('Logs'), logs_tabnav(),
+                                    'logs' in request.path) }}
+          {% endblock %}
           {% if action_allowed('AppReviewerMOTD', 'Edit') %}
             <li class="slim">
               <a href="{{ url('reviewers.apps.motd') }}">{{ _('Announcement') }}</a>
@@ -65,28 +79,11 @@
   {% include 'editors/includes/daily-message.html' %}
   {% include 'messages.html' %}
 
-  <form id="queue-tab-overlay" class="hidden" role="dialog" data-type="action">
-    <header>{{ _('Queues') }}</header>
-    <menu class="nav-action-menu">
-      <div>
-        {% for named_url, tab_code, text in queue_tabnav() %}
-          <button data-url="{{ url(named_url) }}">{{ text }}</button>
-        {% endfor %}
-      </div>
-      <button data-url="#cancel">Cancel</button>
-    </menu>
-  </form>
+  {% block queues_overlay %}
+    {{ macros.mobile_overlay('queue', _('Queues'), queue_tabnav()) }}
+  {% endblock %}
 
-  <form id="log-tab-overlay" class="hidden" role="dialog" data-type="action">
-    <header>{{ _('Logs') }}</header>
-    <menu class="nav-action-menu">
-      <div>
-        {% for named_url, tab_code, text in logs_tabnav() %}
-          <button data-url="{{ url(named_url) }}">{{ text }}</button>
-        {% endfor %}
-      </div>
-      <button data-url="#cancel">{{ _('Cancel') }}</button>
-    </menu>
-  </form>
-
+  {% block logs_overlay %}
+    {{ macros.mobile_overlay('log', _('Logs'), logs_tabnav()) }}
+  {% endblock %}
 {% endblock %}

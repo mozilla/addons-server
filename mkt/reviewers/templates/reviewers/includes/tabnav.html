@@ -1,8 +1,0 @@
-<ul class="tabnav search-toggle">
-  {% for named_url, tab_code, text in queue_tabnav() %}
-    <li{% if tab == tab_code %} class="selected trigger-queues"{% endif %}>
-      <a href="{{ url(named_url) }}">{{ text }}</a>
-      <div class="tabnav-sprite hidden"></div>
-    </li>
-  {% endfor %}
-</ul>
