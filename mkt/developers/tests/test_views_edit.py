@@ -1336,6 +1336,7 @@ class TestAdminSettings(TestAdmin):
         eq_(self.client.post(self.edit_url).status_code, 403)
 
     def test_ratings_edit_add(self):
+        # TODO: Test AdminSettingsForm in test_forms.py.
         self.log_in_with('Apps:Configure')
 
         data = {'caption': 'ball so hard that ish cray',

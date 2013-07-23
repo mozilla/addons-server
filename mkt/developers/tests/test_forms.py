@@ -21,6 +21,7 @@ from users.models import UserProfile
 
 import mkt
 from mkt.developers import forms
+from mkt.developers.tests.test_views_edit import TestAdmin
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import (AddonExcludedRegion as AER, ContentRating,
                                 Webapp)
@@ -530,6 +531,7 @@ class TestAppFormBasic(amo.tests.TestCase):
 
 
 class TestAppVersionForm(amo.tests.TestCase):
+
     def setUp(self):
         self.request = mock.Mock()
         self.app = app_factory(make_public=amo.PUBLIC_IMMEDIATELY,
@@ -575,3 +577,33 @@ class TestAppVersionForm(amo.tests.TestCase):
         form.save()
         self.app.reload()
         eq_(self.app.make_public, amo.PUBLIC_IMMEDIATELY)
+
+
+class TestAdminSettingsForm(TestAdmin):
+
+    def setUp(self):
+        super(TestAdminSettingsForm, self).setUp()
+        self.data = {'position': 1}
+        self.kwargs = {'instance': self.webapp}
+
+    def test_exclude_brazil_games_when_removing_content_rating(self):
+        """
+        Removing a content rating for a game in Brazil should exclude that
+        game in Brazil.
+        """
+
+        self.log_in_with('Apps:Configure')
+        rb = mkt.regions.BR.ratingsbodies[0]
+        ContentRating.objects.create(addon=self.webapp, ratings_body=rb.id,
+                                     rating=rb.ratings[0].id)
+
+        games = Category.objects.create(type=amo.ADDON_WEBAPP, slug='games')
+        AddonCategory.objects.create(addon=self.webapp, category=games)
+
+        form = forms.AdminSettingsForm(self.data, **self.kwargs)
+        assert form.is_valid(), form.errors
+        form.save(self.webapp)
+
+        regions = self.webapp.get_region_ids()
+        assert regions
+        assert mkt.regions.BR.id not in regions
