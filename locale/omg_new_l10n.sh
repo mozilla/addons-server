@@ -37,7 +37,7 @@ echo "Alright, here we go..."
 if confirm "Update locales?"; then
     pushd locale > /dev/null
     git co master
-    git svn rebase
+    git pull
     popd > /dev/null
 fi
 
@@ -82,8 +82,8 @@ fi
 
 if confirm "Commit your changes?"; then
     pushd locale > /dev/null
-    git commit . -m "Extract/compile script. nom nom"
-    git svn dcommit
+    git commit . -m "Extract/compile script.  Today's lucky number is $RANDOM."
+    git push mozilla master
     popd > /dev/null
 fi
 
@@ -104,7 +104,7 @@ of the number of new strings I will calculate untranslated strings.
 
 `./stats-po.sh`
 
-Source files: http://viewvc.svn.mozilla.org/vc/addons/trunk/site/app/locale/
+Source files: https://github.com/mozilla/zamboni/tree/master/locale
 
 If you have any questions please reply to the list.
 
