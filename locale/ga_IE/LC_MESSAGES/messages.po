@@ -85,11 +85,11 @@ msgstr "Tá an t-ainm seo in úsáid cheana. Roghnaigh ainm eile."
 
 #: apps/addons/forms.py:61 mkt/developers/forms.py:526 mkt/submit/forms.py:402
 msgid "This slug is already in use. Please choose another."
-msgstr ""
+msgstr "Tá an sluga seo in úsáid cheana. Roghaigh ceann eile."
 
 #: apps/addons/forms.py:64 mkt/developers/forms.py:529 mkt/submit/forms.py:406
 msgid "The slug cannot be \"%s\". Please choose another."
-msgstr ""
+msgstr "Ní féidir \"%s\" a úsáid mar shluga. Roghnaigh ceann eile."
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 #: apps/addons/forms.py:83
@@ -300,7 +300,7 @@ msgid ""
 "This add-on has not been reviewed by Mozilla. <a href=\"%(url)s\">Learn "
 "more</a>"
 msgstr ""
-"Níl léirmheas déanta ar an mbreiseán seo ag Mozilla. <a href=\"%(url)s"
+"Níl réamhscrúdú déanta ar an mbreiseán seo ag Mozilla. <a href=\"%(url)s"
 "\">Tuilleadh eolais</a>"
 
 #: apps/addons/templates/addons/button.html:97
@@ -318,7 +318,7 @@ msgid ""
 "This add-on is hosted on the developer's own website and has not been "
 "reviewed by Mozilla."
 msgstr ""
-"Tá an breiseán seo óstáilte ar shuíomh an fhorbróra féin agus níl léirmheas "
+"Tá an breiseán seo óstáilte ar shuíomh an fhorbróra féin agus níl réamhscrúdú "
 "déanta air ag Mozilla."
 
 #: apps/addons/templates/addons/collections_sidebar.html:11
@@ -1100,7 +1100,7 @@ msgstr "Tuilleadh ón Ealaíontóir seo"
 #: apps/addons/templates/addons/persona_detail.html:54
 #: apps/addons/templates/addons/mobile/persona_detail.html:50
 msgid "See all Themes by this Artist"
-msgstr ""
+msgstr "Taispeáin gach Téama leis an Ealaíontóir seo"
 
 #: apps/addons/templates/addons/persona_detail.html:73
 #: apps/addons/templates/addons/mobile/home.html:40
@@ -1142,7 +1142,7 @@ msgstr "Ceadúnas"
 
 #: apps/addons/templates/addons/persona_preview.html:12
 msgid "Awaiting Review"
-msgstr ""
+msgstr "Ag feitheamh le Réamhscrúdú"
 
 #: apps/addons/templates/addons/persona_preview.html:14 apps/amo/log.py:178
 #: apps/constants/base.py:39
@@ -1938,7 +1938,7 @@ msgstr "Ceadaigh / Diúltaigh"
 #: mkt/lookup/templates/lookup/helpers/app_header.html:45
 #: mkt/reviewers/templates/reviewers/themes/single.html:43
 msgid "Review History"
-msgstr ""
+msgstr "Stair na Léirmheasanna"
 
 #: apps/addons/templates/addons/includes/persona_pending_notice.html:3
 msgid "Sorry, this theme is pending. Please come back later."
@@ -3822,7 +3822,7 @@ msgstr "Bánaigh"
 
 #: apps/bandwagon/templates/bandwagon/includes/addedit.html:50
 msgid "PNG and JPG supported. Image will be resized to 32x32."
-msgstr "Tacaítear le PNG agus JPG. Athrófar méid na híomhá go 32x32."
+msgstr "Tacaítear le PNG agus JPG. Athrófar méid na híomhá go 32×32."
 
 #: apps/bandwagon/templates/bandwagon/includes/addedit_errors.html:3
 #: apps/localizers/templates/localizers/categories.html:19
@@ -4695,7 +4695,7 @@ msgstr "Eisínteacht"
 
 #: apps/constants/base.py:174
 msgid "Complete Theme"
-msgstr ""
+msgstr "Téama Iomlán"
 
 #: apps/constants/base.py:176
 msgid "Search Engine"
@@ -4885,27 +4885,27 @@ msgstr ""
 
 #: apps/constants/base.py:536
 msgid "Level 1"
-msgstr ""
+msgstr "Leibhéal 1"
 
 #: apps/constants/base.py:537
 msgid "Level 2"
-msgstr ""
+msgstr "Leibhéal 2"
 
 #: apps/constants/base.py:538
 msgid "Level 3"
-msgstr ""
+msgstr "Leibhéal 3"
 
 #: apps/constants/base.py:539
 msgid "Level 4"
-msgstr ""
+msgstr "Leibhéal 4"
 
 #: apps/constants/base.py:540
 msgid "Level 5"
-msgstr ""
+msgstr "Leibhéal 5"
 
 #: apps/constants/base.py:541
 msgid "Level 6"
-msgstr ""
+msgstr "Leibhéal 6"
 
 #: apps/constants/licenses.py:13
 msgid "All Rights Reserved"
@@ -5500,11 +5500,11 @@ msgstr ""
 
 #: apps/devhub/tasks.py:330
 msgid "Connection to \"%s\" timed out."
-msgstr ""
+msgstr "Ceangal le \"%s\" thar am."
 
 #: apps/devhub/tasks.py:332
 msgid "Could not contact host at \"%s\"."
-msgstr ""
+msgstr "Níorbh fhéidir dul i dteagmháil le hóstríomhaire \"%s\"."
 
 #: apps/devhub/tasks.py:394
 msgid "Your icon must be less than %s bytes."
@@ -5565,7 +5565,7 @@ msgstr ""
 
 #: apps/devhub/views.py:367
 msgid "Theme deleted."
-msgstr ""
+msgstr "Scriosadh an téama."
 
 #: apps/devhub/views.py:367
 msgid "Add-on deleted."
@@ -5674,7 +5674,7 @@ msgstr "Ar ais go dtí na Breiseáin"
 #: apps/devhub/templates/devhub/builder.html:3
 #: mkt/developers/templates/developers/builder.html:3
 msgid "Builder and SDK"
-msgstr ""
+msgstr "Tógálaí agus SDK"
 
 #. Section in strong tag is bigger and on it's own line
 #: apps/devhub/templates/devhub/builder.html:11
@@ -5689,7 +5689,7 @@ msgstr ""
 #: mkt/developers/templates/developers/builder.html:21
 #: mkt/developers/templates/developers/builder.html:22
 msgid "Builder Overview"
-msgstr ""
+msgstr "Foramharc ar Thógálaí"
 
 #: apps/devhub/templates/devhub/builder.html:24
 #: apps/devhub/templates/devhub/builder.html:28
@@ -5712,7 +5712,7 @@ msgstr ""
 #: apps/devhub/templates/devhub/builder.html:42
 #: mkt/developers/templates/developers/builder.html:42
 msgid "Choose Your Build Environment"
-msgstr ""
+msgstr "Roghnaigh Do Thimpeallacht Tógála"
 
 #: apps/devhub/templates/devhub/builder.html:48
 #: mkt/developers/templates/developers/builder.html:48
@@ -5744,12 +5744,12 @@ msgstr ""
 #: apps/devhub/templates/devhub/builder.html:60
 #: mkt/developers/templates/developers/builder.html:60
 msgid "Try the Builder Now"
-msgstr ""
+msgstr "Bain Triail as an Tógálaí Anois"
 
 #: apps/devhub/templates/devhub/builder.html:68
 #: mkt/developers/templates/developers/builder.html:68
 msgid "Add-on SDK"
-msgstr ""
+msgstr "SDK Breiseáin"
 
 #: apps/devhub/templates/devhub/builder.html:70
 #: mkt/developers/templates/developers/builder.html:70
@@ -5776,7 +5776,7 @@ msgstr ""
 #: apps/devhub/templates/devhub/builder.html:81
 #: mkt/developers/templates/developers/builder.html:81
 msgid "Download the Add-on SDK"
-msgstr ""
+msgstr "Íosluchtaigh an SDK Breiseáin"
 
 #: apps/devhub/templates/devhub/builder.html:89
 #: mkt/developers/templates/developers/builder.html:89
@@ -5805,7 +5805,7 @@ msgstr ""
 #: apps/devhub/templates/devhub/builder.html:109
 #: mkt/developers/templates/developers/builder.html:109
 msgid "Help is at Hand!"
-msgstr ""
+msgstr "Is gaire cabhair Mozilla ná an doras!"
 
 #: apps/devhub/templates/devhub/builder.html:111
 #: mkt/developers/templates/developers/builder.html:111
@@ -5866,7 +5866,7 @@ msgstr "Torthaí an Chuardaigh"
 #: apps/devhub/templates/devhub/devhub_search.html:13
 #: apps/search/templates/search/results.html:11
 msgid "Search Results for \"{0}\""
-msgstr ""
+msgstr "Torthaí an Chuardaigh: \"{0}\""
 
 #: apps/devhub/templates/devhub/devhub_search.html:19
 msgid "Please enter some search terms."
@@ -6173,7 +6173,7 @@ msgstr "Ainm an Phacáiste"
 
 #: apps/devhub/templates/devhub/package_addon.html:41
 msgid "Who's working on your add-on?"
-msgstr ""
+msgstr "Cé atá ag obair ar do bhreiseán?"
 
 #: apps/devhub/templates/devhub/package_addon.html:43
 msgid ""
@@ -6203,7 +6203,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/package_addon.html:64
 msgid "Supported Applications and Versions"
-msgstr ""
+msgstr "Feidhmchláir agus Leaganacha a dTacaítear Leo"
 
 #: apps/devhub/templates/devhub/package_addon.html:80
 msgid "Choose pre-built features"
@@ -6218,7 +6218,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/package_addon.html:95
 msgid "Submit and Build"
-msgstr ""
+msgstr "Seol agus Tóg"
 
 #: apps/devhub/templates/devhub/package_addon.html:102
 msgid "Advanced Building"
@@ -6243,7 +6243,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/package_addon_success.html:22
 msgid "Please wait&hellip;"
-msgstr ""
+msgstr "Fan nóiméad&hellip;"
 
 #: apps/devhub/templates/devhub/package_addon_success.html:24
 msgid "JavaScript needs to be enabled to fetch the packaged add-on."
@@ -6305,7 +6305,7 @@ msgstr "Torthaí an Bhailíochtaithe"
 #: apps/devhub/templates/devhub/validation.html:20
 #: mkt/developers/templates/developers/validation.html:20
 msgid "Validated at:"
-msgstr ""
+msgstr "Bailíochtaithe ag:"
 
 #: apps/devhub/templates/devhub/validation.html:26
 msgid "Tested for compatibility against:"
@@ -6457,11 +6457,11 @@ msgstr "Mo chuid breiseán: Gníomhaíocht níos sine"
 #: apps/devhub/templates/devhub/addons/dashboard.html:118
 msgid "<b>{0}</b> theme"
 msgid_plural "<b>{0}</b> themes"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
+msgstr[0] "<b>{0}</b> téama"
+msgstr[1] "<b>{0}</b> théama"
+msgstr[2] "<b>{0}</b> théama"
+msgstr[3] "<b>{0}</b> dtéama"
+msgstr[4] "<b>{0}</b> téama"
 
 #: apps/devhub/templates/devhub/addons/edit.html:3
 #: apps/devhub/templates/devhub/addons/listing/item_actions.html:25
@@ -6639,7 +6639,7 @@ msgstr[4] "Scartha ag camóga, {0} carachtar ar a laghad."
 #: apps/devhub/templates/devhub/personas/edit.html:100
 #: apps/devhub/templates/devhub/personas/submit.html:49
 msgid "Example: dark, cinema, noir. Limit 20."
-msgstr ""
+msgstr "Sampla: dorcha, scannán, noir. 20 ar a mhéad."
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:178
 msgid "Reserved tag:"
@@ -6763,7 +6763,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:56
 msgid "Limit 3"
-msgstr ""
+msgstr "3 ar a mhéad"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:78
 msgid "Add-on Flags"
@@ -6783,7 +6783,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:98
 msgid "View Source?"
-msgstr ""
+msgstr "Féach ar an gcód foinseach?"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:99
 msgid ""
@@ -6801,7 +6801,7 @@ msgstr ""
 #: apps/devhub/templates/devhub/addons/edit/technical.html:110
 #: mkt/developers/templates/developers/apps/edit/technical.html:35
 msgid "Public Stats?"
-msgstr ""
+msgstr "Staitisticí Poiblí?"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:111
 msgid ""
@@ -6819,7 +6819,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:123
 msgid "Upgrade SDK?"
-msgstr ""
+msgstr "Nuashonraigh an SDK?"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:124
 msgid ""
@@ -6838,7 +6838,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:135
 msgid "Universally unique identifier"
-msgstr ""
+msgstr "Aitheantóir uathúil"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:136
 msgid "UUID"
@@ -6856,7 +6856,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/addons/edit/technical_dependencies.html:41
 msgid "Enter the name of an add-on"
-msgstr ""
+msgstr "Cuir ainm an bhreiseáin isteach"
 
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:11
 msgid "Add-on Media for {0}"
@@ -6881,7 +6881,7 @@ msgstr "Roghnaigh deilbhín le haghaidh do bhreiseáin:"
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:51
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:54
 msgid "32x32px"
-msgstr "32x32pct"
+msgstr "32×32pct"
 
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:59
 msgid "Used in listings of add-ons, like search results and featured add-ons."
@@ -6893,7 +6893,7 @@ msgstr ""
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:69
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:44
 msgid "64x64px"
-msgstr "64x64pct"
+msgstr "64×64pct"
 
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:74
 msgid "Used in add-on detail pages."
@@ -6907,7 +6907,7 @@ msgstr "Uasluchtaigh Deilbhín Saincheaptha..."
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:91
 msgid "PNG and JPG supported. Icons resized to 64x64 pixels if larger."
 msgstr ""
-"Tacaítear le PNG agus JPG. Athrófar méid an deilbhín go 64x64 má tá sé níos "
+"Tacaítear le PNG agus JPG. Athrófar méid an deilbhín go 64×64 má tá sé níos "
 "mó."
 
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:109
@@ -20078,7 +20078,7 @@ msgstr "Dearadh"
 #: mkt/ecosystem/templates/ecosystem/landing.html:23
 #: mkt/ecosystem/templates/ecosystem/macros.html:13
 msgid "Concept: A great app"
-msgstr ""
+msgstr "Coincheap: Feidhmchlár iontach"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:24
 #: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:5
@@ -20094,7 +20094,7 @@ msgstr ""
 #: mkt/ecosystem/templates/ecosystem/landing.html:27
 #: mkt/ecosystem/templates/ecosystem/macros.html:26
 msgid "UI Guidelines"
-msgstr ""
+msgstr "Treoirlínte Comhéadain"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:33
 #: mkt/ecosystem/templates/ecosystem/landing.html:31
@@ -20107,7 +20107,7 @@ msgstr "Tóg"
 #: mkt/ecosystem/templates/ecosystem/landing.html:40
 #: mkt/ecosystem/templates/ecosystem/macros.html:58
 msgid "Quick Start"
-msgstr ""
+msgstr "Mearthosú"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:41
 #: mkt/ecosystem/templates/ecosystem/build_game_apps.html:111
@@ -20117,7 +20117,7 @@ msgstr ""
 #: mkt/ecosystem/templates/ecosystem/landing.html:42
 #: mkt/ecosystem/templates/ecosystem/macros.html:203
 msgid "Firefox OS Simulator"
-msgstr ""
+msgstr "Ionsamhlóir Firefox OS"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:45
 #: mkt/ecosystem/templates/ecosystem/build_reference.html:5
@@ -20139,7 +20139,7 @@ msgstr "Foilsigh"
 #: mkt/ecosystem/templates/ecosystem/publish_deploy.html:5
 #: mkt/ecosystem/templates/ecosystem/publish_deploy.html:13
 msgid "Deploying your app"
-msgstr ""
+msgstr "D'fheidhmchlár a fhoilsiú"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:58
 #: mkt/ecosystem/templates/ecosystem/landing.html:59
@@ -20148,7 +20148,7 @@ msgstr ""
 #: mkt/ecosystem/templates/ecosystem/publish_hosted.html:5
 #: mkt/ecosystem/templates/ecosystem/publish_hosted.html:13
 msgid "Hosted Apps"
-msgstr ""
+msgstr "Feidhmchláir Óstáilte"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:62
 #: mkt/ecosystem/templates/ecosystem/landing.html:61
@@ -20157,14 +20157,14 @@ msgstr ""
 #: mkt/ecosystem/templates/ecosystem/publish_packaged.html:5
 #: mkt/ecosystem/templates/ecosystem/publish_packaged.html:13
 msgid "Packaged Apps"
-msgstr ""
+msgstr "Feidhmchláir Phacáistithe"
 
 #: mkt/ecosystem/templates/ecosystem/build_app_generator.html:5
 #: mkt/ecosystem/templates/ecosystem/build_app_generator.html:13
 #: mkt/ecosystem/templates/ecosystem/build_tools.html:26
 #: mkt/ecosystem/templates/ecosystem/macros.html:192
 msgid "App Generator"
-msgstr ""
+msgstr "Gineadóir Feidhmchlár"
 
 #: mkt/ecosystem/templates/ecosystem/build_app_generator.html:34
 #: templates/global/menu_links.html:3 templates/global/menu_links.html:5
@@ -20175,7 +20175,7 @@ msgstr "Gnéithe"
 
 #: mkt/ecosystem/templates/ecosystem/build_app_generator.html:42
 msgid "Download Template"
-msgstr ""
+msgstr "Íosluchtaigh an Teimpléad"
 
 #: mkt/ecosystem/templates/ecosystem/build_app_generator.html:47
 msgid "Introduction to App Generator Templates"
@@ -20324,7 +20324,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_app_generator.html:178
 msgid "Add the JavaScript library"
-msgstr ""
+msgstr "Cuir an leabharlann JavaScript leis"
 
 #: mkt/ecosystem/templates/ecosystem/build_app_generator.html:179
 msgid "Build an optimized version of the app into www-built"
@@ -20351,7 +20351,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_app_generator.html:198
 msgid "Tutorial"
-msgstr ""
+msgstr "Cúrsa Teagaisc"
 
 #: mkt/ecosystem/templates/ecosystem/build_app_generator.html:200
 msgid ""
@@ -20365,7 +20365,7 @@ msgstr ""
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:13
 #: mkt/ecosystem/templates/ecosystem/macros.html:155
 msgid "Using Apps Offline"
-msgstr ""
+msgstr "Feidhmchláir a úsáid as líne"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:15
 msgid ""
@@ -20384,7 +20384,7 @@ msgstr ""
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:30
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:44
 msgid "Application cache"
-msgstr ""
+msgstr "Taisce an fheidhmchláir"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:34
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:63
@@ -20393,7 +20393,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:38
 msgid "Local storage"
-msgstr ""
+msgstr "Stóras logánta"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:46
 msgid ""
@@ -20404,7 +20404,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:55
 msgid "Using the application cache"
-msgstr ""
+msgstr "Taisce an fheidhmchláir a úsáid"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:60
 msgid "W3C specification for offline Web applications"
@@ -20458,7 +20458,7 @@ msgstr ""
 #: mkt/ecosystem/templates/ecosystem/build_tools.html:59
 #: mkt/ecosystem/templates/ecosystem/macros.html:210
 msgid "Firefox Developer Tools"
-msgstr ""
+msgstr "Uirlisí Forbartha Firefox"
 
 #: mkt/ecosystem/templates/ecosystem/build_dev_tools.html:15
 msgid ""
@@ -20480,7 +20480,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_dev_tools.html:30
 msgid "Responsive Mode"
-msgstr ""
+msgstr "Mód Freagrach"
 
 #: mkt/ecosystem/templates/ecosystem/build_dev_tools.html:32
 msgid ""
@@ -20513,7 +20513,7 @@ msgstr ""
 #: mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:192
 #: mkt/ecosystem/templates/ecosystem/build_web_developers.html:181
 msgid "See also"
-msgstr ""
+msgstr "Féach freisin"
 
 #: mkt/ecosystem/templates/ecosystem/build_ffos.html:5
 #: mkt/ecosystem/templates/ecosystem/build_ffos.html:13
@@ -20542,7 +20542,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_ffos.html:36
 msgid "Documentation about Firefox OS"
-msgstr ""
+msgstr "Doiciméadú Firefox OS"
 
 #: mkt/ecosystem/templates/ecosystem/build_ffos.html:43
 msgid "Introductory information about what Firefox OS is and how it works."
@@ -20594,7 +20594,7 @@ msgstr ""
 #: mkt/ecosystem/templates/ecosystem/build_game_apps.html:13
 #: mkt/ecosystem/templates/ecosystem/macros.html:162
 msgid "Developing Game Apps"
-msgstr ""
+msgstr "Cluichí a Fhorbairt"
 
 #: mkt/ecosystem/templates/ecosystem/build_game_apps.html:15
 msgid ""
@@ -20670,19 +20670,19 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_game_apps.html:86
 msgid "as a mailing list"
-msgstr ""
+msgstr "mar liosta ríomhphoist"
 
 #: mkt/ecosystem/templates/ecosystem/build_game_apps.html:90
 msgid "as a newsgroup"
-msgstr ""
+msgstr "mar ghrúpa nuachta"
 
 #: mkt/ecosystem/templates/ecosystem/build_game_apps.html:94
 msgid "as a Google Group"
-msgstr ""
+msgstr "mar Ghrúpa Google"
 
 #: mkt/ecosystem/templates/ecosystem/build_game_apps.html:98
 msgid "as a Web feed"
-msgstr ""
+msgstr "mar fhotha Gréasáin"
 
 #: mkt/ecosystem/templates/ecosystem/build_game_apps.html:102
 msgid ""
@@ -20710,11 +20710,11 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_intro.html:14
 msgid "Multi devices"
-msgstr ""
+msgstr "Il-ghléis"
 
 #: mkt/ecosystem/templates/ecosystem/build_intro.html:16
 msgid "The Web is the platform"
-msgstr ""
+msgstr "Is é an Gréasán an t-ardán"
 
 #: mkt/ecosystem/templates/ecosystem/build_intro.html:18
 msgid ""
@@ -20775,7 +20775,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_intro.html:79
 msgid "Web standards"
-msgstr ""
+msgstr "Caighdeáin an Ghréasáin"
 
 #: mkt/ecosystem/templates/ecosystem/build_intro.html:81
 msgid ""
@@ -20816,7 +20816,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_intro.html:141
 msgid "Buy Once, Run Everywhere"
-msgstr ""
+msgstr "Ceannaigh Uair Amháin, Rith Chuile Áit"
 
 #: mkt/ecosystem/templates/ecosystem/build_intro.html:143
 msgid ""
@@ -21188,7 +21188,7 @@ msgstr ""
 #: mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:91
 #: mkt/ecosystem/templates/ecosystem/build_web_developers.html:46
 msgid "Optional features"
-msgstr ""
+msgstr "Gnéithe roghnacha"
 
 #: mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:93
 #: mkt/ecosystem/templates/ecosystem/build_web_developers.html:48
@@ -21323,7 +21323,7 @@ msgstr "Íocaíochtaí"
 
 #: mkt/ecosystem/templates/ecosystem/build_quick.html:14
 msgid "Firefox OS Quick Start"
-msgstr ""
+msgstr "Mearthosú Firefox OS"
 
 #: mkt/ecosystem/templates/ecosystem/build_quick.html:16
 msgid ""
@@ -21346,7 +21346,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_quick.html:32
 msgid "Packaged vs. Hosted Apps"
-msgstr ""
+msgstr "Feidhmchláir Phacáistithe vs. Óstáilte"
 
 #: mkt/ecosystem/templates/ecosystem/build_quick.html:34
 msgid ""
@@ -21429,7 +21429,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_quick.html:121
 msgid "Web APIs"
-msgstr ""
+msgstr "APIanna Gréasáin"
 
 #: mkt/ecosystem/templates/ecosystem/build_quick.html:123
 msgid ""
@@ -21485,7 +21485,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_quick.html:178
 msgid "Tools &amp; Testing"
-msgstr ""
+msgstr "Uirlisí agus Tástáil"
 
 #: mkt/ecosystem/templates/ecosystem/build_quick.html:180
 msgid ""
@@ -21515,7 +21515,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_quick.html:205
 msgid "Installing Firefox OS on a Device"
-msgstr ""
+msgstr "Firefox OS a shuiteáil ar Ghléas"
 
 #: mkt/ecosystem/templates/ecosystem/build_quick.html:207
 msgid ""
@@ -21586,7 +21586,7 @@ msgstr ""
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:6
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:9
 msgid "Face Value"
-msgstr ""
+msgstr "Aghaidhluach"
 
 #: mkt/ecosystem/templates/ecosystem/build_reference.html:37
 msgid ""
@@ -21638,7 +21638,7 @@ msgstr ""
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:6
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:9
 msgid "General Notes"
-msgstr ""
+msgstr "Nótaí Ginearálta"
 
 #: mkt/ecosystem/templates/ecosystem/build_reference.html:80
 msgid ""
@@ -21722,15 +21722,15 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_web_developers.html:167
 msgid "Offline resources in Firefox"
-msgstr ""
+msgstr "Acmhainní as líne i bhFirefox"
 
 #: mkt/ecosystem/templates/ecosystem/build_web_developers.html:171
 msgid "DOM Storage"
-msgstr ""
+msgstr "Stóras DOM"
 
 #: mkt/ecosystem/templates/ecosystem/build_web_developers.html:178
 msgid "Drag and drop"
-msgstr ""
+msgstr "Tarraing agus scaoil"
 
 #: mkt/ecosystem/templates/ecosystem/build_web_developers.html:184
 msgid "A mobile web application stack"
@@ -22069,25 +22069,25 @@ msgstr ""
 #: mkt/ecosystem/templates/ecosystem/design_patterns.html:174
 #: mkt/ecosystem/templates/ecosystem/design_patterns.html:241
 msgid "Pattern 1"
-msgstr ""
+msgstr "Patrún 1"
 
 #: mkt/ecosystem/templates/ecosystem/design_patterns.html:102
 #: mkt/ecosystem/templates/ecosystem/design_patterns.html:178
 #: mkt/ecosystem/templates/ecosystem/design_patterns.html:245
 msgid "Pattern 2"
-msgstr ""
+msgstr "Patrún 2"
 
 #: mkt/ecosystem/templates/ecosystem/design_patterns.html:106
 #: mkt/ecosystem/templates/ecosystem/design_patterns.html:182
 #: mkt/ecosystem/templates/ecosystem/design_patterns.html:249
 msgid "Pattern 3"
-msgstr ""
+msgstr "Patrún 3"
 
 #: mkt/ecosystem/templates/ecosystem/design_patterns.html:110
 #: mkt/ecosystem/templates/ecosystem/design_patterns.html:186
 #: mkt/ecosystem/templates/ecosystem/design_patterns.html:253
 msgid "Pattern 4"
-msgstr ""
+msgstr "Patrún 4"
 
 #: mkt/ecosystem/templates/ecosystem/design_patterns.html:113
 msgid "Pattern 2: Expandable bottom menu"
@@ -22415,7 +22415,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:155
 msgid "Managing apps"
-msgstr ""
+msgstr "Feidhmchláir a bhainistiú"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:157
 msgid ""
@@ -22446,7 +22446,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:173
 msgid "It also gives us three commands:"
-msgstr ""
+msgstr "Tugann sé trí ordú dúinn freisin:"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:175
 msgid ""
@@ -22506,7 +22506,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:200
 msgid "Manifest errors"
-msgstr ""
+msgstr "Earráidí sa lastliosta"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:202
 msgid ""
@@ -22535,7 +22535,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:217
 msgid "Manifest warnings"
-msgstr ""
+msgstr "Rabhaidh sa lastliosta"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:218
 msgid "The Dashboard will report the following manifest issues as warnings:"
@@ -22543,7 +22543,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:220
 msgid "missing icons"
-msgstr ""
+msgstr "deilbhíní ar iarraidh"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:221
 msgid ""
@@ -22570,7 +22570,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:227
 msgid "Simulator-specific warnings"
-msgstr ""
+msgstr "Rabhaidh sainiúil don ionsamhlóir"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:228
 msgid ""
@@ -22741,7 +22741,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:336
 msgid "Connecting a device"
-msgstr ""
+msgstr "Ceangal le gléas"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:338
 msgid ""
@@ -22768,7 +22768,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:363
 msgid "Pushing apps to the device"
-msgstr ""
+msgstr "Feidhmchláir a bhrú chuig an ghléas"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:365
 msgid ""
@@ -22808,7 +22808,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:390
 msgid "Unsupported APIs"
-msgstr ""
+msgstr "APIanna gan tacaíocht"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:392
 msgid ""
@@ -22821,7 +22821,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:411
 msgid "Getting help"
-msgstr ""
+msgstr "Cabhair"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:413
 msgid ""
@@ -22859,15 +22859,15 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:76
 msgid "Submit your app to the Marketplace"
-msgstr ""
+msgstr "Cuir an feidhmchlár atá agat ar fáil sa Mhargadh"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:115
 msgid "Join the community"
-msgstr ""
+msgstr "Glac páirt sa chomhphobal"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:117
 msgid "Look who's already here"
-msgstr ""
+msgstr "Cé atá anseo cheana"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:120
 msgid ""
@@ -22946,11 +22946,11 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:251
 msgid "Code &amp; Tools"
-msgstr ""
+msgstr "Cód agus Uirlisí"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:255
 msgid "Events &amp; Meetups"
-msgstr ""
+msgstr "Imeachtaí agus Cruinnithe"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:273
 msgid ""
@@ -22960,7 +22960,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:281
 msgid "Sign me up!"
-msgstr ""
+msgstr "Ba mhaith liom clárú!"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:224
 #: mkt/ecosystem/templates/ecosystem/publish_submit.html:5
@@ -22970,7 +22970,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:294
 msgid "View with subtitles"
-msgstr ""
+msgstr "Féach air le fotheidil"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:327
 msgid "Made in partnership with our friends at Treehouse"
@@ -22991,6 +22991,8 @@ msgid ""
 "<a href=\"%(submit_url)s\" class=\"button\">Submit now</a> <span>or</span> "
 "<a href=\"%(api_url)s\" class=\"button api\">Submit via API</a>"
 msgstr ""
+"<a href=\"%(submit_url)s\" class=\"button\">Seol anois</a> <span>nó</span> "
+"<a href=\"%(api_url)s\" class=\"button api\">Seol tríd an API</a>"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:33
 msgid ""
@@ -23138,7 +23140,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/publish_hosted.html:65
 msgid "Publishing the app"
-msgstr ""
+msgstr "An feidhmchlár a fhoilsiú"
 
 #: mkt/ecosystem/templates/ecosystem/publish_hosted.html:67
 msgid ""
@@ -23161,7 +23163,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/publish_hosted.html:82
 msgid "Publish on your own website"
-msgstr ""
+msgstr "Foilsigh ar do shuíomh féin"
 
 #: mkt/ecosystem/templates/ecosystem/publish_hosted.html:84
 msgid ""
@@ -23211,7 +23213,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/publish_packaged.html:48
 msgid "Privileged app"
-msgstr ""
+msgstr "Feidhmchlár faoi phribhléid"
 
 #: mkt/ecosystem/templates/ecosystem/publish_packaged.html:50
 msgid ""
@@ -23250,7 +23252,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/publish_packaged.html:86
 msgid "Certified app"
-msgstr ""
+msgstr "Feidhmchlár deimhnithe"
 
 #: mkt/ecosystem/templates/ecosystem/publish_packaged.html:88
 msgid ""
@@ -23276,7 +23278,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/publish_packaged.html:112
 msgid "Plain packaged app"
-msgstr ""
+msgstr "Gnáth-fheidhmchlár pacáistithe"
 
 #: mkt/ecosystem/templates/ecosystem/publish_packaged.html:114
 msgid ""
@@ -23784,7 +23786,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/publish_submit.html:51
 msgid "Quick start"
-msgstr ""
+msgstr "Mearthosú"
 
 #: mkt/ecosystem/templates/ecosystem/publish_submit.html:53
 msgid ""
@@ -23972,7 +23974,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/publish_submit.html:237
 msgid "Review process"
-msgstr ""
+msgstr "Próiseas scrúdaithe"
 
 #: mkt/ecosystem/templates/ecosystem/publish_submit.html:240
 msgid ""
@@ -24008,11 +24010,11 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/support.html:50
 msgid "Known issues"
-msgstr ""
+msgstr "Fadhbanna ar eolas"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:55
 msgid "Do you still have questions?"
-msgstr ""
+msgstr "An bhfuil ceisteanna agat fós?"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:57
 msgid ""
@@ -24024,7 +24026,7 @@ msgstr ""
 #: mkt/ecosystem/templates/ecosystem/support.html:65
 #: mkt/ecosystem/templates/ecosystem/support.html:67
 msgid "Stack Overflow"
-msgstr ""
+msgstr "Stack Overflow"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:71
 msgid ""
@@ -24082,7 +24084,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:72
 msgid "Custom Elements"
-msgstr ""
+msgstr "Eilimintí Saincheaptha"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:77
 msgid "Chrono uses the same UI components as the built-in apps."
@@ -24094,7 +24096,7 @@ msgstr ""
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:107
 #: mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:49
 msgid "Third-party Libraries"
-msgstr ""
+msgstr "Leabharlanna Tríú Páirtí"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:93
 msgid ""
@@ -24145,7 +24147,7 @@ msgstr "Éasca"
 #: mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:101
 #: mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:95
 msgid "Code Breakdown"
-msgstr ""
+msgstr "Miondealú an Chóid"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:135
 msgid "7%"
@@ -24188,7 +24190,7 @@ msgstr ""
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:50
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:48
 msgid "Folder Structure"
-msgstr ""
+msgstr "Struchtúr na bhFillteán"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:53
 msgid "integration tests"
@@ -24202,12 +24204,12 @@ msgstr ""
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:55
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:54
 msgid "base HTML file"
-msgstr ""
+msgstr "bunchomhad HTML"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:56
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:56
 msgid "EJS/HTML templates"
-msgstr ""
+msgstr "teimpléid EJS/HTML"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:59
 msgid ""
@@ -24269,7 +24271,7 @@ msgstr ""
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:27
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:28
 msgid "Local Notes"
-msgstr ""
+msgstr "Nótaí Logánta"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:35
 msgid ""
@@ -24329,7 +24331,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:51
 msgid "Translation files"
-msgstr ""
+msgstr "Comhaid Aistriúcháin"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:52
 msgid "integration and UI tests"
@@ -24337,7 +24339,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:55
 msgid "UI files"
-msgstr ""
+msgstr "Comhaid chomhéadain"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:59
 msgid ""
@@ -24465,7 +24467,7 @@ msgstr "92%"
 
 #: mkt/files/views.py:49
 msgid "Back to app"
-msgstr ""
+msgstr "Fill ar an bhfeidhmchlár"
 
 #: mkt/files/templates/fileviewer/viewer.html:4
 msgid "File Compare :: Reviewer Tools"
@@ -24516,7 +24518,7 @@ msgstr ""
 #: mkt/inapp_pay/templates/inapp_pay/error.html:27
 #: mkt/inapp_pay/templates/inapp_pay/payment_cancel.html:12
 msgid "Close window"
-msgstr ""
+msgstr "Dún an fhuinneog"
 
 #: mkt/inapp_pay/templates/inapp_pay/error.html:8
 msgid "Payment Error"
@@ -24614,11 +24616,11 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/app_summary.html:8
 msgid "last 24 hours"
-msgstr ""
+msgstr "24 uair is déanaí"
 
 #: mkt/lookup/templates/lookup/app_summary.html:9
 msgid "last 7 days"
-msgstr ""
+msgstr "7 lá is déanaí"
 
 #: mkt/lookup/templates/lookup/app_summary.html:10
 msgid "all time"
@@ -24655,12 +24657,12 @@ msgstr ""
 #. number of refunds.
 #: mkt/lookup/templates/lookup/app_summary.html:79
 msgid "{0} approved"
-msgstr ""
+msgstr "{0} ceadaithe"
 
 #. number of refunds.
 #: mkt/lookup/templates/lookup/app_summary.html:81
 msgid "{0} rejected"
-msgstr ""
+msgstr "{0} diúltaithe"
 
 #: mkt/lookup/templates/lookup/app_summary.html:83
 msgid "Methods"
@@ -24676,7 +24678,7 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/base.html:3 mkt/site/context_processors.py:52
 msgid "Lookup Tool"
-msgstr ""
+msgstr "Uirlis Chuardaigh"
 
 #: mkt/lookup/templates/lookup/base.html:10
 msgid "<small>Marketplace</small> Lookup Tool"
@@ -24738,7 +24740,7 @@ msgstr "Grúpaí"
 
 #: mkt/lookup/templates/lookup/user_summary.html:36
 msgid "PayPal linked"
-msgstr ""
+msgstr "PayPal nasctha"
 
 #: mkt/lookup/templates/lookup/user_summary.html:44
 msgid "Marketplace Credit"
@@ -24754,7 +24756,7 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/user_summary.html:52
 msgid "requested"
-msgstr ""
+msgstr "iarrtha"
 
 #: mkt/lookup/templates/lookup/user_summary.html:53
 msgid "auto-approved"
@@ -24820,19 +24822,19 @@ msgstr ""
 
 #: mkt/purchase/templates/purchase/receipt.html:3
 msgid "App name:"
-msgstr ""
+msgstr "Ainm an fheidhmchláir:"
 
 #: mkt/purchase/templates/purchase/receipt.html:4
 msgid "App developer:"
-msgstr ""
+msgstr "Forbróir an fheidhmchláir:"
 
 #: mkt/purchase/templates/purchase/receipt.html:6
 msgid "Order date:"
-msgstr ""
+msgstr "Dáta ordaithe:"
 
 #: mkt/purchase/templates/purchase/receipt.html:7
 msgid "Order number:"
-msgstr ""
+msgstr "Uimhir an ordaithe:"
 
 #: mkt/purchase/templates/purchase/receipt.html:9
 msgid "For support please visit:"
@@ -24848,7 +24850,7 @@ msgstr ""
 
 #: mkt/ratings/templates/ratings/rating.html:22
 msgid "by <strong>%(user_name)s</strong>"
-msgstr ""
+msgstr "le <strong>%(user_name)s</strong>"
 
 #: mkt/ratings/templates/ratings/rating.html:26
 msgid "for previous version %(version)s"
@@ -24860,7 +24862,7 @@ msgstr "Tuairisc"
 
 #: mkt/receipts/forms.py:20
 msgid "No receipt"
-msgstr ""
+msgstr "Gan admháil"
 
 #: mkt/receipts/forms.py:21
 msgid "Test receipt"
@@ -24980,7 +24982,7 @@ msgstr ""
 #: mkt/reviewers/helpers.py:84
 msgctxt "pending"
 msgid "Apps ({0})"
-msgstr ""
+msgstr "Feidhmchláir ({0})"
 
 #: mkt/reviewers/helpers.py:87
 msgctxt "rereview"
@@ -24990,7 +24992,7 @@ msgstr ""
 #: mkt/reviewers/helpers.py:91
 msgctxt "updates"
 msgid "Updates ({0})"
-msgstr ""
+msgstr "Nuashonruithe ({0})"
 
 #: mkt/reviewers/helpers.py:95
 msgctxt "escalated"
@@ -25008,11 +25010,11 @@ msgstr ""
 
 #: mkt/reviewers/helpers.py:112
 msgid "Themes ({0})"
-msgstr ""
+msgstr "Téamaí ({0})"
 
 #: mkt/reviewers/helpers.py:117
 msgid "Device ({0})"
-msgstr ""
+msgstr "Gléas ({0})"
 
 #: mkt/reviewers/helpers.py:153
 msgid "Flagged"
@@ -25088,7 +25090,7 @@ msgstr ""
 
 #: mkt/reviewers/utils.py:387
 msgid "Disable app"
-msgstr ""
+msgstr "Díchumasaigh an feidhmchlár"
 
 #: mkt/reviewers/utils.py:389
 msgid ""
@@ -25138,7 +25140,7 @@ msgstr "Gléasanna"
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:75
 #: mkt/reviewers/templates/reviewers/queue.html:51
 msgid "Packaged App"
-msgstr ""
+msgstr "Feidhmchlár Pacáistithe"
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:38
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:78
@@ -25273,12 +25275,12 @@ msgstr ""
 #: mkt/reviewers/templates/reviewers/includes/details.html:16
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:45
 msgid "Packaged app"
-msgstr ""
+msgstr "Feidhmchlár pacáistithe"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:19
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:48
 msgid "Hosted app"
-msgstr ""
+msgstr "Feidhmchlár óstáilte"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:31
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:55
@@ -25298,7 +25300,7 @@ msgstr ""
 #: mkt/reviewers/templates/reviewers/includes/details.html:46
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:70
 msgid "Signed Zip"
-msgstr ""
+msgstr "Comhad sínithe zip"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:83
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:107
@@ -25316,7 +25318,7 @@ msgstr "Riachtanais"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:160
 msgid "More about this app"
-msgstr ""
+msgstr "Tuilleadh eolais faoin fheidhmchlár seo"
 
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:18
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:29
@@ -25332,17 +25334,17 @@ msgstr ""
 #: mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:13
 #: mkt/reviewers/templates/reviewers/themes/list.html:24
 msgid "Clear Search"
-msgstr ""
+msgstr "Glan an Cuardach"
 
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:43
 #: mkt/reviewers/templates/reviewers/includes/search_results_themes.html:26
 #: mkt/site/templates/site/helpers/no_results.html:1
 msgid "No results found"
-msgstr ""
+msgstr "Gan torthaí"
 
 #: mkt/reviewers/templates/reviewers/themes/deleted.html:4
 msgid "Deleted Themes"
-msgstr ""
+msgstr "Téamaí Scriosta"
 
 #: mkt/reviewers/templates/reviewers/themes/deleted.html:24
 msgid "Back to Theme Logs"
@@ -25350,7 +25352,7 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/themes/deleted.html:29
 msgid "Date Deleted"
-msgstr ""
+msgstr "Dáta a Scriosadh"
 
 #: mkt/reviewers/templates/reviewers/themes/deleted.html:51
 msgid "No deleted themes found for this period."
@@ -25547,7 +25549,7 @@ msgstr ""
 
 #: mkt/search/forms.py:104
 msgid "App type"
-msgstr ""
+msgstr "Cineál an fheidhmchláir"
 
 #: mkt/site/context_processors.py:34
 msgid "Sign out"
@@ -25588,7 +25590,7 @@ msgstr ""
 
 #: mkt/site/templates/site/404.html:5
 msgid "Page Not Found"
-msgstr ""
+msgstr "Leathanach Gan Aimsiú"
 
 #: mkt/site/templates/site/404.html:11
 msgid "We're sorry, but we can't find what you're looking for."
@@ -25629,7 +25631,7 @@ msgstr ""
 #: mkt/site/templates/site/terms-of-use.html:5
 #: mkt/templates/mkt/footer.html:17
 msgid "Terms of Use"
-msgstr ""
+msgstr "Téarmaí Úsáide"
 
 #: mkt/stats/forms.py:9 mkt/stats/templates/devstats/includes/criteria.html:37
 #: mkt/stats/templates/includes/criteria.html:37
@@ -25813,15 +25815,15 @@ msgstr ""
 
 #: mkt/submit/forms.py:245
 msgid "PayPal email address"
-msgstr ""
+msgstr "Seoladh ríomhphoist PayPal"
 
 #: mkt/submit/forms.py:251
 msgid "I'll link my PayPal account later."
-msgstr ""
+msgstr "Nascfaidh mé mo chuntas PayPal ar ball."
 
 #: mkt/submit/forms.py:256
 msgid "The PayPal email is required."
-msgstr ""
+msgstr "Caithfidh tú seoladh ríomhphoist PayPal a chur isteach."
 
 #: mkt/submit/forms.py:269
 msgid "When should your app be made available for sale?"
@@ -26131,7 +26133,7 @@ msgstr "Dáta deiridh"
 
 #: mkt/zadmin/templates/zadmin/featured_apps_ajax.html:43
 msgid "Regions / Carriers"
-msgstr ""
+msgstr "Réigiúin / Iompróirí"
 
 #: templates/amo_footer.html:11 templates/includes/lang_switcher.html:2
 msgid "Other languages"
@@ -26233,7 +26235,7 @@ msgstr "Glac páirt"
 
 #: templates/menu_links.html:26
 msgid "Press Center"
-msgstr ""
+msgstr "Lárionad an Phreasa"
 
 #: templates/menu_links.html:27
 msgid "Brand Toolkit"
