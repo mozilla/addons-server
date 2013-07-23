@@ -241,7 +241,7 @@ def package_signer():
     destination = getattr(settings, 'SIGNED_APPS_SERVER', None)
     if not destination:
         return '', 'Signer is not configured.'
-    app_path = os.path.join(os.path.dirname(__file__),
+    app_path = os.path.join(os.path.dirname(os.path.abspath(__file__)),
                             'nagios_check_packaged_app.zip')
     signed_path = tempfile.mktemp()
     try:
