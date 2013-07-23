@@ -87,8 +87,9 @@ APP_PURCHASE_TYP = 'mozilla-local/payments/pay/v1'
 APP_PURCHASE_SECRET = 'This secret must match your webpay SECRET'
 
 # Assuming you did `npm install` (and not `-g`) like you were supposed to,
-# this will be the path to the `stylus` executable.
+# this will be the path to the `stylus` and `lessc` executables.
 STYLUS_BIN = path('node_modules/stylus/bin/stylus')
+LESS_BIN = path('node_modules/less/bin/lessc')
 
 # Locally we typically don't run more than 1 elasticsearch node. So we set
 # replicas to zero.
