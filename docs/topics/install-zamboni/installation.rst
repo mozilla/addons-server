@@ -72,13 +72,8 @@ Grab zamboni from github with::
 
     git clone --recursive git://github.com/mozilla/zamboni.git
     cd zamboni
-    svn co http://svn.mozilla.org/addons/trunk/site/app/locale locale
 
 ``zamboni.git`` is all the source code.  :ref:`updating` is detailed later on.
-
-``locale`` contains all of the localizations of the site.  Unless you are
-specifically working with locales, you probably don't need to touch this again
-after you check it out.
 
 If at any point you realize you forgot to clone with the recursive
 flag, you can fix that by running::
@@ -298,8 +293,8 @@ Persona
 -------
 
 We use `Persona <https://login.persona.org/>`_ to log in and create accounts.
-In order for this to work you need to set ``SITE_URL`` and ``STATIC_URL`` in 
-your local settings file based on how you run your dev server. Here is an 
+In order for this to work you need to set ``SITE_URL`` and ``STATIC_URL`` in
+your local settings file based on how you run your dev server. Here is an
 example::
 
     SITE_URL = 'http://localhost:8000'
@@ -362,10 +357,6 @@ We use `schematic <http://github.com/mozilla/schematic/>`_ to run migrations::
     schematic migrations
 
 The :ref:`contributing` page has more on managing branches.
-
-If you want to pull in the latest locales::
-
-    pushd locale && svn up && popd
 
 
 Contact
