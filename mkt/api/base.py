@@ -12,19 +12,20 @@ from django.http import HttpResponseNotFound
 
 import commonware.log
 from rest_framework.routers import Route, SimpleRouter
-from rest_framework.relations import HyperlinkedRelatedField, SlugRelatedField
+from rest_framework.relations import HyperlinkedRelatedField
 from rest_framework.viewsets import GenericViewSet
 from tastypie import fields, http
 from tastypie.bundle import Bundle
 from tastypie.exceptions import (ImmediateHttpResponse, NotFound,
                                  UnsupportedFormat)
 from tastypie.fields import ToOneField
+from tastypie.http import HttpConflict
 from tastypie.resources import ModelResource, Resource
 
 from access import acl
 from translations.fields import PurifiedField, TranslatedField
 
-from .exceptions import DeserializationError
+from .exceptions import AlreadyPurchased, DeserializationError
 from .http import HttpTooManyRequests
 from .serializers import Serializer
 
@@ -119,6 +120,9 @@ class Marketplace(object):
         except PermissionDenied:
             # Reraise PermissionDenied as 403, otherwise you get 500.
             raise http_error(http.HttpForbidden, 'Permission denied.')
+
+        except AlreadyPurchased:
+            raise http_error(HttpConflict, 'Already purchased app.')
 
     def non_form_errors(self, error_list):
         """

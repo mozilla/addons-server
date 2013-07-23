@@ -6,8 +6,8 @@ from nose.tools import eq_
 from test_utils import RequestFactory
 
 import amo.tests
-from addons.models import Addon
 from addons import decorators as dec
+from addons.models import Addon
 
 
 class TestAddonView(amo.tests.TestCase):
@@ -124,18 +124,5 @@ class TestPremiumDecorators(amo.tests.TestCase):
         view = dec.has_purchased(self.func)
         self.addon.is_premium.return_value = True
         self.addon.has_purchased.return_value = False
-        with self.assertRaises(PermissionDenied):
-            view(self.request, self.addon)
-
-    def test_has_not_purchased(self):
-        view = dec.has_not_purchased(self.func)
-        self.addon.is_premium.return_value = True
-        self.addon.has_purchased.return_value = False
-        eq_(view(self.request, self.addon), True)
-
-    def test_has_not_purchased_failure(self):
-        view = dec.has_not_purchased(self.func)
-        self.addon.is_premium.return_value = True
-        self.addon.has_purchased.return_value = True
         with self.assertRaises(PermissionDenied):
             view(self.request, self.addon)
