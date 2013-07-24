@@ -379,7 +379,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     @transaction.commit_on_success
     def delete(self, msg='', reason=''):
         # To avoid a circular import.
-        from mkt.webapps import tasks as mkt_tasks
         from . import tasks
 
         id = self.id
@@ -443,9 +442,11 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             tasks.delete_preview_files.delay(preview)
 
         # Remove from search index.
-        if self.type == amo.ADDON_WEBAPP:
-            mkt_tasks.unindex_webapps.delay([id])
-        else:
+        #
+        # Note: We keep webapps in the indexes so the lookup tool can find
+        # deleted apps (bug 896782). Otherwise we'd call:
+        # `mkt.webapps.tasks.unindex_webapps.delay([id])`
+        if not self.type == amo.ADDON_WEBAPP:
             tasks.unindex_addons.delay([id])
 
         return True
