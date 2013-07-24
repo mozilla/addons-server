@@ -86,12 +86,13 @@ def disable_cron():
 @task
 def install_cron(installed_dir):
     installed_zamboni_dir = os.path.join(installed_dir, 'zamboni')
+    installed_python = os.path.join(installed_dir, 'venv', 'bin', 'python')
     with lcd(ZAMBONI):
         local('%s ./scripts/crontab/gen-cron.py '
               '-z %s -u %s -p %s > /etc/cron.d/.%s' %
               (PYTHON, installed_zamboni_dir,
                getattr(settings, 'CRON_USER', 'apache'),
-               PYTHON, settings.CRON_NAME))
+               installed_python, settings.CRON_NAME))
 
         local('mv /etc/cron.d/.%s /etc/cron.d/%s' % (settings.CRON_NAME,
                                                      settings.CRON_NAME))
