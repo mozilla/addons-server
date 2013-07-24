@@ -290,9 +290,9 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     app_domain = models.CharField(max_length=255, blank=True, null=True,
                                   db_index=True)
 
-    _current_version = models.ForeignKey(
-        Version, related_name='___ignore', db_column='current_version',
-        null=True, on_delete=models.SET_NULL)
+    _current_version = models.ForeignKey(Version, db_column='current_version',
+                                         related_name='+', null=True,
+                                         on_delete=models.SET_NULL)
     # This is for Firefox only.
     _backup_version = models.ForeignKey(
         Version, related_name='___backup', db_column='backup_version',
@@ -935,8 +935,9 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         addons = [a for a in addons if a.type != amo.ADDON_PERSONA]
 
         version_ids = filter(None, (a._current_version_id for a in addons))
+        latest_ids = filter(None, (a.latest_version_id for a in addons))
         backup_ids = filter(None, (a._backup_version_id for a in addons))
-        all_ids = set(version_ids) | set(backup_ids)
+        all_ids = set(version_ids) | set(backup_ids) | set(latest_ids)
         versions = list(Version.objects.filter(id__in=all_ids).order_by()
                         .transform(Version.transformer))
         for version in versions:
@@ -947,8 +948,11 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                 continue
             if addon._current_version_id == version.id:
                 addon._current_version = version
-            elif addon._backup_version_id == version.id:
+            if addon._backup_version_id == version.id:
                 addon._backup_version = version
+            if addon.latest_version_id == version.id:
+                addon.latest_version = version
+
             version.addon = addon
 
         # Attach listed authors.

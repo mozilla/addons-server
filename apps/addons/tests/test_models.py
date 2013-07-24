@@ -290,6 +290,14 @@ class TestAddonModels(amo.tests.TestCase):
         a = Addon.objects.get(pk=5299)
         eq_(a.current_beta_version.id, 50000)
 
+    def test_transformer(self):
+        addon = Addon.objects.get(pk=3615)
+        # If the transformer works then we won't have any more queries.
+        with self.assertNumQueries(0):
+            addon._current_version
+            addon._backup_version
+            addon.latest_version
+
     def _delete(self):
         """Test deleting add-ons."""
         a = Addon.objects.get(pk=3615)
