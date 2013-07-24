@@ -37,6 +37,7 @@ from versions.models import Version
 
 import mkt
 from mkt.constants import MAX_PACKAGED_APP_SIZE
+from mkt.constants.regions import ALL_PAID_REGION_IDS
 from mkt.developers import tasks
 from mkt.developers.views import _filter_transactions, _get_transactions
 from mkt.site.fixtures import fixture
@@ -336,9 +337,13 @@ class MarketplaceMixin(object):
         assert self.client.login(username='steamcube@mozilla.com',
                                  password='password')
 
+    def get_price_regions(self, price):
+        prices = set([p['region'] for p in price.prices()])
+        return sorted(set(ALL_PAID_REGION_IDS).intersection(prices))
+
     def setup_premium(self):
-        self.price = Price.objects.create(price='0.99')
-        self.price_two = Price.objects.create(price='1.99')
+        self.price = Price.objects.get(pk=1)
+        self.price_two = Price.objects.get(pk=3)
         self.other_addon = Addon.objects.create(type=amo.ADDON_WEBAPP,
                                                 premium_type=amo.ADDON_FREE)
         self.other_addon.update(status=amo.STATUS_PUBLIC)
@@ -346,21 +351,20 @@ class MarketplaceMixin(object):
                                  user=self.addon.authors.all()[0])
         AddonPremium.objects.create(addon=self.addon, price_id=self.price.pk)
         self.addon.update(premium_type=amo.ADDON_PREMIUM)
-        self.paid_regions = [p['region'] for p in self.price.prices()]
-        self.paid_regions_two = [p['region'] for p in self.price_two.prices()]
+        self.paid_regions = self.get_price_regions(self.price)
+        self.paid_regions_two = self.get_price_regions(self.price_two)
 
 
 @mock.patch('mkt.developers.forms_payments.PremiumForm.clean',
             new=lambda x: x.cleaned_data)
 class TestMarketplace(MarketplaceMixin, amo.tests.TestCase):
-    fixtures = fixture('webapp_337141')
+    fixtures = fixture('prices', 'webapp_337141')
 
     def get_data(self, **kw):
         data = {
             'price': self.price.pk,
             'upsell_of': self.other_addon.pk,
             'regions': mkt.regions.REGION_IDS,
-            'other_regions': True,
         }
         data.update(kw)
         return data

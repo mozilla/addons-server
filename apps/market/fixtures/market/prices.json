@@ -91,7 +91,7 @@
       "currency": "USD",
       "tier": 2,
       "provider": 1,
-      "region": 1,
+      "region": 2,
       "price": "1.99",
       "modified": "2011-08-15 16:15:23",
       "created": "2011-08-15 16:15:23"
@@ -104,7 +104,7 @@
       "currency": "USD",
       "tier": 1,
       "provider": 1,
-      "region": 1,
+      "region": 2,
       "price": "0.99",
       "modified": "2011-08-15 16:15:23",
       "created": "2011-08-15 16:15:23"

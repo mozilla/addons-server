@@ -22,6 +22,17 @@
     }
   },
   {
+    "pk": 3,
+    "model": "market.price",
+    "fields": {
+      "active": true,
+      "price": "2.99",
+      "name": "3",
+      "modified": "2011-08-10 04:21:42",
+      "created": "2011-08-10 04:21:42"
+    }
+  },
+  {
     "pk": 1,
     "model": "market.pricecurrency",
     "fields": {
@@ -84,5 +95,19 @@
       "modified": "2011-08-15 16:15:23",
       "created": "2011-08-15 16:15:23"
     }
+  },
+  {
+    "pk": 6,
+    "model": "market.pricecurrency",
+    "fields": {
+      "currency": "USD",
+      "tier": 3,
+      "provider": 1,
+      "region": 10,
+      "price": "2.99",
+      "modified": "2011-08-15 16:15:23",
+      "created": "2011-08-15 16:15:23"
+    }
   }
+
 ]
