@@ -9,8 +9,8 @@ the services. Usually they are hosted on seperate domains. They are stand alone
 wsgi scripts. The goal is to avoid a whole pile of Django imports, middleware,
 sessions and so on that we really don't need.
 
-To run the scripts you'll want a wsgi server, on prod this is Apache and
-mod_wsgi. Locally you can optionally use `gunicorn`_, for example::
+To run the scripts you'll want a wsgi server. You can do this using
+`gunicorn`_, for example::
 
     pip install gunicorn
 
