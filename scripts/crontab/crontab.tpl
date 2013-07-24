@@ -1,3 +1,5 @@
+# Crons are run in UTC time!
+
 MAILTO=amo-developers@mozilla.org
 
 HOME=/tmp
