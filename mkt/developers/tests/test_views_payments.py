@@ -16,6 +16,7 @@ from constants.payments import (PAYMENT_METHOD_ALL,
                                 PAYMENT_METHOD_CARD,
                                 PAYMENT_METHOD_OPERATOR)
 from mkt.constants.payments import ACCESS_PURCHASE, ACCESS_SIMULATE
+from mkt.constants.regions import ALL_PAID_REGION_IDS
 from market.models import Price
 from users.models import UserProfile
 
@@ -242,6 +243,8 @@ class TestPayments(amo.tests.TestCase):
         self.price = Price.objects.filter()[0]
         self.patch = mock.patch('mkt.developers.models.client')
         self.sol = self.patch.start()
+        prs = set([p['region'] for p in self.price.prices()])
+        self.price_regions = (set(ALL_PAID_REGION_IDS).intersection(prs))
 
     def tearDown(self):
         self.patch.stop()
@@ -252,13 +255,12 @@ class TestPayments(amo.tests.TestCase):
     def get_region_list(self):
         return list(AER.objects.values_list('region', flat=True))
 
-    def get_postdata(self, base):
-        extension = {'regions': self.get_region_list(),
-                     'other_regions': 'on',
-                     'free_platforms': ['free-%s' % dt.class_name for dt in
-                                        self.webapp.device_types],
-                     'paid_platforms': ['paid-%s' % dt.class_name for dt in
-                         self.webapp.device_types]}
+    def get_postdata(self, extension):
+        base = {'regions': self.get_region_list(),
+                'free_platforms': ['free-%s' % dt.class_name for dt in
+                                   self.webapp.device_types],
+                'paid_platforms': ['paid-%s' % dt.class_name for dt in
+                                   self.webapp.device_types]}
         base.update(extension)
         return base
 
@@ -337,9 +339,11 @@ class TestPayments(amo.tests.TestCase):
         new_upsell.free = new_upsell_app
         new_upsell.save()
         assert self.webapp.upsold is not None
-        res = self.client.post(
+        self.client.post(
             self.url, self.get_postdata({'price': 'free',
-                                         'allow_inapp': 'True'}), follow=True)
+                                         'allow_inapp': 'True',
+                                         'regions': ALL_PAID_REGION_IDS}),
+                                        follow=True)
         eq_(self.get_webapp().upsold, None)
 
     def test_premium_in_app_passes(self):
@@ -349,7 +353,8 @@ class TestPayments(amo.tests.TestCase):
         self.assert3xx(res, self.url)
         res = self.client.post(
             self.url, self.get_postdata({'allow_inapp': True,
-                                         'price': self.price.pk}))
+                                         'price': self.price.pk,
+                                         'regions': self.price_regions}))
         self.assert3xx(res, self.url)
         eq_(self.get_webapp().premium_type, amo.ADDON_PREMIUM_INAPP)
 
@@ -401,7 +406,8 @@ class TestPayments(amo.tests.TestCase):
             self.url, self.get_postdata({'toggle-paid': 'paid'}))
         res = self.client.post(
             self.url, self.get_postdata({'price': 'free',
-                                         'allow_inapp': 'True'}))
+                                         'allow_inapp': 'True',
+                                         'regions': ALL_PAID_REGION_IDS }))
         self.assert3xx(res, self.url)
         eq_(self.get_webapp().status, amo.STATUS_NULL)
 
@@ -412,7 +418,8 @@ class TestPayments(amo.tests.TestCase):
             self.url, self.get_postdata({'toggle-paid': 'paid'}))
         res = self.client.post(
             self.url, self.get_postdata({'price': self.price.pk,
-                                         'allow_inapp': 'False'}))
+                                         'allow_inapp': 'False',
+                                         'regions': self.price_regions }))
         self.assert3xx(res, self.url)
         eq_(self.get_webapp().status, amo.STATUS_NULL)
 
@@ -438,6 +445,7 @@ class TestPayments(amo.tests.TestCase):
         self.make_premium(self.webapp)
         res = self.client.post(
             self.url, self.get_postdata({'price': 'free', 'allow_inapp': 'True',
+                                         'regions': ALL_PAID_REGION_IDS,
                                          'accounts': acct.pk}), follow=True)
         self.assertNoFormErrors(res)
         eq_(res.status_code, 200)

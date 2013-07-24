@@ -480,6 +480,20 @@ class TestRegionForm(amo.tests.WebappTestCase):
         form.save()
         eq_(self.app.get_region_ids(True), mkt.regions.ALL_REGION_IDS)
 
+    def test_exclude_worldwide_if_disabled(self):
+        self.app.update(premium_type=amo.ADDON_PREMIUM)
+        form = forms.RegionForm(data={'regions': mkt.regions.REGION_IDS,
+                                      'other_regions': True}, **self.kwargs)
+        form.price_region_ids = mkt.regions.REGION_IDS
+        form.disabled_regions = [mkt.regions.WORLDWIDE.id]
+        assert not form.is_valid()
+
+        form = forms.RegionForm(data={'regions': mkt.regions.REGION_IDS,
+                                      'other_regions': True}, **self.kwargs)
+        form.price_region_ids = mkt.regions.REGION_IDS
+        form.disabled_regions = []
+        assert form.is_valid()
+
 
 class TestNewManifestForm(amo.tests.TestCase):
 

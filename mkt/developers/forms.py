@@ -841,6 +841,13 @@ class RegionForm(forms.Form):
 
         return data
 
+    def clean_other_regions(self):
+        data = self.cleaned_data['other_regions']
+        if data and mkt.regions.WORLDWIDE.id in self.disabled_regions:
+            raise forms.ValidationError(
+                _('Other regions is currently disabled.'))
+        return data
+
     def save(self):
         # Don't save regions if we are toggling.
         if self.is_toggling():
