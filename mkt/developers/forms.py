@@ -43,7 +43,7 @@ from mkt.constants import APP_IMAGE_SIZES, MAX_PACKAGED_APP_SIZE
 from mkt.constants.ratingsbodies import (ALL_RATINGS, RATINGS_BODIES,
                                          RATINGS_BY_NAME)
 from mkt.site.forms import AddonChoiceField
-from mkt.regions import ALL_PAID_REGION_IDS
+from mkt.regions import ALL_PAID_REGION_IDS, ALL_REGION_IDS
 from mkt.webapps.models import (AddonExcludedRegion, ContentRating, ImageAsset,
                                 Webapp)
 from mkt.zadmin.models import FeaturedApp
@@ -723,6 +723,10 @@ class RegionForm(forms.Form):
         self.region_ids = self.product.get_region_ids()
         super(RegionForm, self).__init__(*args, **kw)
 
+        # Initialise the price for free_inapp.
+        if not self.price and self.product and self.product.is_free_inapp():
+            self.price = 'free'
+
         is_paid = self._product_is_paid()
 
         # If we have excluded regions, uncheck those.
@@ -739,18 +743,9 @@ class RegionForm(forms.Form):
                               not is_paid)
         }
 
-        # Games cannot be listed in Brazil without a content rating.
-        self.disabled_regions = set()
-        games = Webapp.category('games')
-        if (games and
-            self.product.categories.filter(id=games.id).exists() and
-            not self.product.content_ratings_in(mkt.regions.BR)):
-
-            self.disabled_regions.add(mkt.regions.BR.id)
-
         # If the app is paid, disable regions that use payments.
         if is_paid:
-            self.disabled_regions.add(mkt.regions.WORLDWIDE.id)
+
             self.fields['other_regions'].widget.attrs['disabled'] = 'disabled'
             self.fields['other_regions'].label = _(u'Other regions')
 
@@ -760,6 +755,8 @@ class RegionForm(forms.Form):
                                          .values_list('region', flat=True))
             # Free app with in-app payments for this we just want to make
             # sure it's in a region that allows payments.
+            # self.price is intialised above for free_inapp even if
+            # this isn't a post.
             elif self.price and self.price == 'free':
                 self.price_region_ids = ALL_PAID_REGION_IDS
             # Premium form wasn't valid and it is a POST. Since we can't
@@ -772,7 +769,42 @@ class RegionForm(forms.Form):
                 self.price_region_ids = (self.product
                                          .get_possible_price_region_ids())
 
-        self.disabled_regions = list(self.disabled_regions)
+        # These are split out so we can distinguish regions that are totally
+        # disabled vs those that are disabled based on price.
+        self.disabled_general_regions = sorted(self._disabled_general_regions())
+        self.disabled_regions = sorted(self._disabled_regions())
+
+    def _disabled_regions(self):
+        """All disabled regions (varys based on current price)."""
+        return self._disabled_general_regions().union(
+                   self._disabled_paid_regions())
+
+    def _disabled_general_regions(self):
+        """Regions that are disabled for general reasons."""
+        disabled_general_regions = set()
+
+        if self._product_is_paid():
+            # Currently worldwide is disabled for paid apps.
+            disabled_general_regions.add(mkt.regions.WORLDWIDE.id)
+
+        # Games cannot be listed in Brazil without a content rating.
+        games = Webapp.category('games')
+        if (games and
+            self.product.categories.filter(id=games.id).exists() and
+                not self.product.content_ratings_in(mkt.regions.BR)):
+            disabled_general_regions.add(mkt.regions.BR.id)
+
+        return disabled_general_regions
+
+    def _disabled_paid_regions(self):
+        """Regions disabled based on current price."""
+        dpr = set()
+        if self._product_is_paid():
+            # Ensure price_regions are in ALL_PAID_REGION_IDS.
+            valid_price_regions = (set(self.price_region_ids).intersection(
+                                   set(ALL_PAID_REGION_IDS)))
+            dpr = set(ALL_REGION_IDS).difference(valid_price_regions)
+        return dpr
 
     def is_toggling(self):
         if not self.request or not hasattr(self.request, 'POST'):
@@ -789,10 +821,8 @@ class RegionForm(forms.Form):
         otherwise be registered in."""
 
         if self._product_is_paid():
-            inappropriate_regions = (set(mkt.regions.ALL_REGION_IDS)
-                .difference(self.price_region_ids)
-                .union(self.disabled_regions))
-            return (set(self.region_ids).intersection(inappropriate_regions))
+            return set(self.region_ids).intersection(
+                set(self.disabled_regions))
 
     def clean(self):
         data = self.cleaned_data
@@ -801,6 +831,7 @@ class RegionForm(forms.Form):
             raise forms.ValidationError(
                 _('You must select at least one region or '
                   '"Other and new regions."'))
+
         if data.get('regions'):
             self.region_ids = [int(r) for r in data['regions']]
             if self.has_inappropriate_regions():

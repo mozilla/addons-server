@@ -214,6 +214,67 @@ class TestRegionForm(amo.tests.WebappTestCase):
         self.assertSetEqual(self.app.get_region_ids(),
                             [mkt.regions.PL.id])
 
+    @mock.patch('mkt.developers.forms.ALL_PAID_REGION_IDS',
+                new=[3, 4, 5])
+    @mock.patch('mkt.developers.forms.ALL_REGION_IDS',
+                new=[1, 2, 3, 4, 5, 6])
+    def test_inappropriate_regions(self):
+        self.app.update(premium_type=amo.ADDON_PREMIUM)
+        form = forms.RegionForm(data=None, **self.kwargs)
+        form.price_region_ids = [2, 3, 5]
+        # Reset disabled_regions as we're modifying price_regions.
+        form.disabled_regions = form._disabled_regions()
+
+        # 6 is not in price_region_ids or ALL_PAID_REGION_IDS
+        form.region_ids = [6]
+        assert form.has_inappropriate_regions(), 'Region 6 should be invalid'
+        # Worldwide (1) is disabled for paid apps presently.
+        form.region_ids = [mkt.regions.WORLDWIDE.id]
+        assert form.has_inappropriate_regions(), 'Worldwide region should be invalid'
+        # 4 is not in price_region_ids so should be invalid.
+        form.region_ids = [4]
+        assert form.has_inappropriate_regions(), 'Region 4 should be invalid'
+        # 2 is in price_region_ids but not in ALL_PAID_REGION_IDS
+        # so should be invalid.
+        form.region_ids = [2]
+        assert form.has_inappropriate_regions(), 'Region 2 should be invalid'
+        # 3 is in price_region_ids and in ALL_PAID_REGION_IDS so should be ok.
+        form.region_ids = [3]
+        assert not form.has_inappropriate_regions(), 'Region 3 should be valid'
+
+    def test_inappropriate_regions_free_app(self):
+        self.app.update(premium_type=amo.ADDON_FREE)
+        form = forms.RegionForm(data=None, **self.kwargs)
+        eq_(form.has_inappropriate_regions(), None)
+
+    @mock.patch('mkt.developers.forms.ALL_PAID_REGION_IDS',
+                new=[2, 3, 4, 5])
+    @mock.patch('mkt.developers.forms.ALL_REGION_IDS',
+                new=[1, 2, 3, 4, 5, 6])
+    def test_disabled_regions_premium(self):
+        self.app.update(premium_type=amo.ADDON_PREMIUM)
+        form = forms.RegionForm(data=None, **self.kwargs)
+        form.price_region_ids = [2, 3, 5]
+        # Worldwide (1) is disabled for paid apps curently.
+        self.assertSetEqual(form._disabled_regions(), [1, 4, 6])
+
+    @mock.patch('mkt.developers.forms.ALL_PAID_REGION_IDS',
+                new=[2, 3, 4, 5])
+    @mock.patch('mkt.developers.forms.ALL_REGION_IDS',
+                new=[1, 2, 3, 4, 5, 6])
+    def test_disabled_regions_free_inapp(self):
+        self.app.update(premium_type=amo.ADDON_FREE_INAPP)
+        form = forms.RegionForm(data=None, **self.kwargs)
+        # Worldwide (1) is disabled for paid apps curently.
+        self.assertSetEqual(form._disabled_regions(), [1, 6])
+
+    @mock.patch('mkt.developers.forms.ALL_REGION_IDS',
+                new=[1, 2, 3, 4, 5, 6])
+    def test_disabled_regions_free(self):
+        self.app.update(premium_type=amo.ADDON_FREE)
+        form = forms.RegionForm(data=None, **self.kwargs)
+        self.assertSetEqual(form._disabled_regions(), [])
+
     def test_free_inapp_with_non_paid_region(self):
         # Start with a free app with in_app payments.
         self.app.update(premium_type=amo.ADDON_FREE_INAPP)
@@ -224,25 +285,28 @@ class TestRegionForm(amo.tests.WebappTestCase):
 
         all_paid_regions = set(mkt.regions.ALL_PAID_REGION_IDS)
 
-        new_paid_set = all_paid_regions.difference(set([mkt.regions.BR.id]))
+        new_paid = sorted(
+            all_paid_regions.difference(set([mkt.regions.BR.id])))
         with mock.patch('mkt.developers.forms.ALL_PAID_REGION_IDS',
-                        new=new_paid_set):
+                        new=new_paid):
             form = forms.RegionForm(data={'regions': [mkt.regions.BR.id]},
                                     **self.kwargs)
             assert not form.is_valid()
             assert form.has_inappropriate_regions()
 
-        new_paid_set = all_paid_regions.difference(set([mkt.regions.UK.id]))
+        new_paid = sorted(
+            all_paid_regions.difference(set([mkt.regions.UK.id])))
         with mock.patch('mkt.developers.forms.ALL_PAID_REGION_IDS',
-                        new=new_paid_set):
+                        new=new_paid):
             form = forms.RegionForm(data={'regions': [mkt.regions.UK.id]},
                                     **self.kwargs)
             assert not form.is_valid()
             assert form.has_inappropriate_regions()
 
-        new_paid_set = all_paid_regions.union(set([mkt.regions.PL.id]))
+        new_paid = sorted(
+            all_paid_regions.union(set([mkt.regions.PL.id])))
         with mock.patch('mkt.developers.forms.ALL_PAID_REGION_IDS',
-                        new=new_paid_set):
+                        new=new_paid):
             form = forms.RegionForm(data={'regions': [mkt.regions.PL.id]},
                                     **self.kwargs)
             assert form.is_valid()
@@ -257,25 +321,27 @@ class TestRegionForm(amo.tests.WebappTestCase):
         assert form.has_inappropriate_regions()
 
         all_paid_regions = set(mkt.regions.ALL_PAID_REGION_IDS)
-        new_paid_set = all_paid_regions.difference(set([mkt.regions.BR.id]))
+        new_paid = sorted(
+            all_paid_regions.difference(set([mkt.regions.BR.id])))
         with mock.patch('mkt.developers.forms.ALL_PAID_REGION_IDS',
-                        new=new_paid_set):
+                        new=new_paid):
             form = forms.RegionForm(data={'regions': [mkt.regions.BR.id]},
                                     **self.kwargs)
             assert not form.is_valid()
             assert form.has_inappropriate_regions()
 
-        new_paid_set = all_paid_regions.difference(set([mkt.regions.UK.id]))
+        new_paid = sorted(
+            all_paid_regions.difference(set([mkt.regions.UK.id])))
         with mock.patch('mkt.developers.forms.ALL_PAID_REGION_IDS',
-                        new=new_paid_set):
+                        new=new_paid):
             form = forms.RegionForm(data={'regions': [mkt.regions.UK.id]},
                                     **self.kwargs)
             assert not form.is_valid()
             assert form.has_inappropriate_regions()
 
-        new_paid_set = all_paid_regions.union(set([mkt.regions.PL.id]))
+        new_paid = sorted(all_paid_regions.union(set([mkt.regions.PL.id])))
         with mock.patch('mkt.developers.forms.ALL_PAID_REGION_IDS',
-                        new=new_paid_set):
+                        new=new_paid):
             form = forms.RegionForm(data={'regions': [mkt.regions.PL.id]},
                                     **self.kwargs)
             assert form.is_valid()

@@ -604,10 +604,10 @@ class Webapp(Addon):
         return sorted(list(set(all_ids) - set(excluded)))
 
     def get_possible_price_region_ids(self):
-        if self.premium:
+        if self.has_premium() and self.premium:
             ids = [p['region'] for p in self.premium.price.prices()]
-            return sorted(set(ids))
-        return set()
+            return sorted(ids)
+        return []
 
     def get_regions(self):
         """

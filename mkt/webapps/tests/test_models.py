@@ -33,6 +33,7 @@ from files.tests.test_models import UploadTest as BaseUploadTest
 from files.utils import WebAppParser
 from lib.crypto import packaged
 from lib.crypto.tests import mock_sign
+from market.models import AddonPremium, Price
 from users.models import UserProfile
 from versions.models import update_status, Version
 
@@ -46,6 +47,8 @@ from mkt.webapps.models import (AddonExcludedRegion, AppFeatures, AppManifest,
 
 
 class TestWebapp(amo.tests.TestCase):
+
+    fixtures = fixture('prices')
 
     def test_hard_deleted(self):
         # Uncomment when redis gets fixed on ci.mozilla.org.
@@ -228,6 +231,21 @@ class TestWebapp(amo.tests.TestCase):
 
         webapp._premium.price = 0
         eq_(webapp.has_premium(), True)
+
+    def test_get_possible_prices_premium(self):
+        webapp = Webapp.objects.create(premium_type=amo.ADDON_PREMIUM)
+        price = Price.objects.get(pk=1)
+        AddonPremium.objects.create(addon=webapp, price=price)
+        ok_(len(webapp.get_possible_price_region_ids()) > 0)
+        ok_(isinstance(webapp.get_possible_price_region_ids(), list))
+
+    def test_get_possible_prices_premium_then_free_inapp(self):
+        webapp = Webapp.objects.create(premium_type=amo.ADDON_PREMIUM)
+        price = Price.objects.get(pk=1)
+        AddonPremium.objects.create(addon=webapp, price=price)
+        webapp.premium_type = amo.ADDON_FREE_INAPP
+        eq_(len(webapp.get_possible_price_region_ids()), 0)
+        ok_(isinstance(webapp.get_possible_price_region_ids(), list))
 
     def test_get_price_no_premium(self):
         webapp = Webapp(premium_type=amo.ADDON_PREMIUM)
@@ -1274,7 +1292,7 @@ class TestManifestUpload(BaseUploadTest, amo.tests.TestCase):
         # Note: we need a valid FileUpload instance, but in the end we are not
         # using its contents since we are mocking parse_addon().
         path = os.path.join(settings.ROOT, 'apps', 'devhub', 'tests',
-                               'addons', 'mozball.webapp')
+                            'addons', 'mozball.webapp')
         upload = self.get_upload(abspath=path, is_webapp=True)
         app = Addon.objects.get(pk=337141)
         app.manifest_updated('', upload)
@@ -1293,7 +1311,7 @@ class TestManifestUpload(BaseUploadTest, amo.tests.TestCase):
         # Note: we need a valid FileUpload instance, but in the end we are not
         # using its contents since we are mocking parse_addon().
         path = os.path.join(settings.ROOT, 'apps', 'devhub', 'tests',
-                               'addons', 'mozball.webapp')
+                            'addons', 'mozball.webapp')
         upload = self.get_upload(abspath=path, is_webapp=True)
         app = Addon.objects.get(pk=337141)
         app.manifest_updated('', upload)
