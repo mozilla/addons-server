@@ -1,14 +1,24 @@
 define('login', ['notification'], function(notification) {
 
     var requestedLogin = false;
+    var readyForReload = false;
 
     z.doc.bind('login', function(skipDialog) {
+        if (readyForReload) {
+            window.location.reload();
+            return;
+        }
         if (skipDialog) {
             startLogin();
         } else {
             $('.overlay.login').addClass('show');
         }
     }).on('click', '.browserid', function(e) {
+        if (readyForReload) {
+            window.location.reload();
+            return;
+        }
+        
         var $this = $(this);
         $this.addClass('loading-submit');
         z.doc.on('logincancel', function() {
@@ -78,9 +88,8 @@ define('login', ['notification'], function(notification) {
             if (requestedLogin) {
                 window.location.reload();
             } else {
-                notification({
-                    message: gettext('Successfully signed in. Click here to reload.')
-                }).then(window.location.reload);
+                console.log('User logged in; ready for reload');
+                readyForReload = true;
             }
         }
     }
