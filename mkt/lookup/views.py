@@ -441,7 +441,7 @@ def _app_purchases_and_refunds(addon):
         purchases[typ] = {'total': sum(s['total'] for s in sums),
                           'amounts': [numbers.format_currency(s['amount'],
                                                               s['currency'])
-                                      for s in sums]}
+                                      for s in sums if s['currency']]}
     refunds = {}
     rejected_q = Q(status=amo.REFUND_DECLINED) | Q(status=amo.REFUND_FAILED)
     qs = Refund.objects.filter(contribution__addon=addon)
