@@ -36,6 +36,7 @@ import amo.search
 import stats.search
 from access.models import Group, GroupUser
 from addons.models import Addon, AddonCategory, Category, Persona
+from addons.tasks import unindex_addons
 from amo.urlresolvers import get_url_prefix, Prefixer, reverse, set_url_prefix
 from applications.models import Application, AppVersion
 from bandwagon.models import Collection
@@ -49,6 +50,7 @@ from versions.models import ApplicationsVersions, Version
 import mkt
 from mkt.constants import regions
 from mkt.webapps.models import ContentRating, WebappIndexer
+from mkt.webapps.tasks import unindex_webapps
 from mkt.zadmin.models import FeaturedApp, FeaturedAppRegion
 
 
@@ -749,6 +751,10 @@ class ESTestCase(TestCase):
     def tearDownClass(cls):
         if hasattr(cls, '_addons'):
             Addon.objects.filter(pk__in=[a.id for a in cls._addons]).delete()
+            unindex_webapps([a.id for a in cls._addons
+                             if a.type == amo.ADDON_WEBAPP])
+            unindex_addons([a.id for a in cls._addons
+                            if a.type != amo.ADDON_WEBAPP])
 
     @classmethod
     def setUpIndex(cls):

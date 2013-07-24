@@ -19,6 +19,7 @@ from users.models import UserProfile
 import mkt
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import AddonExcludedRegion, Webapp
+from mkt.webapps.tasks import unindex_webapps
 from mkt.zadmin.models import (FeaturedApp, FeaturedAppCarrier,
                                FeaturedAppRegion)
 from mkt.zadmin.views import featured_apps_ajax
@@ -561,6 +562,7 @@ class TestFeaturedSuggestions(amo.tests.ESTestCase):
                                  password='password')
 
     def tearDown(self):
+        unindex_webapps([self.w1.id, self.w2.id])
         self.w1.delete()
         self.w2.delete()
 

@@ -22,6 +22,7 @@ from mkt.search.forms import DEVICE_CHOICES_IDS
 from mkt.search.views import _get_query
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Installed, Webapp
+from mkt.webapps.tasks import unindex_webapps
 
 
 @patch('versions.models.Version.is_privileged', False)
@@ -29,6 +30,7 @@ class TestApi(BaseOAuth, ESTestCase):
     fixtures = fixture('webapp_337141')
 
     def setUp(self):
+        self.create_switch('soft_delete')
         self.client = OAuthClient(None)
         self.url = list_url('search')
         self.webapp = Webapp.objects.get(pk=337141)
@@ -153,6 +155,9 @@ class TestApi(BaseOAuth, ESTestCase):
         eq_(obj['upsell']['name'], upsell.name)
         eq_(obj['upsell']['icon_url'], upsell.get_icon_url(128))
         eq_(obj['upsell']['resource_uri'], '/api/v1/apps/app/%s/' % upsell.id)
+
+        unindex_webapps([upsell.id])
+        upsell.delete()
 
     def test_dehydrate_regions(self):
         self.webapp.addonexcludedregion.create(region=mkt.regions.BR.id)
@@ -393,6 +398,7 @@ class TestApi(BaseOAuth, ESTestCase):
         eq_(int(objects[2]['id']), self.webapp.id)
 
         # Cleanup to remove these from the index.
+        unindex_webapps([unknown1.id, unknown2.id])
         unknown1.delete()
         unknown2.delete()
 
@@ -627,6 +633,8 @@ class TestFeaturedNoCategories(BaseOAuth, ESTestCase):
         eq_(res.status_code, 200)
         eq_(len(res.json['featured']), 1)
         eq_(int(res.json['featured'][0]['id']), self.app.pk)
+        unindex_webapps([app2.id])
+        app2.delete()
 
     def test_one_good_feature_no_category(self):
         """Enable an app feature that matches one in our profile."""
@@ -698,6 +706,8 @@ class TestFeaturedWithCategories(BaseOAuth, ESTestCase):
         eq_(len(res.json['objects']), 2)
         eq_(len(res.json['featured']), 1)
         eq_(int(res.json['featured'][0]['id']), self.app.pk)
+        unindex_webapps([app2.id])
+        app2.delete()
 
     def test_one_good_feature_with_category(self):
         """Enable an app feature that matches one in our profile."""
