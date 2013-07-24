@@ -344,9 +344,9 @@ class Webapp(Addon):
         package.
         """
         if self.is_packaged:
-            if reviewer:
+            if reviewer and self.latest_version:
                 # Get latest version and return reviewer manifest URL.
-                version = self.versions.latest()
+                version = self.latest_version
                 return absolutify(reverse('reviewers.mini_manifest',
                                           args=[self.id, version.id]))
             elif self.current_version:

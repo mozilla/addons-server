@@ -255,7 +255,7 @@
         {{ form.device_override }}
         {{ form.device_override.errors}}
       </div>
-      {% if waffle.switch('buchets') %}
+      {% if appfeatures_form %}
       <div class="review-actions-section review-actions-options review-actions-features-override data-toggle" data-value="public">
         <strong>{{ _('Minimum Requirements Override:') }}</strong>
         <ul>

@@ -1011,6 +1011,24 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         res = self.client.post(self.url)
         self.assert3xx(res, reverse('reviewers.home'))
 
+    def test_review_no_latest_version(self):
+        self.app.versions.all().delete()
+        self.app.reload()
+        eq_(self.app.latest_version, None)
+        eq_(self.app.current_version, None)
+        response = self.client.get(self.url)
+        eq_(response.status_code, 200)
+        doc = pq(response.content)
+        assert doc('input[name=action][value=info]').length
+        assert doc('input[name=action][value=comment]').length
+        assert not doc('input[name=action][value=public]').length
+        assert not doc('input[name=action][value=reject]').length
+
+        # Also try with a packaged app.
+        self.app.update(is_packaged=True)
+        response = self.client.get(self.url)
+        eq_(response.status_code, 200)
+
     def test_sr_can_review_blocklisted_app(self):
         self.app.update(status=amo.STATUS_BLOCKED)
         self.login_as_senior_reviewer()

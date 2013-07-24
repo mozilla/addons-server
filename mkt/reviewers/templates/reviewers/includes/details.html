@@ -44,9 +44,9 @@
       {% endif %}
     </dd>
     {% endif %}
-    {% if product.is_packaged %}
+    {% if product.is_packaged and product.latest_version %}
       <dt>{{ _('Signed Zip') }}</dt>
-      {% with package_url=url('reviewers.signed', product.app_slug, product.versions.latest().id) %}
+      {% with package_url=url('reviewers.signed', product.app_slug, product.latest_version.id) %}
         <dd><a href="{{ package_url|absolutify }}">{{ package_url|absolutify }}</a>
       {% endwith %}
     {% endif %}

@@ -451,6 +451,14 @@ class ReviewHelper(object):
 
         actions = SortedDict()
 
+        # Request info and comment are always shown.
+        actions['info'] = info
+        actions['comment'] = comment
+
+        if not self.version:
+            # Return early if there is no version, this app is incomplete.
+            return actions
+
         file_status = self.version.files.values_list('status', flat=True)
         multiple_versions = (File.objects.exclude(version=self.version)
                                          .filter(
@@ -497,10 +505,6 @@ class ReviewHelper(object):
         # Escalate.
         if not self.handler.in_escalate:
             actions['escalate'] = escalate
-
-        # Request info and comment are always shown.
-        actions['info'] = info
-        actions['comment'] = comment
 
         return actions
 

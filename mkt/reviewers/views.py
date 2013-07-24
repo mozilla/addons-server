@@ -220,13 +220,14 @@ def _review(request, addon, version):
     postdata = request.POST if request.method == 'POST' else None
     all_forms = [form, attachment_formset]
 
-    if waffle.switch_is_active('buchets'):
+    if waffle.switch_is_active('buchets') and version:
         features_list = [unicode(f) for f in version.features.to_list()]
         appfeatures_form = AppFeaturesForm(data=postdata,
                                            instance=version.features)
         all_forms.append(appfeatures_form)
     else:
         appfeatures_form = None
+        features_list = None
 
     queue_type = form.helper.review_type
     redirect_url = reverse('reviewers.apps.queue_%s' % queue_type)
@@ -299,6 +300,8 @@ def _review(request, addon, version):
     actions = form.helper.actions.items()
 
     try:
+        if not version:
+            raise Version.DoesNotExist
         show_diff = (addon.versions.exclude(id=version.id)
                                    .filter(files__isnull=False,
                                            created__lt=version.created,
@@ -342,7 +345,7 @@ def _review(request, addon, version):
                   appfeatures_form=appfeatures_form,
                   default_visibility=DEFAULT_ACTION_VISIBILITY)
 
-    if waffle.switch_is_active('buchets'):
+    if features_list is not None:
         ctx['feature_list'] = features_list
 
     return jingo.render(request, 'reviewers/review.html', ctx)
