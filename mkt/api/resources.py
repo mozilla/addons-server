@@ -32,7 +32,8 @@ from market.models import AddonPremium, Price
 
 from mkt.api.authentication import (SharedSecretAuthentication,
                                     OptionalOAuthAuthentication)
-from mkt.api.authorization import AppOwnerAuthorization, OwnerAuthorization
+from mkt.api.authorization import (AllowAppOwner, AppOwnerAuthorization,
+                                   OwnerAuthorization)
 from mkt.api.base import (CORSResource, CORSViewSet, GenericObject,
                           http_error, MarketplaceModelResource,
                           MarketplaceResource)
@@ -43,6 +44,7 @@ from mkt.developers import tasks
 from mkt.regions import get_region, get_region_id, REGIONS_DICT
 from mkt.submit.forms import AppDetailsBasicForm
 from mkt.webapps.models import get_excluded_in
+from mkt.webapps.tasks import _update_manifest
 from mkt.webapps.utils import app_to_dict, update_with_reviewer_data
 
 log = commonware.log.getLogger('z.api')
@@ -432,3 +434,20 @@ def error_reporter(request):
     client = raven.base.Client(settings.SENTRY_DSN)
     client.capture('raven.events.Exception', data=request.DATA)
     return Response(status=204)
+
+
+class RefreshManifestViewSet(CORSViewSet):
+    model = Webapp
+    permission_classes = [AllowAppOwner]
+    cors_allowed_methods = ('post',)
+    slug_lookup = 'app_slug'
+
+    def detail_post(self, request, **kwargs):
+        obj = self.get_object()
+        self.check_object_permissions(request, obj)
+        if obj.is_packaged:
+            return Response(
+                status=400,
+                data={'reason': 'App is a packaged app.'})
+        _update_manifest(obj.pk, True, {})
+        return Response(status=204)

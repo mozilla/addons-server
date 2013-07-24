@@ -363,4 +363,18 @@ Payments
     :status 400: app is not valid for checking, examine response content.
     :status 403: not allowed.
 
+
+Manifest refresh
+================
+
+.. note:: Requires authentication and a successfully created hosted app.
+
+.. http:post:: /api/v1/apps/app/(int:id|string:slug)/refresh-manifest/
+
+    **Response**
+    :status 204: Refresh triggered.
+    :status 400: App is packaged, not hosted, so no manifest to refresh.
+    :status 403: Not an app you own.
+    :status 404: No such app.
+
 .. _`mobile country code`: http://en.wikipedia.org/wiki/List_of_mobile_country_codes

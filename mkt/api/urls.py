@@ -4,9 +4,10 @@ from django.conf.urls import include, patterns, url
 from tastypie.api import Api
 from tastypie_services.services import (ErrorResource, SettingsResource)
 from mkt.submit.api import PreviewResource, StatusResource, ValidationResource
-from mkt.api.base import handle_500, SlugRouter
+from mkt.api.base import AppRouter, handle_500, SlugRouter
 from mkt.api.resources import (AppResource, CarrierResource, CategoryViewSet,
-                               ConfigResource, error_reporter, RegionResource)
+                               ConfigResource, error_reporter,
+                               RefreshManifestViewSet, RegionResource)
 from mkt.features.views import AppFeaturesList
 from mkt.stats.api import GlobalStatsResource
 from mkt.ratings.resources import RatingResource
@@ -24,6 +25,9 @@ api.register(RatingResource())
 
 apps = SlugRouter()
 apps.register(r'category', CategoryViewSet, base_name='app-category')
+subapps = AppRouter()
+subapps.register('refresh-manifest', RefreshManifestViewSet,
+                 base_name='app-refresh-manifest')
 
 stats_api = Api(api_name='stats')
 stats_api.register(GlobalStatsResource())
@@ -41,6 +45,7 @@ if settings.ALLOW_TASTYPIE_SERVICES:
 urlpatterns = patterns('',
     url(r'^', include(api.urls)),
     url(r'^apps/', include(apps.urls)),
+    url(r'^apps/app/', include(subapps.urls)),
     url(r'^', include(stats_api.urls)),
     url(r'^', include(services.urls)),
     url(r'^fireplace/report_error', error_reporter, name='error-reporter'),

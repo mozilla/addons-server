@@ -453,6 +453,7 @@ class AppRouter(SimpleRouter):
             mapping={
                 'get': 'retrieve',
                 'put': 'update',
+                'post': 'detail_post',
                 'patch': 'partial_update',
                 'delete': 'destroy'
             },
