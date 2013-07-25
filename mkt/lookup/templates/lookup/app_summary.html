@@ -28,13 +28,16 @@
             {{ _('None') }}
           {% endif %}
         </dd>
-        <dt>{{ _('Manifest') }}</dt>
-        <dd>
-          <a target="_blank" href="{{ app.get_manifest_url() }}">{{ app.get_manifest_url() }}</a>
-          <a href="#" id="view-manifest" data-manifest="{{ app.get_manifest_url() }}"
-             data-url="{{ url('reviewers.apps.review.manifest', app.app_slug) }}">
-            <b>{{ _('View') }}</b></a>
-        </dd>
+        {% if app.is_webapp() %}
+          <dt>{{ _('Manifest') }}</dt>
+          <dd>
+              {% set manifest = app.get_manifest_url() %}
+              <a target="_blank" href="{{ manifest }}">{{ manifest }}</a>
+              <a href="#" id="view-manifest" data-manifest="{{ manifest }}"
+                 data-url="{{ url('reviewers.apps.review.manifest', app.app_slug) }}">
+                <b>{{ _('View') }}</b></a>
+          </dd>
+        {% endif %}
         <dt>{{ _('Type') }}</dt>
         <dd>
           {{ amo.ADDON_TYPE[app.type] }};
