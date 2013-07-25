@@ -25,7 +25,8 @@ from access import acl
 from addons.decorators import addon_view
 from addons.models import AddonDeviceType, Persona, Version
 from amo import messages
-from amo.decorators import json_view, permission_required
+from amo.decorators import (any_permission_required, json_view,
+                            permission_required)
 from amo.helpers import absolutify
 from amo.models import manual_order
 from amo.urlresolvers import reverse
@@ -245,8 +246,8 @@ def _review(request, addon, version):
 
         if form.cleaned_data.get('action') == 'public':
             if old_types != new_types:
-                # The reviewer overrode the device types. We need to not publish
-                # this app immediately.
+                # The reviewer overrode the device types. We need to not
+                # publish this app immediately.
                 if addon.make_public == amo.PUBLIC_IMMEDIATELY:
                     addon.update(make_public=amo.PUBLIC_WAIT)
 
@@ -258,18 +259,20 @@ def _review(request, addon, version):
                 # Log that the reviewer changed the device types.
                 added_devices = new_types - old_types
                 removed_devices = old_types - new_types
-                msg = _(u'Device(s) changed by reviewer: {0}').format(', '.join(
+                msg = _(u'Device(s) changed by '
+                         'reviewer: {0}').format(', '.join(
                     [_(u'Added {0}').format(unicode(amo.DEVICE_TYPES[d].name))
                      for d in added_devices] +
-                    [_(u'Removed {0}').format(unicode(amo.DEVICE_TYPES[d].name))
+                    [_(u'Removed {0}').format(
+                     unicode(amo.DEVICE_TYPES[d].name))
                      for d in removed_devices]))
                 amo.log(amo.LOG.REVIEW_DEVICE_OVERRIDE, addon,
                         addon.current_version, details={'comments': msg})
 
             if (waffle.switch_is_active('buchets') and
                  old_features != new_features):
-                # The reviewer overrode the requirements. We need to not publish
-                # this app immediately.
+                # The reviewer overrode the requirements. We need to not
+                # publish this app immediately.
                 if addon.make_public == amo.PUBLIC_IMMEDIATELY:
                     addon.update(make_public=amo.PUBLIC_WAIT)
 
@@ -631,7 +634,7 @@ def _get_manifest_json(addon):
     return addon.get_manifest_json(addon.versions.latest().all_files[0])
 
 
-@permission_required('Apps', 'Review')
+@any_permission_required([('AppLookup', 'View'), ('Apps', 'Review')])
 @addon_view
 @json_view
 def app_view_manifest(request, addon):

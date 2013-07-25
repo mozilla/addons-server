@@ -30,14 +30,10 @@
         </dd>
         <dt>{{ _('Manifest') }}</dt>
         <dd>
-          {% if app.is_packaged %}
-            <a target="_blank" href="{{ app.get_manifest_url() }}">{{ app.get_manifest_url() }}</a>
-          {% else %}
-            <a target="_blank" href="{{ app.manifest_url }}">{{ app.manifest_url }}</a>
-          {% endif %}
-            <a href="#" id="view-manifest" data-manifest="{{ app.manifest_url }}"
-               data-url="{{ url('reviewers.apps.review.manifest', app.app_slug) }}">
-              <b>{{ _('View') }}</b></a>
+          <a target="_blank" href="{{ app.get_manifest_url() }}">{{ app.get_manifest_url() }}</a>
+          <a href="#" id="view-manifest" data-manifest="{{ app.get_manifest_url() }}"
+             data-url="{{ url('reviewers.apps.review.manifest', app.app_slug) }}">
+            <b>{{ _('View') }}</b></a>
         </dd>
         <dt>{{ _('Type') }}</dt>
         <dd>
