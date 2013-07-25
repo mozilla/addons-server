@@ -82,3 +82,26 @@ class TestVersion(BaseUploadTest, amo.tests.TestCase):
         addon = Addon.objects.get(pk=337141)
         addon.update(is_packaged=True)
         eq_(addon.current_version.is_privileged, False)
+
+    @mock.patch('mkt.webapps.tasks.update_cached_manifests')
+    @mock.patch('files.utils.parse_addon')
+    def test_upload_new_version_when_incomplete(self, parse_addon, dummy):
+        parse_addon.return_value = {
+            'version': '1.1',
+            'developer_name': 'A-Team'
+        }
+
+        addon = Addon.objects.get(pk=337141)
+        addon.update(is_packaged=True)
+        addon.latest_version.delete()
+        eq_(addon.reload().status, amo.STATUS_NULL)
+
+        # Note: we need a valid FileUpload instance, but in the end we are not
+        # using its contents since we are mocking parse_addon().
+        path = os.path.join(settings.ROOT, 'apps', 'devhub', 'tests',
+                                       'addons', 'mozball.webapp')
+        upload = self.get_upload(abspath=path, is_webapp=True)
+        platform = Platform.objects.get(pk=amo.PLATFORM_ALL.id)
+        Version.from_upload(upload, addon, [platform])
+
+        eq_(addon.reload().status, amo.STATUS_PENDING)
