@@ -1053,12 +1053,7 @@ class WebappIndexer(MappingType, Indexable):
                     'uses_flash': {'type': 'boolean'},
                     'versions': {
                         'type': 'object',
-                        'properties': {
-                            'version': {'type': 'string',
-                                        'index': 'not_analyzed'},
-                            'resource_uri': {'type': 'string',
-                                             'index': 'not_analyzed'},
-                        }
+                        'dynamic': 'true',
                     },
                     'weekly_downloads': {'type': 'long'},
                 }
@@ -1195,9 +1190,8 @@ class WebappIndexer(MappingType, Indexable):
                 'name': unicode(upsell_obj.name),
             }
 
-        d['versions'] = [dict(version=v.version,
-                              resource_uri=reverse_version(v))
-                         for v in obj.versions.all()]
+        d['versions'] = dict((v.version, reverse_version(v)) for
+                             v in obj.versions.all())
 
         # Calculate regional popularity for "mature regions"
         # (installs + reviews/installs from that region).

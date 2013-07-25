@@ -176,7 +176,7 @@ def es_app_to_dict(obj, region=None, profile=None, request=None):
 
     attrs = ('content_ratings', 'created', 'current_version', 'default_locale',
              'homepage', 'manifest_url', 'previews', 'ratings', 'status',
-             'support_email', 'support_url', 'weekly_downloads')
+             'support_email', 'support_url', 'versions', 'weekly_downloads')
     data = dict((a, getattr(obj, a, None)) for a in attrs)
     data.update({
         'absolute_url': absolutify(app.get_detail_url()),
@@ -197,8 +197,6 @@ def es_app_to_dict(obj, region=None, profile=None, request=None):
         'public_stats': obj.has_public_stats,
         'supported_locales': src.get('supported_locales', ''),
         'slug': obj.app_slug,
-        'versions': dict((v['version'], v['resource_uri']) for v in
-                         src.get('versions')),
     })
 
     if not data['public_stats']:
