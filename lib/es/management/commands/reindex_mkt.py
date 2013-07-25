@@ -93,7 +93,13 @@ def index_webapp(ids, **kw):
     qs = Webapp.indexing_transformer(
         Webapp.with_deleted.filter(id__in=ids).no_cache())
 
-    docs = [WebappIndexer.extract_document(obj.id, obj=obj) for obj in qs]
+    docs = []
+    for obj in qs:
+        try:
+            docs.append(WebappIndexer.extract_document(obj.id, obj=obj))
+        except:
+            sys.stdout.write('Failed to index obj: {0}'.format(obj.id))
+
     WebappIndexer.bulk_index(docs, es=ES, index=index)
 
 
