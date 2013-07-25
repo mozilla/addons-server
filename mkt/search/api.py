@@ -9,6 +9,7 @@ from mkt.api.authentication import (SharedSecretAuthentication,
                                     OptionalOAuthAuthentication)
 from mkt.api.base import CORSResource, MarketplaceResource
 from mkt.api.resources import AppResource
+from mkt.api.serializers import SuggestionsSerializer
 from mkt.constants.features import FeatureProfile
 from mkt.search.views import _filter_search, _get_query
 from mkt.search.forms import ApiSearchForm
@@ -149,3 +150,52 @@ class WithFeaturedResource(SearchResource):
         # Alter the _view_name so that statsd logs seperately from search.
         request._view_name = 'featured'
         return data
+
+
+class SuggestionsResource(SearchResource):
+
+    class Meta(SearchResource.Meta):
+        authorization = ReadOnlyAuthorization()
+        fields = ['name', 'manifest_url']
+        resource_name = 'suggest'
+        limit = 10
+        serializer = SuggestionsSerializer(['suggestions+json'])
+
+    def determine_format(self, request):
+        return 'application/x-suggestions+json'
+
+    def get_search_data(self, request):
+        data = super(SuggestionsResource, self).get_search_data(request)
+        self.query = data.get('q', '')
+        return data
+
+    def alter_list_data_to_serialize(self, request, data):
+        return data
+
+    def paginate_results(self, request, qs):
+        return self.rehydrate_results(request, qs[:self._meta.limit])
+
+    def rehydrate_results(self, request, qs):
+        names = []
+        descriptions = []
+        urls = []
+        icons = []
+        for obj in qs:
+            # Tastypie expects obj.pk to be present, so set it manually.
+            obj.pk = obj.id
+            data = self.full_dehydrate(self.build_bundle(obj=obj,
+                                                         request=request))
+            names.append(data['name'])
+            descriptions.append(data['description'])
+            urls.append(data['absolute_url'])
+            icons.append(data['icon'])
+        return [self.query, names, descriptions, urls, icons]
+
+    def dehydrate(self, bundle):
+        data = super(SuggestionsResource, self).dehydrate(bundle).data
+        return {
+            'description': data['description'],
+            'name': data['name'],
+            'absolute_url': data['absolute_url'],
+            'icon': data['icons'][64],
+        }

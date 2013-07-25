@@ -1,4 +1,7 @@
+# -*- coding: utf-8 -*-
 import json
+
+from django.conf import settings
 
 from mock import Mock, patch
 from nose.tools import eq_, ok_
@@ -7,6 +10,7 @@ import amo
 import mkt.regions
 from addons.models import (AddonCategory, AddonDeviceType, AddonUpsell,
                            Category)
+from amo.helpers import absolutify
 from amo.tests import app_factory, ESTestCase
 from stats.models import ClientData
 from users.models import UserProfile
@@ -540,3 +544,34 @@ class TestFeaturedWithCategories(BaseOAuth, ESTestCase):
         eq_(res.status_code, 200)
         eq_(len(res.json['featured']), 1)
         eq_(int(res.json['featured'][0]['id']), self.app.pk)
+
+
+@patch.object(settings, 'SITE_URL', 'http://testserver')
+class TestSuggestionsApi(ESTestCase):
+    fixtures = fixture('webapp_337141')
+
+    def setUp(self):
+        self.url = list_url('suggest')
+        self.refresh('webapp')
+        self.client = OAuthClient(None)
+
+    def test_suggestions(self):
+        app1 = Webapp.objects.get(pk=337141)
+        app1.save()
+        app2 = app_factory(name=u"Second âpp", description=u"Second dèsc",
+                           created=self.days_ago(3))
+        self.refresh('webapp')
+
+        response = self.client.get(self.url)
+        parsed = json.loads(response.content)
+        eq_(parsed[0], '')
+        eq_(parsed[1], [unicode(app1.name), unicode(app2.name)])
+        eq_(parsed[2], [unicode(app1.description), unicode(app2.description)])
+        eq_(parsed[3], [absolutify(app1.get_detail_url()),
+                        absolutify(app2.get_detail_url())])
+        eq_(parsed[4], [app1.get_icon_url(64), app2.get_icon_url(64)])
+
+        # Cleanup to remove these from the index.
+        unindex_webapps([app1.id, app2.id])
+        app1.delete()
+        app2.delete()

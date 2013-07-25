@@ -11,7 +11,7 @@ from mkt.api.resources import (AppResource, CarrierResource, CategoryViewSet,
 from mkt.features.views import AppFeaturesList
 from mkt.stats.api import GlobalStatsResource
 from mkt.ratings.resources import RatingResource
-from mkt.search.api import SearchResource
+from mkt.search.api import SearchResource, SuggestionsResource
 
 
 api = Api(api_name='apps')
@@ -19,6 +19,7 @@ api.register(ValidationResource())
 api.register(AppResource())
 api.register(PreviewResource())
 api.register(SearchResource())
+api.register(SuggestionsResource())
 api.register(StatusResource())
 api.register(RatingResource())
 

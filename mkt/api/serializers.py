@@ -27,3 +27,21 @@ class Serializer(Serializer):
             return super(Serializer, self).deserialize(content, format)
         except JSONDecodeError, exc:
             raise DeserializationError(original=exc)
+
+
+class SuggestionsSerializer(Serializer):
+    formats = ['suggestions+json', 'json']
+    content_types = {
+        'suggestions+json': 'application/x-suggestions+json',
+        'json': 'application/json',
+    }
+
+    def serialize(self, bundle, format='application/json', options=None):
+        if options is None:
+            options = {}
+        if format == 'application/x-suggestions+json':
+            # Format application/x-suggestions+json just like regular json.
+            format = 'application/json'
+        return super(SuggestionsSerializer, self).serialize(bundle,
+                                                            format=format,
+                                                            options=options)
