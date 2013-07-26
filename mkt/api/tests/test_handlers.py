@@ -809,7 +809,7 @@ MANIFEST = """
 
 
 @patch('mkt.developers.tasks._fetch_content')
-@patch('mkt.developers.tasks.validator')
+@patch('mkt.webapps.tasks.validator')
 class TestRefreshManifest(RestOAuth):
     fixtures = fixture('user_2519', 'webapp_337141', 'platform_all')
     def setUp(self):
