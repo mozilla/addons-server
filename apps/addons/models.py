@@ -309,6 +309,9 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     # This gets overwritten in the transformer.
     share_counts = collections.defaultdict(int)
 
+    # Note: this will be initially only utilised by paid webapps.
+    enable_new_regions = models.BooleanField(default=False, db_index=True)
+
     objects = AddonManager()
     with_deleted = AddonManager(include_deleted=True)
 
