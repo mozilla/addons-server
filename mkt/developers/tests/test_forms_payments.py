@@ -8,7 +8,7 @@ from test_utils import RequestFactory
 import amo
 import amo.tests
 
-from addons.models import Addon, AddonDeviceType
+from addons.models import Addon, AddonDeviceType, AddonUser
 from constants.payments import (PAYMENT_METHOD_OPERATOR,
                                 PAYMENT_METHOD_CARD,
                                 PAYMENT_METHOD_ALL)
@@ -276,6 +276,195 @@ class TestPremiumForm(amo.tests.TestCase):
         Price.objects.get(price='0.99').update(active=False)
         form = forms_payments.PremiumForm(**self.kwargs)
         eq_(form._initial_price_id(), None)
+
+
+class TestBangoAccountListForm(amo.tests.TestCase):
+    fixtures = fixture('webapp_337141', 'user_999', 'group_admin',
+                       'user_admin', 'user_admin_group', 'prices')
+
+    def setUp(self):
+        self.addon = Addon.objects.get(pk=337141)
+        self.addon.update(status=amo.STATUS_NULL,
+                          highest_status=amo.STATUS_PUBLIC)
+        self.price = Price.objects.filter()[0]
+        AddonPremium.objects.create(addon=self.addon, price=self.price)
+
+        self.user = UserProfile.objects.get(pk=31337)
+        amo.set_user(self.user)
+
+        self.other = UserProfile.objects.get(pk=999)
+        self.admin = UserProfile.objects.get(email='admin@mozilla.com')
+
+        self.kwargs = {
+            'addon': self.addon,
+        }
+
+    def create_user_account(self, user):
+        """Create a user account"""
+        seller = models.SolitudeSeller.objects.create(
+            resource_uri='/path/to/sel', user=user, uuid='uuid-%s' % user.pk)
+
+        return models.PaymentAccount.objects.create(
+            user=user, uri='asdf-%s' % user.pk, name='test', inactive=False,
+            solitude_seller=seller, seller_uri='suri-%s' % user.pk,
+            bango_package_id=123, agreed_tos=True)
+
+    def make_owner(self, user):
+        AddonUser.objects.create(addon=self.addon,
+                                 user=user, role=amo.AUTHOR_ROLE_OWNER)
+
+    def is_owner(self, user):
+        return (self.addon.authors.filter(user=user,
+                addonuser__role=amo.AUTHOR_ROLE_OWNER).exists())
+
+    @mock.patch('mkt.developers.models.client')
+    def associate_owner_account(self, client):
+        client.get_product.return_value = {'meta': {'total_count': 0}}
+        client.post_product.return_value = {'resource_uri': 'gpuri'}
+        client.get_product_bango.return_value = {'meta': {'total_count': 0}}
+        client.post_product_bango.return_value = {
+            'resource_uri': 'bpruri', 'bango_id': 123}
+        owner_account = self.create_user_account(self.user)
+        form = forms_payments.BangoAccountListForm(
+            data={'accounts': owner_account.pk}, user=self.user, **self.kwargs)
+        assert form.is_valid(), form.errors
+        form.save()
+        return owner_account
+
+    @mock.patch('mkt.developers.models.client')
+    def test_with_owner_account(self, client):
+        user = self.user
+        account = self.create_user_account(user)
+        assert self.is_owner(user)
+        client.get_product.return_value = {'meta': {'total_count': 0}}
+        client.post_product.return_value = {'resource_uri': 'gpuri'}
+        client.get_product_bango.return_value = {'meta': {'total_count': 0}}
+        client.post_product_bango.return_value = {
+            'resource_uri': 'bpruri', 'bango_id': 123}
+        form = forms_payments.BangoAccountListForm(
+            data={'accounts': account.pk}, user=user, **self.kwargs)
+        eq_(form.current_payment_account, None)
+        assert form.is_valid(), form.errors
+        form.save()
+        form = forms_payments.BangoAccountListForm(None, user=user,
+                                                  **self.kwargs)
+        eq_(form.fields['accounts'].widget.attrs.get('disabled'), None)
+        eq_(form.fields['accounts'].empty_label, None)
+        eq_(form.initial['accounts'], account)
+
+    @mock.patch('mkt.developers.models.client')
+    def test_with_non_owner_account(self, client):
+        user = self.other
+        account = self.create_user_account(user)
+        assert not self.is_owner(user)
+        client.get_product.return_value = {'meta': {'total_count': 0}}
+        client.post_product.return_value = {'resource_uri': 'gpuri'}
+        client.get_product_bango.return_value = {'meta': {'total_count': 0}}
+        client.post_product_bango.return_value = {
+            'resource_uri': 'bpruri', 'bango_id': 123}
+        form = forms_payments.BangoAccountListForm(
+            data={'accounts': account.pk}, user=user, **self.kwargs)
+        eq_(form.current_payment_account, None)
+        assert form.fields['accounts'].widget.attrs['disabled'] is not None
+        assert not form.is_valid(), form.errors
+
+    @mock.patch('mkt.developers.models.client')
+    def test_with_non_owner_admin_account(self, client):
+        user = self.admin
+        account = self.create_user_account(user)
+        assert not self.is_owner(user)
+        client.get_product.return_value = {'meta': {'total_count': 0}}
+        client.post_product.return_value = {'resource_uri': 'gpuri'}
+        client.get_product_bango.return_value = {'meta': {'total_count': 0}}
+        client.post_product_bango.return_value = {
+            'resource_uri': 'bpruri', 'bango_id': 123}
+        form = forms_payments.BangoAccountListForm(
+            data={'accounts': account.pk}, user=user, **self.kwargs)
+        eq_(form.current_payment_account, None)
+        assert form.fields['accounts'].widget.attrs['disabled'] is not None
+        assert not form.is_valid(), form.errors
+
+    @mock.patch('mkt.developers.models.client')
+    def test_with_other_owner_account(self, client):
+        user = self.other
+        account = self.create_user_account(user)
+        self.make_owner(user)
+        assert self.is_owner(user)
+        client.get_product.return_value = {'meta': {'total_count': 0}}
+        client.post_product.return_value = {'resource_uri': 'gpuri'}
+        client.get_product_bango.return_value = {'meta': {'total_count': 0}}
+        client.post_product_bango.return_value = {
+            'resource_uri': 'bpruri', 'bango_id': 123}
+        form = forms_payments.BangoAccountListForm(
+            data={'accounts': account.pk}, user=user, **self.kwargs)
+        assert form.is_valid(), form.errors
+        eq_(form.current_payment_account, None)
+        eq_(form.fields['accounts'].widget.attrs.get('disabled'), None)
+        form.save()
+        form = forms_payments.BangoAccountListForm(None, user=user,
+                                                   **self.kwargs)
+        eq_(form.fields['accounts'].empty_label, None)
+        eq_(form.initial['accounts'], account)
+
+    @mock.patch('mkt.developers.models.client')
+    def test_with_non_owner_account_existing_account(self, client):
+        owner_account = self.associate_owner_account()
+        user = self.other
+        account = self.create_user_account(user)
+        assert not self.is_owner(user)
+        client.get_product.return_value = {'meta': {'total_count': 0}}
+        client.post_product.return_value = {'resource_uri': 'gpuri'}
+        client.get_product_bango.return_value = {'meta': {'total_count': 0}}
+        client.post_product_bango.return_value = {
+            'resource_uri': 'bpruri', 'bango_id': 123}
+
+        form = forms_payments.BangoAccountListForm(
+            data={'accounts': account.pk}, user=user, **self.kwargs)
+
+        assert form.fields['accounts'].widget.attrs['disabled'] is not None
+        eq_(form.current_payment_account, owner_account)
+        assert not form.is_valid(), form.errors
+
+    @mock.patch('mkt.developers.models.client')
+    def test_with_non_owner_admin_account_existing_account(self, client):
+        owner_account = self.associate_owner_account()
+        user = self.admin
+        account = self.create_user_account(user)
+        assert not self.is_owner(user)
+        client.get_product.return_value = {'meta': {'total_count': 0}}
+        client.post_product.return_value = {'resource_uri': 'gpuri'}
+        client.get_product_bango.return_value = {'meta': {'total_count': 0}}
+        client.post_product_bango.return_value = {
+            'resource_uri': 'bpruri', 'bango_id': 123}
+        form = forms_payments.BangoAccountListForm(
+            data={'accounts': account.pk}, user=user, **self.kwargs)
+
+        assert form.fields['accounts'].widget.attrs['disabled'] is not None
+        eq_(form.current_payment_account, owner_account)
+        assert not form.is_valid(), form.errors
+
+    @mock.patch('mkt.developers.models.client')
+    def test_with_other_owner_account_existing_account(self, client):
+        owner_account = self.associate_owner_account()
+        user = self.other
+        account = self.create_user_account(user)
+        self.make_owner(user)
+        assert self.is_owner(user)
+        client.get_product.return_value = {'meta': {'total_count': 0}}
+        client.post_product.return_value = {'resource_uri': 'gpuri'}
+        client.get_product_bango.return_value = {'meta': {'total_count': 0}}
+        client.post_product_bango.return_value = {
+            'resource_uri': 'bpruri', 'bango_id': 123}
+        form = forms_payments.BangoAccountListForm(
+            data={'accounts': account.pk}, user=user, **self.kwargs)
+        eq_(form.current_payment_account, owner_account)
+        assert form.is_valid(), form.errors
+        form.save()
+        form = forms_payments.BangoAccountListForm(None, user=user,
+                                                   **self.kwargs)
+        eq_(form.fields['accounts'].empty_label, None)
+        eq_(form.initial['accounts'], account)
+        assert form.current_payment_account is None
 
 
 class TestPaidRereview(amo.tests.TestCase):
