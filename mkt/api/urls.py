@@ -1,13 +1,16 @@
 from django.conf import settings
 from django.conf.urls import include, patterns, url
 
+from rest_framework.routers import SimpleRouter
 from tastypie.api import Api
 from tastypie_services.services import (ErrorResource, SettingsResource)
+
 from mkt.submit.api import PreviewResource, StatusResource, ValidationResource
 from mkt.api.base import AppRouter, handle_500, SlugRouter
 from mkt.api.resources import (AppResource, CarrierResource, CategoryViewSet,
                                ConfigResource, error_reporter,
                                RefreshManifestViewSet, RegionResource)
+from mkt.collections.views import CollectionViewSet
 from mkt.features.views import AppFeaturesList
 from mkt.stats.api import GlobalStatsResource
 from mkt.ratings.resources import RatingResource
@@ -23,6 +26,10 @@ api.register(SuggestionsResource())
 api.register(StatusResource())
 api.register(RatingResource())
 
+
+rocketfuel = SimpleRouter()
+rocketfuel.register(r'collections', CollectionViewSet,
+                    base_name='collections')
 
 apps = SlugRouter()
 apps.register(r'category', CategoryViewSet, base_name='app-category')
@@ -50,6 +57,7 @@ urlpatterns = patterns('',
     url(r'^', include(stats_api.urls)),
     url(r'^', include(services.urls)),
     url(r'^fireplace/report_error', error_reporter, name='error-reporter'),
+    url(r'^rocketfuel/', include(rocketfuel.urls)),
     url(r'^apps/', include('mkt.versions.urls')),
     url(r'^apps/features/', AppFeaturesList.as_view(),
         name='api-features-feature-list')

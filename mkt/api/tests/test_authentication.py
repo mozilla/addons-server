@@ -153,6 +153,18 @@ class TestRestOAuthAuthentication(TestOAuthAuthentication):
         ok_(self.auth.authenticate(self.call()))
 
 
+class TestRestAnonymousAuthentication(TestCase):
+
+    def setUp(self):
+        self.auth = authentication.RestAnonymousAuthentication()
+        self.request = RequestFactory().get('/')
+
+    def test_auth(self):
+        user, token = self.auth.authenticate(self.request)
+        ok_(isinstance(user, AnonymousUser))
+        eq_(token, None)
+
+
 @patch.object(settings, 'SECRET_KEY', 'gubbish')
 class TestSharedSecretAuthentication(TestCase):
     fixtures = fixture('user_2519')

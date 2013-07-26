@@ -217,3 +217,9 @@ class RestSharedSecretAuthentication(BaseAuthentication,
         if not (result and request.user):
             return None
         return (request.user, None)
+
+
+class RestAnonymousAuthentication(BaseAuthentication):
+
+    def authenticate(self, request):
+        return AnonymousUser(), None
