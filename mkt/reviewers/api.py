@@ -41,6 +41,7 @@ class ReviewingResource(MarketplaceResource):
 
 
 class ReviewersSearchResource(SearchResource):
+
     class Meta(SearchResource.Meta):
         resource_name = 'search'
         authorization = PermissionAuthorization('Apps', 'Review')
@@ -76,11 +77,10 @@ class ReviewersSearchResource(SearchResource):
 
     def get_query(self, request, base_filters=None):
         form_data = self.get_search_data(request)
-        status = form_data.get('status')
 
         if base_filters is None:
             base_filters = {}
-        base_filters['status'] = status
+        base_filters['status'] = form_data.get('status')
 
         region = self.get_region(request)
         return _get_query(request, region, gaia=None, mobile=None, tablet=None,
@@ -90,5 +90,6 @@ class ReviewersSearchResource(SearchResource):
         bundle = super(ReviewersSearchResource, self).dehydrate(bundle)
         bundle = update_with_reviewer_data(bundle, using_es=True)
         # Filter out anything not present in Meta fields.
-        bundle.data = dict(((k, v) for k, v in bundle.data.items() if k in self._meta.fields))
+        bundle.data = dict(((k, v) for k, v in bundle.data.items()
+            if k in self._meta.fields))
         return bundle
