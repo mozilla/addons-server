@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-10 09:29-0700\n"
+"POT-Creation-Date: 2013-07-26 14:59-0700\n"
 "PO-Revision-Date: 2013-07-14 08:20+0000\n"
 "Last-Translator: Hyeonseok <hyeonseok@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,7 +14,7 @@ msgstr ""
 "X-Generator: Pootle 2.5.0-rc1\n"
 "X-POOTLE-MTIME: 1373790054.0\n"
 
-#: media/js/common-all.js:10109 media/js/common-min.js:23 media/js/impala-all.js:1159 media/js/impala-min.js:1 media/js/devreg/init.js:35 media/js/mkt/init.js:46
+#: media/js/common-all.js:10109 media/js/common-min.js:23 media/js/impala-all.js:1159 media/js/impala-min.js:1 media/js/devreg/init.js:35 media/js/mkt/init.js:47
 #: media/js/zamboni/discovery-all.js:10076 media/js/zamboni/discovery-min.js:23 media/js/zamboni/init.js:32 media/js/zamboni/mobile-all.js:10912 media/js/zamboni/mobile-min.js:32
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr "이 기능은 웹사이트 점검으로 인해 잠시 사용할 수 없습니다. 잠시 후 다시 사용해 주세요."
@@ -1214,17 +1214,33 @@ msgstr "Flash Player</a>를 지원하는 브라우저가 필요합니다."
 msgid "Message must not be empty."
 msgstr "메세지엔 내용이 반드시 있어야 합니다."
 
-#: media/js/mkt/login.js:52
+#: media/js/mkt/login.js:62
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
 msgstr "Persona 로그인 실패입니다. 아마도 이메일 주소에 대한 계정이 없지 않나요?"
 
-#: media/js/mkt/login.js:57
+#: media/js/mkt/login.js:67
 msgid "Persona login failed. A server error was encountered."
 msgstr "Persona 로그인 실패입니다. 서버에 에러가 발생했습니다."
 
-#: media/js/mkt/login.js:82
-msgid "Successfully signed in. Click here to reload."
-msgstr "로그인 했습니다. 이곳을 클릭해서 새로고침 해주세요."
+#: media/js/mkt/manifest.js:46
+msgid "Requested Permissions:"
+msgstr "요청된 권한:"
+
+#: media/js/mkt/manifest.js:54
+msgid "Certified"
+msgstr "인증됨"
+
+#: media/js/mkt/manifest.js:57
+msgid "Privileged"
+msgstr "권한 있음"
+
+#: media/js/mkt/manifest.js:60
+msgid "Unprivileged"
+msgstr "권한 없음"
+
+#: media/js/mkt/manifest.js:66
+msgid "No reason given"
+msgstr "사유 없음"
 
 #: media/js/mkt/overlay.js:41
 msgid "OK"
@@ -1234,53 +1250,33 @@ msgstr "확인"
 msgid "Payment failed. Try again later."
 msgstr "지불에 실패했습니다. 잠시 후 다시 시도해보세요."
 
-#: media/js/mkt/reviewers.js:97
+#: media/js/mkt/reviewers.js:98
 msgid "Packaged App"
 msgstr "패키징 방식 앱"
 
-#: media/js/mkt/reviewers.js:101
+#: media/js/mkt/reviewers.js:102
 msgid "Privileged App"
 msgstr "특권이 부여된 앱"
 
-#: media/js/mkt/reviewers.js:104
+#: media/js/mkt/reviewers.js:105
 msgid "More Information Requested"
 msgstr "추가 정보 입력 필요"
 
-#: media/js/mkt/reviewers.js:107
+#: media/js/mkt/reviewers.js:108
 msgid "Contains Editor Comment"
 msgstr "편집자 코멘트 있음"
 
-#: media/js/mkt/reviewers.js:111
+#: media/js/mkt/reviewers.js:112
 msgid "Escalated"
 msgstr "승급됨"
 
-#: media/js/mkt/reviewers.js:116
+#: media/js/mkt/reviewers.js:117
 msgid "Free"
 msgstr "무료"
 
-#: media/js/mkt/reviewers.js:223
+#: media/js/mkt/reviewers.js:224
 msgid "Any"
 msgstr "모두"
-
-#: media/js/mkt/reviewers.js:274
-msgid "Requested Permissions:"
-msgstr "요청된 권한:"
-
-#: media/js/mkt/reviewers.js:282
-msgid "Certified"
-msgstr "인증됨"
-
-#: media/js/mkt/reviewers.js:285
-msgid "Privileged"
-msgstr "권한 있음"
-
-#: media/js/mkt/reviewers.js:288
-msgid "Unprivileged"
-msgstr "권한 없음"
-
-#: media/js/mkt/reviewers.js:294
-msgid "No reason given"
-msgstr "사유 없음"
 
 #: media/js/mkt/themes_review.js:174
 msgid "Requested Info"
@@ -1485,7 +1481,7 @@ msgid "Total Installs"
 msgstr "총 설치 횟수"
 
 #: media/js/zamboni/admin-all.js:179 media/js/zamboni/admin-min.js:1 media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub-all.js:2278 media/js/zamboni/devhub-min.js:1
-#: media/js/zamboni/devhub.js:1438 media/js/zamboni/editors-all.js:296 media/js/zamboni/editors-min.js:1 media/js/zamboni/editors.js:312
+#: media/js/zamboni/devhub.js:1438 media/js/zamboni/editors-all.js:296 media/js/zamboni/editors-min.js:1 media/js/zamboni/editors.js:329
 msgid "Select an application first"
 msgstr "먼저 애플리케이션을 선택하세요"
 
@@ -1602,11 +1598,11 @@ msgstr "추천 부가 기능 검색중&hellip;"
 msgid "Updating recommendations&hellip;"
 msgstr "추천 부가 기능 업데이트중&hellip;"
 
-#: media/js/zamboni/editors-all.js:140 media/js/zamboni/editors-min.js:1 media/js/zamboni/editors.js:143
+#: media/js/zamboni/editors-all.js:140 media/js/zamboni/editors-min.js:1 media/js/zamboni/editors.js:160
 msgid "{name} was viewing this page first."
 msgstr "{name}님이 먼저 이 페이지를 살펴보셨습니다."
 
-#: media/js/zamboni/editors-all.js:249 media/js/zamboni/editors-min.js:1 media/js/zamboni/editors.js:272
+#: media/js/zamboni/editors-all.js:249 media/js/zamboni/editors-min.js:1 media/js/zamboni/editors.js:289
 msgid "Loading&hellip;"
 msgstr "불러오는 중&hellip;"
 
@@ -1618,35 +1614,35 @@ msgstr "변경 내역 기록서"
 msgid "Approval Notes"
 msgstr "승인 내역 기록서"
 
-#: media/js/zamboni/editors-all.js:264 media/js/zamboni/editors-min.js:1 media/js/zamboni/editors.js:287
+#: media/js/zamboni/editors-all.js:264 media/js/zamboni/editors-min.js:1 media/js/zamboni/editors.js:304
 msgid "No version notes found"
 msgstr "버전 기록서가 없습니다"
 
-#: media/js/zamboni/editors-all.js:355 media/js/zamboni/editors-min.js:1 media/js/zamboni/editors.js:347
+#: media/js/zamboni/editors-all.js:355 media/js/zamboni/editors-min.js:1 media/js/zamboni/editors.js:364
 msgid "Average Reviews"
 msgstr "평균 심사 횟수"
 
-#: media/js/zamboni/editors-all.js:411 media/js/zamboni/editors-min.js:1 media/js/zamboni/editors.js:403
+#: media/js/zamboni/editors-all.js:411 media/js/zamboni/editors-min.js:1 media/js/zamboni/editors.js:420
 msgid "Number of Reviews"
 msgstr "심사 횟수"
 
-#: media/js/zamboni/editors.js:193
+#: media/js/zamboni/editors.js:210
 msgid "Receipt checked by app."
 msgstr "앱이 영수증을 확인했습니다."
 
-#: media/js/zamboni/editors.js:195
+#: media/js/zamboni/editors.js:212
 msgid "Receipt was not checked by app."
 msgstr "앱이 영수증을 확인하지 못했습니다."
 
-#: media/js/zamboni/editors.js:261
+#: media/js/zamboni/editors.js:278
 msgid "{name} was viewing this add-on first."
 msgstr "{name}님이 먼저 이 부가 기능을 조회하셨습니다."
 
-#: media/js/zamboni/editors.js:277
+#: media/js/zamboni/editors.js:294
 msgid "Version Notes"
 msgstr "버전 기록서"
 
-#: media/js/zamboni/editors.js:282
+#: media/js/zamboni/editors.js:299
 msgid "Notes for Reviewers"
 msgstr "심사자의 메모"
 

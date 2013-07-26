@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-10 09:29-0700\n"
+"POT-Creation-Date: 2013-07-26 14:59-0700\n"
 "PO-Revision-Date: 2013-06-30 12:13+0200\n"
 "Last-Translator: Shen <steekid@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.1.6\n"
 
-#: media/js/common-all.js:10109 media/js/common-min.js:23 media/js/impala-all.js:1159 media/js/impala-min.js:1 media/js/devreg/init.js:35 media/js/mkt/init.js:46
+#: media/js/common-all.js:10109 media/js/common-min.js:23 media/js/impala-all.js:1159 media/js/impala-min.js:1 media/js/devreg/init.js:35 media/js/mkt/init.js:47
 #: media/js/zamboni/discovery-all.js:10076 media/js/zamboni/discovery-min.js:23 media/js/zamboni/init.js:32 media/js/zamboni/mobile-all.js:10912 media/js/zamboni/mobile-min.js:32
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr "因为我们正在进行网站维护，该功能暂时无法使用。请您稍后再试。"
@@ -1213,17 +1213,33 @@ msgstr "Flash Player</a>。"
 msgid "Message must not be empty."
 msgstr "消息不能为空。"
 
-#: media/js/mkt/login.js:52
+#: media/js/mkt/login.js:62
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
 msgstr "Persona 登录失败。或许您并没有这个邮件地址下的帐户？"
 
-#: media/js/mkt/login.js:57
+#: media/js/mkt/login.js:67
 msgid "Persona login failed. A server error was encountered."
 msgstr "Persona 登录失败。服务器发生错误。"
 
-#: media/js/mkt/login.js:82
-msgid "Successfully signed in. Click here to reload."
-msgstr "登录成功，点击这里重新载入。"
+#: media/js/mkt/manifest.js:46
+msgid "Requested Permissions:"
+msgstr "请求的权限："
+
+#: media/js/mkt/manifest.js:54
+msgid "Certified"
+msgstr "已验证的"
+
+#: media/js/mkt/manifest.js:57
+msgid "Privileged"
+msgstr "特殊权限"
+
+#: media/js/mkt/manifest.js:60
+msgid "Unprivileged"
+msgstr "无特殊权限"
+
+#: media/js/mkt/manifest.js:66
+msgid "No reason given"
+msgstr "没有理由"
 
 #: media/js/mkt/overlay.js:41
 msgid "OK"
@@ -1233,53 +1249,33 @@ msgstr "确定"
 msgid "Payment failed. Try again later."
 msgstr "支付失败。稍后再试一次。"
 
-#: media/js/mkt/reviewers.js:97
+#: media/js/mkt/reviewers.js:98
 msgid "Packaged App"
 msgstr "已打包的应用"
 
-#: media/js/mkt/reviewers.js:101
+#: media/js/mkt/reviewers.js:102
 msgid "Privileged App"
 msgstr "特权应用"
 
-#: media/js/mkt/reviewers.js:104
+#: media/js/mkt/reviewers.js:105
 msgid "More Information Requested"
 msgstr "已要求提供更多信息"
 
-#: media/js/mkt/reviewers.js:107
+#: media/js/mkt/reviewers.js:108
 msgid "Contains Editor Comment"
 msgstr "包含编辑注解"
 
-#: media/js/mkt/reviewers.js:111
+#: media/js/mkt/reviewers.js:112
 msgid "Escalated"
 msgstr "已上报"
 
-#: media/js/mkt/reviewers.js:116
+#: media/js/mkt/reviewers.js:117
 msgid "Free"
 msgstr "免费版"
 
-#: media/js/mkt/reviewers.js:223
+#: media/js/mkt/reviewers.js:224
 msgid "Any"
 msgstr "一切"
-
-#: media/js/mkt/reviewers.js:274
-msgid "Requested Permissions:"
-msgstr "请求的权限："
-
-#: media/js/mkt/reviewers.js:282
-msgid "Certified"
-msgstr "已验证的"
-
-#: media/js/mkt/reviewers.js:285
-msgid "Privileged"
-msgstr "特殊权限"
-
-#: media/js/mkt/reviewers.js:288
-msgid "Unprivileged"
-msgstr "无特殊权限"
-
-#: media/js/mkt/reviewers.js:294
-msgid "No reason given"
-msgstr "没有理由"
 
 #: media/js/mkt/themes_review.js:174
 msgid "Requested Info"
@@ -1484,7 +1480,7 @@ msgid "Total Installs"
 msgstr "总安装量"
 
 #: media/js/zamboni/admin-all.js:179 media/js/zamboni/admin-min.js:1 media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub-all.js:2278 media/js/zamboni/devhub-min.js:1
-#: media/js/zamboni/devhub.js:1438 media/js/zamboni/editors-all.js:296 media/js/zamboni/editors-min.js:1 media/js/zamboni/editors.js:312
+#: media/js/zamboni/devhub.js:1438 media/js/zamboni/editors-all.js:296 media/js/zamboni/editors-min.js:1 media/js/zamboni/editors.js:329
 msgid "Select an application first"
 msgstr "请先选择一个应用程序"
 
@@ -1601,11 +1597,11 @@ msgstr "正在查找推荐内容&hellip;"
 msgid "Updating recommendations&hellip;"
 msgstr "正在更新推荐内容&hellip;"
 
-#: media/js/zamboni/editors-all.js:140 media/js/zamboni/editors-min.js:1 media/js/zamboni/editors.js:143
+#: media/js/zamboni/editors-all.js:140 media/js/zamboni/editors-min.js:1 media/js/zamboni/editors.js:160
 msgid "{name} was viewing this page first."
 msgstr "{name} 第一个查看了这个页面。"
 
-#: media/js/zamboni/editors-all.js:249 media/js/zamboni/editors-min.js:1 media/js/zamboni/editors.js:272
+#: media/js/zamboni/editors-all.js:249 media/js/zamboni/editors-min.js:1 media/js/zamboni/editors.js:289
 msgid "Loading&hellip;"
 msgstr "正在加载&hellip;"
 
@@ -1617,35 +1613,35 @@ msgstr "发行说明"
 msgid "Approval Notes"
 msgstr "核准说明"
 
-#: media/js/zamboni/editors-all.js:264 media/js/zamboni/editors-min.js:1 media/js/zamboni/editors.js:287
+#: media/js/zamboni/editors-all.js:264 media/js/zamboni/editors-min.js:1 media/js/zamboni/editors.js:304
 msgid "No version notes found"
 msgstr "没有找到版本说明"
 
-#: media/js/zamboni/editors-all.js:355 media/js/zamboni/editors-min.js:1 media/js/zamboni/editors.js:347
+#: media/js/zamboni/editors-all.js:355 media/js/zamboni/editors-min.js:1 media/js/zamboni/editors.js:364
 msgid "Average Reviews"
 msgstr "平均评价"
 
-#: media/js/zamboni/editors-all.js:411 media/js/zamboni/editors-min.js:1 media/js/zamboni/editors.js:403
+#: media/js/zamboni/editors-all.js:411 media/js/zamboni/editors-min.js:1 media/js/zamboni/editors.js:420
 msgid "Number of Reviews"
 msgstr "评论数"
 
-#: media/js/zamboni/editors.js:193
+#: media/js/zamboni/editors.js:210
 msgid "Receipt checked by app."
 msgstr "交易收据已经应用核实。"
 
-#: media/js/zamboni/editors.js:195
+#: media/js/zamboni/editors.js:212
 msgid "Receipt was not checked by app."
 msgstr "交易收据未经应用核实。"
 
-#: media/js/zamboni/editors.js:261
+#: media/js/zamboni/editors.js:278
 msgid "{name} was viewing this add-on first."
 msgstr "{name} 第一个查看了这个附加组件。"
 
-#: media/js/zamboni/editors.js:277
+#: media/js/zamboni/editors.js:294
 msgid "Version Notes"
 msgstr "版本说明"
 
-#: media/js/zamboni/editors.js:282
+#: media/js/zamboni/editors.js:299
 msgid "Notes for Reviewers"
 msgstr "给审核员的备注"
 

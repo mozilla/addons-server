@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-10 09:29-0700\n"
+"POT-Creation-Date: 2013-07-26 14:59-0700\n"
 "PO-Revision-Date: 2013-07-05 14:13+0200\n"
 "Last-Translator: Kalman Kemenczy <kkemenczy@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n !=1);\n"
 "X-Generator: Lokalize 1.2\n"
 
-#: media/js/common-all.js:10109 media/js/common-min.js:23 media/js/impala-all.js:1159 media/js/impala-min.js:1 media/js/devreg/init.js:35 media/js/mkt/init.js:46
+#: media/js/common-all.js:10109 media/js/common-min.js:23 media/js/impala-all.js:1159 media/js/impala-min.js:1 media/js/devreg/init.js:35 media/js/mkt/init.js:47
 #: media/js/zamboni/discovery-all.js:10076 media/js/zamboni/discovery-min.js:23 media/js/zamboni/init.js:32 media/js/zamboni/mobile-all.js:10912 media/js/zamboni/mobile-min.js:32
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr "Ez a funkció a weboldal karbantartása alatt, átmenetileg nem érhető el. Kérjük, látogasson vissza kicsit később."
@@ -1226,17 +1226,33 @@ msgstr "Flash Player</a>."
 msgid "Message must not be empty."
 msgstr "Az üzenet nem lehet üres."
 
-#: media/js/mkt/login.js:52
+#: media/js/mkt/login.js:62
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
 msgstr "Sikertelen Persona bejelentkezés. Lehet, hogy nem rendelkezik felhasználói fiókkal ezzel az e-mail címmel?"
 
-#: media/js/mkt/login.js:57
+#: media/js/mkt/login.js:67
 msgid "Persona login failed. A server error was encountered."
 msgstr "Nem sikerült bejelentkezni a Personába. Hiba történt a szerveren."
 
-#: media/js/mkt/login.js:82
-msgid "Successfully signed in. Click here to reload."
-msgstr "Sikeresen bejelentkezve. Kattintson ide az újratöltéshez."
+#: media/js/mkt/manifest.js:46
+msgid "Requested Permissions:"
+msgstr "Igényelt jogosultságok:"
+
+#: media/js/mkt/manifest.js:54
+msgid "Certified"
+msgstr "Tanúsított"
+
+#: media/js/mkt/manifest.js:57
+msgid "Privileged"
+msgstr ""
+
+#: media/js/mkt/manifest.js:60
+msgid "Unprivileged"
+msgstr ""
+
+#: media/js/mkt/manifest.js:66
+msgid "No reason given"
+msgstr "Nincs ok megadva"
 
 #: media/js/mkt/overlay.js:41
 msgid "OK"
@@ -1246,53 +1262,33 @@ msgstr "OK"
 msgid "Payment failed. Try again later."
 msgstr "Sikertelen fizetés. Próbálja meg később."
 
-#: media/js/mkt/reviewers.js:97
+#: media/js/mkt/reviewers.js:98
 msgid "Packaged App"
 msgstr "Összecsomagolt app"
 
-#: media/js/mkt/reviewers.js:101
+#: media/js/mkt/reviewers.js:102
 msgid "Privileged App"
 msgstr ""
 
-#: media/js/mkt/reviewers.js:104
+#: media/js/mkt/reviewers.js:105
 msgid "More Information Requested"
 msgstr "További információt kér"
 
-#: media/js/mkt/reviewers.js:107
+#: media/js/mkt/reviewers.js:108
 msgid "Contains Editor Comment"
 msgstr ""
 
-#: media/js/mkt/reviewers.js:111
+#: media/js/mkt/reviewers.js:112
 msgid "Escalated"
 msgstr "Továbbított"
 
-#: media/js/mkt/reviewers.js:116
+#: media/js/mkt/reviewers.js:117
 msgid "Free"
 msgstr "Ingyenes"
 
-#: media/js/mkt/reviewers.js:223
+#: media/js/mkt/reviewers.js:224
 msgid "Any"
 msgstr "Bármely"
-
-#: media/js/mkt/reviewers.js:274
-msgid "Requested Permissions:"
-msgstr "Igényelt jogosultságok:"
-
-#: media/js/mkt/reviewers.js:282
-msgid "Certified"
-msgstr "Tanúsított"
-
-#: media/js/mkt/reviewers.js:285
-msgid "Privileged"
-msgstr ""
-
-#: media/js/mkt/reviewers.js:288
-msgid "Unprivileged"
-msgstr ""
-
-#: media/js/mkt/reviewers.js:294
-msgid "No reason given"
-msgstr "Nincs ok megadva"
 
 #: media/js/mkt/themes_review.js:174
 msgid "Requested Info"
@@ -1498,7 +1494,7 @@ msgid "Total Installs"
 msgstr "Összes telepítés"
 
 #: media/js/zamboni/admin-all.js:179 media/js/zamboni/admin-min.js:1 media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub-all.js:2278 media/js/zamboni/devhub-min.js:1
-#: media/js/zamboni/devhub.js:1438 media/js/zamboni/editors-all.js:296 media/js/zamboni/editors-min.js:1 media/js/zamboni/editors.js:312
+#: media/js/zamboni/devhub.js:1438 media/js/zamboni/editors-all.js:296 media/js/zamboni/editors-min.js:1 media/js/zamboni/editors.js:329
 msgid "Select an application first"
 msgstr "Először válasszon ki alkalmazást"
 
@@ -1620,11 +1616,11 @@ msgstr "Ajánlott kiegészítők keresése&hellip;"
 msgid "Updating recommendations&hellip;"
 msgstr "Ajánlottak frissítése&hellip;"
 
-#: media/js/zamboni/editors-all.js:140 media/js/zamboni/editors-min.js:1 media/js/zamboni/editors.js:143
+#: media/js/zamboni/editors-all.js:140 media/js/zamboni/editors-min.js:1 media/js/zamboni/editors.js:160
 msgid "{name} was viewing this page first."
 msgstr "{name} nézte meg először az oldalt."
 
-#: media/js/zamboni/editors-all.js:249 media/js/zamboni/editors-min.js:1 media/js/zamboni/editors.js:272
+#: media/js/zamboni/editors-all.js:249 media/js/zamboni/editors-min.js:1 media/js/zamboni/editors.js:289
 msgid "Loading&hellip;"
 msgstr "Betöltés&hellip;"
 
@@ -1636,35 +1632,35 @@ msgstr "Kiadási megjegyzések"
 msgid "Approval Notes"
 msgstr "Jóváhagyó megjegyzések"
 
-#: media/js/zamboni/editors-all.js:264 media/js/zamboni/editors-min.js:1 media/js/zamboni/editors.js:287
+#: media/js/zamboni/editors-all.js:264 media/js/zamboni/editors-min.js:1 media/js/zamboni/editors.js:304
 msgid "No version notes found"
 msgstr "Nincsenek megjegyzések a verzióhoz"
 
-#: media/js/zamboni/editors-all.js:355 media/js/zamboni/editors-min.js:1 media/js/zamboni/editors.js:347
+#: media/js/zamboni/editors-all.js:355 media/js/zamboni/editors-min.js:1 media/js/zamboni/editors.js:364
 msgid "Average Reviews"
 msgstr "Átlagos értékelések"
 
-#: media/js/zamboni/editors-all.js:411 media/js/zamboni/editors-min.js:1 media/js/zamboni/editors.js:403
+#: media/js/zamboni/editors-all.js:411 media/js/zamboni/editors-min.js:1 media/js/zamboni/editors.js:420
 msgid "Number of Reviews"
 msgstr "Értékelések száma"
 
-#: media/js/zamboni/editors.js:193
+#: media/js/zamboni/editors.js:210
 msgid "Receipt checked by app."
 msgstr ""
 
-#: media/js/zamboni/editors.js:195
+#: media/js/zamboni/editors.js:212
 msgid "Receipt was not checked by app."
 msgstr ""
 
-#: media/js/zamboni/editors.js:261
+#: media/js/zamboni/editors.js:278
 msgid "{name} was viewing this add-on first."
 msgstr ""
 
-#: media/js/zamboni/editors.js:277
+#: media/js/zamboni/editors.js:294
 msgid "Version Notes"
 msgstr "Megjegyzések a verzióhoz"
 
-#: media/js/zamboni/editors.js:282
+#: media/js/zamboni/editors.js:299
 msgid "Notes for Reviewers"
 msgstr ""
 

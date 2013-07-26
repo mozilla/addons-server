@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-10 09:29-0700\n"
+"POT-Creation-Date: 2013-07-26 14:59-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 #: media/js/impala-all.js:1159
 #: media/js/impala-min.js:1
 #: media/js/devreg/init.js:35
-#: media/js/mkt/init.js:46
+#: media/js/mkt/init.js:47
 #: media/js/zamboni/discovery-all.js:10076
 #: media/js/zamboni/discovery-min.js:23
 #: media/js/zamboni/init.js:32
@@ -1930,7 +1930,7 @@ msgstr "Ƒŀȧşħ Ƥŀȧẏḗř</a>."
 msgid "Message must not be empty."
 msgstr "Ḿḗşşȧɠḗ ḿŭşŧ ƞǿŧ ƀḗ ḗḿƥŧẏ."
 
-#: media/js/mkt/login.js:52
+#: media/js/mkt/login.js:62
 msgid ""
 "Persona login failed. Maybe you don't have an account under that email "
 "address?"
@@ -1938,13 +1938,29 @@ msgstr ""
 "Ƥḗřşǿƞȧ ŀǿɠīƞ ƒȧīŀḗḓ. Ḿȧẏƀḗ ẏǿŭ ḓǿƞ'ŧ ħȧṽḗ ȧƞ ȧƈƈǿŭƞŧ ŭƞḓḗř ŧħȧŧ ḗḿȧīŀ "
 "ȧḓḓřḗşş?"
 
-#: media/js/mkt/login.js:57
+#: media/js/mkt/login.js:67
 msgid "Persona login failed. A server error was encountered."
 msgstr "Ƥḗřşǿƞȧ ŀǿɠīƞ ƒȧīŀḗḓ. Ȧ şḗřṽḗř ḗřřǿř ẇȧş ḗƞƈǿŭƞŧḗřḗḓ."
 
-#: media/js/mkt/login.js:82
-msgid "Successfully signed in. Click here to reload."
-msgstr "Şŭƈƈḗşşƒŭŀŀẏ şīɠƞḗḓ īƞ. Ƈŀīƈķ ħḗřḗ ŧǿ řḗŀǿȧḓ."
+#: media/js/mkt/manifest.js:46
+msgid "Requested Permissions:"
+msgstr "Řḗɋŭḗşŧḗḓ Ƥḗřḿīşşīǿƞş:"
+
+#: media/js/mkt/manifest.js:54
+msgid "Certified"
+msgstr "Ƈḗřŧīƒīḗḓ"
+
+#: media/js/mkt/manifest.js:57
+msgid "Privileged"
+msgstr "Ƥřīṽīŀḗɠḗḓ"
+
+#: media/js/mkt/manifest.js:60
+msgid "Unprivileged"
+msgstr "Ŭƞƥřīṽīŀḗɠḗḓ"
+
+#: media/js/mkt/manifest.js:66
+msgid "No reason given"
+msgstr "Ƞǿ řḗȧşǿƞ ɠīṽḗƞ"
 
 #: media/js/mkt/overlay.js:41
 msgid "OK"
@@ -1954,53 +1970,33 @@ msgstr "ǾĶ"
 msgid "Payment failed. Try again later."
 msgstr "Ƥȧẏḿḗƞŧ ƒȧīŀḗḓ. Ŧřẏ ȧɠȧīƞ ŀȧŧḗř."
 
-#: media/js/mkt/reviewers.js:97
+#: media/js/mkt/reviewers.js:98
 msgid "Packaged App"
 msgstr "Ƥȧƈķȧɠḗḓ Ȧƥƥ"
 
-#: media/js/mkt/reviewers.js:101
+#: media/js/mkt/reviewers.js:102
 msgid "Privileged App"
 msgstr "Ƥřīṽīŀḗɠḗḓ Ȧƥƥ"
 
-#: media/js/mkt/reviewers.js:104
+#: media/js/mkt/reviewers.js:105
 msgid "More Information Requested"
 msgstr "Ḿǿřḗ Īƞƒǿřḿȧŧīǿƞ Řḗɋŭḗşŧḗḓ"
 
-#: media/js/mkt/reviewers.js:107
+#: media/js/mkt/reviewers.js:108
 msgid "Contains Editor Comment"
 msgstr "Ƈǿƞŧȧīƞş Ḗḓīŧǿř Ƈǿḿḿḗƞŧ"
 
-#: media/js/mkt/reviewers.js:111
+#: media/js/mkt/reviewers.js:112
 msgid "Escalated"
 msgstr "Ḗşƈȧŀȧŧḗḓ"
 
-#: media/js/mkt/reviewers.js:116
+#: media/js/mkt/reviewers.js:117
 msgid "Free"
 msgstr "Ƒřḗḗ"
 
-#: media/js/mkt/reviewers.js:223
+#: media/js/mkt/reviewers.js:224
 msgid "Any"
 msgstr "Ȧƞẏ"
-
-#: media/js/mkt/reviewers.js:274
-msgid "Requested Permissions:"
-msgstr "Řḗɋŭḗşŧḗḓ Ƥḗřḿīşşīǿƞş:"
-
-#: media/js/mkt/reviewers.js:282
-msgid "Certified"
-msgstr "Ƈḗřŧīƒīḗḓ"
-
-#: media/js/mkt/reviewers.js:285
-msgid "Privileged"
-msgstr "Ƥřīṽīŀḗɠḗḓ"
-
-#: media/js/mkt/reviewers.js:288
-msgid "Unprivileged"
-msgstr "Ŭƞƥřīṽīŀḗɠḗḓ"
-
-#: media/js/mkt/reviewers.js:294
-msgid "No reason given"
-msgstr "Ƞǿ řḗȧşǿƞ ɠīṽḗƞ"
 
 #: media/js/mkt/themes_review.js:174
 msgid "Requested Info"
@@ -2244,7 +2240,7 @@ msgstr "Ŧǿŧȧŀ Īƞşŧȧŀŀş"
 #: media/js/zamboni/devhub.js:1438
 #: media/js/zamboni/editors-all.js:296
 #: media/js/zamboni/editors-min.js:1
-#: media/js/zamboni/editors.js:312
+#: media/js/zamboni/editors.js:329
 msgid "Select an application first"
 msgstr "Şḗŀḗƈŧ ȧƞ ȧƥƥŀīƈȧŧīǿƞ ƒīřşŧ"
 
@@ -2407,13 +2403,13 @@ msgstr "Ŭƥḓȧŧīƞɠ řḗƈǿḿḿḗƞḓȧŧīǿƞş&hellip;"
 
 #: media/js/zamboni/editors-all.js:140
 #: media/js/zamboni/editors-min.js:1
-#: media/js/zamboni/editors.js:143
+#: media/js/zamboni/editors.js:160
 msgid "{name} was viewing this page first."
 msgstr "{ƞȧḿḗ} ẇȧş ṽīḗẇīƞɠ ŧħīş ƥȧɠḗ ƒīřşŧ."
 
 #: media/js/zamboni/editors-all.js:249
 #: media/js/zamboni/editors-min.js:1
-#: media/js/zamboni/editors.js:272
+#: media/js/zamboni/editors.js:289
 msgid "Loading&hellip;"
 msgstr "Ŀǿȧḓīƞɠ&hellip;"
 
@@ -2429,39 +2425,39 @@ msgstr "Ȧƥƥřǿṽȧŀ Ƞǿŧḗş"
 
 #: media/js/zamboni/editors-all.js:264
 #: media/js/zamboni/editors-min.js:1
-#: media/js/zamboni/editors.js:287
+#: media/js/zamboni/editors.js:304
 msgid "No version notes found"
 msgstr "Ƞǿ ṽḗřşīǿƞ ƞǿŧḗş ƒǿŭƞḓ"
 
 #: media/js/zamboni/editors-all.js:355
 #: media/js/zamboni/editors-min.js:1
-#: media/js/zamboni/editors.js:347
+#: media/js/zamboni/editors.js:364
 msgid "Average Reviews"
 msgstr "Ȧṽḗřȧɠḗ Řḗṽīḗẇş"
 
 #: media/js/zamboni/editors-all.js:411
 #: media/js/zamboni/editors-min.js:1
-#: media/js/zamboni/editors.js:403
+#: media/js/zamboni/editors.js:420
 msgid "Number of Reviews"
 msgstr "Ƞŭḿƀḗř ǿƒ Řḗṽīḗẇş"
 
-#: media/js/zamboni/editors.js:193
+#: media/js/zamboni/editors.js:210
 msgid "Receipt checked by app."
 msgstr "Řḗƈḗīƥŧ ƈħḗƈķḗḓ ƀẏ ȧƥƥ."
 
-#: media/js/zamboni/editors.js:195
+#: media/js/zamboni/editors.js:212
 msgid "Receipt was not checked by app."
 msgstr "Řḗƈḗīƥŧ ẇȧş ƞǿŧ ƈħḗƈķḗḓ ƀẏ ȧƥƥ."
 
-#: media/js/zamboni/editors.js:261
+#: media/js/zamboni/editors.js:278
 msgid "{name} was viewing this add-on first."
 msgstr "{ƞȧḿḗ} ẇȧş ṽīḗẇīƞɠ ŧħīş ȧḓḓ-ǿƞ ƒīřşŧ."
 
-#: media/js/zamboni/editors.js:277
+#: media/js/zamboni/editors.js:294
 msgid "Version Notes"
 msgstr "Ṽḗřşīǿƞ Ƞǿŧḗş"
 
-#: media/js/zamboni/editors.js:282
+#: media/js/zamboni/editors.js:299
 msgid "Notes for Reviewers"
 msgstr "Ƞǿŧḗş ƒǿř Řḗṽīḗẇḗřş"
 
