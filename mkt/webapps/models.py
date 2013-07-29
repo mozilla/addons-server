@@ -1231,8 +1231,9 @@ class WebappIndexer(MappingType, Indexable):
     @classmethod
     def get_indexable(cls):
         """Returns the queryset of ids of all things to be indexed."""
-        return (Webapp.with_deleted.all()
-                .order_by('-id').values_list('id', flat=True))
+        return (Webapp.objects.filter(status__in=amo.VALID_STATUSES,
+                                      disabled_by_user=False)
+                              .order_by('-id').values_list('id', flat=True))
 
 
 # Pull all translated_fields from Addon over to Webapp.
