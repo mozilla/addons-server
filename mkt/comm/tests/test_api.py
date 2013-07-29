@@ -154,7 +154,7 @@ class TestNote(RestOAuth):
         super(TestNote, self).setUp()
         addon = Webapp.objects.get(pk=337141)
         self.thread = CommunicationThread.objects.create(addon=addon,
-            read_permission_developer=True)
+            read_permission_developer=True, version=addon.current_version)
         self.thread_url = reverse('comm-thread-detail',
                                   kwargs={'pk': self.thread.id})
         self.list_url = reverse('comm-note-list',
@@ -170,6 +170,7 @@ class TestNote(RestOAuth):
                                               'pk': note.id}))
         eq_(res.status_code, 200)
         eq_(res.json['body'], 'something')
+        eq_(res.json['reply_to'], None)
 
     def test_creation(self):
         res = self.client.post(self.list_url, data=json.dumps(
@@ -187,6 +188,29 @@ class TestNote(RestOAuth):
     def test_cors_allowed(self):
         res = self.client.get(self.list_url)
         self.assertCORS(res, 'get', 'post', 'delete')
+
+    def test_reply_list(self):
+        note = CommunicationNote.objects.create(author=self.profile,
+            thread=self.thread, note_type=0, body='something')
+        note.replies.create(body='somethingelse', note_type=0,
+            thread=self.thread, author=self.profile)
+        res = self.client.get(reverse('comm-note-replies-list',
+                                      kwargs={'thread_id': self.thread.id,
+                                              'note_id': note.id}))
+        eq_(res.status_code, 200)
+        eq_(len(res.json['objects']), 1)
+        eq_(res.json['objects'][0]['reply_to'], note.id)
+
+    def test_reply_create(self):
+        note = CommunicationNote.objects.create(author=self.profile,
+            thread=self.thread, note_type=0, body='something')
+        res = self.client.post(reverse('comm-note-replies-list',
+                                      kwargs={'thread_id': self.thread.id,
+                                              'note_id': note.id}),
+                               data=json.dumps({'note_type': '0',
+                                                'body': 'something'}))
+        eq_(res.status_code, 201)
+        eq_(note.replies.count(), 1)
 
 
 class TestEmailApi(RestOAuth):

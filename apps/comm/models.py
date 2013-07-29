@@ -6,14 +6,10 @@ from uuidfield.fields import UUIDField
 
 import amo.models
 from mkt.constants import comm as const
-from translations.fields import TranslatedField, save_signal
+from translations.fields import save_signal
 
 
-class CommunicationThread(amo.models.ModelBase):
-    addon = models.ForeignKey('addons.Addon', related_name='threads')
-    version = models.ForeignKey('versions.Version', related_name='threads',
-                                null=True)
-
+class CommunicationPermissionModel(amo.models.ModelBase):
     # Read permissions imply write permissions as well.
     read_permission_public = models.BooleanField()
     read_permission_developer = models.BooleanField()
@@ -21,6 +17,15 @@ class CommunicationThread(amo.models.ModelBase):
     read_permission_senior_reviewer = models.BooleanField()
     read_permission_mozilla_contact = models.BooleanField()
     read_permission_staff = models.BooleanField()
+
+    class Meta:
+        abstract = True
+
+
+class CommunicationThread(CommunicationPermissionModel):
+    addon = models.ForeignKey('addons.Addon', related_name='threads')
+    version = models.ForeignKey('versions.Version', related_name='threads',
+                                null=True)
 
     class Meta:
         db_table = 'comm_threads'
@@ -37,11 +42,13 @@ class CommunicationThreadCC(amo.models.ModelBase):
         unique_together = ('user', 'thread',)
 
 
-class CommunicationNote(amo.models.ModelBase):
+class CommunicationNote(CommunicationPermissionModel):
     thread = models.ForeignKey(CommunicationThread, related_name='notes')
     author = models.ForeignKey('users.UserProfile', related_name='comm_notes')
     note_type = models.IntegerField()
     body = models.TextField(null=True)
+    reply_to = models.ForeignKey('self', related_name='replies', null=True,
+                                 blank=True)
 
     class Meta:
         db_table = 'comm_thread_notes'

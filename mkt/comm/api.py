@@ -10,7 +10,7 @@ from rest_framework.filters import OrderingFilter
 from rest_framework.mixins import (CreateModelMixin, DestroyModelMixin,
                                    ListModelMixin, RetrieveModelMixin)
 from rest_framework.permissions import BasePermission
-from rest_framework.relations import RelatedField
+from rest_framework.relations import PrimaryKeyRelatedField, RelatedField
 from rest_framework.serializers import ModelSerializer, SerializerMethodField
 
 from addons.models import Addon
@@ -36,11 +36,12 @@ class AuthorSerializer(ModelSerializer):
 class NoteSerializer(ModelSerializer):
     body = CharField()
     author_meta = AuthorSerializer(source='author', read_only=True)
+    reply_to = PrimaryKeyRelatedField(required=False)
 
     class Meta:
         model = CommunicationNote
         fields = ('id', 'author', 'author_meta', 'note_type', 'body',
-                  'created', 'thread')
+                  'created', 'thread', 'reply_to')
 
 
 class AddonSerializer(ModelSerializer):
@@ -195,6 +196,13 @@ class NoteViewSet(ListModelMixin, CreateModelMixin, RetrieveModelMixin,
         return super(NoteViewSet, self).get_serializer(data=data_dict,
             files=files, instance=instance, many=many, partial=partial)
 
+    def pre_save(self, obj):
+        """Inherit permissions from the thread."""
+        for key in ('developer', 'reviewer', 'senior_reviewer',
+                    'mozilla_contact', 'staff'):
+            perm = 'read_permission_%s' % key
+            setattr(obj, perm, getattr(self.comm_thread, perm))
+
 
 class EmailCreationPermission(object):
     def has_permission(self, request, view):
@@ -213,3 +221,26 @@ def post_email(request):
 
     consume_email.apply_async((email_body,))
     return Response(status=201)
+
+
+class ReplyViewSet(NoteViewSet):
+    cors_allowed_methods = ['get', 'post']
+
+    def initialize_request(self, request, *args, **kwargs):
+        self.parent_note = get_object_or_404(CommunicationNote,
+                                             id=kwargs['note_id'])
+
+        return super(ReplyViewSet, self).initialize_request(request, *args,
+                                                            **kwargs)
+
+    def get_queryset(self):
+        return self.parent_note.replies.all()
+
+    def pre_save(self, obj):
+        """Inherit permissions from the parent note."""
+        for key in ('developer', 'reviewer', 'senior_reviewer',
+                    'mozilla_contact', 'staff'):
+            perm = 'read_permission_%s' % key
+            setattr(obj, perm, getattr(self.parent_note, perm))
+
+        obj.reply_to = self.parent_note
