@@ -21,6 +21,7 @@ from django.utils.functional import lazy
 
 import caching.base as caching
 import commonware.log
+import tower
 from tower import ugettext as _
 
 import amo
@@ -489,9 +490,9 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
         """
         lang = self.lang if self.lang else settings.LANGUAGE_CODE
         old = translation.get_language()
-        translation.activate(lang)
+        tower.activate(lang)
         yield
-        translation.activate(old)
+        tower.activate(old)
 
 
 models.signals.pre_save.connect(save_signal, sender=UserProfile,
