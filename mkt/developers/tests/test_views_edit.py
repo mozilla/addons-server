@@ -1484,7 +1484,7 @@ class TestEditVersion(TestEdit):
 
     def test_correct_version_features(self):
         new_version = self.webapp.latest_version.update(id=self.version_pk + 1)
-        self.webapp.update(latest_version=new_version)
+        self.webapp.update(_latest_version=new_version)
         self.test_new_features()
 
     def test_publish_checkbox_presence(self):
