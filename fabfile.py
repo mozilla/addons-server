@@ -25,12 +25,10 @@ def managecmd(cmd):
 
 
 @task
-def create_virtualenv():
-    if VIRTUALENV.startswith(pjoin('/data', 'src', settings.CLUSTER)):
-        local('rm -rf %s' % VIRTUALENV)
-
+def create_virtualenv(update_on_change=False):
     helpers.create_venv(VIRTUALENV, settings.PYREPO,
-                        pjoin(ZAMBONI, 'requirements/prod.txt'))
+                        pjoin(ZAMBONI, 'requirements/prod.txt'),
+                        update_on_change=update_on_change)
 
     if settings.LOAD_TESTING:
         helpers.pip_install_reqs(pjoin(ZAMBONI, 'requirements/load.txt'))
@@ -157,13 +155,7 @@ def pre_update(ref=settings.UPDATE_REF):
 
 @task
 def update():
-    def get_status():
-        with lcd(ZAMBONI):
-            return local('git diff HEAD@{1} HEAD --name-only', capture=True)
-
-    if not getattr(settings, 'DEV', False) or 'requirements/' in get_status():
-        execute(create_virtualenv)
-
+    execute(create_virtualenv, getattr(settings, 'DEV', False))
     execute(update_locales)
     execute(update_products)
     execute(compress_assets)
