@@ -28,6 +28,10 @@ def patch_waffle():
     if suffix:
         for m in [waffle.Flag, waffle.Switch, waffle.Sample]:
             m._meta.db_table = '%s_%s' % (m._meta.db_table, suffix)
+        waffle.Flag.users.through._meta.db_table = '%s_users' % (
+            waffle.Flag._meta.db_table,)
+        waffle.Flag.groups.through._meta.db_table = '%s_groups' % (
+            waffle.Flag._meta.db_table,)
 
 patch_waffle()
 
