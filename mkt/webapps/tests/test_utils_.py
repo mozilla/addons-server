@@ -100,7 +100,7 @@ class TestAppToDict(amo.tests.TestCase):
 
     def test_versions_multiple(self):
         ver = Version.objects.create(addon=self.app, version='1.9')
-        self.app.update(_current_version=ver, latest_version=ver)
+        self.app.update(_current_version=ver, _latest_version=ver)
         res = app_to_dict(self.app)
         eq_(res['current_version'], ver.version)
         self.assertSetEqual([v.version for v in self.app.versions.all()],

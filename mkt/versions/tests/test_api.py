@@ -96,7 +96,7 @@ class TestVersionViewSet(RestOAuth):
     def test_get_updated_data(self):
         version = Version.objects.create(addon=self.app, version='1.2')
         version.features.update(has_mp3=True, has_fm=True)
-        self.app.update(latest_version=version, _current_version=version)
+        self.app.update(_latest_version=version, _current_version=version)
 
         self.test_get()  # Test old version
         self.test_get(version=version)  # Test new version
