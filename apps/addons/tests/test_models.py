@@ -286,6 +286,14 @@ class TestAddonModels(amo.tests.TestCase):
         v2.save()
         eq_(a.latest_version.id, v1.id)  # Still should be f1
 
+    def test_latest_version_fallback(self):
+        a = Addon.objects.get(pk=3615)
+        version = a.latest_version
+
+        a._latest_version = None
+        eq_(a.latest_version, version)
+        eq_(a._latest_version, version)
+
     def test_current_beta_version(self):
         a = Addon.objects.get(pk=5299)
         eq_(a.current_beta_version.id, 50000)

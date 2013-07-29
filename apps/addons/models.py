@@ -297,9 +297,9 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     _backup_version = models.ForeignKey(
         Version, related_name='___backup', db_column='backup_version',
         null=True, on_delete=models.SET_NULL)
-    latest_version = models.ForeignKey(Version, db_column='latest_version',
-                                       on_delete=models.SET_NULL,
-                                       null=True, related_name='+')
+    _latest_version = models.ForeignKey(Version, db_column='latest_version',
+                                        on_delete=models.SET_NULL,
+                                        null=True, related_name='+')
     make_public = models.DateTimeField(null=True)
     mozilla_contact = models.EmailField()
 
@@ -648,14 +648,14 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         # Sometimes the DB is in an inconsistent state when this
         # signal is dispatched.
         try:
-            if self.latest_version:
+            if self._latest_version:
                 # Make sure stringifying this does not trigger
                 # Version.DoesNotExist before trying to use it for
                 # logging.
-                unicode(self.latest_version)
-            diff += [self.latest_version, latest]
+                unicode(self._latest_version)
+            diff += [self._latest_version, latest]
         except Version.DoesNotExist:
-            diff += [self.latest_version_id, latest_id]
+            diff += [self._latest_version_id, latest_id]
 
         updated = {}
         send_signal = False
@@ -669,8 +669,8 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         # if we're called from a post_delete signal. We also don't set
         # send_signal since we only want this fired if the public version
         # changes.
-        if self.latest_version_id != latest_id:
-            updated.update({'latest_version': latest})
+        if self._latest_version_id != latest_id:
+            updated.update({'_latest_version': latest})
 
         if updated:
             try:
@@ -830,6 +830,17 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             return
         return self._current_version
 
+    @property
+    def latest_version(self):
+        try:
+            if not self._latest_version:
+                self.update_version()
+                log.info('Setting latest_version on add-on [%s]: %s.'
+                     % (self.id, self._latest_version_id))
+        except ObjectDoesNotExist:
+            return
+        return self._latest_version
+
     @amo.cached_property
     def binary(self):
         """Returns if the current version has binary files."""
@@ -935,7 +946,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         addons = [a for a in addons if a.type != amo.ADDON_PERSONA]
 
         version_ids = filter(None, (a._current_version_id for a in addons))
-        latest_ids = filter(None, (a.latest_version_id for a in addons))
+        latest_ids = filter(None, (a._latest_version_id for a in addons))
         backup_ids = filter(None, (a._backup_version_id for a in addons))
         all_ids = set(version_ids) | set(backup_ids) | set(latest_ids)
         versions = list(Version.objects.filter(id__in=all_ids).order_by()
@@ -950,8 +961,8 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                 addon._current_version = version
             if addon._backup_version_id == version.id:
                 addon._backup_version = version
-            if addon.latest_version_id == version.id:
-                addon.latest_version = version
+            if addon._latest_version_id == version.id:
+                addon._latest_version = version
 
             version.addon = addon
 
