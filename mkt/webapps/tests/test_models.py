@@ -756,6 +756,7 @@ class TestPackagedManifest(BasePackagedAppTest):
         # version.
         webapp = self.post_addon()
         webapp.latest_version.files.update(status=amo.STATUS_DISABLED)
+        webapp.latest_version.update(created=self.days_ago(1))
         webapp.update(status=amo.STATUS_REJECTED, _current_version=None)
         version = version_factory(addon=webapp, version='2.0',
                                   file_kw=dict(status=amo.STATUS_PENDING))
