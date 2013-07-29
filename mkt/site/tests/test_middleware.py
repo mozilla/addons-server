@@ -10,7 +10,7 @@ from users.models import UserProfile
 from mkt.site.middleware import DeviceDetectionMiddleware
 from mkt.site.fixtures import fixture
 
-_langs = ['de', 'en-US', 'es', 'fr', 'pt-BR', 'pt-PT']
+_langs = ['cs', 'de', 'en-US', 'es', 'fr', 'pt-BR', 'pt-PT']
 
 
 @mock.patch.object(settings, 'LANGUAGES', [x.lower() for x in _langs])
