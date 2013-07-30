@@ -60,8 +60,7 @@ def file_review_status(addon, file):
 
 @register.function
 def version_status(addon, version):
-    return ','.join([unicode(file_review_status(addon, file)) for file in
-                     version.all_files])
+    return ','.join(unicode(s) for s in version.status)
 
 
 @register.function
