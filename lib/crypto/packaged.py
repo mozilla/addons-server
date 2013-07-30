@@ -25,6 +25,14 @@ class SigningError(Exception):
 
 
 def sign_app(src, dest, ids, reviewer=False):
+    tempname = tempfile.mktemp()
+    try:
+        return _sign_app(src, dest, ids, reviewer, tempname)
+    finally:
+        os.unlink(tempname)
+
+
+def _sign_app(src, dest, ids, reviewer, tempname):
     """
     Generate a manifest and signature and send signature to signing server to
     be signed.
@@ -37,7 +45,6 @@ def sign_app(src, dest, ids, reviewer=False):
         return
 
     # Extract necessary info from the archive
-    tempname = tempfile.mktemp()
     try:
         jar = JarExtractor(
             storage.open(src, 'r'), tempname,
@@ -81,7 +88,7 @@ def sign_app(src, dest, ids, reviewer=False):
     with storage.open(dest, 'w') as destf:
         tempf = open(tempname)
         shutil.copyfileobj(tempf, destf)
-        os.unlink(tempname)
+
 
 def _get_endpoint(reviewer=False):
     """
