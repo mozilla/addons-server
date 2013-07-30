@@ -791,10 +791,11 @@ class TestErrorReporter(RestOAuth):
         stack = {u'foo': u'frame 1', u'baz': u'frame 2'}
         res = self.anon.post(
             reverse('error-reporter'),
-            data=json.dumps({'stack': stack, 'message': msg}))
+            data=json.dumps([{'stacktrace': {'frames': stack}, 'value': msg}]))
         eq_(res.status_code, 204)
         Client().capture.assert_called_with(
-            'raven.events.Exception', data={u'stack': stack, u'message': msg})
+            'raven.events.Exception', data=[{u'stacktrace': {u'frames': stack},
+                                             u'value': msg}])
 
 MANIFEST = """
    {"name": "Steamcubev2!",
