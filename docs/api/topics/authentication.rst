@@ -85,6 +85,14 @@ These fields can be left blank if this key will only be used to access your own 
 When you are first developing your API to communicate with the Marketplace, you
 should use the development server to test your API.
 
+OAuth URLs
+----------
+
+ * The Temporary Credential Request URL path is `/oauth/register/`.
+ * The Resource Owner Authorization URL path is `/oauth/authorize/`.
+ * The Token Request URL path is `/oauth/token/`.
+
+
 Production server
 =================
 
