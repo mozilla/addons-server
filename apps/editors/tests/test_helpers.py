@@ -5,7 +5,7 @@ from django.core import mail
 from django.core.files.storage import default_storage as storage
 from django.conf import settings
 
-from mock import Mock
+from mock import Mock, patch
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
@@ -788,3 +788,21 @@ class TestGetPosition(amo.tests.TestCase):
 
         # There are three pending apps.
         eq_(pos['total'], 3)
+
+
+def test_version_status():
+    addon = Addon()
+    version = Version()
+    version.all_files = [File(status=amo.STATUS_PUBLIC),
+                         File(status=amo.STATUS_DELETED)]
+    eq_(u'Fully Reviewed,Deleted', helpers.version_status(addon, version))
+
+    version.all_files = [File(status=amo.STATUS_UNREVIEWED)]
+    eq_(u'Awaiting Preliminary Review', helpers.version_status(addon, version))
+
+    with patch.object(settings, 'MARKETPLACE', True):
+        version.all_files = [File(status=amo.STATUS_PENDING)]
+        eq_(u'Pending approval', helpers.version_status(addon, version))
+
+        version.deleted = True
+        eq_(u'Deleted', helpers.version_status(addon, version))
