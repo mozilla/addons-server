@@ -446,7 +446,7 @@ msgstr[1] "Uw app is gevalideerd zonder fouten en met {0} berichten."
 
 #: media/js/devreg/devhub.js:197 media/js/zamboni/devhub-all.js:1052 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:188
 msgid "Your app passed validation with no errors or messages."
-msgstr "Uw app is gevaildeerd zonder fouten of berichten."
+msgstr "Uw app is gevalideerd zonder fouten of berichten."
 
 #: media/js/devreg/devhub.js:411 media/js/zamboni/devhub-all.js:1336 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:487
 msgid "Changes Saved"
