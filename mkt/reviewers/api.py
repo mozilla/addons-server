@@ -14,7 +14,6 @@ from mkt.reviewers.utils import AppsReviewing
 from mkt.reviewers.forms import ApiReviewersSearchForm
 from mkt.search.api import SearchResource
 from mkt.search.views import _get_query
-from mkt.webapps.utils import update_with_reviewer_data
 
 
 class Wrapper(object):
@@ -45,8 +44,9 @@ class ReviewersSearchResource(SearchResource):
     class Meta(SearchResource.Meta):
         resource_name = 'search'
         authorization = PermissionAuthorization('Apps', 'Review')
-        fields = ['device_types', 'id', 'is_packaged', 'latest_version',
-                  'name', 'premium_type', 'price', 'slug', 'status']
+        fields = ['device_types', 'id', 'is_escalated', 'is_packaged',
+                  'latest_version', 'name', 'premium_type', 'price', 'slug',
+                  'status']
 
     def get_search_data(self, request):
         form = ApiReviewersSearchForm(request.GET if request else None)
@@ -88,8 +88,15 @@ class ReviewersSearchResource(SearchResource):
 
     def dehydrate(self, bundle):
         bundle = super(ReviewersSearchResource, self).dehydrate(bundle)
-        bundle = update_with_reviewer_data(bundle, using_es=True)
-        # Filter out anything not present in Meta fields.
-        bundle.data = dict(((k, v) for k, v in bundle.data.items()
-            if k in self._meta.fields))
+
+        # Add reviewer-specific stuff that's not in the standard dehydrate.
+        bundle.data['latest_version'] = bundle.obj.latest_version
+        bundle.data['is_escalated'] = bundle.obj.is_escalated
+
+        # Throw away anything not in _meta.fields.
+        filtered_data = {}
+        for k in self._meta.fields:
+            filtered_data[k] = bundle.data[k]
+        bundle.data = filtered_data
+
         return bundle

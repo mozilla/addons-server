@@ -45,7 +45,7 @@ from mkt.regions import get_region, get_region_id, REGIONS_DICT
 from mkt.submit.forms import AppDetailsBasicForm
 from mkt.webapps.models import get_excluded_in
 from mkt.webapps.tasks import _update_manifest
-from mkt.webapps.utils import app_to_dict, update_with_reviewer_data
+from mkt.webapps.utils import app_to_dict
 
 log = commonware.log.getLogger('z.api')
 
@@ -244,15 +244,12 @@ class AppResource(CORSResource, MarketplaceModelResource):
         bundle.data['privacy_policy'] = (
             PrivacyPolicyResource().get_resource_uri(bundle))
 
-        # Add extra data for reviewers. Used in reviewer tool search.
-        bundle = update_with_reviewer_data(bundle, using_es=False)
         self.dehydrate_extra(bundle)
         return bundle
 
     def dehydrate_extra(self, bundle):
         if bundle.obj.upsold:
             bundle.data['upsold'] = self.get_resource_uri(bundle.obj.upsold.free)
-
 
     def hydrate_premium_type(self, bundle):
         typ = amo.ADDON_PREMIUM_API_LOOKUP.get(bundle.data['premium_type'],

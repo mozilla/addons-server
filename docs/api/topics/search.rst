@@ -47,16 +47,6 @@ Search
         'price', 'created', separated by commas. Sorts by relevance by default.
     :type sort: string
 
-    The following parameters requires an OAuth token by a user with App
-    Reviewer privileges:
-
-    :param optional status: Filters by app status. Default is 'public'. One
-        of 'pending', 'public', 'disabled', 'rejected', 'waiting'.
-    :type status: string
-    :param optional is_privileged: Filters by whether the latest version of the
-        app is privileged or not.
-    :type is_privileged: boolean
-
     **Response**
 
     :param meta: :ref:`meta-response-label`.

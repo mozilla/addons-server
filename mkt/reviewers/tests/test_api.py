@@ -19,6 +19,7 @@ from mkt.api.tests.test_oauth import BaseOAuth, get_absolute_url, OAuthClient
 from mkt.api.base import get_url, list_url
 from mkt.api.models import Access, generate
 from mkt.constants.features import FeatureProfile
+from mkt.reviewers.api import ReviewersSearchResource
 from mkt.reviewers.utils import AppsReviewing
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
@@ -89,6 +90,12 @@ class TestApiReviewer(BaseOAuth, ESTestCase):
 
         self.webapp.update(status=amo.STATUS_PENDING)
         self.refresh('webapp')
+
+    def test_fields(self):
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        obj = res.json['objects'][0]
+        self.assertSetEqual(obj.keys(), ReviewersSearchResource._meta.fields)
 
     def test_anonymous_access(self):
         res = self.anon.get(self.url)

@@ -251,39 +251,3 @@ def es_app_to_dict(obj, region=None, profile=None, request=None):
         }
 
     return data
-
-
-def update_with_reviewer_data(bundle, using_es=False):
-    """Adds reviewer specific data to app response bundle."""
-    # TODO: Reviewer flags in ES (bug 848446)
-    from editors.models import EscalationQueue
-
-    if acl.action_allowed(bundle.request, 'Apps', 'Review'):
-        # Try bundle.obj._id first if it's coming from elasticsearch.
-        # Fallback to database results using `.id`.
-        addon_id = getattr(bundle.obj, '_id', bundle.obj.id)
-
-        if using_es and hasattr(bundle.obj, 'latest_version'):
-            # If we know we are using elasticsearch and we have latest_version,
-            # then we can directly return it in the results.
-            bundle.data['latest_version'] = bundle.obj.latest_version
-        else:
-            version = Version.objects.filter(addon_id=addon_id).latest()
-            try:
-                latest_version_status = version.statuses[0][1]
-            except IndexError:
-                latest_version_status = None
-            bundle.data['latest_version'] = {
-                'status': latest_version_status,
-                'is_privileged': version.is_privileged,
-                'has_editor_comment': version.has_editor_comment,
-                'has_info_request': version.has_info_request,
-            }
-        if using_es and hasattr(bundle.obj, 'is_escalated'):
-            bundle.data['is_escalated'] = bundle.obj.is_escalated
-        else:
-            escalated = EscalationQueue.objects.filter(
-                addon_id=addon_id).exists()
-            bundle.data['is_escalated'] = escalated
-
-    return bundle
