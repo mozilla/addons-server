@@ -230,16 +230,21 @@ class TestInappKeySecret(InappKeysTest):
 
 
 class TestPayments(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/users', 'webapps/337141-steamcube',
-                'market/prices']
+    fixtures = fixture('webapp_337141', 'user_999', 'group_admin',
+                       'user_admin', 'user_admin_group', 'prices')
 
     def setUp(self):
         self.webapp = self.get_webapp()
         AddonDeviceType.objects.create(
             addon=self.webapp, device_type=amo.DEVICE_GAIA.id)
         self.url = self.webapp.get_dev_url('payments')
-        self.username = 'admin@mozilla.com'
-        assert self.client.login(username=self.username, password='password')
+
+        self.user = UserProfile.objects.get(pk=31337)
+        self.other = UserProfile.objects.get(pk=999)
+        self.admin = UserProfile.objects.get(email='admin@mozilla.com')
+
+        # Default to logging in as the app owner.
+        self.login(self.user)
         self.price = Price.objects.filter()[0]
         self.patch = mock.patch('mkt.developers.models.client')
         self.sol = self.patch.start()
@@ -343,7 +348,7 @@ class TestPayments(amo.tests.TestCase):
             self.url, self.get_postdata({'price': 'free',
                                          'allow_inapp': 'True',
                                          'regions': ALL_PAID_REGION_IDS}),
-                                        follow=True)
+                                         follow=True)
         eq_(self.get_webapp().upsold, None)
 
     def test_premium_in_app_passes(self):
@@ -407,7 +412,7 @@ class TestPayments(amo.tests.TestCase):
         res = self.client.post(
             self.url, self.get_postdata({'price': 'free',
                                          'allow_inapp': 'True',
-                                         'regions': ALL_PAID_REGION_IDS }))
+                                         'regions': ALL_PAID_REGION_IDS}))
         self.assert3xx(res, self.url)
         eq_(self.get_webapp().status, amo.STATUS_NULL)
 
@@ -419,11 +424,11 @@ class TestPayments(amo.tests.TestCase):
         res = self.client.post(
             self.url, self.get_postdata({'price': self.price.pk,
                                          'allow_inapp': 'False',
-                                         'regions': self.price_regions }))
+                                         'regions': self.price_regions}))
         self.assert3xx(res, self.url)
         eq_(self.get_webapp().status, amo.STATUS_NULL)
 
-    def test_associate_acct_to_app_free_inapp(self):
+    def setup_payment_acct(self, make_owner, user=None, bango_id=123):
         # Set up Solitude return values.
         api = self.sol.api  # Set up Solitude return values.
         api.generic.product.get_object.side_effect = ObjectDoesNotExist
@@ -432,57 +437,238 @@ class TestPayments(amo.tests.TestCase):
         api.bango.product.post.return_value = {
             'resource_uri': 'bpruri', 'bango_id': 123}
 
-        # Set up an existing bank account.
-        user = UserProfile.objects.get(email=self.username)
+        if not user:
+            user = self.user
+
         amo.set_user(user)
+
+        if make_owner:
+            # Make owner
+            AddonUser.objects.create(addon=self.webapp,
+                                     user=user, role=amo.AUTHOR_ROLE_OWNER)
+
+        # Set up an existing bank account.
         seller = SolitudeSeller.objects.create(
-            resource_uri='/path/to/sel', user=user)
+            resource_uri='/path/to/sel', user=user, uuid='uuid-%s' % user.pk)
         acct = PaymentAccount.objects.create(
-            user=user, uri='asdf', name='test', inactive=False,
-            solitude_seller=seller, bango_package_id=123, agreed_tos=True)
+            user=user, uri='asdf-%s' % user.pk, name='test', inactive=False,
+            seller_uri='suri-%s' % user.pk, solitude_seller=seller,
+            bango_package_id=123, agreed_tos=True)
+        return acct, api, user
+
+    def is_owner(self, user):
+        return (self.webapp.authors.filter(user=user,
+                addonuser__role=amo.AUTHOR_ROLE_OWNER).exists())
+
+    def test_associate_acct_to_app_free_inapp(self):
+        acct, api, user = self.setup_payment_acct(make_owner=True)
+
+        # Must be an app owner to change this.
+        assert self.is_owner(user)
 
         # Associate account with app.
         self.make_premium(self.webapp)
         res = self.client.post(
-            self.url, self.get_postdata({'price': 'free', 'allow_inapp': 'True',
+            self.url, self.get_postdata({'price': 'free',
+                                         'allow_inapp': 'True',
                                          'regions': ALL_PAID_REGION_IDS,
                                          'accounts': acct.pk}), follow=True)
         self.assertNoFormErrors(res)
         eq_(res.status_code, 200)
         eq_(self.webapp.app_payment_account.payment_account.pk, acct.pk)
 
-
     def test_associate_acct_to_app(self):
-        # Set up Solitude return values.
-        api = self.sol.api  # Set up Solitude return values.
-        api.generic.product.get_object.side_effect = ObjectDoesNotExist
-        api.generic.product.post.return_value = {'resource_uri': 'gpuri'}
-        api.bango.product.get_object.side_effect = ObjectDoesNotExist
-        api.bango.product.post.return_value = {
-            'resource_uri': 'bpruri', 'bango_id': 123}
-
-        # Set up an existing bank account.
-        user = UserProfile.objects.get(email=self.username)
-        amo.set_user(user)
-        seller = SolitudeSeller.objects.create(
-            resource_uri='/path/to/sel', user=user)
-        acct = PaymentAccount.objects.create(
-            user=user, uri='asdf', name='test', inactive=False,
-            solitude_seller=seller, bango_package_id=123, agreed_tos=True)
-
+        self.make_premium(self.webapp, price=self.price.price)
+        acct, api, user = self.setup_payment_acct(make_owner=True)
+        # Must be an app owner to change this.
+        assert self.is_owner(user)
         # Associate account with app.
         res = self.client.post(
-            self.url, self.get_postdata({'toggle-paid': 'paid',
-                                         'price': self.price.pk,
-                                         'accounts': acct.pk}), follow=True)
+            self.url, self.get_postdata({'price': self.price.pk,
+                                         'accounts': acct.pk,
+                                         'regions': self.price_regions}),
+                                         follow=True)
         self.assertNoFormErrors(res)
         eq_(res.status_code, 200)
         eq_(self.webapp.app_payment_account.payment_account.pk, acct.pk)
-
         kw = api.bango.product.post.call_args[1]['data']
         ok_(kw['secret'], kw)
         kw = api.generic.product.post.call_args[1]['data']
         eq_(kw['access'], ACCESS_PURCHASE)
+
+    def test_associate_acct_to_app_when_not_owner(self):
+        self.make_premium(self.webapp, price=self.price.price)
+        self.login(self.other)
+        acct, api, user = self.setup_payment_acct(make_owner=False,
+                                                  user=self.other)
+        # Check we're not an owner before we start.
+        assert not self.is_owner(user)
+
+        # Attempt to associate account with app as non-owner.
+        res = self.client.post(
+            self.url, self.get_postdata({'accounts': acct.pk}), follow=True)
+        # Non-owner posts are forbidden.
+        eq_(res.status_code, 403)
+        # Payment account shouldn't be set as we're not the owner.
+        assert not (AddonPaymentAccount.objects
+                                       .filter(addon=self.webapp).exists())
+
+    def test_associate_acct_to_app_when_not_owner_and_an_admin(self):
+        self.make_premium(self.webapp, self.price.price)
+        self.login(self.admin)
+        acct, api, user = self.setup_payment_acct(make_owner=False,
+                                                  user=self.admin)
+        # Check we're not an owner before we start.
+        assert not self.is_owner(user)
+        assert not (AddonPaymentAccount.objects
+                                       .filter(addon=self.webapp).exists())
+        # Attempt to associate account with app as non-owner admin.
+        res = self.client.post(
+            self.url, self.get_postdata({'accounts': acct.pk,
+                                         'price': self.price.pk,
+                                         'regions': self.price_regions}),
+                                         follow=True)
+        self.assertFormError(res, 'bango_account_list_form', 'accounts',
+                             [u'You are not permitted to change payment '
+                               'accounts.'])
+
+        # Payment account shouldn't be set as we're not the owner.
+        assert not (AddonPaymentAccount.objects
+                                       .filter(addon=self.webapp).exists())
+        pqr = pq(res.content)
+        # Payment field should be disabled.
+        eq_(len(pqr('#id_accounts[disabled]')), 1)
+        # There's no existing associated account.
+        eq_(len(pqr('.current-account')), 0)
+
+    def test_associate_acct_to_app_when_admin_and_owner_acct_exists(self):
+        self.make_premium(self.webapp, price=self.price.price)
+        owner_acct, api, owner_user = self.setup_payment_acct(make_owner=True)
+
+        assert self.is_owner(owner_user)
+
+        res = self.client.post(
+            self.url, self.get_postdata({'accounts': owner_acct.pk,
+                                         'price': self.price.pk,
+                                         'regions': self.price_regions}),
+                                         follow=True)
+        assert (AddonPaymentAccount.objects
+                                   .filter(addon=self.webapp).exists())
+
+        self.login(self.admin)
+        admin_acct, api, admin_user = self.setup_payment_acct(make_owner=False,
+                                                              user=self.admin)
+        # Check we're not an owner before we start.
+        assert not self.is_owner(admin_user)
+
+        res = self.client.post(
+            self.url, self.get_postdata({'accounts': admin_acct.pk,
+                                         'price': self.price.pk,
+                                         'regions': self.price_regions}),
+                                         follow=True)
+
+        self.assertFormError(res, 'bango_account_list_form', 'accounts',
+                             [u'You are not permitted to change payment '
+                               'accounts.'])
+
+
+    def test_one_owner_and_a_second_one_sees_selected_plus_own_accounts(self):
+        self.make_premium(self.webapp, price=self.price.price)
+        owner_acct, api, owner = self.setup_payment_acct(make_owner=True)
+        # Should be an owner.
+        assert self.is_owner(owner)
+
+        res = self.client.post(
+            self.url, self.get_postdata({'accounts': owner_acct.pk,
+                                         'price': self.price.pk,
+                                         'regions': self.price_regions}),
+                                         follow=True)
+        assert (AddonPaymentAccount.objects
+                                   .filter(addon=self.webapp).exists())
+
+        # Login as other user.
+        self.login(self.other)
+        owner_acct2, api, owner2 = self.setup_payment_acct(make_owner=True,
+                                                           user=self.other)
+        assert self.is_owner(owner2)
+        # Should see the saved account plus 2nd owner's own account select
+        # and be able to save their own account but not the other owners.
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        pqr = pq(res.content)
+        # Check we have just our account option present + '----'.
+        eq_(len(pqr('#id_accounts option')), 2)
+        eq_(len(pqr('#id_account[disabled]')), 0)
+        eq_(pqr('.current-account').text(), unicode(owner_acct))
+
+        res = self.client.post(
+            self.url, self.get_postdata({'accounts': owner_acct2.pk,
+                                         'price': self.price.pk,
+                                         'regions': self.price_regions}),
+                                         follow=True)
+        eq_(res.status_code, 200)
+        self.assertNoFormErrors(res)
+        pqr = pq(res.content)
+        eq_(len(pqr('.current-account')), 0)
+        eq_(pqr('#id_accounts option[selected]').text(), unicode(owner_acct2))
+        # Now there should just be our account.
+        eq_(len(pqr('#id_accounts option')), 1)
+
+    def test_existing_account_should_be_disabled_for_non_owner(self):
+        self.make_premium(self.webapp, price=self.price.price)
+        acct, api, user = self.setup_payment_acct(make_owner=True)
+        # Must be an app owner to change this.
+        assert self.is_owner(user)
+        # Associate account with app.
+        res = self.client.post(
+            self.url, self.get_postdata({'accounts': acct.pk,
+                                         'price': self.price.pk,
+                                         'regions': self.price_regions}),
+                                         follow=True)
+        amo.set_user(self.other)
+        # Make this user a dev so they have access to the payments page.
+        AddonUser.objects.create(addon=self.webapp,
+                                 user=self.other, role=amo.AUTHOR_ROLE_DEV)
+        self.login(self.other)
+        # Make sure not an owner.
+        assert not self.is_owner(self.other)
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        pqr = pq(res.content)
+        # No accounts setup.
+        eq_(len(pqr('.no-accounts')), 1)
+        # Currently associated account should be displayed separately.
+        eq_(pqr('.current-account').text(), unicode(acct))
+
+    def test_existing_account_should_be_disabled_for_non_owner_admin(self):
+        self.make_premium(self.webapp, price=self.price.price)
+        # Login as regular user
+        self.login(self.other)
+        owner_acct, api, user = self.setup_payment_acct(make_owner=True,
+                                                        user=self.other)
+        # Must be an app owner to change this.
+        assert self.is_owner(self.other)
+        # Associate account with app.
+        res = self.client.post(self.url,
+                  self.get_postdata({'accounts': owner_acct.pk,
+                                     'price': self.price.pk,
+                                     'regions': self.price_regions}),
+                                     follow=True)
+        self.assertNoFormErrors(res)
+        # Login as admin.
+        self.login(self.admin)
+        # Create an account as an admin.
+        admin_acct, api, admin_user = self.setup_payment_acct(make_owner=False,
+                                                              user=self.admin)
+        # Make sure not an owner.
+        assert not self.is_owner(self.admin)
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        pqr = pq(res.content)
+        # Payment field should be disabled.
+        eq_(len(pqr('#id_accounts[disabled]')), 1)
+        # Currently associated account should be displayed separately.
+        eq_(pqr('.current-account').text(), unicode(owner_acct))
 
 
 class TestRegions(amo.tests.TestCase):
@@ -551,7 +737,6 @@ class TestRegions(amo.tests.TestCase):
 
     def test_brazil_other_cats_form_enabled(self):
         r = self.client.get(self.url)
-
         td = pq(r.content)('#regions')
         eq_(td.find('div[data-disabled]').attr('data-disabled'), '[]')
         eq_(td.find('.note.disabled-regions').length, 0)

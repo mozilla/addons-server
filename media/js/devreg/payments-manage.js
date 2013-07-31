@@ -2,8 +2,9 @@ define('payments-manage', ['payments'], function(payments) {
     'use strict';
 
     function refreshAccountForm(data) {
-        var $accountListForm = $('#bango-account-list');
-        $accountListForm.load($accountListForm.data('url'));
+        var $accountListForm = $('#my-accounts-list');
+        var $accountListContainer = $('#bango-account-list');
+        $accountListForm.load($accountListContainer.data('url'));
     }
 
     function newBangoPaymentAccount(e) {

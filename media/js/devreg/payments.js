@@ -247,8 +247,11 @@ define('payments', [], function() {
             $free_island.toggle(tab.id == 'free-tab-header');
         });
 
-        $priceSelect.on('change', updatePrices);
-        updatePrices.call($priceSelect[0], false);
+        // Only update if we can edit. If the user can't edit all fields will be disabled.
+        if (!z.body.hasClass('no-edit')) {
+            $priceSelect.on('change', updatePrices);
+            updatePrices.call($priceSelect[0], false);
+        }
     }
 
     return {

@@ -443,25 +443,48 @@ class BangoAccountListForm(happyforms.Form):
 
         super(BangoAccountListForm, self).__init__(*args, **kwargs)
 
+        self.is_owner = None
+        if self.addon:
+            self.is_owner = self.addon.authors.filter(user=user,
+                addonuser__role=amo.AUTHOR_ROLE_OWNER).exists()
+
         self.fields['accounts'].queryset = PaymentAccount.objects.filter(
             user=user, inactive=False, agreed_tos=True)
 
+        if self.is_owner is False:
+            self.fields['accounts'].widget.attrs['disabled'] = ''
+
+        self.current_payment_account = None
         try:
-            current_account = AddonPaymentAccount.objects.get(addon=self.addon)
-            self.initial['accounts'] = (
-                PaymentAccount.objects.get(uri=current_account.account_uri))
-            self.fields['accounts'].empty_label = None
+            current_acct = AddonPaymentAccount.objects.get(addon=self.addon)
+            payment_account = PaymentAccount.objects.get(
+                uri=current_acct.account_uri)
+
+            # If this user owns this account then set initial otherwise
+            # we'll stash it on the form so we can display the non-owned
+            # current account separately.
+            if payment_account.user.pk == user.pk:
+                self.initial['accounts'] = payment_account
+                self.fields['accounts'].empty_label = None
+            else:
+                self.current_payment_account = payment_account
+
         except (AddonPaymentAccount.DoesNotExist, PaymentAccount.DoesNotExist):
             pass
 
     def clean_accounts(self):
+        accounts = self.cleaned_data.get('accounts')
         if (AddonPaymentAccount.objects.filter(addon=self.addon).exists() and
-            not self.cleaned_data.get('accounts')):
+            not accounts):
 
             raise forms.ValidationError(
                 _('You cannot remove a payment account from an app.'))
 
-        return self.cleaned_data.get('accounts')
+        if accounts and not self.is_owner:
+            raise forms.ValidationError(
+                _('You are not permitted to change payment accounts.'))
+
+        return accounts
 
     def save(self):
         if self.cleaned_data.get('accounts'):
