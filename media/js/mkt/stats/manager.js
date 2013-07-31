@@ -1,4 +1,6 @@
-var dbg = console.log;
+function dbg() {
+    window.console.log.apply(window.console, arguments);
+}
 
 z.hasPushState = (typeof history.replaceState === 'function');
 
