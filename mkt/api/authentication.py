@@ -111,6 +111,12 @@ class OAuthAuthentication(Authentication):
         request.API = True  # We can be pretty sure we are in the API.
         APIPinningMiddleware().process_request(request)
 
+        # Persist the user's language.
+        if (getattr(request, 'amo_user', None)
+            and request.amo_user.lang != request.LANG):
+            request.amo_user.lang = request.LANG
+            request.amo_user.save()
+
         # But you cannot have one of these roles.
         denied_groups = set(['Admins'])
         roles = set(request.amo_user.groups.values_list('name', flat=True))
