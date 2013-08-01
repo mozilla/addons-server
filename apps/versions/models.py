@@ -152,24 +152,12 @@ class Version(amo.models.ModelBase):
         if send_signal:
             version_uploaded.send(sender=v)
 
-        if addon.is_webapp() and addon.is_packaged:
-            if addon.status == amo.STATUS_BLOCKED:
-                # If packaged app and app is blocked, put in escalation queue.
-                # To avoid circular import.
-                from editors.models import EscalationQueue
-                EscalationQueue.objects.create(addon=addon)
-
-            if addon.status == amo.STATUS_NULL:
-                # If the app is still considered incomplete, and it has no
-                # more submission steps to go through, then update its status
-                # now that the files were added to the version.
-                try:
-                    step = addon.appsubmissionchecklist.get_next()
-                except ObjectDoesNotExist:
-                    step = None
-
-                if not step:
-                    addon.update_status()
+        # If packaged app and app is blocked, put in escalation queue.
+        if (addon.is_webapp() and addon.is_packaged and
+            addon.status == amo.STATUS_BLOCKED):
+            # To avoid circular import.
+            from editors.models import EscalationQueue
+            EscalationQueue.objects.create(addon=addon)
 
         return v
 
