@@ -682,6 +682,7 @@ class PackagedFilesMixin(amo.tests.AMOPaths):
 class TestPackagedModel(amo.tests.TestCase):
 
     @mock.patch.object(settings, 'SITE_URL', 'http://hy.fr')
+    @mock.patch('lib.crypto.packaged.os.unlink', new=mock.Mock)
     def test_create_blocklisted_version(self):
         app = app_factory(name='Mozillaball ょ', app_slug='test',
                           is_packaged=True, version_kw={'version': '1.0',
