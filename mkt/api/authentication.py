@@ -112,8 +112,9 @@ class OAuthAuthentication(Authentication):
         APIPinningMiddleware().process_request(request)
 
         # Persist the user's language.
-        if (getattr(request, 'amo_user', None)
-            and request.amo_user.lang != request.LANG):
+        if (getattr(request, 'amo_user', None) and
+            getattr(request, 'LANG', None) and
+            request.amo_user.lang != request.LANG):
             request.amo_user.lang = request.LANG
             request.amo_user.save()
 
@@ -177,8 +178,9 @@ class SharedSecretAuthentication(Authentication):
                     return False
 
                 # Persist the user's language.
-                if (getattr(request, 'amo_user', None)
-                    and request.amo_user.lang != request.LANG):
+                if (getattr(request, 'amo_user', None) and
+                    getattr(request, 'LANG', None) and
+                    request.amo_user.lang != request.LANG):
                     request.amo_user.lang = request.LANG
                     request.amo_user.save()
 
