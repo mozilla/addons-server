@@ -7,6 +7,7 @@ import subprocess
 from collections import defaultdict
 
 from django.conf import settings
+from django.contrib.auth.models import AnonymousUser
 from django.core.files.storage import default_storage as storage
 from django.db.utils import IntegrityError
 from django.forms import ValidationError
@@ -307,6 +308,7 @@ def dump_app(id, **kw):
         return
 
     req = RequestFactory().get('/')
+    req.user = AnonymousUser()
     req.REGION = WORLDWIDE
 
     if not os.path.exists(target_dir):

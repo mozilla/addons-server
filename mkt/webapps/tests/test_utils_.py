@@ -1,5 +1,6 @@
 from decimal import Decimal
 
+from django.contrib.auth.models import AnonymousUser
 from django.test.utils import override_settings
 
 import mock
@@ -191,6 +192,19 @@ class TestAppToDictPrices(amo.tests.TestCase):
 
         req = RequestFactory().get('/')
         req.user = self.profile.user
+        with self.settings(PURCHASE_ENABLED_REGIONS=[]):
+            res = app_to_dict(self.app, region=regions.US.id, request=req)
+        eq_(res['price'], Decimal('0.99'))
+        eq_(res['price_locale'], '$0.99')
+        eq_(res['payment_required'], True)
+
+    def test_waffle_fallback_anon(self):
+        flag = waffle.models.Flag.objects.get(name='allow-paid-app-search')
+        flag.everyone = True
+        flag.save()
+        self.make_premium(self.app, price='0.99')
+        req = RequestFactory().get('/')
+        req.user = AnonymousUser()
         with self.settings(PURCHASE_ENABLED_REGIONS=[]):
             res = app_to_dict(self.app, region=regions.US.id, request=req)
         eq_(res['price'], Decimal('0.99'))
