@@ -85,3 +85,20 @@ Now re-install PIL::
 And you should see the necessary image libraries are now working with
 PIL correctly.
 
+
+ES is timing out
+----------------
+
+This can be caused by ``number_of_replicas`` not being set to 0 for the local indexes.
+
+To check the settings run::
+
+    curl -s localhost:9200/_cluster/state\?pretty | fgrep number_of_replicas -B 5
+
+If you see any that aren't 0  do the following:
+
+Set ``ES_DEFAULT_NUM_REPLICAS`` to ``0`` in your local settings.
+
+To set them to zero immediately run::
+
+    curl -XPUT localhost:9200/_settings -d '{ "index" : { "number_of_replicas" : 0 } }'
