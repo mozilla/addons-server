@@ -719,7 +719,7 @@ def app_abuse(request, addon):
 def get_signed_packaged(request, addon, version_id):
     version = get_object_or_404(addon.versions, pk=version_id)
     file = version.all_files[0]
-    path = addon.sign_if_packaged(version_id, reviewer=True)
+    path = addon.sign_if_packaged(version.pk, reviewer=True)
     if not path:
         raise http.Http404
     log.info('Returning signed package addon: %s, version: %s, path: %s' %

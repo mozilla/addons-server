@@ -2258,6 +2258,13 @@ class TestGetSigned(BasePackagedAppTest, amo.tests.TestCase):
         self.client.login(username='regular@mozilla.com', password='password')
         eq_(self.client.get(self.url).status_code, 403)
 
+    @mock.patch('lib.crypto.packaged.sign')
+    def test_reviewer_sign_arguments(self, sign_mock):
+        self.setup_files()
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        sign_mock.assert_called_with(self.version.pk, reviewer=True)
+
     @mock.patch.object(packaged, 'sign', mock_sign)
     def test_reviewer(self):
         if not settings.XSENDFILE:
