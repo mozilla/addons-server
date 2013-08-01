@@ -107,6 +107,7 @@ class PackagedApp(amo.tests.TestCase, amo.tests.AMOPaths):
                             self.file.file_path)
 
 
+@mock.patch('lib.crypto.packaged.os.unlink', new=mock.Mock)
 class TestPackaged(PackagedApp, amo.tests.TestCase):
 
     def setUp(self):

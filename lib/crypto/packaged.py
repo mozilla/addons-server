@@ -2,7 +2,6 @@ import json
 import os
 import shutil
 import tempfile
-import zipfile
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
