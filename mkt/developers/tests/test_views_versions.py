@@ -370,6 +370,7 @@ class TestVersionPackaged(amo.tests.WebappTestCase):
         res = self.client.post(url)
         eq_(res.status_code, 403)
 
+    @mock.patch('lib.crypto.packaged.os.unlink', new=mock.Mock)
     def test_admin_can_blocklist(self):
         self.grant_permission(UserProfile.objects.get(username='regularuser'),
                               'Apps:Configure')
