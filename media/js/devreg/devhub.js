@@ -174,11 +174,19 @@ $(document).ready(function() {
             $('.upload-details .hint').hide();
         })
         .bind('upload_errors', function(e, r) {
-            var v = r.validation,
+            var v = r.validation;
+            var error_message;
+            var non_error_count = v.warnings + v.notices;
+            if (v.errors && !non_error_count)
                 error_message = format(ngettext(
                     "Your app failed validation with {0} error.",
                     "Your app failed validation with {0} errors.",
                     v.errors), [v.errors]);
+            else if (v.errors && non_error_count)
+                error_message = format(ngettext(
+                    "Your app failed validation with {0} error and {1} message(s).",
+                    "Your app failed validation with {0} errors and {1} message(s).",
+                    v.errors), [v.errors, non_error_count]);
 
             $(this).trigger('upload_finished', [false, r, error_message]);
             $validate_button.removeClass('disabled');
