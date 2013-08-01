@@ -642,11 +642,16 @@ def email_devs(request):
 
         if data['recipients'] == 'eula':
             qs = qs.exclude(addon__eula=None)
-        elif data['recipients'] == 'payments':
+        elif data['recipients'] in ('payments',
+                                    'payments_region_enabled',
+                                    'payments_region_disabled'):
             qs = qs.filter(addon__type=amo.ADDON_WEBAPP)
-            qs = qs.exclude(addon__paypal_id=None)
             qs = qs.exclude(addon__premium_type__in=(amo.ADDON_FREE,
                                                      amo.ADDON_OTHER_INAPP))
+            if data['recipients'] == 'payments_region_enabled':
+                qs = qs.filter(addon__enable_new_regions=True)
+            elif data['recipients'] == 'payments_region_disabled':
+                qs = qs.filter(addon__enable_new_regions=False)
         elif data['recipients'] == 'apps':
             qs = qs.filter(addon__type=amo.ADDON_WEBAPP)
         elif data['recipients'] == 'desktop_apps':
