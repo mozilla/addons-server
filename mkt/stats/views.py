@@ -12,7 +12,7 @@ import waffle
 
 from access import acl
 import amo
-from amo.decorators import json_view, login_required
+from amo.decorators import json_view, login_required, permission_required
 from amo.urlresolvers import reverse
 from lib.metrics import get_monolith_client
 from mkt.inapp_pay.models import InappPayment
@@ -512,6 +512,7 @@ def fake_app_stats(request, addon, group, start, end, format):
     return faked
 
 
+@permission_required('Stats', 'View')
 def overall(request, report):
     view = get_report_view(request)
     return jingo.render(request, 'sitestats/stats.html', {'report': report,

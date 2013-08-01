@@ -442,6 +442,7 @@ class TestPadMissingStats(amo.tests.ESTestCase):
 
 
 class TestOverall(amo.tests.TestCase):
+    fixtures = fixture('user_999')
 
     def setUp(self):
         self.keys = ['apps_count_new', 'apps_count_installed',
@@ -465,3 +466,14 @@ class TestOverall(amo.tests.TestCase):
             content = json.loads(res.content)
             eq_(content[0]['date'], '2009-06-12')
             eq_(content[0]['count'], 1)
+
+    def test_stats_view_perm(self):
+        assert self.client.login(username='regular@mozilla.com',
+                                 password='password')
+        res = self.client.get(reverse('mkt.stats.apps_count_new'))
+        eq_(res.status_code, 403)
+
+        self.grant_permission(
+            UserProfile.objects.get(username='regularuser'), 'Stats:View')
+        res = self.client.get(reverse('mkt.stats.apps_count_new'))
+        eq_(res.status_code, 200)
