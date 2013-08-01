@@ -175,6 +175,13 @@ class SharedSecretAuthentication(Authentication):
                 except UserProfile.DoesNotExist:
                     log.info('Auth token matches absent user (%s)' % email)
                     return False
+
+                # Persist the user's language.
+                if (getattr(request, 'amo_user', None)
+                    and request.amo_user.lang != request.LANG):
+                    request.amo_user.lang = request.LANG
+                    request.amo_user.save()
+
                 ACLMiddleware().process_request(request)
             else:
                 log.info('Shared-secret auth token does not match')
