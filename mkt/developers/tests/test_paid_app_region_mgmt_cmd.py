@@ -58,8 +58,7 @@ class TestRegionManagmentCommand(amo.tests.TestCase):
         app = Webapp.objects.get(id=337141)
         app.update(premium_type=amo.ADDON_PREMIUM)
         price = Price.objects.get(id=1)
-        AddonPremium.objects.create(addon=app,
-                                    price=price)
+        AddonPremium.objects.create(addon=app, price=price)
         AER.objects.create(addon=app, region=WORLDWIDE.id)
         eq_(len(AER.objects.all()), 1)
         call_command('check_paid_app_regions', app.app_slug,
@@ -71,12 +70,11 @@ class TestRegionManagmentCommand(amo.tests.TestCase):
         app = Webapp.objects.get(id=337141)
         app.update(premium_type=amo.ADDON_PREMIUM)
         price = Price.objects.get(id=1)
-        AddonPremium.objects.create(addon=app,
-                                    price=price)
+        AddonPremium.objects.create(addon=app, price=price)
         eq_(len(AER.objects.all()), 0)
         call_command('check_paid_app_regions', app.app_slug,
                      exclude_region_id=WORLDWIDE.id)
-        eq_(AER.objects.get(addon=app).id, WORLDWIDE.id)
+        eq_(AER.objects.get(addon=app).region, WORLDWIDE.id)
 
     @patch('sys.stdout', new_callable=StringIO)
     @patch('mkt.developers.forms.ALL_PAID_REGION_IDS', new=[PL.id, US.id])
