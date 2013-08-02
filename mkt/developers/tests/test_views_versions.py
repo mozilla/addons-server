@@ -134,6 +134,7 @@ class TestVersion(amo.tests.TestCase):
         eq_(doc('#rejection blockquote').text(), comments)
 
 
+@mock.patch('mkt.webapps.tasks.update_cached_manifests.delay', new=mock.Mock)
 class TestAddVersion(BasePackagedAppTest):
 
     def setUp(self):
@@ -150,9 +151,7 @@ class TestAddVersion(BasePackagedAppTest):
         eq_(res.status_code, expected_status)
         return res
 
-    @mock.patch('mkt.webapps.models.Webapp.get_manifest_json')
-    def test_post(self, _mock):
-        _mock.return_value = {}
+    def test_post(self):
         self.app.current_version.update(version='0.9',
                                         created=self.days_ago(1))
         self._post(302)
@@ -165,27 +164,22 @@ class TestAddVersion(BasePackagedAppTest):
         self.assertFormError(res, 'upload_form', 'upload',
                              'Version 1.0 already exists')
 
-    @mock.patch('mkt.webapps.models.Webapp.get_manifest_json')
-    def test_pending_on_new_version(self, _mock):
+    def test_pending_on_new_version(self):
         # Test app rejection, then new version, updates app status to pending.
-        _mock.return_value = {}
         self.app.current_version.update(version='0.9',
                                         created=self.days_ago(1))
         self.app.update(status=amo.STATUS_REJECTED)
         files = File.objects.filter(version__addon=self.app)
         files.update(status=amo.STATUS_DISABLED)
         self._post(302)
+        self.app.reload()
         version = self.app.versions.latest()
         eq_(version.version, '1.0')
         eq_(version.all_files[0].status, amo.STATUS_PENDING)
-        self.app.update_status()
         eq_(self.app.status, amo.STATUS_PENDING)
 
     @mock.patch('mkt.developers.views.run_validator')
-    @mock.patch('mkt.webapps.models.Webapp.get_manifest_json')
-    def test_prefilled_features(self, get_manifest_json_,
-                                run_validator_):
-        get_manifest_json_.return_value = {}
+    def test_prefilled_features(self, run_validator_):
         run_validator_.return_value = '{"feature_profile": ["apps", "audio"]}'
 
         self.app.current_version.update(version='0.9',
@@ -218,6 +212,19 @@ class TestAddVersion(BasePackagedAppTest):
         eq_(self.app.status, amo.STATUS_BLOCKED)
         assert EscalationQueue.objects.filter(addon=self.app).exists(), (
             'App not in escalation queue')
+
+    def test_new_version_when_incomplete(self):
+        self.app.current_version.update(version='0.9',
+                                        created=self.days_ago(1))
+        self.app.update(status=amo.STATUS_NULL)
+        files = File.objects.filter(version__addon=self.app)
+        files.update(status=amo.STATUS_DISABLED)
+        self._post(302)
+        self.app.reload()
+        version = self.app.versions.latest()
+        eq_(version.version, '1.0')
+        eq_(version.all_files[0].status, amo.STATUS_PENDING)
+        eq_(self.app.status, amo.STATUS_PENDING)
 
 
 class TestEditVersion(amo.tests.TestCase):

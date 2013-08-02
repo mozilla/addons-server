@@ -218,6 +218,9 @@ def status(request, addon_id, addon, webapp=False):
             ver = Version.from_upload(upload_form.cleaned_data['upload'],
                                       addon, [amo.PLATFORM_ALL])
 
+            # Update addon status now that the new version was saved.
+            addon.update_status()
+
             res = run_validator(ver.all_files[0].file_path)
             validation_result = json.loads(res)
 
