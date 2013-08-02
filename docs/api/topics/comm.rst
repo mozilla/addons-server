@@ -95,6 +95,25 @@ Thread
     :param recent_notes: contain 5 recently created notes.
     :type recent_notes: array
 
+.. _note-patch-label:
+
+.. http:patch:: /api/v1/comm/thread/(int:thread_id)/
+
+    .. note:: Requires authentication.
+
+    This endpoint can be used to mark all notes in a thread as read.
+
+    **Request**
+
+    :param is_read: set it to `true` to mark the note as read.
+    :type param: boolean
+
+    **Response**
+
+    :status code: 204 Thread is marked as read.
+    :status code: 403 There is an attempt to modify other fields or not allowed to access the object.
+    :status code: 400 Thread object not found.
+
 .. _thread-post-label:
 
 .. http:post:: /api/v1/comm/thread/
@@ -211,6 +230,25 @@ Note
         6 - Reviewer Comment
 
         7 - Resubmission
+
+.. _note-patch-label:
+
+.. http:patch:: /api/v1/comm/thread/(int:thread_id)/note/(int:id)/
+
+    .. note:: Requires authentication.
+
+    This endpoint can be used to mark an unread note as read.
+
+    **Request**
+
+    :param is_read: set it to `true` to mark the note as read.
+    :type param: boolean
+
+    **Response**
+
+    :status code: 204 Note marked as read.
+    :status code: 403 There is an attempt to modify other fields or not allowed to access the object.
+    :status code: 400 Note object not found.
 
 .. _note-post-label:
 

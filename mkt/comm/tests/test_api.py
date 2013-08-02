@@ -105,6 +105,20 @@ class TestThreadDetail(RestOAuth):
                                       kwargs={'pk': thread.pk}))
         self.assertCORS(res, 'get', 'post')
 
+    def test_mark_read(self):
+        thread = CommunicationThread.objects.create(addon=self.addon)
+        n1 = CommunicationNote.objects.create(author=self.profile,
+            thread=thread, note_type=0, body='something')
+        n2 = CommunicationNote.objects.create(author=self.profile,
+            thread=thread, note_type=0, body='something2')
+
+        res = self.client.patch(reverse('comm-thread-detail',
+                                        kwargs={'pk': thread.pk}),
+                                data=json.dumps({'is_read': True}))
+        eq_(res.status_code, 204)
+        assert n1.read_by_users.filter(user=self.profile).exists()
+        assert n2.read_by_users.filter(user=self.profile).exists()
+
 
 class TestThreadList(RestOAuth):
     fixtures = fixture('webapp_337141', 'user_2519')
@@ -209,7 +223,7 @@ class TestNote(RestOAuth):
 
     def test_cors_allowed(self):
         res = self.client.get(self.list_url)
-        self.assertCORS(res, 'get', 'post', 'delete')
+        self.assertCORS(res, 'get', 'post', 'delete', 'patch')
 
     def test_reply_list(self):
         note = CommunicationNote.objects.create(author=self.profile,
@@ -227,12 +241,24 @@ class TestNote(RestOAuth):
         note = CommunicationNote.objects.create(author=self.profile,
             thread=self.thread, note_type=0, body='something')
         res = self.client.post(reverse('comm-note-replies-list',
-                                      kwargs={'thread_id': self.thread.id,
-                                              'note_id': note.id}),
+                                       kwargs={'thread_id': self.thread.id,
+                                               'note_id': note.id}),
                                data=json.dumps({'note_type': '0',
                                                 'body': 'something'}))
         eq_(res.status_code, 201)
         eq_(note.replies.count(), 1)
+
+
+    def test_mark_read(self):
+        note = CommunicationNote.objects.create(author=self.profile,
+            thread=self.thread, note_type=0, body='something')
+        CommunicationNoteRead.objects.create(user=self.profile, note=note)
+        res = self.client.patch(reverse('comm-note-detail',
+                                        kwargs={'thread_id': self.thread.id,
+                                                'pk': note.id}),
+                                data=json.dumps({'is_read': True}))
+        eq_(res.status_code, 204)
+        assert note.read_by_users.filter(user=self.profile).exists()
 
 
 class TestEmailApi(RestOAuth):
@@ -266,7 +292,7 @@ class TestEmailApi(RestOAuth):
 
     @mock.patch('comm.tasks.consume_email.apply_async')
     def test_response(self, _mock):
-        res = post_email(self.get_request({'email_body': 'something'}))
+        res = post_email(self.get_request({'body': 'something'}))
         _mock.assert_called_with(('something',))
         eq_(res.status_code, 201)
 

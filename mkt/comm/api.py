@@ -3,6 +3,7 @@ from django.db.models import Q
 from django.http import Http404
 from django.shortcuts import get_object_or_404
 
+from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.exceptions import PermissionDenied, ParseError
 from rest_framework.fields import BooleanField, CharField
@@ -15,29 +16,15 @@ from rest_framework.serializers import ModelSerializer, SerializerMethodField
 
 from addons.models import Addon
 from users.models import UserProfile
-from comm.models import CommunicationNote, CommunicationThread
-from comm.tasks import consume_email
+from comm.models import (CommunicationNote, CommunicationNoteRead,
+                         CommunicationThread)
+from comm.tasks import consume_email, mark_thread_read
 from comm.utils import filter_notes_by_read_status, ThreadObjectPermission
 from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.base import CORSViewSet
 from mkt.webpay.forms import PrepareForm
 from rest_framework.response import Response
-
-
-class PatchSerializerViewSet(CORSViewSet):
-    """
-    Overrides `get_serializer_class` to patch the serializer class
-    with a method to access the request object within the serializer methods.
-    """
-    def patched_get_request(self):
-        return lambda x: self.request
-
-    def get_serializer_class(self):
-        original = super(PatchSerializerViewSet, self).get_serializer_class()
-        original.get_request = self.patched_get_request()
-
-        return original
 
 
 class AuthorSerializer(ModelSerializer):
@@ -148,8 +135,57 @@ class NotePermission(ThreadPermission):
             obj.thread)
 
 
+class EmailCreationPermission(object):
+    """Permit if client's IP address is whitelisted."""
+
+    def has_permission(self, request, view):
+        remote_ip = request.META.get('REMOTE_ADDR')
+        return remote_ip and (
+            remote_ip in settings.WHITELISTED_CLIENTS_EMAIL_API)
+
+
+class ReadUnreadFilter(BaseFilterBackend):
+    filter_param = 'show_read'
+
+    def filter_queryset(self, request, queryset, view):
+        """
+        Return only read notes if `show_read=true` is truthy and only unread
+        notes if `show_read=false.
+        """
+        val = request.GET.get('show_read')
+        if val is None:
+            return queryset
+
+        show_read = BooleanField().from_native(val)
+        return filter_notes_by_read_status(queryset, request.amo_user,
+                                           show_read)
+
+
+class CommViewSet(CORSViewSet):
+    """Some overriding and mixin stuff to adapt other viewsets."""
+
+    def patched_get_request(self):
+        return lambda x: self.request
+
+    def get_serializer_class(self):
+        original = super(CommViewSet, self).get_serializer_class()
+        original.get_request = self.patched_get_request()
+
+        return original
+
+    def partial_update(self, request, *args, **kwargs):
+        val = BooleanField().from_native(request.DATA.get('is_read'))
+
+        if val:
+            self.mark_as_read(request.amo_user)
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        else:
+            return Response('Requested update operation not supported',
+                status=status.HTTP_403_FORBIDDEN)
+
+
 class ThreadViewSet(ListModelMixin, RetrieveModelMixin, DestroyModelMixin,
-                    CreateModelMixin, PatchSerializerViewSet):
+                    CreateModelMixin, CommViewSet):
     model = CommunicationThread
     serializer_class = ThreadSerializer
     authentication_classes = (RestOAuthAuthentication,
@@ -187,32 +223,19 @@ class ThreadViewSet(ListModelMixin, RetrieveModelMixin, DestroyModelMixin,
         self.queryset = queryset
         return ListModelMixin.list(self, request)
 
-
-class ReadUnreadFilter(BaseFilterBackend):
-    filter_param = 'show_read'
-
-    def filter_queryset(self, request, queryset, view):
-        """
-        Return only read notes if `show_read=true` is truthy and only unread
-        notes if `show_read=false.
-        """
-        val = request.GET.get(self.filter_param)
-        if val is None:
-            return queryset
-
-        return filter_notes_by_read_status(queryset, request.amo_user,
-                                           BooleanField().from_native(val))
+    def mark_as_read(self, profile):
+        mark_thread_read(self.get_object(), profile)
 
 
 class NoteViewSet(ListModelMixin, CreateModelMixin, RetrieveModelMixin,
-                  DestroyModelMixin, PatchSerializerViewSet):
+                  DestroyModelMixin, CommViewSet):
     model = CommunicationNote
     serializer_class = NoteSerializer
     authentication_classes = (RestOAuthAuthentication,
                               RestSharedSecretAuthentication,)
     permission_classes = (NotePermission,)
     filter_backends = (OrderingFilter, ReadUnreadFilter)
-    cors_allowed_methods = ['get', 'post', 'delete']
+    cors_allowed_methods = ['get', 'post', 'delete', 'patch']
 
     def get_queryset(self):
         return CommunicationNote.objects.filter(thread=self.comm_thread)
@@ -234,31 +257,19 @@ class NoteViewSet(ListModelMixin, CreateModelMixin, RetrieveModelMixin,
         return super(NoteViewSet, self).get_serializer(data=data_dict,
             files=files, instance=instance, many=many, partial=partial)
 
-    def pre_save(self, obj):
-        """Inherit permissions from the thread."""
+    def inherit_permissions(self, obj, parent):
         for key in ('developer', 'reviewer', 'senior_reviewer',
                     'mozilla_contact', 'staff'):
             perm = 'read_permission_%s' % key
-            setattr(obj, perm, getattr(self.comm_thread, perm))
+            setattr(obj, perm, getattr(parent, perm))
 
+    def pre_save(self, obj):
+        """Inherit permissions from the thread."""
+        self.inherit_permissions(obj, self.comm_thread)
 
-class EmailCreationPermission(object):
-    def has_permission(self, request, view):
-        remote_ip = request.META.get('REMOTE_ADDR')
-        return remote_ip and (
-            remote_ip in settings.WHITELISTED_CLIENTS_EMAIL_API)
-
-
-@api_view(['POST'])
-@permission_classes((EmailCreationPermission,))
-def post_email(request):
-    email_body = request.POST.get('email_body')
-    if not email_body:
-        raise ParseError(
-            detail='email_body not present in the POST data.')
-
-    consume_email.apply_async((email_body,))
-    return Response(status=201)
+    def mark_as_read(self, profile):
+        CommunicationNoteRead.objects.get_or_create(note=self.get_object(),
+            user=profile)
 
 
 class ReplyViewSet(NoteViewSet):
@@ -267,7 +278,6 @@ class ReplyViewSet(NoteViewSet):
     def initialize_request(self, request, *args, **kwargs):
         self.parent_note = get_object_or_404(CommunicationNote,
                                              id=kwargs['note_id'])
-
         return super(ReplyViewSet, self).initialize_request(request, *args,
                                                             **kwargs)
 
@@ -276,9 +286,17 @@ class ReplyViewSet(NoteViewSet):
 
     def pre_save(self, obj):
         """Inherit permissions from the parent note."""
-        for key in ('developer', 'reviewer', 'senior_reviewer',
-                    'mozilla_contact', 'staff'):
-            perm = 'read_permission_%s' % key
-            setattr(obj, perm, getattr(self.parent_note, perm))
-
+        self.inherit_permissions(obj, self.parent_note)
         obj.reply_to = self.parent_note
+
+
+@api_view(['POST'])
+@permission_classes((EmailCreationPermission,))
+def post_email(request):
+    email_body = request.POST.get('body')
+    if not email_body:
+        raise ParseError(
+            detail='email_body not present in the POST data.')
+
+    consume_email.apply_async((email_body,))
+    return Response(status=201)

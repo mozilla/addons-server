@@ -61,7 +61,7 @@ class CommunicationNote(CommunicationPermissionModel):
         self.thread.save()
 
 
-class CommunicationNoteRead(amo.models.ModelBase):
+class CommunicationNoteRead(models.Model):
     user = models.ForeignKey('users.UserProfile')
     note = models.ForeignKey(CommunicationNote)
 

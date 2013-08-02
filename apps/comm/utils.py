@@ -139,4 +139,4 @@ def filter_notes_by_read_status(queryset, profile, read_status=True):
         return queryset.filter(pk__in=notes) if notes else queryset.none()
     else:
         # Exclude read notes if they exist.
-        return queryset.exclude(pk__in=notes) if notes else queryset
+        return queryset.exclude(pk__in=notes) if notes else queryset.all()
