@@ -151,11 +151,22 @@ def resize_preview(src, instance, **kw):
     sizes = {}
     log.info('[1@None] Resizing preview and storing size: %s' % thumb_dst)
     try:
+        thumbnail_size = APP_PREVIEW_SIZES[0][:2]
+        image_size = APP_PREVIEW_SIZES[1][:2]
+        with storage.open(src, 'rb') as fp:
+            size = Image.open(fp).size
+        if size[0] > size[1]:
+            # If the image is wider than tall, then reverse the wanted size
+            # to keep the original aspect ratio while still resizing to
+            # the correct dimensions.
+            thumbnail_size = thumbnail_size[::-1]
+            image_size = image_size[::-1]
+
         sizes['thumbnail'] = resize_image(src, thumb_dst,
-                                          APP_PREVIEW_SIZES[0][:2],
+                                          thumbnail_size,
                                           remove_src=False)
         sizes['image'] = resize_image(src, full_dst,
-                                      APP_PREVIEW_SIZES[1][:2],
+                                      image_size,
                                       remove_src=False)
         instance.sizes = sizes
         instance.save()

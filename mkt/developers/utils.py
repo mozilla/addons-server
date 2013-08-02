@@ -96,11 +96,13 @@ def check_upload(file_obj, upload_type, content_type):
 
             elif is_preview:
                 if (size_x < APP_PREVIEW_MINIMUMS[0] or
-                    size_y < APP_PREVIEW_MINIMUMS[1]):
+                    size_y < APP_PREVIEW_MINIMUMS[1]) and (
+                        size_x < APP_PREVIEW_MINIMUMS[1] or
+                        size_y < APP_PREVIEW_MINIMUMS[0]):
                     errors.append(
                         # L10n: {0} and {1} are the height/width of the preview
                         # in px.
-                        _('App previews must be at least {0}px by {1}px.')
-                            .format(*APP_PREVIEW_MINIMUMS))
+                        _('App previews must be at least {0}px by {1}px or '
+                          '{1}px by {0}px.').format(*APP_PREVIEW_MINIMUMS))
 
     return errors, upload_hash

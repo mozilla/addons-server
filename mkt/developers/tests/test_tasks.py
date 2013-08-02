@@ -18,6 +18,7 @@ from PIL import Image
 
 import amo
 import amo.tests
+from addons.models import Preview
 from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
 from amo.utils import ImageCheck
@@ -26,6 +27,7 @@ from files.models import FileUpload
 import mkt
 from mkt.constants import APP_IMAGE_SIZES
 from mkt.developers import tasks
+from mkt.site.fixtures import fixture
 from mkt.submit.tests.test_views import BaseWebAppTest
 from mkt.webapps.models import AddonExcludedRegion as AER, ImageAsset, Webapp
 
@@ -260,6 +262,36 @@ class TestGenerateImageAssets(amo.tests.TestCase):
             im = Image.open(fp)
             im.load()
         eq_(tasks.get_hue(im), 42)
+
+
+class TestResizePreview(amo.tests.TestCase):
+    fixtures = fixture('webapp_337141')
+
+    def test_preview(self):
+        addon = Webapp.objects.get(pk=337141)
+        preview = Preview.objects.create(addon=addon, caption='Test')
+        src = get_image_path('preview.jpg')
+        tasks.resize_preview(src, preview)
+        preview = preview.reload()
+        eq_(preview.image_size, [400, 533])
+        eq_(preview.thumbnail_size, [180, 240])
+        eq_(preview.is_landscape, False)
+        with storage.open(preview.thumbnail_path) as fp:
+            im = Image.open(fp)
+            eq_(list(im.size), [180, 240])
+
+    def test_preview_rotated(self):
+        addon = Webapp.objects.get(pk=337141)
+        preview = Preview.objects.create(addon=addon, caption='Test')
+        src = get_image_path('preview_landscape.jpg')
+        tasks.resize_preview(src, preview)
+        preview = preview.reload()
+        eq_(preview.image_size, [533, 400])
+        eq_(preview.thumbnail_size, [240, 180])
+        eq_(preview.is_landscape, True)
+        with storage.open(preview.thumbnail_path) as fp:
+            im = Image.open(fp)
+            eq_(list(im.size), [240, 180])
 
 
 class TestFetchManifest(amo.tests.TestCase):

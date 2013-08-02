@@ -574,6 +574,14 @@ function initUploadPreview() {
                 '<video controls class="preview-thumb loading" src="{0}" ' +
                 'preload="auto" type="video/webm"></video>', file.dataURL));
         } else {
+            var img = new Image();
+            img.onload = function() {
+                if (img.src && img.width > img.height) {
+                    $thumb.addClass('preview-thumb-rotated');
+                }
+                img.src = null;
+            };
+            img.src = file.dataURL;
             $thumb.css('background-image', 'url(' + file.dataURL + ')');
         }
         renumberPreviews();

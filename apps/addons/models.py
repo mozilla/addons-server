@@ -2131,6 +2131,13 @@ class Preview(amo.models.ModelBase):
         return d
 
     @property
+    def is_landscape(self):
+        size = self.image_size
+        if not size:
+            return False
+        return size[0] > size[1]
+
+    @property
     def file_extension(self):
         # Assume that blank is an image.
         if not self.filetype:

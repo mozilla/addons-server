@@ -156,7 +156,7 @@
           {{ required() if editable }}
         </th>
         {% endif %}
-        <td class="edit-previews-readonly">
+        <td{% if not editable %} class="edit-previews-readonly"{% endif %}>
           {% if context == 'submit' %}
           <label>
             {{ _('Please provide at least one screenshot or video of your app:') }}
@@ -173,7 +173,7 @@
                   <div class="preview c">
                     <span class="handle">&nbsp;</span>
                     {% if form.instance.id %}
-                      <div class="preview-thumb" style="background-image:url({{ form.instance.thumbnail_url }})">
+                      <div class="preview-thumb{% if form.instance.is_landscape %} preview-thumb-landscape{% endif%}" style="background-image:url({{ form.instance.thumbnail_url }})">
                       </div>
                     {% else %}
                       <div class="preview-thumb"></div>
@@ -213,7 +213,7 @@
             {% set previews = addon.get_previews() %}
             {% call empty_unless(previews) %}
               {% for preview in previews %}
-                <div class="preview-thumb" data-url="{{ preview.thumbnail_url }}"
+                <div class="preview-thumb{% if preview.is_landscape %} preview-thumb-landscape{% endif%}" data-url="{{ preview.thumbnail_url }}"
                      style="background-image:url({{ preview.thumbnail_url }})"></div>
               {% endfor %}
             {% endcall %}

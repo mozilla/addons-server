@@ -84,6 +84,11 @@
     width: 80px;
 }
 
+.preview-thumb-landscape {
+    height: 80px;
+    width: 120px;
+}
+
 .preview-error {
     background: #040204 url(../../img/zamboni/loading.gif) no-repeat 50% 50%;
     opacity: .5;
@@ -124,8 +129,13 @@
     }
 }
 
-.edit-previews-readonly .preview-thumb {
-    margin-right: 10px;
+.edit-previews-readonly {
+    .preview-thumb {
+        margin-right: 10px;
+    }
+    .preview-thumb-landscape {
+        margin-top: 20px;
+    }
 }
 
 .addon-submission-process table td {
