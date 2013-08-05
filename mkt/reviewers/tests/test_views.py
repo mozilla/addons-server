@@ -146,6 +146,16 @@ class TestReviewersHome(AppReviewerTest, AccessMixin):
         rq = RereviewQueue.objects.create(addon=rereviewed)
         rq.update(created=self.days_ago(5))
 
+        # Add an app with latest update deleted. It shouldn't affect anything.
+        app = app_factory(name='Great White Shark',
+                          status=amo.STATUS_PUBLIC,
+                          version_kw={'version': '1.0'},
+                          is_packaged=True)
+        v = version_factory(addon=app,
+                        version='2.1',
+                        file_kw={'status': amo.STATUS_PENDING})
+        v.update(deleted=True)
+
     def test_stats_waiting(self):
         self.apps[0].update(created=self.days_ago(1))
         self.apps[1].update(created=self.days_ago(5))

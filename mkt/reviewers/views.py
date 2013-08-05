@@ -159,6 +159,7 @@ def _progress():
                                version__addon__disabled_by_user=False,
                                version__addon__is_packaged=True,
                                version__addon__status__in=public_statuses,
+                               version__deleted=False,
                                status=amo.STATUS_PENDING)
     }
 
