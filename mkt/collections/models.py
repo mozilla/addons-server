@@ -22,7 +22,7 @@ class Collection(amo.models.ModelBase):
 
     def apps(self):
         """
-        Return a QuerySet containing all apps in this collection.
+        Return a list containing all apps in this collection.
         """
         return [a.app for a in self.collectionmembership_set.all()]
 
@@ -43,10 +43,9 @@ class Collection(amo.models.ModelBase):
         collection.
         """
         if not order:
-            qs = CollectionMembership.objects.filter(collection=self,
-                                                     app=app)
+            qs = CollectionMembership.objects.filter(collection=self)
             aggregate = qs.aggregate(Max('order'))['order__max']
-            order = aggregate + 1 if aggregate else 0
+            order = aggregate + 1 if aggregate else 1
         return CollectionMembership.objects.create(collection=self, app=app,
                                                    order=order)
 

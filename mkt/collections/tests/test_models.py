@@ -1,5 +1,4 @@
 from django.core.urlresolvers import reverse
-from django.db.models import Max
 
 from nose.tools import eq_
 
@@ -23,31 +22,39 @@ class TestCollection(amo.tests.TestCase):
         for name, value in self.collection_data.iteritems():
             eq_(self.collection_data[name], getattr(self.collection, name))
 
-    def test_add_app(self, app=None, order=None):
-        if not app:
-            app = self.apps[0]
-        added = self.collection.add_app(app, order=order)
-        if not order:
-            aggregate = CollectionMembership.objects.aggregate(Max('order'))
-            eq_(added.order, aggregate['order__max'])
-        else:
-            eq_(added.order, order)
-        eq_(added.app, app)
+    def test_add_app_order_override(self):
+        added = self.collection.add_app(self.apps[1], order=3)
+        eq_(added.order, 3)
+        eq_(added.app, self.apps[1])
         eq_(added.collection, self.collection)
 
-    def test_add_app_order_override(self):
-        self.test_add_app(app=self.apps[1], order=3)
-        self.test_add_app(app=self.apps[2], order=1)
+        added = self.collection.add_app(self.apps[2], order=1)
+        eq_(added.order, 1)
+        eq_(added.app, self.apps[2])
+        eq_(added.collection, self.collection)
+
         eq_(self.collection.apps(), [self.apps[2], self.apps[1]])
 
     def add_apps(self):
-        for n, app in enumerate(self.apps):
-            self.collection.add_app(app, order=n)
+        for app in self.apps:
+            self.collection.add_app(app)
 
     def test_apps(self):
         self.assertSetEqual(self.collection.apps(), [])
         self.add_apps()
         self.assertSetEqual(self.collection.apps(), self.apps)
+        eq_(list(CollectionMembership.objects.values_list('order', flat=True)),
+            [1, 2, 3, 4])
+
+    def test_mixed_ordering(self):
+        extra_app = amo.tests.app_factory()
+        added = self.collection.add_app(extra_app, order=3)
+        eq_(added.order, 3)
+        self.assertSetEqual(self.collection.apps(), [extra_app])
+        self.add_apps()
+        all_apps = self.collection.apps()
+        eq_(list(CollectionMembership.objects.values_list('order', flat=True)),
+            [3, 4, 5, 6, 7])
 
     def test_app_urls(self):
         self.assertSetEqual(self.collection.app_urls(), [])
