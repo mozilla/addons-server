@@ -738,6 +738,7 @@ faded-border() {
             border-top: 1px solid #fff;
             float: left;
             position: relative;
+            text-align: left;
             width: 870px;
 
             &:last-child {
@@ -750,7 +751,15 @@ faded-border() {
 
             .content-wrapper {
                 margin: 0 auto;
+                overflow: hidden;
+                padding-bottom: 10px;
                 width: 800px;
+            }
+
+            h2 {
+                font-size: 20px;
+                line-height: 25px;
+                margin: 20px 0;
             }
 
             .content {
@@ -760,6 +769,10 @@ faded-border() {
                     float: left;
                     margin: 10px auto 0;
                     padding: 20px 20px 0;
+
+                    h2 {
+                        margin: -20px 0 20px;
+                    }
 
                     &.keon:first-child {
                         width: 420px;
@@ -806,11 +819,6 @@ faded-border() {
                     }
                 }
 
-                h2 {
-                    font-size: 20px;
-                    line-height: 25px;
-                    padding-top: 20px;
-                }
             }
 
             .phone-options {
