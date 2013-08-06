@@ -7,6 +7,7 @@ from rest_framework.response import Response
 
 from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestAnonymousAuthentication)
+from mkt.api.base import CORSViewSet
 from mkt.webapps.models import Webapp
 
 from .authorization import PublisherAuthorization
@@ -15,9 +16,10 @@ from .models import Collection
 from .serializers import CollectionSerializer
 
 
-class CollectionViewSet(viewsets.ModelViewSet):
+class CollectionViewSet(CORSViewSet, viewsets.ModelViewSet):
     serializer_class = CollectionSerializer
     queryset = Collection.objects.all()
+    cors_allowed_methods = ('get', 'post')
     permission_classes = [PublisherAuthorization]
     authentication_classes = [RestOAuthAuthentication,
                               RestAnonymousAuthentication]
