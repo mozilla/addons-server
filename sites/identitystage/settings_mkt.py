@@ -9,7 +9,7 @@ import private_mkt
 DOMAIN = 'identity-stage-marketplace.allizom.org'
 SERVER_EMAIL = 'zmarketplacestage@addons.mozilla.org'
 
-SITE_URL = 'https://marketplace.allizom.org'
+SITE_URL = 'https://identity-stage-marketplace.allizom.org'
 SERVICES_URL = SITE_URL
 STATIC_URL = 'https://identity-stage-marketplace-cdn.allizom.org/'
 LOCAL_MIRROR_URL = '%s_files' % STATIC_URL
@@ -46,7 +46,7 @@ ADDON_ICONS_DEFAULT_URL = MEDIA_URL + 'img/hub'
 ADDON_ICON_BASE_URL = MEDIA_URL + 'img/icons/'
 PRODUCT_ICON_URL = STATIC_URL + 'product-icons'
 
-CACHE_PREFIX = 'stage.mkt.%s' % CACHE_PREFIX
+CACHE_PREFIX = 'identity.stage.mkt.%s' % CACHE_PREFIX
 CACHE_MIDDLEWARE_KEY_PREFIX = CACHE_PREFIX
 INAPP_IMAGE_URL = STATIC_URL + 'inapp-image'
 
