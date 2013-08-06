@@ -26,6 +26,13 @@ class CollectionViewSet(CORSViewSet, viewsets.ModelViewSet):
 
     collection_type = COLLECTIONS_TYPE_BASIC
 
+    exceptions = {
+        'not_provided': '`app` was not provided.',
+        'doesnt_exist': '`app` does not exist.',
+        'not_in': '`app` not in collection.',
+        'already_in': '`app` already exists in collection.'
+    }
+
     def return_updated(self, status):
         """
         Passed an HTTP status from rest_framework.status, returns a response
@@ -52,13 +59,29 @@ class CollectionViewSet(CORSViewSet, viewsets.ModelViewSet):
         collection = self.get_object()
         try:
             new_app = Webapp.objects.get(pk=request.DATA['app'])
-        except MultiValueDictKeyError:
-            raise exceptions.ParseError(detail='`app` was not provided.')
+        except (KeyError, MultiValueDictKeyError):
+            raise exceptions.ParseError(detail=self.exceptions['not_provided'])
         except Webapp.DoesNotExist:
-            raise exceptions.ParseError(detail='`app` does not exist.')
+            raise exceptions.ParseError(detail=self.exceptions['doesnt_exist'])
         try:
             collection.add_app(new_app)
         except IntegrityError:
-            raise exceptions.ParseError(
-                detail='`app` already exists in collection.')
-        return self.return_updated(status.HTTP_201_CREATED)
+            raise exceptions.ParseError(detail=self.exceptions['already_in'])
+        return self.return_updated(status.HTTP_200_OK)
+
+    @action()
+    def remove_app(self, request, pk=None):
+        """
+        Add an app to the specified collection.
+        """
+        collection = self.get_object()
+        try:
+            to_remove = Webapp.objects.get(pk=request.DATA['app'])
+        except (KeyError, MultiValueDictKeyError):
+            raise exceptions.ParseError(detail=self.exceptions['not_provided'])
+        except Webapp.DoesNotExist:
+            raise exceptions.ParseError(detail=self.exceptions['doesnt_exist'])
+        removed = collection.remove_app(to_remove)
+        if not removed:
+            raise exceptions.ParseError(detail=self.exceptions['not_in'])
+        return self.return_updated(status.HTTP_200_OK)

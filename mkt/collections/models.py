@@ -49,6 +49,19 @@ class Collection(amo.models.ModelBase):
         return CollectionMembership.objects.create(collection=self, app=app,
                                                    order=order)
 
+    def remove_app(self, app):
+        """
+        Remove the passed app from this collection, returning a boolean
+        indicating whether a successful deletion took place.
+        """
+        try:
+            membership = self.collectionmembership_set.filter(app=app)
+        except CollectionMembership.DoesNotExist:
+            return False
+        else:
+            membership.delete()
+            return True
+
 
 class CollectionMembership(amo.models.ModelBase):
     collection = models.ForeignKey(Collection)

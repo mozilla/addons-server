@@ -52,3 +52,31 @@ A collection is a group of applications
 
     :param app: the ID of the application to add to this collection.
     :type app: int
+
+    **Response**:
+
+    A representation of the updated collection will be returned in the response
+    body.
+
+    :status 200: app successfully added to collection.
+    :status 400: invalid request; more details provided in the response body.
+
+
+.. http:post:: /api/v1/rocketfuel/collections/(int:id)/remove_app/
+
+    Remove an application from a single collection.
+
+    .. note:: Authentication is required.
+
+    **Request**:
+
+    :param app: the ID of the application to remove from this collection.
+    :type app: int
+
+    **Response**:
+
+    A representation of the updated collection will be returned in the response
+    body.
+
+    :status 200: app successfully removed from collection.
+    :status 400: invalid request; more details provided in the response body.
