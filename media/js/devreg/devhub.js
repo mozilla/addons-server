@@ -574,17 +574,21 @@ function initUploadPreview() {
                 '<video controls class="preview-thumb loading" src="{0}" ' +
                 'preload="auto" type="video/webm"></video>', file.dataURL));
         } else {
-            var img = new Image();
-            img.onload = function() {
-                if (img.src && img.width > img.height) {
-                    $thumb.addClass('preview-thumb-rotated');
-                }
-                img.src = null;
-            };
-            img.src = file.dataURL;
+            handle_landscape_class($thumb, file.dataURL);
             $thumb.css('background-image', 'url(' + file.dataURL + ')');
         }
         renumberPreviews();
+    }
+
+    function handle_landscape_class($thumb, fileURL) {
+        var img = new Image();
+        img.onload = function() {
+            if (img.src && img.width > img.height) {
+                $thumb.addClass('preview-thumb-landscape');
+            }
+            img.src = null;
+        };
+        img.src = fileURL;
     }
 
     function upload_finished(e, file) {
@@ -664,6 +668,7 @@ function initUploadPreview() {
                     'type="video/webm"></video>',
                     $data.val()));
             } else {
+                handle_landscape_class($thumb, $data.val());
                 $thumb.css('background-image', 'url(' + $data.val() + ')');
             }
         }
