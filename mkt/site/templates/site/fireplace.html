@@ -18,7 +18,7 @@
     <meta name="google-site-verification" content="XhMUzMo_1XF_gE3oDEbbZXe7YFRse5S1i56GRYAsZ6c">
     <meta name="fragment" content="!">
   </head>
-  <body class="home" data-build-id-js="{{ BUILD_ID_JS }}" data-media="{{ MEDIA_URL }}">
+  <body class="home" data-settings="{{ site_settings|json }}" data-build-id-js="{{ BUILD_ID_JS }}" data-media="{{ MEDIA_URL }}">
 
     <noscript><p>Sorry, you need JavaScript to access the Marketplace.</p></noscript>
     <div id="splash-overlay"><div class="throbber"></div></div>
@@ -42,7 +42,7 @@
       </section>
     </div>
 
-    <script src="https://login.persona.org/include.js" defer></script>
+    <script src="{{ settings.BROWSERID_JS_URL or 'https://login.persona.org/include.js' }}" defer></script>
     <script type="text/javascript" src="{{ media('fireplace/js/l10n.js') }}"></script>
     <script type="text/javascript" src="{{ media('fireplace/js/include.js') }}" defer></script>
 
