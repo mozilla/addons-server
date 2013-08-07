@@ -55,7 +55,7 @@ class Collection(amo.models.ModelBase):
         indicating whether a successful deletion took place.
         """
         try:
-            membership = self.collectionmembership_set.filter(app=app)
+            membership = self.collectionmembership_set.get(app=app)
         except CollectionMembership.DoesNotExist:
             return False
         else:
