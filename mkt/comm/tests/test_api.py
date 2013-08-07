@@ -265,10 +265,10 @@ class TestEmailApi(RestOAuth):
 
     def setUp(self):
         super(TestEmailApi, self).setUp()
-        settings.WHITELISTED_CLIENTS_EMAIL_API = ['10.10.10.10']
         self.mock_request = RequestFactory().get(reverse('post-email-api'))
-        mock.patch.object(settings, 'WHITELISTED_CLIENTS_EMAIL_API',
-                          ['10.10.10.10'])
+        patcher = mock.patch.object(settings, 'WHITELISTED_CLIENTS_EMAIL_API',
+                                    ['10.10.10.10'])
+        patcher.start()
 
     def get_request(self, data):
         req = self.mock_request
