@@ -157,3 +157,36 @@ class TestCollectionViewSet(RestOAuth):
         res, data = self.remove_app(self.client, app_id=self.apps[1].pk)
         eq_(res.status_code, 400)
         eq_(CollectionViewSet.exceptions['not_in'], data['detail'])
+
+    def edit_collection(self, client, **kwargs):
+        url = self.collection_url('detail', self.collection.pk)
+        res = client.patch(url, json.dumps(kwargs))
+        data = json.loads(res.content)
+        return res, data
+
+    def test_edit_collection_anon(self):
+        res, data = self.edit_collection(self.anon)
+        eq_(res.status_code, 403)
+        eq_(PermissionDenied.default_detail, data['detail'])
+
+    def test_edit_collection_no_perms(self):
+        res, data = self.edit_collection(self.client)
+        eq_(res.status_code, 403)
+        eq_(PermissionDenied.default_detail, data['detail'])
+
+    def test_edit_collection_has_perms(self):
+        self.make_publisher()
+        updates = {
+            'name': 'clouserw soundboard',
+            'description': 'Get off my lawn!'
+        }
+        res, data = self.edit_collection(self.client, **updates)
+        eq_(res.status_code, 200)
+        for key, value in updates.iteritems():
+            eq_(data[key], value)
+
+    def test_edit_collection_apps(self):
+        self.make_publisher()
+        res, data = self.edit_collection(self.client, apps=[])
+        eq_(res.status_code, 400)
+        eq_(CollectionViewSet.exceptions['cant_update'], data['detail'])

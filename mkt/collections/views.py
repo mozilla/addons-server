@@ -30,8 +30,14 @@ class CollectionViewSet(CORSViewSet, viewsets.ModelViewSet):
         'not_provided': '`app` was not provided.',
         'doesnt_exist': '`app` does not exist.',
         'not_in': '`app` not in collection.',
-        'already_in': '`app` already exists in collection.'
+        'already_in': '`app` already exists in collection.',
+        'cant_update': '`apps` cannot be updated this way.'
     }
+
+    def update(self, request, *args, **kwargs):
+        if 'apps' in request.DATA:
+            raise exceptions.ParseError(detail=self.exceptions['cant_update'])
+        return super(CollectionViewSet, self).update(request, *args, **kwargs)
 
     def return_updated(self, status):
         """

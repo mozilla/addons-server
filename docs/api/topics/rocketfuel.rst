@@ -42,6 +42,28 @@ A collection is a group of applications
     .. note:: Authentication is optional.
 
 
+.. http:patch:: /api/v1/rocketfuel/collections/(int:id)/
+
+    Update a collection.
+
+    .. note:: Authentication is required.
+
+    **Request**:
+
+    :param name: the name of the collection.
+    :type name: string
+    :param description: a description of the collection.
+    :type description: string
+
+    **Response**:
+
+    A representation of the updated collection will be returned in the response
+    body.
+
+    :status 200: collection successfully updated.
+    :status 400: invalid request; more details provided in the response body.
+
+
 .. http:post:: /api/v1/rocketfuel/collections/(int:id)/add_app/
 
     Add an application to a single collection.
