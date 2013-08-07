@@ -11,9 +11,8 @@ from mkt.api.base import CORSViewSet
 from mkt.webapps.models import Webapp
 
 from .authorization import PublisherAuthorization
-from .constants import COLLECTIONS_TYPE_BASIC
 from .models import Collection
-from .serializers import CollectionSerializer
+from .serializers import CollectionMembershipField, CollectionSerializer
 
 
 class CollectionViewSet(CORSViewSet, viewsets.ModelViewSet):
@@ -24,20 +23,13 @@ class CollectionViewSet(CORSViewSet, viewsets.ModelViewSet):
     authentication_classes = [RestOAuthAuthentication,
                               RestAnonymousAuthentication]
 
-    collection_type = COLLECTIONS_TYPE_BASIC
-
     exceptions = {
         'not_provided': '`app` was not provided.',
         'doesnt_exist': '`app` does not exist.',
         'not_in': '`app` not in collection.',
         'already_in': '`app` already exists in collection.',
-        'cant_update': '`apps` cannot be updated this way.'
+        'app_mismatch': 'All apps in this collection must be included.'
     }
-
-    def update(self, request, *args, **kwargs):
-        if 'apps' in request.DATA:
-            raise exceptions.ParseError(detail=self.exceptions['cant_update'])
-        return super(CollectionViewSet, self).update(request, *args, **kwargs)
 
     def return_updated(self, status):
         """
@@ -48,14 +40,6 @@ class CollectionViewSet(CORSViewSet, viewsets.ModelViewSet):
         collection = self.get_object()
         serializer = self.get_serializer(instance=collection)
         return Response(serializer.data, status=status)
-
-    def pre_save(self, obj):
-        """
-        Allow subclasses of CollectionViewSet to create collections of different
-        `collection_type`s by changing the class' `collection_type` property.
-        """
-        obj.collection_type = self.collection_type
-        super(CollectionViewSet, self).pre_save(obj)
 
     @action()
     def add_app(self, request, pk=None):
@@ -78,7 +62,7 @@ class CollectionViewSet(CORSViewSet, viewsets.ModelViewSet):
     @action()
     def remove_app(self, request, pk=None):
         """
-        Add an app to the specified collection.
+        Remove an app from the specified collection.
         """
         collection = self.get_object()
         try:
@@ -90,4 +74,20 @@ class CollectionViewSet(CORSViewSet, viewsets.ModelViewSet):
         removed = collection.remove_app(to_remove)
         if not removed:
             raise exceptions.ParseError(detail=self.exceptions['not_in'])
+        return self.return_updated(status.HTTP_200_OK)
+
+    @action()
+    def reorder(self, request, pk=None):
+        """
+        Reorder the specified collection.
+        """
+        collection = self.get_object()
+        try:
+            collection.reorder(request.DATA)
+        except ValueError:
+            return Response({
+                'detail': self.exceptions['app_mismatch'],
+                'apps': [CollectionMembershipField().to_native(a) for a in
+                         collection.collectionmembership_set.all()]
+            }, status=status.HTTP_400_BAD_REQUEST, exception=True)
         return self.return_updated(status.HTTP_200_OK)
