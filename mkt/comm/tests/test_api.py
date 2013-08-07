@@ -103,7 +103,7 @@ class TestThreadDetail(RestOAuth):
         thread = CommunicationThread.objects.create(addon=self.addon)
         res = self.client.get(reverse('comm-thread-detail',
                                       kwargs={'pk': thread.pk}))
-        self.assertCORS(res, 'get', 'post')
+        self.assertCORS(res, 'get', 'post', 'patch')
 
     def test_mark_read(self):
         thread = CommunicationThread.objects.create(addon=self.addon)

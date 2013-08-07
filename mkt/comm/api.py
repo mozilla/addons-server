@@ -192,7 +192,7 @@ class ThreadViewSet(ListModelMixin, RetrieveModelMixin, DestroyModelMixin,
                               RestSharedSecretAuthentication)
     permission_classes = (ThreadPermission,)
     filter_backends = (OrderingFilter,)
-    cors_allowed_methods = ['get', 'post']
+    cors_allowed_methods = ['get', 'post', 'patch']
 
     def list(self, request):
         self.serializer_class = ThreadSerializer
