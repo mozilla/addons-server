@@ -236,7 +236,7 @@ GEOIP_DEFAULT_TIMEOUT = .2
 SENTRY_DSN = None
 
 # A smaller range of languages for the Marketplace.
-AMO_LANGUAGES = ('cs', 'de', 'en-US', 'es', 'fr', 'pl', 'pt-BR', 'ro')
+AMO_LANGUAGES = ('ca', 'cs', 'de', 'en-US', 'es', 'fr', 'pl', 'pt-BR', 'ro')
 LANGUAGES = lazy(lazy_langs, dict)(AMO_LANGUAGES)
 LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in AMO_LANGUAGES])
 
@@ -245,7 +245,7 @@ LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in AMO_LANGUAGES])
 # This list also enables translation edits.
 HIDDEN_LANGUAGES = (
     # List of languages from AMO's settings (excluding mkt's active locales).
-    'af', 'ar', 'bg', 'ca', 'da', 'el', 'eu', 'fa',
+    'af', 'ar', 'bg', 'da', 'el', 'eu', 'fa',
     'fi', 'ga-IE', 'he', 'hu', 'id', 'it', 'ja', 'ko', 'mn', 'nl',
     'pt-PT', 'ru', 'sk', 'sl', 'sq', 'sv-SE', 'uk', 'vi',
     'zh-CN', 'zh-TW',
