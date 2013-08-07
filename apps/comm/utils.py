@@ -5,9 +5,11 @@ import commonware.log
 from email_reply_parser import EmailReplyParser
 
 from access import acl
+from access.models import Group
 from comm.models import (CommunicationNote, CommunicationNoteRead,
                          CommunicationThreadCC, CommunicationThreadToken)
 from mkt.constants import comm
+from users.models import UserProfile
 
 
 log = commonware.log.getLogger('comm')
@@ -140,3 +142,75 @@ def filter_notes_by_read_status(queryset, profile, read_status=True):
     else:
         # Exclude read notes if they exist.
         return queryset.exclude(pk__in=notes) if notes else queryset.all()
+
+
+def get_reply_token(thread, user_id):
+    tok, created = CommunicationThreadToken.objects.get_or_create(
+        thread=thread, user_id=user_id)
+
+    # We expire a token after it has been used for a maximum number of times.
+    # This is usually to prevent overusing a single token to spam to threads.
+    # Since we're re-using tokens, we need to make sure they are valid for
+    # replying to new notes so we reset their `use_count`.
+    if not created:
+        tok.update(use_count=0)
+    else:
+        log.info('Created token with UUID %s for user_id: %s.' %
+                 (tok.uuid, user_id))
+    return tok
+
+
+def get_recipients(note, fresh_thread=False):
+    """
+    Create/refresh tokens for users based on the thread permissions.
+    """
+    thread = note.thread
+
+    # TODO: Possible optimization.
+    # Fetch tokens from the database if `fresh_thread=False` and use them to
+    # derive the list of recipients instead of doing a couple of multi-table
+    # DB queries.
+    recipients = set(thread.thread_cc.values_list('user__id', 'user__email'))
+
+    # Include devs.
+    if note.read_permission_developer:
+        recipients.update(thread.addon.authors.values_list('id', 'email'))
+
+    groups_list = []
+    # Include app reviewers.
+    if note.read_permission_reviewer:
+        groups_list.append('App Reviewers')
+
+    # Include senior app reviewers.
+    if note.read_permission_senior_reviewer:
+        groups_list.append('Senior App Reviewers')
+
+    # Include admins.
+    if note.read_permission_staff:
+        groups_list.append('Admins')
+
+    if len(groups_list) > 0:
+        groups = Group.objects.filter(name__in=groups_list)
+        for group in groups:
+            recipients.update(group.users.values_list('id', 'email'))
+
+    # Include Mozilla contact.
+    if (note.read_permission_mozilla_contact and
+        thread.addon.mozilla_contact):
+        for moz_contact in thread.addon.get_mozilla_contacts():
+            try:
+                user = UserProfile.objects.get(email=moz_contact)
+            except UserProfile.DoesNotExist:
+                pass
+            else:
+                recipients.add((user.id, moz_contact))
+
+    if (note.author.id, note.author.email) in recipients:
+        recipients.remove((note.author.id, note.author.email))
+
+    new_recipients_list = []
+    for user_id, user_email in recipients:
+        tok = get_reply_token(note.thread, user_id)
+        new_recipients_list.append((user_email, tok.uuid))
+
+    return new_recipients_list

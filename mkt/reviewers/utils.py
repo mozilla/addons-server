@@ -17,7 +17,8 @@ from amo.helpers import absolutify
 from amo.urlresolvers import reverse
 from amo.utils import JSONEncoder, send_mail_jinja, to_language
 from comm.models import (CommunicationNote, CommunicationThread,
-                         CommunicationThreadCC, CommunicationThreadToken)
+                         CommunicationThreadCC)
+from comm.utils import get_recipients
 from editors.models import EscalationQueue, RereviewQueue, ReviewerScore
 from files.models import File
 
@@ -32,14 +33,36 @@ log = commonware.log.getLogger('z.mailer')
 
 
 def send_mail(subject, template, context, emails, perm_setting=None, cc=None,
-              attachments=None):
+              attachments=None, reply_to=None):
+    if not reply_to:
+        reply_to = settings.MKT_REVIEWERS_EMAIL
+
     # Link to our newfangled "Account Settings" page.
     manage_url = absolutify('/settings') + '#notifications'
     send_mail_jinja(subject, template, context, recipient_list=emails,
                     from_email=settings.NOBODY_EMAIL, use_blacklist=False,
                     perm_setting=perm_setting, manage_url=manage_url,
-                    headers={'Reply-To': settings.MKT_REVIEWERS_EMAIL}, cc=cc,
+                    headers={'Reply-To': reply_to}, cc=cc,
                     attachments=attachments)
+
+
+def send_note_emails(note):
+    if not waffle.switch_is_active('comm-dashboard'):
+        return
+
+    recipients = get_recipients(note, False)
+    name = note.thread.addon.name
+    data = {
+        'name': name,
+        'sender': note.author.name,
+        'comments': note.body,
+        'thread_id': str(note.thread.id)
+    }
+    for email, tok in recipients:
+        reply_to = 'reply+%s@mozilla.org' % tok
+        subject = u'%s has been reviewed.' % name
+        send_mail(subject, 'reviewers/emails/decisions/post.txt', data,
+                  [email], perm_setting='app_reviewed', reply_to=reply_to)
 
 
 class ReviewBase(object):
@@ -52,6 +75,7 @@ class ReviewBase(object):
         self.version = version
         self.review_type = review_type
         self.files = None
+        self.comm_thread = None
         self.attachment_formset = attachment_formset
         self.in_pending = self.addon.status == amo.STATUS_PENDING
         self.in_rereview = RereviewQueue.objects.filter(
@@ -105,10 +129,8 @@ class ReviewBase(object):
                 created=datetime.now(), details=details,
                 attachments=self.attachment_formset)
 
-    def notify_email(self, template, subject):
+    def notify_email(self, template, subject, fresh_thread=False):
         """Notify the authors that their app has been reviewed."""
-        emails = list(self.addon.authors.values_list('email', flat=True))
-        cc_email = self.addon.mozilla_contact or None
         data = self.data.copy()
         data.update(self.get_context_data())
         data['tested'] = ''
@@ -119,10 +141,27 @@ class ReviewBase(object):
             data['tested'] = 'Tested on %s' % dt
         elif not dt and br:
             data['tested'] = 'Tested with %s' % br
-        send_mail(subject % data['name'],
-                  'reviewers/emails/decisions/%s.txt' % template, data,
-                  emails, perm_setting='app_reviewed', cc=cc_email,
-                  attachments=self.get_attachments())
+
+        if self.comm_thread and waffle.switch_is_active('comm-dashboard'):
+            recipients = get_recipients(self.comm_note)
+
+            data['thread_id'] = str(self.comm_thread.id)
+            for email, tok in recipients:
+                subject = u'%s has been reviewed.' % data['name']
+                reply_to = 'reply+%s@mozilla.org' % tok
+                send_mail(subject,
+                          'reviewers/emails/decisions/%s.txt' % template, data,
+                          [email], perm_setting='app_reviewed',
+                          attachments=self.get_attachments(),
+                          reply_to=reply_to)
+        else:
+            emails = list(self.addon.authors.values_list('email', flat=True))
+            cc_email = self.addon.mozilla_contact or None
+
+            send_mail(subject % data['name'],
+                      'reviewers/emails/decisions/%s.txt' % template, data,
+                      emails, perm_setting='app_reviewed', cc=cc_email,
+                      attachments=self.get_attachments())
 
     def get_context_data(self):
         # We need to display the name in some language that is relevant to the
@@ -159,20 +198,20 @@ class ReviewBase(object):
         # Create thread.
         self.create_comm_thread(action='info')
 
-        send_mail(u'Submission Update: %s' % data['name'],
-                  'reviewers/emails/decisions/info.txt',
-                  data, emails,
-                  perm_setting='app_individual_contact', cc=cc_email,
-                  attachments=self.get_attachments())
+        subject = u'Submission Update: %s' % data['name']
+        self.notify_email('info', subject)
+
 
     def send_escalate_mail(self):
         self.log_action(amo.LOG.ESCALATE_MANUAL)
         log.info(u'Escalated review requested for %s' % self.addon)
         data = self.get_context_data()
-        send_mail(u'Escalated Review Requested: %s' % data['name'],
-                  'reviewers/emails/super_review.txt',
-                  data, [settings.MKT_SENIOR_EDITORS_EMAIL],
-                  attachments=self.get_attachments())
+
+        if not waffle.switch_is_active('comm-dashboard'):
+            send_mail(u'Escalated Review Requested: %s' % data['name'],
+                      'reviewers/emails/super_review.txt',
+                      data, [settings.MKT_SENIOR_EDITORS_EMAIL],
+                      attachments=self.get_attachments())
 
 
 class ReviewApp(ReviewBase):
@@ -199,38 +238,40 @@ class ReviewApp(ReviewBase):
         thread = CommunicationThread.objects.filter(addon=self.addon,
             version=self.version)
 
+        perms = {}
+        for key in self.data['action_visibility']:
+            perms['read_permission_%s' % key] = True
+
         if thread.exists():
             thread = thread[0]
         else:
             thread = CommunicationThread(addon=self.addon,
-                version=self.version)
+                version=self.version, **perms)
+            # Set permissions from the form.
+            thread.save()
 
-        # Set permissions from the form.
-        for key in self.data['action_visibility']:
-            setattr(thread, 'read_permission_%s' % key, True)
-        thread.save()
-
-        CommunicationNote.objects.create(
+        self.comm_note = CommunicationNote.objects.create(
             note_type=action_note_types[action],
             body=self.data['comments'], author=self.request.amo_user,
-            thread=thread)
+            thread=thread, **perms)
+        self.comm_thread = thread
 
-        moz_email = self.addon.mozilla_contact
+        moz_emails = self.addon.get_mozilla_contacts()
+
         # CC mozilla contact.
-        try:
-            moz_contact = UserProfile.objects.get(email=moz_email)
-        except UserProfile.DoesNotExist:
-            moz_contact = None
-            pass
-
-        if moz_contact and moz_email:
-            CommunicationThreadCC.objects.create(thread=thread,
-                user=moz_contact)
+        for email in moz_emails:
+            try:
+                moz_contact = UserProfile.objects.get(email=email)
+            except UserProfile.DoesNotExist:
+                pass
+            else:
+                CommunicationThreadCC.objects.create(
+                    thread=thread, user=moz_contact)
 
     def process_public(self):
         # Hold onto the status before we change it.
         status = self.addon.status
-
+        self.create_comm_thread(action='approve')
         if self.addon.make_public == amo.PUBLIC_IMMEDIATELY:
             self.process_public_immediately()
         else:
@@ -241,7 +282,6 @@ class ReviewApp(ReviewBase):
 
         # Assign reviewer incentive scores.
         ReviewerScore.award_points(self.request.amo_user, self.addon, status)
-        self.create_comm_thread(action='approve')
 
     def process_public_waiting(self):
         """Make an app pending."""
@@ -304,6 +344,7 @@ class ReviewApp(ReviewBase):
             RereviewQueue.objects.filter(addon=self.addon).delete()
 
         self.log_action(amo.LOG.REJECT_VERSION)
+        self.create_comm_thread(action='reject')
         self.notify_email('pending_to_sandbox', u'Submission Update: %s')
 
         log.info(u'Making %s disabled' % self.addon)
@@ -312,15 +353,14 @@ class ReviewApp(ReviewBase):
         # Assign reviewer incentive scores.
         ReviewerScore.award_points(self.request.amo_user, self.addon, status,
                                    in_rereview=self.in_rereview)
-        self.create_comm_thread(action='reject')
 
     def process_escalate(self):
         """Ask for escalation for an app."""
+        self.create_comm_thread(action='escalate')
         EscalationQueue.objects.get_or_create(addon=self.addon)
         self.notify_email('author_super_review', u'Submission Update: %s')
 
         self.send_escalate_mail()
-        self.create_comm_thread(action='escalate')
 
     def process_comment(self):
         self.version.update(has_editor_comment=True)
@@ -359,10 +399,9 @@ class ReviewApp(ReviewBase):
         emails = list(self.addon.authors.values_list('email', flat=True))
         cc_email = self.addon.mozilla_contact or None
         self.create_comm_thread(action='disable')
-        send_mail(u'App disabled by reviewer: %s' % self.addon.name,
-                  'reviewers/emails/decisions/disabled.txt',
-                  self.get_context_data(), emails,
-                  perm_setting='app_individual_contact', cc=cc_email)
+        subject = u'App disabled by reviewer: %s' % self.addon.name
+        self.notify_email('disabled', subject)
+
         self.log_action(amo.LOG.APP_DISABLED)
         log.info(u'App %s has been disabled by a reviewer.' % self.addon)
 
