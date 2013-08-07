@@ -19,11 +19,8 @@ class Command(BaseCommand):
             raise CommandError(('You must enter a single region slug. '
                                 'Available choices: %s' % regions))
         region_slug = args[0]
-        payment_types = (amo.ADDON_PREMIUM,
-                         amo.ADDON_PREMIUM_INAPP,
-                         amo.ADDON_FREE_INAPP)
-        ids = (Webapp.objects.filter(premium_type__in=payment_types,
-                                     status__in=amo.WEBAPPS_APPROVED_STATUSES)
+        ids = (Webapp.objects.filter(premium_type__in=amo.ADDON_HAS_PAYMENTS)
+                             .exclude(status__in=amo.WEBAPPS_EXCLUDED_STATUSES)
                              .values_list('id', flat=True))
         ts = [new_payments_region_email.subtask(args=[chunk, region_slug])
               for chunk in chunked(ids, 100)]

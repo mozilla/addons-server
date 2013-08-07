@@ -23,13 +23,23 @@ class TestCommand(amo.tests.TestCase):
             '%s: United Kingdom region added to the Firefox Marketplace'
             % app.name)
 
+    def test_email_developers_about_new_paid_region_with_pending_status(self):
+        app = Webapp.objects.get(id=337141)
+        app.update(premium_type=amo.ADDON_PREMIUM, status=amo.STATUS_PENDING)
+        email_developers_about_new_paid_region.Command().handle('uk')
+        msg = mail.outbox[0]
+        eq_(msg.subject,
+            '%s: United Kingdom region added to the Firefox Marketplace'
+            % app.name)
+
     def test_email_developers_about_new_paid_region_without_premium(self):
         Webapp.objects.get(id=337141).update(premium_type=amo.ADDON_FREE)
         email_developers_about_new_paid_region.Command().handle('uk')
         eq_(len(mail.outbox), 0)
 
-    def test_email_developers_about_new_paid_region_without_public(self):
-        Webapp.objects.get(id=337141).update(status=amo.STATUS_NOMINATED)
+    def test_email_developers_about_new_paid_region_with_rejected_status(self):
+        Webapp.objects.get(id=337141).update(premium_type=amo.ADDON_PREMIUM,
+                                             status=amo.STATUS_REJECTED)
         email_developers_about_new_paid_region.Command().handle('uk')
         eq_(len(mail.outbox), 0)
 
