@@ -26,6 +26,12 @@ BROWSERID_JS_URL = 'https://login.anosrep.org/include.js'
 NATIVE_BROWSERID_DOMAIN = 'firefoxos.anosrep.org'
 UNVERIFIED_ISSUER = 'firefoxos.anosrep.org'
 
+# This is a B2G (or other native) verifier. Adjust accordingly.
+NATIVE_BROWSERID_VERIFICATION_URL = ('https://%s/verify'
+                                             % NATIVE_BROWSERID_DOMAIN)
+NATIVE_BROWSERID_JS_URL = ('https://%s/include.js'
+                                   % NATIVE_BROWSERID_DOMAIN)
+
 
 ADDON_ICON_URL = "%s/%s/%s/images/addon_icon/%%d-%%d.png?modified=%%s" % (STATIC_URL, LANGUAGE_CODE, DEFAULT_APP)
 ADDON_ICON_URL = STATIC_URL + 'img/uploads/addon_icons/%s/%s-%s.png?modified=%s'
