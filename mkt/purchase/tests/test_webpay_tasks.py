@@ -83,13 +83,20 @@ class TestReceiptEmail(PurchaseTest):
         self.contrib.user.lang = 'es'
         self.contrib.user.save()
         tasks.send_purchase_receipt(self.contrib.pk)
-        assert 'Gracias' in mail.outbox[0].body
+        assert 'Precio' in mail.outbox[0].body
+        assert 'Algo Algo' in mail.outbox[0].body
 
-    @patch('mkt.purchase.webpay_tasks.send_mail_jinja')
+    @patch('mkt.purchase.webpay_tasks.send_html_mail_jinja')
     def test_data(self, send_mail_jinja):
         with self.settings(SITE_URL='http://f.com'):
             tasks.send_purchase_receipt(self.contrib.pk)
 
         args = send_mail_jinja.call_args
-        ok_(args[0][2]['purchases'].startswith('http://f.com'))
+        data = args[0][3]
+
         eq_(args[1]['recipient_list'], [self.user.email])
+        eq_(data['app_name'], self.addon.name)
+        eq_(data['developer_name'], self.addon.current_version.developer_name)
+        eq_(data['price'],
+            self.contrib.get_amount_locale(self.contrib.source_locale))
+        ok_(data['purchases_url'].startswith('http://f.com'))
