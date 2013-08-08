@@ -42,7 +42,7 @@ from versions.models import Version
 from zadmin.models import get_config, set_config
 
 from mkt.constants.features import FeatureProfile
-from mkt.reviewers.views import _do_sort, _queue_to_apps
+from mkt.reviewers.views import _do_sort, _progress, _queue_to_apps
 from mkt.site.fixtures import fixture
 from mkt.submit.tests.test_views import BasePackagedAppTest
 from mkt.webapps.models import Webapp
@@ -144,7 +144,7 @@ class TestReviewersHome(AppReviewerTest, AccessMixin):
         # Add a public app under re-review.
         rereviewed = app_factory(name='Finch', status=amo.STATUS_PUBLIC)
         rq = RereviewQueue.objects.create(addon=rereviewed)
-        rq.update(created=self.days_ago(5))
+        rq.update(created=self.days_ago(1))
 
         # Add an app with latest update deleted. It shouldn't affect anything.
         app = app_factory(name='Great White Shark',
@@ -156,10 +156,63 @@ class TestReviewersHome(AppReviewerTest, AccessMixin):
                         file_kw={'status': amo.STATUS_PENDING})
         v.update(deleted=True)
 
+    def test_progress_pending(self):
+        self.apps[0].latest_version.update(nomination=self.days_ago(1))
+        self.apps[1].latest_version.update(nomination=self.days_ago(8))
+        self.apps[2].latest_version.update(nomination=self.days_ago(15))
+        counts, percentages = _progress()
+        eq_(counts['pending']['week'], 1)
+        eq_(counts['pending']['new'], 1)
+        eq_(counts['pending']['old'], 1)
+        eq_(counts['pending']['med'], 1)
+        self.assertAlmostEqual(percentages['pending']['new'], 33.333333333333)
+        self.assertAlmostEqual(percentages['pending']['old'], 33.333333333333)
+        self.assertAlmostEqual(percentages['pending']['med'], 33.333333333333)
+
+    def test_progress_rereview(self):
+        rq = RereviewQueue.objects.create(addon=self.apps[0])
+        rq.update(created=self.days_ago(8))
+        rq = RereviewQueue.objects.create(addon=self.apps[1])
+        rq.update(created=self.days_ago(15))
+        counts, percentages = _progress()
+        eq_(counts['rereview']['week'], 1)
+        eq_(counts['rereview']['new'], 1)
+        eq_(counts['rereview']['old'], 1)
+        eq_(counts['rereview']['med'], 1)
+        self.assertAlmostEqual(percentages['rereview']['new'], 33.333333333333)
+        self.assertAlmostEqual(percentages['rereview']['old'], 33.333333333333)
+        self.assertAlmostEqual(percentages['rereview']['med'], 33.333333333333)
+
+    def test_progress_updated(self):
+        extra_app = app_factory(name='Jackalope',
+                                status=amo.STATUS_PUBLIC,
+                                is_packaged=True,
+                                created=self.days_ago(35))
+        version_factory(addon=extra_app,
+                        file_kw={'status': amo.STATUS_PENDING},
+                        created=self.days_ago(25),
+                        nomination=self.days_ago(8))
+        extra_app = app_factory(name='Jackrabbit',
+                                status=amo.STATUS_PUBLIC,
+                                is_packaged=True,
+                                created=self.days_ago(35))
+        version_factory(addon=extra_app,
+                        file_kw={'status': amo.STATUS_PENDING},
+                        created=self.days_ago(25),
+                        nomination=self.days_ago(25))
+        counts, percentages = _progress()
+        eq_(counts['updates']['week'], 1)
+        eq_(counts['updates']['new'], 1)
+        eq_(counts['updates']['old'], 1)
+        eq_(counts['updates']['med'], 1)
+        self.assertAlmostEqual(percentages['updates']['new'], 33.333333333333)
+        self.assertAlmostEqual(percentages['updates']['old'], 33.333333333333)
+        self.assertAlmostEqual(percentages['updates']['med'], 33.333333333333)
+
     def test_stats_waiting(self):
-        self.apps[0].update(created=self.days_ago(1))
-        self.apps[1].update(created=self.days_ago(5))
-        self.apps[2].update(created=self.days_ago(15))
+        self.apps[0].latest_version.update(nomination=self.days_ago(1))
+        self.apps[1].latest_version.update(nomination=self.days_ago(5))
+        self.apps[2].latest_version.update(nomination=self.days_ago(15))
         self.packaged_app.update(created=self.days_ago(1))
 
         doc = pq(self.client.get(self.url).content)
@@ -170,22 +223,31 @@ class TestReviewersHome(AppReviewerTest, AccessMixin):
         eq_(anchors.eq(2).text(), '1 Update Review')
 
         divs = doc('.editor-stats-table > div')
+
+        # Pending review.
         eq_(divs.eq(0).text(), '2 unreviewed app submissions this week.')
+
+        # Re-reviews.
         eq_(divs.eq(2).text(), '1 unreviewed app submission this week.')
+
+        # Update review.
         eq_(divs.eq(4).text(), '1 unreviewed app submission this week.')
 
         # Maths.
+        # Pending review.
         eq_(doc('.waiting_new').eq(0).attr('title')[-3:], '33%')
         eq_(doc('.waiting_med').eq(0).attr('title')[-3:], '33%')
         eq_(doc('.waiting_old').eq(0).attr('title')[-3:], '33%')
 
-        eq_(doc('.waiting_new').eq(1).attr('title')[-3:], ' 0%')
-        eq_(doc('.waiting_med').eq(1).attr('title')[-4:], '100%')
+        # Re-reviews.
+        eq_(doc('.waiting_new').eq(1).attr('title')[-4:], '100%')
+        eq_(doc('.waiting_med').eq(1).attr('title')[-3:], ' 0%')
         eq_(doc('.waiting_old').eq(1).attr('title')[-3:], ' 0%')
 
-        eq_(doc('.waiting_new').eq(0).attr('title')[-3:], '33%')
-        eq_(doc('.waiting_med').eq(0).attr('title')[-3:], '33%')
-        eq_(doc('.waiting_old').eq(0).attr('title')[-3:], '33%')
+        # Update review.
+        eq_(doc('.waiting_new').eq(2).attr('title')[-4:], '100%')
+        eq_(doc('.waiting_med').eq(2).attr('title')[-3:], ' 0%')
+        eq_(doc('.waiting_old').eq(2).attr('title')[-3:], ' 0%')
 
     def test_reviewer_leaders(self):
         reviewers = UserProfile.objects.all()[:2]
