@@ -192,8 +192,6 @@ WEBAPP_MANIFEST_NAME = 'Marketplace Identity Stage'
 
 ALLOW_TASTYPIE_SERVICES = True
 
-NEWRELIC_INI = '/etc/newrelic.d/marketplace.allizom.org.ini'
-
 ES_USE_PLUGINS = True
 
 PURCHASE_ENABLED_REGIONS = [regions.US.id, regions.PL.id, regions.SPAIN.id,
