@@ -274,6 +274,9 @@ def index_webapps(ids, **kw):
 @task(acks_late=True)
 @write
 def unindex_webapps(ids, **kw):
+    if not ids:
+        return
+
     task_log.info('Un-indexing apps %s-%s. [%s]' % (ids[0], ids[-1], len(ids)))
 
     index = kw.pop('index', WebappIndexer.get_index())
