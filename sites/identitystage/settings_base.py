@@ -5,7 +5,7 @@ import os
 
 import dj_database_url
 
-from lib.settings_base import CACHE_PREFIX, ES_INDEXES, KNOWN_PROXIES, LOGGING
+from lib.settings_base import CACHE_PREFIX, ES_INDEXES, KNOWN_PROXIES, LOGGING, CSP_SCRIPT_SRC, CSP_FRAME_SRC
 
 from .. import splitstrip
 import private_base as private
@@ -184,3 +184,6 @@ MONOLITH_SERVER = 'https://monolith.allizom.org'
 GEOIP_URL = 'http://geo.marketplace.allizom.org'
 
 API_THROTTLE = False
+
+CSP_SCRIPT_SRC = CSP_SCRIPT_SRC + ("https://firefoxos.anosrep.org",)
+CSP_FRAME_SRC = CSP_FRAME_SRC + ("https://firefoxos.anosrep.org",)

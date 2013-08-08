@@ -23,6 +23,8 @@ CSP_STYLE_SRC = CSP_STYLE_SRC + (CSP_STATIC_URL,)
 BROWSERID_DOMAIN = 'login.anosrep.org'
 BROWSERID_VERIFICATION_URL = 'https://verifier.login.anosrep.org/verify'
 BROWSERID_JS_URL = 'https://login.anosrep.org/include.js'
+NATIVE_BROWSERID_DOMAIN = 'firefoxos.anosrep.org'
+UNVERIFIED_ISSUER = 'firefoxos.anosrep.org'
 
 
 ADDON_ICON_URL = "%s/%s/%s/images/addon_icon/%%d-%%d.png?modified=%%s" % (STATIC_URL, LANGUAGE_CODE, DEFAULT_APP)
