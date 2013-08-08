@@ -23,7 +23,8 @@ class TranslatedField(models.ForeignKey):
     def __init__(self, **kwargs):
         # to_field: The field on the related object that the relation is to.
         # Django wants to default to translations.autoid, but we need id.
-        options = dict(null=True, to_field='id', unique=True, blank=True)
+        options = dict(null=True, to_field='id', unique=True, blank=True,
+                       on_delete=models.SET_NULL)
         kwargs.update(options)
         self.short = kwargs.pop('short', True)
         self.require_locale = kwargs.pop('require_locale', True)

@@ -1,4 +1,5 @@
-from django.db import models, connection
+from django.db import connections, models, router
+from django.db.models.deletion import Collector
 from django.utils import encoding
 
 import bleach
@@ -54,6 +55,38 @@ class Translation(amo.models.ModelBase):
         self.clean()
         return super(Translation, self).save(**kwargs)
 
+    def delete(self, using=None):
+        # FIXME: if the Translation is the one used as default/fallback,
+        # then deleting it will mean the corresponding field on the related
+        # model will stay empty even if there are translations in other
+        # languages!
+        cls = self.__class__
+        using = using or router.db_for_write(cls, instance=self)
+        # Look for all translations for the same string (id=self.id) except the
+        # current one (autoid=self.autoid).
+        qs = cls.objects.filter(id=self.id).exclude(autoid=self.autoid)
+        if qs.using(using).exists():
+            # If other Translations for the same id exist, we just need to
+            # delete this one and *only* this one, without letting Django
+            # collect dependencies (it'd remove the others, which we want to
+            # keep).
+            assert self._get_pk_val() is not None
+            collector = Collector(using=using)
+            collector.collect([self], collect_related=False)
+            # In addition, because we have FK pointing to a non-unique column,
+            # we need to force MySQL to ignore constraints because it's dumb
+            # and would otherwise complain even if there are remaining rows
+            # that matches the FK.
+            with connections[using].constraint_checks_disabled():
+                collector.delete()
+        else:
+            # If no other Translations with that id exist, then we should let
+            # django behave normally. It should find the related model and set
+            # the FKs to NULL.
+            return super(Translation, self).delete(using=using)
+
+    delete.alters_data = True
+
     @classmethod
     def _cache_key(cls, pk, db):
         # Hard-coding the class name here so that subclasses don't try to cache
@@ -75,7 +108,7 @@ class Translation(amo.models.ModelBase):
         """
         if id is None:
             # Get a sequence key for the new translation.
-            cursor = connection.cursor()
+            cursor = connections['default'].cursor()
             cursor.execute("""UPDATE translations_seq
                               SET id=LAST_INSERT_ID(id + @@global.auto_increment_increment)""")
 
