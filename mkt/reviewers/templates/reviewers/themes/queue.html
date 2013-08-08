@@ -20,7 +20,7 @@
 
 {% block content %}
 
-{{ reviewers_breadcrumbs(queue='themes') }}
+{{ reviewers_breadcrumbs(queue=(tab + '_themes')) }}
 
 <h1 class="theme-queue-header">{% block page_header %}{{ title_text }}{% endblock %}</h1>
 <nav class="theme-review island c">

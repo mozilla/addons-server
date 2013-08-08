@@ -355,6 +355,8 @@ def themes_single(request, slug):
         'reviewable': reviewable,
         'reject_reasons': rvw.THEME_REJECT_REASONS.items(),
         'action_dict': rvw.REVIEW_ACTIONS,
+        'tab': ('flagged' if theme.addon.status == amo.STATUS_REVIEW_PENDING
+                else 'rereview' if rereview else 'pending')
     }))
 
 
