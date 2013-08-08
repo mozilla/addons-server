@@ -1,9 +1,10 @@
 from django.conf.urls import patterns, url
 from django.shortcuts import redirect
 
-from . import views
+from . import api, views
 
 from stats.urls import series_re
+
 
 # Time series URLs following this pattern:
 # /app/{app_slug}/statistics/{series}-{group}-{start}-{end}.{format}
@@ -12,6 +13,12 @@ from stats.urls import series_re
 # .{format}
 inapp = """inapp/(?P<inapp>[^/<>"]+)"""
 series = dict((type, '%s-%s' % (type, series_re)) for type in views.SERIES)
+
+
+stats_api_patterns = patterns('',
+    url(r'^stats/global/(?P<metric>[^/]+)/$', api.GlobalStats.as_view(),
+        name='global_stats'),
+)
 
 
 def sales_stats_report_urls(category='', inapp_flag=False):

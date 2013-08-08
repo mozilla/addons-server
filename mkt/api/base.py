@@ -507,17 +507,14 @@ class SlugRouter(SimpleRouter):
         return url(regex, view, name=name)
 
 
-class CORSViewSet(GenericViewSet):
+class CORSMixin(object):
     """
-    CORS enabled viewset for DRF API.
-
-    Usage:
-    Subclass CORSViewSet and set `cors_allowed_methods`.
+    Mixin to enable CORS for DRF API.
     """
     def finalize_response(self, request, response, *args, **kwargs):
         request._request.CORS = self.cors_allowed_methods
-        return GenericViewSet.finalize_response(self, request, response, *args,
-                                                **kwargs)
+        return super(CORSMixin, self).finalize_response(
+            request, response, *args, **kwargs)
 
 
 class AppViewSet(GenericViewSet):

@@ -12,7 +12,6 @@ from mkt.api.resources import (AppResource, CarrierResource, CategoryViewSet,
                                RefreshManifestViewSet, RegionResource)
 from mkt.collections.views import CollectionViewSet
 from mkt.features.views import AppFeaturesList
-from mkt.stats.api import GlobalStatsResource
 from mkt.ratings.resources import RatingResource
 from mkt.search.api import SearchResource, SuggestionsResource
 
@@ -37,9 +36,6 @@ subapps = AppRouter()
 subapps.register('refresh-manifest', RefreshManifestViewSet,
                  base_name='app-refresh-manifest')
 
-stats_api = Api(api_name='stats')
-stats_api.register(GlobalStatsResource())
-
 services = Api(api_name='services')
 services.register(ConfigResource())
 services.register(RegionResource())
@@ -54,7 +50,6 @@ urlpatterns = patterns('',
     url(r'^', include(api.urls)),
     url(r'^apps/', include(apps.urls)),
     url(r'^apps/app/', include(subapps.urls)),
-    url(r'^', include(stats_api.urls)),
     url(r'^', include(services.urls)),
     url(r'^fireplace/report_error', error_reporter, name='error-reporter'),
     url(r'^rocketfuel/', include(rocketfuel.urls)),

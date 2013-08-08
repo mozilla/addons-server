@@ -13,6 +13,7 @@ from rest_framework.mixins import (CreateModelMixin, DestroyModelMixin,
 from rest_framework.permissions import BasePermission
 from rest_framework.relations import PrimaryKeyRelatedField, RelatedField
 from rest_framework.serializers import ModelSerializer, SerializerMethodField
+from rest_framework.viewsets import GenericViewSet
 
 from addons.models import Addon
 from users.models import UserProfile
@@ -22,7 +23,7 @@ from comm.tasks import consume_email, mark_thread_read
 from comm.utils import filter_notes_by_read_status, ThreadObjectPermission
 from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
-from mkt.api.base import CORSViewSet
+from mkt.api.base import CORSMixin
 from mkt.webpay.forms import PrepareForm
 from rest_framework.response import Response
 
@@ -161,7 +162,7 @@ class ReadUnreadFilter(BaseFilterBackend):
                                            show_read)
 
 
-class CommViewSet(CORSViewSet):
+class CommViewSet(CORSMixin, GenericViewSet):
     """Some overriding and mixin stuff to adapt other viewsets."""
 
     def patched_get_request(self):
