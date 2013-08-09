@@ -4,7 +4,6 @@ from celeryutils import task
 from tower import ugettext as _
 
 from addons.tasks import create_persona_preview_images
-import amo
 from amo.storage_utils import move_stored_file
 from amo.utils import LocalFileStorage, send_mail_jinja
 import mkt.constants.reviewers as rvw
@@ -72,12 +71,14 @@ def approve_rereview(theme):
     rereview = theme.rereviewqueuetheme_set.all()
     reupload = rereview[0]
 
-    move_stored_file(
-        reupload.header_path, reupload.theme.header_path,
-        storage=storage)
-    move_stored_file(
-        reupload.footer_path, reupload.theme.footer_path,
-        storage=storage)
+    if reupload.header_path != reupload.theme.header_path:
+        move_stored_file(
+            reupload.header_path, reupload.theme.header_path,
+            storage=storage)
+    if reupload.footer_path != reupload.theme.footer_path:
+        move_stored_file(
+            reupload.footer_path, reupload.theme.footer_path,
+            storage=storage)
     create_persona_preview_images(
         src=reupload.theme.header_path,
         full_dst=[
