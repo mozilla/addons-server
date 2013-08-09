@@ -1,4 +1,4 @@
-{% extends "reviewers/base.html" %}
+{% extends "reviewers/themes/base.html" %}
 
 {% if flagged %}
   {% set title_text = _('Flagged Themes') %}
@@ -18,9 +18,11 @@
   {{ css('mkt/reviewers') }}
 {% endblock %}
 
-{% block content %}
+{% block breadcrumbs %}
+  {{ reviewers_breadcrumbs(queue=(tab + '_themes')) }}
+{% endblock %}
 
-{{ reviewers_breadcrumbs(queue=(tab + '_themes')) }}
+{% block content %}
 
 <h1 class="theme-queue-header">{% block page_header %}{{ title_text }}{% endblock %}</h1>
 <nav class="theme-review island c">
