@@ -42,3 +42,22 @@
     {% endfor %}
   </ul>
 {% endmacro %}
+
+{% macro log_filter(type, form) %}
+  {# type -- string (e.g. 'apps', 'themes') #}
+  <div id="log-filter" class="log-filter-outside island">
+    <form action="{{ url('reviewers.' + type + '.logs') }}" method="get">
+      <div class="date_range">
+        {{ form.start.label_tag() }}
+        {{ form.start }}
+        {{ form.end.label_tag() }}
+        {{ form.end }}
+        {{ form.search.label_tag() }}
+        {{ form.search }}
+
+        {# L10n: "Filter" is a button label (verb) #}
+        <button type="submit">{{ _('Filter') }}</button>
+      </div>
+    </form>
+  </div>
+{% endmacro %}

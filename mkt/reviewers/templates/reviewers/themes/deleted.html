@@ -4,10 +4,6 @@
   {{ reviewers_breadcrumbs(items=[(None, _('Deleted Themes'))]) }}
 {% endblock %}
 
-{% block log_url %}
-    {{ url('reviewers.themes.logs') }}
-{% endblock %}
-
 {% block content %}
   {% include "reviewers/themes/includes/logs_filter_deleted.html" %}
 
@@ -47,5 +43,4 @@
       {{ pager|impala_paginator }}
     {% endif %}
   </section>
-
 {% endblock %}

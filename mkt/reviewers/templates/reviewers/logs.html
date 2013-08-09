@@ -5,8 +5,7 @@
 {% endblock %}
 
 {% block content %}
-  {% include 'reviewers/logs_filter.html' %}
-
+  {{ macros.log_filter('apps', form) }}
   {{ macros.tabnav('logs', tab, logs_tabnav() ) }}
 
   <section class="island">

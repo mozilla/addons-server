@@ -236,6 +236,7 @@ class ThemeReviewForm(happyforms.Form):
 
             # Log.
             amo.log(amo.LOG.THEME_REVIEW, theme.addon, details={
+                    'theme': theme.addon.name.localized_string,
                     'action': action,
                     'reject_reason': reject_reason,
                     'comment': comment}, user=theme_lock.reviewer)
