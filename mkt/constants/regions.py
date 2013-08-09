@@ -69,7 +69,7 @@ class UK(REGION):
     slug = 'uk'
     default_currency = 'GBP'
     mcc = 235
-    has_payments = False
+    has_payments = True
 
 
 class BR(REGION):
