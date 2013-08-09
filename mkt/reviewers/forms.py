@@ -197,7 +197,11 @@ class ThemeReviewForm(happyforms.Form):
         comment = self.cleaned_data.get('comment')
         reject_reason = self.cleaned_data.get('reject_reason')
         theme = self.cleaned_data['theme']
-        is_rereview = theme.rereviewqueuetheme_set.exists()
+
+        is_rereview = (
+            theme.rereviewqueuetheme_set.exists() and
+            theme.addon.status not in (amo.STATUS_PENDING,
+                                       amo.STATUS_REVIEW_PENDING))
 
         theme_lock = ThemeLock.objects.get(theme=self.cleaned_data['theme'])
 
