@@ -3,6 +3,8 @@ import time
 
 from django.db import models
 
+from aesfield.field import AESField
+
 from amo.models import ModelBase
 
 
@@ -13,7 +15,7 @@ TOKEN_TYPES = ((REQUEST_TOKEN, u'Request'), (ACCESS_TOKEN, u'Access'))
 
 class Access(ModelBase):
     key = models.CharField(max_length=255, unique=True)
-    secret = models.CharField(max_length=255)
+    secret = AESField(max_length=255, aes_key='api:access:secret')
     user = models.ForeignKey('auth.User')
     redirect_uri = models.CharField(max_length=255)
     app_name = models.CharField(max_length=255)
