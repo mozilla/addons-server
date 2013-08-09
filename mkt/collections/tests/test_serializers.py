@@ -46,7 +46,8 @@ class TestCollectionSerializer(CollectionDataMixin, amo.tests.TestCase):
         for name, value in self.collection_data.iteritems():
             eq_(self.collection_data[name], data[name])
         self.assertSetEqual(data.keys(), ['id', 'name', 'description', 'apps',
-                                          'collection_type'])
+                                          'collection_type', 'category',
+                                          'region', 'carrier'])
         for order, app in enumerate(apps):
             eq_(data['apps'][order]['slug'], app.app_slug)
 

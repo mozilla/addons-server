@@ -21,7 +21,7 @@ django-celery==3.0.17
 django-cronjobs==0.2.3
 django_csp==1.0.2
 django-extensions==0.9
-django-filter==0.6
+django-filter==0.7
 django-memcached-pool==0.4.1
 django-multidb-router==0.5
 django-mysql-pool==0.2

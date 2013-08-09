@@ -2,6 +2,8 @@ from django.db import models
 from django.db.models import Max
 
 import amo.models
+import mkt.regions
+from addons.models import Category
 from mkt.webapps.models import Webapp
 from translations.fields import PurifiedField, save_signal
 
@@ -9,12 +11,22 @@ from .constants import COLLECTION_TYPES
 
 
 class Collection(amo.models.ModelBase):
-    collection_type = models.IntegerField(choices=COLLECTION_TYPES, null=True)
+    collection_type = models.IntegerField(choices=COLLECTION_TYPES)
     description = PurifiedField()
     name = PurifiedField()
+    # FIXME: add better / composite indexes that matches the query we are
+    # going to make.
+    category = models.ForeignKey(Category, null=True, blank=True)
+    region = models.PositiveIntegerField(default=None, null=True, blank=True,
+        choices=mkt.regions.REGIONS_CHOICES_ID, db_index=True)
+    carrier = models.IntegerField(default=None, null=True, blank=True,
+        choices=mkt.carriers.CARRIER_CHOICES, db_index=True)
 
     class Meta:
         db_table = 'app_collections'
+        ordering = ('-id',)  # This will change soon since we'll need to be
+                             # able to order collections themselves, but this
+                             # helps tests for now.
 
     def __unicode__(self):
         return self.name.localized_string_clean
