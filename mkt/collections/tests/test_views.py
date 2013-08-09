@@ -1,10 +1,13 @@
 # -*- coding: utf-8 -*-
 import json
+import os
 from random import shuffle
 
+from django.core.files.storage import default_storage as storage
 from django.core.urlresolvers import reverse
 from django.utils import translation
 
+from PIL import Image
 from nose import SkipTest
 from nose.tools import eq_, ok_
 from rest_framework.exceptions import PermissionDenied
@@ -24,6 +27,7 @@ from mkt.collections.views import CollectionViewSet
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
 
+from mkt.collections.tests.test_serializers import IMAGE_DATA
 
 class TestCollectionViewSetMixin(object):
     def make_publisher(self):
@@ -845,3 +849,50 @@ class TestCollectionViewSetUnique(TestCollectionViewSetMixin, RestOAuth):
         res, data = self.duplicate(self.client)
         eq_(res.status_code, 400)
         ok_('collection_uniqueness' in data)
+
+
+class TestCollectionImageViewSet(RestOAuth):
+
+    def setUp(self):
+        self.create_switch('rocketfuel')
+        super(TestCollectionImageViewSet, self).setUp()
+        self.collection_data = {
+            'name': 'My Favorite Games',
+            'description': 'A collection of my favorite games',
+            'collection_type': COLLECTIONS_TYPE_BASIC,
+        }
+        self.collection = Collection.objects.create(**self.collection_data)
+        self.url = reverse('collection-image-detail',
+                           kwargs={'pk': self.collection.pk})
+
+    def test_put(self):
+        self.grant_permission(self.profile, 'Apps:Publisher')
+        res = self.client.put(self.url, json.dumps({
+            'image': 'data:image/gif;base64,' + IMAGE_DATA}))
+        eq_(res.status_code, 204)
+        assert os.path.exists(self.collection.image_path())
+        im = Image.open(self.collection.image_path())
+        im.verify()
+        assert im.format == 'PNG'
+
+    def test_put_non_data_uri(self):
+        self.grant_permission(self.profile, 'Apps:Publisher')
+        res = self.client.put(self.url, json.dumps({'image': 'some junk'}))
+        eq_(res.status_code, 400)
+
+    def test_put_non_image(self):
+        self.grant_permission(self.profile, 'Apps:Publisher')
+        res = self.client.put(self.url, json.dumps({'image': 'data:text/plain;base64,AAA='}))
+        eq_(res.status_code, 400)
+
+    def test_put_unauthorized(self):
+        res = self.client.put(self.url, json.dumps({'image': 'some junk'}))
+        eq_(res.status_code, 403)
+
+    def test_get(self):
+        img = ('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEUAAACnej'
+               '3aAAAAAXRSTlMAQObYZgAAAApJREFUCNdjYAAAAAIAAeIhvDMAAAAASUVORK5C'
+               'YII=').decode('base64')
+        storage.open(self.collection.image_path(), 'w').write(img)
+        res = self.client.get(self.url)
+        eq_(res.content, img)
