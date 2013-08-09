@@ -195,3 +195,13 @@ def fireplace(request):
     return jingo.render(request, 'site/fireplace.html', {
         'site_settings': site_settings
     })
+
+
+def commbadge(request):
+    site_settings = {
+        'persona_unverified_issuer': settings.BROWSERID_DOMAIN
+    }
+
+    return jingo.render(request, 'site/commbadge.html', {
+        'site_settings': site_settings
+    })

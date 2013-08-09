@@ -52,4 +52,5 @@ urlpatterns = patterns('',
 
     url('^timing/record$', views.record, name='mkt.timing.record'),
     url('^server.html$', views.fireplace, name='site.fireplace'),
+    url('^comm/.+?$', views.commbadge, name='site.commbadge')
 )
