@@ -42,7 +42,7 @@ class TestCollection(amo.tests.TestCase):
         self.add_apps()
         self.assertSetEqual(self.collection.apps(), self.apps)
         eq_(list(CollectionMembership.objects.values_list('order', flat=True)),
-            [1, 2, 3, 4])
+            [0, 1, 2, 3])
 
     def test_mixed_ordering(self):
         extra_app = amo.tests.app_factory()
