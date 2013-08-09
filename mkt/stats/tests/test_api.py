@@ -4,11 +4,14 @@ import mock
 from nose.tools import eq_
 from rest_framework.reverse import reverse
 
+from django.conf import settings
+
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.stats.api import STATS
 
 
 @mock.patch('monolith.client.Client')
+@mock.patch.object(settings, 'MONOLITH_SERVER', 'http://0.0.0.0:0')
 class TestGlobalStatsResource(RestOAuth):
 
     def setUp(self):
