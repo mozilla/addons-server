@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-07-26 15:00-0700\n"
-"PO-Revision-Date: 2013-07-31 18:01+0100\n"
+"PO-Revision-Date: 2013-08-09 17:44+0100\n"
 "Last-Translator: Pavel Cvrček <pcvrcek@mozilla.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -20157,7 +20157,7 @@ msgstr ""
 
 #: mkt/developers/forms_payments.py:509
 msgid "Account not set up"
-msgstr ""
+msgstr "Účet není nastaven"
 
 #: mkt/developers/helpers.py:36 mkt/developers/helpers.py:65
 #: mkt/reviewers/forms.py:69
@@ -20258,7 +20258,7 @@ msgstr "Verze byla úspěšně upravena."
 
 #: mkt/developers/views.py:326
 msgid "Version successfully made public."
-msgstr ""
+msgstr "Verze byla úspěšně nastavena jako veřejná."
 
 #: mkt/developers/views.py:341
 msgid "Version \"{0}\" deleted."
@@ -20282,7 +20282,7 @@ msgstr "Nový klíč k API byl vygenerován."
 
 #: mkt/developers/views.py:901
 msgid "Created blocklisted version."
-msgstr ""
+msgstr "Vytvořena blokovaná verze."
 
 #: mkt/developers/views.py:903
 msgid "App already blocklisted."
@@ -20353,7 +20353,7 @@ msgstr "Název aplikace"
 #: mkt/developers/templates/developers/api.html:38
 #: mkt/developers/templates/developers/api.html:62
 msgid "Redirect URI"
-msgstr ""
+msgstr "URI pro přesměrování"
 
 #: mkt/developers/templates/developers/api.html:53
 msgid "Key"
@@ -22271,7 +22271,7 @@ msgstr "Dokumentace k Firefox OS"
 
 #: mkt/ecosystem/templates/ecosystem/build_ffos.html:43
 msgid "Introductory information about what Firefox OS is and how it works."
-msgstr ""
+msgstr "Úvodní informace o Firefox OS. Co je to za systém a jak funguje."
 
 #: mkt/ecosystem/templates/ecosystem/build_ffos.html:52
 msgid "Documentation about creating Firefox OS applications."
@@ -22284,6 +22284,9 @@ msgid ""
 "installing the platform onto devices, as well as building the simulator and "
 "emulators."
 msgstr ""
+"Dokumentace o platformě Firefox OS (Gong, Gaia a vše okolo). Zahrnuje "
+"dokumentaci pro sestavení a instalaci platformy na různá zařízení, stejně "
+"tak informace o sestavováním simulátoru a emulátorů."
 
 #: mkt/ecosystem/templates/ecosystem/build_ffos.html:72
 msgid ""
@@ -22291,6 +22294,9 @@ msgid ""
 "security devices from every perspective: for app developers, device "
 "integrators, and so forth."
 msgstr ""
+"Dokumentace o bezpečnosti ve Firefox OS. Zahrnuje témata o bezpečnosti "
+"zařízení z každé perspektivy: pro vývojáře aplikací, integrátory se "
+"zařízením atd."
 
 #: mkt/ecosystem/templates/ecosystem/build_ffos.html:83
 msgid "Articles about optimizing Firefox OS applications."
@@ -22302,7 +22308,7 @@ msgstr "Průvodce řešení častých problémů s Firefox OS."
 
 #: mkt/ecosystem/templates/ecosystem/build_ffos.html:96
 msgid "A guide to debugging both your mobile apps and Firefox OS itself."
-msgstr ""
+msgstr "Průvodce laděním mobilních aplikací a samotného Firefox OS."
 
 #: mkt/ecosystem/templates/ecosystem/build_ffos.html:106
 msgid ""
@@ -22310,6 +22316,9 @@ msgid ""
 "developers. This guide also applies if someone installed Firefox OS on your "
 "phone for you."
 msgstr ""
+"Průvodce vývojářskými telefony Firefox OS, které Mozilla poskytuje některým "
+"vývojářům. Průvodce je též užitečný pro ty, kteří si nainstalují Firefox OS "
+"na svůj telefon."
 
 #: mkt/ecosystem/templates/ecosystem/build_ffos.html:114
 msgid "View all..."
@@ -22326,20 +22335,24 @@ msgid ""
 "These references and guides provide information useful to developers "
 "creating game apps using open Web technologies."
 msgstr ""
+"Tyto přehledy a návody poskytnou užitečné informace pro vývojáře herních "
+"aplikací, kteří je vyvíjejí pomocí otevřených webových technologií."
 
 #: mkt/ecosystem/templates/ecosystem/build_game_apps.html:20
 msgid "Guides for game developers"
-msgstr "Průvodce pro vývojáře her."
+msgstr "Průvodce pro vývojáře her"
 
 #: mkt/ecosystem/templates/ecosystem/build_game_apps.html:24
 msgid "Special considerations for game developers"
-msgstr ""
+msgstr "Speciální upozornění pro vývojáře her"
 
 #: mkt/ecosystem/templates/ecosystem/build_game_apps.html:27
 msgid ""
 "Things you should keep in mind while designing and developing your game as a "
 "Web app."
 msgstr ""
+"Věci, které byste měli mít na paměti, když navrhujete a vyvíjíte svou hru "
+"jako webovou aplikaci."
 
 #: mkt/ecosystem/templates/ecosystem/build_game_apps.html:33
 msgid "Resources for game developers"
@@ -22354,6 +22367,8 @@ msgid ""
 "Links to useful libraries, game engines, and utilities that can help you "
 "create your game app."
 msgstr ""
+"Odkazy na užitečné knihovny, herní enginy a nástroje, které vám pomohou "
+"vytvořit vaši novou herní aplikaci."
 
 #: mkt/ecosystem/templates/ecosystem/build_game_apps.html:48
 msgid "View All..."
@@ -22361,7 +22376,7 @@ msgstr "Zobrazit vše..."
 
 #: mkt/ecosystem/templates/ecosystem/build_game_apps.html:50
 msgid "Technology reference documentation"
-msgstr ""
+msgstr "Referenční dokumentace k technologiím"
 
 #: mkt/ecosystem/templates/ecosystem/build_game_apps.html:59
 msgid "HTML"
@@ -22388,6 +22403,8 @@ msgid ""
 "If you still aren't sure how to do what you're trying to get done, feel free "
 "to join the conversation!"
 msgstr ""
+"Pokud si stále nejste jisti, jak něčeho docílit, neváhejte se zapojit do "
+"diskuse!"
 
 #: mkt/ecosystem/templates/ecosystem/build_game_apps.html:83
 msgid "Consult the webapps forum:"
@@ -22414,6 +22431,8 @@ msgid ""
 "Ask your question on the Open Web Apps IRC channel: <a href=\"%(url)s"
 "\">#openwebapps</a>"
 msgstr ""
+"Položte svou otázku na IRC kanálu Open Web Apps: <a href=\"%(url)s"
+"\">#openwebapps</a>"
 
 #: mkt/ecosystem/templates/ecosystem/build_game_apps.html:107
 msgid "Tools for app developers"
@@ -22425,7 +22444,7 @@ msgstr "Nástroje pro vývojáře aplikací"
 
 #: mkt/ecosystem/templates/ecosystem/build_game_apps.html:121
 msgid "Don't forget about the <em>netiquette</em>...</a>"
-msgstr ""
+msgstr "Nezapomeňte na <em>netiketu</em>...</a>"
 
 #: mkt/ecosystem/templates/ecosystem/build_intro.html:5
 #: mkt/ecosystem/templates/ecosystem/build_intro.html:13
@@ -25302,6 +25321,8 @@ msgstr "Aktualizace zabalených aplikací"
 msgid ""
 "For information on updating apps, see <a href=\"%(url)s\">Updating apps</a>."
 msgstr ""
+"Pro informace o aktualizaci aplikací si přečtěte článek <a href=\"%(url)s"
+"\">Updating apps</a>."
 
 #: mkt/ecosystem/templates/ecosystem/publish_payments.html:15
 msgid ""
@@ -25310,6 +25331,9 @@ msgid ""
 "href=\"%(mdn_url)s\">documented in MDN</a> and is <a href=\"%(api_url)s"
 "\">available through the API</a>."
 msgstr ""
+"Dostupnost plateb se liší země od země. Každá země má odlišné ceny a "
+"dostupné platební metody. Ceny jsou <a href=\"%(mdn_url)s\">dokumentovány na "
+"MDN</a> a jsou <a href=\"%(api_url)s\">dostupné skrze API</a>."
 
 #: mkt/ecosystem/templates/ecosystem/publish_payments.html:24
 msgid "These are the currently supported countries in the Marketplace."
@@ -25347,10 +25371,19 @@ msgid ""
 "will do what it says it'll do. The app requirements below aim for the "
 "delicate balance between these needs."
 msgstr ""
+"Tento článek popisuje požadavky, které musí aplikace splňovat, aby mohla být "
+"distribuována skrze Firfox Marketplace. Tyto požadavky jsou vybalancováním "
+"potřeb vývojářů a uživatelů aplikací z Firefox Marketplace. Vývojáří chtějí "
+"férová, konzistentní a neomezující pravidla, kterým mohou věřit, když na "
+"základě nich chtějí stavět své podnikání. Na druhé straně očekávají, že jsou "
+"aplikace bezpečné, budou fungovat na jejich zařízení a budou dělat přesně "
+"to, co tvrdí, že dělají. Požadavky na aplikace níže se snaží vyvážit potřeby "
+"obou stran."
 
 #: mkt/ecosystem/templates/ecosystem/publish_review.html:28
 msgid "Here are Mozilla's expectations of what app review is and is not:"
 msgstr ""
+"Níže je popis toho, co si Mozilla představuje pod kontrolou aplikace a co ne:"
 
 #: mkt/ecosystem/templates/ecosystem/publish_review.html:34
 msgid ""
@@ -25359,6 +25392,9 @@ msgid ""
 "trusted touch point that provides feedback to help developers be more "
 "successful."
 msgstr ""
+"Kritéria budou uplatňována spravedlivě a konzistentně. Cílem procesu "
+"kontroly aplikace není zabránit jejímu přidání na Marketplace, ale "
+"poskytnout zpětnou vazbu vývojářům, aby jejich aplikace byly úspěšnější."
 
 #: mkt/ecosystem/templates/ecosystem/publish_review.html:42
 msgid ""
@@ -25366,6 +25402,9 @@ msgid ""
 "over the app manifest and spend a few minutes exercising the application as "
 "a normal user would."
 msgstr ""
+"Naši redaktoři nejsou QA tým! Během procesu kontroly se někdo podívá na "
+"manifest aplikace a stráví pár minut zkoušením aplikace jako kterýkoliv "
+"normální uživatel."
 
 #: mkt/ecosystem/templates/ecosystem/publish_review.html:49
 msgid ""
@@ -25375,6 +25414,10 @@ msgid ""
 "relevant supporting documentation or make recommendations on what changes "
 "need to be made."
 msgstr ""
+"Pokud se při procesu kontroly aplikace objeví chyby, dostane vývojář jasné "
+"vysvětlení problémů, které byly nalezeny, popis pro jejich zreprodukování a "
+"v situacích, kdy je to možné, odkáže redaktor vývojáře na správnou "
+"dokumentaci nebo navrhne řešení, které by se mělo realizovat."
 
 #: mkt/ecosystem/templates/ecosystem/publish_review.html:58
 msgid ""
@@ -25383,6 +25426,11 @@ msgid ""
 "orange background wouldn't be rejected because it's ugly, but might be "
 "rejected if it's not readable."
 msgstr ""
+"Redaktoři nezaujímají názor na to, jak aplikace <em>vypadá</em>, ale pouze "
+"na to, jak <em>funguje</em>. Příkladem může být aplikace, kde je odstavec "
+"psán červeně na oranžovém pozadí. V tomto případě nemůže být aplikace "
+"zamítnuta, protože vypadá strašně, ale proto, že text může být pro řadu "
+"uživatelů nečitelný."
 
 #: mkt/ecosystem/templates/ecosystem/publish_review.html:66
 msgid ""
@@ -25392,16 +25440,25 @@ msgid ""
 "are outside of the developer's control; however we may withhold approval if "
 "we can't get the app to work."
 msgstr ""
+"Vždy dáváme vývojářům možnost se vyjádřit. Pokud si redaktor není jist, zda "
+"by měla být aplikace zamítnuta, optá se na sporné věci vývojáře <em>před</"
+"em> zamítnutím. Aplikace nebudou (vědomě) zamítnuty z důvodu problémů s "
+"platformou, které jsou mimo možnost vývojáře je ovlivnit. Je však možné "
+"odepřít schválení aplikace, pokud nefunguje."
 
 #: mkt/ecosystem/templates/ecosystem/publish_review.html:78
 msgid ""
 "<em>Full details of the app security architecture are available here: <a "
 "href=\"%(url)s\">%(url)s</a></em>"
 msgstr ""
+"<em>Plný popis bezpečnostní architektury aplikací jsou dostupné zde: <a href="
+"\"%(url)s\">%(url)s</a></em>"
 
 #: mkt/ecosystem/templates/ecosystem/publish_review.html:85
 msgid "The app manifest must be served from the same origin as the app."
 msgstr ""
+"Manifest aplikace musí být distribuován ze stejného místa jako je umístění "
+"aplikace."
 
 #. Do not localize text in <code></code>
 #: mkt/ecosystem/templates/ecosystem/publish_review.html:91
@@ -25409,18 +25466,24 @@ msgid ""
 "The app manifest must be served a <code>Content-Type</code> header of "
 "<code>application/x-web-app-manifest+json</code>."
 msgstr ""
+"Manifest aplikace musí být distribuován pomocí hlavičky <code>Content-Type</"
+"code> s hodnotou <code>application/x-web-app-manifest+json</code>."
 
 #: mkt/ecosystem/templates/ecosystem/publish_review.html:97
 msgid ""
 "Apps should not use redirects or iframes to load content that the developer "
 "isn't authorized to use."
 msgstr ""
+"Aplikace nesmí používat přesměrování nebo iframy s načítaným obsahem, který "
+"vývojář nemá právo použít."
 
 #: mkt/ecosystem/templates/ecosystem/publish_review.html:103
 msgid ""
 "Requested privileges must be specified in the app manifest with description "
 "of why the privilege is needed."
 msgstr ""
+"Vyžadovaná oprávnění musí být uvedena v manifestu aplikace s popisem, proč "
+"jsou tato oprávnění potřeba."
 
 #: mkt/ecosystem/templates/ecosystem/publish_review.html:109
 msgid "Privacy"
@@ -25434,6 +25497,11 @@ msgid ""
 "take a look at our <a href=\"%(url_policies)s\">privacy policy guidelines</"
 "a>."
 msgstr ""
+"Vývojář musí v rámci procesu přidání aplikace poskytnout odkaz na zásady "
+"ochrany soukromí. Není však pro ně vyžadován konkrétní formát či obsah. "
+"Můžete však zdarma využít naši <a href=\"%(url_privacy)s\">šablonu zásad "
+"odchrany soukromí</a>. Inspiraci též můžete hledat v našich <a href="
+"\"%(url_policies)s\">pokynech pro zásady ochrany soukromí</a>."
 
 #: mkt/ecosystem/templates/ecosystem/publish_review.html:122
 msgid "Content"
@@ -25447,12 +25515,19 @@ msgid ""
 "the right track, rather than invest development time into content that will "
 "be rejected."
 msgstr ""
+"Jakákoliv aplikace, která porušuje naše Pokyny pro obsah, není povolena. "
+"Pokud si myslíte, že jste tzv. na hraně, dotázejte se týmu redaktorů dříve, "
+"než ji přidáte (a to i tehdy, když ještě není hotova). Chceme vám pomoci, "
+"aby se vaše aplikace pohybovala v povolených mezích na místo toho, abyste "
+"investovali čas do vývoje obsahu, který bude zamítnut."
 
 #: mkt/ecosystem/templates/ecosystem/publish_review.html:135
 msgid ""
 "To distribute games in Brazil, developer must request a rating from DEJUS "
 "and send the result to"
 msgstr ""
+"Pro distribuci her v Brazílii si musí vývojář vyžádat hodnocení od DEJUS a "
+"poslat nám jej na"
 
 #: mkt/ecosystem/templates/ecosystem/publish_review.html:139
 msgid "app-reviews@mozilla.org"
@@ -25463,6 +25538,8 @@ msgid ""
 "Screenshots and descriptions submitted to the Firefox Marketplace must "
 "accurately represent the app."
 msgstr ""
+"Náhledy a popis přidaný na Firefox Marketplace musí odpovídat aktuální "
+"podobě aplikace."
 
 #: mkt/ecosystem/templates/ecosystem/publish_review.html:148
 msgid ""
@@ -25470,10 +25547,14 @@ msgid ""
 "the localizations that your app supports. For example, by providing a locale "
 "key in Polish, users will expect your app to be available in that language."
 msgstr ""
+"V manifestu aplikace by měly <a href=\"%(url)s\">kódy jazyků</a> odpovídat "
+"jazykům, které vaše aplikace podporuje. Pokud tedy například uvedete jako "
+"kód jazyka Češtinu, pak uživatelé očekávají, že bude vaše aplikace v tomto "
+"jazyce dostupná."
 
 #: mkt/ecosystem/templates/ecosystem/publish_review.html:156
 msgid "Content Guidelines"
-msgstr ""
+msgstr "Poskyny pro obsah"
 
 #: mkt/ecosystem/templates/ecosystem/publish_review.html:158
 msgid ""
@@ -25483,48 +25564,62 @@ msgid ""
 "Mozilla has the right to immediately remove the application from the Firefox "
 "Marketplace."
 msgstr ""
+"Tento seznam popisuje typy obsahu, které nejsou na Firefox Marketplace "
+"povoleny. Tento list je ilustrativní, není definitivní a může být "
+"aktualizován. Pokud některá aplikace nesplňuje body uvedené níže, může "
+"Mozilla okamžitě odstranit aplikaci z Firefox Marketplace."
 
 #: mkt/ecosystem/templates/ecosystem/publish_review.html:168
 msgid ""
 "No obscene pornographic materials, or graphic depictions of sexuality or "
 "violence."
 msgstr ""
+"Źádný obscéní pornografický materiál či grafika, která vyjadřuje sexualitu "
+"či násilí."
 
 #: mkt/ecosystem/templates/ecosystem/publish_review.html:174
 msgid ""
 "No content that infringes anyone's rights, including intellectual property "
 "or other proprietary rights or rights of privacy or publicity."
 msgstr ""
+"Žádný obsah, který porušuje něčí práva. Může se jedna o práva duševní, jiná "
+"vlastnická práva či práva na ochranu soukromí či publicity."
 
 #: mkt/ecosystem/templates/ecosystem/publish_review.html:181
 msgid ""
 "No content that is designed to harm Mozilla or users (such as malicious "
 "code, viruses, spyware or malware)."
 msgstr ""
+"Žádný obsah, jehož cílem je poškodit Mozillu nebo její uživatele (např. "
+"záškodnický kód, viry, spyware či malware)."
 
 #: mkt/ecosystem/templates/ecosystem/publish_review.html:187
 msgid "No content that is illegal or promotes illegal activities."
-msgstr ""
+msgstr "Žádný obsah, který je ilegální či propaguje ilegální aktivity."
 
 #: mkt/ecosystem/templates/ecosystem/publish_review.html:192
 msgid ""
 "No content that is deceptive, misleading, fraudulent or is designed to phish "
 "or perform other identity theft."
 msgstr ""
+"Žádný obsah, který je klamavý, zavádějící, podvodný či je navržen ke krádeži "
+"cizí identity."
 
 #: mkt/ecosystem/templates/ecosystem/publish_review.html:197
 msgid "No content that promotes gambling."
-msgstr ""
+msgstr "Žádný obsah, který propaguje hazardní hry."
 
 #: mkt/ecosystem/templates/ecosystem/publish_review.html:199
 msgid ""
 "No content that engages in the advertisement of illegal or controlled "
 "products or services."
 msgstr ""
+"Žádný obsah, který se zabývá reklamou na ilegální či regulované produkty či "
+"služby."
 
 #: mkt/ecosystem/templates/ecosystem/publish_review.html:204
 msgid "No content that exploits children."
-msgstr ""
+msgstr "Žádný obsah související se zneužíváním dětí."
 
 #: mkt/ecosystem/templates/ecosystem/publish_review.html:206
 msgid ""
@@ -25534,10 +25629,15 @@ msgid ""
 "disability, religion, geographic location or other protected category or "
 "constitutes hate speech."
 msgstr ""
+"Žádný obsah, který degraduje, zastrašuje, podněcuje násilí proti konkrétním "
+"osobám, ohrožuje konkrétní osoby či skupiny na základě věku, pohlaví, rasy, "
+"etnického původu, národnosti, náboženství, sexuální orientace , zdravotního "
+"postižení, náboženského vyznání, geografického umístění či jiné chráněné "
+"kategorie či představující nenávistné projevy."
 
 #: mkt/ecosystem/templates/ecosystem/publish_review.html:215
 msgid "No content that misleads a user into making a purchasing decision."
-msgstr ""
+msgstr "Žádný obsah, který svádí uživatele k nákupu omylem."
 
 #: mkt/ecosystem/templates/ecosystem/publish_review.html:220
 msgid "Functionality"
@@ -25549,10 +25649,13 @@ msgid ""
 "Cosmetic flaws and minor inconveniences will be reported to the developer, "
 "but will not prevent an app from being approved."
 msgstr ""
+"Redaktor musí být schopen provést hlavní funkce, které aplikace inzeruje. "
+"Malé nedodělky či drobná nefunkčnost bude nahlášena vývojáři, ale nebrání, "
+"aby byla aplikace schválena."
 
 #: mkt/ecosystem/templates/ecosystem/publish_review.html:231
 msgid "The app must not compromise system performance or stability."
-msgstr ""
+msgstr "Aplikace nesmí ovlivňovat výkon systému a jeho stabilitu."
 
 #: mkt/ecosystem/templates/ecosystem/publish_review.html:236
 msgid "Usability"
@@ -25642,6 +25745,8 @@ msgid ""
 "The Firefox OS Marketplace provides infrastructure for developers to offer "
 "apps to end users."
 msgstr ""
+"Firefox OS Marketplace nabízí vývojářům infrastrukturu pro nabízení aplikací "
+"koncovým uživatelům."
 
 #: mkt/ecosystem/templates/ecosystem/publish_submit.html:21
 msgid ""
@@ -25649,6 +25754,10 @@ msgid ""
 "iPhones. To be notified when iPhone support is added, please <a href=\"%(url)"
 "s\">sign up for the Open Web Apps Developer Newsletter</a>."
 msgstr ""
+"Web Firefox OS marketplace aktuálně nefunguje, pokud k němu přistupujete z "
+"iPhone. Pokud chcete být upozornění až bude přidána podpora pro iPhone, <a "
+"href=\"%(url)s\">přihlašte se k odběru zpravodaje Open Web Apps Developer</"
+"a>."
 
 #: mkt/ecosystem/templates/ecosystem/publish_submit.html:28
 msgid "What you need"
@@ -25663,6 +25772,8 @@ msgid ""
 "A manifest file for your app. See <a href=\"%(url)s\">App Manifest</a> for "
 "information."
 msgstr ""
+"Soubor manifestu pro vaši aplikaci. Pro více informací si přečtěte článek <a "
+"href=\"%(url)s\">App Manifest</a>."
 
 #: mkt/ecosystem/templates/ecosystem/publish_submit.html:38
 msgid ""
