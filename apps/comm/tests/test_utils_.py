@@ -8,6 +8,7 @@ import amo
 from amo.tests import app_factory, TestCase
 from comm.utils import CommEmailParser, save_from_email_reply
 from comm.models import CommunicationThread, CommunicationThreadToken
+from mkt.constants import comm
 from mkt.site.fixtures import fixture
 from users.models import UserProfile
 
@@ -36,7 +37,12 @@ class TestEmailReplySaving(TestCase):
         assert note
         eq_(note.body, 'This is the body')
 
-    def test_invalid_token_deletion(self):
+        # Test with an invalid token.
+        self.token.update(use_count=comm.MAX_TOKEN_USE_COUNT + 1)
+        email_text = self.email_template % self.token.uuid
+        assert not save_from_email_reply(email_text)
+
+    def test_with_unpermitted_token(self):
         """Test when the token's user does not have a permission on thread."""
         email_text = self.email_template % self.token.uuid
         assert not save_from_email_reply(email_text)

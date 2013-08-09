@@ -117,7 +117,8 @@ def save_from_email_reply(reply_text):
         log.error('An email was skipped with non-existing uuid %s' % uuid)
         return False
 
-    if ThreadObjectPermission().user_has_permission(tok.thread, tok.user):
+    if (ThreadObjectPermission().user_has_permission(tok.thread, tok.user) and
+        tok.is_valid()):
         n = CommunicationNote.objects.create(note_type=comm.NO_ACTION,
             thread=tok.thread, author=tok.user, body=parser.get_body())
         log.info('A new note has been created (from %s using tokenid %s)' %
