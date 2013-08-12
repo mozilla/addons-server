@@ -148,6 +148,7 @@ urlpatterns = patterns('',
     # minor performance reasons.
 
     # Misc pages.
+    ('', include('mkt.commonplace.urls')),
     ('', include('mkt.site.urls')),
 
     # Services.

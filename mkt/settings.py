@@ -60,6 +60,7 @@ INSTALLED_APPS += (
     'mkt.api',
     'mkt.collections',
     'mkt.comm',
+    'mkt.commonplace',
     'mkt.detail',
     'mkt.developers',
     'mkt.ecosystem',

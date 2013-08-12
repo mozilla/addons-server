@@ -51,9 +51,4 @@ urlpatterns = patterns('',
     url('^minifest.webapp$', views.package_minifest, name='minifest.webapp'),
 
     url('^timing/record$', views.record, name='mkt.timing.record'),
-
-    url('^server.html$', views.commonplace, {'repo': 'fireplace'},
-        name='site.fireplace'),
-    url('^comm/.*$', views.commonplace, {'repo': 'commbadge'},
-        name='site.commbadge')
 )
