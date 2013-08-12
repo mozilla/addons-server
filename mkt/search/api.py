@@ -4,6 +4,8 @@ from tastypie.authorization import ReadOnlyAuthorization
 from tastypie.throttle import BaseThrottle
 from tastypie.utils import trailing_slash
 
+from translations.helpers import truncate
+
 import mkt
 from mkt.api.authentication import (SharedSecretAuthentication,
                                     OptionalOAuthAuthentication)
@@ -194,7 +196,7 @@ class SuggestionsResource(SearchResource):
     def dehydrate(self, bundle):
         data = super(SuggestionsResource, self).dehydrate(bundle).data
         return {
-            'description': data['description'],
+            'description': truncate(data['description']),
             'name': data['name'],
             'absolute_url': data['absolute_url'],
             'icon': data['icons'][64],
