@@ -325,7 +325,7 @@ def name_query(q):
     # * Look for matches inside tags (boost=0.1).
     more = dict(summary__text={'query': q, 'boost': 0.8, 'type': 'phrase'},
                 description__text={'query': q, 'boost': 0.3, 'type': 'phrase'},
-                tags__text={'query': q, 'boost': 0.1})
+                tags__text={'query': q.split(), 'boost': 0.1})
 
     analyzer = _get_locale_analyzer()
     if analyzer:
