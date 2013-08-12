@@ -1,6 +1,7 @@
 from rest_framework import mixins, serializers, viewsets
 from rest_framework.exceptions import ParseError
 
+import amo
 from mkt.api.authorization import AllowAppOwner
 from mkt.api.base import CompatRelatedField
 from mkt.constants import APP_FEATURES
@@ -44,7 +45,7 @@ class VersionSerializer(serializers.ModelSerializer):
 
 class VersionViewSet(mixins.RetrieveModelMixin, mixins.UpdateModelMixin,
                      viewsets.GenericViewSet):
-    queryset = Version.objects.all()
+    queryset = Version.objects.exclude(addon__status=amo.STATUS_DELETED)
     serializer_class = VersionSerializer
     authorization_classes = []
     permission_classes = []

@@ -129,3 +129,15 @@ class TestVersionViewSet(RestOAuth):
     def test_patch_no_permission(self):
         data, res = self.patch(auth=False)
         eq_(res.status_code, 403)
+
+    def test_app_delete(self):
+        """Deleted apps should result in a 404 for the version API."""
+        url = rest_reverse('version-detail', kwargs={'pk': self.version.pk})
+        res = self.client.get(url)
+        eq_(res.status_code, 200)
+
+        self.create_switch('soft_delete')
+        self.app.delete()
+
+        res = self.client.get(url)
+        eq_(res.status_code, 404)
