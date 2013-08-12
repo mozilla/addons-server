@@ -598,6 +598,15 @@ class TestESSearch(SearchBase):
         r = self.client.get(self.url, dict(q=tag_name))
         eq_(self.get_results(r), [a.id])
 
+        # Multiple tags.
+        tag_name_2 = 'bagemtagem'
+        AddonTag.objects.create(
+            addon=a, tag=Tag.objects.create(tag_text=tag_name_2))
+        a.save()
+        self.refresh(timesleep=1)
+        r = self.client.get(self.url, dict(q='%s %s' % (tag_name, tag_name_2)))
+        eq_(self.get_results(r), [a.id])
+
 
 class TestPersonaSearch(SearchBase):
     fixtures = ['base/apps']
