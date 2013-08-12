@@ -1,7 +1,7 @@
-from collections import namedtuple
 import datetime
 import json
 import uuid
+from collections import namedtuple
 
 from nose.tools import eq_
 
@@ -11,7 +11,7 @@ from amo.tests import TestCase
 from mkt.api.tests.test_oauth import BaseOAuth
 from mkt.site.fixtures import fixture
 
-from .models import record_stat, MonolithRecord
+from .models import MonolithRecord, record_stat
 
 
 class RequestFactory(client.RequestFactory):
@@ -37,8 +37,8 @@ class RequestFactory(client.RequestFactory):
 
 def total_seconds(td):
     # not present in 2.6
-    return ((td.microseconds + (td.seconds + td.days * 24 * 3600) * 10**6) /
-            10**6)
+    return ((td.microseconds + (td.seconds + td.days * 24 * 3600) * 10 ** 6) /
+            10 ** 6)
 
 
 class TestModels(TestCase):
@@ -113,10 +113,29 @@ class TestMonolithResource(BaseOAuth):
         data = json.loads(res.content)
         eq_(len(data['objects']), 2)
 
+    def test_filter_by_key(self):
+        record_stat('apps_added_us_free', self.request, value=3)
+        record_stat('apps_added_uk_free', self.request, value=1)
+
+        # Exact match.
+        res = self.client.get(self.list_url,
+                              data={'key': 'apps_added_us_free'})
+        eq_(res.status_code, 200)
+        data = json.loads(res.content)
+        eq_(len(data['objects']), 1)
+
+        # Startswith match.
+        res = self.client.get(self.list_url,
+                              data={'key__startswith': 'apps_added_'})
+        eq_(res.status_code, 200)
+        data = json.loads(res.content)
+        eq_(len(data['objects']), 2)
+
     def test_deletion_by_filtering(self):
         # we should be able to delete a set of items using the API
         for id_, date in enumerate((self.last_week, self.yesterday, self.now)):
-            record_stat('app.install', self.request, __recorded=date, value=id_)
+            record_stat('app.install', self.request, __recorded=date,
+                        value=id_)
 
         eq_(MonolithRecord.objects.count(), 3)
         records = MonolithRecord.objects.all()
