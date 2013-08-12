@@ -7,8 +7,8 @@ from django.conf import settings
 from django.db import connection, transaction
 from django.db.models import Sum, Max
 
-from apiclient.discovery import build
 import commonware.log
+from apiclient.discovery import build
 from celeryutils import task
 from oauth2client.client import OAuth2Credentials
 
@@ -16,16 +16,20 @@ import amo
 import amo.search
 from addons.models import Addon, AddonUser
 from bandwagon.models import Collection
-from mkt.monolith.models import MonolithRecord
-from mkt.webapps.models import Installed
-from stats.models import Contribution
+from constants.base import ADDON_PREMIUM_API, ADDON_WEBAPP_TYPES
+from lib.es.utils import get_indices
 from reviews.models import Review
+from stats.models import Contribution
 from users.models import UserProfile
 from versions.models import Version
-from lib.es.utils import get_indices
+
+from mkt.constants.regions import REGIONS_CHOICES_SLUG
+from mkt.monolith.models import MonolithRecord
+from mkt.webapps.models import Installed
+
+from . import search
 from .models import (AddonCollectionCount, CollectionCount, CollectionStats,
                      DownloadCount, ThemeUserCount, UpdateCount)
-from . import search
 
 
 log = commonware.log.getLogger('z.task')
@@ -109,7 +113,8 @@ def update_google_analytics(date, **kw):
     h = httplib2.Http()
     creds.authorize(h)
     service = build('analytics', 'v3', http=h)
-    domain = getattr(settings, 'GOOGLE_ANALYTICS_DOMAIN', None) or settings.DOMAIN
+    domain = getattr(settings,
+                     'GOOGLE_ANALYTICS_DOMAIN', None) or settings.DOMAIN
     profile_id = get_profile_id(service, domain)
     if profile_id is None:
         log.critical('Failed to update global stats: could not access a Google'
@@ -143,18 +148,15 @@ def update_google_analytics(date, **kw):
 
 @task
 def update_global_totals(job, date, **kw):
-    log.info("Updating global statistics totals (%s) for (%s)" %
-                   (job, date))
+    log.info('Updating global statistics totals (%s) for (%s)' % (job, date))
 
     jobs = _get_daily_jobs(date)
     jobs.update(_get_metrics_jobs(date))
 
     num = jobs[job]()
 
-    q = """REPLACE INTO
-                global_stats(`name`, `count`, `date`)
-            VALUES
-                (%s, %s, %s)"""
+    q = """REPLACE INTO global_stats (`name`, `count`, `date`)
+           VALUES (%s, %s, %s)"""
     p = [job, num or 0, date]
 
     try:
@@ -162,18 +164,20 @@ def update_global_totals(job, date, **kw):
         cursor.execute(q, p)
         transaction.commit_unless_managed()
     except Exception, e:
-        log.critical("Failed to update global stats: (%s): %s" % (p, e))
+        log.critical('Failed to update global stats: (%s): %s' % (p, e))
 
-    # monolith is only used for marketplace
+    # Monolith is only used for Marketplace.
     if job.startswith(('apps', 'mmo')):
         try:
-            value = json.dumps({'count': num or 0})
-            MonolithRecord(recorded=date, key=job, value=value,
-                           user_hash='none').save()
+            # Only record if num is greater than zero.
+            if num:
+                value = json.dumps({'count': num})
+                MonolithRecord(recorded=date, key=job, value=value,
+                               user_hash='none').save()
         except Exception as e:
-            log.critical("Update of monolith table failed: (%s): %s" % (p, e))
+            log.critical('Update of monolith table failed: (%s): %s' % (p, e))
 
-    log.debug("Committed global stats details: (%s) has (%s) for (%s)"
+    log.debug('Committed global stats details: (%s) has (%s) for (%s)'
               % tuple(p))
 
 
@@ -237,6 +241,8 @@ def _get_daily_jobs(date=None):
                 sum=Sum('count'))['sum']),
 
         # Marketplace stats
+        # TODO: Remove 'apps_count_new' once we fully migrate to the new
+        # 'apps_added_*' stats.
         'apps_count_new': (Addon.objects
                 .filter(created__range=(date, next_date),
                         type=amo.ADDON_WEBAPP).count),
@@ -261,6 +267,25 @@ def _get_daily_jobs(date=None):
         'mmo_developer_count_total': AddonUser.objects.filter(
             addon__type=amo.ADDON_WEBAPP).values('user').distinct().count,
     }
+
+    # Add various "Apps Added" for all the dimensions we need.
+    apps = Addon.objects.filter(created__range=(date, next_date),
+                                type=amo.ADDON_WEBAPP)
+    for region_slug, region in REGIONS_CHOICES_SLUG:
+        # Apps added by package type and region.
+        for package_type in ADDON_WEBAPP_TYPES.values():
+            stats.update({
+                'apps_added_%s_%s' % (region_slug, package_type):
+                apps.filter(is_packaged=package_type == 'packaged')
+                    .exclude(addonexcludedregion__region=region.id).count
+            })
+        # Apps added by premium type and region.
+        for premium_type, pt_name in ADDON_PREMIUM_API.items():
+            stats.update({
+                'apps_added_%s_%s' % (region_slug, pt_name):
+                apps.filter(premium_type=premium_type)
+                    .exclude(addonexcludedregion__region=region.id).count
+            })
 
     # If we're processing today's stats, we'll do some extras.  We don't do
     # these for re-processed stats because they change over time (eg. add-ons

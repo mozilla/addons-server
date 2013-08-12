@@ -9,6 +9,7 @@ from nose.tools import eq_
 import amo.tests
 from addons.models import Addon, AddonUser
 from bandwagon.models import CollectionAddon, Collection
+from mkt.constants.regions import REGIONS_CHOICES_SLUG
 from mkt.webapps.models import Installed
 from reviews.models import Review
 from stats import cron, tasks
@@ -33,12 +34,12 @@ class TestGlobalStats(amo.tests.TestCase):
 
     @mock.patch('stats.tasks.MonolithRecord')
     def test_mmo_user_total_count_updates_monolith(self, record):
-        date = datetime.date(2013, 3, 11)
+        UserProfile.objects.create(source=amo.LOGIN_SOURCE_MMO_BROWSERID)
         job = 'mmo_user_count_total'
 
-        tasks.update_global_totals(job, date)
+        tasks.update_global_totals(job, datetime.date.today())
         self.assertTrue(record.called)
-        eq_(record.call_args[1]['value'], '{"count": 0}')
+        eq_(record.call_args[1]['value'], '{"count": 1}')
 
     @mock.patch('stats.tasks.MonolithRecord')
     def test_addon_total_downloads_doesnot_update_monolith(self, record):
@@ -57,6 +58,32 @@ class TestGlobalStats(amo.tests.TestCase):
     def test_app_new(self):
         Addon.objects.create(type=amo.ADDON_WEBAPP)
         eq_(tasks._get_daily_jobs()['apps_count_new'](), 1)
+
+    def test_app_added_counts(self):
+        app = Addon.objects.create(type=amo.ADDON_WEBAPP)
+        regions = dict(REGIONS_CHOICES_SLUG)
+
+        # Add a region exclusion.
+        excluded_region = regions['br']
+        app.addonexcludedregion.create(region=excluded_region.id)
+
+        jobs = tasks._get_daily_jobs()
+
+        # Check package type counts.
+        for region_slug in regions.keys():
+            expected_count = 0 if region_slug == excluded_region.slug else 1
+            count = jobs['apps_added_%s_hosted' % region_slug]()
+            eq_(count, expected_count,
+                'Incorrect count for region %s. Got %d, expected %d.' % (
+                    region_slug, count, expected_count))
+
+        # Check premium type counts.
+        for region_slug in regions.keys():
+            expected_count = 0 if region_slug == excluded_region.slug else 1
+            count = jobs['apps_added_%s_free' % region_slug]()
+            eq_(count, expected_count,
+                'Incorrect count for region %s. Got %d, expected %d.' % (
+                    region_slug, count, expected_count))
 
     def test_apps_installed(self):
         addon = Addon.objects.create(type=amo.ADDON_WEBAPP)
