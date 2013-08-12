@@ -734,20 +734,21 @@ class RegionForm(forms.Form):
         self.regions_before = self.product.get_region_ids()
 
         # If we have future excluded regions, uncheck box.
+        # Note: this is currently only relevant for non-paid apps.
         self.future_exclusions = self.product.addonexcludedregion.filter(
             region=mkt.regions.WORLDWIDE.id)
 
         self.initial = {
             'regions': self.regions_before,
-            'other_regions': (not self.future_exclusions.exists() and
-                              not is_paid)
         }
 
         # If the app is paid, disable regions that use payments.
         if is_paid:
 
-            self.fields['other_regions'].widget.attrs['disabled'] = 'disabled'
+            # For paid apps enabling new regions is not based on the worldwide
+            # region it's based on enable_new_regions.
             self.fields['other_regions'].label = _(u'Other regions')
+            self.initial['other_regions'] = self.product.enable_new_regions
 
             # Premium form was valid.
             if self.price and self.price != 'free':
@@ -769,9 +770,15 @@ class RegionForm(forms.Form):
                 self.price_region_ids = (self.product
                                          .get_possible_price_region_ids())
 
+        else:
+            # Set initial of other_regions for non-paid apps.
+            self.initial['other_regions'] = (not
+                self.future_exclusions.exists())
+
         # These are split out so we can distinguish regions that are totally
         # disabled vs those that are disabled based on price.
-        self.disabled_general_regions = sorted(self._disabled_general_regions())
+        self.disabled_general_regions = sorted(
+            self._disabled_general_regions())
         self.disabled_regions = sorted(self._disabled_regions())
 
     def _disabled_regions(self):
@@ -782,10 +789,6 @@ class RegionForm(forms.Form):
     def _disabled_general_regions(self):
         """Regions that are disabled for general reasons."""
         disabled_general_regions = set()
-
-        if self._product_is_paid():
-            # Currently worldwide is disabled for paid apps.
-            disabled_general_regions.add(mkt.regions.WORLDWIDE.id)
 
         # Games cannot be listed in Brazil without a content rating.
         games = Webapp.category('games')
@@ -841,13 +844,6 @@ class RegionForm(forms.Form):
 
         return data
 
-    def clean_other_regions(self):
-        data = self.cleaned_data['other_regions']
-        if data and mkt.regions.WORLDWIDE.id in self.disabled_regions:
-            raise forms.ValidationError(
-                _('Other regions is currently disabled.'))
-        return data
-
     def save(self):
         # Don't save regions if we are toggling.
         if self.is_toggling():
@@ -877,19 +873,32 @@ class RegionForm(forms.Form):
                      % (self.product, r))
 
         if self.cleaned_data['other_regions']:
-            # Developer wants to be visible in future regions, then
-            # delete excluded regions.
-            self.future_exclusions.delete()
-            log.info(u'[Webapp:%s] No longer excluded from future regions.'
+
+            # For a paid app enable_new_regions is distinct from
+            # the worldwide region.
+            if self._product_is_paid():
+                self.product.update(enable_new_regions=True)
+                log.info(u'[Webapp:%s] will be added to future regions.'
+                     % self.product)
+            else:
+                # Developer wants to be visible in future regions, then
+                # delete excluded regions.
+                self.future_exclusions.delete()
+                log.info(u'[Webapp:%s] No longer excluded from future regions.'
                      % self.product)
         else:
-            # Developer does not want future regions, then
-            # exclude all future apps.
-            g, c = AddonExcludedRegion.objects.get_or_create(
-                addon=self.product, region=mkt.regions.WORLDWIDE.id)
-            if c:
-                log.info(u'[Webapp:%s] Excluded from future regions.'
-                         % self.product)
+            if self._product_is_paid():
+                self.product.update(enable_new_regions=False)
+                log.info(u'[Webapp:%s] will not be added to future regions.'
+                     % self.product)
+            else:
+                # Developer does not want future regions, then
+                # exclude all future apps.
+                g, c = AddonExcludedRegion.objects.get_or_create(
+                    addon=self.product, region=mkt.regions.WORLDWIDE.id)
+                if c:
+                    log.info(u'[Webapp:%s] Excluded from future regions.'
+                             % self.product)
 
         ban_game_in_brazil(self.product)
 

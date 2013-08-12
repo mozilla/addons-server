@@ -2,10 +2,19 @@
 {{ region_form.other_regions.label_tag() }}
 {{ region_form.other_regions.errors }}
 <div class="hint note">
-  {%- trans %}
-    Your app will be displayed in the worldwide Marketplace and
-    in any regional marketplace that is added in the future.
-    You will receive an email notification when a new region
-    is added.
-  {% endtrans -%}
+  {% if region_form._product_is_paid() %}
+    {%- trans %}
+      Your app will be displayed in any regional Marketplace that is
+      added in the future and is relevant to your chosen price point.
+      You will receive an email notification when a new region
+      is added.
+    {% endtrans -%}
+  {% else %}
+    {%- trans %}
+      Your app will be displayed in the worldwide Marketplace and
+      in any regional Marketplace that is added in the future.
+      You will receive an email notification when a new region
+      is added.
+    {% endtrans -%}
+  {% endif %}
 </div>
