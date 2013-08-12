@@ -173,6 +173,16 @@ class RS(REGION):
     has_payments = False
 
 
+class BASTA(REGION):
+    id = 17
+    name = _lazy(u'Bastaland')
+    slug = 'basta'
+    default_currency = 'BST'
+    default_language = 'sr'
+    mcc = 999
+    has_payments = True
+
+
 # Create a list of tuples like so (in alphabetical order):
 #
 #     [('worldwide', <class 'mkt.constants.regions.WORLDWIDE'>),
