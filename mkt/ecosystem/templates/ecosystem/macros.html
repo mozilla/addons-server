@@ -77,7 +77,8 @@
                                                                'generalnotes',
                                                                'podcasts',
                                                                'roller',
-                                                               'webfighter') }}">
+                                                               'webfighter',
+                                                               'rtcamera') }}">
               <h2 class="subtitle nav-title">
                 <a href="{{ url('ecosystem.build_reference') }}">
                   {{- _('Reference Apps') }}</a>
@@ -130,6 +131,12 @@
                      class="selected"
                      {% endif %}>
                     {{- _('General Notes') }}</a>
+                </li>
+                <li>
+                  <a href="{{ url('ecosystem.apps_documentation', page='rtcamera') }}"
+                     {%- if section == 'rtcamera' %}
+                     class="selected"
+                     {% endif %}>rtcamera</a>
                 </li>
               </ol>
             </li>

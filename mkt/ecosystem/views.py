@@ -499,64 +499,80 @@ def apps_documentation(request, page=None):
     """Page template for all reference apps."""
 
     if page not in ('chrono', 'face_value', 'podcasts', 'roller',
-                    'webfighter', 'generalnotes'):
+                    'webfighter', 'generalnotes', 'rtcamera'):
         raise Http404
 
     third_party_libs = {
         'node': {
             'link': 'http://nodejs.org/',
-            'title': 'Node.js'
+            'title': 'Node.js',
         },
         'zepto': {
             'link': 'http://zeptojs.com/',
-            'title': 'zepto.js'
+            'title': 'zepto.js',
         },
         'backbone': {
             'link': 'http://backbonejs.org/',
-            'title': 'backbone.js'
+            'title': 'backbone.js',
         },
         'redis': {
             'link': 'http://redis.io',
-            'title': 'redis'
+            'title': 'redis',
         },
         'volo': {
             'link': 'http://volojs.org/',
-            'title': 'volo.js'
+            'title': 'volo.js',
         },
         'jquery': {
             'link': 'http://jquery.com/',
-            'title': 'jQuery'
+            'title': 'jQuery',
         },
         'requirejs': {
             'link': 'http://requirejs.org/',
-            'title': 'RequireJS'
+            'title': 'RequireJS',
+        },
+        'animated_gif': {
+            'link': 'https://github.com/sole/Animated_GIF',
+            'title': 'Animated GIF',
+        },
+        'async_storage': {
+            'link': 'https://github.com/mozilla-b2g/gaia/blob/master/shared/js/async_storage.js',
+            'title': 'Async Storage',
+        },
+        'glmatrix': {
+            'link': 'http://glmatrix.net',
+            'title': 'glMatrix',
+        },
+        'hammerjs': {
+            'link': 'http://eightmedia.github.io/hammer.js',
+            'title': 'hammer.js',
         }
     }
 
     web_api_libs = {
         'localstorage': {
             'link': '//developer.mozilla.org/docs/DOM/Storage#localStorage',
-            'title': 'localStorage'
+            'title': 'localStorage',
         },
         'appcache': {
             'link': '//developer.mozilla.org/docs/HTML/Using_the_application_cache',
-            'title': 'appcache'
+            'title': 'appcache',
         },
         'open_web_apps': {
             'link': '//developer.mozilla.org/docs/Apps/Apps_JavaScript_API',
-            'title': 'Open Web Apps'
+            'title': 'Open Web Apps',
         },
         'indexed_db': {
             'link': '//developer.mozilla.org/docs/IndexedDB',
-            'title': 'IndexedDB'
+            'title': 'IndexedDB',
         },
         'systemxhr': {
             'link': '//developer.mozilla.org/docs/DOM/XMLHttpRequest#Non-standard_properties',
-            'title': 'systemXHR'
+            'title': 'systemXHR',
         },
         'canvas': {
             'link': '//developer.mozilla.org/docs/HTML/Canvas',
-            'title': 'Canvas'
+            'title': 'Canvas',
         },
         'fullscreen': {
             'link': '//developer.mozilla.org/docs/DOM/Using_fullscreen_mode',
@@ -564,14 +580,46 @@ def apps_documentation(request, page=None):
         },
         'in_app_payments': {
             'link': '//developer.mozilla.org/docs/Web/Apps/Publishing/In-app_payments',
-            'title': 'In-app Payments'
+            'title': 'In-app Payments',
+        },
+        'blob': {
+            'link': '//developer.mozilla.org/docs/Web/API/Blob',
+            'title': 'Blob',
+        },
+        'url': {
+            'link': '//developer.mozilla.org/docs/Web/API/window.URL',
+            'title': 'URL',
+        },
+        'webgl': {
+            'link': '//developer.mozilla.org/docs/Web/WebGL',
+            'title': 'WebGL',
+        },
+        'webrtc': {
+            'link': '//developer.mozilla.org/docs/WebRTC',
+            'title': 'WebRTC',
+        },
+        'getusermedia': {
+            'link': '//developer.mozilla.org/docs/Web/API/Navigator.getUserMedia',
+            'title': 'getUserMedia',
+        },
+        'webworkers': {
+            'link': '//developer.mozilla.org/docs/Web/API/Worker',
+            'title': 'Web Workers',
+        },
+        'xmlhttprequest': {
+            'link': '//developer.mozilla.org/docs/Web/API/XMLHttpRequest',
+            'title': 'XMLHttpRequest',
         }
     }
 
     custom_elements_libs = {
         'gaia': {
             'link': 'https://wiki.mozilla.org/Gaia/Design/BuildingBlocks',
-            'title': _('Gaia Building Blocks')
+            'title': _('Gaia Building Blocks'),
+        },
+        'xtags': {
+            'link': 'http://x-tags.org',
+            'title': 'x-tags',
         }
     }
 
@@ -591,6 +639,6 @@ def firefox_os_simulator(request):
     """Landing page for Firefox OS Simulator."""
     ctx = {
         'page': 'firefox_os_simulator',
-        'category': 'build'
+        'category': 'build',
     }
     return jingo.render(request, 'ecosystem/firefox_os_simulator.html', ctx)
