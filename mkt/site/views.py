@@ -188,20 +188,15 @@ def _open_pipe(cmd):
                             stderr=subprocess.PIPE)
 
 
-def fireplace(request):
-    site_settings = {
-        'persona_unverified_issuer': settings.BROWSERID_DOMAIN
-    }
-    return jingo.render(request, 'site/fireplace.html', {
-        'site_settings': site_settings
-    })
+def commonplace(request, repo):
+    if repo not in settings.COMMONPLACE_REPOS:
+        raise HttpResponseNotFound
 
-
-def commbadge(request):
     site_settings = {
         'persona_unverified_issuer': settings.BROWSERID_DOMAIN
     }
 
-    return jingo.render(request, 'site/commbadge.html', {
-        'site_settings': site_settings
+    return jingo.render(request, 'site/commonplace.html', {
+        'repo': repo,
+        'site_settings': site_settings,
     })
