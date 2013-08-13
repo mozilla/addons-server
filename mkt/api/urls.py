@@ -9,6 +9,7 @@ from mkt.submit.api import PreviewResource, StatusResource, ValidationResource
 from mkt.api.base import AppRouter, handle_500, SlugRouter
 from mkt.api.resources import (AppResource, CarrierResource, CategoryViewSet,
                                ConfigResource, error_reporter,
+                               PriceTierViewSet, PriceCurrencyViewSet,
                                RefreshManifestViewSet, RegionResource)
 from mkt.collections.views import CollectionImageViewSet, CollectionViewSet
 from mkt.features.views import AppFeaturesList
@@ -49,11 +50,18 @@ if settings.ALLOW_TASTYPIE_SERVICES:
     if getattr(settings, 'CLEANSED_SETTINGS_ACCESS', False):
         services.register(SettingsResource())
 
+svcs = SimpleRouter()
+svcs.register(r'price-tier', PriceTierViewSet,
+              base_name='price-tier')
+svcs.register(r'price-currency', PriceCurrencyViewSet,
+              base_name='price-currency')
+
 urlpatterns = patterns('',
     url(r'^', include(api.urls)),
     url(r'^apps/', include(apps.urls)),
     url(r'^apps/app/', include(subapps.urls)),
     url(r'^', include(services.urls)),
+    url(r'^services/', include(svcs.urls)),
     url(r'^fireplace/report_error', error_reporter, name='error-reporter'),
     url(r'^rocketfuel/', include(rocketfuel.urls)),
     url(r'^rocketfuel/collections/', include(subcollections.urls)),

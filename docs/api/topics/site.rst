@@ -158,3 +158,157 @@ Configuration
             },
             "version": null
         }
+
+
+Price tiers
+===========
+
+.. http:get:: /api/v1/services/price-tier/
+
+    Lists price tiers.
+
+    **Response**
+
+    :param objects: A listing of :ref:`tiers <tier-response-label>`.
+
+
+.. _tier-response-label:
+
+.. http:get:: /api/v1/services/price-tier/(int:id)/
+
+    Returns a price tier.
+
+    **Response**
+    :param resource_uri: The URI for this tier.
+    :type resource_uri: string
+    :param active: Whether the price tier is active.
+    :type active: boolean
+    :param name: The price tier name.
+    :type name: string
+    :param method: How payment may be submitted.
+    :type method: string; one of "operator", "card", or "operator+card".
+
+
+.. http:post:: /api/v1/services/price-tier/
+
+    Create a price tier.
+
+    .. note:: Requires admin account.
+
+    **Request**
+    :param active: Whether the price tier is active.
+    :type active: boolean
+    :param name: The price tier name.
+    :type name: string
+    :param method: How payment may be submitted.
+    :type method: string; one of "operator", "card", or "operator+card".
+    :param price: Price in US dollars.
+    :type price: decimal string
+
+
+.. http:put:: /api/v1/services/price-tier/(int:id)/
+
+    Update a price tier.
+
+    .. note:: Requires admin account.
+
+    **Request**
+    :param active: Whether the price tier is active.
+    :type active: boolean
+    :param name: The price tier name.
+    :type name: string
+    :param method: How payment may be submitted.
+    :type method: string; one of "operator", "card", or "operator+card".
+    :param price: Price in US dollars.
+    :type price: decimal string
+
+
+.. http:delete:: /api/v1/services/price-tier/(int:id)/
+
+    Delete a price tier and all associated prices.
+
+    .. note:: Requires admin account.
+
+
+.. http:get:: /api/v1/services/price-currency/
+
+   Lists prices in various currencies.
+
+   **Request**
+   :param tier: Price tier ID to select currencies for.
+   :type tier: number
+
+   **Response**
+   :param objects: A listing of :ref:`prices <price-response-label>`.
+
+
+.. _price-response-label:
+
+.. http:get:: /api/v1/services/price-currency/(int:id)/
+
+    Fetch a single price.
+
+    **Response**
+    :param id: Identifier for this price.
+    :type id: number
+    :param tier: ID of tier this price belongs to.
+    :type tier: number
+    :param currency: Code for this price's currency.
+    :type currency: string
+    :param carrier: Slug of carrier this price applies to.
+    :type carrier: string
+    :param price: Price in this currency.
+    :type price: number
+    :param provider: Name of payment provider for this price.
+    :type provider: string
+    :param method: How payment may be submitted.
+    :type method: string; one of "operator", "card", or "operator+card".
+
+
+.. http:post:: /api/v1/services/price-currency/
+
+    Create a price.
+
+    .. note:: Requires admin account.
+
+    **Request**
+    :param tier: ID of tier this price belongs to.
+    :type tier: number
+    :param currency: Code for this price's currency.
+    :type currency: string
+    :param carrier: Slug of carrier this price applies to.
+    :type carrier: string
+    :param price: Price in this currency.
+    :type price: number
+    :param provider: Name of payment provider for this price.
+    :type provider: string
+    :param method: How payment may be submitted.
+    :type method: string; one of "operator", "card", or "operator+card".
+
+
+.. http:put:: /api/v1/services/price-currency/(int:id)/
+
+    Update a price.
+
+    .. note:: requires an admin account.
+
+    **Request**
+    :param tier: ID of tier this price belongs to.
+    :type tier: number
+    :param currency: Code for this price's currency.
+    :type currency: string
+    :param carrier: Slug of carrier this price applies to.
+    :type carrier: string
+    :param price: Price in this currency.
+    :type price: number
+    :param provider: Name of payment provider for this price.
+    :type provider: string
+    :param method: How payment may be submitted.
+    :type method: string; one of "operator", "card", or "operator+card".
+
+
+.. http:delete:: /api/v1/services/price-currency/(int:id)/
+
+    Delete a price.
+
+    .. note:: Requires admin account.

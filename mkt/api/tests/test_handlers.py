@@ -1,3 +1,4 @@
+from decimal import Decimal
 import json
 import os
 from StringIO import StringIO
@@ -853,3 +854,177 @@ class TestRefreshManifest(RestOAuth):
         res = self.client.post(self.url)
         eq_(res.status_code, 400)
         eq_(res.json, {'reason': 'App is a packaged app.'})
+
+
+class TestPriceTier(RestOAuth):
+    fixtures = ['data/user_2519', 'data/admin', 'market/prices']
+
+    def setUp(self):
+        RestOAuth.setUp(self)
+        self.list_url = reverse('price-tier-list')
+        self.detail_url = reverse('price-tier-detail', kwargs={'pk': 1})
+
+    def test_list(self):
+        self.grant_permission(self.profile, 'Admin:Adminner')
+        res = self.client.get(self.list_url)
+        j = json.loads(res.content)
+        eq_(len(j['objects']), 2)
+        eq_(j['objects'][0], {
+            'active': True,
+            'name': '1',
+            'price': '0.99',
+            'method': 'operator+card',
+            'resource_uri': self.detail_url
+            })
+
+    def test_detail(self):
+        self.grant_permission(self.profile, 'Admin:Adminner')
+        res = self.client.get(self.detail_url)
+        j = json.loads(res.content)
+        eq_(j, {
+            'active': True,
+            'name': '1',
+            'price': '0.99',
+            'method': 'operator+card',
+            'resource_uri': self.detail_url
+            })
+
+    def test_post_unauthorized(self):
+        res = self.client.post(self.list_url, '{}')
+        eq_(res.status_code, 403)
+
+    def test_post_admin(self):
+        self.grant_permission(self.profile, 'Admin:Adminner')
+        res = self.client.post(
+            self.list_url,
+            json.dumps({'name': '3',
+                        'price': '3.14',
+                        'method': 'operator+card',
+                        'active': True}))
+        eq_(res.status_code, 201)
+        p = Price.objects.get(pk=3)
+        eq_(p.name, '3')
+        eq_(p.price, Decimal('3.14'))
+        eq_(p.method, amo.PAYMENT_METHOD_ALL)
+        assert p.active
+
+    def test_put_unauthorized(self):
+        res = self.client.put(self.detail_url, '{}')
+        eq_(res.status_code, 403)
+
+    def test_put(self):
+        self.grant_permission(self.profile, 'Admin:Adminner')
+        res = self.client.put(
+            self.detail_url,
+            json.dumps({'name': '1',
+                        'price': '0.10',
+                        'method': 'operator',
+                        'active': True}))
+        eq_(res.status_code, 200)
+        p = Price.objects.get(pk=1)
+        eq_(p.name, '1')
+        eq_(p.price, Decimal('0.10'))
+        eq_(p.method, amo.PAYMENT_METHOD_OPERATOR)
+        assert p.active
+
+    def test_delete_unauthorized(self):
+        res = self.client.delete(self.detail_url)
+        eq_(res.status_code, 403)
+
+    def test_delete(self):
+        self.grant_permission(self.profile, 'Admin:Adminner')
+        res = self.client.delete(self.detail_url)
+        eq_(res.status_code, 204)
+        assert not Price.objects.filter(pk=1).exists()
+
+
+class TestPriceCurrency(RestOAuth):
+    fixtures = ['data/user_2519', 'data/admin', 'market/prices']
+
+    def setUp(self):
+        RestOAuth.setUp(self)
+        self.list_url = reverse('price-currency-list')
+        self.detail_url = reverse('price-currency-detail', kwargs={'pk': 1})
+        self.tier_url = reverse('price-tier-detail', kwargs={'pk': 1})
+
+    def test_list(self):
+        self.grant_permission(self.profile, 'Admin:Adminner')
+        res = self.client.get(self.list_url)
+        j = json.loads(res.content)
+        eq_(len(j['objects']), 6)
+        eq_(j['objects'][0],{
+            'carrier': None,
+            'currency': 'PLN',
+            'method': 'operator+card',
+            'price': '5.01',
+            'provider': 'bango',
+            'resource_uri': self.detail_url,
+            'tier': self.tier_url})
+
+    def test_detail(self):
+        self.grant_permission(self.profile, 'Admin:Adminner')
+        res = self.client.get(self.detail_url)
+        j = json.loads(res.content)
+        eq_(j, {
+            'carrier': None,
+            'currency': 'PLN',
+            'method': 'operator+card',
+            'price': '5.01',
+            'provider': 'bango',
+            'resource_uri': self.detail_url,
+            'tier': self.tier_url
+        })
+
+    def test_post_unauthorized(self):
+        res = self.client.post(self.list_url, '{}')
+        eq_(res.status_code, 403)
+
+    def test_post_admin(self):
+        self.grant_permission(self.profile, 'Admin:Adminner')
+        res = self.client.post(
+            self.list_url,
+            json.dumps({
+            'tier': self.tier_url,
+            'carrier': None,
+            'currency': 'PHP',
+            'method': 'operator',
+            'price': '10.05',
+            'provider': 'bango'}))
+        eq_(res.status_code, 201)
+        p = PriceCurrency.objects.get(pk=7)
+        eq_(p.tier_id, 1)
+        eq_(p.price, Decimal('10.05'))
+        eq_(p.method, amo.PAYMENT_METHOD_OPERATOR)
+        eq_(p.currency, 'PHP')
+
+    def test_put_unauthorized(self):
+        res = self.client.put(self.detail_url, '{}')
+        eq_(res.status_code, 403)
+
+    def test_put(self):
+        self.grant_permission(self.profile, 'Admin:Adminner')
+        res = self.client.put(
+            self.detail_url,
+            json.dumps({
+            'tier': self.tier_url,
+            'carrier': None,
+            'currency': 'PHP',
+            'method': 'operator',
+            'price': '10.05',
+            'provider': 'bango'}))
+        eq_(res.status_code, 200)
+        p = PriceCurrency.objects.get(pk=1)
+        eq_(p.tier_id, 1)
+        eq_(p.price, Decimal('10.05'))
+        eq_(p.method, amo.PAYMENT_METHOD_OPERATOR)
+        eq_(p.currency, 'PHP')
+
+    def test_delete_unauthorized(self):
+        res = self.client.delete(self.detail_url)
+        eq_(res.status_code, 403)
+
+    def test_delete(self):
+        self.grant_permission(self.profile, 'Admin:Adminner')
+        res = self.client.delete(self.detail_url)
+        eq_(res.status_code, 204)
+        assert not PriceCurrency.objects.filter(pk=1).exists()

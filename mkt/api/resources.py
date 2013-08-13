@@ -8,12 +8,17 @@ import waffle
 from celery_tasktree import TaskTree
 import raven.base
 from rest_framework.decorators import api_view, permission_classes
+from rest_framework import generics
 from rest_framework.mixins import ListModelMixin, RetrieveModelMixin
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
-from rest_framework.serializers import (ModelSerializer, CharField,
-                                        HyperlinkedIdentityField)
-from rest_framework.viewsets import GenericViewSet
+from rest_framework.serializers import (BooleanField, CharField,
+                                        ChoiceField,
+                                        DecimalField,
+                                        HyperlinkedIdentityField,
+                                        HyperlinkedRelatedField,
+                                        ModelSerializer)
+from rest_framework.viewsets import GenericViewSet, ModelViewSet
 
 from tastypie import fields, http
 from tastypie.serializers import Serializer
@@ -27,14 +32,17 @@ from addons.models import Addon, AddonUser, Category, Webapp
 from amo.decorators import write
 from amo.utils import no_translation
 from constants.applications import DEVICE_TYPES
+from constants.payments import PAYMENT_METHOD_CHOICES, PROVIDER_CHOICES
 from files.models import Platform
 from lib.metrics import record_action
-from market.models import AddonPremium, Price
+from market.models import AddonPremium, Price, PriceCurrency
 
 from mkt.api.authentication import (SharedSecretAuthentication,
-                                    OptionalOAuthAuthentication)
+                                    OptionalOAuthAuthentication,
+                                    RestOAuthAuthentication,
+                                    RestAnonymousAuthentication)
 from mkt.api.authorization import (AllowAppOwner, AppOwnerAuthorization,
-                                   OwnerAuthorization)
+                                   GroupPermission, OwnerAuthorization)
 from mkt.api.base import (CORSMixin, CORSResource, GenericObject, http_error,
                           MarketplaceModelResource, MarketplaceResource)
 from mkt.api.forms import (CategoryForm, DeviceTypeForm, UploadForm)
@@ -449,4 +457,70 @@ class RefreshManifestViewSet(GenericViewSet, CORSMixin):
                 status=400,
                 data={'reason': 'App is a packaged app.'})
         _update_manifest(obj.pk, True, {})
+        return Response(status=204)
+
+
+class EnumeratedField(ChoiceField):
+
+    def from_native(self, value):
+        for k, v in self.choices:
+            if value == v:
+                return k
+
+    def to_native(self, key):
+        for k, v in self.choices:
+            if key == k:
+                return v
+
+
+class PriceTierSerializer(ModelSerializer):
+    resource_uri = HyperlinkedIdentityField(view_name='price-tier-detail')
+    active = BooleanField()
+    name = CharField()
+    method = EnumeratedField(PAYMENT_METHOD_CHOICES)
+    price = DecimalField()
+
+    class Meta:
+        model = Price
+        fields = ['resource_uri', 'active', 'name', 'method', 'price']
+
+
+class PriceTierViewSet(generics.CreateAPIView,
+                       generics.RetrieveUpdateDestroyAPIView,
+                       ModelViewSet):
+    permission_classes = [GroupPermission('Admin', '%')]
+    authentication_classes = [RestOAuthAuthentication]
+    serializer_class = PriceTierSerializer
+    model = Price
+
+
+class PriceCurrencySerializer(ModelSerializer):
+    resource_uri = HyperlinkedIdentityField(view_name='price-currency-detail')
+    tier = HyperlinkedRelatedField(view_name='price-tier-detail')
+    currency = CharField()
+    carrier = CharField(required=False)
+    price = DecimalField()
+    provider = EnumeratedField(PROVIDER_CHOICES)
+    method = EnumeratedField(PAYMENT_METHOD_CHOICES)
+
+    class Meta:
+        model = PriceCurrency
+        fields = ['resource_uri', 'tier', 'currency', 'carrier',
+                  'price', 'provider', 'method']
+
+
+class PriceCurrencyViewSet(ModelViewSet):
+    permission_classes = [GroupPermission('Admin', '%')]
+    authentication_classes = [RestOAuthAuthentication]
+    serializer_class = PriceCurrencySerializer
+    model = PriceCurrency
+    filter_fields = ('tier', 'provider', 'currency', 'price')
+
+    def post_save(self, obj, created):
+        log.info('Price %s %s.' % (obj, 'created' if created else 'updated'))
+
+    def destroy(self, request, *args, **kwargs):
+        obj = self.get_object()
+        obj.delete()
+        log.info('Price %s deleted.' % (obj,))
         return Response(status=204)

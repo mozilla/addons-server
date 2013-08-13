@@ -131,3 +131,19 @@ class WafflePermission(BasePermission):
         elif self.type == 'switch':
             return switch_is_active(self.name)
         raise NotImplementedError
+
+
+class GroupPermission(BasePermission):
+
+    def __init__(self, app, action):
+        self.app = app
+        self.action = action
+
+    def has_permission(self, request, view):
+        return acl.action_allowed(request, self.app, self.action)
+
+    def __call__(self, *a):
+        """
+        ignore DRF's nonsensical need to call this object.
+        """
+        return self
