@@ -14,18 +14,11 @@ class CollectionSerializer(serializers.ModelSerializer):
     name = serializers.CharField()
     description = serializers.CharField()
     collection_type = serializers.IntegerField()
-    collectionmembership_set = CollectionMembershipField(many=True)
+    apps = CollectionMembershipField(many=True,
+                                     source='collectionmembership_set')
 
     class Meta:
         fields = ('collection_type', 'description', 'id', 'name',
-                  'collectionmembership_set')
+                  'apps')
         model = Collection
 
-    def to_native(self, obj):
-        """
-        `collectionmembership_set` is ugly; let's rename to `apps`.
-        """
-        native = super(CollectionSerializer, self).to_native(obj)
-        native['apps'] = native['collectionmembership_set']
-        del native['collectionmembership_set']
-        return native
