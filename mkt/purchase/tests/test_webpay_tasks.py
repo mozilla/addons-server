@@ -73,7 +73,8 @@ class TestReceiptEmail(PurchaseTest):
                                                    amount=self.price.price,
                                                    uuid=str(uuid.uuid4()),
                                                    type=amo.CONTRIB_PURCHASE,
-                                                   user=self.user)
+                                                   user=self.user,
+                                                   source_locale='en-us')
 
     def test_send(self):
         tasks.send_purchase_receipt(self.contrib.pk)
@@ -97,6 +98,5 @@ class TestReceiptEmail(PurchaseTest):
         eq_(args[1]['recipient_list'], [self.user.email])
         eq_(data['app_name'], self.addon.name)
         eq_(data['developer_name'], self.addon.current_version.developer_name)
-        eq_(data['price'],
-            self.contrib.get_amount_locale(self.contrib.source_locale))
+        eq_(data['price'], self.contrib.get_amount_locale('en_US'))
         ok_(data['purchases_url'].startswith('http://f.com'))

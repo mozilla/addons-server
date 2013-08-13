@@ -8,7 +8,7 @@ import amo
 from amo.decorators import write
 from amo.helpers import absolutify
 from amo.urlresolvers import reverse
-from amo.utils import send_html_mail_jinja
+from amo.utils import get_locale_from_lang, send_html_mail_jinja
 from mkt.inapp_pay.models import InappConfig
 from mkt.inapp_pay.utils import send_pay_notice
 from stats.models import Contribution
@@ -74,7 +74,8 @@ def send_purchase_receipt(contrib_id, **kw):
         data = {
             'app_name': addon.name,
             'developer_name': version.developer_name if version else '',
-            'price': contrib.get_amount_locale(contrib.source_locale),
+            'price': contrib.get_amount_locale(get_locale_from_lang(
+                contrib.source_locale)),
             'date': datetime(contrib.created.date()),
             'purchaser_email': contrib.user.email,
             #'purchaser_phone': '',  # TODO: See bug 894614.

@@ -26,9 +26,9 @@ from django.core import paginator
 from django.core.cache import cache
 from django.core.files.storage import (FileSystemStorage,
                                        default_storage as storage)
-from django.core.serializers import json
-from django.core.validators import ValidationError, validate_slug
 from django.core.mail import EmailMessage, EmailMultiAlternatives
+from django.core.serializers import json
+from django.core.validators import validate_slug, ValidationError
 from django.forms.fields import Field
 from django.http import HttpRequest
 from django.template import Context, loader
@@ -38,14 +38,14 @@ from django.utils.functional import Promise
 from django.utils.http import urlquote
 
 import bleach
-from cef import log_cef as _log_cef
-from django_statsd.clients import statsd
 import elasticutils.contrib.django as elasticutils
 import html5lib
 import jinja2
 import pyes.exceptions as pyes
 import pytz
 from babel import Locale
+from cef import log_cef as _log_cef
+from django_statsd.clients import statsd
 from easy_thumbnails import processors
 from html5lib.serializer.htmlserializer import HTMLSerializer
 from jingo import env
@@ -240,7 +240,8 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
                     'perm_setting': perm_setting.label,
                     'SITE_URL': settings.SITE_URL,
                     'mandatory': perm_setting.mandatory,
-                    # Hide "Unsubscribe" links in Marketplace emails (bug 802379).
+                    # Hide "Unsubscribe" links in Marketplace emails
+                    # (bug 802379).
                     'show_unsubscribe': not settings.MARKETPLACE
                 }
                 # Render this template in the default locale until
@@ -591,7 +592,7 @@ def get_locale_from_lang(lang):
     """Pass in a language (u'en-US') get back a Locale object courtesy of
     Babel.  Use this to figure out currencies, bidi, names, etc."""
     # Special fake language can just act like English for formatting and such
-    if lang == 'dbg':
+    if not lang or lang == 'dbg':
         lang = 'en'
     return Locale(translation.to_locale(lang))
 
