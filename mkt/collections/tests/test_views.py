@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import json
 from random import shuffle
 
@@ -29,8 +30,9 @@ class TestCollectionViewSet(RestOAuth):
         self.serializer = CollectionSerializer()
         self.collection_data = {
             'collection_type': COLLECTIONS_TYPE_BASIC,
-            'description': 'A collection of my favorite games',
-            'name': 'My Favorite Games',
+            'description': u'A cöllection of my favorite games',
+            'name': u'My Favorite Gamés',
+            'author': u'My Àuthør',
         }
         self.collection = Collection.objects.create(**self.collection_data)
         self.apps = [amo.tests.app_factory() for n in xrange(1, 5)]
@@ -279,6 +281,13 @@ class TestCollectionViewSet(RestOAuth):
         self.make_publisher()
         res, data = self.create(self.client)
         eq_(res.status_code, 201)
+        new_collection = Collection.objects.get(pk=data['id'])
+        assert new_collection.pk != self.collection.pk
+
+        # Verify that the collection metadata is correct.
+        for field, value in self.collection_data.iteritems():
+            eq_(data[field], self.collection_data[field])
+            eq_(getattr(new_collection, field), self.collection_data[field])
 
     def test_create_has_perms_no_type(self):
         self.make_publisher()
@@ -394,15 +403,18 @@ class TestCollectionViewSet(RestOAuth):
         self.make_publisher()
         cat = Category.objects.create(type=amo.ADDON_WEBAPP, slug='grumpy-cat')
         updates = {
-            'name': 'clouserw soundboard',
-            'description': 'Get off my lawn!',
+            'name': u'clôuserw soundboard',
+            'description': u'Gèt off my lawn!',
+            'author': u'Nöt Me!',
             'region': mkt.regions.SPAIN.id,
             'category': cat.pk,
         }
         res, data = self.edit_collection(self.client, **updates)
         eq_(res.status_code, 200)
+        self.collection.reload()
         for key, value in updates.iteritems():
             eq_(data[key], value)
+            eq_(getattr(self.collection, key), value)
 
     def test_edit_collection_invalid_carrier(self):
         self.make_publisher()

@@ -51,7 +51,8 @@ Create
     :param carrier: the ID of the carrier to attach this collection to.
     Defaults to ``null``.
     :type carrier: int|null
-
+    :param author: the author of the collection.
+    :type author: string
 
 Detail
 ------
@@ -86,6 +87,8 @@ Update
     :type region: int|null
     :param carrier: the ID of the carrier to attach this collection to.
     :type carrier: int|null
+    :param author: the author of the collection.
+    :type author: string
 
     **Response**:
 
