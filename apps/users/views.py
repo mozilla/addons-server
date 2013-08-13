@@ -1,6 +1,5 @@
 import functools
 from functools import partial
-from urlparse import urlparse
 
 from django import http
 from django.conf import settings
@@ -13,7 +12,7 @@ from django.contrib.auth.tokens import default_token_generator
 from django.template import Context, loader
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
-from django.utils.http import base36_to_int
+from django.utils.http import base36_to_int, is_safe_url
 
 import commonware.log
 import jingo
@@ -295,9 +294,7 @@ def _clean_next_url(request):
     gets = request.GET.copy()
     url = gets.get('to', settings.LOGIN_REDIRECT_URL)
 
-    parsed = urlparse(url)
-    if ((parsed.scheme and parsed.scheme not in ['http', 'https'])
-        or parsed.netloc):
+    if not is_safe_url(url, host=request.get_host()):
         log.info(u'Unsafe redirect to %s' % url)
         url = settings.LOGIN_REDIRECT_URL
 
