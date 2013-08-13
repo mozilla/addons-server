@@ -747,7 +747,7 @@ class RegionForm(forms.Form):
 
             # For paid apps enabling new regions is not based on the worldwide
             # region it's based on enable_new_regions.
-            self.fields['other_regions'].label = _(u'Other regions')
+            self.fields['other_regions'].label = _(u'Enable new regions')
             self.initial['other_regions'] = self.product.enable_new_regions
 
             # Premium form was valid.
