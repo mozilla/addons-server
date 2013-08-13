@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-26 14:59-0700\n"
+"POT-Creation-Date: 2013-08-13 10:01-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -801,7 +801,7 @@ msgid "Your packaged app should end with <code>.zip</code>."
 msgstr "Ẏǿŭř ƥȧƈķȧɠḗḓ ȧƥƥ şħǿŭŀḓ ḗƞḓ ẇīŧħ <code>.zīƥ</code>."
 
 #: media/js/common/upload-packaged-app.js:169
-#: media/js/devreg/devhub.js:178
+#: media/js/devreg/devhub.js:181
 #: media/js/zamboni/devhub-all.js:1033
 #: media/js/zamboni/devhub-min.js:1
 #: media/js/zamboni/devhub.js:169
@@ -820,7 +820,13 @@ msgstr[1] "Ẏǿŭř ȧƥƥ ƥȧşşḗḓ ṽȧŀīḓȧŧīǿƞ ẇīŧħ ƞǿ
 msgid "Your app passed validation with no errors or warnings."
 msgstr "Ẏǿŭř ȧƥƥ ƥȧşşḗḓ ṽȧŀīḓȧŧīǿƞ ẇīŧħ ƞǿ ḗřřǿřş ǿř ẇȧřƞīƞɠş."
 
-#: media/js/devreg/devhub.js:192
+#: media/js/devreg/devhub.js:186
+msgid "Your app failed validation with {0} error and {1} message(s)."
+msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
+msgstr[0] "Ẏǿŭř ȧƥƥ ƒȧīŀḗḓ ṽȧŀīḓȧŧīǿƞ ẇīŧħ {0} ḗřřǿř ȧƞḓ {1} ḿḗşşȧɠḗ(ş)."
+msgstr[1] "Ẏǿŭř ȧƥƥ ƒȧīŀḗḓ ṽȧŀīḓȧŧīǿƞ ẇīŧħ {0} ḗřřǿřş ȧƞḓ {1} ḿḗşşȧɠḗ(ş)."
+
+#: media/js/devreg/devhub.js:200
 #: media/js/zamboni/devhub-all.js:1047
 #: media/js/zamboni/devhub-min.js:1
 #: media/js/zamboni/devhub.js:183
@@ -829,50 +835,50 @@ msgid_plural "Your app passed validation with no errors and {0} messages."
 msgstr[0] "Ẏǿŭř ȧƥƥ ƥȧşşḗḓ ṽȧŀīḓȧŧīǿƞ ẇīŧħ ƞǿ ḗřřǿřş ȧƞḓ {0} ḿḗşşȧɠḗ."
 msgstr[1] "Ẏǿŭř ȧƥƥ ƥȧşşḗḓ ṽȧŀīḓȧŧīǿƞ ẇīŧħ ƞǿ ḗřřǿřş ȧƞḓ {0} ḿḗşşȧɠḗş."
 
-#: media/js/devreg/devhub.js:197
+#: media/js/devreg/devhub.js:205
 #: media/js/zamboni/devhub-all.js:1052
 #: media/js/zamboni/devhub-min.js:1
 #: media/js/zamboni/devhub.js:188
 msgid "Your app passed validation with no errors or messages."
 msgstr "Ẏǿŭř ȧƥƥ ƥȧşşḗḓ ṽȧŀīḓȧŧīǿƞ ẇīŧħ ƞǿ ḗřřǿřş ǿř ḿḗşşȧɠḗş."
 
-#: media/js/devreg/devhub.js:411
+#: media/js/devreg/devhub.js:419
 #: media/js/zamboni/devhub-all.js:1336
 #: media/js/zamboni/devhub-min.js:1
 #: media/js/zamboni/devhub.js:487
 msgid "Changes Saved"
 msgstr "Ƈħȧƞɠḗş Şȧṽḗḓ"
 
-#: media/js/devreg/devhub.js:427
+#: media/js/devreg/devhub.js:435
 msgid "Enter a new team member's email address"
 msgstr "Ḗƞŧḗř ȧ ƞḗẇ ŧḗȧḿ ḿḗḿƀḗř'ş ḗḿȧīŀ ȧḓḓřḗşş"
 
-#: media/js/devreg/devhub.js:435
+#: media/js/devreg/devhub.js:443
 msgid "Refreshed"
 msgstr "Řḗƒřḗşħḗḓ"
 
-#: media/js/devreg/devhub.js:590
+#: media/js/devreg/devhub.js:610
 #: media/js/zamboni/devhub-all.js:1499
 #: media/js/zamboni/devhub-min.js:1
 #: media/js/zamboni/devhub.js:650
 msgid "There was an error uploading your file."
 msgstr "Ŧħḗřḗ ẇȧş ȧƞ ḗřřǿř ŭƥŀǿȧḓīƞɠ ẏǿŭř ƒīŀḗ."
 
-#: media/js/devreg/devhub.js:871
+#: media/js/devreg/devhub.js:892
 #: media/js/zamboni/devhub-all.js:1774
 #: media/js/zamboni/devhub-min.js:1
 #: media/js/zamboni/devhub.js:925
 msgid "Learn more"
 msgstr "Ŀḗȧřƞ ḿǿřḗ"
 
-#: media/js/devreg/devhub.js:875
+#: media/js/devreg/devhub.js:896
 #: media/js/zamboni/devhub-all.js:1778
 #: media/js/zamboni/devhub-min.js:1
 #: media/js/zamboni/devhub.js:929
 msgid "Example"
 msgstr "Ḗẋȧḿƥŀḗ"
 
-#: media/js/devreg/devhub.js:1178
+#: media/js/devreg/devhub.js:1199
 #: media/js/zamboni/devhub-all.js:2125
 #: media/js/zamboni/devhub-min.js:1
 #: media/js/zamboni/devhub.js:1285
@@ -956,8 +962,8 @@ msgstr "Īřȧɋī Ɓȧƞķ Ƈǿḓḗ"
 msgid "Detected: {0}"
 msgstr "Ḓḗŧḗƈŧḗḓ: {0}"
 
-#: media/js/devreg/payments-manage.js:31
-#: media/js/devreg/payments-manage.js:66
+#: media/js/devreg/payments-manage.js:32
+#: media/js/devreg/payments-manage.js:67
 #: media/js/devreg/validator.js:193
 #: media/js/devreg/validator.js:438
 #: media/js/devreg/validator.js:457
@@ -973,12 +979,12 @@ msgstr "Ḓḗŧḗƈŧḗḓ: {0}"
 msgid "Error"
 msgstr "Ḗřřǿř"
 
-#: media/js/devreg/payments-manage.js:32
-#: media/js/devreg/payments-manage.js:67
+#: media/js/devreg/payments-manage.js:33
+#: media/js/devreg/payments-manage.js:68
 msgid "There was a problem contacting the payment server."
 msgstr "Ŧħḗřḗ ẇȧş ȧ ƥřǿƀŀḗḿ ƈǿƞŧȧƈŧīƞɠ ŧħḗ ƥȧẏḿḗƞŧ şḗřṽḗř."
 
-#: media/js/devreg/payments-manage.js:87
+#: media/js/devreg/payments-manage.js:88
 msgid "You do not currently have any payment accounts."
 msgstr "Ẏǿŭ ḓǿ ƞǿŧ ƈŭřřḗƞŧŀẏ ħȧṽḗ ȧƞẏ ƥȧẏḿḗƞŧ ȧƈƈǿŭƞŧş."
 

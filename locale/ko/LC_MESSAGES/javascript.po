@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-26 14:59-0700\n"
+"POT-Creation-Date: 2013-08-13 10:01-0700\n"
 "PO-Revision-Date: 2013-07-14 08:20+0000\n"
 "Last-Translator: Hyeonseok <hyeonseok@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -417,7 +417,7 @@ msgstr "동영상은 WebM으로 된 것만 사용 가능합니다."
 msgid "Your packaged app should end with <code>.zip</code>."
 msgstr "패키징 앱은 <code>.zip</code> 파일이어야 합니다."
 
-#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:178 media/js/zamboni/devhub-all.js:1033 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:169
+#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:181 media/js/zamboni/devhub-all.js:1033 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:169
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
 msgstr[0] "{0}개의 오류로 인해 앱 검사 시험을 통과하지 못했습니다."
@@ -431,40 +431,45 @@ msgstr[0] "앱이 오류 없이 경고 {0}개와 함께 유효성 검사를 통�
 msgid "Your app passed validation with no errors or warnings."
 msgstr "앱이 아무런 오류나 경고 없이 유효성 검사를 통과했습니다."
 
-#: media/js/devreg/devhub.js:192 media/js/zamboni/devhub-all.js:1047 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:183
+#: media/js/devreg/devhub.js:186
+msgid "Your app failed validation with {0} error and {1} message(s)."
+msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
+msgstr[0] ""
+
+#: media/js/devreg/devhub.js:200 media/js/zamboni/devhub-all.js:1047 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:183
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
 msgstr[0] "앱이 오류 없이 메시지 {0}개와 함께 유효성 검사를 통과했습니다."
 
-#: media/js/devreg/devhub.js:197 media/js/zamboni/devhub-all.js:1052 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:188
+#: media/js/devreg/devhub.js:205 media/js/zamboni/devhub-all.js:1052 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:188
 msgid "Your app passed validation with no errors or messages."
 msgstr "앱이 아무런 오류나 메시지 없이 유효성 검사를 통과했습니다."
 
-#: media/js/devreg/devhub.js:411 media/js/zamboni/devhub-all.js:1336 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:487
+#: media/js/devreg/devhub.js:419 media/js/zamboni/devhub-all.js:1336 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:487
 msgid "Changes Saved"
 msgstr "변경 사항이 저장되었습니다"
 
-#: media/js/devreg/devhub.js:427
+#: media/js/devreg/devhub.js:435
 msgid "Enter a new team member's email address"
 msgstr "새 팀 멤버의 이메일 주소를 입력하세요"
 
-#: media/js/devreg/devhub.js:435
+#: media/js/devreg/devhub.js:443
 msgid "Refreshed"
 msgstr "새로고침 완료"
 
-#: media/js/devreg/devhub.js:590 media/js/zamboni/devhub-all.js:1499 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:650
+#: media/js/devreg/devhub.js:610 media/js/zamboni/devhub-all.js:1499 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:650
 msgid "There was an error uploading your file."
 msgstr "파일을 업로드하는 과정에서 오류가 발생했습니다."
 
-#: media/js/devreg/devhub.js:871 media/js/zamboni/devhub-all.js:1774 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:925
+#: media/js/devreg/devhub.js:892 media/js/zamboni/devhub-all.js:1774 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:925
 msgid "Learn more"
 msgstr "자세히 알아보기"
 
-#: media/js/devreg/devhub.js:875 media/js/zamboni/devhub-all.js:1778 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:929
+#: media/js/devreg/devhub.js:896 media/js/zamboni/devhub-all.js:1778 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:929
 msgid "Example"
 msgstr "예"
 
-#: media/js/devreg/devhub.js:1178 media/js/zamboni/devhub-all.js:2125 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:1285
+#: media/js/devreg/devhub.js:1199 media/js/zamboni/devhub-all.js:2125 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:1285
 msgid "Image changes being processed"
 msgstr "이미지 변경이 처리되었습니다"
 
@@ -545,17 +550,17 @@ msgstr "이라크 은행 Bank Code"
 msgid "Detected: {0}"
 msgstr "은행 인식: {0}"
 
-#: media/js/devreg/payments-manage.js:31 media/js/devreg/payments-manage.js:66 media/js/devreg/validator.js:193 media/js/devreg/validator.js:438 media/js/devreg/validator.js:457
+#: media/js/devreg/payments-manage.js:32 media/js/devreg/payments-manage.js:67 media/js/devreg/validator.js:193 media/js/devreg/validator.js:438 media/js/devreg/validator.js:457
 #: media/js/mkt/buttons.js:85 media/js/mkt/buttons.js:94 media/js/zamboni/devhub-all.js:2597 media/js/zamboni/devhub-all.js:2844 media/js/zamboni/devhub-all.js:2863 media/js/zamboni/devhub-min.js:1
 #: media/js/zamboni/validator.js:193 media/js/zamboni/validator.js:446 media/js/zamboni/validator.js:465
 msgid "Error"
 msgstr "오류"
 
-#: media/js/devreg/payments-manage.js:32 media/js/devreg/payments-manage.js:67
+#: media/js/devreg/payments-manage.js:33 media/js/devreg/payments-manage.js:68
 msgid "There was a problem contacting the payment server."
 msgstr "결제 서버로 접속하는 과정에서 문제가 발생했습니다."
 
-#: media/js/devreg/payments-manage.js:87
+#: media/js/devreg/payments-manage.js:88
 msgid "You do not currently have any payment accounts."
 msgstr "현재 결제 가능 계좌를 가지고 있지 않습니다."
 
