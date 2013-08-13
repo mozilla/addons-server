@@ -163,3 +163,17 @@ def update():
     execute(schematic)
     managecmd('dump_apps')
     managecmd('statsd_ping --key=update')
+
+
+@task
+def pre_update_latest_tag():
+    current_tag_file = os.path.join(ZAMBONI, '.tag')
+    latest_tag = helpers.git_latest_tag(ZAMBONI)
+    with open(current_tag_file, 'r+') as f:
+        if f.read() == latest_tag:
+            print 'Environemnt is at %s' % latest_tag
+        else:
+            pre_update(latest_tag)
+            f.seek(0)
+            f.write(latest_tag)
+            f.truncate()
