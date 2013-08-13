@@ -14,6 +14,6 @@ class TestCommonplace(amo.tests.TestCase):
         self.assertEquals(res.context['repo'], 'commbadge')
 
     def test_rocketfuel(self):
-        res = self.client.get('/rocketfuel/')
+        res = self.client.get('/curation/')
         self.assertTemplateUsed(res, 'commonplace/index.html')
         self.assertEquals(res.context['repo'], 'rocketfuel')
