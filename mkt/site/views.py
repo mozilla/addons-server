@@ -186,7 +186,3 @@ def _open_pipe(cmd):
     return subprocess.Popen(cmd,
                             stdin=subprocess.PIPE, stdout=subprocess.PIPE,
                             stderr=subprocess.PIPE)
-
-
-def fireplace(request):
-    return jingo.render(request, 'site/fireplace.html')

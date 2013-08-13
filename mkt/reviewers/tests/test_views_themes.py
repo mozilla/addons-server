@@ -100,12 +100,15 @@ class ThemeReviewTestMixin(object):
                 len(expected))
 
     @mock.patch.object(settings, 'LOCAL_MIRROR_URL', '')
+    @mock.patch('mkt.reviewers.tasks.reject_rereview')
+    @mock.patch('mkt.reviewers.tasks.approve_rereview')
     @mock.patch('addons.tasks.version_changed')
     @mock.patch('mkt.reviewers.tasks.send_mail_jinja')
     @mock.patch('mkt.reviewers.tasks.create_persona_preview_images')
     @mock.patch('amo.storage_utils.copy_stored_file')
     def test_commit(self, copy_file_mock, create_preview_mock,
-                    send_mail_jinja_mock, version_changed_mock):
+                    send_mail_jinja_mock, version_changed_mock,
+                    approve_rereview_mock, reject_rereview_mock):
         if self.flagged:
             return
 
@@ -138,6 +141,11 @@ class ThemeReviewTestMixin(object):
             form_data['form-%s-reject_reason' % index] = reject_reason
 
         old_version = themes[4].addon.current_version.version
+
+        # Test edge case where pending theme also has re-review.
+        for theme in (themes[3], themes[4]):
+            RereviewQueueTheme.objects.create(theme=theme, header='',
+                                              footer='')
 
         # Commit.
         res = self.client.post(reverse('reviewers.themes.commit'), form_data)
@@ -235,6 +243,8 @@ class ThemeReviewTestMixin(object):
             eq_(send_mail_jinja_mock.call_args_list[2], expected_calls[3])
             eq_(send_mail_jinja_mock.call_args_list[3], expected_calls[4])
         else:
+            assert not approve_rereview_mock.called
+            assert not reject_rereview_mock.called
             eq_(send_mail_jinja_mock.call_args_list[0], expected_calls[0])
             eq_(send_mail_jinja_mock.call_args_list[1], expected_calls[1])
             eq_(send_mail_jinja_mock.call_args_list[2], expected_calls[2])

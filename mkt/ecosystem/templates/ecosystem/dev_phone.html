@@ -15,15 +15,23 @@
       </h2>
     </div>
     <section class="intro">
-      <div class="content-wrapper">
+      <div class="content-wrapper c">
         <div class="content half keon">
           <h2>{{ _('Bringing the Open Web to mobile devices.') }}</h2>
           <p>
             {%- trans %}
-              Firefox OS is a new mobile operating system built entirely
-              using open web standards. In Firefox OS, HTML5 apps can do
-              &quot;phone things&quot; &ndash; they can make the phone vibrate,
-              make a phone call or send a text message.
+              Firefox OS is a new mobile operating system built entirely using open web standards. In Firefox OS,
+               HTML5 apps can directly control phone hardware and key functionality — for example making the phone
+                vibrate, making phone calls, and sending text messages.
+            {% endtrans -%}
+          </p>
+
+          <p>
+            {%- trans %}
+              We believe that developers will be truly instrumental in bringing the power of the web to mobile, so
+               we have worked with various partners to make devices available for developing and testing apps, and
+               learning more about customizing Firefox OS itself. This page provides useful information to developers,
+               such as links to developer documentation, available devices, and where to obtain them.
             {% endtrans -%}
           </p>
         </div>
@@ -33,40 +41,70 @@
       </div>
     </section>
     <section>
-      <div class="phone-options">
-        <p class="have-phone">
-          {%- trans devhub_url=url('ecosystem.landing') %}
-            <em>I have</em> a developer preview phone
-            <a href="{{ devhub_url }}" class="button">Get started</a>
-          {% endtrans -%}
-        </p>
-        <p class="want-phone">
-          {%- trans order_url='http://www.geeksphone.com' %}
-            <em>I want</em> a developer preview phone
-            <a href="{{ order_url }}" class="button">Order one</a>
-            <span>through Geeksphone</span>
-          {% endtrans -%}
-        </p>
-      </div>
-    </section>
-    <section>
       <div class="content-wrapper">
         <div class="content half peak">
           <p>{{ _('Peak') }}</p>
         </div>
         <div class="content half peak">
-          <h2>{{ _('The power of the web to mobile.') }}</h2>
+          <h2>{{ _('Geeksphone') }}</h2>
           <p>
             {%- trans %}
-              We believe that developers will help bring the power of
-              the web to mobile and so we have worked with Geeksphone
-              and Telefonica to create a device just for you. With a
-              Firefox OS developer preview phone you will be able to
-              create and test your apps on actual hardware, rather
-              than just in the simulator.
+              Mozilla, Geeksphone, and Telefónica worked together to create the Geeksphone Keon and Peak, respectively
+               low-end and higher-end preview phones for developers wanting to start developing on real Firefox OS
+               devices. Note that no more phones are being produced at this moment in time, although another run is
+               planned for the future. A number will remain in circulation however, and these devices are still very
+               valid for developer testing, having full updates available to them.
             {% endtrans -%}
           </p>
         </div>
+      </div>
+    </section>
+    <section>
+      <div class="content-wrapper">
+        <h2>{{ _('Docs and tools') }}</h2>
+          <p>
+            {%- trans devhub_url=url('ecosystem.landing'),
+                      mdn_url='https://developer.mozilla.org/en-US/' %}
+              If you already have a Firefox OS device and want some guidance and direction, you can
+              <a href="{{ devhub_url }}">get started at the Firefox Marketplace Developer Hub</a>. The
+              <a href="{{ mdn_url }}">Mozilla Developer Network</a> also provides a wealth of useful resources such as
+              API documentation, and further information on Open Web App development.
+            {% endtrans -%}
+          </p>
+          <p>
+            {%- trans simulator_url=url('ecosystem.firefox_os_simulator') %}
+              If you don't have a Firefox OS device, explore the other tabs to find out how to obtain one. You don't
+              have to wait however — you can start developing and testing Firefox OS Apps right away using the
+              <a href="{{ simulator_url }}">Firefox OS simulator</a>.
+            {% endtrans -%}
+          </p>
+      </div>
+    </section>
+    <section>
+      <div class="content-wrapper">
+        <h2>{{ _('Sharing with the community') }}</h2>
+          <p>
+            {%- trans mdn_url='https://developer.mozilla.org/en-US/' %}
+              When developing for a nascent platform, useful sources of information are always more difficult to find
+              than for more established platforms. To give Firefox OS developers as much help as possible, we'd like
+              you to get involved with the effort! We would like to invite you to add any useful information you have
+              to the <a href="{{ mdn_url }}">Mozilla Developer Network</a>. You can edit pages after creating a Mozilla
+              Persona user account and logging in.
+            {% endtrans -%}
+          </p>
+          <p>
+            {%- trans mdn_hackingfxos_url='https://developer.mozilla.org/en-US/docs/Mozilla/Firefox_OS/Tips_and_tricks',
+                      mdn_fxosapps_url='https://developer.mozilla.org/en-US/docs/Mozilla/Firefox_OS/Apps/Tips_and_techniques',
+                      mdn_devphone_url='https://developer.mozilla.org/en-US/docs/Mozilla/Firefox_OS/Developer_phone_guide',
+                      b2g_irc_url='irc://irc.mozilla.org/b2g',
+                      b2g_mail_url='https://lists.mozilla.org/listinfo/dev-b2g' %}
+              In particular we'd love you to <a href="{{ mdn_hackingfxos_url }}">add tips and tricks on hacking Firefox OS
+               itself</a>, <a href="{{ mdn_fxosapps_url }}">add tips for developing Firefox OS Apps</a>, and add
+               information concerning your <a href="{{ mdn_devphone_url }}">experiences of getting Firefox OS to work on
+               different devices</a>. In addition, you are always welcome to ask questions and share feedback and
+               resources on <a href="{{ b2g_irc_url }}">IRC</a> and <a href="{{ b2g_mail_url }}">e-mail</a>.
+            {% endtrans -%}
+          </p>
       </div>
     </section>
   </div>

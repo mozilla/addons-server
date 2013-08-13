@@ -36,6 +36,10 @@ class DevMailerForm(happyforms.Form):
                 ('apps', 'Developers of active apps (not add-ons)'),
                 ('payments',
                  'Developers of non-deleted apps (not add-ons) with payments'),
+                ('payments_region_enabled',
+                 'Developers of apps with payments and new region enabled'),
+                ('payments_region_disabled',
+                 'Developers of apps with payments and new region disabled'),
                 ('desktop_apps',
                  'Developers of non-deleted apps supported on desktop'),
                 ('all_extensions', 'All extension developers')]

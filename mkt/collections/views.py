@@ -7,16 +7,15 @@ from rest_framework.response import Response
 
 from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestAnonymousAuthentication)
-from mkt.api.base import CORSViewSet
+from mkt.api.base import CORSMixin
 from mkt.webapps.models import Webapp
 
 from .authorization import PublisherAuthorization
-from .constants import COLLECTIONS_TYPE_BASIC
 from .models import Collection
-from .serializers import CollectionSerializer
+from .serializers import CollectionMembershipField, CollectionSerializer
 
 
-class CollectionViewSet(CORSViewSet, viewsets.ModelViewSet):
+class CollectionViewSet(CORSMixin, viewsets.ModelViewSet):
     serializer_class = CollectionSerializer
     queryset = Collection.objects.all()
     cors_allowed_methods = ('get', 'post')
@@ -24,7 +23,13 @@ class CollectionViewSet(CORSViewSet, viewsets.ModelViewSet):
     authentication_classes = [RestOAuthAuthentication,
                               RestAnonymousAuthentication]
 
-    collection_type = COLLECTIONS_TYPE_BASIC
+    exceptions = {
+        'not_provided': '`app` was not provided.',
+        'doesnt_exist': '`app` does not exist.',
+        'not_in': '`app` not in collection.',
+        'already_in': '`app` already exists in collection.',
+        'app_mismatch': 'All apps in this collection must be included.'
+    }
 
     def return_updated(self, status):
         """
@@ -36,14 +41,6 @@ class CollectionViewSet(CORSViewSet, viewsets.ModelViewSet):
         serializer = self.get_serializer(instance=collection)
         return Response(serializer.data, status=status)
 
-    def pre_save(self, obj):
-        """
-        Allow subclasses of CollectionViewSet to create collections of different
-        `collection_type`s by changing the class' `collection_type` property.
-        """
-        obj.collection_type = self.collection_type
-        super(CollectionViewSet, self).pre_save(obj)
-
     @action()
     def add_app(self, request, pk=None):
         """
@@ -52,13 +49,45 @@ class CollectionViewSet(CORSViewSet, viewsets.ModelViewSet):
         collection = self.get_object()
         try:
             new_app = Webapp.objects.get(pk=request.DATA['app'])
-        except MultiValueDictKeyError:
-            raise exceptions.ParseError(detail='`app` was not provided.')
+        except (KeyError, MultiValueDictKeyError):
+            raise exceptions.ParseError(detail=self.exceptions['not_provided'])
         except Webapp.DoesNotExist:
-            raise exceptions.ParseError(detail='`app` does not exist.')
+            raise exceptions.ParseError(detail=self.exceptions['doesnt_exist'])
         try:
             collection.add_app(new_app)
         except IntegrityError:
-            raise exceptions.ParseError(
-                detail='`app` already exists in collection.')
-        return self.return_updated(status.HTTP_201_CREATED)
+            raise exceptions.ParseError(detail=self.exceptions['already_in'])
+        return self.return_updated(status.HTTP_200_OK)
+
+    @action()
+    def remove_app(self, request, pk=None):
+        """
+        Remove an app from the specified collection.
+        """
+        collection = self.get_object()
+        try:
+            to_remove = Webapp.objects.get(pk=request.DATA['app'])
+        except (KeyError, MultiValueDictKeyError):
+            raise exceptions.ParseError(detail=self.exceptions['not_provided'])
+        except Webapp.DoesNotExist:
+            raise exceptions.ParseError(detail=self.exceptions['doesnt_exist'])
+        removed = collection.remove_app(to_remove)
+        if not removed:
+            raise exceptions.ParseError(detail=self.exceptions['not_in'])
+        return self.return_updated(status.HTTP_200_OK)
+
+    @action()
+    def reorder(self, request, pk=None):
+        """
+        Reorder the specified collection.
+        """
+        collection = self.get_object()
+        try:
+            collection.reorder(request.DATA)
+        except ValueError:
+            return Response({
+                'detail': self.exceptions['app_mismatch'],
+                'apps': [CollectionMembershipField().to_native(a) for a in
+                         collection.collectionmembership_set.all()]
+            }, status=status.HTTP_400_BAD_REQUEST, exception=True)
+        return self.return_updated(status.HTTP_200_OK)

@@ -1,4 +1,3 @@
-from django.core.urlresolvers import reverse
 from django.db import models
 from django.db.models import Max
 
@@ -26,16 +25,6 @@ class Collection(amo.models.ModelBase):
         """
         return [a.app for a in self.collectionmembership_set.all()]
 
-    def app_urls(self):
-        """
-        Returns a list of URLs of all apps in this collection.
-        """
-        return [reverse('api_dispatch_detail', kwargs={
-            'resource_name': 'app',
-            'api_name': 'apps',
-            'pk': a.pk
-        }) for a in self.apps()]
-
     def add_app(self, app, order=None):
         """
         Add an app to this collection. If specified, the app will be created
@@ -48,6 +37,35 @@ class Collection(amo.models.ModelBase):
             order = aggregate + 1 if aggregate else 1
         return CollectionMembership.objects.create(collection=self, app=app,
                                                    order=order)
+
+    def remove_app(self, app):
+        """
+        Remove the passed app from this collection, returning a boolean
+        indicating whether a successful deletion took place.
+        """
+        try:
+            membership = self.collectionmembership_set.get(app=app)
+        except CollectionMembership.DoesNotExist:
+            return False
+        else:
+            membership.delete()
+            return True
+
+    def reorder(self, new_order):
+        """
+        Passed a list of app IDs, e.g.
+
+        [18, 24, 9]
+
+        will change the order of each item in the collection to match the passed
+        order. A ValueError will be raised if each app in the collection is not
+        included in the ditionary.
+        """
+        if set(a.pk for a in self.apps()) != set(new_order):
+            raise ValueError('Not all apps included')
+        for order, pk in enumerate(new_order):
+            CollectionMembership.objects.get(collection=self,
+                                             app_id=pk).update(order=order)
 
 
 class CollectionMembership(amo.models.ModelBase):

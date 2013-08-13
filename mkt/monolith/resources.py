@@ -1,5 +1,5 @@
-import logging
 import json
+import logging
 
 from django.db import transaction
 
@@ -8,6 +8,7 @@ from mkt.api.authorization import PermissionAuthorization
 from mkt.api.base import MarketplaceModelResource
 
 from .models import MonolithRecord
+
 
 logger = logging.getLogger('z.monolith')
 
@@ -19,7 +20,7 @@ class MonolithData(MarketplaceModelResource):
         allowed_methods = ['get', 'delete']
         resource_name = 'data'
         filtering = {'recorded': ['exact', 'lt', 'lte', 'gt', 'gte'],
-                     'key': ['exact'],
+                     'key': ['exact', 'startswith'],
                      'id': ['lte', 'gte']}
         authorization = PermissionAuthorization('Monolith', 'API')
         authentication = OAuthAuthentication()

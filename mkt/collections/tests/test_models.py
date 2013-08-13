@@ -1,5 +1,3 @@
-from django.core.urlresolvers import reverse
-
 from nose.tools import eq_
 
 import amo.tests
@@ -52,16 +50,5 @@ class TestCollection(amo.tests.TestCase):
         eq_(added.order, 3)
         self.assertSetEqual(self.collection.apps(), [extra_app])
         self.add_apps()
-        all_apps = self.collection.apps()
         eq_(list(CollectionMembership.objects.values_list('order', flat=True)),
             [3, 4, 5, 6, 7])
-
-    def test_app_urls(self):
-        self.assertSetEqual(self.collection.app_urls(), [])
-        self.add_apps()
-        app_urls = [reverse('api_dispatch_detail', kwargs={
-            'resource_name': 'app',
-            'api_name': 'apps',
-            'pk': a.pk
-        }) for a in self.apps]
-        self.assertSetEqual(self.collection.app_urls(), app_urls)

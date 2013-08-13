@@ -1,14 +1,4 @@
-{% extends 'reviewers/base.html' %}
-{% from 'site/helpers/form_row.html' import form_row %}
-
-{% block extrahead %}
-  {{ super() }}
-  {{ css('mkt/gaia') }}
-{% endblock %}
-
-{% block breadcrumbs %}
-  {{ reviewers_breadcrumbs(queue=tab) }}
-{% endblock %}
+{% extends 'reviewers/themes/base.html' %}
 
 {% block content %}
   <section id="reviewers-score-bar" class="island full c">
@@ -26,22 +16,18 @@
     </form>
   </div>
 
-  <ul class="tabnav search-toggle">
-    {% for named_url, tab_code, text in queue_tabnav() %}
-      <li{% if tab == tab_code %} class="selected trigger-queues"{% endif %}>
-        <a href="{{ url(named_url) }}">{{ text }}</a>
-        <div class="tabnav-sprite hidden"></div>
-      </li>
-    {% endfor %}
-  </ul>
+  <div class="theme-list-hat">
+    {{ macros.tabnav('queues', tab, queue_tabnav_themes() ) }}
 
-  <section id="queue-island" class="island search-toggle">
     <a class="button release-theme-lock" href="{{ url('reviewers.themes.release_locks') }}">
-      {{ _('Release My Theme Locks') }}
+      <span>{{ _('Release My Theme Locks') }}</span>
     </a>
+  </div>
+
+    <section id="queue-island" class="island search-toggle">
     <h3 class="theme-queue-link c">
       <a href="{{ url('reviewers.themes.queue_themes') }}">
-        {{ _('Go to Theme Review Queue') }}
+        {{ _('Interactive Theme Queue') }}
         <img src="{{ media('img/mkt/arrows/blue-med-go.png') }}">
       </a>
     </h3>
@@ -63,7 +49,7 @@
               <td></td>
               <td>
                 <a href="{{ url('reviewers.themes.single', qa.slug) }}">
-                  {{ qa.name }}
+                  {{ qa.name or qa.slug }}
                 </a>
               </td>
               <td>

@@ -475,7 +475,8 @@ class TestLogin(UserViewBase):
         for redirect in ['http://xx.com',
                          'data:text/html,<script>window.alert("xss")</script>',
                          'mailto:test@example.com',
-                         'file:///etc/passwd']:
+                         'file:///etc/passwd',
+                         'javascript:window.alert("xss");']:
             self.assertRedirects(r, '/en-US/firefox/')
 
     def test_login_link(self):

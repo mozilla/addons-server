@@ -143,35 +143,50 @@ def _progress():
     excluded_ids = EscalationQueue.objects.values_list('addon', flat=True)
     public_statuses = amo.WEBAPPS_APPROVED_STATUSES
 
-    base_queries = {
-        'pending': Webapp.objects
-                         .exclude(id__in=excluded_ids)
-                         .filter(status=amo.STATUS_PENDING,
-                                 disabled_by_user=False),
-        'rereview': RereviewQueue.objects
-                                 .exclude(addon__in=excluded_ids)
-                                 .filter(addon__disabled_by_user=False),
-        'escalated': EscalationQueue.objects
-                                    .filter(addon__disabled_by_user=False),
-        'updates': File.objects
-                       .exclude(version__addon__id__in=excluded_ids)
-                       .filter(version__addon__type=amo.ADDON_WEBAPP,
-                               version__addon__disabled_by_user=False,
-                               version__addon__is_packaged=True,
-                               version__addon__status__in=public_statuses,
-                               status=amo.STATUS_PENDING)
+    base_filters = {
+        'pending': (Webapp.objects
+                          .exclude(id__in=excluded_ids)
+                          .filter(status=amo.STATUS_PENDING,
+                                  disabled_by_user=False,
+                                  _latest_version__deleted=False),
+                    '_latest_version__nomination'),
+        'rereview': (RereviewQueue.objects
+                                  .exclude(addon__in=excluded_ids)
+                                  .filter(addon__disabled_by_user=False),
+                     'created'),
+        'escalated': (EscalationQueue.objects
+                                     .filter(addon__disabled_by_user=False),
+                      'created'),
+        'updates': (File.objects
+                        .exclude(version__addon__id__in=excluded_ids)
+                        .filter(version__addon__type=amo.ADDON_WEBAPP,
+                                version__addon__disabled_by_user=False,
+                                version__addon__is_packaged=True,
+                                version__addon__status__in=public_statuses,
+                                version__deleted=False,
+                                status=amo.STATUS_PENDING),
+                    'version__nomination')
     }
 
-    types = base_queries.keys()
+    operators_and_values = {
+        'new': ('gt', days_ago(5)),
+        'med': ('range', (days_ago(10), days_ago(5))),
+        'old': ('lt', days_ago(10)),
+        'week': ('gte', days_ago(7))
+    }
+
+    types = base_filters.keys()
     progress = {}
+
     for t in types:
-        progress[t] = {
-            'new': base_queries[t].filter(created__gt=days_ago(5)).count(),
-            'med': base_queries[t].filter(
-                created__range=(days_ago(10), days_ago(5))).count(),
-            'old': base_queries[t].filter(created__lt=days_ago(10)).count(),
-            'week': base_queries[t].filter(created__gte=days_ago(7)).count(),
-        }
+        tmp = {}
+        base_query, field = base_filters[t]
+        for k in operators_and_values.keys():
+            operator, value = operators_and_values[k]
+            filter_ = {}
+            filter_['%s__%s' % (field, operator)] = value
+            tmp[k] = base_query.filter(**filter_).count()
+        progress[t] = tmp
 
     # Return the percent of (p)rogress out of (t)otal.
     pct = lambda p, t: (p / float(t)) * 100 if p > 0 else 0

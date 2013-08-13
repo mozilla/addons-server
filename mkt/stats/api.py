@@ -1,78 +1,65 @@
-from django.conf.urls.defaults import url
+from functools import partial
 
+from django import http
+
+import commonware
 import waffle
-from tastypie import http
-from tastypie.authorization import Authorization
-from tastypie.utils import trailing_slash
-from tastypie.validation import CleanedDataFormValidation
+from rest_framework.exceptions import ParseError
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from lib.metrics import get_monolith_client
-from mkt.api.authentication import OptionalOAuthAuthentication
-from mkt.api.base import GenericObject, http_error, MarketplaceResource
+
+from mkt.api.authentication import (RestOAuthAuthentication,
+                                    RestSharedSecretAuthentication)
+from mkt.api.authorization import PermissionAuthorization
+from mkt.api.base import CORSMixin
+from mkt.api.exceptions import NotImplemented
 
 from .forms import GlobalStatsForm
+
+
+log = commonware.log.getLogger('z.stats')
 
 
 # Map of URL metric name to monolith metric name. Future home of where we can
 # put other properties (e.g. auth rules) about the stats.
 STATS = {
-    'total_visits': {
-        'metric': 'visits',
-    },
-    'total_developers': {
-        'metric': 'total_dev_count',
-    },
+    'total_visits': {'metric': 'visits'},
+    'total_developers': {'metric': 'total_dev_count'},
 }
 
 
-class GlobalStatsResource(MarketplaceResource):
-    """
-    A resource for global stats.
-    """
-    class Meta(MarketplaceResource.Meta):
-        resource_name = 'global'
-        authentication = OptionalOAuthAuthentication()
-        authorization = Authorization()
-        detail_allowed_methods = ['get']
-        list_allowed_methods = []
-        object_class = GenericObject
-        validation = CleanedDataFormValidation(form_class=GlobalStatsForm)
+class GlobalStats(CORSMixin, APIView):
+    authentication_classes = (RestOAuthAuthentication,
+                              RestSharedSecretAuthentication)
+    cors_allowed_methods = ['get']
+    permission_classes = (partial(PermissionAuthorization, 'Stats', 'View'),)
 
-    def base_urls(self):
-        """
-        Stats are looked up by metric name.
-        """
-        return super(GlobalStatsResource, self).base_urls()[:2] + [
-            url(r'^(?P<resource_name>%s)/(?P<metric>[^/]+)%s$' % (
-                self._meta.resource_name, trailing_slash()),
-                self.wrap_view('dispatch_detail'), name='api_dispatch_detail'),
-        ]
-
-    def dispatch(self, request_type, request, **kwargs):
-        if not waffle.switch_is_active('stats-api'):
-            raise http_error(http.HttpNotImplemented,
-                             'Stats not enabled for this host.')
-
-        return super(GlobalStatsResource, self).dispatch(request_type, request,
-                                                         **kwargs)
-
-    def get_detail(self, request, **kwargs):
-        metric = kwargs.get('metric')
+    def get(self, request, metric):
         if metric not in STATS:
-            raise http_error(http.HttpNotFound, 'No metric by that name.')
+            raise http.Http404('No metric by that name.')
 
-        # Trigger form validation which doesn't normally happen for GETs.
-        bundle = self.build_bundle(data=request.GET, request=request)
-        self.is_valid(bundle, request)
+        if not waffle.switch_is_active('stats-api'):
+            raise NotImplemented('Stats not enabled for this host.')
 
-        start = bundle.data.get('start')
-        end = bundle.data.get('end')
-        interval = bundle.data.get('interval')
+        # Perform form validation.
+        form = GlobalStatsForm(request.GET)
+        if not form.is_valid():
+            raise ParseError(dict(form.errors.items()))
 
+        data = form.cleaned_data
         client = get_monolith_client()
 
-        data = list(client(STATS[metric]['metric'], start, end, interval))
-        to_be_serialized = self.alter_list_data_to_serialize(
-            request, {'objects': data})
+        try:
+            metric_data = list(client(STATS[metric]['metric'],
+                                      data.get('start'), data.get('end'),
+                                      data.get('interval')))
+        except ValueError:
+            # This occurs if monolith doesn't have our metric and we get an
+            # elasticsearch SearchPhaseExecutionException error.
+            log.info('Monolith ValueError for metric {0}'.format(
+                STATS[metric]['metric']))
+            raise ParseError('Invalid metric at this time. Try again later.')
 
-        return self.create_response(request, to_be_serialized)
+        return Response({'objects': metric_data})

@@ -5,18 +5,18 @@ from django.db import models
 from django.template import Context, loader
 from django.utils import translation
 
-from babel import Locale, numbers
 import caching.base
+import tower
+from babel import Locale, numbers
 from jingo import env
 from jinja2.filters import do_dictsort
-import tower
 from tower import ugettext as _
 
 import amo
 from amo.helpers import absolutify, urlparams
 from amo.models import SearchMixin
 from amo.fields import DecimalCharField
-from amo.utils import send_mail, send_mail_jinja
+from amo.utils import get_locale_from_lang, send_mail, send_mail_jinja
 from zadmin.models import DownloadSource
 
 from .db import StatsDictField
@@ -355,7 +355,7 @@ class Contribution(amo.models.ModelBase):
         """Localise the amount paid into the current locale."""
         if not locale:
             lang = translation.get_language()
-            locale = Locale(translation.to_locale(lang))
+            locale = get_locale_from_lang(lang)
         return numbers.format_currency(self.amount or 0,
                                        self.currency or 'USD',
                                        locale=locale)

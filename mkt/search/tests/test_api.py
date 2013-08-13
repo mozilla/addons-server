@@ -13,6 +13,7 @@ from addons.models import (AddonCategory, AddonDeviceType, AddonUpsell,
 from amo.helpers import absolutify
 from amo.tests import app_factory, ESTestCase
 from stats.models import ClientData
+from translations.helpers import truncate
 from users.models import UserProfile
 
 from mkt.api.base import list_url
@@ -558,7 +559,7 @@ class TestSuggestionsApi(ESTestCase):
     def test_suggestions(self):
         app1 = Webapp.objects.get(pk=337141)
         app1.save()
-        app2 = app_factory(name=u"Second âpp", description=u"Second dèsc",
+        app2 = app_factory(name=u"Second âpp", description=u"Second dèsc" * 25,
                            created=self.days_ago(3))
         self.refresh('webapp')
 
@@ -566,7 +567,8 @@ class TestSuggestionsApi(ESTestCase):
         parsed = json.loads(response.content)
         eq_(parsed[0], '')
         eq_(parsed[1], [unicode(app1.name), unicode(app2.name)])
-        eq_(parsed[2], [unicode(app1.description), unicode(app2.description)])
+        eq_(parsed[2], [unicode(app1.description),
+                        unicode(truncate(app2.description))])
         eq_(parsed[3], [absolutify(app1.get_detail_url()),
                         absolutify(app2.get_detail_url())])
         eq_(parsed[4], [app1.get_icon_url(64), app2.get_icon_url(64)])

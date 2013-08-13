@@ -126,6 +126,9 @@ MARKET_STATUSES = (STATUS_NULL, STATUS_PENDING, STATUS_PUBLIC, STATUS_DISABLED,
                    STATUS_DELETED, STATUS_REJECTED, STATUS_PUBLIC_WAITING,
                    STATUS_BLOCKED)
 
+# These apps shouldn't be considered anymore in mass-emailing etc.
+WEBAPPS_EXCLUDED_STATUSES = (STATUS_DISABLED, STATUS_DELETED, STATUS_REJECTED)
+
 # Types of administrative review queues for an add-on:
 ADMIN_REVIEW_FULL = 1
 ADMIN_REVIEW_PRELIM = 2

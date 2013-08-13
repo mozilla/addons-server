@@ -63,6 +63,7 @@ LOGGING['loggers'].update({
     'z.redis': { 'level': logging.DEBUG },
     'z.receipt': {'level': logging.ERROR },
     'elasticutils': {'level': logging.INFO },
+    'caching': {'level': logging.ERROR },
 })
 
 PAYPAL_APP_ID = private_mkt.PAYPAL_APP_ID

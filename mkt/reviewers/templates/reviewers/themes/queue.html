@@ -1,4 +1,4 @@
-{% extends "reviewers/base.html" %}
+{% extends "reviewers/themes/base.html" %}
 
 {% if flagged %}
   {% set title_text = _('Flagged Themes') %}
@@ -10,23 +10,21 @@
   {{ editor_page_title(title_text) }}
 {% endblock %}
 
-{% block log_url %}
-    {{ url('reviewers.themes.logs') }}
-{% endblock %}
-
 {% block extrahead %}
   {{ css('mkt/reviewers') }}
 {% endblock %}
 
-{% block content %}
+{% block breadcrumbs %}
+  {{ reviewers_breadcrumbs(queue=(tab + '_themes')) }}
+{% endblock %}
 
-{{ reviewers_breadcrumbs(queue='themes') }}
+{% block content %}
 
 <h1 class="theme-queue-header">{% block page_header %}{{ title_text }}{% endblock %}</h1>
 <nav class="theme-review island c">
   <strong>{{ _('Queues') }}:</strong>
   <ul>
-    {% for named_url, tab_code, text in queue_tabnav_themes() %}
+    {% for named_url, tab_code, text in queue_tabnav_themes_interactive() %}
       <li{% if tab == tab_code %} class="active"{% endif %}>
         <a href="{{ url(named_url) }}">{{ text }}</a>
       </li>

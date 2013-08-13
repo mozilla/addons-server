@@ -1,27 +1,15 @@
-{% extends "reviewers/base.html" %}
+{% extends "reviewers/themes/base.html" %}
 
 {% block breadcrumbs %}
   {{ reviewers_breadcrumbs(items=[(None, _('Deleted Themes'))]) }}
 {% endblock %}
 
-{% block log_url %}
-    {{ url('reviewers.themes.logs') }}
-{% endblock %}
-
 {% block content %}
   {% include "reviewers/themes/includes/logs_filter_deleted.html" %}
 
-  <ul class="tabnav search-toggle">
-    {% for named_url, tab_code, text in logs_tabnav() %}
-      <li{% if tab == tab_code %} class="selected trigger-logs"{% endif %}>
-        <a href="{{ url(named_url) }}">{{ text }}</a>
-        <div class="tabnav-sprite hidden"></div>
-      </li>
-    {% endfor %}
-  </ul>
+  {{ macros.tabnav('logs', tab, logs_tabnav_themes() ) }}
 
   <section class="island">
-    <a href="{{ url('reviewers.themes.logs') }}">{{ _('Back to Theme Logs') }}</a>
     {% if pager.object_list %}
       <table id="log-listing" class="data-grid items">
         <thead>
@@ -55,5 +43,4 @@
       {{ pager|impala_paginator }}
     {% endif %}
   </section>
-
 {% endblock %}

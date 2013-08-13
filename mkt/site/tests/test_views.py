@@ -275,7 +275,7 @@ class TestOpensearch(amo.tests.TestCase):
     def test_opensearch_declaration(self):
         """Look for opensearch declaration in templates."""
 
-        response = self.client.get(reverse('site.fireplace'))
+        response = self.client.get(reverse('commonplace.fireplace'))
         elm = pq(response.content)(
             'link[rel=search][type="application/opensearchdescription+xml"]')
         eq_(elm.attr('href'), reverse('opensearch'))

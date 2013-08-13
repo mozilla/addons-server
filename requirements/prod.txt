@@ -13,7 +13,7 @@ certifi==0.0.8
 chardet==1.0.1
 cssutils==0.9.7b3
 curling==0.2.6
-Django==1.4.5
+Django==1.4.6
 dj-database-url==0.2.1
 django-browserid==0.8
 django-cache-machine==0.6
@@ -92,7 +92,7 @@ tastypie-services==0.2.2
 
 ## Not on pypi.
 -e git+https://github.com/mozilla/amo-validator.git@8adf5827ddd81a8ce450e33f79dd2208bc59012c#egg=amo-validator
--e git+https://github.com/mozilla/app-validator.git@668ff438f6fd10eb468aef4534828c4a362bfab8#egg=app-validator
+-e git+https://github.com/mozilla/app-validator.git@461b979deeef0f869813710d5996c9f7885f4d28#egg=app-validator
 -e git+https://github.com/jsocol/commonware.git@27646ecaca40a89024cc581c3ecf5eb0fa87ee11#egg=commonware
 -e git+https://github.com/jbalogh/django-queryset-transform@a1ba6ae41bd86f5bb9ff66fb56614e0fafe6e022#egg=django-queryset-transform
 -e git+https://github.com/miracle2k/django-tables.git@546f339308103880c823b2056830fcdc9220edd0#egg=django-tables

@@ -13,6 +13,7 @@ from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.serializers import (ModelSerializer, CharField,
                                         HyperlinkedIdentityField)
+from rest_framework.viewsets import GenericViewSet
 
 from tastypie import fields, http
 from tastypie.serializers import Serializer
@@ -34,9 +35,8 @@ from mkt.api.authentication import (SharedSecretAuthentication,
                                     OptionalOAuthAuthentication)
 from mkt.api.authorization import (AllowAppOwner, AppOwnerAuthorization,
                                    OwnerAuthorization)
-from mkt.api.base import (CORSResource, CORSViewSet, GenericObject,
-                          http_error, MarketplaceModelResource,
-                          MarketplaceResource)
+from mkt.api.base import (CORSMixin, CORSResource, GenericObject, http_error,
+                          MarketplaceModelResource, MarketplaceResource)
 from mkt.api.forms import (CategoryForm, DeviceTypeForm, UploadForm)
 from mkt.api.http import HttpLegallyUnavailable
 from mkt.carriers import CARRIER_MAP, CARRIERS, get_carrier_id
@@ -314,7 +314,8 @@ class CategorySerializer(ModelSerializer):
         view_name = 'category'
 
 
-class CategoryViewSet(ListModelMixin, RetrieveModelMixin, CORSViewSet):
+class CategoryViewSet(ListModelMixin, RetrieveModelMixin, CORSMixin,
+                      GenericViewSet):
     model = Category
     serializer_class = CategorySerializer
     permission_classes = (AllowAny,)
@@ -433,7 +434,7 @@ def error_reporter(request):
     return Response(status=204)
 
 
-class RefreshManifestViewSet(CORSViewSet):
+class RefreshManifestViewSet(GenericViewSet, CORSMixin):
     model = Webapp
     permission_classes = [AllowAppOwner]
     cors_allowed_methods = ('post',)

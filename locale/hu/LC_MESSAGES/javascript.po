@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-26 14:59-0700\n"
+"POT-Creation-Date: 2013-08-13 10:01-0700\n"
 "PO-Revision-Date: 2013-07-05 14:13+0200\n"
 "Last-Translator: Kalman Kemenczy <kkemenczy@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -424,7 +424,7 @@ msgstr "A videónak WebM formátumban kell lennie."
 msgid "Your packaged app should end with <code>.zip</code>."
 msgstr "Az összecsomagolt appnak <code>.zip</code> kiterjesztésűnek kell lennie."
 
-#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:178 media/js/zamboni/devhub-all.js:1033 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:169
+#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:181 media/js/zamboni/devhub-all.js:1033 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:169
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
 msgstr[0] "Az alkalmazás ellenőrzése {0} hiba miatt sikertelen."
@@ -440,41 +440,47 @@ msgstr[1] "Az app hiba nélkül és {0} figyelmeztetéssel átment az ellenőrz�
 msgid "Your app passed validation with no errors or warnings."
 msgstr "Az app hiba és figyelmeztetés nélkül átment az ellenőrzésen."
 
-#: media/js/devreg/devhub.js:192 media/js/zamboni/devhub-all.js:1047 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:183
+#: media/js/devreg/devhub.js:186
+msgid "Your app failed validation with {0} error and {1} message(s)."
+msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
+msgstr[0] ""
+msgstr[1] ""
+
+#: media/js/devreg/devhub.js:200 media/js/zamboni/devhub-all.js:1047 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:183
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
 msgstr[0] "Az alkalmazás hiba és {0} üzenettel átment az ellenőrzésen."
 msgstr[1] "Az alkalmazás hiba és {0} üzenettel átment az ellenőrzésen."
 
-#: media/js/devreg/devhub.js:197 media/js/zamboni/devhub-all.js:1052 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:188
+#: media/js/devreg/devhub.js:205 media/js/zamboni/devhub-all.js:1052 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:188
 msgid "Your app passed validation with no errors or messages."
 msgstr "Az alkalmazás hiba és üzenetek nélkül átment az ellenőrzésen."
 
-#: media/js/devreg/devhub.js:411 media/js/zamboni/devhub-all.js:1336 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:487
+#: media/js/devreg/devhub.js:419 media/js/zamboni/devhub-all.js:1336 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:487
 msgid "Changes Saved"
 msgstr "Változások lementve"
 
-#: media/js/devreg/devhub.js:427
+#: media/js/devreg/devhub.js:435
 msgid "Enter a new team member's email address"
 msgstr "Adja meg az új csapattag e-mail címét"
 
-#: media/js/devreg/devhub.js:435
+#: media/js/devreg/devhub.js:443
 msgid "Refreshed"
 msgstr "Frissítve"
 
-#: media/js/devreg/devhub.js:590 media/js/zamboni/devhub-all.js:1499 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:650
+#: media/js/devreg/devhub.js:610 media/js/zamboni/devhub-all.js:1499 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:650
 msgid "There was an error uploading your file."
 msgstr "Hiba történt a fájl feltöltésekor."
 
-#: media/js/devreg/devhub.js:871 media/js/zamboni/devhub-all.js:1774 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:925
+#: media/js/devreg/devhub.js:892 media/js/zamboni/devhub-all.js:1774 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:925
 msgid "Learn more"
 msgstr "Tudjon meg többet"
 
-#: media/js/devreg/devhub.js:875 media/js/zamboni/devhub-all.js:1778 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:929
+#: media/js/devreg/devhub.js:896 media/js/zamboni/devhub-all.js:1778 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:929
 msgid "Example"
 msgstr "Példa"
 
-#: media/js/devreg/devhub.js:1178 media/js/zamboni/devhub-all.js:2125 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:1285
+#: media/js/devreg/devhub.js:1199 media/js/zamboni/devhub-all.js:2125 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:1285
 msgid "Image changes being processed"
 msgstr "A kép módosítása folyamatban van"
 
@@ -555,17 +561,17 @@ msgstr ""
 msgid "Detected: {0}"
 msgstr "Észlelt: {0}"
 
-#: media/js/devreg/payments-manage.js:31 media/js/devreg/payments-manage.js:66 media/js/devreg/validator.js:193 media/js/devreg/validator.js:438 media/js/devreg/validator.js:457
+#: media/js/devreg/payments-manage.js:32 media/js/devreg/payments-manage.js:67 media/js/devreg/validator.js:193 media/js/devreg/validator.js:438 media/js/devreg/validator.js:457
 #: media/js/mkt/buttons.js:85 media/js/mkt/buttons.js:94 media/js/zamboni/devhub-all.js:2597 media/js/zamboni/devhub-all.js:2844 media/js/zamboni/devhub-all.js:2863 media/js/zamboni/devhub-min.js:1
 #: media/js/zamboni/validator.js:193 media/js/zamboni/validator.js:446 media/js/zamboni/validator.js:465
 msgid "Error"
 msgstr "Hiba"
 
-#: media/js/devreg/payments-manage.js:32 media/js/devreg/payments-manage.js:67
+#: media/js/devreg/payments-manage.js:33 media/js/devreg/payments-manage.js:68
 msgid "There was a problem contacting the payment server."
 msgstr "Hiba történt a fizetési kiszolgálóhoz történő csatlakozás közben."
 
-#: media/js/devreg/payments-manage.js:87
+#: media/js/devreg/payments-manage.js:88
 msgid "You do not currently have any payment accounts."
 msgstr "Jelenleg nincs egyetlen fizetési fiókja sem."
 

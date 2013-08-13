@@ -12,7 +12,9 @@ from rest_framework.mixins import (CreateModelMixin, DestroyModelMixin,
                                    ListModelMixin, RetrieveModelMixin)
 from rest_framework.permissions import BasePermission
 from rest_framework.relations import PrimaryKeyRelatedField, RelatedField
+from rest_framework.response import Response
 from rest_framework.serializers import ModelSerializer, SerializerMethodField
+from rest_framework.viewsets import GenericViewSet
 
 from addons.models import Addon
 from users.models import UserProfile
@@ -22,9 +24,9 @@ from comm.tasks import consume_email, mark_thread_read
 from comm.utils import filter_notes_by_read_status, ThreadObjectPermission
 from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
-from mkt.api.base import CORSViewSet
+from mkt.api.base import CORSMixin
+from mkt.reviewers.utils import send_note_emails
 from mkt.webpay.forms import PrepareForm
-from rest_framework.response import Response
 
 
 class AuthorSerializer(ModelSerializer):
@@ -161,7 +163,7 @@ class ReadUnreadFilter(BaseFilterBackend):
                                            show_read)
 
 
-class CommViewSet(CORSViewSet):
+class CommViewSet(CORSMixin, GenericViewSet):
     """Some overriding and mixin stuff to adapt other viewsets."""
 
     def patched_get_request(self):
@@ -261,7 +263,12 @@ class NoteViewSet(ListModelMixin, CreateModelMixin, RetrieveModelMixin,
         for key in ('developer', 'reviewer', 'senior_reviewer',
                     'mozilla_contact', 'staff'):
             perm = 'read_permission_%s' % key
+
             setattr(obj, perm, getattr(parent, perm))
+
+    def post_save(self, obj, created=False):
+        if created:
+            send_note_emails(obj)
 
     def pre_save(self, obj):
         """Inherit permissions from the thread."""

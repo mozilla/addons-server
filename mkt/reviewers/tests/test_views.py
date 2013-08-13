@@ -22,7 +22,7 @@ import amo
 import amo.tests
 import reviews
 from abuse.models import AbuseReport
-from access.models import GroupUser
+from access.models import Group, GroupUser
 from addons.models import AddonDeviceType
 from amo.helpers import absolutify
 from amo.tests import (app_factory, check_links, days_ago,
@@ -42,7 +42,7 @@ from versions.models import Version
 from zadmin.models import get_config, set_config
 
 from mkt.constants.features import FeatureProfile
-from mkt.reviewers.views import _do_sort, _queue_to_apps
+from mkt.reviewers.views import _do_sort, _progress, _queue_to_apps
 from mkt.site.fixtures import fixture
 from mkt.submit.tests.test_views import BasePackagedAppTest
 from mkt.webapps.models import Webapp
@@ -144,12 +144,75 @@ class TestReviewersHome(AppReviewerTest, AccessMixin):
         # Add a public app under re-review.
         rereviewed = app_factory(name='Finch', status=amo.STATUS_PUBLIC)
         rq = RereviewQueue.objects.create(addon=rereviewed)
-        rq.update(created=self.days_ago(5))
+        rq.update(created=self.days_ago(1))
+
+        # Add an app with latest update deleted. It shouldn't affect anything.
+        app = app_factory(name='Great White Shark',
+                          status=amo.STATUS_PUBLIC,
+                          version_kw={'version': '1.0'},
+                          is_packaged=True)
+        v = version_factory(addon=app,
+                        version='2.1',
+                        file_kw={'status': amo.STATUS_PENDING})
+        v.update(deleted=True)
+
+    def test_progress_pending(self):
+        self.apps[0].latest_version.update(nomination=self.days_ago(1))
+        self.apps[1].latest_version.update(nomination=self.days_ago(8))
+        self.apps[2].latest_version.update(nomination=self.days_ago(15))
+        counts, percentages = _progress()
+        eq_(counts['pending']['week'], 1)
+        eq_(counts['pending']['new'], 1)
+        eq_(counts['pending']['old'], 1)
+        eq_(counts['pending']['med'], 1)
+        self.assertAlmostEqual(percentages['pending']['new'], 33.333333333333)
+        self.assertAlmostEqual(percentages['pending']['old'], 33.333333333333)
+        self.assertAlmostEqual(percentages['pending']['med'], 33.333333333333)
+
+    def test_progress_rereview(self):
+        rq = RereviewQueue.objects.create(addon=self.apps[0])
+        rq.update(created=self.days_ago(8))
+        rq = RereviewQueue.objects.create(addon=self.apps[1])
+        rq.update(created=self.days_ago(15))
+        counts, percentages = _progress()
+        eq_(counts['rereview']['week'], 1)
+        eq_(counts['rereview']['new'], 1)
+        eq_(counts['rereview']['old'], 1)
+        eq_(counts['rereview']['med'], 1)
+        self.assertAlmostEqual(percentages['rereview']['new'], 33.333333333333)
+        self.assertAlmostEqual(percentages['rereview']['old'], 33.333333333333)
+        self.assertAlmostEqual(percentages['rereview']['med'], 33.333333333333)
+
+    def test_progress_updated(self):
+        extra_app = app_factory(name='Jackalope',
+                                status=amo.STATUS_PUBLIC,
+                                is_packaged=True,
+                                created=self.days_ago(35))
+        version_factory(addon=extra_app,
+                        file_kw={'status': amo.STATUS_PENDING},
+                        created=self.days_ago(25),
+                        nomination=self.days_ago(8))
+        extra_app = app_factory(name='Jackrabbit',
+                                status=amo.STATUS_PUBLIC,
+                                is_packaged=True,
+                                created=self.days_ago(35))
+        version_factory(addon=extra_app,
+                        file_kw={'status': amo.STATUS_PENDING},
+                        created=self.days_ago(25),
+                        nomination=self.days_ago(25))
+        counts, percentages = _progress()
+        eq_(counts['updates']['week'], 1)
+        eq_(counts['updates']['new'], 1)
+        eq_(counts['updates']['old'], 1)
+        eq_(counts['updates']['med'], 1)
+        self.assertAlmostEqual(percentages['updates']['new'], 33.333333333333)
+        self.assertAlmostEqual(percentages['updates']['old'], 33.333333333333)
+        self.assertAlmostEqual(percentages['updates']['med'], 33.333333333333)
 
     def test_stats_waiting(self):
-        self.apps[0].update(created=self.days_ago(1))
-        self.apps[1].update(created=self.days_ago(5))
-        self.apps[2].update(created=self.days_ago(15))
+        self.apps[0].latest_version.update(nomination=self.days_ago(1))
+        self.apps[1].latest_version.update(nomination=self.days_ago(5))
+        self.apps[2].latest_version.update(nomination=self.days_ago(15))
         self.packaged_app.update(created=self.days_ago(1))
 
         doc = pq(self.client.get(self.url).content)
@@ -160,22 +223,31 @@ class TestReviewersHome(AppReviewerTest, AccessMixin):
         eq_(anchors.eq(2).text(), '1 Update Review')
 
         divs = doc('.editor-stats-table > div')
+
+        # Pending review.
         eq_(divs.eq(0).text(), '2 unreviewed app submissions this week.')
+
+        # Re-reviews.
         eq_(divs.eq(2).text(), '1 unreviewed app submission this week.')
+
+        # Update review.
         eq_(divs.eq(4).text(), '1 unreviewed app submission this week.')
 
         # Maths.
+        # Pending review.
         eq_(doc('.waiting_new').eq(0).attr('title')[-3:], '33%')
         eq_(doc('.waiting_med').eq(0).attr('title')[-3:], '33%')
         eq_(doc('.waiting_old').eq(0).attr('title')[-3:], '33%')
 
-        eq_(doc('.waiting_new').eq(1).attr('title')[-3:], ' 0%')
-        eq_(doc('.waiting_med').eq(1).attr('title')[-4:], '100%')
+        # Re-reviews.
+        eq_(doc('.waiting_new').eq(1).attr('title')[-4:], '100%')
+        eq_(doc('.waiting_med').eq(1).attr('title')[-3:], ' 0%')
         eq_(doc('.waiting_old').eq(1).attr('title')[-3:], ' 0%')
 
-        eq_(doc('.waiting_new').eq(0).attr('title')[-3:], '33%')
-        eq_(doc('.waiting_med').eq(0).attr('title')[-3:], '33%')
-        eq_(doc('.waiting_old').eq(0).attr('title')[-3:], '33%')
+        # Update review.
+        eq_(doc('.waiting_new').eq(2).attr('title')[-4:], '100%')
+        eq_(doc('.waiting_med').eq(2).attr('title')[-3:], ' 0%')
+        eq_(doc('.waiting_old').eq(2).attr('title')[-3:], ' 0%')
 
     def test_reviewer_leaders(self):
         reviewers = UserProfile.objects.all()[:2]
@@ -972,10 +1044,6 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         return Webapp.objects.get(id=337141)
 
     def post(self, data, queue='pending'):
-        # Set some action visibility form values.
-        data['action_visibility'] = ('senior_reviewer', 'reviewer', 'staff',
-                                     'mozilla_contact')
-        self.create_switch(name='comm-dashboard')
         res = self.client.post(self.url, data)
         self.assert3xx(res, reverse('reviewers.apps.queue_%s' % queue))
 
@@ -1053,7 +1121,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         eq_(thread.count(), 1)
 
         thread = thread.get()
-        perms = ('senior_reviewer', 'reviewer', 'staff', 'mozilla_contact')
+        perms = ('developer', 'reviewer', 'staff')
 
         for key in perms:
             assert getattr(thread, 'read_permission_%s' % key)
@@ -1079,6 +1147,26 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         assert len(scores) > 0
         eq_(scores[0].score, amo.REVIEWED_SCORES[reviewed_type])
         eq_(scores[0].note_key, reviewed_type)
+
+    def test_comm_emails(self):
+        data = {'action': 'reject', 'comments': 'suxor',
+                'action_visibility': ('developer', 'reviewer', 'staff')}
+        data.update(self._attachment_management_form(num=0))
+        self.create_switch(name='comm-dashboard')
+        self.post(data)
+        self._check_thread()
+
+        recipients = set(self.app.authors.values_list('email', flat=True))
+        recipients.update(Group.objects.get(
+            name='App Reviewers').users.values_list('email', flat=True))
+        recipients.update(Group.objects.get(
+            name='Admins').users.values_list('email', flat=True))
+
+        recipients.remove('editor@mozilla.com')
+
+        eq_(len(mail.outbox), len(recipients))
+        eq_(mail.outbox[0].subject, '%s has been reviewed.' %
+            self.get_app().name)
 
     def test_xss(self):
         data = {'action': 'comment',
@@ -1110,7 +1198,6 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         msg = mail.outbox[0]
         self._check_email(msg, 'App Approved but waiting')
         self._check_email_body(msg)
-        self._check_thread()
 
     def test_pending_to_reject_w_device_overrides(self):
         # This shouldn't be possible unless there's form hacking.
@@ -1134,7 +1221,6 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         msg = mail.outbox[0]
         self._check_email(msg, 'Submission Update')
         self._check_email_body(msg)
-        self._check_thread()
 
     def test_pending_to_public_w_requirements_overrides(self):
         self.create_switch(name='buchets')
@@ -1199,7 +1285,6 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         msg = mail.outbox[0]
         self._check_email(msg, 'App Approved')
         self._check_email_body(msg)
-        self._check_thread()
         self._check_score(amo.REVIEWED_WEBAPP_HOSTED)
 
         assert update_name.called
@@ -1271,7 +1356,6 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         msg = mail.outbox[0]
         self._check_email(msg, 'App Approved', with_mozilla_contact=False)
         self._check_email_body(msg)
-        self._check_thread()
         self._check_score(amo.REVIEWED_WEBAPP_HOSTED)
 
     @mock.patch('addons.tasks.index_addons')
@@ -1296,7 +1380,6 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         msg = mail.outbox[0]
         self._check_email(msg, 'App Approved but waiting')
         self._check_email_body(msg)
-        self._check_thread()
         self._check_score(amo.REVIEWED_WEBAPP_HOSTED)
 
         assert not update_name.called
@@ -1330,7 +1413,6 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         msg = mail.outbox[0]
         self._check_email(msg, 'Submission Update')
         self._check_email_body(msg)
-        self._check_thread()
         self._check_score(amo.REVIEWED_WEBAPP_HOSTED)
 
     def test_multiple_versions_reject_hosted(self):
@@ -1384,7 +1466,6 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         self._check_email(dev_msg, 'Submission Update')
         adm_msg = mail.outbox[1]
         self._check_admin_email(adm_msg, 'Escalated Review Requested')
-        self._check_thread()
 
     def test_pending_to_disable_senior_reviewer(self):
         self.login_as_senior_reviewer()
@@ -1399,7 +1480,6 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         self._check_log(amo.LOG.APP_DISABLED)
         eq_(len(mail.outbox), 1)
         self._check_email(mail.outbox[0], 'App disabled by reviewer')
-        self._check_thread()
 
     def test_pending_to_disable(self):
         self.app.update(status=amo.STATUS_PUBLIC)
@@ -1428,7 +1508,6 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         msg = mail.outbox[0]
         self._check_email(msg, 'App Approved')
         self._check_email_body(msg)
-        self._check_thread()
 
     def test_escalation_to_reject(self):
         EscalationQueue.objects.create(addon=self.app)
@@ -1447,7 +1526,6 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         eq_(len(mail.outbox), 1)
         msg = mail.outbox[0]
         self._check_email(msg, 'Submission Update')
-        self._check_thread()
         self._check_email_body(msg)
         self._check_score(amo.REVIEWED_WEBAPP_HOSTED)
 
@@ -1466,7 +1544,6 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         eq_(EscalationQueue.objects.count(), 0)
         eq_(len(mail.outbox), 1)
         self._check_email(mail.outbox[0], 'App disabled by reviewer')
-        self._check_thread()
 
     def test_escalation_to_disable(self):
         EscalationQueue.objects.create(addon=self.app)
@@ -1507,7 +1584,6 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         self._check_email(msg, 'Submission Update')
         self._check_email_body(msg)
         self._check_score(amo.REVIEWED_WEBAPP_REREVIEW)
-        self._check_thread()
 
     def test_rereview_to_disable_senior_reviewer(self):
         self.login_as_senior_reviewer()
@@ -1523,7 +1599,6 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         eq_(RereviewQueue.objects.filter(addon=self.app).count(), 0)
         eq_(len(mail.outbox), 1)
         self._check_email(mail.outbox[0], 'App disabled by reviewer')
-        self._check_thread()
 
     def test_rereview_to_disable(self):
         RereviewQueue.objects.create(addon=self.app)
@@ -1562,7 +1637,6 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         self._check_email(dev_msg, 'Submission Update')
         adm_msg = mail.outbox[1]
         self._check_admin_email(adm_msg, 'Escalated Review Requested')
-        self._check_thread()
 
     def test_more_information(self):
         # Test the same for all queues.
@@ -1597,7 +1671,6 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         self.post(data)
         eq_(len(mail.outbox), 0)
         self._check_log(amo.LOG.COMMENT_VERSION)
-        self._check_thread()
 
     def test_receipt_no_node(self):
         res = self.client.get(self.url)

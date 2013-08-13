@@ -480,19 +480,36 @@ class TestRegionForm(amo.tests.WebappTestCase):
         form.save()
         eq_(self.app.get_region_ids(True), mkt.regions.ALL_REGION_IDS)
 
-    def test_exclude_worldwide_if_disabled(self):
+    @mock.patch('mkt.developers.forms.ALL_PAID_REGION_IDS',
+                new=[2, 4, 5, 7])
+    def test_enable_other_region_paid(self):
         self.app.update(premium_type=amo.ADDON_PREMIUM)
-        form = forms.RegionForm(data={'regions': mkt.regions.REGION_IDS,
-                                      'other_regions': True}, **self.kwargs)
-        form.price_region_ids = mkt.regions.REGION_IDS
-        form.disabled_regions = [mkt.regions.WORLDWIDE.id]
-        assert not form.is_valid()
+        form = forms.RegionForm(data={'regions': [2, 4],
+                                      'other_regions': 'on'}, **self.kwargs)
+        form.price_region_ids = [2, 4, 7]
+        # Update disabled_regions as we tweaked price_regions.
+        form.disabled_regions = form._disabled_regions()
+        eq_(self.app.enable_new_regions, False)
+        assert form.is_valid(), form.errors
+        form.save()
+        eq_(self.app.enable_new_regions, True)
+        eq_(self.app.addonexcludedregion.filter(
+            region=mkt.regions.WORLDWIDE.id).exists(), False)
 
-        form = forms.RegionForm(data={'regions': mkt.regions.REGION_IDS,
-                                      'other_regions': True}, **self.kwargs)
-        form.price_region_ids = mkt.regions.REGION_IDS
-        form.disabled_regions = []
-        assert form.is_valid()
+    def test_worldwide_invalid_choice_paid(self):
+        self.app.update(premium_type=amo.ADDON_PREMIUM)
+        form = forms.RegionForm(
+            data={'regions': [mkt.regions.WORLDWIDE.id]}, **self.kwargs)
+        assert not form.is_valid(), form.errors
+        assert ('Select a valid choice. 1 is not one of the available '
+                'choices.' in form.errors['regions'])
+
+    def test_worldwide_invalid_choice(self):
+        form = forms.RegionForm(
+            data={'regions': [mkt.regions.WORLDWIDE.id]}, **self.kwargs)
+        assert not form.is_valid(), form.errors
+        assert ('Select a valid choice. 1 is not one of the available '
+                'choices.' in form.errors['regions'])
 
 
 class TestNewManifestForm(amo.tests.TestCase):

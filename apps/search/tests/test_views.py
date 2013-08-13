@@ -19,6 +19,7 @@ from addons.models import Addon, AddonCategory, AddonUser, Category, Persona
 from search import views
 from search.utils import floor_version
 from search.views import DEFAULT_NUM_PERSONAS, version_sidebar
+from tags.models import AddonTag, Tag
 from users.models import UserProfile
 from versions.compare import num as vnum, version_int as vint, MAXVERSION
 
@@ -582,6 +583,30 @@ class TestESSearch(SearchBase):
         r = self.client.get(self.url, dict(q='pony'))
         eq_(self.get_results(r), [a.id])
 
+    def test_tag_search(self):
+        a = self.addons[0]
+
+        tag_name = 'tagretpractice'
+        r = self.client.get(self.url, dict(q=tag_name))
+        eq_(self.get_results(r), [])
+
+        AddonTag.objects.create(
+            addon=a, tag=Tag.objects.create(tag_text=tag_name))
+
+        a.save()
+        self.refresh(timesleep=1)
+        r = self.client.get(self.url, dict(q=tag_name))
+        eq_(self.get_results(r), [a.id])
+
+        # Multiple tags.
+        tag_name_2 = 'bagemtagem'
+        AddonTag.objects.create(
+            addon=a, tag=Tag.objects.create(tag_text=tag_name_2))
+        a.save()
+        self.refresh(timesleep=1)
+        r = self.client.get(self.url, dict(q='%s %s' % (tag_name, tag_name_2)))
+        eq_(self.get_results(r), [a.id])
+
 
 class TestPersonaSearch(SearchBase):
     fixtures = ['base/apps']
@@ -868,9 +893,6 @@ class TestCollectionSearch(SearchBase):
         eq_(doc('.listing-footer').length, 0)
 
     def test_results_name_query(self):
-        # TODO: Figure out why this flakes out on jenkins every so often.
-        raise SkipTest
-
         self._generate()
 
         c1 = self.collections[0]
@@ -881,12 +903,13 @@ class TestCollectionSearch(SearchBase):
         c2.name = 'The Life Aquatic with SeaVan: An Underwater Collection'
         c2.save()
 
-        self.refresh()
+        self.refresh(timesleep=1)
 
         # These contain terms that are in every result - so return everything.
-        for term in ('', 'collection',
+        for term in ('collection',
                      'seavan: a collection of cars at the beach'):
-            self.check_name_results({}, sorted(p.id for p in self.collections))
+            self.check_name_results({'q': term},
+            sorted(p.id for p in self.collections))
 
         # Garbage search terms should return nothing.
         for term in ('xxx', 'garbage', '£'):
@@ -901,7 +924,7 @@ class TestCollectionSearch(SearchBase):
             self.check_name_results({'q': term}, [c2.pk])
 
         # Match both results above.
-        for term in ('seavan', 'seavans', 'sea van'):
+        for term in ('seavan', 'seavans'):
             self.check_name_results({'q': term}, sorted([c1.pk, c2.pk]))
 
     def test_results_popularity(self):

@@ -17,7 +17,7 @@
     {% include "reviewers/includes/queue_search_mobile.html" %}
   </div>
 
-  {% include "reviewers/includes/tabnav.html" %}
+  {{ macros.tabnav('queues', tab, queue_tabnav() ) }}
 
   <section id="queue-island" class="island search-toggle">
     {% if tab == 'moderated' %}

@@ -1,6 +1,7 @@
 import json
 
 from django.conf import settings
+from django.core import mail
 from django.core.urlresolvers import reverse
 
 import mock
@@ -248,6 +249,22 @@ class TestNote(RestOAuth):
         eq_(res.status_code, 201)
         eq_(note.replies.count(), 1)
 
+    def test_note_emails(self):
+        self.create_switch(name='comm-dashboard')
+        note = CommunicationNote.objects.create(author=self.profile,
+            thread=self.thread, note_type=0, body='something',
+            read_permission_developer=True)
+        res = self.client.post(reverse('comm-note-replies-list',
+                                       kwargs={'thread_id': self.thread.id,
+                                               'note_id': note.id}),
+                               data=json.dumps({'note_type': '0',
+                                                'body': 'something'}))
+        eq_(res.status_code, 201)
+
+        # Decrement authors.count() by 1 because the author of the note is
+        # one of the authors of the addon.
+        eq_(len(mail.outbox), self.thread.addon.authors.count() - 1)
+
 
     def test_mark_read(self):
         note = CommunicationNote.objects.create(author=self.profile,
@@ -265,10 +282,10 @@ class TestEmailApi(RestOAuth):
 
     def setUp(self):
         super(TestEmailApi, self).setUp()
-        settings.WHITELISTED_CLIENTS_EMAIL_API = ['10.10.10.10']
         self.mock_request = RequestFactory().get(reverse('post-email-api'))
-        mock.patch.object(settings, 'WHITELISTED_CLIENTS_EMAIL_API',
-                          ['10.10.10.10'])
+        patcher = mock.patch.object(settings, 'WHITELISTED_CLIENTS_EMAIL_API',
+                                    ['10.10.10.10'])
+        patcher.start()
 
     def get_request(self, data):
         req = self.mock_request

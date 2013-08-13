@@ -1921,7 +1921,6 @@ class TestEmailDevs(amo.tests.TestCase):
 
     def test_only_apps_with_payments(self):
         self.addon.update(type=amo.ADDON_WEBAPP,
-                          paypal_id='fliggy@fligtar.net',
                           premium_type=amo.ADDON_PREMIUM)
         res = self.post(recipients='payments')
         self.assertNoFormErrors(res)
@@ -1936,6 +1935,27 @@ class TestEmailDevs(amo.tests.TestCase):
         mail.outbox = []
         self.addon.update(status=amo.STATUS_DELETED)
         res = self.post(recipients='payments')
+        self.assertNoFormErrors(res)
+        eq_(len(mail.outbox), 0)
+
+    def test_only_apps_with_payments_and_new_regions(self):
+        self.addon.update(type=amo.ADDON_WEBAPP,
+                          premium_type=amo.ADDON_PREMIUM)
+        res = self.post(recipients='payments_region_enabled')
+        self.assertNoFormErrors(res)
+        eq_(len(mail.outbox), 0)
+        mail.outbox = []
+        res = self.post(recipients='payments_region_disabled')
+        self.assertNoFormErrors(res)
+        eq_(len(mail.outbox), 1)
+
+        mail.outbox = []
+        self.addon.update(enable_new_regions=True)
+        res = self.post(recipients='payments_region_enabled')
+        self.assertNoFormErrors(res)
+        eq_(len(mail.outbox), 1)
+        mail.outbox = []
+        res = self.post(recipients='payments_region_disabled')
         self.assertNoFormErrors(res)
         eq_(len(mail.outbox), 0)
 
