@@ -186,17 +186,3 @@ def _open_pipe(cmd):
     return subprocess.Popen(cmd,
                             stdin=subprocess.PIPE, stdout=subprocess.PIPE,
                             stderr=subprocess.PIPE)
-
-
-def commonplace(request, repo):
-    if repo not in settings.COMMONPLACE_REPOS:
-        raise HttpResponseNotFound
-
-    site_settings = {
-        'persona_unverified_issuer': settings.BROWSERID_DOMAIN
-    }
-
-    return jingo.render(request, 'site/commonplace.html', {
-        'repo': repo,
-        'site_settings': site_settings,
-    })
