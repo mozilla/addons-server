@@ -24,6 +24,14 @@ Listing
 
     .. note:: Authentication is optional.
 
+    **Request**:
+
+    :param category: a category ID.
+    :type collection_type: int
+    :param region: a region ID.
+    :type region: int
+    :param carrier: a carrier ID.
+    :type carrier: int
 
 Create
 ------
