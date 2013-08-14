@@ -21,6 +21,7 @@ class Collection(amo.models.ModelBase):
         choices=mkt.regions.REGIONS_CHOICES_ID, db_index=True)
     carrier = models.IntegerField(default=None, null=True, blank=True,
         choices=mkt.carriers.CARRIER_CHOICES, db_index=True)
+    author = models.CharField(max_length=255, default='')
 
     class Meta:
         db_table = 'app_collections'
