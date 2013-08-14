@@ -2658,10 +2658,10 @@ msgstr "Izbriši zbirko"
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:108
 msgid "%(num)s Theme in this Collection"
 msgid_plural "%(num)s Themes in this Collection"
-msgstr[0] "Tem v tej zbirki % (num)s"
-msgstr[1] "Tem v tej zbirki % (num)s"
-msgstr[2] "Tem v tej zbirki % (num)s"
-msgstr[3] "Tem v tej zbirki % (num)s"
+msgstr[0] "Tem v tej zbirki %(num)s"
+msgstr[1] "Tem v tej zbirki %(num)s"
+msgstr[2] "Tem v tej zbirki %(num)s"
+msgstr[3] "Tem v tej zbirki %(num)s"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:119
 msgid "%(num)s Add-on in this Collection"
