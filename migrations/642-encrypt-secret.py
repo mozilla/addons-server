@@ -1,3 +1,5 @@
+from datetime import datetime
+
 import amo
 
 from aesfield.field import AESField
@@ -13,4 +15,6 @@ class FrozenAPIAccess(amo.models.ModelBase):
 def run():
     for access in FrozenAPIAccess.objects.all():
         access.secret = str(access.secret)
+        if not access.created:
+            access.created = datetime.now()
         access.save()
