@@ -1568,3 +1568,6 @@ CACHE_SEARCH_FEATURED_API_TIMEOUT = 60 * 60  # 1 hour.
 # Whitelist IP addresses of the allowed clients that can post email
 # through the API.
 WHITELISTED_CLIENTS_EMAIL_API = []
+
+# Base URL to the Bango Vendor Portal (keep the trailing question mark).
+BANGO_BASE_PORTAL_URL = 'http://mozilla.com.test.bango.org/login/al.aspx?'

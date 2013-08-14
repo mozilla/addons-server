@@ -1,7 +1,9 @@
-from datetime import datetime
 import json
+import urllib
+from datetime import datetime
 
 from django import http
+from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import get_object_or_404, redirect
 
@@ -29,7 +31,7 @@ from market.models import Price
 from mkt.constants import DEVICE_LOOKUP
 from mkt.developers.decorators import dev_required
 from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
-                                   uri_to_pk, UserInappKey)
+                                   SolitudeSeller, UserInappKey, uri_to_pk)
 
 from . import forms, forms_payments
 
@@ -316,6 +318,35 @@ def in_app_config(request, addon_id, addon, webapp=True):
 def in_app_secret(request, addon_id, addon, webapp=True):
     seller_config = get_seller_product(addon.app_payment_account)
     return http.HttpResponse(seller_config['secret'])
+
+
+@waffle_switch('bango-portal')
+@dev_required(webapp=True)
+def bango_portal(request, addon_id, addon, webapp=True):
+    if not ((addon.authors.filter(user=request.user,
+                addonuser__role=amo.AUTHOR_ROLE_OWNER).exists()) and
+            (addon.app_payment_account.payment_account.solitude_seller.user.id
+                == request.user.id)):
+        log.error(('User not allowed to reach the Bango portal; '
+                   'pk=%s') % request.user.pk)
+        return http.HttpResponseForbidden()
+    try:
+        bango_token = client.api.bango.login.post({'packageId': addon_id})
+    except HttpClientError as e:
+        log.error('Failed to authenticate against Bango portal; %s' % addon_id,
+                  exc_info=True)
+        return http.HttpResponseBadRequest(json.dumps(e.content))
+
+    bango_url = '{base_url}{parameters}'.format(**{
+        'base_url': settings.BANGO_BASE_PORTAL_URL,
+        'parameters': urllib.urlencode({
+            'authenticationToken': bango_token['authentication_token'],
+            'emailAddress': bango_token['email_address'],
+            'packageId': addon_id,
+            'personId': bango_token['person_id'],
+        })
+    })
+    return http.HttpResponseRedirect(bango_url)
 
 
 def get_seller_product(account):
