@@ -7,15 +7,16 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-08-13 10:01-0700\n"
-"PO-Revision-Date: 2013-07-27 10:26+0100\n"
-"Last-Translator: Michael Köhler <coce@nurfuerspam.de>\n"
+"PO-Revision-Date: 2013-08-13 20:04+0000\n"
+"Last-Translator: Michael <michael.koehler1@gmx.de>\n"
 "Language-Team: Mozilla Add-ons <amo-editors@mozilla.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.1.6\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1376424287.0\n"
 
 #: apps/addons/buttons.py:207
 msgid "Download Now"
@@ -14125,15 +14126,15 @@ msgstr "Rückmeldung"
 
 #: mkt/collections/constants.py:9
 msgid "Basic Collection"
-msgstr ""
+msgstr "Grundlegende Sammlung"
 
 #: mkt/collections/constants.py:10
 msgid "Featured App List"
-msgstr ""
+msgstr "Liste der vorgestellten Anwendungen"
 
 #: mkt/collections/constants.py:11
 msgid "Operator Shelf"
-msgstr ""
+msgstr "Regal des Mobilfunkanbieters"
 
 #: mkt/constants/apps.py:9 mkt/reviewers/templates/reviewers/logs.html:18 mkt/reviewers/templates/reviewers/includes/search_results_themes.html:6
 #: mkt/reviewers/templates/reviewers/themes/history_table.html:7 mkt/reviewers/templates/reviewers/themes/logs.html:18 mkt/reviewers/templates/reviewers/themes/queue_list.html:42
@@ -15694,7 +15695,7 @@ msgstr "Andere und neue Regionen"
 
 #: mkt/developers/forms.py:750
 msgid "Enable new regions"
-msgstr ""
+msgstr "Neue Regionen aktivieren"
 
 #: mkt/developers/forms.py:835
 msgid "You must select at least one region or \"Other and new regions.\""
@@ -15886,7 +15887,7 @@ msgstr "Sie können ein Zahlungskonto nicht aus einer Anwendung entfernen."
 
 #: mkt/developers/forms_payments.py:485
 msgid "You are not permitted to change payment accounts."
-msgstr ""
+msgstr "Sie dürfen keine Änderungen an Zahlungskonten vornehmen."
 
 #: mkt/developers/forms_payments.py:529
 msgid "No payment account set up for that app"
@@ -15930,7 +15931,7 @@ msgstr "Neue Regionen wurden dem Firefox-Marktplatz hinzugefügt"
 
 #: mkt/developers/tasks.py:656
 msgid "{app}: {region} region added to the Firefox Marketplace"
-msgstr ""
+msgstr "{app}: Region {region} zum Firefox Marketplace hinzugefügt"
 
 #: mkt/developers/utils.py:42
 msgid "Video support not enabled."
@@ -15961,6 +15962,8 @@ msgstr "Symbole müssen quadratisch sein."
 #: mkt/developers/utils.py:105
 msgid "App previews must be at least {0}px by {1}px or {1}px by {0}px."
 msgstr ""
+"Anwendungsvorschau muss mindestens {0}px mal {1}px oder {1}px mal {0}px groß "
+"sein."
 
 #: mkt/developers/views.py:148
 msgid "Paid apps cannot be deleted. Disable this app instead."
@@ -17136,6 +17139,8 @@ msgstr "Sie haben keine Zahlungskonten eingerichtet."
 #: mkt/developers/templates/developers/payments/includes/bango_accounts_list.html:4
 msgid "The current payment account was associated with the app by an app owner."
 msgstr ""
+"Das aktuelle Zahlungskonto wurde von einem Anwendungsbesitzer mit der "
+"Anwendung verknüpft."
 
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:5
 msgid "Modify Bango Account"
@@ -17154,10 +17159,16 @@ msgstr ""
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:6
 msgid "Your app will be displayed in any regional Marketplace that is added in the future. You will receive an email notification when a new region is added."
 msgstr ""
+"Ihre Anwendung wird in jedem regionalen Marketplace angezeigt, der in "
+"Zukunft hinzugefügt wird. Sie erhalten eine E-Mail-Benachrichtigung, wenn "
+"eine neue Region hinzugefügt wird."
 
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:13
 msgid "Your app will be displayed in the worldwide Marketplace and in any regional Marketplace that is added in the future. You will receive an email notification when a new region is added."
 msgstr ""
+"Ihre Anwendung wird im weltweiten Marketplace angezeigt, und in jedem "
+"regionalen Marketplace, der in Zukunft hinzugefügt wird. Sie erhalten eine E"
+"-Mail-Benachrichtigung, wenn eine neue Region hinzugefügt wird."
 
 #: mkt/developers/templates/developers/payments/includes/regions_toggle.html:4
 msgid "Select All"
@@ -18615,11 +18626,13 @@ msgstr "General Notes ist eine einfache Notizanwendung, mit der Sie lokalen und 
 
 #: mkt/ecosystem/templates/ecosystem/build_reference.html:87
 msgid "rtcamera"
-msgstr ""
+msgstr "rtcamera"
 
 #: mkt/ecosystem/templates/ecosystem/build_reference.html:90
 msgid "rtcamera is a fun camera app to process images in real time."
 msgstr ""
+"rtcamera ist eine interessante Kameraanwendung, um Bilder in Echtzeit zu "
+"verarbeiten."
 
 #: mkt/ecosystem/templates/ecosystem/build_tools.html:15
 msgid ""
@@ -21108,75 +21121,88 @@ msgstr "69%"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:17 mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:18
 msgid "Gallery View"
-msgstr ""
+msgstr "Galerieansicht"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:22 mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:23
 msgid "Camera View"
-msgstr ""
+msgstr "Kameraansicht"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:27 mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:28
 msgid "Selecting an image"
-msgstr ""
+msgstr "Eine Grafik auswählen"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:35
 msgid "rtcamera is a fun camera app to process images in real time, using Web technologies. <a href=\"%(walkthrough_link)s\" class=\"walkthrough\"> Read the full developer walkthrough </a>"
 msgstr ""
+"rtcamera ist eine interessante Kameraanwendung, um Bilder in Echtzeit mit "
+"Web-Technologien zu verarbeiten.<a href=\"%(walkthrough_link)s\" "
+"class=\"walkthrough\">Lesen Sie die gesamte Übersicht für Entwickler</a>"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:52
 msgid "Generates animated GIFs."
-msgstr ""
+msgstr "Erstellt animierte GIFs."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:60
 msgid "A wrapper for IndexedDB."
-msgstr ""
+msgstr "Ein Wrapper für IndexedDB."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:68
 msgid "Calculates perspective transformations."
-msgstr ""
+msgstr "Berechnet perspektivische Transformationen."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:76
 msgid "Add touch events."
-msgstr ""
+msgstr "Berühungsereignisse hinzufügen."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:101
 msgid "Once loaded for the first time, it can be used offline, without a network connection."
 msgstr ""
+"Sobald sie das erste Mal geladen wurde,kann Sie offline ohne "
+"Netzwerkverbindung verwendet werden."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:110 mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:118
 msgid "For downloading files to the browser."
-msgstr ""
+msgstr "Um Dateien in den Browser herunterzuladen."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:126
 msgid "Used for fast and efficient processing of image data."
 msgstr ""
+"Wird verwendet zur schnellen und effizienten Verarbeitung von Grafikdaten."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:134 mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:143
 msgid "Used to access camera devices and get a video stream from where to capture frames."
 msgstr ""
+"Wird verwendet zum Zugriff auf Kamerageräte und um einen Videostream zu "
+"erhalten, aus dem Frames aufgenommen werden."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:152
 msgid "Stores captured images on the device and retrieve them for the gallery view."
 msgstr ""
+"Speichert aufgenommene Bilder auf dem Gerät und erfasst Sie für die "
+"Galerieansicht."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:161
 msgid "Generates GIF files on the background without freezing the UI."
 msgstr ""
+"Erzeugt GIF-Dateien im Hintergrund ohne die Benutzeroberfläche einzufrieren."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:169
 msgid "Uploading images to a different server for sharing, and getting their url."
 msgstr ""
+"Hochladen von Grafiken auf einen anderen Server, um sie zu teilen und ihre "
+"URL zu erhalten."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:186
 msgid "rtcamera uses x-appbar, x-deck, x-layout, x-modal and x-switch."
-msgstr ""
+msgstr "rtcamera verwendet x-appbar, x-deck, x-layout, x-modal und x-switch."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:210
 msgid "1%"
-msgstr ""
+msgstr "1%"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:212
 msgid "83%"
-msgstr ""
+msgstr "83%"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:17 mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:18
 #: mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:22 mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:23
@@ -21556,31 +21582,31 @@ msgstr "Quittung für {0}"
 
 #: mkt/purchase/templates/purchase/receipt.html:19
 msgid "Receipt"
-msgstr ""
+msgstr "Quittung"
 
 #: mkt/purchase/templates/purchase/receipt.html:21
 msgid "Billed To:"
-msgstr ""
+msgstr "Rechnung an:"
 
 #: mkt/purchase/templates/purchase/receipt.html:28
 msgid "Order Number:"
-msgstr ""
+msgstr "Bestellnummer:"
 
 #: mkt/purchase/templates/purchase/receipt.html:29
 msgid "Order Date:"
-msgstr ""
+msgstr "Bestelldatum:"
 
 #: mkt/purchase/templates/purchase/receipt.html:37
 msgid "Item"
-msgstr ""
+msgstr "Element"
 
 #: mkt/purchase/templates/purchase/receipt.html:38
 msgid "Seller"
-msgstr ""
+msgstr "Verkäufer"
 
 #: mkt/purchase/templates/purchase/receipt.html:61
 msgid "For the Firefox Marketplace Terms of Service please visit:"
-msgstr ""
+msgstr "Die Nutzungsbedingungen des Firefox Marketplace finden Sie unter:"
 
 #: mkt/purchase/templates/purchase/receipt.html:66
 msgid "For support please visit:"
@@ -21734,7 +21760,7 @@ msgstr "Überprüfen"
 
 #: mkt/reviewers/helpers.py:44
 msgid "Pending Themes"
-msgstr ""
+msgstr "Ausstehende Themes"
 
 #: mkt/reviewers/helpers.py:45 mkt/reviewers/templates/reviewers/themes/queue.html:4
 msgid "Flagged Themes"
@@ -21742,7 +21768,7 @@ msgstr "Markierte Themes"
 
 #: mkt/reviewers/helpers.py:46
 msgid "Re-review Themes"
-msgstr ""
+msgstr "Themes erneut überprüfen"
 
 #: mkt/reviewers/helpers.py:87
 msgctxt "pending"
@@ -21882,7 +21908,7 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:16
 msgid "You are currently not reviewing any apps."
-msgstr ""
+msgstr "Sie überprüfen derzeit keine Anwendungen."
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:24 mkt/reviewers/templates/reviewers/queue.html:35 mkt/reviewers/templates/reviewers/includes/search_results.html:6
 msgid "Devices"
@@ -22069,11 +22095,11 @@ msgstr "Keine Ergebnisse gefunden"
 
 #: mkt/reviewers/templates/reviewers/themes/base.html:24
 msgid "Theme Queues"
-msgstr ""
+msgstr "Warteschlangen für Themes"
 
 #: mkt/reviewers/templates/reviewers/themes/base.html:28
 msgid "Theme Logs"
-msgstr ""
+msgstr "Logs für Themes"
 
 #: mkt/reviewers/templates/reviewers/themes/deleted.html:4
 msgid "Deleted Themes"
@@ -22161,7 +22187,7 @@ msgstr "Meine Theme-Sperre aufgeben"
 
 #: mkt/reviewers/templates/reviewers/themes/queue_list.html:30
 msgid "Interactive Theme Queue"
-msgstr ""
+msgstr "Interaktive Warteschlange für Themes"
 
 #: mkt/reviewers/templates/reviewers/themes/single.html:8
 msgid "Theme Review for {0}"
