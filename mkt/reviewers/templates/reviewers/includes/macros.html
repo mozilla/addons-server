@@ -4,7 +4,7 @@
    tabs -- list of named_url/tab_code/tab_text tuples
    is_selected -- boolean condition to highlight this element #}
   <li{% if is_selected %} class="selected"{% endif %}>
-    <a href="#" class="controller trigger-{{ type }}">{{ title }}</a>
+    <a href="{{ url(tabs[0][0]) }}" class="controller trigger-{{ type }}">{{ title }}</a>
     <ul>
       {% for named_url, tab_code, text in tabs %}
         <li><a href="{{ url(named_url) }}">{{ text }}</a></li>
