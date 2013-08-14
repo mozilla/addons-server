@@ -1569,6 +1569,12 @@ CACHE_SEARCH_FEATURED_API_TIMEOUT = 60 * 60  # 1 hour.
 # through the API.
 WHITELISTED_CLIENTS_EMAIL_API = []
 
+# Auth token required to authorize a postfix host.
+POSTFIX_AUTH_TOKEN = 'make-sure-to-override-this-with-a-long-weird-string'
+
+# Domain name of the postfix server.
+POSTFIX_DOMAIN = 'marketplace.firefox.com'
+
 # This is a sample AES_KEY, we will override this on each server.
 AES_KEYS = {
     'api:access:secret': os.path.join(ROOT, 'mkt/api/sample-aes.key'),

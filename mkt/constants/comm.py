@@ -23,3 +23,6 @@ NOTE_TYPES = [
     REVIEWER_COMMENT,
     RESUBMISSION
 ]
+
+# Prefix of the reply to address in comm emails.
+REPLY_TO_PREFIX = 'reply+'

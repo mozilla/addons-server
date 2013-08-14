@@ -82,7 +82,7 @@ class ThreadObjectPermission(object):
 class CommEmailParser(object):
     """Utility to parse email replies."""
 
-    address_prefix = 'reply+'
+    address_prefix = comm.REPLY_TO_PREFIX
 
     def __init__(self, email_text):
         self.email = message_from_string(email_text)

@@ -59,7 +59,8 @@ def send_note_emails(note):
         'thread_id': str(note.thread.id)
     }
     for email, tok in recipients:
-        reply_to = 'reply+%s@mozilla.org' % tok
+        reply_to = '{0}{1}@{2}'.format(comm.REPLY_TO_PREFIX, tok,
+                                       settings.POSTFIX_DOMAIN)
         subject = u'%s has been reviewed.' % name
         send_mail(subject, 'reviewers/emails/decisions/post.txt', data,
                   [email], perm_setting='app_reviewed', reply_to=reply_to)
@@ -148,7 +149,8 @@ class ReviewBase(object):
             data['thread_id'] = str(self.comm_thread.id)
             for email, tok in recipients:
                 subject = u'%s has been reviewed.' % data['name']
-                reply_to = 'reply+%s@mozilla.org' % tok
+                reply_to = '{0}{1}@{2}'.format(comm.REPLY_TO_PREFIX, tok,
+                                               settings.POSTFIX_DOMAIN)
                 send_mail(subject,
                           'reviewers/emails/decisions/%s.txt' % template, data,
                           [email], perm_setting='app_reviewed',
