@@ -24,7 +24,6 @@ from abuse.models import AbuseReport
 from access import acl
 from addons.decorators import addon_view
 from addons.models import AddonDeviceType, Persona, Version
-from amo import messages
 from amo.decorators import (any_permission_required, json_view,
                             permission_required)
 from amo.helpers import absolutify
@@ -49,6 +48,7 @@ from mkt.reviewers.forms import DEFAULT_ACTION_VISIBILITY
 from mkt.reviewers.utils import (AppsReviewing, clean_sort_param,
                                  device_queue_search)
 from mkt.reviewers.forms import ApiReviewersSearchForm
+from mkt.site import messages
 from mkt.site.helpers import product_as_dict
 from mkt.submit.forms import AppFeaturesForm
 from mkt.webapps.models import Webapp
@@ -606,6 +606,7 @@ def motd(request):
         form = MOTDForm(request.POST or None, initial={'motd': motd})
     if form and request.method == 'POST' and form.is_valid():
         set_config(u'mkt_reviewers_motd', form.cleaned_data['motd'])
+        messages.success(request, _('Changes successfully saved.'))
         return redirect(reverse('reviewers.apps.motd'))
     data = context(request, form=form)
     return jingo.render(request, 'reviewers/motd.html', data)

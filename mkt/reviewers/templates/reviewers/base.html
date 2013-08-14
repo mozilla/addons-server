@@ -76,7 +76,14 @@
 
 {% block outer_content %}
   {% block breadcrumbs %}{% endblock %}
-  {% include 'editors/includes/daily-message.html' %}
+  {% if motd %}
+    <div class="featured daily-message island">
+      <h2>{{ _('Announcement') }}</h2>
+      <p>{{ motd }}</p>
+      <a class="close" href="#" title="{{ _('Dismiss this announcement') }}">&times;</a>
+    </div>
+  {% endif %}
+
   {% include 'messages.html' %}
 
   {% block queues_overlay %}

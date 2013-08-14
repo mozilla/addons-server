@@ -137,12 +137,13 @@ function initMobileMenus() {
     // Nav action menu overlays for queues and logs.
     var $logTabOverlay = $('#log-tab-overlay');
     var $queueTabOverlay = $('#queue-tab-overlay');
-    $('.trigger-queues').click(_pd(function() {
+    $('.trigger-queues').click(function(e) {
         if (z.capabilities.mobile || z.capabilities.tablet) {
-            $queueTabOverlay.show();
+            e.preventDefault();
+            $logTabOverlay.show();
         }
-    }));
-   $('.trigger-logs').click(_pd(function() {
+    });
+    $('.trigger-logs').click(_pd(function() {
         if (z.capabilities.mobile || z.capabilities.tablet) {
             $logTabOverlay.show();
         }
