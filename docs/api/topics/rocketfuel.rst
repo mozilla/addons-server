@@ -42,14 +42,11 @@ Create
     :type name: string
     :param description: a description of the collection.
     :type description: string
-    :param category: the ID of the category to attach this collection to.
-    Defaults to ``null``.
+    :param category: the ID of the category to attach this collection to. Defaults to ``null``.
     :type collection_type: int|null
-    :param region: the ID of the region to attach this collection to.
-    Defaults to ``null``.
+    :param region: the ID of the region to attach this collection to. Defaults to ``null``.
     :type region: int|null
-    :param carrier: the ID of the carrier to attach this collection to.
-    Defaults to ``null``.
+    :param carrier: the ID of the carrier to attach this collection to. Defaults to ``null``.
     :type carrier: int|null
     :param author: the author of the collection.
     :type author: string
