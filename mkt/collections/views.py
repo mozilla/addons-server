@@ -11,6 +11,7 @@ from mkt.api.base import CORSMixin
 from mkt.webapps.models import Webapp
 
 from .authorization import PublisherAuthorization
+from .filters import CollectionFilterSetWithFallback
 from .models import Collection
 from .serializers import CollectionMembershipField, CollectionSerializer
 
@@ -22,6 +23,7 @@ class CollectionViewSet(CORSMixin, viewsets.ModelViewSet):
     permission_classes = [PublisherAuthorization]
     authentication_classes = [RestOAuthAuthentication,
                               RestAnonymousAuthentication]
+    filter_class = CollectionFilterSetWithFallback
 
     exceptions = {
         'not_provided': '`app` was not provided.',

@@ -36,10 +36,21 @@ Create
 
     **Request**:
 
+    :param collection_type: the type of collection to create.
+    :type collection_type: int
     :param name: the name of the collection.
     :type name: string
     :param description: a description of the collection.
     :type description: string
+    :param category: the ID of the category to attach this collection to.
+    Defaults to ``null``.
+    :type collection_type: int|null
+    :param region: the ID of the region to attach this collection to.
+    Defaults to ``null``.
+    :type region: int|null
+    :param carrier: the ID of the carrier to attach this collection to.
+    Defaults to ``null``.
+    :type carrier: int|null
 
 
 Detail
@@ -63,10 +74,18 @@ Update
 
     **Request**:
 
+    :param collection_type: the type of the collection.
+    :type collection_type: int
     :param name: the name of the collection.
     :type name: string
     :param description: a description of the collection.
     :type description: string
+    :param category: the ID of the category to attach this collection to.
+    :type collection_type: int|null
+    :param region: the ID of the region to attach this collection to.
+    :type region: int|null
+    :param carrier: the ID of the carrier to attach this collection to.
+    :type carrier: int|null
 
     **Response**:
 

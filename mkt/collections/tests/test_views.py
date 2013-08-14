@@ -3,10 +3,14 @@ from random import shuffle
 
 from django.core.urlresolvers import reverse
 
+from nose import SkipTest
 from nose.tools import eq_
 from rest_framework.exceptions import PermissionDenied
 
+import amo
 import amo.tests
+import mkt
+from addons.models import Category
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.collections.constants import COLLECTIONS_TYPE_BASIC
 from mkt.collections.models import Collection
@@ -59,6 +63,41 @@ class TestCollectionViewSet(RestOAuth):
         for field, value in self.collection_data.iteritems():
             eq_(collection[field], self.collection_data[field])
 
+    def create_additional_data(self):
+        self.category = Category.objects.create(slug='Cat',
+                                                type=amo.ADDON_WEBAPP)
+        self.empty_category = Category.objects.create(slug='Empty Cat',
+                                                      type=amo.ADDON_WEBAPP)
+        eq_(Category.objects.count(), 2)
+
+        collection_data = {
+            'collection_type': COLLECTIONS_TYPE_BASIC,
+            'description': 'A collection of my favorite spanish games',
+            'name': 'My Favorite spanish games',
+            'region': mkt.regions.SPAIN.id,
+            'carrier': mkt.carriers.UNKNOWN_CARRIER.id,
+        }
+        self.collection2 = Collection.objects.create(**collection_data)
+
+        collection_data = {
+            'collection_type': COLLECTIONS_TYPE_BASIC,
+            'description': 'A collection of my favorite phone games',
+            'name': 'My Favorite phone games',
+            'region': mkt.regions.SPAIN.id,
+            'carrier': mkt.carriers.TELEFONICA.id,
+        }
+        self.collection3 = Collection.objects.create(**collection_data)
+
+        collection_data = {
+            'collection_type': COLLECTIONS_TYPE_BASIC,
+            'description': 'A collection of my favorite categorized games',
+            'name': 'My Favorite categorized games',
+            'region': mkt.regions.SPAIN.id,
+            'carrier': mkt.carriers.TELEFONICA.id,
+            'category': self.category
+        }
+        self.collection4 = Collection.objects.create(**collection_data)
+
     def test_listing(self):
         self.listing(self.anon)
 
@@ -68,6 +107,133 @@ class TestCollectionViewSet(RestOAuth):
     def test_listing_has_perms(self):
         self.make_publisher()
         self.listing(self.client)
+
+    def test_listing_no_filtering(self):
+        self.create_additional_data()
+        self.make_publisher()
+
+        res = self.client.get(self.list_url)
+        eq_(res.status_code, 200)
+        data = json.loads(res.content)
+        collections = data['objects']
+        eq_(len(collections), 4)
+
+    def test_listing_filtering_region(self):
+        self.create_additional_data()
+        self.make_publisher()
+
+        res = self.client.get(self.list_url, {'region': mkt.regions.SPAIN.id})
+        eq_(res.status_code, 200)
+        data = json.loads(res.content)
+        collections = data['objects']
+        eq_(len(collections), 3)
+        eq_(collections[0]['id'], self.collection4.id)
+        eq_(collections[1]['id'], self.collection3.id)
+        eq_(collections[2]['id'], self.collection2.id)
+
+    def test_listing_filtering_carrier(self):
+        self.create_additional_data()
+        self.make_publisher()
+
+        res = self.client.get(self.list_url, 
+            {'carrier': mkt.carriers.TELEFONICA.id})
+        eq_(res.status_code, 200)
+        data = json.loads(res.content)
+        collections = data['objects']
+        eq_(len(collections), 2)
+        eq_(collections[0]['id'], self.collection4.id)
+        eq_(collections[1]['id'], self.collection3.id)
+
+    def test_listing_filtering_carrier_0(self):
+        self.create_additional_data()
+        self.make_publisher()
+
+        # Test filtering on carrier with value 0 (which is valid, and different
+        # from the default, which is null). There used to be a bug with falsy
+        # values in django-filter 0.6, make sure it doesn't come back.
+        res = self.client.get(self.list_url, {'carrier': 0})
+        eq_(res.status_code, 200)
+        data = json.loads(res.content)
+        collections = data['objects']
+        eq_(len(collections), 1)
+        eq_(collections[0]['id'], self.collection2.id)
+
+    def test_listing_filtering_category(self):
+        self.create_additional_data()
+        self.make_publisher()
+
+        res = self.client.get(self.list_url, {'category': self.category.pk})
+        eq_(res.status_code, 200)
+        data = json.loads(res.content)
+        collections = data['objects']
+        eq_(len(collections), 1)
+        eq_(collections[0]['id'], self.collection4.id)
+
+    def test_listing_filtering_category_region_carrier(self):
+        self.create_additional_data()
+        self.make_publisher()
+
+        res = self.client.get(self.list_url, {
+            'category': self.category.pk,
+            'region': mkt.regions.SPAIN.id,
+            'carrier': mkt.carriers.SPRINT.id
+        })
+        eq_(res.status_code, 200)
+        data = json.loads(res.content)
+        collections = data['objects']
+        eq_(len(collections), 1)
+        eq_(collections[0]['id'], self.collection4.id)
+
+    def test_listing_filterig_category_region_carrier_fallback(self):
+        self.create_additional_data()
+        self.make_publisher()
+
+        # Test filtering with a non-existant category + region + carrier.
+        # It should fall back on region+category filtering only, not find
+        # anything either, then fall back to category only, then remove
+        # all filters because of the order in which filters are dropped.
+        res = self.client.get(self.list_url, {
+            'category': self.empty_category.pk,
+            'region': mkt.regions.SPAIN.id,
+            'carrier': mkt.carriers.SPRINT.id
+        })
+        eq_(res.status_code, 200)
+        data = json.loads(res.content)
+        collections = data['objects']
+        eq_(len(collections), 4)
+
+    def test_listing_filtering_nonexistant_carrier(self):
+        self.create_additional_data()
+        self.make_publisher()
+
+        # Test filtering with a non-existant carrier. It should fall back on
+        # region filtering only.
+        res = self.client.get(self.list_url, {
+            'region': mkt.regions.SPAIN.id,
+            'carrier': mkt.carriers.SPRINT.id
+        })
+        eq_(res.status_code, 200)
+        data = json.loads(res.content)
+        collections = data['objects']
+        eq_(len(collections), 3)
+        eq_(collections[0]['id'], self.collection4.id)
+        eq_(collections[1]['id'], self.collection3.id)
+        eq_(collections[2]['id'], self.collection2.id)
+
+    def test_listing_filtering_nonexistant_carrier_and_region(self):
+        self.create_additional_data()
+        self.make_publisher()
+
+        # Test filtering with a non-existant carrier and region. It should
+        # fall back on no filtering.
+        res = self.client.get(self.list_url, {
+            'region': mkt.regions.UK.id,
+            'carrier': mkt.carriers.SPRINT.id
+        })
+        eq_(res.status_code, 200)
+        data = json.loads(res.content)
+        collections = data['objects']
+        eq_(len(collections), 4)
 
     def detail(self, client):
         apps = self.apps[:2]
@@ -113,6 +279,12 @@ class TestCollectionViewSet(RestOAuth):
         self.make_publisher()
         res, data = self.create(self.client)
         eq_(res.status_code, 201)
+
+    def test_create_has_perms_no_type(self):
+        self.make_publisher()
+        self.collection_data.pop('collection_type')
+        res, data = self.create(self.client)
+        eq_(res.status_code, 400)
 
     def add_app(self, client, app_id=None):
         if app_id is None:
@@ -220,14 +392,49 @@ class TestCollectionViewSet(RestOAuth):
 
     def test_edit_collection_has_perms(self):
         self.make_publisher()
+        cat = Category.objects.create(type=amo.ADDON_WEBAPP, slug='grumpy-cat')
         updates = {
             'name': 'clouserw soundboard',
-            'description': 'Get off my lawn!'
+            'description': 'Get off my lawn!',
+            'region': mkt.regions.SPAIN.id,
+            'category': cat.pk,
         }
         res, data = self.edit_collection(self.client, **updates)
         eq_(res.status_code, 200)
         for key, value in updates.iteritems():
             eq_(data[key], value)
+
+    def test_edit_collection_invalid_carrier(self):
+        self.make_publisher()
+        # Invalid carrier.
+        updates = {'carrier': 1576}
+        res, data = self.edit_collection(self.client, **updates)
+        eq_(res.status_code, 400)
+
+    def test_edit_collection_invalid_region_0(self):
+        # 0 is an invalid region. Unfortunately, because django bug #18724 is
+        # fixed in django 1.5 but not 1.4, '0' values are accepted.
+        # Unskip this test when using django 1.5.
+        raise SkipTest('Test that needs django 1.5 to pass')
+        self.make_publisher()
+        updates = {'region': 0}
+        res, data = self.edit_collection(self.client, **updates)
+        eq_(res.status_code, 400)
+
+    def test_edit_collection_invalid_region(self):
+        self.make_publisher()
+        # Invalid region id.
+        updates = {'region': max(mkt.regions.REGION_IDS) + 1}
+        res, data = self.edit_collection(self.client, **updates)
+        eq_(res.status_code, 400)
+
+    def test_edit_collection_category(self):
+        self.make_publisher()
+        eq_(Category.objects.count(), 0)
+        # Invalid (non-existant) category.
+        updates = {'category': 1}
+        res, data = self.edit_collection(self.client, **updates)
+        eq_(res.status_code, 400)
 
     def reorder(self, client, order=None):
         if order is None:
