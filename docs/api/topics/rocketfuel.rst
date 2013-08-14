@@ -27,7 +27,7 @@ Listing
     **Request**:
 
     :param category: a category ID.
-    :type collection_type: int
+    :type category: int
     :param region: a region ID.
     :type region: int
     :param carrier: a carrier ID.
