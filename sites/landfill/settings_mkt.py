@@ -131,5 +131,3 @@ SIGNED_APPS_SERVER_ACTIVE = False
 METLOG_CONF['logger'] = 'addons-marketplace-landfill'
 METLOG_CONF['plugins']['raven'] = ('metlog_raven.raven_plugin:config_plugin', {'dsn': private_mkt.SENTRY_DSN})
 METLOG = client_from_dict_config(METLOG_CONF)
-
-AES_KEYS = private.AES_KEYS

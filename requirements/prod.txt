@@ -15,7 +15,6 @@ cssutils==0.9.7b3
 curling==0.2.6
 Django==1.4.6
 dj-database-url==0.2.1
-django-aesfield==0.1
 django-browserid==0.8
 django-cache-machine==0.6
 django-celery==3.0.17
@@ -61,7 +60,6 @@ mock==1.0.0
 monolith.client==0.6
 moz-addon-packager==1.0.1
 mozpay==2.0.0
-m2secret==0.1.1
 nose==1.2.1
 newrelic==1.11.0.55
 oauth2==1.5.211

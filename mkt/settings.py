@@ -326,8 +326,3 @@ LOGOUT_REDIRECT_URL = '/developers/'
 
 # Name of our Commonplace repositories on GitHub.
 COMMONPLACE_REPOS = ['commbadge', 'fireplace', 'rocketfuel']
-
-# This is a sample AES_KEY, we will override this on each server.
-AES_KEYS = {
-    'api:access:secret': os.path.join(ROOT, 'mkt/api/sample-aes.key'),
-}

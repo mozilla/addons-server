@@ -210,5 +210,3 @@ PURCHASE_ENABLED_REGIONS = [regions.US.id, regions.PL.id, regions.SPAIN.id,
 
 # Cache timeout on the /search/featured API.
 CACHE_SEARCH_FEATURED_API_TIMEOUT = 60 * 5  # 5 min.
-
-AES_KEYS = private.AES_KEYS

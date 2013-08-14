@@ -1,11 +1,6 @@
 Settings Changelog
 ==================
 
-2013-08-09
-----------
-* Added ``AES_KEYS`` as a settings for encrypting OAuth secrets. Uses a sample
-  by default, set this on a production server to something else.
-
 2013-06-28
 ----------
 * Added ``ES_USE_PLUGINS``. Some features of Elasticsearch require
