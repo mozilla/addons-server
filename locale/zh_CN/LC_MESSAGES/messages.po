@@ -12034,7 +12034,7 @@ msgstr "由开发者 {0} 做的回复"
 #: apps/reviews/templates/reviews/review_list.html:42
 msgid "Review for %(addon)s by %(user)s"
 msgid_plural "Reviews for %(addon)s by %(user)s"
-msgstr[0] "%(user)s 对 %(add-on)s 发表的评论"
+msgstr[0] "%(user)s 对 %(addon)s 发表的评论"
 
 #: apps/reviews/templates/reviews/review_list.html:49
 msgid "No reviews found."

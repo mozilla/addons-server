@@ -2666,10 +2666,10 @@ msgstr[3] "Tem v tej zbirki % (num)s"
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:119
 msgid "%(num)s Add-on in this Collection"
 msgid_plural "%(num)s Add-ons in this Collection"
-msgstr[0] "Dodatkov v tej zbirki % (num)s"
-msgstr[1] "Dodatkov v tej zbirki % (num)s"
-msgstr[2] "Dodatkov v tej zbirki % (num)s"
-msgstr[3] "Dodatkov v tej zbirki % (num)s"
+msgstr[0] "Dodatkov v tej zbirki %(num)s"
+msgstr[1] "Dodatkov v tej zbirki %(num)s"
+msgstr[2] "Dodatkov v tej zbirki %(num)s"
+msgstr[3] "Dodatkov v tej zbirki %(num)s"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:133 apps/compat/templates/compat/index.html:25 apps/compat/templates/compat/reporter_detail.html:29
 #: apps/files/templates/files/viewer.html:25 apps/localizers/templates/localizers/locale_switcher.html:9 mkt/files/templates/fileviewer/viewer.html:21 mkt/stats/templates/appstats/stats.html:49
