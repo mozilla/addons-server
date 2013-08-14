@@ -187,3 +187,5 @@ API_THROTTLE = False
 
 CSP_SCRIPT_SRC = CSP_SCRIPT_SRC + ("https://firefoxos.anosrep.org",)
 CSP_FRAME_SRC = CSP_FRAME_SRC + ("https://firefoxos.anosrep.org",)
+
+AES_KEYS = private.AES_KEYS

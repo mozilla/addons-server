@@ -1568,3 +1568,8 @@ CACHE_SEARCH_FEATURED_API_TIMEOUT = 60 * 60  # 1 hour.
 # Whitelist IP addresses of the allowed clients that can post email
 # through the API.
 WHITELISTED_CLIENTS_EMAIL_API = []
+
+# This is a sample AES_KEY, we will override this on each server.
+AES_KEYS = {
+    'api:access:secret': os.path.join(ROOT, 'mkt/api/sample-aes.key'),
+}
