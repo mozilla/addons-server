@@ -184,3 +184,5 @@ MONOLITH_SERVER = 'https://monolith.allizom.org'
 GEOIP_URL = 'http://geo.marketplace.allizom.org'
 
 API_THROTTLE = False
+
+AES_KEYS = private.AES_KEYS
