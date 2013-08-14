@@ -85,6 +85,9 @@ Featured App Listing
     :param objects: A :ref:`listing <objects-response-label>` of
         :ref:`apps <app-response-label>` satisfying the search parameters.
     :type objects: array
+    :param collections: A list of collections for the requested
+        category/region/carrier set, if any
+    :type collections: array
     :param featured: A list of :ref:`apps <app-response-label>` featured
         for the requested category, if any
     :type featured: array

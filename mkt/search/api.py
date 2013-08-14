@@ -1,5 +1,6 @@
 from django.conf.urls import url
 
+import waffle
 from tastypie.authorization import ReadOnlyAuthorization
 from tastypie.throttle import BaseThrottle
 from tastypie.utils import trailing_slash
@@ -12,6 +13,10 @@ from mkt.api.authentication import (SharedSecretAuthentication,
 from mkt.api.base import CORSResource, MarketplaceResource
 from mkt.api.resources import AppResource
 from mkt.api.serializers import SuggestionsSerializer
+from mkt.collections.constants import COLLECTIONS_TYPE_BASIC
+from mkt.collections.filters import CollectionFilterSetWithFallback
+from mkt.collections.models import Collection
+from mkt.collections.serializers import CollectionSerializer
 from mkt.constants.features import FeatureProfile
 from mkt.search.views import _filter_search
 from mkt.search.forms import ApiSearchForm
@@ -134,6 +139,16 @@ class WithFeaturedResource(SearchResource):
         resource_name = 'search/featured'
         slug_lookup = None
 
+    def collections(self, request, collection_type=None):
+        filters = request.GET.dict()
+        if collection_type is not None:
+            qs = Collection.objects.filter(collection_type=collection_type)
+        else:
+            qs = Collection.objects.all()
+        filterset = CollectionFilterSetWithFallback(filters, queryset=qs)
+        serializer = CollectionSerializer(filterset)
+        return serializer.data
+
     def alter_list_data_to_serialize(self, request, data):
         form_data = self.get_search_data(request)
         region = getattr(request, 'REGION', mkt.regions.WORLDWIDE)
@@ -149,8 +164,14 @@ class WithFeaturedResource(SearchResource):
         bundles = [self.build_bundle(obj=obj, request=request) for obj in qs]
         data['featured'] = [AppResource().full_dehydrate(bundle)
                             for bundle in bundles]
+
+        if waffle.switch_is_active('rocketfuel'):
+            data['collections'] = self.collections(request,
+                collection_type=COLLECTIONS_TYPE_BASIC)
+
         # Alter the _view_name so that statsd logs seperately from search.
         request._view_name = 'featured'
+
         return data
 
 
