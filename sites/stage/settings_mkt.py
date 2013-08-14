@@ -192,4 +192,4 @@ ES_USE_PLUGINS = True
 PURCHASE_ENABLED_REGIONS = [regions.US.id, regions.PL.id, regions.SPAIN.id,
                             regions.CO.id, regions.VE.id, regions.UK.id]
 
-AES_KEYS = private.AES_KEYS
+AES_KEYS = private_mkt.AES_KEYS
