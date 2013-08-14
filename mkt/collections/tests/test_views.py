@@ -412,9 +412,15 @@ class TestCollectionViewSet(RestOAuth):
         res, data = self.edit_collection(self.client, **updates)
         eq_(res.status_code, 200)
         self.collection.reload()
+
+        # Test that the result and object contain the right values. Remove
+        # category from the dict first to test it separately.
+        updates.pop('category')
         for key, value in updates.iteritems():
             eq_(data[key], value)
             eq_(getattr(self.collection, key), value)
+        eq_(data['category'], cat.pk)
+        eq_(self.collection.category, cat)
 
     def test_edit_collection_invalid_carrier(self):
         self.make_publisher()
