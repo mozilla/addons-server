@@ -1,4 +1,4 @@
-{% from 'developers/includes/macros.html' import flags, some_html_tip, tip %}
+{% from 'developers/includes/macros.html' import flags, some_html_tip, tip, upload_webapp_features with context %}
 <form method="post"
       action="{{ addon.get_dev_url('section', args=['technical', 'edit']) }}">
   <h2>
@@ -50,11 +50,9 @@
             </th>
             <td>
               {% if editable %}
-                <ul>
-                  {% for field in appfeatures_form.required_api_fields() %}
-                    <li><label for="{{ field.auto_id }}">{{ field }} {{ field.help_text }}</label></li>
-                  {% endfor %}
-                </ul>
+                <div id="upload-webapp-features">
+                  {{ upload_webapp_features(appfeatures_form) }}
+                </div>
               {% elif not editable and feature_list %}
                 {{ feature_list|join(', ') }}
               {% else %}
