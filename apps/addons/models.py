@@ -55,6 +55,44 @@ from . import query, signals
 log = commonware.log.getLogger('z.addons')
 
 
+def clean_slug(instance, slug_field='slug'):
+    slug = getattr(instance, slug_field, None)
+
+    if not slug:
+        if not instance.name:
+            try:
+                name = Translation.objects.filter(id=instance.name_id)[0]
+            except IndexError:
+                name = str(instance.id)
+        else:
+            name = instance.name
+        slug = slugify(name)[:27]
+
+    if BlacklistedSlug.blocked(slug):
+        slug += '~'
+
+    qs = instance.__class__.objects.values_list(slug_field, 'id')
+    match = qs.filter(**{slug_field: slug})
+
+    if match and match[0][1] != instance.id:
+        if instance.id:
+            prefix = '%s-%s' % (slug[:-len(str(instance.id))], instance.id)
+        else:
+            prefix = slug
+        slugs = dict(qs.filter(
+            **{'%s__startswith' % slug_field: '%s-' % prefix}))
+        slugs.update(match)
+        for idx in range(len(slugs)):
+            new = ('%s-%s' % (prefix, idx + 1))[:30]
+            if new not in slugs:
+                slug = new
+                break
+
+    setattr(instance, slug_field, slug)
+
+    return instance
+
+
 class AddonManager(amo.models.ManagerBase):
 
     def __init__(self, include_deleted=False):
@@ -344,35 +382,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     def clean_slug(self, slug_field='slug'):
         if self.status == amo.STATUS_DELETED:
             return
-
-        slug = getattr(self, slug_field, None)
-        if not slug:
-            if not self.name:
-                try:
-                    name = Translation.objects.filter(id=self.name_id)[0]
-                except IndexError:
-                    name = str(self.id)
-            else:
-                name = self.name
-            slug = slugify(name)[:27]
-        if BlacklistedSlug.blocked(slug):
-            slug += '~'
-        qs = Addon.objects.values_list(slug_field, 'id')
-        match = qs.filter(**{slug_field: slug})
-        if match and match[0][1] != self.id:
-            if self.id:
-                prefix = '%s-%s' % (slug[:-len(str(self.id))], self.id)
-            else:
-                prefix = slug
-            slugs = dict(qs.filter(
-                **{'%s__startswith' % slug_field: '%s-' % prefix}))
-            slugs.update(match)
-            for idx in range(len(slugs)):
-                new = ('%s-%s' % (prefix, idx + 1))[:30]
-                if new not in slugs:
-                    slug = new
-                    break
-        setattr(self, slug_field, slug)
+        clean_slug(self, slug_field)
 
     @transaction.commit_on_success
     def delete(self, msg='', reason=''):

@@ -2,6 +2,7 @@
 from nose.tools import eq_, ok_
 
 import amo.tests
+from mkt.collections.constants import COLLECTIONS_TYPE_BASIC
 from mkt.collections.models import Collection
 from mkt.collections.serializers import (CollectionMembershipField,
                                          CollectionSerializer,)
@@ -10,9 +11,10 @@ from mkt.webapps.utils import app_to_dict
 
 class CollectionDataMixin(object):
     collection_data = {
-        'collection_type': 0,
-        'name': 'My Favorite Games',
-        'description': 'A collection of my favorite games',
+        'collection_type': COLLECTIONS_TYPE_BASIC,
+        'name': 'My Favourite Games',
+        'slug': 'my-favourite-games',
+        'description': 'A collection of my favourite games',
     }
 
 
@@ -49,7 +51,7 @@ class TestCollectionSerializer(CollectionDataMixin, amo.tests.TestCase):
         self.assertSetEqual(data.keys(), ['id', 'name', 'description', 'apps',
                                           'collection_type', 'category',
                                           'region', 'carrier', 'author',
-                                          'is_public'])
+                                          'slug', 'is_public'])
         for order, app in enumerate(apps):
             eq_(data['apps'][order]['slug'], app.app_slug)
 

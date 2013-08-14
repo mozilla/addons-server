@@ -52,10 +52,11 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         self.serializer = CollectionSerializer()
         self.collection_data = {
             'collection_type': COLLECTIONS_TYPE_BASIC,
-            'description': u'A cöllection of my favorite games',
             'name': u'My Favorite Gamés',
+            'slug': 'my-favourite-games',
             'author': u'My Àuthør',
             'is_public': True,
+            'description': u'A cöllection of my favorite games',
         }
         self.collection = Collection.objects.create(**self.collection_data)
         self.apps = [amo.tests.app_factory() for n in xrange(1, 5)]
@@ -255,11 +256,12 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         collections = data['objects']
         eq_(len(collections), 4)
 
-    def detail(self, client):
+    def detail(self, client, url=None):
         apps = self.apps[:2]
         for app in apps:
             self.collection.add_app(app)
-        url = self.collection_url('detail', self.collection.pk)
+        if not url:
+            url = self.collection_url('detail', self.collection.pk)
         res = client.get(url)
         data = json.loads(res.content)
         eq_(res.status_code, 200)
@@ -274,6 +276,10 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
 
     def test_detail(self):
         self.detail(self.anon)
+
+    def test_detail_slug_in_url(self):
+        self.detail(self.anon,
+            url=self.collection_url('detail', self.collection.slug))
 
     def test_detail_no_perms(self):
         self.detail(self.client)

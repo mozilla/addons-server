@@ -8,7 +8,7 @@ from rest_framework.response import Response
 from mkt.api.authentication import (RestAnonymousAuthentication,
                                     RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
-from mkt.api.base import CORSMixin
+from mkt.api.base import CORSMixin, SlugOrIdMixin
 from mkt.webapps.models import Webapp
 
 from .authorization import PublisherAuthorization
@@ -17,7 +17,7 @@ from .models import Collection
 from .serializers import CollectionMembershipField, CollectionSerializer
 
 
-class CollectionViewSet(CORSMixin, viewsets.ModelViewSet):
+class CollectionViewSet(CORSMixin, SlugOrIdMixin, viewsets.ModelViewSet):
     serializer_class = CollectionSerializer
     queryset = Collection.objects.all()
     cors_allowed_methods = ('get', 'post', 'delete')

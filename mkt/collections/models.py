@@ -1,9 +1,9 @@
 from django.db import models
-from django.db.models import Max
 
 import amo.models
 import mkt.regions
-from addons.models import Category
+from addons.models import Category, clean_slug
+from amo.decorators import use_master
 from mkt.webapps.models import Webapp
 from translations.fields import PurifiedField, save_signal
 
@@ -24,6 +24,8 @@ class Collection(amo.models.ModelBase):
     carrier = models.IntegerField(default=None, null=True, blank=True,
         choices=mkt.carriers.CARRIER_CHOICES, db_index=True)
     author = models.CharField(max_length=255, default='', blank=True)
+    slug = models.SlugField(max_length=30,
+                            help_text='Used in collection URLs.')
 
     objects = amo.models.ManagerBase()
     public = PublicCollectionsManager()
@@ -36,6 +38,14 @@ class Collection(amo.models.ModelBase):
 
     def __unicode__(self):
         return self.name.localized_string_clean
+
+    def save(self, **kw):
+        self.clean_slug()
+        return super(Collection, self).save(**kw)
+
+    @use_master
+    def clean_slug(self):
+        clean_slug(self, 'slug')
 
     def apps(self):
         """
@@ -51,7 +61,7 @@ class Collection(amo.models.ModelBase):
         """
         if not order:
             qs = CollectionMembership.objects.filter(collection=self)
-            aggregate = qs.aggregate(Max('order'))['order__max']
+            aggregate = qs.aggregate(models.Max('order'))['order__max']
             order = aggregate + 1 if aggregate is not None else 0
         return CollectionMembership.objects.create(collection=self, app=app,
                                                    order=order)
@@ -75,9 +85,9 @@ class Collection(amo.models.ModelBase):
 
         [18, 24, 9]
 
-        will change the order of each item in the collection to match the passed
-        order. A ValueError will be raised if each app in the collection is not
-        included in the ditionary.
+        will change the order of each item in the collection to match the
+        passed order. A ValueError will be raised if each app in the
+        collection is not included in the ditionary.
         """
         if set(a.pk for a in self.apps()) != set(new_order):
             raise ValueError('Not all apps included')
@@ -92,8 +102,7 @@ class CollectionMembership(amo.models.ModelBase):
     order = models.SmallIntegerField(null=True)
 
     def __unicode__(self):
-        return u'"%s" in "%s"' % (self.app.name,
-                                  self.collection.name)
+        return u'"%s" in "%s"' % (self.app.name, self.collection.name)
 
     class Meta:
         db_table = 'app_collection_membership'

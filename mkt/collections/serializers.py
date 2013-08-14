@@ -17,13 +17,14 @@ class CollectionMembershipField(serializers.RelatedField):
 class CollectionSerializer(serializers.ModelSerializer):
     name = TranslationSerializerField()
     description = TranslationSerializerField()
+    slug = serializers.CharField()
     collection_type = serializers.IntegerField()
     apps = CollectionMembershipField(many=True,
                                      source='collectionmembership_set')
 
     class Meta:
         fields = ('apps', 'author', 'carrier', 'category', 'collection_type',
-                  'description', 'id', 'is_public', 'name', 'region',)
+                  'description', 'id', 'is_public', 'name', 'region', 'slug')
         model = Collection
 
     def full_clean(self, instance):

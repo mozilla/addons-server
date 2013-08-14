@@ -517,6 +517,19 @@ class CORSMixin(object):
             request, response, *args, **kwargs)
 
 
+class SlugOrIdMixin(object):
+    """
+    Because the `SlugRouter` is overkill. If the name of your
+    `slug` is called something else, override `self.slug_field`.
+    """
+
+    def get_object(self):
+        if not self.kwargs.get('pk', '').isdigit():
+            # If the `pk` contains anything other than a digit, it's a `slug`.
+            self.kwargs.update(pk=None, slug=self.kwargs['pk'])
+        return super(SlugOrIdMixin, self).get_object()
+
+
 class AppViewSet(GenericViewSet):
 
     def initialize_request(self, request, *args, **kwargs):
