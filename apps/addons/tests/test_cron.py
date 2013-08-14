@@ -258,8 +258,7 @@ class TestReindex(amo.tests.ESTestCase):
             self.apps.append(amo.tests.app_factory())
 
     def test_job(self):
-        for job in [cron.reindex_addons, cron.reindex_apps]:
-            job()
-            self.refresh()
-            eq_(sorted(a.id for a in Addon.search()),
-                sorted(a.id for a in self.apps + self.addons))
+        cron.reindex_addons()
+        self.refresh()
+        eq_(sorted(a.id for a in Addon.search()),
+            sorted(a.id for a in self.apps + self.addons))
