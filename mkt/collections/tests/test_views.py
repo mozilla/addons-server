@@ -66,9 +66,10 @@ class TestCollectionViewSet(RestOAuth):
             eq_(collection[field], self.collection_data[field])
 
     def create_additional_data(self):
-        self.category = Category.objects.create(slug='Cat',
+        self.category = Category.objects.create(slug='ccc', name='CatCatCat',
                                                 type=amo.ADDON_WEBAPP)
-        self.empty_category = Category.objects.create(slug='Empty Cat',
+        self.empty_category = Category.objects.create(slug='emptycat',
+                                                      name='Empty Cat',
                                                       type=amo.ADDON_WEBAPP)
         eq_(Category.objects.count(), 2)
 
@@ -401,7 +402,8 @@ class TestCollectionViewSet(RestOAuth):
 
     def test_edit_collection_has_perms(self):
         self.make_publisher()
-        cat = Category.objects.create(type=amo.ADDON_WEBAPP, slug='grumpy-cat')
+        cat = Category.objects.create(type=amo.ADDON_WEBAPP, name='Grumpy',
+                                      slug='grumpy-cat')
         updates = {
             'name': u'clôuserw soundboard',
             'description': u'Gèt off my lawn!',
@@ -428,6 +430,28 @@ class TestCollectionViewSet(RestOAuth):
         updates = {'carrier': 1576}
         res, data = self.edit_collection(self.client, **updates)
         eq_(res.status_code, 400)
+
+    def test_edit_collection_null_values(self):
+        self.make_publisher()
+        cat = Category.objects.create(type=amo.ADDON_WEBAPP, name='Grumpy',
+                                      slug='grumpy-cat')
+        self.collection.update(**{
+            'carrier': mkt.carriers.UNKNOWN_CARRIER.id,
+            'region': mkt.regions.SPAIN.id,
+            'category': cat,
+        })
+
+        updates = {
+            'carrier': None,
+            'region': None,
+            'category': None,
+        }
+        res, data = self.edit_collection(self.client, **updates)
+        eq_(res.status_code, 200)
+        self.collection.reload()
+        for key, value in updates.iteritems():
+            eq_(data[key], value)
+            eq_(getattr(self.collection, key), value)
 
     def test_edit_collection_invalid_region_0(self):
         # 0 is an invalid region. Unfortunately, because django bug #18724 is
