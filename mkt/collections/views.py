@@ -5,8 +5,9 @@ from rest_framework import exceptions, status, viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
-from mkt.api.authentication import (RestOAuthAuthentication,
-                                    RestAnonymousAuthentication)
+from mkt.api.authentication import (RestAnonymousAuthentication,
+                                    RestOAuthAuthentication,
+                                    RestSharedSecretAuthentication)
 from mkt.api.base import CORSMixin
 from mkt.webapps.models import Webapp
 
@@ -22,6 +23,7 @@ class CollectionViewSet(CORSMixin, viewsets.ModelViewSet):
     cors_allowed_methods = ('get', 'post')
     permission_classes = [PublisherAuthorization]
     authentication_classes = [RestOAuthAuthentication,
+                              RestSharedSecretAuthentication,
                               RestAnonymousAuthentication]
     filter_class = CollectionFilterSetWithFallback
 
