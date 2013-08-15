@@ -90,7 +90,12 @@ class TestES(amo.tests.ESTestCase):
     def test_query_text(self):
         qs = Addon.search().query(name__text='woo woo')
         eq_(qs._build_query(), {'fields': ['id'],
-                                'query': {'text': {'name': 'woo woo'}}})
+                                'query': {'match': {'name': 'woo woo'}}})
+
+    def test_query_match(self):
+        qs = Addon.search().query(name__match='woo woo')
+        eq_(qs._build_query(), {'fields': ['id'],
+                                'query': {'match': {'name': 'woo woo'}}})
 
     def test_query_multiple_and_range(self):
         qs = Addon.search().query(type=1, status__gte=1)

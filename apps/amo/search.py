@@ -233,8 +233,8 @@ class ES(object):
             key, field_action = self._split(key)
             if field_action is None:
                 rv.append({'term': {key: val}})
-            elif field_action == 'text':
-                rv.append({'text': {key: val}})
+            elif field_action in ('text', 'match'):
+                rv.append({'match': {key: val}})
             elif field_action == 'startswith':
                 rv.append({'prefix': {key: val}})
             elif field_action in ('gt', 'gte', 'lt', 'lte'):
