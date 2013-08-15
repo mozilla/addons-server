@@ -275,8 +275,9 @@ def user_activity(request, user_id):
 def _expand_query(q, fields):
     query = {}
     rules = [
-        ('text', {'query': q, 'boost': 4, 'type': 'phrase'}),
-        ('text', {'query': q, 'boost': 3, 'analyzer': 'standard'}),
+        ('term', {'value': q, 'boost': 10}),
+        ('match', {'query': q, 'boost': 4, 'type': 'phrase'}),
+        ('match', {'query': q, 'boost': 3}),
         ('fuzzy', {'value': q, 'boost': 2, 'prefix_length': 4}),
         ('startswith', {'value': q, 'boost': 1.5}),
     ]
@@ -339,7 +340,7 @@ def app_search(request):
                 qs = S(WebappIndexer)
             else:
                 qs = S(Addon)
-            qs = (qs.query(must=True, type=addon_type)
+            qs = (qs.filter(type=addon_type)
                     .query(should=True, **_expand_query(q, fields))
                     .values_dict(*fields)[:20])
     for app in qs:
