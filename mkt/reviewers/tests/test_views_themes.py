@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import datetime
+import json
 
 from django.conf import settings
 from django.contrib.auth.models import User
@@ -18,7 +19,7 @@ from devhub.models import ActivityLog
 from editors.models import RereviewQueueTheme
 import mkt.constants.reviewers as rvw
 from mkt.reviewers.models import ThemeLock
-from mkt.reviewers.views_themes import _get_themes
+from mkt.reviewers.views_themes import _get_themes, themes_search
 from mkt.site.fixtures import fixture
 from users.models import UserProfile
 
@@ -487,8 +488,7 @@ class TestDeletedThemeLookup(amo.tests.TestCase):
         self.create_switch(name='mkt-themes')
 
     def test_table(self):
-        self.client.login(username='senior_persona_reviewer@mozilla.com',
-                          password='password')
+        self.login('senior_persona_reviewer')
         r = self.client.get(reverse('reviewers.themes.deleted'))
         eq_(r.status_code, 200)
         eq_(pq(r.content)('tbody td:nth-child(3)').text(),
@@ -499,3 +499,34 @@ class TestDeletedThemeLookup(amo.tests.TestCase):
                           password='password')
         r = self.client.get(reverse('reviewers.themes.deleted'))
         eq_(r.status_code, 403)
+
+
+class TestThemeSearch(amo.tests.ESTestCase):
+    fixtures = fixture('user_senior_persona_reviewer')
+
+    def setUp(self):
+        self.create_switch(name='mkt-themes')
+        self.addon = addon_factory(type=amo.ADDON_PERSONA, name='themeteam',
+                                   status=amo.STATUS_PENDING)
+
+    def search(self, q, flagged=False, rereview=False):
+        get_query = {'q': q, 'queue_type': ('rereview' if rereview else
+                                            'flagged' if flagged else '')}
+
+        request = amo.tests.req_factory_factory(
+            reverse('reviewers.themes.list'),
+            user=UserProfile.objects.get(username='senior_persona_reviewer'))
+        request.GET = get_query
+        return json.loads(themes_search(request).content)['objects']
+
+    def test_pending(self):
+        eq_(self.search('theme')[0]['id'], self.addon.id)
+
+    def test_flagged(self):
+        self.addon.update(status=amo.STATUS_REVIEW_PENDING)
+        eq_(self.search('theme', flagged=True)[0]['id'], self.addon.id)
+
+    def test_rereview(self):
+        RereviewQueueTheme.objects.create(theme=self.addon.persona)
+        self.addon.save()
+        eq_(self.search('theme', rereview=True)[0]['id'], self.addon.id)

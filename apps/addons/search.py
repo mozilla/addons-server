@@ -70,6 +70,8 @@ def extract(addon):
             d['weekly_downloads'] = addon.persona.popularity
             # Boost on popularity.
             d['_boost'] = addon.persona.popularity ** .2
+            d['has_theme_rereview'] = (
+                addon.persona.rereviewqueuetheme_set.exists())
         except Persona.DoesNotExist:
             # The addon won't have a persona while it's being created.
             pass
