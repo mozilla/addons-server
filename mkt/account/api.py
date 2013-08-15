@@ -100,7 +100,7 @@ class InstalledResource(AppResource):
         slug_lookup = None
 
     def obj_get_list(self, request=None, **kwargs):
-        return Webapp.objects.filter(installed__user=request.amo_user,
+        return Webapp.uncached.filter(installed__user=request.amo_user,
                                      installed__install_type=INSTALL_TYPE_USER)
 
 
