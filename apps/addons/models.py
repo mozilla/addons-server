@@ -630,8 +630,9 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             # Versions are not as critical on themes.
             # If there are no versions, just create one and go.
             if not self._current_version:
-                version = Version.objects.create(addon=self, version='0')
-                self.update(_current_version=version)
+                if self._latest_version:
+                    self.update(_current_version=_latest_version,
+                                _signal=False)
                 return True
             return False
 

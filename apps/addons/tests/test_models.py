@@ -1431,6 +1431,17 @@ class TestBackupVersion(amo.tests.TestCase):
         version.save()
         assert Addon.objects.get(pk=1865).backup_version
 
+    def test_update_version_theme(self):
+        # Test versions do not get deleted when calling with theme.
+        self.addon.update(type=amo.ADDON_PERSONA)
+        assert not self.addon.update_version()
+        assert self.addon._current_version
+
+        # Test latest version copied to current version if no current version.
+        self.addon.update(_current_version=None, _signal=False)
+        assert self.addon.update_version()
+        assert self.addon._current_version == self.addon._latest_version
+
 
 class TestCategoryModel(amo.tests.TestCase):
 
