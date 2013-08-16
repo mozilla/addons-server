@@ -220,11 +220,12 @@ class TestLoginHandler(TestCase):
         data = self._test_login()
         eq_(data['permissions'],
             {'admin': False,
+             'developer': False,
              'localizer': False,
              'lookup': False,
-             'webpay': False,
+             'publisher': False,
              'reviewer': True,
-             'developer': False})
+             'webpay': False})
 
     @patch('requests.post')
     def test_login_failure(self, http_request):
