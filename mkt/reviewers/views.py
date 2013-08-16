@@ -800,7 +800,6 @@ def performance(request, username=None):
 
 @permission_required('Apps', 'Review')
 def leaderboard(request):
-
     return jingo.render(request, 'reviewers/leaderboard.html', context(request,
         **{'scores': ReviewerScore.all_users_by_score()}))
 

@@ -16,7 +16,7 @@ import amo.tests
 from amo.tests import addon_factory, days_ago
 from amo.urlresolvers import reverse
 from devhub.models import ActivityLog
-from editors.models import RereviewQueueTheme
+from editors.models import RereviewQueueTheme, ReviewerScore
 import mkt.constants.reviewers as rvw
 from mkt.reviewers.models import ThemeLock
 from mkt.reviewers.views_themes import _get_themes, themes_search
@@ -251,6 +251,9 @@ class ThemeReviewTestMixin(object):
             eq_(send_mail_jinja_mock.call_args_list[2], expected_calls[2])
             eq_(send_mail_jinja_mock.call_args_list[3], expected_calls[3])
             eq_(send_mail_jinja_mock.call_args_list[4], expected_calls[4])
+
+        # Reviewer points accrual.
+        assert ReviewerScore.objects.all()[0].score > 0
 
     def test_single_basic(self):
         with self.settings(ALLOW_SELF_REVIEWS=True):
