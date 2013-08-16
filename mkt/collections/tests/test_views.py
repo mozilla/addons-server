@@ -5,7 +5,7 @@ from random import shuffle
 from django.core.urlresolvers import reverse
 
 from nose import SkipTest
-from nose.tools import eq_
+from nose.tools import eq_, ok_
 from rest_framework.exceptions import PermissionDenied
 
 import amo
@@ -283,7 +283,7 @@ class TestCollectionViewSet(RestOAuth):
         res, data = self.create(self.client)
         eq_(res.status_code, 201)
         new_collection = Collection.objects.get(pk=data['id'])
-        assert new_collection.pk != self.collection.pk
+        ok_(new_collection.pk != self.collection.pk)
 
         # Verify that the collection metadata is correct.
         for field, value in self.collection_data.iteritems():
@@ -302,7 +302,7 @@ class TestCollectionViewSet(RestOAuth):
         res, data = self.create(self.client)
         eq_(res.status_code, 201)
         new_collection = Collection.objects.get(pk=data['id'])
-        assert new_collection.pk != self.collection.pk
+        ok_(new_collection.pk != self.collection.pk)
         eq_(new_collection.author, '')
 
     def add_app(self, client, app_id=None):
