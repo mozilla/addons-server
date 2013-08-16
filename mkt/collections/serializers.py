@@ -18,7 +18,6 @@ class CollectionSerializer(serializers.ModelSerializer):
                                      source='collectionmembership_set')
 
     class Meta:
-        fields = ('collection_type', 'description', 'id', 'name', 'author',
-                  'apps', 'category', 'region', 'carrier')
+        fields = ('apps', 'author', 'carrier', 'category', 'collection_type',
+                  'description', 'id', 'is_public', 'name', 'region',)
         model = Collection
-
