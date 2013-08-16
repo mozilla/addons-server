@@ -1438,7 +1438,10 @@ class TestBackupVersion(amo.tests.TestCase):
         assert self.addon._current_version
 
         # Test latest version copied to current version if no current version.
-        self.addon.update(_current_version=None, _signal=False)
+        self.addon.update(_current_version=None,
+                          _latest_version=Version.objects.create(
+                              addon=self.addon, version='0'),
+                          _signal=False)
         assert self.addon.update_version()
         assert self.addon._current_version == self.addon._latest_version
 

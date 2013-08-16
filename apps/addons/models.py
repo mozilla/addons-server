@@ -631,7 +631,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             # If there are no versions, just create one and go.
             if not self._current_version:
                 if self._latest_version:
-                    self.update(_current_version=_latest_version,
+                    self.update(_current_version=self._latest_version,
                                 _signal=False)
                 return True
             return False
