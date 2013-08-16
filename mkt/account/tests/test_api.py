@@ -43,8 +43,8 @@ class TestPermission(BaseOAuth):
         res = self.client.get(self.get_url)
         eq_(res.status_code, 200, res.content)
         self.assertSetEqual(
-            ['admin', 'developer', 'reviewer', 'localizer', 'lookup',
-             'webpay'],
+            ['admin', 'developer', 'localizer', 'lookup', 'publisher',
+             'reviewer', 'webpay'],
             res.json['permissions'].keys()
         )
         ok_(not all(res.json['permissions'].values()))
@@ -53,6 +53,15 @@ class TestPermission(BaseOAuth):
         self.grant_permission(self.user, 'Localizers:%')
         res = self.client.get(self.get_url)
         ok_(res.json['permissions']['localizer'])
+
+    def test_publisher(self):
+        res = self.client.get(self.get_url)
+        ok_(not res.json['permissions']['publisher'])
+
+    def test_publisher_ok(self):
+        self.grant_permission(self.user, 'Apps:Publisher')
+        res = self.client.get(self.get_url)
+        ok_(res.json['permissions']['publisher'])
 
     def test_webpay(self):
         res = self.client.get(self.get_url)
