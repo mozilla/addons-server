@@ -33,6 +33,7 @@ class TestCollectionViewSet(RestOAuth):
             'description': u'A cöllection of my favorite games',
             'name': u'My Favorite Gamés',
             'author': u'My Àuthør',
+            'is_public': True,
         }
         self.collection = Collection.objects.create(**self.collection_data)
         self.apps = [amo.tests.app_factory() for n in xrange(1, 5)]
@@ -138,7 +139,7 @@ class TestCollectionViewSet(RestOAuth):
         self.create_additional_data()
         self.make_publisher()
 
-        res = self.client.get(self.list_url, 
+        res = self.client.get(self.list_url,
             {'carrier': mkt.carriers.TELEFONICA.id})
         eq_(res.status_code, 200)
         data = json.loads(res.content)
@@ -419,6 +420,7 @@ class TestCollectionViewSet(RestOAuth):
             'author': u'Nöt Me!',
             'region': mkt.regions.SPAIN.id,
             'category': cat.pk,
+            'is_public': False,
         }
         res, data = self.edit_collection(self.client, **updates)
         eq_(res.status_code, 200)
