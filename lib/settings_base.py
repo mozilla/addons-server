@@ -1096,6 +1096,7 @@ CELERY_ROUTES = {
     'devhub.tasks.flag_binary': {'queue': 'bulk'},
     'stats.tasks.index_update_counts': {'queue': 'bulk'},
     'stats.tasks.index_download_counts': {'queue': 'bulk'},
+    'stats.tasks.index_theme_user_counts': {'queue': 'bulk'},
 }
 
 # This is just a place to store these values, you apply them in your
