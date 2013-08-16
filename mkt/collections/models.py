@@ -8,12 +8,14 @@ from mkt.webapps.models import Webapp
 from translations.fields import PurifiedField, save_signal
 
 from .constants import COLLECTION_TYPES
+from .managers import PublicCollectionsManager
 
 
 class Collection(amo.models.ModelBase):
     collection_type = models.IntegerField(choices=COLLECTION_TYPES)
     description = PurifiedField()
     name = PurifiedField()
+    is_public = models.BooleanField(default=False)
     # FIXME: add better / composite indexes that matches the query we are
     # going to make.
     category = models.ForeignKey(Category, null=True, blank=True)
@@ -22,6 +24,8 @@ class Collection(amo.models.ModelBase):
     carrier = models.IntegerField(default=None, null=True, blank=True,
         choices=mkt.carriers.CARRIER_CHOICES, db_index=True)
     author = models.CharField(max_length=255, default='', blank=True)
+
+    public = PublicCollectionsManager()
 
     class Meta:
         db_table = 'app_collections'
