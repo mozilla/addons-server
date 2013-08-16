@@ -92,12 +92,6 @@ class AddonManager(amo.models.ManagerBase):
         """Get valid, enabled add-ons only"""
         return self.filter(self.valid_q(amo.LISTED_STATUSES))
 
-    def valid_and_disabled(self):
-        """Get valid, enabled and disabled add-ons."""
-        statuses = list(amo.LISTED_STATUSES) + [amo.STATUS_DISABLED]
-        return self.filter(Q(status__in=statuses) | Q(disabled_by_user=True),
-                           _current_version__isnull=False)
-
     def valid_and_disabled_and_pending(self):
         """
         Get valid, pending, enabled and disabled add-ons.
@@ -105,8 +99,9 @@ class AddonManager(amo.models.ManagerBase):
         """
         statuses = list(amo.LISTED_STATUSES) + [amo.STATUS_DISABLED,
                                                 amo.STATUS_PENDING]
-        return self.filter(Q(status__in=statuses) | Q(disabled_by_user=True),
-                           _current_version__isnull=False)
+        return (self.filter(Q(status__in=statuses) | Q(disabled_by_user=True))
+                .exclude(type=amo.ADDON_EXTENSION,
+                         _current_version__isnull=True))
 
     def featured(self, app, lang=None, type=None):
         """
@@ -631,6 +626,15 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         Pass ``_signal=False`` if you want to no signals fired at all.
 
         """
+        if self.is_persona():
+            # Versions are not as critical on themes.
+            # If there are no versions, just create one and go.
+            if not self._current_version:
+                version = Version.objects.create(addon=self, version='0')
+                self.update(_current_version=version)
+                return True
+            return False
+
         backup = None
         current = self.get_version()
         if current:
