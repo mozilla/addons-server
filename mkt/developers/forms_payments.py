@@ -104,7 +104,6 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
     def group_tier_choices(self):
         """Creates tier choices with optgroups based on payment methods"""
         price_choices = [
-            ('', _('Please select a price')),
             ('free', _('Free (with in-app payments)')),
         ]
         card_billed = []

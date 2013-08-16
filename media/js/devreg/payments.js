@@ -5,16 +5,18 @@ define('payments', [], function() {
     var $regions = $('#region-list');
     var $regionsIsland = $('#regions');
     var $regionCheckboxes = $regions.find('input[type=checkbox]');
-    var $regionsChangedWarning = $('#regions-changed');
-    var $regionsInappropriateWarning = $('#regions-inappropriate');
-    var $before = $regions.find('input[type=checkbox]:disabled');
 
-    var apiErrorMsg = $regions.data('apiErrorMsg');
-    var disabledGeneralRegions = $regions.data('disabledGeneralRegions');
-    var tierZeroId = $regions.data('tierZeroId');
-    var notApplicableMsg = $regions.data('notApplicableMsg');
-    var paymentMethods = $regions.data('paymentMethods') || {};
-    var pricesApiEndpoint = $regions.data('pricelistApiUrl') + '{0}/';
+    var regionsData = $regions.data();
+
+    var allPaidRegionIds = regionsData.allPaidRegionIds;
+    var apiErrorMsg = regionsData.apiErrorMsg;
+    var disabledRegions = regionsData.disabledRegions;
+    var tierZeroId = regionsData.tierZeroId;
+    var notApplicableMsg = regionsData.notApplicableMsg;
+    var paymentMethods = regionsData.paymentMethods || {};
+    var pricesApiEndpoint = regionsData.pricelistApiUrl + '{0}/';
+    var $tdNodes = $('<td class="cb"></td><td class="lp"></td><td class="lm"></td>');
+    var $paidRegionTableTbody = $('#paid-regions tbody');
 
     function getOverlay(opts) {
         var id = opts;
@@ -83,6 +85,42 @@ define('payments', [], function() {
         }));
     }
 
+    function moveAnimate(element, newParent, $elmToRemove, zIndex) {
+        zIndex = zIndex || 100;
+        var $element = $(element);
+        var $newParent = $(newParent);
+        var oldOffset = $element.offset();
+
+        $element.appendTo($newParent);
+        var newOffset = $element.offset();
+        var $temp = $element.clone().appendTo('body');
+        $temp.css({'position': 'absolute',
+                   'left': oldOffset.left,
+                   'top': oldOffset.top,
+                   'zIndex': zIndex});
+
+        element.hide();
+        $temp.animate({'top': parseInt(newOffset.top, 10), 'left': parseInt(newOffset.left, 10) }, 'slow', function(){
+            $temp.remove();
+            $element.show();
+            if ($elmToRemove) {
+                $elmToRemove.hide(500, function() { this.remove(); });
+            }
+        });
+    }
+
+    function createTableRow(checkBox, ident, localPriceText, localMethodText) {
+        var $tds = $tdNodes.clone();
+        var $tr = $paidRegionTableTbody.find('tr[data-region="' + ident + '"]');
+        var $checkBoxContainer = $($tds[0]);
+        var $localPriceContainer = $($tds[1]);
+        var $localMethodContainer = $($tds[2]);
+        $localMethodContainer.text(localMethodText);
+        $localPriceContainer.text(localPriceText);
+        $tr.append($tds);
+        return $tr;
+    }
+
     function disableCheckbox() {
         /*jshint validthis:true */
         var $this = $(this);
@@ -94,57 +132,14 @@ define('payments', [], function() {
         $this.closest('tr').find('.local-retail, .local-method').text('');
     }
 
-    function compareDisabledCheckboxes($before) {
-        var hasChanged = false;
-        var $after = $regions.find('input[type=checkbox]:disabled');
 
-        if ($before.length && $after.length && $before.length === $after.length) {
-            $after.each(function() {
-                // If current element isn't in $before the state has changed and we can
-                // exit the each.
-                var beforeIndex = $.inArray(this, $before);
-                if (beforeIndex === -1) {
-                    hasChanged = true;
-                    return false;
-                // As soon as a disabled prop doesn't match flag the change and exit each.
-                } else if ($(this).prop('disabled') !== $($before[beforeIndex]).prop('disabled')) {
-                    hasChanged = true;
-                    return false;
-                }
-            });
-        } else if (($before.length || $after.length) && $before.length !== $after.length) {
-            hasChanged = true;
-        }
-        if (hasChanged) {
-            $regionsChangedWarning.removeClass('hidden');
-        } else {
-            $regionsChangedWarning.addClass('hidden');
-        }
-    }
-
-    function updatePrices(checkForChanges) {
+    function updatePrices() {
 
         /*jshint validthis:true */
         var $this = $(this);
         var selectedPrice = $this.val();
 
-        checkForChanges = checkForChanges === false ? checkForChanges : true;
-
-        // Check for NaN which will be caused by selectedPrice being ''.
-        if (selectedPrice != 'free') {
-            selectedPrice = parseInt(selectedPrice, 10);
-            selectedPrice = isNaN(selectedPrice) ? false : selectedPrice;
-        }
-
-        // No-op if nothing has changed.
-        if (currentPrice === selectedPrice) {
-            return;
-        }
-
-        // Handle the 'Please select a price' case.
-        if (selectedPrice === false) {
-            $regionCheckboxes.each(disableCheckbox);
-            currentPrice = selectedPrice;
+        if (!selectedPrice) {
             return;
         }
 
@@ -154,30 +149,23 @@ define('payments', [], function() {
             $('input[name=allow_inapp][value=True]').prop('checked', true);
             $('input[name=allow_inapp][value=False]').prop('disabled', true)
                                                      .parent('label').hide();
-
-            // Enable all the checkboxes save for those that should be disabled.
-            // e.g. unrated games in Brazil.
-            $regionCheckboxes.each(function() {
-                $this = $(this);
-                if (disabledGeneralRegions.indexOf(parseInt($this.prop('value'), 10)) === -1) {
-                    $this.prop('disabled', false).closest('label').removeClass('disabled')
-                         .closest('tr').find('.local-method, .local-retail')
-                         .text(notApplicableMsg);
-                } else {
-                    disableCheckbox.call(this);
-                }
-            });
             $('#paid-upsell-island').hide();
-            currentPrice = selectedPrice;
 
-            if (checkForChanges) {
-                compareDisabledCheckboxes($before);
-            }
-            return;
+            // For free apps we are using the same data for tier zero apps
+            // to populate the region list.
+            selectedPrice = tierZeroId;
         } else {
             $('#paid-upsell-island').show();
             $('input[name=allow_inapp][value=False]').prop('disabled', false)
                                                      .parent('label').show();
+        }
+
+        // From here on numbers should be used.
+        selectedPrice = parseInt(selectedPrice, 10);
+
+        // No-op if nothing else has changed.
+        if (currentPrice === selectedPrice) {
+            return;
         }
 
         $.ajax({
@@ -186,41 +174,55 @@ define('payments', [], function() {
                 $regionsIsland.addClass('loading');
             },
             success: function(data) {
+                var moveQueue = [];
                 var prices = data.prices || [];
-                var tierPrice = data.price;
                 var seen = [];
+                var tierPrice = data.price;
+
                 // Iterate over the prices for the regions
                 for (var i=0, j=prices.length; i<j; i++) {
                     var price = prices[i];
-                    var region = price.region;
+                    var regionId = price.region;
                     var billingMethodText = paymentMethods[parseInt(price.method, 10)] || '';
-                    var $chkbox = $regions.find('input:checkbox[value=' + region + ']');
 
-                    // Skip if over regions that should be disabled e.g an unrated games app in Brazil.
-                    if (disabledGeneralRegions.indexOf(region) > -1) {
-                        continue;
+                    var localPrice = price.price + ' ' + price.currency;
+                    var localMethod = selectedPrice === tierZeroId ? notApplicableMsg : billingMethodText;
+
+                    // If the checkbox we're interested is already in the table just update it.
+                    // Otherwise we need to create a new tableRow and move it into position.
+                    var $chkbox = $regions.find('input:checkbox[value=' + regionId + ']');
+                    var $row = $('#paid-regions tr[data-region=' + regionId + ']');
+                    if ($row.find('td').length) {
+                        $row.find('.lp').text(localPrice);
+                        $row.find('.lm').text(localMethod);
+                    } else {
+                        var $tr = createTableRow($chkbox.closest('label'), regionId, localPrice, localMethod);
+                        moveQueue.push([$chkbox.closest('label'), $tr.find('.cb')]);
+                        $chkbox.closest('li').hide(500);
                     }
-                    // Enable checkboxes for those that we have price info for.
-                    $chkbox.prop('disabled', false)
-                           .closest('label').removeClass('disabled');
-
-                    var $tr = $chkbox.closest('tr');
-
-                    $tr.find('.local-retail')
-                       .text(price.price + ' ' + price.currency);
-
-                    $tr.find('.local-method')
-                       .text(selectedPrice === tierZeroId ? notApplicableMsg : billingMethodText);
-
                     seen.push($chkbox[0]);
-
                 }
-                // Disable everything else.
-                $regionCheckboxes.not(seen).each(disableCheckbox);
 
-                if (checkForChanges) {
-                    compareDisabledCheckboxes($before);
+                for (var k=0, l=moveQueue.length; k<l; k++) {
+                    var current = moveQueue[k];
+                    moveAnimate(current[0], current[1]);
                 }
+
+                $('#paid-regions input[type=checkbox]').not(seen).each(function() {
+                    // If the item we don't want here is in the table then we need to move it back
+                    // out of the table and destroy the row contents.
+                    var $chkbox = $(this);
+                    var region = $chkbox.val();
+
+                    // Lookup the location of the original checkbox so we know where to send this back to
+                    var $newParent = $('.checkbox-choices li[data-region=' + region + ']');
+                    $newParent.show(500);
+                    var $label = $chkbox.closest('label');
+                    if ($label.length) {
+                        var $tds = $chkbox.closest('tr').find('td');
+                        moveAnimate($label, $newParent, $tds);
+                    }
+                });
             },
             dataType: "json"
         }).fail(function() {
@@ -250,7 +252,7 @@ define('payments', [], function() {
         // Only update if we can edit. If the user can't edit all fields will be disabled.
         if (!z.body.hasClass('no-edit')) {
             $priceSelect.on('change', updatePrices);
-            updatePrices.call($priceSelect[0], false);
+            updatePrices.call($priceSelect[0]);
         }
     }
 

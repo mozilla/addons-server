@@ -44,7 +44,6 @@ from mkt.constants import MAX_PACKAGED_APP_SIZE
 from mkt.constants.ratingsbodies import (ALL_RATINGS, RATINGS_BODIES,
                                          RATINGS_BY_NAME)
 from mkt.site.forms import AddonChoiceField
-from mkt.regions import ALL_PAID_REGION_IDS, ALL_REGION_IDS
 from mkt.webapps.models import AddonExcludedRegion, ContentRating, Webapp
 from mkt.webapps.tasks import index_webapps
 from mkt.zadmin.models import FeaturedApp
@@ -669,105 +668,44 @@ class AppAppealForm(happyforms.Form):
 class RegionForm(forms.Form):
     regions = forms.MultipleChoiceField(required=False,
         label=_lazy(u'Choose the regions your app will be listed in:'),
-        choices=mkt.regions.REGIONS_CHOICES_NAME[1:],
+        choices=mkt.regions.REGIONS_CHOICES_NAME,
         widget=forms.CheckboxSelectMultiple,
         error_messages={'required':
             _lazy(u'You must select at least one region.')})
-    other_regions = forms.BooleanField(required=False, initial=True,
-        label=_lazy(u'Other and new regions'))
+    enable_new_regions = forms.BooleanField(required=False,
+        label=_lazy(u'Enable new regions'))
 
     def __init__(self, *args, **kw):
         self.product = kw.pop('product', None)
         self.request = kw.pop('request', None)
-        self.price = kw.pop('price', None)
-        self.region_ids = self.product.get_region_ids()
+        self.region_ids = self.product.get_region_ids(worldwide=True)
         super(RegionForm, self).__init__(*args, **kw)
-
-        # Initialise the price for free_inapp.
-        if not self.price and self.product and self.product.is_free_inapp():
-            self.price = 'free'
-
-        is_paid = self._product_is_paid()
 
         # If we have excluded regions, uncheck those.
         # Otherwise, default to everything checked.
-        self.regions_before = self.product.get_region_ids()
+        self.regions_before = self.product.get_region_ids(worldwide=True)
 
         # If we have future excluded regions, uncheck box.
-        # Note: this is currently only relevant for non-paid apps.
-        self.future_exclusions = self.product.addonexcludedregion.filter(
-            region=mkt.regions.WORLDWIDE.id)
+        self.future_exclusions = self.product.enable_new_regions
 
         self.initial = {
             'regions': self.regions_before,
+            'enable_new_regions': self.product.enable_new_regions,
         }
 
-        # If the app is paid, disable regions that use payments.
-        if is_paid:
-
-            # For paid apps enabling new regions is not based on the worldwide
-            # region it's based on enable_new_regions.
-            self.fields['other_regions'].label = _(u'Enable new regions')
-            self.initial['other_regions'] = self.product.enable_new_regions
-
-            # Premium form was valid.
-            if self.price and self.price != 'free':
-                self.price_region_ids = (self.price.pricecurrency_set
-                                         .values_list('region', flat=True))
-            # Free app with in-app payments for this we just want to make
-            # sure it's in a region that allows payments.
-            # self.price is intialised above for free_inapp even if
-            # this isn't a post.
-            elif self.price and self.price == 'free':
-                self.price_region_ids = ALL_PAID_REGION_IDS
-            # Premium form wasn't valid and it is a POST. Since we can't
-            # determine what price they wanted, just make sure it isn't a
-            # disabled price.
-            elif self.data:
-                self.price_region_ids = []
-            # Not a post, we can trust the price on the product.
-            else:
-                self.price_region_ids = (self.product
-                                         .get_possible_price_region_ids())
-
-        else:
-            # Set initial of other_regions for non-paid apps.
-            self.initial['other_regions'] = (not
-                self.future_exclusions.exists())
-
-        # These are split out so we can distinguish regions that are totally
-        # disabled vs those that are disabled based on price.
-        self.disabled_general_regions = sorted(
-            self._disabled_general_regions())
         self.disabled_regions = sorted(self._disabled_regions())
 
     def _disabled_regions(self):
-        """All disabled regions (varys based on current price)."""
-        return self._disabled_general_regions().union(
-                   self._disabled_paid_regions())
-
-    def _disabled_general_regions(self):
-        """Regions that are disabled for general reasons."""
-        disabled_general_regions = set()
+        disabled_regions = set()
 
         # Games cannot be listed in Brazil without a content rating.
         games = Webapp.category('games')
         if (games and
             self.product.categories.filter(id=games.id).exists() and
                 not self.product.content_ratings_in(mkt.regions.BR)):
-            disabled_general_regions.add(mkt.regions.BR.id)
+            disabled_regions.add(mkt.regions.BR.id)
 
-        return disabled_general_regions
-
-    def _disabled_paid_regions(self):
-        """Regions disabled based on current price."""
-        dpr = set()
-        if self._product_is_paid():
-            # Ensure price_regions are in ALL_PAID_REGION_IDS.
-            valid_price_regions = (set(self.price_region_ids).intersection(
-                                   set(ALL_PAID_REGION_IDS)))
-            dpr = set(ALL_REGION_IDS).difference(valid_price_regions)
-        return dpr
+        return disabled_regions
 
     def is_toggling(self):
         if not self.request or not hasattr(self.request, 'POST'):
@@ -779,29 +717,11 @@ class RegionForm(forms.Form):
         return (self.product.premium_type in amo.ADDON_PREMIUMS
                 or self.product.premium_type == amo.ADDON_FREE_INAPP)
 
-    def has_inappropriate_regions(self):
-        """Returns whether the app is listed in regions that it shouldn't
-        otherwise be registered in."""
-
-        if self._product_is_paid():
-            return set(self.region_ids).intersection(
-                set(self.disabled_regions))
-
     def clean(self):
         data = self.cleaned_data
-        if (not data.get('regions') and not data.get('other_regions')
-                and not self.is_toggling()):
+        if (not data.get('regions') and not self.is_toggling()):
             raise forms.ValidationError(
-                _('You must select at least one region or '
-                  '"Other and new regions."'))
-
-        if data.get('regions'):
-            self.region_ids = [int(r) for r in data['regions']]
-            if self.has_inappropriate_regions():
-                raise forms.ValidationError(
-                    _('You have selected a region that is not valid for your '
-                      'price point.'))
-
+                _('You must select at least one region.'))
         return data
 
     def save(self):
@@ -811,10 +731,6 @@ class RegionForm(forms.Form):
 
         before = set(self.regions_before)
         after = set(map(int, self.cleaned_data['regions']))
-
-        # If the app is paid, disable regions that do not use payments.
-        if self._product_is_paid():
-            after &= set(self.price_region_ids)
 
         # Add new region exclusions.
         to_add = before - after
@@ -832,33 +748,14 @@ class RegionForm(forms.Form):
             log.info(u'[Webapp:%s] No longer exluded from region (%s).'
                      % (self.product, r))
 
-        if self.cleaned_data['other_regions']:
-
-            # For a paid app enable_new_regions is distinct from
-            # the worldwide region.
-            if self._product_is_paid():
-                self.product.update(enable_new_regions=True)
-                log.info(u'[Webapp:%s] will be added to future regions.'
-                     % self.product)
-            else:
-                # Developer wants to be visible in future regions, then
-                # delete excluded regions.
-                self.future_exclusions.delete()
-                log.info(u'[Webapp:%s] No longer excluded from future regions.'
+        if self.cleaned_data['enable_new_regions']:
+            self.product.update(enable_new_regions=True)
+            log.info(u'[Webapp:%s] will be added to future regions.'
                      % self.product)
         else:
-            if self._product_is_paid():
-                self.product.update(enable_new_regions=False)
-                log.info(u'[Webapp:%s] will not be added to future regions.'
+            self.product.update(enable_new_regions=False)
+            log.info(u'[Webapp:%s] will not be added to future regions.'
                      % self.product)
-            else:
-                # Developer does not want future regions, then
-                # exclude all future apps.
-                g, c = AddonExcludedRegion.objects.get_or_create(
-                    addon=self.product, region=mkt.regions.WORLDWIDE.id)
-                if c:
-                    log.info(u'[Webapp:%s] Excluded from future regions.'
-                             % self.product)
 
         ban_game_in_brazil(self.product)
 

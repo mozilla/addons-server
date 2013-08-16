@@ -237,21 +237,6 @@ class TestWebapp(amo.tests.TestCase):
         webapp._premium.price = 0
         eq_(webapp.has_premium(), True)
 
-    def test_get_possible_prices_premium(self):
-        webapp = Webapp.objects.create(premium_type=amo.ADDON_PREMIUM)
-        price = Price.objects.get(pk=1)
-        AddonPremium.objects.create(addon=webapp, price=price)
-        ok_(len(webapp.get_possible_price_region_ids()) > 0)
-        ok_(isinstance(webapp.get_possible_price_region_ids(), list))
-
-    def test_get_possible_prices_premium_then_free_inapp(self):
-        webapp = Webapp.objects.create(premium_type=amo.ADDON_PREMIUM)
-        price = Price.objects.get(pk=1)
-        AddonPremium.objects.create(addon=webapp, price=price)
-        webapp.premium_type = amo.ADDON_FREE_INAPP
-        eq_(len(webapp.get_possible_price_region_ids()), 0)
-        ok_(isinstance(webapp.get_possible_price_region_ids(), list))
-
     def test_get_price_no_premium(self):
         webapp = Webapp(premium_type=amo.ADDON_PREMIUM)
         eq_(webapp.get_price(), None)
