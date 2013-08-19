@@ -449,14 +449,18 @@ class ReviewerScore(amo.models.ModelBase):
         return val
 
     @classmethod
-    def get_recent(cls, user, limit=5):
+    def get_recent(cls, user, limit=5, addon_type=None):
         """Returns most recent ReviewerScore records."""
         key = cls.get_key('get_recent:%s' % user.id)
         val = cache.get(key)
         if val is not None:
             return val
 
-        val = list(ReviewerScore.uncached.filter(user=user)[:limit])
+        val = ReviewerScore.uncached.filter(user=user)
+        if addon_type is not None:
+            val.filter(addon__type=addon_type)
+
+        val = list(val[:limit])
         cache.set(key, val, 0)
         return val
 
