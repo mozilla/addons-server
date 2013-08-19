@@ -51,7 +51,7 @@ class Collection(amo.models.ModelBase):
         if not order:
             qs = CollectionMembership.objects.filter(collection=self)
             aggregate = qs.aggregate(Max('order'))['order__max']
-            order = aggregate + 1 if aggregate else 1
+            order = aggregate + 1 if aggregate is not None else 0
         return CollectionMembership.objects.create(collection=self, app=app,
                                                    order=order)
 
