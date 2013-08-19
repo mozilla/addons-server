@@ -280,9 +280,9 @@ Enabling an App
 
     **Request**
 
-    :params optional status: a status you'd like to move the app to (see below).
+    :param optional status: a status you'd like to move the app to (see below).
     :type status: string
-    :params optional disabled_by_user: Whether the app is disabled or not.
+    :param optional disabled_by_user: Whether the app is disabled or not.
     :type disabled_by_user: boolean
 
     **Response**

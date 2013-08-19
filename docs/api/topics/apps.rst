@@ -277,7 +277,7 @@ Versions
             ]
         }
 
-    :param object features: each item represents a
+    :param features: each item represents a
         :ref:`device feature <features>` required to run the application.
         Features not present are assumed not to be required.
     :type features: array
