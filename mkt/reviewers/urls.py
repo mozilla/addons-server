@@ -1,4 +1,5 @@
 from django.conf.urls import include, patterns, url
+from django.shortcuts import redirect
 
 from tastypie.api import Api
 
@@ -14,7 +15,8 @@ reviewers_api.register(api.ReviewersSearchResource())
 
 # All URLs under /reviewers/.
 url_patterns = patterns('',
-    url(r'^$', views.home, name='reviewers.home'),
+    url(r'^apps/$', views.home, name='reviewers.home'),
+    url(r'^$', lambda r: redirect('reviewers.home')),
     url(r'^apps/queue/$', views.queue_apps,
         name='reviewers.apps.queue_pending'),
     url(r'^apps/queue/rereview/$', views.queue_rereview,
