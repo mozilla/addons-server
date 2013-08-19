@@ -3,6 +3,7 @@ import json
 from random import shuffle
 
 from django.core.urlresolvers import reverse
+from django.utils import translation
 
 from nose import SkipTest
 from nose.tools import eq_, ok_
@@ -405,10 +406,48 @@ class TestCollectionViewSet(RestOAuth):
         eq_(res.status_code, 403)
         eq_(PermissionDenied.default_detail, data['detail'])
 
-    def test_edit_collection_no_perms(self):
-        res, data = self.edit_collection(self.client)
-        eq_(res.status_code, 403)
-        eq_(PermissionDenied.default_detail, data['detail'])
+    def test_edit_collection_name_and_description(self):
+        self.make_publisher()
+        updates = {
+            'description': u'¿Dónde está la biblioteca?',
+            'name': u'Allö',
+        }
+        res, data = self.edit_collection(self.client, **updates)
+        eq_(res.status_code, 200)
+        self.collection.reload()
+        for key, value in updates.iteritems():
+            eq_(data[key], value)
+            eq_(getattr(self.collection, key), value)
+
+    def test_edit_collection_name_and_description_multiple_translations(self):
+        self.make_publisher()
+        updates = {
+            'name': {
+                'en-US': u'Basta the potato',
+                'fr': u'Basta la pomme de terre',
+                'es': u'Basta la pâtätà',
+                'it': u'Basta la patata'
+            },
+            'description': {
+                'en-US': 'Basta likes potatoes and Le Boulanger',
+                'fr': 'Basta aime les patates et Le Boulanger',
+                'es': 'Basta gusta las patatas y Le Boulanger',
+                'it': 'Basta ama patate e Le Boulanger'
+            }
+        }
+        res, data = self.edit_collection(self.client, **updates)
+        eq_(res.status_code, 200)
+        self.collection = Collection.objects.get(pk=self.collection.pk)
+        for key, value in updates.iteritems():
+            eq_(getattr(self.collection, key), updates[key]['en-US'])
+
+        with translation.override('es'):
+            collection_in_es = Collection.objects.get(pk=self.collection.pk)
+            eq_(getattr(collection_in_es, key), updates[key]['es'])
+
+        with translation.override('fr'):
+            collection_in_fr = Collection.objects.get(pk=self.collection.pk)
+            eq_(getattr(collection_in_fr, key), updates[key]['fr'])
 
     def test_edit_collection_has_perms(self):
         self.make_publisher()

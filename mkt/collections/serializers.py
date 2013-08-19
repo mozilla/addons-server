@@ -1,5 +1,7 @@
+# -*- coding: utf-8 -*-
 from rest_framework import serializers
 
+from mkt.api.fields import TranslationSerializerField
 from mkt.webapps.utils import app_to_dict
 
 from .models import Collection
@@ -11,8 +13,8 @@ class CollectionMembershipField(serializers.RelatedField):
 
 
 class CollectionSerializer(serializers.ModelSerializer):
-    name = serializers.CharField()
-    description = serializers.CharField()
+    name = TranslationSerializerField()
+    description = TranslationSerializerField()
     collection_type = serializers.IntegerField()
     apps = CollectionMembershipField(many=True,
                                      source='collectionmembership_set')
