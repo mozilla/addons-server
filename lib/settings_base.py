@@ -1538,8 +1538,9 @@ LEGAL_XFRAME_ALLOW_FROM = [
 # Language pack fetcher settings
 LANGPACK_OWNER_EMAIL = 'addons-team@mozilla.com'
 LANGPACK_DOWNLOAD_BASE = 'https://ftp.mozilla.org/pub/mozilla.org/'
-LANGPACK_LIST_BASE = 'ftp://ftp.mozilla.org/pub/mozilla.org/'
 LANGPACK_PATH_DEFAULT = '%s/releases/%s/win32/xpi/'
+# E.g. https://ftp.mozilla.org/pub/mozilla.org/firefox/releases/23.0/SHA512SUMS
+LANGPACK_MANIFEST_PATH = '../../SHA512SUMS'
 LANGPACK_MAX_SIZE = 5 * 1024 * 1024  # 5MB should be more than enough
 
 # Basket subscription url for newsletter signups

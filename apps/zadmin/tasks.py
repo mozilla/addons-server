@@ -7,8 +7,7 @@ import re
 import sys
 import textwrap
 import traceback
-import urllib2
-import urlparse
+from urlparse import urljoin
 
 from django import forms
 from django.conf import settings
@@ -346,33 +345,46 @@ def fetch_langpacks(path, **kw):
     orig_lang = translation.get_language()
 
     # Treat `path` as relative even if it begins with a leading /
-    list_url = urlparse.urljoin(settings.LANGPACK_LIST_BASE, './' + path + '/')
-    base_url = urlparse.urljoin(settings.LANGPACK_DOWNLOAD_BASE, './' + path + '/')
+    base_url = urljoin(settings.LANGPACK_DOWNLOAD_BASE,
+                       './' + path.strip('/') + '/')
 
-    if not list_url.startswith(settings.LANGPACK_LIST_BASE):
-        log.error('[@None] Not fetching language packs from invalid URL '
-                  'path: %s' % path)
+    # Find the checksum manifest, 2 directories up.
+    list_url = urljoin(base_url, settings.LANGPACK_MANIFEST_PATH)
+    list_base = urljoin(list_url, './')
+
+    log.info('[@None] Fetching language pack manifests from %s' % list_url)
+
+    if not list_url.startswith(settings.LANGPACK_DOWNLOAD_BASE):
+        log.error('[@None] Not fetching language packs from invalid URL: '
+                  '%s' % base_url)
         raise ValueError('Invalid path')
 
     try:
-        # urllib2 rather than requests since this is an FTP URL.
-        req = urllib2.urlopen(list_url)
+        req = requests.get(list_url,
+                           verify=settings.CA_CERT_BUNDLE_PATH)
     except Exception, e:
         log.error('[@None] Error fetching language pack list %s: %s'
                   % (path, e))
         return
 
-    xpi_list = [line[-1] for line in map(str.split, req.readlines())]
+    xpi_list = [urljoin(list_base, line[-1])
+                for line in map(str.split, req.iter_lines())]
 
     allowed = re.compile(r'^[A-Za-z-]+\.xpi$')
-    for xpi in xpi_list:
+    for url in xpi_list:
+        # Filter out files not in the target langpack directory.
+        if not url.startswith(base_url):
+            continue
+
+        xpi = url[len(base_url):]
+        # Filter out entries other than direct child XPIs.
         if not allowed.match(xpi):
             continue
 
         lang = os.path.splitext(xpi)[0]
 
         try:
-            req = requests.get(base_url + xpi,
+            req = requests.get(url,
                                verify=settings.CA_CERT_BUNDLE_PATH)
 
             if ('content-length' not in req.headers or
