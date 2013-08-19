@@ -20,7 +20,7 @@ from .serializers import CollectionMembershipField, CollectionSerializer
 class CollectionViewSet(CORSMixin, viewsets.ModelViewSet):
     serializer_class = CollectionSerializer
     queryset = Collection.objects.all()
-    cors_allowed_methods = ('get', 'post')
+    cors_allowed_methods = ('get', 'post', 'delete')
     permission_classes = [PublisherAuthorization]
     authentication_classes = [RestOAuthAuthentication,
                               RestSharedSecretAuthentication,
