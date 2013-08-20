@@ -1,19 +1,13 @@
-import json
-
-from tastypie import http
-from tower import ugettext as _
-
-import amo
-from access import acl
 from amo.urlresolvers import reverse
 
 from mkt.api.authentication import OAuthAuthentication
 from mkt.api.authorization import PermissionAuthorization
-from mkt.api.base import MarketplaceResource, http_error
+from mkt.api.base import MarketplaceResource
 from mkt.reviewers.utils import AppsReviewing
 from mkt.reviewers.forms import ApiReviewersSearchForm
 from mkt.search.api import SearchResource
-from mkt.search.views import _get_query
+from mkt.search.utils import S
+from mkt.webapps.models import WebappIndexer
 
 
 class Wrapper(object):
@@ -80,11 +74,9 @@ class ReviewersSearchResource(SearchResource):
 
         if base_filters is None:
             base_filters = {}
-        base_filters['status'] = form_data.get('status')
-
-        region = self.get_region(request)
-        return _get_query(request, region, gaia=None, mobile=None, tablet=None,
-                          new_idx=True, filters=base_filters)
+        if form_data.get('status') != 'any':
+            base_filters['status'] = form_data.get('status')
+        return S(WebappIndexer).filter(**base_filters)
 
     def dehydrate(self, bundle):
         bundle = super(ReviewersSearchResource, self).dehydrate(bundle)

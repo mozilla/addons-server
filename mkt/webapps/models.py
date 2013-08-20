@@ -660,8 +660,7 @@ class Webapp(Addon):
 
     @classmethod
     def from_search(cls, request, cat=None, region=None, gaia=False,
-                    mobile=False, tablet=False, filter_overrides=None,
-                    new_idx=False):
+                    mobile=False, tablet=False, filter_overrides=None):
 
         filters = {
             'type': amo.ADDON_WEBAPP,
