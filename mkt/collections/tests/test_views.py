@@ -52,11 +52,11 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         self.serializer = CollectionSerializer()
         self.collection_data = {
             'collection_type': COLLECTIONS_TYPE_BASIC,
-            'name': u'My Favorite Gamés',
+            'name': {'en-US': u'My Favorite Gamés'},
             'slug': u'my-favourite-gamés',
             'author': u'My Àuthør',
             'is_public': True,
-            'description': u'A cöllection of my favorite games',
+            'description': {'en-US': u'A cöllection of my favorite games'}
         }
         self.collection = Collection.objects.create(**self.collection_data)
         self.apps = [amo.tests.app_factory() for n in xrange(1, 5)]
@@ -306,9 +306,20 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         self.collection_data['slug'] = u'my-favourite-gamés-1'
 
         # Verify that the collection metadata is correct.
-        for field, value in self.collection_data.iteritems():
+        keys = self.collection_data.keys()
+        keys.remove('name')
+        keys.remove('description')
+        for field in keys:
             eq_(data[field], self.collection_data[field])
             eq_(getattr(new_collection, field), self.collection_data[field])
+
+        # Test name and description separately as we return the whole dict
+        # with all translations.
+        eq_(data['name'], data['name'])
+        eq_(new_collection.name, data['name']['en-US'])
+
+        eq_(data['description'], data['description'])
+        eq_(new_collection.description, data['description']['en-US'])
 
     def test_create_has_perms_no_type(self):
         self.make_publisher()
@@ -418,7 +429,7 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         eq_(res.status_code, 403)
         eq_(PermissionDenied.default_detail, data['detail'])
 
-    def test_edit_collection_name_and_description(self):
+    def test_edit_collection_name_and_description_simple(self):
         self.make_publisher()
         updates = {
             'description': u'¿Dónde está la biblioteca?',
@@ -428,7 +439,7 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         eq_(res.status_code, 200)
         self.collection.reload()
         for key, value in updates.iteritems():
-            eq_(data[key], value)
+            eq_(data[key], {'en-US': value})
             eq_(getattr(self.collection, key), value)
 
     def test_edit_collection_name_and_description_multiple_translations(self):
@@ -466,25 +477,37 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         cat = Category.objects.create(type=amo.ADDON_WEBAPP, name='Grumpy',
                                       slug='grumpy-cat')
         updates = {
-            'name': u'clôuserw soundboard',
-            'description': u'Gèt off my lawn!',
             'author': u'Nöt Me!',
             'region': mkt.regions.SPAIN.id,
-            'category': cat.pk,
             'is_public': False,
+            'name': {'en-US': u'clôuserw soundboard'},
+            'description': {'en-US': u'Gèt off my lawn!'},
+            'category': cat.pk,
         }
         res, data = self.edit_collection(self.client, **updates)
         eq_(res.status_code, 200)
-        self.collection.reload()
+        collection = self.collection.reload()
 
         # Test that the result and object contain the right values. Remove
-        # category from the dict first to test it separately.
-        updates.pop('category')
-        for key, value in updates.iteritems():
-            eq_(data[key], value)
-            eq_(getattr(self.collection, key), value)
+        # category, name and desc from the dict first to test it separately.
+        keys = updates.keys()
+        keys.remove('category')
+        keys.remove('description')
+        keys.remove('name')
+        for key in keys:
+            eq_(data[key], updates[key])
+            eq_(getattr(self.collection, key), updates[key])
+
+        # Don't use a for loop for those, because the value on the Collection
+        # instance is not directly equivalent to the value in updates dict.
+        eq_(data['name'], updates['name'])
+        eq_(collection.name, updates['name']['en-US'])
+
+        eq_(data['description'], updates['description'])
+        eq_(collection.description, updates['description']['en-US'])
+
         eq_(data['category'], cat.pk)
-        eq_(self.collection.category, cat)
+        eq_(collection.category, cat)
 
     def test_edit_collection_invalid_carrier(self):
         self.make_publisher()

@@ -1,19 +1,25 @@
 from rest_framework import fields
 
+from amo.utils import to_language
+
 
 class TranslationSerializerField(fields.WritableField):
     """
-    Django-rest-framework custom serializer field for our TranslatedFields. It
-    follows closely the way TranslationDescriptor works, which means:
+    Django-rest-framework custom serializer field for our TranslatedFields.
 
     - When deserializing, in `from_native`, it accepts both a string or a 
-      dictionary.
-    - When serializing, it behaves like a regular charfield, simply returning
-      the unicode version of the field (which corresponds to the translation 
-      found for the currently used language)
+      dictionary. If a string is given, it'll be considered to be in the
+      default language.
+
+    - When serializing, it returns a dict with all translations for the given
+      `field_name` on `obj`, with languages as the keys.
     """
     def field_to_native(self, obj, field_name):
-        return unicode(getattr(obj, field_name))
+        field = getattr(obj, field_name)
+        translations = field.__class__.objects.filter(id=field.id,
+            localized_string__isnull=False)
+        return dict((to_language(trans.locale), unicode(trans))
+                    for trans in translations)
 
     def from_native(self, value):
         if isinstance(value, (basestring, dict)):
