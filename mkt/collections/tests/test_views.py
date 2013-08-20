@@ -53,7 +53,7 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         self.collection_data = {
             'collection_type': COLLECTIONS_TYPE_BASIC,
             'name': u'My Favorite Gamés',
-            'slug': 'my-favourite-games',
+            'slug': u'my-favourite-gamés',
             'author': u'My Àuthør',
             'is_public': True,
             'description': u'A cöllection of my favorite games',
@@ -302,6 +302,8 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         eq_(res.status_code, 201)
         new_collection = Collection.objects.get(pk=data['id'])
         ok_(new_collection.pk != self.collection.pk)
+
+        self.collection_data['slug'] = u'my-favourite-gamés-1'
 
         # Verify that the collection metadata is correct.
         for field, value in self.collection_data.iteritems():
@@ -595,6 +597,7 @@ class TestCollectionViewSetUnique(TestCollectionViewSetMixin, RestOAuth):
         self.collection_data = {
             'collection_type': COLLECTIONS_TYPE_FEATURED,
             'name': 'Featured Apps are cool',
+            'slug': 'featured-apps-are-cool',
             'description': 'Featured Apps really are the bomb',
             'region': mkt.regions.SPAIN.id,
             'carrier': mkt.carriers.TELEFONICA.id,
