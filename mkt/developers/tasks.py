@@ -480,7 +480,8 @@ def failed_validation(*messages, **kwargs):
                        'prelim': True})
 
 
-CT_URL = 'https://developer.mozilla.org/en/Apps/Manifest#Serving_manifests'
+CT_URL = (
+    'https://developer.mozilla.org/docs/Web/Apps/Manifest#Serving_manifests')
 def _fetch_manifest(url, upload=None):
     def fail(message, upload=None):
         if upload is None:
