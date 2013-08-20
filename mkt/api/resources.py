@@ -238,9 +238,10 @@ class AppResource(CORSResource, MarketplaceModelResource):
     def dehydrate(self, bundle):
         obj = bundle.obj
         amo_user = getattr(bundle.request, 'amo_user', None)
-        bundle.data.update(app_to_dict(obj,
-            region=bundle.request.REGION.id, profile=amo_user,
-            request=bundle.request))
+        region = (bundle.request.REGION.id if hasattr(bundle.request, 'REGION')
+                  else None)
+        bundle.data.update(app_to_dict(obj, region=region, profile=amo_user,
+                                       request=bundle.request))
         bundle.data['privacy_policy'] = (
             PrivacyPolicyResource().get_resource_uri(bundle))
 

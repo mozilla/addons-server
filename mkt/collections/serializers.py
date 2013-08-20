@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 from rest_framework import serializers
+from tastypie.bundle import Bundle
 from tower import ugettext_lazy as _
 
 from mkt.api.fields import TranslationSerializerField
-from mkt.webapps.utils import app_to_dict
+from mkt.api.resources import AppResource
 
 from .models import Collection
 from .constants import COLLECTIONS_TYPE_FEATURED, COLLECTIONS_TYPE_OPERATOR
@@ -11,7 +12,8 @@ from .constants import COLLECTIONS_TYPE_FEATURED, COLLECTIONS_TYPE_OPERATOR
 
 class CollectionMembershipField(serializers.RelatedField):
     def to_native(self, value):
-        return app_to_dict(value.app)
+        bundle = Bundle(obj=value.app)
+        return AppResource().full_dehydrate(bundle).data
 
 
 class CollectionSerializer(serializers.ModelSerializer):
