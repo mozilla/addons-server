@@ -46,10 +46,10 @@ Create
 
     :param collection_type: the type of collection to create.
     :type collection_type: int
-    :param name: the name of the collection.
-    :type name: string
-    :param description: a description of the collection.
-    :type description: string
+    :param name: the name of the collection. Can be a dict, in which case keys are locales and values are each a translation for the corresponding locale.
+    :type name: string|dict
+    :param description: a description of the collection. Can be a dict, in which case keys are locales and values are each a translation for the corresponding locale.
+    :type description: string|dict
     :param category: the ID of the category to attach this collection to. Defaults to ``null``.
     :type collection_type: int|null
     :param region: the ID of the region to attach this collection to. Defaults to ``null``.
@@ -82,10 +82,10 @@ Update
 
     :param collection_type: the type of the collection.
     :type collection_type: int
-    :param name: the name of the collection.
-    :type name: string
-    :param description: a description of the collection.
-    :type description: string
+    :param name: the name of the collection. Can be a dict, in which case keys are locales and values are each a translation for the corresponding locale.
+    :type name: string|dict
+    :param description: a description of the collection. Can be a dict, in which case keys are locales and values are each a translation for the corresponding locale.
+    :type description: string|dict
     :param category: the ID of the category to attach this collection to.
     :type collection_type: int|null
     :param region: the ID of the region to attach this collection to.

@@ -1,4 +1,5 @@
-from nose.tools import eq_
+# -*- coding: utf-8 -*-
+from nose.tools import eq_, ok_
 
 import amo.tests
 from mkt.collections.models import Collection
@@ -51,6 +52,27 @@ class TestCollectionSerializer(CollectionDataMixin, amo.tests.TestCase):
                                           'is_public'])
         for order, app in enumerate(apps):
             eq_(data['apps'][order]['slug'], app.app_slug)
+
+    def test_translation_deserialization(self):
+        data = {
+            'name': u'¿Dónde está la biblioteca?'
+        }
+        serializer = CollectionSerializer(instance=self.collection, data=data,
+                                          partial=True)
+        eq_(serializer.errors, {})
+        ok_(serializer.is_valid())
+
+    def test_translation_deserialization_multiples_locales(self):
+        data = {
+            'name': {
+                'fr': u'Chat grincheux…',
+                'en-US': u'Grumpy Cat...'
+            }
+        }
+        serializer = CollectionSerializer(instance=self.collection, data=data,
+                                          partial=True)
+        eq_(serializer.errors, {})
+        ok_(serializer.is_valid())
 
     def test_to_native_with_apps(self):
         apps = [amo.tests.app_factory() for n in xrange(1, 5)]
