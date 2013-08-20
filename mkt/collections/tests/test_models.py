@@ -16,6 +16,10 @@ class TestCollection(amo.tests.TestCase):
         }
         self.collection = Collection.objects.create(**self.collection_data)
 
+    def test_save(self):
+        self.collection = Collection.objects.all()[0]
+        self.collection.save()
+
     def test_collection(self):
         for name, value in self.collection_data.iteritems():
             eq_(self.collection_data[name], getattr(self.collection, name))
