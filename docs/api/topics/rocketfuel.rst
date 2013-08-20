@@ -51,7 +51,7 @@ Create
     :param description: a description of the collection. Can be a dict, in which case keys are locales and values are each a translation for the corresponding locale.
     :type description: string|dict
     :param category: the ID of the category to attach this collection to. Defaults to ``null``.
-    :type collection_type: int|null
+    :type category: int|null
     :param region: the ID of the region to attach this collection to. Defaults to ``null``.
     :type region: int|null
     :param carrier: the ID of the carrier to attach this collection to. Defaults to ``null``.
@@ -87,7 +87,7 @@ Update
     :param description: a description of the collection. Can be a dict, in which case keys are locales and values are each a translation for the corresponding locale.
     :type description: string|dict
     :param category: the ID of the category to attach this collection to.
-    :type collection_type: int|null
+    :type category: int|null
     :param region: the ID of the region to attach this collection to.
     :type region: int|null
     :param carrier: the ID of the carrier to attach this collection to.
