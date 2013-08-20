@@ -774,62 +774,53 @@ faded-border() {
                         margin: -20px 0 20px;
                     }
 
-                    &.keon:first-child {
-                        width: 420px;
+                    .button {
+                        display: block;
+                        margin: 10px auto 0;
+                        width: 80%;
                     }
 
-                    &.peak {
+                    &.keon {
+                        &:first-child {
+                            width: 420px;
+                        }
+                        &:last-child {
+                            background: url(../../img/ecosystem/phone-hand.png) 0 100% no-repeat;
+                            position: absolute;
+                            bottom: -1px;
+                            right: 0;
+                            height: 218px;
+                            width: 300px;
+                            p {
+                                font-weight: bold;
+                                padding-left: 130px;
+                            }
+                        }
+                    }
+
+                    &.phone {
                         margin-top: 40px;
                         padding-right: 50px;
-                    }
-
-                    &.keon:last-child {
-                        width: 300px;
-                    }
-
-                    &.peak:first-child {
-                        margin-left: 70px;
-                        width: 210px;
-                    }
-
-                    &.peak:last-child {
-                        width: 330px;
-                    }
-
-                    &.keon:last-child {
-                        background: url(../../img/ecosystem/phone-hand.png) no-repeat;
-                        height: 196px;
-                        width: 300px;
-
-                        p {
+                        &:first-child {
                             font-weight: bold;
-                            padding-left: 130px;
-                        }
-                    }
-
-                    &.peak:first-child {
-                        background: url(../../img/ecosystem/phone-peak.png) no-repeat;
-                        height: 252px;
-
-                        p {
-                            font-weight: bold;
+                            margin-left: 70px;
                             padding-top: 215px;
                             text-align: center;
+                            width: 210px;
                         }
-                    }
-                    
-                    &.zte:first-child {
-                        background: url(../../img/ecosystem/ZTE-OPEN.png) no-repeat;
-                        height: 232px;
-
-                        p {
-                            font-weight: bold;
-                            padding-top: 195px;
-                            text-align: center;
+                        &:last-child {
+                            width: 330px;
+                        }
+                        &.zte:first-child {
+                            background: url(../../img/ecosystem/ZTE-OPEN.png) 50% 0 no-repeat;
+                            background-size: auto 200px;
+                        }
+                        &.peak:first-child {
+                            background: url(../../img/ecosystem/phone-peak.png) no-repeat;
+                            padding-top: 240px;
                         }
                     }
                 }
-
             }
 
             .phone-options {
