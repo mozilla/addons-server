@@ -12,6 +12,7 @@ from rest_framework.fields import BooleanField, CharField
 from rest_framework.filters import BaseFilterBackend, OrderingFilter
 from rest_framework.mixins import (CreateModelMixin, DestroyModelMixin,
                                    ListModelMixin, RetrieveModelMixin)
+from rest_framework.parsers import FormParser, JSONParser
 from rest_framework.permissions import BasePermission
 from rest_framework.relations import PrimaryKeyRelatedField, RelatedField
 from rest_framework.response import Response
@@ -176,6 +177,7 @@ class ReadUnreadFilter(BaseFilterBackend):
 
 class CommViewSet(CORSMixin, GenericViewSet):
     """Some overriding and mixin stuff to adapt other viewsets."""
+    parser_classes = (FormParser, JSONParser)
 
     def patched_get_request(self):
         return lambda x: self.request
