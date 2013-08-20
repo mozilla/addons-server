@@ -32,104 +32,12 @@ class TestGlobalStats(amo.tests.TestCase):
         eq_(len(GlobalStat.objects.no_cache().filter(date=date,
                                                  name=job)), 1)
 
-    @mock.patch('stats.tasks.MonolithRecord')
-    def test_mmo_user_total_count_updates_monolith(self, record):
-        UserProfile.objects.create(source=amo.LOGIN_SOURCE_MMO_BROWSERID)
-        job = 'mmo_user_count_total'
-
-        tasks.update_global_totals(job, datetime.date.today())
-        self.assertTrue(record.called)
-        eq_(record.call_args[1]['value'], '{"count": 1}')
-
-    @mock.patch('stats.tasks.MonolithRecord')
-    def test_addon_total_downloads_doesnot_update_monolith(self, record):
-        date = datetime.date(2013, 3, 11)
-        job = 'addon_total_downloads'
-
-        tasks.update_global_totals(job, date)
-        self.assertFalse(record.called)
-
-    def test_marketplace_stats(self):
-        res = tasks._get_daily_jobs()
-        for k in ['apps_count_new', 'apps_count_installed',
-                  'apps_review_count_new']:
-            assert k in res, 'Job %s missing from _get_daily_jobs' % k
-
-    def test_app_new(self):
-        Addon.objects.create(type=amo.ADDON_WEBAPP)
-        eq_(tasks._get_daily_jobs()['apps_count_new'](), 1)
-
-    def test_app_added_counts(self):
-        app = Addon.objects.create(type=amo.ADDON_WEBAPP)
-        regions = dict(REGIONS_CHOICES_SLUG)
-
-        # Add a region exclusion.
-        excluded_region = regions['br']
-        app.addonexcludedregion.create(region=excluded_region.id)
-
-        jobs = tasks._get_daily_jobs()
-
-        # Check package type counts.
-        for region_slug in regions.keys():
-            expected_count = 0 if region_slug == excluded_region.slug else 1
-            count = jobs['apps_added_%s_hosted' % region_slug]()
-            eq_(count, expected_count,
-                'Incorrect count for region %s. Got %d, expected %d.' % (
-                    region_slug, count, expected_count))
-
-        # Check premium type counts.
-        for region_slug in regions.keys():
-            expected_count = 0 if region_slug == excluded_region.slug else 1
-            count = jobs['apps_added_%s_free' % region_slug]()
-            eq_(count, expected_count,
-                'Incorrect count for region %s. Got %d, expected %d.' % (
-                    region_slug, count, expected_count))
-
-    def test_apps_installed(self):
-        addon = Addon.objects.create(type=amo.ADDON_WEBAPP)
-        user = UserProfile.objects.create(username='foo')
-        Installed.objects.create(addon=addon, user=user)
-        eq_(tasks._get_daily_jobs()['apps_count_installed'](), 1)
-
-    def test_app_reviews(self):
-        addon = Addon.objects.create(type=amo.ADDON_WEBAPP)
-        user = UserProfile.objects.create(username='foo')
-        Review.objects.create(addon=addon, user=user)
-        eq_(tasks._get_daily_jobs()['apps_review_count_new'](), 1)
-
     def test_input(self):
         for x in ['2009-1-1',
                   datetime.datetime(2009, 1, 1),
                   datetime.datetime(2009, 1, 1, 11, 0)]:
             with self.assertRaises((TypeError, ValueError)):
                 tasks._get_daily_jobs(x)
-
-    def test_user_total(self):
-        day = datetime.date(2009, 1, 1)
-        p = UserProfile.objects.create(username='foo',
-                                       source=amo.LOGIN_SOURCE_MMO_BROWSERID)
-        p.update(created=day)
-        eq_(tasks._get_daily_jobs(day)['mmo_user_count_total'](), 1)
-        eq_(tasks._get_daily_jobs()['mmo_user_count_total'](), 1)
-        eq_(tasks._get_daily_jobs()['mmo_user_count_new'](), 0)
-
-    def test_user_new(self):
-        UserProfile.objects.create(username='foo',
-                                   source=amo.LOGIN_SOURCE_MMO_BROWSERID)
-        eq_(tasks._get_daily_jobs()['mmo_user_count_new'](), 1)
-
-    def test_dev_total(self):
-        p1 = UserProfile.objects.create(username='foo',
-                                        source=amo.LOGIN_SOURCE_MMO_BROWSERID)
-        p2 = UserProfile.objects.create(username='bar',
-                                        source=amo.LOGIN_SOURCE_MMO_BROWSERID)
-        a1 = amo.tests.addon_factory()
-        a2 = amo.tests.app_factory()
-        AddonUser.objects.create(addon=a1, user=p1)
-        AddonUser.objects.create(addon=a1, user=p2)
-        AddonUser.objects.create(addon=a2, user=p1)
-
-        eq_(tasks._get_daily_jobs()['mmo_developer_count_total'](), 1)
 
 
 class TestGoogleAnalytics(amo.tests.TestCase):
@@ -288,3 +196,111 @@ class TestUpdateDownloads(amo.tests.TestCase):
         eq_(CollectionAddon.objects.get(addon_id=3615,
                                         collection_id=80).downloads,
             15)
+
+
+class TestMonolithStats(amo.tests.TestCase):
+
+    @mock.patch('stats.tasks.MonolithRecord')
+    def test_mmo_user_total_count_updates_monolith(self, record):
+        UserProfile.objects.create(source=amo.LOGIN_SOURCE_MMO_BROWSERID)
+        metric = 'mmo_user_count_total'
+
+        tasks.update_monolith_stats(metric, datetime.date.today())
+        self.assertTrue(record.objects.create.called)
+        eq_(record.objects.create.call_args[1]['value'], '{"count": 1}')
+
+    def test_app_new(self):
+        Addon.objects.create(type=amo.ADDON_WEBAPP)
+        eq_(tasks._get_monolith_jobs()['apps_count_new'][0]['count'](), 1)
+
+    def test_app_added_counts(self):
+        today = datetime.date(2013, 1, 25)
+        app = Addon.objects.create(type=amo.ADDON_WEBAPP)
+        app.update(created=today)
+
+        package_type = 'packaged' if app.is_packaged else 'hosted'
+        premium_type = amo.ADDON_PREMIUM_API[app.premium_type]
+
+        # Add a region exclusion.
+        regions = dict(REGIONS_CHOICES_SLUG)
+        excluded_region = regions['br']
+        app.addonexcludedregion.create(region=excluded_region.id)
+
+        jobs = tasks._get_monolith_jobs(today)
+
+        # Check package type counts.
+        for job in jobs['apps_added_by_package_type']:
+            r = job['dimensions']['region']
+            p = job['dimensions']['package_type']
+            if (r != excluded_region.slug and p == package_type):
+                expected_count = 1
+            else:
+                expected_count = 0
+            count = job['count']()
+            eq_(count, expected_count,
+                'Incorrect count for region %s, package type %s. '
+                'Got %d, expected %d.' % (r, p, count, expected_count))
+
+        # Check premium type counts.
+        for job in jobs['apps_added_by_premium_type']:
+            r = job['dimensions']['region']
+            p = job['dimensions']['premium_type']
+            if (r != excluded_region.slug and p == premium_type):
+                expected_count = 1
+            else:
+                expected_count = 0
+            count = job['count']()
+            eq_(count, expected_count,
+                'Incorrect count for region %s, premium type %s. '
+                'Got %d, expected %d.' % (r, p, count, expected_count))
+
+    def test_apps_installed(self):
+        addon = Addon.objects.create(type=amo.ADDON_WEBAPP)
+        user = UserProfile.objects.create(username='foo')
+        Installed.objects.create(addon=addon, user=user)
+        eq_(tasks._get_monolith_jobs()['apps_count_installed'][0]['count'](),
+            1)
+
+    def test_app_reviews(self):
+        addon = Addon.objects.create(type=amo.ADDON_WEBAPP)
+        user = UserProfile.objects.create(username='foo')
+        Review.objects.create(addon=addon, user=user)
+        eq_(tasks._get_monolith_jobs()['apps_review_count_new'][0]['count'](),
+            1)
+
+    def test_input(self):
+        for x in ['2009-1-1',
+                  datetime.datetime(2009, 1, 1),
+                  datetime.datetime(2009, 1, 1, 11, 0)]:
+            with self.assertRaises((TypeError, ValueError)):
+                tasks._get_monolith_jobs(x)
+
+    def test_user_total(self):
+        day = datetime.date(2009, 1, 1)
+        p = UserProfile.objects.create(username='foo',
+                                       source=amo.LOGIN_SOURCE_MMO_BROWSERID)
+        p.update(created=day)
+        eq_(tasks._get_monolith_jobs(day)['mmo_user_count_total'][0]['count'](),
+            1)
+        eq_(tasks._get_monolith_jobs()['mmo_user_count_total'][0]['count'](),
+            1)
+        eq_(tasks._get_monolith_jobs()['mmo_user_count_new'][0]['count'](), 0)
+
+    def test_user_new(self):
+        UserProfile.objects.create(username='foo',
+                                   source=amo.LOGIN_SOURCE_MMO_BROWSERID)
+        eq_(tasks._get_monolith_jobs()['mmo_user_count_new'][0]['count'](), 1)
+
+    def test_dev_total(self):
+        p1 = UserProfile.objects.create(username='foo',
+                                        source=amo.LOGIN_SOURCE_MMO_BROWSERID)
+        p2 = UserProfile.objects.create(username='bar',
+                                        source=amo.LOGIN_SOURCE_MMO_BROWSERID)
+        a1 = amo.tests.addon_factory()
+        a2 = amo.tests.app_factory()
+        AddonUser.objects.create(addon=a1, user=p1)
+        AddonUser.objects.create(addon=a1, user=p2)
+        AddonUser.objects.create(addon=a2, user=p1)
+
+        eq_(tasks._get_monolith_jobs()['mmo_developer_count_total'][0]['count'](),
+            1)

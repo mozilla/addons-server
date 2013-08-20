@@ -14,7 +14,7 @@ class MonolithRecord(models.Model):
     """
     key = models.CharField(max_length=255)
     recorded = models.DateTimeField()
-    user_hash = models.CharField(max_length=255)
+    user_hash = models.CharField(max_length=255, blank=True)
     value = models.TextField()
 
     class Meta:
