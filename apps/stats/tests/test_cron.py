@@ -268,13 +268,6 @@ class TestMonolithStats(amo.tests.TestCase):
         eq_(tasks._get_monolith_jobs()['apps_review_count_new'][0]['count'](),
             1)
 
-    def test_input(self):
-        for x in ['2009-1-1',
-                  datetime.datetime(2009, 1, 1),
-                  datetime.datetime(2009, 1, 1, 11, 0)]:
-            with self.assertRaises((TypeError, ValueError)):
-                tasks._get_monolith_jobs(x)
-
     def test_user_total(self):
         day = datetime.date(2009, 1, 1)
         p = UserProfile.objects.create(username='foo',
