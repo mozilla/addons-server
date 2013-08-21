@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 from nose.tools import eq_, ok_
+from tastypie.bundle import Bundle
 
 import amo.tests
+from mkt.api.resources import AppResource
 from mkt.collections.constants import COLLECTIONS_TYPE_BASIC
-from mkt.collections.models import Collection
+from mkt.collections.models import Collection, CollectionMembership
 from mkt.collections.serializers import (CollectionMembershipField,
                                          CollectionSerializer,)
-from mkt.webapps.utils import app_to_dict
 
 
 class CollectionDataMixin(object):
@@ -25,11 +26,16 @@ class TestCollectionMembershipField(CollectionDataMixin, amo.tests.TestCase):
         self.app = amo.tests.app_factory()
         self.collection.add_app(self.app)
         self.field = CollectionMembershipField()
+        self.membership = CollectionMembership.objects.all()[0]
 
     def test_to_native(self):
-        membership = self.collection.collectionmembership_set.all()[0]
-        native = self.field.to_native(membership)
-        eq_(native, app_to_dict(self.app))
+        resource = AppResource().full_dehydrate(Bundle(obj=self.app))
+        native = self.field.to_native(self.membership)
+        for key, value in native.iteritems():
+            if key == 'resource_uri':
+                eq_(value, self.app.get_api_url(pk=self.app.pk))
+            else:
+                eq_(value, resource.data[key])
 
 
 class TestCollectionSerializer(CollectionDataMixin, amo.tests.TestCase):
@@ -54,6 +60,7 @@ class TestCollectionSerializer(CollectionDataMixin, amo.tests.TestCase):
                                           'slug', 'is_public'])
         for order, app in enumerate(apps):
             eq_(data['apps'][order]['slug'], app.app_slug)
+        return data
 
     def test_translation_deserialization(self):
         data = {
@@ -78,4 +85,7 @@ class TestCollectionSerializer(CollectionDataMixin, amo.tests.TestCase):
 
     def test_to_native_with_apps(self):
         apps = [amo.tests.app_factory() for n in xrange(1, 5)]
-        self.test_to_native(apps=apps)
+        data = self.test_to_native(apps=apps)
+        keys = data['apps'][0].keys()
+        ok_('name' in keys)
+        ok_('id' in keys)
