@@ -1,9 +1,11 @@
+from django.conf import settings
 from django.db import models
 
 import amo.models
 import mkt.regions
 from addons.models import Category, clean_slug
 from amo.decorators import use_master
+from amo.utils import to_language
 from mkt.webapps.models import Webapp
 from translations.fields import PurifiedField, save_signal
 
@@ -26,6 +28,10 @@ class Collection(amo.models.ModelBase):
     author = models.CharField(max_length=255, default='', blank=True)
     slug = models.SlugField(max_length=30,
                             help_text='Used in collection URLs.')
+    default_language = models.CharField(max_length=10,
+        choices=((to_language(lang), desc)
+                 for lang, desc in settings.LANGUAGES.items()),
+        default=to_language(settings.LANGUAGE_CODE))
 
     objects = amo.models.ManagerBase()
     public = PublicCollectionsManager()
@@ -46,6 +52,10 @@ class Collection(amo.models.ModelBase):
     @use_master
     def clean_slug(self):
         clean_slug(self, 'slug')
+
+    @classmethod
+    def get_fallback(cls):
+         return cls._meta.get_field('default_language')
 
     def apps(self):
         """

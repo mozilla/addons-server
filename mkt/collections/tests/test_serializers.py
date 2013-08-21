@@ -13,9 +13,9 @@ from mkt.collections.serializers import (CollectionMembershipField,
 class CollectionDataMixin(object):
     collection_data = {
         'collection_type': COLLECTIONS_TYPE_BASIC,
-        'name': 'My Favourite Games',
+        'name': {'en-US': u'A collection of my favourite gàmes'},
         'slug': 'my-favourite-games',
-        'description': 'A collection of my favourite games',
+        'description': {'en-US': u'A collection of my favourite gamés'},
     }
 
 
@@ -57,10 +57,19 @@ class TestCollectionSerializer(CollectionDataMixin, amo.tests.TestCase):
         self.assertSetEqual(data.keys(), ['id', 'name', 'description', 'apps',
                                           'collection_type', 'category',
                                           'region', 'carrier', 'author',
-                                          'slug', 'is_public'])
+                                          'slug', 'is_public',
+                                          'default_language'])
         for order, app in enumerate(apps):
             eq_(data['apps'][order]['slug'], app.app_slug)
         return data
+
+    def test_wrong_default_language_serialization(self):
+        # The following is wrong because we only accept the 'en-us' form.
+        data = {'default_language': u'en_US'}
+        serializer = CollectionSerializer(instance=self.collection, data=data,
+                                          partial=True)
+        eq_(serializer.is_valid(), False)
+        ok_('default_language' in serializer.errors)
 
     def test_translation_deserialization(self):
         data = {

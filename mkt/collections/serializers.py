@@ -26,11 +26,14 @@ class CollectionSerializer(serializers.ModelSerializer):
 
     class Meta:
         fields = ('apps', 'author', 'carrier', 'category', 'collection_type',
-                  'description', 'id', 'is_public', 'name', 'region', 'slug')
+                  'description', 'id', 'is_public', 'name', 'region', 'slug',
+                  'default_language')
         model = Collection
 
     def full_clean(self, instance):
         instance = super(CollectionSerializer, self).full_clean(instance)
+        if not instance:
+            return None
         # For featured apps and operator shelf collections, we need to check if
         # one already exists for the same region/category/carrier combination.
         #
