@@ -46,9 +46,9 @@ Create
 
     :param collection_type: the type of collection to create.
     :type collection_type: int
-    :param name: the name of the collection. Can be a dict, in which case keys are locales and values are each a translation for the corresponding locale.
+    :param name: the name of the collection. Can be a dict, in which case keys are languages and values are each a translation for the corresponding language.
     :type name: string|dict
-    :param description: a description of the collection. Can be a dict, in which case keys are locales and values are each a translation for the corresponding locale.
+    :param description: a description of the collection. Can be a dict, in which case keys are languages and values are each a translation for the corresponding language.
     :type description: string|dict
     :param category: the ID of the category to attach this collection to. Defaults to ``null``.
     :type category: int|null
@@ -82,9 +82,9 @@ Update
 
     :param collection_type: the type of the collection.
     :type collection_type: int
-    :param name: the name of the collection. Can be a dict, in which case keys are locales and values are each a translation for the corresponding locale.
+    :param name: the name of the collection. Can be a dict, in which case keys are languages and values are each a translation for the corresponding language.
     :type name: string|dict
-    :param description: a description of the collection. Can be a dict, in which case keys are locales and values are each a translation for the corresponding locale.
+    :param description: a description of the collection. Can be a dict, in which case keys are languages and values are each a translation for the corresponding language.
     :type description: string|dict
     :param category: the ID of the category to attach this collection to.
     :type category: int|null
