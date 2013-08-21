@@ -281,3 +281,21 @@ class TestApiReviewer(BaseOAuth, ESTestCase):
         eq_(res.status_code, 200)
         obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
+
+    def test_no_flash_filtering(self):
+        f = self.webapp.get_latest_file()
+        f.uses_flash = True
+        f.save()
+        self.webapp.save()
+        self.refresh('webapp')
+        res = self.client.get(self.url + ({'dev': 'firefoxos'},))
+        eq_(res.status_code, 200)
+        eq_(len(res.json['objects']), 1)
+
+    def test_no_premium_filtering(self):
+        self.create_switch('allow-paid-app-search')
+        self.webapp.update(premium_type=amo.ADDON_PREMIUM)
+        self.refresh('webapp')
+        res = self.client.get(self.url + ({'dev': 'android'},))
+        eq_(res.status_code, 200)
+        eq_(len(res.json['objects']), 1)

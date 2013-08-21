@@ -119,8 +119,7 @@ class TestSearchFilters(BaseOAuth):
         ok_({'term': {'manifest_url': url}} in qs['filter']['and'])
 
     def test_region_exclusions(self):
-        qs = self._filter(self.req, {'q': 'search terms'}, new_idx=True,
-                          region=regions.CO)
+        qs = self._filter(self.req, {'q': 'search terms'}, region=regions.CO)
         ok_({'not': {'filter': {'term': {'region_exclusions': 9}}}}
             in qs['filter']['and'])
 
