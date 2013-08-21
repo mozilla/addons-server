@@ -22,11 +22,19 @@ from .forms import GlobalStatsForm
 log = commonware.log.getLogger('z.stats')
 
 
-# Map of URL metric name to monolith metric name. Future home of where we can
-# put other properties (e.g. auth rules) about the stats.
+# Map of URL metric name to monolith metric name.
+#
+# The 'dimensions' key is optional query string arguments with defaults that is
+# passed to the monolith client and used in the facet filters.
 STATS = {
-    'total_visits': {'metric': 'visits'},
+    'apps_added_by_package': {'metric': 'apps_added_package_count',
+                              'dimensions': {'region': 'us',
+                                             'package_type': 'hosted'}},
+    'apps_added_by_premium': {'metric': 'apps_added_premium_count',
+                              'dimensions': {'region': 'us',
+                                             'package_type': 'free'}},
     'total_developers': {'metric': 'total_dev_count'},
+    'total_visits': {'metric': 'visits'},
 }
 
 
@@ -51,10 +59,15 @@ class GlobalStats(CORSMixin, APIView):
         data = form.cleaned_data
         client = get_monolith_client()
 
+        dimensions = {}
+        if 'dimensions' in STATS[metric]:
+            for key, default in STATS[metric]['dimensions'].items():
+                dimensions[key] = request.GET.get(key, default)
+
         try:
             metric_data = list(client(STATS[metric]['metric'],
                                       data.get('start'), data.get('end'),
-                                      data.get('interval')))
+                                      data.get('interval'), **dimensions))
         except ValueError:
             # This occurs if monolith doesn't have our metric and we get an
             # elasticsearch SearchPhaseExecutionException error.
