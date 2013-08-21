@@ -323,18 +323,18 @@ class SafeUnzip(object):
             if '..' in info.filename or info.filename.startswith('/'):
                 log.error('Extraction error, invalid file name (%s) in '
                           'archive: %s' % (info.filename, self.source))
-                # l10n: {0} is the name of the invalid file.
+                # L10n: {0} is the name of the invalid file.
                 raise forms.ValidationError(
-                    _('Invalid file name in archive: {0}'.format(
-                        info.filename)))
+                    _('Invalid file name in archive: {0}').format(
+                        info.filename))
 
             if info.file_size > settings.FILE_UNZIP_SIZE_LIMIT:
                 log.error('Extraction error, file too big (%s) for file (%s): '
                           '%s' % (self.source, info.filename, info.file_size))
-                # l10n: {0} is the name of the invalid file.
+                # L10n: {0} is the name of the invalid file.
                 raise forms.ValidationError(
-                    _('File exceeding size limit in archive: {0}'.format(
-                        info.filename)))
+                    _('File exceeding size limit in archive: {0}').format(
+                        info.filename))
 
         self.info = _info
         self.zip = zip
