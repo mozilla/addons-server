@@ -34,6 +34,8 @@ FREE_PLATFORMS = (
 
 PAID_PLATFORMS = (
     ('paid-firefoxos', _('Firefox OS')),
+    ('paid-android-mobile', _('Firefox Mobile')),
+    ('paid-android-tablet', _('Firefox Tablet')),
 )
 
 # Extra information about those values for display in the page.
@@ -43,4 +45,6 @@ DEVICE_LOOKUP = {
     'free-android-mobile': _('Android smartphones'),
     'free-android-tablet': _('Android tablets'),
     'paid-firefoxos': _('Fully open mobile ecosystem'),
+    'paid-android-mobile': _('Android smartphones'),
+    'paid-android-tablet': _('Android tablets'),
 }

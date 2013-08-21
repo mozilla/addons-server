@@ -208,10 +208,10 @@ class TestFlaggedUsersPremiumApps(BaseOAuth):
         qs = self._filter(self.req, self.query_string, **filters)
         ok_(self.prem_exclude in qs['filter']['and'])
 
-        # User is allowed to see paid apps, yet we don't show them on android.
+        # User is allowed to see paid apps on Android.
         self.flag.users.add(self.user)
         qs = self._filter(self.req, self.query_string, **filters)
-        ok_(self.prem_exclude in qs['filter']['and'])
+        ok_(self.prem_exclude not in qs['filter']['and'])
 
     def test_premium_on_android_tablet(self):
         self._flag()
@@ -221,10 +221,10 @@ class TestFlaggedUsersPremiumApps(BaseOAuth):
         qs = self._filter(self.req, self.query_string, **filters)
         ok_(self.prem_exclude in qs['filter']['and'])
 
-        # User is allowed to see paid apps, yet we don't show them on android.
+        # User is allowed to see paid apps on Android.
         self.flag.users.add(self.user)
         qs = self._filter(self.req, self.query_string, **filters)
-        ok_(self.prem_exclude in qs['filter']['and'])
+        ok_(self.prem_exclude not in qs['filter']['and'])
 
     def test_premium_on_gaia(self):
         self._flag()
