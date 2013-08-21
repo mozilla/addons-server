@@ -116,12 +116,12 @@ class TestNewWebappForm(amo.tests.TestCase):
 
     @mock.patch('mkt.submit.forms.parse_addon',
                 lambda *args: {'version': None})
-    def test_packaged_wrong_device(self):
+    def test_packaged_allowed_desktop(self):
         form = forms.NewWebappForm({'free_platforms': ['free-desktop'],
                                     'upload': self.file.uuid,
                                     'packaged': True})
-        assert not form.is_valid(), form.errors
-        eq_(form.ERRORS['packaged'], form.errors['paid_platforms'])
+        assert form.is_valid(), form.errors
+        assert form.is_packaged()
 
 
 class TestNewWebappVersionForm(amo.tests.TestCase):
