@@ -342,3 +342,19 @@ h1 {
         margin-bottom: 13px;
     }
 }
+
+dd {
+    ol {
+        color: #666;
+        list-style: decimal inside;
+    }
+    li + li {
+        margin-top: 10px;
+    }
+    b {
+        &:after {
+            color: #aaa;
+            content: "\00a0\00a0•\00a0";
+        }
+    }
+}
