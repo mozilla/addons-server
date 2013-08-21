@@ -10,5 +10,6 @@ URL: {{ detail_url }}
 {{ comments }}
 
 Please reply to this email to supply the information requested.
+{% include 'reviewers/emails/decisions/includes/commbadge.txt' %}
 
 {% endblock %}
