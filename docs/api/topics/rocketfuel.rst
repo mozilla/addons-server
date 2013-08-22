@@ -72,7 +72,7 @@ Create
 Detail
 ------
 
-.. http:get:: /api/v1/rocketfuel/collections/(int:id)/
+.. http:get:: /api/v1/rocketfuel/collections/(int:id|string:slug)/
 
     Get a single collection.
 
@@ -82,7 +82,7 @@ Detail
 Update
 ------
 
-.. http:patch:: /api/v1/rocketfuel/collections/(int:id)/
+.. http:patch:: /api/v1/rocketfuel/collections/(int:id|string:slug)/
 
     Update a collection.
 
@@ -158,10 +158,27 @@ Duplicate
     :status 400: invalid request; more details provided in the response body.
 
 
+Delete
+------
+
+.. http:delete:: /api/v1/rocketfuel/collections/(int:id|string:slug)/
+
+    Delete a single collection.
+
+    .. note:: Authentication is required.
+
+    **Response**:
+
+    :status 204: collection successfully deleted.
+    :status 400: invalid request; more details provided in the response body.
+    :status 403: not authenticated or authenticated without permission; more
+        details provided in the response body.
+
+
 Add Apps
 --------
 
-.. http:post:: /api/v1/rocketfuel/collections/(int:id)/add_app/
+.. http:post:: /api/v1/rocketfuel/collections/(int:id|string:slug)/add_app/
 
     Add an application to a single collection.
 
@@ -184,7 +201,7 @@ Add Apps
 Remove Apps
 -----------
 
-.. http:post:: /api/v1/rocketfuel/collections/(int:id)/remove_app/
+.. http:post:: /api/v1/rocketfuel/collections/(int:id|string:slug)/remove_app/
 
     Remove an application from a single collection.
 
@@ -208,7 +225,7 @@ Remove Apps
 Reorder Apps
 ------------
 
-.. http:post:: /api/v1/rocketfuel/collections/(int:id)/reorder/
+.. http:post:: /api/v1/rocketfuel/collections/(int:id|string:slug)/reorder/
 
     Reorder applications in a collection.
 
