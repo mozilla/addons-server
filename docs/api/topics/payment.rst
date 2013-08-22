@@ -349,7 +349,7 @@ Premium apps
     **Request**:
 
     :param app: the id or slug of the app being installed.
-    :type app : int|string
+    :type app: int|string
 
     **Response**:
 
@@ -495,7 +495,7 @@ Pay Tiers
 .. _localized-tier-label:
 
 Localized tier
-~~~~~~~~~~~~~~
+--------------
 
 To display a price to your user, it would be nice to know how to display a
 price in the app. The Marketplace does some basic work to calculate the locale
