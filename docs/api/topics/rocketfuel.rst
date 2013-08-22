@@ -46,6 +46,10 @@ Create
 
     :param author: the author of the collection.
     :type author: string
+    :param background_color: the background of the overlay on the image when
+        collection is displayed (hex-formatted, e.g. "#FF00FF"). Only applies to
+        curated collections (i.e. when collection_type is 0).
+    :type background_color: string|null
     :param carrier: the ID of the carrier to attach this collection to. Defaults
         to ``null``.
     :type carrier: int|null
@@ -68,6 +72,11 @@ Create
     :param slug: a slug to use in URLs for the collection. Automatically
         generated if not specified.
     :type slug: string|null
+    :param text_color: the color of the text displayed on the overlay on the
+        image when collection is displayed (hex-formatted, e.g. "#FF00FF"). Only
+        applies to curated collections (i.e. when collection_type is 0).
+    :type text_color: string|null
+
 
 Detail
 ------

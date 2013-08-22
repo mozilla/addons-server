@@ -10,6 +10,7 @@ from mkt.webapps.models import Webapp
 from translations.fields import PurifiedField, save_signal
 
 from .constants import COLLECTION_TYPES
+from .fields import ColorField
 from .managers import PublicCollectionsManager
 
 
@@ -32,6 +33,8 @@ class Collection(amo.models.ModelBase):
         choices=((to_language(lang), desc)
                  for lang, desc in settings.LANGUAGES.items()),
         default=to_language(settings.LANGUAGE_CODE))
+    background_color = ColorField(null=True)
+    text_color = ColorField(null=True)
 
     objects = amo.models.ManagerBase()
     public = PublicCollectionsManager()
@@ -55,7 +58,7 @@ class Collection(amo.models.ModelBase):
 
     @classmethod
     def get_fallback(cls):
-         return cls._meta.get_field('default_language')
+        return cls._meta.get_field('default_language')
 
     def apps(self):
         """
