@@ -147,6 +147,7 @@ Remove Apps
     body.
 
     :status 200: app successfully removed from collection.
+    :status 205: app not a member of the collection.
     :status 400: invalid request; more details provided in the response body.
 
 

@@ -385,7 +385,8 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         form_data = {'app': app_id} if app_id else {}
         url = self.collection_url('remove-app', self.collection.pk)
         remove_res = client.post(url, json.dumps(form_data))
-        remove_data = json.loads(remove_res.content)
+        remove_data = (json.loads(remove_res.content) if remove_res.content else
+                       None)
         return remove_res, remove_data
 
     def test_remove_app_anon(self):
@@ -421,8 +422,8 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         self.make_publisher()
         self.add_app(self.client)
         res, data = self.remove_app(self.client, app_id=self.apps[1].pk)
-        eq_(res.status_code, 400)
-        eq_(CollectionViewSet.exceptions['not_in'], data['detail'])
+        eq_(res.status_code, 205)
+        ok_(not data)
 
     def test_edit_collection_anon(self):
         res, data = self.edit_collection(self.anon)
