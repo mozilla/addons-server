@@ -1,5 +1,6 @@
 import json
 from decimal import Decimal
+import jwt
 
 from django.core import mail
 
@@ -8,6 +9,7 @@ from nose.tools import eq_, ok_
 from waffle.models import Flag
 
 from amo import CONTRIB_PENDING, CONTRIB_PURCHASE
+from amo.tests import TestCase
 from amo.urlresolvers import reverse
 from constants.payments import PROVIDER_BANGO
 from market.models import Price, PriceCurrency
@@ -16,10 +18,10 @@ from users.models import UserProfile
 from mkt.api.base import get_url, list_url
 from mkt.api.tests.test_oauth import BaseOAuth
 from mkt.constants import regions
-from mkt.webpay.models import ProductIcon
-from mkt.site.fixtures import fixture
-from stats.models import Contribution
 from mkt.purchase.tests.utils import PurchaseTest
+from mkt.site.fixtures import fixture
+from mkt.webpay.models import ProductIcon
+from stats.models import Contribution
 
 
 class TestPrepare(PurchaseTest, BaseOAuth):
@@ -318,3 +320,21 @@ class TestProductIconResource(BaseOAuth):
 
         ob = json.loads(res.content)['objects'][0]
         eq_(ob['url'], icon.url())
+
+
+class TestSigCheck(TestCase):
+
+    def test(self):
+        key = 'marketplace'
+        aud = 'webpay'
+        secret = 'third door on the right'
+        with self.settings(APP_PURCHASE_SECRET=secret,
+                           APP_PURCHASE_KEY=key,
+                           APP_PURCHASE_AUD=aud):
+            res = self.client.post(reverse('webpay.sig_check'))
+        eq_(res.status_code, 201, res)
+        data = json.loads(res.content)
+        req = jwt.decode(data['sig_check_jwt'].encode('ascii'), secret)
+        eq_(req['iss'], key)
+        eq_(req['aud'], aud)
+        eq_(req['typ'], 'mozilla/payments/sigcheck/v1')
