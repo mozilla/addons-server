@@ -77,7 +77,7 @@ class CollectionViewSet(CORSMixin, SlugOrIdMixin, viewsets.ModelViewSet):
             raise exceptions.ParseError(detail=self.exceptions['doesnt_exist'])
         removed = collection.remove_app(to_remove)
         if not removed:
-            raise exceptions.ParseError(detail=self.exceptions['not_in'])
+            return Response(status=status.HTTP_205_RESET_CONTENT)
         return self.return_updated(status.HTTP_200_OK)
 
     @action()
