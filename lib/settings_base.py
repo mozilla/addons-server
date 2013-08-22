@@ -1217,6 +1217,8 @@ CSP_REPORT_ONLY = True
 CSP_ALLOW = ("'self'",)
 CSP_IMG_SRC = ("'self'", SITE_URL,
                "https://www.google.com",  # Recaptcha comes from google
+               "https://mozorg.cdn.mozilla.net",  # Tabzilla.
+               "http://mozorg.cdn.mozilla.net",
                "https://www.getpersonas.com",
                "https://s3.amazonaws.com",  # getsatisfaction
                "https://ssl.google-analytics.com",
@@ -1225,6 +1227,8 @@ CSP_IMG_SRC = ("'self'", SITE_URL,
               )
 CSP_SCRIPT_SRC = ("'self'", SITE_URL,
                   "https://www.google.com",  # Recaptcha
+                  "https://mozorg.cdn.mozilla.net",  # Tabzilla.
+                  "http://mozorg.cdn.mozilla.net",
                   "https://login.persona.org",
                   "https://firefoxos.persona.org",
                   "https://www.paypalobjects.com",
@@ -1232,6 +1236,8 @@ CSP_SCRIPT_SRC = ("'self'", SITE_URL,
                   "http://www.google-analytics.com",
                   )
 CSP_STYLE_SRC = ("'self'", SITE_URL,
+                 "https://mozorg.cdn.mozilla.net",  # Tabzilla.
+                 "http://mozorg.cdn.mozilla.net",
                  "http://raw.github.com",
                  "https://raw.github.com",
                 )
