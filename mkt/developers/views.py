@@ -54,6 +54,7 @@ from mkt.developers.forms import (APIConsumerForm, AppFormBasic,
                                   trap_duplicate)
 from mkt.developers.utils import check_upload
 from mkt.developers.tasks import run_validator
+from mkt.reviewers.utils import create_comm_thread
 from mkt.submit.forms import AppFeaturesForm, NewWebappVersionForm
 from mkt.webapps.tasks import _update_manifest, update_manifests
 from mkt.webapps.models import Webapp
@@ -285,6 +286,13 @@ def version_edit(request, addon_id, addon, version_id):
 
     if request.method == 'POST' and all(f.is_valid() for f in all_forms):
         [f.save() for f in all_forms]
+
+        # Make note visible to reviewers, senior reviewers and staff.
+        comm_perms = ('reviewer', 'senior_reviewer', 'staff')
+        create_comm_thread(addon=addon, version=version, action='comment',
+            perms=comm_perms, comments=f.data['approvalnotes'],
+            profile=request.amo_user)
+
         messages.success(request, _('Version successfully edited.'))
         return redirect(addon.get_dev_url('versions'))
 
