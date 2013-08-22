@@ -44,20 +44,30 @@ Create
 
     **Request**:
 
-    :param collection_type: the type of collection to create.
-    :type collection_type: int
-    :param name: the name of the collection. Can be a dict, in which case keys are languages and values are each a translation for the corresponding language.
-    :type name: string|dict
-    :param description: a description of the collection. Can be a dict, in which case keys are languages and values are each a translation for the corresponding language.
-    :type description: string|dict
-    :param category: the ID of the category to attach this collection to. Defaults to ``null``.
-    :type category: int|null
-    :param region: the ID of the region to attach this collection to. Defaults to ``null``.
-    :type region: int|null
-    :param carrier: the ID of the carrier to attach this collection to. Defaults to ``null``.
-    :type carrier: int|null
     :param author: the author of the collection.
     :type author: string
+    :param carrier: the ID of the carrier to attach this collection to. Defaults
+        to ``null``.
+    :type carrier: int|null
+    :param category: the ID of the category to attach this collection to.
+        Defaults to ``null``.
+    :type category: int|null
+    :param collection_type: the type of collection to create.
+    :type collection_type: int
+    :param description: a description of the collection. Can be a dict, in which
+        case keys are languages and values are each a translation for the
+        corresponding language.
+    :type description: string|dict
+    :param name: the name of the collection. Can be a dict, in which case keys
+        are languages and values are each a translation for the corresponding
+        language.
+    :type name: string|dict
+    :param region: the ID of the region to attach this collection to. Defaults
+        to ``null``.
+    :type region: int|null
+    :param slug: a slug to use in URLs for the collection. Automatically
+        generated if not specified.
+    :type slug: string|null
 
 Detail
 ------

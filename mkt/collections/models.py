@@ -26,7 +26,7 @@ class Collection(amo.models.ModelBase):
     carrier = models.IntegerField(default=None, null=True, blank=True,
         choices=mkt.carriers.CARRIER_CHOICES, db_index=True)
     author = models.CharField(max_length=255, default='', blank=True)
-    slug = models.SlugField(max_length=30,
+    slug = models.SlugField(blank=True, max_length=30,
                             help_text='Used in collection URLs.')
     default_language = models.CharField(max_length=10,
         choices=((to_language(lang), desc)
