@@ -28,6 +28,7 @@ This documentation covers interacting with the `Firefox Marketplace`_.
    topics/rocketfuel.rst
    topics/search.rst
    topics/site.rst
+   topics/stats.rst
    topics/submission.rst
 
 
