@@ -13,6 +13,7 @@ import amo
 import amo.tests
 import mkt
 from addons.models import Category
+from amo.utils import slugify
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.collections.constants import (COLLECTIONS_TYPE_BASIC,
                                        COLLECTIONS_TYPE_FEATURED,
@@ -326,6 +327,13 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         self.collection_data.pop('collection_type')
         res, data = self.create(self.client)
         eq_(res.status_code, 400)
+
+    def test_create_has_perms_no_slug(self):
+        self.make_publisher()
+        self.collection_data.pop('slug')
+        res, data = self.create(self.client)
+        eq_(res.status_code, 201)
+        eq_(data['slug'], slugify(self.collection_data['name']['en-US']))
 
     def test_create_collection_no_author(self):
         self.make_publisher()

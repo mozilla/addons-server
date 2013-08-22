@@ -19,7 +19,7 @@ class CollectionMembershipField(serializers.RelatedField):
 class CollectionSerializer(serializers.ModelSerializer):
     name = TranslationSerializerField()
     description = TranslationSerializerField()
-    slug = serializers.CharField()
+    slug = serializers.CharField(required=False)
     collection_type = serializers.IntegerField()
     apps = CollectionMembershipField(many=True,
                                      source='collectionmembership_set')
