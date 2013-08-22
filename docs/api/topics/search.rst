@@ -60,11 +60,10 @@ Search
     .. code-block:: json
 
         {
-            "absolute_url": http://server.local/app/my-app/",
+            "absolute_url": https://marketplace.firefox.com/app/my-app/",
         }
 
     :status 200: successfully completed.
-    :status 401: if attempting to filter by status, you do not have that role.
 
 Featured App Listing
 ====================
