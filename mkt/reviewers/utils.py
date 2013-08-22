@@ -267,7 +267,7 @@ class ReviewApp(ReviewBase):
             except UserProfile.DoesNotExist:
                 pass
             else:
-                CommunicationThreadCC.objects.create(
+                CommunicationThreadCC.objects.get_or_create(
                     thread=thread, user=moz_contact)
 
     def process_public(self):
