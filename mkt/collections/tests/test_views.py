@@ -34,6 +34,14 @@ class TestCollectionViewSetMixin(object):
         data = json.loads(res.content)
         return res, data
 
+    def duplicate(self, client, data=None):
+        if not data:
+            data = {}
+        url = self.collection_url('duplicate', self.collection.pk)
+        res = client.post(url, json.dumps(data))
+        data = json.loads(res.content)
+        return res, data
+
     def edit_collection(self, client, **kwargs):
         url = self.collection_url('detail', self.collection.pk)
         res = client.patch(url, json.dumps(kwargs))
@@ -343,6 +351,87 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         new_collection = Collection.objects.get(pk=data['id'])
         ok_(new_collection.pk != self.collection.pk)
         eq_(new_collection.author, '')
+
+    def test_duplicate_anon(self):
+        res, data = self.create(self.anon)
+        eq_(res.status_code, 403)
+
+    def test_duplicate_no_perms(self):
+        res, data = self.create(self.client)
+        eq_(res.status_code, 403)
+
+    def test_duplicate_has_perms(self):
+        self.make_publisher()
+        original = self.collection
+
+        res, data = self.duplicate(self.client)
+        eq_(res.status_code, 201)
+        new_collection = Collection.objects.get(pk=data['id'])
+        ok_(new_collection.pk != original.pk)
+        ok_(new_collection.slug)
+        ok_(new_collection.slug != original.slug)
+
+        # Verify that the collection metadata is correct. We duplicated
+        # self.collection, which was created with self.collection_data, so
+        # use that.
+        original = self.collection
+        keys = self.collection_data.keys()
+        keys.remove('name')
+        keys.remove('description')
+        keys.remove('slug')
+        for field in keys:
+            eq_(data[field], self.collection_data[field])
+            eq_(getattr(new_collection, field), self.collection_data[field])
+            eq_(getattr(new_collection, field), getattr(original, field))
+
+        # Test name and description separately as we return the whole dict
+        # with all translations.
+        eq_(data['name'], self.collection_data['name'])
+        eq_(new_collection.name, data['name']['en-US'])
+        eq_(new_collection.name, original.name)
+
+        eq_(data['description'], self.collection_data['description'])
+        eq_(new_collection.description, data['description']['en-US'])
+        eq_(new_collection.description, original.description)
+
+    def test_duplicate_apps(self):
+        self.make_publisher()
+        apps = self.apps[:2]
+        for app in apps:
+            self.collection.add_app(app)
+
+        res, data = self.duplicate(self.client)
+        eq_(res.status_code, 201)
+        new_collection = Collection.objects.get(pk=data['id'])
+        ok_(new_collection.pk != self.collection.pk)
+        eq_(new_collection.apps(), self.collection.apps())
+        eq_(len(data['apps']), len(apps))
+        for order, app in enumerate(apps):
+            eq_(int(data['apps'][order]['id']), apps[order].id)
+
+    def test_duplicate_override(self):
+        self.make_publisher()
+        override_data = {
+            'collection_type': COLLECTIONS_TYPE_OPERATOR,
+            'region': mkt.regions.SPAIN.id
+        }
+        res, data = self.duplicate(self.client, override_data)
+        eq_(res.status_code, 201)
+        new_collection = Collection.objects.get(pk=data['id'])
+        ok_(new_collection.pk != self.collection.pk)
+        for key in override_data:
+            eq_(data[key], override_data[key])
+            eq_(getattr(new_collection, key), override_data[key])
+            ok_(getattr(new_collection, key) != getattr(self.collection, key))
+
+    def test_duplicate_invalid_data(self):
+        self.make_publisher()
+        override_data = {
+            'collection_type': COLLECTIONS_TYPE_OPERATOR,
+            'region': max(mkt.regions.REGION_IDS) + 1
+        }
+        res, data = self.duplicate(self.client, override_data)
+        eq_(res.status_code, 400)
 
     def add_app(self, client, app_id=None):
         if app_id is None:
@@ -711,3 +800,14 @@ class TestCollectionViewSetUnique(TestCollectionViewSetMixin, RestOAuth):
         update_data['category'] = nyan.pk
         res, data = self.edit_collection(self.client, **update_data)
         eq_(res.status_code, 200)
+
+    def test_duplicate_featured(self):
+        res, data = self.duplicate(self.client)
+        eq_(res.status_code, 400)
+        ok_('collection_uniqueness' in data)
+
+    def test_duplicate_operator(self):
+        self.collection.update(collection_type=COLLECTIONS_TYPE_OPERATOR)
+        res, data = self.duplicate(self.client)
+        eq_(res.status_code, 400)
+        ok_('collection_uniqueness' in data)

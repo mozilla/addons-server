@@ -90,20 +90,23 @@ Update
 
     **Request**:
 
-    :param collection_type: the type of the collection.
-    :type collection_type: int
-    :param name: the name of the collection. Can be a dict, in which case keys are languages and values are each a translation for the corresponding language.
-    :type name: string|dict
-    :param description: a description of the collection. Can be a dict, in which case keys are languages and values are each a translation for the corresponding language.
-    :type description: string|dict
-    :param category: the ID of the category to attach this collection to.
-    :type category: int|null
-    :param region: the ID of the region to attach this collection to.
-    :type region: int|null
-    :param carrier: the ID of the carrier to attach this collection to.
-    :type carrier: int|null
     :param author: the author of the collection.
     :type author: string
+    :param carrier: the ID of the carrier to attach this collection to.
+    :type carrier: int|null
+    :param category: the ID of the category to attach this collection to.
+    :type category: int|null
+    :param collection_type: the type of the collection.
+    :type collection_type: int
+    :param description: a description of the collection. Can be a dict, in which case keys are languages and values are each a translation for the corresponding language.
+    :type description: string|dict
+    :param name: the name of the collection. Can be a dict, in which case keys are languages and values are each a translation for the corresponding language.
+    :type name: string|dict
+    :param region: the ID of the region to attach this collection to.
+    :type region: int|null
+    :param slug: a slug to use in URLs for the collection.
+    :type slug: string|null
+
 
     **Response**:
 
@@ -111,6 +114,47 @@ Update
     body.
 
     :status 200: collection successfully updated.
+    :status 400: invalid request; more details provided in the response body.
+
+
+Duplicate
+---------
+
+.. http:post:: /api/v1/rocketfuel/collections/(int:id)/duplicate/
+
+    Duplicate a collection, creating and returning a new one with the same
+    properties and the same apps.
+
+    .. note:: Authentication is required.
+
+    **Request**:
+
+    Any parameter passed will override the corresponding property from the
+    duplicated object.
+
+    :param author: the author of the collection.
+    :type author: string
+    :param carrier: the ID of the carrier to attach this collection to.
+    :type carrier: int|null
+    :param category: the ID of the category to attach this collection to.
+    :type category: int|null
+    :param collection_type: the type of the collection.
+    :type collection_type: int
+    :param description: a description of the collection. Can be a dict, in which case keys are languages and values are each a translation for the corresponding language.
+    :type description: string|dict
+    :param name: the name of the collection. Can be a dict, in which case keys are languages and values are each a translation for the corresponding language.
+    :type name: string|dict
+    :param region: the ID of the region to attach this collection to.
+    :type region: int|null
+    :param slug: a slug to use in URLs for the collection.
+    :type slug: string|null
+
+    **Response**:
+
+    A representation of the duplicate collection will be returned in the
+    response body.
+
+    :status 201: collection successfully duplicated.
     :status 400: invalid request; more details provided in the response body.
 
 
