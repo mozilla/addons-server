@@ -30,7 +30,7 @@ def install(request):
         app = form.cleaned_data['app']
         type_ = install_type(request, app)
 
-        # Users can't install public apps. Developers can though.
+        # Users can't install non-public apps. Developers can though.
         if not app.is_public() and type_ == INSTALL_TYPE_USER:
             log.info('App not public: {0}'.format(app.pk))
             raise PermissionDenied
