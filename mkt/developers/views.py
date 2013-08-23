@@ -44,15 +44,13 @@ from users.views import _login
 from versions.models import Version
 
 from mkt.api.models import Access, generate
-from mkt.constants import APP_IMAGE_SIZES
 from mkt.developers.decorators import dev_required
 from mkt.developers.forms import (APIConsumerForm, AppFormBasic,
                                   AppFormDetails, AppFormMedia,
                                   AppFormSupport, AppFormTechnical,
                                   AppVersionForm, CategoryForm,
-                                  ImageAssetFormSet, NewPackagedAppForm,
-                                  PreviewFormSet, TransactionFilterForm,
-                                  trap_duplicate)
+                                  NewPackagedAppForm, PreviewFormSet,
+                                  TransactionFilterForm, trap_duplicate)
 from mkt.developers.utils import check_upload
 from mkt.developers.tasks import run_validator
 from mkt.submit.forms import AppFeaturesForm, NewWebappVersionForm
@@ -126,7 +124,6 @@ def edit(request, addon_id, addon, webapp=False):
         'addon': addon,
         'webapp': webapp,
         'valid_slug': addon.app_slug,
-        'image_sizes': APP_IMAGE_SIZES,
         'tags': addon.tags.not_blacklisted().values_list('tag_text',
                                                          flat=True),
         'previews': addon.get_previews(),
@@ -672,7 +669,7 @@ def addons_section(request, addon_id, addon, section, editable=False,
 
     version = addon.current_version or addon.latest_version
 
-    tags, image_assets, previews, restricted_tags = [], [], [], []
+    tags, previews, restricted_tags = [], [], []
     cat_form = appfeatures = appfeatures_form = None
 
     # Permissions checks.
@@ -688,8 +685,6 @@ def addons_section(request, addon_id, addon, section, editable=False,
                                 request=request)
 
     elif section == 'media':
-        image_assets = ImageAssetFormSet(
-            request.POST or None, prefix='images', app=addon)
         previews = PreviewFormSet(
             request.POST or None, prefix='files',
             queryset=addon.get_previews())
@@ -718,7 +713,7 @@ def addons_section(request, addon_id, addon, section, editable=False,
             form = models[section](request.POST, request.FILES,
                                    instance=addon, request=request)
 
-            all_forms = [form, previews, image_assets]
+            all_forms = [form, previews]
             if appfeatures_form:
                 all_forms.append(appfeatures_form)
             if cat_form:
@@ -741,9 +736,6 @@ def addons_section(request, addon_id, addon, section, editable=False,
                     for preview in previews.forms:
                         preview.save(addon)
 
-                if image_assets:
-                    image_assets.save()
-
                 editable = False
                 if section == 'media':
                     amo.log(amo.LOG.CHANGE_ICON, addon)
@@ -763,10 +755,8 @@ def addons_section(request, addon_id, addon, section, editable=False,
             'editable': editable,
             'tags': tags,
             'restricted_tags': restricted_tags,
-            'image_sizes': APP_IMAGE_SIZES,
             'cat_form': cat_form,
             'preview_form': previews,
-            'image_asset_form': image_assets,
             'valid_slug': valid_slug, }
 
     if appfeatures_form and appfeatures:

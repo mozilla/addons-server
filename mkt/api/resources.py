@@ -136,7 +136,6 @@ class AppResource(CORSResource, MarketplaceModelResource):
     def _icons_and_images(self, bundle_obj):
         pipeline = TaskTree()
         pipeline.push(tasks.fetch_icon, args=[bundle_obj])
-        pipeline.push(tasks.generate_image_assets, args=[bundle_obj])
         pipeline.apply_async()
 
     @write

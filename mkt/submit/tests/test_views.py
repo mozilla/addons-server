@@ -37,15 +37,12 @@ class TestSubmit(amo.tests.TestCase):
     fixtures = fixture('user_999')
 
     def setUp(self):
-        self.gia_mock = mock.patch(
-            'mkt.developers.tasks.generate_image_assets').__enter__()
         self.fi_mock = mock.patch(
             'mkt.developers.tasks.fetch_icon').__enter__()
         self.user = self.get_user()
         assert self.client.login(username=self.user.email, password='password')
 
     def tearDown(self):
-        self.gia_mock.__exit__()
         self.fi_mock.__exit__()
 
     def get_user(self):
@@ -549,8 +546,6 @@ class TestDetails(TestSubmit):
     fixtures = fixture('webapp_337141', 'user_999', 'user_10482')
 
     def setUp(self):
-        self.gia_mock = mock.patch(
-            'mkt.developers.tasks.generate_image_assets').__enter__()
         self.fi_mock = mock.patch(
             'mkt.developers.tasks.fetch_icon').__enter__()
         super(TestDetails, self).setUp()
@@ -559,7 +554,6 @@ class TestDetails(TestSubmit):
         self.url = reverse('submit.app.details', args=[self.webapp.app_slug])
 
     def tearDown(self):
-        self.gia_mock.__exit__()
         self.fi_mock.__exit__()
 
     def get_webapp(self):

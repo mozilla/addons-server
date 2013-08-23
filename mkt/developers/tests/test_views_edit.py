@@ -32,11 +32,10 @@ from users.models import UserProfile
 from versions.models import Version
 
 import mkt
-from mkt.constants import APP_IMAGE_SIZES, regions
+from mkt.constants import regions
 from mkt.constants.ratingsbodies import RATINGS_BODIES
 from mkt.site.fixtures import fixture
-from mkt.webapps.models import (AddonExcludedRegion as AER, ContentRating,
-                                ImageAsset)
+from mkt.webapps.models import AddonExcludedRegion as AER, ContentRating
 
 
 response_mock = mock.Mock()
@@ -560,11 +559,6 @@ class TestEditMedia(TestEdit):
         # Preview formset.
         fs = formset(*list(args) + [self.formset_new_form(**prev_blank)], **kw)
 
-        # Image asset formset
-        assets = len(APP_IMAGE_SIZES)
-        kw = {'initial_count': assets, 'prefix': 'images'}
-        fs.update(formset(*repeat({'upload_hash': ''}, assets), **kw))
-
         return dict((k, '' if v is None else v) for k, v in fs.items())
 
     def new_preview_hash(self):
@@ -859,8 +853,8 @@ class TestEditMedia(TestEdit):
     @mock.patch('mimetypes.guess_type', lambda *a: ('video/webm', 'webm'))
     def test_edit_preview_video_size(self):
         res = self.add_json(open(video_files['good'], 'rb'))
-        assert any(e.startswith('Please use') for e in res['errors']), (
-                res['errors'])
+        assert any(e.startswith('Please use files smaller than')
+                   for e in res['errors']), (res['errors'])
 
     @mock.patch('lib.video.tasks.resize_video')
     @mock.patch('mimetypes.guess_type', lambda *a: ('video/webm', 'webm'))
@@ -871,29 +865,6 @@ class TestEditMedia(TestEdit):
     def test_edit_preview_add(self):
         self.preview_add()
         eq_(str(self.get_webapp().previews.all()[0].caption), 'hi')
-
-    def imageasset_set(self, id=0):
-        # Generate the proper form: a blank preview entry (that won't get
-        # saved) and add an upload hash to the image asset so it WILL get
-        # saved.
-        preview = self.get_webapp().previews.all()[0]
-        edited = {'upload_hash': '', 'id': preview.id}
-        data_formset = self.formset_media(edited, initial_count=1)
-        data_formset['images-%d-upload_hash' % id] = self.new_preview_hash()
-
-        r = self.client.post(self.edit_url, data_formset)
-        self.assertNoFormErrors(r)
-
-    def test_edit_imageasset_add(self):
-        assets_before = ImageAsset.objects.count()
-        self.preview_add()
-        eq_(assets_before, ImageAsset.objects.count())
-
-        self.imageasset_set(0)
-        eq_(assets_before + 1, ImageAsset.objects.count())
-
-        self.imageasset_set(1)
-        eq_(assets_before + 2, ImageAsset.objects.count())
 
     def test_edit_preview_edit(self):
         self.preview_add()
@@ -911,14 +882,6 @@ class TestEditMedia(TestEdit):
         previews = self.get_webapp().previews
         eq_(str(previews.all()[0].caption), 'bye')
         eq_(previews.count(), 1)
-
-    def test_edit_imageasset_edit(self):
-        self.preview_add()
-        self.imageasset_set(0)
-        assets_before = ImageAsset.objects.count()
-
-        self.imageasset_set(0)
-        eq_(assets_before, ImageAsset.objects.count())
 
     def test_edit_preview_reorder(self):
         self.preview_add(3)

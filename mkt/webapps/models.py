@@ -45,7 +45,7 @@ from translations.fields import save_signal
 from versions.models import Version
 
 import mkt
-from mkt.constants import APP_FEATURES, APP_IMAGE_SIZES, apps
+from mkt.constants import APP_FEATURES, apps
 from mkt.search.utils import S
 from mkt.webapps.utils import get_locale_properties, get_supported_locales
 from mkt.zadmin.models import FeaturedApp
@@ -272,34 +272,6 @@ class Webapp(Addon):
             url = reverse(('mkt.stats.%s' % 'revenue_inapp'),
                           args=[self.app_slug, urlquote(inapp)])
         return url
-
-    def get_image_asset_url(self, slug, default=64):
-        """
-        Returns the URL for an app's image asset that uses the slug specified
-        by `slug`.
-        """
-        if not any(slug == x['slug'] for x in APP_IMAGE_SIZES):
-            raise Exception(
-                "Requesting image asset for size that doesn't exist.")
-
-        try:
-            return ImageAsset.objects.get(addon=self, slug=slug).image_url
-        except ImageAsset.DoesNotExist:
-            return settings.MEDIA_URL + 'img/hub/default-%s.png' % str(default)
-
-    def get_image_asset_hue(self, slug):
-        """
-        Returns the URL for an app's image asset that uses the slug specified
-        by `slug`.
-        """
-        if not any(slug == x['slug'] for x in APP_IMAGE_SIZES):
-            raise Exception(
-                "Requesting image asset for size that doesn't exist.")
-
-        try:
-            return ImageAsset.objects.get(addon=self, slug=slug).hue
-        except ImageAsset.DoesNotExist:
-            return 0
 
     @staticmethod
     def domain_from_url(url, allow_none=False):
@@ -1356,48 +1328,6 @@ def watch_status(old_attr={}, new_attr={}, instance=None, sender=None, **kw):
             log.debug('[Webapp:%s] Missing version, no nomination set.'
                       % addon.id)
             pass
-
-
-class ImageAsset(amo.models.ModelBase):
-    addon = models.ForeignKey(Addon, related_name='image_assets')
-    filetype = models.CharField(max_length=25, default='image/png')
-    slug = models.CharField(max_length=25)
-    hue = models.PositiveIntegerField(null=False, default=0)
-
-    class Meta:
-        db_table = 'image_assets'
-
-    def flush_urls(self):
-        return ['*/addon/%d/' % self.addon_id, self.image_url, ]
-
-    def _image_url(self, url_template):
-        if self.modified is not None:
-            modified = int(time.mktime(self.modified.timetuple()))
-        else:
-            modified = 0
-        args = [self.id / 1000, self.id, modified]
-        if '.png' not in url_template:
-            args.insert(2, self.file_extension)
-        return url_template % tuple(args)
-
-    def _image_path(self, url_template):
-        args = [self.id / 1000, self.id]
-        if '.png' not in url_template:
-            args.append(self.file_extension)
-        return url_template % tuple(args)
-
-    @property
-    def file_extension(self):
-        # Assume that blank is an image.
-        return 'png' if not self.filetype else self.filetype.split('/')[1]
-
-    @property
-    def image_url(self):
-        return self._image_url(settings.IMAGEASSET_FULL_URL)
-
-    @property
-    def image_path(self):
-        return self._image_path(settings.IMAGEASSET_FULL_PATH)
 
 
 class Installed(amo.models.ModelBase):

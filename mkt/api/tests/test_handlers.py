@@ -20,10 +20,9 @@ from users.models import UserProfile
 from mkt.api.base import get_url, list_url
 from mkt.api.models import Access, generate
 from mkt.api.tests.test_oauth import BaseOAuth, OAuthClient, RestOAuth
-from mkt.constants import APP_IMAGE_SIZES, carriers, regions
+from mkt.constants import carriers, regions
 from mkt.site.fixtures import fixture
-from mkt.webapps.models import (AddonExcludedRegion, ContentRating,
-                                ImageAsset, Webapp)
+from mkt.webapps.models import AddonExcludedRegion, ContentRating, Webapp
 from reviews.models import Review
 
 
@@ -132,22 +131,6 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         self.get_url = ('api_dispatch_detail',
                         {'resource_name': 'app', 'pk': pk})
         return Webapp.objects.get(pk=pk)
-
-    @patch('mkt.developers.tasks._fetch_content', _mock_fetch_content)
-    def test_imageassets(self):
-        asset_count = ImageAsset.objects.count()
-        app = self.create_app()
-        eq_(ImageAsset.objects.count() - len(APP_IMAGE_SIZES), asset_count)
-        res = self.client.get(self.get_url)
-        eq_(res.status_code, 200)
-        data = json.loads(res.content)
-        eq_(len(data['image_assets']), len(APP_IMAGE_SIZES))
-        self.assertSetEqual(data['image_assets'].keys(),
-                            [i['slug'] for i in APP_IMAGE_SIZES])
-        self.assertSetEqual(map(tuple, data['image_assets'].values()),
-                            [(app.get_image_asset_url(i['slug']),
-                              app.get_image_asset_hue(i['slug']))
-                            for i in APP_IMAGE_SIZES])
 
     def test_upsell(self):
         app = self.create_app()

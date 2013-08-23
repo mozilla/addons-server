@@ -73,8 +73,6 @@ def app_to_dict(app, region=None, profile=None, request=None):
         'current_version': (app.current_version.version if
                             getattr(app, 'current_version') else None),
         'default_locale': app.default_locale,
-        'image_assets': dict([(ia.slug, (ia.image_url, ia.hue))
-                              for ia in app.image_assets.all()]),
         'icons': dict([(icon_size,
                         app.get_icon_url(icon_size))
                        for icon_size in (16, 48, 64, 128)]),

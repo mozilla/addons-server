@@ -63,20 +63,6 @@ App
                 "128": "/tmp/uploads/addon_icons/0/24-128.png?modified=1362762723"
             },
             "id": "24",
-            "image_assets": {
-                "desktop_tile": [
-                    "http://server.local/img/uploads/imageassets/0/60.png?modified=1362762724",
-                    0
-                ],
-                "featured_tile": [
-                    "http://server.local/img/uploads/imageassets/0/58.png?modified=1362762724",
-                    0
-                ],
-                "mobile_tile": [
-                    "http://server.local/img/uploads/imageassets/0/59.png?modified=1362762724",
-                    0
-                ]
-            },
             "is_packaged": false,
             "listed_authors": [
                 {
