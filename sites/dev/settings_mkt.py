@@ -210,3 +210,9 @@ PURCHASE_ENABLED_REGIONS = [regions.US.id, regions.PL.id, regions.SPAIN.id,
 
 # Cache timeout on the /search/featured API.
 CACHE_SEARCH_FEATURED_API_TIMEOUT = 60 * 5  # 5 min.
+
+WHITELISTED_CLIENTS_EMAIL_API = private_mkt.WHITELISTED_CLIENTS_EMAIL_API
+
+POSTFIX_AUTH_TOKEN = private_mkt.POSTFIX_AUTH_TOKEN
+
+POSTFIX_DOMAIN = 'mail.marketplace-dev.allizom.org'
