@@ -10,21 +10,22 @@
        data-review-url="{{ url('reviewers.themes.single', '__slug__') }}">
     <form class="c">
       {{ search_form.q }}
+      <input type="hidden" name="queue_type" value="{{ 'rereview' if rereview else 'flagged' if flagged else '' }}">
       <button class="search button" type="submit"><span>{{ _('Search') }}</span></button>
-      <span class="clear-queue-search hidden"><a>{{ _('Clear Search') }}</a></span>
+      <a href="#" class="clear-queue-search hidden">{{ _('Clear Search') }}</a>
       {{ search_form.limit }}
     </form>
   </div>
 
   <div class="theme-list-hat">
-    {{ macros.tabnav('queues', tab, queue_tabnav_themes() ) }}
+    {{ macros.tabnav('queues', tab, queue_tabnav_themes(), true) }}
 
     <a class="button release-theme-lock" href="{{ url('reviewers.themes.release_locks') }}">
       <span>{{ _('Release My Theme Locks') }}</span>
     </a>
   </div>
 
-    <section id="queue-island" class="island search-toggle">
+  <section id="queue-island" class="island search-toggle">
     <h3 class="theme-queue-link c">
       <a href="{{ url('reviewers.themes.queue_themes') }}">
         {{ _('Interactive Theme Queue') }}

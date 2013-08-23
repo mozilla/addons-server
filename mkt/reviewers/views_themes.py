@@ -70,11 +70,19 @@ def themes_list(request, flagged=False, rereview=False):
 def themes_search(request):
     search_form = forms.ThemeSearchForm(request.GET)
     if search_form.is_valid():
+        q = search_form.cleaned_data['q']
+        rereview = search_form.cleaned_data['queue_type'] == 'rereview'
+        flagged = search_form.cleaned_data['queue_type'] == 'flagged'
+
         # ES query on name.
-        themes = (TempS(Addon).filter(type=amo.ADDON_PERSONA,
-                                      status=amo.STATUS_PENDING)
-            .query(or_=name_only_query(search_form.cleaned_data['q'].lower()))
-            [:100])
+        themes = TempS(Addon).filter(type=amo.ADDON_PERSONA)
+        if rereview:
+            themes = themes.filter(has_theme_rereview=True)
+        else:
+            themes = themes.filter(status=amo.STATUS_REVIEW_PENDING if flagged
+                                          else amo.STATUS_PENDING,
+                                   has_theme_rereview=False)
+        themes = themes.query(or_=name_only_query(q))[:100]
 
         now = datetime.datetime.now()
         reviewers = []
@@ -89,6 +97,7 @@ def themes_search(request):
                 reviewers.append('')
 
         themes = list(themes.values_dict('name', 'slug', 'status'))
+
         for theme, reviewer in zip(themes, reviewers):
             # Dehydrate.
             theme['reviewer'] = reviewer

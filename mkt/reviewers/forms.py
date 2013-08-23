@@ -256,6 +256,7 @@ class ThemeSearchForm(forms.Form):
         required=False, label=_lazy(u'Search'),
         widget=forms.TextInput(attrs={'autocomplete': 'off',
                                       'placeholder': _lazy(u'Search')}))
+    queue_type = forms.CharField(required=False, widget=forms.HiddenInput())
 
 
 class ApiReviewersSearchForm(ApiSearchForm):

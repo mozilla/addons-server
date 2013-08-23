@@ -30,10 +30,10 @@
   </form>
 {% endmacro %}
 
-{% macro tabnav(type, tab, tabs) %}
+{% macro tabnav(type, tab, tabs, no_search_toggle) %}
 {# type -- string (e.g. 'queue', 'log')
    tabs -- list of named_url/tab_code/tab_text tuples #}
-  <ul class="tabnav search-toggle">
+  <ul class="tabnav{{ ' search-toggle' if not no_search_toggle }}">
     {% for named_url, tab_code, text in tabs %}
       <li{% if tab == tab_code %} class="selected trigger-{{ type }}"{% endif %}>
         <a href="{{ url(named_url) }}">{{ text }}</a>
