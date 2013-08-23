@@ -403,6 +403,18 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     def create_django_user(self, **kw):
         """Make a django.contrib.auth.User for this UserProfile."""
+        # Due to situations like bug 905984 and similar, a django user
+        # for this email may already exist. Let's try to find it first
+        # before creating a new one.
+        try:
+            self.user = DjangoUser.objects.get(email=self.email)
+            for k, v in kw.iteritems():
+                setattr(self.user, k, v)
+            self.save()
+            return self.user
+        except DjangoUser.DoesNotExist:
+            pass
+
         # Reusing the id will make our life easier, because we can use the
         # OneToOneField as pk for Profile linked back to the auth.user
         # in the future.

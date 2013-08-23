@@ -345,6 +345,11 @@ def browserid_authenticate(request, assertion, is_native=False,
         profile = None
 
     if profile:
+        # Added due to bug 905984. It's possible to have a UserProfile
+        # that has no corresponding User object.
+        if profile.user is None:
+            profile.create_django_user(
+                backend='django_browserid.auth.BrowserIDBackend')
         if profile.is_verified and not verified:
             # An attempt to log in to a verified address with an unverified
             # assertion is a very bad thing. However, the same email address

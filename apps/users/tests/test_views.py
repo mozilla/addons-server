@@ -714,6 +714,43 @@ class TestPersonaLogin(UserViewBase):
         eq_(profiles[0].username, 'newuser')
         eq_(profiles[0].display_name, 'newuser')
 
+    @patch('requests.post')
+    @patch('users.views.record_action')
+    def test_browserid_misplaced_auth_user(self, record_action, http_request):
+        """
+        Login still works even after the user has changed his email
+        address on AMO.
+        """
+        self.create_switch('browserid-login')
+        url = reverse('users.browserid_login')
+        UserProfile.objects.filter(email='jbalogh@mozilla.com').update(
+            email='badnews@example.com')
+        http_request.return_value = FakeResponse(200, json.dumps(
+                {'status': 'okay',
+                 'email': 'jbalogh@mozilla.com'}))
+        res = self.client.post(url, data=dict(assertion='fake-assertion',
+                                              audience='fakeamo.org'))
+        eq_(res.status_code, 200)
+
+    @patch('requests.post')
+    @patch('users.views.record_action')
+    def test_browserid_no_auth_user(self, record_action, http_request):
+        """
+        Login still works after a new UserProfile has been created for an
+        email address another UserProfile formerly used.
+        """
+        self.create_switch('browserid-login')
+        url = reverse('users.browserid_login')
+        UserProfile.objects.get(email="jbalogh@mozilla.com").update(
+            email="badnews@example.com")
+        UserProfile.objects.create(email="jbalogh@mozilla.com")
+        http_request.return_value = FakeResponse(200, json.dumps(
+                {'status': 'okay',
+                 'email': 'jbalogh@mozilla.com'}))
+        res = self.client.post(url, data=dict(assertion='fake-assertion',
+                                              audience='fakeamo.org'))
+        eq_(res.status_code, 200)
+
     @patch.object(waffle, 'switch_is_active', lambda x: True)
     @patch('requests.post')
     @patch('users.views.record_action')
