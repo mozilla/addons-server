@@ -705,6 +705,33 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         self.assertSetEqual([a['slug'] for a in data['apps']],
                             [a.app_slug for a in self.collection.apps()])
 
+    def delete(self, client, collection_id=None):
+        url = self.collection_url('detail', collection_id or self.collection.pk)
+        res = client.delete(url)
+        data = json.loads(res.content) if res.content else None
+        return res, data
+
+    def test_delete_anon(self):
+        res, data = self.delete(self.anon)
+        eq_(res.status_code, 403)
+        eq_(PermissionDenied.default_detail, data['detail'])
+
+    def test_delete_no_perms(self):
+        res, data = self.delete(self.client)
+        eq_(res.status_code, 403)
+        eq_(PermissionDenied.default_detail, data['detail'])
+
+    def test_delete_has_perms(self):
+        self.make_publisher()
+        res, data = self.delete(self.client)
+        eq_(res.status_code, 204)
+        ok_(not data)
+
+    def test_delete_nonexistent(self):
+        self.make_publisher()
+        res, data = self.delete(self.client, collection_id=100000)
+        eq_(res.status_code, 404)
+
 
 class TestCollectionViewSetUnique(TestCollectionViewSetMixin, RestOAuth):
     fixtures = fixture('user_2519')
