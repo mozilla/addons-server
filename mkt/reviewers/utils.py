@@ -268,12 +268,13 @@ class ReviewApp(ReviewBase):
         self.files = self.version.files.all()
 
     def create_comm_thread(self, **kwargs):
-        self.comm_thread, self.comm_note = create_comm_thread(
-            action=kwargs['action'], addon=self.addon,
+        res = create_comm_thread(action=kwargs['action'], addon=self.addon,
             comments=self.data['comments'],
             perms=self.data['action_visibility'],
             profile=self.request.amo_user,
             version=self.version)
+        if res:
+            self.comm_thread, self.comm_note = res
 
     def process_public(self):
         # Hold onto the status before we change it.
