@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-08-23 09:56-0700\n"
-"PO-Revision-Date: 2013-08-13 20:04+0000\n"
+"PO-Revision-Date: 2013-08-23 19:22+0000\n"
 "Last-Translator: Michael <michael.koehler1@gmx.de>\n"
 "Language-Team: Mozilla Add-ons <amo-editors@mozilla.org>\n"
 "Language: de\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1376424287.0\n"
+"X-POOTLE-MTIME: 1377285721.0\n"
 
 #: apps/addons/buttons.py:207
 msgid "Download Now"
@@ -10644,11 +10644,11 @@ msgstr "Entwicklername muss im Manifest stehen, um ihn im Listeneintrag der Anwe
 
 #: apps/files/utils.py:328
 msgid "Invalid file name in archive: {0}"
-msgstr ""
+msgstr "Ungültiger Dateiname im Archiv: {0}"
 
 #: apps/files/utils.py:336
 msgid "File exceeding size limit in archive: {0}"
-msgstr ""
+msgstr "Datei überschreitet Größenbeschränkung im Archiv: {0}"
 
 #: apps/files/utils.py:386
 msgid "Invalid archive."
@@ -14148,6 +14148,9 @@ msgstr "Regal des Mobilfunkanbieters"
 #: mkt/collections/serializers.py:54
 msgid "You can not have more than one Featured Apps/Operator Shelf collection for the same category/carrier/region combination."
 msgstr ""
+"Sie können nicht mehr als eine Sammlung für Vorgestellte Anwendungen/Regal "
+"des Mobilfunkanbieters für dieselbe Kombination aus "
+"Kategorie/Mobilfunkanbieter/Region anlegen."
 
 #: mkt/constants/apps.py:9 mkt/reviewers/templates/reviewers/logs.html:18 mkt/reviewers/templates/reviewers/includes/search_results_themes.html:6
 #: mkt/reviewers/templates/reviewers/themes/history_table.html:7 mkt/reviewers/templates/reviewers/themes/logs.html:18 mkt/reviewers/templates/reviewers/themes/queue_list.html:42
@@ -16804,27 +16807,32 @@ msgstr "Geräte ändern"
 
 #: mkt/developers/templates/developers/emails/new_payments_region.html:1
 msgid "Dear App Developer,"
-msgstr ""
+msgstr "Liebe Anwendungsentwickler,"
 
 #: mkt/developers/templates/developers/emails/new_payments_region.html:3
 msgid "We've added a new payments region to the Firefox Marketplace. The Marketplace will soon be accepting payments for"
 msgstr ""
+"Wir haben dem Firefox Marketplace eine neue Zahlungsregion hinzugefügt. Der "
+"Marketplace akzeptiert bald Zahlungen für"
 
 #: mkt/developers/templates/developers/emails/new_payments_region.html:5
 msgid "If you would like your app,"
-msgstr ""
+msgstr "Wenn Sie möchten, dass Ihre Anwendung"
 
 #: mkt/developers/templates/developers/emails/new_payments_region.html:5
 msgid "to be available in that region you will need to visit the Firefox Marketplace Developer Hub and update your app settings on the \"Compatibility & Payments\" page:"
 msgstr ""
+"in dieser Region verfügbar ist, müssen Sie das Entwicklerzentrum des Firefox "
+"Marketplace besuchen und die Einstellungen Ihrer Anwendung auf der Seite "
+"„Kompatibilität & Zahlungen“ aktualisieren:"
 
 #: mkt/developers/templates/developers/emails/new_payments_region.html:7
 msgid "Thanks,"
-msgstr ""
+msgstr "Vielen Dank"
 
 #: mkt/developers/templates/developers/emails/new_payments_region.html:8
 msgid "Firefox Marketplace Team"
-msgstr ""
+msgstr "Team des Firefox Marketplace"
 
 #: mkt/developers/templates/developers/helpers/disabled_payments_notice.html:9
 msgid ""
@@ -19139,12 +19147,24 @@ msgid ""
 "Firefox OS is a new mobile operating system built entirely using open web standards. In Firefox OS, HTML5 apps can directly control phone hardware and key functionality — for example making the "
 "phone vibrate, placing phone calls, and sending text messages."
 msgstr ""
+"Firefox OS ist ein neues Betriebssystem für Mobilgeräte, das komplett mit "
+"Standards des offenen Web entwickelt wurde. In Firefox OS können "
+"HTML5-Anwendungen direkt Hardware und Schlüsselfunktionen des Handys steuern "
+"– beispielsweise das Telefon vibrieren lassen, Anrufe tätigen und "
+"Textnachrichten senden."
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:30
 msgid ""
 "We believe that developers will be truly instrumental in bringing the power of the web to mobile, so we have worked with various partners to make devices available for developing and testing apps, "
 "and learning more about customizing Firefox OS itself. This page provides useful information to developers, such as links to developer documentation, available devices, and where to obtain them."
 msgstr ""
+"Wir glauben, dass Entwickler eine wichtige Rolle spielen werden, wenn die "
+"Kraft des Internets auf Mobilgeräte übertragen wird, daher haben wir mit "
+"vielen Partnern gearbeitet, um Geräte zur Verfügung zu stellen, mit denen "
+"Anwendungen entwickelt und getestet werden und um mehr über Anpassungen an "
+"Firefox OS selbst zu lernen. Diese Seite bietet Entwicklern wichtige "
+"Informationen, wie Links zur Entwicklerdokumentation, verfügbaren Geräten "
+"und wo man sie bekommt."
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:39
 msgid "Keon"
@@ -19152,17 +19172,25 @@ msgstr "Keon"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:46 mkt/ecosystem/templates/ecosystem/dev_phone.html:56
 msgid "ZTE OPEN"
-msgstr ""
+msgstr "ZTE OPEN"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:48
 msgid "<a href=\"%(us_ebay_url)s\" class=\"button\">Buy from US store</a> <a href=\"%(uk_ebay_url)s\" class=\"button\">Buy from UK store</a>"
 msgstr ""
+"<a href=\"%(us_ebay_url)s\" class=\"button\">Im US-Store kaufen</a> <a href=\"%"
+"(uk_ebay_url)s\" class=\"button\">Um UK-Store kaufen</a>"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:58
 msgid ""
 "After a lot of hard work alongside ZTE, we are proud to announce the release of the ZTE OPEN Firefox OS phone, a powerful device aimed at developers and early adopters worldwide. These devices are "
 "available through ZTE's US and UK eBay stores, priced at $79.99/£59.99, and will be unlocked and open for testing and experimentation. <a href=\"%(zte_url)s\">Read more details.</a>"
 msgstr ""
+"Nach viel harter Arbeit mit ZTE, freuen wir uns, die Veröffentlichung des "
+"Firefox-OS-Handys ZTE OPEN bekannt zu geben, einem mächtigen Gerät, das sich "
+"an Entwickler und frühzeitige Anwender weltweit richtet. Die Geräte werden "
+"über die ZTE-eBay-Stores in den USA und dem Vereinigten Königreich zur "
+"Verfügung stehen,79,99 $/59,99 £ kosten und zum Testen und Experimentieren "
+"entsperrt sein. <a href=\"%(zte_url)s\">Lesen Sie weitere Details.</a>"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:71
 msgid "Peak"
@@ -19170,7 +19198,7 @@ msgstr "Peak"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:74
 msgid "Geeksphone"
-msgstr ""
+msgstr "Geeksphone"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:76
 msgid ""
@@ -19178,26 +19206,44 @@ msgid ""
 "Firefox OS devices. Note that no more phones are being produced at this moment in time, although another run is planned for the future. A number will remain in circulation however, and these "
 "devices are still very valid for developer testing, having full updates available to them."
 msgstr ""
+"Mozilla, Geeksphone und Telefónica haben zusammengearbeitet, um die "
+"Geeksphone Keon und Peak, Vorschauhandys der niederen bzw. höheren Klasse "
+"für Entwickler, die anfangen möchten, an echten Firefox-OS-Geräten zu "
+"arbeiten. Beachten Sie, dass derzeit keine weiteren Handys produziert "
+"werden, allerdings ist für die Zukunft eine neue Runde geplant. Einige "
+"werden aber in Umlauf bleiben, und diese Geräte sind immer noch für "
+"Entwicklertests zugelassen und erhalten volle Updates."
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:89
 msgid "Docs and tools"
-msgstr ""
+msgstr "Dokumentation und Werkzeuge"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:91
 msgid ""
 "If you already have a Firefox OS device and want some guidance and direction, you can <a href=\"%(devhub_url)s\">get started at the Firefox Marketplace Developer Hub</a>. The <a href=\"%(mdn_url)s"
 "\">Mozilla Developer Network</a> also provides a wealth of useful resources such as API documentation and further information on Open Web App development."
 msgstr ""
+"Wenn Sie bereits ein Firefox-OS-Gerät besitzen und etwas Führung benötigen, "
+"können Sie <a href=\"%(devhub_url)s\">im Entwicklerzentrum des Firefox "
+"Marketplace beginnen</a>. Das <a href=\"%(mdn_url)s\">Mozilla Developer "
+"Network</a> bietet auch zahlreiche und hilfreiche Ressourcen wie API-"
+"Dokumentation und weitere Informationen zur Entwicklung von Anwendung des "
+"offenen Web."
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:100
 msgid ""
 "If you don't have a Firefox OS device, explore the other tabs to find out how to obtain one. You don't have to wait however — you can start developing and testing Firefox OS Apps right away using "
 "the <a href=\"%(simulator_url)s\">Firefox OS simulator</a>."
 msgstr ""
+"Wenn Sie kein Firefox-OS-Gerät besitzen, können Sie die anderen Tabs "
+"erkunden, um zu erfahren, wie Sie eins bekommen. Sie müssen aber nicht "
+"warten – Sie können direkt mit der Entwicklung und dem Testen von Firefox-"
+"OS-Anwendungen beginnen, indem Sie den <a href=\"%(simulator_url)s\">Firefox-"
+"OS-Simulator</a> verwenden."
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:110
 msgid "Sharing with the community"
-msgstr ""
+msgstr "Teilen mit der Gemeinschaft"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:112
 msgid ""
@@ -19205,6 +19251,14 @@ msgid ""
 "we'd like you to get involved with the effort! We would like to invite you to add any useful information you have to the <a href=\"%(mdn_url)s\" target=\"_blank\">Mozilla Developer Network</a>. You "
 "can edit pages after creating a Mozilla Persona user account and logging in."
 msgstr ""
+"Wenn Sie für eine entstehende Plattform entwickeln, sind hilfreiche "
+"Informationsquellen immer schwerer zu finden als bei etablierten "
+"Plattformen. Um Firefox-OS-Entwicklern so viel Hilfe wie möglich zu geben, "
+"möchten wir, dass dass Sie mitmachen! Wir laden Sie ein, alle Ihre "
+"hilfreichen Informationen im <a href=\"%(mdn_url)s\" target=\"_blank\">Mozilla "
+"Developer Network</a> einzutragen. Sie können Seiten bearbeiten, nachdem Sie "
+"sich ein Mozilla-Persona-Benutzerkonto angelegt haben, und sich angemeldet "
+"haben."
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:121
 msgid ""
@@ -19213,6 +19267,15 @@ msgid ""
 "In addition, you are always welcome to ask questions and share feedback and resources on <a href=\"%(b2g_irc_url)s\" target=\"_blank\">IRC</a> and <a href=\"%(b2g_mail_url)s\" target=\"_blank\">e-"
 "mail</a>."
 msgstr ""
+"Insbesondere hätten wir gerne, dass Sie <a href=\"%(mdn_hackingfxos_url)s\" "
+"target=\"_blank\">Tipps und Tricks zum Hacken an Firefox OS selbst</a>, <a "
+"href=\"%(mdn_fxosapps_url)s\" target=\"_blank\">Tipps zum Entwickeln von "
+"Firefox-OS-Anwendungen</a> und Informationen über Ihre <a href=\"%"
+"(mdn_devphone_url)s\" target=\"_blank\">Erfahrungen mit der Funktionsweise von "
+"Firefox OS auf verschiedenen Geräten</a> eintragen. Außerdem können Sie "
+"immer gern im <a href=\"%(b2g_irc_url)s\" target=\"_blank\">IRC</a> und per <a "
+"href=\"%(b2g_mail_url)s\" target=\"_blank\">E-Mail</a> Fragen stellen, Ihre "
+"Meinung sagen und Ressourcen teilen."
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:16
 msgid ""
@@ -21828,7 +21891,7 @@ msgstr "Markierte Themes"
 
 #: mkt/reviewers/helpers.py:46
 msgid "Update Themes"
-msgstr ""
+msgstr "Themes aktualisieren"
 
 #: mkt/reviewers/helpers.py:87
 msgctxt "pending"
