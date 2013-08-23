@@ -43,7 +43,7 @@ def reviewers_breadcrumbs(context, queue=None, items=None):
 
                   'pending_themes': _('Pending Themes'),
                   'flagged_themes': _('Flagged Themes'),
-                  'rereview_themes': _('Re-review Themes')}
+                  'rereview_themes': _('Update Themes')}
 
         if items:
             url = reverse('reviewers.apps.queue_%s' % queue)
@@ -162,7 +162,7 @@ def queue_tabnav_themes(context):
         ))
         tabs.append((
             'reviewers.themes.list_rereview', 'rereview_themes',
-            _('Re-review'),
+            _('Updates'),
         ))
     return tabs
 
@@ -181,7 +181,7 @@ def queue_tabnav_themes_interactive(context):
             'reviewers.themes.queue_flagged', 'flagged', _('Flagged'),
         ))
         tabs.append((
-            'reviewers.themes.queue_rereview', 'rereview', _('Re-review'),
+            'reviewers.themes.queue_rereview', 'rereview', _('Updates'),
         ))
     return tabs
 
