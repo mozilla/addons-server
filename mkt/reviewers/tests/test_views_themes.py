@@ -488,7 +488,7 @@ class TestDeletedThemeLookup(amo.tests.TestCase):
         self.create_switch(name='mkt-themes')
 
     def test_table(self):
-        self.login('senior_persona_reviewer')
+        self.login('senior_persona_reviewer@mozilla.com')
         r = self.client.get(reverse('reviewers.themes.deleted'))
         eq_(r.status_code, 200)
         eq_(pq(r.content)('tbody td:nth-child(3)').text(),
