@@ -60,12 +60,14 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         super(TestCollectionViewSet, self).setUp()
         self.serializer = CollectionSerializer()
         self.collection_data = {
+            'author': u'My Àuthør',
+            'background_color': '#FFF000',
             'collection_type': COLLECTIONS_TYPE_BASIC,
+            'description': {'en-US': u'A cöllection of my favorite games'},
+            'is_public': True,
             'name': {'en-US': u'My Favorite Gamés'},
             'slug': u'my-favourite-gamés',
-            'author': u'My Àuthør',
-            'is_public': True,
-            'description': {'en-US': u'A cöllection of my favorite games'}
+            'text_color': '#000FFF',
         }
         self.collection = Collection.objects.create(**self.collection_data)
         self.apps = [amo.tests.app_factory() for n in xrange(1, 5)]
@@ -329,6 +331,11 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
 
         eq_(data['description'], data['description'])
         eq_(new_collection.description, data['description']['en-US'])
+
+    def test_create_no_colors(self):
+        self.collection_data['background_color'] = ''
+        self.collection_data['text_color'] = ''
+        self.test_create_has_perms()
 
     def test_create_has_perms_no_type(self):
         self.make_publisher()

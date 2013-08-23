@@ -9,10 +9,12 @@ class TestCollection(amo.tests.TestCase):
 
     def setUp(self):
         self.collection_data = {
+            'background_color': '#FF00FF',
             'collection_type': COLLECTIONS_TYPE_FEATURED,
+            'description': 'A collection of my favourite games',
             'name': 'My Favourite Games',
             'slug': 'my-favourite-games',
-            'description': 'A collection of my favourite games',
+            'text_color': '#00FF00',
         }
         self.collection = Collection.objects.create(**self.collection_data)
 
@@ -30,6 +32,13 @@ class TestCollection(amo.tests.TestCase):
     def test_collection(self):
         for name, value in self.collection_data.iteritems():
             eq_(self.collection_data[name], getattr(self.collection, name))
+
+    def test_collection_no_colors(self):
+        self.collection_data.pop('background_color')
+        self.collection_data.pop('text_color')
+        self.collection_data['slug'] = 'favorite-games-2'
+        self.collection = Collection.objects.create(**self.collection_data)
+        self.test_collection()
 
     def test_add_app_order_override(self):
         self._generate_apps()

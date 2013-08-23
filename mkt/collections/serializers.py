@@ -25,9 +25,9 @@ class CollectionSerializer(serializers.ModelSerializer):
                                      source='collectionmembership_set')
 
     class Meta:
-        fields = ('apps', 'author', 'carrier', 'category', 'collection_type',
-                  'description', 'id', 'is_public', 'name', 'region', 'slug',
-                  'default_language')
+        fields = ('apps', 'author', 'background_color', 'carrier', 'category',
+                  'collection_type', 'default_language', 'description', 'id',
+                  'is_public', 'name', 'region', 'slug', 'text_color',)
         model = Collection
 
     def full_clean(self, instance):
