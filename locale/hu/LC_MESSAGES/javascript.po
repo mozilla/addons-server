@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-13 10:01-0700\n"
+"POT-Creation-Date: 2013-08-23 09:56-0700\n"
 "PO-Revision-Date: 2013-07-05 14:13+0200\n"
 "Last-Translator: Kalman Kemenczy <kkemenczy@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -468,19 +468,19 @@ msgstr "Adja meg az új csapattag e-mail címét"
 msgid "Refreshed"
 msgstr "Frissítve"
 
-#: media/js/devreg/devhub.js:610 media/js/zamboni/devhub-all.js:1499 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:650
+#: media/js/devreg/devhub.js:614 media/js/zamboni/devhub-all.js:1499 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:650
 msgid "There was an error uploading your file."
 msgstr "Hiba történt a fájl feltöltésekor."
 
-#: media/js/devreg/devhub.js:892 media/js/zamboni/devhub-all.js:1774 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:925
+#: media/js/devreg/devhub.js:896 media/js/zamboni/devhub-all.js:1774 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:925
 msgid "Learn more"
 msgstr "Tudjon meg többet"
 
-#: media/js/devreg/devhub.js:896 media/js/zamboni/devhub-all.js:1778 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:929
+#: media/js/devreg/devhub.js:900 media/js/zamboni/devhub-all.js:1778 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:929
 msgid "Example"
 msgstr "Példa"
 
-#: media/js/devreg/devhub.js:1199 media/js/zamboni/devhub-all.js:2125 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:1285
+#: media/js/devreg/devhub.js:1203 media/js/zamboni/devhub-all.js:2125 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:1285
 msgid "Image changes being processed"
 msgstr "A kép módosítása folyamatban van"
 
@@ -1285,14 +1285,18 @@ msgid "Contains Editor Comment"
 msgstr ""
 
 #: media/js/mkt/reviewers.js:112
+msgid "Premium App"
+msgstr ""
+
+#: media/js/mkt/reviewers.js:115
 msgid "Escalated"
 msgstr "Továbbított"
 
-#: media/js/mkt/reviewers.js:117
+#: media/js/mkt/reviewers.js:120
 msgid "Free"
 msgstr "Ingyenes"
 
-#: media/js/mkt/reviewers.js:224
+#: media/js/mkt/reviewers.js:228
 msgid "Any"
 msgstr "Bármely"
 

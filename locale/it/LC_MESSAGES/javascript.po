@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-13 10:01-0700\n"
+"POT-Creation-Date: 2013-08-23 09:56-0700\n"
 "PO-Revision-Date: 2013-07-01 21:07+0200\n"
 "Last-Translator: Sandro <gialloporpora@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
@@ -467,19 +467,19 @@ msgstr "Inserisci un indirizzo email per un nuovo membro del team di sviluppo"
 msgid "Refreshed"
 msgstr "Ricaricata"
 
-#: media/js/devreg/devhub.js:610 media/js/zamboni/devhub-all.js:1499 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:650
+#: media/js/devreg/devhub.js:614 media/js/zamboni/devhub-all.js:1499 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:650
 msgid "There was an error uploading your file."
 msgstr "Si è verificato un errore durante il caricamento del file."
 
-#: media/js/devreg/devhub.js:892 media/js/zamboni/devhub-all.js:1774 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:925
+#: media/js/devreg/devhub.js:896 media/js/zamboni/devhub-all.js:1774 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:925
 msgid "Learn more"
 msgstr "Ulteriori informazioni"
 
-#: media/js/devreg/devhub.js:896 media/js/zamboni/devhub-all.js:1778 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:929
+#: media/js/devreg/devhub.js:900 media/js/zamboni/devhub-all.js:1778 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:929
 msgid "Example"
 msgstr "Esempio"
 
-#: media/js/devreg/devhub.js:1199 media/js/zamboni/devhub-all.js:2125 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:1285
+#: media/js/devreg/devhub.js:1203 media/js/zamboni/devhub-all.js:2125 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:1285
 msgid "Image changes being processed"
 msgstr "Elaborazione in corso delle modifiche alle immagini"
 
@@ -1287,14 +1287,18 @@ msgid "Contains Editor Comment"
 msgstr "Sono presenti dei commenti da parte dell'editore"
 
 #: media/js/mkt/reviewers.js:112
+msgid "Premium App"
+msgstr ""
+
+#: media/js/mkt/reviewers.js:115
 msgid "Escalated"
 msgstr "Messa in escalation"
 
-#: media/js/mkt/reviewers.js:117
+#: media/js/mkt/reviewers.js:120
 msgid "Free"
 msgstr "Gratuita"
 
-#: media/js/mkt/reviewers.js:224
+#: media/js/mkt/reviewers.js:228
 msgid "Any"
 msgstr "Qualsiasi"
 

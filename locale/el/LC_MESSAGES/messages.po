@@ -1078,7 +1078,7 @@ msgstr "Όχι έτοιμο για αγορά."
 
 #: apps/addons/templates/addons/impala/button.html:52
 msgid "This app has not been reviewed by Mozilla. <a href=\"%(url)s\">Learn more</a>"
-msgstr "Αυτό το πρόσθετο δεν έχει αξιολογηθεί από το Mozilla. <a href=\"%(url)s\">Μάθετε περισσότερα</a>""
+msgstr "Αυτό το πρόσθετο δεν έχει αξιολογηθεί από το Mozilla. <a href=\"%(url)s\">Μάθετε περισσότερα</a>"
 
 #: apps/addons/templates/addons/impala/contribution.html:24
 msgid "<b>%(amt)s</b> suggested"

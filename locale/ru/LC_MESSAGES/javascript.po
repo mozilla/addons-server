@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-13 10:01-0700\n"
+"POT-Creation-Date: 2013-08-23 09:56-0700\n"
 "PO-Revision-Date: 2013-07-29 12:14+0400\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -478,19 +478,19 @@ msgstr "Введите адрес эл. почты нового члена ко�
 msgid "Refreshed"
 msgstr "Обновлено"
 
-#: media/js/devreg/devhub.js:610 media/js/zamboni/devhub-all.js:1499 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:650
+#: media/js/devreg/devhub.js:614 media/js/zamboni/devhub-all.js:1499 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:650
 msgid "There was an error uploading your file."
 msgstr "При загрузке вашего файла произошла ошибка."
 
-#: media/js/devreg/devhub.js:892 media/js/zamboni/devhub-all.js:1774 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:925
+#: media/js/devreg/devhub.js:896 media/js/zamboni/devhub-all.js:1774 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:925
 msgid "Learn more"
 msgstr "Подробнее"
 
-#: media/js/devreg/devhub.js:896 media/js/zamboni/devhub-all.js:1778 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:929
+#: media/js/devreg/devhub.js:900 media/js/zamboni/devhub-all.js:1778 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:929
 msgid "Example"
 msgstr "Пример"
 
-#: media/js/devreg/devhub.js:1199 media/js/zamboni/devhub-all.js:2125 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:1285
+#: media/js/devreg/devhub.js:1203 media/js/zamboni/devhub-all.js:2125 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:1285
 msgid "Image changes being processed"
 msgstr "Обработка изменений изображения"
 
@@ -1297,14 +1297,18 @@ msgid "Contains Editor Comment"
 msgstr "Содержит комментарий редактора"
 
 #: media/js/mkt/reviewers.js:112
+msgid "Premium App"
+msgstr ""
+
+#: media/js/mkt/reviewers.js:115
 msgid "Escalated"
 msgstr "Отправлено наверх"
 
-#: media/js/mkt/reviewers.js:117
+#: media/js/mkt/reviewers.js:120
 msgid "Free"
 msgstr "Бесплатно"
 
-#: media/js/mkt/reviewers.js:224
+#: media/js/mkt/reviewers.js:228
 msgid "Any"
 msgstr "Любая"
 
