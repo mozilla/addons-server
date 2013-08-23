@@ -247,7 +247,8 @@ def _get_rereview_themes(reviewer):
     if updated_locks:
         locks = updated_locks
 
-    themes = RereviewQueueTheme.objects.filter(theme__themelock=None)
+    themes = RereviewQueueTheme.objects.filter(theme__addon__isnull=False,
+                                               theme__themelock=None)
     return num, themes, locks
 
 
