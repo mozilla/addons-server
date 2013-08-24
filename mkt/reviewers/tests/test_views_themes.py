@@ -16,10 +16,10 @@ import amo.tests
 from amo.tests import addon_factory, days_ago
 from amo.urlresolvers import reverse
 from devhub.models import ActivityLog
-from editors.models import RereviewQueueTheme
+from editors.models import RereviewQueueTheme, ReviewerScore
 import mkt.constants.reviewers as rvw
 from mkt.reviewers.models import ThemeLock
-from mkt.reviewers.views_themes import _get_themes, themes_search
+from mkt.reviewers.views_themes import _get_themes, home, themes_search
 from mkt.site.fixtures import fixture
 from users.models import UserProfile
 
@@ -111,6 +111,7 @@ class ThemeReviewTestMixin(object):
                     send_mail_jinja_mock, version_changed_mock,
                     approve_rereview_mock, reject_rereview_mock):
         if self.flagged:
+            # Feels redundant to test this for flagged queue.
             return
 
         themes = []
@@ -251,6 +252,9 @@ class ThemeReviewTestMixin(object):
             eq_(send_mail_jinja_mock.call_args_list[2], expected_calls[2])
             eq_(send_mail_jinja_mock.call_args_list[3], expected_calls[3])
             eq_(send_mail_jinja_mock.call_args_list[4], expected_calls[4])
+
+        # Reviewer points accrual.
+        assert ReviewerScore.objects.all()[0].score > 0
 
     def test_single_basic(self):
         with self.settings(ALLOW_SELF_REVIEWS=True):
@@ -495,8 +499,7 @@ class TestDeletedThemeLookup(amo.tests.TestCase):
             self.deleted.name.localized_string)
 
     def test_perm(self):
-        self.client.login(username='persona_reviewer@mozilla.com',
-                          password='password')
+        self.login('persona_reviewer@mozilla.com')
         r = self.client.get(reverse('reviewers.themes.deleted'))
         eq_(r.status_code, 403)
 
@@ -530,3 +533,48 @@ class TestThemeSearch(amo.tests.ESTestCase):
         RereviewQueueTheme.objects.create(theme=self.addon.persona)
         self.addon.save()
         eq_(self.search('theme', rereview=True)[0]['id'], self.addon.id)
+
+
+class TestDashboard(amo.tests.TestCase):
+    fixtures = fixture('user_senior_persona_reviewer')
+
+    def setUp(self):
+        self.request = amo.tests.req_factory_factory(
+            reverse('reviewers.themes.home'), user=UserProfile.objects.get())
+
+    def test_dashboard_queue_counts(self):
+        # Pending.
+        addon_factory(type=amo.ADDON_PERSONA,
+                      status=amo.STATUS_PENDING)
+        for i in range(2):
+            # Flagged.
+            addon_factory(type=amo.ADDON_PERSONA,
+                          status=amo.STATUS_REVIEW_PENDING)
+        # Rereview.
+        rereview = addon_factory(type=amo.ADDON_PERSONA,
+                                 status=amo.STATUS_PUBLIC)
+        RereviewQueueTheme.objects.create(theme=rereview.persona)
+
+        r = home(self.request)
+        eq_(r.status_code, 200)
+
+        doc = pq(r.content)
+        titles = doc('#editors-stats-charts .editor-stats-title a')
+        eq_(titles[0].text.strip()[0], '1')  # Pending count.
+        eq_(titles[1].text.strip()[0], '2')  # Flagged count.
+        eq_(titles[2].text.strip()[0], '1')  # Rereview count.
+
+    def test_dashboard_review_counts(self):
+        theme = addon_factory(type=amo.ADDON_PERSONA)
+        for i in range(3):
+            amo.log(amo.LOG.THEME_REVIEW, theme,
+                    user=UserProfile.objects.get())
+
+        r = home(self.request)
+        eq_(r.status_code, 200)
+
+        doc = pq(r.content)
+        # Total reviews.
+        eq_(doc('.editor-stats-table:first-child td.int').text(), '3')
+        # Reviews monthly.
+        eq_(doc('.editor-stats-table:last-child td.int').text(), '3')

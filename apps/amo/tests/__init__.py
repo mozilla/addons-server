@@ -685,6 +685,7 @@ def req_factory_factory(url, user=None):
     """Creates a request factory, logged in with the user."""
     req = RequestFactory().get(url)
     if user:
+        req.amo_user = user
         req.user = user.user
         req.groups = req.user.get_profile().groups.all()
     return req

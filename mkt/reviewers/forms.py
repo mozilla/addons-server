@@ -11,7 +11,7 @@ import mkt.constants.reviewers as rvw
 from addons.models import AddonDeviceType, Persona
 from amo.utils import raise_required
 from editors.forms import NonValidatingChoiceField, ReviewLogForm
-from editors.models import CannedResponse
+from editors.models import CannedResponse, ReviewerScore
 from mkt.api.forms import CustomNullBooleanSelect
 from mkt.reviewers.utils import ReviewHelper
 from mkt.search.forms import ApiSearchForm
@@ -248,6 +248,8 @@ class ThemeReviewForm(happyforms.Form):
                 '[Rereview] ' if is_rereview else '', theme.addon.name,
                 theme.id, action))
 
+        ReviewerScore.award_points(theme_lock.reviewer, theme.addon,
+                                   theme.addon.status)
         theme_lock.delete()
 
 

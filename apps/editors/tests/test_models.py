@@ -504,6 +504,13 @@ class TestReviewerScore(amo.tests.TestCase):
         eq_(leaders['leader_top'][1]['total'],
             amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_FULL])
 
+        self._give_points(
+            user=user2, addon=amo.tests.addon_factory(type=amo.ADDON_PERSONA))
+        leaders = ReviewerScore.get_leaderboards(
+            self.user, addon_type=amo.ADDON_PERSONA)
+        eq_(len(leaders['leader_top']), 1)
+        eq_(leaders['leader_top'][0]['user_id'], user2.id)
+
     def test_no_admins_or_staff_in_leaderboards(self):
         user2 = UserProfile.objects.get(email='admin@mozilla.com')
         self._give_points()

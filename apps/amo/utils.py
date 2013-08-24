@@ -63,6 +63,9 @@ from . import logger_log as log
 metlog = settings.METLOG
 
 
+days_ago = lambda n: datetime.datetime.now() - datetime.timedelta(days=n)
+
+
 def urlparams(url_, hash=None, **query):
     """
     Add a fragment and/or query paramaters to a URL.

@@ -34,7 +34,7 @@ from amo.utils import (escape_all, HttpResponseSendFile, JSONEncoder, paginate,
 from devhub.models import ActivityLog, ActivityLogAttachment
 from editors.forms import MOTDForm
 from editors.models import (EditorSubscription, EscalationQueue, RereviewQueue,
-                            ReviewerScore)
+                            RereviewQueueTheme, ReviewerScore)
 from editors.views import reviewer_required
 from files.models import File
 from lib.crypto.packaged import SigningError
@@ -115,10 +115,19 @@ def queue_counts(request):
                                             reviewflag__isnull=False,
                                             editorreview=True)
                                     .count(),
+
         'themes': Persona.objects.no_cache()
                                  .filter(addon__status=amo.STATUS_PENDING)
                                  .count(),
     }
+
+    if acl.action_allowed(request, 'SeniorPersonasTools', 'View'):
+        counts.update({
+            'flagged_themes': (Persona.objects.no_cache()
+                               .filter(addon__status=amo.STATUS_REVIEW_PENDING)
+                               .count()),
+            'rereview_themes': RereviewQueueTheme.objects.count()
+        })
 
     if waffle.switch_is_active('buchets') and 'pro' in request.GET:
         counts.update({'device': device_queue_search(request).count()})
@@ -800,7 +809,6 @@ def performance(request, username=None):
 
 @permission_required('Apps', 'Review')
 def leaderboard(request):
-
     return jingo.render(request, 'reviewers/leaderboard.html', context(request,
         **{'scores': ReviewerScore.all_users_by_score()}))
 
