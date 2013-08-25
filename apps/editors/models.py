@@ -449,14 +449,18 @@ class ReviewerScore(amo.models.ModelBase):
         return val
 
     @classmethod
-    def get_recent(cls, user, limit=5):
+    def get_recent(cls, user, limit=5, addon_type=None):
         """Returns most recent ReviewerScore records."""
         key = cls.get_key('get_recent:%s' % user.id)
         val = cache.get(key)
         if val is not None:
             return val
 
-        val = list(ReviewerScore.uncached.filter(user=user)[:limit])
+        val = ReviewerScore.uncached.filter(user=user)
+        if addon_type is not None:
+            val.filter(addon__type=addon_type)
+
+        val = list(val[:limit])
         cache.set(key, val, 0)
         return val
 
@@ -508,7 +512,7 @@ class ReviewerScore(amo.models.ModelBase):
         return val
 
     @classmethod
-    def _leaderboard_query(cls, since=None, types=None):
+    def _leaderboard_query(cls, since=None, types=None, addon_type=None):
         """
         Returns common SQL to leaderboard calls.
         """
@@ -525,10 +529,13 @@ class ReviewerScore(amo.models.ModelBase):
         if types is not None:
             query = query.filter(note_key__in=types)
 
+        if addon_type is not None:
+            query = query.filter(addon__type=addon_type)
+
         return query
 
     @classmethod
-    def get_leaderboards(cls, user, days=7, types=None):
+    def get_leaderboards(cls, user, days=7, types=None, addon_type=None):
         """Returns leaderboards with ranking for the past given days.
 
         This will return a dict of 3 items::
@@ -552,7 +559,8 @@ class ReviewerScore(amo.models.ModelBase):
         leader_top = []
         leader_near = []
 
-        query = cls._leaderboard_query(since=week_ago, types=types)
+        query = cls._leaderboard_query(since=week_ago, types=types,
+                                       addon_type=addon_type)
         scores = []
 
         user_rank = 0

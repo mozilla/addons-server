@@ -18,7 +18,7 @@ from addons.models import Addon, Persona
 from amo.decorators import json_view, post_required
 from amo.search import TempS
 from amo.urlresolvers import reverse
-from amo.utils import paginate
+from amo.utils import days_ago, paginate
 from devhub.models import ActivityLog
 from editors.models import RereviewQueueTheme
 from editors.views import reviewer_required
@@ -30,6 +30,17 @@ import mkt.constants.reviewers as rvw
 from . import forms
 from .models import ThemeLock
 from .views import context, _get_search_form, queue_counts, QUEUE_PER_PAGE
+
+
+@reviewer_required('persona')
+def home(request):
+    data = context(
+        request,
+        reviews_total=ActivityLog.objects.total_reviews(theme=True)[:5],
+        reviews_monthly=ActivityLog.objects.monthly_reviews(theme=True)[:5],
+        weekly_theme_counts=_weekly_theme_counts(),
+    )
+    return jingo.render(request, 'reviewers/themes/home.html', data)
 
 
 @waffle_switch('mkt-themes')
@@ -70,11 +81,19 @@ def themes_list(request, flagged=False, rereview=False):
 def themes_search(request):
     search_form = forms.ThemeSearchForm(request.GET)
     if search_form.is_valid():
+        q = search_form.cleaned_data['q']
+        rereview = search_form.cleaned_data['queue_type'] == 'rereview'
+        flagged = search_form.cleaned_data['queue_type'] == 'flagged'
+
         # ES query on name.
-        themes = (TempS(Addon).filter(type=amo.ADDON_PERSONA,
-                                      status=amo.STATUS_PENDING)
-            .query(or_=name_only_query(search_form.cleaned_data['q'].lower()))
-            [:100])
+        themes = TempS(Addon).filter(type=amo.ADDON_PERSONA)
+        if rereview:
+            themes = themes.filter(has_theme_rereview=True)
+        else:
+            themes = themes.filter(status=amo.STATUS_REVIEW_PENDING if flagged
+                                          else amo.STATUS_PENDING,
+                                   has_theme_rereview=False)
+        themes = themes.query(or_=name_only_query(q))[:100]
 
         now = datetime.datetime.now()
         reviewers = []
@@ -89,6 +108,7 @@ def themes_search(request):
                 reviewers.append('')
 
         themes = list(themes.values_dict('name', 'slug', 'status'))
+
         for theme, reviewer in zip(themes, reviewers):
             # Dehydrate.
             theme['reviewer'] = reviewer
@@ -455,3 +475,22 @@ def get_actions_json():
 def get_updated_expiry():
     return (datetime.datetime.now() +
             datetime.timedelta(minutes=rvw.THEME_LOCK_EXPIRY))
+
+
+def _weekly_theme_counts():
+    """Returns unreviewed themes progress."""
+    base_filters = {
+        'pending_themes': Addon.objects.filter(
+            type=amo.ADDON_PERSONA, status=amo.STATUS_PENDING),
+        'flagged_themes': Addon.objects.filter(
+            type=amo.ADDON_PERSONA, status=amo.STATUS_REVIEW_PENDING),
+        'rereview_themes': RereviewQueueTheme.objects.all(),
+    }
+
+    theme_counts = {}
+    for queue_type, qs in base_filters.iteritems():
+        theme_counts[queue_type] = {
+            'week': qs.filter(created__gte=days_ago(7)).count()
+        }
+
+    return theme_counts

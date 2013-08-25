@@ -278,6 +278,10 @@ APP_PURCHASE_AUD = 'marketplace-dev.allizom.org'
 # On B2G this must match a provider in the whitelist.
 APP_PURCHASE_TYP = 'mozilla/payments/pay/v1'
 
+# This is the typ for signature checking JWTs.
+# This is used to integrate with WebPay.
+SIG_CHECK_TYP = 'mozilla/payments/sigcheck/v1'
+
 # This is the base filename of the `.zip` containing the packaged app for the
 # consumer-facing pages of the Marketplace (aka Fireplace). Expected path:
 #     /media/packaged-apps/<path>

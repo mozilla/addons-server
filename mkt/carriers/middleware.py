@@ -1,4 +1,3 @@
-from django.conf import settings
 from django.utils.cache import patch_vary_headers
 
 from amo.urlresolvers import set_url_prefix

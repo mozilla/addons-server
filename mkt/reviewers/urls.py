@@ -1,5 +1,4 @@
 from django.conf.urls import include, patterns, url
-from django.shortcuts import redirect
 
 from tastypie.api import Api
 
@@ -16,7 +15,7 @@ reviewers_api.register(api.ReviewersSearchResource())
 # All URLs under /reviewers/.
 url_patterns = patterns('',
     url(r'^apps/$', views.home, name='reviewers.home'),
-    url(r'^$', lambda r: redirect('reviewers.home')),
+    url(r'^$', views.route_reviewer, name='reviewers'),
     url(r'^apps/queue/$', views.queue_apps,
         name='reviewers.apps.queue_pending'),
     url(r'^apps/queue/rereview/$', views.queue_rereview,
@@ -44,17 +43,19 @@ url_patterns = patterns('',
     url(r'^apps/reviewing$', views.apps_reviewing,
         name='reviewers.apps.apps_reviewing'),
 
-    url('^themes/queue/$', views_themes.themes_queue,
-        name='reviewers.themes.queue_themes'),
-    url('^themes/queue/list/$', views_themes.themes_list,
+    url('^themes$', views_themes.home,
+        name='reviewers.themes.home'),
+    url('^themes/pending$', views_themes.themes_list,
         name='reviewers.themes.list'),
-    url('^themes/queue/list/flagged$', views_themes.themes_list,
+    url('^themes/flagged$', views_themes.themes_list,
         name='reviewers.themes.list_flagged',
         kwargs={'flagged': True}),
-    url('^themes/queue/list/updates$', views_themes.themes_list,
+    url('^themes/updates$', views_themes.themes_list,
         name='reviewers.themes.list_rereview',
         kwargs={'rereview': True}),
-    url('^themes/queue/flagged$', views_themes.themes_queue_flagged,
+    url('^themes/queue/$', views_themes.themes_queue,
+        name='reviewers.themes.queue_themes'),
+        url('^themes/queue/flagged$', views_themes.themes_queue_flagged,
         name='reviewers.themes.queue_flagged'),
     url('^themes/queue/updates$', views_themes.themes_queue_rereview,
         name='reviewers.themes.queue_rereview'),

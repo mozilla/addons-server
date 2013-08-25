@@ -20,7 +20,7 @@ from .serializers import CollectionMembershipField, CollectionSerializer
 class CollectionViewSet(CORSMixin, SlugOrIdMixin, viewsets.ModelViewSet):
     serializer_class = CollectionSerializer
     queryset = Collection.objects.all()
-    cors_allowed_methods = ('get', 'post', 'delete')
+    cors_allowed_methods = ('get', 'post', 'delete', 'patch')
     permission_classes = [PublisherAuthorization]
     authentication_classes = [RestOAuthAuthentication,
                               RestSharedSecretAuthentication,
@@ -32,7 +32,7 @@ class CollectionViewSet(CORSMixin, SlugOrIdMixin, viewsets.ModelViewSet):
         'doesnt_exist': '`app` does not exist.',
         'not_in': '`app` not in collection.',
         'already_in': '`app` already exists in collection.',
-        'app_mismatch': 'All apps in this collection must be included.'
+        'app_mismatch': 'All apps in this collection must be included.',
     }
 
     def return_updated(self, status, collection=None):

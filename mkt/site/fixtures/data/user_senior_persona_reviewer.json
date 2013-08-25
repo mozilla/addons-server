@@ -55,7 +55,7 @@
         "pk": 50070,
         "model": "access.group",
         "fields": {
-            "rules": "SeniorPersonasTools:View",
+            "rules": "Personas:Review,SeniorPersonasTools:View",
             "notes": "",
             "modified": "2012-05-22 17:53:57",
             "name": "Senior Persona Reviewers",

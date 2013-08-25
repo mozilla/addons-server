@@ -54,11 +54,12 @@ class TestCollectionSerializer(CollectionDataMixin, amo.tests.TestCase):
         data = self.serializer.to_native(self.collection)
         for name, value in self.collection_data.iteritems():
             eq_(self.collection_data[name], data[name])
-        self.assertSetEqual(data.keys(), ['id', 'name', 'description', 'apps',
-                                          'collection_type', 'category',
-                                          'region', 'carrier', 'author',
-                                          'slug', 'is_public',
-                                          'default_language'])
+        self.assertSetEqual(data.keys(), ['apps', 'author', 'background_color',
+                                          'carrier', 'category',
+                                          'collection_type', 'default_language',
+                                          'description', 'id', 'is_public',
+                                          'name', 'region', 'slug',
+                                          'text_color'])
         for order, app in enumerate(apps):
             eq_(data['apps'][order]['slug'], app.app_slug)
         return data

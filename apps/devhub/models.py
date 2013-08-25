@@ -222,23 +222,25 @@ class ActivityLogManager(amo.models.ManagerBase):
         return (qs.filter(action__in=amo.LOG_REVIEW_QUEUE)
                   .exclude(user__id=settings.TASK_USER_ID))
 
-    def total_reviews(self, webapp=False):
+    def total_reviews(self, webapp=False, theme=False):
         qs = self._by_type(webapp)
         """Return the top users, and their # of reviews."""
         return (qs.values('user', 'user__display_name', 'user__username')
-                  .filter(action__in=amo.LOG_REVIEW_QUEUE)
+                  .filter(action__in=([amo.LOG.THEME_REVIEW.id] if theme
+                                      else amo.LOG_REVIEW_QUEUE))
                   .exclude(user__id=settings.TASK_USER_ID)
                   .annotate(approval_count=models.Count('id'))
                   .order_by('-approval_count'))
 
-    def monthly_reviews(self, webapp=False):
+    def monthly_reviews(self, webapp=False, theme=False):
         """Return the top users for the month, and their # of reviews."""
         qs = self._by_type(webapp)
         now = datetime.now()
         created_date = datetime(now.year, now.month, 1)
         return (qs.values('user', 'user__display_name', 'user__username')
                   .filter(created__gte=created_date,
-                          action__in=amo.LOG_REVIEW_QUEUE)
+                          action__in=([amo.LOG.THEME_REVIEW.id] if theme
+                                      else amo.LOG_REVIEW_QUEUE))
                   .exclude(user__id=settings.TASK_USER_ID)
                   .annotate(approval_count=models.Count('id'))
                   .order_by('-approval_count'))

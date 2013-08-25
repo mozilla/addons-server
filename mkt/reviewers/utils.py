@@ -30,6 +30,14 @@ from users.models import UserProfile
 
 
 log = commonware.log.getLogger('z.mailer')
+action_note_types = {
+    'approve': comm.APPROVAL,
+    'disable': comm.DISABLED,
+    'escalate': comm.ESCALATION,
+    'info': comm.MORE_INFO_REQUIRED,
+    'comment': comm.REVIEWER_COMMENT,
+    'reject': comm.REJECTION
+}
 
 
 def send_mail(subject, template, context, emails, perm_setting=None, cc=None,
@@ -64,6 +72,43 @@ def send_note_emails(note):
         subject = u'%s has been reviewed.' % name
         send_mail(subject, 'reviewers/emails/decisions/post.txt', data,
                   [email], perm_setting='app_reviewed', reply_to=reply_to)
+
+
+def create_comm_thread(**kwargs):
+    if not waffle.switch_is_active('comm-dashboard'):
+        return
+
+    addon = kwargs['addon']
+    version = kwargs['version']
+    thread = CommunicationThread.objects.filter(addon=addon, version=version)
+
+    perms = {}
+    for key in kwargs['perms']:
+        perms['read_permission_%s' % key] = True
+
+    if thread.exists():
+        thread = thread[0]
+    else:
+        thread = CommunicationThread.objects.create(addon=addon,
+            version=version, **perms)
+
+    note = CommunicationNote.objects.create(
+        note_type=action_note_types[kwargs['action']],
+        body=kwargs['comments'], author=kwargs['profile'],
+        thread=thread, **perms)
+
+    moz_emails = addon.get_mozilla_contacts()
+
+    # CC mozilla contact.
+    for email in moz_emails:
+        try:
+            moz_contact = UserProfile.objects.get(email=email)
+        except UserProfile.DoesNotExist:
+            pass
+        else:
+            CommunicationThreadCC.objects.get_or_create(
+                thread=thread, user=moz_contact)
+    return thread, note
 
 
 class ReviewBase(object):
@@ -223,52 +268,13 @@ class ReviewApp(ReviewBase):
         self.files = self.version.files.all()
 
     def create_comm_thread(self, **kwargs):
-        """Create a thread/note objects for communication."""
-        if not waffle.switch_is_active('comm-dashboard'):
-            return
-
-        action = kwargs['action']
-        action_note_types = {
-            'approve': comm.APPROVAL,
-            'disable': comm.DISABLED,
-            'escalate': comm.ESCALATION,
-            'info': comm.MORE_INFO_REQUIRED,
-            'comment': comm.REVIEWER_COMMENT,
-            'reject': comm.REJECTION
-        }
-
-        thread = CommunicationThread.objects.filter(addon=self.addon,
+        res = create_comm_thread(action=kwargs['action'], addon=self.addon,
+            comments=self.data['comments'],
+            perms=self.data['action_visibility'],
+            profile=self.request.amo_user,
             version=self.version)
-
-        perms = {}
-        for key in self.data['action_visibility']:
-            perms['read_permission_%s' % key] = True
-
-        if thread.exists():
-            thread = thread[0]
-        else:
-            thread = CommunicationThread(addon=self.addon,
-                version=self.version, **perms)
-            # Set permissions from the form.
-            thread.save()
-
-        self.comm_note = CommunicationNote.objects.create(
-            note_type=action_note_types[action],
-            body=self.data['comments'], author=self.request.amo_user,
-            thread=thread, **perms)
-        self.comm_thread = thread
-
-        moz_emails = self.addon.get_mozilla_contacts()
-
-        # CC mozilla contact.
-        for email in moz_emails:
-            try:
-                moz_contact = UserProfile.objects.get(email=email)
-            except UserProfile.DoesNotExist:
-                pass
-            else:
-                CommunicationThreadCC.objects.get_or_create(
-                    thread=thread, user=moz_contact)
+        if res:
+            self.comm_thread, self.comm_note = res
 
     def process_public(self):
         # Hold onto the status before we change it.
