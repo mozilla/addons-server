@@ -3,14 +3,16 @@
    title -- translation string (e.g. _('Queues'))
    tabs -- list of named_url/tab_code/tab_text tuples
    is_selected -- boolean condition to highlight this element #}
-  <li{% if is_selected %} class="selected"{% endif %}>
-    <a href="{{ url(tabs[0][0]) }}" class="controller trigger-{{ type }}">{{ title }}</a>
-    <ul>
-      {% for named_url, tab_code, text in tabs %}
-        <li><a href="{{ url(named_url) }}">{{ text }}</a></li>
-      {% endfor %}
-    </ul>
-  </li>
+  {% if tabs %}
+    <li{% if is_selected %} class="selected"{% endif %}>
+      <a href="{{ url(tabs[0][0]) }}" class="controller trigger-{{ type }}">{{ title }}</a>
+      <ul>
+        {% for named_url, tab_code, text in tabs %}
+          <li><a href="{{ url(named_url) }}">{{ text }}</a></li>
+        {% endfor %}
+      </ul>
+    </li>
+  {% endif %}
 {% endmacro %}
 
 {% macro mobile_overlay(type, title, tabs) %}

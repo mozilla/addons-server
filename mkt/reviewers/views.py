@@ -62,6 +62,17 @@ log = commonware.log.getLogger('z.reviewers')
 
 
 @reviewer_required
+def route_reviewer(request):
+  """
+  Redirect to apps home page if app reviewer.
+  Redirect to themes home page if only a theme reviewer.
+  """
+  if acl.action_allowed(request, 'Apps', 'Review'):
+    return http.HttpResponseRedirect(reverse('reviewers.home'))
+  return http.HttpResponseRedirect(reverse('reviewers.themes.home'))
+
+
+@reviewer_required(only='app')
 def home(request):
     durations = (('new', _('New Apps (Under 5 days)')),
                  ('med', _('Passable (5 to 10 days)')),
@@ -379,7 +390,7 @@ def _review(request, addon, version):
 
 
 @transaction.commit_manually
-@permission_required('Apps', 'Review')
+@reviewer_required(only='app')
 @addon_view
 def app_review(request, addon):
     version = addon.latest_version
@@ -444,7 +455,7 @@ def _do_sort(request, qs, date_field='created'):
         return qs.order_by(order_by)
 
 
-@permission_required('Apps', 'Review')
+@reviewer_required(only='app')
 def queue_apps(request):
     excluded_ids = EscalationQueue.uncached.values_list('addon', flat=True)
     qs = (Version.uncached.filter(addon__type=amo.ADDON_WEBAPP,
@@ -461,7 +472,7 @@ def queue_apps(request):
     return _queue(request, apps, 'pending')
 
 
-@permission_required('Apps', 'Review')
+@reviewer_required(only='app')
 def queue_rereview(request):
     excluded_ids = EscalationQueue.uncached.values_list('addon', flat=True)
     rqs = (RereviewQueue.uncached
@@ -484,7 +495,7 @@ def queue_escalated(request):
     return _queue(request, apps, 'escalated')
 
 
-@permission_required('Apps', 'Review')
+@reviewer_required(only='app')
 def queue_updates(request):
     excluded_ids = EscalationQueue.uncached.values_list('addon', flat=True)
     pub_statuses = amo.WEBAPPS_APPROVED_STATUSES
@@ -506,7 +517,7 @@ def queue_updates(request):
     return _queue(request, apps, 'updates')
 
 
-@permission_required('Apps', 'Review')
+@reviewer_required(only='app')
 def queue_device(request):
     """
     A device specific queue matching apps which require features that our
@@ -521,7 +532,7 @@ def queue_device(request):
     return _queue(request, apps, 'device')
 
 
-@permission_required('Apps', 'Review')
+@reviewer_required(only='app')
 def queue_moderated(request):
     """Queue for reviewing app reviews."""
     rf = (Review.uncached.exclude(Q(addon__isnull=True) |
