@@ -962,7 +962,7 @@ def _compat_result(request, revalidate_url, target_app, target_version,
 @dev_required(allow_editors=True)
 def json_file_validation(request, addon_id, addon, file_id):
     file = get_object_or_404(File, id=file_id)
-    if not file.has_been_validated == True:
+    if not file.has_been_validated:
         if request.method != 'POST':
             return http.HttpResponseNotAllowed(['POST'])
 
@@ -1116,7 +1116,7 @@ def addons_section(request, addon_id, addon, section, editable=False,
     if section not in models:
         raise http.Http404()
 
-    tags = previews = restricted_tags = []
+    tags, previews, restricted_tags = [], [], []
     cat_form = dependency_form = None
 
     if section == 'basic':

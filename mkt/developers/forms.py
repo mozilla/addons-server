@@ -21,17 +21,18 @@ from tower import ugettext as _, ugettext_lazy as _lazy, ungettext as ngettext
 import amo
 import addons.forms
 from access import acl
-from addons.forms import icons, IconWidgetRenderer, slug_validator
+from addons.forms import clean_tags, icons, IconWidgetRenderer, slug_validator
 from addons.models import (Addon, AddonCategory, AddonUser, BlacklistedSlug,
                            Category, CategorySupervisor, Preview)
 from addons.widgets import CategoriesSelectMultiple
 from amo import get_user
 from amo.fields import SeparatedValuesField
-from amo.utils import remove_icons
+from amo.utils import remove_icons, slugify
 from devhub.forms import VersionForm
 from files.models import FileUpload
 from files.utils import WebAppParser
 from lib.video import tasks as vtasks
+from tags.models import Tag
 from translations.fields import TransField
 from translations.forms import TranslationFormMixin
 from translations.models import Translation
@@ -304,6 +305,7 @@ class AdminSettingsForm(PreviewForm):
     DELETE = forms.BooleanField(required=False)
     mozilla_contact = SeparatedValuesField(forms.EmailField, separator=',',
                                            required=False)
+    tags = forms.CharField(required=False)
     app_ratings = forms.MultipleChoiceField(required=False,
                                             choices=RATINGS_BY_NAME)
 
@@ -318,13 +320,15 @@ class AdminSettingsForm(PreviewForm):
             self.instance = addon
             self.promo = addon.get_promo()
 
-        # Just consume the request - we don't care.
-        kw.pop('request', None)
+        self.request = kw.pop('request', None)
 
+        # Note: After calling `super`, `self.instance` becomes the `Preview`
+        # object.
         super(AdminSettingsForm, self).__init__(*args, **kw)
 
         if self.instance:
             self.initial['mozilla_contact'] = addon.mozilla_contact
+            self.initial['tags'] = ', '.join(self.get_tags(addon))
 
             rs = []
             for r in addon.content_ratings.all():
@@ -347,6 +351,16 @@ class AdminSettingsForm(PreviewForm):
                                           'body may be selected.'))
         return ratings_ids
 
+    def get_tags(self, addon):
+        if acl.action_allowed(self.request, 'Apps', 'Edit'):
+            return list(addon.tags.values_list('tag_text', flat=True))
+        else:
+            return list(addon.tags.filter(restricted=False)
+                        .values_list('tag_text', flat=True))
+
+    def clean_tags(self):
+        return clean_tags(self.request, self.cleaned_data['tags'])
+
     def save(self, addon, commit=True):
         if (self.cleaned_data.get('DELETE') and
             'upload_hash' not in self.changed_data and self.promo.id):
@@ -359,6 +373,20 @@ class AdminSettingsForm(PreviewForm):
         contact = self.cleaned_data.get('mozilla_contact')
         if contact:
             addon.update(mozilla_contact=contact)
+
+        tags = self.cleaned_data.get('tags')
+        if tags:
+            tags_new = self.cleaned_data['tags']
+            tags_old = [slugify(t, spaces=True) for t in self.get_tags(addon)]
+
+            # Add new tags.
+            for t in set(tags_new) - set(tags_old):
+                Tag(tag_text=t).save_tag(addon)
+
+            # Remove old tags.
+            for t in set(tags_old) - set(tags_new):
+                Tag(tag_text=t).remove_tag(addon)
+
         ratings = self.cleaned_data.get('app_ratings')
         if ratings:
             before = set(addon.content_ratings.filter(rating__in=ratings)
