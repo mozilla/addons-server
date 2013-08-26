@@ -215,4 +215,4 @@ WHITELISTED_CLIENTS_EMAIL_API = private_mkt.WHITELISTED_CLIENTS_EMAIL_API
 
 POSTFIX_AUTH_TOKEN = private_mkt.POSTFIX_AUTH_TOKEN
 
-POSTFIX_DOMAIN = 'mail.marketplace-dev.allizom.org'
+POSTFIX_DOMAIN = 'marketplace-dev.allizom.org'
