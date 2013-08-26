@@ -72,6 +72,8 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
 
         super(PremiumForm, self).__init__(*args, **kw)
 
+        self.fields['paid_platforms'].choices = PAID_PLATFORMS(self.request)
+
         if (self.is_paid() and not self.is_toggling()):
             # Require the price field if the app is premium and
             # we're not toggling from free <-> paid.
@@ -85,7 +87,7 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
         self.initial.setdefault('paid_platforms', [])
 
         for platform in set(x[0].split('-', 1)[1] for x in
-                            FREE_PLATFORMS + PAID_PLATFORMS):
+                            FREE_PLATFORMS() + PAID_PLATFORMS()):
             supported = platform in supported_devices
             self.device_data['free-%s' % platform] = supported
             self.device_data['paid-%s' % platform] = supported

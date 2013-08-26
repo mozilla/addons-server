@@ -50,9 +50,9 @@ class DeviceTypeForm(happyforms.Form):
     }
 
     free_platforms = forms.MultipleChoiceField(
-        choices=FREE_PLATFORMS, required=False)
+        choices=FREE_PLATFORMS(), required=False)
     paid_platforms = forms.MultipleChoiceField(
-        choices=PAID_PLATFORMS, required=False)
+        choices=PAID_PLATFORMS(), required=False)
 
     def save(self, addon, is_paid):
         data = self.cleaned_data[
@@ -212,6 +212,12 @@ class NewWebappForm(DeviceTypeForm, NewWebappVersionForm):
         error_messages={'invalid_choice': _lazy(
             u'There was an error with your upload. Please try again.')})
     packaged = forms.BooleanField(required=False)
+
+    def __init__(self, *args, **kwargs):
+        self.request = kwargs.pop('request', None)
+        super(NewWebappForm, self).__init__(*args, **kwargs)
+        if 'paid_platforms' in self.fields:
+            self.fields['paid_platforms'].choices = PAID_PLATFORMS(self.request)
 
     def _add_error(self, msg):
         self._errors['free_platforms'] = self._errors['paid_platforms'] = (
