@@ -53,10 +53,8 @@
 
     // When a big device button is clicked, update the form.
     var $upload_form = $('#upload-webapp'),
-        $qhd = $('#id_has_qhd'),
-        $body = $(document.body);
-
-    $body.on('change', '#upload-webapp select', function() {
+        $qhd = $('#id_has_qhd');
+    $(document.body).on('change', '#upload-webapp select', function() {
         // IT'S FINE. IT'S FINE.
         if (!$upload_form.find('option[value$="-desktop"]:selected, option[value$="-tablet"]:selected').length) {
             $qhd.prop('checked', true).trigger('change');
@@ -83,6 +81,7 @@
             $this.find('input').prop('checked', nowSelected);
             $input.val(old).trigger('change');
             $compat_save_button.removeClass('hidden');
+            setTabState();
         })
     );
 
@@ -93,7 +92,39 @@
         $('#id_free_platforms, #id_paid_platforms').val([]);
     }
 
-    $body.on('tabs-changed', function(e, tab) {
+    // Best function name ever?
+    function allTabsDeselected() {
+        var freeTabs = $('#id_free_platforms option:selected').length;
+        var paidTabs = $('#id_paid_platforms option:selected').length;
+
+        return freeTabs === 0 && paidTabs === 0;
+    }
+
+    // Condition to show packaged tab...ugly but works.
+    function showPackagedTab() {
+        return ($('#id_free_platforms option[value="free-firefoxos"]:selected').length &&
+               $('#id_free_platforms option:selected').length == 1) ||
+               $('#id_paid_platforms option[value="paid-firefoxos"]:selected').length ||
+               $('option[value*=android]:selected').length ||
+               allTabsDeselected();
+    }
+
+    // Toggle packaged/hosted tab state.
+    function setTabState() {
+        if (!$('#id_free_platforms, #id_paid_platforms').length) {
+            return;
+        }
+
+        // If only free-os or paid-os is selected, show packaged.
+        if (showPackagedTab()) {
+            $('#packaged-tab-header').css('display', 'inline');
+        } else {
+            $('#packaged-tab-header').hide();
+            $('#hosted-tab-header').find('a').click();
+        }
+    }
+
+    $(document).on('tabs-changed', function(e, tab) {
         if (tab.id == 'packaged-tab-header') {
             $('.learn-mdn.active').removeClass('active');
             $('.learn-mdn.packaged').addClass('active');

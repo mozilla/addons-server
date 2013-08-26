@@ -173,7 +173,11 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
 
         is_toggling = self.is_toggling()
 
-        if not is_toggling:
+        if self.addon.is_packaged and 'desktop' in self._get_combined():
+            self._errors['free_platforms'] = self._errors['paid_platforms'] = (
+                self.ERRORS['packaged'])
+
+        elif not is_toggling:
             # If a platform wasn't selected, raise an error.
             if not self.cleaned_data[
                 '%s_platforms' % ('paid' if self.is_paid() else 'free')]:
