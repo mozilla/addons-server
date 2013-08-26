@@ -87,7 +87,7 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
         self.initial.setdefault('paid_platforms', [])
 
         for platform in set(x[0].split('-', 1)[1] for x in
-                            FREE_PLATFORMS() + PAID_PLATFORMS()):
+                            FREE_PLATFORMS() + PAID_PLATFORMS(self.request)):
             supported = platform in supported_devices
             self.device_data['free-%s' % platform] = supported
             self.device_data['paid-%s' % platform] = supported
