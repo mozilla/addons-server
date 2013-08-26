@@ -107,7 +107,7 @@ define('payments-manage', ['payments'], function(payments) {
 
     function init() {
         z.body.on('click', '.add-payment-account', _pd(newBangoPaymentAccount));
-        z.body.on('click', '.payment-account-actions', _pd(paymentAccountList));
+        z.body.on('click', '#payment-account-action', _pd(paymentAccountList));
     }
 
     return {init: init};

@@ -390,10 +390,10 @@ class BangoPaymentAccountForm(happyforms.Form):
         max_length=17, required=False, label=_lazy(u'VAT Number'))
 
     bankAccountNumber = forms.CharField(
-        max_length=20, label=_lazy(u'Bank Account Number'),
-        widget=forms.HiddenInput())
+        max_length=20, label=_lazy(u'Bank Account Number'))
     bankAccountCode = forms.CharField(
-        max_length=20, label=_lazy(u'Bank Account Code'))
+        # l10n: SWIFT is http://bit.ly/15e7RJx and might not need translating.
+        max_length=20, label=_lazy(u'SWIFT code'))
     bankName = forms.CharField(
         max_length=50, label=_lazy(u'Bank Name'))
     bankAddress1 = forms.CharField(
