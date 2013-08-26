@@ -1284,7 +1284,7 @@ msgstr "Съдържа коментар от редактор"
 
 #: media/js/mkt/reviewers.js:112
 msgid "Premium App"
-msgstr ""
+msgstr "Премиум приложение"
 
 #: media/js/mkt/reviewers.js:115
 msgid "Escalated"
