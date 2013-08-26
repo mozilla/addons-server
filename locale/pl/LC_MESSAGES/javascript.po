@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-08-23 09:56-0700\n"
-"PO-Revision-Date: 2013-06-30 20:44+0200\n"
+"PO-Revision-Date: 2013-08-25 10:49+0200\n"
 "Last-Translator: Wojciech Szczęsny\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
 "Language: pl\n"
@@ -17,8 +17,12 @@ msgstr ""
 
 #: media/js/common-all.js:10109 media/js/common-min.js:23 media/js/impala-all.js:1159 media/js/impala-min.js:1 media/js/devreg/init.js:35 media/js/mkt/init.js:47
 #: media/js/zamboni/discovery-all.js:10076 media/js/zamboni/discovery-min.js:23 media/js/zamboni/init.js:32 media/js/zamboni/mobile-all.js:10912 media/js/zamboni/mobile-min.js:32
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "W trakcie wykonywania serwisu witryny ta funkcja jest tymczasowo wyłączona. Sprawdź ponownie nieco później."
+msgid ""
+"This feature is temporarily disabled while we perform website maintenance. "
+"Please check back a little later."
+msgstr ""
+"W trakcie wykonywania serwisu witryny ta funkcja jest tymczasowo wyłączona. "
+"Sprawdź ponownie nieco później."
 
 #: media/js/common-all.js:10509 media/js/common-min.js:23 media/js/impala-all.js:1559 media/js/impala-min.js:1 media/js/zamboni/mobile-all.js:10654 media/js/zamboni/mobile-min.js:32
 msgid "App installation not allowed"
@@ -97,8 +101,12 @@ msgstr "Niedostępny dla {0} {1}"
 
 #: media/js/common-all.js:11078 media/js/common-min.js:23 media/js/impala-all.js:2128 media/js/impala-min.js:1 media/js/zamboni/buttons.js:601 media/js/zamboni/discovery-all.js:11020
 #: media/js/zamboni/discovery-min.js:23 media/js/zamboni/mobile-all.js:11127 media/js/zamboni/mobile-min.js:32 media/js/zamboni/mobile/buttons.js:39
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "Przepraszamy. Aby zainstalować wtyczkę wyszukiwarki, potrzebna jest przeglądarka zbudowana w oparciu o technologię Mozilli – taka jak np. Firefox."
+msgid ""
+"Sorry, you need a Mozilla-based browser (such as Firefox) to install a search "
+"plugin."
+msgstr ""
+"Przepraszamy. Aby zainstalować wtyczkę wyszukiwarki, potrzebna jest "
+"przeglądarka zbudowana w oparciu o technologię Mozilli – taka jak np. Firefox."
 
 #: media/js/common-all.js:16149 media/js/common-min.js:56 media/js/impala-all.js:7698 media/js/impala-min.js:34 media/js/zamboni/global.js:416
 msgid "Loading..."
@@ -244,11 +252,16 @@ msgstr "Kategoria"
 
 #: media/js/impala-all.js:2446 media/js/impala-min.js:1 media/js/zamboni/browserid_support.js:32 media/js/zamboni/mobile-all.js:12078 media/js/zamboni/mobile-min.js:32
 msgid "Admins and editors must provide a password to log in."
-msgstr "Aby się zalogować, administratorzy i recenzenci muszą wprowadzić hasło."
+msgstr ""
+"Aby się zalogować, administratorzy i recenzenci muszą wprowadzić hasło."
 
 #: media/js/impala-all.js:2451 media/js/impala-min.js:1 media/js/zamboni/browserid_support.js:37 media/js/zamboni/mobile-all.js:12083 media/js/zamboni/mobile-min.js:32
-msgid "BrowserID login failed. Maybe you don't have an account under that email address?"
-msgstr "Nie udało się zalogować, używając usługi BrowserID. Być może nie masz konta pod takim adresem e-mail."
+msgid ""
+"BrowserID login failed. Maybe you don't have an account under that email "
+"address?"
+msgstr ""
+"Nie udało się zalogować, używając usługi BrowserID. Być może nie masz konta "
+"pod takim adresem e-mail."
 
 #: media/js/impala-all.js:2584 media/js/impala-min.js:1 media/js/devreg/validator.js:458 media/js/zamboni/devhub-all.js:2864 media/js/zamboni/devhub-min.js:1 media/js/zamboni/mobile-all.js:12216
 #: media/js/zamboni/mobile-min.js:32 media/js/zamboni/validator.js:466
@@ -280,7 +293,8 @@ msgstr "Wybierz plik…"
 
 #: media/js/impala-all.js:10391 media/js/impala-min.js:34 media/js/common/upload-addon.js:53 media/js/zamboni/devhub-all.js:225 media/js/zamboni/devhub-min.js:1
 msgid "Your add-on should end with .xpi, .jar or .xml"
-msgstr "Nazwa pliku dodatku powinna kończyć się rozszerzeniem .xpi, .jar lub .xml"
+msgstr ""
+"Nazwa pliku dodatku powinna kończyć się rozszerzeniem .xpi, .jar lub .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #: media/js/impala-all.js:10425 media/js/impala-min.js:34 media/js/common/upload-addon.js:87 media/js/common/upload-packaged-app.js:89 media/js/zamboni/devhub-all.js:259
@@ -354,9 +368,12 @@ msgstr "Zakończono sprawdzanie {0}"
 #: media/js/impala-all.js:10632 media/js/impala-min.js:34 media/js/common/upload-addon.js:307 media/js/zamboni/devhub-all.js:466 media/js/zamboni/devhub-min.js:1
 msgid "Your add-on passed validation with no errors and {0} warning."
 msgid_plural "Your add-on passed validation with no errors and {0} warnings."
-msgstr[0] "Dodatek przeszedł proces sprawdzania bez błędów, ale z {0} ostrzeżeniem."
-msgstr[1] "Dodatek przeszedł proces sprawdzania bez błędów, ale z {0} ostrzeżeniami."
-msgstr[2] "Dodatek przeszedł proces sprawdzania bez błędów, ale z {0} ostrzeżeniami."
+msgstr[0] ""
+"Dodatek przeszedł proces sprawdzania bez błędów, ale z {0} ostrzeżeniem."
+msgstr[1] ""
+"Dodatek przeszedł proces sprawdzania bez błędów, ale z {0} ostrzeżeniami."
+msgstr[2] ""
+"Dodatek przeszedł proces sprawdzania bez błędów, ale z {0} ostrzeżeniami."
 
 #: media/js/impala-all.js:10637 media/js/impala-min.js:34 media/js/common/upload-addon.js:312 media/js/zamboni/devhub-all.js:471 media/js/zamboni/devhub-min.js:1
 msgid "Your add-on passed validation with no errors or warnings."
@@ -452,15 +469,21 @@ msgstr "Twoja aplikacja przeszła weryfikację bez błędów i ostrzeżeń."
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
 msgstr[0] ""
+"Twoja aplikacja nie przeszła weryfikacji – błędy: {0}, wiadomości: {1}."
 msgstr[1] ""
+"Twoja aplikacja nie przeszła weryfikacji – błędy: {0}, wiadomości: {1}."
 msgstr[2] ""
+"Twoja aplikacja nie przeszła weryfikacji – błędy: {0}, wiadomości: {1}."
 
 #: media/js/devreg/devhub.js:200 media/js/zamboni/devhub-all.js:1047 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:183
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
-msgstr[0] "Program przeszedł proces sprawdzania bez błędów, ale z {0} ostrzeżeniem."
-msgstr[1] "Program przeszedł proces sprawdzania bez błędów, ale z {0} ostrzeżeniami."
-msgstr[2] "Program przeszedł proces sprawdzania bez błędów, ale z {0} ostrzeżeniami."
+msgstr[0] ""
+"Program przeszedł proces sprawdzania bez błędów, ale z {0} ostrzeżeniem."
+msgstr[1] ""
+"Program przeszedł proces sprawdzania bez błędów, ale z {0} ostrzeżeniami."
+msgstr[2] ""
+"Program przeszedł proces sprawdzania bez błędów, ale z {0} ostrzeżeniami."
 
 #: media/js/devreg/devhub.js:205 media/js/zamboni/devhub-all.js:1052 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:188
 msgid "Your app passed validation with no errors or messages."
@@ -548,7 +571,9 @@ msgstr "Grecki HEBIC/Indonezyjski kod banku (bank code)"
 
 #: media/js/devreg/payments-enroll.js:25
 msgid "UK/Irish Sort Code or NZ Account Prefix or Australian BSB Code"
-msgstr "Brytyjski/Irlandzki numer rozliczeniowy (sort code) lub Nowozelandzki prefiks konta lub Australijski BSB Code."
+msgstr ""
+"Brytyjski/Irlandzki numer rozliczeniowy (sort code) lub Nowozelandzki prefiks "
+"konta lub Australijski BSB Code."
 
 #: media/js/devreg/payments-enroll.js:27
 msgid "Austrian/Swiss Bank Code"
@@ -631,7 +656,8 @@ msgstr[2] "{0} ostrzeżeń"
 
 #: media/js/devreg/validator.js:440 media/js/zamboni/devhub-all.js:2846 media/js/zamboni/devhub-min.js:1 media/js/zamboni/validator.js:448
 msgid "Validation task could not complete or completed with errors"
-msgstr "Nie można dokończyć weryfikacji lub zadanie zostało zakończone z błędami"
+msgstr ""
+"Nie można dokończyć weryfikacji lub zadanie zostało zakończone z błędami"
 
 #: media/js/impala/persona_creation.js:338
 msgid "Your Theme's Name"
@@ -1245,8 +1271,12 @@ msgid "Message must not be empty."
 msgstr "Wiadomość nie może być pusta."
 
 #: media/js/mkt/login.js:62
-msgid "Persona login failed. Maybe you don't have an account under that email address?"
-msgstr "Logowanie Persona nie powiodło się. Być może nie masz konta pod tym adresem e-mail."
+msgid ""
+"Persona login failed. Maybe you don't have an account under that email "
+"address?"
+msgstr ""
+"Logowanie Persona nie powiodło się. Być może nie masz konta pod tym adresem "
+"e-mail."
 
 #: media/js/mkt/login.js:67
 msgid "Persona login failed. A server error was encountered."
@@ -1298,7 +1328,7 @@ msgstr "Zawiera komentarze recenzenta"
 
 #: media/js/mkt/reviewers.js:112
 msgid "Premium App"
-msgstr ""
+msgstr "Płatna aplikacja"
 
 #: media/js/mkt/reviewers.js:115
 msgid "Escalated"
@@ -1524,9 +1554,12 @@ msgstr "Wybierz najpierw program"
 #: media/js/zamboni/admin-all.js:208 media/js/zamboni/admin-min.js:1 media/js/zamboni/admin_validation.js:53
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] "Ustaw {0} dodatek na najwyższą wersję programu {1} i powiadom autora."
-msgstr[1] "Ustaw {0} dodatki na najwyższą wersję programu {1} i powiadom autorów."
-msgstr[2] "Ustaw {0} dodatków na najwyższą wersję programu {1} i powiadom autorów."
+msgstr[0] ""
+"Ustaw {0} dodatek na najwyższą wersję programu {1} i powiadom autora."
+msgstr[1] ""
+"Ustaw {0} dodatki na najwyższą wersję programu {1} i powiadom autorów."
+msgstr[2] ""
+"Ustaw {0} dodatków na najwyższą wersję programu {1} i powiadom autorów."
 
 #: media/js/zamboni/admin-all.js:214 media/js/zamboni/admin-min.js:1 media/js/zamboni/admin_validation.js:59
 msgid "This will send emails to the authors of {0} file."
@@ -1553,15 +1586,18 @@ msgstr "Ten system nie obsługuje instalowanych aplikacji."
 
 #: media/js/zamboni/buttons.js:155
 msgid "Add-on has not been updated to support default-to-compatible."
-msgstr "Dodatek nie został zaktualizowany, by wspierać domyślną kompatybilność."
+msgstr ""
+"Dodatek nie został zaktualizowany, by wspierać domyślną kompatybilność."
 
 #: media/js/zamboni/buttons.js:160
 msgid "You need to be using Firefox 10.0 or higher."
 msgstr "Musisz używać Firefoksa 10 lub nowszego."
 
 #: media/js/zamboni/buttons.js:172
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr "Mozilla oznaczyła tę wersję jako niekompatybilną z twoją wersją Firefoksa."
+msgid ""
+"Mozilla has marked this version as incompatible with your Firefox version."
+msgstr ""
+"Mozilla oznaczyła tę wersję jako niekompatybilną z twoją wersją Firefoksa."
 
 #: media/js/zamboni/buttons.js:381
 msgid "Works with {app} {min} - {max}"
@@ -1631,8 +1667,13 @@ msgid "No results found."
 msgstr "Nic nie znaleziono."
 
 #: media/js/zamboni/discovery-all.js:12097 media/js/zamboni/discovery-min.js:23 media/js/zamboni/discovery_pane.js:217
-msgid "Sorry, we couldn't find any recommendations for you.<br>Please visit the <a href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
-msgstr "Przepraszamy, ale nie mamy dla ciebie żadnych polecanych dodatków.<br>Przejdź na <a href=\"{0}\">witrynę dodatków</a>, by znaleźć odpowiedni dla ciebie dodatek."
+msgid ""
+"Sorry, we couldn't find any recommendations for you.<br>Please visit the <a "
+"href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
+msgstr ""
+"Przepraszamy, ale nie mamy dla ciebie żadnych polecanych dodatków.<br>Przejdź "
+"na <a href=\"{0}\">witrynę dodatków</a>, by znaleźć odpowiedni dla ciebie "
+"dodatek."
 
 #: media/js/zamboni/discovery-all.js:12127 media/js/zamboni/discovery-min.js:23 media/js/zamboni/discovery_pane.js:247
 msgid "Finding recommendations&hellip;"
@@ -1753,3 +1794,4 @@ msgstr "Instalacja…"
 #: media/js/zamboni/mobile/buttons.js:136
 msgid "Purchasing..."
 msgstr "Zakup…"
+
