@@ -6,7 +6,8 @@ import amo.tests
 from mkt.api.resources import AppResource
 from mkt.collections.constants import COLLECTIONS_TYPE_BASIC
 from mkt.collections.models import Collection, CollectionMembership
-from mkt.collections.serializers import (CollectionMembershipField,
+from mkt.collections.serializers import (CollectionImageSerializer,
+                                         CollectionMembershipField,
                                          CollectionSerializer,)
 
 
@@ -99,3 +100,33 @@ class TestCollectionSerializer(CollectionDataMixin, amo.tests.TestCase):
         keys = data['apps'][0].keys()
         ok_('name' in keys)
         ok_('id' in keys)
+
+
+IMAGE_DATA = """
+R0lGODlhKAAoAPMAAP////vzBf9kA90JB/IIhEcApQAA0wKr6h+3FABkElYsBZBxOr+/v4CAgEBA
+QAAAACH/C05FVFNDQVBFMi4wAwEAAAAh/h1HaWZCdWlsZGVyIDAuMiBieSBZdmVzIFBpZ3VldAAh
++QQECgD/ACwAAAAAKAAoAEMEx5DJSSt9z+rNcfgf5oEBxlVjWIreQ77wqqWrW8e4fKJ2ru9ACS2U
+CW6GIBaSOOu9lMknK2dqrog2pYhp7Dir3fAIHN4tk8XyBKmFkU9j0tQnT6+d2K2qrnen2W10MW93
+WIZogGJ4dIRqZ41qTZCRXpOUPHWXXjiWioKdZniBaI6LNX2ZQS1aLnOcdhYpPaOfsAxDrXOiqKlL
+rL+0mb5Qg7ypQru5Z1S2yIiHaK9Aq1lfxFxGLYe/P2XLUprOzOGY4ORW3edNkREAIfkEBAoA/wAs
+AAAAACgAKABDBMqQyUkrfc/qzXH4YBhiXOWNAaZ6q+iS1vmps1y3Y1aaj/vqu6DEVhN2einfipgC
+XpA/HNRHbW5YSFpzmXUaY1PYd3wSj3fM3JlXrZpLsrIc9wNHW71pGyRmcpM0dHUaczc5WnxeaHp7
+b2sMaVaPQSuTZCqWQjaOmUOMRZ2ee5KTkVSci22CoJRQiDeviXBhh1yfrBNEWH+jspC3S3y9dWnB
+sb1muru1x6RshlvMeqhP0U3Sal8s0LZ5ikamItTat7ihft+hv+bqYI8RADs=
+"""
+
+
+class TestCollectionImageSerializer(amo.tests.TestCase):
+
+    def setUp(self):
+        self.collection_data = {
+            'name': 'My Favorite Games',
+            'description': 'A collection of my favorite games',
+        }
+        self.collection = Collection.objects.create(**self.collection_data)
+        self.serializer = CollectionImageSerializer()
+
+    def test_to_native(self):
+        d = self.serializer.from_native({'image': 'data:image/gif;base64,' +
+                                         IMAGE_DATA}, None)
+        eq_(d['image'].read(), IMAGE_DATA.decode('base64'))

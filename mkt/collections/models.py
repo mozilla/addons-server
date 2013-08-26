@@ -1,4 +1,7 @@
+import os
+
 from django.conf import settings
+from django.core.urlresolvers import reverse
 from django.db import models
 
 import amo.models
@@ -59,6 +62,11 @@ class Collection(amo.models.ModelBase):
     @classmethod
     def get_fallback(cls):
         return cls._meta.get_field('default_language')
+
+    def image_path(self):
+        return os.path.join(settings.COLLECTIONS_ICON_PATH,
+                            str(self.pk / 1000),
+                            'app_collection_%s.png' % (self.pk,))
 
     def apps(self):
         """

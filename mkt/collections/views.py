@@ -1,14 +1,24 @@
+from django.core.files.base import File
+from django.core.files.storage import default_storage as storage
 from django.db import IntegrityError
+from django.http import HttpResponse
 from django.utils.datastructures import MultiValueDictKeyError
 
-from rest_framework import exceptions, status, viewsets
+from PIL import Image
+
+from rest_framework import exceptions, generics, status, viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
-from mkt.api.authentication import (RestAnonymousAuthentication,
-                                    RestOAuthAuthentication,
+from amo.storage_utils import copy_stored_file
+from amo.utils import HttpResponseSendFile
+
+from mkt.api.authentication import (RestOAuthAuthentication,
+                                    RestAnonymousAuthentication,
                                     RestSharedSecretAuthentication)
+
 from mkt.api.base import CORSMixin, SlugOrIdMixin
+from mkt.collections.serializers import CollectionImageSerializer
 from mkt.webapps.models import Webapp
 
 from .authorization import PublisherAuthorization
@@ -129,3 +139,29 @@ class CollectionViewSet(CORSMixin, SlugOrIdMixin, viewsets.ModelViewSet):
                          collection.collectionmembership_set.all()]
             }, status=status.HTTP_400_BAD_REQUEST, exception=True)
         return self.return_updated(status.HTTP_200_OK)
+
+
+class CollectionImageViewSet(CORSMixin, viewsets.ViewSet, generics.RetrieveUpdateAPIView):
+    serializer_class = CollectionImageSerializer
+    queryset = Collection.objects.all()
+    permission_classes = [PublisherAuthorization]
+    authentication_classes = [RestOAuthAuthentication,
+                              RestAnonymousAuthentication]
+    cors_allowed_methods = ('get', 'put')
+
+    def retrieve(self, request, pk=None):
+        obj = self.get_object()
+        return HttpResponseSendFile(request, obj.image_path(),
+                                    content_type='image/png')
+
+    def update(self, request, *a, **kw):
+        obj = self.get_object()
+        serializer = self.get_serializer(data=request.DATA, files=request.FILES)
+        if serializer.is_valid():
+            i = Image.open(serializer.data['image'])
+            with storage.open(obj.image_path(), 'wb') as f:
+                i.save(f, 'png')
+            return Response(status=204)
+        else:
+            return Response(status=400)
+
