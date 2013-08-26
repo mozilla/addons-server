@@ -27,7 +27,7 @@ from mkt.collections.views import CollectionViewSet
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
 
-from mkt.collections.tests.test_serializers import IMAGE_DATA
+from mkt.collections.tests.test_serializers import IMAGE_DATA, CollectionDataMixin
 
 class TestCollectionViewSetMixin(object):
     def make_publisher(self):
@@ -856,12 +856,8 @@ class TestCollectionImageViewSet(RestOAuth):
     def setUp(self):
         self.create_switch('rocketfuel')
         super(TestCollectionImageViewSet, self).setUp()
-        self.collection_data = {
-            'name': 'My Favorite Games',
-            'description': 'A collection of my favorite games',
-            'collection_type': COLLECTIONS_TYPE_BASIC,
-        }
-        self.collection = Collection.objects.create(**self.collection_data)
+        self.collection = Collection.objects.create(
+            **CollectionDataMixin.collection_data)
         self.url = reverse('collection-image-detail',
                            kwargs={'pk': self.collection.pk})
 
@@ -893,6 +889,7 @@ class TestCollectionImageViewSet(RestOAuth):
         img = ('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEUAAACnej'
                '3aAAAAAXRSTlMAQObYZgAAAApJREFUCNdjYAAAAAIAAeIhvDMAAAAASUVORK5C'
                'YII=').decode('base64')
-        storage.open(self.collection.image_path(), 'w').write(img)
+        path = self.collection.image_path()
+        storage.open(path, 'w').write(img)
         res = self.client.get(self.url)
-        eq_(res.content, img)
+        eq_(res['x-sendfile'], path)
