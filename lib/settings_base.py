@@ -1571,6 +1571,9 @@ CACHE_SEARCH_FEATURED_API_TIMEOUT = 60 * 60  # 1 hour.
 # through the API.
 WHITELISTED_CLIENTS_EMAIL_API = []
 
+# Base URL to the Bango Vendor Portal (keep the trailing question mark).
+BANGO_BASE_PORTAL_URL = 'http://mozilla.com.test.bango.org/login/al.aspx?'
+
 # Auth token required to authorize a postfix host.
 POSTFIX_AUTH_TOKEN = 'make-sure-to-override-this-with-a-long-weird-string'
 

@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-08-23 09:56-0700\n"
-"PO-Revision-Date: 2013-08-25 17:17+0100\n"
+"PO-Revision-Date: 2013-08-27 16:04+0100\n"
 "Last-Translator: Pavel Cvrček <pcvrcek@mozilla.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -22981,7 +22981,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_manifests.html:216
 msgid "Should I use HTTPS to serve my app manifest?"
-msgstr ""
+msgstr "Měl(a) bych používat HTTPS pro distribuci manifestu své aplikace? "
 
 #: mkt/ecosystem/templates/ecosystem/build_manifests.html:218
 msgid ""
@@ -23054,11 +23054,11 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:52
 msgid "Steps to developing a Web app"
-msgstr ""
+msgstr "Kroky pro vývoj webové aplikace"
 
 #: mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:54
 msgid "1. Develop your app using open Web technologies."
-msgstr ""
+msgstr "1. Vývíjejte svou aplikací pomocí otevřených webových technologií."
 
 #: mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:56
 msgid ""
@@ -23071,7 +23071,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:67
 msgid "2. Add an <a href=\"%(url)s\">app manifest</a>."
-msgstr ""
+msgstr "2. Přidejte <a href=\"%(url)s\">manifest aplikace</a>."
 
 #: mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:72
 msgid ""
@@ -23093,7 +23093,7 @@ msgstr ""
 #: mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:91
 #: mkt/ecosystem/templates/ecosystem/build_web_developers.html:46
 msgid "Optional features"
-msgstr ""
+msgstr "Volitelné funkce"
 
 #: mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:93
 #: mkt/ecosystem/templates/ecosystem/build_web_developers.html:48
@@ -23118,7 +23118,7 @@ msgstr ""
 #: mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:112
 #: mkt/ecosystem/templates/ecosystem/build_web_developers.html:67
 msgid "Should my app work when not connected to the Web?"
-msgstr ""
+msgstr "Měla by má aplikace fungovat i v situaci, kdy nejsem připojen k webu?"
 
 #: mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:114
 #: mkt/ecosystem/templates/ecosystem/build_web_developers.html:69
@@ -23618,7 +23618,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_web_developers.html:25
 msgid "Create an <a href=\"%(url)s\">app manifest</a>."
-msgstr ""
+msgstr "Vytvořte <a href=\"%(url)s\">manifest aplikace</a>."
 
 #. Do not localize text in <code></code>
 #: mkt/ecosystem/templates/ecosystem/build_web_developers.html:31
@@ -23669,11 +23669,17 @@ msgid ""
 "app's purpose and the most important user in one sentence. This is your main "
 "use case."
 msgstr ""
+"Pokud již máte seznam úkolů, nápad pro vaši aplikaci a představu o "
+"uživatelích, na které se chcete zaměřit, je čas vytvořit si cíl: definujte "
+"jednou větou cíl své aplikace a vášeho nejdůležitějšího uživatele. To je váš "
+"hlavní případ použití."
 
 #: mkt/ecosystem/templates/ecosystem/design_concept.html:24
 msgid ""
 "Example: A wish list creation tool for people who never do impulse shopping."
 msgstr ""
+"Například: Přeji si vytvořit nástroj pro lidi, kteří nikdy impulzivně "
+"nenakupovali."
 
 #: mkt/ecosystem/templates/ecosystem/design_concept.html:30
 msgid "Focus on one main use case"
@@ -23686,6 +23692,10 @@ msgid ""
 "which is how most people will use your application. Awesome apps do one "
 "thing well."
 msgstr ""
+"Je možné, že do svého globálního cíle nezahrnete všechny své cíle. To je v "
+"pořádku, protože byste se měli zaměřit na hlavní případy použití, jak budou "
+"uživatelé používat vaši aplikaci. Skvělé aplikace dělají jednu věc a dělají "
+"ji dobře. "
 
 #: mkt/ecosystem/templates/ecosystem/design_concept.html:40
 msgid "How will people use your app?"
@@ -23700,16 +23710,24 @@ msgid ""
 "and continuing the task later). A different user might plan her next laptop "
 "purchase at home, in an armchair, without interruptions."
 msgstr ""
+"Nyní jste identifikovali vaše primární případy použití, zacílené uživatele a "
+"klíčové funkce. Váš hlavní scénář by měl též zahrnovat uživatelské "
+"prostředí, v kterém bude vaše aplikace použita. Například mladá maminka se "
+"svým dítětem v kočárku může používat vaši aplikaci při tlačení (potenciální "
+"multitasking, pozastavování a pokračování s úkolem později). Jiný uživatel "
+"plánuje doma v křesle koupi svého nového notebooku a nic jej nebude rušit."
 
 #: mkt/ecosystem/templates/ecosystem/design_concept.html:53
 msgid "Concentrate on a few key features"
-msgstr ""
+msgstr "Koncentrujte se na několik klíčových vlastností"
 
 #: mkt/ecosystem/templates/ecosystem/design_concept.html:55
 msgid ""
 "Look at your task list again. Filter your list through the goal statement. "
 "If the tasks do not align with your goal statement, exclude them in your app."
 msgstr ""
+"Podívejte se znovu na svůj seznam. Projděte jej a pokud některý úkol "
+"nezapadá do vašeho hlavního cíle, vyškrtněte jej ze své aplikace."
 
 #: mkt/ecosystem/templates/ecosystem/design_concept.html:62
 msgid ""
@@ -23718,16 +23736,23 @@ msgid ""
 "complete the defined task? Be honest with yourself. If you end up with a "
 "short list of features, you are on the right track."
 msgstr ""
+"Popište si každý klíčový úkol jako funkci, a pak se sami sebe zeptejte, zda "
+"je tato funkce zásadní. Nebo zda je fajn ji mít, ale není vyžadována "
+"koncovým uživatelem pro dokončení úlohy. Buďte k sobě upřímní. Pokud "
+"skončíte s krátkým seznamem funkcí, jste na správné cestě."
 
 #: mkt/ecosystem/templates/ecosystem/design_concept.html:71
 msgid ""
 "Remember, the best apps usually do one thing well. Apps often fail not "
 "because they have too little features, but too many."
 msgstr ""
+"Mějte na paměti, že nejlepší aplikace obvykle dělají jednu funkci skvěle. "
+"Aplikaci obvykle selžou, protože nedělají pouze základní funkce, ale snaží "
+"se dělat vše."
 
 #: mkt/ecosystem/templates/ecosystem/design_concept.html:77
 msgid "Your app in its most basic form"
-msgstr ""
+msgstr "Vaše aplikace ve své nejzákladnější podobě"
 
 #: mkt/ecosystem/templates/ecosystem/design_concept.html:79
 msgid ""
@@ -23735,6 +23760,9 @@ msgid ""
 "You can sketch out the user flow, that is, what do your users go from one "
 "screen to another to complete a task."
 msgstr ""
+"Jakmile budete mít vše hotovo, můžete převést jednotlivé body na obrazovky. "
+"Můžete si nakreslit průchody uživatele aplikací tj. jak budou uživatelé "
+"přecházet z jednoho okna aplikace na druhé a dokončovat úkoly."
 
 #: mkt/ecosystem/templates/ecosystem/design_concept.html:86
 msgid ""
@@ -23744,6 +23772,10 @@ msgid ""
 "Even just writing out the sequence of moments helps define a wireframe model "
 "of your app and its features."
 msgstr ""
+"Přemýšlejte o informacích, které chce uživatel vidět a upravovat. Zvažte, "
+"jaké prvky uživatelskéo rozhraní (UI) korespondují s informacemi výše. Dejte "
+"věci, které uživatelé nejčastěji dělají, na nejvíce viditelná místa na "
+"obrazovce. "
 
 #: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:15
 msgid ""
@@ -23751,6 +23783,9 @@ msgid ""
 "user experience. Please note that this is only a small set of design "
 "principles to get you started and it's by no means comprehensive."
 msgstr ""
+"Zvažte začlenění těchto zásad do své aplikace a optimalizujte tak "
+"uživatelské rozhraní. Vezměte prosím na vědomí, že toto je pouze malá "
+"skupina návrhových vzorů pro začátek a není v žádném případě vyčerpávající."
 
 #: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:22
 msgid "Be consistent"
@@ -23761,6 +23796,9 @@ msgid ""
 "Be consistent in your language. Refer to an action or an item with the same "
 "term in your app, and use each term for only one action or item."
 msgstr ""
+"Buďte konzistentní ve svém jazyce. Odkazujte ve své aplikaci na akce či "
+"položky stejnou terminologií a používejte každý výraz pouze pro jednu akci "
+"či položku."
 
 #: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:31
 msgid ""
@@ -23768,6 +23806,9 @@ msgid ""
 "back button on the top left corner, it should not appear on the bottom left "
 "corner in other screens within your app."
 msgstr ""
+"Buďte konzistentní ve svém uživatelském rozhraní (UI). Například pokud "
+"umístíte tlačítko pro přechod zpět do levého horního roku, nemělo by se na "
+"jiných oknech aplikace zobrazovat v levém dolním rohu."
 
 #: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:38
 msgid ""
@@ -23775,6 +23816,9 @@ msgid ""
 "should have the same behavior. If two elements have different functions, "
 "they should have distinctively different looks."
 msgstr ""
+"Buďte konzistentní ve vizuálních prvcích. Pokud dva prvky vypadají stejně, "
+"měly by se stejně chovat. Pokud mají dva prvky odlišnou funkci, měly by "
+"vypadat odlišně."
 
 #: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:44
 msgid "Be concise and use appropriate language"
@@ -23786,10 +23830,13 @@ msgid ""
 "way. Most users don't read a lot before they decide to continue or to "
 "abandon a task."
 msgstr ""
+"Text by měl obsahovat nejdůležitější informace v pochopitelné podobě. "
+"Většina uživatelů moc nečte předtím, než se rozhodnou pokračovat nebo ukončí "
+"úkol."
 
 #: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:52
 msgid "Always provide clues and immediate feedback"
-msgstr "Vždy poskytněte vhodnou a okamžitou reakci."
+msgstr "Vždy poskytněte očekávanou a okamžitou reakci"
 
 #: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:54
 msgid ""
@@ -23797,6 +23844,9 @@ msgid ""
 "&quot;+&quot; button to indicate adding items if that's the correct next "
 "step."
 msgstr ""
+"Navrhujte prvky tak, aby reakce na ně byly očekávané. Například velké "
+"tlačítko &quot;+&quot; indikuje přidání položek, což je z pohledu uživatele "
+"očekávaná funkce."
 
 #: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:61
 msgid ""
@@ -23839,22 +23889,24 @@ msgid ""
 "provide a quick introduction to your app (and provide an easy way to end it "
 "anytime)"
 msgstr ""
+"poskytněte rychlý úvod do aplikaci (a poskytněte snadný způsob jej kdykoliv "
+"ukončit)"
 
 #: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:98
 msgid "instant access to features and suggestions"
-msgstr ""
+msgstr "rychlý přístup k funkcím a doporučením"
 
 #: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:99
 msgid "minimize initial user input"
-msgstr ""
+msgstr "minimalizujte uživatelský vstup"
 
 #: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:101
 msgid "express the most important information in a concise way"
-msgstr ""
+msgstr "poskytujte nejdůležitější informace ve snadno pochopitelné podobě"
 
 #: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:105
 msgid "Present action choices if possible"
-msgstr ""
+msgstr "Používejte akce voleb, pokud je to možné"
 
 #: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:107
 msgid ""
@@ -23880,7 +23932,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:127
 msgid "Prepare for interruptions"
-msgstr ""
+msgstr "Buďte připraveni na přerušení"
 
 #: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:129
 msgid ""
@@ -23914,11 +23966,11 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/design_patterns.html:33
 msgid "Note: HTML/CSS for the corresponding patterns will be available soon."
-msgstr ""
+msgstr "Poznámka: HTML/CSS pro odpovídající vzory bude brzy dostupné."
 
 #: mkt/ecosystem/templates/ecosystem/design_patterns.html:39
 msgid "Pattern 1: Top toggle menu"
-msgstr ""
+msgstr "Vzor 1: Horní přepínatelná nabídka"
 
 #: mkt/ecosystem/templates/ecosystem/design_patterns.html:41
 msgid ""
@@ -24013,7 +24065,7 @@ msgstr "Vzor 4"
 
 #: mkt/ecosystem/templates/ecosystem/design_patterns.html:113
 msgid "Pattern 2: Expandable bottom menu"
-msgstr ""
+msgstr "Vzor 2: Rozšiřitelná dolní nabídka"
 
 #: mkt/ecosystem/templates/ecosystem/design_patterns.html:115
 msgid ""
@@ -24060,7 +24112,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/design_patterns.html:189
 msgid "Pattern 3: Left hidden menu"
-msgstr ""
+msgstr "Vzor 3: Levá skrytá nabídka"
 
 #: mkt/ecosystem/templates/ecosystem/design_patterns.html:191
 msgid ""
@@ -24407,7 +24459,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:124
 msgid "Adding, updating, and removing apps"
-msgstr ""
+msgstr "Přidávání, aktualizace a odebírání aplikací"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:125
 msgid "Adding apps"
@@ -24455,16 +24507,16 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:163
 msgid "Each entry gives us the following information about the app:"
-msgstr ""
+msgstr "Každá položka vám dá následující informace o aplikaci:"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:168
 msgid "its name, taken from the manifest"
-msgstr ""
+msgstr "její název, který je vzaný z manifestu"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:169
 msgid ""
 "its type, which will be one of \"Packaged\", \"Hosted\", or \"Generated\""
-msgstr ""
+msgstr "její typ, který je  \"Packaged\", \"Hosted\" či \"Generated\""
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:170
 msgid "a link to its manifest file"
@@ -24476,13 +24528,15 @@ msgstr "výsledek kontroly manifestu"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:173
 msgid "It also gives us three commands:"
-msgstr ""
+msgstr "Máte též k dispozici tři příkazy:"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:175
 msgid ""
 "\"Remove\": remove the app from the Simulator or the Dashboard. You can undo "
 "this action as long as the Dashboard tab is open."
 msgstr ""
+"\"Remove\": odebere aplikaci z nástěnky doplňku Simulator. Tuto akci můžete "
+"vrátit zpět po dobu, kdy je nástěnka otevřena."
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:176
 msgid ""
@@ -24492,10 +24546,15 @@ msgid ""
 "installed app: you will need to click \"Update\", and restart the Simulator "
 "if it is running."
 msgstr ""
+"\"Update\": funkci využijte v doplňku Simulator tehdy, když jste udělali v "
+"aplikaci nějaké změny. Zajistí též, že nástěnka znovu načte informace o "
+"aplikaci z manifestu. Pokud uděláte nějakou změnu ve své aplikaci, která "
+"není automaticky propagovaná, budete muset klepnout na tlačítko \"Update\" a "
+"znovu spustit Simulator."
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:177
 msgid "\"Run\": run the app in the Simulator"
-msgstr ""
+msgstr "\"Run\": spustí aplikaci v doplňku Simulator"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:180
 msgid ""
@@ -24583,7 +24642,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:222
 msgid "the <code>type</code> field is unrecognized"
-msgstr ""
+msgstr "pole <code>type</code> je nerozpoznatelné"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:223
 msgid "the manifest requests a permission that is unrecognized"
@@ -24712,7 +24771,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:289
 msgid "Attaching developer tools"
-msgstr ""
+msgstr "Připojování nástrojů pro vývojáře"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:291
 msgid ""
@@ -24818,7 +24877,7 @@ msgstr "Omezení doplňku Simulator"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:375
 msgid "Note that the Firefox OS Simulator isn't a perfect simulation."
-msgstr ""
+msgstr "Mějte na paměti, že Firefox OS Simulator není perfektní simulátor."
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:376
 msgid "Hardware limitations"
@@ -25410,7 +25469,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/publish_packaged.html:128
 msgid "Plain packaged app"
-msgstr ""
+msgstr "Čistá zabalená aplikace"
 
 #. Do not localize text in <code></code>
 #: mkt/ecosystem/templates/ecosystem/publish_packaged.html:131
@@ -25516,7 +25575,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/publish_packaged.html:239
 msgid "Packaged apps and the Firefox Marketplace"
-msgstr ""
+msgstr "Zabalené aplikace a Firefox Marketplace"
 
 #. Do not localize text in <code></code>
 #: mkt/ecosystem/templates/ecosystem/publish_packaged.html:242
@@ -25533,7 +25592,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/publish_packaged.html:254
 msgid "Testing packaged app installation"
-msgstr ""
+msgstr "Testování instalace zabalených aplikací"
 
 #: mkt/ecosystem/templates/ecosystem/publish_packaged.html:256
 msgid ""
@@ -25959,7 +26018,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/publish_review.html:285
 msgid "Blocklisting policy"
-msgstr ""
+msgstr "Politika blokování"
 
 #: mkt/ecosystem/templates/ecosystem/publish_review.html:287
 msgid ""
@@ -26216,7 +26275,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/publish_submit.html:219
 msgid "After you submit the app"
-msgstr ""
+msgstr "Po odeslání aplikace"
 
 #: mkt/ecosystem/templates/ecosystem/publish_submit.html:221
 msgid ""
@@ -26622,7 +26681,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:51
 msgid "Translation files"
-msgstr ""
+msgstr "Soubory pro lokalizaci"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:52
 msgid "integration and UI tests"
@@ -26740,11 +26799,11 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:52
 msgid "Generates animated GIFs."
-msgstr ""
+msgstr "Vytváří animované GIFy."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:60
 msgid "A wrapper for IndexedDB."
-msgstr ""
+msgstr "Wrapper pro IndexedDB."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:68
 msgid "Calculates perspective transformations."
@@ -26975,7 +27034,7 @@ msgstr ""
 
 #: mkt/lookup/views.py:142
 msgid "A refund has already been processed."
-msgstr ""
+msgstr "Vrácení peněz již bylo zpracováno."
 
 #: mkt/lookup/views.py:165
 msgid "You cannot make a refund request for this transaction."
@@ -27093,7 +27152,7 @@ msgstr "Cenová hladina"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:32
 msgid "Related Transaction"
-msgstr ""
+msgstr "Související transakce"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:47
 msgid "Refund Status"
@@ -27101,7 +27160,7 @@ msgstr "Stav vrácení peněz"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:48
 msgid "Unrequested"
-msgstr ""
+msgstr "Nepožadované"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:55
 msgid "Refund this transaction"
@@ -27231,7 +27290,7 @@ msgstr "Položka"
 
 #: mkt/purchase/templates/purchase/receipt.html:38
 msgid "Seller"
-msgstr ""
+msgstr "Prodejce"
 
 #: mkt/purchase/templates/purchase/receipt.html:59
 msgid "For the Firefox Marketplace Terms of Service please visit:"
@@ -27239,11 +27298,11 @@ msgstr "Pro podmínky použití Firefox Marketplace navštivte:"
 
 #: mkt/purchase/templates/purchase/receipt.html:64
 msgid "For support please visit:"
-msgstr ""
+msgstr "Pro podporu prosím navštivte:"
 
 #: mkt/purchase/templates/purchase/receipt.html:69
 msgid "Your purchase history:"
-msgstr ""
+msgstr "Historie vašich nákupů:"
 
 #: mkt/ratings/templates/ratings/rating.html:22
 msgid "by <strong>%(user_name)s</strong>"
@@ -27337,11 +27396,11 @@ msgstr ""
 
 #: mkt/reviewers/forms.py:71
 msgid "Senior Reviewers"
-msgstr ""
+msgstr "Zkušení redaktoři"
 
 #: mkt/reviewers/forms.py:72
 msgid "Staff"
-msgstr ""
+msgstr "Pracovníci"
 
 #: mkt/reviewers/forms.py:76
 msgid "Action Visibility to Users:"
@@ -27369,7 +27428,7 @@ msgstr "Někdo jiný aktuálně kontroluje tento motiv."
 
 #: mkt/reviewers/forms.py:265 mkt/reviewers/templates/reviewers/queue.html:53
 msgid "Privileged App"
-msgstr ""
+msgstr "Privilegované aplikace"
 
 #: mkt/reviewers/helpers.py:33 mkt/reviewers/helpers.py:66
 #: mkt/site/context_processors.py:44
@@ -27395,11 +27454,11 @@ msgstr "Zařízení"
 
 #: mkt/reviewers/helpers.py:42
 msgid "Reviewing"
-msgstr ""
+msgstr "Probíhající kontrola"
 
 #: mkt/reviewers/helpers.py:44
 msgid "Pending Themes"
-msgstr ""
+msgstr "Čekající motivy"
 
 #: mkt/reviewers/helpers.py:45
 #: mkt/reviewers/templates/reviewers/themes/queue.html:4
@@ -27408,7 +27467,7 @@ msgstr "Označené motivy"
 
 #: mkt/reviewers/helpers.py:46
 msgid "Update Themes"
-msgstr ""
+msgstr "Aktualizace motivů"
 
 #: mkt/reviewers/helpers.py:87
 msgctxt "pending"
@@ -27437,7 +27496,7 @@ msgstr "Moderované recenze ({0})"
 
 #: mkt/reviewers/helpers.py:106
 msgid "Reviewing ({0})"
-msgstr ""
+msgstr "Probíhá kontrola ({0})"
 
 #: mkt/reviewers/helpers.py:114
 msgid "Device ({0})"
@@ -27461,11 +27520,11 @@ msgstr "Při přidávání vašeho motivu nastal problém"
 
 #: mkt/reviewers/tasks.py:50
 msgid "Theme submission flagged for review"
-msgstr ""
+msgstr "Odeslání motivu označeno pro kontrolu"
 
 #: mkt/reviewers/tasks.py:57
 msgid "A question about your Theme submission"
-msgstr ""
+msgstr "Otázka k vašemu odeslání motivu"
 
 #: mkt/reviewers/utils.py:447
 msgid "This will approve the sandboxed app so it appears on the public side."
@@ -27488,7 +27547,7 @@ msgstr "Zvýšen důraz"
 
 #: mkt/reviewers/utils.py:465
 msgid "Flag this app for an admin to review."
-msgstr ""
+msgstr "Označit aplikaci pro kontrolu administrátorem"
 
 #: mkt/reviewers/utils.py:470
 msgid "Make a comment on this app. The author won't be able to see this."
@@ -27547,7 +27606,7 @@ msgstr "Odebráno {0}"
 #. L10n: {0} is the list of requirements changes.
 #: mkt/reviewers/views.py:304
 msgid "Requirements changed by reviewer: {0}"
-msgstr ""
+msgstr "Požadavky byly změněny redaktorem:  {0}"
 
 #: mkt/reviewers/views_themes.py:286
 msgid ""
@@ -27558,7 +27617,7 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:16
 msgid "You are currently not reviewing any apps."
-msgstr ""
+msgstr "Aktuálně nekontrolujete žádné aplikace."
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:24
 #: mkt/reviewers/templates/reviewers/queue.html:35
@@ -27672,6 +27731,8 @@ msgid ""
 "Version %(version)s &middot; %(developer_name)s &middot; %(created)s <span "
 "class=\"light\">&middot; %(version_status)s</span>"
 msgstr ""
+"Verze %(version)s &middot; %(developer_name)s &middot; %(created)s <span "
+"class=\"light\">&middot; %(version_status)s</span>"
 
 #: mkt/reviewers/templates/reviewers/review.html:219
 msgid "Tested with:"
@@ -27679,7 +27740,7 @@ msgstr "Testováno na:"
 
 #: mkt/reviewers/templates/reviewers/review.html:232
 msgid "Attach a screenshot or log file"
-msgstr ""
+msgstr "Připojení souboru s obrázkem či logem"
 
 #: mkt/reviewers/templates/reviewers/review.html:239
 msgid "Browse"
@@ -27699,7 +27760,7 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/review.html:270
 msgid "Make this action visible to"
-msgstr ""
+msgstr "Učinit tuto akci viditelnou pro"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:5
 msgid "ID"
@@ -27781,7 +27842,7 @@ msgstr "Fronty s motivy"
 
 #: mkt/reviewers/templates/reviewers/themes/base.html:28
 msgid "Theme Logs"
-msgstr ""
+msgstr "Logy k motivu"
 
 #: mkt/reviewers/templates/reviewers/themes/deleted.html:4
 msgid "Deleted Themes"
@@ -27793,7 +27854,7 @@ msgstr "Datum smazáno"
 
 #: mkt/reviewers/templates/reviewers/themes/deleted.html:39
 msgid "No deleted themes found for this period."
-msgstr ""
+msgstr "V tomto období nebyly nalezeny žádné smazané motivy."
 
 #: mkt/reviewers/templates/reviewers/themes/history.html:3
 msgid "Theme Review History for {0}"
@@ -27937,7 +27998,7 @@ msgstr ""
 
 #: mkt/search/forms.py:41
 msgid "Other System for In-App"
-msgstr ""
+msgstr "Jiný systém pro platby v aplikaci"
 
 #: mkt/search/forms.py:45
 msgid "Any Device Type"
@@ -27961,7 +28022,7 @@ msgstr "Typ zařízení"
 
 #: mkt/search/forms.py:94
 msgid "Premium types"
-msgstr ""
+msgstr "Premium typy"
 
 #: mkt/search/forms.py:95
 msgid "App type"
@@ -28064,7 +28125,7 @@ msgstr "Týdne"
 
 #: mkt/stats/forms.py:12
 msgid "Quarter"
-msgstr ""
+msgstr "Čtvrtletí"
 
 #: mkt/stats/templates/appstats/app_report_menu.html:11
 msgid "Sales"

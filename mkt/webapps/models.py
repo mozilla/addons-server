@@ -27,8 +27,8 @@ import amo.models
 from access.acl import action_allowed, check_reviewer
 from addons import query
 from addons.models import (Addon, AddonDeviceType, attach_categories,
-                           attach_devices, attach_prices, attach_translations,
-                           Category)
+                           attach_devices, attach_prices, attach_tags,
+                           attach_translations, Category)
 from addons.signals import version_changed
 from amo.decorators import skip_cache
 from amo.helpers import absolutify
@@ -195,7 +195,7 @@ class Webapp(Addon):
     def indexing_transformer(apps):
         """Attach everything we need to index apps."""
         transforms = (attach_categories, attach_devices, attach_prices,
-                      attach_translations)
+                      attach_tags, attach_translations)
         for t in transforms:
             qs = apps.transform(t)
         return qs
@@ -1036,6 +1036,7 @@ class WebappIndexer(MappingType, Indexable):
                                     'index': 'not_analyzed'},
                     'supported_locales': {'type': 'string',
                                           'index': 'not_analyzed'},
+                    'tags': {'type': 'string', 'analyzer': 'simple'},
                     'type': {'type': 'byte'},
                     'upsell': {
                         'type': 'object',
@@ -1184,6 +1185,7 @@ class WebappIndexer(MappingType, Indexable):
         else:
             d['supported_locales'] = []
 
+        d['tags'] = getattr(obj, 'tag_list', [])
         if obj.upsell:
             upsell_obj = obj.upsell.premium
             d['upsell'] = {

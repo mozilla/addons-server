@@ -13,6 +13,7 @@ from addons.models import (AddonCategory, AddonDeviceType, AddonUpsell,
 from amo.helpers import absolutify
 from amo.tests import app_factory, ESTestCase
 from stats.models import ClientData
+from tags.models import Tag
 from translations.helpers import truncate
 from users.models import UserProfile
 
@@ -177,6 +178,15 @@ class TestApi(BaseOAuth, ESTestCase):
 
     def test_q(self):
         res = self.client.get(self.url + ({'q': 'something'},))
+        eq_(res.status_code, 200)
+        obj = res.json['objects'][0]
+        eq_(obj['slug'], self.webapp.app_slug)
+
+    def test_q_is_tag(self):
+        Tag(tag_text='whatsupp').save_tag(self.webapp)
+        self.webapp.save()
+        self.refresh('webapp')
+        res = self.client.get(self.url + ({'q': 'whatsupp'},))
         eq_(res.status_code, 200)
         obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
