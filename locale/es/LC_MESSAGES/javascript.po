@@ -441,8 +441,8 @@ msgstr "Tu aplicación se ha validado sin errores ni avisos."
 #: media/js/devreg/devhub.js:186
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Tu aplicación no ha podido validarse con {0} error y {1} mensaje(s)."
+msgstr[1] "Tu aplicación no ha podido validarse con {0} errores y {1} mensaje(s)."
 
 #: media/js/devreg/devhub.js:200 media/js/zamboni/devhub-all.js:1047 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:183
 msgid "Your app passed validation with no errors and {0} message."
@@ -1284,7 +1284,7 @@ msgstr "Contiene comentario del editor"
 
 #: media/js/mkt/reviewers.js:112
 msgid "Premium App"
-msgstr ""
+msgstr "Aplicación Premium"
 
 #: media/js/mkt/reviewers.js:115
 msgid "Escalated"
