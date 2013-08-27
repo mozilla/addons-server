@@ -481,6 +481,13 @@ class TestThemeQueueRereview(ThemeReviewTestMixin, amo.tests.TestCase):
         self.rereview = True
         self.queue_url = reverse('reviewers.themes.queue_rereview')
 
+    def test_admin_only(self):
+        self.login('persona_reviewer@mozilla.com')
+        eq_(self.client.get(self.queue_url).status_code, 403)
+
+        self.login('senior_persona_reviewer@mozilla.com')
+        eq_(self.client.get(self.queue_url).status_code, 200)
+
 
 class TestDeletedThemeLookup(amo.tests.TestCase):
     fixtures = fixture('group_admin', 'user_admin', 'user_admin_group',

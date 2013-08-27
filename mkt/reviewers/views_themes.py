@@ -136,7 +136,7 @@ def themes_queue_flagged(request):
 
 
 @waffle_switch('mkt-themes')
-@reviewer_required('persona')
+@admin_required(theme_reviewers=True)
 def themes_queue_rereview(request):
     # By default, redirect back to the queue after a commit.
     request.session['theme_redirect_url'] = reverse(
