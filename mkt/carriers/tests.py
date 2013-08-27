@@ -1,5 +1,3 @@
-from django.conf import settings
-
 import mock
 from nose.tools import eq_
 from test_utils import RequestFactory
@@ -12,7 +10,6 @@ from .middleware import CarrierURLMiddleware
 
 
 class TestCarrierURLs(TestCase):
-    fixtures = ['base/users']
 
     def setUp(self):
         set_carrier(None)
@@ -30,11 +27,6 @@ class TestCarrierURLs(TestCase):
         CarrierURLMiddleware().process_request(request)
         return request
 
-    def test_strip_carrier(self):
-        request = self.get('/telefonica/foo')
-        eq_(request.path_info, '/foo')
-        assert request.set_cookie.called
-
     def test_ignore_non_carriers(self):
         request = self.get('/not-a-store')
         eq_(request.path_info, '/not-a-store')
@@ -45,11 +37,6 @@ class TestCarrierURLs(TestCase):
         eq_(get_carrier(), 'telefonica')
         assert request.set_cookie.called
 
-    def test_set_carrier_url(self):
-        request = self.get('/telefonica/')
-        eq_(get_carrier(), 'telefonica')
-        assert request.set_cookie.called
-
     def test_set_carrier_none(self):
         request = self.request('/?carrier=')
         request.COOKIES = {'carrier': 'telefonica'}
@@ -57,20 +44,31 @@ class TestCarrierURLs(TestCase):
         eq_(get_carrier(), None)
         assert request.set_cookie.called
 
-    def test_set_carrer_to_none_url(self):
+    def test_set_carrier_to_none_url(self):
         self.get('/telefonica/')
         self.get('/not-a-store')
+        eq_(get_carrier(), None)
+
+        self.get('/?carrier=telefonica')
+        self.get('/?carrier=not-a-store')
         eq_(get_carrier(), None)
 
     def test_reverse(self):
         self.get('/telefonica/')
         eq_(reverse('manifest.webapp'), '/manifest.webapp')
 
-    def test_context(self):
-        request = self.get('/telefonica/')
-        ctx = context_processors.carrier_data(request)
-        eq_(ctx['CARRIER'], 'telefonica')
+        self.get('/?carrier=telefonica')
+        eq_(reverse('manifest.webapp'), '/manifest.webapp')
 
-    def test_root_url(self):
+    def test_legacy_redirect(self):
+        res = self.client.get('/telefonica/')
+        self.assert3xx(res, '/?carrier=telefonica')
+
+        res = self.client.get('/telefonica/foo')
+        self.assert3xx(res, '/foo?carrier=telefonica')
+
+    def test_context(self):
         request = self.get('/?carrier=telefonica')
         eq_(request.path_info, '/')
+        ctx = context_processors.carrier_data(request)
+        eq_(ctx['CARRIER'], 'telefonica')

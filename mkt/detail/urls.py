@@ -8,10 +8,13 @@ from mkt.stats.urls import app_stats_patterns
 from . import views
 
 
+DummyResponse = lambda *args, **kw: HttpResponse()
+
+
 urlpatterns = patterns('',
-    url('^$', HttpResponse, name='detail'),
-    url('^abuse$', HttpResponse, name='detail.abuse'),
-    url('^privacy$', HttpResponse, name='detail.privacy'),
+    url('^$', DummyResponse, name='detail'),
+    url('^abuse$', DummyResponse, name='detail.abuse'),
+    url('^privacy$', DummyResponse, name='detail.privacy'),
 
     # Merge app purchase / receipt patterns.
     ('^purchase/', include(app_purchase_patterns)),

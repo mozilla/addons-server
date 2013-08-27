@@ -47,12 +47,14 @@ class DeviceTypeForm(happyforms.Form):
     ERRORS = {
         'both': _lazy(u'Cannot be free and paid.'),
         'none': _lazy(u'Please select a device.'),
+        'packaged': _lazy(u'Packaged apps are valid for only Firefox OS '
+                          'and Android.'),
     }
 
     free_platforms = forms.MultipleChoiceField(
-        choices=FREE_PLATFORMS, required=False)
+        choices=FREE_PLATFORMS(), required=False)
     paid_platforms = forms.MultipleChoiceField(
-        choices=PAID_PLATFORMS, required=False)
+        choices=PAID_PLATFORMS(), required=False)
 
     def save(self, addon, is_paid):
         data = self.cleaned_data[
@@ -165,6 +167,7 @@ class NewWebappVersionForm(happyforms.Form):
             self._errors['upload'] = self.upload_error
             return
 
+        # Packaged apps are only valid for firefox os.
         if self.is_packaged():
             # Now run the packaged app check, done in clean, because
             # clean_packaged needs to be processed first.
@@ -213,9 +216,28 @@ class NewWebappForm(DeviceTypeForm, NewWebappVersionForm):
             u'There was an error with your upload. Please try again.')})
     packaged = forms.BooleanField(required=False)
 
+    def __init__(self, *args, **kwargs):
+        self.request = kwargs.pop('request', None)
+        super(NewWebappForm, self).__init__(*args, **kwargs)
+        if 'paid_platforms' in self.fields:
+            self.fields['paid_platforms'].choices = PAID_PLATFORMS(self.request)
+
     def _add_error(self, msg):
         self._errors['free_platforms'] = self._errors['paid_platforms'] = (
             self.ERRORS[msg])
+
+    def clean(self):
+        data = super(NewWebappForm, self).clean()
+        if not data:
+            return
+
+        combined_platforms = self._get_combined()
+        if self.is_packaged() and 'desktop' in combined_platforms:
+            self._errors['free_platforms'] = self._errors['paid_platforms'] = (
+                self.ERRORS['packaged'])
+            return
+
+        return data
 
     def is_packaged(self):
         return self._is_packaged or self.cleaned_data.get('packaged', False)

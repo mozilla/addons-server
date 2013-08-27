@@ -17,6 +17,7 @@ from amo.tests.test_helpers import get_image_path
 from addons.models import Addon, AddonCategory, Category, CategorySupervisor
 from files.helpers import copyfileobj
 from market.models import AddonPremium, Price
+from tags.models import Tag
 from users.models import UserProfile
 
 import mkt
@@ -681,7 +682,12 @@ class TestAdminSettingsForm(TestAdmin):
     def setUp(self):
         super(TestAdminSettingsForm, self).setUp()
         self.data = {'position': 1}
-        self.kwargs = {'instance': self.webapp}
+        self.user = UserProfile.objects.get(username='admin')
+        self.app = Webapp.objects.get(pk=337141)
+        self.request = RequestFactory()
+        self.request.user = self.user
+        self.request.groups = ()
+        self.kwargs = {'instance': self.webapp, 'request': self.request}
 
     def test_exclude_brazil_games_when_removing_content_rating(self):
         """
@@ -704,3 +710,28 @@ class TestAdminSettingsForm(TestAdmin):
         regions = self.webapp.get_region_ids()
         assert regions
         assert mkt.regions.BR.id not in regions
+
+    def test_adding_tags(self):
+        self.data.update({'tags': 'tag one, tag two'})
+        form = forms.AdminSettingsForm(self.data, **self.kwargs)
+        assert form.is_valid(), form.errors
+        form.save(self.webapp)
+
+        eq_(self.webapp.tags.count(), 2)
+        self.assertSetEqual(
+            self.webapp.tags.values_list('tag_text', flat=True),
+            ['tag one', 'tag two'])
+
+    def test_removing_tags(self):
+        Tag(tag_text='tag one').save_tag(self.webapp)
+        eq_(self.webapp.tags.count(), 1)
+
+        self.data.update({'tags': 'tag two, tag three'})
+        form = forms.AdminSettingsForm(self.data, **self.kwargs)
+        assert form.is_valid(), form.errors
+        form.save(self.webapp)
+
+        eq_(self.webapp.tags.count(), 2)
+        self.assertSetEqual(
+            self.webapp.tags.values_list('tag_text', flat=True),
+            ['tag two', 'tag three'])

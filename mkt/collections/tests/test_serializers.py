@@ -116,13 +116,9 @@ sb1muru1x6RshlvMeqhP0U3Sal8s0LZ5ikamItTat7ihft+hv+bqYI8RADs=
 """
 
 
-class TestCollectionImageSerializer(amo.tests.TestCase):
+class TestCollectionImageSerializer(CollectionDataMixin, amo.tests.TestCase):
 
     def setUp(self):
-        self.collection_data = {
-            'name': 'My Favorite Games',
-            'description': 'A collection of my favorite games',
-        }
         self.collection = Collection.objects.create(**self.collection_data)
         self.serializer = CollectionImageSerializer()
 

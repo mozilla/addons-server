@@ -72,6 +72,8 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
 
         super(PremiumForm, self).__init__(*args, **kw)
 
+        self.fields['paid_platforms'].choices = PAID_PLATFORMS(self.request)
+
         if (self.is_paid() and not self.is_toggling()):
             # Require the price field if the app is premium and
             # we're not toggling from free <-> paid.
@@ -85,7 +87,7 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
         self.initial.setdefault('paid_platforms', [])
 
         for platform in set(x[0].split('-', 1)[1] for x in
-                            FREE_PLATFORMS + PAID_PLATFORMS):
+                            FREE_PLATFORMS() + PAID_PLATFORMS(self.request)):
             supported = platform in supported_devices
             self.device_data['free-%s' % platform] = supported
             self.device_data['paid-%s' % platform] = supported
@@ -171,7 +173,11 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
 
         is_toggling = self.is_toggling()
 
-        if not is_toggling:
+        if self.addon.is_packaged and 'desktop' in self._get_combined():
+            self._errors['free_platforms'] = self._errors['paid_platforms'] = (
+                self.ERRORS['packaged'])
+
+        elif not is_toggling:
             # If a platform wasn't selected, raise an error.
             if not self.cleaned_data[
                 '%s_platforms' % ('paid' if self.is_paid() else 'free')]:
@@ -384,10 +390,10 @@ class BangoPaymentAccountForm(happyforms.Form):
         max_length=17, required=False, label=_lazy(u'VAT Number'))
 
     bankAccountNumber = forms.CharField(
-        max_length=20, label=_lazy(u'Bank Account Number'),
-        widget=forms.HiddenInput())
+        max_length=20, label=_lazy(u'Bank Account Number'))
     bankAccountCode = forms.CharField(
-        max_length=20, label=_lazy(u'Bank Account Code'))
+        # l10n: SWIFT is http://bit.ly/15e7RJx and might not need translating.
+        max_length=20, label=_lazy(u'SWIFT code'))
     bankName = forms.CharField(
         max_length=50, label=_lazy(u'Bank Name'))
     bankAddress1 = forms.CharField(

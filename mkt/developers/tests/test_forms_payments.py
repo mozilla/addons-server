@@ -241,6 +241,12 @@ class TestPremiumForm(amo.tests.TestCase):
 
         self.assertSetEqual(self.addon.device_types, form.get_devices())
 
+    def test_cannot_set_desktop_for_packaged_app(self):
+        self.platforms = {'free_platforms': ['free-desktop']}
+        self.addon.update(is_packaged=True)
+        form = forms_payments.PremiumForm(data=self.platforms, **self.kwargs)
+        assert not form.is_valid()
+
     def test_can_change_devices_for_hosted_app(self):
         # Specify the free and paid. It shouldn't fail because you can't change
         # payment types without explicitly specifying that.
