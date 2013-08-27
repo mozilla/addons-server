@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from datetime import datetime
 import json
 
@@ -6,7 +7,7 @@ from nose.tools import eq_
 
 import amo
 from addons.models import AddonUser
-from amo.tests import AMOPaths
+from amo.tests import AMOPaths, version_factory
 from market.models import AddonPurchase
 from reviews.models import Review, ReviewFlag
 from users.models import UserProfile
@@ -36,7 +37,7 @@ class TestRatingResource(BaseOAuth, AMOPaths):
     def test_has_cors(self):
         self.assertCORS(self.client.get(self._collection_url()), 'get', 'post')
 
-    def test_get(self):
+    def test_get_empty(self):
         AddonUser.objects.create(user=self.user, addon=self.app)
         res = self.client.get(self._collection_url())
         data = json.loads(res.content)
@@ -44,6 +45,28 @@ class TestRatingResource(BaseOAuth, AMOPaths):
         eq_(data['info']['slug'], self.app.app_slug)
         assert not data['user']['can_rate']
         assert not data['user']['has_rated']
+
+    def test_get(self):
+        first_version = self.app.current_version
+        rev = Review.objects.create(addon=self.app, user=self.user,
+                                    version=first_version,
+                                    body=u'I lôve this app',
+                                    rating=0)
+        ver = version_factory(addon=self.app, version='2.0',
+                              file_kw=dict(status=amo.STATUS_PUBLIC))
+        self.app.update_version()
+        res = self.client.get(self._collection_url())
+        data = json.loads(res.content)
+
+        eq_(data['info']['average'], self.app.average_rating)
+        eq_(data['info']['slug'], self.app.app_slug)
+        eq_(data['info']['current_version'], ver.version)
+        eq_(data['user']['can_rate'], True)
+        eq_(data['user']['has_rated'], True)
+        eq_(len(data['objects']), 1)
+        eq_(data['objects'][0]['body'], rev.body)
+        eq_(data['objects'][0]['rating'], rev.rating)
+        eq_(data['objects'][0]['version']['version'], first_version.version)
 
     def _get_single(self, **kwargs):
         Review.objects.create(addon=self.app, user=self.user, body='yes')
@@ -56,6 +79,7 @@ class TestRatingResource(BaseOAuth, AMOPaths):
         res, data = self._get_single()
         eq_(len(data['objects']), 1)
         eq_(data['info']['slug'], self.app.app_slug)
+        eq_(data['info']['current_version'], self.app.current_version.version)
 
     def test_get_timestamps(self):
         fmt = '%Y-%m-%dT%H:%M:%S'
@@ -85,6 +109,7 @@ class TestRatingResource(BaseOAuth, AMOPaths):
         res, data = self._get_single(app=self.app.app_slug)
         eq_(len(data['objects']), 1)
         eq_(data['info']['slug'], self.app.app_slug)
+        eq_(data['info']['current_version'], self.app.current_version.version)
 
     def test_get_nonpublic(self):
         self.app.update(status=amo.STATUS_PENDING)
@@ -127,7 +152,7 @@ class TestRatingResource(BaseOAuth, AMOPaths):
         data = json.loads(res.content)
         eq_(data['objects'][0]['is_author'], True)
 
-    def test_isowner_flase(self):
+    def test_isowner_false(self):
         Review.objects.create(addon=self.app, user=self.user2, body='yes')
         res = self.client.get(self._collection_url())
         data = json.loads(res.content)
