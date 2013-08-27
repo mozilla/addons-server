@@ -153,6 +153,12 @@ class PriceCurrency(amo.models.ModelBase):
     region = models.IntegerField(default=1)  # Default to worldwide.
     tier = models.ForeignKey(Price)
 
+    # If this should show up in the developer hub.
+    dev = models.BooleanField(default=True)
+
+    # If this can currently accept payments from users.
+    paid = models.BooleanField(default=True)
+
     class Meta:
         db_table = 'price_currency'
         verbose_name = 'Price currencies'

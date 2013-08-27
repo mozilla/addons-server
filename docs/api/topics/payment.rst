@@ -485,7 +485,9 @@ Pay Tiers
                 "tier": 26,
                 "provider": 1,
                 "currency": "USD",
-                "id": 1225
+                "id": 1225,
+                "dev": true,
+                "paid": true
             }, {
                 "price": "0.69",
                 "method": 2,
@@ -493,7 +495,9 @@ Pay Tiers
                 "tier": 26,
                 "provider": 1,
                 "currency": "DE",
-                "id": 1226
+                "id": 1226,
+                "dev": true,
+                "paid": true
             }],
             "localized": {},
             "resource_uri": "/api/v1/webpay/prices/1/",
@@ -515,6 +519,11 @@ Pay Tiers
     :type provider: int
     :param pricePoint: this is the value used for in-app payments.
     :type pricePoint: string
+    :param dev: if ``true`` the tier will be shown to the developer during
+        app configuration.
+    :type dev: boolean
+    :param paid: if ``true`` this tier can be used for payments by users.
+    :type paid: boolean
     :statuscode 200: successfully completed.
 
 
