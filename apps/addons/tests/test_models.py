@@ -312,6 +312,38 @@ class TestAddonModels(amo.tests.TestCase):
         a = Addon.objects.get(pk=5299)
         eq_(a.current_beta_version.id, 50000)
 
+    def _create_new_version(self, addon, status):
+        av = addon.current_version.apps.all()[0]
+
+        v = Version.objects.create(addon=addon, version='99')
+        f = File.objects.create(status=status, version=v)
+
+        ApplicationsVersions.objects.create(application_id=amo.FIREFOX.id,
+                                            version=v, min=av.min, max=av.max)
+        return v
+
+    def test_compatible_version(self):
+        a = Addon.objects.get(pk=3615)
+        eq_(a.status, amo.STATUS_PUBLIC)
+
+        v = self._create_new_version(addon=a, status=amo.STATUS_PUBLIC)
+
+        eq_(a.compatible_version(amo.FIREFOX.id), v)
+
+    def test_compatible_version_status(self):
+        """
+        Tests that `compatible_version()` won't return a lited version for a
+        fully-reviewed add-on.
+        """
+
+        a = Addon.objects.get(pk=3615)
+        eq_(a.status, amo.STATUS_PUBLIC)
+
+        v = self._create_new_version(addon=a, status=amo.STATUS_LITE)
+
+        assert a.current_version != v
+        eq_(a.compatible_version(amo.FIREFOX.id), a.current_version)
+
     def test_transformer(self):
         addon = Addon.objects.get(pk=3615)
         # If the transformer works then we won't have any more queries.
