@@ -11,16 +11,16 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-08-23 09:56-0700\n"
-"PO-Revision-Date: 2013-07-19 19:01+0000\n"
-"Last-Translator: Ricardo <rpmdisguise-otros@yahoo.es>\n"
+"PO-Revision-Date: 2013-08-27 18:09+0000\n"
+"Last-Translator: Inma <inma.barrios@mozilla-hispano.org>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.5.0-rc1\n"
-"X-POOTLE-MTIME: 1374260517.0\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1377626951.0\n"
 
 #: apps/addons/buttons.py:207
 msgid "Download Now"
@@ -2103,7 +2103,7 @@ msgstr "Requisitos modificados"
 #. L10n: {0} is the status
 #: apps/amo/log.py:640
 msgid "{version} status changed to {0}."
-msgstr ""
+msgstr "El estado de {version} cambió a {0}."
 
 #: apps/amo/templates/amo/403.html:3
 msgid "Not allowed"
@@ -4772,15 +4772,17 @@ msgstr "Ver todos los complementos ►"
 
 #: apps/devhub/templates/devhub/index.html:87
 msgid "AMO Reviewers"
-msgstr ""
+msgstr "Revisores AMO"
 
 #: apps/devhub/templates/devhub/index.html:89
 msgid "Get ahead! Become an AMO Reviewer today and get your add-ons reviewed faster."
 msgstr ""
+"¡Adelántate! Conviértete en revisor AMO y consigue que tus complementos se "
+"revisen antes."
 
 #: apps/devhub/templates/devhub/index.html:92
 msgid "Become an AMO Reviewer"
-msgstr ""
+msgstr "Convertirse en revisor AMO"
 
 #: apps/devhub/templates/devhub/index.html:101
 msgid "Add-on Builder and SDK:"
@@ -5874,11 +5876,12 @@ msgstr "Ver los <a href=\"{0}\">tiempos de espera</a> aproximados de la cola de 
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:57
 msgid "Get Ahead in the Review Queue!"
-msgstr ""
+msgstr "¡Adelántate en la cola de revisión!"
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:59
 msgid "Become an AMO Reviewer today and get your add-ons reviewed faster."
 msgstr ""
+"Conviértete en revisor AMO y consigue que tus complementos se revisen antes."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:68
 msgid "Enrolling in Marketplace"
@@ -9884,7 +9887,7 @@ msgstr "Pendiente por revisión completa"
 
 #: apps/editors/helpers.py:57
 msgid "Rejected or Unreviewed"
-msgstr ""
+msgstr "Rechazados o sin revisar"
 
 #: apps/editors/helpers.py:106
 msgid "Queue"
@@ -10646,11 +10649,11 @@ msgstr "El nombre del desarrollador es obligatorio en el archivo manifest para q
 
 #: apps/files/utils.py:328
 msgid "Invalid file name in archive: {0}"
-msgstr ""
+msgstr "Nombre de archivo no válido en archivo: {0}"
 
 #: apps/files/utils.py:336
 msgid "File exceeding size limit in archive: {0}"
-msgstr ""
+msgstr "Archivo excede límite de tamaño en archivo: {0}"
 
 #: apps/files/utils.py:386
 msgid "Invalid archive."
@@ -14140,11 +14143,11 @@ msgstr "Opinión"
 
 #: mkt/collections/constants.py:9
 msgid "Basic Collection"
-msgstr ""
+msgstr "Colección básica"
 
 #: mkt/collections/constants.py:10
 msgid "Featured App List"
-msgstr ""
+msgstr "Lista de aps. destacadas"
 
 #: mkt/collections/constants.py:11
 msgid "Operator Shelf"
