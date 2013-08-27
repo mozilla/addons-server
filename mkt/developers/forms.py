@@ -47,6 +47,7 @@ from mkt.site.forms import AddonChoiceField
 from mkt.regions import ALL_PAID_REGION_IDS, ALL_REGION_IDS
 from mkt.webapps.models import (AddonExcludedRegion, ContentRating, ImageAsset,
                                 Webapp)
+from mkt.webapps.tasks import index_webapps
 from mkt.zadmin.models import FeaturedApp
 
 from . import tasks
@@ -386,6 +387,10 @@ class AdminSettingsForm(PreviewForm):
             # Remove old tags.
             for t in set(tags_old) - set(tags_new):
                 Tag(tag_text=t).remove_tag(addon)
+
+            if (set(tags_new) - set(tags_old) is not None or
+                set(tags_old) - set(tags_new) is not None):
+                index_webapps.delay([addon.id])
 
         ratings = self.cleaned_data.get('app_ratings')
         if ratings:

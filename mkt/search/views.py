@@ -3,8 +3,6 @@ import waffle
 import amo
 from apps.search.views import _get_locale_analyzer
 
-from mkt.webapps.models import Webapp
-
 from . import forms
 
 
@@ -61,6 +59,8 @@ def name_query(q):
     if analyzer:
         more['description_%s__text' % analyzer] = {
             'query': q, 'boost': 0.6, 'type': 'phrase', 'analyzer': analyzer}
+
+    more['tags__text'] = {'query': q}
 
     return dict(more, **name_only_query(q))
 
