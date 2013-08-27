@@ -25,8 +25,8 @@
           </div>
           <div class="editor-stats-title">
             <a href="{{ url('reviewers.themes.list_rereview') }}">
-              {{ ngettext('{num} Rereview',
-                          '{num} Rereviews',
+              {{ ngettext('{num} Update',
+                          '{num} Updates',
                           queue_counts['rereview_themes'])|f(num=queue_counts['rereview_themes']) }}
             </a>
           </div>
