@@ -1,6 +1,12 @@
 cluster:
   name: wooyeah
 
+# Don't try to cluster with other machines during local development.
+# Remove the following 3 lines to enable default clustering.
+network.host: localhost
+discovery.zen.ping.multicast.enabled: false
+discovery.zen.ping.unicast.hosts: ["localhost"]
+
 path:
   logs: /usr/local/var/log
   data: /usr/local/var/data
