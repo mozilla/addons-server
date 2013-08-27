@@ -25,6 +25,7 @@ from addons.models import Category
 from mkt.api.fields import TranslationSerializerField
 from mkt.api.resources import AppResource
 from mkt.constants.features import FeatureProfile
+from users.models import UserProfile
 
 from .models import Collection
 from .constants import COLLECTIONS_TYPE_FEATURED, COLLECTIONS_TYPE_OPERATOR
@@ -187,6 +188,12 @@ class CollectionSerializer(serializers.ModelSerializer):
                 u'collection for the same category/carrier/region combination.'
             )
         return instance
+
+
+class CuratorSerializer(serializers.ModelSerializer):
+    class Meta:
+        fields = ('display_name', 'email', 'id')
+        model = UserProfile
 
 
 class DataURLImageField(serializers.CharField):

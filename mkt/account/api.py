@@ -80,7 +80,7 @@ class PermissionResource(Mine, CORSResource, MarketplaceModelResource):
             'developer': bundle.request.amo_user.is_app_developer,
             'localizer': allowed('Localizers', '%'),
             'lookup': allowed('AccountLookup', '%'),
-            'publisher': allowed('Apps', 'Publisher'),
+            'curator': allowed('Collections', 'Curate'),
             'reviewer': acl.action_allowed(bundle.request, 'Apps', 'Review'),
             'webpay': (allowed('Transaction', 'NotifyFailure')
                        and allowed('ProductIcon', 'Create')),

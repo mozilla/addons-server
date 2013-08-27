@@ -1,7 +1,6 @@
 import os
 
 from django.conf import settings
-from django.core.urlresolvers import reverse
 from django.db import models
 
 import amo.models
@@ -36,6 +35,7 @@ class Collection(amo.models.ModelBase):
         choices=((to_language(lang), desc)
                  for lang, desc in settings.LANGUAGES.items()),
         default=to_language(settings.LANGUAGE_CODE))
+    curators = models.ManyToManyField('users.UserProfile')
     background_color = ColorField(null=True)
     text_color = ColorField(null=True)
 
@@ -115,6 +115,22 @@ class Collection(amo.models.ModelBase):
         for order, pk in enumerate(new_order):
             CollectionMembership.objects.get(collection=self,
                                              app_id=pk).update(order=order)
+
+    def has_curator(self, userprofile):
+        """
+        Returns boolean indicating whether the passed user profile is a curator
+        on this collection.
+
+        ID comparison used instead of directly checking objects to ensure that
+        RequestUser or UserProfile objects could be passed.
+        """
+        return userprofile.id in self.curators.values_list('id', flat=True)
+
+    def add_curator(self, userprofile):
+        return self.curators.add(userprofile)
+
+    def remove_curator(self, userprofile):
+        return self.curators.remove(userprofile)
 
 
 class CollectionMembership(amo.models.ModelBase):

@@ -28,11 +28,14 @@ from mkt.collections.views import CollectionViewSet
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
 
-from mkt.collections.tests.test_serializers import IMAGE_DATA, CollectionDataMixin
+from mkt.collections.tests.test_serializers import (CollectionDataMixin,
+                                                    IMAGE_DATA)
+from users.models import UserProfile
+
 
 class TestCollectionViewSetMixin(object):
     def make_publisher(self):
-        self.grant_permission(self.profile, 'Apps:Publisher')
+        self.grant_permission(self.profile, 'Collections:Curate')
 
     def create(self, client):
         res = client.post(self.list_url, json.dumps(self.collection_data))
@@ -58,7 +61,7 @@ class TestCollectionViewSetMixin(object):
 
 
 class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
-    fixtures = fixture('user_2519')
+    fixtures = fixture('user_2519', 'user_999')
 
     def setUp(self):
         self.create_switch('rocketfuel')
@@ -77,6 +80,10 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         self.collection = Collection.objects.create(**self.collection_data)
         self.apps = [amo.tests.app_factory() for n in xrange(1, 5)]
         self.list_url = reverse('collections-list')
+        self.user2 = UserProfile.objects.get(pk=999)
+
+    def make_curator(self):
+        self.collection.add_curator(UserProfile.objects.get(pk=2519))
 
     def add_all_apps(self):
         for app in self.apps:
@@ -142,6 +149,10 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
 
     def test_listing_has_perms(self):
         self.make_publisher()
+        self.listing(self.client)
+
+    def test_listing_curator(self):
+        self.make_curator()
         self.listing(self.client)
 
     def test_listing_no_filtering(self):
@@ -390,11 +401,20 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         self.make_publisher()
         self.detail(self.client)
 
+    def test_detail_curator(self):
+        self.make_curator()
+        self.detail(self.client)
+
     def test_create_anon(self):
         res, data = self.create(self.anon)
         eq_(res.status_code, 403)
 
     def test_create_no_perms(self):
+        res, data = self.create(self.client)
+        eq_(res.status_code, 403)
+
+    def test_create_curator(self):
+        self.make_curator
         res, data = self.create(self.client)
         eq_(res.status_code, 403)
 
@@ -472,12 +492,17 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         eq_(new_collection.author, '')
 
     def test_duplicate_anon(self):
-        res, data = self.create(self.anon)
+        res, data = self.duplicate(self.anon)
         eq_(res.status_code, 403)
 
     def test_duplicate_no_perms(self):
-        res, data = self.create(self.client)
+        res, data = self.duplicate(self.client)
         eq_(res.status_code, 403)
+
+    def test_duplicate_curator(self):
+        self.make_curator()
+        res, data = self.duplicate(self.client)
+        eq_(res.status_code, 201)
 
     def test_duplicate_has_perms(self):
         self.make_publisher()
@@ -583,6 +608,11 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         res, data = self.add_app(self.client)
         eq_(res.status_code, 200)
 
+    def test_add_app_curator(self):
+        self.make_curator()
+        res, data = self.add_app(self.client)
+        eq_(res.status_code, 200)
+
     def test_add_app_nonexistent(self):
         self.make_publisher()
         res, data = self.add_app(self.client, app_id=100000)
@@ -629,6 +659,13 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         eq_(res.status_code, 200)
         eq_(len(data['apps']), 0)
 
+    def test_remove_app_curator(self):
+        self.make_curator()
+        self.add_app(self.client)
+        res, data = self.remove_app(self.client)
+        eq_(res.status_code, 200)
+        eq_(len(data['apps']), 0)
+
     def test_remove_app_nonexistent(self):
         self.make_publisher()
         res, data = self.remove_app(self.client, app_id=100000)
@@ -655,6 +692,19 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
 
     def test_edit_collection_name_and_description_simple(self):
         self.make_publisher()
+        updates = {
+            'description': u'¿Dónde está la biblioteca?',
+            'name': u'Allö',
+        }
+        res, data = self.edit_collection(self.client, **updates)
+        eq_(res.status_code, 200)
+        self.collection.reload()
+        for key, value in updates.iteritems():
+            eq_(data[key], {'en-US': value})
+            eq_(getattr(self.collection, key), value)
+
+    def test_edit_collection_name_and_description_curator(self):
+        self.make_curator()
         updates = {
             'description': u'¿Dónde está la biblioteca?',
             'name': u'Allö',
@@ -884,6 +934,16 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
             app_pk = new_order[order]
             eq_(Webapp.objects.get(pk=app_pk).app_slug, app['slug'])
 
+    def test_reorder_curator(self):
+        self.make_curator()
+        self.add_all_apps()
+        new_order = self.random_app_order()
+        res, data = self.reorder(self.client, order=new_order)
+        eq_(res.status_code, 200)
+        for order, app in enumerate(data['apps']):
+            app_pk = new_order[order]
+            eq_(Webapp.objects.get(pk=app_pk).app_slug, app['slug'])
+
     def test_reorder_missing_apps(self):
         self.make_publisher()
         self.add_all_apps()
@@ -911,6 +971,12 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         eq_(res.status_code, 403)
         eq_(PermissionDenied.default_detail, data['detail'])
 
+    def test_delete_curator(self):
+        self.make_curator()
+        res, data = self.delete(self.client)
+        eq_(res.status_code, 403)
+        eq_(PermissionDenied.default_detail, data['detail'])
+
     def test_delete_has_perms(self):
         self.make_publisher()
         res, data = self.delete(self.client)
@@ -921,6 +987,117 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         self.make_publisher()
         res, data = self.delete(self.client, collection_id=100000)
         eq_(res.status_code, 404)
+
+    def list_curators(self, client):
+        self.collection.add_curator(self.user2)
+        url = self.collection_url('curators', self.collection.pk)
+        res = client.get(url)
+        data = json.loads(res.content)
+        return res, data
+
+    def test_list_curators_no_perms(self):
+        res, data = self.list_curators(self.client)
+        eq_(res.status_code, 403)
+        eq_(PermissionDenied.default_detail, data['detail'])
+
+    def test_list_curators_has_perms(self):
+        self.make_publisher()
+        res, data = self.list_curators(self.client)
+        eq_(res.status_code, 200)
+        eq_(len(data), 1)
+        eq_(data[0]['id'], self.user2.id)
+
+    def test_list_curators_as_curator(self):
+        self.make_curator()
+        res, data = self.list_curators(self.client)
+        eq_(res.status_code, 200)
+        eq_(len(data), 2)
+        for item in data:
+            ok_(item['id'] in [self.user.id, self.user2.id])
+
+    def add_curator(self, client, user_id=None):
+        if user_id is None:
+            user_id = 2519
+        form_data = {'user': user_id} if user_id else {}
+        url = self.collection_url('add-curator', self.collection.pk)
+        res = client.post(url, json.dumps(form_data))
+        data = json.loads(res.content)
+        return res, data
+
+    def test_add_curator_anon(self):
+        res, data = self.add_curator(self.anon)
+        eq_(res.status_code, 403)
+        eq_(PermissionDenied.default_detail, data['detail'])
+
+    def test_add_curator_no_perms(self):
+        res, data = self.add_curator(self.client)
+        eq_(res.status_code, 403)
+        eq_(PermissionDenied.default_detail, data['detail'])
+
+    def test_add_curator_has_perms(self):
+        self.make_publisher()
+        res, data = self.add_curator(self.client)
+        eq_(res.status_code, 200)
+        eq_(data[0]['id'], self.user.id)
+
+    def test_add_curator_as_curator(self):
+        self.make_curator()
+        res, data = self.add_curator(self.client)
+        eq_(res.status_code, 200)
+        eq_(data[0]['id'], self.user.id)
+
+    def test_add_curator_nonexistent(self):
+        self.make_publisher()
+        res, data = self.add_curator(self.client, user_id=100000)
+        eq_(res.status_code, 400)
+        eq_(CollectionViewSet.exceptions['user_doesnt_exist'], data['detail'])
+
+    def test_add_curator_empty(self):
+        self.make_publisher()
+        res, data = self.add_curator(self.client, user_id=False)
+        eq_(res.status_code, 400)
+        eq_(CollectionViewSet.exceptions['user_not_provided'], data['detail'])
+
+    def remove_curator(self, client, user_id=None):
+        if user_id is None:
+            user_id = 2519
+        form_data = {'user': user_id} if user_id else {}
+        url = self.collection_url('remove-curator', self.collection.pk)
+        res = client.post(url, json.dumps(form_data))
+        data = json.loads(res.content) if res.content else None
+        return res, data
+
+    def test_remove_curator_anon(self):
+        res, data = self.remove_curator(self.anon)
+        eq_(res.status_code, 403)
+        eq_(PermissionDenied.default_detail, data['detail'])
+
+    def test_remove_curator_no_perms(self):
+        res, data = self.remove_curator(self.client)
+        eq_(res.status_code, 403)
+        eq_(PermissionDenied.default_detail, data['detail'])
+
+    def test_remove_curator_has_perms(self):
+        self.make_publisher()
+        res, data = self.remove_curator(self.client)
+        eq_(res.status_code, 205)
+
+    def test_remove_curator_as_curator(self):
+        self.make_curator()
+        res, data = self.remove_curator(self.client)
+        eq_(res.status_code, 205)
+
+    def test_remove_curator_nonexistent(self):
+        self.make_publisher()
+        res, data = self.remove_curator(self.client, user_id=100000)
+        eq_(res.status_code, 400)
+        eq_(CollectionViewSet.exceptions['user_doesnt_exist'], data['detail'])
+
+    def test_remove_curator_empty(self):
+        self.make_publisher()
+        res, data = self.remove_curator(self.client, user_id=False)
+        eq_(res.status_code, 400)
+        eq_(CollectionViewSet.exceptions['user_not_provided'], data['detail'])
 
 
 class TestCollectionViewSetUnique(TestCollectionViewSetMixin, RestOAuth):
@@ -944,7 +1121,7 @@ class TestCollectionViewSetUnique(TestCollectionViewSetMixin, RestOAuth):
         }
         self.collection = Collection.objects.create(**self.collection_data)
         self.list_url = reverse('collections-list')
-        self.grant_permission(self.profile, 'Apps:Publisher')
+        self.grant_permission(self.profile, 'Collections:Curate')
 
     def test_create_featured_duplicate(self):
         """
@@ -1053,7 +1230,7 @@ class TestCollectionImageViewSet(RestOAuth):
                            kwargs={'pk': self.collection.pk})
 
     def test_put(self):
-        self.grant_permission(self.profile, 'Apps:Publisher')
+        self.grant_permission(self.profile, 'Collections:Curate')
         res = self.client.put(self.url, 'data:image/gif;base64,' + IMAGE_DATA)
         eq_(res.status_code, 204)
         assert os.path.exists(self.collection.image_path())
@@ -1062,12 +1239,12 @@ class TestCollectionImageViewSet(RestOAuth):
         assert im.format == 'PNG'
 
     def test_put_non_data_uri(self):
-        self.grant_permission(self.profile, 'Apps:Publisher')
+        self.grant_permission(self.profile, 'Collections:Curate')
         res = self.client.put(self.url, 'some junk')
         eq_(res.status_code, 400)
 
     def test_put_non_image(self):
-        self.grant_permission(self.profile, 'Apps:Publisher')
+        self.grant_permission(self.profile, 'Collections:Curate')
         res = self.client.put(self.url, 'data:text/plain;base64,AAA=')
         eq_(res.status_code, 400)
 

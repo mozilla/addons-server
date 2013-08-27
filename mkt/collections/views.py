@@ -5,8 +5,9 @@ from django.utils.datastructures import MultiValueDictKeyError
 
 from PIL import Image
 
-from rest_framework import exceptions, generics, status, viewsets
-from rest_framework.decorators import action
+from rest_framework import generics, status, viewsets
+from rest_framework.decorators import action, link
+from rest_framework.exceptions import ParseError
 from rest_framework.response import Response
 
 from amo.utils import HttpResponseSendFile
@@ -18,18 +19,20 @@ from mkt.api.authentication import (RestOAuthAuthentication,
 from mkt.api.base import CORSMixin, SlugOrIdMixin
 from mkt.collections.serializers import DataURLImageField
 from mkt.webapps.models import Webapp
+from users.models import UserProfile
 
-from .authorization import PublisherAuthorization
+from .authorization import CuratorAuthorization, StrictCuratorAuthorization
 from .filters import CollectionFilterSetWithFallback
 from .models import Collection
-from .serializers import CollectionMembershipField, CollectionSerializer
+from .serializers import (CollectionMembershipField, CollectionSerializer,
+                          CuratorSerializer)
 
 
 class CollectionViewSet(CORSMixin, SlugOrIdMixin, viewsets.ModelViewSet):
     serializer_class = CollectionSerializer
     queryset = Collection.objects.all()
     cors_allowed_methods = ('get', 'post', 'delete', 'patch')
-    permission_classes = [PublisherAuthorization]
+    permission_classes = [CuratorAuthorization]
     authentication_classes = [RestOAuthAuthentication,
                               RestSharedSecretAuthentication,
                               RestAnonymousAuthentication]
@@ -37,7 +40,9 @@ class CollectionViewSet(CORSMixin, SlugOrIdMixin, viewsets.ModelViewSet):
 
     exceptions = {
         'not_provided': '`app` was not provided.',
+        'user_not_provided': '`user` was not provided.',
         'doesnt_exist': '`app` does not exist.',
+        'user_doesnt_exist': '`user` does not exist.',
         'not_in': '`app` not in collection.',
         'already_in': '`app` already exists in collection.',
         'app_mismatch': 'All apps in this collection must be included.',
@@ -96,13 +101,13 @@ class CollectionViewSet(CORSMixin, SlugOrIdMixin, viewsets.ModelViewSet):
         try:
             new_app = Webapp.objects.get(pk=request.DATA['app'])
         except (KeyError, MultiValueDictKeyError):
-            raise exceptions.ParseError(detail=self.exceptions['not_provided'])
+            raise ParseError(detail=self.exceptions['not_provided'])
         except Webapp.DoesNotExist:
-            raise exceptions.ParseError(detail=self.exceptions['doesnt_exist'])
+            raise ParseError(detail=self.exceptions['doesnt_exist'])
         try:
             collection.add_app(new_app)
         except IntegrityError:
-            raise exceptions.ParseError(detail=self.exceptions['already_in'])
+            raise ParseError(detail=self.exceptions['already_in'])
         return self.return_updated(status.HTTP_200_OK)
 
     @action()
@@ -114,9 +119,9 @@ class CollectionViewSet(CORSMixin, SlugOrIdMixin, viewsets.ModelViewSet):
         try:
             to_remove = Webapp.objects.get(pk=request.DATA['app'])
         except (KeyError, MultiValueDictKeyError):
-            raise exceptions.ParseError(detail=self.exceptions['not_provided'])
+            raise ParseError(detail=self.exceptions['not_provided'])
         except Webapp.DoesNotExist:
-            raise exceptions.ParseError(detail=self.exceptions['doesnt_exist'])
+            raise ParseError(detail=self.exceptions['doesnt_exist'])
         removed = collection.remove_app(to_remove)
         if not removed:
             return Response(status=status.HTTP_205_RESET_CONTENT)
@@ -138,11 +143,42 @@ class CollectionViewSet(CORSMixin, SlugOrIdMixin, viewsets.ModelViewSet):
             }, status=status.HTTP_400_BAD_REQUEST, exception=True)
         return self.return_updated(status.HTTP_200_OK)
 
+    def serialized_curators(self, http_status=None):
+        if not http_status:
+            http_status = status.HTTP_200_OK
+        data = [CuratorSerializer(instance=c).data for c in
+                self.get_object().curators.all()]
+        return Response(data, status=http_status)
 
-class CollectionImageViewSet(CORSMixin, SlugOrIdMixin, viewsets.ViewSet,
+    def get_curator(self, request):
+        try:
+            return UserProfile.objects.get(pk=request.DATA['user'])
+        except (KeyError, MultiValueDictKeyError):
+            raise ParseError(detail=self.exceptions['user_not_provided'])
+        except UserProfile.DoesNotExist:
+            raise ParseError(detail=self.exceptions['user_doesnt_exist'])
+
+    @link(permission_classes=[StrictCuratorAuthorization])
+    def curators(self, request, pk=None):
+        return self.serialized_curators()
+
+    @action(methods=['POST'])
+    def add_curator(self, request, pk=None):
+        self.get_object().add_curator(self.get_curator(request))
+        return self.serialized_curators()
+
+    @action(methods=['POST'])
+    def remove_curator(self, request, pk=None):
+        removed = self.get_object().remove_curator(self.get_curator(request))
+        if not removed:
+            return Response(status=status.HTTP_205_RESET_CONTENT)
+        return self.serialized_curators()
+
+
+class CollectionImageViewSet(CORSMixin, viewsets.ViewSet,
                              generics.RetrieveUpdateAPIView):
     queryset = Collection.objects.all()
-    permission_classes = [PublisherAuthorization]
+    permission_classes = [CuratorAuthorization]
     authentication_classes = [RestOAuthAuthentication,
                               RestSharedSecretAuthentication,
                               RestAnonymousAuthentication]
