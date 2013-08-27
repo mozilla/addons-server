@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-08-23 09:56-0700\n"
-"PO-Revision-Date: 2013-08-27 18:09+0000\n"
+"PO-Revision-Date: 2013-08-27 18:27+0000\n"
 "Last-Translator: Inma <inma.barrios@mozilla-hispano.org>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1377626951.0\n"
+"X-POOTLE-MTIME: 1377628071.0\n"
 
 #: apps/addons/buttons.py:207
 msgid "Download Now"
@@ -15675,10 +15675,12 @@ msgstr "Debes subir al menos una captura de pantalla o video."
 #: mkt/developers/forms.py:465
 msgid "Packaged app too large for submission. Packages must be less than %s."
 msgstr ""
+"Aplicación empaquetada demasiado grande para enviarse. Los paquetes no deben "
+"exceder %s."
 
 #: mkt/developers/forms.py:477
 msgid "Error extracting manifest from zip file."
-msgstr ""
+msgstr "Error al extraer manifest del archivo zip."
 
 #: mkt/developers/forms.py:530
 msgid "Provide a detailed description of your app"
@@ -15714,7 +15716,7 @@ msgstr "Regiones nuevas y otras"
 
 #: mkt/developers/forms.py:750
 msgid "Enable new regions"
-msgstr ""
+msgstr "Habilitar nuevas regiones"
 
 #: mkt/developers/forms.py:835
 msgid "You must select at least one region or \"Other and new regions.\""
@@ -15898,23 +15900,23 @@ msgstr "Nombre de la cuenta"
 
 #: mkt/developers/forms_payments.py:434 mkt/developers/templates/developers/payments/premium.html:121
 msgid "Payment Account"
-msgstr "Cuenta para el pago"
+msgstr "Cuenta de pago"
 
 #: mkt/developers/forms_payments.py:477
 msgid "You cannot remove a payment account from an app."
-msgstr "No puedes quitar una cuenta para el pago desde una aplicación."
+msgstr "No puedes quitar una cuenta de pago desde una aplicación."
 
 #: mkt/developers/forms_payments.py:481
 msgid "You are not permitted to change payment accounts."
-msgstr ""
+msgstr "No tienes permisos para cambiar las cuentas de pago."
 
 #: mkt/developers/forms_payments.py:525
 msgid "No payment account set up for that app"
-msgstr ""
+msgstr "No hay ninguna cuenta de pago configurada para esa aplicación"
 
 #: mkt/developers/forms_payments.py:528
 msgid "Account not set up"
-msgstr ""
+msgstr "Cuenta sin configurar"
 
 #: mkt/developers/helpers.py:36 mkt/developers/helpers.py:65 mkt/reviewers/forms.py:69
 msgid "Developers"
@@ -15950,7 +15952,7 @@ msgstr "Nuevas regiones agregadas al Firefox Marketplace"
 
 #: mkt/developers/tasks.py:663
 msgid "{app}: {region} region added to the Firefox Marketplace"
-msgstr ""
+msgstr "{app}: {region} región agregada a Firefox Marketplace"
 
 #: mkt/developers/utils.py:42
 msgid "Video support not enabled."
@@ -16068,7 +16070,7 @@ msgstr "Tu aplicación no está configurada para pagos en la aplicación."
 
 #: mkt/developers/views_payments.py:292
 msgid "No payment account for this app."
-msgstr "No hay cuenta para pagos para esta aplicación."
+msgstr "No hay cuenta de pago para esta aplicación."
 
 #: mkt/developers/templates/developers/api.html:2 mkt/developers/templates/developers/nav.html:33
 msgid "API"
@@ -17012,15 +17014,17 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/premium.html:108
 msgid "Payment accounts"
-msgstr "Cuentas para pagos"
+msgstr "Cuentas de pago"
 
 #: mkt/developers/templates/developers/payments/premium.html:111
 msgid "Your app is currently incomplete. Select a payment account and price point to restore it."
-msgstr "Tu aplicación está incompleta. Selecciona una cuenta para pagos y el rango de precio para completarla."
+msgstr ""
+"Tu aplicación está incompleta. Selecciona una cuenta de pago y el rango de "
+"precio para completarla."
 
 #: mkt/developers/templates/developers/payments/premium.html:129
 msgid "Add or manage payment accounts"
-msgstr "Agregar o administrar cuentas para pagos"
+msgstr "Agregar o administrar cuentas de pago"
 
 #: mkt/developers/templates/developers/payments/premium.html:145
 msgid "Prices and countries"
@@ -17114,7 +17118,7 @@ msgstr "Aceptar los términos"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:6
 msgid "Payment Accounts"
-msgstr "Cuentas para pagos"
+msgstr "Cuentas de pago"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:13 mkt/developers/templates/developers/payments/includes/account_list.html:37
 msgid "Modify"
@@ -17122,7 +17126,7 @@ msgstr "Modificar"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:23
 msgid "Add a new payment account"
-msgstr "Agregar una nueva cuenta para pagos"
+msgstr "Agregar una nueva cuenta de pago"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:37
 msgid "Accept Terms of Service"
@@ -17158,7 +17162,7 @@ msgstr "Opcional"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:148
 msgid "Register Payment Account"
-msgstr "Registrar cuenta para pagos"
+msgstr "Registrar cuenta de pago"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:159 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:130
 msgid "Processing Request..."
@@ -17198,11 +17202,13 @@ msgstr "Si deseas continuar, entra en PayPal para permitir que Marketplace pueda
 
 #: mkt/developers/templates/developers/payments/includes/bango_accounts_form.html:4
 msgid "You don't have any payment accounts set up."
-msgstr "No tienes ninguna cuenta para pagos registrada."
+msgstr "No tienes ninguna cuenta de pago registrada."
 
 #: mkt/developers/templates/developers/payments/includes/bango_accounts_list.html:4
 msgid "The current payment account was associated with the app by an app owner."
 msgstr ""
+"Un titular de la aplicación había asociado la cuenta de pago actual con la "
+"aplicación."
 
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:5
 msgid "Modify Bango Account"
