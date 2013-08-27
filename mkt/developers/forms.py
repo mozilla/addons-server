@@ -380,16 +380,18 @@ class AdminSettingsForm(PreviewForm):
             tags_new = self.cleaned_data['tags']
             tags_old = [slugify(t, spaces=True) for t in self.get_tags(addon)]
 
+            add_tags = set(tags_new) - set(tags_old)
+            del_tags = set(tags_old) - set(tags_new)
+
             # Add new tags.
-            for t in set(tags_new) - set(tags_old):
+            for t in add_tags:
                 Tag(tag_text=t).save_tag(addon)
 
             # Remove old tags.
-            for t in set(tags_old) - set(tags_new):
+            for t in del_tags:
                 Tag(tag_text=t).remove_tag(addon)
 
-            if (set(tags_new) - set(tags_old) is not None or
-                set(tags_old) - set(tags_new) is not None):
+            if add_tags or del_tags:
                 index_webapps.delay([addon.id])
 
         ratings = self.cleaned_data.get('app_ratings')
