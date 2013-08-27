@@ -108,6 +108,9 @@ function buildAppResultRow(app, review_url, statuses) {
             flags.push({suffix: 'editor', title: gettext('Contains Editor Comment')});
         }
     }
+    if (app.premium_type == 'premium-inapp' || app.premium_type == 'premium') {
+        flags.push({suffix: 'premium', title: gettext('Premium App')});
+    }
     if (app.is_escalated) {
         flags.push({suffix: 'escalated', title: gettext('Escalated')});
     }
@@ -137,12 +140,13 @@ function initMobileMenus() {
     // Nav action menu overlays for queues and logs.
     var $logTabOverlay = $('#log-tab-overlay');
     var $queueTabOverlay = $('#queue-tab-overlay');
-    $('.trigger-queues').click(_pd(function() {
+    $('.trigger-queues').click(function(e) {
         if (z.capabilities.mobile || z.capabilities.tablet) {
-            $queueTabOverlay.show();
+            e.preventDefault();
+            $logTabOverlay.show();
         }
-    }));
-   $('.trigger-logs').click(_pd(function() {
+    });
+    $('.trigger-logs').click(_pd(function() {
         if (z.capabilities.mobile || z.capabilities.tablet) {
             $logTabOverlay.show();
         }

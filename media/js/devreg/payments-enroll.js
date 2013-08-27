@@ -128,31 +128,6 @@ define('payments-enroll', ['payments'], function(payments) {
     }
 
     function init() {
-        // We listen for events on z.body because overlays are outside of the page.
-        z.body.on('keyup', '.groupie', function() {
-            var $parent;
-            if (this.groupie_parent) {
-                $parent = this.groupie_parent;
-            } else {
-                // Traverse up the DOM until you find a node that contains a hidden input.
-                $parent = _.find(
-                    _.map($(this).parents(), $),
-                    function(p) {return p.has('input[type=hidden]').length;}
-                );
-                this.groupie_parent = $parent;
-            }
-
-            var new_val = _.pluck($parent.find('.groupie'), 'value').join('');
-            $parent.children('input[type=hidden]').val(new_val);
-            console.log('Concatted groupie value', new_val);
-        });
-
-        z.body.on('click', '.un-groupie-bank-accounts', _pd(function() {
-            $('.bank-accounts-strip').hide();
-            // jQuery won't let you attr('type', ...).
-            document.getElementById('id_bankAccountNumber').type = 'text';
-        }));
-
         z.body.on('keyup', '#id_bankAccountCode', _.debounce(_pd(function() {
             var $this = $(this);
             var result = getCodeType($this.val());

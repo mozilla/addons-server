@@ -4,12 +4,15 @@ from django.http import Http404
 from django.shortcuts import get_object_or_404
 
 from rest_framework import status
-from rest_framework.decorators import api_view, permission_classes
-from rest_framework.exceptions import PermissionDenied, ParseError
+from rest_framework.authentication import BaseAuthentication
+from rest_framework.decorators import (api_view, authentication_classes,
+                                       permission_classes)
+from rest_framework.exceptions import ParseError, PermissionDenied
 from rest_framework.fields import BooleanField, CharField
 from rest_framework.filters import BaseFilterBackend, OrderingFilter
 from rest_framework.mixins import (CreateModelMixin, DestroyModelMixin,
                                    ListModelMixin, RetrieveModelMixin)
+from rest_framework.parsers import FormParser, JSONParser
 from rest_framework.permissions import BasePermission
 from rest_framework.relations import PrimaryKeyRelatedField, RelatedField
 from rest_framework.response import Response
@@ -141,9 +144,18 @@ class EmailCreationPermission(object):
     """Permit if client's IP address is whitelisted."""
 
     def has_permission(self, request, view):
+        auth_token = request.META.get('HTTP_POSTFIX_AUTH_TOKEN')
+        if auth_token and auth_token not in settings.POSTFIX_AUTH_TOKEN:
+            return False
+
         remote_ip = request.META.get('REMOTE_ADDR')
         return remote_ip and (
             remote_ip in settings.WHITELISTED_CLIENTS_EMAIL_API)
+
+
+class NoAuthentication(BaseAuthentication):
+    def authenticate(self, request):
+        return request._request.user, None
 
 
 class ReadUnreadFilter(BaseFilterBackend):
@@ -165,6 +177,7 @@ class ReadUnreadFilter(BaseFilterBackend):
 
 class CommViewSet(CORSMixin, GenericViewSet):
     """Some overriding and mixin stuff to adapt other viewsets."""
+    parser_classes = (FormParser, JSONParser)
 
     def patched_get_request(self):
         return lambda x: self.request
@@ -298,6 +311,7 @@ class ReplyViewSet(NoteViewSet):
 
 
 @api_view(['POST'])
+@authentication_classes((NoAuthentication,))
 @permission_classes((EmailCreationPermission,))
 def post_email(request):
     email_body = request.POST.get('body')

@@ -1,6 +1,7 @@
-from django.conf import settings
+from django.shortcuts import redirect
 from django.utils.cache import patch_vary_headers
 
+from amo.helpers import urlparams
 from amo.urlresolvers import set_url_prefix
 from mkt.constants.carriers import CARRIER_MAP
 
@@ -52,7 +53,7 @@ class CarrierURLMiddleware(object):
         if carrier and is_legacy:
             orig_path = request.path_info
             new_path = orig_path[len(carrier) + 1:] or '/'
-            request.path_info = new_path
+            return redirect(urlparams(new_path, carrier=carrier))
 
         set_carrier(carrier)
 

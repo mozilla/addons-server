@@ -292,6 +292,32 @@ Produces the JWT that is passed to `navigator.mozPay`_.
     :status 403: app cannot be purchased.
     :status 409: app already purchased.
 
+Signature Check
+===============
+
+Retrieve a JWT that can be used to check the signature for making payments.
+This is intended for system health checks and requires no authorization.
+You can pass the retrieved JWT to the `WebPay`_ API to verify its signature.
+
+.. http:post:: /api/v1/webpay/sig_check/
+
+    **Request**
+
+    No parameters are necessary.
+
+    **Response**
+
+    .. code-block:: json
+
+        {
+            "sig_check_jwt": "eyJhbGciOiAiSFMyNT...XsgG6JKCSw"
+        }
+
+    :param sig_check_jwt: a JWT that can be passed to `WebPay`_.
+    :type sig_check_jwt: string
+
+    :status 201: successfully created resource.
+
 .. _payment-status-label:
 
 Payment status
@@ -349,7 +375,7 @@ Premium apps
     **Request**:
 
     :param app: the id or slug of the app being installed.
-    :type app : int|string
+    :type app: int|string
 
     **Response**:
 
@@ -495,7 +521,7 @@ Pay Tiers
 .. _localized-tier-label:
 
 Localized tier
-~~~~~~~~~~~~~~
+--------------
 
 To display a price to your user, it would be nice to know how to display a
 price in the app. The Marketplace does some basic work to calculate the locale

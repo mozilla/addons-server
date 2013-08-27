@@ -82,6 +82,8 @@ Carriers
             "slug": "phoneorama"
         }
 
+.. _regions:
+
 Regions
 =======
 

@@ -23,6 +23,29 @@ class TestCommand(amo.tests.TestCase):
             '%s: United Kingdom region added to the Firefox Marketplace'
             % app.name)
 
+    def test_email_developers_locale(self):
+        app = Webapp.objects.get(id=337141)
+        app.update(premium_type=amo.ADDON_PREMIUM)
+        author = app.authors.all()[0]
+        eq_(author.lang, None)
+        email_developers_about_new_paid_region.Command().handle('uk')
+        msg = mail.outbox[0]
+        eq_(msg.subject,
+            (u'Something Something Steamcube!: United Kingdom region added '
+             u'to the Firefox Marketplace'))
+        assert 'payments for United Kingdom' in msg.body
+        assert 'your app, Something Something Steamcube!' in msg.body
+
+        mail.outbox = []
+        author.update(lang=u'es')
+        email_developers_about_new_paid_region.Command().handle('uk')
+        msg = mail.outbox[0]
+        eq_(msg.subject,
+            (u'Algo Algo Steamcube!: Reino Unido region added '
+             u'to the Firefox Marketplace'))
+        assert 'payments for Reino Unido' in msg.body
+        assert 'your app, Algo Algo Steamcube!' in msg.body
+
     def test_email_developers_about_new_paid_region_with_pending_status(self):
         app = Webapp.objects.get(id=337141)
         app.update(premium_type=amo.ADDON_PREMIUM, status=amo.STATUS_PENDING)

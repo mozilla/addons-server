@@ -1,7 +1,7 @@
 import json
 
 import mock
-from nose.tools import eq_
+from nose.tools import eq_, ok_
 from rest_framework.reverse import reverse
 
 from django.conf import settings
@@ -53,3 +53,24 @@ class TestGlobalStatsResource(RestOAuth):
         res = self.client.get(self.url(), data=self.data)
         eq_(res.status_code, 200)
         eq_(json.loads(res.content)['objects'], [])
+
+    def test_dimensions(self, mocked):
+        client = mock.MagicMock()
+        mocked.return_value = client
+
+        data = self.data.copy()
+        data.update({'region': 'br', 'package_type': 'hosted'})
+        res = self.client.get(self.url('apps_added_by_package'), data=data)
+        eq_(res.status_code, 200)
+        ok_(client.called)
+        eq_(client.call_args[1], {'region': 'br', 'package_type': 'hosted'})
+
+    def test_dimensions_default(self, mocked):
+        client = mock.MagicMock()
+        mocked.return_value = client
+
+        res = self.client.get(self.url('apps_added_by_package'),
+                              data=self.data)
+        eq_(res.status_code, 200)
+        ok_(client.called)
+        eq_(client.call_args[1], {'region': 'us', 'package_type': 'hosted'})

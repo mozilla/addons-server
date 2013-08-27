@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-13 10:01-0700\n"
-"PO-Revision-Date: 2013-07-11 09:11+0200\n"
+"POT-Creation-Date: 2013-08-23 09:56-0700\n"
+"PO-Revision-Date: 2013-08-25 08:11+0000\n"
 "Last-Translator: Mark <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -15,7 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.1.6\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1377418262.0\n"
 
 #: apps/addons/buttons.py:207
 msgid "Download Now"
@@ -76,11 +77,11 @@ msgstr "Toevoegen aan {0}"
 msgid "This name is already in use. Please choose another."
 msgstr "Deze naam wordt al gebruikt. Kies een andere naam."
 
-#: apps/addons/forms.py:62 mkt/developers/forms.py:571 mkt/submit/forms.py:402
+#: apps/addons/forms.py:62 mkt/developers/forms.py:571 mkt/submit/forms.py:386
 msgid "This slug is already in use. Please choose another."
 msgstr "Deze code wordt al gebruikt. Kies een andere."
 
-#: apps/addons/forms.py:65 mkt/developers/forms.py:574 mkt/submit/forms.py:406
+#: apps/addons/forms.py:65 mkt/developers/forms.py:574 mkt/submit/forms.py:390
 msgid "The slug cannot be \"%s\". Please choose another."
 msgstr "De code kan niet “%s” zijn. Kies een andere."
 
@@ -168,16 +169,16 @@ msgstr "Aanbevolen"
 msgid "Self Hosted"
 msgstr "Zelfgehost"
 
-#: apps/addons/models.py:259
+#: apps/addons/models.py:292
 msgid "Users have the option of contributing more or less than this amount."
 msgstr "Gebruikers hebben de keuze om meer of minder dan dit bedrag bij te dragen."
 
-#: apps/addons/models.py:268
+#: apps/addons/models.py:301
 msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above)"
 msgstr "Gebruikers wordt altijd gevraagd in de Add-onbeheerder (Firefox 4 en hoger)"
 
 # Column name in a table.
-#: apps/addons/models.py:1946 apps/constants/base.py:32
+#: apps/addons/models.py:1961 apps/constants/base.py:32
 msgid "Listed"
 msgstr "Vermeld"
 
@@ -349,7 +350,7 @@ msgstr "Bijdragen"
 #: apps/translations/templates/translations/trans-menu.html:50 apps/translations/templates/translations/trans-menu.html:62 mkt/account/templates/account/abuse.html:21
 #: mkt/developers/templates/developers/apps/status.html:271 mkt/developers/templates/developers/apps/status.html:294 mkt/developers/templates/developers/apps/version_edit.html:82
 #: mkt/developers/templates/developers/apps/edit/admin.html:110 mkt/developers/templates/developers/apps/edit/basic.html:164 mkt/developers/templates/developers/apps/edit/details.html:79
-#: mkt/developers/templates/developers/apps/edit/support.html:80 mkt/developers/templates/developers/apps/edit/technical.html:70 mkt/developers/templates/developers/apps/forms_shared/media.html:228
+#: mkt/developers/templates/developers/apps/edit/support.html:80 mkt/developers/templates/developers/apps/edit/technical.html:68 mkt/developers/templates/developers/apps/forms_shared/media.html:228
 #: mkt/developers/templates/developers/apps/listing/delete_form.html:23 mkt/developers/templates/developers/payments/includes/accept_terms.html:11
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:150 mkt/developers/templates/developers/payments/includes/add_payment_account_choose.html:13
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:121 mkt/submit/templates/submit/done.html:50
@@ -502,7 +503,7 @@ msgstr "Statistieken bekijken"
 msgid "Average Daily Users"
 msgstr "Gemiddeld aantal dagelijkse gebruikers"
 
-#: apps/addons/templates/addons/details_box.html:105 mkt/lookup/templates/lookup/app_summary.html:53 mkt/reviewers/templates/reviewers/abuse.html:5 mkt/reviewers/templates/reviewers/queue.html:39
+#: apps/addons/templates/addons/details_box.html:105 mkt/lookup/templates/lookup/app_summary.html:55 mkt/reviewers/templates/reviewers/abuse.html:5 mkt/reviewers/templates/reviewers/queue.html:39
 #: mkt/reviewers/templates/reviewers/includes/details.html:96 mkt/reviewers/templates/reviewers/includes/mobile_details.html:118
 msgid "Abuse Reports"
 msgstr "Misbruikrapporten"
@@ -997,7 +998,7 @@ msgstr "Rapport verzenden"
 #: apps/zadmin/templates/zadmin/validation.html:110 mkt/account/templates/account/abuse.html:22 mkt/developers/templates/developers/apps/status.html:271
 #: mkt/developers/templates/developers/apps/status.html:294 mkt/developers/templates/developers/apps/version_edit.html:83 mkt/developers/templates/developers/apps/edit/admin.html:112
 #: mkt/developers/templates/developers/apps/edit/basic.html:166 mkt/developers/templates/developers/apps/edit/details.html:81 mkt/developers/templates/developers/apps/edit/support.html:82
-#: mkt/developers/templates/developers/apps/edit/technical.html:72 mkt/developers/templates/developers/apps/forms_shared/media.html:230
+#: mkt/developers/templates/developers/apps/edit/technical.html:70 mkt/developers/templates/developers/apps/forms_shared/media.html:230
 #: mkt/developers/templates/developers/apps/listing/delete_form.html:23 mkt/developers/templates/developers/apps/listing/delete_form.html:27
 #: mkt/developers/templates/developers/payments/paypal-details-confirm.html:75 mkt/developers/templates/developers/payments/includes/accept_terms.html:12
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:151 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:122
@@ -1263,7 +1264,7 @@ msgstr "<strong>Waarschuwing:</strong> ontwikkelversies van deze add-on zijn nie
 #: mkt/developers/templates/developers/apps/owner.html:74 mkt/developers/templates/developers/payments/includes/account_list.html:5
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:4 mkt/developers/templates/developers/payments/includes/add_payment_account_choose.html:4
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_paypal.html:4 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:4
-#: mkt/stats/templates/appstats/stats.html:151 mkt/stats/templates/devstats/stats.html:99 mkt/stats/templates/sitestats/stats.html:96
+#: mkt/stats/templates/appstats/stats.html:150 mkt/stats/templates/devstats/stats.html:99 mkt/stats/templates/sitestats/stats.html:96
 msgid "close"
 msgstr "sluiten"
 
@@ -1621,7 +1622,7 @@ msgstr "Woordenboeken en taalpakketten"
 
 #: apps/amo/helpers.py:272 apps/amo/helpers.py:274 apps/devhub/templates/devhub/payments/payments.html:101 mkt/developers/helpers.py:45 mkt/developers/templates/developers/login.html:3
 #: mkt/developers/templates/developers/skeleton_impala.html:12 mkt/ecosystem/templates/ecosystem/landing.html:171 mkt/ecosystem/templates/ecosystem/partners.html:12
-#: mkt/ecosystem/templates/ecosystem/partners.html:81 mkt/purchase/templates/purchase/receipt.html:59 templates/base.html:9 templates/impala/base.html:9
+#: mkt/ecosystem/templates/ecosystem/partners.html:81 mkt/purchase/templates/purchase/receipt.html:57 templates/base.html:9 templates/impala/base.html:9
 msgid "Firefox Marketplace"
 msgstr "Firefox Marketplace"
 
@@ -1778,7 +1779,7 @@ msgid "Comment on {addon} {version}."
 msgstr "Opmerking over {addon} {version}."
 
 #: apps/amo/log.py:234 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:19 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:47 apps/editors/helpers.py:452
-#: mkt/reviewers/utils.py:466 mkt/reviewers/templates/reviewers/themes/history_table.html:11
+#: mkt/reviewers/utils.py:468 mkt/reviewers/templates/reviewers/themes/history_table.html:11
 msgid "Comment"
 msgstr "Opmerking"
 
@@ -2091,7 +2092,7 @@ msgstr "Vereisten gewijzigd"
 #. L10n: {0} is the status
 #: apps/amo/log.py:640
 msgid "{version} status changed to {0}."
-msgstr ""
+msgstr "Status {version} gewijzigd in {0}."
 
 #: apps/amo/templates/amo/403.html:3
 msgid "Not allowed"
@@ -2790,7 +2791,7 @@ msgstr "Medewerkers en meer"
 #: apps/devhub/templates/devhub/personas/edit.html:35 apps/devhub/templates/devhub/personas/edit.html:294 apps/devhub/templates/devhub/versions/edit.html:127
 #: apps/translations/templates/translations/trans-menu.html:48 mkt/developers/templates/developers/apps/owner.html:51 mkt/developers/templates/developers/apps/version_edit.html:82
 #: mkt/developers/templates/developers/apps/edit/admin.html:110 mkt/developers/templates/developers/apps/edit/basic.html:164 mkt/developers/templates/developers/apps/edit/details.html:79
-#: mkt/developers/templates/developers/apps/edit/support.html:80 mkt/developers/templates/developers/apps/edit/technical.html:70 mkt/developers/templates/developers/apps/forms_shared/media.html:228
+#: mkt/developers/templates/developers/apps/edit/support.html:80 mkt/developers/templates/developers/apps/edit/technical.html:68 mkt/developers/templates/developers/apps/forms_shared/media.html:228
 #: mkt/developers/templates/developers/includes/addons_create_profile.html:48 mkt/developers/templates/developers/payments/premium.html:67
 #: mkt/developers/templates/developers/payments/premium.html:137 mkt/developers/templates/developers/payments/premium.html:238 mkt/developers/templates/developers/payments/premium.html:262
 #: mkt/developers/templates/developers/payments/premium.html:300
@@ -3084,7 +3085,7 @@ msgid "Created"
 msgstr "Aangemaakt"
 
 #: apps/browse/views.py:444 apps/devhub/views.py:76 apps/stats/templates/stats/addon_report_menu.html:8 apps/stats/templates/stats/collection_report_menu.html:18 mkt/developers/views.py:74
-#: mkt/lookup/templates/lookup/app_summary.html:57
+#: mkt/lookup/templates/lookup/app_summary.html:59
 msgid "Downloads"
 msgstr "Downloads"
 
@@ -3407,7 +3408,7 @@ msgstr "Binair"
 msgid "Non-binary"
 msgstr "Niet binair"
 
-#: apps/compat/views.py:88 apps/constants/base.py:410 apps/constants/payments.py:75 apps/devhub/forms.py:160 mkt/lookup/views.py:477
+#: apps/compat/views.py:88 apps/constants/base.py:410 apps/constants/payments.py:75 apps/devhub/forms.py:160 mkt/lookup/views.py:478
 msgid "Other"
 msgstr "Overig"
 
@@ -3517,7 +3518,7 @@ msgstr "Toepassingsbuild"
 msgid "Platform"
 msgstr "Platform"
 
-#: apps/compat/templates/compat/reporter_detail.html:50 apps/devhub/templates/devhub/versions/list.html:175 mkt/lookup/templates/lookup/app_summary.html:49
+#: apps/compat/templates/compat/reporter_detail.html:50 apps/devhub/templates/devhub/versions/list.html:175 mkt/lookup/templates/lookup/app_summary.html:51
 #: mkt/reviewers/templates/reviewers/themes/themes.html:41
 msgid "Submitted"
 msgstr "Ingediend"
@@ -3571,11 +3572,11 @@ msgstr "Onbekend"
 msgid "Desktop"
 msgstr "Desktop"
 
-#: apps/constants/applications.py:161 mkt/constants/platforms.py:31
+#: apps/constants/applications.py:161 mkt/constants/platforms.py:31 mkt/constants/platforms.py:37
 msgid "Firefox Mobile"
 msgstr "Firefox Mobiel"
 
-#: apps/constants/applications.py:168 mkt/constants/platforms.py:32
+#: apps/constants/applications.py:168 mkt/constants/platforms.py:32 mkt/constants/platforms.py:38
 msgid "Firefox Tablet"
 msgstr "Firefox Tablet"
 
@@ -4209,7 +4210,7 @@ msgstr "Er dient ten minste één compatibele toepassing te zijn."
 msgid "An app already exists on this domain, only one app per domain is allowed."
 msgstr "Er bestaat al een app op dit domein. Er is slechts één app per domein toegestaan."
 
-#: apps/devhub/forms.py:473 apps/devhub/forms.py:488 apps/devhub/forms.py:501 mkt/submit/forms.py:147 mkt/submit/forms.py:215
+#: apps/devhub/forms.py:473 apps/devhub/forms.py:488 apps/devhub/forms.py:501 mkt/submit/forms.py:145 mkt/submit/forms.py:212
 msgid "There was an error with your upload. Please try again."
 msgstr "Er is een fout opgetreden tijdens uw upload. Probeer het nog eens."
 
@@ -4221,7 +4222,7 @@ msgstr "Mislukte validatie negeren"
 msgid "Need at least one platform."
 msgstr "Er is ten minste één platform vereist."
 
-#: apps/devhub/forms.py:545 mkt/submit/forms.py:183
+#: apps/devhub/forms.py:545 mkt/submit/forms.py:180
 msgid "Version %s already exists"
 msgstr "Versie %s bestaat al"
 
@@ -4440,7 +4441,7 @@ msgstr "Uw manifest dient te worden aangeboden met de HTTP-header “Content-typ
 msgid "Your manifest must be served with the HTTP header \"Content-Type: %s\". We saw \"%s\"."
 msgstr "Uw manifest dient te worden aangeboden met de HTTP-header “Content-type: %s”. Momenteel zien wij “%s”."
 
-#: apps/devhub/tasks.py:417 mkt/developers/tasks.py:509
+#: apps/devhub/tasks.py:417 mkt/developers/tasks.py:512
 msgid "Your manifest must be less than %s bytes."
 msgstr "Uw manifest dient kleiner dan %s bytes te zijn."
 
@@ -4469,7 +4470,7 @@ msgid "User Reviews"
 msgstr "Gebruikersbeoordelingen"
 
 #: apps/devhub/views.py:335 apps/devhub/views.py:339 apps/devhub/views.py:456 apps/devhub/views.py:479 apps/devhub/views.py:526 apps/devhub/views.py:649 apps/devhub/views.py:1332
-#: mkt/developers/views.py:378 mkt/developers/views.py:419 mkt/developers/views_payments.py:122 mkt/developers/views_payments.py:304
+#: mkt/developers/views.py:378 mkt/developers/views.py:419 mkt/developers/views_payments.py:122 mkt/developers/views_payments.py:304 mkt/reviewers/views.py:609
 msgid "Changes successfully saved."
 msgstr "Wijzigingen met succes opgeslagen."
 
@@ -4763,15 +4764,17 @@ msgstr "Alle add-ons bekijken ►"
 
 #: apps/devhub/templates/devhub/index.html:87
 msgid "AMO Reviewers"
-msgstr ""
+msgstr "AMO-beoordelaars"
 
 #: apps/devhub/templates/devhub/index.html:89
 msgid "Get ahead! Become an AMO Reviewer today and get your add-ons reviewed faster."
 msgstr ""
+"Neem een voorsprong! Word vandaag nog een AMO-beoordelaar en zorg dat uw "
+"add-ons sneller worden beoordeeld."
 
 #: apps/devhub/templates/devhub/index.html:92
 msgid "Become an AMO Reviewer"
-msgstr ""
+msgstr "Een AMO-beoordelaar worden"
 
 #: apps/devhub/templates/devhub/index.html:101
 msgid "Add-on Builder and SDK:"
@@ -5193,7 +5196,7 @@ msgstr "Lijstvermelding bewerken"
 
 #: apps/devhub/templates/devhub/addons/edit.html:13 apps/devhub/templates/devhub/includes/macros.html:16 apps/localizers/templates/localizers/categories.html:27
 #: apps/translations/templates/translations/all-locales.html:6 mkt/developers/templates/developers/apps/edit.html:13 mkt/developers/templates/developers/includes/macros.html:17
-#: mkt/developers/templates/developers/payments/includes/regions_toggle.html:5 mkt/lookup/templates/lookup/app_summary.html:28 mkt/lookup/templates/lookup/user_summary.html:41
+#: mkt/developers/templates/developers/payments/includes/regions_toggle.html:5 mkt/lookup/templates/lookup/app_summary.html:30 mkt/lookup/templates/lookup/user_summary.html:41
 #: mkt/lookup/templates/lookup/user_summary.html:83 mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:44
 msgid "None"
 msgstr "Geen"
@@ -5803,7 +5806,7 @@ msgstr "Geef een meer gedetailleerde beschrijving:"
 msgid "The description will appear on the detail page."
 msgstr "De beschrijving staat op de detailpagina."
 
-#: apps/devhub/templates/devhub/addons/submit/describe.html:75 mkt/submit/forms.py:358
+#: apps/devhub/templates/devhub/addons/submit/describe.html:75 mkt/submit/forms.py:342
 msgid "Support Email:"
 msgstr "E-mailadres voor ondersteuning:"
 
@@ -5862,11 +5865,13 @@ msgstr "Bekijk bij benadering de <a href=\"{0}\">wachttijd</a> in de beoordeling
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:57
 msgid "Get Ahead in the Review Queue!"
-msgstr ""
+msgstr "Sluit vooraan aan in de beoordelingswachtrij!"
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:59
 msgid "Become an AMO Reviewer today and get your add-ons reviewed faster."
 msgstr ""
+"Word vandaag nog een AMO-beoordelaar en zorg dat uw add-ons sneller worden "
+"beoordeeld."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:68
 msgid "Enrolling in Marketplace"
@@ -8743,8 +8748,8 @@ msgid "Transaction ID"
 msgstr "Transactie-ID"
 
 #: apps/devhub/templates/devhub/payments/refunds.html:14 mkt/account/utils.py:17 mkt/developers/templates/developers/payments/premium.html:162
-#: mkt/developers/templates/developers/payments/refunds.html:9 mkt/purchase/templates/purchase/receipt.html:39 mkt/reviewers/templates/reviewers/includes/details.html:55
-#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:77 mkt/reviewers/templates/reviewers/includes/search_results.html:9 mkt/search/forms.py:18
+#: mkt/developers/templates/developers/payments/refunds.html:9 mkt/reviewers/templates/reviewers/includes/details.html:55 mkt/reviewers/templates/reviewers/includes/mobile_details.html:77
+#: mkt/reviewers/templates/reviewers/includes/search_results.html:9 mkt/search/forms.py:18
 msgid "Price"
 msgstr "Prijs"
 
@@ -8880,7 +8885,7 @@ msgstr "Bijdragen activeren"
 msgid "or <a id=\"setup-cancel\" href=\"#\">Cancel</a>"
 msgstr "of <a id=\"setup-cancel\" href=\"#\">Annuleer</a>"
 
-#: apps/devhub/templates/devhub/payments/includes/paypal.html:13 mkt/submit/forms.py:359
+#: apps/devhub/templates/devhub/payments/includes/paypal.html:13 mkt/submit/forms.py:343
 msgid "The email address used by end users to contact you with support issues and refund requests."
 msgstr "Het e-mailadres dat gebruikers kunnen gebruiken om contact met u op te nemen over ondersteuningsvragen en verzoeken tot restitutie."
 
@@ -8936,7 +8941,7 @@ msgstr "Mogen andere uw thema delen, zolang ze u bedanken?"
 
 #: apps/devhub/templates/devhub/personas/edit.html:130 apps/devhub/templates/devhub/personas/edit.html:151 apps/devhub/templates/devhub/personas/edit.html:172
 #: apps/devhub/templates/devhub/personas/submit.html:77 apps/devhub/templates/devhub/personas/submit.html:98 apps/devhub/templates/devhub/personas/submit.html:119 mkt/api/forms.py:231
-#: mkt/developers/forms_payments.py:52 mkt/submit/forms.py:249 mkt/submit/forms.py:367
+#: mkt/developers/forms_payments.py:52 mkt/submit/forms.py:233 mkt/submit/forms.py:351
 msgid "Yes"
 msgstr "Ja"
 
@@ -8947,7 +8952,7 @@ msgstr "De licentiegever staat anderen toe het werk te kopiëren, verspreiden, w
 
 #: apps/devhub/templates/devhub/personas/edit.html:139 apps/devhub/templates/devhub/personas/edit.html:160 apps/devhub/templates/devhub/personas/edit.html:190
 #: apps/devhub/templates/devhub/personas/submit.html:86 apps/devhub/templates/devhub/personas/submit.html:107 apps/devhub/templates/devhub/personas/submit.html:137 mkt/api/forms.py:232
-#: mkt/developers/forms_payments.py:52 mkt/lookup/templates/lookup/user_summary.html:65 mkt/submit/forms.py:250 mkt/submit/forms.py:368
+#: mkt/developers/forms_payments.py:52 mkt/lookup/templates/lookup/user_summary.html:65 mkt/submit/forms.py:234 mkt/submit/forms.py:352
 msgid "No"
 msgstr "Nee"
 
@@ -9341,12 +9346,12 @@ msgid "Displayed version: {0}"
 msgstr "Weergegeven versie: {0}"
 
 #. {0} is an add-on name.
-#: apps/devhub/templates/devhub/versions/list.html:168 apps/versions/templates/versions/mobile/version_list.html:12 mkt/lookup/templates/lookup/app_summary.html:102
+#: apps/devhub/templates/devhub/versions/list.html:168 apps/versions/templates/versions/mobile/version_list.html:12 mkt/lookup/templates/lookup/app_summary.html:104
 msgid "Version History"
 msgstr "Versiegeschiedenis"
 
-#: apps/devhub/templates/devhub/versions/list.html:176 mkt/developers/templates/developers/apps/status.html:165 mkt/lookup/templates/lookup/app_summary.html:51
-#: mkt/lookup/templates/lookup/app_summary.html:109 mkt/reviewers/forms.py:263 mkt/reviewers/templates/reviewers/review.html:29 mkt/reviewers/templates/reviewers/includes/details.html:19
+#: apps/devhub/templates/devhub/versions/list.html:176 mkt/developers/templates/developers/apps/status.html:165 mkt/lookup/templates/lookup/app_summary.html:53
+#: mkt/lookup/templates/lookup/app_summary.html:111 mkt/reviewers/forms.py:263 mkt/reviewers/templates/reviewers/review.html:29 mkt/reviewers/templates/reviewers/includes/details.html:19
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:8 mkt/reviewers/templates/reviewers/includes/search_results_themes.html:7 mkt/reviewers/templates/reviewers/themes/queue_list.html:43
 msgid "Status"
 msgstr "Status"
@@ -9727,7 +9732,7 @@ msgstr "Verwijderde beoordelingen"
 msgid "View entries between"
 msgstr "Ingaven bekijken tussen"
 
-#: apps/editors/forms.py:33 apps/editors/forms.py:51 mkt/developers/tasks.py:587 mkt/developers/tasks.py:593
+#: apps/editors/forms.py:33 apps/editors/forms.py:51 mkt/developers/tasks.py:590 mkt/developers/tasks.py:596
 msgid "and"
 msgstr "en"
 
@@ -9841,7 +9846,7 @@ msgstr "Wacht op volledige beoordeling"
 
 #: apps/editors/helpers.py:57
 msgid "Rejected or Unreviewed"
-msgstr ""
+msgstr "Afgewezen of niet beoordeeld"
 
 #: apps/editors/helpers.py:106
 msgid "Queue"
@@ -9901,7 +9906,7 @@ msgstr[1] "Aangepaste beoordelingen ({0})"
 msgid "Addon"
 msgstr "Add-on"
 
-#: apps/editors/helpers.py:182 apps/localizers/templates/localizers/categories.html:35 mkt/developers/templates/developers/transactions.html:43 mkt/lookup/templates/lookup/app_summary.html:41
+#: apps/editors/helpers.py:182 apps/localizers/templates/localizers/categories.html:35 mkt/developers/templates/developers/transactions.html:43 mkt/lookup/templates/lookup/app_summary.html:43
 #: mkt/lookup/templates/lookup/transaction_summary.html:21 mkt/reviewers/templates/reviewers/includes/details.html:7 mkt/reviewers/templates/reviewers/includes/mobile_details.html:39
 msgid "Type"
 msgstr "Type"
@@ -9962,15 +9967,15 @@ msgid_plural "{0} days"
 msgstr[0] "{0} dag"
 msgstr[1] "{0} dagen"
 
-#: apps/editors/helpers.py:435 mkt/reviewers/utils.py:444
+#: apps/editors/helpers.py:435 mkt/reviewers/utils.py:446
 msgid "Push to public"
 msgstr "Publiceren"
 
-#: apps/editors/helpers.py:443 mkt/constants/reviewers.py:24 mkt/reviewers/utils.py:449 mkt/reviewers/templates/reviewers/themes/queue.html:71 mkt/reviewers/templates/reviewers/themes/themes.html:93
+#: apps/editors/helpers.py:443 mkt/constants/reviewers.py:24 mkt/reviewers/utils.py:451 mkt/reviewers/templates/reviewers/themes/queue.html:71 mkt/reviewers/templates/reviewers/themes/themes.html:93
 msgid "Reject"
 msgstr "Afwijzen"
 
-#: apps/editors/helpers.py:446 mkt/reviewers/utils.py:455
+#: apps/editors/helpers.py:446 mkt/reviewers/utils.py:457
 msgid "Request more information"
 msgstr "Meer informatie aanvragen"
 
@@ -10137,12 +10142,12 @@ msgstr "<i>anoniem</i> op %(date)s [%(ip_address)s]"
 msgid "Return to the Editor Tools homepage"
 msgstr "Terug naar de startpagina van Editorhulpmiddelen"
 
-#: apps/editors/templates/editors/base.html:28 mkt/reviewers/templates/reviewers/base.html:50 mkt/reviewers/templates/reviewers/base.html:83 mkt/reviewers/templates/reviewers/themes/base.html:14
+#: apps/editors/templates/editors/base.html:28 mkt/reviewers/templates/reviewers/base.html:50 mkt/reviewers/templates/reviewers/base.html:90 mkt/reviewers/templates/reviewers/themes/base.html:14
 #: mkt/reviewers/templates/reviewers/themes/queue.html:25
 msgid "Queues"
 msgstr "Wachtrijen"
 
-#: apps/editors/templates/editors/base.html:48 mkt/reviewers/templates/reviewers/base.html:55 mkt/reviewers/templates/reviewers/base.html:87 mkt/reviewers/templates/reviewers/themes/base.html:19
+#: apps/editors/templates/editors/base.html:48 mkt/reviewers/templates/reviewers/base.html:55 mkt/reviewers/templates/reviewers/base.html:94 mkt/reviewers/templates/reviewers/themes/base.html:19
 msgid "Logs"
 msgstr "Logbestanden"
 
@@ -10155,6 +10160,7 @@ msgid "Moderated Review Log"
 msgstr "Gemodereerd beoordelingslogboek"
 
 #: apps/editors/templates/editors/base.html:57 apps/editors/templates/editors/includes/daily-message.html:4 mkt/reviewers/templates/reviewers/base.html:60
+#: mkt/reviewers/templates/reviewers/base.html:81
 msgid "Announcement"
 msgstr "Mededeling"
 
@@ -10164,7 +10170,7 @@ msgstr "Mededeling"
 msgid "Filter"
 msgstr "Filteren"
 
-#: apps/editors/templates/editors/eventlog.html:30 mkt/developers/templates/developers/transactions.html:42 mkt/lookup/templates/lookup/app_summary.html:106
+#: apps/editors/templates/editors/eventlog.html:30 mkt/developers/templates/developers/transactions.html:42 mkt/lookup/templates/lookup/app_summary.html:108
 #: mkt/lookup/templates/lookup/transaction_summary.html:20 mkt/reviewers/templates/reviewers/logs.html:16 mkt/reviewers/templates/reviewers/themes/logs.html:16
 msgid "Date"
 msgstr "Datum"
@@ -10500,7 +10506,7 @@ msgstr "Opmerkingen verbergen"
 msgid "No reviews found for this period."
 msgstr "Geen beoordelingen in deze periode gevonden."
 
-#: apps/editors/templates/editors/includes/daily-message.html:6
+#: apps/editors/templates/editors/includes/daily-message.html:6 mkt/reviewers/templates/reviewers/base.html:83
 msgid "Dismiss this announcement"
 msgstr "Deze aankondiging verwijderen"
 
@@ -10598,35 +10604,43 @@ msgstr "Uw opgegeven app-locales zijn niet juist opgemaakt."
 msgid "Developer name is required in the manifest in order to display it on the app's listing."
 msgstr "De naam van de ontwikkelaar is verplicht in het manifest zodat deze kan worden weergegeven in de lijst."
 
-#: apps/files/utils.py:326 apps/files/utils.py:331 apps/files/utils.py:380
+#: apps/files/utils.py:328
+msgid "Invalid file name in archive: {0}"
+msgstr "Ongeldige bestandsnaam in archief: {0}"
+
+#: apps/files/utils.py:336
+msgid "File exceeding size limit in archive: {0}"
+msgstr "Te groot bestand in archief: {0}"
+
+#: apps/files/utils.py:386
 msgid "Invalid archive."
 msgstr "Ongeldig archief."
 
-#: apps/files/utils.py:466 apps/files/utils.py:469
+#: apps/files/utils.py:472 apps/files/utils.py:475
 msgid "Could not parse install.rdf."
 msgstr "Kan install.rdf niet ontleden."
 
-#: apps/files/utils.py:479
+#: apps/files/utils.py:485
 msgid "Could not find a UUID."
 msgstr "Kan geen UUID vinden."
 
-#: apps/files/utils.py:481
+#: apps/files/utils.py:487
 msgid "UUID doesn't match add-on."
 msgstr "UUID komt niet overeen met add-on."
 
-#: apps/files/utils.py:485
+#: apps/files/utils.py:491
 msgid "Duplicate UUID found."
 msgstr "Dubbele UUID gevonden."
 
-#: apps/files/utils.py:488
+#: apps/files/utils.py:494
 msgid "Version numbers should have fewer than 32 characters."
 msgstr "Versienummers mogen uit niet meer dan 32 tekens bestaan."
 
-#: apps/files/utils.py:491
+#: apps/files/utils.py:497
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "Versienummers mogen alleen letters, cijfers en deze interpunctietekens bevatten: +*.-_."
 
-#: apps/files/utils.py:511
+#: apps/files/utils.py:517
 msgid "<em:type> doesn't match add-on"
 msgstr "<em:type> komt niet overeen met add-on"
 
@@ -13370,52 +13384,52 @@ msgstr "Mozilla wil contact met me opnemen over nieuwe aan de Marketplace toegev
 msgid "User Notifications"
 msgstr "Gebruikersnotificaties"
 
-#: apps/users/views.py:97
+#: apps/users/views.py:96
 msgid "An email address is required."
 msgstr "Een e-mailadres is verplicht."
 
-#: apps/users/views.py:104
+#: apps/users/views.py:103
 msgid "A user with that email address does not exist."
 msgstr "Er bestaat geen gebruiker met dat e-mailadres."
 
-#: apps/users/views.py:105
+#: apps/users/views.py:104
 msgid "A user with that email address does not exist, or the user has not yet accepted the developer agreement."
 msgstr "Er bestaat geen gebruiker met dat e-mailadres, of de gebruiker heeft de ontwikkelaarsovereenkomst nog niet geaccepteerd."
 
-#: apps/users/views.py:123
+#: apps/users/views.py:122
 msgid "Invalid confirmation code!"
 msgstr "Ongeldige bevestigingscode!"
 
-#: apps/users/views.py:128
+#: apps/users/views.py:127
 msgid "Successfully verified!"
 msgstr "Met succes geverifieerd!"
 
 # %1 is the user's email address
-#: apps/users/views.py:144 apps/users/views.py:688
+#: apps/users/views.py:143 apps/users/views.py:685
 msgid "An email has been sent to your address {0} to confirm your account. Before you can log in, you have to activate your account by clicking on the link provided in this email."
 msgstr "Er is een e-mail verzonden naar uw adres {0} om uw account te bevestigen. Voordat u zich kunt aanmelden dient u uw account te activeren door op de koppeling in dit e-mailbericht te klikken."
 
-#: apps/users/views.py:148 apps/users/views.py:692
+#: apps/users/views.py:147 apps/users/views.py:689
 msgid "Confirmation Email Sent"
 msgstr "Bevestigingsbericht verzonden"
 
-#: apps/users/views.py:159
+#: apps/users/views.py:158
 msgid "Profile Deleted"
 msgstr "Profiel verwijderd"
 
-#: apps/users/views.py:180
+#: apps/users/views.py:179
 msgid "Photo Deleted"
 msgstr "Foto verwijderd"
 
-#: apps/users/views.py:199 apps/users/views.py:259
+#: apps/users/views.py:198 apps/users/views.py:258
 msgid "Profile Updated"
 msgstr "Profiel bijgewerkt"
 
-#: apps/users/views.py:214
+#: apps/users/views.py:213
 msgid "Email Confirmation Sent"
 msgstr "Bevestigingsbericht verzonden"
 
-#: apps/users/views.py:215
+#: apps/users/views.py:214
 msgid ""
 "An email has been sent to {0} to confirm your new email address. For the change to take effect, you need to click on the link provided in this email. Until then, you can keep logging in with your "
 "current email address."
@@ -13423,39 +13437,39 @@ msgstr ""
 "Er is een e-mailbericht verzonden naar {0} om uw nieuwe e-mailadres te bevestigen. U dient op de koppeling in dit e-mailbericht te klikken om de wijziging door te voeren. Tot die tijd kunt u zich "
 "blijven aanmelden met uw huidige e-mailadres."
 
-#: apps/users/views.py:227
+#: apps/users/views.py:226
 msgid "Please confirm your email address change at %s"
 msgstr "Bevestig de wijziging van uw e-mailadres op %s"
 
-#: apps/users/views.py:239 mkt/site/messages.py:17
+#: apps/users/views.py:238 mkt/site/messages.py:17
 msgid "Errors Found"
 msgstr "Fouten gevonden"
 
-#: apps/users/views.py:240 mkt/site/messages.py:18
+#: apps/users/views.py:239 mkt/site/messages.py:18
 msgid "There were errors in the changes you made. Please correct them and resubmit."
 msgstr "Er zijn fouten opgetreden in de door u aangebrachte wijzigingen. Corrigeer ze en dien het formulier opnieuw in."
 
-#: apps/users/views.py:288
+#: apps/users/views.py:287
 msgid "Your email address was changed successfully"
 msgstr "Uw e-mailadres is met succes gewijzigd"
 
-#: apps/users/views.py:289
+#: apps/users/views.py:288
 msgid "From now on, please use {0} to log in."
 msgstr "Gebruik vanaf nu {0} om u aan te melden."
 
-#: apps/users/views.py:336
+#: apps/users/views.py:333
 msgid "Persona authentication failure."
 msgstr "Persona-controle mislukt."
 
-#: apps/users/views.py:486
+#: apps/users/views.py:483
 msgid "Wrong email address or password!"
 msgstr "Foutief e-mailadres en wachtwoord!"
 
-#: apps/users/views.py:498
+#: apps/users/views.py:495
 msgid "A link to activate your user account was sent by email to your address {0}. You have to click it before you can log in."
 msgstr "Er is een koppeling om uw gebruikersaccount te activeren naar uw adres {0} verzonden. U dient hierop te klikken voordat u zich kunt aanmelden."
 
-#: apps/users/views.py:503
+#: apps/users/views.py:500
 msgid ""
 "If you did not receive the confirmation email, make sure your email service did not mark it as \"junk mail\" or \"spam\". If you need to, you can have us <a href=\"%s\">resend the confirmation "
 "message</a> to your email address mentioned above."
@@ -13463,35 +13477,35 @@ msgstr ""
 "Als u geen bevestigings-e-mail hebt ontvangen, controleer dan of uw e-mailprogramma dit niet als ongewenst bericht heeft gemarkeerd. Als het nodig is, kunt u ons het <a href=\"%s"
 "\">bevestigingsbericht opnieuw laten sturen</a> naar bovenvermeld e-mailadres."
 
-#: apps/users/views.py:508
+#: apps/users/views.py:505
 msgid "Activation Email Sent"
 msgstr "Activeringsbericht verzonden"
 
-#: apps/users/views.py:509
+#: apps/users/views.py:506
 msgid "Having Trouble?"
 msgstr "Hebt u problemen?"
 
-#: apps/users/views.py:662
+#: apps/users/views.py:659
 msgid "You are already logged in to an account."
 msgstr "U bent al bij een account aangemeld."
 
-#: apps/users/views.py:684
+#: apps/users/views.py:681
 msgid "Congratulations! Your user account was successfully created."
 msgstr "Gefeliciteerd! Uw gebruikersaccount is met succes aangemaakt."
 
-#: apps/users/views.py:708
+#: apps/users/views.py:705
 msgid "You already have an account."
 msgstr "U hebt al een account."
 
-#: apps/users/views.py:718
+#: apps/users/views.py:715
 msgid "There are errors in this form"
 msgstr "Er staan fouten in dit formulier"
 
-#: apps/users/views.py:719
+#: apps/users/views.py:716
 msgid "Please correct them and resubmit."
 msgstr "Corrigeer deze en dien opnieuw in."
 
-#: apps/users/views.py:734
+#: apps/users/views.py:731
 msgid "User reported."
 msgstr "Gebruiker gerapporteerd."
 
@@ -13998,11 +14012,11 @@ msgstr "E-mail bij voltooiing"
 msgid "Log emails instead of sending"
 msgstr "E-mailberichten loggen in plaats van verzenden"
 
-#: apps/zadmin/views.py:335
+#: apps/zadmin/views.py:321
 msgid "Notifying authors task started."
 msgstr "Taak notificatie schrijvers gestart."
 
-#: apps/zadmin/views.py:356
+#: apps/zadmin/views.py:342
 msgid "Updating max version task and notifying authors started."
 msgstr "Taak bijwerken maximumversie en berichten schrijvers gestart."
 
@@ -14065,15 +14079,21 @@ msgstr "Feedback"
 
 #: mkt/collections/constants.py:9
 msgid "Basic Collection"
-msgstr ""
+msgstr "Basiscollectie"
 
 #: mkt/collections/constants.py:10
 msgid "Featured App List"
-msgstr ""
+msgstr "Lijst aanbevolen apps"
 
 #: mkt/collections/constants.py:11
 msgid "Operator Shelf"
+msgstr "Operatorplank"
+
+#: mkt/collections/serializers.py:54
+msgid "You can not have more than one Featured Apps/Operator Shelf collection for the same category/carrier/region combination."
 msgstr ""
+"U kunt niet meer dan één collectie Aanbevolen apps/Operatorplank hebben voor "
+"dezelfde categorie/provider/regio-combinatie."
 
 #: mkt/constants/apps.py:9 mkt/reviewers/templates/reviewers/logs.html:18 mkt/reviewers/templates/reviewers/includes/search_results_themes.html:6
 #: mkt/reviewers/templates/reviewers/themes/history_table.html:7 mkt/reviewers/templates/reviewers/themes/logs.html:18 mkt/reviewers/templates/reviewers/themes/queue_list.html:42
@@ -15315,13 +15335,17 @@ msgstr "De app vereist dat het platform aanraakgebeurtenissen ondersteunt. Deze 
 
 #: mkt/constants/features.py:151
 msgid "Smartphone-Sized Displays (qHD)"
-msgstr ""
+msgstr "Smartphone-schermafmetingen (qHD)"
 
 #: mkt/constants/features.py:152
 msgid ""
 "The app requires the platform to have a smartphone-sized display (having qHD resolution). This option indicates that the app will be unusable on larger displays (e.g., tablets, desktop, large or "
 "high-DPI phones)."
 msgstr ""
+"De app vereist dat het platform een scherm met smartphone-afmetingen (met "
+"qHD-resolutie) heeft. Deze optie geeft aan dat de app niet kan worden "
+"gebruikt op grotere schermen (zoals tablets, desktops, grote telefoons of "
+"telefoons met een hoge resolutie)."
 
 #: mkt/constants/features.py:162
 msgid "The app requires that the platform can decode and play MP3 files."
@@ -15379,19 +15403,19 @@ msgstr "De app vereist dat het platform blijvende opslaglimietverhogingen boven 
 msgid "Completed"
 msgstr "Afgerond"
 
-#: mkt/constants/platforms.py:41 mkt/constants/platforms.py:45
+#: mkt/constants/platforms.py:43 mkt/constants/platforms.py:47
 msgid "Fully open mobile ecosystem"
 msgstr "Volledig open mobiel ecosysteem"
 
-#: mkt/constants/platforms.py:42
+#: mkt/constants/platforms.py:44
 msgid "Windows, Mac and Linux"
 msgstr "Windows, Mac en Linux"
 
-#: mkt/constants/platforms.py:43 mkt/ecosystem/templates/ecosystem/partners.html:95
+#: mkt/constants/platforms.py:45 mkt/constants/platforms.py:48 mkt/ecosystem/templates/ecosystem/partners.html:95
 msgid "Android smartphones"
 msgstr "Android-smartphones"
 
-#: mkt/constants/platforms.py:44
+#: mkt/constants/platforms.py:46 mkt/constants/platforms.py:49
 msgid "Android tablets"
 msgstr "Android-tablets"
 
@@ -15590,17 +15614,17 @@ msgstr "U dient ten minste één schermafdruk of video te uploaden."
 
 #: mkt/developers/forms.py:465
 msgid "Packaged app too large for submission. Packages must be less than %s."
-msgstr ""
+msgstr "Verpakte app is te groot voor indiening. De maximale grootte is %s."
 
 #: mkt/developers/forms.py:477
 msgid "Error extracting manifest from zip file."
-msgstr ""
+msgstr "Fout bij extractie van het manifest uit het zip-bestand."
 
 #: mkt/developers/forms.py:530
 msgid "Provide a detailed description of your app"
 msgstr "Geef een gedetailleerde beschrijving van uw app"
 
-#: mkt/developers/forms.py:531 mkt/submit/forms.py:340
+#: mkt/developers/forms.py:531 mkt/submit/forms.py:324
 msgid "This description will appear on the details page."
 msgstr "Deze beschrijving verschijnt op de detailpagina."
 
@@ -15630,7 +15654,7 @@ msgstr "Overige en nieuwe regio’s"
 
 #: mkt/developers/forms.py:750
 msgid "Enable new regions"
-msgstr ""
+msgstr "Nieuwe regio’s inschakelen"
 
 #: mkt/developers/forms.py:835
 msgid "You must select at least one region or \"Other and new regions.\""
@@ -15664,7 +15688,7 @@ msgstr "Tekst"
 msgid "You must agree to the Privacy Policy."
 msgstr "U dient het privacybeleid te accepteren."
 
-#: mkt/developers/forms.py:1049 mkt/developers/forms_payments.py:382 mkt/developers/templates/developers/apps/edit/language.html:9
+#: mkt/developers/forms.py:1049 mkt/developers/forms_payments.py:378 mkt/developers/templates/developers/apps/edit/language.html:9
 msgid "Country"
 msgstr "Land"
 
@@ -15672,7 +15696,7 @@ msgstr "Land"
 msgid "Transaction Type"
 msgstr "Transactietype"
 
-#: mkt/developers/forms_payments.py:55 mkt/submit/forms.py:264
+#: mkt/developers/forms_payments.py:55 mkt/submit/forms.py:248
 msgid "App Price"
 msgstr "App-prijs"
 
@@ -15700,137 +15724,137 @@ msgstr "Ondersteunt uitsluitend facturatie via creditcard"
 msgid "Supports all billing methods"
 msgstr "Ondersteunt alle facturatiemethoden"
 
-#: mkt/developers/forms_payments.py:214
+#: mkt/developers/forms_payments.py:210
 msgid "If app is Free, in-app payments must be enabled"
 msgstr "Als de app gratis is dienen in-app-betalingen ingeschakeld te zijn"
 
-#: mkt/developers/forms_payments.py:221
+#: mkt/developers/forms_payments.py:217
 msgid "Not a valid choice"
 msgstr "Geen geldige keuze"
 
-#: mkt/developers/forms_payments.py:310 mkt/developers/templates/developers/payments/premium.html:276
+#: mkt/developers/forms_payments.py:306 mkt/developers/templates/developers/payments/premium.html:276
 msgid "This is a paid upgrade of"
 msgstr "Dit is een betaalde upgrade van"
 
-#: mkt/developers/forms_payments.py:311
+#: mkt/developers/forms_payments.py:307
 msgid "Not an upgrade"
 msgstr "Geen upgrade"
 
-#: mkt/developers/forms_payments.py:354
+#: mkt/developers/forms_payments.py:350
 msgid "Account Holder Name"
 msgstr "Naam accounthouder"
 
-#: mkt/developers/forms_payments.py:356
+#: mkt/developers/forms_payments.py:352
 msgid "Company Name"
 msgstr "Bedrijfsnaam"
 
-#: mkt/developers/forms_payments.py:358
+#: mkt/developers/forms_payments.py:354
 msgid "Vendor Name"
 msgstr "Leveranciersnaam"
 
-#: mkt/developers/forms_payments.py:360
+#: mkt/developers/forms_payments.py:356
 msgid "Financial Email"
 msgstr "Financieel e-mailadres"
 
-#: mkt/developers/forms_payments.py:363
+#: mkt/developers/forms_payments.py:359
 msgid "Administrative Email"
 msgstr "E-mailadres voor beheer"
 
-#: mkt/developers/forms_payments.py:366
+#: mkt/developers/forms_payments.py:362
 msgid "Support Email"
 msgstr "Ondersteunings-e-mailadres"
 
-#: mkt/developers/forms_payments.py:370
+#: mkt/developers/forms_payments.py:366
 msgid "Address"
 msgstr "Adres"
 
-#: mkt/developers/forms_payments.py:372
+#: mkt/developers/forms_payments.py:368
 msgid "Address 2"
 msgstr "Adres 2"
 
-#: mkt/developers/forms_payments.py:374
+#: mkt/developers/forms_payments.py:370
 msgid "City/Municipality"
 msgstr "Stad/gemeente"
 
-#: mkt/developers/forms_payments.py:376
+#: mkt/developers/forms_payments.py:372
 msgid "State/Province/Region"
 msgstr "Staat/provincie/regio"
 
-#: mkt/developers/forms_payments.py:378
+#: mkt/developers/forms_payments.py:374
 msgid "Zip/Postal Code"
 msgstr "Postcode"
 
-#: mkt/developers/forms_payments.py:380
+#: mkt/developers/forms_payments.py:376
 msgid "Phone"
 msgstr "Telefoonnummer"
 
-#: mkt/developers/forms_payments.py:385
+#: mkt/developers/forms_payments.py:381
 msgid "I prefer to be paid in"
 msgstr "Ik wil graag betaald worden in"
 
-#: mkt/developers/forms_payments.py:388
+#: mkt/developers/forms_payments.py:384
 msgid "VAT Number"
 msgstr "BTW-nummer"
 
-#: mkt/developers/forms_payments.py:391
+#: mkt/developers/forms_payments.py:387
 msgid "Bank Account Number"
 msgstr "Bankrekeningnummer"
 
-#: mkt/developers/forms_payments.py:394
+#: mkt/developers/forms_payments.py:390
 msgid "Bank Account Code"
 msgstr "Bankrekeningcode"
 
-#: mkt/developers/forms_payments.py:396
+#: mkt/developers/forms_payments.py:392
 msgid "Bank Name"
 msgstr "Naam bank"
 
-#: mkt/developers/forms_payments.py:398
+#: mkt/developers/forms_payments.py:394
 msgid "Bank Address"
 msgstr "Adres bank"
 
-#: mkt/developers/forms_payments.py:400
+#: mkt/developers/forms_payments.py:396
 msgid "Bank Address 2"
 msgstr "Adres bank 2"
 
-#: mkt/developers/forms_payments.py:402
+#: mkt/developers/forms_payments.py:398
 msgid "Bank City/Municipality"
 msgstr "Stad/gemeente bank"
 
-#: mkt/developers/forms_payments.py:405
+#: mkt/developers/forms_payments.py:401
 msgid "Bank State/Province/Region"
 msgstr "Staat/provincie/regio bank"
 
-#: mkt/developers/forms_payments.py:407
+#: mkt/developers/forms_payments.py:403
 msgid "Bank Zip/Postal Code"
 msgstr "Postcode bank"
 
-#: mkt/developers/forms_payments.py:409
+#: mkt/developers/forms_payments.py:405
 msgid "Bank Country"
 msgstr "Land bank"
 
-#: mkt/developers/forms_payments.py:411 mkt/developers/templates/developers/payments/includes/account_list.html:12
+#: mkt/developers/forms_payments.py:407 mkt/developers/templates/developers/payments/includes/account_list.html:12
 msgid "Account Name"
 msgstr "Accountnaam"
 
-#: mkt/developers/forms_payments.py:438 mkt/developers/templates/developers/payments/premium.html:121
+#: mkt/developers/forms_payments.py:434 mkt/developers/templates/developers/payments/premium.html:121
 msgid "Payment Account"
 msgstr "Betalingsaccount"
 
-#: mkt/developers/forms_payments.py:481
+#: mkt/developers/forms_payments.py:477
 msgid "You cannot remove a payment account from an app."
 msgstr "U kunt een betalingsaccount niet uit een app verwijderen."
 
-#: mkt/developers/forms_payments.py:485
+#: mkt/developers/forms_payments.py:481
 msgid "You are not permitted to change payment accounts."
-msgstr ""
+msgstr "U mag betalingsaccounts niet wijzigen."
 
-#: mkt/developers/forms_payments.py:529
+#: mkt/developers/forms_payments.py:525
 msgid "No payment account set up for that app"
-msgstr ""
+msgstr "Geen betalingsaccount ingesteld voor die app"
 
-#: mkt/developers/forms_payments.py:532
+#: mkt/developers/forms_payments.py:528
 msgid "Account not set up"
-msgstr ""
+msgstr "Account niet ingesteld"
 
 #: mkt/developers/helpers.py:36 mkt/developers/helpers.py:65 mkt/reviewers/forms.py:69
 msgid "Developers"
@@ -15840,33 +15864,33 @@ msgstr "Ontwikkelaars"
 msgid "Bango"
 msgstr "Bango"
 
-#: mkt/developers/tasks.py:494
+#: mkt/developers/tasks.py:497
 msgid "No manifest was found at that URL. Check the address and try again."
 msgstr "Er is geen manifest aangetroffen op die URL. Controleer het adres en probeer het opnieuw."
 
-#: mkt/developers/tasks.py:500
+#: mkt/developers/tasks.py:503
 msgid "Manifests must be served with the HTTP header \"Content-Type: application/x-web-app-manifest+json\". See %s for more information."
 msgstr "Manifests dienen te worden aangemeld met de HTTP-header “Content-Type: application/x-web-app-manifest+json”. Lees %s voor meer informatie."
 
-#: mkt/developers/tasks.py:517
+#: mkt/developers/tasks.py:520
 msgid "Your manifest file was not encoded as valid UTF-8."
 msgstr "Uw manifest is niet gecodeerd als geldig UTF-8."
 
-#: mkt/developers/tasks.py:528
+#: mkt/developers/tasks.py:531
 msgid "The manifest's encoding does not match the charset provided in the HTTP Content-Type."
 msgstr "De codering van het manifest komt niet overeen met de tekenset in het HTTP Content-Type."
 
-#: mkt/developers/tasks.py:607
+#: mkt/developers/tasks.py:610
 msgid "{region} region added to the Firefox Marketplace"
 msgstr "Regio {region} toegevoegd aan de Firefox Marketplace"
 
-#: mkt/developers/tasks.py:610
+#: mkt/developers/tasks.py:613
 msgid "New regions added to the Firefox Marketplace"
 msgstr "Nieuwe regio’s toegevoegd aan de Firefox Marketplace"
 
-#: mkt/developers/tasks.py:656
+#: mkt/developers/tasks.py:663
 msgid "{app}: {region} region added to the Firefox Marketplace"
-msgstr ""
+msgstr "{app}: regio {region} toegevoegd aan de Firefox Marketplace"
 
 #: mkt/developers/utils.py:42
 msgid "Video support not enabled."
@@ -15896,7 +15920,7 @@ msgstr "Pictogrammen dienen vierkant te zijn."
 #. in px.
 #: mkt/developers/utils.py:105
 msgid "App previews must be at least {0}px by {1}px or {1}px by {0}px."
-msgstr ""
+msgstr "Apps dienen ten minste {0} px bij {1} px of {1} px bij {0} px te zijn."
 
 #: mkt/developers/views.py:148
 msgid "Paid apps cannot be deleted. Disable this app instead."
@@ -15924,7 +15948,7 @@ msgstr "Versie met succes bewerkt."
 
 #: mkt/developers/views.py:329
 msgid "Version successfully made public."
-msgstr ""
+msgstr "Versie succesvol gepubliceerd."
 
 #: mkt/developers/views.py:344
 msgid "Version \"{0}\" deleted."
@@ -15993,10 +16017,15 @@ msgstr "API"
 #: mkt/developers/templates/developers/api.html:12
 msgid "To access the Marketplace API, create an OAuth key pair using the form below."
 msgstr ""
+"Maak voor toegang tot de Marketplace-API met onderstaand formulier een "
+"OAuth-sleutelpaar."
 
 #: mkt/developers/templates/developers/api.html:18
 msgid "To access the Marketplace API, accept the <a href=\"%(terms)s\">terms of service</a> and create an OAuth key pair using the form below."
 msgstr ""
+"U dient de <a href=\"%(terms)s\">servicevoorwaarden</a> te accepteren en met "
+"onderstaand formulier een OAuth-sleutelpaar aan te maken om toegang te "
+"krijgen tot de Marketplace-API."
 
 #: mkt/developers/templates/developers/api.html:23
 msgid ""
@@ -16319,7 +16348,7 @@ msgstr "Verpakte versies"
 
 #: mkt/developers/templates/developers/apps/status.html:166
 msgid "Submission date"
-msgstr ""
+msgstr "Indieningsdatum"
 
 #: mkt/developers/templates/developers/apps/status.html:190 mkt/ecosystem/templates/ecosystem/base.html:50 mkt/ecosystem/templates/ecosystem/landing.html:48
 #: mkt/ecosystem/templates/ecosystem/macros.html:224
@@ -16403,19 +16432,23 @@ msgstr "Apparaatfuncties die verplicht zijn om deze app te laten functioneren."
 
 #: mkt/developers/templates/developers/apps/version_edit.html:66
 msgid "Auto-publish when approved"
-msgstr ""
+msgstr "Automatisch publiceren bij goedkeuring"
 
 #: mkt/developers/templates/developers/apps/version_edit.html:67
 msgid ""
 "If selected this version will be published immediately following its approval by reviewers. If you don't select this option you will be notified via email about this version's approval and you will "
 "need to log in and manually publish it."
 msgstr ""
+"Indien geselecteerd zal deze versie direct na goedkeuring door beoordelaars "
+"worden gepubliceerd. Als u deze optie niet selecteert, ontvangt u een "
+"e-mailbericht over de goedkeuring van deze versie en dient u zich aan te "
+"melden en handmatig te publiceren."
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:54
 msgid "Add a Promo"
 msgstr "Een promo toevoegen"
 
-#: mkt/developers/templates/developers/apps/edit/admin.html:71 mkt/lookup/templates/lookup/app_summary.html:23 mkt/reviewers/forms.py:73
+#: mkt/developers/templates/developers/apps/edit/admin.html:71 mkt/lookup/templates/lookup/app_summary.html:25 mkt/reviewers/forms.py:73
 msgid "Mozilla Contact"
 msgstr "Mozilla-contact"
 
@@ -16562,7 +16595,7 @@ msgstr "De statistieken van deze app zijn openbaar."
 msgid "No, this app's stats are not publicly viewable."
 msgstr "Nee, de statistieken van deze app zijn niet openbaar."
 
-#: mkt/developers/templates/developers/apps/edit/technical.html:61
+#: mkt/developers/templates/developers/apps/edit/technical.html:59
 msgid "This app does not require any device features"
 msgstr "Deze app heeft geen apparaatfuncties nodig"
 
@@ -16715,6 +16748,35 @@ msgstr "Prijs:"
 #: mkt/developers/templates/developers/apps/listing/items.html:51
 msgid "Change Devices"
 msgstr "Apparaten wijzigen"
+
+#: mkt/developers/templates/developers/emails/new_payments_region.html:1
+msgid "Dear App Developer,"
+msgstr "Geachte app-ontwikkelaar,"
+
+#: mkt/developers/templates/developers/emails/new_payments_region.html:3
+msgid "We've added a new payments region to the Firefox Marketplace. The Marketplace will soon be accepting payments for"
+msgstr ""
+"We hebben nieuwe betalingsregio’s aan de Firefox Marketplace toegevoegd. De "
+"Marketplace accepteert binnenkort betalingen voor"
+
+#: mkt/developers/templates/developers/emails/new_payments_region.html:5
+msgid "If you would like your app,"
+msgstr "Als u graag wilt dat uw app,"
+
+#: mkt/developers/templates/developers/emails/new_payments_region.html:5
+msgid "to be available in that region you will need to visit the Firefox Marketplace Developer Hub and update your app settings on the \"Compatibility & Payments\" page:"
+msgstr ""
+"beschikbaar wordt in die regio dient u de Ontwikkelaarshub op Firefox "
+"Marketplace te bezoeken en de instellingen van uw app op de pagina "
+"“Compatibiliteit en Betalingen” bij te werken:"
+
+#: mkt/developers/templates/developers/emails/new_payments_region.html:7
+msgid "Thanks,"
+msgstr "Bedankt,"
+
+#: mkt/developers/templates/developers/emails/new_payments_region.html:8
+msgid "Firefox Marketplace Team"
+msgstr "Het Firefox marketplace-team"
 
 #: mkt/developers/templates/developers/helpers/disabled_payments_notice.html:9
 msgid ""
@@ -16895,6 +16957,8 @@ msgstr "Prijzen en landen"
 #: mkt/developers/templates/developers/payments/premium.html:152
 msgid "Based on your chosen price point the available regions have been updated. Please check them prior to saving your changes."
 msgstr ""
+"Op basis van uw gekozen prijspunt zijn de beschikbare regio’s bijgewerkt. "
+"Controleer ze voordat u uw wijzigingen opslaat."
 
 #: mkt/developers/templates/developers/payments/premium.html:170
 msgid "In-App Payments"
@@ -17059,6 +17123,7 @@ msgstr "U hebt geen betalingsaccounts ingesteld."
 #: mkt/developers/templates/developers/payments/includes/bango_accounts_list.html:4
 msgid "The current payment account was associated with the app by an app owner."
 msgstr ""
+"De huidige betalingsaccount is door een app-eigenaar aan de app verbonden."
 
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:5
 msgid "Modify Bango Account"
@@ -17075,10 +17140,15 @@ msgstr "Uw app wordt niet meer weergegeven voor bepaalde regio’s omdat die reg
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:6
 msgid "Your app will be displayed in any regional Marketplace that is added in the future. You will receive an email notification when a new region is added."
 msgstr ""
+"Uw app wordt in elke toekomstige regionale Marketplace weergegeven. U "
+"ontvangt een bericht per e-mail als een nieuwe regio wordt toegevoegd."
 
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:13
 msgid "Your app will be displayed in the worldwide Marketplace and in any regional Marketplace that is added in the future. You will receive an email notification when a new region is added."
 msgstr ""
+"Uw app wordt weergegeven in de wereldwijde Marketplace en in elke "
+"toekomstige regionale Marketplace. U ontvangt bericht per e-mail als een "
+"nieuwe regio wordt toegevoegd."
 
 #: mkt/developers/templates/developers/payments/includes/regions_toggle.html:4
 msgid "Select All"
@@ -18223,7 +18293,7 @@ msgstr "Een mobiele web-toepassingsstack"
 msgid "Open Web Apps for Android"
 msgstr "Open webapps voor Android"
 
-#: mkt/ecosystem/templates/ecosystem/build_payments.html:5 mkt/ecosystem/templates/ecosystem/macros.html:183 mkt/lookup/templates/lookup/app_summary.html:67
+#: mkt/ecosystem/templates/ecosystem/build_payments.html:5 mkt/ecosystem/templates/ecosystem/macros.html:183 mkt/lookup/templates/lookup/app_summary.html:69
 #: mkt/lookup/templates/lookup/user_summary.html:34 mkt/lookup/templates/lookup/user_summary.html:46 mkt/reviewers/templates/reviewers/queue.html:37
 msgid "Payments"
 msgstr "Betalingen"
@@ -18518,11 +18588,12 @@ msgstr "General Notes is een eenvoudige opmerkingen-app waarmee u lokale inhoud 
 
 #: mkt/ecosystem/templates/ecosystem/build_reference.html:87
 msgid "rtcamera"
-msgstr ""
+msgstr "rtcamera"
 
 #: mkt/ecosystem/templates/ecosystem/build_reference.html:90
 msgid "rtcamera is a fun camera app to process images in real time."
 msgstr ""
+"rtcamera is een leuke camera-app om afbeeldingen in real time te bewerken."
 
 #: mkt/ecosystem/templates/ecosystem/build_tools.html:15
 msgid ""
@@ -18985,39 +19056,134 @@ msgstr "We brengen het open web naar mobiele apparaten."
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:22
 msgid ""
-"Firefox OS is a new mobile operating system built entirely using open web standards. In Firefox OS, HTML5 apps can do &quot;phone things&quot; &ndash; they can make the phone vibrate, make a phone "
-"call or send a text message."
+"Firefox OS is a new mobile operating system built entirely using open web standards. In Firefox OS, HTML5 apps can directly control phone hardware and key functionality — for example making the "
+"phone vibrate, placing phone calls, and sending text messages."
 msgstr ""
-"Firefox OS is een nieuwe mobiel besturingssysteem dat volledig is gebouwd op open webstandaarden. In Firefox OS kunnen HTML5-apps “telefoondingen” doen &ndash; ze kunnen de telefoon laten trillen, "
-"een telefoongesprek starten of een SMS-bericht verzenden."
+"Firefox OS is een nieuw mobiel besturingssysteem dat volledig met open "
+"webstandaarden is gebouwd. In Firefox OS kunnen HTML5-apps de "
+"telefoonhardware en belangrijke functionaliteit rechtstreeks besturen — "
+"bijvoorbeeld trillen van de telefoon, oproepen doen en SMS-berichten "
+"verzenden."
 
-#: mkt/ecosystem/templates/ecosystem/dev_phone.html:31
+#: mkt/ecosystem/templates/ecosystem/dev_phone.html:30
+msgid ""
+"We believe that developers will be truly instrumental in bringing the power of the web to mobile, so we have worked with various partners to make devices available for developing and testing apps, "
+"and learning more about customizing Firefox OS itself. This page provides useful information to developers, such as links to developer documentation, available devices, and where to obtain them."
+msgstr ""
+"We geloven dat ontwikkelaars cruciaal zijn om de kracht van het web naar "
+"mobiel te brengen, dus we hebben voor de ontwikkeling en het testen van "
+"apps, en het leren aanpassen van Firefox OS zelf, met diverse partners "
+"samengewerkt. Deze pagina biedt nuttige informatie voor ontwikkelaars, zoals "
+"de koppelingen naar ontwikkelaarsdocumentatie, beschikbare apparaten, en "
+"waar u deze kunt verkrijgen."
+
+#: mkt/ecosystem/templates/ecosystem/dev_phone.html:39
 msgid "Keon"
 msgstr "Keon"
 
-#: mkt/ecosystem/templates/ecosystem/dev_phone.html:38
-msgid "<em>I have</em> a developer preview phone <a href=\"%(devhub_url)s\" class=\"button\">Get started</a>"
-msgstr "<em>Ik heb al</em> een voorbeeldtelefoon. <a href=\"%(devhub_url)s\" class=\"button\">Van start</a>"
+#: mkt/ecosystem/templates/ecosystem/dev_phone.html:46 mkt/ecosystem/templates/ecosystem/dev_phone.html:56
+msgid "ZTE OPEN"
+msgstr "ZTE OPEN"
 
-#: mkt/ecosystem/templates/ecosystem/dev_phone.html:44
-msgid "<em>I want</em> a developer preview phone <a href=\"%(order_url)s\" class=\"button\">Order one</a> <span>through Geeksphone</span>"
-msgstr "<em>Ik wil graag</em> een voorbeeldtelefoon voor ontwikkelaars. <a href=\"%(order_url)s\" class=\"button\">Bestel er een</a> <span>bij Geeksphone</span>"
+#: mkt/ecosystem/templates/ecosystem/dev_phone.html:48
+msgid "<a href=\"%(us_ebay_url)s\" class=\"button\">Buy from US store</a> <a href=\"%(uk_ebay_url)s\" class=\"button\">Buy from UK store</a>"
+msgstr ""
+"<a href=\"%(us_ebay_url)s\" class=\"button\">Kopen in de Amerikaanse winkel</a> "
+"<a href=\"%(uk_ebay_url)s\" class=\"button\">Kopen in de Engelse winkel</a>"
 
-#: mkt/ecosystem/templates/ecosystem/dev_phone.html:55
+#: mkt/ecosystem/templates/ecosystem/dev_phone.html:58
+msgid ""
+"After a lot of hard work alongside ZTE, we are proud to announce the release of the ZTE OPEN Firefox OS phone, a powerful device aimed at developers and early adopters worldwide. These devices are "
+"available through ZTE's US and UK eBay stores, priced at $79.99/£59.99, and will be unlocked and open for testing and experimentation. <a href=\"%(zte_url)s\">Read more details.</a>"
+msgstr ""
+"Na een intensieve samenwerking met ZTE zijn we er trots op de lancering van "
+"de ZTE OPEN Firefox OS-telefoon te mogen aankondigen, een krachtig apparaat "
+"gericht op ontwikkelaars en vroege gebruikers wereldwijd. Deze apparaten "
+"zijn beschikbaar via de eBay-winkels van ZTE in de Verenigde Staten en het "
+"Verenigd Koninkrijk, met een prijs van $79.99/£59.99, zijn simlockvrij en "
+"open voor testen en experimenteren. <a href=\"%(zte_url)s\">Lees meer "
+"details.</a>"
+
+#: mkt/ecosystem/templates/ecosystem/dev_phone.html:71
 msgid "Peak"
 msgstr "Tipje van de sluier"
 
-#: mkt/ecosystem/templates/ecosystem/dev_phone.html:58
-msgid "The power of the web to mobile."
-msgstr "De kracht van het web naar mobiel."
+#: mkt/ecosystem/templates/ecosystem/dev_phone.html:74
+msgid "Geeksphone"
+msgstr "Geeksphone"
 
-#: mkt/ecosystem/templates/ecosystem/dev_phone.html:60
+#: mkt/ecosystem/templates/ecosystem/dev_phone.html:76
 msgid ""
-"We believe that developers will help bring the power of the web to mobile and so we have worked with Geeksphone and Telefonica to create a device just for you. With a Firefox OS developer preview "
-"phone you will be able to create and test your apps on actual hardware, rather than just in the simulator."
+"Mozilla, Geeksphone, and Telefónica worked together to create the Geeksphone Keon and Peak, respectively low-end and higher-end preview phones for developers wanting to start developing on real "
+"Firefox OS devices. Note that no more phones are being produced at this moment in time, although another run is planned for the future. A number will remain in circulation however, and these "
+"devices are still very valid for developer testing, having full updates available to them."
 msgstr ""
-"Omdat we geloven dat ontwikkelaars zullen helpen de kracht van het web naar mobiel te brengen, hebben we met Geeksphone en Telefónica samengewerkt om een apparaat speciaal voor u te maken. Met een "
-"voorbeeldtelefoon voor ontwikkelaars met Firefox OS kunt u uw apps op echte hardware maken en testen, in plaats van alleen maar in de simulator."
+"Mozilla, Geeksphone en Telefónica hebben samengewerkt aan de Geeksphone Keon "
+"en Peak, respectievelijk low-end en high-end voorbeeldtelefoons voor "
+"ontwikkelaars die willen starten met ontwikkelen op echte Firefox OS-"
+"apparaten. Merk op dat er momenteel gene telefoons meer worden gebouwd, "
+"hoewel er meer zijn gepland in de toekomst. Er zal echter een aantal "
+"telefoons in roulatie blijven, en deze apparaten zijn nog steeds bijzonder "
+"zinvol voor ontwikkeltesten, en kunnen volledig worden bijgewerkt."
+
+#: mkt/ecosystem/templates/ecosystem/dev_phone.html:89
+msgid "Docs and tools"
+msgstr "Documenten en hulpmiddelen"
+
+#: mkt/ecosystem/templates/ecosystem/dev_phone.html:91
+msgid ""
+"If you already have a Firefox OS device and want some guidance and direction, you can <a href=\"%(devhub_url)s\">get started at the Firefox Marketplace Developer Hub</a>. The <a href=\"%(mdn_url)s"
+"\">Mozilla Developer Network</a> also provides a wealth of useful resources such as API documentation and further information on Open Web App development."
+msgstr ""
+"Als u al een Firefox OS-apparaat hebt en op zoek bent naar wat richtlijnen "
+"en tips, kunt u <a href=\"%(devhub_url)s\">van start op de Firefox "
+"Marketplace-ontwikkelaarshub</a>. Het <a href=\"%(mdn_url)s\">Mozilla "
+"Developer Network</a> biedt ook een ruime keus aan nuttige hulpbronnen zoals "
+"API-documentatie en meer informatie over ontwikkeling van Open webapps."
+
+#: mkt/ecosystem/templates/ecosystem/dev_phone.html:100
+msgid ""
+"If you don't have a Firefox OS device, explore the other tabs to find out how to obtain one. You don't have to wait however — you can start developing and testing Firefox OS Apps right away using "
+"the <a href=\"%(simulator_url)s\">Firefox OS simulator</a>."
+msgstr ""
+"ALs u geen Firefox OS-apparaat hebt, bekijk dan de overige tabbladen om te "
+"lezen hoe u er één kunt krijgen. U hoeft echter niet te wachten — u kunt met "
+"de <a href=\"%(simulator_url)s\">Firefox OS-simulator</a> meteen starten met "
+"ontwikkelen en testen van Firefox OS-apps."
+
+#: mkt/ecosystem/templates/ecosystem/dev_phone.html:110
+msgid "Sharing with the community"
+msgstr "Delen met de gemeenschap"
+
+#: mkt/ecosystem/templates/ecosystem/dev_phone.html:112
+msgid ""
+"When developing for a nascent platform, useful sources of information are always more difficult to find than for more established platforms. To give Firefox OS developers as much help as possible, "
+"we'd like you to get involved with the effort! We would like to invite you to add any useful information you have to the <a href=\"%(mdn_url)s\" target=\"_blank\">Mozilla Developer Network</a>. You "
+"can edit pages after creating a Mozilla Persona user account and logging in."
+msgstr ""
+"Bij het ontwikkelen voor een platform in wording zijn nuttige "
+"informatiebronnen altijd moeilijker te vinden dan voor gevestigde platforms. "
+"Om Firefox OS-ontwikkelaars zo veel mogelijk hulp te bieden willen we u "
+"graag vragen mee te helpen! We nodigen u uit om nuttige informatie toe te "
+"voegen aan het <a href=\"%(mdn_url)s\" target=\"_blank\">Mozilla Developer "
+"Network</a>. U kunt pagina’s bewerken nadat u een Mozilla Persona-"
+"gebruikersaccount heeft aangemaakt en zich hebt aangemeld."
+
+#: mkt/ecosystem/templates/ecosystem/dev_phone.html:121
+msgid ""
+"In particular we'd love you to <a href=\"%(mdn_hackingfxos_url)s\" target=\"_blank\">add tips and tricks on hacking Firefox OS itself</a>, <a href=\"%(mdn_fxosapps_url)s\" target=\"_blank\">add "
+"tips for developing Firefox OS Apps</a>, and add information concerning your <a href=\"%(mdn_devphone_url)s\" target=\"_blank\">experiences of getting Firefox OS to work on different devices</a>. "
+"In addition, you are always welcome to ask questions and share feedback and resources on <a href=\"%(b2g_irc_url)s\" target=\"_blank\">IRC</a> and <a href=\"%(b2g_mail_url)s\" target=\"_blank\">e-"
+"mail</a>."
+msgstr ""
+"We zien vooral graag <a href=\"%(mdn_hackingfxos_url)s\" target=\"_blank\">tips "
+"en trucs over het hacken van Firefox OS zelf</a>, <a href=\"%"
+"(mdn_fxosapps_url)s\" target=\"_blank\">tips voor het ontwikkelen van Firefox "
+"OS-apps</a>, en informatie over uw <a href=\"%(mdn_devphone_url)s\" "
+"target=\"_blank\">ervaringen met Firefox OS op verschillende apparaten</a>. "
+"Daarnaast kunt u altijd vragen stellen en feedback en hulpbronnen delen via "
+"<a href=\"%(b2g_irc_url)s\" target=\"_blank\">IRC</a> en <a href=\"%"
+"(b2g_mail_url)s\" target=\"_blank\">e-mail</a>."
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:16
 msgid ""
@@ -19666,7 +19832,7 @@ msgstr "Indienen bij Marketplace"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:268 mkt/ecosystem/templates/ecosystem/publish_payments.html:5 mkt/ecosystem/templates/ecosystem/publish_payments.html:13
 msgid "Payments Status"
-msgstr ""
+msgstr "Betalingsstatus"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:308
 msgid "View with subtitles"
@@ -19849,10 +20015,15 @@ msgstr ""
 #: mkt/ecosystem/templates/ecosystem/publish_packaged.html:26
 msgid "One difference from a hosted app is that a packaged app must specify a launch_path in the manifest, whereas it's an optional manifest field for a hosted app."
 msgstr ""
+"Een verschil met een gehoste app is dat een verpakte app een launch_path "
+"moet opgeven in het manifest, terwijl dit een optioneel manifestveld is voor "
+"een gehoste app."
 
 #: mkt/ecosystem/templates/ecosystem/publish_packaged.html:33
 msgid "<strong>Note:</strong> Currently (July 2013) the Firefox Marketplace supports packaged apps only when they are Firefox OS apps."
 msgstr ""
+"<strong>Opmerking:</strong> Momenteel (juli 2013) ondersteunt de Firefox "
+"Marketplace alleen verpakte apps als dit Firefox OS-apps zijn."
 
 #: mkt/ecosystem/templates/ecosystem/publish_packaged.html:39
 msgid "Purpose of packaged apps"
@@ -19887,6 +20058,14 @@ msgid ""
 "equivalent to a native app on a platform like iOS or Android. To specify that an app is a privileged app, add the <code>type</code> field to its <code>manifest.webapp</code> file and set it to "
 "<code>privileged</code>. A privileged app has the following characteristics:"
 msgstr ""
+"Een voorkeurs-app wordt goedgekeurd door de Firefox Marketplace via een "
+"speciaal proces. Het is bedoeld om de gebruiker meer veiligheid te bieden "
+"als een app toegang wil tot bepaalde gevoelige API’s op een apparaat. Deze "
+"soort lijkt op een ingebouwde app op een platform als iOS of Android. U "
+"dient om op te geven dat een app een voorkeurs-app is het veld "
+"<code>type</code> toe te voegen aan het bestand <code>manifest.webapp</code> "
+"en dit in te stellen op <code>priviliged</code>. Een voorkeurs-app heeft de "
+"volgende eigenschappen:"
 
 #: mkt/ecosystem/templates/ecosystem/publish_packaged.html:72
 msgid "Approved by an app store after code review or equivalent."
@@ -19921,6 +20100,20 @@ msgid ""
 "critical APIs. To specify that an app is a certified app, add the <code>type</code> field to its <code>manifest.webapp</code> file and set it to <code>certified</code>. The following is the CSP for "
 "a certified app, which is slightly different from the CSP for a privileged app:"
 msgstr ""
+"Een gecertificeerde app is bedoeld voor een kritische systeemfunctie zoals "
+"de standaard beller of de app voor systeeminstellingen op een smartphone. "
+"Dit type app wordt gebruikt voor kritische functies op een Firefox OS-"
+"telefoon. Hij is niet bedoeld voor apps van derden, dus de meeste app-"
+"ontwikkelaars kunnen dit type app negeren. Een gecertificeerde app is een "
+"verpakte app die lijkt op een voorkeurs-app, behalve dat alle apparaat-"
+"toestemmingen impliciet zijn, wat inhoudt dat ze geen expliciete toestemming "
+"van de gebruiker nodig hebben. Een gecertificeerde app dient door de OEM of "
+"provider te worden goedgekeurd voor een apparaat, zodat deze impliciete "
+"goedkeuring heeft om kritische API’s te gebruiken. Om op te geven dat een "
+"app een gecertificeerde app is dient u het veld <code>type</code> toe te "
+"voegen aan het bestand <code>manifest.webapp</code> en dit in te stellen op "
+"<code>certified</code>. Hieronder ziet u de CSP voor een gecertificeerde "
+"app, die licht afwijkt van de CSP voor een voorkeurs-app:"
 
 #: mkt/ecosystem/templates/ecosystem/publish_packaged.html:120
 msgid ""
@@ -19942,6 +20135,17 @@ msgid ""
 "resources available on the device when the user first uses it, with no downloading. This type of packaged app does not require the <code>type</code> field in its <code>manifest.webapp</code> file, "
 "because the default value for <code>type</code> (<code>web</code>) is correct."
 msgstr ""
+"U kunt ook een reguliere app die simpelweg verpakt is in een zip-bestand "
+"maken. De Marketplace tekent deze, maar voert het speciale "
+"authenticeringsproces dat wordt gebruikt voor voorkeurs- of gecertificeerde "
+"apps er niet op uit. Deze gewone verpakte app kan bepaalde gevoelige Web-"
+"API’s niet gebruiken. Hij is niet onderworpen aan de voor voorkeurs- en "
+"gecertificeerde apps beschreven CSP’s.  Dit type app kan nuttig zijn als u "
+"wilt dat alle hulpbronnen van uw app beschikbaar zijn op het apparaat "
+"wanneer de gebruiker deze voor het eerst gebruikt, zonder te hoeven "
+"downloaden. Dit type verpakte app vereist geen veld <code>type</code> in het "
+"bestand <code>manifest.webapp</code>, omdat de standaardwaarde voor "
+"<code>type</code> (<code>web</code>) juist is."
 
 #: mkt/ecosystem/templates/ecosystem/publish_packaged.html:148
 msgid "Differences from hosted apps"
@@ -20083,30 +20287,34 @@ msgid ""
 "Payments are processed on a country by country basis, with different prices and payment methods available in each country. A list of price points is <a href=\"%(mdn_url)s\">documented in MDN</a> "
 "and is <a href=\"%(api_url)s\">available through the API</a>."
 msgstr ""
+"Betalingen worden per land afgehandeld, met verschillende prijzen en "
+"betalingsmethoden voor elk land. Een lijst met prijspunten is <a href=\"%"
+"(mdn_url)s\">gedocumenteerd in MDN</a> en is <a href=\"%"
+"(api_url)s\">beschikbaar via de API</a>."
 
 #: mkt/ecosystem/templates/ecosystem/publish_payments.html:24
 msgid "These are the currently supported countries in the Marketplace."
-msgstr ""
+msgstr "De volgende landen worden momenteel ondersteund in de Marketplace."
 
 #: mkt/ecosystem/templates/ecosystem/publish_payments.html:33
 msgid "Developer setup"
-msgstr ""
+msgstr "Ontwikkelaarsinstellingen"
 
 #: mkt/ecosystem/templates/ecosystem/publish_payments.html:34
 msgid "Paid apps"
-msgstr ""
+msgstr "Betaalde apps"
 
 #: mkt/ecosystem/templates/ecosystem/publish_payments.html:35
 msgid "In-app payments"
-msgstr ""
+msgstr "In-app-betalingen"
 
 #: mkt/ecosystem/templates/ecosystem/publish_payments.html:36
 msgid "Carrier billing"
-msgstr ""
+msgstr "Betaling via provider"
 
 #: mkt/ecosystem/templates/ecosystem/publish_payments.html:46 mkt/ecosystem/templates/ecosystem/publish_payments.html:47
 msgid "varies"
-msgstr ""
+msgstr "verschillend"
 
 #: mkt/ecosystem/templates/ecosystem/publish_review.html:15
 msgid ""
@@ -20955,75 +21163,88 @@ msgstr "69%"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:17 mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:18
 msgid "Gallery View"
-msgstr ""
+msgstr "Galerijweergave"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:22 mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:23
 msgid "Camera View"
-msgstr ""
+msgstr "Cameraweergave"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:27 mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:28
 msgid "Selecting an image"
-msgstr ""
+msgstr "Een afbeelding selecteren"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:35
 msgid "rtcamera is a fun camera app to process images in real time, using Web technologies. <a href=\"%(walkthrough_link)s\" class=\"walkthrough\"> Read the full developer walkthrough </a>"
 msgstr ""
+"rtcamera is een leuke camera-app waarmee u afbeeldingen in real time kunt "
+"bewerken met behulp van webtechnologieën. <a href=\"%(walkthrough_link)s\" "
+"class=\"walkthrough\"> Lees de volledige ontwikkelaarshandleiding </a>"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:52
 msgid "Generates animated GIFs."
-msgstr ""
+msgstr "Genereert geanimeerde GIF’s."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:60
 msgid "A wrapper for IndexedDB."
-msgstr ""
+msgstr "Een wrapper voor IndexedDB."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:68
 msgid "Calculates perspective transformations."
-msgstr ""
+msgstr "Berekent perspectieftransformaties."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:76
 msgid "Add touch events."
-msgstr ""
+msgstr "Aanraakgebeurtenissen toevoegen."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:101
 msgid "Once loaded for the first time, it can be used offline, without a network connection."
 msgstr ""
+"Na de eerste keer laden kan deze offline worden gebruikt, zonder "
+"netwerkverbinding."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:110 mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:118
 msgid "For downloading files to the browser."
-msgstr ""
+msgstr "Voor downloaden van bestanden in de browser."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:126
 msgid "Used for fast and efficient processing of image data."
-msgstr ""
+msgstr "Gebruikt voor snelle en efficiënte verwerking van afbeeldingsgegevens."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:134 mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:143
 msgid "Used to access camera devices and get a video stream from where to capture frames."
 msgstr ""
+"Gebruikt om camera-apparaten te benaderen en een videostream waaruit frames "
+"worden opgenomen te krijgen."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:152
 msgid "Stores captured images on the device and retrieve them for the gallery view."
 msgstr ""
+"Slaat opgenomen afbeeldingen op op het apparaat en haalt ze op voor de "
+"galerijweergave."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:161
 msgid "Generates GIF files on the background without freezing the UI."
 msgstr ""
+"Maakt op de achtergrond GIF-afbeeldingen zonder de gebruikersinterface te "
+"bevriezen."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:169
 msgid "Uploading images to a different server for sharing, and getting their url."
 msgstr ""
+"Uploaden van afbeeldingen naar een andere server om te delen, en hun URL "
+"ophalen."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:186
 msgid "rtcamera uses x-appbar, x-deck, x-layout, x-modal and x-switch."
-msgstr ""
+msgstr "rtcamera gebruikt x-appbar, x-deck, x-layout, x-modal en x-switch."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:210
 msgid "1%"
-msgstr ""
+msgstr "1%"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:212
 msgid "83%"
-msgstr ""
+msgstr "83%"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:17 mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:18
 #: mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:22 mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:23
@@ -21195,7 +21416,7 @@ msgid "Refund request for this transaction failed."
 msgstr "Restitutieverzoek voor deze transactie mislukt."
 
 #. L10n: first argument is a percentage, second is a payment method.
-#: mkt/lookup/views.py:486
+#: mkt/lookup/views.py:487
 msgid "{0} of purchases via {1}"
 msgstr "{0} van de aankopen via {1}"
 
@@ -21211,55 +21432,55 @@ msgstr "laatste 7 dagen"
 msgid "all time"
 msgstr "altijd"
 
-#: mkt/lookup/templates/lookup/app_summary.html:32
+#: mkt/lookup/templates/lookup/app_summary.html:34
 msgid "Manifest"
 msgstr "Manifest"
 
-#: mkt/lookup/templates/lookup/app_summary.html:38 mkt/reviewers/templates/reviewers/includes/details.html:33 mkt/reviewers/templates/reviewers/includes/mobile_details.html:55
+#: mkt/lookup/templates/lookup/app_summary.html:40 mkt/reviewers/templates/reviewers/includes/details.html:33 mkt/reviewers/templates/reviewers/includes/mobile_details.html:55
 msgid "View"
 msgstr "Bekijken"
 
-#: mkt/lookup/templates/lookup/app_summary.html:55
+#: mkt/lookup/templates/lookup/app_summary.html:57
 msgid "Permissions"
 msgstr "Toegangsrechten"
 
-#: mkt/lookup/templates/lookup/app_summary.html:69 mkt/lookup/templates/lookup/helpers/user_header.html:21
+#: mkt/lookup/templates/lookup/app_summary.html:71 mkt/lookup/templates/lookup/helpers/user_header.html:21
 msgid "Purchases"
 msgstr "Aankopen"
 
-#: mkt/lookup/templates/lookup/app_summary.html:79 mkt/lookup/templates/lookup/user_summary.html:51
+#: mkt/lookup/templates/lookup/app_summary.html:81 mkt/lookup/templates/lookup/user_summary.html:51
 msgid "Refunds"
 msgstr "Restituties"
 
 #. first argument is number of refunds, second argument is percentage of purchases.
-#: mkt/lookup/templates/lookup/app_summary.html:82
+#: mkt/lookup/templates/lookup/app_summary.html:84
 msgid "{0} requested ({1} of purchases)"
 msgstr "{0} aangevraagd ({1} van de aankopen)"
 
 #. number of refunds.
-#: mkt/lookup/templates/lookup/app_summary.html:85
+#: mkt/lookup/templates/lookup/app_summary.html:87
 msgid "{0} auto-approved"
 msgstr "{0} automatisch goedgekeurd"
 
 #. number of refunds.
-#: mkt/lookup/templates/lookup/app_summary.html:87
+#: mkt/lookup/templates/lookup/app_summary.html:89
 msgid "{0} approved"
 msgstr "{0} goedgekeurd"
 
 #. number of refunds.
-#: mkt/lookup/templates/lookup/app_summary.html:89
+#: mkt/lookup/templates/lookup/app_summary.html:91
 msgid "{0} rejected"
 msgstr "{0} afgewezen"
 
-#: mkt/lookup/templates/lookup/app_summary.html:91
+#: mkt/lookup/templates/lookup/app_summary.html:93
 msgid "Methods"
 msgstr "Methoden"
 
-#: mkt/lookup/templates/lookup/app_summary.html:107
+#: mkt/lookup/templates/lookup/app_summary.html:109
 msgid "Version (ID)"
 msgstr "Versie (ID)"
 
-#: mkt/lookup/templates/lookup/app_summary.html:108
+#: mkt/lookup/templates/lookup/app_summary.html:110
 msgid "Filename (ID, Size)"
 msgstr "Bestandsnaam (ID, grootte)"
 
@@ -21381,7 +21602,7 @@ msgstr "Accountsamenvatting"
 
 #: mkt/lookup/templates/lookup/includes/app_search.html:6
 msgid "App Lookup"
-msgstr ""
+msgstr "App opzoeken"
 
 #: mkt/lookup/templates/lookup/includes/app_search.html:11
 msgid "Lookup"
@@ -21403,37 +21624,37 @@ msgstr "Ontvangstbewijs voor {0}"
 
 #: mkt/purchase/templates/purchase/receipt.html:19
 msgid "Receipt"
-msgstr ""
+msgstr "Ontvangstbewijs"
 
 #: mkt/purchase/templates/purchase/receipt.html:21
 msgid "Billed To:"
-msgstr ""
+msgstr "Rekening voor:"
 
 #: mkt/purchase/templates/purchase/receipt.html:28
 msgid "Order Number:"
-msgstr ""
+msgstr "Opdrachtnummer:"
 
 #: mkt/purchase/templates/purchase/receipt.html:29
 msgid "Order Date:"
-msgstr ""
+msgstr "Opdrachtdatum:"
 
 #: mkt/purchase/templates/purchase/receipt.html:37
 msgid "Item"
-msgstr ""
+msgstr "Bestelling"
 
 #: mkt/purchase/templates/purchase/receipt.html:38
 msgid "Seller"
-msgstr ""
+msgstr "Verkoper"
 
-#: mkt/purchase/templates/purchase/receipt.html:61
+#: mkt/purchase/templates/purchase/receipt.html:59
 msgid "For the Firefox Marketplace Terms of Service please visit:"
-msgstr ""
+msgstr "Bezoek voor de servicevoorwaarden van de Firefox Marketplace:"
 
-#: mkt/purchase/templates/purchase/receipt.html:66
+#: mkt/purchase/templates/purchase/receipt.html:64
 msgid "For support please visit:"
 msgstr "Bezoek voor ondersteuning:"
 
-#: mkt/purchase/templates/purchase/receipt.html:71
+#: mkt/purchase/templates/purchase/receipt.html:69
 msgid "Your purchase history:"
 msgstr "Uw aankoopgeschiedenis:"
 
@@ -21506,7 +21727,7 @@ msgstr "Elke status"
 msgid "Attachment:"
 msgstr "Bijlage:"
 
-#: mkt/reviewers/forms.py:36 mkt/submit/forms.py:339
+#: mkt/reviewers/forms.py:36 mkt/submit/forms.py:323
 msgid "Description:"
 msgstr "Beschrijving:"
 
@@ -21524,15 +21745,15 @@ msgstr "Negeren apparaattype:"
 
 #: mkt/reviewers/forms.py:71
 msgid "Senior Reviewers"
-msgstr ""
+msgstr "Ervaren beoordelaars"
 
 #: mkt/reviewers/forms.py:72
 msgid "Staff"
-msgstr ""
+msgstr "Staf"
 
 #: mkt/reviewers/forms.py:76
 msgid "Action Visibility to Users:"
-msgstr ""
+msgstr "Actiezichtbaarheid voor gebruikers:"
 
 #: mkt/reviewers/forms.py:80
 msgid "Notify me the next time the manifest is updated. (Subsequent updates will not generate an email)"
@@ -21564,7 +21785,7 @@ msgstr "Beoordelaarshulpmiddelen"
 msgid "Re-reviews"
 msgstr "Herbeoordelingen"
 
-#: mkt/reviewers/helpers.py:38
+#: mkt/reviewers/helpers.py:38 mkt/reviewers/helpers.py:165 mkt/reviewers/helpers.py:184
 msgid "Updates"
 msgstr "Updates"
 
@@ -21582,15 +21803,15 @@ msgstr "Beoordeling"
 
 #: mkt/reviewers/helpers.py:44
 msgid "Pending Themes"
-msgstr ""
+msgstr "Wachtende thema’s"
 
 #: mkt/reviewers/helpers.py:45 mkt/reviewers/templates/reviewers/themes/queue.html:4
 msgid "Flagged Themes"
 msgstr "Gemarkeerde thema’s"
 
 #: mkt/reviewers/helpers.py:46
-msgid "Re-review Themes"
-msgstr ""
+msgid "Update Themes"
+msgstr "Thema’s bijwerken"
 
 #: mkt/reviewers/helpers.py:87
 msgctxt "pending"
@@ -21629,10 +21850,6 @@ msgstr "Apparaat ({0})"
 msgid "Flagged"
 msgstr "Gemarkeerd"
 
-#: mkt/reviewers/helpers.py:165 mkt/reviewers/helpers.py:184
-msgid "Re-review"
-msgstr "Herbeoordeling"
-
 #: mkt/reviewers/tasks.py:26
 msgid "Duplicate Submission"
 msgstr "Dubbele inzending"
@@ -21653,51 +21870,51 @@ msgstr "Ingediend thema gelabeld voor beoordeling"
 msgid "A question about your Theme submission"
 msgstr "Een vraag over uw ingediende thema"
 
-#: mkt/reviewers/utils.py:445
+#: mkt/reviewers/utils.py:447
 msgid "This will approve the sandboxed app so it appears on the public side."
 msgstr "Hierdoor wordt de app in de sandbox goedgekeurd zodat deze gepubliceerd wordt."
 
-#: mkt/reviewers/utils.py:451
+#: mkt/reviewers/utils.py:453
 msgid "This will reject the app and remove it from the review queue."
 msgstr "Hierdoor wordt de app afgekeurd en uit de beoordelingswachtrij verwijderd."
 
-#: mkt/reviewers/utils.py:457
+#: mkt/reviewers/utils.py:459
 msgid "This will send the author(s) an email requesting more information."
 msgstr "Dit verstuurt een e-mailbericht naar de schrijver(s) met een vraag om meer informatie."
 
-#: mkt/reviewers/utils.py:461
+#: mkt/reviewers/utils.py:463
 msgid "Escalate"
 msgstr "Escaleren"
 
-#: mkt/reviewers/utils.py:463
+#: mkt/reviewers/utils.py:465
 msgid "Flag this app for an admin to review."
 msgstr "Label deze app voor een beoordeling door een beheerder."
 
-#: mkt/reviewers/utils.py:468
+#: mkt/reviewers/utils.py:470
 msgid "Make a comment on this app. The author won't be able to see this."
 msgstr "Plaats een opmerking over deze app. De schrijver kan dit niet lezen."
 
-#: mkt/reviewers/utils.py:472
+#: mkt/reviewers/utils.py:474
 msgid "Clear Escalation"
 msgstr "Escalatie wissen"
 
-#: mkt/reviewers/utils.py:474
+#: mkt/reviewers/utils.py:476
 msgid "Clear this app from the escalation queue. The author will get no email or see comments here."
 msgstr "Deze app uit de escalatiewachtrij halen. De schrijver ontvangt geen e-mailbericht en ziet hier geen opmerkingen."
 
-#: mkt/reviewers/utils.py:479
+#: mkt/reviewers/utils.py:481
 msgid "Clear Re-review"
 msgstr "Herbeoordeling wissen"
 
-#: mkt/reviewers/utils.py:481
+#: mkt/reviewers/utils.py:483
 msgid "Clear this app from the re-review queue. The author will get no email or see comments here."
 msgstr "Verwijder deze app uit de wachtrij voor herbeoordeling. De schrijver krijgt geen e-mailbericht en ziet hier geen opmerkingen."
 
-#: mkt/reviewers/utils.py:486
+#: mkt/reviewers/utils.py:488
 msgid "Disable app"
 msgstr "App uitschakelen"
 
-#: mkt/reviewers/utils.py:488
+#: mkt/reviewers/utils.py:490
 msgid "Disable the app, removing it from public results. Sends comments to author."
 msgstr "De app uitschakelen en uit publieke resultaten halen. Verstuurt opmerkingen naar de schrijver."
 
@@ -21722,7 +21939,7 @@ msgstr "Verwijderd op {0}"
 msgid "Requirements changed by reviewer: {0}"
 msgstr "Door beoordelaar gewijzigde vereisten: {0}"
 
-#: mkt/reviewers/views_themes.py:285
+#: mkt/reviewers/views_themes.py:286
 msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
 msgstr ""
 "Uw themablokkades zijn met succes opgeheven. Andere beoordelaars kunnen nu die vrijgegevens thema’s beoordelen. U dient mogelijk de pagina te vernieuwen om de wijzigingen in onderstaande tabel te "
@@ -21730,7 +21947,7 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:16
 msgid "You are currently not reviewing any apps."
-msgstr ""
+msgstr "U hebt momenteel geen apps ter beoordeling."
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:24 mkt/reviewers/templates/reviewers/queue.html:35 mkt/reviewers/templates/reviewers/includes/search_results.html:6
 msgid "Devices"
@@ -21761,14 +21978,14 @@ msgstr[1] "{num} wachtende app-beoordelingen"
 #: mkt/reviewers/templates/reviewers/home.html:20
 msgid "{num} Re-review"
 msgid_plural "{num} Re-reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{num} herbeoordeling"
+msgstr[1] "{num} herbeoordelingen"
 
 #: mkt/reviewers/templates/reviewers/home.html:27
 msgid "{num} Update Review"
 msgid_plural "{num} Update Reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{num} updatebeoordeling"
+msgstr[1] "{num} updatebeoordelingen"
 
 #: mkt/reviewers/templates/reviewers/home.html:36
 msgid "{c} unreviewed app submission this week."
@@ -21852,7 +22069,7 @@ msgstr "Overschrijven minimumvereisten:"
 
 #: mkt/reviewers/templates/reviewers/review.html:270
 msgid "Make this action visible to"
-msgstr ""
+msgstr "Deze actie zichtbaar maken voor"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:5
 msgid "ID"
@@ -21917,11 +22134,11 @@ msgstr "Geen resultaten gevonden"
 
 #: mkt/reviewers/templates/reviewers/themes/base.html:24
 msgid "Theme Queues"
-msgstr ""
+msgstr "Thema-wachtrijen"
 
 #: mkt/reviewers/templates/reviewers/themes/base.html:28
 msgid "Theme Logs"
-msgstr ""
+msgstr "Thema-logboeken"
 
 #: mkt/reviewers/templates/reviewers/themes/deleted.html:4
 msgid "Deleted Themes"
@@ -22009,7 +22226,7 @@ msgstr "Mijn themablokkades verwijderen"
 
 #: mkt/reviewers/templates/reviewers/themes/queue_list.html:30
 msgid "Interactive Theme Queue"
-msgstr ""
+msgstr "Interactieve thema-wachtrij"
 
 #: mkt/reviewers/templates/reviewers/themes/single.html:8
 msgid "Theme Review for {0}"
@@ -22346,72 +22563,68 @@ msgstr "Kan niet gratis en betaald zijn."
 msgid "Please select a device."
 msgstr "Selecteer een apparaat."
 
-#: mkt/submit/forms.py:50
-msgid "Packaged apps are valid for only Firefox OS and Android."
-msgstr "Verpakte apps zijn alleen geldig voor Firefox OS en Android."
-
-#: mkt/submit/forms.py:129
+#: mkt/submit/forms.py:127
 msgid "Agree and Continue"
 msgstr "Akkoord en doorgaan"
 
-#: mkt/submit/forms.py:242
+#: mkt/submit/forms.py:226
 msgid "Do you already have a PayPal Premier or Business account?"
 msgstr "Hebt u al een PayPal Premier- of zakelijke rekening?"
 
-#: mkt/submit/forms.py:245
+#: mkt/submit/forms.py:229
 msgid "PayPal email address"
 msgstr "E-mailadres bij PayPal"
 
-#: mkt/submit/forms.py:251
+#: mkt/submit/forms.py:235
 msgid "I'll link my PayPal account later."
 msgstr "Ik koppel mijn PayPal-rekening later."
 
-#: mkt/submit/forms.py:256
+#: mkt/submit/forms.py:240
 msgid "The PayPal email is required."
 msgstr "Het e-mailadres bij PayPal is verplicht."
 
-#: mkt/submit/forms.py:269
+#: mkt/submit/forms.py:253
 msgid "When should your app be made available for sale?"
 msgstr "Wanneer zou uw app beschikbaar moeten komen voor verkoop?"
 
 #. L10n: "App" is a paid version of this app. "from" is this app.
-#: mkt/submit/forms.py:276
+#: mkt/submit/forms.py:260
 msgid "App to upgrade from"
 msgstr "App waarvan wordt geüpgraded"
 
-#: mkt/submit/forms.py:343
+#: mkt/submit/forms.py:327
 msgid "Privacy Policy:"
 msgstr "Privacybeleid:"
 
-#: mkt/submit/forms.py:344
+#: mkt/submit/forms.py:328
 msgid "A privacy policy that explains what data is transmitted from a user's computer and how it is used is required."
 msgstr "Een privacybeleid dat uitlegt welke gegevens vanaf de computer van de gebruiker worden verzonden en hoe deze worden gebruikt is verplicht."
 
-#: mkt/submit/forms.py:348
+#: mkt/submit/forms.py:332
 msgid "Homepage:"
 msgstr "Startpagina:"
 
-#: mkt/submit/forms.py:349
+#: mkt/submit/forms.py:333
 msgid "If your app has another homepage, enter its address here."
 msgstr "Als uw app een andere startpagina heeft, voer dan hier het adres in."
 
-#: mkt/submit/forms.py:353
+#: mkt/submit/forms.py:337
 msgid "Support Website:"
 msgstr "Ondersteuningswebsite:"
 
-#: mkt/submit/forms.py:354
+#: mkt/submit/forms.py:338
 msgid "If your app has a support website or forum, enter its address here."
 msgstr "Als uw app een ondersteuningswebsite of -forum heeft, voer dan hier het adres in."
 
-#: mkt/submit/forms.py:364
+#: mkt/submit/forms.py:348
 msgid "Does your app require Flash support?"
 msgstr "Vereist uw app ondersteuning van Flash?"
 
-#: mkt/submit/forms.py:372
+#: mkt/submit/forms.py:356
 msgid "Publish my app in the Firefox Marketplace as soon as it's reviewed."
 msgstr "Mijn app direct na beoordeling in de Firefox Marketplace publiceren."
 
-#: mkt/submit/forms.py:374
+#: mkt/submit/forms.py:358
 msgid ""
 "If selected your app will be published immediately following its approval by reviewers. If you don't select this option you will be notified via email about your app's approval and you will need to "
 "log in and manually publish it."

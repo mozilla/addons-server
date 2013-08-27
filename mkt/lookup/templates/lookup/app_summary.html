@@ -16,9 +16,11 @@
       <dl>
         <dt>{{ _('Authors') }}</dt>
         <dd>
-          {% for usr in authors %}
-            <div>{{ usr.display_name }}</div>
-          {% endfor %}
+          <ol>
+            {% for usr in authors %}
+              <li><b>{{ usr.name }}</b> {{ emaillink(usr.email) }}</li>
+            {% endfor %}
+          </ol>
         </dd>
         <dt>{{ _('Mozilla Contact') }}</dt>
         <dd>

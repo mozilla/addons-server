@@ -55,6 +55,44 @@ from . import query, signals
 log = commonware.log.getLogger('z.addons')
 
 
+def clean_slug(instance, slug_field='slug'):
+    slug = getattr(instance, slug_field, None)
+
+    if not slug:
+        if not instance.name:
+            try:
+                name = Translation.objects.filter(id=instance.name_id)[0]
+            except IndexError:
+                name = str(instance.id)
+        else:
+            name = instance.name
+        slug = slugify(name)[:27]
+
+    if BlacklistedSlug.blocked(slug):
+        slug += '~'
+
+    qs = instance.__class__.objects.values_list(slug_field, 'id')
+    match = qs.filter(**{slug_field: slug})
+
+    if match and match[0][1] != instance.id:
+        if instance.id:
+            prefix = '%s-%s' % (slug[:-len(str(instance.id))], instance.id)
+        else:
+            prefix = slug
+        slugs = dict(qs.filter(
+            **{'%s__startswith' % slug_field: '%s-' % prefix}))
+        slugs.update(match)
+        for idx in range(len(slugs)):
+            new = ('%s-%s' % (prefix, idx + 1))[:30]
+            if new not in slugs:
+                slug = new
+                break
+
+    setattr(instance, slug_field, slug)
+
+    return instance
+
+
 class AddonManager(amo.models.ManagerBase):
 
     def __init__(self, include_deleted=False):
@@ -92,12 +130,6 @@ class AddonManager(amo.models.ManagerBase):
         """Get valid, enabled add-ons only"""
         return self.filter(self.valid_q(amo.LISTED_STATUSES))
 
-    def valid_and_disabled(self):
-        """Get valid, enabled and disabled add-ons."""
-        statuses = list(amo.LISTED_STATUSES) + [amo.STATUS_DISABLED]
-        return self.filter(Q(status__in=statuses) | Q(disabled_by_user=True),
-                           _current_version__isnull=False)
-
     def valid_and_disabled_and_pending(self):
         """
         Get valid, pending, enabled and disabled add-ons.
@@ -105,8 +137,9 @@ class AddonManager(amo.models.ManagerBase):
         """
         statuses = list(amo.LISTED_STATUSES) + [amo.STATUS_DISABLED,
                                                 amo.STATUS_PENDING]
-        return self.filter(Q(status__in=statuses) | Q(disabled_by_user=True),
-                           _current_version__isnull=False)
+        return (self.filter(Q(status__in=statuses) | Q(disabled_by_user=True))
+                .exclude(type=amo.ADDON_EXTENSION,
+                         _current_version__isnull=True))
 
     def featured(self, app, lang=None, type=None):
         """
@@ -349,35 +382,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     def clean_slug(self, slug_field='slug'):
         if self.status == amo.STATUS_DELETED:
             return
-
-        slug = getattr(self, slug_field, None)
-        if not slug:
-            if not self.name:
-                try:
-                    name = Translation.objects.filter(id=self.name_id)[0]
-                except IndexError:
-                    name = str(self.id)
-            else:
-                name = self.name
-            slug = slugify(name)[:27]
-        if BlacklistedSlug.blocked(slug):
-            slug += '~'
-        qs = Addon.objects.values_list(slug_field, 'id')
-        match = qs.filter(**{slug_field: slug})
-        if match and match[0][1] != self.id:
-            if self.id:
-                prefix = '%s-%s' % (slug[:-len(str(self.id))], self.id)
-            else:
-                prefix = slug
-            slugs = dict(qs.filter(
-                **{'%s__startswith' % slug_field: '%s-' % prefix}))
-            slugs.update(match)
-            for idx in range(len(slugs)):
-                new = ('%s-%s' % (prefix, idx + 1))[:30]
-                if new not in slugs:
-                    slug = new
-                    break
-        setattr(self, slug_field, slug)
+        clean_slug(self, slug_field)
 
     @transaction.commit_on_success
     def delete(self, msg='', reason=''):
@@ -582,6 +587,25 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         lang = translation.to_language(self.default_locale)
         return settings.LANGUAGES.get(lang)
 
+    @property
+    def valid_file_statuses(self):
+        if self.status == amo.STATUS_PUBLIC:
+            return [amo.STATUS_PUBLIC]
+
+        if self.status == amo.STATUS_PUBLIC_WAITING:
+            # For public_waiting apps, accept both public and
+            # public_waiting statuses, because the file status might be
+            # changed from PUBLIC_WAITING to PUBLIC just before the app's
+            # is.
+            return amo.WEBAPPS_APPROVED_STATUSES
+
+        if self.status in (amo.STATUS_LITE,
+                           amo.STATUS_LITE_AND_NOMINATED):
+            return [amo.STATUS_PUBLIC, amo.STATUS_LITE,
+                    amo.STATUS_LITE_AND_NOMINATED]
+
+        return amo.VALID_STATUSES
+
     def get_version(self, backup_version=False):
         """
         Retrieves the latest public version of an addon.
@@ -591,20 +615,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         if self.type == amo.ADDON_PERSONA:
             return
         try:
-            if self.status == amo.STATUS_PUBLIC:
-                status = [self.status]
-            elif self.status == amo.STATUS_PUBLIC_WAITING:
-                # For public_waiting apps, accept both public and
-                # public_waiting statuses, because the file status might be
-                # changed from PUBLIC_WAITING to PUBLIC just before the app's
-                # is.
-                status = amo.WEBAPPS_APPROVED_STATUSES
-            elif self.status in (amo.STATUS_LITE,
-                                 amo.STATUS_LITE_AND_NOMINATED):
-                status = [amo.STATUS_PUBLIC, amo.STATUS_LITE,
-                          amo.STATUS_LITE_AND_NOMINATED]
-            else:
-                status = amo.VALID_STATUSES
+            status = self.valid_file_statuses
 
             status_list = ','.join(map(str, status))
             fltr = {'files__status__in': status}
@@ -631,6 +642,16 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         Pass ``_signal=False`` if you want to no signals fired at all.
 
         """
+        if self.is_persona():
+            # Versions are not as critical on themes.
+            # If there are no versions, just create one and go.
+            if not self._current_version:
+                if self._latest_version:
+                    self.update(_current_version=self._latest_version,
+                                _signal=False)
+                return True
+            return False
+
         backup = None
         current = self.get_version()
         if current:
@@ -708,7 +729,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         log.debug(u'Checking compatibility for add-on ID:%s, APP:%s, V:%s, '
                    'OS:%s, Mode:%s' % (self.id, app_id, app_version, platform,
                                       compat_mode))
-        valid_file_statuses = ','.join(map(str, amo.REVIEWED_STATUSES))
+        valid_file_statuses = ','.join(map(str, self.valid_file_statuses))
         data = dict(id=self.id, app_id=app_id, platform=platform,
                     valid_file_statuses=valid_file_statuses)
         if app_version:

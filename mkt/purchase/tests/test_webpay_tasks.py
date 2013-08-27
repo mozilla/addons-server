@@ -84,7 +84,6 @@ class TestReceiptEmail(PurchaseTest):
         self.contrib.user.lang = 'es'
         self.contrib.user.save()
         tasks.send_purchase_receipt(self.contrib.pk)
-        assert 'Precio' in mail.outbox[0].body
         assert 'Algo Algo' in mail.outbox[0].body
 
     @patch('mkt.purchase.webpay_tasks.send_html_mail_jinja')

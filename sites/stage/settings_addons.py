@@ -34,9 +34,6 @@ IMAGEASSET_FULL_URL = STATIC_URL + 'img/uploads/imageassets/%s/%d.png?modified=%
 USERPICS_URL = STATIC_URL + 'img/uploads/userpics/%s/%s/%s.png?modified=%d'
 COLLECTION_ICON_URL = STATIC_URL + '/img/uploads/collection_icons/%s/%s.png?m=%s'
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = private_addons.EMAIL_HOST
-
 MEDIA_URL = STATIC_URL + 'media/'
 ADDON_ICONS_DEFAULT_URL = MEDIA_URL + 'img/addon-icons'
 ADDON_ICON_BASE_URL = MEDIA_URL + 'img/icons/'

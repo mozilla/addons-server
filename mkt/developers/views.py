@@ -54,6 +54,7 @@ from mkt.developers.forms import (APIConsumerForm, AppFormBasic,
                                   trap_duplicate)
 from mkt.developers.utils import check_upload
 from mkt.developers.tasks import run_validator
+from mkt.reviewers.utils import create_comm_thread
 from mkt.submit.forms import AppFeaturesForm, NewWebappVersionForm
 from mkt.webapps.tasks import _update_manifest, update_manifests
 from mkt.webapps.models import Webapp
@@ -136,7 +137,8 @@ def edit(request, addon_id, addon, webapp=False):
         data['feature_list'] = [unicode(f) for f in
                                 data['version'].features.to_list()]
     if acl.action_allowed(request, 'Apps', 'Configure'):
-        data['admin_settings_form'] = forms.AdminSettingsForm(instance=addon)
+        data['admin_settings_form'] = forms.AdminSettingsForm(instance=addon,
+                                                              request=request)
     return jingo.render(request, 'developers/apps/edit.html', data)
 
 
@@ -285,6 +287,13 @@ def version_edit(request, addon_id, addon, version_id):
 
     if request.method == 'POST' and all(f.is_valid() for f in all_forms):
         [f.save() for f in all_forms]
+
+        # Make note visible to reviewers, senior reviewers and staff.
+        comm_perms = ('reviewer', 'senior_reviewer', 'staff')
+        create_comm_thread(addon=addon, version=version, action='comment',
+            perms=comm_perms, comments=f.data['approvalnotes'],
+            profile=request.amo_user)
+
         messages.success(request, _('Version successfully edited.'))
         return redirect(addon.get_dev_url('versions'))
 
@@ -658,7 +667,7 @@ def addons_section(request, addon_id, addon, section, editable=False,
 
     version = addon.current_version or addon.latest_version
 
-    tags = image_assets = previews = restricted_tags = []
+    tags, image_assets, previews, restricted_tags = [], [], [], []
     cat_form = appfeatures = appfeatures_form = None
 
     # Permissions checks.
@@ -670,10 +679,8 @@ def addons_section(request, addon_id, addon, section, editable=False,
         raise PermissionDenied
 
     if section == 'basic':
-        tags = addon.tags.not_blacklisted().values_list('tag_text', flat=True)
         cat_form = CategoryForm(request.POST or None, product=addon,
                                 request=request)
-        restricted_tags = addon.tags.filter(restricted=True)
 
     elif section == 'media':
         image_assets = ImageAssetFormSet(
@@ -689,6 +696,10 @@ def addons_section(request, addon_id, addon, section, editable=False,
             appfeatures = version.features
             formdata = request.POST if request.method == 'POST' else None
             appfeatures_form = AppFeaturesForm(formdata, instance=appfeatures)
+
+    elif section == 'admin':
+        tags = addon.tags.not_blacklisted().values_list('tag_text', flat=True)
+        restricted_tags = addon.tags.filter(restricted=True)
 
     # Get the slug before the form alters it to the form data.
     valid_slug = addon.app_slug

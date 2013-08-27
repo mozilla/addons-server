@@ -13,7 +13,7 @@ from mkt.api.base import CORSResource, MarketplaceResource
 from mkt.api.resources import AppResource
 from mkt.api.serializers import SuggestionsSerializer
 from mkt.constants.features import FeatureProfile
-from mkt.search.views import _filter_search, _get_query
+from mkt.search.views import _filter_search
 from mkt.search.forms import ApiSearchForm
 from mkt.webapps.models import Webapp
 from mkt.webapps.utils import es_app_to_dict
@@ -56,9 +56,9 @@ class SearchResource(CORSResource, MarketplaceResource):
 
     def get_query(self, request, base_filters=None):
         region = self.get_region(request)
-        return _get_query(request, region, gaia=request.GAIA,
-                          mobile=request.MOBILE, tablet=request.TABLET,
-                          new_idx=True, filters=base_filters)
+        return Webapp.from_search(request, region=region, gaia=request.GAIA,
+                                  mobile=request.MOBILE, tablet=request.TABLET,
+                                  filter_overrides=base_filters)
 
     def apply_filters(self, request, qs, data=None):
         # Build device features profile filter.

@@ -65,6 +65,7 @@ def global_settings(request):
 
     DESKTOP = (getattr(request, 'TABLET', None) or
                not getattr(request, 'MOBILE', None))
+    request.APP = getattr(request, 'APP', None)
 
     context.update(account_links=account_links,
                    settings=settings,

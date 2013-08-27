@@ -5,6 +5,7 @@ from pyquery import PyQuery as pq
 import amo
 import amo.tests
 from addons.models import Addon, AddonUser
+from comm.models import CommunicationNote
 from devhub.models import ActivityLog, AppLog
 from editors.models import EscalationQueue
 from files.models import File
@@ -255,6 +256,16 @@ class TestEditVersion(amo.tests.TestCase):
         ver = self.app.versions.latest()
         eq_(ver.releasenotes, rn)
         eq_(ver.approvalnotes, an)
+
+    def test_comm_thread(self):
+        rn = u'Release Notes'
+        an = u'Approval Notes'
+        self.create_switch('comm-dashboard')
+        self.client.post(self.url, {'releasenotes': rn,
+                                    'approvalnotes': an})
+        notes = CommunicationNote.objects.all()
+        eq_(notes.count(), 1)
+        eq_(notes[0].body, an)
 
 
 class TestVersionPackaged(amo.tests.WebappTestCase):

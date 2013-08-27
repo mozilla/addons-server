@@ -15,6 +15,7 @@ from datetime import date
 from django import forms
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
+from django.utils import translation
 from django.utils.http import urlencode
 
 from appvalidator import validate_app, validate_packaged_app
@@ -28,7 +29,8 @@ import amo
 from addons.models import Addon
 from amo.decorators import set_modified_on, write
 from amo.helpers import absolutify
-from amo.utils import remove_icons, resize_image, send_mail_jinja, strip_bom
+from amo.utils import (remove_icons, resize_image, send_mail_jinja, strip_bom,
+                       to_language)
 from files.models import FileUpload, File, FileValidation
 from files.utils import SafeUnzip
 
@@ -478,7 +480,8 @@ def failed_validation(*messages, **kwargs):
                        'prelim': True})
 
 
-CT_URL = 'https://developer.mozilla.org/en/Apps/Manifest#Serving_manifests'
+CT_URL = (
+    'https://developer.mozilla.org/docs/Web/Apps/Manifest#Serving_manifests')
 def _fetch_manifest(url, upload=None):
     def fail(message, upload=None):
         if upload is None:
@@ -650,12 +653,16 @@ def new_payments_region_email(ids, region_slug, **kw):
         for author in app.authors.all():
             to = [author.email]
             with author.activate_lang():
+                if author.lang is not None:
+                    lang = to_language(author.lang)
+                    with translation.override(lang):
+                        app = Webapp.objects.get(id=id_)
                 context = {'app': app.name,
                            'region': region_name,
                            'payments_url': app.get_dev_url('payments')}
                 subject = _(u'{app}: {region} region added to the Firefox '
                             u'Marketplace').format(**context)
                 send_mail_jinja(subject,
-                                'developers/emails/new_payments_region.ltxt',
+                                'developers/emails/new_payments_region.html',
                                 context, recipient_list=to,
                                 perm_setting='app_regions')

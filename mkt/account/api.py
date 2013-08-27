@@ -76,11 +76,12 @@ class PermissionResource(Mine, CORSResource, MarketplaceModelResource):
     def dehydrate(self, bundle):
         allowed = partial(acl.action_allowed, bundle.request)
         permissions = {
-            'reviewer': acl.action_allowed(bundle.request, 'Apps', 'Review'),
             'admin': allowed('Admin', '%'),
+            'developer': bundle.request.amo_user.is_app_developer,
             'localizer': allowed('Localizers', '%'),
             'lookup': allowed('AccountLookup', '%'),
-            'developer': bundle.request.amo_user.is_app_developer,
+            'publisher': allowed('Apps', 'Publisher'),
+            'reviewer': acl.action_allowed(bundle.request, 'Apps', 'Review'),
             'webpay': (allowed('Transaction', 'NotifyFailure')
                        and allowed('ProductIcon', 'Create')),
         }
@@ -99,7 +100,7 @@ class InstalledResource(AppResource):
         slug_lookup = None
 
     def obj_get_list(self, request=None, **kwargs):
-        return Webapp.objects.filter(installed__user=request.amo_user,
+        return Webapp.uncached.filter(installed__user=request.amo_user,
                                      installed__install_type=INSTALL_TYPE_USER)
 
 
@@ -144,13 +145,13 @@ class LoginResource(CORSResource, MarketplaceResource):
         user_logged_in.send(sender=profile.user.__class__, request=request,
                             user=profile.user)
         bundle.data = {
-                'error': None,
-                'token': self.get_token(request.user.email),
-                'settings': {
-                    'display_name': request.amo_user.display_name,
-                    'email': request.user.email,
-                }
+            'error': None,
+            'token': self.get_token(request.user.email),
+            'settings': {
+                'display_name': request.amo_user.display_name,
+                'email': request.user.email,
             }
+        }
         bundle.data.update(PermissionResource()
                            .dehydrate(Bundle(request=request)).data)
         return bundle
@@ -231,6 +232,7 @@ class FeedbackResource(PotatoCaptchaResource, CORSResource,
 
 class NewsletterResource(CORSResource, MarketplaceResource):
     email = fields.CharField(attribute='email')
+
     class Meta(MarketplaceResource.Meta):
         list_allowed_methods = ['post']
         detail_allowed_methods = []

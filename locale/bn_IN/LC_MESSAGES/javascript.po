@@ -2,21 +2,24 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-13 10:01-0700\n"
-"PO-Revision-Date: 2012-02-27 09:15-0800\n"
-"Last-Translator: Wil Clouser <clouserw@khan.mozilla.org>\n"
+"POT-Creation-Date: 2013-08-23 09:56-0700\n"
+"PO-Revision-Date: 2013-08-23 18:52+0000\n"
+"Last-Translator: Suvorno <hpg6pavillion@hotmail.co.uk>\n"
 "Language-Team: Bengali\n"
-"Language: bn\n"
+"Language: bn_IN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 1.6.0\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1377283955.0\n"
 
 #: media/js/common-all.js:10109 media/js/common-min.js:23 media/js/impala-all.js:1159 media/js/impala-min.js:1 media/js/devreg/init.js:35 media/js/mkt/init.js:47
 #: media/js/zamboni/discovery-all.js:10076 media/js/zamboni/discovery-min.js:23 media/js/zamboni/init.js:32 media/js/zamboni/mobile-all.js:10912 media/js/zamboni/mobile-min.js:32
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr ""
+"আমরা ওয়েবসাইট রক্ষণাবেক্ষণের জন্য যখন এই বৈশিষ্ট্যটি অস্থায়ীভাবে "
+"নিষ্ক্রিয় করা হয়. একটু পরে আবার চেক করুন"
 
 #: media/js/common-all.js:10509 media/js/common-min.js:23 media/js/impala-all.js:1559 media/js/impala-min.js:1 media/js/zamboni/mobile-all.js:10654 media/js/zamboni/mobile-min.js:32
 msgid "App installation not allowed"
@@ -40,7 +43,7 @@ msgstr ""
 
 #: media/js/common-all.js:10524 media/js/common-min.js:23 media/js/impala-all.js:1574 media/js/impala-min.js:1 media/js/zamboni/mobile-all.js:10669 media/js/zamboni/mobile-min.js:32
 msgid "Unknown error"
-msgstr ""
+msgstr "অজানা ত্রুটি"
 
 #: media/js/common-all.js:10535 media/js/common-min.js:23 media/js/impala-all.js:1585 media/js/impala-min.js:1 media/js/zamboni/mobile-all.js:10680 media/js/zamboni/mobile-min.js:32
 msgid "App installation failed"
@@ -166,7 +169,7 @@ msgstr ""
 
 #: media/js/common-all.js:19001 media/js/common-min.js:56 media/js/impala-all.js:12044 media/js/impala-min.js:34 media/js/zamboni/collections.js:438
 msgid "Comment"
-msgstr ""
+msgstr "মন্তব্য"
 
 #: media/js/common-all.js:19002 media/js/common-min.js:56 media/js/impala-all.js:12045 media/js/impala-min.js:34 media/js/zamboni/collections.js:439
 msgid "Remove this add-on from the collection"
@@ -466,19 +469,19 @@ msgstr ""
 msgid "Refreshed"
 msgstr ""
 
-#: media/js/devreg/devhub.js:610 media/js/zamboni/devhub-all.js:1499 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:650
+#: media/js/devreg/devhub.js:614 media/js/zamboni/devhub-all.js:1499 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:650
 msgid "There was an error uploading your file."
 msgstr ""
 
-#: media/js/devreg/devhub.js:892 media/js/zamboni/devhub-all.js:1774 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:925
+#: media/js/devreg/devhub.js:896 media/js/zamboni/devhub-all.js:1774 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:925
 msgid "Learn more"
 msgstr ""
 
-#: media/js/devreg/devhub.js:896 media/js/zamboni/devhub-all.js:1778 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:929
+#: media/js/devreg/devhub.js:900 media/js/zamboni/devhub-all.js:1778 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:929
 msgid "Example"
 msgstr ""
 
-#: media/js/devreg/devhub.js:1199 media/js/zamboni/devhub-all.js:2125 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:1285
+#: media/js/devreg/devhub.js:1203 media/js/zamboni/devhub-all.js:2125 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:1285
 msgid "Image changes being processed"
 msgstr ""
 
@@ -1283,14 +1286,18 @@ msgid "Contains Editor Comment"
 msgstr ""
 
 #: media/js/mkt/reviewers.js:112
+msgid "Premium App"
+msgstr ""
+
+#: media/js/mkt/reviewers.js:115
 msgid "Escalated"
 msgstr ""
 
-#: media/js/mkt/reviewers.js:117
+#: media/js/mkt/reviewers.js:120
 msgid "Free"
 msgstr ""
 
-#: media/js/mkt/reviewers.js:224
+#: media/js/mkt/reviewers.js:228
 msgid "Any"
 msgstr ""
 

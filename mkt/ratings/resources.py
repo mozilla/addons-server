@@ -33,7 +33,7 @@ class RatingResource(CORSResource, MarketplaceModelResource):
     app = fields.ToOneField(AppResource, 'addon', readonly=True)
     user = fields.ToOneField(AccountResource, 'user', readonly=True, full=True)
     version = CompatToOneField(None, 'version', rest='version', readonly=True,
-                               null=True)
+                               null=True, extra_fields=('version',))
     report_spam = fields.CharField()
 
     class Meta(MarketplaceModelResource.Meta):
@@ -201,7 +201,8 @@ class RatingResource(CORSResource, MarketplaceModelResource):
             addon = self.get_app(request.GET['app'])
             data['info'] = {
                 'average': addon.average_rating,
-                'slug': addon.app_slug
+                'slug': addon.app_slug,
+                'current_version': addon.current_version.version
             }
 
             filters = dict(addon=addon)

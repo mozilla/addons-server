@@ -119,27 +119,41 @@ class TestAddonManager(amo.tests.TestCase):
             assert not addon.disabled_by_user
 
     def test_valid_disabled_by_user(self):
-        before = Addon.objects.valid_and_disabled().count()
+        before = Addon.objects.valid_and_disabled_and_pending().count()
         addon = Addon.objects.get(pk=5299)
         addon.update(disabled_by_user=True)
-        eq_(Addon.objects.valid_and_disabled().count(), before)
+        eq_(Addon.objects.valid_and_disabled_and_pending().count(), before)
 
     def test_valid_disabled_by_admin(self):
-        before = Addon.objects.valid_and_disabled().count()
+        before = Addon.objects.valid_and_disabled_and_pending().count()
         addon = Addon.objects.get(pk=5299)
         addon.update(status=amo.STATUS_DISABLED)
-        eq_(Addon.objects.valid_and_disabled().count(), before)
+        eq_(Addon.objects.valid_and_disabled_and_pending().count(), before)
 
     def test_invalid_deleted(self):
-        before = Addon.objects.valid_and_disabled().count()
+        before = Addon.objects.valid_and_disabled_and_pending().count()
         addon = Addon.objects.get(pk=5299)
         addon.update(status=amo.STATUS_DELETED)
-        eq_(Addon.objects.valid_and_disabled().count(), before - 1)
+        eq_(Addon.objects.valid_and_disabled_and_pending().count(), before - 1)
 
     def test_valid_disabled_pending(self):
         before = Addon.objects.valid_and_disabled_and_pending().count()
         amo.tests.addon_factory(status=amo.STATUS_PENDING)
         eq_(Addon.objects.valid_and_disabled_and_pending().count(), before + 1)
+
+    def test_valid_disabled_version(self):
+        before = Addon.objects.valid_and_disabled_and_pending().count()
+
+        # Add-on, no version. Doesn't count.
+        addon = amo.tests.addon_factory()
+        addon.update(_current_version=None, _signal=False)
+        eq_(Addon.objects.valid_and_disabled_and_pending().count(), before)
+
+        # Theme, no version. Counts.
+        addon = amo.tests.addon_factory(type=amo.ADDON_PERSONA)
+        addon.update(_current_version=None, _signal=False)
+        eq_(Addon.objects.valid_and_disabled_and_pending().count(), before + 1)
+
 
     def test_top_free_public(self):
         addons = list(Addon.objects.listed(amo.FIREFOX))
@@ -297,6 +311,38 @@ class TestAddonModels(amo.tests.TestCase):
     def test_current_beta_version(self):
         a = Addon.objects.get(pk=5299)
         eq_(a.current_beta_version.id, 50000)
+
+    def _create_new_version(self, addon, status):
+        av = addon.current_version.apps.all()[0]
+
+        v = Version.objects.create(addon=addon, version='99')
+        f = File.objects.create(status=status, version=v)
+
+        ApplicationsVersions.objects.create(application_id=amo.FIREFOX.id,
+                                            version=v, min=av.min, max=av.max)
+        return v
+
+    def test_compatible_version(self):
+        a = Addon.objects.get(pk=3615)
+        eq_(a.status, amo.STATUS_PUBLIC)
+
+        v = self._create_new_version(addon=a, status=amo.STATUS_PUBLIC)
+
+        eq_(a.compatible_version(amo.FIREFOX.id), v)
+
+    def test_compatible_version_status(self):
+        """
+        Tests that `compatible_version()` won't return a lited version for a
+        fully-reviewed add-on.
+        """
+
+        a = Addon.objects.get(pk=3615)
+        eq_(a.status, amo.STATUS_PUBLIC)
+
+        v = self._create_new_version(addon=a, status=amo.STATUS_LITE)
+
+        assert a.current_version != v
+        eq_(a.compatible_version(amo.FIREFOX.id), a.current_version)
 
     def test_transformer(self):
         addon = Addon.objects.get(pk=3615)
@@ -1416,6 +1462,20 @@ class TestBackupVersion(amo.tests.TestCase):
         assert not self.addon.backup_version
         version.save()
         assert Addon.objects.get(pk=1865).backup_version
+
+    def test_update_version_theme(self):
+        # Test versions do not get deleted when calling with theme.
+        self.addon.update(type=amo.ADDON_PERSONA)
+        assert not self.addon.update_version()
+        assert self.addon._current_version
+
+        # Test latest version copied to current version if no current version.
+        self.addon.update(_current_version=None,
+                          _latest_version=Version.objects.create(
+                              addon=self.addon, version='0'),
+                          _signal=False)
+        assert self.addon.update_version()
+        assert self.addon._current_version == self.addon._latest_version
 
 
 class TestCategoryModel(amo.tests.TestCase):

@@ -166,17 +166,6 @@ def update_global_totals(job, date, **kw):
     except Exception, e:
         log.critical('Failed to update global stats: (%s): %s' % (p, e))
 
-    # Monolith is only used for Marketplace.
-    if job.startswith(('apps', 'mmo')):
-        try:
-            # Only record if num is greater than zero.
-            if num:
-                value = json.dumps({'count': num})
-                MonolithRecord(recorded=date, key=job, value=value,
-                               user_hash='none').save()
-        except Exception as e:
-            log.critical('Update of monolith table failed: (%s): %s' % (p, e))
-
     log.debug('Committed global stats details: (%s) has (%s) for (%s)'
               % tuple(p))
 
@@ -267,25 +256,6 @@ def _get_daily_jobs(date=None):
         'mmo_developer_count_total': AddonUser.objects.filter(
             addon__type=amo.ADDON_WEBAPP).values('user').distinct().count,
     }
-
-    # Add various "Apps Added" for all the dimensions we need.
-    apps = Addon.objects.filter(created__range=(date, next_date),
-                                type=amo.ADDON_WEBAPP)
-    for region_slug, region in REGIONS_CHOICES_SLUG:
-        # Apps added by package type and region.
-        for package_type in ADDON_WEBAPP_TYPES.values():
-            stats.update({
-                'apps_added_%s_%s' % (region_slug, package_type):
-                apps.filter(is_packaged=package_type == 'packaged')
-                    .exclude(addonexcludedregion__region=region.id).count
-            })
-        # Apps added by premium type and region.
-        for premium_type, pt_name in ADDON_PREMIUM_API.items():
-            stats.update({
-                'apps_added_%s_%s' % (region_slug, pt_name):
-                apps.filter(premium_type=premium_type)
-                    .exclude(addonexcludedregion__region=region.id).count
-            })
 
     # If we're processing today's stats, we'll do some extras.  We don't do
     # these for re-processed stats because they change over time (eg. add-ons
@@ -430,3 +400,123 @@ def index_theme_user_counts(ids, **kw):
     except Exception, exc:
         index_theme_user_counts.retry(args=[ids], exc=exc)
         raise
+
+
+@task
+def update_monolith_stats(metric, date, **kw):
+    log.info('Updating monolith statistics (%s) for (%s)' % (metric, date))
+
+    jobs = _get_monolith_jobs(date)[metric]
+
+    for job in jobs:
+        try:
+            # Only record if count is greater than zero.
+            count = job['count']()
+            if count:
+                value = {'count': count}
+                if 'dimensions' in job:
+                    value.update(job['dimensions'])
+
+                MonolithRecord.objects.create(recorded=date, key=metric,
+                                              value=json.dumps(value))
+
+        except Exception as e:
+            log.critical('Update of monolith table failed: (%s): %s'
+                         % ([metric, date], e))
+
+        log.debug('Committed monolith stats details: (%s) has (%s) for (%s)'
+                  % (metric, count, date))
+
+
+def _get_monolith_jobs(date=None):
+    """
+    Return a dict of Monolith based statistics queries.
+
+    The dict is of the form::
+
+        {'<metric_name>': [{'count': <callable>, 'dimensions': <dimensions>}]}
+
+    Where `dimensions` is an optional dict of dimensions we expect to filter on
+    via Monolith.
+
+    If a date is specified and applies to the job it will be used.  Otherwise
+    the date will default to today().
+    """
+    if not date:
+        date = datetime.date.today()
+
+    # If we have a datetime make it a date so H/M/S isn't used.
+    if isinstance(date, datetime.datetime):
+        date = date.date()
+
+    next_date = date + datetime.timedelta(days=1)
+
+    stats = {
+        # Marketplace reviews.
+        'apps_review_count_new': [{
+            'count': Review.objects.filter(
+                created__range=(date, next_date), editorreview=0,
+                addon__type=amo.ADDON_WEBAPP).count,
+        }],
+
+        # New users
+        'mmo_user_count_total': [{
+            'count': UserProfile.objects.filter(
+                created__lt=next_date,
+                source=amo.LOGIN_SOURCE_MMO_BROWSERID).count,
+        }],
+        'mmo_user_count_new': [{
+            'count': UserProfile.objects.filter(
+                created__range=(date, next_date),
+                source=amo.LOGIN_SOURCE_MMO_BROWSERID).count,
+        }],
+
+        # New developers.
+        'mmo_developer_count_total': [{
+            'count': AddonUser.objects.filter(
+                addon__type=amo.ADDON_WEBAPP).values('user').distinct().count,
+        }],
+
+        # App counts.
+        'apps_count_new': [{
+            'count': Addon.objects.filter(
+                created__range=(date, next_date), type=amo.ADDON_WEBAPP).count,
+        }],
+        'apps_count_installed': [{
+            'count': Installed.objects.filter(
+                created__range=(date, next_date),
+                addon__type=amo.ADDON_WEBAPP).count,
+        }],
+    }
+
+    # Add various "Apps Added" for all the dimensions we need.
+    apps = Addon.objects.filter(created__range=(date, next_date),
+                                type=amo.ADDON_WEBAPP)
+    package_counts = []
+    premium_counts = []
+
+    for region_slug, region in REGIONS_CHOICES_SLUG:
+        # Apps added by package type and region.
+        for package_type in ADDON_WEBAPP_TYPES.values():
+            package_counts.append({
+                'count': apps.filter(
+                    is_packaged=package_type == 'packaged').exclude(
+                        addonexcludedregion__region=region.id).count,
+                'dimensions': {'region': region_slug,
+                               'package_type': package_type},
+            })
+
+        # Apps added by premium type and region.
+        for premium_type, pt_name in ADDON_PREMIUM_API.items():
+            premium_counts.append({
+                'count': apps.filter(
+                    premium_type=premium_type).exclude(
+                        addonexcludedregion__region=region.id).count,
+                'dimensions': {'region': region_slug,
+                               'premium_type': pt_name},
+            })
+
+    stats.update({'apps_added_by_package_type': package_counts})
+    stats.update({'apps_added_by_premium_type': premium_counts})
+
+    return stats

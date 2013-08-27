@@ -24,7 +24,6 @@ from tower import ugettext as _
 
 import amo
 import amo.search
-from addons.cron import reindex_addons, reindex_apps
 from addons.decorators import addon_view
 from addons.models import Addon, AddonUser, CompatOverride
 from amo import messages, get_user
@@ -33,17 +32,13 @@ from amo.decorators import (any_permission_required, json_view, login_required,
 from amo.mail import FakeEmailBackend
 from amo.urlresolvers import reverse
 from amo.utils import chunked, sorted_groupby
-from bandwagon.cron import reindex_collections
 from bandwagon.models import Collection
-from compat.cron import compatibility_report
 from compat.models import AppCompat, CompatTotals
 from devhub.models import ActivityLog
 from files.models import Approval, File
 from files.tasks import start_upgrade as start_upgrade_task
 from files.utils import find_jetpacks, JetpackUpgrader
 from market.utils import update_from_csv
-from stats.cron import index_latest_stats
-from users.cron import reindex_users
 from users.models import UserProfile
 from versions.compare import version_int as vint
 from versions.models import Version
@@ -59,15 +54,6 @@ from .forms import (AddonStatusForm, BulkValidationForm, CompatForm,
 from .models import EmailPreviewTopic, ValidationJob, ValidationJobTally
 
 log = commonware.log.getLogger('z.zadmin')
-
-# This causes AMO problems if inapp gets imported. Then cache machine tries
-# to query it to see if it exists.
-if settings.MARKETPLACE:
-    from mkt.stats.cron import index_latest_mkt_stats, index_mkt_stats
-    from mkt.stats.search import setup_mkt_indexes
-else:
-    index_latest_mkt_stats = index_mkt_stats = None
-    setup_mkt_indexes = None
 
 
 @admin_required(reviewers=True)
@@ -588,14 +574,6 @@ def monthly_pick(request):
 def elastic(request):
     INDEX = settings.ES_INDEXES['default']
     es = amo.search.get_es()
-    mappings = {'addons': reindex_addons,
-                'apps': reindex_apps,
-                'collections': reindex_collections,
-                'compat': compatibility_report,
-                'users': reindex_users,
-                'stats_latest': index_latest_stats,
-                'mkt_stats': index_mkt_stats,
-                'mkt_stats_latest': index_latest_mkt_stats}
 
     indexes = set(settings.ES_INDEXES.values())
     es_mappings = es.get_mapping(None, indexes)
@@ -605,7 +583,6 @@ def elastic(request):
         'health': es.cluster_health(),
         'state': es.cluster_state(),
         'mappings': [(index, es_mappings.get(index, {})) for index in indexes],
-        'choices': mappings,
     }
     return jingo.render(request, 'zadmin/elastic.html', ctx)
 

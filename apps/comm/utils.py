@@ -82,7 +82,7 @@ class ThreadObjectPermission(object):
 class CommEmailParser(object):
     """Utility to parse email replies."""
 
-    address_prefix = 'reply+'
+    address_prefix = comm.REPLY_TO_PREFIX
 
     def __init__(self, email_text):
         self.email = message_from_string(email_text)
@@ -95,7 +95,7 @@ class CommEmailParser(object):
         name, addr = self._get_address_line()
         if addr.startswith(self.address_prefix):
             # Strip everything between "reply+" and the "@" sign.
-            uuid = addr.lstrip(self.address_prefix).split('@')[0]
+            uuid = addr[len(self.address_prefix):].split('@')[0]
         else:
             return False
 

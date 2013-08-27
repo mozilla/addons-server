@@ -1096,6 +1096,7 @@ CELERY_ROUTES = {
     'devhub.tasks.flag_binary': {'queue': 'bulk'},
     'stats.tasks.index_update_counts': {'queue': 'bulk'},
     'stats.tasks.index_download_counts': {'queue': 'bulk'},
+    'stats.tasks.index_theme_user_counts': {'queue': 'bulk'},
 }
 
 # This is just a place to store these values, you apply them in your
@@ -1537,8 +1538,9 @@ LEGAL_XFRAME_ALLOW_FROM = [
 # Language pack fetcher settings
 LANGPACK_OWNER_EMAIL = 'addons-team@mozilla.com'
 LANGPACK_DOWNLOAD_BASE = 'https://ftp.mozilla.org/pub/mozilla.org/'
-LANGPACK_LIST_BASE = 'ftp://ftp.mozilla.org/pub/mozilla.org/'
 LANGPACK_PATH_DEFAULT = '%s/releases/%s/win32/xpi/'
+# E.g. https://ftp.mozilla.org/pub/mozilla.org/firefox/releases/23.0/SHA512SUMS
+LANGPACK_MANIFEST_PATH = '../../SHA512SUMS'
 LANGPACK_MAX_SIZE = 5 * 1024 * 1024  # 5MB should be more than enough
 
 # Basket subscription url for newsletter signups
@@ -1571,3 +1573,14 @@ WHITELISTED_CLIENTS_EMAIL_API = []
 
 # Base URL to the Bango Vendor Portal (keep the trailing question mark).
 BANGO_BASE_PORTAL_URL = 'http://mozilla.com.test.bango.org/login/al.aspx?'
+
+# Auth token required to authorize a postfix host.
+POSTFIX_AUTH_TOKEN = 'make-sure-to-override-this-with-a-long-weird-string'
+
+# Domain name of the postfix server.
+POSTFIX_DOMAIN = 'marketplace.firefox.com'
+
+# This is a sample AES_KEY, we will override this on each server.
+AES_KEYS = {
+    'api:access:secret': os.path.join(ROOT, 'mkt/api/sample-aes.key'),
+}

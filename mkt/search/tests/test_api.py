@@ -3,7 +3,7 @@ import json
 
 from django.conf import settings
 
-from mock import Mock, patch
+from mock import MagicMock, patch
 from nose.tools import eq_, ok_
 
 import amo
@@ -20,7 +20,6 @@ from mkt.api.base import list_url
 from mkt.api.tests.test_oauth import BaseOAuth, OAuthClient
 from mkt.constants.features import FeatureProfile
 from mkt.search.forms import DEVICE_CHOICES_IDS
-from mkt.search.views import _get_query
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Installed, Webapp
 from mkt.webapps.tasks import unindex_webapps
@@ -68,20 +67,14 @@ class TestApi(BaseOAuth, ESTestCase):
         eq_(res.status_code, 400)
 
     def test_sort(self):
-        queries = []
-
-        def fake_get_query(*a, **kw):
-            qs = _get_query(*a, **kw)
-            m = Mock(wraps=qs)
-            queries.append(m)
-            return m
-
-        with patch('mkt.search.api._get_query', fake_get_query):
+        with patch('mkt.webapps.models.Webapp.from_search') as mocked_search:
+            mocked_qs = MagicMock()
+            mocked_search.return_value = mocked_qs
             res = self.client.get(self.url,
                                   [('sort', 'downloads'), ('sort', 'rating')])
-        eq_(res.status_code, 200)
-        queries[0].order_by.assert_called_with(
-            '-weekly_downloads', '-bayesian_rating')
+            eq_(res.status_code, 200)
+            mocked_qs.order_by.assert_called_with('-weekly_downloads',
+                                                  '-bayesian_rating')
 
     def test_right_category(self):
         res = self.client.get(self.url + ({'cat': self.category.pk},))

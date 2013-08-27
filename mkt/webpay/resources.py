@@ -1,8 +1,14 @@
+import calendar
+import time
+
 from django.conf import settings
 from django.conf.urls.defaults import url
 from django.core.exceptions import ObjectDoesNotExist
 
 import commonware.log
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import AllowAny
+from rest_framework.response import Response
 import waffle
 from tastypie import fields, http
 from tastypie.exceptions import ImmediateHttpResponse
@@ -23,7 +29,7 @@ from mkt.api.base import (CORSResource, GenericObject, http_error,
                           MarketplaceModelResource, MarketplaceResource)
 from mkt.webpay.forms import FailureForm, PrepareForm, ProductIconForm
 from mkt.webpay.models import ProductIcon
-from mkt.purchase.webpay import _prepare_pay
+from mkt.purchase.webpay import _prepare_pay, sign_webpay_jwt
 from market.models import Price, price_locale
 from stats.models import Contribution
 
@@ -202,3 +208,25 @@ class ProductIconResource(CORSResource, MarketplaceModelResource):
                                        bundle.data['size'])
         # Tell the client that deferred processing will create an object.
         raise ImmediateHttpResponse(response=http.HttpAccepted())
+
+
+@api_view(['POST'])
+@permission_classes((AllowAny,))
+def sig_check(request):
+    """
+    Returns a signed JWT to use for signature checking.
+
+    This is for Nagios checks to ensure that Marketplace's
+    signed tokens are valid when processed by Webpay.
+    """
+    issued_at = calendar.timegm(time.gmtime())
+    req = {
+        'iss': settings.APP_PURCHASE_KEY,
+        'typ': settings.SIG_CHECK_TYP,
+        'aud': settings.APP_PURCHASE_AUD,
+        'iat': issued_at,
+        'exp': issued_at + 3600,  # expires in 1 hour
+        'request': {}
+    }
+    return Response({'sig_check_jwt': sign_webpay_jwt(req)},
+                    status=201)

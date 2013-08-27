@@ -31,30 +31,30 @@ Error reporter
 
     .. code-block:: json
 
-    [{
-        "value": "important problem",
-        "stacktrace": {
-            "frames": [{
-                   "abs_path": "/real/file/name.py"
-                    "filename": "file/name.py",
-                    "function": "myfunction",
-                    "vars": {
-                        "key": "value"
-                    },
-                    "pre_context": [
-                        "line1",
-                        "line2"
-                    ],
-                    "context_line": "line3",
-                    "lineno": 3,
-                    "in_app": true,
-                    "post_context": [
-                        "line4",
-                        "line5"
-                    ],
-                }]
-            }
-    }]
+        [{
+            "value": "important problem",
+            "stacktrace": {
+                "frames": [{
+                       "abs_path": "/real/file/name.py"
+                        "filename": "file/name.py",
+                        "function": "myfunction",
+                        "vars": {
+                            "key": "value"
+                        },
+                        "pre_context": [
+                            "line1",
+                            "line2"
+                        ],
+                        "context_line": "line3",
+                        "lineno": 3,
+                        "in_app": true,
+                        "post_context": [
+                            "line4",
+                            "line5"
+                        ],
+                    }]
+                }
+        }]
 
     **Response**
 

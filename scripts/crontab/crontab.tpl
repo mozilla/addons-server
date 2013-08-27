@@ -67,6 +67,7 @@ HOME=/tmp
 40 5 * * * %(z_cron)s weekly_downloads
 35 6 * * * %(z_cron)s update_global_totals
 40 6 * * * %(z_cron)s update_addon_average_daily_users
+35 6 * * * %(z_cron)s update_monolith_stats
 30 7 * * * %(z_cron)s index_latest_stats
 35 7 * * * %(z_cron)s index_latest_mkt_stats --settings=settings_local_mkt
 45 7 * * * %(z_cron)s update_addons_collections_downloads

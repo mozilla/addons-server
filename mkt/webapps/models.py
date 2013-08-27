@@ -660,8 +660,7 @@ class Webapp(Addon):
 
     @classmethod
     def from_search(cls, request, cat=None, region=None, gaia=False,
-                    mobile=False, tablet=False, filter_overrides=None,
-                    new_idx=False):
+                    mobile=False, tablet=False, filter_overrides=None):
 
         filters = {
             'type': amo.ADDON_WEBAPP,
@@ -692,7 +691,7 @@ class Webapp(Addon):
         exclude_paid = True
         if ((region and region.id in settings.PURCHASE_ENABLED_REGIONS) or
             waffle.flag_is_active(request, 'allow-paid-app-search')):
-            exclude_paid = (mobile or tablet) and not gaia
+            exclude_paid = False
 
         if exclude_paid:
             srch = srch.filter(~F(premium_type__in=amo.ADDON_PREMIUMS))

@@ -15,13 +15,14 @@ cssutils==0.9.7b3
 curling==0.2.6
 Django==1.4.6
 dj-database-url==0.2.1
+django-aesfield==0.1
 django-browserid==0.8
 django-cache-machine==0.6
 django-celery==3.0.17
 django-cronjobs==0.2.3
 django_csp==1.0.2
 django-extensions==0.9
-django-filter==0.6
+django-filter==0.7
 django-memcached-pool==0.4.1
 django-multidb-router==0.5
 django-mysql-pool==0.2
@@ -57,9 +58,10 @@ metlog-cef==0.2
 metlog-raven==0.5
 mimeparse==0.1.3
 mock==1.0.0
-monolith.client==0.6
+monolith.client==0.7
 moz-addon-packager==1.0.1
 mozpay==2.0.0
+m2secret==0.1.1
 nose==1.2.1
 newrelic==1.11.0.55
 oauth2==1.5.211
@@ -91,8 +93,8 @@ suds==0.3.9
 tastypie-services==0.2.2
 
 ## Not on pypi.
--e git+https://github.com/mozilla/amo-validator.git@8adf5827ddd81a8ce450e33f79dd2208bc59012c#egg=amo-validator
--e git+https://github.com/mozilla/app-validator.git@461b979deeef0f869813710d5996c9f7885f4d28#egg=app-validator
+-e git+https://github.com/mozilla/amo-validator.git@cf8b4101e0142a19d0b3836309508610cdb562c1#egg=amo-validator
+-e git+https://github.com/mozilla/app-validator.git@54ed3ccb0711b334711dfa4382db6c9ed1da1dff#egg=app-validator
 -e git+https://github.com/jsocol/commonware.git@27646ecaca40a89024cc581c3ecf5eb0fa87ee11#egg=commonware
 -e git+https://github.com/jbalogh/django-queryset-transform@a1ba6ae41bd86f5bb9ff66fb56614e0fafe6e022#egg=django-queryset-transform
 -e git+https://github.com/miracle2k/django-tables.git@546f339308103880c823b2056830fcdc9220edd0#egg=django-tables

@@ -15,7 +15,7 @@ from django.conf import settings as django_settings
 from django.core.management import call_command
 from django.core.management.base import BaseCommand, CommandError
 
-from addons.cron import reindex_addons, reindex_apps
+from addons.cron import reindex_addons
 from amo.utils import timestamp_index
 from apps.addons.search import setup_mapping as put_amo_mapping
 from bandwagon.cron import reindex_collections
@@ -27,6 +27,8 @@ from users.cron import reindex_users
 
 
 _INDEXES = {}
+_ALIASES = django_settings.ES_INDEXES.copy()
+_ALIASES.pop('webapp')  # Don't index webapps here.
 
 
 def index_stats(index=None, aliased=True):
@@ -45,7 +47,6 @@ if django_settings.MARKETPLACE:
 
     _INDEXES = {'stats': [index_stats, index_mkt_stats],
                 'apps': [reindex_addons,
-                         reindex_apps,
                          reindex_collections,
                          reindex_users,
                          compatibility_report]}
@@ -291,7 +292,7 @@ class Command(BaseCommand):
 
         # building the list of indexes
         indexes = set([prefix + index for index in
-                       django_settings.ES_INDEXES.values()])
+                       _ALIASES.values()])
 
         actions = []
 

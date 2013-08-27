@@ -187,3 +187,5 @@ XSENDFILE_HEADER  = 'X-Accel-Redirect'
 ALLOW_SELF_REVIEWS = True
 
 API_THROTTLE = False
+
+AES_KEYS = private.AES_KEYS

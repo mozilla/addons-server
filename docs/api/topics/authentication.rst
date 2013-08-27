@@ -9,6 +9,8 @@ authentication.
 
 Two options for authentication are available: shared-secret and OAuth.
 
+.. _sharedsecret:
+
 Shared Secret
 =============
 

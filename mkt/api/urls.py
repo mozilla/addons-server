@@ -10,7 +10,7 @@ from mkt.api.base import AppRouter, handle_500, SlugRouter
 from mkt.api.resources import (AppResource, CarrierResource, CategoryViewSet,
                                ConfigResource, error_reporter,
                                RefreshManifestViewSet, RegionResource)
-from mkt.collections.views import CollectionViewSet
+from mkt.collections.views import CollectionImageViewSet, CollectionViewSet
 from mkt.features.views import AppFeaturesList
 from mkt.ratings.resources import RatingResource
 from mkt.search.api import SearchResource, SuggestionsResource
@@ -29,6 +29,9 @@ api.register(RatingResource())
 rocketfuel = SimpleRouter()
 rocketfuel.register(r'collections', CollectionViewSet,
                     base_name='collections')
+subcollections = AppRouter()
+subcollections.register('image', CollectionImageViewSet,
+                        base_name='collection-image')
 
 apps = SlugRouter()
 apps.register(r'category', CategoryViewSet, base_name='app-category')
@@ -53,6 +56,7 @@ urlpatterns = patterns('',
     url(r'^', include(services.urls)),
     url(r'^fireplace/report_error', error_reporter, name='error-reporter'),
     url(r'^rocketfuel/', include(rocketfuel.urls)),
+    url(r'^rocketfuel/collections/', include(subcollections.urls)),
     url(r'^apps/', include('mkt.versions.urls')),
     url(r'^apps/features/', AppFeaturesList.as_view(),
         name='api-features-feature-list')

@@ -3,13 +3,13 @@ from django.conf import settings
 
 import mock
 from nose.tools import eq_
+import urlparse
 
 import amo
 import amo.tests
 from addons.models import Addon
 from files.utils import make_xpi
 from zadmin import tasks
-
 
 def RequestMock(response='', headers={}):
     """Mocks the request objects of urllib2 and requests modules."""
@@ -18,6 +18,8 @@ def RequestMock(response='', headers={}):
     res.read.return_value = response
     res.contents = response
     res.text = response
+    res.iter_lines.side_effect = lambda chunk_size=1: (response.split('\n')
+                                                               .__iter__())
     res.iter_content.side_effect = lambda chunk_size=1: (response,).__iter__()
 
     def lines():
@@ -60,30 +62,36 @@ def make_langpack(version):
 class TestLangpackFetcher(amo.tests.TestCase):
     fixtures = ['base/platforms', 'zadmin/users']
 
-    # This is the format that urllib2 returns FTP listings in.
-    LISTING = ('-rw-r--r--    1 ftp      ftp        272155 Nov 19 19:54 '
-               'de-DE.xpi\r\n')
+    LISTING = 'pretend-this-is-a-sha256-sum  win32/xpi/de-DE.xpi\n'
 
     def setUp(self):
-        urlopen_patch = mock.patch('zadmin.tasks.urllib2.urlopen')
-        self.mock_urlopen = urlopen_patch.start()
-        self.addCleanup(urlopen_patch.stop)
-
         request_patch = mock.patch('zadmin.tasks.requests.get')
         self.mock_request = request_patch.start()
         self.addCleanup(request_patch.stop)
 
     def get_langpacks(self):
         return (Addon.uncached
-                     .filter(addonuser__user__email=settings.LANGPACK_OWNER_EMAIL,
-                             type=amo.ADDON_LPAPP))
+                 .filter(addonuser__user__email=settings.LANGPACK_OWNER_EMAIL,
+                         type=amo.ADDON_LPAPP))
 
     def fetch_langpacks(self, version):
-        self.mock_urlopen.return_value = RequestMock(self.LISTING)
-        self.mock_request.return_value = RequestMock(make_langpack(version))
+        path = settings.LANGPACK_PATH_DEFAULT % ('firefox', version)
 
-        tasks.fetch_langpacks(settings.LANGPACK_PATH_DEFAULT % ('firefox',
-                                                                version))
+        base_url = urlparse.urljoin(settings.LANGPACK_DOWNLOAD_BASE, path)
+        list_url = urlparse.urljoin(base_url, settings.LANGPACK_MANIFEST_PATH)
+        langpack_url = urlparse.urljoin(base_url, 'de-DE.xpi')
+
+        responses = {list_url: RequestMock(self.LISTING),
+                     langpack_url: RequestMock(make_langpack(version))}
+
+        self.mock_request.side_effect = lambda url, **kw: responses.get(url)
+        self.mock_request.call_args_list = []
+
+        tasks.fetch_langpacks(path)
+
+        eq_(self.mock_request.call_args_list,
+            [mock.call(list_url, verify=settings.CA_CERT_BUNDLE_PATH),
+             mock.call(langpack_url, verify=settings.CA_CERT_BUNDLE_PATH)])
 
     def test_fetch_new_langpack(self):
         eq_(self.get_langpacks().count(), 0)
@@ -170,7 +178,6 @@ class TestLangpackFetcher(amo.tests.TestCase):
         eq_(self.get_langpacks().count(), 0)
 
     def test_fetch_langpack_invalid_path_fails(self):
-        self.mock_urlopen.return_value = None
         self.mock_request.return_value = None
 
         try:

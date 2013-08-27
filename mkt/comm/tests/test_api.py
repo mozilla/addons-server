@@ -8,11 +8,11 @@ import mock
 from nose.tools import eq_
 from test_utils import RequestFactory
 
-from amo.tests import addon_factory
-from comm.models import (CommunicationNote, CommunicationThread,
-                         CommunicationThreadCC, CommunicationNoteRead)
+from amo.tests import addon_factory, req_factory_factory
+from comm.models import (CommunicationNote, CommunicationNoteRead,
+                         CommunicationThread, CommunicationThreadCC)
 from mkt.api.tests.test_oauth import RestOAuth
-from mkt.comm.api import ThreadPermission, EmailCreationPermission, post_email
+from mkt.comm.api import EmailCreationPermission, post_email, ThreadPermission
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
 
@@ -265,7 +265,6 @@ class TestNote(RestOAuth):
         # one of the authors of the addon.
         eq_(len(mail.outbox), self.thread.addon.authors.count() - 1)
 
-
     def test_mark_read(self):
         note = CommunicationNote.objects.create(author=self.profile,
             thread=self.thread, note_type=0, body='something')
@@ -278,42 +277,41 @@ class TestNote(RestOAuth):
         assert note.read_by_users.filter(user=self.profile).exists()
 
 
+@mock.patch.object(settings, 'WHITELISTED_CLIENTS_EMAIL_API',
+                   ['10.10.10.10'])
+@mock.patch.object(settings, 'POSTFIX_AUTH_TOKEN', 'something')
 class TestEmailApi(RestOAuth):
 
-    def setUp(self):
-        super(TestEmailApi, self).setUp()
-        self.mock_request = RequestFactory().get(reverse('post-email-api'))
-        patcher = mock.patch.object(settings, 'WHITELISTED_CLIENTS_EMAIL_API',
-                                    ['10.10.10.10'])
-        patcher.start()
-
-    def get_request(self, data):
-        req = self.mock_request
+    def get_request(self, data=None):
+        req = req_factory_factory(reverse('post-email-api'), self.profile)
         req.META['REMOTE_ADDR'] = '10.10.10.10'
-        req.POST = dict(data)
+        req.META['HTTP_POSTFIX_AUTH_TOKEN'] = 'something'
+        req.POST = dict(data) if data else dict({})
         req.method = 'POST'
-        req.user = self.user
-        req.amo_user = self.profile
-        req.groups = req.amo_user.groups.all()
         return req
 
     def test_allowed(self):
-        self.mock_request.META['REMOTE_ADDR'] = '10.10.10.10'
-        assert EmailCreationPermission().has_permission(self.mock_request,
+        assert EmailCreationPermission().has_permission(self.get_request(),
                                                         None)
 
-    def test_denied(self):
-        self.mock_request.META['REMOTE_ADDR'] = '10.10.10.1'
-        assert not EmailCreationPermission().has_permission(self.mock_request,
-                                                            None)
+    def test_ip_denied(self):
+        req = self.get_request()
+        req.META['REMOTE_ADDR'] = '10.10.10.1'
+        assert not EmailCreationPermission().has_permission(req, None)
+
+    def test_token_denied(self):
+        req = self.get_request()
+        req.META['HTTP_POSTFIX_AUTH_TOKEN'] = 'somethingwrong'
+        assert not EmailCreationPermission().has_permission(req, None)
 
     @mock.patch('comm.tasks.consume_email.apply_async')
-    def test_response(self, _mock):
-        res = post_email(self.get_request({'body': 'something'}))
+    def test_successful(self, _mock):
+        req = self.get_request({'body': 'something'})
+        res = post_email(req)
         _mock.assert_called_with(('something',))
         eq_(res.status_code, 201)
 
     def test_bad_request(self):
         """Test with no email body."""
-        res = post_email(self.get_request({}))
+        res = post_email(self.get_request())
         eq_(res.status_code, 400)

@@ -1,23 +1,72 @@
+import os
+
+from django.conf import settings
+from django.core.urlresolvers import reverse
 from django.db import models
-from django.db.models import Max
 
 import amo.models
+import mkt.regions
+from addons.models import Category, clean_slug
+from amo.decorators import use_master
+from amo.utils import to_language
 from mkt.webapps.models import Webapp
 from translations.fields import PurifiedField, save_signal
 
 from .constants import COLLECTION_TYPES
+from .fields import ColorField
+from .managers import PublicCollectionsManager
 
 
 class Collection(amo.models.ModelBase):
-    collection_type = models.IntegerField(choices=COLLECTION_TYPES, null=True)
+    collection_type = models.IntegerField(choices=COLLECTION_TYPES)
     description = PurifiedField()
     name = PurifiedField()
+    is_public = models.BooleanField(default=False)
+    # FIXME: add better / composite indexes that matches the query we are
+    # going to make.
+    category = models.ForeignKey(Category, null=True, blank=True)
+    region = models.PositiveIntegerField(default=None, null=True, blank=True,
+        choices=mkt.regions.REGIONS_CHOICES_ID, db_index=True)
+    carrier = models.IntegerField(default=None, null=True, blank=True,
+        choices=mkt.carriers.CARRIER_CHOICES, db_index=True)
+    author = models.CharField(max_length=255, default='', blank=True)
+    slug = models.SlugField(blank=True, max_length=30,
+                            help_text='Used in collection URLs.')
+    default_language = models.CharField(max_length=10,
+        choices=((to_language(lang), desc)
+                 for lang, desc in settings.LANGUAGES.items()),
+        default=to_language(settings.LANGUAGE_CODE))
+    background_color = ColorField(null=True)
+    text_color = ColorField(null=True)
+
+    objects = amo.models.ManagerBase()
+    public = PublicCollectionsManager()
 
     class Meta:
         db_table = 'app_collections'
+        ordering = ('-id',)  # This will change soon since we'll need to be
+                             # able to order collections themselves, but this
+                             # helps tests for now.
 
     def __unicode__(self):
         return self.name.localized_string_clean
+
+    def save(self, **kw):
+        self.clean_slug()
+        return super(Collection, self).save(**kw)
+
+    @use_master
+    def clean_slug(self):
+        clean_slug(self, 'slug')
+
+    @classmethod
+    def get_fallback(cls):
+        return cls._meta.get_field('default_language')
+
+    def image_path(self):
+        return os.path.join(settings.COLLECTIONS_ICON_PATH,
+                            str(self.pk / 1000),
+                            'app_collection_%s.png' % (self.pk,))
 
     def apps(self):
         """
@@ -33,8 +82,8 @@ class Collection(amo.models.ModelBase):
         """
         if not order:
             qs = CollectionMembership.objects.filter(collection=self)
-            aggregate = qs.aggregate(Max('order'))['order__max']
-            order = aggregate + 1 if aggregate else 1
+            aggregate = qs.aggregate(models.Max('order'))['order__max']
+            order = aggregate + 1 if aggregate is not None else 0
         return CollectionMembership.objects.create(collection=self, app=app,
                                                    order=order)
 
@@ -57,9 +106,9 @@ class Collection(amo.models.ModelBase):
 
         [18, 24, 9]
 
-        will change the order of each item in the collection to match the passed
-        order. A ValueError will be raised if each app in the collection is not
-        included in the ditionary.
+        will change the order of each item in the collection to match the
+        passed order. A ValueError will be raised if each app in the
+        collection is not included in the ditionary.
         """
         if set(a.pk for a in self.apps()) != set(new_order):
             raise ValueError('Not all apps included')
@@ -74,8 +123,7 @@ class CollectionMembership(amo.models.ModelBase):
     order = models.SmallIntegerField(null=True)
 
     def __unicode__(self):
-        return u'"%s" in "%s"' % (self.app.name,
-                                  self.collection.name)
+        return u'"%s" in "%s"' % (self.app.name, self.collection.name)
 
     class Meta:
         db_table = 'app_collection_membership'

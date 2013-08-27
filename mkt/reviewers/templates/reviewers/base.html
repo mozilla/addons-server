@@ -21,16 +21,16 @@
          this nav is the reviewer only access to one. #}
       {% if action_allowed('Apps', 'Review') %}
         {# "selected" logic will change if we ever have more than just apps + themes #}
-        <a{% if '/reviewers/themes/' not in request.path %} class="selected"{% endif %}
+        <a{% if '/reviewers/themes' not in request.path %} class="selected"{% endif %}
            href="{{ url('reviewers.apps.logs') if '/logs' in request.path
-                    else url('reviewers.apps.queue_pending') }}">
+                    else url('reviewers.home') }}">
           {{ _('Apps') }}</a>
       {% endif %}
       <!--<a href="{# url('reviewers.addons.queue_pending') #}">{{ _('Add-ons') }}</a>-->
       {% if action_allowed('Personas', 'Review') %}
-        <a{% if '/reviewers/themes/' in request.path %} class="selected"{% endif %}
+        <a{% if '/reviewers/themes' in request.path %} class="selected"{% endif %}
            href="{{ url('reviewers.themes.logs') if '/logs' in request.path
-                    else url('reviewers.themes.list') }}">{{ _('Themes') }}</a>
+                    else url('reviewers.themes.home') }}">{{ _('Themes') }}</a>
       {% endif %}
     </nav>
   {% endif %}
@@ -76,7 +76,14 @@
 
 {% block outer_content %}
   {% block breadcrumbs %}{% endblock %}
-  {% include 'editors/includes/daily-message.html' %}
+  {% if motd %}
+    <div class="featured daily-message island">
+      <h2>{{ _('Announcement') }}</h2>
+      <p>{{ motd }}</p>
+      <a class="close" href="#" title="{{ _('Dismiss this announcement') }}">&times;</a>
+    </div>
+  {% endif %}
+
   {% include 'messages.html' %}
 
   {% block queues_overlay %}

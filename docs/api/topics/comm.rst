@@ -106,7 +106,7 @@ Thread
     **Request**
 
     :param is_read: set it to `true` to mark the note as read.
-    :type param: boolean
+    :type is_read: boolean
 
     **Response**
 
@@ -242,7 +242,7 @@ Note
     **Request**
 
     :param is_read: set it to `true` to mark the note as read.
-    :type param: boolean
+    :type is_read: boolean
 
     **Response**
 

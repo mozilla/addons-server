@@ -181,3 +181,5 @@ NEWRELIC_WHITELIST = ['web1.addons.phx1.mozilla.com',
                       'web4.mktweb.services.phx1.mozilla.com']
 
 NEWRELIC_ENABLE = HOSTNAME in NEWRELIC_WHITELIST
+
+AES_KEYS = private.AES_KEYS

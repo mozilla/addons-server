@@ -38,7 +38,8 @@ class OAuthServer(oauth1.Server):
         # success and failure take a codepath with the same run time,
         # to prevent timing attacks.
         try:
-            return Access.objects.get(key=key).secret
+            # OAuthlib needs unicode objects, django-aesfield returns a string.
+            return Access.objects.get(key=key).secret.decode('utf8')
         except Access.DoesNotExist:
             return DUMMY_SECRET
 
