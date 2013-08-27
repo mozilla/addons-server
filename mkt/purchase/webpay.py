@@ -4,6 +4,7 @@ import sys
 import time
 import urlparse
 import uuid
+from decimal import Decimal
 from urllib import urlencode
 
 from django import http
@@ -186,7 +187,9 @@ def postback(request):
     app_pay_cef.log(request, 'Purchase complete', 'purchase_complete',
                     'Purchase complete for: %s' % (contrib.addon.pk),
                     severity=3)
-    contrib.update(transaction_id=trans_id, type=amo.CONTRIB_PURCHASE)
+    contrib.update(transaction_id=trans_id, type=amo.CONTRIB_PURCHASE,
+                   amount=Decimal(data['response']['price']['amount']),
+                   currency=data['response']['price']['currency'])
 
     tasks.send_purchase_receipt.delay(contrib.pk)
     return http.HttpResponse(trans_id)

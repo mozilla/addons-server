@@ -2,6 +2,7 @@ import calendar
 import json
 import time
 import urlparse
+from decimal import Decimal
 
 from django.conf import settings
 
@@ -209,8 +210,10 @@ class TestPostback(PurchaseTest):
                     'productData': 'contrib_uuid=%s' % contrib_uuid
                 },
                 'response': {
-                    'transactionID': '<webpay-trans-id>'
-                }}
+                    'transactionID': '<webpay-trans-id>',
+                    'price': {'amount': '10.99', 'currency': 'BRL'}
+                },
+            }
 
     def jwt(self, req=None, **kw):
         if not req:
@@ -229,6 +232,8 @@ class TestPostback(PurchaseTest):
         cn = Contribution.objects.get(pk=self.contrib.pk)
         eq_(cn.type, amo.CONTRIB_PURCHASE)
         eq_(cn.transaction_id, '<webpay-trans-id>')
+        eq_(cn.amount, Decimal('10.99'))
+        eq_(cn.currency, 'BRL')
         tasks.send_purchase_receipt.delay.assert_called_with(cn.pk)
 
     def test_invalid(self, tasks):
