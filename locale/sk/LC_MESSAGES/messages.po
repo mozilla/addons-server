@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-08-23 09:56-0700\n"
-"PO-Revision-Date: 2013-08-26 20:42+0000\n"
+"PO-Revision-Date: 2013-08-27 19:50+0000\n"
 "Last-Translator: Vlado <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-POOTLE-MTIME: 1377549779.0\n"
+"X-POOTLE-MTIME: 1377633017.0\n"
 
 #: apps/addons/buttons.py:207
 msgid "Download Now"
@@ -141,7 +141,9 @@ msgstr "Kategória Rôzne nemôže byť kombinovaná s inými kategóriami."
 
 #: apps/addons/forms.py:395
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
-msgstr "Pred zmenou predvoleného jazyka musíte mať vyplnený názov, súhrn a popis v tomto jazyku. Zatiaľ nemáte vyplnené: %s"
+msgstr ""
+"Pred zmenou predvoleného jazyka musíte mať vyplnený názov, súhrn a popis v "
+"tomto jazyku. Zatiaľ nemáte vyplnené: %s."
 
 #: apps/addons/forms.py:526 apps/addons/forms.py:600
 msgid "A license must be selected."
@@ -211,7 +213,7 @@ msgstr "Zneužitie nahlásené."
 
 #: apps/addons/widgets.py:48
 msgid "My add-on doesn't fit into any of the categories"
-msgstr "Môj doplnok nespadá ani do jednej z kategórií."
+msgstr "Môj doplnok nespadá ani do jednej z kategórií"
 
 #: apps/addons/templates/addons/author_other_addons.html:4 apps/addons/templates/addons/impala/details-more.html:93
 msgid "Other add-ons by %(author)s"
@@ -231,7 +233,7 @@ msgstr "Žiadne kompatibilné verzie"
 
 #: apps/addons/templates/addons/button.html:38 apps/addons/templates/addons/impala/button.html:21
 msgid "Added to Mobile"
-msgstr "Pridané medzi mobilné."
+msgstr "Pridané medzi mobilné"
 
 #: apps/addons/templates/addons/button.html:40 apps/addons/templates/addons/impala/button.html:23
 msgid "Add to Mobile"
@@ -261,7 +263,7 @@ msgstr "Tento doplnok je umiestnený na vlastnej stránke jeho vývojára. Dopln
 #: apps/addons/templates/addons/collections_sidebar.html:11 apps/addons/templates/addons/impala/addon_hovercard.html:34 apps/addons/templates/addons/impala/featured_grid.html:26
 #: apps/addons/templates/addons/impala/theme_grid.html:22 apps/bandwagon/templates/bandwagon/collection_detail.html:31 apps/users/templates/users/helpers/addon_users_list.html:7
 msgid "by %(users)s"
-msgstr "%(users)s"
+msgstr "od %(users)s"
 
 # {0} is the count of addons in a collection
 #. {0} is the number of add-ons.
@@ -319,7 +321,7 @@ msgstr "Nainštalovať"
 
 #: apps/addons/templates/addons/collections_teaser.html:44
 msgid "<strong>Easy to install</strong> and keep up-to-date."
-msgstr "<strong>Zvoľte si doplnok, ktoré vám uľahčia prehliadanie webu.</strong> Nainštalujte ich na pár kliknutí, aktualizujú sa samé. Prezrite si ich a nainštalujte hneď teraz!"
+msgstr "<strong>Jednoduché na inštaláciu</strong> a aktualizovanie."
 
 #: apps/addons/templates/addons/collections_teaser.html:63
 msgid "Learn more about this add-on"
@@ -415,11 +417,11 @@ msgstr "Akou čiastkou chcete prispieť?"
 
 #: apps/addons/templates/addons/contributions_lightbox.html:33
 msgid "The maximum contribution amount is {0}."
-msgstr "Maximálna výška príspevku: {0}"
+msgstr "Maximálna výška príspevku je {0}."
 
 #: apps/addons/templates/addons/contributions_lightbox.html:37
 msgid "The minimum contribution amount is {0}."
-msgstr "Minimálna výška príspevku: {0}"
+msgstr "Minimálna výška príspevku je {0}."
 
 #: apps/addons/templates/addons/contributions_lightbox.html:41
 msgid "Contribution amount must be a number."
@@ -623,7 +625,9 @@ msgstr "Licenčná zmluva s koncovým používateľom"
 
 #: apps/addons/templates/addons/eula.html:24 apps/discovery/templates/discovery/addons/eula.html:13
 msgid "%(addon_name)s requires that you accept the following End-User License Agreement before installation can proceed:"
-msgstr "Doplnok %(addon_name)s vyžaduje pred inštaláciou odsúhlasenie nasledujúcej licenčnej zmluvy."
+msgstr ""
+"Doplnok %(addon_name)s vyžaduje pred inštaláciou odsúhlasenie nasledujúcej "
+"licenčnej zmluvy:"
 
 #: apps/addons/templates/addons/eula.html:35 apps/addons/templates/addons/privacy.html:26
 msgid "Back to {0}…"
@@ -729,7 +733,7 @@ msgstr "Platba dokončená"
 
 #: apps/addons/templates/addons/paypal_result.html:32
 msgid "Thank you for purchasing the add-on"
-msgstr "Ďakujeme za kúpu doplnkov."
+msgstr "Ďakujeme za zakúpenie doplnku"
 
 #: apps/addons/templates/addons/paypal_result.html:39
 msgid "Return to the app."
@@ -869,7 +873,7 @@ msgstr "%d.%m %Y"
 
 #: apps/addons/templates/addons/persona_preview.html:67
 msgid "by {0} on {1}"
-msgstr "{0} dňa {1}"
+msgstr "od {0} dňa {1}"
 
 #: apps/addons/templates/addons/persona_preview.html:75 apps/reviews/helpers.py:16 apps/reviews/templates/reviews/review_list.html:70 apps/reviews/templates/reviews/reviews_link.html:21
 #: apps/reviews/templates/reviews/impala/reviews_link.html:12
@@ -988,8 +992,9 @@ msgstr "Kód QR pre tento doplnok"
 #: apps/addons/templates/addons/qr_code.html:6
 msgid "Want {0} on your mobile Firefox? Scan this QR code to install directly to your phone. (You'll need a QR reader. Search your phone's marketplace if don't have one.)"
 msgstr ""
-"Chceli by ste {0} vo svojom mobilnom Firefoxe? Oskenujte si tento kód QR a nainštalujte si ho priamo do telefónu (budete potrebovať čítačku kódov QR. Ak ju nemáte, pohľadajte medzi aplikáciami "
-"dostupnými pre váš telefón)."
+"Chceli by ste {0} vo svojom mobilnom Firefoxe? Oskenujte si tento kód QR a "
+"nainštalujte si ho priamo do telefónu. (Budete potrebovať čítačku kódov QR. "
+"Ak ju nemáte, pohľadajte medzi aplikáciami dostupnými pre váš telefón.)"
 
 #: apps/addons/templates/addons/report_abuse.html:6 apps/addons/templates/addons/report_abuse_full.html:11 apps/addons/templates/addons/impala/details-more.html:23
 #: apps/addons/templates/addons/impala/details.html:341 mkt/account/templates/account/abuse.html:3
@@ -1036,7 +1041,7 @@ msgstr "Čo si myslíte?"
 
 #: apps/addons/templates/addons/review_add_box.html:8 apps/addons/templates/addons/impala/review_add_box.html:10
 msgid "Please <a href=\"%(login)s\">log in</a> to submit a review"
-msgstr "Ak chcete odoslať recenziu, musíte sa <a href=\"%(login)s\">prihlásiť</a>."
+msgstr "Ak chcete odoslať recenziu, musíte sa <a href=\"%(login)s\">prihlásiť</a>"
 
 #: apps/addons/templates/addons/review_add_box.html:17 apps/addons/templates/addons/impala/review_add_box.html:19 apps/reviews/templates/reviews/mobile/add_form.html:17
 msgid "Review:"
@@ -1076,7 +1081,7 @@ msgstr "Recenzie"
 
 #: apps/addons/templates/addons/review_list_box.html:14 apps/addons/templates/addons/impala/review_list_box.html:14 apps/reviews/templates/reviews/review.html:30
 msgid "by %(user)s on %(date)s"
-msgstr "%(user)s dňa %(date)s"
+msgstr "od %(user)s dňa %(date)s"
 
 #: apps/addons/templates/addons/review_list_box.html:19 apps/addons/templates/addons/impala/review_list_box.html:24
 msgid "Show the developer's reply to this review"
@@ -1096,7 +1101,7 @@ msgstr "Značky"
 
 #: apps/addons/templates/addons/impala/button.html:11
 msgid "Not ready for purchase."
-msgstr "Nie je pripravený na objednávku"
+msgstr "Nie je pripravený na objednávku."
 
 #: apps/addons/templates/addons/impala/button.html:52
 msgid "This app has not been reviewed by Mozilla. <a href=\"%(url)s\">Learn more</a>"
@@ -1898,11 +1903,11 @@ msgstr "Heslo bolo zmenené."
 
 #: apps/amo/log.py:367
 msgid "{addon} changed to premium."
-msgstr "Doplnok {addon} bol zmenený na platený"
+msgstr "Doplnok {addon} bol zmenený na prémiový."
 
 #: apps/amo/log.py:372
 msgid "{addon} failed checks with PayPal."
-msgstr "Doplnok {addon} zlyhal pri kontrole PayPalu"
+msgstr "Doplnok {addon} zlyhal pri kontrole PayPalu."
 
 #: apps/amo/log.py:377
 msgid "{addon} manifest updated."
@@ -1926,7 +1931,7 @@ msgstr "Bol nainštalovaný doplnok {addon}."
 
 #: apps/amo/log.py:402
 msgid "Refund requested for {addon}"
-msgstr "Pre doplnok {addon} bolo požiadané o vrátenie peňazí."
+msgstr "Pre doplnok {addon} bolo požiadané o vrátenie peňazí"
 
 #: apps/amo/log.py:407
 msgid "Refund declined for {addon} for {0}."
@@ -1947,7 +1952,7 @@ msgstr "Účet bol aktualizovaný."
 
 #: apps/amo/log.py:427
 msgid "Pre approval added."
-msgstr "Pridané predschválenie"
+msgstr "Pridané predschválenie."
 
 #: apps/amo/log.py:432
 #, fuzzy
@@ -1979,9 +1984,10 @@ msgid "App disabled"
 msgstr "Aplikace zakázána"
 
 #: apps/amo/log.py:463
-#, fuzzy
 msgid "{addon} escalated because of high number of abuse reports."
-msgstr "Doplněk {addon} byl předán na kontrolu administrátorem, protože u něj bylo zaregistrováno větší množství hlášení o zneužití."
+msgstr ""
+"Doplnok {addon} bol eskalovaný na kontrolu, pretože bolo zaregistrované "
+"väčšie množstvo hlásení o zneužití."
 
 #: apps/amo/log.py:464
 #, fuzzy
@@ -1989,9 +1995,8 @@ msgid "High Abuse Reports"
 msgstr "Frekventovaná hlášení o zneužití"
 
 #: apps/amo/log.py:471
-#, fuzzy
 msgid "{addon} escalated because of high number of refund requests."
-msgstr "Doplněk {addon} byl předán na kontrolu administrátorem, protože u něj bylo zaregistrováno větší množství hlášení o zneužití."
+msgstr ""
 
 #: apps/amo/log.py:472
 #, fuzzy
@@ -1999,9 +2004,8 @@ msgid "High Refund Requests"
 msgstr "Časté požadavky na vrácení peněz"
 
 #: apps/amo/log.py:479
-#, fuzzy
 msgid "{addon} re-reviewed because of manifest change."
-msgstr "Doplněk {addon} byl znovu zkontrolován, protože se změnil manifest."
+msgstr "Doplnok {addon} bol znova skontrolovaný, pretože sa zmenil manifest."
 
 #: apps/amo/log.py:480
 #, fuzzy
@@ -2009,9 +2013,8 @@ msgid "Manifest Change"
 msgstr "Změna manifestu"
 
 #: apps/amo/log.py:487
-#, fuzzy
 msgid "{addon} re-reviewed because app upgraded premium type."
-msgstr "Doplněk {addon} byl znovu kontrolován, protože u aplikace byla aktualizována její placená verze."
+msgstr ""
 
 #: apps/amo/log.py:488
 #, fuzzy
@@ -2029,9 +2032,8 @@ msgid "Re-review cleared"
 msgstr "Opětovná kontrola zrušena"
 
 #: apps/amo/log.py:503
-#, fuzzy
 msgid "{addon} escalated by reviewer."
-msgstr "Doplněk {addon} byl redaktorem postoupen na detailní kontrolu."
+msgstr ""
 
 #: apps/amo/log.py:504
 #, fuzzy
@@ -2044,9 +2046,8 @@ msgid "Video removed from {addon} because of a problem with the video."
 msgstr "Video bylo od doplňku {addon} odebráno, protože se u tohoto videa vyskytl problém."
 
 #: apps/amo/log.py:514
-#, fuzzy
 msgid "Video removed"
-msgstr "Video bylo odebráno."
+msgstr "Video bolo odstránené"
 
 #: apps/amo/log.py:519
 msgid "{addon} re-review because of new device(s) added."
@@ -2058,9 +2059,8 @@ msgid "Device(s) Added"
 msgstr "Byla přidána zařízení"
 
 #: apps/amo/log.py:527
-#, fuzzy
 msgid "{addon} device support manually changed by reviewer."
-msgstr "U doplňku {addon} byla podporovaná zařízení redaktorem ručně změněna."
+msgstr ""
 
 #: apps/amo/log.py:528
 #, fuzzy
@@ -2068,9 +2068,8 @@ msgid "Device(s) Changed by Reviewer"
 msgstr "Zařízení byla redaktorem změněna."
 
 #: apps/amo/log.py:535
-#, fuzzy
 msgid "{addon} resubmitted for review."
-msgstr "Doplněk {addon} byl opětovně poslán na kontrolu"
+msgstr "Doplnok {addon} bol opätovne odoslaný na kontrolu."
 
 #: apps/amo/log.py:536
 #, fuzzy
@@ -2196,7 +2195,7 @@ msgstr "marketplace-staff@mozilla.org"
 
 #: apps/amo/templates/amo/license_link.html:10
 msgid "Some rights reserved"
-msgstr "Niektoré práva vyhradené."
+msgstr "Niektoré práva vyhradené"
 
 #. abbreviation of 'previous'
 #: apps/amo/templates/amo/paginator.html:6 apps/amo/templates/amo/mobile/paginator.html:4 apps/amo/templates/amo/mobile/paginator.html:6
@@ -2352,7 +2351,7 @@ msgstr "Doplnok neprešiel overením: %s"
 
 #: apps/api/views.py:246
 msgid "Not implemented yet."
-msgstr "Zatiaľ neimplementované"
+msgstr "Zatiaľ nie je implementované."
 
 #: apps/api/templates/piston/request_token_ready.html:3 apps/api/templates/piston/oauth/authorize.html:6
 msgid "Anonymous Party"
@@ -2504,11 +2503,11 @@ msgstr "Pridať negatívny hlas pre túto kolekciu"
 
 #: apps/bandwagon/helpers.py:76
 msgid "Remove my vote for this collection"
-msgstr "Odstrániť môj hlas pre túto kolekciu."
+msgstr "Odstrániť môj hlas pre túto kolekciu"
 
 #: apps/bandwagon/helpers.py:87
 msgid "Log in to vote for this collection"
-msgstr "Na pridanie hlasu sa musíte prihlásiť."
+msgstr "Na pridanie hlasu sa musíte prihlásiť"
 
 #: apps/bandwagon/helpers.py:146 apps/bandwagon/templates/bandwagon/favorites_widget.html:2
 msgid "Add to favorites"
@@ -3632,7 +3631,7 @@ msgstr "Mozilla"
 
 #: apps/constants/applications.py:149 mkt/api/forms.py:230
 msgid "Unknown"
-msgstr "neznámy"
+msgstr "Neznámy"
 
 #: apps/constants/applications.py:154 mkt/ecosystem/templates/ecosystem/partners.html:104 mkt/search/forms.py:46 templates/global/mobile/header.html:5 templates/mobile/header.html:5
 msgid "Desktop"
@@ -4103,14 +4102,12 @@ msgid "Voluntary"
 msgstr "Příspěvek"
 
 #: apps/constants/payments.py:95
-#, fuzzy
 msgid "Active"
-msgstr "aktívny"
+msgstr "Aktívny"
 
 #: apps/constants/payments.py:96
-#, fuzzy
 msgid "Inactive"
-msgstr "neaktívny"
+msgstr "Neaktívny"
 
 #: apps/constants/payments.py:97
 msgid "Revoked"
@@ -4146,9 +4143,8 @@ msgid "The payment failed."
 msgstr "Platba selhala."
 
 #: apps/constants/payments.py:153
-#, fuzzy
 msgid "The reversal failed."
-msgstr "Prihlásenie k odberu zlyhalo"
+msgstr "Storno transakcie zlyhalo."
 
 #: apps/constants/payments.py:154
 #, fuzzy
@@ -4316,9 +4312,8 @@ msgid "There was an error with your upload. Please try again."
 msgstr "Pri odosielaní sa vyskytla chyba. Skúste to znova."
 
 #: apps/devhub/forms.py:491
-#, fuzzy
 msgid "Override failed validation"
-msgstr "Aplikace neprošla kontrolou."
+msgstr ""
 
 #: apps/devhub/forms.py:530
 msgid "Need at least one platform."
@@ -4326,7 +4321,7 @@ msgstr "Vyžaduje aspoň jednu platformu."
 
 #: apps/devhub/forms.py:545 mkt/submit/forms.py:180
 msgid "Version %s already exists"
-msgstr "Verzia %s už existuje."
+msgstr "Verzia %s už existuje"
 
 #: apps/devhub/forms.py:583
 msgid "You cannot upload any more files for this version."
@@ -4334,7 +4329,7 @@ msgstr "Pre túto verziu nemôžete odoslať žiadne ďalšie súbory."
 
 #: apps/devhub/forms.py:589
 msgid "Version doesn't match"
-msgstr "Verzia sa nezhoduje."
+msgstr "Verzia sa nezhoduje"
 
 #: apps/devhub/forms.py:623
 #, fuzzy
@@ -4351,7 +4346,7 @@ msgstr "Platformu je možné zvoliť len raz."
 
 #: apps/devhub/forms.py:661
 msgid "A review type must be selected."
-msgstr "Musí byť zvolený typ kontroly"
+msgstr "Musí byť zvolený typ kontroly."
 
 #: apps/devhub/forms.py:747
 #, fuzzy
@@ -4388,9 +4383,8 @@ msgid "Enter the names of any other contributors to this extension, one per line
 msgstr "Zadajte mená prispievateľov k tomuto doplnku, každé meno na samostatný riadok."
 
 #: apps/devhub/forms.py:780
-#, fuzzy
 msgid "Add-on names should not contain Mozilla trademarks."
-msgstr "Jméno doplňku nesmí obsahovat ochranné známky Mozilly"
+msgstr "Názov doplnku nesmie obsahovať ochranné známky Mozilly."
 
 #: apps/devhub/forms.py:787
 #, fuzzy
@@ -4649,9 +4643,8 @@ msgid "Refund was previously issued; no action taken."
 msgstr ""
 
 #: apps/devhub/views.py:589
-#, fuzzy
 msgid "Refund issued."
-msgstr "Peníze byly vráceny"
+msgstr ""
 
 #: apps/devhub/views.py:597
 #, fuzzy
@@ -5963,7 +5956,7 @@ msgstr "Tento doplnok bude automaticky odstránený po niekoľkých dňoch, ak n
 
 #: apps/devhub/templates/devhub/addons/listing/items.html:41 mkt/developers/templates/developers/apps/status.html:176 mkt/developers/templates/developers/apps/listing/items.html:25
 msgid "Disabled"
-msgstr "zakázaný"
+msgstr "Zakázaný"
 
 #: apps/devhub/templates/devhub/addons/listing/items.html:51 mkt/developers/templates/developers/includes/macros.html:100
 msgid "<b>Queue position:</b> %(pos)s of %(total)s"
@@ -7673,24 +7666,20 @@ msgid "When performing a full review, editors will:"
 msgstr "V rámci plné kontroly bude redaktor provádět:"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:64
-#, fuzzy
 msgid "install the add-on, making sure it functions as described and is free of major defects"
-msgstr "Instalovat doplněk, zkoušet jeho funkčnost tak, jak je popsána a kontrolovat, zda nevykazuje problémy."
+msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:69
-#, fuzzy
 msgid "perform a source code review, looking for performance and security best practices"
-msgstr "Provádět kontrolu zdrojového kódu a koukat, zda splňuje zásady pro výkon a bezpečnost."
+msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:74
-#, fuzzy
 msgid "ensure the add-on's privacy policy is in line with its functionality"
-msgstr "Ujistí se, zda zásady ochrany soukromí odpovídají tomu, jak se doplněk chová."
+msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:79
-#, fuzzy
 msgid "look for compliance with all of Mozilla's policies, detailed in these documents"
-msgstr "Podívá se po možném rozporu s nějakými zásadami Mozilly, které jsou popsány v tomto dokumentu."
+msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:86
 #, fuzzy
@@ -7711,54 +7700,44 @@ msgid "proper preference naming - all preference names should begin with \"exten
 msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:103
-#, fuzzy
 msgid "remote JavaScript execution or injection"
-msgstr "Volání vzdáleného JavaScriptu nebo jeho vkládání."
+msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:104
-#, fuzzy
 msgid "remote XUL"
-msgstr "Remote XUL."
+msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:105
-#, fuzzy
 msgid "synchronous XMLHttpRequests"
-msgstr "Synchroní XMLHttpRequests."
+msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:106
-#, fuzzy
 msgid "obfuscated code"
-msgstr "Kód je prohnaný skrze obfuskátor."
+msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:107
-#, fuzzy
 msgid "binary components or executables"
-msgstr "Obsahuje binární komponenty nebo spustitelné soubory."
+msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:109
-#, fuzzy
 msgid "inclusion of third-party software"
-msgstr "Zahrnuje software třetích stran."
+msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:110
-#, fuzzy
 msgid "errors generated in the Error Console"
-msgstr "V Chybové konzoli se objevují chybová hlášení."
+msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:111
-#, fuzzy
 msgid "memory leaks"
-msgstr "Obsahuje úniky paměti."
+msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:112
-#, fuzzy
 msgid "possible conflicts with other add-ons"
-msgstr "Je konflitktní s jinými doplňky."
+msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:113
-#, fuzzy
 msgid "application start-up or page load performance degradation"
-msgstr "Má výrazný vliv na rychlost startu aplikace nebo na pokles výkonu."
+msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:117
 #, fuzzy
@@ -12069,9 +12048,8 @@ msgid "How can my add-on be listed as Recommended?"
 msgstr "Za jakých okolností se může můj doplněk objevit v seznamu doporučených?"
 
 #: apps/pages/templates/pages/dev_faq.html:542 apps/pages/templates/pages/dev_faq.html:552
-#, fuzzy
 msgid "<a href=\"%(url)s\">This blog post</a> describes the process by which the Recommended lists are managed."
-msgstr "Informace o tom, jak je spravován list doporučených doplňků, naleznete v <a href=\"%(url)s\">následujícím příspěvku</a>."
+msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:547
 #, fuzzy
@@ -12324,9 +12302,8 @@ msgstr ""
 "zpomaluje, zkuste jej zakázat. Doplňky, které způsobují pomalejší start, budou mít na své stránce varování."
 
 #: apps/pages/templates/pages/faq.html:142
-#, fuzzy
 msgid "%(app_name)s told me an add-on isn't compatible. Is there a way I can still use it?"
-msgstr "Aplikace %(app_name)s mi řekla, že doplněk není kompatibilní. Existuje způsob, jak ho přesto mohu používat?"
+msgstr ""
 
 #: apps/pages/templates/pages/faq.html:145
 #, fuzzy
@@ -13167,15 +13144,15 @@ msgstr[2] "Zobraziť %(cnt)s recenzií"
 
 #: apps/search/forms.py:12
 msgid "Most popular this week"
-msgstr "najpopulárnejšie za tento týždeň"
+msgstr "Najpopulárnejšie za tento týždeň"
 
 #: apps/search/forms.py:13
 msgid "Most popular this month"
-msgstr "najpopulárnejšie tento mesiac"
+msgstr "Najpopulárnejšie tento mesiac"
 
 #: apps/search/forms.py:14
 msgid "Most popular all time"
-msgstr "najpopulárnejšie za celý čas"
+msgstr "Najpopulárnejšie za celý čas"
 
 #: apps/search/forms.py:24
 msgid "search for add-ons"
@@ -15601,7 +15578,7 @@ msgstr "Katar"
 
 #: mkt/constants/bango.py:220
 msgid "Réunion"
-msgstr "strov Réunion"
+msgstr "Ostrov Réunion"
 
 #: mkt/constants/bango.py:221
 msgid "Romania"
@@ -16640,9 +16617,8 @@ msgid "The manifest's encoding does not match the charset provided in the HTTP C
 msgstr "Kódování souboru s manifestem neodpovídá znakové sadě, kterou jste zaslali v hlavičce HTTP Content-Type."
 
 #: mkt/developers/tasks.py:610
-#, fuzzy
 msgid "{region} region added to the Firefox Marketplace"
-msgstr "Do Firefox Marketplace byl přidán region {region}."
+msgstr "Do Firefox Marketplace bol pridaný región {region}"
 
 #: mkt/developers/tasks.py:613
 #, fuzzy
@@ -21950,9 +21926,8 @@ msgid "Lookup Tool"
 msgstr "Vyhľadanie účtu"
 
 #: mkt/lookup/templates/lookup/base.html:10
-#, fuzzy
 msgid "<small>Marketplace</small> Lookup Tool"
-msgstr "Nástroje redaktora <small>Marketplace</small>"
+msgstr ""
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:11
 msgid "Transaction Lookup results for <a href=\"%(tx_url)s\">Transaction %(uuid)s</a>"
@@ -22481,7 +22456,6 @@ msgid "Premium App"
 msgstr "Placená aplikace"
 
 #: mkt/reviewers/templates/reviewers/base.html:11
-#, fuzzy
 msgid "<small>Marketplace</small> Reviewer Tools"
 msgstr "Nástroje redaktora <small>Marketplace</small>"
 
@@ -22757,9 +22731,8 @@ msgid "Commit Review"
 msgstr ""
 
 #: mkt/reviewers/templates/reviewers/themes/queue.html:90
-#, fuzzy
 msgid "Commit Reviews"
-msgstr "{reviews} recenzia"
+msgstr ""
 
 #: mkt/reviewers/templates/reviewers/themes/queue.html:94
 msgid "{0} out of {1} reviewed"
