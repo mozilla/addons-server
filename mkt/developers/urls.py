@@ -74,6 +74,8 @@ app_detail_patterns = patterns('',
         name='mkt.developers.apps.payments'),
     url('^payments/disable$', views_payments.disable_payments,
         name='mkt.developers.apps.payments.disable'),
+    url('^payments/bango-portal$', views_payments.bango_portal,
+        name='mkt.developers.apps.payments.bango_portal'),
     # in-app payments.
     url('^in-app-config/$', views_payments.in_app_config,
         name='mkt.developers.apps.in_app_config'),

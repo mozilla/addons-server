@@ -3,6 +3,7 @@ import json
 from django.core.exceptions import ObjectDoesNotExist
 
 import mock
+from curling.lib import HttpClientError
 from mock import ANY
 from nose.tools import eq_, ok_, raises
 from pyquery import PyQuery as pq
@@ -669,6 +670,70 @@ class TestPayments(amo.tests.TestCase):
         eq_(len(pqr('#id_accounts[disabled]')), 1)
         # Currently associated account should be displayed separately.
         eq_(pqr('.current-account').text(), unicode(owner_acct))
+
+    def setup_bango_portal(self):
+        self.create_switch('bango-portal')
+        self.user = UserProfile.objects.get(pk=31337)
+        self.webapp.update(premium_type=amo.ADDON_PREMIUM)
+        self.login(self.user)
+        self.account = setup_payment_account(self.webapp, self.user)
+        self.portal_url = self.webapp.get_dev_url('payments.bango_portal')
+
+    @mock.patch('mkt.developers.views_payments.client.api')
+    def test_bango_portal_redirect(self, api):
+        self.setup_bango_portal()
+        authentication_token = u'D0A44686-D4A3-4B2F-9BEB-5E4975E35192'
+        api.bango.login.post.return_value = {
+            'person_id': 600925,
+            'email_address': u'admin@place.com',
+            'authentication_token': authentication_token,
+        }
+        assert self.is_owner(self.user)
+        res = self.client.get(self.portal_url)
+        eq_(res.status_code, 302)
+        redirect_url = res['Location']
+        assert authentication_token in redirect_url
+        assert 'emailAddress=admin%40place.com' in redirect_url
+
+    @mock.patch('mkt.developers.views_payments.client.api')
+    def test_bango_portal_redirect_api_error(self, api):
+        self.setup_bango_portal()
+        err = {'errors': 'Something went wrong.'}
+        api.bango.login.post.side_effect = HttpClientError(content=err)
+        res = self.client.get(self.portal_url)
+        eq_(res.status_code, 400)
+        eq_(json.loads(res.content), err)
+
+    def test_bango_portal_redirect_role_error(self):
+        # Checks that only the owner can access the page (vs. developers).
+        self.setup_bango_portal()
+        addon_user = self.user.addonuser_set.all()[0]
+        addon_user.role = amo.AUTHOR_ROLE_DEV
+        addon_user.save()
+        assert not self.is_owner(self.user)
+        res = self.client.get(self.portal_url)
+        eq_(res.status_code, 403)
+
+    def test_bango_portal_redirect_permission_error(self):
+        # Checks that the owner of another app can't access the page.
+        self.setup_bango_portal()
+        self.login(self.other)
+        other_webapp = Addon.objects.create(type=self.webapp.type,
+            status=self.webapp.status, name='other-%s' % self.webapp.id,
+            premium_type=amo.ADDON_PREMIUM)
+        AddonUser.objects.create(addon=other_webapp,
+                                 user=self.other, role=amo.AUTHOR_ROLE_OWNER)
+        res = self.client.get(self.portal_url)
+        eq_(res.status_code, 403)
+
+    def test_bango_portal_redirect_solitude_seller_error(self):
+        # Checks that the owner has a SolitudeSeller instance for this app.
+        self.setup_bango_portal()
+        assert self.is_owner(self.user)
+        (self.webapp.app_payment_account.payment_account.
+            solitude_seller.update(user=self.other))
+        res = self.client.get(self.portal_url)
+        eq_(res.status_code, 403)
 
 
 class TestRegions(amo.tests.TestCase):
