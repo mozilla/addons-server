@@ -119,7 +119,6 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
             'collection_type': COLLECTIONS_TYPE_BASIC,
             'description': 'A collection of my favorite phone games',
             'name': 'My Favorite phone games',
-            'region': mkt.regions.SPAIN.id,
             'carrier': mkt.carriers.TELEFONICA.id,
         }
         self.collection3 = Collection.objects.create(**collection_data)
@@ -158,7 +157,9 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         self.create_additional_data()
         self.make_publisher()
 
-        res = self.client.get(self.list_url, {'region': mkt.regions.SPAIN.id})
+        self.collection.update(region=mkt.regions.PL.id)
+
+        res = self.client.get(self.list_url, {'region': mkt.regions.SPAIN.slug})
         eq_(res.status_code, 200)
         data = json.loads(res.content)
         collections = data['objects']
@@ -172,33 +173,21 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         self.make_publisher()
 
         res = self.client.get(self.list_url,
-            {'carrier': mkt.carriers.TELEFONICA.id})
+            {'carrier': mkt.carriers.TELEFONICA.slug})
         eq_(res.status_code, 200)
         data = json.loads(res.content)
         collections = data['objects']
-        eq_(len(collections), 2)
+        eq_(len(collections), 3)
         eq_(collections[0]['id'], self.collection4.id)
         eq_(collections[1]['id'], self.collection3.id)
-
-    def test_listing_filtering_carrier_0(self):
-        self.create_additional_data()
-        self.make_publisher()
-
-        # Test filtering on carrier with value 0 (which is valid, and different
-        # from the default, which is null). There used to be a bug with falsy
-        # values in django-filter 0.6, make sure it doesn't come back.
-        res = self.client.get(self.list_url, {'carrier': 0})
-        eq_(res.status_code, 200)
-        data = json.loads(res.content)
-        collections = data['objects']
-        eq_(len(collections), 1)
-        eq_(collections[0]['id'], self.collection2.id)
+        # self.collection.carrier is None, so it will match too.
+        eq_(collections[2]['id'], self.collection.id)
 
     def test_listing_filtering_category(self):
         self.create_additional_data()
         self.make_publisher()
 
-        res = self.client.get(self.list_url, {'category': self.category.pk})
+        res = self.client.get(self.list_url, {'cat': self.category.slug})
         eq_(res.status_code, 200)
         data = json.loads(res.content)
         collections = data['objects']
@@ -210,9 +199,9 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         self.make_publisher()
 
         res = self.client.get(self.list_url, {
-            'category': self.category.pk,
-            'region': mkt.regions.SPAIN.id,
-            'carrier': mkt.carriers.SPRINT.id
+            'cat': self.category.slug,
+            'region': mkt.regions.SPAIN.slug,
+            'carrier': mkt.carriers.SPRINT.slug
         })
         eq_(res.status_code, 200)
         data = json.loads(res.content)
@@ -220,7 +209,7 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         eq_(len(collections), 1)
         eq_(collections[0]['id'], self.collection4.id)
 
-    def test_listing_filterig_category_region_carrier_fallback(self):
+    def test_listing_filtering_category_region_carrier_fallback(self):
         self.create_additional_data()
         self.make_publisher()
 
@@ -229,9 +218,9 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         # anything either, then fall back to category only, then remove
         # all filters because of the order in which filters are dropped.
         res = self.client.get(self.list_url, {
-            'category': self.empty_category.pk,
-            'region': mkt.regions.SPAIN.id,
-            'carrier': mkt.carriers.SPRINT.id
+            'cat': self.empty_category.slug,
+            'region': mkt.regions.SPAIN.slug,
+            'carrier': mkt.carriers.SPRINT.slug
         })
         eq_(res.status_code, 200)
         data = json.loads(res.content)
@@ -242,11 +231,14 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         self.create_additional_data()
         self.make_publisher()
 
-        # Test filtering with a non-existant carrier. It should fall back on
-        # region filtering only.
+        Collection.objects.all().update(carrier=mkt.carriers.TELEFONICA.id)
+        self.collection.update(region=mkt.regions.PL.id)
+
+        # Test filtering with a carrier that doesn't match any Collection.
+        # It should fall back on region filtering only.
         res = self.client.get(self.list_url, {
-            'region': mkt.regions.SPAIN.id,
-            'carrier': mkt.carriers.SPRINT.id
+            'region': mkt.regions.SPAIN.slug,
+            'carrier': mkt.carriers.SPRINT.slug
         })
         eq_(res.status_code, 200)
         data = json.loads(res.content)
@@ -260,11 +252,14 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         self.create_additional_data()
         self.make_publisher()
 
+        Collection.objects.all().update(carrier=mkt.carriers.TELEFONICA.id,
+                                        region=mkt.regions.SPAIN.id)
+
         # Test filtering with a non-existant carrier and region. It should
         # fall back on no filtering.
         res = self.client.get(self.list_url, {
-            'region': mkt.regions.UK.id,
-            'carrier': mkt.carriers.SPRINT.id
+            'region': mkt.regions.UK.slug,
+            'carrier': mkt.carriers.SPRINT.slug
         })
         eq_(res.status_code, 200)
         data = json.loads(res.content)

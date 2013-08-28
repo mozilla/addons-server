@@ -26,12 +26,14 @@ Listing
 
     **Request**:
 
-    :param category: a category ID.
-    :type category: int
-    :param region: a region ID.
-    :type region: int
-    :param carrier: a carrier ID.
-    :type carrier: int
+    The following query string parameters can be used to filter the results:
+
+    :param cat: a category ID/slug.
+    :type cat: int|string
+    :param region: a region ID/slug.
+    :type region: int|string
+    :param carrier: a carrier ID/slug.
+    :type carrier: int|string
 
 Create
 ------
