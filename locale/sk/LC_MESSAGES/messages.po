@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-08-23 09:56-0700\n"
-"PO-Revision-Date: 2013-08-27 19:50+0000\n"
+"PO-Revision-Date: 2013-08-28 19:36+0000\n"
 "Last-Translator: Vlado <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-POOTLE-MTIME: 1377633017.0\n"
+"X-POOTLE-MTIME: 1377718582.0\n"
 
 #: apps/addons/buttons.py:207
 msgid "Download Now"
@@ -154,9 +154,8 @@ msgid "Give Your Theme a Name."
 msgstr "Pomenujte svoju tému."
 
 #: apps/addons/forms.py:593 apps/devhub/templates/devhub/personas/submit.html:53
-#, fuzzy
 msgid "Describe your Theme."
-msgstr "Popište svůj motiv."
+msgstr "Popíšte svoju tému."
 
 #: apps/addons/forms.py:727
 msgid "Enter a new author's email address"
@@ -2241,8 +2240,10 @@ msgid ""
 "<p> Please enter <strong>both words</strong> below, <strong>separated by a space</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try different words</a> "
 "or <a href=\"#\" id=\"recaptcha_audio\">listen to something</a> instead. </p>"
 msgstr ""
-"<p> Zadajte <strong>obe slová</strong> uvedené nižšie. <strong>Oddeľte ich medzerou</strong>. </p> <p> Ak sú slová zle čitateľné, <a href=\"#\" id=\"recaptcha_different\">vyskúšajte iné slová</a> "
-"alebo si ich <a href=\"#\" id=\"recaptcha_audio\">vypočujte</a>. </p>"
+"<p> Zadajte <strong>obe slová</strong> uvedené nižšie a <strong>oddeľte ich "
+"medzerou</strong>. </p> <p> Ak sú slová zle čitateľné, <a href=\"#\" "
+"id=\"recaptcha_different\">vyskúšajte iné slová</a> alebo si ich <a href=\"#\" "
+"id=\"recaptcha_audio\">vypočujte</a>. </p>"
 
 #: apps/amo/templates/amo/side_nav.html:4 apps/amo/templates/amo/side_nav.html:19 apps/amo/templates/amo/site_nav.html:4 apps/amo/templates/amo/site_nav.html:26 apps/browse/views.py:56
 #: apps/browse/views.py:66 apps/browse/views.py:233 apps/browse/views.py:294 apps/search/forms.py:89 apps/search/forms.py:102 mkt/search/forms.py:17
@@ -3380,9 +3381,8 @@ msgid "No results found."
 msgstr "Nenašli sa žiadne výsledky."
 
 #: apps/browse/templates/browse/personas/base.html:6 apps/browse/templates/browse/personas/mobile/base.html:7
-#, fuzzy
 msgid "{0} Themes"
-msgstr "{0} motivů vzhledu"
+msgstr ""
 
 #. {0} is a user's name.
 #: apps/browse/templates/browse/personas/base.html:15 apps/browse/templates/browse/personas/base.html:40 apps/browse/templates/browse/personas/grid.html:8
@@ -3619,7 +3619,7 @@ msgstr "Sunbird"
 
 #: apps/constants/applications.py:89 mkt/search/forms.py:47 templates/global/menu_links.html:15
 msgid "Mobile"
-msgstr "Mobilný Firefox"
+msgstr "Mobilné"
 
 #: apps/constants/applications.py:104
 msgid "Firefox for Android"
@@ -4123,9 +4123,8 @@ msgid "Approved Instantly"
 msgstr "Automaticky vrácené"
 
 #: apps/constants/payments.py:143 apps/devhub/templates/devhub/payments/refunds.html:193 mkt/developers/templates/developers/payments/refunds.html:212
-#, fuzzy
 msgid "Declined"
-msgstr "Zamítnuté"
+msgstr "Zamietnuté"
 
 #: apps/constants/payments.py:146 mkt/constants/payments.py:9 mkt/developers/templates/developers/payments/refunds.html:249
 #, fuzzy
@@ -4189,12 +4188,11 @@ msgstr "Maemo"
 
 #: apps/devhub/feeds.py:35
 msgid "Recent Changes for %s"
-msgstr "Posledné zmeny pre %s"
+msgstr "Nedávne zmeny pre %s"
 
 #: apps/devhub/feeds.py:37
-#, fuzzy
 msgid "Recent Changes for My Add-ons"
-msgstr "Nedávné změny pro mé doplňky"
+msgstr "Nedávne zmeny pre moje doplmky"
 
 #: apps/devhub/forms.py:85 mkt/developers/forms.py:116
 msgid "Must have at least one owner."
@@ -4274,9 +4272,8 @@ msgid "An organization of my choice"
 msgstr "Organizácia podľa môjho výberu"
 
 #: apps/devhub/forms.py:340
-#, fuzzy
 msgid "You cannot setup Contributions for an add-on that is linked to a premium add-on in the Marketplace."
-msgstr "Nemůžete si nastavit příspěvky u doplňku, který je provázán s placeným doplňkem v Marketplace."
+msgstr "Nemôžete si nastaviť príspevky pre doplnok, ktorý je previazaný na platený doplnok v Marketplace."
 
 #: apps/devhub/forms.py:360
 msgid "Please enter a suggested amount greater than 0."
@@ -4303,9 +4300,8 @@ msgid "Need at least one compatible application."
 msgstr "Vyžaduje aspoň jednu kompatibilnú aplikáciu."
 
 #: apps/devhub/forms.py:466
-#, fuzzy
 msgid "An app already exists on this domain, only one app per domain is allowed."
-msgstr "Pro tuto doménu již aplikace existuje. Na doménu je povolena pouze jedna aplikace."
+msgstr "Pre túto doménu už aplikácia existuje. Na doménu je povolená len jedna aplikácia."
 
 #: apps/devhub/forms.py:473 apps/devhub/forms.py:488 apps/devhub/forms.py:501 mkt/submit/forms.py:145 mkt/submit/forms.py:212
 msgid "There was an error with your upload. Please try again."
@@ -4332,9 +4328,8 @@ msgid "Version doesn't match"
 msgstr "Verzia sa nezhoduje"
 
 #: apps/devhub/forms.py:623
-#, fuzzy
 msgid "You cannot delete a file once the review process has started. You must delete the whole version."
-msgstr "Nemůžete smazat soubor v době, kdy byl proces kontroly zahájen. Musíte smazat celou verzi."
+msgstr "Nemôžete odstrániť súbor v dobe, keď bol zahájený proces kontroly. Musíte odstrániť celú verziu."
 
 #: apps/devhub/forms.py:643
 msgid "The platform All cannot be combined with specific platforms."
@@ -4354,7 +4349,6 @@ msgid "Give your add-on a name. The most successful add-ons give some indication
 msgstr "Pomenujte svoj doplnok. Najúspešnejšie doplnky obsahujú vo svojom názve indikáciu toho, na čo slúžia."
 
 #: apps/devhub/forms.py:751
-#, fuzzy
 msgid "Briefly describe your add-on in one sentence. This appears in the Add-ons Manager."
 msgstr "Jednou vetou popíšte svoj doplnok. Táto sa objaví v okne Správcu doplnkov."
 
@@ -4363,22 +4357,19 @@ msgid "Enter your initial version number. Depending on the number of releases an
 msgstr "Zadajte číslo prvej verzie doplnku. V závislosti na počte vydaní a na vašich preferenciách je zvyčajne prvou verziou 0.1 alebo 1.0"
 
 #: apps/devhub/forms.py:758
-#, fuzzy
 msgid "Each add-on requires a unique ID in the form of a UUID or an email address, such as addon-name@developer.com. The email address does not have to be valid."
 msgstr "Každý doplnok musí mať unikátne identifikačné číslo vo forme UUID alebo e-mailovej adresy, ako napríklad nazov-doplnku@developer.com. Táto adresa nemusí byť platnou e-mailovou adresou."
 
 #: apps/devhub/forms.py:763
 #, fuzzy
 msgid "The package name of your add-on used within the browser. This should be a short form of its name (for example, Test Extension might be test_extension)."
-msgstr "Jméno balíčku vašeho doplňku, jak bude používáno webovým prohlížečem. Mělo by se jednat o zkrácený název doplňku (například: Testovací doplněk může mít jako jméno uvedeno testovaci_doplnek)."
+msgstr "Názov balíčku vášho doplnku používaný webovým prehliadačom. Malo by to byť skrátený názov doplnku (napríklad, pre testovací doplnok môže byť uvedený názov testovaci_doplnok)."
 
 #: apps/devhub/forms.py:768
-#, fuzzy
 msgid "Enter the name of the person or entity to be listed as the author of this add-on."
 msgstr "Zadajte meno osoby alebo názov entity, ktorá je autorom tohto doplnku."
 
 #: apps/devhub/forms.py:771
-#, fuzzy
 msgid "Enter the names of any other contributors to this extension, one per line."
 msgstr "Zadajte mená prispievateľov k tomuto doplnku, každé meno na samostatný riadok."
 
@@ -4387,29 +4378,24 @@ msgid "Add-on names should not contain Mozilla trademarks."
 msgstr "Názov doplnku nesmie obsahovať ochranné známky Mozilly."
 
 #: apps/devhub/forms.py:787
-#, fuzzy
 msgid "Enter a valid package name consisting of letters, numbers, or underscores."
-msgstr "Vložte platné jméno balíčku, které se bude skládat ze znaků, čísel či podtržítek."
+msgstr "Zadajte platný názov balíčku, ktorý sa bude skladať z písmen, číslic prípadne podčiarkovníkov."
 
 #: apps/devhub/forms.py:791
-#, fuzzy
 msgid "This package name is already in use."
-msgstr "Název balíčku je již používán."
+msgstr "Tento názov balíčku sa už používa."
 
 #: apps/devhub/forms.py:794
-#, fuzzy
 msgid "The package name cannot be: %s."
-msgstr "Jméno balíčku nemůže být: %s."
+msgstr "Názov balíčku nemôže byť: %s."
 
 #: apps/devhub/forms.py:805
-#, fuzzy
 msgid "The add-on ID must be a UUID string or an email address."
-msgstr "ID doplňku musí být UUID řetězec nebo e-mailová adresa."
+msgstr "Identifikátorom doplnku musí byť reťazec UUID alebo e-mailová adresa."
 
 #: apps/devhub/forms.py:811
-#, fuzzy
 msgid "The version string is invalid."
-msgstr "Verze je neplatná."
+msgstr "Reťazec verzie nie je platný."
 
 #: apps/devhub/forms.py:819
 msgid "Minimum"
@@ -4420,19 +4406,16 @@ msgid "Maximum"
 msgstr "Maximum"
 
 #: apps/devhub/forms.py:873
-#, fuzzy
 msgid "Min version must be less than Max version."
-msgstr "Minimální verze musí být menší než maximální verze."
+msgstr "Číslo minimálnej verzie musí byť menšie ako číslo maximálnej verzie."
 
 #: apps/devhub/forms.py:899
-#, fuzzy
 msgid "{0} is a required target application."
-msgstr "{0} je vyžadovaná cílová aplikace."
+msgstr "{0} je vyžadovaná cieľová aplikácia."
 
 #: apps/devhub/forms.py:911
-#, fuzzy
 msgid "About dialog"
-msgstr "Dialog o aplikaci"
+msgstr "Dialógové okno O aplikácii"
 
 #: apps/devhub/forms.py:912
 #, fuzzy
@@ -4482,7 +4465,6 @@ msgid "Context menu command"
 msgstr "Príkaz v kontextovej ponuke"
 
 #: apps/devhub/forms.py:934
-#, fuzzy
 msgid "Creates a context menu item for images"
 msgstr "Vytvorí kontextovú ponuku pre obrázky"
 
@@ -4491,7 +4473,6 @@ msgid "Sidebar support"
 msgstr "Podpora bočného panela"
 
 #: apps/devhub/forms.py:938
-#, fuzzy
 msgid "Creates an example sidebar panel"
 msgstr "Vytvorí ukážkový bočný panel"
 
@@ -4500,9 +4481,8 @@ msgid "Select an application first"
 msgstr "Najskôr zvoľte aplikáciu"
 
 #: apps/devhub/forms.py:1014
-#, fuzzy
 msgid "There cannot be more than 3 required add-ons."
-msgstr "Nemůžete mít více než 3 vyžadované doplňky."
+msgstr "Nemôžete mať viac ako 3 vyžadované doplnky."
 
 #: apps/devhub/helpers.py:43
 msgid "Add-on Documentation :: Developer Hub"
@@ -4604,9 +4584,8 @@ msgid "Changes successfully saved."
 msgstr "Zmeny boli úspešne uložené."
 
 #: apps/devhub/views.py:358
-#, fuzzy
 msgid "Add-on cannot be deleted. Disable this add-on instead."
-msgstr "Doplněk nemůže být smazán. Na místo toho jej zakažte."
+msgstr "Doplněk nemôže byť odstránený. Namiesto toho ho zakážte."
 
 #: apps/devhub/views.py:367
 msgid "Theme deleted."
@@ -4629,14 +4608,12 @@ msgid "There were errors in your submission."
 msgstr "V odoslaných údajoch sa nachádzajú chyby."
 
 #: apps/devhub/views.py:563
-#, fuzzy
 msgid "Refund already processed."
-msgstr "Vrácení peněz již proběhlo."
+msgstr "Vrátenie peňazí už prebehlo."
 
 #: apps/devhub/views.py:571
-#, fuzzy
 msgid "Refund failed. error: %s"
-msgstr "Vrácení peněz selhalo. Chyba: %s"
+msgstr "Vrátenie peňazí zlyhalo. Chyba: %s"
 
 #: apps/devhub/views.py:581
 msgid "Refund was previously issued; no action taken."
@@ -4647,9 +4624,8 @@ msgid "Refund issued."
 msgstr ""
 
 #: apps/devhub/views.py:597
-#, fuzzy
 msgid "Refund declined."
-msgstr "Zamítnutí vrácení peněz"
+msgstr ""
 
 #: apps/devhub/views.py:669
 msgid "Validate Add-on"
@@ -4665,9 +4641,8 @@ msgid "There was an error with the submission."
 msgstr "Pri odosielaní sa vyskytla chyba."
 
 #: apps/devhub/views.py:892
-#, fuzzy
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
-msgstr "Kontrola vygenerovala příliš mnoho chyb/varování. %s zpráv tak není zobrazeno. Po opravení zobrazených nedostatků budete moci vidět další."
+msgstr ""
 
 #: apps/devhub/views.py:1244 apps/users/forms.py:322 mkt/developers/utils.py:57
 msgid "Images must be either PNG or JPG."
@@ -4764,19 +4739,16 @@ msgid "The Add-on Builder is a web-based development environment that provides a
 msgstr "Add-on Builder je webové vývojové prostředí, které poskytuje pokročilé funkce pro práci s Add-on SDK."
 
 #: apps/devhub/templates/devhub/builder.html:56 mkt/developers/templates/developers/builder.html:56
-#, fuzzy
 msgid "Edit code in a feature-rich environment"
-msgstr "Úpravu kódu ve vývojovém prostředí."
+msgstr ""
 
 #: apps/devhub/templates/devhub/builder.html:57 mkt/developers/templates/developers/builder.html:57
-#, fuzzy
 msgid "Test your add-ons instantly"
-msgstr "Přímý test vytvářených doplňků."
+msgstr ""
 
 #: apps/devhub/templates/devhub/builder.html:58 mkt/developers/templates/developers/builder.html:58
-#, fuzzy
 msgid "Use built-in version control &amp; sharing"
-msgstr "Zabudované verzování a sdílení."
+msgstr ""
 
 #: apps/devhub/templates/devhub/builder.html:60 mkt/developers/templates/developers/builder.html:60
 #, fuzzy
@@ -4792,19 +4764,16 @@ msgid "The Add-on SDK is set of APIs bundled with a command line utility that al
 msgstr ""
 
 #: apps/devhub/templates/devhub/builder.html:76 mkt/developers/templates/developers/builder.html:76
-#, fuzzy
 msgid "Choose your own code editor"
-msgstr "Zvolte si svůj vlastní editor kódu."
+msgstr ""
 
 #: apps/devhub/templates/devhub/builder.html:77 mkt/developers/templates/developers/builder.html:77
-#, fuzzy
 msgid "Access your development files locally"
-msgstr "Přistupujte k vyvíjenému doplňku lokálně."
+msgstr ""
 
 #: apps/devhub/templates/devhub/builder.html:78 mkt/developers/templates/developers/builder.html:78
-#, fuzzy
 msgid "Get greater control over SDK build steps"
-msgstr "Mějte větší kontrolu nad jednotlivými kroky SDK."
+msgstr ""
 
 #: apps/devhub/templates/devhub/builder.html:81 mkt/developers/templates/developers/builder.html:81
 #, fuzzy
@@ -5188,9 +5157,8 @@ msgid "Want to create XULRunner applications, XPCOM components, and other advanc
 msgstr "Chcete vytvořit aplikaci postavenou na XULRunneru, XPCOM komponenty či jiné pokročilé věci? Navštivte <a href=\"%(url)s\">průvodce vytvořením projektu na serveru MozDev</a>."
 
 #: apps/devhub/templates/devhub/package_addon_success.html:10
-#, fuzzy
 msgid "Add-on packaged successfully!"
-msgstr "Doplněk byl úspěšně vytvořen"
+msgstr ""
 
 #: apps/devhub/templates/devhub/package_addon_success.html:14
 #, fuzzy
@@ -5500,9 +5468,9 @@ msgstr "Značky pomáhajú používateľom pri vyhľadávaní doplnkov, pričom 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:171 apps/devhub/templates/devhub/personas/edit.html:97 apps/devhub/templates/devhub/personas/submit.html:46
 msgid "Comma-separated, minimum of {0} character."
 msgid_plural "Comma-separated, minimum of {0} characters."
-msgstr[0] "Oddelené čiarkou, minimálne {0} znak"
-msgstr[1] "Oddelené čiarkou, minimálne {0} znaky"
-msgstr[2] "Oddelené čiarkou, minimálne {0} znakov"
+msgstr[0] "Oddelené čiarkou, minimálne {0} znak."
+msgstr[1] "Oddelené čiarkou, minimálne {0} znaky."
+msgstr[2] "Oddelené čiarkou, minimálne {0} znakov."
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:174 apps/devhub/templates/devhub/personas/edit.html:100 apps/devhub/templates/devhub/personas/submit.html:49
 msgid "Example: dark, cinema, noir. Limit 20."
@@ -5762,7 +5730,7 @@ msgstr "Přidejte prosím k vašemu doplňku alespoň jeden obrázek:"
 
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:145
 msgid "Please provide a caption for this screenshot:"
-msgstr "Zadajte názov pre túto ukážku"
+msgstr "Zadajte názov pre túto ukážku:"
 
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:161
 msgid "Add a Screenshot..."
@@ -5902,9 +5870,8 @@ msgstr "Smazat aplikaci."
 
 # 87%
 #: apps/devhub/templates/devhub/addons/listing/item_actions_app.html:24
-#, fuzzy
 msgid "Edit details about this app's listing."
-msgstr "Úprava nastavení stránky aplikace"
+msgstr ""
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions_app.html:39 mkt/developers/templates/developers/apps/status.html:7
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:57 mkt/developers/templates/developers/includes/addons_edit_nav.html:21
@@ -6054,7 +6021,7 @@ msgstr "Adresa URL podpory:"
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:4 apps/devhub/templates/devhub/personas/submit_done.html:4
 msgid "Submission Complete"
-msgstr "Odoslanie dokončené."
+msgstr ""
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:8 apps/devhub/templates/devhub/addons/submit/sidebar.html:9 apps/devhub/templates/devhub/addons/submit/sidebar.html:19
 #: apps/devhub/templates/devhub/personas/submit_done.html:8
@@ -6079,7 +6046,7 @@ msgstr "Jakmile bude doplněk zkontrolován redaktorem, obdržíte e-mail. V mez
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:34 apps/devhub/templates/devhub/personas/submit_done.html:16
 msgid "Next steps:"
-msgstr "Ďalšie kroky"
+msgstr "Ďalšie kroky:"
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:39
 msgid "<a href=\"{0}\">Upload</a> another platform-specific file to this version."
@@ -6095,9 +6062,8 @@ msgid "Tell your users why you created this in your <a href=\"{0}\">Developer Pr
 msgstr ""
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:47
-#, fuzzy
 msgid "View and subscribe to your app's <a href=\"{0}\">activity feed</a> to stay updated on reviews, collections, and more."
-msgstr "Zobrazte si a prihlašte odběr <a href=\"{0}\">aktivity</a> u vaší aplikace. Zůstaňte v obraze a mějte přehled o recenzích, sbírkách atd."
+msgstr ""
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:49
 #, fuzzy
@@ -6300,9 +6266,8 @@ msgid "To complete this submission process you'll need your add-on package (.xpi
 msgstr "Pro dokončení procesu přidání budete potřebovat balíček s doplňkem (.xpi, .jar nebo .xml) a nejméně jeden obrázek s vaším doplňkem v akci."
 
 #: apps/devhub/templates/devhub/addons/submit/start.html:32
-#, fuzzy
 msgid "When you're ready to begin, please read and accept our <strong>Developer Agreement</strong>:"
-msgstr "Nyní můžete začít. Přečtěte si a akceptujte naše <strong>ujednání pro vývojáře</strong>:"
+msgstr ""
 
 #: apps/devhub/templates/devhub/addons/submit/start.html:46 mkt/developers/templates/developers/terms.html:18 mkt/submit/templates/submit/terms.html:37
 msgid "Printable Version"
@@ -6485,18 +6450,14 @@ msgstr ""
 "Centrum pro vývojáře (v něm se momentálně nacházíte!) nabízí snadné vytvoření doplňku pomocí <a href=\"%(url)s\">Nástroje na tvorbu doplňků</a>!"
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:54
-#, fuzzy
 msgid ""
 "Just follow the steps to enter your add-on's name, version number, supported applications, and other details, and it will make your extension package for download. Not only does it generate your "
 "install manifest, but you can select common interface elements like toolbars, sidebars, and context menus to make a working extension skeleton. We're practically writing your extension for you!"
 msgstr ""
-"Pouze následujte kroky a zadejte jméno svého doplňku, číslo verze, podporované aplikace a další detaily. Následně se vám nabídne balíček s doplňkem ke stažení. Nevygeneruje se vám pouze instalační "
-"manifest. Můžete si též do kostry doplňku zvolit typické prvky rozhraní jako jsou lišty, postranní lišty či položky do místní nabídky. Prakticky za vás píšeme doplněk!"
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:60
-#, fuzzy
 msgid "Take me to the Add-on Packager!"
-msgstr "Přejít na Nástroj na tvorbu doplňků"
+msgstr ""
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:65
 #, fuzzy
@@ -6533,13 +6494,10 @@ msgid "Enter the How-to Library"
 msgstr "Databáze příkladů, jak na to"
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:81
-#, fuzzy
 msgid ""
 "If you already know what you're looking for, just <a href=\"/en-US/developers/search\">search for it!</a> Our search will scour the best add-on resources to find that missing interface or common "
 "problem you're having. If search isn't cutting it, feel free to <a href=\"https://forums.addons.mozilla.org\">ask for help</a> in our forums."
 msgstr ""
-"Pokud víte, co hledáte, jednoduše si to <a href=\"/en-US/developers/search\">vyhledejte</a>! Naše vyhledávání prohledá nejlepší zdroje informací pro doplňky a nalezne informace či popis častého "
-"problému, se kterým se potýkáte. Pokud vám vyhledávání nevyhovuje, neváhejte <a href=\"https://forums.addons.mozilla.org\">položit otázku</a> v našem fóru."
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:89
 msgid "Test your add-on"
@@ -6591,7 +6549,7 @@ msgstr "Je vše v pořádku? Skvělé! Nyní zbývá udělat jen jedinou věc&he
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:130
 msgid "Submit my Add-on!"
-msgstr "Odoslať môj doplnok"
+msgstr ""
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:133
 msgid "Congratulations!"
@@ -6806,7 +6764,7 @@ msgstr "Nastavenie vývojového prostredia pre tvorbu rozšírení"
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:39
 msgid "This article gives suggestions on how to set up your Mozilla application for extension development, including setting up a profile, changing preferences, and helpful development tools."
-msgstr "Tento článok obsahuje návrhy na nastavenie vašej aplikácie od Mozilly pre vývoj rozšírení, vrátane nastavenia profilu či zmeny nastavení. Takisto upozorňuje na užitočné vývojárske nástroje."
+msgstr ""
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:52
 msgid "Extension Bootcamp: Zero to Hello World! in 45 Minutes"
@@ -6834,7 +6792,7 @@ msgstr "Balík rozšírenia"
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:83
 msgid "Learn more details on how extensions are packaged and installed."
-msgstr "Podrobnosti o balíčkoch a inštalácii rozšírení"
+msgstr ""
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:93
 msgid "Install Manifests"
@@ -6890,7 +6848,7 @@ msgstr "Vytvorenie rozšírenia pre stavový riadok"
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:167
 msgid "Learn how to create a simple status bar extension and add more advanced functionality in subsequent tutorials, linked below."
-msgstr "Pozrite sa, ako vytvoriť jednoduché rozšírenie pre stavový riadok. V ďalších nižšie odkazovaných návodoch nájdete postupy, ako do neho pridať ďalšiu funkcionalitu."
+msgstr ""
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:177
 msgid "Creating a Dynamic Status Bar Extension"
@@ -7139,19 +7097,16 @@ msgid "More Resources"
 msgstr "Ďalšie zdroje"
 
 #: apps/devhub/templates/devhub/docs/how-to.html:38 apps/devhub/templates/devhub/docs/reference.html:308
-#, fuzzy
 msgid "Already know what you're looking for? <a href=\"%(link_search)s\">Search for it!</a>"
-msgstr "Víte konkrétně, co hledáate? <a href=\"%(link_search)s\">Vyhledejte si to</a>!"
+msgstr ""
 
 #: apps/devhub/templates/devhub/docs/how-to.html:43
-#, fuzzy
 msgid "Browse through <a href=\"%(link_reference)s\">API & Language References</a> to find that interface you hope exists"
-msgstr "Najděte si v <a href=\"%(link_reference)s\">přehledu API či referenci jazyka</a> rozhraní, které hledáte."
+msgstr ""
 
 #: apps/devhub/templates/devhub/docs/how-to.html:48 apps/devhub/templates/devhub/docs/reference.html:318
-#, fuzzy
 msgid "Need help? <a href=\"https://forums.addons.mozilla.org\">Visit our forums</a>"
-msgstr "Potřebujete pomoci? <a href=\"https://forums.addons.mozilla.org\">Navštivte naše fórum</a>."
+msgstr ""
 
 #: apps/devhub/templates/devhub/docs/how-to.html:77
 msgid "Learn the basics of developing an extension on the Mozilla platform with this section full of beginner&#039;s guides."
@@ -7194,13 +7149,10 @@ msgid "Add-on Support"
 msgstr "Podpora pre doplnok"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:19
-#, fuzzy
 msgid ""
 "If you have a support question about a particular add-on, such as \"how do I use this add-on?\" or \"why doesn't this work properly?\", please contact that add-on's author through the support "
 "channels listed on the add-on's listing page."
 msgstr ""
-"Pokud máte dotaz ke konkrétnímu doplňku jako \"jak se doplněk používá?\" či \"proč nefunguje korektně?\", kontaktujte prosím přímo autora doplňku. Kontaktní informace naleznete přímo na stránce "
-"doplňku."
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:24
 #, fuzzy
@@ -7301,17 +7253,12 @@ msgstr ""
 "nainstalovány."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:43
-#, fuzzy
 msgid ""
 "While we call these \"Beta versions\", you can use this channel for nightlies, or alphas, or prerelease versions as you wish. Please note that there is only one channel for this purpose and all of "
 "your users on this channel will receive the latest add-ons submitted. For instance, if you upload <code>1.0beta1</code> to the release channel and then upload <code>1.1alpha1</code>, all users of "
 "<code>1.0beta1</code> will be offered an upgrade to <code>1.1alpha1</code>. Updates are pushed by submission date and not version number, so users will always get the most recent channel update "
 "regardless of any kind of alphabetical sorting."
 msgstr ""
-"Ačkoliv mluvíme o \"betaverzích\", můžete používat tento kanál pro noční vývojové verze, alfaverze nebo předverze. Zkrátka jak si přejete. Mějte prosím na paměti, že pro tyto účely existuje pouze "
-"jeden kanál a všichni vaši uživatelé, kteří tento kanál používají, budou dostávat poslední verze doplňku, které zpřístupníte. Pokud například nahrajete verzi <code>1.0beta1</code>, a poté nahrajete "
-"verzi <code>1.1alpha1</code>, bude všem uživatelům verze <code>1.0beta1</code> nabídnuta aktualizace na verzi <code>1.1alpha1</code>. Aktualizace jsou řazeny dle data přidání a nikoliv dle čísla "
-"verze. Uživatelé tak dostanou vždy nejnovější aktualizaci bez ohledu na řazení verzí."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:48
 msgid "Required Updates"
@@ -7333,8 +7280,6 @@ msgid ""
 "Add-ons can have multiple users with permission to update and manage the listing. Existing authors of an add-on can transfer ownership and add additional developers to an add-on's listing through "
 "the Developer Tools provided. No interaction with Mozilla representatives is necessary for a transfer of ownership."
 msgstr ""
-"Doplnky môžu byť priradené viacerým používateľom s rôznym stupňom oprávnení od aktualizácií po správu stránky doplnku. Existujúci autori doplnku môžu predávať vlastníctvo a pridávať k doplnku "
-"ďalších vývojárov. To všetko cez Nástroje pre vývojárov. Kvôli zmene vlastníctva nie je žiadna povinnosť kontaktovať Mozillu."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:63
 #, fuzzy
@@ -7532,9 +7477,8 @@ msgid ""
 msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:88
-#, fuzzy
 msgid "Negative reviews &mdash; Featured add-ons should have a great experience and very few bugs, so add-ons with many negative reviews may be reconsidered."
-msgstr "Negativní recenze &mdash; Doporučené doplňky by se měly uživatelům líbit a mít málo chyb. Doplňky, které mají řadu negativních recenzí, by neměly být doporučené."
+msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:93
 #, fuzzy
@@ -7607,33 +7551,23 @@ msgstr ""
 "kterou z nich zvolí, a o které si myslí, že lépe sedne vyvíjenému doplňku."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:19
-#, fuzzy
 msgid ""
 "<strong><a href=\"#full\">Full Review</a></strong> &mdash; a thorough functional and code review of the add-on, appropriate for add-ons ready for distribution to the masses. All site features are "
 "available to these add-ons."
 msgstr ""
-"<strong><a href=\"#full\">Plná kontrola</a></strong> &mdash; je zkontrolována funkcionalita a proběhne kontrola kódu doplňku. Tato kontrola je vhodná pro doplňky určené pro běžné uživatele. Pro "
-"takto zkontrolované doplňky jsou dostupné všechny funkce webu."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:24
-#, fuzzy
 msgid ""
 "<strong><a href=\"#preliminary\">Preliminary Review</a></strong> &mdash; a faster review intended for experimental add-ons. Preliminary reviews do not check for functionality or full policy "
 "compliance, but the reviewed add-ons have install button cautions and some feature limitations."
 msgstr ""
-"<strong><a href=\"#preliminary\">Předběžná kontrola</a></strong> &mdash; jedná se o rychlejší kontrolu určenou hlavně pro experimentální doplňky. V rámci předběžné kontroly se nekontroluje "
-"funkcionalita, plná shoda se zásadami pro doplňky a u doplňku se na webu zobrazuje varování. Nejsou pro něj dostupné všechny funkce webu."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:31
-#, fuzzy
 msgid ""
 "Detailed descriptions of each option are below. After selecting a review process at submission, the add-on will be placed in the queue. Add-ons are reviewed by the <a href=\"https://wiki.mozilla."
 "org/AMO:Editors\">AMO Editors</a>, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for users. Developers will "
 "receive an email with any updates throughout the review process."
 msgstr ""
-"Detailní popisy jednotlivých možností jsou popsány níže. Po zvolení typu kontroly a odeslání je doplněk zařazen do fronty. Doplňky jsou kontrolovány <a href=\"https://wiki.mozilla.org/AMO:Editors"
-"\">redaktory serveru</a>. Jedná se o skupinu talentovaných vývojářů, kteří ve svém volném čase pomáhají projektu Mozilla kontrolou doplňků a ujišťují se, že jsou stabilní a bezpečné pro uživatele. "
-"Vývojáři budou o jakýchkoliv aktualizacích v rámci kontroly vyrozuměni e-mailem."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:37
 #, fuzzy
@@ -7651,9 +7585,8 @@ msgid ""
 msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:50
-#, fuzzy
 msgid "We aim to perform full reviews in under 10 days, though most add-ons are reviewed in much less time."
-msgstr "Snažíme se provádět plné kontroly do 10 dní. U většiny doplňků je však čas pro kontrolu o mnoho kratší."
+msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:55
 #, fuzzy
@@ -7687,13 +7620,10 @@ msgid "Some of the most common issues we see when performing these reviews are:"
 msgstr "Nejčastější problémy, se kterými se v rámci kontroly setkáváme:"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:93
-#, fuzzy
 msgid ""
 "<strong>JavaScript namespace pollution</strong> &mdash; the most common violation. Be sure to <a href=\"https://developer.mozilla.org/en/XUL_School/JavaScript_Object_Management\">wrap your loose "
 "variables</a>"
 msgstr ""
-"<strong>Konflikt jmenného prostoru JavaScriptu</strong> &mdash; nejčastější problém. Ujistěte se, že <a href=\"https://developer.mozilla.org/en/XUL_School/JavaScript_Object_Management\">pracujete "
-"správně s proměnnými</a>."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:99
 msgid "proper preference naming - all preference names should begin with \"extensions.\", followed by the add-on name or some other unique identifier"
@@ -7768,13 +7698,10 @@ msgid "After the Review"
 msgstr "Po kontrole"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:136
-#, fuzzy
 msgid ""
 "Once an add-on is granted full review, it will immediately be available in the gallery, showing in browse and search results with a warning-free install button. All features, including voluntary "
 "contributions and beta channels will be available."
 msgstr ""
-"Jakmile bude doplněk jednou plně zkontrolován, bude dostupný v galerii, bude se zobrazovat v kategoriích a ve výsledcích vyhledávání. A to bez jakéhokoliv varování u tlačítka k instalaci. Všechny "
-"funkce, včetně možnosti dobrovolných příspěvků a beta kanálů, budou k dispozici."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:142
 #, fuzzy
@@ -7866,29 +7793,24 @@ msgid ""
 msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:204
-#, fuzzy
 msgid "Add-ons whose main purpose is to facilitate access to pornographic material, or include references to this material in their descriptions"
-msgstr "Doplňky, jejichž hlavním účelem je zprostředkovávat přístup k pornografickému materiálu či zahrnovat tento materiál v jejich popiscích."
+msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:210
-#, fuzzy
 msgid "Add-ons that, upon installation, auto-install or launch installers of non-Firefox software"
-msgstr "Doplňky, které po instalaci automaticky instalují či spouští instalátory software, který není součástí Firefoxu."
+msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:215
-#, fuzzy
 msgid "Add-ons that provide their own update mechanism for code or search engines"
-msgstr "Doplňky, které poskytují vlastní aktualizační mechanizmus pro kód a vyhledávací moduly."
+msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:220
-#, fuzzy
 msgid "Add-ons that make changes to web content in ways that are non-obvious or difficult to trace by their users"
-msgstr "Doplňky, které mění webový obsah způsobem, který je neobvyklý nebo obtížně rozpoznatelný uživateli."
+msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:225
-#, fuzzy
 msgid "Add-ons that snoop on or intercept the network traffic of other users"
-msgstr "Doplňky, které špehují či zachytávají síťový provoz jiných uživatelů."
+msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:230
 msgid "Conduit-based toolbars without explicit pre-approval"
@@ -7993,7 +7915,6 @@ msgstr ""
 "musíte opravit každou chybu, ale očekáváme, že obecně budete reagovat na problémy a řešit jejich závažnost."
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:25
-#, fuzzy
 msgid ""
 "<strong>Is the add-on clearly and accurately described?</strong> It's of the utmost importance to us that users get what they expect when they try a new add-on. Your add-on name should be clear and "
 "concise, and you should refrain from using special characters or numbers to get higher search rankings or for decorative purposes. Your description should provide details about what the add-on "
@@ -8001,25 +7922,15 @@ msgid ""
 "cover the basics and leave users confident that they know what they'll get. Also, it is important that you maintain version notes appropriately as you improve and change your add-on. Users should "
 "be able to see what's new in an add-on they may have tried previously, and should be made aware of changes that might affect their current use of the add-on when they update."
 msgstr ""
-"<strong>Je doplněk jasně a srozumitelně popsán?</strong> Je pro nás maximálně důležité, aby při získání doplňku uživatelé získali to, co čekají. Jméno doplňku by proto mělo být jasné a výstižné. Ve "
-"snaze získat lepší pozici ve vyhledávání byste se měli vyvarovat speciálních znaků a čísel. Popis by měl poskytovat přehled o tom, co doplněk umí, co uživateli přinese a co by tak měl očekávat po "
-"jeho instalaci. Odkazy na externí dokumenty pro více informací jsou v pořádku, ale samotný popis by měl uživateli poskytnout základní informace. Je též důležité spravovat poznámky k verzi podle "
-"toho, jak se váš doplněk vyvíjí a aktualizuje. Uživatelé by měli být schopni vidět, co je nového u doplňku, který třeba již někdy zkoušeli, a u kterého mohou realizované změny ovlivnit to, zda si "
-"jej znovu nainstaluje."
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:31
-#, fuzzy
 msgid ""
 "<strong>Are all privacy and security concerns clearly spelled out?</strong> This is an aspect of a clear and accurate description, but such an important one that we feel it deserves specific "
 "mention. Many very useful and well-written add-ons manipulate some form of user data, or can present security hazards if misused; they are welcome on the site, but they must make it very clear to "
 "users what risks they might encounter, and what they can do to protect themselves."
 msgstr ""
-"<strong>Jsou všechny otázky ohledně soukromí a bezpečnosti zodpovězeny?</strong> Jedná se o součást dobře psané popisu, ale jedná se o důležitou otázku, a proto si myslíme, že si zaslouží "
-"samostatnou zmínku. Řada velmi užitečných a kvalitních doplňku manipuluje nějakou formou s daty uživatele nebo může představovat bezpečnostní riziko, pokud nejsou korektně použity. Tyto doplňky "
-"jsou na serveru vítány, ale musí velmi jasně říci uživatelům, co dělají, jaká rizika představují a co mají uživatelé dělat, aby se ochránili."
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:37
-#, fuzzy
 msgid ""
 "<strong>Has the add-on been well-tested, and is it free of obvious or serious defects?</strong> One important thing that we look for when considering an add-on is whether its user reviews indicate "
 "that it has received thorough testing, and that it doesn't have serious problems or negative impacts on the browser. If reviewers report problems such as major performance issues, crashes, frequent "
@@ -8027,21 +7938,13 @@ msgid ""
 "can. We don't expect you to perfectly optimize or have zero bugs &mdash; Firefox itself undergoes constant improvement in these areas &mdash; but we do want you to take reasonable efforts to "
 "minimize downsides, and to clearly call out cases where users may be surprised by those that remain."
 msgstr ""
-"<strong>Byl doplněk řádně otestován a neobsahuje žádné závažné problémy?</strong> Jedním z důležitých bodů pro posuzování kvality doplňku jsou recenze uživatelů, které indikují, zda byl doplněk "
-"otestován a zda nemá vážné problémy nebo negativní vliv na prohlížeč. Pokud vám redaktor nahlásí problémy jako je vážný vliv na výkon, pády, časté problémy s funkcionalitou doplňku, spamování práv "
-"do chybové konzole, měli byste si to vzít k srdci a poslat novou verzi doplňku, která vyřeší maximum z těchto problémů. Neočekáváme perfektní optimalizaci či nulové množství chyb &mdash; Firefox "
-"sám se neustále zlepšuje &mdash; chceme ale, abyste doplněk konstantně zlepšovali a minimalizovali situace, kdy nefunguje dle očekávání uživatelů. Zároveň prosím tyto situace popište, aby uživatelé "
-"nebyli překvapeni."
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:43
-#, fuzzy
 msgid ""
 "<strong>Do the add-on and add-on author both treat the user respectfully?</strong> Your software should not intrude on the user unnecessarily, try to trick the user, or conceal any of its "
 "activities from the user. Users (or even non-users) are sometimes rude in their comments, and while we will do our best to filter out inaccurate reviews as they're reported to us, we do expect that "
 "authors will avoid retaliating with rudeness of their own."
 msgstr ""
-"<strong>Respektujete vy a váš doplněk uživatele?</strong> Váš software by neměl uživatele bez důvodu rušit, zkoušet na něj různé triky nebo dělat aktivity bez jeho vědomí. Uživatelé (a někdy i "
-"roboti) píší nepříjemné komentáře. My se snažíme filtrovat ty urážlivé či pomlouvačné, které nám nahlásíte, a od vás očekáváme, že nebudete jejím autorům oplácet stejnou mincí."
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:49
 #, fuzzy
@@ -8090,14 +7993,11 @@ msgid ""
 msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:79
-#, fuzzy
 msgid ""
 "This applies to the Mozilla Foundation's trademarks as well, including \"Mozilla\", \"Firefox\", and \"Thunderbird\". The Mozilla policy on trademark use is designed to protect against confusion, "
 "and prevent the trademarks from being overturned due to lack of protection; please respect the need for such protection, and help us preserve some of the most valuable assets of the Mozilla "
 "Foundation."
 msgstr ""
-"To samé platí též pro ochranné známky Mozilla Foundation jako jsou \"Mozilla\", \"Firefox\" či \"Thunderbird\". Zásady ochrany ochranných známek Mozilly jsou stanoveny tak, aby zabraňovaly zmatení "
-"uživatelů a zabraňují jejich zneužití. Respektujte prosím potřebu podobné ochrany a pomozte nám ochránít tato aktiva Mozilla Foundation."
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:84
 #, fuzzy
@@ -8184,8 +8084,6 @@ msgstr "cez <a class=\"refsource\" href=\"http://developer.mozilla.org\">Mozilla
 #: apps/devhub/templates/devhub/docs/reference.html:31
 msgid "XUL (XML User Interface Language) is Mozilla's XML-based language that lets you build feature-rich cross platform applications that can run connected or disconnected from the Internet."
 msgstr ""
-"XUL (XML User Interface Language) je jazyk od Mozilly založený na XML, ktorý umožňuje vytvárať funkčne bohaté a na platforme nezávislé aplikácie. Tieto môžu, ale nemusia, vyžadovať pripojenie k "
-"internetu."
 
 #: apps/devhub/templates/devhub/docs/reference.html:38
 msgid "XUL Reference"
@@ -8197,7 +8095,7 @@ msgstr "cez <a class=\"refsource\" href=\"http://developer.mozilla.org\">Mozilla
 
 #: apps/devhub/templates/devhub/docs/reference.html:45
 msgid "A list of all available XUL elements."
-msgstr "Zoznam všetkých dostupných prvkov jazyka XUL"
+msgstr ""
 
 #: apps/devhub/templates/devhub/docs/reference.html:53
 msgid "XUL Controls List"
@@ -8246,11 +8144,8 @@ msgid "CSS Overview"
 msgstr "Prehľad CSS"
 
 #: apps/devhub/templates/devhub/docs/reference.html:133
-#, fuzzy
 msgid "Cascading Style Sheets (CSS) is a stylesheet language used to describe the presentation of a document written in HTML or XML and is used to style a XUL-based application's user interface."
 msgstr ""
-"CSS (Cascading Style Sheets) je jazyk pre šablóny štýlov používaný na popis vizuálnej prezentácie dokumentov napísaných v jazyku HTML príp. XML. V aplikáciách založených na XUL je CSS používané na "
-"určenie vizuálu používateľského prostredia."
 
 # 84%
 #: apps/devhub/templates/devhub/docs/reference.html:140
@@ -8299,7 +8194,7 @@ msgstr "API pre SMILE"
 
 #: apps/devhub/templates/devhub/docs/reference.html:211
 msgid "SMILE is a FUEL-like set of interfaces to facilitate SeaMonkey extension development."
-msgstr "SMILE je obdoba knižnice FUEL pre Firefox. Obsahuje sadu rozhraní pre vývojárov rozšírení."
+msgstr ""
 
 #: apps/devhub/templates/devhub/docs/reference.html:219
 msgid "XPCOM: Cross-Platform Components"
@@ -8339,7 +8234,7 @@ msgstr "Príručka k Gecko DOM"
 
 #: apps/devhub/templates/devhub/docs/reference.html:281
 msgid "Mozilla Developer Center's DOM API documentation"
-msgstr "Dokumentácia k DOM API na stránkach Mozilla Developer Center."
+msgstr ""
 
 #: apps/devhub/templates/devhub/docs/reference.html:292
 msgid "Jump to Reference"
@@ -8955,7 +8850,7 @@ msgstr "Doplnok zahrnutý v našom programe pre príspevky môže žiadať od po
 
 #: apps/devhub/templates/devhub/payments/payments.html:57
 msgid "Encourage users to support your add-on through your Developer Profile"
-msgstr "Umožnite používateľom cez Centrum vývojárov podporovať váš doplnok ."
+msgstr ""
 
 #: apps/devhub/templates/devhub/payments/payments.html:58
 msgid "Choose when and how users are asked to contribute"
@@ -9003,19 +8898,16 @@ msgid "Set your price and place your app for sale"
 msgstr "Nastavte cenu aplikace a začněte ji prodávat"
 
 #: apps/devhub/templates/devhub/payments/payments.html:113
-#, fuzzy
 msgid "Set your price and place your add-on for sale"
-msgstr "Nastavte si cenu a nabídněte doplněk na prodej."
+msgstr ""
 
 #: apps/devhub/templates/devhub/payments/payments.html:115
-#, fuzzy
 msgid "Users pay with their credit card or PayPal account all over the world"
-msgstr "Uživatelé po celém světě platí svou kreditní kartou nebo pomocí účtu u PayPalu."
+msgstr ""
 
 #: apps/devhub/templates/devhub/payments/payments.html:116
-#, fuzzy
 msgid "Receive funds immediately in your PayPal account"
-msgstr "Okamžitě získáváte peníze na svůj účet PayPal."
+msgstr ""
 
 #: apps/devhub/templates/devhub/payments/payments.html:118
 #, fuzzy
@@ -9023,9 +8915,8 @@ msgid "Promote your premium app on your free app's details page"
 msgstr "Propagujte svou placenou aplikaci na detailu stránky verze, která je dostupná zdarma"
 
 #: apps/devhub/templates/devhub/payments/payments.html:120
-#, fuzzy
 msgid "Promote your premium add-on on your free add-on's details page"
-msgstr "Můžete propagovat placenou verzi doplňku na stránce s verzí, která je dostupná zdarma."
+msgstr ""
 
 #: apps/devhub/templates/devhub/payments/payments.html:144 apps/devhub/templates/devhub/payments/second-confirm.html:37
 #, fuzzy
@@ -9034,7 +8925,7 @@ msgstr "Přidat do Marketplace"
 
 #: apps/devhub/templates/devhub/payments/paypal.html:13
 msgid "Step 1. Merchant Account"
-msgstr "1. krok: Obchodný účet"
+msgstr ""
 
 #: apps/devhub/templates/devhub/payments/paypal.html:18 apps/devhub/templates/devhub/payments/second-confirm.html:38 apps/devhub/templates/devhub/payments/tier.html:18
 #: apps/devhub/templates/devhub/payments/upsell.html:20 mkt/developers/templates/developers/payments/paypal-setup.html:88
@@ -9104,7 +8995,7 @@ msgstr "Důvod zamítnutí:"
 
 #: apps/devhub/templates/devhub/payments/second-confirm.html:14
 msgid "Step 4. Confirm"
-msgstr "4. krok: Potvrdenie"
+msgstr ""
 
 #: apps/devhub/templates/devhub/payments/second-confirm.html:23
 #, fuzzy
@@ -9125,11 +9016,11 @@ msgstr "Placená aktualizace k %(name)s"
 
 #: apps/devhub/templates/devhub/payments/tier.html:13
 msgid "Step 2. Pricing and Availability"
-msgstr "Krok 2: Ceny a dostupnosť"
+msgstr ""
 
 #: apps/devhub/templates/devhub/payments/upsell.html:15
 msgid "Step 3. Upsell Settings"
-msgstr "Krok 3: Iné nastavenia"
+msgstr ""
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:2 apps/stats/templates/stats/addon_report_menu.html:39
 msgid "Contributions"
@@ -9274,9 +9165,8 @@ msgstr "Áno"
 
 #: apps/devhub/templates/devhub/personas/edit.html:131 apps/devhub/templates/devhub/personas/edit.html:152 apps/devhub/templates/devhub/personas/submit.html:78
 #: apps/devhub/templates/devhub/personas/submit.html:99
-#, fuzzy
 msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr "Autor dává ostatním právo kopírovat, distribuovat, zobrazovat a upravovat. A to včetně komerčního použití."
+msgstr ""
 
 #: apps/devhub/templates/devhub/personas/edit.html:139 apps/devhub/templates/devhub/personas/edit.html:160 apps/devhub/templates/devhub/personas/edit.html:190
 #: apps/devhub/templates/devhub/personas/submit.html:86 apps/devhub/templates/devhub/personas/submit.html:107 apps/devhub/templates/devhub/personas/submit.html:137 mkt/api/forms.py:232
@@ -9286,9 +9176,8 @@ msgstr "Nie"
 
 #: apps/devhub/templates/devhub/personas/edit.html:140 apps/devhub/templates/devhub/personas/edit.html:161 apps/devhub/templates/devhub/personas/submit.html:87
 #: apps/devhub/templates/devhub/personas/submit.html:108
-#, fuzzy
 msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr "Autor dává ostatním právo kopírovat, distribuovat, zobrazovat a upravovat. Bez možnosti komerčního použití."
+msgstr ""
 
 #: apps/devhub/templates/devhub/personas/edit.html:146 apps/devhub/templates/devhub/personas/submit.html:93
 #, fuzzy
@@ -9301,9 +9190,8 @@ msgid "Can others create derivative works from your Theme?"
 msgstr "Mohou ostatní vytvářet odvozená díla z mé Persony?"
 
 #: apps/devhub/templates/devhub/personas/edit.html:173 apps/devhub/templates/devhub/personas/submit.html:120
-#, fuzzy
 msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr "Autor dává ostatním právo kopírovat, distribuovat, zobrazovat a upravovat. Dává též svolení na vytváření odvozených děl."
+msgstr ""
 
 #: apps/devhub/templates/devhub/personas/edit.html:181 apps/devhub/templates/devhub/personas/submit.html:128
 #, fuzzy
@@ -9374,7 +9262,7 @@ msgstr "Text popredia"
 
 #: apps/devhub/templates/devhub/personas/edit.html:267 apps/devhub/templates/devhub/personas/submit.html:170
 msgid "This is the color of the tab text."
-msgstr "Toto je farba textu karty"
+msgstr ""
 
 #: apps/devhub/templates/devhub/personas/edit.html:269 apps/devhub/templates/devhub/personas/submit.html:172
 msgid "Background"
@@ -9438,9 +9326,8 @@ msgstr ""
 
 # 82%
 #: apps/devhub/templates/devhub/personas/includes/theme_design.html:3
-#, fuzzy
 msgid "Select a header image for your Theme."
-msgstr "Zvolte obrázek hlavičky pro váš motiv"
+msgstr ""
 
 #: apps/devhub/templates/devhub/personas/includes/theme_design.html:8
 msgid "3000 &times; 200 pixels"
@@ -9464,9 +9351,8 @@ msgstr "Zvoľte iný obrázok hlavičky"
 
 # 82%
 #: apps/devhub/templates/devhub/personas/includes/theme_design.html:19
-#, fuzzy
 msgid "Select a footer image for your Theme."
-msgstr "Zvolte obrázek patičky pro váš motiv"
+msgstr ""
 
 #: apps/devhub/templates/devhub/personas/includes/theme_design.html:24
 msgid "3000 &times; 100 pixels"
@@ -9602,7 +9488,7 @@ msgstr "Až bude kontrola dokončena, bude vám zaslán e-mail. Do té doby nen�
 
 #: apps/devhub/templates/devhub/versions/list.html:58
 msgid "This add-on is <b>awaiting full review</b>."
-msgstr "Tento doplnok <b>čaká na kompletnú kontrolu</b>"
+msgstr ""
 
 #: apps/devhub/templates/devhub/versions/list.html:65
 msgid "This add-on has been <b>fully reviewed</b>."
@@ -9739,7 +9625,7 @@ msgstr "0 súborov"
 
 #: apps/devhub/templates/devhub/versions/list.html:221
 msgid "Not validated."
-msgstr "Neoverený"
+msgstr ""
 
 #: apps/devhub/templates/devhub/versions/list.html:223
 msgid "Validate now."
@@ -10043,14 +9929,16 @@ msgid "Find great add-ons to help you with all your holiday shopping needs."
 msgstr "Pozrite sa na skvelé doplnky, ktoré vám pomôžu s vašim nakupovaním."
 
 #: apps/discovery/templates/discovery/modules/holiday.html:13
-#, fuzzy
 msgid "Install the Amazon Browser Apps and receive special Amazon features right at your fingertips."
-msgstr "Nainstalujte si Amazon Browser Apps a získejte přístup ke speciálním funkcím Amazonu."
+msgstr ""
+"Majte na očiach aktivity na eBay, kdekoľvek na webe práve ste. Nainštalujte "
+"si eBay Sidebar pre Firefox."
 
 #: apps/discovery/templates/discovery/modules/holiday.html:22
-#, fuzzy
 msgid "Keep an eye on your eBay activity wherever you are on the web when you install the eBay Sidebar for Firefox."
-msgstr "Mějte v oku vaše aktivity na eBay, kdykoliv jste na webu. Nainstalujte si eBay Sidebar pro Firefox."
+msgstr ""
+"Majte na očiach aktivity na eBay, kdekoľvek na webe práve ste. Nainštalujte "
+"si eBay Sidebar pre Firefox."
 
 #: apps/discovery/templates/discovery/modules/holiday.html:31
 #, fuzzy
@@ -11349,13 +11237,10 @@ msgstr ""
 "se v <a href=\"%(url)s\">našem fóru</a>."
 
 #: apps/pages/templates/pages/acr_firstrun.html:69
-#, fuzzy
 msgid ""
 "Thousands of add-ons are made by our community every year, and your assistance with compatibility testing helps us make sure these add-ons stay useful as we strive to provide a great user "
 "experience."
 msgstr ""
-"Naší komunitou jsou každý rok vytvářeny tisíce doplňků. Vaše pomoc s testováním kompatibility nám pomůže se ujistit, že tyto doplňky jsou stále užitečné a můžeme tak i nadále poskytovat skvělou "
-"funčknost pro uživatele."
 
 #: apps/pages/templates/pages/acr_firstrun.html:75
 #, fuzzy
@@ -11496,13 +11381,10 @@ msgid "Add-on Developer FAQ"
 msgstr "Často kladené otázky pre vývojárov doplnkov"
 
 #: apps/pages/templates/pages/dev_faq.html:48
-#, fuzzy
 msgid ""
 "<h3>How do I build an Add-on?</h3> <p> Mozilla provides documentation on how to build an add-on via the Mozilla Developer Center. The tutorial, <a href=\"%(url)s\">Building an Extension</a>, will "
 "help explain how to setup your work environment and move forward with creating an add-on. </p>"
 msgstr ""
-"<h3>Jak vytvořím doplněk?</h3> <p>Mozilla poskytuje dokumentaci s návody, jak vytvořit doplněk, na serveru Mozilla Developer Center. Návod <a href=\"%(url)s\">Building an Extension</a> vám pomůže "
-"vysvětlit, jak nastavit vaše pracovní prostředí a posunout se směrem k vytvoření doplňku.</p>"
 
 #: apps/pages/templates/pages/dev_faq.html:58
 #, fuzzy
@@ -11654,17 +11536,12 @@ msgid "How do I test for compatibility with the latest version of Mozilla softwa
 msgstr "Jak mohu otestovat kompatibilitu s poslední verzí software od Mozilly?"
 
 #: apps/pages/templates/pages/dev_faq.html:193
-#, fuzzy
 msgid ""
 "To ensure compatibility with the latest Mozilla software, it's important to download updates as they become available and test your add-on to ensure that it is still functioning as expected. It's "
 "best to follow the steps outlined in the <a href=\"%(ext_url)s\">Building an Extension</a> tutorial for <a href=\"%(test_url)s\">testing your add-on</a>. In many cases, the latest version of "
 "Mozilla software may be a beta release. Since these releases at times introduce architectural changes that may impact the functionality of your add-on, it's important to be actively involved in the "
 "beta process to ensure that you're add-on users are not negatively impacted upon final release of Mozilla software."
 msgstr ""
-"Pro ujištění, zda je doplněk kompatibilní s poslední verzí software od Mozilly, je důležité si stáhnout poslední aktualizace jakmile se stanou dostupné, a následně otestovat, zda vše funguje tak, "
-"jak má. Je dobré postupovat pomocí kroků uvedených v návodu <a href=\"%(ext_url)s\">Building an Extension</a> v části <a href=\"%(test_url)s\">testing your add-on</a>. V řadě případů je poslední "
-"verze software od Mozilly betaverze. Protože tato vydání obsahují změny architektury, mohou mít vliv na funkcionalitu vašeho doplňku. Je tedy důležité být aktivní již v době, kdy je software k "
-"dispozici v betaverzi a ujistit se, že váš doplněk funguje v pořádku a bude korektně fungovat uživatelům ve finální verzi software od Mozilly."
 
 #: apps/pages/templates/pages/dev_faq.html:208
 #, fuzzy
@@ -11757,15 +11634,11 @@ msgid "Can I host my own add-on?"
 msgstr "Mohu zde hostovat svůj doplněk?"
 
 #: apps/pages/templates/pages/dev_faq.html:286
-#, fuzzy
 msgid ""
 "Yes. Many developers choose to host their own add-ons. Choosing to host your add-on on <a href=\"%(amo_url)s\">Mozilla's add-on site</a>, though, allows for much greater exposure to your add-on due "
 "to the large volume of visitors to the site. <a href=\"%(md_url)s\">mozdev.org</a> offers free project hosting for Mozilla applications and extensions providing developers with tools to help manage "
 "source code, version control, bug tracking and documentation."
 msgstr ""
-"Ano. Řada vývojářů zde hostuje své doplňky. Volba serveru <a href=\"%(amo_url)s\">Doplňky Mozilly</a> pro hostování doplňků vám dává možnost oslovit velké množství uživatelů, kteří server "
-"navštěvují. Server <a href=\"%(md_url)s\">mozdev.org</a> nabízí zdarma hostování projektů založených na kódu Mozilly či rozšíření. Server poskytuje nástroje na správu zdrojového kódu, správu verzí, "
-"chyb a dokumentace."
 
 #: apps/pages/templates/pages/dev_faq.html:298
 #, fuzzy
@@ -11910,15 +11783,11 @@ msgid "Who reviews my add-on?"
 msgstr "Kdo kontroluje můj doplněk?"
 
 #: apps/pages/templates/pages/dev_faq.html:416
-#, fuzzy
 msgid ""
 "Add-ons are reviewed by the AMO Editors, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for Mozilla users. "
 "When communicating with editors, please be courteous, patient and respectful as they are working hard to ensure that you're add-on is setup correctly and follows the guidelines outlined in the <a "
 "href=\"%(url)s\">Editors Reviewing Guide</a>."
 msgstr ""
-"Doplňky jsou kontrolovány redaktory AMO. Jedná se o skupinu talentovaných vývojářů, kteří ve svém volném čase pomáhají projektu Mozilla s kontrolou doplňků. Cílem je se ujistit, že jsou doplňky pro "
-"uživatele Mozilly stabilní a bezpečné. Při komunikaci s redaktory buďte prosím zdvořilí, trpěliví a respektujte jejich práci. Snaží se, aby váš doplněk splňoval vše, co je uvedeno v <a href=\"%(url)"
-"s\">Editors Reviewing Guide</a>."
 
 #: apps/pages/templates/pages/dev_faq.html:427
 #, fuzzy
@@ -12103,9 +11972,8 @@ msgid "Can I request that a review be removed if the review is negative?"
 msgstr "Mohu požádat o odstranění recenze, pokud je negativní?"
 
 #: apps/pages/templates/pages/dev_faq.html:586
-#, fuzzy
 msgid "No. We do not remove negative reviews from add-ons unless they are found to be false."
-msgstr "Ne. Neodstraňujeme negativní recenze doplňků. Jedinou výjimkou jsou recenze, které jsou lživé."
+msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:592
 #, fuzzy
@@ -12156,9 +12024,8 @@ msgid "Open Source Initiative provides the terms of some of the key open source 
 msgstr "Open Source Initiative poskytuje informace o některých nejrozšířenějších open-source licencích."
 
 #: apps/pages/templates/pages/dev_faq.html:672
-#, fuzzy
 msgid "Wikipedia listing of known open source licenses."
-msgstr "Na Wikipedii lze nalézt seznam známých open-source licencí."
+msgstr ""
 
 #: apps/pages/templates/pages/faq.html:13
 msgid "Using Add-ons"
@@ -12262,15 +12129,11 @@ msgid "How do I keep add-ons up-to-date?"
 msgstr "Jak zajistím, že budu mít doplňky aktuální?"
 
 #: apps/pages/templates/pages/faq.html:111
-#, fuzzy
 msgid ""
 "Add-ons, unlike plugins, are automatically checked for updates once every day. In Firefox, updates are automatically installed by default. Versions of Firefox prior to 4 (and other applications) "
 "will alert you that updates to your add-ons are available. <a href=\"%(plugin_url)s\">Plugins</a> are not currently automatically checked for updates, so be sure to regularly visit the <a href="
 "\"%(plugincheck_url)s\">Plugin Check</a> page to stay up-to-date."
 msgstr ""
-"Doplňky, na rozdíl od zásuvných modulů, jsou automaticky kontrolovány na aktualizace jednou za den. Ve Firefoxu 4 budou ve výchozím nastavení aktualizace instalovány automaticky. Do této verze "
-"Firefoxu a u jiných aplikací jste na dostupnost aktualizací upozorněni. <a href=\"%(plugin_url)s\">Zásuvné moduly</a> nejsou aktuálně automaticky kontrolovány na aktualizace, takže pro kontrolu "
-"jejich aktuálnosti navštěvujte webovou stránku <a href=\"%(plugincheck_url)s\">Plugin Check</a>."
 
 #: apps/pages/templates/pages/faq.html:122
 #, fuzzy
@@ -12293,13 +12156,10 @@ msgid "Can add-ons make %(app_name)s slower?"
 msgstr "Môžu doplnky spomaliť %(app_name)s?"
 
 #: apps/pages/templates/pages/faq.html:135
-#, fuzzy
 msgid ""
 "Most add-ons do not cause a perceivable performance decrease in %(app_name)s, though installing an excessive number may have adverse effects. If you suspect an add-on is causing %(app_name)s to be "
 "slow, try disabling it. Add-ons that cause large start-up performance issues will have warning messages on their details page."
 msgstr ""
-"Většina doplňků nezpůsobuje výrazné snížení výkonu aplikace %(app_name)s. Instalace většího počtu doplňků však může mít na výkon negativní vliv. Pokud se vám zdá, že doplněk aplikaci %(app_name)s "
-"zpomaluje, zkuste jej zakázat. Doplňky, které způsobují pomalejší start, budou mít na své stránce varování."
 
 #: apps/pages/templates/pages/faq.html:142
 msgid "%(app_name)s told me an add-on isn't compatible. Is there a way I can still use it?"
@@ -12321,14 +12181,11 @@ msgid "What if I have problems with an add-on?"
 msgstr "Čo ak mám problémy s doplnkom?"
 
 #: apps/pages/templates/pages/faq.html:158
-#, fuzzy
 msgid ""
 "Add-ons are usually created by third-party developers from around the world, so the best way to get help with an add-on is to look for support links on the add-on's homepage or contact the "
 "developer. If you are having issues with %(app_name)s that you suspect are related to add-ons you have installed, <a href=\"%(troubleshooting_url)s\">visit this support article</a> for "
 "troubleshooting tips."
 msgstr ""
-"Doplňky jsou obvykle vytvářeny vývojáři třetích stran z celého světa. Nejlepším řešením, jak získat pomoc, je podívat se po odkazu na podporu na stránce doplňku či kontaktovat vývojáře. Pokud máte "
-"problémy s aplikací %(app_name)s, u kterých předpokládáte souvislost s doplňky, které máte nainstalovány, <a href=\"%(troubleshooting_url)s\">navštivte tento článek podpory</a>."
 
 #: apps/pages/templates/pages/faq.html:170
 msgid "Add-on Gallery"
@@ -12340,14 +12197,10 @@ msgid "How do I choose between add-ons that seem to do the same thing?"
 msgstr "Jak si mám vybrat mezi doplňky, které dělají tu samou věc?"
 
 #: apps/pages/templates/pages/faq.html:174
-#, fuzzy
 msgid ""
 "There are often several add-ons that have similar features. To figure out which is right for you, read the entire description of the add-on and view its screenshots. If there are still several in "
 "the running, read through the add-on's ratings, user reviews, and statistics to see which is most liked by other users. Remember that you can also just try out both and see which you like better."
 msgstr ""
-"Obvykle existuje více doplňků, které nabízí obdobnou funkcionalitu. Pro volbu toho nejlepšího si přečtěte jeho popis a prohlídněte si přiložené snímky obrazovek. Pokud stále volíte mezi více "
-"doplňky, podívejte se na hodnocení doplňků, recenze uživatelů a statistiky. Díky tomu zjistíte, který doplněk je mezi uživateli nejvíce populární. Můžete též vyzkoušet všechny doplňky, čímž "
-"zjistíte, který vám více vyhovuje."
 
 #: apps/pages/templates/pages/faq.html:181
 #, fuzzy
@@ -12369,13 +12222,10 @@ msgid "What does it mean if an add-on is \"experimental\" or \"preliminarily rev
 msgstr "Co znamená, že je doplněk \"experimentální\" či \"předběžně zkontrolován\"?"
 
 #: apps/pages/templates/pages/faq.html:189
-#, fuzzy
 msgid ""
 "Experimental add-ons have been checked by our editors to make sure they don't have security problems, but they may still have bugs or not work properly. Use caution when installing experimental add-"
 "ons and uninstall the add-on immediately if you notice problems. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
 msgstr ""
-"Experimentální doplňky byly zkontrolovány našimi redaktory. Ti zkontrolovali, že neobsahují bezpečnostní problémy. Mohou však stále obsahovat chyby a nefungovat korektně. Při instalaci "
-"experimentálních doplňků se mějte na pozoru. Pokud narazíte na problémy, doplněk odinstalujte. <a href=\"%(url)s\">Dozvědět se více o našem procesu kontroly</a></dd>"
 
 #: apps/pages/templates/pages/faq.html:197
 #, fuzzy
@@ -12383,13 +12233,10 @@ msgid "What does it mean if an add-on is \"not reviewed\"?"
 msgstr "Co znamená, pokud doplněk \"není zkontrolován\"?"
 
 #: apps/pages/templates/pages/faq.html:198
-#, fuzzy
 msgid ""
 "While all add-ons publicly available in our gallery are reviewed by an editor, you may receive a direct link to an add-on that hasn't yet been reviewed. Use caution when installing these add-ons, "
 "as they could harm your computer or violate your privacy. We recommend that you only install reviewed add-ons. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
 msgstr ""
-"Ačkoliv jsou všechny doplňky v naší galerii zkontrolovány redaktory, můžete obdržet přímý odkaz na doplněk, který ještě zkontrolován nebyl. Při instalaci takového doplňku buďte opatrní. Může "
-"poškodit váš počítač nebo narušit vaše soukromí. Doporučujeme, abyste instalovali jen zkontrolované doplňky. <a href=\"%(url)s\">Dozvědět se více o našem procesu kontroly</a></dd>"
 
 #: apps/pages/templates/pages/faq.html:207
 #, fuzzy
@@ -12407,13 +12254,10 @@ msgid "What does it mean when an add-on asks for contributions?"
 msgstr "Co znamená, když autor doplňku žádá o příspěvek?"
 
 #: apps/pages/templates/pages/faq.html:212
-#, fuzzy
 msgid ""
 "Some add-on authors request users who enjoy an add-on to contribute to its development by making a monetary contribution. These contributions go directly to the developer unless a third party is "
 "indicated, such as the non-profit Mozilla Foundation."
 msgstr ""
-"Někteří autoři doplňků mohou žádat uživatele, kteří mají doplněk rádi, o finanční příspěvky na další vývoj. Tyto příspěvky jdou přímo vývojáři, pokud není uvedena třetí strana (například nezisková "
-"nadace Mozilla Foundation)."
 
 #: apps/pages/templates/pages/faq.html:217
 msgid "What are beta add-ons?"
@@ -12441,13 +12285,10 @@ msgid "What does it mean when an add-on is flagged as slow?"
 msgstr "Co znamená, když je doplněk označen jako pomalý?"
 
 #: apps/pages/templates/pages/faq.html:232
-#, fuzzy
 msgid ""
 "Most add-ons load code and resources at the same time Firefox is starting up. In most cases the impact in start-up time is minimal, but some add-ons can cause a noticeable slowdown. We warn you "
 "about these add-ons to help you decide about installing them, and also to help you diagnose performance issues you may run into in the future."
 msgstr ""
-"Řada doplňkůy načítá kód a další zdrojové soubory v době startu Firefoxu. V řadě případů to má minimální vliv na rychlost startu. Některé doplňky však mohou způsobit viditelné zpomalení. U těchto "
-"doplňků varujeme, abychom vám pomohli se rozhodnout, zda je chcete instalovat a pomoci vám diagnostikovat problémy, když se do nich v budoucnu dostanete."
 
 #: apps/pages/templates/pages/faq.html:239
 #, fuzzy
@@ -12541,13 +12382,10 @@ msgid "How are personalized recommendations determined?"
 msgstr "Jak jsou personalizovaná doporučení určována?"
 
 #: apps/pages/templates/pages/faq.html:289
-#, fuzzy
 msgid ""
 "Firefox sends information about the add-ons you have installed to Mozilla once a day in order to update the information displayed to you in the Add-ons Manager, as explained in our <a href="
 "\"%(privacy_url)s\">Privacy Policy</a>. Add-ons that are often used together are determined from the aggregate data and displayed to you as personalized recommendations."
 msgstr ""
-"Firefox posílá Mozille jednou denně informace o nainstalovaných doplňcích, aby si aktualizoval informace, které jsou zobrazeny ve Správci doplňků. Tato informace je popsána v našich <a href="
-"\"%(privacy_url)s\">zásadách ochrany soukromí</a>. Doplňky, které jsou na základě sesbíraných dat často používány spolu, vám jsou zobrazeny jako personalizovaná doporučení."
 
 #: apps/pages/templates/pages/faq.html:296
 msgid "How can I opt out of these recommendations?"
@@ -12620,9 +12458,8 @@ msgid "Do:"
 msgstr "Pište:"
 
 #: apps/pages/templates/pages/review_guide.html:62
-#, fuzzy
 msgid "Write like you are telling a friend about your experience with the add-on."
-msgstr "Popište své zkušenosti s doplňkem tak, jako byste jej popisoval(a) svému příteli."
+msgstr ""
 
 #: apps/pages/templates/pages/review_guide.html:67
 #, fuzzy
@@ -12665,9 +12502,8 @@ msgid "Take a moment to read your review before submitting it to avoid embarrass
 msgstr "Před odesláním si svou recenzi znovu přečtěte a ujistěte se, že neobsahuje překlepy či gramatické chyby."
 
 #: apps/pages/templates/pages/review_guide.html:86
-#, fuzzy
 msgid "Avoid referring to topical or temporal references since reviews can remain on the site for a long time."
-msgstr "Neodkazujte dočasné adresy. Recenze mohou být na webu dlouhý čas."
+msgstr ""
 
 #: apps/pages/templates/pages/review_guide.html:93
 #, fuzzy
@@ -12774,13 +12610,10 @@ msgid "How can I report a problematic review?"
 msgstr "Jak mohu nahlásit problematickou recenzi?"
 
 #: apps/pages/templates/pages/review_guide.html:214
-#, fuzzy
 msgid ""
 "Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Editors will use the Review Guidelines to evaluate whether "
 "or not to delete the review or restore it back to the site."
 msgstr ""
-"Problematické recenze nahlaste klepnutím na odkaz \"Nahlásit recenzi\". Následně bude odeslána redaktorům serveru k posouzení. Redaktoři použijí body uvedené na této stránce k posouzení, zda "
-"recenzi smažou či navrátí zpět na web."
 
 #: apps/pages/templates/pages/review_guide.html:222
 #, fuzzy
@@ -12804,9 +12637,8 @@ msgid ""
 msgstr ""
 
 #: apps/pages/templates/pages/sunbird.html:26
-#, fuzzy
 msgid "Sunbird has retired"
-msgstr "Vývoj Sunbirdu byl ukončen"
+msgstr "Vývoj Sunbirdu bol ukončený"
 
 #: apps/pages/templates/pages/sunbird.html:29
 msgid ""
@@ -12959,7 +12791,6 @@ msgid "Add a review for {0}"
 msgstr "Pridanie recenzie doplnku {0}"
 
 #: apps/reviews/templates/reviews/add.html:53
-#, fuzzy
 msgid ""
 "<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
 "disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
@@ -12967,11 +12798,6 @@ msgid ""
 "\">support section</a> to find out where to get assistance for this add-on. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </"
 "ul> <p>Please read the <a href=\"%(guide)s\" target=\"_blank\">Review Guidelines</a> for more detail about user add-on reviews.</p>"
 msgstr ""
-"<h2>Pamätajte na nasledujúce tipy:</h2> <ul> <li> Pište jako byste říkali svému příteli, jak se vám doplněk líbí. Pište o užitečných detailech jako jsou například funkce, které máte (či nemáte) rád"
-"(a), o tom, jak se vám doplněk snadno používá či jaké má podle vás nevýhody. Vyvarujte se také obecných zvolání jako \"Skvělé\" nebo \"Špatné\", pokud neposkytnete důvody, proč si tak myslíte. </"
-"li> <li> Nehlaste do recenzí chyby. Neposkytneme vaši e-mailovou adresu vývojáři doplňku a on by vás mohl chtít v souvislosti s vyřešením problému kontaktovat. Podívejte se do <a href=\"%(support)s"
-"\">sekce podpory</a>, kde naleznete informace, jak můžete získat podporu.</li> <li>Mějte své recenze korektní a vyvarujte se nevhodného jazyka či zveřejňování osobních informací. </li> </ul> <p>Pro "
-"více informací o recenzích doplňků si přečtěte <a href=\"%(guide)s\" target=\"_blank\">zásady pro psaní recenzí</a>.</p>"
 
 #: apps/reviews/templates/reviews/reply.html:4
 msgid "Reply to review by {0}"
@@ -13801,13 +13627,10 @@ msgid ""
 msgstr ""
 
 #: apps/stats/templates/stats/reports/usage.html:20
-#, fuzzy
 msgid ""
 "<h2>What are daily users?</h2> <p> Add-ons downloaded from this site check for updates once per day. The total number of these update pings is known as Active Daily Users. Daily users can be broken "
 "down by add-on version, operating system, add-on status, application, and locale. </p>"
 msgstr ""
-"<h2>Co jsou denní uživatelé?</h2> <p> Doplňky stažené z tohoto webu se jednou denně kontrolují, zda nejsou dostupné v novější verzi. A právě celkový počet těchto dotazů je nazýván Aktivní denní "
-"uživatelé. Denní uživatelé mohou být členění dle verze doplňku, operačního systému, stavu doplňku, aplikace a jazyka.</p>"
 
 #: apps/stats/templates/stats/reports/users_created.html:3
 #, fuzzy
@@ -14116,9 +13939,8 @@ msgid "From now on, please use {0} to log in."
 msgstr "Odteraz používajte {0} na prihlásenie."
 
 #: apps/users/views.py:333
-#, fuzzy
 msgid "Persona authentication failure."
-msgstr "Info o téme Persona &raquo;"
+msgstr ""
 
 #: apps/users/views.py:483
 msgid "Wrong email address or password!"
@@ -14369,9 +14191,8 @@ msgstr "Prihlásiť sa"
 
 # 92%
 #: apps/users/templates/users/login_modal.html:3
-#, fuzzy
 msgid "You are now logged in as <strong>%(user_email)s</strong>!"
-msgstr "Jste přihlášen(a) jako <strong>%(user_email)s</strong>!"
+msgstr "Ste prihlásený ako <strong>%(user_email)s</strong>!"
 
 #: apps/users/templates/users/newpw_sent.html:3 apps/users/templates/users/newpw_sent.html:8 apps/users/templates/users/pwreset_complete.html:3 apps/users/templates/users/pwreset_confirm.html:4
 #: apps/users/templates/users/pwreset_confirm.html:13 apps/users/templates/users/pwreset_request.html:4 apps/users/templates/users/pwreset_request.html:8
@@ -14776,11 +14597,9 @@ msgstr ""
 msgid "You can not have more than one Featured Apps/Operator Shelf collection for the same category/carrier/region combination."
 msgstr ""
 
-# 75%
 #: mkt/constants/apps.py:9 mkt/reviewers/templates/reviewers/logs.html:18 mkt/reviewers/templates/reviewers/includes/search_results_themes.html:6
 #: mkt/reviewers/templates/reviewers/themes/history_table.html:7 mkt/reviewers/templates/reviewers/themes/logs.html:18 mkt/reviewers/templates/reviewers/themes/queue_list.html:42
 #: mkt/reviewers/templates/reviewers/themes/single.html:26 mkt/reviewers/templates/reviewers/themes/themes.html:46
-#, fuzzy
 msgid "Reviewer"
 msgstr "Recenzent"
 
@@ -14834,7 +14653,7 @@ msgstr "Novozélandský dolár"
 
 #: mkt/constants/bango.py:27
 msgid "Polish Złoty"
-msgstr ""
+msgstr "Poľský zlotý"
 
 #: mkt/constants/bango.py:28
 msgid "Qatar Riyal"
@@ -16084,49 +15903,43 @@ msgstr ""
 
 #: mkt/constants/platforms.py:43 mkt/constants/platforms.py:47
 msgid "Fully open mobile ecosystem"
-msgstr "Plne otvorený mobilný ekosystém"
+msgstr ""
 
 #: mkt/constants/platforms.py:44
 msgid "Windows, Mac and Linux"
-msgstr "Windows, Mac a Linux"
+msgstr ""
 
 #: mkt/constants/platforms.py:45 mkt/constants/platforms.py:48 mkt/ecosystem/templates/ecosystem/partners.html:95
 msgid "Android smartphones"
-msgstr "Telefóny s Androidom"
+msgstr ""
 
 #: mkt/constants/platforms.py:46 mkt/constants/platforms.py:49
 msgid "Android tablets"
-msgstr "Tablety s Androidom"
+msgstr ""
 
 #: mkt/constants/ratingsbodies.py:8
-#, fuzzy
 msgid "General Audiences"
-msgstr "Všeobecné testy"
+msgstr ""
 
 #: mkt/constants/ratingsbodies.py:14
-#, fuzzy
 msgid "Not recommended for viewers younger than 10 years of age"
-msgstr "Není doporučeno pro návštěvníky mladších 10 let."
+msgstr "Neodporúča sa pre návštevníkov mladších ako 10 rokov"
 
 #: mkt/constants/ratingsbodies.py:21
-#, fuzzy
 msgid "Not recommended for viewers younger than 12 years of age"
-msgstr "Není doporučeno pro návštěvníky mladších 12 let."
+msgstr "Neodporúča sa pre návštevníkov mladších ako 12 rokov"
 
 #: mkt/constants/ratingsbodies.py:28
-#, fuzzy
 msgid "Not recommended for viewers younger than 14 years of age"
-msgstr "Není doporučeno pro návštěvníky mladších 14 let."
+msgstr "Neodporúča sa pre návštevníkov mladších ako 14 rokov"
 
 #: mkt/constants/ratingsbodies.py:35
-#, fuzzy
 msgid "Not recommended for viewers younger than 16 years of age"
-msgstr "Není doporučeno pro návštěvníky mladších 16 let."
+msgstr "Neodporúča sa pre návštevníkov mladších ako 16 rokov"
 
 #: mkt/constants/ratingsbodies.py:42
-#, fuzzy
 msgid "Not recommended for viewers younger than 18 years of age"
-msgstr "Není doporučeno pro návštěvníky mladších 18 let."
+msgstr "Neodporúča sa pre návštevníkov mladších ako 18 rokov"
 
 #: mkt/constants/ratingsbodies.py:53
 msgid "Department of Justice, Rating, Titles and Qualification"
@@ -16138,83 +15951,67 @@ msgstr "Celý svet"
 
 #: mkt/constants/regions.py:108
 msgid "Venezuela"
-msgstr ""
+msgstr "Venezuela"
 
 #: mkt/constants/reviewers.py:7 mkt/developers/templates/developers/validate_addon.html:16 mkt/search/forms.py:32 mkt/submit/templates/submit/manifest.html:56
-#, fuzzy
 msgid "Hosted"
-msgstr "Hostovaná"
+msgstr ""
 
 #: mkt/constants/reviewers.py:8 mkt/developers/templates/developers/validate_addon.html:54 mkt/search/forms.py:33 mkt/submit/templates/submit/manifest.html:90
-#, fuzzy
 msgid "Packaged"
-msgstr "Verze balíčku"
+msgstr ""
 
 #: mkt/constants/reviewers.py:21 mkt/reviewers/templates/reviewers/themes/queue.html:76 mkt/reviewers/templates/reviewers/themes/themes.html:86
-#, fuzzy
 msgid "Request More Info"
-msgstr "Požádat o více informací"
+msgstr ""
 
-# 80%
 #: mkt/constants/reviewers.py:22 mkt/reviewers/templates/reviewers/themes/queue.html:74 mkt/reviewers/templates/reviewers/themes/themes.html:90
-#, fuzzy
 msgid "Flag"
-msgstr "Vlajka"
+msgstr ""
 
 #: mkt/constants/reviewers.py:23 mkt/reviewers/templates/reviewers/themes/queue.html:72 mkt/reviewers/templates/reviewers/themes/themes.html:92
-#, fuzzy
 msgid "Duplicate"
-msgstr "Duplicitní"
+msgstr ""
 
-# 87%
 #: mkt/constants/reviewers.py:25 mkt/reviewers/templates/reviewers/themes/queue.html:70
-#, fuzzy
 msgid "Approve"
-msgstr "Schválit"
+msgstr ""
 
 #: mkt/constants/reviewers.py:30
-#, fuzzy
 msgid "Sexual or pornographic content"
-msgstr "Obsah se sexuální či pornografickou tématikou"
+msgstr ""
 
 #: mkt/constants/reviewers.py:31
-#, fuzzy
 msgid "Inappropriate or offensive content"
-msgstr "Nekorektní či ofenzivní obsah"
+msgstr ""
 
 #: mkt/constants/reviewers.py:32
 msgid "Violence, war, or weaponry images"
 msgstr ""
 
 #: mkt/constants/reviewers.py:33
-#, fuzzy
 msgid "Nazi or other hate content"
-msgstr "Obsah s nacistickou či nenávistnou tématikou"
+msgstr ""
 
 #: mkt/constants/reviewers.py:34
-#, fuzzy
 msgid "Defamatory content"
-msgstr "Spam"
+msgstr ""
 
 #: mkt/constants/reviewers.py:35
-#, fuzzy
 msgid "Online gambling"
-msgstr "Online sázení"
+msgstr ""
 
 #: mkt/constants/reviewers.py:36
-#, fuzzy
 msgid "Spam content"
-msgstr "Spam"
+msgstr ""
 
 #: mkt/constants/reviewers.py:37
-#, fuzzy
 msgid "Low-quality, stretched, or blank image"
-msgstr "Obrázek nízké kvality, špatných rozměrů či prázdný obrázek"
+msgstr ""
 
 #: mkt/constants/reviewers.py:38
-#, fuzzy
 msgid "Header image alignment problem"
-msgstr "Zvoľte iný obrázok hlavičky"
+msgstr ""
 
 #: mkt/constants/submit.py:5
 msgid "Agreement"
@@ -16229,41 +16026,36 @@ msgid "Featured Tile"
 msgstr ""
 
 #: mkt/constants/submit.py:19
-#, fuzzy
 msgid "The icon shown when your app is featured at the top of category landing pages."
-msgstr "Ikona je zobrazována v horní části uvodní stránky konkrétní kategorie, pokud je vaše aplikace doporučována."
+msgstr ""
 
 #: mkt/constants/submit.py:25
 msgid "Mobile Tile"
 msgstr ""
 
 #: mkt/constants/submit.py:26
-#, fuzzy
 msgid "The image used for the app's tile in the mobile Marketplace."
-msgstr "Obrázek, který je použit pro dlaždici aplikace v mobilní verzi Marketplace."
+msgstr ""
 
 #: mkt/constants/submit.py:32
 msgid "Desktop Tile"
 msgstr ""
 
 #: mkt/constants/submit.py:33
-#, fuzzy
 msgid "The image used for the app's tile in the desktop Marketplace."
-msgstr "Obrázek, který je použit pro dlaždici aplikace v desktopové verzi Marketplace."
+msgstr ""
 
 #: mkt/detail/templates/detail/app_activity.html:30 mkt/lookup/templates/lookup/user_activity.html:34
-#, fuzzy
 msgid "Administrative Actions"
-msgstr "Akce administrátora"
+msgstr ""
 
 #: mkt/detail/templates/detail/helpers/device_list.html:10
 msgid "(Unsupported)"
 msgstr "(nepodporované)"
 
 #: mkt/developers/api.py:57
-#, fuzzy
 msgid "Could not connect to payment server."
-msgstr "Nepodařilo se připojit k platebnímu serveru."
+msgstr ""
 
 #: mkt/developers/forms.py:85
 msgid "All team members must have read and agreed to the developer agreement."
@@ -16278,39 +16070,32 @@ msgid "A team member can only be listed once."
 msgstr ""
 
 #: mkt/developers/forms.py:177
-#, fuzzy
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently public. <a href=\"%s\">Edit app</a>"
-msgstr "Oops. Zdá se, že jste již přidali manifest pro %s, jenž je aktuálně veřejná. <a href=\"%s\">Upravit aplikaci</a>"
+msgstr ""
 
 #: mkt/developers/forms.py:181
-#, fuzzy
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently pending. <a href=\"%s\">Edit app</a>"
-msgstr "Oops. Zdá se, že jste již přidali manifest pro %s, jenž aktuálně čeká na schválení. <a href=\"%s\">Upravit aplikaci</a>"
+msgstr ""
 
 #: mkt/developers/forms.py:185
-#, fuzzy
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently incomplete. <a href=\"%s\">Resume app</a>"
-msgstr "Oops. Zdá se, že jste již přidali manifest pro %s, jenž ještě není dokončena. <a href=\"%s\">Upravit aplikaci</a>"
+msgstr ""
 
 #: mkt/developers/forms.py:189
-#, fuzzy
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently rejected. <a href=\"%s\">Edit app</a>"
-msgstr "Oops. Zdá se, že jste již přidali manifest pro %s, jenž je aktuálně zamítnutá. <a href=\"%s\">Upravit aplikaci</a>"
+msgstr ""
 
 #: mkt/developers/forms.py:193
-#, fuzzy
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently disabled by Mozilla. <a href=\"%s\">Edit app</a>"
-msgstr "Oops. Zdá se, že jste již přidali manifest pro %s, jenž je aktuálně Mozillou zakázána. <a href=\"%s\">Upravit aplikaci</a>"
+msgstr ""
 
 #: mkt/developers/forms.py:197
-#, fuzzy
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently disabled. <a href=\"%s\">Edit app</a>"
-msgstr "Oops. Zdá se, že jste již přidali manifest pro %s, jenž je aktuálně zakázána. <a href=\"%s\">Upravit aplikaci</a>"
+msgstr ""
 
 #: mkt/developers/forms.py:212
-#, fuzzy
 msgid "An app already exists on this domain; only one app per domain is allowed."
-msgstr "Aplikace již pro tuto doménu existuje. Pro doménu je povolena pouze jedna aplikace."
+msgstr ""
 
 #. L10n: {0} is the name of the image asset type.
 #: mkt/developers/forms.py:298
@@ -16322,9 +16107,8 @@ msgid "Only one rating from each ratings body may be selected."
 msgstr ""
 
 #: mkt/developers/forms.py:394 mkt/webapps/models.py:435
-#, fuzzy
 msgid "You must upload at least one screenshot or video."
-msgstr "Musíte nahrát alespoň jeden náhled či video."
+msgstr ""
 
 #: mkt/developers/forms.py:465
 msgid "Packaged app too large for submission. Packages must be less than %s."
@@ -16339,48 +16123,40 @@ msgid "Provide a detailed description of your app"
 msgstr ""
 
 #: mkt/developers/forms.py:531 mkt/submit/forms.py:324
-#, fuzzy
 msgid "This description will appear on the details page."
-msgstr "Popis se zobrazí na stránce s vaší aplikací."
+msgstr ""
 
-# 86%
 #: mkt/developers/forms.py:604
-#, fuzzy
 msgid "Please specify your app's Privacy Policy"
-msgstr "Zadejte prosím zásady ochrany soukromí své aplikace"
+msgstr ""
 
 #: mkt/developers/forms.py:625
 msgid "Before changing your default locale you must have a name and description in that locale. You are missing %s."
 msgstr ""
 
 #: mkt/developers/forms.py:688
-#, fuzzy
 msgid "Your comments"
-msgstr "Vaše komentáře"
+msgstr ""
 
 #: mkt/developers/forms.py:711
-#, fuzzy
 msgid "Choose the regions your app will be listed in:"
-msgstr "Zvolte regiony, pro které bude vaše aplikace dostupná:"
+msgstr ""
 
 #: mkt/developers/forms.py:715
-#, fuzzy
 msgid "You must select at least one region."
-msgstr "Musíte zvolit alespoň jeden region."
+msgstr ""
 
 #: mkt/developers/forms.py:717
-#, fuzzy
 msgid "Other and new regions"
-msgstr "Jiné či nové regiony"
+msgstr ""
 
 #: mkt/developers/forms.py:750
 msgid "Enable new regions"
 msgstr ""
 
 #: mkt/developers/forms.py:835
-#, fuzzy
 msgid "You must select at least one region or \"Other and new regions.\""
-msgstr "Musíte zvolit alespoň jeden region či volbu \"Jiné či nové regiony.\""
+msgstr ""
 
 #: mkt/developers/forms.py:842
 msgid "You have selected a region that is not valid for your price point."
@@ -16391,9 +16167,8 @@ msgid "Categories cannot be changed while your app is featured."
 msgstr ""
 
 #: mkt/developers/forms.py:1021
-#, fuzzy
 msgid "Agree"
-msgstr "Souhlasím"
+msgstr ""
 
 #: mkt/developers/forms.py:1038
 msgid "Please enter a valid email address."
@@ -16420,9 +16195,8 @@ msgid "Transaction Type"
 msgstr ""
 
 #: mkt/developers/forms_payments.py:55 mkt/submit/forms.py:248
-#, fuzzy
 msgid "App Price"
-msgstr "Cena aplikace"
+msgstr ""
 
 #: mkt/developers/forms_payments.py:105
 msgid "Please select a price"
@@ -16457,67 +16231,60 @@ msgid "Not a valid choice"
 msgstr ""
 
 #: mkt/developers/forms_payments.py:306 mkt/developers/templates/developers/payments/premium.html:276
-#, fuzzy
 msgid "This is a paid upgrade of"
-msgstr "Toto je placená aktualizace"
+msgstr ""
 
 #: mkt/developers/forms_payments.py:307
-#, fuzzy
 msgid "Not an upgrade"
-msgstr "Nejedná se o upgrade"
+msgstr ""
 
 #: mkt/developers/forms_payments.py:350
-#, fuzzy
 msgid "Account Holder Name"
-msgstr "Jméno držitele účtu"
+msgstr ""
 
 #: mkt/developers/forms_payments.py:352
-#, fuzzy
 msgid "Company Name"
-msgstr "Název společnosti"
+msgstr ""
 
 #: mkt/developers/forms_payments.py:354
-#, fuzzy
 msgid "Vendor Name"
-msgstr "Název prodejce"
+msgstr ""
 
 #: mkt/developers/forms_payments.py:356
-#, fuzzy
 msgid "Financial Email"
-msgstr "E-mail pro finance"
+msgstr ""
 
 #: mkt/developers/forms_payments.py:359
-#, fuzzy
 msgid "Administrative Email"
-msgstr "Administrační e-mail"
+msgstr ""
 
 #: mkt/developers/forms_payments.py:362
 msgid "Support Email"
-msgstr "E-mail na podporu"
+msgstr ""
 
 #: mkt/developers/forms_payments.py:366
 msgid "Address"
-msgstr "Adresa"
+msgstr ""
 
 #: mkt/developers/forms_payments.py:368
 msgid "Address 2"
-msgstr "Adresa 2"
+msgstr ""
 
 #: mkt/developers/forms_payments.py:370
 msgid "City/Municipality"
-msgstr "Mesto/Obec"
+msgstr ""
 
 #: mkt/developers/forms_payments.py:372
 msgid "State/Province/Region"
-msgstr "Štát/Provincia/Región"
+msgstr ""
 
 #: mkt/developers/forms_payments.py:374
 msgid "Zip/Postal Code"
-msgstr "PSČ"
+msgstr ""
 
 #: mkt/developers/forms_payments.py:376
 msgid "Phone"
-msgstr "Telefón"
+msgstr ""
 
 #: mkt/developers/forms_payments.py:381
 msgid "I prefer to be paid in"
@@ -16525,56 +16292,55 @@ msgstr ""
 
 #: mkt/developers/forms_payments.py:384
 msgid "VAT Number"
-msgstr "Daňové identifikačné číslo"
+msgstr ""
 
 #: mkt/developers/forms_payments.py:387
 msgid "Bank Account Number"
-msgstr "Číslo bankového účtu"
+msgstr ""
 
 #: mkt/developers/forms_payments.py:390
 msgid "Bank Account Code"
-msgstr "Kód banky"
+msgstr ""
 
 #: mkt/developers/forms_payments.py:392
 msgid "Bank Name"
-msgstr "Názov banky"
+msgstr ""
 
 #: mkt/developers/forms_payments.py:394
 msgid "Bank Address"
-msgstr "Adresa banky"
+msgstr ""
 
 #: mkt/developers/forms_payments.py:396
 msgid "Bank Address 2"
-msgstr "Adresa banky 2"
+msgstr ""
 
 #: mkt/developers/forms_payments.py:398
 msgid "Bank City/Municipality"
-msgstr "Mesto/Obec banky"
+msgstr ""
 
 #: mkt/developers/forms_payments.py:401
 msgid "Bank State/Province/Region"
-msgstr "Štát/Provincia/Región banky"
+msgstr ""
 
 #: mkt/developers/forms_payments.py:403
 msgid "Bank Zip/Postal Code"
-msgstr "PSČ banky"
+msgstr ""
 
 #: mkt/developers/forms_payments.py:405
 msgid "Bank Country"
-msgstr "Krajina banky"
+msgstr ""
 
 #: mkt/developers/forms_payments.py:407 mkt/developers/templates/developers/payments/includes/account_list.html:12
 msgid "Account Name"
-msgstr "Názov účtu"
+msgstr ""
 
 #: mkt/developers/forms_payments.py:434 mkt/developers/templates/developers/payments/premium.html:121
 msgid "Payment Account"
-msgstr "Účet pre platby"
+msgstr ""
 
 #: mkt/developers/forms_payments.py:477
-#, fuzzy
 msgid "You cannot remove a payment account from an app."
-msgstr "Z této aplikace nemůžete odstranit účet pro platby."
+msgstr ""
 
 #: mkt/developers/forms_payments.py:481
 msgid "You are not permitted to change payment accounts."
@@ -16597,53 +16363,44 @@ msgid "Bango"
 msgstr "Bango"
 
 #: mkt/developers/tasks.py:497
-#, fuzzy
 msgid "No manifest was found at that URL. Check the address and try again."
-msgstr "Na zadané URL nebyl nalezen žádný manifest. Zkontrolujte adresu a zkuste to znovu."
+msgstr ""
 
 #: mkt/developers/tasks.py:503
-#, fuzzy
 msgid "Manifests must be served with the HTTP header \"Content-Type: application/x-web-app-manifest+json\". See %s for more information."
-msgstr "Manifesty musí být poskytovány s HTTP hlavičkou \"Content-Type: application/x-web-app-manifest+json\". Pro více informací si přečtěte %s."
+msgstr ""
 
 #: mkt/developers/tasks.py:520
-#, fuzzy
 msgid "Your manifest file was not encoded as valid UTF-8."
-msgstr "Váš manifest není kódován v UTF-8."
+msgstr ""
 
 #: mkt/developers/tasks.py:531
-#, fuzzy
 msgid "The manifest's encoding does not match the charset provided in the HTTP Content-Type."
-msgstr "Kódování souboru s manifestem neodpovídá znakové sadě, kterou jste zaslali v hlavičce HTTP Content-Type."
+msgstr ""
 
 #: mkt/developers/tasks.py:610
 msgid "{region} region added to the Firefox Marketplace"
-msgstr "Do Firefox Marketplace bol pridaný región {region}"
+msgstr ""
 
 #: mkt/developers/tasks.py:613
-#, fuzzy
 msgid "New regions added to the Firefox Marketplace"
-msgstr "Do Firefox Marketplace byly přidány nové regiony."
+msgstr ""
 
 #: mkt/developers/tasks.py:663
 msgid "{app}: {region} region added to the Firefox Marketplace"
 msgstr ""
 
 #: mkt/developers/utils.py:42
-#, fuzzy
 msgid "Video support not enabled."
-msgstr "Podpora pro video není povolena."
+msgstr ""
 
-# 80%
 #: mkt/developers/utils.py:73
-#, fuzzy
 msgid "Please use files smaller than %s."
-msgstr "Používejte prosím soubory menší než %s."
+msgstr ""
 
 #: mkt/developers/utils.py:83
-#, fuzzy
 msgid "Icon could not be opened."
-msgstr "Ikona nemohla být otevřena."
+msgstr ""
 
 #: mkt/developers/utils.py:85
 #, fuzzy
@@ -16798,14 +16555,12 @@ msgid "Key"
 msgstr "Kľúč"
 
 #: mkt/developers/templates/developers/api.html:56
-#, fuzzy
 msgid "Secret"
-msgstr "Tajný hash aplikace"
+msgstr ""
 
 #: mkt/developers/templates/developers/api.html:74
-#, fuzzy
 msgid "You currently do not have an API key."
-msgstr "Aktuálně nemáte klíč pro API."
+msgstr ""
 
 #: mkt/developers/templates/developers/login.html:9
 msgid "Sign in"
@@ -16886,9 +16641,8 @@ msgid "Additional Marketplace Policies"
 msgstr "Ďalšie zásady pre Marketplace"
 
 #: mkt/developers/templates/developers/terms.html:34
-#, fuzzy
 msgid "You have already agreed to this developer agreement."
-msgstr "Pravidla pro vývojáře jste již odsouhlasil(a)."
+msgstr ""
 
 #: mkt/developers/templates/developers/transactions.html:4
 msgid "Transaction Details"
@@ -17228,9 +16982,8 @@ msgid ""
 msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:54
-#, fuzzy
 msgid "Add a Promo"
-msgstr "Domovská stránka (propagácia)"
+msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:71 mkt/lookup/templates/lookup/app_summary.html:25 mkt/reviewers/forms.py:73
 #, fuzzy
@@ -18016,9 +17769,8 @@ msgid "We apologize, but an error occurred in our system. Please try again later
 msgstr ""
 
 #: mkt/ecosystem/views.py:388
-#, fuzzy
 msgid "App Stub"
-msgstr "Kostra aplikace"
+msgstr ""
 
 #: mkt/ecosystem/views.py:391
 msgid ""
@@ -18038,9 +17790,8 @@ msgid "<a href=\"http://volojs.org\" rel=\"external\" target=\"_blank\">Volo.js<
 msgstr ""
 
 #: mkt/ecosystem/views.py:407
-#, fuzzy
 msgid "List/Detail View"
-msgstr "Zobraziť všetky verzie"
+msgstr ""
 
 #: mkt/ecosystem/views.py:410
 msgid ""
@@ -18065,9 +17816,8 @@ msgid "data propagation across the app, via <a href=\"http://backbonejs.org\">Ba
 msgstr ""
 
 #: mkt/ecosystem/views.py:428
-#, fuzzy
 msgid "Game Stub"
-msgstr "Kostra hry"
+msgstr ""
 
 #: mkt/ecosystem/views.py:431
 msgid ""
@@ -18087,14 +17837,12 @@ msgid "a means to pause and unpause the game as the app loses and regains focus"
 msgstr ""
 
 #: mkt/ecosystem/views.py:618
-#, fuzzy
 msgid "Gaia Building Blocks"
-msgstr "Zostavenie rozšírenia pre Thunderbird"
+msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/base.html:16 mkt/ecosystem/templates/ecosystem/landing.html:14 mkt/ecosystem/templates/ecosystem/macros.html:6
-#, fuzzy
 msgid "Design"
-msgstr "Návrh"
+msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/base.html:20 mkt/ecosystem/templates/ecosystem/design_concept.html:5 mkt/ecosystem/templates/ecosystem/design_concept.html:13
 #: mkt/ecosystem/templates/ecosystem/landing.html:23 mkt/ecosystem/templates/ecosystem/macros.html:13
@@ -18112,9 +17860,8 @@ msgid "UI Guidelines"
 msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/base.html:33 mkt/ecosystem/templates/ecosystem/landing.html:31 mkt/ecosystem/templates/ecosystem/macros.html:51
-#, fuzzy
 msgid "Build"
-msgstr "Tvorba"
+msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/base.html:37 mkt/ecosystem/templates/ecosystem/build_quick.html:6 mkt/ecosystem/templates/ecosystem/landing.html:40
 #: mkt/ecosystem/templates/ecosystem/macros.html:58
@@ -18129,9 +17876,8 @@ msgstr "Simulátor Firefox OS"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:45 mkt/ecosystem/templates/ecosystem/build_reference.html:5 mkt/ecosystem/templates/ecosystem/build_reference.html:13
 #: mkt/ecosystem/templates/ecosystem/landing.html:44 mkt/ecosystem/templates/ecosystem/macros.html:84
-#, fuzzy
 msgid "Reference Apps"
-msgstr "Referenční aplikace"
+msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/base.html:54 mkt/ecosystem/templates/ecosystem/landing.html:57 mkt/ecosystem/templates/ecosystem/macros.html:245
 #: mkt/ecosystem/templates/ecosystem/publish_deploy.html:5 mkt/ecosystem/templates/ecosystem/publish_deploy.html:13
@@ -18145,15 +17891,13 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/base.html:62 mkt/ecosystem/templates/ecosystem/landing.html:61 mkt/ecosystem/templates/ecosystem/macros.html:260
 #: mkt/ecosystem/templates/ecosystem/publish_deploy.html:34 mkt/ecosystem/templates/ecosystem/publish_packaged.html:5 mkt/ecosystem/templates/ecosystem/publish_packaged.html:13
-#, fuzzy
 msgid "Packaged Apps"
-msgstr "Zabalené aplikace"
+msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_app_generator.html:5 mkt/ecosystem/templates/ecosystem/build_app_generator.html:13 mkt/ecosystem/templates/ecosystem/build_tools.html:26
 #: mkt/ecosystem/templates/ecosystem/macros.html:199
-#, fuzzy
 msgid "App Generator"
-msgstr "Generátor aplikace"
+msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_app_generator.html:34 templates/global/menu_links.html:3 templates/global/menu_links.html:5 templates/global/menu_links.html:19
 #: templates/global/mobile/header.html:4 templates/mobile/header.html:4
@@ -18161,9 +17905,8 @@ msgid "Features"
 msgstr "Funkcie"
 
 #: mkt/ecosystem/templates/ecosystem/build_app_generator.html:42
-#, fuzzy
 msgid "Download Template"
-msgstr "Stáhnout šablonu"
+msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_app_generator.html:47
 msgid "Introduction to App Generator Templates"
@@ -20247,24 +19990,20 @@ msgid ""
 msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:11
-#, fuzzy
 msgid "Develop HTML5 Web Apps for an open marketplace."
-msgstr "Vytvářejte pro otevřený marketplace webové aplikace v HTML5."
+msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:16
-#, fuzzy
 msgid "Learn how to design Web Apps that provide a user experience optimized for Firefox OS &amp; Mobile"
-msgstr "Přečtěte si, jak navrhovat webové aplikace, které jsou dobře optimalizované pro Firefox OS a mobily"
+msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:33
-#, fuzzy
 msgid "All the tools, docs and references you'll need for development and testing of your App"
-msgstr "Všechny nástroje, dokumentace a přehledy, které budete potřebovat pro vývoj a testování své aplikace"
+msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:50
-#, fuzzy
 msgid "Find out how to distribute your Apps on an open marketplace that puts users and developers first"
-msgstr "Podívejte se, jak distribuovat svou aplikaci na otevřeném marketplace, který staví uživatele a vývojáře na první místo"
+msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:74
 msgid "Do you have an app ready for liftoff?"
@@ -20275,32 +20014,26 @@ msgid "Submit your app to the Marketplace"
 msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:115
-#, fuzzy
 msgid "Join the community"
-msgstr "Připojte se ke komunitě"
+msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:117
-#, fuzzy
 msgid "Look who's already here"
-msgstr "Kdo se již připojil"
+msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:120
 msgid "Are you a Web Company, Third-Party Service, or OEM looking to partner with Mozilla? <a href=\"%(partner_url)s\">Check out our Partners page for more info.</a>"
 msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:132
-#, fuzzy
 msgid "The Mozilla Apps platform"
-msgstr "Platforma Mozilla Apps"
+msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:134
-#, fuzzy
 msgid ""
 "Building Apps for the Web provides developers with full control over content, functionality and how Apps are distributed, including access to hundreds of millions of Firefox users through the "
 "Firefox Marketplace."
 msgstr ""
-"Tvorba aplikaci pro web dává vývojářům plnou kontrolu nad obsahem, funkcionalitou a tím, jak jsou aplikace distribuovány. To vše včetně přístupu ke stovkám miliónů uživatelů Firefoxu pomocí Firefox "
-"Marketplace."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:142
 msgid ""
@@ -20367,9 +20100,8 @@ msgid "Sign me up!"
 msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:231 mkt/ecosystem/templates/ecosystem/publish_submit.html:5 mkt/ecosystem/templates/ecosystem/publish_submit.html:13
-#, fuzzy
 msgid "Marketplace Submission"
-msgstr "Přidání do Marketplace"
+msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:268 mkt/ecosystem/templates/ecosystem/publish_payments.html:5 mkt/ecosystem/templates/ecosystem/publish_payments.html:13
 msgid "Payments Status"
@@ -21187,9 +20919,8 @@ msgid ""
 msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/publish_submit.html:236 mkt/lookup/templates/lookup/user_summary.html:87
-#, fuzzy
 msgid "Submissions"
-msgstr "Příspěvky"
+msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/publish_submit.html:237
 msgid "Review process"
@@ -21202,44 +20933,36 @@ msgid ""
 msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/support.html:18
-#, fuzzy
 msgid "What should I know before creating an App?"
-msgstr "Co bych měl(a) znát před vytvořením aplikace?"
+msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/support.html:23
-#, fuzzy
 msgid "How can I upload my App to the Firefox Marketplace?"
-msgstr "Jak mohu do Firefox Marketplace nahrát aplikaci?"
+msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/support.html:28
-#, fuzzy
 msgid "I need help with the App Manifest."
-msgstr "Potřebuji pomoc s manifestem aplikace"
+msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/support.html:33
-#, fuzzy
 msgid "How do I create an installable App?"
-msgstr "Jak vytvořím instalovatelnou aplikaci?"
+msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/support.html:38
-#, fuzzy
 msgid "How do payments work?"
-msgstr "Jak fungují platby?"
+msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/support.html:44
-#, fuzzy
 msgid "How do I manage the taxes of my sales?"
-msgstr "Jak mam danit své prodeje?"
+msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/support.html:50
-#, fuzzy
 msgid "Known issues"
-msgstr "Známé problémy"
+msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/support.html:55
-#, fuzzy
 msgid "Do you still have questions?"
-msgstr "Stále máte otázku?"
+msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/support.html:57
 msgid "While we are working on creating a set of channels to help you with your issues you can visit StackOverflow to resolve all your questions related to the development of Web apps."
@@ -21262,9 +20985,8 @@ msgid "Mozilla Web apps (Brazilian Portuguese)"
 msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:17 mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:18
-#, fuzzy
 msgid "Start Screen"
-msgstr "Počáteční datum"
+msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:22 mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:23
 msgid "Timer"
@@ -21283,9 +21005,8 @@ msgstr ""
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:47 mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:71
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:48 mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:73
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:96 mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:51
-#, fuzzy
 msgid "Web API Usage"
-msgstr "Použití Web API"
+msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:52
 msgid "Chrono does not require a network connection to run."
@@ -21296,9 +21017,8 @@ msgid "Uses the Open Web Apps installation API to allow installation on the devi
 msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:72 mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:181
-#, fuzzy
 msgid "Custom Elements"
-msgstr "Vlastní prvky"
+msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:77
 msgid "Chrono uses the same UI components as the built-in apps."
@@ -21307,9 +21027,8 @@ msgstr ""
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:88 mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:97
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:72 mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:107
 #: mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:49 mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:47
-#, fuzzy
 msgid "Third-party Libraries"
-msgstr "Knihovny třetích stran"
+msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:93
 msgid "Uses a volo.js script to optimize app before release, i.e. by auto-generating an appcache manifest."
@@ -21329,9 +21048,8 @@ msgstr ""
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:113 mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:133
 #: mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:90 mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:197
 #: mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:84
-#, fuzzy
 msgid "View Source"
-msgstr "Zobraziť zdrojový kód"
+msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:130 mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:132
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:121 mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:141
@@ -21341,39 +21059,35 @@ msgid "Difficulty:"
 msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:130
-#, fuzzy
 msgid "Easy"
-msgstr "Snadné"
+msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:133 mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:135
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:124 mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:144
 #: mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:101 mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:208
 #: mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:95
-#, fuzzy
 msgid "Code Breakdown"
-msgstr "Rozdelenie podľa kategórií"
+msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:135
 msgid "7%"
-msgstr ""
+msgstr "7%"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:136
 msgid "11%"
-msgstr ""
+msgstr "11%"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:137 mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:139
 msgid "82%"
-msgstr ""
+msgstr "82%"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:17 mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:18
-#, fuzzy
 msgid "Euros to Canadian Dollars"
-msgstr "Eura na Kanadské dolary"
+msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:22 mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:23
-#, fuzzy
 msgid "Canadian Dollars to Euros"
-msgstr "Kanadské dolary na Eura"
+msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:27 mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:28
 msgid "Conversion Selector"
@@ -21534,9 +21248,8 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:141 mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:98
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:205
-#, fuzzy
 msgid "Advanced"
-msgstr "Rozšírené"
+msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:146
 msgid "4%"
@@ -21551,19 +21264,16 @@ msgid "90%"
 msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:17 mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:18
-#, fuzzy
 msgid "Default Feed View"
-msgstr "Zobraziť všetky verzie"
+msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:22 mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:23
-#, fuzzy
 msgid "Writing a Status Update"
-msgstr "Aktualizovať správu dňa"
+msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:27 mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:28
-#, fuzzy
 msgid "Liking a Post"
-msgstr "Odoslať komentár"
+msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:35
 msgid ""
@@ -21979,9 +21689,8 @@ msgstr "Výsledky aktivity účtu pro"
 
 # 80%
 #: mkt/lookup/templates/lookup/user_summary.html:20
-#, fuzzy
 msgid "Registered"
-msgstr "Registrován(a)"
+msgstr "Registrovaný"
 
 #: mkt/lookup/templates/lookup/user_summary.html:24
 #, fuzzy
@@ -22038,9 +21747,8 @@ msgid "Unnamed"
 msgstr "Nepojmenováno"
 
 #: mkt/lookup/templates/lookup/helpers/app_header.html:3
-#, fuzzy
 msgid "App Lookup results for"
-msgstr "Výlsedky vyhľadávania termínu {0} v kolekciách"
+msgstr "Výsledky vyhľadávania aplikácií pre"
 
 #: mkt/lookup/templates/lookup/helpers/app_header.html:5
 #, fuzzy
@@ -22048,9 +21756,8 @@ msgid "App Detail"
 msgstr "Detaily o aplikaci"
 
 #: mkt/lookup/templates/lookup/helpers/app_header.html:7
-#, fuzzy
 msgid "Add-on Lookup results for"
-msgstr "Výsledky vyhľadávania doplnkov pre {0}"
+msgstr "Výsledky vyhľadávania doplnkov pre"
 
 #: mkt/lookup/templates/lookup/helpers/user_header.html:4
 #, fuzzy
@@ -22890,9 +22597,8 @@ msgid "Oops! Not allowed."
 msgstr "Oops! Není povoleno."
 
 #: mkt/site/templates/site/403.html:10
-#, fuzzy
 msgid "You tried to do something that you weren't allowed to."
-msgstr "Vyzkoušel(a) jste něco, co není povoleno."
+msgstr "Skúsili ste niečo, čo nie je povolené."
 
 #: mkt/site/templates/site/403.html:12
 #, fuzzy
@@ -22996,14 +22702,12 @@ msgid "Units Refunded"
 msgstr "Počet vrácení peněz"
 
 #: mkt/stats/templates/appstats/includes/stats_nav.html:33
-#, fuzzy
 msgid "by Currency"
-msgstr "dle měny"
+msgstr "podľa meny"
 
 #: mkt/stats/templates/appstats/reports/app_overview.html:9
-#, fuzzy
 msgid "<b>{0}</b> Installs"
-msgstr "<b>{0}</b> instalací"
+msgstr ""
 
 #: mkt/stats/templates/appstats/reports/app_overview.html:25
 #, fuzzy
@@ -23337,9 +23041,8 @@ msgid "Your PayPal account is all set up! The last thing we need is your real na
 msgstr "Váš účet PayPal byl nastaven! Poslední věc, která je potřeba, je vaše reálné jméno a kontaktní informace."
 
 #: mkt/submit/templates/submit/payments-paypal.html:16
-#, fuzzy
 msgid "Next, we'll set up your PayPal account so you can receive payments. If you don't have one, we can help you create one."
-msgstr "Nyní provedeme nastavení vašeho účtu na PayPalu, abyste mohl(a) přijímat platby. Pokud žádný nemáte, pomůžeme vám jej vytvořit."
+msgstr ""
 
 #: mkt/submit/templates/submit/payments-upsell.html:18
 msgid "To sell your app in the Marketplace, you'll first need to set its price tier below. Price tiers are based on US Dollars and are fixed for all supported currencies."
@@ -23365,18 +23068,14 @@ msgid "Marketplace Developer Program"
 msgstr "Program Marketplace pro vývojáře"
 
 #: mkt/submit/templates/submit/terms.html:16
-#, fuzzy
 msgid ""
 "We're excited you've built an app using web technologies, and submitting it to the Firefox Marketplace is the best way for users to discover and enjoy it across their devices. First, you'll need to "
 "join the Marketplace Developer Program below."
 msgstr ""
-"Jsme rádi, že jste se rozhodli vytvořit aplikaci pomocí webových technologií. Její přidání do Firefox Marketplace je nejlepší způsob, jakým o ní dáte vědět uživatelům napříč zařízeními. Prvně "
-"musíte odsouhlasit podmínky programu Marketplace pro vývojáře, které jsou uvedeny níže."
 
 #: mkt/submit/templates/submit/terms.html:24
-#, fuzzy
 msgid "To begin, please read and accept our <strong>Developer Agreement</strong>:"
-msgstr "Na začátek si prosím přečtěte a odsouhlaste <strong>ujednání pro vývojáře</strong>:"
+msgstr ""
 
 #: mkt/submit/templates/submit/terms.html:47
 #, fuzzy
