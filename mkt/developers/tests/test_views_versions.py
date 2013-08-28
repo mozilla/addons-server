@@ -116,6 +116,19 @@ class TestVersion(amo.tests.TestCase):
             addon=webapp, activity_log__action=action.id).exists(), (
                 "Didn't find `%s` action in logs." % action.short)
 
+    def test_comm_thread_after_resubmission(self):
+        self.create_switch('comm-dashboard')
+        self.webapp.update(status=amo.STATUS_REJECTED)
+        amo.set_user(UserProfile.objects.get(username='admin'))
+        (self.webapp.versions.latest()
+                             .all_files[0].update(status=amo.STATUS_DISABLED))
+        my_reply = 'no give up'
+        self.client.post(self.url, {'notes': my_reply,
+                                    'resubmit-app': ''})
+        notes = CommunicationNote.objects.all()
+        eq_(notes.count(), 1)
+        eq_(notes[0].body, my_reply)
+
     def test_rejected_packaged(self):
         self.webapp.update(is_packaged=True)
         comments = "oh no you di'nt!!"

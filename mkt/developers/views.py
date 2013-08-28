@@ -32,6 +32,7 @@ from amo.decorators import (any_permission_required, json_view, login_required,
                             post_required)
 from amo.urlresolvers import reverse
 from amo.utils import escape_all
+from comm.utils import create_comm_thread
 from devhub.models import AppLog
 from files.models import File, FileUpload
 from files.utils import parse_addon
@@ -54,7 +55,6 @@ from mkt.developers.forms import (APIConsumerForm, AppFormBasic,
                                   trap_duplicate)
 from mkt.developers.utils import check_upload
 from mkt.developers.tasks import run_validator
-from mkt.reviewers.utils import create_comm_thread
 from mkt.submit.forms import AppFeaturesForm, NewWebappVersionForm
 from mkt.webapps.tasks import _update_manifest, update_manifests
 from mkt.webapps.models import Webapp
@@ -210,6 +210,11 @@ def status(request, addon_id, addon, webapp=False):
     if request.method == 'POST':
         if 'resubmit-app' in request.POST and form.is_valid():
             form.save()
+            perms = ('reviewer', 'senior_reviewer', 'staff')
+            create_comm_thread(action='resubmit', addon=addon,
+                comments=form.data['notes'], profile=request.amo_user,
+                version=addon.current_version, perms=perms)
+
             messages.success(request, _('App successfully resubmitted.'))
             return redirect(addon.get_dev_url('versions'))
 

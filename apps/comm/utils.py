@@ -3,16 +3,27 @@ from email.utils import parseaddr
 
 import commonware.log
 from email_reply_parser import EmailReplyParser
+import waffle
 
 from access import acl
 from access.models import Group
 from comm.models import (CommunicationNote, CommunicationNoteRead,
-                         CommunicationThreadCC, CommunicationThreadToken)
+                         CommunicationThreadCC, CommunicationThread,
+                         CommunicationThreadToken)
 from mkt.constants import comm
 from users.models import UserProfile
 
 
 log = commonware.log.getLogger('comm')
+action_note_types = {
+    'approve': comm.APPROVAL,
+    'disable': comm.DISABLED,
+    'escalate': comm.ESCALATION,
+    'info': comm.MORE_INFO_REQUIRED,
+    'comment': comm.REVIEWER_COMMENT,
+    'reject': comm.REJECTION,
+    'resubmit': comm.RESUBMISSION
+}
 
 
 class ThreadObjectPermission(object):
@@ -215,3 +226,40 @@ def get_recipients(note, fresh_thread=False):
         new_recipients_list.append((user_email, tok.uuid))
 
     return new_recipients_list
+
+
+def create_comm_thread(**kwargs):
+    if not waffle.switch_is_active('comm-dashboard'):
+        return
+
+    addon = kwargs['addon']
+    version = kwargs['version']
+    thread = CommunicationThread.objects.filter(addon=addon, version=version)
+
+    perms = {}
+    for key in kwargs['perms']:
+        perms['read_permission_%s' % key] = True
+
+    if thread.exists():
+        thread = thread[0]
+    else:
+        thread = CommunicationThread.objects.create(addon=addon,
+            version=version, **perms)
+
+    note = CommunicationNote.objects.create(
+        note_type=action_note_types[kwargs['action']],
+        body=kwargs['comments'], author=kwargs['profile'],
+        thread=thread, **perms)
+
+    moz_emails = addon.get_mozilla_contacts()
+
+    # CC mozilla contact.
+    for email in moz_emails:
+        try:
+            moz_contact = UserProfile.objects.get(email=email)
+        except UserProfile.DoesNotExist:
+            pass
+        else:
+            CommunicationThreadCC.objects.get_or_create(
+                thread=thread, user=moz_contact)
+    return thread, note

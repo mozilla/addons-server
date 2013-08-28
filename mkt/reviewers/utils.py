@@ -16,9 +16,7 @@ from access import acl
 from amo.helpers import absolutify
 from amo.urlresolvers import reverse
 from amo.utils import JSONEncoder, send_mail_jinja, to_language
-from comm.models import (CommunicationNote, CommunicationThread,
-                         CommunicationThreadCC)
-from comm.utils import get_recipients
+from comm.utils import create_comm_thread, get_recipients
 from editors.models import EscalationQueue, RereviewQueue, ReviewerScore
 from files.models import File
 
@@ -26,18 +24,9 @@ from mkt.constants import comm
 from mkt.constants.features import FeatureProfile
 from mkt.site.helpers import product_as_dict
 from mkt.webapps.models import Webapp
-from users.models import UserProfile
 
 
 log = commonware.log.getLogger('z.mailer')
-action_note_types = {
-    'approve': comm.APPROVAL,
-    'disable': comm.DISABLED,
-    'escalate': comm.ESCALATION,
-    'info': comm.MORE_INFO_REQUIRED,
-    'comment': comm.REVIEWER_COMMENT,
-    'reject': comm.REJECTION
-}
 
 
 def send_mail(subject, template, context, emails, perm_setting=None, cc=None,
@@ -72,43 +61,6 @@ def send_note_emails(note):
         subject = u'%s has been reviewed.' % name
         send_mail(subject, 'reviewers/emails/decisions/post.txt', data,
                   [email], perm_setting='app_reviewed', reply_to=reply_to)
-
-
-def create_comm_thread(**kwargs):
-    if not waffle.switch_is_active('comm-dashboard'):
-        return
-
-    addon = kwargs['addon']
-    version = kwargs['version']
-    thread = CommunicationThread.objects.filter(addon=addon, version=version)
-
-    perms = {}
-    for key in kwargs['perms']:
-        perms['read_permission_%s' % key] = True
-
-    if thread.exists():
-        thread = thread[0]
-    else:
-        thread = CommunicationThread.objects.create(addon=addon,
-            version=version, **perms)
-
-    note = CommunicationNote.objects.create(
-        note_type=action_note_types[kwargs['action']],
-        body=kwargs['comments'], author=kwargs['profile'],
-        thread=thread, **perms)
-
-    moz_emails = addon.get_mozilla_contacts()
-
-    # CC mozilla contact.
-    for email in moz_emails:
-        try:
-            moz_contact = UserProfile.objects.get(email=email)
-        except UserProfile.DoesNotExist:
-            pass
-        else:
-            CommunicationThreadCC.objects.get_or_create(
-                thread=thread, user=moz_contact)
-    return thread, note
 
 
 class ReviewBase(object):
