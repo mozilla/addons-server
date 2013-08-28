@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-08-23 09:56-0700\n"
-"PO-Revision-Date: 2013-08-28 19:36+0000\n"
+"PO-Revision-Date: 2013-08-28 19:40+0000\n"
 "Last-Translator: Vlado <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-POOTLE-MTIME: 1377718582.0\n"
+"X-POOTLE-MTIME: 1377718825.0\n"
 
 #: apps/addons/buttons.py:207
 msgid "Download Now"
@@ -9931,8 +9931,6 @@ msgstr "Pozrite sa na skvelé doplnky, ktoré vám pomôžu s vašim nakupovaní
 #: apps/discovery/templates/discovery/modules/holiday.html:13
 msgid "Install the Amazon Browser Apps and receive special Amazon features right at your fingertips."
 msgstr ""
-"Majte na očiach aktivity na eBay, kdekoľvek na webe práve ste. Nainštalujte "
-"si eBay Sidebar pre Firefox."
 
 #: apps/discovery/templates/discovery/modules/holiday.html:22
 msgid "Keep an eye on your eBay activity wherever you are on the web when you install the eBay Sidebar for Firefox."
