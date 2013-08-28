@@ -4,15 +4,16 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-08-23 09:56-0700\n"
-"PO-Revision-Date: 2013-07-01 21:07+0200\n"
-"Last-Translator: Sandro <gialloporpora@mozillaitalia.org>\n"
+"PO-Revision-Date: 2013-08-26 07:47+0000\n"
+"Last-Translator: Sara <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.1.6\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1377503278.0\n"
 
 #: media/js/common-all.js:10109 media/js/common-min.js:23 media/js/impala-all.js:1159 media/js/impala-min.js:1 media/js/devreg/init.js:35 media/js/mkt/init.js:47
 #: media/js/zamboni/discovery-all.js:10076 media/js/zamboni/discovery-min.js:23 media/js/zamboni/init.js:32 media/js/zamboni/mobile-all.js:10912 media/js/zamboni/mobile-min.js:32
@@ -443,7 +444,10 @@ msgstr "L'app ha superato il processo di validazione senza errori né avvisi."
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
 msgstr[0] ""
+"È fallito il processo di validazione dell'app con {0} errore e {1} "
+"messaggio."
 msgstr[1] ""
+"È fallito il processo di validazione dell'app con {0} errori e {1} messaggi."
 
 #: media/js/devreg/devhub.js:200 media/js/zamboni/devhub-all.js:1047 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:183
 msgid "Your app passed validation with no errors and {0} message."
@@ -1288,7 +1292,7 @@ msgstr "Sono presenti dei commenti da parte dell'editore"
 
 #: media/js/mkt/reviewers.js:112
 msgid "Premium App"
-msgstr ""
+msgstr "App premium"
 
 #: media/js/mkt/reviewers.js:115
 msgid "Escalated"

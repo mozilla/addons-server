@@ -8,15 +8,16 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-08-23 09:56-0700\n"
-"PO-Revision-Date: 2013-07-29 19:46+0100\n"
-"Last-Translator: Sandro Della Giustina <gialloporpora@gmail.com>\n"
+"PO-Revision-Date: 2013-08-27 17:50+0000\n"
+"Last-Translator: Sandro <gialloporpora@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.5.5\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1377625818.0\n"
 
 #: apps/addons/buttons.py:207
 msgid "Download Now"
@@ -10648,11 +10649,11 @@ msgstr "È necessario inserire il nome dello sviluppatore nel manifesto affinch�
 
 #: apps/files/utils.py:328
 msgid "Invalid file name in archive: {0}"
-msgstr ""
+msgstr "Nome di file non valido nell'archivio: {0}"
 
 #: apps/files/utils.py:336
 msgid "File exceeding size limit in archive: {0}"
-msgstr ""
+msgstr "File che supera la dimensione massima consentita nell'archivio: {0}"
 
 #: apps/files/utils.py:386
 msgid "Invalid archive."
@@ -12469,8 +12470,12 @@ msgstr "Questa recensione riguarda una versione precedente ({0}) del componente 
 #: apps/reviews/templates/reviews/review.html:51
 msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
 msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
-msgstr[0] "L'utente ha un <a href=\"%(user_review_url)s\">commento precedente</a> su questo componente aggiuntivo."
-msgstr[1] "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
+msgstr[0] ""
+"L'utente ha un <a href=\"%(user_review_url)s\">commento precedente</a> su "
+"questo componente aggiuntivo."
+msgstr[1] ""
+"Questo utente ha <a href=\"%(user_review_url)s\">%(cnt)s precedenti "
+"commenti</a> su questo componente aggiuntivo."
 
 #: apps/reviews/templates/reviews/review.html:57
 msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
@@ -14139,19 +14144,21 @@ msgstr "Commenti e suggerimenti"
 
 #: mkt/collections/constants.py:9
 msgid "Basic Collection"
-msgstr ""
+msgstr "Raccolta base"
 
 #: mkt/collections/constants.py:10
 msgid "Featured App List"
-msgstr ""
+msgstr "Lista app consigliate"
 
 #: mkt/collections/constants.py:11
 msgid "Operator Shelf"
-msgstr ""
+msgstr "Scaffale dell'operatore"
 
 #: mkt/collections/serializers.py:54
 msgid "You can not have more than one Featured Apps/Operator Shelf collection for the same category/carrier/region combination."
 msgstr ""
+"Non puoi creare più di una raccolta di app consigliate o di uno scaffale "
+"dell'operatore con la stessa combinazione categoria/operatore/regione."
 
 #: mkt/constants/apps.py:9 mkt/reviewers/templates/reviewers/logs.html:18 mkt/reviewers/templates/reviewers/includes/search_results_themes.html:6
 #: mkt/reviewers/templates/reviewers/themes/history_table.html:7 mkt/reviewers/templates/reviewers/themes/logs.html:18 mkt/reviewers/templates/reviewers/themes/queue_list.html:42
@@ -15400,8 +15407,10 @@ msgid ""
 "The app requires the platform to have a smartphone-sized display (having qHD resolution). This option indicates that the app will be unusable on larger displays (e.g., tablets, desktop, large or "
 "high-DPI phones)."
 msgstr ""
-"The app requires the platform to have a smartphone-sized display (having qHD resolution). This option indicates that the app will be unusable on larger displays (e.g., tablets, desktop, large or "
-"high-DPI phones)."
+"L'app necessita di uno schermo tipo smartphone (con risoluzione QHD). Questa "
+"opzione indica che l'app non può essere utilizzata con schermi di "
+"dimensione superiore (ad esempio tablet, desktop o telefoni con schermi "
+"grandi o una DPI superiore)."
 
 #: mkt/constants/features.py:162
 msgid "The app requires that the platform can decode and play MP3 files."
@@ -15710,7 +15719,7 @@ msgstr "Altre/nuove regioni"
 
 #: mkt/developers/forms.py:750
 msgid "Enable new regions"
-msgstr ""
+msgstr "Attiva nuove regioni"
 
 #: mkt/developers/forms.py:835
 msgid "You must select at least one region or \"Other and new regions.\""
@@ -15902,7 +15911,7 @@ msgstr "Non è possibile rimuovere un conto pagamenti da un'app."
 
 #: mkt/developers/forms_payments.py:481
 msgid "You are not permitted to change payment accounts."
-msgstr ""
+msgstr "Non hai il permesso di cambiare i conti pagamenti."
 
 #: mkt/developers/forms_payments.py:525
 msgid "No payment account set up for that app"
@@ -15910,7 +15919,7 @@ msgstr "Non è stato impostato alcun conto pagamenti per questa app."
 
 #: mkt/developers/forms_payments.py:528
 msgid "Account not set up"
-msgstr "Account not set up"
+msgstr "Account non configurato"
 
 #: mkt/developers/helpers.py:36 mkt/developers/helpers.py:65 mkt/reviewers/forms.py:69
 msgid "Developers"
@@ -15946,7 +15955,7 @@ msgstr "Sono state aggiunte delle nuove regioni al Firefox Marketplace"
 
 #: mkt/developers/tasks.py:663
 msgid "{app}: {region} region added to the Firefox Marketplace"
-msgstr ""
+msgstr "{app}: la regione {region} è stata aggiunta a Firefox Marketplace"
 
 #: mkt/developers/utils.py:42
 msgid "Video support not enabled."
@@ -15977,6 +15986,8 @@ msgstr "È necessario che le icone siano quadrate."
 #: mkt/developers/utils.py:105
 msgid "App previews must be at least {0}px by {1}px or {1}px by {0}px."
 msgstr ""
+"Le anteprime delle app devono avere dimensioni minime di {0}x{1} pixel "
+"oppure {1}x{0} pixel."
 
 #: mkt/developers/views.py:148
 msgid "Paid apps cannot be deleted. Disable this app instead."
@@ -16096,7 +16107,7 @@ msgstr "URI di reindirizzamento"
 
 #: mkt/developers/templates/developers/api.html:53
 msgid "Key"
-msgstr "Key"
+msgstr "Chiave"
 
 #: mkt/developers/templates/developers/api.html:56
 msgid "Secret"
@@ -16799,27 +16810,32 @@ msgstr "Modifica dispositivi"
 
 #: mkt/developers/templates/developers/emails/new_payments_region.html:1
 msgid "Dear App Developer,"
-msgstr ""
+msgstr "Gentile sviluppatore di app,"
 
 #: mkt/developers/templates/developers/emails/new_payments_region.html:3
 msgid "We've added a new payments region to the Firefox Marketplace. The Marketplace will soon be accepting payments for"
 msgstr ""
+"abbiamo aggiunto una nuova regione abile ai pagamenti a Firefox Marketplace. "
+"Il Marketplace sarà ben presto in grado di accettare pagamenti per"
 
 #: mkt/developers/templates/developers/emails/new_payments_region.html:5
 msgid "If you would like your app,"
-msgstr ""
+msgstr "Se desideri che la tua app"
 
 #: mkt/developers/templates/developers/emails/new_payments_region.html:5
 msgid "to be available in that region you will need to visit the Firefox Marketplace Developer Hub and update your app settings on the \"Compatibility & Payments\" page:"
 msgstr ""
+"sia disponibile per questa regione dovrai visitare il centro di sviluppo di "
+"Firefox Marketplace e modificare le impostazioni nella pagina Compatibilità "
+"e pagamenti:"
 
 #: mkt/developers/templates/developers/emails/new_payments_region.html:7
 msgid "Thanks,"
-msgstr ""
+msgstr "Cordialmente,"
 
 #: mkt/developers/templates/developers/emails/new_payments_region.html:8
 msgid "Firefox Marketplace Team"
-msgstr ""
+msgstr "il team di Firefox Marketplace"
 
 #: mkt/developers/templates/developers/helpers/disabled_payments_notice.html:9
 msgid ""
@@ -17171,6 +17187,7 @@ msgstr "Non è stato configurato un conto pagamenti."
 #: mkt/developers/templates/developers/payments/includes/bango_accounts_list.html:4
 msgid "The current payment account was associated with the app by an app owner."
 msgstr ""
+"L'attuale conto pagamenti è stato associato a questa app da un proprietario."
 
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:5
 msgid "Modify Bango Account"
@@ -17187,10 +17204,16 @@ msgstr "L'app non verrà più visualizzata nelle regioni che non supportano i pa
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:6
 msgid "Your app will be displayed in any regional Marketplace that is added in the future. You will receive an email notification when a new region is added."
 msgstr ""
+"L'app verrà mostrata su tutti i marketplace regionali aggiunti in seguito. "
+"Quando verrà aggiunta una nuova regione riceverai una notifica tramite "
+"email."
 
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:13
 msgid "Your app will be displayed in the worldwide Marketplace and in any regional Marketplace that is added in the future. You will receive an email notification when a new region is added."
 msgstr ""
+"L'app verrà mostrata nel marketplace internazionale e in quello di tutte le "
+"regioni aggiunte in seguito. Quando verrà aggiunta una nuova regione "
+"riceverai una notifica tramite email."
 
 #: mkt/developers/templates/developers/payments/includes/regions_toggle.html:4
 msgid "Select All"
@@ -17526,8 +17549,10 @@ msgid ""
 "The ability to use apps when not connected to the Internet is especially important for mobile devices, which may wander out of coverage areas. But it also matters for desktop systems, the common "
 "example being use on an airplane that lacks WiFi."
 msgstr ""
-"The ability to use apps when not connected to the Internet is especially important for mobile devices, which may wander out of coverage areas. But it also matters for desktop systems, the common "
-"example being use on an airplane that lacks WiFi."
+"La possibilità di utilizzare le applicazioni in modalità non in linea è "
+"particolarmente importante per i dispositivi mobili, che possono trovarsi in "
+"aree dove non c'è copertura. Ma è importante anche per i sistemi desktop, "
+"l'esempio comune è l'uso su un aereo che manca di connessione WiFi."
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:23
 msgid "Several strategies and technologies can help ensure a good offline experience:"
@@ -18495,7 +18520,9 @@ msgstr "API WebRT (API che richiedono dei permessi)"
 msgid ""
 "There are a number of WebAPIs which are available but require permissions for that specific feature to be enabled. Apps may register permission requests within the <code>manifest.webapp</code> file:"
 msgstr ""
-"There are a number of WebAPIs which are available but require permissions for that specific feature to be enabled. Apps may register permission requests within the <code>manifest.webapp</code> file:"
+"Ci sono alcune API web che possono essere utilizzate solamente attraverso "
+"dei permessi speciali. Le app possono registrare una richiesta di "
+"autorizzazione nel file <code>manifest.webapp</code>."
 
 #. Do not localize text in <code></code>
 #: mkt/ecosystem/templates/ecosystem/build_quick.html:170
@@ -18646,11 +18673,13 @@ msgstr "General Notes è una semplicissima app per la gestione delle annotazioni
 
 #: mkt/ecosystem/templates/ecosystem/build_reference.html:87
 msgid "rtcamera"
-msgstr ""
+msgstr "rtcamera"
 
 #: mkt/ecosystem/templates/ecosystem/build_reference.html:90
 msgid "rtcamera is a fun camera app to process images in real time."
 msgstr ""
+"rtcamera è una simpatica app per videocamera che permette l'elaborazione "
+"delle immagini in tempo reale."
 
 #: mkt/ecosystem/templates/ecosystem/build_tools.html:15
 msgid ""
@@ -19123,12 +19152,24 @@ msgid ""
 "Firefox OS is a new mobile operating system built entirely using open web standards. In Firefox OS, HTML5 apps can directly control phone hardware and key functionality — for example making the "
 "phone vibrate, placing phone calls, and sending text messages."
 msgstr ""
+"Firefox OS è un nuovo sistema operativo mobile sviluppato interamente "
+"utilizzando le tecnologie aperte e standardizzate del Web. In Firefox OS, le "
+"app che utilizzano HTML5 possono accedere direttamente alle risorse "
+"hardware o alle funzioni principali del telefono — per esempio far vibrare "
+"il dispositivo, avviare una chiamata o inviare un messaggio di testo."
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:30
 msgid ""
 "We believe that developers will be truly instrumental in bringing the power of the web to mobile, so we have worked with various partners to make devices available for developing and testing apps, "
 "and learning more about customizing Firefox OS itself. This page provides useful information to developers, such as links to developer documentation, available devices, and where to obtain them."
 msgstr ""
+"Noi siamo convinti che gli sviluppatori avranno un ruolo determinante nel "
+"trasferire la forza del Web alla piattaforma mobile. Per questo abbiamo "
+"lavorato assieme a svariati partner per mettere a disposizione dispositivi "
+"che consentano di sviluppare e testare le app e imparare a personalizzare "
+"Firefox OS stesso. Questa pagina fornisce informazioni utili per gli "
+"sviluppatori, come ad esempio link a documentazione tecnica, informazioni "
+"sui dispositivi disponibili e dove reperirli."
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:39
 msgid "Keon"
@@ -19136,17 +19177,26 @@ msgstr "Keon"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:46 mkt/ecosystem/templates/ecosystem/dev_phone.html:56
 msgid "ZTE OPEN"
-msgstr ""
+msgstr "ZTE OPEN"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:48
 msgid "<a href=\"%(us_ebay_url)s\" class=\"button\">Buy from US store</a> <a href=\"%(uk_ebay_url)s\" class=\"button\">Buy from UK store</a>"
 msgstr ""
+"<a href=\"%(us_ebay_url)s\" class=\"button\">Acquista dal negozio "
+"statunitense</a> <a href=\"%(uk_ebay_url)s\" class=\"button\">Acquista dal "
+"negozio inglese</a>"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:58
 msgid ""
 "After a lot of hard work alongside ZTE, we are proud to announce the release of the ZTE OPEN Firefox OS phone, a powerful device aimed at developers and early adopters worldwide. These devices are "
 "available through ZTE's US and UK eBay stores, priced at $79.99/£59.99, and will be unlocked and open for testing and experimentation. <a href=\"%(zte_url)s\">Read more details.</a>"
 msgstr ""
+"Dopo un duro lavoro in collaborazione con ZTE, siamo orgogliosi di "
+"annunciare il lancio sul mercato dello smartphone Firefox OS ZTE OPEN, un "
+"potente dispositivo dedicato agli sviluppatori e ai primi utenti di tutto il "
+"mondo. I dispositivi possono essere acquistati, già sbloccati e pronti per "
+"i test e lo sviluppo, sui negozi eBay statunitense e inglese della ZTE al "
+"prezzo di 79.99 $/59.99 £. <a href=\"%(zte_url)s\">Ulteriori informazioni.</a>"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:71
 msgid "Peak"
@@ -19154,7 +19204,7 @@ msgstr "Peak"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:74
 msgid "Geeksphone"
-msgstr ""
+msgstr "Geeksphone"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:76
 msgid ""
@@ -19162,26 +19212,44 @@ msgid ""
 "Firefox OS devices. Note that no more phones are being produced at this moment in time, although another run is planned for the future. A number will remain in circulation however, and these "
 "devices are still very valid for developer testing, having full updates available to them."
 msgstr ""
+"Mozilla, Geeksphone e Telefónica hanno collaborato alla creazione dei "
+"Geeksphone Keon e Peak, due prototipi, rispettivamente per la fascia bassa e "
+"la fascia alta del mercato, dedicati agli sviluppatori che desiderano "
+"lavorare direttamente su un dispositivo Firefox OS. Attualmente la "
+"produzione di questi modelli è ferma, anche se ne è prevista una nuova serie "
+"per il futuro. Un certo numero di dispositivi rimarrà tuttavia in "
+"circolazione, e sarà sempre utilizzabile per i test di sviluppo grazie agli "
+"aggiornamenti completi che continueremo a pubblicare."
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:89
 msgid "Docs and tools"
-msgstr ""
+msgstr "Documentazione e strumenti"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:91
 msgid ""
 "If you already have a Firefox OS device and want some guidance and direction, you can <a href=\"%(devhub_url)s\">get started at the Firefox Marketplace Developer Hub</a>. The <a href=\"%(mdn_url)s"
 "\">Mozilla Developer Network</a> also provides a wealth of useful resources such as API documentation and further information on Open Web App development."
 msgstr ""
+"Se possiedi già un dispositivo Firefox OS e cerchi una guida per orientarti, "
+"<a href=\"%(devhub_url)s\">inizia dal Centro di sviluppo di Firefox "
+"Marketplace</a>. Anche su <a href=\"%(mdn_url)s\">Mozilla Developer "
+"Network</a> puoi trovare una raccolta di risorse utili, incluse "
+"documentazione sulle API e ulteriori informazioni sullo sviluppo delle app "
+"web aperte."
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:100
 msgid ""
 "If you don't have a Firefox OS device, explore the other tabs to find out how to obtain one. You don't have to wait however — you can start developing and testing Firefox OS Apps right away using "
 "the <a href=\"%(simulator_url)s\">Firefox OS simulator</a>."
 msgstr ""
+"Se non possiedi un dispositivo Firefox OS, esplora le altre schede per "
+"scoprire come procurartelo. Ma non sei costretto ad aspettare di avere il "
+"dispositivo tra le mani: puoi iniziare da subito a sviluppare e testare le "
+"app per Firefox OS con <a href=\"%(simulator_url)s\">Firefox OS Simulator</a>."
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:110
 msgid "Sharing with the community"
-msgstr ""
+msgstr "Condividi con la comunità"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:112
 msgid ""
@@ -19189,6 +19257,13 @@ msgid ""
 "we'd like you to get involved with the effort! We would like to invite you to add any useful information you have to the <a href=\"%(mdn_url)s\" target=\"_blank\">Mozilla Developer Network</a>. You "
 "can edit pages after creating a Mozilla Persona user account and logging in."
 msgstr ""
+"Quando si sviluppa per una nuova piattaforma reperire fonti di informazione "
+"non è semplice come farlo per le piattaforme più consolidate. Per fornire "
+"agli sviluppatori di Firefox OS tutto l'aiuto possibile ci serve anche la "
+"tua collaborazione. Ti invitiamo a condividere le tue conoscenze su <a "
+"href=\"%(mdn_url)s\" target=\"_blank\">Mozilla Developer Network</a>. Per "
+"modificare le pagine è sufficiente creare un account con Mozilla Persona ed "
+"effettuare l'accesso."
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:121
 msgid ""
@@ -19197,6 +19272,15 @@ msgid ""
 "In addition, you are always welcome to ask questions and share feedback and resources on <a href=\"%(b2g_irc_url)s\" target=\"_blank\">IRC</a> and <a href=\"%(b2g_mail_url)s\" target=\"_blank\">e-"
 "mail</a>."
 msgstr ""
+"Contributi particolarmente apprezzati sono <a href=\"%(mdn_hackingfxos_url)s\" "
+"target=\"_blank\">suggerimenti e trucchi per modificare direttamente il "
+"sistema operativo Firefox OS</a>, <a href=\"%(mdn_fxosapps_url)s\" "
+"target=\"_blank\">suggerimenti per sviluppare un'app per Firefox OS</a> e "
+"informazioni sulle tue <a href=\"%(mdn_devphone_url)s\" "
+"target=\"_blank\">esperienze di utilizzo di Firefox OS su dispositivi "
+"diversi</a>. Inoltre puoi sempre porre domande o condividere impressioni e "
+"risorse via <a href=\"%(b2g_irc_url)s\" target=\"_blank\">IRC</a> e <a href=\"%"
+"(b2g_mail_url)s\" target=\"_blank\">email</a>."
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:16
 msgid ""
@@ -19822,7 +19906,7 @@ msgstr "Rivolgi la tua app a un pubblico di consumatori esperti di tecnologia."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:234
 msgid "Firefox Apps &amp; Hacks"
-msgstr "Firefox Apps &amp; Hacks"
+msgstr "Firefox App e Hack"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:236
 msgid "Sign up for our monthly newsletter about Firefox OS, Marketplace and the Open Web apps ecosystem. <a href=\"%(dev_phone_url)s\">Check out the developer phone preview</a>"
@@ -21175,75 +21259,86 @@ msgstr "69%"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:17 mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:18
 msgid "Gallery View"
-msgstr ""
+msgstr "Vista galleria"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:22 mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:23
 msgid "Camera View"
-msgstr ""
+msgstr "Vista videocamera"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:27 mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:28
 msgid "Selecting an image"
-msgstr ""
+msgstr "Selezione di un'immagine"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:35
 msgid "rtcamera is a fun camera app to process images in real time, using Web technologies. <a href=\"%(walkthrough_link)s\" class=\"walkthrough\"> Read the full developer walkthrough </a>"
 msgstr ""
+"rtcamera è una simpatica app per videocamera che permette l'elaborazione "
+"delle immagini in tempo reale sfruttando le tecnologie del Web. <a href=\"%"
+"(walkthrough_link)s\" class=\"walkthrough\"> Leggi la guida completa per "
+"sviluppatori</a>"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:52
 msgid "Generates animated GIFs."
-msgstr ""
+msgstr "Genera immagini gif animate."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:60
 msgid "A wrapper for IndexedDB."
-msgstr ""
+msgstr "Un wrapper per IndexedDB."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:68
 msgid "Calculates perspective transformations."
-msgstr ""
+msgstr "Calcola le trasformazioni prospettiche."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:76
 msgid "Add touch events."
-msgstr ""
+msgstr "Aggiunge eventi tocco."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:101
 msgid "Once loaded for the first time, it can be used offline, without a network connection."
 msgstr ""
+"Dopo essere stato caricato la prima volta può essere utilizzato non in linea "
+"in caso di connessione internet assente."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:110 mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:118
 msgid "For downloading files to the browser."
-msgstr ""
+msgstr "Per il download dei file nel browser."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:126
 msgid "Used for fast and efficient processing of image data."
-msgstr ""
+msgstr "Utilizzato per un'elaborazione delle immagini veloce e performante."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:134 mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:143
 msgid "Used to access camera devices and get a video stream from where to capture frames."
 msgstr ""
+"Utilizzato per accedere alle videocamere dei dispositivi ed estrapolare "
+"fotogrammi da uno stream video."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:152
 msgid "Stores captured images on the device and retrieve them for the gallery view."
 msgstr ""
+"Archivia le immagini catturate sul dispositivo e le raccoglie nella Vista "
+"galleria."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:161
 msgid "Generates GIF files on the background without freezing the UI."
-msgstr ""
+msgstr "Genera file gif in background, senza bloccare l'interfaccia utente."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:169
 msgid "Uploading images to a different server for sharing, and getting their url."
 msgstr ""
+"Recupera l'URL e carica un'immagine su altri server per la condivisione."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:186
 msgid "rtcamera uses x-appbar, x-deck, x-layout, x-modal and x-switch."
-msgstr ""
+msgstr "rtcamera utilizza x-appbar, x-deck, x-layout, x-modal e x-switch."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:210
 msgid "1%"
-msgstr ""
+msgstr "1%"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:212
 msgid "83%"
-msgstr ""
+msgstr "83%"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:17 mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:18
 #: mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:22 mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:23
@@ -21623,31 +21718,31 @@ msgstr "Ricevuta per {0}"
 
 #: mkt/purchase/templates/purchase/receipt.html:19
 msgid "Receipt"
-msgstr ""
+msgstr "Ricevuta"
 
 #: mkt/purchase/templates/purchase/receipt.html:21
 msgid "Billed To:"
-msgstr ""
+msgstr "Fatturato a:"
 
 #: mkt/purchase/templates/purchase/receipt.html:28
 msgid "Order Number:"
-msgstr ""
+msgstr "Numero ordine:"
 
 #: mkt/purchase/templates/purchase/receipt.html:29
 msgid "Order Date:"
-msgstr ""
+msgstr "Data ordine:"
 
 #: mkt/purchase/templates/purchase/receipt.html:37
 msgid "Item"
-msgstr ""
+msgstr "Articolo"
 
 #: mkt/purchase/templates/purchase/receipt.html:38
 msgid "Seller"
-msgstr ""
+msgstr "Venditore"
 
 #: mkt/purchase/templates/purchase/receipt.html:59
 msgid "For the Firefox Marketplace Terms of Service please visit:"
-msgstr ""
+msgstr "Per conoscere i termini di servizio di Firefox Marketplace visita:"
 
 #: mkt/purchase/templates/purchase/receipt.html:64
 msgid "For support please visit:"
@@ -21801,7 +21896,7 @@ msgstr "In revisione"
 
 #: mkt/reviewers/helpers.py:44
 msgid "Pending Themes"
-msgstr ""
+msgstr "Temi in sospeso"
 
 #: mkt/reviewers/helpers.py:45 mkt/reviewers/templates/reviewers/themes/queue.html:4
 msgid "Flagged Themes"
@@ -21809,7 +21904,7 @@ msgstr "Temi segnalati"
 
 #: mkt/reviewers/helpers.py:46
 msgid "Update Themes"
-msgstr ""
+msgstr "Aggiorna temi"
 
 #: mkt/reviewers/helpers.py:87
 msgctxt "pending"
@@ -21945,7 +22040,7 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:16
 msgid "You are currently not reviewing any apps."
-msgstr ""
+msgstr "Attualmente non stai revisionando nessuna app."
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:24 mkt/reviewers/templates/reviewers/queue.html:35 mkt/reviewers/templates/reviewers/includes/search_results.html:6
 msgid "Devices"
@@ -22132,11 +22227,11 @@ msgstr "Nessun risultato trovato"
 
 #: mkt/reviewers/templates/reviewers/themes/base.html:24
 msgid "Theme Queues"
-msgstr ""
+msgstr "Code temi"
 
 #: mkt/reviewers/templates/reviewers/themes/base.html:28
 msgid "Theme Logs"
-msgstr ""
+msgstr "Registri temi"
 
 #: mkt/reviewers/templates/reviewers/themes/deleted.html:4
 msgid "Deleted Themes"
@@ -22224,7 +22319,7 @@ msgstr "Sblocca il tema"
 
 #: mkt/reviewers/templates/reviewers/themes/queue_list.html:30
 msgid "Interactive Theme Queue"
-msgstr ""
+msgstr "Coda interattiva temi"
 
 #: mkt/reviewers/templates/reviewers/themes/single.html:8
 msgid "Theme Review for {0}"
