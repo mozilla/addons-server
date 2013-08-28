@@ -3,9 +3,13 @@ from django.conf import settings
 from celeryutils import task
 from tower import ugettext as _
 
+import amo
 from addons.tasks import create_persona_preview_images
+from amo.decorators import write
 from amo.storage_utils import move_stored_file
 from amo.utils import LocalFileStorage, send_mail_jinja
+from editors.models import ReviewerScore
+
 import mkt.constants.reviewers as rvw
 
 
@@ -100,3 +104,19 @@ def reject_rereview(theme):
     storage.delete(reupload.header_path)
     storage.delete(reupload.footer_path)
     rereview.delete()
+
+
+@task
+@write
+def _batch_award_points(activity_logs, **kwargs):
+    """For migration award_theme_rev_points."""
+    for log in activity_logs:
+        score = ReviewerScore.objects.filter(
+            user=log.user, addon=log.arguments[0],
+            score=amo.REVIEWED_SCORES.get(amo.REVIEWED_PERSONA),
+            note_key=amo.REVIEWED_PERSONA, note='RETROACTIVE')
+        if not score.exists():
+            score = ReviewerScore.objects.create(
+                user=log.user, addon=log.arguments[0],
+                score=amo.REVIEWED_SCORES.get(amo.REVIEWED_PERSONA),
+                note_key=amo.REVIEWED_PERSONA, note='RETROACTIVE')
