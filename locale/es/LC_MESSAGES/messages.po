@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-08-23 09:56-0700\n"
-"PO-Revision-Date: 2013-08-27 18:27+0000\n"
+"PO-Revision-Date: 2013-08-28 15:44+0000\n"
 "Last-Translator: Inma <inma.barrios@mozilla-hispano.org>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1377628071.0\n"
+"X-POOTLE-MTIME: 1377704673.0\n"
 
 #: apps/addons/buttons.py:207
 msgid "Download Now"
@@ -1704,7 +1704,7 @@ msgstr "Vista previa añadida a {addon}."
 
 #: apps/amo/log.py:105
 msgid "Preview edited for {addon}."
-msgstr "Vista preliminar editada de {addon}."
+msgstr "Vista previa editada de {addon}."
 
 #: apps/amo/log.py:111
 msgid "Preview deleted from {addon}."
@@ -4565,7 +4565,7 @@ msgstr "La imagen debe ser exactamente de {0} píxeles de ancho y {1} píxeles d
 
 #: apps/devhub/views.py:1277 mkt/developers/views.py:801
 msgid "There was an error uploading your preview."
-msgstr "Ha sucedido un error al subir tu vista preliminar."
+msgstr "Ha sucedido un error al subir la vista previa."
 
 #: apps/devhub/views.py:1370
 msgid "Version %s deleted."
@@ -9087,7 +9087,7 @@ msgstr "Este es el color de las pestañas."
 
 #: apps/devhub/templates/devhub/personas/edit.html:275 apps/devhub/templates/devhub/personas/submit.html:178
 msgid "Preview"
-msgstr "Vista preliminar"
+msgstr "Vista previa"
 
 #: apps/devhub/templates/devhub/personas/edit.html:281 apps/devhub/templates/devhub/personas/submit.html:183
 msgid "Your Theme's Name"
@@ -15983,6 +15983,8 @@ msgstr "Los íconos deben ser cuadrados."
 #: mkt/developers/utils.py:105
 msgid "App previews must be at least {0}px by {1}px or {1}px by {0}px."
 msgstr ""
+"Las vistas previas de las aplicaciones deben ser {0} px por {1} px or {1} px "
+"por {0} px, como mínimo."
 
 #: mkt/developers/views.py:148
 msgid "Paid apps cannot be deleted. Disable this app instead."
@@ -16006,7 +16008,7 @@ msgstr "Se agregó con éxito la versión nueva."
 
 #: mkt/developers/views.py:288
 msgid "Version successfully edited."
-msgstr "Se editó con éxito la versión."
+msgstr "Se hizo pública la versión correctamente."
 
 #: mkt/developers/views.py:329
 msgid "Version successfully made public."
@@ -16014,7 +16016,7 @@ msgstr ""
 
 #: mkt/developers/views.py:344
 msgid "Version \"{0}\" deleted."
-msgstr "Se eliminó la versión \"{0}\"."
+msgstr "Se hizo pública la versión correctamente."
 
 #: mkt/developers/views.py:852
 msgid "Terms of service accepted."
@@ -19216,6 +19218,14 @@ msgid ""
 "Firefox OS devices. Note that no more phones are being produced at this moment in time, although another run is planned for the future. A number will remain in circulation however, and these "
 "devices are still very valid for developer testing, having full updates available to them."
 msgstr ""
+"Mozilla, Geeksphone y Telefónica trabajaron juntos en la creación de "
+"Geeksphone Keon y Peak, los teléfonos prototipo de alta y baja gama "
+"respectivamente, para desarrolladores que quieren comenzar a desarrollar en "
+"dispositivos Firefox OS reales. Ten en cuenta que, por el momento, no está "
+"prevista la fabricación de más teléfonos, aunque sí hay planes de otro "
+"lanzamiento en el futuro. No obstante, un cierto número de dispositivos "
+"continuarán en circulación y serán válidos para que los desarrolladores los "
+"prueben y tengan disponibles actualizaciones completas."
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:89
 msgid "Docs and tools"
@@ -19305,7 +19315,7 @@ msgstr "Esta guía cubre los siguientes temas:"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:67
 msgid "how to install the Simulator add-on"
-msgstr "cómo instalar el complemento Simulador"
+msgstr "cómo instalar el complemento Simulator"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:68
 msgid "how to add, remove, and update apps"
@@ -19345,15 +19355,15 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:90
 msgid "Firefox OS Simulator Preview for Windows"
-msgstr "Versión preliminar de Firefox OS para Windows"
+msgstr "Versión previa de Firefox OS Simulator para Windows"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:91
 msgid "Firefox OS Simulator Preview for Mac"
-msgstr "Versión preliminar de Firefox OS para Mac"
+msgstr "Versión previa de Firefox OS Simulator para Mac"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:92
 msgid "Firefox OS Simulator Preview for Linux"
-msgstr "Versión preliminar de Firefox OS para Linux"
+msgstr "Versión previa de Firefox OS Simulator para Linux"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:95
 msgid ""
