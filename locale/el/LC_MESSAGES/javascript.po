@@ -29,15 +29,15 @@ msgstr "Η δήλωση της εφαρμογής είναι ακατάλληλ�
 
 #: media/js/common-all.js:10515 media/js/common-min.js:23 media/js/impala-all.js:1565 media/js/impala-min.js:1 media/js/zamboni/mobile-all.js:10660 media/js/zamboni/mobile-min.js:32
 msgid "App host could not be reached"
-msgstr ""
+msgstr "Δεν είναι δυνατή η προσέγγιση του host της εφαρμογής"
 
 #: media/js/common-all.js:10518 media/js/common-min.js:23 media/js/impala-all.js:1568 media/js/impala-min.js:1 media/js/zamboni/mobile-all.js:10663 media/js/zamboni/mobile-min.js:32
 msgid "App manifest is unparsable"
-msgstr ""
+msgstr "Η δήλωση της εφαρμογής δε μπορεί να αναλυθεί"
 
 #: media/js/common-all.js:10521 media/js/common-min.js:23 media/js/impala-all.js:1571 media/js/impala-min.js:1 media/js/zamboni/mobile-all.js:10666 media/js/zamboni/mobile-min.js:32
 msgid "App manifest is invalid"
-msgstr ""
+msgstr "Η δήλωση της εφαρμογής δεν είναι έγκυρη"
 
 #: media/js/common-all.js:10524 media/js/common-min.js:23 media/js/impala-all.js:1574 media/js/impala-min.js:1 media/js/zamboni/mobile-all.js:10669 media/js/zamboni/mobile-min.js:32
 msgid "Unknown error"
@@ -97,7 +97,7 @@ msgstr "Δεν διατίθεται για τον {0} {1}"
 #: media/js/common-all.js:11078 media/js/common-min.js:23 media/js/impala-all.js:2128 media/js/impala-min.js:1 media/js/zamboni/buttons.js:601 media/js/zamboni/discovery-all.js:11020
 #: media/js/zamboni/discovery-min.js:23 media/js/zamboni/mobile-all.js:11127 media/js/zamboni/mobile-min.js:32 media/js/zamboni/mobile/buttons.js:39
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "Λυπούμαστε αλλά απαιτείται περιηγητής της οικογένειας Mozilla (όπως ο Firefox) για να εγκαταστήσετε πρόσθετα αναζήτησης"
+msgstr "Λυπούμαστε αλλά απαιτείται περιηγητής της οικογένειας Mozilla (όπως ο Firefox) για να εγκαταστήσετε πρόσθετα αναζήτησης."
 
 #: media/js/common-all.js:16149 media/js/common-min.js:56 media/js/impala-all.js:7698 media/js/impala-min.js:34 media/js/zamboni/global.js:416
 msgid "Loading..."
@@ -139,7 +139,7 @@ msgstr "Σημειώθηκε για διαγραφή"
 
 #: media/js/common-all.js:18756 media/js/common-min.js:56 media/js/impala-all.js:11799 media/js/impala-min.js:34 media/js/zamboni/collections.js:193
 msgid "clear recently viewed"
-msgstr "Εκκαθάριση πρόσφατα εμφανισμένων"
+msgstr "Εκκαθάριση πρόσφατα προβληθέντων"
 
 #: media/js/common-all.js:18928 media/js/common-min.js:56 media/js/impala-all.js:11971 media/js/impala-min.js:34 media/js/zamboni/collections.js:365
 msgid "Adding to Favorites&hellip;"
@@ -184,11 +184,11 @@ msgstr "Αφαίρεση χρήστη από τους συντελεστές"
 
 #: media/js/common-all.js:19043 media/js/common-min.js:56 media/js/impala-all.js:12086 media/js/impala-min.js:34 media/js/zamboni/collections.js:480
 msgid "An email address is required."
-msgstr "Απαιτείται διεύθυνση email"
+msgstr "Απαιτείται διεύθυνση email."
 
 #: media/js/common-all.js:19061 media/js/common-min.js:56 media/js/impala-all.js:12104 media/js/impala-min.js:34 media/js/zamboni/collections.js:500
 msgid "You have already added that user."
-msgstr "Έχετε ήδη προσθέσει αυτόν τον χρήστη"
+msgstr "Έχετε ήδη προσθέσει αυτόν τον χρήστη."
 
 #: media/js/common-all.js:19264 media/js/common-min.js:56 media/js/impala-all.js:12307 media/js/impala-min.js:34 media/js/zamboni/collections.js:703
 msgid "Add to favorites"
@@ -219,7 +219,7 @@ msgstr "Ισχύς κωδικού:"
 #: media/js/common-all.js:19532 media/js/common-min.js:56 media/js/zamboni/password-strength.js:26
 msgid "At least {0} character left."
 msgid_plural "At least {0} characters left."
-msgstr[0] "ουλάχιστον {0} χαρακτήρας διαθέσιμος"
+msgstr[0] "Τουλάχιστον {0} χαρακτήρας διαθέσιμος"
 msgstr[1] "Τουλάχιστον {0} χαρακτήρες διαθέσιμοι"
 
 #: media/js/common-all.js:19703 media/js/common-min.js:56 media/js/impala-all.js:12798 media/js/impala-min.js:34
@@ -244,7 +244,7 @@ msgstr "Οι διαχειριστές και οι συντάκτες θα πρέ
 
 #: media/js/impala-all.js:2451 media/js/impala-min.js:1 media/js/zamboni/browserid_support.js:37 media/js/zamboni/mobile-all.js:12083 media/js/zamboni/mobile-min.js:32
 msgid "BrowserID login failed. Maybe you don't have an account under that email address?"
-msgstr "Η σύνδεση με browserID απέτυχε. Μήπως δεν έχετε ορίσει αυτή τη διεύθυνση για το λογαριασμό σας;"
+msgstr "Η σύνδεση με browserID απέτυχε. Μήπως δεν έχετε ορίσει αυτή τη διεύθυνση για τον λογαριασμό σας;"
 
 #: media/js/impala-all.js:2584 media/js/impala-min.js:1 media/js/devreg/validator.js:458 media/js/zamboni/devhub-all.js:2864 media/js/zamboni/devhub-min.js:1 media/js/zamboni/mobile-all.js:12216
 #: media/js/zamboni/mobile-min.js:32 media/js/zamboni/validator.js:466
@@ -262,7 +262,7 @@ msgstr "Δεν αναγνωρίζεται η μορφή αρχείου που α
 
 #: media/js/impala-all.js:10315 media/js/impala-min.js:34 media/js/common/upload-base.js:83 media/js/zamboni/devhub-all.js:149 media/js/zamboni/devhub-min.js:1
 msgid "You cancelled the upload."
-msgstr "Ακυρώσατε την αποστολή."
+msgstr "Ακυρώσατε την μεταφόρτωση."
 
 #: media/js/impala-all.js:10372 media/js/impala-all.js:10807 media/js/impala-min.js:34 media/js/common/upload-addon.js:34 media/js/common/upload-image.js:129 media/js/common/upload-packaged-app.js:34
 #: media/js/zamboni/devhub-all.js:206 media/js/zamboni/devhub-all.js:641 media/js/zamboni/devhub-min.js:1
@@ -282,7 +282,7 @@ msgstr "Το πρόσθετο σας θα πρέπει να έχει κατάλ�
 #: media/js/impala-all.js:10425 media/js/impala-min.js:34 media/js/common/upload-addon.js:87 media/js/common/upload-packaged-app.js:89 media/js/zamboni/devhub-all.js:259
 #: media/js/zamboni/devhub-min.js:1
 msgid "{0}% complete"
-msgstr "ολοκληρώθηκε {0}%"
+msgstr "Ολοκληρώθηκε {0}%"
 
 #. L10n: "{bytes uploaded} of {total filesize}".
 #: media/js/impala-all.js:10428 media/js/impala-min.js:34 media/js/common/upload-addon.js:90 media/js/common/upload-packaged-app.js:92 media/js/zamboni/devhub-all.js:262
@@ -333,7 +333,7 @@ msgstr "Γίνεται επικύρωση {0}"
 #: media/js/impala-all.js:10579 media/js/impala-min.js:34 media/js/common/upload-addon.js:252 media/js/common/upload-packaged-app.js:245 media/js/zamboni/devhub-all.js:413
 #: media/js/zamboni/devhub-min.js:1
 msgid "Received an empty response from the server; status: {0}"
-msgstr "Ο εξυπηρετητής απάντησε με κενή απόκριση; κατάσταση: {0}"
+msgstr "Η απάντηση του εξυπηρετητή ήταν κενή; κατάσταση: {0}"
 
 #: media/js/impala-all.js:10590 media/js/impala-min.js:34 media/js/common/upload-addon.js:263 media/js/common/upload-packaged-app.js:255 media/js/zamboni/devhub-all.js:424
 #: media/js/zamboni/devhub-min.js:1
@@ -357,11 +357,11 @@ msgstr "Το πρόσθετο σας επικυρώθηκε χωρίς να πα
 
 #: media/js/impala-all.js:10688 media/js/impala-min.js:34 media/js/common/upload-addon.js:363 media/js/zamboni/devhub-all.js:522 media/js/zamboni/devhub-min.js:1
 msgid "Some platforms are not available for this type of add-on."
-msgstr "Μερικές πλατφόρμες δεν είναι διαθέσιμες για αυτό τον τύπο πρόσθετου."
+msgstr "Μερικές πλατφόρμες δεν είναι διαθέσιμες για αυτό τον τύπο προσθέτου."
 
 #: media/js/impala-all.js:10782 media/js/impala-min.js:34 media/js/zamboni/devhub-all.js:616 media/js/zamboni/devhub-min.js:1
 msgid "Icons must be either PNG or JPG."
-msgstr "Τα εικονίδιο θα πρέπει να είναι  αρχεία PNG ή JPG."
+msgstr "Τα εικονίδια θα πρέπει να είναι  αρχεία PNG ή JPG."
 
 #: media/js/impala-all.js:11442 media/js/impala-min.js:34 media/js/impala/persona_creation.js:102
 msgid "All Rights Reserved"
@@ -421,7 +421,7 @@ msgstr "Τα βίντεο πρέπει να είναι τύπου WebM."
 
 #: media/js/common/upload-packaged-app.js:53
 msgid "Your packaged app should end with <code>.zip</code>."
-msgstr "Η κατάληξη της τυποποιημένης σας εφαρμογή θα πρέπει να είναι <code>.zip</code>."
+msgstr "Η κατάληξη της τυποποιημένης σας εφαρμογής θα πρέπει να είναι <code>.zip</code>."
 
 #: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:181 media/js/zamboni/devhub-all.js:1033 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:169
 msgid "Your app failed validation with {0} error."
@@ -442,8 +442,8 @@ msgstr "Η εφαρμογή σας πέρασε την αξιολόγηση χω
 #: media/js/devreg/devhub.js:186
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Η εφαρμογή σας απέτυχε κατά την επικύρωση με {0} σφάλμα και {1} ειδοποίηση(εις)."
+msgstr[1] "Η εφαρμογή σας απέτυχε κατά την επικύρωση με {0} σφάλματα και {1} ειδοποίηση(εις)."
 
 #: media/js/devreg/devhub.js:200 media/js/zamboni/devhub-all.js:1047 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:183
 msgid "Your app passed validation with no errors and {0} message."
@@ -469,7 +469,7 @@ msgstr "Ανανεωμένο"
 
 #: media/js/devreg/devhub.js:614 media/js/zamboni/devhub-all.js:1499 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:650
 msgid "There was an error uploading your file."
-msgstr "Παρουσιάστηκε σφάλμα στην αποστολή του αρχείου σας."
+msgstr "Παρουσιάστηκε σφάλμα κατά τη μεταφόρτωση του αρχείου σας."
 
 #: media/js/devreg/devhub.js:896 media/js/zamboni/devhub-all.js:1774 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:925
 msgid "Learn more"
@@ -572,7 +572,7 @@ msgstr "Υπήρξε κάποιο πρόβλημα κατά την επικοι�
 
 #: media/js/devreg/payments-manage.js:88
 msgid "You do not currently have any payment accounts."
-msgstr "Δεν αυτή τη στιγμή κανένα λογαριασμό πληρωμών."
+msgstr "Δεν διαθέτετε αυτή τη στιγμή κανένα λογαριασμό πληρωμών."
 
 #: media/js/devreg/validator.js:71 media/js/zamboni/devhub-all.js:2475 media/js/zamboni/devhub-min.js:1 media/js/zamboni/validator.js:71
 msgid "All tests passed successfully."
@@ -702,11 +702,11 @@ msgstr "Πρόσθετα σε χρήση"
 
 #: media/js/impala/stats/csv_keys.js:15
 msgid "Add-ons Created"
-msgstr "Πρόσθετα που δημιουργήθηκαν"
+msgstr "Δημιουργηθέντα Πρόσθετα"
 
 #: media/js/impala/stats/csv_keys.js:18
 msgid "Add-ons Downloaded"
-msgstr "Πρόσθετα που ελήφθησαν"
+msgstr "Ληφθέντα Πρόσθετα"
 
 #: media/js/impala/stats/csv_keys.js:21
 msgid "Add-ons Updated"
@@ -742,7 +742,7 @@ msgstr "Άγνωστο"
 
 #: media/js/impala/stats/csv_keys.js:43 media/js/mkt/stats/csv_keys.js:58 media/js/zamboni/stats-all.js:11208 media/js/zamboni/stats-min.js:10
 msgid "Add-ons Manager"
-msgstr "Διαχειριστής πρόσθετων"
+msgstr "Διαχειριστής προσθέτων"
 
 #: media/js/impala/stats/csv_keys.js:44 media/js/mkt/stats/csv_keys.js:59 media/js/zamboni/stats-all.js:11209 media/js/zamboni/stats-min.js:10
 msgid "Search Results"
@@ -751,35 +751,35 @@ msgstr "Αποτελέσματα αναζήτησης"
 #: media/js/impala/stats/csv_keys.js:45 media/js/impala/stats/csv_keys.js:46 media/js/impala/stats/csv_keys.js:47 media/js/mkt/stats/csv_keys.js:60 media/js/mkt/stats/csv_keys.js:61
 #: media/js/mkt/stats/csv_keys.js:62 media/js/zamboni/stats-all.js:11210 media/js/zamboni/stats-all.js:11211 media/js/zamboni/stats-all.js:11212 media/js/zamboni/stats-min.js:10
 msgid "Homepage Promo"
-msgstr ""
+msgstr "Promo Αρχικής Σελίδας"
 
 #: media/js/impala/stats/csv_keys.js:48 media/js/impala/stats/csv_keys.js:49 media/js/mkt/stats/csv_keys.js:63 media/js/mkt/stats/csv_keys.js:64 media/js/zamboni/stats-all.js:11213
 #: media/js/zamboni/stats-all.js:11214 media/js/zamboni/stats-min.js:10
 msgid "Homepage Featured"
-msgstr ""
+msgstr "Προβεβλημένη Αρχική Σελίδα"
 
 #: media/js/impala/stats/csv_keys.js:50 media/js/impala/stats/csv_keys.js:51 media/js/mkt/stats/csv_keys.js:65 media/js/mkt/stats/csv_keys.js:66 media/js/zamboni/stats-all.js:11215
 #: media/js/zamboni/stats-all.js:11216 media/js/zamboni/stats-min.js:10
 msgid "Homepage Up and Coming"
-msgstr ""
+msgstr "Προσεχής Αρχική Σελίδα"
 
 #: media/js/impala/stats/csv_keys.js:52 media/js/mkt/stats/csv_keys.js:67 media/js/zamboni/stats-all.js:11217 media/js/zamboni/stats-min.js:10
 msgid "Homepage Most Popular"
-msgstr ""
+msgstr "Δημοφιλέστερη Αρχική Σελίδα"
 
 #: media/js/impala/stats/csv_keys.js:53 media/js/impala/stats/csv_keys.js:55 media/js/mkt/stats/csv_keys.js:68 media/js/mkt/stats/csv_keys.js:70 media/js/zamboni/stats-all.js:11218
 #: media/js/zamboni/stats-all.js:11220 media/js/zamboni/stats-min.js:10
 msgid "Detail Page"
-msgstr ""
+msgstr "Σελίδα λεπτομερειών"
 
 #: media/js/impala/stats/csv_keys.js:54 media/js/impala/stats/csv_keys.js:56 media/js/mkt/stats/csv_keys.js:69 media/js/mkt/stats/csv_keys.js:71 media/js/zamboni/stats-all.js:11219
 #: media/js/zamboni/stats-all.js:11221 media/js/zamboni/stats-min.js:10
 msgid "Detail Page (bottom)"
-msgstr ""
+msgstr "Σελίδα λεπτομερειών (κάτω μέρος)"
 
 #: media/js/impala/stats/csv_keys.js:57 media/js/mkt/stats/csv_keys.js:72 media/js/zamboni/stats-all.js:11222 media/js/zamboni/stats-min.js:10
 msgid "Detail Page (Development Channel)"
-msgstr ""
+msgstr "Σελίδα λεπτομερειών (Κανάλι Ανάπτυξης)"
 
 #: media/js/impala/stats/csv_keys.js:58 media/js/impala/stats/csv_keys.js:59 media/js/impala/stats/csv_keys.js:60 media/js/mkt/stats/csv_keys.js:73 media/js/mkt/stats/csv_keys.js:74
 #: media/js/mkt/stats/csv_keys.js:75 media/js/zamboni/stats-all.js:11223 media/js/zamboni/stats-all.js:11224 media/js/zamboni/stats-all.js:11225 media/js/zamboni/stats-min.js:10
@@ -799,11 +799,11 @@ msgstr "Εξαρτήσεις"
 #: media/js/impala/stats/csv_keys.js:65 media/js/impala/stats/csv_keys.js:66 media/js/mkt/stats/csv_keys.js:80 media/js/mkt/stats/csv_keys.js:81 media/js/zamboni/stats-all.js:11230
 #: media/js/zamboni/stats-all.js:11231 media/js/zamboni/stats-min.js:10
 msgid "Upsell"
-msgstr ""
+msgstr "Upsell"
 
 #: media/js/impala/stats/csv_keys.js:68 media/js/mkt/stats/csv_keys.js:83 media/js/zamboni/stats-all.js:11233 media/js/zamboni/stats-min.js:10
 msgid "Sharing"
-msgstr ""
+msgstr "Διαμοιρασμός"
 
 #: media/js/impala/stats/csv_keys.js:69 media/js/mkt/stats/csv_keys.js:84 media/js/zamboni/stats-all.js:11234 media/js/zamboni/stats-min.js:10
 msgid "Category Pages"
@@ -816,70 +816,70 @@ msgstr "Συλλογές"
 #: media/js/impala/stats/csv_keys.js:71 media/js/impala/stats/csv_keys.js:72 media/js/mkt/stats/csv_keys.js:86 media/js/zamboni/stats-all.js:11236 media/js/zamboni/stats-all.js:11237
 #: media/js/zamboni/stats-min.js:10
 msgid "Category Landing Featured Carousel"
-msgstr ""
+msgstr "Κατηγορία Προβεβλημένο Καρουζέλ"
 
 #: media/js/impala/stats/csv_keys.js:73 media/js/impala/stats/csv_keys.js:74 media/js/mkt/stats/csv_keys.js:89 media/js/mkt/stats/csv_keys.js:90 media/js/zamboni/stats-all.js:11238
 #: media/js/zamboni/stats-all.js:11239 media/js/zamboni/stats-min.js:10
 msgid "Category Landing Top Rated"
-msgstr ""
+msgstr "Κατηγορία Υψηλότερη Βαθμολογία"
 
 #: media/js/impala/stats/csv_keys.js:75 media/js/impala/stats/csv_keys.js:76 media/js/mkt/stats/csv_keys.js:91 media/js/mkt/stats/csv_keys.js:92 media/js/zamboni/stats-all.js:11240
 #: media/js/zamboni/stats-all.js:11241 media/js/zamboni/stats-min.js:10
 msgid "Category Landing Most Popular"
-msgstr ""
+msgstr "Κατηγορία Δημοφιλέστερα"
 
 #: media/js/impala/stats/csv_keys.js:77 media/js/impala/stats/csv_keys.js:78 media/js/mkt/stats/csv_keys.js:93 media/js/mkt/stats/csv_keys.js:94 media/js/zamboni/stats-all.js:11242
 #: media/js/zamboni/stats-all.js:11243 media/js/zamboni/stats-min.js:10
 msgid "Category Landing Recently Added"
-msgstr ""
+msgstr "Κατηγορία Προστέθηκαν πρόσφατα"
 
 #: media/js/impala/stats/csv_keys.js:79 media/js/impala/stats/csv_keys.js:80 media/js/mkt/stats/csv_keys.js:95 media/js/mkt/stats/csv_keys.js:96 media/js/zamboni/stats-all.js:11244
 #: media/js/zamboni/stats-all.js:11245 media/js/zamboni/stats-min.js:10
 msgid "Browse Listing Featured Sort"
-msgstr ""
+msgstr "Αναζήτηση Λίστας Προβεβλημένων Ταξινόμηση"
 
 #: media/js/impala/stats/csv_keys.js:81 media/js/impala/stats/csv_keys.js:82 media/js/mkt/stats/csv_keys.js:97 media/js/mkt/stats/csv_keys.js:98 media/js/zamboni/stats-all.js:11246
 #: media/js/zamboni/stats-all.js:11247 media/js/zamboni/stats-min.js:10
 msgid "Browse Listing Users Sort"
-msgstr ""
+msgstr "Αναζήτηση Λίστας Χρηστών Ταξινόμηση"
 
 #: media/js/impala/stats/csv_keys.js:83 media/js/impala/stats/csv_keys.js:84 media/js/mkt/stats/csv_keys.js:99 media/js/mkt/stats/csv_keys.js:100 media/js/zamboni/stats-all.js:11248
 #: media/js/zamboni/stats-all.js:11249 media/js/zamboni/stats-min.js:10
 msgid "Browse Listing Rating Sort"
-msgstr ""
+msgstr "Αναζήτηση Λίστας Αξιολογήσεων Ταξινόμηση"
 
 #: media/js/impala/stats/csv_keys.js:85 media/js/impala/stats/csv_keys.js:86 media/js/mkt/stats/csv_keys.js:101 media/js/mkt/stats/csv_keys.js:102 media/js/zamboni/stats-all.js:11250
 #: media/js/zamboni/stats-all.js:11251 media/js/zamboni/stats-min.js:10
 msgid "Browse Listing Created Sort"
-msgstr ""
+msgstr "Αναζήτηση Λίστας Δημιουργηθέντων Ταξινόμηση"
 
 #: media/js/impala/stats/csv_keys.js:87 media/js/impala/stats/csv_keys.js:88 media/js/mkt/stats/csv_keys.js:103 media/js/mkt/stats/csv_keys.js:104 media/js/zamboni/stats-all.js:11252
 #: media/js/zamboni/stats-all.js:11253 media/js/zamboni/stats-min.js:10
 msgid "Browse Listing Name Sort"
-msgstr ""
+msgstr "Αναζήτηση Λίστας Ονομάτων Ταξινόμηση"
 
 #: media/js/impala/stats/csv_keys.js:89 media/js/impala/stats/csv_keys.js:90 media/js/mkt/stats/csv_keys.js:105 media/js/mkt/stats/csv_keys.js:106 media/js/zamboni/stats-all.js:11254
 #: media/js/zamboni/stats-all.js:11255 media/js/zamboni/stats-min.js:10
 msgid "Browse Listing Popular Sort"
-msgstr ""
+msgstr "Αναζήτηση Λίστας Δημοφιλών Ταξινόμηση"
 
 #: media/js/impala/stats/csv_keys.js:91 media/js/impala/stats/csv_keys.js:92 media/js/mkt/stats/csv_keys.js:107 media/js/mkt/stats/csv_keys.js:108 media/js/zamboni/stats-all.js:11256
 #: media/js/zamboni/stats-all.js:11257 media/js/zamboni/stats-min.js:10
 msgid "Browse Listing Updated Sort"
-msgstr ""
+msgstr "Αναζήτηση Λίστας Ανανεωμένων"
 
 #: media/js/impala/stats/csv_keys.js:93 media/js/impala/stats/csv_keys.js:94 media/js/mkt/stats/csv_keys.js:109 media/js/mkt/stats/csv_keys.js:110 media/js/zamboni/stats-all.js:11258
 #: media/js/zamboni/stats-all.js:11259 media/js/zamboni/stats-min.js:10
 msgid "Browse Listing Up and Coming Sort"
-msgstr ""
+msgstr "Αναζήτηση Λίστας Προσεχών"
 
 #: media/js/impala/stats/csv_keys.js:98 media/js/mkt/stats/csv_keys.js:124 media/js/zamboni/stats-all.js:11263 media/js/zamboni/stats-min.js:10
 msgid "Total Amount Contributed"
-msgstr ""
+msgstr "Σύνολο συνεισφορών"
 
 #: media/js/impala/stats/csv_keys.js:99 media/js/mkt/stats/csv_keys.js:125 media/js/zamboni/stats-all.js:11264 media/js/zamboni/stats-min.js:10
 msgid "Average Contribution"
-msgstr ""
+msgstr "Μέσος όρος συνεισφορών"
 
 #: media/js/impala/stats/csv_keys.js:108 media/js/mkt/stats/csv_keys.js:133
 msgid "Usage"
@@ -1173,15 +1173,15 @@ msgstr "Η δήλωση δε βρέθηκε στη δοθείσα τοποθεσ
 
 #: media/js/mkt/apps.js:87 media/js/zamboni/apps.js:60
 msgid "App host could not be reached."
-msgstr ""
+msgstr "Δεν ήταν δυνατή "
 
 #: media/js/mkt/apps.js:90 media/js/zamboni/apps.js:63
 msgid "App manifest is unparsable."
-msgstr ""
+msgstr "Η δήλωση της εφαρμογής δε μπορεί να αναλυθεί."
 
 #: media/js/mkt/apps.js:93 media/js/zamboni/apps.js:66
 msgid "App manifest is invalid."
-msgstr ""
+msgstr "Η δήλωση της εφαρμογής δεν είναι έγκυρη."
 
 #: media/js/mkt/apps.js:96
 msgid "App is already installed."
@@ -1213,15 +1213,15 @@ msgstr "Εκκίνηση"
 
 #: media/js/mkt/consumer_init.js:24
 msgid "Click here to view the mobile Marketplace!"
-msgstr ""
+msgstr "Κάντε κλικ εδω για να δείτε τη φορητή έκδοση του Marketplace!"
 
 #: media/js/mkt/ecosystem.js:26
 msgid "This video requires a browser with support for open video "
-msgstr "Αυτό το βίντεο απαιτεί περιηγητή που να υποστηρίζει ανοιχτά πρότυπα βίντεο"
+msgstr "Αυτό το βίντεο απαιτεί περιηγητή που να υποστηρίζει ανοιχτά πρότυπα βίντεο "
 
 #: media/js/mkt/ecosystem.js:27
 msgid "or the <a href=\"http://www.adobe.com/go/getflashplayer\">Adobe "
-msgstr "ή το <a href=\"http://www.adobe.com/go/getflashplayer\">Adobe"
+msgstr "ή το <a href=\"http://www.adobe.com/go/getflashplayer\">Adobe "
 
 #: media/js/mkt/ecosystem.js:28
 msgid "Flash Player</a>."
@@ -1233,15 +1233,15 @@ msgstr "Το μήνυμα δε μπορεί να είναι κενό."
 
 #: media/js/mkt/login.js:62
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
-msgstr ""
+msgstr "Η σύνδεση στο Persona απέτυχε. Μήπως δεν έχετε λογαριασμό με αυτή τη διεύθυνση email;"
 
 #: media/js/mkt/login.js:67
 msgid "Persona login failed. A server error was encountered."
-msgstr ""
+msgstr "Η σύνδεση στο Persona απέτυχε. Προέκυψε σφάλμα διακομιστή."
 
 #: media/js/mkt/manifest.js:46
 msgid "Requested Permissions:"
-msgstr ""
+msgstr "Αιτούμενες άδειες:"
 
 #: media/js/mkt/manifest.js:54
 msgid "Certified"
@@ -1249,11 +1249,11 @@ msgstr "Πιστοποιημένο"
 
 #: media/js/mkt/manifest.js:57
 msgid "Privileged"
-msgstr ""
+msgstr "Προνομιακή"
 
 #: media/js/mkt/manifest.js:60
 msgid "Unprivileged"
-msgstr ""
+msgstr "Μη προνομιακή"
 
 #: media/js/mkt/manifest.js:66
 msgid "No reason given"
@@ -1269,27 +1269,27 @@ msgstr "Η πληρωμή απέτυχε. Προσπαθήστε ξανά αργ
 
 #: media/js/mkt/reviewers.js:98
 msgid "Packaged App"
-msgstr ""
+msgstr "Συσκευασμένη εφαρμογή"
 
 #: media/js/mkt/reviewers.js:102
 msgid "Privileged App"
-msgstr ""
+msgstr "Προνομιακή εφαρμογή"
 
 #: media/js/mkt/reviewers.js:105
 msgid "More Information Requested"
-msgstr ""
+msgstr "Απαιτούνται περισσότερες πληροφορίες"
 
 #: media/js/mkt/reviewers.js:108
 msgid "Contains Editor Comment"
-msgstr ""
+msgstr "Περιέχει σχόλιο του συντάκτη"
 
 #: media/js/mkt/reviewers.js:112
 msgid "Premium App"
-msgstr ""
+msgstr "Premium Εφαρμογή"
 
 #: media/js/mkt/reviewers.js:115
 msgid "Escalated"
-msgstr ""
+msgstr "Κλιμακούμενη"
 
 #: media/js/mkt/reviewers.js:120
 msgid "Free"
@@ -1344,15 +1344,15 @@ msgstr "Ημέρα"
 
 #: media/js/mkt/stats/chart.js:352 media/js/mkt/stats/csv_keys.js:9 media/js/mkt/stats/csv_keys.js:18 media/js/mkt/stats/csv_keys.js:27
 msgid "Amount Earned"
-msgstr ""
+msgstr "Σύνολο κέρδους"
 
 #: media/js/mkt/stats/chart.js:356 media/js/mkt/stats/csv_keys.js:12 media/js/mkt/stats/csv_keys.js:21 media/js/mkt/stats/csv_keys.js:30 media/js/mkt/stats/csv_keys.js:134
 msgid "Units Sold"
-msgstr ""
+msgstr "Πουληθέντες μονάδες"
 
 #: media/js/mkt/stats/chart.js:360 media/js/mkt/stats/csv_keys.js:15 media/js/mkt/stats/csv_keys.js:24 media/js/mkt/stats/csv_keys.js:33
 msgid "Units Refunded"
-msgstr ""
+msgstr "Επιστραφείσες μονάδες"
 
 #: media/js/mkt/stats/chart.js:368
 msgid "Users"
@@ -1364,11 +1364,11 @@ msgstr "Εφαρμογές"
 
 #: media/js/mkt/stats/chart_column.js:122
 msgid "by currency {0}"
-msgstr ""
+msgstr "από νόμισμα {0}"
 
 #: media/js/mkt/stats/chart_column.js:123
 msgid "by source {0}"
-msgstr ""
+msgstr "από πηγή {0}"
 
 #: media/js/mkt/stats/chart_column.js:131 media/js/mkt/stats/table.js:95
 msgid "Currency"
@@ -1384,11 +1384,11 @@ msgstr "Έσοδα"
 
 #: media/js/mkt/stats/chart_column.js:151
 msgid "Refunds"
-msgstr ""
+msgstr "Επιστροφές"
 
 #: media/js/mkt/stats/csv_keys.js:36 media/js/mkt/stats/csv_keys.js:192 media/js/mkt/stats/csv_keys.js:193
 msgid "Apps Added"
-msgstr ""
+msgstr "Προστεθείσες Εφαρμογές"
 
 #: media/js/mkt/stats/csv_keys.js:39 media/js/mkt/stats/csv_keys.js:196 media/js/mkt/stats/csv_keys.js:197
 msgid "Apps Installed"
@@ -1416,87 +1416,87 @@ msgstr "Εγκαταστάσεις εφαρμογής"
 
 #: media/js/mkt/stats/csv_keys.js:112
 msgid "Marketplace Browse Page"
-msgstr ""
+msgstr "Σελίδα περιήγησης Marketplace"
 
 #: media/js/mkt/stats/csv_keys.js:113
 msgid "Marketplace Browse Page, Featured"
-msgstr ""
+msgstr "Σελίδα περιήγησης Marketplace, Προβεβλημένη"
 
 #: media/js/mkt/stats/csv_keys.js:114
 msgid "Marketplace Category Page"
-msgstr ""
+msgstr "Σελίδα Κατηγοριών Marketplace"
 
 #: media/js/mkt/stats/csv_keys.js:115
 msgid "Marketplace Category Page, Featured"
-msgstr ""
+msgstr "Σελίδα Κατηγοριών Marketplace, Προβεβλημένη"
 
 #: media/js/mkt/stats/csv_keys.js:116
 msgid "Marketplace Detail Page"
-msgstr ""
+msgstr "Σελίδα Λεπτομερειών Marketplace"
 
 #: media/js/mkt/stats/csv_keys.js:117
 msgid "Marketplace Detail Page, Upsell"
-msgstr ""
+msgstr "Σελίδα Λεπτομερειών Marketplace, Upsell"
 
 #: media/js/mkt/stats/csv_keys.js:118
 msgid "Marketplace Home Page"
-msgstr ""
+msgstr "Αρχική Σελίδα Marketplace"
 
 #: media/js/mkt/stats/csv_keys.js:119
 msgid "Marketplace Search Results"
-msgstr ""
+msgstr "Αποτελέσματα Αναζήτησης Marketplace"
 
 #: media/js/mkt/stats/csv_keys.js:120
 msgid "Marketplace Search Results, Featured"
-msgstr ""
+msgstr "Αποτελέσματα Αναζήτησης Marketplace, Προβεβλημένα"
 
 #: media/js/mkt/stats/csv_keys.js:156
 msgid "Units Sold, last {0} days"
-msgstr ""
+msgstr "Πουληθέντες μονάδες, τελευταίες {0} ημέρες"
 
 #: media/js/mkt/stats/csv_keys.js:157
 msgid "Units Sold from {0} to {1}"
-msgstr ""
+msgstr "Πουληθέντες μονάδες από {0} ως {1}"
 
 #: media/js/mkt/stats/csv_keys.js:160
 msgid "Amount Earned, last {0} days"
-msgstr ""
+msgstr "Σύνολο κέρδους, τελευταίες {0} ημέρες"
 
 #: media/js/mkt/stats/csv_keys.js:161
 msgid "Amount Earned {0} to {1}"
-msgstr ""
+msgstr "Σύνολο κέρδους {0} ως {1}"
 
 #: media/js/mkt/stats/csv_keys.js:164
 msgid "Units Refunded, last {0} days"
-msgstr ""
+msgstr "Αποδιδόμενες μονάδες, τελευταίες {0} ημέρες"
 
 #: media/js/mkt/stats/csv_keys.js:165
 msgid "Units Refunded from {0} to {1}"
-msgstr ""
+msgstr "Αποδιδόμενες μονάδες από {0} ως {1}"
 
 #: media/js/mkt/stats/csv_keys.js:168 media/js/mkt/stats/csv_keys.js:169
 msgid "Total Units Sold by Currency"
-msgstr ""
+msgstr "Σύνολο μονάδων πουληθέντων από το νόμισμα"
 
 #: media/js/mkt/stats/csv_keys.js:172 media/js/mkt/stats/csv_keys.js:173
 msgid "Total Amount Earned by Currency"
-msgstr ""
+msgstr "Σύνολο μονάδων κερδισμένων από το νόμισμα"
 
 #: media/js/mkt/stats/csv_keys.js:176 media/js/mkt/stats/csv_keys.js:177
 msgid "Total Units Refunded by Currency"
-msgstr ""
+msgstr "Σύνολο μονάδων αποδιδόμενων από το νόμισμα"
 
 #: media/js/mkt/stats/csv_keys.js:180 media/js/mkt/stats/csv_keys.js:181
 msgid "Total Units Sold by Source"
-msgstr ""
+msgstr "Σύνολο μονάδων πουληθέντων από την πηγή"
 
 #: media/js/mkt/stats/csv_keys.js:184 media/js/mkt/stats/csv_keys.js:185
 msgid "Total Amount Earned by Source"
-msgstr ""
+msgstr "Σύνολο μονάδων κερδισμένων από την πηγή"
 
 #: media/js/mkt/stats/csv_keys.js:188 media/js/mkt/stats/csv_keys.js:189
 msgid "Total Units Refunded by Source"
-msgstr ""
+msgstr "Σύνολο μονάδων αποδιδόμενων από την πηγή"
 
 #: media/js/mkt/stats/csv_keys.js:216 media/js/mkt/stats/csv_keys.js:217
 msgid "Total Installs"
@@ -1525,7 +1525,7 @@ msgstr "Δεν επιτρέπεται η εγκατάσταση της εφαρ�
 
 #: media/js/zamboni/apps.js:57
 msgid "App manifest is malformed."
-msgstr ""
+msgstr "Η δήλωση της εφαρμογής έχει λάθος μορφή."
 
 #: media/js/zamboni/apps.js:80
 msgid "App installation failed."
@@ -1537,7 +1537,7 @@ msgstr "Το σύστημα δεν υποστηρίζει την εγκατάσ�
 
 #: media/js/zamboni/buttons.js:155
 msgid "Add-on has not been updated to support default-to-compatible."
-msgstr ""
+msgstr "Το πρόσθετο δεν έχει ενημερωθεί ώστε να υποστηρίζει την προεπιλογή σε συμβατό."
 
 #: media/js/zamboni/buttons.js:160
 msgid "You need to be using Firefox 10.0 or higher."
@@ -1614,8 +1614,7 @@ msgstr "Δεν βρέθηκαν αποτελέσματα."
 
 #: media/js/zamboni/discovery-all.js:12097 media/js/zamboni/discovery-min.js:23 media/js/zamboni/discovery_pane.js:217
 msgid "Sorry, we couldn't find any recommendations for you.<br>Please visit the <a href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
-msgstr ""
-"Λυπούμαστε αλλά δεν μπορέσαμε να σας συστήσουμε κάτι που να σας ενδιαφέρει.<br>Σας παρακαλούμε να επισκεφθείτε τον <a href=\"{0}\">ιστότοπο πρόσθετων</a> για να βρείτε κάτι που να σας ταιριάζει."
+msgstr "Λυπούμαστε αλλά δεν μπορέσαμε να σας συστήσουμε κάτι που να σας ενδιαφέρει.<br>Σας παρακαλούμε να επισκεφθείτε τον <a href=\"{0}\">ιστότοπο πρόσθετων</a> για να βρείτε κάτι που να σας ταιριάζει."
 
 #: media/js/zamboni/discovery-all.js:12127 media/js/zamboni/discovery-min.js:23 media/js/zamboni/discovery_pane.js:247
 msgid "Finding recommendations&hellip;"
