@@ -17,7 +17,7 @@ msgstr ""
 
 #: apps/addons/buttons.py:207
 msgid "Download Now"
-msgstr "Κάντε λήψη τώρα"
+msgstr "Λήψη τώρα"
 
 #: apps/addons/buttons.py:209 apps/addons/templates/addons/impala/details.html:88 mkt/developers/templates/developers/apps/status.html:185
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:124 mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:126
@@ -25,7 +25,7 @@ msgstr "Κάντε λήψη τώρα"
 #: mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:92 mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:199
 #: mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:86 templates/global/menu_links.html:18
 msgid "Download"
-msgstr "Κάντε λήψη"
+msgstr "Λήψη"
 
 #. L10n: please keep &nbsp; in the string so &rarr; does not wrap.
 #. please keep &nbsp; in the string so the &rarr; does not wrap
@@ -39,7 +39,7 @@ msgstr "Αποδοχή και λήψη"
 
 #: apps/addons/buttons.py:226
 msgid "Install App"
-msgstr ""
+msgstr "Εγκατάσταση εφαρμογής"
 
 #: apps/addons/buttons.py:240
 msgctxt "install_button"
@@ -76,11 +76,11 @@ msgstr "Αυτό το όνομα χρησιμοποιείται ήδη. Παρα
 
 #: apps/addons/forms.py:62 mkt/developers/forms.py:571 mkt/submit/forms.py:402
 msgid "This slug is already in use. Please choose another."
-msgstr ""
+msgstr "Αυτό το slug χρησιμοποιείται ήδη. Παρακαλώ διαλέξτε κάποιο άλλο."
 
 #: apps/addons/forms.py:65 mkt/developers/forms.py:574 mkt/submit/forms.py:406
 msgid "The slug cannot be \"%s\". Please choose another."
-msgstr ""
+msgstr "Το slug δε μπορεί να είναι \"%s\". Παρακαλώ διαλέξτε κάποιο άλλο."
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 #: apps/addons/forms.py:84
@@ -114,11 +114,11 @@ msgstr[1] "Όλες οι ετικέτες θα πρέπει να έχουν το
 
 #: apps/addons/forms.py:249
 msgid "Categories cannot be changed while your app is featured for this application."
-msgstr ""
+msgstr "Δε μπορείτε να αλλάξετε κατηγορίες καθώς η εφαρμογή σας προβάλλεται για αυτή την εφαρμογή."
 
 #: apps/addons/forms.py:252
 msgid "Categories cannot be changed while your add-on is featured for this application."
-msgstr ""
+msgstr "Δε μπορείτε να αλλάξετε κατηγορίες καθώς το πρόσθετο σας προβάλλεται για αυτή την εφαρμογή."
 
 #. L10n: {0} is the number of categories.
 #: apps/addons/forms.py:256 mkt/developers/forms.py:978
@@ -153,7 +153,7 @@ msgstr "Εισάγετε τη διεύθυνση email ενός νέου συν�
 
 #: apps/addons/helpers.py:37
 msgid "Not Reviewed"
-msgstr "Δεν έχει αξιολογηθεί"
+msgstr "Χωρίς Αξιολόγηση"
 
 #: apps/addons/helpers.py:37 apps/addons/views.py:334 apps/addons/templates/addons/impala/details.html:118 apps/addons/templates/addons/impala/listing/items.html:17
 #: apps/addons/templates/addons/mobile/home.html:38 apps/amo/templates/amo/side_nav.html:6 apps/amo/templates/amo/side_nav.html:17 apps/amo/templates/amo/site_nav.html:2
@@ -634,12 +634,12 @@ msgstr "Πιο δημοφιλή"
 
 #: apps/addons/templates/addons/home.html:43
 msgid "All »"
-msgstr "Όλα >"
+msgstr "Όλα »"
 
 #: apps/addons/templates/addons/home.html:52 apps/addons/templates/addons/home.html:61 apps/addons/templates/addons/home.html:70 apps/addons/templates/addons/home.html:78
 #: apps/browse/templates/browse/impala/category_landing.html:38
 msgid "See all »"
-msgstr "Δείτε τα όλα >"
+msgstr "Δείτε τα όλα »"
 
 #: apps/addons/templates/addons/home.html:60
 msgid "Up &amp; Coming Extensions"
@@ -656,7 +656,7 @@ msgstr "Προβεβλημένες συλλογές"
 #: apps/addons/templates/addons/listing_header.html:3 apps/addons/templates/addons/impala/listing/sorter.html:2 apps/amo/templates/amo/mobile/sort_by.html:2
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:126
 msgid "Sort by:"
-msgstr "Ταξινόμηση κατά :"
+msgstr "Ταξινόμηση κατά:"
 
 #. {0} is a date.
 #. {0} is a date
@@ -873,9 +873,11 @@ msgstr "ή κάντε <b><a class=\"installer\" href=\"{url}\">λήψη οπωσ
 
 #: apps/addons/templates/addons/popups.html:26
 msgid ""
-"<strong>How to Install in Thunderbird</strong> <ol> <li>Download and save the file to your hard disk.</li> <li>In Mozilla Thunderbird, open Add-ons from the Tools menu.</li> <li>From the options "
-"button next to the add-on search field, select \"Install Add-on From File...\" and locate the downloaded add-on.</li> </ol>"
+"<strong>How to Install in Thunderbird</strong> <ol> <li>Κατεβάστε το αρχείο και αποθηκεύστε το στο σκληρό σας δίσκο.</li> <li>Στο Mozilla Thunderbird, ανοίξτε τα Πρόσθετα από το μενού Εργαλεία.</li> <li>Από το κουμπί επιλογές "
+"next to the add-on search field, select \"Install Add-on From File...\" and locate the downloaded add-on.</li> </ol>"
 msgstr ""
+"<strong>Πως θα εγκαταστήσετε στο Thunderbird</strong> <ol> <li>Download and save the file to your hard disk.</li> <li>In Mozilla Thunderbird, open Add-ons from the Tools menu.</li> <li>From the options "
+"δίπλα στο πεδίο αναζήτησης προσθέτου, επιλέξτε \"Εγκατάσταση προσθέτου από αρχείο...\" και εντοπίστε το πρόσθετο που κατεβάσατε.</li> </ol>"
 
 #: apps/addons/templates/addons/popups.html:41
 msgid "To install this Theme, <b>get Thunderbird</b>, a free and open source email client from Mozilla Messaging and install the Personas Plus add-on."
@@ -912,7 +914,7 @@ msgstr "Αυτό το πρόσθετο απαιτεί τον %(app)s {new_versio
 #. {0} is an app name, like Firefox.
 #: apps/addons/templates/addons/popups.html:82 apps/addons/templates/addons/popups.html:102
 msgid "Upgrade {0}"
-msgstr "Ενημερώστε τον {0}"
+msgstr "Ενημέρωση {0}"
 
 #: apps/addons/templates/addons/popups.html:85
 msgid "or view <a href=\"%(href)s\">older versions of this add-on</a>."
@@ -1213,7 +1215,7 @@ msgstr "Πληροφορίες"
 
 #: apps/addons/templates/addons/impala/details.html:221
 msgid "Released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
-msgstr ""
+msgstr "Διατίθεται από <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
 
 #: apps/addons/templates/addons/impala/details.html:222 apps/addons/templates/addons/impala/details.html:227 apps/amo/helpers.py:404 apps/devhub/forms.py:139 apps/devhub/forms.py:169
 #: apps/versions/templates/versions/version.html:40 apps/versions/templates/versions/version.html:45
@@ -1249,10 +1251,12 @@ msgid ""
 "The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
 "updates from this channel. To stop receiving development updates, reinstall the default version from the link above."
 msgstr ""
+"Το Κανάλι Ανάπτυξης σας επιτρέπει να ελέγξετε μια δοκιμαστική νέα έκδοση αυτού του προσθέτου προτού αυτό διανεμηθεί στο ευρύ κοινό. Αφού εγκαταστήσετε την έκδοση ανάπτυξης, θα συνεχίσετε για να λάβετε "
+"ενημερώσεις από αυτό το κανάλι. Για να σταματήσετε να λαμβάνετε αναπτυξιακές ενημερώσεις, εγκαταστήστε ξανά την προεπιλεγμένη έκδοση από το σύνδεσμο παραπάνω."
 
 #: apps/addons/templates/addons/impala/details.html:300
 msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
-msgstr ""
+msgstr "<strong>Προσοχή:</strong> Οι εκδόσεις ανάπτυξης αυτού του προσθέτου δεν έχουν αξιολογηθεί από τη Mozilla."
 
 #: apps/addons/templates/addons/impala/details.html:328 apps/addons/templates/addons/impala/details.html:340 apps/addons/templates/addons/impala/review_add_box.html:5
 #: apps/stats/templates/stats/popup.html:2 apps/stats/templates/stats/popup.html:8 apps/stats/templates/stats/stats.html:194 apps/users/templates/users/profile.html:121
@@ -1387,15 +1391,15 @@ msgstr "Αποδοχή / Απόρριψη"
 
 #: apps/addons/templates/addons/includes/persona.html:25 mkt/lookup/templates/lookup/helpers/app_header.html:46 mkt/reviewers/templates/reviewers/themes/single.html:43
 msgid "Review History"
-msgstr ""
+msgstr "Επιθεώρηση Ιστορικού"
 
 #: apps/addons/templates/addons/includes/persona_pending_notice.html:3
 msgid "Sorry, this theme is pending. Please come back later."
-msgstr ""
+msgstr "Συγγνώμη, αυτό το θέμα εκκρεμεί. Παρακαλώ επιστρέψτε αργότερα."
 
 #: apps/addons/templates/addons/includes/persona_pending_notice.html:8
 msgid "This theme is pending. It is invisible to everyone but you."
-msgstr ""
+msgstr "Αυτό το θέμα εκκρεμεί. Είναι αόρατο σε όλους εκτός από εσάς."
 
 #: apps/addons/templates/addons/listing/items.html:31
 msgid "Collector's Note"
@@ -1414,7 +1418,7 @@ msgstr[1] "<strong>{0}</strong> εβδομαδιαίες λήψεις"
 
 #: apps/addons/templates/addons/listing/items_mobile.html:63
 msgid "Purchase Refunded"
-msgstr ""
+msgstr "Η αγορά επεστράφη"
 
 #: apps/addons/templates/addons/mobile/button.html:23
 msgid "May Slow Down Your Browser"
@@ -1476,7 +1480,7 @@ msgstr "Αποδοχή"
 
 #: apps/addons/templates/addons/mobile/home.html:10 templates/mobile/base_addons.html:64
 msgid "You need Firefox to install add-ons. <a href=\"http://mozilla.com/mobile\">Learn More&nbsp;&raquo;</a>"
-msgstr ""
+msgstr "Χρειάζεστε τον Firefox για να εγκαταστήσετε πρόσθετα. <a href=\"http://mozilla.com/mobile\">Learn More&nbsp;&raquo;</a>"
 
 # {0} is the application name.  Example:  Firefox
 #: apps/addons/templates/addons/mobile/home.html:17 templates/header_title.html:4 templates/impala/header_title.html:3
@@ -1580,7 +1584,7 @@ msgstr "Υποβολή νέου θέματος"
 #: apps/amo/context_processors.py:98 apps/amo/templates/amo/site_nav.html:85 apps/devhub/helpers.py:34 apps/devhub/helpers.py:71 apps/devhub/helpers.py:105 mkt/site/context_processors.py:37
 #: mkt/templates/mkt/base_desktop.html:53 templates/footer.html:6 templates/menu_links.html:14 templates/global/menu_links.html:41
 msgid "Developer Hub"
-msgstr "Ταμπλό δημιουργών"
+msgstr "Γωνιά προγραμματιστών"
 
 #: apps/amo/context_processors.py:102 apps/editors/helpers.py:73 apps/editors/helpers.py:92 apps/editors/templates/editors/base.html:13
 msgid "Editor Tools"
@@ -1869,47 +1873,47 @@ msgstr "Ολοκληρώθηκε η αλλαγή κωδικού."
 
 #: apps/amo/log.py:367
 msgid "{addon} changed to premium."
-msgstr ""
+msgstr "Το {addon} άλλαξε σε premium."
 
 #: apps/amo/log.py:372
 msgid "{addon} failed checks with PayPal."
-msgstr ""
+msgstr "Το {addon} απέτυχε στους ελέγχους με το PayPal."
 
 #: apps/amo/log.py:377
 msgid "{addon} manifest updated."
-msgstr ""
+msgstr "Η δήλωση του {addon} ανανεώθηκε."
 
 #: apps/amo/log.py:383
 msgid "{addon} {version} approved but waiting to be made public."
-msgstr ""
+msgstr "Το {addon} {version} επικυρώθηκε αλλά αναμένεται να γίνει δημόσιο."
 
 #: apps/amo/log.py:384 apps/constants/base.py:42
 msgid "Approved but waiting"
-msgstr ""
+msgstr "Επικυρώθηκε αλλά αναμένεται"
 
 #: apps/amo/log.py:392
 msgid "{addon} purchased."
-msgstr ""
+msgstr "Αγοράσθηκε το {addon}."
 
 #: apps/amo/log.py:397
 msgid "{addon} installed."
-msgstr ""
+msgstr "Το {addon} εγκαταστάθηκε."
 
 #: apps/amo/log.py:402
 msgid "Refund requested for {addon}"
-msgstr ""
+msgstr "Αιτήθηκε επιστροφή για το {addon}"
 
 #: apps/amo/log.py:407
 msgid "Refund declined for {addon} for {0}."
-msgstr ""
+msgstr "Απορρίφθηκε επιστροφή για {addon} από {0}."
 
 #: apps/amo/log.py:412
 msgid "Refund granted for {addon} for {0}."
-msgstr ""
+msgstr "Χορηγήθηκε επιστροφή για {addon} από {0}."
 
 #: apps/amo/log.py:417
 msgid "Instant refund granted for {addon}."
-msgstr ""
+msgstr "Χορηγήθηκε άμεση επιστροφή για {addon}."
 
 #: apps/amo/log.py:422
 msgid "Account updated."
@@ -1917,11 +1921,11 @@ msgstr "Ο λογαριασμός ανανεώθηκε."
 
 #: apps/amo/log.py:427
 msgid "Pre approval added."
-msgstr ""
+msgstr "Προστέθηκε προέγκριση."
 
 #: apps/amo/log.py:432
 msgid "Pre-approval removed."
-msgstr ""
+msgstr "Η προέγκριση αφαιρέθηκε."
 
 #: apps/amo/log.py:437
 msgid "Account currency changed"
@@ -1929,15 +1933,15 @@ msgstr "Το νόμισμα του λογαριασμού άλλαξε"
 
 #: apps/amo/log.py:442
 msgid "Valid receipt was checked for {addon}."
-msgstr ""
+msgstr "Ελέγχθηκε έγκυρη επιστροφή για {addon}."
 
 #: apps/amo/log.py:447
 msgid "Escalation cleared for {addon}."
-msgstr ""
+msgstr "Εκκαθάριση κλιμάκωσης για {addon}."
 
 #: apps/amo/log.py:448
 msgid "Escalation cleared"
-msgstr ""
+msgstr "Εκκαθάριση κλιμάκωσης"
 
 #: apps/amo/log.py:456
 msgid "App disabled"
@@ -1945,7 +1949,7 @@ msgstr "Η εφαρμογή απενεργοποιήθηκε"
 
 #: apps/amo/log.py:463
 msgid "{addon} escalated because of high number of abuse reports."
-msgstr ""
+msgstr "Το {addon} κλιμακώθηκε εξαιτίας υψηλού αριθμού αναφορών κατάχρησης."
 
 #: apps/amo/log.py:464
 msgid "High Abuse Reports"
@@ -1961,19 +1965,19 @@ msgstr "Υψηλός αριθμός αιτήσεων επιστροφής χρη
 
 #: apps/amo/log.py:479
 msgid "{addon} re-reviewed because of manifest change."
-msgstr ""
+msgstr "Το {addon} επαναθεωρήθη λόγω αλλαγής στη δήλωση."
 
 #: apps/amo/log.py:480
 msgid "Manifest Change"
-msgstr ""
+msgstr "Αλλαγή δήλωσης"
 
 #: apps/amo/log.py:487
 msgid "{addon} re-reviewed because app upgraded premium type."
-msgstr ""
+msgstr "Το {addon} επαναθεωρήθη καθώς η εφαρμογή αναβαθμίστηκε σε premium."
 
 #: apps/amo/log.py:488
 msgid "Premium Type Upgrade"
-msgstr ""
+msgstr "Αναβάθμιση Τύπου Premium"
 
 #: apps/amo/log.py:495
 msgid "Re-review cleared for {addon}."
@@ -18910,7 +18914,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:251
 msgid "Code &amp; Tools"
-msgstr ""
+msgstr "Κώδικας &amp; Εργαλεία"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:255
 msgid "Events &amp; Meetups"
@@ -18922,11 +18926,11 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:281
 msgid "Sign me up!"
-msgstr ""
+msgstr "Εγγραφή!"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:231 mkt/ecosystem/templates/ecosystem/publish_submit.html:5 mkt/ecosystem/templates/ecosystem/publish_submit.html:13
 msgid "Marketplace Submission"
-msgstr ""
+msgstr "Marketplace Υποβολή"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:268 mkt/ecosystem/templates/ecosystem/publish_payments.html:5 mkt/ecosystem/templates/ecosystem/publish_payments.html:13
 msgid "Payments Status"
@@ -18982,11 +18986,11 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:96
 msgid "Available now!"
-msgstr ""
+msgstr "Διαθέσιμο τώρα!"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:100
 msgid "Android Tablets"
-msgstr ""
+msgstr "Android Tablets"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:111
 msgid "You + Mozilla = Awesome"
@@ -19002,15 +19006,15 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:118
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:121
 msgid "YouTube"
-msgstr ""
+msgstr "YouTube"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:123
 msgid "Firefox Marketplace YouTube channel"
-msgstr ""
+msgstr "Firefox Marketplace κανάλι YouTube"
 
 #: mkt/ecosystem/templates/ecosystem/publish_deploy.html:15
 msgid "One your app is finished, you need to deploy it. If you're publishing through the Firefox Marketplace you have some options on how to deploy your app."
@@ -19046,7 +19050,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/publish_hosted.html:40
 msgid "GitHub"
-msgstr ""
+msgstr "GitHub"
 
 #. Do not localize text in <code></code>
 #: mkt/ecosystem/templates/ecosystem/publish_hosted.html:43
@@ -19067,7 +19071,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/publish_hosted.html:65
 msgid "Publishing the app"
-msgstr ""
+msgstr "Δημοσίευση της εφαρμογής"
 
 #: mkt/ecosystem/templates/ecosystem/publish_hosted.html:67
 msgid "Once your Web app has been deployed, you obviously want to make it installable by your intended user base. There are currently two options for publishing your app."
@@ -19075,7 +19079,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/publish_hosted.html:73
 msgid "Submit to Firefox Marketplace"
-msgstr ""
+msgstr "Υποβολή στο Firefox Marketplace"
 
 #: mkt/ecosystem/templates/ecosystem/publish_hosted.html:75
 msgid ""
@@ -19085,7 +19089,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/publish_hosted.html:82
 msgid "Publish on your own website"
-msgstr ""
+msgstr "Δημοσίευση στην ιστοσελίδα σας"
 
 #: mkt/ecosystem/templates/ecosystem/publish_hosted.html:84
 msgid ""
@@ -19402,7 +19406,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/publish_review.html:109
 msgid "Privacy"
-msgstr ""
+msgstr "Ιδιωτικότητα"
 
 #: mkt/ecosystem/templates/ecosystem/publish_review.html:112
 msgid ""
@@ -19412,7 +19416,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/publish_review.html:122
 msgid "Content"
-msgstr ""
+msgstr "Περιεχόμενο"
 
 #: mkt/ecosystem/templates/ecosystem/publish_review.html:125
 msgid ""
@@ -19577,7 +19581,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/publish_submit.html:28
 msgid "What you need"
-msgstr ""
+msgstr "Τι χρειάζεστε"
 
 #: mkt/ecosystem/templates/ecosystem/publish_submit.html:29
 msgid "Before submitting your app, you need the following:"
@@ -19597,7 +19601,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/publish_submit.html:51
 msgid "Quick start"
-msgstr ""
+msgstr "Γρήγορο ξεκίνημα"
 
 #: mkt/ecosystem/templates/ecosystem/publish_submit.html:53
 msgid "Are you ready to submit your app right now? <a class=\"button\" href=\"%(url)s\">Submit an app</a>"
@@ -19609,7 +19613,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/publish_submit.html:64
 msgid "Steps"
-msgstr ""
+msgstr "Βηματα"
 
 #: mkt/ecosystem/templates/ecosystem/publish_submit.html:66
 msgid "Submitting an app to the Firefox OS Marketplace involves the following high-level steps:"
@@ -19730,7 +19734,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/publish_submit.html:219
 msgid "After you submit the app"
-msgstr ""
+msgstr "Μετά την υποβολή της εφαρμογής"
 
 #: mkt/ecosystem/templates/ecosystem/publish_submit.html:221
 msgid ""
@@ -19745,7 +19749,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/publish_submit.html:236 mkt/lookup/templates/lookup/user_summary.html:87
 msgid "Submissions"
-msgstr ""
+msgstr "Υποβολές"
 
 #: mkt/ecosystem/templates/ecosystem/publish_submit.html:237
 msgid "Review process"
@@ -19795,7 +19799,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/support.html:65 mkt/ecosystem/templates/ecosystem/support.html:67
 msgid "Stack Overflow"
-msgstr ""
+msgstr "Stack Overflow"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:71
 msgid "If you want to engage with other developers, join our vibrant communities in these mailing lists:"
@@ -19831,7 +19835,7 @@ msgstr ""
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:48 mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:73
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:96 mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:51
 msgid "Web API Usage"
-msgstr ""
+msgstr "Χρήση Web API"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:52
 msgid "Chrono does not require a network connection to run."
@@ -19874,18 +19878,18 @@ msgstr ""
 #: mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:90 mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:197
 #: mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:84
 msgid "View Source"
-msgstr ""
+msgstr "Προβολή Πηγής"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:130 mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:132
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:121 mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:141
 #: mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:98 mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:205
 #: mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:92
 msgid "Difficulty:"
-msgstr ""
+msgstr "Δυσκολία:"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:130
 msgid "Easy"
-msgstr ""
+msgstr "Εύκολο"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:133 mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:135
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:124 mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:144
@@ -19896,15 +19900,15 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:135
 msgid "7%"
-msgstr ""
+msgstr "7%"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:136
 msgid "11%"
-msgstr ""
+msgstr "11%"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:137 mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:139
 msgid "82%"
-msgstr ""
+msgstr "82%"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:17 mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:18
 msgid "Euros to Canadian Dollars"
@@ -19973,11 +19977,11 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:137 mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:97
 msgid "2%"
-msgstr ""
+msgstr "2%"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:138 mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:211
 msgid "16%"
-msgstr ""
+msgstr "16%"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:17 mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:18
 msgid "Note Listing"
@@ -20013,15 +20017,15 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:126
 msgid "81%"
-msgstr ""
+msgstr "81%"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:127
 msgid "14%"
-msgstr ""
+msgstr "14%"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:128 mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:103
 msgid "5%"
-msgstr ""
+msgstr "5%"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:17 mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:18
 msgid "Podcast Listing"
@@ -20074,19 +20078,19 @@ msgstr ""
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:141 mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:98
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:205
 msgid "Advanced"
-msgstr ""
+msgstr "Για προχωρημένους"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:146
 msgid "4%"
-msgstr ""
+msgstr "4%"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:147 mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:98
 msgid "6%"
-msgstr ""
+msgstr "6%"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:148
 msgid "90%"
-msgstr ""
+msgstr "90%"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:17 mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:18
 msgid "Default Feed View"
@@ -20112,23 +20116,23 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:104
 msgid "26%"
-msgstr ""
+msgstr "26%"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:105
 msgid "69%"
-msgstr ""
+msgstr "69%"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:17 mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:18
 msgid "Gallery View"
-msgstr ""
+msgstr "Προβολή Έκθεσης"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:22 mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:23
 msgid "Camera View"
-msgstr ""
+msgstr "Προωολή Κάμερας"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:27 mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:28
 msgid "Selecting an image"
-msgstr ""
+msgstr "Επιλογή εικόνας"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:35
 msgid "rtcamera is a fun camera app to process images in real time, using Web technologies. <a href=\"%(walkthrough_link)s\" class=\"walkthrough\"> Read the full developer walkthrough </a>"
@@ -20184,11 +20188,11 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:210
 msgid "1%"
-msgstr ""
+msgstr "1%"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:212
 msgid "83%"
-msgstr ""
+msgstr "83%"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:17 mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:18
 #: mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:22 mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:23
@@ -20220,11 +20224,11 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:99
 msgid "92%"
-msgstr ""
+msgstr "92%"
 
 #: mkt/files/views.py:49
 msgid "Back to app"
-msgstr ""
+msgstr "Πίσω στην εφαρμογή"
 
 #: mkt/files/templates/fileviewer/viewer.html:4
 msgid "File Compare :: Reviewer Tools"
@@ -20265,15 +20269,15 @@ msgstr ""
 
 #: mkt/inapp_pay/templates/inapp_pay/complete.html:15
 msgid "Purchased successfully"
-msgstr ""
+msgstr "Αγοράστηκε επιτυχώς"
 
 #: mkt/inapp_pay/templates/inapp_pay/complete.html:19 mkt/inapp_pay/templates/inapp_pay/error.html:27 mkt/inapp_pay/templates/inapp_pay/payment_cancel.html:12
 msgid "Close window"
-msgstr ""
+msgstr "Κλείσιμο παραθύρου"
 
 #: mkt/inapp_pay/templates/inapp_pay/error.html:8
 msgid "Payment Error"
-msgstr ""
+msgstr "Σφάλμα πληρωμής"
 
 #: mkt/inapp_pay/templates/inapp_pay/error.html:17
 msgid "There was an error processing your payment. Please try again."
@@ -20310,7 +20314,7 @@ msgstr ""
 
 #: mkt/inapp_pay/templates/inapp_pay/nowallet.html:20
 msgid "No thanks"
-msgstr ""
+msgstr "Όχι ευχαριστώ"
 
 #: mkt/inapp_pay/templates/inapp_pay/pay_start.html:21
 msgid "Purchasing&hellip;"
@@ -20359,15 +20363,15 @@ msgstr ""
 #. L10n: first argument is a percentage, second is a payment method.
 #: mkt/lookup/views.py:486
 msgid "{0} of purchases via {1}"
-msgstr ""
+msgstr "{0} αγορές μέσω {1}"
 
 #: mkt/lookup/templates/lookup/app_summary.html:8
 msgid "last 24 hours"
-msgstr ""
+msgstr "τελευταίες 24 ώρες"
 
 #: mkt/lookup/templates/lookup/app_summary.html:9
 msgid "last 7 days"
-msgstr ""
+msgstr "τελευταίες 7 ημέρες"
 
 #: mkt/lookup/templates/lookup/app_summary.html:10
 msgid "all time"
@@ -20375,23 +20379,23 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/app_summary.html:32
 msgid "Manifest"
-msgstr ""
+msgstr "Δήλωση"
 
 #: mkt/lookup/templates/lookup/app_summary.html:38 mkt/reviewers/templates/reviewers/includes/details.html:33 mkt/reviewers/templates/reviewers/includes/mobile_details.html:55
 msgid "View"
-msgstr ""
+msgstr "Προβολή"
 
 #: mkt/lookup/templates/lookup/app_summary.html:55
 msgid "Permissions"
-msgstr ""
+msgstr "Άδειες"
 
 #: mkt/lookup/templates/lookup/app_summary.html:69 mkt/lookup/templates/lookup/helpers/user_header.html:21
 msgid "Purchases"
-msgstr ""
+msgstr "Αγορές"
 
 #: mkt/lookup/templates/lookup/app_summary.html:79 mkt/lookup/templates/lookup/user_summary.html:51
 msgid "Refunds"
-msgstr ""
+msgstr "Επιστροφές"
 
 #. first argument is number of refunds, second argument is percentage of purchases.
 #: mkt/lookup/templates/lookup/app_summary.html:82
@@ -20415,19 +20419,19 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/app_summary.html:91
 msgid "Methods"
-msgstr ""
+msgstr "Μέθοδοι"
 
 #: mkt/lookup/templates/lookup/app_summary.html:107
 msgid "Version (ID)"
-msgstr ""
+msgstr "Έκδοση (ID)"
 
 #: mkt/lookup/templates/lookup/app_summary.html:108
 msgid "Filename (ID, Size)"
-msgstr ""
+msgstr "Αρχείο (ID, Μέγεθος)"
 
 #: mkt/lookup/templates/lookup/base.html:3 mkt/site/context_processors.py:52
 msgid "Lookup Tool"
-msgstr ""
+msgstr "Εργαλείο Αναζήτησης"
 
 #: mkt/lookup/templates/lookup/base.html:10
 msgid "<small>Marketplace</small> Lookup Tool"
@@ -20479,11 +20483,11 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/user_summary.html:20
 msgid "Registered"
-msgstr ""
+msgstr "Εγγεγραμμένος"
 
 #: mkt/lookup/templates/lookup/user_summary.html:24
 msgid "Groups"
-msgstr ""
+msgstr "Ομάδες"
 
 #: mkt/lookup/templates/lookup/user_summary.html:36
 msgid "PayPal linked"
@@ -20511,11 +20515,11 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/user_summary.html:58
 msgid "Developer Program"
-msgstr ""
+msgstr "Πρόγραμμα Προγραμματιστή"
 
 #: mkt/lookup/templates/lookup/user_summary.html:60
 msgid "Read agreement"
-msgstr ""
+msgstr "Διάβασμα συμφωνητικού"
 
 #: mkt/lookup/templates/lookup/user_summary.html:68
 msgid "Addresses"
@@ -20527,7 +20531,7 @@ msgstr "Χωρίς όνομα"
 
 #: mkt/lookup/templates/lookup/helpers/app_header.html:3
 msgid "App Lookup results for"
-msgstr ""
+msgstr "Αποτελέσματα Αναζήτησης εφαρμογής για"
 
 #: mkt/lookup/templates/lookup/helpers/app_header.html:5
 msgid "App Detail"
@@ -20535,11 +20539,11 @@ msgstr "Λεπτομέρειες εφαρμογής"
 
 #: mkt/lookup/templates/lookup/helpers/app_header.html:7
 msgid "Add-on Lookup results for"
-msgstr ""
+msgstr "Αποτελέσματα Αναζήτησης προσθέτου για"
 
 #: mkt/lookup/templates/lookup/helpers/user_header.html:4
 msgid "Account Summary"
-msgstr ""
+msgstr "Σύνοψη Λογαριασμού"
 
 #: mkt/lookup/templates/lookup/includes/app_search.html:6
 msgid "App Lookup"
@@ -20556,16 +20560,16 @@ msgstr "Αναζήτηση λογαριασμού"
 #. L10n: {0} is the addon name.
 #: mkt/purchase/webpay.py:41
 msgid "Firefox Marketplace purchase of {0}"
-msgstr ""
+msgstr "Firefox Marketplace αγορά για {0}"
 
 #. L10n: {0} is the app name.
 #: mkt/purchase/webpay_tasks.py:73
 msgid "Receipt for {0}"
-msgstr ""
+msgstr "Απόδειξη για {0}"
 
 #: mkt/purchase/templates/purchase/receipt.html:19
 msgid "Receipt"
-msgstr ""
+msgstr "Απόδειξη"
 
 #: mkt/purchase/templates/purchase/receipt.html:21
 msgid "Billed To:"
@@ -20573,19 +20577,19 @@ msgstr ""
 
 #: mkt/purchase/templates/purchase/receipt.html:28
 msgid "Order Number:"
-msgstr ""
+msgstr "Αριθμός παραγγελίας:"
 
 #: mkt/purchase/templates/purchase/receipt.html:29
 msgid "Order Date:"
-msgstr ""
+msgstr "Ημερομηνία παραγγελίας:"
 
 #: mkt/purchase/templates/purchase/receipt.html:37
 msgid "Item"
-msgstr ""
+msgstr "Αντικείμενο"
 
 #: mkt/purchase/templates/purchase/receipt.html:38
 msgid "Seller"
-msgstr ""
+msgstr "Πωλητής"
 
 #: mkt/purchase/templates/purchase/receipt.html:61
 msgid "For the Firefox Marketplace Terms of Service please visit:"
@@ -20653,11 +20657,11 @@ msgstr ""
 
 #: mkt/receipts/templates/receipts/test_manifest.html:26
 msgid "Receipt type"
-msgstr ""
+msgstr "Τύπος απόδειξης"
 
 #: mkt/receipts/templates/receipts/test_manifest.html:30
 msgid "Manifest location"
-msgstr ""
+msgstr "Τοποθεσία δήλωσης"
 
 #: mkt/reviewers/forms.py:28
 msgid "Any Status"
@@ -20673,7 +20677,7 @@ msgstr "Περιγραφή:"
 
 #: mkt/reviewers/forms.py:61 mkt/reviewers/templates/reviewers/review.html:221
 msgid "Device Types:"
-msgstr ""
+msgstr "Τύποι Συσκευής:"
 
 #: mkt/reviewers/forms.py:63 mkt/reviewers/templates/reviewers/review.html:225
 msgid "Browsers:"
@@ -20689,7 +20693,7 @@ msgstr ""
 
 #: mkt/reviewers/forms.py:72
 msgid "Staff"
-msgstr ""
+msgstr "Προσωπικό"
 
 #: mkt/reviewers/forms.py:76
 msgid "Action Visibility to Users:"
@@ -20707,11 +20711,11 @@ msgstr ""
 #. L10n: Descript of what can be searched for.
 #: mkt/reviewers/forms.py:146
 msgid "theme name"
-msgstr ""
+msgstr "όνομα θέματος"
 
 #: mkt/reviewers/forms.py:172
 msgid "Someone else is reviewing this theme."
-msgstr ""
+msgstr "Κάποιος άλλος επιθεωρεί αυτό το θέμα"
 
 #: mkt/reviewers/forms.py:265 mkt/reviewers/templates/reviewers/queue.html:53
 msgid "Privileged App"
@@ -20719,19 +20723,19 @@ msgstr ""
 
 #: mkt/reviewers/helpers.py:33 mkt/reviewers/helpers.py:66 mkt/site/context_processors.py:44
 msgid "Reviewer Tools"
-msgstr ""
+msgstr "Εργαλεία Επιθεωρητή"
 
 #: mkt/reviewers/helpers.py:37
 msgid "Re-reviews"
-msgstr ""
+msgstr "Επανεπιθεωρήσεις"
 
 #: mkt/reviewers/helpers.py:38
 msgid "Updates"
-msgstr ""
+msgstr "Ενημερώσεις"
 
 #: mkt/reviewers/helpers.py:39
 msgid "Escalations"
-msgstr ""
+msgstr "Κλιμακώσεις"
 
 #: mkt/reviewers/helpers.py:40
 msgid "Device"
@@ -20739,34 +20743,34 @@ msgstr "Συσκευή"
 
 #: mkt/reviewers/helpers.py:42
 msgid "Reviewing"
-msgstr ""
+msgstr "Επιθεώρηση"
 
 #: mkt/reviewers/helpers.py:44
 msgid "Pending Themes"
-msgstr ""
+msgstr "Θέματα σε αναμονή"
 
 #: mkt/reviewers/helpers.py:45 mkt/reviewers/templates/reviewers/themes/queue.html:4
 msgid "Flagged Themes"
-msgstr ""
+msgstr "Θέματα με επισήμανση"
 
 #: mkt/reviewers/helpers.py:46
 msgid "Re-review Themes"
-msgstr ""
+msgstr "Επανεπιθεώρηση Θεμάτων"
 
 #: mkt/reviewers/helpers.py:87
 msgctxt "pending"
 msgid "Apps ({0})"
-msgstr ""
+msgstr "Εφαρμογές ({0})"
 
 #: mkt/reviewers/helpers.py:90
 msgctxt "rereview"
 msgid "Re-reviews ({0})"
-msgstr ""
+msgstr "Επανεπιθεωρήσεις ({0})"
 
 #: mkt/reviewers/helpers.py:94
 msgctxt "updates"
 msgid "Updates ({0})"
-msgstr ""
+msgstr "Ανανεώσεις ({0})"
 
 #: mkt/reviewers/helpers.py:98
 msgctxt "escalated"
@@ -20780,7 +20784,7 @@ msgstr ""
 
 #: mkt/reviewers/helpers.py:106
 msgid "Reviewing ({0})"
-msgstr ""
+msgstr "Επιθεώρηση ({0})"
 
 #: mkt/reviewers/helpers.py:114
 msgid "Device ({0})"
@@ -20788,11 +20792,11 @@ msgstr "Συσκευή ({0})"
 
 #: mkt/reviewers/helpers.py:161 mkt/reviewers/helpers.py:181
 msgid "Flagged"
-msgstr ""
+msgstr "Επισημάνθηκε"
 
 #: mkt/reviewers/helpers.py:165 mkt/reviewers/helpers.py:184
 msgid "Re-review"
-msgstr ""
+msgstr "Επανεπιθεώρηση"
 
 #: mkt/reviewers/tasks.py:26
 msgid "Duplicate Submission"
@@ -20800,19 +20804,19 @@ msgstr ""
 
 #: mkt/reviewers/tasks.py:38
 msgid "Thanks for submitting your Theme"
-msgstr ""
+msgstr "Ευχαριστούμε για την υποβολή του Θέματος σας"
 
 #: mkt/reviewers/tasks.py:42 mkt/reviewers/tasks.py:46
 msgid "A problem with your Theme submission"
-msgstr ""
+msgstr "Κάποιο πρόβλημα με την υποβολή του Θέματος σας"
 
 #: mkt/reviewers/tasks.py:50
 msgid "Theme submission flagged for review"
-msgstr ""
+msgstr "Η υποβολή του Θέματος επισημάνθηκε για επιθεώρηση"
 
 #: mkt/reviewers/tasks.py:57
 msgid "A question about your Theme submission"
-msgstr ""
+msgstr "Μια ερώτηση για την υποβολή του Θέματος σας"
 
 #: mkt/reviewers/utils.py:445
 msgid "This will approve the sandboxed app so it appears on the public side."
@@ -20876,7 +20880,7 @@ msgstr ""
 
 #: mkt/reviewers/views.py:281 mkt/reviewers/views.py:302 mkt/submit/forms.py:33 mkt/submit/forms.py:42
 msgid "Removed {0}"
-msgstr ""
+msgstr "Αφαιρέθηκε {0}"
 
 #. L10n: {0} is the list of requirements changes.
 #: mkt/reviewers/views.py:304
@@ -20947,7 +20951,7 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/logs.html:40
 msgid "App has been deleted."
-msgstr ""
+msgstr "Η εφαρμογή έχει διαγραφεί."
 
 #: mkt/reviewers/templates/reviewers/performance.html:3
 msgid "Reviewer Scores for {0}"
@@ -20955,11 +20959,11 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/queue.html:82
 msgid "Payment Category:"
-msgstr ""
+msgstr "Κατηγορία Πληρωμής:"
 
 #: mkt/reviewers/templates/reviewers/queue.html:86
 msgid "Abuse Reports:"
-msgstr ""
+msgstr "Αναφορές κατάχρησης"
 
 #: mkt/reviewers/templates/reviewers/queue.html:101 mkt/reviewers/templates/reviewers/themes/queue_list.html:72
 msgid "There are currently no items of this type to review."
@@ -20975,11 +20979,11 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/review.html:57
 msgid "Review This App"
-msgstr ""
+msgstr "Επιθεώρηση Εφαρμογής"
 
 #: mkt/reviewers/templates/reviewers/review.html:60 mkt/reviewers/templates/reviewers/review.html:79
 msgid "App History"
-msgstr ""
+msgstr "Ιστορικό Εφαρμογής"
 
 #: mkt/reviewers/templates/reviewers/review.html:87
 msgid "Version %(version)s &middot; %(developer_name)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
@@ -21064,15 +21068,15 @@ msgstr "περισσότερα..."
 
 #: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:34
 msgid "%(stars)s by %(user)s on %(date)s (%(locale)s)"
-msgstr ""
+msgstr "%(stars)s από %(user)s στις %(date)s (%(locale)s)"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_search.html:11 mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:13 mkt/reviewers/templates/reviewers/themes/queue_list.html:14
 msgid "Clear Search"
-msgstr ""
+msgstr "Καθαρισμός Αναζήτησης"
 
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:43 mkt/reviewers/templates/reviewers/includes/search_results_themes.html:26 mkt/site/templates/site/helpers/no_results.html:1
 msgid "No results found"
-msgstr ""
+msgstr "Δε βρέθηκαν αποτελέσματα"
 
 #: mkt/reviewers/templates/reviewers/themes/base.html:24
 msgid "Theme Queues"
@@ -21084,11 +21088,11 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/themes/deleted.html:4
 msgid "Deleted Themes"
-msgstr ""
+msgstr "Διαγραφέντα Θέματα"
 
 #: mkt/reviewers/templates/reviewers/themes/deleted.html:17
 msgid "Date Deleted"
-msgstr ""
+msgstr "Ημερομηνία διαγράφηκε"
 
 #: mkt/reviewers/templates/reviewers/themes/deleted.html:39
 msgid "No deleted themes found for this period."
@@ -21100,7 +21104,7 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/themes/history_table.html:6
 msgid "Review Date"
-msgstr ""
+msgstr "Ημερομηνία Επιθεώρησης"
 
 #: mkt/reviewers/templates/reviewers/themes/history_table.html:10
 msgid "Reason"
@@ -21108,7 +21112,7 @@ msgstr "Αιτιολόγηση"
 
 #: mkt/reviewers/templates/reviewers/themes/history_table.html:56
 msgid "There are currently no reviews."
-msgstr ""
+msgstr "προς το παρόν δεν υπάρχουν επιθεωρήσεις."
 
 #: mkt/reviewers/templates/reviewers/themes/logs.html:4
 msgid "Theme Review Log"
@@ -21136,31 +21140,31 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/themes/queue.html:67
 msgid "Next Theme"
-msgstr ""
+msgstr "Επόμενο Θέμα"
 
 #: mkt/reviewers/templates/reviewers/themes/queue.html:68
 msgid "Previous Theme"
-msgstr ""
+msgstr "Προηγούμενο Θέμα"
 
 #: mkt/reviewers/templates/reviewers/themes/queue.html:81
 msgid "Your Review History"
-msgstr ""
+msgstr "Ιστορικό Επιθεωρήσεων σας"
 
 #: mkt/reviewers/templates/reviewers/themes/queue.html:88
 msgid "Commit Review"
-msgstr ""
+msgstr "Υποβολή Επιθεώρησης"
 
 #: mkt/reviewers/templates/reviewers/themes/queue.html:90
 msgid "Commit Reviews"
-msgstr ""
+msgstr "Υποβολή Επιθεωρήσεων"
 
 #: mkt/reviewers/templates/reviewers/themes/queue.html:94
 msgid "{0} out of {1} reviewed"
-msgstr ""
+msgstr "Επιθεωρήθηκαν {0} από {1}"
 
 #: mkt/reviewers/templates/reviewers/themes/queue.html:102
 msgid "There are currently no Themes to review."
-msgstr ""
+msgstr "Δεν υπάρχουν προς το παρόν Θέματα για επιθεώρηση."
 
 #: mkt/reviewers/templates/reviewers/themes/queue_list.html:23
 msgid "Release My Theme Locks"
@@ -21188,11 +21192,11 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/themes/themes.html:75
 msgid "Flagged: {0}"
-msgstr ""
+msgstr "Επισημάνθηκε: {0}"
 
 #: mkt/reviewers/templates/reviewers/themes/themes.html:96
 msgid "Approve Theme"
-msgstr ""
+msgstr "Αποδοχή Θέματος"
 
 #: mkt/reviewers/templates/reviewers/themes/themes.html:103
 msgid "Field required"
@@ -21244,7 +21248,7 @@ msgstr "Οποιοσδήποτε τύπος συσκευής"
 
 #: mkt/search/forms.py:48
 msgid "Tablet"
-msgstr ""
+msgstr "Tablet"
 
 #: mkt/search/forms.py:65
 msgid "Search for apps"
@@ -21260,7 +21264,7 @@ msgstr "Τύπος συσκεής"
 
 #: mkt/search/forms.py:94
 msgid "Premium types"
-msgstr ""
+msgstr "Τύποι Premium"
 
 #: mkt/search/forms.py:95
 msgid "App type"
@@ -21272,11 +21276,11 @@ msgstr "Αποσύνδεση"
 
 #: mkt/site/forms.py:10
 msgid "As soon as it is approved."
-msgstr ""
+msgstr "Μόλις εγκριθεί."
 
 #: mkt/site/forms.py:11
 msgid "Not until I manually make it public."
-msgstr ""
+msgstr "Όχι μέχρι να την κάνω δημόσια."
 
 #: mkt/site/forms.py:50
 msgid "Form could not be submitted."
@@ -21470,7 +21474,7 @@ msgstr ""
 
 #: mkt/stats/templates/sitestats/includes/stats_nav.html:2
 msgid "Apps added"
-msgstr ""
+msgstr "Προστέθηκαν Εφαρμογές"
 
 #: mkt/stats/templates/sitestats/includes/stats_nav.html:3
 msgid "Apps installed"
@@ -21536,7 +21540,7 @@ msgstr "Πότε θα πρέπει η εφαρμογή σσας να γίνει 
 #. L10n: "App" is a paid version of this app. "from" is this app.
 #: mkt/submit/forms.py:276
 msgid "App to upgrade from"
-msgstr ""
+msgstr "Αναβάθμιση από"
 
 #: mkt/submit/forms.py:343
 msgid "Privacy Policy:"
@@ -21560,7 +21564,7 @@ msgstr "Βοηθητική ιστοσελίδα:"
 
 #: mkt/submit/forms.py:354
 msgid "If your app has a support website or forum, enter its address here."
-msgstr ""
+msgstr "Αν η εφαρμογή σας διαθέτει μια ιστοσελίδα ή φόρουμ υποστήριξης, εισάγετε εδώ τη διεύθυνση της."
 
 #: mkt/submit/forms.py:364
 msgid "Does your app require Flash support?"
@@ -21596,7 +21600,7 @@ msgstr "Άνοιγμα σελίδας λεπτομερειών"
 
 #: mkt/submit/templates/submit/details.html:124
 msgid "Screenshot or video of your app:"
-msgstr ""
+msgstr "Στιγμιότυπο ή βίντεο της εφαρμογής σας:"
 
 #: mkt/submit/templates/submit/details.html:127
 msgid "You must provide at least one."
@@ -21652,7 +21656,7 @@ msgstr "<b>Τι ακολουθεί:</b> συμπληρώστε τις υπόλο
 
 #: mkt/submit/templates/submit/manifest.html:129
 msgid "Learn more about <b>packaged apps</b> on MDN."
-msgstr ""
+msgstr "Μάθετε περισσότερα για <b>συσκευασμένες εφαρμογές</b> στο MDN."
 
 #: mkt/submit/templates/submit/payments-bounce.html:3 mkt/submit/templates/submit/payments-confirm.html:3 mkt/submit/templates/submit/payments-paypal.html:3
 #: mkt/submit/templates/submit/payments-upsell.html:4 mkt/submit/templates/submit/payments.html:3
@@ -21691,13 +21695,15 @@ msgstr ""
 
 #: mkt/submit/templates/submit/terms.html:14
 msgid "Marketplace Developer Program"
-msgstr ""
+msgstr "Πρόγραμμα Προγραμματιστών Marketplace"
 
 #: mkt/submit/templates/submit/terms.html:16
 msgid ""
 "We're excited you've built an app using web technologies, and submitting it to the Firefox Marketplace is the best way for users to discover and enjoy it across their devices. First, you'll need to "
 "join the Marketplace Developer Program below."
 msgstr ""
+"Είμαστε ενθουσιασμένοι που αναπτύξατε μια εφαρμογή χρησιμοποιώντας web τεχνολογίες, και η υποβολή της στο Firefox Marketplace είναι ο καλύτερος τρόπος ώστε οι χρήστες να την ανακλύψουν και να την απολαύσουν στις αυσκευές τους. Αρχικά, θα χρειαστεί να "
+"συμμετέχετε στο Πρόγραμμα Προγραμματιστών του Marketplace παρακάτω."
 
 #: mkt/submit/templates/submit/terms.html:24
 msgid "To begin, please read and accept our <strong>Developer Agreement</strong>:"
@@ -21705,7 +21711,7 @@ msgstr "Για να ξεκινήσετε, παρακαλώ διαβάστε κα
 
 #: mkt/submit/templates/submit/terms.html:47
 msgid "Mozilla may email me with relevant App Developer news and surveys"
-msgstr ""
+msgstr "Η Mozilla μπορεί να μου στείλει email με νέα και έρευνες σχετικά με Προγραμματισμό Εφαρμογών"
 
 #: mkt/submit/tests/test_forms.py:230 mkt/webapps/tests/test_models.py:1168
 msgid "Héllo"
@@ -21740,6 +21746,8 @@ msgid ""
 "Except where otherwise <a href=\"%(legal_url)s\">noted</a>, content on this site is licensed under the <a href=\"%(cc_url)s\">Creative Commons Attribution Share-Alike License v3.0</a> or any later "
 "version."
 msgstr ""
+"Εκτός από όπου <a href=\"%(legal_url)s\">αναφέρεται</a> αλλιώς, το περιεχόμενο αυτού του ιστοτόπου παρέχεται σύμφωνα με τους όρους της άδειας <a href=\"%(cc_url)s\">Creative Commons Attribution Share-Alike License v3.0</a> "
+"ή μεταγενέστερη."
 
 #: mkt/templates/mkt/footer.html:19 templates/global/copyright.html:6
 msgid "Report Trademark Abuse"
@@ -21775,11 +21783,11 @@ msgstr "Πρέπει να παρέχετε τουλάχιστον μια κατ�
 
 #: mkt/zadmin/templates/zadmin/featured_apps_ajax.html:16
 msgid "No featured graphics found."
-msgstr ""
+msgstr "Δε βρέθηκε κανένα προβληθέν γραφικό."
 
 #: mkt/zadmin/templates/zadmin/featured_apps_ajax.html:19
 msgid "Sponsored"
-msgstr ""
+msgstr "Εγγύημένο"
 
 #: mkt/zadmin/templates/zadmin/featured_apps_ajax.html:25
 msgid "Start date"
