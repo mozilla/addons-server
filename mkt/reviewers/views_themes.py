@@ -26,6 +26,7 @@ from search.views import name_only_query
 from zadmin.decorators import admin_required
 
 import mkt.constants.reviewers as rvw
+from mkt.reviewers.utils import trim_orphaned_theme_updates
 
 from . import forms
 from .models import ThemeLock
@@ -52,8 +53,17 @@ def themes_list(request, flagged=False, rereview=False):
         themes = Addon.objects.filter(status=amo.STATUS_REVIEW_PENDING,
                                       type=amo.ADDON_PERSONA)
     elif rereview:
-        themes = [rqt.theme.addon for rqt in
-                  RereviewQueueTheme.objects.select_related('theme__addon')]
+        try:
+            themes = [
+                rqt.theme.addon for rqt in
+                RereviewQueueTheme.objects.select_related('theme__addon')]
+        except Addon.DoesNotExist:
+            # Temporary while we figure out why RQTs/themes aren't cascade
+            # deleting on Addon delete.
+            trim_orphaned_theme_updates()
+            themes = [
+                rqt.theme.addon for rqt in
+                RereviewQueueTheme.objects.select_related('theme__addon')]
     else:
         themes = Addon.objects.filter(status=amo.STATUS_PENDING,
                                       type=amo.ADDON_PERSONA)
