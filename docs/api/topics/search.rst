@@ -80,17 +80,20 @@ Featured App Listing
 
     **Response**:
 
+    :param collections: A list of collections for the requested
+        category/region/carrier set, if any
+    :type collections: array
+    :param featured: A list of :ref:`apps <app-response-label>` featured
+        for the requested category/region/carrier set, if any
+    :type featured: array
     :param meta: :ref:`meta-response-label`.
     :type meta: object
     :param objects: A :ref:`listing <objects-response-label>` of
         :ref:`apps <app-response-label>` satisfying the search parameters.
     :type objects: array
-    :param collections: A list of collections for the requested
+    :param operator: A list of apps in the operator shelf for the requested
         category/region/carrier set, if any
-    :type collections: array
-    :param featured: A list of :ref:`apps <app-response-label>` featured
-        for the requested category, if any
-    :type featured: array
+    :type operator: array
     :status 200: successfully completed.
 
 .. _feature-profile-label:

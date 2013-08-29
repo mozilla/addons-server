@@ -21,7 +21,8 @@ from users.models import UserProfile
 from mkt.api.base import list_url
 from mkt.api.tests.test_oauth import BaseOAuth, OAuthClient
 from mkt.collections.constants import (COLLECTIONS_TYPE_BASIC,
-                                       COLLECTIONS_TYPE_FEATURED)
+                                       COLLECTIONS_TYPE_FEATURED,
+                                       COLLECTIONS_TYPE_OPERATOR)
 from mkt.collections.models import Collection
 from mkt.constants.features import FeatureProfile
 from mkt.search.forms import DEVICE_CHOICES_IDS
@@ -566,39 +567,78 @@ class TestFeaturedWithCategories(BaseFeaturedTests):
         eq_(int(res.json['featured'][0]['id']), self.app.pk)
 
 
-class TestFeaturedWithCollections(BaseFeaturedTests):
+class TestFeaturedCollections(BaseFeaturedTests):
     """
     Tests to ensure that CollectionFilterSetWithFallback is being called and
-    its results are being added to the response. We'll rely on that class'
-    tests to ensure that it is properly functioning.
+    its results are being added to the response.
     """
+    col_type = COLLECTIONS_TYPE_BASIC
+    prop_name = 'collections'
 
     def setUp(self):
         self.create_switch('rocketfuel')
-        super(TestFeaturedWithCollections, self).setUp()
+        super(TestFeaturedCollections, self).setUp()
         self.col = Collection.objects.create(name='Hi', description='Mom',
-            collection_type=COLLECTIONS_TYPE_BASIC, category=self.cat)
+            collection_type=self.col_type, category=self.cat)
 
-    def get_featured(self):
+    def make_request(self):
         res = self.client.get(self.list_url, self.qs)
         eq_(res.status_code, 200)
         return res, res.json
 
-    def test_collection_results_added(self):
-        res, json = self.get_featured()
-        ok_('collections' in res.json.keys())
-        eq_(len(res.json['collections']), 1)
-        eq_(res.json['collections'][0]['id'], self.col.id)
+    def test_added_to_results(self):
+        res, json = self.make_request()
+        ok_(self.prop_name in res.json)
+        eq_(len(json[self.prop_name]), 1)
+        eq_(json[self.prop_name][0]['id'], self.col.id)
+        return res, json
 
-    def test_collection_only_basics(self):
+    def test_apps_included(self):
+        self.col.add_app(self.app)
+        res, json = self.test_added_to_results()
+        eq_(len(json[self.prop_name][0]['apps']), 1)
+
+    def test_features_filtered(self):
+        """
+        Test that the app list is passed through feature profile filtering.
+        """
+        self.app.current_version.features.update(has_pay=True)
+        self.reindex(Webapp, 'webapp')
+        self.qs.update({'dev': ''})
+        self.col.add_app(self.app)
+        res, json = self.test_added_to_results()
+        eq_(len(json[self.prop_name][0]['apps']), 0)
+
+    def test_only_this_type(self):
+        """
+        Add a second collection of a different collection type, then ensure that
+        it does not change the results of this collection type's property.
+        """
+        different_type = (COLLECTIONS_TYPE_FEATURED if self.col_type ==
+                          COLLECTIONS_TYPE_BASIC else COLLECTIONS_TYPE_BASIC)
         self.col2 = Collection.objects.create(name='Bye', description='Dad',
-            collection_type=COLLECTIONS_TYPE_FEATURED, category=self.cat)
-        self.test_collection_results_added()
+            collection_type=different_type, category=self.cat)
+        self.test_added_to_results()
 
     @patch('mkt.search.api.CollectionFilterSetWithFallback')
     def test_collection_filterset_called(self, mock_filterset):
-        res, json = self.get_featured()
-        eq_(mock_filterset.call_count, 1)
+        """
+        CollectionFilterSetWithFallback should be called 3 times: once for each
+        collection type added to the results of this view. We'll rely on that
+        class' tests to ensure that it is properly functioning.
+        """
+        res, json = self.make_request()
+        eq_(mock_filterset.call_count, 3)
+
+
+class TestFeaturedOperator(TestFeaturedCollections):
+    col_type = COLLECTIONS_TYPE_OPERATOR
+    prop_name = 'operator'
+
+
+class TestFeaturedApps(TestFeaturedCollections):
+    col_type = COLLECTIONS_TYPE_FEATURED
+    prop_name = 'featured'
 
 
 @patch.object(settings, 'SITE_URL', 'http://testserver')

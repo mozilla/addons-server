@@ -13,7 +13,9 @@ from mkt.api.authentication import (SharedSecretAuthentication,
 from mkt.api.base import CORSResource, MarketplaceResource
 from mkt.api.resources import AppResource
 from mkt.api.serializers import SuggestionsSerializer
-from mkt.collections.constants import COLLECTIONS_TYPE_BASIC
+from mkt.collections.constants import (COLLECTIONS_TYPE_BASIC,
+                                       COLLECTIONS_TYPE_FEATURED,
+                                       COLLECTIONS_TYPE_OPERATOR)
 from mkt.collections.filters import CollectionFilterSetWithFallback
 from mkt.collections.models import Collection
 from mkt.collections.serializers import CollectionSerializer
@@ -146,28 +148,36 @@ class WithFeaturedResource(SearchResource):
         else:
             qs = Collection.objects.all()
         filterset = CollectionFilterSetWithFallback(filters, queryset=qs)
-        serializer = CollectionSerializer(filterset)
+        serializer = CollectionSerializer(filterset,
+                                          context={'request': request})
         return serializer.data
 
     def alter_list_data_to_serialize(self, request, data):
-        form_data = self.get_search_data(request)
-        region = getattr(request, 'REGION', mkt.regions.WORLDWIDE)
-        cat_slug = form_data.get('cat')
-        if cat_slug:
-            cat_slug = [cat_slug]
-
-        # Filter by device feature profile.
-        profile = self.get_feature_profile(request)
-
-        qs = Webapp.featured(cat=cat_slug, region=region, profile=profile)
-
-        bundles = [self.build_bundle(obj=obj, request=request) for obj in qs]
-        data['featured'] = [AppResource().full_dehydrate(bundle)
-                            for bundle in bundles]
 
         if waffle.switch_is_active('rocketfuel'):
-            data['collections'] = self.collections(request,
-                collection_type=COLLECTIONS_TYPE_BASIC)
+            types = (
+                ('collections', COLLECTIONS_TYPE_BASIC,),
+                ('featured', COLLECTIONS_TYPE_FEATURED,),
+                ('operator', COLLECTIONS_TYPE_OPERATOR,),
+            )
+            for name, col_type in types:
+                data[name] = self.collections(request, collection_type=col_type)
+        else:
+            form_data = self.get_search_data(request)
+            region = getattr(request, 'REGION', mkt.regions.WORLDWIDE)
+            cat_slug = form_data.get('cat')
+            if cat_slug:
+                cat_slug = [cat_slug]
+
+            # Filter by device feature profile.
+            profile = self.get_feature_profile(request)
+
+            qs = Webapp.featured(cat=cat_slug, region=region, profile=profile)
+
+            bundles = (self.build_bundle(obj=obj, request=request) for obj in
+                       qs)
+            data['featured'] = [AppResource().full_dehydrate(bundle)
+                                for bundle in bundles]
 
         # Alter the _view_name so that statsd logs seperately from search.
         request._view_name = 'featured'
