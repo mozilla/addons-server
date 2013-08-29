@@ -7,6 +7,7 @@ from mock import MagicMock, patch
 from nose.tools import eq_, ok_
 
 import amo
+import mkt
 import mkt.regions
 from addons.models import (AddonCategory, AddonDeviceType, AddonUpsell,
                            Category)
@@ -19,6 +20,9 @@ from users.models import UserProfile
 
 from mkt.api.base import list_url
 from mkt.api.tests.test_oauth import BaseOAuth, OAuthClient
+from mkt.collections.constants import (COLLECTIONS_TYPE_BASIC,
+                                       COLLECTIONS_TYPE_FEATURED)
+from mkt.collections.models import Collection
 from mkt.constants.features import FeatureProfile
 from mkt.search.forms import DEVICE_CHOICES_IDS
 from mkt.site.fixtures import fixture
@@ -477,12 +481,12 @@ class TestFeaturedNoCategories(BaseOAuth, ESTestCase):
         eq_(int(res.json['featured'][0]['id']), self.app.pk)
 
 
-class TestFeaturedWithCategories(BaseOAuth, ESTestCase):
+class BaseFeaturedTests(BaseOAuth, ESTestCase):
     fixtures = fixture('user_2519', 'webapp_337141')
     list_url = list_url('search/featured')
 
-    def setUp(self):
-        super(TestFeaturedWithCategories, self).setUp(api_name='fireplace')
+    def setUp(self, api_name=None):
+        super(BaseFeaturedTests, self).setUp(api_name='fireplace')
         self.create_switch('buchets')
         self.cat = Category.objects.create(type=amo.ADDON_WEBAPP, slug='shiny')
         self.app = Webapp.objects.get(pk=337141)
@@ -493,6 +497,9 @@ class TestFeaturedWithCategories(BaseOAuth, ESTestCase):
                                       geolocation=True, indexeddb=True,
                                       sms=True).to_signature()
         self.qs = {'cat': 'shiny', 'pro': self.profile, 'dev': 'firefoxos'}
+
+
+class TestFeaturedWithCategories(BaseFeaturedTests):
 
     def test_featured_plus_category(self):
         app2 = amo.tests.app_factory()
@@ -548,6 +555,41 @@ class TestFeaturedWithCategories(BaseOAuth, ESTestCase):
         eq_(res.status_code, 200)
         eq_(len(res.json['featured']), 1)
         eq_(int(res.json['featured'][0]['id']), self.app.pk)
+
+
+class TestFeaturedWithCollections(BaseFeaturedTests):
+    """
+    Tests to ensure that CollectionFilterSetWithFallback is being called and
+    its results are being added to the response. We'll rely on that class'
+    tests to ensure that it is properly functioning.
+    """
+
+    def setUp(self):
+        self.create_switch('rocketfuel')
+        super(TestFeaturedWithCollections, self).setUp()
+        self.col = Collection.objects.create(name='Hi', description='Mom',
+            collection_type=COLLECTIONS_TYPE_BASIC, category=self.cat)
+
+    def get_featured(self):
+        res = self.client.get(self.list_url, self.qs)
+        eq_(res.status_code, 200)
+        return res, res.json
+
+    def test_collection_results_added(self):
+        res, json = self.get_featured()
+        ok_('collections' in res.json.keys())
+        eq_(len(res.json['collections']), 1)
+        eq_(res.json['collections'][0]['id'], self.col.id)
+
+    def test_collection_only_basics(self):
+        self.col2 = Collection.objects.create(name='Bye', description='Dad',
+            collection_type=COLLECTIONS_TYPE_FEATURED, category=self.cat)
+        self.test_collection_results_added()
+
+    @patch('mkt.search.api.CollectionFilterSetWithFallback')
+    def test_collection_filterset_called(self, mock_filterset):
+        res, json = self.get_featured()
+        eq_(mock_filterset.call_count, 1)
 
 
 @patch.object(settings, 'SITE_URL', 'http://testserver')

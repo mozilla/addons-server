@@ -88,8 +88,8 @@ class CollectionFilterSetWithFallback(FilterSet):
         qs = super(CollectionFilterSetWithFallback, self).qs
         # FIXME: being able to return self.form.errors would greatly help
         # debugging.
-
         next_fallback = self.next_fallback()
+
         if next_fallback and not qs.exists():
             # FIXME: add current filter set to API-Filter in response. It
             # should be possible to implement using <filtersetinstance>.data.

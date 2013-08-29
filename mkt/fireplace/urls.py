@@ -1,8 +1,8 @@
 from django.conf.urls import include, patterns, url
 
 from tastypie.api import Api
-from mkt.fireplace.api import AppResource
 
+from mkt.fireplace.api import AppResource
 from mkt.ratings.resources import FireplaceRatingResource
 from mkt.search.api import WithFeaturedResource
 
