@@ -39,7 +39,7 @@ def send_mail(subject, template, context, emails, perm_setting=None, cc=None,
     # Link to our newfangled "Account Settings" page.
     manage_url = absolutify('/settings') + '#notifications'
     send_mail_jinja(subject, template, context, recipient_list=emails,
-                    from_email=settings.NOBODY_EMAIL, use_blacklist=False,
+                    from_email=settings.MKT_REVIEWERS_EMAIL, use_blacklist=False,
                     perm_setting=perm_setting, manage_url=manage_url,
                     headers={'Reply-To': reply_to}, cc=cc,
                     attachments=attachments)
