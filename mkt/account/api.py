@@ -133,7 +133,7 @@ class LoginResource(CORSResource, MarketplaceResource):
                 is_native=bundle.data.get('is_native', False)
             )
         if profile is None:
-            log.info('No profile')
+            log.info('No profile: %s' % (msg or ''))
             raise http_error(http.HttpUnauthorized,
                              'No profile.')
 
