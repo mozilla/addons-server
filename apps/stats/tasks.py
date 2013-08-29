@@ -235,9 +235,12 @@ def _get_daily_jobs(date=None):
         'apps_count_new': (Addon.objects
                 .filter(created__range=(date, next_date),
                         type=amo.ADDON_WEBAPP).count),
-        'apps_count_installed': (Installed.objects
-                .filter(created__range=(date, next_date),
-                        addon__type=amo.ADDON_WEBAPP).count),
+        # Temporarily pull app install counts from the Monolith tables since
+        # that's where they are stored. This will go away once Monolith takes
+        # over this chart. (See bug 910364)
+        'apps_count_installed': (
+            MonolithRecord.objects.filter(recorded__range=(date, next_date),
+                                          key='install').count),
 
         # Marketplace reviews
         'apps_review_count_new': Review.objects
