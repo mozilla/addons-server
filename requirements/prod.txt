@@ -33,7 +33,6 @@ django-quieter-formset==0.3
 django-raven-metlog==0.2
 django-ratelimit==0.1
 django-recaptcha-mozilla==0.0.1
-djangorestframework==2.3.5
 #django-session-csrf==0.6
 django-statsd-mozilla==0.3.8.6
 django-storages==1.1.8
@@ -91,6 +90,9 @@ SQLAlchemy==0.7.5
 statsd==1.0.0
 suds==0.3.9
 tastypie-services==0.2.2
+
+# Waiting for a release with that commit
+-e git+https://github.com/tomchristie/django-rest-framework.git@cf2033f8bf013039d906a3fe5390ca6940503626#egg=rest_framework
 
 ## Not on pypi.
 -e git+https://github.com/mozilla/amo-validator.git@21078009567fb581e462d4b48a819594f17c5f6f#egg=amo-validator

@@ -94,6 +94,19 @@ class TestCollectionSerializer(CollectionDataMixin, amo.tests.TestCase):
         eq_(serializer.errors, {})
         ok_(serializer.is_valid())
 
+    def test_empty_choice_deserialization(self):
+        # Build data from existing object.
+        data = self.serializer.to_native(self.collection)
+        data.pop('id')
+        # Emulate empty values passed via POST.
+        data.update(carrier='', region='')
+
+        instance = self.serializer.from_native(data, None)
+        eq_(self.serializer.errors, {})
+        ok_(self.serializer.is_valid())
+        eq_(instance.region, None)
+        eq_(instance.carrier, None)
+
     def test_to_native_with_apps(self):
         apps = [amo.tests.app_factory() for n in xrange(1, 5)]
         data = self.test_to_native(apps=apps)
