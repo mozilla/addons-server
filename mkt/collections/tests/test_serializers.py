@@ -6,9 +6,9 @@ import amo.tests
 from mkt.api.resources import AppResource
 from mkt.collections.constants import COLLECTIONS_TYPE_BASIC
 from mkt.collections.models import Collection, CollectionMembership
-from mkt.collections.serializers import (CollectionImageSerializer,
-                                         CollectionMembershipField,
-                                         CollectionSerializer,)
+from mkt.collections.serializers import (CollectionMembershipField,
+                                         CollectionSerializer,
+                                         DataURLImageField)
 
 
 class CollectionDataMixin(object):
@@ -129,13 +129,8 @@ sb1muru1x6RshlvMeqhP0U3Sal8s0LZ5ikamItTat7ihft+hv+bqYI8RADs=
 """
 
 
-class TestCollectionImageSerializer(CollectionDataMixin, amo.tests.TestCase):
+class TestDataURLImageField(CollectionDataMixin, amo.tests.TestCase):
 
-    def setUp(self):
-        self.collection = Collection.objects.create(**self.collection_data)
-        self.serializer = CollectionImageSerializer()
-
-    def test_to_native(self):
-        d = self.serializer.from_native({'image': 'data:image/gif;base64,' +
-                                         IMAGE_DATA}, None)
-        eq_(d['image'].read(), IMAGE_DATA.decode('base64'))
+    def test_from_native(self):
+        d = DataURLImageField().from_native('data:image/gif;base64,' + IMAGE_DATA)
+        eq_(d.read(), IMAGE_DATA.decode('base64'))

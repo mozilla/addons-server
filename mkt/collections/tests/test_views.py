@@ -858,8 +858,7 @@ class TestCollectionImageViewSet(RestOAuth):
 
     def test_put(self):
         self.grant_permission(self.profile, 'Apps:Publisher')
-        res = self.client.put(self.url, json.dumps({
-            'image': 'data:image/gif;base64,' + IMAGE_DATA}))
+        res = self.client.put(self.url, 'data:image/gif;base64,' + IMAGE_DATA)
         eq_(res.status_code, 204)
         assert os.path.exists(self.collection.image_path())
         im = Image.open(self.collection.image_path())
@@ -868,16 +867,16 @@ class TestCollectionImageViewSet(RestOAuth):
 
     def test_put_non_data_uri(self):
         self.grant_permission(self.profile, 'Apps:Publisher')
-        res = self.client.put(self.url, json.dumps({'image': 'some junk'}))
+        res = self.client.put(self.url, 'some junk')
         eq_(res.status_code, 400)
 
     def test_put_non_image(self):
         self.grant_permission(self.profile, 'Apps:Publisher')
-        res = self.client.put(self.url, json.dumps({'image': 'data:text/plain;base64,AAA='}))
+        res = self.client.put(self.url, 'data:text/plain;base64,AAA=')
         eq_(res.status_code, 400)
 
     def test_put_unauthorized(self):
-        res = self.client.put(self.url, json.dumps({'image': 'some junk'}))
+        res = self.client.put(self.url, 'some junk')
         eq_(res.status_code, 403)
 
     def test_get(self):

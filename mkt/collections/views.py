@@ -1,3 +1,4 @@
+from django.core.exceptions import ValidationError
 from django.core.files.base import File
 from django.core.files.storage import default_storage as storage
 from django.db import IntegrityError
@@ -18,7 +19,7 @@ from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
 
 from mkt.api.base import CORSMixin, SlugOrIdMixin
-from mkt.collections.serializers import CollectionImageSerializer
+from mkt.collections.serializers import DataURLImageField
 from mkt.webapps.models import Webapp
 
 from .authorization import PublisherAuthorization
@@ -142,7 +143,6 @@ class CollectionViewSet(CORSMixin, SlugOrIdMixin, viewsets.ModelViewSet):
 
 
 class CollectionImageViewSet(CORSMixin, viewsets.ViewSet, generics.RetrieveUpdateAPIView):
-    serializer_class = CollectionImageSerializer
     queryset = Collection.objects.all()
     permission_classes = [PublisherAuthorization]
     authentication_classes = [RestOAuthAuthentication,
@@ -156,12 +156,11 @@ class CollectionImageViewSet(CORSMixin, viewsets.ViewSet, generics.RetrieveUpdat
 
     def update(self, request, *a, **kw):
         obj = self.get_object()
-        serializer = self.get_serializer(data=request.DATA, files=request.FILES)
-        if serializer.is_valid():
-            i = Image.open(serializer.data['image'])
-            with storage.open(obj.image_path(), 'wb') as f:
-                i.save(f, 'png')
-            return Response(status=204)
-        else:
+        try:
+            img = DataURLImageField().from_native(request.read())
+        except ValidationError:
             return Response(status=400)
-
+        i = Image.open(img)
+        with storage.open(obj.image_path(), 'wb') as f:
+            i.save(f, 'png')
+        return Response(status=204)

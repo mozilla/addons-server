@@ -84,7 +84,3 @@ class DataURLImageField(serializers.CharField):
 
     def to_native(self, value):
         return value.name
-
-
-class CollectionImageSerializer(serializers.Serializer):
-    image = DataURLImageField()

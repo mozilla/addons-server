@@ -278,9 +278,8 @@ Image
 
 .. http:put:: /api/v1/rocketfuel/collections/(int:id)/image/
 
-    Set the image for a collection.
+    Set the image for a collection. Accepts a data URI as the request
+    body containing the image, rather than a JSON object.
 
     .. note:: Authentication and the 'Apps:Publisher' permission are required.
 
-    :param image: A base64 encoded image.
-    :type image: string
