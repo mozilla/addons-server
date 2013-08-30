@@ -27,7 +27,8 @@ log = commonware.log.getLogger('z.stats')
 # Map of URL metric name to monolith metric name.
 #
 # The 'dimensions' key is optional query string arguments with defaults that is
-# passed to the monolith client and used in the facet filters.
+# passed to the monolith client and used in the facet filters. If the default
+# is `None`, the dimension is excluded unless specified via the API.
 #
 # The 'lines' key is optional and used for multi-line charts. The format is:
 #     {'<name>': {'<dimension-key>': '<dimension-value>'}}
@@ -44,6 +45,10 @@ STATS = {
         'metric': 'apps_added_premium_count',
         'dimensions': {'region': 'us'},
         'lines': lines('premium_type', ADDON_PREMIUM_API.values()),
+    },
+    'apps_installed': {
+        'metric': 'app_installs',
+        'dimensions': {'region': None},
     },
     'total_developers': {
         'metric': 'total_dev_count'
@@ -80,7 +85,11 @@ class GlobalStats(CORSMixin, APIView):
         dimensions = {}
         if 'dimensions' in stat:
             for key, default in stat['dimensions'].items():
-                dimensions[key] = request.GET.get(key, default)
+                val = request.GET.get(key, default)
+                if val is not None:
+                    # Avoid passing kwargs to the monolith client when the
+                    # dimension is None to avoid facet filters being applied.
+                    dimensions[key] = request.GET.get(key, default)
 
         # If stat has a 'lines' attribute, it's a multi-line graph. Do a
         # request for each item in 'lines' and compose them in a single

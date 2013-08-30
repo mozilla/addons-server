@@ -146,6 +146,44 @@ The number of apps added each day over time, filtered by premium type.
             ]
         }
 
+Apps installed
+~~~~~~~~~~~~~~
+
+The number of apps installed each day over time, optionally filtered by
+region.
+
+.. http:get:: /api/v1/stats/global/apps_installed
+
+    **Request**:
+
+    :param start: The starting date in "YYYY-MM-DD" format.
+    :type start: string
+    :param end: The ending date in "YYYY-MM-DD" format.
+    :type end: string
+    :param interval: The interval. One of the following: 'day', 'week',
+                     'month', 'quarter', 'year'.
+    :type interval: string
+    :param region: Optionally filter by the provided :ref:`region <regions>` slug (e.g., "us").
+    :type region: string
+
+    **Response**:
+
+    .. code-block:: json
+
+         {
+            "objects": [
+                {
+                    "count": 12,
+                    "date": "2013-08-01"
+                },
+                {
+                    "count": 25,
+                    "date": "2013-08-02"
+                },
+                ...
+            ],
+        }
+
 Total developers
 ~~~~~~~~~~~~~~~~
 

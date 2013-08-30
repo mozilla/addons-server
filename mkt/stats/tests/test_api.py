@@ -74,3 +74,20 @@ class TestGlobalStatsResource(RestOAuth):
         eq_(res.status_code, 200)
         ok_(client.called)
         eq_(client.call_args[1], {'region': 'us', 'package_type': 'hosted'})
+
+    def test_dimensions_default_is_none(self, mocked):
+        client = mock.MagicMock()
+        mocked.return_value = client
+
+        res = self.client.get(self.url('apps_installed'), data=self.data)
+        eq_(res.status_code, 200)
+        ok_(client.called)
+        eq_(client.call_args[1], {})
+
+        data = self.data.copy()
+        data['region'] = 'us'
+
+        res = self.client.get(self.url('apps_installed'), data=data)
+        eq_(res.status_code, 200)
+        ok_(client.called)
+        eq_(client.call_args[1], {'region': 'us'})
