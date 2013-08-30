@@ -18,5 +18,6 @@ def record(request, app):
     record_action('install', request, {
         'app-domain': domain,
         'app-id': app.pk,
+        'region': request.REGION.slug,
         'anonymous': request.user.is_anonymous(),
     })
