@@ -26,7 +26,6 @@
     {{ progress(request, addon=None, step=step) }}
   </header>
 
-
   <section id="submit-payment-type" class="island tabbable">
     <div class="free tab active">
       {% if waffle.flag('allow-b2g-paid-submission') %}
@@ -51,7 +50,8 @@
     {% endif %}
   </section>
 
-  <section id="upload-file" class="island tabbable spacer">
+  <section id="upload-file" class="island tabbable spacer"
+           data-packaged-platforms="{{ 'android' if waffle.flag('android-packaged') }} {{ 'desktop' if waffle.flag('desktop-packaged') }}">
     <div class="hosted tab active">
       <h2 id="hosted-tab-header"><a href="#">{{ _('Hosted') }}</a></h2>
       <h3>{{ _("Submit your app manifest URL") }}</h3>

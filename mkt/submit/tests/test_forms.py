@@ -96,32 +96,33 @@ class TestNewWebappForm(amo.tests.TestCase):
         assert form.is_valid(), form.errors
         assert not form.is_packaged()
 
-    @mock.patch('mkt.submit.forms.parse_addon')
-    def test_packaged_allowed(self, parse_addon):
-        parse_addon.return_value = {}
-        form = forms.NewWebappForm({'free_platforms': ['free-firefoxos'],
-                                    'upload': self.file.uuid,
-                                    'packaged': True})
-        assert form.is_valid(), form.errors
-        assert form.is_packaged()
-
-    @mock.patch('mkt.submit.forms.parse_addon')
-    def test_packaged_allowed_android(self, parse_addon):
-        parse_addon.return_value = {}
-        form = forms.NewWebappForm({'free_platforms': ['free-android-mobile'],
-                                    'upload': self.file.uuid,
-                                    'packaged': True})
-        assert form.is_valid(), form.errors
-        assert form.is_packaged()
+    @mock.patch('mkt.submit.forms.parse_addon',
+                lambda *args: {'version': None})
+    def test_packaged_disallowed_behind_flag(self):
+        for device in ('free-desktop',
+                       'free-android-mobile',
+                       'free-android-tablet'):
+            form = forms.NewWebappForm({'free_platforms': [device],
+                                        'upload': self.file.uuid,
+                                        'packaged': True})
+            assert not form.is_valid(), form.errors
+            eq_(form.ERRORS['packaged'], form.errors['paid_platforms'])
 
     @mock.patch('mkt.submit.forms.parse_addon',
                 lambda *args: {'version': None})
-    def test_packaged_wrong_device(self):
-        form = forms.NewWebappForm({'free_platforms': ['free-desktop'],
-                                    'upload': self.file.uuid,
-                                    'packaged': True})
-        assert not form.is_valid(), form.errors
-        eq_(form.ERRORS['packaged'], form.errors['paid_platforms'])
+    def test_packaged_allowed_everywhere(self):
+        self.create_flag('android-packaged')
+        self.create_flag('desktop-packaged')
+        for device in ('free-firefoxos',
+                       'free-desktop',
+                       'free-android-tablet',
+                       'free-android-mobile'):
+            form = forms.NewWebappForm({'free_platforms': [device],
+                                        'upload': self.file.uuid,
+                                        'packaged': True},
+                                       request=self.request)
+            assert form.is_valid(), form.errors
+            assert form.is_packaged()
 
 
 class TestNewWebappVersionForm(amo.tests.TestCase):
