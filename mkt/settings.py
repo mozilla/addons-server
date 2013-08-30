@@ -318,9 +318,12 @@ REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': (
         'rest_framework.filters.DjangoFilterBackend',
     ),
-    'PAGINATE_BY': 20,
+    'PAGINATE_BY': 25,
     'PAGINATE_BY_PARAM': 'limit'
 }
+
+# Tastypie config to match Django Rest Framework.
+API_LIMIT_PER_PAGE = 25
 
 # A list of ids where the regions are enabled. This is here as opposed to on
 # the region object, because it will vary from region to region per server.

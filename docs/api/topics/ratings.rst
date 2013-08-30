@@ -33,8 +33,8 @@ _`List`
 
         {
             "meta": {
-                "limit": 20,
-                "next": "/api/v1/apps/rating/?limit=20&offset=20",
+                "limit": 25,
+                "next": "/api/v1/apps/rating/?limit=25&offset=25",
                 "offset": 0,
                 "previous": null,
                 "total_count": 391
