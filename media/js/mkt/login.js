@@ -18,7 +18,7 @@ define('login', ['notification'], function(notification) {
             window.location.reload();
             return;
         }
-        
+
         var $this = $(this);
         $this.addClass('loading-submit');
         z.doc.on('logincancel', function() {
@@ -30,13 +30,19 @@ define('login', ['notification'], function(notification) {
 
     function startLogin() {
         requestedLogin = true;
-        navigator.id.request({
+        var forcedIssuer = z.body.data('persona-unverified-issuer');
+        var params = {
             termsOfService: '/terms-of-use',
             privacyPolicy: '/privacy-policy',
             oncancel: function() {
                 z.doc.trigger('logincancel');
             }
-        });
+        };
+        if (forcedIssuer) {
+            console.log('Login is forcing issuer:', forcedIssuer);
+            params.experimental_forceIssuer = forcedIssuer;
+        }
+        navigator.id.request(params);
     }
 
     z.body.on('click', '.logout', function() {

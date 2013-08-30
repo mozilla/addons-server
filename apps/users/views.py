@@ -315,15 +315,19 @@ def browserid_authenticate(request, assertion, is_native=False,
 
     """
     url = settings.BROWSERID_VERIFICATION_URL
-    extra_params = None
+
+    # We must always force the Firefox OS identity provider. This is because
+    # we are sometimes allowing unverified assertions and you can't mix that
+    # feature with bridged IdPs. See bug 910938.
+    extra_params = {}
+    if settings.UNVERIFIED_ISSUER:
+        extra_params['experimental_forceIssuer'] = settings.UNVERIFIED_ISSUER
+
     if is_native:
-        # When persona is running native on B2G then we need to
-        # verify assertions with the right service.
-        # We also need to force the appropriate issuer
-        # for potentially unverified emails.
+        # When persona is running native on B2G then we can allow unverified
+        # assertions.
         url = settings.NATIVE_BROWSERID_VERIFICATION_URL
-        extra_params = {'experimental_forceIssuer': settings.UNVERIFIED_ISSUER or False,
-                        'experimental_allowUnverified': 'true'}
+        extra_params['experimental_allowUnverified'] = 'true'
 
     log.debug('Verifying Persona at %s, audience: %s, '
               'extra_params: %s' % (url, browserid_audience, extra_params))

@@ -50,6 +50,7 @@
         data-login-url="{{ url('users.browserid_login') }}"
         data-persona-url="{{ settings.BROWSERID_JS_URL }}"
         data-native-persona-url="{{ settings.NATIVE_BROWSERID_JS_URL }}"
+        data-persona-unverified-issuer="{{ settings.UNVERIFIED_ISSUER }}"
         data-collect-timings="{{ url('amo.timing.record') }}:{{ collect_timings_percent }}"
         data-locales="{{ ','.join(settings.LANGUAGE_URL_MAP.keys()) }}"
         {% block bodyattrs %}{% endblock %}>

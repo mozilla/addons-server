@@ -1,3 +1,8 @@
+/*
+ * WARNING: THIS FILE IS MOST LIKELY OBSOLETE. SEE media/js/mkt/login.js
+ */
+
+
 function browserIDRedirect(to, options) {
     if (!options) options = {};
     return function(data, textStatus, jqXHR) {
