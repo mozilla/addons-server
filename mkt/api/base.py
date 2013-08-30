@@ -511,7 +511,8 @@ class SlugRouter(SimpleRouter):
         return ret
 
     def create_url(self, prefix, viewset, basename, route, mapping, lookup=''):
-        regex = route.url.format(prefix=prefix, lookup=lookup)
+        regex = route.url.format(prefix=prefix, lookup=lookup,
+                                 trailing_slash=self.trailing_slash)
         view = viewset.as_view(mapping, **route.initkwargs)
         name = route.name.format(basename=basename)
         return url(regex, view, name=name)
