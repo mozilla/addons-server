@@ -1,6 +1,5 @@
 from functools import partial
 
-from django.conf import settings
 from django.core.exceptions import PermissionDenied
 
 from rest_framework.mixins import (CreateModelMixin, DestroyModelMixin,
@@ -35,7 +34,7 @@ class PaymentSerializer(HyperlinkedModelSerializer):
 
     class Meta:
         model = Webapp
-        fields = ('upsell', 'account')
+        fields = ('upsell', 'account', 'url')
         view_name = 'app-payments-detail'
 
 
@@ -52,7 +51,7 @@ class UpsellSerializer(HyperlinkedModelSerializer):
 
     class Meta:
         model = AddonUpsell
-        fields = ('free', 'premium', 'created', 'modified')
+        fields = ('free', 'premium', 'created', 'modified', 'url')
         view_name = 'app-upsell-detail'
 
     def validate(self, attrs):
@@ -121,7 +120,7 @@ class PaymentAccountSerializer(HyperlinkedModelSerializer):
     class Meta:
         model = AddonPaymentAccount
         fields = ('addon', 'payment_account', 'provider',
-                  'created', 'modified')
+                  'created', 'modified', 'url')
         view_name = 'app-payment-account-detail'
 
     def validate(self, attrs):
