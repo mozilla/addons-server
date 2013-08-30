@@ -209,6 +209,92 @@ APP_FEATURES = OrderedDict([
                              u'`window.persistentStorage`).'),
         'apis': ('navigator.persistentStorage', 'navigator.temporaryStorage'),
     }),
+    ('CAMERA', {
+        'name': _lazy(u'Camera'),
+        'description': _lazy(u'The app requires the platform to allow access '
+                             u'to video from the device camera.'),
+        'apis': ('navigator.getUserMedia',),
+    }),
+    ('MIC', {
+        'name': _lazy(u'Microphone'),
+        'description': _lazy(u'The app requires the platform to allow access '
+                             u'to audio from the device microphone.'),
+        'apis': ('navigator.getUserMedia',),
+    }),
+    ('SCREEN_CAPTURE', {
+        'name': _lazy(u'Screen Capture'),
+        'description': _lazy(u'The app requires the platform to allow access '
+                             u'to the device screen for capture.'),
+        'apis': ('navigator.getUserMedia',),
+    }),
+    ('WEBRTC_MEDIA', {
+        'name': _lazy(u'Web RTC MediaStream'),
+        'description': _lazy(u'The app requires the platform to allow web '
+                             u'real-time communication browser-to-browser '
+                             u'inbound media streams.'),
+        'apis': ('navigator.getUserMedia',),
+    }),
+    ('WEBRTC_DATA', {
+        'name': _lazy(u'Web RTC DataChannel'),
+        'description': _lazy(u'The app requires the platform to allow '
+                             u'peer-to-peer exchange of data other than audio '
+                             u'and video.'),
+        'apis': ('RTCDataChannel',),
+    }),
+    ('WEBRTC_PEER', {
+        'name': _lazy(u'Web RTC PeerConnection'),
+        'description': _lazy(u'The app requires the platform to allow '
+                             u'communication of streaming data between '
+                             u'peers.'),
+        'apis': ('RTCPeerConnection',),
+    }),
+    ('SPEECH_SYN', {
+        'name': _lazy(u'Web Speech Synthesis'),
+        'description': _lazy(u'The app requires the platform to allow the use '
+                             u'of text-to-speech.'),
+        'apis': ('SpeechSynthesis',)
+    }),
+    ('SPEECH_REC', {
+        'name': _lazy(u'Web Speech Recognition'),
+        'description': _lazy(u'The app requires the platform to allow '
+                             u'the use of speech-to-text.'),
+        'apis': ('SpeechRecognition',)
+    }),
+    ('POINTER_LOCK', {
+        'name': _lazy(u'Pointer Lock'),
+        'description': _lazy(u'The app requires the platform to provide '
+                             u'additional information and control about the '
+                             u'pointer.'),
+        'apis': ('document.documentElement.requestPointerLock',)
+    }),
+    ('NOTIFICATION', {
+        'name': _lazy(u'Notifications'),
+        'description': _lazy(u'The app requires the platform to allow the '
+                             u'displaying phone and desktop notifications to '
+                             u'the user.'),
+        'apis': ('Notification', 'navigator.mozNotification')
+    }),
+    ('ALARM', {
+        'name': _lazy(u'Alarms'),
+        'description': _lazy(u'The app requires the platform to provide '
+                             u'access to the device alarm settings to '
+                             u'schedule notifications and events at specific '
+                             u'time.'),
+        'apis': ('navigator.mozAlarms',)
+    }),
+    ('SYSTEMHXR', {
+        'name': _lazy(u'SystemXHR'),
+        'description': _lazy(u'The app requires the platform to allow the '
+                             u'sending of asynchronous HTTP requests.'),
+        'apis': ('XMLHttpRequest',)
+    }),
+    ('TCPSOCKET', {
+        'name': _lazy(u'TCP Sockets'),
+        'description': _lazy(u'The app requires the platform to allow opening '
+                             u'raw TCP sockets.'),
+        'apis': ('TCPSocket', 'navigator.mozTCPSocket',
+                 'navigator.mozTCPServerSocket')
+    }),
 ])
 
 
