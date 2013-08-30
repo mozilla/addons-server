@@ -99,7 +99,7 @@ class TestCollectionSerializer(CollectionDataMixin, amo.tests.TestCase):
         data = self.serializer.to_native(self.collection)
         data.pop('id')
         # Emulate empty values passed via POST.
-        data.update(carrier='', region='')
+        data.update({'carrier':'', 'region':''})
 
         instance = self.serializer.from_native(data, None)
         eq_(self.serializer.errors, {})
