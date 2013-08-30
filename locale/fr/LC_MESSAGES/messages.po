@@ -12655,7 +12655,7 @@ msgstr "Toutes les applications"
 #. Firefox."
 #: apps/search/views.py:541
 msgid "Any {0}"
-msgstr "Quelque soit {0}"
+msgstr "Quel que soit {0}"
 
 #. L10n: "All Systems" means show everything regardless of platform.
 #: apps/search/views.py:576
