@@ -68,6 +68,29 @@ class TestRatingResource(BaseOAuth, AMOPaths):
         eq_(data['objects'][0]['rating'], rev.rating)
         eq_(data['objects'][0]['version']['version'], first_version.version)
 
+    def test_is_flagged_false(self):
+        Review.objects.create(addon=self.app, user=self.user2, body='yes')
+        res = self.client.get(self._collection_url())
+        data = json.loads(res.content)
+        eq_(data['objects'][0]['is_author'], False)
+        eq_(data['objects'][0]['has_flagged'], False)
+
+    def test_is_flagged_is_author(self):
+        Review.objects.create(addon=self.app, user=self.user, body='yes')
+        res = self.client.get(self._collection_url())
+        data = json.loads(res.content)
+        eq_(data['objects'][0]['is_author'], True)
+        eq_(data['objects'][0]['has_flagged'], False)
+
+    def test_is_flagged_true(self):
+        rat = Review.objects.create(addon=self.app, user=self.user2, body='ah')
+        ReviewFlag.objects.create(review=rat, user=self.user,
+                                  flag=ReviewFlag.SPAM)
+        res = self.client.get(self._collection_url())
+        data = json.loads(res.content)
+        eq_(data['objects'][0]['is_author'], False)
+        eq_(data['objects'][0]['has_flagged'], True)
+
     def _get_single(self, **kwargs):
         Review.objects.create(addon=self.app, user=self.user, body='yes')
         url = self._collection_url(**kwargs)

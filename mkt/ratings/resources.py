@@ -59,8 +59,10 @@ class RatingResource(CORSResource, MarketplaceModelResource):
     def dehydrate(self, bundle):
         bundle = super(RatingResource, self).dehydrate(bundle)
         if bundle.request.amo_user:
-            bundle.data['is_author'] = (bundle.obj.user.pk ==
-                                        bundle.request.amo_user.pk)
+            amo_user = bundle.request.amo_user
+            bundle.data['is_author'] = bundle.obj.user.pk == amo_user.pk
+            bundle.data['has_flagged'] = (not bundle.data['is_author'] and
+                bundle.obj.reviewflag_set.filter(user=amo_user).exists())
         return bundle
 
     def dehydrate_report_spam(self, bundle):
