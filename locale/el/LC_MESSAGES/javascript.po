@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-23 09:56-0700\n"
+"POT-Creation-Date: 2013-08-30 15:53-0700\n"
 "PO-Revision-Date: 2012-03-08 05:44+0200\n"
 "Last-Translator: Γιώργος Φιωτάκης <fiotakis@otenet.gr>\n"
 "Language-Team: el <fiotakis@otenet.gr>\n"
@@ -238,11 +238,11 @@ msgstr "Αναζήτηση προσθέτων για <b>{0}</b>"
 msgid "Category"
 msgstr "Κατηγορία"
 
-#: media/js/impala-all.js:2446 media/js/impala-min.js:1 media/js/zamboni/browserid_support.js:32 media/js/zamboni/mobile-all.js:12078 media/js/zamboni/mobile-min.js:32
+#: media/js/impala-all.js:2446 media/js/impala-min.js:1 media/js/zamboni/browserid_support.js:37 media/js/zamboni/mobile-all.js:12078 media/js/zamboni/mobile-min.js:32
 msgid "Admins and editors must provide a password to log in."
 msgstr "Οι διαχειριστές και οι συντάκτες θα πρέπει να εισάγουν κωδικό για να συνδεθούν."
 
-#: media/js/impala-all.js:2451 media/js/impala-min.js:1 media/js/zamboni/browserid_support.js:37 media/js/zamboni/mobile-all.js:12083 media/js/zamboni/mobile-min.js:32
+#: media/js/impala-all.js:2451 media/js/impala-min.js:1 media/js/zamboni/browserid_support.js:42 media/js/zamboni/mobile-all.js:12083 media/js/zamboni/mobile-min.js:32
 msgid "BrowserID login failed. Maybe you don't have an account under that email address?"
 msgstr "Η σύνδεση με browserID απέτυχε. Μήπως δεν έχετε ορίσει αυτή τη διεύθυνση για τον λογαριασμό σας;"
 
@@ -556,7 +556,7 @@ msgid "Iraqi Bank Code"
 msgstr "Κωδικός Τράπεζας Ιράκ"
 
 #. L10n: {0} is the name of a bank detected from the bank account code.
-#: media/js/devreg/payments-enroll.js:160
+#: media/js/devreg/payments-enroll.js:135
 msgid "Detected: {0}"
 msgstr "Βρέθηκαν: {0}"
 
@@ -1231,11 +1231,11 @@ msgstr "Flash Player</a>."
 msgid "Message must not be empty."
 msgstr "Το μήνυμα δε μπορεί να είναι κενό."
 
-#: media/js/mkt/login.js:62
+#: media/js/mkt/login.js:68
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
 msgstr "Η σύνδεση στο Persona απέτυχε. Μήπως δεν έχετε λογαριασμό με αυτή τη διεύθυνση email;"
 
-#: media/js/mkt/login.js:67
+#: media/js/mkt/login.js:73
 msgid "Persona login failed. A server error was encountered."
 msgstr "Η σύνδεση στο Persona απέτυχε. Προέκυψε σφάλμα διακομιστή."
 
@@ -1614,7 +1614,8 @@ msgstr "Δεν βρέθηκαν αποτελέσματα."
 
 #: media/js/zamboni/discovery-all.js:12097 media/js/zamboni/discovery-min.js:23 media/js/zamboni/discovery_pane.js:217
 msgid "Sorry, we couldn't find any recommendations for you.<br>Please visit the <a href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
-msgstr "Λυπούμαστε αλλά δεν μπορέσαμε να σας συστήσουμε κάτι που να σας ενδιαφέρει.<br>Σας παρακαλούμε να επισκεφθείτε τον <a href=\"{0}\">ιστότοπο πρόσθετων</a> για να βρείτε κάτι που να σας ταιριάζει."
+msgstr ""
+"Λυπούμαστε αλλά δεν μπορέσαμε να σας συστήσουμε κάτι που να σας ενδιαφέρει.<br>Σας παρακαλούμε να επισκεφθείτε τον <a href=\"{0}\">ιστότοπο πρόσθετων</a> για να βρείτε κάτι που να σας ταιριάζει."
 
 #: media/js/zamboni/discovery-all.js:12127 media/js/zamboni/discovery-min.js:23 media/js/zamboni/discovery_pane.js:247
 msgid "Finding recommendations&hellip;"

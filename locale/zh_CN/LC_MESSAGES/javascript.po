@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-23 09:56-0700\n"
+"POT-Creation-Date: 2013-08-30 15:53-0700\n"
 "PO-Revision-Date: 2013-06-30 12:13+0200\n"
 "Last-Translator: Shen <steekid@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
@@ -234,11 +234,11 @@ msgstr "搜索包含关键字 <b>{0}</b> 的附加组件"
 msgid "Category"
 msgstr "分类"
 
-#: media/js/impala-all.js:2446 media/js/impala-min.js:1 media/js/zamboni/browserid_support.js:32 media/js/zamboni/mobile-all.js:12078 media/js/zamboni/mobile-min.js:32
+#: media/js/impala-all.js:2446 media/js/impala-min.js:1 media/js/zamboni/browserid_support.js:37 media/js/zamboni/mobile-all.js:12078 media/js/zamboni/mobile-min.js:32
 msgid "Admins and editors must provide a password to log in."
 msgstr "管理员和审核员必须提供密码进行登录。"
 
-#: media/js/impala-all.js:2451 media/js/impala-min.js:1 media/js/zamboni/browserid_support.js:37 media/js/zamboni/mobile-all.js:12083 media/js/zamboni/mobile-min.js:32
+#: media/js/impala-all.js:2451 media/js/impala-min.js:1 media/js/zamboni/browserid_support.js:42 media/js/zamboni/mobile-all.js:12083 media/js/zamboni/mobile-min.js:32
 msgid "BrowserID login failed. Maybe you don't have an account under that email address?"
 msgstr "BrowserID 登录失败。可能您在这个邮件地址下没有帐户？"
 
@@ -545,7 +545,7 @@ msgid "Iraqi Bank Code"
 msgstr "伊拉克银行代码"
 
 #. L10n: {0} is the name of a bank detected from the bank account code.
-#: media/js/devreg/payments-enroll.js:160
+#: media/js/devreg/payments-enroll.js:135
 msgid "Detected: {0}"
 msgstr "已删除：{0}"
 
@@ -1218,11 +1218,11 @@ msgstr "Flash Player</a>。"
 msgid "Message must not be empty."
 msgstr "消息不能为空。"
 
-#: media/js/mkt/login.js:62
+#: media/js/mkt/login.js:68
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
 msgstr "Persona 登录失败。或许您并没有这个邮件地址下的帐户？"
 
-#: media/js/mkt/login.js:67
+#: media/js/mkt/login.js:73
 msgid "Persona login failed. A server error was encountered."
 msgstr "Persona 登录失败。服务器发生错误。"
 

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-23 09:56-0700\n"
+"POT-Creation-Date: 2013-08-30 15:54-0700\n"
 "PO-Revision-Date: 2013-08-28 19:40+0000\n"
 "Last-Translator: Vlado <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -77,11 +77,11 @@ msgstr "Pridať do programu {0}"
 msgid "This name is already in use. Please choose another."
 msgstr "Tento názov sa už používa. Vyberte prosím iný."
 
-#: apps/addons/forms.py:62 mkt/developers/forms.py:571 mkt/submit/forms.py:386
+#: apps/addons/forms.py:62 mkt/developers/forms.py:606 mkt/submit/forms.py:408
 msgid "This slug is already in use. Please choose another."
 msgstr ""
 
-#: apps/addons/forms.py:65 mkt/developers/forms.py:574 mkt/submit/forms.py:390
+#: apps/addons/forms.py:65 mkt/developers/forms.py:609 mkt/submit/forms.py:412
 msgid "The slug cannot be \"%s\". Please choose another."
 msgstr ""
 
@@ -128,7 +128,7 @@ msgid "Categories cannot be changed while your add-on is featured for this appli
 msgstr "Pokiaľ je doplnok v zozname odporúčaných, nie je možné zmeniť jeho kategórie."
 
 #. L10n: {0} is the number of categories.
-#: apps/addons/forms.py:256 mkt/developers/forms.py:978
+#: apps/addons/forms.py:256 mkt/developers/forms.py:1013
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
 msgstr[0] "Môžete zvoliť len {0} kategóriu."
@@ -141,9 +141,7 @@ msgstr "Kategória Rôzne nemôže byť kombinovaná s inými kategóriami."
 
 #: apps/addons/forms.py:395
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
-msgstr ""
-"Pred zmenou predvoleného jazyka musíte mať vyplnený názov, súhrn a popis v "
-"tomto jazyku. Zatiaľ nemáte vyplnené: %s."
+msgstr "Pred zmenou predvoleného jazyka musíte mať vyplnený názov, súhrn a popis v tomto jazyku. Zatiaľ nemáte vyplnené: %s."
 
 #: apps/addons/forms.py:526 apps/addons/forms.py:600
 msgid "A license must be selected."
@@ -185,7 +183,7 @@ msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above)"
 msgstr "Používatelia budú vždy upozornení v okne Správcu doplnkov (Firefox 4 a vyššie)"
 
 # Column name in a table.
-#: apps/addons/models.py:1961 apps/constants/base.py:32
+#: apps/addons/models.py:1967 apps/constants/base.py:32
 msgid "Listed"
 msgstr "V zozname"
 
@@ -359,10 +357,10 @@ msgstr "Prispieť"
 #: apps/devhub/templates/devhub/versions/list.html:319 apps/devhub/templates/devhub/versions/list.html:352 apps/reviews/templates/reviews/edit_review.html:16
 #: apps/translations/templates/translations/trans-menu.html:50 apps/translations/templates/translations/trans-menu.html:62 mkt/account/templates/account/abuse.html:21
 #: mkt/developers/templates/developers/apps/status.html:271 mkt/developers/templates/developers/apps/status.html:294 mkt/developers/templates/developers/apps/version_edit.html:82
-#: mkt/developers/templates/developers/apps/edit/admin.html:110 mkt/developers/templates/developers/apps/edit/basic.html:164 mkt/developers/templates/developers/apps/edit/details.html:79
+#: mkt/developers/templates/developers/apps/edit/admin.html:143 mkt/developers/templates/developers/apps/edit/basic.html:164 mkt/developers/templates/developers/apps/edit/details.html:79
 #: mkt/developers/templates/developers/apps/edit/support.html:80 mkt/developers/templates/developers/apps/edit/technical.html:68 mkt/developers/templates/developers/apps/forms_shared/media.html:228
 #: mkt/developers/templates/developers/apps/listing/delete_form.html:23 mkt/developers/templates/developers/payments/includes/accept_terms.html:11
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:150 mkt/developers/templates/developers/payments/includes/add_payment_account_choose.html:13
+#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:129 mkt/developers/templates/developers/payments/includes/add_payment_account_choose.html:13
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:121 mkt/submit/templates/submit/done.html:50
 msgid "or"
 msgstr "alebo"
@@ -472,7 +470,7 @@ msgid "Add-on Information for {0}"
 msgstr "Informácie o doplnku {0}"
 
 #: apps/addons/templates/addons/details_box.html:34 apps/addons/templates/addons/persona_detail_table.html:3 apps/addons/templates/addons/mobile/details.html:63
-#: apps/addons/templates/addons/mobile/persona_detail_table.html:7 apps/browse/views.py:442 apps/devhub/views.py:74 mkt/developers/views.py:72
+#: apps/addons/templates/addons/mobile/persona_detail_table.html:7 apps/browse/views.py:442 apps/devhub/views.py:74 mkt/developers/views.py:73
 #: mkt/reviewers/templates/reviewers/includes/details.html:63 mkt/reviewers/templates/reviewers/includes/mobile_details.html:85
 msgid "Updated"
 msgstr "Aktualizované"
@@ -624,9 +622,7 @@ msgstr "Licenčná zmluva s koncovým používateľom"
 
 #: apps/addons/templates/addons/eula.html:24 apps/discovery/templates/discovery/addons/eula.html:13
 msgid "%(addon_name)s requires that you accept the following End-User License Agreement before installation can proceed:"
-msgstr ""
-"Doplnok %(addon_name)s vyžaduje pred inštaláciou odsúhlasenie nasledujúcej "
-"licenčnej zmluvy:"
+msgstr "Doplnok %(addon_name)s vyžaduje pred inštaláciou odsúhlasenie nasledujúcej licenčnej zmluvy:"
 
 #: apps/addons/templates/addons/eula.html:35 apps/addons/templates/addons/privacy.html:26
 msgid "Back to {0}…"
@@ -688,7 +684,7 @@ msgstr "Aktualizované: {0}"
 #. {0} is a date.
 #: apps/addons/templates/addons/macros.html:10 apps/addons/templates/addons/macros.html:69 apps/addons/templates/addons/persona_preview.html:21
 #: apps/addons/templates/addons/listing/items_mobile.html:49 apps/addons/templates/addons/listing/macros.html:39 apps/bandwagon/templates/bandwagon/collection_listing_items.html:37
-#: apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:37 mkt/reviewers/views.py:279 mkt/reviewers/views.py:301 mkt/submit/forms.py:31 mkt/submit/forms.py:41
+#: apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:37 mkt/reviewers/views.py:299 mkt/reviewers/views.py:321 mkt/submit/forms.py:31 mkt/submit/forms.py:41
 msgid "Added {0}"
 msgstr "Pridané {0}"
 
@@ -991,9 +987,8 @@ msgstr "Kód QR pre tento doplnok"
 #: apps/addons/templates/addons/qr_code.html:6
 msgid "Want {0} on your mobile Firefox? Scan this QR code to install directly to your phone. (You'll need a QR reader. Search your phone's marketplace if don't have one.)"
 msgstr ""
-"Chceli by ste {0} vo svojom mobilnom Firefoxe? Oskenujte si tento kód QR a "
-"nainštalujte si ho priamo do telefónu. (Budete potrebovať čítačku kódov QR. "
-"Ak ju nemáte, pohľadajte medzi aplikáciami dostupnými pre váš telefón.)"
+"Chceli by ste {0} vo svojom mobilnom Firefoxe? Oskenujte si tento kód QR a nainštalujte si ho priamo do telefónu. (Budete potrebovať čítačku kódov QR. Ak ju nemáte, pohľadajte medzi aplikáciami "
+"dostupnými pre váš telefón.)"
 
 #: apps/addons/templates/addons/report_abuse.html:6 apps/addons/templates/addons/report_abuse_full.html:11 apps/addons/templates/addons/impala/details-more.html:23
 #: apps/addons/templates/addons/impala/details.html:341 mkt/account/templates/account/abuse.html:3
@@ -1020,13 +1015,13 @@ msgstr "Odoslať správu"
 #: apps/devhub/templates/devhub/versions/list.html:276 apps/devhub/templates/devhub/versions/list.html:319 apps/localizers/templates/localizers/sidebar_motd.html:9
 #: apps/reviews/templates/reviews/edit_review.html:16 apps/translations/templates/translations/trans-menu.html:50 apps/translations/templates/translations/trans-menu.html:62
 #: apps/zadmin/templates/zadmin/validation.html:110 mkt/account/templates/account/abuse.html:22 mkt/developers/templates/developers/apps/status.html:271
-#: mkt/developers/templates/developers/apps/status.html:294 mkt/developers/templates/developers/apps/version_edit.html:83 mkt/developers/templates/developers/apps/edit/admin.html:112
+#: mkt/developers/templates/developers/apps/status.html:294 mkt/developers/templates/developers/apps/version_edit.html:83 mkt/developers/templates/developers/apps/edit/admin.html:145
 #: mkt/developers/templates/developers/apps/edit/basic.html:166 mkt/developers/templates/developers/apps/edit/details.html:81 mkt/developers/templates/developers/apps/edit/support.html:82
 #: mkt/developers/templates/developers/apps/edit/technical.html:70 mkt/developers/templates/developers/apps/forms_shared/media.html:230
 #: mkt/developers/templates/developers/apps/listing/delete_form.html:23 mkt/developers/templates/developers/apps/listing/delete_form.html:27
 #: mkt/developers/templates/developers/payments/paypal-details-confirm.html:75 mkt/developers/templates/developers/payments/includes/accept_terms.html:12
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:151 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:122
-#: mkt/inapp_pay/templates/inapp_pay/lobby.html:13 mkt/reviewers/templates/reviewers/includes/macros.html:28 mkt/templates/mkt/base_desktop.html:20
+#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:130 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:122
+#: mkt/inapp_pay/templates/inapp_pay/lobby.html:13 mkt/reviewers/templates/reviewers/includes/macros.html:30 mkt/templates/mkt/base_desktop.html:20
 msgid "Cancel"
 msgstr "Zrušiť"
 
@@ -1232,7 +1227,7 @@ msgstr "Stránka podpory"
 msgid "Support E-mail"
 msgstr "E-mail na podporu"
 
-#: apps/addons/templates/addons/impala/details.html:215 apps/devhub/models.py:380
+#: apps/addons/templates/addons/impala/details.html:215 apps/devhub/models.py:382
 msgid "Version {0}"
 msgstr "Verzia {0}"
 
@@ -1775,7 +1770,7 @@ msgstr "Pozdržaný"
 msgid "{addon} {version} escalated."
 msgstr "Pre doplnok {addon} {version} eskalovaná recenzia."
 
-#: apps/amo/log.py:198 mkt/reviewers/forms.py:277
+#: apps/amo/log.py:198 mkt/reviewers/forms.py:281
 msgid "Escalated"
 msgstr "Eskalovaná recenzia"
 
@@ -1807,8 +1802,8 @@ msgstr "Vyžiadaná super-kontrola"
 msgid "Comment on {addon} {version}."
 msgstr "Doplnok {addon} {version} bol okomentovaný."
 
-#: apps/amo/log.py:234 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:19 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:47 apps/editors/helpers.py:452
-#: mkt/reviewers/utils.py:468 mkt/reviewers/templates/reviewers/themes/history_table.html:11
+#: apps/amo/log.py:234 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:19 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:47 apps/editors/helpers.py:453
+#: mkt/reviewers/utils.py:427 mkt/reviewers/templates/reviewers/themes/history_table.html:11
 msgid "Comment"
 msgstr "Komentár"
 
@@ -1984,9 +1979,7 @@ msgstr "Aplikace zakázána"
 
 #: apps/amo/log.py:463
 msgid "{addon} escalated because of high number of abuse reports."
-msgstr ""
-"Doplnok {addon} bol eskalovaný na kontrolu, pretože bolo zaregistrované "
-"väčšie množstvo hlásení o zneužití."
+msgstr "Doplnok {addon} bol eskalovaný na kontrolu, pretože bolo zaregistrované väčšie množstvo hlásení o zneužití."
 
 #: apps/amo/log.py:464
 #, fuzzy
@@ -2240,10 +2233,8 @@ msgid ""
 "<p> Please enter <strong>both words</strong> below, <strong>separated by a space</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try different words</a> "
 "or <a href=\"#\" id=\"recaptcha_audio\">listen to something</a> instead. </p>"
 msgstr ""
-"<p> Zadajte <strong>obe slová</strong> uvedené nižšie a <strong>oddeľte ich "
-"medzerou</strong>. </p> <p> Ak sú slová zle čitateľné, <a href=\"#\" "
-"id=\"recaptcha_different\">vyskúšajte iné slová</a> alebo si ich <a href=\"#\" "
-"id=\"recaptcha_audio\">vypočujte</a>. </p>"
+"<p> Zadajte <strong>obe slová</strong> uvedené nižšie a <strong>oddeľte ich medzerou</strong>. </p> <p> Ak sú slová zle čitateľné, <a href=\"#\" id=\"recaptcha_different\">vyskúšajte iné slová</a> "
+"alebo si ich <a href=\"#\" id=\"recaptcha_audio\">vypočujte</a>. </p>"
 
 #: apps/amo/templates/amo/side_nav.html:4 apps/amo/templates/amo/side_nav.html:19 apps/amo/templates/amo/site_nav.html:4 apps/amo/templates/amo/site_nav.html:26 apps/browse/views.py:56
 #: apps/browse/views.py:66 apps/browse/views.py:233 apps/browse/views.py:294 apps/search/forms.py:89 apps/search/forms.py:102 mkt/search/forms.py:17
@@ -2278,7 +2269,7 @@ msgid "Collections I'm Following"
 msgstr "Kolekcie, ktoré odberám"
 
 #: apps/amo/templates/amo/site_nav.html:71 apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:18 apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:20
-#: apps/users/models.py:435
+#: apps/users/models.py:447
 msgid "My Favorite Add-ons"
 msgstr "Moje obľúbené doplnky"
 
@@ -2524,8 +2515,8 @@ msgstr "Odstrániť z obľúbených"
 
 #: apps/bandwagon/views.py:87 apps/bandwagon/views.py:165 apps/browse/views.py:58 apps/browse/views.py:69 apps/browse/views.py:441 apps/devhub/views.py:73 apps/devhub/views.py:81
 #: apps/devhub/templates/devhub/addons/edit/basic.html:20 apps/editors/templates/editors/leaderboard.html:24 apps/search/forms.py:18 apps/search/forms.py:92 apps/search/forms.py:105
-#: apps/users/templates/users/vcard.html:5 mkt/account/utils.py:18 mkt/developers/views.py:71 mkt/developers/views.py:79 mkt/developers/templates/developers/apps/edit/basic.html:21
-#: mkt/reviewers/templates/reviewers/leaderboard.html:24 mkt/reviewers/templates/reviewers/themes/queue_list.html:41 mkt/submit/templates/submit/details.html:55
+#: apps/users/templates/users/vcard.html:5 mkt/account/utils.py:18 mkt/developers/views.py:72 mkt/developers/views.py:80 mkt/developers/templates/developers/apps/edit/basic.html:21
+#: mkt/reviewers/templates/reviewers/leaderboard.html:24 mkt/reviewers/templates/reviewers/themes/queue_list.html:42 mkt/submit/templates/submit/details.html:55
 msgid "Name"
 msgstr "Názov"
 
@@ -2852,7 +2843,7 @@ msgstr "Prispievatelia a iné"
 #: apps/devhub/templates/devhub/payments/in-app-config.html:49 apps/devhub/templates/devhub/payments/premium.html:25 apps/devhub/templates/devhub/payments/voluntary.html:64
 #: apps/devhub/templates/devhub/personas/edit.html:35 apps/devhub/templates/devhub/personas/edit.html:294 apps/devhub/templates/devhub/versions/edit.html:127
 #: apps/translations/templates/translations/trans-menu.html:48 mkt/developers/templates/developers/apps/owner.html:51 mkt/developers/templates/developers/apps/version_edit.html:82
-#: mkt/developers/templates/developers/apps/edit/admin.html:110 mkt/developers/templates/developers/apps/edit/basic.html:164 mkt/developers/templates/developers/apps/edit/details.html:79
+#: mkt/developers/templates/developers/apps/edit/admin.html:143 mkt/developers/templates/developers/apps/edit/basic.html:164 mkt/developers/templates/developers/apps/edit/details.html:79
 #: mkt/developers/templates/developers/apps/edit/support.html:80 mkt/developers/templates/developers/apps/edit/technical.html:68 mkt/developers/templates/developers/apps/forms_shared/media.html:228
 #: mkt/developers/templates/developers/includes/addons_create_profile.html:48 mkt/developers/templates/developers/payments/premium.html:67
 #: mkt/developers/templates/developers/payments/premium.html:137 mkt/developers/templates/developers/payments/premium.html:238 mkt/developers/templates/developers/payments/premium.html:262
@@ -3140,17 +3131,17 @@ msgstr "Najviac používateľov"
 msgid "Up & Coming"
 msgstr "Zaujímavé"
 
-#: apps/browse/views.py:443 apps/devhub/views.py:75 apps/devhub/views.py:82 mkt/developers/views.py:73 mkt/developers/views.py:80
+#: apps/browse/views.py:443 apps/devhub/views.py:75 apps/devhub/views.py:82 mkt/developers/views.py:74 mkt/developers/views.py:81
 msgid "Created"
 msgstr "Vytvorené"
 
-#: apps/browse/views.py:444 apps/devhub/views.py:76 apps/stats/templates/stats/addon_report_menu.html:8 apps/stats/templates/stats/collection_report_menu.html:18 mkt/developers/views.py:74
+#: apps/browse/views.py:444 apps/devhub/views.py:76 apps/stats/templates/stats/addon_report_menu.html:8 apps/stats/templates/stats/collection_report_menu.html:18 mkt/developers/views.py:75
 #: mkt/lookup/templates/lookup/app_summary.html:59
 msgid "Downloads"
 msgstr "Prevzatí"
 
 #: apps/browse/views.py:445 apps/devhub/views.py:77 apps/devhub/views.py:84 apps/discovery/templates/discovery/addons/detail.html:72 apps/reviews/templates/reviews/add.html:85
-#: apps/reviews/templates/reviews/edit_review.html:9 apps/reviews/templates/reviews/mobile/review_list.html:18 mkt/developers/views.py:75 mkt/reviewers/templates/reviewers/includes/details.html:82
+#: apps/reviews/templates/reviews/edit_review.html:9 apps/reviews/templates/reviews/mobile/review_list.html:18 mkt/developers/views.py:76 mkt/reviewers/templates/reviewers/includes/details.html:82
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:104
 msgid "Rating"
 msgstr "Hodnotenie"
@@ -3456,7 +3447,7 @@ msgstr "Ďalšie témy"
 msgid "&laquo; All Themes"
 msgstr "&laquo; Všetky témy"
 
-#: apps/compat/forms.py:17 apps/perf/templates/perf/index.html:43 mkt/developers/views_payments.py:161 mkt/search/forms.py:25
+#: apps/compat/forms.py:17 apps/perf/templates/perf/index.html:43 mkt/developers/views_payments.py:163 mkt/search/forms.py:25
 msgid "All"
 msgstr "Všetko"
 
@@ -3496,7 +3487,7 @@ msgstr "Top 95% zo všetkých doplnkov"
 msgid "All active add-ons"
 msgstr "Všetky aktívne doplnky"
 
-#: apps/compat/templates/compat/index.html:23 apps/constants/base.py:183 apps/constants/base.py:423 mkt/developers/forms.py:1082 mkt/developers/templates/developers/transactions.html:41
+#: apps/compat/templates/compat/index.html:23 apps/constants/base.py:183 apps/constants/base.py:423 mkt/developers/forms.py:1117 mkt/developers/templates/developers/transactions.html:41
 #: mkt/lookup/templates/lookup/transaction_summary.html:26 mkt/reviewers/templates/reviewers/apps_reviewing.html:22 mkt/reviewers/templates/reviewers/apps_reviewing.html:64
 #: mkt/reviewers/templates/reviewers/queue.html:32 mkt/reviewers/templates/reviewers/includes/search_results.html:5
 msgid "App"
@@ -3601,7 +3592,7 @@ msgstr "Problém"
 msgid "No reports found."
 msgstr "Neboli nájdené žiadne správy."
 
-#: apps/constants/applications.py:18 mkt/constants/platforms.py:30 templates/global/footer.html:6 templates/global/header.html:7
+#: apps/constants/applications.py:18 mkt/constants/platforms.py:32 templates/global/footer.html:6 templates/global/header.html:7
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -3637,15 +3628,15 @@ msgstr "Neznámy"
 msgid "Desktop"
 msgstr "Verzia pre počítač"
 
-#: apps/constants/applications.py:161 mkt/constants/platforms.py:31 mkt/constants/platforms.py:37
+#: apps/constants/applications.py:161 mkt/constants/platforms.py:33 mkt/constants/platforms.py:45
 msgid "Firefox Mobile"
 msgstr "Mobilný Firefox"
 
-#: apps/constants/applications.py:168 mkt/constants/platforms.py:32 mkt/constants/platforms.py:38
+#: apps/constants/applications.py:168 mkt/constants/platforms.py:34 mkt/constants/platforms.py:46
 msgid "Firefox Tablet"
 msgstr "Firefox Tablet"
 
-#: apps/constants/applications.py:175 mkt/constants/platforms.py:29 mkt/constants/platforms.py:36 mkt/ecosystem/templates/ecosystem/dev_phone.html:10
+#: apps/constants/applications.py:175 mkt/constants/platforms.py:31 mkt/constants/platforms.py:41 mkt/ecosystem/templates/ecosystem/dev_phone.html:10
 #: mkt/ecosystem/templates/ecosystem/partners.html:91 mkt/search/forms.py:49
 msgid "Firefox OS"
 msgstr "Firefox OS"
@@ -3719,7 +3710,7 @@ msgstr "Vývojár"
 msgid "Viewer"
 msgstr "Divák"
 
-#: apps/constants/base.py:151 mkt/developers/templates/developers/skeleton_impala.html:67 mkt/developers/templates/developers/apps/owner.html:87 mkt/ecosystem/templates/ecosystem/support.html:5
+#: apps/constants/base.py:151 mkt/developers/templates/developers/skeleton_impala.html:68 mkt/developers/templates/developers/apps/owner.html:87 mkt/ecosystem/templates/ecosystem/support.html:5
 #: mkt/ecosystem/templates/ecosystem/support.html:13 mkt/templates/mkt/base_desktop.html:55 templates/global/menu_links.html:46 templates/global/mobile/header.html:7 templates/mobile/header.html:7
 msgid "Support"
 msgstr "Podpora"
@@ -4194,7 +4185,7 @@ msgstr "Nedávne zmeny pre %s"
 msgid "Recent Changes for My Add-ons"
 msgstr "Nedávne zmeny pre moje doplmky"
 
-#: apps/devhub/forms.py:85 mkt/developers/forms.py:116
+#: apps/devhub/forms.py:85 mkt/developers/forms.py:118
 msgid "Must have at least one owner."
 msgstr "Musí mať aspoň jedného vlastníka."
 
@@ -4243,19 +4234,19 @@ msgstr "Tento doplnok má Zásady ochrany súkromia"
 msgid "Please specify your add-on's Privacy Policy:"
 msgstr "Zadajte Zásady ochrany súkromia pre váš doplnok:"
 
-#: apps/devhub/forms.py:270 mkt/developers/forms.py:143
+#: apps/devhub/forms.py:270 mkt/developers/forms.py:145
 msgid "Why did you make this app?"
 msgstr "Prečo ste vytvorili túto aplikáciu?"
 
-#: apps/devhub/forms.py:271 mkt/developers/forms.py:144
+#: apps/devhub/forms.py:271 mkt/developers/forms.py:146
 msgid "What's next for this app?"
 msgstr "Čo sa chystá pre túto aplikáciu?"
 
-#: apps/devhub/forms.py:273 mkt/developers/forms.py:146
+#: apps/devhub/forms.py:273 mkt/developers/forms.py:148
 msgid "Why did you make this add-on?"
 msgstr "Prečo ste vytvorili tento doplnok?"
 
-#: apps/devhub/forms.py:274 mkt/developers/forms.py:147
+#: apps/devhub/forms.py:274 mkt/developers/forms.py:149
 msgid "What's next for this add-on?"
 msgstr "Čo sa chystá pre tento doplnok?"
 
@@ -4303,7 +4294,7 @@ msgstr "Vyžaduje aspoň jednu kompatibilnú aplikáciu."
 msgid "An app already exists on this domain, only one app per domain is allowed."
 msgstr "Pre túto doménu už aplikácia existuje. Na doménu je povolená len jedna aplikácia."
 
-#: apps/devhub/forms.py:473 apps/devhub/forms.py:488 apps/devhub/forms.py:501 mkt/submit/forms.py:145 mkt/submit/forms.py:212
+#: apps/devhub/forms.py:473 apps/devhub/forms.py:488 apps/devhub/forms.py:501 mkt/submit/forms.py:147 mkt/submit/forms.py:215
 msgid "There was an error with your upload. Please try again."
 msgstr "Pri odosielaní sa vyskytla chyba. Skúste to znova."
 
@@ -4315,7 +4306,7 @@ msgstr ""
 msgid "Need at least one platform."
 msgstr "Vyžaduje aspoň jednu platformu."
 
-#: apps/devhub/forms.py:545 mkt/submit/forms.py:180
+#: apps/devhub/forms.py:545 mkt/submit/forms.py:183
 msgid "Version %s already exists"
 msgstr "Verzia %s už existuje"
 
@@ -4518,7 +4509,7 @@ msgstr[0] "{0} upozornenie"
 msgstr[1] "{0} upozornenia"
 msgstr[2] "{0} upozornení"
 
-#: apps/devhub/models.py:377 apps/reviews/templates/reviews/add.html:86 apps/reviews/templates/reviews/edit_review.html:10
+#: apps/devhub/models.py:379 apps/reviews/templates/reviews/add.html:86 apps/reviews/templates/reviews/edit_review.html:10
 msgid "Review"
 msgstr "Recenzia"
 
@@ -4540,15 +4531,11 @@ msgstr "Vaša ikona musí mať menej ako %s bajtov."
 
 #: apps/devhub/tasks.py:410
 msgid "Your manifest must be served with the HTTP header \"Content-Type: %s\"."
-msgstr ""
-"Váš manifest musí byť distribuovaný pomocou hlavičky HTTP \"Content-Type: %"
-"s\"."
+msgstr "Váš manifest musí byť distribuovaný pomocou hlavičky HTTP \"Content-Type: %s\"."
 
 #: apps/devhub/tasks.py:412
 msgid "Your manifest must be served with the HTTP header \"Content-Type: %s\". We saw \"%s\"."
-msgstr ""
-"Váš manifest musí byť distribuovaný pomocou hlavičky HTTP \"Content-Type: %"
-"s\". Vrátané: \"%s\"."
+msgstr "Váš manifest musí byť distribuovaný pomocou hlavičky HTTP \"Content-Type: %s\". Vrátané: \"%s\"."
 
 #: apps/devhub/tasks.py:417 mkt/developers/tasks.py:512
 msgid "Your manifest must be less than %s bytes."
@@ -4579,7 +4566,7 @@ msgid "User Reviews"
 msgstr "Recenzie používateľa"
 
 #: apps/devhub/views.py:335 apps/devhub/views.py:339 apps/devhub/views.py:456 apps/devhub/views.py:479 apps/devhub/views.py:526 apps/devhub/views.py:649 apps/devhub/views.py:1332
-#: mkt/developers/views.py:378 mkt/developers/views.py:419 mkt/developers/views_payments.py:122 mkt/developers/views_payments.py:304 mkt/reviewers/views.py:609
+#: mkt/developers/views.py:392 mkt/developers/views.py:433 mkt/developers/views_payments.py:124 mkt/developers/views_payments.py:306 mkt/reviewers/views.py:629
 msgid "Changes successfully saved."
 msgstr "Zmeny boli úspešne uložené."
 
@@ -4636,7 +4623,7 @@ msgstr "Overiť doplnok"
 msgid "Check Add-on Compatibility"
 msgstr "Kontrola kompatibility doplňku"
 
-#: apps/devhub/views.py:798 mkt/developers/views.py:501
+#: apps/devhub/views.py:798 mkt/developers/views.py:515
 msgid "There was an error with the submission."
 msgstr "Pri odosielaní sa vyskytla chyba."
 
@@ -4667,7 +4654,7 @@ msgstr "Obrázky nemohou být větší než %d kb."
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr "Obrázek musí být přesně {0} pixelů široký a {1} pixelů vysoký."
 
-#: apps/devhub/views.py:1277 mkt/developers/views.py:801
+#: apps/devhub/views.py:1277 mkt/developers/views.py:817
 msgid "There was an error uploading your preview."
 msgstr "Pri odosielaní ukážky sa vyskytla chyba."
 
@@ -4823,8 +4810,8 @@ msgstr "{0} :: Vyhľadávanie"
 #: apps/devhub/templates/devhub/devhub_search.html:6 apps/devhub/templates/devhub/search.html:9 apps/editors/templates/editors/queue.html:27 apps/search/templates/search/collections.html:17
 #: apps/search/templates/search/personas.html:18 apps/search/templates/search/results.html:18 apps/search/templates/search/mobile/results.html:8 mkt/developers/templates/developers/search.html:9
 #: mkt/lookup/templates/lookup/includes/app_search.html:17 mkt/lookup/templates/lookup/includes/transaction_search.html:6 mkt/lookup/templates/lookup/includes/user_search.html:6
-#: mkt/reviewers/forms.py:256 mkt/reviewers/forms.py:258 mkt/reviewers/templates/reviewers/includes/queue_search.html:8 mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:9
-#: mkt/reviewers/templates/reviewers/themes/queue_list.html:13 mkt/search/forms.py:82 mkt/search/forms.py:84 mkt/templates/mkt/header.html:9 mkt/templates/mkt/header.html:12
+#: mkt/reviewers/forms.py:259 mkt/reviewers/forms.py:261 mkt/reviewers/templates/reviewers/includes/queue_search.html:8 mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:9
+#: mkt/reviewers/templates/reviewers/themes/queue_list.html:14 mkt/search/forms.py:82 mkt/search/forms.py:84 mkt/templates/mkt/header.html:9 mkt/templates/mkt/header.html:12
 #: mkt/templates/mkt/header.html:13 templates/search.html:14 templates/impala/search.html:18
 msgid "Search"
 msgstr "Hľadať"
@@ -5457,7 +5444,7 @@ msgstr ""
 "Pokud je doplněk pro tuto aplikaci veden jako doporučený, nemůžete měnit jeho umístění v kategoriích. Pokud máte důvod, proč chcete kategorie změnit, napište nám prosím e-mail na <a href=\"mailto:"
 "%(email)s\">%(email)s</a>."
 
-#: apps/devhub/templates/devhub/addons/edit/basic.html:160
+#: apps/devhub/templates/devhub/addons/edit/basic.html:160 mkt/developers/templates/developers/apps/edit/admin.html:90
 msgid "Tags"
 msgstr "Značky"
 
@@ -5466,6 +5453,7 @@ msgid "Tags help users find your add-on and should be short descriptors such as 
 msgstr "Značky pomáhajú používateľom pri vyhľadávaní doplnkov, pričom môžu byť popisné ako napr. karty, panel alebo twitter. Maximálne môžete zvoliť {0} značiek."
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:171 apps/devhub/templates/devhub/personas/edit.html:97 apps/devhub/templates/devhub/personas/submit.html:46
+#: mkt/developers/templates/developers/apps/edit/admin.html:102
 msgid "Comma-separated, minimum of {0} character."
 msgid_plural "Comma-separated, minimum of {0} characters."
 msgstr[0] "Oddelené čiarkou, minimálne {0} znak."
@@ -5473,10 +5461,11 @@ msgstr[1] "Oddelené čiarkou, minimálne {0} znaky."
 msgstr[2] "Oddelené čiarkou, minimálne {0} znakov."
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:174 apps/devhub/templates/devhub/personas/edit.html:100 apps/devhub/templates/devhub/personas/submit.html:49
+#: mkt/developers/templates/developers/apps/edit/admin.html:105
 msgid "Example: dark, cinema, noir. Limit 20."
 msgstr ""
 
-#: apps/devhub/templates/devhub/addons/edit/basic.html:178
+#: apps/devhub/templates/devhub/addons/edit/basic.html:178 mkt/developers/templates/developers/apps/edit/admin.html:109
 msgid "Reserved tag:"
 msgid_plural "Reserved tags:"
 msgstr[0] "Rezervovaná značka:"
@@ -6011,7 +6000,7 @@ msgstr "Poskytněte detailní popis aplikace:"
 msgid "The description will appear on the detail page."
 msgstr "Popis bude viditelný na stránce s aplikací."
 
-#: apps/devhub/templates/devhub/addons/submit/describe.html:75 mkt/submit/forms.py:342
+#: apps/devhub/templates/devhub/addons/submit/describe.html:75 mkt/submit/forms.py:364
 msgid "Support Email:"
 msgstr "E-mail na podporu:"
 
@@ -7121,7 +7110,7 @@ msgstr "Doplnky pre Thunderbird a mobilný Firefox"
 msgid "Add-ons aren&#039;t just for Firefox. Learn how to extend other Mozilla applications, such as the Thunderbird mail client and Firefox for mobile devices."
 msgstr "Doplňky nejsou pouze pro Firefox. Přečtěte si, jak rozšířit další aplikace Mozilla jako jsou poštovní klient Thunderbird nebo Firefox pro mobilní zařízení."
 
-#: apps/devhub/templates/devhub/docs/marketplace.html:3 mkt/developers/templates/developers/skeleton_impala.html:71 mkt/ecosystem/templates/ecosystem/build_intro.html:140
+#: apps/devhub/templates/devhub/docs/marketplace.html:3 mkt/developers/templates/developers/skeleton_impala.html:72 mkt/ecosystem/templates/ecosystem/build_intro.html:140
 #: mkt/ecosystem/templates/ecosystem/partners.html:115 mkt/inapp_pay/templates/inapp_pay/complete.html:7 mkt/inapp_pay/templates/inapp_pay/error.html:5 mkt/inapp_pay/templates/inapp_pay/lobby.html:5
 #: mkt/inapp_pay/templates/inapp_pay/login.html:5 mkt/inapp_pay/templates/inapp_pay/nowallet.html:5 mkt/inapp_pay/templates/inapp_pay/pay_start.html:5
 #: mkt/inapp_pay/templates/inapp_pay/payment_cancel.html:5
@@ -8937,7 +8926,7 @@ msgstr "alebo <a href=\"%(cancel)s\">Zrušiť</a>"
 msgid "Manage Refunds"
 msgstr "Správa vrácených plateb"
 
-#: apps/devhub/templates/devhub/payments/refunds.html:12 mkt/developers/forms.py:1087 mkt/developers/templates/developers/transactions.html:44
+#: apps/devhub/templates/devhub/payments/refunds.html:12 mkt/developers/forms.py:1122 mkt/developers/templates/developers/transactions.html:44
 #: mkt/developers/templates/developers/payments/refunds.html:7 mkt/lookup/templates/lookup/transaction_summary.html:19
 msgid "Transaction ID"
 msgstr "ID transakcie"
@@ -9095,7 +9084,7 @@ msgstr "Aktivovať príspevky"
 msgid "or <a id=\"setup-cancel\" href=\"#\">Cancel</a>"
 msgstr "alebo <a id=\"setup-cancel\" href=\"#\">Zrušiť</a>"
 
-#: apps/devhub/templates/devhub/payments/includes/paypal.html:13 mkt/submit/forms.py:343
+#: apps/devhub/templates/devhub/payments/includes/paypal.html:13 mkt/submit/forms.py:365
 #, fuzzy
 msgid "The email address used by end users to contact you with support issues and refund requests."
 msgstr "E-mailová adresa, která je používána koncovými uživateli jako kontakt na vás v případě dotazů podpory či vrácení peněz."
@@ -9159,7 +9148,7 @@ msgstr "Môžu ostatní zdieľať vašu tému Persona, ak vás uvedú ako autora
 
 #: apps/devhub/templates/devhub/personas/edit.html:130 apps/devhub/templates/devhub/personas/edit.html:151 apps/devhub/templates/devhub/personas/edit.html:172
 #: apps/devhub/templates/devhub/personas/submit.html:77 apps/devhub/templates/devhub/personas/submit.html:98 apps/devhub/templates/devhub/personas/submit.html:119 mkt/api/forms.py:231
-#: mkt/developers/forms_payments.py:52 mkt/submit/forms.py:233 mkt/submit/forms.py:351
+#: mkt/developers/forms_payments.py:52 mkt/submit/forms.py:255 mkt/submit/forms.py:373
 msgid "Yes"
 msgstr "Áno"
 
@@ -9170,7 +9159,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/personas/edit.html:139 apps/devhub/templates/devhub/personas/edit.html:160 apps/devhub/templates/devhub/personas/edit.html:190
 #: apps/devhub/templates/devhub/personas/submit.html:86 apps/devhub/templates/devhub/personas/submit.html:107 apps/devhub/templates/devhub/personas/submit.html:137 mkt/api/forms.py:232
-#: mkt/developers/forms_payments.py:52 mkt/lookup/templates/lookup/user_summary.html:65 mkt/submit/forms.py:234 mkt/submit/forms.py:352
+#: mkt/developers/forms_payments.py:52 mkt/lookup/templates/lookup/user_summary.html:65 mkt/submit/forms.py:256 mkt/submit/forms.py:374
 msgid "No"
 msgstr "Nie"
 
@@ -9584,8 +9573,8 @@ msgid "Version History"
 msgstr "História verzií"
 
 #: apps/devhub/templates/devhub/versions/list.html:176 mkt/developers/templates/developers/apps/status.html:165 mkt/lookup/templates/lookup/app_summary.html:53
-#: mkt/lookup/templates/lookup/app_summary.html:111 mkt/reviewers/forms.py:263 mkt/reviewers/templates/reviewers/review.html:29 mkt/reviewers/templates/reviewers/includes/details.html:19
-#: mkt/reviewers/templates/reviewers/includes/search_results.html:8 mkt/reviewers/templates/reviewers/includes/search_results_themes.html:7 mkt/reviewers/templates/reviewers/themes/queue_list.html:43
+#: mkt/lookup/templates/lookup/app_summary.html:111 mkt/reviewers/forms.py:267 mkt/reviewers/templates/reviewers/review.html:29 mkt/reviewers/templates/reviewers/includes/details.html:19
+#: mkt/reviewers/templates/reviewers/includes/search_results.html:8 mkt/reviewers/templates/reviewers/includes/search_results_themes.html:7 mkt/reviewers/templates/reviewers/themes/queue_list.html:44
 msgid "Status"
 msgstr "Stav"
 
@@ -9934,9 +9923,7 @@ msgstr ""
 
 #: apps/discovery/templates/discovery/modules/holiday.html:22
 msgid "Keep an eye on your eBay activity wherever you are on the web when you install the eBay Sidebar for Firefox."
-msgstr ""
-"Majte na očiach aktivity na eBay, kdekoľvek na webe práve ste. Nainštalujte "
-"si eBay Sidebar pre Firefox."
+msgstr "Majte na očiach aktivity na eBay, kdekoľvek na webe práve ste. Nainštalujte si eBay Sidebar pre Firefox."
 
 #: apps/discovery/templates/discovery/modules/holiday.html:31
 #, fuzzy
@@ -10006,11 +9993,16 @@ msgstr "Hľadať podľa názvu doplnku alebo e-mailu autora"
 #: mkt/ecosystem/templates/ecosystem/publish_payments.html:45 mkt/ecosystem/templates/ecosystem/publish_payments.html:51 mkt/ecosystem/templates/ecosystem/publish_payments.html:52
 #: mkt/ecosystem/templates/ecosystem/publish_payments.html:53 mkt/ecosystem/templates/ecosystem/publish_payments.html:54 mkt/ecosystem/templates/ecosystem/publish_payments.html:55
 #: mkt/ecosystem/templates/ecosystem/publish_payments.html:59 mkt/ecosystem/templates/ecosystem/publish_payments.html:60 mkt/ecosystem/templates/ecosystem/publish_payments.html:61
-#: mkt/ecosystem/templates/ecosystem/publish_payments.html:62 mkt/ecosystem/templates/ecosystem/publish_payments.html:63
+#: mkt/ecosystem/templates/ecosystem/publish_payments.html:62 mkt/ecosystem/templates/ecosystem/publish_payments.html:63 mkt/ecosystem/templates/ecosystem/publish_payments.html:67
+#: mkt/ecosystem/templates/ecosystem/publish_payments.html:75 mkt/ecosystem/templates/ecosystem/publish_payments.html:83
 msgid "yes"
 msgstr "áno"
 
-#: apps/editors/forms.py:87
+#: apps/editors/forms.py:87 mkt/ecosystem/templates/ecosystem/publish_payments.html:68 mkt/ecosystem/templates/ecosystem/publish_payments.html:69
+#: mkt/ecosystem/templates/ecosystem/publish_payments.html:70 mkt/ecosystem/templates/ecosystem/publish_payments.html:71 mkt/ecosystem/templates/ecosystem/publish_payments.html:76
+#: mkt/ecosystem/templates/ecosystem/publish_payments.html:77 mkt/ecosystem/templates/ecosystem/publish_payments.html:78 mkt/ecosystem/templates/ecosystem/publish_payments.html:79
+#: mkt/ecosystem/templates/ecosystem/publish_payments.html:84 mkt/ecosystem/templates/ecosystem/publish_payments.html:85 mkt/ecosystem/templates/ecosystem/publish_payments.html:86
+#: mkt/ecosystem/templates/ecosystem/publish_payments.html:87
 msgid "no"
 msgstr "nie"
 
@@ -10030,7 +10022,7 @@ msgstr "Doba od odoslania (dni)"
 msgid "Add-on Types"
 msgstr "Typy doplnkov"
 
-#: apps/editors/forms.py:110 apps/editors/helpers.py:187
+#: apps/editors/forms.py:110 apps/editors/helpers.py:188
 msgid "Platforms"
 msgstr "Platformy"
 
@@ -10149,52 +10141,52 @@ msgstr[0] "Moderovaná recenzia ({0})"
 msgstr[1] "Moderované recenzie ({0})"
 msgstr[2] "Moderované recenzie ({0})"
 
-#: apps/editors/helpers.py:181
+#: apps/editors/helpers.py:182
 msgid "Addon"
 msgstr "Doplnok"
 
-#: apps/editors/helpers.py:182 apps/localizers/templates/localizers/categories.html:35 mkt/developers/templates/developers/transactions.html:43 mkt/lookup/templates/lookup/app_summary.html:43
+#: apps/editors/helpers.py:183 apps/localizers/templates/localizers/categories.html:35 mkt/developers/templates/developers/transactions.html:43 mkt/lookup/templates/lookup/app_summary.html:43
 #: mkt/lookup/templates/lookup/transaction_summary.html:21 mkt/reviewers/templates/reviewers/includes/details.html:7 mkt/reviewers/templates/reviewers/includes/mobile_details.html:39
 msgid "Type"
 msgstr "Typ"
 
-#: apps/editors/helpers.py:183 mkt/reviewers/templates/reviewers/queue.html:34
+#: apps/editors/helpers.py:184 mkt/reviewers/templates/reviewers/queue.html:34
 msgid "Waiting Time"
 msgstr "Doba čakania"
 
-#: apps/editors/helpers.py:184 apps/editors/templates/editors/review.html:280 mkt/reviewers/templates/reviewers/apps_reviewing.html:23 mkt/reviewers/templates/reviewers/apps_reviewing.html:65
+#: apps/editors/helpers.py:185 apps/editors/templates/editors/review.html:280 mkt/reviewers/templates/reviewers/apps_reviewing.html:23 mkt/reviewers/templates/reviewers/apps_reviewing.html:65
 #: mkt/reviewers/templates/reviewers/queue.html:33 mkt/reviewers/templates/reviewers/includes/details.html:133 mkt/reviewers/templates/reviewers/includes/mobile_details.html:155
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:7
 msgid "Flags"
 msgstr "Označenia"
 
-#: apps/editors/helpers.py:185
+#: apps/editors/helpers.py:186
 msgid "Applications"
 msgstr "Aplikácie"
 
-#: apps/editors/helpers.py:190
+#: apps/editors/helpers.py:191
 #, fuzzy
 msgid "Additional"
 msgstr "Další"
 
-#: apps/editors/helpers.py:207
+#: apps/editors/helpers.py:208
 msgid "Site Specific"
 msgstr "Pre špecifickú stránku"
 
-#: apps/editors/helpers.py:209
+#: apps/editors/helpers.py:210
 msgid "Requires External Software"
 msgstr "Vyžaduje externý softvér"
 
-#: apps/editors/helpers.py:211
+#: apps/editors/helpers.py:212
 msgid "Binary Components"
 msgstr "Binárne komponenty"
 
-#: apps/editors/helpers.py:235
+#: apps/editors/helpers.py:236
 msgid "moments ago"
 msgstr "pred chvíľou"
 
 #. L10n: first argument is number of minutes
-#: apps/editors/helpers.py:238
+#: apps/editors/helpers.py:239
 msgid "{0} minute"
 msgid_plural "{0} minutes"
 msgstr[0] "{0} minúta"
@@ -10202,7 +10194,7 @@ msgstr[1] "{0} minúty"
 msgstr[2] "{0} minút"
 
 #. L10n: first argument is number of hours
-#: apps/editors/helpers.py:242
+#: apps/editors/helpers.py:243
 msgid "{0} hour"
 msgid_plural "{0} hours"
 msgstr[0] "{0} hodina"
@@ -10210,44 +10202,44 @@ msgstr[1] "{0} hodiny"
 msgstr[2] "{0} hodín"
 
 #. L10n: first argument is number of days
-#: apps/editors/helpers.py:246
+#: apps/editors/helpers.py:247
 msgid "{0} day"
 msgid_plural "{0} days"
 msgstr[0] "{0} deň"
 msgstr[1] "{0} dni"
 msgstr[2] "{0} dní"
 
-#: apps/editors/helpers.py:435 mkt/reviewers/utils.py:446
+#: apps/editors/helpers.py:436 mkt/reviewers/utils.py:405
 msgid "Push to public"
 msgstr "Schváliť pre verejnosť"
 
-#: apps/editors/helpers.py:443 mkt/constants/reviewers.py:24 mkt/reviewers/utils.py:451 mkt/reviewers/templates/reviewers/themes/queue.html:71 mkt/reviewers/templates/reviewers/themes/themes.html:93
+#: apps/editors/helpers.py:444 mkt/constants/reviewers.py:24 mkt/reviewers/utils.py:410 mkt/reviewers/templates/reviewers/themes/queue.html:71 mkt/reviewers/templates/reviewers/themes/themes.html:93
 msgid "Reject"
 msgstr "Odmietnuť"
 
-#: apps/editors/helpers.py:446 mkt/reviewers/utils.py:457
+#: apps/editors/helpers.py:447 mkt/reviewers/utils.py:416
 msgid "Request more information"
 msgstr "Vyžiadať dodatočné informácie"
 
-#: apps/editors/helpers.py:449
+#: apps/editors/helpers.py:450
 msgid "Request super-review"
 msgstr "Požadovať super-recenziu"
 
 # 80%
-#: apps/editors/helpers.py:460
+#: apps/editors/helpers.py:461
 #, fuzzy
 msgid "Grant preliminary review"
 msgstr "Udělit předběžnou kontrolu"
 
-#: apps/editors/helpers.py:461
+#: apps/editors/helpers.py:462
 msgid "This will mark the files as preliminarily reviewed."
 msgstr ""
 
-#: apps/editors/helpers.py:463
+#: apps/editors/helpers.py:464
 msgid "Use this form to request more information from the author. They will receive an email and be able to answer here. You will be notified by email when they reply."
 msgstr "Použite tento formulár na vyžiadanie dodatočných informácií od autora doplnku, ktorý obdrží e-mailovú správu a bude môcť tu odpovedať. Pri jeho odpovedi budete upozornený e-mailovou správou."
 
-#: apps/editors/helpers.py:467
+#: apps/editors/helpers.py:468
 msgid ""
 "If you have concerns about this add-on's security, copyright issues, or other concerns that an administrator should look into, enter your comments in the area below. They will be sent to "
 "administrators, not the author."
@@ -10255,55 +10247,55 @@ msgstr ""
 "Ak máte pochybnosti o bezpečnosti tohto doplnku, problémoch s autorskými právami alebo iné, na ktoré by sa mal pozrieť správca, zadajte do dole uvedenej časti svoje komentáre. Budú odoslané "
 "správcom, nie autorovi."
 
-#: apps/editors/helpers.py:473
+#: apps/editors/helpers.py:474
 #, fuzzy
 msgid "This will reject the add-on and remove it from the review queue."
 msgstr "Zamítne doplněk a odstraní jej z fronty na kontrolu."
 
-#: apps/editors/helpers.py:475
+#: apps/editors/helpers.py:476
 #, fuzzy
 msgid "Make a comment on this version. The author won't be able to see this."
 msgstr "Přidejte komentář k této verzi. Autor jej nebude vidět."
 
-#: apps/editors/helpers.py:479
+#: apps/editors/helpers.py:480
 #, fuzzy
 msgid "This will reject the files and remove them from the review queue."
 msgstr "Zamítne soubory a odstraní je z fronty na kontrolu."
 
-#: apps/editors/helpers.py:483
+#: apps/editors/helpers.py:484
 #, fuzzy
 msgid "This will mark the add-on as preliminarily reviewed. Future versions will undergo preliminary review."
 msgstr "Označí doplněk jako předběžně kontrolovaný. Příští verze budou opět procházet předběžnou kontrolou."
 
-#: apps/editors/helpers.py:488
+#: apps/editors/helpers.py:489
 #, fuzzy
 msgid "This will mark the files as preliminarily reviewed. Future versions will undergo preliminary review."
 msgstr "Označí soubory jako předběžně kontrolované. Příští verze budou opět přocházet předběžnou kontrolou."
 
-#: apps/editors/helpers.py:493
+#: apps/editors/helpers.py:494
 msgid "Retain preliminary review"
 msgstr "Predbežná kontrola pozdržaná"
 
-#: apps/editors/helpers.py:494
+#: apps/editors/helpers.py:495
 #, fuzzy
 msgid "This will retain the add-on as preliminarily reviewed. Future versions will undergo preliminary review."
 msgstr "Zamítne předběžnou kontrolu doplňku. Příští verze budou opět procházet předběžnou kontrolou."
 
-#: apps/editors/helpers.py:499
+#: apps/editors/helpers.py:500
 msgid "This will approve a sandboxed version of a public add-on to appear on the public side."
 msgstr "Tým schválite verziu zo Sandboxu nominovanú na uverejnenie, aby sa objavila na verejnej stránke."
 
-#: apps/editors/helpers.py:502
+#: apps/editors/helpers.py:503
 #, fuzzy
 msgid "This will reject a version of a public add-on and remove it from the queue."
 msgstr "Zamítne verzi veřejného doplňku a odstraní ji z fronty."
 
-#: apps/editors/helpers.py:505
+#: apps/editors/helpers.py:506
 msgid "This will mark the add-on and its most recent version and files as public. Future versions will go into the sandbox until they are reviewed by an editor."
 msgstr "Týmto označíte doplnok a jeho najnovšiu verziu a súbory ako verejné. Budúce verzie prejdú do Sandboxu, kým sa nepodrobia recenzii editorom."
 
 # 83%
-#: apps/editors/helpers.py:573
+#: apps/editors/helpers.py:574
 #, fuzzy
 msgid "add-on"
 msgstr "doplněk"
@@ -10325,13 +10317,13 @@ msgid "Premium Add-on"
 msgstr ""
 
 # 92%
-#: apps/editors/models.py:180 mkt/reviewers/forms.py:273 mkt/reviewers/templates/reviewers/apps_reviewing.html:44 mkt/reviewers/templates/reviewers/apps_reviewing.html:84
+#: apps/editors/models.py:180 mkt/reviewers/forms.py:277 mkt/reviewers/templates/reviewers/apps_reviewing.html:44 mkt/reviewers/templates/reviewers/apps_reviewing.html:84
 #: mkt/reviewers/templates/reviewers/queue.html:63
 #, fuzzy
 msgid "More Information Requested"
 msgstr "Vyžadováno více informací"
 
-#: apps/editors/models.py:181 mkt/reviewers/forms.py:269 mkt/reviewers/templates/reviewers/apps_reviewing.html:47 mkt/reviewers/templates/reviewers/apps_reviewing.html:87
+#: apps/editors/models.py:181 mkt/reviewers/forms.py:273 mkt/reviewers/templates/reviewers/apps_reviewing.html:47 mkt/reviewers/templates/reviewers/apps_reviewing.html:87
 #: mkt/reviewers/templates/reviewers/queue.html:66
 #, fuzzy
 msgid "Contains Editor Comment"
@@ -10341,12 +10333,12 @@ msgstr "Obsahuje komentář redaktora"
 msgid "New Add-ons (Under 5 days)"
 msgstr "Nové doplnky (za posledných 5 dní)"
 
-#: apps/editors/views.py:121 mkt/reviewers/views.py:67
+#: apps/editors/views.py:121 mkt/reviewers/views.py:78
 #, fuzzy
 msgid "Passable (5 to 10 days)"
 msgstr "Snesitelné (5 až 10 dní)"
 
-#: apps/editors/views.py:122 mkt/reviewers/views.py:68
+#: apps/editors/views.py:122 mkt/reviewers/views.py:79
 #, fuzzy
 msgid "Overdue (Over 10 days)"
 msgstr "S prodlevou (více než 10 dní)"
@@ -10355,11 +10347,11 @@ msgstr "S prodlevou (více než 10 dní)"
 msgid "An unknown error occurred"
 msgstr ""
 
-#: apps/editors/views.py:469 mkt/reviewers/views.py:220
+#: apps/editors/views.py:469 mkt/reviewers/views.py:240
 msgid "Self-reviews are not allowed."
 msgstr "Recenzie samým sebou nie sú dovolené."
 
-#: apps/editors/views.py:501 mkt/reviewers/views.py:314
+#: apps/editors/views.py:501 mkt/reviewers/views.py:334
 msgid "Review successfully processed."
 msgstr "Recenzia úspešne spracovaná."
 
@@ -10445,7 +10437,7 @@ msgid "Announcement"
 msgstr "Oznámenie"
 
 #. "Filter" is a button label (verb)
-#: apps/editors/templates/editors/eventlog.html:24 mkt/reviewers/templates/reviewers/includes/macros.html:59 mkt/reviewers/templates/reviewers/themes/includes/logs_filter_deleted.html:12
+#: apps/editors/templates/editors/eventlog.html:24 mkt/reviewers/templates/reviewers/includes/macros.html:61 mkt/reviewers/templates/reviewers/themes/includes/logs_filter_deleted.html:12
 #: mkt/templates/mkt/header.html:18
 msgid "Filter"
 msgstr "Filtrovať"
@@ -10522,11 +10514,11 @@ msgstr[2] "{0} doplnkov"
 msgid "{0}%"
 msgstr "{0}%"
 
-#: apps/editors/templates/editors/home.html:63 apps/editors/templates/editors/performance.html:37 mkt/reviewers/templates/reviewers/home.html:64
+#: apps/editors/templates/editors/home.html:63 apps/editors/templates/editors/performance.html:37 mkt/reviewers/templates/reviewers/home.html:64 mkt/reviewers/templates/reviewers/themes/home.html:57
 msgid "Total Reviews"
 msgstr "Recenzie celkom"
 
-#: apps/editors/templates/editors/home.html:64 mkt/reviewers/templates/reviewers/home.html:65
+#: apps/editors/templates/editors/home.html:64 mkt/reviewers/templates/reviewers/home.html:65 mkt/reviewers/templates/reviewers/themes/home.html:58
 #, fuzzy
 msgid "Reviews This Month"
 msgstr "Kontrol tento měsíc"
@@ -10657,9 +10649,7 @@ msgstr "od %(user)s dne %(date)s %(stars)s (%(locale)s)"
 
 #: apps/editors/templates/editors/queue.html:101 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:48
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
-msgstr ""
-"<strong>%(reason)s</strong> <span class=\"light\">Označil %(user)s dňa %"
-"(date)s</span>"
+msgstr "<strong>%(reason)s</strong> <span class=\"light\">Označil %(user)s dňa %(date)s</span>"
 
 #: apps/editors/templates/editors/queue.html:114 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:69
 #, fuzzy
@@ -10675,7 +10665,7 @@ msgstr "Poznámky k verzi / Poznámky pro redaktora"
 msgid "There are currently no add-ons of this type to review."
 msgstr "Momentálne nie je na recenziu žiadny doplnok tohto typu."
 
-#: apps/editors/templates/editors/queue.html:176 mkt/reviewers/templates/reviewers/queue.html:116 mkt/reviewers/templates/reviewers/themes/queue_list.html:84
+#: apps/editors/templates/editors/queue.html:176 mkt/reviewers/templates/reviewers/queue.html:116 mkt/reviewers/templates/reviewers/themes/queue_list.html:85
 msgid "Helpful Links:"
 msgstr "Užitočné odkazy"
 
@@ -10683,7 +10673,7 @@ msgstr "Užitočné odkazy"
 msgid "Add-on Policy"
 msgstr "Zásady ochrany súkromia doplnku"
 
-#: apps/editors/templates/editors/queue.html:179 mkt/reviewers/templates/reviewers/queue.html:117 mkt/reviewers/templates/reviewers/themes/queue_list.html:85
+#: apps/editors/templates/editors/queue.html:179 mkt/reviewers/templates/reviewers/queue.html:117 mkt/reviewers/templates/reviewers/themes/queue_list.html:86
 msgid "Editors' Guide"
 msgstr "Príručka editora"
 
@@ -11915,7 +11905,7 @@ msgid "How can my add-on be listed as Recommended?"
 msgstr "Za jakých okolností se může můj doplněk objevit v seznamu doporučených?"
 
 #: apps/pages/templates/pages/dev_faq.html:542 apps/pages/templates/pages/dev_faq.html:552
-msgid "<a href=\"%(url)s\">This blog post</a> describes the process by which the Recommended lists are managed."
+msgid "<a href=\"%(url)s\">This page</a> describes the process by which the Recommended lists are managed."
 msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:547
@@ -13353,11 +13343,11 @@ msgstr "Prihlásení používatelia"
 msgid "Custom Date Range"
 msgstr "Vlastný rozsah"
 
-#: apps/stats/templates/stats/popup.html:12 mkt/developers/forms.py:1093
+#: apps/stats/templates/stats/popup.html:12 mkt/developers/forms.py:1128
 msgid "From"
 msgstr "Od"
 
-#: apps/stats/templates/stats/popup.html:19 mkt/developers/forms.py:1096
+#: apps/stats/templates/stats/popup.html:19 mkt/developers/forms.py:1131
 msgid "To"
 msgstr "Do"
 
@@ -13586,19 +13576,11 @@ msgid ""
 "parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as \"external-blog\", \"external-"
 "sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
 msgstr ""
-"<h2>Sledovanie externých zdrojov</h2> <p> Ak odkazujete z externého webu na "
-"stránku s informáciami o doplnku či priamo na súbor s doplnkom, môžete "
-"pridať parameter, ktorý vám umožní sledovať zdroje, odkiaľ je doplnok "
-"preberaný. Napríklad môžete použiť nasledujúce odkazy ako zdroj pre svoj "
-"blog: <dl> <dt>Stránka s informáciami o doplnku</dt> "
-"<dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> "
-"<dt>Priamy odkaz na súbor</dt> "
-"<dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%"
-"(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p>Sledované budú len "
-"zdroje, ktoré začínajú prefixom \"external-\" a nemajú viac ako 61 ďalších "
-"znakov. Akýkoľvek text za \"external-\" môže byť použitý na popis zdroja "
-"(napr. \"external-blog\", \"external-sidebar\", \"external-campaign225\" atď.). "
-"Povolené sú nasledujúce znaky: <code>a-z A-Z - . _ ~ %% +</code>"
+"<h2>Sledovanie externých zdrojov</h2> <p> Ak odkazujete z externého webu na stránku s informáciami o doplnku či priamo na súbor s doplnkom, môžete pridať parameter, ktorý vám umožní sledovať "
+"zdroje, odkiaľ je doplnok preberaný. Napríklad môžete použiť nasledujúce odkazy ako zdroj pre svoj blog: <dl> <dt>Stránka s informáciami o doplnku</dt> <dd>https://addons.mozilla.org/addon/%(slug)s?"
+"src=<b>external-blog</b></dd> <dt>Priamy odkaz na súbor</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p>Sledované budú len "
+"zdroje, ktoré začínajú prefixom \"external-\" a nemajú viac ako 61 ďalších znakov. Akýkoľvek text za \"external-\" môže byť použitý na popis zdroja (napr. \"external-blog\", \"external-sidebar\", "
+"\"external-campaign225\" atď.). Povolené sú nasledujúce znaky: <code>a-z A-Z - . _ ~ %% +</code>"
 
 #: apps/stats/templates/stats/reports/statuses.html:3
 msgid "Add-on Status by Date"
@@ -13734,9 +13716,7 @@ msgstr "Povolenie"
 
 #: apps/users/forms.py:210
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
-msgstr ""
-"Táto adresa URL má neplatný formát. Platná adresa vyzerá takto: "
-"http://priklad.com/moja_stranka."
+msgstr "Táto adresa URL má neplatný formát. Platná adresa vyzerá takto: http://priklad.com/moja_stranka."
 
 #: apps/users/forms.py:218
 msgid "Please use an email address from a different provider to complete your registration."
@@ -13772,7 +13752,7 @@ msgstr "Váš účet byl omezen"
 msgid "Please confirm your email address"
 msgstr "Potvrďte svoju e-mailovú adresu"
 
-#: apps/users/models.py:430
+#: apps/users/models.py:442
 msgid "My Mobile Add-ons"
 msgstr "Moje mobilné doplnky"
 
@@ -13881,12 +13861,12 @@ msgid "Successfully verified!"
 msgstr "Úspešne overené!"
 
 # %1 is the user's email address
-#: apps/users/views.py:143 apps/users/views.py:685
+#: apps/users/views.py:143 apps/users/views.py:694
 msgid "An email has been sent to your address {0} to confirm your account. Before you can log in, you have to activate your account by clicking on the link provided in this email."
 msgstr ""
 "Na adresu {0} bol odoslaný e-mail, ktorým potvrdíte svoj účet. Pred tým, než sa budete môcť prihlásiť, je potrebné aktivovať účet kliknutím na odkaz, ktorý sa nachádza v tejto e-mailovej správe."
 
-#: apps/users/views.py:147 apps/users/views.py:689
+#: apps/users/views.py:147 apps/users/views.py:698
 msgid "Confirmation Email Sent"
 msgstr "E-mail s potvrdením bol odoslaný"
 
@@ -13936,20 +13916,20 @@ msgstr "Vaša e-mailová adresa bola úspešne zmenená"
 msgid "From now on, please use {0} to log in."
 msgstr "Odteraz používajte {0} na prihlásenie."
 
-#: apps/users/views.py:333
+#: apps/users/views.py:337
 msgid "Persona authentication failure."
 msgstr ""
 
-#: apps/users/views.py:483
+#: apps/users/views.py:492
 msgid "Wrong email address or password!"
 msgstr "Nesprávna e-mailová adresa alebo heslo!"
 
-#: apps/users/views.py:495
+#: apps/users/views.py:504
 #, fuzzy
 msgid "A link to activate your user account was sent by email to your address {0}. You have to click it before you can log in."
 msgstr "Na vaši e-mailovou adresu {0} byl zaslán odkaz na aktivaci účtu. Musíte na něj klepnout dříve, než se budete moci přihlásit."
 
-#: apps/users/views.py:500
+#: apps/users/views.py:509
 #, fuzzy
 msgid ""
 "If you did not receive the confirmation email, make sure your email service did not mark it as \"junk mail\" or \"spam\". If you need to, you can have us <a href=\"%s\">resend the confirmation "
@@ -13958,36 +13938,36 @@ msgstr ""
 "Pokud neobdržíte e-mail pro potvrzení, ujistěte se, že váš poskytovatel pošty jej neoznačil jako \"nevyžádanou poštu\" či \"spam\". Pokud to budete potřebovat, můžete si e-mail pro potvrzení <a "
 "href=\"%s\">nechat znovu poslat</a>."
 
-#: apps/users/views.py:505
+#: apps/users/views.py:514
 msgid "Activation Email Sent"
 msgstr "Aktivačný e-mail odoslaný."
 
-#: apps/users/views.py:506
+#: apps/users/views.py:515
 msgid "Having Trouble?"
 msgstr "Máte problémy?"
 
-#: apps/users/views.py:659
+#: apps/users/views.py:668
 msgid "You are already logged in to an account."
 msgstr "K účtu ste už prihlásený."
 
-#: apps/users/views.py:681
+#: apps/users/views.py:690
 msgid "Congratulations! Your user account was successfully created."
 msgstr "Blahoželáme! Váš účet používateľa bol úspešne vytvorený."
 
-#: apps/users/views.py:705
+#: apps/users/views.py:714
 #, fuzzy
 msgid "You already have an account."
 msgstr "Již máte účet."
 
-#: apps/users/views.py:715
+#: apps/users/views.py:724
 msgid "There are errors in this form"
 msgstr "V tomto formulári sa nachádzajú chyby."
 
-#: apps/users/views.py:716
+#: apps/users/views.py:725
 msgid "Please correct them and resubmit."
 msgstr "Opravte ich a odošlite údaje znova."
 
-#: apps/users/views.py:731
+#: apps/users/views.py:740
 msgid "User reported."
 msgstr "Používateľ nahlásený."
 
@@ -14540,7 +14520,7 @@ msgstr ""
 msgid "You must be signed in to view your apps."
 msgstr ""
 
-#: mkt/account/templates/account/purchases.html:31 mkt/developers/templates/developers/login.html:12 mkt/developers/templates/developers/skeleton_impala.html:138
+#: mkt/account/templates/account/purchases.html:31 mkt/developers/templates/developers/login.html:12 mkt/developers/templates/developers/skeleton_impala.html:139
 #: mkt/templates/mkt/base_mobile.html:120
 msgid "Sign in / Sign up"
 msgstr ""
@@ -14591,12 +14571,24 @@ msgstr ""
 msgid "Operator Shelf"
 msgstr ""
 
-#: mkt/collections/serializers.py:54
+#: mkt/collections/fields.py:13
+msgid "Hexadecimal color"
+msgstr ""
+
+#: mkt/collections/fields.py:18
+msgid "Must be a valid hex color code, e.g. #FF0035."
+msgstr ""
+
+#: mkt/collections/serializers.py:62
 msgid "You can not have more than one Featured Apps/Operator Shelf collection for the same category/carrier/region combination."
 msgstr ""
 
+#: mkt/commonplace/templates/commonplace/index.html:10
+msgid "The Firefox Marketplace is the official source of apps for the Web Platform."
+msgstr ""
+
 #: mkt/constants/apps.py:9 mkt/reviewers/templates/reviewers/logs.html:18 mkt/reviewers/templates/reviewers/includes/search_results_themes.html:6
-#: mkt/reviewers/templates/reviewers/themes/history_table.html:7 mkt/reviewers/templates/reviewers/themes/logs.html:18 mkt/reviewers/templates/reviewers/themes/queue_list.html:42
+#: mkt/reviewers/templates/reviewers/themes/history_table.html:7 mkt/reviewers/templates/reviewers/themes/logs.html:18 mkt/reviewers/templates/reviewers/themes/queue_list.html:43
 #: mkt/reviewers/templates/reviewers/themes/single.html:26 mkt/reviewers/templates/reviewers/themes/themes.html:46
 msgid "Reviewer"
 msgstr "Recenzent"
@@ -15009,7 +15001,7 @@ msgstr "Ghana"
 msgid "Gibraltar"
 msgstr "Gibraltár"
 
-#: mkt/constants/bango.py:124
+#: mkt/constants/bango.py:124 mkt/constants/regions.py:178
 msgid "Greece"
 msgstr "Grécko"
 
@@ -15245,7 +15237,7 @@ msgstr "Maurícius"
 msgid "Mayotte"
 msgstr "Mayotte"
 
-#: mkt/constants/bango.py:183 mkt/constants/regions.py:128
+#: mkt/constants/bango.py:183 mkt/constants/regions.py:128 mkt/constants/regions.py:188
 msgid "Mexico"
 msgstr "Mexiko"
 
@@ -15613,11 +15605,11 @@ msgstr "Ukrajina"
 msgid "United Arab Emirates"
 msgstr "Spojené Arabské Emiráty"
 
-#: mkt/constants/bango.py:275 mkt/constants/regions.py:68
+#: mkt/constants/bango.py:275 mkt/constants/regions.py:68 mkt/ecosystem/templates/ecosystem/publish_payments.html:66
 msgid "United Kingdom"
 msgstr "Veľká Británia"
 
-#: mkt/constants/bango.py:276 mkt/constants/regions.py:59
+#: mkt/constants/bango.py:276 mkt/constants/regions.py:59 mkt/ecosystem/templates/ecosystem/publish_payments.html:74
 msgid "United States"
 msgstr "USA"
 
@@ -15899,19 +15891,19 @@ msgstr ""
 msgid "Completed"
 msgstr ""
 
-#: mkt/constants/platforms.py:43 mkt/constants/platforms.py:47
+#: mkt/constants/platforms.py:53 mkt/constants/platforms.py:57
 msgid "Fully open mobile ecosystem"
 msgstr ""
 
-#: mkt/constants/platforms.py:44
+#: mkt/constants/platforms.py:54
 msgid "Windows, Mac and Linux"
 msgstr ""
 
-#: mkt/constants/platforms.py:45 mkt/constants/platforms.py:48 mkt/ecosystem/templates/ecosystem/partners.html:95
+#: mkt/constants/platforms.py:55 mkt/constants/platforms.py:58 mkt/ecosystem/templates/ecosystem/partners.html:95
 msgid "Android smartphones"
 msgstr ""
 
-#: mkt/constants/platforms.py:46 mkt/constants/platforms.py:49
+#: mkt/constants/platforms.py:56 mkt/constants/platforms.py:59
 msgid "Android tablets"
 msgstr ""
 
@@ -15947,7 +15939,7 @@ msgstr ""
 msgid "Worldwide"
 msgstr "Celý svet"
 
-#: mkt/constants/regions.py:108
+#: mkt/constants/regions.py:108 mkt/ecosystem/templates/ecosystem/publish_payments.html:82
 msgid "Venezuela"
 msgstr "Venezuela"
 
@@ -16055,300 +16047,300 @@ msgstr "(nepodporované)"
 msgid "Could not connect to payment server."
 msgstr ""
 
-#: mkt/developers/forms.py:85
+#: mkt/developers/forms.py:87
 msgid "All team members must have read and agreed to the developer agreement."
 msgstr ""
 
-#: mkt/developers/forms.py:119
+#: mkt/developers/forms.py:121
 msgid "At least one team member must be listed."
 msgstr ""
 
-#: mkt/developers/forms.py:123
+#: mkt/developers/forms.py:125
 msgid "A team member can only be listed once."
 msgstr ""
 
-#: mkt/developers/forms.py:177
+#: mkt/developers/forms.py:179
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently public. <a href=\"%s\">Edit app</a>"
 msgstr ""
 
-#: mkt/developers/forms.py:181
+#: mkt/developers/forms.py:183
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently pending. <a href=\"%s\">Edit app</a>"
 msgstr ""
 
-#: mkt/developers/forms.py:185
+#: mkt/developers/forms.py:187
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently incomplete. <a href=\"%s\">Resume app</a>"
 msgstr ""
 
-#: mkt/developers/forms.py:189
+#: mkt/developers/forms.py:191
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently rejected. <a href=\"%s\">Edit app</a>"
 msgstr ""
 
-#: mkt/developers/forms.py:193
+#: mkt/developers/forms.py:195
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently disabled by Mozilla. <a href=\"%s\">Edit app</a>"
 msgstr ""
 
-#: mkt/developers/forms.py:197
+#: mkt/developers/forms.py:199
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently disabled. <a href=\"%s\">Edit app</a>"
 msgstr ""
 
-#: mkt/developers/forms.py:212
+#: mkt/developers/forms.py:214
 msgid "An app already exists on this domain; only one app per domain is allowed."
 msgstr ""
 
 #. L10n: {0} is the name of the image asset type.
-#: mkt/developers/forms.py:298
+#: mkt/developers/forms.py:300
 msgid "The {0} image asset is required."
 msgstr ""
 
-#: mkt/developers/forms.py:346
+#: mkt/developers/forms.py:351
 msgid "Only one rating from each ratings body may be selected."
 msgstr ""
 
-#: mkt/developers/forms.py:394 mkt/webapps/models.py:435
+#: mkt/developers/forms.py:429 mkt/webapps/models.py:435
 msgid "You must upload at least one screenshot or video."
 msgstr ""
 
-#: mkt/developers/forms.py:465
+#: mkt/developers/forms.py:500
 msgid "Packaged app too large for submission. Packages must be less than %s."
 msgstr ""
 
-#: mkt/developers/forms.py:477
+#: mkt/developers/forms.py:512
 msgid "Error extracting manifest from zip file."
 msgstr ""
 
-#: mkt/developers/forms.py:530
+#: mkt/developers/forms.py:565
 msgid "Provide a detailed description of your app"
 msgstr ""
 
-#: mkt/developers/forms.py:531 mkt/submit/forms.py:324
+#: mkt/developers/forms.py:566 mkt/submit/forms.py:346
 msgid "This description will appear on the details page."
 msgstr ""
 
-#: mkt/developers/forms.py:604
+#: mkt/developers/forms.py:639
 msgid "Please specify your app's Privacy Policy"
 msgstr ""
 
-#: mkt/developers/forms.py:625
+#: mkt/developers/forms.py:660
 msgid "Before changing your default locale you must have a name and description in that locale. You are missing %s."
 msgstr ""
 
-#: mkt/developers/forms.py:688
+#: mkt/developers/forms.py:723
 msgid "Your comments"
 msgstr ""
 
-#: mkt/developers/forms.py:711
+#: mkt/developers/forms.py:746
 msgid "Choose the regions your app will be listed in:"
 msgstr ""
 
-#: mkt/developers/forms.py:715
+#: mkt/developers/forms.py:750
 msgid "You must select at least one region."
 msgstr ""
 
-#: mkt/developers/forms.py:717
+#: mkt/developers/forms.py:752
 msgid "Other and new regions"
 msgstr ""
 
-#: mkt/developers/forms.py:750
+#: mkt/developers/forms.py:785
 msgid "Enable new regions"
 msgstr ""
 
-#: mkt/developers/forms.py:835
+#: mkt/developers/forms.py:870
 msgid "You must select at least one region or \"Other and new regions.\""
 msgstr ""
 
-#: mkt/developers/forms.py:842
+#: mkt/developers/forms.py:877
 msgid "You have selected a region that is not valid for your price point."
 msgstr ""
 
-#: mkt/developers/forms.py:962
+#: mkt/developers/forms.py:997
 msgid "Categories cannot be changed while your app is featured."
 msgstr ""
 
-#: mkt/developers/forms.py:1021
+#: mkt/developers/forms.py:1056
 msgid "Agree"
 msgstr ""
 
-#: mkt/developers/forms.py:1038
+#: mkt/developers/forms.py:1073
 msgid "Please enter a valid email address."
 msgstr ""
 
-#: mkt/developers/forms.py:1041
+#: mkt/developers/forms.py:1076
 msgid "Your email address"
 msgstr ""
 
-#: mkt/developers/forms.py:1044
+#: mkt/developers/forms.py:1079
 msgid "Text"
 msgstr ""
 
-#: mkt/developers/forms.py:1048
+#: mkt/developers/forms.py:1083
 msgid "You must agree to the Privacy Policy."
 msgstr ""
 
-#: mkt/developers/forms.py:1049 mkt/developers/forms_payments.py:378 mkt/developers/templates/developers/apps/edit/language.html:9
+#: mkt/developers/forms.py:1084 mkt/developers/forms_payments.py:384 mkt/developers/templates/developers/apps/edit/language.html:9
 msgid "Country"
 msgstr "Krajina"
 
-#: mkt/developers/forms.py:1084
+#: mkt/developers/forms.py:1119
 msgid "Transaction Type"
 msgstr ""
 
-#: mkt/developers/forms_payments.py:55 mkt/submit/forms.py:248
+#: mkt/developers/forms_payments.py:55 mkt/submit/forms.py:270
 msgid "App Price"
 msgstr ""
 
-#: mkt/developers/forms_payments.py:105
+#: mkt/developers/forms_payments.py:107
 msgid "Please select a price"
 msgstr ""
 
-#: mkt/developers/forms_payments.py:106
+#: mkt/developers/forms_payments.py:108
 msgid "Free (with in-app payments)"
 msgstr ""
 
-#: mkt/developers/forms_payments.py:117
+#: mkt/developers/forms_payments.py:119
 msgid "Promotional Pricing"
 msgstr ""
 
-#: mkt/developers/forms_payments.py:130
+#: mkt/developers/forms_payments.py:132
 msgid "Only supports carrier billing"
 msgstr ""
 
-#: mkt/developers/forms_payments.py:133
+#: mkt/developers/forms_payments.py:135
 msgid "Only supports credit-card billing"
 msgstr ""
 
-#: mkt/developers/forms_payments.py:137
+#: mkt/developers/forms_payments.py:139
 msgid "Supports all billing methods"
 msgstr ""
 
-#: mkt/developers/forms_payments.py:210
+#: mkt/developers/forms_payments.py:216
 msgid "If app is Free, in-app payments must be enabled"
 msgstr ""
 
-#: mkt/developers/forms_payments.py:217
+#: mkt/developers/forms_payments.py:223
 msgid "Not a valid choice"
 msgstr ""
 
-#: mkt/developers/forms_payments.py:306 mkt/developers/templates/developers/payments/premium.html:276
+#: mkt/developers/forms_payments.py:312 mkt/developers/templates/developers/payments/premium.html:276
 msgid "This is a paid upgrade of"
 msgstr ""
 
-#: mkt/developers/forms_payments.py:307
+#: mkt/developers/forms_payments.py:313
 msgid "Not an upgrade"
 msgstr ""
 
-#: mkt/developers/forms_payments.py:350
+#: mkt/developers/forms_payments.py:356
 msgid "Account Holder Name"
 msgstr ""
 
-#: mkt/developers/forms_payments.py:352
+#: mkt/developers/forms_payments.py:358
 msgid "Company Name"
 msgstr ""
 
-#: mkt/developers/forms_payments.py:354
+#: mkt/developers/forms_payments.py:360
 msgid "Vendor Name"
 msgstr ""
 
-#: mkt/developers/forms_payments.py:356
+#: mkt/developers/forms_payments.py:362
 msgid "Financial Email"
 msgstr ""
 
-#: mkt/developers/forms_payments.py:359
+#: mkt/developers/forms_payments.py:365
 msgid "Administrative Email"
 msgstr ""
 
-#: mkt/developers/forms_payments.py:362
+#: mkt/developers/forms_payments.py:368
 msgid "Support Email"
 msgstr ""
 
-#: mkt/developers/forms_payments.py:366
+#: mkt/developers/forms_payments.py:372
 msgid "Address"
 msgstr ""
 
-#: mkt/developers/forms_payments.py:368
+#: mkt/developers/forms_payments.py:374
 msgid "Address 2"
 msgstr ""
 
-#: mkt/developers/forms_payments.py:370
+#: mkt/developers/forms_payments.py:376
 msgid "City/Municipality"
 msgstr ""
 
-#: mkt/developers/forms_payments.py:372
+#: mkt/developers/forms_payments.py:378
 msgid "State/Province/Region"
 msgstr ""
 
-#: mkt/developers/forms_payments.py:374
+#: mkt/developers/forms_payments.py:380
 msgid "Zip/Postal Code"
 msgstr ""
 
-#: mkt/developers/forms_payments.py:376
+#: mkt/developers/forms_payments.py:382
 msgid "Phone"
 msgstr ""
 
-#: mkt/developers/forms_payments.py:381
+#: mkt/developers/forms_payments.py:387
 msgid "I prefer to be paid in"
 msgstr ""
 
-#: mkt/developers/forms_payments.py:384
+#: mkt/developers/forms_payments.py:390
 msgid "VAT Number"
 msgstr ""
 
-#: mkt/developers/forms_payments.py:387
+#: mkt/developers/forms_payments.py:393
 msgid "Bank Account Number"
 msgstr ""
 
-#: mkt/developers/forms_payments.py:390
-msgid "Bank Account Code"
-msgstr ""
-
-#: mkt/developers/forms_payments.py:392
-msgid "Bank Name"
-msgstr ""
-
-#: mkt/developers/forms_payments.py:394
-msgid "Bank Address"
-msgstr ""
-
 #: mkt/developers/forms_payments.py:396
-msgid "Bank Address 2"
+msgid "SWIFT code"
 msgstr ""
 
 #: mkt/developers/forms_payments.py:398
+msgid "Bank Name"
+msgstr ""
+
+#: mkt/developers/forms_payments.py:400
+msgid "Bank Address"
+msgstr ""
+
+#: mkt/developers/forms_payments.py:402
+msgid "Bank Address 2"
+msgstr ""
+
+#: mkt/developers/forms_payments.py:404
 msgid "Bank City/Municipality"
 msgstr ""
 
-#: mkt/developers/forms_payments.py:401
+#: mkt/developers/forms_payments.py:407
 msgid "Bank State/Province/Region"
 msgstr ""
 
-#: mkt/developers/forms_payments.py:403
+#: mkt/developers/forms_payments.py:409
 msgid "Bank Zip/Postal Code"
 msgstr ""
 
-#: mkt/developers/forms_payments.py:405
+#: mkt/developers/forms_payments.py:411
 msgid "Bank Country"
 msgstr ""
 
-#: mkt/developers/forms_payments.py:407 mkt/developers/templates/developers/payments/includes/account_list.html:12
+#: mkt/developers/forms_payments.py:413 mkt/developers/templates/developers/payments/includes/account_list.html:12
 msgid "Account Name"
 msgstr ""
 
-#: mkt/developers/forms_payments.py:434 mkt/developers/templates/developers/payments/premium.html:121
+#: mkt/developers/forms_payments.py:440 mkt/developers/templates/developers/payments/premium.html:121
 msgid "Payment Account"
 msgstr ""
 
-#: mkt/developers/forms_payments.py:477
+#: mkt/developers/forms_payments.py:483
 msgid "You cannot remove a payment account from an app."
 msgstr ""
 
-#: mkt/developers/forms_payments.py:481
+#: mkt/developers/forms_payments.py:487
 msgid "You are not permitted to change payment accounts."
 msgstr ""
 
-#: mkt/developers/forms_payments.py:525
+#: mkt/developers/forms_payments.py:531
 msgid "No payment account set up for that app"
 msgstr ""
 
-#: mkt/developers/forms_payments.py:528
+#: mkt/developers/forms_payments.py:534
 msgid "Account not set up"
 msgstr ""
 
@@ -16421,104 +16413,104 @@ msgstr "Ikony musí být čtvercové."
 msgid "App previews must be at least {0}px by {1}px or {1}px by {0}px."
 msgstr ""
 
-#: mkt/developers/views.py:148
+#: mkt/developers/views.py:150
 #, fuzzy
 msgid "Paid apps cannot be deleted. Disable this app instead."
 msgstr "Placené aplikace nemohou být smazány. Na místo toho aplikaci zakažte."
 
-#: mkt/developers/views.py:158
+#: mkt/developers/views.py:160
 #, fuzzy
 msgid "App deleted."
 msgstr "Aplikace byla smazána."
 
 # 89%
-#: mkt/developers/views.py:163
+#: mkt/developers/views.py:165
 #, fuzzy
 msgid "Password was incorrect. App was not deleted."
 msgstr "Heslo bylo zadáno nekorektně. Aplikace nebyla smazána."
 
-#: mkt/developers/views.py:211
+#: mkt/developers/views.py:218
 #, fuzzy
 msgid "App successfully resubmitted."
 msgstr "Aplikace byla znovu úspěšně odeslána."
 
-#: mkt/developers/views.py:242
+#: mkt/developers/views.py:249
 #, fuzzy
 msgid "New version successfully added."
 msgstr "Nová verze byla úspěšně přidána."
 
-#: mkt/developers/views.py:288
+#: mkt/developers/views.py:302
 #, fuzzy
 msgid "Version successfully edited."
 msgstr "Verze byla úspěšně upravena."
 
-#: mkt/developers/views.py:329
+#: mkt/developers/views.py:343
 msgid "Version successfully made public."
 msgstr ""
 
 # 77%
-#: mkt/developers/views.py:344
+#: mkt/developers/views.py:358
 #, fuzzy
 msgid "Version \"{0}\" deleted."
 msgstr "Verze \"{0}\" byla smazána."
 
-#: mkt/developers/views.py:852
+#: mkt/developers/views.py:868
 #, fuzzy
 msgid "Terms of service accepted."
 msgstr "Podmínky služby byly odsouhlaseny."
 
-#: mkt/developers/views.py:865
+#: mkt/developers/views.py:881
 msgid "Users with the admin role cannot use the API."
 msgstr ""
 
-#: mkt/developers/views.py:873
+#: mkt/developers/views.py:889
 msgid "No such API key."
 msgstr ""
 
-#: mkt/developers/views.py:885
+#: mkt/developers/views.py:901
 #, fuzzy
 msgid "New API key generated."
 msgstr "Nový klíč k API byl vygenerován."
 
-#: mkt/developers/views.py:904
+#: mkt/developers/views.py:920
 msgid "Created blocklisted version."
 msgstr ""
 
-#: mkt/developers/views.py:906
+#: mkt/developers/views.py:922
 msgid "App already blocklisted."
 msgstr ""
 
-#: mkt/developers/views_payments.py:81 mkt/developers/views_payments.py:98
+#: mkt/developers/views_payments.py:83 mkt/developers/views_payments.py:100
 #, fuzzy
 msgid "We encountered a problem connecting to the payment server."
 msgstr "Vyskytl se problém při připojování k platebnímu serveru."
 
-#: mkt/developers/views_payments.py:115
+#: mkt/developers/views_payments.py:117
 #, fuzzy
 msgid "We encountered a problem while updating the payment server."
 msgstr "Vyskytl se problém s aktualizací informací na platebním serveru."
 
-#: mkt/developers/views_payments.py:162 mkt/ecosystem/templates/ecosystem/publish_payments.html:37
+#: mkt/developers/views_payments.py:164 mkt/ecosystem/templates/ecosystem/publish_payments.html:37
 msgid "Credit card"
 msgstr ""
 
-#: mkt/developers/views_payments.py:163
+#: mkt/developers/views_payments.py:165
 msgid "Carrier"
 msgstr ""
 
-#: mkt/developers/views_payments.py:256
+#: mkt/developers/views_payments.py:258
 msgid "Secret was reset successfully."
 msgstr ""
 
-#: mkt/developers/views_payments.py:260
+#: mkt/developers/views_payments.py:262
 msgid "Key and secret were created successfully."
 msgstr ""
 
-#: mkt/developers/views_payments.py:286
+#: mkt/developers/views_payments.py:288
 msgid "Your app is not configured for in-app payments."
 msgstr ""
 
-#: mkt/developers/views_payments.py:292
+#: mkt/developers/views_payments.py:294
 msgid "No payment account for this app."
 msgstr ""
 
@@ -16592,40 +16584,40 @@ msgstr ""
 msgid "Deny"
 msgstr ""
 
-#: mkt/developers/templates/developers/skeleton_impala.html:61
+#: mkt/developers/templates/developers/skeleton_impala.html:62
 msgid "Firefox Marketplace Developers"
 msgstr "Vývojári Firefox Marketplace"
 
-#: mkt/developers/templates/developers/skeleton_impala.html:66
+#: mkt/developers/templates/developers/skeleton_impala.html:67
 msgid "API Reference"
 msgstr ""
 
-#: mkt/developers/templates/developers/skeleton_impala.html:69
+#: mkt/developers/templates/developers/skeleton_impala.html:70
 msgid "Submit an app"
 msgstr ""
 
-#: mkt/developers/templates/developers/skeleton_impala.html:73 mkt/templates/mkt/header.html:28
+#: mkt/developers/templates/developers/skeleton_impala.html:74 mkt/templates/mkt/header.html:28
 msgid "Sign In"
 msgstr "Prihlásiť"
 
-#: mkt/developers/templates/developers/skeleton_impala.html:80 mkt/templates/mkt/header.html:21
+#: mkt/developers/templates/developers/skeleton_impala.html:81 mkt/templates/mkt/header.html:21
 msgid "Settings"
 msgstr "Nastavenia"
 
-#: mkt/developers/templates/developers/skeleton_impala.html:97 templates/base.html:58 templates/impala/base.html:105
+#: mkt/developers/templates/developers/skeleton_impala.html:98 templates/base.html:58 templates/impala/base.html:105
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "Niektoré funkcie sú dočasne vypnuté kvôli údržbe stránok. Stránka bude plne dostupná onedlho."
 
-#: mkt/developers/templates/developers/skeleton_impala.html:103
+#: mkt/developers/templates/developers/skeleton_impala.html:104
 msgid "The Terms of Service have changed since you last agreed to them. Please read and agree to the <a href=\"%(url)s\">new terms</a>."
 msgstr ""
 
-#: mkt/developers/templates/developers/skeleton_impala.html:130 mkt/templates/mkt/base_mobile.html:112
+#: mkt/developers/templates/developers/skeleton_impala.html:131 mkt/templates/mkt/base_mobile.html:112
 #, fuzzy
 msgid "Please sign in"
 msgstr "Přihlaste se prosím"
 
-#: mkt/developers/templates/developers/skeleton_impala.html:132
+#: mkt/developers/templates/developers/skeleton_impala.html:133
 msgid "Just log in or register with your <a href=\"%(url)s\">Persona</a> account below."
 msgstr ""
 
@@ -16996,12 +16988,12 @@ msgstr ""
 msgid "Enter email addresses, separated by commas"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/edit/admin.html:90
+#: mkt/developers/templates/developers/apps/edit/admin.html:123
 #, fuzzy
 msgid "Content Ratings"
 msgstr "Hodnocení obsahu"
 
-#: mkt/developers/templates/developers/apps/edit/admin.html:92
+#: mkt/developers/templates/developers/apps/edit/admin.html:125
 msgid "Ratings from official ratings bodies for this app."
 msgstr ""
 
@@ -17658,40 +17650,28 @@ msgstr ""
 msgid "Add Bango Account"
 msgstr "Přidat účet Bango"
 
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:24
-msgid "Bank (2)"
-msgstr "Banka (2)"
-
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:28
-msgid "Branch (4)"
-msgstr "Pobočka (4)"
-
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:32
-msgid "Account (7)"
-msgstr "Účet (7)"
-
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:36
-msgid "Suffix (2)"
+#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:19
+msgid "Usually 9, 10 or 11 digits. Example: 0114584906."
 msgstr ""
 
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:39
-msgid "My account number is not in this format."
+#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:26
+msgid "Either 8 or 11 characters. Example: WFBIUS6WPDX."
 msgstr ""
 
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:57 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:30
+#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:36 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:30
 msgid "Optional"
 msgstr ""
 
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:148
+#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:127
 msgid "Register Payment Account"
 msgstr ""
 
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:159 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:130
+#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:138 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:130
 #, fuzzy
 msgid "Processing Request..."
 msgstr "Probíhá zpracování požadavku..."
 
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:161 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:132
+#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:140 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:132
 #, fuzzy
 msgid "Please wait while we contact the payment server."
 msgstr "Probíhá kontaktování platebního serveru, vyčkejte prosím."
@@ -18062,71 +18042,163 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:15
 msgid ""
-"The ability to use apps when not connected to the Internet is especially important for mobile devices, which may wander out of coverage areas. But it also matters for desktop systems, the common "
-"example being use on an airplane that lacks WiFi."
+"The ability to use apps when not connected to the Internet is especially important for mobile devices, which may wander out of coverage areas. Of course, reducing the amount of time your app waits "
+"for data from a server improves the responsiveness of your app. This makes your app <em>feel</em> fast and is one of the most important considerations when developing web apps with HTML5."
 msgstr ""
 
-#: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:23
-msgid "Several strategies and technologies can help ensure a good offline experience:"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:30 mkt/ecosystem/templates/ecosystem/build_apps_offline.html:44
-msgid "Application cache"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:34 mkt/ecosystem/templates/ecosystem/build_apps_offline.html:63
-msgid "Checking connectivity"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:38
-msgid "Local storage"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:46
-msgid "The primary way to make an app work offline is with an application cache, which stores resources for the app on the client system so that they are available even when the Internet is not."
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:55
-msgid "Using the application cache"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:60
-msgid "W3C specification for offline Web applications"
-msgstr ""
-
-#: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:65
+#: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:26
 msgid ""
-"A key factor in working well offline is to check whether the device has connectivity and respond appropriately when it doesn't. Even a message to the user that the app won't work offline is better "
-"than getting stuck, or getting a generic time-out error."
+"There are a few technologies built into HTML (and available to Firefox OS) that you can use to ensure your app works offline. These technologies can be used to improve the responsiveness of your "
+"current web app. The key to a responsive app experience (similar to iOS and Android) is speed. Using Appcache and JavaScript storage will allow your app to be downloaded and cached until you update "
+"its assets. This means your users can now use your app offline."
 msgstr ""
 
-#. Do not localize text in <code></code>
-#: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:74
+#: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:37
+msgid "Access your CSS, JS, and image files offline"
+msgstr ""
+
+#: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:40
 msgid ""
-"The simplest way to do this is to check, and listen for changes to, the <a href=\"%(url)s\"><code>window.navigator.onLine</code></a> property. However, that value is not guaranteed to be accurate."
+"Create an <strong><a href=\"%(appcache_url)s\">Appcache manifest</a></strong> that lists all the asset URLs your app needs access to offline. Typically, this will be a list of all the CSS, fonts, "
+"JavaScript, and image files you use. You can <a href=\"%(generator_url)s\" rel=\"external\">use tools</a> to generate your manifest or create one by hand. This is an example of the format, from <a "
+"href=\"%(example_manifest)s\" rel=\"external\">Face Value’s manifest</a>:"
+msgstr ""
+
+#: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:73
+msgid ""
+"If you're using JavaScript templates like <a href=\"%(mustache_url)s\" rel=\"external\">mustache</a>, be sure to include your templates in your Appcache manifest or precompile them into your built "
+"JavaScript files."
 msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:81
-msgid "If you are using <a href=\"%(url)s\">XMLHttpRequest</a> to update data dynamically, you can check its response to determine if the network connection has dropped during the use of your app."
+msgid "Save user data and settings without a server"
 msgstr ""
 
-#: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:88
-msgid "See also <a href=\"%(url)s\">Online and offline events</a>."
+#: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:84
+msgid "There are many JavaScript APIs for local, persistent storage. From most to least compatible across browers, your options are:"
 msgstr ""
 
-#: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:92
+#: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:91
+msgid ""
+"<dt><a href=\"%(localstorage_url)s\">localStorage</a></dt> <dd> Synchronous and easy-to-use, localStorage is available in modern browsers, but it's also the slowest. Try to avoid using it directly "
+"and use a library that includes it as a fallback instead. </dd> <dt><a href=\"%(indexeddb_url)s\">IndexedDB</a></dt> <dd> IndexedDB is an asynchronous and fast library that can store any JavaScript "
+"type without having to serialize it first. It isn't available in IE or iOS as of writing but is available in Chrome and Firefox. </dd> <dt><a href=\"%(websql_url)s\" rel=\"external\">WebSQL</a></"
+"dt> <dd> WebSQL is asynchronous like IndexedDB, but is only needed for Safari/iOS compatibility. WebSQL is officially deprecated by the W3C but is still supported by many WebKit browsers. </dd>"
+msgstr ""
+
+#: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:119
+msgid ""
+"We recommend using <a href=\"%(localforage_url)s\" rel=\"external\">localForage</a>, which combines a library from Firefox OS with fallbacks for other browsers. It allows you to store key/value "
+"pairs for use between page loads, but does so asynchronously whenever possible. This improves the responsiveness of your app."
+msgstr ""
+
+#: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:137
+msgid "Notice we do this asynchronously, as all APIs here are async."
+msgstr ""
+
+#: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:142
+msgid "On localStorage"
+msgstr ""
+
+#: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:145
+msgid ""
+"localStorage is the most compatible API for saving data between page views in JavaScript, but it has a few major limitations. localStorage is synchronous, so using it blocks the main thread from "
+"running, causing your app to feel slow when getting or setting data. It also can't handle large amounts of data or JavaScript types like TypedArrays. You can use localStorage for small amounts of "
+"data you interact with rarely, but we recommend <a href=\"%(localForage)s\" rel=\"external\">localForage's asyncStorage library</a>, which uses faster storage by default but falls back to "
+"localStorage if it's all that is available."
+msgstr ""
+
+#: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:159
+msgid "Caching large files and storing media"
+msgstr ""
+
+#: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:162
+msgid ""
+"Use <a href=\"%(storage_url)s\">DeviceStorage</a> or <a href=\"%(indexeddb_url)s\">IndexedDB</a> to store large pieces of data. localStorage is unsuitable for large blob storage, but you can save "
+"chunks of data to IndexedDB. The Podcasts reference app does this in <a href=\"%(podcasts_url)s\" rel=\"external\">its episode model code</a>."
+msgstr ""
+
+#: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:175
+msgid "Keep in mind that storing large files (over 100MB) is still largely uncharted territory and you may encouter some issues."
+msgstr ""
+
+#: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:181
+msgid "A Note on Packaged Apps"
+msgstr ""
+
+#: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:184
+msgid "If you’re <a href=\"%(packaged_apps_url)s\">developing a packaged app</a>, you don't need to use an Appcache manifest; all app assets are downloaded to the user’s device during install."
+msgstr ""
+
+#: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:192
+msgid "Managing Offline State and HTTP Requests"
+msgstr ""
+
+#: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:195
+msgid ""
+"There are a few APIs available to determine the user's connection status. These are useful because you can skip HTTP requests if you know the user is offline. You can also display less generic "
+"failure messages. For example: if you were writing a Twitter client, a message like “New tweets cannot be loaded while offline” is more informative than “Could not make HTTP connection.”"
+msgstr ""
+
+#: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:206
+msgid ""
+"Try to focus on loading data from your/others' API only when needed, and keep data cached so you don't have to request the same data twice. It can also be helpful to prefetch some data so the user "
+"can use parts of your app offline that they have yet to open."
+msgstr ""
+
+#: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:214
+msgid "Checking connectivity"
+msgstr ""
+
+#: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:217
+msgid ""
+"A key factor in working well offline is to check whether the device has connectivity and to respond appropriately when it doesn't. A message to the user that the app won't work offline is better "
+"than getting stuck or getting a generic timeout error."
+msgstr ""
+
+#. Do not localize text in <code></code>
+#: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:226
+msgid ""
+"The simplest way to do this is to check and listen for changes to the <a href=\"%(url)s\"><code>window.navigator.onLine</code></a> property. Note that this value can sometimes return false "
+"positives."
+msgstr ""
+
+#: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:233
+msgid "See also: <a href=\"%(url)s\">Online and offline events</a>."
+msgstr ""
+
+#: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:238
+msgid "HTTP Requests"
+msgstr ""
+
+#: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:241
+msgid ""
+"If you are using <a href=\"%(xhr_url)s\">XMLHttpRequest</a> to update data dynamically, you can check its response to determine if the network connection has dropped during the use of your app. If "
+"your app has <a href=\"%(systemxhr_url)s\">systemXHR privileges</a>, you can check for a connection to a site unlikely to be down to determine if you have an active connection (iOS does this with "
+"Apple.com)."
+msgstr ""
+
+#: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:253
+msgid "We'll assume we aren't online."
+msgstr ""
+
+#: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:256
+msgid "Assume we're a packaged app with systemXHR permissions."
+msgstr ""
+
+#: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:278
 msgid "Resources"
 msgstr ""
 
-#: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:97
+#: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:283
 msgid "Working off the grid with HTML5 offline"
 msgstr ""
 
-#: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:102
+#: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:288
 msgid "&quot;Offline&quot;: What does it mean and why do I care?"
 msgstr ""
 
-#: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:110
+#: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:296
 msgid "Dive into HTML5: Let's take this offline"
 msgstr ""
 
@@ -21776,7 +21848,7 @@ msgid "Account Lookup"
 msgstr "Vyhľadanie účtu"
 
 #. L10n: {0} is the addon name.
-#: mkt/purchase/webpay.py:41
+#: mkt/purchase/webpay.py:42
 msgid "Firefox Marketplace purchase of {0}"
 msgstr ""
 
@@ -21891,7 +21963,7 @@ msgstr ""
 msgid "Attachment:"
 msgstr ""
 
-#: mkt/reviewers/forms.py:36 mkt/submit/forms.py:323
+#: mkt/reviewers/forms.py:36 mkt/submit/forms.py:345
 msgid "Description:"
 msgstr ""
 
@@ -21941,7 +22013,7 @@ msgstr ""
 msgid "Someone else is reviewing this theme."
 msgstr ""
 
-#: mkt/reviewers/forms.py:265 mkt/reviewers/templates/reviewers/queue.html:53
+#: mkt/reviewers/forms.py:269 mkt/reviewers/templates/reviewers/queue.html:53
 msgid "Privileged App"
 msgstr ""
 
@@ -22028,112 +22100,112 @@ msgstr ""
 msgid "Flagged"
 msgstr ""
 
-#: mkt/reviewers/tasks.py:26
+#: mkt/reviewers/tasks.py:30
 msgid "Duplicate Submission"
 msgstr ""
 
-#: mkt/reviewers/tasks.py:38
+#: mkt/reviewers/tasks.py:42
 #, fuzzy
 msgid "Thanks for submitting your Theme"
 msgstr "Děkujeme za přidání vašeho motivu"
 
-#: mkt/reviewers/tasks.py:42 mkt/reviewers/tasks.py:46
+#: mkt/reviewers/tasks.py:46 mkt/reviewers/tasks.py:50
 #, fuzzy
 msgid "A problem with your Theme submission"
 msgstr "Při přidávání vašeho motivu nastal problém"
 
-#: mkt/reviewers/tasks.py:50
+#: mkt/reviewers/tasks.py:54
 msgid "Theme submission flagged for review"
 msgstr ""
 
-#: mkt/reviewers/tasks.py:57
+#: mkt/reviewers/tasks.py:61
 #, fuzzy
 msgid "A question about your Theme submission"
 msgstr "Při přidávání vašeho motivu nastal problém"
 
-#: mkt/reviewers/utils.py:447
+#: mkt/reviewers/utils.py:406
 #, fuzzy
 msgid "This will approve the sandboxed app so it appears on the public side."
 msgstr "Provede přesunutí aplikace ze sandboxu na veřejný web."
 
-#: mkt/reviewers/utils.py:453
+#: mkt/reviewers/utils.py:412
 #, fuzzy
 msgid "This will reject the app and remove it from the review queue."
 msgstr "Provede zamítnutí aplikace a její odstranění z fronty pro schválení."
 
-#: mkt/reviewers/utils.py:459
+#: mkt/reviewers/utils.py:418
 msgid "This will send the author(s) an email requesting more information."
 msgstr "Týmto odošlete autorovi e-mailovú správu so žiadosťou o ďalšie informácie."
 
 # 88%
-#: mkt/reviewers/utils.py:463
+#: mkt/reviewers/utils.py:422
 #, fuzzy
 msgid "Escalate"
 msgstr "Eskalovaná recenzia"
 
-#: mkt/reviewers/utils.py:465
+#: mkt/reviewers/utils.py:424
 msgid "Flag this app for an admin to review."
 msgstr ""
 
-#: mkt/reviewers/utils.py:470
+#: mkt/reviewers/utils.py:429
 #, fuzzy
 msgid "Make a comment on this app. The author won't be able to see this."
 msgstr "Okomentujte aplikaci. Autor komentář nebude moci vidět."
 
-#: mkt/reviewers/utils.py:474
+#: mkt/reviewers/utils.py:433
 #, fuzzy
 msgid "Clear Escalation"
 msgstr "Zrušit detailní kontrolu"
 
-#: mkt/reviewers/utils.py:476
+#: mkt/reviewers/utils.py:435
 #, fuzzy
 msgid "Clear this app from the escalation queue. The author will get no email or see comments here."
 msgstr "Odebere aplikaci ze seznamu aplikací pro kontrolu administrátorem. Autor o tom neobdrží informaci a ani neuvidí žádný komentář."
 
-#: mkt/reviewers/utils.py:481
+#: mkt/reviewers/utils.py:440
 #, fuzzy
 msgid "Clear Re-review"
 msgstr "Opětovná kontrola zrušena"
 
-#: mkt/reviewers/utils.py:483
+#: mkt/reviewers/utils.py:442
 msgid "Clear this app from the re-review queue. The author will get no email or see comments here."
 msgstr ""
 
-#: mkt/reviewers/utils.py:488
+#: mkt/reviewers/utils.py:447
 #, fuzzy
 msgid "Disable app"
 msgstr "Zakázat aplikaci"
 
-#: mkt/reviewers/utils.py:490
+#: mkt/reviewers/utils.py:449
 #, fuzzy
 msgid "Disable the app, removing it from public results. Sends comments to author."
 msgstr "Provede zakázání aplikace a její odstranění z veřejné části webu. Autorovi aplikace pošle komentář."
 
 # 80%
-#: mkt/reviewers/views.py:66
+#: mkt/reviewers/views.py:77
 #, fuzzy
 msgid "New Apps (Under 5 days)"
 msgstr "Nové aplikace (ne starší 5 dní)"
 
-#: mkt/reviewers/views.py:226
+#: mkt/reviewers/views.py:246
 msgid "Only senior reviewers can review blocklisted apps."
 msgstr ""
 
-#: mkt/reviewers/views.py:277
+#: mkt/reviewers/views.py:297
 #, fuzzy
 msgid "Device(s) changed by reviewer: {0}"
 msgstr "Zařízení byla redaktorem změněna."
 
-#: mkt/reviewers/views.py:281 mkt/reviewers/views.py:302 mkt/submit/forms.py:33 mkt/submit/forms.py:42
+#: mkt/reviewers/views.py:301 mkt/reviewers/views.py:322 mkt/submit/forms.py:33 mkt/submit/forms.py:42
 msgid "Removed {0}"
 msgstr "Odstránené {0}"
 
 #. L10n: {0} is the list of requirements changes.
-#: mkt/reviewers/views.py:304
+#: mkt/reviewers/views.py:324
 msgid "Requirements changed by reviewer: {0}"
 msgstr ""
 
-#: mkt/reviewers/views_themes.py:286
+#: mkt/reviewers/views_themes.py:316
 msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
 msgstr ""
 
@@ -22223,7 +22295,7 @@ msgid "Abuse Reports:"
 msgstr ""
 
 # 88%
-#: mkt/reviewers/templates/reviewers/queue.html:101 mkt/reviewers/templates/reviewers/themes/queue_list.html:72
+#: mkt/reviewers/templates/reviewers/queue.html:101 mkt/reviewers/templates/reviewers/themes/queue_list.html:73
 #, fuzzy
 msgid "There are currently no items of this type to review."
 msgstr "Aktuálně nečekají na kontrolu žádné položky."
@@ -22340,7 +22412,7 @@ msgstr ""
 msgid "%(stars)s by %(user)s on %(date)s (%(locale)s)"
 msgstr ""
 
-#: mkt/reviewers/templates/reviewers/includes/queue_search.html:11 mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:13 mkt/reviewers/templates/reviewers/themes/queue_list.html:14
+#: mkt/reviewers/templates/reviewers/includes/queue_search.html:11 mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:13 mkt/reviewers/templates/reviewers/themes/queue_list.html:15
 msgid "Clear Search"
 msgstr "Vymazať hľadanie"
 
@@ -22386,6 +22458,34 @@ msgstr "Důvod"
 #, fuzzy
 msgid "There are currently no reviews."
 msgstr "V moderovaní nie sú momentálne žiadne recenzie."
+
+#: mkt/reviewers/templates/reviewers/themes/home.html:13
+msgid "{num} Pending Theme Review"
+msgid_plural "{num} Pending Theme Reviews"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#: mkt/reviewers/templates/reviewers/themes/home.html:21
+msgid "{num} Flagged Review"
+msgid_plural "{num} Flagged Reviews"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#: mkt/reviewers/templates/reviewers/themes/home.html:28
+msgid "{num} Update"
+msgid_plural "{num} Updates"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#: mkt/reviewers/templates/reviewers/themes/home.html:43
+msgid "{num} unreviewed theme submission this week."
+msgid_plural "{num} unreviewed theme submissions this week."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
 
 #: mkt/reviewers/templates/reviewers/themes/logs.html:4
 #, fuzzy
@@ -22448,11 +22548,11 @@ msgstr "Skontrolované {0} z {1}"
 msgid "There are currently no Themes to review."
 msgstr "Aktuálně nečekají na kontrolu žádné položky."
 
-#: mkt/reviewers/templates/reviewers/themes/queue_list.html:23
+#: mkt/reviewers/templates/reviewers/themes/queue_list.html:24
 msgid "Release My Theme Locks"
 msgstr ""
 
-#: mkt/reviewers/templates/reviewers/themes/queue_list.html:30
+#: mkt/reviewers/templates/reviewers/themes/queue_list.html:31
 msgid "Interactive Theme Queue"
 msgstr ""
 
@@ -22841,80 +22941,84 @@ msgstr "Nemůže být zdarma a zároveň placená."
 msgid "Please select a device."
 msgstr "Zvolte prosím zařízení."
 
-#: mkt/submit/forms.py:127
+#: mkt/submit/forms.py:50
+msgid "Packaged apps are valid for only Firefox OS and Android."
+msgstr ""
+
+#: mkt/submit/forms.py:129
 #, fuzzy
 msgid "Agree and Continue"
 msgstr "Souhlasím a pokračovat"
 
-#: mkt/submit/forms.py:226
+#: mkt/submit/forms.py:248
 #, fuzzy
 msgid "Do you already have a PayPal Premier or Business account?"
 msgstr "Máte již účet PayPal Premier či Business?"
 
-#: mkt/submit/forms.py:229
+#: mkt/submit/forms.py:251
 #, fuzzy
 msgid "PayPal email address"
 msgstr "E-mailová adresa na PayPalu"
 
-#: mkt/submit/forms.py:235
+#: mkt/submit/forms.py:257
 #, fuzzy
 msgid "I'll link my PayPal account later."
 msgstr "Přiřadím svůj účet na PayPal později."
 
-#: mkt/submit/forms.py:240
+#: mkt/submit/forms.py:262
 #, fuzzy
 msgid "The PayPal email is required."
 msgstr "E-mailová adresa na PayPalu je vyžadována."
 
-#: mkt/submit/forms.py:253
+#: mkt/submit/forms.py:275
 #, fuzzy
 msgid "When should your app be made available for sale?"
 msgstr "Kdy by měla být vaše aplikace k dispozici pro prodej?"
 
 #. L10n: "App" is a paid version of this app. "from" is this app.
-#: mkt/submit/forms.py:260
+#: mkt/submit/forms.py:282
 #, fuzzy
 msgid "App to upgrade from"
 msgstr "Aplikace pro aktualizaci z"
 
-#: mkt/submit/forms.py:327
+#: mkt/submit/forms.py:349
 msgid "Privacy Policy:"
 msgstr "Zásady ochrany súkromia:"
 
-#: mkt/submit/forms.py:328
+#: mkt/submit/forms.py:350
 #, fuzzy
 msgid "A privacy policy that explains what data is transmitted from a user's computer and how it is used is required."
 msgstr "Zásady ochrany soukromí, které vysvětlují, jaká data jsou přenášena z počítače uživatele a jak je s nimi nakládáno."
 
-#: mkt/submit/forms.py:332
+#: mkt/submit/forms.py:354
 msgid "Homepage:"
 msgstr "Domovská stránka:"
 
-#: mkt/submit/forms.py:333
+#: mkt/submit/forms.py:355
 #, fuzzy
 msgid "If your app has another homepage, enter its address here."
 msgstr "Pokud má vaše aplikace další domovskou stránku, vložte zde její adresu."
 
-#: mkt/submit/forms.py:337
+#: mkt/submit/forms.py:359
 msgid "Support Website:"
 msgstr "Stránka podpory:"
 
-#: mkt/submit/forms.py:338
+#: mkt/submit/forms.py:360
 #, fuzzy
 msgid "If your app has a support website or forum, enter its address here."
 msgstr "Pokud má vaše aplikace stránky podpory či fórum, vložte zde jejich adresy."
 
-#: mkt/submit/forms.py:348
+#: mkt/submit/forms.py:370
 #, fuzzy
 msgid "Does your app require Flash support?"
 msgstr "Vyžaduje vaše aplikace podporu Flashe?"
 
-#: mkt/submit/forms.py:356
+#: mkt/submit/forms.py:378
 #, fuzzy
 msgid "Publish my app in the Firefox Marketplace as soon as it's reviewed."
 msgstr "Publikujte mou aplikaci na Firefox Marketplace jakmile bude zkontrolována."
 
-#: mkt/submit/forms.py:358
+#: mkt/submit/forms.py:380
 #, fuzzy
 msgid ""
 "If selected your app will be published immediately following its approval by reviewers. If you don't select this option you will be notified via email about your app's approval and you will need to "
@@ -22986,10 +23090,8 @@ msgid ""
 "We've got your app saved and ready to go! Your app is currently awaiting review, and will show up on listing pages and in search once it is reviewed. Until then, feel free to tweak your app's "
 "details and settings."
 msgstr ""
-"Vašu aplikáciu sme uložili a všetko je hotovo! Vaša aplikácia teraz čaká na "
-"kontrolu a v kategóriách a vyhľadávaní sa zobrazí akonáhle bude "
-"skontrolovaná. Dovtedy môžete upravovať detaily vašej aplikácie a jej "
-"nastavenia."
+"Vašu aplikáciu sme uložili a všetko je hotovo! Vaša aplikácia teraz čaká na kontrolu a v kategóriách a vyhľadávaní sa zobrazí akonáhle bude skontrolovaná. Dovtedy môžete upravovať detaily vašej "
+"aplikácie a jej nastavenia."
 
 #: mkt/submit/templates/submit/done.html:53
 #, fuzzy

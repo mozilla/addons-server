@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-23 09:56-0700\n"
+"POT-Creation-Date: 2013-08-30 15:53-0700\n"
 "PO-Revision-Date: 2013-08-26 07:47+0000\n"
 "Last-Translator: Sara <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
@@ -239,11 +239,11 @@ msgstr "Cerca componenti aggiuntivi per <b>{0}</b>"
 msgid "Category"
 msgstr "Categoria"
 
-#: media/js/impala-all.js:2446 media/js/impala-min.js:1 media/js/zamboni/browserid_support.js:32 media/js/zamboni/mobile-all.js:12078 media/js/zamboni/mobile-min.js:32
+#: media/js/impala-all.js:2446 media/js/impala-min.js:1 media/js/zamboni/browserid_support.js:37 media/js/zamboni/mobile-all.js:12078 media/js/zamboni/mobile-min.js:32
 msgid "Admins and editors must provide a password to log in."
 msgstr "Amministratori e revisori devono fornire una password per accedere."
 
-#: media/js/impala-all.js:2451 media/js/impala-min.js:1 media/js/zamboni/browserid_support.js:37 media/js/zamboni/mobile-all.js:12083 media/js/zamboni/mobile-min.js:32
+#: media/js/impala-all.js:2451 media/js/impala-min.js:1 media/js/zamboni/browserid_support.js:42 media/js/zamboni/mobile-all.js:12083 media/js/zamboni/mobile-min.js:32
 msgid "BrowserID login failed. Maybe you don't have an account under that email address?"
 msgstr "Login BrowserID non riuscito. Forse non hai un account con questo indirizzo email?"
 
@@ -443,11 +443,8 @@ msgstr "L'app ha superato il processo di validazione senza errori né avvisi."
 #: media/js/devreg/devhub.js:186
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
-msgstr[0] ""
-"È fallito il processo di validazione dell'app con {0} errore e {1} "
-"messaggio."
-msgstr[1] ""
-"È fallito il processo di validazione dell'app con {0} errori e {1} messaggi."
+msgstr[0] "È fallito il processo di validazione dell'app con {0} errore e {1} messaggio."
+msgstr[1] "È fallito il processo di validazione dell'app con {0} errori e {1} messaggi."
 
 #: media/js/devreg/devhub.js:200 media/js/zamboni/devhub-all.js:1047 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:183
 msgid "Your app passed validation with no errors and {0} message."
@@ -560,7 +557,7 @@ msgid "Iraqi Bank Code"
 msgstr "Codice bancario iracheno"
 
 #. L10n: {0} is the name of a bank detected from the bank account code.
-#: media/js/devreg/payments-enroll.js:160
+#: media/js/devreg/payments-enroll.js:135
 msgid "Detected: {0}"
 msgstr "Rilevati: {0}"
 
@@ -1238,11 +1235,11 @@ msgstr "Adobe Flash Player</a>."
 msgid "Message must not be empty."
 msgstr "Non è possibile inviare un messaggio vuoto."
 
-#: media/js/mkt/login.js:62
+#: media/js/mkt/login.js:68
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
 msgstr "Identificazione con Persona non riuscita. Sei sicuro di aver registrato un account con questo indirizzo email?"
 
-#: media/js/mkt/login.js:67
+#: media/js/mkt/login.js:73
 msgid "Persona login failed. A server error was encountered."
 msgstr "Identificazione con Persona non riuscita. Si è verificato un errore col server."
 

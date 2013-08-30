@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-23 09:56-0700\n"
+"POT-Creation-Date: 2013-08-30 15:53-0700\n"
 "PO-Revision-Date: 2013-07-14 08:20+0000\n"
 "Last-Translator: Hyeonseok <hyeonseok@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -235,11 +235,11 @@ msgstr "<b>{0}</b> 부가 기능 검색"
 msgid "Category"
 msgstr "분류"
 
-#: media/js/impala-all.js:2446 media/js/impala-min.js:1 media/js/zamboni/browserid_support.js:32 media/js/zamboni/mobile-all.js:12078 media/js/zamboni/mobile-min.js:32
+#: media/js/impala-all.js:2446 media/js/impala-min.js:1 media/js/zamboni/browserid_support.js:37 media/js/zamboni/mobile-all.js:12078 media/js/zamboni/mobile-min.js:32
 msgid "Admins and editors must provide a password to log in."
 msgstr "로그인 하려면 관리자와 편집자가 발급한 비밀번호가 있어야 합니다."
 
-#: media/js/impala-all.js:2451 media/js/impala-min.js:1 media/js/zamboni/browserid_support.js:37 media/js/zamboni/mobile-all.js:12083 media/js/zamboni/mobile-min.js:32
+#: media/js/impala-all.js:2451 media/js/impala-min.js:1 media/js/zamboni/browserid_support.js:42 media/js/zamboni/mobile-all.js:12083 media/js/zamboni/mobile-min.js:32
 msgid "BrowserID login failed. Maybe you don't have an account under that email address?"
 msgstr "BrowserID 로그인 실패. 이메일 주소로 되어있는 계정이 없는건 아닌가요?"
 
@@ -546,7 +546,7 @@ msgid "Iraqi Bank Code"
 msgstr "이라크 은행 Bank Code"
 
 #. L10n: {0} is the name of a bank detected from the bank account code.
-#: media/js/devreg/payments-enroll.js:160
+#: media/js/devreg/payments-enroll.js:135
 msgid "Detected: {0}"
 msgstr "은행 인식: {0}"
 
@@ -1219,11 +1219,11 @@ msgstr "Flash Player</a>를 지원하는 브라우저가 필요합니다."
 msgid "Message must not be empty."
 msgstr "메세지엔 내용이 반드시 있어야 합니다."
 
-#: media/js/mkt/login.js:62
+#: media/js/mkt/login.js:68
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
 msgstr "Persona 로그인 실패입니다. 아마도 이메일 주소에 대한 계정이 없지 않나요?"
 
-#: media/js/mkt/login.js:67
+#: media/js/mkt/login.js:73
 msgid "Persona login failed. A server error was encountered."
 msgstr "Persona 로그인 실패입니다. 서버에 에러가 발생했습니다."
 
