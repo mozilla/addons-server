@@ -22,7 +22,8 @@ def commonplace(request, repo):
     try:
         # Get the `BUILD_ID` from `build_{repo}.py` and use that to
         # cache-bust the assets for this repo's CSS/JS minified bundles.
-        ctx['BUILD_ID'] = importlib.import_module('media.fireplace.build_%s' % repo).BUILD_ID
+        module = 'media.%s.build_%s' % (repo, repo)
+        ctx['BUILD_ID'] = importlib.import_module(module).BUILD_ID
     except ImportError:
         pass
 
