@@ -1,3 +1,5 @@
+import importlib
+
 from django.conf import settings
 from django.http import HttpResponseNotFound
 
@@ -12,7 +14,16 @@ def commonplace(request, repo):
         'persona_unverified_issuer': settings.BROWSERID_DOMAIN
     }
 
-    return jingo.render(request, 'commonplace/index.html', {
+    ctx = {
         'repo': repo,
         'site_settings': site_settings,
-    })
+    }
+
+    try:
+        # Get the `BUILD_ID` from `build_{repo}.py` and use that to
+        # cache-bust the assets for this repo's CSS/JS minified bundles.
+        ctx['BUILD_ID'] = importlib.import_module('build_%s' % repo).BUILD_ID
+    except ImportError:
+        pass
+
+    return jingo.render(request, 'commonplace/index.html', ctx)
