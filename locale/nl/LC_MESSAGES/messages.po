@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-08-30 15:54-0700\n"
-"PO-Revision-Date: 2013-08-25 08:11+0000\n"
+"PO-Revision-Date: 2013-09-01 08:54+0000\n"
 "Last-Translator: Mark <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1377418262.0\n"
+"X-POOTLE-MTIME: 1378025643.0\n"
 
 #: apps/addons/buttons.py:207
 msgid "Download Now"
@@ -11530,6 +11530,8 @@ msgstr "Hoe kan mijn add-on worden aanbevolen?"
 #: apps/pages/templates/pages/dev_faq.html:542 apps/pages/templates/pages/dev_faq.html:552
 msgid "<a href=\"%(url)s\">This page</a> describes the process by which the Recommended lists are managed."
 msgstr ""
+"<a href=\"%(url)s\">Deze pagina</a> beschrijft het proces waarmee de lijsten "
+"Aanbevolen worden beheerd."
 
 #: apps/pages/templates/pages/dev_faq.html:547
 msgid "Can I pay to have my add-on listed as Recommended?"
@@ -14094,11 +14096,11 @@ msgstr "Operatorplank"
 
 #: mkt/collections/fields.py:13
 msgid "Hexadecimal color"
-msgstr ""
+msgstr "Hexadecimale kleur"
 
 #: mkt/collections/fields.py:18
 msgid "Must be a valid hex color code, e.g. #FF0035."
-msgstr ""
+msgstr "Dient een geldige hex-kleurcode te zijn, bijv. #FF0035."
 
 #: mkt/collections/serializers.py:62
 msgid "You can not have more than one Featured Apps/Operator Shelf collection for the same category/carrier/region combination."
@@ -14107,6 +14109,7 @@ msgstr "U kunt niet meer dan één collectie Aanbevolen apps/Operatorplank hebbe
 #: mkt/commonplace/templates/commonplace/index.html:10
 msgid "The Firefox Marketplace is the official source of apps for the Web Platform."
 msgstr ""
+"De Firefox Marketplace is de officiële bron voor apps voor het Webplatform."
 
 #: mkt/constants/apps.py:9 mkt/reviewers/templates/reviewers/logs.html:18 mkt/reviewers/templates/reviewers/includes/search_results_themes.html:6
 #: mkt/reviewers/templates/reviewers/themes/history_table.html:7 mkt/reviewers/templates/reviewers/themes/logs.html:18 mkt/reviewers/templates/reviewers/themes/queue_list.html:43
@@ -15813,7 +15816,7 @@ msgstr "Bankrekeningnummer"
 
 #: mkt/developers/forms_payments.py:396
 msgid "SWIFT code"
-msgstr ""
+msgstr "SWIFT-code"
 
 #: mkt/developers/forms_payments.py:398
 msgid "Bank Name"
@@ -17055,11 +17058,11 @@ msgstr "Bango-account toevoegen"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:19
 msgid "Usually 9, 10 or 11 digits. Example: 0114584906."
-msgstr ""
+msgstr "Gewoonlijk 9, 10 of 11 cijfers. Voorbeeld: 0114584906."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:26
 msgid "Either 8 or 11 characters. Example: WFBIUS6WPDX."
-msgstr ""
+msgstr "Bestaat uit 8 of 11 tekens. Voorbeeld: WFBIUS6WPDX."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:36 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:30
 msgid "Optional"
@@ -17461,6 +17464,11 @@ msgid ""
 "The ability to use apps when not connected to the Internet is especially important for mobile devices, which may wander out of coverage areas. Of course, reducing the amount of time your app waits "
 "for data from a server improves the responsiveness of your app. This makes your app <em>feel</em> fast and is one of the most important considerations when developing web apps with HTML5."
 msgstr ""
+"De mogelijkheid om offline apps te gebruiken is vooral belangrijk voor "
+"mobiele apparaten, die mogelijk buiten een dekkingsgebied komen. Uiteraard "
+"verbetert het reduceren van de tijd die uw app wacht op data van een server "
+"de reactietijd van uw app. Dit maakt dat uw app snel <em>aanvoelt</em> en is "
+"één van de belangrijkste afwegingen bij het ontwikkelen van apps met HTML5."
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:26
 msgid ""
@@ -17468,10 +17476,18 @@ msgid ""
 "current web app. The key to a responsive app experience (similar to iOS and Android) is speed. Using Appcache and JavaScript storage will allow your app to be downloaded and cached until you update "
 "its assets. This means your users can now use your app offline."
 msgstr ""
+"Er zijn enkele technologieën in HTML (en beschikbaar voor Firefox OS) die u "
+"kunt gebruiken om ervoor te zorgen dat uw app offline werkt. Deze "
+"technologieën kunnen worden gebruikt om de reactiesnelheid van uw huidige "
+"webapp te verbeteren. De sleutel tot een prettige app-ervaring  "
+"(vergelijkbaar met iOS en Android) is snelheid. Door gebruik van Appcache- "
+"en JavaScript-opslag kunt u uw app laten downloaden en in de cache zetten "
+"totdat de kernelementen door u zijn bijgewerkt. Dit betekent dat uw "
+"gebruikers uw app nu offline kunnen gebruiken."
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:37
 msgid "Access your CSS, JS, and image files offline"
-msgstr ""
+msgstr "Benader uw CSS-, JS- en afbeeldingsbestanden offline"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:40
 msgid ""
@@ -17479,20 +17495,34 @@ msgid ""
 "JavaScript, and image files you use. You can <a href=\"%(generator_url)s\" rel=\"external\">use tools</a> to generate your manifest or create one by hand. This is an example of the format, from <a "
 "href=\"%(example_manifest)s\" rel=\"external\">Face Value’s manifest</a>:"
 msgstr ""
+"Schrijf een <strong><a href=\"%(appcache_url)s\">Appcache-"
+"manifest</a></strong> waarin de URL’s van alle kernelementen waartoe uw app "
+"offline toegang nodig heeft staan. Gewoonlijk is dit een lijst van alle CSS, "
+"lettertypen, JavaScript en afbeeldingsbestanden die u gebruikt. U kunt <a "
+"href=\"%(generator_url)s\" rel=\"external\">hulpmiddelene gebruiken</a> om uw "
+"manifest te maken of er één handmatig maken. Dit is een voorbeeld van de "
+"opmaak, uit het <a href=\"%(example_manifest)s\" rel=\"external\">manifest van "
+"Face Value</a>:"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:73
 msgid ""
 "If you're using JavaScript templates like <a href=\"%(mustache_url)s\" rel=\"external\">mustache</a>, be sure to include your templates in your Appcache manifest or precompile them into your built "
 "JavaScript files."
 msgstr ""
+"Als u gebruik maakt van JavaScript-sjablonen als <a href=\"%(mustache_url)s\" "
+"rel=\"external\">mustache</a>, zorg er dan voor dat u uw sjablonen in uw "
+"Appcache-manifest opneemt of precompileer ze in uw gebouwde JavaScript-"
+"bestanden."
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:81
 msgid "Save user data and settings without a server"
-msgstr ""
+msgstr "Gebruikersgegevens en instellingen opslaan zonder server"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:84
 msgid "There are many JavaScript APIs for local, persistent storage. From most to least compatible across browers, your options are:"
 msgstr ""
+"Er zijn vele JavaScripts-API’s voor lokale, blijvende opslag. Van meest tot "
+"minst compatibel met verschillende browsers zijn uw opties:"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:91
 msgid ""
@@ -17501,20 +17531,40 @@ msgid ""
 "type without having to serialize it first. It isn't available in IE or iOS as of writing but is available in Chrome and Firefox. </dd> <dt><a href=\"%(websql_url)s\" rel=\"external\">WebSQL</a></"
 "dt> <dd> WebSQL is asynchronous like IndexedDB, but is only needed for Safari/iOS compatibility. WebSQL is officially deprecated by the W3C but is still supported by many WebKit browsers. </dd>"
 msgstr ""
+"<dt><a href=\"%(localstorage_url)s\">localStorage</a></dt> <dd> Synchroon en "
+"eenvoudig in gebruik; localStorage is beschikbaar in moderne browsers, maar "
+"het is ook het langzaamst. Probeer rechtstreeks gebruik te vermijden en "
+"gebruik in plaats daarvan een bibliotheek die het als terugvalmogelijkheid "
+"bevat. </dd> <dt><a href=\"%(indexeddb_url)s\">IndexedDB</a></dt> <dd> "
+"IndexedDB is een asynchrone en snelle bibliotheek waarin elk type JavaScript "
+"kan worden opgeslagen zonder dat het eerst serieel gemaakt hoeft te worden. "
+"Het is niet beschikbaar in IE of iOS op het moment van schrijven, maar is "
+"wel beschikbaar in Chrome en Firefox. </dd> <dt><a href=\"%(websql_url)s\" "
+"rel=\"external\">WebSQL</a></dt> <dd> WebSQL is net als IndexedDB asynchroon, "
+"maar is alleen nodig voor compatibiliteit met Safari/iOS. WebSQL is "
+"officieel afgedankt door het W3C, maar wordt nog steeds ondersteund door "
+"vele WebKit-browsers. </dd>"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:119
 msgid ""
 "We recommend using <a href=\"%(localforage_url)s\" rel=\"external\">localForage</a>, which combines a library from Firefox OS with fallbacks for other browsers. It allows you to store key/value "
 "pairs for use between page loads, but does so asynchronously whenever possible. This improves the responsiveness of your app."
 msgstr ""
+"Wij raden het gebruik van <a href=\"%(localforage_url)s\" "
+"rel=\"external\">localForage</a> aan, dat een bibliotheek uit Firefox OS "
+"combineert met terugvalopties voor overige browsers. U kunt er "
+"sleutel/waardeparen mee opslaan voor gebruik tussen het laden van pagina’s, "
+"maar het doet dit zo mogelijk asynchroon. Hierdoor verbetert de reactietijd "
+"van uw app."
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:137
 msgid "Notice we do this asynchronously, as all APIs here are async."
 msgstr ""
+"Merk op dat we dit asynchroon doen, omdat alle API’s hier asynchroon zijn."
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:142
 msgid "On localStorage"
-msgstr ""
+msgstr "Over localStorage"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:145
 msgid ""
@@ -17523,44 +17573,76 @@ msgid ""
 "data you interact with rarely, but we recommend <a href=\"%(localForage)s\" rel=\"external\">localForage's asyncStorage library</a>, which uses faster storage by default but falls back to "
 "localStorage if it's all that is available."
 msgstr ""
+"localStorage is de meest compatibele API voor het opslaan van gegevens "
+"tussen paginaweergaven in JavaScript, maar het kent een paar flinke "
+"beperkingen. localStorage is synchroon, dus het gebruik ervan blokkeert het "
+"uitvoeren van de hoofdlijn, waardoor uw app traag aanvoelt bij het ophalen "
+"of instellen van gegevens. Het kan ook geen grote hoeveelheden gegevens of "
+"JavaScript-typen als TypedArrays verwerken. U kunt localStorage gebruiken "
+"voor kleine hoeveelheden gegevens die zelden worden aangesproken, maar wij "
+"raden het gebruik aan van de <a href=\"%(localForage)s\" rel=\"external"
+"\">asyncStorage-bibliotheek van localForage</a>, die standaard snellere "
+"opslag gebruikt maar terugvalt op localStorage als dat beschikbaar is."
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:159
 msgid "Caching large files and storing media"
-msgstr ""
+msgstr "Opslaan van grote bestanden in de cache en opslaan van mediabestanden"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:162
 msgid ""
 "Use <a href=\"%(storage_url)s\">DeviceStorage</a> or <a href=\"%(indexeddb_url)s\">IndexedDB</a> to store large pieces of data. localStorage is unsuitable for large blob storage, but you can save "
 "chunks of data to IndexedDB. The Podcasts reference app does this in <a href=\"%(podcasts_url)s\" rel=\"external\">its episode model code</a>."
 msgstr ""
+"Gebruik <a href=\"%(storage_url)s\">DeviceStorage</a> of <a href=\"%"
+"(indexeddb_url)s\">IndexedDB</a> om grote hoeveelheden gegevens op te slaan. "
+"localStorage is niet geschikt voor grote opslaghoeveelheden, maar kunt "
+"stukken van gegevens opslaan naar IndexedDB. De referentie-app Padcasts doet "
+"dit in <a href=\"%(podcasts_url)s\" rel=\"external\">de code voor het "
+"afleveringsmodel</a>."
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:175
 msgid "Keep in mind that storing large files (over 100MB) is still largely uncharted territory and you may encouter some issues."
 msgstr ""
+"Onthoud dat opslag van grote databestanden (meer dan 100 MB) veelal onbekend "
+"terrein is en dat u mogelijk problemen tegenkomt."
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:181
 msgid "A Note on Packaged Apps"
-msgstr ""
+msgstr "Een opmerking over verpakte apps"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:184
 msgid "If you’re <a href=\"%(packaged_apps_url)s\">developing a packaged app</a>, you don't need to use an Appcache manifest; all app assets are downloaded to the user’s device during install."
 msgstr ""
+"Als u <a href=\"%(packaged_apps_url)s\">een verpakte app ontwikkelt</a>, hoeft "
+"u geen Appcache-manifest te gebruiken; alle kernelementen van de app worden "
+"tijdens de installatie gedownload naar het apparaat van de gebruiker."
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:192
 msgid "Managing Offline State and HTTP Requests"
-msgstr ""
+msgstr "Beheer van de offline-status en HTTP-verzoeken"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:195
 msgid ""
 "There are a few APIs available to determine the user's connection status. These are useful because you can skip HTTP requests if you know the user is offline. You can also display less generic "
 "failure messages. For example: if you were writing a Twitter client, a message like “New tweets cannot be loaded while offline” is more informative than “Could not make HTTP connection.”"
 msgstr ""
+"Er zijn enkele API’s beschikbaar om de verbindingsstatus van de gebruiker te "
+"bepalen. Deze zijn nuttig omdat u HTTP-verzoeken kunt overslaan als u weet "
+"dat de gebruiker offline is. U kunt ook minder algemene foutmeldingen "
+"weergeven. Bijvoorbeeld: als u een Twitter-client schrijft, is een bericht "
+"zoals “Nieuwe tweets kunnen niet offline worden geladen” informatiever dan "
+"“Kan geen HTTP-verbinding maken.”"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:206
 msgid ""
 "Try to focus on loading data from your/others' API only when needed, and keep data cached so you don't have to request the same data twice. It can also be helpful to prefetch some data so the user "
 "can use parts of your app offline that they have yet to open."
 msgstr ""
+"Probeer u er op te richten alleen wanneer nodig gegevens van uw/andermans "
+"API te laden, en bewaar gegevens in de cache, zodat u niet meermaals "
+"dezelfde gegevens hoeft te vragen. Het kan ook zinvol zijn gegevens van te "
+"voren op te halen zodat de gebruiker delen van uw app die ze nog moeten "
+"openen offline kunnen gebruiken."
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:214
 msgid "Checking connectivity"
@@ -17571,6 +17653,10 @@ msgid ""
 "A key factor in working well offline is to check whether the device has connectivity and to respond appropriately when it doesn't. A message to the user that the app won't work offline is better "
 "than getting stuck or getting a generic timeout error."
 msgstr ""
+"Een cruciale factor voor goed offline werken is controleren of het apparaat "
+"is verbonden en goed reageren als dit niet het geval is. Een bericht naar de "
+"gebruiker dat de app offline niet goed werkt is beter dan vastlopen of een "
+"algemene time-outmelding krijgen."
 
 #. Do not localize text in <code></code>
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:226
@@ -17578,14 +17664,18 @@ msgid ""
 "The simplest way to do this is to check and listen for changes to the <a href=\"%(url)s\"><code>window.navigator.onLine</code></a> property. Note that this value can sometimes return false "
 "positives."
 msgstr ""
+"De eenvoudigste manier om dit te doen is controleren op en luisteren naar "
+"wijzigingen aan de eigenschap <a href=\"%"
+"(url)s\"><code>window.navigator.onLine</code></a>. Merk op dat deze waarde "
+"soms valspositieven geeft."
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:233
 msgid "See also: <a href=\"%(url)s\">Online and offline events</a>."
-msgstr ""
+msgstr "Lees ook: <a href=\"%(url)s\">Online- en offline-gebeurtenissen</a>."
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:238
 msgid "HTTP Requests"
-msgstr ""
+msgstr "HTTP-verzoeken"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:241
 msgid ""
@@ -17593,14 +17683,20 @@ msgid ""
 "your app has <a href=\"%(systemxhr_url)s\">systemXHR privileges</a>, you can check for a connection to a site unlikely to be down to determine if you have an active connection (iOS does this with "
 "Apple.com)."
 msgstr ""
+"Als u <a href=\"%(xhr_url)s\">XMLHttpRequest</a> gebruikt om gegevens "
+"dynamisch bij te werken, kunt u de reactie controleren om te bepalen of de "
+"netwerkverbinding is weggevallen tijdens het gebruik van uw app. Als uw app "
+"<a href=\"%(systemxhr_url)s\">systemXHR-privileges</a> heeft, kunt u de "
+"verbinding met een website die waarschijnlijk niet down is controleren om te "
+"bepalen of u een actieve verbinding hebt (iOS doet dit met apple.com)."
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:253
 msgid "We'll assume we aren't online."
-msgstr ""
+msgstr "We nemen aan dat we niet online zijn."
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:256
 msgid "Assume we're a packaged app with systemXHR permissions."
-msgstr ""
+msgstr "Neem aan dat we een verpakte app met systemXHR-toegang zijn."
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:278
 msgid "Resources"
@@ -22165,26 +22261,26 @@ msgstr "Er zijn momenteel geen beoordelingen."
 #: mkt/reviewers/templates/reviewers/themes/home.html:13
 msgid "{num} Pending Theme Review"
 msgid_plural "{num} Pending Theme Reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{num} themabeoordeling in wachtrij"
+msgstr[1] "{num} themabeoordelingen in wachtrij"
 
 #: mkt/reviewers/templates/reviewers/themes/home.html:21
 msgid "{num} Flagged Review"
 msgid_plural "{num} Flagged Reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{num} gevlagde beoordeling"
+msgstr[1] "{num} gevlagde beoordelingen"
 
 #: mkt/reviewers/templates/reviewers/themes/home.html:28
 msgid "{num} Update"
 msgid_plural "{num} Updates"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{num} update"
+msgstr[1] "{num} updates"
 
 #: mkt/reviewers/templates/reviewers/themes/home.html:43
 msgid "{num} unreviewed theme submission this week."
 msgid_plural "{num} unreviewed theme submissions this week."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{num} ingediend niet beoordeeld thema deze week."
+msgstr[1] "{num} ingediende niet beoordeelde thema’s deze week."
 
 #: mkt/reviewers/templates/reviewers/themes/logs.html:4
 msgid "Theme Review Log"
@@ -22583,7 +22679,7 @@ msgstr "Selecteer een apparaat."
 
 #: mkt/submit/forms.py:50
 msgid "Packaged apps are valid for only Firefox OS and Android."
-msgstr ""
+msgstr "Verpakte apps zijn alleen voor Firefox OS en Android geldig."
 
 #: mkt/submit/forms.py:129
 msgid "Agree and Continue"
