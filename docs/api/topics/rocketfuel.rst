@@ -35,6 +35,9 @@ Listing
     :param carrier: a carrier ID/slug.
     :type carrier: int|string
 
+    Filtering on null values is done by omiting the value for the corresponding
+    parameter in the query string.
+
 Create
 ------
 
