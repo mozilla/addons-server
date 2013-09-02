@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-08-30 15:54-0700\n"
-"PO-Revision-Date: 2013-07-22 14:44+0000\n"
+"PO-Revision-Date: 2013-09-02 15:58+0000\n"
 "Last-Translator: James <>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -11,8 +11,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Pootle 2.5.0-rc1\n"
-"X-POOTLE-MTIME: 1374504269.0\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1378137505.0\n"
 
 #: apps/addons/buttons.py:207
 msgid "Download Now"
@@ -4701,7 +4701,7 @@ msgstr "瀏覽所有附加元件►"
 
 #: apps/devhub/templates/devhub/index.html:87
 msgid "AMO Reviewers"
-msgstr ""
+msgstr "AMO 審核者"
 
 #: apps/devhub/templates/devhub/index.html:89
 msgid "Get ahead! Become an AMO Reviewer today and get your add-ons reviewed faster."
@@ -4709,7 +4709,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/index.html:92
 msgid "Become an AMO Reviewer"
-msgstr ""
+msgstr "成為 AMO 審核者"
 
 #: apps/devhub/templates/devhub/index.html:101
 msgid "Add-on Builder and SDK:"
@@ -13672,7 +13672,7 @@ msgstr ""
 
 #: mkt/collections/constants.py:10
 msgid "Featured App List"
-msgstr ""
+msgstr "精選應用程式清單"
 
 #: mkt/collections/constants.py:11
 msgid "Operator Shelf"
@@ -15215,7 +15215,7 @@ msgstr ""
 
 #: mkt/developers/forms.py:512
 msgid "Error extracting manifest from zip file."
-msgstr ""
+msgstr "從 zip 檔案抽取 manifest 時發生錯誤。"
 
 #: mkt/developers/forms.py:565
 msgid "Provide a detailed description of your app"
@@ -15947,7 +15947,7 @@ msgstr "已封裝版本"
 
 #: mkt/developers/templates/developers/apps/status.html:166
 msgid "Submission date"
-msgstr ""
+msgstr "提交日期"
 
 #: mkt/developers/templates/developers/apps/status.html:190 mkt/ecosystem/templates/ecosystem/base.html:50 mkt/ecosystem/templates/ecosystem/landing.html:48
 #: mkt/ecosystem/templates/ecosystem/macros.html:224
@@ -16969,13 +16969,12 @@ msgstr "在那下面，您可以看到這一行:"
 
 #. Do not localize text in <code></code>
 #: mkt/ecosystem/templates/ecosystem/build_app_generator.html:144
-#, fuzzy
 msgid ""
 "That defines the main module for your app, and you should start coding within the function. You can use <code>require</code> to load in other modules, the same way zepto is loaded. Check out the <a "
 "rel=\"external\" href=\"%(url)s\">require.js API</a> to learn more about modules."
 msgstr ""
-"That defines the 主模組 for 您的應用程式, and you should start coding within the function. You can use <code>require</code> to load in other 模組, the same way zepto is loaded. Check out the <a rel="
-"\"external\" href=\"%(url)s\">require.js API</a> to learn more about 模組."
+"定義您的應用程式主模組，接著您就可以在函數中撰寫程式。你可以使用<code>require</code> 載入其他模組，與載入 zepto "
+"的方法一樣。請參考 <a rel=\"external\" href=\"%(url)s\">require.js API</a> 以取得更多模組的資訊。"
 
 #. Do not localize text in <code></code>
 #: mkt/ecosystem/templates/ecosystem/build_app_generator.html:154
@@ -16992,10 +16991,13 @@ msgid ""
 "You can edit CSS in <code>www/css/app.css</code>. Typically you should <code>@import</code> additional CSS files at the top of this file instead of using the <code>&lt;link&gt;</code> tag to "
 "include them. This allows the volo optimizer to inline all the CSS when building for deploying."
 msgstr ""
+"您可以在<code>www/css/app.css</code>編輯 CSS。一般來說您應該在此檔案的最上方 <code>@import</code> "
+"匯入其他 CSS 檔案，而非使用<code>&lt;link&gt;</code> 標籤來匯入它們。這樣可以讓 volo optimizer "
+"在編譯與部署時將所有 CSS 放到行內。"
 
 #: mkt/ecosystem/templates/ecosystem/build_app_generator.html:173
 msgid "Finally, volo provides several helpful commands that you can use:"
-msgstr ""
+msgstr "最後，volo 有一些有用的指令也許可以幫上您："
 
 #: mkt/ecosystem/templates/ecosystem/build_app_generator.html:177
 msgid "Fire up a local development server"
@@ -17624,6 +17626,9 @@ msgid ""
 "requests to each other's APIs, or even steal access to privileged APIs that should have been granted to only one of the apps. This would be especially dangerous for domains that publish user-"
 "generated content from many users."
 msgstr ""
+"不可以。每一個 origin 只能對應到一個應用程式。如果同一個 origin 能夠對應到多個應用程式，等同是處於同一個 sandbox &mdash; "
+"它們能夠互相檢視其它應用程式的 localStorage，互相對 API 發出 Ajax 要求，甚至能夠偷到應該僅授權給某個應用程式使用，較高等級 "
+"API 的使用權。這將會很容易就對發佈使用者內容的網站造成危險。"
 
 #. Do not localize text in <code></code>
 #: mkt/ecosystem/templates/ecosystem/build_manifests.html:148
@@ -18300,7 +18305,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:86
 msgid "People often spend only a minute or two deciding whether to continue or abandon an app. Some of the factors you may want to consider include:"
-msgstr ""
+msgstr "使用者多半只花一兩分鐘決定是否繼續使用某個應用程式。您應該考慮以下幾件事:"
 
 #: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:93
 msgid "provide a quick introduction to your app (and provide an easy way to end it anytime)"
