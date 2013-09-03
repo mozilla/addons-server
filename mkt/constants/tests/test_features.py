@@ -9,8 +9,8 @@ from mkt.constants.features import APP_FEATURES, FeatureProfile
 class TestFeatureProfile(amo.tests.TestCase):
 
     def setUp(self):
-        self.features = 0x88011000
-        self.signature = '88011000.32.%s' % settings.APP_FEATURES_VERSION
+        self.features = 0x110022000000
+        self.signature = '110022000000.45.%s' % settings.APP_FEATURES_VERSION
         self.truths = ['apps', 'proximity', 'light_events', 'vibrate']
 
     def test_init(self):
@@ -33,7 +33,7 @@ class TestFeatureProfile(amo.tests.TestCase):
 
     def test_from_int_all_false(self):
         self.features = 0
-        self.signature = '0.32.%s' % settings.APP_FEATURES_VERSION
+        self.signature = '0.45.%s' % settings.APP_FEATURES_VERSION
         self.truths = []
         self.test_from_int()
 
