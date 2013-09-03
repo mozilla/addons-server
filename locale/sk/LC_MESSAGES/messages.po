@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-08-30 15:54-0700\n"
-"PO-Revision-Date: 2013-09-03 19:48+0000\n"
+"PO-Revision-Date: 2013-09-03 20:01+0000\n"
 "Last-Translator: Vlado <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-POOTLE-MTIME: 1378237705.0\n"
+"X-POOTLE-MTIME: 1378238518.0\n"
 
 #: apps/addons/buttons.py:207
 msgid "Download Now"
@@ -22669,9 +22669,8 @@ msgid "Form could not be submitted."
 msgstr ""
 
 #: mkt/site/helpers.py:181
-#, fuzzy
 msgid "Home"
-msgstr "Domů"
+msgstr "Domov"
 
 # 90%
 #: mkt/site/templates/site/403.html:5
