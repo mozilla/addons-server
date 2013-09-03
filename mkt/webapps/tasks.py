@@ -15,12 +15,13 @@ from celery.exceptions import RetryTaskError
 from celeryutils import task
 from pyelasticsearch.exceptions import ElasticHttpNotFoundError
 from test_utils import RequestFactory
+from tower import ugettext as _
 
 import amo
 from amo.decorators import write
 from amo.helpers import absolutify
 from amo.urlresolvers import reverse
-from amo.utils import chunked, JSONEncoder
+from amo.utils import chunked, JSONEncoder, send_mail_jinja
 from editors.models import RereviewQueue
 from files.models import FileUpload
 from files.utils import WebAppParser
@@ -79,11 +80,39 @@ def update_manifests(ids, **kw):
                                            'retries': retries},
                                    eta=datetime.datetime.now() +
                                        datetime.timedelta(seconds=retry_secs),
-                                   max_retries=4)
+                                   max_retries=5)
         except RetryTaskError:
             _log(id, 'Retrying task in %d seconds.' % retry_secs)
 
     return retries
+
+
+def notify_developers_of_failure(app, error_message, has_link=False):
+    if (app.status not in amo.WEBAPPS_APPROVED_STATUSES or
+        RereviewQueue.objects.filter(addon=app).exists()):
+        # If the app isn't public, or has already been reviewed, we don't
+        # want to send the mail.
+        return
+
+    # FIXME: how to integrate with commbadge?
+
+    for author in app.authors.all():
+        context = {
+            'error_message': error_message,
+            'SITE_URL': settings.SITE_URL,
+            'MKT_SUPPORT_EMAIL': settings.MKT_SUPPORT_EMAIL,
+            'has_link': has_link
+        }
+        to = [author.email]
+        with author.activate_lang():
+            # Re-fetch the app to get translations in the right language.
+            context['app'] = Webapp.objects.get(pk=app.pk)
+
+            subject = _(u'Issue with your app "{app}" on the Firefox '
+                        u'Marketplace').format(**context)
+            send_mail_jinja(subject,
+                            'webapps/emails/update_manifest_failure.txt',
+                            context, recipient_list=to)
 
 
 def _update_manifest(id, check_hash, failed_fetches):
@@ -103,7 +132,13 @@ def _update_manifest(id, check_hash, failed_fetches):
         msg = u'Failed to get manifest from %s. Error: %s' % (
             webapp.manifest_url, e)
         failed_fetches[id] = failed_fetches.get(id, 0) + 1
-        if failed_fetches[id] >= 3:
+        if failed_fetches[id] == 3:
+            # This is our 3rd attempt, let's send the developer(s) an email to
+            # notify him of the failures.
+            notify_developers_of_failure(webapp, u'Validation errors:\n' + msg)
+        elif failed_fetches[id] >= 4:
+            # This is our 4th attempt, we should already have notified the
+            # developer(s). Let's put the app in the re-review queue.
             _log(webapp, msg, rereview=True, exc_info=True)
             if webapp.status in amo.WEBAPPS_APPROVED_STATUSES:
                 RereviewQueue.flag(webapp, amo.LOG.REREVIEW_MANIFEST_CHANGE,
@@ -125,7 +160,9 @@ def _update_manifest(id, check_hash, failed_fetches):
     upload = FileUpload.objects.create()
     upload.add_file([content], webapp.manifest_url, len(content),
                     is_webapp=True)
+
     validator(upload.pk)
+
     upload = FileUpload.objects.get(pk=upload.pk)
     if upload.validation:
         v8n = json.loads(upload.validation)
@@ -139,6 +176,7 @@ def _update_manifest(id, check_hash, failed_fetches):
             msg += u'\nValidation Result:\n%s' % v8n_url
             _log(webapp, msg, rereview=True)
             if webapp.status in amo.WEBAPPS_APPROVED_STATUSES:
+                notify_developers_of_failure(webapp, msg, has_link=True)
                 RereviewQueue.flag(webapp, amo.LOG.REREVIEW_MANIFEST_CHANGE,
                                    msg)
             return

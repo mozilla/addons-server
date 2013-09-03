@@ -6,15 +6,17 @@ import stat
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
+from django.core import mail
 from django.core.management import call_command
-from django.forms import ValidationError
+from django.core.urlresolvers import reverse
 
 import mock
 from nose.tools import eq_, ok_
 
 import amo
 import amo.tests
-from addons.models import Addon
+from addons.models import Addon, AddonUser
+from amo.helpers import absolutify
 from devhub.models import ActivityLog
 from editors.models import RereviewQueue
 from files.models import File, FileUpload
@@ -23,7 +25,8 @@ from versions.models import Version
 
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
-from mkt.webapps.tasks import dump_app, update_manifests, zip_apps
+from mkt.webapps.tasks import (dump_app, notify_developers_of_failure,
+                               update_manifests, zip_apps)
 
 
 original = {
@@ -85,7 +88,7 @@ nhash = ('sha256:'
 
 
 class TestUpdateManifest(amo.tests.TestCase):
-    fixtures = ('base/platforms',)
+    fixtures = ('base/platforms', 'base/users')
 
     def setUp(self):
 
@@ -105,7 +108,11 @@ class TestUpdateManifest(amo.tests.TestCase):
             'de': 'Mozilla Kugel',
         }
         self.addon.status = amo.STATUS_PUBLIC
+        self.addon.manifest_url = 'http://nowhere.allizom.org/manifest.webapp'
         self.addon.save()
+
+        AddonUser.objects.create(addon=self.addon,
+                                 user=UserProfile.objects.get(pk=999))
 
         ActivityLog.objects.all().delete()
 
@@ -129,8 +136,8 @@ class TestUpdateManifest(amo.tests.TestCase):
         self.urlopen_mock.return_value = self.response_mock
 
         p = mock.patch('mkt.webapps.tasks.validator')
-        validator = p.start()
-        validator.return_value = {}
+        self.validator = p.start()
+        self.validator.return_value = {}
         self.patches = [p]
 
     def tearDown(self):
@@ -245,15 +252,104 @@ class TestUpdateManifest(amo.tests.TestCase):
         eq_(retry.call_args[1]['kwargs'], {'check_hash': True,
                                            'retries': {self.addon.pk: 1}})
         self.assertCloseToNow(retry.call_args[1]['eta'], later)
-        eq_(retry.call_args[1]['max_retries'], 4)
+        eq_(retry.call_args[1]['max_retries'], 5)
+        eq_(len(mail.outbox), 0)
+
+    def test_notify_failure_lang(self):
+        user1 = UserProfile.objects.get(pk=999)
+        user2 = UserProfile.objects.get(pk=10482)
+        AddonUser.objects.create(addon=self.addon, user=user2)
+        user1.update(lang='de')
+        user2.update(lang='en')
+        notify_developers_of_failure(self.addon, 'blah')
+        eq_(len(mail.outbox), 2)
+        ok_(u'Mozilla Kugel' in mail.outbox[0].subject)
+        ok_(u'MozillaBall' in mail.outbox[1].subject)
+
+    def test_notify_failure_with_rereview(self):
+        RereviewQueue.flag(self.addon, amo.LOG.REREVIEW_MANIFEST_CHANGE,
+                           'This app is flagged!')
+        notify_developers_of_failure(self.addon, 'blah')
+        eq_(len(mail.outbox), 0)
+
+    def test_notify_failure_not_public(self):
+        self.addon.update(status=amo.STATUS_PENDING)
+        notify_developers_of_failure(self.addon, 'blah')
+        eq_(len(mail.outbox), 0)
 
     @mock.patch('mkt.webapps.tasks._fetch_manifest')
     @mock.patch('mkt.webapps.tasks.update_manifests.retry')
-    def test_manifest_fetch_3x_fail(self, retry, fetch):
+    def test_manifest_fetch_3rd_attempt(self, retry, fetch):
         fetch.side_effect = RuntimeError
         update_manifests(ids=(self.addon.pk,), retries={self.addon.pk: 2})
+        # We already tried twice before, this is the 3rd attempt,
+        # We should notify the developer that something is wrong.
+        eq_(len(mail.outbox), 1)
+        msg = mail.outbox[0]
+        ok_(msg.subject.startswith('Issue with your app'))
+        expected = u'Failed to get manifest from %s' % self.addon.manifest_url
+        ok_(expected in msg.body)
+        ok_(settings.MKT_SUPPORT_EMAIL in msg.body)
+
+        # We should have scheduled a retry.
+        assert retry.called
+
+        # We shouldn't have put the app in the rereview queue yet.
+        assert not RereviewQueue.objects.filter(addon=self.addon).exists()
+
+    @mock.patch('mkt.webapps.tasks._fetch_manifest')
+    @mock.patch('mkt.webapps.tasks.update_manifests.retry')
+    @mock.patch('mkt.webapps.tasks.notify_developers_of_failure')
+    def test_manifest_fetch_4th_attempt(self, notify, retry, fetch):
+        fetch.side_effect = RuntimeError
+        update_manifests(ids=(self.addon.pk,), retries={self.addon.pk: 3})
+        # We already tried 3 times before, this is the 4th and last attempt,
+        # we shouldn't retry anymore, instead we should just add the app to
+        # the re-review queue. We shouldn't notify the developer either at this
+        # step, it should have been done before already.
+        assert not notify.called
         assert not retry.called
         assert RereviewQueue.objects.filter(addon=self.addon).exists()
+
+    def test_manifest_validation_failure(self):
+        # We are already mocking validator, but this test needs to make sure
+        # it actually saves our custom validation result, so add that.
+        def side_effect(upload_id, **kwargs):
+            upload = FileUpload.objects.get(pk=upload_id)
+            upload.validation = json.dumps(validation_results)
+            upload.save()
+
+        validation_results = {
+            'errors': 1,
+            'messages': [{
+                'context': None,
+                'uid': 'whatever',
+                'column': None,
+                'id': ['webapp', 'detect_webapp', 'parse_error'],
+                'file': '',
+                'tier': 1,
+                'message': 'JSON Parse Error',
+                'type': 'error',
+                'line': None,
+                'description': 'The webapp extension could not be parsed due '
+                               'to a syntax error in the JSON.'
+            }]
+        }
+        self.validator.side_effect = side_effect
+
+        eq_(RereviewQueue.objects.count(), 0)
+
+        self._run()
+
+        eq_(RereviewQueue.objects.count(), 1)
+        eq_(len(mail.outbox), 1)
+        msg = mail.outbox[0]
+        upload = FileUpload.objects.get()
+        validation_url = absolutify(reverse(
+            'mkt.developers.upload_detail', args=[upload.uuid]))
+        ok_(msg.subject.startswith('Issue with your app'))
+        ok_(validation_results['messages'][0]['message'] in msg.body)
+        ok_(validation_url in msg.body)
 
     @mock.patch('mkt.webapps.models.Webapp.get_manifest_json')
     def test_manifest_name_change_rereview(self, _manifest):
