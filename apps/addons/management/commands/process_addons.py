@@ -11,10 +11,9 @@ from amo.utils import chunked
 from devhub.tasks import convert_purified, flag_binary, get_preview_sizes
 from market.tasks import check_paypal, check_paypal_multiple
 
-from mkt.webapps.tasks import (add_uuids, collapse_summary, dump_apps,
-                               fix_missing_icons, import_manifests,
-                               update_manifests, update_supported_locales,
-                               zip_apps)
+from mkt.webapps.tasks import (add_uuids, dump_apps, fix_missing_icons,
+                               import_manifests, update_manifests,
+                               update_supported_locales, zip_apps)
 
 
 tasks = {
@@ -59,10 +58,6 @@ tasks = {
                                               amo.STATUS_PUBLIC,
                                               amo.STATUS_PUBLIC_WAITING],
                                   disabled_by_user=False)]},
-    'collapse_summary': {'method': collapse_summary,
-                         'qs': [Q(type=amo.ADDON_WEBAPP,
-                                  disabled_by_user=False,
-                                  summary__isnull=False)]},
     'import_manifests': {'method': import_manifests,
                          'qs': [Q(type=amo.ADDON_WEBAPP,
                                   disabled_by_user=False)]},
