@@ -9,7 +9,6 @@ from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
 from django.core.files.storage import default_storage as storage
 from django.db.utils import IntegrityError
-from django.forms import ValidationError
 from django.template import Context, loader
 
 from celery.exceptions import RetryTaskError
@@ -352,42 +351,6 @@ def zip_apps(*args, **kw):
     task_log.info(u'Creating app dump {0}'.format(target_file))
     subprocess.call(cmd)
     return target_file
-
-
-def _update_developer_name(id):
-    try:
-        webapp = Webapp.objects.get(pk=id)
-    except Webapp.DoesNotExist:
-        _log(id, u'Webapp does not exist')
-        return
-
-    version = webapp.current_version
-
-    # If the app doesn't have a current_version, don't bother.
-    if not version:
-        _log(id, u'Webapp does not have a current_version')
-        return
-
-    # If the current_version already has a non-empty developer_name set, don't
-    # touch it and bail.
-    if version._developer_name:
-        _log(id, u'Webapp already has a non-empty developer_name')
-        return
-
-    try:
-        data = WebAppParser().parse(webapp.get_latest_file().file_path)
-    except ValidationError:
-        _log(id, u'Webapp manifest can not be parsed')
-        return
-
-    max_len = version._meta.get_field_by_name('_developer_name')[0].max_length
-    version.update(_developer_name=data['developer_name'][:max_len])
-
-
-@task
-def update_developer_name(ids, **kw):
-    for id in ids:
-        _update_developer_name(id)
 
 
 def _fix_missing_icons(id):
