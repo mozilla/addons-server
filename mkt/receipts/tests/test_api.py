@@ -67,9 +67,10 @@ class TestAPI(BaseOAuth):
     def test_record_metrics(self, cef, record_action):
         res = self.post()
         eq_(res.status_code, 201)
-        record_action.assert_called_with('install', mock.ANY, {
-            'app-domain': u'http://micropipes.com',
-            'app-id': self.addon.pk, 'anonymous': False})
+        record_action.assert_called_with(
+            'install', mock.ANY, {'app-domain': u'http://micropipes.com',
+                                  'app-id': self.addon.pk, 'region': 'us',
+                                  'anonymous': False})
 
     @mock.patch('mkt.installs.utils.record_action')
     @mock.patch('mkt.receipts.api.receipt_cef.log')
@@ -78,8 +79,9 @@ class TestAPI(BaseOAuth):
         self.addon.update(is_packaged=True, manifest_url=None, app_domain=None)
         res = self.post()
         eq_(res.status_code, 201)
-        record_action.assert_called_with('install', mock.ANY, {
-            'app-domain': None, 'app-id': self.addon.pk, 'anonymous': False})
+        record_action.assert_called_with(
+            'install', mock.ANY, {'app-domain': None, 'app-id': self.addon.pk,
+                                  'region': 'us', 'anonymous': False})
 
     @mock.patch('mkt.receipts.views.receipt_cef.log')
     def test_log_metrics(self, cef):
