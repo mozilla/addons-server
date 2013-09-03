@@ -237,6 +237,17 @@ class TestLoginHandler(TestCase):
                          'audience': 'fakeamo.org'})
         eq_(res.status_code, 401)
 
+    def test_login_old_user_new_email(self):
+        """
+        Login is based on (and reports) the email in UserProfile.
+        """
+        profile = UserProfile.objects.create(email='cvan@mozilla.com')
+        profile.create_django_user(
+            backend='django_browserid.auth.BrowserIDBackend')
+        profile.user.email = 'old_email@example.com'
+        profile.user.save()
+        self._test_login()
+
     def test_login_empty(self):
         res = self.post({})
         data = json.loads(res.content)

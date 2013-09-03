@@ -723,11 +723,14 @@ class TestPersonaLogin(UserViewBase):
         """
         self.create_switch('browserid-login')
         url = reverse('users.browserid_login')
-        UserProfile.objects.filter(email='jbalogh@mozilla.com').update(
-            email='badnews@example.com')
+        profile = UserProfile.objects.create(username='login_test',
+                                             email='bob@example.com')
+        profile.create_django_user()
+        profile.email = 'charlie@example.com'
+        profile.save()
         http_request.return_value = FakeResponse(200, json.dumps(
                 {'status': 'okay',
-                 'email': 'jbalogh@mozilla.com'}))
+                 'email': 'charlie@example.com'}))
         res = self.client.post(url, data=dict(assertion='fake-assertion',
                                               audience='fakeamo.org'))
         eq_(res.status_code, 200)

@@ -146,10 +146,10 @@ class LoginResource(CORSResource, MarketplaceResource):
                             user=profile.user)
         bundle.data = {
             'error': None,
-            'token': self.get_token(request.user.email),
+            'token': self.get_token(request.amo_user.email),
             'settings': {
                 'display_name': request.amo_user.display_name,
-                'email': request.user.email,
+                'email': request.amo_user.email,
             }
         }
         bundle.data.update(PermissionResource()
