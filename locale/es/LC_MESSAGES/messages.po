@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-08-23 09:56-0700\n"
-"PO-Revision-Date: 2013-09-03 13:30+0000\n"
+"PO-Revision-Date: 2013-09-03 14:22+0000\n"
 "Last-Translator: Inma <inma.barrios@mozilla-hispano.org>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1378215017.0\n"
+"X-POOTLE-MTIME: 1378218121.0\n"
 
 #: apps/addons/buttons.py:207
 msgid "Download Now"
@@ -19583,7 +19583,9 @@ msgstr "el archivo manifest no es un JSON válido"
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:209
 msgid "the app is a hosted app, but the <code>type</code> field in its manifest is \"privileged\" or \"certified\", which are only available to packaged apps"
 msgstr ""
-"la aplicación es de tipo alojada, pero el campo <code>tipo</code> en su archivo manifest es \"privilegiado\" o \"certificado\", los cuales solo están disponibles para aplicaciones empaquetadas"
+"la aplicación es de tipo alojada, pero el campo <code>type</code> del "
+"archivo manifest es \"privileged\" o \"certified\", los cuales solo están "
+"disponibles para aplicaciones empaquetadas"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:212
 msgid "Here's the result of trying to add a manifest file with a missing \"name\":"
@@ -20178,6 +20180,9 @@ msgstr ""
 #: mkt/ecosystem/templates/ecosystem/publish_packaged.html:33
 msgid "<strong>Note:</strong> Currently (July 2013) the Firefox Marketplace supports packaged apps only when they are Firefox OS apps."
 msgstr ""
+"<strong>Nota:</strong> Actualmente (julio de 2013) Firefox Marketplace es "
+"compatible con aplicaciones empaquetadas solo si son aplicaciones de Firefox "
+"OS."
 
 #: mkt/ecosystem/templates/ecosystem/publish_packaged.html:39
 msgid "Purpose of packaged apps"
@@ -20213,6 +20218,14 @@ msgid ""
 "equivalent to a native app on a platform like iOS or Android. To specify that an app is a privileged app, add the <code>type</code> field to its <code>manifest.webapp</code> file and set it to "
 "<code>privileged</code>. A privileged app has the following characteristics:"
 msgstr ""
+"Firefox Marketplace aprueba una aplicación con privilegios siguiendo un "
+"procedimiento especial. Su objetivo es ofrecer una mayor seguridad a los "
+"usuarios cuando una aplicación solicite acceso a determinadas API sensibles "
+"de un dispositivo. Es equivalente a un aplicación nativa de una plataforma "
+"como iOS o Android. Para especificar que una aplicación tiene privilegios, "
+"agrega el campo <code>type</code> al archivo <code>manifest.webapp</code> y "
+"establécelo a <code>privileged</code>. Una aplicación con privilegios posee "
+"las siguientes características:"
 
 #: mkt/ecosystem/templates/ecosystem/publish_packaged.html:72
 msgid "Approved by an app store after code review or equivalent."
@@ -20247,6 +20260,21 @@ msgid ""
 "critical APIs. To specify that an app is a certified app, add the <code>type</code> field to its <code>manifest.webapp</code> file and set it to <code>certified</code>. The following is the CSP for "
 "a certified app, which is slightly different from the CSP for a privileged app:"
 msgstr ""
+"Una aplicación certificada está pensada para una función crítica del sistema "
+"como el marcador predeterminado o la aplicación de ajustes del sistema en "
+"un smartphone o teléfono inteligente. Este tipo de aplicación se utilizaría "
+"para funciones críticas en un teléfono Firefox OS. No está pensada para "
+"aplicaciones de terceros, por lo que la mayoría de desarrolladores de aps. "
+"puede descartarlo. Una aplicación certificada es una ap. empaquetada similar "
+"a una con privilegios, excepto que todos los permisos del dispositivo están "
+"implícitos, es decir, que no requieren la aprobación explícita del usuario. "
+"Una aplicación certificada debe obtener la aprobación de un fabricante o "
+"proveedor para que el dispositivo tenga la aprobación implícita para poder "
+"utilizar API críticas. Para especificar que una aplicación es certificada, "
+"agrega el campo <code>type</code> al archivo <code>manifest.webapp</code> y "
+"establécelo en <code>certified</code>. A continuación te mostramos el CSP de "
+"una aplicación certificada, que es ligeramente diferente al CSP de una "
+"aplicación con privilegios:"
 
 #: mkt/ecosystem/templates/ecosystem/publish_packaged.html:120
 msgid ""
@@ -20268,6 +20296,16 @@ msgid ""
 "resources available on the device when the user first uses it, with no downloading. This type of packaged app does not require the <code>type</code> field in its <code>manifest.webapp</code> file, "
 "because the default value for <code>type</code> (<code>web</code>) is correct."
 msgstr ""
+"También puedes crear una aplicación normal que simplemente esté empaquetada "
+"en un archivo zip. Marketplace la identifica, pero no lleva a cabo ningún "
+"procedimiento especial de autenticación. Esta aplicación básica empaquetada "
+"no puede utilizar determinadas Web API sensibles. Tampoco está sujeta a los "
+"CSP descritos para aplicaciones con privilegios y certificadas. Este tipo de "
+"aplicación puede ser útil si se desea que la primera vez que se utilice el "
+"dispositivo, tenga todos los recursos disponibles sin descargar nada. Este "
+"tipo de aplicación empaquetada no necesita el campo <code>type</code> del "
+"archivo<code>manifest.webapp</code>, porque el valor predeterminado para "
+"<code>type</code> (<code>web</code>) es correcto."
 
 #: mkt/ecosystem/templates/ecosystem/publish_packaged.html:148
 msgid "Differences from hosted apps"
@@ -20419,23 +20457,23 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/publish_payments.html:24
 msgid "These are the currently supported countries in the Marketplace."
-msgstr ""
+msgstr "Estos son los países presentes actualmente en Marketplace."
 
 #: mkt/ecosystem/templates/ecosystem/publish_payments.html:33
 msgid "Developer setup"
-msgstr ""
+msgstr "Ajustes de desarrollador"
 
 #: mkt/ecosystem/templates/ecosystem/publish_payments.html:34
 msgid "Paid apps"
-msgstr ""
+msgstr "Aps. pagadas"
 
 #: mkt/ecosystem/templates/ecosystem/publish_payments.html:35
 msgid "In-app payments"
-msgstr ""
+msgstr "Pagos en aplicación"
 
 #: mkt/ecosystem/templates/ecosystem/publish_payments.html:36
 msgid "Carrier billing"
-msgstr ""
+msgstr "Facturación del operador"
 
 #: mkt/ecosystem/templates/ecosystem/publish_payments.html:46 mkt/ecosystem/templates/ecosystem/publish_payments.html:47
 msgid "varies"
@@ -21294,23 +21332,26 @@ msgstr "69 %"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:17 mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:18
 msgid "Gallery View"
-msgstr ""
+msgstr "Vista Galería"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:22 mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:23
 msgid "Camera View"
-msgstr ""
+msgstr "Vista Cámara"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:27 mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:28
 msgid "Selecting an image"
-msgstr ""
+msgstr "Seleccionando una imagen"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:35
 msgid "rtcamera is a fun camera app to process images in real time, using Web technologies. <a href=\"%(walkthrough_link)s\" class=\"walkthrough\"> Read the full developer walkthrough </a>"
 msgstr ""
+"rtcamera una divertida aplicación de cámara para procesar imágenes en tiempo "
+"real utilizando tecnologías web. <a href=\"%(walkthrough_link)s\" "
+"class=\"walkthrough\">Lee la guía completa del desarrollador</a>"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:52
 msgid "Generates animated GIFs."
-msgstr ""
+msgstr "Genera GIF animados."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:60
 msgid "A wrapper for IndexedDB."
@@ -21318,7 +21359,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:68
 msgid "Calculates perspective transformations."
-msgstr ""
+msgstr "Calcula las transformaciones de perspectiva."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:76
 msgid "Add touch events."
@@ -21343,10 +21384,13 @@ msgstr ""
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:152
 msgid "Stores captured images on the device and retrieve them for the gallery view."
 msgstr ""
+"Almacena imágenes capturadas en el dispositivo y las recupera para "
+"visualizarlas en la vista galería."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:161
 msgid "Generates GIF files on the background without freezing the UI."
 msgstr ""
+"Genera archivos GIF en segundo plano sin congelar la interfaz de usuario."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:169
 msgid "Uploading images to a different server for sharing, and getting their url."
@@ -21354,15 +21398,15 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:186
 msgid "rtcamera uses x-appbar, x-deck, x-layout, x-modal and x-switch."
-msgstr ""
+msgstr "rtcamera usa x-appbar, x-deck, x-layout, x-modal y x-switch."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:210
 msgid "1%"
-msgstr ""
+msgstr "1%"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:212
 msgid "83%"
-msgstr ""
+msgstr "83%"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:17 mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:18
 #: mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:22 mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:23
@@ -21732,7 +21776,7 @@ msgstr "Resumen de la cuenta"
 
 #: mkt/lookup/templates/lookup/includes/app_search.html:6
 msgid "App Lookup"
-msgstr ""
+msgstr "Análisis de la ap."
 
 #: mkt/lookup/templates/lookup/includes/app_search.html:11
 msgid "Lookup"
@@ -21754,11 +21798,11 @@ msgstr "Recibo para {0}"
 
 #: mkt/purchase/templates/purchase/receipt.html:19
 msgid "Receipt"
-msgstr ""
+msgstr "Recibo"
 
 #: mkt/purchase/templates/purchase/receipt.html:21
 msgid "Billed To:"
-msgstr ""
+msgstr "Facturado a:"
 
 #: mkt/purchase/templates/purchase/receipt.html:28
 msgid "Order Number:"
