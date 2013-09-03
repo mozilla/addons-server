@@ -64,6 +64,9 @@ Create
         case keys are languages and values are each a translation for the
         corresponding language.
     :type description: string|dict
+    :param is_public: an indication of whether the collection should be
+        displayed in consumer-facing pages. Defaults to ``false``.
+    :type is_public: boolean
     :param name: the name of the collection. Can be a dict, in which case keys
         are languages and values are each a translation for the corresponding
         language.
