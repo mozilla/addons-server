@@ -170,14 +170,14 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
         return value if value in ('free', 'paid') else False
 
     def clean(self):
-
         is_toggling = self.is_toggling()
 
-        if self.addon.is_packaged and 'desktop' in self._get_combined():
-            self._errors['free_platforms'] = self._errors['paid_platforms'] = (
-                self.ERRORS['packaged'])
+        if self.addon.is_packaged:
+            self._set_packaged_errors()
+            if self._errors.get('free_platforms'):
+                return self.cleaned_data
 
-        elif not is_toggling:
+        if not is_toggling:
             # If a platform wasn't selected, raise an error.
             if not self.cleaned_data[
                 '%s_platforms' % ('paid' if self.is_paid() else 'free')]:
@@ -198,7 +198,6 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
         return self.cleaned_data
 
     def clean_price(self):
-
         price_value = self.cleaned_data.get('price')
         premium_type = self.cleaned_data.get('premium_type')
         if ((premium_type in amo.ADDON_PREMIUMS
