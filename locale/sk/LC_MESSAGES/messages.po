@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-08-30 15:54-0700\n"
-"PO-Revision-Date: 2013-08-28 19:40+0000\n"
+"PO-Revision-Date: 2013-09-03 19:48+0000\n"
 "Last-Translator: Vlado <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-POOTLE-MTIME: 1377718825.0\n"
+"X-POOTLE-MTIME: 1378237705.0\n"
 
 #: apps/addons/buttons.py:207
 msgid "Download Now"
@@ -881,7 +881,9 @@ msgstr "<b>{0}</b> používateľov"
 
 #: apps/addons/templates/addons/popups.html:17
 msgid "To install this add-on and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
-msgstr "Ak si chcete nainštalovať tento doplnok a tisíce ďalších, <b>nainštalujte si Firefox</b> - voľne dostupný a otvorený webový prehliadač od Mozilly."
+msgstr ""
+"Ak si chcete nainštalovať tento doplnok a tisíce ďalších, <b>nainštalujte si "
+"Firefox</b>, voľne dostupný a otvorený webový prehliadač od Mozilly."
 
 #: apps/addons/templates/addons/popups.html:21 apps/addons/templates/addons/popups.html:52
 msgid "Learn more about Firefox"
@@ -1936,9 +1938,8 @@ msgid "Refund granted for {addon} for {0}."
 msgstr ""
 
 #: apps/amo/log.py:417
-#, fuzzy
 msgid "Instant refund granted for {addon}."
-msgstr "Okamžité vrácení peněz bylo pro doplněk {addon} schváleno."
+msgstr "Okamžité vrátenie peňazí schválené pre doplnok {addon}."
 
 #: apps/amo/log.py:422
 msgid "Account updated."
@@ -1963,9 +1964,8 @@ msgid "Valid receipt was checked for {addon}."
 msgstr ""
 
 #: apps/amo/log.py:447
-#, fuzzy
 msgid "Escalation cleared for {addon}."
-msgstr "U doplňku {addon} byla zrušena kontrola administrátorem."
+msgstr ""
 
 #: apps/amo/log.py:448
 #, fuzzy
@@ -2014,9 +2014,8 @@ msgid "Premium Type Upgrade"
 msgstr "Aktualizace placené verze"
 
 #: apps/amo/log.py:495
-#, fuzzy
 msgid "Re-review cleared for {addon}."
-msgstr "Opětovná kontrola pro doplněk {addon} byla zrušena."
+msgstr ""
 
 #: apps/amo/log.py:496
 #, fuzzy
@@ -9674,7 +9673,7 @@ msgstr ""
 
 #: apps/discovery/modules.py:140
 msgid "Save on your favorite items from the comfort of your browser."
-msgstr ""
+msgstr "Uložte si svoje obľúbené položky z pohodlia vášho prehliadača."
 
 #: apps/discovery/modules.py:148
 msgid "Build the perfect website"
@@ -9714,7 +9713,7 @@ msgstr "Tu sú niektoré výborné doplnky pre Firefox 4."
 
 #: apps/discovery/modules.py:192
 msgid "St. Patrick&rsquo;s Day Themes"
-msgstr ""
+msgstr "Témy dňa svätého Patrika"
 
 #: apps/discovery/modules.py:193
 msgid "Decorate your browser to celebrate St. Patrick&rsquo;s Day."
@@ -9762,7 +9761,7 @@ msgstr "Najlepšie doplnky pre školu"
 
 #: apps/discovery/modules.py:240
 msgid "Add-ons for teachers, parents, and students heading back to school."
-msgstr "Doplnky pre učiteľov, rodičov a študentov..."
+msgstr "Doplnky pre učiteľov, rodičov a študentov, ktorí mieria späť do školy."
 
 #: apps/discovery/modules.py:245
 msgid "Would you like to know which websites you can trust?"
@@ -9786,43 +9785,43 @@ msgstr "Vo vzduchu je láska"
 
 #: apps/discovery/modules.py:272
 msgid "Add some romance to your Firefox."
-msgstr "Pridajte si do Firefoxu trochu romantiky"
+msgstr "Pridajte si do Firefoxu trochu romantiky."
 
 #: apps/discovery/modules.py:279
 msgid "Put a Theme on It!"
-msgstr ""
+msgstr "A čo tak použiť tému!"
 
 #: apps/discovery/modules.py:280
 msgid "Visit addons.mozilla.org from Firefox for Android and dress up your mobile browser to match your style, mood, or the season."
-msgstr ""
+msgstr "Navštívte addons.mozilla.org z Firefoxu pre Android a oblečte si svoj mobilný prehliadač podľa svojej chuti a aktuálnej nálady."
 
 #: apps/discovery/modules.py:289
 msgid "Get up and move!"
-msgstr ""
+msgstr "Postavte a hýbte sa!"
 
 #: apps/discovery/modules.py:290
 msgid "Install these fitness add-ons to keep you active and healthy."
-msgstr ""
+msgstr "Nainštalujte si tieto fitnes doplnky a buďte aktívni a zdraví."
 
 #: apps/discovery/modules.py:298
 msgid "New &amp; Now"
-msgstr ""
+msgstr "Nové tu a teraz"
 
 #: apps/discovery/modules.py:299
 msgid "Get the latest, must-have add-ons of the moment."
-msgstr ""
+msgstr "Získajte najnovšie doplnky, ktoré určite musíte mať."
 
 #: apps/discovery/modules.py:331
 msgid "Worry-free browsing"
-msgstr ""
+msgstr "Prehliadanie bez obáv"
 
 #: apps/discovery/modules.py:332
 msgid "Protect your privacy online with the add-ons in this collection."
-msgstr ""
+msgstr "Ochráňte vaše online súkromie pomocou doplnkov tejto kolekcie."
 
 #: apps/discovery/modules.py:341
 msgid "Great add-ons for work, fun, privacy, productivity&hellip; just about anything!"
-msgstr ""
+msgstr "Výborné doplnky pre prácu, zábavu, súkromie, produktivitu&hellip; proste na všetko!"
 
 #: apps/discovery/templates/discovery/base.html:7
 msgid "Discover Add-ons"
@@ -9919,16 +9918,15 @@ msgstr "Pozrite sa na skvelé doplnky, ktoré vám pomôžu s vašim nakupovaní
 
 #: apps/discovery/templates/discovery/modules/holiday.html:13
 msgid "Install the Amazon Browser Apps and receive special Amazon features right at your fingertips."
-msgstr ""
+msgstr "Nainštalujte si aplikácie pre prehliadač týkajpúce sa Amazonu a budete mať všetky funckie Amazonu priamo pod svojimi prstami."
 
 #: apps/discovery/templates/discovery/modules/holiday.html:22
 msgid "Keep an eye on your eBay activity wherever you are on the web when you install the eBay Sidebar for Firefox."
 msgstr "Majte na očiach aktivity na eBay, kdekoľvek na webe práve ste. Nainštalujte si eBay Sidebar pre Firefox."
 
 #: apps/discovery/templates/discovery/modules/holiday.html:31
-#, fuzzy
 msgid "See the entire holiday shopping add-on collection."
-msgstr "Podívejte se na sbírku doplňků souvisejících s nakupováním."
+msgstr "Pozrite sa na zbierku doplnkov súvisiacich s nakupovaním."
 
 #: apps/discovery/templates/discovery/modules/monthly.html:8
 msgid "Mozilla&rsquo;s Pick of the Month!"
@@ -9940,7 +9938,7 @@ msgstr "Prispôsobte si Firefox<br>vašou národnou vlajkou"
 
 #: apps/discovery/templates/discovery/modules/olympics.html:6
 msgid "Join us in celebrating the global spirit of community."
-msgstr "Pripojte sa k našim oslavám ducha globálnej komunity"
+msgstr "Pripojte sa k našim oslavám ducha globálnej komunity."
 
 #: apps/discovery/templates/discovery/modules/olympics.html:7
 msgid "Show your support"
@@ -10667,7 +10665,7 @@ msgstr "Momentálne nie je na recenziu žiadny doplnok tohto typu."
 
 #: apps/editors/templates/editors/queue.html:176 mkt/reviewers/templates/reviewers/queue.html:116 mkt/reviewers/templates/reviewers/themes/queue_list.html:85
 msgid "Helpful Links:"
-msgstr "Užitočné odkazy"
+msgstr "Užitočné odkazy:"
 
 #: apps/editors/templates/editors/queue.html:177
 msgid "Add-on Policy"
@@ -10919,7 +10917,7 @@ msgstr ""
 
 #: apps/files/utils.py:386
 msgid "Invalid archive."
-msgstr "Neplatný archív"
+msgstr "Neplatný archív."
 
 #: apps/files/utils.py:472 apps/files/utils.py:475
 msgid "Could not parse install.rdf."
@@ -11416,9 +11414,8 @@ msgstr ""
 "\">Notepad++</a></li> <li><a href=\"http://www.eclipse.org/\">Eclipse IDE</a></li>"
 
 #: apps/pages/templates/pages/dev_faq.html:101
-#, fuzzy
 msgid "You can also learn more about setting up your development environment via the MDC article <a href=\"%(url)s\">Setting up extension development environment</a>"
-msgstr "O nastavení vašeho prostředí pro vývoj si též můžete více přečíst v článku <a href=\"%(url)s\">Setting up extension development environment</a> na MDC."
+msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:107
 #, fuzzy
@@ -12752,7 +12749,7 @@ msgstr "História recenzií pre tento doplnok"
 #. L10n: This describes the number of stars given out of 5
 #: apps/reviews/feeds.py:53
 msgid "Rated %d out of 5 stars"
-msgstr "Hodnotené %d z 5 hviezdičiek."
+msgstr "Hodnotené počtom %d z 5 hviezdičiek"
 
 #: apps/reviews/forms.py:120
 msgid "Keep review; remove flags"
@@ -13064,7 +13061,7 @@ msgstr "Výsledky vyhľadávanie v kolekciách"
 
 #: apps/search/templates/search/down.html:5 mkt/search/templates/search/down.html:3
 msgid "Search Unavailable"
-msgstr "Vyhľadávanie nie je dostupné."
+msgstr "Vyhľadávanie nie je dostupné"
 
 #: apps/search/templates/search/down.html:6 mkt/search/templates/search/down.html:10
 #, fuzzy
@@ -13394,7 +13391,7 @@ msgstr "mesiac"
 
 #: apps/stats/templates/stats/stats.html:54 mkt/stats/templates/devstats/includes/criteria.html:14 mkt/stats/templates/includes/criteria.html:14
 msgid "For last:"
-msgstr "Za posledných"
+msgstr "Za posledných:"
 
 #: apps/stats/templates/stats/stats.html:57 mkt/stats/templates/devstats/includes/criteria.html:17 mkt/stats/templates/includes/criteria.html:17
 msgid "7 days"
@@ -13434,7 +13431,7 @@ msgstr "Načítavajú sa najnovšie údaje&hellip;"
 #: mkt/stats/templates/appstats/reports/app_overview.html:47 mkt/stats/templates/appstats/reports/app_overview.html:61 mkt/stats/templates/devstats/stats.html:75
 #: mkt/stats/templates/sitestats/stats.html:53
 msgid "No data available."
-msgstr "Údaje sú nedostupné"
+msgstr "Údaje nie sú dostupné."
 
 #: apps/stats/templates/stats/stats.html:169 mkt/stats/templates/appstats/stats.html:124
 msgid "This dashboard is currently <b>public</b>."
@@ -13665,11 +13662,11 @@ msgstr "Odstrániť jazyk"
 
 #: apps/users/forms.py:30
 msgid "Must be %s characters or more."
-msgstr "Minimálny počet znakov: %s"
+msgstr "Minimálny počet znakov: %s."
 
 #: apps/users/forms.py:47
 msgid "Letters and numbers required."
-msgstr "Požadované sú písmená a čísla"
+msgstr "Vyžadované sú písmená a čísla."
 
 #: apps/users/forms.py:50
 msgid "That password is not allowed."
@@ -13825,9 +13822,10 @@ msgid "Mozilla needs to contact me about my individual app"
 msgstr "Mozilla mě potřebuje kontaktovat ohledné mé aplikace"
 
 #: apps/users/notifications.py:141
-#, fuzzy
 msgid "Mozilla wants to contact me about relevant App Developer news and surveys"
-msgstr "Mozilla mě chce kontaktovat ohledně relevantních novinek a průzkumů týkajících se vývoje aplikací."
+msgstr ""
+"Mozilla ma chce kontaktovať ohľadne relevantných noviniek a prieskumov "
+"týkajúcich sa vývoja aplikácií"
 
 #: apps/users/notifications.py:152
 msgid "Mozilla wants to contact me about new regions added to the Marketplace"
@@ -13940,7 +13938,7 @@ msgstr ""
 
 #: apps/users/views.py:514
 msgid "Activation Email Sent"
-msgstr "Aktivačný e-mail odoslaný."
+msgstr "Aktivačný e-mail odoslaný"
 
 #: apps/users/views.py:515
 msgid "Having Trouble?"
@@ -13961,7 +13959,7 @@ msgstr "Již máte účet."
 
 #: apps/users/views.py:724
 msgid "There are errors in this form"
-msgstr "V tomto formulári sa nachádzajú chyby."
+msgstr "V tomto formulári sa nachádzajú chyby"
 
 #: apps/users/views.py:725
 msgid "Please correct them and resubmit."
@@ -14140,7 +14138,7 @@ msgstr "Problémy s prihlásením?"
 
 #: apps/users/templates/users/login.html:21 apps/users/templates/users/mobile/login.html:81
 msgid "I don't have an account."
-msgstr "Nemám účet"
+msgstr "Nemám účet."
 
 #: apps/users/templates/users/login.html:22 apps/users/templates/users/mobile/login.html:82
 msgid "I forgot my password."
@@ -14287,7 +14285,7 @@ msgstr "Registrácia nového používateľa"
 
 #: apps/users/templates/users/register.html:11
 msgid "Why register?"
-msgstr "Prečo sa registrovať"
+msgstr "Prečo sa registrovať?"
 
 #: apps/users/templates/users/register.html:12
 msgid ""
@@ -17191,9 +17189,8 @@ msgid "Image Assets"
 msgstr "Varianty obrázku"
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:97
-#, fuzzy
 msgid "Images to use in various location around the site, including various grid views on both mobile and desktop. Uploaded images must be one of the following image types: .png, .jpg"
-msgstr "Obrázky jsou využívány na různých místech na webu a to včetně dlaždicového náhledu na mobilech či desktopu. Nahrávané obrázky musí být v jednom z následujících formátů: .png, .jpg."
+msgstr ""
 
 #. The size of the image asset
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:116
@@ -21568,9 +21565,8 @@ msgstr "Nastavení předschválení"
 
 # 88%
 #: mkt/inapp_pay/templates/inapp_pay/nowallet.html:20
-#, fuzzy
 msgid "No thanks"
-msgstr "Ne, děkuji."
+msgstr "Nie, ďakujem"
 
 #: mkt/inapp_pay/templates/inapp_pay/pay_start.html:21
 #, fuzzy
@@ -21584,9 +21580,8 @@ msgid "Payment canceled"
 msgstr "Platba zrušena"
 
 #: mkt/inapp_pay/templates/inapp_pay/payment_cancel.html:9
-#, fuzzy
 msgid "You have not been charged."
-msgstr "Nebolo možné vás odhlásiť"
+msgstr ""
 
 #: mkt/lookup/forms.py:9
 #, fuzzy
@@ -21968,9 +21963,8 @@ msgid "Description:"
 msgstr ""
 
 #: mkt/reviewers/forms.py:61 mkt/reviewers/templates/reviewers/review.html:221
-#, fuzzy
 msgid "Device Types:"
-msgstr "Typy zařízení"
+msgstr ""
 
 #: mkt/reviewers/forms.py:63 mkt/reviewers/templates/reviewers/review.html:225
 #, fuzzy
@@ -21978,9 +21972,8 @@ msgid "Browsers:"
 msgstr "Prohlížeče:"
 
 #: mkt/reviewers/forms.py:66
-#, fuzzy
 msgid "Device Type Override:"
-msgstr "Typ doplnku"
+msgstr ""
 
 #: mkt/reviewers/forms.py:71
 msgid "Senior Reviewers"
@@ -22301,9 +22294,8 @@ msgid "There are currently no items of this type to review."
 msgstr "Aktuálně nečekají na kontrolu žádné položky."
 
 #: mkt/reviewers/templates/reviewers/review.html:31 mkt/reviewers/templates/reviewers/includes/details.html:21
-#, fuzzy
 msgid "In re-review queue"
-msgstr "Pomožte s kontrolami!"
+msgstr ""
 
 #: mkt/reviewers/templates/reviewers/review.html:34 mkt/reviewers/templates/reviewers/includes/details.html:22
 msgid "In escalation queue"
@@ -22341,9 +22333,8 @@ msgid "Attach another file"
 msgstr ""
 
 #: mkt/reviewers/templates/reviewers/review.html:254
-#, fuzzy
 msgid "Device Override:"
-msgstr "Podpora zariadení"
+msgstr ""
 
 #: mkt/reviewers/templates/reviewers/review.html:260
 msgid "Minimum Requirements Override:"
@@ -22498,9 +22489,8 @@ msgid "Theme Review Queue"
 msgstr "Kompletní kontroly motivů"
 
 #: mkt/reviewers/templates/reviewers/themes/queue.html:45
-#, fuzzy
 msgid "Review Options"
-msgstr "Ďalšie možnosti:"
+msgstr ""
 
 #: mkt/reviewers/templates/reviewers/themes/queue.html:49
 msgid "Auto-advance after review"
