@@ -22,8 +22,8 @@ from users.models import UserProfile
 from versions.models import Version
 
 from mkt.site.fixtures import fixture
-from mkt.webapps.models import AppFeatures, Webapp
-from mkt.webapps.tasks import (dump_app, update_developer_name, update_features,
+from mkt.webapps.models import Webapp
+from mkt.webapps.tasks import (dump_app, update_developer_name,
                                update_manifests, zip_apps)
 
 
@@ -461,111 +461,6 @@ class TestDumpApps(amo.tests.TestCase):
     def test_public(self, dump_app):
         call_command('process_addons', task='dump_apps')
         assert dump_app.called
-
-
-class TestUpdateFeatures(amo.tests.TestCase):
-    fixtures = fixture('webapp_337141')
-
-    def setUp(self):
-        self.create_switch('buchets')
-
-        self.app = Webapp.objects.get(pk=337141)
-        self.app.update(is_packaged=True)
-        # Note: the app files are wrong, since we now have a packaged app, but
-        # it doesn't matter since we are mocking everything, we'll never touch
-        # the files.
-
-        p = mock.patch('mkt.webapps.tasks.run_validator')
-        self.mock_validator = p.start()
-        self.mock_validator.return_value = json.dumps({
-            'feature_profile': {}
-        })
-        self.patches = [p]
-
-    def tearDown(self):
-        super(TestUpdateFeatures, self).tearDown()
-        for p in self.patches:
-            p.stop()
-
-    @mock.patch('mkt.webapps.tasks._update_features')
-    def test_ignore_not_webapp(self, mock_):
-        self.app.update(type=amo.ADDON_EXTENSION)
-        call_command('process_addons', task='update_features')
-        assert not mock_.called
-
-    @mock.patch('mkt.webapps.tasks._update_features')
-    def test_pending(self, mock_):
-        self.app.update(status=amo.STATUS_PENDING)
-        call_command('process_addons', task='update_features')
-        assert mock_.called
-
-    @mock.patch('mkt.webapps.tasks._update_features')
-    def test_public_waiting(self, mock_):
-        self.app.update(status=amo.STATUS_PUBLIC_WAITING)
-        call_command('process_addons', task='update_features')
-        assert mock_.called
-
-    @mock.patch('mkt.webapps.tasks._update_features')
-    def test_ignore_disabled(self, mock_):
-        self.app.update(status=amo.STATUS_DISABLED)
-        call_command('process_addons', task='update_features')
-        assert not mock_.called
-
-    @mock.patch('mkt.webapps.tasks._update_features')
-    def test_ignore_non_packaged(self, mock_):
-        self.app.update(is_packaged=False)
-        call_command('process_addons', task='update_features')
-        assert not mock_.called
-
-    def test_ignore_no_current_version(self):
-        self.app.current_version.all_files[0].update(status=amo.STATUS_DISABLED)
-        self.app.update_version()
-        update_features(ids=(self.app.pk,))
-        assert not self.mock_validator.called
-
-    def test_ignore_non_empty_features_profile(self):
-        version = self.app.current_version
-        version.features.update(has_sms=True)
-        update_features(ids=(self.app.pk,))
-        assert not self.mock_validator.called
-
-    def test_validator(self):
-        update_features(ids=(self.app.pk,))
-        assert self.mock_validator.called
-        features = self.app.current_version.features.to_dict()
-        eq_(AppFeatures().to_dict(), features)
-
-    def test_validator_with_results(self):
-        feature_profile = ['APPS', 'ACTIVITY']
-        self.mock_validator.return_value = json.dumps({
-            'feature_profile': feature_profile
-        })
-        update_features(ids=(self.app.pk,))
-        assert self.mock_validator.called
-        features = self.app.current_version.features.to_dict()
-        eq_(features['has_apps'], True)
-        eq_(features['has_activity'], True)
-        eq_(features['has_sms'], False)
-
-    def test_validator_with_results_existing_empty_profile(self):
-        feature_profile = ['APPS', 'ACTIVITY']
-        self.mock_validator.return_value = json.dumps({
-            'feature_profile': feature_profile
-        })
-        version = self.app.current_version
-        eq_(AppFeatures.objects.count(), 1)
-        eq_(version.features.to_list(), [])
-        update_features(ids=(self.app.pk,))
-        assert self.mock_validator.called
-        eq_(AppFeatures.objects.count(), 1)
-
-        # Features are cached on the version, therefore reload the app since we
-        # were using the same instance as before.
-        self.app.reload()
-        features = self.app.current_version.features.to_dict()
-        eq_(features['has_apps'], True)
-        eq_(features['has_activity'], True)
-        eq_(features['has_sms'], False)
 
 
 class TestUpdateDeveloperName(amo.tests.TestCase):

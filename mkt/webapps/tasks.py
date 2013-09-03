@@ -4,7 +4,6 @@ import json
 import logging
 import os
 import subprocess
-from collections import defaultdict
 
 from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
@@ -31,8 +30,7 @@ from translations.models import delete_translation, Translation
 from users.utils import get_task_user
 
 from mkt.constants.regions import WORLDWIDE
-from mkt.developers.tasks import (fetch_icon, _fetch_manifest, run_validator,
-                                  validator)
+from mkt.developers.tasks import fetch_icon, _fetch_manifest, validator
 from mkt.webapps.models import AppManifest, Webapp, WebappIndexer
 from mkt.webapps.utils import get_locale_properties
 
@@ -354,48 +352,6 @@ def zip_apps(*args, **kw):
     task_log.info(u'Creating app dump {0}'.format(target_file))
     subprocess.call(cmd)
     return target_file
-
-
-def _update_features(id):
-    try:
-        webapp = Webapp.objects.get(pk=id)
-    except Webapp.DoesNotExist:
-        _log(id, u'Webapp does not exist')
-        return
-
-    # We only detect features on packaged webapps.
-    if not webapp.is_packaged:
-        _log(id, u'Webapp is not a packaged app')
-        return
-
-    # If the app doesn't have a current_version, don't bother either.
-    if not webapp.current_version:
-        _log(id, u'Webapp does not have a current_version')
-        return
-
-    # If the app already has a non-empty feature profile, don't touch it.
-    features = webapp.current_version.features
-    if features.to_list():
-        _log(id, u'Webapp already has a non-empty feature profile')
-        return
-
-    version = webapp.current_version
-    res = run_validator(version.all_files[0].file_path)
-    validation_result = json.loads(res)
-
-    # Set all detected features as True and save them.
-    feature_profile = validation_result['feature_profile']
-    keys = ['has_%s' % feature.lower() for feature in feature_profile]
-    data = defaultdict.fromkeys(keys, True)
-
-    # Update features.
-    features.update(**data)
-
-
-@task
-def update_features(ids, **kw):
-    for id in ids:
-        _update_features(id)
 
 
 def _update_developer_name(id):
