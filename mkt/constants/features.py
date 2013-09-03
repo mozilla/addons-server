@@ -212,37 +212,39 @@ APP_FEATURES = OrderedDict([
     ('CAMERA', {
         'name': _lazy(u'Camera'),
         'description': _lazy(u'The app requires the platform to allow access '
-                             u'to video from the device camera.'),
-        'apis': ('navigator.getUserMedia',),
+                             u'to video from the device camera via a '
+                             u'LocalMediaStream object.'),
+        'apis': ('navigator.getUserMedia({video: true, picture: true})',),
     }),
     ('MIC', {
         'name': _lazy(u'Microphone'),
         'description': _lazy(u'The app requires the platform to allow access '
                              u'to audio from the device microphone.'),
-        'apis': ('navigator.getUserMedia',),
+        'apis': ('navigator.getUserMedia({audio: true})',),
     }),
     ('SCREEN_CAPTURE', {
         'name': _lazy(u'Screen Capture'),
         'description': _lazy(u'The app requires the platform to allow access '
                              u'to the device screen for capture.'),
-        'apis': ('navigator.getUserMedia',),
+        'apis': ('navigator.getUserMedia({video: {mandatory: '
+                 '{chromeMediaSource: "screen"}}})',),
     }),
     ('WEBRTC_MEDIA', {
-        'name': _lazy(u'Web RTC MediaStream'),
+        'name': _lazy(u'WebRTC MediaStream'),
         'description': _lazy(u'The app requires the platform to allow web '
                              u'real-time communication browser-to-browser '
                              u'inbound media streams.'),
-        'apis': ('navigator.getUserMedia',),
+        'apis': ('MediaStream',),
     }),
     ('WEBRTC_DATA', {
-        'name': _lazy(u'Web RTC DataChannel'),
+        'name': _lazy(u'WebRTC DataChannel'),
         'description': _lazy(u'The app requires the platform to allow '
                              u'peer-to-peer exchange of data other than audio '
                              u'and video.'),
-        'apis': ('RTCDataChannel',),
+        'apis': ('DataChannel',),
     }),
     ('WEBRTC_PEER', {
-        'name': _lazy(u'Web RTC PeerConnection'),
+        'name': _lazy(u'WebRTC PeerConnection'),
         'description': _lazy(u'The app requires the platform to allow '
                              u'communication of streaming data between '
                              u'peers.'),
@@ -285,8 +287,9 @@ APP_FEATURES = OrderedDict([
     ('SYSTEMXHR', {
         'name': _lazy(u'SystemXHR'),
         'description': _lazy(u'The app requires the platform to allow the '
-                             u'sending of asynchronous HTTP requests.'),
-        'apis': ('XMLHttpRequest',)
+                             u'sending of asynchronous HTTP requests without '
+                             u'the restrictions of the same-origin policy.'),
+        'apis': ('XMLHttpRequest({mozSystem: true})',)
     }),
     ('TCPSOCKET', {
         'name': _lazy(u'TCP Sockets'),
