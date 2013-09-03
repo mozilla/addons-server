@@ -47,8 +47,8 @@ class DeviceTypeForm(happyforms.Form):
     ERRORS = {
         'both': _lazy(u'Cannot be free and paid.'),
         'none': _lazy(u'Please select a device.'),
-        'packaged': _lazy(u'Packaged apps are not yet supported for those '
-                          u'platforms.'),
+        'packaged': _lazy(u'Packaged apps are valid for only Firefox OS '
+                          'and Android.'),
     }
 
     free_platforms = forms.MultipleChoiceField(
@@ -84,21 +84,6 @@ class DeviceTypeForm(happyforms.Form):
         devices = (self.cleaned_data.get('free_platforms', []) +
                    self.cleaned_data.get('paid_platforms', []))
         return set(d.split('-', 1)[1] for d in devices)
-
-    def _set_packaged_errors(self):
-        """Add packaged-app submission errors for incompatible platforms."""
-        devices = self._get_combined()
-        bad_android = (
-            not waffle.flag_is_active(self.request, 'android-packaged') and
-            ('android-mobile' in devices or 'android-tablet' in devices)
-        )
-        bad_desktop = (
-            not waffle.flag_is_active(self.request, 'desktop-packaged') and
-            'desktop' in devices
-        )
-        if bad_android or bad_desktop:
-            self._errors['free_platforms'] = self._errors['paid_platforms'] = (
-                self.ERRORS['packaged'])
 
     def clean(self):
         data = self.cleaned_data
@@ -176,11 +161,13 @@ class NewWebappVersionForm(happyforms.Form):
             del self.fields['paid_platforms']
 
     def clean(self):
+
         data = self.cleaned_data
         if 'upload' not in self.cleaned_data:
             self._errors['upload'] = self.upload_error
             return
 
+        # Packaged apps are only valid for firefox os.
         if self.is_packaged():
             # Now run the packaged app check, done in clean, because
             # clean_packaged needs to be processed first.
@@ -233,8 +220,7 @@ class NewWebappForm(DeviceTypeForm, NewWebappVersionForm):
         self.request = kwargs.pop('request', None)
         super(NewWebappForm, self).__init__(*args, **kwargs)
         if 'paid_platforms' in self.fields:
-            self.fields['paid_platforms'].choices = PAID_PLATFORMS(
-                self.request)
+            self.fields['paid_platforms'].choices = PAID_PLATFORMS(self.request)
 
     def _add_error(self, msg):
         self._errors['free_platforms'] = self._errors['paid_platforms'] = (
@@ -245,10 +231,11 @@ class NewWebappForm(DeviceTypeForm, NewWebappVersionForm):
         if not data:
             return
 
-        if self.is_packaged():
-            self._set_packaged_errors()
-            if self._errors.get('free_platforms'):
-                return
+        combined_platforms = self._get_combined()
+        if self.is_packaged() and 'desktop' in combined_platforms:
+            self._errors['free_platforms'] = self._errors['paid_platforms'] = (
+                self.ERRORS['packaged'])
+            return
 
         return data
 

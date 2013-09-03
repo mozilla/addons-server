@@ -54,7 +54,7 @@
     // When a big device button is clicked, update the form.
     var $upload_form = $('#upload-webapp'),
         $qhd = $('#id_has_qhd');
-    z.body.on('change', '#upload-webapp select', function() {
+    $(document.body).on('change', '#upload-webapp select', function() {
         // IT'S FINE. IT'S FINE.
         if (!$upload_form.find('option[value$="-desktop"]:selected, option[value$="-tablet"]:selected').length) {
             $qhd.prop('checked', true).trigger('change');
@@ -102,29 +102,11 @@
 
     // Condition to show packaged tab...ugly but works.
     function showPackagedTab() {
-        // If the Android flag is disabled, and you tried to select
-        // Android Mobile or Tablet... no packaged apps for you.
-        // (This lets us prevent you from marking your app as compatible
-        // with both Firefox OS *and* Android when Android support
-        // hasn't landed yet.)
-        if (!$('[data-packaged-platforms~="android"]').length &&
-            $('option[value*="-android-"]:selected').length) {
-            return false;
-        }
-
-        // If the Desktop flag is disabled, and you tried to select
-        // Desktop... no packaged apps for you.
-        if (!$('[data-packaged-platforms~="desktop"]').length &&
-            $('option[value$="-desktop"]:selected').length) {
-            return false;
-        }
-
         return ($('#id_free_platforms option[value="free-firefoxos"]:selected').length &&
-            $('#id_free_platforms option:selected').length == 1) ||
-            $('#id_paid_platforms option[value="paid-firefoxos"]:selected').length ||
-            $('[data-packaged-platforms~="android"] option[value*="-android-"]:selected').length ||
-            $('[data-packaged-platforms~="desktop"] option[value$="-desktop"]:selected').length ||
-            allTabsDeselected();
+               $('#id_free_platforms option:selected').length == 1) ||
+               $('#id_paid_platforms option[value="paid-firefoxos"]:selected').length ||
+               $('option[value*=android]:selected').length ||
+               allTabsDeselected();
     }
 
     // Toggle packaged/hosted tab state.
@@ -142,7 +124,7 @@
         }
     }
 
-    z.body.on('tabs-changed', function(e, tab) {
+    $(document).on('tabs-changed', function(e, tab) {
         if (tab.id == 'packaged-tab-header') {
             $('.learn-mdn.active').removeClass('active');
             $('.learn-mdn.packaged').addClass('active');

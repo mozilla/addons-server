@@ -1,3 +1,5 @@
+from django.conf import settings
+
 import mock
 from nose.tools import eq_, ok_
 from pyquery import PyQuery as pq
@@ -222,11 +224,8 @@ class TestPremiumForm(amo.tests.TestCase):
         Price.objects.create(price='1.00', method=PAYMENT_METHOD_ALL)
         Price.objects.create(price='2.00', method=PAYMENT_METHOD_ALL)
         form = forms_payments.PremiumForm(self.platforms, **self.kwargs)
-        #   1 x Free with inapp
-        # + 1 x price tier 0
-        # + 3 x values grouped by billing
-        # + 1 x 'Please select'
-        # = 6
+        # 1 x Free with inapp +  1 x price tier 0 + 3 x values grouped by billing +
+        # 1 x 'Please select' = 6.
         eq_(len(form.fields['price'].choices), 6)
         html = form.as_p()
         eq_(len(pq(html)('#id_price optgroup')), 3, 'Should be 3 optgroups')
@@ -248,13 +247,6 @@ class TestPremiumForm(amo.tests.TestCase):
         form = forms_payments.PremiumForm(data=self.platforms, **self.kwargs)
         assert not form.is_valid()
 
-    def test_can_set_desktop_for_packaged_app(self):
-        self.create_flag('desktop-packaged')
-        self.platforms = {'free_platforms': ['free-desktop']}
-        self.addon.update(is_packaged=True)
-        form = forms_payments.PremiumForm(data=self.platforms, **self.kwargs)
-        assert form.is_valid(), form.errors
-
     def test_can_change_devices_for_hosted_app(self):
         # Specify the free and paid. It shouldn't fail because you can't change
         # payment types without explicitly specifying that.
@@ -266,17 +258,7 @@ class TestPremiumForm(amo.tests.TestCase):
 
         self.assertSetEqual(self.addon.device_types, [amo.DEVICE_DESKTOP])
 
-    def test_cannot_change_android_devices_for_packaged_app(self):
-        self.platforms = {'free_platforms': ['free-android-mobile'],
-                          'paid_platforms': ['paid-firefoxos']}  # Ignored.
-        self.addon.update(is_packaged=True)
-        form = forms_payments.PremiumForm(data=self.platforms, **self.kwargs)
-        assert not form.is_valid()
-
-        self.assertSetEqual(self.addon.device_types, [amo.DEVICE_GAIA])
-
-    def test_can_change_devices_for_packaged_app_behind_flag(self):
-        self.create_flag('android-packaged')
+    def test_can_change_devices_for_packaged_app(self):
         self.platforms = {'free_platforms': ['free-android-mobile'],
                           'paid_platforms': ['paid-firefoxos']}  # Ignored.
         self.addon.update(is_packaged=True)
@@ -524,7 +506,7 @@ class TestPaidRereview(amo.tests.TestCase):
         eq_(RereviewQueue.objects.count(), 1)
 
         form = forms_payments.BangoAccountListForm(None, **self.kwargs)
-        eq_(form.fields['accounts'].empty_label, None)
+        assert form.fields['accounts'].empty_label == None
 
     @mock.patch('mkt.developers.models.client')
     def test_disagreed_tos_rereview(self, client):
