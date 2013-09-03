@@ -1177,6 +1177,12 @@ class TestAppFeatures(amo.tests.TestCase):
         af.set_flags('foo')
         af.set_flags('<script>')
 
+    def test_new_app_features_version(self):
+        # Test that the old appfeatures profile in the fixture sets the new app
+        # features to False by default.
+        af = AppFeatures(version=self.app.current_version)
+        eq_(af.has_webrtc_media, False)
+
 
 class TestWebappIndexer(amo.tests.TestCase):
     fixtures = fixture('webapp_337141')
