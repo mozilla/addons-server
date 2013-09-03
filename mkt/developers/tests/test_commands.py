@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.core import mail
 from django.core.management.base import CommandError
 
@@ -41,10 +42,10 @@ class TestCommand(amo.tests.TestCase):
         email_developers_about_new_paid_region.Command().handle('uk')
         msg = mail.outbox[0]
         eq_(msg.subject,
-            (u'Algo Algo Steamcube!: Reino Unido region added '
-             u'to the Firefox Marketplace'))
-        assert 'payments for Reino Unido' in msg.body
-        assert 'your app, Algo Algo Steamcube!' in msg.body
+            (u'Algo Algo Steamcube!: Reino Unido región agregada a '
+             u'Firefox Marketplace'))
+        assert u'pagos para Reino Unido' in msg.body
+        assert u'tu aplicación Algo Algo Steamcube!' in msg.body
 
     def test_email_developers_about_new_paid_region_with_pending_status(self):
         app = Webapp.objects.get(id=337141)
