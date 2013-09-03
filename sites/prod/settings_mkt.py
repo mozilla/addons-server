@@ -165,4 +165,5 @@ if NEWRELIC_ENABLE:
 
 ES_USE_PLUGINS = True
 
-PURCHASE_ENABLED_REGIONS = [regions.PL.id, regions.SPAIN.id, regions.CO.id]
+PURCHASE_ENABLED_REGIONS = [regions.PL.id, regions.SPAIN.id, regions.CO.id,
+                            regions.VE.id]
