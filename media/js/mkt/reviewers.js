@@ -143,7 +143,7 @@ function initMobileMenus() {
     $('.trigger-queues').click(function(e) {
         if (z.capabilities.mobile || z.capabilities.tablet) {
             e.preventDefault();
-            $logTabOverlay.show();
+            $queueTabOverlay.show();
         }
     });
     $('.trigger-logs').click(_pd(function() {
