@@ -282,7 +282,7 @@ APP_FEATURES = OrderedDict([
                              u'time.'),
         'apis': ('navigator.mozAlarms',)
     }),
-    ('SYSTEMHXR', {
+    ('SYSTEMXHR', {
         'name': _lazy(u'SystemXHR'),
         'description': _lazy(u'The app requires the platform to allow the '
                              u'sending of asynchronous HTTP requests.'),
