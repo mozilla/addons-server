@@ -8,7 +8,7 @@ elasticsearch is a search server. Documents (key-values) get stored,
 configurable queries come in, elasticsearch scores these documents, and returns
 the most relevant hits.
 
-Also check out [elasticsearch-head](http://mobz.github.io/elasticsearch-head/),
+Also check out `elasticsearch-head <http://mobz.github.io/elasticsearch-head/>`_,
 a plugin with web front-end to elasticsearch that can be easier than talking to
 elasticsearch over curl.
 
@@ -50,7 +50,7 @@ elasticsearch will come with an start-stop daemon in /etc/init.d.
 
 Zamboni has commands that sets up mappings and indexes objects such as add-ons
 and apps for you. Setting up the mappings is analagous defining the structure
-of a table, indexing is analagous to storing rows.::
+of a table, indexing is analagous to storing rows.
 
 For AMO, this will set up all indexes and start the indexing processeses::
 
@@ -86,8 +86,8 @@ maintained incrementally through post_save and post_delete hooks.::
 Querying ElasticSearch in Django
 --------------------------------
 
-We use [elasticutils](http://github.com/mozilla/elasticutils), a Python library
-that gives us a search API to elasticsearch.
+We use `elasticutils <http://github.com/mozilla/elasticutils>`_, a Python
+library that gives us a search API to elasticsearch.
 
 We attach elasticutils to Django models with a mixin. This lets us do things like
 `.search()` which returns an object which acts a lot like Django's ORM's object
