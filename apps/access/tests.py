@@ -5,7 +5,7 @@ import mock
 from nose.tools import assert_false
 
 import amo
-from amo.tests import req_factory_factory, TestCase
+from amo.tests import TestCase, req_factory_factory
 from amo.urlresolvers import reverse
 from addons.models import Addon, AddonUser
 from users.models import UserProfile
@@ -199,11 +199,11 @@ class TestHasPerm(TestCase):
 
 
 class TestCheckReviewer(TestCase):
-    fixtures = ['base/users']
+    fixtures = ['base/user_2519']
 
     def setUp(self):
-        self.user = UserProfile.objects.get(username='regularuser')
-        self.user.user = User.objects.get(username='regular@mozilla.com')
+        self.user = UserProfile.objects.get()
+        self.user.user = User.objects.get()
         self.user.save()
 
     def test_no_perm(self):

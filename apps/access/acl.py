@@ -107,9 +107,9 @@ def check_reviewer(request, only=None):
     app = action_allowed(request, 'Apps', 'Review')
     persona = action_allowed(request, 'Personas', 'Review')
     if only == 'addon':
-        return True if addon else False
+        return addon
     elif only == 'app':
-        return True if app else False
+        return app
     elif only == 'persona':
-        return True if persona else False
+        return persona
     return addon or app or persona
