@@ -240,6 +240,7 @@ class Command(BaseCommand):
         # copy in Elasticsearch.
         # For ES < 0.90 we manually enable compression.
         chain |= create_index.si(new_index, ALIAS, {
+            'analysis': WebappIndexer.get_analysis(),
             'number_of_replicas': 0, 'number_of_shards': num_shards,
             'store.compress.tv': True, 'store.compress.stored': True,
             'refresh_interval': '-1'})

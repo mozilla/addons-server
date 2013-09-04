@@ -1,11 +1,11 @@
 .. _elasticsearch:
 
 =============
-elasticsearch
+Elasticsearch
 =============
 
-elasticsearch is a search server. Documents (key-values) get stored,
-configurable queries come in, elasticsearch scores these documents, and returns
+Elasticsearch is a search server. Documents (key-values) get stored,
+configurable queries come in, Elasticsearch scores these documents, and returns
 the most relevant hits.
 
 Also check out `elasticsearch-head <http://mobz.github.io/elasticsearch-head/>`_,
@@ -15,13 +15,18 @@ elasticsearch over curl.
 Installation
 ------------
 
-elasticsearch comes with most package managers.::
+Elasticsearch comes with most package managers.::
 
     brew install elasticsearch  # or whatever your package manager is called.
 
-If elasticsearch isn't packaged for your system, you can install it
+If Elasticsearch isn't packaged for your system, you can install it
 manually, `here are some good instructions on how to do so
 <http://www.elasticsearch.org/tutorials/2010/07/01/setting-up-elasticsearch.html>`_.
+
+For running Marketplace you must install the
+`ICU Analysis Plugin <http://www.elasticsearch.org/guide/reference/index-modules/analysis/icu-plugin/>`_.
+See the `ICU Github Page <https://github.com/elasticsearch/elasticsearch-analysis-icu>`_
+for instructions on installing this plugin.
 
 Settings
 --------
@@ -33,7 +38,7 @@ different from normal text. To get the same results as our servers, put this in
 your elasticsearch.yml (available at
 :src:`scripts/elasticsearch/elasticsearch.yml`)
 
-Once installed, we can configure elasticsearch. Zamboni has a ```config.yml```
+Once installed, we can configure Elasticsearch. Zamboni has a ```config.yml```
 in the ```scripts/elasticsearch/``` directory. If on OSX, copy that file into
 ```/usr/local/Cellar/elasticsearch/x.x.x/config/```. On Linux, the directory is
 ```/etc/elasticsearch/```.
@@ -44,9 +49,9 @@ won't notice.
 Launching and Setting Up
 ------------------------
 
-Launch the elasticsearch service. If you used homebrew, `brew info
+Launch the Elasticsearch service. If you used homebrew, `brew info
 elasticsearch` will show you the commands to launch. If you used aptitude,
-elasticsearch will come with an start-stop daemon in /etc/init.d.
+Elasticsearch will come with an start-stop daemon in /etc/init.d.
 
 Zamboni has commands that sets up mappings and indexes objects such as add-ons
 and apps for you. Setting up the mappings is analagous defining the structure
@@ -83,7 +88,7 @@ maintained incrementally through post_save and post_delete hooks.::
 
     ./manage.py weekly_downloads # Index weekly downloads.
 
-Querying ElasticSearch in Django
+Querying Elasticsearch in Django
 --------------------------------
 
 We use `elasticutils <http://github.com/mozilla/elasticutils>`_, a Python
@@ -98,12 +103,15 @@ manager. `.filter(**kwargs)` can be run on this search object.::
         .values_dict('that_field'))
 
 On Marketplace, apps use ```mkt/webapps/models:WebappIndexer``` as its
-interface to elasticsearch.
+interface to Elasticsearch. Search is done a little differently using
+this and results are a list of ``WebappIndexer`` objects::
 
-Testing with elasticsearch
+    query_results = S(WebappIndexer).filter(...)
+
+Testing with Elasticsearch
 --------------------------
 
-All test cases using ElasticSearch should inherit from `amo.tests.ESTestCase`.
+All test cases using Elasticsearch should inherit from `amo.tests.ESTestCase`.
 All such tests will be skipped by the test runner unless::
 
     RUN_ES_TESTS = True
@@ -117,7 +125,7 @@ Troubleshooting
 *I got a CircularReference error on .search()* - check that a whole object is
 not being passed into the filters, but rather just a field's value.
 
-*I indexed something into ElasticSearch, but my query returns nothing* - check
+*I indexed something into Elasticsearch, but my query returns nothing* - check
 whether the query contains upper-case letters or hyphens. If so, try
 lowercasing your query filter. For hyphens, set the field's mapping to not be
 analyzed::

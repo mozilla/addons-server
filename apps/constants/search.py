@@ -64,3 +64,32 @@ for analyzer, languages in SEARCH_ANALYZER_MAP.items():
 SEARCH_ANALYZER_PLUGINS = [
     'polish',
 ]
+
+
+# Which stemmer to use for each langauge.
+#
+# Note: We use the keys of this dict for supported stop words, also, which is
+# specified as, e.g., '_english_'.
+STEMMER_MAP = {
+    'arabic': 'arabic',
+    'basque': 'basque',
+    'brazilian': 'brazilian',
+    'bulgarian': 'bulgarian',
+    'catalan': 'catalan',
+    'czech': 'czech',
+    'danish': 'danish',
+    'dutch': 'dutch',
+    'english': 'minimal_english',
+    'finnish': 'light_finish',  # Yes, this is misspelled in ES.
+    'french': 'light_french',
+    'german': 'light_german',
+    'greek': 'greek',
+    'hungarian': 'light_hungarian',
+    'indonesian': 'indonesian',
+    'italian': 'light_italian',
+    'portuguese': 'light_portuguese',
+    'romanian': 'romanian',
+    'russian': 'russian',
+    'spanish': 'light_spanish',
+    'swedish': 'light_swedish',
+}
