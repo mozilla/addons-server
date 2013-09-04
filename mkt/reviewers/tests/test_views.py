@@ -77,7 +77,8 @@ class AppReviewerTest(amo.tests.TestCase):
     def login_as_senior_reviewer(self):
         self.client.logout()
         user = UserProfile.objects.get(email='editor@mozilla.com')
-        self.grant_permission(user, 'Addons:Edit,Apps:ReviewEscalated')
+        self.grant_permission(user, 'Addons:Edit,Apps:ReviewEscalated,'
+                                    'Apps:ReviewPrivileged')
         self.login_as_editor()
 
     def check_actions(self, expected, elements):
@@ -355,7 +356,6 @@ class XSSMixin(object):
         assert '<script>' not in tbody
 
 
-@mock.patch('versions.models.Version.is_privileged', False)
 class TestAppQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
                    XSSMixin):
     fixtures = ['base/users']
@@ -416,6 +416,38 @@ class TestAppQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         actions = pq(r.content)('#review-actions input')
         expected = [
             (u'Push to public', 'public'),
+            (u'Escalate', 'escalate'),
+            (u'Request more information', 'info'),
+            (u'Comment', 'comment'),
+        ]
+        self.check_actions(expected, actions)
+
+    @mock.patch('versions.models.Version.is_privileged', True)
+    def test_action_buttons_privileged_cantreview(self):
+        self.apps[0].update(is_packaged=True)
+        self.apps[0].latest_version.files.update(status=amo.STATUS_PENDING)
+        r = self.client.get(self.review_url(self.apps[0]))
+        eq_(r.status_code, 200)
+        actions = pq(r.content)('#review-actions input')
+        expected = [
+            (u'Escalate', 'escalate'),
+            (u'Request more information', 'info'),
+            (u'Comment', 'comment'),
+        ]
+        self.check_actions(expected, actions)
+
+    @mock.patch('versions.models.Version.is_privileged', True)
+    def test_action_buttons_privileged_canreview(self):
+        self.login_as_senior_reviewer()
+        self.apps[0].update(is_packaged=True)
+        self.apps[0].latest_version.files.update(status=amo.STATUS_PENDING)
+        r = self.client.get(self.review_url(self.apps[0]))
+        eq_(r.status_code, 200)
+        actions = pq(r.content)('#review-actions input')
+        expected = [
+            (u'Push to public', 'public'),
+            (u'Reject', 'reject'),
+            (u'Disable app', 'disable'),
             (u'Escalate', 'escalate'),
             (u'Request more information', 'info'),
             (u'Comment', 'comment'),

@@ -39,10 +39,10 @@ def send_mail(subject, template, context, emails, perm_setting=None, cc=None,
     # Link to our newfangled "Account Settings" page.
     manage_url = absolutify('/settings') + '#notifications'
     send_mail_jinja(subject, template, context, recipient_list=emails,
-                    from_email=settings.MKT_REVIEWERS_EMAIL, use_blacklist=False,
-                    perm_setting=perm_setting, manage_url=manage_url,
-                    headers={'Reply-To': reply_to}, cc=cc,
-                    attachments=attachments)
+                    from_email=settings.MKT_REVIEWERS_EMAIL,
+                    use_blacklist=False, perm_setting=perm_setting,
+                    manage_url=manage_url, headers={'Reply-To': reply_to},
+                    cc=cc, attachments=attachments)
 
 
 def send_note_emails(note):
@@ -189,7 +189,6 @@ class ReviewBase(object):
     def request_information(self):
         """Send a request for information to the authors."""
         emails = list(self.addon.authors.values_list('email', flat=True))
-        cc_email = self.addon.mozilla_contact or None
         self.log_action(amo.LOG.REQUEST_INFORMATION)
         self.version.update(has_info_request=True)
         log.info(u'Sending request for information for %s to %s' %
@@ -357,8 +356,6 @@ class ReviewApp(ReviewBase):
             EscalationQueue.objects.filter(addon=self.addon).delete()
         if self.in_rereview:
             RereviewQueue.objects.filter(addon=self.addon).delete()
-        emails = list(self.addon.authors.values_list('email', flat=True))
-        cc_email = self.addon.mozilla_contact or None
         self.create_comm_thread(action='disable')
         subject = u'App disabled by reviewer: %s' % self.addon.name
         self.notify_email('disabled', subject)
@@ -464,14 +461,19 @@ class ReviewHelper(object):
                                              status__in=amo.REVIEWED_STATUSES)
                                          .exists())
 
+        show_privileged = (not self.version.is_privileged
+                           or acl.action_allowed(self.handler.request, 'Apps',
+                                                 'ReviewPrivileged'))
+
         # Public.
-        if ((self.addon.is_packaged and amo.STATUS_PUBLIC not in file_status)
+        if ((self.addon.is_packaged and amo.STATUS_PUBLIC not in file_status
+             and show_privileged)
             or (not self.addon.is_packaged and
                 self.addon.status != amo.STATUS_PUBLIC)):
             actions['public'] = public
 
         # Reject.
-        if self.addon.is_packaged:
+        if self.addon.is_packaged and show_privileged:
             # Packaged apps reject the file only, or the app itself if there's
             # only a single version.
             if (not multiple_versions and
@@ -480,7 +482,7 @@ class ReviewHelper(object):
                 actions['reject'] = reject
             elif multiple_versions and amo.STATUS_DISABLED not in file_status:
                 actions['reject'] = reject
-        else:
+        elif not self.addon.is_packaged:
             # Hosted apps reject the app itself.
             if self.addon.status not in [amo.STATUS_REJECTED,
                                          amo.STATUS_DISABLED]:
