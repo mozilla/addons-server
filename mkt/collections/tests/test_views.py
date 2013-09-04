@@ -426,9 +426,16 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         new_collection = Collection.objects.get(pk=data['id'])
         ok_(new_collection.pk != self.collection.pk)
         for key in override_data:
-            eq_(data[key], override_data[key])
             eq_(getattr(new_collection, key), override_data[key])
             ok_(getattr(new_collection, key) != getattr(self.collection, key))
+
+        # We return slugs always in data, so test that separately.
+        expected_data = {
+            'collection_type': COLLECTIONS_TYPE_OPERATOR,
+            'region': mkt.regions.SPAIN.slug
+        }
+        for key in expected_data:
+            eq_(data[key], expected_data[key])
 
     def test_duplicate_invalid_data(self):
         self.make_publisher()
@@ -587,35 +594,71 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
             'name': {'en-US': u'clôuserw soundboard'},
             'description': {'en-US': u'Gèt off my lawn!'},
             'category': cat.pk,
+            'carrier': mkt.carriers.TELEFONICA.id,
         }
         res, data = self.edit_collection(self.client, **updates)
         eq_(res.status_code, 200)
         collection = self.collection.reload()
 
-        # Test that the result and object contain the right values. Remove
-        # category, name and desc from the dict first to test it separately.
-        keys = updates.keys()
-        keys.remove('category')
-        keys.remove('description')
-        keys.remove('name')
-        for key in keys:
-            eq_(data[key], updates[key])
-            eq_(getattr(self.collection, key), updates[key])
+        # Test that the result and object contain the right values. We can't
+        # easily loop on updates dict because data is stored and serialized
+        # in different ways depending on the field.
+        eq_(data['author'], updates['author'])
+        eq_(collection.author, updates['author'])
 
-        # Don't use a for loop for those, because the value on the Collection
-        # instance is not directly equivalent to the value in updates dict.
+        eq_(data['is_public'], updates['is_public'])
+        eq_(collection.is_public, updates['is_public'])
+
         eq_(data['name'], updates['name'])
         eq_(collection.name, updates['name']['en-US'])
 
         eq_(data['description'], updates['description'])
         eq_(collection.description, updates['description']['en-US'])
 
-        eq_(data['category'], cat.pk)
+        eq_(data['category'], cat.slug)
         eq_(collection.category, cat)
+
+        eq_(data['region'], mkt.regions.SPAIN.slug)
+        eq_(collection.region, updates['region'])
+
+        eq_(data['carrier'], mkt.carriers.TELEFONICA.slug)
+        eq_(collection.carrier, updates['carrier'])
+
+    def test_edit_collection_with_slugs(self):
+        self.make_publisher()
+        cat = Category.objects.create(type=amo.ADDON_WEBAPP, name='Grumpy',
+                                      slug='grumpy-cat')
+        updates = {
+            'region': mkt.regions.SPAIN.slug,
+            'category': cat.slug,
+            'carrier': mkt.carriers.TELEFONICA.slug,
+        }
+        res, data = self.edit_collection(self.client, **updates)
+        eq_(res.status_code, 200)
+        collection = self.collection.reload()
+
+        # Test that the result and object contain the right values. We can't
+        # easily loop on updates dict because data is stored and serialized
+        # in different ways depending on the field.
+        eq_(data['region'], mkt.regions.SPAIN.slug)
+        eq_(collection.region, mkt.regions.SPAIN.id)
+
+        eq_(data['carrier'], mkt.carriers.TELEFONICA.slug)
+        eq_(collection.carrier, mkt.carriers.TELEFONICA.id)
+
+        eq_(data['category'], cat.slug)
+        eq_(collection.category, cat)
+
+    def test_edit_collection_invalid_carrier_slug(self):
+        self.make_publisher()
+        # Invalid carrier slug.
+        updates = {'carrier': 'whateverlol'}
+        res, data = self.edit_collection(self.client, **updates)
+        eq_(res.status_code, 400)
 
     def test_edit_collection_invalid_carrier(self):
         self.make_publisher()
-        # Invalid carrier.
+        # Invalid carrier id.
         updates = {'carrier': 1576}
         res, data = self.edit_collection(self.client, **updates)
         eq_(res.status_code, 400)
@@ -659,11 +702,26 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         res, data = self.edit_collection(self.client, **updates)
         eq_(res.status_code, 400)
 
-    def test_edit_collection_category(self):
+    def test_edit_collection_invalid_region_slug(self):
+        self.make_publisher()
+        # Invalid region slug.
+        updates = {'region': 'idontexist'}
+        res, data = self.edit_collection(self.client, **updates)
+        eq_(res.status_code, 400)
+
+    def test_edit_collection_invalid_category(self):
         self.make_publisher()
         eq_(Category.objects.count(), 0)
         # Invalid (non-existant) category.
         updates = {'category': 1}
+        res, data = self.edit_collection(self.client, **updates)
+        eq_(res.status_code, 400)
+
+    def test_edit_collection_invalid_category_slug(self):
+        self.make_publisher()
+        eq_(Category.objects.count(), 0)
+        # Invalid (non-existant) category slug.
+        updates = {'category': 'nosuchcat'}
         res, data = self.edit_collection(self.client, **updates)
         eq_(res.status_code, 400)
 
