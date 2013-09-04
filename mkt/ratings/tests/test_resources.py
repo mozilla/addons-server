@@ -11,6 +11,7 @@ from amo.tests import AMOPaths, version_factory
 from market.models import AddonPurchase
 from reviews.models import Review, ReviewFlag
 from users.models import UserProfile
+from versions.models import Version
 
 import mkt.regions
 from mkt.api.base import get_url, list_url
@@ -260,6 +261,21 @@ class TestRatingResource(BaseOAuth, AMOPaths):
     def test_create_duplicate_rating(self):
         self._create()
         res, data = self._create()
+        eq_(409, res.status_code)
+
+    def test_new_rating_for_new_version(self):
+        self.app.update(is_packaged=True)
+        self._create()
+        Version.objects.create(addon=self.app, version='2')
+        res, data = self._create()
+        eq_(201, res.status_code)
+
+    def test_new_rating_for_old_version(self):
+        self.app.update(is_packaged=True)
+        vid = self.app.latest_version.id
+        self._create()
+        Version.objects.create(addon=self.app, version='2')
+        res, data = self._create(data={'version': vid})
         eq_(409, res.status_code)
 
     def test_create_own_app(self):

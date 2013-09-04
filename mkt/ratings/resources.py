@@ -132,7 +132,10 @@ class RatingResource(CORSResource, MarketplaceModelResource):
         app = self.get_app(bundle.data['app'])
 
         # Return 409 if the user has already reviewed this app.
-        if self._meta.queryset.filter(addon=app, user=request.user).exists():
+        qs = self._meta.queryset.filter(addon=app, user=request.user)
+        if app.is_packaged:
+            qs = qs.filter(version_id=bundle.data['version'])
+        if qs.exists():
             raise http_error(http.HttpConflict, 'You have already reviewed this app.')
 
         # Return 403 if the user is attempting to review their own app:
