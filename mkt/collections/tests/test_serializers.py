@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 from nose.tools import eq_, ok_
 from tastypie.bundle import Bundle
+from test_utils import RequestFactory
 
 import amo.tests
 from mkt.api.resources import AppResource
 from mkt.collections.constants import COLLECTIONS_TYPE_BASIC
+from mkt.constants.features import FeatureProfile
 from mkt.collections.models import Collection, CollectionMembership
 from mkt.collections.serializers import (CollectionMembershipField,
                                          CollectionSerializer,
@@ -28,6 +30,8 @@ class TestCollectionMembershipField(CollectionDataMixin, amo.tests.TestCase):
         self.collection.add_app(self.app)
         self.field = CollectionMembershipField()
         self.membership = CollectionMembership.objects.all()[0]
+        self.request = RequestFactory()
+        self.profile = FeatureProfile(apps=True).to_signature()
 
     def test_to_native(self):
         resource = AppResource().full_dehydrate(Bundle(obj=self.app))
@@ -37,6 +41,40 @@ class TestCollectionMembershipField(CollectionDataMixin, amo.tests.TestCase):
                 eq_(value, self.app.get_api_url(pk=self.app.pk))
             else:
                 eq_(value, resource.data[key])
+
+    def test_field_to_native(self):
+        self.field.parent = self.collection
+        self.field.source = 'collectionmembership_set'
+        self.field.context = {
+            'request': self.request.get('/', {'pro': self.profile})
+        }
+
+        # Ensure that the one app is included in the default response.
+        native = self.field.field_to_native(self.collection,
+                                           'collectionmembership_set')
+        eq_(len(native), 1)
+        eq_(int(native[0]['id']), self.app.id)
+
+        # ...but is not included when there is a feature profile mismatch.
+        self.app.current_version.features.update(has_geolocation=True)
+        native_without = self.field.field_to_native(self.collection,
+                                                    'collectionmembership_set')
+        eq_(len(native_without), 0)
+
+    def test_field_to_native_invalid_profile(self):
+        self.field.parent = self.collection
+        self.field.source = 'collectionmembership_set'
+        self.field.context = {
+            'request': self.request.get('/', {'pro': 'muahaha'})
+        }
+
+        # Ensure that no exceptions were raised.
+        native = self.field.field_to_native(self.collection,
+                                            'collectionmembership_set')
+
+        # Ensure that no filtering took place.
+        eq_(len(native), 1)
+        eq_(int(native[0]['id']), self.app.id)
 
 
 class TestCollectionSerializer(CollectionDataMixin, amo.tests.TestCase):
@@ -99,7 +137,7 @@ class TestCollectionSerializer(CollectionDataMixin, amo.tests.TestCase):
         data = self.serializer.to_native(self.collection)
         data.pop('id')
         # Emulate empty values passed via POST.
-        data.update({'carrier':'', 'region':''})
+        data.update({'carrier': '', 'region': ''})
 
         instance = self.serializer.from_native(data, None)
         eq_(self.serializer.errors, {})

@@ -3,6 +3,7 @@ import os
 import uuid
 
 from rest_framework import serializers
+from rest_framework.fields import get_component
 from tastypie.bundle import Bundle
 from tower import ugettext_lazy as _
 
@@ -13,15 +14,40 @@ from django.core.files.storage import default_storage as storage
 
 from mkt.api.fields import TranslationSerializerField
 from mkt.api.resources import AppResource
+from mkt.constants.features import FeatureProfile
 
 from .models import Collection
 from .constants import COLLECTIONS_TYPE_FEATURED, COLLECTIONS_TYPE_OPERATOR
 
 
 class CollectionMembershipField(serializers.RelatedField):
+    """
+    RelatedField subclass that serializes an M2M to CollectionMembership into
+    a list of apps, rather than a list of CollectionMembership objects.
+
+    Specifically created for use with CollectionSerializer; you probably don't
+    want to use this elsewhere.
+    """
     def to_native(self, value):
         bundle = Bundle(obj=value.app)
         return AppResource().full_dehydrate(bundle).data
+
+    def field_to_native(self, obj, field_name):
+        value = get_component(obj, self.source)
+
+        # Filter apps based on feature profiles.
+        if hasattr(self, 'context') and 'request' in self.context:
+            sig = self.context['request'].GET.get('pro')
+            if sig:
+                try:
+                    profile = FeatureProfile.from_signature(sig)
+                except ValueError:
+                    pass
+                else:
+                    value = value.filter(**profile.to_kwargs(
+                        prefix='app___current_version__features__has_'))
+
+        return [self.to_native(item) for item in value.all()]
 
 
 class CollectionSerializer(serializers.ModelSerializer):
