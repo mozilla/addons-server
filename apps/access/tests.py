@@ -1,16 +1,17 @@
+from django.contrib.auth.models import User
 from django.http import HttpRequest
 
 import mock
 from nose.tools import assert_false
 
 import amo
-from amo.tests import TestCase
+from amo.tests import req_factory_factory, TestCase
 from amo.urlresolvers import reverse
 from addons.models import Addon, AddonUser
 from users.models import UserProfile
 
 from .acl import (action_allowed, check_addon_ownership, check_ownership,
-                  match_rules)
+                  check_reviewer, match_rules)
 
 
 def test_match_rules():
@@ -195,3 +196,43 @@ class TestHasPerm(TestCase):
         self.au.role = amo.AUTHOR_ROLE_SUPPORT
         self.au.save()
         assert check_addon_ownership(self.request, self.addon, support=True)
+
+
+class TestCheckReviewer(TestCase):
+    fixtures = ['base/users']
+
+    def setUp(self):
+        self.user = UserProfile.objects.get(username='regularuser')
+        self.user.user = User.objects.get(username='regular@mozilla.com')
+        self.user.save()
+
+    def test_no_perm(self):
+        req = req_factory_factory('noop', user=self.user)
+        assert not check_reviewer(req)
+        assert not check_reviewer(req, only='app')
+        assert not check_reviewer(req, only='addon')
+        assert not check_reviewer(req, only='persona')
+
+    def test_perm_apps(self):
+        self.grant_permission(self.user, 'Apps:Review')
+        req = req_factory_factory('noop', user=self.user)
+        assert check_reviewer(req)
+        assert check_reviewer(req, only='app')
+        assert not check_reviewer(req, only='addon')
+        assert not check_reviewer(req, only='persona')
+
+    def test_perm_addons(self):
+        self.grant_permission(self.user, 'Addons:Review')
+        req = req_factory_factory('noop', user=self.user)
+        assert check_reviewer(req)
+        assert not check_reviewer(req, only='app')
+        assert check_reviewer(req, only='addon')
+        assert not check_reviewer(req, only='persona')
+
+    def test_perm_themes(self):
+        self.grant_permission(self.user, 'Personas:Review')
+        req = req_factory_factory('noop', user=self.user)
+        assert check_reviewer(req)
+        assert not check_reviewer(req, only='app')
+        assert not check_reviewer(req, only='addon')
+        assert check_reviewer(req, only='persona')

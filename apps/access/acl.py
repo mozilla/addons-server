@@ -43,7 +43,8 @@ def check_ownership(request, obj, require_owner=False, require_author=False,
     if hasattr(obj, 'check_ownership'):
         return obj.check_ownership(request, require_owner=require_owner,
                                    require_author=require_author,
-                                   ignore_disabled=ignore_disabled, admin=admin)
+                                   ignore_disabled=ignore_disabled,
+                                   admin=admin)
     return False
 
 
@@ -105,10 +106,10 @@ def check_reviewer(request, only=None):
     addon = action_allowed(request, 'Addons', 'Review')
     app = action_allowed(request, 'Apps', 'Review')
     persona = action_allowed(request, 'Personas', 'Review')
-    if only == 'addon' and addon:
-        return True
-    elif only == 'app' and app:
-        return True
-    elif only == 'persona' and persona:
-        return True
+    if only == 'addon':
+        return True if addon else False
+    elif only == 'app':
+        return True if app else False
+    elif only == 'persona':
+        return True if persona else False
     return addon or app or persona
