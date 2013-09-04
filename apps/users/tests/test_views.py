@@ -842,6 +842,24 @@ class TestPersonaLogin(UserViewBase):
         eq_(data['experimental_allowUnverified'], 'true')
 
     @patch.object(waffle, 'switch_is_active', lambda x: True)
+    @patch.object(settings, 'SITE_URL', 'http://testserver')
+    @patch.object(settings, 'UNVERIFIED_ISSUER', 'some-issuer')
+    @patch('requests.post')
+    def test_non_native_persona_login(self, http_request):
+        http_request.return_value = FakeResponse(200, json.dumps(
+                {'status': 'okay',
+                 'email': 'jbalogh@mozilla.com'}))
+        self.client.post(reverse('users.browserid_login'),
+                         data=dict(assertion='fake-assertion',
+                                   audience='fakeamo.org'))
+        assert http_request.called
+        data = http_request.call_args[1]['data']
+        eq_(data['audience'], 'http://testserver')
+        eq_(data['experimental_forceIssuer'], settings.UNVERIFIED_ISSUER)
+        assert 'experimental_allowUnverified' not in data, (
+                'not allowing unverfied when not native')
+
+    @patch.object(waffle, 'switch_is_active', lambda x: True)
     @patch.object(settings, 'NATIVE_BROWSERID_VERIFICATION_URL',
                   'http://my-custom-b2g-verifier.org/verify')
     @patch.object(settings, 'SITE_URL', 'http://testserver')
@@ -857,7 +875,8 @@ class TestPersonaLogin(UserViewBase):
                                    is_native='1'))
         data = http_request.call_args[1]['data']
         eq_(data['audience'], 'http://testserver')
-        eq_(data['experimental_forceIssuer'], False)
+        assert 'experimental_forceIssuer' not in data, (
+                'not forcing issuer when the setting is blank')
 
     @patch.object(waffle, 'switch_is_active', lambda x: True)
     @patch('requests.post')
