@@ -660,6 +660,20 @@ class RereviewQueue(amo.models.ModelBase):
             amo.log(event, addon, addon.current_version)
 
 
+class RereviewQueueThemeManager(amo.models.ManagerBase):
+
+    def __init__(self, include_deleted=False):
+        amo.models.ManagerBase.__init__(self)
+        self.include_deleted = include_deleted
+
+    def get_query_set(self):
+        qs = super(RereviewQueueThemeManager, self).get_query_set()
+        if self.include_deleted:
+            return qs
+        else:
+            return qs.exclude(theme__addon__status=amo.STATUS_DELETED)
+
+
 class RereviewQueueTheme(amo.models.ModelBase):
     theme = models.ForeignKey(Persona)
     header = models.CharField(max_length=72, blank=True, default='')
@@ -668,6 +682,9 @@ class RereviewQueueTheme(amo.models.ModelBase):
     # Holds whether this reuploaded theme is a duplicate.
     dupe_persona = models.ForeignKey(Persona, null=True,
                                      related_name='dupepersona')
+
+    objects = RereviewQueueThemeManager()
+    with_deleted = RereviewQueueThemeManager(include_deleted=True)
 
     class Meta:
         db_table = 'rereview_queue_theme'

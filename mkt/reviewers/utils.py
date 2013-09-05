@@ -13,13 +13,11 @@ from tower import ugettext_lazy as _lazy
 
 import amo
 from access import acl
-from addons.models import Addon
 from amo.helpers import absolutify
 from amo.urlresolvers import reverse
 from amo.utils import JSONEncoder, send_mail_jinja, to_language
 from comm.utils import create_comm_thread, get_recipients
-from editors.models import (EscalationQueue, RereviewQueue, RereviewQueueTheme,
-                            ReviewerScore)
+from editors.models import EscalationQueue, RereviewQueue, ReviewerScore
 from files.models import File
 
 from mkt.constants import comm
@@ -622,12 +620,3 @@ def device_queue_search(request):
         ))
     return Webapp.version_and_file_transformer(
         Webapp.objects.filter(**filters))
-
-
-def trim_orphaned_theme_updates():
-    """Delete Theme Update objects that have no associated Addon."""
-    for rqt in RereviewQueueTheme.objects.all():
-        try:
-            rqt.theme.addon
-        except Addon.DoesNotExist:
-            rqt.delete()

@@ -8,14 +8,15 @@ from nose.tools import eq_
 
 import amo
 import amo.tests
+from amo.tests import addon_factory
 from addons.models import Addon
 from versions.models import Version, version_uploaded, ApplicationsVersions
 from files.models import Platform, File
 from applications.models import Application, AppVersion
-from editors.models import (EditorSubscription, RereviewQueue, ReviewerScore,
-                            send_notifications, ViewFastTrackQueue,
-                            ViewFullReviewQueue, ViewPendingQueue,
-                            ViewPreliminaryQueue)
+from editors.models import (EditorSubscription, RereviewQueue, RereviewQueueTheme,
+                            ReviewerScore, send_notifications,
+                            ViewFastTrackQueue, ViewFullReviewQueue,
+                            ViewPendingQueue, ViewPreliminaryQueue)
 from users.models import UserProfile
 
 
@@ -628,3 +629,37 @@ class TestReviewerScore(amo.tests.TestCase):
             ReviewerScore.get_leaderboards(self.user)
         with self.assertNumQueries(1):
             ReviewerScore.get_breakdown(self.user)
+
+
+class TestRereviewQueueTheme(amo.tests.TestCase):
+
+    def test_manager_soft_delete_addons(self):
+        """Test manager excludes soft delete add-ons."""
+        self.create_switch('soft_delete')
+
+        # Normal RQT object.
+        RereviewQueueTheme.objects.create(
+            theme=addon_factory(type=amo.ADDON_PERSONA).persona, header='',
+            footer='')
+
+        # Deleted add-on RQT object.
+        addon = addon_factory(type=amo.ADDON_PERSONA)
+        RereviewQueueTheme.objects.create(theme=addon.persona, header='', footer='')
+        addon.delete()
+
+        eq_(RereviewQueueTheme.objects.count(), 1)
+        eq_(RereviewQueueTheme.with_deleted.count(), 2)
+
+    def test_manager_hard_delete_addons(self):
+        """Test manager excludes soft delete add-ons."""
+        RereviewQueueTheme.objects.create(
+            theme=addon_factory(type=amo.ADDON_PERSONA).persona, header='',
+            footer='')
+
+        # Deleted add-on RQT object.
+        addon = addon_factory(type=amo.ADDON_PERSONA)
+        RereviewQueueTheme.objects.create(theme=addon.persona, header='', footer='')
+        addon.delete()
+
+        eq_(RereviewQueueTheme.objects.count(), 1)
+        eq_(RereviewQueueTheme.with_deleted.count(), 1)
