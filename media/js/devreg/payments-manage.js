@@ -46,6 +46,15 @@ define('payments-manage', ['payments'], function(payments) {
         });
     }
 
+    function portalRedirect(data) {
+        // Redirecting to Bango dev portal if the local redirection is successful.
+        $.ajax(data['portal-url'])
+            .done(function(data, textStatus, jqXHR) {
+                window.location.replace(jqXHR.getResponseHeader("Location"));})
+            .fail(function() {
+                data.el.closest('td').text(gettext('Authentication error'));});
+    }
+
     function editBangoPaymentAccount(account_url) {
         function paymentAccountSetup() {
             var $overlay = payments.getOverlay('edit-bango-account');
@@ -101,6 +110,12 @@ define('payments-manage', ['payments'], function(payments) {
                 editBangoPaymentAccount($(this).parents('tr').data('account-url'))();
             })).on('click', '.accept-tos', _pd(function() {
                 showAgreement({'agreement-url': $(this).parents('tr').data('agreement-url')});
+            })).on('click', '.portal-account', _pd(function() {
+                var $this = $(this);
+                portalRedirect({
+                    'portal-url': $this.parents('tr').data('portal-url'),
+                    'el': $this
+                });
             }));
         });
     }
