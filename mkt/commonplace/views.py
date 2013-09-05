@@ -5,6 +5,8 @@ from django.http import HttpResponseNotFound
 
 import jingo
 
+from mkt.api.resources import waffles
+
 
 def commonplace(request, repo):
     if repo not in settings.COMMONPLACE_REPOS:
@@ -17,6 +19,7 @@ def commonplace(request, repo):
     ctx = {
         'repo': repo,
         'site_settings': site_settings,
+        'flags': waffles(request),
     }
 
     try:
