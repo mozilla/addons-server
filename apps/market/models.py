@@ -169,6 +169,29 @@ class PriceCurrency(amo.models.ModelBase):
         return u'%s, %s: %s' % (self.tier, self.currency, self.price)
 
 
+@receiver(models.signals.post_save, sender=PriceCurrency,
+          dispatch_uid='save_price_currency')
+@receiver(models.signals.post_delete, sender=PriceCurrency,
+          dispatch_uid='delete_price_currency')
+def update_price_currency(sender, instance, **kw):
+    """
+    Ensure that when PriceCurrencies are updated, all the apps that use them
+    are re-indexed into ES so that the region information will be correct.
+    """
+    if kw.get('raw'):
+        return
+
+    ids = list(instance.tier.addonpremium_set
+                       .values_list('addon_id', flat=True))
+    if ids:
+        log.info('Indexing {0} add-ons due to PriceCurrency changes'
+                 .format(len(ids)))
+
+        # Circular import sad face.
+        from addons.tasks import index_addons
+        index_addons.delay(ids)
+
+
 class AddonPurchase(amo.models.ModelBase):
     addon = models.ForeignKey('addons.Addon')
     user = models.ForeignKey(UserProfile)

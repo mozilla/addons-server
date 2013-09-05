@@ -3,6 +3,7 @@ from decimal import Decimal
 
 from django.utils import translation
 
+import mock
 from nose.tools import eq_, ok_
 
 import amo
@@ -117,6 +118,24 @@ class TestPrice(amo.tests.TestCase):
     def test_prices_provider(self):
         currencies = Price.objects.get(pk=1).prices(provider=PROVIDER_BANGO)
         eq_(len(currencies), 2)
+
+
+class TestPriceCurrencyChanges(amo.tests.TestCase):
+
+    def setUp(self):
+        self.addon = amo.tests.addon_factory()
+        self.make_premium(self.addon)
+        self.currency = self.addon.premium.price.pricecurrency_set.all()[0]
+
+    @mock.patch('addons.tasks.index_objects')
+    def test_save(self, index_objects):
+        self.currency.save()
+        eq_(index_objects.call_args[0][0], [self.addon.pk])
+
+    @mock.patch('addons.tasks.index_objects')
+    def test_delete(self, index_objects):
+        self.currency.delete()
+        eq_(index_objects.call_args[0][0], [self.addon.pk])
 
 
 class ContributionMixin(object):
