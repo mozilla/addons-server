@@ -13,13 +13,11 @@ from tower import ugettext_lazy as _lazy
 
 import amo
 from access import acl
-from addons.models import Addon
 from amo.helpers import absolutify
 from amo.urlresolvers import reverse
 from amo.utils import JSONEncoder, send_mail_jinja, to_language
 from comm.utils import create_comm_thread, get_recipients
-from editors.models import (EscalationQueue, RereviewQueue, RereviewQueueTheme,
-                            ReviewerScore)
+from editors.models import EscalationQueue, RereviewQueue, ReviewerScore
 from files.models import File
 
 from mkt.constants import comm
@@ -39,10 +37,10 @@ def send_mail(subject, template, context, emails, perm_setting=None, cc=None,
     # Link to our newfangled "Account Settings" page.
     manage_url = absolutify('/settings') + '#notifications'
     send_mail_jinja(subject, template, context, recipient_list=emails,
-                    from_email=settings.MKT_REVIEWERS_EMAIL, use_blacklist=False,
-                    perm_setting=perm_setting, manage_url=manage_url,
-                    headers={'Reply-To': reply_to}, cc=cc,
-                    attachments=attachments)
+                    from_email=settings.MKT_REVIEWERS_EMAIL,
+                    use_blacklist=False, perm_setting=perm_setting,
+                    manage_url=manage_url, headers={'Reply-To': reply_to},
+                    cc=cc, attachments=attachments)
 
 
 def send_note_emails(note):
@@ -189,7 +187,6 @@ class ReviewBase(object):
     def request_information(self):
         """Send a request for information to the authors."""
         emails = list(self.addon.authors.values_list('email', flat=True))
-        cc_email = self.addon.mozilla_contact or None
         self.log_action(amo.LOG.REQUEST_INFORMATION)
         self.version.update(has_info_request=True)
         log.info(u'Sending request for information for %s to %s' %
@@ -357,8 +354,6 @@ class ReviewApp(ReviewBase):
             EscalationQueue.objects.filter(addon=self.addon).delete()
         if self.in_rereview:
             RereviewQueue.objects.filter(addon=self.addon).delete()
-        emails = list(self.addon.authors.values_list('email', flat=True))
-        cc_email = self.addon.mozilla_contact or None
         self.create_comm_thread(action='disable')
         subject = u'App disabled by reviewer: %s' % self.addon.name
         self.notify_email('disabled', subject)
@@ -620,12 +615,3 @@ def device_queue_search(request):
         ))
     return Webapp.version_and_file_transformer(
         Webapp.objects.filter(**filters))
-
-
-def trim_orphaned_theme_updates():
-    """Delete Theme Update objects that have no associated Addon."""
-    for rqt in RereviewQueueTheme.objects.all():
-        try:
-            rqt.theme.addon
-        except Addon.DoesNotExist:
-            rqt.delete()
