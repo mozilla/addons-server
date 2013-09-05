@@ -84,8 +84,11 @@ class TestCollectionMembershipField(CollectionDataMixin, amo.tests.TestCase):
 class TestCollectionSerializer(CollectionDataMixin, amo.tests.TestCase):
 
     def setUp(self):
+        minimal_context = {
+            'request': RequestFactory().get('/whatever')
+        }
         self.collection = Collection.objects.create(**self.collection_data)
-        self.serializer = CollectionSerializer()
+        self.serializer = CollectionSerializer(context=minimal_context)
 
     def test_to_native(self, apps=None):
         if apps:
@@ -100,9 +103,9 @@ class TestCollectionSerializer(CollectionDataMixin, amo.tests.TestCase):
         self.assertSetEqual(data.keys(), ['apps', 'author', 'background_color',
                                           'carrier', 'category',
                                           'collection_type', 'default_language',
-                                          'description', 'id', 'is_public',
-                                          'name', 'region', 'slug',
-                                          'text_color'])
+                                          'description', 'id', 'image',
+                                          'is_public', 'name', 'region',
+                                          'slug', 'text_color'])
         for order, app in enumerate(apps):
             eq_(data['apps'][order]['slug'], app.app_slug)
         return data
