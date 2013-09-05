@@ -146,6 +146,7 @@ class CollectionImageViewSet(CORSMixin, viewsets.ViewSet, generics.RetrieveUpdat
     queryset = Collection.objects.all()
     permission_classes = [PublisherAuthorization]
     authentication_classes = [RestOAuthAuthentication,
+                              RestSharedSecretAuthentication,
                               RestAnonymousAuthentication]
     cors_allowed_methods = ('get', 'put')
 
