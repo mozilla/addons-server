@@ -16,6 +16,7 @@ from django.utils.translation import ugettext_lazy as _
 
 import mock
 import waffle
+from nose import SkipTest
 from nose.tools import eq_, ok_, raises
 
 import amo
@@ -87,6 +88,18 @@ class TestWebapp(amo.tests.TestCase):
         eq_(post_mortem.count(), 1)
         for attr in ('slug', 'app_slug', 'app_domain'):
             eq_(getattr(post_mortem[0], attr), None)
+
+    def test_with_deleted_count(self):
+        # Will be fixed by upgrading django-cache-machine, see
+        # https://bugzilla.mozilla.org/show_bug.cgi?id=883477
+        raise SkipTest
+        waffle.models.Switch.objects.create(name='soft_delete', active=True)
+
+        w = Webapp.objects.create(slug='ballin', app_slug='app-ballin',
+                                  app_domain='http://omg.org/yes',
+                                  status=amo.STATUS_PENDING)
+        w.delete()
+        eq_(Webapp.with_deleted.count(), 1)
 
     def test_soft_deleted_valid(self):
         w = Webapp.objects.create(status=amo.STATUS_PUBLIC)
