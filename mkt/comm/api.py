@@ -27,7 +27,7 @@ from comm.tasks import consume_email, mark_thread_read
 from comm.utils import filter_notes_by_read_status, ThreadObjectPermission
 from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
-from mkt.api.base import CORSMixin
+from mkt.api.base import CORSMixin, SilentListModelMixin
 from mkt.reviewers.utils import send_note_emails
 from mkt.webpay.forms import PrepareForm
 
@@ -199,8 +199,8 @@ class CommViewSet(CORSMixin, GenericViewSet):
                 status=status.HTTP_403_FORBIDDEN)
 
 
-class ThreadViewSet(ListModelMixin, RetrieveModelMixin, DestroyModelMixin,
-                    CreateModelMixin, CommViewSet):
+class ThreadViewSet(SilentListModelMixin, RetrieveModelMixin,
+                    DestroyModelMixin, CreateModelMixin, CommViewSet):
     model = CommunicationThread
     serializer_class = ThreadSerializer
     authentication_classes = (RestOAuthAuthentication,
@@ -236,7 +236,7 @@ class ThreadViewSet(ListModelMixin, RetrieveModelMixin, DestroyModelMixin,
                 Q(pk__in=notes + cc) | q_dev)
 
         self.queryset = queryset
-        return ListModelMixin.list(self, request)
+        return SilentListModelMixin.list(self, request)
 
     def mark_as_read(self, profile):
         mark_thread_read(self.get_object(), profile)

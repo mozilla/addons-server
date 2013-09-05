@@ -8,11 +8,15 @@ from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.conf.urls.defaults import url
 from django.core.exceptions import ObjectDoesNotExist, PermissionDenied
+from django.db.models.sql import EmptyResultSet
 from django.http import HttpResponseNotFound
 
 import commonware.log
+from rest_framework import status
+from rest_framework.mixins import ListModelMixin
 from rest_framework.routers import Route, SimpleRouter
 from rest_framework.relations import HyperlinkedRelatedField
+from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 from tastypie import fields, http
 from tastypie.bundle import Bundle
@@ -539,6 +543,22 @@ class SlugOrIdMixin(object):
             # If the `pk` contains anything other than a digit, it's a `slug`.
             self.kwargs.update(pk=None, slug=self.kwargs['pk'])
         return super(SlugOrIdMixin, self).get_object()
+
+
+class SilentListModelMixin(ListModelMixin):
+    """
+    DRF's ListModelMixin that returns a 204_NO_CONTENT rather than flipping a
+    500 or 404.
+    """
+
+    def list(self, *args, **kwargs):
+        try:
+            res = super(SilentListModelMixin, self).list(*args, **kwargs)
+        except EmptyResultSet:
+            return Response([])
+        if res.status_code == 404:
+            return Response([])
+        return res
 
 
 class AppViewSet(GenericViewSet):
