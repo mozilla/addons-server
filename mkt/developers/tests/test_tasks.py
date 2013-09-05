@@ -25,11 +25,10 @@ from amo.utils import ImageCheck
 from files.models import FileUpload
 
 import mkt
-from mkt.constants import APP_IMAGE_SIZES
 from mkt.developers import tasks
 from mkt.site.fixtures import fixture
 from mkt.submit.tests.test_views import BaseWebAppTest
-from mkt.webapps.models import AddonExcludedRegion as AER, ImageAsset, Webapp
+from mkt.webapps.models import AddonExcludedRegion as AER, Webapp
 
 
 def test_resize_icon_shrink():
@@ -118,34 +117,6 @@ def _uploader(resize_size, final_size):
     assert not os.path.exists(src.name)
 
 
-@mock.patch('mkt.developers.tasks.get_hue', lambda img: 123)
-@mock.patch('mkt.developers.tasks.ImageAsset')
-def test_resize_image_asset(ia):
-    _instance = mock.Mock()
-    ia.objects.get.return_value = _instance
-
-
-    img = get_image_path('mozilla.png')
-    original_size = (339, 128)
-
-    with storage.open(img) as fp:
-        src_image = Image.open(fp)
-        eq_(src_image.size, original_size)
-
-    dest = tempfile.NamedTemporaryFile(mode='r+w+b', suffix='.png')
-    # Make it resize to some arbitrary size that's larger on both sides than
-    # the source image. This is where the behavior differs from resize_image.
-    tasks.resize_imageasset(img, dest.name, (500, 500), instance='foo',
-                            locally=True)
-    with storage.open(dest.name) as fp:
-        dest_image = Image.open(fp)
-        eq_(dest_image.size, (500, 500))
-
-    # Assert that the asset's instance gets updated with the new hue.
-    ia.objects.get.assert_called_with(pk='foo')
-    _instance.update.assert_called_with(hue=123)
-
-
 class TestValidator(amo.tests.TestCase):
 
     def setUp(self):
@@ -205,63 +176,6 @@ def _mock_hide_64px_icon(path, *args, **kwargs):
     if '128' in path:
         raise IOError('No 128px icon for you!')
     return storage_open(path, *args, **kwargs)
-
-
-class TestGenerateImageAssets(amo.tests.TestCase):
-    """Test that image assets get generated properly."""
-    fixtures = ['webapps/337141-steamcube']
-
-    def setUp(self):
-        self.app = Webapp.objects.get(id=337141)
-        self.app.get_icon_dir = lambda: os.path.join(
-            os.path.dirname(__file__), 'icons/')
-
-    def test_generated_image_assets(self):
-        tasks.generate_image_assets(self.app)
-        for asset in APP_IMAGE_SIZES:
-            ia = ImageAsset.objects.get(addon=self.app,
-                                        slug=asset['slug'])
-            with storage.open(ia.image_path) as fp:
-                im = Image.open(fp)
-                im.load()
-            eq_(im.size, asset['size'])
-
-    def test_generated_image_assets_slug(self):
-        # We're going to generate assets for only one type.
-        asset = APP_IMAGE_SIZES[0]
-        slug = asset['slug']
-
-        tasks.generate_image_assets(self.app, slug=slug)
-        ia = ImageAsset.objects.filter(addon=self.app)
-        eq_(list(a.slug for a in ia), [slug])
-
-        with storage.open(ia[0].image_path) as fp:
-            im = Image.open(fp)
-            im.load()
-        eq_(im.size, asset['size'])
-
-    @mock.patch('django.core.files.storage.default_storage.open',
-                _mock_hide_64px_icon)
-    def test_use_64(self):
-        # There's an icon set up for this ID that has the path that the
-        # generator would expect for a 64x64px icon. It should fallback
-        # on that one, since there isn't a 128x128px icon.
-        tasks.generate_image_assets(self.app)
-        for asset in APP_IMAGE_SIZES:
-            ia = ImageAsset.objects.get(addon=self.app,
-                                        slug=asset['slug'])
-            with storage.open(ia.image_path) as fp:
-                im = Image.open(fp)
-                im.load()
-            eq_(im.size, asset['size'])
-
-    def test_get_hue(self):
-        with storage.open(os.path.join(os.path.dirname(__file__),
-                                       self.app.get_icon_dir(),
-                                       '%d-128.png' % self.app.id)) as fp:
-            im = Image.open(fp)
-            im.load()
-        eq_(tasks.get_hue(im), 42)
 
 
 class TestResizePreview(amo.tests.TestCase):

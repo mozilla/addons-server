@@ -179,8 +179,6 @@ def details(request, addon_id, addon):
             for device in amo.DEVICE_TYPES:
                 addon.addondevicetype_set.create(device_type=device)
 
-        tasks.generate_image_assets.delay(addon)
-
         AppSubmissionChecklist.objects.get(addon=addon).update(details=True)
 
         make_public = (amo.PUBLIC_IMMEDIATELY

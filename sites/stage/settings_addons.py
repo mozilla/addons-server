@@ -30,7 +30,6 @@ FILES_URL = STATIC_URL + "%s/%s/downloads/file/%d/%s?src=%s"
 SESSION_COOKIE_DOMAIN = ".%s" % DOMAIN
 
 # paths for uploaded extensions
-IMAGEASSET_FULL_URL = STATIC_URL + 'img/uploads/imageassets/%s/%d.png?modified=%d'
 USERPICS_URL = STATIC_URL + 'img/uploads/userpics/%s/%s/%s.png?modified=%d'
 COLLECTION_ICON_URL = STATIC_URL + '/img/uploads/collection_icons/%s/%s.png?m=%s'
 

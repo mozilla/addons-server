@@ -949,7 +949,6 @@ CA_CERT_BUNDLE_PATH = os.path.join(ROOT, 'apps/amo/certificates/roots.pem')
 
 PREVIEW_THUMBNAIL_PATH = PREVIEWS_PATH + '/thumbs/%s/%d.png'
 PREVIEW_FULL_PATH = PREVIEWS_PATH + '/full/%s/%d.%s'
-IMAGEASSET_FULL_PATH = IMAGEASSETS_PATH + '/%s/%d.%s'
 
 # URL paths
 # paths for images, e.g. mozcdn.com/amo or '/static'
@@ -962,8 +961,6 @@ PREVIEW_THUMBNAIL_URL = (STATIC_URL +
         '/img/uploads/previews/thumbs/%s/%d.png?modified=%d')
 PREVIEW_FULL_URL = (STATIC_URL +
         '/img/uploads/previews/full/%s/%d.%s?modified=%d')
-IMAGEASSET_FULL_URL = (STATIC_URL +
-        '/img/uploads/imageassets/%s/%d.%s?modified=%d')
 USERPICS_URL = STATIC_URL + '/img/uploads/userpics/%s/%s/%s.png?modified=%d'
 # paths for uploaded extensions
 COLLECTION_ICON_URL = (STATIC_URL +
@@ -1275,7 +1272,7 @@ def read_only_mode(env):
 
 # Uploaded file limits
 MAX_ICON_UPLOAD_SIZE = 4 * 1024 * 1024
-MAX_IMAGE_UPLOAD_SIZE = 4 * 1024 * 1024  # Image assets (tiles, promos)
+MAX_IMAGE_UPLOAD_SIZE = 4 * 1024 * 1024
 MAX_VIDEO_UPLOAD_SIZE = 4 * 1024 * 1024
 MAX_PHOTO_UPLOAD_SIZE = MAX_ICON_UPLOAD_SIZE
 MAX_PERSONA_UPLOAD_SIZE = 300 * 1024

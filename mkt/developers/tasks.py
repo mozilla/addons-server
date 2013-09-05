@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import base64
-import colorsys
 import json
 import logging
 import os
@@ -34,9 +33,9 @@ from amo.utils import (remove_icons, resize_image, send_mail_jinja, strip_bom,
 from files.models import FileUpload, File, FileValidation
 from files.utils import SafeUnzip
 
-from mkt.constants import APP_IMAGE_SIZES, APP_PREVIEW_SIZES
+from mkt.constants import APP_PREVIEW_SIZES
 from mkt.constants.regions import REGIONS_CHOICES_SLUG
-from mkt.webapps.models import AddonExcludedRegion, ImageAsset, Webapp
+from mkt.webapps.models import AddonExcludedRegion, Webapp
 
 
 log = logging.getLogger('z.mkt.developers.task')
@@ -175,160 +174,6 @@ def resize_preview(src, instance, **kw):
         return True
     except Exception, e:
         log.error("Error saving preview: %s" % e)
-
-
-@task
-@set_modified_on
-def resize_imageasset(src, full_dst, size, **kw):
-    """Resizes image assets and puts them where they need to be."""
-
-    log.info('[1@None] Resizing image asset: %s' % full_dst)
-    try:
-        hue = 0
-        with storage.open(src, 'rb') as fp:
-            im = Image.open(fp)
-            im = im.convert('RGBA')
-            im = im.resize(size)
-
-        with storage.open(full_dst, 'wb') as fp:
-            im.save(fp, 'png')
-
-        # If we pass in the image asset instance ID, get the hue of the new
-        # asset and update the asset instance.
-        instance_id = kw.pop('instance', None)
-        if instance_id is not None:
-            ImageAsset.objects.get(pk=instance_id).update(hue=get_hue(im))
-        return True
-    except Exception, e:
-        log.error('Error saving image asset: %s' % e)
-
-
-def get_hue(image):
-    """Return the most common hue of the image."""
-    hues = [0 for x in range(256)]
-    # Iterate each pixel. Count each hue value in `hues`.
-    for pixel in image.getdata():
-        # Ignore greyscale pixels.
-        if pixel[0] == pixel[1] and pixel[1] == pixel[2]:
-            continue
-        # Ignore non-opaque pixels.
-        if pixel[3] < 255:
-            continue
-        h, l, s = colorsys.rgb_to_hls(*[x / 255.0 for x in pixel[:3]])
-        # Get a tally of the hue for that image.
-        hues[int(h * 255)] += 1
-
-    return hues.index(max(hues))
-
-
-def _generate_image_asset_backdrop(hue, size=None):
-    with storage.open(os.path.join(settings.MEDIA_ROOT,
-                                   'img/hub/assetback.png')) as assetback:
-        im = Image.open(assetback)
-        if size:
-            im = im.resize(size)
-        im_width = im.size[0]
-
-        # Change the hue of the background by iterating each pixel.
-        for i, px in enumerate(im.getdata()):
-            # Get the HLS value for the pixel
-            h, l, s = colorsys.rgb_to_hls(*[x / 255.0 for x in px[:3]])
-            # Convert back to RGB
-            px = tuple([int(x * 255) for x in
-                        colorsys.hls_to_rgb(hue, l, s)])
-            # Put the RGB value back in the pixel
-            im.putpixel((i % im_width, i / im_width), px)
-
-    return im
-
-
-@task_with_callbacks
-@set_modified_on
-def generate_image_assets(addon, **kw):
-    """Creates default image assets for each asset size for an app."""
-
-    try:
-        with storage.open(os.path.join(addon.get_icon_dir(),
-                                       '%s-128.png' % addon.id)) as raw_icon:
-            icon = Image.open(raw_icon)
-            icon.load()
-    except IOError:
-        log.error('[1@None] Could not read 128x128 icon for %s' % addon.id)
-        try:
-            with storage.open(os.path.join(
-                    addon.get_icon_dir(), '%s-64.png' % addon.id)) as raw_icon:
-                icon = Image.open(raw_icon)
-                icon.load()
-        except IOError:
-            log.error('[1@None] Could not read 64x64 icon for %s' % addon.id)
-            return None
-
-    # The index of the hue with the most tallies is the hue of the icon. Divide
-    # by 255.0 because colorsys works with 0-1.0 floats.
-    icon_hue = get_hue(icon) / 255.0
-    biggest_size = max(
-        APP_IMAGE_SIZES, key=lambda x: x['size'][0] * x['size'][1])['size']
-
-    backdrop = _generate_image_asset_backdrop(icon_hue, biggest_size)
-
-    # Sometimes you want to regenerate only assets of a particular type.
-    slug = kw.get('slug')
-
-    for asset in APP_IMAGE_SIZES:
-        if slug and slug != asset['slug']:
-            continue
-        try:
-            generate_image_asset(addon, asset, icon, hue=icon_hue,
-                                 backdrop=backdrop.copy(), **kw)
-        except IOError:
-            log.error('[1@None] Could not write asset %s for %s' %
-                          (asset['slug'], addon.id))
-            break
-        except Exception, e:
-            log.error('[1@None] Could not generate asset %s for %s: %s' %
-                          (asset['slug'], addon.id, str(e)))
-
-
-def generate_image_asset(addon, asset, icon, **kw):
-    """
-    Generate the default image for a single image asset (`asset`) for `addon`.
-    """
-    log.info('[1@None] Generating image asset %s for %s' %
-                 (asset['slug'], addon.id))
-    image_asset, created = ImageAsset.objects.get_or_create(addon=addon,
-                                                            slug=asset['slug'])
-
-    hue = int(kw.pop('hue', 0) * 360)
-    if image_asset.hue != hue:
-        image_asset.hue = hue
-        image_asset.save()
-
-    backdrop = kw.pop('backdrop')
-    if asset['has_background']:
-        im = backdrop.resize(asset['size'], Image.ANTIALIAS)
-    else:
-        im = Image.new('RGBA', asset['size'])
-
-    # Get a copy of the icon.
-    asset_icon = icon.copy()
-
-    # The icon will be 75% of the size of the shortest edge of the asset if
-    # larger than 32px.
-    min_edge = min(asset['size'])
-    if min_edge > 32:
-        min_edge = int(min_edge * 0.75)
-
-    if min_edge < asset_icon.size[0]:
-        asset_icon = asset_icon.resize((min_edge, min_edge), Image.ANTIALIAS)
-
-    # Center the icon in the asset.
-    im.paste(asset_icon,
-             tuple((x / 2 - y / 2) for x, y in
-                   zip(asset['size'], asset_icon.size)),
-             asset_icon)
-
-    with storage.open(image_asset.image_path, 'wb') as fp:
-        im.save(fp)
 
 
 @task

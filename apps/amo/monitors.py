@@ -117,7 +117,6 @@ def path():
           settings.COLLECTIONS_ICON_PATH,
           settings.PACKAGER_PATH,
           settings.PREVIEWS_PATH,
-          settings.IMAGEASSETS_PATH,
           settings.USERPICS_PATH,
           settings.REVIEWER_ATTACHMENTS_PATH,
           dump_apps.Command.JSON_PATH,)

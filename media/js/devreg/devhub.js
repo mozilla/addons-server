@@ -814,18 +814,6 @@ function initUploadImages() {
 
         form.find('.image').addClass('error-loading');
     }
-    if (z.capabilities.fileAPI) {
-        var $f = $('.edit-media, #submit-media');
-        $f.delegate('.image_asset_upload', 'upload_finished', upload_finished)
-          .delegate('.image_asset_upload', 'upload_success', upload_success)
-          .delegate('.image_asset_upload', 'upload_start', upload_start)
-          .delegate('.image_asset_upload', 'upload_errors', upload_errors)
-          .delegate('.image_asset_upload', 'upload_start_all', upload_start_all)
-          .delegate('.image_asset_upload', 'upload_finished_all', upload_finished_all)
-          .delegate('.image_asset_upload', 'change', function(e) {
-            $(this).imageUploader();
-          });
-    }
 
     // Display images that were already uploaded but not yet saved
     // because of other non-related form errors.
@@ -1134,7 +1122,6 @@ function imagePoller() {
 var imageStatus = {
     start: function(do_icon, do_preview) {
         this.icon = new imagePoller();
-        this.imageasset = new imagePoller();
         this.preview = new imagePoller();
         this.icon.check = function() {
             var self = imageStatus,

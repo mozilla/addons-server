@@ -17,11 +17,10 @@ def check_upload(file_obj, upload_type, content_type):
     errors = []
     upload_hash = ''
     is_icon = upload_type == 'icon'
-    is_image_asset = upload_type == 'image'
     is_preview = upload_type == 'preview'
     is_video = content_type in amo.VIDEO_TYPES
 
-    if not any([is_icon, is_image_asset, is_preview, is_video]):
+    if not any([is_icon, is_preview, is_video]):
         raise ValueError('Unknown upload type.')
 
     # By pushing the type onto the instance hash, we can easily see what
@@ -64,8 +63,8 @@ def check_upload(file_obj, upload_type, content_type):
                 errors.append(_('Images cannot be animated.'))
 
     max_size = (settings.MAX_ICON_UPLOAD_SIZE if is_icon else
-                settings.MAX_IMAGE_UPLOAD_SIZE if is_image_asset else
-                settings.MAX_VIDEO_UPLOAD_SIZE if is_video else None)
+                settings.MAX_VIDEO_UPLOAD_SIZE if is_video else
+                settings.MAX_IMAGE_UPLOAD_SIZE if is_preview else None)
 
     if max_size and file_obj.size > max_size:
         do_not_open = True

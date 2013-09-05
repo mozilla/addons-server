@@ -93,65 +93,6 @@
       <tr>
         {% if context == 'edit' %}
         <th>
-          {{ tip(_('Image Assets'),
-                 _("Images to use in various location around the site, "
-                   "including various grid views on both mobile and desktop. "
-                   "Uploaded images must be one of the following image types: "
-                   ".png, .jpg")) }}
-        </th>
-        {% endif %}
-        <td>
-          {% if editable %}
-            {{ image_asset_form.management_form }}
-            {% for form in image_asset_form.forms %}
-              <div class="image_preview preview_{{ form.get_id() }}">
-                <div class="image_preview_box">
-                  <div class="image">
-                    <img src="{{ addon.get_image_asset_url(form.slug) }}"
-                         height="{{ form.size[1] }}" width="{{ form.size[0] }}">
-                  </div>
-                  <div class="edit-media-details">
-                    {{ tip(form.name ~ '', form.description) }}<br />
-                    {# L10n: The size of the image asset #}
-                    {{ _('{0}x{1}px')|f(*form.size) }}
-                    {{ required() if form.required }}
-                  </div>
-                  <div class="invisible-upload">
-                    <a class="button" href="#">{{ _('Upload {0}x{1}px Image...')|
-                                                  f(*form.size) }}</a>
-                    <input type="file" name="image_upload_{{ form.get_id() }}"
-                           class="image_asset_upload"
-                           data-allowed-types="image/jpeg|image/png"
-                           data-upload-url="{{ addon.get_dev_url('upload_image') }}">
-                  </div>
-                  <div class="hidden">
-                    {{ form.unsaved_image_data }}
-                  </div>
-                  <div class="js-hidden">
-                    {{ form.upload_hash }}
-                  </div>
-                </div>
-                <ul class="errorlist">
-                  <li id="edit-images-error"></li>
-                </ul>
-              </div>
-            {% endfor %}
-            <div class="edit-media-details">
-              {{ _('PNG and JPG supported.') }}
-            </div>
-          {% else %}
-            <div id="image_preview_readonly">
-              {% for image_asset in image_sizes %}
-                <img src="{{ addon.get_image_asset_url(image_asset['slug']) }}"
-                     height="{{ image_asset['size'][1] }}" width="{{ image_asset['size'][0] }}">
-              {% endfor %}
-            </div>
-          {% endif %}
-        </td>
-      </tr>
-      <tr>
-        {% if context == 'edit' %}
-        <th>
           <label>{{ _('Screenshots or Videos') }}</label>
           {{ required() if editable }}
         </th>
