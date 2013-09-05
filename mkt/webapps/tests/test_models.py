@@ -16,7 +16,6 @@ from django.utils.translation import ugettext_lazy as _
 
 import mock
 import waffle
-from nose import SkipTest
 from nose.tools import eq_, ok_, raises
 
 import amo
@@ -51,9 +50,6 @@ class TestWebapp(amo.tests.TestCase):
     fixtures = fixture('prices')
 
     def test_hard_deleted(self):
-        # Uncomment when redis gets fixed on ci.mozilla.org.
-        raise SkipTest
-
         w = Webapp.objects.create(status=amo.STATUS_PUBLIC)
         # Until bug 755214 is fixed, `len` that ish.
         eq_(len(Webapp.objects.all()), 1)
@@ -74,9 +70,6 @@ class TestWebapp(amo.tests.TestCase):
         assert reason in mail.outbox[0].body
 
     def test_soft_deleted(self):
-        # Uncomment when redis gets fixed on ci.mozilla.org.
-        raise SkipTest
-
         waffle.models.Switch.objects.create(name='soft_delete', active=True)
 
         w = Webapp.objects.create(slug='ballin', app_slug='app-ballin',
