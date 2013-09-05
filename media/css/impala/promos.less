@@ -706,3 +706,114 @@
         }
     }
 }
+
+@font-face {
+    font-family: 'OpenSansWeb';
+    src: url("../mkt/fonts/OpenSans-Light-webfont.eot");
+    src: url("../mkt/fonts/OpenSans-Light-webfont.eot?#iefix") format('embedded-opentype'),
+         url("../mkt/fonts/OpenSans-Light-webfont.woff") format('woff'),
+         url("../mkt/fonts/OpenSans-Light-webfont.ttf") format('truetype'),
+         url("../mkt/fonts/OpenSans-Light-webfont.svg#OpenSansLight") format('svg');
+    font-weight: 300;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'OpenSansWeb';
+    src: url('../mkt/fonts/OpenSans-Semibold-webfont.eot');
+    src: url('../mkt/fonts/OpenSans-Semibold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../mkt/fonts/OpenSans-Semibold-webfont.woff') format('woff'),
+         url('../mkt/fonts/OpenSans-Semibold-webfont.ttf') format('truetype'),
+         url('../mkt/fonts/OpenSans-Semibold-webfont.svg#OpenSansSemibold') format('svg');
+    font-weight: 600;
+    font-style: normal;
+}
+@font-face {
+  font-family: 'Yellowtail';
+  font-style: normal;
+  font-weight: 400;
+  src: url('fonts/Yellowtail.woff') format('woff');
+}
+
+#promos #amp-your-firefox {
+    background-image: url(../../img/zamboni/discovery_pane/promos/amp-your-firefox.jpg);
+    .border-box();
+    height: 271px;
+    padding: 28px 350px 48px 28px;
+    a {
+        color: #fff;
+        &:hover {
+            text-decoration: none;
+        }
+    }
+    hgroup, .wrap {
+        width: 470px;
+    }
+    .blog-link {
+        display: block;
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        b {
+            bottom: 15px;
+            color: @dark-gray;
+            display: block;
+            font-size: 12px;
+            font-weight: bold;
+            position: absolute;
+            text-align: center;
+            text-decoration: none;
+            width: 515px;
+            &:after {
+                content: " »";
+            }
+        }
+    }
+    hgroup {
+        margin: 0 auto;
+        text-align: center;
+    }
+    h2 {
+        color: #fff;
+        font-weight: normal;
+        line-height: 1.1em;
+        text-shadow: none;
+        &:first-child {
+            font-family: "OpenSansWeb";
+            font-size: 20px;
+        }
+        &:last-child {
+            font-family: "Yellowtail";
+            font-size: 40px;
+        }
+    }
+    .wrap {
+        left: 10px;
+        margin: 10px auto;
+        position: relative;
+    }
+    dl {
+        color: #fff;
+        font: 19px "OpenSansWeb";
+        line-height: 1.5em;
+        margin-bottom: 15px;
+        dt, dd {
+            display: inline;
+        }
+        dt {
+            font-weight: bold;
+            &:after {
+                content: "\272D";
+                font-size: 24px;
+                margin: 0 1px 0 6px;
+            }
+        }
+        dd a {
+            color: #fff;
+            &:hover {
+                text-decoration: none;
+            }
+        }
+    }
+}
