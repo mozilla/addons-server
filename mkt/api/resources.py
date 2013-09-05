@@ -39,8 +39,7 @@ from market.models import AddonPremium, Price, PriceCurrency
 
 from mkt.api.authentication import (SharedSecretAuthentication,
                                     OptionalOAuthAuthentication,
-                                    RestOAuthAuthentication,
-                                    RestAnonymousAuthentication)
+                                    RestOAuthAuthentication)
 from mkt.api.authorization import (AllowAppOwner, AppOwnerAuthorization,
                                    GroupPermission, OwnerAuthorization)
 from mkt.api.base import (CORSMixin, CORSResource, GenericObject, http_error,

@@ -1,8 +1,6 @@
 from django.core.exceptions import ValidationError
-from django.core.files.base import File
 from django.core.files.storage import default_storage as storage
 from django.db import IntegrityError
-from django.http import HttpResponse
 from django.utils.datastructures import MultiValueDictKeyError
 
 from PIL import Image
@@ -11,7 +9,6 @@ from rest_framework import exceptions, generics, status, viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
-from amo.storage_utils import copy_stored_file
 from amo.utils import HttpResponseSendFile
 
 from mkt.api.authentication import (RestOAuthAuthentication,
@@ -142,7 +139,8 @@ class CollectionViewSet(CORSMixin, SlugOrIdMixin, viewsets.ModelViewSet):
         return self.return_updated(status.HTTP_200_OK)
 
 
-class CollectionImageViewSet(CORSMixin, viewsets.ViewSet, generics.RetrieveUpdateAPIView):
+class CollectionImageViewSet(CORSMixin, SlugOrIdMixin, viewsets.ViewSet,
+                             generics.RetrieveUpdateAPIView):
     queryset = Collection.objects.all()
     permission_classes = [PublisherAuthorization]
     authentication_classes = [RestOAuthAuthentication,
