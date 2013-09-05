@@ -51,14 +51,16 @@ def themes_list(request, flagged=False, rereview=False):
     if flagged:
         # TODO (ngoke): rename to STATUS_FLAGGED.
         themes = Addon.objects.filter(status=amo.STATUS_REVIEW_PENDING,
-                                      type=amo.ADDON_PERSONA)
+                                      type=amo.ADDON_PERSONA,
+                                      persona__isnull=False)
     elif rereview:
         themes = [
             rqt.theme.addon for rqt in
             RereviewQueueTheme.objects.select_related('theme__addon')]
     else:
         themes = Addon.objects.filter(status=amo.STATUS_PENDING,
-                                      type=amo.ADDON_PERSONA)
+                                      type=amo.ADDON_PERSONA,
+                                      persona__isnull=False)
 
     search_form = _get_search_form(request)
     per_page = request.GET.get('per_page', QUEUE_PER_PAGE)
