@@ -124,7 +124,7 @@ def log_exception(data):
     # on prod, we log at the error level and result in no logs on prod.
     typ, value, discard = sys.exc_info()
     error_log = logging.getLogger('z.receipt')
-    error_log.info(u'Type: %s, %s. Data: %s' % (typ, value, data))
+    error_log.exception(u'Type: %s, %s. Data: %s' % (typ, value, data))
 
 
 def log_info(msg):
