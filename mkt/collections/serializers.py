@@ -12,6 +12,8 @@ from django.core.exceptions import ValidationError
 from django.core.files.base import File
 from django.core.files.storage import default_storage as storage
 
+from rest_framework.reverse import reverse
+
 from mkt.api.fields import TranslationSerializerField
 from mkt.api.resources import AppResource
 from mkt.constants.features import FeatureProfile
@@ -32,6 +34,7 @@ class CollectionMembershipField(serializers.RelatedField):
         bundle = Bundle(obj=value.app)
         return AppResource().full_dehydrate(bundle).data
 
+
     def field_to_native(self, obj, field_name):
         value = get_component(obj, self.source)
 
@@ -50,6 +53,21 @@ class CollectionMembershipField(serializers.RelatedField):
         return [self.to_native(item) for item in value.all()]
 
 
+class HyperlinkedRelatedOrNullField(serializers.HyperlinkedRelatedField):
+    read_only = True
+    def __init__(self, *a, **kw):
+        self.pred = kw.get('predicate', lambda x: True)
+        if 'predicate' in kw:
+            del kw['predicate']
+        serializers.HyperlinkedRelatedField.__init__(self, *a, **kw)
+    def get_url(self, obj, view_name, request, format):
+        kwargs = {'pk': obj.id}
+        if self.pred(obj):
+            return reverse(view_name, kwargs=kwargs, request=request, format=format)
+        else:
+            return None
+
+
 class CollectionSerializer(serializers.ModelSerializer):
     name = TranslationSerializerField()
     description = TranslationSerializerField()
@@ -57,11 +75,15 @@ class CollectionSerializer(serializers.ModelSerializer):
     collection_type = serializers.IntegerField()
     apps = CollectionMembershipField(many=True,
                                      source='collectionmembership_set')
+    image = HyperlinkedRelatedOrNullField(
+        source='*',
+        view_name='collection-image-detail',
+        predicate=lambda o: os.path.exists(o.image_path()))
 
     class Meta:
         fields = ('apps', 'author', 'background_color', 'carrier', 'category',
                   'collection_type', 'default_language', 'description', 'id',
-                  'is_public', 'name', 'region', 'slug', 'text_color',)
+                  'image', 'is_public', 'name', 'region', 'slug', 'text_color',)
         model = Collection
 
     def full_clean(self, instance):

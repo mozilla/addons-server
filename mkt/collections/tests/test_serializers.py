@@ -1,9 +1,13 @@
 # -*- coding: utf-8 -*-
+import os
+
 from nose.tools import eq_, ok_
 from tastypie.bundle import Bundle
 from test_utils import RequestFactory
 
 import amo.tests
+from amo.urlresolvers import reverse
+
 from mkt.api.resources import AppResource
 from mkt.collections.constants import COLLECTIONS_TYPE_BASIC
 from mkt.constants.features import FeatureProfile
@@ -102,6 +106,18 @@ class TestCollectionSerializer(CollectionDataMixin, amo.tests.TestCase):
         for order, app in enumerate(apps):
             eq_(data['apps'][order]['slug'], app.app_slug)
         return data
+
+    def test_image(self):
+        data = self.serializer.to_native(self.collection)
+        eq_(data['image'], None)
+        try:
+            os.makedirs(os.path.dirname(self.collection.image_path()))
+        except OSError:
+            pass
+        open(self.collection.image_path(), 'w').write("some data")
+        data = self.serializer.to_native(self.collection)
+        eq_(data['image'], reverse('collection-image-detail',
+                                   kwargs={'pk': self.collection.id}))
 
     def test_wrong_default_language_serialization(self):
         # The following is wrong because we only accept the 'en-us' form.
