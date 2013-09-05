@@ -27,7 +27,13 @@
 
   <section id="queue-island" class="island search-toggle">
     <h3 class="theme-queue-link c">
-      <a href="{{ url('reviewers.themes.queue_themes') }}">
+      {% set url_suffix = '_themes' %}
+      {% if flagged %}
+        {% set url_suffix = '_flagged' %}
+      {% elif rereview %}
+        {% set url_suffix = '_rereview' %}
+      {% endif %}
+      <a href="{{ url('reviewers.themes.queue' + url_suffix) }}">
         {{ _('Interactive Theme Queue') }}
         <img src="{{ media('img/mkt/arrows/blue-med-go.png') }}">
       </a>
