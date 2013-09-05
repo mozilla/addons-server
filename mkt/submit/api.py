@@ -65,7 +65,7 @@ class ValidationResource(CORSResource, MarketplaceModelResource):
 
         # This is a reget of the object, we do this to get the refreshed
         # results if not celery delayed.
-        bundle.obj = FileUpload.uncached.get(pk=upload.pk)
+        bundle.obj = FileUpload.objects.get(pk=upload.pk)
         log.info('Validation created: %s' % bundle.obj.pk)
         return bundle
 

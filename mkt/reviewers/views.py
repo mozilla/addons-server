@@ -94,23 +94,24 @@ def home(request):
 
 
 def queue_counts(request):
-    excluded_ids = EscalationQueue.uncached.values_list('addon', flat=True)
+    excluded_ids = EscalationQueue.objects.no_cache().values_list('addon',
+                                                                  flat=True)
     public_statuses = amo.WEBAPPS_APPROVED_STATUSES
 
     counts = {
-        'pending': Webapp.uncached
+        'pending': Webapp.objects.no_cache()
                          .exclude(id__in=excluded_ids)
                          .filter(type=amo.ADDON_WEBAPP,
                                  disabled_by_user=False,
                                  status=amo.STATUS_PENDING)
                          .count(),
-        'rereview': RereviewQueue.uncached
+        'rereview': RereviewQueue.objects.no_cache()
                                  .exclude(addon__in=excluded_ids)
                                  .filter(addon__disabled_by_user=False)
                                  .count(),
         # This will work as long as we disable files of existing unreviewed
         # versions when a new version is uploaded.
-        'updates': File.uncached
+        'updates': File.objects.no_cache()
                        .exclude(version__addon__id__in=excluded_ids)
                        .filter(version__addon__type=amo.ADDON_WEBAPP,
                                version__addon__disabled_by_user=False,
@@ -119,10 +120,11 @@ def queue_counts(request):
                                version__deleted=False,
                                status=amo.STATUS_PENDING)
                        .count(),
-        'escalated': EscalationQueue.uncached
+        'escalated': EscalationQueue.objects.no_cache()
                                     .filter(addon__disabled_by_user=False)
                                     .count(),
-        'moderated': Review.uncached.filter(addon__type=amo.ADDON_WEBAPP,
+        'moderated': Review.objects.no_cache().filter(
+                                            addon__type=amo.ADDON_WEBAPP,
                                             reviewflag__isnull=False,
                                             editorreview=True)
                                     .count(),
@@ -457,8 +459,9 @@ def _do_sort(request, qs, date_field='created'):
 
 @reviewer_required(only='app')
 def queue_apps(request):
-    excluded_ids = EscalationQueue.uncached.values_list('addon', flat=True)
-    qs = (Version.uncached.filter(addon__type=amo.ADDON_WEBAPP,
+    excluded_ids = EscalationQueue.objects.no_cache().values_list('addon',
+                                                                  flat=True)
+    qs = (Version.objects.no_cache().filter(addon__type=amo.ADDON_WEBAPP,
                                   addon__disabled_by_user=False,
                                   addon__status=amo.STATUS_PENDING)
                           .exclude(addon__id__in=excluded_ids)
@@ -474,8 +477,9 @@ def queue_apps(request):
 
 @reviewer_required(only='app')
 def queue_rereview(request):
-    excluded_ids = EscalationQueue.uncached.values_list('addon', flat=True)
-    rqs = (RereviewQueue.uncached
+    excluded_ids = EscalationQueue.objects.no_cache().values_list('addon',
+                                                                  flat=True)
+    rqs = (RereviewQueue.objects.no_cache()
                         .filter(addon__type=amo.ADDON_WEBAPP,
                                 addon__disabled_by_user=False)
                         .exclude(addon__in=excluded_ids))
@@ -487,8 +491,8 @@ def queue_rereview(request):
 
 @permission_required('Apps', 'ReviewEscalated')
 def queue_escalated(request):
-    eqs = EscalationQueue.uncached.filter(addon__type=amo.ADDON_WEBAPP,
-                                          addon__disabled_by_user=False)
+    eqs = EscalationQueue.objects.no_cache().filter(
+        addon__type=amo.ADDON_WEBAPP, addon__disabled_by_user=False)
     apps = _queue_to_apps(request, eqs)
     apps = [QueuedApp(app, app.escalationqueue_set.all()[0].created)
             for app in apps]
@@ -497,7 +501,8 @@ def queue_escalated(request):
 
 @reviewer_required(only='app')
 def queue_updates(request):
-    excluded_ids = EscalationQueue.uncached.values_list('addon', flat=True)
+    excluded_ids = EscalationQueue.objects.no_cache().values_list('addon',
+                                                                  flat=True)
     pub_statuses = amo.WEBAPPS_APPROVED_STATUSES
     addon_ids = (File.objects.filter(status=amo.STATUS_PENDING,
                                      version__addon__is_packaged=True,
@@ -507,9 +512,8 @@ def queue_updates(request):
                                      version__deleted=False)
                              .values_list('version__addon_id', flat=True))
 
-    qs = _do_sort(
-        request,
-        Webapp.uncached.exclude(id__in=excluded_ids).filter(id__in=addon_ids))
+    qs = _do_sort(request, Webapp.objects.no_cache().exclude(
+        id__in=excluded_ids).filter(id__in=addon_ids))
 
     apps = [QueuedApp(app, app.all_versions[0].nomination or app.created)
             for app in Webapp.version_and_file_transformer(qs)]
@@ -535,10 +539,9 @@ def queue_device(request):
 @reviewer_required(only='app')
 def queue_moderated(request):
     """Queue for reviewing app reviews."""
-    rf = (Review.uncached.exclude(Q(addon__isnull=True) |
-                                  Q(reviewflag__isnull=True))
-                .filter(addon__type=amo.ADDON_WEBAPP,
-                        editorreview=True)
+    rf = (Review.objects.no_cache()
+                .exclude(Q(addon__isnull=True) | Q(reviewflag__isnull=True))
+                .filter(addon__type=amo.ADDON_WEBAPP, editorreview=True)
                 .order_by('reviewflag__created'))
 
     page = paginate(request, rf, per_page=20)

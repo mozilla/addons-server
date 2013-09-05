@@ -424,7 +424,7 @@ def edit(request, collection, username, slug):
     else:
         form = forms.CollectionForm(instance=collection)
 
-    qs = (CollectionAddon.uncached.using('default')
+    qs = (CollectionAddon.objects.no_cache().using('default')
           .filter(collection=collection))
     meta = dict((c.addon_id, c) for c in qs)
     addons = collection.addons.no_cache().all()
@@ -559,7 +559,7 @@ def watch(request, username, slug):
     """
     collection = get_collection(request, username, slug)
     d = dict(user=request.amo_user, collection=collection)
-    qs = CollectionWatcher.uncached.using('default').filter(**d)
+    qs = CollectionWatcher.objects.no_cache().using('default').filter(**d)
     watching = not qs  # Flip the bool since we're about to change it.
     if qs:
         qs.delete()

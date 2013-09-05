@@ -216,7 +216,8 @@ def _change_last_updated(next):
 
     log.debug('Updating %s add-ons' % len(changes))
     # Update + invalidate.
-    for addon in Addon.uncached.filter(id__in=changes).no_transforms():
+    qs = Addon.objects.no_cache().filter(id__in=changes).no_transforms()
+    for addon in qs:
         addon.last_updated = changes[addon.id]
         addon.save()
 
@@ -231,7 +232,7 @@ def addon_last_updated():
     _change_last_updated(next)
 
     # Get anything that didn't match above.
-    other = (Addon.uncached.filter(last_updated__isnull=True)
+    other = (Addon.objects.no_cache().filter(last_updated__isnull=True)
              .values_list('id', 'created'))
     _change_last_updated(dict(other))
 
@@ -295,7 +296,8 @@ def hide_disabled_files():
     ids = (File.objects.filter(q | Q(status=amo.STATUS_DISABLED))
            .values_list('id', flat=True))
     for chunk in chunked(ids, 300):
-        qs = File.uncached.filter(id__in=chunk).select_related('version')
+        qs = File.objects.no_cache().filter(id__in=chunk)
+        qs = qs.select_related('version')
         for f in qs:
             f.hide_disabled_file()
 
@@ -343,7 +345,7 @@ def deliver_hotness():
     one_week = now - timedelta(days=7)
     four_weeks = now - timedelta(days=28)
     for ids in chunked(all_ids, 300):
-        addons = Addon.uncached.filter(id__in=ids).no_transforms()
+        addons = Addon.objects.no_cache().filter(id__in=ids).no_transforms()
         ids = [a.id for a in addons if a.id not in frozen]
         qs = (UpdateCount.objects.filter(addon__in=ids)
               .values_list('addon').annotate(Avg('count')))

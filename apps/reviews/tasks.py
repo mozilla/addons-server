@@ -66,7 +66,7 @@ def addon_bayesian_rating(*addons, **kw):
     if avg['rating'] is None:
         return
     mc = avg['reviews'] * avg['rating']
-    for addon in Addon.uncached.filter(id__in=addons):
+    for addon in Addon.objects.no_cache().filter(id__in=addons):
         if addon.average_rating is None:
             # Ignoring addons with no average rating.
             continue

@@ -70,9 +70,9 @@ class TestLangpackFetcher(amo.tests.TestCase):
         self.addCleanup(request_patch.stop)
 
     def get_langpacks(self):
-        return (Addon.uncached
-                 .filter(addonuser__user__email=settings.LANGPACK_OWNER_EMAIL,
-                         type=amo.ADDON_LPAPP))
+        return (Addon.objects.no_cache()
+                .filter(addonuser__user__email=settings.LANGPACK_OWNER_EMAIL,
+                        type=amo.ADDON_LPAPP))
 
     def fetch_langpacks(self, version):
         path = settings.LANGPACK_PATH_DEFAULT % ('firefox', version)

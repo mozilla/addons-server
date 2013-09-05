@@ -34,7 +34,7 @@ def change():
     k = 0
     print 'Changing %s files' % len(files)
     for chunk in chunked(files, 100):
-        for file in File.uncached.filter(pk__in=chunk):
+        for file in File.objects.no_cache().filter(pk__in=chunk):
             file.platform_id = amo.PLATFORM_ALL.id
             if not file.datestatuschanged:
                 file.datestatuschanged = datetime.now()
@@ -50,7 +50,7 @@ def report():
                            .filter(addon__type=amo.ADDON_SEARCH)
                            .filter(files_count__gt=1))
     for chunk in chunked(versions, 100):
-        for version in Version.uncached.filter(pk__in=chunk):
+        for version in Version.objects.no_cache().filter(pk__in=chunk):
             print 'Addon: %s, %s' % (version.addon.pk,
                                      version.addon.name)
             print 'Version: %s - %s files' % (version.pk,

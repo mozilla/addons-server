@@ -36,7 +36,7 @@ class TestCommand(amo.tests.TestCase):
             cfg = create_inapp_config()
             old_key = cfg.get_private_key()
             old_raw_key = cfg._encrypted_private_key
-            cfg = InappConfig.uncached.get(pk=cfg.pk)
+            cfg = InappConfig.objects.no_cache().get(pk=cfg.pk)
             eq_(cfg.key_timestamp, '2012-05-10')
 
         with mock.patch.object(settings, 'INAPP_KEY_PATHS',
@@ -44,7 +44,7 @@ class TestCommand(amo.tests.TestCase):
                  '2012-05-11': resource('inapp-sample-pay-alt.key')}):
             Command().handle(old_timestamp='2012-05-10',
                              new_timestamp='2012-05-11')
-            cfg = InappConfig.uncached.get(pk=cfg.pk)
+            cfg = InappConfig.objects.no_cache().get(pk=cfg.pk)
             eq_(cfg.get_private_key(), old_key)
             new_raw_key = cfg._encrypted_private_key
             assert new_raw_key != old_raw_key, ('raw keys were changed')

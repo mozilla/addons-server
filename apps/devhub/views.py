@@ -813,7 +813,7 @@ def standalone_upload(request):
 @login_required
 @json_view
 def standalone_upload_detail(request, uuid):
-    upload = get_object_or_404(FileUpload.uncached, uuid=uuid)
+    upload = get_object_or_404(FileUpload, uuid=uuid)
     url = reverse('devhub.standalone_upload_detail', args=[uuid])
     return upload_validation_context(request, upload, url=url)
 
@@ -827,7 +827,7 @@ def upload_for_addon(request, addon_id, addon):
 @dev_required
 @json_view
 def upload_detail_for_addon(request, addon_id, addon, uuid):
-    upload = get_object_or_404(FileUpload.uncached, uuid=uuid)
+    upload = get_object_or_404(FileUpload, uuid=uuid)
     return json_upload_detail(request, upload, addon_slug=addon.slug)
 
 
@@ -1068,7 +1068,7 @@ def upload_validation_context(request, upload, addon_slug=None, addon=None,
 
 @login_required
 def upload_detail(request, uuid, format='html'):
-    upload = get_object_or_404(FileUpload.uncached, uuid=uuid)
+    upload = get_object_or_404(FileUpload, uuid=uuid)
 
     if format == 'json' or request.is_ajax():
         return json_upload_detail(request, upload)

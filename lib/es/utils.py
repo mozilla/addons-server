@@ -25,7 +25,7 @@ def index_objects(ids, model, search, index=None, transforms=None):
     if transforms is None:
         transforms = []
 
-    qs = model.uncached.filter(id__in=ids)
+    qs = model.objects.no_cache().filter(id__in=ids)
     for t in transforms:
         qs = qs.transform(t)
 

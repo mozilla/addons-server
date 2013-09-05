@@ -1238,7 +1238,7 @@ class TestWebappIndexer(amo.tests.TestCase):
 
     def _get_doc(self):
         qs = Webapp.indexing_transformer(
-            Webapp.uncached.filter(id__in=[self.app.pk]))
+            Webapp.objects.no_cache().filter(id__in=[self.app.pk]))
         obj = qs[0]
         return obj, WebappIndexer.extract_document(obj.pk, obj)
 

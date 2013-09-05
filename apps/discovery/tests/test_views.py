@@ -196,7 +196,7 @@ class TestModuleAdmin(amo.tests.TestCase):
             eq_(set(modules), set(registry.keys()))
 
         app = Application.objects.create()
-        qs = DiscoveryModule.uncached.filter(app=app)
+        qs = DiscoveryModule.objects.no_cache().filter(app=app)
         eq_(qs.count(), 0)
 
         # All our modules get added.

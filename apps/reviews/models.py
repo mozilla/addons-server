@@ -109,7 +109,7 @@ class Review(amo.models.ModelBase):
     @staticmethod
     def transformer(reviews):
         user_ids = dict((r.user_id, r) for r in reviews)
-        for user in UserProfile.uncached.filter(id__in=user_ids):
+        for user in UserProfile.objects.no_cache().filter(id__in=user_ids):
             user_ids[user.id].user = user
 
 

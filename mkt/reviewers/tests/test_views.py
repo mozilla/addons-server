@@ -1039,7 +1039,7 @@ class TestReviewTransaction(AttachmentManagementMixin,
                        'webapp_337141')
 
     def get_app(self):
-        return Webapp.uncached.get(id=337141)
+        return Webapp.objects.no_cache().get(id=337141)
 
     @mock.patch('mkt.webapps.models.Webapp.get_manifest_json')
     @mock.patch('lib.crypto.packaged.sign_app')
@@ -2573,7 +2573,7 @@ class TestQueueSearchSort(AppReviewerTest):
         """
         Test that apps are sorted in order specified in GET params
         """
-        qs = Webapp.uncached.all()
+        qs = Webapp.objects.no_cache().all()
 
         # Test apps are sorted by created/asc by default.
         r = self.rf.get(self.url, {'sort': 'invalidsort', 'order': 'dontcare'})

@@ -100,8 +100,9 @@ class InstalledResource(AppResource):
         slug_lookup = None
 
     def obj_get_list(self, request=None, **kwargs):
-        return Webapp.uncached.filter(installed__user=request.amo_user,
-                                     installed__install_type=INSTALL_TYPE_USER)
+        return Webapp.objects.no_cache().filter(
+            installed__user=request.amo_user,
+            installed__install_type=INSTALL_TYPE_USER)
 
 
 class LoginResource(CORSResource, MarketplaceResource):

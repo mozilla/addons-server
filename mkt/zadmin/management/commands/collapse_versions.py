@@ -21,7 +21,7 @@ def do_collapsing():
     vkey = unicode(Version._meta)
     fkey = 'files'
 
-    for app in (Webapp.uncached.filter(type=amo.ADDON_WEBAPP,
+    for app in (Webapp.objects.no_cache().filter(type=amo.ADDON_WEBAPP,
                                        is_packaged=False)
                                .exclude(status=amo.STATUS_DELETED)
                                .no_transforms()):

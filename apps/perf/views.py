@@ -32,7 +32,7 @@ def index(request):
         redis = redisutils.connections['master']
         os_perf = dict(zip(ids, redis.hmget(Performance.ALL_PLATFORMS, ids)))
         platforms = dict((unicode(p), p.id)
-                         for p in PerformanceOSVersion.uncached.all())
+                         for p in PerformanceOSVersion.objects.no_cache().all())
         ctx.update(
             os_perf=os_perf,
             platforms=platforms,

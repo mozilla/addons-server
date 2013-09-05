@@ -9,7 +9,7 @@ from market.models import Price
 def run():
     print 'Adding in new tiers'
     for tier in ['0.10', '0.25', '0.50', '12.49']:
-        exists = Price.uncached.filter(price=Decimal(tier)).exists()
+        exists = Price.objects.no_cache().filter(price=Decimal(tier)).exists()
         if exists:
             print 'Tier already exists, skipping: %s' % tier
             continue

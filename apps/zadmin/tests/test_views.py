@@ -131,8 +131,8 @@ class TestFlagged(amo.tests.TestCase):
                                     follow=True)
         self.assertRedirects(response, self.url)
 
-        assert not Addon.uncached.get(id=1).admin_review
-        assert not Addon.uncached.get(id=2).admin_review
+        assert not Addon.objects.no_cache().get(id=1).admin_review
+        assert not Addon.objects.no_cache().get(id=2).admin_review
 
         addons = response.context['addons']
         eq_(len(addons), 1)

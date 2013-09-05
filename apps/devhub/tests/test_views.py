@@ -696,7 +696,7 @@ class TestDisablePayments(amo.tests.TestCase):
         r = self.client.post(self.disable_url)
         eq_(r.status_code, 302)
         assert(r['Location'].endswith(self.pay_url))
-        eq_(Addon.uncached.get(id=3615).wants_contributions, False)
+        eq_(Addon.objects.no_cache().get(id=3615).wants_contributions, False)
 
 
 class TestPaymentsProfile(amo.tests.TestCase):

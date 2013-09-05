@@ -45,7 +45,7 @@ def featured_apps_ajax(request):
         cat_slug = request.POST.get('category')
         deleteid = request.POST.get('delete')
         if deleteid:
-            delete_apps = FeaturedApp.uncached.filter(
+            delete_apps = FeaturedApp.objects.no_cache().filter(
                 app__id=int(deleteid))
             if not cat_slug:
                 delete_apps = delete_apps.filter(category__isnull=True)
@@ -62,7 +62,7 @@ def featured_apps_ajax(request):
                 except (Category.DoesNotExist,
                         Category.MultipleObjectsReturned):
                     pass
-            app, created = FeaturedApp.uncached.get_or_create(
+            app, created = FeaturedApp.objects.no_cache().get_or_create(
                 category=category, app_id=int(appid))
             if created:
                 FeaturedAppRegion.objects.create(
@@ -100,7 +100,7 @@ def set_attrs_ajax(request):
     app = request.POST.get('app', None)
     if not app:
         return HttpResponse()
-    fa = FeaturedApp.uncached.get(pk=app)
+    fa = FeaturedApp.objects.no_cache().get(pk=app)
     if regions or carriers:
         regions = set(int(r) for r in regions)
         fa.regions.exclude(region__in=regions).delete()
@@ -135,11 +135,13 @@ def set_attrs_ajax(request):
 def featured_categories_ajax(request):
     cats = Category.objects.filter(type=amo.ADDON_WEBAPP)
     return jingo.render(request, 'zadmin/featured_categories_ajax.html', {
-        'homecount': FeaturedApp.uncached.filter(category=None).count(),
+        'homecount': FeaturedApp.objects.no_cache().filter(
+            category=None).count(),
         'categories': [{
             'name': cat.name,
             'id': cat.slug,
-            'count': FeaturedApp.uncached.filter(category=cat).count()
+            'count': FeaturedApp.objects.no_cache().filter(
+                category=cat).count()
         } for cat in cats]})
 
 
