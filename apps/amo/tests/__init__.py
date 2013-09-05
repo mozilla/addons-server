@@ -742,6 +742,12 @@ class ESTestCase(TestCase):
                             % e.args[0]] + list(e.args[1:]))
             raise
 
+        cls._SEARCH_ANALYZER_MAP = amo.SEARCH_ANALYZER_MAP
+        amo.SEARCH_ANALYZER_MAP = {
+            'english': ['en-us'],
+            'spanish': ['es'],
+        }
+
         for index in set(settings.ES_INDEXES.values()):
             # Get the index that's pointed to by the alias.
             try:
@@ -777,6 +783,7 @@ class ESTestCase(TestCase):
                              if a.type == amo.ADDON_WEBAPP])
             unindex_addons([a.id for a in cls._addons
                             if a.type != amo.ADDON_WEBAPP])
+        amo.SEARCH_ANALYZER_MAP = cls._SEARCH_ANALYZER_MAP
 
     @classmethod
     def setUpIndex(cls):
