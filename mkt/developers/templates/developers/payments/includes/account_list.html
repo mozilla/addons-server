@@ -1,6 +1,6 @@
 <script type="text/template" id="account-list-template">
   <section class="account-list loading"
-           data-accounts-url="{{ url('mkt.developers.bango.payment_accounts') }}">
+           data-accounts-url="{{ url('mkt.developers.bango.payment_accounts') }}?app-slug={{ addon.app_slug }}">
     <header>
       <a class="close" title="{{ _('close') }}">&times;</a>
       <h2>{{ _('Payment Accounts') }}</h2>
@@ -12,6 +12,7 @@
           <th>{{ _('Account Name') }}</th>
           <th>{{ _('Modify') }}</th>
           <th>{{ _('Delete') }}</th>
+          <th>{{ _('Portal') }}</th>
         </tr>
 
         {# Payment accounts get added via JS here. #}
@@ -31,10 +32,12 @@
       data-account="{id}"
       data-account-url="{account-url}"
       data-agreement-url="{agreement-url}"
+      data-portal-url="{portal-url}"
       data-delete-url="{delete-url}">
     <td><div class="terms-accepted {agreement}"></div></td>
     <td>{name}</td>
     <td><a href="#" class="modify-account">{{ _('Modify') }}</a> <a href="#" class="accept-tos">{{ _('Accept Terms of Service') }}</a></td>
     <td><a href="#" class="delete-account">{{ _('Delete') }}</a></td>
+    <td><a href="#" class="portal-account">{{ _('Portal') }}</a></td>
   </tr>
 </script>

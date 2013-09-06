@@ -31,7 +31,7 @@ from market.models import Price
 from mkt.constants import DEVICE_LOOKUP
 from mkt.developers.decorators import dev_required
 from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
-                                   SolitudeSeller, UserInappKey, uri_to_pk)
+                                   UserInappKey, uri_to_pk)
 
 from . import forms, forms_payments
 
@@ -169,6 +169,7 @@ def payments(request, addon_id, addon, webapp=False):
 @login_required
 @json_view
 def payment_accounts(request):
+    app_slug = request.GET.get('app-slug', '')
     accounts = PaymentAccount.objects.filter(
         user=request.amo_user, inactive=False)
 
@@ -181,6 +182,9 @@ def payment_accounts(request):
             'delete-url':
                 reverse('mkt.developers.bango.delete_payment_account',
                         args=[acc.pk]),
+            'portal-url':
+                reverse('mkt.developers.apps.payments.bango_portal',
+                        args=[app_slug]),
             'agreement-url': acc.get_agreement_url(),
             'agreement': 'accepted' if acc.agreed_tos else 'rejected'
         }
@@ -346,7 +350,9 @@ def bango_portal(request, addon_id, addon, webapp=True):
             'personId': bango_token['person_id'],
         })
     })
-    return http.HttpResponseRedirect(bango_url)
+    response = http.HttpResponse(status=204)
+    response['Location'] = bango_url
+    return response
 
 
 def get_seller_product(account):

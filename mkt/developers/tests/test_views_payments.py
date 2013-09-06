@@ -690,7 +690,7 @@ class TestPayments(amo.tests.TestCase):
         }
         assert self.is_owner(self.user)
         res = self.client.get(self.portal_url)
-        eq_(res.status_code, 302)
+        eq_(res.status_code, 204)
         redirect_url = res['Location']
         assert authentication_token in redirect_url
         assert 'emailAddress=admin%40place.com' in redirect_url
