@@ -329,7 +329,7 @@ Payments
 
 .. note:: The Transaction:Debug permission is required.
 
-.. http:get:: /api/v1/apps/api/(int:id)/payments/debug/
+.. http:get:: /api/v1/apps/app/(int:id)/payments/debug/
 
     Returns useful debug information about the app, suitable for marketplace
     developers and integrators. Output is truncated below and is subject
