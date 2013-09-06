@@ -144,9 +144,9 @@ class WithFeaturedResource(SearchResource):
     def collections(self, request, collection_type=None):
         filters = request.GET.dict()
         if collection_type is not None:
-            qs = Collection.objects.filter(collection_type=collection_type)
+            qs = Collection.public.filter(collection_type=collection_type)
         else:
-            qs = Collection.objects.all()
+            qs = Collection.public.all()
         filterset = CollectionFilterSetWithFallback(filters, queryset=qs)
         serializer = CollectionSerializer(filterset,
                                           context={'request': request})
