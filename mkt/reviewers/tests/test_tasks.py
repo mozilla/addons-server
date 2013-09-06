@@ -234,6 +234,31 @@ class TestRefundsEscalationTask(amo.tests.TestCase):
 class TestBatchAwardPoints(amo.tests.TestCase):
     fixtures = fixture('user_999', 'user_2519')
 
+    def test_migration(self):
+        mig = __import__('migrations.659-award-theme-points')
+        run = getattr(mig, '659-award-theme-points').run
+
+        user_999 = UserProfile.objects.get(username='regularuser')
+        amo.log(amo.LOG.THEME_REVIEW, addon_factory(), details={
+            'action': rvw.ACTION_APPROVE
+        }, user=user_999)
+        al = ActivityLog.objects.get()
+        al.created = datetime.date(2013, 4, 30)
+        al.save()
+        run()
+        eq_(ReviewerScore.objects.count(), 1)
+        eq_(ReviewerScore.objects.get().note_key, amo.REVIEWED_PERSONA)
+        eq_(ReviewerScore.objects.get().note, 'RETROACTIVE')
+
+        amo.log(amo.LOG.THEME_REVIEW, addon_factory(), details={
+            'action': rvw.ACTION_APPROVE
+        }, user=user_999)
+        al = ActivityLog.objects.order_by('-created')[0]
+        al.created = datetime.date(2013, 8, 30)
+        al.save()
+        run()
+        eq_(ReviewerScore.objects.count(), 1)
+
     def test_batch_award_points(self):
         user_999 = UserProfile.objects.get(username='regularuser')
         addon_999 = addon_factory()
