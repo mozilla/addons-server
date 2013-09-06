@@ -14,8 +14,12 @@ from django.core.exceptions import ObjectDoesNotExist, ValidationError
 from django.core.files.base import File
 from django.core.files.storage import default_storage as storage
 
-
 import amo
+try:
+    from build import BUILD_ID_IMG
+    build_id = BUILD_ID_IMG
+except ImportError:
+    build_id = ''
 import mkt
 from addons.models import Category
 from mkt.api.fields import TranslationSerializerField
@@ -58,15 +62,21 @@ class CollectionMembershipField(serializers.RelatedField):
 
 class HyperlinkedRelatedOrNullField(serializers.HyperlinkedRelatedField):
     read_only = True
+
     def __init__(self, *a, **kw):
         self.pred = kw.get('predicate', lambda x: True)
         if 'predicate' in kw:
             del kw['predicate']
         serializers.HyperlinkedRelatedField.__init__(self, *a, **kw)
+
     def get_url(self, obj, view_name, request, format):
-        kwargs = {'pk': obj.id}
+        kwargs = {'pk': obj.pk}
         if self.pred(obj):
-            return reverse(view_name, kwargs=kwargs, request=request, format=format)
+            url = reverse(view_name, kwargs=kwargs, request=request,
+                          format=format)
+            if build_id:
+                url += '?' + build_id
+            return url
         else:
             return None
 
@@ -143,7 +153,8 @@ class CollectionSerializer(serializers.ModelSerializer):
     class Meta:
         fields = ('apps', 'author', 'background_color', 'carrier', 'category',
                   'collection_type', 'default_language', 'description', 'id',
-                  'image', 'is_public', 'name', 'region', 'slug', 'text_color',)
+                  'image', 'is_public', 'name', 'region', 'slug',
+                  'text_color',)
         model = Collection
 
     def full_clean(self, instance):
