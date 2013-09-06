@@ -579,7 +579,7 @@ class TestFeaturedCollections(BaseFeaturedTests):
         self.create_switch('rocketfuel')
         super(TestFeaturedCollections, self).setUp()
         self.col = Collection.objects.create(name='Hi', description='Mom',
-            collection_type=self.col_type, category=self.cat)
+            collection_type=self.col_type, category=self.cat, is_public=True)
 
     def make_request(self):
         res = self.client.get(self.list_url, self.qs)
@@ -609,6 +609,11 @@ class TestFeaturedCollections(BaseFeaturedTests):
         res, json = self.test_added_to_results()
         eq_(len(json[self.prop_name][0]['apps']), 0)
 
+    def test_only_public(self):
+        self.col2 = Collection.objects.create(name='Col', description='Hidden',
+            collection_type=self.col_type, category=self.cat, is_public=False)
+        self.test_added_to_results()
+
     def test_only_this_type(self):
         """
         Add a second collection of a different collection type, then ensure that
@@ -617,7 +622,7 @@ class TestFeaturedCollections(BaseFeaturedTests):
         different_type = (COLLECTIONS_TYPE_FEATURED if self.col_type ==
                           COLLECTIONS_TYPE_BASIC else COLLECTIONS_TYPE_BASIC)
         self.col2 = Collection.objects.create(name='Bye', description='Dad',
-            collection_type=different_type, category=self.cat)
+            collection_type=different_type, category=self.cat, is_public=True)
         self.test_added_to_results()
 
     @patch('mkt.search.api.CollectionFilterSetWithFallback')
