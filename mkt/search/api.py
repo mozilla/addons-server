@@ -141,14 +141,14 @@ class WithFeaturedResource(SearchResource):
         resource_name = 'search/featured'
         slug_lookup = None
 
-    def collections(self, request, collection_type=None):
+    def collections(self, request, collection_type=None, limit=1):
         filters = request.GET.dict()
         if collection_type is not None:
             qs = Collection.public.filter(collection_type=collection_type)
         else:
             qs = Collection.public.all()
         filterset = CollectionFilterSetWithFallback(filters, queryset=qs)
-        serializer = CollectionSerializer(filterset,
+        serializer = CollectionSerializer(filterset[:limit],
                                           context={'request': request})
         return serializer.data
 
@@ -156,12 +156,13 @@ class WithFeaturedResource(SearchResource):
 
         if waffle.switch_is_active('rocketfuel'):
             types = (
-                ('collections', COLLECTIONS_TYPE_BASIC,),
-                ('featured', COLLECTIONS_TYPE_FEATURED,),
-                ('operator', COLLECTIONS_TYPE_OPERATOR,),
+                ('collections', COLLECTIONS_TYPE_BASIC),
+                ('featured', COLLECTIONS_TYPE_FEATURED),
+                ('operator', COLLECTIONS_TYPE_OPERATOR),
             )
             for name, col_type in types:
-                data[name] = self.collections(request, collection_type=col_type)
+                data[name] = self.collections(request,
+                    collection_type=col_type)
         else:
             form_data = self.get_search_data(request)
             region = getattr(request, 'REGION', mkt.regions.WORLDWIDE)

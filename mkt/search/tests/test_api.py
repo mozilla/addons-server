@@ -580,6 +580,7 @@ class TestFeaturedCollections(BaseFeaturedTests):
         super(TestFeaturedCollections, self).setUp()
         self.col = Collection.objects.create(name='Hi', description='Mom',
             collection_type=self.col_type, category=self.cat, is_public=True)
+        # FIXME: mock the search part, we don't care about it
 
     def make_request(self):
         res = self.client.get(self.list_url, self.qs)
@@ -624,6 +625,23 @@ class TestFeaturedCollections(BaseFeaturedTests):
         self.col2 = Collection.objects.create(name='Bye', description='Dad',
             collection_type=different_type, category=self.cat, is_public=True)
         self.test_added_to_results()
+
+    @patch('mkt.collections.serializers.CollectionMembershipField.'
+           'field_to_native')
+    def test_limit(self, mock_field_to_native):
+        """
+        Add a second collection, then ensure than the old one is not present
+        in the results since we are limiting at 1 collection of each type
+        """
+        self.col.add_app(self.app)
+        self.col = Collection.objects.create(name='Me', description='Hello',
+            collection_type=self.col_type, category=self.cat, is_public=True)
+        self.col.add_app(self.app)
+        # Call standard test method.
+        self.test_added_to_results()
+        # Make sure we don't try to serialize data from collections we are
+        # not returning.
+        eq_(mock_field_to_native.call_count, 1)
 
     @patch('mkt.search.api.CollectionFilterSetWithFallback')
     def test_collection_filterset_called(self, mock_filterset):
