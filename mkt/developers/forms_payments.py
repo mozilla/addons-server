@@ -520,7 +520,7 @@ class BangoAccountListForm(happyforms.Form):
 
 class PaymentCheckForm(happyforms.Form):
     app = SluggableModelChoiceField(queryset=
-            Addon.objects.filter(premium_type__in=amo.ADDON_PREMIUMS,
+            Addon.objects.filter(premium_type__in=amo.ADDON_HAS_PAYMENTS,
                                  type=amo.ADDON_WEBAPP),
         sluggable_to_field_name='app_slug')
 

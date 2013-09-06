@@ -303,6 +303,7 @@ class TestPaymentDebug(RestOAuth, AccountCase):
         client.api.bango.debug.get.return_value = {'bango':
                                                    {'environment': 'dev'}}
         get_client.return_value = client
+        self.app.update(premium_type=amo.ADDON_FREE_INAPP)
         self.grant_permission(self.profile, 'Transaction:Debug')
         res = self.client.get(self.list_url)
         eq_(res.status_code, 200)
