@@ -643,15 +643,29 @@ class TestFeaturedCollections(BaseFeaturedTests):
         # not returning.
         eq_(mock_field_to_native.call_count, 1)
 
+    @patch('mkt.search.api.CollectionFilterSet')
     @patch('mkt.search.api.CollectionFilterSetWithFallback')
-    def test_collection_filterset_called(self, mock_filterset):
+    def test_collection_filterset_called(self, mock_fallback, mock_filterset):
         """
-        CollectionFilterSetWithFallback should be called 3 times: once for each
-        collection type added to the results of this view. We'll rely on that
-        class' tests to ensure that it is properly functioning.
+        CollectionFilterSetWithFallback should be called twice: once for basic
+        collections, and once for operator shelves. CollectionFilterSet should
+        then be used for featured apps.
         """
         res, json = self.make_request()
-        eq_(mock_filterset.call_count, 3)
+        eq_(mock_fallback.call_count, 2)
+        eq_(mock_filterset.call_count, 1)
+
+    def test_fallback_usage(self):
+        """
+        Test that the fallback mechanism is used for the collection_type we are
+        testing.
+        """
+        # Set a region on our collection...
+        self.col.update(region=mkt.regions.US.id)
+
+        # ... And request the list using a completely different region.
+        self.qs.update({'region': mkt.regions.SPAIN.slug})
+        self.test_added_to_results()
 
 
 class TestFeaturedOperator(TestFeaturedCollections):
@@ -662,6 +676,21 @@ class TestFeaturedOperator(TestFeaturedCollections):
 class TestFeaturedApps(TestFeaturedCollections):
     col_type = COLLECTIONS_TYPE_FEATURED
     prop_name = 'featured'
+
+    def test_fallback_usage(self):
+        """
+        Redefine the test_fallback_usage test since featured apps don't use
+        the fallback mechanism.
+        """
+        # Set a region on our collection...
+        self.col.update(region=mkt.regions.US.id)
+
+        # ... And request the list using a completely different region.
+        self.qs.update({'region': mkt.regions.SPAIN.slug})
+
+        res, json = self.make_request()
+        ok_(self.prop_name in res.json)
+        eq_(len(json[self.prop_name]), 0)
 
 
 @patch.object(settings, 'SITE_URL', 'http://testserver')

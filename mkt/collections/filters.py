@@ -47,7 +47,7 @@ class SlugModelChoiceFilter(ModelChoiceFilter):
         return qs.filter(**{'%s__%s' % (self.name, self.lookup_type): value})
 
 
-class CollectionFilterSetWithFallback(FilterSet):
+class CollectionFilterSet(FilterSet):
     # Note: the filter names must match what ApiSearchForm and CategoryViewSet
     # are using.
     carrier = SlugChoiceFilter(name='carrier',
@@ -63,31 +63,6 @@ class CollectionFilterSetWithFallback(FilterSet):
         # All fields are provided above, but django-filter needs Meta.field to
         # exist.
         fields = []
-
-    # Fields that can be removed when filtering the queryset if there
-    # are no results for the currently applied filters, in the order
-    # that they'll be removed. See `next_fallback`.
-    fields_fallback_order = ('carrier', 'region', 'cat')
-
-    def next_fallback(self):
-        """
-        Return the next field to remove from the filters if we didn't find any
-        results with the ones currently in use. It relies on
-        `fields_fallback_order`.
-
-        The `qs` property will call this method and use it to remove filters
-        from `self.data` till a result is returned by the queryset or
-        there are no filter left to remove.
-        """
-        for f in self.fields_fallback_order:
-            if f in self.data:
-                return f
-        return None
-
-    def __init__(self, *args, **kwargs):
-        super(CollectionFilterSetWithFallback, self).__init__(*args, **kwargs)
-        # Make self.data mutable for later.
-        self.data = self.data.copy()
 
     def get_queryset(self):
         """
@@ -144,6 +119,40 @@ class CollectionFilterSetWithFallback(FilterSet):
     def qs(self):
         if hasattr(self, '_qs'):
             return self._qs
+        self._qs = self.get_queryset()
+        return self._qs
+
+
+class CollectionFilterSetWithFallback(CollectionFilterSet):
+    # Fields that can be removed when filtering the queryset if there
+    # are no results for the currently applied filters, in the order
+    # that they'll be removed. See `next_fallback`.
+    fields_fallback_order = ('carrier', 'region', 'cat')
+
+    def next_fallback(self):
+        """
+        Return the next field to remove from the filters if we didn't find any
+        results with the ones currently in use. It relies on
+        `fields_fallback_order`.
+
+        The `qs` property will call this method and use it to remove filters
+        from `self.data` till a result is returned by the queryset or
+        there are no filter left to remove.
+        """
+        for f in self.fields_fallback_order:
+            if f in self.data:
+                return f
+        return None
+
+    def __init__(self, *args, **kwargs):
+        super(CollectionFilterSetWithFallback, self).__init__(*args, **kwargs)
+        # Make self.data mutable for later.
+        self.data = self.data.copy()
+
+    @property
+    def qs(self):
+        if hasattr(self, '_qs'):
+            return self._qs
 
         qs = self.get_queryset()
         # FIXME: being able to return self.form.errors would greatly help
@@ -159,3 +168,4 @@ class CollectionFilterSetWithFallback(FilterSet):
 
         self._qs = qs
         return self._qs
+
