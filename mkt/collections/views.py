@@ -9,6 +9,10 @@ from rest_framework import exceptions, generics, status, viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
+try:
+    from build import BUILD_ID_IMG
+except ImportError:
+    BUILD_ID_IMG = ''
 from amo.utils import HttpResponseSendFile
 
 from mkt.api.authentication import (RestOAuthAuthentication,
@@ -150,8 +154,11 @@ class CollectionImageViewSet(CORSMixin, SlugOrIdMixin, viewsets.ViewSet,
 
     def retrieve(self, request, pk=None):
         obj = self.get_object()
-        return HttpResponseSendFile(request, obj.image_path(),
-                                    content_type='image/png')
+        url = obj.image_path()
+        # Cache-bust the CDN image URL.
+        if BUILD_ID_IMG:
+            url += '?' + BUILD_ID_IMG
+        return HttpResponseSendFile(request, url, content_type='image/png')
 
     def update(self, request, *a, **kw):
         obj = self.get_object()
