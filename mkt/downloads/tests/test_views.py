@@ -1,5 +1,8 @@
 import mock
+from nose import SkipTest
 from nose.tools import eq_
+
+from django.conf import settings
 
 import amo
 from amo.urlresolvers import reverse
@@ -19,9 +22,11 @@ class TestDownload(BasePackagedAppTest):
 
     @mock.patch.object(packaged, 'sign', mock_sign)
     def test_download(self):
+        if not settings.XSENDFILE:
+            raise SkipTest
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
-        assert 'x-sendfile' in res._headers
+        assert settings.XSENDFILE_HEADER in res
 
     def test_disabled(self):
         self.app.update(status=amo.STATUS_DISABLED)
@@ -64,7 +69,9 @@ class TestDownload(BasePackagedAppTest):
 
     @mock.patch.object(packaged, 'sign', mock_sign)
     def test_file_blocklisted(self):
+        if not settings.XSENDFILE:
+            raise SkipTest
         self.file.update(status=amo.STATUS_BLOCKED)
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
-        assert 'x-sendfile' in res
+        assert settings.XSENDFILE_HEADER in res

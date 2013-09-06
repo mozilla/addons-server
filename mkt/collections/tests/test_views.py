@@ -3,6 +3,7 @@ import json
 import os
 from random import shuffle
 
+from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.core.urlresolvers import reverse
 from django.utils import translation
@@ -1015,10 +1016,12 @@ class TestCollectionImageViewSet(RestOAuth):
         eq_(res.status_code, 403)
 
     def test_get(self):
+        if not settings.XSENDFILE:
+            raise SkipTest
         img = ('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEUAAACnej'
                '3aAAAAAXRSTlMAQObYZgAAAApJREFUCNdjYAAAAAIAAeIhvDMAAAAASUVORK5C'
                'YII=').decode('base64')
         path = self.collection.image_path()
         storage.open(path, 'w').write(img)
         res = self.client.get(self.url)
-        eq_(res['x-sendfile'], path)
+        eq_(res[settings.XSENDFILE_HEADER], path)
