@@ -528,6 +528,22 @@ class TestWebapp(amo.tests.TestCase):
         app.reload()
         eq_(app.supported_locales, (u'English (US)', []))
 
+    def test_get_trending(self):
+        # Test no trending record returns zero.
+        app = app_factory()
+        eq_(app.get_trending(), 0)
+
+        # Add a region specific trending and test the global one is returned
+        # because the region is not mature.
+        region = mkt.regions.REGIONS_DICT['me']
+        app.trending.create(value=20.0, region=0)
+        app.trending.create(value=10.0, region=region.id)
+        eq_(app.get_trending(region=region), 20.0)
+
+        # Now test the regional trending is returned when adolescent=False.
+        region.adolescent = False
+        eq_(app.get_trending(region=region), 10.0)
+
 
 class TestPackagedAppManifestUpdates(amo.tests.TestCase):
     # Note: More extensive tests for `Addon.update_names` are in the Addon

@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
-from datetime import datetime, timedelta
 import os
+from datetime import date, datetime, timedelta
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.core.management import call_command
+from django.core.management.base import CommandError
 
 import mock
 from nose.tools import eq_
@@ -12,11 +13,13 @@ from nose.tools import eq_
 import amo
 import amo.tests
 from addons.models import Addon
-from django.core.management.base import CommandError
 from lib.es.management.commands.reindex import flag_database, unflag_database
 from users.models import UserProfile
+
+import mkt
 from mkt.site.fixtures import fixture
-from mkt.webapps.cron import clean_old_signed, update_weekly_downloads
+from mkt.webapps.cron import (clean_old_signed, update_app_trending,
+                              update_weekly_downloads, _get_trending)
 from mkt.webapps.models import Installed, Webapp
 
 
@@ -134,3 +137,52 @@ class TestSignApps(amo.tests.TestCase):
             (file1.file_path, file1.signed_file_path))
         eq_(sign_mock.mock_calls[1][1][:2],
             (file2.file_path, file2.signed_file_path))
+
+
+class TestUpdateTrending(amo.tests.TestCase):
+
+    def setUp(self):
+        self.app = Webapp.objects.create(type=amo.ADDON_WEBAPP)
+
+    @mock.patch('mkt.webapps.cron._get_trending')
+    def test_trending_saved(self, _mock):
+        _mock.return_value = 12.0
+        update_app_trending()
+
+        eq_(self.app.get_trending(), 12.0)
+        for region in mkt.regions.REGIONS_DICT.values():
+            eq_(self.app.get_trending(region=region), 12.0)
+
+        # Test running again updates the values as we'd expect.
+        _mock.return_value = 2.0
+        update_app_trending()
+        eq_(self.app.get_trending(), 2.0)
+        for region in mkt.regions.REGIONS_DICT.values():
+            eq_(self.app.get_trending(region=region), 2.0)
+
+    @mock.patch('mkt.webapps.cron.get_monolith_client')
+    def test_get_trending(self, _mock):
+        client = mock.Mock()
+        client.return_value = [
+            {'count': 133.0, 'date': date(2013, 8, 26)},
+            {'count': 122.0, 'date': date(2013, 9, 2)},
+        ]
+        _mock.return_value = client
+
+        # 1st week count: 133 + 122 = 255
+        # Prior 3 weeks get averaged: (133 + 122) / 3 = 85
+        # (255 - 85) / 85 = 2.0
+        eq_(_get_trending(self.app.id), 2.0)
+
+    @mock.patch('mkt.webapps.cron.get_monolith_client')
+    def test_get_trending_threshold(self, _mock):
+        client = mock.Mock()
+        client.return_value = [
+            {'count': 49.0, 'date': date(2013, 8, 26)},
+            {'count': 50.0, 'date': date(2013, 9, 2)},
+        ]
+        _mock.return_value = client
+
+        # 1st week count: 49 + 50 = 99
+        # 99 is less than 100 so we return 0.0.
+        eq_(_get_trending(self.app.id), 0.0)
