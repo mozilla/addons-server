@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-08-30 15:53-0700\n"
-"PO-Revision-Date: 2013-08-23 19:22+0000\n"
+"PO-Revision-Date: 2013-09-08 20:17+0000\n"
 "Last-Translator: Michael <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1377285772.0\n"
+"X-POOTLE-MTIME: 1378671456.0\n"
 
 #: media/js/common-all.js:10109 media/js/common-min.js:23 media/js/impala-all.js:1159 media/js/impala-min.js:1 media/js/devreg/init.js:35 media/js/mkt/init.js:47
 #: media/js/zamboni/discovery-all.js:10076 media/js/zamboni/discovery-min.js:23 media/js/zamboni/init.js:32 media/js/zamboni/mobile-all.js:10912 media/js/zamboni/mobile-min.js:32
@@ -21,23 +21,23 @@ msgstr "Diese Funktion wurde zeitweilig deaktiviert, während wir Wartungsarbeit
 
 #: media/js/common-all.js:10509 media/js/common-min.js:23 media/js/impala-all.js:1559 media/js/impala-min.js:1 media/js/zamboni/mobile-all.js:10654 media/js/zamboni/mobile-min.js:32
 msgid "App installation not allowed"
-msgstr "Installation der Anwendung nicht erlaubt"
+msgstr "Installation der App nicht erlaubt"
 
 #: media/js/common-all.js:10512 media/js/common-min.js:23 media/js/impala-all.js:1562 media/js/impala-min.js:1 media/js/zamboni/mobile-all.js:10657 media/js/zamboni/mobile-min.js:32
 msgid "App manifest is malformed"
-msgstr "Anwendungs-Manifest ist nicht wohlgeformt"
+msgstr "App-Manifest ist nicht wohlgeformt"
 
 #: media/js/common-all.js:10515 media/js/common-min.js:23 media/js/impala-all.js:1565 media/js/impala-min.js:1 media/js/zamboni/mobile-all.js:10660 media/js/zamboni/mobile-min.js:32
 msgid "App host could not be reached"
-msgstr "Anwendungs-Hosts konnte nicht erreicht werden"
+msgstr "App-Host konnte nicht erreicht werden"
 
 #: media/js/common-all.js:10518 media/js/common-min.js:23 media/js/impala-all.js:1568 media/js/impala-min.js:1 media/js/zamboni/mobile-all.js:10663 media/js/zamboni/mobile-min.js:32
 msgid "App manifest is unparsable"
-msgstr "Anwendungs-Manifest lässt sich nicht parsen"
+msgstr "App-Manifest lässt sich nicht parsen"
 
 #: media/js/common-all.js:10521 media/js/common-min.js:23 media/js/impala-all.js:1571 media/js/impala-min.js:1 media/js/zamboni/mobile-all.js:10666 media/js/zamboni/mobile-min.js:32
 msgid "App manifest is invalid"
-msgstr "Anwendungs-Manifest ist ungültig"
+msgstr "App-Manifest ist ungültig"
 
 #: media/js/common-all.js:10524 media/js/common-min.js:23 media/js/impala-all.js:1574 media/js/impala-min.js:1 media/js/zamboni/mobile-all.js:10669 media/js/zamboni/mobile-min.js:32
 msgid "Unknown error"
@@ -45,11 +45,11 @@ msgstr "Unbekannter Fehler"
 
 #: media/js/common-all.js:10535 media/js/common-min.js:23 media/js/impala-all.js:1585 media/js/impala-min.js:1 media/js/zamboni/mobile-all.js:10680 media/js/zamboni/mobile-min.js:32
 msgid "App installation failed"
-msgstr "Installation der Anwendung fehlgeschlagen"
+msgstr "Installation der App fehlgeschlagen"
 
 #: media/js/common-all.js:10536 media/js/common-min.js:23 media/js/impala-all.js:1586 media/js/impala-min.js:1 media/js/zamboni/mobile-all.js:10681 media/js/zamboni/mobile-min.js:32
 msgid "This system does not support installing apps"
-msgstr "Dieses System unterstützt die Installation von Anwendungen nicht"
+msgstr "Dieses System unterstützt die Installation von Apps nicht"
 
 #. L10n: {0} is an app name like Firefox.
 #: media/js/common-all.js:10677 media/js/common-min.js:23 media/js/impala-all.js:1727 media/js/impala-min.js:1 media/js/zamboni/buttons.js:109 media/js/zamboni/discovery-all.js:10619
@@ -123,7 +123,7 @@ msgstr "Diese Übersetzung entfernen"
 
 #: media/js/common-all.js:17907 media/js/common-min.js:56 media/js/impala-all.js:9379 media/js/impala-min.js:34 media/js/zamboni/contributions.js:134
 msgid "Install App"
-msgstr "Anwendung installieren"
+msgstr "App installieren"
 
 #: media/js/common-all.js:18147 media/js/common-min.js:56 media/js/impala-all.js:9743 media/js/impala-min.js:34 media/js/impala/reviews.js:23 media/js/zamboni/reviews.js:18
 msgid "Flagged for review"
@@ -228,7 +228,7 @@ msgstr "Personas suchen für <b>{0}</b>"
 
 #: media/js/common-all.js:19705 media/js/common-min.js:56 media/js/impala-all.js:12800 media/js/impala-min.js:34 media/js/impala/suggestions.js:41
 msgid "Search apps for <b>{0}</b>"
-msgstr "Anwendungen suchen für <b>{0}</b>"
+msgstr "Apps suchen für <b>{0}</b>"
 
 #: media/js/common-all.js:19707 media/js/common-min.js:56 media/js/impala-all.js:12802 media/js/impala-min.js:34 media/js/impala/suggestions.js:43
 msgid "Search add-ons for <b>{0}</b>"
@@ -421,39 +421,45 @@ msgstr "Videos müssen im WebM-Format sein."
 
 #: media/js/common/upload-packaged-app.js:53
 msgid "Your packaged app should end with <code>.zip</code>."
-msgstr "Ihre gepackte Anwendung sollte auf <code>.zip</code> enden."
+msgstr "Ihre gepackte App sollte auf <code>.zip</code> enden."
 
 #: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:181 media/js/zamboni/devhub-all.js:1033 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:169
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
-msgstr[0] "Ihre Anwendung ist bei der Überprüfung mit {0} Fehler durchgefallen."
-msgstr[1] "Ihre Anwendung ist bei der Überprüfung mit {0} Fehlern durchgefallen."
+msgstr[0] "Ihre App ist bei der Überprüfung mit {0} Fehler durchgefallen."
+msgstr[1] "Ihre App ist bei der Überprüfung mit {0} Fehlern durchgefallen."
 
 #: media/js/common/upload-packaged-app.js:298
 msgid "Your app passed validation with no errors and {0} warning."
 msgid_plural "Your app passed validation with no errors and {0} warnings."
-msgstr[0] "Ihre Anwendung hat die Überprüfung ohne Fehler und mit {0} Warnung bestanden."
-msgstr[1] "Ihre Anwendung hat die Überprüfung ohne Fehler und mit {0} Warnungen bestanden."
+msgstr[0] "Ihre App hat die Überprüfung ohne Fehler und mit {0} Warnung bestanden."
+msgstr[1] ""
+"Ihre App hat die Überprüfung ohne Fehler und mit {0} Warnungen bestanden."
 
 #: media/js/common/upload-packaged-app.js:303
 msgid "Your app passed validation with no errors or warnings."
-msgstr "Ihre Anwendung hat die Überprüfung mit null Fehlern und Warnungen bestanden."
+msgstr "Ihre App hat die Überprüfung mit null Fehlern und Warnungen bestanden."
 
 #: media/js/devreg/devhub.js:186
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
-msgstr[0] "Ihre Anwendung ist mit {0} Fehler und {1} Nachricht(en) durch die Überprüfung gefallen."
-msgstr[1] "Ihre Anwendung ist mit {0} Fehlern und {1} Nachricht(en) durch die Überprüfung gefallen."
+msgstr[0] ""
+"Ihre App ist mit {0} Fehler und {1} Nachricht(en) durch die Überprüfung "
+"gefallen."
+msgstr[1] ""
+"Ihre App ist mit {0} Fehlern und {1} Nachricht(en) durch die Überprüfung "
+"gefallen."
 
 #: media/js/devreg/devhub.js:200 media/js/zamboni/devhub-all.js:1047 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:183
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
-msgstr[0] "Ihre Anwendung hat die Überprüfung ohne Fehler und mit {0} Hinweis bestanden."
-msgstr[1] "Ihre Anwendung hat die Überprüfung ohne Fehler und mit {0} Hinweisen bestanden."
+msgstr[0] "Ihre App hat die Überprüfung ohne Fehler und mit {0} Hinweis bestanden."
+msgstr[1] ""
+"Ihre App hat die Überprüfung ohne Fehler und mit {0} Hinweisen bestanden."
 
 #: media/js/devreg/devhub.js:205 media/js/zamboni/devhub-all.js:1052 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:188
 msgid "Your app passed validation with no errors or messages."
-msgstr "Ihre Anwendung hat die Überprüfung mit null Fehlern und Hinweisen bestanden."
+msgstr "Ihre App hat die Überprüfung mit null Fehlern und Hinweisen bestanden."
 
 #: media/js/devreg/devhub.js:419 media/js/zamboni/devhub-all.js:1336 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:487
 msgid "Changes Saved"
@@ -598,11 +604,11 @@ msgstr "Kompatibilitätstests"
 
 #: media/js/devreg/validator.js:329 media/js/zamboni/validator.js:330
 msgid "App failed validation."
-msgstr "Anwendung ist bei Überprüfung durchgefallen."
+msgstr "App ist bei Überprüfung durchgefallen."
 
 #: media/js/devreg/validator.js:331 media/js/zamboni/validator.js:332
 msgid "App passed validation."
-msgstr "Anwendung hat Überprüfung bestanden."
+msgstr "App hat Überprüfung bestanden."
 
 #: media/js/devreg/validator.js:361 media/js/zamboni/devhub-all.js:2767 media/js/zamboni/devhub-min.js:1 media/js/zamboni/validator.js:369
 msgid "{0} error"
@@ -952,12 +958,12 @@ msgstr "Tägliche Benutzer von {0} bis {1}"
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:145 media/js/zamboni/stats-all.js:11299 media/js/zamboni/stats-min.js:10
 msgid "Applications, last {0} days"
-msgstr "Anwendungen in den letzten {0} Tagen"
+msgstr "App in den letzten {0} Tagen"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:147 media/js/zamboni/stats-all.js:11301 media/js/zamboni/stats-min.js:10
 msgid "Applications from {0} to {1}"
-msgstr "Anwendungen von {0} bis {1}"
+msgstr "Apps von {0} bis {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:151 media/js/zamboni/stats-all.js:11305 media/js/zamboni/stats-min.js:10
@@ -1173,19 +1179,19 @@ msgstr "Das Manifest konnte am angegebenen Ort nicht gefunden werden."
 
 #: media/js/mkt/apps.js:87 media/js/zamboni/apps.js:60
 msgid "App host could not be reached."
-msgstr "Anwendungs-Host konnte nicht erreicht werden."
+msgstr "App-Host konnte nicht erreicht werden."
 
 #: media/js/mkt/apps.js:90 media/js/zamboni/apps.js:63
 msgid "App manifest is unparsable."
-msgstr "Anwendungs-Manifest kann nicht geparst werden."
+msgstr "App-Manifest kann nicht geparst werden."
 
 #: media/js/mkt/apps.js:93 media/js/zamboni/apps.js:66
 msgid "App manifest is invalid."
-msgstr "Anwendungs-Manifest ist ungültig."
+msgstr "App-Manifest ist ungültig."
 
 #: media/js/mkt/apps.js:96
 msgid "App is already installed."
-msgstr "Anwendung ist bereits installiert."
+msgstr "App ist bereits installiert."
 
 #: media/js/mkt/apps.js:100
 msgid "Internal server error."
@@ -1193,7 +1199,7 @@ msgstr "Interner Server-Fehler."
 
 #: media/js/mkt/apps.js:103
 msgid "Internal server error on app installation."
-msgstr "Interner Server-Fehler bei der Anwendungsinstallation."
+msgstr "Interner Server-Fehler bei der App-Installation."
 
 #: media/js/mkt/apps.js:106 media/js/zamboni/apps.js:69
 msgid "Install failed. Please try again later."
@@ -1213,7 +1219,7 @@ msgstr "Starten"
 
 #: media/js/mkt/consumer_init.js:24
 msgid "Click here to view the mobile Marketplace!"
-msgstr "Klicken Sie hier, um den mobilen Marktplatz aufzurufen!"
+msgstr "Klicken Sie hier, um den mobilen Marketplace aufzurufen!"
 
 #: media/js/mkt/ecosystem.js:26
 msgid "This video requires a browser with support for open video "
@@ -1269,11 +1275,11 @@ msgstr "Zahlung fehlgeschlagen. Versuchen Sie es später erneut."
 
 #: media/js/mkt/reviewers.js:98
 msgid "Packaged App"
-msgstr "Gepackte Anwendung"
+msgstr "Gepackte App"
 
 #: media/js/mkt/reviewers.js:102
 msgid "Privileged App"
-msgstr "Privilegierte Anwendung"
+msgstr "Privilegierte App"
 
 #: media/js/mkt/reviewers.js:105
 msgid "More Information Requested"
@@ -1285,7 +1291,7 @@ msgstr "Enthält Kommentar des Redakteurs"
 
 #: media/js/mkt/reviewers.js:112
 msgid "Premium App"
-msgstr "Premium-Anwendung"
+msgstr "Premium-App"
 
 #: media/js/mkt/reviewers.js:115
 msgid "Escalated"
@@ -1328,7 +1334,7 @@ msgstr[1] "Noch {0} Zeichen übrig."
 
 #: media/js/mkt/stats/chart.js:327
 msgid "{0} apps"
-msgstr "{0} Anwendungen"
+msgstr "{0} Apps"
 
 #: media/js/mkt/stats/chart.js:339
 msgid "Week"
@@ -1360,7 +1366,7 @@ msgstr "Benutzer"
 
 #: media/js/mkt/stats/chart.js:372
 msgid "Apps"
-msgstr "Anwendungen"
+msgstr "Apps"
 
 #: media/js/mkt/stats/chart_column.js:122
 msgid "by currency {0}"
@@ -1388,11 +1394,11 @@ msgstr "Erstattungen"
 
 #: media/js/mkt/stats/csv_keys.js:36 media/js/mkt/stats/csv_keys.js:192 media/js/mkt/stats/csv_keys.js:193
 msgid "Apps Added"
-msgstr "Hinzugefügte Anwendungen"
+msgstr "Hinzugefügte Apps"
 
 #: media/js/mkt/stats/csv_keys.js:39 media/js/mkt/stats/csv_keys.js:196 media/js/mkt/stats/csv_keys.js:197
 msgid "Apps Installed"
-msgstr "Installierte Anwendungen"
+msgstr "Installierte Apps"
 
 #: media/js/mkt/stats/csv_keys.js:42 media/js/mkt/stats/csv_keys.js:200 media/js/mkt/stats/csv_keys.js:201
 msgid "Reviews"
@@ -1412,43 +1418,43 @@ msgstr "Besucher insgesamt"
 
 #: media/js/mkt/stats/csv_keys.js:54
 msgid "App Installs"
-msgstr "Anwendungsinstallationen"
+msgstr "App-Installationen"
 
 #: media/js/mkt/stats/csv_keys.js:112
 msgid "Marketplace Browse Page"
-msgstr "Marktplatz-Übersichtsseite"
+msgstr "Marketplace-Übersichtsseite"
 
 #: media/js/mkt/stats/csv_keys.js:113
 msgid "Marketplace Browse Page, Featured"
-msgstr "Marktplatz-Übersichtsseite, Vorgestellt"
+msgstr "Marketplace-Übersichtsseite, Vorgestellt"
 
 #: media/js/mkt/stats/csv_keys.js:114
 msgid "Marketplace Category Page"
-msgstr "Marktplatz-Kategorieseite"
+msgstr "Marketplace-Kategorieseite"
 
 #: media/js/mkt/stats/csv_keys.js:115
 msgid "Marketplace Category Page, Featured"
-msgstr "Marktplatz-Kategorieseite, Vorgestellt"
+msgstr "Marketplace-Kategorieseite, Vorgestellt"
 
 #: media/js/mkt/stats/csv_keys.js:116
 msgid "Marketplace Detail Page"
-msgstr "Marktplatz-Detailseite"
+msgstr "Marketplace-Detailseite"
 
 #: media/js/mkt/stats/csv_keys.js:117
 msgid "Marketplace Detail Page, Upsell"
-msgstr "Marktplatz-Detailseite, Zusatzverkauf"
+msgstr "Marketplace-Detailseite, Zusatzverkauf"
 
 #: media/js/mkt/stats/csv_keys.js:118
 msgid "Marketplace Home Page"
-msgstr "Marktplatz-Startseite"
+msgstr "Marketplace-Startseite"
 
 #: media/js/mkt/stats/csv_keys.js:119
 msgid "Marketplace Search Results"
-msgstr "Marktplatz-Suchergebnisse"
+msgstr "Marketplace-Suchergebnisse"
 
 #: media/js/mkt/stats/csv_keys.js:120
 msgid "Marketplace Search Results, Featured"
-msgstr "Marktplatz-Suchergebnisse, Vorgestellt"
+msgstr "Marketplace-Suchergebnisse, Vorgestellt"
 
 #: media/js/mkt/stats/csv_keys.js:156
 msgid "Units Sold, last {0} days"
@@ -1521,19 +1527,19 @@ msgstr[1] "Damit werden E-Mails an die Autoren von [0} Dateien geschickt."
 
 #: media/js/zamboni/apps.js:54
 msgid "App installation not allowed."
-msgstr "Anwendungsinstallation nicht erlaubt."
+msgstr "App-Installation nicht erlaubt."
 
 #: media/js/zamboni/apps.js:57
 msgid "App manifest is malformed."
-msgstr "Anwendungs-Manifest ist nicht wohlgeformt."
+msgstr "App-Manifest ist nicht wohlgeformt."
 
 #: media/js/zamboni/apps.js:80
 msgid "App installation failed."
-msgstr "Anwendungsinstallation fehlgeschlagen."
+msgstr "App-Installation fehlgeschlagen."
 
 #: media/js/zamboni/apps.js:81
 msgid "This system does not support installing apps."
-msgstr "Dieses System unterstützt die Installation von Anwendungen nicht."
+msgstr "Dieses System unterstützt die Installation von Apps nicht."
 
 #: media/js/zamboni/buttons.js:155
 msgid "Add-on has not been updated to support default-to-compatible."
@@ -1654,11 +1660,11 @@ msgstr "Anzahl der Bewertungen"
 
 #: media/js/zamboni/editors.js:210
 msgid "Receipt checked by app."
-msgstr "Quittung wurde von Anwendung überprüft."
+msgstr "Quittung wurde von App überprüft."
 
 #: media/js/zamboni/editors.js:212
 msgid "Receipt was not checked by app."
-msgstr "Quittung wurde nicht von Anwendung überprüft."
+msgstr "Quittung wurde nicht von App überprüft."
 
 #: media/js/zamboni/editors.js:278
 msgid "{name} was viewing this add-on first."
