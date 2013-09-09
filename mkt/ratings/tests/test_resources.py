@@ -211,7 +211,7 @@ class TestRatingResource(BaseOAuth, AMOPaths):
             'app': self.app.id,
             'body': 'Rocking the free web.',
             'rating': 5,
-            'version': self.app.latest_version.id
+            'version': self.app.current_version.id
         }
         if data:
             default_data.update(data)
@@ -266,8 +266,8 @@ class TestRatingResource(BaseOAuth, AMOPaths):
     def test_new_rating_for_new_version(self):
         self.app.update(is_packaged=True)
         self._create()
-        Version.objects.create(addon=self.app, version='2')
-        res, data = self._create()
+        vid = Version.objects.create(addon=self.app, version='3').id
+        res, data = self._create(data={'version': vid})
         eq_(201, res.status_code)
 
     def test_new_rating_for_old_version(self):
