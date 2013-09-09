@@ -47,7 +47,7 @@ class SlugModelChoiceFilter(ModelChoiceFilter):
         return qs.filter(**{'%s__%s' % (self.name, self.lookup_type): value})
 
 
-class CollectionFilterSetWithFallback(FilterSet):
+class CollectionFilterSet(FilterSet):
     # Note: the filter names must match what ApiSearchForm and CategoryViewSet
     # are using.
     carrier = SlugChoiceFilter(name='carrier',
@@ -64,31 +64,6 @@ class CollectionFilterSetWithFallback(FilterSet):
         # exist.
         fields = []
 
-    # Fields that can be removed when filtering the queryset if there
-    # are no results for the currently applied filters, in the order
-    # that they'll be removed. See `next_fallback`.
-    fields_fallback_order = ('carrier', 'region', 'cat')
-
-    def next_fallback(self):
-        """
-        Return the next field to remove from the filters if we didn't find any
-        results with the ones currently in use. It relies on
-        `fields_fallback_order`.
-
-        The `qs` property will call this method and use it to remove filters
-        from `self.data` till a result is returned by the queryset or
-        there are no filter left to remove.
-        """
-        for f in self.fields_fallback_order:
-            if f in self.data:
-                return f
-        return None
-
-    def __init__(self, *args, **kwargs):
-        super(CollectionFilterSetWithFallback, self).__init__(*args, **kwargs)
-        # Make self.data mutable for later.
-        self.data = self.data.copy()
-
     def get_queryset(self):
         """
         Return the queryset to use for the filterset.
@@ -99,6 +74,8 @@ class CollectionFilterSetWithFallback(FilterSet):
         valid = self.is_bound and self.form.is_valid()
 
         if self.strict and self.is_bound and not valid:
+            # FIXME: being able to return self.form.errors would greatly help
+            # debugging.
             return self.queryset.none()
 
         # Start with all the results and filter from there.
@@ -144,18 +121,67 @@ class CollectionFilterSetWithFallback(FilterSet):
     def qs(self):
         if hasattr(self, '_qs'):
             return self._qs
+        self._qs = self.get_queryset()
+        return self._qs
+
+
+class CollectionFilterSetWithFallback(CollectionFilterSet):
+    """
+    FilterSet with a fallback mechanism, dropping filters in a certain order
+    if no results are found.
+    """
+
+    # Combinations of fields to try, in order, when no results are found.
+    fields_fallback_order = (
+        ('carrier', 'cat'),
+        ('region', 'cat'),
+        ('cat',)
+    )
+
+    def next_fallback(self):
+        """
+        Yield the next set of filters to try to use.
+
+        When we are using this FilterSet, we really want to return something,
+        even if it's less relevant to the original query. When the `qs`
+        property is evaluated, if no results are found, it will call this
+        method to change the filters used in order to find something.
+        """
+        for f in self.fields_fallback_order:
+            yield f
+
+    def refilter_queryset(self):
+        """
+        Reset self.data with the next fields tuple to use according to the
+        `fallback` generator. Then recall the `qs` property and return it.
+
+        Can raise StopIteration if the fallback generator is exhausted.
+        """
+        new_fields = next(self.fallback)
+        data = dict((field, self.original_data[field]) for field in new_fields
+                    if field in self.original_data)
+        self.data = data
+        del self._form
+        return self.qs
+
+    def __init__(self, *args, **kwargs):
+        super(CollectionFilterSetWithFallback, self).__init__(*args, **kwargs)
+        self.original_data = self.data.copy()
+        self.fallback = self.next_fallback()
+
+    @property
+    def qs(self):
+        if hasattr(self, '_qs'):
+            return self._qs
 
         qs = self.get_queryset()
-        # FIXME: being able to return self.form.errors would greatly help
-        # debugging.
-        next_fallback = self.next_fallback()
-
-        if next_fallback and not qs.exists():
+        if not qs.exists():
             # FIXME: add current filter set to API-Filter in response. It
             # should be possible to implement using <filtersetinstance>.data.
-            self.data.pop(next_fallback)
-            del self._form
-            qs = self.qs
-
+            try:
+                qs = self.refilter_queryset()
+            except StopIteration:
+                pass
         self._qs = qs
         return self._qs
+
