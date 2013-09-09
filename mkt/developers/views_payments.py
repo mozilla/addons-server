@@ -182,12 +182,12 @@ def payment_accounts(request):
             'delete-url':
                 reverse('mkt.developers.bango.delete_payment_account',
                         args=[acc.pk]),
-            'portal-url':
-                reverse('mkt.developers.apps.payments.bango_portal',
-                        args=[app_slug]),
             'agreement-url': acc.get_agreement_url(),
             'agreement': 'accepted' if acc.agreed_tos else 'rejected'
         }
+        if waffle.switch_is_active('bango-portal') and app_slug:
+            data['portal-url'] = reverse(
+                'mkt.developers.apps.payments.bango_portal', args=[app_slug])
         return data
 
     return map(account, accounts)

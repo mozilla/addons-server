@@ -7,6 +7,7 @@ from curling.lib import HttpClientError
 from mock import ANY
 from nose.tools import eq_, ok_, raises
 from pyquery import PyQuery as pq
+import waffle
 
 import amo
 import amo.tests
@@ -883,6 +884,30 @@ class TestPaymentAccounts(PaymentsBase):
         output = json.loads(res.content)
         eq_(output[0]['id'], self.account.pk)
         ok_('&#39;' in output[0]['name'])  # Was jinja2 escaped.
+
+
+class TestPaymentPortal(PaymentsBase):
+
+    def setUp(self):
+        super(TestPaymentPortal, self).setUp()
+        self.create_switch('bango-portal')
+        self.app_slug = 'app-slug'
+
+    def test_with_app_slug(self):
+        url = reverse('mkt.developers.bango.payment_accounts')
+        res = self.client.get(url, {'app-slug': self.app_slug})
+        eq_(res.status_code, 200)
+        output = json.loads(res.content)
+        eq_(output[0]['portal-url'],
+            reverse('mkt.developers.apps.payments.bango_portal',
+                    args=[self.app_slug]))
+
+    def test_without_app_slug(self):
+        url = reverse('mkt.developers.bango.payment_accounts')
+        res = self.client.get(url)
+        eq_(res.status_code, 200)
+        output = json.loads(res.content)
+        ok_('portal-url' not in output[0])
 
 
 class TestPaymentAccount(PaymentsBase):
