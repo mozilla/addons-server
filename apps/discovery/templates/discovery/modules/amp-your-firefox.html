@@ -1,0 +1,42 @@
+<li class="panel">
+  <div id="amp-your-firefox" class="feature promo">
+    <a class="blog-link" href="https://blog.mozilla.org/addons/amp-your-firefox">
+      <b>{{ _('Cast your vote for the Best Overall Add-on!') }}</b>
+    </a>
+    <hgroup>
+      <h2>{{ _('Amp up your Firefox Contest') }}</h2>
+      <h2>{{ _('Category Winners') }}</h2>
+    </hgroup>
+    <div class="wrap">
+      <dl>
+        <div>
+          <dt>{{ _('Mobile') }}</dt>
+          <dd>
+            {% trans tap_url=url('addons.detail', 'tap-translate'),
+                     pw_url=url('addons.detail', 'mobile-password-manager') %}
+              <a href="{{ tap_url }}">Tap Translate</a> &amp;
+              <a href="{{ pw_url }}">Mobile Password Manager</a>
+            {% endtrans %}
+        </div>
+        <div>
+          <dt>{{ _('Mobile Port') }}</dt>
+          <dd><a href="{{ url('addons.detail', 'home-links') }}">
+            {{ _('Home Links') }}
+          </a></dd>
+        </div>
+        <div>
+          <dt>{{ _('Complete Theme') }}</dt>
+          <dd><a href="{{ url('addons.detail', 'ft-deepdark') }}">
+            {{ _('FT DeepDark') }}
+          </a></dd>
+        </div>
+        <div>
+          <dt>{{ _('Updated Add-on') }}</dt>
+          <dd><a href="{{ url('addons.detail', 'thumbnail-zoom-plus') }}">
+            {{ _('Thumbnail Zoom Plus') }}
+          </a></dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</li>
