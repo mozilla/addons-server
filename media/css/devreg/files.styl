@@ -187,10 +187,19 @@ body.file-viewer div.section {
     min-width: 90em;
 }
 
-.syntaxhighlighter .line {
-    display: block;
-    white-space: pre;
-    //max-width: 54em;
+.syntaxhighlighter {
+    .line {
+        display: block;
+        font-size: 12px;
+        line-height: 18px;
+        white-space: pre;
+        &:nth-child(even) {
+            background-color: #f7eded;
+        }
+        code {
+            font-family: inherit;
+        }
+    }
 }
 
 /*
