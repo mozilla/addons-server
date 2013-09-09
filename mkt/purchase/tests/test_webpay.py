@@ -236,6 +236,35 @@ class TestPostback(PurchaseTest):
         eq_(cn.currency, 'BRL')
         tasks.send_purchase_receipt.delay.assert_called_with(cn.pk)
 
+    @mock.patch('lib.crypto.webpay.jwt.decode')
+    def test_valid_duplicate(self, decode, tasks):
+        jwt_dict = self.jwt_dict()
+        jwt_encoded = self.jwt(req=jwt_dict)
+        decode.return_value = jwt_dict
+
+        self.contrib.update(type=amo.CONTRIB_PURCHASE,
+                            transaction_id='<webpay-trans-id>')
+
+        resp = self.post(req=jwt_encoded)
+        eq_(resp.status_code, 200)
+        eq_(resp.content, '<webpay-trans-id>')
+        assert not tasks.send_purchase_receipt.delay.called
+
+    @mock.patch('lib.crypto.webpay.jwt.decode')
+    def test_invalid_duplicate(self, decode, tasks):
+        jwt_dict = self.jwt_dict()
+        jwt_dict['response']['transactionID'] = '<some-other-trans-id>'
+        jwt_encoded = self.jwt(req=jwt_dict)
+        decode.return_value = jwt_dict
+
+        self.contrib.update(type=amo.CONTRIB_PURCHASE,
+                            transaction_id='<webpay-trans-id>')
+
+        with self.assertRaises(LookupError):
+            self.post(req=jwt_encoded)
+
+        assert not tasks.send_purchase_receipt.delay.called
+
     def test_invalid(self, tasks):
         resp = self.post()
         eq_(resp.status_code, 400)

@@ -182,6 +182,26 @@ def postback(request):
                              contrib_uuid)), None, tb
 
     trans_id = data['response']['transactionID']
+
+    if contrib.transaction_id is not None:
+        if contrib.transaction_id == trans_id:
+            app_pay_cef.log(request, 'Repeat postback', 'repeat_postback',
+                            'Postback sent again for: %s' % (contrib.addon.pk),
+                            severity=4)
+            return http.HttpResponse(trans_id)
+        else:
+            app_pay_cef.log(request, 'Repeat postback with new trans_id',
+                            'repeat_postback_new_trans_id',
+                            'Postback sent again for: %s, but with new '
+                            'trans_id: %s' % (contrib.addon.pk, trans_id),
+                            severity=7)
+            raise LookupError('JWT (iss:%s, aud:%s) for trans_id %s is for '
+                              'contrib %s that is already paid and has '
+                              'existing differnet trans_id: %s'
+                              % (data['iss'], data['aud'],
+                                 data['response']['transactionID'],
+                                 contrib_uuid, contrib.transaction_id))
+
     log.info('webpay postback: fulfilling purchase for contrib %s with '
              'transaction %s' % (contrib, trans_id))
     app_pay_cef.log(request, 'Purchase complete', 'purchase_complete',
