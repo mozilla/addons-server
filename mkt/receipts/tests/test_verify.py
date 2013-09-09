@@ -386,3 +386,10 @@ class TestURL(TestBase):
     def test_good(self):
         sample = {'verify': 'https://f.com/foo'}
         self.create(sample, request=self.req).check_url('f.com')
+
+
+class TestServices(amo.tests.TestCase):
+
+    def test_wrong_settings(self):
+        with self.settings(SIGNING_SERVER_ACTIVE=''):
+            eq_(verify.status_check({})[0], 500)
