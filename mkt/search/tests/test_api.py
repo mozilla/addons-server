@@ -643,17 +643,31 @@ class TestFeaturedCollections(BaseFeaturedTests):
         # not returning.
         eq_(mock_field_to_native.call_count, 1)
 
+    @patch('mkt.search.api.WithFeaturedResource.get_region')
     @patch('mkt.search.api.CollectionFilterSet')
     @patch('mkt.search.api.CollectionFilterSetWithFallback')
-    def test_collection_filterset_called(self, mock_fallback, mock_filterset):
+    def test_collection_filterset_called(self, mock_fallback, mock_filterset,
+                                         mock_region):
         """
         CollectionFilterSetWithFallback should be called twice: once for basic
         collections, and once for operator shelves. CollectionFilterSet should
         then be used for featured apps.
         """
+        # Mock get_region() and ensure we are not passing it as the query
+        # string parameter.
+        self.qs.pop('region', None)
+        mock_region.return_value = mkt.regions.SPAIN
+
         res, json = self.make_request()
         eq_(mock_fallback.call_count, 2)
         eq_(mock_filterset.call_count, 1)
+
+        # We expect all calls to contain self.qs and region parameter.
+        expected_args = {'region': mkt.regions.SPAIN.slug}
+        expected_args.update(self.qs)
+        for call in (mock_fallback.call_args_list +
+                     mock_filterset.call_args_list):
+            eq_(call[0][0], expected_args)
 
     def test_fallback_usage(self):
         """
