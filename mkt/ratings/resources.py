@@ -134,7 +134,7 @@ class RatingResource(CORSResource, MarketplaceModelResource):
         # Return 409 if the user has already reviewed this app.
         qs = self._meta.queryset.filter(addon=app, user=request.user)
         if app.is_packaged:
-            qs = qs.filter(version_id=bundle.data['version'])
+            qs = qs.filter(version_id=app.current_version.id)
         if qs.exists():
             raise http_error(http.HttpConflict, 'You have already reviewed this app.')
 
