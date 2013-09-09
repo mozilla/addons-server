@@ -314,6 +314,9 @@ def status_check(environ):
     # Check we can read from the users_install table, should be nice and
     # fast. Anything that fails here, connecting to db, accessing table
     # will be an error we need to know about.
+    if not settings.SIGNING_SERVER_ACTIVE:
+        return 500, 'SIGNING_SERVER_ACTIVE is not set'
+
     try:
         conn = mypool.connect()
         cursor = conn.cursor()
