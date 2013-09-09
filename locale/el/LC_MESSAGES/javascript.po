@@ -210,7 +210,7 @@ msgstr "Διακοπή παρακολούθησης"
 #: media/js/common-all.js:19371 media/js/common-all.js:19384 media/js/common-min.js:56 media/js/impala-all.js:12446 media/js/impala-all.js:12459 media/js/impala-min.js:34 media/js/zamboni/perf.js:29
 #: media/js/zamboni/perf.js:42
 msgid "All"
-msgstr "Όλων"
+msgstr "Όλα"
 
 #: media/js/common-all.js:19526 media/js/common-min.js:56 media/js/zamboni/password-strength.js:20
 msgid "Password strength:"
