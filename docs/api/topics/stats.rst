@@ -146,6 +146,135 @@ The number of apps added each day over time, filtered by premium type.
             ]
         }
 
+Apps available by packaging type
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The number of apps available each day over time for each app package type.
+
+.. http:get:: /api/v1/stats/global/apps_available_by_package/
+
+    **Request**:
+
+    :param start: The starting date in "YYYY-MM-DD" format.
+    :type start: string
+    :param end: The ending date in "YYYY-MM-DD" format.
+    :type end: string
+    :param interval: The interval. One of the following: 'day', 'week',
+                     'month', 'quarter', 'year'.
+    :type interval: string
+    :param region: Filter by the provided :ref:`region <regions>` slug (e.g., "us").
+    :type region: string
+
+    **Response**:
+
+    .. code-block:: json
+
+         {
+            "hosted": [
+                {
+                    "count": 12,
+                    "date": "2013-08-01"
+                },
+                {
+                    "count": 25,
+                    "date": "2013-08-02"
+                },
+                ...
+            ],
+            "packaged": [
+                {
+                    "count": 32,
+                    "date": "2013-08-01"
+                },
+                {
+                    "count": 4,
+                    "date": "2013-08-02"
+                },
+                ...
+            ]
+        }
+
+Apps available by premium type
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The number of apps available each day over time, filtered by premium type.
+
+.. http:get:: /api/v1/stats/global/apps_available_by_premium/
+
+    **Request**:
+
+    :param start: The starting date in "YYYY-MM-DD" format.
+    :type start: string
+    :param end: The ending date in "YYYY-MM-DD" format.
+    :type end: string
+    :param interval: The interval. One of the following: 'day', 'week',
+                     'month', 'quarter', 'year'.
+    :type interval: string
+    :param region: Filter by the provided :ref:`region <regions>` slug (e.g., "us").
+    :type region: string
+
+    **Response**:
+
+    .. code-block:: json
+
+         {
+            "free": [
+                {
+                    "count": 12,
+                    "date": "2013-08-01"
+                },
+                {
+                    "count": 25,
+                    "date": "2013-08-02"
+                },
+                ...
+            ],
+            "free-inapp": [
+                {
+                    "count": 32,
+                    "date": "2013-08-01"
+                },
+                {
+                    "count": 4,
+                    "date": "2013-08-02"
+                },
+                ...
+            ],
+            "premium": [
+                {
+                    "count": 32,
+                    "date": "2013-08-01"
+                },
+                {
+                    "count": 4,
+                    "date": "2013-08-02"
+                },
+                ...
+            ],
+            "premium-inapp": [
+                {
+                    "count": 32,
+                    "date": "2013-08-01"
+                },
+                {
+                    "count": 4,
+                    "date": "2013-08-02"
+                },
+                ...
+            ],
+            "other": [
+                {
+                    "count": 32,
+                    "date": "2013-08-01"
+                },
+                {
+                    "count": 4,
+                    "date": "2013-08-02"
+                },
+                ...
+            ]
+        }
+
 Apps installed
 ~~~~~~~~~~~~~~
 

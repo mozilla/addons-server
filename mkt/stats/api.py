@@ -46,6 +46,16 @@ STATS = {
         'dimensions': {'region': 'us'},
         'lines': lines('premium_type', ADDON_PREMIUM_API.values()),
     },
+    'apps_available_by_package': {
+        'metric': 'apps_available_package_count',
+        'dimensions': {'region': 'us'},
+        'lines': lines('package_type', ADDON_WEBAPP_TYPES.values()),
+    },
+    'apps_available_by_premium': {
+        'metric': 'apps_available_premium_count',
+        'dimensions': {'region': 'us'},
+        'lines': lines('premium_type', ADDON_PREMIUM_API.values()),
+    },
     'apps_installed': {
         'metric': 'app_installs',
         'dimensions': {'region': None},
