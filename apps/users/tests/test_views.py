@@ -606,6 +606,35 @@ class TestLogin(UserViewBase):
         eq_(user.get().failed_login_attempts, 4)
 
 
+    def test_doubled_account(self):
+        """
+        Logging in to an account that shares a User object with another
+        account works properly.
+        """
+        profile = UserProfile.objects.create(username='login_test',
+                                             email='bob@example.com')
+        profile.set_password('baz')
+        profile.create_django_user()
+        profile.email = 'charlie@example.com'
+        profile.save()
+        profile2 = UserProfile.objects.create(username='login_test2',
+                                              email='bob@example.com')
+        profile2.set_password('foo')
+        profile2.save()
+
+        res = self.client.post(self.url, data={'username': 'charlie@example.com',
+                                               'password': 'wrong'})
+        eq_(res.status_code, 200)
+        eq_(UserProfile.objects.get(email='charlie@example.com')
+            .failed_login_attempts, 1)
+        res2 = self.client.post(self.url, data={'username': 'charlie@example.com',
+                                                'password': 'baz'})
+        eq_(res2.status_code, 302)
+        res3 = self.client.post(self.url, data={'username': 'bob@example.com',
+                                                'password': 'foo'})
+        eq_(res3.status_code, 302)
+
+
 class TestPersonaLogin(UserViewBase):
     fixtures = ('users/test_backends',)
 
