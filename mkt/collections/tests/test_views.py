@@ -292,9 +292,10 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         self.make_publisher()
 
         # Test filtering with a non-existant category + region + carrier.
-        # It should fall back on region+category filtering only, not find
-        # anything either, then fall back to category only, then remove
-        # all filters because of the order in which filters are dropped.
+        # It should fall back on carrier+category filtering only, not find
+        # anything either, then fall back to region+category only, again not
+        # find anything, then category only and stop there, still finding no
+        # results.
         res = self.client.get(self.list_url, {
             'cat': self.empty_category.slug,
             'region': mkt.regions.SPAIN.slug,
@@ -303,7 +304,7 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         eq_(res.status_code, 200)
         data = json.loads(res.content)
         collections = data['objects']
-        eq_(len(collections), 4)
+        eq_(len(collections), 0)
 
     def test_listing_filtering_nonexistant_carrier(self):
         self.create_additional_data()
@@ -330,19 +331,28 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         self.create_additional_data()
         self.make_publisher()
 
+        nyan = Category.objects.create(type=amo.ADDON_WEBAPP, name='Nyan Cat',
+                                       slug='nyan-cat')
+
         Collection.objects.all().update(carrier=mkt.carriers.TELEFONICA.id,
-                                        region=mkt.regions.SPAIN.id)
+                                        region=mkt.regions.SPAIN.id,
+                                        category=self.category)
+        self.collection.update(category=nyan)
 
         # Test filtering with a non-existant carrier and region. It should
-        # fall back on no filtering.
+        # fall back to filtering on category only.
         res = self.client.get(self.list_url, {
             'region': mkt.regions.UK.slug,
-            'carrier': mkt.carriers.SPRINT.slug
+            'carrier': mkt.carriers.SPRINT.slug,
+            'cat': self.category.pk
         })
         eq_(res.status_code, 200)
         data = json.loads(res.content)
         collections = data['objects']
-        eq_(len(collections), 4)
+        eq_(len(collections), 3)
+        eq_(collections[0]['id'], self.collection4.id)
+        eq_(collections[1]['id'], self.collection3.id)
+        eq_(collections[2]['id'], self.collection2.id)
 
     def detail(self, client, url=None):
         apps = self.apps[:2]
