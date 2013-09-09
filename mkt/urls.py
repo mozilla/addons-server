@@ -112,9 +112,6 @@ urlpatterns = patterns('',
     # webpay / nav.pay() services.
     ('^services/webpay/', include(webpay_services_patterns)),
 
-    # Paypal, needed for IPNs only.
-    ('^services/', include('paypal.urls')),
-
     # AMO admin (not django admin).
     ('^admin/', include('zadmin.urls')),
 
