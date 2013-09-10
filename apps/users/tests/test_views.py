@@ -1126,7 +1126,10 @@ class TestRegistration(UserViewBase):
 
 
 class TestProfileLinks(UserViewBase):
-    fixtures = ['base/featured', 'users/test_backends']
+    fixtures = ['base/apps',
+                'base/appversion',
+                'base/featured',
+                'users/test_backends']
 
     def test_edit_buttons(self):
         """Ensure admin/user edit buttons are shown."""
