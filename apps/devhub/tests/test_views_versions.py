@@ -658,8 +658,8 @@ class TestPlatformSearch(TestVersionEdit):
                            approvalnotes='yy')
         response = self.client.post(self.url, dd)
         eq_(response.status_code, 302)
-        uncached = Version.uncached.get(id=42352).files.all()[0]
-        eq_(amo.PLATFORM_ALL.id, uncached.platform.id)
+        version = Version.objects.no_cache().get(id=42352).files.all()[0]
+        eq_(amo.PLATFORM_ALL.id, version.platform.id)
 
 
 class TestVersionEditCompat(TestVersionEdit):

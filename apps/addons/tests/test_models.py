@@ -154,7 +154,6 @@ class TestAddonManager(amo.tests.TestCase):
         addon.update(_current_version=None, _signal=False)
         eq_(Addon.objects.valid_and_disabled_and_pending().count(), before + 1)
 
-
     def test_top_free_public(self):
         addons = list(Addon.objects.listed(amo.FIREFOX))
         eq_(list(Addon.objects.top_free(amo.FIREFOX)),
@@ -316,7 +315,7 @@ class TestAddonModels(amo.tests.TestCase):
         av = addon.current_version.apps.all()[0]
 
         v = Version.objects.create(addon=addon, version='99')
-        f = File.objects.create(status=status, version=v)
+        File.objects.create(status=status, version=v)
 
         ApplicationsVersions.objects.create(application_id=amo.FIREFOX.id,
                                             version=v, min=av.min, max=av.max)
@@ -1907,7 +1906,8 @@ class TestUpdateNames(amo.tests.TestCase):
         self.addon.save()
 
     def get_name(self, app, locale='en-US'):
-        return Translation.uncached.get(id=app.name_id, locale=locale)
+        return Translation.objects.no_cache().get(id=app.name_id,
+                                                  locale=locale)
 
     def check_names(self, names):
         """`names` in {locale: name} format."""

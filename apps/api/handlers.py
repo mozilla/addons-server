@@ -189,7 +189,7 @@ class AppsHandler(AddonsHandler):
 
             # We must reget the object here since the above has
             # saved changes to the object.
-            upload = FileUpload.uncached.get(pk=upload.pk)
+            upload = FileUpload.objects.get(pk=upload.pk)
             # Check it validated correctly.
             if settings.VALIDATE_ADDONS:
                 validation = json.loads(upload.validation)

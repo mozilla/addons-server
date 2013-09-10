@@ -249,7 +249,7 @@ def payments_accounts_delete(request, id):
 @login_required
 @waffle_switch('in-app-sandbox')
 def in_app_keys(request):
-    keys = (UserInappKey.uncached
+    keys = (UserInappKey.objects.no_cache()
             .filter(solitude_seller__user=request.amo_user))
     # TODO(Kumar) support multiple test keys. For now there's only one.
     if keys.count():
@@ -273,7 +273,7 @@ def in_app_keys(request):
 @login_required
 @waffle_switch('in-app-sandbox')
 def in_app_key_secret(request, pk):
-    key = (UserInappKey.uncached
+    key = (UserInappKey.objects.no_cache()
            .filter(solitude_seller__user=request.amo_user, pk=pk))
     if not key.count():
         # Either the record does not exist or it's not owned by the

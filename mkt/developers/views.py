@@ -534,7 +534,7 @@ def standalone_hosted_upload(request):
 @json_view
 @anonymous_csrf_exempt
 def standalone_upload_detail(request, type_, uuid):
-    upload = get_object_or_404(FileUpload.uncached, uuid=uuid)
+    upload = get_object_or_404(FileUpload, uuid=uuid)
     url = reverse('mkt.developers.standalone_upload_detail',
                   args=[type_, uuid])
     return upload_validation_context(request, upload, url=url)
@@ -543,7 +543,7 @@ def standalone_upload_detail(request, type_, uuid):
 @dev_required
 @json_view
 def upload_detail_for_addon(request, addon_id, addon, uuid):
-    upload = get_object_or_404(FileUpload.uncached, uuid=uuid)
+    upload = get_object_or_404(FileUpload, uuid=uuid)
     return json_upload_detail(request, upload, addon=addon)
 
 
@@ -639,7 +639,7 @@ def upload_validation_context(request, upload, addon=None, url=None):
 
 
 def upload_detail(request, uuid, format='html'):
-    upload = get_object_or_404(FileUpload.uncached, uuid=uuid)
+    upload = get_object_or_404(FileUpload, uuid=uuid)
 
     if format == 'json' or request.is_ajax():
         return json_upload_detail(request, upload)

@@ -270,7 +270,7 @@ class FrozenPriceCurrency(amo.models.ModelBase):
 
 
 def run():
-    FrozenPriceCurrency.uncached.all().delete()
+    FrozenPriceCurrency.objects.no_cache().all().delete()
     for k in sorted(tiers.keys()):
         v = tiers[k]
         try:

@@ -167,7 +167,7 @@ class TestVersion(amo.tests.TestCase):
         version = Version.objects.get(pk=81551)
         version.delete()
 
-        addon = Addon.uncached.get(pk=3615)
+        addon = Addon.objects.no_cache().get(pk=3615)
         assert not Version.objects.filter(addon=addon).exists()
         assert not Version.with_deleted.filter(addon=addon).exists()
 
@@ -176,7 +176,7 @@ class TestVersion(amo.tests.TestCase):
     def test_version_delete_marketplace(self, storage_mock):
         version = Version.objects.get(pk=81551)
         version.delete()
-        addon = Addon.uncached.get(pk=3615)
+        addon = Addon.objects.no_cache().get(pk=3615)
         assert addon
 
         assert not Version.objects.filter(addon=addon).exists()
@@ -187,7 +187,7 @@ class TestVersion(amo.tests.TestCase):
     @mock.patch('versions.models.settings.MARKETPLACE', True)
     @mock.patch('versions.models.storage')
     def test_packaged_version_delete_marketplace(self, storage_mock):
-        addon = Addon.uncached.get(pk=3615)
+        addon = Addon.objects.no_cache().get(pk=3615)
         addon.update(is_packaged=True)
         version = Version.objects.get(pk=81551)
         version.delete()
@@ -232,7 +232,7 @@ class TestVersion(amo.tests.TestCase):
         file = File(platform_id=amo.PLATFORM_MAC.id, version=version)
         file.save()
         # The transform don't know bout my new files.
-        version = Version.uncached.get(pk=81551)
+        version = Version.objects.no_cache().get(pk=81551)
         assert not version.is_allowed_upload()
 
     def test_version_is_not_allowed_upload_full(self):

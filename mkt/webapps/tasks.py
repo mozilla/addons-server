@@ -126,7 +126,7 @@ def _update_manifest(id, check_hash, failed_fetches):
     upload.add_file([content], webapp.manifest_url, len(content),
                     is_webapp=True)
     validator(upload.pk)
-    upload = FileUpload.uncached.get(pk=upload.pk)
+    upload = FileUpload.objects.get(pk=upload.pk)
     if upload.validation:
         v8n = json.loads(upload.validation)
         if v8n['errors']:
@@ -261,7 +261,8 @@ def index_webapps(ids, **kw):
     indices = get_indices(index)
 
     es = WebappIndexer.get_es(urls=settings.ES_URLS)
-    qs = Webapp.indexing_transformer(Webapp.uncached.filter(id__in=ids))
+    qs = Webapp.indexing_transformer(Webapp.objects.no_cache().filter(
+        id__in=ids))
     for obj in qs:
         doc = WebappIndexer.extract_document(obj.id, obj)
         for idx in indices:

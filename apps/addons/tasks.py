@@ -71,7 +71,7 @@ def update_appsupport(ids):
                   (addon_id, app_id, min, max, created, modified)
                 VALUES %s"""
 
-    addons = Addon.uncached.filter(id__in=ids).no_transforms()
+    addons = Addon.objects.no_cache().filter(id__in=ids).no_transforms()
     apps = []
     for addon in addons:
         for app, appver in addon.compatible_apps.items():

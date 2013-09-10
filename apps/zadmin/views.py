@@ -61,8 +61,9 @@ def flagged(request):
     types = (amo.MARKETPLACE_TYPES if settings.MARKETPLACE
              else list(set(amo.ADDON_TYPES.keys()) -
                        set(amo.MARKETPLACE_TYPES)))
-    addons = (Addon.uncached.filter(admin_review=True, type__in=types)
-                            .no_transforms().order_by('-created'))
+    addons = (Addon.objects.no_cache()
+                           .filter(admin_review=True, type__in=types)
+                           .no_transforms().order_by('-created'))
 
     if request.method == 'POST':
         ids = map(int, request.POST.getlist('addon_id'))
@@ -113,7 +114,7 @@ def langpacks(request):
 
         return redirect('zadmin.langpacks')
 
-    addons = (Addon.uncached
+    addons = (Addon.objects.no_cache()
                    .filter(addonuser__user__email=settings.LANGPACK_OWNER_EMAIL,
                            type=amo.ADDON_LPAPP)
                    .order_by('name'))

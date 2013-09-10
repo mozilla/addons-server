@@ -108,6 +108,7 @@ class RawQuerySet(models.query.RawQuerySet):
 class CachingRawQuerySet(RawQuerySet, caching.base.CachingRawQuerySet):
     """A RawQuerySet with __len__ and caching."""
 
+
 # Make TransformQuerySet one of CachingQuerySet's parents so that we can do
 # transforms on objects and then get them cached.
 CachingQuerySet = caching.base.CachingQuerySet
@@ -341,7 +342,6 @@ class ModelBase(SearchMixin, caching.base.CachingMixin, models.Model):
     modified = models.DateTimeField(auto_now=True)
 
     objects = ManagerBase()
-    uncached = UncachedManagerBase()
 
     class Meta:
         abstract = True

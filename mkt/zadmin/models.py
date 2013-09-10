@@ -15,7 +15,7 @@ import mkt.regions
 from mkt.carriers import get_carrier, get_carrier_id
 
 
-class FeaturedAppQuerySet(models.query.QuerySet):
+class FeaturedAppQuerySet(amo.models.CachingQuerySet):
     """
     Custom QuerySet that encapsulates common filtering logic used when
     querying QuerySets of FeaturedApp instances.

@@ -51,9 +51,6 @@ class TestWebapp(amo.tests.TestCase):
     fixtures = fixture('prices')
 
     def test_hard_deleted(self):
-        # Uncomment when redis gets fixed on ci.mozilla.org.
-        raise SkipTest
-
         w = Webapp.objects.create(status=amo.STATUS_PUBLIC)
         # Until bug 755214 is fixed, `len` that ish.
         eq_(len(Webapp.objects.all()), 1)
@@ -74,9 +71,6 @@ class TestWebapp(amo.tests.TestCase):
         assert reason in mail.outbox[0].body
 
     def test_soft_deleted(self):
-        # Uncomment when redis gets fixed on ci.mozilla.org.
-        raise SkipTest
-
         waffle.models.Switch.objects.create(name='soft_delete', active=True)
 
         w = Webapp.objects.create(slug='ballin', app_slug='app-ballin',
@@ -94,6 +88,18 @@ class TestWebapp(amo.tests.TestCase):
         eq_(post_mortem.count(), 1)
         for attr in ('slug', 'app_slug', 'app_domain'):
             eq_(getattr(post_mortem[0], attr), None)
+
+    def test_with_deleted_count(self):
+        # Will be fixed by upgrading django-cache-machine, see
+        # https://bugzilla.mozilla.org/show_bug.cgi?id=883477
+        raise SkipTest
+        waffle.models.Switch.objects.create(name='soft_delete', active=True)
+
+        w = Webapp.objects.create(slug='ballin', app_slug='app-ballin',
+                                  app_domain='http://omg.org/yes',
+                                  status=amo.STATUS_PENDING)
+        w.delete()
+        eq_(Webapp.with_deleted.count(), 1)
 
     def test_soft_deleted_valid(self):
         w = Webapp.objects.create(status=amo.STATUS_PUBLIC)
@@ -1232,7 +1238,7 @@ class TestWebappIndexer(amo.tests.TestCase):
 
     def _get_doc(self):
         qs = Webapp.indexing_transformer(
-            Webapp.uncached.filter(id__in=[self.app.pk]))
+            Webapp.objects.no_cache().filter(id__in=[self.app.pk]))
         obj = qs[0]
         return obj, WebappIndexer.extract_document(obj.pk, obj)
 

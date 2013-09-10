@@ -614,7 +614,7 @@ class EditThemeForm(AddonFormBase):
 
         super(AddonFormBase, self).__init__(*args, **kw)
 
-        addon = Addon.uncached.get(id=self.instance.id)
+        addon = Addon.objects.no_cache().get(id=self.instance.id)
         persona = addon.persona
 
         # Do not simply append validators, as validators will persist between

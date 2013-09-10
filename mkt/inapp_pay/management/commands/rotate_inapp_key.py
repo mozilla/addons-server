@@ -35,7 +35,7 @@ class Command(BaseCommand):
         num = 0
         print 'migrating keys...'
         with transaction.commit_on_success():
-            for cfg in (InappConfig.uncached
+            for cfg in (InappConfig.objects.no_cache()
                                    .exclude(_encrypted_private_key=None)):
                 InappConfig.objects.invalidate(cfg)
                 num += 1

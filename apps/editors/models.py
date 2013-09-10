@@ -439,9 +439,9 @@ class ReviewerScore(amo.models.ModelBase):
         if val is not None:
             return val
 
-        val = (ReviewerScore.uncached.filter(user=user)
-                                     .aggregate(total=Sum('score'))
-                                     .values())[0]
+        val = (ReviewerScore.objects.no_cache().filter(user=user)
+                                    .aggregate(total=Sum('score'))
+                                    .values())[0]
         if val is None:
             val = 0
 
@@ -456,7 +456,7 @@ class ReviewerScore(amo.models.ModelBase):
         if val is not None:
             return val
 
-        val = ReviewerScore.uncached.filter(user=user)
+        val = ReviewerScore.objects.no_cache().filter(user=user)
         if addon_type is not None:
             val.filter(addon__type=addon_type)
 
@@ -482,7 +482,8 @@ class ReviewerScore(amo.models.ModelBase):
              GROUP BY `addons`.`addontype_id`
              ORDER BY `total` DESC
         """
-        val = list(ReviewerScore.uncached.raw(sql, [user.id]))
+        with amo.models.skip_cache():
+            val = list(ReviewerScore.objects.raw(sql, [user.id]))
         cache.set(key, val, 0)
         return val
 
@@ -507,7 +508,8 @@ class ReviewerScore(amo.models.ModelBase):
              GROUP BY `addons`.`addontype_id`
              ORDER BY `total` DESC
         """
-        val = list(ReviewerScore.uncached.raw(sql, [user.id, since]))
+        with amo.models.skip_cache():
+            val = list(ReviewerScore.objects.raw(sql, [user.id, since]))
         cache.set(key, val, 3600)
         return val
 

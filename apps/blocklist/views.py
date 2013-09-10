@@ -80,7 +80,7 @@ for m in (BlocklistItem, BlocklistPlugin, BlocklistGfx, BlocklistApp,
 def get_items(apiver, app, appver=None):
     # Collapse multiple blocklist items (different version ranges) into one
     # item and collapse each item's apps.
-    addons = (BlocklistItem.uncached
+    addons = (BlocklistItem.objects.no_cache()
               .select_related('details')
               .filter(Q(app__guid__isnull=True) | Q(app__guid=app))
               .order_by('-modified')
@@ -106,7 +106,7 @@ def get_items(apiver, app, appver=None):
 def get_plugins(apiver, app, appver=None):
     # API versions < 3 ignore targetApplication entries for plugins so only
     # block the plugin if the appver is within the block range.
-    plugins = (BlocklistPlugin.uncached.select_related('details')
+    plugins = (BlocklistPlugin.objects.no_cache().select_related('details')
                .filter(Q(app__isnull=True) | Q(app__guid=app) |
                        Q(app__guid__isnull=True))
                .extra(select={'app_guid': 'blapps.guid',

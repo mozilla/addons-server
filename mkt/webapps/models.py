@@ -171,11 +171,11 @@ class Webapp(Addon):
             return []
 
         ids = set(app.id for app in apps)
-        versions = (Version.uncached.filter(addon__in=ids)
+        versions = (Version.objects.no_cache().filter(addon__in=ids)
                                     .select_related('addon'))
         vids = [v.id for v in versions]
-        files = (File.uncached.filter(version__in=vids)
-                              .select_related('version'))
+        files = (File.objects.no_cache().filter(version__in=vids)
+                             .select_related('version'))
 
         # Attach the files to the versions.
         f_dict = dict((k, list(vs)) for k, vs in
@@ -1165,7 +1165,7 @@ class WebappIndexer(MappingType, Indexable):
     def extract_document(cls, pk, obj=None):
         """Extracts the ElasticSearch index document for this instance."""
         if obj is None:
-            obj = cls.get_model().uncached.get(pk=pk)
+            obj = cls.get_model().objects.no_cache().get(pk=pk)
 
         latest_version = obj.latest_version
         version = obj.current_version

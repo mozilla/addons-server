@@ -1305,31 +1305,31 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         """
         status_change = Max('versions__files__datestatuschanged')
         public = (
-            Addon.uncached.filter(status=amo.STATUS_PUBLIC,
+            Addon.objects.no_cache().filter(status=amo.STATUS_PUBLIC,
                                   versions__files__status=amo.STATUS_PUBLIC)
             .exclude(type__in=(amo.ADDON_PERSONA, amo.ADDON_WEBAPP))
             .values('id').annotate(last_updated=status_change))
 
-        lite = (Addon.uncached.filter(status__in=amo.LISTED_STATUSES,
+        lite = (Addon.objects.no_cache().filter(status__in=amo.LISTED_STATUSES,
                                       versions__files__status=amo.STATUS_LITE)
                 .exclude(type=amo.ADDON_WEBAPP)
                 .values('id').annotate(last_updated=status_change))
 
         stati = amo.LISTED_STATUSES + (amo.STATUS_PUBLIC,)
-        exp = (Addon.uncached.exclude(status__in=stati)
+        exp = (Addon.objects.no_cache().exclude(status__in=stati)
                .filter(versions__files__status__in=amo.VALID_STATUSES)
                .exclude(type=amo.ADDON_WEBAPP)
                .values('id')
                .annotate(last_updated=Max('versions__files__created')))
 
-        listed = (Addon.uncached.filter(status=amo.STATUS_LISTED)
+        listed = (Addon.objects.no_cache().filter(status=amo.STATUS_LISTED)
                   .values('id')
                   .annotate(last_updated=Max('versions__created')))
 
-        personas = (Addon.uncached.filter(type=amo.ADDON_PERSONA)
+        personas = (Addon.objects.no_cache().filter(type=amo.ADDON_PERSONA)
                     .extra(select={'last_updated': 'created'}))
         webapps = (
-            Addon.uncached.filter(type=amo.ADDON_WEBAPP,
+            Addon.objects.no_cache().filter(type=amo.ADDON_WEBAPP,
                                   status=amo.STATUS_PUBLIC,
                                   versions__files__status=amo.STATUS_PUBLIC)
                           .values('id')
@@ -2046,7 +2046,7 @@ class Category(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     @staticmethod
     def transformer(addons):
-        qs = (Category.uncached.filter(addons__in=addons)
+        qs = (Category.objects.no_cache().filter(addons__in=addons)
               .extra(select={'addon_id': 'addons_categories.addon_id'}))
         cats = dict((addon_id, list(cs))
                     for addon_id, cs in sorted_groupby(qs, 'addon_id'))

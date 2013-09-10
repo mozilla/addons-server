@@ -263,7 +263,7 @@ class TestVotes(amo.tests.TestCase):
         self.assertRedirects(r, self.c_url)
 
     def check(self, upvotes=0, downvotes=0):
-        c = Collection.uncached.get(slug='slug', author=9945)
+        c = Collection.objects.no_cache().get(slug='slug', author=9945)
         eq_(c.upvotes, upvotes)
         eq_(c.downvotes, downvotes)
         eq_(CollectionVote.objects.filter(user=4043307, vote=1).count(),
@@ -616,7 +616,7 @@ class TestCRUD(amo.tests.TestCase):
 
     def test_edit_no_contrib_tab(self):
         self.create_collection()
-        c = Collection.uncached.get(slug=self.slug)
+        c = Collection.objects.no_cache().get(slug=self.slug)
         url = c.edit_url()
 
         c.update(type=amo.COLLECTION_FAVORITES)
