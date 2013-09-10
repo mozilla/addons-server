@@ -173,11 +173,15 @@ class CollectionSerializer(serializers.ModelSerializer):
         # best place to do it.
         unique_collections_types = (COLLECTIONS_TYPE_FEATURED,
                                     COLLECTIONS_TYPE_OPERATOR)
+        qs = Collection.objects.filter(
+            collection_type=instance.collection_type,
+            category=instance.category,
+            region=instance.region,
+            carrier=instance.carrier)
+        if instance.pk:
+            qs = qs.exclude(pk=instance.pk)
         if (instance.collection_type in unique_collections_types and
-            Collection.objects.filter(collection_type=instance.collection_type,
-                                      category=instance.category,
-                                      region=instance.region,
-                                      carrier=instance.carrier).exists()):
+            qs.exists()):
             self._errors['collection_uniqueness'] = _(
                 u'You can not have more than one Featured Apps/Operator Shelf '
                 u'collection for the same category/carrier/region combination.'

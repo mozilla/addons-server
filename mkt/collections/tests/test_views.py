@@ -956,6 +956,12 @@ class TestCollectionViewSetUnique(TestCollectionViewSetMixin, RestOAuth):
         res, data = self.edit_collection(self.client, **update_data)
         eq_(res.status_code, 200)
 
+        # A dumb change to see if you can still edit afterwards. The uniqueness
+        # check should exclude the current instance and allow it, obviously.
+        update_data = {'is_public': False}
+        res, data = self.edit_collection(self.client, **update_data)
+        eq_(res.status_code, 200)
+
     def test_edit_collection_operator_shelf_duplicate(self):
         """
         Featured Apps & Operator Shelf should not have duplicates for a
@@ -977,6 +983,12 @@ class TestCollectionViewSetUnique(TestCollectionViewSetMixin, RestOAuth):
         nyan = Category.objects.create(type=amo.ADDON_WEBAPP, name='Nyan Cat',
                                       slug='nyan-cat')
         update_data['category'] = nyan.pk
+        res, data = self.edit_collection(self.client, **update_data)
+        eq_(res.status_code, 200)
+
+        # A dumb change to see if you can still edit afterwards. The uniqueness
+        # check should exclude the current instance and allow it, obviously.
+        update_data = {'is_public': False}
         res, data = self.edit_collection(self.client, **update_data)
         eq_(res.status_code, 200)
 
