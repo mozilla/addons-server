@@ -1590,12 +1590,16 @@ $mobileborder = #d7d2c3;
         }
     }
     // No mobile man is an island.
-    .island {
+    .island:not(.mobile-island) {
         border: 0;
         border-radius: 0;
         padding: 0;
         background: transparent;
         box-shadow: none;
+    }
+    .island.mobile-island {
+        padding-left: 0;
+        padding-right: 0;
     }
     .island > p {
         padding: 5px 6px;
