@@ -30,8 +30,13 @@ define('login', ['notification'], function(notification) {
 
     function startLogin() {
         requestedLogin = true;
-        var forcedIssuer = z.body.data('persona-unverified-issuer');
+        var forcedIssuer = document.body.dataset.personaUnverifiedIssuer;
+        var mediaUrl = document.body.dataset.mediaUrl;
+        if (mediaUrl.indexOf('https:') === -1) {
+            mediaUrl = 'https://marketplace.cdn.mozilla.net/media';
+        }
         var params = {
+            siteLogo: mediaUrl + '/img/mkt/logos/128.png?siteLogo',
             termsOfService: '/terms-of-use',
             privacyPolicy: '/privacy-policy',
             oncancel: function() {
