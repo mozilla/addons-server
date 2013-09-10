@@ -1509,7 +1509,7 @@ GOOGLE_ANALYTICS_DOMAIN = None
 BROWSERID_DOMAIN = 'login.persona.org'
 
 # Adjust these settings if you need to use a custom verifier.
-BROWSERID_VERIFICATION_URL = 'https://happyapp.personatest.org/verify'
+BROWSERID_VERIFICATION_URL = 'https://verifier.login.persona.org/verify'
 BROWSERID_JS_URL = 'https://login.persona.org/include.js'
 
 # The issuer for unverified Persona email addresses.
