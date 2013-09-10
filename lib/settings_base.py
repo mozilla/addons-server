@@ -1091,6 +1091,7 @@ CELERY_ROUTES = {
     'zadmin.tasks.notify_success': {'queue': 'bulk'},
     'zadmin.tasks.notify_failed': {'queue': 'bulk'},
     'devhub.tasks.flag_binary': {'queue': 'bulk'},
+    'mkt.reviewers.tasks._batch_award_theme_points': {'queue': 'bulk'},
     'stats.tasks.index_update_counts': {'queue': 'bulk'},
     'stats.tasks.index_download_counts': {'queue': 'bulk'},
     'stats.tasks.index_theme_user_counts': {'queue': 'bulk'},

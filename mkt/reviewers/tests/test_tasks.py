@@ -235,8 +235,8 @@ class TestBatchAwardPoints(amo.tests.TestCase):
     fixtures = fixture('user_999', 'user_2519')
 
     def test_migration(self):
-        mig = __import__('migrations.659-award-theme-points')
-        run = getattr(mig, '659-award-theme-points').run
+        mig = __import__('migrations.661-award-theme-points')
+        run = getattr(mig, '661-award-theme-points').run
 
         user_999 = UserProfile.objects.get(username='regularuser')
         amo.log(amo.LOG.THEME_REVIEW, addon_factory(), details={

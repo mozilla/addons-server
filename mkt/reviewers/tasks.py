@@ -111,12 +111,12 @@ def reject_rereview(theme):
 def _batch_award_points(activity_logs, **kwargs):
     """For migration award_theme_rev_points."""
     for log in activity_logs:
-        score = ReviewerScore.objects.filter(
+        if not ReviewerScore.objects.filter(
             user=log.user, addon=log.arguments[0],
             score=amo.REVIEWED_SCORES.get(amo.REVIEWED_PERSONA),
-            note_key=amo.REVIEWED_PERSONA, note='RETROACTIVE')
-        if not score.exists():
-            score = ReviewerScore.objects.create(
+            note_key=amo.REVIEWED_PERSONA, note='RETROACTIVE').exists():
+
+            ReviewerScore.objects.create(
                 user=log.user, addon=log.arguments[0],
                 score=amo.REVIEWED_SCORES.get(amo.REVIEWED_PERSONA),
                 note_key=amo.REVIEWED_PERSONA, note='RETROACTIVE')
