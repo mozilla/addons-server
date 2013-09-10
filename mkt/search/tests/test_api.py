@@ -206,6 +206,15 @@ class TestApi(BaseOAuth, ESTestCase):
         obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
 
+    def test_camel_case_word_splitting(self):
+        self.webapp.name = 'AirCombat'
+        self.webapp.save()
+        self.refresh('webapp')
+        res = self.client.get(self.url + ({'q': 'air combat'},))
+        eq_(res.status_code, 200)
+        obj = res.json['objects'][0]
+        eq_(obj['slug'], self.webapp.app_slug)
+
     def test_name_localized(self):
         res = self.client.get(self.url + ({'q': 'something',
                                            'lang': 'es'},))

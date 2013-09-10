@@ -979,7 +979,7 @@ class WebappIndexer(MappingType, Indexable):
         analyzers['default_icu'] = {
             'type': 'custom',
             'tokenizer': 'icu_tokenizer',
-            'filter': ['icu_folding', 'icu_normalizer'],
+            'filter': ['word_delimiter', 'icu_folding', 'icu_normalizer'],
         }
 
         for lang, stemmer in amo.STEMMER_MAP.items():
@@ -996,7 +996,7 @@ class WebappIndexer(MappingType, Indexable):
             analyzers['%s_analyzer' % lang] = {
                 'type': 'custom',
                 'tokenizer': 'icu_tokenizer',
-                'filter': ['icu_folding', 'icu_normalizer',
+                'filter': ['word_delimiter', 'icu_folding', 'icu_normalizer',
                            '%s_stop_filter' % lang, '%s_stem_filter' % lang],
             }
 
