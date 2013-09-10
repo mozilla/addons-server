@@ -180,9 +180,6 @@ class TestLangpackFetcher(amo.tests.TestCase):
     def test_fetch_langpack_invalid_path_fails(self):
         self.mock_request.return_value = None
 
-        try:
+        with self.assertRaises(ValueError) as exc:
             tasks.fetch_langpacks('../foo/')
-        except ValueError, e:
-            eq_(e.message, 'Invalid path')
-        else:
-            raise AssertionError('Invalid path accepted')
+        eq_(str(exc.exception), 'Invalid path')
