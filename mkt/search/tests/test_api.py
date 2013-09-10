@@ -142,13 +142,14 @@ class TestApi(BaseOAuth, ESTestCase):
             ok_('reviewer_flags' not in obj)
 
     def test_upsell(self):
-        upsell = app_factory()
+        upsell = app_factory(premium_type=amo.ADDON_PREMIUM)
         AddonUpsell.objects.create(free=self.webapp, premium=upsell)
         self.webapp.save()
         self.refresh('webapp')
 
-        res = self.client.get(self.url)
+        res = self.client.get(self.url, {'premium_types': 'free'})
         eq_(res.status_code, 200)
+        eq_(len(res.json['objects']), 1)
         obj = res.json['objects'][0]
         eq_(obj['upsell']['id'], upsell.id)
         eq_(obj['upsell']['app_slug'], upsell.app_slug)
