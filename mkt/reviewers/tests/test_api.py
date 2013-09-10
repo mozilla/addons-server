@@ -293,7 +293,6 @@ class TestApiReviewer(BaseOAuth, ESTestCase):
         eq_(len(res.json['objects']), 1)
 
     def test_no_premium_filtering(self):
-        self.create_switch('allow-paid-app-search')
         self.webapp.update(premium_type=amo.ADDON_PREMIUM)
         self.refresh('webapp')
         res = self.client.get(self.url + ({'dev': 'android'},))

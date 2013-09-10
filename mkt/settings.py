@@ -325,12 +325,6 @@ REST_FRAMEWORK = {
 # Tastypie config to match Django Rest Framework.
 API_LIMIT_PER_PAGE = 25
 
-# A list of ids where the regions are enabled. This is here as opposed to on
-# the region object, because it will vary from region to region per server.
-#
-# This is an easy default for development.
-PURCHASE_ENABLED_REGIONS = [regions.US.id]
-
 # Upon signing out (of Developer Hub/Reviewer Tools), redirect users to
 # Developer Hub instead of to Fireplace.
 LOGOUT_REDIRECT_URL = '/developers/'
@@ -338,3 +332,12 @@ LOGOUT_REDIRECT_URL = '/developers/'
 # Name of our Commonplace repositories on GitHub.
 COMMONPLACE_REPOS = ['commbadge', 'fireplace', 'marketplace-stats',
                      'rocketfuel']
+
+# Limit payments to only people who are in a whitelist. This is useful for
+# dev and stage server where only developers and testers should be able to make
+# payments and not the general public.
+#
+# If you set this to True, then you will need to give people the waffle flag:
+#   override-app-purchase
+# For them to be able purchase apps.
+PURCHASE_LIMITED = False

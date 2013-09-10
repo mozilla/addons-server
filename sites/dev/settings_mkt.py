@@ -204,9 +204,6 @@ if NEWRELIC_ENABLE:
 
 ES_USE_PLUGINS = True
 
-PURCHASE_ENABLED_REGIONS = [regions.US.id, regions.PL.id, regions.SPAIN.id,
-                            regions.CO.id, regions.VE.id, regions.UK.id]
-
 # Cache timeout on the /search/featured API.
 CACHE_SEARCH_FEATURED_API_TIMEOUT = 60 * 5  # 5 min.
 
@@ -215,3 +212,5 @@ WHITELISTED_CLIENTS_EMAIL_API = private_mkt.WHITELISTED_CLIENTS_EMAIL_API
 POSTFIX_AUTH_TOKEN = private_mkt.POSTFIX_AUTH_TOKEN
 
 POSTFIX_DOMAIN = 'marketplace-dev.allizom.org'
+
+PURCHASE_LIMITED = True

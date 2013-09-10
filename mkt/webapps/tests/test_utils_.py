@@ -116,14 +116,13 @@ class TestAppToDict(amo.tests.TestCase):
         self.assertSetEqual(res['categories'], ['cat1', 'cat2'])
 
 
-@override_settings(PURCHASE_ENABLED_REGIONS=[regions.US.id, regions.PL.id])
 class TestAppToDictPrices(amo.tests.TestCase):
     fixtures = fixture('user_2519')
 
     def setUp(self):
         self.app = amo.tests.app_factory(premium_type=amo.ADDON_PREMIUM)
         self.profile = UserProfile.objects.get(pk=2519)
-        self.create_flag('allow-paid-app-search', everyone=True)
+        self.create_flag('override-app-purchase', everyone=True)
 
     def test_some_price(self):
         self.make_premium(self.app, price='0.99')
@@ -168,16 +167,14 @@ class TestAppToDictPrices(amo.tests.TestCase):
 
     def test_cannot_purchase(self):
         self.make_premium(self.app, price='0.99')
-        with self.settings(PURCHASE_ENABLED_REGIONS=[]):
-            res = app_to_dict(self.app, region=regions.UK.id)
+        res = app_to_dict(self.app, region=regions.UK.id)
         eq_(res['price'], None)
         eq_(res['price_locale'], None)
         eq_(res['payment_required'], True)
 
     def test_can_purchase(self):
         self.make_premium(self.app, price='0.99')
-        with self.settings(PURCHASE_ENABLED_REGIONS=[regions.UK.id]):
-            res = app_to_dict(self.app, region=regions.UK.id)
+        res = app_to_dict(self.app, region=regions.UK.id)
         res = app_to_dict(self.app, region=regions.UK.id)
         eq_(res['price'], None)
         eq_(res['price_locale'], None)
@@ -185,27 +182,27 @@ class TestAppToDictPrices(amo.tests.TestCase):
 
     def test_waffle_fallback(self):
         self.make_premium(self.app, price='0.99')
-        flag = waffle.models.Flag.objects.get(name='allow-paid-app-search')
+        flag = waffle.models.Flag.objects.get(name='override-app-purchase')
         flag.everyone = None
         flag.users.add(self.profile.user)
         flag.save()
 
         req = RequestFactory().get('/')
         req.user = self.profile.user
-        with self.settings(PURCHASE_ENABLED_REGIONS=[]):
+        with self.settings(PURCHASE_LIMITED=True):
             res = app_to_dict(self.app, region=regions.US.id, request=req)
         eq_(res['price'], Decimal('0.99'))
         eq_(res['price_locale'], '$0.99')
         eq_(res['payment_required'], True)
 
     def test_waffle_fallback_anon(self):
-        flag = waffle.models.Flag.objects.get(name='allow-paid-app-search')
+        flag = waffle.models.Flag.objects.get(name='override-app-purchase')
         flag.everyone = True
         flag.save()
         self.make_premium(self.app, price='0.99')
         req = RequestFactory().get('/')
         req.user = AnonymousUser()
-        with self.settings(PURCHASE_ENABLED_REGIONS=[]):
+        with self.settings(PURCHASE_LIMITED=True):
             res = app_to_dict(self.app, region=regions.US.id, request=req)
         eq_(res['price'], Decimal('0.99'))
         eq_(res['price_locale'], '$0.99')

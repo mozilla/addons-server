@@ -563,7 +563,6 @@ class Webapp(Addon):
 
         If `excluded` is provided we'll use that instead of doing our own
         excluded lookup.
-
         """
         if worldwide:
             all_ids = mkt.regions.ALL_REGION_IDS
@@ -572,12 +571,47 @@ class Webapp(Addon):
         if excluded is None:
             excluded = list(self.addonexcludedregion
                                 .values_list('region', flat=True))
-        return sorted(list(set(all_ids) - set(excluded)))
+        else:
+            excluded = []
+
+        return sorted(set(all_ids) - set(excluded))
+
+    def get_excluded_region_ids(self):
+        """
+        Return IDs of regions for which this app is excluded.
+
+        This will be all the addon excluded regions. If the app is premium,
+        this will also exclude any region that does not have the price tier
+        set.
+
+        Note: free and in-app are not included in this.
+        """
+        excluded = set(self.addonexcludedregion
+                           .values_list('region', flat=True))
+
+        if self.is_premium():
+            all_regions = set(mkt.regions.ALL_REGION_IDS)
+            tier = self.get_tier()
+            if tier:
+                # Find every region that does not have payments supported
+                # and add that into the exclusions.
+                return excluded.union(
+                    all_regions.difference(self.get_price_region_ids()))
+
+        return sorted(list(excluded))
 
     def get_possible_price_region_ids(self):
+        # TODO: Stuart is going to rip this out.
         if self.has_premium() and self.premium:
             ids = [p['region'] for p in self.premium.price.prices()]
             return sorted(ids)
+        return []
+
+
+    def get_price_region_ids(self):
+        tier = self.get_tier()
+        if tier:
+            return sorted(p['region'] for p in tier.prices() if p['paid'])
         return []
 
     def get_regions(self):
@@ -653,19 +687,12 @@ class Webapp(Addon):
 
         srch = S(WebappIndexer).filter(**filters)
 
-        if region:
+        if (region and not
+            waffle.flag_is_active(request, 'override-region-exclusion')):
             srch = srch.filter(~F(region_exclusions=region.id))
 
         if mobile or gaia:
             srch = srch.filter(uses_flash=False)
-
-        exclude_paid = True
-        if ((region and region.id in settings.PURCHASE_ENABLED_REGIONS) or
-            waffle.flag_is_active(request, 'allow-paid-app-search')):
-            exclude_paid = False
-
-        if exclude_paid:
-            srch = srch.filter(~F(premium_type__in=amo.ADDON_PREMIUMS))
 
         return srch
 
@@ -1245,8 +1272,7 @@ class WebappIndexer(MappingType, Indexable):
             'average': obj.average_rating,
             'count': obj.total_reviews,
         }
-        d['region_exclusions'] = list(
-            obj.addonexcludedregion.values_list('region', flat=True))
+        d['region_exclusions'] = obj.get_excluded_region_ids()
         d['support_email'] = (unicode(obj.support_email)
                               if obj.support_email else None)
         d['support_url'] = (unicode(obj.support_url)

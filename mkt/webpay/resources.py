@@ -30,6 +30,7 @@ from mkt.api.base import (CORSResource, GenericObject, http_error,
 from mkt.webpay.forms import FailureForm, PrepareForm, ProductIconForm
 from mkt.webpay.models import ProductIcon
 from mkt.purchase.webpay import _prepare_pay, sign_webpay_jwt
+from mkt.purchase.utils import payments_enabled
 from market.models import Price, price_locale
 from stats.models import Contribution
 
@@ -55,14 +56,15 @@ class PreparePayResource(CORSResource, MarketplaceResource):
 
     def obj_create(self, bundle, request, **kwargs):
         region = getattr(request, 'REGION', None)
+        app = bundle.data['app']
 
-        if region and region.id not in settings.PURCHASE_ENABLED_REGIONS:
+        if region and region.id not in app.get_price_region_ids():
             log.info('Region {0} is not in {1}'
-                     .format(region.id, settings.PURCHASE_ENABLED_REGIONS))
-            if not waffle.flag_is_active(request, 'allow-paid-app-search'):
+                     .format(region.id, app.get_price_region_ids()))
+            if payments_enabled(request):
                 log.info('Flag not active')
                 raise http_error(http.HttpForbidden,
-                                 'Not allowed to purchase for this flag')
+                                 'Payments are limited and flag not enabled')
 
         bundle.obj = GenericObject(_prepare_pay(request, bundle.data['app']))
         return bundle

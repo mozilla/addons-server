@@ -5,18 +5,16 @@ import commonware.log
 import waffle
 
 import amo
-from access import acl
 from addons.models import AddonUser
 from amo.helpers import absolutify
 from amo.utils import find_language, no_translation
 from constants.applications import DEVICE_TYPES
 from market.models import Price
 from users.models import UserProfile
-from versions.models import Version
 
+from mkt.purchase.utils import payments_enabled
 from mkt.regions import REGIONS_CHOICES_ID_DICT
 from mkt.regions.api import RegionResource
-
 
 log = commonware.log.getLogger('z.webapps')
 
@@ -96,7 +94,7 @@ def app_to_dict(app, region=None, profile=None, request=None):
     }
 
     data['upsell'] = False
-    if app.upsell and region in settings.PURCHASE_ENABLED_REGIONS:
+    if app.upsell and region in app.upsell.get_price_region_ids():
         upsell = app.upsell.premium
         data['upsell'] = {
             'id': upsell.id,
@@ -112,9 +110,8 @@ def app_to_dict(app, region=None, profile=None, request=None):
             data['payment_account'] = AccountResource().get_resource_uri(
                 q[0].payment_account)
 
-        if (region in settings.PURCHASE_ENABLED_REGIONS or
-            (request and
-             waffle.flag_is_active(request, 'allow-paid-app-search'))):
+        if (region in app.get_price_region_ids() or
+            payments_enabled(request)):
             data['price'] = app.get_price(region=region)
             data['price_locale'] = app.get_price_locale(region=region)
         data['payment_required'] = (bool(app.get_tier().price)
@@ -222,9 +219,8 @@ def es_app_to_dict(obj, region=None, profile=None, request=None):
         price_tier = src.get('price_tier')
         if price_tier:
             price = Price.objects.get(name=price_tier)
-            if (region in settings.PURCHASE_ENABLED_REGIONS or
-                (request and
-                 waffle.flag_is_active(request, 'allow-paid-app-search'))):
+            if (region in app.upsell.get_price_region_ids() or
+                payments_enabled(request)):
                 data['price'] = price.get_price(region=region)
                 data['price_locale'] = price.get_price_locale(region=region)
             data['payment_required'] = bool(price.price)
@@ -233,7 +229,7 @@ def es_app_to_dict(obj, region=None, profile=None, request=None):
         data['payment_required'] = True
 
     data['upsell'] = False
-    if hasattr(obj, 'upsell') and region in settings.PURCHASE_ENABLED_REGIONS:
+    if hasattr(obj, 'upsell') and region in app.upsell.get_price_region_ids():
         data['upsell'] = obj.upsell
         data['upsell']['resource_uri'] = AppResource().get_resource_uri(
             Webapp(id=obj.upsell['id']))

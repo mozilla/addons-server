@@ -2,17 +2,15 @@ import json
 
 import test_utils
 from nose.tools import ok_
-from waffle.models import Flag
 
 from django.contrib.auth.models import AnonymousUser
 
 import amo
 from addons.models import Category
-from users.models import UserProfile
 
 from mkt import regions
 from mkt.api.tests.test_oauth import BaseOAuth
-from mkt.regions import set_region, UK
+from mkt.regions import set_region
 from mkt.reviewers.forms import ApiReviewersSearchForm
 from mkt.search.forms import ApiSearchForm, DEVICE_CHOICES_IDS
 from mkt.search.views import _filter_search
@@ -128,145 +126,11 @@ class TestSearchFilters(BaseOAuth):
 
     def test_region_exclusions(self):
         qs = self._filter(self.req, {'q': 'search terms'}, region=regions.CO)
-        ok_({'not': {'filter': {'term': {'region_exclusions': 9}}}}
+        ok_({'not': {'filter': {'term': {'region_exclusions': regions.CO.id}}}}
             in qs['filter']['and'])
 
-
-class TestSearchFiltersAndroid(BaseOAuth):
-    fixtures = fixture('webapp_337141', 'user_2519')
-
-    def setUp(self):
-        super(TestSearchFiltersAndroid, self).setUp()
-        self.req = test_utils.RequestFactory().get('/')
-        self.req.user = AnonymousUser()
-
-        self.category = Category.objects.create(name='games',
-                                                type=amo.ADDON_WEBAPP)
-        # Pick a region that has relatively few filters.
-        set_region(regions.UK.slug)
-
-        self.filter_kwargs = {
-            'mobile': True,
-            'gaia': False,
-            'tablet': False,
-        }
-
-        self.query_string = {
-            'dev': 'android',
-            'device': 'mobile',
-        }
-
-    def _filter(self, req, filters, **kwargs):
-        form = ApiSearchForm(filters)
-        if form.is_valid():
-            qs = Webapp.from_search(self.req, **kwargs)
-            return _filter_search(
-                self.req, qs, form.cleaned_data)._build_query()
-        else:
-            return form.errors.copy()
-
-    def test_no_premium_on_android_flagged(self):
-        """Ensure premium apps are filtered out on Android."""
-        qs = self._filter(self.req, self.query_string, **self.filter_kwargs)
-        ok_({'not': {'filter': {'in': {'premium_type': (1, 2)}}}}
-            in qs['filter']['and'])
-
-
-# TODO: Remove this test when the 'allow-paid-app-search' flag is removed
-class TestFlaggedUsersPremiumApps(BaseOAuth):
-    fixtures = fixture('webapp_337141', 'user_2519')
-
-    def setUp(self):
-        super(TestFlaggedUsersPremiumApps, self).setUp()
-        self.req = test_utils.RequestFactory().get('/')
-        self.req.user = self.user = UserProfile.objects.get(pk=2519).user
-
-        self.filter_kwargs = {
-            'mobile': False,
-            'gaia': False,
-            'tablet': False,
-        }
-
-        self.query_string = {
-            'dev': 'android',
-            'device': 'mobile',
-        }
-
-        self.prem_exclude = {
-            'not': {'filter': {'in': {'premium_type': (1, 2)}}}}
-
-    def _flag(self):
-        self.flag = Flag.objects.create(name='allow-paid-app-search')
-
-    def _filter(self, req, filters, **kwargs):
-        form = ApiSearchForm(filters)
-        kwargs.setdefault('region', UK)
-        if form.is_valid():
-            qs = Webapp.from_search(self.req, **kwargs)
-            return _filter_search(
-                self.req, qs, form.cleaned_data)._build_query()
-        else:
-            return form.errors.copy()
-
-    def test_premium_on_android(self):
-        self._flag()
-        filters = self.filter_kwargs.copy()
-        filters.update(mobile=True)
-
-        qs = self._filter(self.req, self.query_string, **filters)
-        ok_(self.prem_exclude in qs['filter']['and'])
-
-        # User is allowed to see paid apps on Android.
-        self.flag.users.add(self.user)
-        qs = self._filter(self.req, self.query_string, **filters)
-        ok_(self.prem_exclude not in qs['filter']['and'])
-
-    def test_premium_on_android_tablet(self):
-        self._flag()
-        filters = self.filter_kwargs.copy()
-        filters.update(tablet=True)
-
-        qs = self._filter(self.req, self.query_string, **filters)
-        ok_(self.prem_exclude in qs['filter']['and'])
-
-        # User is allowed to see paid apps on Android.
-        self.flag.users.add(self.user)
-        qs = self._filter(self.req, self.query_string, **filters)
-        ok_(self.prem_exclude not in qs['filter']['and'])
-
-    def test_premium_on_gaia(self):
-        self._flag()
-        filters = self.filter_kwargs.copy()
-        filters.update(gaia=True)
-        query = self.query_string.copy()
-        query.update(dev='firefoxos')
-
-        qs = self._filter(self.req, query, **filters)
-        # TODO: Use `not in` when flag is removed.
-        ok_(self.prem_exclude in qs['filter']['and'])
-
-        self.flag.users.add(self.user)
-        qs = self._filter(self.req, query, **filters)
-        ok_(self.prem_exclude not in qs['filter']['and'])
-
-    def test_premium_region(self):
-        filters = self.filter_kwargs.copy()
-        filters.update(gaia=True)
-        query = self.query_string.copy()
-        query.update(dev='firefoxos')
-
-        with self.settings(PURCHASE_ENABLED_REGIONS=[regions.UK.id]):
-            qs = self._filter(self.req, query, **filters)
-            # This means that premium is NOT excluded in the filters.
-            ok_(self.prem_exclude not in qs['filter']['and'])
-
-    def test_not_premium_region(self):
-        filters = self.filter_kwargs.copy()
-        filters.update(gaia=True)
-        query = self.query_string.copy()
-        query.update(dev='firefoxos')
-
-        with self.settings(PURCHASE_ENABLED_REGIONS=[]):
-            qs = self._filter(self.req, query, **filters)
-            # This means that premium is excluded in the filters.
-            ok_(self.prem_exclude in qs['filter']['and'])
+    def test_region_exclusions_override(self):
+        self.create_flag('override-region-exclusion')
+        qs = self._filter(self.req, {'q': 'search terms'}, region=regions.CO)
+        ok_({'not': {'filter': {'term': {'region_exclusions': regions.CO.id}}}}
+            not in qs['filter']['and'])

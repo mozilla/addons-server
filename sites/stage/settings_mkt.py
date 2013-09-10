@@ -188,5 +188,4 @@ NEWRELIC_INI = '/etc/newrelic.d/marketplace.allizom.org.ini'
 
 ES_USE_PLUGINS = True
 
-PURCHASE_ENABLED_REGIONS = [regions.US.id, regions.PL.id, regions.SPAIN.id,
-                            regions.CO.id, regions.VE.id, regions.UK.id]
+PURCHASE_LIMITED = True

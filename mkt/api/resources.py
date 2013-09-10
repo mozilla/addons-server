@@ -347,7 +347,7 @@ class CategoryViewSet(ListModelMixin, RetrieveModelMixin, CORSMixin,
 
 def waffles(request):
     switches = ['in-app-sandbox', 'allow-refund', 'buchets', 'rocketfuel']
-    flags = ['allow-b2g-paid-submission', 'allow-paid-app-search']
+    flags = ['allow-b2g-paid-submission', 'override-region-exclusion']
     res = dict([s, waffle.switch_is_active(s)] for s in switches)
     res.update(dict([f, waffle.flag_is_active(request, f)] for f in flags))
     return res

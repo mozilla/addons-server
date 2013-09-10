@@ -30,7 +30,6 @@ class TestPrepare(PurchaseTest, BaseOAuth):
     def setUp(self):
         BaseOAuth.setUp(self, api_name='webpay')
         self.create_switch('marketplace')
-        self.create_switch('allow-paid-app-search')
         self.list_url = list_url('prepare')
         self.user = UserProfile.objects.get(pk=2519)
 
@@ -64,22 +63,12 @@ class TestPrepare(PurchaseTest, BaseOAuth):
         return self.client.post(self.list_url,
                                 data=json.dumps({'app': 337141}))
 
-    def test_bad_region(self):
-        with self.settings(PURCHASE_ENABLED_REGIONS=[]):
-            eq_(self._post().status_code, 403)
-
-    def test_good_region(self):
-        self.setup_base()
-        self.setup_package()
-        with self.settings(PURCHASE_ENABLED_REGIONS=[2]):
-            eq_(self._post().status_code, 201)
-
     def test_waffle_fallback(self):
         self.setup_base()
         self.setup_package()
-        flag = self.create_flag('allow-paid-app-search', everyone=None)
+        flag = self.create_flag('override-app-purchase', everyone=None)
         flag.users.add(self.user.user)
-        with self.settings(PURCHASE_ENABLED_REGIONS=[]):
+        with self.settings(PURCHASE_LIMITED=True):
             eq_(self._post().status_code, 201)
 
 

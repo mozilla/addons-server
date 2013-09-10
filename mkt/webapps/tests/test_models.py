@@ -27,7 +27,7 @@ from amo.helpers import absolutify
 from amo.tests import app_factory, version_factory
 from amo.urlresolvers import reverse
 from constants.applications import DEVICE_TYPES
-from editors.models import RereviewQueue, EscalationQueue
+from editors.models import EscalationQueue, RereviewQueue
 from files.models import File
 from files.tests.test_models import UploadTest as BaseUploadTest
 from files.utils import WebAppParser
@@ -549,6 +549,31 @@ class TestWebapp(amo.tests.TestCase):
         # Now test the regional trending is returned when adolescent=False.
         region.adolescent = False
         eq_(app.get_trending(region=region), 10.0)
+
+
+class TestExclusions(amo.tests.TestCase):
+    fixtures = fixture('prices')
+
+    def setUp(self):
+        self.app = Webapp.objects.create(premium_type=amo.ADDON_PREMIUM)
+        self.app.addonexcludedregion.create(region=mkt.regions.US.id)
+
+    def make_tier(self):
+        self.price = Price.objects.get(pk=1)
+        AddonPremium.objects.create(addon=self.app, price=self.price)
+
+    def test_not_premium(self):
+        ok_(mkt.regions.US.id in self.app.get_excluded_region_ids())
+
+    def test_premium(self):
+        self.make_tier()
+        ok_(mkt.regions.US.id in self.app.get_excluded_region_ids())
+
+    def test_premium_remove_tier(self):
+        self.make_tier()
+        (self.price.pricecurrency_set
+             .filter(region=mkt.regions.PL.id).update(paid=False))
+        ok_(mkt.regions.PL.id in self.app.get_excluded_region_ids())
 
 
 class TestPackagedAppManifestUpdates(amo.tests.TestCase):
