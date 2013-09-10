@@ -25,7 +25,7 @@ from versions.models import Version
 
 from mkt.constants.regions import REGIONS_CHOICES_SLUG
 from mkt.monolith.models import MonolithRecord
-from mkt.webapps.models import Installed
+from mkt.webapps.models import Installed, Webapp
 
 from . import search
 from .models import (AddonCollectionCount, CollectionCount, CollectionStats,
@@ -482,8 +482,8 @@ def _get_monolith_jobs(date=None):
 
         # App counts.
         'apps_count_new': [{
-            'count': Addon.objects.filter(
-                created__range=(date, next_date), type=amo.ADDON_WEBAPP).count,
+            'count': Webapp.objects.filter(
+                created__range=(date, next_date)).count,
         }],
         'apps_count_installed': [{
             'count': Installed.objects.filter(
@@ -493,8 +493,8 @@ def _get_monolith_jobs(date=None):
     }
 
     # Add various "Apps Added" for all the dimensions we need.
-    apps = Addon.objects.filter(created__range=(date, next_date),
-                                type=amo.ADDON_WEBAPP)
+    apps = Webapp.objects.filter(created__range=(date, next_date))
+
     package_counts = []
     premium_counts = []
 
@@ -521,5 +521,35 @@ def _get_monolith_jobs(date=None):
 
     stats.update({'apps_added_by_package_type': package_counts})
     stats.update({'apps_added_by_premium_type': premium_counts})
+
+    # Add various "Apps Available" for all the dimensions we need.
+    apps = Webapp.objects.filter(status=amo.STATUS_PUBLIC,
+                                 disabled_by_user=False)
+    package_counts = []
+    premium_counts = []
+
+    for region_slug, region in REGIONS_CHOICES_SLUG:
+        # Apps available by package type and region.
+        for package_type in ADDON_WEBAPP_TYPES.values():
+            package_counts.append({
+                'count': apps.filter(
+                    is_packaged=package_type == 'packaged').exclude(
+                        addonexcludedregion__region=region.id).count,
+                'dimensions': {'region': region_slug,
+                               'package_type': package_type},
+            })
+
+        # Apps available by premium type and region.
+        for premium_type, pt_name in ADDON_PREMIUM_API.items():
+            premium_counts.append({
+                'count': apps.filter(
+                    premium_type=premium_type).exclude(
+                        addonexcludedregion__region=region.id).count,
+                'dimensions': {'region': region_slug,
+                               'premium_type': pt_name},
+            })
+
+    stats.update({'apps_available_by_package_type': package_counts})
+    stats.update({'apps_available_by_premium_type': premium_counts})
 
     return stats

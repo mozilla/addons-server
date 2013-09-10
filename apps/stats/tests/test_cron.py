@@ -232,7 +232,7 @@ class TestMonolithStats(amo.tests.TestCase):
         for job in jobs['apps_added_by_package_type']:
             r = job['dimensions']['region']
             p = job['dimensions']['package_type']
-            if (r != excluded_region.slug and p == package_type):
+            if r != excluded_region.slug and p == package_type:
                 expected_count = 1
             else:
                 expected_count = 0
@@ -245,7 +245,52 @@ class TestMonolithStats(amo.tests.TestCase):
         for job in jobs['apps_added_by_premium_type']:
             r = job['dimensions']['region']
             p = job['dimensions']['premium_type']
-            if (r != excluded_region.slug and p == premium_type):
+            if r != excluded_region.slug and p == premium_type:
+                expected_count = 1
+            else:
+                expected_count = 0
+            count = job['count']()
+            eq_(count, expected_count,
+                'Incorrect count for region %s, premium type %s. '
+                'Got %d, expected %d.' % (r, p, count, expected_count))
+
+    def test_app_avail_counts(self):
+        today = datetime.date(2013, 1, 25)
+        app = Addon.objects.create(type=amo.ADDON_WEBAPP,
+                                   status=amo.STATUS_PUBLIC)
+        # Create a couple more to test the counts.
+        Addon.objects.create(type=amo.ADDON_WEBAPP, status=amo.STATUS_PENDING)
+        Addon.objects.create(type=amo.ADDON_WEBAPP, status=amo.STATUS_PUBLIC,
+                             disabled_by_user=True)
+
+        package_type = 'packaged' if app.is_packaged else 'hosted'
+        premium_type = amo.ADDON_PREMIUM_API[app.premium_type]
+
+        # Add a region exclusion.
+        regions = dict(REGIONS_CHOICES_SLUG)
+        excluded_region = regions['br']
+        app.addonexcludedregion.create(region=excluded_region.id)
+
+        jobs = tasks._get_monolith_jobs(today)
+
+        # Check package type counts.
+        for job in jobs['apps_available_by_package_type']:
+            r = job['dimensions']['region']
+            p = job['dimensions']['package_type']
+            if r != excluded_region.slug and p == package_type:
+                expected_count = 1
+            else:
+                expected_count = 0
+            count = job['count']()
+            eq_(count, expected_count,
+                'Incorrect count for region %s, package type %s. '
+                'Got %d, expected %d.' % (r, p, count, expected_count))
+
+        # Check premium type counts.
+        for job in jobs['apps_available_by_premium_type']:
+            r = job['dimensions']['region']
+            p = job['dimensions']['premium_type']
+            if r != excluded_region.slug and p == premium_type:
                 expected_count = 1
             else:
                 expected_count = 0
