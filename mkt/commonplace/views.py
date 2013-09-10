@@ -32,9 +32,10 @@ def commonplace(request, repo):
         # cache-bust the assets for this repo's CSS/JS minified bundles.
         module = 'build_%s' % repo
         ctx['BUILD_ID'] = importlib.import_module(module).BUILD_ID
-    except ImportError:
-        # Fall back to `BUILD_ID_JS` which is written to `build.py` by
-        # jingo-minify.
+    except (ImportError, AttributeError):
+        # Either `build_{repo}.py` does not exist or `build_{repo}.py`
+        # exists but does not contain `BUILD_ID`. Fall back to
+        # `BUILD_ID_JS` which is written to `build.py` by jingo-minify.
         pass
 
     return jingo.render(request, 'commonplace/index.html', ctx)
