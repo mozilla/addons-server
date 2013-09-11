@@ -229,7 +229,7 @@ class RestrictJSONUploadSizeMiddleware(object):
     def process_view(self, request, view_func, args, kwargs):
         if not kwargs == {'api_name': 'apps', 'resource_name': 'validation'}:
             return
-        if (int(request.META.get('CONTENT_LENGTH', 0)) >
+        if (int(request.META.get('CONTENT_LENGTH', 0) or 0) >
             mkt.constants.MAX_PACKAGED_APP_SIZE):
             response = http.HttpResponse()
             response.status_code = 413
