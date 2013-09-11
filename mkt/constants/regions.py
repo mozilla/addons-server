@@ -183,21 +183,11 @@ class GR(REGION):
     has_payments = False
 
 
-class MX(REGION):
-    id = 18
-    name = _lazy(u'Mexico')
-    slug = 'mx'
-    default_currency = 'MXN'
-    default_language = 'es'
-    mcc = 334
-    has_payments = False
-
-
 # Create a list of tuples like so (in alphabetical order):
 #
 #     [('worldwide', <class 'mkt.constants.regions.WORLDWIDE'>),
-#      ('brazil', <class 'mkt.constants.regions.BRAZIL'>),
-#      ('usa', <class 'mkt.constants.regions.BRAZIL'>)]
+#      ('brazil', <class 'mkt.constants.regions.BR'>),
+#      ('usa', <class 'mkt.constants.regions.US'>)]
 #
 
 DEFINED = sorted(inspect.getmembers(sys.modules[__name__], inspect.isclass),

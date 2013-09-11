@@ -480,7 +480,9 @@ def region_exclude(ids, regions, **kw):
         log.info('[Webapp:%s] Excluding region(s): %s.' %
                  (id_, region_names))
         for region in regions:
-            AddonExcludedRegion.objects.create(addon_id=id_, region=region.id)
+            # Already excluded? Swag!
+            AddonExcludedRegion.objects.get_or_create(addon_id=id_,
+                                                      region=region.id)
 
 
 @task
