@@ -9,9 +9,25 @@ This currently supports
 * receipt verification.
   Docs: https://github.com/mozilla/receiptverifier
 
+Deprecation plan:
+
+* console.warn() until 2013-10-31
+* deactivation/removal on 2014-01-01
+
 */
 (function(exports) {
 "use strict";
+
+var currentDate = new Date();
+if (currentDate < new Date(2013, 09, 31)) {
+    console.warn(
+        'As of 2014-01-01, the mozmarket.js file will be removed from the marketplace.\n' +
+        'Please update your application to avoid using that file directly.');
+} else if (currentDate > new Date(2013, 11, 31)) {
+    console.error('mozmarket.js is not anymore loaded from the marketplace.');
+    return;
+}
+
 // embedded https://github.com/potch/mu.js
 var $ = (function(win, doc) {
 
