@@ -21,8 +21,12 @@ class TranslationSerializerField(fields.WritableField):
         return dict((to_language(trans.locale), unicode(trans))
                     for trans in translations)
 
-    def from_native(self, value):
-        if isinstance(value, (basestring, dict)):
-            return value
-        value = super(TranslationSerializerField, self).from_native(value)
-        return unicode(value)
+    def from_native(self, data):
+        if isinstance(data, basestring):
+            return data.strip()
+        elif isinstance(data, dict):
+            for key, value in data.items():
+                data[key] = value.strip()
+            return data
+        data = super(TranslationSerializerField, self).from_native(data)
+        return unicode(data)

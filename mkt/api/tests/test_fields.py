@@ -30,6 +30,15 @@ class TestTranslationSerializerField(TestCase):
         result = field.from_native(data)
         eq_(result, unicode(data))
 
+    def test_field_from_native_strip(self):
+        data = {
+            'fr': u'  Non mais Allô quoi ! ',
+            'en-US': u''
+        }
+        field = TranslationSerializerField()
+        result = field.from_native(data)
+        eq_(result, {'fr': u'Non mais Allô quoi !', 'en-US': u''})
+
     def test_field_to_native(self):
         app = Webapp.objects.get(pk=337141)
         field = TranslationSerializerField()
