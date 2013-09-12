@@ -182,6 +182,21 @@ class TestApi(BaseOAuth, ESTestCase):
         objs = res.json['objects']
         eq_(len(objs), 0)
 
+    def test_languages_filtering(self):
+        self.webapp.current_version.update(supported_locales='de,es')
+        self.refresh('webapp')
+
+        res = self.client.get(self.url + ({'languages': 'fr'},))
+        eq_(res.status_code, 200)
+        objs = res.json['objects']
+        eq_(len(objs), 0)
+
+        for lang in ('de, es', 'de,es', 'de', 'es'):
+            res = self.client.get(self.url + ({'languages': lang},))
+            eq_(res.status_code, 200)
+            obj = res.json['objects'][0]
+            eq_(obj['slug'], self.webapp.app_slug)
+
     def test_q(self):
         res = self.client.get(self.url + ({'q': 'something'},))
         eq_(res.status_code, 200)
@@ -627,8 +642,8 @@ class TestFeaturedCollections(BaseFeaturedTests):
 
     def test_only_this_type(self):
         """
-        Add a second collection of a different collection type, then ensure that
-        it does not change the results of this collection type's property.
+        Add a second collection of a different collection type, then ensure
+        that it does not change the results of this collection type's property.
         """
         different_type = (COLLECTIONS_TYPE_FEATURED if self.col_type ==
                           COLLECTIONS_TYPE_BASIC else COLLECTIONS_TYPE_BASIC)

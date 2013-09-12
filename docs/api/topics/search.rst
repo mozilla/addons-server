@@ -43,6 +43,10 @@ Search
         exact match and should only return a single result if a match is
         found.
     :type manifest_url: string
+    :param optional languages: Filters apps by a supported language. Language
+        codes should be provied in ISO 639-1 format. Use a comma-separated
+        list if supplying multiple languages.
+    :type manifest_url: string
     :param optional sort: The fields to sort by. One or more of 'downloads', 'rating',
         'price', 'created', separated by commas. Sorts by relevance by default.
     :type sort: string

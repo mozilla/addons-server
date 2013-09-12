@@ -98,6 +98,9 @@ def _filter_search(request, qs, query, filters=None, sorting=None,
         qs = qs.filter(app_type=query['app_type'])
     if query.get('manifest_url'):
         qs = qs.filter(manifest_url=query['manifest_url'])
+    if query.get('languages'):
+        langs = [lang.strip() for lang in query['languages'].split(',')]
+        qs = qs.filter(supported_locales__in=langs)
     if 'sort' in show:
         sort_by = [sorting[name] for name in query['sort'] if name in sorting]
 
