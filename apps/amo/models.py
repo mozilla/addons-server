@@ -297,13 +297,11 @@ class SearchMixin(object):
         return indexes.get(cls._meta.db_table) or indexes['default']
 
     @classmethod
-    def index(cls, document, id=None, bulk=False, force_insert=False,
-              index=None):
+    def index(cls, document, id=None, bulk=False, index=None):
         """Wrapper around pyes.ES.index."""
         search.get_es().index(
             document, index=index or cls._get_index(),
-            doc_type=cls._meta.db_table, id=id, bulk=bulk,
-            force_insert=force_insert)
+            doc_type=cls._meta.db_table, id=id, bulk=bulk)
 
     @classmethod
     def unindex(cls, id, index=None):

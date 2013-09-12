@@ -3,5 +3,5 @@
 
 sphinxcontrib-httpdomain==1.1.9
 docutils==0.11
-Pygments==1.5
+Pygments==1.6
 Sphinx==1.1.3
