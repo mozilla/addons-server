@@ -102,8 +102,11 @@ class TestVersionViewSet(RestOAuth):
         self.test_get(version=version)  # Test new version
 
     @mock.patch('mkt.versions.api.AllowAppOwner.has_object_permission')
-    def patch(self, mock_has_permission, features=None, auth=True):
+    @mock.patch('mkt.versions.api.AllowReviewerReadOnly.is_authorized')
+    def patch(self, mock_has_permission, mock_reviewer_auth, features=None,
+              auth=True):
         mock_has_permission.return_value = auth
+        mock_reviewer_auth.return_value = auth
         data = {
             'features': features or ['fm', 'mp3'],
             'developer_name': "Cee's Vans"

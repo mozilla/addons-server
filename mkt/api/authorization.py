@@ -110,7 +110,20 @@ class AllowAppOwner(BasePermission):
         return not request.user.is_anonymous()
 
     def has_object_permission(self, request, view, object):
-        return AppOwnerAuthorization().check_owner(request, object)
+        try:
+            return object.authors.filter(user__id=request.amo_user.pk).exists()
+
+        # Appropriately handles AnonymousUsers.
+        except AttributeError:
+            return False
+
+
+class AllowReviewerReadOnly(BasePermission):
+
+    def is_authorized(self, request, object=None):
+        if request.method == 'GET' and acl.action_allowed(request,
+                                                          'Apps', 'Review'):
+            return True
 
 
 def flag(name):

@@ -40,8 +40,9 @@ from market.models import AddonPremium, Price, PriceCurrency
 from mkt.api.authentication import (SharedSecretAuthentication,
                                     OptionalOAuthAuthentication,
                                     RestOAuthAuthentication)
-from mkt.api.authorization import (AllowAppOwner, AppOwnerAuthorization,
-                                   GroupPermission, OwnerAuthorization)
+from mkt.api.authorization import (AllowAppOwner, AllowReviewerReadOnly,
+                                   AppOwnerAuthorization, GroupPermission,
+                                   OwnerAuthorization)
 from mkt.api.base import (CORSMixin, CORSResource, GenericObject, http_error,
                           MarketplaceModelResource, MarketplaceResource)
 from mkt.api.forms import (CategoryForm, DeviceTypeForm, UploadForm)
@@ -443,7 +444,7 @@ def error_reporter(request):
 
 class RefreshManifestViewSet(GenericViewSet, CORSMixin):
     model = Webapp
-    permission_classes = [AllowAppOwner]
+    permission_classes = (AllowAppOwner, AllowReviewerReadOnly)
     cors_allowed_methods = ('post',)
     slug_lookup = 'app_slug'
 
