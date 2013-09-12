@@ -31,7 +31,7 @@
               <th>&nbsp;</th>
               <th>{{ sort_link(_('App'), 'name')|safe }}</th>
               <th>{{ _('Flags') }}</th>
-              <th class="waiting-time">{{ sort_link(_('Waiting Time'), 'created')|safe }}</th>
+              <th class="waiting-time">{{ sort_link(_('Waiting Time'), date_sort or 'created')|safe }}</th>
               <th>{{ _('Devices') }}</th>
               {% if DESKTOP %}
                 <th class="payments">{{ _('Payments') }}</th>

@@ -42,8 +42,8 @@ from versions.models import Version
 from zadmin.models import get_config, set_config
 
 from mkt.constants.features import FeatureProfile
-from mkt.reviewers.views import (_do_sort, _progress, _queue_to_apps,
-                                  route_reviewer)
+from mkt.reviewers.views import (_do_sort, _progress, queue_apps,
+                                 route_reviewer)
 from mkt.site.fixtures import fixture
 from mkt.submit.tests.test_views import BasePackagedAppTest
 from mkt.webapps.models import Webapp
@@ -2531,14 +2531,11 @@ class TestReviewersScores(AppReviewerTest, AccessMixin):
         assert u'No review points awarded yet' in res.content
 
 
-class TestQueueSearchSort(AppReviewerTest):
+class TestQueueSort(AppReviewerTest):
     fixtures = ['base/users']
 
     def setUp(self):
         """Create and set up apps for some filtering fun."""
-        self.rf = RequestFactory()
-
-        self.login_as_senior_reviewer()
         self.apps = [app_factory(name='Lillard',
                                  status=amo.STATUS_PENDING,
                                  is_packaged=False,
@@ -2569,44 +2566,72 @@ class TestQueueSearchSort(AppReviewerTest):
 
         self.url = reverse('reviewers.apps.queue_pending')
 
-    def test_do_sort(self):
+    def test_do_sort_webapp(self):
         """
         Test that apps are sorted in order specified in GET params
         """
+        rf = RequestFactory()
         qs = Webapp.objects.no_cache().all()
 
         # Test apps are sorted by created/asc by default.
-        r = self.rf.get(self.url, {'sort': 'invalidsort', 'order': 'dontcare'})
+        r = rf.get(self.url, {'sort': 'invalidsort', 'order': 'dontcare'})
         sorted_qs = _do_sort(r, qs)
         eq_(list(sorted_qs), [self.apps[1], self.apps[0]])
 
         # Test sorting by created, descending.
-        r = self.rf.get(self.url, {'sort': 'created', 'order': 'desc'})
+        r = rf.get(self.url, {'sort': 'created', 'order': 'desc'})
         sorted_qs = _do_sort(r, qs)
         eq_(list(sorted_qs), [self.apps[0], self.apps[1]])
 
         # Test sorting by app name.
-        r = self.rf.get(self.url, {'sort': 'name', 'order': 'asc'})
+        r = rf.get(self.url, {'sort': 'name', 'order': 'asc'})
         sorted_qs = _do_sort(r, qs)
         eq_(list(sorted_qs), [self.apps[1], self.apps[0]])
 
-        r = self.rf.get(self.url, {'sort': 'name', 'order': 'desc'})
+        r = rf.get(self.url, {'sort': 'name', 'order': 'desc'})
         sorted_qs = _do_sort(r, qs)
         eq_(list(sorted_qs), [self.apps[0], self.apps[1]])
 
         # By abuse reports.
         AbuseReport.objects.create(addon=self.apps[1])
-        r = self.rf.get(self.url, {'sort': 'num_abuse_reports',
-                                   'order': 'desc'})
-        sorted_qs = _do_sort(r, qs)
-        eq_(list(sorted_qs), [self.apps[1], self.apps[0]])
-        r = self.rf.get(self.url, {'sort': 'num_abuse_reports',
-                                   'order': 'asc'})
+        r = rf.get(self.url, {'sort': 'num_abuse_reports',
+                              'order': 'asc'})
         sorted_qs = _do_sort(r, qs)
         eq_(list(sorted_qs), [self.apps[0], self.apps[1]])
 
-    def test_queue_to_app_sort(self):
-        """Tests queue object's created sort order."""
+        r = rf.get(self.url, {'sort': 'num_abuse_reports',
+                              'order': 'desc'})
+        sorted_qs = _do_sort(r, qs)
+        eq_(list(sorted_qs), [self.apps[1], self.apps[0]])
+
+
+    def test_do_sort_version_nom(self):
+        """Tests version nomination sort order."""
+        url = reverse('reviewers.apps.queue_pending')
+        user = UserProfile.objects.get(username='admin')
+
+        version_0 = self.apps[0].versions.get()
+        version_0.update(nomination=days_ago(1))
+        version_1 = self.apps[1].versions.get()
+        version_1.update(nomination=days_ago(2))
+
+        req = amo.tests.req_factory_factory(
+            url, user=user, data={'sort': 'nomination'})
+        res = queue_apps(req)
+        doc = pq(res.content)
+        eq_(doc('tbody tr')[0].get('data-addon'), str(version_1.addon.id))
+        eq_(doc('tbody tr')[1].get('data-addon'), str(version_0.addon.id))
+
+        req = amo.tests.req_factory_factory(
+            url, user=user, data={'sort': 'nomination', 'order': 'desc'})
+        res = queue_apps(req)
+        doc = pq(res.content)
+        eq_(doc('tbody tr')[0].get('data-addon'), str(version_0.addon.id))
+        eq_(doc('tbody tr')[1].get('data-addon'), str(version_1.addon.id))
+
+    def test_do_sort_queue_object(self):
+        """Tests sorting queue object."""
+        rf = RequestFactory()
         url = reverse('reviewers.apps.queue_rereview')
 
         earlier_rrq = RereviewQueue.objects.create(addon=self.apps[0])
@@ -2614,16 +2639,24 @@ class TestQueueSearchSort(AppReviewerTest):
         later_rrq.created += datetime.timedelta(days=1)
         later_rrq.save()
 
-        request = self.rf.get(url, {'sort': 'created'})
-        apps = _queue_to_apps(request, RereviewQueue.objects.all())
+        request = rf.get(url, {'sort': 'created'})
+        apps = _do_sort(request, RereviewQueue.objects.all())
 
         # Assert the order that RereviewQueue objects were created is
         # maintained.
         eq_([earlier_rrq.addon, later_rrq.addon], list(apps))
 
-        request = self.rf.get(url, {'sort': 'created', 'order': 'desc'})
-        apps = _queue_to_apps(request, RereviewQueue.objects.all())
+        request = rf.get(url, {'sort': 'created', 'order': 'desc'})
+        apps = _do_sort(request, RereviewQueue.objects.all())
         eq_([later_rrq.addon, earlier_rrq.addon], list(apps))
+
+        request = rf.get(url, {'sort': 'name', 'order': 'asc'})
+        apps = _do_sort(request, RereviewQueue.objects.all())
+        eq_([later_rrq.addon, earlier_rrq.addon], list(apps))
+
+        request = rf.get(url, {'sort': 'name', 'order': 'desc'})
+        apps = _do_sort(request, RereviewQueue.objects.all())
+        eq_([earlier_rrq.addon, later_rrq.addon], list(apps))
 
 
 class TestAppsReviewing(AppReviewerTest, AccessMixin):
