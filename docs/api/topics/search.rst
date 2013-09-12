@@ -44,7 +44,7 @@ Search
         found.
     :type manifest_url: string
     :param optional languages: Filters apps by a supported language. Language
-        codes should be provied in ISO 639-1 format. Use a comma-separated
+        codes should be provided in ISO 639-1 format, using a comma-separated
         list if supplying multiple languages.
     :type manifest_url: string
     :param optional sort: The fields to sort by. One or more of 'downloads', 'rating',
