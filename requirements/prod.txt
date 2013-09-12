@@ -13,7 +13,7 @@ certifi==0.0.8
 chardet==1.0.1
 cssutils==0.9.7b3
 curling==0.2.6
-Django==1.4.6
+Django==1.4.7
 dj-database-url==0.2.1
 django-aesfield==0.1
 django-browserid==0.8
