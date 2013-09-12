@@ -340,9 +340,6 @@ MIDDLEWARE_CLASSES = (
     # Mobile detection should happen in Zeus.
     'mobility.middleware.DetectMobileMiddleware',
     'mobility.middleware.XMobileMiddleware',
-    # Disabled until ready:
-    # 'amo.middleware.LazyPjaxMiddleware',
-    'amo.middleware.RemoveSlashMiddleware',
 
     # Munging REMOTE_ADDR must come before ThreadRequest.
     'commonware.middleware.SetRemoteAddrFromForwardedFor',
@@ -867,8 +864,6 @@ MINIFY_BUNDLES = {
             'js/lib/underscore.js',
             'js/lib/jqmobile.js',
             'js/lib/jquery.cookie.js',
-            'js/lib/jquery.pjax.js',
-            'js/impala/pjax.js',
             'js/zamboni/apps.js',
             'js/zamboni/browser.js',
             'js/zamboni/init.js',
@@ -1422,9 +1417,6 @@ WEBAPPS_RECEIPT_EXPIRY_SECONDS = 60 * 60 * 24 * 182
 WEBAPPS_RECEIPT_EXPIRED_SEND = False
 
 CSRF_FAILURE_VIEW = 'amo.views.csrf_failure'
-
-# CSS selector for what part of the response to return in an X-PJAX request
-PJAX_SELECTOR = '#page'
 
 # Testing responsiveness without rate limits.
 CELERY_DISABLE_RATE_LIMITS = True
