@@ -7,13 +7,12 @@ from curling.lib import HttpClientError
 from mock import ANY
 from nose.tools import eq_, ok_, raises
 from pyquery import PyQuery as pq
-import waffle
 
 import amo
 import amo.tests
 from amo.urlresolvers import reverse
 from addons.models import (Addon, AddonCategory, AddonDeviceType,
-                           AddonUpsell, AddonUser, Category)
+                           AddonPremium, AddonUpsell, AddonUser, Category)
 from constants.payments import (PAYMENT_METHOD_ALL,
                                 PAYMENT_METHOD_CARD,
                                 PAYMENT_METHOD_OPERATOR)
@@ -352,6 +351,7 @@ class TestPayments(amo.tests.TestCase):
                                          'regions': ALL_PAID_REGION_IDS}),
                                          follow=True)
         eq_(self.get_webapp().upsold, None)
+        eq_(AddonPremium.objects.all().count(), 0)
 
     def test_premium_in_app_passes(self):
         self.webapp.update(premium_type=amo.ADDON_FREE)
@@ -369,11 +369,13 @@ class TestPayments(amo.tests.TestCase):
         self.webapp.update(premium_type=amo.ADDON_PREMIUM,
                            status=amo.STATUS_NULL,
                            highest_status=amo.STATUS_PENDING)
+        self.make_premium(self.webapp)
         res = self.client.post(
             self.url, self.get_postdata({'toggle-paid': 'free',
                                          'price': self.price.pk}))
         self.assert3xx(res, self.url)
         eq_(self.get_webapp().status, amo.STATUS_PENDING)
+        eq_(AddonPremium.objects.all().count(), 0)
 
     def test_premium_price_initial_already_set(self):
         Price.objects.create(price='0.00')  # Make a free tier for measure.
@@ -406,6 +408,19 @@ class TestPayments(amo.tests.TestCase):
         pqr = pq(res.content)
         eq_(pqr('select[name=price] option[selected]').attr('value'), 'free')
 
+    def test_made_free_inapp_then_free(self):
+        self.webapp.update(premium_type=amo.ADDON_PREMIUM)
+        self.make_premium(self.webapp)
+        self.client.post(
+            self.url, self.get_postdata({'price': 'free',
+                                         'allow_inapp': 'True',
+                                         'regions': self.price_regions}))
+        eq_(self.get_webapp().premium_type, amo.ADDON_FREE_INAPP)
+        self.client.post(
+            self.url, self.get_postdata({'toggle-paid': 'free',
+                                         'regions': self.price_regions}))
+        eq_(self.get_webapp().premium_type, amo.ADDON_FREE)
+
     def test_free_with_inapp_without_account_is_incomplete(self):
         self.webapp.update(premium_type=amo.ADDON_FREE)
         # Toggle to paid
@@ -417,6 +432,7 @@ class TestPayments(amo.tests.TestCase):
                                          'regions': ALL_PAID_REGION_IDS}))
         self.assert3xx(res, self.url)
         eq_(self.get_webapp().status, amo.STATUS_NULL)
+        eq_(AddonPremium.objects.all().count(), 0)
 
     def test_paid_app_without_account_is_incomplete(self):
         self.webapp.update(premium_type=amo.ADDON_FREE)
@@ -478,6 +494,7 @@ class TestPayments(amo.tests.TestCase):
         self.assertNoFormErrors(res)
         eq_(res.status_code, 200)
         eq_(self.webapp.app_payment_account.payment_account.pk, acct.pk)
+        eq_(AddonPremium.objects.all().count(), 0)
 
     def test_associate_acct_to_app(self):
         self.make_premium(self.webapp, price=self.price.price)
