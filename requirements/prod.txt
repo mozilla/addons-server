@@ -95,7 +95,7 @@ tastypie-services==0.2.2
 -e git+https://github.com/tomchristie/django-rest-framework.git@cf2033f8bf013039d906a3fe5390ca6940503626#egg=rest_framework
 
 ## Not on pypi.
--e git+https://github.com/mozilla/amo-validator.git@21078009567fb581e462d4b48a819594f17c5f6f#egg=amo-validator
+-e git+https://github.com/mozilla/amo-validator.git@3be3d091f1a5f3d354f54219786802ba1454043e#egg=amo-validator
 -e git+https://github.com/mozilla/app-validator.git@54ed3ccb0711b334711dfa4382db6c9ed1da1dff#egg=app-validator
 -e git+https://github.com/jsocol/commonware.git@27646ecaca40a89024cc581c3ecf5eb0fa87ee11#egg=commonware
 -e git+https://github.com/jbalogh/django-queryset-transform@a1ba6ae41bd86f5bb9ff66fb56614e0fafe6e022#egg=django-queryset-transform
