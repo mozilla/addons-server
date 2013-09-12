@@ -39,6 +39,10 @@ class VerificationError(Exception):
 
 
 class InvalidReceipt(Exception):
+    """
+    InvalidReceipt takes a message, which is then displayed back to the app so
+    they can understand the failure.
+    """
     pass
 
 
@@ -75,8 +79,8 @@ class Verify:
             self.check_type('purchase-receipt')
             self.check_db()
             self.check_url(receipt_domain)
-        except InvalidReceipt:
-            return self.invalid()
+        except InvalidReceipt, err:
+            return self.invalid(str(err))
 
         if self.premium != ADDON_PREMIUM:
             log_info('Valid receipt, not premium')
@@ -84,8 +88,8 @@ class Verify:
 
         try:
             self.check_purchase()
-        except InvalidReceipt:
-            return self.invalid()
+        except InvalidReceipt, err:
+            return self.invalid(str(err))
         except RefundedReceipt:
             return self.refund()
 
@@ -101,8 +105,8 @@ class Verify:
             self.check_type('developer-receipt', 'reviewer-receipt')
             self.check_db()
             self.check_url(settings.DOMAIN)
-        except InvalidReceipt:
-            return self.invalid()
+        except InvalidReceipt, err:
+            return self.invalid(str(err))
 
         return self.ok_or_expired()
 
@@ -117,8 +121,8 @@ class Verify:
             self.decoded = self.decode()
             self.check_type('test-receipt')
             self.check_url(settings.DOMAIN)
-        except InvalidReceipt:
-            return self.invalid()
+        except InvalidReceipt, err:
+            return self.invalid(str(err))
 
         return getattr(self, status)()
 
@@ -136,13 +140,13 @@ class Verify:
             log_exception({'receipt': '%s...' % self.receipt[:10],
                            'addon': self.addon_id})
             log_info('Error decoding receipt')
-            raise InvalidReceipt
+            raise InvalidReceipt('ERROR_DECODING')
 
         try:
             assert receipt['user']['type'] == 'directed-identifier'
         except (AssertionError, KeyError):
             log_info('No directed-identifier supplied')
-            raise InvalidReceipt
+            raise InvalidReceipt('NO_DIRECTED_IDENTIFIER')
 
         return receipt
 
@@ -152,7 +156,7 @@ class Verify:
         """
         if self.decoded.get('typ', '') not in types:
             log_info('Receipt type not in %s' % ','.join(types))
-            raise InvalidReceipt
+            raise InvalidReceipt('WRONG_TYPE')
 
     def check_url(self, domain):
         """
@@ -167,11 +171,11 @@ class Verify:
 
         if parsed.netloc != domain:
             log_info('Receipt had invalid domain')
-            raise InvalidReceipt
+            raise InvalidReceipt('WRONG_DOMAIN')
 
         if parsed.path != path:
             log_info('Receipt had the wrong path')
-            raise InvalidReceipt
+            raise InvalidReceipt('WRONG_PATH')
 
     def check_db(self):
         """
@@ -190,7 +194,7 @@ class Verify:
             # If somehow we got a valid receipt without a uuid
             # that's a problem. Log here.
             log_info('No user in receipt')
-            raise InvalidReceipt
+            raise InvalidReceipt('NO_USER')
 
         try:
             storedata = self.decoded['product']['storedata']
@@ -198,7 +202,7 @@ class Verify:
         except:
             # There was some value for storedata but it was invalid.
             log_info('Invalid store data')
-            raise InvalidReceipt
+            raise InvalidReceipt('WRONG_STOREDATA')
 
         sql = """SELECT id, user_id, premium_type FROM users_install
                  WHERE addon_id = %(addon_id)s
@@ -209,7 +213,7 @@ class Verify:
         if not result:
             # We've got no record of this receipt being created.
             log_info('No entry in users_install for uuid: %s' % uuid)
-            raise InvalidReceipt
+            raise InvalidReceipt('WRONG_USER')
 
         pk, self.user_id, self.premium = result
 
@@ -225,7 +229,7 @@ class Verify:
         result = self.cursor.fetchone()
         if not result:
             log_info('Invalid receipt, no purchase')
-            raise InvalidReceipt
+            raise InvalidReceipt('NO_PURCHASE')
 
         if result[-1] in (CONTRIB_REFUND, CONTRIB_CHARGEBACK):
             log_info('Valid receipt, but refunded')
@@ -237,10 +241,10 @@ class Verify:
 
         else:
             log_info('Valid receipt, but invalid contribution')
-            raise InvalidReceipt
+            raise InvalidReceipt('WRONG_PURCHASE')
 
-    def invalid(self):
-        return json.dumps({'status': 'invalid'})
+    def invalid(self, reason=''):
+        return json.dumps({'status': 'invalid', 'reason': reason})
 
     def ok_or_expired(self):
         # This receipt is ok now let's check it's expiry.

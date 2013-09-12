@@ -108,12 +108,16 @@ class TestVerify(amo.tests.TestCase):
     def test_no_user(self):
         user_data = self.user_data.copy()
         del user_data['user']
-        eq_(self.get(user_data)['status'], 'invalid')
+        res = self.get(user_data)
+        eq_(res['status'], 'invalid')
+        eq_(res['reason'], 'NO_DIRECTED_IDENTIFIER')
 
     def test_no_addon(self):
         user_data = self.user_data.copy()
         del user_data['product']
-        eq_(self.get(user_data)['status'], 'invalid')
+        res = self.get(user_data)
+        eq_(res['status'], 'invalid')
+        eq_(res['reason'], 'WRONG_STOREDATA')
 
     def test_user_type_incorrect(self):
         user_data = self.user_data.copy()
@@ -121,6 +125,7 @@ class TestVerify(amo.tests.TestCase):
         self.make_install()
         res = self.get(user_data)
         eq_(res['status'], 'invalid')
+        eq_(res['reason'], 'NO_DIRECTED_IDENTIFIER')
 
     def test_user_value_incorrect(self):
         user_data = self.user_data.copy()
@@ -128,6 +133,7 @@ class TestVerify(amo.tests.TestCase):
         self.make_install()
         res = self.get(user_data)
         eq_(res['status'], 'invalid')
+        eq_(res['reason'], 'WRONG_USER')
 
     def test_user_addon(self):
         self.make_install()
@@ -140,12 +146,14 @@ class TestVerify(amo.tests.TestCase):
         self.make_install()
         res = self.get(user_data)
         eq_(res['status'], 'invalid')
+        eq_(res['reason'], 'WRONG_TYPE')
 
     def test_user_deleted(self):
         self.make_install()
         self.user.delete()
         res = self.get(self.user_data)
         eq_(res['status'], 'invalid')
+        eq_(res['reason'], 'WRONG_USER')
 
     def test_user_anonymise(self):
         self.make_install()
@@ -209,6 +217,7 @@ class TestVerify(amo.tests.TestCase):
         self.make_install()
         res = self.get(self.user_data)
         eq_(res['status'], 'invalid')
+        eq_(res['reason'], 'NO_PURCHASE')
 
     def test_premium_dont_check(self):
         self.addon.update(premium_type=amo.ADDON_PREMIUM)
@@ -216,6 +225,7 @@ class TestVerify(amo.tests.TestCase):
         res = self.get(self.user_data, check_purchase=False)
         # Because the receipt is the wrong type for skipping purchase.
         eq_(res['status'], 'invalid')
+        eq_(res['reason'], 'WRONG_TYPE')
 
     @mock.patch.object(utils.settings, 'DOMAIN', 'foo.com')
     def test_premium_dont_check_properly(self):
@@ -293,7 +303,10 @@ class TestVerify(amo.tests.TestCase):
         for storedata in (urlencode({'id': 'NaN'}), 'NaN'):
             data = self.user_data.copy()
             data['product'] = {'url': 'http://f.com', 'storedata': storedata}
-            eq_(self.get(data)['status'], 'invalid')
+            res = self.get(data)
+            eq_(res['status'], 'invalid')
+            eq_(res['reason'], 'WRONG_STOREDATA')
+
 
     def test_crack_receipt(self):
         # Check that we can decode our receipt and get a dictionary back.
@@ -373,13 +386,15 @@ class TestURL(TestBase):
 
     def test_wrong_domain(self):
         sample = {'verify': 'https://foo.com'}
-        with self.assertRaises(verify.InvalidReceipt):
+        with self.assertRaises(verify.InvalidReceipt) as err:
             self.create(sample, request=self.req).check_url('f.com')
+        eq_(str(err.exception), 'WRONG_DOMAIN')
 
     def test_wrong_path(self):
         sample = {'verify': 'https://f.com/bar'}
-        with self.assertRaises(verify.InvalidReceipt):
+        with self.assertRaises(verify.InvalidReceipt) as err:
             self.create(sample, request=self.req).check_url('f.com')
+        eq_(str(err.exception), 'WRONG_PATH')
 
     @mock.patch.object(utils.settings, 'WEBAPPS_RECEIPT_KEY',
                        amo.tests.AMOPaths.sample_key())
