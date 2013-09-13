@@ -2,10 +2,10 @@ from nose.tools import eq_, ok_
 
 import amo.tests
 
-from mkt.stats.forms import GlobalStatsForm
+from mkt.stats.forms import StatsForm
 
 
-class TestGlobalStatsForm(amo.tests.TestCase):
+class TestStatsForm(amo.tests.TestCase):
 
     def setUp(self):
         self.data = {'start': '2013-04-01',
@@ -19,24 +19,24 @@ class TestGlobalStatsForm(amo.tests.TestCase):
             ok_(f in form.errors)
 
     def test_good(self):
-        form = GlobalStatsForm(self.data)
+        form = StatsForm(self.data)
         ok_(form.is_valid(), form.errors)
 
     def test_no_values(self):
-        form = GlobalStatsForm({})
+        form = StatsForm({})
         self._check(form, False, ['start', 'end', 'interval'])
 
     def test_other_date_format(self):
         self.data.update({'start': '20130401'})
-        form = GlobalStatsForm(self.data)
+        form = StatsForm(self.data)
         ok_(form.is_valid(), form.errors)
 
     def test_bad_date(self):
         self.data.update({'start': 'abc'})
-        form = GlobalStatsForm(self.data)
+        form = StatsForm(self.data)
         self._check(form, False, ['start'])
 
     def test_interval(self):
         self.data.update({'interval': 'second'})
-        form = GlobalStatsForm(self.data)
+        form = StatsForm(self.data)
         self._check(form, False, ['interval'])

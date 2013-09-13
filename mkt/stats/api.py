@@ -5,6 +5,7 @@ from django import http
 import commonware
 import waffle
 from rest_framework.exceptions import ParseError
+from rest_framework.generics import ListAPIView
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -14,11 +15,12 @@ from constants.base import ADDON_PREMIUM_API, ADDON_WEBAPP_TYPES
 
 from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
-from mkt.api.authorization import PermissionAuthorization
-from mkt.api.base import CORSMixin
+from mkt.api.authorization import AllowAppOwner, PermissionAuthorization
+from mkt.api.base import CORSMixin, SlugOrIdMixin
 from mkt.api.exceptions import NotImplemented
+from mkt.webapps.models import Webapp
 
-from .forms import GlobalStatsForm
+from .forms import StatsForm
 
 
 log = commonware.log.getLogger('z.stats')
@@ -67,6 +69,39 @@ STATS = {
         'metric': 'visits'
     },
 }
+APP_STATS = {
+    'installs': {
+        'metric': 'app_installs',
+        'dimensions': {'region': None},
+    }
+}
+
+
+def _get_monolith_data(stat, start, end, interval, dimensions):
+    # If stat has a 'lines' attribute, it's a multi-line graph. Do a
+    # request for each item in 'lines' and compose them in a single
+    # response.
+    client = get_monolith_client()
+    try:
+        data = {}
+        if 'lines' in stat:
+            for line_name, line_dimension in stat['lines'].items():
+                dimensions.update(line_dimension)
+                data[line_name] = list(client(stat['metric'], start, end,
+                                              interval, **dimensions))
+
+        else:
+            data['objects'] = list(client(stat['metric'], start, end, interval,
+                                          **dimensions))
+
+    except ValueError as e:
+        # This occurs if monolith doesn't have our metric and we get an
+        # elasticsearch SearchPhaseExecutionException error.
+        log.info('Monolith ValueError for metric {0}: {1}'.format(
+            stat['metric'], e))
+        raise ParseError('Invalid metric at this time. Try again later.')
+
+    return data
 
 
 class GlobalStats(CORSMixin, APIView):
@@ -85,12 +120,11 @@ class GlobalStats(CORSMixin, APIView):
         stat = STATS[metric]
 
         # Perform form validation.
-        form = GlobalStatsForm(request.GET)
+        form = StatsForm(request.GET)
         if not form.is_valid():
             raise ParseError(dict(form.errors.items()))
 
         qs = form.cleaned_data
-        client = get_monolith_client()
 
         dimensions = {}
         if 'dimensions' in stat:
@@ -101,28 +135,47 @@ class GlobalStats(CORSMixin, APIView):
                     # dimension is None to avoid facet filters being applied.
                     dimensions[key] = request.GET.get(key, default)
 
-        # If stat has a 'lines' attribute, it's a multi-line graph. Do a
-        # request for each item in 'lines' and compose them in a single
-        # response.
-        try:
-            data = {}
-            if 'lines' in stat:
-                for line_name, line_dimension in stat['lines'].items():
-                    dimensions.update(line_dimension)
-                    data[line_name] = list(
-                        client(stat['metric'], qs.get('start'), qs.get('end'),
-                               qs.get('interval'), **dimensions))
+        return Response(_get_monolith_data(stat, qs.get('start'),
+                                           qs.get('end'), qs.get('interval'),
+                                           dimensions))
 
-            else:
-                data['objects'] = list(
-                    client(stat['metric'], qs.get('start'), qs.get('end'),
-                           qs.get('interval'), **dimensions))
 
-        except ValueError as e:
-            # This occurs if monolith doesn't have our metric and we get an
-            # elasticsearch SearchPhaseExecutionException error.
-            log.info('Monolith ValueError for metric {0}: {1}'.format(
-                stat['metric'], e))
-            raise ParseError('Invalid metric at this time. Try again later.')
+class AppStats(CORSMixin, SlugOrIdMixin, ListAPIView):
+    authentication_classes = (RestOAuthAuthentication,
+                              RestSharedSecretAuthentication)
+    cors_allowed_methods = ['get']
+    permission_classes = (AllowAppOwner,)
+    queryset = Webapp.objects.all()
+    slug_field = 'app_slug'
 
-        return Response(data)
+    def get(self, request, pk, metric):
+        if metric not in APP_STATS:
+            raise http.Http404('No metric by that name.')
+
+        if not waffle.switch_is_active('stats-api'):
+            raise NotImplemented('Stats not enabled for this host.')
+
+        app = self.get_object()
+
+        stat = APP_STATS[metric]
+
+        # Perform form validation.
+        form = StatsForm(request.GET)
+        if not form.is_valid():
+            raise ParseError(dict(form.errors.items()))
+
+        qs = form.cleaned_data
+
+        dimensions = {'app-id': app.id}
+
+        if 'dimensions' in stat:
+            for key, default in stat['dimensions'].items():
+                val = request.GET.get(key, default)
+                if val is not None:
+                    # Avoid passing kwargs to the monolith client when the
+                    # dimension is None to avoid facet filters being applied.
+                    dimensions[key] = request.GET.get(key, default)
+
+        return Response(_get_monolith_data(stat, qs.get('start'),
+                                           qs.get('end'), qs.get('interval'),
+                                           dimensions))

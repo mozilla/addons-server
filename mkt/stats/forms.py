@@ -17,7 +17,7 @@ INTERVAL_CHOICES = (
 DATE_INPUT_FORMATS = ('%Y-%m-%d', '%Y%m%d')
 
 
-class GlobalStatsForm(happyforms.Form):
+class StatsForm(happyforms.Form):
     start = forms.DateField(required=True, input_formats=DATE_INPUT_FORMATS)
     end = forms.DateField(required=True, input_formats=DATE_INPUT_FORMATS)
     interval = forms.ChoiceField(required=True, choices=INTERVAL_CHOICES,
