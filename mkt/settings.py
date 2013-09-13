@@ -301,7 +301,7 @@ REST_FRAMEWORK = {
         'mkt.api.authentication.RestOAuthAuthentication',
     ),
     'DEFAULT_RENDERER_CLASSES': (
-        'rest_framework.renderers.JSONRenderer',
+        'mkt.api.renderers.SuccinctJSONRenderer',
     ),
     'DEFAULT_PARSER_CLASSES': (
         'rest_framework.parsers.JSONParser',
