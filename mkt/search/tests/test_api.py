@@ -183,15 +183,14 @@ class TestApi(BaseOAuth, ESTestCase):
         eq_(len(objs), 0)
 
     def test_languages_filtering(self):
-        self.webapp.current_version.update(supported_locales='de,es')
-        self.refresh('webapp')
+        # This webapp's supported_locales: [u'en-US', u'es', u'pt-BR']
 
         res = self.client.get(self.url + ({'languages': 'fr'},))
         eq_(res.status_code, 200)
         objs = res.json['objects']
         eq_(len(objs), 0)
 
-        for lang in ('de, es', 'de,es', 'de', 'es'):
+        for lang in ('fr,pt-BR', 'es, pt-BR', 'es', 'pt-BR'):
             res = self.client.get(self.url + ({'languages': lang},))
             eq_(res.status_code, 200)
             obj = res.json['objects'][0]
