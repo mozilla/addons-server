@@ -603,7 +603,9 @@ class TestFeaturedCollections(BaseFeaturedTests):
         self.create_switch('rocketfuel')
         super(TestFeaturedCollections, self).setUp()
         self.col = Collection.objects.create(name='Hi', description='Mom',
-            collection_type=self.col_type, category=self.cat, is_public=True)
+            collection_type=self.col_type, category=self.cat, is_public=True,
+            region=mkt.regions.US.id)
+        self.qs['region'] = mkt.regions.US.slug
         # FIXME: mock the search part, we don't care about it
 
     def make_request(self):
@@ -659,7 +661,8 @@ class TestFeaturedCollections(BaseFeaturedTests):
         """
         self.col.add_app(self.app)
         self.col = Collection.objects.create(name='Me', description='Hello',
-            collection_type=self.col_type, category=self.cat, is_public=True)
+            collection_type=self.col_type, category=self.cat, is_public=True,
+            region=mkt.regions.US.id)
         self.col.add_app(self.app)
         # Call standard test method.
         self.test_added_to_results()
@@ -673,9 +676,8 @@ class TestFeaturedCollections(BaseFeaturedTests):
     def test_collection_filterset_called(self, mock_fallback, mock_filterset,
                                          mock_region):
         """
-        CollectionFilterSetWithFallback should be called twice: once for basic
-        collections, and once for operator shelves. CollectionFilterSet should
-        then be used for featured apps.
+        CollectionFilterSetWithFallback should be called 3 times, one for each
+        collection_type. The non-fallback filterset should never be used.
         """
         # Mock get_region() and ensure we are not passing it as the query
         # string parameter.
@@ -683,8 +685,8 @@ class TestFeaturedCollections(BaseFeaturedTests):
         mock_region.return_value = mkt.regions.SPAIN
 
         res, json = self.make_request()
-        eq_(mock_fallback.call_count, 2)
-        eq_(mock_filterset.call_count, 1)
+        eq_(mock_fallback.call_count, 3)
+        eq_(mock_filterset.call_count, 0)
 
         # We expect all calls to contain self.qs and region parameter.
         expected_args = {'region': mkt.regions.SPAIN.slug}
@@ -698,11 +700,10 @@ class TestFeaturedCollections(BaseFeaturedTests):
         Test that the fallback mechanism is used for the collection_type we are
         testing.
         """
-        # Set a region on our collection...
-        self.col.update(region=mkt.regions.US.id)
-
-        # ... And request the list using a completely different region.
-        self.qs.update({'region': mkt.regions.SPAIN.slug})
+        # Request the list using region. self.col should get picked up
+        # because the fallback mechanism will try with region set to None.
+        self.col.update(region=None)
+        self.qs['region'] = mkt.regions.SPAIN.slug
         self.test_added_to_results()
 
 
@@ -714,21 +715,6 @@ class TestFeaturedOperator(TestFeaturedCollections):
 class TestFeaturedApps(TestFeaturedCollections):
     col_type = COLLECTIONS_TYPE_FEATURED
     prop_name = 'featured'
-
-    def test_fallback_usage(self):
-        """
-        Redefine the test_fallback_usage test since featured apps don't use
-        the fallback mechanism.
-        """
-        # Set a region on our collection...
-        self.col.update(region=mkt.regions.US.id)
-
-        # ... And request the list using a completely different region.
-        self.qs.update({'region': mkt.regions.SPAIN.slug})
-
-        res, json = self.make_request()
-        ok_(self.prop_name in res.json)
-        eq_(len(json[self.prop_name]), 0)
 
 
 @patch.object(settings, 'SITE_URL', 'http://testserver')

@@ -16,8 +16,7 @@ from mkt.api.serializers import SuggestionsSerializer
 from mkt.collections.constants import (COLLECTIONS_TYPE_BASIC,
                                        COLLECTIONS_TYPE_FEATURED,
                                        COLLECTIONS_TYPE_OPERATOR)
-from mkt.collections.filters import (CollectionFilterSet,
-                                     CollectionFilterSetWithFallback)
+from mkt.collections.filters import CollectionFilterSetWithFallback
 from mkt.collections.models import Collection
 from mkt.collections.serializers import CollectionSerializer
 from mkt.constants.features import FeatureProfile
@@ -149,11 +148,7 @@ class WithFeaturedResource(SearchResource):
             qs = Collection.public.filter(collection_type=collection_type)
         else:
             qs = Collection.public.all()
-        if collection_type == COLLECTIONS_TYPE_FEATURED:
-            filterset_class = CollectionFilterSet
-        else:
-            filterset_class = CollectionFilterSetWithFallback
-        qs = filterset_class(filters, queryset=qs)
+        qs = CollectionFilterSetWithFallback(filters, queryset=qs)
         serializer = CollectionSerializer(qs[:limit],
                                           context={'request': request})
         return serializer.data
