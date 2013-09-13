@@ -5,7 +5,7 @@ from datetime import datetime, timedelta
 from django.conf import settings
 from django.db import connection
 from django.db.models import Count, Q, Sum
-from django.http import Http404
+from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect
 
 import commonware.log
@@ -29,13 +29,15 @@ from market.models import AddonPaymentData, Refund
 from mkt.constants.payments import (COMPLETED, FAILED, PENDING,
                                     REFUND_STATUSES)
 from mkt.account.utils import purchase_list
-from mkt.lookup.forms import TransactionRefundForm, TransactionSearchForm
+from mkt.lookup.forms import (DeleteUserForm, TransactionRefundForm,
+                              TransactionSearchForm)
 from mkt.lookup.tasks import (email_buyer_refund_approved,
                               email_buyer_refund_pending)
 from mkt.site import messages
 from mkt.webapps.models import Installed, WebappIndexer
 from stats.models import Contribution, DownloadCount
 from users.models import UserProfile
+from zadmin.decorators import admin_required
 
 log = commonware.log.getLogger('z.lookup')
 
@@ -73,14 +75,42 @@ def user_summary(request, user_id):
                     .values(*AddonPaymentData.address_fields())
                     .distinct())
 
+    # If the user is deleted, get the log detailing the delete.
+    try:
+        delete_log = ActivityLog.objects.for_user(user).filter(
+            action=amo.LOG.DELETE_USER_LOOKUP.id)[0]
+    except IndexError:
+        delete_log = None
+
     return jingo.render(request, 'lookup/user_summary.html',
                         {'account': user,
                          'app_summary': app_summary,
+                         'delete_form': DeleteUserForm(),
+                         'delete_log': delete_log,
                          'is_admin': is_admin,
                          'refund_summary': refund_summary,
                          'user_addons': user_addons,
                          'payment_data': payment_data,
                          'paypal_ids': paypal_ids})
+
+
+@login_required
+@permission_required('AccountLookup', 'View')
+def user_delete(request, user_id):
+    delete_form = DeleteUserForm(request.POST)
+    if not delete_form.is_valid():
+        messages.error(request, delete_form.errors)
+        return HttpResponseRedirect(reverse('lookup.user_summary',
+                                    args=[user_id]))
+
+    user = get_object_or_404(UserProfile, pk=user_id)
+    user.deleted = True
+    user.save()  # Must call the save function to delete user.
+    amo.log(amo.LOG.DELETE_USER_LOOKUP, user,
+            details={'reason': delete_form.cleaned_data['delete_reason']},
+            user=request.amo_user)
+
+    return HttpResponseRedirect(reverse('lookup.user_summary', args=[user_id]))
 
 
 @login_required

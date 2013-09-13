@@ -21,3 +21,9 @@ class TransactionRefundForm(happyforms.Form):
         super(TransactionRefundForm, self).__init__(*args, **kw)
         if not settings.BANGO_FAKE_REFUNDS:
             del self.fields['fake']
+
+
+class DeleteUserForm(happyforms.Form):
+    delete_reason = forms.CharField(
+        label=_lazy(u'Reason for Deletion'),
+        widget=forms.Textarea(attrs={'rows': 2}))

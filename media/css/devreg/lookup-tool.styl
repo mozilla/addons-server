@@ -180,7 +180,7 @@ h1 {
         }
     }
 }
-#developer-info {
+#developer-info, #delete-user {
     float: right;
     width: 668px;
 }
@@ -370,6 +370,33 @@ dd {
         &:after {
             color: #aaa;
             content: "\00a0\00a0•\00a0";
+        }
+    }
+}
+
+#delete-user {
+    button.open-delete-modal {
+        margin-top: 13px;
+    }
+    p.error {
+        margin-bottom: 13px;
+    }
+}
+
+.modal {
+    bottom: 0;
+    display: none;
+    left: 0;
+    height: 195px;
+    margin: auto;
+    position: fixed;
+    right: 0;
+    top: 0;
+
+    .listing-footer {
+        button, .button {
+            float: right;
+            margin-left: 5px;
         }
     }
 }
