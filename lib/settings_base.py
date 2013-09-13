@@ -340,6 +340,7 @@ MIDDLEWARE_CLASSES = (
     # Mobile detection should happen in Zeus.
     'mobility.middleware.DetectMobileMiddleware',
     'mobility.middleware.XMobileMiddleware',
+    'amo.middleware.RemoveSlashMiddleware',
 
     # Munging REMOTE_ADDR must come before ThreadRequest.
     'commonware.middleware.SetRemoteAddrFromForwardedFor',
