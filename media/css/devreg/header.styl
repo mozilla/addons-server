@@ -17,15 +17,13 @@
 }
 
 .developer-hub #site-header {
-    h1 {
-        a {
-            hidetext();
-            // TODO: Retinaize.
-            background: url(../../img/ecosystem/logo.png) no-repeat 0 40%;
-            display: block;
-            height: 80px;
-            min-width: 300px;
-        }
+    h1 a {
+        hidetext();
+        // TODO: Retinaize.
+        background: url(../../img/ecosystem/logo.png) no-repeat 0 40%;
+        display: block;
+        height: 80px;
+        min-width: 300px;
     }
 }
 
@@ -153,6 +151,12 @@
     }
 }
 
+@media (min-width: 481px) and (max-width: 767px) {
+    div#site-nav {
+        height: 34px;
+    }
+}
+
 #aux-nav {
     > ul {
         > li {
@@ -245,9 +249,9 @@
 }
 
 @media (max-width: 1015px) {
-    #site-header .upper-header,
-    #site-nav .pad {
-        padding: 0 2%;
+    #masthead, #site-nav .pad {
+        left: 2%;
+        position: relative;
     }
 }
 
@@ -343,7 +347,7 @@
 
 .doc-wrapper, .upper-header {
     margin: 0 auto;
-    width: 960px;
+    width: 100%;
 }
 
 #site-header {
