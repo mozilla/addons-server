@@ -7,6 +7,7 @@ $border-black = rgba(#000, .2);
 $border-blue = #C9DDF2;
 $border-gray = #ddd;
 $dark-gray = #333;
+$dumpy-brown = #A49460;
 $error-red = #C00000;
 $faint-blue = #ECF5FE;
 $faint-gray = #eee;
@@ -22,6 +23,7 @@ $mobileborder = #d7d2c3;
 $note-gray = #999;
 $notice-yellow = #FAF2BD;
 $orange = #e60;
+$reviewer-header-purple = #563C4B;
 $red = #C63717;
 $shadow-blue = #98B2C9;
 $tab-stripe = #f7f5f3;
@@ -53,10 +55,13 @@ $mono-stack = Menlo, "Ubuntu Mono", "Andale Mono", monospace;
 
 // Media Queries
 $retina = unquote('screen and (-webkit-min-device-pixel-ratio: 2), screen and (min--moz-device-pixel-ratio: 2), screen and (min-device-pixel-ratio: 2)');
+$landscape-min = unquote('(min-width: 768px)');
 $landscape-max = unquote('(max-width: 767px)');
-$portrait-min = unquote('(min-width: 480px)');
 $portrait-max = unquote('(max-width: 480px)');
+$mobile-portrait-overlay = unquote('(max-width: 480px) and (max-height: 460px)');
+$mobile-landscape = unquote('(min-width: 481px and max-width: 767px)');
 // TODO: Figure out tablet sizes. These are messy (and desktop starts at 1024). Talk to Michael.
+$tablet-portrait = unquote('(min-width: 768px) and (max-width: 1024px)');
 
 // Mixins
 $grain-src = url(../../img/mkt/grain.png);

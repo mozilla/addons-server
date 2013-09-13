@@ -16,15 +16,13 @@
     }
 }
 
-.developer-hub #site-header {
-    h1 a {
-        hidetext();
-        // TODO: Retinaize.
-        background: url(../../img/ecosystem/logo.png) no-repeat 0 40%;
-        display: block;
-        height: 80px;
-        min-width: 300px;
-    }
+.developer-hub #site-header h1 a {
+    hidetext();
+    // TODO: Retinaize.
+    background: url(../../img/ecosystem/logo.png) no-repeat 0 40%;
+    display: block;
+    height: 80px;
+    min-width: 300px;
 }
 
 #site-header .upper-header,
@@ -56,6 +54,7 @@
         > li {
             float: left;
             position: relative;
+
             > a {
                 position: relative;
                 z-index: 2;
@@ -151,12 +150,6 @@
     }
 }
 
-@media (min-width: 481px) and (max-width: 767px) {
-    div#site-nav {
-        height: 34px;
-    }
-}
-
 #aux-nav {
     > ul {
         > li {
@@ -169,6 +162,7 @@
                 line-height: 32px;
                 height: 32px;
                 padding: 0 1em;
+
                 &:after {
                     display: inline-block;
                     vertical-align: middle;
@@ -245,13 +239,6 @@
             right: 4px;
             left: auto;
         }
-    }
-}
-
-@media (max-width: 1015px) {
-    #masthead, #site-nav .pad {
-        left: 2%;
-        position: relative;
     }
 }
 
@@ -347,7 +334,7 @@
 
 .doc-wrapper, .upper-header {
     margin: 0 auto;
-    width: 100%;
+    width: 960px;
 }
 
 #site-header {
@@ -379,7 +366,6 @@
     &.logged {
         right: 40px;
     }
-
     a {
         color: $white;
         font-size: 13px;
@@ -387,6 +373,7 @@
         padding: 5px 7px;
     }
 }
+
 
 @media $retina {
    .header-button.submit:before {

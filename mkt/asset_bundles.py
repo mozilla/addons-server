@@ -77,6 +77,8 @@ CSS = {
         'css/devreg/data-grid.styl',
         'css/devreg/manifest.styl',
         'css/devreg/reviewers.styl',
+        'css/devreg/reviewers-header.styl',
+        'css/devreg/reviewers-mobile.styl',
         'css/devreg/themes_review.styl',
         'css/devreg/legacy-paginator.styl',
         'css/devreg/files.styl',
