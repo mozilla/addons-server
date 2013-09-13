@@ -379,6 +379,8 @@ class TestType(TestBase):
 
 @mock.patch.object(settings, 'WEBAPPS_RECEIPT_KEY',
                    amo.tests.AMOPaths.sample_key())
+@mock.patch.object(utils.settings, 'WEBAPPS_RECEIPT_KEY',
+                   amo.tests.AMOPaths.sample_key())
 class TestURL(TestBase):
 
     def setUp(self):
