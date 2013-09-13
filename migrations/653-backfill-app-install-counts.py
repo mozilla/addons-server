@@ -12,9 +12,12 @@ def run():
     # Get the first metric and increment daily until today's date.
     today = datetime.datetime.today().replace(hour=0, minute=0, second=0,
                                               microsecond=0)
-    date = (MonolithRecord.objects.order_by('recorded')
-            .values('recorded')[0]['recorded']).replace(
-                hour=0, minute=0, second=0, microsecond=0)
+    try:
+        date = (MonolithRecord.objects.order_by('recorded')
+                .values('recorded')[0]['recorded']).replace(
+                    hour=0, minute=0, second=0, microsecond=0)
+    except IndexError:
+        return  # No monolith data. Bail out.
 
     while date < today:
         next_date = date + datetime.timedelta(days=1)
