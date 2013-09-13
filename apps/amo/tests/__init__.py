@@ -698,9 +698,13 @@ def collection_factory(**kw):
     return c
 
 
-def req_factory_factory(url, user=None):
+def req_factory_factory(url, user=None, post=False, data=None):
     """Creates a request factory, logged in with the user."""
-    req = RequestFactory().get(url)
+    req = RequestFactory()
+    if post:
+        req = req.post(url, data or {})
+    else:
+        req = req.get(url, data or {})
     if user:
         req.amo_user = user
         req.user = user.user

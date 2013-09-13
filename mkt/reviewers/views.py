@@ -423,7 +423,7 @@ def app_review(request, addon):
 QueuedApp = collections.namedtuple('QueuedApp', 'app created')
 
 
-def _queue(request, apps, tab, pager_processor=None):
+def _queue(request, apps, tab, pager_processor=None, date_sort='created'):
     per_page = request.GET.get('per_page', QUEUE_PER_PAGE)
     pager = paginate(request, apps, per_page)
 
@@ -432,29 +432,68 @@ def _queue(request, apps, tab, pager_processor=None):
         'pager': pager,
         'tab': tab,
         'search_form': _get_search_form(request),
+        'date_sort': date_sort
     }))
 
 
-def _do_sort(request, qs, date_field='created'):
-    """Column sorting logic based on request GET parameters."""
-    sort, order = clean_sort_param(request, date_field=date_field)
+def _do_sort(request, qs, date_sort='created'):
+    """Returns sorted Webapp queryset."""
+    if qs.model is Webapp:
+        return _do_sort_webapp(request, qs, date_sort)
+    return _do_sort_queue_obj(request, qs, date_sort)
 
-    if qs.model is not Webapp and sort != date_field:
-        # For when `Webapp` isn't the base model of the queryset.
-        sort = 'addon__' + sort
 
-    if order == 'asc':
-        order_by = sort
-    else:
-        order_by = '-%s' % sort
+def _do_sort_webapp(request, qs, date_sort):
+    """
+    Column sorting logic based on request GET parameters.
+    """
+    sort_type, order = clean_sort_param(request, date_sort=date_sort)
+    order_by = ('-' if order == 'desc' else '') + sort_type
 
-    if sort == 'name':
+    # Sort.
+    if sort_type == 'name':
+        # Sorting by name translation.
         return order_by_translation(qs, order_by)
-    elif sort == 'num_abuse_reports':
+
+    elif sort_type == 'num_abuse_reports':
         return (qs.annotate(num_abuse_reports=Count('abuse_reports'))
                 .order_by(order_by))
+
     else:
         return qs.order_by(order_by)
+
+
+def _do_sort_queue_obj(request, qs, date_sort):
+    """
+    Column sorting logic based on request GET parameters.
+    Deals with objects with joins on the Addon (e.g. RereviewQueue, Version).
+    Returns qs of apps.
+    """
+    sort_type, order = clean_sort_param(request, date_sort=date_sort)
+    sort_str = sort_type
+
+    if sort_type not in [date_sort, 'name']:
+        sort_str = 'addon__' + sort_type
+
+    # sort_str includes possible joins when ordering.
+    # sort_type is the name of the field to sort on without desc/asc markers.
+    # order_by is the name of the field to sort on with desc/asc markers.
+    order_by = ('-' if order == 'desc' else '') + sort_str
+
+    # Sort.
+    if sort_type == 'name':
+        # Sorting by name translation through an addon foreign key.
+        return order_by_translation(
+            Webapp.objects.filter(id__in=qs.values_list('addon', flat=True)),
+            order_by)
+
+    elif sort_type == 'num_abuse_reports':
+        qs = qs.annotate(num_abuse_reports=Count('abuse_reports'))
+
+    # Convert sorted queue object queryset to sorted app queryset.
+    sorted_app_ids = qs.order_by(order_by).values_list('addon', flat=True)
+    qs = Webapp.objects.filter(id__in=sorted_app_ids)
+    return manual_order(qs, sorted_app_ids, 'addons.id')
 
 
 @reviewer_required(only='app')
@@ -468,11 +507,11 @@ def queue_apps(request):
                           .order_by('nomination', 'created')
                           .select_related('addon').no_transforms())
 
-    qs = _queue_to_apps(request, qs, date_field='nomination')
+    apps = _do_sort(request, qs, date_sort='nomination')
     apps = [QueuedApp(app, app.all_versions[0].nomination)
-            for app in Webapp.version_and_file_transformer(qs)]
+            for app in Webapp.version_and_file_transformer(apps)]
 
-    return _queue(request, apps, 'pending')
+    return _queue(request, apps, 'pending', date_sort='nomination')
 
 
 @reviewer_required(only='app')
@@ -483,7 +522,7 @@ def queue_rereview(request):
                         .filter(addon__type=amo.ADDON_WEBAPP,
                                 addon__disabled_by_user=False)
                         .exclude(addon__in=excluded_ids))
-    apps = _queue_to_apps(request, rqs)
+    apps = _do_sort(request, rqs)
     apps = [QueuedApp(app, app.rereviewqueue_set.all()[0].created)
             for app in apps]
     return _queue(request, apps, 'rereview')
@@ -493,7 +532,7 @@ def queue_rereview(request):
 def queue_escalated(request):
     eqs = EscalationQueue.objects.no_cache().filter(
         addon__type=amo.ADDON_WEBAPP, addon__disabled_by_user=False)
-    apps = _queue_to_apps(request, eqs)
+    apps = _do_sort(request, eqs)
     apps = [QueuedApp(app, app.escalationqueue_set.all()[0].created)
             for app in apps]
     return _queue(request, apps, 'escalated')
@@ -512,11 +551,11 @@ def queue_updates(request):
                                      version__deleted=False)
                              .values_list('version__addon_id', flat=True))
 
-    qs = _do_sort(request, Webapp.objects.no_cache().exclude(
+    apps = _do_sort(request, Webapp.objects.no_cache().exclude(
         id__in=excluded_ids).filter(id__in=addon_ids))
 
     apps = [QueuedApp(app, app.all_versions[0].nomination or app.created)
-            for app in Webapp.version_and_file_transformer(qs)]
+            for app in Webapp.version_and_file_transformer(apps)]
     apps = sorted(apps, key=lambda a: a.created)
     return _queue(request, apps, 'updates')
 
@@ -557,28 +596,6 @@ def queue_moderated(request):
     return jingo.render(request, 'reviewers/queue.html',
                         context(request, reviews_formset=reviews_formset,
                                 tab='moderated', page=page, flags=flags))
-
-
-def _queue_to_apps(request, queue_qs, date_field='created'):
-    """Apply sorting and filtering to queue queryset and return apps within
-    that queue in sorted order.
-
-    Args:
-    queue_qs -- queue queryset (e.g. RereviewQueue, EscalationQueue)
-    date_field -- field to sort on
-
-    """
-    # Preserve the sort order by storing the properly sorted ids.
-    sorted_app_ids = (_do_sort(request, queue_qs, date_field=date_field)
-                      .values_list('addon', flat=True))
-
-    # The filter below undoes the sort above.
-    qs = Webapp.objects.filter(id__in=sorted_app_ids)
-
-    # Put the filtered qs back into the correct sort order.
-    qs = manual_order(qs, sorted_app_ids, 'addons.id')
-
-    return qs
 
 
 def _get_search_form(request):
@@ -769,7 +786,6 @@ def get_signed_packaged(request, addon, version_id):
 
 @permission_required('Apps', 'Review')
 def performance(request, username=None):
-
     is_admin = acl.action_allowed(request, 'Admin', '%')
 
     if username:
@@ -830,7 +846,6 @@ def leaderboard(request):
 @permission_required('Apps', 'Review')
 @json_view
 def apps_reviewing(request):
-
     return jingo.render(request, 'reviewers/apps_reviewing.html',
                         context(request, **{
                             'apps': AppsReviewing(request).get_apps(),
