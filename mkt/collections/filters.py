@@ -1,6 +1,5 @@
 from django import forms
 from django.core.validators import EMPTY_VALUES
-from django.db.models import Q
 
 from django_filters.filters import ChoiceFilter, ModelChoiceFilter
 from django_filters.filterset import FilterSet
@@ -24,20 +23,14 @@ class SlugChoiceFilter(ChoiceFilter):
 
     def filter(self, qs, value):
         if value == '' or value is None:
-            return qs.filter(**{'%s__isnull' % self.name: True})
-        else:
-            if not value.isdigit():
-                # We are passed a slug, get the id by looking at the choices
-                # dict, and use that when filtering the queryset.
-                value = self.choices_dict.get(value, None)
-                if value is not None:
-                    value = value.id
-
-            # Do the filtering, adding a OR to catch NULL values as well.
-            return qs.filter(
-                Q(**{self.name: value}) |
-                Q(**{'%s__isnull' % self.name: True})
-            )
+            value = None
+        elif not value.isdigit():
+            # We are passed a slug, get the id by looking at the choices
+            # dict, defaulting to None if no corresponding value is found.
+            value = self.choices_dict.get(value, None)
+            if value is not None:
+                value = value.id
+        return qs.filter(**{self.name: value})
 
 
 class SlugModelChoiceFilter(ModelChoiceFilter):
@@ -131,36 +124,39 @@ class CollectionFilterSetWithFallback(CollectionFilterSet):
     if no results are found.
     """
 
-    # Combinations of fields to try, in order, when no results are found.
+    # Combinations of fields to try to set to NULL, in order, when no results
+    # are found. See `next_fallback()`.
     fields_fallback_order = (
-        ('carrier', 'cat'),
-        ('region', 'cat'),
-        ('cat',)
+        ('region',),
+        ('carrier',),
+        ('region', 'carrier',)
     )
 
     def next_fallback(self):
         """
-        Yield the next set of filters to try to use.
-
-        When we are using this FilterSet, we really want to return something,
-        even if it's less relevant to the original query. When the `qs`
-        property is evaluated, if no results are found, it will call this
-        method to change the filters used in order to find something.
+        Yield the next set of filters to set to NULL when refiltering the
+        queryset to find results. See `refilter_queryset()`.
         """
         for f in self.fields_fallback_order:
             yield f
 
     def refilter_queryset(self):
         """
-        Reset self.data with the next fields tuple to use according to the
-        `fallback` generator. Then recall the `qs` property and return it.
+        Reset self.data, then override fields yield by the `fallback` generator
+        to NULL. Then recall the `qs` property and return it.
+
+        When we are using this FilterSet, we really want to return something,
+        even if it's less relevant to the original query. When the `qs`
+        property is evaluated, if no results are found, it will call this
+        method to refilter the queryset in order to find /something/.
 
         Can raise StopIteration if the fallback generator is exhausted.
         """
-        new_fields = next(self.fallback)
-        data = dict((field, self.original_data[field]) for field in new_fields
-                    if field in self.original_data)
-        self.data = data
+        self.data = self.original_data.copy()
+        fields_to_null = next(self.fallback)
+        for field in fields_to_null:
+            if field in self.data:
+                self.data[field] = None
         del self._form
         return self.qs
 
