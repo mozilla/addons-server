@@ -15,12 +15,9 @@ from django.middleware import common
 from django.utils.cache import patch_vary_headers, patch_cache_control
 from django.utils.encoding import iri_to_uri, smart_str
 
-import commonware.log
-import lxml.html
 import MySQLdb as mysql
 import tower
 import jingo
-from django_statsd.clients import statsd
 
 import amo
 from . import urlresolvers
@@ -178,52 +175,6 @@ class ReadOnlyMiddleware(object):
     def process_exception(self, request, exception):
         if isinstance(exception, mysql.OperationalError):
             return jingo.render(request, 'amo/read-only.html', status=503)
-
-
-pjax_log = commonware.log.getLogger('z.timer')
-
-
-class LazyPjaxMiddleware(object):
-
-    def process_request(self, request):
-        # This activates JS in templates:
-        request.ALLOWS_PJAX = True
-
-    def process_response(self, request, response):
-        if (request.META.get('HTTP_X_PJAX') and
-            response.status_code == 200 and
-            'html' in response.get('content-type', '').lower()):
-            # TODO(Kumar) cache this.
-            with statsd.timer('pjax.parse'):
-                tree = lxml.html.document_fromstring(response.content)
-                # HTML is encoded as ascii with entity refs for non-ascii.
-                html = []
-                found_pjax = False
-                for elem in tree.cssselect('title,%s'
-                                           % settings.PJAX_SELECTOR):
-                    if elem.tag == 'title':
-                        # Inject a <title> for jquery-pjax
-                        html.append(lxml.html.tostring(elem, encoding=None))
-                    else:
-                        found_pjax = True
-                        if elem.text:
-                            html.append(elem.text.encode('ascii',
-                                                         'xmlcharrefreplace'))
-                        for ch in elem.iterchildren():
-                            html.append(lxml.html.tostring(ch, encoding=None))
-                if not found_pjax:
-                    msg = ('pjax response for %s does not contain selector %r'
-                           % (request.path, settings.PJAX_SELECTOR))
-                    if settings.DEBUG:
-                        # Tell the developer the template is bad.
-                        raise ValueError(msg)
-                    else:
-                        pjax_log.error(msg)
-                        return response
-
-                response.content = ''.join(html)
-
-        return response
 
 
 class ViewMiddleware(object):

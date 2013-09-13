@@ -30,10 +30,6 @@
         {% if waffle.switch('marketplace') and request.amo_user %}
           data-purchases="{{ request.amo_user.purchase_ids()|join(',') }}"
         {% endif %}
-        {% if request.ALLOWS_PJAX %}
-          data-use-pjax="1"
-          data-pjax-container="{{ settings.PJAX_SELECTOR }}"
-        {% endif %}
         {% block bodyattrs %}{% endblock %}>
 
     <div id="page">
