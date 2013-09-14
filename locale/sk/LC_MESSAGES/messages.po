@@ -2032,9 +2032,8 @@ msgid "Reviewer escalation"
 msgstr "Postoupení na detailní kontrolu"
 
 #: apps/amo/log.py:512
-#, fuzzy
 msgid "Video removed from {addon} because of a problem with the video."
-msgstr "Video bylo od doplňku {addon} odebráno, protože se u tohoto videa vyskytl problém."
+msgstr "Video bolo odstránené z doplnku {addon}, pretože sa pri tomto videu vyskytol problém."
 
 #: apps/amo/log.py:514
 msgid "Video removed"
@@ -2045,62 +2044,52 @@ msgid "{addon} re-review because of new device(s) added."
 msgstr "Doplnok {addon} bude opäť skontrolovaný, pretože boli pridané nové zariadenia."
 
 #: apps/amo/log.py:520
-#, fuzzy
 msgid "Device(s) Added"
-msgstr "Byla přidána zařízení"
+msgstr ""
 
 #: apps/amo/log.py:527
 msgid "{addon} device support manually changed by reviewer."
 msgstr ""
 
 #: apps/amo/log.py:528
-#, fuzzy
 msgid "Device(s) Changed by Reviewer"
-msgstr "Zařízení byla redaktorem změněna."
+msgstr ""
 
 #: apps/amo/log.py:535
 msgid "{addon} resubmitted for review."
 msgstr "Doplnok {addon} bol opätovne odoslaný na kontrolu."
 
 #: apps/amo/log.py:536
-#, fuzzy
 msgid "App Resubmission"
-msgstr "Opětovné zkontrolování aplikace"
+msgstr ""
 
 #: apps/amo/log.py:553
-#, fuzzy
 msgid "Created: {0}."
-msgstr "Vytvořeno: {0}."
+msgstr "Vytvorené: {0}."
 
 #: apps/amo/log.py:559
-#, fuzzy
 msgid "Edited field: {2} set to: {0}."
-msgstr "Upravené pole: {2} nastaveno na: {0}."
+msgstr "Upravené pole: {2} nastavené na: {0}."
 
 #: apps/amo/log.py:565
-#, fuzzy
 msgid "Deleted: {1}."
-msgstr "Smazáno: {1}."
+msgstr "Odstránené: {1}."
 
 #: apps/amo/log.py:571
-#, fuzzy
 msgid "User {user} edited, reason: {1}"
-msgstr "Uživatel {user} upraven, důvod: {1}"
+msgstr "Používateľ {user} bol upravený, dôvod: {1}"
 
 #: apps/amo/log.py:577
-#, fuzzy
 msgid "User {user} anonymized."
-msgstr "Uživatel {user} anonymizován."
+msgstr ""
 
 #: apps/amo/log.py:583
-#, fuzzy
 msgid "User {user} restricted."
-msgstr "Uživatel {user} byl omezen."
+msgstr ""
 
 #: apps/amo/log.py:589
-#, fuzzy
 msgid "Admin {0} viewed activity log for {user}."
-msgstr "Administrátor {0} si zobrazil log aktivity u uživatele {user}."
+msgstr "Administrátor {0} si zobrazil záznam aktivity používateľa {user}."
 
 #: apps/amo/log.py:596
 msgid "{review} for {addon} updated."
@@ -3769,22 +3758,19 @@ msgstr "Zadarmo"
 
 #: apps/constants/base.py:282 mkt/search/forms.py:39
 msgid "Premium"
-msgstr "Prémiové"
+msgstr ""
 
 #: apps/constants/base.py:283
-#, fuzzy
 msgid "Premium with in-app payments"
-msgstr "Placená s platbami uvnitř aplikace"
+msgstr ""
 
 #: apps/constants/base.py:284
-#, fuzzy
 msgid "Free with in-app payments"
-msgstr "Zdarma s platbami uvnitř aplikace"
+msgstr ""
 
 #: apps/constants/base.py:285
-#, fuzzy
 msgid "I'll use my own system for in-app payments"
-msgstr "Budu uvnitř aplikace využívat vlastní platební systém"
+msgstr ""
 
 #: apps/constants/base.py:342
 msgid "Only ask on this add-on's page and developer profile"
@@ -3819,68 +3805,56 @@ msgid "Manual Reviewer Points"
 msgstr ""
 
 #: apps/constants/base.py:461
-#, fuzzy
 msgid "Full Add-on Review"
-msgstr "Úplná kontrola doplňku"
+msgstr "Kompletná kontrola doplnku"
 
 #: apps/constants/base.py:462
-#, fuzzy
 msgid "Preliminary Add-on Review"
-msgstr "Kontrola doplňku pro předběžné schválení"
+msgstr "Predbežná kontrola doplnku"
 
 #: apps/constants/base.py:463
-#, fuzzy
 msgid "Updated Add-on Review"
-msgstr "Kontrola aktualizace doplňku"
+msgstr "Kontrola aktualizácie doplnku"
 
 #: apps/constants/base.py:464
-#, fuzzy
 msgid "Full Dictionary Review"
-msgstr "Kompletní kontroly slovníků"
+msgstr "Kompletná kontrola slovníka"
 
 #: apps/constants/base.py:465
-#, fuzzy
 msgid "Preliminary Dictionary Review"
-msgstr "Předběžné kontroly slovníků"
+msgstr "Predbežná kontrola slovníka"
 
 #: apps/constants/base.py:466
-#, fuzzy
 msgid "Updated Dictionary Review"
-msgstr "Kontroly aktualizovaných slovníků"
+msgstr "Kontrola aktualizovaného slovníka"
 
 #: apps/constants/base.py:467
-#, fuzzy
 msgid "Full Language Pack Review"
-msgstr "Kompletní kontroly jazykových balíčků"
+msgstr "Kompletná kontrola jazykového balíka"
 
 #: apps/constants/base.py:468
-#, fuzzy
 msgid "Preliminary Language Pack Review"
-msgstr "Předběžné kontroly jazykových balíčků"
+msgstr "Predbežná kontrola jazykového balíka"
 
 #: apps/constants/base.py:469
-#, fuzzy
 msgid "Updated Language Pack Review"
-msgstr "Kontroly aktualizovaných jazykových balíčků"
+msgstr "Kontrola aktualizovaného jazykového balíka"
 
 #: apps/constants/base.py:470
 msgid "Theme Review"
 msgstr "Skontrola témy"
 
 #: apps/constants/base.py:471
-#, fuzzy
 msgid "Full Search Provider Review"
-msgstr "Kompletní kontroly vyhledávacích modulů"
+msgstr "Kompletná kontrola vyhľadávacieho modulu"
 
 #: apps/constants/base.py:472
-#, fuzzy
 msgid "Preliminary Search Provider Review"
-msgstr "Předběžné kontroly vyhledávacích modulů"
+msgstr "Predbežná kontrola vyhľadávacieho modulu"
 
 #: apps/constants/base.py:473
-#, fuzzy
 msgid "Updated Search Provider Review"
-msgstr "Kontroly aktualizovaných vyhledávacích modulů"
+msgstr "Kontrola aktualizovaného vyhľadávacieho modulu"
 
 #: apps/constants/base.py:474
 msgid "Complete Theme Review"
@@ -3895,24 +3869,20 @@ msgid "Updated Complete Theme Review"
 msgstr ""
 
 #: apps/constants/base.py:477
-#, fuzzy
 msgid "Web App Review"
-msgstr "Kontroly webových aplikací"
+msgstr "Kontrola webovej aplikácie"
 
 #: apps/constants/base.py:478
-#, fuzzy
 msgid "Packaged App Review"
-msgstr "Kontrola zabalená aplikace"
+msgstr "Kontrola zbalenej aplikácie"
 
 #: apps/constants/base.py:479
-#, fuzzy
 msgid "Web App Re-review"
-msgstr "Opětovná kontrola webové aplikace"
+msgstr "Opätovná kontrola webovej aplikácie"
 
 #: apps/constants/base.py:480
-#, fuzzy
 msgid "Updated Packaged App Review"
-msgstr "Kontrola aktualizované webové aplikace"
+msgstr "Kontrola aktualizácie webovej aplikácie"
 
 #: apps/constants/base.py:481
 msgid "Moderated Addon Review"
@@ -4067,29 +4037,24 @@ msgid "U.S. Dollar"
 msgstr "Americký dolár"
 
 #: apps/constants/payments.py:73 apps/constants/payments.py:82 apps/constants/payments.py:105
-#, fuzzy
 msgid "Chargeback"
-msgstr "Vrácení transakce"
+msgstr ""
 
 #: apps/constants/payments.py:74 apps/constants/payments.py:83
-#, fuzzy
 msgid "In-app Purchase"
-msgstr "Platba v aplikaci"
+msgstr ""
 
 #: apps/constants/payments.py:76 apps/constants/payments.py:84 mkt/receipts/templates/receipts/reissue.html:11
-#, fuzzy
 msgid "Purchase"
-msgstr "Koupě"
+msgstr ""
 
 #: apps/constants/payments.py:77 apps/constants/payments.py:85
-#, fuzzy
 msgid "Refund"
-msgstr "Uhrazení"
+msgstr ""
 
 #: apps/constants/payments.py:78
-#, fuzzy
 msgid "Voluntary"
-msgstr "Příspěvek"
+msgstr ""
 
 #: apps/constants/payments.py:95
 msgid "Active"
@@ -4108,37 +4073,32 @@ msgid "Pay"
 msgstr ""
 
 #: apps/constants/payments.py:140
-#, fuzzy
 msgid "Approved Instantly"
-msgstr "Automaticky vrácené"
+msgstr ""
 
 #: apps/constants/payments.py:143 apps/devhub/templates/devhub/payments/refunds.html:193 mkt/developers/templates/developers/payments/refunds.html:212
 msgid "Declined"
 msgstr "Zamietnuté"
 
 #: apps/constants/payments.py:146 mkt/constants/payments.py:9 mkt/developers/templates/developers/payments/refunds.html:249
-#, fuzzy
 msgid "Failed"
-msgstr "Selhané"
+msgstr "Zlyhalo"
 
 #: apps/constants/payments.py:150 apps/constants/payments.py:151
-#, fuzzy
 msgid "The payment was received, but not completed."
-msgstr "Platba byla obdržena, ale nedokončena."
+msgstr "Platba bola obdržaná, ale nebola dokončená."
 
 #: apps/constants/payments.py:152
-#, fuzzy
 msgid "The payment failed."
-msgstr "Platba selhala."
+msgstr "Platba zlyhala."
 
 #: apps/constants/payments.py:153
 msgid "The reversal failed."
 msgstr "Storno transakcie zlyhalo."
 
 #: apps/constants/payments.py:154
-#, fuzzy
 msgid "The payment was received, but not completed and is awaiting processing."
-msgstr "Platba byla obdržena, ale nebyla dokončena a momentálně čeká na zpracování."
+msgstr "Platba bola obdržaná, ale nebola dokončená a momentálne čaká na spracovanie."
 
 #: apps/constants/platforms.py:19
 msgid "All Platforms"
@@ -5179,9 +5139,8 @@ msgid ""
 msgstr ""
 
 #: apps/devhub/templates/devhub/search.html:7 mkt/developers/templates/developers/search.html:7
-#, fuzzy
 msgid "Search Developer Docs"
-msgstr "Prohledat dokumentaci"
+msgstr "hľadať v dokumentoch pre vývojárov"
 
 #: apps/devhub/templates/devhub/validate_addon.html:13
 #, fuzzy
@@ -5326,9 +5285,9 @@ msgstr "Staršia aktivita pre Moje doplnky"
 #: apps/devhub/templates/devhub/addons/dashboard.html:118
 msgid "<b>{0}</b> theme"
 msgid_plural "<b>{0}</b> themes"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "<b>{0}</b> téma vzhľadu"
+msgstr[1] "<b>{0}</b> témy vzhľadu"
+msgstr[2] "<b>{0}</b> tém vzhľadu"
 
 #: apps/devhub/templates/devhub/addons/edit.html:3 apps/devhub/templates/devhub/addons/listing/item_actions.html:25 apps/devhub/templates/devhub/addons/listing/item_actions_app.html:25
 #: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:7 apps/devhub/templates/devhub/includes/addons_edit_nav.html:2 apps/devhub/templates/devhub/personas/edit.html:6
@@ -8674,11 +8633,9 @@ msgstr "{0} chybových hlášení"
 msgid "{0} success reports"
 msgstr "{0} úspěšných hlášení"
 
-# 78%
 #: apps/devhub/templates/devhub/includes/blog_posts.html:3
-#, fuzzy
 msgid "Developer News"
-msgstr "Novinky pre vývojárov"
+msgstr "Novinky od vývojárov"
 
 #: apps/devhub/templates/devhub/includes/blog_posts.html:21
 msgid "View the blog &#9658;"
@@ -11241,7 +11198,7 @@ msgid ""
 "Some icons used are from the <a href=\"http://www.famfamfam.com/lab/icons/silk/\">famfamfam Silk Icon Set</a>, licensed under a <a href=\"http://creativecommons.org/licenses/by/2.5/\">Creative "
 "Commons Attribution 2.5 License</a>."
 msgstr ""
-"Niektoré použité ikony pochádzajú zo <a href=\"http://www.famfamfam.com/lab/icons/silk/\">sady ikon famfamfam Silk</a>, uvoľnené sú pod licenciou <a href=\"http://creativecommons.org/licenses/by/2.5/\">Creative Commons Attribution 2.5</a>."
+"Niektoré použité ikony pochádzajú zo <a href=\"http://www.famfamfam.com/lab/icons/silk/\">sady ikon famfamfam Silk</a>, uvoľnené pod licenciou <a href=\"http://creativecommons.org/licenses/by/2.5/\">Creative Commons Attribution 2.5</a>."
 
 #: apps/pages/templates/pages/credits.html:60
 msgid ""
@@ -11249,7 +11206,7 @@ msgid ""
 "Commons Attribution 3.0 License</a>."
 msgstr ""
 "Niektoré použité ikony pochádzajú zo <a href=\"http://www.fatcow.com/free-"
-"icons/\">sady webových ikon FatCow Farm-Fresh</a>, uvoľnené sú pod licenciou <a "
+"icons/\">sady webových ikon FatCow Farm-Fresh</a>, uvoľnené pod licenciou <a "
 "href=\"http://creativecommons.org/licenses/by/3.0/us/\">Creative Commons "
 "Attribution 3.0 License</a>."
 
