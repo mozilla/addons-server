@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-08-30 15:54-0700\n"
-"PO-Revision-Date: 2013-09-03 20:01+0000\n"
+"PO-Revision-Date: 2013-09-14 16:38+0000\n"
 "Last-Translator: Vlado <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-POOTLE-MTIME: 1378238518.0\n"
+"X-POOTLE-MTIME: 1379176686.0\n"
 
 #: apps/addons/buttons.py:207
 msgid "Download Now"
@@ -5147,13 +5147,10 @@ msgid "Add-on packaged successfully!"
 msgstr ""
 
 #: apps/devhub/templates/devhub/package_addon_success.html:14
-#, fuzzy
 msgid ""
 "Use the download link below to save a copy of your extension's compressed source. To install as an extension in Firefox or another compatible application, simply rename the <kbd>.zip</kbd> "
 "extension to <kbd>.xpi</kbd>."
 msgstr ""
-"Klepnutím na odkaz uvedený níže uložíte kopii rozšíření ve formě zkomprimovaného zdrojového kódu. Pokud chcete rozšíření nainstalovat do Firefoxu nebo jiné kompatibilní aplikace, přejmenujte soubor "
-"<kbd>.zip</kbd>na <kbd>.xpi</kbd>."
 
 #: apps/devhub/templates/devhub/package_addon_success.html:22
 #, fuzzy
@@ -5176,13 +5173,10 @@ msgid ""
 msgstr ""
 
 #: apps/devhub/templates/devhub/package_addon_success.html:41
-#, fuzzy
 msgid ""
 "Now that you've got an extension skeleton, the fun part begins: hacking on the extension to make it do what you want. If you need some help, check out our <a href=\"%(gs_url)s\">Getting Started</a> "
 "page for the basics, or visit the <a href=\"%(ht_url)s\">How-to Library</a> for tutorials and documentation."
 msgstr ""
-"Nyní, když už máte kostru rozšíření hotovu, začíná ta zábavnější část: upravit rozšíření tak, aby odpovídalo vašim představám. Pokud potřebujete pomoci, přečtěte si návod pro začátečníky s názvem "
-"<a href=\"%(gs_url)s\">Začínáme</a> nebo se podívejte na <a href=\"%(ht_url)s\">databázi návodů a tipů</a>, kde naleznete potřebnou dokumentaci."
 
 #: apps/devhub/templates/devhub/search.html:7 mkt/developers/templates/developers/search.html:7
 #, fuzzy
@@ -5364,15 +5358,11 @@ msgid "About author roles"
 msgstr "O roliach autorov"
 
 #: apps/devhub/templates/devhub/addons/owner.html:93
-#, fuzzy
 msgid ""
 "<p>Add-ons can have any number of authors with 3 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors and managing payments</li> <li><b>Viewer:</b> Can view the add-on's settings and "
 "statistics, but cannot make any changes</li> </ul>"
 msgstr ""
-"<p>Doplňky mohou mít více autorů a to ve 3 definovaných rolích: </p><ul> <li><b>Vlastník:</b> Může spravovat vše, co se týká stránky doplňku, a přidávat či odebírat jiné autory.</li> <li><b>Vývojář:"
-"</b> Může spravovat vše, co se týká stránky doplňků, s výjimkou přidávání/odebírání autorů a správy plateb.</li> <li><b>Pozorovatel:</b> Může zobrazit nastavení doplňku a jeho statistiky, ale nesmí "
-"dělat jakékoliv změny.</li> </ul>"
 
 #: apps/devhub/templates/devhub/addons/profile.html:3 apps/devhub/templates/devhub/addons/listing/item_actions.html:53 apps/devhub/templates/devhub/includes/addons_edit_nav.html:5
 #: mkt/developers/templates/developers/apps/profile.html:3
@@ -5436,12 +5426,9 @@ msgid "Categories are the primary way users browse through add-ons. Choose any t
 msgstr "Kategórie sú základným prvkom, podľa ktorého používatelia prehliadajú doplnky. Zvoľte kategórie, do ktorých váš doplnok podľa jeho funkcionality spadá."
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:122
-#, fuzzy
 msgid ""
 "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr ""
-"Pokud je doplněk pro tuto aplikaci veden jako doporučený, nemůžete měnit jeho umístění v kategoriích. Pokud máte důvod, proč chcete kategorie změnit, napište nám prosím e-mail na <a href=\"mailto:"
-"%(email)s\">%(email)s</a>."
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:160 mkt/developers/templates/developers/apps/edit/admin.html:90
 msgid "Tags"
@@ -6059,9 +6046,8 @@ msgid "View and subscribe to your add-on's <a href=\"{0}\">activity feed</a> to 
 msgstr "Zobrazte si či odebírejte <a href=\"{0}\">informace o nedávné aktivitě</a> u svého doplňku a zůstaňte tak informování o recenzích, sbírkách a dalších."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:50
-#, fuzzy
 msgid "View approximate review queue <a href=\"{0}\">wait times</a>."
-msgstr "Podívejte se na přibližný <a href=\"{0}\">čas čekání</a> ve frontě na kontrolu."
+msgstr ""
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:57
 msgid "Get Ahead in the Review Queue!"
@@ -6399,13 +6385,10 @@ msgid "Learn the basics"
 msgstr "Přečtěte si základy"
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:26
-#, fuzzy
 msgid ""
 "The easiest way to do that is to follow along with the <a href=\"https://developer.mozilla.org/En/Firefox_addons_developer_guide\">Firefox Add-ons Developer Guide</a> as it explains in detail the "
 "technologies used in extensions and walks through the creation of several basic extensions."
 msgstr ""
-"Nejsnazším způsobem, jak to udělat, je přečíst si <a href=\"https://developer.mozilla.org/En/Firefox_addons_developer_guide\">Firefox Add-ons Developer Guide</a>, která detailně vysvětluje "
-"technologie použité pro tvorbu doplňků a provede vás vytvořením několika jednoduchých rozšíření."
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:32
 #, fuzzy
@@ -6413,15 +6396,11 @@ msgid "<a href=\"https://developer.mozilla.org/En/Firefox_addons_developer_guide
 msgstr "<a href=\"https://developer.mozilla.org/En/Firefox_addons_developer_guide\">Přečíst si Firefox Add-ons Developer Guide</a>"
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:38
-#, fuzzy
 msgid ""
 "If you'd rather dive right in, there are several other tutorials in our <a href=\"%(base_docs)show-to/getting-started\">Getting Started section</a> of the <a href=\"%(base_docs)show-to\">How-to "
 "Library</a> that jump straight into code. And if you have some time to spare, you may prefer a video walkthrough of extension basics: <a href=\"http://design-challenge.mozilla.com/resources/"
 "#extension_bootcamp\">Extension Bootcamp: Zero to Hello World! in 45 Minutes</a>."
 msgstr ""
-"Pokud byste se raději do toho ponořili přímo, existuje několik dalších návodů v <a href=\"%(base_docs)show-to/getting-started\">sekci Začínáme</a> našich stránek <a href=\"%(base_docs)show-to"
-"\">Databáze příkladů, jak na to</a>, které vás ponoří přímo do kódu. A pokud máte trochu volného času, možná budete preferovat video, které vás provede základy tvorby rozšíření: <a href=\"http://"
-"design-challenge.mozilla.com/resources/#extension_bootcamp\">Extension Bootcamp: Zero to Hello World! in 45 Minutes</a>."
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:47
 #, fuzzy
@@ -6462,15 +6441,11 @@ msgstr ""
 "chcete. Nejběžnějším způsobem, jak se něco naučit, je podívat se na ostatní rozšíření, jak to dělají. Mějte pouze na paměti, že si musíte ověřit, že to licence umožňuje."
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:72
-#, fuzzy
 msgid ""
 "We also have two areas here in the Hub that may help you out: the <a href=\"%(base_docs)sreference\">API &amp; Language References</a> page has links to official documentation for extension "
 "languages and APIs like JavaScript, XUL, XPCOM, and FUEL. Secondly, the <a href=\"%(base_docs)show-to\">How-to Library</a> is full of tutorials, walkthroughs, videos, and articles written by smart "
 "people on extension development and best practices."
 msgstr ""
-"Máme zde též dvě místa, které vám mohou pomoci: stránku <a href=\"%(base_docs)sreference\">Referenční příručky k API a jazykům</a>, která odkazuje na oficiální dokumentaci k jazykům a API jako jsou "
-"JavaScript, XUL, XPCOM či FUEL. Vedle toho je zde stránka <a href=\"%(base_docs)show-to\">Databáze příkladů, jak na to</a>, která je plná návodů, průvodců, videí a článků psaných chytrými lidmi o "
-"tvorbě rozšíření a nejlepších postupech."
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:78
 msgid "View the References"
@@ -7293,13 +7268,10 @@ msgstr ""
 "pokud neobsahují chybné informace."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:82
-#, fuzzy
 msgid ""
 "Many developers provide a support mechanism, such as a forum, discussion group, <a href=\"http://www.getsatisfaction.com\">GetSatisfaction account</a>, or email address. It is recommended that "
 "support questions be posted via those mediums instead of in an add-on's review section."
 msgstr ""
-"Řada vývojáří poskytuje systém podpory, jako je např. fórum, diskusní skupinu, <a href=\"http://www.getsatisfaction.com\">účet na GetSatisfaction</a> nebo e-mailovou adresu. Je doporučeno zasílat "
-"dotazy na podporu skrze tyto kanály na místo recenzí doplňků."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:87
 #, fuzzy
@@ -7316,13 +7288,10 @@ msgstr ""
 "práva na svou vlastní práci, pokud není v licenci doplňku řečeno jinak."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:96
-#, fuzzy
 msgid ""
 "In the event that we're notified of a copyright or license infringement, we will take steps to review the situation and determine if an actual infringement has occurred. If we determine that there "
 "is an infringement, we will remove the offending add-on and contact the author. New add-on submissions (including updates) containing infringing code will be denied approval for public status."
 msgstr ""
-"V případě, kdy nás někdo upozorní na porušení copyrightu či licence, zhodnotíme situaci a zjistíme, zda skutečně k porušení došlo. Pokud k porušení skutečně došlo, odstraníme problematický doplněk "
-"a kontaktujeme autora. Nově přidávané doplňky (včetně aktualizací), u kterých zjistím porušení, budou automaticky zamítnuty."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:102
 msgid "If you are unsure of the current copyright status of an add-on's source code, you must contact the original author and receive explicit permission before using the source code."
@@ -7667,13 +7636,10 @@ msgstr ""
 "je prohnaný skrze obfuskátor, je povolen pod určitými podmínkami, které jsou popsány níže."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:123
-#, fuzzy
 msgid ""
 "Many of the above restrictions are tested automatically by an extension scanner that will flag suspicious add-ons for editor review. You can read more about this scanner in the <a href="
 "\"%(link_validation)s\">Validation Help</a> document."
 msgstr ""
-"Řada z výše uvedených omezení je testována automaticky procesem kontroly doplňku, která na problémy upozorňuje redaktora při kontrole. Více informací o této kontrole si můžete přečíst v dokumentu "
-"<a href=\"%(link_validation)s\">nápověda ke kontrole</a>."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:129
 msgid ""
@@ -11234,83 +11200,70 @@ msgid "Thank you!"
 msgstr "Děkujeme!"
 
 #: apps/pages/templates/pages/credits.html:2
-#, fuzzy
 msgid "Site Credits"
 msgstr "Tvorcovia stránky"
 
 #: apps/pages/templates/pages/credits.html:12
-#, fuzzy
 msgid "Mozilla would like to thank the following people for their contributions to the addons.mozilla.org project over the years:"
-msgstr "Mozilla ďakuje nasledujúcim ľuďom za ich prácu na projekte addons.mozilla.org:"
+msgstr "Mozilla ďakuje nasledujúcim ľuďom za ich prácu na projekte addons.mozilla.org za posledných niekoľko rokov:"
 
 #: apps/pages/templates/pages/credits.html:18
-#, fuzzy
 msgid "Developers &amp; Administrators"
 msgstr "Vývojári a administrátori"
 
 #: apps/pages/templates/pages/credits.html:21
-#, fuzzy
 msgid "Localizers"
 msgstr "Lokalizátori"
 
-# 77%
 #: apps/pages/templates/pages/credits.html:34 mkt/reviewers/forms.py:70
-#, fuzzy
 msgid "Reviewers"
-msgstr "Redaktoři"
+msgstr "Redaktori"
 
 #. {0} is a number (e.g. 1000).
 #: apps/pages/templates/pages/credits.html:40
-#, fuzzy
 msgid "More than {0} add-on reviews"
-msgstr "Více než {0} recenzí doplňků"
+msgstr "Viac ako {0} recenzií doplnkov"
 
 #: apps/pages/templates/pages/credits.html:51
-#, fuzzy
 msgid "Other Contributors"
 msgstr "Ostatní prispievatelia"
 
 #: apps/pages/templates/pages/credits.html:54
-#, fuzzy
 msgid "Past Developers &amp; Administrators"
 msgstr "Predchádzajúci vývojári a administrátori"
 
 #: apps/pages/templates/pages/credits.html:57
-#, fuzzy
 msgid "Software and Images"
 msgstr "Softvér a obrázky"
 
 #: apps/pages/templates/pages/credits.html:59
-#, fuzzy
 msgid ""
 "Some icons used are from the <a href=\"http://www.famfamfam.com/lab/icons/silk/\">famfamfam Silk Icon Set</a>, licensed under a <a href=\"http://creativecommons.org/licenses/by/2.5/\">Creative "
 "Commons Attribution 2.5 License</a>."
 msgstr ""
-"Niektoré použité ikony pochádzajú zo <a href=\"http://www.famfamfam.com/lab/icons/silk/\">sady ikon famfamfam Silk</a>, uvoľnené sú pod licenciou <a href=\"http://creativecommons.org/licenses/"
-"by/2.5/\">Creative Commons Attribution 2.5</a>."
+"Niektoré použité ikony pochádzajú zo <a href=\"http://www.famfamfam.com/lab/icons/silk/\">sady ikon famfamfam Silk</a>, uvoľnené sú pod licenciou <a href=\"http://creativecommons.org/licenses/by/2.5/\">Creative Commons Attribution 2.5</a>."
 
 #: apps/pages/templates/pages/credits.html:60
-#, fuzzy
 msgid ""
 "Some icons used are from the <a href=\"http://www.fatcow.com/free-icons/\">FatCow Farm-Fresh Web Icons Set</a>, licensed under a <a href=\"http://creativecommons.org/licenses/by/3.0/us/\">Creative "
 "Commons Attribution 3.0 License</a>."
 msgstr ""
-"Některé ikonky jsou z <a href=\"http://www.fatcow.com/free-icons/\">FatCow Farm-Fresh Web Icons Set</a> a jsou licencovány pod <a href=\"http://creativecommons.org/licenses/by/3.0/us/\">Creative "
-"Commons Attribution 3.0 License</a>."
+"Niektoré použité ikony pochádzajú zo <a href=\"http://www.fatcow.com/free-"
+"icons/\">sady webových ikon FatCow Farm-Fresh</a>, uvoľnené sú pod licenciou <a "
+"href=\"http://creativecommons.org/licenses/by/3.0/us/\">Creative Commons "
+"Attribution 3.0 License</a>."
 
 #: apps/pages/templates/pages/credits.html:61
-#, fuzzy
 msgid ""
 "Some pages use elements of <a href=\"http://shop.highsoft.com/highcharts.html\">Highcharts</a> (non-commercial), licensed under a <a href=\"http://creativecommons.org/licenses/by-nc/3.0/\">Creative "
 "Commons Attribution-NonCommercial 3.0 License</a>."
 msgstr ""
-"Některé stránky používají prvky <a href=\"http://shop.highsoft.com/highcharts.html\">Highcharts</a> (nekomerční), které jsou licencovány pod <a href=\"http://creativecommons.org/licenses/by-nc/3.0/"
+"Niektoré stránky používajú prvky <a href=\"http://shop.highsoft.com/highcharts.html\">Highcharts</a> (nekomerčné), uvoľnené pod licenciou <a href=\"http://creativecommons.org/licenses/by-nc/3.0/"
 "\">Creative Commons Attribution-NonCommercial 3.0 License</a>."
 
 #: apps/pages/templates/pages/credits.html:65
-#, fuzzy
 msgid "For information on contributing, please see our <a href=\"%(url)s\">wiki page</a>."
-msgstr "Pro informace o přispívání do projektu se podívejte na naši <a href=\"%(url)s\">wiki stránku</a>."
+msgstr "Ďalšie informácie o prispievaní do projektu nájdete na našej <a href=\"%(url)s\">wiki stránke</a>."
 
 # 76%
 #: apps/pages/templates/pages/dev_faq.html:4
@@ -11428,9 +11381,8 @@ msgid "All Mozilla documentation on add-on development including tutorials and A
 msgstr "Všechna dokumentace Mozilly k vytváření doplňků zahrnující návody a popisy API můžete nalézt na <a href=\"%(url)s\">Mozilla Developer Center</a>."
 
 #: apps/pages/templates/pages/dev_faq.html:115
-#, fuzzy
 msgid "What is a \".xpi\" file?"
-msgstr "Co je soubor s koncovkou \".xpi\"?"
+msgstr "Čo je súbor s koncovkou \".xpi\"?"
 
 #: apps/pages/templates/pages/dev_faq.html:117
 msgid "Extensions are packaged and distributed in ZIP files or Bundles, with the XPI (pronounced \"zippy\") file extension."
@@ -11448,9 +11400,8 @@ msgid ""
 msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:134
-#, fuzzy
 msgid "What is the \"install.rdf\" file used for?"
-msgstr "K čemu je používán soubor \"install.rdf\"?"
+msgstr "Na čo sa používa súbor \"install.rdf\"?"
 
 #: apps/pages/templates/pages/dev_faq.html:136
 #, fuzzy
@@ -11464,9 +11415,8 @@ msgstr ""
 "aktualizován apod. Formát instalačního manifestu je RDF/XML."
 
 #: apps/pages/templates/pages/dev_faq.html:147
-#, fuzzy
 msgid "What does \"maxVersion\" mean?"
-msgstr "Co znamená \"maxVersion\"?"
+msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:149
 #, fuzzy
@@ -11491,15 +11441,11 @@ msgid "Can I use a JavaScript library like jQuery, MooTools or Prototype to buil
 msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:167
-#, fuzzy
 msgid ""
 "Yes. It's possible, but some of the functionality provided by these libraries are available through XPCOM, XUL, and JS 1.8. In addition, authors should take care if libraries modify primitive "
 "object prototypes (String.prototype, Date.prototype, etc.) and/or define global functions (eg. the $ function). These are prone to cause conflict with other add-ons, in particular if different add-"
 "ons use different versions of libraries and so on. Developers need to be very, very careful with using them. Mozilla does not offer documentation on using them to build add-ons."
 msgstr ""
-"Ano. Je to možné, ale některá funkcionalita poskytovaná těmito knihovnami je dostupná skrze XPCOM, XUL a JS 1.8. Navíc by si měl autor hlídat, zda kniovny nemodifikují primitivní objekty prototypes "
-"(String.prototype, Date.prototype atd.) nebo nedefinují globální funkce (jako funkce $). Toto je zapovězeno a může to být zdrojem konfliktů s jinými doplňky, které mohou používat odlišné verze "
-"knihoven. Vývojáři by měli být velmi opatrní při jejich používání. Mozilla neposkytuje dokumentaci k jejich používání uvnitř doplňků."
 
 #: apps/pages/templates/pages/dev_faq.html:180
 #, fuzzy
@@ -11678,13 +11624,10 @@ msgid "Does Mozilla have a policy in place as to what is an acceptable submissio
 msgstr "Má Mozilla někde uvedeny zásady, které musí splňovat doplněk, aby mohl být schválen?"
 
 #: apps/pages/templates/pages/dev_faq.html:335
-#, fuzzy
 msgid ""
 "Yes. Mozilla's <a href=\"%(p_url)s\">Add-on Policy</a> describes what is an acceptable submission. This policy is subject to change without notice. In addition, the AMO editorial team uses the <a "
 "href=\"%(g_url)s\">Editors Reviewing Guide</a> to ensure that your add-on meets specific guidelines for functionality and security."
 msgstr ""
-"Ano. Popis, jaký doplněk je akceptovatelný pro hostování, naleznete v <a href=\"%(p_url)s\">zásadách pro doplňky</a> Mozilly. Uvedené zásady se mohou kdykoliv změnit bez předchozího upozornění. Tým "
-"redaktorů AMO navíc používá <a href=\"%(g_url)s\">Editors Reviewing Guide</a>, aby se ujistil, že váš doplněk splňuje standardy pro funkcionalitu a bezpečnost."
 
 #: apps/pages/templates/pages/dev_faq.html:345
 #, fuzzy
@@ -11719,9 +11662,8 @@ msgid ""
 msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:376
-#, fuzzy
 msgid "What does \"nominating\" my add-on mean?"
-msgstr "Co znamená u mého doplňku \"nominace\"?"
+msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:378
 #, fuzzy
@@ -11814,13 +11756,10 @@ msgid "number of problem areas discovered"
 msgstr "počet problémů, které se objeví"
 
 #: apps/pages/templates/pages/dev_faq.html:455
-#, fuzzy
 msgid ""
 "This is why it's very important to read the <a href=\"%(g_url)s\">Editors Reviewing Guide</a> to ensure that your add-on is setup as expected. It's also a good idea to read the blog post, <a href="
 "\"%(blog_url)s\">Successfully Getting your Add-on Reviewed</a> which provides excellent insight into ensuring a smooth review of your add-on."
 msgstr ""
-"To je důvod, proč je důležité číst <a href=\"%(g_url)s\">Editors Reviewing Guide</a> a ujistit se, že vás doplněk splňuje všechna pravidla. Je také dobré si přečíst příspěvek <a href=\"%(blog_url)s"
-"\">Successfully Getting your Add-on Reviewed</a>, který poskytuje excelentní pohled na kontrolu doplňků."
 
 #: apps/pages/templates/pages/dev_faq.html:467
 #, fuzzy
@@ -11856,13 +11795,10 @@ msgid "Does my update need to be reviewed by editors?"
 msgstr "Musí být aktualizace mého doplňku schválena redaktorem?"
 
 #: apps/pages/templates/pages/dev_faq.html:496
-#, fuzzy
 msgid ""
 "That depends. If you are simply changing a description of your add-on or updating a \"maxVersion\" to ensure compatibility with a new Mozilla software update, then your add-on does not need to be "
 "reviewed again. If, however, you submit a new updated file, then your add-on update will need to be reviewed by an editor."
 msgstr ""
-"To záleží na situaci. Pokud pouze změníte popis svého doplňku či aktualizujete \"maxVersion\", aby byl váš doplněk aktuální pro aktualizace, pak váš doplněk nemusí být znovu zkontrolován. Pokud "
-"však nahrajete jeho novou aktualizaci, pak bude potřeba, aby ji redaktor zkontroloval."
 
 #: apps/pages/templates/pages/dev_faq.html:507
 #, fuzzy
@@ -11983,13 +11919,10 @@ msgstr ""
 "určeny pro vaše osobní použití. Tyto zdroje vám nedají odpovědi na konkrétní právní otázky, ty byste měli konzultovat s právníkem. Mozilla není odpovědná za obsah, které tyto weby nabízí."
 
 #: apps/pages/templates/pages/dev_faq.html:618
-#, fuzzy
 msgid ""
 "In addition to the full text of the Mozilla Public License(\"MPL\"), this also provides an annotated version of the MPL and an <abbr title=\"Frequently Asked Questions\">FAQ</abbr> to help you if "
 "you want to use or distribute code licensed under it."
 msgstr ""
-"Mimo celého textu Mozilla Public License(\"MPL\") je též k dispozici text licence MPL s popisem a <abbr title=\"Frequently Asked Questions\">FAQ</abbr>, které vám pomůžou, pokud chcete zdrojový kód "
-"pod MPL používat či distribuovat."
 
 #: apps/pages/templates/pages/dev_faq.html:632
 #, fuzzy
@@ -12100,13 +12033,10 @@ msgid "How do I install add-ons without restarting Firefox?"
 msgstr "Jak mohu nainstalovat doplňky bez restartu Firefoxu?"
 
 #: apps/pages/templates/pages/faq.html:101
-#, fuzzy
 msgid ""
 "In Firefox, add-ons marked with \"No restart required\" can be installed without restarting. These add-ons have been created using the <a href=\"%(sdk_url)s\">Add-on SDK</a> or <a href="
 "\"%(bootstrap_url)s\">bootstrapping</a>. Other add-ons will still require a restart before you can use them."
 msgstr ""
-"Ve Firefoxu mohou být doplňky, které jsou označeny jako \"Nevyžadují restart\", instalovány bez restartu. Tyto doplňky byly vytvořeny s pomocí <a href=\"%(sdk_url)s\">Add-on SDK</a> či <a href="
-"\"%(bootstrap_url)s\">bootstrapping</a>. Ostatní doplňky budou pro instalaci vyžadovat restart aplikace."
 
 #: apps/pages/templates/pages/faq.html:110
 #, fuzzy
@@ -12151,15 +12081,11 @@ msgid "%(app_name)s told me an add-on isn't compatible. Is there a way I can sti
 msgstr ""
 
 #: apps/pages/templates/pages/faq.html:145
-#, fuzzy
 msgid ""
 "If an add-on isn't compatible with your version of %(app_name)s, it is usually either because your version of %(app_name)s is outdated or the add-on author has not yet updated the add-on to be "
 "compatible with a newer version you are using. Mozilla does not recommend trying to circumvent these compatibility checks, as they can lead to browser instability or in some cases loss of data. For "
 "users who are testing out alpha or beta versions of Firefox, we offer the <a href=\"%(acr_url)s\">Add-on Compatibility Reporter</a> to help add-on developers update their compatibility."
 msgstr ""
-"Pokud doplněk není kompatibilní s vaší verzí aplikace %(app_name)s, je to obvykle proto, že vaše verze aplikace %(app_name)s je zastaralá nebo autor doplňku dosud neaktualizoval doplněk, aby byl "
-"kompatibilní s novější verzí, kterou používáte. Mozilla nedoporučuje obcházet kontrolu kompatibility, protože může vést k nestabilitě prohlížeče či ke ztrátě dat. Pokud patříte mezi uživatele, "
-"kteří testují alfa a beta verze Firefoxu, nabízíme vám <a href=\"%(acr_url)s\">Add-on Compatibility Reporter</a>, pomocí kterého můžete vývojářům doplňů pomoci s aktualizací kompatibility."
 
 #: apps/pages/templates/pages/faq.html:157
 msgid "What if I have problems with an add-on?"
@@ -12193,13 +12119,10 @@ msgid "What if I can't find an add-on I'm looking for?"
 msgstr "Co mám dělat, když nemohu nalézt doplněk, který hledám?"
 
 #: apps/pages/templates/pages/faq.html:182
-#, fuzzy
 msgid ""
 "With thousands of add-ons available, there's something for everyone. But if you're looking for a particular add-on and can't find it, you might try searching on other sites or posting about it in "
 "our <a href=\"%(forum_url)s\">Add-on Ideas</a> forum."
 msgstr ""
-"Při dostupnosti tisíců doplňků se nalezne něco pro každého. Pokud však hledáte konkrétní doplněk a nemůžete jej nalézt, můžete zkusit hledat na jiných serverech nebo o tom napsat do našeho <a href="
-"\"%(forum_url)s\">fóra nápadů na doplňky</a>."
 
 #: apps/pages/templates/pages/faq.html:188
 #, fuzzy
@@ -12305,15 +12228,11 @@ msgid "What is a Source Code License?"
 msgstr "Pod jakou licencí je zdrojový kód dostupný?"
 
 #: apps/pages/templates/pages/faq.html:250
-#, fuzzy
 msgid ""
 "The source code used to create an add-on is an exclusive copyright of the add-on author, unless otherwise declared in a source code license. Many add-ons on this site have <a href=\"%(url)s\" lang="
 "\"en\">open source licenses</a> that make the source code publicly available for copy and reuse under conditions determined by the author. Most authors choose widely known open source licenses like "
 "the GPL or BSD licenses instead of making up their own."
 msgstr ""
-"Zdrojový kód použitý k vytvoření doplňku patří exkluzivně autoru doplňku, pokud není deklarovanou licencí zdrojového kódu řečeno jinak. Mnoho doplňků na tomto webu je pod <a href=\"%(url)s\" lang="
-"\"en\">open source licencí</a>, která dává zdrojový kód veřejně k dispozici pro kopírování a opětovné použití pod podmínkami řečenými autorem. Většina autorů nevytváří vlastní licence, ale volí "
-"široce rozšířené open source licence jako je GPL či BSD."
 
 #: apps/pages/templates/pages/faq.html:259
 #, fuzzy
@@ -12353,13 +12272,10 @@ msgid "What are personalized recommendations?"
 msgstr "Co jsou personalizovaná doporučení?"
 
 #: apps/pages/templates/pages/faq.html:283
-#, fuzzy
 msgid ""
 "Firefox recommends add-ons for you based on the add-ons you already have installed. If you have at least 3 add-ons installed, just visit the Get Add-ons area of the Add-ons Manager to see the "
 "\"Recommended for You\" box."
 msgstr ""
-"Firefox vám doporučuje doplňky v závislosti na doplňcích, které máte nainstalovány. Pokud máte nainstalovány alespoň 3 doplňky, navštivte ve Správci doplňku sekci Získání doplňků a zde uvidíte box "
-"\"Doporučeno pro vás\"."
 
 #: apps/pages/templates/pages/faq.html:288
 #, fuzzy
@@ -12402,9 +12318,8 @@ msgid "Developer Topics"
 msgstr "Témy pre vývojárov"
 
 #: apps/pages/templates/pages/faq.html:317
-#, fuzzy
 msgid "Please see our <a href=\"%(faq_url)s\">Developer FAQ</a> and <a href=\"%(hub_url)s\">Developer Hub</a> for answers to add-on developer-related questions."
-msgstr "Pro otázky týkající se vývoje doplňků navšivte <a href=\"%(faq_url)s\">často kladené otázky pro vývojáře</a> a <a href=\"%(hub_url)s\">Centrum pro vývojáře</a>."
+msgstr ""
 
 #: apps/pages/templates/pages/faq.html:323
 msgid "Still have questions?"
@@ -12525,9 +12440,8 @@ msgid "Make false statements, disparage add-on authors or personally insult them
 msgstr "Psát nepravdivé informace, zlehčovat autory doplňků či je osobně urážet."
 
 #: apps/pages/templates/pages/review_guide.html:131
-#, fuzzy
 msgid "Use reviews as a way to request support for a specific Firefox (or other application) version."
-msgstr "Používat recenze jako způsob žádosti o podporu pro konkrétní verzi Firefoxu (či jinou aplikaci)."
+msgstr ""
 
 #: apps/pages/templates/pages/review_guide.html:137
 #, fuzzy
@@ -12991,7 +12905,8 @@ msgstr "Relevantnosť"
 
 #: apps/search/helpers.py:24
 msgid "Results <strong>{0}</strong>-<strong>{1}</strong> of <strong>{2}</strong>"
-msgstr "Výsledky <strong>{0}</strong> - <strong>{1}</strong> z <strong>{2}</strong>"
+msgstr ""
+"Výsledky <strong>{0}</strong>-<strong>{1}</strong> z <strong>{2}</strong>"
 
 # {0} is a number
 # {1} is a number
@@ -13652,9 +13567,8 @@ msgid "Discard Changes"
 msgstr "Neuložiť zmeny"
 
 #: apps/translations/templates/translations/trans-menu.html:56
-#, fuzzy
 msgid "Are you sure you want to remove all <b>{0}</b> translations? This cannot be undone."
-msgstr "Chcete odstranit všechny překlady pro jazyk <b>{0}</b>? Tuto operaci nelze vzít zpět."
+msgstr ""
 
 #: apps/translations/templates/translations/trans-menu.html:61
 msgid "Delete Locale"
@@ -13923,18 +13837,20 @@ msgid "Wrong email address or password!"
 msgstr "Nesprávna e-mailová adresa alebo heslo!"
 
 #: apps/users/views.py:504
-#, fuzzy
 msgid "A link to activate your user account was sent by email to your address {0}. You have to click it before you can log in."
-msgstr "Na vaši e-mailovou adresu {0} byl zaslán odkaz na aktivaci účtu. Musíte na něj klepnout dříve, než se budete moci přihlásit."
+msgstr ""
+"Na vašu e-mailovú adresu {0} bol odoslaný odkaz na aktiváciu účtu. Na tento "
+"odkaz musíte kliknúť a až potom sa budete môcť prihlásiť."
 
 #: apps/users/views.py:509
-#, fuzzy
 msgid ""
 "If you did not receive the confirmation email, make sure your email service did not mark it as \"junk mail\" or \"spam\". If you need to, you can have us <a href=\"%s\">resend the confirmation "
 "message</a> to your email address mentioned above."
 msgstr ""
-"Pokud neobdržíte e-mail pro potvrzení, ujistěte se, že váš poskytovatel pošty jej neoznačil jako \"nevyžádanou poštu\" či \"spam\". Pokud to budete potřebovat, můžete si e-mail pro potvrzení <a "
-"href=\"%s\">nechat znovu poslat</a>."
+"Ak neobdržíte potvrdzovaciu e-mailovú správu, uistite sa, že váš "
+"poskytovateľ pošty ju neoznačil ako \"nevyžiadanú poštu\" či \"spam\". Ak to "
+"budete nutné, môžete si potvrdzovaciu správu <a href=\"%s\">nechať poslať "
+"znova</a>."
 
 #: apps/users/views.py:514
 msgid "Activation Email Sent"
@@ -16681,9 +16597,8 @@ msgid "<strong>Don't forget a protocol!</strong> Try adding either <a href=\"#\"
 msgstr "<strong>Nezapomeňte protokoll!</strong> Zkuste přidat <a href=\"#\">%(http)s</a> nebo <a href=\"#\">%(https)s</a>."
 
 #: mkt/developers/templates/developers/validate_addon.html:43 mkt/submit/templates/submit/manifest.html:82
-#, fuzzy
 msgid "Manifest URLs must start with a protocol (for example, <code>http://</code> or <code>https://</code>) and typically use the <code>.webapp</code> extension."
-msgstr "URL s manifestem musí začínat protokolem (například: <code>http://</code> či <code>https://</code>) a jako přípona je typicky <code>.webapp</code>."
+msgstr ""
 
 #: mkt/developers/templates/developers/validate_addon.html:61 mkt/submit/templates/submit/manifest.html:126
 #, fuzzy
@@ -16742,9 +16657,8 @@ msgid "Your developer profile is set to be <b>public</b>."
 msgstr "Váš profil vývojáře je nastaven jako <b>veřejný</b>."
 
 #: mkt/developers/templates/developers/apps/profile.html:27
-#, fuzzy
 msgid "Your developer profile will be <b>public</b> when it is fully completed."
-msgstr "Jakmile bude váš profil vývojáře dokončen, bude <b>veřejný</b>."
+msgstr ""
 
 #: mkt/developers/templates/developers/apps/status.html:25
 msgid "You have <b>delisted</b> this app."
@@ -17036,9 +16950,8 @@ msgid "Refresh"
 msgstr "Obnovit"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:86
-#, fuzzy
 msgid "Manifest URLs cannot be changed after your app has been submitted. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your manifest URL."
-msgstr "URL souboru s manifestem nemůže být po přidání vaší aplikace změněno. Pokud máte důvod pro změnu URL manifestu, napište e-mail na <a href=\"mailto:%(email)s\">%(email)s</a>."
+msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:105
 msgid "An explanation of features, functionality, and other relevant information. This field is displayed on the app's details page."
