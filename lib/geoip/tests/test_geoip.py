@@ -1,3 +1,5 @@
+from random import randint
+
 import mock
 import requests
 from nose.tools import eq_
@@ -70,3 +72,20 @@ class GeoIPTest(amo.tests.TestCase):
         mock_post.assert_called_with('{0}/country.json'.format(url),
                                      timeout=0.2, data={'ip': ip})
         eq_(result, 'worldwide')
+
+    @mock.patch('requests.post')
+    def test_private_ip(self, mock_post):
+        url = 'localhost'
+        geoip = GeoIP(generate_settings(url=url))
+        addrs = [
+            '127.0.0.1',
+            '10.{0}.{1}.{2}'.format(randint(0, 255), randint(0, 255),
+                                    randint(0, 255)),
+            '192.168.{0}.{1}'.format(randint(0, 255), randint(0, 255)),
+            '172.{0}.{1}.{2}'.format(randint(16, 31), randint(0, 255),
+                                     randint(0, 255))
+        ]
+        for ip in addrs:
+            result = geoip.lookup(ip)
+            assert not mock_post.called
+            eq_(result, 'worldwide')
