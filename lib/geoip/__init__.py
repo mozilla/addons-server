@@ -9,6 +9,23 @@ from mkt import regions
 log = logging.getLogger('z.geoip')
 
 
+def is_public(ip):
+    parts = map(int, ip.split('.'))
+    # localhost
+    if ip == '127.0.0.1':
+        return False
+    # 10.x.x.x
+    elif parts[0] == 10:
+        return False
+    # 192.168.x.x
+    elif parts[0] == 192 and parts[1] == 168:
+        return False
+    # 172.16-32.x.x
+    elif parts[0] == 172 and 16 <= parts[1] <= 31:
+        return False
+    return True
+
+
 class GeoIP:
     """Call to geodude server to resolve an IP to Geo Info block."""
 
@@ -25,7 +42,8 @@ class GeoIP:
         return the default as defined by the settings, or "worldwide".
 
         """
-        if self.url and waffle.switch_is_active('geoip-geodude'):
+        if (self.url and waffle.switch_is_active('geoip-geodude') and
+            is_public(address)):
             with statsd.timer('z.geoip'):
                 res = None
                 try:
