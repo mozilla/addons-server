@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-08-30 15:54-0700\n"
-"PO-Revision-Date: 2013-09-14 16:38+0000\n"
+"PO-Revision-Date: 2013-09-15 17:59+0000\n"
 "Last-Translator: Vlado <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-POOTLE-MTIME: 1379176686.0\n"
+"X-POOTLE-MTIME: 1379267947.0\n"
 
 #: apps/addons/buttons.py:207
 msgid "Download Now"
@@ -12968,7 +12968,7 @@ msgstr[2] "<b>{0}</b> výsledkov hľadania"
 
 #: apps/search/templates/search/results.html:67
 msgid "Filter Results"
-msgstr "Filter výsledkiv"
+msgstr "Filter výsledkov"
 
 #: apps/search/templates/search/results.html:69
 msgid "Category"
