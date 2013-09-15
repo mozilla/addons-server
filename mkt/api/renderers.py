@@ -1,5 +1,7 @@
 import json
 
+from django.http.multipartparser import parse_header
+
 from rest_framework.renderers import JSONRenderer
 
 
@@ -14,7 +16,11 @@ class SuccinctJSONRenderer(JSONRenderer):
         # Pass to the superclass if the Accept header is set with an explicit
         # indent, if an indent level is manually passed, or if you're attempting
         # to render `None`.
-        if data is None or indent or 'indent' in accepted_media_type:
+        if accepted_media_type:
+             base_media_type, params = parse_header(
+                accepted_media_type.encode('ascii'))
+             indent = params.get('indent', indent)
+        if data is None or indent:
             return super(SuccinctJSONRenderer, self).render(data,
                                                             accepted_media_type,
                                                             renderer_context)
