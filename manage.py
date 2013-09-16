@@ -105,9 +105,6 @@ djcelery.setup_loader()
 from lib.log_settings_base import log_configure
 log_configure()
 
-from lib.misc import safe_signals
-safe_signals.start_the_machine()
-
 import django.conf
 newrelic_ini = getattr(django.conf.settings, 'NEWRELIC_INI', None)
 load_newrelic = False
