@@ -89,7 +89,8 @@ class TestOAuthAuthentication(TestCase):
         self.auth = authentication.OAuthAuthentication()
         self.profile = UserProfile.objects.get(pk=2519)
         self.profile.update(read_dev_agreement=datetime.today())
-        self.access = Access.objects.create(key='test_oauth_key', secret=generate(),
+        self.access = Access.objects.create(key='test_oauth_key',
+                                            secret=generate(),
                                             user=self.profile.user)
 
     def call(self, client=None):
@@ -101,8 +102,12 @@ class TestOAuthAuthentication(TestCase):
                  HTTP_AUTHORIZATION=client.sign('GET', url)[1]['Authorization'])
 
     def test_accepted(self):
-        ok_(self.auth.is_authenticated(self.call()))
-        ok_(this_thread_is_pinned())
+        req = self.call()
+        ok_(self.auth.is_authenticated(req))
+        if req.method in ['DELETE', 'PATCH', 'POST', 'PUT']:
+            ok_(this_thread_is_pinned())
+        else:
+            ok_(not this_thread_is_pinned())
 
     def test_request_token_fake(self):
         c = Mock()
@@ -135,8 +140,12 @@ class TestRestOAuthAuthentication(TestOAuthAuthentication):
         self.auth = authentication.RestOAuthAuthentication()
 
     def test_accepted(self):
-        eq_(self.auth.authenticate(self.call()), (self.profile.user, None))
-        ok_(this_thread_is_pinned())
+        req = self.call()
+        eq_(self.auth.authenticate(req), (self.profile.user, None))
+        if req.method in ['DELETE', 'PATCH', 'POST', 'PUT']:
+            ok_(this_thread_is_pinned())
+        else:
+            ok_(not this_thread_is_pinned())
 
     def test_request_token_fake(self):
         c = Mock()
