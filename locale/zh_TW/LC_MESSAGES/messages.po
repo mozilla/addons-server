@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-08-30 15:54-0700\n"
-"PO-Revision-Date: 2013-09-16 18:00+0000\n"
+"PO-Revision-Date: 2013-09-16 18:50+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1379354415.0\n"
+"X-POOTLE-MTIME: 1379357440.0\n"
 
 #: apps/addons/buttons.py:207
 msgid "Download Now"
@@ -53,7 +53,7 @@ msgstr "尚未審核"
 #: apps/addons/buttons.py:251
 msgctxt "install_button"
 msgid "Self Hosted"
-msgstr "存放於個人網站"
+msgstr "架設於個人網站"
 
 #. L10n: please keep &nbsp; in the string so the &rarr; does not wrap
 #: apps/addons/buttons.py:256
@@ -158,7 +158,7 @@ msgstr "精選"
 
 #: apps/addons/helpers.py:38
 msgid "Self Hosted"
-msgstr "存放於個人網站"
+msgstr "架設於個人網站"
 
 #: apps/addons/models.py:292
 msgid "Users have the option of contributing more or less than this amount."
@@ -239,7 +239,7 @@ msgstr "這個附加元件已經通過 Mozilla 初步審核。<a href=\"%(url)s\
 
 #: apps/addons/templates/addons/button.html:102 apps/addons/templates/addons/impala/button.html:69
 msgid "This add-on is hosted on the developer's own website and has not been reviewed by Mozilla."
-msgstr "這個附加元件放置於開發者的網站且尚未經由 Mozilla 審核通過。"
+msgstr "這個附加元件架設於開發者的網站且尚未經由 Mozilla 審核通過。"
 
 #: apps/addons/templates/addons/collections_sidebar.html:11 apps/addons/templates/addons/impala/addon_hovercard.html:34 apps/addons/templates/addons/impala/featured_grid.html:26
 #: apps/addons/templates/addons/impala/theme_grid.html:22 apps/bandwagon/templates/bandwagon/collection_detail.html:31 apps/users/templates/users/helpers/addon_users_list.html:7
@@ -912,7 +912,8 @@ msgstr "<strong>注意：</strong>這個附加元件尚未通過 Mozilla 審核�
 #: apps/addons/templates/addons/popups.html:120
 msgid ""
 "<strong>Caution:</strong> This add-on is hosted on the developer's own website and has not been reviewed by Mozilla. Be careful when installing third-party software that might harm your computer."
-msgstr "<strong>警告：</strong>這個附加元件放置於開發者的網站且沒有通過 Mozilla 的審核。請小心安裝第三方軟體，這有可能會傷害您的電腦。"
+msgstr ""
+"<strong>警告：</strong>這個附加元件架設於開發者的網站且沒有通過 Mozilla 的審核。請小心安裝第三方軟體，這有可能會傷害您的電腦。"
 
 #: apps/addons/templates/addons/popups.html:125
 msgid "Continue to Website"
@@ -1847,7 +1848,7 @@ msgstr "{addon} 無法向 PayPal 確認。"
 
 #: apps/amo/log.py:377
 msgid "{addon} manifest updated."
-msgstr "已更新 {addon} 的 manifest。"
+msgstr "已更新 {addon} 的安裝資訊。"
 
 #: apps/amo/log.py:383
 msgid "{addon} {version} approved but waiting to be made public."
@@ -1931,11 +1932,11 @@ msgstr "高退費申請案件量"
 
 #: apps/amo/log.py:479
 msgid "{addon} re-reviewed because of manifest change."
-msgstr "因為 manifest 更動，{addon} 已被重新審核。"
+msgstr "因為安裝資訊更動，{addon} 已被重新審核。"
 
 #: apps/amo/log.py:480
 msgid "Manifest Change"
-msgstr "Manifest 更動"
+msgstr "變更安裝資訊"
 
 #: apps/amo/log.py:487
 msgid "{addon} re-reviewed because app upgraded premium type."
@@ -4376,15 +4377,15 @@ msgstr "您的圖示必須小於 %s bytes。"
 
 #: apps/devhub/tasks.py:410
 msgid "Your manifest must be served with the HTTP header \"Content-Type: %s\"."
-msgstr "您的 manifest 必須包含 HTTP header \"Content-Type: %s\"。"
+msgstr "您的安裝資訊必須包含 HTTP 檔頭「Content-Type: %s」。"
 
 #: apps/devhub/tasks.py:412
 msgid "Your manifest must be served with the HTTP header \"Content-Type: %s\". We saw \"%s\"."
-msgstr "您的 manifest 必須包含 HTTP header \"Content-Type: %s\"。我們接收到 \"%s\" 。"
+msgstr "您的安裝資訊必須包含 HTTP 檔頭「Content-Type: %s」。我們收到「%s」。"
 
 #: apps/devhub/tasks.py:417 mkt/developers/tasks.py:512
 msgid "Your manifest must be less than %s bytes."
-msgstr "您的 manifest 必須小於 %s 位元組。"
+msgstr "您的安裝資訊必須小於 %s 位元組。"
 
 #: apps/devhub/views.py:188
 msgid "All My Add-ons"
@@ -5060,7 +5061,7 @@ msgstr "更新相容性"
 
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:4 apps/devhub/templates/devhub/versions/edit.html:45
 msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
-msgstr "在此調整應用程式資訊將會允許使用者安裝您的附加元件，就算封裝檔案當中的 manifest 指出此附加元件並不相容。"
+msgstr "就算封裝檔案當中的安裝指出此附加元件並不相容，在此調整應用程式資訊將會允許使用者安裝您的附加元件。"
 
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:18
 msgid "Supported Versions"
@@ -5398,7 +5399,7 @@ msgstr "UUID"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:138
 msgid "The UUID of your add-on is specified in its install manifest and uniquely identifies it. You cannot change your UUID once it has been submitted."
-msgstr "您必須在 manifest 當中指定附加元件的 UUID 唯一識別碼。在您送出之後就無法修改 UUID。"
+msgstr "您必須在安裝資訊當中指定附加元件的 UUID 唯一識別碼。您送出之後就無法修改 UUID。"
 
 #: apps/devhub/templates/devhub/addons/edit/technical_dependencies.html:9
 msgid "Remove this dependent add-on"
@@ -6108,8 +6109,8 @@ msgid ""
 "Just follow the steps to enter your add-on's name, version number, supported applications, and other details, and it will make your extension package for download. Not only does it generate your "
 "install manifest, but you can select common interface elements like toolbars, sidebars, and context menus to make a working extension skeleton. We're practically writing your extension for you!"
 msgstr ""
-"只要跟著步驟，輸入您附加元件的名稱、版本號、支援的應用程式以及其他細節，您就可以封裝附加元件以便下載。不只自動產生您的 manifest，您還可以選擇常用的介面元素，像是工具列、側邊欄以及內容選單，製作您套"
-"件的框架。我們幾乎在幫您撰寫您的套件！"
+"只要跟著步驟，輸入您附加元件的名稱、版本號、支援的應用程式以及其他細節，您就可以封裝附加元件以便下載。不只自動產生您的安裝資訊，您還可以選擇常用的介面元"
+"素，像是工具列、側邊欄以及內容選單，製作您套件的框架。我們幾乎在幫您撰寫您的套件！"
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:60
 msgid "Take me to the Add-on Packager!"
@@ -6318,7 +6319,7 @@ msgstr "將擴充套件敘述本地化"
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:145
 msgid "Learn how to localize the names and descriptions in extension install manifests."
-msgstr "學習如何本地化擴充套件 manifest 中的名稱與敘述。"
+msgstr "學習如何本地化擴充套件安裝資訊中的名稱與敘述。"
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:155
 msgid "Localization and Plurals"
@@ -6445,11 +6446,11 @@ msgstr "進一步了解如何封裝與安裝擴充套件。"
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:93
 msgid "Install Manifests"
-msgstr "安裝 Manifest"
+msgstr "安裝資訊檔"
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:96
 msgid "This document explains install manifests \"install.rdf\" and all of properties available for use in your add-on."
-msgstr "此文件向您解釋 manifest「install.rdf」以及其所有可以用在您附加元件的屬性。"
+msgstr "此文件向您解釋安裝資訊檔「install.rdf」以及其所有可以用在您附加元件的屬性。"
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:103
 msgid "Other Tutorials"
@@ -8047,7 +8048,7 @@ msgstr "您上傳的佈景主題的頂部與底部圖片各自的檔案大小不
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:276
 msgid "Couldn't find the answer you're looking for? Consider visiting the <a href=\"%(support_url)s\">Firefox support</a> website for more help."
-msgstr "還是沒有解答您的問題嗎? 請訪問 <<a href=\"%(support_url)s\">Firefox 技術支援</a>網站取得進一步的說明。"
+msgstr "還是沒有解答您的問題嗎? 請訪問 <a href=\"%(support_url)s\">Firefox 技術支援</a>網站取得進一步的說明。"
 
 #: apps/devhub/templates/devhub/docs/themes.html:3
 msgid "How to Create Your Own Background Theme"
@@ -8109,7 +8110,7 @@ msgstr "祕訣"
 
 #: apps/devhub/templates/devhub/docs/themes.html:80 apps/devhub/templates/devhub/docs/themes.html:151
 msgid "Subtle, soft contrast images and gradients work best; highly detailed images will compete with the browser UI."
-msgstr "圖片與漸層最好有微小又柔和的對比; 太過複雜的圖片會與瀏覽器使用者介面起衝突。"
+msgstr "圖片與漸層最好有微小又柔和的對比；太過複雜的圖片會與瀏覽器使用者介面起衝突。"
 
 #: apps/devhub/templates/devhub/docs/themes.html:86
 msgid "Firefox may reveal more of the lower portion of the image if another toolbar or other UI element is added to the top of the window."
@@ -8793,7 +8794,9 @@ msgstr "建立一個新的主題"
 
 #: apps/devhub/templates/devhub/personas/submit.html:18
 msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
-msgstr "背景圖片讓您輕易自訂 Firefox 瀏覽器的外觀。您可以在下方提交您的設計，或是<a href=\"%(submit_url)s\">學習如何設計</b>!"
+msgstr ""
+"背景圖片讓您輕易自訂 Firefox 瀏覽器的外觀。您可以在下方提交您的設計，或是<a href=\"%"
+"(submit_url)s\">學習如何設計</a>!"
 
 #: apps/devhub/templates/devhub/personas/submit.html:33
 msgid "Give your Theme a name."
@@ -10307,11 +10310,11 @@ msgstr "在包裝好的應用程式壓縮檔的根目錄中找不到 \"manifest.
 
 #: apps/files/utils.py:245
 msgid "Could not decode the webapp manifest file."
-msgstr "無法解碼 Web 應用程式 manifest。"
+msgstr "無法解碼 webapp 的安裝資訊檔。"
 
 #: apps/files/utils.py:251
 msgid "The webapp manifest is not valid JSON."
-msgstr "這個 webapp manifest 不是有效的 JSON。"
+msgstr "這個 webapp 的安裝資訊檔不是有效的 JSON。"
 
 #: apps/files/utils.py:260
 msgid "Your specified app locales are not in the correct format."
@@ -10319,7 +10322,7 @@ msgstr "您所指定的應用程式語系格式不正確。"
 
 #: apps/files/utils.py:277
 msgid "Developer name is required in the manifest in order to display it on the app's listing."
-msgstr "manifest 中必須包含開發者名稱，以顯示在其 App 列表中。"
+msgstr "安裝資訊檔中必須包含開發者名稱以顯示在應用程式清單中。"
 
 #: apps/files/utils.py:328
 msgid "Invalid file name in archive: {0}"
@@ -10821,7 +10824,9 @@ msgid ""
 "This file, called an <a href=\"%(url)s\">Install Manifest</a>, is used by Add-on Manager-enabled XUL applications to determine information about an add-on as it is being installed. It contains "
 "metadata identifying the add-on, providing information about who created it, where more information can be found about it, which versions of what applications it is compatible with, how it should "
 "be updated, and so on. The format of the Install Manifest is RDF/XML."
-msgstr "這個檔案名為 <a href=\"%(url)s\">Install Manifest</a>，是在附加元件安裝後，附加元件管理員用來確認附加元件資料，其格式為 RDF/XML。其中，該 metadata 資料包含開發者、相容版本、更新資訊等。"
+msgstr ""
+"這個檔案名為 <a href=\"%(url)s\">安裝資訊檔</a>，是在附加元件安裝後，附加元件管理員用來確認附加元件資料，其格式為 "
+"RDF/XML。其中，該 metadata 資料包含開發者、相容版本、更新資訊等。"
 
 #: apps/pages/templates/pages/dev_faq.html:147
 msgid "What does \"maxVersion\" mean?"
@@ -11350,7 +11355,9 @@ msgstr ""
 
 #: apps/pages/templates/pages/faq.html:55
 msgid "<strong><a href=\"%(browse_url)s\">Complete Themes</a></strong> change the entire appearance of %(app_name)s, usually including icons, colors, dialogs, and other visual styles."
-msgstr "<a href=\"%(browse_url)s\">完整主題</a></strong>更改 %(app_name)s 的整體外觀，通常包括圖示、顏色、對話框以及其他視覺樣式。"
+msgstr ""
+"<strong><a href=\"%(browse_url)s\">完整主題</a></strong>更改 %(app_name)s "
+"的整體外觀，通常包括圖示、顏色、對話框以及其他視覺樣式。"
 
 #: apps/pages/templates/pages/faq.html:61
 msgid "<strong><a href=\"%(browse_url)s\">Themes</a></strong> are lightweight themes that use background images to customize your %(app_name)s toolbars."
@@ -13688,7 +13695,7 @@ msgstr "必須為有效的十六進位色碼，例如 #FF0035。"
 
 #: mkt/collections/serializers.py:62
 msgid "You can not have more than one Featured Apps/Operator Shelf collection for the same category/carrier/region combination."
-msgstr ""
+msgstr "您不能在同一區域、業者、分類的組合中有超過一個上到精選應用程式或電信業者展示架的軟體。"
 
 #: mkt/commonplace/templates/commonplace/index.html:10
 msgid "The Firefox Marketplace is the official source of apps for the Web Platform."
@@ -15055,12 +15062,12 @@ msgstr "委內瑞拉"
 
 #: mkt/constants/reviewers.py:7 mkt/developers/templates/developers/validate_addon.html:16 mkt/search/forms.py:32 mkt/submit/templates/submit/manifest.html:56
 msgid "Hosted"
-msgstr "遠端"
+msgstr "架設"
 
 # 動詞或名詞?
 #: mkt/constants/reviewers.py:8 mkt/developers/templates/developers/validate_addon.html:54 mkt/search/forms.py:33 mkt/submit/templates/submit/manifest.html:90
 msgid "Packaged"
-msgstr "已封裝檔案"
+msgstr "封裝"
 
 #: mkt/constants/reviewers.py:21 mkt/reviewers/templates/reviewers/themes/queue.html:76 mkt/reviewers/templates/reviewers/themes/themes.html:86
 msgid "Request More Info"
@@ -15172,11 +15179,11 @@ msgstr "每一名團隊成員只能列出一次。"
 
 #: mkt/developers/forms.py:179
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently public. <a href=\"%s\">Edit app</a>"
-msgstr "糟糕，您好像已經提交 %s 的 manifest，並且已經公開了。<a href=\"%s\">編輯應用程式</a>"
+msgstr "糟糕，您好像已經提交 %s 的安裝資訊檔，並且已經公開了。<a href=\"%s\">編輯應用程式</a>"
 
 #: mkt/developers/forms.py:183
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently pending. <a href=\"%s\">Edit app</a>"
-msgstr "糟糕，您好像已經提交 %s 的 manifest，並且正在等待確認。<a href=\"%s\">編輯應用程式</a>"
+msgstr "糟糕，您好像已經提交 %s 的安裝資訊檔，並且正在等待確認。<a href=\"%s\">編輯應用程式</a>"
 
 #: mkt/developers/forms.py:187
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently incomplete. <a href=\"%s\">Resume app</a>"
@@ -15468,7 +15475,7 @@ msgstr "Bango"
 
 #: mkt/developers/tasks.py:497
 msgid "No manifest was found at that URL. Check the address and try again."
-msgstr "在該網址沒有找到 manifest，請確定網址並重試一次。"
+msgstr "在該網址沒有找到安裝資訊檔。請確定網址並再試一次。"
 
 #: mkt/developers/tasks.py:503
 msgid "Manifests must be served with the HTTP header \"Content-Type: application/x-web-app-manifest+json\". See %s for more information."
@@ -15771,7 +15778,7 @@ msgstr "驗證應用程式"
 
 #: mkt/developers/templates/developers/validate_addon.html:17 mkt/submit/templates/submit/manifest.html:57
 msgid "Submit your app manifest URL"
-msgstr "提交您的應用程式 manifest URL"
+msgstr "送出您的應用程式安裝資訊檔網址"
 
 #: mkt/developers/templates/developers/validate_addon.html:35 mkt/submit/templates/submit/manifest.html:74
 msgid "<strong>Don't forget a protocol!</strong> Try adding either <a href=\"#\">%(http)s</a> or <a href=\"#\">%(https)s</a>."
@@ -15779,11 +15786,13 @@ msgstr "<strong>別忘了傳輸協定！</strong> 試試看使用 <a href=\"#\">
 
 #: mkt/developers/templates/developers/validate_addon.html:43 mkt/submit/templates/submit/manifest.html:82
 msgid "Manifest URLs must start with a protocol (for example, <code>http://</code> or <code>https://</code>) and typically use the <code>.webapp</code> extension."
-msgstr "Manifest URL 必須已一個傳輸協定開頭（像是 <code>http://</code> 或者是 <code>https://</code> ），並且通常以 <code>.webapp</code> 為副檔名。"
+msgstr ""
+"安裝資訊網址必須以一個通訊協定開頭（像是 <code>http://</code> 或者是 <code>https://</code> ），並且通常以 "
+"<code>.webapp</code> 為副檔名。"
 
 #: mkt/developers/templates/developers/validate_addon.html:61 mkt/submit/templates/submit/manifest.html:126
 msgid "Learn more about <b>app manifests</b> on MDN."
-msgstr "在 MDN 瞭解更多關於 <b>應用程式 manifest</b>。"
+msgstr "在 MDN 瞭解更多 <b>應用程式安裝資訊</b> 的相關資訊。"
 
 #: mkt/developers/templates/developers/apps/dashboard.html:16
 msgid "You haven't yet submitted an app to the Firefox Marketplace. Once you've <a href=\"%(app_url)s\">created your app</a>, click Submit Your App below."
@@ -15857,7 +15866,7 @@ msgstr "此應用程式 <b>不完整</b>。"
 
 #: mkt/developers/templates/developers/apps/status.html:39
 msgid "This app is <b>pending review</b> by a Firefox Marketplace reviewer."
-msgstr "這個應用程式正在等待 Firefox Marketplace 審核者的審核。"
+msgstr "這個應用程式 <b>正在等待</b> Firefox Marketplace 審核者的審核。"
 
 #: mkt/developers/templates/developers/apps/status.html:41
 msgid "You will receive an email when the review is complete."
@@ -16065,7 +16074,7 @@ msgstr "此應用程式的官方分級。"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:23 mkt/developers/templates/developers/apps/edit/basic.html:36
 msgid "This field can only be edited by updating it in the manifest."
-msgstr "這個欄位只能透過更新 manifest 來編輯。"
+msgstr "這個欄位只能透過更新安裝資訊來編輯。"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:34 mkt/reviewers/templates/reviewers/includes/details.html:75 mkt/reviewers/templates/reviewers/includes/mobile_details.html:97
 msgid "Developer Name"
@@ -16094,7 +16103,7 @@ msgstr "檢視 API 文件"
 #: mkt/developers/templates/developers/apps/edit/basic.html:76 mkt/reviewers/templates/reviewers/includes/details.html:24 mkt/reviewers/templates/reviewers/includes/mobile_details.html:51
 #: mkt/search/forms.py:97
 msgid "Manifest URL"
-msgstr "Manifest URL"
+msgstr "安裝資訊網址"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:84
 msgid "Refresh"
@@ -16102,7 +16111,9 @@ msgstr "重新整理"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:86
 msgid "Manifest URLs cannot be changed after your app has been submitted. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your manifest URL."
-msgstr "您的應用程式提交後無法修改 Manifest 網址。如果您有需求，需要修改您的資訊清單URL，請 email 給 <a href=\"mailto:%(email)s\">%(email)s</a>。"
+msgstr ""
+"您的應用程式提交後就無法修改安裝資訊網址。如果您需要修改您的安裝資訊網，請 email 給 <a href=\"mailto:%(email)s\">%"
+"(email)s</a>。"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:105
 msgid "An explanation of features, functionality, and other relevant information. This field is displayed on the app's details page."
@@ -16151,7 +16162,7 @@ msgstr "預設值"
 
 #: mkt/developers/templates/developers/apps/edit/language.html:31
 msgid "Edit language in your app manifest file"
-msgstr "在您的應用程式 manifest 檔案編輯您的語言"
+msgstr "在您的應用程式安裝資訊檔編輯您的語言"
 
 #: mkt/developers/templates/developers/apps/edit/media.html:3
 msgid "Media"
@@ -16368,11 +16379,11 @@ msgstr ""
 
 #: mkt/developers/templates/developers/emails/new_payments_region.html:7
 msgid "Thanks,"
-msgstr ""
+msgstr "感謝您，"
 
 #: mkt/developers/templates/developers/emails/new_payments_region.html:8
 msgid "Firefox Marketplace Team"
-msgstr ""
+msgstr "Firefox Marketplace 團隊"
 
 #: mkt/developers/templates/developers/helpers/disabled_payments_notice.html:9
 msgid ""
@@ -16547,7 +16558,7 @@ msgstr "價格及國家"
 
 #: mkt/developers/templates/developers/payments/premium.html:152
 msgid "Based on your chosen price point the available regions have been updated. Please check them prior to saving your changes."
-msgstr ""
+msgstr "依照您所設的定價，已更新可上架的地區。請在儲存修改前再確認一次。"
 
 #: mkt/developers/templates/developers/payments/premium.html:170
 msgid "In-App Payments"
@@ -16648,11 +16659,11 @@ msgstr "新增 Bango 帳號"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:19
 msgid "Usually 9, 10 or 11 digits. Example: 0114584906."
-msgstr ""
+msgstr "通常是 9~11 位數字，例如: 0114584906。"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:26
 msgid "Either 8 or 11 characters. Example: WFBIUS6WPDX."
-msgstr ""
+msgstr "通常是 8 或 11 個字元，例如：WFBIUS6WPDX。"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:36 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:30
 msgid "Optional"
@@ -16701,7 +16712,7 @@ msgstr "您還沒有設定付款帳號。"
 
 #: mkt/developers/templates/developers/payments/includes/bango_accounts_list.html:4
 msgid "The current payment account was associated with the app by an app owner."
-msgstr ""
+msgstr "目前的付款帳戶已由應用程式管理員連結至應用程式。"
 
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:5
 msgid "Modify Bango Account"
@@ -16717,7 +16728,7 @@ msgstr "您的應用程式不再顯示於某些地區，因為這些地區不支
 
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:6
 msgid "Your app will be displayed in any regional Marketplace that is added in the future. You will receive an email notification when a new region is added."
-msgstr ""
+msgstr "您的應用程式將顯示於未來新增的所有區域。當有新區域可供使用時您將會收到郵件通知。"
 
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:13
 msgid "Your app will be displayed in the worldwide Marketplace and in any regional Marketplace that is added in the future. You will receive an email notification when a new region is added."
@@ -16854,7 +16865,7 @@ msgstr "部署您的應用程式"
 #: mkt/ecosystem/templates/ecosystem/base.html:58 mkt/ecosystem/templates/ecosystem/landing.html:59 mkt/ecosystem/templates/ecosystem/macros.html:253
 #: mkt/ecosystem/templates/ecosystem/publish_deploy.html:23 mkt/ecosystem/templates/ecosystem/publish_hosted.html:5 mkt/ecosystem/templates/ecosystem/publish_hosted.html:13
 msgid "Hosted Apps"
-msgstr "遠端應用程式"
+msgstr "架設的應用程式"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:62 mkt/ecosystem/templates/ecosystem/landing.html:61 mkt/ecosystem/templates/ecosystem/macros.html:260
 #: mkt/ecosystem/templates/ecosystem/publish_deploy.html:34 mkt/ecosystem/templates/ecosystem/publish_packaged.html:5 mkt/ecosystem/templates/ecosystem/publish_packaged.html:13
@@ -16894,7 +16905,7 @@ msgstr "一個最小化且結構良好的 HTML 架構"
 
 #: mkt/ecosystem/templates/ecosystem/build_app_generator.html:58
 msgid "Prebuilt"
-msgstr "已預先組建 manifest.webapp"
+msgstr "已預先組建"
 
 #: mkt/ecosystem/templates/ecosystem/build_app_generator.html:60
 msgid "JavaScript libraries for interacting with the Marketplace"
@@ -17171,7 +17182,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:238
 msgid "HTTP Requests"
-msgstr ""
+msgstr "HTTP 請求"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:241
 msgid ""
@@ -17424,13 +17435,16 @@ msgid "The Web is the platform"
 msgstr "網路就是平台"
 
 #: mkt/ecosystem/templates/ecosystem/build_intro.html:18
-#, fuzzy
 msgid ""
 "Open Web Apps are a great opportunity for those who need to develop applications that work on the largest number of devices, and for those who cannot afford to develop an app for every vendor "
 "platform (such as Android, iOS, and &quot;classical&quot; desktop web browsers). The difference between an app and a website is that you can install an app and more thoroughly integrate it into "
 "your device. It’s not a bookmark &mdash; it’s part of a system. Open Web Apps hold that great promise. They are an opportunity that we should not miss, otherwise the Web might become fragmented "
 "once more."
-msgstr "開放網路應用程式 (Open Web App) 讓應用程式得以在最多數的裝置上運作，"
+msgstr ""
+"開放網路應用程式 (Open Web App) 讓想要開發能在最多數裝置中運作的應用程式的開發者，以及無法負擔同時為所有平台 (諸如 "
+"Android、iOS 以及「傳統的」電腦網頁瀏覽器) "
+"開發出相容程式的開發者能有更好的機會。應用程式與網站的差別在於透過安裝程式，您可以更加將應用程式整合至您的裝置中，不再只是書籤 &mdash; "
+"而成為了系統的一部分。開放網路應用程式有相當大的潛力，這是我們不該錯過的好機會，否則，網路將再次分崩離析。"
 
 #: mkt/ecosystem/templates/ecosystem/build_intro.html:32
 msgid ""
@@ -17544,11 +17558,11 @@ msgstr "<a href=\"%(url)s\">See the Web platform succeed for applications</a>，
 
 #: mkt/ecosystem/templates/ecosystem/build_manifests.html:5 mkt/ecosystem/templates/ecosystem/build_manifests.html:13 mkt/ecosystem/templates/ecosystem/macros.html:148
 msgid "Intro to Manifests"
-msgstr "Manifest 介紹"
+msgstr "安裝資訊介紹"
 
 #: mkt/ecosystem/templates/ecosystem/build_manifests.html:15
 msgid "Why does my app need an app manifest?"
-msgstr "為什麼我的應用程式需要一個 manifest?"
+msgstr "為什麼我的應用程式需要安裝資訊?"
 
 #: mkt/ecosystem/templates/ecosystem/build_manifests.html:17
 msgid ""
@@ -17574,7 +17588,7 @@ msgstr "什麼是 origin?"
 
 #: mkt/ecosystem/templates/ecosystem/build_manifests.html:45
 msgid "The origin of an app is the protocol, domain, and port of the URL together. Each of the following URLs is a different origin:"
-msgstr "應用程式的 origin 是由通訊協定、網域以及該網域的連接埠組成的。以下每一個網址都屬於不同的 origin:"
+msgstr "應用程式的來源是由通訊協定、網域以及該網域的連接埠組成的。以下每一個網址都屬於不同的來源:"
 
 #: mkt/ecosystem/templates/ecosystem/build_manifests.html:54
 msgid "(different port)"
@@ -17722,7 +17736,7 @@ msgstr "<strong>簡單</strong>: 在單一技術堆疊上 (HTML5/CSS/Javascript)
 
 #: mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:30
 msgid "<strong>Standards</strong>: The technology stack is defined by standards bodies (W3C and Ecma) that operate in the open, rather than by particular technology or platform vendors."
-msgstr "科技堆疊是由開放的標準化組織制定 (W3C 與 Ecma)， 並非限於特定的科技或"
+msgstr "<strong>標準</strong>: 技術標準是由開放的標準化組織制定 (W3C 與 Ecma)，並非限於特定的科技或平台廠商。"
 
 #: mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:37
 msgid ""
@@ -17813,7 +17827,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:148 mkt/ecosystem/templates/ecosystem/build_web_developers.html:104
 msgid "<a href=\"%(url)s\">Enable offline caching</a> so the app can be used when the device is not on the Internet."
-msgstr "<<a href=\"%(url)s\">啟用離線快取</a> 如此一來縱使裝置沒有連線也能使用應用程式。"
+msgstr "<a href=\"%(url)s\">啟用離線快取</a> 如此一來縱使裝置沒有連線也能使用應用程式。"
 
 #: mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:154 mkt/ecosystem/templates/ecosystem/build_web_developers.html:110
 msgid "Store data locally using either <a href=\"%(url_idx)s\">IndexedDB</a> or <a href=\"%(url_storage)s\">localStorage</a>."
@@ -17874,7 +17888,7 @@ msgstr "應用程式架構"
 
 #: mkt/ecosystem/templates/ecosystem/build_quick.html:32
 msgid "Packaged vs. Hosted Apps"
-msgstr "已封裝應用程式 vs. 遠端應用程式"
+msgstr "封裝應用程式 vs. 架設應用程式"
 
 #: mkt/ecosystem/templates/ecosystem/build_quick.html:34
 msgid ""
@@ -17882,8 +17896,10 @@ msgid ""
 "JavaScript, images, manifest, etc. Hosted apps are run from a server at a given domain, just like a standard website. Both app types require a valid manifest. When it comes time to list your app on "
 "the Firefox Marketplace, you will either upload your app as a zip file or provide the URL to where your hosted app lives."
 msgstr ""
-"Firefox OS 應用程式有兩種: <code>已封裝的應用程式</code>與<code>遠端應用程式</code>。封裝的應用程式不過是一個 zip 檔案，裡面裝有一個應用程式所有的資產: HTML、CSS、Javascript、影像、Manifest 等等。遠"
-"端應用程式存放在一個伺服器，"
+"Firefox OS 應用程式有兩種: <code>已封裝的應用程式</code>與<code>架設的應用程式</code>。封裝的應用程式不過是一個 "
+"<code>zip</code> 檔案，裡面裝有一個應用程式所有的素材: HTML、CSS、JavaScript、影像、安裝資訊檔等。架設應用程式架設在"
+"伺服器中，需要一個網址，就跟普通的網站一樣；兩種類型的應用程式都需要有效的安裝資訊檔。當您要將應用程式上架到 Firefox Marketplace "
+"商城時，您可以將您的程式打包成 zip 檔或提供您架設的網址。"
 
 #: mkt/ecosystem/templates/ecosystem/build_quick.html:49
 msgid ""
@@ -18703,7 +18719,8 @@ msgid ""
 "The Dashboard opens automatically when you install the Simulator, and you can reopen it at any time by going to the \"Firefox\" menu (or the \"Tools\" menu on OS X and Linux), then \"Web Developer"
 "\", then \"Firefox OS Simulator\":"
 msgstr ""
-"在您安裝 Simulator 時，Dashboard 自動開啟，您也可以隨時啟動它，只要點選 Firefox 選單 (OS X 版與 Linux 版的使用者，請點選 『工具』選單)，然後移至 『網頁開發』，最後點選 \"Firefox OS Simulator\":"
+"在您安裝 Simulator 時，主控台將自動開啟。您也可以隨時啟動它，只要點選 Firefox 選單 (OS X 與 Linux "
+"的使用者，請點選「工具」選單)，然後移至「網頁開發」，最後點選「Firefox OS Simulator」:"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:118
 msgid "The Dashboard is the tool you use to add your app to the Simulator and run it. Here's what it looks like:"
@@ -18735,7 +18752,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:150
 msgid "Unless manifest validation reveals that your app has errors, the Dashboard will then automatically run your app in the Simulator."
-msgstr "除非資訊清單檔案驗證工作發現您的應用程式有錯誤，Dashboard 接著會在 Simulator 執行您的應用程式。"
+msgstr "除非資訊清單檔案驗證工作發現您的應用程式有錯誤，主控台接著會在模擬器執行您的應用程式。"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:155
 msgid "Managing apps"
@@ -18751,19 +18768,19 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:168
 msgid "its name, taken from the manifest"
-msgstr "它的名稱，此項是由 manifest 讀取的"
+msgstr "它的名稱，此項是由安裝資訊讀取的"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:169
 msgid "its type, which will be one of \"Packaged\", \"Hosted\", or \"Generated\""
-msgstr "它的類型，可能是 『已封裝的』、『遠端』，或 『Generated』"
+msgstr "它的類型，必須是「封裝」、「架設」，或「產生的」三者之一"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:170
 msgid "a link to its manifest file"
-msgstr "它的 manifest 檔案的連結"
+msgstr "安裝資訊檔的連結"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:171
 msgid "the result of manifest validation"
-msgstr "manifest 驗證結果"
+msgstr "安裝資訊驗證結果"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:173
 msgid "It also gives us three commands:"
@@ -18771,7 +18788,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:175
 msgid "\"Remove\": remove the app from the Simulator or the Dashboard. You can undo this action as long as the Dashboard tab is open."
-msgstr "\"Remove\": 從 Simulator 或 Dashboard 移除這個應用程式。只要 Dashboard 分頁是開啟的，您就可以復原這個動作。"
+msgstr "「Remove」: 從模擬器或主控台移除這個應用程式。只要主控台分頁是開啟的，您就可以復原這個動作。"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:176
 msgid ""
@@ -18789,7 +18806,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:184
 msgid "Manifest validation"
-msgstr "Manifest 驗證"
+msgstr "驗證安裝資訊"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:186
 msgid "When you supply a manifest, the Manager will run some validation tests on it. It reports three categories of problems:"
@@ -18801,12 +18818,11 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:192
 msgid "manifest warnings: problems that may prevent your app from working properly"
-msgstr "manifest 警告: 是指讓您的應用程式無法正常運作的問題"
+msgstr "安裝資訊警告: 是指讓您的應用程式無法正常運作的問題"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:193
-#, fuzzy
 msgid "simulator-specific warnings: features your app is using that the Simulator doesn't yet support"
-msgstr "simulator 特定的警告: Simulator 尚未支援您應用程式使用的功能"
+msgstr "simulator 的警告: Simulator 尚未支援您應用程式使用的功能"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:196
 msgid "It summarises the problems encountered in the entry for the app: clicking on the summary provides more details."
@@ -18814,7 +18830,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:200
 msgid "Manifest errors"
-msgstr "Manifest 錯誤"
+msgstr "安裝資訊錯誤"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:202
 msgid "The Dashboard will report the following conditions as errors, meaning that you won't be able to run your app in the Simulator without fixing them:"
@@ -18826,7 +18842,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:208
 msgid "the manifest is not valid JSON"
-msgstr "這個 manifest 不是有效的 JSON"
+msgstr "安裝資訊不是有效的 JSON"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:209
 msgid "the app is a hosted app, but the <code>type</code> field in its manifest is \"privileged\" or \"certified\", which are only available to packaged apps"
@@ -18838,7 +18854,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:217
 msgid "Manifest warnings"
-msgstr "Manifest 警告"
+msgstr "安裝資訊警告"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:218
 msgid "The Dashboard will report the following manifest issues as warnings:"
@@ -18995,7 +19011,7 @@ msgstr "推播到裝置"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:331
 msgid "If you have a Firefox OS device you can connect it to the Simulator, and can then push apps from the Dashboard to the device."
-msgstr "您也可以將已安裝 Firefox OS 的裝置連接至 Simulator，然後將應用程式從 Dashboard 推播至裝置。"
+msgstr "您也可以將已安裝 Firefox OS 的裝置連接至模擬器，然後從主控台將應用程式推播至裝置。"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:336
 msgid "Connecting a device"
@@ -19102,13 +19118,12 @@ msgid "Join the community"
 msgstr "加入社群"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:117
-#, fuzzy
 msgid "Look who's already here"
 msgstr "誰已經成為我們的一員啦"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:120
 msgid "Are you a Web Company, Third-Party Service, or OEM looking to partner with Mozilla? <a href=\"%(partner_url)s\">Check out our Partners page for more info.</a>"
-msgstr ""
+msgstr "誰已經成為我們的一員啦"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:132
 msgid "The Mozilla Apps platform"
@@ -19217,9 +19232,8 @@ msgid "With a powerful web platform, an open marketplace, and partners like you,
 msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:45
-#, fuzzy
 msgid "<strong>The Web is the Platform</strong> &ndash; write your HTML5 app once and distribute it across the entire web."
-msgstr "<strong>網路即是平台</strong> &ndash; 您的 HTML5 應用程式只需編寫一次，"
+msgstr "<strong>網路即是平台</strong> &ndash; 您的 HTML5 應用程式只需撰寫一次，就可以在整個網路世界中發布。"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:51
 msgid "<strong>Seamless Payments</strong> &ndash; with multiple payment models and carrier-integrated billing, we bring you frictionless monetization to your app."
@@ -19250,7 +19264,6 @@ msgid "Android Tablets"
 msgstr "Android 平板"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:111
-#, fuzzy
 msgid "You + Mozilla = Awesome"
 msgstr "您＋ Mozilla ＝ 出類拔萃"
 
@@ -19402,7 +19415,6 @@ msgid ""
 msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/publish_packaged.html:72
-#, fuzzy
 msgid "Approved by an app store after code review or equivalent."
 msgstr "在審核程式碼或執行其他類似的措施後由應用程式商店核准。"
 
@@ -19457,7 +19469,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/publish_packaged.html:148
 msgid "Differences from hosted apps"
-msgstr "與遠端應用程式有何差別"
+msgstr "與架設應用程式有何差別"
 
 #: mkt/ecosystem/templates/ecosystem/publish_packaged.html:150
 msgid "Packaged apps have the same capabilites as normal website-style Open Web Apps (&quot;hosted&quot; apps), but packaged apps have a few differences:"
@@ -19477,7 +19489,7 @@ msgstr ""
 #. Do not localize text in <code></code>
 #: mkt/ecosystem/templates/ecosystem/publish_packaged.html:175
 msgid "The manifest file must be named <code>manifest.webapp</code>."
-msgstr "Manifest 檔名必須是 <code>manifest.webapp</code>。"
+msgstr "安裝資訊檔名必須是 <code>manifest.webapp</code>。"
 
 #: mkt/ecosystem/templates/ecosystem/publish_packaged.html:180
 msgid "Their resources are accessed from the zip file, which is stored on the device where the app is installed."
@@ -19634,7 +19646,9 @@ msgstr "如果應用程式沒有通過審核，審核者應向開發者清楚解
 msgid ""
 "Reviewers make no judgment on how an app <em>looks</em>, only on how the app <em>works</em>. For example, an app with a paragraph of red text on an orange background wouldn't be rejected because "
 "it's ugly, but might be rejected if it's not readable."
-msgstr "審核者僅考量應用程式的<em>運作方式</em>，不考量應用程式外觀。舉例來說，一個應用程式使用橘色背景顯示一段紅色文字並不會只是不美觀而被退回，但是使用者判讀困難可能會導致應用程式被退回。"
+msgstr ""
+"審核者僅考量應用程式的<em>運作方式</em>，不考量<em>應用程式外觀</em>。舉例來說，一個應用程式使用橘色背景顯示一段紅色文字並不會只是不美"
+"觀而被退回，但是使用者判讀困難可能會導致應用程式被退回。"
 
 #: mkt/ecosystem/templates/ecosystem/publish_review.html:66
 msgid ""
@@ -19727,7 +19741,6 @@ msgid "No content that is designed to harm Mozilla or users (such as malicious c
 msgstr "內容不得用來危害 Mozilla 或使用者 (例如惡意程式碼，電腦病毒，間諜程式或惡意程式)。"
 
 #: mkt/ecosystem/templates/ecosystem/publish_review.html:187
-#, fuzzy
 msgid "No content that is illegal or promotes illegal activities."
 msgstr "不得違反法令或教唆違法行為。"
 
@@ -19772,7 +19785,6 @@ msgid "The app must not compromise system performance or stability."
 msgstr "應用程式不能拖累系統效能或是危害系統穩定。"
 
 #: mkt/ecosystem/templates/ecosystem/publish_review.html:236
-#, fuzzy
 msgid "Usability"
 msgstr "可用性"
 
@@ -19830,9 +19842,8 @@ msgid ""
 msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/publish_review.html:319
-#, fuzzy
 msgid "An app being used for attacks on the network, such as a distributed denial of service (DDOS)"
-msgstr "Firefox OS Marketplace provides infrastructures for 開發者 to offer 應用程式 to 終端使用者。"
+msgstr "用來攻擊網路上的裝置，諸如分散式阻斷攻擊 (DDOS) 的應用程式"
 
 #: mkt/ecosystem/templates/ecosystem/publish_submit.html:15
 msgid "The Firefox OS Marketplace provides infrastructure for developers to offer apps to end users."
@@ -19970,21 +19981,22 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/publish_submit.html:175
 msgid "The package will upload automatically. If your app validates, click <strong>Continue</strong>."
-msgstr "我們將自動上傳這個封裝檔案。如果您的應用程式通過驗證，請按下<strong>繼續<strong>。"
+msgstr "我們將自動上傳這個封裝檔案。如果您的應用程式通過驗證，請按下<strong>繼續</strong>。"
 
 #: mkt/ecosystem/templates/ecosystem/publish_submit.html:181
 msgid "If there are validation errors, correct them and re-upload your package."
 msgstr "如果驗證發生錯誤，請在更正後重新上傳您的封裝檔案。"
 
 #: mkt/ecosystem/templates/ecosystem/publish_submit.html:191
-#, fuzzy
 msgid ""
 "Add the required details for your app's detail page, and any other details you want to add, and click <strong>Continue</strong>. Note that the required fields are the <strong>brief summary</"
 "strong>, <strong>categories</strong>, <strong>privacy policy</strong>, <strong>device types</strong>, and a <strong>screenshot</strong>. But a homepage, support site, and support email are highly "
 "recommended. The multi-line text fields support HTML, so you can structure and link the text."
 msgstr ""
-"請輸入您應用程式詳細資訊頁面的必填詳細資訊，以及其他想要加入的詳細資訊，然後按下<strong>繼續</strong>。必填欄位包含<strong>brief summary</strong>，<strong>類別</strong>，<strong>隱私權政策</"
-"strong>，<strong>裝置類型</strong>，以及一張</strong>螢幕截圖</strong>。雖非必填項目，但還是強烈建議您輸入首頁網址，支援網站以及支援電子郵件"
+"請輸入您應用程式詳細資訊頁面的必填詳細資訊，以及其他想要加入的詳細資訊，然後按下<strong>繼續</strong>。必填欄位包含<strong>簡單"
+"敘述</strong>、<strong>類別</strong>、<strong>隱私權保護政策</strong>、<strong>裝置類型</stron"
+"g>以及一張<strong>螢幕截圖</strong>。雖非必填項目，但還是建議您輸入首頁網址、支援網站以及支援信箱。多行的輸入框支援 "
+"HTML，您可以對文字稍作排版並使用連結。"
 
 #: mkt/ecosystem/templates/ecosystem/publish_submit.html:204
 msgid ""
@@ -20206,7 +20218,6 @@ msgid "integration tests"
 msgstr "整合測試"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:54 mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:53
-#, fuzzy
 msgid "client-side code/styles"
 msgstr "用戶端程式碼/樣式"
 
@@ -20338,9 +20349,8 @@ msgid "An asynchronous and fast datastore for maintaining podcast audio and imag
 msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:96
-#, fuzzy
 msgid "Allows cross-domain requests on Firefox OS without CORS."
-msgstr "在不使用CORS的情形下於 Firefox OS 允許跨網域要求。"
+msgstr "在不使用 CORS 的情形下於 Firefox OS 允許跨網域要求。"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:121
 msgid "Backbone lets us do data-binding and MVC-style coding, making the app a lot easier to develop."
@@ -20411,31 +20421,31 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:52
 msgid "Generates animated GIFs."
-msgstr ""
+msgstr "產生動態 GIF。"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:60
 msgid "A wrapper for IndexedDB."
-msgstr ""
+msgstr "IndexedDB 的 wrapper。"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:68
 msgid "Calculates perspective transformations."
-msgstr ""
+msgstr "計算透視投影。"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:76
 msgid "Add touch events."
-msgstr ""
+msgstr "新增觸控事件。"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:101
 msgid "Once loaded for the first time, it can be used offline, without a network connection."
-msgstr ""
+msgstr "第一次載入後即可於離線情況下使用。"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:110 mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:118
 msgid "For downloading files to the browser."
-msgstr ""
+msgstr "在瀏覽器中下載檔案。"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:126
 msgid "Used for fast and efficient processing of image data."
-msgstr ""
+msgstr "更快、更有效率的處理圖片資料。"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:134 mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:143
 msgid "Used to access camera devices and get a video stream from where to capture frames."
@@ -20455,15 +20465,15 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:186
 msgid "rtcamera uses x-appbar, x-deck, x-layout, x-modal and x-switch."
-msgstr ""
+msgstr "rtcamera 使用 x-appbar、x-deck、x-layout、x-modal 與 x-switch。"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:210
 msgid "1%"
-msgstr ""
+msgstr "1%"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:212
 msgid "83%"
-msgstr ""
+msgstr "83%"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:17 mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:18
 #: mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:22 mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:23
@@ -20567,9 +20577,8 @@ msgid "Loading in-app purchase"
 msgstr "讀取應用程式內付款"
 
 #: mkt/inapp_pay/templates/inapp_pay/lobby.html:9
-#, fuzzy
 msgid "Waiting for secure request&hellip;"
-msgstr "等待安全要求&hellip;"
+msgstr "等待安全請求&hellip;"
 
 #: mkt/inapp_pay/templates/inapp_pay/login.html:5
 msgid "Please Sign In"
@@ -20609,9 +20618,8 @@ msgid "Transaction Lookup"
 msgstr "交易查閱"
 
 #: mkt/lookup/forms.py:15
-#, fuzzy
 msgid "Enter refund details to refund transaction"
-msgstr "請輸入退款詳細資訊以便交易退款"
+msgstr "請輸入退款詳細資訊以便進行退款交易"
 
 #: mkt/lookup/views.py:115
 msgid "Currently unable to retrieve refund status."
@@ -21262,9 +21270,8 @@ msgid "In escalation queue"
 msgstr "位於向上呈報待審區"
 
 #: mkt/reviewers/templates/reviewers/review.html:57
-#, fuzzy
 msgid "Review This App"
-msgstr "對此應用程式進行評價"
+msgstr "評價此應用程式"
 
 #: mkt/reviewers/templates/reviewers/review.html:60 mkt/reviewers/templates/reviewers/review.html:79
 msgid "App History"
@@ -21316,7 +21323,7 @@ msgstr "已封存的應用程式"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:16 mkt/reviewers/templates/reviewers/includes/mobile_details.html:48
 msgid "Hosted app"
-msgstr "遠端應用程式"
+msgstr "架設應用程式"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:36 mkt/reviewers/templates/reviewers/includes/mobile_details.html:58
 msgid "App domain"
@@ -21468,9 +21475,8 @@ msgid "{0} out of {1} reviewed"
 msgstr "已審核 {0} / {1}個"
 
 #: mkt/reviewers/templates/reviewers/themes/queue.html:102
-#, fuzzy
 msgid "There are currently no Themes to review."
-msgstr "目前沒有任何可審核的主題。"
+msgstr "目前沒有任何可審核的佈景主題。"
 
 #: mkt/reviewers/templates/reviewers/themes/queue_list.html:24
 msgid "Release My Theme Locks"
@@ -21631,7 +21637,7 @@ msgstr "如果您手動輸入位址，請再次檢查拼寫。"
 
 #: mkt/site/templates/site/404.html:22
 msgid "Visit the <a class=\"sync\" href=\"%(home)s\">Firefox Marketplace front page</a>."
-msgstr "瀏覽 <a class=\"sync\" href=\"%(home)s\">Firefox Marketplace首頁</b>。"
+msgstr "瀏覽 <a class=\"sync\" href=\"%(home)s\">Firefox Marketplace 首頁</a>。"
 
 #: mkt/site/templates/site/500.html:5
 msgid "Server Error"
@@ -21899,7 +21905,7 @@ msgstr "提交應用程式"
 
 #: mkt/submit/templates/submit/details.html:23
 msgid "Please review your listing information below. We've pre-filled as much as we can from your manifest."
-msgstr "請在下方審閱您的清單資訊，我們已經從您的 manifest 讀取相關資訊，盡可能預先填寫已知的資訊。"
+msgstr "請在下方確認您的清單資訊，我們已經從您的安裝資訊讀取相關資訊，盡可能預先填寫已知的資訊。"
 
 #: mkt/submit/templates/submit/details.html:48
 msgid "Open details page"

@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-08-30 15:53-0700\n"
-"PO-Revision-Date: 2013-09-16 17:48+0000\n"
+"PO-Revision-Date: 2013-09-16 18:35+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1379353724.0\n"
+"X-POOTLE-MTIME: 1379356539.0\n"
 
 #: media/js/common-all.js:10109 media/js/common-min.js:23 media/js/impala-all.js:1159 media/js/impala-min.js:1 media/js/devreg/init.js:35 media/js/mkt/init.js:47
 #: media/js/zamboni/discovery-all.js:10076 media/js/zamboni/discovery-min.js:23 media/js/zamboni/init.js:32 media/js/zamboni/mobile-all.js:10912 media/js/zamboni/mobile-min.js:32
@@ -497,23 +497,23 @@ msgstr "擱置"
 
 #: media/js/devreg/payments-enroll.js:9
 msgid "Spanish Banking Code"
-msgstr "西班牙銀行代號"
+msgstr "Spanish Banking Code"
 
 #: media/js/devreg/payments-enroll.js:11
 msgid "Irish Sort Code"
-msgstr "愛爾蘭排序代號"
+msgstr "Irish Sort Code"
 
 #: media/js/devreg/payments-enroll.js:13
 msgid "Belgian Sort Code"
-msgstr "比利時排序代號"
+msgstr "Belgian Sort Code"
 
 #: media/js/devreg/payments-enroll.js:15
 msgid "Spanish/French/Italian/Dutch Banking Code"
-msgstr "西班牙/法國/義大利/荷蘭銀行代號"
+msgstr "Spanish/French/Italian/Dutch Banking Code"
 
 #: media/js/devreg/payments-enroll.js:17
 msgid "Dutch/US Sort Code"
-msgstr "荷蘭/美國排序代號"
+msgstr "Dutch/US Sort Code"
 
 #: media/js/devreg/payments-enroll.js:19
 msgid "Canadian Transit Number/German Routing Code"
@@ -521,31 +521,31 @@ msgstr "Canadian Transit Number/German Routing Code"
 
 #: media/js/devreg/payments-enroll.js:21
 msgid "Korean Bank and Branch/Indonesian Bank Code"
-msgstr "韓國銀行與分行/印尼銀行代碼"
+msgstr "Korean Bank and Branch/Indonesian Bank Code"
 
 #: media/js/devreg/payments-enroll.js:23
 msgid "Greek HEBIC/Indonesian Bank Code"
-msgstr "希臘 HEBIC/印尼銀行代號"
+msgstr "Greek HEBIC/Indonesian Bank Code"
 
 #: media/js/devreg/payments-enroll.js:25
 msgid "UK/Irish Sort Code or NZ Account Prefix or Australian BSB Code"
-msgstr "英國/愛爾蘭排序代碼或紐西蘭帳號首碼或澳大利亞 BSB 代碼"
+msgstr "UK/Irish Sort Code or NZ Account Prefix or Australian BSB Code"
 
 #: media/js/devreg/payments-enroll.js:27
 msgid "Austrian/Swiss Bank Code"
-msgstr "奧地利/瑞士銀行代碼"
+msgstr "Austrian/Swiss Bank Code"
 
 #: media/js/devreg/payments-enroll.js:29
 msgid "Danish/Swiss Bank Code"
-msgstr "丹麥/瑞士銀行代碼"
+msgstr "Danish/Swiss Bank Code"
 
 #: media/js/devreg/payments-enroll.js:31
 msgid "Swiss/Iraqi Bank Code"
-msgstr "瑞士/伊拉克銀行代碼"
+msgstr "Swiss/Iraqi Bank Code"
 
 #: media/js/devreg/payments-enroll.js:33
 msgid "Iraqi Bank Code"
-msgstr "伊拉克銀行代碼"
+msgstr "Iraqi Bank Code"
 
 #. L10n: {0} is the name of a bank detected from the bank account code.
 #: media/js/devreg/payments-enroll.js:135
