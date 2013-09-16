@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-08-30 15:54-0700\n"
-"PO-Revision-Date: 2013-09-02 15:58+0000\n"
-"Last-Translator: James <>\n"
+"PO-Revision-Date: 2013-09-16 18:00+0000\n"
+"Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1378137505.0\n"
+"X-POOTLE-MTIME: 1379354415.0\n"
 
 #: apps/addons/buttons.py:207
 msgid "Download Now"
@@ -2056,7 +2056,7 @@ msgstr "需求已更改"
 #. L10n: {0} is the status
 #: apps/amo/log.py:640
 msgid "{version} status changed to {0}."
-msgstr ""
+msgstr "{version} 狀態已變更為 {0}。"
 
 #: apps/amo/templates/amo/403.html:3
 msgid "Not allowed"
@@ -4705,7 +4705,7 @@ msgstr "AMO 審核者"
 
 #: apps/devhub/templates/devhub/index.html:89
 msgid "Get ahead! Become an AMO Reviewer today and get your add-ons reviewed faster."
-msgstr ""
+msgstr "向前行！今天就成為 AMO 審核者，加快您的附加元件審核速度。"
 
 #: apps/devhub/templates/devhub/index.html:92
 msgid "Become an AMO Reviewer"
@@ -5777,11 +5777,11 @@ msgstr "檢視等待審核區<a href=\"{0}\">等候時間</a>。"
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:57
 msgid "Get Ahead in the Review Queue!"
-msgstr ""
+msgstr "讓排隊速度變快！"
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:59
 msgid "Become an AMO Reviewer today and get your add-ons reviewed faster."
-msgstr ""
+msgstr "今天就成為 AMO 審核者，加快您的附加元件審核速度。"
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:68
 msgid "Enrolling in Marketplace"
@@ -9569,7 +9569,7 @@ msgstr "等待完整審核"
 
 #: apps/editors/helpers.py:57
 msgid "Rejected or Unreviewed"
-msgstr ""
+msgstr "被退回或未審核"
 
 # 83%
 # 100%
@@ -10323,11 +10323,11 @@ msgstr "manifest 中必須包含開發者名稱，以顯示在其 App 列表中�
 
 #: apps/files/utils.py:328
 msgid "Invalid file name in archive: {0}"
-msgstr ""
+msgstr "壓縮檔中有無效檔名: {0}"
 
 #: apps/files/utils.py:336
 msgid "File exceeding size limit in archive: {0}"
-msgstr ""
+msgstr "壓縮檔中有超過大小限制的檔案: {0}"
 
 #: apps/files/utils.py:386
 msgid "Invalid archive."
@@ -13668,7 +13668,7 @@ msgstr "意見反應"
 
 #: mkt/collections/constants.py:9
 msgid "Basic Collection"
-msgstr ""
+msgstr "基礎收藏集"
 
 #: mkt/collections/constants.py:10
 msgid "Featured App List"
@@ -13676,15 +13676,15 @@ msgstr "精選應用程式清單"
 
 #: mkt/collections/constants.py:11
 msgid "Operator Shelf"
-msgstr ""
+msgstr "電信業者展示架"
 
 #: mkt/collections/fields.py:13
 msgid "Hexadecimal color"
-msgstr ""
+msgstr "十六進位色彩"
 
 #: mkt/collections/fields.py:18
 msgid "Must be a valid hex color code, e.g. #FF0035."
-msgstr ""
+msgstr "必須為有效的十六進位色碼，例如 #FF0035。"
 
 #: mkt/collections/serializers.py:62
 msgid "You can not have more than one Featured Apps/Operator Shelf collection for the same category/carrier/region combination."
@@ -13692,7 +13692,7 @@ msgstr ""
 
 #: mkt/commonplace/templates/commonplace/index.html:10
 msgid "The Firefox Marketplace is the official source of apps for the Web Platform."
-msgstr ""
+msgstr "Firefox Marketplace 是網頁平台的官方應用程式商城。"
 
 # 88%
 #: mkt/constants/apps.py:9 mkt/reviewers/templates/reviewers/logs.html:18 mkt/reviewers/templates/reviewers/includes/search_results_themes.html:6
@@ -14935,13 +14935,15 @@ msgstr "這個應用程式需要一個支援觸控事件 (touch event) 的平台
 
 #: mkt/constants/features.py:151
 msgid "Smartphone-Sized Displays (qHD)"
-msgstr ""
+msgstr "智慧型手機尺寸的顯示介面 (qHD)"
 
 #: mkt/constants/features.py:152
 msgid ""
 "The app requires the platform to have a smartphone-sized display (having qHD resolution). This option indicates that the app will be unusable on larger displays (e.g., tablets, desktop, large or "
 "high-DPI phones)."
 msgstr ""
+"此應用程式要求平台必須包含智慧型手機尺寸的螢幕 (有 qHD 解析度)。此選項表示此應用程式將無法在大尺寸螢幕 "
+"(例如平板電腦、桌機或高解析度螢幕的手機) 當中使用。"
 
 #: mkt/constants/features.py:162
 msgid "The app requires that the platform can decode and play MP3 files."
@@ -15211,7 +15213,7 @@ msgstr "您必須至少上傳一個螢幕截圖或影片。"
 
 #: mkt/developers/forms.py:500
 msgid "Packaged app too large for submission. Packages must be less than %s."
-msgstr ""
+msgstr "封裝的應用程式太大，無法送出。封裝大小必須小於 %s。"
 
 #: mkt/developers/forms.py:512
 msgid "Error extracting manifest from zip file."
@@ -15253,7 +15255,7 @@ msgstr "其他與新的地區"
 
 #: mkt/developers/forms.py:785
 msgid "Enable new regions"
-msgstr ""
+msgstr "啟用新區域"
 
 #: mkt/developers/forms.py:870
 msgid "You must select at least one region or \"Other and new regions.\""
@@ -15402,7 +15404,7 @@ msgstr "銀行帳號"
 
 #: mkt/developers/forms_payments.py:396
 msgid "SWIFT code"
-msgstr ""
+msgstr "SWIFT 碼"
 
 #: mkt/developers/forms_payments.py:398
 msgid "Bank Name"
@@ -15446,15 +15448,15 @@ msgstr "您不能從一個應用程式移除付款帳號。"
 
 #: mkt/developers/forms_payments.py:487
 msgid "You are not permitted to change payment accounts."
-msgstr ""
+msgstr "您不被允許修改付款帳號。"
 
 #: mkt/developers/forms_payments.py:531
 msgid "No payment account set up for that app"
-msgstr ""
+msgstr "該應用程式尚未設定付款帳號。"
 
 #: mkt/developers/forms_payments.py:534
 msgid "Account not set up"
-msgstr ""
+msgstr "未設定帳號"
 
 #: mkt/developers/helpers.py:36 mkt/developers/helpers.py:65 mkt/reviewers/forms.py:69
 msgid "Developers"
@@ -15490,7 +15492,7 @@ msgstr "新區域已新增至 Firefox Marketplace"
 
 #: mkt/developers/tasks.py:663
 msgid "{app}: {region} region added to the Firefox Marketplace"
-msgstr ""
+msgstr "{app}: {region} 已新增至 Firefox Marketplace"
 
 #: mkt/developers/utils.py:42
 msgid "Video support not enabled."
@@ -15521,7 +15523,7 @@ msgstr "圖示必須為正方形。"
 #. in px.
 #: mkt/developers/utils.py:105
 msgid "App previews must be at least {0}px by {1}px or {1}px by {0}px."
-msgstr ""
+msgstr "應用程式預覽圖應至少有 {0}px * {1}px 或 {1}px * {0}px。"
 
 # 75%
 #: mkt/developers/views.py:150
@@ -15550,7 +15552,7 @@ msgstr "編輯版本成功。"
 
 #: mkt/developers/views.py:343
 msgid "Version successfully made public."
-msgstr ""
+msgstr "成功將版本公開。"
 
 # 77%
 #: mkt/developers/views.py:358
@@ -15619,11 +15621,12 @@ msgstr "API"
 
 #: mkt/developers/templates/developers/api.html:12
 msgid "To access the Marketplace API, create an OAuth key pair using the form below."
-msgstr ""
+msgstr "要存取 Marketplace API，使用下方的表單建立一把 OAuth 金鑰。"
 
 #: mkt/developers/templates/developers/api.html:18
 msgid "To access the Marketplace API, accept the <a href=\"%(terms)s\">terms of service</a> and create an OAuth key pair using the form below."
 msgstr ""
+"要存取 Marketplace API，請先同意 <a href=\"%(terms)s\">服務條款</a> 並使用下方表單建立一把 OAuth 金鑰對。"
 
 #: mkt/developers/templates/developers/api.html:23
 msgid ""
@@ -16028,13 +16031,13 @@ msgstr "這個應用程式需要裝置支援某些功能才能運作。"
 
 #: mkt/developers/templates/developers/apps/version_edit.html:66
 msgid "Auto-publish when approved"
-msgstr ""
+msgstr "審核通過後自動發布"
 
 #: mkt/developers/templates/developers/apps/version_edit.html:67
 msgid ""
 "If selected this version will be published immediately following its approval by reviewers. If you don't select this option you will be notified via email about this version's approval and you will "
 "need to log in and manually publish it."
-msgstr ""
+msgstr "若選擇此選項，此版本將在通過審核後立刻公開發布。若您不選擇此選項，將會收到郵件告訴您已經通過審核，但您還是得登入並手動公開發布。"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:54
 msgid "Add a Promo"
@@ -16349,11 +16352,11 @@ msgstr "更改裝置"
 
 #: mkt/developers/templates/developers/emails/new_payments_region.html:1
 msgid "Dear App Developer,"
-msgstr ""
+msgstr "親愛的應用程式開發者，"
 
 #: mkt/developers/templates/developers/emails/new_payments_region.html:3
 msgid "We've added a new payments region to the Firefox Marketplace. The Marketplace will soon be accepting payments for"
-msgstr ""
+msgstr "我們已為 Firefox Marketplace 新增了更多的付款區域。Marketplace 即將開始接受下列地區的付款："
 
 #: mkt/developers/templates/developers/emails/new_payments_region.html:5
 msgid "If you would like your app,"
@@ -16718,7 +16721,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:13
 msgid "Your app will be displayed in the worldwide Marketplace and in any regional Marketplace that is added in the future. You will receive an email notification when a new region is added."
-msgstr ""
+msgstr "您的應用程式將顯示於全球的 Marketplace 以及未來新增的所有區域。當有新區域可供使用時您將會收到郵件通知。"
 
 #: mkt/developers/templates/developers/payments/includes/regions_toggle.html:4
 msgid "Select All"
@@ -17054,7 +17057,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:37
 msgid "Access your CSS, JS, and image files offline"
-msgstr ""
+msgstr "離線存取您的 CSS、JS 與圖片檔案"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:40
 msgid ""
@@ -17071,7 +17074,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:81
 msgid "Save user data and settings without a server"
-msgstr ""
+msgstr "不須伺服器就能儲存使用者資料與設定"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:84
 msgid "There are many JavaScript APIs for local, persistent storage. From most to least compatible across browers, your options are:"
