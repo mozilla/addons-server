@@ -10,4 +10,6 @@ urlpatterns = patterns('',
         name='commonplace.commbadge'),
     url('^curation/.*$', views.commonplace, {'repo': 'rocketfuel'},
         name='commonplace.rocketfuel'),
+    url('^stats/.*$', views.commonplace, {'repo': 'marketplace-stats'},
+        name='commonplace.stats'),
 )

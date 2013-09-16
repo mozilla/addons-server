@@ -336,4 +336,5 @@ PURCHASE_ENABLED_REGIONS = [regions.US.id]
 LOGOUT_REDIRECT_URL = '/developers/'
 
 # Name of our Commonplace repositories on GitHub.
-COMMONPLACE_REPOS = ['commbadge', 'fireplace', 'rocketfuel']
+COMMONPLACE_REPOS = ['commbadge', 'fireplace', 'marketplace-stats',
+                     'rocketfuel']
