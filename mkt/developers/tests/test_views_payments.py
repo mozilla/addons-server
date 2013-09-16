@@ -507,6 +507,7 @@ class TestPayments(amo.tests.TestCase):
                                          'accounts': acct.pk,
                                          'regions': self.price_regions}),
                                          follow=True)
+        eq_(api.bango.premium.post.call_count, 1)
         self.assertNoFormErrors(res)
         eq_(res.status_code, 200)
         eq_(self.webapp.app_payment_account.payment_account.pk, acct.pk)
