@@ -3,6 +3,7 @@ import time
 from urllib import urlencode
 
 from django.conf import settings
+from django.core.cache import cache
 from django.middleware.transaction import TransactionMiddleware
 from django.utils.cache import patch_vary_headers
 
@@ -35,19 +36,32 @@ class APITransactionMiddleware(TransactionMiddleware):
         return response
 
 
+# How long to set the time-to-live on the cache.
+PINNING_SECONDS = int(getattr(settings, 'MULTIDB_PINNING_SECONDS', 15))
+
+
 class APIPinningMiddleware(PinningRouterMiddleware):
     """
-    Similar to multidb, but we can't rely on cookies. Instead this will
-    examine the request and pin to the master db if the user is authenticated.
+    Similar to multidb, but we can't rely on cookies. Instead we cache the
+    users who are to be pinned with a cache timeout. Users who are to be
+    pinned are those that are not anonymous users and who are either making
+    an updating request or who are already in our cache as having done one
+    recently.
 
     If not in the API, will fall back to the cookie pinning middleware.
     """
+
+    def cache_key(self, request):
+        """Returns cache key based on user ID."""
+        return u'api-pinning:%s' % request.amo_user.id
 
     def process_request(self, request):
         if not getattr(request, 'API', False):
             return super(APIPinningMiddleware, self).process_request(request)
 
-        if request.amo_user and not request.amo_user.is_anonymous():
+        if (request.amo_user and not request.amo_user.is_anonymous() and
+                (cache.get(self.cache_key(request)) or
+                 request.method in ['DELETE', 'PATCH', 'POST', 'PUT'])):
             statsd.incr('api.db.pinned')
             pin_this_thread()
             return
@@ -59,6 +73,11 @@ class APIPinningMiddleware(PinningRouterMiddleware):
         if not getattr(request, 'API', False):
             return (super(APIPinningMiddleware, self)
                     .process_response(request, response))
+
+        if (request.amo_user and not request.amo_user.is_anonymous() and (
+                request.method in ['DELETE', 'PATCH', 'POST', 'PUT'] or
+                getattr(response, '_db_write', False))):
+            cache.set(self.cache_key(request), 1, PINNING_SECONDS)
 
         return response
 

@@ -1,6 +1,7 @@
 from urlparse import parse_qs
 
 from django.conf import settings
+from django.core.cache import cache
 from django.http import HttpResponse, HttpResponseServerError
 
 import mock
@@ -88,17 +89,54 @@ class TestPinningMiddleware(amo.tests.TestCase):
         self.pin = APIPinningMiddleware()
         self.req = RequestFactory().get('/')
         self.req.API = True
-        self.req.amo_user = mock.Mock()
+        self.key = 'api-pinning:42'
 
-    def test_pinned(self):
-        self.req.amo_user.is_anonymous.return_value = False
+    def attach_user(self, anon=True):
+        self.req.amo_user = mock.Mock(id=42, is_anonymous=lambda: anon)
+
+    def test_pinned_request_method(self):
+        self.attach_user(anon=False)
+
+        for method in ['DELETE', 'PATCH', 'POST', 'PUT']:
+            self.req.method = method
+            self.pin.process_request(self.req)
+            ok_(this_thread_is_pinned())
+
+        for method in ['GET', 'HEAD', 'OPTIONS', 'POOP']:
+            self.req.method = method
+            self.pin.process_request(self.req)
+            ok_(not this_thread_is_pinned())
+
+    def test_pinned_cached(self):
+        cache.set(self.key, 1, 5)
+        self.attach_user(anon=False)
         self.pin.process_request(self.req)
         ok_(this_thread_is_pinned())
+        cache.delete(self.key)
 
     def test_not_pinned(self):
-        self.req.amo_user.is_anonymous.return_value = True
+        self.attach_user(anon=True)
         self.pin.process_request(self.req)
         ok_(not this_thread_is_pinned())
+
+    def test_process_response_anon(self):
+        self.attach_user(anon=True)
+        self.req.method = 'POST'
+        self.pin.process_response(self.req, HttpResponse())
+        ok_(not cache.get(self.key))
+
+    def test_process_response(self):
+        self.attach_user(anon=False)
+        for method in ['DELETE', 'PATCH', 'POST', 'PUT']:
+            self.req.method = method
+            self.pin.process_response(self.req, HttpResponse())
+            ok_(cache.get(self.key))
+            cache.delete(self.key)
+
+        for method in ['GET', 'HEAD', 'OPTIONS', 'POOP']:
+            self.req.method = method
+            self.pin.process_response(self.req, HttpResponse())
+            ok_(not cache.get(self.key))
 
 
 class TestAPIVersionMiddleware(amo.tests.TestCase):
