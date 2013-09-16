@@ -423,6 +423,27 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         eq_(data['description'], data['description'])
         eq_(new_collection.description, data['description']['en-US'])
 
+    def test_create_empty_description_dict_in_default_language(self):
+        """
+        Test that we can't have an empty Translation for the default_language.
+        """
+        # See bug https://bugzilla.mozilla.org/show_bug.cgi?id=915652
+        raise SkipTest
+        self.make_publisher()
+        self.collection_data = {
+            'collection_type': COLLECTIONS_TYPE_BASIC,
+            'name': 'whatever',
+            'description': {'en-US': '  ', 'fr': 'lol'},
+        }
+        res, data = self.create(self.client)
+        # The description dict is not empty, but it contains an empty
+        # translation for en-US, which is incorrect since it's the default
+        # language (it'll save ok, but then fail when reloading).
+        # It could work if translation system wasn't insisting on
+        # loading only the default+current language...
+        eq_(res.status_code, 400)
+        ok_('description' in data)
+
     def test_create_no_colors(self):
         self.collection_data['background_color'] = ''
         self.collection_data['text_color'] = ''
@@ -674,6 +695,19 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         with translation.override('fr'):
             collection_in_fr = Collection.objects.get(pk=self.collection.pk)
             eq_(getattr(collection_in_fr, key), updates[key]['fr'])
+
+    def test_edit_collection_name_strip(self):
+        self.make_publisher()
+        updates = {
+            'name': {
+                'en-US': u'  New Nâme! '
+            },
+        }
+        res, data = self.edit_collection(self.client, **updates)
+        eq_(res.status_code, 200)
+        self.collection = Collection.objects.get(pk=self.collection.pk)
+        eq_(data['name'], {u'en-US': u'New Nâme!'})
+        eq_(self.collection.name, u'New Nâme!')
 
     def test_edit_collection_has_perms(self):
         self.make_publisher()

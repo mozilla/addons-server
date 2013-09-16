@@ -258,6 +258,13 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
                           self.addon.pk)
             self.addon.premium_type = amo.ADDON_FREE
 
+            # Remove addonpremium
+            try:
+                log.debug('[1@%s] Removing addon premium' % self.addon.pk)
+                self.addon.addonpremium.delete()
+            except AddonPremium.DoesNotExist:
+                pass
+
             if self.addon.status == amo.STATUS_NULL:
                 _restore_app(self.addon, save=False)
 
@@ -280,6 +287,13 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
                     log.debug('[1@%s] Removing upsell; switching to free '
                               'with in_app' % self.addon.pk)
                     upsell.delete()
+
+                # Remove addonpremium
+                try:
+                    log.debug('[1@%s] Removing addon premium' % self.addon.pk)
+                    self.addon.addonpremium.delete()
+                except AddonPremium.DoesNotExist:
+                    pass
             else:
                 # The dev is submitting updates for payment data about a paid
                 # app. This might also happen if he/she is associating a new
