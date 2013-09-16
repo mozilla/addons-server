@@ -17,6 +17,7 @@
     section {
         display: none;
         position: relative;
+
         &:first-child {
             display: block;
         }
@@ -26,6 +27,7 @@
     position: relative;
     border: 1px solid transparent;
     z-index: 20;
+
     .more, .desc {
         font-family: @sans-stack;
         color: #333;
@@ -65,6 +67,7 @@
         display: none;
         position: relative;
         padding: 0 14px 8px 12px;
+
         p:first-child {
             margin-top: 0;
         }
@@ -80,6 +83,7 @@
         margin-top: 8px;
         font-size: 11px;
         font-style: italic;
+
         a {
             display: inline;
             color: inherit;
@@ -104,6 +108,7 @@
         overflow: hidden;
         padding: 9px;
         height: 78px;
+
         a {
             overflow: hidden;
             display: block;
@@ -114,6 +119,7 @@
             float: right;
             overflow: hidden;
             position: relative;
+
             img {
                 width: auto;
                 height: 67px;
@@ -142,6 +148,7 @@
     }
     &.addon {
         margin: 5px 5px 5px 61px;
+
         .summary, .icon {
             position: relative;
             padding: 8px;
@@ -150,6 +157,7 @@
             height: 55px;
             z-index: 21;
             overflow: hidden;
+
             div {
                 white-space: nowrap;
             }
@@ -165,6 +173,7 @@
             border-style: solid;
             z-index: 22;
             border-color: transparent;
+
             img {
                 margin: 8px;
                 max-width: 32px;
@@ -237,6 +246,7 @@
     }
     .vital .price {
         color: @green;
+
         &.premium {
             color: @orange;
         }
@@ -259,6 +269,7 @@
     .hovercard {
         padding: 9px;
         margin: 0;
+
         &.addon {
             &:before {
                 display: none;
@@ -267,6 +278,7 @@
             .summary {
                 height: 192px;
                 padding: 0;
+
                 div {
                     width: 220px;
                     height: 170px;
@@ -322,6 +334,7 @@
     }
     .hovercard.addon .summary {
         height: 157px;
+
         div {
             height: 135px;
             width: 160px;
@@ -334,6 +347,7 @@
     .hovercard.addon > .vital {
         font-size: 11px;
         margin-top: 8px;
+
         .adu, .updated {
             color: #390;
         }
@@ -349,6 +363,7 @@
         left: -8px;
         border: 0;
         margin: 0;
+
         .icon {
             float: left;
             position: static;
@@ -396,6 +411,7 @@
     &.featured, &.theme-grid {
         .hovercard.addon {
             margin: 0;
+
             &:hover .more {
                 padding: 14px 0 0;
             }

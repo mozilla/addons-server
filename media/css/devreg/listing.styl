@@ -13,6 +13,7 @@
 #sorter {
     font-size: 11px;
     margin-bottom: 1em;
+
     h3 {
         font: 11px/18px $open-stack;
     }
@@ -23,6 +24,7 @@
     }
     li {
         margin: 0;
+
         &.selected a {
             color: $dark-gray;
             font-weight: bold;
@@ -33,6 +35,7 @@
     > ul > li {
         float: left;
         position: relative;
+
         > a {
             border-right: 1px solid #ccc;
             padding: 0 6px;
@@ -48,6 +51,7 @@
                 font-weight: bold;
                 position: relative;
                 z-index: 50;
+
                 &:after {
                     border: 3px solid transparent;
                     border-top-color: #666;
@@ -70,6 +74,7 @@
                 top: 18px;
                 z-index: 49;
                 width: 120px;
+
                 a {
                     display: block;
                     padding: 3px 6px;
@@ -110,11 +115,13 @@
 
 .html-rtl #sorter {
     float: right;
+
     h3, ul, form {
         float: right;
     }
     > ul > li {
         float: right;
+
         > a {
             border: none;
             border-left: 1px solid #ccc;
@@ -125,6 +132,7 @@
         &.extras {
             > a {
                 border: none;
+
                 &:after {
                     margin: 0 3px 0 0;
                 }
@@ -161,6 +169,7 @@
     &:hover,
     &.static {
         background-color: $faded-taupe;
+
         li {
             color: $dark-gray;
         }
@@ -172,6 +181,7 @@
         font-size: 16px;
         font-weight: bold;
         line-height: 18px;
+
         img {
             display: block;
             left: 15px;
@@ -182,6 +192,7 @@
         .author {
             color: $medium-gray;
             font-size: 12px;
+
             a {
                 color: #333;
             }
@@ -240,6 +251,7 @@
 
 .item-devices {
     position: relative;
+
     .device-list {
         margin: 6px 1px;
     }
@@ -260,6 +272,7 @@
     font-size: 11px;
     margin-top: 1em;
     margin-bottom: 2px;
+
     > li {
         float: left;
         > a {
@@ -275,6 +288,7 @@
 }
 .html-rtl .item-actions {
     float: left;
+
     > li {
         float: right;
         &:not(:first-child) {
@@ -296,6 +310,7 @@
 
 .price {
     color: $green;
+
     &.premium {
         color: $orange;
     }
@@ -320,6 +335,7 @@
         font-size: 13px;
         line-height: 15px;
         margin: 0;
+
         + p {
             margin-top: 2px;
         }
@@ -350,10 +366,12 @@
     font-size: 11px;
     line-height: 13px;
     margin: 1em 0 0;
+
     a {
         color: $note-gray;
         &.more-actions {
             position: relative;
+
             &:after {
                 border-color: $note-gray transparent transparent;
                 border-style: solid;
@@ -383,6 +401,7 @@
     }
     > ul > li {
         display: inline-block;
+
         &:not(:first-child):before {
             background-color: $note-gray;
             border-radius: 5em;

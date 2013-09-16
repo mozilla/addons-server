@@ -8,6 +8,7 @@
     form {
         background-color: @faded-blue;
         padding: 1em 0;
+
         fieldset, footer {
             padding: 0 1em;
         }
@@ -50,12 +51,14 @@
 #reviews .review {
     border-bottom: 1px dotted @border-blue;
     overflow: hidden;
+
     &.flagged {
         opacity: .6;
         -moz-transition: .2s opacity ease;
     }
     &.no-reviews {
         border-bottom: 0;
+
         h3 {
             font-style: normal;
         }
@@ -66,6 +69,7 @@
         font-size: 16px;
         line-height: 16px;
         font-style: italic;
+
         .stars {
             padding: 1px 0;
         }
@@ -86,6 +90,7 @@
         margin: 2px 0;
         color: #999;
         font-size: 12px;
+
         a {
             color: #666;
         }
@@ -118,6 +123,7 @@
     background: url(../../img/impala/stars.png) no-repeat left top;
     text-indent: -9999px;
     margin-right: 4px;
+
     &.stars-4 { background-position: -13px 0; }
     &.stars-3 { background-position: -26px 0; }
     &.stars-2 { background-position: -39px 0; }
@@ -128,6 +134,7 @@
         background: url(../../img/impala/stars-16.png) no-repeat left top;
         width: 89px;
         height: 16px;
+
         &.stars-4 { background-position: -18px 0; }
         &.stars-3 { background-position: -36px 0; }
         &.stars-2 { background-position: -54px 0; }
@@ -149,6 +156,7 @@
 .average-rating {
     position: relative;
     padding-left: 74px;
+
     strong {
         font-weight: bold;
     }
@@ -161,6 +169,7 @@
 .html-rtl .average-rating {
     padding-left: 0;
     padding-right: 74px;
+
     .stars {
         left: auto;
         right: 0;
@@ -170,6 +179,7 @@
 .grouped_ratings {
     font-family: @sans-stack;
     color: #666;
+
     li {
         margin: 0;
         padding: 0;
@@ -182,6 +192,7 @@
         width: 0px;
         overflow: visible;
         width: 96px;
+
         span.bar {
             display:block;
             height: 100%;
@@ -215,6 +226,7 @@
     display: none;
     clear: left;
     padding: 8px 0 0;
+
     input[type='text'] {
         width: 138px;
         margin-right: 8px;
@@ -238,6 +250,7 @@
     .rating_bar {
         border-left: 0;
         border-right: 1px solid black;
+
         span.bar {
             float: right;
             margin: .4em 0 0 .5em;
@@ -254,6 +267,7 @@
 }
 #review-box {
     position: relative;
+
     form {
         width: 50%;
         height: 212px;
@@ -266,6 +280,7 @@
     }
     div {
         padding-left: 50%;
+
         p {
             padding-left: 1em;
         }
@@ -280,6 +295,7 @@
     display: inline-block;
     float: none;
     width: 65px;
+
     input {
         display: none;
     }

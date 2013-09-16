@@ -21,6 +21,7 @@
     font-family: @sans-stack;
     font-size: 11px;
     margin-bottom: 1em;
+
     h3, > ul, form {
         color: @note-gray;
         float: left;
@@ -28,6 +29,7 @@
     }
     li {
         margin: 0;
+
         &.selected a {
             color: @orange;
             font-weight: bold;
@@ -38,6 +40,7 @@
     > ul > li {
         float: left;
         position: relative;
+
         > a {
             border-right: 1px solid #ccc;
             padding: 0 6px;
@@ -79,6 +82,7 @@
                     display: block;
                     padding: 3px 6px;
                     word-wrap: break-word;
+
                     &:hover {
                         background: #ebf4fe;
                     }
@@ -115,11 +119,13 @@
 
 .html-rtl #sorter {
     float: right;
+
     h3, ul, form {
         float: right;
     }
     > ul > li {
         float: right;
+
         > a {
             border: none;
             border-left: 1px solid #ccc;
@@ -130,6 +136,7 @@
         &.extras {
             > a {
                 border: none;
+
                 &:after {
                     margin: 0 3px 0 0;
                 }
@@ -170,6 +177,7 @@
     &:hover,
     &.static {
         background-color: @faded-blue;
+
         .install-shell {
             visibility: visible;
         }
@@ -196,6 +204,7 @@
         }
         .install-shell {
             visibility: visible;
+
             .install, br {
                 display: none;
             }
@@ -205,6 +214,7 @@
         font-size: 16px;
         font-weight: bold;
         line-height: 18px;
+
         img {
             display: block;
             position: absolute;
@@ -215,6 +225,7 @@
         .author {
             color: @medium-gray;
             font-size: 12px;
+
             a {
                 color: #333;
             }
@@ -231,12 +242,14 @@
         margin-top: 2px;
         font-size: 11px;
         line-height: 13px;
+
         .stars {
             height: 12px;
         }
         div {
             display: inline-block;
             margin: 0;
+
             &.rating a {
                 color: @note-gray;
             }
@@ -252,6 +265,7 @@
         }
         span.price {
             color: @green;
+
             &.premium {
                 color: @orange;
             }
@@ -277,6 +291,7 @@
         padding: 0 10px;
         text-align: right;
         visibility: hidden;
+
         .install {
             margin: 0 0 6px;
         }
@@ -286,6 +301,7 @@
         }
         .extra {
             margin: 0 0 6px;
+
             .notavail {
                 color: @note-gray;
                 font-size: 10px;
@@ -352,6 +368,7 @@
     margin-top: 1em;
     margin-bottom: 2px;
     color: #aaa;
+
     > li {
         float: left;
         > a {
@@ -367,6 +384,7 @@
 }
 .html-rtl .item-actions {
     float: left;
+
     > li {
         float: right;
         &:not(:first-child) {

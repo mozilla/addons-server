@@ -8,6 +8,7 @@ select[name=rating] {
 // Detail page.
 #reviews {
     position: relative;
+
     ul {
         margin: 0;
         padding: 0;
@@ -25,6 +26,7 @@ select[name=rating] {
     list-style-type: none;
     padding: 10px 16px;
     position: relative;
+
     &.deleting {
         background: rgba($red,.4);
     }
@@ -33,6 +35,7 @@ select[name=rating] {
         height: 0;
         overflow: hidden;
         padding: 0;
+
         + .review {
             border-top: 0;
         }
@@ -45,6 +48,7 @@ select[name=rating] {
         font-weight: 600;
         line-height: 18px;
         vertical-align: middle;
+
         b {
             color: $gray;
         }
@@ -55,6 +59,7 @@ select[name=rating] {
     .timestamp {
         color: $note-gray;
         float: right;
+
         &:hover {
             color: $gray;
         }
@@ -68,6 +73,7 @@ select[name=rating] {
     }
     li {
         display: inline-block;
+
         &.hidden {
             display: none;
         }
@@ -83,6 +89,7 @@ select[name=rating] {
 .reviews {
     border-top: 1px solid rgba(255,255,255,.5);
     border-bottom: 1px solid rgba(3,16,26,.13);
+
     .not-rated {
         color: lighten($text, 5%);
         font-size: 14px;
@@ -99,6 +106,7 @@ select[name=rating] {
 
 #reviews-detail {
     padding: 15px;
+
     ul {
         margin: 0;
         padding: 0;
@@ -120,6 +128,7 @@ select[name=rating] {
     .button.fat {
         line-height: 35px;
         height: 35px;
+
         &:hover {
             line-height: 35px;
         }
@@ -127,6 +136,7 @@ select[name=rating] {
     .review {
         border-top: 1px solid #bcc0c2;
         border-bottom: 1px solid #bcc0c2;
+
         &:nth-of-type(2n) {
             border-top: 1px solid #eceff0;
             border-bottom: 0;
@@ -181,6 +191,7 @@ select[name=rating] {
     text-indent: -9999px;
     vertical-align: middle;
     width: 60px;
+
     &.stars-4 { background-position: -12px 0; }
     &.stars-3 { background-position: -24px 0; }
     &.stars-2 { background-position: -36px 0; }
@@ -207,6 +218,7 @@ select[name=rating] {
         background: url(../../img/mkt/stars/sprite_18.png) no-repeat 0 0;
         width: 90px;
         height: 18px;
+
         &.stars-4 { background-position: -18px 0; }
         &.stars-3 { background-position: -36px 0; }
         &.stars-2 { background-position: -54px 0; }
@@ -224,6 +236,7 @@ select[name=rating] {
     background-image: url(../../img/mkt/stars/sprite_9.png);
     height: 9px;
     width: 45px;
+
     &.stars-4 { background-position: -9px 0; }
     &.stars-3 { background-position: -18px 0; }
     &.stars-2 { background-position: -27px 0; }
@@ -244,6 +257,7 @@ select[name=rating] {
     span {
         color: $text;
         vertical-align: middle;
+
         &:first-child {
             line-height: 48px;
             padding-right: 6px;
@@ -271,6 +285,7 @@ select[name=rating] {
     box-shadow: inset 0 1px 4px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.8), 0 1px 0 rgba(255,255,255,.8);
     margin-bottom: 15px;
     padding: 20px 10px;
+
     .ratingwidget {
         margin: 0 auto;
     }
@@ -284,6 +299,7 @@ select[name=rating] {
     display: block;
     float: none;
     width: 65px;
+
     input {
         display: none;
     }

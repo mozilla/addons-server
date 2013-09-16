@@ -84,6 +84,7 @@ fatten() {
     // Waiting/Loading spinner.
     &.loading-submit {
         position: relative;
+
         &:after {
             animation(unquote('0.9s spin infinite steps(30)'));
             background-image: url(../../img/mkt/btn_spinner_alt.png);
@@ -138,6 +139,7 @@ button {
 @media (max-width: 600px) {
     .button, button {
         padding: 0 15px;
+
         &.fat {
             display: block;
             width: 100%;

@@ -8,6 +8,7 @@
     top: 46px;
     white-space: nowrap;
     z-index: 12;
+
     ul {
         background: rgb(43, 54, 63);
         border-radius: 3px 0 3px 3px;
@@ -18,6 +19,7 @@
     }
     li {
         position: relative;
+
         + li {
             &:before,
             &:after {
@@ -42,6 +44,7 @@
             text-decoration: none;
             text-shadow: 0 .5px 0 $black;
             padding: 10px 15px;
+
             &:hover {
                 gradientTop(unquote('rgba(36, 45, 51, 1) 0%, rgba(36, 45, 51, 0.57) 18%, rgba(36, 45, 51, 0) 42%)'));
                 color: rgb(26, 149, 252);

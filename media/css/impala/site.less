@@ -23,6 +23,7 @@ body {
     margin: 0 auto;
     position: relative;
     min-height: @page-min-height;
+
     header {
         &.hero {
             width: 720px;
@@ -36,6 +37,7 @@ body {
 a {
     text-decoration: none;
     color: @link;
+
     &:hover {
         text-decoration: underline;
     }
@@ -63,6 +65,7 @@ a {
         padding: 14px;
         float: left;
         width: 100%;
+
         &:first-child {
             border-top: 0;
             padding-top: 0;
@@ -95,6 +98,7 @@ header + .island {
 .primary {
     margin-left: 210px;
     position: relative;
+
     .primary {
         margin-right: 210px;
         margin-left: 0;
@@ -111,6 +115,7 @@ header + .island {
 .html-rtl.gutter .primary {
     margin-left: 210px;
     margin-right: 0;
+
     &.full {
         margin-left: 0;
     }
@@ -132,6 +137,7 @@ header + .island {
     .primary {
         margin-left: 0;
         margin-right: 210px;
+
         &.full {
             margin-right: 0;
         }
@@ -167,6 +173,7 @@ header + .island {
     }
     ul ul {
         margin-bottom: 0;
+
         li {
             border-top: 0;
             a {
@@ -178,11 +185,13 @@ header + .island {
         border: 1px solid @border-black;
         border-width: 0 0 1px 0;
         position: relative;
+
         &:first-child {
             border-top-width: 1px;
         }
         a {
             color: darken(@link, 10%);
+
             &.selected {
                 color: #333;
                 font-weight: bold;
@@ -220,6 +229,7 @@ header + .island {
     h2 {
         font-size: 14px;
         line-height: 16px;
+
         a {
             color: inherit;
         }
@@ -245,6 +255,7 @@ header + .island {
     }
     p {
         margin-bottom: 8px;
+
         &.note {
             color: #666;
             line-height: 1.2em;
@@ -259,6 +270,7 @@ header + .island {
 .html-rtl .secondary {
     nav li a {
         padding-left: 12px;
+
         &:after {
             position: absolute;
             right: auto;
@@ -318,6 +330,7 @@ header + .island {
     width: 100%;
     border-spacing: 0.5em;
     border-collapse: separate;
+
     .cols {
         display: table-row;
         div.col, div.col-2, div.col-3 {
@@ -337,6 +350,7 @@ header + .island {
 #breadcrumbs {
     font-family: @serif-stack;
     color: #666;
+
     li {
         display: inline;
         &:before {
@@ -354,6 +368,7 @@ header + .island {
             text-decoration: none;
             width: 15px;
             margin: 2px 2px 0 0;
+
             &:hover {
                 opacity: .7;
             }
@@ -393,6 +408,7 @@ a.more-info {
     float: right;
     font-size: 12px;
     color: @link;
+
     &:after {
         content: ' \00bb';
     }
