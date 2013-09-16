@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-08-30 15:54-0700\n"
-"PO-Revision-Date: 2013-09-16 18:50+0000\n"
+"PO-Revision-Date: 2013-09-16 18:56+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1379357440.0\n"
+"X-POOTLE-MTIME: 1379357764.0\n"
 
 #: apps/addons/buttons.py:207
 msgid "Download Now"
@@ -79,7 +79,7 @@ msgstr "這個 slug 已經有人使用。請嘗試另一個。"
 
 #: apps/addons/forms.py:65 mkt/developers/forms.py:609 mkt/submit/forms.py:412
 msgid "The slug cannot be \"%s\". Please choose another."
-msgstr "這個 slug 不能為 \"%s\"。請嘗試另一個。"
+msgstr "這個 slug 不能為「%s」。請嘗試另一個。"
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 #: apps/addons/forms.py:84
@@ -4365,11 +4365,11 @@ msgstr "%s 回應了 %s (%s)。"
 
 #: apps/devhub/tasks.py:330
 msgid "Connection to \"%s\" timed out."
-msgstr "至 \"%s\" 的連線已經逾時。"
+msgstr "至「%s」的連線已經逾時。"
 
 #: apps/devhub/tasks.py:332
 msgid "Could not contact host at \"%s\"."
-msgstr "無法連線至主機 \"%s\"。"
+msgstr "無法連線至主機「%s」。"
 
 #: apps/devhub/tasks.py:394
 msgid "Your icon must be less than %s bytes."
@@ -11213,7 +11213,7 @@ msgstr "我的附加元件要怎樣才能被列入推薦名單？"
 
 #: apps/pages/templates/pages/dev_faq.html:542 apps/pages/templates/pages/dev_faq.html:552
 msgid "<a href=\"%(url)s\">This page</a> describes the process by which the Recommended lists are managed."
-msgstr ""
+msgstr "<a href=\"%(url)s\">此頁面</a> 描述了推薦清單的維護過程。"
 
 #: apps/pages/templates/pages/dev_faq.html:547
 msgid "Can I pay to have my add-on listed as Recommended?"
@@ -15187,19 +15187,19 @@ msgstr "糟糕，您好像已經提交 %s 的安裝資訊檔，並且正在等�
 
 #: mkt/developers/forms.py:187
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently incomplete. <a href=\"%s\">Resume app</a>"
-msgstr "糟糕，您好像已經提交 %s 的 manifest，但是目前不完整。<a href=\"%s\">編輯應用程式</a>"
+msgstr "糟糕，您好像已經提交 %s 的安裝資訊，但是目前不完整。<a href=\"%s\">編輯應用程式</a>"
 
 #: mkt/developers/forms.py:191
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently rejected. <a href=\"%s\">Edit app</a>"
-msgstr "糟糕，您好像已經提交 %s 的 manifest，但是被退回了。<a href=\"%s\">編輯應用程式</a>"
+msgstr "糟糕，您好像已經提交 %s 的安裝資訊，但是被退回了。<a href=\"%s\">編輯應用程式</a>"
 
 #: mkt/developers/forms.py:195
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently disabled by Mozilla. <a href=\"%s\">Edit app</a>"
-msgstr "糟糕，您好像已經提交 %s 的 manifest，但是被 Mozilla 停用了。<a href=\"%s\">編輯應用程式</a>"
+msgstr "糟糕，您好像已經提交 %s 的安裝資訊，但是被 Mozilla 停用了。<a href=\"%s\">編輯應用程式</a>"
 
 #: mkt/developers/forms.py:199
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently disabled. <a href=\"%s\">Edit app</a>"
-msgstr "糟糕，您好像已經提交 %s 的 manifest，但是被停用了。<a href=\"%s\">編輯應用程式</a>"
+msgstr "糟糕，您好像已經提交 %s 的安裝資訊，但是被停用了。<a href=\"%s\">編輯應用程式</a>"
 
 #: mkt/developers/forms.py:214
 msgid "An app already exists on this domain; only one app per domain is allowed."
@@ -16371,11 +16371,11 @@ msgstr "我們已為 Firefox Marketplace 新增了更多的付款區域。Market
 
 #: mkt/developers/templates/developers/emails/new_payments_region.html:5
 msgid "If you would like your app,"
-msgstr ""
+msgstr "若您想要您的應用程式"
 
 #: mkt/developers/templates/developers/emails/new_payments_region.html:5
 msgid "to be available in that region you will need to visit the Firefox Marketplace Developer Hub and update your app settings on the \"Compatibility & Payments\" page:"
-msgstr ""
+msgstr "可在該區域中使用，您將需要前往 Firefox Marketplace 的開發者中心，並更新您的應用程式的「相容性與付款」頁面:"
 
 #: mkt/developers/templates/developers/emails/new_payments_region.html:7
 msgid "Thanks,"
@@ -19123,7 +19123,9 @@ msgstr "誰已經成為我們的一員啦"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:120
 msgid "Are you a Web Company, Third-Party Service, or OEM looking to partner with Mozilla? <a href=\"%(partner_url)s\">Check out our Partners page for more info.</a>"
-msgstr "誰已經成為我們的一員啦"
+msgstr ""
+"您是網路公司、第三方服務商，或是 OEM 廠商想成為 Mozilla 的夥伴？<a href=\"%"
+"(partner_url)s\">快看看我們的夥伴頁面以取得更多資訊。</a>"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:132
 msgid "The Mozilla Apps platform"
