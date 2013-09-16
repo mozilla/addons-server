@@ -1,8 +1,6 @@
 from django.conf import settings
-from django.db import connections, models
+from django.db import connections, models, router
 from django.utils import translation
-
-import multidb
 
 from translations.models import Translation
 from translations.fields import TranslatedField
@@ -67,14 +65,16 @@ def get_trans(items):
     if not items:
         return
 
-    connection = connections[multidb.get_slave()]
-    cursor = connection.cursor()
-
     model = items[0].__class__
+    # FIXME: if we knew which db the queryset we are transforming used, we could
+    # make sure we are re-using the same one.
+    dbname = router.db_for_read(model)
+    connection = connections[dbname]
     sql, params = build_query(model, connection)
     item_dict = dict((item.pk, item) for item in items)
     ids = ','.join(map(str, item_dict.keys()))
 
+    cursor = connection.cursor()
     cursor.execute(sql.format(ids='(%s)' % ids), tuple(params))
     step = len(trans_fields)
     for row in cursor.fetchall():
