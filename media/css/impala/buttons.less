@@ -27,6 +27,7 @@ button.bad, .button.bad, .button.developer, .button.scary { // Red
 
 .button {
     display: inline-block;
+
     &.prominent {
         padding: 8px 16px 12px;
         font-size: 16px;
@@ -59,6 +60,7 @@ button.bad, .button.bad, .button.developer, .button.scary { // Red
             color: #333;
             text-shadow: 0 -1px 0 rgba(255,255,255,.5);
             top: 0;
+
             span {
                 .sprite-pos(2, 64, 3px);
             }
@@ -67,6 +69,7 @@ button.bad, .button.bad, .button.developer, .button.scary { // Red
         &.concealed,
         &.caution.concealed {
             top: 0;
+
             span {
                 .sprite-pos(1, 64, 3px);
             }
@@ -194,6 +197,7 @@ body.android.addon-details .button.platform.android:not(.concealed) {
 .button.prominent:active,
 .button.prominent.selected {
     top: 2px;
+
     &:before {
         /* `top: 2px` creates a 2px "deadzone" making the link unclickable.
             This effectively fills the deadzone. See bug 710284. */
@@ -249,6 +253,7 @@ body.android.addon-details .button.platform.android:not(.concealed) {
 .listing .notsupported span {
     display: block;
     margin-top: 4px;
+
     &:before {
         content: "";
     }

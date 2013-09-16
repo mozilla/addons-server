@@ -8,6 +8,7 @@
         min-width: 1024px;
         padding-left: 20px;
         padding-right: 20px;
+
         .header-search {
             right: 20px;
         }
@@ -70,6 +71,7 @@ table tbody tr {
     margin: 0 0 0 1em;
     z-index: 1000;
     float: right;
+
     ul {
         line-height: 2.5em;
     }
@@ -77,6 +79,7 @@ table tbody tr {
         color: @dark-gray;
         font-weight: bold;
         display: inline;
+
         a {
             font-weight: normal;
             border: 1px solid transparent;
@@ -95,6 +98,7 @@ table tbody tr {
         a.inactive {
             color: @light-gray;
             cursor: default;
+
             &:hover {
                 text-decoration: none;
             }
@@ -114,6 +118,7 @@ table tbody tr {
 .two-up {
     position: relative;
     overflow: hidden;
+
     div {
         .border-box();
         float: left;
@@ -181,6 +186,7 @@ table tbody tr {
     width: 31%;
     padding: 0;
     margin-left: 3.5%;
+
     &:first-child {
         margin-left: 0;
     }
@@ -204,6 +210,7 @@ table tbody tr {
         text-align: right;
         padding: 0;
         line-height: 2em;
+
         &:first-child {
             text-align: left;
         }
@@ -243,6 +250,7 @@ a.more {
         width: 100px;
         padding: .5em 1em;
         text-align: right;
+
         &:first-child {
             text-align: left;
             width: 200px;
@@ -253,6 +261,7 @@ a.more {
     }
     tbody {
         display: none;
+
         tr {
             &:nth-child(2n+1) {
                 background: fadeout(@link, 80%);
@@ -261,6 +270,7 @@ a.more {
     }
     .paginator {
         float: none;
+
         .rel {
             margin-top: 20px;
             width: 100%;
@@ -303,6 +313,7 @@ aside.highlight {
 .export-data {
     font: 13px "helvetica neue",arial,helvetica,sans-serif;
     margin-left: 1em;
+
     a {
         margin: 0 2px;
         &:first-child {
@@ -404,6 +415,7 @@ table.stats-aggregate tbody span.change.minus {
     height: 100%;
     width: 100%;
     color: #fff;
+
     p {
         text-align: center;
         position: relative;
@@ -480,6 +492,7 @@ table.stats-aggregate tbody span.change.minus {
     fieldset {
         display: inline-block;
         vertical-align: top;
+
         &:first-child {
             margin-right: 1em;
         }
@@ -503,6 +516,7 @@ table.stats-aggregate tbody span.change.minus {
     background-color: @menu-active;
     color: @dark-gray;
     font-weight: bold;
+
     &:after {
         color: inherit;
     }

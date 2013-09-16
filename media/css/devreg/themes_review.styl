@@ -15,6 +15,7 @@ nav.theme-review {
     font-size: 15px;
     position: relative;
     right: 4px;
+
     strong {
         margin-right: 2px;
     }
@@ -23,12 +24,14 @@ nav.theme-review {
     }
     li {
         display: inline;
+
         + li:before {
             content: "|";
         }
         &.active a {
             color: $orange;
             cursor: default;
+
             &:hover {
                 text-decoration: none;
             }
@@ -43,6 +46,7 @@ h2 a:last-child {
 .zoombox {
     overflow: hidden;
     position: relative;
+
     img {
         position: absolute;
         right: 0;
@@ -61,6 +65,7 @@ h2 a:last-child {
     position: relative;
     width: 25%;
     z-index: 0;
+
     .box {
         border: 1px solid $light-gray;
         border-radius: 2px;
@@ -77,6 +82,7 @@ h2 a:last-child {
     }
     .absolute {
         position: absolute;
+
         &.align {
             top: 55px;
         }
@@ -95,6 +101,7 @@ h2 a:last-child {
     .shortcuts {
         li {
             margin: 5px 0;
+
             strong {
                 float: left;
             }
@@ -119,6 +126,7 @@ h2 a:last-child {
         background: darken($button-green-dark, 15%);
         font-weight: bold;
         position: relative;
+
         &:hover {
             background: darken($button-green-light, 15%);
         }
@@ -142,6 +150,7 @@ h2 a:last-child {
     clear: both;
     padding-bottom: 350px;
     width: 75%;
+
     .theme {
         display: block;
         .header, .footer {
@@ -176,6 +185,7 @@ h2 a:last-child {
     margin-bottom: 25px;
     padding: 0 13px 13px 13px;
     position: relative;
+
     .preview, .header, .footer {
         margin: 13px 0;
         border: 2px solid $border-blue;
@@ -185,6 +195,7 @@ h2 a:last-child {
         position: relative;
         height: 100px;
         overflow: hidden;
+
         img {
             position: absolute;
             right: 0;
@@ -206,6 +217,7 @@ h2 a:last-child {
         position: absolute;
         right: 0;
         top: 0;
+
         &.red {
             background: $button-red-dark;
         }
@@ -219,6 +231,7 @@ h2 a:last-child {
             right: 6px;
             position: absolute;
             top: 6px;
+
             &:hover {
                 cursor: pointer;
             }
@@ -228,6 +241,7 @@ h2 a:last-child {
         display: block;
         list-style: none;
         margin: 7px 0;
+
         dd, dt {
             display: inline;
             float: none;
@@ -237,6 +251,7 @@ h2 a:last-child {
         }
         dt {
             font-weight: bold;
+
             &:before {
                 color: $note-gray;
                 content: "/";
@@ -255,6 +270,7 @@ h2 a:last-child {
         ul.license {
             display: inline;
             top: 0;
+
             li {
                 display: inline;
                 float: none;
@@ -269,16 +285,19 @@ h2 a:last-child {
     .choices {
         float: right;
         margin-top: 13px;
+
         button {
             font-size: inherit;
             &.approve {
                 background: $button-green-dark;
+
                 &:hover {
                     background: $button-green-light;
                 }
             }
             &.reject, &.duplicate, &.flag {
                 background: $button-red-dark;
+
                 &:hover {
                     background: $button-red-light;
                 }
@@ -287,6 +306,7 @@ h2 a:last-child {
         .group {
             display: inline;
             margin-left: 13px;
+
             &:first-child {
                 margin-left: 0;
             }
@@ -308,6 +328,7 @@ h2 a:last-child {
     padding: 7px;
     position: absolute;
     z-index: 1;
+
     &:before {
         background: #fff;
         box-shadow: 1px 1px 0 rgba(255,255,255,.5) inset, -1px -1px 0 $border-blue;
@@ -364,6 +385,7 @@ h2 a:last-child {
     }
     li {
         padding: 4px;
+
         strong {
             float: left;
         }
@@ -388,6 +410,7 @@ h2 a:last-child {
 }
 .moreinfo-dropdown {
     right: 352px;
+
     &:before {
         right: 177px;
     }
@@ -396,6 +419,7 @@ h2 a:last-child {
     }
     span:first-child {
         margin-bottom: 12px;
+
         span {
             color: $link;
             display: inline;
@@ -413,6 +437,7 @@ h2 a:last-child {
 #review-history {
     margin: 13px 0;
     width: 100%;
+
     tr {
         color: $dark-gray;
         line-height: 39px;
@@ -425,6 +450,7 @@ h2 a:last-child {
     }
     th {
         font-weight: bold;
+
         &:first-child {
             width: auto;
         }

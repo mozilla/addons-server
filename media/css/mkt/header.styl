@@ -31,6 +31,7 @@
     position: fixed;
     z-index: 10;
     text-align: center;
+
     > * {
         display: block;
     }
@@ -71,6 +72,7 @@
     position: relative;
     width: 50px;
     height: 50px;
+
     .header-button.settings {
         position: absolute;
         top: 0;
@@ -81,6 +83,7 @@
 .site-header .search {
     position: relative;
     width: 230px;
+
     label {
         display: none;
     }
@@ -140,6 +143,7 @@ input:invalid ~ .search-clear {
     line-height: 50px;
     color: #fff;
     text-align: center;
+
     &:before {
         content: '';
         display: block;
@@ -206,6 +210,7 @@ input:invalid ~ .search-clear {
     &.browserid {
         display: none;
         word-wrap: normal;
+
         &.loading-submit {
             animation(unquote('0.9s spin infinite steps(30)'));
             background: url(../../img/mkt/btn_spinner_18.png) center no-repeat;
@@ -227,6 +232,7 @@ input:invalid ~ .search-clear {
     line-height: 50px;
     color: #fff;
     position: relative;
+
     &:after {
         position: absolute;
         top: 0;
@@ -296,6 +302,7 @@ input:invalid ~ .search-clear {
         &.settings {
             width: 40px;
             position: relative;
+
             &:before {
                 background: none;
             }
@@ -307,12 +314,14 @@ input:invalid ~ .search-clear {
 
     .act-tray {
         display: block;
+
         .settings {
             display: block;
         }
     }
     .act-tray.active {
         position: relative;
+
         .settings {
             &:before {
                 gradientTop(unquote('rgba(252, 252, 253, 0) 0%, rgba(43, 54, 63, 0.07) 15%, rgba(43, 54, 63, 1) 100%'));
@@ -336,6 +345,7 @@ input:invalid ~ .search-clear {
         height: 80px;
         max-height: 80px;
         position: relative;
+
         > nav {
             height: 80px;
             max-width: $desktop-hdr;
@@ -526,6 +536,7 @@ $retina-wide= $retina unquote('and (min-width: 1024px)');
 /* Content header (breadcrumbs, heading, subnav) - used on Account Settings, etc. */
 #page .account header.c {
     margin-bottom: 10px;
+
     h1 {
         float: left;
     }
@@ -538,6 +549,7 @@ $retina-wide= $retina unquote('and (min-width: 1024px)');
         list-style: none;
         margin: 0;
         padding: 0;
+
         li {
             background-clip: padding-box;
             float: left;

@@ -23,6 +23,7 @@
 span.emaillink {
     direction: rtl;
     unicode-bidi: bidi-override;
+
     .i {
         display: none;
     }
@@ -31,6 +32,7 @@ span.emaillink {
 a {
     text-decoration: none;
     color: $link;
+
     &:hover {
         text-decoration: underline;
     }
@@ -77,6 +79,7 @@ body .loading-fragment {
     box-shadow: 0 -1px 0 #ddd inset, 0 1px 0 rgba(0,0,0,.1);
     padding: 15px;
     background: rgba(255,255,255,0.6);
+
     form {
         line-height: 28px;
         button {
@@ -107,6 +110,7 @@ body .loading-fragment {
     &.error {
         background: #FEE3E5;
         border-color: #E0C9D6;
+
         h2 {
             color: #B14949;
         }
@@ -121,6 +125,7 @@ body .loading-fragment {
         }
         p {
             margin: 0;
+
             + p {
                 font-size: 12px;
                 margin-top: 5px;
@@ -131,6 +136,7 @@ body .loading-fragment {
 
 #site-header, #page {
     min-width: 320px;
+
     section.main {
         margin-left: auto;
         margin-right: auto;
@@ -141,6 +147,7 @@ body .loading-fragment {
         }
         &.full {
             width: 100%;
+
             > div {
                 margin-left: auto;
                 margin-right: auto;
@@ -151,6 +158,7 @@ body .loading-fragment {
 
 #page {
     position: relative;
+
     section.main {
         &:only-child {
             padding-top: 24px;
@@ -176,6 +184,7 @@ body .loading-fragment {
 body[data-page-type=notice], body[data-page-type=alpha] {
     section.primary {
         padding: 15px;
+
         h2 {
             font-size: 20px;
             border-bottom: 1px solid $dark-gray;
@@ -196,6 +205,7 @@ body[data-page-type=notice], body[data-page-type=alpha] {
     margin-top: 10px;
     padding-top: 10px;
     width: 100%;
+
     .button {
         margin-top: 10px;
         display: block;
@@ -206,6 +216,7 @@ body[data-page-type=notice], body[data-page-type=alpha] {
     width: 50%;
     padding: 0 5px;
     float: left;
+
     &:nth-child(2n+1) {
         padding-right: 0;
     }

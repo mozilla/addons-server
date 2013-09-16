@@ -25,6 +25,7 @@
         font-size: 14px;
         padding: 0 11px;
         text-align: center;
+
         b {
             font-weight: none;
         }
@@ -34,6 +35,7 @@
     }
     li {
         border: 0;
+
         a {
             line-height: 16px;
             margin-top: 2px;
@@ -48,6 +50,7 @@
         border-color: #D7D9E8;
         padding: 0;
         width: 100%;
+
         .facet {
             border-top: 1px dotted #D7D9E8;
             padding: 10px;
@@ -71,6 +74,7 @@
             }
             &:hover {
                 cursor: pointer;
+
                 &:after {
                     color: @medium-gray;
                 }
@@ -81,6 +85,7 @@
             > ul {
                 max-height: 250px;
                 overflow-y: auto;
+
                 > li.selected:first-child a {
                     color: @link;
                 }
@@ -88,6 +93,7 @@
             li {
                 a {
                     display: none;
+
                     &:hover {
                         background: inherit;
                         text-decoration: underline;
@@ -98,6 +104,7 @@
                         font-weight: bold;
                         color: @orange;
                         display: block;
+
                         &:hover {
                             text-decoration: none;
                         }
@@ -140,6 +147,7 @@
 
 .results {
     position: relative;
+
     &.loading {
         .updating {
             background: rgba(255,255,255, 0.8)

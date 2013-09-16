@@ -21,6 +21,7 @@
     .filesize {
         display: inline-block;
         margin-left: 3px;
+
         &:before {
             content: "\B7";
             margin-right: 3px;
@@ -29,6 +30,7 @@
     .source {
         list-style: none;
         margin: 1em 0 0;
+
         li {
             display: inline-block;
             margin: 0 3px 0 0;
@@ -38,6 +40,7 @@
             }
             &:last-child {
                 margin: 0;
+
                 &:after {
                     content: "";
                     margin: 0;
@@ -47,6 +50,7 @@
     }
     .install-shell {
         margin-bottom: 1em;
+
         .install {
             display: inline-block;
         }
@@ -56,12 +60,14 @@
 .html-rtl .version {
     .filesize {
         margin: 0 3px 0 0;
+
         &:before {
             margin: 0 0 0 3px;
         }
     }
     .source {
         margin-right: 0;
+
         li {
             margin: 0 0 0 3px;
             &:after {
@@ -75,6 +81,7 @@
 .listing .item.version {
     .info {
         padding-left: 10px;
+
         h3 {
             font-weight: normal;
             margin-bottom: 1em;
@@ -92,6 +99,7 @@
 /* Version Information for add-on details */
 #detail-relnotes .items {
     border-bottom: 1px dotted @border-blue;
+
     .item:hover, .item.static {
         background: inherit;
     }
