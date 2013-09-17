@@ -3,14 +3,17 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-08-30 15:53-0700\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2013-09-17 11:52+0000\n"
+"Last-Translator: Igor <igor@igorware.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 1.8.1\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1379418730.0\n"
 
 #: media/js/common-all.js:10109 media/js/common-min.js:23 media/js/impala-all.js:1159 media/js/impala-min.js:1 media/js/devreg/init.js:35 media/js/mkt/init.js:47
 #: media/js/zamboni/discovery-all.js:10076 media/js/zamboni/discovery-min.js:23 media/js/zamboni/init.js:32 media/js/zamboni/mobile-all.js:10912 media/js/zamboni/mobile-min.js:32
@@ -107,6 +110,7 @@ msgid "<b>{0}</b> character left."
 msgid_plural "<b>{0}</b> characters left."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: media/js/common-all.js:16654 media/js/common-min.js:56 media/js/impala-all.js:8112 media/js/impala-min.js:34 media/js/common/ratingwidget.js:31 media/js/zamboni/mobile-all.js:12005
 #: media/js/zamboni/mobile-min.js:32
@@ -114,6 +118,7 @@ msgid "{0} star"
 msgid_plural "{0} stars"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: media/js/common-all.js:16798 media/js/common-min.js:56 media/js/impala-all.js:8256 media/js/impala-min.js:34 media/js/devreg/l10n.js:45 media/js/zamboni/l10n.js:45
 msgid "Remove this localization"
@@ -178,7 +183,7 @@ msgstr ""
 
 #: media/js/common-all.js:19031 media/js/common-min.js:56 media/js/impala-all.js:12074 media/js/impala-min.js:34 media/js/zamboni/collections.js:468
 msgid "Remove this user as a contributor"
-msgstr ""
+msgstr "Уклони корисника као сарадника"
 
 #: media/js/common-all.js:19043 media/js/common-min.js:56 media/js/impala-all.js:12086 media/js/impala-min.js:34 media/js/zamboni/collections.js:480
 msgid "An email address is required."
@@ -199,7 +204,7 @@ msgstr ""
 #: media/js/common-all.js:19286 media/js/common-min.js:56 media/js/impala-all.js:12329 media/js/impala-all.js:12395 media/js/impala-min.js:34 media/js/impala/collections.js:10
 #: media/js/zamboni/collections.js:725
 msgid "Follow this Collection"
-msgstr ""
+msgstr "Прати ову збирку"
 
 #: media/js/common-all.js:19295 media/js/common-min.js:56 media/js/impala-all.js:12338 media/js/impala-min.js:34 media/js/zamboni/collections.js:734
 msgid "Stop following"
@@ -208,7 +213,7 @@ msgstr ""
 #: media/js/common-all.js:19371 media/js/common-all.js:19384 media/js/common-min.js:56 media/js/impala-all.js:12446 media/js/impala-all.js:12459 media/js/impala-min.js:34 media/js/zamboni/perf.js:29
 #: media/js/zamboni/perf.js:42
 msgid "All"
-msgstr ""
+msgstr "Све"
 
 #: media/js/common-all.js:19526 media/js/common-min.js:56 media/js/zamboni/password-strength.js:20
 msgid "Password strength:"
@@ -219,6 +224,7 @@ msgid "At least {0} character left."
 msgid_plural "At least {0} characters left."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: media/js/common-all.js:19703 media/js/common-min.js:56 media/js/impala-all.js:12798 media/js/impala-min.js:34
 msgid "Search personas for <b>{0}</b>"
@@ -247,30 +253,30 @@ msgstr ""
 #: media/js/impala-all.js:2584 media/js/impala-min.js:1 media/js/devreg/validator.js:458 media/js/zamboni/devhub-all.js:2864 media/js/zamboni/devhub-min.js:1 media/js/zamboni/mobile-all.js:12216
 #: media/js/zamboni/mobile-min.js:32 media/js/zamboni/validator.js:466
 msgid "Internal server error"
-msgstr ""
+msgstr "Грешка на серверу"
 
 #. L10n: {0} is an app name.
 #: media/js/impala-all.js:9874 media/js/impala-min.js:34 media/js/impala/listing.js:17 media/js/zamboni/themes.js:13
 msgid "This theme is incompatible with your version of {0}"
-msgstr ""
+msgstr "Ова тема није компатибилна са Вашом верзијом {0}"
 
 #: media/js/impala-all.js:10293 media/js/impala-min.js:34 media/js/common/upload-base.js:61 media/js/zamboni/devhub-all.js:127 media/js/zamboni/devhub-min.js:1
 msgid "The filetype you uploaded isn't recognized."
-msgstr ""
+msgstr "Тип датотеке коју сте послали није препознат."
 
 #: media/js/impala-all.js:10315 media/js/impala-min.js:34 media/js/common/upload-base.js:83 media/js/zamboni/devhub-all.js:149 media/js/zamboni/devhub-min.js:1
 msgid "You cancelled the upload."
-msgstr ""
+msgstr "Отказали сте отпремање."
 
 #: media/js/impala-all.js:10372 media/js/impala-all.js:10807 media/js/impala-min.js:34 media/js/common/upload-addon.js:34 media/js/common/upload-image.js:129 media/js/common/upload-packaged-app.js:34
 #: media/js/zamboni/devhub-all.js:206 media/js/zamboni/devhub-all.js:641 media/js/zamboni/devhub-min.js:1
 msgid "There was a problem contacting the server."
-msgstr ""
+msgstr "Дошло је до проблема при контактирању сервера."
 
 #: media/js/impala-all.js:10390 media/js/impala-min.js:34 media/js/common/upload-addon.js:52 media/js/common/upload-packaged-app.js:52 media/js/zamboni/devhub-all.js:224
 #: media/js/zamboni/devhub-min.js:1
 msgid "Select a file..."
-msgstr ""
+msgstr "Изаберите датотеку..."
 
 #: media/js/impala-all.js:10391 media/js/impala-min.js:34 media/js/common/upload-addon.js:53 media/js/zamboni/devhub-all.js:225 media/js/zamboni/devhub-min.js:1
 msgid "Your add-on should end with .xpi, .jar or .xml"
@@ -280,52 +286,54 @@ msgstr ""
 #: media/js/impala-all.js:10425 media/js/impala-min.js:34 media/js/common/upload-addon.js:87 media/js/common/upload-packaged-app.js:89 media/js/zamboni/devhub-all.js:259
 #: media/js/zamboni/devhub-min.js:1
 msgid "{0}% complete"
-msgstr ""
+msgstr "{0}% завршено"
 
 #. L10n: "{bytes uploaded} of {total filesize}".
 #: media/js/impala-all.js:10428 media/js/impala-min.js:34 media/js/common/upload-addon.js:90 media/js/common/upload-packaged-app.js:92 media/js/zamboni/devhub-all.js:262
 #: media/js/zamboni/devhub-min.js:1
 msgid "{0} of {1}"
-msgstr ""
+msgstr "{0} од {1}"
 
 #: media/js/impala-all.js:10456 media/js/impala-min.js:34 media/js/common/upload-addon.js:120 media/js/common/upload-packaged-app.js:120 media/js/zamboni/devhub-all.js:290
 #: media/js/zamboni/devhub-min.js:1
 msgid "Cancel"
-msgstr ""
+msgstr "Откажи"
 
 #: media/js/impala-all.js:10478 media/js/impala-min.js:34 media/js/common/upload-addon.js:142 media/js/common/upload-packaged-app.js:142 media/js/zamboni/devhub-all.js:312
 #: media/js/zamboni/devhub-min.js:1
 msgid "Uploading {0}"
-msgstr ""
+msgstr "Отпремам {0}"
 
 #: media/js/impala-all.js:10500 media/js/impala-min.js:34 media/js/common/upload-addon.js:169 media/js/common/upload-packaged-app.js:164 media/js/zamboni/devhub-all.js:334
 #: media/js/zamboni/devhub-min.js:1
 msgid "Error with {0}"
-msgstr ""
+msgstr "Грешка са {0}"
 
 #: media/js/impala-all.js:10505 media/js/impala-min.js:34 media/js/common/upload-addon.js:174 media/js/zamboni/devhub-all.js:339 media/js/zamboni/devhub-min.js:1
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Ваш додатак није прошао проверу са {0} грешком."
+msgstr[1] "Ваш додатак није прошао проверу са {0} грешке."
+msgstr[2] "Ваш додатак није прошао проверу са {0} грешки."
 
 #: media/js/impala-all.js:10519 media/js/impala-min.js:34 media/js/common/upload-addon.js:188 media/js/common/upload-packaged-app.js:183 media/js/zamboni/devhub-all.js:353
 #: media/js/zamboni/devhub-min.js:1
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "&hellip;и још {0}"
+msgstr[1] "&hellip;и још {0}"
+msgstr[2] "&hellip;и још {0}"
 
 #: media/js/impala-all.js:10533 media/js/impala-all.js:10654 media/js/impala-min.js:34 media/js/common/upload-addon.js:202 media/js/common/upload-addon.js:329
 #: media/js/common/upload-packaged-app.js:197 media/js/common/upload-packaged-app.js:323 media/js/devreg/devhub.js:143 media/js/zamboni/devhub-all.js:367 media/js/zamboni/devhub-all.js:488
 #: media/js/zamboni/devhub-all.js:1026 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:162
 msgid "See full validation report"
-msgstr ""
+msgstr "Погледајте потпуни извештај прегледа"
 
 #: media/js/impala-all.js:10545 media/js/impala-min.js:34 media/js/common/upload-addon.js:214 media/js/common/upload-packaged-app.js:209 media/js/zamboni/devhub-all.js:379
 #: media/js/zamboni/devhub-min.js:1
 msgid "Validating {0}"
-msgstr ""
+msgstr "Проверавам {0}"
 
 #. L10n: first argument is an HTTP status code
 #: media/js/impala-all.js:10579 media/js/impala-min.js:34 media/js/common/upload-addon.js:252 media/js/common/upload-packaged-app.js:245 media/js/zamboni/devhub-all.js:413
@@ -348,6 +356,7 @@ msgid "Your add-on passed validation with no errors and {0} warning."
 msgid_plural "Your add-on passed validation with no errors and {0} warnings."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: media/js/impala-all.js:10637 media/js/impala-min.js:34 media/js/common/upload-addon.js:312 media/js/zamboni/devhub-all.js:471 media/js/zamboni/devhub-min.js:1
 msgid "Your add-on passed validation with no errors or warnings."
@@ -426,12 +435,14 @@ msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: media/js/common/upload-packaged-app.js:298
 msgid "Your app passed validation with no errors and {0} warning."
 msgid_plural "Your app passed validation with no errors and {0} warnings."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: media/js/common/upload-packaged-app.js:303
 msgid "Your app passed validation with no errors or warnings."
@@ -442,12 +453,14 @@ msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: media/js/devreg/devhub.js:200 media/js/zamboni/devhub-all.js:1047 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:183
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: media/js/devreg/devhub.js:205 media/js/zamboni/devhub-all.js:1052 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:188
 msgid "Your app passed validation with no errors or messages."
@@ -479,7 +492,7 @@ msgstr ""
 
 #: media/js/devreg/devhub.js:1203 media/js/zamboni/devhub-all.js:2125 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:1285
 msgid "Image changes being processed"
-msgstr ""
+msgstr "Измене на слици се обрађују"
 
 #: media/js/devreg/expandable.js:15
 msgid "more..."
@@ -562,7 +575,7 @@ msgstr ""
 #: media/js/mkt/buttons.js:85 media/js/mkt/buttons.js:94 media/js/zamboni/devhub-all.js:2597 media/js/zamboni/devhub-all.js:2844 media/js/zamboni/devhub-all.js:2863 media/js/zamboni/devhub-min.js:1
 #: media/js/zamboni/validator.js:193 media/js/zamboni/validator.js:446 media/js/zamboni/validator.js:465
 msgid "Error"
-msgstr ""
+msgstr "Грешка"
 
 #: media/js/devreg/payments-manage.js:33 media/js/devreg/payments-manage.js:68
 msgid "There was a problem contacting the payment server."
@@ -574,12 +587,12 @@ msgstr ""
 
 #: media/js/devreg/validator.js:71 media/js/zamboni/devhub-all.js:2475 media/js/zamboni/devhub-min.js:1 media/js/zamboni/validator.js:71
 msgid "All tests passed successfully."
-msgstr ""
+msgstr "Сви тестови су успешно завршени."
 
 #: media/js/devreg/validator.js:74 media/js/devreg/validator.js:358 media/js/zamboni/devhub-all.js:2478 media/js/zamboni/devhub-min.js:1 media/js/zamboni/validator.js:74
 #: media/js/zamboni/validator.js:366
 msgid "These tests were not run."
-msgstr ""
+msgstr "Ови тестови нису извршени."
 
 #: media/js/devreg/validator.js:119 media/js/devreg/validator.js:132 media/js/zamboni/devhub-all.js:2523 media/js/zamboni/devhub-all.js:2536 media/js/zamboni/devhub-min.js:1
 #: media/js/zamboni/validator.js:119 media/js/zamboni/validator.js:132
@@ -588,7 +601,7 @@ msgstr ""
 
 #: media/js/devreg/validator.js:194 media/js/zamboni/devhub-all.js:2598 media/js/zamboni/devhub-min.js:1 media/js/zamboni/validator.js:194
 msgid "Warning"
-msgstr ""
+msgstr "Упозорење"
 
 #: media/js/devreg/validator.js:281 media/js/zamboni/devhub-all.js:2682 media/js/zamboni/devhub-min.js:1 media/js/zamboni/validator.js:281
 msgid "Compatibility Tests"
@@ -605,18 +618,20 @@ msgstr ""
 #: media/js/devreg/validator.js:361 media/js/zamboni/devhub-all.js:2767 media/js/zamboni/devhub-min.js:1 media/js/zamboni/validator.js:369
 msgid "{0} error"
 msgid_plural "{0} errors"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} грешка"
+msgstr[1] "{0} грешке"
+msgstr[2] "{0} грешки"
 
 #: media/js/devreg/validator.js:363 media/js/zamboni/devhub-all.js:2769 media/js/zamboni/devhub-min.js:1 media/js/zamboni/validator.js:371
 msgid "{0} warning"
 msgid_plural "{0} warnings"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} упозорење"
+msgstr[1] "{0} упозорења"
+msgstr[2] "{0} упозорења"
 
 #: media/js/devreg/validator.js:440 media/js/zamboni/devhub-all.js:2846 media/js/zamboni/devhub-min.js:1 media/js/zamboni/validator.js:448
 msgid "Validation task could not complete or completed with errors"
-msgstr ""
+msgstr "Задатак провере није могао бити завршен или је завршен са грешкама"
 
 #: media/js/impala/persona_creation.js:338
 msgid "Your Theme's Name"
@@ -885,7 +900,7 @@ msgstr ""
 
 #: media/js/impala/stats/csv_keys.js:111 media/js/mkt/stats/csv_keys.js:137 media/js/zamboni/stats-all.js:11271 media/js/zamboni/stats-min.js:10
 msgid "Firefox"
-msgstr ""
+msgstr "Firefox"
 
 #: media/js/impala/stats/csv_keys.js:112 media/js/mkt/stats/csv_keys.js:138 media/js/zamboni/stats-all.js:11272 media/js/zamboni/stats-min.js:10
 msgid "Mozilla"
@@ -1323,6 +1338,7 @@ msgid "{0} character left."
 msgid_plural "{0} characters left."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: media/js/mkt/stats/chart.js:327
 msgid "{0} apps"
@@ -1510,12 +1526,14 @@ msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: media/js/zamboni/admin-all.js:214 media/js/zamboni/admin-min.js:1 media/js/zamboni/admin_validation.js:59
 msgid "This will send emails to the authors of {0} file."
 msgid_plural "This will send emails to the authors of {0} files."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: media/js/zamboni/apps.js:54
 msgid "App installation not allowed."
@@ -1568,14 +1586,16 @@ msgstr ""
 #: media/js/zamboni/devhub-all.js:1642 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:793
 msgid "{files} file"
 msgid_plural "{files} files"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{files} датотека"
+msgstr[1] "{files} датотеке"
+msgstr[2] "{files} датотека"
 
 #: media/js/zamboni/devhub-all.js:1645 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:796
 msgid "{reviews} review"
 msgid_plural "{reviews} reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{reviews} преглед"
+msgstr[1] "{reviews} прегледа"
+msgstr[2] "{reviews} прегледа"
 
 #: media/js/zamboni/devhub-all.js:2306 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:1466
 msgid "Starting tests..."
@@ -1595,11 +1615,11 @@ msgstr ""
 
 #: media/js/zamboni/devhub-all.js:2737 media/js/zamboni/devhub-min.js:1 media/js/zamboni/validator.js:336
 msgid "Add-on failed validation."
-msgstr ""
+msgstr "Додатак није прошао проверу."
 
 #: media/js/zamboni/devhub-all.js:2739 media/js/zamboni/devhub-min.js:1 media/js/zamboni/validator.js:338
 msgid "Add-on passed validation."
-msgstr ""
+msgstr "Додатак је прошао проверу"
 
 #. L10n: {0} is a filename, such as `addon.zip`.
 #: media/js/zamboni/devhub-all.js:2910 media/js/zamboni/devhub-min.js:1 media/js/zamboni/packager.js:31
@@ -1613,22 +1633,24 @@ msgstr ""
 #: media/js/zamboni/discovery-all.js:12097 media/js/zamboni/discovery-min.js:23 media/js/zamboni/discovery_pane.js:217
 msgid "Sorry, we couldn't find any recommendations for you.<br>Please visit the <a href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
 msgstr ""
+"Жао нам је, нисмо успели наћи препоруке за Вас.<br>Молимо посетите <a "
+"href=\"{0}\">страницу са додацима</a> да би пронашли додатке погодне за Вас."
 
 #: media/js/zamboni/discovery-all.js:12127 media/js/zamboni/discovery-min.js:23 media/js/zamboni/discovery_pane.js:247
 msgid "Finding recommendations&hellip;"
-msgstr ""
+msgstr "Тражим препоруке&hellip;"
 
 #: media/js/zamboni/discovery-all.js:12129 media/js/zamboni/discovery-min.js:23 media/js/zamboni/discovery_pane.js:249
 msgid "Updating recommendations&hellip;"
-msgstr ""
+msgstr "Ажурирам препоруке&hellip;"
 
 #: media/js/zamboni/editors-all.js:140 media/js/zamboni/editors-min.js:1 media/js/zamboni/editors.js:160
 msgid "{name} was viewing this page first."
-msgstr ""
+msgstr "Корисник {name} је први гледао ову страницу."
 
 #: media/js/zamboni/editors-all.js:249 media/js/zamboni/editors-min.js:1 media/js/zamboni/editors.js:289
 msgid "Loading&hellip;"
-msgstr ""
+msgstr "Учитавам&hellip;"
 
 #: media/js/zamboni/editors-all.js:254 media/js/zamboni/editors-min.js:1
 msgid "Release Notes"
@@ -1692,7 +1714,7 @@ msgstr ""
 
 #: media/js/zamboni/mobile-all.js:11164 media/js/zamboni/mobile-min.js:32 media/js/zamboni/mobile/buttons.js:81
 msgid "Experimental"
-msgstr ""
+msgstr "Експериментално"
 
 #: media/js/zamboni/mobile-all.js:11165 media/js/zamboni/mobile-min.js:32
 msgid "Personas Require Newer Version of {0}"
@@ -1704,7 +1726,7 @@ msgstr ""
 
 #: media/js/zamboni/mobile-all.js:11244 media/js/zamboni/mobile-min.js:32 media/js/zamboni/mobile/buttons.js:165
 msgid "This add-on has been preliminarily reviewed by Mozilla."
-msgstr ""
+msgstr "Овај додатак је прелиминарно прегледан од Мозиле."
 
 #: media/js/zamboni/mobile-all.js:11379 media/js/zamboni/mobile-min.js:32 media/js/zamboni/mobile/buttons.js:300
 msgid "Keep it"

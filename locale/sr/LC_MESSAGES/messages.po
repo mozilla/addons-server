@@ -6,15 +6,17 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-08-30 15:54-0700\n"
-"PO-Revision-Date: 2011-03-30 04:51+0200\n"
-"Last-Translator: Milos <milos@mozilla-srbija.org>\n"
+"PO-Revision-Date: 2013-09-17 11:52+0000\n"
+"Last-Translator: Igor <igor@igorware.com>\n"
 "Language-Team: sr\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Pootle 2.1.5\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1379418730.0\n"
 
 #: apps/addons/buttons.py:207
 msgid "Download Now"
@@ -195,7 +197,7 @@ msgstr "Недавно додато"
 
 #: apps/addons/views.py:337 apps/bandwagon/views.py:88 apps/browse/views.py:60 apps/browse/views.py:71 apps/search/forms.py:17 apps/search/forms.py:95
 msgid "Recently Updated"
-msgstr ""
+msgstr "Недавно ажурирано"
 
 # %1 is an add-on name.
 #: apps/addons/views.py:520
@@ -1413,7 +1415,7 @@ msgstr ""
 
 #: apps/addons/templates/addons/listing/items_mobile.html:25
 msgid "Not Yet Rated"
-msgstr ""
+msgstr "Још увек није оцењено"
 
 #. {0} is the number of downloads.
 #: apps/addons/templates/addons/listing/items_mobile.html:32 apps/addons/templates/addons/listing/macros.html:24 apps/devhub/templates/devhub/addons/listing/macros.html:15
@@ -2523,7 +2525,7 @@ msgstr "Направите збирку"
 
 #: apps/bandwagon/templates/bandwagon/ajax_list.html:6
 msgid "View this collection"
-msgstr ""
+msgstr "Погледај ову збирку"
 
 #: apps/bandwagon/templates/bandwagon/ajax_list.html:12
 msgid "Start a new collection..."
@@ -2531,7 +2533,7 @@ msgstr ""
 
 #: apps/bandwagon/templates/bandwagon/ajax_new.html:2
 msgid "Start a New Collection"
-msgstr ""
+msgstr "Започните нову збирку"
 
 #: apps/bandwagon/templates/bandwagon/ajax_new.html:6 apps/bandwagon/templates/bandwagon/includes/addedit.html:4
 msgid "Name:"
