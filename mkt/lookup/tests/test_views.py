@@ -20,13 +20,15 @@ import amo
 from abuse.models import AbuseReport
 from addons.cron import reindex_addons
 from addons.models import Addon, AddonUser
-from amo.tests import addon_factory, app_factory, ESTestCase, TestCase
+from amo.tests import (addon_factory, app_factory, ESTestCase,
+                       req_factory_factory, TestCase)
 from amo.urlresolvers import reverse
 from devhub.models import ActivityLog
 from market.models import AddonPaymentData, AddonPremium, Price, Refund
 from mkt.constants.payments import (COMPLETED, FAILED, PENDING,
                                     REFUND_STATUSES)
-from mkt.lookup.views import _transaction_summary, transaction_refund
+from mkt.lookup.views import (_transaction_summary, transaction_refund,
+                              user_delete, user_summary)
 from mkt.site.fixtures import fixture
 from mkt.webapps.cron import update_weekly_downloads
 from mkt.webapps.models import Installed, Webapp
@@ -45,10 +47,8 @@ class TestAcctSummary(TestCase):
         self.steamcube = Addon.objects.get(pk=337141)
         self.otherapp = app_factory(app_slug='otherapp')
         self.reg_user = UserProfile.objects.get(email='regular@mozilla.com')
-        self.summary_url = reverse('lookup.user_summary',
-                                   args=[self.user.pk])
-        assert self.client.login(username='support-staff@mozilla.com',
-                                 password='password')
+        self.summary_url = reverse('lookup.user_summary', args=[self.user.pk])
+        self.login(UserProfile.objects.get(username='support_staff'))
 
     def buy_stuff(self, contrib_type):
         for i in range(3):
@@ -187,6 +187,28 @@ class TestAcctSummary(TestCase):
         res = self.client.get(reverse('lookup.home'))
         doc = pq(res.content)
         eq_(doc('#app-search-form select').length, 0)
+
+    def test_delete_user(self):
+        staff = UserProfile.objects.get(username='support_staff')
+        req = req_factory_factory(
+            reverse('lookup.user_delete', args=[self.user.id]), user=staff,
+            post=True, data={'delete_reason': 'basketball reasons'})
+
+        r = user_delete(req, self.user.id)
+        self.assert3xx(r, reverse('lookup.user_summary', args=[self.user.id]))
+
+        # Test data.
+        assert UserProfile.objects.get(id=self.user.id).deleted
+        eq_(staff, ActivityLog.objects.for_user(self.user).filter(
+                  action=amo.LOG.DELETE_USER_LOOKUP.id)[0].user)
+
+        # Test frontend.
+        req = req_factory_factory(
+            reverse('lookup.user_summary', args=[self.user.id]), user=staff)
+        r = user_summary(req, self.user.id)
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
+        eq_(doc('#delete-user dd:eq(1)').text(), 'basketball reasons')
 
 
 class SearchTestMixin(object):

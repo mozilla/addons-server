@@ -2,11 +2,20 @@ require(['prefetchManifest']);
 
 
 (function() {
+
+    // Delete user button.
+    $('#delete-user button').click(function() {
+        $('#delete-user .modal-delete').show().find('textarea').focus();
+    });
+    $('.modal .close').click(_pd(function() {
+        $(this).closest('.modal-delete').hide();
+    }));
+
+    // Search suggestions.
     $('#account-search').searchSuggestions($('#account-search-suggestions'),
                                            processResults);
     $('#app-search').searchSuggestions($('#app-search-suggestions'),
                                        processResults);
-
     function processResults(settings) {
         if (!(settings && settings.constructor === Object)) {
             return;

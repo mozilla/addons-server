@@ -9,6 +9,7 @@ user_patterns = patterns('',
     url(r'^purchases$', views.user_purchases,
         name='lookup.user_purchases'),
     url(r'^activity$', views.user_activity, name='lookup.user_activity'),
+    url(r'^delete$', views.user_delete, name='lookup.user_delete'),
 )
 
 
