@@ -35,6 +35,7 @@ from users.cron import reindex_users
 from users.models import Group, GroupUser, UserProfile
 
 
+@mock.patch.object(settings, 'TASK_USER_ID', 999)
 class TestAcctSummary(TestCase):
     fixtures = fixture('user_support_staff', 'user_999', 'webapp_337141',
                        'user_operator')

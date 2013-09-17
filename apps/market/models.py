@@ -181,8 +181,12 @@ def update_price_currency(sender, instance, **kw):
     if kw.get('raw'):
         return
 
-    ids = list(instance.tier.addonpremium_set
-                       .values_list('addon_id', flat=True))
+    try:
+        ids = list(instance.tier.addonpremium_set
+                           .values_list('addon_id', flat=True))
+    except Price.DoesNotExist:
+        return
+
     if ids:
         log.info('Indexing {0} add-ons due to PriceCurrency changes'
                  .format(len(ids)))

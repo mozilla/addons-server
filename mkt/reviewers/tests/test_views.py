@@ -1033,7 +1033,7 @@ class TestEscalationQueue(AppReviewerTest, AccessMixin, FlagsMixin,
         eq_(EscalationQueue.objects.filter(addon=app).exists(), False)
 
 
-class TestReviewTransaction(AttachmentManagementMixin,
+class TestReviewTransaction(AttachmentManagementMixin, amo.tests.MockEsMixin,
                             amo.tests.test_utils.TransactionTestCase):
     fixtures = fixture('group_editor', 'user_editor', 'user_editor_group',
                        'webapp_337141')
@@ -1066,8 +1066,6 @@ class TestReviewTransaction(AttachmentManagementMixin,
 
     @mock.patch('lib.crypto.packaged.sign_app')
     def test_public_sign_failure(self, sign_mock):
-        raise SkipTest('Passes locally, but fails on Jenkins :(')
-
         self.app = self.get_app()
         self.app.update(status=amo.STATUS_PENDING, is_packaged=True)
         self.version = self.app.current_version
