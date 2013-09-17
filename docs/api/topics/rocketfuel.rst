@@ -4,7 +4,8 @@
 Rocketfuel
 ==========
 
-Rocketfuel is the consumer client for the Marketplace Publishing Tool. It has some special APIs that are *not recommended* for consumption by other clients.
+Rocketfuel is the consumer client for the Marketplace Publishing Tool. It has
+some special APIs that are *not recommended* for consumption by other clients.
 
 These APIs will change in conjunction with the Rocketfuel client.
 
@@ -45,7 +46,8 @@ Create
 
     Create a collection.
 
-    .. note:: Authentication and the 'Apps:Publisher' permission are required.
+    .. note:: Authentication and the 'Collections:Curate' permission are
+        required.
 
     **Request**:
 
@@ -103,7 +105,8 @@ Update
 
     Update a collection.
 
-    .. note:: Authentication and the 'Apps:Publisher' permission are required.
+    .. note:: Authentication and one of the 'Collections:Curate' permission or
+        curator-level access to the collection are required.
 
     **Request**:
 
@@ -115,9 +118,13 @@ Update
     :type category: int|null
     :param collection_type: the type of the collection.
     :type collection_type: int
-    :param description: a description of the collection. Can be a dict, in which case keys are languages and values are each a translation for the corresponding language.
+    :param description: a description of the collection. Can be a dict, in which
+        case keys are languages and values are each a translation for the
+        corresponding language.
     :type description: string|dict
-    :param name: the name of the collection. Can be a dict, in which case keys are languages and values are each a translation for the corresponding language.
+    :param name: the name of the collection. Can be a dict, in which case keys
+        are languages and values are each a translation for the corresponding
+        language.
     :type name: string|dict
     :param region: the ID of the region to attach this collection to.
     :type region: int|null
@@ -142,7 +149,8 @@ Duplicate
     Duplicate a collection, creating and returning a new one with the same
     properties and the same apps.
 
-    .. note:: Authentication is required.
+    .. note:: Authentication and one of the 'Collections:Curate' permission or
+        curator-level access to the collection are required.
 
     **Request**:
 
@@ -157,9 +165,13 @@ Duplicate
     :type category: int|null
     :param collection_type: the type of the collection.
     :type collection_type: int
-    :param description: a description of the collection. Can be a dict, in which case keys are languages and values are each a translation for the corresponding language.
+    :param description: a description of the collection. Can be a dict, in which
+        case keys are languages and values are each a translation for the
+        corresponding language.
     :type description: string|dict
-    :param name: the name of the collection. Can be a dict, in which case keys are languages and values are each a translation for the corresponding language.
+    :param name: the name of the collection. Can be a dict, in which case keys
+        are languages and values are each a translation for the corresponding
+        language.
     :type name: string|dict
     :param region: the ID of the region to attach this collection to.
     :type region: int|null
@@ -182,7 +194,8 @@ Delete
 
     Delete a single collection.
 
-    .. note:: Authentication is required.
+    .. note:: Authentication and the 'Collections:Curate' permission are
+        required.
 
     **Response**:
 
@@ -199,7 +212,8 @@ Add Apps
 
     Add an application to a single collection.
 
-    .. note:: Authentication and the 'Apps:Publisher' permission are required.
+    .. note:: Authentication and one of the 'Collections:Curate' permission or
+        curator-level access to the collection are required.
 
     **Request**:
 
@@ -222,7 +236,8 @@ Remove Apps
 
     Remove an application from a single collection.
 
-    .. note:: Authentication and the 'Apps:Publisher' permission are required.
+    .. note:: Authentication and one of the 'Collections:Curate' permission or
+        curator-level access to the collection are required.
 
     **Request**:
 
@@ -246,8 +261,8 @@ Reorder Apps
 
     Reorder applications in a collection.
 
-
-    .. note:: Authentication and the 'Apps:Publisher' permission are required.
+    .. note:: Authentication and one of the 'Collections:Curate' permission or
+        curator-level access to the collection are required.
 
     **Request**:
 
@@ -284,5 +299,91 @@ Image
     Set the image for a collection. Accepts a data URI as the request
     body containing the image, rather than a JSON object.
 
-    .. note:: Authentication and the 'Apps:Publisher' permission are required.
+    .. note:: Authentication and one of the 'Collections:Curate' permission or
+        curator-level access to the collection are required.
 
+
+Curators
+========
+
+Users can be given object-level access to collections if they are marked as
+`curators`. The following API endpoints allow manipulation of a collection's
+curators:
+
+Listing
+-------
+
+.. http:get:: /api/v1/rocketfuel/collections/(int:id|string:slug)/curators/
+
+    Get a list of curators for a collection.
+
+    .. note:: Authentication and one of the 'Collections:Curate' permission or
+        curator-level access to the collection are required.
+
+    **Response**:
+
+    Example:
+
+    .. code-block:: json
+
+        [
+            {
+                'display_name': 'Basta',
+                'email': 'support@bastacorp.biz',
+                'id': 30
+            },
+            {
+                'display_name': 'Cvan',
+                'email': 'chris@vans.com',
+                'id': 31
+            }
+        ]
+
+
+Add Curator
+-----------
+
+.. http:post:: /api/v1/rocketfuel/collections/(int:id|string:slug)/add_curator/
+
+    Add a curator to this collection.
+
+    .. note:: Authentication and one of the 'Collections:Curate' permission or
+        curator-level access to the collection are required.
+
+    **Request**:
+
+    :param user: the ID of the user to add as a curator of this collection.
+    :type user: int
+
+    **Response**:
+
+    A representation of the updated list of curators for this collection will be
+    returned in the response body.
+
+    :status 200: user successfully added as a curator of this collection.
+    :status 400: invalid request; more details provided in the response body.
+    :status 403: not authenticated or authenticated without permission; more
+        details provided in the response body.
+
+
+Remove Curator
+--------------
+
+.. http:post:: /api/v1/rocketfuel/collections/(int:id|string:slug)/remove_curator/
+
+    Remove a curator from this collection.
+
+    .. note:: Authentication and one of the 'Collections:Curate' permission or
+        curator-level access to the collection are required.
+
+    **Request**:
+
+    :param user: the ID of the user to add as a curator of this collection.
+    :type user: int
+
+    **Response**:
+
+    :status 205: user successfully removed as a curator of this collection.
+    :status 400: invalid request; more details provided in the response body.
+    :status 403: not authenticated or authenticated without permission; more
+        details provided in the response body.

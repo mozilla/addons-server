@@ -43,7 +43,7 @@ class TestPermission(BaseOAuth):
         res = self.client.get(self.get_url)
         eq_(res.status_code, 200, res.content)
         self.assertSetEqual(
-            ['admin', 'developer', 'localizer', 'lookup', 'publisher',
+            ['admin', 'developer', 'localizer', 'lookup', 'curator',
              'reviewer', 'webpay'],
             res.json['permissions'].keys()
         )
@@ -56,12 +56,12 @@ class TestPermission(BaseOAuth):
 
     def test_publisher(self):
         res = self.client.get(self.get_url)
-        ok_(not res.json['permissions']['publisher'])
+        ok_(not res.json['permissions']['curator'])
 
     def test_publisher_ok(self):
-        self.grant_permission(self.user, 'Apps:Publisher')
+        self.grant_permission(self.user, 'Collections:Curate')
         res = self.client.get(self.get_url)
-        ok_(res.json['permissions']['publisher'])
+        ok_(res.json['permissions']['curator'])
 
     def test_webpay(self):
         res = self.client.get(self.get_url)
@@ -223,7 +223,7 @@ class TestLoginHandler(TestCase):
              'developer': False,
              'localizer': False,
              'lookup': False,
-             'publisher': False,
+             'curator': False,
              'reviewer': True,
              'webpay': False})
 

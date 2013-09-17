@@ -12,7 +12,6 @@ from django.db.models.sql import EmptyResultSet
 from django.http import HttpResponseNotFound
 
 import commonware.log
-from rest_framework import status
 from rest_framework.mixins import ListModelMixin
 from rest_framework.routers import Route, SimpleRouter
 from rest_framework.relations import HyperlinkedRelatedField
@@ -539,7 +538,7 @@ class SlugOrIdMixin(object):
     """
 
     def get_object(self):
-        if not self.kwargs.get('pk', '').isdigit():
+        if 'pk' in self.kwargs and not self.kwargs['pk'].isdigit():
             # If the `pk` contains anything other than a digit, it's a `slug`.
             self.kwargs.update(pk=None, slug=self.kwargs['pk'])
         return super(SlugOrIdMixin, self).get_object()
