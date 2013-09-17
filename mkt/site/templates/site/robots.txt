@@ -5,7 +5,9 @@ Disallow: /
 {% else %}
 Allow: /
 
+Disallow: /curation/
 Disallow: /downloads/
+Disallow: /lookup/
 {% for carrier in settings.CARRIER_URLS %}
 Disallow: /{{ carrier }}/
 {% endfor %}
