@@ -267,16 +267,27 @@ class ApiReviewersSearchForm(ApiSearchForm):
                                label=_lazy(u'Status'))
     has_editor_comment = forms.NullBooleanField(
         required=False,
-        label=_lazy(u'Contains Editor Comment'),
+        label=_lazy(u'Has Editor Comment'),
         widget=CustomNullBooleanSelect)
     has_info_request = forms.NullBooleanField(
         required=False,
-        label=_lazy(u'More Information Requested'),
+        label=_lazy(u'More Info Requested'),
         widget=CustomNullBooleanSelect)
     is_escalated = forms.NullBooleanField(
         required=False,
         label=_lazy(u'Escalated'),
         widget=CustomNullBooleanSelect)
+
+    def __init__(self, *args, **kwargs):
+        super(ApiReviewersSearchForm, self).__init__(*args, **kwargs)
+
+        # Mobile form, to render, expects choices from the Django field.
+        BOOL_CHOICES = ((u'', _lazy('Unknown')),
+                        (u'true', _lazy('Yes')),
+                        (u'false', _lazy('No')))
+        for field_name, field in self.fields.iteritems():
+            if isinstance(field, forms.NullBooleanField):
+                self.fields[field_name].choices = BOOL_CHOICES
 
     def clean_status(self):
         status = self.cleaned_data['status']
