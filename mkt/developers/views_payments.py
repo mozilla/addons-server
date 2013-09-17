@@ -102,23 +102,6 @@ def payments(request, addon_id, addon, webapp=False):
                     success = False
                     raise  # We want to see all the solitude errors now.
 
-            # Test again in case a call to Solitude failed.
-            if is_now_paid and success and not is_free_inapp:
-                # Update the product's price if we need to.
-                try:
-                    apa = AddonPaymentAccount.objects.get(addon=addon)
-                    apa.update_price(addon.addonpremium.price.price)
-                except AddonPaymentAccount.DoesNotExist:
-                    pass
-                except client.Error:
-                    log.error('Error updating AddonPaymentAccount (%s) price' %
-                                  apa.pk)
-                    messages.error(
-                        request, _(u'We encountered a problem while updating '
-                                   u'the payment server.'))
-                    success = False
-                    raise  # We want to see all the solitude errors now.
-
         # If everything happened successfully, give the user a pat on the back.
         if success:
             messages.success(request, _('Changes successfully saved.'))
