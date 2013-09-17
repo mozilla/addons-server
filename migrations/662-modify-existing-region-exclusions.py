@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+from django.core.exceptions import ObjectDoesNotExist
 from django.db import IntegrityError
 
 import mkt
@@ -19,7 +20,7 @@ def run():
         try:
             aer.update(region=mkt.regions.MX.id)
             print 'OK: %s New Mexico -> Old Mexico' % aer
-        except IntegrityError:
+        except (IntegrityError, ObjectDoesNotExist):
             print 'SKIP: %s New Mexico -> Old Mexico' % aer
 
     # And the featured apps, if there were any.
@@ -27,7 +28,7 @@ def run():
         try:
             far.update(region=mkt.regions.MX.id)
             print 'OK: %s New Mexico -> Old Mexico' % far
-        except IntegrityError:
+        except (IntegrityError, ObjectDoesNotExist):
             print 'SKIP: %s New Mexico -> Old Mexico' % far
 
     # New regions were added.
