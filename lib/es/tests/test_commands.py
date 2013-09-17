@@ -3,7 +3,9 @@ import subprocess
 import sys
 import time
 
+import mock
 from nose.tools import eq_
+from pyelasticsearch.exceptions import ElasticHttpNotFoundError
 
 from django.conf import settings
 from django.db import connection
@@ -13,13 +15,16 @@ import amo.tests
 from addons.models import AddonCategory, Category
 from amo.urlresolvers import reverse
 from amo.utils import urlparams
-from es.management.commands.reindex import (call_es, unflag_database,
-                                            database_flagged)
-from mkt.webapps.models import Webapp
+from es.management.commands.reindex import (call_es, database_flagged,
+                                            unflag_database)
+from es.management.commands.fixup_mkt_index import Command as FixupCommand
+
+from mkt.site.fixtures import fixture
+from mkt.webapps.models import Webapp, WebappIndexer
 
 
 class TestIndexCommand(amo.tests.ESTestCase):
-    fixtures = ['webapps/337141-steamcube']
+    fixtures = fixture('webapp_337141')
 
     def setUp(self):
         super(TestIndexCommand, self).setUp()
@@ -202,4 +207,39 @@ class TestIndexCommand(amo.tests.ESTestCase):
                                    stderr=subprocess.PIPE,
                                    cwd=settings.ROOT)
         stdout, stderr = indexer.communicate()
-        self.assertTrue('Reindexation done' in stdout, stdout + '\n' + stderr)
+
+
+class TestFixupCommand(amo.tests.ESTestCase):
+    fixtures = fixture('webapp_337141')
+
+    def setUp(self):
+        super(TestFixupCommand, self).setUp()
+        self.index = WebappIndexer.get_index()
+        self.doctype = WebappIndexer.get_mapping_type_name()
+        self.es = WebappIndexer.get_es()
+        self.app = Webapp.objects.get(pk=337141)
+
+    def test_missing(self):
+        try:
+            self.es.delete(self.index, self.doctype, self.app.id)
+        except ElasticHttpNotFoundError:
+            pass  # Already not in the index.
+
+        FixupCommand().handle()
+        self.es.refresh(self.index)
+
+        # If not there this will throw `ElasticHttpNotFoundError`.
+        self.es.get(self.index, self.doctype, self.app.id, fields='id')
+
+    def test_missing_no_deleted(self):
+        self.app.update(status=amo.STATUS_DELETED)
+        try:
+            self.es.delete(self.index, self.doctype, self.app.id)
+        except ElasticHttpNotFoundError:
+            pass  # Already not in the index.
+
+        FixupCommand().handle()
+        self.es.refresh(self.index)
+
+        with self.assertRaises(ElasticHttpNotFoundError):
+            self.es.get(self.index, self.doctype, self.app.id, fields='id')

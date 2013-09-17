@@ -924,8 +924,7 @@ class WebappIndexer(MappingType, Indexable):
         Returns mapping type name which is used as the key in ES_INDEXES to
         determine which index to use.
 
-        We override this because Webapp is a proxy model to
-        Addon.
+        We override this because Webapp is a proxy model to Addon.
         """
         return 'webapp'
 
