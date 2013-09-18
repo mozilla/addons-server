@@ -571,10 +571,8 @@ class Webapp(Addon):
         if excluded is None:
             excluded = list(self.addonexcludedregion
                                 .values_list('region', flat=True))
-        else:
-            excluded = []
 
-        return sorted(set(all_ids) - set(excluded))
+        return sorted(set(all_ids) - set(excluded or []))
 
     def get_excluded_region_ids(self):
         """
