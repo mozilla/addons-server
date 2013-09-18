@@ -1,10 +1,17 @@
 # -*- coding: utf-8 -*-
-from django.conf import settings
+from contextlib import nested
+
 from django import test
+from django.conf import settings
+from django.db import connections
+from django.test.utils import override_settings
 from django.utils import translation
 from django.utils.functional import lazy
 
 import jinja2
+import mock
+from multidb.pinning import use_master
+from nose import SkipTest
 from nose.tools import eq_
 from test_utils import ExtraAppTestCase, trans_eq
 
@@ -345,6 +352,59 @@ class TranslationTestCase(ExtraAppTestCase):
         obj = TranslatedModel.objects.get(id=1)
         eq_(unicode(obj.no_locale), 'blammo')
         eq_(obj.no_locale.locale, 'fr')
+
+    @override_settings(DEBUG=True)
+    def test_translations_reading_from_multiple_db(self):
+        # Pretend we are using a slave. Needs to be done inside the test because
+        # we need to copy default database.
+        settings.DATABASES['slave-1'] = settings.DATABASES['default'].copy()
+        settings.DATABASES['slave-2'] = settings.DATABASES['default'].copy()
+
+        # Make sure we are in a clean environnement.
+        for dbname in settings.DATABASES.keys():
+            connections[dbname].queries = []
+
+        with mock.patch('multidb.get_slave', lambda: 'slave-2'):
+            TranslatedModel.objects.get(pk=1)
+            eq_(len(connections['default'].queries), 0)
+            eq_(len(connections['slave-1'].queries), 0)
+            eq_(len(connections['slave-2'].queries), 3)
+
+    @override_settings(DEBUG=True)
+    def test_translations_reading_from_multiple_db_using(self):
+        raise SkipTest('Will need a django-queryset-transform patch to work')
+        # Pretend we are using a slave. Needs to be done inside the test because
+        # we need to copy default database.
+        settings.DATABASES['slave-1'] = settings.DATABASES['default'].copy()
+        settings.DATABASES['slave-2'] = settings.DATABASES['default'].copy()
+
+        # Make sure we are in a clean environnement.
+        for dbname in settings.DATABASES.keys():
+            connections[dbname].queries = []
+
+        with mock.patch('multidb.get_slave', lambda: 'slave-2'):
+            TranslatedModel.objects.no_cache().using('slave-1').get(pk=1)
+            eq_(len(connections['default'].queries), 0)
+            eq_(len(connections['slave-1'].queries), 3)
+            eq_(len(connections['slave-2'].queries), 0)
+
+    @override_settings(DEBUG=True)
+    def test_translations_reading_from_multiple_db_pinning(self):
+        # Pretend we are using a slave. Needs to be done inside the test because
+        # we need to copy default database.
+        settings.DATABASES['slave-1'] = settings.DATABASES['default'].copy()
+        settings.DATABASES['slave-2'] = settings.DATABASES['default'].copy()
+
+        # Make sure we are in a clean environnement.
+        for dbname in settings.DATABASES.keys():
+            connections[dbname].queries = []
+
+        with nested(mock.patch('multidb.get_slave', lambda: 'slave-2'),
+                    use_master):
+            TranslatedModel.objects.get(pk=1)
+            eq_(len(connections['default'].queries), 3)
+            eq_(len(connections['slave-1'].queries), 0)
+            eq_(len(connections['slave-2'].queries), 0)
 
 
 def test_translation_bool():
