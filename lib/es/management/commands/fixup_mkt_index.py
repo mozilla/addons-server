@@ -2,7 +2,7 @@
 A Marketplace only command that finds apps missing from the search index and
 adds them.
 """
-import logging
+import sys
 
 from pyelasticsearch.exceptions import ElasticHttpNotFoundError
 
@@ -11,9 +11,6 @@ from django.core.management.base import BaseCommand
 from addons.models import Webapp  # To avoid circular import.
 from mkt.webapps.models import WebappIndexer
 from mkt.webapps.tasks import index_webapps
-
-
-log = logging.getLogger('lib.es')
 
 
 class Command(BaseCommand):
@@ -36,5 +33,8 @@ class Command(BaseCommand):
                 missing_ids.append(app)
 
         if missing_ids:
-            log.info(u'Adding %s docs to the index.' % len(missing_ids))
+            sys.stdout.write('Adding %s doc(s) to the index.'
+                             % len(missing_ids))
             index_webapps.delay(missing_ids)
+        else:
+            sys.stdout.write('No docs missing from index.')
