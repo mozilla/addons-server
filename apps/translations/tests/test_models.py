@@ -357,8 +357,9 @@ class TranslationTestCase(ExtraAppTestCase):
     def test_translations_reading_from_multiple_db(self):
         # Pretend we are using a slave. Needs to be done inside the test because
         # we need to copy default database.
-        settings.DATABASES['slave-1'] = settings.DATABASES['default'].copy()
-        settings.DATABASES['slave-2'] = settings.DATABASES['default'].copy()
+        default_database = connections.databases['default']
+        connections.databases['slave-1'] = default_database.copy()
+        connections.databases['slave-2'] = default_database.copy()
 
         # Make sure we are in a clean environnement.
         for dbname in settings.DATABASES.keys():
@@ -375,8 +376,9 @@ class TranslationTestCase(ExtraAppTestCase):
         raise SkipTest('Will need a django-queryset-transform patch to work')
         # Pretend we are using a slave. Needs to be done inside the test because
         # we need to copy default database.
-        settings.DATABASES['slave-1'] = settings.DATABASES['default'].copy()
-        settings.DATABASES['slave-2'] = settings.DATABASES['default'].copy()
+        default_database = connections.databases['default']
+        connections.databases['slave-1'] = default_database.copy()
+        connections.databases['slave-2'] = default_database.copy()
 
         # Make sure we are in a clean environnement.
         for dbname in settings.DATABASES.keys():
@@ -392,8 +394,9 @@ class TranslationTestCase(ExtraAppTestCase):
     def test_translations_reading_from_multiple_db_pinning(self):
         # Pretend we are using a slave. Needs to be done inside the test because
         # we need to copy default database.
-        settings.DATABASES['slave-1'] = settings.DATABASES['default'].copy()
-        settings.DATABASES['slave-2'] = settings.DATABASES['default'].copy()
+        default_database = connections.databases['default']
+        connections.databases['slave-1'] = default_database.copy()
+        connections.databases['slave-2'] = default_database.copy()
 
         # Make sure we are in a clean environnement.
         for dbname in settings.DATABASES.keys():
