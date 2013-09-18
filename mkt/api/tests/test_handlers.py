@@ -135,6 +135,7 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
     def test_upsell(self):
         app = self.create_app()
         upsell = app_factory()
+        self.make_premium(upsell)
         AddonUpsell.objects.create(free=app, premium=upsell)
         res = self.client.get(self.get_url)
         eq_(res.status_code, 200)

@@ -94,7 +94,7 @@ def app_to_dict(app, region=None, profile=None, request=None):
     }
 
     data['upsell'] = False
-    if app.upsell and region in app.upsell.get_price_region_ids():
+    if app.upsell and region in app.upsell.premium.get_price_region_ids():
         upsell = app.upsell.premium
         data['upsell'] = {
             'id': upsell.id,
