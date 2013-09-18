@@ -2,4 +2,4 @@
 -r compiled.txt
 
 django-debug-toolbar==0.9.4
-django-fixture-magic==0.0.3
+django-fixture-magic==0.0.4

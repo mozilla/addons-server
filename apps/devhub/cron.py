@@ -23,7 +23,7 @@ def update_blog_posts():
     for item in items[:5]:
         post = {}
         post['title'] = item.title
-        post['date_posted'] = parser.parse(item.date)
+        post['date_posted'] = parser.parse(item.published)
         post['permalink'] = item.link
         BlogPost.objects.create(**post)
 
