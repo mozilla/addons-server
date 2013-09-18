@@ -9,15 +9,16 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-08-30 15:54-0700\n"
-"PO-Revision-Date: 2013-08-27 16:04+0100\n"
-"Last-Translator: Pavel Cvrček <pcvrcek@mozilla.cz>\n"
+"PO-Revision-Date: 2013-09-18 06:50+0000\n"
+"Last-Translator: Pavel <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Poedit 1.5.5\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1379487013.0\n"
 
 #: apps/addons/buttons.py:207
 msgid "Download Now"
@@ -18622,10 +18623,17 @@ msgid ""
 "Always give immediate feedback when the users take an action. For example, if users click on a &quot;new message&quot; button, lead them directly to the screen for creating a new message. You could "
 "also temporarily change the color of the “new message” button and provide a tactile feedback to show that your app understands the users' command."
 msgstr ""
+"Pokuste se uživatelům vše co nejvíce usnadnit. Například pokud uživatel "
+"klepne na tlačítko &quot;nová zpráva&quot;, otevřte mu přímo obrazovku pro "
+"vytvoření nové zprávy. Můžete také dočasně změnit barvu tlačítka “nová "
+"zpráva” a dát tak najevo, že aplikace přijala uživatelům požadavek."
 
 #: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:71
 msgid "If an action takes more than a few seconds, provide a status update. For example, if your app is downloading the new messages, you could show the progress with a loading icon."
 msgstr ""
+"Pokud akce trvá déle než jednu vteřinu, zobrazte průběh zpracování. "
+"Například pokud aplikace stahuje novou zprávu, můžete průběžně zobrazovat "
+"stav stahování a ikonku načítání."
 
 #: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:77
 msgid "Minimize typing"
@@ -18634,6 +18642,8 @@ msgstr "Minimalizujte zadávání"
 #: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:79
 msgid "Use selectors, checkboxes, radio buttons etc., whenever you can. Typing on mobile devices is often a slow and tedious task."
 msgstr ""
+"Použijte pole výběru, zaškrtávací pole či pole výběru atp., kdekoliv můžete. "
+"Psaní na mobilních zařízeních je často pomalý a zdlouhavý úkol."
 
 #: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:84
 msgid "Aim for a pleasant first launch experience"
@@ -18642,6 +18652,8 @@ msgstr "Zaměřte se na milé první seznámení po prvním spuštění"
 #: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:86
 msgid "People often spend only a minute or two deciding whether to continue or abandon an app. Some of the factors you may want to consider include:"
 msgstr ""
+"Lidé často stráví jen minutu nebo dvě rozhodováním, zda aplikaci odstranit "
+"nebo nadále používat. Měli byste proto zvážit některé tyto aspekty:"
 
 #: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:93
 msgid "provide a quick introduction to your app (and provide an easy way to end it anytime)"
@@ -18666,10 +18678,16 @@ msgstr "Používejte akce voleb, pokud je to možné"
 #: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:107
 msgid "If your alert says &quot;Delete all contacts?&quot;, you should provide action labels like &quot;Delete&quot; instead of &quot;OK&quot;."
 msgstr ""
+"Pokud vaše hlášení znějí podobně jako &quot;Odstranit všechny "
+"kontakty?&quot;, měli byste místo &quot;OK&quot; upřednostnit popisek "
+"tlačítka &quot;Smazat&quot;."
 
 #: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:114
 msgid "Also, try to avoid using alerts that only notify about a situation. Give your users a choice of actions to address the situation."
 msgstr ""
+"Je také dobré se vyhnout hlášením, které pouze informují o vzniklé situaci. "
+"Dejte rovnou uživateli k dispozici výběr akcí, jak se má aplikace v danou "
+"chvíli zachovat."
 
 #: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:120
 msgid "Focus on the main task"
@@ -18678,6 +18696,8 @@ msgstr "Zaměřte se na hlavní úkol"
 #: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:122
 msgid "Decide the main task of each screen and place features related to the main task in the most prominent places."
 msgstr ""
+"Pevně se rozhodněte o hlavní úloze každé obrazovky a funkce umísťujte "
+"nejrelevantnější funkce na dostupná místa."
 
 #: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:127
 msgid "Prepare for interruptions"
@@ -18688,15 +18708,21 @@ msgid ""
 "People may use your app anywhere. Prepare for interruptions by saving the user's work automatically if possible. Ideally, information and tasks should behave normally even without an Internet "
 "connection."
 msgstr ""
+"Lidé mohou využívat vaši aplikaci kdekoliv. Pokud je to možné, připravte se "
+"pro případ přerušení automatickým ukládáním uživatelovi práce. Základní "
+"informace a úkoly by se měli chovat normálním způsobem i bez připojení k "
+"internetu."
 
 #: mkt/ecosystem/templates/ecosystem/design_patterns.html:5 mkt/ecosystem/templates/ecosystem/design_patterns.html:13 mkt/ecosystem/templates/ecosystem/design_ui.html:39
 #: mkt/ecosystem/templates/ecosystem/macros.html:39
 msgid "Responsive Navigation Patterns"
-msgstr ""
+msgstr "Vzory responzivní navigace"
 
 #: mkt/ecosystem/templates/ecosystem/design_patterns.html:15
 msgid "Need some help designing your app's navigation? These patterns are a great place to start."
 msgstr ""
+"Potřebujete pomoci s návrhem navigace pro vaši aplikaci? Tyto vzory jsou "
+"skvělým způsobem jak začít."
 
 #: mkt/ecosystem/templates/ecosystem/design_patterns.html:21
 msgid ""
@@ -18704,6 +18730,12 @@ msgid ""
 "optimal way to present information on small screens because of the reduced screen real estate. Therefore, it is necessary to consider the presentation of content and ease of navigation for all "
 "screen sizes."
 msgstr ""
+"Následující vzory responzivní navigace představují několik způsobů ovládání "
+"na velkých i malých obrazovkách. Navigační menu nahoře a vlevo jsou běžná na "
+"velkých obrazovkách, ale často nejsou ideální pro malé obrazovky kvůli "
+"jejich značně omezeným rozměrům. Proto je nezbytné se zamyslet nad způsobem "
+"zobrazování obsahu a zjednodušením navigace pro jakoukoliv velikost "
+"obrazovky."
 
 #: mkt/ecosystem/templates/ecosystem/design_patterns.html:33
 msgid "Note: HTML/CSS for the corresponding patterns will be available soon."
@@ -18830,6 +18862,11 @@ msgid ""
 "There's no &quot;right way&quot; to design a user interface, but there are plenty of ways to make your app less fun and easy to use. With this in mind, the following sections can help avoid making "
 "some of the most common UI mistakes, setting you on the path to making an app that is a joy to use no matter what platform it's running on."
 msgstr ""
+"Neexistuje &quot;správná cesta&quot; jako navrhovat uživatelské rozhraní, "
+"ale existuje mnoho způsobů, jak vytvořit aplikace mnohem méně zábavnou a "
+"hůře ovladatelnou. Následující sekce pomohou se vyvarovat častým chybám v "
+"návrhu UI a ukáží lepší cestu pro vytváření aplikace, kterou je radost "
+"používat bez ohledu na platformu, na které poběží."
 
 #: mkt/ecosystem/templates/ecosystem/design_ui.html:27 mkt/ecosystem/templates/ecosystem/macros.html:32
 msgid "Intro to Responsive Design"
@@ -18839,6 +18876,9 @@ msgstr "Úvod do responzivního designu"
 msgid ""
 "One app, multiple screens. How do you make a UI that looks and works as great on a smartphone as it does on the desktop? Learn how to design and build UIs that change to fit your user's screen."
 msgstr ""
+"Jedna aplikace, více obrazovek. Jak vytvořit UI, které bude vypadat a "
+"fungovat skvěle na chytrém telefonu i stolním počítači? Dozvíte se, jak "
+"navrhnout a postavit UI, které se přizpůsobí obrazovce každého uživatele."
 
 #: mkt/ecosystem/templates/ecosystem/design_ui.html:52 mkt/ecosystem/templates/ecosystem/macros.html:44
 msgid "UI Guidelines for Firefox OS"
@@ -18869,6 +18909,12 @@ msgid ""
 "We believe that developers will be truly instrumental in bringing the power of the web to mobile, so we have worked with various partners to make devices available for developing and testing apps, "
 "and learning more about customizing Firefox OS itself. This page provides useful information to developers, such as links to developer documentation, available devices, and where to obtain them."
 msgstr ""
+"Věříme, že vývojáři budou velmi vynalézaví a pomohou přinést sílu webu do "
+"mobilních telefonů. Proto silně spolupracujeme s mnoha partnery na "
+"zpřístupnění zařízení pro vývoj a testování aplikací a pro přizpůsobování "
+"Firefox OS samotného. Tato stránka poskytuje užitečné informace pro "
+"vývojáře, odkazy na vývojářskou dokumentaci, dostupná zařízení a jak je "
+"získat."
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:39
 msgid "Keon"
@@ -18881,12 +18927,19 @@ msgstr "ZTE OPEN"
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:48
 msgid "<a href=\"%(us_ebay_url)s\" class=\"button\">Buy from US store</a> <a href=\"%(uk_ebay_url)s\" class=\"button\">Buy from UK store</a>"
 msgstr ""
+"<a href=\"%(us_ebay_url)s\" class=\"button\">Koupit z USA</a> <a href=\"%"
+"(uk_ebay_url)s\" class=\"button\">Koupit z V.Británie</a>"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:58
 msgid ""
 "After a lot of hard work alongside ZTE, we are proud to announce the release of the ZTE OPEN Firefox OS phone, a powerful device aimed at developers and early adopters worldwide. These devices are "
 "available through ZTE's US and UK eBay stores, priced at $79.99/£59.99, and will be unlocked and open for testing and experimentation. <a href=\"%(zte_url)s\">Read more details.</a>"
 msgstr ""
+"Po spoust tvrdé práce společně se ZTE jsme připraveni se slávou uvést ZTE "
+"Open - telefon s Firefox OS - výkonné zařízení zaměřené na vývojáře a "
+"inovátory z celého světa. Je dostupný přes americký a britský obchod eBay "
+"společnosti ZTE ($79.99/£59.99) a je odblokovaný a otevřený pro testování a "
+"experimenty. <a href=\"%(zte_url)s\">Více informací naleznete zde.</a>"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:71
 msgid "Peak"
@@ -18902,6 +18955,12 @@ msgid ""
 "Firefox OS devices. Note that no more phones are being produced at this moment in time, although another run is planned for the future. A number will remain in circulation however, and these "
 "devices are still very valid for developer testing, having full updates available to them."
 msgstr ""
+"Mozilla, Geeksphone a Telefónica společně připravili zařízení Geeksphone "
+"Keon a Peak, ukázkové telefony nižší a vyšší třídy pro vývojáře, kteří "
+"chtějí vyzkoušet skutečná zařízení s Firefox OS. V tuto chvíli jejich výroba "
+"již nepokračuje, nicméně do budoucna je plánováno další uvedení. Nicméně v "
+"oběhu je stále vysoký počet těchto zařízení, které dostávají nejnovější "
+"aktualizace a jsou stále zcela relevantní pro vývoj aplikací."
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:89
 msgid "Docs and tools"
@@ -18912,12 +18971,21 @@ msgid ""
 "If you already have a Firefox OS device and want some guidance and direction, you can <a href=\"%(devhub_url)s\">get started at the Firefox Marketplace Developer Hub</a>. The <a href=\"%(mdn_url)s"
 "\">Mozilla Developer Network</a> also provides a wealth of useful resources such as API documentation and further information on Open Web App development."
 msgstr ""
+"Pokud již vlastníte zařízení s Firefox OS a chcete pomoci najít směr jeho "
+"uplatnění, můžete <a href=\"%(devhub_url)s\">začít na Firefox Marketplace "
+"Developer Hub</a>. Také <a href=\"%(mdn_url)s\">Mozilla Developer Network</a> "
+"poskytuje cenné a užitečné zdroje jako dokumentaci API a další informace o "
+"vývoji Open Web Aplikací."
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:100
 msgid ""
 "If you don't have a Firefox OS device, explore the other tabs to find out how to obtain one. You don't have to wait however — you can start developing and testing Firefox OS Apps right away using "
 "the <a href=\"%(simulator_url)s\">Firefox OS simulator</a>."
 msgstr ""
+"Pokud zařízení s Firefox OS ještě nemáte, navštivte další odkazy, jak jedno "
+"takové získat. Nicméně nemusíte čekat — s vývojem a testováním aplikací pro "
+"Firefox OS můžete začít za pomoci <a href=\"%(simulator_url)s\">Firefox OS "
+"Simulator</a>.                "
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:110
 msgid "Sharing with the community"
@@ -18929,6 +18997,12 @@ msgid ""
 "we'd like you to get involved with the effort! We would like to invite you to add any useful information you have to the <a href=\"%(mdn_url)s\" target=\"_blank\">Mozilla Developer Network</a>. You "
 "can edit pages after creating a Mozilla Persona user account and logging in."
 msgstr ""
+"Při vývoji pro vznikající platformu je užitečné zdroje a informace vždy "
+"těžší najít než pro platformy zaběhlé. Abychom vývojářům Firefox OS pomohli "
+"co nejvíce, oceníme jakékoliv vaše poznatky! Rádi bychom vás pozvali na "
+"stránku <a href=\"%(mdn_url)s\" target=\"_blank\">Mozilla Developer Network</a>, "
+"kam můžete přidávat jakékoliv užitečné informace a upravovat existující "
+"stránky. Stačí si vytvořit účet Mozilla Persona a přihlásit se."
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:121
 msgid ""
@@ -18937,6 +19011,13 @@ msgid ""
 "In addition, you are always welcome to ask questions and share feedback and resources on <a href=\"%(b2g_irc_url)s\" target=\"_blank\">IRC</a> and <a href=\"%(b2g_mail_url)s\" target=\"_blank\">e-"
 "mail</a>."
 msgstr ""
+"Především uvítáme <a href=\"%(mdn_hackingfxos_url)s\" target=\"_blank\">tipy a "
+"triky pro Firefox OS samotný</a>, <a href=\"%(mdn_fxosapps_url)s\" "
+"target=\"_blank\">pro vývoj aplikací pro Firefox OS</a> a informace obsahující "
+"vaše <a href=\"%(mdn_devphone_url)s\" target=\"_blank\">zkušenosti s funkčností "
+"Firefox OS na odlišných zařízeních</a>. Kromě toho můžete vždy pokládat "
+"dotazy a sdílet zdroje na <a href=\"%(b2g_irc_url)s\" target=\"_blank\">IRC</a> "
+"a <a href=\"%(b2g_mail_url)s\" target=\"_blank\">e-mailem</a>."
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:16
 msgid ""
