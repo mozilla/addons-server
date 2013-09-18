@@ -2,7 +2,6 @@ from django.conf import settings
 from django.utils import translation
 
 import commonware.log
-import waffle
 
 import amo
 from addons.models import AddonUser
@@ -230,7 +229,8 @@ def es_app_to_dict(obj, region=None, profile=None, request=None):
 
     data['upsell'] = False
     if hasattr(obj, 'upsell'):
-        if region not in obj.upsell['region_exclusions']:
+        exclusions = obj.upsell.get('region_exclusions')
+        if exclusions is not None and region not in exclusions:
             data['upsell'] = obj.upsell
             data['upsell']['resource_uri'] = AppResource().get_resource_uri(
                 Webapp(id=obj.upsell['id']))
