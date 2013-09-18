@@ -245,7 +245,7 @@ JS = {
 
         # Search suggestions.
         'js/impala/ajaxcache.js',
-        'js/impala/suggestions.js',
+        'js/mkt/suggestions.js',
         'js/mkt/mkt_suggestions.js',
 
         # Account settings.
@@ -310,7 +310,7 @@ JS = {
     'mkt/lookup': (
         'js/common/keys.js',
         'js/impala/ajaxcache.js',
-        'js/impala/suggestions.js',
+        'js/mkt/suggestions.js',
         'js/mkt/manifest.js',
         'js/mkt/lookup-tool.js',
     ),

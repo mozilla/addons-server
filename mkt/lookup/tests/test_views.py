@@ -27,8 +27,9 @@ from devhub.models import ActivityLog
 from market.models import AddonPaymentData, AddonPremium, Price, Refund
 from mkt.constants.payments import (COMPLETED, FAILED, PENDING,
                                     REFUND_STATUSES)
+import mkt.lookup.constants as lkp
 from mkt.lookup.views import (_transaction_summary, transaction_refund,
-                              user_delete, user_summary)
+                              user_delete, user_search, user_summary)
 from mkt.site.fixtures import fixture
 from mkt.webapps.cron import update_weekly_downloads
 from mkt.webapps.models import Installed, Webapp
@@ -239,8 +240,7 @@ class TestAcctSearch(ESTestCase, SearchTestMixin):
         super(TestAcctSearch, self).setUp()
         self.url = reverse('lookup.user_search')
         self.user = UserProfile.objects.get(username='clouserw')
-        assert self.client.login(username='support-staff@mozilla.com',
-                                 password='password')
+        self.login(UserProfile.objects.get(username='support_staff'))
 
     def verify_result(self, data):
         eq_(data['results'][0]['name'], self.user.username)
@@ -277,6 +277,26 @@ class TestAcctSearch(ESTestCase, SearchTestMixin):
         self.refresh()
         data = self.search(q='fonzih')
         self.verify_result(data)
+
+    @mock.patch.object(lkp, 'SEARCH_LIMIT', 2)
+    @mock.patch.object(lkp, 'MAX_SEARCH_RESULTS', 3)
+    def test_all_results(self):
+        for x in range(3):
+            name = 'chr' + str(x)
+            UserProfile.objects.create(username=name, name=name,
+                                       email=name + '@gmail.com')
+
+        # Test not at search limit.
+        data = self.search(q='clouserw')
+        eq_(len(data['results']), 1)
+
+        # Test search limit.
+        data = self.search(q='chr')
+        eq_(len(data['results']), 2)
+
+        # Test maximum search result.
+        data = self.search(q='chr', all_results=True)
+        eq_(len(data['results']), 3)
 
 
 class TestTransactionSearch(TestCase):
