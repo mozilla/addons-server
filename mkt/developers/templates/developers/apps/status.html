@@ -38,7 +38,7 @@
         {% elif addon.status == amo.STATUS_PENDING %}
           <p>{{ status(_('This app is <b>pending review</b> by a Firefox Marketplace reviewer.')|safe) }}</p>
           {{ queue_position(addon, 'p') }}
-          {{ _('You will receive an email when the review is complete.') }}
+          <p>{{ _('You will receive an email when the review is complete.') }}</p>
         {% elif addon.status == amo.STATUS_PUBLIC %}
           {{ status(_('This app is <b>public</b>.')|safe) }}
         {% elif addon.status == amo.STATUS_DISABLED %}

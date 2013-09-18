@@ -109,10 +109,9 @@
         {% pluralize %}
           <b>Estimated waiting time:</b> {{ num }} working days
         {% endtrans %}
-      {% else %}
+      {% elif tag == 'p' %}
         {% trans email=emaillink(settings.MKT_REVIEWERS_EMAIL) %}
-          <b>Estimated waiting time:</b> Unknown
-          <span class="hint">(Please email {{ email }} for more information.)</span>
+          Most apps are reviewed in about a week. If your review has taken longer than this, you can send an email to {{ email }} to check the status.
         {% endtrans %}
       {% endif %}
     </{{ tag }}>
