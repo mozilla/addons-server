@@ -233,14 +233,8 @@ def days_ago(days):
     return datetime.now().replace(microsecond=0) - timedelta(days=days)
 
 
-class TestCase(RedisTest, test_utils.TestCase):
-    """Base class for all amo tests."""
-    client_class = TestClient
+class MockEsMixin(object):
     mock_es = True
-
-    def shortDescription(self):
-        # Stop nose using the test docstring and instead the test method name.
-        pass
 
     @classmethod
     def setUpClass(cls):
@@ -248,7 +242,7 @@ class TestCase(RedisTest, test_utils.TestCase):
             start_es_mock()
         try:
             reset.send(None)  # Reset all the ES tasks on hold.
-            super(TestCase, cls).setUpClass()
+            super(MockEsMixin, cls).setUpClass()
         except Exception:
             # We need to unpatch here because tearDownClass will not be
             # called.
@@ -259,10 +253,23 @@ class TestCase(RedisTest, test_utils.TestCase):
     @classmethod
     def tearDownClass(cls):
         try:
-            super(TestCase, cls).tearDownClass()
+            super(MockEsMixin, cls).tearDownClass()
         finally:
             if cls.mock_es:
                 stop_es_mock()
+
+
+class TestCase(MockEsMixin, RedisTest, test_utils.TestCase):
+    """Base class for all amo tests."""
+    client_class = TestClient
+
+    def shortDescription(self):
+        # Stop nose using the test docstring and instead the test method name.
+        pass
+
+    def _post_teardown(self):
+        amo.set_user(None)
+        super(TestCase, self)._post_teardown()
 
     def _pre_setup(self):
         super(TestCase, self)._pre_setup()

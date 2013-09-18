@@ -1,7 +1,6 @@
 """
 Miscellaneous helpers that make Django compatible with AMO.
 """
-import sys
 import threading
 
 from django.conf import settings

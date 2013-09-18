@@ -6,14 +6,13 @@ from django.core import mail
 
 from mock import patch
 from nose.tools import eq_, ok_
-from waffle.models import Flag
 
 from amo import CONTRIB_PENDING, CONTRIB_PURCHASE
 from amo.tests import TestCase
 from amo.urlresolvers import reverse
 from constants.payments import PROVIDER_BANGO
 from market.models import Price, PriceCurrency
-from users.models import UserProfile
+from users.models import UserProfile, GroupUser
 
 from mkt.api.base import get_url, list_url
 from mkt.api.tests.test_oauth import BaseOAuth
@@ -235,7 +234,7 @@ class TestNotification(BaseOAuth):
         eq_(msg.recipients(), [u'steamcube@mozilla.com'])
 
     def test_no_permission(self):
-        self.profile.groups.all().delete()
+        GroupUser.objects.filter(user=self.profile).delete()
         res = self.client.patch(self.get_url, data=json.dumps({}))
         eq_(res.status_code, 401)
 

@@ -191,12 +191,11 @@ class ReviewBase(object):
         self.version.update(has_info_request=True)
         log.info(u'Sending request for information for %s to %s' %
                  (self.addon, emails))
-        data = self.get_context_data()
 
         # Create thread.
         self.create_comm_thread(action='info')
 
-        subject = u'Submission Update: %s' % data['name']
+        subject = u'Submission Update: %s'  # notify_email will format this.
         self.notify_email('info', subject)
 
     def send_escalate_mail(self):
@@ -355,7 +354,7 @@ class ReviewApp(ReviewBase):
         if self.in_rereview:
             RereviewQueue.objects.filter(addon=self.addon).delete()
         self.create_comm_thread(action='disable')
-        subject = u'App disabled by reviewer: %s' % self.addon.name
+        subject = u'App disabled by reviewer: %s'
         self.notify_email('disabled', subject)
 
         self.log_action(amo.LOG.APP_DISABLED)
