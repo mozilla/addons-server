@@ -213,20 +213,6 @@ def es_app_to_dict(obj, region=None, profile=None, request=None):
     else:
         data['payment_account'] = None
 
-    data['price'] = data['price_locale'] = None
-    try:
-        price_tier = src.get('price_tier')
-        if price_tier:
-            price = Price.objects.get(name=price_tier)
-            if (region in app.upsell.get_price_region_ids() or
-                payments_enabled(request)):
-                data['price'] = price.get_price(region=region)
-                data['price_locale'] = price.get_price_locale(region=region)
-            data['payment_required'] = bool(price.price)
-    except Price.DoesNotExist:
-        log.warning('Issue with price tier on app: {0}'.format(obj._id))
-        data['payment_required'] = True
-
     data['upsell'] = False
     if hasattr(obj, 'upsell'):
         exclusions = obj.upsell.get('region_exclusions')
@@ -234,6 +220,23 @@ def es_app_to_dict(obj, region=None, profile=None, request=None):
             data['upsell'] = obj.upsell
             data['upsell']['resource_uri'] = AppResource().get_resource_uri(
                 Webapp(id=obj.upsell['id']))
+
+    data['price'] = data['price_locale'] = None
+    try:
+        price_tier = src.get('price_tier')
+        if price_tier:
+            price = Price.objects.get(name=price_tier)
+            if (data['upsell'] or payments_enabled(request)):
+                price_currency = price.get_price_currency(region=region)
+                if price_currency.paid:
+                    data['price'] = price.get_price(region=region)
+                    data['price_locale'] = price.get_price_locale(
+                        region=region)
+            data['payment_required'] = bool(price.price)
+    except Price.DoesNotExist:
+        log.warning('Issue with price tier on app: {0}'.format(obj._id))
+        data['payment_required'] = True
+
 
     # TODO: Let's get rid of these from the API to avoid db hits.
     if profile and isinstance(profile, UserProfile):

@@ -42,7 +42,6 @@ def price_locale(price, currency):
     return pricestr
 
 
-
 def price_key(data):
     return ('carrier={carrier}|tier={tier}|region={region}|provider={provider}'
             .format(**data))
@@ -89,9 +88,9 @@ class Price(amo.models.ModelBase):
         Price._currencies = dict((price_key(model_to_dict(p)), p)
                                  for p in PriceCurrency.objects.all())
 
-    def get_price_data(self, carrier=None, region=None, provider=None):
+    def get_price_currency(self, carrier=None, region=None, provider=None):
         """
-        Returns a tuple of Decimal(price), currency, locale.
+        Returns the PriceCurrency object or none.
 
         :param optional carrier: an int for the carrier.
         :param optional region: an int for the region. Defaults to worldwide.
@@ -110,9 +109,24 @@ class Price(amo.models.ModelBase):
         try:
             price_currency = Price._currencies[lookup]
         except KeyError:
-            return None, None
+            return None
 
-        return price_currency.price, price_currency.currency
+        return price_currency
+
+    def get_price_data(self, carrier=None, region=None, provider=None):
+        """
+        Returns a tuple of Decimal(price), currency, locale.
+
+        :param optional carrier: an int for the carrier.
+        :param optional region: an int for the region. Defaults to worldwide.
+        :param optional provider: an int for the provider. Defaults to bango.
+        """
+        price_currency = self.get_price_currency(carrier=carrier,
+                                                 region=region,
+                                                 provider=provider)
+        if price_currency:
+            return price_currency.price, price_currency.currency
+        return None, None
 
     def get_price(self, carrier=None, region=None, provider=None):
         """Return the price as a decimal for the current locale."""
