@@ -317,8 +317,10 @@ def bango_portal(request, addon_id, addon, webapp=True):
         log.error(('User not allowed to reach the Bango portal; '
                    'pk=%s') % request.user.pk)
         return http.HttpResponseForbidden()
+
+    package_id = addon.app_payment_account.payment_account.bango_package_id
     try:
-        bango_token = client.api.bango.login.post({'packageId': addon_id})
+        bango_token = client.api.bango.login.post({'packageId': package_id})
     except HttpClientError as e:
         log.error('Failed to authenticate against Bango portal; %s' % addon_id,
                   exc_info=True)
@@ -329,7 +331,7 @@ def bango_portal(request, addon_id, addon, webapp=True):
         'parameters': urllib.urlencode({
             'authenticationToken': bango_token['authentication_token'],
             'emailAddress': bango_token['email_address'],
-            'packageId': addon_id,
+            'packageId': package_id,
             'personId': bango_token['person_id'],
         })
     })

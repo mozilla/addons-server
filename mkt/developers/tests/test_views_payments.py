@@ -27,12 +27,15 @@ from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import AddonExcludedRegion as AER, ContentRating
 
+# Id without any significance but to be different of 1.
+TEST_PACKAGE_ID = 2
 
-def setup_payment_account(app, user, uid='uid'):
+def setup_payment_account(app, user, uid='uid', package_id=TEST_PACKAGE_ID):
     seller = SolitudeSeller.objects.create(user=user, uuid=uid)
     payment = PaymentAccount.objects.create(user=user, solitude_seller=seller,
                                             agreed_tos=True, seller_uri=uid,
-                                            uri=uid)
+                                            uri=uid,
+                                            bango_package_id=package_id)
     return AddonPaymentAccount.objects.create(addon=app,
         product_uri='/path/to/%s/' % app.pk, payment_account=payment)
 
@@ -710,6 +713,7 @@ class TestPayments(amo.tests.TestCase):
         assert self.is_owner(self.user)
         res = self.client.get(self.portal_url)
         eq_(res.status_code, 204)
+        eq_(api.bango.login.post.call_args[0][0]['packageId'], TEST_PACKAGE_ID)
         redirect_url = res['Location']
         assert authentication_token in redirect_url
         assert 'emailAddress=admin%40place.com' in redirect_url
