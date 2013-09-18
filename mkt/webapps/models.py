@@ -1144,7 +1144,8 @@ class WebappIndexer(MappingType, Indexable):
                             'icon_url': {'type': 'string',
                                          'index': 'not_analyzed'},
                             'name': {'type': 'string',
-                                     'index': 'not_analyzed'}
+                                     'index': 'not_analyzed'},
+                            'region_exclusions': {'type': 'short'},
                         }
                     },
                     'uses_flash': {'type': 'boolean'},
@@ -1290,6 +1291,7 @@ class WebappIndexer(MappingType, Indexable):
                 'icon_url': upsell_obj.get_icon_url(128),
                 # TODO: Store all localizations of upsell.name.
                 'name': unicode(upsell_obj.name),
+                'region_exclusions': upsell_obj.get_excluded_region_ids()
             }
 
         d['versions'] = [dict(version=v.version,

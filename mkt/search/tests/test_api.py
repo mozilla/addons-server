@@ -156,6 +156,7 @@ class TestApi(BaseOAuth, ESTestCase):
         eq_(obj['upsell']['name'], upsell.name)
         eq_(obj['upsell']['icon_url'], upsell.get_icon_url(128))
         eq_(obj['upsell']['resource_uri'], '/api/v1/apps/app/%s/' % upsell.id)
+        eq_(obj['upsell']['region_exclusions'], [])
 
         unindex_webapps([upsell.id])
         upsell.delete()

@@ -229,10 +229,11 @@ def es_app_to_dict(obj, region=None, profile=None, request=None):
         data['payment_required'] = True
 
     data['upsell'] = False
-    if hasattr(obj, 'upsell') and region in app.upsell.get_price_region_ids():
-        data['upsell'] = obj.upsell
-        data['upsell']['resource_uri'] = AppResource().get_resource_uri(
-            Webapp(id=obj.upsell['id']))
+    if hasattr(obj, 'upsell'):
+        if region not in obj.upsell['region_exclusions']:
+            data['upsell'] = obj.upsell
+            data['upsell']['resource_uri'] = AppResource().get_resource_uri(
+                Webapp(id=obj.upsell['id']))
 
     # TODO: Let's get rid of these from the API to avoid db hits.
     if profile and isinstance(profile, UserProfile):
