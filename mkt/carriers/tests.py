@@ -60,13 +60,6 @@ class TestCarrierURLs(TestCase):
         self.get('/?carrier=telefonica')
         eq_(reverse('manifest.webapp'), '/manifest.webapp')
 
-    def test_legacy_redirect(self):
-        res = self.client.get('/telefonica/')
-        self.assert3xx(res, '/?carrier=telefonica')
-
-        res = self.client.get('/telefonica/foo')
-        self.assert3xx(res, '/foo?carrier=telefonica')
-
     def test_context(self):
         request = self.get('/?carrier=telefonica')
         eq_(request.path_info, '/')

@@ -23,7 +23,6 @@ class CarrierURLMiddleware(object):
 
     def process_request(self, request):
         carrier = stored_carrier = None
-        is_legacy = False
         set_url_prefix(None)
         set_carrier(None)
 
@@ -39,21 +38,9 @@ class CarrierURLMiddleware(object):
             # We are clearing the carrier.
             carrier = None
 
-        # Legacy /<carrier>/ (don't break Gaia).
-        for name in CARRIER_MAP:
-            if request.path.startswith('/%s' % name):
-                is_legacy = True
-                carrier = name
-                break
-
         # Update cookie if value have changed.
         if carrier != stored_carrier:
             request.set_cookie('carrier', carrier)
-
-        if carrier and is_legacy:
-            orig_path = request.path_info
-            new_path = orig_path[len(carrier) + 1:] or '/'
-            return redirect(urlparams(new_path, carrier=carrier))
 
         set_carrier(carrier)
 
