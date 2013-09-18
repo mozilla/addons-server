@@ -25,6 +25,7 @@ import pyes.exceptions as pyes
 import test_utils
 from nose.exc import SkipTest
 from nose.tools import eq_, nottest, ok_
+from pyquery import PyQuery as pq
 from redisutils import mock_redis, reset_redis
 from tastypie.exceptions import ImmediateHttpResponse
 from test_utils import RequestFactory
@@ -513,6 +514,18 @@ class TestCase(MockEsMixin, RedisTest, test_utils.TestCase):
         eq_(Translation.objects.get(id=trans.id,
                                     locale=locale).localized_string,
             localized_string)
+
+    def extract_script_template(self, html, template_selector):
+        """Extracts the inner JavaScript text/template from a html page.
+
+        Example::
+
+            >>> template = extract_script_template(res.content, '#template-id')
+            >>> template('#my-jquery-selector')
+
+        Returns a PyQuery object that you can refine using jQuery selectors.
+        """
+        return pq(pq(html)(template_selector).html())
 
 
 class AMOPaths(object):
