@@ -698,6 +698,18 @@ class TestPayments(amo.tests.TestCase):
         self.account = setup_payment_account(self.webapp, self.user)
         self.portal_url = self.webapp.get_dev_url('payments.bango_portal')
 
+    def test_bango_portal_links(self):
+        payments_url = self.webapp.get_dev_url('payments')
+        res = self.client.get(payments_url)
+        account_template = self.extract_script_template(
+                                res.content, '#account-row-template')
+        eq_(len(account_template('.portal-account')), 0)
+        self.create_switch('bango-portal', db=True)
+        res = self.client.get(payments_url)
+        account_template = self.extract_script_template(
+                                res.content, '#account-row-template')
+        eq_(len(account_template('.portal-account')), 1)
+
     @mock.patch('mkt.developers.views_payments.client.api')
     def test_bango_portal_redirect(self, api):
         self.setup_bango_portal()
