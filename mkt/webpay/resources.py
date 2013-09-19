@@ -9,7 +9,6 @@ import commonware.log
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
-import waffle
 from tastypie import fields, http
 from tastypie.exceptions import ImmediateHttpResponse
 from tastypie.validation import CleanedDataFormValidation

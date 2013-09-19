@@ -339,6 +339,7 @@ Payment status
     :type status: string
 
     :status 200: request processed, check status for value.
+    :status 401: not authenticated.
     :status 403: not authorized to view details on that transaction.
 
 Installing
@@ -368,6 +369,8 @@ Free apps
 Premium apps
 ------------
 
+.. note:: Authentication is required.
+
 .. http:post:: /api/v1/receipts/install/
 
     Returns a receipt if the app is paid and a receipt should be installed.
@@ -384,6 +387,7 @@ Premium apps
         {"receipt": "eyJhbGciOiAiUlM1MT...[truncated]"}
 
     :statuscode 201: successfully completed.
+    :statuscode 401: not authenticated.
     :statuscode 402: payment required.
     :statuscode 403: app is not public, install not allowed.
 

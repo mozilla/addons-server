@@ -12,7 +12,8 @@ from tastypie.validation import CleanedDataFormValidation
 from constants.payments import CONTRIB_NO_CHARGE
 from lib.cef_loggers import receipt_cef
 from market.models import AddonPurchase
-from mkt.api.authentication import (OptionalOAuthAuthentication,
+from mkt.api.authentication import (OAuthAuthentication,
+                                    OptionalOAuthAuthentication,
                                     SharedSecretAuthentication)
 from mkt.api.base import CORSResource, http_error, MarketplaceResource
 from mkt.api.http import HttpPaymentRequired
@@ -32,7 +33,7 @@ class ReceiptResource(CORSResource, MarketplaceResource):
     class Meta(MarketplaceResource.Meta):
         always_return_data = True
         authentication = (SharedSecretAuthentication(),
-                          OptionalOAuthAuthentication())
+                          OAuthAuthentication())
         authorization = Authorization()
         detail_allowed_methods = []
         list_allowed_methods = ['post']
@@ -75,10 +76,7 @@ class ReceiptResource(CORSResource, MarketplaceResource):
                 log.info('App not purchased: %s' % bundle.obj.pk)
                 raise http_error(HttpPaymentRequired, 'You have not purchased this app.')
 
-        # Anonymous users will fall through, they don't need anything else
-        # handling.
-        if request.user.is_authenticated():
-            return self.record(bundle, request, type_)
+        return self.record(bundle, request, type_)
 
     def record(self, bundle, request, install_type):
         # Generate or re-use an existing install record.
