@@ -63,13 +63,13 @@ log = commonware.log.getLogger('z.reviewers')
 
 @reviewer_required
 def route_reviewer(request):
-  """
-  Redirect to apps home page if app reviewer.
-  Redirect to themes home page if only a theme reviewer.
-  """
-  if acl.action_allowed(request, 'Apps', 'Review'):
-    return http.HttpResponseRedirect(reverse('reviewers.home'))
-  return http.HttpResponseRedirect(reverse('reviewers.themes.home'))
+    """
+    Redirect to apps home page if app reviewer.
+    Redirect to themes home page if only a theme reviewer.
+    """
+    if acl.action_allowed(request, 'Apps', 'Review'):
+        return http.HttpResponseRedirect(reverse('reviewers.home'))
+    return http.HttpResponseRedirect(reverse('reviewers.themes.home'))
 
 
 @reviewer_required(only='app')
