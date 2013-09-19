@@ -983,26 +983,34 @@ class TestLanguagePack(LanguagePackBase):
         obj = self.file_create('search.xml')
         eq_(obj.get_localepicker(), '')
 
-    @mock.patch('files.utils.SafeUnzip.extract_path')
-    def test_no_locale_browser(self, extract_path):
+    def test_no_locale_browser(self):
         obj = self.file_create('langpack-localepicker')
-        extract_path.return_value = 'some garbage'
-        eq_(obj.get_localepicker(), '')
 
-    @mock.patch('files.utils.SafeUnzip.extract_path')
-    def test_corrupt_locale_browser_path(self, extract_path):
-        obj = self.file_create('langpack-localepicker')
-        extract_path.return_value = 'locale browser de woot?!'
-        eq_(obj.get_localepicker(), '')
-        extract_path.return_value = 'locale browser de woo:t?!as'
-        eq_(obj.get_localepicker(), '')
+        with mock.patch('files.utils.SafeUnzip.extract_path') as extract_path:
+            extract_path.return_value = 'some garbage'
+            eq_(obj.get_localepicker(), '')
 
-    @mock.patch('files.utils.SafeUnzip.extract_path')
-    def test_corrupt_locale_browser_data(self, extract_path):
+    def test_corrupt_locale_browser_path(self):
         obj = self.file_create('langpack-localepicker')
-        # Try and unzip an RDF.
-        extract_path.return_value = 'locale browser de jar:install.rdf!foo'
-        eq_(obj.get_localepicker(), '')
+
+        with mock.patch('files.utils.SafeUnzip.extract_path') as extract_path:
+            extract_path.return_value = 'locale browser de woot?!'
+            eq_(obj.get_localepicker(), '')
+
+    def test_corrupt_locale_browser_path_2(self):
+        obj = self.file_create('langpack-localepicker')
+
+        with mock.patch('files.utils.SafeUnzip.extract_path') as extract_path:
+            extract_path.return_value = 'locale browser de woo:t?!as'
+            eq_(obj.get_localepicker(), '')
+
+    def test_corrupt_locale_browser_data(self):
+        obj = self.file_create('langpack-localepicker')
+
+        with mock.patch('files.utils.SafeUnzip.extract_path') as extract_path:
+            # Try and unzip an RDF.
+            extract_path.return_value = 'locale browser de jar:install.rdf!foo'
+            eq_(obj.get_localepicker(), '')
 
     def test_hits_cache(self):
         obj = self.file_create('langpack-localepicker')
