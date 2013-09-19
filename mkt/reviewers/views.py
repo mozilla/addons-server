@@ -224,7 +224,7 @@ def _progress():
 
 
 def context(request, **kw):
-    statuses = dict((k, unicode(v)) for k, v in amo.STATUS_CHOICES.items())
+    statuses = dict((k, unicode(v)) for k, v in amo.STATUS_CHOICES_API.items())
     ctx = dict(motd=unmemoized_get_config('mkt_reviewers_motd'),
                queue_counts=queue_counts(request),
                search_url=reverse('api_dispatch_list', kwargs={

@@ -254,7 +254,7 @@ $mobileborder = #d7d2c3;
             float: none;
         }
     }
-    #addon-queue {
+    #addon-queue, #search-queue {
         th {
             font-size: 13px;
             padding: 13px 0;
@@ -267,6 +267,7 @@ $mobileborder = #d7d2c3;
             }
             &.flags {
                 min-width: 42px;
+                padding-left: 5px;
             }
         }
         .payments {
@@ -484,6 +485,33 @@ $mobileborder = #d7d2c3;
     #review-actions-form .review-actions-tested label {
         display: block;
         margin-left: 0;
+    }
+    #search-queue {
+        th, td {
+            border-right: 1px solid $faint-gray;
+        }
+        td {
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+        tr {
+            &:nth-child(even) {
+                background-color: #FAFAFA;
+            }
+            &:nth-child(odd) {
+                background-color: $white;
+            }
+        }
+        .app-name, .price {
+            display: none;
+        }
+        .app-name.app-name-mobile {
+            display: table-row;
+
+            span, td {
+                font-size: 14px;
+            }
+        }
     }
 }
 
