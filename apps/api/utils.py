@@ -77,8 +77,7 @@ def addon_to_dict(addon, disco=False, src='api'):
     if addon.type == amo.ADDON_PERSONA:
         d['previews'] = [addon.persona.preview_url]
     elif addon.type == amo.ADDON_WEBAPP:
-        d['app_type'] = (amo.ADDON_WEBAPP_PACKAGED if addon.is_packaged
-                         else amo.ADDON_WEBAPP_HOSTED)
+        d['app_type'] = addon.app_type_id
     else:
         d['previews'] = [p.as_dict(src=src) for p in addon.all_previews]
 

@@ -31,6 +31,7 @@ APP_TYPE_CHOICES = [
     ('', _lazy(u'Any App Type')),
     ('hosted', _lazy(u'Hosted')),
     ('packaged', _lazy(u'Packaged')),
+    ('privileged', _lazy(u'Privileged packaged app')),
 ]
 
 PREMIUM_CHOICES = [
@@ -92,8 +93,8 @@ class ApiSearchForm(forms.Form):
     premium_types = forms.MultipleChoiceField(
         widget=forms.CheckboxSelectMultiple(), required=False,
         label=_lazy(u'Premium types'), choices=PREMIUM_CHOICES)
-    app_type = forms.ChoiceField(required=False, label=_lazy(u'App type'),
-                                 choices=APP_TYPE_CHOICES)
+    # TODO: Make some fancy `MultipleCommaSeperatedChoiceField` field.
+    app_types = forms.CharField(required=False, label=_lazy(u'App types'))
     manifest_url = forms.CharField(required=False, label=_lazy('Manifest URL'))
     languages = forms.CharField(required=False,
         label=_lazy('Supported languages'))

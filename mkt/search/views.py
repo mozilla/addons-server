@@ -97,12 +97,18 @@ def _filter_search(request, qs, query, filters=None, sorting=None,
     if 'premium_types' in show:
         if query.get('premium_types'):
             qs = qs.filter(premium_type__in=query.get('premium_types'))
-    if 'app_type' in query and query['app_type']:
-        qs = qs.filter(app_type=query['app_type'])
+    if query.get('app_types'):
+        # TODO: Make some fancy `MultipleCommaSeperatedChoiceField` field.
+        choices = {}
+        for idx, (val, name) in enumerate(forms.APP_TYPE_CHOICES):
+            if val:
+                 choices[val] = idx
+        app_types = [choices.get(x.strip()) for x in query['app_types'].split(',')]
+        qs = qs.filter(app_type__in=filter(None, app_types))
     if query.get('manifest_url'):
         qs = qs.filter(manifest_url=query['manifest_url'])
     if query.get('languages'):
-        langs = [lang.strip() for lang in query['languages'].split(',')]
+        langs = [x.strip() for x in query['languages'].split(',')]
         qs = qs.filter(supported_locales__in=langs)
     if 'sort' in show:
         sort_by = [sorting[name] for name in query['sort'] if name in sorting]

@@ -866,11 +866,24 @@ class Webapp(Addon):
         return updated
 
     @property
+    def app_type_id(self):
+        """
+        Returns int of `1` (hosted), `2` (packaged), or `3` (privileged).
+        Used by ES.
+        """
+        if self.latest_version and self.latest_version.is_privileged:
+            return amo.ADDON_WEBAPP_PRIVILEGED
+        elif self.is_packaged:
+            return amo.ADDON_WEBAPP_PACKAGED
+        return amo.ADDON_WEBAPP_HOSTED
+
+    @property
     def app_type(self):
-        # Returns string of 'hosted' or 'packaged'. Used in the API.
-        key = (amo.ADDON_WEBAPP_PACKAGED if self.is_packaged else
-               amo.ADDON_WEBAPP_HOSTED)
-        return amo.ADDON_WEBAPP_TYPES[key]
+        """
+        Returns string of 'hosted', 'packaged', or 'privileged'.
+        Used in the API.
+        """
+        return amo.ADDON_WEBAPP_TYPES[self.app_type_id]
 
     @property
     def supported_locales(self):
@@ -1217,8 +1230,7 @@ class WebappIndexer(MappingType, Indexable):
                  'weekly_downloads')
         d = dict(zip(attrs, attrgetter(*attrs)(obj)))
 
-        d['app_type'] = (amo.ADDON_WEBAPP_PACKAGED if obj.is_packaged else
-                         amo.ADDON_WEBAPP_HOSTED)
+        d['app_type'] = obj.app_type_id
         d['author'] = obj.developer_name
         d['category'] = list(obj.categories.values_list('slug', flat=True))
         d['content_ratings'] = content_ratings if content_ratings else None

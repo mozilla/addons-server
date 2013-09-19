@@ -480,7 +480,8 @@ class Version(amo.models.ModelBase):
 
     @amo.cached_property
     def is_privileged(self):
-        if self.addon.type != amo.ADDON_WEBAPP or not self.addon.is_packaged:
+        if (self.addon.type != amo.ADDON_WEBAPP or
+            not self.addon.is_packaged or not self.all_files):
             return False
         data = self.addon.get_manifest_json(file_obj=self.all_files[0])
         return data.get('type') == 'privileged'

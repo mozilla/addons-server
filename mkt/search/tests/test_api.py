@@ -313,20 +313,35 @@ class TestApi(BaseOAuth, ESTestCase):
         eq_(obj['slug'], self.webapp.app_slug)
 
     def test_app_type_hosted(self):
-        res = self.client.get(self.url + ({'app_type': 'hosted'},))
+        res = self.client.get(self.url + ({'app_types': 'hosted'},))
         eq_(res.status_code, 200)
         obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
 
     def test_app_type_packaged(self):
         self.webapp.update(is_packaged=True)
-        self.webapp.save()
         self.refresh('webapp')
 
-        res = self.client.get(self.url + ({'app_type': 'packaged'},))
+        res = self.client.get(self.url + ({'app_types': 'packaged'},))
         eq_(res.status_code, 200)
         obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
+
+    def test_app_type_privileged(self):
+        # Override the class-decorated patch.
+        with patch('versions.models.Version.is_privileged', True):
+            self.webapp.update(is_packaged=True)
+            self.refresh('webapp')
+
+            res = self.client.get(self.url + ({'app_types': 'packaged'},))
+            eq_(res.status_code, 200)
+            eq_(len(res.json['objects']), 0)
+
+            res = self.client.get(self.url + ({'app_types': 'privileged'},))
+            eq_(res.status_code, 200)
+            eq_(len(res.json['objects']), 1)
+            obj = res.json['objects'][0]
+            eq_(obj['slug'], self.webapp.app_slug)
 
     def test_status_value_packaged(self):
         # When packaged and not a reviewer we exclude latest version status.

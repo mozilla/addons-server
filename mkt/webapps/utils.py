@@ -165,7 +165,7 @@ def es_app_to_dict(obj, region=None, profile=None, request=None):
     # The following doesn't perform a database query, but gives us useful
     # methods like `get_detail_url`. If you use `obj` make sure the calls
     # don't query the database.
-    is_packaged = src.get('app_type') == amo.ADDON_WEBAPP_PACKAGED
+    is_packaged = src.get('app_type') != amo.ADDON_WEBAPP_HOSTED
     app = Webapp(app_slug=obj.app_slug, is_packaged=is_packaged)
 
     attrs = ('content_ratings', 'created', 'current_version', 'default_locale',

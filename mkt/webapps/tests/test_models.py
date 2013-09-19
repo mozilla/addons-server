@@ -47,7 +47,6 @@ from mkt.webapps.models import (AddonExcludedRegion, AppFeatures, AppManifest,
 
 
 class TestWebapp(amo.tests.TestCase):
-
     fixtures = fixture('prices')
 
     def test_hard_deleted(self):
@@ -451,6 +450,12 @@ class TestWebapp(amo.tests.TestCase):
 
     def test_app_type_packaged(self):
         eq_(Webapp(is_packaged=True).app_type, 'packaged')
+
+    @mock.patch('versions.models.Version.is_privileged', True)
+    def test_app_type_privileged(self):
+        # Have to use `app_factory` because we need a `latest_version`
+        # to make it a privileged version.
+        eq_(app_factory(is_packaged=True).app_type, 'privileged')
 
     def test_nomination_new(self):
         app = app_factory()
