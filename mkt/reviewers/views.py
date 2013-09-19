@@ -402,7 +402,6 @@ def app_review(request, addon):
     except SigningError, exc:
         transaction.rollback()
         messages.error(request, 'Signing Error: %s' % exc)
-        transaction.commit()
         return redirect(
             reverse('reviewers.apps.review', args=[addon.app_slug]))
     except Exception:
