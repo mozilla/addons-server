@@ -4,6 +4,7 @@ from decimal import Decimal
 import json
 import random
 
+import mock
 from nose.tools import eq_
 from test_utils import RequestFactory
 
@@ -254,7 +255,9 @@ class TestInstalled(amo.tests.ESTestCase):
 
     def test_installed_anon_public(self):
         self.client.logout()
-        self.webapp.update(public_stats=True)
+        # Avoid re-indexing the app when changing its public_stats value.
+        with mock.patch('mkt.webapps.tasks.index_webapps.delay'):
+            self.webapp.update(public_stats=True)
         res = self.client.get(self.get_url(self.today, self.today))
         eq_(res.status_code, 200)
 
