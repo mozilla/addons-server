@@ -228,7 +228,7 @@ def es_app_to_dict(obj, region=None, profile=None, request=None):
             price = Price.objects.get(name=price_tier)
             if (data['upsell'] or payments_enabled(request)):
                 price_currency = price.get_price_currency(region=region)
-                if price_currency.paid:
+                if price_currency and price_currency.paid:
                     data['price'] = price.get_price(region=region)
                     data['price_locale'] = price.get_price_locale(
                         region=region)
