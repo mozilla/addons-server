@@ -451,7 +451,7 @@ class QueueTest(EditorTest):
         return a['addon']
 
     def get_queue(self, addon):
-        version = addon.latest_version
+        version = addon.latest_version.reload()
         eq_(version.current_queue.objects.filter(id=addon.id).count(), 1)
 
     def _test_get_queue(self):
