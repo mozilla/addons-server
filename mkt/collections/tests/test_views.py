@@ -172,7 +172,8 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
 
         self.collection.update(region=mkt.regions.PL.id)
 
-        res = self.client.get(self.list_url, {'region': mkt.regions.SPAIN.slug})
+        res = self.client.get(self.list_url,
+                              {'region': mkt.regions.SPAIN.slug})
         eq_(res.status_code, 200)
         data = json.loads(res.content)
         collections = data['objects']
@@ -187,7 +188,8 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
 
         self.collection.update(region=mkt.regions.PL.id)
 
-        res = self.client.get(self.list_url, {'region': mkt.regions.SPAIN.id})
+        res = self.client.get(self.list_url,
+                              {'region': mkt.regions.SPAIN.id})
         eq_(res.status_code, 200)
         data = json.loads(res.content)
         collections = data['objects']
@@ -665,8 +667,8 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         form_data = {'app': app_id} if app_id else {}
         url = self.collection_url('remove-app', self.collection.pk)
         remove_res = client.post(url, json.dumps(form_data))
-        remove_data = (json.loads(remove_res.content) if remove_res.content else
-                       None)
+        remove_data = (json.loads(remove_res.content)
+                       if remove_res.content else None)
         return remove_res, remove_data
 
     def test_remove_app_anon(self):
@@ -983,7 +985,8 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
                             [a.app_slug for a in self.collection.apps()])
 
     def delete(self, client, collection_id=None):
-        url = self.collection_url('detail', collection_id or self.collection.pk)
+        url = self.collection_url('detail',
+                                  collection_id or self.collection.pk)
         res = client.delete(url)
         data = json.loads(res.content) if res.content else None
         return res, data

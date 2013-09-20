@@ -1,7 +1,6 @@
 from decimal import Decimal
 
 from django.contrib.auth.models import AnonymousUser
-from django.test.utils import override_settings
 
 import mock
 import waffle
@@ -266,7 +265,7 @@ class TestESAppToDict(amo.tests.ESTestCase):
             if k in expected:
                 eq_(expected[k], v,
                     u'Expected value "%s" for field "%s", got "%s"' %
-                                                            (expected[k], k, v))
+                    (expected[k], k, v))
 
     def test_show_downloads_count(self):
         """Show weekly_downloads in results if app stats are public."""

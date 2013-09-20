@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-import os
-
 from nose.tools import eq_, ok_
 from tastypie.bundle import Bundle
 from test_utils import RequestFactory
@@ -100,12 +98,11 @@ class TestCollectionSerializer(CollectionDataMixin, amo.tests.TestCase):
         data = self.serializer.to_native(self.collection)
         for name, value in self.collection_data.iteritems():
             eq_(self.collection_data[name], data[name])
-        self.assertSetEqual(data.keys(), ['apps', 'author', 'background_color',
-                                          'carrier', 'category',
-                                          'collection_type', 'default_language',
-                                          'description', 'id', 'image',
-                                          'is_public', 'name', 'region',
-                                          'slug', 'text_color'])
+        self.assertSetEqual(data.keys(), [
+            'apps', 'author', 'background_color', 'carrier', 'category',
+            'collection_type', 'default_language', 'description', 'id',
+            'image', 'is_public', 'name', 'region', 'slug', 'text_color'
+        ])
         for order, app in enumerate(apps):
             eq_(data['apps'][order]['slug'], app.app_slug)
         return data
@@ -185,5 +182,6 @@ sb1muru1x6RshlvMeqhP0U3Sal8s0LZ5ikamItTat7ihft+hv+bqYI8RADs=
 class TestDataURLImageField(CollectionDataMixin, amo.tests.TestCase):
 
     def test_from_native(self):
-        d = DataURLImageField().from_native('data:image/gif;base64,' + IMAGE_DATA)
+        d = DataURLImageField().from_native(
+            'data:image/gif;base64,' + IMAGE_DATA)
         eq_(d.read(), IMAGE_DATA.decode('base64'))

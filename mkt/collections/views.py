@@ -54,7 +54,8 @@ class CollectionViewSet(CORSMixin, SlugOrIdMixin, viewsets.ModelViewSet):
         return queryset
 
     def list(self, request, *args, **kwargs):
-        response = super(CollectionViewSet, self).list(request, *args, **kwargs)
+        response = super(CollectionViewSet, self).list(
+            request, *args, **kwargs)
         filter_fallback = getattr(self, 'filter_fallback', None)
         if filter_fallback:
             response['API-Fallback'] = ','.join(filter_fallback)

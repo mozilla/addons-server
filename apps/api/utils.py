@@ -31,26 +31,26 @@ def addon_to_dict(addon, disco=False, src='api'):
         learnmore = url(addon.get_url_path(), src=src)
 
     d = {
-         'id': addon.id,
-         'name': unicode(addon.name) if addon.name else None,
-         'guid': addon.guid,
-         'status': amo.STATUS_CHOICES_API[addon.status],
-         'type': amo.ADDON_SLUGS_UPDATE[addon.type],
-         'authors': [{'id': a.id, 'name': unicode(a.name),
-                      'link': absolutify(a.get_url_path(src=src))}
-                     for a in addon.listed_authors],
-         'summary': strip_tags(addon.summary) if addon.summary else None,
-         'description': strip_tags(addon.description),
-         'icon': addon.icon_url,
-         'learnmore': learnmore,
-         'reviews': url(addon.reviews_url),
-         'total_dls': addon.total_downloads,
-         'weekly_dls': addon.weekly_downloads,
-         'adu': addon.average_daily_users,
-         'created': epoch(addon.created),
-         'last_updated': epoch(addon.last_updated),
-         'homepage': unicode(addon.homepage) if addon.homepage else None,
-         'support': unicode(addon.support_url) if addon.support_url else None,
+        'id': addon.id,
+        'name': unicode(addon.name) if addon.name else None,
+        'guid': addon.guid,
+        'status': amo.STATUS_CHOICES_API[addon.status],
+        'type': amo.ADDON_SLUGS_UPDATE[addon.type],
+        'authors': [{'id': a.id, 'name': unicode(a.name),
+                     'link': absolutify(a.get_url_path(src=src))}
+                    for a in addon.listed_authors],
+        'summary': strip_tags(addon.summary) if addon.summary else None,
+        'description': strip_tags(addon.description),
+        'icon': addon.icon_url,
+        'learnmore': learnmore,
+        'reviews': url(addon.reviews_url),
+        'total_dls': addon.total_downloads,
+        'weekly_dls': addon.weekly_downloads,
+        'adu': addon.average_daily_users,
+        'created': epoch(addon.created),
+        'last_updated': epoch(addon.last_updated),
+        'homepage': unicode(addon.homepage) if addon.homepage else None,
+        'support': unicode(addon.support_url) if addon.support_url else None,
     }
     if addon.is_persona():
         d['theme'] = addon.persona.theme_data
@@ -68,10 +68,10 @@ def addon_to_dict(addon, disco=False, src='api'):
 
     if addon.takes_contributions:
         contribution = {
-                'link': url(addon.contribution_url, src=src),
-                'meet_developers': url(addon.meet_the_dev_url(), src=src),
-                'suggested_amount': addon.suggested_amount,
-                }
+            'link': url(addon.contribution_url, src=src),
+            'meet_developers': url(addon.meet_the_dev_url(), src=src),
+            'suggested_amount': addon.suggested_amount,
+        }
         d['contribution'] = contribution
 
     if addon.type == amo.ADDON_PERSONA:
@@ -127,7 +127,8 @@ def extract_filters(term, app_id=amo.FIREFOX.id, opts=None):
             if atype in amo.ADDON_SEARCH_TYPES:
                 filters['type'] = atype
         except ValueError:
-            # `addon_type` is not a digit. Try to find it in ADDON_SEARCH_SLUGS.
+            # `addon_type` is not a digit.
+            # Try to find it in `ADDON_SEARCH_SLUGS`.
             atype = amo.ADDON_SEARCH_SLUGS.get(addon_type.lower())
             if atype:
                 filters['type'] = atype

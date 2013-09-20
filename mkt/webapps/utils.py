@@ -237,7 +237,6 @@ def es_app_to_dict(obj, region=None, profile=None, request=None):
         log.warning('Issue with price tier on app: {0}'.format(obj._id))
         data['payment_required'] = True
 
-
     # TODO: Let's get rid of these from the API to avoid db hits.
     if profile and isinstance(profile, UserProfile):
         data['user'] = {

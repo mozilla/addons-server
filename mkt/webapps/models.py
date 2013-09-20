@@ -605,7 +605,6 @@ class Webapp(Addon):
             return sorted(ids)
         return []
 
-
     def get_price_region_ids(self):
         tier = self.get_tier()
         if tier:
