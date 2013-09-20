@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-08-30 15:54-0700\n"
-"PO-Revision-Date: 2013-09-20 15:46+0000\n"
+"PO-Revision-Date: 2013-09-20 15:48+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1379691987.0\n"
+"X-POOTLE-MTIME: 1379692103.0\n"
 
 #: apps/addons/buttons.py:207
 msgid "Download Now"
@@ -17027,7 +17027,7 @@ msgstr "組建此應用程式的最佳化版本至 www-built"
 
 #: mkt/ecosystem/templates/ecosystem/build_app_generator.html:180
 msgid "Deploy the built version to github (need to build first)"
-msgstr "這些指令皆必須在您的專案根目錄執行。另外還有一些指令，您可以輸入 <code>volo</code> 檢視完整的指令清單。"
+msgstr "部署編譯好的版本到 github (需要先編譯好)"
 
 #. Do not localize text in <code></code>
 #: mkt/ecosystem/templates/ecosystem/build_app_generator.html:184
@@ -17117,9 +17117,9 @@ msgstr ""
 "在近期的瀏覽器中皆可使用，但也是最慢的。請試著使用將其作為後備功能的程式庫，不要直接使用它。</dd><dt><a href=\"%"
 "(indexeddb_url)s\">IndexedDB</a></dt><dd>IndexedDB 是異步且快速的程式庫，可以儲存任何 "
 "JavaScript 型別，不需要先將其序列化。它在 IE 與 iOS 當中無法使用，但可以在 Chrome 與 Firefox "
-"中使用。</dd><dt><a href=\"%(websql_url)s\" rel=\"external\">WebSQL</a> 類似 "
-"IndexedDB，一樣是異步的，只在您需要 Safari/iOS 相容性時會用到它。WebSQL 已被 W3C 正式宣布棄用，但在許多 WebKit "
-"瀏覽器中可以使用。</dd>"
+"中使用。</dd><dt><a href=\"%(websql_url)s\" rel=\"external\">WebSQL</a></dt><dd> "
+"WebSQL 類似 IndexedDB，一樣是異步的，只在您需要 Safari/iOS 相容性時會用到它。WebSQL 已被 W3C "
+"正式宣布棄用，但在許多 WebKit 瀏覽器中可以使用。</dd>"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:119
 msgid ""
