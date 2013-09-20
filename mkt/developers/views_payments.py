@@ -30,8 +30,7 @@ from lib.pay_server import client
 from market.models import Price
 from mkt.constants import DEVICE_LOOKUP
 from mkt.developers.decorators import dev_required
-from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
-                                   UserInappKey, uri_to_pk)
+from mkt.developers.models import PaymentAccount, UserInappKey, uri_to_pk
 
 from . import forms, forms_payments
 
@@ -157,9 +156,12 @@ def payment_accounts(request):
         user=request.amo_user, inactive=False)
 
     def account(acc):
+        app_names = (', '.join(unicode(apa.addon.name)
+                     for apa in acc.addonpaymentaccount_set.all()))
         data = {
             'id': acc.pk,
             'name': jinja2.escape(unicode(acc)),
+            'app-names': jinja2.escape(app_names),
             'account-url':
                 reverse('mkt.developers.bango.payment_account', args=[acc.pk]),
             'delete-url':
@@ -224,7 +226,7 @@ def payments_account(request, id):
 @login_required
 def payments_accounts_delete(request, id):
     account = get_object_or_404(PaymentAccount, pk=id, user=request.user)
-    account.cancel()
+    account.cancel(disable_refs=True)
     log.info('Account cancelled: %s' % id)
     return http.HttpResponse('success')
 

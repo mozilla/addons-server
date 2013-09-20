@@ -37,7 +37,8 @@ def setup_payment_account(app, user, uid='uid', package_id=TEST_PACKAGE_ID):
                                             uri=uid,
                                             bango_package_id=package_id)
     return AddonPaymentAccount.objects.create(addon=app,
-        product_uri='/path/to/%s/' % app.pk, payment_account=payment)
+        product_uri='/path/to/%s/' % app.pk, account_uri=payment.uri,
+        payment_account=payment)
 
 
 class InappTest(amo.tests.TestCase):
@@ -692,6 +693,15 @@ class TestPayments(amo.tests.TestCase):
         eq_(len(pqr('#id_accounts[disabled]')), 1)
         # Currently associated account should be displayed separately.
         eq_(pqr('.current-account').text(), unicode(owner_acct))
+
+    def test_deleted_payment_accounts_switch_to_incomplete_apps(self):
+        self.make_premium(self.webapp, price=self.price.price)
+        self.login(self.user)
+        addon_account = setup_payment_account(self.webapp, self.user)
+        eq_(self.webapp.status, amo.STATUS_PUBLIC)
+        self.client.post(reverse('mkt.developers.bango.delete_payment_account',
+                                 args=[addon_account.payment_account.pk]))
+        eq_(self.webapp.reload().status, amo.STATUS_NULL)
 
     def setup_bango_portal(self):
         self.create_switch('bango-portal')
