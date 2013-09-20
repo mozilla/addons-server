@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-08-30 15:54-0700\n"
-"PO-Revision-Date: 2013-09-16 18:56+0000\n"
+"PO-Revision-Date: 2013-09-20 14:36+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1379357764.0\n"
+"X-POOTLE-MTIME: 1379687776.0\n"
 
 #: apps/addons/buttons.py:207
 msgid "Download Now"
@@ -17027,17 +17027,19 @@ msgstr "組建此應用程式的最佳化版本至 www-built"
 
 #: mkt/ecosystem/templates/ecosystem/build_app_generator.html:180
 msgid "Deploy the built version to github (need to build first)"
-msgstr "部署組建的版本至 Github (需要先組建)"
+msgstr "這些指令皆必須在您的專案根目錄執行。另外還有一些指令，您可以輸入 <code>volo</code> 檢視完整的指令清單。"
 
 #. Do not localize text in <code></code>
 #: mkt/ecosystem/templates/ecosystem/build_app_generator.html:184
 msgid "All of these must be run at the root of your project. There are a few other commands and you can view the full list by simply typing <code>volo</code>."
-msgstr ""
+msgstr "這些指令皆必須在您的專案跟目錄執行。另外還有一些指令，您可以輸入 <code>volo</code> 檢視完整的指令清單。"
 
 #. Do not localize text in <code></code>
 #: mkt/ecosystem/templates/ecosystem/build_app_generator.html:192
 msgid "<strong>Note:</strong> volo itself only has a few built-in commands. The app template provides the <code>serve</code>, <code>build</code>, <code>ghdeploy</code>, and other commands."
-msgstr "<strong>注意:</strong> volo 本身只內建少數幾個命令。應用程式範本提供 <code>serve</code>, <code>build</code>, <code>ghdeploy</code>與其他命令。"
+msgstr ""
+"<strong>注意:</strong> volo 本身只內建少數幾個命令。應用程式範本提供 "
+"<code>serve</code>、<code>build</code>、<code>ghdeploy</code> 與其他命令。"
 
 #: mkt/ecosystem/templates/ecosystem/build_app_generator.html:198
 msgid "Tutorial"
@@ -17058,6 +17060,8 @@ msgid ""
 "The ability to use apps when not connected to the Internet is especially important for mobile devices, which may wander out of coverage areas. Of course, reducing the amount of time your app waits "
 "for data from a server improves the responsiveness of your app. This makes your app <em>feel</em> fast and is one of the most important considerations when developing web apps with HTML5."
 msgstr ""
+"對於可能會在訊號邊界游移不定的行動裝置來說，能夠在未連線至網際網路的情況下使用應用程式是非常重要的。當然，減少您的等待伺服器傳送資料也可以改善您的應用程"
+"式的響應程度。這樣可讓您的應用程式 <em>感覺</em> 很快，這也是在使用 HTML5 開發應用程式時最重要的考慮項目之一。"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:26
 msgid ""
@@ -17065,6 +17069,10 @@ msgid ""
 "current web app. The key to a responsive app experience (similar to iOS and Android) is speed. Using Appcache and JavaScript storage will allow your app to be downloaded and cached until you update "
 "its assets. This means your users can now use your app offline."
 msgstr ""
+"HTML 內建ㄧ些技術 (當然 Firefox OS "
+"可以使用)，讓您可以確保您的應用程式在離線狀態下可以正常使用。這些技術可以用來改善您目前應用程式的回應程度。一個有回應的應用程式體驗 (與 iOS 和 "
+"Android 類似) 的重點就是速度。使用 Appcache 與 JavaScript "
+"儲存空間將可以讓您的應用程式被下載並快取起來，直到您更新當中的內容為止。這代表您的使用者可以在離線時使用您的應用程式。"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:37
 msgid "Access your CSS, JS, and image files offline"
@@ -17076,12 +17084,18 @@ msgid ""
 "JavaScript, and image files you use. You can <a href=\"%(generator_url)s\" rel=\"external\">use tools</a> to generate your manifest or create one by hand. This is an example of the format, from <a "
 "href=\"%(example_manifest)s\" rel=\"external\">Face Value’s manifest</a>:"
 msgstr ""
+"使用 <strong><a href=\"%(appcache_url)s\">Appcache 資訊檔</a></strong> "
+"建立列出您的應用程式所有需要在離線時可以使用的檔案網址。ㄧ般來說，這個清單將會包含所有您會用到的 CSS、字體、JavaScript 與圖片。您可以 "
+"<a href=\"%(generator_url)s\" rel=\"external\">使用工具</a> 來產生資訊檔，或手動建立。下面是一個來自 <a "
+"href=\"%(example_manifest)s\" rel=\"external\">Face Value 的資訊檔</a> 範例:"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:73
 msgid ""
 "If you're using JavaScript templates like <a href=\"%(mustache_url)s\" rel=\"external\">mustache</a>, be sure to include your templates in your Appcache manifest or precompile them into your built "
 "JavaScript files."
 msgstr ""
+"若您會用到諸如 <a href=\"%(mustache_url)s\" rel=\"external\">mustache</a> 等 JavaScript "
+"模板，請確定您有把模板都列入於您的 Appcache 資訊檔，或將其預先編譯至您已編譯好的 JavaScript 檔案中。"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:81
 msgid "Save user data and settings without a server"
@@ -17089,7 +17103,7 @@ msgstr "不須伺服器就能儲存使用者資料與設定"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:84
 msgid "There are many JavaScript APIs for local, persistent storage. From most to least compatible across browers, your options are:"
-msgstr ""
+msgstr "有許多 JavaScript API 能讓您在本機、永久儲存資料。從最相容到最不相容不同瀏覽器，您的選項有:"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:91
 msgid ""
