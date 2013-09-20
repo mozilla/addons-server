@@ -369,6 +369,17 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         eq_(len(collections), 1)
         eq_(collections[0]['id'], self.collection.id)
 
+    def test_listing_filtering_with_pk(self):
+        self.collection.update(region=mkt.regions.SPAIN.id)
+        url = self.collection_url('detail', self.collection.pk)
+        res = self.client.get(url, {
+            'region': mkt.regions.WORLDWIDE.slug
+        })
+        # Filtering should not be applied.
+        eq_(res.status_code, 200)
+        data = json.loads(res.content)
+        eq_(data['id'], self.collection.id)
+
     def detail(self, client, url=None):
         apps = self.apps[:2]
         for app in apps:
