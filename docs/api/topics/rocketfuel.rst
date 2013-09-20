@@ -302,17 +302,25 @@ Reorder Apps
 Image
 -----
 
-.. http:get:: /api/v1/rocketfuel/collections/(int:id)/image/
+.. http:get:: /api/v1/rocketfuel/collections/(int:id|string:slug)/image/
 
     Get the image for a collection.
 
     .. note:: Authentication is optional.
 
 
-.. http:put:: /api/v1/rocketfuel/collections/(int:id)/image/
+.. http:put:: /api/v1/rocketfuel/collections/(int:id|string:slug)/image/
 
     Set the image for a collection. Accepts a data URI as the request
     body containing the image, rather than a JSON object.
+
+    .. note:: Authentication and one of the 'Collections:Curate' permission or
+        curator-level access to the collection are required.
+
+
+.. http:delete:: /api/v1/rocketfuel/collections/(int:id|string:slug)/image/
+
+    Delete the image for a collection.
 
     .. note:: Authentication and one of the 'Collections:Curate' permission or
         curator-level access to the collection are required.

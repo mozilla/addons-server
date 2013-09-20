@@ -416,8 +416,17 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         for order, app in enumerate(apps):
             eq_(data['apps'][order]['slug'], app.app_slug)
 
+        return res, data
+
     def test_detail(self):
-        self.detail(self.anon)
+        res, data = self.detail(self.anon)
+        ok_(not data['image'])
+
+    def test_detail_image(self):
+        storage.open(self.collection.image_path(), 'w').write(IMAGE_DATA)
+        self.collection.update(has_image=True)
+        res, data = self.detail(self.anon)
+        ok_(data['image'])
 
     def test_detail_slug_in_url(self):
         self.detail(self.anon,
@@ -1258,6 +1267,15 @@ class TestCollectionImageViewSet(RestOAuth):
             **CollectionDataMixin.collection_data)
         self.url = reverse('collection-image-detail',
                            kwargs={'pk': self.collection.pk})
+        self.img = ('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEUAAA'
+                    'Cnej3aAAAAAXRSTlMAQObYZgAAAApJREFUCNdjYAAAAAIAAeIhvDMAAAAA'
+                    'SUVORK5CYII=').decode('base64')
+
+    def add_img(self):
+        path = self.collection.image_path()
+        storage.open(path, 'w').write(self.img)
+        self.collection.update(has_image=True)
+        return path
 
     def test_put(self):
         self.grant_permission(self.profile, 'Collections:Curate')
@@ -1288,10 +1306,22 @@ class TestCollectionImageViewSet(RestOAuth):
     def test_get(self):
         if not settings.XSENDFILE:
             raise SkipTest
-        img = ('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEUAAACnej'
-               '3aAAAAAXRSTlMAQObYZgAAAApJREFUCNdjYAAAAAIAAeIhvDMAAAAASUVORK5C'
-               'YII=').decode('base64')
-        path = self.collection.image_path()
-        storage.open(path, 'w').write(img)
+        img_path = self.add_img()
         res = self.client.get(self.url)
-        eq_(res[settings.XSENDFILE_HEADER], path)
+        eq_(res[settings.XSENDFILE_HEADER], img_path)
+
+    def test_get_no_image(self):
+        res = self.client.get(self.url)
+        eq_(res.status_code, 404)
+
+    def test_delete(self):
+        self.grant_permission(self.profile, 'Collections:Curate')
+        img_path = self.add_img()
+        res = self.client.delete(self.url)
+        eq_(res.status_code, 204)
+        ok_(not self.collection.reload().has_image)
+        ok_(not storage.exists(img_path))
+
+    def test_delete_unauthorized(self):
+        res = self.client.delete(self.url)
+        eq_(res.status_code, 403)
