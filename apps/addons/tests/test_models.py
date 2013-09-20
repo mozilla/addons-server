@@ -37,7 +37,7 @@ from constants.applications import DEVICE_TYPES
 from devhub.models import ActivityLog, AddonLog, RssKey, SubmitStep
 from editors.models import EscalationQueue
 from files.models import File, Platform
-from files.tests.test_models import TestLanguagePack, UploadTest
+from files.tests.test_models import LanguagePackBase, UploadTest
 from market.models import AddonPaymentData, AddonPremium, Price
 from reviews.models import Review
 from translations.models import Translation, TranslationSequence
@@ -2072,7 +2072,7 @@ class TestSearchSignals(amo.tests.ESTestCase):
         eq_(Addon.search().count(), 0)
 
 
-class TestLanguagePack(TestLanguagePack):
+class TestLanguagePack(LanguagePackBase):
 
     def setUp(self):
         super(TestLanguagePack, self).setUp()
