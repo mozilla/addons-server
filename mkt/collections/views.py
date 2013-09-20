@@ -1,6 +1,7 @@
 from django.core.exceptions import ValidationError
 from django.core.files.storage import default_storage as storage
 from django.db import IntegrityError
+from django.http import Http404
 from django.utils.datastructures import MultiValueDictKeyError
 
 from PIL import Image
@@ -207,16 +208,19 @@ class CollectionViewSet(CORSMixin, SlugOrIdMixin, viewsets.ModelViewSet):
 
 
 class CollectionImageViewSet(CORSMixin, viewsets.ViewSet,
-                             generics.RetrieveUpdateAPIView):
+                             generics.RetrieveUpdateAPIView,
+                             generics.DestroyAPIView):
     queryset = Collection.objects.all()
     permission_classes = [CuratorAuthorization]
     authentication_classes = [RestOAuthAuthentication,
                               RestSharedSecretAuthentication,
                               RestAnonymousAuthentication]
-    cors_allowed_methods = ('get', 'put')
+    cors_allowed_methods = ('get', 'put', 'delete')
 
     def retrieve(self, request, pk=None):
         obj = self.get_object()
+        if not obj.has_image:
+            raise Http404
         return HttpResponseSendFile(request, obj.image_path(),
                                     content_type='image/png')
 
@@ -225,9 +229,16 @@ class CollectionImageViewSet(CORSMixin, viewsets.ViewSet,
         try:
             img = DataURLImageField().from_native(request.read())
         except ValidationError:
-            return Response(status=400)
+            return Response(status=status.HTTP_400_BAD_REQUEST)
         i = Image.open(img)
         with storage.open(obj.image_path(), 'wb') as f:
             i.save(f, 'png')
         obj.update(has_image=True)
-        return Response(status=204)
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+    def destroy(self, request, *args, **kwargs):
+        obj = self.get_object()
+        if obj.has_image:
+            storage.delete(obj.image_path())
+            obj.update(has_image=False)
+        return Response(status=status.HTTP_204_NO_CONTENT)
