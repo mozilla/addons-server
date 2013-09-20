@@ -203,6 +203,24 @@ class TestApi(BaseOAuth, ESTestCase):
         obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
 
+    def test_q_exact(self):
+        app1 = app_factory(name='test app test11')
+        app2 = app_factory(name='test app test21')
+        app3 = app_factory(name='test app test31')
+        self.refresh('webapp')
+
+        res = self.client.get(self.url + ({'q': 'test app test21'},))
+        eq_(res.status_code, 200)
+        eq_(len(res.json['objects']), 3)
+        # app2 should be first since it's an exact match and is boosted higher.
+        obj = res.json['objects'][0]
+        eq_(obj['slug'], app2.app_slug)
+
+        unindex_webapps([app1.id, app2.id, app3.id])
+        app1.delete()
+        app2.delete()
+        app3.delete()
+
     def test_q_is_tag(self):
         Tag(tag_text='whatsupp').save_tag(self.webapp)
         self.webapp.save()
