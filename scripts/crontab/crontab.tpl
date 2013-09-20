@@ -75,6 +75,5 @@ HOME=/tmp
 
 # Once per week
 45 7 * * 4 %(z_cron)s unconfirmed
-35 6 * * 3 %(django)s process_addons --task=check_paypal --settings=settings_local_mkt
 
 MAILTO=root
