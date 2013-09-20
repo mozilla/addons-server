@@ -57,7 +57,6 @@ HOME=/tmp
 30 6 * * * %(z_cron)s deliver_hotness
 40 7 * * * %(z_cron)s update_compat_info_for_fx4
 45 7 * * * %(django)s dump_apps
-55 7 * * * %(z_cron)s clean_out_addonpremium
 
 # Collect visitor stats from Google Analytics once per day.
 50 10 * * * %(z_cron)s update_google_analytics --settings=settings_local_mkt
