@@ -153,8 +153,8 @@ class CollectionFilterSetWithFallback(CollectionFilterSet):
         Can raise StopIteration if the fallback generator is exhausted.
         """
         self.data = self.original_data.copy()
-        fields_to_null = next(self.fallback)
-        for field in fields_to_null:
+        self.fields_to_null = next(self.fallback)
+        for field in self.fields_to_null:
             if field in self.data:
                 self.data[field] = None
         del self._form
@@ -164,6 +164,7 @@ class CollectionFilterSetWithFallback(CollectionFilterSet):
         super(CollectionFilterSetWithFallback, self).__init__(*args, **kwargs)
         self.original_data = self.data.copy()
         self.fallback = self.next_fallback()
+        self.fields_to_null = None
 
     @property
     def qs(self):
@@ -179,5 +180,6 @@ class CollectionFilterSetWithFallback(CollectionFilterSet):
             except StopIteration:
                 pass
         self._qs = qs
+        self._qs.filter_fallback = self.fields_to_null
         return self._qs
 

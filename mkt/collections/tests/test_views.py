@@ -164,6 +164,7 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         data = json.loads(res.content)
         collections = data['objects']
         eq_(len(collections), 4)
+        ok_('API-Fallback' not in res)
 
     def test_listing_filtering_region(self):
         self.create_additional_data()
@@ -178,6 +179,7 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         eq_(len(collections), 2)
         eq_(collections[0]['id'], self.collection4.id)
         eq_(collections[1]['id'], self.collection2.id)
+        ok_('API-Fallback' not in res)
 
     def test_listing_filtering_region_id(self):
         self.create_additional_data()
@@ -192,6 +194,7 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         eq_(len(collections), 2)
         eq_(collections[0]['id'], self.collection4.id)
         eq_(collections[1]['id'], self.collection2.id)
+        ok_('API-Fallback' not in res)
 
     def test_listing_filtering_carrier(self):
         self.create_additional_data()
@@ -205,6 +208,7 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         eq_(len(collections), 2)
         eq_(collections[0]['id'], self.collection4.id)
         eq_(collections[1]['id'], self.collection3.id)
+        ok_('API-Fallback' not in res)
 
     def test_listing_filtering_carrier_id(self):
         self.create_additional_data()
@@ -218,6 +222,7 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         eq_(len(collections), 2)
         eq_(collections[0]['id'], self.collection4.id)
         eq_(collections[1]['id'], self.collection3.id)
+        ok_('API-Fallback' not in res)
 
     def test_listing_filtering_carrier_null(self):
         self.create_additional_data()
@@ -229,6 +234,7 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         collections = data['objects']
         eq_(len(collections), 1)
         eq_(collections[0]['id'], self.collection.id)
+        ok_('API-Fallback' not in res)
 
     def test_listing_filtering_carrier_0(self):
         self.create_additional_data()
@@ -241,6 +247,7 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         collections = data['objects']
         eq_(len(collections), 1)
         eq_(collections[0]['id'], self.collection2.id)
+        ok_('API-Fallback' not in res)
 
     def test_listing_filtering_region_null(self):
         self.create_additional_data()
@@ -253,6 +260,7 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         eq_(len(collections), 2)
         eq_(collections[0]['id'], self.collection3.id)
         eq_(collections[1]['id'], self.collection.id)
+        ok_('API-Fallback' not in res)
 
     def test_listing_filtering_category(self):
         self.create_additional_data()
@@ -264,6 +272,7 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         collections = data['objects']
         eq_(len(collections), 1)
         eq_(collections[0]['id'], self.collection4.id)
+        ok_('API-Fallback' not in res)
 
     def test_listing_filtering_category_id(self):
         self.create_additional_data()
@@ -275,6 +284,7 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         collections = data['objects']
         eq_(len(collections), 1)
         eq_(collections[0]['id'], self.collection4.id)
+        ok_('API-Fallback' not in res)
 
     def test_listing_filtering_category_null(self):
         self.create_additional_data()
@@ -288,6 +298,7 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         eq_(collections[0]['id'], self.collection3.id)
         eq_(collections[1]['id'], self.collection2.id)
         eq_(collections[2]['id'], self.collection.id)
+        ok_('API-Fallback' not in res)
 
     def test_listing_filtering_category_region_carrier(self):
         self.create_additional_data()
@@ -303,6 +314,7 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         collections = data['objects']
         eq_(len(collections), 1)
         eq_(collections[0]['id'], self.collection4.id)
+        ok_('API-Fallback' not in res)
 
     def test_listing_filtering_category_region_carrier_fallback(self):
         self.create_additional_data()
@@ -322,6 +334,7 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         data = json.loads(res.content)
         collections = data['objects']
         eq_(len(collections), 0)
+        eq_(res['API-Fallback'], 'region,carrier')
 
     def test_listing_filtering_nonexistant_carrier(self):
         self.create_additional_data()
@@ -343,6 +356,7 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         collections = data['objects']
         eq_(len(collections), 1)
         eq_(collections[0]['id'], self.collection.id)
+        eq_(res['API-Fallback'], 'carrier')
 
     def test_listing_filtering_nonexistant_carrier_and_region(self):
         self.create_additional_data()
@@ -368,8 +382,9 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         collections = data['objects']
         eq_(len(collections), 1)
         eq_(collections[0]['id'], self.collection.id)
+        eq_(res['API-Fallback'], 'region,carrier')
 
-    def test_listing_filtering_with_pk(self):
+    def test_detail_filtering(self):
         self.collection.update(region=mkt.regions.SPAIN.id)
         url = self.collection_url('detail', self.collection.pk)
         res = self.client.get(url, {
@@ -379,6 +394,7 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         eq_(res.status_code, 200)
         data = json.loads(res.content)
         eq_(data['id'], self.collection.id)
+        ok_('API-Fallback' not in res)
 
     def detail(self, client, url=None):
         apps = self.apps[:2]
