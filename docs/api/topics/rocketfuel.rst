@@ -39,6 +39,21 @@ Listing
     Filtering on null values is done by omiting the value for the corresponding
     parameter in the query string.
 
+    If no results are found with the filters specified, the API will
+    automatically use a fallback mechanism and try to change the values to null
+    in order to try to find some results.
+
+    The order in which the filters are set to null is:
+        1. `region`
+        2. `carrier`
+        3. `region` and `carrier`.
+
+    In addition, if that fallback mechanism is used, HTTP responses will have an
+    additional `API-Fallback` header, containing the fields which were set to
+    null to find the returned results, separated by a comma if needed, like this:
+
+    `API-Fallback: region, carrier`
+
 Create
 ------
 

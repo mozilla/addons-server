@@ -48,6 +48,18 @@ class CollectionViewSet(CORSMixin, SlugOrIdMixin, viewsets.ModelViewSet):
         'app_mismatch': 'All apps in this collection must be included.',
     }
 
+    def filter_queryset(self, queryset):
+        queryset = super(CollectionViewSet, self).filter_queryset(queryset)
+        self.filter_fallback = getattr(queryset, 'filter_fallback', None)
+        return queryset
+
+    def list(self, request, *args, **kwargs):
+        response = super(CollectionViewSet, self).list(request, *args, **kwargs)
+        filter_fallback = getattr(self, 'filter_fallback', None)
+        if filter_fallback:
+            response['API-Fallback'] = ','.join(filter_fallback)
+        return response
+
     def get_object(self, queryset=None):
         """
         Custom get_object implementation to prevent DRF from filtering when we
