@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-08-30 15:54-0700\n"
-"PO-Revision-Date: 2013-09-20 15:29+0000\n"
+"PO-Revision-Date: 2013-09-20 15:46+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1379690959.0\n"
+"X-POOTLE-MTIME: 1379691987.0\n"
 
 #: apps/addons/buttons.py:207
 msgid "Download Now"
@@ -17293,7 +17293,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_dev_tools.html:50
 msgid "For other features not currently included in Firefox's built-in developer tools, please download the <a href=\"%(url)s\">Firebug add-on</a>."
-msgstr ""
+msgstr "至於其他還沒有內建於 Firefox 開發者工具的工具，請下載<a href=\"%(url)s\">Firebug 附加元件</a>。"
 
 #: mkt/ecosystem/templates/ecosystem/build_dev_tools.html:56 mkt/ecosystem/templates/ecosystem/build_intro.html:217 mkt/ecosystem/templates/ecosystem/build_manifests.html:242
 #: mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:192 mkt/ecosystem/templates/ecosystem/build_web_developers.html:181
