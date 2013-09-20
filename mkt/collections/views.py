@@ -48,6 +48,24 @@ class CollectionViewSet(CORSMixin, SlugOrIdMixin, viewsets.ModelViewSet):
         'app_mismatch': 'All apps in this collection must be included.',
     }
 
+    def get_object(self, queryset=None):
+        """
+        Custom get_object implementation to prevent DRF from filtering when we
+        do a specific pk/slug/etc lookup (we only want filtering on list API).
+
+        Calls DRF's get_object() with the queryset (filtered or not), since DRF
+        get_object() implementation will then just use the queryset without
+        attempting to filter it.
+        """
+        if queryset is None:
+            queryset = self.get_queryset()
+        if (self.pk_url_kwarg not in self.kwargs and
+            self.slug_url_kwarg not in self.kwargs and
+            self.lookup_field not in self.kwargs):
+            # Only filter queryset if we don't have an explicit lookup.
+            queryset = self.filter_queryset(queryset)
+        return super(CollectionViewSet, self).get_object(queryset=queryset)
+
     def return_updated(self, status, collection=None):
         """
         Passed an HTTP status from rest_framework.status, returns a response

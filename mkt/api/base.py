@@ -537,11 +537,11 @@ class SlugOrIdMixin(object):
     `slug` is called something else, override `self.slug_field`.
     """
 
-    def get_object(self):
+    def get_object(self, queryset=None):
         if 'pk' in self.kwargs and not self.kwargs['pk'].isdigit():
             # If the `pk` contains anything other than a digit, it's a `slug`.
             self.kwargs.update(pk=None, slug=self.kwargs['pk'])
-        return super(SlugOrIdMixin, self).get_object()
+        return super(SlugOrIdMixin, self).get_object(queryset=queryset)
 
 
 class SilentListModelMixin(ListModelMixin):
