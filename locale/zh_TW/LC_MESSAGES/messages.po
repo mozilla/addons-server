@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-08-30 15:54-0700\n"
-"PO-Revision-Date: 2013-09-20 14:36+0000\n"
+"PO-Revision-Date: 2013-09-20 15:29+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1379687776.0\n"
+"X-POOTLE-MTIME: 1379690959.0\n"
 
 #: apps/addons/buttons.py:207
 msgid "Download Now"
@@ -17112,20 +17112,31 @@ msgid ""
 "type without having to serialize it first. It isn't available in IE or iOS as of writing but is available in Chrome and Firefox. </dd> <dt><a href=\"%(websql_url)s\" rel=\"external\">WebSQL</a></"
 "dt> <dd> WebSQL is asynchronous like IndexedDB, but is only needed for Safari/iOS compatibility. WebSQL is officially deprecated by the W3C but is still supported by many WebKit browsers. </dd>"
 msgstr ""
+"<dt><a href=\"%"
+"(localstorage_url)s\">localStorage</a></dt><dd>同步且簡單使用，localStorage "
+"在近期的瀏覽器中皆可使用，但也是最慢的。請試著使用將其作為後備功能的程式庫，不要直接使用它。</dd><dt><a href=\"%"
+"(indexeddb_url)s\">IndexedDB</a></dt><dd>IndexedDB 是異步且快速的程式庫，可以儲存任何 "
+"JavaScript 型別，不需要先將其序列化。它在 IE 與 iOS 當中無法使用，但可以在 Chrome 與 Firefox "
+"中使用。</dd><dt><a href=\"%(websql_url)s\" rel=\"external\">WebSQL</a> 類似 "
+"IndexedDB，一樣是異步的，只在您需要 Safari/iOS 相容性時會用到它。WebSQL 已被 W3C 正式宣布棄用，但在許多 WebKit "
+"瀏覽器中可以使用。</dd>"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:119
 msgid ""
 "We recommend using <a href=\"%(localforage_url)s\" rel=\"external\">localForage</a>, which combines a library from Firefox OS with fallbacks for other browsers. It allows you to store key/value "
 "pairs for use between page loads, but does so asynchronously whenever possible. This improves the responsiveness of your app."
 msgstr ""
+"我們建議您使用 <a href=\"%(localforage_url)s\" "
+"rel=\"external\">localForage</a>，這是一個結合了來自 Firefox OS "
+"與其他瀏覽器的備用方法的程式庫。它允許您儲存鍵值對在頁面載入間使用，也可以異步地隨時使用。這可以改善您的應用程式的回應程度。"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:137
 msgid "Notice we do this asynchronously, as all APIs here are async."
-msgstr ""
+msgstr "請注意由於這邊所有的 API 都是異步的，我們都會異步使用。"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:142
 msgid "On localStorage"
-msgstr ""
+msgstr "關於 localStorage"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:145
 msgid ""
@@ -17134,32 +17145,44 @@ msgid ""
 "data you interact with rarely, but we recommend <a href=\"%(localForage)s\" rel=\"external\">localForage's asyncStorage library</a>, which uses faster storage by default but falls back to "
 "localStorage if it's all that is available."
 msgstr ""
+"localStorage 是相容性最高的 API，讓您可在不同的頁面間使用 JavaScript "
+"儲存資料。但它有一些主要的限制。localStorage "
+"是同步的，所以使用它的時候將主執行緒將會暫時無法執行，造成您的應用程式在取得或設定資料時感覺起來很慢。它也無法處理大量的資料或 JavaScript "
+"型別，諸如 TypedArrays。您可以使用 localStorage 儲存小量、不常使用的資料，但我們還是建議您使用 <a href=\"%"
+"(localForage)s\" rel=\"external\">localForage 的 asyncStorage "
+"程式庫</a>，可以使用速度更快的儲存方法，但若不能使用時仍可以使用 localStorage 作為備用。"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:159
 msgid "Caching large files and storing media"
-msgstr ""
+msgstr "快取大檔案與儲存媒體"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:162
 msgid ""
 "Use <a href=\"%(storage_url)s\">DeviceStorage</a> or <a href=\"%(indexeddb_url)s\">IndexedDB</a> to store large pieces of data. localStorage is unsuitable for large blob storage, but you can save "
 "chunks of data to IndexedDB. The Podcasts reference app does this in <a href=\"%(podcasts_url)s\" rel=\"external\">its episode model code</a>."
 msgstr ""
+"使用 <a href=\"%(storage_url)s\">DeviceStorage</a> 或 <a href=\"%"
+"(indexeddb_url)s\">IndexedDB</a> 來儲存大量的資料。localStorage "
+"不適合用來儲存大量資料，您可以將資料的不同部分儲存至 IndexedDB。Podcast 參考範例就在 <a href=\"%"
+"(podcasts_url)s\" rel=\"external\">其 episode model code</a> 當中這麼做。"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:175
 msgid "Keep in mind that storing large files (over 100MB) is still largely uncharted territory and you may encouter some issues."
-msgstr ""
+msgstr "請記得儲存大檔案 (超過 100MB) 還是很少有人做過的事，您可能會遇到一些問題。"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:181
 msgid "A Note on Packaged Apps"
-msgstr ""
+msgstr "封裝應用程式的注意事項"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:184
 msgid "If you’re <a href=\"%(packaged_apps_url)s\">developing a packaged app</a>, you don't need to use an Appcache manifest; all app assets are downloaded to the user’s device during install."
 msgstr ""
+"若您正在 <a href=\"%(packaged_apps_url)s\">開發封裝應用程式</a>，您不需要使用 Appcache "
+"資訊檔，所有軟體會用到的相關檔案內容都會在安裝時下載到使用者的裝置中。"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:192
 msgid "Managing Offline State and HTTP Requests"
-msgstr ""
+msgstr "管理離線狀態與 HTTP 請求"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:195
 msgid ""
@@ -17192,7 +17215,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:233
 msgid "See also: <a href=\"%(url)s\">Online and offline events</a>."
-msgstr ""
+msgstr "請參見: <a href=\"%(url)s\">線上與離線事件</a>。"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:238
 msgid "HTTP Requests"
@@ -17207,11 +17230,11 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:253
 msgid "We'll assume we aren't online."
-msgstr ""
+msgstr "假設我們不在線上。"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:256
 msgid "Assume we're a packaged app with systemXHR permissions."
-msgstr ""
+msgstr "假設我們用的是一個已取得 systemXHR 權限的封裝應用程式。"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:278
 msgid "Resources"
@@ -17219,7 +17242,7 @@ msgstr "資源"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:283
 msgid "Working off the grid with HTML5 offline"
-msgstr ""
+msgstr "使用 HTML5 處理離線情況"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:288
 msgid "&quot;Offline&quot;: What does it mean and why do I care?"
@@ -17422,7 +17445,7 @@ msgstr "透過網路 Feed"
 
 #: mkt/ecosystem/templates/ecosystem/build_game_apps.html:102
 msgid "Ask your question on the Open Web Apps IRC channel: <a href=\"%(url)s\">#openwebapps</a>"
-msgstr ""
+msgstr "您可以在 IRC 上的 Open Web Apps 頻道問問題: <a href=\"%(url)s\">#openwebapps</a>"
 
 #: mkt/ecosystem/templates/ecosystem/build_game_apps.html:107
 msgid "Tools for app developers"
@@ -17730,11 +17753,11 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_manifests.html:245
 msgid "App manifest"
-msgstr "應用程式 manifest"
+msgstr "應用程式安裝資訊"
 
 #: mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:5 mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:13 mkt/ecosystem/templates/ecosystem/macros.html:162
 msgid "For Current Mobile Developers"
-msgstr ""
+msgstr "給目前的行動平台開發者"
 
 #: mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:14
 msgid "Advantages"
@@ -17742,7 +17765,7 @@ msgstr "優勢"
 
 #: mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:16
 msgid "For mobile application developers, the Open Web Apps project offers these advantages:"
-msgstr ""
+msgstr "對於行動應用程式開發者，Open Web Apps 專案有這些優勢:"
 
 #: mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:23
 msgid "<strong>Simplicity</strong>: Develop on a single technology stack (HTML5/CSS/JavaScript) and deliver across all platforms, from smartphones to tablets to desktops."
@@ -17757,6 +17780,8 @@ msgid ""
 "<strong>Freedom</strong>: You're not locked in to a vendor-controlled ecosystem. You can distribute your app through the Firefox OS Marketplace, your own website, or any other store based on "
 "Mozilla's open app store technology."
 msgstr ""
+"<strong>自由</strong>: 您不再受限於供應商控制的生態系統中。您可以透過 Firefox OS "
+"Marketplace、您的網站或其他任何基於 Mozilla 的開放應用軟體商店技術的平台發行您的軟體。"
 
 #: mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:45
 msgid "<strong>Reach</strong>: You have the potential to reach Firefox's 450 million desktop users, as well as users of other desktop browsers and mobile users."
@@ -17778,7 +17803,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:67
 msgid "2. Add an <a href=\"%(url)s\">app manifest</a>."
-msgstr "2. 新增一個 <a href=\"%(url)s\">應用程式 manifest</a>。"
+msgstr "2. 新增一個 <a href=\"%(url)s\">應用程式安裝資訊</a>。"
 
 #: mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:72
 msgid "All that inherently separates a Web app from a normal website is a single, JSON-format text file."
@@ -17821,7 +17846,7 @@ msgstr "我的應用程式效能得以受益於進階的平台功能，像是 <a
 
 #: mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:126 mkt/ecosystem/templates/ecosystem/build_web_developers.html:81
 msgid "And many more"
-msgstr ""
+msgstr "還有更多"
 
 #: mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:129 mkt/ecosystem/templates/ecosystem/build_web_developers.html:84
 msgid "If you want to take full advantage of the capabilities of installable apps, there is plenty that you can do. For example:"
@@ -17837,7 +17862,7 @@ msgstr "向使用者收取應用程式費用。"
 
 #: mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:143 mkt/ecosystem/templates/ecosystem/build_web_developers.html:99
 msgid "Provide a way to <a href=\"%(url)s\">identify users</a>."
-msgstr ""
+msgstr "提供一個 <a href=\"%(url)s\">識別使用者</a> 的方式。"
 
 #: mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:148 mkt/ecosystem/templates/ecosystem/build_web_developers.html:104
 msgid "<a href=\"%(url)s\">Enable offline caching</a> so the app can be used when the device is not on the Internet."
@@ -17846,14 +17871,18 @@ msgstr "<a href=\"%(url)s\">啟用離線快取</a> 如此一來縱使裝置沒�
 #: mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:154 mkt/ecosystem/templates/ecosystem/build_web_developers.html:110
 msgid "Store data locally using either <a href=\"%(url_idx)s\">IndexedDB</a> or <a href=\"%(url_storage)s\">localStorage</a>."
 msgstr ""
+"使用 <a href=\"%(url_idx)s\">IndexedDB</a> 或 <a href=\"%"
+"(url_storage)s\">localStorage</a> 在本機儲存資料。"
 
 #: mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:162 mkt/ecosystem/templates/ecosystem/build_web_developers.html:118
 msgid "<a href=\"%(url)s\">Launch the app</a> natively (with an icon on the desktop or the home screen)."
-msgstr ""
+msgstr "原生地 <a href=\"%(url)s\">執行應用程式</a> (在桌面或主畫面中有個圖示)"
 
 #: mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:168 mkt/ecosystem/templates/ecosystem/build_web_developers.html:124
 msgid "Use device APIs to interact with hardware, such as <a href=\"%(url_geo)s\">geolocation</a> and <a href=\"%(url_motion)s\">orientation</a>."
 msgstr ""
+"使用裝置 API 與硬體互動，諸如 <a href=\"%(url_geo)s\">地理位置</a> 與 <a href=\"%"
+"(url_motion)s\">螢幕方向</a>。"
 
 #: mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:176 mkt/ecosystem/templates/ecosystem/build_web_developers.html:132
 msgid ""
@@ -17875,7 +17904,7 @@ msgstr "行動 Web 應用程式堆疊"
 
 #: mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:200
 msgid "Open Web Apps for Android"
-msgstr ""
+msgstr "Android 上的 Open Web Apps"
 
 #: mkt/ecosystem/templates/ecosystem/build_payments.html:5 mkt/ecosystem/templates/ecosystem/macros.html:183 mkt/lookup/templates/lookup/app_summary.html:69
 #: mkt/lookup/templates/lookup/user_summary.html:34 mkt/lookup/templates/lookup/user_summary.html:46 mkt/reviewers/templates/reviewers/queue.html:37
@@ -17894,7 +17923,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_quick.html:26
 msgid "If you'd like to follow along with this guide, you can <a href=\"%(url)s\">download the quick start app</a>."
-msgstr ""
+msgstr "如果您想跟著這份指南開始，您可以 <a href=\"%(url)s\">下載快速上手應用程式</a>。"
 
 #: mkt/ecosystem/templates/ecosystem/build_quick.html:31
 msgid "App Structure"
@@ -17923,7 +17952,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_quick.html:56
 msgid "App Manifests"
-msgstr "應用程式 Manifest"
+msgstr "應用程式安裝資訊"
 
 #: mkt/ecosystem/templates/ecosystem/build_quick.html:58
 msgid ""
@@ -17938,7 +17967,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_quick.html:78
 msgid "App Layout &amp; Design"
-msgstr ""
+msgstr "軟體版面與設計"
 
 #: mkt/ecosystem/templates/ecosystem/build_quick.html:80
 msgid ""
@@ -17994,7 +18023,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_quick.html:157
 msgid "WebRT APIs (Permissions-based APIs)"
-msgstr ""
+msgstr "WebRT API (以權限為基礎的 API)"
 
 #. Do not localize text in <code></code>
 #: mkt/ecosystem/templates/ecosystem/build_quick.html:160
@@ -18011,7 +18040,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_quick.html:178
 msgid "Tools &amp; Testing"
-msgstr "工具 &amp; 測試"
+msgstr "工具與測試"
 
 #: mkt/ecosystem/templates/ecosystem/build_quick.html:180
 msgid "Testing is incredibly important when supporting mobile devices. There are many options for testing FirefoxOS apps:"
@@ -18056,7 +18085,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_quick.html:232
 msgid "More Marketplace &amp; Listing Information"
-msgstr ""
+msgstr "更多 Marketplace 與上架資訊"
 
 #: mkt/ecosystem/templates/ecosystem/build_quick.html:236
 msgid "Submitting an App to the Firefox OS Marketplace"
@@ -18104,7 +18133,7 @@ msgstr "Podcasts"
 
 #: mkt/ecosystem/templates/ecosystem/build_reference.html:50
 msgid "Podcasts is an offline-capable, HTML5/JS audio app."
-msgstr ""
+msgstr "Podcasts 是個可離線使用的 HTML5/JS 音樂軟體。"
 
 #: mkt/ecosystem/templates/ecosystem/build_reference.html:56 mkt/ecosystem/templates/ecosystem/macros.html:117 mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:6
 #: mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:9
@@ -18113,7 +18142,7 @@ msgstr "Roller"
 
 #: mkt/ecosystem/templates/ecosystem/build_reference.html:59
 msgid "Roller is a micro blog app that allows you to post text, upload an image or paste a link that has an image extension such as jpg, gif, png or jpeg."
-msgstr "Roller 是一個微博應用程式，讓您張貼文字、上傳圖片或貼上有圖片副檔名的連結，例如 jpg, gif, png 或 jpeg。"
+msgstr "Roller 是一套微網誌軟體，讓您張貼文字、上傳圖片或貼上有圖片副檔名，例如 jpg、gif、png 或 jpeg的連結。"
 
 #: mkt/ecosystem/templates/ecosystem/build_reference.html:67 mkt/ecosystem/templates/ecosystem/macros.html:125 mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:6
 #: mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:9
@@ -18135,11 +18164,11 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_reference.html:87
 msgid "rtcamera"
-msgstr ""
+msgstr "rtcamera"
 
 #: mkt/ecosystem/templates/ecosystem/build_reference.html:90
 msgid "rtcamera is a fun camera app to process images in real time."
-msgstr ""
+msgstr "rtcamera 是一套能夠即時處理圖片的拍照軟體。"
 
 #: mkt/ecosystem/templates/ecosystem/build_tools.html:15
 msgid ""
@@ -18161,7 +18190,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_web_developers.html:5 mkt/ecosystem/templates/ecosystem/build_web_developers.html:13 mkt/ecosystem/templates/ecosystem/macros.html:155
 msgid "For Current Web Developers"
-msgstr ""
+msgstr "給目前的網頁開發者"
 
 #: mkt/ecosystem/templates/ecosystem/build_web_developers.html:14
 msgid "Minimum requirements"
@@ -18194,7 +18223,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_web_developers.html:167
 msgid "Offline resources in Firefox"
-msgstr ""
+msgstr "Firefox 的離線支援"
 
 #: mkt/ecosystem/templates/ecosystem/build_web_developers.html:171
 msgid "DOM Storage"
@@ -18210,7 +18239,7 @@ msgstr "行動 web 應用程式堆疊"
 
 #: mkt/ecosystem/templates/ecosystem/design_concept.html:14
 msgid "What is the purpose of your app?"
-msgstr "您應用程式的用途為何?"
+msgstr "您應用程式的用途為何？"
 
 #: mkt/ecosystem/templates/ecosystem/design_concept.html:16
 msgid ""
@@ -18224,7 +18253,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/design_concept.html:30
 msgid "Focus on one main use case"
-msgstr ""
+msgstr "聚焦於主要用途"
 
 #: mkt/ecosystem/templates/ecosystem/design_concept.html:32
 msgid ""
@@ -18245,7 +18274,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/design_concept.html:53
 msgid "Concentrate on a few key features"
-msgstr ""
+msgstr "專心於幾件最重要的功能"
 
 #: mkt/ecosystem/templates/ecosystem/design_concept.html:55
 msgid "Look at your task list again. Filter your list through the goal statement. If the tasks do not align with your goal statement, exclude them in your app."
@@ -18263,7 +18292,7 @@ msgstr "請記得: 最好的應用程式專注做好一件事。應用程式的�
 
 #: mkt/ecosystem/templates/ecosystem/design_concept.html:77
 msgid "Your app in its most basic form"
-msgstr ""
+msgstr "您的應用程式最基本的的樣子"
 
 #: mkt/ecosystem/templates/ecosystem/design_concept.html:79
 msgid "Once you have a few key moments, you can translate those steps into screens. You can sketch out the user flow, that is, what do your users go from one screen to another to complete a task."
@@ -18287,11 +18316,11 @@ msgstr "保持一致性"
 
 #: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:24
 msgid "Be consistent in your language. Refer to an action or an item with the same term in your app, and use each term for only one action or item."
-msgstr ""
+msgstr "在軟體中使用一致的詞彙。在您的軟體中提到同個行為或物件時記得使用同個詞彙，而且每個詞彙都應該對應到一種行為或物件。"
 
 #: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:31
 msgid "Be consistent in your user interface (UI). For example, if you place your back button on the top left corner, it should not appear on the bottom left corner in other screens within your app."
-msgstr ""
+msgstr "在使用者介面中保持一致性。例如，如果您把回到上一頁的按鈕丟到左上角，就不該在其他的畫面中把它放到左下角。"
 
 #: mkt/ecosystem/templates/ecosystem/design_fundamentals.html:38
 msgid ""
