@@ -3,7 +3,6 @@ from operator import attrgetter
 
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
-from django.db.models import Count
 
 import pyes.exceptions as pyes
 
@@ -13,12 +12,8 @@ from addons.models import Persona
 from amo.utils import create_es_index_if_missing
 from bandwagon.models import Collection
 from compat.models import AppCompat
-from stats.models import ClientData
 from users.models import UserProfile
 from versions.compare import version_int
-
-import mkt
-from mkt.webapps.models import Installed
 
 from .models import Addon
 
@@ -75,27 +70,6 @@ def extract(addon):
         except Persona.DoesNotExist:
             # The addon won't have a persona while it's being created.
             pass
-    elif addon.type == amo.ADDON_WEBAPP:
-        installed_ids = list(Installed.objects.filter(addon=addon)
-                             .values_list('id', flat=True))
-        d['popularity'] = d['_boost'] = len(installed_ids)
-
-        # Calculate regional popularity for "mature regions"
-        # (installs + reviews/installs from that region).
-        installs = dict(ClientData.objects.filter(installed__in=installed_ids)
-                        .annotate(region_counts=Count('region'))
-                        .values_list('region', 'region_counts').distinct())
-        for region in mkt.regions.ALL_REGION_IDS:
-            cnt = installs.get(region, 0)
-            if cnt:
-                # Magic number (like all other scores up in this piece).
-                d['popularity_%s' % region] = d['popularity'] + cnt * 10
-            else:
-                d['popularity_%s' % region] = len(installed_ids)
-            d['_boost'] += cnt * 10
-        d['app_type'] = (amo.ADDON_WEBAPP_PACKAGED if addon.is_packaged else
-                         amo.ADDON_WEBAPP_HOSTED)
-
     else:
         # Boost by the number of users on a logarithmic scale. The maximum
         # boost (11,000,000 users for adblock) is about 5x.
