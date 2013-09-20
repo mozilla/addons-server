@@ -38,6 +38,7 @@ class Collection(amo.models.ModelBase):
     curators = models.ManyToManyField('users.UserProfile')
     background_color = ColorField(null=True)
     text_color = ColorField(null=True)
+    has_image = models.BooleanField(default=False)
 
     objects = amo.models.ManagerBase()
     public = PublicCollectionsManager()

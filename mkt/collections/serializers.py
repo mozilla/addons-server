@@ -143,7 +143,7 @@ class CollectionSerializer(serializers.ModelSerializer):
     image = HyperlinkedRelatedOrNullField(
         source='*',
         view_name='collection-image-detail',
-        predicate=lambda o: os.path.exists(o.image_path()))
+        predicate=lambda o: o.has_image)
     carrier = SlugChoiceField(required=False,
         choices_dict=mkt.carriers.CARRIER_MAP)
     region = SlugChoiceField(required=False,

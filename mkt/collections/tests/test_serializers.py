@@ -113,11 +113,7 @@ class TestCollectionSerializer(CollectionDataMixin, amo.tests.TestCase):
     def test_image(self):
         data = self.serializer.to_native(self.collection)
         eq_(data['image'], None)
-        try:
-            os.makedirs(os.path.dirname(self.collection.image_path()))
-        except OSError:
-            pass
-        open(self.collection.image_path(), 'w').write("some data")
+        self.collection.update(has_image=True)
         data = self.serializer.to_native(self.collection)
         eq_(data['image'], reverse('collection-image-detail',
                                    kwargs={'pk': self.collection.id}))
