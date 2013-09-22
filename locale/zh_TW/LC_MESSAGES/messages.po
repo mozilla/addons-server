@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-08-23 09:56-0700\n"
-"PO-Revision-Date: 2013-09-22 12:05+0000\n"
+"PO-Revision-Date: 2013-09-22 12:10+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1379851546.0\n"
+"X-POOTLE-MTIME: 1379851825.0\n"
 
 #: apps/addons/buttons.py:207
 msgid "Download Now"
@@ -14275,7 +14275,7 @@ msgstr "我的附加元件要怎樣才能被列入推薦名單？"
 msgid ""
 "<a href=\"%(url)s\">This blog post</a> describes the process by which the "
 "Recommended lists are managed."
-msgstr ""
+msgstr "<a href=\"%(url)s\">此部落格文章</a> 描述了推薦名單是怎樣管理的。"
 
 #: apps/pages/templates/pages/dev_faq.html:547
 msgid "Can I pay to have my add-on listed as Recommended?"
@@ -19029,7 +19029,7 @@ msgstr "銀行帳號"
 
 #: mkt/developers/forms_payments.py:390
 msgid "Bank Account Code"
-msgstr ""
+msgstr "銀行帳號"
 
 #: mkt/developers/forms_payments.py:392
 msgid "Bank Name"
@@ -20483,23 +20483,23 @@ msgstr "新增 Bango 帳號"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:24
 msgid "Bank (2)"
-msgstr ""
+msgstr "銀行 (2)"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:28
 msgid "Branch (4)"
-msgstr ""
+msgstr "分行 (4)"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:32
 msgid "Account (7)"
-msgstr ""
+msgstr "帳號 (7)"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:36
 msgid "Suffix (2)"
-msgstr ""
+msgstr "檢查碼 (2)"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:39
 msgid "My account number is not in this format."
-msgstr ""
+msgstr "我的帳號不是這個格式。"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:57
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:30
