@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-08-30 15:54-0700\n"
-"PO-Revision-Date: 2013-09-20 15:48+0000\n"
+"PO-Revision-Date: 2013-09-22 12:01+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1379692103.0\n"
+"X-POOTLE-MTIME: 1379851316.0\n"
 
 #: apps/addons/buttons.py:207
 msgid "Download Now"
@@ -15371,7 +15371,7 @@ msgstr "管理員電子郵件信箱"
 
 #: mkt/developers/forms_payments.py:368
 msgid "Support Email"
-msgstr "技術支援電子郵件"
+msgstr "技術支援信箱"
 
 #: mkt/developers/forms_payments.py:372
 msgid "Address"
@@ -17189,12 +17189,16 @@ msgid ""
 "There are a few APIs available to determine the user's connection status. These are useful because you can skip HTTP requests if you know the user is offline. You can also display less generic "
 "failure messages. For example: if you were writing a Twitter client, a message like “New tweets cannot be loaded while offline” is more informative than “Could not make HTTP connection.”"
 msgstr ""
+"有一些 API 可以用來偵測使用者的連線狀態。當您知道使用者沒有網路連線時就不必發送 HTTP 請求了，您也可以顯示更少錯誤訊息。舉例：若您正在撰寫一套 "
+"Twitter 軟體，諸如「離線時無法載入新推文」會比「無法建立 HTTP 連線」更有用。"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:206
 msgid ""
 "Try to focus on loading data from your/others' API only when needed, and keep data cached so you don't have to request the same data twice. It can also be helpful to prefetch some data so the user "
 "can use parts of your app offline that they have yet to open."
 msgstr ""
+"試著專注於只在需要的時候自您的或其他人的 API "
+"載入資料，並將資料放在快取之中。這樣您就不必一直重複請求相同資料。預先讀取某些資料，讓使用者在沒有網路的情況下還能使用部分功能可能也有幫助。"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:214
 msgid "Checking connectivity"
@@ -17205,6 +17209,8 @@ msgid ""
 "A key factor in working well offline is to check whether the device has connectivity and to respond appropriately when it doesn't. A message to the user that the app won't work offline is better "
 "than getting stuck or getting a generic timeout error."
 msgstr ""
+"能在離線時持續使用的重點是，要檢查裝置是否還有網路連線能力，並在沒有網路用的時候適當地回應。告訴使用者軟體無法在離線狀態使用會比直接卡住或單純給出一個大"
+"概的逾時錯誤還有用。"
 
 #. Do not localize text in <code></code>
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:226
@@ -17212,6 +17218,8 @@ msgid ""
 "The simplest way to do this is to check and listen for changes to the <a href=\"%(url)s\"><code>window.navigator.onLine</code></a> property. Note that this value can sometimes return false "
 "positives."
 msgstr ""
+"要這樣做，最簡單的方式就是檢查並 listen <a href=\"%"
+"(url)s\"><code>window.navigator.onLine</code></a>屬性的變更。請注意此值有時候可能會有偽陽性出現。"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:233
 msgid "See also: <a href=\"%(url)s\">Online and offline events</a>."
@@ -17227,6 +17235,10 @@ msgid ""
 "your app has <a href=\"%(systemxhr_url)s\">systemXHR privileges</a>, you can check for a connection to a site unlikely to be down to determine if you have an active connection (iOS does this with "
 "Apple.com)."
 msgstr ""
+"若您使用 <a href=\"%(xhr_url)s\">XMLHttpRequest</a> "
+"動態地更新資料，您可以透過檢查其回應內容來判斷網路連線是否已中斷。若您的軟體已取得 <a href=\"%"
+"(systemxhr_url)s\">systemXHR 權限</a>，您可以檢查到某個不大可能會斷線的網站來判斷您還有沒有網路連線可用。(iOS "
+"會檢查裝置與 Apple.com 間的連線)。"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:253
 msgid "We'll assume we aren't online."
