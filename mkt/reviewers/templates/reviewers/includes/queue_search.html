@@ -17,8 +17,7 @@
                                     'premium_types')) }}
           {# TODO: Add back 'admin_review', 'waiting_time_days' when they are
              in elasticsearch. #}
-          {{ form_row(search_form, ('is_privileged', 'has_editor_comment',
-                                    'has_info_request', 'is_escalated')) }}
+          {{ form_row(search_form, ('has_editor_comment', 'has_info_request', 'is_escalated')) }}
         </div>
       </div>
       {{ search_form.limit }}

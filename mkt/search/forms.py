@@ -94,7 +94,9 @@ class ApiSearchForm(forms.Form):
         widget=forms.CheckboxSelectMultiple(), required=False,
         label=_lazy(u'Premium types'), choices=PREMIUM_CHOICES)
     # TODO: Make some fancy `MultipleCommaSeperatedChoiceField` field.
-    app_types = forms.CharField(required=False, label=_lazy(u'App types'))
+    app_type = forms.MultipleChoiceField(required=False,
+        widget=forms.CheckboxSelectMultiple(),
+        label=_lazy(u'App type'), choices=APP_TYPE_CHOICES)
     manifest_url = forms.CharField(required=False, label=_lazy('Manifest URL'))
     languages = forms.CharField(required=False,
         label=_lazy('Supported languages'))
@@ -127,17 +129,19 @@ class ApiSearchForm(forms.Form):
                                                amo.ADDON_WEBAPP)
 
     def clean_premium_types(self):
+        """After cleaned, return a list of ints for the constants."""
         pt_ids = []
         for pt in self.cleaned_data.get('premium_types'):
             pt_id = amo.ADDON_PREMIUM_API_LOOKUP.get(pt)
             if pt_id is not None:
                 pt_ids.append(pt_id)
-        if pt_ids:
-            return pt_ids
-        return []
+        return pt_ids
 
     def clean_app_type(self):
-        app_type = amo.ADDON_WEBAPP_TYPES_LOOKUP.get(
-            self.cleaned_data.get('app_type'))
-        if app_type:
-            return app_type
+        """After cleaned, return a list of ints for the constants."""
+        at_ids = []
+        for at in self.cleaned_data.get('app_type'):
+            at_id = amo.ADDON_WEBAPP_TYPES_LOOKUP.get(at)
+            if at_id is not None:
+                at_ids.append(at_id)
+        return at_ids

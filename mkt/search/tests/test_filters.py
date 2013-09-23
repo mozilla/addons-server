@@ -107,8 +107,8 @@ class TestSearchFilters(BaseOAuth):
         qs = self._filter(self.req, {'premium_types': ['free', 'platinum']})
         ok_(u'Select a valid choice' in qs['premium_types'][0])
 
-    def test_app_types(self):
-        qs = self._filter(self.req, {'app_types': 'hosted'})
+    def test_app_type(self):
+        qs = self._filter(self.req, {'app_type': ['hosted']})
         ok_({'in': {'app_type': [1]}} in qs['filter']['and'])
 
     def test_manifest_url(self):

@@ -17,8 +17,7 @@
       <div class="advanced-search c hidden">
         <!--Switch/single-checkbox fields-->
         {# TODO: add back admin_review ? #}
-        {% for elem in ('is_privileged', 'has_editor_comment',
-                        'has_info_request', 'is_escalated') %}
+        {% for elem in ('has_editor_comment', 'has_info_request', 'is_escalated') %}
           <div class="form-elem c">
             {{ search_form[elem].label_tag() }}
             <label>

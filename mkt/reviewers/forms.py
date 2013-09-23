@@ -265,9 +265,6 @@ class ThemeSearchForm(forms.Form):
 class ApiReviewersSearchForm(ApiSearchForm):
     status = forms.ChoiceField(required=False, choices=STATUS_CHOICES,
                                label=_lazy(u'Status'))
-    is_privileged = forms.NullBooleanField(required=False,
-                                           label=_lazy(u'Privileged App'),
-                                           widget=CustomNullBooleanSelect)
     has_editor_comment = forms.NullBooleanField(
         required=False,
         label=_lazy(u'Contains Editor Comment'),

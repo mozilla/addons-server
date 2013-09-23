@@ -157,42 +157,6 @@ class TestApiReviewer(BaseOAuth, ESTestCase):
         error = res.json['error_message']
         eq_(error.keys(), ['status'])
 
-    def test_is_privileged(self):
-        res = self.client.get(self.url + ({'is_privileged': True},))
-        eq_(res.status_code, 200)
-        objs = res.json['objects']
-        eq_(len(objs), 0)
-
-        res = self.client.get(self.url + ({'is_privileged': False},))
-        eq_(res.status_code, 200)
-        obj = res.json['objects'][0]
-        eq_(obj['slug'], self.webapp.app_slug)
-
-        res = self.client.get(self.url + ({'is_privileged': None},))
-        eq_(res.status_code, 200)
-        obj = res.json['objects'][0]
-        eq_(obj['slug'], self.webapp.app_slug)
-
-    @patch('versions.models.Version.is_privileged', True)
-    def test_is_privileged_true(self):
-        self.webapp.save()
-        self.refresh('webapp')
-
-        res = self.client.get(self.url + ({'is_privileged': False},))
-        eq_(res.status_code, 200)
-        objs = res.json['objects']
-        eq_(len(objs), 0)
-
-        res = self.client.get(self.url + ({'is_privileged': True},))
-        eq_(res.status_code, 200)
-        obj = res.json['objects'][0]
-        eq_(obj['slug'], self.webapp.app_slug)
-
-        res = self.client.get(self.url + ({'is_privileged': None},))
-        eq_(res.status_code, 200)
-        obj = res.json['objects'][0]
-        eq_(obj['slug'], self.webapp.app_slug)
-
     def test_is_escalated(self):
         res = self.client.get(self.url + ({'is_escalated': True},))
         eq_(res.status_code, 200)

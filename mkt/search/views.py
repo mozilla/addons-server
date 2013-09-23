@@ -96,15 +96,9 @@ def _filter_search(request, qs, query, filters=None, sorting=None,
         qs = qs.filter(device=forms.DEVICE_CHOICES_IDS[query['device']])
     if 'premium_types' in show:
         if query.get('premium_types'):
-            qs = qs.filter(premium_type__in=query.get('premium_types'))
-    if query.get('app_types'):
-        # TODO: Make some fancy `MultipleCommaSeperatedChoiceField` field.
-        choices = {}
-        for idx, (val, name) in enumerate(forms.APP_TYPE_CHOICES):
-            if val:
-                 choices[val] = idx
-        app_types = [choices.get(x.strip()) for x in query['app_types'].split(',')]
-        qs = qs.filter(app_type__in=filter(None, app_types))
+            qs = qs.filter(premium_type__in=query['premium_types'])
+    if query.get('app_type'):
+        qs = qs.filter(app_type__in=query['app_type'])
     if query.get('manifest_url'):
         qs = qs.filter(manifest_url=query['manifest_url'])
     if query.get('languages'):

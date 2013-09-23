@@ -60,7 +60,7 @@ class ReviewersSearchResource(SearchResource):
     def apply_filters(self, request, qs, data=None):
         qs = super(ReviewersSearchResource, self).apply_filters(request, qs,
                                                                 data=data)
-        for k in ('is_privileged', 'has_info_request', 'has_editor_comment'):
+        for k in ('has_info_request', 'has_editor_comment'):
             if data.get(k, None) is not None:
                 qs = qs.filter(**{
                     'latest_version.%s' % k: data[k]

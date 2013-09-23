@@ -313,7 +313,7 @@ class TestApi(BaseOAuth, ESTestCase):
         eq_(obj['slug'], self.webapp.app_slug)
 
     def test_app_type_hosted(self):
-        res = self.client.get(self.url + ({'app_types': 'hosted'},))
+        res = self.client.get(self.url + ({'app_type': 'hosted'},))
         eq_(res.status_code, 200)
         obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
@@ -322,7 +322,7 @@ class TestApi(BaseOAuth, ESTestCase):
         self.webapp.update(is_packaged=True)
         self.refresh('webapp')
 
-        res = self.client.get(self.url + ({'app_types': 'packaged'},))
+        res = self.client.get(self.url + ({'app_type': 'packaged'},))
         eq_(res.status_code, 200)
         obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
@@ -333,11 +333,11 @@ class TestApi(BaseOAuth, ESTestCase):
             self.webapp.update(is_packaged=True)
             self.refresh('webapp')
 
-            res = self.client.get(self.url + ({'app_types': 'packaged'},))
+            res = self.client.get(self.url + ({'app_type': 'packaged'},))
             eq_(res.status_code, 200)
             eq_(len(res.json['objects']), 0)
 
-            res = self.client.get(self.url + ({'app_types': 'privileged'},))
+            res = self.client.get(self.url + ({'app_type': 'privileged'},))
             eq_(res.status_code, 200)
             eq_(len(res.json['objects']), 1)
             obj = res.json['objects'][0]
