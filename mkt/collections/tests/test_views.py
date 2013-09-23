@@ -222,6 +222,14 @@ class TestCollectionViewSetListing(BaseCollectionViewSetTest):
         eq_(len(collections), 4)
         ok_('API-Fallback' not in res)
 
+    def test_listing_filtering_error(self):
+        res = self.client.get(self.list_url, {'region': 'whateverdude'})
+        eq_(res.status_code, 400)
+        data = json.loads(res.content)
+        eq_(data['detail'], 'Filtering error.')
+        errors = data['filter_errors']
+        ok_(errors['region'][0].startswith('Select a valid choice.'))
+
     def test_listing_filtering_region(self):
         self.create_additional_data()
         self.make_publisher()
