@@ -119,10 +119,11 @@ def update_celery():
     if getattr(settings, 'CELERY_SERVICE_PREFIX', False):
         restarts.extend(['supervisorctl restart {0}{1} &'.format(
                          settings.CELERY_SERVICE_PREFIX, x)
-                         for x in ('', '-devhub', '-bulk')])
+                         for x in ('', '-devhub', '-priority')])
     if getattr(settings, 'CELERY_SERVICE_MKT_PREFIX', False):
-        restarts.append('supervisorctl restart %s &' %
-                        settings.CELERY_SERVICE_MKT_PREFIX)
+        restarts.append(['supervisorctl restart {0}{1} &'.format(
+                         settings.CELERY_SERVICE_MKT_PREFIX, x)
+                         for x in ('', '-devhub', '-priority')])
 
     if restarts:
         run('%s wait' % ' '.join(restarts))

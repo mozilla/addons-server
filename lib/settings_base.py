@@ -1062,13 +1062,39 @@ CELERY_IMPORTS = ('lib.video.tasks', 'lib.metrics',
 # - always add routes here instead of @task(queue=<name>)
 # - when adding a queue, be sure to update deploy.py so that it gets restarted
 CELERY_ROUTES = {
-    # Devhub.
+    # Priority.
+    # If your tasks need to be run as soon as possible, add them here so they
+    # are routed to the priority queue.
+    'addons.tasks.index_addons': {'queue': 'priority'},
+    'addons.tasks.unindex_addons': {'queue': 'priority'},
+    'addons.tasks.save_theme': {'queue': 'priority'},
+    'addons.tasks.save_theme_reupload': {'queue': 'priority'},
+    'bandwagon.tasks.index_collections': {'queue': 'priority'},
+    'bandwagon.tasks.unindex_collections': {'queue': 'priority'},
+    'lib.crypto.packaged.sign': {'queue': 'priority'},
+    'mkt.inapp_pay.tasks.fetch_product_image': {'queue': 'priority'},
+    'mkt.webapps.tasks.index_webapps': {'queue': 'priority'},
+    'mkt.webapps.tasks.unindex_webapps': {'queue': 'priority'},
+    'users.tasks.index_users': {'queue': 'priority'},
+    'users.tasks.unindex_users': {'queue': 'priority'},
+    'versions.tasks.update_supported_locales_single': {'queue': 'priority'},
+
+    # Other queues we prioritize below.
+
+    # AMO Devhub.
     'devhub.tasks.validator': {'queue': 'devhub'},
     'devhub.tasks.compatibility_check': {'queue': 'devhub'},
     'devhub.tasks.fetch_manifest': {'queue': 'devhub'},
     'devhub.tasks.fetch_icon': {'queue': 'devhub'},
     'devhub.tasks.file_validator': {'queue': 'devhub'},
     'devhub.tasks.packager': {'queue': 'devhub'},
+    # MKT Devhub.
+    'mkt.developers.tasks.validator': {'queue': 'devhub'},
+    'mkt.developers.tasks.file_validator': {'queue': 'devhub'},
+    'mkt.developers.tasks.resize_icon': {'queue': 'devhub'},
+    'mkt.developers.tasks.resize_preview': {'queue': 'devhub'},
+    'mkt.developers.tasks.fetch_icon': {'queue': 'devhub'},
+    'mkt.developers.tasks.fetch_manifest': {'queue': 'devhub'},
 
     # Videos.
     'lib.video.tasks.resize_video': {'queue': 'devhub'},
@@ -1081,18 +1107,6 @@ CELERY_ROUTES = {
     'users.tasks.delete_photo': {'queue': 'images'},
     'devhub.tasks.resize_icon': {'queue': 'images'},
     'devhub.tasks.resize_preview': {'queue': 'images'},
-
-    # Bulk.
-    'zadmin.tasks.bulk_validate_file': {'queue': 'bulk'},
-    'zadmin.tasks.tally_validation_results': {'queue': 'bulk'},
-    'zadmin.tasks.add_validation_jobs': {'queue': 'bulk'},
-    'zadmin.tasks.notify_success': {'queue': 'bulk'},
-    'zadmin.tasks.notify_failed': {'queue': 'bulk'},
-    'devhub.tasks.flag_binary': {'queue': 'bulk'},
-    'mkt.reviewers.tasks._batch_award_theme_points': {'queue': 'bulk'},
-    'stats.tasks.index_update_counts': {'queue': 'bulk'},
-    'stats.tasks.index_download_counts': {'queue': 'bulk'},
-    'stats.tasks.index_theme_user_counts': {'queue': 'bulk'},
 }
 
 # This is just a place to store these values, you apply them in your

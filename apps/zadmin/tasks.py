@@ -1,5 +1,4 @@
 import collections
-from datetime import datetime
 import json
 import logging
 import os
@@ -7,6 +6,7 @@ import re
 import sys
 import textwrap
 import traceback
+from datetime import datetime
 from urlparse import urljoin
 
 from django import forms
@@ -16,12 +16,11 @@ from django.db import connection
 from django.template import Context, Template
 from django.utils.translation import trans_real as translation
 
-from celeryutils import task
 import requests
+from celeryutils import task
 
-from addons.models import Addon, AddonUser
 import amo
-import files.utils
+from addons.models import Addon, AddonUser
 from amo import set_user
 from amo.decorators import write
 from amo.helpers import absolutify
@@ -33,8 +32,8 @@ from files.utils import parse_addon
 from users.models import UserProfile
 from users.utils import get_task_user
 from versions.models import Version
-from zadmin.models import (EmailPreviewTopic, ValidationResult, ValidationJob,
-                           ValidationJobTally)
+from zadmin.models import (EmailPreviewTopic, ValidationJob,
+                           ValidationJobTally, ValidationResult)
 
 log = logging.getLogger('z.task')
 

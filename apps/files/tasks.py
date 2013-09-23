@@ -9,8 +9,8 @@ from datetime import datetime
 
 import django.core.mail
 from django.conf import settings
-from django.db import transaction
 from django.core.files.storage import default_storage as storage
+from django.db import transaction
 
 import jingo
 from celeryutils import task

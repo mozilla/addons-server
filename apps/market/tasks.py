@@ -7,8 +7,8 @@ from django.core.cache import cache
 
 from tower import ugettext as _
 
-from addons.models import Addon
 import amo
+from addons.models import Addon
 from amo.helpers import absolutify
 from amo.utils import send_mail
 from market.models import PaypalCheckStatus
