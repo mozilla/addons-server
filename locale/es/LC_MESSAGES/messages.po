@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-08-23 09:56-0700\n"
-"PO-Revision-Date: 2013-09-03 14:22+0000\n"
-"Last-Translator: Inma <inma.barrios@mozilla-hispano.org>\n"
+"PO-Revision-Date: 2013-09-24 20:40+0000\n"
+"Last-Translator: Ricardo <rpmdisguise-otros@yahoo.es>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1378218121.0\n"
+"X-POOTLE-MTIME: 1380055244.0\n"
 
 #: apps/addons/buttons.py:207
 msgid "Download Now"
@@ -14151,11 +14151,13 @@ msgstr "Lista de aps. destacadas"
 
 #: mkt/collections/constants.py:11
 msgid "Operator Shelf"
-msgstr ""
+msgstr "Plataforma del operador"
 
 #: mkt/collections/serializers.py:54
 msgid "You can not have more than one Featured Apps/Operator Shelf collection for the same category/carrier/region combination."
 msgstr ""
+"No puedes tener más de una colección de aplicaciones destacadas/estantería "
+"del operador en la misma combinación de categoría/operador/región."
 
 #: mkt/constants/apps.py:9 mkt/reviewers/templates/reviewers/logs.html:18 mkt/reviewers/templates/reviewers/includes/search_results_themes.html:6
 #: mkt/reviewers/templates/reviewers/themes/history_table.html:7 mkt/reviewers/templates/reviewers/themes/logs.html:18 mkt/reviewers/templates/reviewers/themes/queue_list.html:42
@@ -15397,13 +15399,17 @@ msgstr "La aplicación requiere que la plataforma sea compatible con eventos tá
 
 #: mkt/constants/features.py:151
 msgid "Smartphone-Sized Displays (qHD)"
-msgstr ""
+msgstr "Pantallas tamaño teléfono inteligente (qHD)"
 
 #: mkt/constants/features.py:152
 msgid ""
 "The app requires the platform to have a smartphone-sized display (having qHD resolution). This option indicates that the app will be unusable on larger displays (e.g., tablets, desktop, large or "
 "high-DPI phones)."
 msgstr ""
+"La aplicación requiere que la plataforma disponga de una pantalla tamaño "
+"teléfono inteligente (con resolución qHD). Esta opción indica que la "
+"aplicación no podrá utilizarse en pantallas más grandes (ej. tabletas, PC de "
+"escritorio, teléfonos grandes o de alta densidad de imagen)."
 
 #: mkt/constants/features.py:162
 msgid "The app requires that the platform can decode and play MP3 files."
@@ -15983,7 +15989,7 @@ msgstr "Los íconos deben ser cuadrados."
 #: mkt/developers/utils.py:105
 msgid "App previews must be at least {0}px by {1}px or {1}px by {0}px."
 msgstr ""
-"Las vistas previas de las aplicaciones deben ser {0} px por {1} px or {1} px "
+"Las vistas previas de las aplicaciones deben ser {0} px por {1} px o {1} px "
 "por {0} px, como mínimo."
 
 #: mkt/developers/views.py:148
@@ -19235,7 +19241,7 @@ msgid "<a href=\"%(us_ebay_url)s\" class=\"button\">Buy from US store</a> <a hre
 msgstr ""
 "<a href=\"%(us_ebay_url)s\" class=\"button\">Comprarlo desde la tienda de EE. "
 "UU.</a> <a href=\"%(uk_ebay_url)s\" class=\"button\">Comprarlo desde la tienda "
-"de RU</a>"
+"de GB</a>"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:58
 msgid ""
@@ -19309,6 +19315,14 @@ msgid ""
 "we'd like you to get involved with the effort! We would like to invite you to add any useful information you have to the <a href=\"%(mdn_url)s\" target=\"_blank\">Mozilla Developer Network</a>. You "
 "can edit pages after creating a Mozilla Persona user account and logging in."
 msgstr ""
+"Cuando se desarrolla para una plataforma incipiente, las fuentes de "
+"información útiles siempre son más difíciles de encontrar que con las "
+"plataformas más asentadas. Para dar a los desarrolladores de Firefox OS "
+"tanta ayuda como sea posible, ¡nos gustaría que tú mismo te involucraras! "
+"Queremos invitarte a añadir cualquier información útil que tengas a <a "
+"href=\"%(mdn_url)s\" target=\"_blank\">Mozilla Developer Network</a>. Puedes "
+"editar páginas tras crear una cuenta de usuario de Mozilla Persona e iniciar "
+"sesión."
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:121
 msgid ""
@@ -19323,10 +19337,10 @@ msgstr ""
 "dieras consejos para desarrollar aplicaciones para Firefox OS</a> y que "
 "agregues cualquier información de tu <a href=\"%(mdn_devphone_url)s\" "
 "target=\"_blank\">experiencia sobre el funcionamiento de Firefox OS en "
-"distintos dispositivos móviles.</a>. Además, podrás preguntar y añadir "
-"comentarios y recursos siempre que quieras a través de  <a href=\"%"
+"distintos dispositivos móviles</a>. Además, podrás preguntar y añadir "
+"comentarios y recursos siempre que quieras a través de <a href=\"%"
 "(b2g_irc_url)s\" target=\"_blank\">IRC</a> y por <a href=\"%(b2g_mail_url)s\" "
-"target=\"_blank\">e-mail</a>.                "
+"target=\"_blank\">e-mail</a>."
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:16
 msgid ""
@@ -20302,7 +20316,7 @@ msgstr ""
 "no puede utilizar determinadas Web API sensibles. Tampoco está sujeta a los "
 "CSP descritos para aplicaciones con privilegios y certificadas. Este tipo de "
 "aplicación puede ser útil si se desea que la primera vez que se utilice el "
-"dispositivo, tenga todos los recursos disponibles sin descargar nada. Este "
+"dispositivo tenga todos los recursos disponibles sin descargar nada. Este "
 "tipo de aplicación empaquetada no necesita el campo <code>type</code> del "
 "archivo<code>manifest.webapp</code>, porque el valor predeterminado para "
 "<code>type</code> (<code>web</code>) es correcto."
@@ -20477,7 +20491,7 @@ msgstr "Facturación del operador"
 
 #: mkt/ecosystem/templates/ecosystem/publish_payments.html:46 mkt/ecosystem/templates/ecosystem/publish_payments.html:47
 msgid "varies"
-msgstr ""
+msgstr "varía"
 
 #: mkt/ecosystem/templates/ecosystem/publish_review.html:15
 msgid ""
@@ -21345,8 +21359,8 @@ msgstr "Seleccionando una imagen"
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:35
 msgid "rtcamera is a fun camera app to process images in real time, using Web technologies. <a href=\"%(walkthrough_link)s\" class=\"walkthrough\"> Read the full developer walkthrough </a>"
 msgstr ""
-"rtcamera una divertida aplicación de cámara para procesar imágenes en tiempo "
-"real utilizando tecnologías web. <a href=\"%(walkthrough_link)s\" "
+"rtcamera es una divertida aplicación de cámara para procesar imágenes en "
+"tiempo real utilizando tecnologías web. <a href=\"%(walkthrough_link)s\" "
 "class=\"walkthrough\">Lee la guía completa del desarrollador</a>"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:52
@@ -21355,7 +21369,7 @@ msgstr "Genera GIF animados."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:60
 msgid "A wrapper for IndexedDB."
-msgstr ""
+msgstr "Un envoltorio para IndexedDB."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:68
 msgid "Calculates perspective transformations."
@@ -21363,23 +21377,25 @@ msgstr "Calcula las transformaciones de perspectiva."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:76
 msgid "Add touch events."
-msgstr ""
+msgstr "Agregar eventos táctiles."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:101
 msgid "Once loaded for the first time, it can be used offline, without a network connection."
-msgstr ""
+msgstr "Una vez cargado por primera vez, puede usarse sin una conexión de red."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:110 mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:118
 msgid "For downloading files to the browser."
-msgstr ""
+msgstr "Para descargar archivos al navegador."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:126
 msgid "Used for fast and efficient processing of image data."
-msgstr ""
+msgstr "Usado para procesamiento rápido y eficiente de información de imagen."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:134 mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:143
 msgid "Used to access camera devices and get a video stream from where to capture frames."
 msgstr ""
+"Usado para acceder a la cámara de los dispositivos y obtener un flujo de "
+"video del que capturar imágenes."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:152
 msgid "Stores captured images on the device and retrieve them for the gallery view."
@@ -21395,6 +21411,7 @@ msgstr ""
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:169
 msgid "Uploading images to a different server for sharing, and getting their url."
 msgstr ""
+"Subir imágenes a un servidor diferente para compartir y obtener sus url."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:186
 msgid "rtcamera uses x-appbar, x-deck, x-layout, x-modal and x-switch."
@@ -21806,23 +21823,23 @@ msgstr "Facturado a:"
 
 #: mkt/purchase/templates/purchase/receipt.html:28
 msgid "Order Number:"
-msgstr ""
+msgstr "Número de petición:"
 
 #: mkt/purchase/templates/purchase/receipt.html:29
 msgid "Order Date:"
-msgstr ""
+msgstr "Fecha de la petición:"
 
 #: mkt/purchase/templates/purchase/receipt.html:37
 msgid "Item"
-msgstr ""
+msgstr "Artículo"
 
 #: mkt/purchase/templates/purchase/receipt.html:38
 msgid "Seller"
-msgstr ""
+msgstr "Vendedor"
 
 #: mkt/purchase/templates/purchase/receipt.html:59
 msgid "For the Firefox Marketplace Terms of Service please visit:"
-msgstr ""
+msgstr "Para los Términos de Servicio de Firefox Marketplace, visite:"
 
 #: mkt/purchase/templates/purchase/receipt.html:64
 msgid "For support please visit:"
@@ -21918,15 +21935,15 @@ msgstr "Sustitución del tipo de dispositivo:"
 
 #: mkt/reviewers/forms.py:71
 msgid "Senior Reviewers"
-msgstr ""
+msgstr "Revisores senior"
 
 #: mkt/reviewers/forms.py:72
 msgid "Staff"
-msgstr ""
+msgstr "Empleados"
 
 #: mkt/reviewers/forms.py:76
 msgid "Action Visibility to Users:"
-msgstr ""
+msgstr "Visibilidad de la acción para los usuarios:"
 
 #: mkt/reviewers/forms.py:80
 msgid "Notify me the next time the manifest is updated. (Subsequent updates will not generate an email)"
@@ -21978,7 +21995,7 @@ msgstr "Revisando"
 
 #: mkt/reviewers/helpers.py:44
 msgid "Pending Themes"
-msgstr ""
+msgstr "Temas pendientes"
 
 #: mkt/reviewers/helpers.py:45 mkt/reviewers/templates/reviewers/themes/queue.html:4
 msgid "Flagged Themes"
@@ -21986,7 +22003,7 @@ msgstr "Temas marcados"
 
 #: mkt/reviewers/helpers.py:46
 msgid "Update Themes"
-msgstr ""
+msgstr "Actualizar temas"
 
 #: mkt/reviewers/helpers.py:87
 msgctxt "pending"
@@ -22124,7 +22141,7 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:16
 msgid "You are currently not reviewing any apps."
-msgstr ""
+msgstr "Actualmente no estás revisando ninguna aplicación."
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:24 mkt/reviewers/templates/reviewers/queue.html:35 mkt/reviewers/templates/reviewers/includes/search_results.html:6
 msgid "Devices"
@@ -22155,14 +22172,14 @@ msgstr[1] "Revisiones de aplicaciones pendientes {num}"
 #: mkt/reviewers/templates/reviewers/home.html:20
 msgid "{num} Re-review"
 msgid_plural "{num} Re-reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{num} re-revisión"
+msgstr[1] "{num} re-revisiones"
 
 #: mkt/reviewers/templates/reviewers/home.html:27
 msgid "{num} Update Review"
 msgid_plural "{num} Update Reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{num} Actualizar revisión"
+msgstr[1] "{num} Actualizar revisiones"
 
 #: mkt/reviewers/templates/reviewers/home.html:36
 msgid "{c} unreviewed app submission this week."
@@ -22246,7 +22263,7 @@ msgstr "Anulación de requisitos mínimos:"
 
 #: mkt/reviewers/templates/reviewers/review.html:270
 msgid "Make this action visible to"
-msgstr ""
+msgstr "Hacer esta acción visible para"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:5
 msgid "ID"
@@ -22311,11 +22328,11 @@ msgstr "No se ha encontrado ningún resultado"
 
 #: mkt/reviewers/templates/reviewers/themes/base.html:24
 msgid "Theme Queues"
-msgstr ""
+msgstr "Temas en cola"
 
 #: mkt/reviewers/templates/reviewers/themes/base.html:28
 msgid "Theme Logs"
-msgstr ""
+msgstr "Registros de temas"
 
 #: mkt/reviewers/templates/reviewers/themes/deleted.html:4
 msgid "Deleted Themes"
@@ -22403,7 +22420,7 @@ msgstr "Liberar los bloqueos de mi tema"
 
 #: mkt/reviewers/templates/reviewers/themes/queue_list.html:30
 msgid "Interactive Theme Queue"
-msgstr ""
+msgstr "Cola interactiva de temas"
 
 #: mkt/reviewers/templates/reviewers/themes/single.html:8
 msgid "Theme Review for {0}"
