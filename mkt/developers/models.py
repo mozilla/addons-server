@@ -121,7 +121,13 @@ class PaymentAccount(amo.models.ModelBase):
         account_refs = AddonPaymentAccount.objects.filter(account_uri=self.uri)
         for acc_ref in account_refs:
             if disable_refs:
+                log.info('Changing app status to NULL for app: {0}'
+                         'because of payment account deletion'.format(
+                             acc_ref.addon_id))
+
                 acc_ref.addon.update(status=amo.STATUS_NULL)
+            log.info('Deleting AddonPaymentAccount for app: {0} because of '
+                     'payment account deletion'.format(acc_ref.addon_id))
             acc_ref.delete()
 
     def update_account_details(self, **kwargs):

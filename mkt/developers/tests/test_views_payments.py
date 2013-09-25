@@ -30,6 +30,7 @@ from mkt.webapps.models import AddonExcludedRegion as AER, ContentRating
 # Id without any significance but to be different of 1.
 TEST_PACKAGE_ID = 2
 
+
 def setup_payment_account(app, user, uid='uid', package_id=TEST_PACKAGE_ID):
     seller = SolitudeSeller.objects.create(user=user, uuid=uid)
     payment = PaymentAccount.objects.create(user=user, solitude_seller=seller,
@@ -37,7 +38,8 @@ def setup_payment_account(app, user, uid='uid', package_id=TEST_PACKAGE_ID):
                                             uri=uid,
                                             bango_package_id=package_id)
     return AddonPaymentAccount.objects.create(addon=app,
-        product_uri='/path/to/%s/' % app.pk, payment_account=payment)
+        product_uri='/path/to/%s/' % app.pk, payment_account=payment,
+        account_uri=payment.uri)
 
 
 class InappTest(amo.tests.TestCase):
@@ -593,7 +595,6 @@ class TestPayments(amo.tests.TestCase):
         self.assertFormError(res, 'bango_account_list_form', 'accounts',
                              [u'You are not permitted to change payment '
                                'accounts.'])
-
 
     def test_one_owner_and_a_second_one_sees_selected_plus_own_accounts(self):
         self.make_premium(self.webapp, price=self.price.price)
