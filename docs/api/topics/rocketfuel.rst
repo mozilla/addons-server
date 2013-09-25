@@ -39,6 +39,8 @@ Listing
     Filtering on null values is done by omiting the value for the corresponding
     parameter in the query string.
 
+.. _rocketfuel-fallback:
+
     If no results are found with the filters specified, the API will
     automatically use a fallback mechanism and try to change the values to null
     in order to try to find some results.

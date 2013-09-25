@@ -673,7 +673,10 @@ class TestFeaturedCollections(BaseFeaturedTests):
     def test_only_public(self):
         self.col2 = Collection.objects.create(name='Col', description='Hidden',
             collection_type=self.col_type, category=self.cat, is_public=False)
-        self.test_added_to_results()
+        res, json = self.test_added_to_results()
+
+        header = 'API-Fallback-%s' % self.prop_name
+        ok_(not header in res)
 
     def test_only_this_type(self):
         """
@@ -684,7 +687,10 @@ class TestFeaturedCollections(BaseFeaturedTests):
                           COLLECTIONS_TYPE_BASIC else COLLECTIONS_TYPE_BASIC)
         self.col2 = Collection.objects.create(name='Bye', description='Dad',
             collection_type=different_type, category=self.cat, is_public=True)
-        self.test_added_to_results()
+        res, json = self.test_added_to_results()
+
+        header = 'API-Fallback-%s' % self.prop_name
+        ok_(not header in res)
 
     @patch('mkt.collections.serializers.CollectionMembershipField.'
            'field_to_native')
@@ -732,9 +738,14 @@ class TestFeaturedCollections(BaseFeaturedTests):
         """
         # Request the list using region. self.col should get picked up
         # because the fallback mechanism will try with region set to None.
-        self.col.update(region=None)
+        self.col.update(region=None, carrier=None)
         self.qs['region'] = mkt.regions.SPAIN.slug
-        self.test_added_to_results()
+        self.qs['carrier'] = mkt.carriers.UNKNOWN_CARRIER
+        res, json = self.test_added_to_results()
+
+        header = 'API-Fallback-%s' % self.prop_name
+        ok_(header in res)
+        eq_(res[header], 'region,carrier')
 
 
 class TestFeaturedOperator(TestFeaturedCollections):

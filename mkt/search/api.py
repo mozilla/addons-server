@@ -141,6 +141,14 @@ class WithFeaturedResource(SearchResource):
         resource_name = 'search/featured'
         slug_lookup = None
 
+    def create_response(self, *args, **kwargs):
+        response = super(WithFeaturedResource, self).create_response(
+            *args, **kwargs)
+        filter_fallbacks = getattr(self, 'filter_fallbacks', {})
+        for name, value in filter_fallbacks.items():
+            response['API-Fallback-%s' % name] = ','.join(value)
+        return response
+
     def collections(self, request, collection_type=None, limit=1):
         filters = request.GET.dict()
         filters.setdefault('region', self.get_region(request).slug)
@@ -148,10 +156,10 @@ class WithFeaturedResource(SearchResource):
             qs = Collection.public.filter(collection_type=collection_type)
         else:
             qs = Collection.public.all()
-        qs = CollectionFilterSetWithFallback(filters, queryset=qs)
+        qs = CollectionFilterSetWithFallback(filters, queryset=qs).qs
         serializer = CollectionSerializer(qs[:limit],
                                           context={'request': request})
-        return serializer.data
+        return serializer.data, getattr(qs, 'filter_fallback', None)
 
     def alter_list_data_to_serialize(self, request, data):
 
@@ -161,9 +169,12 @@ class WithFeaturedResource(SearchResource):
                 ('featured', COLLECTIONS_TYPE_FEATURED),
                 ('operator', COLLECTIONS_TYPE_OPERATOR),
             )
+            self.filter_fallbacks = {}
             for name, col_type in types:
-                data[name] = self.collections(request,
+                data[name], fallback = self.collections(request,
                     collection_type=col_type)
+                if fallback:
+                    self.filter_fallbacks[name] = fallback
         else:
             form_data = self.get_search_data(request)
             region = getattr(request, 'REGION', mkt.regions.WORLDWIDE)
