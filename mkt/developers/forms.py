@@ -985,3 +985,38 @@ class AppVersionForm(VersionForm):
                 make_public = amo.PUBLIC_WAIT
             self.instance.addon.update(make_public=make_public)
         return rval
+
+
+class PreinstallTestPlanForm(happyforms.Form):
+    agree = forms.BooleanField(
+        widget=forms.CheckboxInput,
+        label=_lazy(u'I agree to the Terms and Conditions'))
+    test_plan = forms.FileField(
+        label=_lazy(u'Upload Your Test Plan (.pdf, .xls under 2.5MB)'),
+        widget=forms.FileInput(attrs={'class': 'button'}))
+
+    def clean(self):
+        """Validate test_plan file."""
+        content_types = ['application/pdf', 'application/vnd.ms-excel']
+        max_upload_size=2621440  # 2.5MB
+
+        if 'test_plan' not in self.files:
+            raise forms.ValidationError(_('Test plan required.'))
+
+        file = self.files['test_plan']
+        content_type = file.content_type
+
+        if content_type in content_types:
+            if file._size > max_upload_size:
+                msg = _('File too large. Keep size under %s. Current size %s.')
+                msg = msg % (filesizeformat(max_upload_size),
+                             filesizeformat(file._size))
+                self._errors['test_plan'] = self.error_class([msg])
+                raise forms.ValidationError(msg)
+        else:
+            msg = (_('Invalid file type. Only %s files are supported.') %
+                   ', '.join(content_types))
+            self._errors['test_plan'] = self.error_class([msg])
+            raise forms.ValidationError(msg)
+
+        return self.cleaned_data
