@@ -151,7 +151,7 @@
       <h2>{{ _('Image Gallery') }}</h2>
       {% for preview in previews %}
       <a class="screenshot thumbnail" rel="jquery-lightbox"
-        href="{{ preview.image_url }}" title="{{ preview.caption }}">
+        href="{{ preview.image_url }}">
         <img src="{{ preview.thumbnail_url }}">
       </a>
       {% endfor %}
