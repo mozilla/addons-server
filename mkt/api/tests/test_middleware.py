@@ -138,6 +138,20 @@ class TestPinningMiddleware(amo.tests.TestCase):
             self.pin.process_response(self.req, HttpResponse())
             ok_(not cache.get(self.key))
 
+    def pinned_header(self):
+        self.attach_user(anon=True)
+        return self.pin.process_response(self.req, HttpResponse())['API-Pinned']
+
+    @mock.patch('mkt.api.middleware.this_thread_is_pinned')
+    def test_pinned_header_true(self, mock_pinned):
+        mock_pinned.return_value = True
+        eq_(self.pinned_header(), 'True')
+
+    @mock.patch('mkt.api.middleware.this_thread_is_pinned')
+    def test_pinned_header_false(self, mock_pinned):
+        mock_pinned.return_value = False
+        eq_(self.pinned_header(), 'False')
+
 
 class TestAPIVersionMiddleware(amo.tests.TestCase):
 
