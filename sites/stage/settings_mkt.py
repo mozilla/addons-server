@@ -43,7 +43,6 @@ PRODUCT_ICON_URL = STATIC_URL + 'product-icons'
 
 CACHE_PREFIX = 'stage.mkt.%s' % CACHE_PREFIX
 CACHE_MIDDLEWARE_KEY_PREFIX = CACHE_PREFIX
-INAPP_IMAGE_URL = STATIC_URL + 'inapp-image'
 
 CACHES['default']['KEY_PREFIX'] = CACHE_PREFIX
 
@@ -96,11 +95,6 @@ APP_PREVIEW = True
 
 WEBAPPS_UNIQUE_BY_DOMAIN = True
 
-#Bug 744268
-INAPP_VERBOSE_ERRORS = True
-
-INAPP_REQUIRE_HTTPS = False
-
 SENTRY_DSN = private_mkt.SENTRY_DSN
 
 SOLITUDE_HOSTS = ('https://payments.allizom.org',)
@@ -108,11 +102,8 @@ SOLITUDE_OAUTH = {'key': private_mkt.SOLITUDE_OAUTH_KEY,
                   'secret': private_mkt.SOLITUDE_OAUTH_SECRET}
 
 WEBAPPS_PUBLIC_KEY_DIRECTORY = NETAPP_STORAGE + '/public_keys'
-INAPP_IMAGE_PATH = NETAPP_STORAGE + '/inapp-image'
 PRODUCT_ICON_PATH = NETAPP_STORAGE + '/product-icons'
 DUMPED_APPS_PATH = NETAPP_STORAGE + '/dumped-apps'
-
-INAPP_KEY_PATHS = private_mkt.INAPP_KEY_PATHS
 
 GOOGLE_ANALYTICS_DOMAIN = 'marketplace.firefox.com'
 VALIDATOR_IAF_URLS = ['https://marketplace.firefox.com',

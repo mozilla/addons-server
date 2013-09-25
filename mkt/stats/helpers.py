@@ -19,17 +19,14 @@ def check_contrib_stats_perms(context, addon):
 @jinja2.contextfunction
 def stats_url(context, action, metric=None):
     """
-    Simplifies the templates a bit, no need to pass in addon/inapp into
+    Simplifies the templates a bit, no need to pass in addon into
     parameters as it is inferred from the context and it makes the function
     call shorter.
     """
     addon = context['addon']
     if metric:
         action = '%s_%s' % (metric, action)
-    if 'inapp' in context:
-        action += '_inapp'
-        inapp = context['inapp']
-    return addon.get_stats_url(action=action, inapp=inapp)
+    return addon.get_stats_url(action=action)
 
 
 @register.function

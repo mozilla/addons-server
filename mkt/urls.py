@@ -80,9 +80,6 @@ urlpatterns = patterns('',
     # Submission.
     ('^developers/submit/', include('mkt.submit.urls')),
 
-    # In-app payments.
-    ('^inapp-pay/', include('mkt.inapp_pay.urls')),
-
     # Site events data.
     url('^statistics/events-(?P<start>\d{8})-(?P<end>\d{8}).json$',
         'stats.views.site_events', name='amo.site_events'),

@@ -14,7 +14,6 @@ SERVICES_URL = SITE_URL
 STATIC_URL = getattr(private_mkt, 'STATIC_URL', 'https://marketplace.cdn.mozilla.net/')
 LOCAL_MIRROR_URL = '%s_files' % STATIC_URL
 MIRROR_URL = LOCAL_MIRROR_URL
-INAPP_IMAGE_URL = '%sinapp-image' % STATIC_URL
 
 CSP_STATIC_URL = STATIC_URL[:-1]
 CSP_IMG_SRC = CSP_IMG_SRC + (CSP_STATIC_URL,)
@@ -101,8 +100,6 @@ WEBAPPS_UNIQUE_BY_DOMAIN = True
 WAFFLE_SUFFIX = WAFFLE_TABLE_SUFFIX = 'mkt'
 
 SENTRY_DSN = private_mkt.SENTRY_DSN
-
-INAPP_KEY_PATHS = {'2012-05-09': private_mkt.INAPP_KEY_PATH}
 
 SOLITUDE_HOSTS = ('https://payments.firefox.com',)
 SOLITUDE_OAUTH = {'key': private_mkt.SOLITUDE_OAUTH_KEY,

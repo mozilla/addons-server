@@ -106,13 +106,6 @@ class TestAcctSummary(TestCase):
         eq_(sm['app_amount']['USD'], 4.0)
         eq_(sm['app_amount']['GBR'], 2.0)
 
-    def test_inapp_counts(self):
-        self.buy_stuff(amo.CONTRIB_INAPP)
-        sm = self.summary().context['app_summary']
-        eq_(sm['inapp_total'], 3)
-        eq_(sm['inapp_amount']['USD'], 4.0)
-        eq_(sm['inapp_amount']['GBR'], 2.0)
-
     def test_requested_refunds(self):
         contrib = Contribution.objects.create(type=amo.CONTRIB_PURCHASE,
                                               user_id=self.user.pk,
@@ -827,8 +820,7 @@ class TestAppSummaryPurchases(AppSummaryTest):
     def test_ignore_non_purchases(self):
         for typ in [amo.CONTRIB_REFUND,
                     amo.CONTRIB_CHARGEBACK,
-                    amo.CONTRIB_PENDING,
-                    amo.CONTRIB_INAPP_PENDING]:
+                    amo.CONTRIB_PENDING]:
             self.purchase(typ=typ)
         res = self.summary()
         self.assert_empty(res.context['purchases']['alltime'])
@@ -847,17 +839,6 @@ class TestAppSummaryPurchases(AppSummaryTest):
         eq_(sorted(res.context['payment_methods']),
             [u'33.3% of purchases via Other',
              u'66.7% of purchases via PayPal'])
-
-    def test_inapp_pay_methods(self):
-        Contribution.objects.create(addon=self.app,
-                                    user=self.user,
-                                    amount=Decimal('0.99'),
-                                    currency='USD',
-                                    paykey='AP-1235',
-                                    type=amo.CONTRIB_INAPP)
-        res = self.summary()
-        eq_(res.context['payment_methods'],
-            [u'100.0% of purchases via PayPal'])
 
 
 class TestAppSummaryRefunds(AppSummaryTest):
@@ -1019,7 +1000,7 @@ class TestPurchases(amo.tests.TestCase):
         eq_(doc('ol.listing a').attr('href'), self.app.get_detail_url())
 
     def test_no_support_link(self):
-        for type_ in [amo.CONTRIB_PURCHASE, amo.CONTRIB_INAPP]:
+        for type_ in [amo.CONTRIB_PURCHASE]:
             Contribution.objects.create(user=self.user, addon=self.app,
                                         amount=1, type=type_)
         self.client.login(username=self.reviewer.email, password='password')
