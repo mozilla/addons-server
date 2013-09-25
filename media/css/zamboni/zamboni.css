@@ -1119,7 +1119,7 @@ ul.license li.copyr { background-position: 0 -260px; }
 .persona-install button {
     border-radius: 1px;
     height: 25px;
-    width: 65px;
+    min-width: 65px;
 }
 .persona .persona-install.incompat-browser button.disabled {
     background: #fff;
@@ -1337,13 +1337,13 @@ ul.license li.copyr { background-position: 0 -260px; }
     border-top: 0;
     background: #e5f0fc url(../../img/zamboni/personas/complete-theme-promo.png) no-repeat 367px 0;
     background-size: 120% auto;
-    height: 140px;
 }
 
 .html-rtl #featured-addons.personas-home .featured-inner.complete-themes {
     background-position: -500px 0;
 }
 
+.featured-inner.complete-themes h2,
 .featured-inner.complete-themes .intro {
     width: 350px;
 }
