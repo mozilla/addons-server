@@ -11,7 +11,8 @@ from rest_framework.views import APIView
 
 from lib.metrics import get_monolith_client
 
-from constants.base import ADDON_PREMIUM_API, ADDON_WEBAPP_TYPES
+import amo
+from stats.models import Contribution
 
 from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
@@ -41,22 +42,22 @@ STATS = {
     'apps_added_by_package': {
         'metric': 'apps_added_package_count',
         'dimensions': {'region': 'us'},
-        'lines': lines('package_type', ADDON_WEBAPP_TYPES.values()),
+        'lines': lines('package_type', amo.ADDON_WEBAPP_TYPES.values()),
     },
     'apps_added_by_premium': {
         'metric': 'apps_added_premium_count',
         'dimensions': {'region': 'us'},
-        'lines': lines('premium_type', ADDON_PREMIUM_API.values()),
+        'lines': lines('premium_type', amo.ADDON_PREMIUM_API.values()),
     },
     'apps_available_by_package': {
         'metric': 'apps_available_package_count',
         'dimensions': {'region': 'us'},
-        'lines': lines('package_type', ADDON_WEBAPP_TYPES.values()),
+        'lines': lines('package_type', amo.ADDON_WEBAPP_TYPES.values()),
     },
     'apps_available_by_premium': {
         'metric': 'apps_available_premium_count',
         'dimensions': {'region': 'us'},
-        'lines': lines('premium_type', ADDON_PREMIUM_API.values()),
+        'lines': lines('premium_type', amo.ADDON_PREMIUM_API.values()),
     },
     'apps_installed': {
         'metric': 'app_installs',
@@ -179,3 +180,31 @@ class AppStats(CORSMixin, SlugOrIdMixin, ListAPIView):
         return Response(_get_monolith_data(stat, qs.get('start'),
                                            qs.get('end'), qs.get('interval'),
                                            dimensions))
+
+
+class TransactionAPI(CORSMixin, APIView):
+    """
+    API to query by transaction ID.
+
+    """
+    authentication_classes = (RestOAuthAuthentication,
+                              RestSharedSecretAuthentication)
+    cors_allowed_methods = ['get']
+    permission_classes = (partial(PermissionAuthorization,
+                                  'RevenueStats', 'View'),)
+
+    def get(self, request, transaction_id):
+        try:
+            contrib = (Contribution.objects.select_related('price_tier').
+                       get(transaction_id=transaction_id))
+        except Contribution.DoesNotExist:
+            raise http.Http404('No transaction by that ID.')
+
+        data = {
+            'id': transaction_id,
+            'app_id': contrib.addon_id,
+            'amount_USD': contrib.price_tier.price,
+            'type': amo.CONTRIB_TYPES[contrib.type],
+        }
+
+        return Response(data)
