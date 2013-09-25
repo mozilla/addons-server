@@ -108,6 +108,13 @@ Payment accounts can be added and listed.
 
 .. http:delete:: /api/v1/payments/account/(int:id)/
 
+    .. warning:: This can potentially remove all your apps from sale.
+
+    If you delete a payment account then all apps which use that account can
+    no longer process payments. All apps that use this payment account will
+    be moved into the incomplete state. Each of those apps will need to
+    resubmitted to process payments.
+
     **Response**
 
     :status 204: successfully deleted.
