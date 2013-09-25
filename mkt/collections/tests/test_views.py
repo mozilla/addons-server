@@ -155,6 +155,31 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         self.make_curator()
         self.listing(self.client)
 
+    def test_listing_filter_unowned_hidden(self):
+        """
+        Hidden collections that you do not own should not be returned.
+        """
+        for app in self.apps:
+            self.collection.add_app(app)
+        self.collection.update(is_public=False)
+        res = self.client.get(self.list_url)
+        data = json.loads(res.content)
+        eq_(res.status_code, 200)
+        eq_(len(data['objects']), 0)
+
+    def test_listing_filter_owned_hidden(self):
+        """
+        Hidden collections that you do own should be returned.
+        """
+        for app in self.apps:
+            self.collection.add_app(app)
+        self.collection.update(is_public=False)
+        self.collection.curators.add(self.user.get_profile())
+        res = self.client.get(self.list_url)
+        data = json.loads(res.content)
+        eq_(res.status_code, 200)
+        eq_(len(data['objects']), 1)
+
     def test_listing_no_filtering(self):
         self.create_additional_data()
         self.make_publisher()
