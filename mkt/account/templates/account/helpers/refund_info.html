@@ -1,28 +1,21 @@
 {% set contributions = contributions.get(product.pk, []) %}
 {% if contributions %}
   <ul class="vitals contributions">
-    {% set last_contrib = contributions[-1].type in [amo.CONTRIB_PURCHASE, amo.CONTRIB_INAPP]
+    {% set last_contrib = contributions[-1].type in [amo.CONTRIB_PURCHASE]
                           and contributions[-1].id %}
     {% for contribution in contributions %}
       {# Show "Request Support" link if this is the last contribution
          and is a purchase. #}
       {% set get_support = (contribution.id == last_contrib) and show_link %}
       <li>
-          {% if contribution.type in [amo.CONTRIB_PURCHASE, amo.CONTRIB_INAPP] %}
+          {% if contribution.type in [amo.CONTRIB_PURCHASE] %}
             <span class="purchase{{ ' supportable' if get_support }}">
-              {% if contribution.type == amo.CONTRIB_INAPP %}
-                {% trans date=contribution.created|datetime,
-                         amt=contribution.get_amount_locale() %}
-                  In-app purchase {{ date }} for {{ amt }}
-                {% endtrans %}
-              {% else %}
-                {% trans date=contribution.created|datetime,
-                         amt=contribution.get_amount_locale() %}
-                  Purchased {{ date }} for {{ amt }}
-                {% endtrans %}
-              {% endif %}
+              {% trans date=contribution.created|datetime,
+                       amt=contribution.get_amount_locale() %}
+                Purchased {{ date }} for {{ amt }}
+              {% endtrans %}
             </span>
-            {% if get_support or (show_link and contribution.type == amo.CONTRIB_INAPP) %}
+            {% if get_support %}
               <a class="request-support"
                  href="{{ url('support', contribution.pk) }}">
                 {{ _('Request Support') }}</a>

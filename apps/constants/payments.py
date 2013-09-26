@@ -62,8 +62,10 @@ CONTRIB_CHARGEBACK = 3
 # We've started a transaction and we need to wait to see what
 # paypal will return.
 CONTRIB_PENDING = 4
-CONTRIB_INAPP_PENDING = 5
-CONTRIB_INAPP = 6
+# The following in-app contribution types are deprecated. Avoid re-using
+# these ID numbers in new types.
+_CONTRIB_INAPP_PENDING = 5
+_CONTRIB_INAPP = 6
 # The app was temporarily free. This is so we can record it in
 # the purchase table, even though there isn't a contribution.
 CONTRIB_NO_CHARGE = 7
@@ -71,7 +73,6 @@ CONTRIB_OTHER = 99
 
 CONTRIB_TYPES = {
     CONTRIB_CHARGEBACK: _('Chargeback'),
-    CONTRIB_INAPP: _('In-app Purchase'),
     CONTRIB_OTHER: _('Other'),
     CONTRIB_PURCHASE: _('Purchase'),
     CONTRIB_REFUND: _('Refund'),
@@ -80,30 +81,11 @@ CONTRIB_TYPES = {
 
 MKT_TRANSACTION_CONTRIB_TYPES = {
     CONTRIB_CHARGEBACK: _('Chargeback'),
-    CONTRIB_INAPP: _('In-app Purchase'),
     CONTRIB_PURCHASE: _('Purchase'),
     CONTRIB_REFUND: _('Refund'),
 }
 
 CONTRIB_TYPE_DEFAULT = CONTRIB_VOLUNTARY
-
-INAPP_STATUS_ACTIVE = 0
-INAPP_STATUS_INACTIVE = 1
-INAPP_STATUS_REVOKED = 2
-
-INAPP_STATUS_CHOICES = (
-    (INAPP_STATUS_ACTIVE, _('Active')),
-    (INAPP_STATUS_INACTIVE, _('Inactive')),
-    (INAPP_STATUS_REVOKED, _('Revoked'))
-)
-
-INAPP_NOTICE_PAY = 1
-INAPP_NOTICE_CHARGEBACK = 2
-
-INAPP_NOTICE_CHOICES = (
-    (INAPP_NOTICE_PAY, _('Pay')),
-    (INAPP_NOTICE_CHARGEBACK, _('Chargeback')),
-)
 
 PAYPAL_PERSONAL = {
     'first_name': 'http://axschema.org/namePerson/first',

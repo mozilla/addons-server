@@ -8,10 +8,8 @@ from django.db.models import Max, Min
 
 from celery.task.sets import TaskSet
 
-from addons.models import Addon
 from amo.utils import chunked
 from stats.models import Contribution
-from mkt.inapp_pay.models import InappPayment
 from mkt.stats import tasks
 from mkt.webapps.models import Webapp
 
@@ -68,14 +66,6 @@ class Command(BaseCommand):
             (Contribution.objects, tasks.index_finance_daily,
                 {'date': 'created', 'index': index}),
             (Installed.objects, tasks.index_installed_daily,
-                {'date': 'created', 'index': index}),
-            (Webapp.objects, tasks.index_finance_total_inapp,
-                {'date': 'created', 'index': index}),
-            (Webapp.objects, tasks.index_finance_total_inapp_by_currency,
-                {'date': 'created', 'index': index}),
-            (Webapp.objects, tasks.index_finance_total_inapp_by_src,
-                {'date': 'created', 'index': index}),
-            (InappPayment.objects, tasks.index_finance_daily_inapp,
                 {'date': 'created', 'index': index}),
         ]
 

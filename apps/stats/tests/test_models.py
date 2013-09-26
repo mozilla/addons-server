@@ -77,20 +77,6 @@ class TestContributionModel(amo.tests.TestCase):
                                     type=amo.CONTRIB_REFUND)
         assert self.con.is_refunded()
 
-    def test_refund_inapp_instant(self):
-        for ctype in ('CONTRIB_INAPP', 'CONTRIB_INAPP_PENDING'):
-            self.con.update(created=datetime.now(), type=getattr(amo, ctype))
-            assert not self.con.is_instant_refund(), (
-                                        'No refund on %s inapp' % ctype)
-
-    def test_refund_inapp_not_instant(self):
-        diff = timedelta(seconds=settings.PAYPAL_REFUND_INSTANT + 10)
-        for ctype in ('CONTRIB_INAPP', 'CONTRIB_INAPP_PENDING'):
-            self.con.update(created=datetime.now() - diff,
-                            type=getattr(amo, ctype))
-            assert not self.con.is_instant_refund(), (
-                                        'No refund on %s inapp' % ctype)
-
 
 class TestEmail(amo.tests.TestCase):
     fixtures = ['base/users', 'base/addon_3615']

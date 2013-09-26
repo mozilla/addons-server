@@ -47,8 +47,6 @@
         <dt>{{ _('Payments') }}:</dt>
         <dd>{{ _('apps purchased') }}: {{ app_summary['app_total'] }}
                             {{ app_summary['app_amount']|format_currencies }}</dd>
-        <dd>{{ _('in-app payments') }}: {{ app_summary['inapp_total'] }}
-                            {{ app_summary['inapp_amount']|format_currencies }}</dd>
         <dt>{{ _('Refunds') }}:</dt>
         <dd>{{ refund_summary['requested'] }} {{ _('requested' ) }}</dd>
         <dd>{{ refund_summary['approved'] }} {{ _('auto-approved') }}</dd>
