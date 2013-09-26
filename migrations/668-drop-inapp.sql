@@ -1,4 +1,6 @@
-DROP TABLE addon_inapp_log;
-DROP TABLE addon_inapp_payment;
-DROP TABLE addon_inapp;
-DROP TABLE addon_inapp_notice;
+DROP TABLE IF EXISTS addon_inapp_log;
+DROP TABLE IF EXISTS addon_inapp_payment;
+DROP TABLE IF EXISTS addon_inapp_image;
+DROP TABLE IF EXISTS addon_bluevia;
+DROP TABLE IF EXISTS addon_inapp;
+DROP TABLE IF EXISTS addon_inapp_notice;
