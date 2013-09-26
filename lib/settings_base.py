@@ -1100,8 +1100,6 @@ CELERY_ROUTES = {
     'lib.video.tasks.resize_video': {'queue': 'devhub'},
 
     # Images.
-    'addons.tasks.save_theme': {'queue': 'images'},
-    'addons.tasks.save_theme_reupload': {'queue': 'images'},
     'bandwagon.tasks.resize_icon': {'queue': 'images'},
     'users.tasks.resize_photo': {'queue': 'images'},
     'users.tasks.delete_photo': {'queue': 'images'},
