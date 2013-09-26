@@ -1104,6 +1104,13 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         eq_(res.status_code, 200)
         eq_(data[0]['id'], self.user.id)
 
+    def test_add_curator_multiple_cache(self):
+        self.make_publisher()
+        self.add_curator(self.client)
+        res, data = self.add_curator(self.client, user_id=self.user2.id)
+        self.assertSetEqual([user['id'] for user in data],
+                            [self.user.id, self.user2.id])
+
     def test_add_curator_as_curator(self):
         self.make_curator()
         res, data = self.add_curator(self.client)

@@ -187,12 +187,9 @@ class CollectionViewSet(CORSMixin, SlugOrIdMixin, viewsets.ModelViewSet):
             }, status=status.HTTP_400_BAD_REQUEST, exception=True)
         return self.return_updated(status.HTTP_200_OK)
 
-    def serialized_curators(self, http_status=None):
-        if not http_status:
-            http_status = status.HTTP_200_OK
-        data = [CuratorSerializer(instance=c).data for c in
-                self.get_object().curators.all()]
-        return Response(data, status=http_status)
+    def serialized_curators(self):
+        return Response([CuratorSerializer(instance=c).data for c in
+                         self.get_object().curators.all()])
 
     def get_curator(self, request):
         try:
