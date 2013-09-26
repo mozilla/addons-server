@@ -128,10 +128,14 @@ class Collection(amo.models.ModelBase):
         return userprofile.id in self.curators.values_list('id', flat=True)
 
     def add_curator(self, userprofile):
-        return self.curators.add(userprofile)
+        ret = self.curators.add(userprofile)
+        Collection.objects.invalidate(*self.curators.all())
+        return ret
 
     def remove_curator(self, userprofile):
-        return self.curators.remove(userprofile)
+        ret = self.curators.remove(userprofile)
+        Collection.objects.invalidate(*self.curators.all())
+        return ret
 
 
 class CollectionMembership(amo.models.ModelBase):
