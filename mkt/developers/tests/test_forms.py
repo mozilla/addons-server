@@ -633,8 +633,8 @@ class TestAppVersionForm(amo.tests.TestCase):
     def setUp(self):
         self.request = mock.Mock()
         self.app = app_factory(make_public=amo.PUBLIC_IMMEDIATELY,
-                               created=self.days_ago(5))
-        self.app.current_version.update(created=self.app.created)
+                               version_kw={'version': '1.0',
+                                           'created': self.days_ago(5)})
         version_factory(addon=self.app, version='2.0',
                         file_kw=dict(status=amo.STATUS_PENDING))
         self.app.reload()
