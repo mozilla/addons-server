@@ -556,6 +556,17 @@ class TestWebapp(amo.tests.TestCase):
         eq_(app.get_trending(region=region), 10.0)
 
 
+class DeletedAppTests(amo.tests.ESTestCase):
+
+    def test_soft_deleted_no_current_version(self):
+        waffle.models.Switch.objects.create(name='soft_delete', active=True)
+        webapp = amo.tests.app_factory()
+        webapp._current_version = None
+        webapp.save()
+        webapp.delete()
+        eq_(webapp.current_version, None)
+
+
 class TestExclusions(amo.tests.TestCase):
     fixtures = fixture('prices')
 
