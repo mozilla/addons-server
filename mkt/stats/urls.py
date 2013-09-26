@@ -23,6 +23,13 @@ stats_api_patterns = patterns('',
 )
 
 
+txn_api_patterns = patterns('',
+    url(r'^transaction/(?P<transaction_id>[^/]+)/$',
+        api.TransactionAPI.as_view(),
+        name='transaction_api'),
+)
+
+
 def sales_stats_report_urls(category='', inapp_flag=False):
     """
     urlpatterns helper builder for views.stats_report urls

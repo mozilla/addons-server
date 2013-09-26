@@ -7,6 +7,7 @@ from rest_framework.reverse import reverse
 from django.conf import settings
 
 import amo
+from stats.models import Contribution
 
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.site.fixtures import fixture
@@ -138,3 +139,55 @@ class TestAppStatsResource(RestOAuth):
         data = json.loads(res.content)
         for f in ('start', 'end', 'interval'):
             eq_(data['detail'][f], ['This field is required.'])
+
+
+class TestTransactionResource(RestOAuth):
+    fixtures = fixture('prices', 'user_2519', 'webapp_337141')
+
+    def setUp(self):
+        super(TestTransactionResource, self).setUp()
+        Contribution.objects.create(
+            addon_id=337141,
+            amount='1.89',
+            currency='EUR',
+            price_tier_id=2,
+            uuid='abcdef123456',
+            transaction_id='abc-def',
+            type=1,
+            user=self.user.get_profile(),
+        )
+
+    def url(self, t_id=None):
+        t_id = t_id or 'abc-def'
+        return reverse('transaction_api', kwargs={'transaction_id': t_id})
+
+    def test_cors(self):
+        res = self.client.get(self.url())
+        self.assertCORS(res, 'get')
+
+    def test_verbs(self):
+        self.grant_permission(self.profile, 'RevenueStats:View')
+        self._allowed_verbs(self.url(), ['get'])
+
+    def test_anon(self):
+        res = self.anon.get(self.url())
+        eq_(res.status_code, 403)
+
+    def test_bad_txn(self):
+        self.grant_permission(self.profile, 'RevenueStats:View')
+        res = self.client.get(self.url('foo'))
+        eq_(res.status_code, 404)
+
+    def test_good_but_no_permission(self):
+        res = self.client.get(self.url())
+        eq_(res.status_code, 403)
+
+    def test_good(self):
+        self.grant_permission(self.profile, 'RevenueStats:View')
+        res = self.client.get(self.url())
+        eq_(res.status_code, 200)
+        obj = json.loads(res.content)
+        eq_(obj['id'], 'abc-def')
+        eq_(obj['app_id'], 337141)
+        eq_(obj['amount_USD'], '1.99')
+        eq_(obj['type'], 'Purchase')

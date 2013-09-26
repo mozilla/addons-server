@@ -73,5 +73,5 @@ class AccountResource(MarketplaceModelResource):
         except PaymentAccount.DoesNotExist:
             raise NotFound('A model instance matching the provided arguments '
                            'could not be found.')
-        account.cancel()
+        account.cancel(disable_refs=True)
         log.info('Account cancelled: %s' % account.pk)

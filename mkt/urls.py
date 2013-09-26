@@ -23,7 +23,8 @@ from mkt.purchase.urls import webpay_services_patterns
 from mkt.receipts.urls import receipt_api_patterns
 from mkt.reviewers.urls import (api_patterns as reviewer_api_patterns,
                                 url_patterns as reviewer_url_patterns)
-from mkt.stats.urls import app_site_patterns, stats_api_patterns
+from mkt.stats.urls import (app_site_patterns, stats_api_patterns,
+                            txn_api_patterns)
 
 
 admin.autodiscover()
@@ -45,6 +46,7 @@ api_patterns = patterns('',
     url('', include('mkt.monolith.urls')),
     url('', include(comm_api_patterns)),
     url('', include(stats_api_patterns)),
+    url('', include(txn_api_patterns)),
 )
 
 home = lambda request: HttpResponse('''<a

@@ -1,6 +1,7 @@
 from django.core.exceptions import ValidationError
 from django.core.files.storage import default_storage as storage
 from django.db import IntegrityError
+from django.db.models import Q
 from django.http import Http404
 from django.utils.datastructures import MultiValueDictKeyError
 
@@ -79,6 +80,17 @@ class CollectionViewSet(CORSMixin, SlugOrIdMixin, viewsets.ModelViewSet):
             # Only filter queryset if we don't have an explicit lookup.
             queryset = self.filter_queryset(queryset)
         return super(CollectionViewSet, self).get_object(queryset=queryset)
+
+    def get_queryset(self):
+        auth = CuratorAuthorization()
+        qs = super(CollectionViewSet, self).get_queryset()
+        if self.request.user.is_authenticated():
+            if auth.has_curate_permission(self.request):
+                return qs
+            profile = self.request.user.get_profile()
+            return qs.filter(Q(curators__id=profile.id) |
+                             Q(is_public=True)).distinct()
+        return qs.filter(is_public=True)
 
     def return_updated(self, status, collection=None):
         """

@@ -10,7 +10,8 @@ from django.utils.cache import patch_vary_headers
 from django_statsd.clients import statsd
 from django_statsd.middleware import (GraphiteRequestTimingMiddleware,
                                       TastyPieRequestTimingMiddleware)
-from multidb.pinning import pin_this_thread, unpin_this_thread
+from multidb.pinning import (pin_this_thread, this_thread_is_pinned,
+                             unpin_this_thread)
 from multidb.middleware import PinningRouterMiddleware
 
 from mkt.carriers import get_carrier
@@ -73,6 +74,8 @@ class APIPinningMiddleware(PinningRouterMiddleware):
         if not getattr(request, 'API', False):
             return (super(APIPinningMiddleware, self)
                     .process_response(request, response))
+
+        response['API-Pinned'] = str(this_thread_is_pinned())
 
         if (request.amo_user and not request.amo_user.is_anonymous() and (
                 request.method in ['DELETE', 'PATCH', 'POST', 'PUT'] or
