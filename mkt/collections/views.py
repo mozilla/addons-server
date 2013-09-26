@@ -189,7 +189,7 @@ class CollectionViewSet(CORSMixin, SlugOrIdMixin, viewsets.ModelViewSet):
 
     def serialized_curators(self):
         return Response([CuratorSerializer(instance=c).data for c in
-                         self.get_object().curators.all()])
+                         self.get_object().curators.no_cache().all()])
 
     def get_curator(self, request):
         try:
