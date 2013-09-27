@@ -143,6 +143,12 @@ def publish_payments(request):
         {'page': 'publish_payments', 'category': 'publish'})
 
 
+def publish_badges(request):
+    """Publish - Marketplace badges."""
+    return jingo.render(request, 'ecosystem/publish_badges.html',
+        {'page': 'badges', 'category': 'publish'})
+
+
 def publish_packaged(request):
     """Publish - Packaged apps page."""
     html_sample = u'''
