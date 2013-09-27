@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-08-23 09:56-0700\n"
-"PO-Revision-Date: 2013-09-22 12:10+0000\n"
+"PO-Revision-Date: 2013-09-27 07:17+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1379851825.0\n"
+"X-POOTLE-MTIME: 1380266225.0\n"
 
 #: apps/addons/buttons.py:207
 msgid "Download Now"
@@ -4871,23 +4871,23 @@ msgstr "Creative Commons 姓名標示 3.0"
 
 #: apps/constants/licenses.py:29
 msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr "Creative Commons 姓名標示─非商業性 3.0"
+msgstr "Creative Commons 姓名標示-非商業性 3.0"
 
 #: apps/constants/licenses.py:36
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr "Creative Commons 姓名標示─非商業性─禁止改作 3.0"
+msgstr "Creative Commons 姓名標示-非商業性-禁止改作 3.0"
 
 #: apps/constants/licenses.py:43
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr "Creative Commons 姓名標示─非商業性─相同方式分享 3.0"
+msgstr "Creative Commons 姓名標示-非商業性-相同方式分享 3.0"
 
 #: apps/constants/licenses.py:50
 msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr "Creative Commons 姓名標示─禁止改作 3.0"
+msgstr "Creative Commons 姓名標示-禁止改作 3.0"
 
 #: apps/constants/licenses.py:57
 msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr "Creative Commons 姓名標示─相同方式分享 3.0"
+msgstr "Creative Commons 姓名標示-相同方式分享 3.0"
 
 #: apps/constants/payments.py:18
 msgid "Australian Dollar"
