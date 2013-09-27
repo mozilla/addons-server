@@ -859,6 +859,8 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     @property
     def latest_version(self):
+        if self.status == amo.STATUS_DELETED:
+            return None
         try:
             if not self._latest_version:
                 self.update_version()
