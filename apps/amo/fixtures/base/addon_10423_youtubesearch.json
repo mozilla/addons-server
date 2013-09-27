@@ -122,7 +122,6 @@
             "slug": "youtube",
             "external_software": false,
             "charity": null,
-            "get_satisfaction_product": null,
             "name": 309895,
             "created": "2009-01-19 15:28:14",
             "type": 4,
@@ -133,7 +132,6 @@
             "suggested_amount": null,
             "site_specific": false,
             "_current_version": 61037,
-            "get_satisfaction_company": null,
             "the_reason": null
         }
     },

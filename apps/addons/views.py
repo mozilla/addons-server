@@ -115,11 +115,6 @@ def extension_detail(request, addon):
         prefixer.app = comp_apps.keys()[0].short
         return redirect('addons.detail', addon.slug, permanent=True)
 
-    # get satisfaction only supports en-US.
-    lang = translation.to_locale(translation.get_language())
-    addon.has_satisfaction = (lang == 'en_US' and
-                              addon.get_satisfaction_company)
-
     # Addon recommendations.
     recommended = Addon.objects.listed(request.APP).filter(
         recommended_for__addon=addon)[:6]

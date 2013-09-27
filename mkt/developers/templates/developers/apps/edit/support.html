@@ -48,8 +48,7 @@
                        _("If your add-on has a support website or forum, enter
                           its address here. If your website is localized into
                           other languages, multiple translations of this field can
-                          be added. If you use a GetSatisfaction URL, users will
-                          be able to interact with a GetSatisfaction widget.")) }}
+                          be added.")) }}
               {% endif %}
             </label>
           </th>
@@ -62,17 +61,6 @@
             {% endif %}
           </td>
         </tr>
-        {% if addon.get_satisfaction_company and not editable %}
-        <tr>
-          <th>{{ _('Get Satisfaction') }}</th>
-          <td class="addon_edit_gs">
-              {{ addon.get_satisfaction_company }}
-              {% if addon.get_satisfaction_product %}
-              &raquo; {{ addon.get_satisfaction_product }}
-              {% endif %}
-            </td>
-        </tr>
-        {% endif %}
       </tbody>
     </table>
     {% if editable %}

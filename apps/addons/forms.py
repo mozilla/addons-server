@@ -398,18 +398,6 @@ class AddonFormDetails(AddonFormBase):
         return data
 
 
-def get_satisfaction(url):
-    """
-    If there's a GetSatisfaction URL entered, we'll extract the product
-    and company name..
-    """
-    gs_regex = "getsatisfaction\.com/(\w*)(?:/products/(\w*))?"
-    match = re.search(gs_regex, url)
-    if match:
-        return match.groups()
-    return None, None
-
-
 class AddonFormSupport(AddonFormBase):
     support_url = TransField.adapt(forms.URLField)(required=False)
     support_email = TransField.adapt(forms.EmailField)(required=False)
@@ -426,8 +414,6 @@ class AddonFormSupport(AddonFormBase):
     def save(self, addon, commit=True):
         instance = self.instance
         url = instance.support_url.localized_string
-        (instance.get_satisfaction_company,
-         instance.get_satisfaction_product) = get_satisfaction(url)
         return super(AddonFormSupport, self).save(commit)
 
 
@@ -456,8 +442,7 @@ class AddonForm(happyforms.ModelForm):
         fields = ('name', 'homepage', 'default_locale', 'support_email',
                   'support_url', 'description', 'summary',
                   'developer_comments', 'eula', 'privacy_policy', 'the_reason',
-                  'the_future', 'view_source', 'prerelease', 'site_specific',
-                  'get_satisfaction_company', 'get_satisfaction_product',)
+                  'the_future', 'view_source', 'prerelease', 'site_specific',)
 
         exclude = ('status', )
 

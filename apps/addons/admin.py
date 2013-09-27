@@ -24,8 +24,7 @@ class AddonAdmin(admin.ModelAdmin):
                        'the_reason', 'the_future'),
         }),
         ('Support', {
-            'fields': ('support_url', 'support_email',
-                       'get_satisfaction_company', 'get_satisfaction_product'),
+            'fields': ('support_url', 'support_email'),
         }),
         ('Stats', {
             'fields': ('average_rating', 'bayesian_rating', 'total_reviews',

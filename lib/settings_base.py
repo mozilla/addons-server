@@ -651,7 +651,6 @@ MINIFY_BUNDLES = {
 
             # Add-ons details page
             'js/lib/jquery-ui/ui.lightbox.js',
-            'js/get-satisfaction-v2.js',
             'js/zamboni/contributions.js',
             'js/zamboni/addon_details.js',
             'js/impala/abuse.js',
@@ -740,7 +739,6 @@ MINIFY_BUNDLES = {
 
             # Add-ons details page
             'js/lib/jquery-ui/ui.lightbox.js',
-            'js/get-satisfaction-v2.js',
             'js/zamboni/contributions.js',
             'js/impala/addon_details.js',
             'js/impala/abuse.js',
@@ -1220,7 +1218,6 @@ CSP_IMG_SRC = ("'self'", SITE_URL,
                "https://mozorg.cdn.mozilla.net",  # Tabzilla.
                "http://mozorg.cdn.mozilla.net",
                "https://www.getpersonas.com",
-               "https://s3.amazonaws.com",  # getsatisfaction
                "https://ssl.google-analytics.com",
                "http://www.google-analytics.com",
                "data:"
@@ -1244,7 +1241,6 @@ CSP_STYLE_SRC = ("'self'", SITE_URL,
 CSP_OBJECT_SRC = ("'none'",)
 CSP_MEDIA_SRC = ("'none'",)
 CSP_FRAME_SRC = ("https://s3.amazonaws.com",
-                 "https://getsatisfaction.com",  # getsatisfaction
                  "https://ssl.google-analytics.com",
                  "https://login.persona.org",
                  "https://firefoxos.persona.org",
