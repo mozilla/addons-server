@@ -32,6 +32,7 @@ from mkt.constants import DEVICE_LOOKUP
 from mkt.developers.decorators import dev_required
 from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
                                    UserInappKey, uri_to_pk)
+from mkt.regions import ALL_PAID_REGION_IDS_BY_SLUG
 
 from . import forms, forms_payments
 
@@ -62,10 +63,6 @@ def payments(request, addon_id, addon, webapp=False):
         request.POST or None, addon=addon, user=request.amo_user)
 
     if request.method == 'POST':
-        if premium_form.is_valid():
-            region_form = forms.RegionForm(request.POST, product=addon,
-                    request=request, price=premium_form.cleaned_data['price']
-                )
 
         success = all(form.is_valid() for form in
                       [premium_form, region_form, upsell_form,
@@ -146,7 +143,9 @@ def payments(request, addon_id, addon, webapp=False):
              PAYMENT_METHOD_ALL: _('All'),
              PAYMENT_METHOD_CARD: _('Credit card'),
              PAYMENT_METHOD_OPERATOR: _('Carrier'),
-         }})
+         },
+         'all_paid_region_ids_by_slug': ALL_PAID_REGION_IDS_BY_SLUG,
+        })
 
 
 @login_required

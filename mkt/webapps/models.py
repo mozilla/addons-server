@@ -577,13 +577,6 @@ class Webapp(Addon):
 
         return sorted(list(excluded))
 
-    def get_possible_price_region_ids(self):
-        # TODO: Stuart is going to rip this out.
-        if self.has_premium() and self.premium:
-            ids = [p['region'] for p in self.premium.price.prices()]
-            return sorted(ids)
-        return []
-
     def get_price_region_ids(self):
         tier = self.get_tier()
         if tier:

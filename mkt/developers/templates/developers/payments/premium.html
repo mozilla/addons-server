@@ -144,17 +144,6 @@
       <div id="paid-regions-island">
         <h2>{{ _('Prices and countries') }}</h2>
 
-        {% if region_form.has_inappropriate_regions() %}
-          {% include 'developers/payments/includes/regions_inappropriate.html' %}
-        {% endif %}
-
-        <div class="island info hidden" id="regions-changed">
-          {%- trans %}
-            Based on your chosen price point the available regions have been updated.
-            Please check them prior to saving your changes.
-          {% endtrans -%}
-        </div>
-
         <section id="regions" class="island">
           <table>
             <tbody>
@@ -176,60 +165,54 @@
                 </td>
               </tr>
               <tr>
-                <th colspan="2" class="region-toggle">
-                  {% include 'developers/payments/includes/regions_toggle.html' %}
-                </th>
-              </tr>
-              <tr>
                 <td colspan="2" class="region-container">
                   <div id="region-list" class="checkbox-choices regions"
                        data-api-error-msg="{{ _('A server error occurred. Please try again later.') }}"
-                       data-disabled-general-regions="{{ region_form.disabled_general_regions|json }}"
+                       data-disabled-regions="{{ region_form.disabled_regions|json }}"
+                       data-all-paid-region-ids="{{ all_paid_region_ids_by_slug|json }}"
                        data-not-applicable-msg="{{ _('Not applicable') }}"
                        data-payment-methods="{{ payment_methods|json }}"
                        data-pricelist-api-url="{{ api_pricelist_url }}"
                        data-tier-zero-id="{{ tier_zero_id }}">
                     {{ region_form.regions.errors }}
-                    <table>
-                      <thead>
-                        <tr>
-                          <th><span class="region-heading">{{ _('Region') }}</span></th>
-                          <th>{{ _('Retail price') }}
-                            <span class="local-currency-heading">({{ _('local currency') }})</span></th>
-                          <th>{{ _('Billing method') }}</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {% for value, text in region_form.regions.field.choices %}
-                          {% if value|int in mkt.regions.ALL_PAID_REGION_IDS %}
+
+                    {% include 'developers/payments/includes/regions_toggle.html' %}
+
+                    <div class="paid-regions">
+                      <h3>{{ _('Available Regions') }}</h3>
+                      <div class="hint note">
+                        <p>{{ _('Your app will be available in the following selected regions:') }}</p>
+                      </div>
+                      <table id="paid-regions">
+                        <thead>
                           <tr>
-                              <td>
-                                <label {% if value in region_form.disabled_regions %} class="disabled"{% endif %}>
-                                  <input type="checkbox"
-                                         {% if value in region_form.disabled_regions %}disabled{% endif %}
-                                         {% if value in region_form.initial.regions %}checked{% endif %}
-                                         name="regions" value="{{ value }}">{{ text }}</label>
-                              </td>
-                              <td><span class="local-retail"></span></td>
-                              <td><span class="local-method"></span></td>
+                            <th><span class="region-heading">{{ _('Region') }}</span></th>
+                            <th>{{ _('Retail price') }}
+                              <span class="local-currency-heading">({{ _('local currency') }})</span></th>
+                            <th>{{ _('Billing method') }}</th>
                           </tr>
-                          {% endif %}
-                        {% endfor %}
-                      </tbody>
-                    </table>
+                        </thead>
+                        <tbody class="checkbox-choices">
+                          {% for id in all_paid_region_ids_by_slug %}
+                            <tr data-region="{{ id }}"></tr>
+                          {% endfor %}
+                        </tbody>
+                      </table>
+                    </div>
+
+                    <h3>{{ _("Other regions") }}</h3>
+                    <div class="hint note">
+                      <p>
+                        {% trans %}
+                          Your app will be available in the following selected regions in the future when payments are available based on your chosen price point.
+                          To exclude your app from appearing in a region please un-check that region before saving.
+                        {% endtrans %}
+                      </p>
+                    </div>
+
+                    {% include 'developers/payments/includes/region_form.html' %}
+
                   </div>
-                </td>
-              </tr>
-              {% if region_form.disabled_regions %}
-              <tr>
-                <td colspan="2">
-                  {% include 'developers/payments/includes/regions_disabled.html' %}
-                </td>
-              </tr>
-              {% endif %}
-              <tr>
-                <td colspan="2">
-                  {% include 'developers/payments/includes/regions_other.html' %}
                 </td>
               </tr>
             </tbody>
@@ -243,22 +226,9 @@
       {# Non-paid app region lists #}
       <div id="regions-island">
         <h2>{{ _('Regions and listings') }}</h2>
-        {% if region_form.has_inappropriate_regions() %}
-          {% include 'developers/payments/includes/regions_inappropriate.html' %}
-        {% endif %}
         <section id="regions" class="island">
           {% include 'developers/payments/includes/regions_toggle.html' %}
-          {{ region_form.regions.errors }}
-          <div class="checkbox-choices"
-               data-disabled="{{ region_form.disabled_regions|json }}">
-            {{ region_form.regions }}
-          </div>
-          {% if region_form.disabled_regions %}
-            {% include 'developers/payments/includes/regions_disabled.html' %}
-          {% endif %}
-          <div class="other-regions">
-            {% include 'developers/payments/includes/regions_other.html' %}
-          </div>
+          {% include 'developers/payments/includes/region_form.html' %}
           <button>{{ _('Save Changes') }}</button>
         </section>
       </div>

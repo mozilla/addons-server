@@ -225,9 +225,8 @@ class TestPremiumForm(amo.tests.TestCase):
         #   1 x Free with inapp
         # + 1 x price tier 0
         # + 3 x values grouped by billing
-        # + 1 x 'Please select'
-        # = 6
-        eq_(len(form.fields['price'].choices), 6)
+        # = 5
+        eq_(len(form.fields['price'].choices), 5)
         html = form.as_p()
         eq_(len(pq(html)('#id_price optgroup')), 3, 'Should be 3 optgroups')
 
