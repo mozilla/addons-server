@@ -438,6 +438,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                 models.signals.pre_delete.send(sender=Addon, instance=self)
                 self.status = amo.STATUS_DELETED
                 self.slug = self.app_slug = self.app_domain = None
+                self._current_version = None
                 self.save()
                 models.signals.post_delete.send(sender=Addon, instance=self)
             else:
@@ -847,6 +848,8 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     @property
     def current_version(self):
         "Returns the current_version field or updates it if needed."
+        if self.status == amo.STATUS_DELETED:
+            return None
         try:
             if not self._current_version:
                 self.update_version()

@@ -90,8 +90,8 @@ def index_webapp(ids, **kw):
     index = kw.pop('index', None) or ALIAS
     sys.stdout.write('Indexing %s apps' % len(ids))
 
-    qs = Webapp.indexing_transformer(Webapp.objects.no_cache()
-                                                   .filter(id__in=ids))
+    qs = Webapp.indexing_transformer(Webapp.with_deleted.no_cache()
+                                     .filter(id__in=ids))
 
     docs = []
     for obj in qs:
