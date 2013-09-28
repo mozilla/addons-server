@@ -235,7 +235,7 @@ def transaction_refund(request, tx_uuid):
 @login_required
 @permission_required('AppLookup', 'View')
 def app_summary(request, addon_id):
-    app = get_object_or_404(Addon, pk=addon_id)
+    app = get_object_or_404(Addon.with_deleted, pk=addon_id)
     authors = (app.authors.filter(addonuser__role__in=(amo.AUTHOR_ROLE_DEV,
                                                        amo.AUTHOR_ROLE_OWNER))
                           .order_by('display_name'))

@@ -564,6 +564,13 @@ class TestAppSearch(ESTestCase, SearchTestMixin):
         self.app.status = amo.STATUS_UNREVIEWED
         self.test_by_name_part()
 
+    def test_by_deleted_app(self):
+        self.create_switch('soft_delete')
+        self.app.delete()
+        self.refresh('webapp')
+        data = self.search(q='something')
+        self.verify_result(data)
+
     def test_multiword(self):
         self.app.name = 'Firefox Marketplace'
         self.app.save()
@@ -620,6 +627,11 @@ class TestAppSummary(AppSummaryTest):
     def setUp(self):
         super(TestAppSummary, self).setUp()
         self._setUp()
+
+    def test_app_deleted(self):
+        self.create_switch('soft_delete')
+        self.app.delete()
+        self.summary()
 
     def test_search_matches_type(self):
         res = self.summary()

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-30 15:53-0700\n"
+"POT-Creation-Date: 2013-09-27 16:47-0700\n"
 "PO-Revision-Date: 2013-09-24 12:31+0000\n"
 "Last-Translator: Milos <mdinic@mozilla.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -10,17 +10,14 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
-"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-POOTLE-MTIME: 1380025907.0\n"
 
 #: media/js/common-all.js:10109 media/js/common-min.js:23 media/js/impala-all.js:1159 media/js/impala-min.js:1 media/js/devreg/init.js:35 media/js/mkt/init.js:47
 #: media/js/zamboni/discovery-all.js:10076 media/js/zamboni/discovery-min.js:23 media/js/zamboni/init.js:32 media/js/zamboni/mobile-all.js:10912 media/js/zamboni/mobile-min.js:32
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr ""
-"Ова могућност је привремено онемогућена док обављамо задатак одржавања "
-"сајта. Молимо пробајте мало касније."
+msgstr "Ова могућност је привремено онемогућена док обављамо задатак одржавања сајта. Молимо пробајте мало касније."
 
 #: media/js/common-all.js:10509 media/js/common-min.js:23 media/js/impala-all.js:1559 media/js/impala-min.js:1 media/js/zamboni/mobile-all.js:10654 media/js/zamboni/mobile-min.js:32
 msgid "App installation not allowed"
@@ -100,9 +97,7 @@ msgstr "Није доступно за {0} {1}"
 #: media/js/common-all.js:11078 media/js/common-min.js:23 media/js/impala-all.js:2128 media/js/impala-min.js:1 media/js/zamboni/buttons.js:601 media/js/zamboni/discovery-all.js:11020
 #: media/js/zamboni/discovery-min.js:23 media/js/zamboni/mobile-all.js:11127 media/js/zamboni/mobile-min.js:32 media/js/zamboni/mobile/buttons.js:39
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr ""
-"Жао нам је, треба Вам прегледач базиран на Mozilla-иној технологији(као што "
-"је Firefox) да бисте инсталирали додатак за претраживање."
+msgstr "Жао нам је, треба Вам прегледач базиран на Mozilla-иној технологији(као што је Firefox) да бисте инсталирали додатак за претраживање."
 
 #: media/js/common-all.js:16149 media/js/common-min.js:56 media/js/impala-all.js:7698 media/js/impala-min.js:34 media/js/zamboni/global.js:416
 msgid "Loading..."
@@ -252,9 +247,7 @@ msgstr "Администратори и уредници морају укуца
 
 #: media/js/impala-all.js:2451 media/js/impala-min.js:1 media/js/zamboni/browserid_support.js:42 media/js/zamboni/mobile-all.js:12083 media/js/zamboni/mobile-min.js:32
 msgid "BrowserID login failed. Maybe you don't have an account under that email address?"
-msgstr ""
-"Пријава преко BrowserID-а неуспела. Можда немате налог са том адресом ел. "
-"поште?"
+msgstr "Пријава преко BrowserID-а неуспела. Можда немате налог са том адресом ел. поште?"
 
 #: media/js/impala-all.js:2584 media/js/impala-min.js:1 media/js/devreg/validator.js:458 media/js/zamboni/devhub-all.js:2864 media/js/zamboni/devhub-min.js:1 media/js/zamboni/mobile-all.js:12216
 #: media/js/zamboni/mobile-min.js:32 media/js/zamboni/validator.js:466
@@ -488,15 +481,15 @@ msgstr ""
 msgid "There was an error uploading your file."
 msgstr "Дошло је до грешке приликом отпремања Ваше датотеке."
 
-#: media/js/devreg/devhub.js:896 media/js/zamboni/devhub-all.js:1774 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:925
+#: media/js/devreg/devhub.js:884 media/js/zamboni/devhub-all.js:1774 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:925
 msgid "Learn more"
 msgstr "Сазнајте више"
 
-#: media/js/devreg/devhub.js:900 media/js/zamboni/devhub-all.js:1778 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:929
+#: media/js/devreg/devhub.js:888 media/js/zamboni/devhub-all.js:1778 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:929
 msgid "Example"
 msgstr "Пример"
 
-#: media/js/devreg/devhub.js:1203 media/js/zamboni/devhub-all.js:2125 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:1285
+#: media/js/devreg/devhub.js:1190 media/js/zamboni/devhub-all.js:2125 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:1285
 msgid "Image changes being processed"
 msgstr "Измене на слици се обрађују"
 
@@ -577,17 +570,21 @@ msgstr ""
 msgid "Detected: {0}"
 msgstr ""
 
-#: media/js/devreg/payments-manage.js:32 media/js/devreg/payments-manage.js:67 media/js/devreg/validator.js:193 media/js/devreg/validator.js:438 media/js/devreg/validator.js:457
+#: media/js/devreg/payments-manage.js:32 media/js/devreg/payments-manage.js:76 media/js/devreg/validator.js:193 media/js/devreg/validator.js:438 media/js/devreg/validator.js:457
 #: media/js/mkt/buttons.js:85 media/js/mkt/buttons.js:94 media/js/zamboni/devhub-all.js:2597 media/js/zamboni/devhub-all.js:2844 media/js/zamboni/devhub-all.js:2863 media/js/zamboni/devhub-min.js:1
 #: media/js/zamboni/validator.js:193 media/js/zamboni/validator.js:446 media/js/zamboni/validator.js:465
 msgid "Error"
 msgstr "Грешка"
 
-#: media/js/devreg/payments-manage.js:33 media/js/devreg/payments-manage.js:68
+#: media/js/devreg/payments-manage.js:33 media/js/devreg/payments-manage.js:77
 msgid "There was a problem contacting the payment server."
 msgstr "Дошло је до грешке приликом контактирања сервера за плаћање."
 
-#: media/js/devreg/payments-manage.js:88
+#: media/js/devreg/payments-manage.js:55
+msgid "Authentication error"
+msgstr ""
+
+#: media/js/devreg/payments-manage.js:97
 msgid "You do not currently have any payment accounts."
 msgstr "Тренутно немате ни један налог за плаћање."
 
@@ -1250,11 +1247,11 @@ msgstr ""
 msgid "Message must not be empty."
 msgstr ""
 
-#: media/js/mkt/login.js:68
+#: media/js/mkt/login.js:73
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
 msgstr ""
 
-#: media/js/mkt/login.js:73
+#: media/js/mkt/login.js:78
 msgid "Persona login failed. A server error was encountered."
 msgstr ""
 
@@ -1638,9 +1635,7 @@ msgstr ""
 
 #: media/js/zamboni/discovery-all.js:12097 media/js/zamboni/discovery-min.js:23 media/js/zamboni/discovery_pane.js:217
 msgid "Sorry, we couldn't find any recommendations for you.<br>Please visit the <a href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
-msgstr ""
-"Жао нам је, нисмо успели наћи препоруке за Вас.<br>Молимо посетите <a "
-"href=\"{0}\">страницу са додацима</a> да би пронашли додатке погодне за Вас."
+msgstr "Жао нам је, нисмо успели наћи препоруке за Вас.<br>Молимо посетите <a href=\"{0}\">страницу са додацима</a> да би пронашли додатке погодне за Вас."
 
 #: media/js/zamboni/discovery-all.js:12127 media/js/zamboni/discovery-min.js:23 media/js/zamboni/discovery_pane.js:247
 msgid "Finding recommendations&hellip;"

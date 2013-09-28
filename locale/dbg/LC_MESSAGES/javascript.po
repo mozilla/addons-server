@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-30 15:53-0700\n"
+"POT-Creation-Date: 2013-09-27 16:47-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -864,21 +864,21 @@ msgstr "Řḗƒřḗşħḗḓ"
 msgid "There was an error uploading your file."
 msgstr "Ŧħḗřḗ ẇȧş ȧƞ ḗřřǿř ŭƥŀǿȧḓīƞɠ ẏǿŭř ƒīŀḗ."
 
-#: media/js/devreg/devhub.js:896
+#: media/js/devreg/devhub.js:884
 #: media/js/zamboni/devhub-all.js:1774
 #: media/js/zamboni/devhub-min.js:1
 #: media/js/zamboni/devhub.js:925
 msgid "Learn more"
 msgstr "Ŀḗȧřƞ ḿǿřḗ"
 
-#: media/js/devreg/devhub.js:900
+#: media/js/devreg/devhub.js:888
 #: media/js/zamboni/devhub-all.js:1778
 #: media/js/zamboni/devhub-min.js:1
 #: media/js/zamboni/devhub.js:929
 msgid "Example"
 msgstr "Ḗẋȧḿƥŀḗ"
 
-#: media/js/devreg/devhub.js:1203
+#: media/js/devreg/devhub.js:1190
 #: media/js/zamboni/devhub-all.js:2125
 #: media/js/zamboni/devhub-min.js:1
 #: media/js/zamboni/devhub.js:1285
@@ -963,7 +963,7 @@ msgid "Detected: {0}"
 msgstr "Ḓḗŧḗƈŧḗḓ: {0}"
 
 #: media/js/devreg/payments-manage.js:32
-#: media/js/devreg/payments-manage.js:67
+#: media/js/devreg/payments-manage.js:76
 #: media/js/devreg/validator.js:193
 #: media/js/devreg/validator.js:438
 #: media/js/devreg/validator.js:457
@@ -980,11 +980,15 @@ msgid "Error"
 msgstr "Ḗřřǿř"
 
 #: media/js/devreg/payments-manage.js:33
-#: media/js/devreg/payments-manage.js:68
+#: media/js/devreg/payments-manage.js:77
 msgid "There was a problem contacting the payment server."
 msgstr "Ŧħḗřḗ ẇȧş ȧ ƥřǿƀŀḗḿ ƈǿƞŧȧƈŧīƞɠ ŧħḗ ƥȧẏḿḗƞŧ şḗřṽḗř."
 
-#: media/js/devreg/payments-manage.js:88
+#: media/js/devreg/payments-manage.js:55
+msgid "Authentication error"
+msgstr "Ȧŭŧħḗƞŧīƈȧŧīǿƞ ḗřřǿř"
+
+#: media/js/devreg/payments-manage.js:97
 msgid "You do not currently have any payment accounts."
 msgstr "Ẏǿŭ ḓǿ ƞǿŧ ƈŭřřḗƞŧŀẏ ħȧṽḗ ȧƞẏ ƥȧẏḿḗƞŧ ȧƈƈǿŭƞŧş."
 
@@ -1936,7 +1940,7 @@ msgstr "Ƒŀȧşħ Ƥŀȧẏḗř</a>."
 msgid "Message must not be empty."
 msgstr "Ḿḗşşȧɠḗ ḿŭşŧ ƞǿŧ ƀḗ ḗḿƥŧẏ."
 
-#: media/js/mkt/login.js:68
+#: media/js/mkt/login.js:73
 msgid ""
 "Persona login failed. Maybe you don't have an account under that email "
 "address?"
@@ -1944,7 +1948,7 @@ msgstr ""
 "Ƥḗřşǿƞȧ ŀǿɠīƞ ƒȧīŀḗḓ. Ḿȧẏƀḗ ẏǿŭ ḓǿƞ'ŧ ħȧṽḗ ȧƞ ȧƈƈǿŭƞŧ ŭƞḓḗř ŧħȧŧ ḗḿȧīŀ "
 "ȧḓḓřḗşş?"
 
-#: media/js/mkt/login.js:73
+#: media/js/mkt/login.js:78
 msgid "Persona login failed. A server error was encountered."
 msgstr "Ƥḗřşǿƞȧ ŀǿɠīƞ ƒȧīŀḗḓ. Ȧ şḗřṽḗř ḗřřǿř ẇȧş ḗƞƈǿŭƞŧḗřḗḓ."
 
