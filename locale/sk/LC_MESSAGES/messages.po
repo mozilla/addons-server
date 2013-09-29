@@ -9573,7 +9573,7 @@ msgstr ""
 
 #: apps/discovery/modules.py:139
 msgid "Shopping Made Easy"
-msgstr ""
+msgstr "Nakupovanie ľahko a jednoducho"
 
 #: apps/discovery/modules.py:140
 msgid "Save on your favorite items from the comfort of your browser."
@@ -9800,23 +9800,23 @@ msgstr "Zrušiť inštaláciu"
 
 #: apps/discovery/templates/discovery/modules/amp-your-firefox-winner.html:6
 msgid "Amp Your Firefox Contest"
-msgstr ""
+msgstr "Súťaž Posilnite si svoj Firefox"
 
 #: apps/discovery/templates/discovery/modules/amp-your-firefox-winner.html:7
 msgid "Best Overall Add-on"
-msgstr ""
+msgstr "Víťazný doplnok"
 
 #: apps/discovery/templates/discovery/modules/amp-your-firefox-winner.html:10
 msgid "Thumbnail Zoom Plus"
-msgstr ""
+msgstr "Thumbnail Zoom Plus"
 
 #: apps/discovery/templates/discovery/modules/amp-your-firefox-winner.html:12
 msgid "Shows a full-size image popup when<br> you hover over a thumbnail or image link."
-msgstr ""
+msgstr "Zobrazuje plnú verziu obrázku po prejdení<br>myšou ponad náhľad alebo odkaz na obrázok."
 
 #: apps/discovery/templates/discovery/modules/amp-your-firefox-winner.html:16
 msgid "Get it now!"
-msgstr ""
+msgstr "Získajte ho ešte dnes!"
 
 #: apps/discovery/templates/discovery/modules/go-mobile.html:4
 msgid "Get Add-ons On The Go"
