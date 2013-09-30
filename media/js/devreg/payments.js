@@ -192,15 +192,20 @@ define('payments', [], function() {
                     // Otherwise we need to create a new tableRow and move it into position.
                     var $chkbox = $regions.find('input:checkbox[value=' + regionId + ']');
                     var $row = $('#paid-regions tr[data-region=' + regionId + ']');
-                    if ($row.find('td').length) {
-                        $row.find('.lp').text(localPrice);
-                        $row.find('.lm').text(localMethod);
+
+                    if ($row.length) {
+                        if ($row.find('td').length) {
+                            $row.find('.lp').text(localPrice);
+                            $row.find('.lm').text(localMethod);
+                        } else {
+                            var $tr = createTableRow($chkbox.closest('label'), regionId, localPrice, localMethod);
+                            moveQueue.push([$chkbox.closest('label'), $tr.find('.cb')]);
+                            $chkbox.closest('li').hide(500);
+                        }
+                        seen.push($chkbox[0]);
                     } else {
-                        var $tr = createTableRow($chkbox.closest('label'), regionId, localPrice, localMethod);
-                        moveQueue.push([$chkbox.closest('label'), $tr.find('.cb')]);
-                        $chkbox.closest('li').hide(500);
+                        console.log('No row found with regionId "' + regionId + '" (noop)');
                     }
-                    seen.push($chkbox[0]);
                 }
 
                 for (var k=0, l=moveQueue.length; k<l; k++) {
