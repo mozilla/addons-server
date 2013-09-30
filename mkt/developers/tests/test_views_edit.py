@@ -522,8 +522,7 @@ class TestEditCountryLanguage(TestEdit):
         eq_(langs, u'English (US) (default), Deutsch, Espa\xc3\xb1ol')
         self.assertSetEqual(
             sorted(clean_countries),
-            sorted([r.name.decode() for r in regions.ALL_REGIONS
-                    if r.slug is not 'worldwide']))
+            sorted([r.name.decode() for r in regions.ALL_REGIONS]))
 
 
 class TestEditMedia(TestEdit):
