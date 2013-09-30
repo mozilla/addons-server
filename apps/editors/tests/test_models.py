@@ -105,7 +105,7 @@ class TestQueue(amo.tests.TestCase):
     def test_reviewed_files_are_hidden(self):
         self.new_file(name='Unreviewed', version=u'0.1')
         create_addon_file('Already Reviewed', '0.1',
-                          amo.STATUS_PUBLIC, amo.STATUS_LISTED)
+                          amo.STATUS_PUBLIC, amo.STATUS_NULL)
         eq_(sorted(q.addon_name for q in self.Queue.objects.all()),
             ['Unreviewed'])
 
@@ -416,7 +416,6 @@ class TestReviewerScore(amo.tests.TestCase):
             amo.STATUS_NOMINATED: 'FULL',
             amo.STATUS_PUBLIC: 'UPDATE',
             amo.STATUS_DISABLED: None,
-            amo.STATUS_LISTED: None,
             amo.STATUS_BETA: None,
             amo.STATUS_LITE: 'PRELIM',
             amo.STATUS_LITE_AND_NOMINATED: 'FULL',

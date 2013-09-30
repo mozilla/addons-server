@@ -242,7 +242,7 @@
   {% endif %}
 
 
-  {% if not addon.is_selfhosted() and version and show_actions %}
+  {% if version and show_actions %}
   <h3 id="releasenotes">{{ _('Version Notes', 'addons_display_release_notes') }}</h3>
   {{ version_detail(addon, version, src="addon-detail-version") }}
   {% endif %}

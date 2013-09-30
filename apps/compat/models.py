@@ -40,7 +40,6 @@ class AppCompat(amo.models.ModelBase):
          name: addon.name,
          slug: addon.slug,
          guid: addon.guid,
-         self_hosted: addon.is_selfhosted,
          current_version: version string,
          current_version_id: version int,
          binary: addon.binary_components,

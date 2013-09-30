@@ -300,8 +300,8 @@ log = commonware.log.getLogger('z.mailer')
 
 NOMINATED_STATUSES = (amo.STATUS_NOMINATED, amo.STATUS_LITE_AND_NOMINATED)
 PRELIMINARY_STATUSES = (amo.STATUS_UNREVIEWED, amo.STATUS_LITE)
-PENDING_STATUSES = (amo.STATUS_BETA, amo.STATUS_DISABLED, amo.STATUS_LISTED,
-                    amo.STATUS_NULL, amo.STATUS_PENDING, amo.STATUS_PUBLIC)
+PENDING_STATUSES = (amo.STATUS_BETA, amo.STATUS_DISABLED, amo.STATUS_NULL,
+                    amo.STATUS_PENDING, amo.STATUS_PUBLIC)
 
 
 def send_mail(template, subject, emails, context, perm_setting=None):

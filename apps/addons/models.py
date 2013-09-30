@@ -1156,9 +1156,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     def is_deleted(self):
         return self.status == amo.STATUS_DELETED
 
-    def is_selfhosted(self):
-        return self.status == amo.STATUS_LISTED
-
     @property
     def is_under_review(self):
         return self.status in amo.STATUS_UNDER_REVIEW
@@ -1327,10 +1324,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                .values('id')
                .annotate(last_updated=Max('versions__files__created')))
 
-        listed = (Addon.objects.no_cache().filter(status=amo.STATUS_LISTED)
-                  .values('id')
-                  .annotate(last_updated=Max('versions__created')))
-
         personas = (Addon.objects.no_cache().filter(type=amo.ADDON_PERSONA)
                     .extra(select={'last_updated': 'created'}))
         webapps = (
@@ -1340,7 +1333,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                           .values('id')
                           .annotate(last_updated=Max('versions__created')))
 
-        return dict(public=public, exp=exp, listed=listed, personas=personas,
+        return dict(public=public, exp=exp, personas=personas,
                     lite=lite, webapps=webapps)
 
     @amo.cached_property(writable=True)

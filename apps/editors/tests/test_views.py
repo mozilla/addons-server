@@ -421,7 +421,7 @@ class QueueTest(EditorTest):
             ('Public', {
                 'version_str': '0.1',
                 'addon_status': amo.STATUS_PUBLIC,
-                'file_status': amo.STATUS_LISTED,
+                'file_status': amo.STATUS_LITE,
             }),
         ])
         results = {}
@@ -1699,7 +1699,8 @@ class TestReview(ReviewBase):
 
     def test_item_history_header(self):
         doc = pq(self.client.get(self.url).content)
-        assert 'Listed' in doc('#review-files .listing-header .light').text()
+        assert ('Preliminarily Reviewed' in
+                doc('#review-files .listing-header .light').text())
 
     def test_item_history_comment(self):
         # Add Comment.
@@ -2070,7 +2071,7 @@ class TestReviewPreliminary(ReviewBase):
         data = self.prelim_dict()
         data['addon_files'] = [f.pk]
         self.client.post(self.url, data)
-        eq_([amo.STATUS_DISABLED, amo.STATUS_LISTED],
+        eq_([amo.STATUS_DISABLED, amo.STATUS_LITE],
             [f.status for f in self.version.files.all().order_by('status')])
 
 
@@ -2089,7 +2090,7 @@ class TestReviewPending(ReviewBase):
     def test_pending_to_public(self):
         statuses = (self.version.files.values_list('status', flat=True)
                     .order_by('status'))
-        eq_(list(statuses), [amo.STATUS_UNREVIEWED, amo.STATUS_LISTED])
+        eq_(list(statuses), [amo.STATUS_UNREVIEWED, amo.STATUS_LITE])
 
         r = self.client.post(self.url, self.pending_dict())
         self.assertRedirects(r, reverse('editors.queue_pending'))

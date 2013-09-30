@@ -39,7 +39,7 @@
 {% macro addon_heading(addon, version) %}
   <h1{{ addon.name|locale_html }}>
     {{ addon.name }}
-    {% if version and not addon.is_selfhosted() %}
+    {% if version %}
       <span class="version">{{ version.version }}</span>
     {% endif %}
   </h1>
