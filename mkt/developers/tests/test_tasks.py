@@ -519,16 +519,6 @@ class TestRegionEmail(amo.tests.WebappTestCase):
         assert ' added a few new ' in msg.body
         assert ': Brazil, United Kingdom, and United States.' in msg.body
 
-    def test_email_for_new_payments_region(self):
-        tasks.new_payments_region_email([self.app.id], 'uk')
-        msg = mail.outbox[0]
-        eq_(msg.subject,
-            '%s: United Kingdom region added to the Firefox Marketplace'
-            % self.app.name)
-        assert 'If you would like your app, %s' % self.app.name in msg.body
-        assert 'soon be accepting payments for United Kingdom' in msg.body
-        assert self.app.get_dev_url('payments') in msg.body
-
 
 class TestRegionExclude(amo.tests.WebappTestCase):
 
