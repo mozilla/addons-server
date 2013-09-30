@@ -74,6 +74,9 @@ APP_STATS = {
     'installs': {
         'metric': 'app_installs',
         'dimensions': {'region': None},
+    },
+    'visits': {
+        'metric': 'app_visits',
     }
 }
 
