@@ -209,17 +209,13 @@ REGIONS_CHOICES_ID = ([(WORLDWIDE.id, WORLDWIDE)] +
 REGIONS_CHOICES_NAME = ([(v.id, v.name) for v in BY_SLUG] +
                         [(WORLDWIDE.id, WORLDWIDE.name)])
 
-
 REGIONS_DICT = dict(REGIONS_CHOICES)
 REGIONS_CHOICES_ID_DICT = dict(REGIONS_CHOICES_ID)
 ALL_REGIONS = frozenset(REGIONS_DICT.values())
-ALL_PAID_REGIONS = frozenset(r for r in ALL_REGIONS if r.has_payments)
-
 ALL_REGION_IDS = sorted(REGIONS_CHOICES_ID_DICT.keys())
+
+ALL_PAID_REGIONS = frozenset(r for r in ALL_REGIONS if r.has_payments)
 ALL_PAID_REGION_IDS = sorted(r.id for r in ALL_PAID_REGIONS)
-ALL_PAID_REGIONS_BY_SLUG = sorted(ALL_PAID_REGIONS,
-                                  key=lambda x: getattr(x, 'slug', None))
-ALL_PAID_REGION_IDS_BY_SLUG = [r.id for r in ALL_PAID_REGIONS_BY_SLUG]
 
 # Regions not including worldwide.
 REGION_IDS = sorted(REGIONS_CHOICES_ID_DICT.keys())[1:]

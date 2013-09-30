@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from operator import itemgetter
+
 from django.core.cache import cache
 from django.db import connection, models
 from django.dispatch import receiver
@@ -18,7 +20,7 @@ from constants.payments import (CARRIER_CHOICES, PAYMENT_METHOD_ALL,
                                 PAYMENT_METHOD_CHOICES, PROVIDER_BANGO,
                                 PROVIDER_CHOICES)
 from mkt.constants import apps
-from mkt.constants.regions import WORLDWIDE
+from mkt.constants.regions import WORLDWIDE, REGIONS_CHOICES_ID_DICT as RID
 from stats.models import Contribution
 from users.models import UserProfile
 
@@ -145,6 +147,14 @@ class Price(amo.models.ModelBase):
         provider = provider or PROVIDER_BANGO
         return [model_to_dict(o) for o in
                 self.pricecurrency_set.filter(provider=provider)]
+
+    def region_ids_by_slug(self):
+        """A tuple of price region ids sorted by slug."""
+        price_regions_ids = [(p['region'], RID.get(p['region']).slug)
+                             for p in self.prices() if p['paid'] is True]
+        if price_regions_ids:
+            return zip(*sorted(price_regions_ids, key=itemgetter(1)))[0]
+        return tuple()
 
 
 class PriceCurrency(amo.models.ModelBase):
