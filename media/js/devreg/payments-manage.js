@@ -17,14 +17,18 @@ define('payments-manage', ['payments'], function(payments) {
 
     function confirmPaymentAccountDeletion(data) {
         var spliter = ', ';
+        var isPlural = data['app-names'].indexOf(spliter) < 0;
         var $confirm_delete_overlay = payments.getOverlay('payment-account-delete-confirm');
-        $confirm_delete_overlay.find('.delete-confirm-name').text(data['name']);
-        $confirm_delete_overlay.find('#delete-confirm-appnames')
+        $confirm_delete_overlay.find('p').text(
+            format('Warning: deleting payment account "{0}" ' +
+                   'will move {1} associated {2} to an incomplete status ' +
+                   'and {3} will no longer be available for sale:',
+                   [data['name'],
+                    ngettext('that', 'those', isPlural),
+                    ngettext('app', 'apps', isPlural),
+                    ngettext('it', 'they', isPlural)]));
+        $confirm_delete_overlay.find('ul')
                                .html('<li>' + escape_(data['app-names']).split(spliter).join('</li><li>') + '</li>');
-        if (data['app-names'].indexOf(spliter) > -1) {
-            $confirm_delete_overlay.find('#delete-confirm-singular').toggleClass('hidden');
-            $confirm_delete_overlay.find('#delete-confirm-plural').toggleClass('hidden');
-        }
         $confirm_delete_overlay.on('click', 'a.payment-account-delete-confirm', _pd(function() {
             $.post(data['delete-url']).then(refreshAccountForm);
             $confirm_delete_overlay.remove();

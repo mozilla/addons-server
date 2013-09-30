@@ -54,22 +54,8 @@
       <a class="close" title="{{ _('close') }}">&times;</a>
       <h2>{{ _('Payment Account deletion') }}</h2>
     </header>
-    <p class="delete-confirm-singular">
-      {% trans %}
-        Warning: deleting payment account "<span class="delete-confirm-name"></span>"
-        will move that associated app to an incomplete status
-        and it will no longer be available for sale:
-      {% endtrans %}
-    </p>
-    <p id="delete-confirm-plural" class="hidden">
-      {% trans %}
-        Warning: deleting payment account "<span class="delete-confirm-name"></span>"
-        will move those associated apps to an incomplete status
-        and they will no longer be available for sale:
-      {% endtrans %}
-    </p>
-    <ul id="delete-confirm-appnames"></ul>
-
+    <p></p>
+    <ul></ul>
     <div class="listing-footer">
       <a href="#" class="close">{{ _('Cancel') }}</a>
       <a href="#" class="payment-account-delete-confirm button">{{ _('Confirm') }}</a>
