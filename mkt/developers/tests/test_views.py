@@ -923,19 +923,7 @@ class TestUpload(BaseUploadTest):
         validation = json.loads(fu.validation)
 
         eq_(validation['success'], False)
-        # The current interface depends on this JSON structure:
         eq_(validation['errors'], 0)
-        eq_(validation['warnings'], 2)
-        assert len(validation['messages'])
-        msg = validation['messages'][0]
-        assert 'uid' in msg, "Unexpected: %r" % msg
-        eq_(msg['type'], u'warning')
-        eq_(msg['message'], u'60x60px icon should be provided for Firefox OS.')
-        eq_(msg['description'],
-            ['An icon of size 60x60 should be provided for the app. Firefox OS '
-             'will look for this icon size before any other.',
-             'http://www.mozilla.org/styleguide/products/firefoxos/icons/',
-             'Node: root > icons'])
 
     def test_redirect(self):
         r = self.post()
