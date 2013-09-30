@@ -183,6 +183,7 @@ class TestAppDashboard(AppHubTest):
             'Pending Version: 1.24')
 
     def test_action_links(self):
+        self.create_switch('comm-dashboard')
         self.create_switch('view-transactions')
         app = self.get_app()
         app.update(public_stats=True, is_packaged=False)
@@ -197,12 +198,14 @@ class TestAppDashboard(AppHubTest):
             ('Statistics', app.get_stats_url()),
             ('Transactions', urlparams(
                 reverse('mkt.developers.transactions'), app=app.id)),
+            ('Communication', app.get_comm_thread_url()),
         ]
         amo.tests.check_links(expected, doc('a.action-link'), verify=False)
 
     def test_action_links_packaged(self):
-        self.create_switch('view-transactions')
+        self.create_switch('comm-dashboard')
         self.create_switch('in-app-payments')
+        self.create_switch('view-transactions')
         app = self.get_app()
         app.update(public_stats=True, is_packaged=True,
                    premium_type=amo.ADDON_PREMIUM_INAPP)
@@ -219,10 +222,12 @@ class TestAppDashboard(AppHubTest):
             ('Transactions', urlparams(
                 reverse('mkt.developers.transactions'), app=app.id)),
             ('Manage In-App Payments', app.get_dev_url('in_app_config')),
+            ('Communication', app.get_comm_thread_url()),
         ]
         amo.tests.check_links(expected, doc('a.action-link'), verify=False)
 
     def test_disabled_payments_action_links(self):
+        self.create_switch('comm-dashboard')
         self.create_switch('disabled-payments')
         self.create_switch('view-transactions')
         app = self.get_app()
@@ -238,6 +243,7 @@ class TestAppDashboard(AppHubTest):
             ('Statistics', app.get_stats_url()),
             ('Transactions', urlparams(
                 reverse('mkt.developers.transactions'), app=app.id)),
+            ('Communication', app.get_comm_thread_url()),
         ]
         amo.tests.check_links(expected, doc('a.action-link'), verify=False)
 
