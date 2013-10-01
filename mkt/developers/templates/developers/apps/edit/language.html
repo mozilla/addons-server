@@ -9,7 +9,7 @@
           <span class="label">{{ _('Country') }}</span>
         </th>
         <td>
-          {% for region in addon.get_region_ids() %}
+          {% for region in addon.get_region_ids(worldwide=True) %}
             {{ mkt.regions.REGIONS_CHOICES_ID_DICT.get(region).name }}
             {{- ', ' if not loop.last -}}
           {% endfor %}
