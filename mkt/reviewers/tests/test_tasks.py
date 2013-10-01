@@ -1,6 +1,7 @@
 import datetime
 
 from django.conf import settings
+from django.core.management import call_command
 from django.db.models import Q
 
 import mock
@@ -234,10 +235,8 @@ class TestRefundsEscalationTask(amo.tests.TestCase):
 class TestBatchAwardPoints(amo.tests.TestCase):
     fixtures = fixture('user_999', 'user_2519')
 
-    def test_migration(self):
-        mig = __import__('migrations.661-award-theme-points')
-        run = getattr(mig, '661-award-theme-points').run
-
+    def test_award_theme_points_command(self):
+        # A review from before we started awarding points (award).
         user_999 = UserProfile.objects.get(username='regularuser')
         amo.log(amo.LOG.THEME_REVIEW, addon_factory(), details={
             'action': rvw.ACTION_APPROVE
@@ -245,21 +244,18 @@ class TestBatchAwardPoints(amo.tests.TestCase):
         al = ActivityLog.objects.get()
         al.created = datetime.date(2013, 4, 30)
         al.save()
-        run()
+        call_command('award_theme_points')
         eq_(ReviewerScore.objects.count(), 1)
         eq_(ReviewerScore.objects.get().note_key, amo.REVIEWED_PERSONA)
         eq_(ReviewerScore.objects.get().note, 'RETROACTIVE')
 
-        amo.log(amo.LOG.THEME_REVIEW, addon_factory(), details={
-            'action': rvw.ACTION_APPROVE
-        }, user=user_999)
-        al = ActivityLog.objects.order_by('-created')[0]
+        # A review from after we started awarding points (don't award).
         al.created = datetime.date(2013, 8, 30)
         al.save()
-        run()
+        call_command('award_theme_points')
         eq_(ReviewerScore.objects.count(), 1)
 
-    def test_batch_award_points(self):
+    def test_batch_award_points_task(self):
         user_999 = UserProfile.objects.get(username='regularuser')
         addon_999 = addon_factory()
         amo.log(amo.LOG.THEME_REVIEW, addon_999, details={
@@ -277,14 +273,14 @@ class TestBatchAwardPoints(amo.tests.TestCase):
             'action': rvw.ACTION_REJECT
         }, user=user_2519)
 
-        # Mostly copied and pasted from migration award_theme_rev_points.py.
+        # Mostly copied and pasted from award_theme_points command.
         approve = '"action": %s' % rvw.ACTION_APPROVE
         reject = '"action": %s' % rvw.ACTION_REJECT
-        logs = ActivityLog.objects.filter(
+        log_ids = ActivityLog.objects.filter(
             (Q(_details__contains=approve) | Q(_details__contains=reject)),
-            action=amo.LOG.THEME_REVIEW.id)
+            action=amo.LOG.THEME_REVIEW.id).values_list('id', flat=True)
 
-        _batch_award_points(logs)
+        _batch_award_points(log_ids)
 
         eq_(ReviewerScore.objects.count(), 2)
 
