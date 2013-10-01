@@ -71,9 +71,13 @@ USERPICS_URL = STATIC_URL + '/img/uploads/userpics/%s/%s/%s.png?modified=%d'
 
 CACHES = {
     'default': {
-        'BACKEND': 'caching.backends.locmem.CacheClass',
+        'BACKEND': 'caching.backends.locmem.LocMemCache',
     }
 }
+
+# COUNT() caching can't be invalidated, it just expires after x seconds. This
+# is just too annoying for tests, so disable it.
+CACHE_COUNT_TIMEOUT = None
 
 # No more failures!
 APP_PREVIEW = False

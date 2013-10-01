@@ -43,7 +43,7 @@ We slipped this in with the basic install.  The package was
 
     CACHES = {
         'default': {
-            'BACKEND': 'caching.backends.memcached.CacheClass',
+            'BACKEND': 'caching.backends.memcached.MemcachedCache',
             'LOCATION': ['localhost:11211'],
             'TIMEOUT': 500,
         }

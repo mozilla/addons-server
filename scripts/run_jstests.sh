@@ -70,7 +70,7 @@ DATABASES = {
 
 CACHES = {
     'default': {
-        'BACKEND': 'caching.backends.locmem.CacheClass',
+        'BACKEND': 'caching.backends.locmem.LocMemCache',
     }
 }
 CELERY_ALWAYS_EAGER = True

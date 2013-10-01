@@ -56,13 +56,13 @@ class Translation(amo.models.ModelBase):
 
     @property
     def cache_key(self):
-        return self._cache_key(self.id)
+        return self._cache_key(self.id, self._state.db)
 
     @classmethod
-    def _cache_key(cls, pk):
+    def _cache_key(cls, pk, db):
         # Hard-coding the class name here so that subclasses don't try to cache
         # themselves under something like "o:translations.purifiedtranslation".
-        key_parts = ('o', 'translations.translation', pk)
+        key_parts = ('o', 'translations.translation', pk, db)
         return ':'.join(map(encoding.smart_unicode, key_parts))
 
     @classmethod
