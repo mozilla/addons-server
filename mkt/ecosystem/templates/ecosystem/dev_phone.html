@@ -46,9 +46,11 @@
           <p>{{ _('ZTE OPEN') }}</p>
           <p>
             {%- trans us_ebay_url='http://stores.ebay.com/ztemobileus',
-                      uk_ebay_url='http://stores.ebay.com/ztemobileuk' %}
+                      uk_ebay_url='http://stores.ebay.com/ztemobileuk',
+                      hk_ebay_url='http://www.ebay.com/itm/331031989534' %}
              <a href="{{ us_ebay_url }}" class="button">Buy from US store</a>
              <a href="{{ uk_ebay_url }}" class="button">Buy from UK store</a>
+             <a href="{{ hk_ebay_url }}" class="button">Buy from HK store</a>
             {% endtrans -%}
           </p>
         </div>
@@ -56,10 +58,14 @@
           <h2>{{ _('ZTE OPEN') }}</h2>
           <p>
             {%- trans zte_url='https://fxosphone.mozilla.com.tw/zteopen/' %}
-              After a lot of hard work alongside ZTE, we are proud to announce the release of the ZTE OPEN Firefox
-              OS phone, a powerful device aimed at developers and early adopters worldwide. These devices are available
-              through ZTE's US and UK eBay stores, priced at $79.99/£59.99, and will be unlocked and open for testing
-              and experimentation. <a href="{{ zte_url }}">Read more details.</a>
+              After a lot of hard work alongside ZTE we are proud to announce the release of the ZTE OPEN Firefox
+              OS phone, a powerful device aimed at developers and early adopters worldwide. These devices are available through ZTE's US, UK, and HK eBay stores, priced at $79.99/£59.99, and will be unlocked and open for testing and experimentation. <a href="{{ zte_url }}">Read more details.</a> 
+            {% endtrans -%}
+          </p>
+          
+          <p>
+            {%- trans  %}
+              NOTE: New devices have been made available from Hong Kong to cut down on postage costs for Asian and Oceanian users.
             {% endtrans -%}
           </p>
         </div>
@@ -79,6 +85,12 @@
               devices. Note that no more phones are being produced at this moment in time, although another run is
               planned for the future. A number will remain in circulation however, and these devices are still very
               valid for developer testing, having full updates available to them.
+            {% endtrans -%}
+          </p>
+          
+          <p>
+            {%- trans geeksphone_update_url='https://developer.mozilla.org/en-US/docs/Mozilla/Firefox_OS/Developer_phone_guide/Updating_and_Tweaking_Geeksphone#Flashing_your_phone' %}
+              <strong>If you have just received a Geeksphone Keon or Peak, it is probably still running the out-of-date Firefox OS version 1.0.1. Before doing anything else with it, you should flash it to an up-to-date version of Firefox OS, as described in our <a href="{{ geeksphone_update_url }}">guide to Flashing your Geeksphone</a>.</strong>
             {% endtrans -%}
           </p>
         </div>
