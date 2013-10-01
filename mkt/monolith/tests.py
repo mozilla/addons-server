@@ -5,10 +5,11 @@ from collections import namedtuple
 
 from nose.tools import eq_
 
+from django.core.urlresolvers import reverse
 from django.test import client
 
 from amo.tests import TestCase
-from mkt.api.tests.test_oauth import BaseOAuth
+from mkt.api.tests.test_oauth import RestOAuth
 from mkt.site.fixtures import fixture
 
 from .models import MonolithRecord, record_stat
@@ -63,15 +64,15 @@ class TestModels(TestCase):
             record_stat('app.install', self.request)
 
 
-class TestMonolithResource(BaseOAuth):
+class TestMonolithResource(RestOAuth):
     fixtures = fixture('user_2519')
 
     def setUp(self):
-        super(TestMonolithResource, self).setUp(api_name='monolith')
+        super(TestMonolithResource, self).setUp()
         self.grant_permission(self.profile, 'Monolith:API')
-        self.list_url = ('api_dispatch_list', {'resource_name': 'data'})
-        self.get_url = ('api_dispatch_detail', {'resource_name': 'data'})
+        self.list_url = reverse('monolith-list')
         self.now = datetime.datetime(2013, 02, 12, 17, 34)
+        self.last_month = self.now - datetime.timedelta(days=30)
         self.last_week = self.now - datetime.timedelta(days=7)
         self.yesterday = self.now - datetime.timedelta(days=1)
         self.request = RequestFactory()
@@ -93,7 +94,7 @@ class TestMonolithResource(BaseOAuth):
         eq_(len(data['objects']), 1)
 
         # we also want to test that the data is correct JSON
-        eq_(data['objects'][0]['value']['value'], 2)
+        eq_(data['objects'][0]['value'], json.dumps({"value": 2}))
 
     def test_filter_by_date(self):
         for id_, date in enumerate((self.last_week, self.yesterday, self.now)):
@@ -124,57 +125,71 @@ class TestMonolithResource(BaseOAuth):
         data = json.loads(res.content)
         eq_(len(data['objects']), 1)
 
-        # Startswith match.
-        res = self.client.get(self.list_url,
-                              data={'key__startswith': 'apps_added_'})
-        eq_(res.status_code, 200)
-        data = json.loads(res.content)
-        eq_(len(data['objects']), 2)
-
     def test_deletion_by_filtering(self):
-        # we should be able to delete a set of items using the API
-        for id_, date in enumerate((self.last_week, self.yesterday, self.now)):
+        # We should be able to delete a set of items using the API.
+        for id_, date in enumerate((self.last_month, self.last_week,
+                                    self.yesterday, self.now)):
             record_stat('app.install', self.request, __recorded=date,
                         value=id_)
 
-        eq_(MonolithRecord.objects.count(), 3)
-        records = MonolithRecord.objects.all()
+        eq_(MonolithRecord.objects.count(), 4)
 
         res = self.client.delete(self.list_url,
-                                 data={'id__gte': records[0].id,
-                                       'id__lte': records[1].id})
+                                 data={'start': self.last_week,
+                                       'end': self.now})
         eq_(res.status_code, 204)
-        eq_(MonolithRecord.objects.count(), 1)
+        eq_(list(MonolithRecord.objects.values_list('recorded', flat=True)),
+            [self.last_month, self.now])
+
+    def test_deletion_by_filtering_old(self):
+        for id_, date in enumerate((self.last_month, self.last_week
+                                    , self.yesterday, self.now)):
+            record_stat('app.install', self.request, __recorded=date,
+                        value=id_)
+
+        eq_(MonolithRecord.objects.count(), 4)
+
+        res = self.client.delete(self.list_url,
+                                 data={'recorded__gte': self.last_week,
+                                       'recorded__lt': self.now})
+        eq_(res.status_code, 204)
+        eq_(list(MonolithRecord.objects.values_list('recorded', flat=True)),
+            [self.last_month, self.now])
+
 
     def test_deletion_by_id(self):
         record_stat('app.install', self.request, __recorded=self.now, value=1)
         records = MonolithRecord.objects.all()
         eq_(len(records), 1)
 
-        url = list(self.get_url)
-        url[1]['pk'] = records[0].id
+        url = reverse('monolith-detail', args=(records[0].pk,))
         res = self.client.delete(url)
 
         eq_(res.status_code, 204)
         eq_(MonolithRecord.objects.count(), 0)
 
     def test_deletion_by_date(self):
-        for date in (self.last_week, self.yesterday, self.now):
+        for date in (self.last_month, self.last_week, self.yesterday,
+                     self.now):
             record_stat('app.install', self.request, __recorded=date, value=1)
             record_stat('foo.bar', self.request, __recorded=date, value=1)
-
         res = self.client.delete(self.list_url, data={
             'recorded__gte': self.last_week.isoformat(),
-            'recorded__lte': self.now.isoformat(),
+            'recorded__lt': self.now.isoformat(),
             'key': 'app.install'})
 
         eq_(res.status_code, 204)
-        eq_(MonolithRecord.objects.count(), 3)
+        eq_(MonolithRecord.objects.count(), 6)
 
         res = self.client.delete(self.list_url, data={
             'recorded__gte': self.last_week.isoformat(),
-            'recorded__lte': self.now.isoformat(),
+            'recorded__lt': self.now.isoformat(),
             'key': 'foo.bar'})
 
         eq_(res.status_code, 204)
-        eq_(MonolithRecord.objects.count(), 0)
+        eq_(list(MonolithRecord.objects.filter(key='foo.bar')
+            .values_list('recorded', flat=True)),
+            [self.last_month, self.now])
+        eq_(list(MonolithRecord.objects.filter(key='app.install')
+            .values_list('recorded', flat=True)),
+            [self.last_month, self.now])

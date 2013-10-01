@@ -95,7 +95,7 @@ class OAuthClient(Client):
                     .get(url, **self.kw(headers, **kw)))
 
     def delete(self, url, data={}, **kw):
-        if len(url) > 2 and data:
+        if isinstance(url, tuple) and len(url) > 2 and data:
             raise RuntimeError('Query string specified both in urlspec and as '
                                'data arg. Pick one or the other.')
         urlstring = self.get_absolute_url(url)

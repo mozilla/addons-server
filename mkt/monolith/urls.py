@@ -1,11 +1,14 @@
 from django.conf.urls import include, patterns, url
 
-from tastypie.api import Api
-from .resources import MonolithData
+from rest_framework.routers import SimpleRouter
 
-api = Api(api_name='monolith')
-api.register(MonolithData())
+from .resources import MonolithViewSet
+
+
+api = SimpleRouter()
+api.register('data', MonolithViewSet, base_name='monolith')
+
 
 urlpatterns = patterns('',
-    url(r'^', include(api.urls)),
+    url(r'^monolith/', include(api.urls)),
 )
