@@ -589,9 +589,16 @@ class TestAppDetail(BaseOAuth, AMOPaths):
         eq_(res.status_code, 404)
 
     def test_nonregion(self):
-        AddonExcludedRegion.objects.create(addon_id=337141, region=regions.BR.id)
+        app = Webapp.objects.get(pk=337141)
+        app.addonexcludedregion.create(region=regions.BR.id)
+        app.support_url = u'http://www.example.com/fake_support_url'
+        app.save()
         res = self.client.get(self.get_url, data={'region': 'br'})
         eq_(res.status_code, 451)
+        data = json.loads(res.content)
+        eq_(data['reason'], 'Not available in your region.')
+        eq_(data['support_email'], '')
+        eq_(data['support_url'], 'http://www.example.com/fake_support_url')
 
     def test_owner_nonregion(self):
         AddonUser.objects.create(addon_id=337141, user_id=self.user.pk)
