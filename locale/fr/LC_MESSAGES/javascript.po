@@ -30,7 +30,7 @@ msgid ""
 "Please check back a little later."
 msgstr ""
 "Cette fonctionnalité est désactivée temporairement pendant la maintenance. "
-"Merci de revenir un peu plus tard.n"
+"Merci de revenir un peu plus tard."
 
 #: media/js/common-all.js:10509 media/js/common-min.js:23
 #: media/js/impala-all.js:1559 media/js/impala-min.js:1
