@@ -3,6 +3,7 @@ import json as jsonlib
 import random
 import re
 from operator import attrgetter
+from urlparse import urljoin
 
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
@@ -343,7 +344,7 @@ def absolutify(url, site=None):
     if url.startswith('http'):
         return url
     else:
-        return (site or settings.SITE_URL) + url
+        return urljoin(site or settings.SITE_URL, url)
 
 
 @register.filter

@@ -384,7 +384,7 @@ class TestFileViewer(FilesBase, amo.tests.WebappTestCase):
     def test_memcache_goes_bye_bye(self):
         self.file_viewer.extract()
         res = self.client.get(self.files_redirect(binary))
-        url = res['Location'][len(settings.STATIC_URL):]
+        url = res['Location'][len(settings.STATIC_URL) - 1:]
         cache.clear()
         res = self.client.get(url)
         eq_(res.status_code, 403)

@@ -29,7 +29,7 @@ def get_absolute_url(url, api_name='apps', absolute=True):
     url[1]['api_name'] = api_name
     res = reverse(url[0], kwargs=url[1])
     if absolute:
-        res = '%s%s' % (settings.SITE_URL, res)
+        res = urlparse.urljoin(settings.SITE_URL, res)
     if len(url) > 2:
         res = urlparams(res, **url[2])
     return res
@@ -257,8 +257,8 @@ class Test3LeggedOAuthFlow(TestCase):
 
     def test_access_request(self):
         t = Token.generate_new(REQUEST_TOKEN, self.access)
-        url = settings.SITE_URL + reverse(
-            'mkt.developers.oauth_access_request')
+        url = urlparse.urljoin(settings.SITE_URL,
+                               reverse('mkt.developers.oauth_access_request'))
         url, auth_header = self._oauth_request_info(
             url, client_key=self.access.key, client_secret=self.access.secret,
             resource_owner_key=t.key, resource_owner_secret=t.secret,
@@ -279,8 +279,8 @@ class Test3LeggedOAuthFlow(TestCase):
 
     def test_bad_access_request(self):
         t = Token.generate_new(REQUEST_TOKEN, self.access)
-        url = settings.SITE_URL + reverse(
-            'mkt.developers.oauth_access_request')
+        url = urlparse.urljoin(settings.SITE_URL,
+                               reverse('mkt.developers.oauth_access_request'))
         url, auth_header = self._oauth_request_info(
             url, client_key=t.key, client_secret=t.secret,
             resource_owner_key=generate(), resource_owner_secret=generate(),
@@ -291,8 +291,8 @@ class Test3LeggedOAuthFlow(TestCase):
         assert not Token.objects.filter(token_type=ACCESS_TOKEN).exists()
 
     def test_token_request(self):
-        url = settings.SITE_URL + reverse(
-            'mkt.developers.oauth_token_request')
+        url = urlparse.urljoin(settings.SITE_URL,
+                               reverse('mkt.developers.oauth_token_request'))
         url, auth_header = self._oauth_request_info(
             url, client_key=self.access.key, client_secret=self.access.secret,
             callback_uri=self.access.redirect_uri)
@@ -307,8 +307,8 @@ class Test3LeggedOAuthFlow(TestCase):
             creds=self.access).exists()
 
     def test_bad_token_request(self):
-        url = settings.SITE_URL + reverse(
-            'mkt.developers.oauth_token_request')
+        url = urlparse.urljoin(settings.SITE_URL,
+                               reverse('mkt.developers.oauth_token_request'))
         url, auth_header = self._oauth_request_info(
             url, client_key=self.access.key, client_secret=generate(),
             callback_uri=self.access.redirect_uri)

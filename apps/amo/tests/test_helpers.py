@@ -2,6 +2,7 @@
 import mimetypes
 import os
 from datetime import datetime, timedelta
+from urlparse import urljoin
 
 from django.conf import settings
 from django.core.cache import cache
@@ -483,7 +484,7 @@ def test_jinja_trans_monkeypatch():
 
 
 def test_absolutify():
-    eq_(helpers.absolutify('/woo'), settings.SITE_URL + '/woo')
+    eq_(helpers.absolutify('/woo'), urljoin(settings.SITE_URL, '/woo'))
     eq_(helpers.absolutify('https://addons.mozilla.org'),
         'https://addons.mozilla.org')
 

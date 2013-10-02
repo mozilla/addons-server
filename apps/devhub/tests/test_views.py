@@ -1666,7 +1666,7 @@ class TestSubmitStep4(TestSubmitBase):
         self.old_addon_icon_url = settings.ADDON_ICON_URL
         settings.ADDON_ICON_URL = (
             settings.STATIC_URL +
-            '/img/uploads/addon_icons/%s/%s-%s.png?modified=%s')
+            'img/uploads/addon_icons/%s/%s-%s.png?modified=%s')
         SubmitStep.objects.create(addon_id=3615, step=4)
         self.url = reverse('devhub.submit.4', args=['a3615'])
         self.next_step = reverse('devhub.submit.5', args=['a3615'])
