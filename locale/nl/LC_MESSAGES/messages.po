@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-09-27 16:47-0700\n"
-"PO-Revision-Date: 2013-09-01 08:54+0000\n"
+"PO-Revision-Date: 2013-10-02 06:41+0000\n"
 "Last-Translator: Mark <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1378025643.0\n"
+"X-POOTLE-MTIME: 1380696114.0\n"
 
 #: apps/addons/buttons.py:207
 msgid "Download Now"
@@ -2097,7 +2097,7 @@ msgstr "Status {version} gewijzigd in {0}."
 #. L10n: {0} is the status
 #: apps/amo/log.py:646
 msgid "User {0.name} {0.id} deleted via lookup tool."
-msgstr ""
+msgstr "Gebruiker {0.name} {0.id} verwijderd via zoekhulpmiddel."
 
 #: apps/amo/templates/amo/403.html:3
 msgid "Not allowed"
@@ -6395,6 +6395,8 @@ msgstr "Aanmaken van HTTP-verbindingen in sandbox"
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:102
 msgid "This article explains how to create sandboxed HTTP connections that don't affect the user's cookies."
 msgstr ""
+"Dit artikel legt uit hoe u gezandbakte HTTP-verbindingen die geen effect "
+"hebben op gebruikerscookies kunt maken."
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:112
 msgid "Displaying Web Content in an Extension"
@@ -9653,23 +9655,25 @@ msgstr "Installatie annuleren"
 
 #: apps/discovery/templates/discovery/modules/amp-your-firefox-winner.html:6
 msgid "Amp Your Firefox Contest"
-msgstr ""
+msgstr "Versterk uw Firefox-wedstrijd"
 
 #: apps/discovery/templates/discovery/modules/amp-your-firefox-winner.html:7
 msgid "Best Overall Add-on"
-msgstr ""
+msgstr "Beste algemene add-on"
 
 #: apps/discovery/templates/discovery/modules/amp-your-firefox-winner.html:10
 msgid "Thumbnail Zoom Plus"
-msgstr ""
+msgstr "Thumbnail Zoom Plus"
 
 #: apps/discovery/templates/discovery/modules/amp-your-firefox-winner.html:12
 msgid "Shows a full-size image popup when<br> you hover over a thumbnail or image link."
 msgstr ""
+"Geeft de volledige afbeelding in een pop-up weer wanneer<br> u een miniatuur "
+"of afbeeldingskoppeling aanwijst."
 
 #: apps/discovery/templates/discovery/modules/amp-your-firefox-winner.html:16
 msgid "Get it now!"
-msgstr ""
+msgstr "Nu downloaden!"
 
 #: apps/discovery/templates/discovery/modules/go-mobile.html:4
 msgid "Get Add-ons On The Go"
@@ -15411,103 +15415,126 @@ msgstr "De app vereist dat het platform blijvende opslaglimietverhogingen boven 
 
 #: mkt/constants/features.py:213
 msgid "Camera"
-msgstr ""
+msgstr "Camera"
 
 #: mkt/constants/features.py:214
 msgid "The app requires the platform to allow access to video from the device camera via a LocalMediaStream object."
 msgstr ""
+"De app vereist dat het platform toegang geeft tot video vanaf de "
+"apparaatcamera via een LocalMediaStream-object."
 
 #: mkt/constants/features.py:220
 msgid "Microphone"
-msgstr ""
+msgstr "Microfoon"
 
 #: mkt/constants/features.py:221
 msgid "The app requires the platform to allow access to audio from the device microphone."
 msgstr ""
+"De app vereist dat het platform toegang geeft tot audio vanaf de "
+"apparaatmicrofoon."
 
 #: mkt/constants/features.py:226
 msgid "Screen Capture"
-msgstr ""
+msgstr "Schermafdruk"
 
 #: mkt/constants/features.py:227
 msgid "The app requires the platform to allow access to the device screen for capture."
 msgstr ""
+"De app vereist dat het platform toegang geeft tot het apparaatscherm voor "
+"een afdruk."
 
 #: mkt/constants/features.py:233
 msgid "WebRTC MediaStream"
-msgstr ""
+msgstr "WebRTC MediaStream"
 
 #: mkt/constants/features.py:234
 msgid "The app requires the platform to allow web real-time communication browser-to-browser inbound media streams."
 msgstr ""
+"De app vereist dat het platform web-realtime communicatie van browser tot "
+"browser voor inkomende mediastreams toestaat."
 
 #: mkt/constants/features.py:240
 msgid "WebRTC DataChannel"
-msgstr ""
+msgstr "WebRTC DataChannel"
 
 #: mkt/constants/features.py:241
 msgid "The app requires the platform to allow peer-to-peer exchange of data other than audio and video."
 msgstr ""
+"De app vereist dat het platform peer-to-peer-uitwisseling van gegevens (niet "
+"zijnde audio en video) toestaat."
 
 #: mkt/constants/features.py:247
 msgid "WebRTC PeerConnection"
-msgstr ""
+msgstr "WebRTC PeerConnection"
 
 #: mkt/constants/features.py:248
 msgid "The app requires the platform to allow communication of streaming data between peers."
 msgstr ""
+"De app vereist dat het platform communicatie van streaming gegevens tussen "
+"peers toestaat."
 
 #: mkt/constants/features.py:254
 msgid "Web Speech Synthesis"
-msgstr ""
+msgstr "Web Speech Synthesis"
 
 #: mkt/constants/features.py:255
 msgid "The app requires the platform to allow the use of text-to-speech."
-msgstr ""
+msgstr "De app vereist dat het platform gebruik van tekst-naar-spraak toestaat."
 
 #: mkt/constants/features.py:260
 msgid "Web Speech Recognition"
-msgstr ""
+msgstr "Web Speech Recognition"
 
 #: mkt/constants/features.py:261
 msgid "The app requires the platform to allow the use of speech-to-text."
 msgstr ""
+"De app vereist dat het platform het gebruik van spraak-naar-tekst toestaat."
 
 #: mkt/constants/features.py:266
 msgid "Pointer Lock"
-msgstr ""
+msgstr "Pointer Lock"
 
 #: mkt/constants/features.py:267
 msgid "The app requires the platform to provide additional information and control about the pointer."
 msgstr ""
+"De app vereist dat het platform aanvullende informatie en beheer over de "
+"pointer geeft."
 
 #: mkt/constants/features.py:274
 msgid "The app requires the platform to allow the displaying phone and desktop notifications to the user."
 msgstr ""
+"De app vereist dat het platform weergave van telefoon- en "
+"desktopnotificaties voor de gebruiker toestaat."
 
 #: mkt/constants/features.py:280
 msgid "Alarms"
-msgstr ""
+msgstr "Alarmen"
 
 #: mkt/constants/features.py:281
 msgid "The app requires the platform to provide access to the device alarm settings to schedule notifications and events at specific time."
 msgstr ""
+"De app vereist dat het platform toegang geeft tot de alarminstellingen van "
+"het apparaat om notificaties en gebeurtenissen op specifieke momenten in te "
+"roosteren."
 
 #: mkt/constants/features.py:288
 msgid "SystemXHR"
-msgstr ""
+msgstr "SystemXHR"
 
 #: mkt/constants/features.py:289
 msgid "The app requires the platform to allow the sending of asynchronous HTTP requests without the restrictions of the same-origin policy."
 msgstr ""
+"De app vereist dat het platform het versturen van asynchrone HTTP-verzoeken "
+"zonder de beperkingen van het zelfde-bron-beleid toestaat."
 
 #: mkt/constants/features.py:295
 msgid "TCP Sockets"
-msgstr ""
+msgstr "TCP Sockets"
 
 #: mkt/constants/features.py:296
 msgid "The app requires the platform to allow opening raw TCP sockets."
 msgstr ""
+"De app vereist dat het platform het openen van raw TCP-sockets toestaat."
 
 #: mkt/constants/payments.py:8
 msgid "Completed"
@@ -16814,6 +16841,9 @@ msgstr[1] "<b>Geschatte wachttijd:</b> %(num)s werkdagen"
 #: mkt/developers/templates/developers/includes/macros.html:113
 msgid "Most apps are reviewed in about a week. If your review has taken longer than this, you can send an email to %(email)s to check the status."
 msgstr ""
+"De meeste apps worden binnen een week beoordeeld. Als uw beoordeling langer "
+"duurt, dan kunt u een bericht sturen naar %(email)s om de status te "
+"controleren."
 
 #: mkt/developers/templates/developers/includes/macros.html:123
 msgid "Check the boxes of the features that your app requires to function properly. Your app will be hidden from users whose devices don't support it."
@@ -16975,11 +17005,11 @@ msgstr "Niet van toepassing"
 
 #: mkt/developers/templates/developers/payments/premium.html:182
 msgid "Available Regions"
-msgstr ""
+msgstr "Beschikbare regio’s"
 
 #: mkt/developers/templates/developers/payments/premium.html:184
 msgid "Your app will be available in the following selected regions:"
-msgstr ""
+msgstr "Uw app zal beschikbaar zijn in de volgende geselecteerde regio’s:"
 
 #: mkt/developers/templates/developers/payments/premium.html:189
 msgid "Region"
@@ -16999,13 +17029,17 @@ msgstr "Facturatiemethode"
 
 #: mkt/developers/templates/developers/payments/premium.html:203
 msgid "Other regions"
-msgstr ""
+msgstr "Overige regio’s"
 
 #: mkt/developers/templates/developers/payments/premium.html:206
 msgid ""
 "Your app will be available in the following selected regions in the future when payments are available based on your chosen price point. To exclude your app from appearing in a region please un-"
 "check that region before saving."
 msgstr ""
+"Uw app zal in de toekomst beschikbaar zijn in de volgende geselecteerde "
+"regio’s wanneer betalingen op basis van uw gekozen prijspunt beschikbaar "
+"zijn. Vink een regio uit vóór het opslaan als u uw app niet beschikbaar wilt "
+"stellen voor die regio."
 
 #: mkt/developers/templates/developers/payments/premium.html:228
 msgid "Regions and listings"
@@ -17061,7 +17095,7 @@ msgstr "Aanpassen"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:16 mkt/developers/templates/developers/payments/includes/account_list.html:44
 msgid "Portal"
-msgstr ""
+msgstr "Portal"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:26
 msgid "Add a new payment account"
@@ -17145,15 +17179,17 @@ msgstr "Uw app wordt niet meer weergegeven voor bepaalde regio’s omdat die reg
 
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:5
 msgid "Your app will be displayed in any regional Marketplace that is added in the future."
-msgstr ""
+msgstr "Uw app wordt weergegeven in elke toekomstige regionale Marketplace."
 
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:7
 msgid "(Subject to payments being available in that region for the selected price point)."
 msgstr ""
+"(Afhankelijk van beschikbaarheid van betalingen in die regio voor het "
+"geselecteerde prijspunt)."
 
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:9
 msgid "You will receive an email notification when a new region is added."
-msgstr ""
+msgstr "U ontvangt een e-mailbericht als een nieuwe regio wordt toegevoegd."
 
 #: mkt/developers/templates/developers/payments/includes/regions_toggle.html:4
 msgid "Select All"
@@ -17301,7 +17337,7 @@ msgstr "Verpakte apps"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:66 mkt/ecosystem/templates/ecosystem/macros.html:276 mkt/ecosystem/templates/ecosystem/publish_badges.html:4
 msgid "Badges, banners, and icons"
-msgstr ""
+msgstr "Badges, banners en pictogrammen"
 
 #: mkt/ecosystem/templates/ecosystem/build_app_generator.html:5 mkt/ecosystem/templates/ecosystem/build_app_generator.html:13 mkt/ecosystem/templates/ecosystem/build_tools.html:26
 #: mkt/ecosystem/templates/ecosystem/macros.html:199
@@ -20016,42 +20052,52 @@ msgstr "Firefox Marketplace YouTube-kanaal"
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:17
 msgid "\"Get it in the Firefox Marketplace\" are badges that you can use on your web site and promotional materials to point to your products on the Firefox Marketplace."
 msgstr ""
+"“Verkrijgbaar in de Firefox Marketplace” zijn badges die u kunt gebruiken op "
+"uw website en in promotiematerialen die verwijzen naar uw producten op de "
+"Firefox Marketplace."
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:23
 msgid "Guidelines"
-msgstr ""
+msgstr "Richtlijnen"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:26
 msgid "You may not alter the badge in any way"
-msgstr ""
+msgstr "U mag de badge in geen enkel opzicht wijzigen"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:31
 msgid "When used alongside logos for other marketplaces (\"Get it on Google Play\", \"Download on the App Store\"), the Firefox Marketplace badge should be of equal or greater size"
 msgstr ""
+"Wanneer deze wordt gebruikt naast logo’s voor andere marktplaatsen "
+"(“Verkrijgbaar op Google Play”, “Downloaden in de App Store”) dient de "
+"Firefox Marketplace-badge even groot of groter te zijn"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:38
 msgid "The badge should link to an app details page within the Firefox Marketplace<br> For example: https://marketplace.firefox.com/app/twitter"
 msgstr ""
+"De badge dient te koppelen naar een app-detailpagina op de Firefox "
+"Marketplace<br> Bijvoorbeeld: https://marketplace.firefox.com/app/twitter"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:47
 msgid "Orange"
-msgstr ""
+msgstr "Oranje"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:47
 msgid "Grey"
-msgstr ""
+msgstr "Grijs"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:47
 msgid "Black"
-msgstr ""
+msgstr "Zwart"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:58
 msgid "Logo"
-msgstr ""
+msgstr "Logo"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:60
 msgid "To view and download the Firefox Marketplace logo, please visit the <a href=\"%(style_guide_url)s\">Mozilla style guide</a>."
 msgstr ""
+"Bezoek om het Firefox Marketplace-logo te bekijken en te downloaden de <a "
+"href=\"%(style_guide_url)s\">Mozilla-stijlgids</a>."
 
 #: mkt/ecosystem/templates/ecosystem/publish_deploy.html:15
 msgid "One your app is finished, you need to deploy it. If you're publishing through the Firefox Marketplace you have some options on how to deploy your app."
@@ -20886,6 +20932,12 @@ msgid ""
 "After you have submitted your App and gotten it published, you should start promoting it! We would recommend creating a information and support page somewhere, to point people to for more "
 "information. We have created some <a href=\"%(branding_url)s\">button assets</a> that you can use to promote your app and link through to the Marketplace."
 msgstr ""
+"Nadat u uw app hebt ingediend en deze is gepubliceerd kunt u hem gaan "
+"promoten! Wij bevelen u aan ergens een pagina voor informatie en "
+"ondersteuning aan te maken, waar mensen naar verwezen kunnen worden voor "
+"meer informatie. We hebben een paar <a href=\"%(branding_url)s\">knoppen</a> "
+"gemaakt die u kunt gebruiken om uw app te promoten en te koppelen naar de "
+"Marketplace."
 
 #: mkt/ecosystem/templates/ecosystem/support.html:18
 msgid "What should I know before creating an App?"
@@ -21399,7 +21451,7 @@ msgstr "Voer restitutiedetails in om restitutie uit te voeren"
 
 #: mkt/lookup/forms.py:28
 msgid "Reason for Deletion"
-msgstr ""
+msgstr "Reden voor verwijdering"
 
 #: mkt/lookup/views.py:144
 msgid "Currently unable to retrieve refund status."
@@ -21548,7 +21600,7 @@ msgstr "Accountzoekresultaten voor"
 
 #: mkt/lookup/templates/lookup/user_summary.html:13
 msgid "General"
-msgstr ""
+msgstr "Algemeen"
 
 #: mkt/lookup/templates/lookup/user_summary.html:21
 msgid "Registered"
@@ -21601,23 +21653,25 @@ msgstr "Naamloos"
 #: mkt/lookup/templates/lookup/user_summary.html:104 mkt/lookup/templates/lookup/user_summary.html:112 mkt/lookup/templates/lookup/user_summary.html:116
 #: mkt/lookup/templates/lookup/user_summary.html:120
 msgid "Delete User"
-msgstr ""
+msgstr "Gebruiker verwijderen"
 
 #: mkt/lookup/templates/lookup/user_summary.html:107
 msgid "Deleting this user will <strong>permanently</strong> delete this user's account."
 msgstr ""
+"Verwijdering van deze gebruiker leidt tot <strong>permanente</strong> "
+"verwijdering van de account van deze gebruiker."
 
 #: mkt/lookup/templates/lookup/user_summary.html:117
 msgid "Are you sure you wish to delete this user?"
-msgstr ""
+msgstr "Weet u zeker dat u deze gebruiker wilt verwijderen?"
 
 #: mkt/lookup/templates/lookup/user_summary.html:127
 msgid "This user has already been deleted."
-msgstr ""
+msgstr "Deze gebruiker is al verwijderd."
 
 #: mkt/lookup/templates/lookup/user_summary.html:129
 msgid "Deleted by"
-msgstr ""
+msgstr "Verwijderd door"
 
 #: mkt/lookup/templates/lookup/user_summary.html:132 mkt/reviewers/templates/reviewers/themes/history_table.html:10
 msgid "Reason"
@@ -21641,7 +21695,7 @@ msgstr "Accountsamenvatting"
 
 #: mkt/lookup/templates/lookup/helpers/user_header.html:7
 msgid "Account Deleted"
-msgstr ""
+msgstr "Account verwijderd"
 
 #: mkt/lookup/templates/lookup/includes/app_search.html:6
 msgid "App Lookup"
@@ -22349,7 +22403,7 @@ msgstr "Elk type app"
 
 #: mkt/search/forms.py:34
 msgid "Privileged packaged app"
-msgstr ""
+msgstr "Verpakte voorkeurs-app"
 
 #: mkt/search/forms.py:39
 msgid "Free with In-app"
@@ -22393,7 +22447,7 @@ msgstr "App-type"
 
 #: mkt/search/forms.py:102
 msgid "Supported languages"
-msgstr ""
+msgstr "Ondersteunde talen"
 
 #: mkt/site/context_processors.py:34
 msgid "Sign out"
@@ -22636,7 +22690,7 @@ msgstr "Selecteer een apparaat."
 
 #: mkt/submit/forms.py:50
 msgid "Packaged apps are not yet supported for those platforms."
-msgstr ""
+msgstr "Verpakte apps worden voor die platforms nog niet ondersteund."
 
 #: mkt/submit/forms.py:144
 msgid "Agree and Continue"
@@ -22750,6 +22804,11 @@ msgid ""
 "We've got your app saved and ready to go! Your app is currently awaiting review, and once it is reviewed you will need to manually enable your app from the <a href=\"%(url)s\">Manage Status page</"
 "a> for it to show up on listing pages and in search. Until then, feel free to tweak your app's details and settings."
 msgstr ""
+"We hebben uw app opgeslagen en deze is klaar voor vertrek! Uw app wacht nu "
+"nog op beoordeling, en hierna dient u uw app handmatig in te schakelen via "
+"de pagina <a href=\"%(url)s\">Status beheren</a> zodat deze in lijsten en "
+"zoekresultaten verschijnt. Tot die tijd kunt u de details en instellingen "
+"van uw app wijzigen."
 
 #: mkt/submit/templates/submit/done.html:31
 msgid "Before your app can go live, you need to provide payment information. Once you've added a payment account and price, your app will be submitted for review."
@@ -22916,7 +22975,7 @@ msgstr "U dient ten minste één categorie op te geven."
 
 #: mkt/webapps/tasks.py:111
 msgid "Issue with your app \"{app}\" on the Firefox Marketplace"
-msgstr ""
+msgstr "Probleem met uw app “{app}” op de Firefox Marketplace"
 
 #: mkt/zadmin/templates/zadmin/featured_apps_ajax.html:16
 msgid "No featured graphics found."
