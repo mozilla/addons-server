@@ -1,16 +1,16 @@
 {% extends "developers/base_impala.html" %}
 
-{% set title = _('Test installing your App') %}
+{% set title = _('Test App Installation') %}
 
 {% block title %}{{ hub_page_title(title) }}{% endblock %}
 
 {% block content %}
-  {{ hub_breadcrumbs(items=[(None, _('Validate App'))]) }}
+  {{ hub_breadcrumbs(items=[(url('mkt.developers.apps.testing'), _('Testing')), (None, title)]) }}
   <header class="submit-header c">
   <h1>{{ title }}</h1>
   </header>
 
-  <section id="test-install" class="primary">
+  <section id="test-install" class="primary manage" role="main">
     <div class="island devhub-form">
       <p>
         {% trans %}
@@ -39,4 +39,5 @@
     </div>
   </section>
 
+  {% include 'developers/includes/testing_nav.html' %}
 {% endblock %}

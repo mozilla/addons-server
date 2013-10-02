@@ -165,6 +165,7 @@ urlpatterns = decorate(write, patterns('',
     # Bango-specific stuff.
     url('^bango/', include(bango_patterns('bango'))),
 
+    url('^test/$', views.testing, name='mkt.developers.apps.testing'),
     url('^test/receipts/', include(test_patterns)),
 ))
 
