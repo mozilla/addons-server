@@ -31,6 +31,7 @@ This documentation covers interacting with the `Firefox Marketplace`_.
    topics/site.rst
    topics/stats.rst
    topics/submission.rst
+   topics/transactions.rst
 
 
 Quickstart

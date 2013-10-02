@@ -372,6 +372,7 @@ class TestAddonModels(amo.tests.TestCase):
         addon = Addon.with_deleted.get(pk=3615)
         eq_(addon.status, amo.STATUS_DELETED)
         eq_(addon.slug, None)
+        eq_(addon.current_version, None)
         eq_(addon.app_slug, None)
 
     def _delete_url(self):

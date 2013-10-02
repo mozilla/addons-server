@@ -1,9 +1,8 @@
 import functools
 
 from django import http
-from django.shortcuts import get_object_or_404, get_list_or_404
+from django.shortcuts import get_object_or_404
 
-from mkt.inapp_pay.models import InappPayment
 from mkt.webapps.models import Webapp
 import commonware.log
 
@@ -12,7 +11,7 @@ log = commonware.log.getLogger('mkt.purchase')
 
 def app_view(f, qs=Webapp.objects.all):
     @functools.wraps(f)
-    def wrapper(request, addon_id=None, app_slug=None, inapp=None, *args,
+    def wrapper(request, addon_id=None, app_slug=None, *args,
                 **kw):
         """Provides an addon given either an addon_id or app_slug."""
         assert addon_id or app_slug, 'Must provide addon_id or app_slug'
@@ -29,8 +28,6 @@ def app_view(f, qs=Webapp.objects.all):
             addon = get(slug=addon_id)
         elif app_slug:
             addon = get(app_slug=app_slug)
-            if inapp:
-                kw['inapp'] = get_list_or_404(InappPayment, name=inapp)[0].name
         return f(request, addon, *args, **kw)
     return wrapper
 

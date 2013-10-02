@@ -223,7 +223,7 @@ class AddonPaymentAccount(amo.models.ModelBase):
         # If the app is already premium this does nothing.
         if addon.premium_type != amo.ADDON_FREE_INAPP:
             cls._push_bango_premium(bango_number, product_uri,
-                                    float(addon.addonpremium.price.price))
+                                    addon.addonpremium.price.price)
 
         return product_uri
 

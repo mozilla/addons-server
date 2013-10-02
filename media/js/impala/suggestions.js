@@ -122,6 +122,9 @@ $.fn.searchSuggestions = function($results, processCallback, searchType) {
     }
 
     function inputHandler(e) {
+        if (e.type === 'paste') {
+            pasting = true;
+        }
         var val = escape_($self.val());
         if (val.length < 3) {
             $results.filter('.visible').removeClass('visible');
@@ -140,16 +143,18 @@ $.fn.searchSuggestions = function($results, processCallback, searchType) {
             settings['category'] = cat;
         }
 
-        if ((e.type === 'keyup' && typeof e.which === 'undefined') ||
-            $.inArray(e.which, ignoreKeys) >= 0) {
+        if (((e.type === 'keyup' && typeof e.which === 'undefined') ||
+            $.inArray(e.which, ignoreKeys) >= 0) && !pasting) {
             $results.trigger('inputIgnored');
         } else {
             // XHR call and populate suggestions.
             processCallback(settings);
         }
+        pasting = false;
     }
 
-    var pollVal = 0;
+    var pollVal = 0,
+        pasting = false;
 
     if (z.capabilities.touch) {
         $self.focus(function() {
@@ -164,8 +169,8 @@ $.fn.searchSuggestions = function($results, processCallback, searchType) {
             }, 150);
         });
     } else {
-        $self.keydown(gestureHandler).bind('keyup paste',
-                                           _.throttle(inputHandler, 250));
+        $self.bind('keydown', gestureHandler)
+             .bind('keyup paste', _.throttle(inputHandler, 250));
     }
 
     function clearCurrentSuggestions(e) {

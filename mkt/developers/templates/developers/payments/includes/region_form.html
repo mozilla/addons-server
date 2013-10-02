@@ -1,0 +1,20 @@
+{{ region_form.regions.errors }}
+<div class="checkbox-choices region-choices"{% if not is_paid %} id="region-list" data-disabled-regions="{{ region_form.disabled_regions|json }}"{% endif %}>
+  <ul>
+    {% for value, text in region_form.regions.field.choices %}
+      <li data-region="{{ value }}">
+        <label class="region-cb{% if value in region_form.disabled_regions %} disabled{% endif %}">
+        <input type="checkbox"
+          {% if value in region_form.disabled_regions %}disabled{% endif %}
+          {% if value in region_form.initial.regions %}checked{% endif %}
+          name="regions" value="{{ value }}">{{ text }}</label>
+      </li>
+    {% endfor %}
+  </ul>
+</div>
+{% if region_form.disabled_regions %}
+  {% include 'developers/payments/includes/regions_disabled.html' %}
+{% endif %}
+<div class="other-regions">
+  {% include 'developers/payments/includes/regions_other.html' %}
+</div>

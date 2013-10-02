@@ -37,7 +37,6 @@ from mkt.site import messages
 from mkt.webapps.models import Installed, WebappIndexer
 from stats.models import Contribution, DownloadCount
 from users.models import UserProfile
-from zadmin.decorators import admin_required
 
 log = commonware.log.getLogger('z.lookup')
 
@@ -236,7 +235,7 @@ def transaction_refund(request, tx_uuid):
 @login_required
 @permission_required('AppLookup', 'View')
 def app_summary(request, addon_id):
-    app = get_object_or_404(Addon, pk=addon_id)
+    app = get_object_or_404(Addon.with_deleted, pk=addon_id)
     authors = (app.authors.filter(addonuser__role__in=(amo.AUTHOR_ROLE_DEV,
                                                        amo.AUTHOR_ROLE_OWNER))
                           .order_by('display_name'))
@@ -420,23 +419,16 @@ def _app_summary(user_id):
             sum(case when type=%(purchase)s then 1 else 0 end)
                 as app_total,
             sum(case when type=%(purchase)s then amount else 0.0 end)
-                as app_amount,
-            sum(case when type=%(inapp)s then 1 else 0 end)
-                as inapp_total,
-            sum(case when type=%(inapp)s then amount else 0.0 end)
-                as inapp_amount
+                as app_amount
         from stats_contributions
         where user_id=%(user_id)s
         group by currency
     """
     cursor = connection.cursor()
     cursor.execute(sql, {'user_id': user_id,
-                         'purchase': amo.CONTRIB_PURCHASE,
-                         'inapp': amo.CONTRIB_INAPP})
+                         'purchase': amo.CONTRIB_PURCHASE})
     summary = {'app_total': 0,
-               'app_amount': {},
-               'inapp_total': 0,
-               'inapp_amount': {}}
+               'app_amount': {}}
     cols = [cd[0] for cd in cursor.description]
     while 1:
         row = cursor.fetchone()
@@ -460,8 +452,7 @@ def _app_purchases_and_refunds(addon):
                            .filter(addon=addon)
                            .exclude(type__in=[amo.CONTRIB_REFUND,
                                               amo.CONTRIB_CHARGEBACK,
-                                              amo.CONTRIB_PENDING,
-                                              amo.CONTRIB_INAPP_PENDING]))
+                                              amo.CONTRIB_PENDING]))
     for typ, start_date in (('last_24_hours', now - timedelta(hours=24)),
                             ('last_7_days', now - timedelta(days=7)),
                             ('alltime', None),):
@@ -499,8 +490,7 @@ def _app_pay_methods(addon):
     a placeholder for when we support more, which requires a model change.
     """
     qs = Contribution.objects.filter(addon=addon,
-                                     type__in=(amo.CONTRIB_PURCHASE,
-                                               amo.CONTRIB_INAPP))
+                                     type__in=(amo.CONTRIB_PURCHASE,))
     # TODO(Kumar) adjust this when our db model supports multiple
     # payment methods.
     other = qs.filter(paykey=None).count()

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ad-dons\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-30 15:53-0700\n"
+"POT-Creation-Date: 2013-09-27 16:47-0700\n"
 "PO-Revision-Date: 2013-06-05 13:28+0100\n"
 "Last-Translator: Jørgen Rasmussen <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark <joergenr@stofanet.dk>\n"
@@ -470,15 +470,15 @@ msgstr ""
 msgid "There was an error uploading your file."
 msgstr ""
 
-#: media/js/devreg/devhub.js:896 media/js/zamboni/devhub-all.js:1774 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:925
+#: media/js/devreg/devhub.js:884 media/js/zamboni/devhub-all.js:1774 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:925
 msgid "Learn more"
 msgstr "Lær mere"
 
-#: media/js/devreg/devhub.js:900 media/js/zamboni/devhub-all.js:1778 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:929
+#: media/js/devreg/devhub.js:888 media/js/zamboni/devhub-all.js:1778 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:929
 msgid "Example"
 msgstr "Eksempel"
 
-#: media/js/devreg/devhub.js:1203 media/js/zamboni/devhub-all.js:2125 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:1285
+#: media/js/devreg/devhub.js:1190 media/js/zamboni/devhub-all.js:2125 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:1285
 msgid "Image changes being processed"
 msgstr ""
 
@@ -559,17 +559,21 @@ msgstr ""
 msgid "Detected: {0}"
 msgstr ""
 
-#: media/js/devreg/payments-manage.js:32 media/js/devreg/payments-manage.js:67 media/js/devreg/validator.js:193 media/js/devreg/validator.js:438 media/js/devreg/validator.js:457
+#: media/js/devreg/payments-manage.js:32 media/js/devreg/payments-manage.js:76 media/js/devreg/validator.js:193 media/js/devreg/validator.js:438 media/js/devreg/validator.js:457
 #: media/js/mkt/buttons.js:85 media/js/mkt/buttons.js:94 media/js/zamboni/devhub-all.js:2597 media/js/zamboni/devhub-all.js:2844 media/js/zamboni/devhub-all.js:2863 media/js/zamboni/devhub-min.js:1
 #: media/js/zamboni/validator.js:193 media/js/zamboni/validator.js:446 media/js/zamboni/validator.js:465
 msgid "Error"
 msgstr "Fejl"
 
-#: media/js/devreg/payments-manage.js:33 media/js/devreg/payments-manage.js:68
+#: media/js/devreg/payments-manage.js:33 media/js/devreg/payments-manage.js:77
 msgid "There was a problem contacting the payment server."
 msgstr ""
 
-#: media/js/devreg/payments-manage.js:88
+#: media/js/devreg/payments-manage.js:55
+msgid "Authentication error"
+msgstr ""
+
+#: media/js/devreg/payments-manage.js:97
 msgid "You do not currently have any payment accounts."
 msgstr ""
 
@@ -1230,11 +1234,11 @@ msgstr "Flash Player</a>."
 msgid "Message must not be empty."
 msgstr "Meddelelsen kan ikke være tom."
 
-#: media/js/mkt/login.js:68
+#: media/js/mkt/login.js:73
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
 msgstr "Log ind med Pesona mislykkedes. Måske har du ikke en konto under den mailadresse?"
 
-#: media/js/mkt/login.js:73
+#: media/js/mkt/login.js:78
 msgid "Persona login failed. A server error was encountered."
 msgstr "Log ind med Persona mislykkedes. Der opstod en serverfejl."
 

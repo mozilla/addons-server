@@ -16,7 +16,6 @@ import amo
 import amo.search
 from addons.models import Addon, AddonUser
 from bandwagon.models import Collection
-from constants.base import ADDON_PREMIUM_API, ADDON_WEBAPP_TYPES
 from lib.es.utils import get_indices
 from reviews.models import Review
 from stats.models import Contribution
@@ -498,9 +497,13 @@ def _get_monolith_jobs(date=None):
     package_counts = []
     premium_counts = []
 
+    # privileged==packaged for our consideration.
+    package_types = amo.ADDON_WEBAPP_TYPES.copy()
+    package_types.pop(amo.ADDON_WEBAPP_PRIVILEGED)
+
     for region_slug, region in REGIONS_CHOICES_SLUG:
         # Apps added by package type and region.
-        for package_type in ADDON_WEBAPP_TYPES.values():
+        for package_type in package_types.values():
             package_counts.append({
                 'count': apps.filter(
                     is_packaged=package_type == 'packaged').exclude(
@@ -510,7 +513,7 @@ def _get_monolith_jobs(date=None):
             })
 
         # Apps added by premium type and region.
-        for premium_type, pt_name in ADDON_PREMIUM_API.items():
+        for premium_type, pt_name in amo.ADDON_PREMIUM_API.items():
             premium_counts.append({
                 'count': apps.filter(
                     premium_type=premium_type).exclude(
@@ -530,7 +533,7 @@ def _get_monolith_jobs(date=None):
 
     for region_slug, region in REGIONS_CHOICES_SLUG:
         # Apps available by package type and region.
-        for package_type in ADDON_WEBAPP_TYPES.values():
+        for package_type in package_types.values():
             package_counts.append({
                 'count': apps.filter(
                     is_packaged=package_type == 'packaged').exclude(
@@ -540,7 +543,7 @@ def _get_monolith_jobs(date=None):
             })
 
         # Apps available by premium type and region.
-        for premium_type, pt_name in ADDON_PREMIUM_API.items():
+        for premium_type, pt_name in amo.ADDON_PREMIUM_API.items():
             premium_counts.append({
                 'count': apps.filter(
                     premium_type=premium_type).exclude(

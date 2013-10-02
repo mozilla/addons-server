@@ -994,11 +994,8 @@ class TestLanguagePack(LanguagePackBase):
         extract_path.return_value = 'locale browser de woot?!'
         obj = self.file_create('langpack-localepicker')
         eq_(obj.get_localepicker(), '')
-
-    @mock.patch('files.utils.SafeUnzip.extract_path')
-    def test_corrupt_locale_browser_path_2(self, extract_path):
         extract_path.return_value = 'locale browser de woo:t?!as'
-        obj = self.file_create('langpack-localepicker')
+        # Result should be 'locale browser de woo:t?!as', but we have caching.
         eq_(obj.get_localepicker(), '')
 
     @mock.patch('files.utils.SafeUnzip.extract_path')

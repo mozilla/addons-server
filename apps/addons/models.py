@@ -318,8 +318,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                                           related_name='addons')
     premium_type = models.PositiveIntegerField(
         choices=amo.ADDON_PREMIUM_TYPES.items(), default=amo.ADDON_FREE)
-    manifest_url = models.URLField(max_length=255, blank=True, null=True,
-                                   verify_exists=False)
+    manifest_url = models.URLField(max_length=255, blank=True, null=True)
     app_domain = models.CharField(max_length=255, blank=True, null=True,
                                   db_index=True)
 
@@ -438,6 +437,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                 models.signals.pre_delete.send(sender=Addon, instance=self)
                 self.status = amo.STATUS_DELETED
                 self.slug = self.app_slug = self.app_domain = None
+                self._current_version = None
                 self.save()
                 models.signals.post_delete.send(sender=Addon, instance=self)
             else:
@@ -847,6 +847,8 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     @property
     def current_version(self):
         "Returns the current_version field or updates it if needed."
+        if self.status == amo.STATUS_DELETED:
+            return None
         try:
             if not self._current_version:
                 self.update_version()
@@ -856,6 +858,8 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     @property
     def latest_version(self):
+        if self.status == amo.STATUS_DELETED:
+            return None
         try:
             if not self._latest_version:
                 self.update_version()
@@ -2207,7 +2211,7 @@ class AppSupport(amo.models.ModelBase):
 
 class Charity(amo.models.ModelBase):
     name = models.CharField(max_length=255)
-    url = models.URLField(verify_exists=False)
+    url = models.URLField()
     paypal = models.CharField(max_length=255)
 
     class Meta:

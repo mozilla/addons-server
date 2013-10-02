@@ -431,3 +431,38 @@ region.
                 ...
             ],
         }
+
+Visits
+~~~~~~
+
+The number of page visits each day over time.
+
+.. http:get:: /api/v1/stats/app/(int:id)|(string:slug)/visits
+
+    **Request**:
+
+    :param start: The starting date in "YYYY-MM-DD" format.
+    :type start: string
+    :param end: The ending date in "YYYY-MM-DD" format.
+    :type end: string
+    :param interval: The interval. One of the following: 'day', 'week',
+                     'month', 'quarter', 'year'.
+    :type interval: string
+
+    **Response**:
+
+    .. code-block:: json
+
+         {
+            "objects": [
+                {
+                    "count": 12,
+                    "date": "2013-08-01"
+                },
+                {
+                    "count": 25,
+                    "date": "2013-08-02"
+                },
+                ...
+            ],
+        }

@@ -200,18 +200,22 @@ REGIONS_CHOICES = (
 
 BY_SLUG = sorted([v for k, v in DEFINED if v.id and v.weight > -1],
                  key=lambda v: v.slug)
+
 REGIONS_CHOICES_SLUG = ([('worldwide', WORLDWIDE)] +
                         [(v.slug, v) for v in BY_SLUG])
 REGIONS_CHOICES_ID = ([(WORLDWIDE.id, WORLDWIDE)] +
                       [(v.id, v) for v in BY_SLUG])
-REGIONS_CHOICES_NAME = ([(WORLDWIDE.id, WORLDWIDE.name)] +
-                        [(v.id, v.name) for v in BY_SLUG])
+# Worldwide last here so we can display it after all the other regions.
+REGIONS_CHOICES_NAME = ([(v.id, v.name) for v in BY_SLUG] +
+                        [(WORLDWIDE.id, WORLDWIDE.name)])
 
 REGIONS_DICT = dict(REGIONS_CHOICES)
 REGIONS_CHOICES_ID_DICT = dict(REGIONS_CHOICES_ID)
 ALL_REGIONS = frozenset(REGIONS_DICT.values())
-ALL_PAID_REGIONS = frozenset(r for r in ALL_REGIONS if r.has_payments)
-
 ALL_REGION_IDS = sorted(REGIONS_CHOICES_ID_DICT.keys())
+
+ALL_PAID_REGIONS = frozenset(r for r in ALL_REGIONS if r.has_payments)
 ALL_PAID_REGION_IDS = sorted(r.id for r in ALL_PAID_REGIONS)
+
+# Regions not including worldwide.
 REGION_IDS = sorted(REGIONS_CHOICES_ID_DICT.keys())[1:]

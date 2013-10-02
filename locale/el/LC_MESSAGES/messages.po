@@ -4395,7 +4395,7 @@ msgstr "Οι εφαρμογές μου"
 
 #: apps/devhub/helpers.py:72 mkt/developers/helpers.py:66 mkt/developers/templates/developers/nav.html:8 mkt/site/context_processors.py:40 mkt/templates/mkt/account-links.html:10
 msgid "My Submissions"
-msgstr ""
+msgstr "Οι υποβολές μου"
 
 #: apps/devhub/helpers.py:106
 msgid "Developer Docs"
@@ -4688,7 +4688,7 @@ msgstr "Χρειάζεστε υποστήριξη στην κατασκευή τ
 
 #: apps/devhub/templates/devhub/builder.html:120 mkt/developers/templates/developers/builder.html:120
 msgid "Interested in making the Add-on SDK even better? Grab the source code, and find out how to help <a href='%(url_wiki)s'>here</a>."
-msgstr ""
+msgstr "Ενδιαφέρεστε να φτιάξετε το SDK προσθέτων ακόμα καλύτερο; Κατεβάστε τον πηγαίο κώδικα, και δείτε πως θα βοηθήσετε <a href='%(url_wiki)s'>εδώ</a>."
 
 #. {0} is a search term, such as Firebug.
 #. {0} is a search query.
@@ -5222,6 +5222,9 @@ msgid ""
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors and managing payments</li> <li><b>Viewer:</b> Can view the add-on's settings and "
 "statistics, but cannot make any changes</li> </ul>"
 msgstr ""
+"<p>Τα πρόσθετα μπορούν να έχουν οποιονδήποτε αριθμό συντακτών με 3 πιθανούς ρόλους:</p> <ul> <li><b>Ιδιοκτήτης:</b> Μπορεί να διαχειριστεί κάθε πτυχή των καταχωρήσεων, συμπεριλαμβανομένων της πρόσθεσης και αφαίρεσης συντακτών</li> "
+"<li><b>Προγραμματιστής:</b> Μπορεί να διαχειριστεί κάθε πτυχή των καταχωρήσεων του προσθέτου, εκτός της πρόσθεσης και αφαίρεσης συντακτών καθώς και των πληρωμών</li> <li><b>Θεατής:</b> Μπορεί να δει όλες τις ρυθμίσεις του προσθέτου "
+"καθώς και τα στατιστικά, μα δε μπορεί να κάνει αλλαγές</li> </ul>"
 
 #: apps/devhub/templates/devhub/addons/profile.html:3 apps/devhub/templates/devhub/addons/listing/item_actions.html:53 apps/devhub/templates/devhub/includes/addons_edit_nav.html:5
 #: mkt/developers/templates/developers/apps/profile.html:3
@@ -5373,7 +5376,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/addons/edit/support.html:74 mkt/developers/templates/developers/apps/edit/support.html:67
 msgid "Get Satisfaction"
-msgstr "Get Satisfaction"
+msgstr "Ικανοποίηση"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:6 mkt/developers/templates/developers/apps/edit/technical.html:5
 msgid "Technical Details"
@@ -5515,7 +5518,7 @@ msgstr "32x32px"
 
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:59
 msgid "Used in listings of add-ons, like search results and featured add-ons."
-msgstr "Χρησιμοποιείται στις λίστες με τα πρόσθετα όπως πχ στα αποτελέσματα αναζήτησης και τα προβεβλημένα πρόσθετα."
+msgstr "Χρησιμοποιείται στις καταχωρήσεις προσθέτων όπως πχ στα αποτελέσματα αναζήτησης και στα προβεβλημένα πρόσθετα."
 
 #. The size of the icon
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:69 mkt/developers/templates/developers/apps/forms_shared/media.html:44
@@ -6207,16 +6210,20 @@ msgid ""
 "Once you're familiar with the extension development environment, it's time to start on your first add-on. Back in the day, this meant climbing up a hill in the snow to find a suitable template to "
 "copy for your add-on's install manifest. Fortunately, the Add-on Developer Hub (that's this!) introduces the snowmobile of extension packaging: the <a href=\"%(url)s\">Add-on Packager</a>!"
 msgstr ""
+"Μόλις εξοικειωθείτε με το περιβάλλον ανάπτυξης επεκτάσεων, είναι ώρα να ξεκινήσετε το δικό σας πρόσθετο. Στο παρελθόν, αυτό σήμαινε να διασχίσετε όλη τη διαδρομή μέχρι να βρείτε ένα κατάλληλο πρότυπο "
+"να αντιγράψετε για τη δήλωση εγκατάστασης του προσθέτου σας. Ευτυχώς, η Γωνιά Προγραμματιστή (αυτό είναι!) εισάγει το μεταφορικό μέσο για τη συσκευασία επεκτάσεων: τη  <a href=\"%(url)s\">Συσκευασία Επεκτάσεων</a>!"
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:54
 msgid ""
 "Just follow the steps to enter your add-on's name, version number, supported applications, and other details, and it will make your extension package for download. Not only does it generate your "
 "install manifest, but you can select common interface elements like toolbars, sidebars, and context menus to make a working extension skeleton. We're practically writing your extension for you!"
 msgstr ""
+"Απλώς ακολουθήστε τα βήματα για να εισάγετε το όνομα του προσθέτου σας, τον αριθμό έκδοσης, υποστηριζόμενες εφαρμογές, και άλλα στοιχεία, και θα δημιουργηθεί το πακέτο προσθέτου για λήψη. Δεν παράγει μόνο "
+"τη δήλωση εγκατάστασης, μας μπορείτε να επιλέξετε τυπικά στοιχεία διεπαφής όπως εργαλειοθήκες, πλευρικές καρτέλες, και μενού για να δημιουργήσετε ένα σκελετό επέκτασης. Πρακτικά, γράφουμε την επέκταση για εσάς!"
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:60
 msgid "Take me to the Add-on Packager!"
-msgstr "Πήγαινε με στη Συσκευασία Προσθέτων!"
+msgstr "Πήγαινε με στη Συσκευασία Επεκτάσεων!"
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:65
 msgid "Add some flair"
@@ -6227,6 +6234,8 @@ msgid ""
 "If your add-on needs more functionality than the empty sidebar the Builder made for you, there are several ways to find out how to add the functionality you want. One of the most common ways of "
 "learning how to do something in an extension is to look at what other extensions already do. Just remember that if the other extension's license doesn't allow you to copy its source, you can't."
 msgstr ""
+"Αν το πρόσθετο σας χρειάζεται περισσότερη λειτουργικότητα από την άδεια πλευρική καρτέλα που δημιουργήθηκε, υπάρχουν πολλοί τρόποι να βρείτε πως θα προσθέσετε τη λειτουργία που επιθυμείτε. Ένα τυπικός τρόπος "
+"να μάθετε πως θα κάνετε κάτι σε μια επέκταση είναι να δείτε τί κάνουν ήδη άλλες επεκτάσεις. Απλώς θυμηθείτε πως αν η άδεια της άλλης επέκτασης δεν επιτρέπει την αντιγραφή του πηγαίου κώδικα, τότε δε μπορείτε."
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:72
 msgid ""
@@ -6234,6 +6243,9 @@ msgid ""
 "languages and APIs like JavaScript, XUL, XPCOM, and FUEL. Secondly, the <a href=\"%(base_docs)show-to\">How-to Library</a> is full of tutorials, walkthroughs, videos, and articles written by smart "
 "people on extension development and best practices."
 msgstr ""
+"Ακόμη, έχουμε 2 περιοχές εδώ που μπορούν να σας βοηθήσουν: η σελίδα <a href=\"%(base_docs)sreference\">API &amp; Προτιμήσεων γλώσσας</a> έχει συνδέσμους προς επίσημη τεκμηρίωση για γλώσσες επεκτάσεων "
+"και APISs όπως Javascript, XUL, και FUEL. Ακόμη, η <a href=\"%(base_docs)show-to\">Βιβλιοθήκη</a> είναι γεμάτη με εγχειρίδια, περιγραφές, βίντεο, και άρθρα γραμμένα από έξυπνους ανθρώπους "
+"για την ανάπτυξη επεκτάσεων και βέλτιστες πρακτικές."
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:78
 msgid "View the References"
@@ -6248,22 +6260,28 @@ msgid ""
 "If you already know what you're looking for, just <a href=\"/en-US/developers/search\">search for it!</a> Our search will scour the best add-on resources to find that missing interface or common "
 "problem you're having. If search isn't cutting it, feel free to <a href=\"https://forums.addons.mozilla.org\">ask for help</a> in our forums."
 msgstr ""
+"Αν γνωρίζετε ήδη τι ψάχνετε, απλά <a href=\"/en-US/developers/search\">αναζητήστε το!</a> Η αναζήτηση μας θα ανατρέξει στα καλύτερα αποθετήρια προσθέτων για να βρει αυτή τη ελλειπούσα εφαρμογή ή το "
+"τυπικό πρόβλημα που έχετε. Αν η αναζήτηση δε σας ικανοποιήσει, μπορείτε να <a href=\"https://forums.addons.mozilla.org\">ζητήσετε βοήθεια</a> στα φόρουμ μας."
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:89
 msgid "Test your add-on"
-msgstr "Ελέγξτε το πρόσθετο σας"
+msgstr "Ελέγξτε το πρόσθετό σας"
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:91
 msgid ""
 "Even entomologists don't like bugs in their software, so it's important to test your add-on thoroughly before it's ready for general consumption. At minimum, you should make sure your add-on works "
 "on all the platforms and applications it claims to support."
 msgstr ""
+"Ακόμα και οι εντομολόγοι δε θέλους bugs στο λογισμικό του, επομένως είναι σημαντικό να ελέγξετε προσεκτικά το πρόσθετό σας προτού να είναι έτοιμο για χρήση. Κατ'ελάχιστο, θα πρέπει να βεβαιωθείτε πως το πρόσθετο σας "
+"λειτουργεί σε όλες τις πλατφόρμες και με όλες τις εφαρμογές που δηλώνει πως υποστηρίζει."
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:97
 msgid ""
 "To help detect common problems with packaging and security, you should run our <a href=\"%(link_validator)s\">Add-on Validator</a> tool on your file. It's like Spell Check for add-ons. Your add-on "
 "will automatically be validated upon submission, but you may want to test it out beforehand. Plus, passing makes you feel good."
 msgstr ""
+"Για να ανιχνεύσετε τυπικά προβλήματα με τη συσκευασία και την ασφάλεια, θα πρέπει να εκτελέσετε το εργαλείο μας <a href=\"%(link_validator)s\">Add-on Validator</a> στο αρχείο σας. Είναι σαν Ορθογραφικός Έλεγχος για πρόσθετα. "
+"Το πρόσθετο σας θα επικυρωθεί αυτόματα κατά την υποβολή, μα ίσως θέλετε να το ελέγξετε εκ των προτέρων. Επιπλέον, ο επιτυχής έλεγχος θα σας κάνει να νιάσετε καλύτερα."
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:103
 msgid "Validate my Add-on"
@@ -6279,6 +6297,9 @@ msgid ""
 "time to submit your add-on to <a href=\"https://addons.mozilla.org\">Mozilla Add-ons</a>. With over <em>1.5 billion</em> add-on downloads served, it's the best place to let your new creation live. "
 "Before you submit it, there are a few things to go over."
 msgstr ""
+"Φοβερό, ολοκληρώσατε κιόλας το πρόσθετό σας; Να ξέρετε πως τα <a href=\"http://labs.mozilla.com/\">Mozilla Labs</a> προσλαμβάνουν. Εντάξει, αν έχετε ελέγξει το πρόσθετό σας και δεν έχει προβλήματα, "
+"είναι ώρα για την υποβολή του στα <a href=\"https://addons.mozilla.org\">Πρόσθετα Mozilla</a>. Με πάνω από <em>1.5 δισεκατομμύριο</em> προσφερόμενες λήψεις προσθέτων, είναι το καλύτερο μέρος  για να "
+"δημοσιεύσετε τη δημιουργία σας. Πριν την υποβολή σας, υπάρχουν μερικά πράγματα να εξετάσετε." 
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:115
 msgid ""
@@ -6286,6 +6307,9 @@ msgid ""
 "number of policies that we require add-on developers and their contributions to adhere to. Please review these policies before submitting your add-on to ensure your add-on is approved the first "
 "time."
 msgstr ""
+"Ο Mozilla φροντίζει ιδιαίτερα για την εμπειρία χρήσης και την ασφάλεια. Για αυτό έχουμε μια ομάδα εθελοντών Συντακτών που αξιολογούν τα πρόσθετα που υποβάλλονται στη σελίδα πριν τη δημοσίευσή τους. Έχουμε "
+"μια σειρά πολιτικών που απαιτούμε να τηρούν οι προγραμματιστές προσθέτων και οι συνεισφορές τους. Παρακαλώ ελέγξτε αυτές τις πολιτικές προτού υποβάλετε το πρόσθετο σας ώστε να εξασφαλίσετε πως το πρόσθετο σας "
+"θα εγκριθεί με την πρώτη."
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:121
 msgid "Review Add-on Policies"
@@ -6309,6 +6333,9 @@ msgid ""
 "with helps us make the experience better for future generations of add-on innovators. Whether you want to comment on the platform, the documentation, or the website, we'll listen. Better yet, since "
 "Mozilla is open, you might even be able to fix that bug or lack of documentation yourself! It's like the circle of life."
 msgstr ""
+"Αν αισθάνεσαι ομιλητικός, θα λατρεύαμε να <a href=\"https://forums.addons.mozilla.org\">ακούσουμε τα σχόλια σου</a> σχετικά με την εμπειρία σου στη δημιουργία προσθέτων. Η γνώση αυτή θα μας βοηθήσει "
+"να κάνουμε την εμπειρία καλύτερη για μελλοντικές γενιές νεωτεριστών προσθέτων. Είτε θέλετε να σχολιάσετε την πλατφόρμα, την τεκμηρίωση, ή την ιστοσελίδα, θα σας ακούσουμε. Ακόμα καλύτερα, από τη στιγμή "
+"που ο Mozilla είναι ανοιχτός, μπορεί να είστε ικανοί να διορθώσετε μόνοι σας το πρόβλημα ή την έλλειψη τεκμηρίωσης! Είναι όπως ο κύκλος της ζωής."
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:3 apps/devhub/templates/devhub/docs/how-to-extension-development.html:7
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:9 apps/devhub/templates/devhub/docs/how-to.html:17 apps/devhub/templates/devhub/docs/how-to.html:85
@@ -6325,11 +6352,11 @@ msgstr "Βέλτιστες πρακτικές"
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:23
 msgid "Respecting the JavaScript Global Namespace"
-msgstr ""
+msgstr "Σεβόμενοι το Global Namespace της Javascript"
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:27
 msgid "In this blog post, Mark Ziesemer explains how to prevevent global namespace pollution by wrapping your extension's variables."
-msgstr ""
+msgstr "Σε αυτό το blog post, ο Mark Ziesemer εξηγεί πως θα αποφύγετε global namespace συγκρούσεις καλύπτοντας τις μεταβλητές της επέκτασής σας."
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:36 apps/devhub/templates/devhub/docs/how-to-getting-started.html:21
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:108
@@ -6342,7 +6369,7 @@ msgstr "Βέλτιστες τακτικές ασφαλείας για επεκτ
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:42
 msgid "Every extension developer should know and follow the security best practices outlined in this document to keep users safe."
-msgstr ""
+msgstr "Κάθε δημιουργός προσθέτου πρέπει να γνωρίζει και να ακολουθεί τις βέλτιστες πρακτικές ασφαλείας  που περιγράφονται σε αυτό το άρθρο για να κρατά τους χρήστες ασφαλείς."
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:53
 msgid "Localizing an Extension"
@@ -6350,15 +6377,15 @@ msgstr "Τοπικοποίηση επεκτάσεων"
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:56
 msgid "This article explains how to localize an extension, including XUL and JavaScript strings."
-msgstr ""
+msgstr "Αυτό το άρθρο εξηγεί πως θα μεταφράσετε μια επέκταση, μαζί με προτάσεις από XUL και JavaScript"
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:67
 msgid "Responsible First-run Usage"
-msgstr ""
+msgstr "Υπεύθυνη Πρώτη Χρήση"
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:70
 msgid "This blog post describes what a bad first-run experience means for users, and gives tips for improving that experience."
-msgstr ""
+msgstr "Αυτό το blog post περιγράφει τι σημαίνει μια πρώτη κακή εμπειρία χρήσης για το χρήστη, και δίνει συμβουλές για τη βελτίωση αυτής της εμπειρίας."
 
 # This is the name/category for a group of tests
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:77 mkt/ecosystem/templates/ecosystem/publish_review.html:76 templates/global/menu_links.html:6
@@ -6367,55 +6394,55 @@ msgstr "Ασφάλεια"
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:84
 msgid "Evaluating Code with Restricted Privileges"
-msgstr ""
+msgstr "Αξιολόγηση Κώδικα με Περιορισμένα Δικαιώματα"
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:87
 msgid "This article describes the use of Components.utils.evalInSandbox, which is a way to evaluate code \"such as remote code\" without chrome privileges."
-msgstr ""
+msgstr "Αυτό το άρθρο περιγράφει τη χρήση του Components.utils.evalInSandbox, που είναι ένας τρόπος να αξιολογήσετε κώδικα \"όπως απομακρυσμένο κώδικα\" χωρίς δικαιώματα του chrome."
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:99
 msgid "Creating Sandboxed HTTP Connections"
-msgstr ""
+msgstr "Δημιουργίας Sandboxed Συνδέσεων HTTP"
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:102
-msgid "This article explains how to created sandboxed HTTP connections which don't affect the user's cookies."
-msgstr ""
+msgid "This article explains how to create sandboxed HTTP connections which don't affect the user's cookies."
+msgstr "Αυτό το άρθρο εξηγεί πως θα δημιουργήσετε sandboxed συνδέσεις HTTP που δεν επηρρεάζουν τα cookies χρηστών."
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:112
 msgid "Displaying Web Content in an Extension"
-msgstr ""
+msgstr "Προβάλλοντας Διαδικτυακό Περιεχόμενο σε μια Επέκταση"
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:115
 msgid "Learn how to display web content in an extension without security issues."
-msgstr ""
+msgstr "Μάθετε πως θα προβάλλετε διαδικτυακό περιεχόμενο σε μια επέκταση χωρίς ζητήματα ασφαλείας."
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:125
 msgid "Five Wrong Reasons to Use eval in an Extension"
-msgstr ""
+msgstr "Πέντε Λάθος Λόγοι να χρήση αξιολόγησης σε μια επέκταση"
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:129
 msgid "In this blog post, Wladimir Palant gives five wrong ways to evaluate code in an extension."
-msgstr ""
+msgstr "Σε αυτό το blog post, ο Wladimir Palant δίνει 5 λάθος τρόπους να αξιολογήσετε κώδικα σε μια επέκταση."
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:136
 msgid "Localization"
-msgstr ""
+msgstr "Τοπικοποίηση"
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:142
 msgid "Localizing Extension Descriptions"
-msgstr ""
+msgstr "Μεταφράζοντας Περιγραφές Επεκτάσεων"
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:145
 msgid "Learn how to localize the names and descriptions in extension install manifests."
-msgstr ""
+msgstr "Μάθετε πως θα μεταφράσετε τα ονόματα και τις περιγραφές στις δηλώσεις εγκατάστασης επεκτάσεων."
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:155
 msgid "Localization and Plurals"
-msgstr ""
+msgstr "Τοπικοποίηση και Πληθυντικός"
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:158
 msgid "This article explains how to properly localize strings with plurals."
-msgstr ""
+msgstr "Αυτό το άρθρο εξηγεί πως θα μεταφράσετε κατάλληλα προτάσεις με πληθυντικό."
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:170
 msgid "BabelZilla overview"
@@ -6423,29 +6450,31 @@ msgstr "Επισκόπηση του BabelZilla"
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:173
 msgid "Learn how the BabelZilla localization community works."
-msgstr ""
+msgstr "Μάθετε πως λειτουργεί η κοινότητα τοπικοποίησης BabelZilla."
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:180
 msgid "Advanced Topics"
-msgstr ""
+msgstr "Προχωρημένα Θέματα"
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:186 apps/devhub/templates/devhub/docs/how-to-getting-started.html:50
 msgid "Video:"
-msgstr ""
+msgstr "Βίντεο:"
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:187
 msgid "Stupid/Awesome Extension Development Hacks"
-msgstr ""
+msgstr "Χαζά/Φοβερά Hacks Ανάπτυξης Επεκτάσεων "
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:190
 msgid ""
 "In this video, Jono Xia explains how to go further in extension development using XPCOM, overlays, XHRs, DOM manipulation, etc. in order to make Firefox do things you might have never thought "
 "possible."
 msgstr ""
+"Σε αυτό το βίντεο, ο Jono Xia εξηγεί πως θα προχωρήσετε με την ανάπτυξη επεκτάσεων χρησιμοποιώντας XPCOM, επικαλύψεις, XHRs, χειρισμό DOM , κλπ. ώστε να κάνετε τον Firefox να συμπεριφερθεί  "
+"όπως δεν έχετε σκεφθεί ποτέ πως ήταν δυνατόν."
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:200
 msgid "JavaScript Code Modules"
-msgstr ""
+msgstr "Μονάδες Κώδικα Javascript"
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:203
 msgid ""
@@ -6480,7 +6509,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:12
 msgid "Learn the basics of developing an extension on the Mozilla platform with this section full of beginner's guides."
-msgstr ""
+msgstr "Μάθετε τα βασικά της ανάπτυξης μιας επέκτασης στην πλατφόρμα του Mozilla με αυτό το τμήμα γεμάτο με οδηγούς αρχάριων."
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:16
 msgid "The Basics"
@@ -6488,7 +6517,7 @@ msgstr "Τα βασικά"
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:23
 msgid "XUL School Tutorial"
-msgstr ""
+msgstr "Σχολικό Εγχειρίδιο XUL"
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:26
 msgid ""
@@ -6506,7 +6535,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:52
 msgid "Extension Bootcamp: Zero to Hello World! in 45 Minutes"
-msgstr ""
+msgstr "Bootcamp Προσθέτων: Από το Μηδέν στο Hello World! σε 45 λεπτά"
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:55
 msgid ""
@@ -6516,23 +6545,23 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:67
 msgid "Building an Extension"
-msgstr ""
+msgstr "Χτίζοντας μια Επέκταση"
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:70
 msgid "This tutorial will take you through the steps required to build a very basic extension - one which adds a status bar panel to the Firefox browser containing the text \"Hello, World!\""
-msgstr ""
+msgstr "Αυτό το εγχειρίδιο θα σας ξεναγήσει στα βήματα που απαιτούνται για να δημιουργήσετε μια πολύ βασική εφαρμογή - μια που προσθέτει στον περιηγητή Firefox μια καρτέλα που περιέχει το κείμενο \"Hello, World!\""
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:80
 msgid "Extension Packaging"
-msgstr ""
+msgstr "Συσκευασία Προσθέτου"
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:83
 msgid "Learn more details on how extensions are packaged and installed."
-msgstr ""
+msgstr "Μάθετε περισσότερα για λεπτομέρειες σχετικά με τη συσκευασία και εγκατάσταση επεκτάσεων."
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:93
 msgid "Install Manifests"
-msgstr ""
+msgstr "Εγκατάσταση Δηλώσεων"
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:96
 msgid "This document explains install manifests \"install.rdf\" and all of properties available for use in your add-on."
@@ -6540,11 +6569,11 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:103
 msgid "Other Tutorials"
-msgstr ""
+msgstr "Άλλα εγχειρίδια"
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:110 apps/pages/templates/pages/dev_faq.html:61
 msgid "Firefox Add-ons Developer Guide"
-msgstr ""
+msgstr "Οδηγός Προγραμματιστών Προσθέτων του Firefox"
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:113
 msgid ""
@@ -6554,7 +6583,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:123
 msgid "How to Develop a Firefox Extension"
-msgstr ""
+msgstr "Πώς θα αναπτύξετε μια Επέκταση του Firefox"
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:126
 msgid "In this walk-through, Robert Nyman explains how to develop a Firefox extension from scratch."
@@ -6562,7 +6591,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:136
 msgid "How to Build a Firefox Extension"
-msgstr ""
+msgstr "Πώς θα χτίσετε μια επέκταση του Firefox"
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:139
 msgid "Lifehacker gives tips and helpful hints on developing your first Firefox extension."
@@ -6570,7 +6599,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:149
 msgid "Firefox Extension Development Tutorial"
-msgstr ""
+msgstr "Εγχειρίδιο Ανάπτυξης Επεκτάσεων του Firefox"
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:152
 msgid "A multi-page tutorial covering a variety of extension development topics."
@@ -6578,7 +6607,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:164
 msgid "Creating a Status Bar Extension"
-msgstr ""
+msgstr "Δημιουργία μια επέκτασης Γραμμής Κατάστασης"
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:167
 msgid "Learn how to create a simple status bar extension and add more advanced functionality in subsequent tutorials, linked below."
@@ -6586,7 +6615,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:177
 msgid "Creating a Dynamic Status Bar Extension"
-msgstr ""
+msgstr "Δημιουργία μιας επέκτασης Δυναμικής Γραμμής Κατάστασης"
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:180
 msgid "This article modifies the status bar extension created in the above tutorial by fetching content from a website at a regular interval."
@@ -6594,15 +6623,15 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:190
 msgid "Adding Preferences to an Extension"
-msgstr ""
+msgstr "Προσθήκη Προτιμήσεων σε μια Επέκταση"
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:193
 msgid "This article shows how to add preferences to the dynamic status bar created in the above tutorial."
-msgstr ""
+msgstr "Αυτό το άρθρο δείχνει πως θα προσθέσετε προτιμήσεις στη δυναμική γραμμή κατάστασης που δημιουργήθηκε στο παραπάνω εγχειρίδιο."
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:202
 msgid "Books"
-msgstr ""
+msgstr "Βιβλία"
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:208
 msgid "Build Your Own Firefox Extension E-book"
@@ -6615,27 +6644,27 @@ msgstr ""
 #: apps/devhub/templates/devhub/docs/how-to-other-addons.html:3 apps/devhub/templates/devhub/docs/how-to-other-addons.html:7 apps/devhub/templates/devhub/docs/how-to-other-addons.html:9
 #: apps/devhub/templates/devhub/docs/how-to.html:29 apps/devhub/templates/devhub/docs/how-to.html:125
 msgid "Other Types of Add-ons"
-msgstr ""
+msgstr "Άλλοι τύποι προσθέτων"
 
 #: apps/devhub/templates/devhub/docs/how-to-other-addons.html:12 apps/devhub/templates/devhub/docs/how-to.html:128
 msgid "Find information on Search Plug-ins, Jetpack, Themes, and other types of add-ons here."
-msgstr ""
+msgstr "Βρείτε πληροφορίες για Αναζήτηση Προσθέτων, Jetpack, Θέματα, και άλλους τύπους προσθέτων εδώ."
 
 #: apps/devhub/templates/devhub/docs/how-to-other-addons.html:17
 msgid "Jetpack"
-msgstr ""
+msgstr "Jetpack"
 
 #: apps/devhub/templates/devhub/docs/how-to-other-addons.html:23
 msgid "Jetpack Tutorial"
-msgstr ""
+msgstr "Εγχειρίδιο Jetpack"
 
 #: apps/devhub/templates/devhub/docs/how-to-other-addons.html:26
 msgid "Learn how easy it is to extend Firefox with Jetpack in this tutorial."
-msgstr ""
+msgstr "Μάθετε πόσο εύκολο είναι να επεκτείνετε τον Firefox με Jetpack σε αυτό το εγχειρίδιο."
 
 #: apps/devhub/templates/devhub/docs/how-to-other-addons.html:36
 msgid "Jetpack API Documentation"
-msgstr ""
+msgstr "Τεκμηρίωση Jetpack API"
 
 #: apps/devhub/templates/devhub/docs/how-to-other-addons.html:39
 msgid "This Jetpack API documentation is a must-have for working on your Jetpack."
@@ -6643,19 +6672,19 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/how-to-other-addons.html:53
 msgid "How to Create Themes"
-msgstr ""
+msgstr "Πως θα δημιουργήσετε Θέματα"
 
 #: apps/devhub/templates/devhub/docs/how-to-other-addons.html:56
 msgid "Learn how to create your very own Theme with this official walk-through."
-msgstr ""
+msgstr "Μάθετε πως θα δημιουργήσετε το δικό σας Θέμα με αυτή την επίσημη περιήγηση."
 
 #: apps/devhub/templates/devhub/docs/how-to-other-addons.html:63
 msgid "Search Plug-ins"
-msgstr ""
+msgstr "Αναζήτηση Προσθέτων"
 
 #: apps/devhub/templates/devhub/docs/how-to-other-addons.html:70
 msgid "Creating OpenSearch Plug-ins for Firefox"
-msgstr ""
+msgstr "Δημιουργία Προσθέτων OpenSearch για τον Firefox"
 
 #: apps/devhub/templates/devhub/docs/how-to-other-addons.html:73
 msgid "This article explains the structure and requirements of search plug-ins in Firefox."
@@ -6663,7 +6692,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/how-to-other-addons.html:80
 msgid "Plug-ins"
-msgstr ""
+msgstr "Πρόσθετα"
 
 #: apps/devhub/templates/devhub/docs/how-to-other-addons.html:87
 msgid "Plug-in Documentation Index"
@@ -6679,7 +6708,7 @@ msgstr ""
 #: apps/devhub/templates/devhub/docs/how-to-theme-development.html:8 apps/devhub/templates/devhub/docs/how-to-theme-development.html:47 apps/devhub/templates/devhub/docs/how-to.html:25
 #: apps/devhub/templates/devhub/docs/how-to.html:111
 msgid "Theme Development"
-msgstr ""
+msgstr "Ανάπτυξη Θέματος"
 
 #: apps/devhub/templates/devhub/docs/how-to-theme-development.html:11 apps/devhub/templates/devhub/docs/how-to.html:115
 msgid "Style Mozilla applications the way you want with pixel-perfect themes."
@@ -6695,7 +6724,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/how-to-theme-development.html:37
 msgid "How to Create a Firefox Theme"
-msgstr ""
+msgstr "Πώς θα δημιουργήσετε ένα Θέμα για τον Firefox"
 
 #: apps/devhub/templates/devhub/docs/how-to-theme-development.html:40
 msgid "Thomas McMahon explains how to create a Firefox theme from start-to-finish in this tutorial."
@@ -6703,15 +6732,15 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/how-to-theme-development.html:54
 msgid "Theme Packaging"
-msgstr ""
+msgstr "Συσκευασία Θέματος"
 
 #: apps/devhub/templates/devhub/docs/how-to-theme-development.html:57
 msgid "This article explains the packaging of themes."
-msgstr ""
+msgstr "Αυτό το άρθρο εξηγεί τη συσκευασία των θεμάτων."
 
 #: apps/devhub/templates/devhub/docs/how-to-theme-development.html:67
 msgid "First Steps in Theme Design"
-msgstr ""
+msgstr "Πρώτα βήματα στη Σχεδίαση Θεμάτων"
 
 #: apps/devhub/templates/devhub/docs/how-to-theme-development.html:70
 msgid "This blog post by Lim Chee Aun explains the use of -moz-image-region in themes."
@@ -6756,7 +6785,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:37
 msgid "An Overview of Thunderbird Components"
-msgstr ""
+msgstr "Μια περίληψη των στοιχείων του Thunderbird"
 
 #: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:40
 msgid "This article describes the Thunderbird user interface, discusses example modifications, and introduces some of the APIs most commonly used by extension developers."
@@ -6855,7 +6884,7 @@ msgstr ""
 #: mkt/inapp_pay/templates/inapp_pay/login.html:5 mkt/inapp_pay/templates/inapp_pay/nowallet.html:5 mkt/inapp_pay/templates/inapp_pay/pay_start.html:5
 #: mkt/inapp_pay/templates/inapp_pay/payment_cancel.html:5
 msgid "Marketplace"
-msgstr ""
+msgstr "Marketplace"
 
 #: apps/devhub/templates/devhub/docs/policies-agreement.html:3 apps/devhub/templates/devhub/docs/policies-agreement.html:7 apps/devhub/templates/devhub/docs/policies-agreement.html:9
 #: apps/devhub/templates/devhub/docs/policies.html:24 apps/devhub/templates/devhub/docs/policies.html:103 mkt/developers/templates/developers/docs/policies-agreement.html:3
@@ -6866,11 +6895,11 @@ msgstr "Συμφωνητικό δημιουργών "
 #: apps/devhub/templates/devhub/docs/policies-contact.html:3 apps/devhub/templates/devhub/docs/policies-contact.html:7 apps/devhub/templates/devhub/docs/policies-contact.html:9
 #: apps/devhub/templates/devhub/docs/policies.html:27 apps/devhub/templates/devhub/docs/policies.html:115
 msgid "Contacting Us"
-msgstr ""
+msgstr "Επικοινωνήστε μαζί μας"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:12
 msgid "Thanks for your interest in contacting the Mozilla Add-ons team. Please read this page carefully to ensure your request goes to the right place."
-msgstr ""
+msgstr "Ευχαριστούμε για το ενδιαφέρον σας να επικοινωνήσετε με την ομάδα Προσθέτων του Mozilla. Παρακαλώ διαβάστε προσεκτικά αυτή τη σελίδα για να εξασφαλίσετε πως η αίτηση σας κατευθύνεται στο σωστό σημείο."
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:17
 msgid "Add-on Support"
@@ -6894,7 +6923,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:26
 msgid "amo-editors at mozilla dot org"
-msgstr "amo-editors παπάκι mozilla τελεία org"
+msgstr "amo-editors at mozilla dot org"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:31
 msgid "Add-on Security Vulnerabilities"
@@ -6909,7 +6938,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:36
 msgid "marketplace-staff at mozilla dot org"
-msgstr ""
+msgstr "marketplace-staff at mozilla dot org"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:42
 msgid "Website Functionality & Development"
@@ -6927,7 +6956,7 @@ msgstr "Συντήρηση των πρόσθετων σας"
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:10
 msgid "Submitting New Versions of Your Add-on"
-msgstr ""
+msgstr "Υποβολή Νέων Εκδόσεων του Προσθέτου σας"
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:12
 msgid ""
@@ -17669,7 +17698,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_manifests.html:245
 msgid "App manifest"
-msgstr ""
+msgstr "Δήλωση εφαρμογής"
 
 #: mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:5 mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:13 mkt/ecosystem/templates/ecosystem/macros.html:162
 msgid "For Current Mobile Developers"
@@ -17677,7 +17706,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:14
 msgid "Advantages"
-msgstr ""
+msgstr "Πλεονεκτήματα"
 
 #: mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:16
 msgid "For mobile application developers, the Open Web Apps project offers these advantages:"
@@ -17703,11 +17732,11 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:52
 msgid "Steps to developing a Web app"
-msgstr ""
+msgstr "Βήματα για την ανάπτυξη μια Web εφαρμογής"
 
 #: mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:54
 msgid "1. Develop your app using open Web technologies."
-msgstr ""
+msgstr "1. Αναπτύξτε την εφαρμογή σας χρησιμοποιώντας Ανοιχτές Web Τεχνολογίες."
 
 #: mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:56
 msgid ""
@@ -17717,7 +17746,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:67
 msgid "2. Add an <a href=\"%(url)s\">app manifest</a>."
-msgstr ""
+msgstr "2. Προσθέστε μια <a href=\"%(url)s\">δήλωση εφαρμογής</a>."
 
 #: mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:72
 msgid "All that inherently separates a Web app from a normal website is a single, JSON-format text file."
@@ -17725,7 +17754,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:78
 msgid "3. Publish the app, either on your own site or in an app store (or both)."
-msgstr ""
+msgstr "3. Δημοσιεύστε την εφαρμογή, είτε στη σελίδα σας είτε σε ένα κατάστημα εφαρμογών (ή και στα δύο)."
 
 #: mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:84
 msgid "Publishing it yourself requires <a href=\"%(url)s\">adding some code to your site to manage installing and updating the app</a> in users' browsers."
@@ -17748,7 +17777,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:112 mkt/ecosystem/templates/ecosystem/build_web_developers.html:67
 msgid "Should my app work when not connected to the Web?"
-msgstr ""
+msgstr "Πρέπει η εφαρμογή μου να λειτουργεί όταν δεν υπάρχει σύνδεση στο διαδίκτυο;"
 
 #: mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:114 mkt/ecosystem/templates/ecosystem/build_web_developers.html:69
 msgid "How does my app use data, and how does it need to be stored?"
@@ -17760,7 +17789,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:126 mkt/ecosystem/templates/ecosystem/build_web_developers.html:81
 msgid "And many more"
-msgstr ""
+msgstr "Και πολλά περισσότερα"
 
 #: mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:129 mkt/ecosystem/templates/ecosystem/build_web_developers.html:84
 msgid "If you want to take full advantage of the capabilities of installable apps, there is plenty that you can do. For example:"
@@ -17772,11 +17801,11 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:141 mkt/ecosystem/templates/ecosystem/build_web_developers.html:97
 msgid "Charge money for apps."
-msgstr ""
+msgstr "χρεώστε για εφαρμογές."
 
 #: mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:143 mkt/ecosystem/templates/ecosystem/build_web_developers.html:99
 msgid "Provide a way to <a href=\"%(url)s\">identify users</a>."
-msgstr ""
+msgstr "Παρέχετε έναν τρόπο να <a href=\"%(url)s\">ταυτοποιείτε χρήστες</a>."
 
 #: mkt/ecosystem/templates/ecosystem/build_mobile_developers.html:148 mkt/ecosystem/templates/ecosystem/build_web_developers.html:104
 msgid "<a href=\"%(url)s\">Enable offline caching</a> so the app can be used when the device is not on the Internet."
@@ -18035,7 +18064,7 @@ msgstr ""
 #: mkt/ecosystem/templates/ecosystem/build_reference.html:47 mkt/ecosystem/templates/ecosystem/macros.html:109 mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:6
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:9
 msgid "Podcasts"
-msgstr ""
+msgstr "Podcasts"
 
 #: mkt/ecosystem/templates/ecosystem/build_reference.html:50
 msgid "Podcasts is an offline-capable, HTML5/JS audio app."
@@ -18145,7 +18174,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/design_concept.html:14
 msgid "What is the purpose of your app?"
-msgstr ""
+msgstr "Ποιος είναι ο σκοπός της εφαρμογής σας;"
 
 #: mkt/ecosystem/templates/ecosystem/design_concept.html:16
 msgid ""
@@ -18169,7 +18198,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/design_concept.html:40
 msgid "How will people use your app?"
-msgstr ""
+msgstr "Πώς θα χρησιμοποιήσουν οι άνθρωποι την εφαρμογή σας;"
 
 #: mkt/ecosystem/templates/ecosystem/design_concept.html:42
 msgid ""
@@ -18551,7 +18580,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:110
 msgid "Sharing with the community"
-msgstr ""
+msgstr "Μοιράζοντας με την κοινότητα"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:112
 msgid ""
@@ -18604,15 +18633,15 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:65
 msgid "This guide covers the following topics:"
-msgstr ""
+msgstr "Αυτός ο οδηγός καλύπτει τα ακόλουθα θέματα:"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:67
 msgid "how to install the Simulator add-on"
-msgstr ""
+msgstr "πώς θα εγκαταστήσετε το πρόσθετο Προσομοιωτή"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:68
 msgid "how to add, remove, and update apps"
-msgstr ""
+msgstr "πώς θα προσθέσετε, αφαιρέσετε, και θα ενημερώσετε εφαρμογές"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:69
 msgid "manifest validation"
@@ -18620,7 +18649,7 @@ msgstr "επικύρωση δήλωσης"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:70
 msgid "how to run the Simulator"
-msgstr "πως θα εκτελέσετε τον προσομοιωτή"
+msgstr "πώς θα εκτελέσετε τον προσομοιωτή"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:71
 msgid "how to connect developer tools such as the JS debugger to apps running in the Simulator"
@@ -18984,7 +19013,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:363
 msgid "Pushing apps to the device"
-msgstr ""
+msgstr "Φόρτωση εφαρμογών στη συσκευή"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:365
 msgid ""
@@ -19944,7 +19973,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/publish_submit.html:211
 msgid "Set pricing, payment, and refund options"
-msgstr ""
+msgstr "Ορισμός επιλογών τιμής, πληρωμής, και αποζημίωσης"
 
 #: mkt/ecosystem/templates/ecosystem/publish_submit.html:213
 msgid "<strong>Note:</strong> The Firefox OS Marketplace does not currently support paid apps or in-app payments. We hope to enable this feature for testing late in the first quarter of 2013."
@@ -19997,11 +20026,11 @@ msgstr "Πως δημιουργώ μια εγκαθιστόμενη εφαρμο
 
 #: mkt/ecosystem/templates/ecosystem/support.html:38
 msgid "How do payments work?"
-msgstr "Πως λειτουργούν οι πληρωμές;"
+msgstr "Πώς λειτουργούν οι πληρωμές;"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:44
 msgid "How do I manage the taxes of my sales?"
-msgstr "Πως διαχειρίζομαι τους φόρους στις πωλήσεις μου;"
+msgstr "Πώς διαχειρίζομαι τους φόρους στις πωλήσεις μου;"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:50
 msgid "Known issues"
@@ -20033,15 +20062,15 @@ msgstr "Mozilla Web εφαρμογές (Brazilian Portuguese)"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:17 mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:18
 msgid "Start Screen"
-msgstr ""
+msgstr "Έναρξη οθόνης"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:22 mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:23
 msgid "Timer"
-msgstr ""
+msgstr "Χρονόμετρο"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:27 mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:28
 msgid "Lap History"
-msgstr ""
+msgstr "Ιστορικό Γύρων"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:35
 msgid ""
@@ -20114,7 +20143,7 @@ msgstr "Εύκολο"
 #: mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:101 mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:208
 #: mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:95
 msgid "Code Breakdown"
-msgstr ""
+msgstr "Ανάλυση Κώδικα"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:135
 msgid "7%"
@@ -20152,7 +20181,7 @@ msgstr "Δομή φακέλου"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:53
 msgid "integration tests"
-msgstr ""
+msgstr "δοκιμές σύγκλισης"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:54 mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:53
 msgid "client-side code/styles"
@@ -20160,11 +20189,11 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:55 mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:54
 msgid "base HTML file"
-msgstr ""
+msgstr "αρχείο βάσης HTML"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:56 mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:56
 msgid "EJS/HTML templates"
-msgstr ""
+msgstr "πρότυπα EJS/HTML"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:59
 msgid ""
@@ -20191,7 +20220,7 @@ msgstr ""
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:132 mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:121
 #: mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:92
 msgid "Medium"
-msgstr ""
+msgstr "Μέτριο"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:137 mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:97
 msgid "2%"
@@ -20203,7 +20232,7 @@ msgstr "16%"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:17 mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:18
 msgid "Note Listing"
-msgstr ""
+msgstr "Σημειώσεις Καταχώρησης"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:22 mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:23
 msgid "Writing a New Note"
@@ -20247,11 +20276,11 @@ msgstr "5%"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:17 mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:18
 msgid "Podcast Listing"
-msgstr ""
+msgstr "καταχώρηση Podcast"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:22 mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:23
 msgid "Top Podcasts"
-msgstr ""
+msgstr "Κορυφαία Podcasts"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:35
 msgid ""
@@ -20358,11 +20387,11 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:52
 msgid "Generates animated GIFs."
-msgstr ""
+msgstr "Παράγει κινούμενα GIFs"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:60
 msgid "A wrapper for IndexedDB."
-msgstr ""
+msgstr "Ένα wrapper για IndexedDB."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:68
 msgid "Calculates perspective transformations."
@@ -20378,11 +20407,11 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:110 mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:118
 msgid "For downloading files to the browser."
-msgstr ""
+msgstr "Για λήψη αρχείων στον περιηγητή."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:126
 msgid "Used for fast and efficient processing of image data."
-msgstr ""
+msgstr "Χρησιμοποιείται για γρήγορη και αποτελεσματική επεξεργαία δεδομένων εικόνων."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:134 mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:143
 msgid "Used to access camera devices and get a video stream from where to capture frames."
@@ -20415,11 +20444,11 @@ msgstr "83%"
 #: mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:17 mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:18
 #: mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:22 mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:23
 msgid "Webfighter game sample"
-msgstr ""
+msgstr "Δείγμα παιχνιδιού Webfighter"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:27 mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:28
 msgid "Enemy damage"
-msgstr ""
+msgstr "Ζημιά του εχθρού"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:35
 msgid ""
@@ -20430,15 +20459,15 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:56
 msgid "Used to generate the game graphics."
-msgstr ""
+msgstr "Χρησιμοποιείται για να παράγει τα γραφικά του παιχνιδιού."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:64
 msgid "Allows the game to be played in fullscreen mode."
-msgstr ""
+msgstr "Επιτρέπει στο παιχνίδι να προβληθεί σε όλη την οθόνη."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:72
 msgid "The player can purchase items in a store that will aid their quest. This shows the workflow for in-app payments."
-msgstr ""
+msgstr "Ο παίκτης μπορεί να αγοράσει αντικείμενα που θα βοηθήσουν την αναζήτησή του από ένα κατάστημα. Αυτό δείχνει τη ροή μεταξύ πληρωμών εντός εφαρμογής."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:99
 msgid "92%"
@@ -20450,31 +20479,31 @@ msgstr "Πίσω στην εφαρμογή"
 
 #: mkt/files/templates/fileviewer/viewer.html:4
 msgid "File Compare :: Reviewer Tools"
-msgstr ""
+msgstr "Σύγκριση Αρχείου :: Εργαλεία Επιθεωρητή"
 
 #: mkt/files/templates/fileviewer/viewer.html:6
 msgid "File Viewer :: Reviewer Tools"
-msgstr ""
+msgstr "Προβολή Αρχείου :: Εργαλεία Επιθεωρητή"
 
 #: mkt/files/templates/fileviewer/viewer.html:34
 msgid "App being processed, please wait."
-msgstr ""
+msgstr "Γίνεται επεξεργασία της εφαρμογής, παρακαλώ περιμένετε."
 
 #: mkt/inapp_pay/models.py:22
 msgid "Chargeback URL"
-msgstr ""
+msgstr "URL χρέωσης"
 
 #: mkt/inapp_pay/models.py:23
 msgid "Relative URL in your app that the marketplace posts a chargeback to. For example: /payments/chargeback"
-msgstr ""
+msgstr "Σχετικό URL στην εφαρμογή σας όπου το marketplace θα αναρτήσει μια χρέωση. Για παράδειγμα: /payments/chargeback"
 
 #: mkt/inapp_pay/models.py:26
 msgid "Postback URL"
-msgstr ""
+msgstr "URL επιβεβαίωσης"
 
 #: mkt/inapp_pay/models.py:27
 msgid "Relative URL in your app that the marketplace will post a confirmed transaction to. For example: /payments/postback"
-msgstr ""
+msgstr "Σχετικό URL στην εφαρμογή σας όπου το marketplace θα αναρτήσει μια επιβεβαιωμένη συναλλαγή. Για παράδειγμα: /payments/postback"
 
 #: mkt/inapp_pay/models.py:42
 msgid "Use SSL when posting to app"
@@ -20823,11 +20852,11 @@ msgstr "Το ιστορικό αγορών σας:"
 
 #: mkt/ratings/templates/ratings/rating.html:22
 msgid "by <strong>%(user_name)s</strong>"
-msgstr ""
+msgstr "από <strong>%(user_name)s</strong>"
 
 #: mkt/ratings/templates/ratings/rating.html:26
 msgid "for previous version %(version)s"
-msgstr ""
+msgstr "για προηγούμενη έκδοση  %(version)s"
 
 #: mkt/ratings/templates/ratings/rating.html:40
 msgid "Report"
@@ -20835,23 +20864,23 @@ msgstr "Αναφορά"
 
 #: mkt/receipts/forms.py:20
 msgid "No receipt"
-msgstr ""
+msgstr "Καμία λήψη"
 
 #: mkt/receipts/forms.py:21
 msgid "Test receipt"
-msgstr ""
+msgstr "Έλεγχος λήψης"
 
 #: mkt/receipts/forms.py:22
 msgid "Expired test receipt"
-msgstr ""
+msgstr "Περασμένος έλεγχος λήψης"
 
 #: mkt/receipts/forms.py:23
 msgid "Invalid test receipt"
-msgstr ""
+msgstr "Άκυρος έλεγχος λήψης"
 
 #: mkt/receipts/forms.py:24
 msgid "Refunded test receipt"
-msgstr ""
+msgstr "Επιστραφείς έλεγχος λήψης"
 
 #: mkt/receipts/views.py:98 mkt/receipts/views.py:188
 msgid "There was a problem installing the app."
@@ -20859,11 +20888,11 @@ msgstr "Υπήρξε κάποιο πρόβλημα με την εγκατάστ�
 
 #: mkt/receipts/templates/receipts/test_details.html:3 mkt/receipts/templates/receipts/test_details.html:8 mkt/receipts/templates/receipts/test_details.html:14
 msgid "Test receipt details"
-msgstr ""
+msgstr "Ελέγξτε τις λεπτομέρειες παραλαβής"
 
 #: mkt/receipts/templates/receipts/test_details.html:16
 msgid "This is a placeholder page for the receipt details. If you'd installed a real app from the Marketplace, this page would show more details."
-msgstr ""
+msgstr "Αυτή είναι μια σελίδα κρατήσεων για τις λεπτομέρειες παραλαβής. Αν είχατε εγκαταστήσει μια πραγματική εφαρμογή από το Marketplace, αυτή η σελίδα θα έδειχνε περισσότερα στοιχεία."
 
 #: mkt/receipts/templates/receipts/test_manifest.html:3
 msgid "Test installing your App"
@@ -20903,7 +20932,7 @@ msgstr "Περιηγητές:"
 
 #: mkt/reviewers/forms.py:66
 msgid "Device Type Override:"
-msgstr ""
+msgstr "Υπερίσχυση Τύπου Συσκευής:"
 
 #: mkt/reviewers/forms.py:71
 msgid "Senior Reviewers"
@@ -21806,7 +21835,7 @@ msgstr "Αν η εφαρμογή σας διαθέτει μια ιστοσελί
 
 #: mkt/submit/forms.py:370
 msgid "Does your app require Flash support?"
-msgstr "Η εφαρμογήσ ας απαιτεί υποστήριξη Flash;"
+msgstr "Η εφαρμογή σας απαιτεί υποστήριξη Flash;"
 
 #: mkt/submit/forms.py:378
 msgid "Publish my app in the Firefox Marketplace as soon as it's reviewed."
@@ -21817,6 +21846,8 @@ msgid ""
 "If selected your app will be published immediately following its approval by reviewers. If you don't select this option you will be notified via email about your app's approval and you will need to "
 "log in and manually publish it."
 msgstr ""
+"Αν επιλεγεί, η εφαρμογή σας θα δημοσιευτεί αμέσως μετά την έγκριση από επιθεωρητές. Αν δεν κάνετε αυτή την επιλογή, θα ειδοποιηθείτε μέσω email για την έγκριση της εφαρμογής σας και θα πρέπει να "
+"συνδεθείτε και να τη δημοσιεύσετε χειροκίνητα."
 
 #: mkt/submit/templates/submit/details.html:5
 msgid "Edit App Details"
@@ -21830,7 +21861,7 @@ msgstr "Υποβολή μιας εφαρμογής"
 
 #: mkt/submit/templates/submit/details.html:23
 msgid "Please review your listing information below. We've pre-filled as much as we can from your manifest."
-msgstr ""
+msgstr "Παρακαλώ επιθεωρήστε τις πληροφορίες της καταχώρησής σας παρακάτω. Έχουμε συμπληρώσει όσα μπορούσαμε από τη δήλωσή σας."
 
 #: mkt/submit/templates/submit/details.html:48
 msgid "Open details page"
@@ -21846,7 +21877,7 @@ msgstr "Πρέπει να παρέχετε τουλάχιστον ένα."
 
 #: mkt/submit/templates/submit/details.html:172
 msgid "PNG and JPG supported. Screenshots must be at least 320px by 480px. Screenshots proportional to 320px by 480px are optimal. WebM supported for video."
-msgstr ""
+msgstr "Οι τύποι PNG και JPG υποστηρίζονται. Τα στιγμιότυπα πρέπει να είναι τουλάχιστον 320px από 480px. Στιγμιότυπα ανάλογα με 320px από 480px είναι βέλτιστα. Ο τύπος WebM υποστηρίζεται για βίντεο."
 
 #: mkt/submit/templates/submit/done.html:3
 msgid "Finished!"
@@ -21861,16 +21892,19 @@ msgid ""
 "We've got your app saved and ready to go! Your app is currently awaiting review, and once it is reviewed you will need to be manually enable your app from the <a href=\"%(url)s\">Manage Status "
 "page</a> for it to show up on listing pages and in search. Until then, feel free to tweak your app's details and settings."
 msgstr ""
-
+"Έχουμε αποθηκεύσει την εφαρμογή σας και είναι έτοιμη! Αναμένεται αξιολόγηση, και μόλις αυτή πραγματοποιηθεί θα χρειαστεί να ενεργοποιήσετε χειροκίνητα την εφαρμογή σας από τη σελίδα <a href=\"%(url)s\">Διαχείρισης Κατάστασης "
+"</a> ώστε να εμφανιστεί στις σελίδες καταχωρήσεων και στην αναζήτηση. Μέχρι τότε, μπορείτε να εισάγετε λεπτομέρειες της εφαρμογής καθώς και ρυθμίσεις."
 #: mkt/submit/templates/submit/done.html:31
 msgid "Before your app can go live, you need to provide payment information. Once you've added a payment account and price, your app will be submitted for review."
-msgstr ""
+msgstr "Προτού η εφαρμογή σας δημοσιευτεί, χρειάζεται να παρέχετε πληροφορίες πληρωμής. Μόλις προσθέσετε έναν λογαριασμός πληρωμής και τιμή, η εφαρμογή σας θα υποβληθεί προς αξιολόγηση."
 
 #: mkt/submit/templates/submit/done.html:37
 msgid ""
 "We've got your app saved and ready to go! Your app is currently awaiting review, and will show up on listing pages and in search once it is reviewed. Until then, feel free to tweak your app's "
 "details and settings."
 msgstr ""
+"Η εφαρμογή σας αποθηκεύτηκε και είναι έτοιμη! Προς το παρόν αναμένει αξιολόγηση, και μόλις γίνει αυτό θα εμφανιστεί στις καταχωρήσεις και στις αναζητήσεις. Μέχρι τότε, είστε ελεύθεροι να βελτιώσετε τις "
+"τα στοιχεία και τις ρυθμίσεις της εφαρμογής σας."
 
 #: mkt/submit/templates/submit/done.html:53
 msgid "Manage My App"

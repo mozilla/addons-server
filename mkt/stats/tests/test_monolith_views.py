@@ -17,7 +17,6 @@ import amo.tests
 from amo.urlresolvers import reverse
 from apps.stats.models import GlobalStat
 from market.models import Price
-from mkt.inapp_pay.models import InappConfig, InappPayment
 from mkt.webapps.models import Installed
 from mkt.site.fixtures import fixture
 from mkt.stats import search, tasks, views
@@ -41,20 +40,6 @@ class StatsTest(amo.tests.ESTestCase):
         self.url_args = {'start': '20090601', 'end': '20090930',
             'app_slug': self.private_app.app_slug}
 
-        # set up inapps
-        self.inapp_name = 'test_inapp'
-        self.public_config = InappConfig.objects.create(
-            addon=self.public_app, public_key='asd')
-        self.private_config = InappConfig.objects.create(
-            addon=self.private_app, public_key='fgh')
-        c = Contribution.objects.create(addon_id=self.public_app.pk,
-                                        user=self.user, amount=5)
-        InappPayment.objects.create(config=self.public_config, contribution=c,
-                                    name=self.inapp_name)
-        c = Contribution.objects.create(addon_id=self.private_app.pk,
-                                        user=self.user, amount=5)
-        InappPayment.objects.create(config=self.private_config, contribution=c,
-                                    name=self.inapp_name)
 
     def login_as_visitor(self):
         self.login(self.user)
@@ -63,8 +48,6 @@ class StatsTest(amo.tests.ESTestCase):
         view_args = self.url_args.copy()
         head = kwargs.pop('head', False)
         view_args.update(kwargs)
-        if '_inapp' in view:
-            view_args['inapp'] = self.inapp_name
         url = reverse(view, kwargs=view_args)
         if head:
             return self.client.head(url, follow=True)

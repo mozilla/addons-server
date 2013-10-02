@@ -81,7 +81,7 @@ models.signals.pre_save.connect(save_signal, sender=HubPromo,
 
 class HubEvent(amo.models.ModelBase):
     name = models.CharField(max_length=255, default='')
-    url = models.URLField(max_length=255, default='', verify_exists=False)
+    url = models.URLField(max_length=255, default='')
     location = models.CharField(max_length=255, default='')
     date = models.DateField(default=datetime.now)
 

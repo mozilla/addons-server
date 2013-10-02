@@ -483,33 +483,3 @@ def region_exclude(ids, regions, **kw):
             # Already excluded? Swag!
             AddonExcludedRegion.objects.get_or_create(addon_id=id_,
                                                       region=region.id)
-
-
-@task
-def new_payments_region_email(ids, region_slug, **kw):
-    region_name = dict(REGIONS_CHOICES_SLUG)[region_slug].name
-    log.info('[%s@%s] Emailing paid-app devs about new region: %s.' %
-             (len(ids), new_payments_region_email.rate_limit,
-              unicode(region_name)))
-
-    for id_ in ids:
-        log.info('[Webapp:%s] Emailing paid-app devs about new region: %s.' %
-                (id_, unicode(region_name)))
-
-        app = Webapp.objects.get(id=id_)
-        for author in app.authors.all():
-            to = [author.email]
-            with author.activate_lang():
-                if author.lang is not None:
-                    lang = to_language(author.lang)
-                    with translation.override(lang):
-                        app = Webapp.objects.get(id=id_)
-                context = {'app': app.name,
-                           'region': region_name,
-                           'payments_url': app.get_dev_url('payments')}
-                subject = _(u'{app}: {region} region added to the Firefox '
-                            u'Marketplace').format(**context)
-                send_mail_jinja(subject,
-                                'developers/emails/new_payments_region.html',
-                                context, recipient_list=to,
-                                perm_setting='app_regions')

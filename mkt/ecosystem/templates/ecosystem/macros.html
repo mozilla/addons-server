@@ -268,6 +268,13 @@
                   {{- _('Payments Status') }}</a>
               </li>
             </li>
+            <li>
+              <a href="{{ url('ecosystem.publish_badges') }}"
+                 {% if section == 'publish_badges' -%}
+                 class="selected"
+                 {% endif -%}>
+                {{- _('Badges, banners, and icons') }}</a>
+            </li>
           </ol>
         </div>
       </li>

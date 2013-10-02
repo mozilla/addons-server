@@ -152,11 +152,6 @@ class TestWebapp(amo.tests.TestCase):
                                          'json'])
         eq_(url, '/app/woo/statistics/installs-day-20120101-20120201.json')
 
-    def test_get_inapp_stats_url(self):
-        webapp = Webapp.objects.create(app_slug='woo')
-        eq_(webapp.get_stats_inapp_url(action='revenue', inapp='duh'),
-            '/app/woo/statistics/inapp/duh/sales/')
-
     def test_get_origin(self):
         url = 'http://www.xx.com:4000/randompath/manifest.webapp'
         webapp = Webapp(manifest_url=url)
@@ -236,21 +231,6 @@ class TestWebapp(amo.tests.TestCase):
 
         webapp._premium.price = 0
         eq_(webapp.has_premium(), True)
-
-    def test_get_possible_prices_premium(self):
-        webapp = Webapp.objects.create(premium_type=amo.ADDON_PREMIUM)
-        price = Price.objects.get(pk=1)
-        AddonPremium.objects.create(addon=webapp, price=price)
-        ok_(len(webapp.get_possible_price_region_ids()) > 0)
-        ok_(isinstance(webapp.get_possible_price_region_ids(), list))
-
-    def test_get_possible_prices_premium_then_free_inapp(self):
-        webapp = Webapp.objects.create(premium_type=amo.ADDON_PREMIUM)
-        price = Price.objects.get(pk=1)
-        AddonPremium.objects.create(addon=webapp, price=price)
-        webapp.premium_type = amo.ADDON_FREE_INAPP
-        eq_(len(webapp.get_possible_price_region_ids()), 0)
-        ok_(isinstance(webapp.get_possible_price_region_ids(), list))
 
     def test_get_price_no_premium(self):
         webapp = Webapp(premium_type=amo.ADDON_PREMIUM)
@@ -554,6 +534,26 @@ class TestWebapp(amo.tests.TestCase):
         # Now test the regional trending is returned when adolescent=False.
         region.adolescent = False
         eq_(app.get_trending(region=region), 10.0)
+
+
+class DeletedAppTests(amo.tests.ESTestCase):
+
+    def test_soft_deleted_no_current_version(self):
+        waffle.models.Switch.objects.create(name='soft_delete', active=True)
+        webapp = amo.tests.app_factory()
+        webapp._current_version = None
+        webapp.save()
+        webapp.delete()
+        eq_(webapp.current_version, None)
+
+    def test_soft_deleted_no_latest_version(self):
+        waffle.models.Switch.objects.create(name='soft_delete', active=True)
+        webapp = amo.tests.app_factory()
+        webapp._latest_version = None
+        webapp.save()
+        webapp.delete()
+        eq_(webapp.latest_version, None)
+
 
 
 class TestExclusions(amo.tests.TestCase):

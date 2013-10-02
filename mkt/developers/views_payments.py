@@ -61,10 +61,6 @@ def payments(request, addon_id, addon, webapp=False):
         request.POST or None, addon=addon, user=request.amo_user)
 
     if request.method == 'POST':
-        if premium_form.is_valid():
-            region_form = forms.RegionForm(request.POST, product=addon,
-                    request=request, price=premium_form.cleaned_data['price']
-                )
 
         success = all(form.is_valid() for form in
                       [premium_form, region_form, upsell_form,
@@ -114,10 +110,17 @@ def payments(request, addon_id, addon, webapp=False):
              ('desktop', True), ('firefoxos', False)]))
 
     try:
-        tier_zero_id = Price.objects.get(price='0.00',
-                                         active=True).pk
+        tier_zero = Price.objects.get(price='0.00', active=True)
+        tier_zero_id = tier_zero.pk
     except Price.DoesNotExist:
+        tier_zero = None
         tier_zero_id = ''
+
+    # Get the regions based on tier zero. This should be all the
+    # regions with payments enabled.
+    paid_region_ids_by_slug = []
+    if tier_zero:
+        paid_region_ids_by_slug = tier_zero.region_ids_by_slug()
 
     return jingo.render(
         request, 'developers/payments/premium.html',
@@ -145,7 +148,9 @@ def payments(request, addon_id, addon, webapp=False):
              PAYMENT_METHOD_ALL: _('All'),
              PAYMENT_METHOD_CARD: _('Credit card'),
              PAYMENT_METHOD_OPERATOR: _('Carrier'),
-         }})
+         },
+         'all_paid_region_ids_by_slug': paid_region_ids_by_slug,
+        })
 
 
 @login_required

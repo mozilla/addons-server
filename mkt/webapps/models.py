@@ -14,7 +14,6 @@ from django.core.urlresolvers import NoReverseMatch
 from django.db import models
 from django.db.models import signals as dbsignals
 from django.dispatch import receiver
-from django.utils.http import urlquote
 
 import commonware.log
 import waffle
@@ -245,32 +244,12 @@ class Webapp(Addon):
                        args=[self.app_slug] + (args or []),
                        add_prefix=add_prefix)
 
-    def get_stats_url(self, action='overview', inapp='', args=None):
+    def get_stats_url(self, action='overview', args=None):
         """Reverse URLs for 'stats', 'stats.overview', etc."""
         # Simplifies the templates to not have to choose whether to call
-        # get_stats_url or get_stats_inapp_url.
-        if inapp:
-            stats_url = self.get_stats_inapp_url(action=action,
-                                                 inapp=inapp, args=args)
-            return stats_url
-        if action.endswith('_inapp'):
-            action = action.replace('_inapp', '')
+        # get_stats_url.
         return reverse(('mkt.stats.%s' % action),
                        args=[self.app_slug] + (args or []))
-
-    def get_stats_inapp_url(self, action='revenue', inapp='', args=None):
-        """
-        Inapp reverse URLs for stats.
-        """
-        if not action.endswith('_inapp'):
-            action += '_inapp'
-        try:
-            url = reverse(('mkt.stats.%s' % action),
-                          args=[self.app_slug, urlquote(inapp)])
-        except NoReverseMatch:
-            url = reverse(('mkt.stats.%s' % 'revenue_inapp'),
-                          args=[self.app_slug, urlquote(inapp)])
-        return url
 
     @staticmethod
     def domain_from_url(url, allow_none=False):
@@ -597,13 +576,6 @@ class Webapp(Addon):
                     all_regions.difference(self.get_price_region_ids()))
 
         return sorted(list(excluded))
-
-    def get_possible_price_region_ids(self):
-        # TODO: Stuart is going to rip this out.
-        if self.has_premium() and self.premium:
-            ids = [p['region'] for p in self.premium.price.prices()]
-            return sorted(ids)
-        return []
 
     def get_price_region_ids(self):
         tier = self.get_tier()
@@ -1347,9 +1319,8 @@ class WebappIndexer(MappingType, Indexable):
     @classmethod
     def get_indexable(cls):
         """Returns the queryset of ids of all things to be indexed."""
-        return (Webapp.objects.filter(status__in=amo.VALID_STATUSES,
-                                      disabled_by_user=False)
-                              .order_by('-id').values_list('id', flat=True))
+        return (Webapp.with_deleted.all()
+                .order_by('-id').values_list('id', flat=True))
 
 
 # Pull all translated_fields from Addon over to Webapp.
