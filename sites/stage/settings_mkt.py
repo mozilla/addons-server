@@ -181,4 +181,4 @@ ES_USE_PLUGINS = True
 
 PURCHASE_LIMITED = True
 
-BANGO_BASE_PORTAL_URL = 'https://mozilla.bango.com/'
+BANGO_BASE_PORTAL_URL = 'https://mozilla.bango.com/login/al.aspx?'
