@@ -181,6 +181,15 @@
                     <div class="paid-regions">
                       <h3>{{ _('Available Regions') }}</h3>
                       <div class="hint note">
+                        <p>
+                          {% trans status_url='/developers/docs/payments/status' %}
+                            Check out the <a href="{{ status_url }}">status page</a> to see what
+                            countries are currently enabled for sale.
+                          {% endtrans %}
+                        </p>
+                      </div>
+
+                      <div class="hint note">
                         <p>{{ _('Your app will be available in the following selected regions:') }}</p>
                       </div>
                       <table id="paid-regions">
