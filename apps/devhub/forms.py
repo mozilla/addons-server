@@ -289,7 +289,7 @@ def ProfileForm(*args, **kw):
 
 
 class CharityForm(happyforms.ModelForm):
-    url = Charity._meta.get_field('url').formfield(verify_exists=False)
+    url = Charity._meta.get_field('url').formfield()
 
     class Meta:
         model = Charity
@@ -673,10 +673,8 @@ class Step3Form(addons.forms.AddonFormBasic):
 class Step3WebappForm(Step3Form):
     """Form to override certain fields for webapps"""
     name = TransField(max_length=128)
-    homepage = TransField.adapt(forms.URLField)(required=False,
-                                                verify_exists=False)
-    support_url = TransField.adapt(forms.URLField)(required=False,
-                                                   verify_exists=False)
+    homepage = TransField.adapt(forms.URLField)(required=False)
+    support_url = TransField.adapt(forms.URLField)(required=False)
     support_email = TransField.adapt(forms.EmailField)(required=False)
 
 
@@ -970,7 +968,7 @@ class CheckCompatibilityForm(happyforms.Form):
 
 
 class NewManifestForm(happyforms.Form):
-    manifest = forms.URLField(verify_exists=False)
+    manifest = forms.URLField()
 
     def clean_manifest(self):
         manifest = self.cleaned_data['manifest']

@@ -591,7 +591,7 @@ class FeaturedCollection(amo.models.ModelBase):
 class MonthlyPick(amo.models.ModelBase):
     addon = models.ForeignKey(Addon)
     blurb = models.TextField()
-    image = models.URLField(verify_exists=False)
+    image = models.URLField()
     locale = models.CharField(max_length=10, unique=True, null=True,
                               blank=True)
 

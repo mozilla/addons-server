@@ -318,8 +318,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                                           related_name='addons')
     premium_type = models.PositiveIntegerField(
         choices=amo.ADDON_PREMIUM_TYPES.items(), default=amo.ADDON_FREE)
-    manifest_url = models.URLField(max_length=255, blank=True, null=True,
-                                   verify_exists=False)
+    manifest_url = models.URLField(max_length=255, blank=True, null=True)
     app_domain = models.CharField(max_length=255, blank=True, null=True,
                                   db_index=True)
 
@@ -2212,7 +2211,7 @@ class AppSupport(amo.models.ModelBase):
 
 class Charity(amo.models.ModelBase):
     name = models.CharField(max_length=255)
-    url = models.URLField(verify_exists=False)
+    url = models.URLField()
     paypal = models.CharField(max_length=255)
 
     class Meta:
