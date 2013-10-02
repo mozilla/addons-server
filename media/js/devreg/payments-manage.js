@@ -15,6 +15,27 @@ define('payments-manage', ['payments'], function(payments) {
         payments.setupPaymentAccountOverlay($overlay, showAgreement);
     }
 
+    function confirmPaymentAccountDeletion(data) {
+        var spliter = ', ';
+        var isPlural = data['app-names'].indexOf(spliter) < 0;
+        var $confirm_delete_overlay = payments.getOverlay('payment-account-delete-confirm');
+        $confirm_delete_overlay.find('p').text(
+            format('Warning: deleting payment account "{0}" ' +
+                   'will move {1} associated {2} to an incomplete status ' +
+                   'and {3} will no longer be available for sale:',
+                   [data['name'],
+                    ngettext('that', 'those', isPlural),
+                    ngettext('app', 'apps', isPlural),
+                    ngettext('it', 'they', isPlural)]));
+        $confirm_delete_overlay.find('ul')
+                               .html('<li>' + escape_(data['app-names']).split(spliter).join('</li><li>') + '</li>');
+        $confirm_delete_overlay.on('click', 'a.payment-account-delete-confirm', _pd(function() {
+            $.post(data['delete-url']).then(refreshAccountForm);
+            $confirm_delete_overlay.remove();
+            $('#paid-island-incomplete').toggleClass('hidden');
+        }));
+    }
+
     function setupAgreementOverlay(data, onsubmit) {
         var $waiting_overlay = payments.getOverlay('bango-waiting');
 
@@ -100,20 +121,29 @@ define('payments-manage', ['payments'], function(payments) {
             }
 
             $overlay_section.on('click', 'a.delete-account', _pd(function() {
-                var $tr = $(this).parents('tr').remove();
-
-                // Post to the delete URL, then refresh the account form.
-                $.post($tr.data('delete-url')).then(refreshAccountForm);
+                var parent = $(this).closest('tr');
+                var app_names = parent.data('app-names');
+                var delete_url = parent.data('delete-url');
+                if (app_names === '') {
+                    parent.remove();
+                    $.post(delete_url).then(refreshAccountForm);
+                } else {
+                    confirmPaymentAccountDeletion({
+                        'app-names': app_names,
+                        'delete-url': delete_url,
+                        'name': parent.data('account-name')
+                    });
+                }
             })).on('click', '.modify-account', _pd(function() {
                 // Get the account URL from the table row and pass it to
                 // the function to handle the Edit overlay.
-                editBangoPaymentAccount($(this).parents('tr').data('account-url'))();
+                editBangoPaymentAccount($(this).closest('tr').data('account-url'))();
             })).on('click', '.accept-tos', _pd(function() {
-                showAgreement({'agreement-url': $(this).parents('tr').data('agreement-url')});
+                showAgreement({'agreement-url': $(this).closest('tr').data('agreement-url')});
             })).on('click', '.portal-account', _pd(function() {
                 var $this = $(this);
                 portalRedirect({
-                    'portal-url': $this.parents('tr').data('portal-url'),
+                    'portal-url': $this.closest('tr').data('portal-url'),
                     'el': $this
                 });
             }));

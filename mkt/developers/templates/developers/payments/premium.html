@@ -106,14 +106,12 @@
       <div id="paid-island">
         {{ disabled_payments_notice() }}
         <h2>{{ _('Payment accounts') }}</h2>
-        {% if is_incomplete %}
-          <div class="island warning">
-            {%- trans %}
-              Your app is currently incomplete. Select a payment account and
-              price point to restore it.
-            {% endtrans -%}
-          </div>
-        {% endif %}
+        <div id="paid-island-incomplete" class="island warning{% if not is_incomplete %} hidden{% endif %}">
+          {%- trans %}
+            Your app is currently incomplete. Select a payment account and
+            price point to restore it.
+          {% endtrans -%}
+        </div>
         <section class="island payments">
           <table>
             <tbody>
