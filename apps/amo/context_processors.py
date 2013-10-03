@@ -14,7 +14,7 @@ from zadmin.models import get_config
 
 
 def app(request):
-    return {'APP': request.APP}
+    return {'APP': getattr(request, 'APP', None)}
 
 
 def static_url(request):

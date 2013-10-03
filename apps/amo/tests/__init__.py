@@ -32,6 +32,7 @@ from test_utils import RequestFactory
 from waffle import cache_sample, cache_switch
 from waffle.models import Flag, Sample, Switch
 
+from access.acl import check_ownership
 import addons.search
 import amo
 import amo.search
@@ -49,6 +50,7 @@ from lib.es.signals import process, reset
 from market.models import AddonPremium, Price, PriceCurrency
 from translations.models import Translation
 from versions.models import ApplicationsVersions, Version
+from users.models import RequestUser
 
 import mkt
 from mkt.constants import regions
@@ -726,9 +728,11 @@ def req_factory_factory(url, user=None, post=False, data=None):
     else:
         req = req.get(url, data or {})
     if user:
-        req.amo_user = user
+        req.amo_user = RequestUser.objects.get(id=user.id)
         req.user = user.user
         req.groups = req.user.get_profile().groups.all()
+    req.APP = None
+    req.check_ownership = partial(check_ownership, req)
     return req
 
 
