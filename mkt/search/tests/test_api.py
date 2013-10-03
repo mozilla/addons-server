@@ -740,7 +740,7 @@ class TestFeaturedCollections(BaseFeaturedTests):
         # because the fallback mechanism will try with region set to None.
         self.col.update(region=None, carrier=None)
         self.qs['region'] = mkt.regions.SPAIN.slug
-        self.qs['carrier'] = mkt.carriers.UNKNOWN_CARRIER
+        self.qs['carrier'] = mkt.carriers.UNKNOWN_CARRIER.slug
         res, json = self.test_added_to_results()
 
         header = 'API-Fallback-%s' % self.prop_name

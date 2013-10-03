@@ -172,7 +172,12 @@ class CollectionFilterSetWithFallback(CollectionFilterSet):
             return self._qs
 
         qs = self.get_queryset()
-        if not hasattr(qs, 'filter_errors') and not qs.exists():
+
+        if hasattr(qs, 'filter_errors'):
+            # Immediately return if there was an error.
+            self._qs = qs
+            return self._qs
+        elif not qs.exists():
             try:
                 qs = self.refilter_queryset()
             except StopIteration:
