@@ -246,8 +246,7 @@ class Command(BaseCommand):
                           'another indexation is ongoing'),
                     default=False),
         make_option('--wipe', action='store_true',
-                    help=('Wipes ES from any content first. This option '
-                          'will destroy anything that is in ES!'),
+                    help=('Deletes AMO indexes prior to reindexing.'),
                     default=False),
     )
 
@@ -272,15 +271,16 @@ class Command(BaseCommand):
         log('Starting the reindexation')
 
         if kwargs.get('wipe', False):
-            confirm = raw_input("Are you sure you want to wipe all data from "
-                                "ES ? (yes/no): ")
+            confirm = raw_input('Are you sure you want to wipe all AMO '
+                                'Elasticsearch indexes? (yes/no): ')
 
             while confirm not in ('yes', 'no'):
                 confirm = raw_input('Please enter either "yes" or "no": ')
 
             if confirm == 'yes':
                 unflag_database()
-                requests.delete(url('/'))
+                for index in set(_ALIASES.values()):
+                    requests.delete(url('/%s') % index)
             else:
                 raise CommandError("Aborted.")
         elif force:
