@@ -29,6 +29,12 @@ from users.cron import reindex_users
 _INDEXES = {}
 _ALIASES = django_settings.ES_INDEXES.copy()
 _ALIASES.pop('webapp')  # Don't index webapps here.
+# Remove stats indexes. They may be added later via the --with-stats option.
+_STATS_ALIASES = {}
+for k, v in _ALIASES.items():
+    if 'stats' in v:
+        _ALIASES.pop(k)
+        _STATS_ALIASES[k] = v
 
 
 def index_stats(index=None, aliased=True):
@@ -248,6 +254,9 @@ class Command(BaseCommand):
         make_option('--wipe', action='store_true',
                     help=('Deletes AMO indexes prior to reindexing.'),
                     default=False),
+        make_option('--with-stats', action='store_true',
+                    help=('Whether to also reindex AMO stats. Default: False'),
+                    default=False),
     )
 
     def handle(self, *args, **kwargs):
@@ -269,6 +278,10 @@ class Command(BaseCommand):
 
         prefix = kwargs.get('prefix', '')
         log('Starting the reindexation')
+
+        if kwargs.get('with_stats', False):
+            # Add the stats indexes back.
+            _ALIASES.update(_STATS_ALIASES)
 
         if kwargs.get('wipe', False):
             confirm = raw_input('Are you sure you want to wipe all AMO '
