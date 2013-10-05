@@ -258,10 +258,9 @@ class Command(BaseCommand):
         over the old ones so the search feature
         works while the indexation occurs
         """
-        if not django_settings.MARKETPLACE:
-            raise CommandError('This command affects both the marketplace and '
-                               'AMO ES storage. But the command can only be '
-                               'run from the Marketplace.')
+        if django_settings.MARKETPLACE:
+            raise CommandError('This command affects the AMO ES indexes and '
+                               'can only be run from AMO.')
 
         force = kwargs.get('force', False)
 
