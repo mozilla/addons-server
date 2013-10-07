@@ -54,10 +54,6 @@ class Translation(amo.models.ModelBase):
         self.clean()
         return super(Translation, self).save(**kwargs)
 
-    @property
-    def cache_key(self):
-        return self._cache_key(self.id, self._state.db)
-
     @classmethod
     def _cache_key(cls, pk, db):
         # Hard-coding the class name here so that subclasses don't try to cache
