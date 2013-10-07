@@ -1,4 +1,5 @@
 import json
+from urlparse import urljoin
 
 from django.conf import settings
 from django.core.cache import cache
@@ -289,5 +290,5 @@ class TestOpensearch(amo.tests.TestCase):
         e = doc.find('{http://a9.com/-/spec/opensearch/1.1/}ShortName')
         eq_(e.text, 'Firefox Marketplace')
         e = doc.find('{http://a9.com/-/spec/opensearch/1.1/}Url')
-        wanted = '%s%s?q={searchTerms}' % (settings.SITE_URL, '/search')
+        wanted = '%s?q={searchTerms}' % urljoin(settings.SITE_URL, '/search')
         eq_(e.attrib['template'], wanted)

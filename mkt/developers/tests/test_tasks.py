@@ -476,14 +476,14 @@ class TestFetchIcon(BaseWebAppTest):
 
 class TestRegionEmail(amo.tests.WebappTestCase):
 
-    @mock.patch.object(settings, 'SITE_URL', 'http://omg.org/yes')
+    @mock.patch.object(settings, 'SITE_URL', 'http://omg.org/')
     def test_email_for_one_new_region(self):
         tasks.region_email([self.app.id], [mkt.regions.BR])
         msg = mail.outbox[0]
         eq_(msg.subject, '%s: Brazil region added to the Firefox Marketplace'
                           % self.app.name)
         eq_(msg.to, ['steamcube@mozilla.com'])
-        dev_url = ('http://omg.org/yes/developers/app/something-something/'
+        dev_url = ('http://omg.org/developers/app/something-something/'
                    'edit#details')
         assert unicode(self.app.name) in msg.body
         assert dev_url in msg.body
@@ -492,7 +492,7 @@ class TestRegionEmail(amo.tests.WebappTestCase):
         # TODO: Re-enable this when we bring back Unsubscribe (bug 802379).
         #assert 'Unsubscribe' in msg.body
 
-    @mock.patch.object(settings, 'SITE_URL', 'http://omg.org/yes')
+    @mock.patch.object(settings, 'SITE_URL', 'http://omg.org/')
     def test_email_for_two_new_regions(self):
         tasks.region_email([self.app.id],
                            [mkt.regions.UK, mkt.regions.BR])
@@ -500,7 +500,7 @@ class TestRegionEmail(amo.tests.WebappTestCase):
         eq_(msg.subject, '%s: New regions added to the Firefox Marketplace'
                          % self.app.name)
         eq_(msg.to, ['steamcube@mozilla.com'])
-        dev_url = ('http://omg.org/yes/developers/app/something-something/'
+        dev_url = ('http://omg.org/developers/app/something-something/'
                    'edit#details')
         assert unicode(self.app.name) in msg.body
         assert dev_url in msg.body
@@ -509,7 +509,7 @@ class TestRegionEmail(amo.tests.WebappTestCase):
         # TODO: Re-enable this when we bring back Unsubscribe (bug 802379).
         #assert 'Unsubscribe' in msg.body
 
-    @mock.patch.object(settings, 'SITE_URL', 'http://omg.org/yes')
+    @mock.patch.object(settings, 'SITE_URL', 'http://omg.org/')
     def test_email_for_several_new_regions(self):
         tasks.region_email([self.app.id],
                            [mkt.regions.UK, mkt.regions.US, mkt.regions.BR])

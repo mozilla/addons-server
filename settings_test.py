@@ -55,19 +55,20 @@ VALIDATE_ADDONS = True
 
 PAYPAL_PERMISSIONS_URL = ''
 
-SITE_URL = STATIC_URL = 'http://testserver'
+SITE_URL = 'http://testserver'
+STATIC_URL = SITE_URL + '/'
 MOBILE_SITE_URL = ''
 MEDIA_URL = '/media/'
 # Reset these URLs to the defaults so your settings_local doesn't clobber them:
 ADDON_ICONS_DEFAULT_URL = MEDIA_URL + '/img/addon-icons'
 ADDON_ICON_BASE_URL = MEDIA_URL + 'img/icons/'
-ADDON_ICON_URL = (
-    STATIC_URL + '/img/uploads/addon_icons/%s/%s-%s.png?modified=%s')
-PREVIEW_THUMBNAIL_URL = (
-    STATIC_URL + '/img/uploads/previews/thumbs/%s/%d.png?modified=%d')
-PREVIEW_FULL_URL = (
-    STATIC_URL + '/img/uploads/previews/full/%s/%d.%s?modified=%d')
-USERPICS_URL = STATIC_URL + '/img/uploads/userpics/%s/%s/%s.png?modified=%d'
+ADDON_ICON_URL = (STATIC_URL +
+                  'img/uploads/addon_icons/%s/%s-%s.png?modified=%s')
+PREVIEW_THUMBNAIL_URL = (STATIC_URL +
+                         'img/uploads/previews/thumbs/%s/%d.png?modified=%d')
+PREVIEW_FULL_URL = (STATIC_URL +
+                    'img/uploads/previews/full/%s/%d.%s?modified=%d')
+USERPICS_URL = STATIC_URL + 'img/uploads/userpics/%s/%s/%s.png?modified=%d'
 
 CACHES = {
     'default': {

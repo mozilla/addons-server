@@ -53,14 +53,28 @@ class CollectionViewSet(CORSMixin, SlugOrIdMixin, viewsets.ModelViewSet):
     def filter_queryset(self, queryset):
         queryset = super(CollectionViewSet, self).filter_queryset(queryset)
         self.filter_fallback = getattr(queryset, 'filter_fallback', None)
+        self.filter_errors = getattr(queryset, 'filter_errors', None)
         return queryset
 
     def list(self, request, *args, **kwargs):
         response = super(CollectionViewSet, self).list(
             request, *args, **kwargs)
-        filter_fallback = getattr(self, 'filter_fallback', None)
-        if filter_fallback:
-            response['API-Fallback'] = ','.join(filter_fallback)
+        if response:
+            filter_fallback = getattr(self, 'filter_fallback', None)
+            if filter_fallback:
+                response['API-Fallback'] = ','.join(filter_fallback)
+
+            filter_errors = getattr(self, 'filter_errors', None)
+            if filter_errors:
+                # If we had errors filtering, the default behaviour of DRF
+                # and django-filter is to produce an empty queryset and ignore
+                # the problem. We want to fail loud and clear and expose the
+                # errors instead.
+                response.data = {
+                    'detail': 'Filtering error.',
+                    'filter_errors': filter_errors
+                }
+                response.status_code = status.HTTP_400_BAD_REQUEST
         return response
 
     def get_object(self, queryset=None):

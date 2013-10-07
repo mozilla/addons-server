@@ -1,9 +1,9 @@
 from django.conf.urls import url
 
 import commonware.log
-from tastypie import fields, http
-from tastypie.bundle import Bundle
+from tastypie import fields, http, paginator
 from tastypie.authorization import Authorization
+from tastypie.bundle import Bundle
 from tastypie.utils import trailing_slash
 
 import amo
@@ -28,6 +28,15 @@ from reviews.models import Review, ReviewFlag
 log = commonware.log.getLogger('z.api')
 
 
+class RatingPaginator(paginator.Paginator):
+    def get_count(self):
+        try:
+            r = self.objects[0]
+        except IndexError:
+            return 0
+        return r.addon.total_reviews
+
+
 class RatingResource(CORSResource, MarketplaceModelResource):
 
     app = fields.ToOneField(AppResource, 'addon', readonly=True)
@@ -47,7 +56,7 @@ class RatingResource(CORSResource, MarketplaceModelResource):
                           OptionalOAuthAuthentication())
         authorization = AnonymousReadOnlyAuthorization()
         fields = ['rating', 'body', 'modified', 'created']
-
+        paginator_class = RatingPaginator
         filtering = {
             'app': ('exact',),
             'user': ('exact',),

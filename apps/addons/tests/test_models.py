@@ -1671,12 +1671,15 @@ class TestFlushURLs(amo.tests.TestCase):
                 'addons/persona']
 
     def setUp(self):
-        settings.ADDON_ICON_URL = (settings.STATIC_URL +
-            '/img/uploads/addon_icons/%s/%s-%s.png?modified=%s')
-        settings.PREVIEW_THUMBNAIL_URL = (settings.STATIC_URL +
-            '/img/uploads/previews/thumbs/%s/%d.png?modified=%d')
-        settings.PREVIEW_FULL_URL = (settings.STATIC_URL +
-            '/img/uploads/previews/full/%s/%d.%s?modified=%d')
+        settings.ADDON_ICON_URL = (
+            settings.STATIC_URL +
+            'img/uploads/addon_icons/%s/%s-%s.png?modified=%s')
+        settings.PREVIEW_THUMBNAIL_URL = (
+            settings.STATIC_URL +
+            'img/uploads/previews/thumbs/%s/%d.png?modified=%d')
+        settings.PREVIEW_FULL_URL = (
+            settings.STATIC_URL +
+            'img/uploads/previews/full/%s/%d.%s?modified=%d')
         _connect()
 
     def tearDown(self):

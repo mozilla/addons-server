@@ -29,6 +29,12 @@ from users.cron import reindex_users
 _INDEXES = {}
 _ALIASES = django_settings.ES_INDEXES.copy()
 _ALIASES.pop('webapp')  # Don't index webapps here.
+# Remove stats indexes. They may be added later via the --with-stats option.
+_STATS_ALIASES = {}
+for k, v in _ALIASES.items():
+    if 'stats' in v:
+        _ALIASES.pop(k)
+        _STATS_ALIASES[k] = v
 
 
 def index_stats(index=None, aliased=True):
@@ -246,8 +252,10 @@ class Command(BaseCommand):
                           'another indexation is ongoing'),
                     default=False),
         make_option('--wipe', action='store_true',
-                    help=('Wipes ES from any content first. This option '
-                          'will destroy anything that is in ES!'),
+                    help=('Deletes AMO indexes prior to reindexing.'),
+                    default=False),
+        make_option('--with-stats', action='store_true',
+                    help=('Whether to also reindex AMO stats. Default: False'),
                     default=False),
     )
 
@@ -258,10 +266,9 @@ class Command(BaseCommand):
         over the old ones so the search feature
         works while the indexation occurs
         """
-        if not django_settings.MARKETPLACE:
-            raise CommandError('This command affects both the marketplace and '
-                               'AMO ES storage. But the command can only be '
-                               'run from the Marketplace.')
+        if django_settings.MARKETPLACE:
+            raise CommandError('This command affects the AMO ES indexes and '
+                               'can only be run from AMO.')
 
         force = kwargs.get('force', False)
 
@@ -272,16 +279,21 @@ class Command(BaseCommand):
         prefix = kwargs.get('prefix', '')
         log('Starting the reindexation')
 
+        if kwargs.get('with_stats', False):
+            # Add the stats indexes back.
+            _ALIASES.update(_STATS_ALIASES)
+
         if kwargs.get('wipe', False):
-            confirm = raw_input("Are you sure you want to wipe all data from "
-                                "ES ? (yes/no): ")
+            confirm = raw_input('Are you sure you want to wipe all AMO '
+                                'Elasticsearch indexes? (yes/no): ')
 
             while confirm not in ('yes', 'no'):
                 confirm = raw_input('Please enter either "yes" or "no": ')
 
             if confirm == 'yes':
                 unflag_database()
-                requests.delete(url('/'))
+                for index in set(_ALIASES.values()):
+                    requests.delete(url('/%s') % index)
             else:
                 raise CommandError("Aborted.")
         elif force:

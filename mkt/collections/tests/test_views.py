@@ -33,39 +33,15 @@ from mkt.collections.tests.test_serializers import (CollectionDataMixin,
 from users.models import UserProfile
 
 
-class TestCollectionViewSetMixin(object):
-    def make_publisher(self):
-        self.grant_permission(self.profile, 'Collections:Curate')
-
-    def create(self, client):
-        res = client.post(self.list_url, json.dumps(self.collection_data))
-        data = json.loads(res.content)
-        return res, data
-
-    def duplicate(self, client, data=None):
-        if not data:
-            data = {}
-        url = self.collection_url('duplicate', self.collection.pk)
-        res = client.post(url, json.dumps(data))
-        data = json.loads(res.content)
-        return res, data
-
-    def edit_collection(self, client, **kwargs):
-        url = self.collection_url('detail', self.collection.pk)
-        res = client.patch(url, json.dumps(kwargs))
-        data = json.loads(res.content)
-        return res, data
-
-    def collection_url(self, action, pk):
-        return reverse('collections-%s' % action, kwargs={'pk': pk})
-
-
-class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
+class BaseCollectionViewSetTest(RestOAuth):
+    """
+    Base class for all CollectionViewSet tests.
+    """
     fixtures = fixture('user_2519', 'user_999')
 
     def setUp(self):
         self.create_switch('rocketfuel')
-        super(TestCollectionViewSet, self).setUp()
+        super(BaseCollectionViewSetTest, self).setUp()
         self.serializer = CollectionSerializer()
         self.collection_data = {
             'author': u'My Àuthør',
@@ -78,35 +54,67 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
             'text_color': '#000FFF',
         }
         self.collection = Collection.objects.create(**self.collection_data)
-        self.apps = [amo.tests.app_factory() for n in xrange(1, 5)]
+        self.apps = []
         self.list_url = reverse('collections-list')
         self.user2 = UserProfile.objects.get(pk=999)
 
-    def make_curator(self):
-        self.collection.add_curator(UserProfile.objects.get(pk=2519))
+    def setup_unique(self):
+        """
+        Additional setup required to test collection category/region/carrier
+        uniqueness constraints.
+        """
+        self.category = Category.objects.create(type=amo.ADDON_WEBAPP,
+            name='Grumpy', slug='grumpy-cat')
+        self.collection_data = {
+            'collection_type': COLLECTIONS_TYPE_FEATURED,
+            'name': 'Featured Apps are cool',
+            'slug': 'featured-apps-are-cool',
+            'description': 'Featured Apps really are the bomb',
+            'region': mkt.regions.SPAIN.id,
+            'carrier': mkt.carriers.TELEFONICA.id,
+            'category': self.category,
+            'is_public': True,
+        }
+        self.collection = Collection.objects.create(**self.collection_data)
+        self.grant_permission(self.profile, 'Collections:Curate')
 
-    def add_all_apps(self):
-        for app in self.apps:
-            self.add_app(self.client, app_id=app.pk)
+    def create_apps(self, number=1):
+        """
+        Create `number` apps, adding them to `self.apps`.
+        """
+        for n in xrange(0, number):
+            self.apps.append(amo.tests.app_factory())
 
-    def listing(self, client):
-        for app in self.apps:
+    def add_apps_to_collection(self, *args):
+        """
+        Add each app passed to `*args` to `self.collection`.
+        """
+        for app in args:
             self.collection.add_app(app)
-        res = client.get(self.list_url)
-        data = json.loads(res.content)
-        eq_(res.status_code, 200)
-        collection = data['objects'][0]
-        apps = collection['apps']
 
-        # Verify that the apps are present in the correct order.
-        for order, app in enumerate(self.apps):
-            eq_(apps[order]['slug'], app.app_slug)
+    def make_curator(self):
+        """
+        Make the authenticating user a curator on self.collection.
+        """
+        self.collection.add_curator(self.profile)
 
-        # Verify that the collection metadata is in tact.
-        for field, value in self.collection_data.iteritems():
-            eq_(collection[field], self.collection_data[field])
+    def make_publisher(self):
+        """
+        Grant the Collections:Curate permission to the authenticating user.
+        """
+        self.grant_permission(self.profile, 'Collections:Curate')
+
+    def collection_url(self, action, pk):
+        """
+        Return the URL to a collection API endpoint with primary key `pk` to do
+        action `action`.
+        """
+        return reverse('collections-%s' % action, kwargs={'pk': pk})
 
     def create_additional_data(self):
+        """
+        Creates two additional categories and three additional collections.
+        """
         self.category = Category.objects.create(slug='ccc', name='CatCatCat',
                                                 type=amo.ADDON_WEBAPP)
         self.empty_category = Category.objects.create(slug='emptycat',
@@ -141,6 +149,29 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         }
         self.collection4 = Collection.objects.create(**collection_data)
 
+
+class TestCollectionViewSetListing(BaseCollectionViewSetTest):
+    """
+    Tests the handling of GET requests to the list endpoint of
+    CollectionViewSet.
+    """
+    def listing(self, client):
+        self.create_apps()
+        self.add_apps_to_collection(*self.apps)
+        res = client.get(self.list_url)
+        data = json.loads(res.content)
+        eq_(res.status_code, 200)
+        collection = data['objects'][0]
+        apps = collection['apps']
+
+        # Verify that the apps are present in the correct order.
+        for order, app in enumerate(self.apps):
+            eq_(apps[order]['slug'], app.app_slug)
+
+        # Verify that the collection metadata is in tact.
+        for field, value in self.collection_data.iteritems():
+            eq_(collection[field], self.collection_data[field])
+
     def test_listing(self):
         self.listing(self.anon)
 
@@ -159,8 +190,8 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         """
         Hidden collections that you do not own should not be returned.
         """
-        for app in self.apps:
-            self.collection.add_app(app)
+        self.create_apps()
+        self.add_apps_to_collection(*self.apps)
         self.collection.update(is_public=False)
         res = self.client.get(self.list_url)
         data = json.loads(res.content)
@@ -171,8 +202,8 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         """
         Hidden collections that you do own should be returned.
         """
-        for app in self.apps:
-            self.collection.add_app(app)
+        self.create_apps()
+        self.add_apps_to_collection(*self.apps)
         self.collection.update(is_public=False)
         self.collection.curators.add(self.user.get_profile())
         res = self.client.get(self.list_url)
@@ -191,6 +222,14 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         eq_(len(collections), 4)
         ok_('API-Fallback' not in res)
 
+    def test_listing_filtering_error(self):
+        res = self.client.get(self.list_url, {'region': 'whateverdude'})
+        eq_(res.status_code, 400)
+        data = json.loads(res.content)
+        eq_(data['detail'], 'Filtering error.')
+        errors = data['filter_errors']
+        ok_(errors['region'][0].startswith('Select a valid choice.'))
+
     def test_listing_filtering_region(self):
         self.create_additional_data()
         self.make_publisher()
@@ -203,8 +242,8 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         data = json.loads(res.content)
         collections = data['objects']
         eq_(len(collections), 2)
-        eq_(collections[0]['id'], self.collection4.id)
-        eq_(collections[1]['id'], self.collection2.id)
+        eq_(collections[0]['id'], self.collection4.pk)
+        eq_(collections[1]['id'], self.collection2.pk)
         ok_('API-Fallback' not in res)
 
     def test_listing_filtering_region_id(self):
@@ -219,8 +258,8 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         data = json.loads(res.content)
         collections = data['objects']
         eq_(len(collections), 2)
-        eq_(collections[0]['id'], self.collection4.id)
-        eq_(collections[1]['id'], self.collection2.id)
+        eq_(collections[0]['id'], self.collection4.pk)
+        eq_(collections[1]['id'], self.collection2.pk)
         ok_('API-Fallback' not in res)
 
     def test_listing_filtering_carrier(self):
@@ -233,8 +272,8 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         data = json.loads(res.content)
         collections = data['objects']
         eq_(len(collections), 2)
-        eq_(collections[0]['id'], self.collection4.id)
-        eq_(collections[1]['id'], self.collection3.id)
+        eq_(collections[0]['id'], self.collection4.pk)
+        eq_(collections[1]['id'], self.collection3.pk)
         ok_('API-Fallback' not in res)
 
     def test_listing_filtering_carrier_id(self):
@@ -247,8 +286,8 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         data = json.loads(res.content)
         collections = data['objects']
         eq_(len(collections), 2)
-        eq_(collections[0]['id'], self.collection4.id)
-        eq_(collections[1]['id'], self.collection3.id)
+        eq_(collections[0]['id'], self.collection4.pk)
+        eq_(collections[1]['id'], self.collection3.pk)
         ok_('API-Fallback' not in res)
 
     def test_listing_filtering_carrier_null(self):
@@ -260,7 +299,7 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         data = json.loads(res.content)
         collections = data['objects']
         eq_(len(collections), 1)
-        eq_(collections[0]['id'], self.collection.id)
+        eq_(collections[0]['id'], self.collection.pk)
         ok_('API-Fallback' not in res)
 
     def test_listing_filtering_carrier_0(self):
@@ -273,7 +312,7 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         data = json.loads(res.content)
         collections = data['objects']
         eq_(len(collections), 1)
-        eq_(collections[0]['id'], self.collection2.id)
+        eq_(collections[0]['id'], self.collection2.pk)
         ok_('API-Fallback' not in res)
 
     def test_listing_filtering_region_null(self):
@@ -285,8 +324,8 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         data = json.loads(res.content)
         collections = data['objects']
         eq_(len(collections), 2)
-        eq_(collections[0]['id'], self.collection3.id)
-        eq_(collections[1]['id'], self.collection.id)
+        eq_(collections[0]['id'], self.collection3.pk)
+        eq_(collections[1]['id'], self.collection.pk)
         ok_('API-Fallback' not in res)
 
     def test_listing_filtering_category(self):
@@ -298,19 +337,19 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         data = json.loads(res.content)
         collections = data['objects']
         eq_(len(collections), 1)
-        eq_(collections[0]['id'], self.collection4.id)
+        eq_(collections[0]['id'], self.collection4.pk)
         ok_('API-Fallback' not in res)
 
     def test_listing_filtering_category_id(self):
         self.create_additional_data()
         self.make_publisher()
 
-        res = self.client.get(self.list_url, {'cat': self.category.id})
+        res = self.client.get(self.list_url, {'cat': self.category.pk})
         eq_(res.status_code, 200)
         data = json.loads(res.content)
         collections = data['objects']
         eq_(len(collections), 1)
-        eq_(collections[0]['id'], self.collection4.id)
+        eq_(collections[0]['id'], self.collection4.pk)
         ok_('API-Fallback' not in res)
 
     def test_listing_filtering_category_null(self):
@@ -322,9 +361,9 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         data = json.loads(res.content)
         collections = data['objects']
         eq_(len(collections), 3)
-        eq_(collections[0]['id'], self.collection3.id)
-        eq_(collections[1]['id'], self.collection2.id)
-        eq_(collections[2]['id'], self.collection.id)
+        eq_(collections[0]['id'], self.collection3.pk)
+        eq_(collections[1]['id'], self.collection2.pk)
+        eq_(collections[2]['id'], self.collection.pk)
         ok_('API-Fallback' not in res)
 
     def test_listing_filtering_category_region_carrier(self):
@@ -340,7 +379,7 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         data = json.loads(res.content)
         collections = data['objects']
         eq_(len(collections), 1)
-        eq_(collections[0]['id'], self.collection4.id)
+        eq_(collections[0]['id'], self.collection4.pk)
         ok_('API-Fallback' not in res)
 
     def test_listing_filtering_category_region_carrier_fallback(self):
@@ -382,7 +421,7 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         data = json.loads(res.content)
         collections = data['objects']
         eq_(len(collections), 1)
-        eq_(collections[0]['id'], self.collection.id)
+        eq_(collections[0]['id'], self.collection.pk)
         eq_(res['API-Fallback'], 'carrier')
 
     def test_listing_filtering_nonexistant_carrier_and_region(self):
@@ -408,25 +447,18 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         data = json.loads(res.content)
         collections = data['objects']
         eq_(len(collections), 1)
-        eq_(collections[0]['id'], self.collection.id)
+        eq_(collections[0]['id'], self.collection.pk)
         eq_(res['API-Fallback'], 'region,carrier')
 
-    def test_detail_filtering(self):
-        self.collection.update(region=mkt.regions.SPAIN.id)
-        url = self.collection_url('detail', self.collection.pk)
-        res = self.client.get(url, {
-            'region': mkt.regions.WORLDWIDE.slug
-        })
-        # Filtering should not be applied.
-        eq_(res.status_code, 200)
-        data = json.loads(res.content)
-        eq_(data['id'], self.collection.id)
-        ok_('API-Fallback' not in res)
 
+class TestCollectionViewSetDetail(BaseCollectionViewSetTest):
+    """
+    Tests the handling of GET requests to a single collection on
+    CollectionViewSet.
+    """
     def detail(self, client, url=None):
-        apps = self.apps[:2]
-        for app in apps:
-            self.collection.add_app(app)
+        self.create_apps(number=2)
+        self.add_apps_to_collection(*self.apps)
         if not url:
             url = self.collection_url('detail', self.collection.pk)
         res = client.get(url)
@@ -438,10 +470,22 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
             eq_(data[field], self.collection_data[field])
 
         # Verify that the apps are present in the correct order.
-        for order, app in enumerate(apps):
+        for order, app in enumerate(self.apps):
             eq_(data['apps'][order]['slug'], app.app_slug)
 
         return res, data
+
+    def test_detail_filtering(self):
+        self.collection.update(region=mkt.regions.SPAIN.id)
+        url = self.collection_url('detail', self.collection.pk)
+        res = self.client.get(url, {
+            'region': mkt.regions.WORLDWIDE.slug
+        })
+        # Filtering should not be applied.
+        eq_(res.status_code, 200)
+        data = json.loads(res.content)
+        eq_(data['id'], self.collection.pk)
+        ok_('API-Fallback' not in res)
 
     def test_detail(self):
         res, data = self.detail(self.anon)
@@ -467,6 +511,17 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
     def test_detail_curator(self):
         self.make_curator()
         self.detail(self.client)
+
+
+class TestCollectionViewSetCreate(BaseCollectionViewSetTest):
+    """
+    Tests the handling of POST requests to the list endpoint of
+    CollectionViewSet.
+    """
+    def create(self, client):
+        res = client.post(self.list_url, json.dumps(self.collection_data))
+        data = json.loads(res.content)
+        return res, data
 
     def test_create_anon(self):
         res, data = self.create(self.anon)
@@ -554,6 +609,83 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         ok_(new_collection.pk != self.collection.pk)
         eq_(new_collection.author, '')
 
+    def test_create_featured_duplicate(self):
+        """
+        Featured Apps & Operator Shelf should not have duplicates for a
+        region / carrier / category combination. Make sure this is respected
+        when creating a new collection.
+        """
+        self.setup_unique()
+        self.collection_data['category'] = self.collection_data['category'].pk
+        res, data = self.create(self.client)
+        eq_(res.status_code, 400)
+        ok_('collection_uniqueness' in data)
+
+    def test_create_featured_duplicate_different_category(self):
+        """
+        Try to create a new collection with the duplicate data from our
+        featured collection, this time changing the category.
+        """
+        self.setup_unique()
+        nyan = Category.objects.create(type=amo.ADDON_WEBAPP, name='Nyan Cat',
+                                       slug='nyan-cat')
+        self.collection_data['category'] = nyan.pk
+        res, data = self.create(self.client)
+        eq_(res.status_code, 201)
+
+
+class TestCollectionViewSetDelete(BaseCollectionViewSetTest):
+    """
+    Tests the handling of DELETE requests to a single collection on
+    CollectionViewSet.
+    """
+    def delete(self, client, collection_id=None):
+        url = self.collection_url('detail',
+                                  collection_id or self.collection.pk)
+        res = client.delete(url)
+        data = json.loads(res.content) if res.content else None
+        return res, data
+
+    def test_delete_anon(self):
+        res, data = self.delete(self.anon)
+        eq_(res.status_code, 403)
+        eq_(PermissionDenied.default_detail, data['detail'])
+
+    def test_delete_no_perms(self):
+        res, data = self.delete(self.client)
+        eq_(res.status_code, 403)
+        eq_(PermissionDenied.default_detail, data['detail'])
+
+    def test_delete_curator(self):
+        self.make_curator()
+        res, data = self.delete(self.client)
+        eq_(res.status_code, 403)
+        eq_(PermissionDenied.default_detail, data['detail'])
+
+    def test_delete_has_perms(self):
+        self.make_publisher()
+        res, data = self.delete(self.client)
+        eq_(res.status_code, 204)
+        ok_(not data)
+
+    def test_delete_nonexistent(self):
+        self.make_publisher()
+        res, data = self.delete(self.client, collection_id=100000)
+        eq_(res.status_code, 404)
+
+
+class TestCollectionViewSetDuplicate(BaseCollectionViewSetTest):
+    """
+    Tests the `duplicate` action on CollectionViewSet.
+    """
+    def duplicate(self, client, data=None):
+        if not data:
+            data = {}
+        url = self.collection_url('duplicate', self.collection.pk)
+        res = client.post(url, json.dumps(data))
+        data = json.loads(res.content)
+        return res, data
+
     def test_duplicate_anon(self):
         res, data = self.duplicate(self.anon)
         eq_(res.status_code, 403)
@@ -603,18 +735,16 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
 
     def test_duplicate_apps(self):
         self.make_publisher()
-        apps = self.apps[:2]
-        for app in apps:
-            self.collection.add_app(app)
-
+        self.create_apps(number=2)
+        self.add_apps_to_collection(*self.apps)
         res, data = self.duplicate(self.client)
         eq_(res.status_code, 201)
         new_collection = Collection.objects.get(pk=data['id'])
         ok_(new_collection.pk != self.collection.pk)
         eq_(new_collection.apps(), self.collection.apps())
-        eq_(len(data['apps']), len(apps))
-        for order, app in enumerate(apps):
-            eq_(int(data['apps'][order]['id']), apps[order].id)
+        eq_(len(data['apps']), len(self.apps))
+        for order, app in enumerate(self.apps):
+            eq_(int(data['apps'][order]['id']), self.apps[order].pk)
 
     def test_duplicate_override(self):
         self.make_publisher()
@@ -647,8 +777,28 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         res, data = self.duplicate(self.client, override_data)
         eq_(res.status_code, 400)
 
+    def test_duplicate_featured(self):
+        self.setup_unique()
+        res, data = self.duplicate(self.client)
+        eq_(res.status_code, 400)
+        ok_('collection_uniqueness' in data)
+
+    def test_duplicate_operator(self):
+        self.setup_unique()
+        self.collection.update(collection_type=COLLECTIONS_TYPE_OPERATOR)
+        res, data = self.duplicate(self.client)
+        eq_(res.status_code, 400)
+        ok_('collection_uniqueness' in data)
+
+
+class CollectionViewSetChangeAppsMixin(BaseCollectionViewSetTest):
+    """
+    Mixin containing common methods to actions that modify the apps belonging to
+    a collection.
+    """
     def add_app(self, client, app_id=None):
         if app_id is None:
+            self.create_apps()
             app_id = self.apps[0].pk
         form_data = {'app': app_id} if app_id else {}
         url = self.collection_url('add-app', self.collection.pk)
@@ -656,6 +806,30 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         data = json.loads(res.content)
         return res, data
 
+    def remove_app(self, client, app_id=None):
+        if app_id is None:
+            self.create_apps(number=2)
+            app_id = self.apps[0].pk
+        form_data = {'app': app_id} if app_id else {}
+        url = self.collection_url('remove-app', self.collection.pk)
+        remove_res = client.post(url, json.dumps(form_data))
+        remove_data = (json.loads(remove_res.content)
+                       if remove_res.content else None)
+        return remove_res, remove_data
+
+    def reorder(self, client, order=None):
+        if order is None:
+            order = {}
+        url = self.collection_url('reorder', self.collection.pk)
+        res = client.post(url, json.dumps(order))
+        data = json.loads(res.content)
+        return res, data
+
+
+class TestCollectionViewSetAddApp(CollectionViewSetChangeAppsMixin):
+    """
+    Tests the `add-app` action on CollectionViewSet.
+    """
     def test_add_app_anon(self):
         res, data = self.add_app(self.anon)
         eq_(res.status_code, 403)
@@ -695,16 +869,11 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         eq_(res.status_code, 400)
         eq_(CollectionViewSet.exceptions['already_in'], data['detail'])
 
-    def remove_app(self, client, app_id=None):
-        if app_id is None:
-            app_id = self.apps[0].pk
-        form_data = {'app': app_id} if app_id else {}
-        url = self.collection_url('remove-app', self.collection.pk)
-        remove_res = client.post(url, json.dumps(form_data))
-        remove_data = (json.loads(remove_res.content)
-                       if remove_res.content else None)
-        return remove_res, remove_data
 
+class TestCollectionViewSetRemoveApp(CollectionViewSetChangeAppsMixin):
+    """
+    Tests the `remove-app` action on CollectionViewSet.
+    """
     def test_remove_app_anon(self):
         res, data = self.remove_app(self.anon)
         eq_(res.status_code, 403)
@@ -743,10 +912,77 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
 
     def test_remove_app_invalid(self):
         self.make_publisher()
-        self.add_app(self.client)
+        self.create_apps(number=2)
+        self.add_app(self.client, app_id=self.apps[0].pk)
         res, data = self.remove_app(self.client, app_id=self.apps[1].pk)
         eq_(res.status_code, 205)
         ok_(not data)
+
+
+class TestCollectionViewSetReorderApps(CollectionViewSetChangeAppsMixin):
+    """
+    Tests the `reorder` action on CollectionViewSet.
+    """
+    def random_app_order(self):
+        apps = list(a.pk for a in self.apps)
+        shuffle(apps)
+        return apps
+
+    def test_reorder_anon(self):
+        res, data = self.reorder(self.anon)
+        eq_(res.status_code, 403)
+        eq_(PermissionDenied.default_detail, data['detail'])
+
+    def test_reorder_no_perms(self):
+        res, data = self.reorder(self.client)
+        eq_(res.status_code, 403)
+        eq_(PermissionDenied.default_detail, data['detail'])
+
+    def test_reorder_has_perms(self):
+        self.make_publisher()
+        self.create_apps()
+        self.add_apps_to_collection(*self.apps)
+        new_order = self.random_app_order()
+        res, data = self.reorder(self.client, order=new_order)
+        eq_(res.status_code, 200)
+        for order, app in enumerate(data['apps']):
+            app_pk = new_order[order]
+            eq_(Webapp.objects.get(pk=app_pk).app_slug, app['slug'])
+
+    def test_reorder_curator(self):
+        self.make_curator()
+        self.create_apps()
+        self.add_apps_to_collection(*self.apps)
+        new_order = self.random_app_order()
+        res, data = self.reorder(self.client, order=new_order)
+        eq_(res.status_code, 200)
+        for order, app in enumerate(data['apps']):
+            app_pk = new_order[order]
+            eq_(Webapp.objects.get(pk=app_pk).app_slug, app['slug'])
+
+    def test_reorder_missing_apps(self):
+        self.make_publisher()
+        self.create_apps()
+        self.add_apps_to_collection(*self.apps)
+        new_order = self.random_app_order()
+        new_order.pop()
+        res, data = self.reorder(self.client, order=new_order)
+        eq_(res.status_code, 400)
+        eq_(data['detail'], CollectionViewSet.exceptions['app_mismatch'])
+        self.assertSetEqual([a['slug'] for a in data['apps']],
+                            [a.app_slug for a in self.collection.apps()])
+
+
+class TestCollectionViewSetEditCollection(BaseCollectionViewSetTest):
+    """
+    Tests the handling of PATCH requests to a single collection on
+    CollectionViewSet.
+    """
+    def edit_collection(self, client, **kwargs):
+        url = self.collection_url('detail', self.collection.pk)
+        res = client.patch(url, json.dumps(kwargs))
+        data = json.loads(res.content)
+        return res, data
 
     def test_edit_collection_anon(self):
         res, data = self.edit_collection(self.anon)
@@ -964,94 +1200,75 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         res, data = self.edit_collection(self.client, **updates)
         eq_(res.status_code, 400)
 
-    def reorder(self, client, order=None):
-        if order is None:
-            order = {}
-        url = self.collection_url('reorder', self.collection.pk)
-        res = client.post(url, json.dumps(order))
-        data = json.loads(res.content)
-        return res, data
+    def test_edit_collection_featured_duplicate(self):
+        """
+        Featured Apps & Operator Shelf should not have duplicates for a
+        region / carrier / category combination. Make sure this is respected
+        when editing a collection.
+        """
+        self.setup_unique()
+        self.collection_data.update({
+            'region': mkt.regions.US.id,
+            'carrier': mkt.carriers.SPRINT.id
+        })
+        extra_collection = Collection.objects.create(**self.collection_data)
 
-    def random_app_order(self):
-        apps = list(a.pk for a in self.apps)
-        shuffle(apps)
-        return apps
-
-    def test_reorder_anon(self):
-        res, data = self.reorder(self.anon)
-        eq_(res.status_code, 403)
-        eq_(PermissionDenied.default_detail, data['detail'])
-
-    def test_reorder_no_perms(self):
-        res, data = self.reorder(self.client)
-        eq_(res.status_code, 403)
-        eq_(PermissionDenied.default_detail, data['detail'])
-
-    def test_reorder_has_perms(self):
-        self.make_publisher()
-        self.add_all_apps()
-        new_order = self.random_app_order()
-        res, data = self.reorder(self.client, order=new_order)
-        eq_(res.status_code, 200)
-        for order, app in enumerate(data['apps']):
-            app_pk = new_order[order]
-            eq_(Webapp.objects.get(pk=app_pk).app_slug, app['slug'])
-
-    def test_reorder_curator(self):
-        self.make_curator()
-        self.add_all_apps()
-        new_order = self.random_app_order()
-        res, data = self.reorder(self.client, order=new_order)
-        eq_(res.status_code, 200)
-        for order, app in enumerate(data['apps']):
-            app_pk = new_order[order]
-            eq_(Webapp.objects.get(pk=app_pk).app_slug, app['slug'])
-
-    def test_reorder_missing_apps(self):
-        self.make_publisher()
-        self.add_all_apps()
-        new_order = self.random_app_order()
-        new_order.pop()
-        res, data = self.reorder(self.client, order=new_order)
+        # Try to edit self.collection with the data from our extra_collection.
+        update_data = {
+            'region': extra_collection.region,
+            'carrier': extra_collection.carrier,
+        }
+        res, data = self.edit_collection(self.client, **update_data)
         eq_(res.status_code, 400)
-        eq_(data['detail'], CollectionViewSet.exceptions['app_mismatch'])
-        self.assertSetEqual([a['slug'] for a in data['apps']],
-                            [a.app_slug for a in self.collection.apps()])
+        ok_('collection_uniqueness' in data)
 
-    def delete(self, client, collection_id=None):
-        url = self.collection_url('detail',
-                                  collection_id or self.collection.pk)
-        res = client.delete(url)
-        data = json.loads(res.content) if res.content else None
-        return res, data
+        # Changing the collection type should be enough to make it work.
+        update_data['collection_type'] = COLLECTIONS_TYPE_OPERATOR
+        res, data = self.edit_collection(self.client, **update_data)
+        eq_(res.status_code, 200)
 
-    def test_delete_anon(self):
-        res, data = self.delete(self.anon)
-        eq_(res.status_code, 403)
-        eq_(PermissionDenied.default_detail, data['detail'])
+        # A dumb change to see if you can still edit afterwards. The uniqueness
+        # check should exclude the current instance and allow it, obviously.
+        update_data = {'is_public': False}
+        res, data = self.edit_collection(self.client, **update_data)
+        eq_(res.status_code, 200)
 
-    def test_delete_no_perms(self):
-        res, data = self.delete(self.client)
-        eq_(res.status_code, 403)
-        eq_(PermissionDenied.default_detail, data['detail'])
+    def test_edit_collection_operator_shelf_duplicate(self):
+        """
+        Featured Apps & Operator Shelf should not have duplicates for a
+        region / carrier / category combination. Make sure this is respected
+        when editing a collection.
+        """
+        self.setup_unique()
+        self.collection_data.update({
+            'collection_type': COLLECTIONS_TYPE_OPERATOR,
+        })
+        extra_collection = Collection.objects.create(**self.collection_data)
 
-    def test_delete_curator(self):
-        self.make_curator()
-        res, data = self.delete(self.client)
-        eq_(res.status_code, 403)
-        eq_(PermissionDenied.default_detail, data['detail'])
+        # Try to edit self.collection with the data from our extra_collection.
+        update_data = {'collection_type': extra_collection.collection_type}
+        res, data = self.edit_collection(self.client, **update_data)
+        eq_(res.status_code, 400)
+        ok_('collection_uniqueness' in data)
 
-    def test_delete_has_perms(self):
-        self.make_publisher()
-        res, data = self.delete(self.client)
-        eq_(res.status_code, 204)
-        ok_(not data)
+        # Changing the category should be enough to make it work.
+        nyan = Category.objects.create(type=amo.ADDON_WEBAPP, name='Nyan Cat',
+                                      slug='nyan-cat')
+        update_data['category'] = nyan.pk
+        res, data = self.edit_collection(self.client, **update_data)
+        eq_(res.status_code, 200)
 
-    def test_delete_nonexistent(self):
-        self.make_publisher()
-        res, data = self.delete(self.client, collection_id=100000)
-        eq_(res.status_code, 404)
+        # A dumb change to see if you can still edit afterwards. The uniqueness
+        # check should exclude the current instance and allow it, obviously.
+        update_data = {'is_public': False}
+        res, data = self.edit_collection(self.client, **update_data)
+        eq_(res.status_code, 200)
 
+
+class TestCollectionViewSetListCurators(BaseCollectionViewSetTest):
+    """
+    Tests the `curators` action on CollectionViewSet.
+    """
     def list_curators(self, client):
         self.collection.add_curator(self.user2)
         url = self.collection_url('curators', self.collection.pk)
@@ -1069,7 +1286,7 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         res, data = self.list_curators(self.client)
         eq_(res.status_code, 200)
         eq_(len(data), 1)
-        eq_(data[0]['id'], self.user2.id)
+        eq_(data[0]['id'], self.user2.pk)
 
     def test_list_curators_as_curator(self):
         self.make_curator()
@@ -1077,8 +1294,13 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         eq_(res.status_code, 200)
         eq_(len(data), 2)
         for item in data:
-            ok_(item['id'] in [self.user.id, self.user2.id])
+            ok_(item['id'] in [self.user.pk, self.user2.pk])
 
+
+class TestCollectionViewSetAddCurator(BaseCollectionViewSetTest):
+    """
+    Tests the `add-curator` action on CollectionViewSet.
+    """
     def add_curator(self, client, user_id=None):
         if user_id is None:
             user_id = 2519
@@ -1102,20 +1324,20 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         self.make_publisher()
         res, data = self.add_curator(self.client)
         eq_(res.status_code, 200)
-        eq_(data[0]['id'], self.user.id)
+        eq_(data[0]['id'], self.user.pk)
 
     def test_add_curator_multiple_cache(self):
         self.make_publisher()
         self.add_curator(self.client)
-        res, data = self.add_curator(self.client, user_id=self.user2.id)
+        res, data = self.add_curator(self.client, user_id=self.user2.pk)
         self.assertSetEqual([user['id'] for user in data],
-                            [self.user.id, self.user2.id])
+                            [self.user.pk, self.user2.pk])
 
     def test_add_curator_as_curator(self):
         self.make_curator()
         res, data = self.add_curator(self.client)
         eq_(res.status_code, 200)
-        eq_(data[0]['id'], self.user.id)
+        eq_(data[0]['id'], self.user.pk)
 
     def test_add_curator_nonexistent(self):
         self.make_publisher()
@@ -1129,6 +1351,11 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         eq_(res.status_code, 400)
         eq_(CollectionViewSet.exceptions['user_not_provided'], data['detail'])
 
+
+class TestCollectionViewSetRemoveCurator(BaseCollectionViewSetTest):
+    """
+    Tests the `remove-curator` action on CollectionViewSet.
+    """
     def remove_curator(self, client, user_id=None):
         if user_id is None:
             user_id = 2519
@@ -1171,127 +1398,7 @@ class TestCollectionViewSet(TestCollectionViewSetMixin, RestOAuth):
         eq_(CollectionViewSet.exceptions['user_not_provided'], data['detail'])
 
 
-class TestCollectionViewSetUnique(TestCollectionViewSetMixin, RestOAuth):
-    fixtures = fixture('user_2519')
-
-    def setUp(self):
-        self.create_switch('rocketfuel')
-        super(TestCollectionViewSetUnique, self).setUp()
-        self.serializer = CollectionSerializer()
-        self.category = Category.objects.create(type=amo.ADDON_WEBAPP,
-            name='Grumpy', slug='grumpy-cat')
-        self.collection_data = {
-            'collection_type': COLLECTIONS_TYPE_FEATURED,
-            'name': 'Featured Apps are cool',
-            'slug': 'featured-apps-are-cool',
-            'description': 'Featured Apps really are the bomb',
-            'region': mkt.regions.SPAIN.id,
-            'carrier': mkt.carriers.TELEFONICA.id,
-            'category': self.category,
-            'is_public': True,
-        }
-        self.collection = Collection.objects.create(**self.collection_data)
-        self.list_url = reverse('collections-list')
-        self.grant_permission(self.profile, 'Collections:Curate')
-
-    def test_create_featured_duplicate(self):
-        """
-        Featured Apps & Operator Shelf should not have duplicates for a
-        region / carrier / category combination. Make sure this is respected
-        when creating a new collection.
-        """
-        self.collection_data['category'] = self.collection_data['category'].pk
-        res, data = self.create(self.client)
-        eq_(res.status_code, 400)
-        ok_('collection_uniqueness' in data)
-
-    def test_create_featured_duplicate_different_category(self):
-        """
-        Try to create a new collection with the duplicate data from our
-        featured collection, this time changing the category.
-        """
-        nyan = Category.objects.create(type=amo.ADDON_WEBAPP, name='Nyan Cat',
-                                       slug='nyan-cat')
-        self.collection_data['category'] = nyan.pk
-        res, data = self.create(self.client)
-        eq_(res.status_code, 201)
-
-    def test_edit_collection_featured_duplicate(self):
-        """
-        Featured Apps & Operator Shelf should not have duplicates for a
-        region / carrier / category combination. Make sure this is respected
-        when editing a collection.
-        """
-        self.collection_data.update({
-            'region': mkt.regions.US.id,
-            'carrier': mkt.carriers.SPRINT.id
-        })
-        extra_collection = Collection.objects.create(**self.collection_data)
-
-        # Try to edit self.collection with the data from our extra_collection.
-        update_data = {
-            'region': extra_collection.region,
-            'carrier': extra_collection.carrier,
-        }
-        res, data = self.edit_collection(self.client, **update_data)
-        eq_(res.status_code, 400)
-        ok_('collection_uniqueness' in data)
-
-        # Changing the collection type should be enough to make it work.
-        update_data['collection_type'] = COLLECTIONS_TYPE_OPERATOR
-        res, data = self.edit_collection(self.client, **update_data)
-        eq_(res.status_code, 200)
-
-        # A dumb change to see if you can still edit afterwards. The uniqueness
-        # check should exclude the current instance and allow it, obviously.
-        update_data = {'is_public': False}
-        res, data = self.edit_collection(self.client, **update_data)
-        eq_(res.status_code, 200)
-
-    def test_edit_collection_operator_shelf_duplicate(self):
-        """
-        Featured Apps & Operator Shelf should not have duplicates for a
-        region / carrier / category combination. Make sure this is respected
-        when editing a collection.
-        """
-        self.collection_data.update({
-            'collection_type': COLLECTIONS_TYPE_OPERATOR,
-        })
-        extra_collection = Collection.objects.create(**self.collection_data)
-
-        # Try to edit self.collection with the data from our extra_collection.
-        update_data = {'collection_type': extra_collection.collection_type}
-        res, data = self.edit_collection(self.client, **update_data)
-        eq_(res.status_code, 400)
-        ok_('collection_uniqueness' in data)
-
-        # Changing the category should be enough to make it work.
-        nyan = Category.objects.create(type=amo.ADDON_WEBAPP, name='Nyan Cat',
-                                      slug='nyan-cat')
-        update_data['category'] = nyan.pk
-        res, data = self.edit_collection(self.client, **update_data)
-        eq_(res.status_code, 200)
-
-        # A dumb change to see if you can still edit afterwards. The uniqueness
-        # check should exclude the current instance and allow it, obviously.
-        update_data = {'is_public': False}
-        res, data = self.edit_collection(self.client, **update_data)
-        eq_(res.status_code, 200)
-
-    def test_duplicate_featured(self):
-        res, data = self.duplicate(self.client)
-        eq_(res.status_code, 400)
-        ok_('collection_uniqueness' in data)
-
-    def test_duplicate_operator(self):
-        self.collection.update(collection_type=COLLECTIONS_TYPE_OPERATOR)
-        res, data = self.duplicate(self.client)
-        eq_(res.status_code, 400)
-        ok_('collection_uniqueness' in data)
-
-
 class TestCollectionImageViewSet(RestOAuth):
-
     def setUp(self):
         self.create_switch('rocketfuel')
         super(TestCollectionImageViewSet, self).setUp()

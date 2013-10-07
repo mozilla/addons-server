@@ -2,17 +2,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-27 16:47-0700\n"
-"PO-Revision-Date: 2013-07-14 08:20+0000\n"
-"Last-Translator: Hyeonseok <hyeonseok@gmail.com>\n"
+"POT-Creation-Date: 2013-08-23 09:56-0700\n"
+"PO-Revision-Date: 2013-10-01 08:49+0000\n"
+"Last-Translator: Seong-Wook <arbi316@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Pootle 2.5.0-rc1\n"
-"X-POOTLE-MTIME: 1373790054.0\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1380617380.0\n"
 
 #: media/js/common-all.js:10109 media/js/common-min.js:23 media/js/impala-all.js:1159 media/js/impala-min.js:1 media/js/devreg/init.js:35 media/js/mkt/init.js:47
 #: media/js/zamboni/discovery-all.js:10076 media/js/zamboni/discovery-min.js:23 media/js/zamboni/init.js:32 media/js/zamboni/mobile-all.js:10912 media/js/zamboni/mobile-min.js:32
@@ -235,11 +235,11 @@ msgstr "<b>{0}</b> 부가 기능 검색"
 msgid "Category"
 msgstr "분류"
 
-#: media/js/impala-all.js:2446 media/js/impala-min.js:1 media/js/zamboni/browserid_support.js:37 media/js/zamboni/mobile-all.js:12078 media/js/zamboni/mobile-min.js:32
+#: media/js/impala-all.js:2446 media/js/impala-min.js:1 media/js/zamboni/browserid_support.js:32 media/js/zamboni/mobile-all.js:12078 media/js/zamboni/mobile-min.js:32
 msgid "Admins and editors must provide a password to log in."
 msgstr "로그인 하려면 관리자와 편집자가 발급한 비밀번호가 있어야 합니다."
 
-#: media/js/impala-all.js:2451 media/js/impala-min.js:1 media/js/zamboni/browserid_support.js:42 media/js/zamboni/mobile-all.js:12083 media/js/zamboni/mobile-min.js:32
+#: media/js/impala-all.js:2451 media/js/impala-min.js:1 media/js/zamboni/browserid_support.js:37 media/js/zamboni/mobile-all.js:12083 media/js/zamboni/mobile-min.js:32
 msgid "BrowserID login failed. Maybe you don't have an account under that email address?"
 msgstr "BrowserID 로그인 실패. 이메일 주소로 되어있는 계정이 없는건 아닌가요?"
 
@@ -434,7 +434,7 @@ msgstr "앱이 아무런 오류나 경고 없이 유효성 검사를 통과했�
 #: media/js/devreg/devhub.js:186
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
-msgstr[0] ""
+msgstr[0] "앱이 {0}개의 오류와 {1}개의 메세지로 인해 유효성 검사를 통과하지 못했습니다."
 
 #: media/js/devreg/devhub.js:200 media/js/zamboni/devhub-all.js:1047 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:183
 msgid "Your app passed validation with no errors and {0} message."
@@ -461,15 +461,15 @@ msgstr "새로고침 완료"
 msgid "There was an error uploading your file."
 msgstr "파일을 업로드하는 과정에서 오류가 발생했습니다."
 
-#: media/js/devreg/devhub.js:884 media/js/zamboni/devhub-all.js:1774 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:925
+#: media/js/devreg/devhub.js:896 media/js/zamboni/devhub-all.js:1774 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:925
 msgid "Learn more"
 msgstr "자세히 알아보기"
 
-#: media/js/devreg/devhub.js:888 media/js/zamboni/devhub-all.js:1778 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:929
+#: media/js/devreg/devhub.js:900 media/js/zamboni/devhub-all.js:1778 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:929
 msgid "Example"
 msgstr "예"
 
-#: media/js/devreg/devhub.js:1190 media/js/zamboni/devhub-all.js:2125 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:1285
+#: media/js/devreg/devhub.js:1203 media/js/zamboni/devhub-all.js:2125 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:1285
 msgid "Image changes being processed"
 msgstr "이미지 변경이 처리되었습니다"
 
@@ -546,25 +546,21 @@ msgid "Iraqi Bank Code"
 msgstr "이라크 은행 Bank Code"
 
 #. L10n: {0} is the name of a bank detected from the bank account code.
-#: media/js/devreg/payments-enroll.js:135
+#: media/js/devreg/payments-enroll.js:160
 msgid "Detected: {0}"
 msgstr "은행 인식: {0}"
 
-#: media/js/devreg/payments-manage.js:32 media/js/devreg/payments-manage.js:76 media/js/devreg/validator.js:193 media/js/devreg/validator.js:438 media/js/devreg/validator.js:457
+#: media/js/devreg/payments-manage.js:32 media/js/devreg/payments-manage.js:67 media/js/devreg/validator.js:193 media/js/devreg/validator.js:438 media/js/devreg/validator.js:457
 #: media/js/mkt/buttons.js:85 media/js/mkt/buttons.js:94 media/js/zamboni/devhub-all.js:2597 media/js/zamboni/devhub-all.js:2844 media/js/zamboni/devhub-all.js:2863 media/js/zamboni/devhub-min.js:1
 #: media/js/zamboni/validator.js:193 media/js/zamboni/validator.js:446 media/js/zamboni/validator.js:465
 msgid "Error"
 msgstr "오류"
 
-#: media/js/devreg/payments-manage.js:33 media/js/devreg/payments-manage.js:77
+#: media/js/devreg/payments-manage.js:33 media/js/devreg/payments-manage.js:68
 msgid "There was a problem contacting the payment server."
 msgstr "결제 서버로 접속하는 과정에서 문제가 발생했습니다."
 
-#: media/js/devreg/payments-manage.js:55
-msgid "Authentication error"
-msgstr ""
-
-#: media/js/devreg/payments-manage.js:97
+#: media/js/devreg/payments-manage.js:88
 msgid "You do not currently have any payment accounts."
 msgstr "현재 결제 가능 계좌를 가지고 있지 않습니다."
 
@@ -1223,11 +1219,11 @@ msgstr "Flash Player</a>를 지원하는 브라우저가 필요합니다."
 msgid "Message must not be empty."
 msgstr "메세지엔 내용이 반드시 있어야 합니다."
 
-#: media/js/mkt/login.js:73
+#: media/js/mkt/login.js:62
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
 msgstr "Persona 로그인 실패입니다. 아마도 이메일 주소에 대한 계정이 없지 않나요?"
 
-#: media/js/mkt/login.js:78
+#: media/js/mkt/login.js:67
 msgid "Persona login failed. A server error was encountered."
 msgstr "Persona 로그인 실패입니다. 서버에 에러가 발생했습니다."
 

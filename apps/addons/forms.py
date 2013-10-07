@@ -411,8 +411,7 @@ def get_satisfaction(url):
 
 
 class AddonFormSupport(AddonFormBase):
-    support_url = TransField.adapt(forms.URLField)(required=False,
-                                                   verify_exists=False)
+    support_url = TransField.adapt(forms.URLField)(required=False)
     support_email = TransField.adapt(forms.EmailField)(required=False)
 
     class Meta:

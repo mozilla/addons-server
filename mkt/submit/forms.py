@@ -364,12 +364,12 @@ class AppDetailsBasicForm(TranslationFormMixin, happyforms.ModelForm):
                          "data is transmitted from a user's computer and how "
                          "it is used is required."))
     homepage = TransField.adapt(forms.URLField)(required=False,
-        verify_exists=False, label=_lazy(u'Homepage:'),
+        label=_lazy(u'Homepage:'),
         help_text=_lazy(u'If your app has another homepage, enter its address '
                          'here.'),
         widget=TransInput(attrs={'class': 'full'}))
     support_url = TransField.adapt(forms.URLField)(required=False,
-        verify_exists=False, label=_lazy(u'Support Website:'),
+        label=_lazy(u'Support Website:'),
         help_text=_lazy(u'If your app has a support website or forum, enter '
                          'its address here.'),
         widget=TransInput(attrs={'class': 'full'}))

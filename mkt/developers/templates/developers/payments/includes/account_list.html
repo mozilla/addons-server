@@ -32,7 +32,9 @@
 <script type="text/template" id="account-row-template">
   <tr class="{agreement}"
       data-account="{id}"
+      data-account-name="{name}"
       data-account-url="{account-url}"
+      data-app-names="{app-names}"
       data-agreement-url="{agreement-url}"
       data-portal-url="{portal-url}"
       data-delete-url="{delete-url}">
@@ -45,3 +47,19 @@
     {% endif %}
   </tr>
 </script>
+
+<script type="text/template" id="payment-account-delete-confirm-template">
+  <section>
+    <header>
+      <a class="close" title="{{ _('close') }}">&times;</a>
+      <h2>{{ _('Payment Account deletion') }}</h2>
+    </header>
+    <p></p>
+    <ul></ul>
+    <div class="listing-footer">
+      <a href="#" class="close">{{ _('Cancel') }}</a>
+      <a href="#" class="payment-account-delete-confirm button">{{ _('Confirm') }}</a>
+    </div>
+  </section>
+</script>
+

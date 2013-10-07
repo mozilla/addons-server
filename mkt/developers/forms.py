@@ -389,7 +389,7 @@ PreviewFormSet = modelformset_factory(Preview, formset=BasePreviewFormSet,
 
 
 class NewManifestForm(happyforms.Form):
-    manifest = forms.URLField(verify_exists=False)
+    manifest = forms.URLField()
 
     def __init__(self, *args, **kwargs):
         self.is_standalone = kwargs.pop('is_standalone', False)
@@ -484,7 +484,7 @@ class NewPackagedAppForm(happyforms.Form):
 class AppFormBasic(addons.forms.AddonFormBase):
     """Form to edit basic app info."""
     slug = forms.CharField(max_length=30, widget=forms.TextInput)
-    manifest_url = forms.URLField(verify_exists=False)
+    manifest_url = forms.URLField()
     description = TransField(required=True,
         label=_lazy(u'Provide a detailed description of your app'),
         help_text=_lazy(u'This description will appear on the details page.'),
@@ -557,8 +557,7 @@ class AppFormBasic(addons.forms.AddonFormBase):
 class AppFormDetails(addons.forms.AddonFormBase):
     default_locale = forms.TypedChoiceField(required=False,
                                             choices=Addon.LOCALES)
-    homepage = TransField.adapt(forms.URLField)(required=False,
-                                                verify_exists=False)
+    homepage = TransField.adapt(forms.URLField)(required=False)
     privacy_policy = TransField(widget=TransTextarea(), required=True,
         label=_lazy(u"Please specify your app's Privacy Policy"))
 
@@ -622,8 +621,7 @@ class AppFormMedia(addons.forms.AddonFormBase):
 
 
 class AppFormSupport(addons.forms.AddonFormBase):
-    support_url = TransField.adapt(forms.URLField)(required=False,
-                                                   verify_exists=False)
+    support_url = TransField.adapt(forms.URLField)(required=False)
     support_email = TransField.adapt(forms.EmailField)()
 
     class Meta:
