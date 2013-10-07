@@ -18,6 +18,7 @@ from django.http import SimpleCookie
 from django.test.client import Client
 from django.utils import translation
 
+import caching
 import elasticutils.contrib.django as elasticutils
 import mock
 import pyelasticsearch.exceptions as pyelasticsearch
@@ -275,6 +276,9 @@ class TestCase(MockEsMixin, RedisTest, test_utils.TestCase):
     def _pre_setup(self):
         super(TestCase, self)._pre_setup()
         cache.clear()
+        # Override django-cache-machine caching.base.TIMEOUT because it's
+        # computed too early, before settings_test.py is imported.
+        caching.base.TIMEOUT = settings.CACHE_COUNT_TIMEOUT
 
     @contextmanager
     def activate(self, locale=None, app=None):

@@ -80,7 +80,7 @@ DATABASES['default']['TEST_CHARSET'] = 'utf8'
 DATABASES['default']['TEST_COLLATION'] = 'utf8_general_ci'
 CACHES = {
     'default': {
-        'BACKEND': 'caching.backends.locmem.CacheClass',
+        'BACKEND': 'caching.backends.locmem.LocMemCache',
     }
 }
 CELERY_ALWAYS_EAGER = True
