@@ -596,7 +596,7 @@ class RequestUser(UserProfile):
         # Add UserProfile.cache_key so RequestUser gets invalidated when the
         # UserProfile is changed.
         keys = super(RequestUser, self)._cache_keys()
-        return keys + (UserProfile(id=self.id).cache_key,)
+        return keys + (UserProfile._cache_key(self.id, 'default'),)
 
 
 class BlacklistedUsername(amo.models.ModelBase):
