@@ -6,6 +6,7 @@ from django.core.urlresolvers import reverse
 from nose.tools import eq_
 
 from abuse.models import AbuseReport
+from mkt.abuse.resources import AppAbuseResource, UserAbuseResource
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.api.tests.test_throttle import ThrottleTests
 from mkt.site.fixtures import fixture
@@ -108,6 +109,7 @@ class AbuseResourceTests(object):
 
 
 class TestUserAbuseResource(AbuseResourceTests, BaseTestAbuseResource, RestOAuth):
+    resource = UserAbuseResource()
     resource_name = 'user'
 
     def setUp(self):
@@ -127,6 +129,7 @@ class TestUserAbuseResource(AbuseResourceTests, BaseTestAbuseResource, RestOAuth
 
 class TestAppAbuseResource(AbuseResourceTests, BaseTestAbuseResource, RestOAuth):
     fixtures = RestOAuth.fixtures + fixture('webapp_337141')
+    resource = AppAbuseResource()
     resource_name = 'app'
 
     def setUp(self):
