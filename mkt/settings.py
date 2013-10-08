@@ -8,7 +8,7 @@ from mkt.constants import regions
 # The origin URL for our Fireplace frontend, from which API requests come.
 FIREPLACE_URL = ''
 
-ALLOWED_HOSTS += ['.firefox.com']
+ALLOWED_HOSTS += ['.firefox.com', '.firefox.com.cn']
 # We'll soon need a `settings_test_mkt` to override this.
 APP_PREVIEW = True
 
