@@ -1,13 +1,14 @@
 from django.conf.urls import include, patterns, url
 
-from rest_framework.routers import SimpleRouter
+from tastypie.api import Api
 
-from mkt.abuse.api import AppAbuseViewSet, UserAbuseViewSet
+from mkt.abuse.resources import AppAbuseResource, UserAbuseResource
 
-abuse = SimpleRouter()
-abuse.register('user', UserAbuseViewSet, base_name='user-abuse')
-abuse.register('app', AppAbuseViewSet, base_name='app-abuse')
+# Abuse API.
+abuse = Api(api_name='abuse')
+abuse.register(UserAbuseResource())
+abuse.register(AppAbuseResource())
 
 api_patterns = patterns('',
-    url('^abuse/', include(abuse.urls)),
+    url('^', include(abuse.urls)),
 )

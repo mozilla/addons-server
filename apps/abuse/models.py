@@ -16,7 +16,7 @@ log = logging.getLogger('z.abuse')
 class AbuseReport(amo.models.ModelBase):
     # NULL if the reporter is anonymous.
     reporter = models.ForeignKey(UserProfile, null=True,
-                                 blank=True, related_name='abuse_reported')
+                                 related_name='abuse_reported')
     ip_address = models.CharField(max_length=255, default='0.0.0.0')
     # An abuse report can be for an addon or a user. Only one of these should
     # be null.

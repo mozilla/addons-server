@@ -1,28 +1,29 @@
 import json
 
 from django.core import mail
-from django.core.urlresolvers import reverse
 
 from nose.tools import eq_
 
 from abuse.models import AbuseReport
 from mkt.abuse.resources import AppAbuseResource, UserAbuseResource
-from mkt.api.tests.test_oauth import RestOAuth
+from mkt.account.tests.test_api import TestPotatoCaptcha
+from mkt.api.tests.test_oauth import BaseOAuth
 from mkt.api.tests.test_throttle import ThrottleTests
+from mkt.api.base import list_url
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
 from users.models import UserProfile
 
 
-class BaseTestAbuseResource(ThrottleTests):
+class BaseTestAbuseResource(ThrottleTests, TestPotatoCaptcha, BaseOAuth):
     """
     Setup for AbuseResource tests that require inheritance from TestCase.
     """
     resource_name = None
 
     def setUp(self):
-        super(BaseTestAbuseResource, self).setUp()
-        self.list_url = reverse('%s-abuse-list' % (self.resource_name,))
+        super(BaseTestAbuseResource, self).setUp(api_name='abuse')
+        self.list_url = list_url(self.resource_name)
         self.headers = {
             'REMOTE_ADDR': '48.151.623.42'
         }
@@ -95,8 +96,8 @@ class AbuseResourceTests(object):
                                            anonymous=True)
         potato_res, potato_data = self._call(data={'sprout': 'potat-toh'},
                                              anonymous=True)
-        eq_(tuber_res.status_code, 400)
-        eq_(potato_res.status_code, 400)
+        self._test_bad_api_potato_data(tuber_res, tuber_data)
+        self._test_bad_api_potato_data(potato_res, potato_data)
 
     def test_send_bad_data(self):
         """
@@ -105,10 +106,10 @@ class AbuseResourceTests(object):
         """
         res, data = self._call(data={'text': None})
         eq_(400, res.status_code)
-        assert 'required' in data['text'][0]
+        assert 'text' in data['error_message']
 
 
-class TestUserAbuseResource(AbuseResourceTests, BaseTestAbuseResource, RestOAuth):
+class TestUserAbuseResource(AbuseResourceTests, BaseTestAbuseResource):
     resource = UserAbuseResource()
     resource_name = 'user'
 
@@ -122,13 +123,13 @@ class TestUserAbuseResource(AbuseResourceTests, BaseTestAbuseResource, RestOAuth
         }
 
     def test_invalid_user(self):
-        res, data = self._call(data={'user': '-1'})
+        res, data = self._call(data={'user': -1})
         eq_(400, res.status_code)
-        assert 'Invalid' in data['user'][0]
+        assert 'user' in data['error_message']
 
 
-class TestAppAbuseResource(AbuseResourceTests, BaseTestAbuseResource, RestOAuth):
-    fixtures = RestOAuth.fixtures + fixture('webapp_337141')
+class TestAppAbuseResource(AbuseResourceTests, BaseTestAbuseResource):
+    fixtures = BaseTestAbuseResource.fixtures + fixture('webapp_337141')
     resource = AppAbuseResource()
     resource_name = 'app'
 
@@ -144,7 +145,7 @@ class TestAppAbuseResource(AbuseResourceTests, BaseTestAbuseResource, RestOAuth)
     def test_invalid_app(self):
         res, data = self._call(data={'app': -1})
         eq_(400, res.status_code)
-        assert 'Invalid' in data['app'][0]
+        assert 'app' in data['error_message']
 
     def test_slug_app(self):
         res, data = self._call(data={'app': self.app.app_slug})
