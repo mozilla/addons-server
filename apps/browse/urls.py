@@ -9,7 +9,8 @@ from . import views
 
 impala_patterns = patterns('',
     # TODO: Impalacize these views.
-    url('^extensions/(?P<category>[^/]+)/featured$', views.creatured,
+    url('^extensions/(?P<category>[^/]+)/featured$',
+        views.legacy_creatured_redirect,
         name='i_browse.creatured'),
     url('^language-tools/(?P<category>[^/]+)?$', views.language_tools,
         name='i_browse.language-tools'),
@@ -58,15 +59,16 @@ urlpatterns = patterns('',
     url('^es/extensions/(?:(?P<category>[^/]+)/)?$', views.es_extensions,
         name='browse.es.extensions'),
 
+    # Creatured URLs now redirect to browse.extensions
     url('^extensions/(?P<category>[^/]+)/featured$',
-        views.creatured, name='browse.creatured'),
+        views.legacy_creatured_redirect),
 
     url('^extensions/(?:(?P<category_name>[^/]+)/)?format:rss$',
         ExtensionCategoriesRss(), name='browse.extensions.rss'),
 
     url('^browse/type:7$',
         lambda r: redirect("https://www.mozilla.org/plugincheck/",
-                            permanent=True)),
+                           permanent=True)),
 
     url('^browse/type:(?P<type_>\d)(?:/cat:(?P<category>\d+))?'
         '(?:/sort:(?P<sort>[^/]+))?(?:/format:(?P<format>[^/]+).*)?',
