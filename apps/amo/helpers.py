@@ -480,7 +480,7 @@ def media(context, url, key='MEDIA_URL'):
         build = context['BUILD_ID_CSS']
     else:
         build = context['BUILD_ID_IMG']
-    return context[key] + utils.urlparams(url, b=build)
+    return urljoin(context[key], utils.urlparams(url, b=build))
 
 
 @register.function
