@@ -7,7 +7,8 @@ import amo.tests
 from amo.urlresolvers import reverse
 
 from mkt.api.resources import AppResource
-from mkt.collections.constants import COLLECTIONS_TYPE_BASIC
+from mkt.collections.constants import (COLLECTIONS_TYPE_BASIC,
+                                       COLLECTIONS_TYPE_OPERATOR)
 from mkt.constants.features import FeatureProfile
 from mkt.collections.models import Collection, CollectionMembership
 from mkt.collections.serializers import (CollectionMembershipField,
@@ -86,7 +87,8 @@ class TestCollectionSerializer(CollectionDataMixin, amo.tests.TestCase):
             'request': RequestFactory().get('/whatever')
         }
         self.collection = Collection.objects.create(**self.collection_data)
-        self.serializer = CollectionSerializer(context=minimal_context)
+        self.serializer = CollectionSerializer(self.collection,
+                                               context=minimal_context)
 
     def test_to_native(self, apps=None):
         if apps:
@@ -106,6 +108,11 @@ class TestCollectionSerializer(CollectionDataMixin, amo.tests.TestCase):
         for order, app in enumerate(apps):
             eq_(data['apps'][order]['slug'], app.app_slug)
         return data
+
+    def test_to_native_operator(self):
+        self.collection.update(collection_type=COLLECTIONS_TYPE_OPERATOR)
+        data = self.serializer.to_native(self.collection)
+        ok_('can_be_hero' in data.keys())
 
     def test_image(self):
         data = self.serializer.to_native(self.collection)

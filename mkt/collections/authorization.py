@@ -1,3 +1,5 @@
+import json
+
 from django.contrib.auth.models import AnonymousUser
 from django.core.exceptions import ImproperlyConfigured
 
@@ -67,3 +69,33 @@ class StrictCuratorAuthorization(CuratorAuthorization):
     """
     allow_public_get_requests = False
     curator_verbs = CuratorAuthorization.curator_verbs + ['GET']
+
+
+class CanBeHeroAuthorization(BasePermission):
+    """
+    Only users with Collections:Curate can modify the can_be_hero field.
+    """
+    def has_curate_permission(self, request):
+        return CuratorAuthorization().has_curate_permission(request)
+
+    def is_modifying_request(self, request):
+        return request.method in ('PUT', 'PATCH', 'POST',)
+
+    def hero_field_modified(self, request):
+        if request.method == 'POST' and 'can_be_hero' in request.POST:
+            return True
+        elif request.method in ('PATCH', 'POST', 'PUT'):
+            request_json = json.loads(request.body) if request.body else {}
+            return (isinstance(request_json, dict) and 'can_be_hero' in
+                request_json.keys())
+        return False
+
+    def has_object_permission(self, request, view, obj):
+        """
+        Returns false if the request is attempting to modify the can_be_hero
+        field and the authenticating use does not have the Collections:Curate
+        permission.
+        """
+        return not (not self.has_curate_permission(request) and
+                    self.is_modifying_request(request) and
+                    self.hero_field_modified(request))

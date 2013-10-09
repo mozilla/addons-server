@@ -152,11 +152,21 @@ class CollectionSerializer(serializers.ModelSerializer):
         queryset=Category.objects.filter(type=amo.ADDON_WEBAPP))
 
     class Meta:
-        fields = ('apps', 'author', 'background_color', 'carrier', 'category',
-                  'collection_type', 'default_language', 'description', 'id',
-                  'image', 'is_public', 'name', 'region', 'slug',
-                  'text_color',)
+        fields = ('apps', 'author', 'background_color', 'can_be_hero',
+                  'carrier', 'category', 'collection_type', 'default_language',
+                  'description', 'id', 'image', 'is_public', 'name', 'region',
+                  'slug', 'text_color',)
         model = Collection
+
+    def to_native(self, obj):
+        """
+        Remove `can_be_hero` from the serialization if this is not an operator
+        shelf.
+        """
+        native = super(CollectionSerializer, self).to_native(obj)
+        if native['collection_type'] != COLLECTIONS_TYPE_OPERATOR:
+            del native['can_be_hero']
+        return native
 
     def full_clean(self, instance):
         instance = super(CollectionSerializer, self).full_clean(instance)
