@@ -74,15 +74,25 @@ def _get_trending(app_id, region=None):
     # If we query monolith with interval=week and the past 7 days
     # crosses a Monday, Monolith splits the counts into two. We want
     # the sum over the past week so we need to `sum` these.
-    count_1 = sum(
-        c['count'] for c in
-        client('app_installs', days_ago(7), today, 'week', **kwargs))
+    try:
+        count_1 = sum(
+            c['count'] for c in
+            client('app_installs', days_ago(7), today, 'week', **kwargs)
+            if c.get('count'))
+    except ValueError as e:
+        log.info('Call to ES failed: {0}'.format(e))
+        count_1 = 0
 
     # Get the average installs for the prior 3 weeks. Don't use the `len` of
     # the returned counts because of week boundaries.
-    counts_3 = list(client('app_installs', days_ago(28), days_ago(8),
-                           'week', **kwargs))
-    count_3 = sum(c['count'] for c in counts_3) / 3
+    try:
+        count_3 = sum(
+            c['count'] for c in
+            client('app_installs', days_ago(28), days_ago(8), 'week', **kwargs)
+            if c.get('count')) / 3
+    except ValueError as e:
+        log.info('Call to ES failed: {0}'.format(e))
+        count_3 = 0
 
     if count_1 > 100 and count_3 > 1:
         return (count_1 - count_3) / count_3
