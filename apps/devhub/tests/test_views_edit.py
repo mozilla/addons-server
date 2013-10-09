@@ -8,6 +8,7 @@ from django.core.cache import cache
 from django.core.files.storage import default_storage as storage
 from django.db.models import Q
 
+import mock
 from nose import SkipTest
 from nose.tools import eq_
 from PIL import Image
@@ -15,7 +16,7 @@ from pyquery import PyQuery as pq
 
 import amo
 import amo.tests
-from amo.tests import addon_factory, formset, initial
+from amo.tests import addon_factory, formset, initial, req_factory_factory
 from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
 from addons.forms import AddonFormBasic
@@ -23,6 +24,7 @@ from addons.models import (Addon, AddonCategory, AddonDependency, AddonUser,
                            Category)
 from bandwagon.models import Collection, CollectionAddon, FeaturedCollection
 from devhub.models import ActivityLog
+from devhub.views import edit_theme
 from tags.models import Tag, AddonTag
 from users.models import UserProfile
 from versions.models import License
@@ -1297,3 +1299,23 @@ class TestAdmin(amo.tests.TestCase):
         url = reverse('devhub.addons.admin', args=['a3615'])
         r = self.client.post(url)
         eq_(r.status_code, 403)
+
+
+class TestThemeEdit(amo.tests.TestCase):
+    fixtures = ['base/user_999']
+
+    def setUp(self):
+        self.create_flag('submit-personas')
+        self.addon = addon_factory(type=amo.ADDON_PERSONA)
+        self.user = UserProfile.objects.get()
+        AddonUser.objects.create(addon=self.addon, user=self.user)
+
+    @mock.patch('amo.messages.error')
+    def test_desc_too_long_error(self, message_mock):
+        data = {'description': 'a' * 501}
+        req = req_factory_factory(
+            self.addon.get_dev_url('edit'),
+            user=self.user, post=True, data=data)
+        r = edit_theme(req, self.addon.slug, self.addon)
+        doc = pq(r.content)
+        assert 'characters' in doc('#trans-description + ul li').text()
