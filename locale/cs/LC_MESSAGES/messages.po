@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-09-27 16:47-0700\n"
-"PO-Revision-Date: 2013-09-26 14:37+0000\n"
-"Last-Translator: Michal <michal.stanke@mikk.cz>\n"
+"PO-Revision-Date: 2013-10-09 16:25+0000\n"
+"Last-Translator: Pavel <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1380206260.0\n"
+"X-POOTLE-MTIME: 1381335903.0\n"
 
 #: apps/addons/buttons.py:207
 msgid "Download Now"
@@ -19102,16 +19102,31 @@ msgid ""
 "for several seconds while installing it, and a dialog titled \"Warning: Unresponsive script\" may appear. It it does, click \"Continue\" to wait for installation to finish. This issue is being "
 "tracked as <a href=\"%(bug_814505)s\">bug 814505</a>.<br /> <br /> Once you have installed the Simulator add-on, Firefox will periodically check for newer versions and keep it up to date for you."
 msgstr ""
+"2. Klepněte na \"Přidat do Firefoxu\". <br /> 3. Jakmile bude doplněk stažen, "
+"budete dotázání na jeho instalaci: klepněte na \"Instalovat nyní\". <br /> <br "
+"/> Protože je velikost doplňku velká, může Firefox při instalaci na několik "
+"sekund zamrznout a objevit se dialog \"Upozornění: Skript nereaguje\". Pokud "
+"se objeví, klepněte na tlačítko \"Pokračovat\" a vyčkejte až se dokončí "
+"instalace. Tento problém je zaznamenán jako <a href=\"%(bug_814505)s\">chyba "
+"814505</a>.<br /> <br /> Jakmile budete mít doplněk Simulator nainstalován, "
+"bude Firefox pravidelně kontrolovat, zda není k dispozici jeho aktuálnější "
+"verze."
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:110
 msgid ""
 "The Dashboard opens automatically when you install the Simulator, and you can reopen it at any time by going to the \"Firefox\" menu (or the \"Tools\" menu on OS X and Linux), then \"Web Developer"
 "\", then \"Firefox OS Simulator\":"
 msgstr ""
+"Po instalaci doplňku Simulator se automaticky otevře úvodní obrazovka, "
+"kterou můžete kdykoliv znovu otevřít v nabídce \"Firefox\" (či nabídce "
+"\"Nástroje\" na OS X a Linuxu), kde zvolíte \"Vývoj webu\", a následně \"Firefox "
+"OS Simulator\":"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:118
 msgid "The Dashboard is the tool you use to add your app to the Simulator and run it. Here's what it looks like:"
 msgstr ""
+"Úvodní obrazovka je nástroj, který je používán pro přidání vaší aplikace do "
+"doplňku Simulator a její spuštění. Vypadá následovně:"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:124
 msgid "Adding, updating, and removing apps"
@@ -19401,6 +19416,8 @@ msgstr "Nahrání do zařízení"
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:331
 msgid "If you have a Firefox OS device you can connect it to the Simulator, and can then push apps from the Dashboard to the device."
 msgstr ""
+"Pokud máte zařízení s Firefox OS, můžete jej připojit k doplňku Simulator, a "
+"poté nahrávat aplikace přímo z nástěnky do zařízení."
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:336
 msgid "Connecting a device"
@@ -19411,18 +19428,30 @@ msgid ""
 "To connect a device to the Simulator, you need the <a href=\"%(adb)s\">Android Debug Bridge (adb)</a> to be installed, but the Simulator add-on bundles adb for you. You do, though, need to "
 "configure both the Firefox OS device and your desktop OS."
 msgstr ""
+"Pro připojení zařízení k doplňku Simulator potřebujete mít nainstalován <a "
+"href=\"%(adb)s\">Android Debug Bridge (adb)</a>, ale doplněk Simulator již v "
+"sobě adb obsahuje. Přesto budete potřebovat nakonfigurovat jak zařízení s "
+"Firefox OS, tak váš desktop."
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:347
 msgid ""
 "On your Firefox OS device: open the Settings app, then <code>Device Information</code> &gt; <code>More Information</code> &gt; <code>Developer</code>. In the developer menu, check \"Remote debugging"
 "\"."
 msgstr ""
+"Na svém zařízení s Firefox otevřete aplikaci Nastavení, poté <code>Informace "
+"o zařízení</code> &gt; <code>Více informací</code> &gt; "
+"<code>Vývojář</code>. V nabídce zaškrtněte \"Vzdálené ladění\"."
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:354
 msgid ""
 "Set up your OS to detect the device. Instructions for this are OS-specific, and are detailed in point 3 of <a href=\"%(android_tools)s\">\"Setting up a Device for Development\" </a> on the Android "
 "developer site. The vendor ID to use for Firefox OS Geeksphone devices is <code>05c6</code>."
 msgstr ""
+"Nastavte svůj OS tak, aby detekoval vaše zařízení. Instrukce pro to jsou "
+"závislé na operačním systému a detailně jsou popsány v bodu 3 na stránce <a "
+"href=\"%(android_tools)s\">\"Setting up a Device for Development\"</a> na webu s "
+"informace mi pro vývojáře Androidu. ID výrobce, který je používán pro "
+"zařízení Firefox OS Geeksphone, je <code>05c6</code>."
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:363
 msgid "Pushing apps to the device"
@@ -19453,10 +19482,14 @@ msgstr "Hardwarová omezení"
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:378
 msgid "Apart from screen size, the Simulator does not simulate the hardware limitations of a Firefox OS device such as available memory or CPU speed."
 msgstr ""
+"Na rozdíl od velikosti obrazovky doplněk Simulator nesimuluje hardwarová "
+"omezení zařízení s Firefox OS jako je paměť či rychlost procesoru."
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:383
 msgid "The following codecs depend on hardware-accelerated decoding and are therefore not yet supported:"
 msgstr ""
+"Následující kodeky závisí na hardwarové akceleraci a nejsou tak dosud "
+"podporovány:"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:390
 msgid "Unsupported APIs"
@@ -19467,6 +19500,12 @@ msgid ""
 "Certain APIs that work on the device won't work on the Simulator, generally because the supporting hardware is not available on the desktop. We've implemented simulations for some APIs such as "
 "geolocation, and expect to add more in future releases. However, at the moment the following APIs are not supported. Using them might throw errors or just return incorrect results:"
 msgstr ""
+"Některá API, která jsou k dispozici na reálném zařízení, v doplňku Simulator "
+"nefungují. Obvykle je to z důvodu, že není na desktopu k dispozici podpora "
+"pro hardwarovou akceleraci. Dosud jsme implementovali simulovanou podporu "
+"pro některá API jako je geolocation a očekáváme, že v příštích verzích bude "
+"přidáno více. Nicméně v současné době nejsou podporována následující API. "
+"Jejich používání může vyhazovat chyby či vracet nekorektní výsledky:"
 
 #: mkt/ecosystem/templates/ecosystem/firefox_os_simulator.html:411
 msgid "Getting help"
@@ -19477,6 +19516,10 @@ msgid ""
 "If you find any bugs, please <a href=\"%(issues)s\">file them on GitHub</a>. If you have a question, try asking us on the <a href=\"%(mailing_list)s\"> dev-developer-tools mailing list</a> or on <a "
 "href=\"%(irc)s\">#devtools on irc.mozilla.org</a>."
 msgstr ""
+"Pokud naleznete jakoukoliv chybu, <a href=\"%(issues)s\">nahlaste ji na "
+"serveru GitHub</a>. Pokud máte otázku, zkuste se nás zeptat v <a href=\"%"
+"(mailing_list)s\">poštovní konferenci dev-developer-tools</a> nebo kanále<a "
+"href=\"%(irc)s\">#devtools na irc.mozilla.org</a>."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:11
 msgid "Develop HTML5 Web Apps for an open marketplace."
