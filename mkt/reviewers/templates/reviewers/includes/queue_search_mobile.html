@@ -15,9 +15,9 @@
       </span>
 
       <div class="advanced-search c hidden">
-        <!--Switch/single-checkbox fields-->
-        {# TODO: add back admin_review ? #}
-        {% for elem in ('has_editor_comment', 'has_info_request', 'is_escalated') %}
+        <!-- Switch/single-checkbox fields. -->
+        {# Commented because we may need plain Boolean fields for future search filters. #}
+        {# for elem in (FIELD_NAMES) %}
           <div class="form-elem c">
             {{ search_form[elem].label_tag() }}
             <label>
@@ -26,11 +26,13 @@
             </label>
           </div>
           {{ search_form[elem].errors }}
-        {% endfor %}
+        {% endfor #}
 
-        <!--Value selector fields.-->
-        {% for field in ('status', 'app_type', 'device', 'premium_types') %}
-          <!--Differentiate radio and checkbox form elements.-->
+        <!-- Value selector fields. -->
+        {% for field in ('has_editor_comment', 'has_info_request',
+                         'is_escalated', 'status', 'app_type', 'device',
+                         'premium_types') %}
+          <!-- Differentiate radio and checkbox form elements. -->
           {% set multi = field in ('premium_types',) %}
 
           <!-- Pretty and visible representation of form. -->
