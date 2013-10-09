@@ -3,6 +3,7 @@ from functools import partial
 from django import http
 
 import commonware
+import requests
 import waffle
 from rest_framework.exceptions import ParseError
 from rest_framework.generics import ListAPIView
@@ -18,7 +19,7 @@ from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.authorization import AllowAppOwner, PermissionAuthorization
 from mkt.api.base import CORSMixin, SlugOrIdMixin
-from mkt.api.exceptions import NotImplemented
+from mkt.api.exceptions import NotImplemented, ServiceUnavailable
 from mkt.webapps.models import Webapp
 
 from .forms import StatsForm
@@ -85,7 +86,12 @@ def _get_monolith_data(stat, start, end, interval, dimensions):
     # If stat has a 'lines' attribute, it's a multi-line graph. Do a
     # request for each item in 'lines' and compose them in a single
     # response.
-    client = get_monolith_client()
+    try:
+        client = get_monolith_client()
+    except requests.ConnectionError as e:
+        log.info('Monolith connection error: {0}'.format(e))
+        raise ServiceUnavailable
+
     try:
         data = {}
         if 'lines' in stat:

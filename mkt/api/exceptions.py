@@ -18,3 +18,11 @@ class NotImplemented(APIException):
 
     def __init__(self, detail=None):
         self.detail = detail or self.default_detail
+
+
+class ServiceUnavailable(APIException):
+    status_code = status.HTTP_503_SERVICE_UNAVAILABLE
+    default_detail = 'Service unavailable at this time.'
+
+    def __init__(self, detail=None):
+        self.detail = detail or self.default_detail

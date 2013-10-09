@@ -26,7 +26,7 @@ def memcache():
     memcache = getattr(settings, 'CACHES', {}).get('default')
     memcache_results = []
     status = ''
-    if memcache and 'memcached' in memcache['BACKEND']:
+    if memcache and 'memcache' in memcache['BACKEND']:
         hosts = memcache['LOCATION']
         if not isinstance(hosts, (tuple, list)):
             hosts = [hosts]

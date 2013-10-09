@@ -1,6 +1,7 @@
 import json
 
 import mock
+import requests
 from nose.tools import eq_, ok_
 from rest_framework.reverse import reverse
 
@@ -36,6 +37,11 @@ class TestGlobalStatsResource(RestOAuth):
 
     def test_verbs(self, mocked):
         self._allowed_verbs(self.url(), ['get'])
+
+    def test_monolith_down(self, mocked):
+        mocked.side_effect = requests.ConnectionError
+        res = self.client.get(self.url(), data=self.data)
+        eq_(res.status_code, 503)
 
     def test_anon(self, mocked):
         res = self.anon.get(self.url())
@@ -120,6 +126,11 @@ class TestAppStatsResource(RestOAuth):
 
     def test_verbs(self, mocked):
         self._allowed_verbs(self.url(), ['get'])
+
+    def test_monolith_down(self, mocked):
+        mocked.side_effect = requests.ConnectionError
+        res = self.client.get(self.url(), data=self.data)
+        eq_(res.status_code, 503)
 
     def test_anon(self, mocked):
         res = self.anon.get(self.url())
