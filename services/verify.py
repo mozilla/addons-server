@@ -1,6 +1,7 @@
 import calendar
-from datetime import datetime
 import json
+
+from datetime import datetime
 from time import gmtime, time
 from urlparse import parse_qsl, urlparse
 from wsgiref.handlers import format_date_time
@@ -244,6 +245,8 @@ class Verify:
             raise InvalidReceipt('WRONG_PURCHASE')
 
     def invalid(self, reason=''):
+        receipt_cef.log(self.environ, self.addon_id, 'verify',
+                        'Invalid receipt')
         return json.dumps({'status': 'invalid', 'reason': reason})
 
     def ok_or_expired(self):
@@ -268,12 +271,17 @@ class Verify:
         return json.dumps({'status': 'ok'})
 
     def refund(self):
+        receipt_cef.log(self.environ, self.addon_id, 'verify',
+                        'Refunded receipt')
         return json.dumps({'status': 'refunded'})
 
     def expired(self):
+        receipt_cef.log(self.environ, self.addon_id, 'verify',
+                        'Expired receipt')
         if settings.WEBAPPS_RECEIPT_EXPIRED_SEND:
             self.decoded['exp'] = (calendar.timegm(gmtime()) +
                               settings.WEBAPPS_RECEIPT_EXPIRY_SECONDS)
+            # Log that we are signing a new receipt as well.
             receipt_cef.log(self.environ, self.addon_id, 'sign',
                             'Expired signing request')
             return json.dumps({'status': 'expired',

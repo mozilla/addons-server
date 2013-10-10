@@ -11,7 +11,7 @@ import jwt
 import M2Crypto
 import mock
 from browserid.errors import ExpiredSignatureError
-from nose.tools import eq_
+from nose.tools import eq_, ok_
 from test_utils import RequestFactory
 
 import amo
@@ -105,12 +105,14 @@ class TestVerify(amo.tests.TestCase):
     def test_invalid_signature(self):
         eq_(self.get_decode('blah.blah.blah')['status'], 'invalid')
 
-    def test_no_user(self):
+    @mock.patch('services.verify.receipt_cef.log')
+    def test_no_user(self, log):
         user_data = self.user_data.copy()
         del user_data['user']
         res = self.get(user_data)
         eq_(res['status'], 'invalid')
         eq_(res['reason'], 'NO_DIRECTED_IDENTIFIER')
+        ok_(log.called)
 
     def test_no_addon(self):
         user_data = self.user_data.copy()
@@ -162,13 +164,15 @@ class TestVerify(amo.tests.TestCase):
         eq_(res['status'], 'ok')
 
     @mock.patch('services.verify.sign')
-    def test_expired(self, sign):
+    @mock.patch('services.verify.receipt_cef.log')
+    def test_expired(self, log, sign):
         sign.return_value = ''
         user_data = self.user_data.copy()
         user_data['exp'] = calendar.timegm(time.gmtime()) - 1000
         self.make_install()
         res = self.get(user_data)
         eq_(res['status'], 'expired')
+        ok_(log.called)
 
     @mock.patch('services.verify.sign')
     def test_garbage_expired(self, sign):
@@ -251,7 +255,8 @@ class TestVerify(amo.tests.TestCase):
         res = self.get(self.user_data)
         eq_(res['status'], 'ok')
 
-    def test_premium_addon_refund(self):
+    @mock.patch('services.verify.receipt_cef.log')
+    def test_premium_addon_refund(self, log):
         self.addon.update(premium_type=amo.ADDON_PREMIUM)
         self.make_install()
         purchase = self.make_purchase()
@@ -259,6 +264,7 @@ class TestVerify(amo.tests.TestCase):
             purchase.update(type=type)
             res = self.get(self.user_data)
             eq_(res['status'], 'refunded')
+        eq_(log.call_count, 2)
 
     def test_premium_no_charge(self):
         self.addon.update(premium_type=amo.ADDON_PREMIUM)
