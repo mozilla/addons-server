@@ -8,7 +8,6 @@ from django.core.files.storage import default_storage as storage
 import mock
 from nose.tools import eq_
 from pyquery import PyQuery
-import waffle
 
 import amo
 import amo.tests
@@ -934,7 +933,6 @@ class TestMobileVersions(TestMobile):
 class TestApplicationsVersions(amo.tests.TestCase):
 
     def setUp(self):
-        waffle.models.Switch.objects.create(name='d2c-buttons', active=True)
         self.version_kw = dict(min_app_version='5.0', max_app_version='6.*')
 
     def test_repr_when_compatible(self):

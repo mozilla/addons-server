@@ -10,10 +10,7 @@
 {% if compat %}
   data-min="{{ compat.min.version }}"
   data-max="{{ compat.max.version }}"
-  {% if waffle.switch('d2c-buttons') %}
-    data-waffle-d2c-buttons="true"
-    data-is-compatible="{{ version.is_compatible[0]|json }}"
-    data-is-compatible-app="{{ version.is_compatible_app(APP)|json }}"
-    data-compat-overrides="{{ version.compat_override_app_versions()|json }}"
-  {% endif %}
+  data-is-compatible="{{ version.is_compatible[0]|json }}"
+  data-is-compatible-app="{{ version.is_compatible_app(APP)|json }}"
+  data-compat-overrides="{{ version.compat_override_app_versions()|json }}"
 {% endif %}

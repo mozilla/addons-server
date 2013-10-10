@@ -8,12 +8,12 @@ from django.test.client import Client
 from django.utils import translation
 
 import jingo
-import waffle
 from mock import patch
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
 import amo
+import api
 from addons.models import (Addon, AppSupport, CompatOverride,
                            CompatOverrideRange, Persona, Preview)
 from amo import helpers
@@ -21,9 +21,8 @@ from amo.helpers import absolutify
 from amo.tests import addon_factory, ESTestCase, TestCase
 from amo.urlresolvers import reverse
 from amo.views import handler500
-import api
-from api.views import addon_filter
 from api.utils import addon_to_dict
+from api.views import addon_filter
 from applications.models import Application, AppVersion
 from bandwagon.models import Collection, CollectionAddon, FeaturedCollection
 from files.models import File, Platform
@@ -34,6 +33,7 @@ from tags.models import AddonTag, Tag
 
 def api_url(x, app='firefox', lang='en-US', version=1.2):
     return '/%s/%s/api/%.1f/%s' % (lang, app, version, x)
+
 
 client = Client()
 make_call = lambda *args, **kwargs: client.get(api_url(*args, **kwargs))
@@ -1007,12 +1007,6 @@ class SearchTest(ESTestCase):
             response = self.client.get(url)
             self.assertContains(response, text, msg_prefix=url)
 
-    def test_ignore_apps(self):
-        Addon.objects.update(type=amo.ADDON_WEBAPP)
-        self.reindex(Addon)
-        rp = self.client.get('/en-US/firefox/api/1.2/search/delicious')
-        self.assertNotContains(rp, 'Delicious')
-
     def test_search_limits(self):
         """
         Test that we limit our results correctly.
@@ -1044,7 +1038,6 @@ class SearchTest(ESTestCase):
         eq_(self.client.head(base + '/junk').status_code, 404)
 
     def test_compat_mode_ignore(self):
-        waffle.models.Switch.objects.create(name='d2c-api-search', active=True)
         # Delicious currently supports Firefox 2.0 - 3.7a1pre. Strict mode will
         # not find it. Ignore mode should include it if the appversion is
         # specified as higher.
@@ -1057,7 +1050,6 @@ class SearchTest(ESTestCase):
         self.assertContains(response, 'Delicious Bookmarks')
 
     def test_compat_mode_normal_and_strict_opt_in(self):
-        waffle.models.Switch.objects.create(name='d2c-api-search', active=True)
         # Under normal compat mode we ignore max version unless the add-on has
         # opted into strict mode. Test before and after search queries.
         addon = Addon.objects.get(pk=3615)
@@ -1085,7 +1077,6 @@ class SearchTest(ESTestCase):
         self.assertContains(response, 'Delicious Bookmarks')
 
     def test_compat_mode_normal_and_binary_components(self):
-        waffle.models.Switch.objects.create(name='d2c-api-search', active=True)
         # We ignore max version as long as the add-on has no binary components.
         # Test before and after search queries.
         addon = Addon.objects.get(pk=3615)
@@ -1113,7 +1104,6 @@ class SearchTest(ESTestCase):
         self.assertContains(response, 'Delicious Bookmarks')
 
     def test_compat_mode_normal_and_binary_components_multi_file(self):
-        waffle.models.Switch.objects.create(name='d2c-api-search', active=True)
         # This checks that versions with multiple files uses the platform to
         # pick the right file for checking binary_components.
         addon = Addon.objects.get(pk=3615)
@@ -1152,7 +1142,6 @@ class SearchTest(ESTestCase):
         self.assertContains(response, 'Delicious Bookmarks')
 
     def test_compat_mode_normal_max_version(self):
-        waffle.models.Switch.objects.create(name='d2c-api-search', active=True)
         # We ignore versions that don't qualify for d2c by not having the
         # minimum maxVersion support (e.g. Firefox >= 4.0).
         app = Application.objects.get(id=1)
@@ -1184,7 +1173,6 @@ class SearchTest(ESTestCase):
         self.assertContains(response, 'Delicious Bookmarks')
 
     def test_compat_override(self):
-        waffle.models.Switch.objects.create(name='d2c-api-search', active=True)
         # Under normal compat mode we ignore add-ons with a compat override.
         addon = Addon.objects.get(pk=3615)
         self.defaults.update(query='delicious', app_version='5.0')
@@ -1214,15 +1202,6 @@ class SearchTest(ESTestCase):
         self.defaults.update(compat_mode='ignore')
         response = self.client.get(self.url % self.defaults)
         self.assertContains(response, 'Delicious Bookmarks')
-
-    def test_cache(self):
-        addon = Addon.objects.get(pk=3615)
-        with self.assertNumQueries(1):
-            addon.compatible_version(amo.FIREFOX.id, '4.0', 'all', 'strict')
-        # 2nd call to this should hit cache and not perform any queries since
-        # we stored that there are no compatible versions.
-        with self.assertNumQueries(0):
-            addon.compatible_version(amo.FIREFOX.id, '4.0', 'all', 'strict')
 
     def test_cross_origin(self):
         # The search view doesn't allow cross-origin requests.

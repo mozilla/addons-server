@@ -15,8 +15,6 @@ from amo.urlresolvers import reverse
 from addons.buttons import install_button, _install_button, big_install_button
 from addons.models import Addon
 
-import waffle
-
 
 def setup():
     jingo.load_helpers()
@@ -537,6 +535,8 @@ class TestButtonHtml(ButtonTest):
         compat.min.version = 'min version'
         compat.max.version = 'max version'
         self.version.compatible_apps = {amo.FIREFOX: compat}
+        self.version.is_compatible = (True, [])
+        self.version.is_compatible_app.return_value = True
         self.version.created = datetime.now()
         install = self.render()('.install')
         eq_('min version', install.attr('data-min'))
@@ -576,7 +576,6 @@ class TestButtonHtml(ButtonTest):
         assert xss not in s, s
 
     def test_d2c_attrs(self):
-        waffle.models.Switch.objects.create(name='d2c-buttons', active=True)
         compat = Mock()
         compat.min.version = '4.0'
         compat.max.version = '12.0'
@@ -600,7 +599,6 @@ class TestButtonHtml(ButtonTest):
         eq_(install.attr('data-compat-overrides'), json.dumps(override))
 
     def test_d2c_attrs_binary(self):
-        waffle.models.Switch.objects.create(name='d2c-buttons', active=True)
         compat = Mock()
         compat.min.version = '4.0'
         compat.max.version = '12.0'
@@ -618,7 +616,6 @@ class TestButtonHtml(ButtonTest):
         eq_(install_shell.find('.d2c-reasons-popup ul li').length, 1)
 
     def test_d2c_attrs_strict_and_binary(self):
-        waffle.models.Switch.objects.create(name='d2c-buttons', active=True)
         compat = Mock()
         compat.min.version = '4.0'
         compat.max.version = '12.0'

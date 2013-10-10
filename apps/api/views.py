@@ -34,8 +34,8 @@ from api.forms import PerformanceForm
 from api.utils import addon_to_dict, extract_filters
 from perf.models import (Performance, PerformanceAppVersions,
                          PerformanceOSVersion)
-from search.views import (name_query, _build_suggestions,
-                          PersonaSuggestionsAjax, AddonSuggestionsAjax)
+from search.views import (AddonSuggestionsAjax, PersonaSuggestionsAjax,
+                          name_query)
 from versions.compare import version_int
 
 
@@ -358,31 +358,31 @@ class SearchView(APIView):
             filters['type__in'] = list(amo.ADDON_SEARCH_TYPES)
         qs = qs.filter(**filters)
 
+        if qs_filters.get('platform__in', []):
+            # More than one platform, pluck it out.
+            platforms = qs_filters.get('platform__in')[:]
+            platforms.remove(1)  # ALL is already queried in compat SQL.
+            if platforms:
+                platform = amo.PLATFORMS[platforms[0]].api_name
+
         addons = qs[:limit]
         total = qs.count()
 
-        if waffle.switch_is_active('d2c-api-search'):
-            is_d2c = True
-            results = []
-            for addon in qs:
-                compat_version = addon.compatible_version(app_id, version,
-                                                          platform,
-                                                          compat_mode)
-                if compat_version:
-                    addon.compat_version = compat_version
-                    results.append(addon)
-                    if len(results) == limit:
-                        break
-                else:
-                    # We're excluding this addon because there are no
-                    # compatible versions. Decrement the total.
-                    total -= 1
-        else:
-            is_d2c = False
-            results = addons
+        results = []
+        for addon in qs:
+            compat_version = addon.compatible_version(app_id, version,
+                                                      platform, compat_mode)
+            if compat_version:
+                addon.compat_version = compat_version
+                results.append(addon)
+                if len(results) == limit:
+                    break
+            else:
+                # We're excluding this addon because there are no
+                # compatible versions. Decrement the total.
+                total -= 1
 
         return self.render('api/search.xml', {
-            'is_d2c': is_d2c,
             'results': results,
             'total': total,
             # For caching
