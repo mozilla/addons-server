@@ -213,11 +213,11 @@ class TestThemeForm(amo.tests.TestCase):
         eq_(self.form.is_valid(), True, self.form.errors)
 
     def test_description_length(self):
-        self.post(description='a' * 251)
+        self.post(description='a' * 501)
         eq_(self.form.is_valid(), False)
         eq_(self.form.errors,
             {'description': ['Ensure this value has at most '
-                             '250 characters (it has 251).']})
+                             '500 characters (it has 501).']})
 
     def test_categories_required(self):
         self.post(category='')
