@@ -201,6 +201,15 @@ class UY(REGION):
     mcc = 748
 
 
+class AR(REGION):
+    id = 20
+    name = _lazy(u'Argentina')
+    slug = 'ar'
+    default_currency = 'ARS'
+    default_language = 'es'
+    mcc = 722
+
+
 # Create a list of tuples like so (in alphabetical order):
 #
 #     [('worldwide', <class 'mkt.constants.regions.WORLDWIDE'>),
