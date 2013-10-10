@@ -1564,7 +1564,7 @@ ALLOW_TASTYPIE_SERVICES = False
 
 # The version we append to the app feature profile. Bump when we add new app
 # features to the `AppFeatures` model.
-APP_FEATURES_VERSION = 2
+APP_FEATURES_VERSION = 3
 
 # Whether to throttle API requests. Default is True. Disable where appropriate.
 API_THROTTLE = True
