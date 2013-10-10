@@ -12,7 +12,6 @@ from django.db import models
 import caching.base
 import commonware.log
 import jinja2
-import waffle
 
 import addons.query
 import amo
@@ -678,8 +677,7 @@ class ApplicationsVersions(caching.base.CachingMixin, models.Model):
         unique_together = (("application", "version"),)
 
     def __unicode__(self):
-        if (waffle.switch_is_active('d2c-buttons') and
-            self.version.is_compatible[0] and
+        if (self.version.is_compatible[0] and
             self.version.is_compatible_app(amo.APP_IDS[self.application.id])):
             return _(u'{app} {min} and later').format(app=self.application,
                                                       min=self.min)

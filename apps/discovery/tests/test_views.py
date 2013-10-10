@@ -239,14 +239,6 @@ class TestUrls(amo.tests.TestCase):
         url = reverse('discovery.pane', args=['4.0', 'Darwin', 'strict'])
         self.assertRedirects(r, url, 302)
 
-        # Redirect to 'strict' if version >= 10 and not d2c disco waffle.
-        r = self.client.get('/en-US/firefox/discovery/10.0/Darwin',
-                            follow=True)
-        url = reverse('discovery.pane', args=['10.0', 'Darwin', 'strict'])
-        self.assertRedirects(r, url, 302)
-
-        waffle.models.Switch.objects.create(name='d2c-at-the-disco',
-                                            active=True)
         # Redirect to default 'ignore' if version >= 10.
         r = self.client.get('/en-US/firefox/discovery/10.0/Darwin',
                             follow=True)
@@ -603,16 +595,12 @@ class TestPaneMoreAddons(amo.tests.TestCase):
         self.assertContains(res, self.addon2.name)
 
     def test_hotness_ignore(self):
-        waffle.models.Switch.objects.create(name='d2c-at-the-disco',
-                                            active=True)
         # Defaults to ignore compat mode for Fx v10, both are compatible.
         res = self.client.get(self._url(version='10.0'))
         eq_(res.status_code, 200)
         eq_(pq(res.content)('.featured-addons').length, 2)
 
     def test_hotness_normal_strict_opt_in(self):
-        waffle.models.Switch.objects.create(name='d2c-at-the-disco',
-                                            active=True)
         # Add a 3rd add-on that should get filtered out b/c of compatibility.
         addon_factory(hotness=50, version_kw=dict(max_app_version='7.0'),
                       file_kw=dict(strict_compatibility=True))
@@ -622,8 +610,6 @@ class TestPaneMoreAddons(amo.tests.TestCase):
         eq_(pq(res.content)('.featured-addons').length, 2)
 
     def test_hotness_normal_binary_components(self):
-        waffle.models.Switch.objects.create(name='d2c-at-the-disco',
-                                            active=True)
         # Add a 3rd add-on that should get filtered out b/c of compatibility.
         addon_factory(hotness=50, version_kw=dict(max_app_version='7.0'),
                       file_kw=dict(binary_components=True))
@@ -633,8 +619,6 @@ class TestPaneMoreAddons(amo.tests.TestCase):
         eq_(pq(res.content)('.featured-addons').length, 2)
 
     def test_hotness_normal_compat_override(self):
-        waffle.models.Switch.objects.create(name='d2c-at-the-disco',
-                                            active=True)
         # Add a 3rd add-on that should get filtered out b/c of compatibility.
         addon3 = addon_factory(hotness=50,
                                version_kw=dict(max_app_version='7.0'))

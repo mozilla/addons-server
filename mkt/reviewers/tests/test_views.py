@@ -2544,6 +2544,7 @@ class TestQueueSort(AppReviewerTest):
                                  status=amo.STATUS_PENDING,
                                  is_packaged=False,
                                  version_kw={'version': '1.0'},
+                                 file_kw={'status': amo.STATUS_PENDING},
                                  admin_review=True,
                                  premium_type=amo.ADDON_FREE),
                      app_factory(name='Batum',
@@ -2552,6 +2553,7 @@ class TestQueueSort(AppReviewerTest):
                                  version_kw={'version': '1.0',
                                              'has_editor_comment': True,
                                              'has_info_request': True},
+                                 file_kw={'status': amo.STATUS_PENDING},
                                  admin_review=False,
                                  premium_type=amo.ADDON_PREMIUM)]
 
@@ -2570,45 +2572,6 @@ class TestQueueSort(AppReviewerTest):
 
         self.url = reverse('reviewers.apps.queue_pending')
 
-    def test_do_sort_webapp(self):
-        """
-        Test that apps are sorted in order specified in GET params
-        """
-        rf = RequestFactory()
-        qs = Webapp.objects.no_cache().all()
-
-        # Test apps are sorted by created/asc by default.
-        r = rf.get(self.url, {'sort': 'invalidsort', 'order': 'dontcare'})
-        sorted_qs = _do_sort(r, qs)
-        eq_(list(sorted_qs), [self.apps[1], self.apps[0]])
-
-        # Test sorting by created, descending.
-        r = rf.get(self.url, {'sort': 'created', 'order': 'desc'})
-        sorted_qs = _do_sort(r, qs)
-        eq_(list(sorted_qs), [self.apps[0], self.apps[1]])
-
-        # Test sorting by app name.
-        r = rf.get(self.url, {'sort': 'name', 'order': 'asc'})
-        sorted_qs = _do_sort(r, qs)
-        eq_(list(sorted_qs), [self.apps[1], self.apps[0]])
-
-        r = rf.get(self.url, {'sort': 'name', 'order': 'desc'})
-        sorted_qs = _do_sort(r, qs)
-        eq_(list(sorted_qs), [self.apps[0], self.apps[1]])
-
-        # By abuse reports.
-        AbuseReport.objects.create(addon=self.apps[1])
-        r = rf.get(self.url, {'sort': 'num_abuse_reports',
-                              'order': 'asc'})
-        sorted_qs = _do_sort(r, qs)
-        eq_(list(sorted_qs), [self.apps[0], self.apps[1]])
-
-        r = rf.get(self.url, {'sort': 'num_abuse_reports',
-                              'order': 'desc'})
-        sorted_qs = _do_sort(r, qs)
-        eq_(list(sorted_qs), [self.apps[1], self.apps[0]])
-
-
     def test_do_sort_version_nom(self):
         """Tests version nomination sort order."""
         url = reverse('reviewers.apps.queue_pending')
@@ -2618,6 +2581,14 @@ class TestQueueSort(AppReviewerTest):
         version_0.update(nomination=days_ago(1))
         version_1 = self.apps[1].versions.get()
         version_1.update(nomination=days_ago(2))
+
+        # Throw in some disabled versions, they shouldn't affect order.
+        version_factory({'status': amo.STATUS_DISABLED}, addon=self.apps[0],
+                        nomination=days_ago(10))
+        version_factory({'status': amo.STATUS_DISABLED}, addon=self.apps[1],
+                        nomination=days_ago(1))
+        version_factory({'status': amo.STATUS_DISABLED}, addon=self.apps[1],
+                        nomination=days_ago(20))
 
         req = amo.tests.req_factory_factory(
             url, user=user, data={'sort': 'nomination'})

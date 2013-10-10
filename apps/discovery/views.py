@@ -46,10 +46,7 @@ def get_compat_mode(version):
     # Returns appropriate compat mode based on app version.
     # Replace when we are ready to deal with bug 711698.
     vint = version_int(version)
-    if waffle.switch_is_active('d2c-at-the-disco'):
-        return 'ignore' if vint >= version_int('10.0') else 'strict'
-    else:
-        return 'strict'
+    return 'ignore' if vint >= version_int('10.0') else 'strict'
 
 
 def pane(request, version, platform, compat_mode=None):
