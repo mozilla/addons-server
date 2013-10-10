@@ -1,17 +1,17 @@
 {% extends "developers/base_impala.html" %}
 
-{% set title = _('Validate an App') %}
+{% set title = _('Test App Validation') %}
 {% set doc_url = 'https://developer.mozilla.org/docs/Apps/Manifest' %}
 
 {% block title %}{{ hub_page_title(title) }}{% endblock %}
 
 {% block content %}
-  {{ hub_breadcrumbs(items=[(None, _('Validate App'))]) }}
+  {{ hub_breadcrumbs(items=[(url('mkt.developers.apps.testing'), _('Testing')), (None, title)]) }}
   <header class="submit-header c">
-    <h1>{{ _('Validate an App') }}</h1>
+    <h1>{{ title }}</h1>
   </header>
 
-  <section id="upload-file" class="island tabbable spacer">
+  <section id="upload-file" class="island tabbable spacer primary manage">
     <div class="hosted tab active">
       <h2><a href="#">{{ _('Hosted') }}</a></h2>
       <h3>{{ _("Submit your app manifest URL") }}</h3>
@@ -62,4 +62,5 @@
     </a>
   </p>
 
+  {% include 'developers/includes/testing_nav.html' %}
 {% endblock %}

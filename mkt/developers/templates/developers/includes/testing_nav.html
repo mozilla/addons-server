@@ -1,0 +1,19 @@
+{% set urls = [
+  (url('mkt.developers.validate_addon'), _('Test App Validation')),
+  (url('receipt.test.install'), _('Test App Installation')),
+] %}
+{% if waffle.switch('in-app-sandbox') %}
+  {% do urls.append((url('mkt.developers.apps.in_app_keys'),
+                     _('Test In-App Payments'))) %}
+{% endif %}
+
+<section class="secondary manage" role="complementary">
+  <div class="island">
+    <ul class="refinements">
+      {% for url, title in urls %}
+        <li{% if request.path.startswith(url) %} class="selected"{% endif %}>
+          <a href="{{ url }}">{{ title }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>

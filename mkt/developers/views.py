@@ -952,3 +952,7 @@ def _filter_transactions(qs, data):
             except ValueError:
                 continue
     return qs
+
+
+def testing(request):
+    return jingo.render(request, 'developers/testing.html')

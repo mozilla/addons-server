@@ -31,14 +31,10 @@
         </li>
         <li class="slim">
           <a href="{{ url('mkt.developers.apps.api') }}">{{ _('API') }}</a>
-        <li class="slim">
-          <a href="{{ url('mkt.developers.validate_addon') }}">
-            {{- _('App Validator') }}</a>
         </li>
-        {% if waffle.switch('in-app-sandbox') %}
-          <li class="slim"><a href="{{ url('mkt.developers.apps.in_app_keys') }}">
-            {{ _('Payment Keys') }}</a></li>
-        {% endif %}
+        <li class="slim">
+          <a href="{{ url('mkt.developers.apps.testing') }}">{{ _('Testing Apps') }}</a>
+        </li>
         <li id="submit-app" class="slim">
           <a href="{{ url('submit.app') }}">{{ _('Submit a New App') }}</a>
         </li>
