@@ -1,9 +1,12 @@
 # -*- coding: utf-8 -*-
 from nose.tools import eq_, ok_
+from rest_framework import serializers
 from tastypie.bundle import Bundle
 from test_utils import RequestFactory
 
+import amo
 import amo.tests
+from addons.models import Category
 from amo.urlresolvers import reverse
 
 from mkt.api.resources import AppResource
@@ -170,6 +173,19 @@ class TestCollectionSerializer(CollectionDataMixin, amo.tests.TestCase):
         keys = data['apps'][0].keys()
         ok_('name' in keys)
         ok_('id' in keys)
+
+    def validate(self, **kwargs):
+        return self.serializer.validate(kwargs)
+
+    def test_validation_operatorshelf_category(self):
+        category = Category.objects.create(name='BastaCorp', slug='basta',
+                                           type=amo.ADDON_WEBAPP)
+        ok_(self.validate(collection_type=COLLECTIONS_TYPE_BASIC,
+                          category=category))
+        ok_(self.validate(collection_type=COLLECTIONS_TYPE_OPERATOR))
+        with self.assertRaises(serializers.ValidationError):
+            self.validate(collection_type=COLLECTIONS_TYPE_OPERATOR,
+                          category=category)
 
 
 IMAGE_DATA = """

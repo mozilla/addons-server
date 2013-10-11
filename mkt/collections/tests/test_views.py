@@ -8,9 +8,9 @@ from django.core.files.storage import default_storage as storage
 from django.core.urlresolvers import reverse
 from django.utils import translation
 
-from PIL import Image
 from nose import SkipTest
 from nose.tools import eq_, ok_
+from PIL import Image
 from rest_framework.exceptions import PermissionDenied
 
 import amo
@@ -561,6 +561,18 @@ class TestCollectionViewSetCreate(BaseCollectionViewSetTest):
         eq_(data['description'], data['description'])
         eq_(new_collection.description, data['description']['en-US'])
 
+    def test_create_validation_operatorshelf_category(self):
+        self.category = Category.objects.create(type=amo.ADDON_WEBAPP,
+            name='Grumpy', slug='grumpy-cat')
+        self.make_publisher()
+        self.collection_data.update({
+            'category': self.category.pk,
+            'collection_type': COLLECTIONS_TYPE_OPERATOR
+        })
+        res, data = self.create(self.client)
+        ok_(res.status_code, 400)
+        ok_('non_field_errors' in data.keys())
+
     def test_create_empty_description_dict_in_default_language(self):
         """
         Test that we can't have an empty Translation for the default_language.
@@ -785,7 +797,8 @@ class TestCollectionViewSetDuplicate(BaseCollectionViewSetTest):
 
     def test_duplicate_operator(self):
         self.setup_unique()
-        self.collection.update(collection_type=COLLECTIONS_TYPE_OPERATOR)
+        self.collection.update(collection_type=COLLECTIONS_TYPE_OPERATOR,
+                               carrier=None, category=None)
         res, data = self.duplicate(self.client)
         eq_(res.status_code, 400)
         ok_('collection_uniqueness' in data)
@@ -1223,7 +1236,7 @@ class TestCollectionViewSetEditCollection(BaseCollectionViewSetTest):
         ok_('collection_uniqueness' in data)
 
         # Changing the collection type should be enough to make it work.
-        update_data['collection_type'] = COLLECTIONS_TYPE_OPERATOR
+        update_data['collection_type'] = COLLECTIONS_TYPE_BASIC
         res, data = self.edit_collection(self.client, **update_data)
         eq_(res.status_code, 200)
 
@@ -1240,21 +1253,23 @@ class TestCollectionViewSetEditCollection(BaseCollectionViewSetTest):
         when editing a collection.
         """
         self.setup_unique()
+        self.collection.update(category=None,
+                               collection_type=COLLECTIONS_TYPE_OPERATOR)
         self.collection_data.update({
+            'category': None,
             'collection_type': COLLECTIONS_TYPE_OPERATOR,
+            'carrier': mkt.carriers.VIMPELCOM.id,
         })
         extra_collection = Collection.objects.create(**self.collection_data)
 
         # Try to edit self.collection with the data from our extra_collection.
-        update_data = {'collection_type': extra_collection.collection_type}
+        update_data = {'carrier': extra_collection.carrier}
         res, data = self.edit_collection(self.client, **update_data)
         eq_(res.status_code, 400)
         ok_('collection_uniqueness' in data)
 
-        # Changing the category should be enough to make it work.
-        nyan = Category.objects.create(type=amo.ADDON_WEBAPP, name='Nyan Cat',
-                                      slug='nyan-cat')
-        update_data['category'] = nyan.pk
+        # Changing the carrier should be enough to make it work.
+        update_data['carrier'] = mkt.carriers.SPRINT.id
         res, data = self.edit_collection(self.client, **update_data)
         eq_(res.status_code, 200)
 
@@ -1263,6 +1278,18 @@ class TestCollectionViewSetEditCollection(BaseCollectionViewSetTest):
         update_data = {'is_public': False}
         res, data = self.edit_collection(self.client, **update_data)
         eq_(res.status_code, 200)
+
+    def test_edit_collection_validation_operatorshelf_category(self):
+        self.make_publisher()
+        category = Category.objects.create(type=amo.ADDON_WEBAPP,
+            name='Grumpy', slug='grumpy-cat')
+        updates = {
+            'category': category.pk,
+            'collection_type': COLLECTIONS_TYPE_OPERATOR
+        }
+        res, data = self.edit_collection(self.client, **updates)
+        eq_(res.status_code, 400)
+        ok_('non_field_errors' in data)
 
 
 class TestCollectionViewSetListCurators(BaseCollectionViewSetTest):
