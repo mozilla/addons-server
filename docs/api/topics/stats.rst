@@ -466,3 +466,38 @@ The number of page visits each day over time.
                 ...
             ],
         }
+
+Gross Revenue
+~~~~~~~~~~~~~
+
+The gross revenue of app purchases over time.
+
+.. http:get:: /api/v1/stats/app/(int:id)|(string:slug)/revenue
+
+    **Request**:
+
+    :param start: The starting date in "YYYY-MM-DD" format.
+    :type start: string
+    :param end: The ending date in "YYYY-MM-DD" format.
+    :type end: string
+    :param interval: The interval. One of the following: 'day', 'week',
+                     'month', 'quarter', 'year'.
+    :type interval: string
+
+    **Response**:
+
+    .. code-block:: json
+
+         {
+            "objects": [
+                {
+                    "count": "1.99",
+                    "date": "2013-08-01"
+                },
+                {
+                    "count": "2.98",
+                    "date": "2013-08-02"
+                },
+                ...
+            ],
+        }

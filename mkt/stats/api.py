@@ -38,6 +38,11 @@ log = commonware.log.getLogger('z.stats')
 #     {'<name>': {'<dimension-key>': '<dimension-value>'}}
 # where <name> is what's returned in the JSON output and the dimension
 # key/value is what's sent to Monolith similar to the 'dimensions' above.
+#
+# The 'coerce' key is optional and used to coerce data types returned from
+# monolith to other types. Provide the name of the key in the data you want to
+# coerce with a callback for how you want the data coerced. E.g.:
+#   {'count': str}
 lines = lambda name, vals: dict((val, {name: val}) for val in vals)
 STATS = {
     'apps_added_by_package': {
@@ -78,7 +83,13 @@ APP_STATS = {
     },
     'visits': {
         'metric': 'app_visits',
-    }
+    },
+    'revenue': {
+        'metric': 'gross_revenue',
+        # Counts come back as floats. Let's convert them to strings with 2
+        # decimals.
+        'coerce': {'count': lambda d: '{0:.2f}'.format(d)},
+    },
 }
 
 
@@ -92,17 +103,26 @@ def _get_monolith_data(stat, start, end, interval, dimensions):
         log.info('Monolith connection error: {0}'.format(e))
         raise ServiceUnavailable
 
+    def _coerce(data):
+        for key, coerce in stat.get('coerce', {}).items():
+            if data.get(key):
+                data[key] = coerce(data[key])
+
+        return data
+
     try:
         data = {}
         if 'lines' in stat:
             for line_name, line_dimension in stat['lines'].items():
                 dimensions.update(line_dimension)
-                data[line_name] = list(client(stat['metric'], start, end,
-                                              interval, **dimensions))
+                data[line_name] = map(_coerce,
+                                      client(stat['metric'], start, end,
+                                             interval, **dimensions))
 
         else:
-            data['objects'] = list(client(stat['metric'], start, end, interval,
-                                          **dimensions))
+            data['objects'] = map(_coerce,
+                                  client(stat['metric'], start, end, interval,
+                                         **dimensions))
 
     except ValueError as e:
         # This occurs if monolith doesn't have our metric and we get an
@@ -194,6 +214,9 @@ class AppStats(CORSMixin, SlugOrIdMixin, ListAPIView):
 class TransactionAPI(CORSMixin, APIView):
     """
     API to query by transaction ID.
+
+    Note: This is intended for Monolith to be able to associate a Solitude
+    transaction with an app and price tier amount in USD.
 
     """
     authentication_classes = (RestOAuthAuthentication,
