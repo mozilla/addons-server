@@ -281,7 +281,7 @@ Apps installed
 The number of apps installed each day over time, optionally filtered by
 region.
 
-.. http:get:: /api/v1/stats/global/apps_installed
+.. http:get:: /api/v1/stats/global/apps_installed/
 
     **Request**:
 
@@ -384,6 +384,42 @@ The total number of visits to Marketplace over time.
         }
 
 
+Gross Revenue
+~~~~~~~~~~~~~
+
+The gross revenue of apps purchased over time.
+
+.. http:get:: /api/v1/stats/global/revenue/
+
+    **Request**:
+
+    :param start: The starting date in "YYYY-MM-DD" format.
+    :type start: string
+    :param end: The ending date in "YYYY-MM-DD" format.
+    :type end: string
+    :param interval: The interval. One of the following: 'day', 'week',
+                     'month', 'quarter', 'year'.
+    :type interval: string
+
+    **Response**:
+
+    .. code-block:: json
+
+         {
+            "objects": [
+                {
+                    "count": "1.99",
+                    "date": "2013-08-01"
+                },
+                {
+                    "count": "2.98",
+                    "date": "2013-08-02"
+                },
+                ...
+            ],
+        }
+
+
 Per-app Statistics
 ==================
 
@@ -400,7 +436,7 @@ Installs
 The number of apps installs each day over time, optionally filtered by
 region.
 
-.. http:get:: /api/v1/stats/app/(int:id)|(string:slug)/installs
+.. http:get:: /api/v1/stats/app/(int:id)|(string:slug)/installs/
 
     **Request**:
 
@@ -437,7 +473,7 @@ Visits
 
 The number of page visits each day over time.
 
-.. http:get:: /api/v1/stats/app/(int:id)|(string:slug)/visits
+.. http:get:: /api/v1/stats/app/(int:id)|(string:slug)/visits/
 
     **Request**:
 
@@ -472,7 +508,7 @@ Gross Revenue
 
 The gross revenue of app purchases over time.
 
-.. http:get:: /api/v1/stats/app/(int:id)|(string:slug)/revenue
+.. http:get:: /api/v1/stats/app/(int:id)|(string:slug)/revenue/
 
     **Request**:
 
