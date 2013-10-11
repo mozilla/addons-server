@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-09-27 16:47-0700\n"
-"PO-Revision-Date: 2013-09-27 11:46+0000\n"
+"PO-Revision-Date: 2013-10-11 16:57+0000\n"
 "Last-Translator: Inma <inma.barrios@mozilla-hispano.org>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1380282379.0\n"
+"X-POOTLE-MTIME: 1381510630.0\n"
 
 #: apps/addons/buttons.py:207
 msgid "Download Now"
@@ -2109,6 +2109,7 @@ msgstr "El estado de {version} cambió a {0}."
 #: apps/amo/log.py:646
 msgid "User {0.name} {0.id} deleted via lookup tool."
 msgstr ""
+"Usuario  {0.name} {0.id} borrado a través de la herramienta de búsqueda."
 
 #: apps/amo/templates/amo/403.html:3
 msgid "Not allowed"
@@ -6402,6 +6403,8 @@ msgstr "Crear conexiones HTTP sandboxed"
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:102
 msgid "This article explains how to create sandboxed HTTP connections that don't affect the user's cookies."
 msgstr ""
+"Este artículo explica cómo crear conexiones HTTP en un entorno de pruebas "
+"(sandbox) que no afectan a las cookies del usuario."
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:112
 msgid "Displaying Web Content in an Extension"
@@ -9695,23 +9698,25 @@ msgstr "Cancelar instalación"
 
 #: apps/discovery/templates/discovery/modules/amp-your-firefox-winner.html:6
 msgid "Amp Your Firefox Contest"
-msgstr ""
+msgstr "Concurso Amplifica tu Firefox"
 
 #: apps/discovery/templates/discovery/modules/amp-your-firefox-winner.html:7
 msgid "Best Overall Add-on"
-msgstr ""
+msgstr "Mejor complemento general"
 
 #: apps/discovery/templates/discovery/modules/amp-your-firefox-winner.html:10
 msgid "Thumbnail Zoom Plus"
-msgstr ""
+msgstr "Thumbnail Zoom Plus"
 
 #: apps/discovery/templates/discovery/modules/amp-your-firefox-winner.html:12
 msgid "Shows a full-size image popup when<br> you hover over a thumbnail or image link."
 msgstr ""
+"Muestra una ventana emergente con una imagen de tamaño completo<br> al pasar "
+"el puntero sobre una miniatura o un enlace a una imagen."
 
 #: apps/discovery/templates/discovery/modules/amp-your-firefox-winner.html:16
 msgid "Get it now!"
-msgstr ""
+msgstr "¡Consíguelo ahora!"
 
 #: apps/discovery/templates/discovery/modules/go-mobile.html:4
 msgid "Get Add-ons On The Go"
@@ -11595,6 +11600,8 @@ msgstr "¿Cuántos complementos pueden incluirse en la lista de Recomendados?"
 #: apps/pages/templates/pages/dev_faq.html:542 apps/pages/templates/pages/dev_faq.html:552
 msgid "<a href=\"%(url)s\">This page</a> describes the process by which the Recommended lists are managed."
 msgstr ""
+"<a href=\"%(url)s\">Esta página</a> describe el proceso por el cual se "
+"gestionan las listas de complementos recomendados."
 
 #: apps/pages/templates/pages/dev_faq.html:547
 msgid "Can I pay to have my add-on listed as Recommended?"
@@ -14158,11 +14165,11 @@ msgstr "Plataforma del operador"
 
 #: mkt/collections/fields.py:13
 msgid "Hexadecimal color"
-msgstr ""
+msgstr "Color hexadecimal"
 
 #: mkt/collections/fields.py:18
 msgid "Must be a valid hex color code, e.g. #FF0035."
-msgstr ""
+msgstr "Debe ser un código hexadecimal de color válido, p.e. #FF0035."
 
 #: mkt/collections/serializers.py:186
 msgid "You can not have more than one Featured Apps/Operator Shelf collection for the same category/carrier/region combination."
@@ -14171,6 +14178,8 @@ msgstr "No puedes tener más de una colección de aplicaciones destacadas/estant
 #: mkt/commonplace/templates/commonplace/index.html:15
 msgid "The Firefox Marketplace is the official source of apps for the Web Platform."
 msgstr ""
+"Firefox Marketplace es la fuente oficial de aplicaciones para la plataforma "
+"Web."
 
 #: mkt/constants/apps.py:9 mkt/reviewers/templates/reviewers/logs.html:18 mkt/reviewers/templates/reviewers/includes/search_results_themes.html:6
 #: mkt/reviewers/templates/reviewers/themes/history_table.html:7 mkt/reviewers/templates/reviewers/themes/logs.html:18 mkt/reviewers/templates/reviewers/themes/queue_list.html:49
@@ -15478,103 +15487,128 @@ msgstr ""
 
 #: mkt/constants/features.py:213
 msgid "Camera"
-msgstr ""
+msgstr "Cámara"
 
 #: mkt/constants/features.py:214
 msgid "The app requires the platform to allow access to video from the device camera via a LocalMediaStream object."
 msgstr ""
+"La aplicación requiere que la plataforma permita el acceso al video desde el "
+"dispositivo de la cámara mediante un objeto LocalMediaStream."
 
 #: mkt/constants/features.py:220
 msgid "Microphone"
-msgstr ""
+msgstr "Micrófono"
 
 #: mkt/constants/features.py:221
 msgid "The app requires the platform to allow access to audio from the device microphone."
 msgstr ""
+"La aplicación requiere que la plataforma permita el acceso al audio desde el "
+"micrófono del dispositivo."
 
 #: mkt/constants/features.py:226
 msgid "Screen Capture"
-msgstr ""
+msgstr "Captura de pantalla"
 
 #: mkt/constants/features.py:227
 msgid "The app requires the platform to allow access to the device screen for capture."
 msgstr ""
+"La aplicación requiere que la plataforma permita el acceso a la pantalla del "
+"dispositivo para su captura."
 
 #: mkt/constants/features.py:233
 msgid "WebRTC MediaStream"
-msgstr ""
+msgstr "Flujo multimedia WebRTC"
 
 #: mkt/constants/features.py:234
 msgid "The app requires the platform to allow web real-time communication browser-to-browser inbound media streams."
 msgstr ""
+"La aplicación requiere que la plataforma permita la comunicación en tiempo "
+"real mediante flujos de medios establecidos entre dos navegadores."
 
 #: mkt/constants/features.py:240
 msgid "WebRTC DataChannel"
-msgstr ""
+msgstr "Canal de datos WebRTC"
 
 #: mkt/constants/features.py:241
 msgid "The app requires the platform to allow peer-to-peer exchange of data other than audio and video."
 msgstr ""
+"La aplicación requiere que la plataforma permita el intercambio de datos "
+"distintos de audio y video entre iguales."
 
 #: mkt/constants/features.py:247
 msgid "WebRTC PeerConnection"
-msgstr ""
+msgstr "Conexión WebRTC entre pares"
 
 #: mkt/constants/features.py:248
 msgid "The app requires the platform to allow communication of streaming data between peers."
 msgstr ""
+"La aplicación requiere que la plataforma permita la comunicación de flujos "
+"de datos entre iguales."
 
 #: mkt/constants/features.py:254
 msgid "Web Speech Synthesis"
-msgstr ""
+msgstr "Síntesis de voz web"
 
 #: mkt/constants/features.py:255
 msgid "The app requires the platform to allow the use of text-to-speech."
 msgstr ""
+"La aplicación requiere que la plataforma permita el uso de síntesis de voz."
 
 #: mkt/constants/features.py:260
 msgid "Web Speech Recognition"
-msgstr ""
+msgstr "Reconocimiento de voz web"
 
 #: mkt/constants/features.py:261
 msgid "The app requires the platform to allow the use of speech-to-text."
 msgstr ""
+"La aplicación requiere que la plataforma permita el uso de reconocimiento de "
+"voz."
 
 #: mkt/constants/features.py:266
 msgid "Pointer Lock"
-msgstr ""
+msgstr "Bloqueo del puntero"
 
 #: mkt/constants/features.py:267
 msgid "The app requires the platform to provide additional information and control about the pointer."
 msgstr ""
+"La aplicación requiere que la plataforma proporcione información y control "
+"adicionales sobre el puntero."
 
 #: mkt/constants/features.py:274
 msgid "The app requires the platform to allow the displaying phone and desktop notifications to the user."
 msgstr ""
+"La aplicación requiere que la plataforma permita mostrar notificaciones al "
+"usuario en el teléfono o escritorio."
 
 #: mkt/constants/features.py:280
 msgid "Alarms"
-msgstr ""
+msgstr "Alarmas"
 
 #: mkt/constants/features.py:281
 msgid "The app requires the platform to provide access to the device alarm settings to schedule notifications and events at specific time."
 msgstr ""
+"La aplicación requiere que la plataforma proporcione acceso a los ajustes de "
+"alarma del dispositivo para planificar notificaciones y eventos en un "
+"momento específico."
 
 #: mkt/constants/features.py:288
 msgid "SystemXHR"
-msgstr ""
+msgstr "SystemXHR"
 
 #: mkt/constants/features.py:289
 msgid "The app requires the platform to allow the sending of asynchronous HTTP requests without the restrictions of the same-origin policy."
 msgstr ""
+"La aplicación requiere que la plataforma permita enviar solicitudes HTTP "
+"asíncronas sin las restricciones de política de mismo origen."
 
 #: mkt/constants/features.py:295
 msgid "TCP Sockets"
-msgstr ""
+msgstr "Sockets TCP"
 
 #: mkt/constants/features.py:296
 msgid "The app requires the platform to allow opening raw TCP sockets."
 msgstr ""
+"La aplicación requiere que la plataforma permita abrir sockets TCP directos."
 
 #: mkt/constants/payments.py:8
 msgid "Completed"
@@ -15934,7 +15968,7 @@ msgstr "Número de la cuenta bancaria"
 
 #: mkt/developers/forms_payments.py:408
 msgid "SWIFT code"
-msgstr ""
+msgstr "Código SWIFT"
 
 #: mkt/developers/forms_payments.py:410
 msgid "Bank Name"
@@ -16904,6 +16938,9 @@ msgstr[1] "<b>Tiempo de espera estimado:</b> %(num)s días laborables"
 #: mkt/developers/templates/developers/includes/macros.html:113
 msgid "Most apps are reviewed in about a week. If your review has taken longer than this, you can send an email to %(email)s to check the status."
 msgstr ""
+"La mayoría de las aplicaciones se revisan en una semana aproximadamente. Si "
+"tu revisión está tardando más, puedes enviar a %(email)s para comprobar su "
+"estado."
 
 #: mkt/developers/templates/developers/includes/macros.html:123
 msgid "Check the boxes of the features that your app requires to function properly. Your app will be hidden from users whose devices don't support it."
@@ -17067,11 +17104,12 @@ msgstr "No es aplicable"
 
 #: mkt/developers/templates/developers/payments/premium.html:182
 msgid "Available Regions"
-msgstr ""
+msgstr "Regiones disponibles"
 
 #: mkt/developers/templates/developers/payments/premium.html:184
 msgid "Your app will be available in the following selected regions:"
 msgstr ""
+"Tu aplicación estará disponible en las siguientes regiones seleccionadas:"
 
 #: mkt/developers/templates/developers/payments/premium.html:189
 msgid "Region"
@@ -17091,13 +17129,17 @@ msgstr "Método de facturación"
 
 #: mkt/developers/templates/developers/payments/premium.html:203
 msgid "Other regions"
-msgstr ""
+msgstr "Otras regiones"
 
 #: mkt/developers/templates/developers/payments/premium.html:206
 msgid ""
 "Your app will be available in the following selected regions in the future when payments are available based on your chosen price point. To exclude your app from appearing in a region please un-"
 "check that region before saving."
 msgstr ""
+"Tu aplicación estará disponible en las siguientes regiones seleccionadas en "
+"el futuro, cuando los pagos estén disponibles basándose en tu precio "
+"elegido. Para evitar que tu aplicación aparezca en una región desmarca esa "
+"región antes de guardar."
 
 #: mkt/developers/templates/developers/payments/premium.html:228
 msgid "Regions and listings"
@@ -17159,7 +17201,7 @@ msgstr "Modificar"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:16 mkt/developers/templates/developers/payments/includes/account_list.html:44
 msgid "Portal"
-msgstr ""
+msgstr "Portal"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:26
 msgid "Add a new payment account"
@@ -17175,11 +17217,11 @@ msgstr "Agregar una cuenta de Bango"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:19
 msgid "Usually 9, 10 or 11 digits. Example: 0114584906."
-msgstr ""
+msgstr "Normalmente, 9, 10 u 11 dígitos. Ejemplo: 0114584906."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:26
 msgid "Either 8 or 11 characters. Example: WFBIUS6WPDX."
-msgstr ""
+msgstr "O bien 8 o bien 11 caracteres. Ejemplo: WFBIUS6WPDX."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:36 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:30
 msgid "Optional"
@@ -17248,14 +17290,18 @@ msgstr "Tu aplicación no aparecerá en la lista de determinadas regiones porque
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:5
 msgid "Your app will be displayed in any regional Marketplace that is added in the future."
 msgstr ""
+"Tu aplicación se mostrará en cualquier Marketplace regional que se añada en "
+"el futuro."
 
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:7
 msgid "(Subject to payments being available in that region for the selected price point)."
 msgstr ""
+"(Sujeto a que los pagos estén disponibles en esa región para el precio "
+"seleccionado)."
 
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:9
 msgid "You will receive an email notification when a new region is added."
-msgstr ""
+msgstr "Recibirás una notificación de correo cuando se añada una región nueva."
 
 #: mkt/developers/templates/developers/payments/includes/regions_toggle.html:4
 msgid "Select All"
@@ -17405,7 +17451,7 @@ msgstr "Aplicaciones empaquetadas"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:66 mkt/ecosystem/templates/ecosystem/macros.html:276 mkt/ecosystem/templates/ecosystem/publish_badges.html:4
 msgid "Badges, banners, and icons"
-msgstr ""
+msgstr "Insignias, pancartas e iconos"
 
 #: mkt/ecosystem/templates/ecosystem/build_app_generator.html:5 mkt/ecosystem/templates/ecosystem/build_app_generator.html:13 mkt/ecosystem/templates/ecosystem/build_tools.html:26
 #: mkt/ecosystem/templates/ecosystem/macros.html:199
@@ -17598,6 +17644,13 @@ msgid ""
 "The ability to use apps when not connected to the Internet is especially important for mobile devices, which may wander out of coverage areas. Of course, reducing the amount of time your app waits "
 "for data from a server improves the responsiveness of your app. This makes your app <em>feel</em> fast and is one of the most important considerations when developing web apps with HTML5."
 msgstr ""
+"La capacidad de usar aplicaciones cuando no se está conectado a Internet es "
+"especialmente importante para los dispositivos móviles, que pueden "
+"desplazarse fuera de las áreas con cobertura. Por supuesto, reducir la "
+"cantidad de tiempo que tu aplicación espera datos de un servidor mejora su "
+"respuesta. Esto hace que tu aplicación <em>se sienta</em> rápida y es una de "
+"las consideraciones más importantes al desarrollar aplicaciones web con "
+"HTML5."
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:26
 msgid ""
@@ -17605,10 +17658,18 @@ msgid ""
 "current web app. The key to a responsive app experience (similar to iOS and Android) is speed. Using Appcache and JavaScript storage will allow your app to be downloaded and cached until you update "
 "its assets. This means your users can now use your app offline."
 msgstr ""
+"Hay algunas tecnologías incluidas en HTML (y disponibles para Firefox OS) "
+"que puedes usar para asegurar que tu aplicación funciona sin conexión. Estas "
+"tecnologías pueden ser usadas para mejorar la agilidad de tu aplicación "
+"web. La clave para una experiencia de aplicaciones ágil (similar a las de "
+"iOS y Android) es la velocidad. Usar Appcache y almacenamiento JavaScript "
+"permitirá a tu aplicación ser descargada y cacheada hasta que actualices sus "
+"recursos. Esto significa que tus usuarios podrán usar tu aplicación sin "
+"conexión."
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:37
 msgid "Access your CSS, JS, and image files offline"
-msgstr ""
+msgstr "Accede a tus archivos CSS, JS y de imágenes sin conexión"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:40
 msgid ""
@@ -17616,20 +17677,34 @@ msgid ""
 "JavaScript, and image files you use. You can <a href=\"%(generator_url)s\" rel=\"external\">use tools</a> to generate your manifest or create one by hand. This is an example of the format, from <a "
 "href=\"%(example_manifest)s\" rel=\"external\">Face Value’s manifest</a>:"
 msgstr ""
+"Crea un <strong><a href=\"%(appcache_url)s\">archivo manifest "
+"Appcache</a></strong> que liste todas las URL de recursos a los que tu "
+"aplicación necesita poder acceder sin conexión. Normalmente, esto es una "
+"lista de todos los archivos CSS, JavaScript, de tipografías y de imágenes "
+"que usas. Puedes <a href=\"%(generator_url)s\" rel=\"external\">usar "
+"herramientas</a> para generar tu archivo manifest o crear uno a mano. Este "
+"es un ejemplo del formato, tomado del <a href=\"%(example_manifest)s\" "
+"rel=\"external\">archivo manifest de Face Value</a>:"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:73
 msgid ""
 "If you're using JavaScript templates like <a href=\"%(mustache_url)s\" rel=\"external\">mustache</a>, be sure to include your templates in your Appcache manifest or precompile them into your built "
 "JavaScript files."
 msgstr ""
+"Si estás usando plantillas JavaScript como <a href=\"%(mustache_url)s\" "
+"rel=\"external\">mustache</a>, asegúrate de incluir tus plantillas en tu "
+"archivo manifest Appache o precompílalas en tus archivos JavaScript "
+"generados."
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:81
 msgid "Save user data and settings without a server"
-msgstr ""
+msgstr "Guardar datos y ajustes de usuario sin un servidor"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:84
 msgid "There are many JavaScript APIs for local, persistent storage. From most to least compatible across browers, your options are:"
 msgstr ""
+"Hay muchas API JavaScript para el almacenamiento local persistente. De más a "
+"menos compatible con los navegadores, tus opciones son:"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:91
 msgid ""
@@ -17638,20 +17713,40 @@ msgid ""
 "type without having to serialize it first. It isn't available in IE or iOS as of writing but is available in Chrome and Firefox. </dd> <dt><a href=\"%(websql_url)s\" rel=\"external\">WebSQL</a></"
 "dt> <dd> WebSQL is asynchronous like IndexedDB, but is only needed for Safari/iOS compatibility. WebSQL is officially deprecated by the W3C but is still supported by many WebKit browsers. </dd>"
 msgstr ""
+"<dt><a href=\"%(localstorage_url)s\">localStorage</a></dt> <dd>Síncrono y "
+"fácil de usar, localStorage está disponible en los navegadores modernos, "
+"pero también es el más lento. Intenta evitar usarlo directamente y utiliza "
+"una biblioteca que lo incluya en su lugar como último recurso.</dd> <dt><a "
+"href=\"%(indexeddb_url)s\">IndexedDB</a></dt> <dd>IndexedDB es una biblioteca "
+"asíncrona y rápida que puede guardar cualquier tipo JavaScript sin tener que "
+"serializarlo primero. No está disponible en IE ni iOS en el momento de "
+"escribir esto, pero está disponible en Chrome y Firefox.</dd> <dt><a href=\"%"
+"(websql_url)s\" rel=\"external\">WebSQL</a></dt> <dd>WebSQL es asíncrono como "
+"IndexedDB, pero sólo es necesario por compatibilidad con Safari/iOS. WebSQL "
+"está oficialmente desaprobado por el W3C pero aún se admite por muchos "
+"navegadores WebKit.</dd>"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:119
 msgid ""
 "We recommend using <a href=\"%(localforage_url)s\" rel=\"external\">localForage</a>, which combines a library from Firefox OS with fallbacks for other browsers. It allows you to store key/value "
 "pairs for use between page loads, but does so asynchronously whenever possible. This improves the responsiveness of your app."
 msgstr ""
+"Recomendamos usar <a href=\"%(localforage_url)s\" "
+"rel=\"external\">localForage</a>, que combina una biblioteca de Firefox OS con "
+"mecanismos de reserva para otros navegadores. Esto te permite guardar pares "
+"de clave/valor para su uso entre las cargas de página, pero lo hace "
+"asíncronamente siempre que sea posible, lo cual mejora la respuesta de tu "
+"aplicación."
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:137
 msgid "Notice we do this asynchronously, as all APIs here are async."
 msgstr ""
+"Nota que hacemos esto de manera asíncrona, ya que todas las API aquí son "
+"asíncronas."
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:142
 msgid "On localStorage"
-msgstr ""
+msgstr "En localStorage"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:145
 msgid ""
@@ -17660,28 +17755,50 @@ msgid ""
 "data you interact with rarely, but we recommend <a href=\"%(localForage)s\" rel=\"external\">localForage's asyncStorage library</a>, which uses faster storage by default but falls back to "
 "localStorage if it's all that is available."
 msgstr ""
+"localStorage es la API más compatible para guardar datos entre vistas de "
+"páginas en JavaScript, pero tiene unas cuantas limitaciones importantes. "
+"localStorage es síncrono, por lo que al usarlo bloqueas el hilo principal de "
+"ejecución, haciendo que tu aplicación parezca lenta al recuperar o guardar "
+"datos. Tampoco puede manejar cantidades grandes de datos ni tipos JavaScript "
+"como arrays tipados. Puedes usar localStorage para pequeñas cantidades de "
+"datos con los que no interactúas frecuentemente, pero te recomendamos <a "
+"href=\"%(localForage)s\" rel=\"external\">la biblioteca asíncrona "
+"localForage</a>, que usa un almacenamiento más rápido por defecto pero "
+"recurre a localStorage si es la única opción disponible."
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:159
 msgid "Caching large files and storing media"
-msgstr ""
+msgstr "Cachear archivos grandes y guardar datos multimedia"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:162
 msgid ""
 "Use <a href=\"%(storage_url)s\">DeviceStorage</a> or <a href=\"%(indexeddb_url)s\">IndexedDB</a> to store large pieces of data. localStorage is unsuitable for large blob storage, but you can save "
 "chunks of data to IndexedDB. The Podcasts reference app does this in <a href=\"%(podcasts_url)s\" rel=\"external\">its episode model code</a>."
 msgstr ""
+"Usa <a href=\"%(storage_url)s\">DeviceStorage</a> o <a href=\"%"
+"(indexeddb_url)s\">IndexedDB</a> para guardar grandes bloques de datos. "
+"localStorage no es apropiado para el almacenamiento de bloques binarios de "
+"gran tamaño, pero puedes guardarlos en IndexedDB. La aplicación de "
+"referencia de podcasts hace esto en <a href=\"%(podcasts_url)s\" "
+"rel=\"external\">su código de modelo de episodio</a>."
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:175
 msgid "Keep in mind that storing large files (over 100MB) is still largely uncharted territory and you may encouter some issues."
 msgstr ""
+"Ten en cuenta que guardar archivos grandes (de más de 100 Mb) sigue siendo "
+"territorio inexplorado y puedes encontrarte algunos problemas."
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:181
 msgid "A Note on Packaged Apps"
-msgstr ""
+msgstr "Una nota sobre las aplicaciones empaquetadas"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:184
 msgid "If you’re <a href=\"%(packaged_apps_url)s\">developing a packaged app</a>, you don't need to use an Appcache manifest; all app assets are downloaded to the user’s device during install."
 msgstr ""
+"Si <a href=\"%(packaged_apps_url)s\">desarrollas una aplicación "
+"empaquetada</a>, no necesitas utilizar un Appcache manifest; todos los "
+"recursos de aplicaciones se descargan en el dispositivo del usuario durante "
+"la instalación."
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:192
 msgid "Managing Offline State and HTTP Requests"
@@ -17692,12 +17809,24 @@ msgid ""
 "There are a few APIs available to determine the user's connection status. These are useful because you can skip HTTP requests if you know the user is offline. You can also display less generic "
 "failure messages. For example: if you were writing a Twitter client, a message like “New tweets cannot be loaded while offline” is more informative than “Could not make HTTP connection.”"
 msgstr ""
+"Hay disponibles una serie de API para determinar el estado de la conexión "
+"del usuario. Son útiles en tanto en cuanto permiten saltarse las solicitudes "
+"HTTP si se sabe que el usuario no tiene conexión. También permiten mostrar "
+"mensajes de error menos genéricos. Por ejemplo: imagínate que estás "
+"escribiendo a un cliente de Twitter un mensaje como \"No se pueden cargar "
+"nuevos tuits mientras no haya conexión\"; este mensaje da mucha más "
+"información que \"No se pudo establecer la conexión HTTP\"."
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:206
 msgid ""
 "Try to focus on loading data from your/others' API only when needed, and keep data cached so you don't have to request the same data twice. It can also be helpful to prefetch some data so the user "
 "can use parts of your app offline that they have yet to open."
 msgstr ""
+"Intenta centrarte en la transferencia de datos de tu/otras API solo cuando "
+"sea necesario y conserva los datos en la caché para que no tengas que "
+"solicitarlos otra vez. También puede ser útil solicitar previamente algunos "
+"datos para que el usuario puede utilizar parcialmente tu aplicación sin "
+"conexión mientras se termina de abrir."
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:214
 msgid "Checking connectivity"

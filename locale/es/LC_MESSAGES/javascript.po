@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-09-27 16:47-0700\n"
-"PO-Revision-Date: 2013-08-27 18:23+0000\n"
+"PO-Revision-Date: 2013-09-30 10:13+0000\n"
 "Last-Translator: Inma <inma.barrios@mozilla-hispano.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: es\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1377627831.0\n"
+"X-POOTLE-MTIME: 1380536009.0\n"
 
 #: media/js/common-all.js:10109 media/js/common-min.js:23 media/js/impala-all.js:1159 media/js/impala-min.js:1 media/js/devreg/init.js:35 media/js/mkt/init.js:47
 #: media/js/zamboni/discovery-all.js:10076 media/js/zamboni/discovery-min.js:23 media/js/zamboni/init.js:32 media/js/zamboni/mobile-all.js:10912 media/js/zamboni/mobile-min.js:32
@@ -572,7 +572,7 @@ msgstr "Hubo un problema al contactar con el servidor de pagos."
 
 #: media/js/devreg/payments-manage.js:55
 msgid "Authentication error"
-msgstr ""
+msgstr "Error de autenticación"
 
 #: media/js/devreg/payments-manage.js:97
 msgid "You do not currently have any payment accounts."
@@ -825,7 +825,7 @@ msgstr "Página de aterrizaje según la categoría Carrusel de destacados"
 #: media/js/impala/stats/csv_keys.js:73 media/js/impala/stats/csv_keys.js:74 media/js/mkt/stats/csv_keys.js:89 media/js/mkt/stats/csv_keys.js:90 media/js/zamboni/stats-all.js:11238
 #: media/js/zamboni/stats-all.js:11239 media/js/zamboni/stats-min.js:10
 msgid "Category Landing Top Rated"
-msgstr "Página de aterrizaje según la categoría Mejor valoradas"
+msgstr "Página de aterrizaje según la categoría Mejor puntuadas"
 
 #: media/js/impala/stats/csv_keys.js:75 media/js/impala/stats/csv_keys.js:76 media/js/mkt/stats/csv_keys.js:91 media/js/mkt/stats/csv_keys.js:92 media/js/zamboni/stats-all.js:11240
 #: media/js/zamboni/stats-all.js:11241 media/js/zamboni/stats-min.js:10
