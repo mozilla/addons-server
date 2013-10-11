@@ -39,6 +39,9 @@ class Collection(amo.models.ModelBase):
     background_color = ColorField(null=True)
     text_color = ColorField(null=True)
     has_image = models.BooleanField(default=False)
+    can_be_hero = models.BooleanField(default=False, help_text=(
+        'Indicates whether an operator shelf collection can be displayed with'
+        'a hero graphic'))
 
     objects = amo.models.ManagerBase()
     public = PublicCollectionsManager()
