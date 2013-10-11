@@ -75,6 +75,11 @@ STATS = {
     'total_visits': {
         'metric': 'visits'
     },
+    'revenue': {
+        'metric': 'gross_revenue',
+        # Counts are floats. Let's convert them to strings with 2 decimals.
+        'coerce': {'count': lambda d: '{0:.2f}'.format(d)},
+    },
 }
 APP_STATS = {
     'installs': {
@@ -86,8 +91,7 @@ APP_STATS = {
     },
     'revenue': {
         'metric': 'gross_revenue',
-        # Counts come back as floats. Let's convert them to strings with 2
-        # decimals.
+        # Counts are floats. Let's convert them to strings with 2 decimals.
         'coerce': {'count': lambda d: '{0:.2f}'.format(d)},
     },
 }
