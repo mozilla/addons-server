@@ -243,19 +243,6 @@ class TestPaymentAccount(RestOAuth, AccountCase):
         # Ideally we should make this a 400.
         eq_(res.status_code, 403, res.content)
 
-    @patch('mkt.developers.models.client')
-    def test_can_delete_account(self, client):
-        self.setup_mock(client)
-        self.create_price()
-        self.create_user()
-        AddonPaymentAccount.objects.create(addon=self.app,
-                                           account=self.account)
-
-        print AddonPaymentAccount.objects.count()
-        res = self.client.post(self.payment_list, data=json.dumps(self.data()))
-        print self.payment_list
-        print AddonPaymentAccount.objects.count()
-
 
 class TestPaymentStatus(RestOAuth, AccountCase):
     fixtures = fixture('webapp_337141', 'user_999', 'user_2519')
