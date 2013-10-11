@@ -1221,6 +1221,29 @@ class TestProfileSections(amo.tests.TestCase):
         eq_(res.status_code, 200)
         eq_(res.context['user'].id, self.user.id)
 
+    def test_my_last_login_anonymous(self):
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        doc = pq(res.content)
+        eq_(doc('.last-login-time').length, 0)
+        eq_(doc('.last-login-ip').length, 0)
+
+    def test_my_last_login_authenticated(self):
+        self.user.update(last_login_ip='255.255.255.255')
+        self.login(self.user)
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        doc = pq(res.content)
+        assert doc('.last-login-time td').text()
+        eq_(doc('.last-login-ip td').text(), '255.255.255.255')
+
+    def test_not_my_last_login(self):
+        res = self.client.get('/user/999/', follow=True)
+        eq_(res.status_code, 200)
+        doc = pq(res.content)
+        eq_(doc('.last-login-time').length, 0)
+        eq_(doc('.last-login-ip').length, 0)
+
     def test_my_addons(self):
         eq_(pq(self.client.get(self.url).content)('.num-addons a').length, 0)
 

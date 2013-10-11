@@ -437,6 +437,33 @@ def _queue(request, apps, tab, pager_processor=None, date_sort='created'):
 
 
 def _do_sort(request, qs, date_sort='created'):
+    """Returns sorted Webapp queryset."""
+    if qs.model is Webapp:
+        return _do_sort_webapp(request, qs, date_sort)
+    return _do_sort_queue_obj(request, qs, date_sort)
+
+
+def _do_sort_webapp(request, qs, date_sort):
+    """
+    Column sorting logic based on request GET parameters.
+    """
+    sort_type, order = clean_sort_param(request, date_sort=date_sort)
+    order_by = ('-' if order == 'desc' else '') + sort_type
+
+    # Sort.
+    if sort_type == 'name':
+        # Sorting by name translation.
+        return order_by_translation(qs, order_by)
+
+    elif sort_type == 'num_abuse_reports':
+        return (qs.annotate(num_abuse_reports=Count('abuse_reports'))
+                .order_by(order_by))
+
+    else:
+        return qs.order_by(order_by)
+
+
+def _do_sort_queue_obj(request, qs, date_sort):
     """
     Column sorting logic based on request GET parameters.
     Deals with objects with joins on the Addon (e.g. RereviewQueue, Version).

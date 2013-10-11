@@ -34,6 +34,20 @@
       <th>{{ _('User since') }}</th>
       <td>{{ profile.created|datetime }}</td>
     </tr>
+    {% if own_profile or edit_any_user %}
+      {% if profile.user.last_login %}
+        <tr class="last-login-time">
+          <th>{{ _('Time of last login') }}</th>
+          <td>{{ profile.user.last_login|datetime('%B %e, %Y %H:%M:%S') }}</td>
+        </tr>
+      {% endif %}
+      {% if profile.last_login_ip %}
+        <tr class="last-login-ip">
+          <th>{{ _('IP address of last login') }}</th>
+          <td>{{ profile.last_login_ip }}</td>
+        </tr>
+      {% endif %}
+    {% endif %}
     <tr>
       <th>
         {{ _('Number of add-ons developed') }}

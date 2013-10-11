@@ -364,10 +364,12 @@ class TestAppQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
     def setUp(self):
         self.apps = [app_factory(name='XXX',
                                  status=amo.STATUS_PENDING,
-                                 version_kw={'nomination': self.days_ago(2)}),
+                                 version_kw={'nomination': self.days_ago(2)},
+                                 file_kw={'status': amo.STATUS_PENDING}),
                      app_factory(name='YYY',
                                  status=amo.STATUS_PENDING,
-                                 version_kw={'nomination': self.days_ago(1)}),
+                                 version_kw={'nomination': self.days_ago(1)},
+                                 file_kw={'status': amo.STATUS_PENDING}),
                      app_factory(name='ZZZ')]
         self.apps[0].update(created=self.days_ago(2))
         self.apps[1].update(created=self.days_ago(1))
@@ -2571,6 +2573,44 @@ class TestQueueSort(AppReviewerTest):
             device_type=amo.DEVICE_MOBILE.id)
 
         self.url = reverse('reviewers.apps.queue_pending')
+
+    def test_do_sort_webapp(self):
+        """
+        Test that apps are sorted in order specified in GET params.
+        """
+        rf = RequestFactory()
+        qs = Webapp.objects.no_cache().all()
+
+        # Test apps are sorted by created/asc by default.
+        r = rf.get(self.url, {'sort': 'invalidsort', 'order': 'dontcare'})
+        sorted_qs = _do_sort(r, qs)
+        eq_(list(sorted_qs), [self.apps[1], self.apps[0]])
+
+        # Test sorting by created, descending.
+        r = rf.get(self.url, {'sort': 'created', 'order': 'desc'})
+        sorted_qs = _do_sort(r, qs)
+        eq_(list(sorted_qs), [self.apps[0], self.apps[1]])
+
+        # Test sorting by app name.
+        r = rf.get(self.url, {'sort': 'name', 'order': 'asc'})
+        sorted_qs = _do_sort(r, qs)
+        eq_(list(sorted_qs), [self.apps[1], self.apps[0]])
+
+        r = rf.get(self.url, {'sort': 'name', 'order': 'desc'})
+        sorted_qs = _do_sort(r, qs)
+        eq_(list(sorted_qs), [self.apps[0], self.apps[1]])
+
+        # By abuse reports.
+        AbuseReport.objects.create(addon=self.apps[1])
+        r = rf.get(self.url, {'sort': 'num_abuse_reports',
+                              'order': 'asc'})
+        sorted_qs = _do_sort(r, qs)
+        eq_(list(sorted_qs), [self.apps[0], self.apps[1]])
+
+        r = rf.get(self.url, {'sort': 'num_abuse_reports',
+                              'order': 'desc'})
+        sorted_qs = _do_sort(r, qs)
+        eq_(list(sorted_qs), [self.apps[1], self.apps[0]])
 
     def test_do_sort_version_nom(self):
         """Tests version nomination sort order."""
