@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-09-27 16:47-0700\n"
-"PO-Revision-Date: 2013-10-11 16:57+0000\n"
-"Last-Translator: Inma <inma.barrios@mozilla-hispano.org>\n"
+"PO-Revision-Date: 2013-10-11 18:59+0000\n"
+"Last-Translator: paco <pacommozilla@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1381510630.0\n"
+"X-POOTLE-MTIME: 1381517964.0\n"
 
 #: apps/addons/buttons.py:207
 msgid "Download Now"
@@ -15532,8 +15532,8 @@ msgstr "Canal de datos WebRTC"
 #: mkt/constants/features.py:241
 msgid "The app requires the platform to allow peer-to-peer exchange of data other than audio and video."
 msgstr ""
-"La aplicación requiere que la plataforma permita el intercambio de datos "
-"distintos de audio y video entre iguales."
+"La aplicación necesita que la plataforma permita el intercambio punto a "
+"punto (p2p exchange) de datos que no sean de audio ni video."
 
 #: mkt/constants/features.py:247
 msgid "WebRTC PeerConnection"
@@ -15542,8 +15542,8 @@ msgstr "Conexión WebRTC entre pares"
 #: mkt/constants/features.py:248
 msgid "The app requires the platform to allow communication of streaming data between peers."
 msgstr ""
-"La aplicación requiere que la plataforma permita la comunicación de flujos "
-"de datos entre iguales."
+"La aplicación necesita que la plataforma permita la comunicación de flujos "
+"de datos entre los extremos de la conexión."
 
 #: mkt/constants/features.py:254
 msgid "Web Speech Synthesis"
@@ -17802,7 +17802,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:192
 msgid "Managing Offline State and HTTP Requests"
-msgstr ""
+msgstr "Gestionar estado de desconexión y peticiones HTTP"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:195
 msgid ""
@@ -17837,6 +17837,11 @@ msgid ""
 "A key factor in working well offline is to check whether the device has connectivity and to respond appropriately when it doesn't. A message to the user that the app won't work offline is better "
 "than getting stuck or getting a generic timeout error."
 msgstr ""
+"Un factor clave en el funcionamiento correcto sin conexión es comprobar si "
+"el dispositivo tiene conectividad y responder adecuadamente cuando no la "
+"tenga. Un mensaje que informe al usuario de que la aplicación no funcionará "
+"sin conexión es mejor que quedarse parado u obtener un error genérico de "
+"tiempo de espera."
 
 #. Do not localize text in <code></code>
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:226
@@ -17844,14 +17849,18 @@ msgid ""
 "The simplest way to do this is to check and listen for changes to the <a href=\"%(url)s\"><code>window.navigator.onLine</code></a> property. Note that this value can sometimes return false "
 "positives."
 msgstr ""
+"La forma más sencilla de hacer esto es controlar y estar atentos a los "
+"cambios en la propiedad <a href=\"%(url)s\"> "
+"<code>window.navigator.onLine</code></a>. Ten en cuenta que este valor puede "
+"devolver a veces falsos positivos."
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:233
 msgid "See also: <a href=\"%(url)s\">Online and offline events</a>."
-msgstr ""
+msgstr "Mira también: <a href=\"%(url)s\">Eventos con y sin conexión</a>."
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:238
 msgid "HTTP Requests"
-msgstr ""
+msgstr "Peticiones HTTP"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:241
 msgid ""
@@ -17859,14 +17868,21 @@ msgid ""
 "your app has <a href=\"%(systemxhr_url)s\">systemXHR privileges</a>, you can check for a connection to a site unlikely to be down to determine if you have an active connection (iOS does this with "
 "Apple.com)."
 msgstr ""
+"Si estás utilizando <a href=\"%(xhr_url)s\"> XMLHttpRequest</a> para "
+"actualizar los datos dinámicamente, puedes comprobar su respuesta para saber "
+"si la conexión de red se ha caído mientras la estabas usando la aplicación. "
+"Si ésta tiene <a href=\"%(systemxhr_url)s\"> privilegios systemXHR</a>, "
+"puedes verificar una conexión a un sitio web que tenga poca probabilidad de "
+"estar caído para determinar si tienes una conexión activa (iOS lo hace con "
+"Apple.com)."
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:253
 msgid "We'll assume we aren't online."
-msgstr ""
+msgstr "Asumiremos que no estamos conectados."
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:256
 msgid "Assume we're a packaged app with systemXHR permissions."
-msgstr ""
+msgstr "Supongamos que somos una aplicación empaquetada con permisos systemXHR."
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:278
 msgid "Resources"
@@ -20261,7 +20277,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:23
 msgid "Guidelines"
-msgstr ""
+msgstr "Pautas"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:26
 msgid "You may not alter the badge in any way"
