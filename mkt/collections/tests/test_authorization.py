@@ -1,11 +1,15 @@
+import json
+
 from django.contrib.auth.models import User
 
 from nose.tools import ok_
 from rest_framework.generics import GenericAPIView
+from rest_framework.request import Request
 
 from access.middleware import ACLMiddleware
 from amo.tests import TestCase
-from mkt.collections.authorization import (CuratorAuthorization,
+from mkt.collections.authorization import (CanBeHeroAuthorization,
+                                           CuratorAuthorization,
                                            StrictCuratorAuthorization)
 from mkt.collections.tests import CollectionTestMixin
 from mkt.site.fixtures import fixture
@@ -121,3 +125,90 @@ class TestStrictCuratorAuthorization(TestCuratorAuthorization):
 
     def test_get_detail(self):
         ok_(not self.is_authorized_object(self.request('GET')))
+
+
+class TestCanBeHeroAuthorization(CollectionTestMixin, TestCase):
+    enforced_verbs = ['POST', 'PUT']
+    fixtures = fixture('user_2519')
+
+    def setUp(self):
+        super(TestCanBeHeroAuthorization, self).setUp()
+        self.collection = self.make_collection()
+        self.auth = CanBeHeroAuthorization()
+        self.user = User.objects.get(pk=2519)
+        self.profile = self.user.get_profile()
+        self.view = GenericAPIView()
+
+    def give_permission(self):
+        self.grant_permission(self.profile, 'Collections:Curate')
+
+    def is_authorized_object(self, request):
+        return self.auth.has_object_permission(request, self.view,
+                                               self.collection)
+
+    def request(self, verb, qs=None, **data):
+        if not qs:
+            qs = ''
+        request = getattr(RequestFactory(), verb.lower())
+        request = request('/?' + qs, content_type='application/json',
+                          data=json.dumps(data) if data else '')
+        request.user = self.user
+        ACLMiddleware().process_request(request)
+        return Request(request)
+
+    def test_unenforced(self):
+        """
+        Should always pass for GET requests.
+        """
+        ok_(self.is_authorized_object(self.request('GET')))
+
+    def test_no_qs_modification(self):
+        """
+        Non-GET requests should not be rejected if there is a can_be_true
+        querystring param (which hypothetically shouldn't do anything).
+
+        We're effectively testing that request.GET doesn't bleed into
+        request.POST.
+        """
+        self.give_permission()
+        for verb in self.enforced_verbs:
+            request = self.request(verb, qs='can_be_hero=1')
+            ok_(not self.auth.hero_field_modified(request), verb)
+
+    def test_change_permission(self):
+        """
+        Should pass if the user is attempting to modify the can_be_hero field
+        and has the permission.
+        """
+        self.give_permission()
+        for verb in self.enforced_verbs:
+            request = self.request(verb, can_be_hero=True)
+            ok_(self.auth.hero_field_modified(request), verb)
+
+    def test_no_change_no_permission(self):
+        """
+        Should pass if the user does not have the permission and is not
+        attempting to modify the can_be_hero field.
+        """
+        for verb in self.enforced_verbs:
+            request = self.request(verb)
+            ok_(self.is_authorized_object(request), verb)
+
+    def test_no_change(self):
+        """
+        Should pass if the user does have the permission and is not attempting
+        to modify the can_be_hero field.
+        """
+        self.give_permission()
+        for verb in self.enforced_verbs:
+            request = self.request(verb)
+            ok_(self.is_authorized_object(request), verb)
+
+    def test_post_change_no_permission(self):
+        """
+        Should not pass if the user is attempting to modify the can_be_hero
+        field without the permission.
+        """
+        for verb in self.enforced_verbs:
+            request = self.request(verb, can_be_hero=True)
+            ok_(not self.is_authorized_object(request), verb)

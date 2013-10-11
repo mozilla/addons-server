@@ -74,6 +74,10 @@ Create
         collection is displayed (hex-formatted, e.g. "#FF00FF"). Only applies to
         curated collections (i.e. when collection_type is 0).
     :type background_color: string|null
+    :param can_be_hero: whether the collection may be featured with a hero
+        graphic. This may only be set to ``true`` for operator shelves. Defaults
+        to ``false``.
+    :type can_be_hero: boolean
     :param carrier: the ID of the carrier to attach this collection to. Defaults
         to ``null``.
     :type carrier: int|null
@@ -125,10 +129,18 @@ Update
     .. note:: Authentication and one of the 'Collections:Curate' permission or
         curator-level access to the collection are required.
 
+    .. note:: The ``can_be_hero`` field may not be modified unless you have the
+        ``Collections:Curate`` permission, even if you have curator-level
+        access to the collection.
+
     **Request**:
 
     :param author: the author of the collection.
     :type author: string
+    :param can_be_hero: whether the collection may be featured with a hero
+        graphic. This may only be set to ``true`` for operator shelves. Defaults
+        to ``false``.
+    :type can_be_hero: boolean
     :param carrier: the ID of the carrier to attach this collection to.
     :type carrier: int|null
     :param category: the ID of the category to attach this collection to.
@@ -169,6 +181,10 @@ Duplicate
     .. note:: Authentication and one of the 'Collections:Curate' permission or
         curator-level access to the collection are required.
 
+    .. note:: The ``can_be_hero`` field may not be modified unless you have the
+        ``Collections:Curate`` permission, even if you have curator-level
+        access to the collection.
+
     **Request**:
 
     Any parameter passed will override the corresponding property from the
@@ -176,6 +192,10 @@ Duplicate
 
     :param author: the author of the collection.
     :type author: string
+    :param can_be_hero: whether the collection may be featured with a hero
+        graphic. This may only be set to ``true`` for operator shelves. Defaults
+        to ``false``.
+    :type can_be_hero: boolean
     :param carrier: the ID of the carrier to attach this collection to.
     :type carrier: int|null
     :param category: the ID of the category to attach this collection to.
