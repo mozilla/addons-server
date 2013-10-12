@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-09-27 16:47-0700\n"
-"PO-Revision-Date: 2013-10-11 19:07+0000\n"
+"PO-Revision-Date: 2013-10-12 10:54+0000\n"
 "Last-Translator: Inma <inma.barrios@mozilla-hispano.org>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1381518449.0\n"
+"X-POOTLE-MTIME: 1381575254.0\n"
 
 #: apps/addons/buttons.py:207
 msgid "Download Now"
@@ -12473,7 +12473,7 @@ msgstr "o <a href=\"%(url)s\">Cancelar</a>"
 
 #: apps/reviews/templates/reviews/report_review.html:3
 msgid "Please select a reason:"
-msgstr "Por favor, selecciona una razón:"
+msgstr "Por favor, selecciona un motivo:"
 
 #: apps/reviews/templates/reviews/review.html:26
 msgid "by %(user)s <b>(Developer)</b> on %(date)s"
@@ -13365,7 +13365,9 @@ msgstr "Foto del perfil"
 
 #: apps/users/forms.py:384
 msgid "To anonymize, enter a reason for the change but do not change any other field."
-msgstr "Para anonimizar, introduce una razón para el cambio pero no cambies ningún otro campo."
+msgstr ""
+"Para ocultarte en el anonimato, aduce una razón para el cambio pero no "
+"modifiques ningún otro campo."
 
 #: apps/users/helpers.py:52
 msgctxt "user_list_others"
@@ -20284,35 +20286,42 @@ msgstr "Pautas"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:26
 msgid "You may not alter the badge in any way"
-msgstr ""
+msgstr "De ningún modo está permitido alterar la insignia"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:31
 msgid "When used alongside logos for other marketplaces (\"Get it on Google Play\", \"Download on the App Store\"), the Firefox Marketplace badge should be of equal or greater size"
 msgstr ""
+"Al utilizarla junto con otros logotipos de otras tiendas de aplicaciones "
+"(\"Disponible en Google Play\", \"Descargar desde App Store\"), la insignia de "
+"Firefox Marketplace deberán ser de igual o mayor tamaño"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:38
 msgid "The badge should link to an app details page within the Firefox Marketplace<br> For example: https://marketplace.firefox.com/app/twitter"
 msgstr ""
+"La insignia enlazará a la página de detalles de una aplicación en Firefox "
+"Marketplace<br> Por ejemplo: https://marketplace.firefox.com/app/twitter"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:47
 msgid "Orange"
-msgstr ""
+msgstr "Naranja"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:47
 msgid "Grey"
-msgstr ""
+msgstr "Gris"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:47
 msgid "Black"
-msgstr ""
+msgstr "Negro"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:58
 msgid "Logo"
-msgstr ""
+msgstr "Logo"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:60
 msgid "To view and download the Firefox Marketplace logo, please visit the <a href=\"%(style_guide_url)s\">Mozilla style guide</a>."
 msgstr ""
+"Para ver y descargar el logotipo de Firefox Marketplace, visita la <a href=\""
+"%(style_guide_url)s\">Guía de estilo de Mozilla</a>."
 
 #: mkt/ecosystem/templates/ecosystem/publish_deploy.html:15
 msgid "One your app is finished, you need to deploy it. If you're publishing through the Firefox Marketplace you have some options on how to deploy your app."
@@ -21160,6 +21169,11 @@ msgid ""
 "After you have submitted your App and gotten it published, you should start promoting it! We would recommend creating a information and support page somewhere, to point people to for more "
 "information. We have created some <a href=\"%(branding_url)s\">button assets</a> that you can use to promote your app and link through to the Marketplace."
 msgstr ""
+"Una vez que hayas enviado y publicado tu aplicación, ¡ya puedes comenzar a "
+"promocionarla! Te recomendamos que crees en algún sitio una página a la que "
+"dirigir en caso de que los usuarios necesiten ayuda o más información. Hemos "
+"diseñado algunos <a href=\"%(branding_url)s\">botones</a> para que "
+"promociones tu aplicación y la enlaces a Marketplace."
 
 #: mkt/ecosystem/templates/ecosystem/support.html:18
 msgid "What should I know before creating an App?"
@@ -21679,7 +21693,7 @@ msgstr "Escribe los datos para reembolsar la transacción"
 
 #: mkt/lookup/forms.py:28
 msgid "Reason for Deletion"
-msgstr ""
+msgstr "Motivo para borrarla"
 
 #: mkt/lookup/views.py:144
 msgid "Currently unable to retrieve refund status."
@@ -21836,7 +21850,7 @@ msgstr "Resultados de búsquedas de cuentas para"
 
 #: mkt/lookup/templates/lookup/user_summary.html:13
 msgid "General"
-msgstr ""
+msgstr "General"
 
 #: mkt/lookup/templates/lookup/user_summary.html:21
 msgid "Registered"
@@ -21889,23 +21903,25 @@ msgstr "Sin nombre"
 #: mkt/lookup/templates/lookup/user_summary.html:104 mkt/lookup/templates/lookup/user_summary.html:112 mkt/lookup/templates/lookup/user_summary.html:116
 #: mkt/lookup/templates/lookup/user_summary.html:120
 msgid "Delete User"
-msgstr ""
+msgstr "Borrar usuario"
 
 #: mkt/lookup/templates/lookup/user_summary.html:107
 msgid "Deleting this user will <strong>permanently</strong> delete this user's account."
 msgstr ""
+"Al borrar este usuario, se eliminará su cuenta de usuario "
+"<strong>definitivamente</strong>."
 
 #: mkt/lookup/templates/lookup/user_summary.html:117
 msgid "Are you sure you wish to delete this user?"
-msgstr ""
+msgstr "¿Seguro que quieres borrar a este usuario?"
 
 #: mkt/lookup/templates/lookup/user_summary.html:127
 msgid "This user has already been deleted."
-msgstr ""
+msgstr "Este usuario ya ha sido borrado."
 
 #: mkt/lookup/templates/lookup/user_summary.html:129
 msgid "Deleted by"
-msgstr ""
+msgstr "Borrado por"
 
 #: mkt/lookup/templates/lookup/user_summary.html:132 mkt/reviewers/templates/reviewers/themes/history_table.html:10
 msgid "Reason"
@@ -21929,7 +21945,7 @@ msgstr "Resumen de la cuenta"
 
 #: mkt/lookup/templates/lookup/helpers/user_header.html:7
 msgid "Account Deleted"
-msgstr ""
+msgstr "Cuenta borrada"
 
 #: mkt/lookup/templates/lookup/includes/app_search.html:6
 msgid "App Lookup"
@@ -22501,26 +22517,26 @@ msgstr "Actualmente no hay ninguna revisión."
 #: mkt/reviewers/templates/reviewers/themes/home.html:13
 msgid "{num} Pending Theme Review"
 msgid_plural "{num} Pending Theme Reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{num} Revisión de temas pendiente"
+msgstr[1] "{num} Revisiones de temas pendientes"
 
 #: mkt/reviewers/templates/reviewers/themes/home.html:21
 msgid "{num} Flagged Review"
 msgid_plural "{num} Flagged Reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{num} Revisión marcada"
+msgstr[1] "{num} Revisiones marcadas"
 
 #: mkt/reviewers/templates/reviewers/themes/home.html:28
 msgid "{num} Update"
 msgid_plural "{num} Updates"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{num} Actualización"
+msgstr[1] "{num} Actualizaciones"
 
 #: mkt/reviewers/templates/reviewers/themes/home.html:43
 msgid "{num} unreviewed theme submission this week."
 msgid_plural "{num} unreviewed theme submissions this week."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{num} envío de temas sin revisar esta semana."
+msgstr[1] "{num} envíos de temas sin revisar esta semana."
 
 #: mkt/reviewers/templates/reviewers/themes/logs.html:4
 msgid "Theme Review Log"
@@ -22620,7 +22636,7 @@ msgstr "Selecciona un motivo para rechazarla"
 
 #: mkt/reviewers/templates/reviewers/themes/themes.html:124
 msgid "Describe your reason for rejection"
-msgstr "Describe tu motivo para rechazarla"
+msgstr "Describe un motivo para rechazarla"
 
 #: mkt/reviewers/templates/reviewers/themes/themes.html:130
 msgid "Ask a question to the artist"
@@ -22640,7 +22656,7 @@ msgstr "Cualquier tipo de aplicación"
 
 #: mkt/search/forms.py:34
 msgid "Privileged packaged app"
-msgstr ""
+msgstr "Aplicación empaquetada con privilegios"
 
 #: mkt/search/forms.py:39
 msgid "Free with In-app"
@@ -22684,7 +22700,7 @@ msgstr "Tipo de aplicación"
 
 #: mkt/search/forms.py:102
 msgid "Supported languages"
-msgstr ""
+msgstr "Idiomas ofrecidos"
 
 #: mkt/site/context_processors.py:34
 msgid "Sign out"
@@ -22928,6 +22944,7 @@ msgstr "Selecciona un dispositivo."
 #: mkt/submit/forms.py:50
 msgid "Packaged apps are not yet supported for those platforms."
 msgstr ""
+"Las aplicaciones empaquetadas no son compatibles aún con esas plataformas."
 
 #: mkt/submit/forms.py:144
 msgid "Agree and Continue"
@@ -23041,6 +23058,12 @@ msgid ""
 "We've got your app saved and ready to go! Your app is currently awaiting review, and once it is reviewed you will need to manually enable your app from the <a href=\"%(url)s\">Manage Status page</"
 "a> for it to show up on listing pages and in search. Until then, feel free to tweak your app's details and settings."
 msgstr ""
+"¡Tenemos tu aplicación a salvo y lista para publicarse! En este momento está "
+"a la espera de que la revisen y, una vez que lo hagan, tendrás que "
+"activarla manualmente en la <a href=\"%(url)s\">página Administrar estado</a> "
+"para que se muestre en las páginas de listados y en la búsqueda. Mientras "
+"tanto, no dudes en hacer los cambios que quieras en los ajustes y detalles "
+"de la aplicación."
 
 #: mkt/submit/templates/submit/done.html:31
 msgid "Before your app can go live, you need to provide payment information. Once you've added a payment account and price, your app will be submitted for review."
@@ -23217,7 +23240,7 @@ msgstr "Debes proporcionar al menos una categoría."
 
 #: mkt/webapps/tasks.py:111
 msgid "Issue with your app \"{app}\" on the Firefox Marketplace"
-msgstr ""
+msgstr "Incidencia con tu aplicación \"{app}\" en Firefox Marketplace"
 
 #: mkt/zadmin/templates/zadmin/featured_apps_ajax.html:16
 msgid "No featured graphics found."
