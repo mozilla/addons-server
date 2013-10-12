@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-09-27 16:47-0700\n"
-"PO-Revision-Date: 2013-10-12 11:40+0000\n"
-"Last-Translator: Ricardo <rpmdisguise-otros@yahoo.es>\n"
+"PO-Revision-Date: 2013-10-12 14:37+0000\n"
+"Last-Translator: Inma <inma.barrios@mozilla-hispano.org>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1381578030.0\n"
+"X-POOTLE-MTIME: 1381588662.0\n"
 
 #: apps/addons/buttons.py:207
 msgid "Download Now"
@@ -51,7 +51,7 @@ msgstr "Instalar aplicación"
 #: apps/addons/buttons.py:240
 msgctxt "install_button"
 msgid "Featured"
-msgstr "Destacados"
+msgstr "Destacadas"
 
 #: apps/addons/buttons.py:245
 msgctxt "install_button"
