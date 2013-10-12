@@ -12,7 +12,7 @@ from stats.models import Contribution
 
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.site.fixtures import fixture
-from mkt.stats.api import APP_STATS, STATS
+from mkt.stats.api import APP_STATS, STATS, _get_monolith_data
 
 
 @mock.patch('monolith.client.Client')
@@ -100,6 +100,16 @@ class TestGlobalStatsResource(RestOAuth):
         eq_(res.status_code, 200)
         ok_(client.called)
         eq_(client.call_args[1], {'region': 'us'})
+
+    def test_coersion(self, mocked):
+        client = mock.MagicMock()
+        client.return_value = [{'count': 1.99, 'date': '2013-10-10'}]
+        mocked.return_value = client
+
+        data = _get_monolith_data(
+            {'metric': 'foo', 'coerce': {'count': str}}, '2013-10-10',
+            '2013-10-10', 'day', {})
+        eq_(type(data['objects'][0]['count']), str)
 
 
 @mock.patch('monolith.client.Client')

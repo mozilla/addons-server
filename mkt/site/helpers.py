@@ -299,7 +299,7 @@ def more_button(pager):
 @register.function
 @jinja2.contextfunction
 def dev_agreement(context):
-    langs = ['en-US', 'es', 'pl']
+    langs = ['en-US', 'el', 'es', 'pl']
     lang = context['request'].LANG
     if lang not in langs:
         lang = 'en-US'
