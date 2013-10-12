@@ -1,3 +1,3 @@
-from mkt.constants import (platforms, ratingsbodies, ratingdescriptors,
+from mkt.constants import (comm, platforms, ratingsbodies, ratingdescriptors,
                            ratinginteractives)
 from mkt.constants.submit import *

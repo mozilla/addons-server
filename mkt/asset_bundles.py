@@ -181,6 +181,7 @@ JS = {
     ),
     'mkt/reviewers': (
         'js/lib/highcharts.src.js',  # Used by editors.js
+        'js/lib/moment-with-langs.min.js',  # JS date lib.
         'js/zamboni/storage.js',  # Used by editors.js
         'js/common/buckets.js',
         'js/devreg/reviewers/editors.js',
@@ -192,6 +193,7 @@ JS = {
         'js/devreg/reviewers/install.js',
         'js/devreg/reviewers/buttons.js',
         'js/devreg/manifest.js',  # Used by reviewers.js
+        'js/devreg/reviewers/reviewers_commbadge.js',
         'js/devreg/reviewers/reviewers.js',
         'js/devreg/reviewers/expandable.js',
         'js/devreg/reviewers/mobile_review_actions.js',

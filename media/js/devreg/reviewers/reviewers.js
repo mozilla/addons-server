@@ -24,6 +24,10 @@ require(['prefetchManifest']);
     } else {
         initSearch();
     }
+
+    if ($('.comm-dashboard-switch').length) {
+        require(['reviewersCommbadge']);
+    }
 })();
 
 

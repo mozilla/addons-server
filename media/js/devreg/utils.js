@@ -94,7 +94,7 @@ function initCharCount(parent) {
         }
     };
     $('.char-count', parent).each(function() {
-        var $this = $(this)
+        var $this = $(this);
         var $cc = $(this),
             $form = $(this).closest('form'),
             $el;
@@ -130,3 +130,62 @@ $(document).ajaxSuccess(function(event, xhr, ajaxSettings) {
         $(this).attr('target', '_blank');
     }
 });
+
+
+function baseurl(url) {
+    return url.split('?')[0];
+}
+
+
+function getVars(qs, excl_undefined) {
+    if (!qs) qs = location.search;
+    if (!qs || qs === '?') return {};
+    if (qs && qs[0] == '?') {
+        qs = qs.substr(1);  // Filter off the leading ? if it's there.
+    }
+
+    return _.chain(qs.split('&'))  // ['a=b', 'c=d']
+            .map(function(c) {return c.split('=').map(decodeURIComponent);}) //  [['a', 'b'], ['c', 'd']]
+            .filter(function(p) {  // [['a', 'b'], ['c', undefined]] -> [['a', 'b']]
+                return !!p[0] && (!excl_undefined || !_.isUndefined(p[1]));
+            }).object()  // {'a': 'b', 'c': 'd'}
+            .value();
+}
+
+
+function querystring(url) {
+    var qpos = url.indexOf('?');
+    if (qpos === -1) {
+        return {};
+    } else {
+        return getVars(url.substr(qpos + 1));
+    }
+}
+
+
+function urlencode(kwargs) {
+    if (typeof kwargs === 'string') {
+        return encodeURIComponent(kwargs);
+    }
+    var params = [];
+    if ('__keywords' in kwargs) {
+        delete kwargs.__keywords;
+    }
+    var keys = _.keys(kwargs).sort();
+    for (var i = 0; i < keys.length; i++) {
+        var key = keys[i];
+        var value = kwargs[key];
+        if (value === undefined) {
+            params.push(encodeURIComponent(key));
+        } else {
+            params.push(encodeURIComponent(key) + '=' +
+                        encodeURIComponent(value));
+        }
+    }
+    return params.join('&');
+}
+
+
+function urlparams(url, kwargs) {
+    return baseurl(url) + '?' + urlencode(_.defaults(kwargs, querystring(url)));
+}
