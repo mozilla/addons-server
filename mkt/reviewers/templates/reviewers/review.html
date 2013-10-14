@@ -229,7 +229,13 @@
         {{ form.browsers.errors }}
       </div>
       <div class="review-actions-section review-actions-attachments hidden">
-        <strong>{{ _('Attach a screenshot or log file') }}</strong>
+      <div class="review-actions-section review-actions-attachments">
+        <strong>{{ _('Attach a screenshot or log file (max {0})')|f(attachment_formset[0].max_upload_size|filesizeformat) }}</strong>
+        {% for attachment_form_errors in attachment_formset.errors %}
+          {% for error in attachment_form_errors.values() %}
+            {{ error }}
+          {% endfor %}
+        {% endfor %}
         {% set attachment_forms = attachment_formset.forms + [attachment_formset.empty_form] %}
         {% for attachment_form in attachment_forms %}
           <div class="formset{% if loop.last %} empty hidden{% endif %}">
