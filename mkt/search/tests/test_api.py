@@ -777,12 +777,14 @@ class TestSuggestionsApi(ESTestCase):
         response = self.client.get(self.url)
         parsed = json.loads(response.content)
         eq_(parsed[0], '')
-        eq_(parsed[1], [unicode(app1.name), unicode(app2.name)])
-        eq_(parsed[2], [unicode(app1.description),
-                        unicode(truncate(app2.description))])
-        eq_(parsed[3], [absolutify(app1.get_detail_url()),
-                        absolutify(app2.get_detail_url())])
-        eq_(parsed[4], [app1.get_icon_url(64), app2.get_icon_url(64)])
+        self.assertSetEqual(parsed[1], [unicode(app1.name),
+                                        unicode(app2.name)])
+        self.assertSetEqual(parsed[2], [unicode(app1.description),
+                                        unicode(truncate(app2.description))])
+        self.assertSetEqual(parsed[3], [absolutify(app1.get_detail_url()),
+                                        absolutify(app2.get_detail_url())])
+        self.assertSetEqual(parsed[4], [app1.get_icon_url(64),
+                                        app2.get_icon_url(64)])
 
         # Cleanup to remove these from the index.
         unindex_webapps([app1.id, app2.id])
