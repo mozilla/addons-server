@@ -2,6 +2,8 @@ import datetime
 import logging
 
 from django import forms
+from django.conf import settings
+from django.forms import ValidationError
 
 import happyforms
 from tower import ugettext as _, ugettext_lazy as _lazy
@@ -34,6 +36,19 @@ for status in amo.WEBAPPS_UNLISTED_STATUSES + (amo.STATUS_PUBLIC,):
 class ReviewAppAttachmentForm(happyforms.Form):
     attachment = forms.FileField(label=_lazy(u'Attachment:'))
     description = forms.CharField(required=False, label=_lazy(u'Description:'))
+
+    max_upload_size = settings.MAX_REVIEW_ATTACHMENT_UPLOAD_SIZE
+
+    def clean(self, *args, **kwargs):
+        data = super(ReviewAppAttachmentForm, self).clean(*args, **kwargs)
+        attachment = data.get('attachment')
+        max_size = self.max_upload_size
+        if attachment and attachment.size > max_size:
+            # Translators: Error raised when review attachment is too large.
+            exc = _('Attachment exceeds maximum size of %dMB.' %
+                    (self.max_upload_size / 1024 / 1024))
+            raise ValidationError(exc)
+        return data
 
 
 AttachmentFormSet = forms.formsets.formset_factory(ReviewAppAttachmentForm,
