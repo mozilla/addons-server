@@ -847,7 +847,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     @property
     def current_version(self):
         "Returns the current_version field or updates it if needed."
-        if self.status == amo.STATUS_DELETED:
+        if not self.id or self.status == amo.STATUS_DELETED:
             return None
         try:
             if not self._current_version:
@@ -858,7 +858,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     @property
     def latest_version(self):
-        if self.status == amo.STATUS_DELETED:
+        if not self.id or self.status == amo.STATUS_DELETED:
             return None
         try:
             if not self._latest_version:
