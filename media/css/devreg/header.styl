@@ -16,17 +16,13 @@
     }
 }
 
-.developer-hub #site-header {
-    h1 {
-        a {
-            hidetext();
-            // TODO: Retinaize.
-            background: url(../../img/ecosystem/logo.png) no-repeat 0 40%;
-            display: block;
-            height: 80px;
-            min-width: 300px;
-        }
-    }
+.developer-hub #site-header h1 a {
+    hidetext();
+    // TODO: Retinaize.
+    background: url(../../img/ecosystem/logo.png) no-repeat 0 40%;
+    display: block;
+    height: 80px;
+    min-width: 300px;
 }
 
 #site-header .upper-header,
@@ -58,6 +54,7 @@
         > li {
             float: left;
             position: relative;
+
             > a {
                 position: relative;
                 z-index: 2;
@@ -165,6 +162,7 @@
                 line-height: 32px;
                 height: 32px;
                 padding: 0 1em;
+
                 &:after {
                     display: inline-block;
                     vertical-align: middle;
@@ -241,13 +239,6 @@
             right: 4px;
             left: auto;
         }
-    }
-}
-
-@media (max-width: 1015px) {
-    #site-header .upper-header,
-    #site-nav .pad {
-        padding: 0 2%;
     }
 }
 
@@ -375,7 +366,6 @@
     &.logged {
         right: 40px;
     }
-
     a {
         color: $white;
         font-size: 13px;
@@ -383,6 +373,7 @@
         padding: 5px 7px;
     }
 }
+
 
 @media $retina {
    .header-button.submit:before {

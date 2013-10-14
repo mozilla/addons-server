@@ -152,52 +152,6 @@ h3.theme-queue-link {
     margin-bottom: 20px;
 }
 
-#aux-nav a {
-    color: $medium-gray;
-}
-
-.site-title {
-    display: block;
-    font: bold 36px/38px $open-stack;
-    text-shadow: 0 1px 1px rgba(#000,.75);
-    text-transform: uppercase;
-    padding: 15px 0;
-    max-width: 900px;
-
-    a {
-        color: #fff;
-        display: block;
-        text-decoration: none;
-        width: 100%;
-        small {
-            color: $light-gray;
-            display: block;
-            font-size: 12px;
-            line-height: 14px;
-            padding: 0 2px;
-        }
-        &:hover {
-            color: darken(#fff, 10%);
-
-            small {
-                color: darken($light-gray, 20%);
-            }
-        }
-    }
-}
-
-#site-header {
-    background-color: darken(#5b3f4f, 5%);
-
-    .menu-nav {
-        padding: 0;
-    }
-}
-
-.menu-nav {
-    margin: 0;
-}
-
 nav.paginator {
     margin-top: 26px;
     overflow: hidden;
@@ -427,6 +381,7 @@ table.data-grid .addon-version-notes a {
         text-decoration: none;
         top: 20px;
         width: 20px;
+
         &:hover {
             background-color: $light-gray;
             text-decoration: none;
@@ -528,6 +483,7 @@ div.editor-stats-table > div.editor-stats-dark {
         li {
             border-top: 1px dotted $light-gray;
             padding: 10px 0;
+
             &:first-child {
                 border-top: 0;
             }
@@ -668,6 +624,7 @@ button.search, .log-filter-outside button {
             > div {
                 float: left;
                 margin-right: 26px;
+
                 &:last-child {
                     margin-right: 0px;
                 }
@@ -681,16 +638,6 @@ button.search, .log-filter-outside button {
 }
 .queue-search-desktop .clear-queue-search {
     margin-left: 5px;
-}
-@media (min-width: 481px) and (max-width: 43em) {
-    .advanced-search .form-row {
-        left: 15%;
-        position: relative;
-
-        > div:nth-child(2) {
-            float: none;
-        }
-    }
 }
 
 /* Add-on Review Log */
@@ -1096,8 +1043,7 @@ span.currently_viewing_warning {
     .button {
         display: block;
     }
-    .faked-purchase,
-    .approval {
+    .faked-purchase, .approval {
         border-radius: 0 0 5px 5px;
         display: block;
         margin-top: -5px;
@@ -1172,10 +1118,7 @@ span.currently_viewing_warning {
         padding: 0.2em;
         text-align: center;
     }
-    .level::before,
-    .level::after,
-    .level:before,
-    .level:after {
+    .level::before, .level::after, .level:before, .level:after {
         content: "▴";
         padding: 0 0.6em;
     }
@@ -1199,9 +1142,76 @@ span.currently_viewing_warning {
     }
 }
 
-// Addresses issue with drop-downs menus vs. active queue tab.
-#site-nav {
-    z-index: 10;
+@media $landscape-min {
+    #scroll_sidebar_parent {
+        right: 70px;
+    }
+    .data-grid {
+        margin-top: 13px;
+
+        .addon-row a {
+            max-width: 600px;
+        }
+        .number {
+            text-align: right;
+        }
+    }
+    /* editors/queue tabs */
+    .tabnav {
+        margin: 0 10px;
+        position: relative;
+        top: 13px;
+
+        &.themes {
+            display: inline-block;
+        }
+    }
+    #page .tabnav li {
+        display: inline;
+        position: relative;
+        margin: 0 5px;
+        top: 0;
+        z-index: 0;
+
+        &:after {
+            /* Cover the bottom part of the box-shadow. */
+            background: $white;
+            bottom: 12px;
+            content: "";
+            display: block;
+            float: left;
+            height: 15px;
+            margin-bottom: -15px;
+            position: relative;
+            width: 100%;
+        }
+        &.selected {
+            z-index: 2;
+
+            a {
+                background-color: $white;
+                border-color: $taupe;
+                box-shadow: 0 -2px 0 rgba($taupe,.2) inset, 0 0 1px rgba(0,0,0,0.1);
+            }
+            a, a:hover {
+                color: $dark-gray;
+            }
+        }
+    }
+    #actions li {
+        margin-bottom: 20px;
+        max-width: 264px;
+        min-width: 192px;
+    }
+    .review-actions-attachments {
+        .formset {
+            margin-top: 1em;
+        }
+        .fileinput {
+            display: inline-block;
+            margin-right: 25px;
+        }
+    }
 }
 
 @media $landscape-max {
@@ -1223,71 +1233,6 @@ span.currently_viewing_warning {
     }
     #reviewers-score-bar {
         margin-bottom: 15px;
-    }
-    #site-header h1 {
-        border-box();
-        margin: 0;
-        max-width: 100%;
-        padding: 0;
-        a {
-            border-box();
-            font-size: 14px;
-            line-height: 16px;
-            font-weight: 600;
-            padding: 10px;
-        }
-        small {
-            display: inline-block;
-            font-size: 14px;
-            font-weight: 200;
-            padding: 0;
-
-            &:after {
-                color: #bbb;
-                content: "\00a0\00a0/\00a0";
-                display: inline-block;
-                font-size: 14px;
-                vertical-align: top;
-            }
-        }
-    }
-    #site-header {
-        .menu-nav, .upper-header {
-            padding: 0;
-        }
-    }
-    #aux-nav {
-        background: $border-gray;
-        float: none;
-        font-size: 11px;
-        max-width: 100%;
-
-        > ul > li {
-            border-right: 1px solid darken($border-gray, 10%);
-        }
-    }
-    #site-nav {
-        border: 1px solid #bbb;
-    }
-    #site-nav .menu-nav > ul {
-        > li {
-            margin: 0;
-
-            &:first-child > a {
-                padding-left: 10px;
-            }
-            &:last-child {
-                border-right: 1px dotted $light-gray;
-            }
-            > a {
-                font-size: 11px;
-                font-weight: 400;
-                padding: 10px;
-            }
-        }
-    }
-    .menu-nav > ul > li > ul a {
-        padding: 16px 8px;
     }
     #wrap {
         padding: 10px 0 0;
@@ -1325,10 +1270,7 @@ span.currently_viewing_warning {
             padding: 15px 30px;
             text-align: left;
         }
-        .desktop-only,
-        .unsupported,
-        .abuse-reports,
-        .waiting-time {
+        .desktop-only, .unsupported, .abuse-reports, .waiting-time {
             display: none;
         }
         .number {
@@ -1347,13 +1289,11 @@ span.currently_viewing_warning {
         line-height: 20px;
         margin: 10px 0 15px;
     }
-    #scroll_sidebar_parent,
-    #addon {
+    #scroll_sidebar_parent, #addon {
         float: none;
         width: 100%;
     }
-    #scroll_sidebar_parent,
-    #scroll_sidebar {
+    #scroll_sidebar_parent, #scroll_sidebar {
         position: inherit;
     }
     #scroll_sidebar {
@@ -1404,677 +1344,9 @@ span.currently_viewing_warning {
     }
 }
 
-$mobileborder = #d7d2c3;
-@media $portrait-max {
-    nav.pill-nav {
-        left: 9px;
-        top: 0;
-        margin-bottom: 10px;
-    }
-    .summary.island {
-        padding: 0 0 10px 10px;
-    }
-
-    .queue-search-mobile, .mobile-paginator {
-        display: block;
-    }
-    .impala-paginator, .advanced-search.desktop {
-        display: none;
-    }
-    .advanced-search, .toggle-queue-search, .queue-search .button span,
-    ul.tabnav a, .clear-queue-search {
-        font-size: 16px;
-    }
-    button.button.search {
-        top: 7px;
-
-        span {
-            bottom: 9px;
-        }
-    }
-    #site-nav {
-        border: 0px;
-
-        .pad {
-            height: 100%;
-            padding: 0;
-        }
-        nav.menu-nav {
-            height: 100%;
-
-            ul {
-                height: 100%;
-            }
-            li {
-                height: 100%;
-
-                &.selected {
-                    background: rgb(62, 52, 62);
-                    a {
-                        color: $white;
-                    }
-                }
-                a {
-                    font-size: 16px;
-                    position: relative;
-                    top: 4px;
-                }
-            }
-            & > ul li:not(.open):hover > ul, &.open > ul {
-                display: none;
-            }
-        }
-    }
-    #site-notice {
-        margin-top: 0;
-    }
-    .queue-search {
-        padding: 0;
-        margin: 30px 0 6px;
-
-        label[for="id_q"] {
-            display: none;
-        }
-        input#id_q {
-            display: inline-block;
-            margin-right: 5px;
-            margin-top: 0;
-            width: 75%;
-        }
-        .button {
-            margin-right: 0;
-            right: 8px;
-            top: 7px;
-        }
-        .toggle-queue-search, .clear-queue-search {
-            bottom: 64px;
-            float: right;
-            left: 0;
-            line-height: 6px;
-            position: relative;
-        }
-        .toggle-queue-search {
-            margin-right: 10px;
-        }
-        .clear-queue-search {
-            margin-right: 3px;
-            text-transform: none;
-        }
-    }
-    .queue-search-desktop {
-        display: none;
-    }
-    #reviewers-score-bar {
-        display: none;
-    }
-    dt {
-        float: none;
-        margin: 0 0 3px;
-        width: 100%;
-    }
-    dd {
-        margin-bottom: 15px;
-    }
-    #actions li {
-        width: 50%;
-
-        &.app-install {
-            .button {
-                display: block;
-            }
-        }
-        &:first-child {
-            padding-right: 3px;
-        }
-        &:nth-child(2) {
-            padding-left: 3px;
-        }
-        &.app-install button.product, .button {
-            border: 0;
-            font-size: 13px;
-            font-weight: normal;
-            height: 48px;
-            padding: 0;
-            top: 0;
-        }
-    }
-    #page h1.menutrigger {
-        background: #d7d2c4;
-        color: #686868;
-        line-height: 38px;
-        margin: 0;
-        padding: 0 8px;
-        border-radius: 3px 3px 0 0;
-
-    }
-    .statuslist, .island.alpha {
-        border: 1px solid $mobileborder;
-        border-radius: 4px;
-        background: #fff;
-        margin-bottom: 15px;
-    }
-    .statuslist {
-        > li {
-            padding: 0 15px;
-            line-height: 40px;
-
-            &:first-child {
-                border-bottom: 1px solid $mobileborder;
-            }
-            &:only-child {
-                border-bottom: 0;
-            }
-        }
-        &.padded > li {
-            padding: 15px;
-        }
-    }
-    .review-actions .action_nav li:first-child,
-    .review-actions .action_nav li:last-child,
-    .review-actions .action_nav li {
-        border: 1px solid #2E5186;
-    }
-    .review-actions .action_nav li {
-        border-radius: 0;
-    }
-    .review-actions .action_nav li:first-child {
-        border-radius: 5px 5px 0 0;
-    }
-    .review-actions .action_nav li:last-child {
-        border-radius: 0 0 5px 5px;
-    }
-    .review-actions .action_nav li {
-        display: block;
-    }
-    header .author {
-        margin: -30px 0 20px 50px;
-    }
-    .tabnav + .island {
-        border-box();
-        max-width: 100%;
-        overflow-x: auto;
-        overflow-y: hidden;
-    }
-    #page ul.tabnav {
-        li {
-            margin: 0 1px;
-            position: relative;
-
-            a {
-                padding: 10px 10px 15px;
-            }
-        }
-        &+ .island {
-            border-box();
-            max-width: 100%;
-            overflow-x: auto;
-            overflow-y: hidden;
-        }
-    }
-    #queue-tab-overlay > menu.nav-action-menu > div button {
-        margin-bottom: 7px;
-    }
-    .status-overlay, .premium_types-overlay {
-        span {
-            font-size: 14px;
-        }
-    }
-    html {
-        font-size: 10px;
-    }
-    #page form[role="dialog"][data-type="action"],
-    #page .queue-search div[role="dialog"] {
-        position: fixed;
-        z-index: 1007;
-
-        section h1 {
-            margin: 0 -15px
-        }
-        button, label[for] {
-            position: static;
-        }
-    }
-    .tabnav-sprite {
-        bottom: 6px;
-        display: block;
-        position: absolute;
-        right: 6px;
-
-        &:after {
-            /* Triangle bottom-right. */
-            border-bottom: 10px solid $medium-gray;
-            border-left: 10px solid transparent;
-            content: '';
-            display: block;
-            height: 0;
-            width: 0;
-        }
-    }
-    // No mobile man is an island.
-    .island:not(.mobile-island) {
-        border: 0;
-        border-radius: 0;
-        padding: 0;
-        background: transparent;
-        box-shadow: none;
-    }
-    .island.mobile-island {
-        padding-left: 0;
-        padding-right: 0;
-    }
-    .island > p {
-        padding: 5px 6px;
-        line-height: 22px;
-    }
-    #scroll_sidebar_parent li {
-        margin-top: 0;
-    }
-    .expandable {
-        .thumbnail, .expandcontent {
-            max-width: 200px;
-        }
-        .expandcontent {
-            float: left;
-            max-height: 200px;
-            overflow: hidden;
-
-            &.short {
-                max-height: 48px;
-            }
-            &.expanded {
-                max-height: inherit;
-            }
-        }
-        .showmore {
-            float: right;
-            margin-top: 4px;
-            font-weight: bold;
-        }
-    }
-    #review-files-header {
-        border-bottom: 1px solid #A5BFCE;
-
-        h3 {
-            float: none;
-        }
-    }
-    #addon-queue {
-        th {
-            font-size: 13px;
-            padding: 13px 0;
-        }
-        td {
-            padding: 13px 0;
-
-            &.app-name {
-                max-width: 144px;
-            }
-            &.flags {
-                min-width: 42px;
-            }
-        }
-        .payments {
-            display: none;
-        }
-    }
-    .no-results {
-        margin-top: 13px;
-    }
-    #log-filter, #log-listing thead {
-        display: none;
-    }
-    nav.paginator .rel {
-        a {
-            height: 32px;
-            line-height: 32px;
-            vertical-align: middle;
-
-            &.button {
-                min-width: 0;
-            }
-            &.jump {
-                line-height: 32px;
-                padding: 8px;
-            }
-        }
-    }
-    #reviews-flagged {
-        background: #fff;
-
-        .review-flagged {
-            margin: 0;
-            border: 0;
-            border-bottom: 1px solid $mobileborder;
-            padding: 15px;
-            &:nth-child(2n) {
-                background-color: #f8f8f8;
-            }
-            &:only-child, &:last-child {
-                border-bottom: 0;
-            }
-        }
-        h3 {
-            font-weight: bold;
-            margin-bottom: 7px;
-        }
-        .stars {
-            float: none;
-            display: block;
-        }
-        .review-flagged-actions {
-            margin: 15px 0 0;
-            padding: 0;
-            border: 0;
-            float: none;
-            width: auto;
-
-            * {
-                border-box();
-            }
-            strong {
-                display: block;
-                margin-bottom: 6px;
-            }
-        }
-        .review-saved {
-            border-top: 1px solid $mobileborder;
-
-            button {
-                width: 100%;
-            }
-        }
-        .skip, .nuke, .keep {
-            border: 1px solid $mobileborder;
-            text-align: center;
-            padding: 15px;
-            box-shadow: inset 0 13px 15px #fff;
-            background: rgba(225, 225, 215, .5);
-            color: rgb(164, 148, 96);
-
-            &.active {
-                box-shadow: inset 0 0 4px rgba(215, 210, 195, 1);
-                color: rgba(0,0,0,.35);
-            }
-        }
-        .keep, .nuke {
-            float: left;
-            width: 50%;
-            border-radius: 5px 0 0 0;
-            overflow: hidden;
-            height: 75px;
-        }
-        .nuke {
-            border-left: 0;
-            border-radius: 0 5px 0 0;
-            line-height: 40px;
-        }
-        .skip {
-            border-top: 0;
-            clear: both;
-        }
-    }
-    .device-list {
-        bottom: 10px;
+@media $mobile-landscape {
+    .advanced-search .form-row {
+        left: 15%;
         position: relative;
-        width: 80px;
-
-        ul {
-            position: relative;
-        }
-        li {
-            position: absolute;
-        }
-        .desktop {
-            left: -37px;
-        }
-        .android-tablet {
-            left: -27px;
-            top: 10px;
-        }
-        .firefoxos {
-            left: 18px;
-        }
-        .android-mobile {
-            left: -2px;
-        }
-    }
-    .mobile-paginator nav.paginator {
-        border-top: 0;
-        margin-bottom: 13px;
-
-        .rel {
-            margin-bottom: 6px;
-            a.button {
-                height: 36px;
-
-                span {
-                    bottom: 0;
-                }
-            }
-            a.jump {
-                padding: 0px 10px;
-            }
-        }
-        .num {
-            position: relative;
-            top: 8px;
-        }
-    }
-    #review-files table.activity {
-        margin: 0;
-    }
-    .devhub-links, .account-links {
-        display: none;
-    }
-    .upper-header {
-        width: auto;
-    }
-    #site-nav nav.menu-nav li a {
-        font-size: 14px;
-    }
-    .queue-search .advanced-search {
-        margin: 13px 0 26px;
-
-        > div, .form-row, .form-elem {
-            width: 100%;
-        }
-        .basic-filters label {
-            width: auto;
-        }
-        label {
-            margin-bottom: 0;
-        }
-        .form-elem {
-            margin-bottom: 0;
-            min-height: 50px;
-
-            &:not(:first-child) {
-                border-top: 1px solid $light-gray;
-            }
-            label {
-                &[for] {
-                    position: relative;
-                    top: 17px;
-                }
-                &:not([for]) {
-                    float: right;
-                }
-                &:first-child {
-                    clear: both;
-                    position: relative;
-                    top: 17px;
-                    left: 10px;
-                    width: auto;
-                }
-            }
-        }
-        input[type="checkbox"], .selected-val {
-            float: right;
-        }
-        .selected-val {
-            background: $faint-gray;
-            border: 1px solid $medium-gray;
-            border-radius: 2px;
-            padding: 10px 30px 10px 10px;
-            position: relative;
-            right: 10px;
-            top: 6px;
-
-            .tabnav-sprite {
-                bottom: 3px;
-                right: 3px;
-            }
-            &.multi-val {
-                display: block;
-                float: none;
-                left: 0px;
-                margin: 16px auto;
-                position: relative;
-                width: 80%;
-            }
-        }
-    }
-    #review-actions-form .review-actions-tested label {
-        display: block;
-        margin-left: 0;
-    }
-}
-
-.pill-nav {
-    border-radius: 16px;
-    bottom: 17px;
-    display: inline-block;
-    gradient-two-color(darken(#563C4B, 50%), darken(#563C4B, 30%));
-    left: 170px;
-    padding: 11px 1px;
-    position: relative;
-    a {
-        border-radius: 15px;
-        color: $light-gray;
-        font-size: 15px;
-        padding: 7px 16px;
-
-        &.selected {
-            color: #fff;
-            gradient-two-color(lighten(#563C4B, 10%), darken(#563C4B, 10%));
-            pointer-events: none;
-        }
-    }
-}
-
-@media (min-width: 768px) {
-    #masthead {
-        display: inline-block;
-    }
-    #scroll_sidebar_parent {
-        right: 70px;
-    }
-    .site-title a {
-        padding-left: 250px;
-        position: relative;
-        left: -250px;
-    }
-    .data-grid {
-        margin-top: 13px;
-
-        .addon-row a {
-            max-width: 600px;
-        }
-        .number {
-            text-align: right;
-        }
-    }
-    /* editors/queue tabs */
-    .tabnav {
-        margin: 0 10px;
-        position: relative;
-        top: 13px;
-
-        &.themes {
-            display: inline-block;
-        }
-    }
-    #page .tabnav li {
-        display: inline;
-        position: relative;
-        margin: 0 5px;
-        top: 0;
-        z-index: 0;
-
-        &:after {
-            /* Cover the bottom part of the box-shadow. */
-            background: $white;
-            content: "";
-            display: block;
-            float: left;
-            height: 15px;
-            margin-bottom: -15px;
-            position: relative;
-            bottom: 12px;
-            width: 100%;
-        }
-        &.selected {
-            z-index: 2;
-
-            a {
-                box-shadow: 0 -2px 0 rgba($taupe,.2) inset, 0 0 1px rgba(0,0,0,0.1);
-                background-color: $white;
-                border-color: $taupe;
-            }
-            a, a:hover {
-                color: $dark-gray;
-            }
-        }
-    }
-    #actions li {
-        margin-bottom: 20px;
-        max-width: 264px;
-        min-width: 192px;
-    }
-    .review-actions-attachments {
-        .formset {
-            margin-top: 1em;
-        }
-        .fileinput {
-            display: inline-block;
-            margin-right: 25px;
-        }
-    }
-}
-
-@media (max-width: 480px) and (max-height: 28.75em) {
-    #queue-tab-overlay > menu.nav-action-menu {
-        & > div {
-            max-height: 225px;
-            overflow: auto;
-        }
-        button:not(:last-child) {
-            height: 39px;
-            line-height: 39px;
-            margin-bottom: 5px;
-        }
-    }
-}
-
-// TODO: Use relative fonts.
-@media (min-width: 768px) and (max-width: 61em) {
-    #page .tabnav li {
-        margin-right: 0;
-        font-size: 12px;
-    }
-}
-@media (min-width: 768px) and (max-width: 57em) {
-    #page .tabnav li {
-        font-size: 11px;
-    }
-}
-@media (min-width: 768px) and (max-width: 53em) {
-    #page .tabnav li {
-        font-size: 10px;
-    }
-}
-@media (min-width: 768px) and (max-width: 52em) {
-    #page .tabnav li {
-        font-size: 9px;
     }
 }
