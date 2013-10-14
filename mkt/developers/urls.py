@@ -90,9 +90,6 @@ app_detail_patterns = patterns('',
     url('^upload_image$', views.upload_media, {'upload_type': 'image'},
         name='mkt.developers.apps.upload_image'),
 
-    url('^profile$', views.profile, name='mkt.developers.apps.profile'),
-    url('^profile/remove$', views.remove_profile,
-        name='mkt.developers.apps.profile.remove'),
     url('^rmlocale$', views.remove_locale,
         name='mkt.developers.apps.remove-locale'),
 

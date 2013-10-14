@@ -12,7 +12,6 @@ from django.test.client import RequestFactory
 
 import mock
 import waffle
-from nose import SkipTest
 from nose.plugins.attrib import attr
 from nose.tools import eq_
 from pyquery import PyQuery as pq
@@ -26,7 +25,6 @@ from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
 from amo.utils import urlparams
 from browse.tests import test_default_sort, test_listing_sort
-from devhub.models import ActivityLog
 from files.models import File, FileUpload
 from files.tests.test_models import UploadTest as BaseUploadTest
 from market.models import AddonPremium, Price
@@ -653,161 +651,6 @@ class TestDelete(amo.tests.TestCase):
         r = self.client.post(self.url, follow=True)
         eq_(pq(r.content)('.notification-box').text(), 'App deleted.')
         self.assertRaises(Addon.DoesNotExist, self.get_webapp)
-
-
-class TestProfileBase(amo.tests.TestCase):
-    fixtures = ['base/users', 'webapps/337141-steamcube']
-
-    def setUp(self):
-        self.webapp = self.get_webapp()
-        self.version = self.webapp.current_version
-        self.url = self.webapp.get_dev_url('profile')
-        assert self.client.login(username='steamcube@mozilla.com',
-                                 password='password')
-
-    def get_webapp(self):
-        return Addon.objects.get(id=337141)
-
-    def enable_addon_contributions(self):
-        self.webapp.wants_contributions = True
-        self.webapp.paypal_id = 'somebody'
-        self.webapp.save()
-
-    def post(self, *args, **kw):
-        d = dict(*args, **kw)
-        eq_(self.client.post(self.url, d).status_code, 302)
-
-    def check(self, **kw):
-        addon = self.get_webapp()
-        for k, v in kw.items():
-            if k in ('the_reason', 'the_future'):
-                eq_(getattr(getattr(addon, k), 'localized_string'), unicode(v))
-            else:
-                eq_(getattr(addon, k), v)
-
-
-class TestProfileStatusBar(TestProfileBase):
-
-    def setUp(self):
-        super(TestProfileStatusBar, self).setUp()
-        self.remove_url = self.webapp.get_dev_url('profile.remove')
-
-    def test_nav_link(self):
-        # Removed links to "Manage Developer Profile" in bug 742902.
-        raise SkipTest
-        r = self.client.get(self.url)
-        eq_(pq(r.content)('#edit-addon-nav li.selected a').attr('href'),
-            self.url)
-
-    def test_no_status_bar(self):
-        self.webapp.the_reason = self.webapp.the_future = None
-        self.webapp.save()
-        assert not pq(self.client.get(self.url).content)('#status-bar')
-
-    def test_status_bar_no_contrib(self):
-        self.webapp.the_reason = self.webapp.the_future = '...'
-        self.webapp.wants_contributions = False
-        self.webapp.save()
-        doc = pq(self.client.get(self.url).content)
-        assert doc('#status-bar')
-        eq_(doc('#status-bar button').text(), 'Remove Profile')
-
-    def test_status_bar_with_contrib(self):
-        self.webapp.the_reason = self.webapp.the_future = '...'
-        self.webapp.wants_contributions = True
-        self.webapp.paypal_id = 'xxx'
-        self.webapp.save()
-        doc = pq(self.client.get(self.url).content)
-        assert doc('#status-bar')
-        eq_(doc('#status-bar button').text(), 'Remove Profile')
-
-    def test_remove_profile(self):
-        self.webapp.the_reason = self.webapp.the_future = '...'
-        self.webapp.save()
-        self.client.post(self.remove_url)
-        addon = self.get_webapp()
-        eq_(addon.the_reason, None)
-        eq_(addon.the_future, None)
-        eq_(addon.takes_contributions, False)
-        eq_(addon.wants_contributions, False)
-
-    def test_remove_profile_without_content(self):
-        # See bug 624852
-        self.webapp.the_reason = self.webapp.the_future = None
-        self.webapp.save()
-        self.client.post(self.remove_url)
-        addon = self.get_webapp()
-        eq_(addon.the_reason, None)
-        eq_(addon.the_future, None)
-
-    def test_remove_both(self):
-        self.webapp.the_reason = self.webapp.the_future = '...'
-        self.webapp.wants_contributions = True
-        self.webapp.paypal_id = 'xxx'
-        self.webapp.save()
-        self.client.post(self.remove_url)
-        addon = self.get_webapp()
-        eq_(addon.the_reason, None)
-        eq_(addon.the_future, None)
-        eq_(addon.takes_contributions, False)
-        eq_(addon.wants_contributions, False)
-
-
-class TestProfile(TestProfileBase):
-
-    def test_without_contributions_labels(self):
-        r = self.client.get(self.url)
-        eq_(r.status_code, 200)
-        doc = pq(r.content)
-        eq_(doc('label[for=the_reason] .optional').length, 1)
-        eq_(doc('label[for=the_future] .optional').length, 1)
-
-    def test_without_contributions_fields_optional(self):
-        self.post(the_reason='', the_future='')
-        self.check(the_reason='', the_future='')
-
-        self.post(the_reason='to be cool', the_future='')
-        self.check(the_reason='to be cool', the_future='')
-
-        self.post(the_reason='', the_future='hot stuff')
-        self.check(the_reason='', the_future='hot stuff')
-
-        self.post(the_reason='to be hot', the_future='cold stuff')
-        self.check(the_reason='to be hot', the_future='cold stuff')
-
-    def test_log(self):
-        self.enable_addon_contributions()
-        d = dict(the_reason='because', the_future='i can')
-        o = ActivityLog.objects
-        eq_(o.count(), 0)
-        self.client.post(self.url, d)
-        eq_(o.filter(action=amo.LOG.EDIT_PROPERTIES.id).count(), 1)
-
-    def test_with_contributions_fields_required(self):
-        self.enable_addon_contributions()
-
-        d = dict(the_reason='', the_future='')
-        r = self.client.post(self.url, d)
-        eq_(r.status_code, 200)
-        self.assertFormError(r, 'profile_form', 'the_reason',
-                             'This field is required.')
-        self.assertFormError(r, 'profile_form', 'the_future',
-                             'This field is required.')
-
-        d = dict(the_reason='to be cool', the_future='')
-        r = self.client.post(self.url, d)
-        eq_(r.status_code, 200)
-        self.assertFormError(r, 'profile_form', 'the_future',
-                             'This field is required.')
-
-        d = dict(the_reason='', the_future='hot stuff')
-        r = self.client.post(self.url, d)
-        eq_(r.status_code, 200)
-        self.assertFormError(r, 'profile_form', 'the_reason',
-                             'This field is required.')
-
-        self.post(the_reason='to be hot', the_future='cold stuff')
-        self.check(the_reason='to be hot', the_future='cold stuff')
 
 
 class TestResumeStep(amo.tests.TestCase):

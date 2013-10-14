@@ -256,28 +256,6 @@ class NewWebappForm(DeviceTypeForm, NewWebappVersionForm):
         return self._is_packaged or self.cleaned_data.get('packaged', False)
 
 
-class PaypalSetupForm(happyforms.Form):
-    business_account = forms.ChoiceField(widget=forms.RadioSelect, choices=[],
-        label=_lazy(u'Do you already have a PayPal Premier '
-                    'or Business account?'))
-    email = forms.EmailField(required=False,
-                             label=_lazy(u'PayPal email address'))
-
-    def __init__(self, *args, **kw):
-        super(PaypalSetupForm, self).__init__(*args, **kw)
-        self.fields['business_account'].choices = (('yes', _lazy('Yes')),
-            ('no', _lazy('No')),
-            ('later', _lazy(u"I'll link my PayPal account later.")))
-
-    def clean(self):
-        data = self.cleaned_data
-        if data.get('business_account') == 'yes' and not data.get('email'):
-            msg = _(u'The PayPal email is required.')
-            self._errors['email'] = self.error_class([msg])
-
-        return data
-
-
 class UpsellForm(happyforms.Form):
     price = forms.ModelChoiceField(queryset=Price.objects.active(),
                                    label=_lazy(u'App Price'),

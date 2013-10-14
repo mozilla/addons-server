@@ -837,21 +837,6 @@ class TestAppSummaryPurchases(AppSummaryTest):
         res = self.summary()
         self.assert_empty(res.context['purchases']['alltime'])
 
-    def test_pay_methods(self):
-        for paykey in ('AP-1234',  # indicates PayPal
-                       'AP-1235',
-                       None):  # indicates other
-            Contribution.objects.create(addon=self.app,
-                                        user=self.user,
-                                        amount=Decimal('0.99'),
-                                        currency='USD',
-                                        paykey=paykey,
-                                        type=amo.CONTRIB_PURCHASE)
-        res = self.summary()
-        eq_(sorted(res.context['payment_methods']),
-            [u'33.3% of purchases via Other',
-             u'66.7% of purchases via PayPal'])
-
 
 class TestAppSummaryRefunds(AppSummaryTest):
 

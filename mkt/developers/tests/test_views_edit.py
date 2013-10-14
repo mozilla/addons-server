@@ -1,4 +1,3 @@
-from itertools import repeat
 import json
 import os
 import tempfile
@@ -418,29 +417,19 @@ class TestEditBasic(TestEdit):
         eq_(unicode(webapp.app_slug), data['slug'].lower())
         eq_(unicode(webapp.description), data['description'])
 
-    def get_l10n_urls(self):
-        return [self.webapp.get_dev_url(p) for p in ('edit', 'profile')]
-
     def test_l10n(self):
         self.webapp.update(default_locale='en-US')
-        for url in self.get_l10n_urls():
-            r = self.client.get(url)
-            eq_(pq(r.content)('#l10n-menu').attr('data-default'), 'en-us',
-                'l10n menu not visible for %s' % url)
+        url = self.webapp.get_dev_url('edit')
+        r = self.client.get(url)
+        eq_(pq(r.content)('#l10n-menu').attr('data-default'), 'en-us',
+            'l10n menu not visible for %s' % url)
 
     def test_l10n_not_us(self):
         self.webapp.update(default_locale='fr')
-        for url in self.get_l10n_urls():
-            r = self.client.get(url)
-            eq_(pq(r.content)('#l10n-menu').attr('data-default'), 'fr',
-                'l10n menu not visible for %s' % url)
-
-    def test_l10n_not_us_id_url(self):
-        self.webapp.update(default_locale='fr')
-        for url in self.get_l10n_urls():
-            r = self.client.get('/id' + url, follow=True)
-            eq_(pq(r.content)('#l10n-menu').attr('data-default'), 'fr',
-                'l10n menu not visible for %s' % url)
+        url = self.webapp.get_dev_url('edit')
+        r = self.client.get(url)
+        eq_(pq(r.content)('#l10n-menu').attr('data-default'), 'fr',
+            'l10n menu not visible for %s' % url)
 
     @mock.patch('mkt.developers.views._update_manifest')
     def test_refresh(self, fetch):

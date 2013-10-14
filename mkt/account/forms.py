@@ -80,18 +80,6 @@ class UserDeleteForm(forms.Form):
                                         'accounts.')
 
 
-class CurrencyForm(happyforms.Form):
-    currency = forms.ChoiceField(widget=forms.RadioSelect)
-
-    def __init__(self, *args, **kw):
-        super(CurrencyForm, self).__init__(*args, **kw)
-        choices = [u'USD'] + list((PriceCurrency.objects
-                                        .values_list('currency', flat=True)
-                                        .distinct()))
-        self.fields['currency'].choices = [(k, amo.PAYPAL_CURRENCIES[k])
-                                              for k in choices if k]
-
-
 class FeedbackForm(PotatoCaptchaForm):
     """Site feedback form."""
 

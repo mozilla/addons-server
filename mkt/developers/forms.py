@@ -34,7 +34,6 @@ from files.utils import WebAppParser
 from lib.video import tasks as vtasks
 from tags.models import Tag
 from translations.fields import TransField
-from translations.forms import TranslationFormMixin
 from translations.models import Translation
 from translations.widgets import TransTextarea
 
@@ -132,33 +131,6 @@ class DeleteForm(happyforms.Form):
 
     def __init__(self, request):
         super(DeleteForm, self).__init__(request.POST)
-
-
-def ProfileForm(*args, **kw):
-    # If the add-on takes contributions, then both fields are required.
-    addon = kw['instance']
-    fields_required = (kw.pop('required', False) or
-                       bool(addon.takes_contributions))
-    if addon.is_webapp():
-        the_reason_label = _('Why did you make this app?')
-        the_future_label = _("What's next for this app?")
-    else:
-        the_reason_label = _('Why did you make this add-on?')
-        the_future_label = _("What's next for this add-on?")
-
-    class _Form(TranslationFormMixin, happyforms.ModelForm):
-        the_reason = TransField(widget=TransTextarea(),
-                                     required=fields_required,
-                                     label=the_reason_label)
-        the_future = TransField(widget=TransTextarea(),
-                                     required=fields_required,
-                                     label=the_future_label)
-
-        class Meta:
-            model = Addon
-            fields = ('the_reason', 'the_future')
-
-    return _Form(*args, **kw)
 
 
 def trap_duplicate(request, manifest_url):
