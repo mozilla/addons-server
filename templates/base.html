@@ -18,6 +18,9 @@
           rel="search" type="application/opensearchdescription+xml"
           href="{{ url('amo.opensearch') }}" />
 
+    {% block tabzilla_css %}
+      <link href="//mozorg.cdn.mozilla.net/media/css/tabzilla-min.css" rel="stylesheet" />
+    {% endblock %}
     {% block site_css %}
       {{ css('zamboni/css') }}
       <!--[if IE]><link rel="stylesheet" href="{{ media('css/legacy/ie.css') }}"><![endif]-->
@@ -49,113 +52,118 @@
         data-media-url="{{ MEDIA_URL }}"
         {% block bodyattrs %}{% endblock %}>
 
-    {% if ADMIN_MESSAGE or settings.READ_ONLY %}
-      <div id="site-notice">
-        {% if ADMIN_MESSAGE %}
-          <p>{{ ADMIN_MESSAGE|safe }}</p>
-        {% endif %}
-        {% if settings.READ_ONLY %}
-          <p>{{ _("Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly.") }}</p>
-        {% endif %}
-      </div>
-    {% endif %}
-    <div class="section">
-      {% block site_header %}
-        <div id="global-header-tab">
-          <a href="http://mozilla.org/"><img src="{{ media('img/zamboni/mozilla-tab.png') }}"></a>
+    <div id="tabzilla-wrapper">
+      {% if ADMIN_MESSAGE or settings.READ_ONLY %}
+        <div id="site-notice">
+          {% if ADMIN_MESSAGE %}
+            <p>{{ ADMIN_MESSAGE|safe }}</p>
+          {% endif %}
+          {% if settings.READ_ONLY %}
+            <p>{{ _("Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly.") }}</p>
+          {% endif %}
         </div>
-        <div class="amo-header">
-          <nav id="aux-nav" role="navigation" class="menu-nav c">
-            <ul>
-              {% if not settings.READ_ONLY %}
-                {% include "impala/user_login.html" %}
-              {% endif %}
-              {% block aux_nav %}
-                <li>
-                  <a href="#" id="other-apps"
-                     title="{{ _('Find add-ons for other applications') }}">
-                    {{ _('Other Applications') }}</a>
-                  <ul class="other-apps">
-                    {% for app in amo.APP_USAGE %}
-                      {% if app != request.APP and app != amo.MOBILE %}
-                        <li id="app-{{ app.short }}" class="{{ app.short }}">
-                          <a href="{{ locale_url(app.short) }}">{{ app.pretty }}</a>
-                        </li>
-                      {% endif %}
-                    {% endfor %}
-                  </ul>
-                </li>
-              {% endblock aux_nav %}
-            </ul>
-          </nav>
-          {% block header_search %}
-          <div class="header-search" role="search">
-            {% block search_form %}
-              {% with query_term=query_term %}
-                {% include 'impala/search.html' %}
-              {% endwith %}
-            {% endblock %}
+      {% endif %}
+      <div class="section">
+        {% block site_header %}
+          <div id="global-header-tab">
+            <a href="//www.mozilla.org/" id="tabzilla">Mozilla</a>
           </div>
-          {% endblock %}
-          <div id="masthead">
-            {% block site_header_title %}
-            {% include "impala/header_title.html" %}
-            {{ site_nav() }}
+          <div class="amo-header">
+            <nav id="aux-nav" role="navigation" class="menu-nav c">
+              <ul>
+                {% if not settings.READ_ONLY %}
+                  {% include "impala/user_login.html" %}
+                {% endif %}
+                {% block aux_nav %}
+                  <li>
+                    <a href="#" id="other-apps"
+                       title="{{ _('Find add-ons for other applications') }}">
+                      {{ _('Other Applications') }}</a>
+                    <ul class="other-apps">
+                      {% for app in amo.APP_USAGE %}
+                        {% if app != request.APP and app != amo.MOBILE %}
+                          <li id="app-{{ app.short }}" class="{{ app.short }}">
+                            <a href="{{ locale_url(app.short) }}">{{ app.pretty }}</a>
+                          </li>
+                        {% endif %}
+                      {% endfor %}
+                    </ul>
+                  </li>
+                {% endblock aux_nav %}
+              </ul>
+            </nav>
+            {% block header_search %}
+            <div class="header-search" role="search">
+              {% block search_form %}
+                {% with query_term=query_term %}
+                  {% include 'impala/search.html' %}
+                {% endwith %}
+              {% endblock %}
+            </div>
             {% endblock %}
-            {% block navbar %}{% endblock %}
-            {% block site_stats %}{% endblock %}
+            <div id="masthead">
+              {% block site_header_title %}
+              {% include "impala/header_title.html" %}
+              {{ site_nav() }}
+              {% endblock %}
+              {% block navbar %}{% endblock %}
+              {% block site_stats %}{% endblock %}
+            </div>
           </div>
-        </div>
-      {% endblock site_header %}
+        {% endblock site_header %}
 
-      {# Overridden in base_side_categories, which expands categories
-         on the side of the page. #}
-      {% block main_content %}
-        {# outer_content is for something you want above content on every page. #}
-        {% block outer_content %}{% include "messages.html" %}{% endblock %}
-        {% block content %}{% endblock %}
-      {% endblock %}
-    </div>
-    <div id="tooltip">
-      <span></span>
-    </div>
-    <div id="popup-staging">
-      {{ sharing_box() }}
-      <div id="add-to-collection" class="popup">
-        <div class="collection-add-login">
-          <p>{% trans %}
-            To create your own collections, you must have a Mozilla Add-ons account.
-          {% endtrans %}</p>
-          <p class="register-button">
-            <a class="button" href="{{ remora_url('users/register') }}">{{ _('Create an Add-ons Account') }}</a>
-          </p>
-          <p>
-            {% trans login=login_link() %}
-              or <a href="{{ login }}">log in to your current account</a>
-            {% endtrans %}
-          </p>
-        </div>
+        {# Overridden in base_side_categories, which expands categories
+           on the side of the page. #}
+        {% block main_content %}
+          {# outer_content is for something you want above content on every page. #}
+          {% block outer_content %}{% include "messages.html" %}{% endblock %}
+          {% block content %}{% endblock %}
+        {% endblock %}
       </div>
-      {% block popups %}
+      <div id="tooltip">
+        <span></span>
+      </div>
+      <div id="popup-staging">
+        {{ sharing_box() }}
+        <div id="add-to-collection" class="popup">
+          <div class="collection-add-login">
+            <p>{% trans %}
+              To create your own collections, you must have a Mozilla Add-ons account.
+            {% endtrans %}</p>
+            <p class="register-button">
+              <a class="button" href="{{ remora_url('users/register') }}">{{ _('Create an Add-ons Account') }}</a>
+            </p>
+            <p>
+              {% trans login=login_link() %}
+                or <a href="{{ login }}">log in to your current account</a>
+              {% endtrans %}
+            </p>
+          </div>
+        </div>
+        {% block popups %}
+        {% endblock %}
+      </div>
+      {# js #}
+      {% block site_js %}
+        <script src="{{ static(url('jsi18n')) }}"></script>
+        {{ js('common') }}
+        <script async defer src="{{ static(url('addons.buttons.js')) }}"></script>
+        <script async defer src="{{ settings.PAYPAL_JS_URL }}"></script>
+      {% endblock %}
+      {% block tabzilla_js %}
+        <script src="//mozorg.cdn.mozilla.net/{{ LANG }}/tabzilla/tabzilla.js"></script>
+      {% endblock %}
+      {% block js %}{% endblock %}
+      {% block footer %}
+        <div id="footer" role="contentinfo">
+          <div class="section">
+            {% block footer_extras %}
+              <img class="footerlogo" src="{{ media('img/zamboni/footer-logo-med.png') }}" alt="">
+            {% endblock %}
+            {% include "footer.html" %}
+          </div> {# section #}
+        </div> {# footer #}
       {% endblock %}
     </div>
-    {# js #}
-    {% block site_js %}
-      <script src="{{ static(url('jsi18n')) }}"></script>
-      {{ js('common') }}
-      <script async defer src="{{ static(url('addons.buttons.js')) }}"></script>
-      <script async defer src="{{ settings.PAYPAL_JS_URL }}"></script>
-    {% endblock %}
-    {% block js %}{% endblock %}
-    {% block footer %}
-      <div id="footer" role="contentinfo">
-        <div class="section">
-          {% block footer_extras %}
-            <img class="footerlogo" src="{{ media('img/zamboni/footer-logo-med.png') }}" alt="">
-          {% endblock %}
-          {% include "footer.html" %}
-        </div> {# section #}
-      </div> {# footer #}
-    {% endblock %}
   </body>
 </html>
