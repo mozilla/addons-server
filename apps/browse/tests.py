@@ -488,7 +488,8 @@ class TestFeaturedLocale(amo.tests.TestCase):
         self.persona = Addon.objects.get(pk=15679)
         self.extension = Addon.objects.get(pk=2464)
         self.category = Category.objects.get(slug='bookmarks')
-        self.url = reverse('browse.creatured', args=['bookmarks'])
+        self.url = urlparams(reverse('browse.extensions', args=['bookmarks']),
+                             {}, sort='featured')
         cache.clear()
 
     def reset(self):
@@ -508,34 +509,34 @@ class TestFeaturedLocale(amo.tests.TestCase):
                 print mtch.group(2)
 
     def test_creatured_locale_en_US(self):
-        res = self.client.get(self.url)
+        res = self.client.get(self.url, follow=True)
         assert self.addon in res.context['addons']
 
     def test_creatured_locale_es_ES(self):
         """Ensure 'en-US'-creatured add-ons do not exist for other locales."""
-        res = self.client.get(self.url.replace('en-US', 'es'))
+        res = self.client.get(self.url.replace('en-US', 'es'), follow=True)
         assert self.addon not in res.context['addons']
 
     def test_creatured_locale_nones(self):
         self.change_addoncategory(self.addon, '')
-        res = self.client.get(self.url)
+        res = self.client.get(self.url, follow=True)
         assert self.addon in res.context['addons']
 
         self.change_addoncategory(self.addon, None)
-        res = self.client.get(self.url)
+        res = self.client.get(self.url, follow=True)
         assert self.addon in res.context['addons']
 
     def test_creatured_locale_many(self):
         self.change_addoncategory(self.addon, 'en-US,es')
-        res = self.client.get(self.url)
+        res = self.client.get(self.url, follow=True)
         assert self.addon in res.context['addons']
 
-        res = self.client.get(self.url.replace('en-US', 'es'))
+        res = self.client.get(self.url.replace('en-US', 'es'), follow=True)
         assert self.addon in res.context['addons']
 
     def test_creatured_locale_not_en_US(self):
         self.change_addoncategory(self.addon, 'es')
-        res = self.client.get(self.url)
+        res = self.client.get(self.url, follow=True)
         assert self.addon not in res.context['addons']
 
     def test_featured_locale_en_US(self):
@@ -1097,6 +1098,10 @@ class TestLegacyRedirects(amo.tests.TestCase):
         # testing that we don't redirect to /complete-themes/.
         self.redirects('/themes/feeds-news-blogging/?sort=rating',
                        '/themes/feeds-news-blogging?sort=rating')
+
+    def test_creatured(self):
+        self.redirects('/extensions/feeds-news-blogging/featured',
+                       '/extensions/feeds-news-blogging/?sort=featured')
 
 
 class TestCategoriesFeed(amo.tests.TestCase):

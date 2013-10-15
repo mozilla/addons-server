@@ -416,6 +416,13 @@ def legacy_fulltheme_redirects(request, category=None):
     return redirect(url, permanent=not settings.DEBUG)
 
 
+def legacy_creatured_redirect(request, category):
+    cat = get_object_or_404(Category.objects, slug=category)
+    type_ = amo.ADDON_EXTENSION
+    sort = 'featured'
+    return legacy_redirects(request, type_, cat.id, sort)
+
+
 @cache_page(60 * 60 * 24 * 365)
 def legacy_redirects(request, type_, category=None, sort=None, format=None):
     type_slug = amo.ADDON_SLUGS.get(int(type_), 'extensions')
@@ -428,7 +435,8 @@ def legacy_redirects(request, type_, category=None, sort=None, format=None):
         else:
             url = reverse('browse.%s' % type_slug, args=[cat.slug])
     mapping = {'updated': 'updated', 'newest': 'created', 'name': 'name',
-               'weeklydownloads': 'popular', 'averagerating': 'rating'}
+               'weeklydownloads': 'popular', 'averagerating': 'rating',
+               'featured': 'featured'}
     if 'sort' in request.GET and request.GET['sort'] in mapping:
         url += '?sort=%s' % mapping[request.GET['sort']]
     elif sort in mapping:
