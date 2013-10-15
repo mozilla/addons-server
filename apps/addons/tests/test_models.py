@@ -307,6 +307,18 @@ class TestAddonModels(amo.tests.TestCase):
         eq_(a.latest_version, version)
         eq_(a._latest_version, version)
 
+    @patch('addons.models.Addon.update_version')
+    def test_current_version_unsaved(self, update_version):
+        a = Addon()
+        eq_(a.current_version, None)
+        assert not update_version.called
+
+    @patch('addons.models.Addon.update_version')
+    def test_latest_version_unsaved(self, update_version):
+        a = Addon()
+        eq_(a.latest_version, None)
+        assert not update_version.called
+
     def test_current_beta_version(self):
         a = Addon.objects.get(pk=5299)
         eq_(a.current_beta_version.id, 50000)
