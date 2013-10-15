@@ -533,7 +533,9 @@ def category_sidebar(request, query, facets):
 
 
 def version_sidebar(request, query, facets):
-    appver = query.get('appver')
+    appver = query.get('appver') or request.session.get('search.appver')
+    if query.get('appver'):
+        request.session['search.appver'] = appver
     app = unicode(request.APP.pretty)
     exclude_versions = getattr(request.APP, 'exclude_versions', [])
     # L10n: {0} is an application, such as Firefox. This means "any version of
