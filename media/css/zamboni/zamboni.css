@@ -633,8 +633,7 @@ a.button.concealed:active {
 
 .install.featuredaddon,
 .install.lite,
-.install.unreviewed,
-.install.selfhosted {
+.install.unreviewed {
     padding: 2px;
     -moz-border-radius: .95em .95em .95em 0;
     -webkit-border-radius: .95em;
@@ -644,8 +643,7 @@ a.button.concealed:active {
 
 .html-rtl .install.featuredaddon,
 .html-rtl .install.lite,
-.html-rtl .install.unreviewed,
-.html-rtl .install.selfhosted {
+.html-rtl .install.unreviewed {
     -moz-border-radius: .95em .95em 0 .95em;
     -webkit-border-radius: .95em;
     -webkit-border-bottom-left-radius: .95em;
@@ -667,13 +665,6 @@ a.button.concealed:active {
 .install.lite strong,
 .install.unreviewed strong {
     color: #333;
-}
-
-.install.selfhosted {
-    background: #d3ecf6;
-}
-.install.selfhosted strong {
-    color: #235;
 }
 
 /** =Button =icons *********/
@@ -781,7 +772,6 @@ div.popup-shim {
 .mz.app { background-image: url(../../img/app-icons/small/mozilla.png); }
 
 .install-note .msg.m-unreviewed,
-.install-note .msg.m-selfhosted,
 .popup.warning .msg {
     background-image: url(../../img/zamboni/icons/alert-32x32.png);
 }
@@ -2715,25 +2705,18 @@ form .error .note.error {
 }
 
 .install-wrapper.lite .install strong,
-.install-wrapper.unreviewed .install strong,
-.install-wrapper.selfhosted .install strong {
+.install-wrapper.unreviewed .install strong {
     display: none;
 }
 
 .install-wrapper.lite .install-note strong,
-.install-wrapper.unreviewed .install-note strong,
-.install-wrapper.selfhosted .install-note strong {
+.install-wrapper.unreviewed .install-note strong {
     display: inherit;
 }
 
 .install-wrapper.lite,
-.install-wrapper.unreviewed,
-.install-wrapper.selfhosted {
+.install-wrapper.unreviewed {
     padding: 0.4em;
-}
-
-.install-wrapper.selfhosted {
-    background: #D3ECF6;
 }
 
 .install-wrapper.lite,

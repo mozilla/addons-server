@@ -560,16 +560,6 @@ class TestAddonModels(amo.tests.TestCase):
         assert not a.is_public(), (
             'unreviewed, disabled add-on should not be is_public()')
 
-    def test_is_selfhosted(self):
-        """Test if an add-on is listed or hosted"""
-        # hosted
-        a = Addon.objects.get(pk=3615)
-        assert not a.is_selfhosted(), 'hosted add-on => !is_selfhosted()'
-
-        # listed
-        a.status = amo.STATUS_LISTED
-        assert a.is_selfhosted(), 'listed add-on => is_selfhosted()'
-
     def test_is_no_restart(self):
         a = Addon.objects.get(pk=3615)
         f = a.current_version.all_files[0]
@@ -1287,7 +1277,7 @@ class TestAddonModels(amo.tests.TestCase):
 
     def test_beta_version_does_not_inherit_nomination(self):
         a = Addon.objects.get(id=3615)
-        a.update(status=amo.STATUS_LISTED)
+        a.update(status=amo.STATUS_NULL)
         v = Version.objects.create(addon=a, version='1.0')
         v.nomination = None
         v.save()
@@ -1307,7 +1297,7 @@ class TestAddonModels(amo.tests.TestCase):
     def test_reviwed_addon_does_not_inherit_nomination(self):
         a = Addon.objects.get(id=3615)
         ver = 10
-        for st in (amo.STATUS_PUBLIC, amo.STATUS_BETA, amo.STATUS_LISTED):
+        for st in (amo.STATUS_PUBLIC, amo.STATUS_BETA, amo.STATUS_NULL):
             a.update(status=st)
             v = Version.objects.create(addon=a, version=str(ver))
             eq_(v.nomination, None)

@@ -1096,8 +1096,7 @@ li#no-restart {
 .seamonkey .install-note .msg { background-image: url(../../img/app-icons/small/seamonkey.png); }
 .android .install-note .msg { background-image: url(../../img/app-icons/small/android.png); }
 
-.install-note .msg.m-unreviewed,
-.install-note .msg.m-selfhosted {
+.install-note .msg.m-unreviewed {
     background-image: url(../../img/zamboni/icons/alert-32x32.png);
 }
 

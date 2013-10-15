@@ -19,7 +19,7 @@
     <span>
       {{ _('Review {0}')|f(addon.name) }}
     </span>
-    {% if version and not addon.is_selfhosted() %}
+    {% if version %}
       <span class="version">{{ version.version }}</span>
     {% endif %}
   </h2>

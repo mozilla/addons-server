@@ -221,7 +221,6 @@
             self.attr.purchased = $.inArray(parseInt(self.attr.addon, 10), addons_purchased) >= 0;
 
             self.classes = {
-                'selfhosted'  : b.hasClass('selfhosted'),
                 'beta'        : b.hasClass('beta'),
                 'lite'        : b.hasClass('lite'),
                 'unreviewed'  : b.hasClass('unreviewed'), // && !beta,

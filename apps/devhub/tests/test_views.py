@@ -2485,8 +2485,7 @@ class TestVersionAddFile(UploadTest):
         file.save()
 
         cases = [(amo.STATUS_UNREVIEWED, amo.STATUS_UNREVIEWED, True),
-                 (amo.STATUS_LISTED, amo.STATUS_UNREVIEWED, False),
-                 (amo.STATUS_LISTED, amo.STATUS_LISTED, False)]
+                 (amo.STATUS_NULL, amo.STATUS_UNREVIEWED, False)]
 
         for c in cases:
             version_files = self.addon.current_version.files.all()

@@ -270,13 +270,11 @@
         <div class="items">
           {{ version_detail(addon, version, src=version_src, impala=True) }}
         </div>
-        {% if not addon.is_selfhosted() %}
-          <p class="more c">
-            <a class="more-info" href="{{ url('addons.versions', addon.slug) }}">
-              {{ _('See complete version history') }}
-            </a>
-          </p>
-        {% endif %}
+        <p class="more c">
+          <a class="more-info" href="{{ url('addons.versions', addon.slug) }}">
+            {{ _('See complete version history') }}
+          </a>
+        </p>
       </div>
     </section>
   {% endif %}

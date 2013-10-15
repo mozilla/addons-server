@@ -388,23 +388,20 @@ var installButton = function() {
     };
 
     // What kind of button are we dealing with?
-    var selfhosted = $this.hasClass('selfhosted'),
-        beta = $this.hasClass('beta');
+    var beta = $this.hasClass('beta');
         unreviewed = $this.hasClass('unreviewed') && !beta,
         persona = $this.hasClass('persona'),
         contrib = $this.hasClass('contrib'),
         search = $this.hasattr('data-search'),
         eula = $this.hasClass('eula');
 
-    if (unreviewed && !(selfhosted || eula || contrib || beta || webapp)) {
+    if (unreviewed && !(eula || contrib || beta || webapp)) {
         $button.addPopup(message('unreviewed'));
     }
 
 
     // Drive the install button based on its type.
-    if (selfhosted) {
-        $button.addPopup(message('selfhosted'));
-    } else if (eula || contrib) {
+    if (eula || contrib) {
         versionsAndPlatforms({addPopup: false});
     } else if (premium) {
         premiumButton.call($this);

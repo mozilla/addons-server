@@ -26,8 +26,7 @@ from . test_models import create_addon_file
 REVIEW_ADDON_STATUSES = (amo.STATUS_NOMINATED, amo.STATUS_LITE_AND_NOMINATED,
                          amo.STATUS_UNREVIEWED)
 REVIEW_FILES_STATUSES = (amo.STATUS_BETA, amo.STATUS_NULL, amo.STATUS_PUBLIC,
-                         amo.STATUS_DISABLED, amo.STATUS_LISTED,
-                         amo.STATUS_LITE)
+                         amo.STATUS_DISABLED, amo.STATUS_LITE)
 
 
 class TestViewPendingQueueTable(amo.tests.TestCase):
@@ -219,7 +218,6 @@ class TestReviewHelper(amo.tests.TestCase):
         eq_(self.setup_type(amo.STATUS_NULL), 'pending')
         eq_(self.setup_type(amo.STATUS_PUBLIC), 'pending')
         eq_(self.setup_type(amo.STATUS_DISABLED), 'pending')
-        eq_(self.setup_type(amo.STATUS_LISTED), 'pending')
         eq_(self.setup_type(amo.STATUS_BETA), 'pending')
         eq_(self.setup_type(amo.STATUS_PURGATORY), 'pending')
 
