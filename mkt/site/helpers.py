@@ -299,9 +299,13 @@ def more_button(pager):
 @register.function
 @jinja2.contextfunction
 def dev_agreement(context):
-    langs = ['en-US', 'el', 'es', 'pl']
     lang = context['request'].LANG
-    if lang not in langs:
-        lang = 'en-US'
-    template = env.get_template('dev-agreement/%s.html' % lang)
+    if lang in settings.AMO_LANGUAGES:
+        try:
+            template = env.get_template('dev-agreement/%s.html' % lang)
+        except jinja2.TemplateNotFound:
+            pass
+        else:
+            return jinja2.Markup(template.render())
+    template = env.get_template('dev-agreement/en-US.html')
     return jinja2.Markup(template.render())
