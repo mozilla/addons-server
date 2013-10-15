@@ -1,5 +1,7 @@
+import posixpath
 import uuid
 
+from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import models
 
@@ -305,3 +307,19 @@ class UserInappKey(amo.models.ModelBase):
 
     class Meta:
         db_table = 'user_inapp_keys'
+
+
+class PreinstallTestPlan(amo.models.ModelBase):
+    addon = models.ForeignKey('addons.Addon')
+    last_submission = models.DateTimeField()
+    filename = models.CharField(max_length=60)
+
+    class Meta:
+        db_table = 'preinstall_test_plan'
+        ordering = ['-last_submission']
+
+    @property
+    def preinstall_test_plan_url(self):
+        host = (settings.PRIVATE_MIRROR_URL if self.addon.is_disabled
+                else settings.LOCAL_MIRROR_URL)
+        return posixpath.join(host, str(self.addon.id), self.filename)

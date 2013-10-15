@@ -4,12 +4,12 @@ import json
 import logging
 import os
 import sys
+import time
 import traceback
 import urllib2
 import urlparse
 import uuid
 import zipfile
-from datetime import date
 
 from django import forms
 from django.conf import settings
@@ -483,3 +483,12 @@ def region_exclude(ids, regions, **kw):
             # Already excluded? Swag!
             AddonExcludedRegion.objects.get_or_create(addon_id=id_,
                                                       region=region.id)
+
+
+@task
+def save_test_plan(f, filename, addon):
+    dst_root = os.path.join(settings.ADDONS_PATH, str(addon.id))
+    dst = os.path.join(dst_root, filename)
+    with open(dst, 'wb+') as destination:
+        for chunk in f.chunks():
+            destination.write(chunk)

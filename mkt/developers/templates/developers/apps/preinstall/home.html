@@ -1,0 +1,37 @@
+{% extends 'developers/base_impala.html' %}
+
+{% set title = _('Manage Status') %}
+{% block title %}{{ hub_page_title(title, addon) }}{% endblock %}
+
+{% block content %}
+  <header>
+    {{ hub_breadcrumbs(addon, items=[
+      (addon.get_dev_url('versions'), title),
+      (None, _('Preinstalled') )])
+    }}
+    <h1>{{ title }}</h1>
+  </header>
+
+  <section id="preinstall" class="primary manage">
+    <h2>{{ _('Preinstalled App') }}</h2>
+    <div class="island">
+      <p>{% include "developers/apps/preinstall/home_help.html" %}</p>
+      <p class="listing-footer">
+        <a class="button" href="{{ settings.PREINSTALL_TEST_PLAN_URL }}" download>
+          {{ _('Download the test plan') }}
+        </a>
+      </p>
+    </div>
+
+    <div class="island">
+      <h3>{{ _('Testing Finished?') }}</h3>
+      <p class="listing-footer">
+        <a class="button" href="{{ addon.get_dev_url('preinstall_submit') }}">
+          {{ _('Submit your app for preinstall') }}
+        </a>
+      </p>
+    </div>
+  </section>
+
+  {% include 'developers/includes/addons_edit_nav.html' %}
+{% endblock %}
