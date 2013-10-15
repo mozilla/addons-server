@@ -330,7 +330,7 @@ def format_date(secs):
 
 
 def get_headers(length):
-    return [('Content-Type', 'text/xml'),
+    return [('Content-Type', 'text/xml; charset=utf-8'),
             ('Cache-Control', 'public, max-age=3600'),
             ('Last-Modified', format_date(0)),
             ('Expires', format_date(3600)),
@@ -348,7 +348,7 @@ def application(environ, start_response):
     with statsd.timer('services.pfs'):
         data = dict(parse_qsl(environ['QUERY_STRING']))
         try:
-            output = get_output(data)
+            output = get_output(data).encode('utf-8')
             start_response(status, get_headers(len(output)))
         except:
             log_exception(data)
