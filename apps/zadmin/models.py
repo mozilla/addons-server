@@ -27,7 +27,7 @@ class Config(models.Model):
     def json(self):
         try:
             return json.loads(self.value)
-        except TypeError, ValueError:
+        except (TypeError, ValueError):
             return {}
 
 
