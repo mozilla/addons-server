@@ -1,6 +1,5 @@
 from django.conf import settings, urls
 from django.db import transaction
-from django.db.models import Q
 from django.views import debug
 
 import commonware.log
@@ -47,9 +46,9 @@ from mkt.api.base import (CORSMixin, CORSResource, GenericObject, http_error,
                           MarketplaceModelResource, MarketplaceResource)
 from mkt.api.forms import (CategoryForm, DeviceTypeForm, UploadForm)
 from mkt.api.http import HttpLegallyUnavailable
-from mkt.carriers import CARRIER_MAP, CARRIERS, get_carrier_id
+from mkt.carriers import CARRIER_MAP, CARRIERS
 from mkt.developers import tasks
-from mkt.regions import get_region, get_region_id, REGIONS_DICT
+from mkt.regions import get_region, REGIONS_DICT
 from mkt.submit.forms import AppDetailsBasicForm
 from mkt.webapps.models import get_excluded_in
 from mkt.webapps.tasks import _update_manifest
@@ -389,7 +388,6 @@ class RegionResource(CORSResource, MarketplaceResource):
     id = fields.IntegerField('id')
     default_currency = fields.CharField('default_currency')
     default_language = fields.CharField('default_language')
-    has_payments = fields.BooleanField('has_payments')
     ratingsbodies = fields.ListField('ratingsbodies')
 
     class Meta(MarketplaceResource.Meta):

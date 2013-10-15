@@ -15,14 +15,12 @@ from files.models import Platform
 from lib.metrics import record_action
 from users.models import UserProfile
 
-import mkt
 from mkt.constants import DEVICE_LOOKUP
 from mkt.developers import tasks
 from mkt.developers.decorators import dev_required
 from mkt.developers.forms import AppFormMedia, CategoryForm, PreviewFormSet
 from mkt.submit.forms import AppDetailsBasicForm
 from mkt.submit.models import AppSubmissionChecklist
-from mkt.webapps.models import AddonExcludedRegion
 
 from . import forms
 from .decorators import read_dev_agreement_required, submit_step
@@ -198,11 +196,6 @@ def details(request, addon_id, addon):
                          highest_status=amo.STATUS_PENDING,
                          make_public=make_public)
 
-            # Mark the app as excluded in regions that don't support payments.
-            for region in mkt.regions.ALL_REGIONS:
-                if not region.has_payments:
-                    AddonExcludedRegion.objects.get_or_create(
-                        addon=addon, region=region.id)
         record_action('app-submitted', request, {'app-id': addon.pk})
 
         return redirect('submit.app.done', addon.app_slug)
