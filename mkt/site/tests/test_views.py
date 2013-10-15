@@ -244,33 +244,6 @@ class TestFooter(amo.tests.TestCase):
         eq_(doc('input[type=hidden][name=y]').attr('value'), 'yyy')
 
 
-class TestXLegalFrame(amo.tests.TestCase):
-
-    def setUp(self):
-        self.request = RequestFactory()
-        self.request.groups = ()
-        self.request.user = mock.Mock()
-        self.request.MOBILE = self.request.TABLET = self.request.GAIA = True
-        self.request.is_ajax = mock.Mock()
-        self.request.META = {'HTTP_USER_AGENT': ''}
-
-    @mock.patch.object(settings, 'LEGAL_XFRAME_ALLOW_FROM', ['omg.org'])
-    def test_allow(self):
-        self.request.META['HTTP_REFERER'] = 'http://omg.org/yes'
-        res = template_plus_xframe(self.request, 'site/privacy-policy.html')
-        eq_(res['x-frame-options'], 'allow-from omg.org')
-
-    @mock.patch.object(settings, 'LEGAL_XFRAME_ALLOW_FROM', ['omg.org'])
-    def test_deny(self):
-        for referrer in ('', 'http://omg.xxx/yes', '!#*@ YOU, @#($!#$(&%*#^'):
-            self.request.META['HTTP_REFERER'] = referrer
-            res = template_plus_xframe(self.request,
-                                       'site/privacy-policy.html')
-            assert 'x-frame-options' not in res, (
-                'Unexpected headers for referrer %r: %s' % (referrer,
-                                                            res._headers))
-
-
 class TestOpensearch(amo.tests.TestCase):
 
     def test_opensearch_declaration(self):
