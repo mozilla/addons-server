@@ -33,6 +33,7 @@ from amo.helpers import absolutify
 from amo.storage_utils import copy_stored_file
 from amo.urlresolvers import reverse
 from amo.utils import JSONEncoder, memoize, memoize_key, smart_path
+from comm.models import CommunicationThread
 from constants.applications import DEVICE_TYPES
 from files.models import File, nfd_str, Platform
 from files.utils import parse_addon, WebAppParser
@@ -250,6 +251,13 @@ class Webapp(Addon):
         # get_stats_url.
         return reverse(('mkt.stats.%s' % action),
                        args=[self.app_slug] + (args or []))
+
+    def get_comm_thread_url(self):
+        threads = self.threads.order_by('-created')
+        if threads.exists():
+            return reverse('commonplace.commbadge.show_thread',
+                           args=[threads[0].id])
+        return reverse('commonplace.commbadge')
 
     @staticmethod
     def domain_from_url(url, allow_none=False):

@@ -26,6 +26,7 @@ from addons.signals import version_changed as version_changed_signal
 from amo.helpers import absolutify
 from amo.tests import app_factory, version_factory
 from amo.urlresolvers import reverse
+from comm.utils import create_comm_thread
 from constants.applications import DEVICE_TYPES
 from editors.models import EscalationQueue, RereviewQueue
 from files.models import File
@@ -151,6 +152,17 @@ class TestWebapp(amo.tests.TestCase):
                                    args=['day', '20120101', '20120201',
                                          'json'])
         eq_(url, '/app/woo/statistics/installs-day-20120101-20120201.json')
+
+    def test_get_comm_thread_url(self):
+        self.create_switch('comm-dashboard')
+        webapp = app_factory()
+        eq_(webapp.get_comm_thread_url(), '/comm/')
+
+        thread, note = create_comm_thread(
+            addon=webapp, version=webapp.versions.get(), perms=[],
+            action='approve', comments='lol',
+            profile=UserProfile.objects.create(username='lol'))
+        eq_(webapp.get_comm_thread_url(), '/comm/thread/%s' % thread.id)
 
     def test_get_origin(self):
         url = 'http://www.xx.com:4000/randompath/manifest.webapp'
@@ -553,7 +565,6 @@ class DeletedAppTests(amo.tests.ESTestCase):
         webapp.save()
         webapp.delete()
         eq_(webapp.latest_version, None)
-
 
 
 class TestExclusions(amo.tests.TestCase):

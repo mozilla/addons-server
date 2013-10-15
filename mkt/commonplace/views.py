@@ -9,7 +9,7 @@ import jingo
 from mkt.api.resources import waffles
 
 
-def commonplace(request, repo):
+def commonplace(request, repo, **kwargs):
     if repo not in settings.COMMONPLACE_REPOS:
         raise HttpResponseNotFound
 
