@@ -397,8 +397,9 @@ Add Curator
 
     **Request**:
 
-    :param user: the ID of the user to add as a curator of this collection.
-    :type user: int
+    :param user: the ID or email of the user to add as a curator of this
+        collection.
+    :type user: int|string
 
     **Response**:
 
@@ -423,8 +424,9 @@ Remove Curator
 
     **Request**:
 
-    :param user: the ID of the user to add as a curator of this collection.
-    :type user: int
+    :param user: the ID or email of the user to remove as a curator of this
+        collection.
+    :type user: int|string
 
     **Response**:
 

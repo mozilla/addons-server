@@ -56,6 +56,7 @@ class BaseCollectionViewSetTest(RestOAuth):
         self.collection = Collection.objects.create(**self.collection_data)
         self.apps = []
         self.list_url = reverse('collections-list')
+        self.user = UserProfile.objects.get(pk=2519)
         self.user2 = UserProfile.objects.get(pk=999)
 
     def setup_unique(self):
@@ -205,7 +206,7 @@ class TestCollectionViewSetListing(BaseCollectionViewSetTest):
         self.create_apps()
         self.add_apps_to_collection(*self.apps)
         self.collection.update(is_public=False)
-        self.collection.curators.add(self.user.get_profile())
+        self.collection.curators.add(self.user)
         res = self.client.get(self.list_url)
         data = json.loads(res.content)
         eq_(res.status_code, 200)
@@ -806,8 +807,8 @@ class TestCollectionViewSetDuplicate(BaseCollectionViewSetTest):
 
 class CollectionViewSetChangeAppsMixin(BaseCollectionViewSetTest):
     """
-    Mixin containing common methods to actions that modify the apps belonging to
-    a collection.
+    Mixin containing common methods to actions that modify the apps belonging
+    to a collection.
     """
     def add_app(self, client, app_id=None):
         if app_id is None:
@@ -1330,7 +1331,7 @@ class TestCollectionViewSetAddCurator(BaseCollectionViewSetTest):
     """
     def add_curator(self, client, user_id=None):
         if user_id is None:
-            user_id = 2519
+            user_id = self.user.pk
         form_data = {'user': user_id} if user_id else {}
         url = self.collection_url('add-curator', self.collection.pk)
         res = client.post(url, json.dumps(form_data))
@@ -1372,11 +1373,31 @@ class TestCollectionViewSetAddCurator(BaseCollectionViewSetTest):
         eq_(res.status_code, 400)
         eq_(CollectionViewSet.exceptions['user_doesnt_exist'], data['detail'])
 
+        res, data = self.add_curator(self.client, user_id='doesnt@exi.st')
+        eq_(res.status_code, 400)
+        eq_(CollectionViewSet.exceptions['user_doesnt_exist'], data['detail'])
+
     def test_add_curator_empty(self):
         self.make_publisher()
         res, data = self.add_curator(self.client, user_id=False)
         eq_(res.status_code, 400)
         eq_(CollectionViewSet.exceptions['user_not_provided'], data['detail'])
+
+    def test_add_curator_email(self):
+        self.make_curator()
+        res, data = self.add_curator(self.client, user_id=self.user.email)
+        eq_(res.status_code, 200)
+        eq_(data[0]['id'], self.user.pk)
+
+    def test_add_curator_garbage(self):
+        self.make_publisher()
+        res, data = self.add_curator(self.client, user_id='garbage')
+        eq_(res.status_code, 400)
+        eq_(CollectionViewSet.exceptions['wrong_user_format'], data['detail'])
+
+        res, data = self.add_curator(self.client, user_id='garbage@')
+        eq_(res.status_code, 400)
+        eq_(CollectionViewSet.exceptions['wrong_user_format'], data['detail'])
 
 
 class TestCollectionViewSetRemoveCurator(BaseCollectionViewSetTest):
@@ -1385,7 +1406,7 @@ class TestCollectionViewSetRemoveCurator(BaseCollectionViewSetTest):
     """
     def remove_curator(self, client, user_id=None):
         if user_id is None:
-            user_id = 2519
+            user_id = self.user.pk
         form_data = {'user': user_id} if user_id else {}
         url = self.collection_url('remove-curator', self.collection.pk)
         res = client.post(url, json.dumps(form_data))
@@ -1412,9 +1433,18 @@ class TestCollectionViewSetRemoveCurator(BaseCollectionViewSetTest):
         res, data = self.remove_curator(self.client)
         eq_(res.status_code, 205)
 
+    def test_remove_curator_email(self):
+        self.make_curator()
+        res, data = self.remove_curator(self.client, user_id=self.user.email)
+        eq_(res.status_code, 205)
+
     def test_remove_curator_nonexistent(self):
         self.make_publisher()
         res, data = self.remove_curator(self.client, user_id=100000)
+        eq_(res.status_code, 400)
+        eq_(CollectionViewSet.exceptions['user_doesnt_exist'], data['detail'])
+
+        res, data = self.remove_curator(self.client, user_id='doesnt@exi.st')
         eq_(res.status_code, 400)
         eq_(CollectionViewSet.exceptions['user_doesnt_exist'], data['detail'])
 
@@ -1423,6 +1453,16 @@ class TestCollectionViewSetRemoveCurator(BaseCollectionViewSetTest):
         res, data = self.remove_curator(self.client, user_id=False)
         eq_(res.status_code, 400)
         eq_(CollectionViewSet.exceptions['user_not_provided'], data['detail'])
+
+    def test_remove_curator_garbage(self):
+        self.make_publisher()
+        res, data = self.remove_curator(self.client, user_id='garbage')
+        eq_(res.status_code, 400)
+        eq_(CollectionViewSet.exceptions['wrong_user_format'], data['detail'])
+
+        res, data = self.remove_curator(self.client, user_id='garbage@')
+        eq_(res.status_code, 400)
+        eq_(CollectionViewSet.exceptions['wrong_user_format'], data['detail'])
 
 
 class TestCollectionImageViewSet(RestOAuth):
@@ -1433,9 +1473,10 @@ class TestCollectionImageViewSet(RestOAuth):
             **CollectionDataMixin.collection_data)
         self.url = reverse('collection-image-detail',
                            kwargs={'pk': self.collection.pk})
-        self.img = ('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEUAAA'
-                    'Cnej3aAAAAAXRSTlMAQObYZgAAAApJREFUCNdjYAAAAAIAAeIhvDMAAAAA'
-                    'SUVORK5CYII=').decode('base64')
+        self.img = (
+            'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEUAAA'
+            'Cnej3aAAAAAXRSTlMAQObYZgAAAApJREFUCNdjYAAAAAIAAeIhvDMAAAAA'
+            'SUVORK5CYII=').decode('base64')
 
     def add_img(self):
         path = self.collection.image_path()
