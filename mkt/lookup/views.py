@@ -29,6 +29,7 @@ from market.models import AddonPaymentData, Refund
 from mkt.constants.payments import (COMPLETED, FAILED, PENDING,
                                     REFUND_STATUSES)
 from mkt.account.utils import purchase_list
+import mkt.lookup.constants as lkp
 from mkt.lookup.forms import (DeleteUserForm, TransactionRefundForm,
                               TransactionSearchForm)
 from mkt.lookup.tasks import (email_buyer_refund_approved,
@@ -46,7 +47,10 @@ log = commonware.log.getLogger('z.lookup')
 def home(request):
     tx_form = TransactionSearchForm()
 
-    return jingo.render(request, 'lookup/home.html', {'tx_form': tx_form})
+    return jingo.render(request, 'lookup/home.html', {
+        'lkp': lkp,
+        'tx_form': tx_form
+    })
 
 
 @login_required
@@ -86,6 +90,7 @@ def user_summary(request, user_id):
                          'app_summary': app_summary,
                          'delete_form': DeleteUserForm(),
                          'delete_log': delete_log,
+                         'lkp': lkp,
                          'is_admin': is_admin,
                          'refund_summary': refund_summary,
                          'user_addons': user_addons,
@@ -268,6 +273,7 @@ def user_purchases(request, user_id):
                         {'pager': products,
                          'account': user,
                          'is_admin': is_admin,
+                         'lkp': lkp,
                          'listing_filter': listing,
                          'contributions': contributions,
                          'single': bool(None),
@@ -293,6 +299,7 @@ def user_activity(request, user_id):
                          'account': user,
                          'is_admin': is_admin,
                          'listing_filter': listing,
+                         'lkp': lkp,
                          'collections': collections,
                          'contributions': contributions,
                          'single': bool(None),
@@ -322,14 +329,20 @@ def _expand_query(q, fields):
 def user_search(request):
     results = []
     q = request.GET.get('q', u'').lower().strip()
+    all_results = request.GET.get('all_results') or False
     fields = ('username', 'display_name', 'email')
+
     if q.isnumeric():
         # id is added implictly by the ES filter. Add it explicitly:
         fields = ['id'] + list(fields)
         qs = UserProfile.objects.filter(pk=q).values(*fields)
     else:
         qs = (UserProfile.search().query(or_=_expand_query(q, fields))
-                                  .values_dict(*fields))[:20]
+                                  .values_dict(*fields))
+        if all_results:
+            qs = qs[:lkp.MAX_RESULTS]
+        else:
+            qs = qs[:lkp.SEARCH_LIMIT]
     for user in qs:
         user['url'] = reverse('lookup.user_summary', args=[user['id']])
         user['name'] = user['username']
