@@ -131,10 +131,15 @@ h2 a:last-child {
         &:hover {
             background: darken($button-green-light, 15%);
         }
-        img {
+        &:before {
+            background-image: url('../../img/sprites/mkt-reviewer-icons/page_white_edit.png');
+            content: "";
+            display: block;
+            height: 16px;
             left: 30px;
             position: absolute;
-            top: 17px;
+            top: 16px;
+            width: 16px;
         }
     }
     #queue-details {
@@ -229,12 +234,17 @@ h2 a:last-child {
         &.reviewed {
             display: block;
         }
-        img {
-            right: 6px;
-            position: absolute;
-            top: 6px;
-
-            &:hover {
+        .clear-review {
+            &:after {
+                background: url('../../img/mkt/close.png');
+                content: '';
+                height: 16px;
+                position: absolute;
+                right: 6px;
+                top: 6px;
+                width: 16px;
+            }
+            &:hover:after {
                 cursor: pointer;
             }
         }
