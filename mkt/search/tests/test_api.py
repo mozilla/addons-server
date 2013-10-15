@@ -479,76 +479,6 @@ class TestApiFeatures(BaseOAuth, ESTestCase):
         eq_(obj['slug'], self.webapp.app_slug)
 
 
-class TestFeaturedNoCategories(BaseOAuth, ESTestCase):
-    fixtures = fixture('user_2519', 'webapp_337141')
-    list_url = list_url('search/featured')
-
-    def setUp(self):
-        super(TestFeaturedNoCategories, self).setUp(api_name='fireplace')
-        self.create_switch('buchets')
-        self.cat = Category.objects.create(type=amo.ADDON_WEBAPP, slug='shiny')
-        self.app = Webapp.objects.get(pk=337141)
-        AddonCategory.objects.get_or_create(addon=self.app, category=self.cat)
-        self.make_featured(app=self.app, category=None, region=mkt.regions.US)
-        self.profile = FeatureProfile(apps=True, audio=True, fullscreen=True,
-                                      geolocation=True, indexeddb=True,
-                                      sms=True).to_signature()
-        self.qs = {'pro': self.profile, 'dev': 'firefoxos'}
-
-    def test_no_category(self):
-        app2 = app_factory()
-        self.make_featured(app=app2, category=self.cat)
-        self.reindex(Webapp, 'webapp')
-        res = self.client.get(self.list_url + (self.qs,))
-        eq_(res.status_code, 200)
-        eq_(len(res.json['featured']), 1)
-        eq_(int(res.json['featured'][0]['id']), self.app.pk)
-        unindex_webapps([app2.id])
-        app2.delete()
-
-    def test_one_good_feature_no_category(self):
-        """Enable an app feature that matches one in our profile."""
-        self.app.current_version.features.update(has_geolocation=True)
-        self.reindex(Webapp, 'webapp')
-
-        res = self.client.get(self.list_url + (self.qs,))
-        eq_(res.status_code, 200)
-        eq_(len(res.json['featured']), 1)
-        eq_(int(res.json['featured'][0]['id']), self.app.pk)
-
-    def test_one_bad_feature_no_category(self):
-        """Enable an app feature that doesn't match one in our profile."""
-        self.app.current_version.features.update(has_pay=True)
-        self.reindex(Webapp, 'webapp')
-
-        res = self.client.get(self.list_url + (self.qs,))
-        eq_(res.status_code, 200)
-        eq_(len(res.json['featured']), 0)
-
-    def test_all_good_features_no_category(self):
-        """Enable app features so they exactly match our device profile."""
-        fp = FeatureProfile.from_signature(self.profile)
-        self.app.current_version.features.update(
-            **dict(('has_%s' % k, v) for k, v in fp.items()))
-        self.reindex(Webapp, 'webapp')
-
-        res = self.client.get(self.list_url + (self.qs,))
-        eq_(res.status_code, 200)
-        eq_(len(res.json['featured']), 1)
-        eq_(int(res.json['featured'][0]['id']), self.app.pk)
-
-    def test_non_matching_profile_desktop_no_category(self):
-        """Enable unmatched feature but desktop should find it."""
-        self.app.current_version.features.update(has_pay=True)
-        self.reindex(Webapp, 'webapp')
-
-        self.qs.update({'dev': ''})
-        res = self.client.get(self.list_url + (self.qs,))
-        eq_(res.status_code, 200)
-        eq_(len(res.json['featured']), 1)
-        eq_(int(res.json['featured'][0]['id']), self.app.pk)
-
-
 class BaseFeaturedTests(BaseOAuth, ESTestCase):
     fixtures = fixture('user_2519', 'webapp_337141')
     list_url = list_url('search/featured')
@@ -559,70 +489,10 @@ class BaseFeaturedTests(BaseOAuth, ESTestCase):
         self.cat = Category.objects.create(type=amo.ADDON_WEBAPP, slug='shiny')
         self.app = Webapp.objects.get(pk=337141)
         AddonCategory.objects.get_or_create(addon=self.app, category=self.cat)
-        self.make_featured(app=self.app, category=self.cat,
-                           region=mkt.regions.US)
         self.profile = FeatureProfile(apps=True, audio=True, fullscreen=True,
                                       geolocation=True, indexeddb=True,
                                       sms=True).to_signature()
         self.qs = {'cat': 'shiny', 'pro': self.profile, 'dev': 'firefoxos'}
-
-
-class TestFeaturedWithCategories(BaseFeaturedTests):
-
-    def test_featured_plus_category(self):
-        app2 = amo.tests.app_factory()
-        AddonCategory.objects.get_or_create(addon=app2, category=self.cat)
-        self.reindex(Webapp, 'webapp')
-
-        res = self.client.get(self.list_url + (self.qs,))
-        eq_(res.status_code, 200)
-        eq_(len(res.json['objects']), 2)
-        eq_(len(res.json['featured']), 1)
-        eq_(int(res.json['featured'][0]['id']), self.app.pk)
-        unindex_webapps([app2.id])
-        app2.delete()
-
-    def test_one_good_feature_with_category(self):
-        """Enable an app feature that matches one in our profile."""
-        self.app.current_version.features.update(has_geolocation=True)
-        self.reindex(Webapp, 'webapp')
-
-        res = self.client.get(self.list_url + (self.qs,))
-        eq_(res.status_code, 200)
-        eq_(len(res.json['featured']), 1)
-        eq_(int(res.json['featured'][0]['id']), self.app.pk)
-
-    def test_one_bad_feature_with_category(self):
-        """Enable an app feature that doesn't match one in our profile."""
-        self.app.current_version.features.update(has_pay=True)
-        self.reindex(Webapp, 'webapp')
-
-        res = self.client.get(self.list_url + (self.qs,))
-        eq_(res.status_code, 200)
-        eq_(len(res.json['featured']), 0)
-
-    def test_all_good_features_with_category(self):
-        """Enable app features so they exactly match our device profile."""
-        fp = FeatureProfile.from_signature(self.profile)
-        self.app.current_version.features.update(
-            **dict(('has_%s' % k, v) for k, v in fp.items()))
-        self.reindex(Webapp, 'webapp')
-
-        res = self.client.get(self.list_url + (self.qs,))
-        eq_(res.status_code, 200)
-        eq_(len(res.json['featured']), 1)
-        eq_(int(res.json['featured'][0]['id']), self.app.pk)
-
-    def test_non_matching_profile_desktop_with_category(self):
-        """Enable unmatched feature but desktop should find it."""
-        self.app.current_version.features.update(has_pay=True)
-        self.reindex(Webapp, 'webapp')
-
-        self.qs.update({'dev': ''})
-        res = self.client.get(self.list_url + (self.qs,))
-        eq_(res.status_code, 200)
-        eq_(len(res.json['featured']), 1)
-        eq_(int(res.json['featured'][0]['id']), self.app.pk)
 
 
 class TestFeaturedCollections(BaseFeaturedTests):
@@ -634,7 +504,6 @@ class TestFeaturedCollections(BaseFeaturedTests):
     prop_name = 'collections'
 
     def setUp(self):
-        self.create_switch('rocketfuel')
         super(TestFeaturedCollections, self).setUp()
         self.col = Collection.objects.create(name='Hi', description='Mom',
             collection_type=self.col_type, category=self.cat, is_public=True,

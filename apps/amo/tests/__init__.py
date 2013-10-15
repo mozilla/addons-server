@@ -59,7 +59,6 @@ from mkt.webapps.models import (
     ContentRating, update_search_index as app_update_search_index,
     WebappIndexer, Webapp)
 from mkt.webapps.tasks import unindex_webapps
-from mkt.zadmin.models import FeaturedApp, FeaturedAppRegion
 
 
 def formset(*args, **kw):
@@ -475,12 +474,6 @@ class TestCase(MockEsMixin, RedisTest, test_utils.TestCase):
         if hasattr(Price, '_currencies'):
             del Price._currencies
         return premium
-
-    def make_featured(self, app, category=None, region=mkt.regions.US):
-        f = FeaturedApp.objects.create(app=app, category=category)
-        # Feature in some specific region.
-        FeaturedAppRegion.objects.create(featured_app=f, region=region.id)
-        return f
 
     def create_sample(self, name=None, db=False, **kw):
         if name is not None:

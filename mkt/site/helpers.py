@@ -1,5 +1,4 @@
 import json
-import os
 
 from django.conf import settings
 
@@ -238,7 +237,6 @@ def mkt_admin_site_links():
     return {
         'addons': [
             ('Search for apps by name or id', reverse('zadmin.addon-search')),
-            ('Featured apps', reverse('zadmin.featured_apps')),
             ('Fake mail', reverse('zadmin.mail')),
             ('Flagged reviews', reverse('zadmin.flagged')),
         ],

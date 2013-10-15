@@ -379,64 +379,6 @@ class TestWebapp(amo.tests.TestCase):
     def test_parse_domain(self):
         Webapp(is_packaged=True).parsed_app_domain
 
-    def test_featured_creatured(self):
-        cat = Category.objects.create(type=amo.ADDON_WEBAPP, slug='cat')
-        # Three creatured apps for this category for the US region.
-        creatured = []
-        for x in xrange(3):
-            app = amo.tests.app_factory()
-            self.make_featured(app=app, category=cat,
-                               region=mkt.regions.US)
-            creatured.append(app)
-        creatured_ids = [app.id for app in creatured]
-
-        # Check that these apps are featured for this category -
-        # and only in US region.
-        for abbr, region in mkt.regions.REGIONS_CHOICES:
-            self.assertSetEqual(
-                [a.id for a in Webapp.featured(cat=[cat.slug], region=region)],
-                creatured_ids if abbr == 'us' else [])
-
-    def test_featured_no_creatured(self):
-        # Three creatured apps for this category for the US region.
-        creatured = []
-        for x in xrange(3):
-            app = amo.tests.app_factory()
-            self.make_featured(app=app, category=None,
-                               region=mkt.regions.US)
-            creatured.append(app)
-        creatured_ids = [app.id for app in creatured]
-
-        # Check that these apps are featured for this category -
-        # and only in US region.
-        for abbr, region in mkt.regions.REGIONS_CHOICES:
-            self.assertSetEqual(
-                [a.id for a in Webapp.featured(cat=None, region=region)],
-                creatured_ids if abbr == 'us' else [])
-
-    def test_featured_fallback_to_worldwide(self):
-        usa_app = app_factory()
-        self.make_featured(usa_app, category=None,
-                           region=mkt.regions.US)
-
-        worldwide_apps = []
-        for x in xrange(3):
-            app = app_factory()
-            self.make_featured(app, category=None,
-                               region=mkt.regions.WORLDWIDE)
-            worldwide_apps.append(app.id)
-
-        # In US: 1 US-featured app + 3 Worldwide-featured apps.
-        # Elsewhere: 3 Worldwide-featured apps.
-        for abbr, region in mkt.regions.REGIONS_CHOICES:
-            if abbr == 'us':
-                expected = [usa_app.id] + worldwide_apps
-            else:
-                expected = worldwide_apps
-            self.assertSetEqual(
-                [a.id for a in Webapp.featured(cat=None, region=region)],
-                expected)
-
     def test_app_type_hosted(self):
         eq_(Webapp().app_type, 'hosted')
 

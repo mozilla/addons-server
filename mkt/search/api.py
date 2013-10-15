@@ -162,35 +162,17 @@ class WithFeaturedResource(SearchResource):
         return serializer.data, getattr(qs, 'filter_fallback', None)
 
     def alter_list_data_to_serialize(self, request, data):
-
-        if waffle.switch_is_active('rocketfuel'):
-            types = (
-                ('collections', COLLECTIONS_TYPE_BASIC),
-                ('featured', COLLECTIONS_TYPE_FEATURED),
-                ('operator', COLLECTIONS_TYPE_OPERATOR),
-            )
-            self.filter_fallbacks = {}
-            for name, col_type in types:
-                data[name], fallback = self.collections(request,
-                    collection_type=col_type)
-                if fallback:
-                    self.filter_fallbacks[name] = fallback
-        else:
-            form_data = self.get_search_data(request)
-            region = getattr(request, 'REGION', mkt.regions.WORLDWIDE)
-            cat_slug = form_data.get('cat')
-            if cat_slug:
-                cat_slug = [cat_slug]
-
-            # Filter by device feature profile.
-            profile = self.get_feature_profile(request)
-
-            qs = Webapp.featured(cat=cat_slug, region=region, profile=profile)
-
-            bundles = (self.build_bundle(obj=obj, request=request) for obj in
-                       qs)
-            data['featured'] = [AppResource().full_dehydrate(bundle)
-                                for bundle in bundles]
+        types = (
+            ('collections', COLLECTIONS_TYPE_BASIC),
+            ('featured', COLLECTIONS_TYPE_FEATURED),
+            ('operator', COLLECTIONS_TYPE_OPERATOR),
+        )
+        self.filter_fallbacks = {}
+        for name, col_type in types:
+            data[name], fallback = self.collections(request,
+                collection_type=col_type)
+            if fallback:
+                self.filter_fallbacks[name] = fallback
 
         # Alter the _view_name so that statsd logs seperately from search.
         request._view_name = 'featured'

@@ -33,7 +33,6 @@ from amo.helpers import absolutify
 from amo.storage_utils import copy_stored_file
 from amo.urlresolvers import reverse
 from amo.utils import JSONEncoder, memoize, memoize_key, smart_path
-from comm.models import CommunicationThread
 from constants.applications import DEVICE_TYPES
 from files.models import File, nfd_str, Platform
 from files.utils import parse_addon, WebAppParser
@@ -47,7 +46,6 @@ import mkt
 from mkt.constants import APP_FEATURES, apps
 from mkt.search.utils import S
 from mkt.webapps.utils import get_locale_properties, get_supported_locales
-from mkt.zadmin.models import FeaturedApp
 
 
 log = commonware.log.getLogger('z.addons')
@@ -631,14 +629,6 @@ class Webapp(Addon):
     @classmethod
     def now(cls):
         return datetime.date.today()
-
-    @classmethod
-    def featured(cls, cat=None, region=None, limit=9, mobile=False,
-                 gaia=False, tablet=False, profile=None):
-        apps = FeaturedApp.objects.featured_ids(cat, region, profile)
-        # Get a list of ids, then get all those objects in one query
-        # which will get cache-machined.
-        return list(cls.objects.filter(pk__in=list(apps)))
 
     @classmethod
     def from_search(cls, request, cat=None, region=None, gaia=False,

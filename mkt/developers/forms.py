@@ -45,7 +45,6 @@ from mkt.constants.ratingsbodies import (ALL_RATINGS, RATINGS_BODIES,
 from mkt.site.forms import AddonChoiceField
 from mkt.webapps.models import AddonExcludedRegion, ContentRating, Webapp
 from mkt.webapps.tasks import index_webapps
-from mkt.zadmin.models import FeaturedApp
 
 from . import tasks
 
@@ -750,13 +749,6 @@ class CategoryForm(happyforms.Form):
 
         self.initial['categories'] = self.cats_before
 
-        # If this app is featured, category changes are forbidden.
-        self.disabled = (
-            not acl.action_allowed(self.request, 'Addons', 'Edit') and
-            self.product.id in FeaturedApp.objects.featured_ids(
-                cat=self.product.categories.values_list('slug', flat=True))
-        )
-
     def special_cats(self):
         # Get the list of categories that we're a supervisor for.
         sup_of = (CategorySupervisor.objects.filter(user=self.request.user)
@@ -780,10 +772,6 @@ class CategoryForm(happyforms.Form):
         return amo.MAX_CATEGORIES + self.special_cats().count()
 
     def clean_categories(self):
-        if self.disabled:
-            raise forms.ValidationError(
-                _('Categories cannot be changed while your app is featured.'))
-
         categories = self.cleaned_data['categories']
         set_categories = set(categories.values_list('id', flat=True))
 
@@ -966,7 +954,7 @@ class PreinstallTestPlanForm(happyforms.Form):
     def clean(self):
         """Validate test_plan file."""
         content_types = ['application/pdf', 'application/vnd.ms-excel']
-        max_upload_size=2621440  # 2.5MB
+        max_upload_size = 2621440  # 2.5MB
 
         if 'test_plan' not in self.files:
             raise forms.ValidationError(_('Test plan required.'))
