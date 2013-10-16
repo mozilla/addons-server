@@ -29,7 +29,7 @@ from mkt.constants.payments import (COMPLETED, FAILED, PENDING,
                                     REFUND_STATUSES)
 import mkt.lookup.constants as lkp
 from mkt.lookup.views import (_transaction_summary, transaction_refund,
-                              user_delete, user_search, user_summary)
+                              user_delete, user_summary)
 from mkt.site.fixtures import fixture
 from mkt.webapps.cron import update_weekly_downloads
 from mkt.webapps.models import Installed, Webapp
@@ -599,7 +599,7 @@ class TestAppSearch(ESTestCase, SearchTestMixin):
         self.verify_result(data)
 
     def test_by_stem_name(self):
-        self.app.name = 'Instigation'
+        self.app.name = 'Instigated'
         self.app.save()
         self.refresh('webapp')
         data = self.search(q='instigate')
