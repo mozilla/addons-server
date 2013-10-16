@@ -366,13 +366,26 @@ class TestPane(amo.tests.TestCase):
     def test_featured_personas(self):
         addon = Addon.objects.get(id=15679)
         r = self.client.get(self.url)
-        p = pq(r.content)('#featured-themes')
-        a = p.find('a[data-browsertheme]')
+        doc = pq(r.content)
+
+        featured = doc('#featured-themes')
+        eq_(featured.length, 1)
+
+        # Look for all images that are not icon uploads.
+        imgs = doc('img:not([src*="/uploads/"])')
+        imgs_ok = (pq(img).attr('src').startswith('/media/img/')
+                   for img in imgs)
+        assert all(imgs_ok), 'Images must be prefixed with MEDIA_URL!'
+
+        featured = doc('#featured-themes')
+        eq_(featured.length, 1)
+
+        a = featured.find('a[data-browsertheme]')
         url = reverse('discovery.addons.detail', args=[15679])
         assert a.attr('href').endswith(url + '?src=discovery-featured'), (
             'Unexpected add-on details URL')
         eq_(a.attr('target'), '_self')
-        eq_(p.find('.addon-title').text(), unicode(addon.name))
+        eq_(featured.find('.addon-title').text(), unicode(addon.name))
 
 
 class TestDetails(amo.tests.TestCase):
