@@ -76,6 +76,13 @@ def approve_rereview(theme):
     reupload = rereview[0]
 
     if reupload.header_path != reupload.theme.header_path:
+        create_persona_preview_images(
+            src=reupload.header_path,
+            full_dst=[
+                reupload.theme.preview_path,
+                reupload.theme.icon_path],
+            set_modified_on=[reupload.theme.addon])
+
         move_stored_file(
             reupload.header_path, reupload.theme.header_path,
             storage=storage)
@@ -83,12 +90,6 @@ def approve_rereview(theme):
         move_stored_file(
             reupload.footer_path, reupload.theme.footer_path,
             storage=storage)
-    create_persona_preview_images(
-        src=reupload.theme.header_path,
-        full_dst=[
-            reupload.theme.header_path.replace('header', 'preview'),
-            reupload.theme.header_path.replace('header', 'icon')],
-        set_modified_on=[reupload.theme.addon])
     rereview.delete()
 
     theme.addon.increment_version()

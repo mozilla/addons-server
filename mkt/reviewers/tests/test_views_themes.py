@@ -107,7 +107,7 @@ class ThemeReviewTestMixin(object):
     @mock.patch('mkt.reviewers.tasks.send_mail_jinja')
     @mock.patch('mkt.reviewers.tasks.create_persona_preview_images')
     @mock.patch('amo.storage_utils.copy_stored_file')
-    def test_commit(self, copy_file_mock, create_preview_mock,
+    def test_commit(self, copy_mock, create_preview_mock,
                     send_mail_jinja_mock, version_changed_mock,
                     approve_rereview_mock, reject_rereview_mock):
         if self.flagged:
@@ -160,10 +160,10 @@ class ThemeReviewTestMixin(object):
                 eq_(themes[i].header, 'header')
                 eq_(themes[i].footer, 'footer')
 
-            assert '/pending_header' in copy_file_mock.call_args_list[0][0][0]
-            assert '/header' in copy_file_mock.call_args_list[0][0][1]
-            assert '/pending_footer' in copy_file_mock.call_args_list[1][0][0]
-            assert '/footer' in copy_file_mock.call_args_list[1][0][1]
+            assert copy_mock.call_args_list[0][0][0].endswith('pending_header')
+            assert copy_mock.call_args_list[0][0][1].endswith('header')
+            assert copy_mock.call_args_list[1][0][0].endswith('pending_footer')
+            assert copy_mock.call_args_list[1][0][1].endswith('footer')
 
             create_preview_args = create_preview_mock.call_args_list[0][1]
             assert '/header' in create_preview_args['src']
@@ -535,6 +535,66 @@ class TestThemeQueueRereview(ThemeReviewTestMixin, amo.tests.TestCase):
         doc = pq(r.content)
         eq_(doc('.theme').length, 1)
         eq_(RereviewQueueTheme.with_deleted.count(), 1)
+
+    @mock.patch.object(settings, 'LOCAL_MIRROR_URL', '')
+    @mock.patch('mkt.reviewers.tasks.send_mail_jinja')
+    @mock.patch('mkt.reviewers.tasks.create_persona_preview_images')
+    @mock.patch('amo.storage_utils.copy_stored_file')
+    def test_update_legacy_theme(self, copy_mock, prev_mock, noop3):
+        """
+        Test updating themes that were submitted from GetPersonas.
+        STR the bug this test fixes:
+
+        - Reupload a legacy theme and approve it.
+        - On approving, it would make a preview image with the destination as
+         'preview.png' and 'icon.png', but legacy themes use
+         'preview_large.jpg' and 'preview_small.png'.
+        - Thus the preview images were not being updated, but the header/footer
+          images were.
+        """
+        theme = self.theme_factory(status=amo.STATUS_PUBLIC).persona
+        theme.header = 'Legacy-header3H.png'
+        theme.footer = 'Legacy-footer3H-Copy.jpg'
+        theme.persona_id = 5
+        theme.save()
+        form_data = amo.tests.formset(initial_count=5, total_count=6)
+
+        RereviewQueueTheme.objects.create(
+            theme=theme, header='pending_header.png',
+            footer='pending_footer.png')
+
+        # Create lock.
+        reviewer = self.create_and_become_reviewer()
+        ThemeLock.objects.create(
+            theme=theme, reviewer=reviewer, expiry=self.days_ago(-1))
+        form_data['form-0-theme'] = str(theme.id)
+
+        # Build formset.
+        form_data['form-0-action'] = str(rvw.ACTION_APPROVE)
+
+        # Commit.
+        self.client.post(reverse('reviewers.themes.commit'), form_data)
+
+        # Check nothing has changed.
+        eq_(theme.header, 'Legacy-header3H.png')
+        eq_(theme.footer, 'Legacy-footer3H-Copy.jpg')
+        theme.thumb_path.endswith('preview.jpg')
+        theme.icon_path.endswith('preview_small.jpg')
+        theme.preview_path.endswith('preview_large.jpg')
+
+        # Test calling create_persona_preview_images.
+        eq_(prev_mock.call_args_list[0][1]['full_dst'][0], theme.preview_path)
+        eq_(prev_mock.call_args_list[0][1]['full_dst'][1], theme.icon_path)
+
+        # pending_header should be mv'ed to Legacy-header3H.png.
+        assert copy_mock.call_args_list[0][0][0].endswith('pending_header')
+        assert (copy_mock.call_args_list[0][0][1]
+                .endswith('Legacy-header3H.png'))
+        # pending_footer should be mv'ed to Legacy-footer-Copy3H.png.
+        assert (copy_mock.call_args_list[1][0][0]
+                .endswith('pending_footer'))
+        assert (copy_mock.call_args_list[1][0][1]
+                .endswith('Legacy-footer3H-Copy.jpg'))
 
 
 class TestDeletedThemeLookup(amo.tests.TestCase):
