@@ -30,8 +30,7 @@ from lib.pay_server import client
 from market.models import Price
 from mkt.constants import DEVICE_LOOKUP
 from mkt.developers.decorators import dev_required
-from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
-                                   UserInappKey, uri_to_pk)
+from mkt.developers.models import PaymentAccount, UserInappKey, uri_to_pk
 
 from . import forms, forms_payments
 
@@ -170,7 +169,8 @@ def payment_accounts(request):
         }
         if waffle.switch_is_active('bango-portal') and app_slug:
             data['portal-url'] = reverse(
-                'mkt.developers.apps.payments.bango_portal', args=[app_slug])
+                'mkt.developers.apps.payments.bango_portal_from_addon',
+                args=[app_slug])
         return data
 
     return map(account, accounts)
@@ -309,7 +309,7 @@ def in_app_secret(request, addon_id, addon, webapp=True):
 
 @waffle_switch('bango-portal')
 @dev_required(webapp=True)
-def bango_portal(request, addon_id, addon, webapp=True):
+def bango_portal_from_addon(request, addon_id, addon, webapp=True):
     if not ((addon.authors.filter(user=request.user,
                 addonuser__role=amo.AUTHOR_ROLE_OWNER).exists()) and
             (addon.app_payment_account.payment_account.solitude_seller.user.id
@@ -319,11 +319,14 @@ def bango_portal(request, addon_id, addon, webapp=True):
         return http.HttpResponseForbidden()
 
     package_id = addon.app_payment_account.payment_account.bango_package_id
+    return _redirect_to_bango_portal(package_id, addon_id)
+
+def _redirect_to_bango_portal(package_id, source_id):
     try:
         bango_token = client.api.bango.login.post({'packageId': package_id})
     except HttpClientError as e:
-        log.error('Failed to authenticate against Bango portal; %s' % addon_id,
-                  exc_info=True)
+        log.error(('Failed to authenticate against Bango portal; '
+                   '%s') % source_id, exc_info=True)
         return http.HttpResponseBadRequest(json.dumps(e.content))
 
     bango_url = '{base_url}{parameters}'.format(**{

@@ -699,7 +699,8 @@ class TestPayments(amo.tests.TestCase):
         self.webapp.update(premium_type=amo.ADDON_PREMIUM)
         self.login(self.user)
         self.account = setup_payment_account(self.webapp, self.user)
-        self.portal_url = self.webapp.get_dev_url('payments.bango_portal')
+        self.portal_url = self.webapp.get_dev_url(
+                               'payments.bango_portal_from_addon')
 
     def test_bango_portal_links(self):
         payments_url = self.webapp.get_dev_url('payments')
@@ -933,7 +934,7 @@ class TestPaymentPortal(PaymentsBase):
         eq_(res.status_code, 200)
         output = json.loads(res.content)
         eq_(output[0]['portal-url'],
-            reverse('mkt.developers.apps.payments.bango_portal',
+            reverse('mkt.developers.apps.payments.bango_portal_from_addon',
                     args=[self.app_slug]))
 
     def test_without_app_slug(self):

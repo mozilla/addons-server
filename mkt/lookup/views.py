@@ -29,6 +29,7 @@ from market.models import AddonPaymentData, Refund
 from mkt.constants.payments import (COMPLETED, FAILED, PENDING,
                                     REFUND_STATUSES)
 from mkt.account.utils import purchase_list
+from mkt.developers.views_payments import _redirect_to_bango_portal
 from mkt.lookup.forms import (DeleteUserForm, TransactionRefundForm,
                               TransactionSearchForm)
 from mkt.lookup.tasks import (email_buyer_refund_approved,
@@ -37,7 +38,6 @@ from mkt.site import messages
 from mkt.webapps.models import Installed, WebappIndexer
 from stats.models import Contribution, DownloadCount
 from users.models import UserProfile
-from zadmin.decorators import admin_required
 
 log = commonware.log.getLogger('z.lookup')
 
@@ -82,6 +82,11 @@ def user_summary(request, user_id):
     except IndexError:
         delete_log = None
 
+    if user.paymentaccount_set.all().exists():
+        portal_url = reverse('lookup.user_bango_portal_from_user',
+                             args=[user_id])
+    else:
+        portal_url = None
     return jingo.render(request, 'lookup/user_summary.html',
                         {'account': user,
                          'app_summary': app_summary,
@@ -91,8 +96,17 @@ def user_summary(request, user_id):
                          'refund_summary': refund_summary,
                          'user_addons': user_addons,
                          'payment_data': payment_data,
-                         'paypal_ids': paypal_ids})
+                         'paypal_ids': paypal_ids,
+                         'portal_url': portal_url})
 
+@login_required
+@permission_required('AccountLookup', 'View')
+def user_bango_portal_from_user(request, user_id):
+    user = get_object_or_404(UserProfile, pk=user_id)
+    # The first element should always exists otherwise the redirect link
+    # is not displayed.
+    package_id = user.paymentaccount_set.all()[0].bango_package_id
+    return _redirect_to_bango_portal(package_id, user_id)
 
 @login_required
 @permission_required('AccountLookup', 'View')

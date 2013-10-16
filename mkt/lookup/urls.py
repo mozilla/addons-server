@@ -10,6 +10,8 @@ user_patterns = patterns('',
         name='lookup.user_purchases'),
     url(r'^activity$', views.user_activity, name='lookup.user_activity'),
     url(r'^delete$', views.user_delete, name='lookup.user_delete'),
+    url(r'^bango-portal$', views.user_bango_portal_from_user,
+        name='lookup.user_bango_portal_from_user'),
 )
 
 
