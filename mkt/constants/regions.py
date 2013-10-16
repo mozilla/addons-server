@@ -196,6 +196,15 @@ class AR(REGION):
     mcc = 722
 
 
+class CN(REGION):
+    id = 21
+    name = _lazy(u'China')
+    slug = 'cn'
+    default_currency = 'RMB'
+    default_language = 'zh-CN'
+    mcc = 460
+
+
 # Create a list of tuples like so (in alphabetical order):
 #
 #     [('worldwide', <class 'mkt.constants.regions.WORLDWIDE'>),
