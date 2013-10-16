@@ -274,7 +274,7 @@ class TestAcctSearch(ESTestCase, SearchTestMixin):
     @mock.patch.object(lkp, 'SEARCH_LIMIT', 2)
     @mock.patch.object(lkp, 'MAX_RESULTS', 3)
     def test_all_results(self):
-        for x in range(3):
+        for x in range(4):
             name = 'chr' + str(x)
             UserProfile.objects.create(username=name, name=name,
                                        email=name + '@gmail.com')
