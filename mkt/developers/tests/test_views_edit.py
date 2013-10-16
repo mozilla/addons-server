@@ -24,6 +24,7 @@ from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
 from addons.models import (Addon, AddonCategory, AddonDeviceType, AddonUser,
                            Category)
+from comm.models import CommunicationNote
 from constants.applications import DEVICE_TYPES
 from devhub.models import ActivityLog
 from editors.models import RereviewQueue
@@ -1420,6 +1421,13 @@ class TestEditVersion(TestEdit):
         eq_(version.releasenotes, data['releasenotes_en-us'])
         eq_(version.approvalnotes, data['approvalnotes'])
         return version
+
+    def test_comm_thread(self):
+        self.create_switch('comm-dashboard')
+        self.test_post(approvalnotes='abc')
+        notes = CommunicationNote.objects.all()
+        eq_(notes.count(), 1)
+        eq_(notes[0].body, 'abc')
 
     def test_existing_features_initial_form_data(self):
         features = self.webapp.current_version.features

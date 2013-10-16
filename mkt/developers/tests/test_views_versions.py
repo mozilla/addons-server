@@ -248,46 +248,6 @@ class TestAddVersion(BasePackagedAppTest):
         eq_(self.app.status, amo.STATUS_PENDING)
 
 
-class TestEditVersion(amo.tests.TestCase):
-    """
-    TODO: Clean this up. We already have tests elsewhere:
-    https://github.com/mozilla/zamboni/blob/a0ed5e3/mkt/developers/
-    tests/test_views_edit.py#L1379
-    """
-    fixtures = fixture('user_999')
-
-    def setUp(self):
-        self.app = amo.tests.app_factory(is_packaged=True,
-                                         version_kw=dict(version='1.0'))
-        version = self.app.current_version
-        self.url = self.app.get_dev_url('versions.edit', [version.pk])
-        self.user = UserProfile.objects.get(username='regularuser')
-        AddonUser.objects.create(user=self.user, addon=self.app)
-        self.client.login(username='regular@mozilla.com',
-                          password='password')
-        eq_(self.client.get(self.url).status_code, 200)
-
-    def test_post(self):
-        rn = u'Release Notes'
-        an = u'Approval Notes'
-        res = self.client.post(self.url, {'releasenotes': rn,
-                                          'approvalnotes': an})
-        self.assert3xx(res, self.app.get_dev_url('versions'))
-        ver = self.app.versions.latest()
-        eq_(ver.releasenotes, rn)
-        eq_(ver.approvalnotes, an)
-
-    def test_comm_thread(self):
-        rn = u'Release Notes'
-        an = u'Approval Notes'
-        self.create_switch('comm-dashboard')
-        self.client.post(self.url, {'releasenotes': rn,
-                                    'approvalnotes': an})
-        notes = CommunicationNote.objects.all()
-        eq_(notes.count(), 1)
-        eq_(notes[0].body, an)
-
-
 class TestVersionPackaged(amo.tests.WebappTestCase):
     fixtures = fixture('user_999', 'webapp_337141')
 
