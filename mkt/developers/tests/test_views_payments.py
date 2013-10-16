@@ -726,8 +726,8 @@ class TestPayments(amo.tests.TestCase):
         eq_(res.status_code, 204)
         eq_(api.bango.login.post.call_args[0][0]['packageId'], TEST_PACKAGE_ID)
         redirect_url = res['Location']
-        assert authentication_token in redirect_url
-        assert 'emailAddress=admin%40place.com' in redirect_url
+        assert authentication_token in redirect_url, redirect_url
+        assert 'emailAddress=admin%40place.com' in redirect_url, redirect_url
 
     @mock.patch('mkt.developers.views_payments.client.api')
     def test_bango_portal_redirect_api_error(self, api):

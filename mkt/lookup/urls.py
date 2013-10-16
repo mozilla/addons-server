@@ -10,8 +10,6 @@ user_patterns = patterns('',
         name='lookup.user_purchases'),
     url(r'^activity$', views.user_activity, name='lookup.user_activity'),
     url(r'^delete$', views.user_delete, name='lookup.user_delete'),
-    url(r'^bango-portal$', views.user_bango_portal_from_user,
-        name='lookup.user_bango_portal_from_user'),
 )
 
 
@@ -32,6 +30,9 @@ transaction_patterns = patterns('',
 
 urlpatterns = patterns('',
     url(r'^$', views.home, name='lookup.home'),
+    url(r'^bango-portal/(?P<package_id>[^/]+)/$',
+        views.bango_portal_from_package,
+        name='lookup.bango_portal_from_package'),
     url(r'^user_search\.json$', views.user_search,
         name='lookup.user_search'),
     url(r'^transaction_search$', views.transaction_search,
