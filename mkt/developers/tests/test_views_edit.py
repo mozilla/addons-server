@@ -440,7 +440,7 @@ class TestEditBasic(TestEdit):
                       args=[self.webapp.app_slug])
         r = self.client.post(url)
         eq_(r.status_code, 204)
-        fetch.assert_called_once_with(self.webapp.pk, True, ())
+        fetch.assert_called_once_with(self.webapp.pk, True, {})
 
     @mock.patch('mkt.developers.views._update_manifest')
     def test_refresh_dev_only(self, fetch):
