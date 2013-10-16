@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-09-27 16:47-0700\n"
-"PO-Revision-Date: 2013-10-11 13:04+0000\n"
+"PO-Revision-Date: 2013-10-16 08:36+0000\n"
 "Last-Translator: Pavel <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1381496695.0\n"
+"X-POOTLE-MTIME: 1381912605.0\n"
 
 #: apps/addons/buttons.py:207
 msgid "Download Now"
@@ -5863,7 +5863,9 @@ msgstr "Řekněte vašim uživatelům, že jste tento doplněk vytvořil(a) , ve
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:47
 msgid "View and subscribe to your app's <a href=\"{0}\">activity feed</a> to stay updated on reviews, collections, and more."
-msgstr "Zobrazte si a prihlašte odběr <a href=\"{0}\">aktivity</a> u vaší aplikace. Zůstaňte v obraze a mějte přehled o recenzích, sbírkách atd."
+msgstr ""
+"Zobrazte si a prihlaste odběr <a href=\"{0}\">aktivity</a> u vaší aplikace. "
+"Zůstaňte v obraze a mějte přehled o recenzích, sbírkách atd."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:49
 msgid "View and subscribe to your add-on's <a href=\"{0}\">activity feed</a> to stay updated on reviews, collections, and more."
@@ -16110,7 +16112,9 @@ msgstr "Přihlaste se prosím"
 
 #: mkt/developers/templates/developers/skeleton_impala.html:133
 msgid "Just log in or register with your <a href=\"%(url)s\">Persona</a> account below."
-msgstr "Jednoduše se níže přihlašte či registrujte pomocí svého účtu <a href=\"%(url)s\">Persona</a>."
+msgstr ""
+"Jednoduše se níže přihlaste či registrujte pomocí svého účtu <a href=\"%"
+"(url)s\">Persona</a>."
 
 #: mkt/developers/templates/developers/terms.html:3
 msgid "Terms and Conditions"
@@ -17039,7 +17043,7 @@ msgstr "Vložte prosím platný e-mail u PayPalu."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_paypal.html:10
 msgid "No Premier or Business PayPal account? Sign up."
-msgstr "Nemáte účet PayPal Premier či Business? Přihlašte se."
+msgstr "Nemáte účet PayPal Premier či Business? Přihlaste se."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_paypal.html:12
 msgid "On continue, log in to PayPal to give the Marketplace permissions to process refunds and access your PayPal account information."
@@ -19634,7 +19638,10 @@ msgstr "Aplikace pro Firefox"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:236
 msgid "Sign up for our monthly newsletter about Firefox OS, Marketplace and the Open Web apps ecosystem. <a href=\"%(dev_phone_url)s\">Check out the developer phone preview</a>"
-msgstr "Přihlašte se k odběru našeho měsíčního zpravodaje o Firefox OS, Marketplace a ekosystému otevřených webových aplikací. <a href=\"%(dev_phone_url)s\">Podívejte se na vývojářské telefony</a>"
+msgstr ""
+"Přihlaste se k odběru našeho měsíčního zpravodaje o Firefox OS, Marketplace "
+"a ekosystému otevřených webových aplikací. <a href=\"%"
+"(dev_phone_url)s\">Podívejte se na vývojářské telefony</a>"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:247
 msgid "Developer Devices"
@@ -20377,8 +20384,9 @@ msgid ""
 "The Firefox OS Marketplace site does not currently work when accessed from iPhones. To be notified when iPhone support is added, please <a href=\"%(url)s\">sign up for the Open Web Apps Developer "
 "Newsletter</a>."
 msgstr ""
-"Web Firefox OS marketplace aktuálně nefunguje, pokud k němu přistupujete z iPhone. Pokud chcete být upozornění až bude přidána podpora pro iPhone, <a href=\"%(url)s\">přihlašte se k odběru "
-"zpravodaje Open Web Apps Developer</a>."
+"Web Firefox OS marketplace aktuálně nefunguje, pokud k němu přistupujete z "
+"iPhone. Pokud chcete být upozornění až bude přidána podpora pro iPhone, <a "
+"href=\"%(url)s\">přihlaste se k odběru zpravodaje Open Web Apps Developer</a>."
 
 #: mkt/ecosystem/templates/ecosystem/publish_submit.html:28
 msgid "What you need"
@@ -22533,7 +22541,9 @@ msgstr "Navštivte sekci Pro vývojáře"
 
 #: mkt/templates/mkt/base_mobile.html:114
 msgid "Just log in or register with your <a href=\"%(url)s\">Persona</a> account."
-msgstr "Jednoduše se přihlašte nabo zaregistrujte pomocí účtu <a href=\"%(url)s\">Persona</a>."
+msgstr ""
+"Jednoduše se přihlaste nebo zaregistrujte pomocí účtu <a href=\"%"
+"(url)s\">Persona</a>."
 
 #: mkt/templates/mkt/footer.html:5
 msgid ""
