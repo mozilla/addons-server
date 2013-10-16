@@ -6,6 +6,7 @@ import mock
 from nose.tools import eq_, ok_
 from rest_framework.reverse import reverse as rest_reverse
 
+import amo
 from amo.tests import app_factory, TestCase
 from mkt.api.base import get_url
 from mkt.api.tests.test_oauth import RestOAuth
@@ -142,5 +143,11 @@ class TestVersionViewSet(RestOAuth):
         self.create_switch('soft_delete')
         self.app.delete()
 
+        res = self.client.get(url)
+        eq_(res.status_code, 404)
+
+    def test_non_app(self):
+        self.app.update(type=amo.ADDON_PERSONA)
+        url = rest_reverse('version-detail', kwargs={'pk': self.version.pk})
         res = self.client.get(url)
         eq_(res.status_code, 404)

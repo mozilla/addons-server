@@ -1,15 +1,16 @@
 {% extends 'developers/base_impala.html' %}
 {% from 'developers/includes/macros.html' import required %}
 
-{% set title = _('In-App Payment Keys') %}
+{% set title = _('Test In-App Payments') %}
 {% block title %}{{ hub_page_title(title, addon) }}{% endblock %}
 
 {% block content %}
 <header>
-  {{ hub_breadcrumbs(addon, items=[(None, title)]) }}
+  {{ hub_breadcrumbs(addon, items=[(url('mkt.developers.apps.testing'), _('Testing')), (None, title)]) }}
   <h1>{{ title }}</h1>
 </header>
-<section class="island" role="main">
+
+<section class="island manage primary" role="main">
   <div id="in-app-config" class="devhub-form">
     <form class="item in-app-config" method="post" action="{{ request.path }}">
       {{ csrf() }}
@@ -53,4 +54,6 @@
     </form>
   </div>
 </section>
+
+{% include 'developers/includes/testing_nav.html' %}
 {% endblock %}

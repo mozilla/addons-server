@@ -93,7 +93,6 @@ def install_button_factory(*args, **kwargs):
     classes = (('is_persona', PersonaInstallButton),
                ('lite', LiteInstallButton),
                ('unreviewed', UnreviewedInstallButton),
-               ('self_hosted', SelfHostedInstallButton),
                ('featured', FeaturedInstallButton))
     for pred, cls in classes:
         if getattr(button, pred, False):
@@ -125,10 +124,8 @@ class InstallButton(object):
         self.lite = self.version and self.version.is_lite
         self.unreviewed = (addon.is_unreviewed() or version_unreviewed or
                            self.is_beta)
-        self.self_hosted = addon.status == amo.STATUS_LISTED
         self.featured = (not self.unreviewed
                          and not self.lite
-                         and not self.self_hosted
                          and not self.is_beta
                          and addon.is_featured(app, lang))
         self.is_persona = addon.type == amo.ADDON_PERSONA
@@ -141,8 +138,7 @@ class InstallButton(object):
         self.show_contrib = (show_contrib and addon.takes_contributions
                              and addon.annoying == amo.CONTRIB_ROADBLOCK)
         self.show_eula = not self.show_contrib and show_eula and addon.has_eula
-        self.show_warning = show_warning and (self.unreviewed or
-                                              self.self_hosted)
+        self.show_warning = show_warning and self.unreviewed
 
     def prepare(self):
         """Called after the class is set to manage eulas, contributions."""
@@ -244,17 +240,6 @@ class UnreviewedInstallButton(InstallButton):
     install_class = ['unreviewed']
     install_text = _lazy(u'Not Reviewed', 'install_button')
     button_class = 'download caution'.split()
-
-
-class SelfHostedInstallButton(InstallButton):
-    install_class = ['selfhosted']
-    install_text = _lazy(u'Self Hosted', 'install_button')
-    button_class = ['go']
-
-    def links(self):
-        # L10n: please keep &nbsp; in the string so the &rarr; does not wrap
-        return [Link(jinja2.Markup(_('Continue to Website&nbsp;&rarr;')),
-                     self.addon.homepage)]
 
 
 class LiteInstallButton(InstallButton):

@@ -1,6 +1,5 @@
 from datetime import datetime, timedelta
 
-from nose import SkipTest
 from nose.tools import eq_, ok_
 from mock import Mock, patch
 
@@ -210,7 +209,7 @@ class TestAddonPaymentAccount(amo.tests.TestCase):
         eq_(apa.product_uri, 'bpruri')
 
         client.api.bango.premium.post.assert_called_with(
-            data={'bango': 'bango#', 'price': float(self.price.price),
+            data={'bango': 'bango#', 'price': self.price.price,
                   'currencyIso': 'USD', 'seller_product_bango': 'bpruri'})
 
         eq_(client.api.bango.rating.post.call_args_list[0][1]['data'],
@@ -273,28 +272,5 @@ class TestAddonPaymentAccount(amo.tests.TestCase):
             data={'bango': 'bango#', 'price': new_price,
                   'currencyIso': 'USD', 'seller_product_bango': 'bpruri'})
         client.api.bango.rating.post.assert_called_with(
-            data={'bango': 'bango#', 'rating': 'GENERAL',
-                  'ratingScheme': 'USA', 'seller_product_bango': 'bpruri'})
-
-    @patch('mkt.developers.models.client')
-    def test_update_price_free(self, client):
-        raise SkipTest("Disabled until Solitude is ready.")
-
-        client.get_product_bango.return_value = {'bango': 'bango#'}
-
-        payment_account = PaymentAccount.objects.create(
-            user=self.user, name='paname', uri='/path/to/object',
-            solitude_seller=self.seller)
-
-        apa = AddonPaymentAccount.objects.create(
-            addon=self.app, provider='bango', account_uri='acuri',
-            payment_account=payment_account,
-            product_uri='bpruri')
-
-        apa.update_price(0)
-
-        client.post_make_free.assert_called_with(
-            data={'bango': 'bango#', 'seller_product_bango': 'bpruri'})
-        client.post_update_rating.assert_called_with(
             data={'bango': 'bango#', 'rating': 'GENERAL',
                   'ratingScheme': 'USA', 'seller_product_bango': 'bpruri'})

@@ -673,7 +673,10 @@ class TestFeaturedCollections(BaseFeaturedTests):
     def test_only_public(self):
         self.col2 = Collection.objects.create(name='Col', description='Hidden',
             collection_type=self.col_type, category=self.cat, is_public=False)
-        self.test_added_to_results()
+        res, json = self.test_added_to_results()
+
+        header = 'API-Fallback-%s' % self.prop_name
+        ok_(not header in res)
 
     def test_only_this_type(self):
         """
@@ -684,7 +687,10 @@ class TestFeaturedCollections(BaseFeaturedTests):
                           COLLECTIONS_TYPE_BASIC else COLLECTIONS_TYPE_BASIC)
         self.col2 = Collection.objects.create(name='Bye', description='Dad',
             collection_type=different_type, category=self.cat, is_public=True)
-        self.test_added_to_results()
+        res, json = self.test_added_to_results()
+
+        header = 'API-Fallback-%s' % self.prop_name
+        ok_(not header in res)
 
     @patch('mkt.collections.serializers.CollectionMembershipField.'
            'field_to_native')
@@ -732,9 +738,14 @@ class TestFeaturedCollections(BaseFeaturedTests):
         """
         # Request the list using region. self.col should get picked up
         # because the fallback mechanism will try with region set to None.
-        self.col.update(region=None)
+        self.col.update(region=None, carrier=None)
         self.qs['region'] = mkt.regions.SPAIN.slug
-        self.test_added_to_results()
+        self.qs['carrier'] = mkt.carriers.UNKNOWN_CARRIER.slug
+        res, json = self.test_added_to_results()
+
+        header = 'API-Fallback-%s' % self.prop_name
+        ok_(header in res)
+        eq_(res[header], 'region,carrier')
 
 
 class TestFeaturedOperator(TestFeaturedCollections):
@@ -766,12 +777,14 @@ class TestSuggestionsApi(ESTestCase):
         response = self.client.get(self.url)
         parsed = json.loads(response.content)
         eq_(parsed[0], '')
-        eq_(parsed[1], [unicode(app1.name), unicode(app2.name)])
-        eq_(parsed[2], [unicode(app1.description),
-                        unicode(truncate(app2.description))])
-        eq_(parsed[3], [absolutify(app1.get_detail_url()),
-                        absolutify(app2.get_detail_url())])
-        eq_(parsed[4], [app1.get_icon_url(64), app2.get_icon_url(64)])
+        self.assertSetEqual(parsed[1], [unicode(app1.name),
+                                        unicode(app2.name)])
+        self.assertSetEqual(parsed[2], [unicode(app1.description),
+                                        unicode(truncate(app2.description))])
+        self.assertSetEqual(parsed[3], [absolutify(app1.get_detail_url()),
+                                        absolutify(app2.get_detail_url())])
+        self.assertSetEqual(parsed[4], [app1.get_icon_url(64),
+                                        app2.get_icon_url(64)])
 
         # Cleanup to remove these from the index.
         unindex_webapps([app1.id, app2.id])

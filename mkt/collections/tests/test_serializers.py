@@ -1,13 +1,17 @@
 # -*- coding: utf-8 -*-
 from nose.tools import eq_, ok_
+from rest_framework import serializers
 from tastypie.bundle import Bundle
 from test_utils import RequestFactory
 
+import amo
 import amo.tests
+from addons.models import Category
 from amo.urlresolvers import reverse
 
 from mkt.api.resources import AppResource
-from mkt.collections.constants import COLLECTIONS_TYPE_BASIC
+from mkt.collections.constants import (COLLECTIONS_TYPE_BASIC,
+                                       COLLECTIONS_TYPE_OPERATOR)
 from mkt.constants.features import FeatureProfile
 from mkt.collections.models import Collection, CollectionMembership
 from mkt.collections.serializers import (CollectionMembershipField,
@@ -86,7 +90,8 @@ class TestCollectionSerializer(CollectionDataMixin, amo.tests.TestCase):
             'request': RequestFactory().get('/whatever')
         }
         self.collection = Collection.objects.create(**self.collection_data)
-        self.serializer = CollectionSerializer(context=minimal_context)
+        self.serializer = CollectionSerializer(self.collection,
+                                               context=minimal_context)
 
     def test_to_native(self, apps=None):
         if apps:
@@ -107,13 +112,18 @@ class TestCollectionSerializer(CollectionDataMixin, amo.tests.TestCase):
             eq_(data['apps'][order]['slug'], app.app_slug)
         return data
 
+    def test_to_native_operator(self):
+        self.collection.update(collection_type=COLLECTIONS_TYPE_OPERATOR)
+        data = self.serializer.to_native(self.collection)
+        ok_('can_be_hero' in data.keys())
+
     def test_image(self):
         data = self.serializer.to_native(self.collection)
         eq_(data['image'], None)
         self.collection.update(has_image=True)
         data = self.serializer.to_native(self.collection)
-        eq_(data['image'], reverse('collection-image-detail',
-                                   kwargs={'pk': self.collection.id}))
+        ok_(data['image'].startswith(reverse(
+            'collection-image-detail', kwargs={'pk': self.collection.id})))
 
     def test_wrong_default_language_serialization(self):
         # The following is wrong because we only accept the 'en-us' form.
@@ -163,6 +173,19 @@ class TestCollectionSerializer(CollectionDataMixin, amo.tests.TestCase):
         keys = data['apps'][0].keys()
         ok_('name' in keys)
         ok_('id' in keys)
+
+    def validate(self, **kwargs):
+        return self.serializer.validate(kwargs)
+
+    def test_validation_operatorshelf_category(self):
+        category = Category.objects.create(name='BastaCorp', slug='basta',
+                                           type=amo.ADDON_WEBAPP)
+        ok_(self.validate(collection_type=COLLECTIONS_TYPE_BASIC,
+                          category=category))
+        ok_(self.validate(collection_type=COLLECTIONS_TYPE_OPERATOR))
+        with self.assertRaises(serializers.ValidationError):
+            self.validate(collection_type=COLLECTIONS_TYPE_OPERATOR,
+                          category=category)
 
 
 IMAGE_DATA = """

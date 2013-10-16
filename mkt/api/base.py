@@ -46,9 +46,12 @@ def get_url(name, pk, **kw):
     return ('api_dispatch_detail', kw)
 
 
-def http_error(errorclass, reason):
+def http_error(errorclass, reason, extra_data=None):
     response = errorclass()
-    response.content = json.dumps({'reason': reason})
+    data = {'reason': reason}
+    if extra_data:
+        data.update(extra_data)
+    response.content = json.dumps(data)
     return ImmediateHttpResponse(response)
 
 

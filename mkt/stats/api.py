@@ -3,6 +3,7 @@ from functools import partial
 from django import http
 
 import commonware
+import requests
 import waffle
 from rest_framework.exceptions import ParseError
 from rest_framework.generics import ListAPIView
@@ -11,13 +12,14 @@ from rest_framework.views import APIView
 
 from lib.metrics import get_monolith_client
 
-from constants.base import ADDON_PREMIUM_API, ADDON_WEBAPP_TYPES
+import amo
+from stats.models import Contribution
 
 from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.authorization import AllowAppOwner, PermissionAuthorization
 from mkt.api.base import CORSMixin, SlugOrIdMixin
-from mkt.api.exceptions import NotImplemented
+from mkt.api.exceptions import NotImplemented, ServiceUnavailable
 from mkt.webapps.models import Webapp
 
 from .forms import StatsForm
@@ -36,27 +38,32 @@ log = commonware.log.getLogger('z.stats')
 #     {'<name>': {'<dimension-key>': '<dimension-value>'}}
 # where <name> is what's returned in the JSON output and the dimension
 # key/value is what's sent to Monolith similar to the 'dimensions' above.
+#
+# The 'coerce' key is optional and used to coerce data types returned from
+# monolith to other types. Provide the name of the key in the data you want to
+# coerce with a callback for how you want the data coerced. E.g.:
+#   {'count': str}
 lines = lambda name, vals: dict((val, {name: val}) for val in vals)
 STATS = {
     'apps_added_by_package': {
         'metric': 'apps_added_package_count',
         'dimensions': {'region': 'us'},
-        'lines': lines('package_type', ADDON_WEBAPP_TYPES.values()),
+        'lines': lines('package_type', amo.ADDON_WEBAPP_TYPES.values()),
     },
     'apps_added_by_premium': {
         'metric': 'apps_added_premium_count',
         'dimensions': {'region': 'us'},
-        'lines': lines('premium_type', ADDON_PREMIUM_API.values()),
+        'lines': lines('premium_type', amo.ADDON_PREMIUM_API.values()),
     },
     'apps_available_by_package': {
         'metric': 'apps_available_package_count',
         'dimensions': {'region': 'us'},
-        'lines': lines('package_type', ADDON_WEBAPP_TYPES.values()),
+        'lines': lines('package_type', amo.ADDON_WEBAPP_TYPES.values()),
     },
     'apps_available_by_premium': {
         'metric': 'apps_available_premium_count',
         'dimensions': {'region': 'us'},
-        'lines': lines('premium_type', ADDON_PREMIUM_API.values()),
+        'lines': lines('premium_type', amo.ADDON_PREMIUM_API.values()),
     },
     'apps_installed': {
         'metric': 'app_installs',
@@ -68,12 +75,25 @@ STATS = {
     'total_visits': {
         'metric': 'visits'
     },
+    'revenue': {
+        'metric': 'gross_revenue',
+        # Counts are floats. Let's convert them to strings with 2 decimals.
+        'coerce': {'count': lambda d: '{0:.2f}'.format(d)},
+    },
 }
 APP_STATS = {
     'installs': {
         'metric': 'app_installs',
         'dimensions': {'region': None},
-    }
+    },
+    'visits': {
+        'metric': 'app_visits',
+    },
+    'revenue': {
+        'metric': 'gross_revenue',
+        # Counts are floats. Let's convert them to strings with 2 decimals.
+        'coerce': {'count': lambda d: '{0:.2f}'.format(d)},
+    },
 }
 
 
@@ -81,18 +101,32 @@ def _get_monolith_data(stat, start, end, interval, dimensions):
     # If stat has a 'lines' attribute, it's a multi-line graph. Do a
     # request for each item in 'lines' and compose them in a single
     # response.
-    client = get_monolith_client()
+    try:
+        client = get_monolith_client()
+    except requests.ConnectionError as e:
+        log.info('Monolith connection error: {0}'.format(e))
+        raise ServiceUnavailable
+
+    def _coerce(data):
+        for key, coerce in stat.get('coerce', {}).items():
+            if data.get(key):
+                data[key] = coerce(data[key])
+
+        return data
+
     try:
         data = {}
         if 'lines' in stat:
             for line_name, line_dimension in stat['lines'].items():
                 dimensions.update(line_dimension)
-                data[line_name] = list(client(stat['metric'], start, end,
-                                              interval, **dimensions))
+                data[line_name] = map(_coerce,
+                                      client(stat['metric'], start, end,
+                                             interval, **dimensions))
 
         else:
-            data['objects'] = list(client(stat['metric'], start, end, interval,
-                                          **dimensions))
+            data['objects'] = map(_coerce,
+                                  client(stat['metric'], start, end, interval,
+                                         **dimensions))
 
     except ValueError as e:
         # This occurs if monolith doesn't have our metric and we get an
@@ -179,3 +213,34 @@ class AppStats(CORSMixin, SlugOrIdMixin, ListAPIView):
         return Response(_get_monolith_data(stat, qs.get('start'),
                                            qs.get('end'), qs.get('interval'),
                                            dimensions))
+
+
+class TransactionAPI(CORSMixin, APIView):
+    """
+    API to query by transaction ID.
+
+    Note: This is intended for Monolith to be able to associate a Solitude
+    transaction with an app and price tier amount in USD.
+
+    """
+    authentication_classes = (RestOAuthAuthentication,
+                              RestSharedSecretAuthentication)
+    cors_allowed_methods = ['get']
+    permission_classes = (partial(PermissionAuthorization,
+                                  'RevenueStats', 'View'),)
+
+    def get(self, request, transaction_id):
+        try:
+            contrib = (Contribution.objects.select_related('price_tier').
+                       get(transaction_id=transaction_id))
+        except Contribution.DoesNotExist:
+            raise http.Http404('No transaction by that ID.')
+
+        data = {
+            'id': transaction_id,
+            'app_id': contrib.addon_id,
+            'amount_USD': contrib.price_tier.price,
+            'type': amo.CONTRIB_TYPES[contrib.type],
+        }
+
+        return Response(data)

@@ -17,7 +17,7 @@ from constants.payments import (PAYMENT_METHOD_ALL,
                                 PAYMENT_METHOD_CARD,
                                 PAYMENT_METHOD_OPERATOR)
 from mkt.constants.payments import ACCESS_PURCHASE, ACCESS_SIMULATE
-from mkt.constants.regions import ALL_PAID_REGION_IDS
+from mkt.constants.regions import ALL_REGION_IDS
 from market.models import Price
 from users.models import UserProfile
 
@@ -30,6 +30,7 @@ from mkt.webapps.models import AddonExcludedRegion as AER, ContentRating
 # Id without any significance but to be different of 1.
 TEST_PACKAGE_ID = 2
 
+
 def setup_payment_account(app, user, uid='uid', package_id=TEST_PACKAGE_ID):
     seller = SolitudeSeller.objects.create(user=user, uuid=uid)
     payment = PaymentAccount.objects.create(user=user, solitude_seller=seller,
@@ -37,7 +38,8 @@ def setup_payment_account(app, user, uid='uid', package_id=TEST_PACKAGE_ID):
                                             uri=uid,
                                             bango_package_id=package_id)
     return AddonPaymentAccount.objects.create(addon=app,
-        product_uri='/path/to/%s/' % app.pk, payment_account=payment)
+        product_uri='/path/to/%s/' % app.pk, account_uri=payment.uri,
+        payment_account=payment)
 
 
 class InappTest(amo.tests.TestCase):
@@ -252,8 +254,6 @@ class TestPayments(amo.tests.TestCase):
         self.price = Price.objects.filter()[0]
         self.patch = mock.patch('mkt.developers.models.client')
         self.sol = self.patch.start()
-        prs = set([p['region'] for p in self.price.prices()])
-        self.price_regions = (set(ALL_PAID_REGION_IDS).intersection(prs))
 
     def tearDown(self):
         self.patch.stop()
@@ -272,16 +272,6 @@ class TestPayments(amo.tests.TestCase):
                                    self.webapp.device_types]}
         base.update(extension)
         return base
-
-    @mock.patch('mkt.developers.forms.ALL_PAID_REGION_IDS', new=[11])
-    def test_paid_app_has_correct_regions_when_loaded(self):
-        self.webapp.update(premium_type=amo.ADDON_PREMIUM)
-        price = Price.objects.get(pk=1)
-        res = self.client.post(
-            self.url, self.get_postdata({'allow_inapp': False,
-                                         'price': price.pk}), follow=True)
-        pqr = pq(res.content)
-        eq_(len(pqr('input[type=checkbox][value=11]:not(:disabled)')), 1)
 
     def test_free(self):
         res = self.client.post(
@@ -351,7 +341,7 @@ class TestPayments(amo.tests.TestCase):
         self.client.post(
             self.url, self.get_postdata({'price': 'free',
                                          'allow_inapp': 'True',
-                                         'regions': ALL_PAID_REGION_IDS}),
+                                         'regions': ALL_REGION_IDS}),
                                          follow=True)
         eq_(self.get_webapp().upsold, None)
         eq_(AddonPremium.objects.all().count(), 0)
@@ -364,7 +354,7 @@ class TestPayments(amo.tests.TestCase):
         res = self.client.post(
             self.url, self.get_postdata({'allow_inapp': True,
                                          'price': self.price.pk,
-                                         'regions': self.price_regions}))
+                                         'regions': ALL_REGION_IDS}))
         self.assert3xx(res, self.url)
         eq_(self.get_webapp().premium_type, amo.ADDON_PREMIUM_INAPP)
 
@@ -417,11 +407,11 @@ class TestPayments(amo.tests.TestCase):
         self.client.post(
             self.url, self.get_postdata({'price': 'free',
                                          'allow_inapp': 'True',
-                                         'regions': self.price_regions}))
+                                         'regions': ALL_REGION_IDS}))
         eq_(self.get_webapp().premium_type, amo.ADDON_FREE_INAPP)
         self.client.post(
             self.url, self.get_postdata({'toggle-paid': 'free',
-                                         'regions': self.price_regions}))
+                                         'regions': ALL_REGION_IDS}))
         eq_(self.get_webapp().premium_type, amo.ADDON_FREE)
 
     def test_free_with_inapp_without_account_is_incomplete(self):
@@ -432,7 +422,7 @@ class TestPayments(amo.tests.TestCase):
         res = self.client.post(
             self.url, self.get_postdata({'price': 'free',
                                          'allow_inapp': 'True',
-                                         'regions': ALL_PAID_REGION_IDS}))
+                                         'regions': ALL_REGION_IDS}))
         self.assert3xx(res, self.url)
         eq_(self.get_webapp().status, amo.STATUS_NULL)
         eq_(AddonPremium.objects.all().count(), 0)
@@ -445,7 +435,7 @@ class TestPayments(amo.tests.TestCase):
         res = self.client.post(
             self.url, self.get_postdata({'price': self.price.pk,
                                          'allow_inapp': 'False',
-                                         'regions': self.price_regions}))
+                                         'regions': ALL_REGION_IDS}))
         self.assert3xx(res, self.url)
         eq_(self.get_webapp().status, amo.STATUS_NULL)
 
@@ -492,7 +482,7 @@ class TestPayments(amo.tests.TestCase):
         res = self.client.post(
             self.url, self.get_postdata({'price': 'free',
                                          'allow_inapp': 'True',
-                                         'regions': ALL_PAID_REGION_IDS,
+                                         'regions': ALL_REGION_IDS,
                                          'accounts': acct.pk}), follow=True)
         self.assertNoFormErrors(res)
         eq_(res.status_code, 200)
@@ -508,7 +498,7 @@ class TestPayments(amo.tests.TestCase):
         res = self.client.post(
             self.url, self.get_postdata({'price': self.price.pk,
                                          'accounts': acct.pk,
-                                         'regions': self.price_regions}),
+                                         'regions': ALL_REGION_IDS}),
                                          follow=True)
         eq_(api.bango.premium.post.call_count, 1)
         self.assertNoFormErrors(res)
@@ -549,7 +539,7 @@ class TestPayments(amo.tests.TestCase):
         res = self.client.post(
             self.url, self.get_postdata({'accounts': acct.pk,
                                          'price': self.price.pk,
-                                         'regions': self.price_regions}),
+                                         'regions': ALL_REGION_IDS}),
                                          follow=True)
         self.assertFormError(res, 'bango_account_list_form', 'accounts',
                              [u'You are not permitted to change payment '
@@ -573,7 +563,7 @@ class TestPayments(amo.tests.TestCase):
         res = self.client.post(
             self.url, self.get_postdata({'accounts': owner_acct.pk,
                                          'price': self.price.pk,
-                                         'regions': self.price_regions}),
+                                         'regions': ALL_REGION_IDS}),
                                          follow=True)
         assert (AddonPaymentAccount.objects
                                    .filter(addon=self.webapp).exists())
@@ -587,13 +577,12 @@ class TestPayments(amo.tests.TestCase):
         res = self.client.post(
             self.url, self.get_postdata({'accounts': admin_acct.pk,
                                          'price': self.price.pk,
-                                         'regions': self.price_regions}),
+                                         'regions': ALL_REGION_IDS}),
                                          follow=True)
 
         self.assertFormError(res, 'bango_account_list_form', 'accounts',
                              [u'You are not permitted to change payment '
                                'accounts.'])
-
 
     def test_one_owner_and_a_second_one_sees_selected_plus_own_accounts(self):
         self.make_premium(self.webapp, price=self.price.price)
@@ -604,7 +593,7 @@ class TestPayments(amo.tests.TestCase):
         res = self.client.post(
             self.url, self.get_postdata({'accounts': owner_acct.pk,
                                          'price': self.price.pk,
-                                         'regions': self.price_regions}),
+                                         'regions': ALL_REGION_IDS}),
                                          follow=True)
         assert (AddonPaymentAccount.objects
                                    .filter(addon=self.webapp).exists())
@@ -627,7 +616,7 @@ class TestPayments(amo.tests.TestCase):
         res = self.client.post(
             self.url, self.get_postdata({'accounts': owner_acct2.pk,
                                          'price': self.price.pk,
-                                         'regions': self.price_regions}),
+                                         'regions': ALL_REGION_IDS}),
                                          follow=True)
         eq_(res.status_code, 200)
         self.assertNoFormErrors(res)
@@ -646,7 +635,7 @@ class TestPayments(amo.tests.TestCase):
         res = self.client.post(
             self.url, self.get_postdata({'accounts': acct.pk,
                                          'price': self.price.pk,
-                                         'regions': self.price_regions}),
+                                         'regions': ALL_REGION_IDS}),
                                          follow=True)
         amo.set_user(self.other)
         # Make this user a dev so they have access to the payments page.
@@ -675,7 +664,7 @@ class TestPayments(amo.tests.TestCase):
         res = self.client.post(self.url,
                   self.get_postdata({'accounts': owner_acct.pk,
                                      'price': self.price.pk,
-                                     'regions': self.price_regions}),
+                                     'regions': ALL_REGION_IDS}),
                                      follow=True)
         self.assertNoFormErrors(res)
         # Login as admin.
@@ -692,6 +681,15 @@ class TestPayments(amo.tests.TestCase):
         eq_(len(pqr('#id_accounts[disabled]')), 1)
         # Currently associated account should be displayed separately.
         eq_(pqr('.current-account').text(), unicode(owner_acct))
+
+    def test_deleted_payment_accounts_switch_to_incomplete_apps(self):
+        self.make_premium(self.webapp, price=self.price.price)
+        self.login(self.user)
+        addon_account = setup_payment_account(self.webapp, self.user)
+        eq_(self.webapp.status, amo.STATUS_PUBLIC)
+        self.client.post(reverse('mkt.developers.bango.delete_payment_account',
+                                 args=[addon_account.payment_account.pk]))
+        eq_(self.webapp.reload().status, amo.STATUS_NULL)
 
     def setup_bango_portal(self):
         self.create_switch('bango-portal')
@@ -792,7 +790,7 @@ class TestRegions(amo.tests.TestCase):
         return Addon.objects.get(pk=337141)
 
     def get_dict(self, **kwargs):
-        extension = {'regions': mkt.regions.REGION_IDS,
+        extension = {'regions': mkt.regions.ALL_REGION_IDS,
                      'other_regions': 'on',
                      'free_platforms': ['free-%s' % dt.class_name for dt in
                                         self.webapp.device_types]}
@@ -803,7 +801,7 @@ class TestRegions(amo.tests.TestCase):
         return sorted(AER.objects.filter(addon=self.webapp)
                                  .values_list('region', flat=True))
 
-    def test_edit_other_categories_are_not_excluded(self):
+    def test_edit_all_regions_are_not_excluded(self):
         # Keep the category around for good measure.
         Category.objects.create(type=amo.ADDON_WEBAPP, slug='games')
 
@@ -819,7 +817,7 @@ class TestRegions(amo.tests.TestCase):
         self.assertNoFormErrors(r)
 
         td = pq(r.content)('#regions')
-        eq_(td.find('div[data-disabled]').attr('data-disabled'),
+        eq_(td.find('div[data-disabled-regions]').attr('data-disabled-regions'),
             '[%d]' % mkt.regions.BR.id)
         eq_(td.find('.note.disabled-regions').length, 1)
 
@@ -833,13 +831,13 @@ class TestRegions(amo.tests.TestCase):
 
         r = self.client.get(self.url)
         td = pq(r.content)('#regions')
-        eq_(td.find('div[data-disabled]').attr('data-disabled'), '[]')
+        eq_(td.find('div[data-disabled-regions]').attr('data-disabled-regions'), '[]')
         eq_(td.find('.note.disabled-regions').length, 0)
 
     def test_brazil_other_cats_form_enabled(self):
         r = self.client.get(self.url)
         td = pq(r.content)('#regions')
-        eq_(td.find('div[data-disabled]').attr('data-disabled'), '[]')
+        eq_(td.find('div[data-disabled-regions]').attr('data-disabled-regions'), '[]')
         eq_(td.find('.note.disabled-regions').length, 0)
 
 

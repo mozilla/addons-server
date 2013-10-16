@@ -8,6 +8,7 @@ h1 {
 
     a {
         color: $white;
+
         small {
             display: block;
             font-weight: bold;
@@ -46,20 +47,23 @@ h1 {
         }
     }
     .search-suggestions {
-        display: none;
-        position: absolute;
-        left: 203px;
-        top: 25px;
-        width: 508px;
         background: $white;
-        z-index: 5;
         border: 1px solid $border-lookup;
         border-radius: 0 0 5px 5px;
-        box-shadow: 0 2px 2px #ddd;
         border-top: 0;
+        box-shadow: 0 2px 2px #ddd;
+        display: none;
+        left: 203px;
+        max-height: 480px;
+        overflow: auto;
+        position: absolute;
+        top: 25px;
+        width: 508px;
+        z-index: 5;
 
         li {
             line-height: 20px;
+
             &:nth-child(2n) {
                 background-color: #eee;
             }
@@ -69,6 +73,11 @@ h1 {
                 a {
                     border-radius: 0 0 5px 5px;
                 }
+            }
+            &.max {
+                font-weight: bold;
+                padding: 9px 10px 10px;
+                text-align: center;
             }
             a {
                 display: block;
@@ -143,6 +152,7 @@ h1 {
             position: absolute;
             right: 10px;
             top: 27px;
+
             .checkmark.purchased {
                 color: $green;
             }
@@ -164,6 +174,7 @@ h1 {
 
             li {
                 padding: 5px;
+
                 &:first-child {
                     border-radius: 5px 5px 0 0;
                 }
@@ -234,6 +245,7 @@ h1 {
         border-top: 0;
         padding: 10px;
         word-wrap: break-word;
+
         &:first-child {
             border-top: 1px solid $light-gray;
             border-radius: 5px 5px 0 0;
@@ -399,4 +411,8 @@ dd {
             margin-left: 5px;
         }
     }
+}
+
+a:not([href]) {
+    cursor: pointer;
 }

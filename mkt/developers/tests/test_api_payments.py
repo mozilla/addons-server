@@ -210,13 +210,16 @@ class TestPaymentAccount(RestOAuth, AccountCase):
         res = self.client.post(self.payment_list, data=json.dumps(self.data()))
         eq_(res.status_code, 403)
 
-    @patch('mkt.developers.models.client')
-    def test_allowed(self, client):
+
+    def setup_mock(self, client):
         client.api.generic.product.get_object.return_value = {
             'resource_uri': 'foo'}
         client.api.bango.product.get_object.return_value = {
             'resource_uri': 'foo', 'bango_id': 'bar'}
 
+    @patch('mkt.developers.models.client')
+    def test_allowed(self, client):
+        self.setup_mock(client)
         self.create_price()
         self.create_user()
         res = self.client.post(self.payment_list, data=json.dumps(self.data()))
@@ -227,11 +230,7 @@ class TestPaymentAccount(RestOAuth, AccountCase):
 
     @patch('mkt.developers.models.client')
     def test_cant_change_addon(self, client):
-        client.api.generic.product.get_object.return_value = {
-            'resource_uri': 'foo'}
-        client.api.bango.product.get_object.return_value = {
-            'resource_uri': 'foo', 'bango_id': 'bar'}
-
+        self.setup_mock(client)
         app = app_factory(premium_type=amo.ADDON_PREMIUM)
         AddonUser.objects.create(addon=app, user=self.profile)
         self.create()

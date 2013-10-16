@@ -101,7 +101,7 @@ class TestLastUpdated(amo.tests.TestCase):
         eq_(AppSupport.objects.filter(addon=3723).count(), 0)
         cron.update_addon_appsupport()
         eq_(AppSupport.objects.filter(addon=3723,
-                                      app=amo.FIREFOX.id).count(), 1)
+                                      app=amo.FIREFOX.id).count(), 0)
 
     def test_appsupport_seamonkey(self):
         addon = Addon.objects.get(pk=15663)

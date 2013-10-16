@@ -225,23 +225,22 @@
           and process:
         {% endtrans -%}
       </p>
-      <div>
-        {%- trans %}
-          <strong>Note:</strong> Apps submitted to the Firefox OS Marketplace
-          are in 'Review Pending' state. They will be reviewed prior to the
-          consumer beta of the Firefox OS Marketplace (expected Q4 2012).
-        {% endtrans -%}
-      </div>
-      <ul>
-        <li>{{ _('Submissions') }}</li>
-        <li>{{ _('Review process') }}</li>
-      </ul>
       <p>
         {%- trans %}
           You can use the <strong>Manage Status</strong> page for your app
           to view its status in the review process, and to <strong>Disable
           App</strong> (hides it from users) or <strong>Delete App</strong>
           (removes it from the Firefox OS Marketplace).
+        {% endtrans -%}
+      </p>
+      <p>
+        {%- trans branding_url='https://assets.mozillalabs.com/Projects/Firefox%20Marketplace/Badges/' %}
+          After you have submitted your App and gotten it published, you
+          should start promoting it! We would recommend creating a
+          information and support page somewhere, to point people to for
+          more information. We have created some
+          <a href="{{ branding_url }}">button assets</a> that you can use
+          to promote your app and link through to the Marketplace.
         {% endtrans -%}
       </p>
     </article>

@@ -1,7 +1,9 @@
 import functools
+import hashlib
 import os
 
 from django import http
+from django.core.cache import cache
 from django.core.exceptions import PermissionDenied
 from django.db.models import Q
 from django.shortcuts import get_object_or_404, redirect
@@ -125,7 +127,14 @@ def collection_listing(request, base=None):
         return redirect(urlparams(reverse('collections.list'),
                                   sort='followers'), permanent=True)
     filter = get_filter(request, base)
-    collections = paginate(request, filter.qs)
+    # Counts are hard to cache automatically, and accuracy for this
+    # one is less important. Remember it for 5 minutes.
+    countkey = hashlib.md5(str(filter.qs.query) + '_count').hexdigest()
+    count = cache.get(countkey)
+    if count is None:
+        count = filter.qs.count()
+        cache.set(countkey, count, 300)
+    collections = paginate(request, filter.qs, count=count)
     return render(request, 'bandwagon/impala/collection_listing.html',
                   dict(collections=collections, src='co-hc-sidebar',
                        dl_src='co-dp-sidebar', filter=filter, sort=sort,

@@ -1,4 +1,3 @@
-from itertools import repeat
 import json
 import os
 import tempfile
@@ -24,6 +23,7 @@ from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
 from addons.models import (Addon, AddonCategory, AddonDeviceType, AddonUser,
                            Category)
+from comm.models import CommunicationNote
 from constants.applications import DEVICE_TYPES
 from devhub.models import ActivityLog
 from editors.models import RereviewQueue
@@ -418,29 +418,19 @@ class TestEditBasic(TestEdit):
         eq_(unicode(webapp.app_slug), data['slug'].lower())
         eq_(unicode(webapp.description), data['description'])
 
-    def get_l10n_urls(self):
-        return [self.webapp.get_dev_url(p) for p in ('edit', 'profile')]
-
     def test_l10n(self):
         self.webapp.update(default_locale='en-US')
-        for url in self.get_l10n_urls():
-            r = self.client.get(url)
-            eq_(pq(r.content)('#l10n-menu').attr('data-default'), 'en-us',
-                'l10n menu not visible for %s' % url)
+        url = self.webapp.get_dev_url('edit')
+        r = self.client.get(url)
+        eq_(pq(r.content)('#l10n-menu').attr('data-default'), 'en-us',
+            'l10n menu not visible for %s' % url)
 
     def test_l10n_not_us(self):
         self.webapp.update(default_locale='fr')
-        for url in self.get_l10n_urls():
-            r = self.client.get(url)
-            eq_(pq(r.content)('#l10n-menu').attr('data-default'), 'fr',
-                'l10n menu not visible for %s' % url)
-
-    def test_l10n_not_us_id_url(self):
-        self.webapp.update(default_locale='fr')
-        for url in self.get_l10n_urls():
-            r = self.client.get('/id' + url, follow=True)
-            eq_(pq(r.content)('#l10n-menu').attr('data-default'), 'fr',
-                'l10n menu not visible for %s' % url)
+        url = self.webapp.get_dev_url('edit')
+        r = self.client.get(url)
+        eq_(pq(r.content)('#l10n-menu').attr('data-default'), 'fr',
+            'l10n menu not visible for %s' % url)
 
     @mock.patch('mkt.developers.views._update_manifest')
     def test_refresh(self, fetch):
@@ -522,8 +512,7 @@ class TestEditCountryLanguage(TestEdit):
         eq_(langs, u'English (US) (default), Deutsch, Espa\xc3\xb1ol')
         self.assertSetEqual(
             sorted(clean_countries),
-            sorted([r.name.decode() for r in regions.ALL_REGIONS
-                    if r.slug is not 'worldwide']))
+            sorted([r.name.decode() for r in regions.ALL_REGIONS]))
 
 
 class TestEditMedia(TestEdit):
@@ -812,8 +801,7 @@ class TestEditMedia(TestEdit):
         # Create and post with the formset.
         fields = []
         for i in xrange(num):
-            fields.append(self.formset_new_form(caption='hi',
-                                                upload_hash=upload_hash,
+            fields.append(self.formset_new_form(upload_hash=upload_hash,
                                                 position=i))
         data_formset = self.formset_media(*fields)
 
@@ -859,18 +847,19 @@ class TestEditMedia(TestEdit):
     @mock.patch('lib.video.tasks.resize_video')
     @mock.patch('mimetypes.guess_type', lambda *a: ('video/webm', 'webm'))
     def test_edit_preview_video_add(self, resize_video):
+        eq_(self.get_webapp().previews.count(), 0)
         self.preview_video_add()
-        eq_(str(self.get_webapp().previews.all()[0].caption), 'hi')
+        eq_(self.get_webapp().previews.count(), 1)
 
     def test_edit_preview_add(self):
+        eq_(self.get_webapp().previews.count(), 0)
         self.preview_add()
-        eq_(str(self.get_webapp().previews.all()[0].caption), 'hi')
+        eq_(self.get_webapp().previews.count(), 1)
 
     def test_edit_preview_edit(self):
         self.preview_add()
         preview = self.get_webapp().previews.all()[0]
-        edited = {'caption': 'bye',
-                  'upload_hash': 'xxx',
+        edited = {'upload_hash': 'xxx',
                   'id': preview.id,
                   'position': preview.position,
                   'file_upload': None}
@@ -879,37 +868,35 @@ class TestEditMedia(TestEdit):
 
         self.client.post(self.edit_url, data_formset)
 
-        previews = self.get_webapp().previews
-        eq_(str(previews.all()[0].caption), 'bye')
-        eq_(previews.count(), 1)
+        eq_(self.get_webapp().previews.count(), 1)
 
     def test_edit_preview_reorder(self):
         self.preview_add(3)
 
-        previews = self.get_webapp().previews.all()
+        previews = list(self.get_webapp().previews.all())
 
         base = dict(upload_hash='xxx', file_upload=None)
 
         # Three preview forms were generated; mix them up here.
-        a = dict(caption='first', position=1, id=previews[2].id)
-        b = dict(caption='second', position=2, id=previews[0].id)
-        c = dict(caption='third', position=3, id=previews[1].id)
+        a = dict(position=1, id=previews[2].id)
+        b = dict(position=2, id=previews[0].id)
+        c = dict(position=3, id=previews[1].id)
         a.update(base)
         b.update(base)
         c.update(base)
 
         # Add them in backwards ("third", "second", "first")
         data_formset = self.formset_media({}, *(c, b, a), initial_count=3)
-        eq_(data_formset['files-0-caption'], 'third')
-        eq_(data_formset['files-1-caption'], 'second')
-        eq_(data_formset['files-2-caption'], 'first')
+        eq_(data_formset['files-0-id'], previews[1].id)
+        eq_(data_formset['files-1-id'], previews[0].id)
+        eq_(data_formset['files-2-id'], previews[2].id)
 
         self.client.post(self.edit_url, data_formset)
 
         # They should come out "first", "second", "third".
-        eq_(self.get_webapp().previews.all()[0].caption, 'first')
-        eq_(self.get_webapp().previews.all()[1].caption, 'second')
-        eq_(self.get_webapp().previews.all()[2].caption, 'third')
+        eq_(self.get_webapp().previews.all()[0].id, previews[2].id)
+        eq_(self.get_webapp().previews.all()[1].id, previews[0].id)
+        eq_(self.get_webapp().previews.all()[2].id, previews[1].id)
 
     def test_edit_preview_delete(self):
         self.preview_add()
@@ -1252,8 +1239,7 @@ class TestAdminSettings(TestAdmin):
         eq_(self.client.post(self.edit_url).status_code, 403)
 
     def post_contact(self, **kw):
-        data = {'caption': 'ball so hard that ish cray',
-                'position': '1',
+        data = {'position': '1',
                 'upload_hash': 'abcdef',
                 'mozilla_contact': 'a@mozilla.com'}
         data.update(kw)
@@ -1302,8 +1288,7 @@ class TestAdminSettings(TestAdmin):
         # TODO: Test AdminSettingsForm in test_forms.py.
         self.log_in_with('Apps:Configure')
 
-        data = {'caption': 'ball so hard that ish cray',
-                'position': '1',
+        data = {'position': '1',
                 'upload_hash': 'abcdef',
                 'app_ratings': '2'
                 }
@@ -1316,8 +1301,7 @@ class TestAdminSettings(TestAdmin):
     def test_ratings_edit_add_dupe(self):
         self.log_in_with('Apps:Configure')
 
-        data = {'caption': 'ball so hard that ish cray',
-                'position': '1',
+        data = {'position': '1',
                 'upload_hash': 'abcdef',
                 'app_ratings': ('1', '2')
                 }
@@ -1330,8 +1314,7 @@ class TestAdminSettings(TestAdmin):
         self.log_in_with('Apps:Configure')
         webapp = self.get_webapp()
         ContentRating.objects.create(addon=webapp, ratings_body=0, rating=2)
-        data = {'caption': 'ball so hard that ish cray',
-                'position': '1',
+        data = {'position': '1',
                 'upload_hash': 'abcdef',
                 'app_ratings': '3',
                 }
@@ -1366,8 +1349,7 @@ class TestPromoUpload(TestAdmin):
     fixtures = TestEdit.fixtures
 
     def post(self, **kw):
-        data = {'caption': 'ball so hard that ish cray',
-                'position': '1',
+        data = {'position': '1',
                 'upload_hash': 'abcdef'}
         data.update(kw)
         self.client.post(self.edit_url, data)
@@ -1381,7 +1363,6 @@ class TestPromoUpload(TestAdmin):
         eq_(list(webapp.get_previews()), [])
 
         promo = webapp.get_promo()
-        eq_(promo.caption, '__promo__')
         eq_(promo.position, -1)
 
     def test_delete(self):
@@ -1421,6 +1402,13 @@ class TestEditVersion(TestEdit):
         eq_(version.releasenotes, data['releasenotes_en-us'])
         eq_(version.approvalnotes, data['approvalnotes'])
         return version
+
+    def test_comm_thread(self):
+        self.create_switch('comm-dashboard')
+        self.test_post(approvalnotes='abc')
+        notes = CommunicationNote.objects.all()
+        eq_(notes.count(), 1)
+        eq_(notes[0].body, 'abc')
 
     def test_existing_features_initial_form_data(self):
         features = self.webapp.current_version.features

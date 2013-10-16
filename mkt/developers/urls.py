@@ -1,7 +1,7 @@
 from django import http
 from django.conf.urls import include, patterns, url
 
-from rest_framework.routers import SimpleRouter
+from rest_framework.routers import DefaultRouter, SimpleRouter
 from tastypie.api import Api
 
 from lib.misc.urlconf_decorator import decorate
@@ -61,6 +61,11 @@ app_detail_patterns = patterns('',
     url('^status$', views.status, name='mkt.developers.apps.versions'),
     url('^blocklist$', views.blocklist, name='mkt.developers.apps.blocklist'),
 
+    url('^status/preinstall/$', views.preinstall_home,
+        name='mkt.developers.apps.preinstall_home'),
+    url('^status/preinstall/submit/$', views.preinstall_submit,
+        name='mkt.developers.apps.preinstall_submit'),
+
     # TODO: '^versions/$'
     url('^versions/(?P<version_id>\d+)$', views.version_edit,
         name='mkt.developers.apps.versions.edit'),
@@ -68,7 +73,6 @@ app_detail_patterns = patterns('',
         name='mkt.developers.apps.versions.delete'),
     url('^versions/publicise$', views.version_publicise,
         name='mkt.developers.apps.versions.publicise'),
-
 
     url('^payments/$', views_payments.payments,
         name='mkt.developers.apps.payments'),
@@ -90,9 +94,6 @@ app_detail_patterns = patterns('',
     url('^upload_image$', views.upload_media, {'upload_type': 'image'},
         name='mkt.developers.apps.upload_image'),
 
-    url('^profile$', views.profile, name='mkt.developers.apps.profile'),
-    url('^profile/remove$', views.remove_profile,
-        name='mkt.developers.apps.profile.remove'),
     url('^rmlocale$', views.remove_locale,
         name='mkt.developers.apps.remove-locale'),
 
@@ -165,6 +166,7 @@ urlpatterns = decorate(write, patterns('',
     # Bango-specific stuff.
     url('^bango/', include(bango_patterns('bango'))),
 
+    url('^test/$', views.testing, name='mkt.developers.apps.testing'),
     url('^test/receipts/', include(test_patterns)),
 ))
 

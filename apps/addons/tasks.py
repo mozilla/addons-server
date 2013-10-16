@@ -52,8 +52,6 @@ def update_last_updated(addon_id):
         q = 'webapps'
     elif addon.status == amo.STATUS_PUBLIC:
         q = 'public'
-    elif addon.status == amo.STATUS_LISTED:
-        q = 'listed'
     else:
         q = 'exp'
     qs = queries[q].filter(pk=addon_id).using('default')

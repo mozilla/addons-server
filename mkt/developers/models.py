@@ -1,5 +1,7 @@
+import posixpath
 import uuid
 
+from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import models
 
@@ -121,7 +123,13 @@ class PaymentAccount(amo.models.ModelBase):
         account_refs = AddonPaymentAccount.objects.filter(account_uri=self.uri)
         for acc_ref in account_refs:
             if disable_refs:
+                log.info('Changing app status to NULL for app: {0}'
+                         'because of payment account deletion'.format(
+                             acc_ref.addon_id))
+
                 acc_ref.addon.update(status=amo.STATUS_NULL)
+            log.info('Deleting AddonPaymentAccount for app: {0} because of '
+                     'payment account deletion'.format(acc_ref.addon_id))
             acc_ref.delete()
 
     def update_account_details(self, **kwargs):
@@ -217,7 +225,7 @@ class AddonPaymentAccount(amo.models.ModelBase):
         # If the app is already premium this does nothing.
         if addon.premium_type != amo.ADDON_FREE_INAPP:
             cls._push_bango_premium(bango_number, product_uri,
-                                    float(addon.addonpremium.price.price))
+                                    addon.addonpremium.price.price)
 
         return product_uri
 
@@ -299,3 +307,19 @@ class UserInappKey(amo.models.ModelBase):
 
     class Meta:
         db_table = 'user_inapp_keys'
+
+
+class PreinstallTestPlan(amo.models.ModelBase):
+    addon = models.ForeignKey('addons.Addon')
+    last_submission = models.DateTimeField()
+    filename = models.CharField(max_length=60)
+
+    class Meta:
+        db_table = 'preinstall_test_plan'
+        ordering = ['-last_submission']
+
+    @property
+    def preinstall_test_plan_url(self):
+        host = (settings.PRIVATE_MIRROR_URL if self.addon.is_disabled
+                else settings.LOCAL_MIRROR_URL)
+        return posixpath.join(host, str(self.addon.id), self.filename)

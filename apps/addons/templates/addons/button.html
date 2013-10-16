@@ -13,12 +13,9 @@
   {% if compat %}
      data-min="{{ compat.min.version }}"
      data-max="{{ compat.max.version }}"
-     {% if waffle.switch('d2c-buttons') %}
-       data-waffle-d2c-buttons="true"
-       data-is-compatible="{{ version.is_compatible[0]|json }}"
-       data-is-compatible-app="{{ version.is_compatible_app(APP)|json }}"
-       data-compat-overrides="{{ version.compat_override_app_versions()|json }}"
-     {% endif %}
+     data-is-compatible="{{ version.is_compatible[0]|json }}"
+     data-is-compatible-app="{{ version.is_compatible_app(APP)|json }}"
+     data-compat-overrides="{{ version.compat_override_app_versions()|json }}"
      data-version="{{ version.version }}"
      data-compatible-apps="{{ version.compatible_apps[request.APP] }}"
      data-lastupdated-isotime="{{ version.created|isotime }}"
@@ -98,8 +95,6 @@
       This add-on has been preliminarily reviewed by Mozilla.
       <a href="{{ url }}">Learn more</a>
     {% endtrans %} </p>
-  {% elif addon.is_selfhosted() %}
-    <p class="warning">{{ _("This add-on is hosted on the developer's own website and has not been reviewed by Mozilla.") }}</p>
   {% endif %}
 {% endif %}
 </div> {# install-shell #}

@@ -19,7 +19,7 @@
         <img class="icon" src="{{ addon.icon_url }}">
         {{ addon.name }}
         {% set version = addon.current_version %}
-        {% if version and not addon.is_selfhosted() %}
+        {% if version %}
           <span class="version">{{ version.version }}</span>
         {% endif %}
       </h1>

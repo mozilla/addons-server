@@ -140,7 +140,6 @@ def product_as_dict(request, product, purchased=None, receipt_type=None,
                 'fullUrl': jinja2.escape(p.image_url),
                 'type': jinja2.escape(p.filetype),
                 'thumbUrl': jinja2.escape(p.thumbnail_url),
-                'caption': jinja2.escape(p.caption) if p.caption else ''
             }
             previews.append(preview)
         ret.update({'previews': previews})
@@ -299,9 +298,13 @@ def more_button(pager):
 @register.function
 @jinja2.contextfunction
 def dev_agreement(context):
-    langs = ['en-US', 'es', 'pl']
     lang = context['request'].LANG
-    if lang not in langs:
-        lang = 'en-US'
-    template = env.get_template('dev-agreement/%s.html' % lang)
+    if lang in settings.AMO_LANGUAGES:
+        try:
+            template = env.get_template('dev-agreement/%s.html' % lang)
+        except jinja2.TemplateNotFound:
+            pass
+        else:
+            return jinja2.Markup(template.render())
+    template = env.get_template('dev-agreement/en-US.html')
     return jinja2.Markup(template.render())

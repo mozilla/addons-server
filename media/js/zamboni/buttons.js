@@ -102,7 +102,6 @@ var installButton = function() {
         webapp = $this.hasattr('data-manifest-url'),
         compatible = $this.attr('data-is-compatible') == 'true',
         compatible_app = $this.attr('data-is-compatible-app') == 'true',
-        waffle_d2c_buttons = $this.hasattr('data-waffle-d2c-buttons'),
         has_overrides = $this.hasattr('data-compat-overrides'),
         versions_url = $this.attr('data-versions'),
         // L10n: {0} is an app name like Firefox.
@@ -150,7 +149,7 @@ var installButton = function() {
     }
 
     // Default to compatible checking.
-    if (waffle_d2c_buttons && is_d2c && compatible) {
+    if (is_d2c && compatible) {
         if (!compatible_app) {
             $d2c_reasons.append($('<li>', {text: gettext('Add-on has not been updated to support default-to-compatible.')}));
             compatible = false;
@@ -310,7 +309,7 @@ var installButton = function() {
         }
 
         if (appSupported && !compatible && (olderBrowser || newerBrowser)) {
-            if (waffle_d2c_buttons && is_d2c) {
+            if (is_d2c) {
                 // If it's a bad platform, don't bother also showing the
                 // incompatible reasons.
                 if (!badPlatform) {
@@ -389,23 +388,20 @@ var installButton = function() {
     };
 
     // What kind of button are we dealing with?
-    var selfhosted = $this.hasClass('selfhosted'),
-        beta = $this.hasClass('beta');
+    var beta = $this.hasClass('beta');
         unreviewed = $this.hasClass('unreviewed') && !beta,
         persona = $this.hasClass('persona'),
         contrib = $this.hasClass('contrib'),
         search = $this.hasattr('data-search'),
         eula = $this.hasClass('eula');
 
-    if (unreviewed && !(selfhosted || eula || contrib || beta || webapp)) {
+    if (unreviewed && !(eula || contrib || beta || webapp)) {
         $button.addPopup(message('unreviewed'));
     }
 
 
     // Drive the install button based on its type.
-    if (selfhosted) {
-        $button.addPopup(message('selfhosted'));
-    } else if (eula || contrib) {
+    if (eula || contrib) {
         versionsAndPlatforms({addPopup: false});
     } else if (premium) {
         premiumButton.call($this);

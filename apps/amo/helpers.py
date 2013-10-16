@@ -3,6 +3,7 @@ import json as jsonlib
 import random
 import re
 from operator import attrgetter
+from urlparse import urljoin
 
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
@@ -343,7 +344,7 @@ def absolutify(url, site=None):
     if url.startswith('http'):
         return url
     else:
-        return (site or settings.SITE_URL) + url
+        return urljoin(site or settings.SITE_URL, url)
 
 
 @register.filter
@@ -479,7 +480,7 @@ def media(context, url, key='MEDIA_URL'):
         build = context['BUILD_ID_CSS']
     else:
         build = context['BUILD_ID_IMG']
-    return context[key] + utils.urlparams(url, b=build)
+    return urljoin(context[key], utils.urlparams(url, b=build))
 
 
 @register.function

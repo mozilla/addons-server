@@ -318,8 +318,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                                           related_name='addons')
     premium_type = models.PositiveIntegerField(
         choices=amo.ADDON_PREMIUM_TYPES.items(), default=amo.ADDON_FREE)
-    manifest_url = models.URLField(max_length=255, blank=True, null=True,
-                                   verify_exists=False)
+    manifest_url = models.URLField(max_length=255, blank=True, null=True)
     app_domain = models.CharField(max_length=255, blank=True, null=True,
                                   db_index=True)
 
@@ -438,6 +437,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                 models.signals.pre_delete.send(sender=Addon, instance=self)
                 self.status = amo.STATUS_DELETED
                 self.slug = self.app_slug = self.app_domain = None
+                self._current_version = None
                 self.save()
                 models.signals.post_delete.send(sender=Addon, instance=self)
             else:
@@ -847,6 +847,8 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     @property
     def current_version(self):
         "Returns the current_version field or updates it if needed."
+        if not self.id or self.status == amo.STATUS_DELETED:
+            return None
         try:
             if not self._current_version:
                 self.update_version()
@@ -856,6 +858,8 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     @property
     def latest_version(self):
+        if not self.id or self.status == amo.STATUS_DELETED:
+            return None
         try:
             if not self._latest_version:
                 self.update_version()
@@ -1151,9 +1155,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     def is_deleted(self):
         return self.status == amo.STATUS_DELETED
 
-    def is_selfhosted(self):
-        return self.status == amo.STATUS_LISTED
-
     @property
     def is_under_review(self):
         return self.status in amo.STATUS_UNDER_REVIEW
@@ -1322,10 +1323,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                .values('id')
                .annotate(last_updated=Max('versions__files__created')))
 
-        listed = (Addon.objects.no_cache().filter(status=amo.STATUS_LISTED)
-                  .values('id')
-                  .annotate(last_updated=Max('versions__created')))
-
         personas = (Addon.objects.no_cache().filter(type=amo.ADDON_PERSONA)
                     .extra(select={'last_updated': 'created'}))
         webapps = (
@@ -1335,7 +1332,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                           .values('id')
                           .annotate(last_updated=Max('versions__created')))
 
-        return dict(public=public, exp=exp, listed=listed, personas=personas,
+        return dict(public=public, exp=exp, personas=personas,
                     lite=lite, webapps=webapps)
 
     @amo.cached_property(writable=True)
@@ -2207,7 +2204,7 @@ class AppSupport(amo.models.ModelBase):
 
 class Charity(amo.models.ModelBase):
     name = models.CharField(max_length=255)
-    url = models.URLField(verify_exists=False)
+    url = models.URLField()
     paypal = models.CharField(max_length=255)
 
     class Meta:

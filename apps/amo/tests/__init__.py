@@ -18,6 +18,7 @@ from django.http import SimpleCookie
 from django.test.client import Client
 from django.utils import translation
 
+import caching
 import elasticutils.contrib.django as elasticutils
 import mock
 import pyelasticsearch.exceptions as pyelasticsearch
@@ -32,6 +33,7 @@ from test_utils import RequestFactory
 from waffle import cache_sample, cache_switch
 from waffle.models import Flag, Sample, Switch
 
+from access.acl import check_ownership
 import addons.search
 import amo
 import amo.search
@@ -49,6 +51,7 @@ from lib.es.signals import process, reset
 from market.models import AddonPremium, Price, PriceCurrency
 from translations.models import Translation
 from versions.models import ApplicationsVersions, Version
+from users.models import RequestUser
 
 import mkt
 from mkt.constants import regions
@@ -275,6 +278,9 @@ class TestCase(MockEsMixin, RedisTest, test_utils.TestCase):
     def _pre_setup(self):
         super(TestCase, self)._pre_setup()
         cache.clear()
+        # Override django-cache-machine caching.base.TIMEOUT because it's
+        # computed too early, before settings_test.py is imported.
+        caching.base.TIMEOUT = settings.CACHE_COUNT_TIMEOUT
 
     @contextmanager
     def activate(self, locale=None, app=None):
@@ -726,9 +732,11 @@ def req_factory_factory(url, user=None, post=False, data=None):
     else:
         req = req.get(url, data or {})
     if user:
-        req.amo_user = user
+        req.amo_user = RequestUser.objects.get(id=user.id)
         req.user = user.user
         req.groups = req.user.get_profile().groups.all()
+    req.APP = None
+    req.check_ownership = partial(check_ownership, req)
     return req
 
 

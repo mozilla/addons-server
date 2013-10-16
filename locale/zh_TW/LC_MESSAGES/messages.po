@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-08-23 09:56-0700\n"
-"PO-Revision-Date: 2013-09-22 12:10+0000\n"
+"PO-Revision-Date: 2013-09-28 06:56+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1379851825.0\n"
+"X-POOTLE-MTIME: 1380351405.0\n"
 
 #: apps/addons/buttons.py:207
 msgid "Download Now"
@@ -4871,23 +4871,23 @@ msgstr "Creative Commons 姓名標示 3.0"
 
 #: apps/constants/licenses.py:29
 msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr "Creative Commons 姓名標示─非商業性 3.0"
+msgstr "Creative Commons 姓名標示-非商業性 3.0"
 
 #: apps/constants/licenses.py:36
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr "Creative Commons 姓名標示─非商業性─禁止改作 3.0"
+msgstr "Creative Commons 姓名標示-非商業性-禁止改作 3.0"
 
 #: apps/constants/licenses.py:43
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr "Creative Commons 姓名標示─非商業性─相同方式分享 3.0"
+msgstr "Creative Commons 姓名標示-非商業性-相同方式分享 3.0"
 
 #: apps/constants/licenses.py:50
 msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr "Creative Commons 姓名標示─禁止改作 3.0"
+msgstr "Creative Commons 姓名標示-禁止改作 3.0"
 
 #: apps/constants/licenses.py:57
 msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr "Creative Commons 姓名標示─相同方式分享 3.0"
+msgstr "Creative Commons 姓名標示-相同方式分享 3.0"
 
 #: apps/constants/payments.py:18
 msgid "Australian Dollar"
@@ -21028,7 +21028,7 @@ msgstr ""
 msgid ""
 "Several strategies and technologies can help ensure a good offline "
 "experience:"
-msgstr ""
+msgstr "有一些策略與技術可以幫助您確保有個好的離線使用體驗:"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:30
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:44
@@ -21042,7 +21042,7 @@ msgstr "檢查連線狀態"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:38
 msgid "Local storage"
-msgstr ""
+msgstr "本機儲存"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:46
 msgid ""
@@ -21053,11 +21053,11 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:55
 msgid "Using the application cache"
-msgstr ""
+msgstr "使用應用程式快取"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:60
 msgid "W3C specification for offline Web applications"
-msgstr ""
+msgstr "W3C 的離線網頁應用程式規範"
 
 #: mkt/ecosystem/templates/ecosystem/build_apps_offline.html:65
 msgid ""
@@ -21125,7 +21125,7 @@ msgstr "頁面檢測器"
 msgid ""
 "Select DOM elements in your app's web page for inspection or live "
 "modification of their styles, attributes, and structure."
-msgstr ""
+msgstr "在您的應用程式頁面選擇 DOM 元素進行檢測，或是及時修改樣式、屬性與結構。"
 
 #: mkt/ecosystem/templates/ecosystem/build_dev_tools.html:30
 msgid "Responsive Mode"

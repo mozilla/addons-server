@@ -10,8 +10,6 @@
         href="{{ media('css/zamboni/jquery-ui/custom-1.7.2.css') }}">
 {% endblock %}
 
-{% block paypal_js %}{% endblock %}
-
 {% block content %}
 <section id="stats">
   <header class="c">
@@ -19,26 +17,6 @@
       <h1 class="addon">
         {{ _('Apps Statistics Dashboard') }}
       </h1>
-
-      {# In-app dropdown selector #}
-      {% if inapps and check_contrib_stats_perms(addon) %}
-        <form class="product-select" method="get">
-          <select class="product">
-            <option value="{{ addon.get_stats_url(action=report) }}">{{ addon.name }}</option>
-            {% for inapp_name in inapps %}
-              <option
-                  {% if inapp_name == inapp %}
-                    selected="selected"
-                  {% endif %}
-                  value="{{ addon.get_stats_inapp_url(
-                         action=report, inapp=inapp_name) }}">
-                {{ inapp_name }}
-              </option>
-            {% endfor %}
-          </select>
-          <noscript><button type="submit">{{ _('Go') }}</button></noscript>
-        </form>
-      {% endif %}
     </hgroup>
 
     {% include 'devstats/includes/criteria.html' %}

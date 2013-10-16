@@ -109,6 +109,41 @@
       {% endif %}
     </div>
 
+    {% if waffle.switch('preinstall-apps') %}
+      <div id="preinstall" class="version island c">
+        <h2>{{ _('Pre-Installed App Status') }}</h2>
+        <a class="help" href="{{ addon.get_dev_url('preinstall_home') }}"></a>
+        <p>
+          {% if test_plan %}
+            {% trans last_submission=test_plan.last_submission|datetime %}
+              <strong class="submitted">Application Submitted</strong> on {{ last_submission }}
+            {% endtrans %}
+          {% else %}
+            <strong class="not-submitted">{{ _('Not Submitted') }}</strong>
+          {% endif %}
+
+          {% if outdated_test_plan %}
+            <span class="outdated">{{ _('New version of the test plan available') }}</span>
+          {% endif %}
+        </p>
+        {% if test_plan %}
+          <p><a class="test-plan-download" href="{{ test_plan.preinstall_test_plan_url }}" download>
+            {{ _('View your most recently submitted test plan') }}</a></p>
+        {% endif %}
+        <p class="listing-footer">
+          {% set next_url_suffix = '_home' %}
+          {% set btn_txt = _('Learn how to get your app pre-installed on FirefoxOS devices') %}
+          {% if test_plan %}
+            {% set next_url_suffix = '_submit' %}
+            {% set btn_txt = _('Update your test plan') %}
+          {% endif %}
+          <a class="button" href="{{ addon.get_dev_url('preinstall' + next_url_suffix) }}">
+            {{ btn_txt }}
+          </a>
+       </p>
+      </div>
+    {% endif %}
+
     {% if check_addon_ownership(request, addon, dev=True) %}
       {% set is_disabled = addon.disabled_by_user and addon.status != amo.STATUS_DISABLED %}
       <div class="island c">

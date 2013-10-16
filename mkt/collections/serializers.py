@@ -152,11 +152,41 @@ class CollectionSerializer(serializers.ModelSerializer):
         queryset=Category.objects.filter(type=amo.ADDON_WEBAPP))
 
     class Meta:
-        fields = ('apps', 'author', 'background_color', 'carrier', 'category',
-                  'collection_type', 'default_language', 'description', 'id',
-                  'image', 'is_public', 'name', 'region', 'slug',
-                  'text_color',)
+        fields = ('apps', 'author', 'background_color', 'can_be_hero',
+                  'carrier', 'category', 'collection_type', 'default_language',
+                  'description', 'id', 'image', 'is_public', 'name', 'region',
+                  'slug', 'text_color',)
         model = Collection
+
+    def to_native(self, obj):
+        """
+        Remove `can_be_hero` from the serialization if this is not an operator
+        shelf.
+        """
+        native = super(CollectionSerializer, self).to_native(obj)
+        if native['collection_type'] != COLLECTIONS_TYPE_OPERATOR:
+            del native['can_be_hero']
+        return native
+
+    def validate(self, attrs):
+        """
+        Prevent operator shelves from being associated with a category.
+        """
+        existing = getattr(self, 'object')
+        exc = 'Operator shelves may not be associated with a category.'
+
+        if (not existing and attrs['collection_type'] ==
+            COLLECTIONS_TYPE_OPERATOR and attrs.get('category')):
+            raise serializers.ValidationError(exc)
+
+        elif existing:
+            collection_type = attrs.get('collection_type',
+                                        existing.collection_type)
+            category = attrs.get('category', existing.category)
+            if collection_type == COLLECTIONS_TYPE_OPERATOR and category:
+                raise serializers.ValidationError(exc)
+
+        return attrs
 
     def full_clean(self, instance):
         instance = super(CollectionSerializer, self).full_clean(instance)

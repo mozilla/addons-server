@@ -42,7 +42,6 @@ def compatibility_report(index=None, aliased=True):
             for addon in Addon.objects.filter(id__in=chunk):
                 doc = docs[addon.id]
                 doc.update(id=addon.id, slug=addon.slug, guid=addon.guid,
-                           self_hosted=addon.is_selfhosted(),
                            binary=addon.binary_components,
                            name=unicode(addon.name), created=addon.created,
                            current_version=addon.current_version.version,

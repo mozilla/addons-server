@@ -112,8 +112,7 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
     display_collections = models.BooleanField(default=False)
     display_collections_fav = models.BooleanField(default=False)
     emailhidden = models.BooleanField(default=True)
-    homepage = models.URLField(max_length=255, blank=True, default='',
-                               verify_exists=False)
+    homepage = models.URLField(max_length=255, blank=True, default='')
     location = models.CharField(max_length=255, blank=True, default='')
     notes = models.TextField(blank=True, null=True)
     notifycompat = models.BooleanField(default=True)
@@ -597,7 +596,7 @@ class RequestUser(UserProfile):
         # Add UserProfile.cache_key so RequestUser gets invalidated when the
         # UserProfile is changed.
         keys = super(RequestUser, self)._cache_keys()
-        return keys + (UserProfile(id=self.id).cache_key,)
+        return keys + (UserProfile._cache_key(self.id, 'default'),)
 
 
 class BlacklistedUsername(amo.models.ModelBase):

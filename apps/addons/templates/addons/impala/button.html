@@ -65,12 +65,10 @@
       This add-on has been preliminarily reviewed by Mozilla.
       <a href="{{ url }}">Learn more</a>
     {% endtrans %} </p>
-  {% elif addon.is_selfhosted() %}
-    <p class="warning">{{ _("This add-on is hosted on the developer's own website and has not been reviewed by Mozilla.") }}</p>
   {% endif %}
 {% endif %}
 
-{% if waffle.switch('d2c-buttons') and version.is_compatible %}
+{% if version.is_compatible %}
   {% with reasons=version.is_compatible[1] %}
     <div class="d2c-reasons-popup popup">
       <p>{% trans app=APP.pretty %}

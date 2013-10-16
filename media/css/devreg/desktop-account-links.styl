@@ -20,6 +20,9 @@
         right: 0;
         visibility: hidden;
     }
+    &.reviewers ul {
+        width: 210px;
+    }
     li {
         position: relative;
 
@@ -67,8 +70,6 @@
         display: none;
     }
     &.active {
-        width: 210px;
-
         ul {
             opacity: 1;
             visibility: visible;
@@ -87,6 +88,9 @@
             &:before {
                 background-position: 0 -24px;
             }
+        }
+        &:not(.reviewers) {
+            width: 210px;
         }
     }
 }

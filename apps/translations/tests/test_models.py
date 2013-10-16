@@ -13,7 +13,7 @@ import jinja2
 import multidb
 from mock import patch
 from nose import SkipTest
-from nose.tools import eq_
+from nose.tools import eq_, ok_
 from test_utils import ExtraAppTestCase, trans_eq
 
 from testapp.models import TranslatedModel, UntranslatedModel, FancyModel
@@ -399,6 +399,46 @@ class TranslationTestCase(ExtraAppTestCase):
                 eq_(len(connections['default'].queries), 3)
                 eq_(len(connections['slave-1'].queries), 0)
                 eq_(len(connections['slave-2'].queries), 0)
+
+    def test_delete_set_null(self):
+        """
+        Test that deleting a translation sets the corresponding FK to NULL,
+        if it was the only translation for this field.
+        """
+        obj = TranslatedModel.objects.get(id=1)
+        trans_id = obj.description.id
+        eq_(Translation.objects.filter(id=trans_id).count(), 1)
+
+        obj.description.delete()
+
+        obj = TranslatedModel.objects.no_cache().get(id=1)
+        eq_(obj.description_id, None)
+        eq_(obj.description, None)
+        eq_(Translation.objects.no_cache().filter(id=trans_id).exists(), False)
+
+    @patch.object(TranslatedModel, 'get_fallback', create=True)
+    def test_delete_keep_other_translations(self, get_fallback):
+        # To make sure both translations for the name are used, set the
+        # fallback to the second locale, which is 'de'.
+        get_fallback.return_value = 'de'
+
+        obj = TranslatedModel.objects.get(id=1)
+
+        orig_name_id = obj.name.id
+        eq_(obj.name.locale.lower(), 'en-us')
+        eq_(Translation.objects.filter(id=orig_name_id).count(), 2)
+
+        obj.name.delete()
+
+        obj = TranslatedModel.objects.no_cache().get(id=1)
+        eq_(Translation.objects.no_cache().filter(id=orig_name_id).count(), 1)
+
+        # We shouldn't have set name_id to None.
+        eq_(obj.name_id, orig_name_id)
+
+        # We should find a Translation.
+        eq_(obj.name.id, orig_name_id)
+        eq_(obj.name.locale, 'de')
 
 
 def test_translation_bool():

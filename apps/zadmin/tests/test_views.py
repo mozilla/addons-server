@@ -307,19 +307,18 @@ class TestBulkValidation(BulkValidationTest):
     @mock.patch('zadmin.tasks.bulk_validate_file')
     def test_validate_all_non_disabled_addons(self, bulk_validate_file):
         target_ver = self.appversion('3.7a3').id
-        for status in (amo.STATUS_PUBLIC, amo.STATUS_LISTED):
-            bulk_validate_file.delay.called = False
-            self.addon.update(status=status)
-            r = self.client.post(reverse('zadmin.start_validation'),
-                                 {'application': amo.FIREFOX.id,
-                                  'curr_max_version': self.curr_max.id,
-                                  'target_version': target_ver,
-                                  'finish_email': 'fliggy@mozilla.com'},
-                                 follow=True)
-            self.assertNoFormErrors(r)
-            self.assertRedirects(r, reverse('zadmin.validation'))
-            assert bulk_validate_file.delay.called, (
-                        'Addon with status %s should be validated' % status)
+        bulk_validate_file.delay.called = False
+        self.addon.update(status=amo.STATUS_PUBLIC)
+        r = self.client.post(reverse('zadmin.start_validation'),
+                             {'application': amo.FIREFOX.id,
+                              'curr_max_version': self.curr_max.id,
+                              'target_version': target_ver,
+                              'finish_email': 'fliggy@mozilla.com'},
+                             follow=True)
+        self.assertNoFormErrors(r)
+        self.assertRedirects(r, reverse('zadmin.validation'))
+        assert bulk_validate_file.delay.called, (
+                    'Addon with status %s should be validated' % status)
 
     def test_grid(self):
         job = self.create_job()
@@ -1751,25 +1750,6 @@ class TestCompat(amo.tests.ESTestCase):
         tr = self.get_pq().find('tr[data-guid="%s"]' % addon.guid)
         eq_(tr.find('.overrides a').attr('href'),
             reverse('admin:addons_compatoverride_change', args=[compat.id]))
-
-    def test_self_hosted(self):
-        addon = self.populate(status=amo.STATUS_LISTED)
-        self.generate_reports(addon, good=2, bad=18, app=self.app,
-                              app_version=self.app_version)
-
-        tr = self.get_pq().find('tr[data-guid="%s"]' % addon.guid)
-        eq_(tr.length, 1)
-
-        eq_(tr.find('.maxver').text(), 'Self Hosted')
-
-        incompat = tr.find('.incompat')
-        eq_(incompat.find('.bad').text(), '18')
-        eq_(incompat.find('.total').text(), '20')
-        assert '90.0%' in incompat.text(), (
-            'Expected incompatibility to be "90.0%"')
-
-        eq_(tr.find('.version a').length, 0)
-        eq_(tr.find('form input[name=addon]').length, 0)
 
     def test_non_default_version(self):
         app_version = amo.COMPAT[2]['main']

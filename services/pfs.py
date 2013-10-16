@@ -111,8 +111,8 @@ def get_output(data):
                 iconUrl='http://fpdownload2.macromedia.com/pub/flashplayer/current/fp_win_installer.ico',
                 needsRestart='false',
                 InstallerShowsUI='true',
-                version='11.8.800.168',
-                InstallerHash='sha256:6a7a60ee429bfa677f29582c36561ccad227e80caf3e3cb0a7467b63f25cefd2',
+                version='11.9.900.117',
+                InstallerHash='sha256:d4a797511105a2bdf7492f0a06fad65f680cb41a36bde9d7954d0b10db5b1efb',
                 InstallerLocation='http://download.macromedia.com/pub/flashplayer/pdc/fp_pl_pfs_installer.exe')
 
     elif (g['mimetype'] == 'application/x-director' and
@@ -330,7 +330,7 @@ def format_date(secs):
 
 
 def get_headers(length):
-    return [('Content-Type', 'text/xml'),
+    return [('Content-Type', 'text/xml; charset=utf-8'),
             ('Cache-Control', 'public, max-age=3600'),
             ('Last-Modified', format_date(0)),
             ('Expires', format_date(3600)),
@@ -348,7 +348,7 @@ def application(environ, start_response):
     with statsd.timer('services.pfs'):
         data = dict(parse_qsl(environ['QUERY_STRING']))
         try:
-            output = get_output(data)
+            output = get_output(data).encode('utf-8')
             start_response(status, get_headers(len(output)))
         except:
             log_exception(data)

@@ -27,7 +27,7 @@ class Config(models.Model):
     def json(self):
         try:
             return json.loads(self.value)
-        except TypeError, ValueError:
+        except (TypeError, ValueError):
             return {}
 
 
@@ -291,8 +291,7 @@ class SiteEvent(models.Model):
                                              db_index=True, default=0)
     description = models.CharField(max_length=255, blank=True, null=True)
     # An outbound link to an explanatory blog post or bug.
-    more_info_url = models.URLField(max_length=255, blank=True, null=True,
-                                    verify_exists=False)
+    more_info_url = models.URLField(max_length=255, blank=True, null=True)
 
     class Meta:
         db_table = ('zadmin_siteevent' +

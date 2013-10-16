@@ -411,8 +411,7 @@ def get_satisfaction(url):
 
 
 class AddonFormSupport(AddonFormBase):
-    support_url = TransField.adapt(forms.URLField)(required=False,
-                                                   verify_exists=False)
+    support_url = TransField.adapt(forms.URLField)(required=False)
     support_email = TransField.adapt(forms.EmailField)(required=False)
 
     class Meta:
@@ -518,7 +517,7 @@ class ThemeForm(ThemeFormBase):
     category = forms.ModelChoiceField(queryset=Category.objects.all(),
                                       widget=forms.widgets.RadioSelect)
     description = forms.CharField(widget=forms.Textarea(attrs={'rows': 4}),
-                                  max_length=250, required=False)
+                                  max_length=500, required=False)
     tags = forms.CharField(required=False)
 
     license = forms.TypedChoiceField(choices=amo.PERSONA_LICENSES_CHOICES,
@@ -590,7 +589,7 @@ class EditThemeForm(AddonFormBase):
                                       widget=forms.widgets.RadioSelect)
     description = TransField(
         widget=TransTextarea(attrs={'rows': 4}),
-        max_length=250, required=False, label=_lazy('Describe your Theme.'))
+        max_length=500, required=False, label=_lazy('Describe your Theme.'))
     tags = forms.CharField(required=False)
     accentcolor = ColorField(required=False)
     textcolor = ColorField(required=False)

@@ -67,9 +67,9 @@ class CollectionFilterSet(FilterSet):
         valid = self.is_bound and self.form.is_valid()
 
         if self.strict and self.is_bound and not valid:
-            # FIXME: being able to return self.form.errors would greatly help
-            # debugging.
-            return self.queryset.none()
+            qs = self.queryset.none()
+            qs.filter_errors = self.form.errors
+            return qs
 
         # Start with all the results and filter from there.
         qs = self.queryset.all()
@@ -172,9 +172,12 @@ class CollectionFilterSetWithFallback(CollectionFilterSet):
             return self._qs
 
         qs = self.get_queryset()
-        if not qs.exists():
-            # FIXME: add current filter set to API-Filter in response. It
-            # should be possible to implement using <filtersetinstance>.data.
+
+        if hasattr(qs, 'filter_errors'):
+            # Immediately return if there was an error.
+            self._qs = qs
+            return self._qs
+        elif not qs.exists():
             try:
                 qs = self.refilter_queryset()
             except StopIteration:

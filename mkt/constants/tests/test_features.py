@@ -1,11 +1,20 @@
-from nose.tools import eq_, ok_
+import itertools
+from ordereddict import OrderedDict
 
 from django.conf import settings
 
+import mock
+from nose.tools import eq_, ok_
+
 import amo.tests
+
 from mkt.constants.features import APP_FEATURES, FeatureProfile
 
 
+APP_FEATURES = OrderedDict(itertools.islice(APP_FEATURES.iteritems(), 45))
+
+
+@mock.patch('mkt.constants.features.APP_FEATURES', APP_FEATURES)
 class TestFeatureProfile(amo.tests.TestCase):
 
     def setUp(self):

@@ -21,6 +21,7 @@ This documentation covers interacting with the `Firefox Marketplace`_.
    topics/apps.rst
    topics/comm.rst
    topics/export.rst
+   topics/features.rst
    topics/fireplace.rst
    topics/payment.rst
    topics/ratings.rst
@@ -30,6 +31,7 @@ This documentation covers interacting with the `Firefox Marketplace`_.
    topics/site.rst
    topics/stats.rst
    topics/submission.rst
+   topics/transactions.rst
 
 
 Quickstart

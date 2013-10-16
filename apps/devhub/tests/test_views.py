@@ -1666,7 +1666,7 @@ class TestSubmitStep4(TestSubmitBase):
         self.old_addon_icon_url = settings.ADDON_ICON_URL
         settings.ADDON_ICON_URL = (
             settings.STATIC_URL +
-            '/img/uploads/addon_icons/%s/%s-%s.png?modified=%s')
+            'img/uploads/addon_icons/%s/%s-%s.png?modified=%s')
         SubmitStep.objects.create(addon_id=3615, step=4)
         self.url = reverse('devhub.submit.4', args=['a3615'])
         self.next_step = reverse('devhub.submit.5', args=['a3615'])
@@ -2485,8 +2485,7 @@ class TestVersionAddFile(UploadTest):
         file.save()
 
         cases = [(amo.STATUS_UNREVIEWED, amo.STATUS_UNREVIEWED, True),
-                 (amo.STATUS_LISTED, amo.STATUS_UNREVIEWED, False),
-                 (amo.STATUS_LISTED, amo.STATUS_LISTED, False)]
+                 (amo.STATUS_NULL, amo.STATUS_UNREVIEWED, False)]
 
         for c in cases:
             version_files = self.addon.current_version.files.all()

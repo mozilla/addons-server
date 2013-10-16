@@ -148,3 +148,12 @@ class AccountTests(BaseOAuth):
         client.api.bango.package().get.return_value = {"full": payment_data}
         rget = self.client.get(list_url('account'))
         eq_(json.loads(rget.content)['objects'], [])
+
+        account = PaymentAccount.objects.get()
+        eq_(account.inactive, True)
+
+    def test_delete_others(self, client):
+        rdel = self.client.delete(get_url('account', self.account.pk))
+        eq_(rdel.status_code, 204)
+
+        eq_(self.app.reload().status, amo.STATUS_NULL)

@@ -45,10 +45,12 @@ class VersionSerializer(serializers.ModelSerializer):
 
 class VersionViewSet(mixins.RetrieveModelMixin, mixins.UpdateModelMixin,
                      viewsets.GenericViewSet):
-    queryset = Version.objects.exclude(addon__status=amo.STATUS_DELETED)
+    queryset = Version.objects.filter(
+        addon__type=amo.ADDON_WEBAPP).exclude(addon__status=amo.STATUS_DELETED)
     serializer_class = VersionSerializer
     authorization_classes = []
     permission_classes = []
+
 
     def update(self, request, *args, **kwargs):
         """

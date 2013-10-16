@@ -2,6 +2,8 @@ import datetime
 import logging
 
 from django import forms
+from django.conf import settings
+from django.forms import ValidationError
 
 import happyforms
 from tower import ugettext as _, ugettext_lazy as _lazy
@@ -34,6 +36,19 @@ for status in amo.WEBAPPS_UNLISTED_STATUSES + (amo.STATUS_PUBLIC,):
 class ReviewAppAttachmentForm(happyforms.Form):
     attachment = forms.FileField(label=_lazy(u'Attachment:'))
     description = forms.CharField(required=False, label=_lazy(u'Description:'))
+
+    max_upload_size = settings.MAX_REVIEW_ATTACHMENT_UPLOAD_SIZE
+
+    def clean(self, *args, **kwargs):
+        data = super(ReviewAppAttachmentForm, self).clean(*args, **kwargs)
+        attachment = data.get('attachment')
+        max_size = self.max_upload_size
+        if attachment and attachment.size > max_size:
+            # Translators: Error raised when review attachment is too large.
+            exc = _('Attachment exceeds maximum size of %dMB.' %
+                    (self.max_upload_size / 1024 / 1024))
+            raise ValidationError(exc)
+        return data
 
 
 AttachmentFormSet = forms.formsets.formset_factory(ReviewAppAttachmentForm,
@@ -267,16 +282,27 @@ class ApiReviewersSearchForm(ApiSearchForm):
                                label=_lazy(u'Status'))
     has_editor_comment = forms.NullBooleanField(
         required=False,
-        label=_lazy(u'Contains Editor Comment'),
+        label=_lazy(u'Has Editor Comment'),
         widget=CustomNullBooleanSelect)
     has_info_request = forms.NullBooleanField(
         required=False,
-        label=_lazy(u'More Information Requested'),
+        label=_lazy(u'More Info Requested'),
         widget=CustomNullBooleanSelect)
     is_escalated = forms.NullBooleanField(
         required=False,
         label=_lazy(u'Escalated'),
         widget=CustomNullBooleanSelect)
+
+    def __init__(self, *args, **kwargs):
+        super(ApiReviewersSearchForm, self).__init__(*args, **kwargs)
+
+        # Mobile form, to render, expects choices from the Django field.
+        BOOL_CHOICES = ((u'', _lazy('Unknown')),
+                        (u'true', _lazy('Yes')),
+                        (u'false', _lazy('No')))
+        for field_name, field in self.fields.iteritems():
+            if isinstance(field, forms.NullBooleanField):
+                self.fields[field_name].choices = BOOL_CHOICES
 
     def clean_status(self):
         status = self.cleaned_data['status']

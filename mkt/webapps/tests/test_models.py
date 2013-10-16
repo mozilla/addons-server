@@ -26,6 +26,7 @@ from addons.signals import version_changed as version_changed_signal
 from amo.helpers import absolutify
 from amo.tests import app_factory, version_factory
 from amo.urlresolvers import reverse
+from comm.utils import create_comm_thread
 from constants.applications import DEVICE_TYPES
 from editors.models import EscalationQueue, RereviewQueue
 from files.models import File
@@ -152,10 +153,16 @@ class TestWebapp(amo.tests.TestCase):
                                          'json'])
         eq_(url, '/app/woo/statistics/installs-day-20120101-20120201.json')
 
-    def test_get_inapp_stats_url(self):
-        webapp = Webapp.objects.create(app_slug='woo')
-        eq_(webapp.get_stats_inapp_url(action='revenue', inapp='duh'),
-            '/app/woo/statistics/inapp/duh/sales/')
+    def test_get_comm_thread_url(self):
+        self.create_switch('comm-dashboard')
+        webapp = app_factory()
+        eq_(webapp.get_comm_thread_url(), '/comm/')
+
+        thread, note = create_comm_thread(
+            addon=webapp, version=webapp.versions.get(), perms=[],
+            action='approve', comments='lol',
+            profile=UserProfile.objects.create(username='lol'))
+        eq_(webapp.get_comm_thread_url(), '/comm/thread/%s' % thread.id)
 
     def test_get_origin(self):
         url = 'http://www.xx.com:4000/randompath/manifest.webapp'
@@ -236,21 +243,6 @@ class TestWebapp(amo.tests.TestCase):
 
         webapp._premium.price = 0
         eq_(webapp.has_premium(), True)
-
-    def test_get_possible_prices_premium(self):
-        webapp = Webapp.objects.create(premium_type=amo.ADDON_PREMIUM)
-        price = Price.objects.get(pk=1)
-        AddonPremium.objects.create(addon=webapp, price=price)
-        ok_(len(webapp.get_possible_price_region_ids()) > 0)
-        ok_(isinstance(webapp.get_possible_price_region_ids(), list))
-
-    def test_get_possible_prices_premium_then_free_inapp(self):
-        webapp = Webapp.objects.create(premium_type=amo.ADDON_PREMIUM)
-        price = Price.objects.get(pk=1)
-        AddonPremium.objects.create(addon=webapp, price=price)
-        webapp.premium_type = amo.ADDON_FREE_INAPP
-        eq_(len(webapp.get_possible_price_region_ids()), 0)
-        ok_(isinstance(webapp.get_possible_price_region_ids(), list))
 
     def test_get_price_no_premium(self):
         webapp = Webapp(premium_type=amo.ADDON_PREMIUM)
@@ -554,6 +546,25 @@ class TestWebapp(amo.tests.TestCase):
         # Now test the regional trending is returned when adolescent=False.
         region.adolescent = False
         eq_(app.get_trending(region=region), 10.0)
+
+
+class DeletedAppTests(amo.tests.ESTestCase):
+
+    def test_soft_deleted_no_current_version(self):
+        waffle.models.Switch.objects.create(name='soft_delete', active=True)
+        webapp = amo.tests.app_factory()
+        webapp._current_version = None
+        webapp.save()
+        webapp.delete()
+        eq_(webapp.current_version, None)
+
+    def test_soft_deleted_no_latest_version(self):
+        waffle.models.Switch.objects.create(name='soft_delete', active=True)
+        webapp = amo.tests.app_factory()
+        webapp._latest_version = None
+        webapp.save()
+        webapp.delete()
+        eq_(webapp.latest_version, None)
 
 
 class TestExclusions(amo.tests.TestCase):

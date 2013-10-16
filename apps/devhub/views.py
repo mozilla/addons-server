@@ -338,6 +338,8 @@ def edit_theme(request, addon_id, addon, theme=False):
             form.save()
             messages.success(request, _('Changes successfully saved.'))
             return redirect('devhub.themes.edit', addon.reload().slug)
+        else:
+            messages.error(request, _('Please check the form for errors.'))
 
     return jingo.render(request, 'devhub/personas/edit.html', {
         'addon': addon,
@@ -1731,6 +1733,7 @@ def submit_theme(request):
         else:
             # Stored unsaved data in request.session since it gets lost on
             # second invalid POST.
+            messages.error(request, _('Please check the form for errors.'))
             request.session['unsaved_data'] = data['unsaved_data']
 
     return jingo.render(request, 'devhub/personas/submit.html',

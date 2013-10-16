@@ -8,7 +8,7 @@ from mkt.constants import regions
 # The origin URL for our Fireplace frontend, from which API requests come.
 FIREPLACE_URL = ''
 
-ALLOWED_HOSTS += ['.firefox.com']
+ALLOWED_HOSTS += ['.firefox.com', '.firefox.com.cn']
 # We'll soon need a `settings_test_mkt` to override this.
 APP_PREVIEW = True
 
@@ -65,7 +65,6 @@ INSTALLED_APPS += (
     'mkt.developers',
     'mkt.ecosystem',
     'mkt.files',
-    'mkt.inapp_pay',
     'mkt.lookup',
     'mkt.monolith',
     'mkt.purchase',
@@ -153,6 +152,11 @@ CELERY_ROUTES.update({
 ADDON_ICONS_DEFAULT_PATH = os.path.join(MEDIA_ROOT, 'img/hub')
 ADDON_ICONS_DEFAULT_URL = MEDIA_URL + '/img/hub'
 
+PREINSTALL_CONTACT_EMAIL = 'app-reviewers@mozilla.org'
+PREINSTALL_TEST_PLAN_URL = (
+    'http://people.mozilla.org/~kngo/preinstall_test_plan_template.pdf')
+PREINSTALL_TEST_PLAN_LATEST = datetime.datetime(2013, 9, 25)
+
 # Path to store webpay product icons.
 PRODUCT_ICON_PATH = NETAPP_STORAGE + '/product-icons'
 
@@ -164,38 +168,6 @@ PRODUCT_ICON_URL = MEDIA_URL + '/product-icons'
 # If you change this value, update the docs:
 # https://developer.mozilla.org/en-US/docs/Web/Apps/Publishing/In-app_payments
 PRODUCT_ICON_EXPIRY = 1
-
-# Directory path to where product images for in-app payments are stored.
-INAPP_IMAGE_PATH = NETAPP_STORAGE + '/inapp-image'
-
-# Base URL root to serve in-app product images from.
-INAPP_IMAGE_URL = INAPP_IMAGE_PATH
-
-# Tuple of (x, y) pixel sizes that an in-app product image should be
-# resized to for display on the payment screen.
-INAPP_IMAGE_SIZE = (150, 150)
-
-# JWT identifier for this marketplace.
-# This is used for in-app payments in two ways.
-# 1. app must send JWTs with aud (the audience) set to this exact value.
-# 2. apps will receive JWTs with iss (issuer) set to this value.
-INAPP_MARKET_ID = 'marketplace.mozilla.org'
-
-# If True, show verbose payment errors to developers.
-# Consider this insecure.
-INAPP_VERBOSE_ERRORS = False
-
-# When False, the developer can toggle HTTPS on/off.
-# This is useful for development and testing.
-INAPP_REQUIRE_HTTPS = True
-
-# Paths to key files for local AES encrypt/decrypt.
-# Each dict key is a YYYY-MM-DD timestamp that we use to find the latest key.
-INAPP_KEY_PATHS = {
-    # This is a scratch key for local development.
-    '2012-05-09': os.path.join(ROOT, 'mkt', 'inapp_pay', 'tests', 'resources',
-                               'inapp-sample-pay.key')
-}
 
 STATSD_RECORD_KEYS = [
     'window.performance.timing.domComplete',
@@ -238,7 +210,7 @@ SENTRY_DSN = None
 
 # A smaller range of languages for the Marketplace.
 AMO_LANGUAGES = (
-    'ca', 'cs', 'de', 'el', 'en-US', 'es', 'fr', 'hr', 'it', 'nl', 'pl',
+    'ca', 'cs', 'de', 'el', 'en-US', 'es', 'fr', 'hr', 'hu', 'it', 'nl', 'pl',
     'pt-BR', 'ro', 'ru', 'sr', 'sr-Latn', 'sk', 'tr',
 )
 LANGUAGES = lazy(lazy_langs, dict)(AMO_LANGUAGES)
@@ -249,9 +221,8 @@ LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in AMO_LANGUAGES])
 # This list also enables translation edits.
 HIDDEN_LANGUAGES = (
     # List of languages from AMO's settings (excluding mkt's active locales).
-    'af', 'ar', 'bg', 'da', 'eu', 'fa', 'fi', 'ga-IE', 'he', 'hu', 'id',
-    'ja', 'ko', 'mn', 'pt-PT', 'sl', 'sq', 'sv-SE', 'uk', 'vi', 'zh-CN',
-    'zh-TW',
+    'af', 'ar', 'bg', 'da', 'eu', 'fa', 'fi', 'ga-IE', 'he', 'id', 'ja', 'ko',
+    'mn', 'pt-PT', 'sl', 'sq', 'sv-SE', 'uk', 'vi', 'zh-CN', 'zh-TW',
     # The hidden list from AMO's settings:
     'cy',
 )

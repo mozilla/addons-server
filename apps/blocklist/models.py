@@ -38,7 +38,7 @@ class BlocklistDetail(amo.models.ModelBase):
     name = models.CharField(max_length=255)
     why = models.TextField()
     who = models.TextField()
-    bug = models.URLField(verify_exists=False)
+    bug = models.URLField()
 
     class Meta(amo.models.ModelBase.Meta):
         db_table = 'bldetails'

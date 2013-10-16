@@ -3,16 +3,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-30 15:53-0700\n"
-"PO-Revision-Date: 2013-05-04 22:03+0100\n"
-"Last-Translator: Vito Smolej <vito.smolej@gmail.com>\n"
+"POT-Creation-Date: 2013-08-23 09:56-0700\n"
+"PO-Revision-Date: 2013-10-02 13:59+0000\n"
+"Last-Translator: Matjaž <m@owca.info>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
-"X-Generator: Pootle 2.1.6\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
+"n%100==4 ? 2 : 3);\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1380722391.0\n"
 
 #: media/js/common-all.js:10109 media/js/common-min.js:23 media/js/impala-all.js:1159 media/js/impala-min.js:1 media/js/devreg/init.js:35 media/js/mkt/init.js:47
 #: media/js/zamboni/discovery-all.js:10076 media/js/zamboni/discovery-min.js:23 media/js/zamboni/init.js:32 media/js/zamboni/mobile-all.js:10912 media/js/zamboni/mobile-min.js:32
@@ -244,11 +246,11 @@ msgstr "Iščite po dodatkih za <b>{0}</b>"
 msgid "Category"
 msgstr "Kategorija"
 
-#: media/js/impala-all.js:2446 media/js/impala-min.js:1 media/js/zamboni/browserid_support.js:37 media/js/zamboni/mobile-all.js:12078 media/js/zamboni/mobile-min.js:32
+#: media/js/impala-all.js:2446 media/js/impala-min.js:1 media/js/zamboni/browserid_support.js:32 media/js/zamboni/mobile-all.js:12078 media/js/zamboni/mobile-min.js:32
 msgid "Admins and editors must provide a password to log in."
 msgstr "Administratorji in uredniki za prijavo potrebujejo geslo."
 
-#: media/js/impala-all.js:2451 media/js/impala-min.js:1 media/js/zamboni/browserid_support.js:42 media/js/zamboni/mobile-all.js:12083 media/js/zamboni/mobile-min.js:32
+#: media/js/impala-all.js:2451 media/js/impala-min.js:1 media/js/zamboni/browserid_support.js:37 media/js/zamboni/mobile-all.js:12083 media/js/zamboni/mobile-min.js:32
 msgid "BrowserID login failed. Maybe you don't have an account under that email address?"
 msgstr "Prijava z BrowserID ni uspela. Morda računa nimate pod tem email naslovom?"
 
@@ -429,11 +431,11 @@ msgstr "Posodabljanje rezultatov&hellip;"
 
 #: media/js/common/upload-image.js:102
 msgid "Videos must be in WebM."
-msgstr ""
+msgstr "Video posnetki morajo biti v WebM."
 
 #: media/js/common/upload-packaged-app.js:53
 msgid "Your packaged app should end with <code>.zip</code>."
-msgstr ""
+msgstr "Paket za vašo aplikacijo mora imeti končnico <code>.zip</code>."
 
 #: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:181 media/js/zamboni/devhub-all.js:1033 media/js/zamboni/devhub-min.js:1 media/js/zamboni/devhub.js:169
 msgid "Your app failed validation with {0} error."
@@ -505,7 +507,7 @@ msgstr "Obdelava sprememb v slikah."
 
 #: media/js/devreg/expandable.js:15
 msgid "more..."
-msgstr ""
+msgstr "več ..."
 
 #: media/js/devreg/expandable.js:18
 msgid "less..."
@@ -576,7 +578,7 @@ msgid "Iraqi Bank Code"
 msgstr ""
 
 #. L10n: {0} is the name of a bank detected from the bank account code.
-#: media/js/devreg/payments-enroll.js:135
+#: media/js/devreg/payments-enroll.js:160
 msgid "Detected: {0}"
 msgstr ""
 
@@ -1255,11 +1257,11 @@ msgstr "Flash Player</a>."
 msgid "Message must not be empty."
 msgstr "Sporočilo ne sme biti prazno."
 
-#: media/js/mkt/login.js:68
+#: media/js/mkt/login.js:62
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
 msgstr "Prijava pod Persono ni uspela. Morda računa nimate pod tem email naslovom?"
 
-#: media/js/mkt/login.js:73
+#: media/js/mkt/login.js:67
 msgid "Persona login failed. A server error was encountered."
 msgstr "Prijava pod Persono ni uspela. Prišlo je do napake na strežniku."
 

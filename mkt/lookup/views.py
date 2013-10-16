@@ -30,6 +30,7 @@ from mkt.constants.payments import (COMPLETED, FAILED, PENDING,
                                     REFUND_STATUSES)
 from mkt.account.utils import purchase_list
 from mkt.developers.views_payments import _redirect_to_bango_portal
+import mkt.lookup.constants as lkp
 from mkt.lookup.forms import (DeleteUserForm, TransactionRefundForm,
                               TransactionSearchForm)
 from mkt.lookup.tasks import (email_buyer_refund_approved,
@@ -47,7 +48,10 @@ log = commonware.log.getLogger('z.lookup')
 def home(request):
     tx_form = TransactionSearchForm()
 
-    return jingo.render(request, 'lookup/home.html', {'tx_form': tx_form})
+    return jingo.render(request, 'lookup/home.html', {
+        'lkp': lkp,
+        'tx_form': tx_form
+    })
 
 
 @login_required
@@ -92,6 +96,7 @@ def user_summary(request, user_id):
                          'app_summary': app_summary,
                          'delete_form': DeleteUserForm(),
                          'delete_log': delete_log,
+                         'lkp': lkp,
                          'is_admin': is_admin,
                          'refund_summary': refund_summary,
                          'user_addons': user_addons,
@@ -250,7 +255,7 @@ def transaction_refund(request, tx_uuid):
 @login_required
 @permission_required('AppLookup', 'View')
 def app_summary(request, addon_id):
-    app = get_object_or_404(Addon, pk=addon_id)
+    app = get_object_or_404(Addon.with_deleted, pk=addon_id)
     authors = (app.authors.filter(addonuser__role__in=(amo.AUTHOR_ROLE_DEV,
                                                        amo.AUTHOR_ROLE_OWNER))
                           .order_by('display_name'))
@@ -267,7 +272,6 @@ def app_summary(request, addon_id):
                          'authors': authors,
                          'downloads': _app_downloads(app),
                          'purchases': purchases,
-                         'payment_methods': _app_pay_methods(app),
                          'refunds': refunds,
                          'price': price})
 
@@ -283,6 +287,7 @@ def user_purchases(request, user_id):
                         {'pager': products,
                          'account': user,
                          'is_admin': is_admin,
+                         'lkp': lkp,
                          'listing_filter': listing,
                          'contributions': contributions,
                          'single': bool(None),
@@ -308,6 +313,7 @@ def user_activity(request, user_id):
                          'account': user,
                          'is_admin': is_admin,
                          'listing_filter': listing,
+                         'lkp': lkp,
                          'collections': collections,
                          'contributions': contributions,
                          'single': bool(None),
@@ -337,14 +343,20 @@ def _expand_query(q, fields):
 def user_search(request):
     results = []
     q = request.GET.get('q', u'').lower().strip()
+    all_results = request.GET.get('all_results') or False
     fields = ('username', 'display_name', 'email')
+
     if q.isnumeric():
         # id is added implictly by the ES filter. Add it explicitly:
         fields = ['id'] + list(fields)
         qs = UserProfile.objects.filter(pk=q).values(*fields)
     else:
         qs = (UserProfile.search().query(or_=_expand_query(q, fields))
-                                  .values_dict(*fields))[:20]
+                                  .values_dict(*fields))
+        if all_results:
+            qs = qs[:lkp.MAX_RESULTS]
+        else:
+            qs = qs[:lkp.SEARCH_LIMIT]
     for user in qs:
         user['url'] = reverse('lookup.user_summary', args=[user['id']])
         user['name'] = user['username']
@@ -434,23 +446,16 @@ def _app_summary(user_id):
             sum(case when type=%(purchase)s then 1 else 0 end)
                 as app_total,
             sum(case when type=%(purchase)s then amount else 0.0 end)
-                as app_amount,
-            sum(case when type=%(inapp)s then 1 else 0 end)
-                as inapp_total,
-            sum(case when type=%(inapp)s then amount else 0.0 end)
-                as inapp_amount
+                as app_amount
         from stats_contributions
         where user_id=%(user_id)s
         group by currency
     """
     cursor = connection.cursor()
     cursor.execute(sql, {'user_id': user_id,
-                         'purchase': amo.CONTRIB_PURCHASE,
-                         'inapp': amo.CONTRIB_INAPP})
+                         'purchase': amo.CONTRIB_PURCHASE})
     summary = {'app_total': 0,
-               'app_amount': {},
-               'inapp_total': 0,
-               'inapp_amount': {}}
+               'app_amount': {}}
     cols = [cd[0] for cd in cursor.description]
     while 1:
         row = cursor.fetchone()
@@ -474,8 +479,7 @@ def _app_purchases_and_refunds(addon):
                            .filter(addon=addon)
                            .exclude(type__in=[amo.CONTRIB_REFUND,
                                               amo.CONTRIB_CHARGEBACK,
-                                              amo.CONTRIB_PENDING,
-                                              amo.CONTRIB_INAPP_PENDING]))
+                                              amo.CONTRIB_PENDING]))
     for typ, start_date in (('last_24_hours', now - timedelta(hours=24)),
                             ('last_7_days', now - timedelta(days=7)),
                             ('alltime', None),):
@@ -503,30 +507,3 @@ def _app_purchases_and_refunds(addon):
     refunds['rejected'] = qs.filter(rejected_q).count()
 
     return purchases, refunds
-
-
-def _app_pay_methods(addon):
-    """
-    Get a breakdown of payment methods used in commerce for this add-on.
-
-    Currently we only support one payment method, PayPal, so consider this
-    a placeholder for when we support more, which requires a model change.
-    """
-    qs = Contribution.objects.filter(addon=addon,
-                                     type__in=(amo.CONTRIB_PURCHASE,
-                                               amo.CONTRIB_INAPP))
-    # TODO(Kumar) adjust this when our db model supports multiple
-    # payment methods.
-    other = qs.filter(paykey=None).count()
-    paypal = qs.exclude(paykey=None).count()
-    amt_per_method = [(other, _('Other')),
-                      (paypal, 'PayPal')]
-    total = float(sum(amt for amt, typ in amt_per_method))
-    summary = []
-    for amt, typ in amt_per_method:
-        if amt == 0:
-            continue
-        percent = '%.1f%%' % (amt / total * 100.0)
-        # L10n: first argument is a percentage, second is a payment method.
-        summary.append(_(u'{0} of purchases via {1}').format(percent, typ))
-    return summary

@@ -1,9 +1,14 @@
+import datetime
 import mock
 from nose.tools import eq_
+import os
 from pyquery import PyQuery as pq
+
+from django.conf import settings
 
 import amo
 import amo.tests
+from amo.tests import req_factory_factory
 from addons.models import Addon, AddonUser
 from comm.models import CommunicationNote
 from devhub.models import ActivityLog, AppLog
@@ -12,6 +17,8 @@ from files.models import File
 from users.models import UserProfile
 from versions.models import Version
 
+from mkt.developers.models import PreinstallTestPlan
+from mkt.developers.views import preinstall_submit, status
 from mkt.site.fixtures import fixture
 from mkt.submit.tests.test_views import BasePackagedAppTest
 
@@ -241,46 +248,6 @@ class TestAddVersion(BasePackagedAppTest):
         eq_(self.app.status, amo.STATUS_PENDING)
 
 
-class TestEditVersion(amo.tests.TestCase):
-    """
-    TODO: Clean this up. We already have tests elsewhere:
-    https://github.com/mozilla/zamboni/blob/a0ed5e3/mkt/developers/
-    tests/test_views_edit.py#L1379
-    """
-    fixtures = fixture('user_999')
-
-    def setUp(self):
-        self.app = amo.tests.app_factory(is_packaged=True,
-                                         version_kw=dict(version='1.0'))
-        version = self.app.current_version
-        self.url = self.app.get_dev_url('versions.edit', [version.pk])
-        self.user = UserProfile.objects.get(username='regularuser')
-        AddonUser.objects.create(user=self.user, addon=self.app)
-        self.client.login(username='regular@mozilla.com',
-                          password='password')
-        eq_(self.client.get(self.url).status_code, 200)
-
-    def test_post(self):
-        rn = u'Release Notes'
-        an = u'Approval Notes'
-        res = self.client.post(self.url, {'releasenotes': rn,
-                                          'approvalnotes': an})
-        self.assert3xx(res, self.app.get_dev_url('versions'))
-        ver = self.app.versions.latest()
-        eq_(ver.releasenotes, rn)
-        eq_(ver.approvalnotes, an)
-
-    def test_comm_thread(self):
-        rn = u'Release Notes'
-        an = u'Approval Notes'
-        self.create_switch('comm-dashboard')
-        self.client.post(self.url, {'releasenotes': rn,
-                                    'approvalnotes': an})
-        notes = CommunicationNote.objects.all()
-        eq_(notes.count(), 1)
-        eq_(notes[0].body, an)
-
-
 class TestVersionPackaged(amo.tests.WebappTestCase):
     fixtures = fixture('user_999', 'webapp_337141')
 
@@ -415,3 +382,148 @@ class TestVersionPackaged(amo.tests.WebappTestCase):
         eq_(app.versions.count(), v_count + 1)
         eq_(app.status, amo.STATUS_BLOCKED)
         eq_(app.versions.latest().files.latest().status, amo.STATUS_BLOCKED)
+
+
+class TestPreinstallSubmit(amo.tests.TestCase):
+    fixtures = fixture('group_admin', 'user_admin', 'user_admin_group',
+                       'webapp_337141')
+
+    def setUp(self):
+        self.create_switch('preinstall-apps')
+        self.user = UserProfile.objects.get(username='admin')
+        self.login(self.user)
+
+        self.webapp = Addon.objects.get(id=337141)
+        self.url = self.webapp.get_dev_url('versions')
+        self.home_url = self.webapp.get_dev_url('preinstall_home')
+        self.submit_url = self.webapp.get_dev_url('preinstall_submit')
+
+        path = os.path.dirname(os.path.abspath(__file__))
+        self.test_pdf = path + '/files/test.pdf'
+        self.test_xls = path + '/files/test.xls'
+
+    def _submit_pdf(self):
+        f = open(self.test_pdf, 'r')
+        req = req_factory_factory(self.submit_url, user=self.user, post=True,
+                                  data={'agree': True, 'test_plan': f})
+        return preinstall_submit(req, self.webapp.slug)
+
+    def test_get_200(self):
+        eq_(self.client.get(self.home_url).status_code, 200)
+        eq_(self.client.get(self.submit_url).status_code, 200)
+
+    @mock.patch('mkt.developers.views.save_test_plan')
+    @mock.patch('mkt.developers.views.messages')
+    def test_preinstall_on_status_page(self, noop1, noop2):
+        req = req_factory_factory(self.url, user=self.user)
+        r = status(req, self.webapp.slug)
+        doc = pq(r.content)
+        eq_(doc('#preinstall .listing-footer a').attr('href'),
+            self.webapp.get_dev_url('preinstall_home'))
+        assert doc('#preinstall .not-submitted')
+
+        self._submit_pdf()
+
+        req = req_factory_factory(self.url, user=self.user)
+        r = status(req, self.webapp.slug)
+        doc = pq(r.content)
+        eq_(doc('#preinstall .listing-footer a').attr('href'),
+            self.webapp.get_dev_url('preinstall_submit'))
+        assert doc('#preinstall .submitted')
+
+    def _assert_submit(self, endswith, content_type, save_mock):
+        test_plan = PreinstallTestPlan.objects.get()
+        eq_(test_plan.addon, self.webapp)
+        assert test_plan.filename.startswith('test_plan_')
+        assert test_plan.filename.endswith(endswith)
+        self.assertCloseToNow(test_plan.last_submission)
+
+        eq_(save_mock.call_args[0][0].content_type, content_type)
+        assert save_mock.call_args[0][1].startswith('test_plan')
+        eq_(save_mock.call_args[0][2], self.webapp)
+
+    @mock.patch('mkt.developers.views.save_test_plan')
+    @mock.patch('mkt.developers.views.messages')
+    def test_submit_pdf(self, noop, save_mock):
+        r = self._submit_pdf()
+        self.assert3xx(r, self.url)
+        self._assert_submit('pdf', 'application/pdf', save_mock)
+
+    @mock.patch('mkt.developers.views.save_test_plan')
+    @mock.patch('mkt.developers.views.messages')
+    def test_submit_xls(self, noop, save_mock):
+        f = open(self.test_xls, 'r')
+        req = req_factory_factory(self.submit_url, user=self.user, post=True,
+                                  data={'agree': True, 'test_plan': f})
+        r = preinstall_submit(req, self.webapp.slug)
+        self.assert3xx(r, self.url)
+        self._assert_submit('xls', 'application/vnd.ms-excel', save_mock)
+
+    @mock.patch('mkt.developers.views.save_test_plan')
+    @mock.patch('mkt.developers.views.messages')
+    def test_submit_bad_file(self, noop, save_mock):
+        f = open(os.path.abspath(__file__), 'r')
+        req = req_factory_factory(self.submit_url, user=self.user, post=True,
+                                  data={'agree': True, 'test_plan': f})
+        r = preinstall_submit(req, self.webapp.slug)
+        eq_(r.status_code, 200)
+        eq_(PreinstallTestPlan.objects.count(), 0)
+        assert not save_mock.called
+
+        assert ('Invalid file type.' in
+                pq(r.content)('.test_plan .errorlist').text())
+
+    @mock.patch('mkt.developers.views.save_test_plan')
+    @mock.patch('mkt.developers.views.messages')
+    def test_submit_no_file(self, noop, save_mock):
+        req = req_factory_factory(self.submit_url, user=self.user, post=True,
+                                  data={'agree': True})
+        r = preinstall_submit(req, self.webapp.slug)
+        eq_(r.status_code, 200)
+        eq_(PreinstallTestPlan.objects.count(), 0)
+        assert not save_mock.called
+
+        assert 'required' in pq(r.content)('.test_plan .errorlist').text()
+
+    @mock.patch('mkt.developers.views.save_test_plan')
+    @mock.patch('mkt.developers.views.messages')
+    def test_submit_no_agree(self, noop, save_mock):
+        f = open(self.test_xls, 'r')
+        req = req_factory_factory(self.submit_url, user=self.user, post=True,
+                                  data={'test_plan': f})
+        r = preinstall_submit(req, self.webapp.slug)
+        eq_(r.status_code, 200)
+        eq_(PreinstallTestPlan.objects.count(), 0)
+        assert not save_mock.called
+
+        assert 'required' in pq(r.content)('.agree .errorlist').text()
+
+    @mock.patch('mkt.developers.views.save_test_plan')
+    @mock.patch('mkt.developers.views.messages')
+    def test_multiple(self, noop, save_mock):
+        PreinstallTestPlan.objects.create(
+            addon=self.webapp, filename='food.pdf',
+            last_submission=self.days_ago(10))
+        recent_plan = PreinstallTestPlan.objects.create(
+            addon=self.webapp, filename='liquor.xls',
+            last_submission=self.days_ago(5))
+        eq_(PreinstallTestPlan.objects.filter(addon=self.webapp).count(), 2)
+
+        req = req_factory_factory(self.url, user=self.user)
+        r = status(req, self.webapp.slug)
+        doc = pq(r.content)
+
+        eq_(doc('.test-plan-download').attr('href'),
+            recent_plan.preinstall_test_plan_url)
+
+    @mock.patch.object(settings, 'PREINSTALL_TEST_PLAN_LATEST',
+                       datetime.datetime.now() + datetime.timedelta(days=1))
+    @mock.patch('mkt.developers.views.save_test_plan')
+    @mock.patch('mkt.developers.views.messages')
+    def test_outdated(self, noop, save_mock):
+        self._submit_pdf()
+
+        req = req_factory_factory(self.url, user=self.user)
+        r = status(req, self.webapp.slug)
+        doc = pq(r.content)
+        assert doc('.outdated')

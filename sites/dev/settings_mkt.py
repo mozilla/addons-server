@@ -43,8 +43,6 @@ ADDON_ICONS_DEFAULT_URL = MEDIA_URL + 'img/hub'
 ADDON_ICON_BASE_URL = MEDIA_URL + 'img/icons/'
 
 PRODUCT_ICON_URL = STATIC_URL + 'product-icons'
-INAPP_IMAGE_URL = STATIC_URL + 'inapp-image'
-
 
 CACHE_PREFIX = 'dev.mkt.%s' % CACHE_PREFIX
 CACHE_MIDDLEWARE_KEY_PREFIX = CACHE_PREFIX
@@ -93,19 +91,11 @@ APP_PREVIEW = True
 
 WEBAPPS_UNIQUE_BY_DOMAIN = False
 
-#Bug 744268
-INAPP_VERBOSE_ERRORS = True
-
-INAPP_REQUIRE_HTTPS = False
-
 SENTRY_DSN = private_mkt.SENTRY_DSN
 
 WEBAPPS_PUBLIC_KEY_DIRECTORY = NETAPP_STORAGE + '/public_keys'
-INAPP_IMAGE_PATH = NETAPP_STORAGE + '/inapp-image'
 PRODUCT_ICON_PATH = NETAPP_STORAGE + '/product-icons'
 DUMPED_APPS_PATH = NETAPP_STORAGE + '/dumped-apps'
-
-INAPP_KEY_PATHS = private_mkt.INAPP_KEY_PATHS
 
 SOLITUDE_HOSTS = ('https://payments-dev.allizom.org',)
 SOLITUDE_OAUTH = {'key': private_mkt.SOLITUDE_OAUTH_KEY,
@@ -119,16 +109,17 @@ VALIDATOR_IAF_URLS = ['https://marketplace.firefox.com',
 
 # Override the limited marketplace ones with these ones from AMO. Because
 # the base gets overridden in the mkt.settings file, we'll set them back again.
+# Note the addition of dbg here.
 AMO_LANGUAGES = (
     'af', 'ar', 'bg', 'ca', 'cs', 'da', 'de', 'el', 'en-US', 'es', 'eu', 'fa',
     'fi', 'fr', 'ga-IE', 'he', 'hu', 'id', 'it', 'ja', 'ko', 'mn', 'nl', 'pl',
-    'pt-BR', 'pt-PT', 'ro', 'ru', 'sk', 'sl', 'sq', 'sv-SE', 'uk', 'vi',
-    'zh-CN', 'zh-TW', 'dbg'  # Note the addition of dbg there.
+    'pt-BR', 'pt-PT', 'ro', 'ru', 'sk', 'sl', 'sq', 'sr', 'sr-Latn', 'sv-SE',
+    'tr', 'uk', 'vi', 'zh-CN', 'zh-TW', 'dbg'
 )
 LANGUAGES = lazy(lazy_langs, dict)(AMO_LANGUAGES)
 LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in AMO_LANGUAGES])
 HIDDEN_LANGUAGES = (
-    'cy', 'sr', 'sr-Latn', 'tr',
+    'cy',
 )
 
 BLUEVIA_SECRET = private_mkt.BLUEVIA_SECRET

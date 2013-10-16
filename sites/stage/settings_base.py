@@ -44,7 +44,7 @@ SLAVE_DATABASES = ['slave']
 
 CACHES = {
     'default': {
-        'BACKEND': 'caching.backends.memcached.CacheClass',
+        'BACKEND': 'caching.backends.memcached.MemcachedCache',
 #        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
 #        'BACKEND': 'memcachepool.cache.UMemcacheCache',
         'LOCATION': splitstrip(private.CACHES_DEFAULT_LOCATION),

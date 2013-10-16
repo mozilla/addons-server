@@ -186,3 +186,10 @@ class TestUpdateTrending(amo.tests.TestCase):
         # 1st week count: 49 + 50 = 99
         # 99 is less than 100 so we return 0.0.
         eq_(_get_trending(self.app.id), 0.0)
+
+    @mock.patch('mkt.webapps.cron.get_monolith_client')
+    def test_get_trending_monolith_error(self, _mock):
+        client = mock.Mock()
+        client.side_effect = ValueError
+        _mock.return_value = client
+        eq_(_get_trending(self.app.id), 0.0)

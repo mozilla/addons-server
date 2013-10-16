@@ -17,6 +17,7 @@
         time {
             color: $note-gray;
             font-weight: normal;
+
             &:after {
                 content: ":";
             }
@@ -141,5 +142,60 @@
     }
     .date {
         white-space: nowrap;
+    }
+}
+
+#preinstall {
+    &.version {
+        h2 {
+            display: inline;
+        }
+        .help {
+            background: $light-gray;
+            border-radius: 10px;
+            bottom: 5px;
+            display: inline-block;
+            height: 18px;
+            left: 5px;
+            position: relative;
+            width: 18px;
+
+            &:after {
+                content: "?";
+                left: 6px;
+                position: relative;
+                top: 2px;
+            }
+            &:hover {
+                background: $dark-gray;
+            }
+        }
+    }
+    .outdated {
+        font-style: italic;
+        margin-left: 8px;
+    }
+
+    // Submit form.
+    .agree {
+        float: left;
+    }
+    label[for=id_agree] {
+        margin-right: 10px;
+    }
+    label[for=id_test_plan] {
+        clear: right;
+        display: block;
+        float: right;
+        margin: 5px 2px 0;
+
+        + .errorlist {
+            clear: right;
+            float: right;
+        }
+    }
+    input[name=test_plan] {
+        float: right;
+        display: block;
     }
 }

@@ -948,20 +948,20 @@ PREVIEW_FULL_PATH = PREVIEWS_PATH + '/full/%s/%d.%s'
 
 # URL paths
 # paths for images, e.g. mozcdn.com/amo or '/static'
-STATIC_URL = SITE_URL
+STATIC_URL = SITE_URL + '/'
 ADDON_ICONS_DEFAULT_URL = MEDIA_URL + '/img/addon-icons'
 ADDON_ICON_BASE_URL = MEDIA_URL + 'img/icons/'
 ADDON_ICON_URL = (STATIC_URL +
-        '/img/uploads/addon_icons/%s/%s-%s.png?modified=%s')
+                  'img/uploads/addon_icons/%s/%s-%s.png?modified=%s')
 PREVIEW_THUMBNAIL_URL = (STATIC_URL +
-        '/img/uploads/previews/thumbs/%s/%d.png?modified=%d')
+                         'img/uploads/previews/thumbs/%s/%d.png?modified=%d')
 PREVIEW_FULL_URL = (STATIC_URL +
-        '/img/uploads/previews/full/%s/%d.%s?modified=%d')
-USERPICS_URL = STATIC_URL + '/img/uploads/userpics/%s/%s/%s.png?modified=%d'
+                    'img/uploads/previews/full/%s/%d.%s?modified=%d')
+USERPICS_URL = STATIC_URL + 'img/uploads/userpics/%s/%s/%s.png?modified=%d'
 # paths for uploaded extensions
 COLLECTION_ICON_URL = (STATIC_URL +
-        '/img/uploads/collection_icons/%s/%s.png?m=%s')
-NEW_PERSONAS_IMAGE_URL = STATIC_URL + '/img/uploads/themes/%(id)d/%(file)s'
+                       'img/uploads/collection_icons/%s/%s.png?m=%s')
+NEW_PERSONAS_IMAGE_URL = STATIC_URL + 'img/uploads/themes/%(id)d/%(file)s'
 PERSONAS_IMAGE_URL = ('http://getpersonas.cdn.mozilla.net/static/'
                       '%(tens)d/%(units)d/%(id)d/%(file)s')
 PERSONAS_IMAGE_URL_SSL = ('https://getpersonas.cdn.mozilla.net/static/'
@@ -1100,8 +1100,6 @@ CELERY_ROUTES = {
     'lib.video.tasks.resize_video': {'queue': 'devhub'},
 
     # Images.
-    'addons.tasks.save_theme': {'queue': 'images'},
-    'addons.tasks.save_theme_reupload': {'queue': 'images'},
     'bandwagon.tasks.resize_icon': {'queue': 'images'},
     'users.tasks.resize_photo': {'queue': 'images'},
     'users.tasks.delete_photo': {'queue': 'images'},
@@ -1217,23 +1215,29 @@ CSP_POLICY_URI = '/services/csp/policy?build=%s' % build_id
 CSP_REPORT_ONLY = True
 
 CSP_ALLOW = ("'self'",)
-CSP_IMG_SRC = ("'self'", STATIC_URL,
+CSP_IMG_SRC = ("'self'", SITE_URL,
                "https://www.google.com",  # Recaptcha comes from google
+               "https://mozorg.cdn.mozilla.net",  # Tabzilla.
+               "http://mozorg.cdn.mozilla.net",
                "https://www.getpersonas.com",
                "https://s3.amazonaws.com",  # getsatisfaction
                "https://ssl.google-analytics.com",
                "http://www.google-analytics.com",
                "data:"
               )
-CSP_SCRIPT_SRC = ("'self'", STATIC_URL,
+CSP_SCRIPT_SRC = ("'self'", SITE_URL,
                   "https://www.google.com",  # Recaptcha
+                  "https://mozorg.cdn.mozilla.net",  # Tabzilla.
+                  "http://mozorg.cdn.mozilla.net",
                   "https://login.persona.org",
                   "https://firefoxos.persona.org",
                   "https://www.paypalobjects.com",
                   "https://ssl.google-analytics.com",
                   "http://www.google-analytics.com",
                   )
-CSP_STYLE_SRC = ("'self'", STATIC_URL,
+CSP_STYLE_SRC = ("'self'", SITE_URL,
+                 "https://mozorg.cdn.mozilla.net",  # Tabzilla.
+                 "http://mozorg.cdn.mozilla.net",
                  "http://raw.github.com",
                  "https://raw.github.com",
                 )
@@ -1289,6 +1293,7 @@ MAX_IMAGE_UPLOAD_SIZE = 4 * 1024 * 1024
 MAX_VIDEO_UPLOAD_SIZE = 4 * 1024 * 1024
 MAX_PHOTO_UPLOAD_SIZE = MAX_ICON_UPLOAD_SIZE
 MAX_PERSONA_UPLOAD_SIZE = 300 * 1024
+MAX_REVIEW_ATTACHMENT_UPLOAD_SIZE = 5 * 1024 * 1024
 MAX_WEBAPP_UPLOAD_SIZE = 2 * 1024 * 1024
 
 # RECAPTCHA - copy all three statements to settings_local.py
@@ -1566,7 +1571,7 @@ ALLOW_TASTYPIE_SERVICES = False
 
 # The version we append to the app feature profile. Bump when we add new app
 # features to the `AppFeatures` model.
-APP_FEATURES_VERSION = 2
+APP_FEATURES_VERSION = 3
 
 # Whether to throttle API requests. Default is True. Disable where appropriate.
 API_THROTTLE = True

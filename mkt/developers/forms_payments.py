@@ -104,7 +104,6 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
     def group_tier_choices(self):
         """Creates tier choices with optgroups based on payment methods"""
         price_choices = [
-            ('', _('Please select a price')),
             ('free', _('Free (with in-app payments)')),
         ]
         card_billed = []
@@ -489,8 +488,13 @@ class BangoAccountListForm(happyforms.Form):
 
     def clean_accounts(self):
         accounts = self.cleaned_data.get('accounts')
+        # When cleaned if the accounts field wasn't submitted or it's an empty
+        # string the cleaned value will be None for a ModelChoiceField. Therefore
+        # to tell the difference between the non-submission and the empty string
+        # we need to check the raw data.
+        accounts_submitted = 'accounts' in self.data
         if (AddonPaymentAccount.objects.filter(addon=self.addon).exists() and
-            not accounts):
+            accounts_submitted and not accounts):
 
             raise forms.ValidationError(
                 _('You cannot remove a payment account from an app.'))

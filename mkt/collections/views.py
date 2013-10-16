@@ -1,6 +1,8 @@
 from django.core.exceptions import ValidationError
 from django.core.files.storage import default_storage as storage
+from django.core.validators import validate_email
 from django.db import IntegrityError
+from django.db.models import Q
 from django.http import Http404
 from django.utils.datastructures import MultiValueDictKeyError
 
@@ -22,7 +24,8 @@ from mkt.collections.serializers import DataURLImageField
 from mkt.webapps.models import Webapp
 from users.models import UserProfile
 
-from .authorization import CuratorAuthorization, StrictCuratorAuthorization
+from .authorization import (CanBeHeroAuthorization, CuratorAuthorization,
+                            StrictCuratorAuthorization)
 from .filters import CollectionFilterSetWithFallback
 from .models import Collection
 from .serializers import (CollectionMembershipField, CollectionSerializer,
@@ -33,7 +36,7 @@ class CollectionViewSet(CORSMixin, SlugOrIdMixin, viewsets.ModelViewSet):
     serializer_class = CollectionSerializer
     queryset = Collection.objects.all()
     cors_allowed_methods = ('get', 'post', 'delete', 'patch')
-    permission_classes = [CuratorAuthorization]
+    permission_classes = [CanBeHeroAuthorization, CuratorAuthorization]
     authentication_classes = [RestOAuthAuthentication,
                               RestSharedSecretAuthentication,
                               RestAnonymousAuthentication]
@@ -42,6 +45,7 @@ class CollectionViewSet(CORSMixin, SlugOrIdMixin, viewsets.ModelViewSet):
     exceptions = {
         'not_provided': '`app` was not provided.',
         'user_not_provided': '`user` was not provided.',
+        'wrong_user_format': '`user` must be an ID or email.',
         'doesnt_exist': '`app` does not exist.',
         'user_doesnt_exist': '`user` does not exist.',
         'not_in': '`app` not in collection.',
@@ -52,14 +56,28 @@ class CollectionViewSet(CORSMixin, SlugOrIdMixin, viewsets.ModelViewSet):
     def filter_queryset(self, queryset):
         queryset = super(CollectionViewSet, self).filter_queryset(queryset)
         self.filter_fallback = getattr(queryset, 'filter_fallback', None)
+        self.filter_errors = getattr(queryset, 'filter_errors', None)
         return queryset
 
     def list(self, request, *args, **kwargs):
         response = super(CollectionViewSet, self).list(
             request, *args, **kwargs)
-        filter_fallback = getattr(self, 'filter_fallback', None)
-        if filter_fallback:
-            response['API-Fallback'] = ','.join(filter_fallback)
+        if response:
+            filter_fallback = getattr(self, 'filter_fallback', None)
+            if filter_fallback:
+                response['API-Fallback'] = ','.join(filter_fallback)
+
+            filter_errors = getattr(self, 'filter_errors', None)
+            if filter_errors:
+                # If we had errors filtering, the default behaviour of DRF
+                # and django-filter is to produce an empty queryset and ignore
+                # the problem. We want to fail loud and clear and expose the
+                # errors instead.
+                response.data = {
+                    'detail': 'Filtering error.',
+                    'filter_errors': filter_errors
+                }
+                response.status_code = status.HTTP_400_BAD_REQUEST
         return response
 
     def get_object(self, queryset=None):
@@ -79,6 +97,17 @@ class CollectionViewSet(CORSMixin, SlugOrIdMixin, viewsets.ModelViewSet):
             # Only filter queryset if we don't have an explicit lookup.
             queryset = self.filter_queryset(queryset)
         return super(CollectionViewSet, self).get_object(queryset=queryset)
+
+    def get_queryset(self):
+        auth = CuratorAuthorization()
+        qs = super(CollectionViewSet, self).get_queryset()
+        if self.request.user.is_authenticated():
+            if auth.has_curate_permission(self.request):
+                return qs
+            profile = self.request.user.get_profile()
+            return qs.filter(Q(curators__id=profile.id) |
+                             Q(is_public=True)).distinct()
+        return qs.filter(is_public=True)
 
     def return_updated(self, status, collection=None):
         """
@@ -175,20 +204,27 @@ class CollectionViewSet(CORSMixin, SlugOrIdMixin, viewsets.ModelViewSet):
             }, status=status.HTTP_400_BAD_REQUEST, exception=True)
         return self.return_updated(status.HTTP_200_OK)
 
-    def serialized_curators(self, http_status=None):
-        if not http_status:
-            http_status = status.HTTP_200_OK
-        data = [CuratorSerializer(instance=c).data for c in
-                self.get_object().curators.all()]
-        return Response(data, status=http_status)
+    def serialized_curators(self, no_cache=False):
+        queryset = self.get_object().curators.all()
+        if no_cache:
+            queryset = queryset.no_cache()
+        return Response([CuratorSerializer(instance=c).data for c in queryset])
 
     def get_curator(self, request):
         try:
-            return UserProfile.objects.get(pk=request.DATA['user'])
+            userdata = request.DATA['user']
+            if (isinstance(userdata, int) or isinstance(userdata, basestring)
+                and userdata.isdigit()):
+                return UserProfile.objects.get(pk=userdata)
+            else:
+                validate_email(userdata)
+                return UserProfile.objects.get(email=userdata)
         except (KeyError, MultiValueDictKeyError):
             raise ParseError(detail=self.exceptions['user_not_provided'])
         except UserProfile.DoesNotExist:
             raise ParseError(detail=self.exceptions['user_doesnt_exist'])
+        except ValidationError:
+            raise ParseError(detail=self.exceptions['wrong_user_format'])
 
     @link(permission_classes=[StrictCuratorAuthorization])
     def curators(self, request, pk=None):
@@ -197,14 +233,14 @@ class CollectionViewSet(CORSMixin, SlugOrIdMixin, viewsets.ModelViewSet):
     @action(methods=['POST'])
     def add_curator(self, request, pk=None):
         self.get_object().add_curator(self.get_curator(request))
-        return self.serialized_curators()
+        return self.serialized_curators(no_cache=True)
 
     @action(methods=['POST'])
     def remove_curator(self, request, pk=None):
         removed = self.get_object().remove_curator(self.get_curator(request))
         if not removed:
             return Response(status=status.HTTP_205_RESET_CONTENT)
-        return self.serialized_curators()
+        return self.serialized_curators(no_cache=True)
 
 
 class CollectionImageViewSet(CORSMixin, viewsets.ViewSet,

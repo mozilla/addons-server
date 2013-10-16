@@ -170,8 +170,13 @@ class AppResource(CORSResource, MarketplaceModelResource):
                 # Owners can see their app no matter what region.
                 if AppOwnerAuthorization().is_authorized(request, object=obj):
                     return obj
+                data = {}
+                for key in ('name', 'support_email', 'support_url'):
+                    value = getattr(obj, key)
+                    data[key] = unicode(value) if value else ''
                 raise http_error(HttpLegallyUnavailable,
-                                 'Not available in your region.')
+                                 'Not available in your region.',
+                                 extra_data=data)
             raise http_error(http.HttpNotFound,
                              'No such app.')
 

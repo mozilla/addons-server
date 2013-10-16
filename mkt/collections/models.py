@@ -39,6 +39,9 @@ class Collection(amo.models.ModelBase):
     background_color = ColorField(null=True)
     text_color = ColorField(null=True)
     has_image = models.BooleanField(default=False)
+    can_be_hero = models.BooleanField(default=False, help_text=(
+        'Indicates whether an operator shelf collection can be displayed with'
+        'a hero graphic'))
 
     objects = amo.models.ManagerBase()
     public = PublicCollectionsManager()
@@ -128,10 +131,14 @@ class Collection(amo.models.ModelBase):
         return userprofile.id in self.curators.values_list('id', flat=True)
 
     def add_curator(self, userprofile):
-        return self.curators.add(userprofile)
+        ret = self.curators.add(userprofile)
+        Collection.objects.invalidate(*self.curators.all())
+        return ret
 
     def remove_curator(self, userprofile):
-        return self.curators.remove(userprofile)
+        ret = self.curators.remove(userprofile)
+        Collection.objects.invalidate(*self.curators.all())
+        return ret
 
 
 class CollectionMembership(amo.models.ModelBase):

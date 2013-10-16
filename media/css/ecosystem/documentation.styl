@@ -147,6 +147,10 @@ a[rel="external"]:after, a.external:after {
     padding: 30px;
     width: 685px;
 
+    a {
+        text-decoration: underline;
+    }
+
     img {
         height: auto;
         max-width: 100%;
@@ -602,5 +606,17 @@ a.app-source {
     }
     .varies {
         color: $orange;
+    }
+}
+
+.badges {
+    figure {
+        float: left;
+        margin: 0 15px 5px 0;
+    }
+    figcaption {
+        color: $medium-gray;
+        margin-bottom: 5px;
+        text-align: center;
     }
 }

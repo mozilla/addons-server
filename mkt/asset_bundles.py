@@ -77,6 +77,8 @@ CSS = {
         'css/devreg/data-grid.styl',
         'css/devreg/manifest.styl',
         'css/devreg/reviewers.styl',
+        'css/devreg/reviewers-header.styl',
+        'css/devreg/reviewers-mobile.styl',
         'css/devreg/themes_review.styl',
         'css/devreg/legacy-paginator.styl',
         'css/devreg/files.styl',
@@ -245,7 +247,7 @@ JS = {
 
         # Search suggestions.
         'js/impala/ajaxcache.js',
-        'js/impala/suggestions.js',
+        'js/mkt/suggestions.js',
         'js/mkt/mkt_suggestions.js',
 
         # Account settings.
@@ -310,7 +312,7 @@ JS = {
     'mkt/lookup': (
         'js/common/keys.js',
         'js/impala/ajaxcache.js',
-        'js/impala/suggestions.js',
+        'js/mkt/suggestions.js',
         'js/mkt/manifest.js',
         'js/mkt/lookup-tool.js',
     ),

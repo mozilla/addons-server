@@ -37,7 +37,7 @@ SLAVE_DATABASES = ['slave']
 
 CACHES = {
     'default': {
-        'BACKEND': 'caching.backends.memcached.CacheClass',
+        'BACKEND': 'caching.backends.memcached.MemcachedCache',
         'LOCATION': splitstrip(private.CACHES_DEFAULT_LOCATION),
         'TIMEOUT': 500,
         'KEY_PREFIX': CACHE_PREFIX,
@@ -57,7 +57,6 @@ NETAPP_STORAGE = NETAPP_STORAGE_ROOT + '/shared_storage'
 GUARDED_ADDONS_PATH = NETAPP_STORAGE_ROOT + '/guarded-addons'
 MIRROR_STAGE_PATH = NETAPP_STORAGE_ROOT + '/public-staging'
 UPLOADS_PATH = NETAPP_STORAGE + '/uploads'
-INAPP_IMAGE_PATH = NETAPP_STORAGE + '/inapp-image'
 USERPICS_PATH = UPLOADS_PATH + '/userpics'
 ADDON_ICONS_PATH = UPLOADS_PATH + '/addon_icons'
 COLLECTIONS_ICON_PATH = UPLOADS_PATH + '/collection_icons'

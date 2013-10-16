@@ -75,5 +75,11 @@
       </a>
     </li>
   {% endif %}
+  {% if waffle.switch('comm-dashboard') %}
+    <li>
+      <a class="action-link" href="{{ addon.get_comm_thread_url() }}">
+        {{ _('Communication') }}</a>
+    </li>
+  {% endif %}
 </ul>
 {% endif %}

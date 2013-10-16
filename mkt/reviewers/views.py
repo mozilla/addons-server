@@ -402,6 +402,7 @@ def app_review(request, addon):
     except SigningError, exc:
         transaction.rollback()
         messages.error(request, 'Signing Error: %s' % exc)
+        transaction.commit()
         return redirect(
             reverse('reviewers.apps.review', args=[addon.app_slug]))
     except Exception:
@@ -499,12 +500,13 @@ def _do_sort_queue_obj(request, qs, date_sort):
 def queue_apps(request):
     excluded_ids = EscalationQueue.objects.no_cache().values_list('addon',
                                                                   flat=True)
-    qs = (Version.objects.no_cache().filter(addon__type=amo.ADDON_WEBAPP,
-                                  addon__disabled_by_user=False,
-                                  addon__status=amo.STATUS_PENDING)
-                          .exclude(addon__id__in=excluded_ids)
-                          .order_by('nomination', 'created')
-                          .select_related('addon').no_transforms())
+    qs = (Version.objects.no_cache().filter(
+          files__status=amo.STATUS_PENDING, addon__type=amo.ADDON_WEBAPP,
+          addon__disabled_by_user=False,
+          addon__status=amo.STATUS_PENDING)
+          .exclude(addon__id__in=excluded_ids)
+          .order_by('nomination', 'created')
+          .select_related('addon', 'files').no_transforms())
 
     apps = _do_sort(request, qs, date_sort='nomination')
     apps = [QueuedApp(app, app.all_versions[0].nomination)

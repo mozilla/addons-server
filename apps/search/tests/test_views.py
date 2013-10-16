@@ -977,6 +977,28 @@ class TestCollectionSearch(SearchBase):
         eq_(self.get_results(r), [sm_collection.id])
 
 
+    def test_session_version_sidebar(self):
+        request = RequestFactory()
+        request.session = {}
+        request.APP = amo.FIREFOX
+
+        request.get(reverse('search.search'))
+        facets = {
+            u'platforms': [{u'count': 58, u'term': 1}],
+            u'appversions': [{u'count': 58, u'term': 5000000200100}],
+            u'categories': [{u'count': 55, u'term': 1}],
+            u'tags': [],
+        }
+        versions = version_sidebar(request, {}, facets)
+        assert not versions[1].selected
+
+        versions = version_sidebar(request, {'appver': '5.0'}, facets)
+        assert versions[1].selected
+
+        versions = version_sidebar(request, {}, facets)
+        assert versions[1].selected
+
+
 def test_search_redirects():
     changes = (
         ('q=yeah&sort=newest', 'q=yeah&sort=updated'),

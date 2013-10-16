@@ -1,6 +1,6 @@
 {% cache addon, extra=[api_version, version, compat_mode] %}
 {% set new_api = (api_version >= 1.5) %}
-{% if is_d2c %}
+{% if addon.compat_version %}
   {% set version = addon.compat_version %}
 {% else %}
   {% set version = addon.current_version %}

@@ -1,5 +1,6 @@
 <section class="island">
-  <form action="" method="post" class="lookup-search-form" id="account-search-form">
+  <form action="" method="post" class="lookup-search-form" id="account-search-form"
+        data-search-limit="{{ lkp.SEARCH_LIMIT }}" data-max-results="{{ lkp.MAX_RESULTS }}">
     {{ csrf() }}
     <label for="account-search">{{ _('Account Lookup') }}</label>
     <input type="search" id="account-search" name="q" autocomplete="off">

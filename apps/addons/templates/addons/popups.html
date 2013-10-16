@@ -114,18 +114,6 @@
 </div>
 {% endmacro %}
 
-{% macro selfhosted() %}
-{# js vars: url #}
-<div class="install-note">
-  <p class="msg m-selfhosted">{% trans %}
-    <strong>Caution:</strong> This add-on is hosted on the developer's own
-    website and has not been reviewed by Mozilla. Be careful when installing
-    third-party software that might harm your computer.
-  {% endtrans %}</p>
-  <p><a href="{url}" class="button">{{ _('Continue to Website') }}</a></p>
-</div>
-{% endmacro %}
-
 {% macro bad_platform() %}
 {# js vars: platforms #}
 <div class="install-note">
@@ -172,7 +160,6 @@ z.button.messages = {
   newer_version: {{ newer_version()|json|safe }},
   personas_need_upgrade: {{ personas_need_upgrade()|json|safe }},
   unreviewed: {{ unreviewed()|json|safe }},
-  selfhosted: {{ selfhosted()|json|safe }},
   platform_link: {{ platform_link()|json|safe }},
   bad_platform: {{ bad_platform()|json|safe }},
   not_compatible: {{ not_compatible()|json|safe }},

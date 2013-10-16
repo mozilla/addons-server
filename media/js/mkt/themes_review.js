@@ -181,7 +181,7 @@
 
                 $(nthTheme(i)).addClass('reviewed');
                 $('.status', nthTheme(i)).removeClass('red blue green')
-                    .addClass('reviewed ' + color).find('span').text(text);
+                    .addClass('reviewed ' + color).find('.status-text').text(text);
 
                 $('#reviewed-count').text($('div.theme.reviewed').length);
                 if ($(queue).hasClass('advance')) {

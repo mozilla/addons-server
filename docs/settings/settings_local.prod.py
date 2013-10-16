@@ -31,7 +31,7 @@ SLAVE_DATABASES = ['slave']
 # Use IP:PORT pairs separated by semicolons.
 CACHES = {
     'default': {
-        'BACKEND': 'caching.backends.memcached.CacheClass',
+        'BACKEND': 'caching.backends.memcached.MemcachedCache',
         'LOCATION': ['localhost:11211', 'localhost:11212'],
         'TIMEOUT': 500,
     }

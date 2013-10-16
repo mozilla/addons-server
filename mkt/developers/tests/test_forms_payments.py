@@ -225,9 +225,8 @@ class TestPremiumForm(amo.tests.TestCase):
         #   1 x Free with inapp
         # + 1 x price tier 0
         # + 3 x values grouped by billing
-        # + 1 x 'Please select'
-        # = 6
-        eq_(len(form.fields['price'].choices), 6)
+        # = 5
+        eq_(len(form.fields['price'].choices), 5)
         html = form.as_p()
         eq_(len(pq(html)('#id_price optgroup')), 3, 'Should be 3 optgroups')
 
@@ -399,6 +398,38 @@ class TestBangoAccountListForm(amo.tests.TestCase):
         form = forms_payments.BangoAccountListForm(
             data={'accounts': account.pk}, user=user, **self.kwargs)
         eq_(form.current_payment_account, None)
+        assert form.fields['accounts'].widget.attrs['disabled'] is not None
+        assert not form.is_valid(), form.errors
+
+    @mock.patch('mkt.developers.models.client')
+    def test_admin_account_no_data(self, client):
+        self.associate_owner_account()
+        user = self.admin
+        assert not self.is_owner(user)
+        client.get_product.return_value = {'meta': {'total_count': 0}}
+        client.post_product.return_value = {'resource_uri': 'gpuri'}
+        client.get_product_bango.return_value = {'meta': {'total_count': 0}}
+        client.post_product_bango.return_value = {
+            'resource_uri': 'bpruri', 'bango_id': 123}
+
+        form = forms_payments.BangoAccountListForm(
+            data={}, user=user, **self.kwargs)
+        assert form.fields['accounts'].widget.attrs['disabled'] is not None
+        assert form.is_valid(), form.errors
+
+    @mock.patch('mkt.developers.models.client')
+    def test_admin_account_empty_string(self, client):
+        self.associate_owner_account()
+        user = self.admin
+        assert not self.is_owner(user)
+        client.get_product.return_value = {'meta': {'total_count': 0}}
+        client.post_product.return_value = {'resource_uri': 'gpuri'}
+        client.get_product_bango.return_value = {'meta': {'total_count': 0}}
+        client.post_product_bango.return_value = {
+            'resource_uri': 'bpruri', 'bango_id': 123}
+
+        form = forms_payments.BangoAccountListForm(
+            data={'accounts': ''}, user=user, **self.kwargs)
         assert form.fields['accounts'].widget.attrs['disabled'] is not None
         assert not form.is_valid(), form.errors
 

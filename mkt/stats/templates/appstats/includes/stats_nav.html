@@ -17,7 +17,7 @@
           <a href="{{ link }}">{{ title }}</a></li>
       {% endfor %}
 
-      {% if ((addon.is_premium() or inapps) and check_contrib_stats_perms(addon)) %}
+      {% if (addon.is_premium() and check_contrib_stats_perms(addon)) %}
 
         {% for action, link, title in sales_filters %}
           {% set match_links = [

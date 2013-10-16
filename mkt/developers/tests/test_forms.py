@@ -16,7 +16,6 @@ from amo.tests import app_factory, version_factory
 from amo.tests.test_helpers import get_image_path
 from addons.models import Addon, AddonCategory, Category, CategorySupervisor
 from files.helpers import copyfileobj
-from market.models import AddonPremium, Price
 from tags.models import Tag
 from users.models import UserProfile
 
@@ -41,7 +40,7 @@ class TestPreviewForm(amo.tests.TestCase):
     @mock.patch('amo.models.ModelBase.update')
     def test_preview_modified(self, update_mock):
         name = 'transparent.png'
-        form = forms.PreviewForm({'caption': 'test', 'upload_hash': name,
+        form = forms.PreviewForm({'upload_hash': name,
                                   'position': 1})
         shutil.copyfile(get_image_path(name), os.path.join(self.dest, name))
         assert form.is_valid(), form.errors
@@ -50,7 +49,7 @@ class TestPreviewForm(amo.tests.TestCase):
 
     def test_preview_size(self):
         name = 'non-animated.gif'
-        form = forms.PreviewForm({'caption': 'test', 'upload_hash': name,
+        form = forms.PreviewForm({'upload_hash': name,
                                   'position': 1})
         with storage.open(os.path.join(self.dest, name), 'wb') as f:
             copyfileobj(open(get_image_path(name)), f)
@@ -60,7 +59,7 @@ class TestPreviewForm(amo.tests.TestCase):
             {u'image': [250, 297], u'thumbnail': [180, 214]})
 
     def check_file_type(self, type_):
-        form = forms.PreviewForm({'caption': 'test', 'upload_hash': type_,
+        form = forms.PreviewForm({'upload_hash': type_,
                                   'position': 1})
         assert form.is_valid(), form.errors
         form.save(self.addon)
@@ -151,7 +150,7 @@ class TestCategoryForm(amo.tests.WebappTestCase):
 
 
 class TestRegionForm(amo.tests.WebappTestCase):
-    fixtures = fixture('webapp_337141', 'prices')
+    fixtures = fixture('webapp_337141')
 
     def setUp(self):
         super(TestRegionForm, self).setUp()
@@ -160,254 +159,76 @@ class TestRegionForm(amo.tests.WebappTestCase):
 
     def test_initial_empty(self):
         form = forms.RegionForm(data=None, **self.kwargs)
-        eq_(form.initial['regions'], mkt.regions.REGION_IDS)
-        eq_(form.initial['other_regions'], True)
+        eq_(form.initial['regions'], mkt.regions.ALL_REGION_IDS)
+        eq_(form.initial['enable_new_regions'], False)
 
     def test_initial_excluded_in_region(self):
         AER.objects.create(addon=self.app, region=mkt.regions.BR.id)
 
-        regions = list(mkt.regions.REGION_IDS)
+        regions = list(mkt.regions.ALL_REGION_IDS)
         regions.remove(mkt.regions.BR.id)
 
-        eq_(self.get_app().get_region_ids(), regions)
+        eq_(self.get_app().get_region_ids(worldwide=True), regions)
 
         form = forms.RegionForm(data=None, **self.kwargs)
         eq_(form.initial['regions'], regions)
-        eq_(form.initial['other_regions'], True)
+        eq_(form.initial['enable_new_regions'], False)
 
     def test_initial_excluded_in_regions_and_future_regions(self):
         for region in [mkt.regions.BR, mkt.regions.UK, mkt.regions.WORLDWIDE]:
             AER.objects.create(addon=self.app, region=region.id)
 
-        regions = list(mkt.regions.REGION_IDS)
+        regions = list(mkt.regions.ALL_REGION_IDS)
         regions.remove(mkt.regions.BR.id)
         regions.remove(mkt.regions.UK.id)
+        regions.remove(mkt.regions.WORLDWIDE.id)
 
         eq_(self.get_app().get_region_ids(), regions)
 
         form = forms.RegionForm(data=None, **self.kwargs)
         eq_(form.initial['regions'], regions)
-        eq_(form.initial['other_regions'], False)
-
-    @mock.patch('mkt.regions.BR.has_payments', new=True)
-    def test_disable_regions_on_paid(self):
-        eq_(self.app.get_region_ids(), mkt.regions.REGION_IDS)
-        self.app.update(premium_type=amo.ADDON_PREMIUM)
-        price = Price.objects.get(id=1)
-        AddonPremium.objects.create(addon=self.app,
-                                    price=price)
-        self.kwargs['price'] = price
-        form = forms.RegionForm(data=None, **self.kwargs)
-        assert not form.is_valid()
-        assert form.has_inappropriate_regions()
-
-        form = forms.RegionForm(
-            data={'regions': mkt.regions.ALL_PAID_REGION_IDS}, **self.kwargs)
-        assert not form.is_valid()
-        assert form.has_inappropriate_regions()
-
-        form = forms.RegionForm(data={'regions': [mkt.regions.PL.id]},
-                                **self.kwargs)
-        assert form.is_valid(), form.errors
-        assert not form.has_inappropriate_regions()
-        form.save()
-
-        self.assertSetEqual(self.app.get_region_ids(),
-                            [mkt.regions.PL.id])
-
-    @mock.patch('mkt.developers.forms.ALL_PAID_REGION_IDS',
-                new=[3, 4, 5])
-    @mock.patch('mkt.developers.forms.ALL_REGION_IDS',
-                new=[1, 2, 3, 4, 5, 6])
-    def test_inappropriate_regions(self):
-        self.app.update(premium_type=amo.ADDON_PREMIUM)
-        form = forms.RegionForm(data=None, **self.kwargs)
-        form.price_region_ids = [2, 3, 5]
-        # Reset disabled_regions as we're modifying price_regions.
-        form.disabled_regions = form._disabled_regions()
-
-        # 6 is not in price_region_ids or ALL_PAID_REGION_IDS
-        form.region_ids = [6]
-        assert form.has_inappropriate_regions(), 'Region 6 should be invalid'
-        # Worldwide (1) is disabled for paid apps presently.
-        form.region_ids = [mkt.regions.WORLDWIDE.id]
-        assert form.has_inappropriate_regions(), 'Worldwide region should be invalid'
-        # 4 is not in price_region_ids so should be invalid.
-        form.region_ids = [4]
-        assert form.has_inappropriate_regions(), 'Region 4 should be invalid'
-        # 2 is in price_region_ids but not in ALL_PAID_REGION_IDS
-        # so should be invalid.
-        form.region_ids = [2]
-        assert form.has_inappropriate_regions(), 'Region 2 should be invalid'
-        # 3 is in price_region_ids and in ALL_PAID_REGION_IDS so should be ok.
-        form.region_ids = [3]
-        assert not form.has_inappropriate_regions(), 'Region 3 should be valid'
-
-    def test_inappropriate_regions_free_app(self):
-        self.app.update(premium_type=amo.ADDON_FREE)
-        form = forms.RegionForm(data=None, **self.kwargs)
-        eq_(form.has_inappropriate_regions(), None)
-
-    @mock.patch('mkt.developers.forms.ALL_PAID_REGION_IDS',
-                new=[2, 3, 4, 5])
-    @mock.patch('mkt.developers.forms.ALL_REGION_IDS',
-                new=[1, 2, 3, 4, 5, 6])
-    def test_disabled_regions_premium(self):
-        self.app.update(premium_type=amo.ADDON_PREMIUM)
-        form = forms.RegionForm(data=None, **self.kwargs)
-        form.price_region_ids = [2, 3, 5]
-        # Worldwide (1) is disabled for paid apps curently.
-        self.assertSetEqual(form._disabled_regions(), [1, 4, 6])
-
-    @mock.patch('mkt.developers.forms.ALL_PAID_REGION_IDS',
-                new=[2, 3, 4, 5])
-    @mock.patch('mkt.developers.forms.ALL_REGION_IDS',
-                new=[1, 2, 3, 4, 5, 6])
-    def test_disabled_regions_free_inapp(self):
-        self.app.update(premium_type=amo.ADDON_FREE_INAPP)
-        form = forms.RegionForm(data=None, **self.kwargs)
-        # Worldwide (1) is disabled for paid apps curently.
-        self.assertSetEqual(form._disabled_regions(), [1, 6])
-
-    @mock.patch('mkt.developers.forms.ALL_REGION_IDS',
-                new=[1, 2, 3, 4, 5, 6])
-    def test_disabled_regions_free(self):
-        self.app.update(premium_type=amo.ADDON_FREE)
-        form = forms.RegionForm(data=None, **self.kwargs)
-        self.assertSetEqual(form._disabled_regions(), [])
-
-    def test_free_inapp_with_non_paid_region(self):
-        # Start with a free app with in_app payments.
-        self.app.update(premium_type=amo.ADDON_FREE_INAPP)
-        self.kwargs['price'] = 'free'
-        form = forms.RegionForm(data=None, **self.kwargs)
-        assert not form.is_valid()
-        assert form.has_inappropriate_regions()
-
-        all_paid_regions = set(mkt.regions.ALL_PAID_REGION_IDS)
-
-        new_paid = sorted(
-            all_paid_regions.difference(set([mkt.regions.BR.id])))
-        with mock.patch('mkt.developers.forms.ALL_PAID_REGION_IDS',
-                        new=new_paid):
-            form = forms.RegionForm(data={'regions': [mkt.regions.BR.id]},
-                                    **self.kwargs)
-            assert not form.is_valid()
-            assert form.has_inappropriate_regions()
-
-        new_paid = sorted(
-            all_paid_regions.difference(set([mkt.regions.UK.id])))
-        with mock.patch('mkt.developers.forms.ALL_PAID_REGION_IDS',
-                        new=new_paid):
-            form = forms.RegionForm(data={'regions': [mkt.regions.UK.id]},
-                                    **self.kwargs)
-            assert not form.is_valid()
-            assert form.has_inappropriate_regions()
-
-        new_paid = sorted(
-            all_paid_regions.union(set([mkt.regions.PL.id])))
-        with mock.patch('mkt.developers.forms.ALL_PAID_REGION_IDS',
-                        new=new_paid):
-            form = forms.RegionForm(data={'regions': [mkt.regions.PL.id]},
-                                    **self.kwargs)
-            assert form.is_valid()
-            assert not form.has_inappropriate_regions()
-
-    def test_premium_to_free_inapp_with_non_paid_region(self):
-        # At this point the app is premium.
-        self.app.update(premium_type=amo.ADDON_PREMIUM)
-        self.kwargs['price'] = 'free'
-        form = forms.RegionForm(data=None, **self.kwargs)
-        assert not form.is_valid()
-        assert form.has_inappropriate_regions()
-
-        all_paid_regions = set(mkt.regions.ALL_PAID_REGION_IDS)
-        new_paid = sorted(
-            all_paid_regions.difference(set([mkt.regions.BR.id])))
-        with mock.patch('mkt.developers.forms.ALL_PAID_REGION_IDS',
-                        new=new_paid):
-            form = forms.RegionForm(data={'regions': [mkt.regions.BR.id]},
-                                    **self.kwargs)
-            assert not form.is_valid()
-            assert form.has_inappropriate_regions()
-
-        new_paid = sorted(
-            all_paid_regions.difference(set([mkt.regions.UK.id])))
-        with mock.patch('mkt.developers.forms.ALL_PAID_REGION_IDS',
-                        new=new_paid):
-            form = forms.RegionForm(data={'regions': [mkt.regions.UK.id]},
-                                    **self.kwargs)
-            assert not form.is_valid()
-            assert form.has_inappropriate_regions()
-
-        new_paid = sorted(all_paid_regions.union(set([mkt.regions.PL.id])))
-        with mock.patch('mkt.developers.forms.ALL_PAID_REGION_IDS',
-                        new=new_paid):
-            form = forms.RegionForm(data={'regions': [mkt.regions.PL.id]},
-                                    **self.kwargs)
-            assert form.is_valid()
-            assert not form.has_inappropriate_regions()
-
-    def test_paid_enable_region(self):
-        for region in mkt.regions.ALL_REGION_IDS:
-            AER.objects.create(addon=self.app, region=region)
-        self.app.update(premium_type=amo.ADDON_PREMIUM)
-        price = Price.objects.get(id=1)
-        AddonPremium.objects.create(addon=self.app,
-                                    price=price)
-        self.kwargs['price'] = price
-        form = forms.RegionForm(data={'regions': []}, **self.kwargs)
-        assert not form.is_valid()  # Fails due to needing at least 1 region.
-        assert not form.has_inappropriate_regions(), (
-            form.has_inappropriate_regions())
-
-        form = forms.RegionForm(data={'regions': [mkt.regions.PL.id]},
-                                **self.kwargs)
-        assert form.is_valid(), form.errors
-        assert not form.has_inappropriate_regions()
-
-        form = forms.RegionForm(data={'regions': [mkt.regions.BR.id]},
-                                **self.kwargs)
-        assert not form.is_valid()
-        assert form.has_inappropriate_regions()
+        eq_(form.initial['enable_new_regions'], False)
 
     def test_worldwide_only(self):
-        form = forms.RegionForm(data={'other_regions': 'on'}, **self.kwargs)
+        form = forms.RegionForm(data={'regions': [mkt.regions.WORLDWIDE.id]},
+                                **self.kwargs)
+        assert form.is_valid(), form.errors
+
+    def test_enable_new_regions(self):
+        form = forms.RegionForm(data={'enable_new_regions': 'on',
+                                      'regions': mkt.regions.ALL_REGION_IDS},
+                                **self.kwargs)
         assert form.is_valid(), form.errors
         form.save()
-        eq_(self.app.get_region_ids(True), [mkt.regions.WORLDWIDE.id])
+        eq_(self.app.enable_new_regions, True)
 
     def test_no_regions(self):
         form = forms.RegionForm(data={}, **self.kwargs)
         assert not form.is_valid()
         eq_(form.errors,
-            {'__all__': ['You must select at least one region or '
-                         '"Other and new regions."']})
+            {'__all__': ['You must select at least one region.']})
 
     def test_exclude_each_region(self):
         """Test that it's possible to exclude each region."""
 
-        for region_id in mkt.regions.REGION_IDS:
-            if region_id == mkt.regions.WORLDWIDE.id:
-                continue
-
-            to_exclude = list(mkt.regions.REGION_IDS)
+        for region_id in mkt.regions.ALL_REGION_IDS:
+            to_exclude = list(mkt.regions.ALL_REGION_IDS)
             to_exclude.remove(region_id)
 
             form = forms.RegionForm(
                 data={'regions': to_exclude,
-                      'other_regions': True}, **self.kwargs)
+                      'enable_new_regions': 'on'}, **self.kwargs)
             assert form.is_valid(), form.errors
             form.save()
 
-            eq_(self.app.get_region_ids(False), to_exclude)
+            eq_(self.app.get_region_ids(True), to_exclude)
 
     def test_brazil_games_excluded(self):
         games = Category.objects.create(type=amo.ADDON_WEBAPP, slug='games')
         AddonCategory.objects.create(addon=self.app, category=games)
 
         form = forms.RegionForm(data={'regions': mkt.regions.REGION_IDS,
-                                      'other_regions': True}, **self.kwargs)
+                                      'enable_new_regions': True}, **self.kwargs)
 
         # Developers should still be able to save form OK, even
         # if they pass a bad region. Think of the grandfathered developers.
@@ -420,7 +241,7 @@ class TestRegionForm(amo.tests.WebappTestCase):
         eq_(set(form.initial['regions']),
             set(mkt.regions.REGION_IDS) -
             set([mkt.regions.BR.id, mkt.regions.WORLDWIDE.id]))
-        eq_(form.initial['other_regions'], True)
+        eq_(form.initial['enable_new_regions'], True)
 
     def test_brazil_games_already_excluded(self):
         AER.objects.create(addon=self.app, region=mkt.regions.BR.id)
@@ -429,7 +250,7 @@ class TestRegionForm(amo.tests.WebappTestCase):
         AddonCategory.objects.create(addon=self.app, category=games)
 
         form = forms.RegionForm(data={'regions': mkt.regions.REGION_IDS,
-                                      'other_regions': True}, **self.kwargs)
+                                      'enable_new_regions': True}, **self.kwargs)
 
         assert form.is_valid()
         form.save()
@@ -438,7 +259,7 @@ class TestRegionForm(amo.tests.WebappTestCase):
         eq_(set(form.initial['regions']),
             set(mkt.regions.REGION_IDS) -
             set([mkt.regions.BR.id, mkt.regions.WORLDWIDE.id]))
-        eq_(form.initial['other_regions'], True)
+        eq_(form.initial['enable_new_regions'], True)
 
     def test_brazil_games_with_content_rating(self):
         # This game has a government content rating!
@@ -449,8 +270,8 @@ class TestRegionForm(amo.tests.WebappTestCase):
         games = Category.objects.create(type=amo.ADDON_WEBAPP, slug='games')
         AddonCategory.objects.create(addon=self.app, category=games)
 
-        form = forms.RegionForm(data={'regions': mkt.regions.REGION_IDS,
-                                      'other_regions': 'on'}, **self.kwargs)
+        form = forms.RegionForm(data={'regions': mkt.regions.ALL_REGION_IDS,
+                                      'enable_new_regions': 'on'}, **self.kwargs)
         assert form.is_valid(), form.errors
         form.save()
 
@@ -458,7 +279,7 @@ class TestRegionForm(amo.tests.WebappTestCase):
 
     def test_exclude_worldwide(self):
         form = forms.RegionForm(data={'regions': mkt.regions.REGION_IDS,
-                                      'other_regions': False}, **self.kwargs)
+                                      'enable_new_regions': False}, **self.kwargs)
         assert form.is_valid(), form.errors
         form.save()
         eq_(self.app.get_region_ids(True), mkt.regions.REGION_IDS)
@@ -466,8 +287,8 @@ class TestRegionForm(amo.tests.WebappTestCase):
     def test_reinclude_region(self):
         AER.objects.create(addon=self.app, region=mkt.regions.BR.id)
 
-        form = forms.RegionForm(data={'regions': mkt.regions.REGION_IDS,
-                                      'other_regions': True}, **self.kwargs)
+        form = forms.RegionForm(data={'regions': mkt.regions.ALL_REGION_IDS,
+                                      'enable_new_regions': True}, **self.kwargs)
         assert form.is_valid(), form.errors
         form.save()
         eq_(self.app.get_region_ids(True), mkt.regions.ALL_REGION_IDS)
@@ -475,42 +296,22 @@ class TestRegionForm(amo.tests.WebappTestCase):
     def test_reinclude_worldwide(self):
         AER.objects.create(addon=self.app, region=mkt.regions.WORLDWIDE.id)
 
-        form = forms.RegionForm(data={'regions': mkt.regions.REGION_IDS,
-                                      'other_regions': True}, **self.kwargs)
+        form = forms.RegionForm(data={'regions': mkt.regions.ALL_REGION_IDS},
+                                                               **self.kwargs)
         assert form.is_valid(), form.errors
         form.save()
         eq_(self.app.get_region_ids(True), mkt.regions.ALL_REGION_IDS)
 
-    @mock.patch('mkt.developers.forms.ALL_PAID_REGION_IDS',
-                new=[2, 4, 5, 7])
-    def test_enable_other_region_paid(self):
+    def test_worldwide_valid_choice_paid(self):
         self.app.update(premium_type=amo.ADDON_PREMIUM)
-        form = forms.RegionForm(data={'regions': [2, 4],
-                                      'other_regions': 'on'}, **self.kwargs)
-        form.price_region_ids = [2, 4, 7]
-        # Update disabled_regions as we tweaked price_regions.
-        form.disabled_regions = form._disabled_regions()
-        eq_(self.app.enable_new_regions, False)
+        form = forms.RegionForm(
+            data={'regions': [mkt.regions.WORLDWIDE.id]}, **self.kwargs)
         assert form.is_valid(), form.errors
-        form.save()
-        eq_(self.app.enable_new_regions, True)
-        eq_(self.app.addonexcludedregion.filter(
-            region=mkt.regions.WORLDWIDE.id).exists(), False)
 
-    def test_worldwide_invalid_choice_paid(self):
-        self.app.update(premium_type=amo.ADDON_PREMIUM)
+    def test_worldwide_valid_choice_free(self):
         form = forms.RegionForm(
             data={'regions': [mkt.regions.WORLDWIDE.id]}, **self.kwargs)
-        assert not form.is_valid(), form.errors
-        assert ('Select a valid choice. 1 is not one of the available '
-                'choices.' in form.errors['regions'])
-
-    def test_worldwide_invalid_choice(self):
-        form = forms.RegionForm(
-            data={'regions': [mkt.regions.WORLDWIDE.id]}, **self.kwargs)
-        assert not form.is_valid(), form.errors
-        assert ('Select a valid choice. 1 is not one of the available '
-                'choices.' in form.errors['regions'])
+        assert form.is_valid(), form.errors
 
 
 class TestNewManifestForm(amo.tests.TestCase):
@@ -633,8 +434,8 @@ class TestAppVersionForm(amo.tests.TestCase):
     def setUp(self):
         self.request = mock.Mock()
         self.app = app_factory(make_public=amo.PUBLIC_IMMEDIATELY,
-                               created=self.days_ago(5))
-        self.app.current_version.update(created=self.app.created)
+                               version_kw={'version': '1.0',
+                                           'created': self.days_ago(5)})
         version_factory(addon=self.app, version='2.0',
                         file_kw=dict(status=amo.STATUS_PENDING))
         self.app.reload()

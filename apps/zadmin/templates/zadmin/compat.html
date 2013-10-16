@@ -48,21 +48,13 @@ button { margin: 4px; padding: 0 2px }
     {% for addon in usage_addons.object_list %}
       <tr data-guid="{{ addon.guid }}">
         <td class="name">
-          {% if addon.self_hosted %}
-            {{ addon.name }}
-          {% else %}
             <a href="{{ url('addons.detail', addon.slug) }}">
               {{ addon.name }}
               <em class="version">v{{ addon.current_version }}</em>
             </a>
-          {% endif %}
         </td>
         <td class="maxver">
-          {% if addon.self_hosted %}
-            Self Hosted
-          {% else %}
             {{ addon.max_version }}
-          {% endif %}
         </td>
         <td class="incompat">
           {% if addon.works %}
@@ -76,10 +68,8 @@ button { margin: 4px; padding: 0 2px }
           <td class="percentage">{{ (100 * num / (usage_total or 1))|round(2) }}%</td>
         {% endwith %}
         <td class="version">
-          {% if not addon.self_hosted %}
             <a href="{{ url('devhub.versions.edit', addon.slug, addon.current_version_id) }}">
               View Version</a>
-          {% endif %}
         </td>
         <td class="reports"><a href="{{ url('compat.reporter_detail', addon.guid) }}">
           View Reports</a></td>
@@ -101,9 +91,7 @@ button { margin: 4px; padding: 0 2px }
               <input type="hidden" name="_compat_ranges-INITIAL_FORMS" value="{{ initial }}">
               <input type="hidden" name="_continue" value="1">
               <input type="hidden" name="_confirm" value="1">
-              {% if not addon.self_hosted %}
-                <input type="hidden" name="addon" value="{{ addon.id }}">
-              {% endif %}
+              <input type="hidden" name="addon" value="{{ addon.id }}">
               <input type="hidden" name="name" value="{{ addon.name }}">
               <input type="hidden" name="guid" value="{{ addon.guid }}">
               {% if initial %}

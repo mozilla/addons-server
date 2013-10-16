@@ -30,6 +30,7 @@ from mkt.constants.payments import (COMPLETED, FAILED, PENDING,
                                     REFUND_STATUSES)
 from mkt.developers.tests.test_views_payments import (TEST_PACKAGE_ID,
                                                       setup_payment_account)
+import mkt.lookup.constants as lkp
 from mkt.lookup.views import (_transaction_summary, transaction_refund,
                               user_delete, user_summary)
 from mkt.site.fixtures import fixture
@@ -108,13 +109,6 @@ class TestAcctSummary(TestCase):
         eq_(sm['app_total'], 3)
         eq_(sm['app_amount']['USD'], 4.0)
         eq_(sm['app_amount']['GBR'], 2.0)
-
-    def test_inapp_counts(self):
-        self.buy_stuff(amo.CONTRIB_INAPP)
-        sm = self.summary().context['app_summary']
-        eq_(sm['inapp_total'], 3)
-        eq_(sm['inapp_amount']['USD'], 4.0)
-        eq_(sm['inapp_amount']['GBR'], 2.0)
 
     def test_requested_refunds(self):
         contrib = Contribution.objects.create(type=amo.CONTRIB_PURCHASE,
@@ -281,8 +275,7 @@ class TestAcctSearch(ESTestCase, SearchTestMixin):
         super(TestAcctSearch, self).setUp()
         self.url = reverse('lookup.user_search')
         self.user = UserProfile.objects.get(username='clouserw')
-        assert self.client.login(username='support-staff@mozilla.com',
-                                 password='password')
+        self.login(UserProfile.objects.get(username='support_staff'))
 
     def verify_result(self, data):
         eq_(data['results'][0]['name'], self.user.username)
@@ -319,6 +312,26 @@ class TestAcctSearch(ESTestCase, SearchTestMixin):
         self.refresh()
         data = self.search(q='fonzih')
         self.verify_result(data)
+
+    @mock.patch.object(lkp, 'SEARCH_LIMIT', 2)
+    @mock.patch.object(lkp, 'MAX_RESULTS', 3)
+    def test_all_results(self):
+        for x in range(3):
+            name = 'chr' + str(x)
+            UserProfile.objects.create(username=name, name=name,
+                                       email=name + '@gmail.com')
+
+        # Test not at search limit.
+        data = self.search(q='clouserw')
+        eq_(len(data['results']), 1)
+
+        # Test search limit.
+        data = self.search(q='chr')
+        eq_(len(data['results']), 2)
+
+        # Test maximum search result.
+        data = self.search(q='chr', all_results=True)
+        eq_(len(data['results']), 3)
 
 
 class TestTransactionSearch(TestCase):
@@ -613,6 +626,13 @@ class TestAppSearch(ESTestCase, SearchTestMixin):
         self.app.status = amo.STATUS_UNREVIEWED
         self.test_by_name_part()
 
+    def test_by_deleted_app(self):
+        self.create_switch('soft_delete')
+        self.app.delete()
+        self.refresh('webapp')
+        data = self.search(q='something')
+        self.verify_result(data)
+
     def test_multiword(self):
         self.app.name = 'Firefox Marketplace'
         self.app.save()
@@ -621,7 +641,7 @@ class TestAppSearch(ESTestCase, SearchTestMixin):
         self.verify_result(data)
 
     def test_by_stem_name(self):
-        self.app.name = 'Instigation'
+        self.app.name = 'Instigated'
         self.app.save()
         self.refresh('webapp')
         data = self.search(q='instigate')
@@ -669,6 +689,11 @@ class TestAppSummary(AppSummaryTest):
     def setUp(self):
         super(TestAppSummary, self).setUp()
         self._setUp()
+
+    def test_app_deleted(self):
+        self.create_switch('soft_delete')
+        self.app.delete()
+        self.summary()
 
     def test_search_matches_type(self):
         res = self.summary()
@@ -869,37 +894,10 @@ class TestAppSummaryPurchases(AppSummaryTest):
     def test_ignore_non_purchases(self):
         for typ in [amo.CONTRIB_REFUND,
                     amo.CONTRIB_CHARGEBACK,
-                    amo.CONTRIB_PENDING,
-                    amo.CONTRIB_INAPP_PENDING]:
+                    amo.CONTRIB_PENDING]:
             self.purchase(typ=typ)
         res = self.summary()
         self.assert_empty(res.context['purchases']['alltime'])
-
-    def test_pay_methods(self):
-        for paykey in ('AP-1234',  # indicates PayPal
-                       'AP-1235',
-                       None):  # indicates other
-            Contribution.objects.create(addon=self.app,
-                                        user=self.user,
-                                        amount=Decimal('0.99'),
-                                        currency='USD',
-                                        paykey=paykey,
-                                        type=amo.CONTRIB_PURCHASE)
-        res = self.summary()
-        eq_(sorted(res.context['payment_methods']),
-            [u'33.3% of purchases via Other',
-             u'66.7% of purchases via PayPal'])
-
-    def test_inapp_pay_methods(self):
-        Contribution.objects.create(addon=self.app,
-                                    user=self.user,
-                                    amount=Decimal('0.99'),
-                                    currency='USD',
-                                    paykey='AP-1235',
-                                    type=amo.CONTRIB_INAPP)
-        res = self.summary()
-        eq_(res.context['payment_methods'],
-            [u'100.0% of purchases via PayPal'])
 
 
 class TestAppSummaryRefunds(AppSummaryTest):
@@ -1061,7 +1059,7 @@ class TestPurchases(amo.tests.TestCase):
         eq_(doc('ol.listing a').attr('href'), self.app.get_detail_url())
 
     def test_no_support_link(self):
-        for type_ in [amo.CONTRIB_PURCHASE, amo.CONTRIB_INAPP]:
+        for type_ in [amo.CONTRIB_PURCHASE]:
             Contribution.objects.create(user=self.user, addon=self.app,
                                         amount=1, type=type_)
         self.client.login(username=self.reviewer.email, password='password')

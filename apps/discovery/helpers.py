@@ -4,7 +4,6 @@ import jinja2
 
 from jingo import register
 
-import amo
 from amo.utils import urlparams
 from amo.urlresolvers import reverse
 from addons.helpers import persona_preview

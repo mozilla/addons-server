@@ -307,6 +307,18 @@ class TestAddonModels(amo.tests.TestCase):
         eq_(a.latest_version, version)
         eq_(a._latest_version, version)
 
+    @patch('addons.models.Addon.update_version')
+    def test_current_version_unsaved(self, update_version):
+        a = Addon()
+        eq_(a.current_version, None)
+        assert not update_version.called
+
+    @patch('addons.models.Addon.update_version')
+    def test_latest_version_unsaved(self, update_version):
+        a = Addon()
+        eq_(a.latest_version, None)
+        assert not update_version.called
+
     def test_current_beta_version(self):
         a = Addon.objects.get(pk=5299)
         eq_(a.current_beta_version.id, 50000)
@@ -372,6 +384,7 @@ class TestAddonModels(amo.tests.TestCase):
         addon = Addon.with_deleted.get(pk=3615)
         eq_(addon.status, amo.STATUS_DELETED)
         eq_(addon.slug, None)
+        eq_(addon.current_version, None)
         eq_(addon.app_slug, None)
 
     def _delete_url(self):
@@ -546,16 +559,6 @@ class TestAddonModels(amo.tests.TestCase):
         a.disabled_by_user = True
         assert not a.is_public(), (
             'unreviewed, disabled add-on should not be is_public()')
-
-    def test_is_selfhosted(self):
-        """Test if an add-on is listed or hosted"""
-        # hosted
-        a = Addon.objects.get(pk=3615)
-        assert not a.is_selfhosted(), 'hosted add-on => !is_selfhosted()'
-
-        # listed
-        a.status = amo.STATUS_LISTED
-        assert a.is_selfhosted(), 'listed add-on => is_selfhosted()'
 
     def test_is_no_restart(self):
         a = Addon.objects.get(pk=3615)
@@ -1274,7 +1277,7 @@ class TestAddonModels(amo.tests.TestCase):
 
     def test_beta_version_does_not_inherit_nomination(self):
         a = Addon.objects.get(id=3615)
-        a.update(status=amo.STATUS_LISTED)
+        a.update(status=amo.STATUS_NULL)
         v = Version.objects.create(addon=a, version='1.0')
         v.nomination = None
         v.save()
@@ -1294,7 +1297,7 @@ class TestAddonModels(amo.tests.TestCase):
     def test_reviwed_addon_does_not_inherit_nomination(self):
         a = Addon.objects.get(id=3615)
         ver = 10
-        for st in (amo.STATUS_PUBLIC, amo.STATUS_BETA, amo.STATUS_LISTED):
+        for st in (amo.STATUS_PUBLIC, amo.STATUS_BETA, amo.STATUS_NULL):
             a.update(status=st)
             v = Version.objects.create(addon=a, version=str(ver))
             eq_(v.nomination, None)
@@ -1670,12 +1673,15 @@ class TestFlushURLs(amo.tests.TestCase):
                 'addons/persona']
 
     def setUp(self):
-        settings.ADDON_ICON_URL = (settings.STATIC_URL +
-            '/img/uploads/addon_icons/%s/%s-%s.png?modified=%s')
-        settings.PREVIEW_THUMBNAIL_URL = (settings.STATIC_URL +
-            '/img/uploads/previews/thumbs/%s/%d.png?modified=%d')
-        settings.PREVIEW_FULL_URL = (settings.STATIC_URL +
-            '/img/uploads/previews/full/%s/%d.%s?modified=%d')
+        settings.ADDON_ICON_URL = (
+            settings.STATIC_URL +
+            'img/uploads/addon_icons/%s/%s-%s.png?modified=%s')
+        settings.PREVIEW_THUMBNAIL_URL = (
+            settings.STATIC_URL +
+            'img/uploads/previews/thumbs/%s/%d.png?modified=%d')
+        settings.PREVIEW_FULL_URL = (
+            settings.STATIC_URL +
+            'img/uploads/previews/full/%s/%d.%s?modified=%d')
         _connect()
 
     def tearDown(self):
