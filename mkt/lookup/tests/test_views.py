@@ -278,6 +278,7 @@ class TestAcctSearch(ESTestCase, SearchTestMixin):
             name = 'chr' + str(x)
             UserProfile.objects.create(username=name, name=name,
                                        email=name + '@gmail.com')
+        self.refresh()
 
         # Test not at search limit.
         data = self.search(q='clouserw')
