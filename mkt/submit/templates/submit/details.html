@@ -93,9 +93,7 @@
 
       <div id="addon-categories-edit"
            data-max-categories="{{ form_cats.max_categories() }}">
-        {% if not form_cats.disabled %}
-          {{ select_cats_submission(amo.MAX_CATEGORIES, form_cats) }}
-        {% endif %}
+        {{ select_cats_submission(amo.MAX_CATEGORIES, form_cats) }}
       </div>
 
       {{ form_field(form_basic.privacy_policy, hint=True) }}

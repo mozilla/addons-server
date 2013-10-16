@@ -14,7 +14,7 @@ import amo
 import amo.tests
 from amo.tests import app_factory, version_factory
 from amo.tests.test_helpers import get_image_path
-from addons.models import Addon, AddonCategory, Category, CategorySupervisor
+from addons.models import Addon, AddonCategory, Category
 from files.helpers import copyfileobj
 from tags.models import Tag
 from users.models import UserProfile
@@ -25,7 +25,6 @@ from mkt.developers.tests.test_views_edit import TestAdmin
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import (AddonExcludedRegion as AER, ContentRating,
                                 Webapp)
-from mkt.zadmin.models import FeaturedApp
 
 
 class TestPreviewForm(amo.tests.TestCase):
@@ -88,9 +87,6 @@ class TestCategoryForm(amo.tests.WebappTestCase):
         self.request.groups = ()
 
         self.cat = Category.objects.create(type=amo.ADDON_WEBAPP)
-        self.op_cat = Category.objects.create(
-            type=amo.ADDON_WEBAPP, region=mkt.regions.WORLDWIDE.id,
-            carrier=mkt.carriers.AMERICA_MOVIL.id)
 
     def _make_form(self, data=None):
         self.form = forms.CategoryForm(
@@ -104,24 +100,7 @@ class TestCategoryForm(amo.tests.WebappTestCase):
         eq_(self._cat_count(), 1)
         eq_(self.form.max_categories(), 2)
 
-    def test_has_users_cats(self):
-        CategorySupervisor.objects.create(
-            user=self.user, category=self.op_cat)
-        self._make_form()
-        eq_(self._cat_count(), 2)
-        eq_(self.form.max_categories(), 3)  # Special cats increase the max.
-
     def test_save_cats(self):
-        self.op_cat.delete()  # We don't need that one.
-
-        # Create more special categories than we could otherwise save.
-        for i in xrange(10):
-            CategorySupervisor.objects.create(
-                user=self.user,
-                category=Category.objects.create(
-                    type=amo.ADDON_WEBAPP, region=mkt.regions.WORLDWIDE.id,
-                    carrier=mkt.carriers.AMERICA_MOVIL.id))
-
         self._make_form({'categories':
             map(str, Category.objects.filter(type=amo.ADDON_WEBAPP)
                                      .values_list('id', flat=True))})
@@ -129,24 +108,7 @@ class TestCategoryForm(amo.tests.WebappTestCase):
         self.form.save()
         eq_(AddonCategory.objects.filter(addon=self.app).count(),
             Category.objects.count())
-        eq_(self.form.max_categories(), 12)  # 2 (default) + 10 (above)
-
-    def test_unavailable_special_cats(self):
-        AER.objects.create(addon=self.app, region=mkt.regions.WORLDWIDE.id)
-
-        self._make_form()
-        eq_(self._cat_count(), 1)
         eq_(self.form.max_categories(), 2)
-
-    def test_disabled_when_featured(self):
-        self.app.addoncategory_set.create(category=self.cat)
-        FeaturedApp.objects.create(app=self.app, category=self.cat)
-        self._make_form()
-        eq_(self.form.disabled, True)
-
-    def test_not_disabled(self):
-        self._make_form()
-        eq_(self.form.disabled, False)
 
 
 class TestRegionForm(amo.tests.WebappTestCase):

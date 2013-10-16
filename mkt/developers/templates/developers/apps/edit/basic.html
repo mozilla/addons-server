@@ -131,24 +131,7 @@
           <td id="addon-categories-edit"
               data-max-categories="{{ cat_form.max_categories() if cat_form else amo.MAX_CATEGORIES }}">
             {% if editable %}
-              {% if cat_form.disabled %}
-                <p>
-                  {% set categories = addon.categories.all() %}
-                  {% call empty_unless(categories) %}
-                    {{ categories|join(', ') }}
-                  {% endcall %}
-                </p>
-                <p class="note">
-                  {% trans email=settings.MKT_REVIEWERS_EMAIL %}
-                    Categories cannot be changed while your app is
-                    featured. Please email
-                    <a href="mailto:{{ email }}">{{ email }}</a> if there
-                    is a reason you need to modify your categories.
-                  {% endtrans %}
-                </p>
-              {% else %}
-                {{ select_cats(amo.MAX_CATEGORIES, cat_form, webapp) }}
-              {% endif %}
+              {{ select_cats(amo.MAX_CATEGORIES, cat_form, webapp) }}
             {% else %}
               {% set categories = addon.categories.all() %}
               {% call empty_unless(categories) %}

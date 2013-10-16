@@ -4,7 +4,7 @@ import json
 import jinja2
 
 import jingo
-from mock import patch, Mock, sentinel
+from mock import patch, Mock
 from nose.tools import eq_
 from pyquery import PyQuery
 

@@ -2012,12 +2012,6 @@ class Category(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     addons = models.ManyToManyField(Addon, through='AddonCategory')
 
-    # Used for operator shelves and magic categories.
-    carrier = models.PositiveIntegerField(
-        choices=mkt.constants.CARRIER_CHOICES, null=True, blank=True)
-    region = models.PositiveIntegerField(
-        choices=mkt.constants.REGIONS_CHOICES_ID, null=True, blank=True)
-
     class Meta:
         db_table = 'categories'
         verbose_name_plural = 'Categories'
@@ -2077,19 +2071,6 @@ def reindex_cat_slug(old_attr=None, new_attr=None, instance=None,
 
 dbsignals.pre_save.connect(save_signal, sender=Category,
                            dispatch_uid='category_translations')
-
-
-class CategorySupervisor(amo.models.ModelBase):
-    category = models.ForeignKey(Category)
-    user = models.ForeignKey(
-        'users.UserProfile', related_name='_categories_supervised')
-
-    class Meta:
-        db_table = 'categories_supervisors'
-        verbose_name_plural = 'Category Supervisors'
-
-    def __unicode__(self):
-        return u'%s manages %s' % (self.user, self.category)
 
 
 class Feature(amo.models.ModelBase):

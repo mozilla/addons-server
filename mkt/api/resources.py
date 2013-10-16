@@ -338,16 +338,7 @@ class CategoryViewSet(ListModelMixin, RetrieveModelMixin, CORSMixin,
     def get_queryset(self):
         qs = Category.objects.filter(type=amo.ADDON_WEBAPP,
                                      weight__gte=0)
-        if self.action == 'list':
-            qs = qs.filter(Q(region__isnull=True) |
-                           Q(region=get_region_id()))
-            # Check carrier.
-            carrier = get_carrier_id()
-            carrier_f = Q(carrier__isnull=True)
-            if carrier:
-                carrier_f |= Q(carrier=carrier)
-            qs = qs.filter(carrier_f)
-        return qs.order_by('-carrier', '-region', '-weight')
+        return qs.order_by('-weight')
 
 
 def waffles(request):
