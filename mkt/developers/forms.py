@@ -186,7 +186,6 @@ def verify_app_domain(manifest_url, exclude=None, packaged=False):
 
 
 class PreviewForm(happyforms.ModelForm):
-    caption = TransField(widget=TransTextarea, required=False)
     file_upload = forms.FileField(required=False)
     upload_hash = forms.CharField(required=False)
     # This lets us POST the data URIs of the unsaved previews so we can still
@@ -225,7 +224,7 @@ class PreviewForm(happyforms.ModelForm):
 
     class Meta:
         model = Preview
-        fields = ('caption', 'file_upload', 'upload_hash', 'id', 'position')
+        fields = ('file_upload', 'upload_hash', 'id', 'position')
 
 
 class AdminSettingsForm(PreviewForm):
@@ -238,7 +237,7 @@ class AdminSettingsForm(PreviewForm):
 
     class Meta:
         model = Preview
-        fields = ('caption', 'file_upload', 'upload_hash', 'position')
+        fields = ('file_upload', 'upload_hash', 'position')
 
     def __init__(self, *args, **kw):
         # Get the object for the app's promo `Preview` and pass it to the form.
@@ -262,9 +261,6 @@ class AdminSettingsForm(PreviewForm):
                 rating = RATINGS_BODIES[r.ratings_body].ratings[r.rating]
                 rs.append(ALL_RATINGS.index(rating))
             self.initial['app_ratings'] = rs
-
-    def clean_caption(self):
-        return '__promo__'
 
     def clean_position(self):
         return -1

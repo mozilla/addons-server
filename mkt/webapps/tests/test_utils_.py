@@ -34,14 +34,12 @@ class TestAppToDict(amo.tests.TestCase):
         eq_(app_to_dict(self.app)['previews'], [])
 
     def test_with_preview(self):
-        obj = Preview.objects.create(**{'caption': 'foo',
+        obj = Preview.objects.create(**{
             'filetype': 'image/png', 'thumbtype': 'image/png',
             'addon': self.app})
         preview = app_to_dict(self.app)['previews'][0]
         self.assertSetEqual(preview,
-            ['caption', 'filetype', 'id', 'image_url', 'thumbnail_url',
-             'resource_uri'])
-        eq_(preview['caption'], 'foo')
+            ['filetype', 'id', 'image_url', 'thumbnail_url', 'resource_uri'])
         eq_(int(preview['id']), obj.pk)
 
     def test_no_rating(self):

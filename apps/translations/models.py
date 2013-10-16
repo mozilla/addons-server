@@ -184,7 +184,7 @@ class TranslationSequence(models.Model):
 
 def delete_translation(obj, fieldname):
     field = obj._meta.get_field(fieldname)
-    trans = getattr(obj, field.name)
+    trans_id = getattr(obj, field.attname)
     obj.update(**{field.name: None})
-    if trans:
-        Translation.objects.filter(id=trans.id).delete()
+    if trans_id:
+        Translation.objects.filter(id=trans_id).delete()

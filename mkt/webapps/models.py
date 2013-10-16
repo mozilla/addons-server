@@ -1248,7 +1248,6 @@ class WebappIndexer(MappingType, Indexable):
                        obj.addonuser_set.filter(role=amo.AUTHOR_ROLE_OWNER)]
         d['popularity'] = d['_boost'] = len(installed_ids)
         d['previews'] = [{'filetype': p.filetype,
-                          'caption': unicode(p.caption),
                           'image_url': p.image_url,
                           'thumbnail_url': p.thumbnail_url}
                          for p in obj.previews.all()]

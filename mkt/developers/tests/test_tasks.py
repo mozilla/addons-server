@@ -183,7 +183,7 @@ class TestResizePreview(amo.tests.TestCase):
 
     def test_preview(self):
         addon = Webapp.objects.get(pk=337141)
-        preview = Preview.objects.create(addon=addon, caption='Test')
+        preview = Preview.objects.create(addon=addon)
         src = get_image_path('preview.jpg')
         tasks.resize_preview(src, preview)
         preview = preview.reload()
@@ -196,7 +196,7 @@ class TestResizePreview(amo.tests.TestCase):
 
     def test_preview_rotated(self):
         addon = Webapp.objects.get(pk=337141)
-        preview = Preview.objects.create(addon=addon, caption='Test')
+        preview = Preview.objects.create(addon=addon)
         src = get_image_path('preview_landscape.jpg')
         tasks.resize_preview(src, preview)
         preview = preview.reload()

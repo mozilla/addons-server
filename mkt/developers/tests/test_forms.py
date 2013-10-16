@@ -40,7 +40,7 @@ class TestPreviewForm(amo.tests.TestCase):
     @mock.patch('amo.models.ModelBase.update')
     def test_preview_modified(self, update_mock):
         name = 'transparent.png'
-        form = forms.PreviewForm({'caption': 'test', 'upload_hash': name,
+        form = forms.PreviewForm({'upload_hash': name,
                                   'position': 1})
         shutil.copyfile(get_image_path(name), os.path.join(self.dest, name))
         assert form.is_valid(), form.errors
@@ -49,7 +49,7 @@ class TestPreviewForm(amo.tests.TestCase):
 
     def test_preview_size(self):
         name = 'non-animated.gif'
-        form = forms.PreviewForm({'caption': 'test', 'upload_hash': name,
+        form = forms.PreviewForm({'upload_hash': name,
                                   'position': 1})
         with storage.open(os.path.join(self.dest, name), 'wb') as f:
             copyfileobj(open(get_image_path(name)), f)
@@ -59,7 +59,7 @@ class TestPreviewForm(amo.tests.TestCase):
             {u'image': [250, 297], u'thumbnail': [180, 214]})
 
     def check_file_type(self, type_):
-        form = forms.PreviewForm({'caption': 'test', 'upload_hash': type_,
+        form = forms.PreviewForm({'upload_hash': type_,
                                   'position': 1})
         assert form.is_valid(), form.errors
         form.save(self.addon)
