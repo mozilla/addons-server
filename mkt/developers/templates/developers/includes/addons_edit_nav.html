@@ -42,7 +42,6 @@
   <div class="island" id="edit-addon-nav">
     <ul class="refinements">
       {% for url, title in urls %}
-        {# Hook up PayPal urls under payment urls #}
         <li{% if request.path.startswith(url) %} class="selected"{% endif %}>
           <a href="{{ url }}">{{ title }}</a></li>
       {% endfor %}

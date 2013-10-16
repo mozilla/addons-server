@@ -257,7 +257,6 @@ def app_summary(request, addon_id):
                          'authors': authors,
                          'downloads': _app_downloads(app),
                          'purchases': purchases,
-                         'payment_methods': _app_pay_methods(app),
                          'refunds': refunds,
                          'price': price})
 
@@ -493,29 +492,3 @@ def _app_purchases_and_refunds(addon):
     refunds['rejected'] = qs.filter(rejected_q).count()
 
     return purchases, refunds
-
-
-def _app_pay_methods(addon):
-    """
-    Get a breakdown of payment methods used in commerce for this add-on.
-
-    Currently we only support one payment method, PayPal, so consider this
-    a placeholder for when we support more, which requires a model change.
-    """
-    qs = Contribution.objects.filter(addon=addon,
-                                     type__in=(amo.CONTRIB_PURCHASE,))
-    # TODO(Kumar) adjust this when our db model supports multiple
-    # payment methods.
-    other = qs.filter(paykey=None).count()
-    paypal = qs.exclude(paykey=None).count()
-    amt_per_method = [(other, _('Other')),
-                      (paypal, 'PayPal')]
-    total = float(sum(amt for amt, typ in amt_per_method))
-    summary = []
-    for amt, typ in amt_per_method:
-        if amt == 0:
-            continue
-        percent = '%.1f%%' % (amt / total * 100.0)
-        # L10n: first argument is a percentage, second is a payment method.
-        summary.append(_(u'{0} of purchases via {1}').format(percent, typ))
-    return summary

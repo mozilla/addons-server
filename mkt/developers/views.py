@@ -40,7 +40,6 @@ from files.models import File, FileUpload
 from files.utils import parse_addon
 from market.models import Refund
 from stats.models import Contribution
-from translations.models import delete_translation
 from users.models import UserProfile
 from users.views import _login
 from versions.models import Version
@@ -469,31 +468,6 @@ def refunds(request, addon_id, addon, webapp=False):
     for status, refunds in queues.iteritems():
         ctx[status] = amo.utils.paginate(request, refunds, per_page=50)
     return jingo.render(request, 'developers/payments/refunds.html', ctx)
-
-
-@dev_required(webapp=True)
-@post_required
-def remove_profile(request, addon_id, addon, webapp=False):
-    delete_translation(addon, 'the_reason')
-    delete_translation(addon, 'the_future')
-    if addon.wants_contributions:
-        addon.update(wants_contributions=False)
-    return redirect(addon.get_dev_url('profile'))
-
-
-@dev_required(webapp=True)
-def profile(request, addon_id, addon, webapp=False):
-    profile_form = forms.ProfileForm(request.POST or None, instance=addon)
-
-    if request.method == 'POST' and profile_form.is_valid():
-        profile_form.save()
-        amo.log(amo.LOG.EDIT_PROPERTIES, addon)
-        messages.success(request, _('Changes successfully saved.'))
-        return redirect(addon.get_dev_url('profile'))
-
-    return jingo.render(request, 'developers/apps/profile.html',
-                        dict(addon=addon, webapp=webapp,
-                             profile_form=profile_form))
 
 
 @anonymous_csrf
@@ -954,8 +928,7 @@ def api(request):
                 access.delete()
     consumers = list(Access.objects.filter(user=request.user))
     return jingo.render(request, 'developers/api.html',
-                        {'consumers': consumers, 'profile': profile,
-                         'roles': roles, 'form': f})
+                        {'consumers': consumers, 'roles': roles, 'form': f})
 
 
 @addon_view

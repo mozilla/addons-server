@@ -90,12 +90,6 @@
           {# L10n: number of refunds. #}
           <div>{{ _('{0} rejected')|f(refunds['rejected']) }}</div>
         </dd>
-        <dt>{{ _('Methods') }}</dt>
-        <dd class="pretty-list">
-          {% for summary in payment_methods %}
-            <div>{{ summary }}</div>
-          {% endfor %}
-        </dd>
       </dl>
     </section>
 
