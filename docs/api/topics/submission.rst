@@ -260,7 +260,6 @@ Screenshots or videos
             "image_url": "/img/uploads/...",
             "filetype": "image/png",
             "resource_uri": "/api/v1/apps/preview/1/"
-            "caption": "Awesome screenshot"
         }
 
 .. http:delete:: /api/v1/apps/preview/(int:preview_id)/

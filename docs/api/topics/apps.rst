@@ -75,7 +75,6 @@ App
             "premium_type": "premium",
             "previews": [
                 {
-                    "caption": "",
                     "filetype": "image/png",
                     "id": "37",
                     "image_url": "/tmp/uploads/previews/full/0/37.png?modified=1362762723",
