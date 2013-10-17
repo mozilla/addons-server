@@ -909,7 +909,7 @@ class TestCollectionSearch(SearchBase):
         for term in ('collection',
                      'seavan: a collection of cars at the beach'):
             self.check_name_results({'q': term},
-            sorted(p.id for p in self.collections))
+                                    sorted(p.id for p in self.collections))
 
         # Garbage search terms should return nothing.
         for term in ('xxx', 'garbage', '£'):
@@ -979,6 +979,7 @@ class TestCollectionSearch(SearchBase):
 
     def test_session_version_sidebar(self):
         request = RequestFactory()
+        request.GET = {}
         request.session = {}
         request.APP = amo.FIREFOX
 
@@ -990,13 +991,17 @@ class TestCollectionSearch(SearchBase):
             u'tags': [],
         }
         versions = version_sidebar(request, {}, facets)
-        assert not versions[1].selected
+        assert versions[0].selected
 
         versions = version_sidebar(request, {'appver': '5.0'}, facets)
         assert versions[1].selected
 
         versions = version_sidebar(request, {}, facets)
         assert versions[1].selected
+
+        request.GET['appver'] = ''
+        versions = version_sidebar(request, {}, facets)
+        assert versions[0].selected
 
 
 def test_search_redirects():
